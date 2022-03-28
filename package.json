@@ -1,6 +1,6 @@
 {
   "name": "lcc-angular",
-  "version": "0.10.0",
+  "version": "0.1.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",

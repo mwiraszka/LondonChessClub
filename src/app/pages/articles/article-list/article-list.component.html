@@ -1,0 +1,31 @@
+<button class="btn btn-primary"
+        (click)="facade.onComposeArticle()">
+  Compose an article
+</button>
+
+<h1>News</h1>
+
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'title'">Title</clr-dg-column>
+  <clr-dg-column [clrDgField]="'subtitle'">Subtitle</clr-dg-column>
+  <clr-dg-column [clrDgField]="'headerImage'">Header Image</clr-dg-column>
+  <clr-dg-column [clrDgField]="'authorUserId'">Author</clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let article of facade.articles$ | async">
+    <clr-dg-action-overflow>
+      <button class="action-item"
+              (click)="facade.onEditArticle(article)">
+        Edit
+      </button>
+      <button class="action-item"
+              (click)="facade.onDeleteArticle(article)">
+        Delete
+      </button>
+    </clr-dg-action-overflow>
+    <clr-dg-cell>{{ article.title }}</clr-dg-cell>
+    <clr-dg-cell>{{ article.subtitle }}</clr-dg-cell>
+    <clr-dg-cell>{{ article.headerImage }}</clr-dg-cell>
+    <clr-dg-cell>{{ article.authorUserId }}</clr-dg-cell>
+  </clr-dg-row>
+  <clr-dg-footer>{{ (facade.articles$ | async)?.length }} articles</clr-dg-footer>
+</clr-datagrid>

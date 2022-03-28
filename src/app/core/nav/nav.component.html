@@ -1,0 +1,69 @@
+<nav class="subnav">
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link"
+         routerLink="{{ NavPaths.HOME }}"
+         routerLinkActive="link-active"
+         [routerLinkActiveOptions]="{ exact: true }"
+         (click)="facade.onHomeTabSelected()">
+        Home
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"
+         routerLink="{{ NavPaths.MEMBERS }}"
+         routerLinkActive="link-active"
+         (click)="facade.onMembersTabSelected()">
+        Members
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"
+         routerLink="{{ NavPaths.SCHEDULE }}"
+         routerLinkActive="link-active"
+         (click)="facade.onScheduleTabSelected()">
+        Schedule
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"
+         routerLink="{{ NavPaths.NEWS }}"
+         routerLinkActive="link-active"
+         (click)="facade.onNewsTabSelected()">
+        News
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"
+         routerLink="{{ NavPaths.CITY_CHAMPION }}"
+         routerLinkActive="link-active"
+         (click)="facade.onCityChampionTabSelected()">
+        City Champion
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"
+         routerLink="{{ NavPaths.LESSONS }}"
+         routerLinkActive="link-active"
+         (click)="facade.onLessonsTabSelected()">
+        Lessons
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"
+         routerLink="{{ NavPaths.SUPPLIES }}"
+         routerLinkActive="link-active"
+         (click)="facade.onSuppliesTabSelected()">
+        Supplies
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"
+         routerLink="{{ NavPaths.ABOUT }}"
+         routerLinkActive="link-active"
+         (click)="facade.onAboutTabSelected()">
+        About
+      </a>
+    </li>
+  </ul>
+</nav>

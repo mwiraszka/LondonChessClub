@@ -1,0 +1,24 @@
+#app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+  margin: 10px;
+}
+
+lcc-alert,
+lcc-header,
+lcc-nav,
+lcc-footer {
+  flex-shrink: 0;
+}
+
+lcc-toaster {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  z-index: 100;
+}

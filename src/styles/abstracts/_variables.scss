@@ -1,0 +1,44 @@
+/* LCC custom color palette */
+$lcc-primary: #032d36;
+$lcc-accent: #a2dc7f;
+
+$lcc-success: #22a31e;
+$lcc-warning: rgba(231, 25, 25, 0.973);
+$lcc-info: rgba(31, 97, 241, 0.973);
+$lcc-select: #adbcff;
+$lcc-background: #f4efef;
+$lcc-fieldset: #d7d8dc;
+$lcc-white: #f0f0f0;
+$lcc-gray: #9e9e9e;
+$lcc-black: #0e0e0e;
+
+/* Global font sizes */
+$h1: 30px;
+$h2: 24px;
+$h3: 18px;
+$h4: 14px;
+$h5: 12px;
+$h6: 11px;
+
+/* Viewport breakpoint map */
+$breakpoints: (
+  'small': (
+    min-width: 400px,
+  ),
+  'less-than-medium': (
+    max-width: 699px,
+  ),
+  'medium': (
+    min-width: 700px,
+  ),
+  'large': (
+    min-width: 1000px,
+  ),
+  'x-large': (
+    min-width: 1200px,
+  ),
+);
+
+/* Miscellaneous default global variables */
+$lcc-border-radius: 4px;
+$lcc-spacing: 20px;

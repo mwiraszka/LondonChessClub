@@ -1,0 +1,40 @@
+@import 'styles/abstracts/variables.scss';
+
+.lcc-header-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 20px;
+  background-color: $lcc-primary;
+}
+
+.lcc-header-branding,
+.lcc-header-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lcc-header-title {
+  font-size: $h1;
+  color: darken($lcc-white, 10%);
+}
+
+.lcc-header-nav-label {
+  font-weight: 400;
+  font-size: $h3;
+}
+
+.lcc-header-nav-link {
+  color: darken($lcc-white, 40%);
+
+  &:hover {
+    color: darken($lcc-white, 20%);
+  }
+
+  &.link-active {
+    color: darken($lcc-white, 5%);
+    text-shadow: 0 0 1px darken($lcc-white, 20%);
+  }
+}

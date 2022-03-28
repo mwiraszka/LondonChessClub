@@ -1,0 +1,23 @@
+﻿<main id="admin-login">
+  <div class="lcc-container">
+    <h3>Admin Login</h3>
+    <form id="loginForm"
+          [formGroup]="loginForm"
+          (ngSubmit)="onLogin()"
+          (keyup)="onKeyUp($event)">
+      <input formControlName="email"
+             placeholder="Email"
+             type="text"
+             name="email"/>
+      <input formControlName="password"
+             placeholder="Password"
+             type="password"
+             name="password"/>
+      <button class="btn btn-primary"
+              type="submit"
+              [disabled]="loginForm.invalid">
+        Log in
+      </button>
+    </form>
+  </div>
+</main>

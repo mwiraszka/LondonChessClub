@@ -1,0 +1,33 @@
+#admin-login {
+  display: flex;
+  justify-content: center;
+}
+
+.lcc-container {
+  margin-top: 10px;
+  width: calc(100% - 16px);
+  max-width: 360px;
+  min-width: 250px;
+}
+
+h3 {
+  margin: 10px 0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+form {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  width: 200px;
+}
+
+button {
+  display: block;
+  margin: 20px 0 10px auto;
+}

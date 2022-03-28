@@ -1,0 +1,29 @@
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+
+import { AppStoreFeatures } from '@app/shared/types';
+
+import { MemberEditorState } from './member-editor.state';
+
+export const memberEditorFeatureSelector = createFeatureSelector<MemberEditorState>(
+  AppStoreFeatures.MEMBER_EDITOR
+);
+
+export const memberBeforeEdit = createSelector(
+  memberEditorFeatureSelector,
+  (state) => state.memberBeforeEdit
+);
+
+export const memberAfterEdit = createSelector(
+  memberEditorFeatureSelector,
+  (state) => state.memberAfterEdit
+);
+
+export const isEditMode = createSelector(
+  memberEditorFeatureSelector,
+  (state) => state.isEditMode
+);
+
+export const hasUnsavedChanges = createSelector(
+  memberEditorFeatureSelector,
+  (state) => state.hasUnsavedChanges
+);

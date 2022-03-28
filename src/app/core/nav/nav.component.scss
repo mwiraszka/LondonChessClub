@@ -1,0 +1,10 @@
+@import 'styles/abstracts/variables.scss';
+
+.nav-item {
+  padding: 5px;
+}
+
+.link-active {
+  color: $lcc-black !important;
+  text-shadow: 0 0 1px $lcc-primary;
+}

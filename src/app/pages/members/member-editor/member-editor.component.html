@@ -1,0 +1,70 @@
+<main id="member-editor">
+  <div class="lcc-container">
+    <ng-container *ngIf="facade.isEditMode$ | async; else createModeHeader">
+      <h3>
+				Edit
+				<em>
+          {{ (facade.memberBeforeEdit$ | async).firstName }}
+					{{ (facade.memberBeforeEdit$ | async).lastName }}
+				</em>
+			</h3>
+    </ng-container>
+    <ng-template #createModeHeader>
+      <h3>Add a member</h3>
+    </ng-template>
+
+    <form *ngIf="form"
+          [formGroup]="form"
+          (ngSubmit)="onSubmit()">
+      <input type="text"
+             name="first-name"
+             formControlName="firstName"
+             placeholder="First name"
+             maxlength="50"/>
+      <input type="text"
+             name="last-name"
+             formControlName="lastName"
+             placeholder="Last name"
+             maxlength="50"/>
+      <input type="text"
+             name="city"
+             formControlName="city"
+             placeholder="City"
+             maxlength="50"/>
+      <input type="text"
+             name="phone-number"
+             formControlName="phoneNumber"
+             placeholder="Phone number"
+             maxlength="12"/>
+      <input type="text"
+             name="email"
+             formControlName="email"
+             placeholder="Email"
+             maxlength="50"/>
+      <input type="text"
+             name="date-joined"
+             formControlName="dateJoined"
+             placeholder="Date joined"
+             maxlength="10"/>
+      <input type="text"
+             name="rating"
+             formControlName="rating"
+             placeholder="Club rating"
+             maxlength="4"/>
+
+      <div class="buttons-container">
+        <button class="btn btn-primary-outline"
+                type="button"
+                (click)="onCancel()">
+          Cancel
+        </button>
+        <button class="btn btn-primary"
+                type="submit"
+                [disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
+          <ng-container *ngIf="facade.isEditMode$ | async; else createModeButton">Update</ng-container>
+          <ng-template #createModeButton>Add member</ng-template>
+        </button>
+      </div>
+    </form>
+  </div>
+</main>

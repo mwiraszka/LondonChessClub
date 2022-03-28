@@ -1,0 +1,15 @@
+import { Component } from '@angular/core';
+
+import { NavFacade } from './store/nav.facade';
+import { NavPaths } from './types/nav-paths.model';
+
+@Component({
+  selector: 'lcc-nav',
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.scss'],
+  providers: [NavFacade],
+})
+export class NavComponent {
+  NavPaths = NavPaths;
+  constructor(public facade: NavFacade) {}
+}

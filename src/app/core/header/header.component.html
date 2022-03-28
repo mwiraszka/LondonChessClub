@@ -1,0 +1,22 @@
+<header class="lcc-header-container">
+  <a class="lcc-header-branding"
+     href="https://londonchessclub.ca"
+     target="_blank">
+    <cds-icon class="lcc-header-logo"
+              shape="lcc-logo"
+              size="xl">
+    </cds-icon>
+    <span class="lcc-header-title">London Chess Club</span>
+  </a>
+  <a class="lcc-header-nav-link"
+     aria-label="Admin login"
+     routerLink="{{ NavPaths.LOGIN }}"
+     routerLinkActive="link-active"
+     (click)="facade.onAdminLoginSelected()">
+    <cds-icon shape="administrator"
+              size="md"
+              outline>
+    </cds-icon>
+    <label class="lcc-header-nav-label">Admin Login</label>
+  </a>
+</header>

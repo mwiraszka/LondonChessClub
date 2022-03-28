@@ -1,0 +1,18 @@
+<ng-container *ngIf="isModalOpen$ | async">
+  <lcc-modal></lcc-modal>
+</ng-container>
+
+<div id="app-container">
+  <lcc-alert></lcc-alert>
+  <lcc-header></lcc-header>
+  <lcc-nav></lcc-nav>
+  <main>
+    <router-outlet>
+      <span *ngIf="isLoading" class="loading-spinner"></span>
+      <ng-container *ngIf="isDisplayingToaster$ | async">
+        <lcc-toaster></lcc-toaster>
+      </ng-container>
+    </router-outlet>
+  </main>
+  <lcc-footer></lcc-footer>
+</div>

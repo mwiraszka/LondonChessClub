@@ -39,7 +39,7 @@ import { environment } from '@environments/environment';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    StoreModule.forRoot({ router: routerReducer }),
+    StoreModule.forRoot({ router: routerReducer }, { metaReducers: [] }),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

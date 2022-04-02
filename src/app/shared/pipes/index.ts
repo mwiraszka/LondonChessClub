@@ -1,2 +1,2 @@
 export { PipesModule } from './pipes.module';
-export { TruncatePipe } from './truncate.pipe';
+export { TruncateByCharsPipe } from './truncate-by-chars.pipe';

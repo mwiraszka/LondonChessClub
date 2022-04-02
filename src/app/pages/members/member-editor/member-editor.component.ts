@@ -25,6 +25,7 @@ export class MemberEditorComponent implements OnInit, OnDestroy {
 
   form!: FormGroup;
   valueChangesSubscription!: Subscription;
+  memberFullName!: string;
 
   constructor(
     public facade: MemberEditorFacade,
@@ -35,9 +36,17 @@ export class MemberEditorComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loader.display(true);
-    this.facade.memberBeforeEdit$
+
+    this.facade.memberCurrently$
       .pipe(
         tap((member) => this.initForm(member)),
+        first()
+      )
+      .subscribe();
+
+    this.facade.memberBeforeEdit$
+      .pipe(
+        tap((member) => (this.memberFullName = member.firstName + ' ' + member.lastName)),
         tap(() => this.loader.display(false)),
         first()
       )
@@ -82,6 +91,6 @@ export class MemberEditorComponent implements OnInit, OnDestroy {
 
     this.valueChangesSubscription = this.form.valueChanges
       .pipe(debounceTime(200))
-      .subscribe((member: Member) => this.facade.onValueChange(member));
+      .subscribe((formData: Member) => this.facade.onValueChange(formData));
   }
 }

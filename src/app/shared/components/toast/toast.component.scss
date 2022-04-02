@@ -5,7 +5,7 @@
   flex-flow: row nowrap;
   width: 300px;
   margin-top: 6px;
-  padding: 2px 10px;
+  padding: 2px 5px;
   border-radius: $lcc-border-radius;
   box-shadow: 0 0 2px 2px lighten($lcc-gray, 20%);
 
@@ -38,13 +38,13 @@
 
   .lcc-toast-title {
     padding: 2px;
-    font-size: $h3;
+    font-size: $h4;
     color: lighten($lcc-white, 10%);
   }
 
   .lcc-toast-message {
     padding: 2px;
-    font-size: $h4;
+    font-size: $h5;
     color: $lcc-white;
   }
 }

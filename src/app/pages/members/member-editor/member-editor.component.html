@@ -1,13 +1,7 @@
 <main id="member-editor">
   <div class="lcc-container">
     <ng-container *ngIf="facade.isEditMode$ | async; else createModeHeader">
-      <h3>
-				Edit
-				<em>
-          {{ (facade.memberBeforeEdit$ | async).firstName }}
-					{{ (facade.memberBeforeEdit$ | async).lastName }}
-				</em>
-			</h3>
+      <h3>Edit <em>{{ memberFullName }}</em></h3>
     </ng-container>
     <ng-template #createModeHeader>
       <h3>Add a member</h3>

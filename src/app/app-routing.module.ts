@@ -29,7 +29,7 @@ const routes: Routes = [
     canDeactivate: [UnsavedGuard],
   },
   {
-    path: NavPaths.MEMBERS_EDIT,
+    path: `${NavPaths.MEMBERS_EDIT}/:member_id`,
     component: MemberEditorComponent,
     canDeactivate: [UnsavedGuard],
   },
@@ -47,7 +47,7 @@ const routes: Routes = [
     canDeactivate: [UnsavedGuard],
   },
   {
-    path: NavPaths.NEWS_EDIT,
+    path: `${NavPaths.NEWS_EDIT}/:article_id`,
     component: ArticleEditorComponent,
     canDeactivate: [UnsavedGuard],
   },

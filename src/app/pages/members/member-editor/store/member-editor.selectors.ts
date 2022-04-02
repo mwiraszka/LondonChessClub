@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { AppStoreFeatures } from '@app/shared/types';
+import { areSame } from '@app/shared/utils';
 
 import { MemberEditorState } from './member-editor.state';
 
@@ -13,9 +14,9 @@ export const memberBeforeEdit = createSelector(
   (state) => state.memberBeforeEdit
 );
 
-export const memberAfterEdit = createSelector(
+export const memberCurrently = createSelector(
   memberEditorFeatureSelector,
-  (state) => state.memberAfterEdit
+  (state) => state.memberCurrently
 );
 
 export const isEditMode = createSelector(
@@ -25,5 +26,5 @@ export const isEditMode = createSelector(
 
 export const hasUnsavedChanges = createSelector(
   memberEditorFeatureSelector,
-  (state) => state.hasUnsavedChanges
+  (state) => !areSame(state.memberCurrently, state.memberBeforeEdit)
 );

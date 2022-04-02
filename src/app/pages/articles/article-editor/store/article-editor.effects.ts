@@ -11,19 +11,24 @@ import { ArticlesService } from '../../articles.service';
 
 @Injectable()
 export class ArticleEditorEffects {
+  resetArticleForm$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ArticleListActions.createArticleSelected),
+      map(() => ArticleEditorActions.resetArticleForm())
+    )
+  );
+
   getArticleToEdit$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ArticleListActions.editArticleSelected),
-      map((articleToEdit) => {
-        return ArticleEditorActions.articleToEditReceived(articleToEdit);
-      })
+      map((articleToEdit) => ArticleEditorActions.articleToEditReceived(articleToEdit))
     )
   );
 
   publishArticle$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ArticleEditorActions.publishArticleConfirmed),
-      concatLatestFrom(() => this.store.select(ArticleEditorSelectors.articleAfterEdit)),
+      concatLatestFrom(() => this.store.select(ArticleEditorSelectors.articleCurrently)),
       switchMap(([, articleToPublish]) => {
         return this.articlesService.addArticle(articleToPublish).pipe(
           map((publishedArticle) => {
@@ -44,7 +49,7 @@ export class ArticleEditorEffects {
   updateArticle$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ArticleEditorActions.updateArticleConfirmed),
-      concatLatestFrom(() => this.store.select(ArticleEditorSelectors.articleAfterEdit)),
+      concatLatestFrom(() => this.store.select(ArticleEditorSelectors.articleCurrently)),
       switchMap(([, articleToUpdate]) => {
         return this.articlesService.updateArticle(articleToUpdate).pipe(
           map((updatedArticle) => {
@@ -69,9 +74,7 @@ export class ArticleEditorEffects {
           ArticleEditorActions.publishArticleFailed,
           ArticleEditorActions.updateArticleFailed
         ),
-        tap(({ errorMessage }) => {
-          console.error(errorMessage);
-        })
+        tap(({ errorMessage }) => console.error(errorMessage))
       ),
     { dispatch: false }
   );

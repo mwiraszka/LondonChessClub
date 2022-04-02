@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
-import { first, map, tap } from 'rxjs/operators';
-
-import { areSame } from '@app/shared/utils';
+import { first, map } from 'rxjs/operators';
 
 import * as ArticleEditorActions from './article-editor.actions';
 import * as ArticleEditorSelectors from './article-editor.selectors';
@@ -14,6 +12,8 @@ export class ArticleEditorFacade {
   readonly articleBeforeEdit$ = this.store.select(
     ArticleEditorSelectors.articleBeforeEdit
   );
+  readonly articleCurrently$ = this.store.select(ArticleEditorSelectors.articleCurrently);
+
   readonly isEditMode$ = this.store.select(ArticleEditorSelectors.isEditMode);
   readonly hasUnsavedChanges$ = this.store.select(
     ArticleEditorSelectors.hasUnsavedChanges
@@ -52,21 +52,8 @@ export class ArticleEditorFacade {
       .subscribe();
   }
 
-  onValueChange(article: Article): void {
-    combineLatest([this.articleBeforeEdit$, this.hasUnsavedChanges$])
-      .pipe(
-        tap(([articleBeforeEdit, hadUnsavedChanges]) => {
-          const unsavedChangesDetected = !areSame(article, articleBeforeEdit);
-
-          if (!hadUnsavedChanges && unsavedChangesDetected) {
-            this.store.dispatch(ArticleEditorActions.unsavedChangesDetected());
-          } else if (hadUnsavedChanges && !unsavedChangesDetected) {
-            this.store.dispatch(ArticleEditorActions.noUnsavedChangesDetected());
-          }
-        }),
-        first()
-      )
-      .subscribe();
+  onValueChange(formData: Article): void {
+    this.store.dispatch(ArticleEditorActions.formDataChanged({ formData }));
   }
 
   constructor(private readonly store: Store) {}

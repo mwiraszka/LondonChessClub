@@ -1,6 +1,6 @@
 {
   "name": "lcc-angular",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
@@ -38,6 +38,7 @@
     "moment": "^2.29.1",
     "mongoose": "^6.1.2",
     "multer": "^1.4.4",
+    "ngrx-store-localstorage": "^13.0.1",
     "query-string": "^7.0.1",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",

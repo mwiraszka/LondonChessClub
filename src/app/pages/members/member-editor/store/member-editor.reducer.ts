@@ -6,9 +6,8 @@ import { newMemberFormTemplate } from '../../types/member.model';
 
 const initialState: MemberEditorState = {
   memberBeforeEdit: newMemberFormTemplate,
-  memberAfterEdit: null,
+  memberCurrently: newMemberFormTemplate,
   isEditMode: false,
-  hasUnsavedChanges: false,
 };
 
 const memberEditorReducer = createReducer(
@@ -16,35 +15,26 @@ const memberEditorReducer = createReducer(
   on(MemberEditorActions.memberToEditReceived, (state, action) => ({
     ...state,
     memberBeforeEdit: action.memberToEdit,
+    memberCurrently: action.memberToEdit,
     isEditMode: true,
   })),
+  on(MemberEditorActions.resetMemberForm, () => initialState),
   on(MemberEditorActions.addMemberSelected, (state, action) => ({
     ...state,
-    memberAfterEdit: action.memberToAdd,
-    hasUnsavedChanges: false,
+    memberCurrently: action.memberToAdd,
   })),
   on(MemberEditorActions.addMemberSucceeded, () => initialState),
-  on(MemberEditorActions.addMemberFailed, (state) => ({
-    ...state,
-    hasUnsavedChanges: false,
-  })),
+  on(MemberEditorActions.addMemberFailed, () => initialState),
   on(MemberEditorActions.updateMemberSelected, (state, action) => ({
     ...state,
-    memberAfterEdit: action.memberToUpdate,
+    memberCurrently: action.memberToUpdate,
   })),
   on(MemberEditorActions.updateMemberSucceeded, () => initialState),
-  on(MemberEditorActions.updateMemberFailed, (state) => ({
-    ...state,
-    hasUnsavedChanges: false,
-  })),
+  on(MemberEditorActions.updateMemberFailed, () => initialState),
   on(MemberEditorActions.cancelConfirmed, () => initialState),
-  on(MemberEditorActions.unsavedChangesDetected, (state) => ({
+  on(MemberEditorActions.formDataChanged, (state, action) => ({
     ...state,
-    hasUnsavedChanges: true,
-  })),
-  on(MemberEditorActions.noUnsavedChangesDetected, (state) => ({
-    ...state,
-    hasUnsavedChanges: false,
+    memberCurrently: action.formData,
   }))
 );
 

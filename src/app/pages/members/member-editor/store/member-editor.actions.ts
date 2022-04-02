@@ -5,6 +5,7 @@ import { Member } from '../../types/member.model';
 enum MemberEditorActionTypes {
   MEMBER_TO_EDIT_RECEIVED = '[Member Editor] Member to edit received',
   GET_MEMBER_TO_EDIT_SUCCEEDED = '[Member Editor] Get member to edit succeeded',
+  RESET_MEMBER_FORM = '[Member Editor] Reset member form',
 
   ADD_MEMBER_SELECTED = '[Member Editor] Add member selected',
   ADD_MEMBER_CONFIRMED = '[Member Editor] Add member confirmed',
@@ -23,6 +24,8 @@ enum MemberEditorActionTypes {
 
   UNSAVED_CHANGES_DETECTED = '[Member Editor] Unsaved changes detected',
   NO_UNSAVED_CHANGES_DETECTED = '[Member Editor] No unsaved changes detected',
+
+  FORM_DATA_CHANGED = '[Member Editor] Form data changed',
 }
 
 export const memberToEditReceived = createAction(
@@ -33,6 +36,7 @@ export const getMemberToEditSucceeded = createAction(
   MemberEditorActionTypes.GET_MEMBER_TO_EDIT_SUCCEEDED,
   props<{ memberToEdit: Member }>()
 );
+export const resetMemberForm = createAction(MemberEditorActionTypes.RESET_MEMBER_FORM);
 
 export const addMemberSelected = createAction(
   MemberEditorActionTypes.ADD_MEMBER_SELECTED,
@@ -75,9 +79,7 @@ export const updateMemberFailed = createAction(
 export const cancelSelected = createAction(MemberEditorActionTypes.CANCEL_SELECTED);
 export const cancelConfirmed = createAction(MemberEditorActionTypes.CANCEL_CONFIRMED);
 
-export const unsavedChangesDetected = createAction(
-  MemberEditorActionTypes.UNSAVED_CHANGES_DETECTED
-);
-export const noUnsavedChangesDetected = createAction(
-  MemberEditorActionTypes.NO_UNSAVED_CHANGES_DETECTED
+export const formDataChanged = createAction(
+  MemberEditorActionTypes.FORM_DATA_CHANGED,
+  props<{ formData: Member }>()
 );

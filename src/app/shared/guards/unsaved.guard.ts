@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
-import { select, Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { combineLatest, Observable, of } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
 
-import { ArticleEditorComponent } from '@app/pages/articles';
-import { MemberEditorComponent } from '@app/pages/members';
+import { ArticleEditorComponent, ArticleEditorSelectors } from '@app/pages/articles';
+import { MemberEditorComponent, MemberEditorSelectors } from '@app/pages/members';
 import {
   ModalActions,
   ModalButtonActionTypes,
@@ -13,7 +13,6 @@ import {
   ModalContent,
   ModalSelectors,
 } from '@app/shared/components/modal';
-import { AppSelectors } from '@app/shared/store';
 
 @Injectable({
   providedIn: 'root',
@@ -41,10 +40,12 @@ export class UnsavedGuard
   constructor(private store: Store) {}
 
   canDeactivate(): Observable<boolean> {
-    return this.store.pipe(
-      select(AppSelectors.hasUnsavedChanges),
-      switchMap((hasUnsavedChanges) => {
-        if (!hasUnsavedChanges) {
+    return combineLatest([
+      this.store.select(ArticleEditorSelectors.hasUnsavedChanges),
+      this.store.select(MemberEditorSelectors.hasUnsavedChanges),
+    ]).pipe(
+      switchMap(([unsavedArticle, unsavedMember]) => {
+        if (!unsavedArticle && !unsavedMember) {
           return of(true);
         }
         this.store.dispatch(

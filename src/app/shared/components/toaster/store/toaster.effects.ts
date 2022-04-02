@@ -209,10 +209,10 @@ export class ToasterEffects {
   );
 
   // EXPIRE ---------------------------------------------------------------------------------------
-  toastExpired$ = createEffect(() =>
+  expireToast$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ToasterActions.toastAdded),
-      delay(3000),
+      delay(5000),
       map(({ toast }) => ToasterActions.toastExpired({ toast }))
     )
   );

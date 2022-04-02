@@ -1,4 +1,5 @@
-import { ActionReducer, INIT, MetaReducer, UPDATE } from '@ngrx/store';
+import { ActionReducer, MetaReducer } from '@ngrx/store';
+import { localStorageSync } from 'ngrx-store-localstorage';
 
 import { AppState } from './app.state';
 
@@ -15,27 +16,12 @@ function actionLogMetaReducer(reducer: ActionReducer<AppState>): ActionReducer<A
   };
 }
 
-/*
+/**
  * Source: https://nils-mehlhorn.de/posts/ngrx-keep-state-refresh
  */
 function hydrationMetaReducer(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
-  return (state, action) => {
-    if (action.type === INIT || action.type === UPDATE) {
-      const storageValue = localStorage.getItem('state');
-      if (storageValue) {
-        try {
-          return JSON.parse(storageValue);
-        } catch {
-          localStorage.removeItem('state');
-        }
-      }
-    }
-
-    const nextState = reducer(state, action);
-    localStorage.setItem('state', JSON.stringify(nextState));
-
-    return nextState;
-  };
+  const keysOfStoresToSync = ['article-editor', 'member-editor'];
+  return localStorageSync({ keys: keysOfStoresToSync, rehydrate: true })(reducer);
 }
 
-export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
+export const metaReducers: Array<MetaReducer<any, any>> = [hydrationMetaReducer];

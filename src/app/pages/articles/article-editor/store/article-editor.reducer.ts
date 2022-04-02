@@ -34,7 +34,6 @@ const articleEditorReducer = createReducer(
   })),
   on(ArticleEditorActions.updateArticleSelected, (state, action) => ({
     ...state,
-    articleAfterEdit: action.articleToUpdate,
     articleCurrently: action.articleToUpdate,
   })),
   on(ArticleEditorActions.updateArticleSucceeded, () => initialState),

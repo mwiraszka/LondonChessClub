@@ -17,7 +17,7 @@ import { AlertModule } from '@app/shared/components/alert';
 import { ModalModule } from '@app/shared/components/modal';
 import { ToastModule } from '@app/shared/components/toast';
 import { ToasterModule } from '@app/shared/components/toaster';
-
+import { metaReducers } from '@app/shared/store';
 import { environment } from '@environments/environment';
 
 @NgModule({
@@ -39,7 +39,7 @@ import { environment } from '@environments/environment';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    StoreModule.forRoot({ router: routerReducer }, { metaReducers: [] }),
+    StoreModule.forRoot({ router: routerReducer }, { metaReducers }),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

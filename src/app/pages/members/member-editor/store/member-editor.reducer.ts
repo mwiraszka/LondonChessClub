@@ -1,12 +1,14 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
+import { areSame } from '@app/shared/utils';
+
 import * as MemberEditorActions from './member-editor.actions';
 import { MemberEditorState } from './member-editor.state';
 import { newMemberFormTemplate } from '../../types/member.model';
 
 const initialState: MemberEditorState = {
   memberBeforeEdit: newMemberFormTemplate,
-  memberAfterEdit: null,
+  memberCurrently: newMemberFormTemplate,
   isEditMode: false,
   hasUnsavedChanges: false,
 };
@@ -16,11 +18,13 @@ const memberEditorReducer = createReducer(
   on(MemberEditorActions.memberToEditReceived, (state, action) => ({
     ...state,
     memberBeforeEdit: action.memberToEdit,
+    memberCurrently: action.memberToEdit,
     isEditMode: true,
   })),
+  on(MemberEditorActions.resetMemberForm, () => initialState),
   on(MemberEditorActions.addMemberSelected, (state, action) => ({
     ...state,
-    memberAfterEdit: action.memberToAdd,
+    memberCurrently: action.memberToAdd,
     hasUnsavedChanges: false,
   })),
   on(MemberEditorActions.addMemberSucceeded, () => initialState),
@@ -30,7 +34,7 @@ const memberEditorReducer = createReducer(
   })),
   on(MemberEditorActions.updateMemberSelected, (state, action) => ({
     ...state,
-    memberAfterEdit: action.memberToUpdate,
+    memberCurrently: action.memberToUpdate,
   })),
   on(MemberEditorActions.updateMemberSucceeded, () => initialState),
   on(MemberEditorActions.updateMemberFailed, (state) => ({
@@ -38,13 +42,10 @@ const memberEditorReducer = createReducer(
     hasUnsavedChanges: false,
   })),
   on(MemberEditorActions.cancelConfirmed, () => initialState),
-  on(MemberEditorActions.unsavedChangesDetected, (state) => ({
+  on(MemberEditorActions.formDataChanged, (state, action) => ({
     ...state,
-    hasUnsavedChanges: true,
-  })),
-  on(MemberEditorActions.noUnsavedChangesDetected, (state) => ({
-    ...state,
-    hasUnsavedChanges: false,
+    hasUnsavedChanges: !areSame(action.formData, state.memberBeforeEdit),
+    memberCurrently: action.formData,
   }))
 );
 

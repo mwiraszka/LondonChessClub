@@ -1,2 +1,2 @@
-export * as AppSelectors from './app.selectors';
 export { AppState } from './app.state';
+export { metaReducers } from './meta-reducers';

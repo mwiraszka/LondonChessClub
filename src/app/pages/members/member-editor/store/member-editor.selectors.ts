@@ -13,9 +13,9 @@ export const memberBeforeEdit = createSelector(
   (state) => state.memberBeforeEdit
 );
 
-export const memberAfterEdit = createSelector(
+export const memberCurrently = createSelector(
   memberEditorFeatureSelector,
-  (state) => state.memberAfterEdit
+  (state) => state.memberCurrently
 );
 
 export const isEditMode = createSelector(

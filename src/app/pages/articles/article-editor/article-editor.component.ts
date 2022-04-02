@@ -30,12 +30,19 @@ export class ArticleEditorComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loader.display(true);
-    this.facade.articleBeforeEdit$
+
+    this.facade.articleCurrently$
       .pipe(
         tap((article) => {
           this.initForm(article);
           this.imagePreview = article.headerImage as string;
         }),
+        first()
+      )
+      .subscribe();
+
+    this.facade.articleBeforeEdit$
+      .pipe(
         tap(() => this.loader.display(false)),
         first()
       )
@@ -83,6 +90,6 @@ export class ArticleEditorComponent implements OnInit, OnDestroy {
 
     this.valueChangesSubscription = this.form.valueChanges
       .pipe(debounceTime(200))
-      .subscribe((article: Article) => this.facade.onValueChange(article));
+      .subscribe((formData: Article) => this.facade.onValueChange(formData));
   }
 }

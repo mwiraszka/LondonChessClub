@@ -2,7 +2,7 @@ import { Member } from '../../types/member.model';
 
 export interface MemberEditorState {
   memberBeforeEdit: Member;
-  memberAfterEdit?: Member;
+  memberCurrently: Member;
   isEditMode: boolean;
   hasUnsavedChanges: boolean;
 }

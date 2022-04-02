@@ -1,12 +1,14 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
+import { areSame } from '@app/shared/utils';
+
 import * as ArticleEditorActions from './article-editor.actions';
 import { ArticleEditorState } from './article-editor.state';
 import { newArticleFormTemplate } from '../../types/article.model';
 
 const initialState: ArticleEditorState = {
   articleBeforeEdit: newArticleFormTemplate,
-  articleAfterEdit: null,
+  articleCurrently: newArticleFormTemplate,
   isEditMode: false,
   hasUnsavedChanges: false,
 };
@@ -16,11 +18,13 @@ const articleEditorReducer = createReducer(
   on(ArticleEditorActions.articleToEditReceived, (state, action) => ({
     ...state,
     articleBeforeEdit: action.articleToEdit,
+    articleCurrently: action.articleToEdit,
     isEditMode: true,
   })),
+  on(ArticleEditorActions.resetArticleForm, () => initialState),
   on(ArticleEditorActions.publishArticleSelected, (state, action) => ({
     ...state,
-    articleAfterEdit: action.articleToPublish,
+    articleCurrently: action.articleToPublish,
     hasUnsavedChanges: false,
   })),
   on(ArticleEditorActions.publishArticleSucceeded, () => initialState),
@@ -31,6 +35,7 @@ const articleEditorReducer = createReducer(
   on(ArticleEditorActions.updateArticleSelected, (state, action) => ({
     ...state,
     articleAfterEdit: action.articleToUpdate,
+    articleCurrently: action.articleToUpdate,
   })),
   on(ArticleEditorActions.updateArticleSucceeded, () => initialState),
   on(ArticleEditorActions.updateArticleFailed, (state) => ({
@@ -38,13 +43,10 @@ const articleEditorReducer = createReducer(
     hasUnsavedChanges: false,
   })),
   on(ArticleEditorActions.cancelConfirmed, () => initialState),
-  on(ArticleEditorActions.unsavedChangesDetected, (state) => ({
+  on(ArticleEditorActions.formDataChanged, (state, action) => ({
     ...state,
-    hasUnsavedChanges: true,
-  })),
-  on(ArticleEditorActions.noUnsavedChangesDetected, (state) => ({
-    ...state,
-    hasUnsavedChanges: false,
+    hasUnsavedChanges: !areSame(action.formData, state.articleBeforeEdit),
+    memberCurrently: action.formData,
   }))
 );
 

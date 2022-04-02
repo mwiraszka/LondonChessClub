@@ -13,9 +13,9 @@ export const articleBeforeEdit = createSelector(
   (state) => state.articleBeforeEdit
 );
 
-export const articleAfterEdit = createSelector(
+export const articleCurrently = createSelector(
   articleEditorFeatureSelector,
-  (state) => state.articleAfterEdit
+  (state) => state.articleCurrently
 );
 
 export const isEditMode = createSelector(

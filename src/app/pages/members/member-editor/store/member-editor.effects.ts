@@ -11,19 +11,24 @@ import { MembersService } from '../../members.service';
 
 @Injectable()
 export class MemberEditorEffects {
+  resetMemberForm$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MemberListActions.createMemberSelected),
+      map(() => MemberEditorActions.resetMemberForm())
+    )
+  );
+
   getMemberToEdit$ = createEffect(() =>
     this.actions$.pipe(
       ofType(MemberListActions.editMemberSelected),
-      map((memberToEdit) => {
-        return MemberEditorActions.memberToEditReceived(memberToEdit);
-      })
+      map((memberToEdit) => MemberEditorActions.memberToEditReceived(memberToEdit))
     )
   );
 
   addMember$ = createEffect(() =>
     this.actions$.pipe(
       ofType(MemberEditorActions.addMemberConfirmed),
-      concatLatestFrom(() => this.store.select(MemberEditorSelectors.memberAfterEdit)),
+      concatLatestFrom(() => this.store.select(MemberEditorSelectors.memberCurrently)),
       switchMap(([, memberToAdd]) => {
         return this.membersService.addMember(memberToAdd).pipe(
           map((addedMember) => {
@@ -44,7 +49,7 @@ export class MemberEditorEffects {
   updateMember$ = createEffect(() =>
     this.actions$.pipe(
       ofType(MemberEditorActions.updateMemberConfirmed),
-      concatLatestFrom(() => this.store.select(MemberEditorSelectors.memberAfterEdit)),
+      concatLatestFrom(() => this.store.select(MemberEditorSelectors.memberCurrently)),
       switchMap(([, memberToUpdate]) => {
         return this.membersService.updateMember(memberToUpdate).pipe(
           map((updatedMember) => {

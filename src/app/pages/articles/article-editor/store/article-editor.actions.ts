@@ -5,6 +5,7 @@ import { Article } from '../../types/article.model';
 enum ArticleEditorActionTypes {
   ARTICLE_TO_EDIT_RECEIVED = '[Article Editor] Article to edit received',
   GET_ARTICLE_TO_EDIT_SUCCEEDED = '[Article Editor] Get article to edit succeeded',
+  RESET_ARTICLE_FORM = '[Article Editor] Reset article form',
 
   PUBLISH_ARTICLE_SELECTED = '[Article Editor] Publish article selected',
   PUBLISH_ARTICLE_CONFIRMED = '[Article Editor] Publish article confirmed',
@@ -23,6 +24,8 @@ enum ArticleEditorActionTypes {
 
   UNSAVED_CHANGES_DETECTED = '[Article Editor] Unsaved changes detected',
   NO_UNSAVED_CHANGES_DETECTED = '[Article Editor] No unsaved changes detected',
+
+  FORM_DATA_CHANGED = '[Article Editor] Form data changed',
 }
 
 export const articleToEditReceived = createAction(
@@ -33,6 +36,7 @@ export const getArticleToEditSucceeded = createAction(
   ArticleEditorActionTypes.GET_ARTICLE_TO_EDIT_SUCCEEDED,
   props<{ articleToEdit: Article }>()
 );
+export const resetArticleForm = createAction(ArticleEditorActionTypes.RESET_ARTICLE_FORM);
 
 export const publishArticleSelected = createAction(
   ArticleEditorActionTypes.PUBLISH_ARTICLE_SELECTED,
@@ -80,4 +84,9 @@ export const unsavedChangesDetected = createAction(
 );
 export const noUnsavedChangesDetected = createAction(
   ArticleEditorActionTypes.NO_UNSAVED_CHANGES_DETECTED
+);
+
+export const formDataChanged = createAction(
+  ArticleEditorActionTypes.FORM_DATA_CHANGED,
+  props<{ formData: Article }>()
 );

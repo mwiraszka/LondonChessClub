@@ -4,5 +4,4 @@ export interface MemberEditorState {
   memberBeforeEdit: Member;
   memberCurrently: Member;
   isEditMode: boolean;
-  hasUnsavedChanges: boolean;
 }

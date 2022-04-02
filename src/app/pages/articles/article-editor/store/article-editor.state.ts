@@ -4,5 +4,4 @@ export interface ArticleEditorState {
   articleBeforeEdit: Article;
   articleCurrently: Article;
   isEditMode: boolean;
-  hasUnsavedChanges: boolean;
 }

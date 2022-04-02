@@ -1,7 +1,5 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
-import { areSame } from '@app/shared/utils';
-
 import * as MemberEditorActions from './member-editor.actions';
 import { MemberEditorState } from './member-editor.state';
 import { newMemberFormTemplate } from '../../types/member.model';
@@ -10,7 +8,6 @@ const initialState: MemberEditorState = {
   memberBeforeEdit: newMemberFormTemplate,
   memberCurrently: newMemberFormTemplate,
   isEditMode: false,
-  hasUnsavedChanges: false,
 };
 
 const memberEditorReducer = createReducer(
@@ -25,26 +22,18 @@ const memberEditorReducer = createReducer(
   on(MemberEditorActions.addMemberSelected, (state, action) => ({
     ...state,
     memberCurrently: action.memberToAdd,
-    hasUnsavedChanges: false,
   })),
   on(MemberEditorActions.addMemberSucceeded, () => initialState),
-  on(MemberEditorActions.addMemberFailed, (state) => ({
-    ...state,
-    hasUnsavedChanges: false,
-  })),
+  on(MemberEditorActions.addMemberFailed, () => initialState),
   on(MemberEditorActions.updateMemberSelected, (state, action) => ({
     ...state,
     memberCurrently: action.memberToUpdate,
   })),
   on(MemberEditorActions.updateMemberSucceeded, () => initialState),
-  on(MemberEditorActions.updateMemberFailed, (state) => ({
-    ...state,
-    hasUnsavedChanges: false,
-  })),
+  on(MemberEditorActions.updateMemberFailed, () => initialState),
   on(MemberEditorActions.cancelConfirmed, () => initialState),
   on(MemberEditorActions.formDataChanged, (state, action) => ({
     ...state,
-    hasUnsavedChanges: !areSame(action.formData, state.memberBeforeEdit),
     memberCurrently: action.formData,
   }))
 );

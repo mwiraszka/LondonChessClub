@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { AppStoreFeatures } from '@app/shared/types';
+import { areSame } from '@app/shared/utils';
 
 import { ArticleEditorState } from './article-editor.state';
 
@@ -25,5 +26,5 @@ export const isEditMode = createSelector(
 
 export const hasUnsavedChanges = createSelector(
   articleEditorFeatureSelector,
-  (state) => state.hasUnsavedChanges
+  (state) => !areSame(state.articleCurrently, state.articleBeforeEdit)
 );

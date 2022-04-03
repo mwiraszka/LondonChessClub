@@ -140,7 +140,7 @@ export class NavEffects {
   navigateToLogin$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.adminLoginSelected),
+        ofType(NavActions.loginSelected),
         tap(() => this.router.navigate([NavPaths.LOGIN]))
       ),
     { dispatch: false }

@@ -76,11 +76,17 @@ html {
 }
 
 a {
+  text-decoration: none;
+  font-style: normal;
+
   &:hover,
   &>*:hover {
     cursor: pointer;
-    text-decoration: none !important;
   }
+}
+
+button {
+  cursor: pointer;
 }
 
 ol,

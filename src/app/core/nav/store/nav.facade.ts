@@ -39,7 +39,7 @@ export class NavFacade {
     this.store.dispatch(NavActions.aboutTabSelected());
   }
 
-  onAdminLoginSelected(): void {
-    this.store.dispatch(NavActions.adminLoginSelected());
+  onLoginSelected(): void {
+    this.store.dispatch(NavActions.loginSelected());
   }
 }

@@ -1,0 +1,80 @@
+.lcc-button {
+  border-radius: $lcc-button-border-radius;
+  font-size: $h4;
+}
+
+.lcc-raised-button {
+  @extend .lcc-button;
+
+  background: lighten($lcc-white, 5%);
+  color: $lcc-primary;
+  border: 1px solid darken($lcc-white, 3%);
+  box-shadow: 1px 1px 4px -2px $lcc-box-shadow;
+  padding: 10px 14px;
+  text-transform: uppercase;
+
+  &:hover,
+  &:focus {
+    box-shadow: 1px 3px 10px 0px $lcc-box-shadow;
+    transform: translate(-1px, -1px);
+    outline: none;
+  }
+}
+
+.lcc-default-button {
+  @extend .lcc-raised-button;
+}
+
+.lcc-primary-button {
+  @extend .lcc-raised-button;
+  background: $lcc-primary !important;
+  color: $lcc-white;
+}
+
+.lcc-success-button {
+  @extend .lcc-raised-button;
+  background: $lcc-success !important;
+  color: $lcc-white;
+}
+
+.lcc-warning-button {
+  @extend .lcc-raised-button;
+  background: $lcc-warning !important;
+  color: $lcc-white;
+}
+
+.lcc-ghost-button {
+  @extend .lcc-button;
+
+  background: inherit;
+  padding: 2px 8px;
+  border: 0 solid;
+  box-shadow: inset 0 0 20px $lcc-fully-transparent;
+  outline: 1px solid;
+  outline-color: $lcc-semi-transparent;
+  outline-offset: 0px;
+  text-shadow: none;
+  transition: none;
+
+  &:hover,
+  &:focus {
+    border: 1px solid;
+    // box-shadow: inset 0 0 10px $lcc-semi-transparent, 0 0 10px $lcc-mostly-transparent;
+    outline-color: $lcc-fully-transparent;
+    outline-offset: 15px;
+    text-shadow: 1px 1px 2px $lcc-gray;
+    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+
+.lcc-icon-button {
+  @extend .lcc-button;
+
+  cursor: pointer;
+  background: inherit;
+  border: none;
+  &:hover,
+  &:focus {
+    color: lighten($lcc-white, 5%) !important;
+  }
+}

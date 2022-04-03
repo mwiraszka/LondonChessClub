@@ -1,8 +1,8 @@
 export enum ModalButtonClassTypes {
-  DEFAULT = 'btn-info-outline',
-  CONFIRM_BLUE = 'btn-info',
-  CONFIRM_RED = 'btn-danger',
-  CONFIRM_GREEN = 'btn-success',
+  DEFAULT = 'lcc-default-button',
+  CONFIRM_BLUE = 'lcc-primary-button',
+  CONFIRM_RED = 'lcc-warning-button',
+  CONFIRM_GREEN = 'lcc-success-button',
 }
 
 export type ModalButtonClass =

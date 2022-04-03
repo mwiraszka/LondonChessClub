@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ClarityIcons, administratorIcon } from '@cds/core/icon';
+import { ClarityIcons, userIcon } from '@cds/core/icon';
 import { IconShapeTuple } from '@cds/core/icon/interfaces/icon.interfaces';
 
 import { NavFacade, NavPaths } from '@app/core/nav';
@@ -21,9 +21,15 @@ export class HeaderComponent implements OnInit {
     `,
   ];
 
+  public fakeUserName = 'Michal';
+
   constructor(public facade: NavFacade) {}
 
   ngOnInit(): void {
-    ClarityIcons.addIcons(administratorIcon, this.lccIcon);
+    ClarityIcons.addIcons(userIcon, this.lccIcon);
+  }
+
+  onLogoutSelected(): void {
+    console.log('::: onLogoutSelected()');
   }
 }

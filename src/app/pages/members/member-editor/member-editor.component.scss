@@ -1,20 +1,11 @@
-#member-editor {
+:host {
   display: flex;
   justify-content: center;
 }
 
-.lcc-container {
-  margin-top: 10px;
-  width: calc(100% - 16px);
+.lcc-canvas {
   min-width: 280px;
   max-width: 800px;
-}
-
-form {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
 }
 
 input {

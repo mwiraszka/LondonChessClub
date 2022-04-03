@@ -1,4 +1,4 @@
-footer {
+:host {
   display: flex;
   flex-flow: column wrap;
   text-align: center;
@@ -7,16 +7,4 @@ footer {
 
 small {
   font-size: 60%;
-}
-
-button.btn.btn-sm.btn-link {
-  height: 1.4rem;
-  margin: 0;
-}
-
-a {
-  text-decoration: none;
-  font-style: normal;
-  color: inherit;
-  font-size: 80%;
 }

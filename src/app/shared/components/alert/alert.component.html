@@ -1,10 +1,14 @@
-<clr-alert [clrAlertAppLevel]="true">
-  <clr-alert-item>
-    <div class="alert-text">
-      {{ message }}
-    </div>
-    <div class="alert-actions">
-      <button class="btn btn-sm alert-action">{{ action }}</button>
-    </div>
-  </clr-alert-item>
-</clr-alert>
+<div class="lcc-alert-message-container">
+  <span class="lcc-alert-message">{{ message }}</span>
+</div>
+<div class="lcc-alert-actions-container">
+  <button class="lcc-ghost-button lcc-alert-action-button"
+          (click)="onAction()">
+    {{ action }}
+  </button>
+  <cds-icon class="lcc-icon-button lcc-alert-close-button"
+            shape="window-close"
+            size="md"
+            (click)="onDismiss()">
+  </cds-icon>
+</div>

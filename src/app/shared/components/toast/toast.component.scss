@@ -6,7 +6,7 @@
   width: 300px;
   margin-top: 6px;
   padding: 2px 5px;
-  border-radius: $lcc-border-radius;
+  border-radius: $lcc-input-border-radius;
   box-shadow: 0 0 2px 2px lighten($lcc-gray, 20%);
 
   &.lcc-toast-success {

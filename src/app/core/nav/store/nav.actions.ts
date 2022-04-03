@@ -9,7 +9,7 @@ enum NavActionTypes {
   LESSONS_TAB_SELECTED = '[Nav] Lessons tab selected',
   SUPPLIES_TAB_SELECTED = '[Nav] Supplies tab selected',
   ABOUT_TAB_SELECTED = '[Nav] About tab selected',
-  ADMIN_LOGIN_SELECTED = '[Nav] Admin login selected',
+  LOGIN_SELECTED = '[Nav] Login selected',
 }
 
 export const homeTabSelected = createAction(NavActionTypes.HOME_TAB_SELECTED);
@@ -22,4 +22,4 @@ export const cityChampionTabSelected = createAction(
 export const lessonsTabSelected = createAction(NavActionTypes.LESSONS_TAB_SELECTED);
 export const suppliesTabSelected = createAction(NavActionTypes.SUPPLIES_TAB_SELECTED);
 export const aboutTabSelected = createAction(NavActionTypes.ABOUT_TAB_SELECTED);
-export const adminLoginSelected = createAction(NavActionTypes.ADMIN_LOGIN_SELECTED);
+export const loginSelected = createAction(NavActionTypes.LOGIN_SELECTED);

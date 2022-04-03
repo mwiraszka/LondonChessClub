@@ -1,59 +1,56 @@
-<main id="article-editor">
-  <div class="lcc-container">
-    <ng-container *ngIf="facade.isEditMode$ | async; else createModeHeader">
-      <h3>Edit <em>{{ (facade.articleBeforeEdit$ | async).title }}</em></h3>
-    </ng-container>
-    <ng-template #createModeHeader>
-      <h3>Compose an article</h3>
-    </ng-template>
+<div class="lcc-canvas">
+  <ng-container *ngIf="facade.isEditMode$ | async; else createModeHeader">
+    <h3>Edit <em>{{ (facade.articleBeforeEdit$ | async).title }}</em></h3>
+  </ng-container>
+  <ng-template #createModeHeader>
+    <h3>Compose an article</h3>
+  </ng-template>
 
-    <form *ngIf="form"
-          [formGroup]="form"
-          (ngSubmit)="onSubmit()">
-      <input type="text"
-             name="title"
-             formControlName="title"
-             placeholder="Title"
-             maxlength="80"/>
-      <input type="text"
-             name="subtitle"
-             formControlName="subtitle"
-             placeholder="Subtitle"
-             maxlength="200"/>
-      <label for="header-image">Header image</label>
-      <input type="file"
-             name="header-image"
-             #fileUploader
-             (change)="onImageChange($event)"/>
-      <button class="btn btn-primary"
+  <form *ngIf="form"
+        class="lcc-form"
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()">
+    <input type="text"
+            name="title"
+            formControlName="title"
+            placeholder="Title"
+            maxlength="80"/>
+    <input type="text"
+            name="subtitle"
+            formControlName="subtitle"
+            placeholder="Subtitle"
+            maxlength="200"/>
+    <label for="header-image">Header image</label>
+    <input type="file"
+            name="header-image"
+            #fileUploader
+            (change)="onImageChange($event)"/>
+    <button class="lcc-default-button"
+            type="button"
+            (click)="fileUploader.click()">
+      Choose header image
+    </button>
+    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
+      <img [src]="imagePreview" [alt]="form.value.title">
+    </div>
+    <input type="text"
+            name="body"
+            formControlName="body"
+            placeholder="Article body"
+            maxlength="1000"/>
+
+    <div class="buttons-container">
+      <button class="lcc-default-button"
               type="button"
-              (click)="fileUploader.click()">
-        Choose header image
+              (click)="onCancel()">
+        Cancel
       </button>
-      <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
-        <img [src]="imagePreview" [alt]="form.value.title">
-      </div>
-      <input type="text"
-             name="body"
-             formControlName="body"
-             placeholder="Article body"
-             maxlength="1000"/>
-
-      <div class="buttons-container">
-        <button class="btn btn-primary-outline"
-                type="button"
-                (click)="onCancel()">
-          Cancel
-        </button>
-        <button class="btn btn-primary"
-                type="submit"
-                [disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
-          <ng-container *ngIf="facade.isEditMode$ | async; else createModeButton">Update article</ng-container>
-          <ng-template #createModeButton>Publish article</ng-template>
-        </button>
-      </div>
-    </form>
-  </div>
-</main>
-
-
+      <button class="lcc-primary-button"
+              type="submit"
+              [disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
+        <ng-container *ngIf="facade.isEditMode$ | async; else createModeButton">Update article</ng-container>
+        <ng-template #createModeButton>Publish article</ng-template>
+      </button>
+    </div>
+  </form>
+</div>

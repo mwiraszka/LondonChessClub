@@ -8,6 +8,7 @@ import { MemberListFacade } from './store/member-list.facade';
 @Component({
   selector: 'lcc-member-list',
   templateUrl: './member-list.component.html',
+  styleUrls: ['./member-list.component.scss'],
   providers: [MemberListFacade],
 })
 export class MemberListComponent implements OnInit {

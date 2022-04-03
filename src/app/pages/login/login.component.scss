@@ -1,33 +1,37 @@
-#admin-login {
+@import '../../../styles/abstracts/variables';
+
+:host {
   display: flex;
   justify-content: center;
 }
 
-.lcc-container {
-  margin-top: 10px;
-  width: calc(100% - 16px);
-  max-width: 360px;
-  min-width: 250px;
+.lcc-canvas {
+  max-width: 400px;
+  min-width: 280px;
 }
 
 h3 {
   margin: 10px 0;
-  text-align: center;
+  text-align: left;
   white-space: nowrap;
-}
-
-form {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
 }
 
 input {
   width: 200px;
 }
 
+.lcc-login-links {
+  padding: 12px 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  .lcc-link {
+    padding: 1px 0;
+  }
+}
+
 button {
-  display: block;
-  margin: 20px 0 10px auto;
+  align-self: flex-end;
 }

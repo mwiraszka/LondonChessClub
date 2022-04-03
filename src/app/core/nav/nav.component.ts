@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ClarityIcons, userIcon } from '@cds/core/icon';
 
 import { NavFacade } from './store/nav.facade';
 import { NavPaths } from './types/nav-paths.model';
@@ -11,5 +12,12 @@ import { NavPaths } from './types/nav-paths.model';
 })
 export class NavComponent {
   NavPaths = NavPaths;
+  public isUserOptionsOpen = true;
+  public userFirstName = 'Michal';
+
   constructor(public facade: NavFacade) {}
+
+  ngOnInit(): void {
+    ClarityIcons.addIcons(userIcon);
+  }
 }

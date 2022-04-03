@@ -2,47 +2,25 @@
 
 :host {
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2px 20px;
+  justify-content: flex-start;
+  padding: 2px 12px;
   background-color: darken($lcc-primary, 20%);
 }
 
-.lcc-header-title {
-  font-size: $h1;
-  color: darken($lcc-white, 10%);
-}
-
-.lcc-header-user-section {
+.lcc-header-branding {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  text-align: center;
   gap: 8px;
-  font-size: $h3;
-  color: darken($lcc-white, 10%);
-}
 
-.lcc-header-nav-label {
-  font-weight: 400;
-  font-size: $h3;
-  margin-right: 10px;
-}
-
-.lcc-header-branding,
-.lcc-header-nav-link {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  
   &:hover,
   &:focus {
-    color: lighten($lcc-white, 10%);
+    text-decoration: none;
   }
 }
 
-.lcc-logout-button {
+.lcc-header-title {
+  font-size: $h1;
   color: darken($lcc-white, 10%);
 }

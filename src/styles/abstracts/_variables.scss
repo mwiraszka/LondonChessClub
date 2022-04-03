@@ -1,20 +1,20 @@
 /* LCC custom color palette */
-$lcc-primary: hsl(210, 40, 40);
-$lcc-accent: hsl(100, 50, 70);
-$lcc-success: hsl(100, 50, 40);
-$lcc-warning: hsl(0, 90, 60);
-$lcc-info: hsl(210, 60, 50);
-$lcc-link: hsl(210, 70, 55, 0.9);
-$lcc-select: hsl(210, 100, 80);
+$lcc-primary: hsl(210, 40%, 40%);
+$lcc-accent: hsl(100, 50%, 70%);
+$lcc-success: hsl(100, 50%, 40%);
+$lcc-warning: hsl(0, 90%, 60%);
+$lcc-info: hsl(210, 60%, 50%);
+$lcc-link: hsl(210, 70%, 55%, 0.9);
+$lcc-select: hsl(210, 100%, 80%);
 
-$lcc-white: hsl(0, 0, 95);
-$lcc-gray: hsl(0, 0, 60);
-$lcc-black: hsl(0, 0, 5);
-$lcc-fully-transparent: hsla(0, 0, 100, 0);
-$lcc-mostly-transparent: hsla(0, 0, 100, 0.2);
-$lcc-semi-transparent: hsla(0, 0, 100, 0.5);
+$lcc-white: hsl(0, 0%, 95%);
+$lcc-gray: hsl(0, 0%, 60%);
+$lcc-black: hsl(0, 0%, 5%);
+$lcc-fully-transparent: hsla(0, 0%, 100%, 0);
+$lcc-mostly-transparent: hsla(0, 0%, 100%, 0.2);
+$lcc-semi-transparent: hsla(0, 0%, 100%, 0.5);
 
-$lcc-box-shadow: hsla(0, 0, 84, 0.8);
+$lcc-box-shadow: hsla(0, 0%, 84%, 0.8);
 
 /* Global font sizes */
 $h1: 30px;

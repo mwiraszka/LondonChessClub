@@ -6,8 +6,8 @@
 }
 
 .lcc-canvas {
+  width: 100%;
   max-width: 400px;
-  min-width: 280px;
 }
 
 h3 {
@@ -33,5 +33,6 @@ input {
 }
 
 button {
+  margin-top: 20px;
   align-self: flex-end;
 }

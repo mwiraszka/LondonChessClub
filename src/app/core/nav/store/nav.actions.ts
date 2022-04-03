@@ -1,25 +1,25 @@
 import { createAction } from '@ngrx/store';
 
 enum NavActionTypes {
-  HOME_TAB_SELECTED = '[Nav] Home tab selected',
-  MEMBERS_TAB_SELECTED = '[Nav] Members tab selected',
-  SCHEDULE_TAB_SELECTED = '[Nav] Schedule tab selected',
-  NEWS_TAB_SELECTED = '[Nav] News tab selected',
-  CITY_CHAMPION_TAB_SELECTED = '[Nav] City champion tab selected',
-  LESSONS_TAB_SELECTED = '[Nav] Lessons tab selected',
-  SUPPLIES_TAB_SELECTED = '[Nav] Supplies tab selected',
-  ABOUT_TAB_SELECTED = '[Nav] About tab selected',
+  HOME_SELECTED = '[Nav] Home selected',
+  MEMBERS_SELECTED = '[Nav] Members selected',
+  SCHEDULE_SELECTED = '[Nav] Schedule selected',
+  NEWS_SELECTED = '[Nav] News selected',
+  CITY_CHAMPION_SELECTED = '[Nav] City champion selected',
+  LESSONS_SELECTED = '[Nav] Lessons selected',
+  SUPPLIES_SELECTED = '[Nav] Supplies selected',
+  ABOUT_SELECTED = '[Nav] About selected',
   LOGIN_SELECTED = '[Nav] Login selected',
+  LOGOUT_SELECTED = '[Nav] Logout selected',
 }
 
-export const homeTabSelected = createAction(NavActionTypes.HOME_TAB_SELECTED);
-export const membersTabSelected = createAction(NavActionTypes.MEMBERS_TAB_SELECTED);
-export const scheduleTabSelected = createAction(NavActionTypes.SCHEDULE_TAB_SELECTED);
-export const newsTabSelected = createAction(NavActionTypes.NEWS_TAB_SELECTED);
-export const cityChampionTabSelected = createAction(
-  NavActionTypes.CITY_CHAMPION_TAB_SELECTED
-);
-export const lessonsTabSelected = createAction(NavActionTypes.LESSONS_TAB_SELECTED);
-export const suppliesTabSelected = createAction(NavActionTypes.SUPPLIES_TAB_SELECTED);
-export const aboutTabSelected = createAction(NavActionTypes.ABOUT_TAB_SELECTED);
+export const homeSelected = createAction(NavActionTypes.HOME_SELECTED);
+export const membersSelected = createAction(NavActionTypes.MEMBERS_SELECTED);
+export const scheduleSelected = createAction(NavActionTypes.SCHEDULE_SELECTED);
+export const newsSelected = createAction(NavActionTypes.NEWS_SELECTED);
+export const cityChampionSelected = createAction(NavActionTypes.CITY_CHAMPION_SELECTED);
+export const lessonsSelected = createAction(NavActionTypes.LESSONS_SELECTED);
+export const suppliesSelected = createAction(NavActionTypes.SUPPLIES_SELECTED);
+export const aboutSelected = createAction(NavActionTypes.ABOUT_SELECTED);
 export const loginSelected = createAction(NavActionTypes.LOGIN_SELECTED);
+export const logoutSelected = createAction(NavActionTypes.LOGOUT_SELECTED);

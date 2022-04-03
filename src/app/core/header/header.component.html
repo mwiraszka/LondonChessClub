@@ -7,27 +7,3 @@
   </cds-icon>
   <span class="lcc-header-title">London Chess Club</span>
 </a>
-
-<div class="lcc-header-user-section">
-  <ng-container *ngIf="true; else loggedOut">
-    <cds-icon shape="user"
-              size="md"
-              outline>
-    </cds-icon>
-    <span>{{ fakeUserName }}</span>
-    <button class="lcc-ghost-button lcc-logout-button"
-            (click)="onLogoutSelected()">
-      Logout
-    </button>
-  </ng-container>
-
-  <ng-template #loggedOut>
-    <a class="lcc-header-nav-link"
-      aria-label="Login"
-      routerLink="{{ NavPaths.LOGIN }}"
-      routerLinkActive="link-active"
-      (click)="facade.onLoginSelected()">
-      <label class="lcc-header-nav-label">Login</label>
-    </a>
-  </ng-template>
-</div>

@@ -9,13 +9,13 @@
   background: lighten($lcc-white, 5%);
   color: $lcc-primary;
   border: 1px solid darken($lcc-white, 3%);
-  box-shadow: 1px 1px 4px -2px $lcc-box-shadow;
+  box-shadow: 1px 1px 4px -2px darken($lcc-box-shadow, 10%);
   padding: 10px 14px;
   text-transform: uppercase;
 
   &:hover,
   &:focus {
-    box-shadow: 1px 3px 10px 0px $lcc-box-shadow;
+    box-shadow: 2px 4px 10px 0px darken($lcc-box-shadow, 10%);
     transform: translate(-1px, -1px);
     outline: none;
   }

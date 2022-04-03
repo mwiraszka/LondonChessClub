@@ -3,21 +3,16 @@
   justify-content: center;
 }
 
-.lcc-canvas {
-  min-width: 280px;
-  max-width: 800px;
-}
-
 input {
   width: 220px;
-}
-input[type='file'] {
-  visibility: hidden;
+
+  &[type='file'] {
+    visibility: hidden;
+  }
 }
 
 h3 {
   margin: 10px 0;
-  text-align: center;
   white-space: nowrap;
 }
 
@@ -33,8 +28,8 @@ h3 {
 .image-preview {
   height: 5rem;
   margin: 1rem 0;
-}
 
-.image-preview img {
-  height: 100%;
+  img {
+    height: 100%;
+  }
 }

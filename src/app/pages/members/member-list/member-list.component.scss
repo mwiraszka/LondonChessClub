@@ -2,3 +2,12 @@
   display: flex;
   justify-content: center;
 }
+
+.lcc-canvas {
+  width: 100%;
+  max-width: calc(100% - 60px);
+}
+
+button {
+  align-self: flex-start;
+}

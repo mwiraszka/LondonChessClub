@@ -11,6 +11,7 @@ import { ModalContent } from './types/modal-content.model';
 @Component({
   selector: 'lcc-modal',
   templateUrl: './modal.component.html',
+  styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
   isOpen$: Observable<boolean>;

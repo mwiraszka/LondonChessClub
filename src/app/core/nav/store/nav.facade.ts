@@ -7,39 +7,43 @@ import * as NavActions from './nav.actions';
 export class NavFacade {
   constructor(private readonly store: Store) {}
 
-  onHomeTabSelected(): void {
-    this.store.dispatch(NavActions.homeTabSelected());
+  onHome(): void {
+    this.store.dispatch(NavActions.homeSelected());
   }
 
-  onMembersTabSelected(): void {
-    this.store.dispatch(NavActions.membersTabSelected());
+  onMembers(): void {
+    this.store.dispatch(NavActions.membersSelected());
   }
 
-  onScheduleTabSelected(): void {
-    this.store.dispatch(NavActions.scheduleTabSelected());
+  onSchedule(): void {
+    this.store.dispatch(NavActions.scheduleSelected());
   }
 
-  onNewsTabSelected(): void {
-    this.store.dispatch(NavActions.newsTabSelected());
+  onNews(): void {
+    this.store.dispatch(NavActions.newsSelected());
   }
 
-  onCityChampionTabSelected(): void {
-    this.store.dispatch(NavActions.cityChampionTabSelected());
+  onCityChampion(): void {
+    this.store.dispatch(NavActions.cityChampionSelected());
   }
 
-  onLessonsTabSelected(): void {
-    this.store.dispatch(NavActions.lessonsTabSelected());
+  onLessons(): void {
+    this.store.dispatch(NavActions.lessonsSelected());
   }
 
-  onSuppliesTabSelected(): void {
-    this.store.dispatch(NavActions.suppliesTabSelected());
+  onSupplies(): void {
+    this.store.dispatch(NavActions.suppliesSelected());
   }
 
-  onAboutTabSelected(): void {
-    this.store.dispatch(NavActions.aboutTabSelected());
+  onAbout(): void {
+    this.store.dispatch(NavActions.aboutSelected());
   }
 
-  onAdminLoginSelected(): void {
-    this.store.dispatch(NavActions.adminLoginSelected());
+  onLogin(): void {
+    this.store.dispatch(NavActions.loginSelected());
+  }
+
+  onLogout(): void {
+    this.store.dispatch(NavActions.logoutSelected());
   }
 }

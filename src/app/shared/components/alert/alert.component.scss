@@ -1,0 +1,32 @@
+@import '../../../../styles/abstracts/variables';
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $lcc-primary;
+  padding: 0 10px;
+}
+
+.lcc-alert-message-container {
+  padding: 4px;
+
+  .lcc-alert-message {
+    color: $lcc-white;
+    font-size: $h4;
+  }
+}
+
+.lcc-alert-actions-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  .lcc-alert-action-button,
+  .lcc-alert-close-button {
+    color: darken($lcc-white, 10%);
+  }
+}
+
+

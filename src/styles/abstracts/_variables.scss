@@ -1,16 +1,20 @@
 /* LCC custom color palette */
-$lcc-primary: #032d36;
-$lcc-accent: #a2dc7f;
+$lcc-primary: hsl(210, 40%, 40%);
+$lcc-accent: hsl(100, 50%, 70%);
+$lcc-success: hsl(100, 50%, 40%);
+$lcc-warning: hsl(0, 90%, 60%);
+$lcc-info: hsl(210, 60%, 50%);
+$lcc-link: hsl(210, 70%, 55%, 0.9);
+$lcc-select: hsl(210, 100%, 80%);
 
-$lcc-success: #22a31e;
-$lcc-warning: rgba(231, 25, 25, 0.973);
-$lcc-info: rgba(31, 97, 241, 0.973);
-$lcc-select: #adbcff;
-$lcc-background: #f4efef;
-$lcc-fieldset: #d7d8dc;
-$lcc-white: #f0f0f0;
-$lcc-gray: #9e9e9e;
-$lcc-black: #0e0e0e;
+$lcc-white: hsl(0, 0%, 95%);
+$lcc-gray: hsl(0, 0%, 60%);
+$lcc-black: hsl(0, 0%, 5%);
+$lcc-fully-transparent: hsla(0, 0%, 100%, 0);
+$lcc-mostly-transparent: hsla(0, 0%, 100%, 0.2);
+$lcc-semi-transparent: hsla(0, 0%, 100%, 0.5);
+
+$lcc-box-shadow: hsla(0, 0%, 84%, 0.8);
 
 /* Global font sizes */
 $h1: 30px;
@@ -40,5 +44,6 @@ $breakpoints: (
 );
 
 /* Miscellaneous default global variables */
-$lcc-border-radius: 4px;
+$lcc-input-border-radius: 1px;
+$lcc-button-border-radius: 4px;
 $lcc-spacing: 20px;

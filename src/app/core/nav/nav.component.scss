@@ -1,10 +1,84 @@
 @import 'styles/abstracts/variables.scss';
 
-.nav-item {
-  padding: 5px;
+:host {
+  display: flex;
+  background: darken($lcc-white, 2%);
 }
 
-.link-active {
-  color: $lcc-black !important;
-  text-shadow: 0 0 1px $lcc-primary;
+.lcc-nav-items {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 16px;
+  width: 100%;
+  padding: 8px 14px;
+}
+
+.lcc-nav-link:not(.link-active) {
+  font-size: $h4;
+  color: lighten($lcc-black, 15%);
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: $lcc-accent;
+  }
+
+  /**
+   * Prevent a layout shift on hover due to the wider bold text by fixing
+   * the width with hidden text underneath (based on the aria-label attribute)
+   */
+  &::before {
+    display: block;
+    content: attr(aria-label);
+    font-weight: bold;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+}
+
+.lcc-nav-link.link-active {
+  font-size: $h4;
+  color: lighten($lcc-black, 5%) !important;
+  font-weight: bolder;
+
+  &:hover,
+  &:focus {
+    cursor: default;
+    pointer-events: none;
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.lcc-nav-user-section {
+  margin-left: auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  p {
+    font-size: $h4;
+    color: lighten($lcc-black, 15%);
+  }
+}
+
+.lcc-user-options-dropdown {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 28px;
+  width: 80px;
+  background: lighten($lcc-gray, 20%);
+  border-top: 3px solid lighten($lcc-black, 10%);
+}
+
+.lcc-logout-button {
+  width: 100%;
+  border: none;
+  background: inherit;
+  color: lighten($lcc-black, 10%);
+  font-size: $h4;
 }

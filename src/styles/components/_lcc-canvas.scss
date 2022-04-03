@@ -1,0 +1,14 @@
+.lcc-canvas {
+  background-color: lighten($lcc-white, 10%);
+  border-radius: $lcc-input-border-radius;
+  box-shadow: 1px 1px 5px 2px $lcc-box-shadow;
+  padding: 10px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 10px;
+  min-width: 280px;
+}

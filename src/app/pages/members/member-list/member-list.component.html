@@ -1,30 +1,32 @@
-<button class="btn btn-primary"
-        (click)="facade.onAddMember()">
-  Add new member
-</button>
-<clr-datagrid>
-  <clr-dg-column [clrDgField]="'firstName'">First Name</clr-dg-column>
-  <clr-dg-column [clrDgField]="'lastName'">Last Name</clr-dg-column>
-  <clr-dg-column [clrDgField]="'city'">City</clr-dg-column>
-  <clr-dg-column [clrDgField]="'rating'">Rating</clr-dg-column>
-  <clr-dg-column [clrDgField]="'peakRating'">Peak Rating</clr-dg-column>
+<div class="lcc-canvas">
+  <button class="lcc-default-button lcc-primary-button"
+          (click)="facade.onAddMember()">
+    Add new member
+  </button>
+  <clr-datagrid>
+    <clr-dg-column [clrDgField]="'firstName'">First Name</clr-dg-column>
+    <clr-dg-column [clrDgField]="'lastName'">Last Name</clr-dg-column>
+    <clr-dg-column [clrDgField]="'city'">City</clr-dg-column>
+    <clr-dg-column [clrDgField]="'rating'">Rating</clr-dg-column>
+    <clr-dg-column [clrDgField]="'peakRating'">Peak Rating</clr-dg-column>
 
-  <clr-dg-row *clrDgItems="let member of facade.members$ | async">
-    <clr-dg-action-overflow>
-      <button class="action-item"
-              (click)="facade.onEditMember(member)">
-        Edit
-      </button>
-      <button class="action-item"
-              (click)="facade.onDeleteMember(member)">
-        Delete
-      </button>
-    </clr-dg-action-overflow>
-    <clr-dg-cell>{{ member.firstName }}</clr-dg-cell>
-    <clr-dg-cell>{{ member.lastName }}</clr-dg-cell>
-    <clr-dg-cell>{{ member.city }}</clr-dg-cell>
-    <clr-dg-cell>{{ member.rating }}</clr-dg-cell>
-    <clr-dg-cell>{{ member.peakRating }}</clr-dg-cell>
-  </clr-dg-row>
-  <clr-dg-footer>{{ (facade.members$ | async)?.length }} members</clr-dg-footer>
-</clr-datagrid>
+    <clr-dg-row *clrDgItems="let member of facade.members$ | async">
+      <clr-dg-action-overflow>
+        <button class="action-item"
+                (click)="facade.onEditMember(member)">
+          Edit
+        </button>
+        <button class="action-item"
+                (click)="facade.onDeleteMember(member)">
+          Delete
+        </button>
+      </clr-dg-action-overflow>
+      <clr-dg-cell>{{ member.firstName }}</clr-dg-cell>
+      <clr-dg-cell>{{ member.lastName }}</clr-dg-cell>
+      <clr-dg-cell>{{ member.city }}</clr-dg-cell>
+      <clr-dg-cell>{{ member.rating }}</clr-dg-cell>
+      <clr-dg-cell>{{ member.peakRating }}</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer>{{ (facade.members$ | async)?.length }} members</clr-dg-footer>
+  </clr-datagrid>
+</div>

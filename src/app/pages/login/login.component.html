@@ -1,23 +1,25 @@
-﻿<main id="admin-login">
-  <div class="lcc-container">
-    <h3>Admin Login</h3>
-    <form id="loginForm"
-          [formGroup]="loginForm"
-          (ngSubmit)="onLogin()"
-          (keyup)="onKeyUp($event)">
-      <input formControlName="email"
-             placeholder="Email"
-             type="text"
-             name="email"/>
-      <input formControlName="password"
-             placeholder="Password"
-             type="password"
-             name="password"/>
-      <button class="btn btn-primary"
-              type="submit"
-              [disabled]="loginForm.invalid">
-        Log in
-      </button>
-    </form>
-  </div>
-</main>
+﻿<div class="lcc-canvas">
+  <h3>Login</h3>
+  <form class="lcc-form"
+        [formGroup]="loginForm"
+        (keyup)="onKeyUp($event)"
+        (ngSubmit)="onLogin()">
+    <input type="text"
+           name="email"
+           formControlName="email"
+           placeholder="Email"/>
+    <input type="password"
+           name="password"
+           formControlName="password"
+           placeholder="Password"/>
+    <div class="lcc-login-links">
+      <a href="#" class="lcc-link">Forgot password?</a>
+      <a href="#" class="lcc-link">Don't have an account?</a>
+    </div>
+    <button class="lcc-primary-button"
+            type="submit"
+            [disabled]="loginForm.invalid">
+      Log in
+    </button>
+  </form>
+</div>

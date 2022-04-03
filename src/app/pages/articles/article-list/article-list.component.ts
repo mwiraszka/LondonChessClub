@@ -8,6 +8,7 @@ import { ArticleListFacade } from './store/article-list.facade';
 @Component({
   selector: 'lcc-article-list',
   templateUrl: './article-list.component.html',
+  styleUrls: ['./article-list.component.scss'],
   providers: [ArticleListFacade],
 })
 export class ArticleListComponent implements OnInit {

@@ -15,7 +15,7 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(
-          NavActions.homeTabSelected,
+          NavActions.homeSelected,
           MemberEditorActions.addMemberSucceeded,
           MemberEditorActions.updateMemberSucceeded
         ),
@@ -28,7 +28,7 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(
-          NavActions.membersTabSelected,
+          NavActions.membersSelected,
           MemberEditorActions.cancelSelected,
           MemberEditorActions.addMemberSucceeded,
           MemberEditorActions.updateMemberSucceeded
@@ -61,7 +61,7 @@ export class NavEffects {
   navigateToSchedule$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.scheduleTabSelected),
+        ofType(NavActions.scheduleSelected),
         tap(() => this.router.navigate([NavPaths.SCHEDULE]))
       ),
     { dispatch: false }
@@ -71,7 +71,7 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(
-          NavActions.newsTabSelected,
+          NavActions.newsSelected,
           ArticleEditorActions.cancelSelected,
           ArticleEditorActions.publishArticleSucceeded,
           ArticleEditorActions.updateArticleSucceeded
@@ -104,7 +104,7 @@ export class NavEffects {
   navigateToCityChampion$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.cityChampionTabSelected),
+        ofType(NavActions.cityChampionSelected),
         tap(() => this.router.navigate([NavPaths.CITY_CHAMPION]))
       ),
     { dispatch: false }
@@ -113,7 +113,7 @@ export class NavEffects {
   navigateToLessons$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.lessonsTabSelected),
+        ofType(NavActions.lessonsSelected),
         tap(() => this.router.navigate([NavPaths.LESSONS]))
       ),
     { dispatch: false }
@@ -122,7 +122,7 @@ export class NavEffects {
   navigateToSupplies$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.suppliesTabSelected),
+        ofType(NavActions.suppliesSelected),
         tap(() => this.router.navigate([NavPaths.SUPPLIES]))
       ),
     { dispatch: false }
@@ -131,7 +131,7 @@ export class NavEffects {
   navigateToAbout$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.aboutTabSelected),
+        ofType(NavActions.aboutSelected),
         tap(() => this.router.navigate([NavPaths.ABOUT]))
       ),
     { dispatch: false }
@@ -140,7 +140,7 @@ export class NavEffects {
   navigateToLogin$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.adminLoginSelected),
+        ofType(NavActions.loginSelected, NavActions.logoutSelected),
         tap(() => this.router.navigate([NavPaths.LOGIN]))
       ),
     { dispatch: false }

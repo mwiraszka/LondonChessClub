@@ -8,4 +8,4 @@ export { reducer } from './store/auth.reducer';
 
 export { AuthState } from './types/auth.state';
 export { LoginRequestData } from './types/login-request-data.model';
-export { SignUpRequestData } from './types/sign-up-request-data.model';
+export { AccountCreationRequestData } from './types/account-creation-request-data.model';

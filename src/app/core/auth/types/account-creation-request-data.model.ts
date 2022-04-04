@@ -1,4 +1,4 @@
-export interface SignUpRequestData {
+export interface AccountCreationRequestData {
   email: string;
   password: string;
   confirmPassword: string;

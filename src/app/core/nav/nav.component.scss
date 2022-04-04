@@ -13,37 +13,7 @@
   padding: 8px 14px;
 }
 
-.lcc-nav-link {
-  font-size: $h4;
-  color: lighten($lcc-black, 15%);
-
-  &:hover {
-    text-decoration: none;
-    color: $lcc-accent;
-  }
-
-  /**
-  * Prevent a layout shift on hover due to the wider bold text by fixing
-  * the width with hidden text underneath (based on the aria-label attribute)
-  */
-  &::before {
-    display: block;
-    content: attr(aria-label);
-    font-weight: bold;
-    height: 0;
-    overflow: hidden;
-    visibility: hidden;
-  }
-
-  &.link-active {
-    cursor: default;
-    pointer-events: none;
-    color: lighten($lcc-black, 5%);
-    font-weight: bolder;
-  }
-}
-
-.lcc-nav-user-section {
+.lcc-user-account {
   margin-left: auto;
   display: flex;
   flex-flow: row nowrap;
@@ -57,7 +27,7 @@
   }
 }
 
-.lcc-user-options-dropdown {
+.lcc-user-account-dropdown {
   position: relative;
   top: 0;
   left: 0;

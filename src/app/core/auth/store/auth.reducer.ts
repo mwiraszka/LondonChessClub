@@ -9,7 +9,7 @@ const initialState: AuthState = {
 
 const authReducer = createReducer(
   initialState,
-  on(AuthActions.logout, () => initialState)
+  on(AuthActions.logoutSelected, () => initialState)
 );
 
 export function reducer(state: AuthState, action: Action) {

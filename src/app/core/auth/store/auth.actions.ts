@@ -2,18 +2,18 @@ import { User } from '@app/shared/types';
 import { createAction, props } from '@ngrx/store';
 
 import { LoginRequestData } from '../types/login-request-data.model';
-import { SignUpRequestData } from '../types/sign-up-request-data.model';
+import { AccountCreationRequestData } from '../types/account-creation-request-data.model';
 
 enum AuthActionTypes {
   LOGIN_REQUESTED = '[Auth] Login requested',
   LOGIN_SUCCEEDED = '[Auth] Login succeeded',
   LOGIN_FAILED = '[Auth] Login failed',
 
-  SIGN_UP_REQUESTED = '[Auth] Sign up requested',
-  SIGN_UP_SUCCEEDED = '[Auth] Sign up succeeded',
-  SIGN_UP_FAILED = '[Auth] Sign up failed',
+  ACCOUNT_CREATION_REQUESTED = '[Auth] Account creation requested',
+  ACCOUNT_CREATION_SUCCEEDED = '[Auth] Account creation succeeded',
+  ACCOUNT_CREATION_FAILED = '[Auth] Account creation failed',
 
-  LOGOUT = '[Auth] Logout',
+  LOGOUT_SELECTED = '[Auth] Logout selected',
 }
 
 export const loginRequested = createAction(
@@ -29,17 +29,17 @@ export const loginFailed = createAction(
   props<{ errorMessage: string }>()
 );
 
-export const signupRequested = createAction(
-  AuthActionTypes.SIGN_UP_REQUESTED,
-  props<{ signUpRequestData: SignUpRequestData }>()
+export const accountCreationRequested = createAction(
+  AuthActionTypes.ACCOUNT_CREATION_REQUESTED,
+  props<{ accountCreationRequestData: AccountCreationRequestData }>()
 );
-export const signupSucceeded = createAction(
-  AuthActionTypes.SIGN_UP_SUCCEEDED,
+export const accountCreationSucceeded = createAction(
+  AuthActionTypes.ACCOUNT_CREATION_SUCCEEDED,
   props<{ user: User }>()
 );
-export const signupFailed = createAction(
-  AuthActionTypes.SIGN_UP_FAILED,
+export const accountCreationFailed = createAction(
+  AuthActionTypes.ACCOUNT_CREATION_FAILED,
   props<{ errorMessage: string }>()
 );
 
-export const logout = createAction(AuthActionTypes.LOGOUT);
+export const logoutSelected = createAction(AuthActionTypes.LOGOUT_SELECTED);

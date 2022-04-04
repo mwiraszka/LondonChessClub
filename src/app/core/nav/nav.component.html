@@ -73,14 +73,14 @@
     </a>
   </li>
 
-  <li class="lcc-nav-item lcc-nav-user-section">
+  <li class="lcc-nav-item lcc-user-account">
     <ng-container *ngIf="facade.user$ | async; else loggedOut">
       <p>
         Logged&nbsp;in<br>
         <b>{{ (facade.user$ | async).firstName }}</b>
       </p>
       <ng-container *ngIf="facade.isUserDropdownOpen$ | async">
-        <div class="lcc-user-options-dropdown">
+        <div class="lcc-user-account-dropdown">
           <button class="lcc-logout-button"
                   aria-label="Login"
                   routerLink="{{ NavPaths.LOGIN }}"

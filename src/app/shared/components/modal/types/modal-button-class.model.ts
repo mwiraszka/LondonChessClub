@@ -1,5 +1,5 @@
 export enum ModalButtonClassTypes {
-  DEFAULT = 'lcc-default-button',
+  DEFAULT = 'lcc-secondary-button',
   CONFIRM_BLUE = 'lcc-primary-button',
   CONFIRM_RED = 'lcc-warning-button',
   CONFIRM_GREEN = 'lcc-success-button',

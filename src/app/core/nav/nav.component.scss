@@ -13,20 +13,19 @@
   padding: 8px 14px;
 }
 
-.lcc-nav-link:not(.link-active) {
+.lcc-nav-link {
   font-size: $h4;
   color: lighten($lcc-black, 15%);
 
-  &:hover,
-  &:focus {
+  &:hover {
     text-decoration: none;
     color: $lcc-accent;
   }
 
   /**
-   * Prevent a layout shift on hover due to the wider bold text by fixing
-   * the width with hidden text underneath (based on the aria-label attribute)
-   */
+  * Prevent a layout shift on hover due to the wider bold text by fixing
+  * the width with hidden text underneath (based on the aria-label attribute)
+  */
   &::before {
     display: block;
     content: attr(aria-label);
@@ -35,19 +34,12 @@
     overflow: hidden;
     visibility: hidden;
   }
-}
 
-.lcc-nav-link.link-active {
-  font-size: $h4;
-  color: lighten($lcc-black, 5%) !important;
-  font-weight: bolder;
-
-  &:hover,
-  &:focus {
+  &.link-active {
     cursor: default;
     pointer-events: none;
-    text-decoration: none;
-    color: inherit;
+    color: lighten($lcc-black, 5%);
+    font-weight: bolder;
   }
 }
 

@@ -11,6 +11,7 @@ export enum AppStoreFeatures {
   ABOUT = 'about',
   LOGIN = 'login',
 
+  AUTH = 'auth',
   MODAL = 'modal',
   NAV = 'nav',
   TOASTER = 'toaster',

@@ -12,6 +12,8 @@ import { NavPaths } from './types/nav-paths.model';
 })
 export class NavComponent {
   NavPaths = NavPaths;
+
+  // ::: temp
   public isUserOptionsOpen = true;
   public userFirstName = 'Michal';
 

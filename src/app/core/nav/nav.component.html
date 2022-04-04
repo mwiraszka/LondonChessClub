@@ -75,8 +75,10 @@
 
   <li class="lcc-nav-item lcc-nav-user-section">
     <ng-container *ngIf="false; else loggedOut">
-      <p>Logged&nbsp;in<br><b>{{ userFirstName }}</b></p>
-
+      <p>
+        Logged&nbsp;in<br>
+        <b>{{ userFirstName }}</b>
+      </p>
       <ng-container *ngIf="isUserOptionsOpen">
         <div class="lcc-user-options-dropdown">
           <button class="lcc-logout-button"

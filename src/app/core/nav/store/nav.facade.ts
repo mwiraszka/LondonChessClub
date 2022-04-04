@@ -1,11 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { AuthSelectors } from '@app/auth';
+import { User } from '@app/shared/types';
 
 import * as NavActions from './nav.actions';
 
 @Injectable()
 export class NavFacade {
   constructor(private readonly store: Store) {}
+
+  user$: Observable<User | null> = this.store.select(AuthSelectors.user);
+
+  isAuthenticated$: Observable<boolean> = this.store.select(
+    AuthSelectors.isAuthenticated
+  );
 
   onHome(): void {
     this.store.dispatch(NavActions.homeSelected());

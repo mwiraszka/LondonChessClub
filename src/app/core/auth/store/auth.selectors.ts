@@ -8,9 +8,4 @@ export const authFeatureSelector = createFeatureSelector<AuthState>(
   AppStoreFeatures.AUTH
 );
 
-export const isAuthenticated = createSelector(
-  authFeatureSelector,
-  (state) => state.isAuthenticated
-);
-
 export const user = createSelector(authFeatureSelector, (state) => state.user);

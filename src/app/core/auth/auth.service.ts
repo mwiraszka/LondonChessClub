@@ -15,7 +15,7 @@ export interface IUser {
 @Injectable({
   providedIn: 'root',
 })
-export class CognitoService {
+export class AuthService {
   private authenticationSubject: BehaviorSubject<any>;
 
   constructor() {

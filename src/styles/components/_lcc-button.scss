@@ -1,6 +1,14 @@
 .lcc-button {
   border-radius: $lcc-button-border-radius;
   font-size: $h4;
+
+  &:disabled {
+    cursor: default;
+    pointer-events: none;
+    background: lighten($lcc-gray, 15%) !important;
+    color: lighten($lcc-gray, 30%);
+    opacity: 50%;
+  }
 }
 
 .lcc-raised-button {
@@ -11,7 +19,6 @@
   border: 1px solid darken($lcc-white, 3%);
   box-shadow: 1px 1px 4px -2px darken($lcc-box-shadow, 10%);
   padding: 10px 14px;
-  text-transform: uppercase;
 
   &:hover,
   &:focus {
@@ -29,18 +36,21 @@
   @extend .lcc-raised-button;
   background: $lcc-primary !important;
   color: $lcc-white;
+  text-transform: uppercase;
 }
 
 .lcc-success-button {
   @extend .lcc-raised-button;
   background: $lcc-success !important;
   color: $lcc-white;
+  text-transform: uppercase;
 }
 
 .lcc-warning-button {
   @extend .lcc-raised-button;
   background: $lcc-warning !important;
   color: $lcc-white;
+  text-transform: uppercase;
 }
 
 .lcc-ghost-button {

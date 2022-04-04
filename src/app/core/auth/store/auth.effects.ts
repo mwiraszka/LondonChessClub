@@ -9,9 +9,5 @@ export class AuthEffects {
     dispatch: false,
   });
 
-  logout$ = createEffect(() => this.actions$.pipe(ofType(AuthActions.logoutRequested)), {
-    dispatch: false,
-  });
-
   constructor(private actions$: Actions) {}
 }

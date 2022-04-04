@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-import { AuthSelectors } from '@app/auth';
+import { AuthSelectors } from '@app/core/auth';
 import { User } from '@app/shared/types';
 
 import * as NavActions from './nav.actions';
@@ -13,9 +13,8 @@ export class NavFacade {
 
   user$: Observable<User | null> = this.store.select(AuthSelectors.user);
 
-  isAuthenticated$: Observable<boolean> = this.store.select(
-    AuthSelectors.isAuthenticated
-  );
+  private _isUserDropdownOpen$ = new BehaviorSubject<boolean>(true);
+  isUserDropdownOpen$ = this._isUserDropdownOpen$.asObservable();
 
   onHome(): void {
     this.store.dispatch(NavActions.homeSelected());
@@ -55,5 +54,9 @@ export class NavFacade {
 
   onLogout(): void {
     this.store.dispatch(NavActions.logoutSelected());
+  }
+
+  onToggleUserDropdown(): void {
+    this._isUserDropdownOpen$.next(!this.isUserDropdownOpen$);
   }
 }

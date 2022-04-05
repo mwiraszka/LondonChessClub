@@ -13,6 +13,7 @@ export enum AppStoreFeatures {
 
   AUTH = 'auth',
   MODAL = 'modal',
+  ALERT = 'alert',
   NAV = 'nav',
   TOASTER = 'toaster',
 }

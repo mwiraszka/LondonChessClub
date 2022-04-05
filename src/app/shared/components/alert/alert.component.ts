@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ClarityIcons, windowCloseIcon } from '@cds/core/icon';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+import * as AlertActions from './store/alert.actions';
+import * as AlertSelectors from './store/alert.selectors';
+import { AlertAction } from './types/alert-action.model';
+import { Alert } from './types/alert.model';
 
 @Component({
   selector: 'lcc-alert',
@@ -7,20 +15,23 @@ import { ClarityIcons, windowCloseIcon } from '@cds/core/icon';
   styleUrls: ['./alert.component.scss'],
 })
 export class AlertComponent implements OnInit {
-  message = "Registration for this Thursday's Blitz tournament now open";
-  action = 'Register now';
-
-  constructor() {}
+  constructor(private store: Store) {}
+  alert?: Alert | null;
+  alertSubscription?: Subscription;
 
   ngOnInit(): void {
     ClarityIcons.addIcons(windowCloseIcon);
+    this.alertSubscription = this.store
+      .select(AlertSelectors.alert)
+      .pipe(tap((alert) => (this.alert = alert)))
+      .subscribe();
   }
 
-  onAction(): void {
-    console.log('::: alert action clicked');
+  onSelectAction(): void {
+    this.store.dispatch(AlertActions.actionTaken({ action: this.alert?.action }));
   }
 
-  onDismiss(): void {
-    console.log('::: alert dismissed');
+  onClose(): void {
+    this.store.dispatch(AlertActions.actionTaken({ action: AlertAction.CLOSE }));
   }
 }

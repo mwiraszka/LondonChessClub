@@ -1,7 +1,7 @@
 input {
   display: block;
   width: 100%;
-  border: 1px solid lighten($lcc-gray, 10%);
+  border: 1px solid lighten($lcc-gray, 22%);
   border-radius: $lcc-input-border-radius !important;
   font-size: $h4 !important;
   height: 36px;
@@ -13,7 +13,8 @@ input {
   &:hover,
   &:focus {
     outline: none;
-    box-shadow: 0 0 2px 1px $lcc-select;
+    border: 1px solid lighten($lcc-gray, 15%);
+    box-shadow: 0 0 4px 1px lighten($lcc-select, 15%);
   }
 
   &.ng-invalid.ng-touched {

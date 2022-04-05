@@ -1,8 +1,7 @@
-import { ModalButtonAction } from './modal-button-action.model';
-import { ModalContent } from './modal-content.model';
+import { ModalButtonActionType } from './modal-button.model';
+import { Modal } from './modal.model';
 
 export interface ModalState {
-  isOpen: boolean;
-  content: ModalContent | null;
-  actionSelected: ModalButtonAction | null;
+  modal?: Modal;
+  selection?: ModalButtonActionType;
 }

@@ -1,14 +1,14 @@
 <div class="lcc-alert-message-container">
-  <span class="lcc-alert-message">{{ message }}</span>
+  <span class="lcc-alert-message">{{ alert?.message }}</span>
 </div>
 <div class="lcc-alert-actions-container">
   <button class="lcc-ghost-button lcc-alert-action-button"
-          (click)="onAction()">
-    {{ action }}
+          (click)="onSelectAction()">
+    {{ alert?.action }}
   </button>
   <cds-icon class="lcc-icon-button lcc-alert-close-button"
             shape="window-close"
             size="md"
-            (click)="onDismiss()">
+            (click)="onClose()">
   </cds-icon>
 </div>

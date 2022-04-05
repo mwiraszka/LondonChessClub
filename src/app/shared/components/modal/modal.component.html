@@ -1,11 +1,11 @@
 <clr-modal [clrModalOpen]="isOpen$ | async" [clrModalClosable]="false">
-  <h3 class="modal-title">{{ (content$ | async)?.title }}</h3>
+  <h3 class="modal-title">{{ (modal$ | async)?.title }}</h3>
   <div class="modal-body">
-    <p>{{ (content$ | async)?.body }}</p>
+    <p>{{ (modal$ | async)?.body }}</p>
   </div>
-  <div *ngIf="(content$ | async)?.buttons" class="modal-footer">
-    <button *ngFor="let button of (content$ | async)?.buttons"
-            [ngClass]="button.class"
+  <div *ngIf="(modal$ | async)?.buttons" class="modal-footer">
+    <button *ngFor="let button of (modal$ | async)?.buttons"
+            [ngClass]="button.style"
             (click)="onSelect(button.action)">
       {{ button.text }}
     </button>

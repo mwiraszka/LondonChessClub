@@ -18,7 +18,9 @@
   color: $lcc-primary;
   border: 1px solid darken($lcc-white, 3%);
   box-shadow: 1px 1px 4px -2px darken($lcc-box-shadow, 10%);
-  padding: 10px 14px;
+  padding: 8px 14px;
+  text-transform: uppercase;
+  font-weight: 400;
 
   &:hover,
   &:focus {
@@ -36,21 +38,18 @@
   @extend .lcc-raised-button;
   background: $lcc-primary !important;
   color: $lcc-white;
-  text-transform: uppercase;
 }
 
 .lcc-success-button {
   @extend .lcc-raised-button;
   background: $lcc-success !important;
   color: $lcc-white;
-  text-transform: uppercase;
 }
 
 .lcc-warning-button {
   @extend .lcc-raised-button;
   background: $lcc-warning !important;
   color: $lcc-white;
-  text-transform: uppercase;
 }
 
 .lcc-ghost-button {

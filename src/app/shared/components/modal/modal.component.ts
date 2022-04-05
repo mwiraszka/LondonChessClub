@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 
 import * as ModalActions from './store/modal.actions';
 import * as ModalSelectors from './store/modal.selectors';
-import { ModalButtonAction } from './types/modal-button-action.model';
+import { ModalButtonAction } from './types/modal-button.model';
+import { Modal } from './types/modal.model';
 import { ModalState } from './types/modal.state';
-import { ModalContent } from './types/modal-content.model';
 
 @Component({
   selector: 'lcc-modal',
@@ -15,13 +15,13 @@ import { ModalContent } from './types/modal-content.model';
 })
 export class ModalComponent implements OnInit {
   isOpen$: Observable<boolean>;
-  content$: Observable<ModalContent>;
+  modal$: Observable<Modal>;
 
   constructor(private store: Store<ModalState>) {}
 
   ngOnInit(): void {
     this.isOpen$ = this.store.pipe(select(ModalSelectors.isOpen));
-    this.content$ = this.store.pipe(select(ModalSelectors.content));
+    this.modal$ = this.store.pipe(select(ModalSelectors.modal));
   }
 
   onSelect(action: ModalButtonAction): void {

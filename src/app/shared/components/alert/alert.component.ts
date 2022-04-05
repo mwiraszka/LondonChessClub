@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ClarityIcons, windowCloseIcon } from '@cds/core/icon';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
@@ -14,17 +14,22 @@ import { Alert } from './types/alert.model';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
 })
-export class AlertComponent implements OnInit {
+export class AlertComponent implements OnInit, OnDestroy {
   constructor(private store: Store) {}
   alert?: Alert | null;
   alertSubscription?: Subscription;
 
   ngOnInit(): void {
     ClarityIcons.addIcons(windowCloseIcon);
+
     this.alertSubscription = this.store
       .select(AlertSelectors.alert)
       .pipe(tap((alert) => (this.alert = alert)))
       .subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.alertSubscription.unsubscribe();
   }
 
   onSelectAction(): void {

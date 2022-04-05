@@ -1,7 +1,7 @@
 export enum AlertAction {
-  REGISTER = 'register',
-  VOTE = 'vote',
-  CLOSE = 'close',
+  REGISTER = 'Register',
+  VOTE = 'Vote',
+  CLOSE = 'Close',
 }
 
 export type AlertActionType = AlertAction.REGISTER | AlertAction.VOTE | AlertAction.CLOSE;

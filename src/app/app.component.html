@@ -3,8 +3,9 @@
 </ng-container>
 
 <div class="lcc-app-container">
-  <ng-container *ngIf="showAlert$ | async"></ng-container>
-  <lcc-alert></lcc-alert>
+  <ng-container *ngIf="showAlert$ | async">
+    <lcc-alert></lcc-alert>
+  </ng-container>
   <lcc-header></lcc-header>
   <lcc-nav></lcc-nav>
   <main>

@@ -26,9 +26,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.update.subscribeToVersionUpdates();
-    this.showAlert$ = this.store.pipe(select(AlertSelectors.isActive));
-    this.showModal$ = this.store.pipe(select(ModalSelectors.isOpen));
-    this.showToasts$ = this.store.pipe(select(ToasterSelectors.isDisplayingToasts));
+    this.showAlert$ = this.store.select(AlertSelectors.isActive);
+    this.showModal$ = this.store.select(ModalSelectors.isOpen);
+    this.showToasts$ = this.store.select(ToasterSelectors.isDisplayingToasts);
     this.loader.status.subscribe((isLoading: boolean) => {
       this.isLoading = isLoading;
     });

@@ -12,6 +12,7 @@ import { MemberEditorComponent, MemberListComponent } from '@app/pages/members';
 import { ScheduleComponent } from '@app/pages/schedule';
 import { SuppliesComponent } from '@app/pages/supplies';
 import { UnsavedGuard } from '@app/shared/guards';
+import { SignUpComponent } from './pages/sign-up';
 
 const routes: Routes = [
   {
@@ -70,6 +71,10 @@ const routes: Routes = [
   {
     path: NavPaths.LOGIN,
     component: LoginComponent,
+  },
+  {
+    path: NavPaths.SIGN_UP,
+    component: SignUpComponent,
   },
   {
     path: '**',

@@ -1,5 +1,5 @@
 ﻿<div class="lcc-canvas">
-  <h3>LCC Login</h3>
+  <h3>Login</h3>
   <form class="lcc-form"
         [formGroup]="loginForm"
         (keyup)="onKeyUp($event)"
@@ -13,8 +13,13 @@
            formControlName="password"
            placeholder="Password"/>
     <div class="lcc-login-links">
-      <a href="#" class="lcc-link">Forgot password?</a>
-      <a href="#" class="lcc-link">Don't have an account?</a>
+      <a class="lcc-link"
+         (click)="facade.onForgotPassword()">
+        Forgot password?
+      </a>
+      <a class="lcc-link"
+         (click)="facade.onDontHaveAccount()">
+        Don't have an account?</a>
     </div>
     <button class="lcc-primary-button"
             type="submit"

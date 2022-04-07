@@ -25,6 +25,10 @@
     font-size: $h4;
     color: lighten($lcc-black, 15%);
   }
+
+  .lcc-login-text {
+    margin-left: 0.2em;
+  }
 }
 
 .lcc-user-account-dropdown {

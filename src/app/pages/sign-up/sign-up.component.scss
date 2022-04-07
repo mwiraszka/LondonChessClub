@@ -1,0 +1,38 @@
+@import '../../../styles/abstracts/variables';
+
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.lcc-canvas {
+  width: 100%;
+  max-width: 400px;
+}
+
+h3 {
+  margin: 10px 0;
+  text-align: left;
+  white-space: nowrap;
+}
+
+input {
+  width: 200px;
+}
+
+.lcc-login-links {
+  padding: 12px 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  .lcc-link {
+    padding: 1px 0;
+  }
+}
+
+button {
+  margin-top: 20px;
+  align-self: flex-end;
+}

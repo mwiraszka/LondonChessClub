@@ -24,8 +24,8 @@
 
   &:hover,
   &:focus {
-    box-shadow: 2px 4px 10px 0px darken($lcc-box-shadow, 10%);
-    transform: translate(-1px, -1px);
+    box-shadow: 2px 4px 7px -2px lighten($lcc-box-shadow, 5%);
+    transform: translate(0, -1px);
     outline: none;
   }
 }

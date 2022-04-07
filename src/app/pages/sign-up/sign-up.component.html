@@ -1,0 +1,39 @@
+﻿<div class="lcc-canvas">
+  <h3>Sign Up</h3>
+  <form class="lcc-form"
+        [formGroup]="signUpForm"
+        (keyup)="onKeyUp($event)"
+        (ngSubmit)="onSignUp()">
+    <input type="text"
+           name="email"
+           formControlName="email"
+           placeholder="Email"/>
+    <input type="text"
+           name="firstName"
+           formControlName="firstName"
+           placeholder="First name"/>
+    <input type="text"
+           name="lastName"
+           formControlName="lastName"
+           placeholder="Last name"/>
+    <input type="text"
+           name="city"
+           formControlName="city"
+           placeholder="City"/>
+    <input type="password"
+           name="accessToken"
+           formControlName="accessToken"
+           placeholder="Access token"/>
+    <div class="lcc-sign-up-links">
+      <a class="lcc-link"
+         (click)="facade.onAlreadyHaveAccount()">
+        Already have an account?
+      </a>
+    </div>
+    <button class="lcc-primary-button"
+            type="submit"
+            [disabled]="signUpForm.invalid">
+      Sign up
+    </button>
+  </form>
+</div>

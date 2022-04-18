@@ -8,11 +8,6 @@ export const modalFeatureSelector = createFeatureSelector<ModalState>(
   AppStoreFeatures.MODAL
 );
 
-export const isOpen = createSelector(modalFeatureSelector, (state) => state.isOpen);
-
-export const content = createSelector(modalFeatureSelector, (state) => state.content);
-
-export const actionSelected = createSelector(
-  modalFeatureSelector,
-  (state) => state.actionSelected
-);
+export const modal = createSelector(modalFeatureSelector, (state) => state.modal);
+export const isOpen = createSelector(modalFeatureSelector, (state) => !!state.modal);
+export const selection = createSelector(modalFeatureSelector, (state) => state.selection);

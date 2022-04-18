@@ -3,10 +3,10 @@ import { SwUpdate } from '@angular/service-worker';
 import { Store } from '@ngrx/store';
 
 import {
+  Modal,
   ModalActions,
-  ModalButtonActionTypes,
-  ModalButtonClassTypes,
-  ModalContent,
+  ModalButtonAction,
+  ModalButtonStyle,
   ModalState,
 } from '@app/shared/components/modal';
 
@@ -18,18 +18,18 @@ export class UpdateService {
 
   subscribeToVersionUpdates(): void {
     this.swUpdate.versionUpdates.subscribe(() => {
-      const content: ModalContent = {
+      const modal: Modal = {
         title: 'Website updated',
         body: 'A new version is available and the page needs to reload.',
         buttons: [
           {
             text: 'Ok',
-            class: ModalButtonClassTypes.CONFIRM_GREEN,
-            action: ModalButtonActionTypes.ACTIVATE_VERSION_UPDATE,
+            style: ModalButtonStyle.PRIMARY_SUCCESS,
+            action: ModalButtonAction.ACTIVATE_VERSION_UPDATE,
           },
         ],
       };
-      this.store.dispatch(ModalActions.modalCreated({ content }));
+      this.store.dispatch(ModalActions.modalCreated({ modal }));
     });
   }
 

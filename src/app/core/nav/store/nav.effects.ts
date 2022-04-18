@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 
+import { AuthActions } from '@app/core/auth';
 import { ArticleEditorActions, ArticleListActions } from '@app/pages/articles';
 import { MemberEditorActions, MemberListActions } from '@app/pages/members';
 
@@ -140,8 +141,21 @@ export class NavEffects {
   navigateToLogin$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.loginSelected, NavActions.logoutSelected),
+        ofType(
+          NavActions.loginSelected,
+          NavActions.logoutSelected,
+          AuthActions.alreadyHaveAccountSelected
+        ),
         tap(() => this.router.navigate([NavPaths.LOGIN]))
+      ),
+    { dispatch: false }
+  );
+
+  navigateToSignUp$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.dontHaveAccountSelected),
+        tap(() => this.router.navigate([NavPaths.SIGN_UP]))
       ),
     { dispatch: false }
   );

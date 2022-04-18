@@ -21,6 +21,6 @@ export class ToasterComponent implements OnInit {
   constructor(private store: Store<ToasterState>) {}
 
   ngOnInit(): void {
-    this.toasts$ = this.store.select(ToasterSelectors.selectToasts);
+    this.toasts$ = this.store.select(ToasterSelectors.toasts);
   }
 }

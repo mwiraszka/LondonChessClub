@@ -37,7 +37,7 @@ speed-measure-plugin*.json
 !.vscode/extensions.json
 .history/*
 
-# misc
+# Miscellaneous
 /.sass-cache
 /connect.lock
 /coverage
@@ -46,6 +46,9 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+
+# Beautify
+.jsbeautifyrc
 
 # System files
 .DS_Store

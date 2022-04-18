@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
+import { AlertSelectors } from '@app/shared/components/alert';
 import { ModalSelectors } from '@app/shared/components/modal';
 import { ToasterSelectors } from '@app/shared/components/toaster';
 import { LoaderService, UpdateService } from '@app/shared/services';
@@ -13,8 +13,9 @@ import { LoaderService, UpdateService } from '@app/shared/services';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  isModalOpen$: Observable<boolean>;
-  isDisplayingToaster$: Observable<boolean>;
+  showAlert$: Observable<boolean>;
+  showModal$: Observable<boolean>;
+  showToasts$: Observable<boolean>;
   isLoading!: boolean;
 
   constructor(
@@ -25,11 +26,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.update.subscribeToVersionUpdates();
-    this.isModalOpen$ = this.store.pipe(select(ModalSelectors.isOpen));
-    this.isDisplayingToaster$ = this.store.pipe(
-      select(ToasterSelectors.selectToasts),
-      map((toasts) => !!toasts)
-    );
+    this.showAlert$ = this.store.select(AlertSelectors.isActive);
+    this.showModal$ = this.store.select(ModalSelectors.isOpen);
+    this.showToasts$ = this.store.select(ToasterSelectors.isDisplayingToasts);
     this.loader.status.subscribe((isLoading: boolean) => {
       this.isLoading = isLoading;
     });

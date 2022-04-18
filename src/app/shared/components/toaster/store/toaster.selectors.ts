@@ -8,7 +8,9 @@ export const toasterFeatureSelector = createFeatureSelector<ToasterState>(
   AppStoreFeatures.TOASTER
 );
 
-export const selectToasts = createSelector(
+export const toasts = createSelector(toasterFeatureSelector, (state) => state.toasts);
+
+export const isDisplayingToasts = createSelector(
   toasterFeatureSelector,
-  (state) => state.toasts
+  (state) => !!state.toasts
 );

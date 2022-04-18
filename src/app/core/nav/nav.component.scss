@@ -13,45 +13,7 @@
   padding: 8px 14px;
 }
 
-.lcc-nav-link:not(.link-active) {
-  font-size: $h4;
-  color: lighten($lcc-black, 15%);
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    color: $lcc-accent;
-  }
-
-  /**
-   * Prevent a layout shift on hover due to the wider bold text by fixing
-   * the width with hidden text underneath (based on the aria-label attribute)
-   */
-  &::before {
-    display: block;
-    content: attr(aria-label);
-    font-weight: bold;
-    height: 0;
-    overflow: hidden;
-    visibility: hidden;
-  }
-}
-
-.lcc-nav-link.link-active {
-  font-size: $h4;
-  color: lighten($lcc-black, 5%) !important;
-  font-weight: bolder;
-
-  &:hover,
-  &:focus {
-    cursor: default;
-    pointer-events: none;
-    text-decoration: none;
-    color: inherit;
-  }
-}
-
-.lcc-nav-user-section {
+.lcc-user-account {
   margin-left: auto;
   display: flex;
   flex-flow: row nowrap;
@@ -63,9 +25,13 @@
     font-size: $h4;
     color: lighten($lcc-black, 15%);
   }
+
+  .lcc-login-text {
+    margin-left: 0.2em;
+  }
 }
 
-.lcc-user-options-dropdown {
+.lcc-user-account-dropdown {
   position: relative;
   top: 0;
   left: 0;

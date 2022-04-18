@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { debounceTime, first, tap } from 'rxjs/operators';
@@ -61,6 +61,30 @@ export class MemberEditorComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.valueChangesSubscription.unsubscribe();
+  }
+
+  hasError(control: AbstractControl): boolean {
+    return control.value !== '' && control.invalid;
+  }
+
+  getErrorMessage(control: AbstractControl): string {
+    if (control.errors.hasOwnProperty('required')) {
+      return 'This field is required';
+    } else if (control.errors.hasOwnProperty('invalidDateFormat')) {
+      return 'Invalid date';
+    } else if (control.errors.hasOwnProperty('invalidPhoneNumberFormat')) {
+      return 'Invalid phone number';
+    } else if (control.errors.hasOwnProperty('email')) {
+      return 'Invalid email';
+    } else {
+      return 'Unknown error';
+    }
+  }
+
+  onKeyUp(event: any): void {
+    if (event.keyCode === 13) {
+      this.onSubmit();
+    }
   }
 
   onCancel(): void {

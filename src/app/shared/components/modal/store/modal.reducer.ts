@@ -4,24 +4,21 @@ import * as ModalActions from './modal.actions';
 import { ModalState } from '../types/modal.state';
 
 const initialState: ModalState = {
-  isOpen: false,
-  content: null,
-  actionSelected: null,
+  modal: null,
+  selection: null,
 };
 
 const modalReducer = createReducer(
   initialState,
   on(ModalActions.modalCreated, (state, action) => ({
     ...state,
-    isOpen: true,
-    content: action.content,
-    actionSelected: null,
+    modal: action.modal,
+    selection: null,
   })),
   on(ModalActions.selectionMade, (state, action) => ({
     ...state,
-    isOpen: false,
-    content: null,
-    actionSelected: action.action,
+    modal: null,
+    selection: action.action,
   }))
 );
 

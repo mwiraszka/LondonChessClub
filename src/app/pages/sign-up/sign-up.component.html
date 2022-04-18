@@ -1,0 +1,172 @@
+﻿<div class="lcc-canvas">
+	<h3>Sign Up</h3>
+	<form class="lcc-form"
+				[formGroup]="signUpForm"
+				(keyup)="onKeyUp($event)"
+				(ngSubmit)="onSignUp()">
+
+		<div class="lcc-form-fields">
+			<label for="email-input">
+				Email:
+			</label>
+			<input id="email-input"
+						 type="text"
+						 name="email"
+						 formControlName="email" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(signUpForm.controls['email'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(signUpForm.controls['email'])">
+				</cds-icon>
+			</div>
+
+			<label for="password-input">
+				Password:
+			</label>
+			<input id="password-input"
+						 type="password"
+						 name="password"
+						 formControlName="password" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(signUpForm.controls['password'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(signUpForm.controls['password'])">
+				</cds-icon>
+			</div>
+
+			<label for="password-confirm-input">
+				Confirm password:
+			</label>
+			<input id="password-confirm-input"
+						 type="password"
+						 name="confirm-password"
+						 formControlName="confirmPassword" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(signUpForm.controls['confirmPassword'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(signUpForm.controls['confirmPassword'])">
+				</cds-icon>
+			</div>
+
+			<hr class="lcc-form-divider-line" />
+
+			<label for="first-name-input">
+				First name:
+			</label>
+			<input id="first-name-input"
+						 type="text"
+						 name="first-name"
+						 formControlName="firstName" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(signUpForm.controls['firstName'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(signUpForm.controls['firstName'])">
+				</cds-icon>
+			</div>
+
+			<label for="last-name-input">
+				Last name:
+			</label>
+			<input id="last-name-input"
+						 type="text"
+						 name="last-name"
+						 formControlName="lastName" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(signUpForm.controls['lastName'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(signUpForm.controls['lastName'])">
+				</cds-icon>
+			</div>
+
+			<label for="date-of-birth-input">
+				Date of birth:<em>(optional)</em>
+			</label>
+			<input id="date-of-birth-input"
+						 type="text"
+						 name="date-of-birth"
+						 formControlName="dateOfBirth" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(signUpForm.controls['dateOfBirth'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(signUpForm.controls['dateOfBirth'])">
+				</cds-icon>
+			</div>
+
+			<label for="phone-number-input">
+				Phone number:
+			</label>
+			<input id="phone-number-input"
+						 type="text"
+						 name="phone-number"
+						 formControlName="phoneNumber" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(signUpForm.controls['phoneNumber'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(signUpForm.controls['phoneNumber'])">
+				</cds-icon>
+			</div>
+
+			<label for="city-input">
+				City:
+			</label>
+			<input id="city-input"
+						 type="text"
+						 name="city"
+						 formControlName="city" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(signUpForm.controls['city'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(signUpForm.controls['city'])">
+				</cds-icon>
+			</div>
+
+			<hr class="lcc-form-divider-line" />
+
+			<label for="sign-up-token">
+				Sign-up token:
+			</label>
+			<input id="sign-up-token"
+						 type="text"
+						 name="signUpToken"
+						 formControlName="signUpToken" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(signUpForm.controls['signUpToken'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(signUpForm.controls['signUpToken'])">
+				</cds-icon>
+			</div>
+		</div>
+
+		<div class="lcc-form-buttons">
+			<button class="lcc-primary-button"
+							type="submit"
+							[disabled]="signUpForm.invalid">
+				Sign up
+			</button>
+		</div>
+
+		<a class="lcc-link"
+			 (click)="onAlreadyHaveAccount()">
+			Already have an account?
+		</a>
+
+	</form>
+</div>

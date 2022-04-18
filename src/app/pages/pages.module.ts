@@ -9,6 +9,7 @@ import { LessonsModule } from '@app/pages/lessons';
 import { LoginModule } from '@app/pages/login';
 import { MemberEditorModule, MemberListModule } from '@app/pages/members';
 import { ScheduleModule } from '@app/pages/schedule';
+import { SignUpModule } from '@app/pages/sign-up';
 import { SuppliesModule } from '@app/pages/supplies';
 
 const modules = [
@@ -22,6 +23,7 @@ const modules = [
   MemberEditorModule,
   MemberListModule,
   ScheduleModule,
+  SignUpModule,
   SuppliesModule,
 ];
 

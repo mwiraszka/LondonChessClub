@@ -3,26 +3,14 @@
   justify-content: center;
 }
 
-input {
-  width: 220px;
-
-  &[type='file'] {
-    visibility: hidden;
-  }
+input[type='file'] {
+  visibility: hidden;
 }
 
 h3 {
   margin: 10px 0;
+  text-align: left;
   white-space: nowrap;
-}
-
-.buttons-container {
-  display: flex;
-  justify-content: center;
-
-  button {
-    margin: 20px 6px;
-  }
 }
 
 .image-preview {

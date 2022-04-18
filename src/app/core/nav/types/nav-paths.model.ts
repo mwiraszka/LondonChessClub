@@ -12,4 +12,5 @@ export enum NavPaths {
   SUPPLIES = 'supplies',
   ABOUT = 'about',
   LOGIN = 'login',
+  SIGN_UP = 'signup',
 }

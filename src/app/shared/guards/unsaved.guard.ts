@@ -7,10 +7,10 @@ import { filter, map, switchMap } from 'rxjs/operators';
 import { ArticleEditorComponent, ArticleEditorSelectors } from '@app/pages/articles';
 import { MemberEditorComponent, MemberEditorSelectors } from '@app/pages/members';
 import {
+  Modal,
   ModalActions,
-  ModalButtonActionTypes,
-  ModalButtonClassTypes,
-  ModalContent,
+  ModalButtonAction,
+  ModalButtonStyle,
   ModalSelectors,
 } from '@app/shared/components/modal';
 
@@ -20,19 +20,19 @@ import {
 export class UnsavedGuard
   implements CanDeactivate<MemberEditorComponent | ArticleEditorComponent>
 {
-  unsavedChangesContent: ModalContent = {
+  unsavedChangesModal: Modal = {
     title: 'Unsaved changes',
     body: 'Are you sure you want to leave this page? Any unsaved changes will be lost.',
     buttons: [
       {
         text: 'Cancel',
-        class: ModalButtonClassTypes.DEFAULT,
-        action: ModalButtonActionTypes.LEAVE_CANCEL,
+        style: ModalButtonStyle.SECONDARY,
+        action: ModalButtonAction.LEAVE_CANCEL,
       },
       {
         text: 'Leave',
-        class: ModalButtonClassTypes.DEFAULT,
-        action: ModalButtonActionTypes.LEAVE_OK,
+        style: ModalButtonStyle.PRIMARY_DEFAULT,
+        action: ModalButtonAction.LEAVE_OK,
       },
     ],
   };
@@ -49,11 +49,11 @@ export class UnsavedGuard
           return of(true);
         }
         this.store.dispatch(
-          ModalActions.modalCreated({ content: this.unsavedChangesContent })
+          ModalActions.modalCreated({ modal: this.unsavedChangesModal })
         );
-        return this.store.select(ModalSelectors.actionSelected).pipe(
-          filter((actionSelected) => !!actionSelected),
-          map((actionSelected) => actionSelected === ModalButtonActionTypes.LEAVE_OK)
+        return this.store.select(ModalSelectors.selection).pipe(
+          filter((selectedAction) => !!selectedAction),
+          map((actionSelected) => actionSelected === ModalButtonAction.LEAVE_OK)
         );
       })
     );

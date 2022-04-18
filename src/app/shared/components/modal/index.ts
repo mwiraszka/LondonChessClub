@@ -6,14 +6,13 @@ export { ModalEffects } from './store/modal.effects';
 export * as ModalSelectors from './store/modal.selectors';
 export { reducer } from './store/modal.reducer';
 
+export { Modal } from './types/modal.model';
+export {} from './types/modal-action.model';
 export {
+  ModalButton,
   ModalButtonAction,
-  ModalButtonActionTypes,
-} from './types/modal-button-action.model';
-export {
-  ModalButtonClass,
-  ModalButtonClassTypes,
-} from './types/modal-button-class.model';
-export { ModalButton } from './types/modal-button.model';
-export { ModalContent } from './types/modal-content.model';
+  ModalButtonActionType,
+  ModalButtonStyle,
+  ModalButtonStyleType,
+} from './types/modal-button.model';
 export { ModalState } from './types/modal.state';

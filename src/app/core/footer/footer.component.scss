@@ -3,8 +3,13 @@
   flex-flow: column wrap;
   text-align: center;
   padding: 10px;
+  white-space: nowrap;
 }
 
 small {
   font-size: 60%;
+
+  span {
+    padding: 0 0.4em;
+  }
 }

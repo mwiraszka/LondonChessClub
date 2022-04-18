@@ -1,0 +1,33 @@
+@import '../../../styles/abstracts/variables';
+
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.lcc-canvas {
+  width: 100%;
+  max-width: 400px;
+}
+
+h3 {
+  margin: 10px 0;
+  text-align: left;
+  white-space: nowrap;
+}
+
+button {
+  grid-column: 2 / 3;
+  justify-self: end;
+  margin: 6px 0 40px;
+}
+
+.lcc-link {
+  width: 100%;
+  margin: auto;
+}
+
+em {
+  color: lighten($lcc-secondary-text, 10%);
+  display: block;
+}

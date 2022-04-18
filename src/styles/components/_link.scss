@@ -1,0 +1,42 @@
+.lcc-link {
+  font-size: $h5;
+  font-weight: 200;
+  color: $lcc-link !important;
+  
+  &:hover {
+    color: lighten($lcc-link, 10%) !important;
+  }
+}
+
+.lcc-nav-link {
+  @extend .lcc-link;
+
+  color: lighten($lcc-black, 30%) !important;
+  font-size: $h4;
+  font-weight: 400;
+
+  &:hover {
+    color: lighten($lcc-black, 5%) !important;
+  }
+
+  /**
+  * Prevent a layout shift on hover due to the wider bold text by fixing
+  * the width with hidden text underneath (based on the aria-label attribute)
+  */
+  &::before {
+    display: block;
+    content: attr(aria-label);
+
+    font-weight: bold;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+
+  &.link-active {
+    cursor: default;
+    pointer-events: none;
+    color: lighten($lcc-black, 10%) !important;
+    font-weight: bolder;
+  }
+}

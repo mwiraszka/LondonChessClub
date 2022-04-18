@@ -12,8 +12,6 @@ import { NavPaths } from './types/nav-paths.model';
 })
 export class NavComponent {
   NavPaths = NavPaths;
-  public isUserOptionsOpen = true;
-  public userFirstName = 'Michal';
 
   constructor(public facade: NavFacade) {}
 

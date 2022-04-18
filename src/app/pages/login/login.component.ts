@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
-import { AuthFacade, LoginRequest } from '@app/core/auth';
+import { AuthFacade } from '@app/core/auth';
 import { LoaderService } from '@app/shared/services';
 
 @Component({
@@ -23,6 +29,20 @@ export class LoginComponent {
     });
   }
 
+  hasError(control: AbstractControl): boolean {
+    return control.value !== '' && control.invalid;
+  }
+
+  getErrorMessage(control: AbstractControl): string {
+    if (control.errors.hasOwnProperty('required')) {
+      return 'This field is required';
+    } else if (control.errors.hasOwnProperty('email')) {
+      return 'Invalid email';
+    } else {
+      return 'Unknown error';
+    }
+  }
+
   onKeyUp(event: any): void {
     if (event.keyCode === 13) {
       this.onLogin();
@@ -31,7 +51,7 @@ export class LoginComponent {
 
   onLogin(): void {
     this.loader.display(true);
-    this.facade.onLogin(this.loginForm.value as LoginRequest);
+    this.facade.onLogin(this.loginForm.value);
     setTimeout(() => this.loader.display(false), 1000);
   }
 }

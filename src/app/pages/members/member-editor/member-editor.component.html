@@ -6,47 +6,126 @@
 		<h3>Add a member</h3>
 	</ng-template>
 
-	<form *ngIf="form"
-				class="lcc-form"
+	<form class="lcc-form"
 				[formGroup]="form"
+				(keyup)="onKeyUp($event)"
 				(ngSubmit)="onSubmit()">
-		<input type="text"
-						name="first-name"
-						formControlName="firstName"
-						placeholder="First name"
-						maxlength="50"/>
-		<input type="text"
-						name="last-name"
-						formControlName="lastName"
-						placeholder="Last name"
-						maxlength="50"/>
-		<input type="text"
-						name="city"
-						formControlName="city"
-						placeholder="City"
-						maxlength="50"/>
-		<input type="text"
-						name="phone-number"
-						formControlName="phoneNumber"
-						placeholder="Phone number"
-						maxlength="12"/>
-		<input type="text"
-						name="email"
-						formControlName="email"
-						placeholder="Email"
-						maxlength="50"/>
-		<input type="text"
-						name="date-joined"
-						formControlName="dateJoined"
-						placeholder="Date joined"
-						maxlength="10"/>
-		<input type="text"
-						name="rating"
-						formControlName="rating"
-						placeholder="Club rating"
-						maxlength="4"/>
 
-		<div class="buttons-container">
+		<div class="lcc-form-fields">
+			<label for="first-name-input">
+				First name:
+			</label>
+			<input id="first-name-input"
+						 type="text"
+						 name="first-name"
+						 formControlName="firstName" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(form.controls['firstName'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(form.controls['firstName'])">
+				</cds-icon>
+			</div>
+
+			<label for="last-name-input">
+				Last name:
+			</label>
+			<input id="last-name-input"
+						 type="text"
+						 name="last-name"
+						 formControlName="lastName" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(form.controls['lastName'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(form.controls['lastName'])">
+				</cds-icon>
+			</div>
+
+			<label for="city-input">
+				City:
+			</label>
+			<input id="city-input"
+						 type="text"
+						 name="city"
+						 formControlName="city" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(form.controls['city'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(form.controls['city'])">
+				</cds-icon>
+			</div>
+
+			<label>
+				Phone number:
+			</label>
+			<input id="phone-number-input"
+						 type="text"
+						 name="phone-number"
+						 formControlName="phoneNumber" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(form.controls['phoneNumber'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(form.controls['phoneNumber'])">
+				</cds-icon>
+			</div>
+
+			<label for="email-input">
+				Email:
+			</label>
+			<input id="email-input"
+						 type="text"
+						 name="email"
+						 formControlName="email" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(form.controls['email'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(form.controls['email'])">
+				</cds-icon>
+			</div>
+
+			<label for="date-joined-input">
+				Date joined:
+			</label>
+			<input id="date-joined-input"
+						 type="text"
+						 name="date-joined"
+						 formControlName="dateJoined" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(form.controls['dateJoined'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(form.controls['dateJoined'])">
+				</cds-icon>
+			</div>
+
+			<label for="rating-input">
+				LCC Rating:
+			</label>
+			<input id="rating-input"
+						 type="text"
+						 name="rating"
+						 formControlName="rating" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(form.controls['rating'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(form.controls['rating'])">
+				</cds-icon>
+			</div>
+		</div>
+
+		<div class="lcc-form-buttons">
 			<button class="lcc-secondary-button"
 							type="button"
 							(click)="onCancel()">
@@ -55,9 +134,11 @@
 			<button class="lcc-primary-button"
 							type="submit"
 							[disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
-				<ng-container *ngIf="facade.isEditMode$ | async; else createModeButton">Update</ng-container>
+				<ng-container *ngIf="facade.isEditMode$ | async; else createModeButton">Update
+				</ng-container>
 				<ng-template #createModeButton>Add member</ng-template>
 			</button>
 		</div>
+
 	</form>
 </div>

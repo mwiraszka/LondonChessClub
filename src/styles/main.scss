@@ -1,7 +1,7 @@
 @charset 'utf-8';
 
-@import 'abstracts/variables';
 @import 'abstracts/mixins';
+@import 'abstracts/variables';
 
 @import 'base/reset';
 @import 'base/typography';
@@ -14,3 +14,4 @@
 @import 'components/input';
 @import 'components/link';
 @import 'components/loading-spinner';
+@import 'components/tooltip';

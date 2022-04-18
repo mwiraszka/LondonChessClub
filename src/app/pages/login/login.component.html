@@ -1,30 +1,61 @@
 ﻿<div class="lcc-canvas">
-  <h3>Login</h3>
-  <form class="lcc-form"
-        [formGroup]="loginForm"
-        (keyup)="onKeyUp($event)"
-        (ngSubmit)="onLogin()">
-    <input type="text"
-           name="email"
-           formControlName="email"
-           placeholder="Email"/>
-    <input type="password"
-           name="password"
-           formControlName="password"
-           placeholder="Password"/>
-    <div class="lcc-login-links">
-      <a class="lcc-link"
-         (click)="facade.onForgotPassword()">
-        Forgot password?
-      </a>
-      <a class="lcc-link"
-         (click)="facade.onDontHaveAccount()">
-        Don't have an account?</a>
-    </div>
-    <button class="lcc-primary-button"
-            type="submit"
-            [disabled]="loginForm.invalid">
-      Log in
-    </button>
-  </form>
+	<h3>Login</h3>
+	<form class="lcc-form"
+				[formGroup]="loginForm"
+				(keyup)="onKeyUp($event)"
+				(ngSubmit)="onLogin()">
+
+		<div class="lcc-form-fields">
+			<label for="email-input">
+				Email:
+			</label>
+			<input id="email-input"
+						 type="text"
+						 name="email"
+						 formControlName="email" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(loginForm.controls['email'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(loginForm.controls['email'])">
+				</cds-icon>
+			</div>
+
+			<label for="password-input">
+				Password:
+			</label>
+			<input id="password-input"
+						 type="password"
+						 name="password"
+						 formControlName="password" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(loginForm.controls['password'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(loginForm.controls['password'])">
+				</cds-icon>
+			</div>
+
+			<a class="lcc-link"
+				 (click)="facade.onForgotPassword()">
+				Forgot password?
+			</a>
+
+			<a class="lcc-link"
+				 (click)="facade.onDontHaveAccount()">
+				Don't have an account?
+			</a>
+		</div>
+
+		<div class="lcc-form-buttons">
+			<button class="lcc-primary-button"
+							type="submit"
+							[disabled]="loginForm.invalid">
+				Log in
+			</button>
+		</div>
+
+	</form>
 </div>

@@ -1,6 +1,56 @@
+@import '../../styles/abstracts/variables';
+
 .lcc-form {
   display: flex;
   flex-flow: column nowrap;
+  gap: 20px;
+}
+
+.lcc-form-fields {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-gap: 6px;
+
+  label {
+    grid-column: 1 / 2;
+    max-width: 100px;
+    align-self: center;
+    text-align: right;
+    font-size: $h4;
+    color: $lcc-secondary-text;
+  }
+
+  input {
+    grid-column: 2 / 3;
+  }
+
+  .lcc-form-error-container {
+    grid-column: 3 / 4;
+    width: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .lcc-form-error-icon {
+      color: $lcc-warning;
+    }
+  }
+
+  .lcc-form-divider-line {
+    grid-column: 1 / 4;
+    place-self: center;
+    height: 2px;
+    width: 90%;
+    margin: 1em 0;
+    border-top: 1px solid lighten($lcc-gray, 30%);
+  }
+}
+
+.lcc-form-buttons {
+  display: flex;
   justify-content: center;
-  align-items: center;
+
+  button {
+    margin: 0 6px;
+  }
 }

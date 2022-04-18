@@ -2,8 +2,8 @@ import { createAction, props } from '@ngrx/store';
 
 import { User } from '@app/shared/types';
 
-import { LoginRequest } from '../types/login-request.model';
-import { SignUpRequest } from '../types/sign-up-request.model';
+import { LoginRequestData } from '../types/login-request-data.model';
+import { SignUpRequestData } from '../types/sign-up-request-data.model';
 
 enum AuthActionTypes {
   LOGIN_REQUESTED = '[Auth] Login requested',
@@ -22,7 +22,7 @@ enum AuthActionTypes {
 
 export const loginRequested = createAction(
   AuthActionTypes.LOGIN_REQUESTED,
-  props<{ loginRequest: LoginRequest }>()
+  props<{ loginRequestData: LoginRequestData }>()
 );
 export const loginSucceeded = createAction(
   AuthActionTypes.LOGIN_SUCCEEDED,
@@ -35,7 +35,7 @@ export const loginFailed = createAction(
 
 export const signUpRequested = createAction(
   AuthActionTypes.SIGN_UP_REQUESTED,
-  props<{ signUpRequest: SignUpRequest }>()
+  props<{ signUpRequestData: SignUpRequestData }>()
 );
 export const signUpSucceeded = createAction(
   AuthActionTypes.SIGN_UP_SUCCEEDED,

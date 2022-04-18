@@ -6,6 +6,7 @@ import { ClarityModule } from '@clr/angular';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
+import { DirectivesModule } from '@app/shared/directives';
 import { AppStoreFeatures } from '@app/shared/types';
 
 import { MemberEditorComponent } from './member-editor.component';
@@ -17,6 +18,7 @@ import { reducer } from './store/member-editor.reducer';
   imports: [
     ClarityModule,
     CommonModule,
+    DirectivesModule,
     EffectsModule.forFeature([MemberEditorEffects]),
     ReactiveFormsModule,
     RouterModule,

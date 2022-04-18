@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import packageJson from '../../../../package.json';
+
 @Component({
   selector: 'lcc-footer',
   templateUrl: './footer.component.html',
@@ -7,4 +9,5 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
   currentYear = new Date().getFullYear();
+  version = packageJson.version;
 }

@@ -16,23 +16,18 @@ h3 {
   white-space: nowrap;
 }
 
-input {
-  width: 200px;
-}
-
-.lcc-login-links {
-  padding: 12px 0;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-
-  .lcc-link {
-    padding: 1px 0;
-  }
-}
-
 button {
-  margin-top: 20px;
-  align-self: flex-end;
+  grid-column: 2 / 3;
+  justify-self: end;
+  margin: 6px 0 40px;
+}
+
+.lcc-link {
+  width: 100%;
+  margin: auto;
+}
+
+em {
+  color: lighten($lcc-secondary-text, 10%);
+  display: block;
 }

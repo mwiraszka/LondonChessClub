@@ -8,5 +8,6 @@ export * as AuthSelectors from './store/auth.selectors';
 export { reducer } from './store/auth.reducer';
 
 export { AuthState } from './types/auth.state';
+export { ConfirmSignUpRequestData } from './types/confirm-sign-up-request-data.model';
 export { LoginRequestData } from './types/login-request-data.model';
 export { SignUpRequestData } from './types/sign-up-request-data.model';

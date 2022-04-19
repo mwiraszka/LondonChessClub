@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 
 import { User } from '@app/shared/types';
 
+import { ConfirmSignUpRequestData } from '../types/confirm-sign-up-request-data.model';
 import { LoginRequestData } from '../types/login-request-data.model';
 import { SignUpRequestData } from '../types/sign-up-request-data.model';
 
@@ -13,6 +14,10 @@ enum AuthActionTypes {
   SIGN_UP_REQUESTED = '[Auth] Sign up requested',
   SIGN_UP_SUCCEEDED = '[Auth] Sign up succeeded',
   SIGN_UP_FAILED = '[Auth] Sign up failed',
+
+  CONFIRM_SIGN_UP_REQUESTED = '[Auth] Confirm sign up requested',
+  CONFIRM_SIGN_UP_SUCCEEDED = '[Auth] Confirm sign up succeeded',
+  CONFIRM_SIGN_UP_FAILED = '[Auth] Confirm sign up failed',
 
   LOGOUT_SELECTED = '[Auth] Logout selected',
   ALREADY_HAVE_ACCOUNT_SELECTED = '[Auth] Already have account selected',
@@ -43,6 +48,19 @@ export const signUpSucceeded = createAction(
 );
 export const signUpFailed = createAction(
   AuthActionTypes.SIGN_UP_FAILED,
+  props<{ errorMessage: string }>()
+);
+
+export const confirmSignUpRequested = createAction(
+  AuthActionTypes.CONFIRM_SIGN_UP_REQUESTED,
+  props<{ confirmSignUpRequestData: ConfirmSignUpRequestData }>()
+);
+export const confirmSignUpSucceeded = createAction(
+  AuthActionTypes.CONFIRM_SIGN_UP_SUCCEEDED,
+  props<{ token: string }>()
+);
+export const confirmSignUpFailed = createAction(
+  AuthActionTypes.CONFIRM_SIGN_UP_FAILED,
   props<{ errorMessage: string }>()
 );
 

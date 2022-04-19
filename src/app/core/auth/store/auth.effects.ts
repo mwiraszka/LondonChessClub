@@ -33,8 +33,9 @@ export class AuthEffects {
         return this.authService
           .signUp(signUpRequestData.email, signUpRequestData.password)
           .pipe(
-            tap((val) => console.log('::: signUp returned...', val)),
+            tap((val) => console.log('::: signUp returned `user` as:', val)),
             map((user) => AuthActions.signUpSucceeded({ user })),
+            // ::: show email confirmation code form?
             catchError(() =>
               of(
                 AuthActions.signUpFailed({

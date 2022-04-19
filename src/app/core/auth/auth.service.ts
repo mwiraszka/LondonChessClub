@@ -3,15 +3,6 @@ import { Amplify, Auth } from 'aws-amplify';
 import { BehaviorSubject, from, Observable } from 'rxjs';
 
 import { environment } from '@environments/environment';
-import { User } from '@app/shared/types';
-
-export interface IUser {
-  email: string;
-  password: string;
-  showPassword: boolean;
-  code: string;
-  name: string;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -27,16 +18,16 @@ export class AuthService {
     this.authenticationSubject = new BehaviorSubject<boolean>(false);
   }
 
-  signUp(username, password): Observable<any> {
-    return from(Auth.signUp(username, password));
+  signUp(email: string, password: string): Observable<any> {
+    return from(Auth.signUp(email, password));
   }
 
-  confirmSignUp(user: IUser): Observable<any> {
-    return from(Auth.confirmSignUp(user.email, user.code));
+  confirmSignUp(email: string, code: string): Observable<any> {
+    return from(Auth.confirmSignUp(email, code));
   }
 
-  signIn(user: IUser): Promise<any> {
-    return Auth.signIn(user.email, user.password).then(() => {
+  signIn(email: string, password: string): Promise<any> {
+    return Auth.signIn(email, password).then(() => {
       this.authenticationSubject.next(true);
     });
   }
@@ -63,11 +54,5 @@ export class AuthService {
 
   getUser(): Promise<any> {
     return Auth.currentUserInfo();
-  }
-
-  updateUser(user: IUser): Promise<any> {
-    return Auth.currentUserPoolUser().then((cognitoUser: any) => {
-      return Auth.updateUserAttributes(cognitoUser, user);
-    });
   }
 }

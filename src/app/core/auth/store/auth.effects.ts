@@ -34,7 +34,7 @@ export class AuthEffects {
           .signUp(signUpRequestData.email, signUpRequestData.password)
           .pipe(
             tap((val) => console.log('::: signUp returned `user` as:', val)),
-            map((user) => AuthActions.signUpSucceeded({ user })),
+            map((user: User) => AuthActions.signUpSucceeded({ user })),
             // ::: show email confirmation code form?
             catchError(() =>
               of(

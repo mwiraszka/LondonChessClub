@@ -1,15 +1,17 @@
 <div class="lcc-canvas">
-	<ng-container *ngIf="facade.isEditMode$ | async; else createModeHeader">
-		<h3>Edit <em>{{ (facade.articleBeforeEdit$ | async).title }}</em></h3>
-	</ng-container>
-	<ng-template #createModeHeader>
-		<h3>Compose an article</h3>
-	</ng-template>
-
 	<form class="lcc-form"
 				[formGroup]="form"
 				(keyup)="onKeyUp($event)"
 				(ngSubmit)="onSubmit()">
+
+		<header class="lcc-form-header">
+			<ng-container *ngIf="facade.isEditMode$ | async; else createModeHeader">
+				<h3>Edit <em>{{ (facade.articleBeforeEdit$ | async).title }}</em></h3>
+			</ng-container>
+			<ng-template #createModeHeader>
+				<h3>Compose an article</h3>
+			</ng-template>
+		</header>
 
 		<div class="lcc-form-fields">
 			<label for="title-input">
@@ -77,7 +79,7 @@
 			</div>
 		</div>
 
-		<div class="lcc-form-buttons">
+		<div class="lcc-form-buttons-container">
 			<button class="lcc-secondary-button"
 							type="button"
 							(click)="onCancel()">
@@ -91,6 +93,5 @@
 				<ng-template #createModeButton>Publish article</ng-template>
 			</button>
 		</div>
-
 	</form>
 </div>

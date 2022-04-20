@@ -26,7 +26,7 @@ import {
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
-  signUpForm!: FormGroup;
+  form!: FormGroup;
 
   constructor(
     private facade: AuthFacade,
@@ -40,7 +40,7 @@ export class SignUpComponent implements OnInit {
   }
 
   initForm(): void {
-    this.signUpForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
         Validators.required,
@@ -92,7 +92,7 @@ export class SignUpComponent implements OnInit {
   }
 
   onKeyUp(event: any): void {
-    if (event.keyCode === 13 && this.signUpForm.valid) {
+    if (event.keyCode === 13 && this.form.valid) {
       this.onSignUp();
     }
   }
@@ -103,7 +103,7 @@ export class SignUpComponent implements OnInit {
 
   onSignUp(): void {
     this.loader.display(true);
-    this.facade.onSignUp(this.signUpForm.value as SignUpRequestData);
+    this.facade.onSignUp(this.form.value as SignUpRequestData);
     setTimeout(() => this.loader.display(false), 1000);
   }
 }

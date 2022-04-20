@@ -61,9 +61,10 @@ video {
   border: 0;
   font-size: 100%;
   vertical-align: baseline;
+  text-align: inherit;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
   text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
   color: inherit;
 }
 
@@ -103,4 +104,14 @@ q {
     content: '';
     content: none;
   }
+}
+
+// Should only be necessary for as long as CDS styles are present
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 !important
 }

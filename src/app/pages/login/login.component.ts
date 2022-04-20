@@ -16,14 +16,14 @@ import { LoaderService } from '@app/shared/services';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  loginForm!: FormGroup;
+  form!: FormGroup;
 
   constructor(
     public facade: AuthFacade,
     private formBuilder: FormBuilder,
     private loader: LoaderService
   ) {
-    this.loginForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
     });
@@ -51,7 +51,7 @@ export class LoginComponent {
 
   onLogin(): void {
     this.loader.display(true);
-    this.facade.onLogin(this.loginForm.value);
+    this.facade.onLogin(this.form.value);
     setTimeout(() => this.loader.display(false), 1000);
   }
 }

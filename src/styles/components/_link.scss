@@ -1,7 +1,12 @@
 .lcc-link {
   font-size: $h5;
   font-weight: 200;
-  color: $lcc-link !important;
+
+  /**
+   * A little hacky for the time being (will likely no longer be necessary
+   * once clr-vendor styles can be deleted)
+   */
+   color: $lcc-link !important;
   
   &:hover {
     color: lighten($lcc-link, 10%) !important;

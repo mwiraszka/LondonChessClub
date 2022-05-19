@@ -1,8 +1,7 @@
 import { User } from '@app/shared/types';
+import { CognitoUserSession } from 'amazon-cognito-identity-js';
 
 export interface AuthState {
   user?: User;
-  isLoggedIn: boolean;
-  isAuthenticated: boolean;
-  token?: string;
+  cognitoUserSession?: CognitoUserSession;
 }

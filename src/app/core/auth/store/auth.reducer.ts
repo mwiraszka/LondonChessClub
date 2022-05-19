@@ -5,23 +5,21 @@ import { AuthState } from '../types/auth.state';
 
 const initialState: AuthState = {
   user: null,
-  isLoggedIn: false,
-  isAuthenticated: false,
-  token: null,
+  cognitoUserSession: null,
 };
 
 const authReducer = createReducer(
   initialState,
-  on(AuthActions.logoutSelected, () => initialState),
+  on(AuthActions.loginSucceeded, (state, action) => ({
+    ...state,
+    user: action.user,
+    cognitoUserSession: action.cognitoUserSession,
+  })),
+  on(AuthActions.logoutSucceeded, () => initialState),
   on(AuthActions.signUpSucceeded, (state, action) => ({
     ...state,
-    isLoggedIn: true,
     user: action.user,
-  })),
-  on(AuthActions.confirmSignUpSucceeded, (state, action) => ({
-    ...state,
-    isAuthenticated: true,
-    token: action.token,
+    cognitoUserSession: action.cognitoUserSession,
   }))
 );
 

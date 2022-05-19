@@ -1,7 +1,8 @@
 export interface User {
   id: string;
-  email: string;
   firstName: string;
-  lastName?: string;
+  lastName: string;
+  email: string;
   role: 'user' | 'member' | 'admin';
+  isAuthenticated: boolean;
 }

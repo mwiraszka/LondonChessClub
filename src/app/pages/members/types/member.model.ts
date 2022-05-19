@@ -1,9 +1,10 @@
 export interface Member {
-  _id: string | undefined;
+  userId: string | undefined;
   firstName: string;
   lastName: string;
   city: string;
-  phoneNumber?: string;
+  phoneNumber: string;
+  dateOfBirth?: string;
   email: string;
   dateJoined: string;
   rating: number;
@@ -11,11 +12,12 @@ export interface Member {
 }
 
 export const newMemberFormTemplate: Member = {
-  _id: undefined,
+  userId: undefined,
   firstName: '',
   lastName: '',
   city: 'London',
   phoneNumber: '',
+  dateOfBirth: '',
   email: '',
   dateJoined: new Date().toISOString().substring(0, 10),
   rating: 1000,

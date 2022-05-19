@@ -53,7 +53,7 @@ export class NavEffects {
       this.actions$.pipe(
         ofType(MemberListActions.editMemberSelected),
         tap(({ memberToEdit }) =>
-          this.router.navigate([NavPaths.MEMBERS_EDIT, memberToEdit._id])
+          this.router.navigate([NavPaths.MEMBERS_EDIT, memberToEdit.userId])
         )
       ),
     { dispatch: false }

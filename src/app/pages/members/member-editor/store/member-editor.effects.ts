@@ -31,8 +31,8 @@ export class MemberEditorEffects {
       concatLatestFrom(() => this.store.select(MemberEditorSelectors.memberCurrently)),
       switchMap(([, memberToAdd]) => {
         return this.membersService.addMember(memberToAdd).pipe(
-          map((addedMember) => {
-            return MemberEditorActions.addMemberSucceeded({ addedMember });
+          map((response) => {
+            return MemberEditorActions.addMemberSucceeded({ addedMember: response });
           }),
           catchError(() => {
             return of(

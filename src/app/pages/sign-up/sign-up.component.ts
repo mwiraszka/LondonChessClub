@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { ClarityIcons, exclamationTriangleIcon } from '@cds/core/icon';
 
-import { AuthFacade, SignUpRequestData } from '@app/core/auth';
+import { AuthFacade, SignUpRequest } from '@app/core/auth';
 import { LoaderService } from '@app/shared/services';
 import {
   dateValidator,
@@ -103,7 +103,7 @@ export class SignUpComponent implements OnInit {
 
   onSignUp(): void {
     this.loader.display(true);
-    this.facade.onSignUp(this.form.value as SignUpRequestData);
+    this.facade.onSignUp(this.form.value as SignUpRequest);
     setTimeout(() => this.loader.display(false), 1000);
   }
 }

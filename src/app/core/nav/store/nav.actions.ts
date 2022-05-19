@@ -9,6 +9,7 @@ enum NavActionTypes {
   LESSONS_SELECTED = '[Nav] Lessons selected',
   SUPPLIES_SELECTED = '[Nav] Supplies selected',
   ABOUT_SELECTED = '[Nav] About selected',
+
   LOGIN_SELECTED = '[Nav] Login selected',
   LOGOUT_SELECTED = '[Nav] Logout selected',
 }
@@ -21,5 +22,6 @@ export const cityChampionSelected = createAction(NavActionTypes.CITY_CHAMPION_SE
 export const lessonsSelected = createAction(NavActionTypes.LESSONS_SELECTED);
 export const suppliesSelected = createAction(NavActionTypes.SUPPLIES_SELECTED);
 export const aboutSelected = createAction(NavActionTypes.ABOUT_SELECTED);
+
 export const loginSelected = createAction(NavActionTypes.LOGIN_SELECTED);
 export const logoutSelected = createAction(NavActionTypes.LOGOUT_SELECTED);

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { LoginRequestData } from '../types/login-request-data.model';
-import { SignUpRequestData } from '../types/sign-up-request-data.model';
+import { LoginRequest } from '../types/login-request.model';
+import { SignUpRequest } from '../types/sign-up-request.model';
 import * as AuthActions from './auth.actions';
 import * as AuthSelectors from './auth.selectors';
 
@@ -22,12 +22,12 @@ export class AuthFacade {
     this.store.dispatch(AuthActions.forgotPasswordSelected());
   }
 
-  onLogin(loginRequestData: LoginRequestData) {
-    this.store.dispatch(AuthActions.loginRequested({ loginRequestData }));
+  onLogin(loginRequest: LoginRequest) {
+    this.store.dispatch(AuthActions.loginRequested({ loginRequest }));
   }
 
-  onSignUp(signUpRequestData: SignUpRequestData) {
-    this.store.dispatch(AuthActions.signUpRequested({ signUpRequestData }));
+  onSignUp(signUpRequest: SignUpRequest) {
+    this.store.dispatch(AuthActions.signUpRequested({ signUpRequest }));
   }
 
   constructor(private store: Store) {}

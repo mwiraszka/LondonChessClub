@@ -1,8 +1,10 @@
-export interface SignUpRequestData {
+export interface SignUpRequest {
   email: string;
+  password: string;
   firstName: string;
   lastName: string;
+  phoneNumber: string;
+  dateOfBirth: string;
   city: string;
-  password: string;
   accessToken: string;
 }

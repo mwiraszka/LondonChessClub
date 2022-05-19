@@ -9,21 +9,3 @@
   width: 100%;
   max-width: 400px;
 }
-
-h3 {
-  margin: 10px 0;
-  text-align: left;
-  white-space: nowrap;
-}
-
-button {
-  grid-column: 2 / 3;
-  justify-self: end;
-  margin: 6px 0 40px;
-}
-
-.lcc-link {
-  grid-column: 2 / 3;
-  width: 100%;
-  place-self: center;
-}

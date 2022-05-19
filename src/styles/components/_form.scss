@@ -6,6 +6,21 @@
   gap: 20px;
 }
 
+.lcc-form-header {
+  text-align: center;
+  padding: 0.6em 1em;
+
+  // Should only be necessary for as long as CDS styles are present
+  background: none;
+  height: auto;
+
+  h3 {
+    // !important should only be necessary for as long as CDS styles are present
+    color: $lcc-primary-text !important;
+    width: 100%;
+  }
+}
+
 .lcc-form-fields {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -46,11 +61,24 @@
   }
 }
 
-.lcc-form-buttons {
+.lcc-form-buttons-container {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 
   button {
     margin: 0 6px;
   }
+}
+
+.lcc-form-links-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.lcc-form-link {
+  @extend .lcc-link;
+  padding: 3px;
 }

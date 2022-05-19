@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
 
 import { DirectivesModule } from '@app/shared/directives';
+import { PipesModule } from '@app/shared/pipes';
 
 import { SignUpComponent } from './sign-up.component';
 
@@ -15,6 +16,7 @@ import { SignUpComponent } from './sign-up.component';
     CommonModule,
     DirectivesModule,
     FormsModule,
+    PipesModule,
     ReactiveFormsModule,
     RouterModule,
   ],

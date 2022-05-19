@@ -81,12 +81,6 @@ export class MemberEditorComponent implements OnInit, OnDestroy {
     }
   }
 
-  onKeyUp(event: any): void {
-    if (event.keyCode === 13) {
-      this.onSubmit();
-    }
-  }
-
   onCancel(): void {
     this.facade.onCancel();
   }
@@ -104,7 +98,8 @@ export class MemberEditorComponent implements OnInit, OnDestroy {
       firstName: [member.firstName, [Validators.required, Validators.pattern(/[^\s]/)]],
       lastName: [member.lastName, [Validators.required, Validators.pattern(/[^\s]/)]],
       city: [member.city, [Validators.required, Validators.pattern(/[^\s]/)]],
-      phoneNumber: [member.phoneNumber, phoneNumberValidator],
+      phoneNumber: [member.phoneNumber, [Validators.required, phoneNumberValidator]],
+      dateOfBirth: [member.dateOfBirth, dateValidator],
       email: [member.email, [Validators.required, emailValidator]],
       dateJoined: [member.dateJoined, [Validators.required, dateValidator]],
       rating: [

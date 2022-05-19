@@ -1,15 +1,16 @@
 <div class="lcc-canvas">
-	<ng-container *ngIf="facade.isEditMode$ | async; else createModeHeader">
-		<h3>Edit <em>{{ memberFullName }}</em></h3>
-	</ng-container>
-	<ng-template #createModeHeader>
-		<h3>Add a member</h3>
-	</ng-template>
-
 	<form class="lcc-form"
 				[formGroup]="form"
-				(keyup)="onKeyUp($event)"
 				(ngSubmit)="onSubmit()">
+
+		<header class="lcc-form-header">
+			<ng-container *ngIf="facade.isEditMode$ | async; else createModeHeader">
+				<h3>Edit <em>{{ memberFullName }}</em></h3>
+			</ng-container>
+			<ng-template #createModeHeader>
+				<h3>Add a member</h3>
+			</ng-template>
+		</header>
 
 		<div class="lcc-form-fields">
 			<label for="first-name-input">
@@ -76,6 +77,22 @@
 				</cds-icon>
 			</div>
 
+			<label>
+				Date of birth:
+			</label>
+			<input id="date-of-birth-input"
+						 type="text"
+						 name="date-of-birth"
+						 formControlName="dateOfBirth" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(form.controls['dateOfBirth'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(form.controls['dateOfBirth'])">
+				</cds-icon>
+			</div>
+
 			<label for="email-input">
 				Email:
 			</label>
@@ -125,7 +142,7 @@
 			</div>
 		</div>
 
-		<div class="lcc-form-buttons">
+		<div class="lcc-form-buttons-container">
 			<button class="lcc-secondary-button"
 							type="button"
 							(click)="onCancel()">
@@ -139,6 +156,5 @@
 				<ng-template #createModeButton>Add member</ng-template>
 			</button>
 		</div>
-
 	</form>
 </div>

@@ -2,8 +2,9 @@ import { createAction, props } from '@ngrx/store';
 
 import { User } from '@app/shared/types';
 
-import { LoginRequestData } from '../types/login-request-data.model';
-import { SignUpRequestData } from '../types/sign-up-request-data.model';
+import { LoginRequest } from '../types/login-request.model';
+import { SignUpRequest } from '../types/sign-up-request.model';
+import { CognitoUserSession } from 'amazon-cognito-identity-js';
 
 enum AuthActionTypes {
   LOGIN_REQUESTED = '[Auth] Login requested',
@@ -14,7 +15,8 @@ enum AuthActionTypes {
   SIGN_UP_SUCCEEDED = '[Auth] Sign up succeeded',
   SIGN_UP_FAILED = '[Auth] Sign up failed',
 
-  LOGOUT_SELECTED = '[Auth] Logout selected',
+  LOGOUT_SUCCEEDED = '[Auth] Logout succeeded',
+
   ALREADY_HAVE_ACCOUNT_SELECTED = '[Auth] Already have account selected',
   DONT_HAVE_ACCOUNT_SELECTED = "[Auth] Don't have account selected",
   FORGOT_PASSWORD_SELECTED = '[Auth] Forgot password selected',
@@ -22,11 +24,11 @@ enum AuthActionTypes {
 
 export const loginRequested = createAction(
   AuthActionTypes.LOGIN_REQUESTED,
-  props<{ loginRequestData: LoginRequestData }>()
+  props<{ loginRequest: LoginRequest }>()
 );
 export const loginSucceeded = createAction(
   AuthActionTypes.LOGIN_SUCCEEDED,
-  props<{ user: User }>()
+  props<{ user: User; cognitoUserSession: CognitoUserSession }>()
 );
 export const loginFailed = createAction(
   AuthActionTypes.LOGIN_FAILED,
@@ -35,24 +37,30 @@ export const loginFailed = createAction(
 
 export const signUpRequested = createAction(
   AuthActionTypes.SIGN_UP_REQUESTED,
-  props<{ signUpRequestData: SignUpRequestData }>()
+  props<{ signUpRequest: SignUpRequest }>()
 );
 export const signUpSucceeded = createAction(
   AuthActionTypes.SIGN_UP_SUCCEEDED,
-  props<{ user: User }>()
+  props<{ user: User; cognitoUserSession: CognitoUserSession }>()
 );
 export const signUpFailed = createAction(
   AuthActionTypes.SIGN_UP_FAILED,
   props<{ errorMessage: string }>()
 );
 
-export const logoutSelected = createAction(AuthActionTypes.LOGOUT_SELECTED);
+export const logoutSucceeded = createAction(AuthActionTypes.LOGOUT_SUCCEEDED);
+
+// WIP - not implemented yet
 export const alreadyHaveAccountSelected = createAction(
   AuthActionTypes.ALREADY_HAVE_ACCOUNT_SELECTED
 );
+
+// WIP - not implemented yet
 export const dontHaveAccountSelected = createAction(
   AuthActionTypes.DONT_HAVE_ACCOUNT_SELECTED
 );
+
+// WIP - not implemented yet
 export const forgotPasswordSelected = createAction(
   AuthActionTypes.FORGOT_PASSWORD_SELECTED
-); // ::: not implemented yet
+);

@@ -36,7 +36,7 @@ export class MembersService {
   getMembers(): Observable<Member[] | null> {
     return this.authService.getToken().pipe(
       switchMap((token) =>
-        this.http.get<Member[]>(API_ENDPOINT, {
+        this.http.get<Member[]>('API_ENDPOINT', {
           headers: new HttpHeaders({
             Authorization: token,
           }),

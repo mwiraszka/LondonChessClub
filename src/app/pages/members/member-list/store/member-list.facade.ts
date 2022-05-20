@@ -8,6 +8,7 @@ import { Member } from '../../types/member.model';
 @Injectable()
 export class MemberListFacade {
   readonly members$ = this.store.select(MemberListSelectors.members);
+  readonly isLoading$ = this.store.select(MemberListSelectors.isLoading);
 
   constructor(private readonly store: Store) {}
 

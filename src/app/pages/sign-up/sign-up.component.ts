@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { ClarityIcons, exclamationTriangleIcon } from '@cds/core/icon';
@@ -11,6 +12,7 @@ import { ClarityIcons, exclamationTriangleIcon } from '@cds/core/icon';
 import { AuthFacade, SignUpRequest } from '@app/core/auth';
 import { LoaderService } from '@app/shared/services';
 import {
+  confirmPasswordValidator,
   dateValidator,
   hasLowercaseLetterValidator,
   hasNumberValidator,
@@ -19,14 +21,25 @@ import {
   phoneNumberValidator,
   signUpTokenValidator,
 } from '@app/shared/validators';
+import { Subscription } from 'rxjs';
+
+const PASSWORD_VALIDATORS: ValidatorFn[] = [
+  Validators.required,
+  Validators.minLength(8),
+  hasLowercaseLetterValidator,
+  hasUppercaseLetterValidator,
+  hasSpecialCharValidator,
+  hasNumberValidator,
+];
 
 @Component({
   selector: 'lcc-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, OnDestroy {
   form!: FormGroup;
+  passwordChangesSub!: Subscription;
 
   constructor(
     private facade: AuthFacade,
@@ -42,15 +55,11 @@ export class SignUpComponent implements OnInit {
   initForm(): void {
     this.form = this.formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-        hasLowercaseLetterValidator,
-        hasUppercaseLetterValidator,
-        hasSpecialCharValidator,
-        hasNumberValidator,
+      password: new FormControl('', PASSWORD_VALIDATORS),
+      confirmPassword: new FormControl('', [
+        ...PASSWORD_VALIDATORS,
+        confirmPasswordValidator,
       ]),
-      confirmPassword: new FormControl('', Validators.required),
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       dateOfBirth: new FormControl('', dateValidator),
@@ -58,6 +67,12 @@ export class SignUpComponent implements OnInit {
       city: new FormControl('London', Validators.required),
       signUpToken: new FormControl('', [Validators.required, signUpTokenValidator]),
     });
+
+    this.passwordChangesSub = this.form.controls['password'].valueChanges.subscribe(
+      () => {
+        this.form.controls['confirmPassword'].updateValueAndValidity();
+      }
+    );
   }
 
   hasError(control: AbstractControl): boolean {
@@ -83,6 +98,8 @@ export class SignUpComponent implements OnInit {
       return 'Password needs to include at least one number';
     } else if (control.errors.hasOwnProperty('minlength')) {
       return 'Password needs to be at least 8 characters long';
+    } else if (control.errors.hasOwnProperty('passwordMismatch')) {
+      return "Passwords don't match";
     } else if (control.errors.hasOwnProperty('invalidSignUpToken')) {
       return 'Invalid sign up token - please contact an LCC admin';
     } else {
@@ -105,5 +122,9 @@ export class SignUpComponent implements OnInit {
     this.loader.display(true);
     this.facade.onSignUp(this.form.value as SignUpRequest);
     setTimeout(() => this.loader.display(false), 1000);
+  }
+
+  ngOnDestroy(): void {
+    this.passwordChangesSub.unsubscribe();
   }
 }

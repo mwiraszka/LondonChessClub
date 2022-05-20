@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   isLoading!: boolean;
 
   constructor(
+    private changeDetectionRef: ChangeDetectorRef,
     private loader: LoaderService,
     private store: Store,
     private update: UpdateService
@@ -29,8 +30,9 @@ export class AppComponent implements OnInit {
     this.showAlert$ = this.store.select(AlertSelectors.isActive);
     this.showModal$ = this.store.select(ModalSelectors.isOpen);
     this.showToasts$ = this.store.select(ToasterSelectors.isDisplayingToasts);
-    this.loader.status.subscribe((isLoading: boolean) => {
+    this.loader.status$.subscribe((isLoading: boolean) => {
       this.isLoading = isLoading;
+      this.changeDetectionRef.detectChanges();
     });
   }
 }

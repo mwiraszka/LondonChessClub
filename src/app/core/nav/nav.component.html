@@ -1,106 +1,108 @@
 <ul class="lcc-nav-items">
-  <li class="lcc-nav-item">
-    <a class="lcc-nav-link"
-       aria-label="Home"
-       routerLink="{{ NavPaths.HOME }}"
-       routerLinkActive="link-active"
-       [routerLinkActiveOptions]="{ exact: true }"
-       (click)="facade.onHome()">
-      Home
-    </a>
-  </li>
-  <li class="lcc-nav-item">
-    <a class="lcc-nav-link"
-       aria-label="Members"
-       routerLink="{{ NavPaths.MEMBERS }}"
-       routerLinkActive="link-active"
-       (click)="facade.onMembers()">
-      Members
-    </a>
-  </li>
-  <li class="lcc-nav-item">
-    <a class="lcc-nav-link"
-       aria-label="Schedule"
-       routerLink="{{ NavPaths.SCHEDULE }}"
-       routerLinkActive="link-active"
-       (click)="facade.onSchedule()">
-      Schedule
-    </a>
-  </li>
-  <li class="lcc-nav-item">
-    <a class="lcc-nav-link"
-       aria-label="News"
-       routerLink="{{ NavPaths.NEWS }}"
-       routerLinkActive="link-active"
-       (click)="facade.onNews()">
-      News
-    </a>
-  </li>
-  <li class="lcc-nav-item">
-    <a class="lcc-nav-link"
-       aria-label="City Champion"
-       routerLink="{{ NavPaths.CITY_CHAMPION }}"
-       routerLinkActive="link-active"
-       (click)="facade.onCityChampion()">
-      City&nbsp;Champion
-    </a>
-  </li>
-  <li class="lcc-nav-item">
-    <a class="lcc-nav-link"
-       aria-label="Lessons"
-       routerLink="{{ NavPaths.LESSONS }}"
-       routerLinkActive="link-active"
-       (click)="facade.onLessons()">
-      Lessons
-    </a>
-  </li>
-  <li class="lcc-nav-item">
-    <a class="lcc-nav-link"
-       aria-label="Supplies"
-       routerLink="{{ NavPaths.SUPPLIES }}"
-       routerLinkActive="link-active"
-       (click)="facade.onSupplies()">
-      Supplies
-    </a>
-  </li>
-  <li class="lcc-nav-item">
-    <a class="lcc-nav-link"
-       aria-label="About"
-       routerLink="{{ NavPaths.ABOUT }}"
-       routerLinkActive="link-active"
-       (click)="facade.onAbout()">
-      About
-    </a>
-  </li>
+	<li class="lcc-nav-item">
+		<a class="lcc-nav-link"
+			 aria-label="Home"
+			 routerLinkActive="link-active"
+			 [routerLink]="NavPaths.HOME"
+			 [routerLinkActiveOptions]="{ exact: true }"
+			 (click)="facade.onHome()">
+			Home
+		</a>
+	</li>
+	<li class="lcc-nav-item">
+		<a class="lcc-nav-link"
+			 aria-label="Members"
+			 routerLinkActive="link-active"
+			 [routerLink]="NavPaths.MEMBERS"
+			 (click)="facade.onMembers()">
+			Members
+		</a>
+	</li>
+	<li class="lcc-nav-item">
+		<a class="lcc-nav-link"
+			 aria-label="Schedule"
+			 routerLinkActive="link-active"
+			 [routerLink]="NavPaths.SCHEDULE"
+			 (click)="facade.onSchedule()">
+			Schedule
+		</a>
+	</li>
+	<li class="lcc-nav-item">
+		<a class="lcc-nav-link"
+			 aria-label="News"
+			 routerLinkActive="link-active"
+			 [routerLink]="NavPaths.NEWS"
+			 (click)="facade.onNews()">
+			News
+		</a>
+	</li>
+	<li class="lcc-nav-item">
+		<a class="lcc-nav-link"
+			 aria-label="City Champion"
+			 [routerLink]="NavPaths.CITY_CHAMPION"
+			 routerLinkActive="link-active"
+			 (click)="facade.onCityChampion()">
+			City&nbsp;Champion
+		</a>
+	</li>
+	<li class="lcc-nav-item">
+		<a class="lcc-nav-link"
+			 aria-label="Lessons"
+			 routerLinkActive="link-active"
+			 [routerLink]="NavPaths.LESSONS"
+			 (click)="facade.onLessons()">
+			Lessons
+		</a>
+	</li>
+	<li class="lcc-nav-item">
+		<a class="lcc-nav-link"
+			 aria-label="Supplies"
+			 routerLinkActive="link-active"
+			 [routerLink]="NavPaths.SUPPLIES"
+			 (click)="facade.onSupplies()">
+			Supplies
+		</a>
+	</li>
+	<li class="lcc-nav-item">
+		<a class="lcc-nav-link"
+			 aria-label="About"
+			 routerLinkActive="link-active"
+			 [routerLink]="NavPaths.ABOUT"
+			 (click)="facade.onAbout()">
+			About
+		</a>
+	</li>
 
-  <li class="lcc-nav-item lcc-user-account">
-    <ng-container *ngIf="facade.user$ | async; else loggedOut">
-      <p>
-        Logged&nbsp;in<br>
-        <b>{{ (facade.user$ | async).firstName }}</b>
-      </p>
-      <ng-container *ngIf="facade.isUserDropdownOpen$ | async">
-        <div class="lcc-user-account-dropdown">
-          <button class="lcc-logout-button"
-                  aria-label="Login"
-                  routerLink="{{ NavPaths.LOGIN }}"
-                  (click)="facade.onLogout()">
-            Logout
-          </button>
-        </div>
-      </ng-container>
-    </ng-container>
-  
-    <ng-template #loggedOut>
-      
-      <a class="lcc-nav-link"
-         aria-label="Login"
-         routerLink="{{ NavPaths.LOGIN }}"
-         routerLinkActive="link-active"
-         (click)="facade.onLogin()">
-        <cds-icon shape="user" size="sm" outline></cds-icon>
-        <span class="lcc-login-text">Login</span>
-      </a>
-    </ng-template>
-  </li>
+	<li class="lcc-nav-item lcc-user-account">
+		<ng-container *ngIf="facade.user$ | async; else loggedOut">
+			<p>
+				Logged&nbsp;in<br />
+				<b>{{ (facade.user$ | async).firstName }}</b>
+			</p>
+			<ng-container *ngIf="facade.isUserDropdownOpen$ | async">
+				<div class="lcc-user-account-dropdown">
+					<button class="lcc-logout-button"
+									aria-label="Login"
+									[routerLink]="NavPaths.LOGIN"
+									(click)="facade.onLogout()">
+						Logout
+					</button>
+				</div>
+			</ng-container>
+		</ng-container>
+
+		<ng-template #loggedOut>
+
+			<a class="lcc-nav-link"
+				 aria-label="Login"
+				 routerLinkActive="link-active"
+				 [routerLink]="NavPaths.LOGIN"
+				 (click)="facade.onLogin()">
+				<cds-icon shape="user"
+									size="sm"
+									outline></cds-icon>
+				<span class="lcc-login-text">Login</span>
+			</a>
+		</ng-template>
+	</li>
 </ul>

@@ -1,0 +1,109 @@
+@import '../../../styles/abstracts/mixins';
+@import '../../../styles/abstracts/variables';
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lcc-canvas {
+  display: grid;
+  max-width: 800px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'details     details'
+    'fee         sets'
+    'tournaments ratings'
+    'children    parking'
+    'committee   committee';
+  gap: 12px 4px;
+}
+
+h3,
+h4 {
+  line-height: 50px;
+  text-align: center;
+}
+
+.lcc-link {
+  font-size: inherit;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.grid-item {
+  height: 100%;
+  margin: 4px;
+  padding: 16px;
+  border-radius: 4px;
+  background: lighten($lcc-white, 2%);
+
+  &.lcc-about-details {
+    grid-area: details;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+    .meet-details-container {
+      display: flex;
+      gap: 20px;
+      flex-flow: row nowrap;
+      width: 90%;
+
+      img {
+        width: 60px;
+      }
+    }
+
+    hr {
+      height: 2px;
+      width: 90%;
+      margin: 1em auto;
+      border-top: 1px solid lighten($lcc-gray, 30%);
+    }
+  }
+
+  &.lcc-about-fee { grid-area: fee; }
+  &.lcc-about-sets { grid-area: sets; }
+  &.lcc-about-tournaments { grid-area: tournaments; }
+  &.lcc-about-ratings { grid-area: ratings; }
+  &.lcc-about-children { grid-area: children; }
+  &.lcc-about-parking { grid-area: parking; }
+
+  &.lcc-about-committee {
+    grid-area: committee;
+
+    .committee-container {
+      display: flex;
+      flex-flow: row wrap;
+      gap: 40px;
+      text-align: left;
+      justify-content: center;
+    }
+  }
+}
+
+@include respond-to('lt-sm') {
+  .lcc-canvas {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'details' 'fee' 'sets' 'tournaments'
+      'ratings' 'children' 'parking' 'committee';
+  }
+
+  .meet-details-container,
+  hr {
+    width: 100% !important;
+  }
+
+  :not(.meet-details) > p {
+    text-align: center;
+  }
+
+  .committee-container {
+    gap: 0 !important;
+  }
+}

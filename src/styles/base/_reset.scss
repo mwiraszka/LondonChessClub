@@ -106,7 +106,7 @@ q {
   }
 }
 
-// Should only be necessary for as long as CDS styles are present
+// All styles below should only be necessary for as long as CDS styles are present
 h1,
 h2,
 h3,
@@ -114,4 +114,8 @@ h4,
 h5,
 h6 {
   margin: 0 !important
+}
+
+p {
+  margin-top: 0 !important;
 }

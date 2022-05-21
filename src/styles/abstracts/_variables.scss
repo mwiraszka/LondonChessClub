@@ -28,19 +28,28 @@ $h6: 11px;
 
 /* Viewport breakpoint map */
 $breakpoints: (
-  'small': (
-    min-width: 400px,
+  'lt-sm': (
+    max-width: 500px,
   ),
-  'less-than-medium': (
+  'gt-sm': (
+    min-width: 500px,
+  ),
+  'lt-md': (
     max-width: 699px,
   ),
-  'medium': (
+  'gt-md': (
     min-width: 700px,
   ),
-  'large': (
+  'lt-lg': (
+    max-width: 999px,
+  ),
+  'gt-lg': (
     min-width: 1000px,
   ),
-  'x-large': (
+  'lt-xl': (
+    max-width: 1199px,
+  ),
+  'gt-xl': (
     min-width: 1200px,
   ),
 );

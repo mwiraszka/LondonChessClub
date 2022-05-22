@@ -22,9 +22,6 @@ enum ArticleEditorActionTypes {
   CANCEL_SELECTED = '[Article Editor] Cancel selected',
   CANCEL_CONFIRMED = '[Article Editor] Cancel confirmed',
 
-  UNSAVED_CHANGES_DETECTED = '[Article Editor] Unsaved changes detected',
-  NO_UNSAVED_CHANGES_DETECTED = '[Article Editor] No unsaved changes detected',
-
   FORM_DATA_CHANGED = '[Article Editor] Form data changed',
 }
 
@@ -78,13 +75,6 @@ export const updateArticleFailed = createAction(
 
 export const cancelSelected = createAction(ArticleEditorActionTypes.CANCEL_SELECTED);
 export const cancelConfirmed = createAction(ArticleEditorActionTypes.CANCEL_CONFIRMED);
-
-export const unsavedChangesDetected = createAction(
-  ArticleEditorActionTypes.UNSAVED_CHANGES_DETECTED
-);
-export const noUnsavedChangesDetected = createAction(
-  ArticleEditorActionTypes.NO_UNSAVED_CHANGES_DETECTED
-);
 
 export const formDataChanged = createAction(
   ArticleEditorActionTypes.FORM_DATA_CHANGED,

@@ -22,9 +22,6 @@ enum MemberEditorActionTypes {
   CANCEL_SELECTED = '[Member Editor] Cancel selected',
   CANCEL_CONFIRMED = '[Member Editor] Cancel confirmed',
 
-  UNSAVED_CHANGES_DETECTED = '[Member Editor] Unsaved changes detected',
-  NO_UNSAVED_CHANGES_DETECTED = '[Member Editor] No unsaved changes detected',
-
   FORM_DATA_CHANGED = '[Member Editor] Form data changed',
 }
 

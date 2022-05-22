@@ -8,6 +8,7 @@ import { Article } from '../../types/article.model';
 @Injectable()
 export class ArticleListFacade {
   readonly articles$ = this.store.select(ArticleListSelectors.articles);
+  readonly isLoading$ = this.store.select(ArticleListSelectors.isLoading);
 
   constructor(private readonly store: Store) {}
 

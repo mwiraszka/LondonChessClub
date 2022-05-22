@@ -1,19 +1,11 @@
 :host {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   text-align: center;
-  padding: 10px;
+  padding: 30px 0;
   white-space: nowrap;
 }
 
 small {
   font-size: 60%;
-
-  span {
-    padding: 0 0.4em;
-  }
-}
-
-address {
-  line-height: 25px;
 }

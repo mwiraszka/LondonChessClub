@@ -21,8 +21,6 @@ import { Member } from '../types/member.model';
   providers: [MemberEditorFacade],
 })
 export class MemberEditorComponent implements OnInit, OnDestroy {
-  readonly title = 'memberEditor';
-
   form!: FormGroup;
   valueChangesSubscription!: Subscription;
   memberFullName!: string;
@@ -30,8 +28,7 @@ export class MemberEditorComponent implements OnInit, OnDestroy {
   constructor(
     public facade: MemberEditorFacade,
     private formBuilder: FormBuilder,
-    private loader: LoaderService,
-    private route: ActivatedRoute
+    private loader: LoaderService
   ) {}
 
   ngOnInit(): void {
@@ -51,12 +48,6 @@ export class MemberEditorComponent implements OnInit, OnDestroy {
         first()
       )
       .subscribe();
-
-    this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has('memberId')) {
-        console.log('::: paramMap has memberId');
-      }
-    });
   }
 
   ngOnDestroy(): void {

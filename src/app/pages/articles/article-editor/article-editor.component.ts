@@ -16,8 +16,6 @@ import { Article } from '../types/article.model';
   providers: [ArticleEditorFacade],
 })
 export class ArticleEditorComponent implements OnInit, OnDestroy {
-  readonly title = 'articleEditor';
-
   form!: FormGroup;
   imagePreview: string;
   valueChangesSubscription!: Subscription;
@@ -66,12 +64,6 @@ export class ArticleEditorComponent implements OnInit, OnDestroy {
       return "Invalid file type\n(Allowable formats: 'png' & 'jpg'";
     } else {
       return 'Unknown error';
-    }
-  }
-
-  onKeyUp(event: any): void {
-    if (event.keyCode === 13) {
-      this.onSubmit();
     }
   }
 

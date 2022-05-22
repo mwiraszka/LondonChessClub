@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { AuthService } from '@app/core/auth';
 
@@ -36,7 +36,7 @@ export class MembersService {
   getMembers(): Observable<Member[] | null> {
     return this.authService.getToken().pipe(
       switchMap((token) =>
-        this.http.get<Member[]>('API_ENDPOINT', {
+        this.http.get<Member[]>(API_ENDPOINT, {
           headers: new HttpHeaders({
             Authorization: token,
           }),

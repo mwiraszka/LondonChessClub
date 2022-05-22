@@ -10,11 +10,11 @@ const initialState: ModalState = {
 
 const modalReducer = createReducer(
   initialState,
-  on(ModalActions.modalCreated, (state, action) => ({
+  on(ModalActions.modalOpened, (state, action) => ({
     ...state,
     modal: action.modal,
-    selection: null,
   })),
+  on(ModalActions.modalClosed, () => initialState),
   on(ModalActions.selectionMade, (state, action) => ({
     ...state,
     modal: null,

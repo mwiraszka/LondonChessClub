@@ -1,5 +1,6 @@
 <div class="lcc-canvas">
-	<form class="lcc-form"
+	<form *ngIf="form"
+				class="lcc-form"
 				[formGroup]="form"
 				(ngSubmit)="onSubmit()">
 

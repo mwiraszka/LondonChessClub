@@ -41,7 +41,7 @@ export class ModalEffects {
             },
           ],
         };
-        return ModalActions.modalCreated({ modal });
+        return ModalActions.modalOpened({ modal });
       })
     )
   );
@@ -67,7 +67,7 @@ export class ModalEffects {
             },
           ],
         };
-        return ModalActions.modalCreated({ modal });
+        return ModalActions.modalOpened({ modal });
       })
     )
   );
@@ -92,7 +92,7 @@ export class ModalEffects {
             },
           ],
         };
-        return ModalActions.modalCreated({ modal });
+        return ModalActions.modalOpened({ modal });
       })
     )
   );
@@ -117,7 +117,7 @@ export class ModalEffects {
             },
           ],
         };
-        return ModalActions.modalCreated({ modal });
+        return ModalActions.modalOpened({ modal });
       })
     )
   );
@@ -143,7 +143,7 @@ export class ModalEffects {
             },
           ],
         };
-        return ModalActions.modalCreated({ modal });
+        return ModalActions.modalOpened({ modal });
       })
     )
   );
@@ -168,8 +168,40 @@ export class ModalEffects {
             },
           ],
         };
-        return ModalActions.modalCreated({ modal });
+        return ModalActions.modalOpened({ modal });
       })
+    )
+  );
+
+  openUnsavedChangesModal$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ModalActions.leaveWithUnsavedChangesRequested),
+      map(() => {
+        const modal: Modal = {
+          title: 'Unsaved changes',
+          body: 'Are you sure you want to leave this page? Any unsaved changes will be lost.',
+          buttons: [
+            {
+              text: 'Cancel',
+              style: ModalButtonStyle.SECONDARY,
+              action: ModalButtonAction.LEAVE_CANCEL,
+            },
+            {
+              text: 'Leave',
+              style: ModalButtonStyle.PRIMARY_DEFAULT,
+              action: ModalButtonAction.LEAVE_OK,
+            },
+          ],
+        };
+        return ModalActions.modalOpened({ modal });
+      })
+    )
+  );
+
+  closeModal$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ModalActions.selectionMade),
+      map(() => ModalActions.modalClosed())
     )
   );
 

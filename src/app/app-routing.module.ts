@@ -11,7 +11,7 @@ import { LoginComponent } from '@app/pages/login';
 import { MemberEditorComponent, MemberListComponent } from '@app/pages/members';
 import { ScheduleComponent } from '@app/pages/schedule';
 import { SuppliesComponent } from '@app/pages/supplies';
-import { UnsavedGuard } from '@app/shared/guards';
+import { UnsavedArticleGuard, UnsavedMemberGuard } from '@app/shared/guards';
 import { SignUpComponent } from './pages/sign-up';
 
 const routes: Routes = [
@@ -27,12 +27,12 @@ const routes: Routes = [
   {
     path: NavPaths.MEMBERS_ADD,
     component: MemberEditorComponent,
-    canDeactivate: [UnsavedGuard],
+    canDeactivate: [UnsavedMemberGuard],
   },
   {
     path: `${NavPaths.MEMBERS_EDIT}/:member_id`,
     component: MemberEditorComponent,
-    canDeactivate: [UnsavedGuard],
+    canDeactivate: [UnsavedMemberGuard],
   },
   {
     path: NavPaths.SCHEDULE,
@@ -45,12 +45,12 @@ const routes: Routes = [
   {
     path: NavPaths.NEWS_COMPOSE,
     component: ArticleEditorComponent,
-    canDeactivate: [UnsavedGuard],
+    canDeactivate: [UnsavedArticleGuard],
   },
   {
     path: `${NavPaths.NEWS_EDIT}/:article_id`,
     component: ArticleEditorComponent,
-    canDeactivate: [UnsavedGuard],
+    canDeactivate: [UnsavedArticleGuard],
   },
   {
     path: NavPaths.CITY_CHAMPION,

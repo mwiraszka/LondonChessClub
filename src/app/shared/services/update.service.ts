@@ -29,7 +29,7 @@ export class UpdateService {
           },
         ],
       };
-      this.store.dispatch(ModalActions.modalCreated({ modal }));
+      this.store.dispatch(ModalActions.modalOpened({ modal }));
     });
   }
 

@@ -38,7 +38,7 @@ const articleListReducer = createReducer(
   })),
   on(ArticleListActions.deleteArticleSucceeded, (state, action) => ({
     ...state,
-    articles: state.articles.filter((x) => x._id != action.deletedArticle._id),
+    articles: state.articles.filter((x) => x.id != action.deletedArticle.id),
     selectedArticle: null,
   })),
   on(ArticleListActions.deleteArticleFailed, (state) => ({

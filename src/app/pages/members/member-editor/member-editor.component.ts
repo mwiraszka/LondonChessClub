@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { debounceTime, first, tap } from 'rxjs/operators';
 
@@ -9,6 +8,7 @@ import {
   dateValidator,
   emailValidator,
   phoneNumberValidator,
+  ratingValidator,
 } from '@app/shared/validators';
 
 import { MemberEditorFacade } from './store/member-editor.facade';
@@ -63,10 +63,12 @@ export class MemberEditorComponent implements OnInit, OnDestroy {
       return 'This field is required';
     } else if (control.errors.hasOwnProperty('invalidDateFormat')) {
       return 'Invalid date';
+    } else if (control.errors.hasOwnProperty('invalidEmailFormat')) {
+      return 'Invalid email';
     } else if (control.errors.hasOwnProperty('invalidPhoneNumberFormat')) {
       return 'Invalid phone number';
-    } else if (control.errors.hasOwnProperty('email')) {
-      return 'Invalid email';
+    } else if (control.errors.hasOwnProperty('invalidRating')) {
+      return 'Invalid rating';
     } else {
       return 'Unknown error';
     }
@@ -95,7 +97,7 @@ export class MemberEditorComponent implements OnInit, OnDestroy {
       dateJoined: [member.dateJoined, [Validators.required, dateValidator]],
       rating: [
         member.rating,
-        [Validators.required, Validators.pattern(/^[1-9]\d{0,3}$/), Validators.max(2500)],
+        [Validators.required, ratingValidator, Validators.max(2500)],
       ],
     });
 

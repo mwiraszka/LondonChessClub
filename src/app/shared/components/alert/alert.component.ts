@@ -16,6 +16,8 @@ import { Alert } from './types/alert.model';
 })
 export class AlertComponent implements OnInit, OnDestroy {
   constructor(private store: Store) {}
+  AlertAction = AlertAction;
+
   alert?: Alert | null;
   alertSubscription?: Subscription;
 
@@ -32,11 +34,11 @@ export class AlertComponent implements OnInit, OnDestroy {
     this.alertSubscription.unsubscribe();
   }
 
-  onSelectAction(): void {
-    this.store.dispatch(AlertActions.actionTaken({ action: this.alert?.action }));
-  }
-
-  onClose(): void {
-    this.store.dispatch(AlertActions.actionTaken({ action: AlertAction.CLOSE }));
+  onSelectAction(action: AlertAction): void {
+    if (action === AlertAction.SEE_SCHEDULE) {
+      this.store.dispatch(AlertActions.seeScheduleSelected());
+    } else {
+      this.store.dispatch(AlertActions.dismissed());
+    }
   }
 }

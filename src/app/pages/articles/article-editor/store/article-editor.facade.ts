@@ -30,7 +30,7 @@ export class ArticleEditorFacade {
           const articleToSubmit: Article = {
             ...article,
             dateEdited: new Date().toISOString().substring(0, 10),
-            _id: articleBeforeEdit._id,
+            id: articleBeforeEdit.id,
           };
 
           if (isEditMode) {

@@ -1,22 +1,19 @@
 import { createAction, props } from '@ngrx/store';
 
-import { AlertAction } from '../types/alert-action.model';
 import { Alert } from '../types/alert.model';
 
 enum AlertActionTypes {
-  ALERT_CREATED = '[Alert] Alert created',
-  ACTION_TAKEN = '[Alert] Action taken',
-  ALERT_EXPIRED = '[Alert] Alert expired',
+  CREATED = '[Alert] Created',
+  SEE_SCHEDULE_SELECTED = '[Alert] See schedule selected',
+  DISMISSED = '[Alert] Dismissed',
+  EXPIRED = '[Alert] Expired',
 }
 
-export const alertCreated = createAction(
-  AlertActionTypes.ALERT_CREATED,
-  props<{ alert: Alert }>()
-);
+export const created = createAction(AlertActionTypes.CREATED, props<{ alert: Alert }>());
 
-export const actionTaken = createAction(
-  AlertActionTypes.ACTION_TAKEN,
-  props<{ action: AlertAction }>()
-);
+export const seeScheduleSelected = createAction(AlertActionTypes.SEE_SCHEDULE_SELECTED);
 
-export const alertExpired = createAction(AlertActionTypes.ALERT_EXPIRED);
+export const dismissed = createAction(AlertActionTypes.DISMISSED);
+
+// WIP: Not implemented yet
+export const expired = createAction(AlertActionTypes.EXPIRED);

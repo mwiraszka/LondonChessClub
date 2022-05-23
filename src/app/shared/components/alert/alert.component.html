@@ -1,12 +1,12 @@
 <p class="lcc-alert-message">{{ alert?.message }}</p>
 <div class="lcc-alert-controls">
 	<button class="lcc-ghost-button lcc-alert-action-button"
-					(click)="onSelectAction()">
+					(click)="onSelectAction(alert?.action)">
 		{{ alert?.action }}
 	</button>
 	<cds-icon class="lcc-icon-button lcc-alert-close-button"
 						shape="window-close"
 						size="lg"
-						(click)="onClose()">
+						(click)="onSelectAction(AlertAction.CLOSE)">
 	</cds-icon>
 </div>

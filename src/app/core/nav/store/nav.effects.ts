@@ -63,7 +63,7 @@ export class NavEffects {
   navigateToSchedule$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.scheduleSelected, AlertActions.actionTaken),
+        ofType(NavActions.scheduleSelected, AlertActions.seeScheduleSelected),
         tap(() => this.router.navigate([NavPaths.SCHEDULE]))
       ),
     { dispatch: false }
@@ -97,7 +97,7 @@ export class NavEffects {
       this.actions$.pipe(
         ofType(ArticleListActions.editArticleSelected),
         tap(({ articleToEdit }) =>
-          this.router.navigate([NavPaths.NEWS_EDIT, articleToEdit._id])
+          this.router.navigate([NavPaths.NEWS_EDIT, articleToEdit.id])
         )
       ),
     { dispatch: false }

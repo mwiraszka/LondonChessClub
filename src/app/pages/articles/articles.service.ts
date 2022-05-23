@@ -61,7 +61,7 @@ export class ArticlesService {
     let articleData: FormData | Article;
     if (typeof articleToUpdate.headerImage === 'object') {
       articleData = new FormData();
-      articleData.append('_id', articleToUpdate._id);
+      articleData.append('_id', articleToUpdate.id);
       articleData.append('title', articleToUpdate.title);
       articleData.append('subtitle', articleToUpdate.subtitle);
       articleData.append(
@@ -79,7 +79,7 @@ export class ArticlesService {
 
     return this.http
       .put<ArticlesApiResponse>(
-        'http://localhost:3000/api/articles/' + articleToUpdate._id,
+        'http://localhost:3000/api/articles/' + articleToUpdate.id,
         articleData
       )
       .pipe(
@@ -96,7 +96,7 @@ export class ArticlesService {
   deleteArticle(articleToDelete: Article): Observable<Article | null> {
     return this.http
       .delete<ArticlesApiResponse>(
-        'http://localhost:3000/api/articles/' + articleToDelete._id
+        'http://localhost:3000/api/articles/' + articleToDelete.id
       )
       .pipe(
         map(() => articleToDelete),

@@ -1,5 +1,5 @@
 export interface Article {
-  _id: string | undefined;
+  id: string | undefined;
   title: string;
   subtitle: string;
   headerImage: File | string;
@@ -10,7 +10,7 @@ export interface Article {
 }
 
 export const newArticleFormTemplate: Article = {
-  _id: undefined,
+  id: undefined,
   title: '',
   subtitle: '',
   headerImage: '',

@@ -69,8 +69,7 @@ export class ArticleEditorComponent implements OnInit, OnDestroy {
 
   onImageChange(event: Event): void {
     const file = (event.target as HTMLInputElement).files[0];
-    this.form.patchValue({ headerImage: file });
-    this.form.get('headerImage').updateValueAndValidity();
+    this.form.get('headerImage').patchValue(file);
 
     const reader = new FileReader();
     reader.onload = () => {
@@ -98,7 +97,7 @@ export class ArticleEditorComponent implements OnInit, OnDestroy {
       headerImage: [article.headerImage, Validators.required, mimeTypeValidator],
       authorUserId: [article.authorUserId, Validators.required],
       dateCreated: [article.dateCreated, [Validators.required, dateValidator]],
-      dateEdited: [article.dateEdited, [Validators.required, dateValidator]],
+      dateEdited: [article.dateEdited, dateValidator],
       body: [article.body, [Validators.required, Validators.pattern(/[^\s]/)]],
     });
 

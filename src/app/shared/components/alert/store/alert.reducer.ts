@@ -15,11 +15,10 @@ const initialState: AlertState = {
 
 const alertReducer = createReducer(
   initialState,
-  on(AlertActions.actionTaken, () => ({ alert: null })),
-  on(AlertActions.alertCreated, (state, action) => ({
-    ...state,
-    alert: action.alert,
-  }))
+  on(AlertActions.created, (action) => ({ alert: action.alert })),
+  on(AlertActions.seeScheduleSelected, () => ({ alert: null })),
+  on(AlertActions.dismissed, () => ({ alert: null })),
+  on(AlertActions.expired, () => ({ alert: null }))
 );
 
 export function reducer(state: AlertState, action: Action) {

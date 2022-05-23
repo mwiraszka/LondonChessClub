@@ -6,6 +6,7 @@ import { tap } from 'rxjs/operators';
 import { AuthActions } from '@app/core/auth';
 import { ArticleEditorActions, ArticleListActions } from '@app/pages/articles';
 import { MemberEditorActions, MemberListActions } from '@app/pages/members';
+import { AlertActions } from '@app/shared/components/alert';
 
 import * as NavActions from './nav.actions';
 import { NavPaths } from '../types/nav-paths.model';
@@ -62,7 +63,7 @@ export class NavEffects {
   navigateToSchedule$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.scheduleSelected),
+        ofType(NavActions.scheduleSelected, AlertActions.actionTaken),
         tap(() => this.router.navigate([NavPaths.SCHEDULE]))
       ),
     { dispatch: false }

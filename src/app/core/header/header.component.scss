@@ -3,6 +3,7 @@
 :host {
   display: flex;
   justify-content: flex-start;
+  height: 100px;
   padding: 2px 12px;
   background-color: darken($lcc-primary, 20%);
 }
@@ -22,4 +23,8 @@
 
 .lcc-header-title {
   color: darken($lcc-white, 10%);
+}
+
+img {
+  width: 80px;
 }

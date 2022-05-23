@@ -5,12 +5,11 @@ import { AboutModule } from '@app/pages/about';
 import { ArticleEditorModule, ArticleListModule } from '@app/pages/articles';
 import { CityChampionModule } from '@app/pages/city-champion';
 import { HomeModule } from '@app/pages/home';
-import { LessonsModule } from '@app/pages/lessons';
 import { LoginModule } from '@app/pages/login';
+import { PhotoGalleryModule } from '@app/pages/photo-gallery';
 import { MemberEditorModule, MemberListModule } from '@app/pages/members';
 import { ScheduleModule } from '@app/pages/schedule';
 import { SignUpModule } from '@app/pages/sign-up';
-import { SuppliesModule } from '@app/pages/supplies';
 
 const modules = [
   AboutModule,
@@ -18,13 +17,12 @@ const modules = [
   ArticleListModule,
   CityChampionModule,
   HomeModule,
-  LessonsModule,
   LoginModule,
+  PhotoGalleryModule,
   MemberEditorModule,
   MemberListModule,
   ScheduleModule,
   SignUpModule,
-  SuppliesModule,
 ];
 
 @NgModule({

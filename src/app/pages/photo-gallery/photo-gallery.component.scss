@@ -9,16 +9,6 @@
   gap: 16px;
 }
 
-h3 {
-  line-height: 30px;
-}
-
-h4 {
-  line-height: 20px;
-  color: $lcc-secondary-text;
-  
-}
-
 .lcc-canvas {
   display: flex;
   flex-flow: column nowrap;
@@ -26,5 +16,13 @@ h4 {
   justify-content: center;
   padding: 40px 20px;
   min-width: 300px;
-  max-width: 800px;
+
+  h5 {
+    color: darken($lcc-secondary-text, 10%);
+    line-height: 50px;
+  }
+
+  a {
+    padding: 6px;
+  }
 }

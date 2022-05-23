@@ -6,11 +6,10 @@ import { AboutComponent } from '@app/pages/about';
 import { ArticleEditorComponent, ArticleListComponent } from '@app/pages/articles';
 import { CityChampionComponent } from '@app/pages/city-champion';
 import { HomeComponent } from '@app/pages/home';
-import { LessonsComponent } from '@app/pages/lessons';
+import { PhotoGalleryComponent } from '@app/pages/photo-gallery';
 import { LoginComponent } from '@app/pages/login';
 import { MemberEditorComponent, MemberListComponent } from '@app/pages/members';
 import { ScheduleComponent } from '@app/pages/schedule';
-import { SuppliesComponent } from '@app/pages/supplies';
 import { UnsavedArticleGuard, UnsavedMemberGuard } from '@app/shared/guards';
 import { SignUpComponent } from './pages/sign-up';
 
@@ -57,12 +56,8 @@ const routes: Routes = [
     component: CityChampionComponent,
   },
   {
-    path: NavPaths.LESSONS,
-    component: LessonsComponent,
-  },
-  {
-    path: NavPaths.SUPPLIES,
-    component: SuppliesComponent,
+    path: NavPaths.PHOTO_GALLERY,
+    component: PhotoGalleryComponent,
   },
   {
     path: NavPaths.ABOUT,

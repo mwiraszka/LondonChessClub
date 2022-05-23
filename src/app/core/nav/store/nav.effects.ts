@@ -112,20 +112,11 @@ export class NavEffects {
     { dispatch: false }
   );
 
-  navigateToLessons$ = createEffect(
+  navigateToPhotoGallery$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.lessonsSelected),
-        tap(() => this.router.navigate([NavPaths.LESSONS]))
-      ),
-    { dispatch: false }
-  );
-
-  navigateToSupplies$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(NavActions.suppliesSelected),
-        tap(() => this.router.navigate([NavPaths.SUPPLIES]))
+        ofType(NavActions.photoGallerySelected),
+        tap(() => this.router.navigate([NavPaths.PHOTO_GALLERY]))
       ),
     { dispatch: false }
   );

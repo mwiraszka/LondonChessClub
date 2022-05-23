@@ -1,13 +1,15 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
+import { MOCK_EVENTS } from '@app/pages/schedule/mock-events';
+
 import * as AlertActions from './alert.actions';
 import { AlertAction } from '../types/alert-action.model';
 import { AlertState } from '../types/alert.state';
 
 const initialState: AlertState = {
   alert: {
-    message: "Registration for this Thursday's Blitz tournament now open",
-    action: AlertAction.REGISTER,
+    message: `Upcoming event: ${MOCK_EVENTS[0].title} on ${MOCK_EVENTS[0].date}`,
+    action: AlertAction.SEE_SCHEDULE,
   },
 };
 

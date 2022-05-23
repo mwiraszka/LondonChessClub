@@ -2,31 +2,37 @@
 
 :host {
   display: flex;
+  gap: 4px;
   align-items: center;
   justify-content: space-between;
   background: $lcc-primary;
-  padding: 0 10px;
+  padding: 2px 10px;
 }
 
-.lcc-alert-message-container {
+.lcc-alert-message {
+  display: inline-block;
   padding: 4px;
-
-  .lcc-alert-message {
-    color: $lcc-white;
-    font-size: $h4;
-  }
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: $lcc-white;
+  font-size: $h4;
 }
 
-.lcc-alert-actions-container {
+.lcc-alert-controls {
   display: flex;
+  flex-flow: row nowrap;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
 
-  .lcc-alert-action-button,
+  .lcc-alert-action-button {
+    white-space: nowrap;
+    padding: 4px;
+    height: 22px;
+    color: darken($lcc-white, 10%);
+  }
+
   .lcc-alert-close-button {
+    padding: 4px;
     color: darken($lcc-white, 10%);
   }
 }
-
-

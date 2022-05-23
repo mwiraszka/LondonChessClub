@@ -7,7 +7,6 @@ export * as ModalSelectors from './store/modal.selectors';
 export { reducer } from './store/modal.reducer';
 
 export { Modal } from './types/modal.model';
-export {} from './types/modal-action.model';
 export {
   ModalButton,
   ModalButtonAction,

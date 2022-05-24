@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { ModalButtonAction } from '../types/modal-button.model';
+import { ModalButtonActionTypes } from '../types/modal-button.model';
 import { Modal } from '../types/modal.model';
 
 enum ModalActionTypes {
@@ -19,7 +19,7 @@ export const modalClosed = createAction(ModalActionTypes.MODAL_CLOSED);
 
 export const selectionMade = createAction(
   ModalActionTypes.SELECTION_MADE,
-  props<{ action: ModalButtonAction }>()
+  props<{ action: ModalButtonActionTypes }>()
 );
 
 export const leaveWithUnsavedChangesRequested = createAction(

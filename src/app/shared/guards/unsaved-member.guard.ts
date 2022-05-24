@@ -7,7 +7,7 @@ import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { MemberEditorComponent, MemberEditorSelectors } from '@app/pages/members';
 import {
   ModalActions,
-  ModalButtonAction,
+  ModalButtonActionTypes,
   ModalSelectors,
 } from '@app/shared/components/modal';
 
@@ -27,7 +27,7 @@ export class UnsavedMemberGuard implements CanDeactivate<MemberEditorComponent> 
         this.store.dispatch(ModalActions.leaveWithUnsavedChangesRequested());
         return this.store.select(ModalSelectors.selection).pipe(
           filter((selection) => !!selection),
-          map((selection) => selection === ModalButtonAction.LEAVE_OK)
+          map((selection) => selection === ModalButtonActionTypes.LEAVE_OK)
         );
       })
     );

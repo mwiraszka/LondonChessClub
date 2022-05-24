@@ -6,7 +6,7 @@ import { ClarityModule } from '@clr/angular';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { AppStoreFeatures } from '@app/shared/types';
+import { AppStoreFeatureTypes } from '@app/shared/types';
 
 import { MemberListComponent } from './member-list.component';
 import { MemberListEffects } from './store/member-list.effects';
@@ -20,7 +20,7 @@ import { reducer } from './store/member-list.reducer';
     EffectsModule.forFeature([MemberListEffects]),
     ReactiveFormsModule,
     RouterModule,
-    StoreModule.forFeature(AppStoreFeatures.MEMBER_LIST, reducer),
+    StoreModule.forFeature(AppStoreFeatureTypes.MEMBER_LIST, reducer),
   ],
   exports: [MemberListComponent],
 })

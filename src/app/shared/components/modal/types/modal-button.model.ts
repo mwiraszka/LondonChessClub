@@ -1,23 +1,17 @@
 export interface ModalButton {
   text: string;
-  style: ModalButtonStyle;
-  action: ModalButtonAction;
+  style: ModalButtonStyleTypes;
+  action: ModalButtonActionTypes;
 }
 
-export enum ModalButtonStyle {
+export enum ModalButtonStyleTypes {
   PRIMARY_DEFAULT = 'lcc-primary-button',
   PRIMARY_SUCCESS = 'lcc-success-button',
   PRIMARY_WARNING = 'lcc-warning-button',
   SECONDARY = 'lcc-secondary-button',
 }
 
-export type ModalButtonStyleType =
-  | ModalButtonStyle.PRIMARY_DEFAULT
-  | ModalButtonStyle.PRIMARY_SUCCESS
-  | ModalButtonStyle.PRIMARY_WARNING
-  | ModalButtonStyle.SECONDARY;
-
-export enum ModalButtonAction {
+export enum ModalButtonActionTypes {
   LEAVE_OK = 'Leave OK',
   LEAVE_CANCEL = 'Leave cancel',
   ADD_MEMBER_OK = 'Add member OK',
@@ -35,19 +29,19 @@ export enum ModalButtonAction {
   ACTIVATE_VERSION_UPDATE = 'Activate version update',
 }
 
-export type ModalButtonActionType =
-  | ModalButtonAction.LEAVE_OK
-  | ModalButtonAction.LEAVE_CANCEL
-  | ModalButtonAction.ADD_MEMBER_OK
-  | ModalButtonAction.ADD_MEMBER_CANCEL
-  | ModalButtonAction.UPDATE_MEMBER_OK
-  | ModalButtonAction.UPDATE_MEMBER_CANCEL
-  | ModalButtonAction.DELETE_MEMBER_OK
-  | ModalButtonAction.DELETE_MEMBER_CANCEL
-  | ModalButtonAction.PUBLISH_ARTICLE_OK
-  | ModalButtonAction.PUBLISH_ARTICLE_CANCEL
-  | ModalButtonAction.UPDATE_ARTICLE_OK
-  | ModalButtonAction.UPDATE_ARTICLE_CANCEL
-  | ModalButtonAction.DELETE_ARTICLE_OK
-  | ModalButtonAction.DELETE_ARTICLE_CANCEL
-  | ModalButtonAction.ACTIVATE_VERSION_UPDATE;
+export type ModalButtonActionTypesType =
+  | ModalButtonActionTypes.LEAVE_OK
+  | ModalButtonActionTypes.LEAVE_CANCEL
+  | ModalButtonActionTypes.ADD_MEMBER_OK
+  | ModalButtonActionTypes.ADD_MEMBER_CANCEL
+  | ModalButtonActionTypes.UPDATE_MEMBER_OK
+  | ModalButtonActionTypes.UPDATE_MEMBER_CANCEL
+  | ModalButtonActionTypes.DELETE_MEMBER_OK
+  | ModalButtonActionTypes.DELETE_MEMBER_CANCEL
+  | ModalButtonActionTypes.PUBLISH_ARTICLE_OK
+  | ModalButtonActionTypes.PUBLISH_ARTICLE_CANCEL
+  | ModalButtonActionTypes.UPDATE_ARTICLE_OK
+  | ModalButtonActionTypes.UPDATE_ARTICLE_CANCEL
+  | ModalButtonActionTypes.DELETE_ARTICLE_OK
+  | ModalButtonActionTypes.DELETE_ARTICLE_CANCEL
+  | ModalButtonActionTypes.ACTIVATE_VERSION_UPDATE;

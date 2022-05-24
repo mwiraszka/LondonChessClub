@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import * as ModalActions from './store/modal.actions';
 import * as ModalSelectors from './store/modal.selectors';
-import { ModalButtonAction } from './types/modal-button.model';
+import { ModalButtonActionTypes } from './types/modal-button.model';
 import { Modal } from './types/modal.model';
 import { ModalState } from './types/modal.state';
 
@@ -24,7 +24,7 @@ export class ModalComponent implements OnInit {
     this.modal$ = this.store.pipe(select(ModalSelectors.modal));
   }
 
-  onSelect(action: ModalButtonAction): void {
+  onSelect(action: ModalButtonActionTypes): void {
     this.store.dispatch(ModalActions.selectionMade({ action }));
   }
 }

@@ -7,7 +7,7 @@ import { filter, map, switchMap } from 'rxjs/operators';
 import { ArticleEditorComponent, ArticleEditorSelectors } from '@app/pages/articles';
 import {
   ModalActions,
-  ModalButtonAction,
+  ModalButtonActionTypes,
   ModalSelectors,
 } from '@app/shared/components/modal';
 
@@ -27,7 +27,7 @@ export class UnsavedArticleGuard implements CanDeactivate<ArticleEditorComponent
         this.store.dispatch(ModalActions.leaveWithUnsavedChangesRequested());
         return this.store.select(ModalSelectors.selection).pipe(
           filter((selection) => !!selection),
-          map((selection) => selection === ModalButtonAction.LEAVE_OK)
+          map((selection) => selection === ModalButtonActionTypes.LEAVE_OK)
         );
       })
     );

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType, concatLatestFrom } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
+
+import { ServiceResponse } from '@app/shared/types';
 
 import * as MemberEditorActions from './member-editor.actions';
 import * as MemberEditorSelectors from './member-editor.selectors';
@@ -31,16 +32,13 @@ export class MemberEditorEffects {
       concatLatestFrom(() => this.store.select(MemberEditorSelectors.memberCurrently)),
       switchMap(([, memberToAdd]) => {
         return this.membersService.addMember(memberToAdd).pipe(
-          map((response) => {
-            return MemberEditorActions.addMemberSucceeded({ addedMember: response });
-          }),
-          catchError(() => {
-            return of(
-              MemberEditorActions.addMemberFailed({
-                errorMessage: '[Member Editor Effects] Unknown error',
-              })
-            );
-          })
+          map((response: ServiceResponse) =>
+            response.error
+              ? MemberEditorActions.addMemberFailed({ error: response.error })
+              : MemberEditorActions.addMemberSucceeded({
+                  addedMember: response.payload.member,
+                })
+          )
         );
       })
     )
@@ -52,16 +50,13 @@ export class MemberEditorEffects {
       concatLatestFrom(() => this.store.select(MemberEditorSelectors.memberCurrently)),
       switchMap(([, memberToUpdate]) => {
         return this.membersService.updateMember(memberToUpdate).pipe(
-          map((updatedMember) => {
-            return MemberEditorActions.updateMemberSucceeded({ updatedMember });
-          }),
-          catchError(() => {
-            return of(
-              MemberEditorActions.updateMemberFailed({
-                errorMessage: '[Member Editor Effects] Unknown error',
-              })
-            );
-          })
+          map((response: ServiceResponse) =>
+            response.error
+              ? MemberEditorActions.updateMemberFailed({ error: response.error })
+              : MemberEditorActions.updateMemberSucceeded({
+                  updatedMember: response.payload.member,
+                })
+          )
         );
       })
     )
@@ -74,8 +69,8 @@ export class MemberEditorEffects {
           MemberEditorActions.addMemberFailed,
           MemberEditorActions.updateMemberFailed
         ),
-        tap(({ errorMessage }) => {
-          console.error(errorMessage);
+        tap(({ error }) => {
+          console.error(`[Member Editor Effects]' ${error.message}`);
         })
       ),
     { dispatch: false }

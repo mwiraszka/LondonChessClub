@@ -1,6 +1,5 @@
 export { ArticlesService } from './articles.service';
 export { Article, newArticleFormTemplate } from './types/article.model';
-export { ArticlesApiResponse } from './types/articles-api-response.model';
 
 export { ArticleEditorComponent } from './article-editor/article-editor.component';
 export { ArticleEditorModule } from './article-editor/article-editor.module';

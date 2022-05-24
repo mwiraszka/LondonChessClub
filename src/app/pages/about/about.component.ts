@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { NavPaths } from '@app/core/nav';
+import { NavPathTypes } from '@app/core/nav';
 
 @Component({
   selector: 'lcc-about',
@@ -9,11 +9,11 @@ import { NavPaths } from '@app/core/nav';
   styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent {
-  NavPaths = NavPaths;
+  NavPathTypes = NavPathTypes;
 
   constructor(private router: Router) {}
 
-  onNavigate(path: NavPaths) {
+  onNavigate(path: NavPathTypes) {
     this.router.navigate([path]);
   }
 }

@@ -5,7 +5,7 @@ import { ClarityModule } from '@clr/angular';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { AppStoreFeatures } from '@app/shared/types';
+import { AppStoreFeatureTypes } from '@app/shared/types';
 
 import { NavComponent } from './nav.component';
 import { NavEffects } from './store/nav.effects';
@@ -18,7 +18,7 @@ import { reducer } from './store/nav.reducer';
     CommonModule,
     EffectsModule.forFeature([NavEffects]),
     RouterModule,
-    StoreModule.forFeature(AppStoreFeatures.NAV, reducer),
+    StoreModule.forFeature(AppStoreFeatureTypes.NAV, reducer),
   ],
   exports: [NavComponent],
 })

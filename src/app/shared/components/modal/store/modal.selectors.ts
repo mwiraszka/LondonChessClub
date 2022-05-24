@@ -1,11 +1,11 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { AppStoreFeatures } from '@app/shared/types';
+import { AppStoreFeatureTypes } from '@app/shared/types';
 
 import { ModalState } from '../types/modal.state';
 
 export const modalFeatureSelector = createFeatureSelector<ModalState>(
-  AppStoreFeatures.MODAL
+  AppStoreFeatureTypes.MODAL
 );
 
 export const modal = createSelector(modalFeatureSelector, (state) => state.modal);

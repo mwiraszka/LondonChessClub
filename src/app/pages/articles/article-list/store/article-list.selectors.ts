@@ -1,11 +1,11 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { AppStoreFeatures } from '@app/shared/types';
+import { AppStoreFeatureTypes } from '@app/shared/types';
 
 import { ArticleListState } from './article-list.state';
 
 export const articleListFeatureSelector = createFeatureSelector<ArticleListState>(
-  AppStoreFeatures.ARTICLE_LIST
+  AppStoreFeatureTypes.ARTICLE_LIST
 );
 
 export const articles = createSelector(

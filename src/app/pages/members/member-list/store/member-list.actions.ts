@@ -26,7 +26,7 @@ export const loadMembersSucceeded = createAction(
 );
 export const loadMembersFailed = createAction(
   MemberListActionTypes.LOAD_MEMBERS_FAILED,
-  props<{ errorMessage: string }>()
+  props<{ error: Error }>()
 );
 
 export const createMemberSelected = createAction(
@@ -53,5 +53,5 @@ export const deleteMemberSucceeded = createAction(
 );
 export const deleteMemberFailed = createAction(
   MemberListActionTypes.DELETE_MEMBER_FAILED,
-  props<{ errorMessage: string }>()
+  props<{ error: Error }>()
 );

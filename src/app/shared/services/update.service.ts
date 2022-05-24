@@ -5,8 +5,8 @@ import { Store } from '@ngrx/store';
 import {
   Modal,
   ModalActions,
-  ModalButtonAction,
-  ModalButtonStyle,
+  ModalButtonActionTypes,
+  ModalButtonStyleTypes,
   ModalState,
 } from '@app/shared/components/modal';
 
@@ -24,8 +24,8 @@ export class UpdateService {
         buttons: [
           {
             text: 'Ok',
-            style: ModalButtonStyle.PRIMARY_SUCCESS,
-            action: ModalButtonAction.ACTIVATE_VERSION_UPDATE,
+            style: ModalButtonStyleTypes.PRIMARY_SUCCESS,
+            action: ModalButtonActionTypes.ACTIVATE_VERSION_UPDATE,
           },
         ],
       };

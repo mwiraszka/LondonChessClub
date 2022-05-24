@@ -3,7 +3,7 @@
 		<a class="lcc-nav-link"
 			 aria-label="Home"
 			 routerLinkActive="link-active"
-			 [routerLink]="NavPaths.HOME"
+			 [routerLink]="NavPathTypes.HOME"
 			 [routerLinkActiveOptions]="{ exact: true }"
 			 (click)="facade.onHome()">
 			Home
@@ -13,7 +13,7 @@
 		<a class="lcc-nav-link"
 			 aria-label="Members"
 			 routerLinkActive="link-active"
-			 [routerLink]="NavPaths.MEMBERS"
+			 [routerLink]="NavPathTypes.MEMBERS"
 			 (click)="facade.onMembers()">
 			Members
 		</a>
@@ -22,7 +22,7 @@
 		<a class="lcc-nav-link"
 			 aria-label="Schedule"
 			 routerLinkActive="link-active"
-			 [routerLink]="NavPaths.SCHEDULE"
+			 [routerLink]="NavPathTypes.SCHEDULE"
 			 (click)="facade.onSchedule()">
 			Schedule
 		</a>
@@ -31,7 +31,7 @@
 		<a class="lcc-nav-link"
 			 aria-label="News"
 			 routerLinkActive="link-active"
-			 [routerLink]="NavPaths.NEWS"
+			 [routerLink]="NavPathTypes.NEWS"
 			 (click)="facade.onNews()">
 			News
 		</a>
@@ -39,7 +39,7 @@
 	<li class="lcc-nav-item">
 		<a class="lcc-nav-link"
 			 aria-label="City Champion"
-			 [routerLink]="NavPaths.CITY_CHAMPION"
+			 [routerLink]="NavPathTypes.CITY_CHAMPION"
 			 routerLinkActive="link-active"
 			 (click)="facade.onCityChampion()">
 			City&nbsp;Champion
@@ -49,7 +49,7 @@
 		<a class="lcc-nav-link"
 			 aria-label="Photo Gallery"
 			 routerLinkActive="link-active"
-			 [routerLink]="NavPaths.PHOTO_GALLERY"
+			 [routerLink]="NavPathTypes.PHOTO_GALLERY"
 			 (click)="facade.onPhotoGallery()">
 			Photo Gallery
 		</a>
@@ -58,7 +58,7 @@
 		<a class="lcc-nav-link"
 			 aria-label="About"
 			 routerLinkActive="link-active"
-			 [routerLink]="NavPaths.ABOUT"
+			 [routerLink]="NavPathTypes.ABOUT"
 			 (click)="facade.onAbout()">
 			About
 		</a>
@@ -68,13 +68,13 @@
 		<ng-container *ngIf="facade.user$ | async; else loggedOut">
 			<p>
 				Logged&nbsp;in<br />
-				<b>{{ (facade.user$ | async).firstName }}</b>
+				<b>{{ facade.tempFirstName$ | async }}</b>
 			</p>
 			<ng-container *ngIf="facade.isUserDropdownOpen$ | async">
 				<div class="lcc-user-account-dropdown">
 					<button class="lcc-logout-button"
 									aria-label="Login"
-									[routerLink]="NavPaths.LOGIN"
+									[routerLink]="NavPathTypes.LOGIN"
 									(click)="facade.onLogout()">
 						Logout
 					</button>
@@ -87,7 +87,7 @@
 			<a class="lcc-nav-link"
 				 aria-label="Login"
 				 routerLinkActive="link-active"
-				 [routerLink]="NavPaths.LOGIN"
+				 [routerLink]="NavPathTypes.LOGIN"
 				 (click)="facade.onLogin()">
 				<cds-icon shape="user"
 									size="sm"

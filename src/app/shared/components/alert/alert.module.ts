@@ -4,7 +4,7 @@ import { ClarityModule } from '@clr/angular';
 import { StoreModule } from '@ngrx/store';
 
 import { AlertComponent } from '@app/shared/components/alert';
-import { AppStoreFeatures } from '@app/shared/types';
+import { AppStoreFeatureTypes } from '@app/shared/types';
 
 import { reducer } from './store/alert.reducer';
 
@@ -13,7 +13,7 @@ import { reducer } from './store/alert.reducer';
   imports: [
     ClarityModule,
     CommonModule,
-    StoreModule.forFeature(AppStoreFeatures.ALERT, reducer),
+    StoreModule.forFeature(AppStoreFeatureTypes.ALERT, reducer),
   ],
   exports: [AlertComponent],
 })

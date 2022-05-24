@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 
 import { AuthSelectors } from '@app/core/auth';
-import { User } from '@app/shared/types';
 
 import * as NavActions from './nav.actions';
 
@@ -11,7 +10,10 @@ import * as NavActions from './nav.actions';
 export class NavFacade {
   constructor(private readonly store: Store) {}
 
-  user$: Observable<User | null> = this.store.select(AuthSelectors.user);
+  user$ = this.store.select(AuthSelectors.user);
+
+  // WIP: Need to find a good way to 'get member by ID' using their common UUID
+  tempFirstName$ = of('Michal*');
 
   private _isUserDropdownOpen$ = new BehaviorSubject<boolean>(true);
   isUserDropdownOpen$ = this._isUserDropdownOpen$.asObservable();

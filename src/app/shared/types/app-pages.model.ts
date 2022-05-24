@@ -1,4 +1,4 @@
-export enum AppPages {
+export enum AppPageTypes {
   HOME = 'home',
   MEMBERS = 'members',
   SCHEDULE = 'schedule',

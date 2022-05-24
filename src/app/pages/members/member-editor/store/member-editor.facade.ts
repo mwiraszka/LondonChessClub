@@ -30,7 +30,7 @@ export class MemberEditorFacade {
 
           const memberToSubmit: Member = {
             ...member,
-            userId: memberBeforeEdit.userId,
+            id: memberBeforeEdit.id,
             dateOfBirth: member.dateOfBirth ?? '',
             peakRating: newPeakRating,
           };

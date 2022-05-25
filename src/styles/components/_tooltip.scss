@@ -8,8 +8,8 @@
   font-weight: 300;
   line-height: initial;
   color: white;
-  background: lighten($lcc-black, 10%);
-  border-radius: $lcc-button-border-radius;
+  background-color: lighten($lcc-black, 10%);
+  border-radius: $lcc-border-radius-lg;
   box-sizing: border-box;
   opacity: 0;
   transform: translate(-50%, -30%);

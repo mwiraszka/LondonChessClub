@@ -6,7 +6,10 @@ import { AppState } from './app.state';
 function actionLogMetaReducer(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
   return (state, action) => {
     const timestamp = new Date().toLocaleTimeString();
-    console.info(`%c [${timestamp}] ${action.type} `, 'background: #ddd; color: #222');
+    console.info(
+      `%c [${timestamp}] ${action.type} `,
+      'background-color: #ddd; color: #222'
+    );
     console.log('State:', state);
     console.log('Action:', action);
 

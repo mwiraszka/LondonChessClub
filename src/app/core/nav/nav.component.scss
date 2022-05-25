@@ -2,7 +2,7 @@
 
 :host {
   display: flex;
-  background: darken($lcc-white, 2%);
+  background-color: lighten($lcc-white, 10%);
 }
 
 .lcc-nav-items {
@@ -37,14 +37,14 @@
   left: 0;
   height: 28px;
   width: 80px;
-  background: lighten($lcc-gray, 20%);
+  background-color: lighten($lcc-gray, 20%);
   border-top: 3px solid lighten($lcc-black, 10%);
 }
 
 .lcc-logout-button {
   width: 100%;
   border: none;
-  background: inherit;
+  background-color: inherit;
   color: lighten($lcc-black, 10%);
   font-size: $h4;
 }

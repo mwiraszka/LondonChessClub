@@ -46,7 +46,7 @@ h4 {
   margin: 4px;
   padding: 16px;
   border-radius: 4px;
-  background: lighten($lcc-white, 2%);
+  background-color: lighten($lcc-white, 2%);
 
   &.lcc-about-details {
     grid-area: details;

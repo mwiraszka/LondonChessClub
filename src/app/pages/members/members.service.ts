@@ -59,7 +59,6 @@ export class MembersService {
   }
 
   updateMember(memberToUpdate: Member): Observable<ServiceResponse> {
-    console.log('::', memberToUpdate);
     return this.authService.getToken().pipe(
       switchMap((token) =>
         this.http.put<null>(API_ENDPOINT + memberToUpdate.id, memberToUpdate, {

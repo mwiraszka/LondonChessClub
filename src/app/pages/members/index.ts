@@ -1,6 +1,5 @@
 export { MembersService } from './members.service';
 export { Member, newMemberFormTemplate } from './types/member.model';
-export { MembersApiResponse } from './types/members-api-response.model';
 
 export { MemberEditorComponent } from './member-editor/member-editor.component';
 export { MemberEditorModule } from './member-editor/member-editor.module';

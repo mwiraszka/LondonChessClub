@@ -1,11 +1,11 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { AppStoreFeatures } from '@app/shared/types';
+import { AppStoreFeatureTypes } from '@app/shared/types';
 
 import { MemberListState } from './member-list.state';
 
 export const memberListFeatureSelector = createFeatureSelector<MemberListState>(
-  AppStoreFeatures.MEMBER_LIST
+  AppStoreFeatureTypes.MEMBER_LIST
 );
 
 export const members = createSelector(

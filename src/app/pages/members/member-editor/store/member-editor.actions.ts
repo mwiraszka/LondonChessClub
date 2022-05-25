@@ -51,7 +51,7 @@ export const addMemberSucceeded = createAction(
 );
 export const addMemberFailed = createAction(
   MemberEditorActionTypes.ADD_MEMBER_FAILED,
-  props<{ errorMessage: string }>()
+  props<{ error: Error }>()
 );
 
 export const updateMemberSelected = createAction(
@@ -70,7 +70,7 @@ export const updateMemberSucceeded = createAction(
 );
 export const updateMemberFailed = createAction(
   MemberEditorActionTypes.UPDATE_MEMBER_FAILED,
-  props<{ errorMessage: string }>()
+  props<{ error: Error }>()
 );
 
 export const cancelSelected = createAction(MemberEditorActionTypes.CANCEL_SELECTED);

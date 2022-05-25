@@ -38,7 +38,7 @@ const memberListReducer = createReducer(
   })),
   on(MemberListActions.deleteMemberSucceeded, (state, action) => ({
     ...state,
-    members: state.members.filter((x) => x.userId != action.deletedMember.userId),
+    members: state.members.filter((x) => x.id != action.deletedMember.id),
     selectedMember: null,
   })),
   on(MemberListActions.deleteMemberFailed, (state) => ({

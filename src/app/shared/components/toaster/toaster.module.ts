@@ -4,7 +4,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { ToastModule } from '@app/shared/components/toast';
-import { AppStoreFeatures } from '@app/shared/types';
+import { AppStoreFeatureTypes } from '@app/shared/types';
 
 import { ToasterEffects } from './store/toaster.effects';
 import { reducer } from './store/toaster.reducer';
@@ -15,7 +15,7 @@ import { ToasterComponent } from './toaster.component';
   imports: [
     CommonModule,
     EffectsModule.forFeature([ToasterEffects]),
-    StoreModule.forFeature(AppStoreFeatures.TOASTER, reducer),
+    StoreModule.forFeature(AppStoreFeatureTypes.TOASTER, reducer),
     ToastModule,
   ],
   exports: [ToasterComponent],

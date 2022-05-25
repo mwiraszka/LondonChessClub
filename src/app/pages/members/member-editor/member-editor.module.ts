@@ -7,7 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { DirectivesModule } from '@app/shared/directives';
-import { AppStoreFeatures } from '@app/shared/types';
+import { AppStoreFeatureTypes } from '@app/shared/types';
 
 import { MemberEditorComponent } from './member-editor.component';
 import { MemberEditorEffects } from './store/member-editor.effects';
@@ -22,7 +22,7 @@ import { reducer } from './store/member-editor.reducer';
     EffectsModule.forFeature([MemberEditorEffects]),
     ReactiveFormsModule,
     RouterModule,
-    StoreModule.forFeature(AppStoreFeatures.MEMBER_EDITOR, reducer),
+    StoreModule.forFeature(AppStoreFeatureTypes.MEMBER_EDITOR, reducer),
   ],
   exports: [MemberEditorComponent],
 })

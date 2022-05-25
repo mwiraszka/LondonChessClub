@@ -17,7 +17,10 @@ import { UpdateService } from '@app/shared/services';
 
 import * as ModalActions from './modal.actions';
 import { Modal } from '../types/modal.model';
-import { ModalButtonAction, ModalButtonStyle } from '../types/modal-button.model';
+import {
+  ModalButtonActionTypes,
+  ModalButtonStyleTypes,
+} from '../types/modal-button.model';
 
 @Injectable()
 export class ModalEffects {
@@ -31,13 +34,13 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyle.SECONDARY,
-              action: ModalButtonAction.ADD_MEMBER_CANCEL,
+              style: ModalButtonStyleTypes.SECONDARY,
+              action: ModalButtonActionTypes.ADD_MEMBER_CANCEL,
             },
             {
               text: 'Add',
-              style: ModalButtonStyle.PRIMARY_SUCCESS,
-              action: ModalButtonAction.ADD_MEMBER_OK,
+              style: ModalButtonStyleTypes.PRIMARY_SUCCESS,
+              action: ModalButtonActionTypes.ADD_MEMBER_OK,
             },
           ],
         };
@@ -57,13 +60,13 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyle.SECONDARY,
-              action: ModalButtonAction.UPDATE_MEMBER_CANCEL,
+              style: ModalButtonStyleTypes.SECONDARY,
+              action: ModalButtonActionTypes.UPDATE_MEMBER_CANCEL,
             },
             {
               text: 'Update',
-              style: ModalButtonStyle.PRIMARY_SUCCESS,
-              action: ModalButtonAction.UPDATE_MEMBER_OK,
+              style: ModalButtonStyleTypes.PRIMARY_SUCCESS,
+              action: ModalButtonActionTypes.UPDATE_MEMBER_OK,
             },
           ],
         };
@@ -82,13 +85,13 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyle.SECONDARY,
-              action: ModalButtonAction.DELETE_MEMBER_CANCEL,
+              style: ModalButtonStyleTypes.SECONDARY,
+              action: ModalButtonActionTypes.DELETE_MEMBER_CANCEL,
             },
             {
               text: 'Delete',
-              style: ModalButtonStyle.PRIMARY_WARNING,
-              action: ModalButtonAction.DELETE_MEMBER_OK,
+              style: ModalButtonStyleTypes.PRIMARY_WARNING,
+              action: ModalButtonActionTypes.DELETE_MEMBER_OK,
             },
           ],
         };
@@ -107,13 +110,13 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyle.SECONDARY,
-              action: ModalButtonAction.PUBLISH_ARTICLE_CANCEL,
+              style: ModalButtonStyleTypes.SECONDARY,
+              action: ModalButtonActionTypes.PUBLISH_ARTICLE_CANCEL,
             },
             {
               text: 'Publish',
-              style: ModalButtonStyle.PRIMARY_SUCCESS,
-              action: ModalButtonAction.PUBLISH_ARTICLE_OK,
+              style: ModalButtonStyleTypes.PRIMARY_SUCCESS,
+              action: ModalButtonActionTypes.PUBLISH_ARTICLE_OK,
             },
           ],
         };
@@ -133,13 +136,13 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyle.SECONDARY,
-              action: ModalButtonAction.UPDATE_ARTICLE_CANCEL,
+              style: ModalButtonStyleTypes.SECONDARY,
+              action: ModalButtonActionTypes.UPDATE_ARTICLE_CANCEL,
             },
             {
               text: 'Update',
-              style: ModalButtonStyle.PRIMARY_SUCCESS,
-              action: ModalButtonAction.UPDATE_ARTICLE_OK,
+              style: ModalButtonStyleTypes.PRIMARY_SUCCESS,
+              action: ModalButtonActionTypes.UPDATE_ARTICLE_OK,
             },
           ],
         };
@@ -158,13 +161,13 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyle.SECONDARY,
-              action: ModalButtonAction.DELETE_ARTICLE_CANCEL,
+              style: ModalButtonStyleTypes.SECONDARY,
+              action: ModalButtonActionTypes.DELETE_ARTICLE_CANCEL,
             },
             {
               text: 'Delete',
-              style: ModalButtonStyle.PRIMARY_WARNING,
-              action: ModalButtonAction.DELETE_ARTICLE_OK,
+              style: ModalButtonStyleTypes.PRIMARY_WARNING,
+              action: ModalButtonActionTypes.DELETE_ARTICLE_OK,
             },
           ],
         };
@@ -183,13 +186,13 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyle.SECONDARY,
-              action: ModalButtonAction.LEAVE_CANCEL,
+              style: ModalButtonStyleTypes.SECONDARY,
+              action: ModalButtonActionTypes.LEAVE_CANCEL,
             },
             {
               text: 'Leave',
-              style: ModalButtonStyle.PRIMARY_DEFAULT,
-              action: ModalButtonAction.LEAVE_OK,
+              style: ModalButtonStyleTypes.PRIMARY_DEFAULT,
+              action: ModalButtonActionTypes.LEAVE_OK,
             },
           ],
         };
@@ -210,42 +213,42 @@ export class ModalEffects {
       ofType(ModalActions.selectionMade),
       filter(
         ({ action }) =>
-          action === ModalButtonAction.ADD_MEMBER_OK ||
-          action === ModalButtonAction.ADD_MEMBER_CANCEL ||
-          action === ModalButtonAction.UPDATE_MEMBER_OK ||
-          action === ModalButtonAction.UPDATE_MEMBER_CANCEL ||
-          action === ModalButtonAction.DELETE_MEMBER_OK ||
-          action === ModalButtonAction.DELETE_MEMBER_CANCEL ||
-          action === ModalButtonAction.PUBLISH_ARTICLE_OK ||
-          action === ModalButtonAction.PUBLISH_ARTICLE_CANCEL ||
-          action === ModalButtonAction.UPDATE_ARTICLE_OK ||
-          action === ModalButtonAction.UPDATE_ARTICLE_CANCEL ||
-          action === ModalButtonAction.DELETE_ARTICLE_OK ||
-          action === ModalButtonAction.DELETE_ARTICLE_CANCEL
+          action === ModalButtonActionTypes.ADD_MEMBER_OK ||
+          action === ModalButtonActionTypes.ADD_MEMBER_CANCEL ||
+          action === ModalButtonActionTypes.UPDATE_MEMBER_OK ||
+          action === ModalButtonActionTypes.UPDATE_MEMBER_CANCEL ||
+          action === ModalButtonActionTypes.DELETE_MEMBER_OK ||
+          action === ModalButtonActionTypes.DELETE_MEMBER_CANCEL ||
+          action === ModalButtonActionTypes.PUBLISH_ARTICLE_OK ||
+          action === ModalButtonActionTypes.PUBLISH_ARTICLE_CANCEL ||
+          action === ModalButtonActionTypes.UPDATE_ARTICLE_OK ||
+          action === ModalButtonActionTypes.UPDATE_ARTICLE_CANCEL ||
+          action === ModalButtonActionTypes.DELETE_ARTICLE_OK ||
+          action === ModalButtonActionTypes.DELETE_ARTICLE_CANCEL
       ),
       map(({ action }) => {
         switch (action) {
-          case ModalButtonAction.ADD_MEMBER_OK:
+          case ModalButtonActionTypes.ADD_MEMBER_OK:
             return MemberEditorActions.addMemberConfirmed();
-          case ModalButtonAction.ADD_MEMBER_CANCEL:
+          case ModalButtonActionTypes.ADD_MEMBER_CANCEL:
             return MemberEditorActions.addMemberCancelled();
-          case ModalButtonAction.UPDATE_MEMBER_OK:
+          case ModalButtonActionTypes.UPDATE_MEMBER_OK:
             return MemberEditorActions.updateMemberConfirmed();
-          case ModalButtonAction.UPDATE_MEMBER_CANCEL:
+          case ModalButtonActionTypes.UPDATE_MEMBER_CANCEL:
             return MemberEditorActions.updateMemberCancelled();
-          case ModalButtonAction.DELETE_MEMBER_OK:
+          case ModalButtonActionTypes.DELETE_MEMBER_OK:
             return MemberListActions.deleteMemberConfirmed();
-          case ModalButtonAction.DELETE_MEMBER_CANCEL:
+          case ModalButtonActionTypes.DELETE_MEMBER_CANCEL:
             return MemberListActions.deleteMemberCancelled();
-          case ModalButtonAction.PUBLISH_ARTICLE_OK:
+          case ModalButtonActionTypes.PUBLISH_ARTICLE_OK:
             return ArticleEditorActions.publishArticleConfirmed();
-          case ModalButtonAction.PUBLISH_ARTICLE_CANCEL:
+          case ModalButtonActionTypes.PUBLISH_ARTICLE_CANCEL:
             return ArticleEditorActions.publishArticleCancelled();
-          case ModalButtonAction.UPDATE_ARTICLE_OK:
+          case ModalButtonActionTypes.UPDATE_ARTICLE_OK:
             return ArticleEditorActions.updateArticleConfirmed();
-          case ModalButtonAction.UPDATE_ARTICLE_CANCEL:
+          case ModalButtonActionTypes.UPDATE_ARTICLE_CANCEL:
             return ArticleEditorActions.updateArticleCancelled();
-          case ModalButtonAction.DELETE_ARTICLE_OK:
+          case ModalButtonActionTypes.DELETE_ARTICLE_OK:
             return ArticleListActions.deleteArticleConfirmed();
           default:
             return ArticleListActions.deleteArticleCancelled();
@@ -258,7 +261,7 @@ export class ModalEffects {
     () =>
       this.actions$.pipe(
         ofType(ModalActions.selectionMade),
-        filter(({ action }) => action === ModalButtonAction.ACTIVATE_VERSION_UPDATE),
+        filter(({ action }) => action === ModalButtonActionTypes.ACTIVATE_VERSION_UPDATE),
         tap(() => this.updateService.activateUpdate())
       ),
     { dispatch: false }

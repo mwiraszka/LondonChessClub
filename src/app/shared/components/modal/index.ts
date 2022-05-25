@@ -9,9 +9,8 @@ export { reducer } from './store/modal.reducer';
 export { Modal } from './types/modal.model';
 export {
   ModalButton,
-  ModalButtonAction,
-  ModalButtonActionType,
-  ModalButtonStyle,
-  ModalButtonStyleType,
+  ModalButtonActionTypes,
+  ModalButtonActionTypesType,
+  ModalButtonStyleTypes,
 } from './types/modal-button.model';
 export { ModalState } from './types/modal.state';

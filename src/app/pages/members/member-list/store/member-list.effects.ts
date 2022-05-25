@@ -3,6 +3,8 @@ import { createEffect, Actions, ofType, concatLatestFrom } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, switchMap, tap } from 'rxjs/operators';
 
+import { ServiceResponse } from '@app/shared/types';
+
 import * as MemberListActions from './member-list.actions';
 import * as MemberListSelectors from './member-list.selectors';
 import { MembersService } from '../../members.service';
@@ -12,18 +14,17 @@ export class MemberListEffects {
   getMembers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(MemberListActions.loadMembersStarted),
-      switchMap(() => {
-        return this.membersService.getMembers().pipe(
-          map((allMembers) => {
-            return allMembers
-              ? MemberListActions.loadMembersSucceeded({ allMembers })
-              : MemberListActions.loadMembersFailed({
-                  errorMessage:
-                    '[Member List Effects] Failed to fetch members from database.',
-                });
-          })
-        );
-      })
+      switchMap(() =>
+        this.membersService.getMembers().pipe(
+          map((response: ServiceResponse) =>
+            response.error
+              ? MemberListActions.loadMembersFailed({ error: response.error })
+              : MemberListActions.loadMembersSucceeded({
+                  allMembers: response.payload.members,
+                })
+          )
+        )
+      )
     )
   );
 
@@ -31,17 +32,17 @@ export class MemberListEffects {
     this.actions$.pipe(
       ofType(MemberListActions.deleteMemberConfirmed),
       concatLatestFrom(() => this.store.select(MemberListSelectors.selectedMember)),
-      switchMap(([, memberToDelete]) => {
-        return this.membersService.deleteMember(memberToDelete).pipe(
-          map((deletedMember) => {
-            return deletedMember
-              ? MemberListActions.deleteMemberSucceeded({ deletedMember })
-              : MemberListActions.deleteMemberFailed({
-                  errorMessage: '[Member List Effects] Unknown error',
-                });
-          })
-        );
-      })
+      switchMap(([, memberToDelete]) =>
+        this.membersService.deleteMember(memberToDelete).pipe(
+          map((response: ServiceResponse) =>
+            response.error
+              ? MemberListActions.deleteMemberFailed({ error: response.error })
+              : MemberListActions.deleteMemberSucceeded({
+                  deletedMember: response.payload.member,
+                })
+          )
+        )
+      )
     )
   );
 
@@ -49,8 +50,8 @@ export class MemberListEffects {
     () =>
       this.actions$.pipe(
         ofType(MemberListActions.loadMembersFailed, MemberListActions.deleteMemberFailed),
-        tap(({ errorMessage }) => {
-          console.error(errorMessage);
+        tap(({ error }) => {
+          console.error(`[Member List Effects]' ${error.message}`);
         })
       ),
     { dispatch: false }

@@ -51,7 +51,7 @@ export const publishArticleSucceeded = createAction(
 );
 export const publishArticleFailed = createAction(
   ArticleEditorActionTypes.PUBLISH_ARTICLE_FAILED,
-  props<{ errorMessage: string }>()
+  props<{ error: Error }>()
 );
 
 export const updateArticleSelected = createAction(
@@ -70,7 +70,7 @@ export const updateArticleSucceeded = createAction(
 );
 export const updateArticleFailed = createAction(
   ArticleEditorActionTypes.UPDATE_ARTICLE_FAILED,
-  props<{ errorMessage: string }>()
+  props<{ error: Error }>()
 );
 
 export const cancelSelected = createAction(ArticleEditorActionTypes.CANCEL_SELECTED);

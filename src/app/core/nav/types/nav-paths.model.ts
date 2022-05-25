@@ -1,4 +1,4 @@
-export enum NavPaths {
+export enum NavPathTypes {
   HOME = '',
   MEMBERS = 'members',
   MEMBERS_ADD = 'members/add',

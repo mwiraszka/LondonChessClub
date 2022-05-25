@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { concatLatestFrom, createEffect, Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
+
+import { ServiceResponse } from '@app/shared/types';
 
 import * as ArticleEditorActions from './article-editor.actions';
 import * as ArticleEditorSelectors from './article-editor.selectors';
@@ -31,16 +32,13 @@ export class ArticleEditorEffects {
       concatLatestFrom(() => this.store.select(ArticleEditorSelectors.articleCurrently)),
       switchMap(([, articleToPublish]) => {
         return this.articlesService.addArticle(articleToPublish).pipe(
-          map((publishedArticle) => {
-            return ArticleEditorActions.publishArticleSucceeded({ publishedArticle });
-          }),
-          catchError(() => {
-            return of(
-              ArticleEditorActions.publishArticleFailed({
-                errorMessage: '[Article Editor Effects] Unknown error',
-              })
-            );
-          })
+          map((response: ServiceResponse) =>
+            response.error
+              ? ArticleEditorActions.publishArticleFailed({ error: response.error })
+              : ArticleEditorActions.publishArticleSucceeded({
+                  publishedArticle: response.payload.article,
+                })
+          )
         );
       })
     )
@@ -52,16 +50,13 @@ export class ArticleEditorEffects {
       concatLatestFrom(() => this.store.select(ArticleEditorSelectors.articleCurrently)),
       switchMap(([, articleToUpdate]) => {
         return this.articlesService.updateArticle(articleToUpdate).pipe(
-          map((updatedArticle) => {
-            return ArticleEditorActions.updateArticleSucceeded({ updatedArticle });
-          }),
-          catchError(() => {
-            return of(
-              ArticleEditorActions.updateArticleFailed({
-                errorMessage: '[Article Editor Effects] Unknown error',
-              })
-            );
-          })
+          map((response: ServiceResponse) =>
+            response.error
+              ? ArticleEditorActions.updateArticleFailed({ error: response.error })
+              : ArticleEditorActions.updateArticleSucceeded({
+                  updatedArticle: response.payload.article,
+                })
+          )
         );
       })
     )
@@ -74,7 +69,9 @@ export class ArticleEditorEffects {
           ArticleEditorActions.publishArticleFailed,
           ArticleEditorActions.updateArticleFailed
         ),
-        tap(({ errorMessage }) => console.error(errorMessage))
+        tap(({ error }) => {
+          console.error(`[Article Editor Effects]' ${error.message}`);
+        })
       ),
     { dispatch: false }
   );

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ClarityIcons, userIcon } from '@cds/core/icon';
 
 import { NavFacade } from './store/nav.facade';
-import { NavPaths } from './types/nav-paths.model';
+import { NavPathTypes } from './types/nav-paths.model';
 
 @Component({
   selector: 'lcc-nav',
@@ -11,7 +11,7 @@ import { NavPaths } from './types/nav-paths.model';
   providers: [NavFacade],
 })
 export class NavComponent {
-  NavPaths = NavPaths;
+  NavPathTypes = NavPathTypes;
 
   constructor(public facade: NavFacade) {}
 

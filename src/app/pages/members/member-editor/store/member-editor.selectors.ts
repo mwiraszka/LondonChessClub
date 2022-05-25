@@ -1,12 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { AppStoreFeatures } from '@app/shared/types';
+import { AppStoreFeatureTypes } from '@app/shared/types';
 import { areSame } from '@app/shared/utils';
 
 import { MemberEditorState } from './member-editor.state';
 
 export const memberEditorFeatureSelector = createFeatureSelector<MemberEditorState>(
-  AppStoreFeatures.MEMBER_EDITOR
+  AppStoreFeatureTypes.MEMBER_EDITOR
 );
 
 export const memberBeforeEdit = createSelector(

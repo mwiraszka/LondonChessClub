@@ -7,6 +7,7 @@ $lcc-info: hsl(210, 60%, 50%);
 $lcc-link: hsl(210, 70%, 55%, 0.9);
 $lcc-select: hsl(210, 100%, 80%);
 
+$lcc-background: hsl(0, 0%, 90%);
 $lcc-white: hsl(0, 0%, 95%);
 $lcc-gray: hsl(0, 0%, 60%);
 $lcc-black: hsl(0, 0%, 5%);
@@ -55,6 +56,6 @@ $breakpoints: (
 );
 
 /* Miscellaneous default global variables */
-$lcc-input-border-radius: 2px;
-$lcc-button-border-radius: 5px;
+$lcc-border-radius-sm: 2px;
+$lcc-border-radius-lg: 5px;
 $lcc-spacing: 20px;

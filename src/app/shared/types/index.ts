@@ -1,3 +1,4 @@
-export { AppPages } from './app-pages.model';
-export { AppStoreFeatures } from './app-store-features.model';
-export { User } from './user.model';
+export { AppPageTypes } from './app-pages.model';
+export { AppStoreFeatureTypes } from './app-store-features.model';
+export { ServiceResponse } from './service-response.model';
+export { User, UserRoleTypes } from './user.model';

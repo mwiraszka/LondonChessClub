@@ -1,4 +1,4 @@
-export enum AppStoreFeatures {
+export enum AppStoreFeatureTypes {
   HOME = 'home',
   MEMBER_LIST = 'member-list',
   MEMBER_EDITOR = 'member-editor',

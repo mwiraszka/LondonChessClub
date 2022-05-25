@@ -9,7 +9,7 @@ import { MemberEditorActions, MemberListActions } from '@app/pages/members';
 import { AlertActions } from '@app/shared/components/alert';
 
 import * as NavActions from './nav.actions';
-import { NavPaths } from '../types/nav-paths.model';
+import { NavPathTypes } from '../types/nav-paths.model';
 
 @Injectable()
 export class NavEffects {
@@ -21,7 +21,7 @@ export class NavEffects {
           MemberEditorActions.addMemberSucceeded,
           MemberEditorActions.updateMemberSucceeded
         ),
-        tap(() => this.router.navigate([NavPaths.HOME]))
+        tap(() => this.router.navigate([NavPathTypes.HOME]))
       ),
     { dispatch: false }
   );
@@ -35,7 +35,7 @@ export class NavEffects {
           MemberEditorActions.addMemberSucceeded,
           MemberEditorActions.updateMemberSucceeded
         ),
-        tap(() => this.router.navigate([NavPaths.MEMBERS]))
+        tap(() => this.router.navigate([NavPathTypes.MEMBERS]))
       ),
     { dispatch: false }
   );
@@ -44,7 +44,7 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(MemberListActions.createMemberSelected),
-        tap(() => this.router.navigate([NavPaths.MEMBERS_ADD]))
+        tap(() => this.router.navigate([NavPathTypes.MEMBERS_ADD]))
       ),
     { dispatch: false }
   );
@@ -53,8 +53,9 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(MemberListActions.editMemberSelected),
+        tap((val) => console.log('::', val)),
         tap(({ memberToEdit }) =>
-          this.router.navigate([NavPaths.MEMBERS_EDIT, memberToEdit.userId])
+          this.router.navigate([NavPathTypes.MEMBERS_EDIT, memberToEdit.id])
         )
       ),
     { dispatch: false }
@@ -64,7 +65,7 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(NavActions.scheduleSelected, AlertActions.seeScheduleSelected),
-        tap(() => this.router.navigate([NavPaths.SCHEDULE]))
+        tap(() => this.router.navigate([NavPathTypes.SCHEDULE]))
       ),
     { dispatch: false }
   );
@@ -78,7 +79,7 @@ export class NavEffects {
           ArticleEditorActions.publishArticleSucceeded,
           ArticleEditorActions.updateArticleSucceeded
         ),
-        tap(() => this.router.navigate([NavPaths.NEWS]))
+        tap(() => this.router.navigate([NavPathTypes.NEWS]))
       ),
     { dispatch: false }
   );
@@ -87,7 +88,7 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(ArticleListActions.createArticleSelected),
-        tap(() => this.router.navigate([NavPaths.NEWS_COMPOSE]))
+        tap(() => this.router.navigate([NavPathTypes.NEWS_COMPOSE]))
       ),
     { dispatch: false }
   );
@@ -97,7 +98,7 @@ export class NavEffects {
       this.actions$.pipe(
         ofType(ArticleListActions.editArticleSelected),
         tap(({ articleToEdit }) =>
-          this.router.navigate([NavPaths.NEWS_EDIT, articleToEdit.id])
+          this.router.navigate([NavPathTypes.NEWS_EDIT, articleToEdit.id])
         )
       ),
     { dispatch: false }
@@ -107,7 +108,7 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(NavActions.cityChampionSelected),
-        tap(() => this.router.navigate([NavPaths.CITY_CHAMPION]))
+        tap(() => this.router.navigate([NavPathTypes.CITY_CHAMPION]))
       ),
     { dispatch: false }
   );
@@ -116,7 +117,7 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(NavActions.photoGallerySelected),
-        tap(() => this.router.navigate([NavPaths.PHOTO_GALLERY]))
+        tap(() => this.router.navigate([NavPathTypes.PHOTO_GALLERY]))
       ),
     { dispatch: false }
   );
@@ -125,7 +126,7 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(NavActions.aboutSelected),
-        tap(() => this.router.navigate([NavPaths.ABOUT]))
+        tap(() => this.router.navigate([NavPathTypes.ABOUT]))
       ),
     { dispatch: false }
   );
@@ -138,7 +139,7 @@ export class NavEffects {
           NavActions.logoutSelected,
           AuthActions.alreadyHaveAccountSelected
         ),
-        tap(() => this.router.navigate([NavPaths.LOGIN]))
+        tap(() => this.router.navigate([NavPathTypes.LOGIN]))
       ),
     { dispatch: false }
   );
@@ -147,7 +148,7 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.dontHaveAccountSelected),
-        tap(() => this.router.navigate([NavPaths.SIGN_UP]))
+        tap(() => this.router.navigate([NavPathTypes.SIGN_UP]))
       ),
     { dispatch: false }
   );

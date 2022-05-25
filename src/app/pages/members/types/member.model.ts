@@ -1,25 +1,25 @@
 export interface Member {
-  userId: string | undefined;
+  id: string | undefined;
+  email: string;
   firstName: string;
   lastName: string;
   city: string;
   phoneNumber: string;
   dateOfBirth?: string;
-  email: string;
-  dateJoined: string;
   rating: number;
   peakRating: number;
+  dateJoined: string;
 }
 
 export const newMemberFormTemplate: Member = {
-  userId: undefined,
+  id: undefined,
+  email: '',
   firstName: '',
   lastName: '',
   city: 'London',
   phoneNumber: '',
   dateOfBirth: '',
-  email: '',
-  dateJoined: new Date().toISOString().substring(0, 10),
   rating: 1000,
   peakRating: 1000,
+  dateJoined: new Date().toISOString().substring(0, 10),
 };

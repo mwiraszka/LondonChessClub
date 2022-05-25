@@ -26,7 +26,7 @@ export const loadArticlesSucceeded = createAction(
 );
 export const loadArticlesFailed = createAction(
   ArticleListActionTypes.LOAD_ARTICLES_FAILED,
-  props<{ errorMessage: string }>()
+  props<{ error: Error }>()
 );
 
 export const createArticleSelected = createAction(
@@ -53,5 +53,5 @@ export const deleteArticleSucceeded = createAction(
 );
 export const deleteArticleFailed = createAction(
   ArticleListActionTypes.DELETE_ARTICLE_FAILED,
-  props<{ errorMessage: string }>()
+  props<{ error: Error }>()
 );

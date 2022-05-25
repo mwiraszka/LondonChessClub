@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { NavActions } from '@app/core/nav';
-import { User } from '@app/shared/types';
+import { User, UserRoleTypes } from '@app/shared/types';
 
 import { AuthService } from '../auth.service';
 import * as AuthActions from './auth.actions';
@@ -21,11 +21,9 @@ export class AuthEffects {
           map((loginResponse: LoginResponse) => {
             const user: User = {
               id: 'test-3nfo13-1j3nf',
-              firstName: 'Michal*',
-              lastName: 'Wiraszka*',
               email: 'michal@test.com*',
-              role: 'admin',
-              isAuthenticated: true,
+              role: UserRoleTypes.ADMIN,
+              isVerified: true,
             };
             return AuthActions.loginSucceeded({
               user,
@@ -62,11 +60,9 @@ export class AuthEffects {
           map((signUpResponse: SignUpResponse) => {
             const user: User = {
               id: 'test-3nfo13-1j3nf',
-              firstName: 'Michal*',
-              lastName: 'Wiraszka*',
               email: 'michal@test.com*',
-              role: 'admin',
-              isAuthenticated: true,
+              role: UserRoleTypes.ADMIN,
+              isVerified: true,
             };
             return AuthActions.signUpSucceeded({
               user,

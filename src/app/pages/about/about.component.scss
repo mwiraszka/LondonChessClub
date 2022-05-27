@@ -45,8 +45,8 @@ h4 {
   height: 100%;
   margin: 4px;
   padding: 16px;
-  border-radius: 4px;
-  background-color: lighten($lcc-white, 2%);
+  border-radius: $lcc-border-radius-sm;
+  background-color: darken($lcc-white, 6%);
 
   &.lcc-about-details {
     grid-area: details;

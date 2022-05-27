@@ -1,5 +1,15 @@
 import { Component } from '@angular/core';
-import { ClarityIcons, userIcon } from '@cds/core/icon';
+import {
+  announcementIcon,
+  ClarityIcons,
+  crownIcon,
+  homeIcon,
+  imageGalleryIcon,
+  tasksIcon,
+  unknownStatusIcon,
+  userIcon,
+  usersIcon,
+} from '@cds/core/icon';
 
 import { NavFacade } from './store/nav.facade';
 import { NavPathTypes } from './types/nav-paths.model';
@@ -16,6 +26,13 @@ export class NavComponent {
   constructor(public facade: NavFacade) {}
 
   ngOnInit(): void {
+    ClarityIcons.addIcons(announcementIcon);
+    ClarityIcons.addIcons(crownIcon);
+    ClarityIcons.addIcons(homeIcon);
+    ClarityIcons.addIcons(imageGalleryIcon);
+    ClarityIcons.addIcons(tasksIcon);
+    ClarityIcons.addIcons(unknownStatusIcon);
     ClarityIcons.addIcons(userIcon);
+    ClarityIcons.addIcons(usersIcon);
   }
 }

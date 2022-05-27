@@ -1,3 +1,4 @@
+@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
 :host {
@@ -47,4 +48,24 @@
   background-color: inherit;
   color: lighten($lcc-black, 10%);
   font-size: $h4;
+}
+
+// WIP - should be larger icons on medium widths, and centred better;
+// should also have borders to make it clearer that these are buttons
+@include respond-to('lt-md') {
+  .lcc-nav-item {
+    width: 30px !important; // temp fix
+  }
+
+  .wide-view {
+    visibility: hidden;
+    display: none;
+  }
+}
+
+@include respond-to('gt-md') {
+  .narrow-view {
+    visibility: hidden;
+    display: none;
+  }
 }

@@ -95,7 +95,7 @@ export class ArticleEditorComponent implements OnInit, OnDestroy {
       title: [article.title, [Validators.required, Validators.pattern(/[^\s]/)]],
       subtitle: [article.subtitle, [Validators.required, Validators.pattern(/[^\s]/)]],
       headerImage: [article.headerImage, Validators.required, mimeTypeValidator],
-      authorUserId: [article.authorUserId, Validators.required],
+      authorId: [article.authorId, Validators.required],
       dateCreated: [article.dateCreated, [Validators.required, dateValidator]],
       dateEdited: [article.dateEdited, dateValidator],
       body: [article.body, [Validators.required, Validators.pattern(/[^\s]/)]],

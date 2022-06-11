@@ -1,9 +1,23 @@
+@import 'styles/abstracts/variables';
+
 :host {
   display: flex;
   justify-content: center;
 }
 
-.lcc-canvas {
-  width: 100%;
-  max-width: calc(100% - 60px);
+.lcc-articles {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.lcc-article {
+  width: 240px;
+  height: 280px;
+  padding: 6px;
+  background-color: darken($lcc-white, 6%);
 }

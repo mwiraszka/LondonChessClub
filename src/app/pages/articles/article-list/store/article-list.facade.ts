@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { of } from 'rxjs';
 
 import * as ArticleListActions from './article-list.actions';
 import * as ArticleListSelectors from './article-list.selectors';
-import { Article } from '../../types/article.model';
+import { Article, MOCK_ARTICLES } from '../../types/article.model';
 
 @Injectable()
 export class ArticleListFacade {
-  readonly articles$ = this.store.select(ArticleListSelectors.articles);
+  // readonly articles$ = this.store.select(ArticleListSelectors.articles);
+  readonly articles$ = of(MOCK_ARTICLES); // temp
   readonly isLoading$ = this.store.select(ArticleListSelectors.isLoading);
 
   constructor(private readonly store: Store) {}

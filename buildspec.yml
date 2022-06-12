@@ -4,14 +4,14 @@ phases:
     runtime-versions:
       nodejs: 14
     commands:
-      - echo "Installing dependencies..."
+      - echo `date` Installing dependencies...
       - npm install
       - npm install -g @angular/cli@13.0.3
   build:
     commands:
-      - echo "Building Angular project..."
+      - echo `date` Building Angular project...
       - ng build
   post_build:
     commands:
-      - echo "Updating files in the S3 bucket..."
-      - aws s3 sync dist/ s3://london-chess-club --delete
+      - echo `date` Updating files in the S3 bucket...
+      - aws s3 sync dist/ s3://londonchessclub.ca --delete

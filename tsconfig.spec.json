@@ -5,8 +5,7 @@
     "outDir": "./out-tsc/spec",
     "types": [
       "jasmine"
-    ],
-    "module": "esnext",
+    ]
   },
   "files": [
     "src/polyfills.ts"

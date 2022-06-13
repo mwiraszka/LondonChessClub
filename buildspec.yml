@@ -2,11 +2,11 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 14
+      nodejs: 16
     commands:
       - echo `date` Installing dependencies...
       - npm install
-      - npm install -g @angular/cli@13.0.3
+      - npm install -g @angular/cli@14.0.1
   build:
     commands:
       - echo `date` Building Angular project...

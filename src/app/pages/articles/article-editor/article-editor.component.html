@@ -46,9 +46,9 @@
 				</cds-icon>
 			</div>
 
-			<label for="header-image">Header image</label>
+			<label for="header-image-input">Header image</label>
 			<input type="file"
-						 name="header-image"
+						 name="header-image-input"
 						 #fileUploader
 						 (change)="onImageChange($event)" />
 			<button class="lcc-secondary-button"
@@ -56,8 +56,7 @@
 							(click)="fileUploader.click()">
 				Choose header image
 			</button>
-			<div class="image-preview"
-					 *ngIf="imagePreview !== '' && imagePreview">
+			<div class="image-preview">
 				<img [src]="imagePreview"
 						 [alt]="form.value.title">
 			</div>

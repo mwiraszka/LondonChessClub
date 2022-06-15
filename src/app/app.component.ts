@@ -15,7 +15,7 @@ import { LoaderService, UpdateService } from '@app/shared/services';
 export class AppComponent implements OnInit {
   showAlert$: Observable<boolean>;
   showModal$: Observable<boolean>;
-  showToasts$: Observable<boolean>;
+  showToaster$: Observable<boolean>;
   isLoading!: boolean;
 
   constructor(
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     this.update.subscribeToVersionUpdates();
     this.showAlert$ = this.store.select(AlertSelectors.isActive);
     this.showModal$ = this.store.select(ModalSelectors.isOpen);
-    this.showToasts$ = this.store.select(ToasterSelectors.isDisplayingToasts);
+    this.showToaster$ = this.store.select(ToasterSelectors.isDisplayingToasts);
     this.loader.status$.subscribe((isLoading: boolean) => {
       this.isLoading = isLoading;
       this.changeDetectionRef.detectChanges();

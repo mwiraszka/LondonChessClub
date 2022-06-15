@@ -13,7 +13,6 @@ export class ArticleEditorFacade {
     ArticleEditorSelectors.articleBeforeEdit
   );
   readonly articleCurrently$ = this.store.select(ArticleEditorSelectors.articleCurrently);
-
   readonly isEditMode$ = this.store.select(ArticleEditorSelectors.isEditMode);
   readonly hasUnsavedChanges$ = this.store.select(
     ArticleEditorSelectors.hasUnsavedChanges

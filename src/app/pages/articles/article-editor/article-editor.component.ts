@@ -33,7 +33,7 @@ export class ArticleEditorComponent implements OnInit, OnDestroy {
       .pipe(
         tap((article) => {
           this.initForm(article);
-          this.imagePreview = article.headerImage as string;
+          this.imagePreview = article.headerImageUrl as string;
         }),
         first()
       )
@@ -69,7 +69,7 @@ export class ArticleEditorComponent implements OnInit, OnDestroy {
 
   onImageChange(event: Event): void {
     const file = (event.target as HTMLInputElement).files[0];
-    this.form.get('headerImage').patchValue(file);
+    this.form.get('headerImageUrl').patchValue(file);
 
     const reader = new FileReader();
     reader.onload = () => {
@@ -94,7 +94,7 @@ export class ArticleEditorComponent implements OnInit, OnDestroy {
     this.form = this.formBuilder.group({
       title: [article.title, [Validators.required, Validators.pattern(/[^\s]/)]],
       subtitle: [article.subtitle, [Validators.required, Validators.pattern(/[^\s]/)]],
-      headerImage: [article.headerImage, Validators.required, mimeTypeValidator],
+      headerImageUrl: [article.headerImageUrl, Validators.required, mimeTypeValidator],
       authorId: [article.authorId, Validators.required],
       dateCreated: [article.dateCreated, [Validators.required, dateValidator]],
       dateEdited: [article.dateEdited, dateValidator],

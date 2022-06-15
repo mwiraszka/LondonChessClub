@@ -61,7 +61,7 @@ export class ArticlesService {
   updateArticle(articleToUpdate: Article): Observable<ServiceResponse> {
     return this.authService.getToken().pipe(
       switchMap((token) =>
-        this.http.put<any>(API_ENDPOINT + articleToUpdate.id, articleToUpdate, {
+        this.http.put<null>(API_ENDPOINT + articleToUpdate.id, articleToUpdate, {
           headers: new HttpHeaders({
             Authorization: token,
           }),

@@ -1,3 +1,4 @@
+@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
 .lcc-app-container {
@@ -20,8 +21,15 @@ lcc-footer {
 }
 
 lcc-toaster {
-  position: absolute;
+  position: fixed;
   bottom: 1em;
   right: 1em;
   z-index: 100;
+}
+
+@include respond-to('lt-md') {
+  lcc-toaster {
+    right: 50%;
+    transform: translateX(50%);
+  }
 }

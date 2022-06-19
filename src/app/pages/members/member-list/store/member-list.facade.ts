@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
+import * as AuthSelectors from '@app/core/auth/store/auth.selectors';
+
 import * as MemberListActions from './member-list.actions';
 import * as MemberListSelectors from './member-list.selectors';
 import { Member } from '../../types/member.model';
@@ -9,6 +11,9 @@ import { Member } from '../../types/member.model';
 export class MemberListFacade {
   readonly members$ = this.store.select(MemberListSelectors.members);
   readonly isLoading$ = this.store.select(MemberListSelectors.isLoading);
+  readonly isAdmin$ = this.store.select(AuthSelectors.isAdmin);
+  readonly sortedBy$ = this.store.select(MemberListSelectors.sortedBy);
+  readonly isAscending$ = this.store.select(MemberListSelectors.isAscending);
 
   constructor(private readonly store: Store) {}
 
@@ -16,17 +21,19 @@ export class MemberListFacade {
     this.store.dispatch(MemberListActions.loadMembersStarted());
   }
 
+  onSelectTableHeader(header: string): void {
+    this.store.dispatch(MemberListActions.tableHeaderSelected({ header }));
+  }
+
   onAddMember(): void {
     this.store.dispatch(MemberListActions.createMemberSelected());
   }
 
-  onEditMember(member: Member): void {
-    this.store.dispatch(MemberListActions.editMemberSelected({ memberToEdit: member }));
+  onEditMember(memberToEdit: Member): void {
+    this.store.dispatch(MemberListActions.editMemberSelected({ memberToEdit }));
   }
 
-  onDeleteMember(member: Member): void {
-    this.store.dispatch(
-      MemberListActions.deleteMemberSelected({ memberToDelete: member })
-    );
+  onDeleteMember(memberToDelete: Member): void {
+    this.store.dispatch(MemberListActions.deleteMemberSelected({ memberToDelete }));
   }
 }

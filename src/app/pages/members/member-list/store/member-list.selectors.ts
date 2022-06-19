@@ -22,3 +22,13 @@ export const isLoading = createSelector(
   memberListFeatureSelector,
   (state) => state.isLoading
 );
+
+export const sortedBy = createSelector(
+  memberListFeatureSelector,
+  (state) => state.sortedBy
+);
+
+export const isAscending = createSelector(
+  memberListFeatureSelector,
+  (state) => state.isAscending
+);

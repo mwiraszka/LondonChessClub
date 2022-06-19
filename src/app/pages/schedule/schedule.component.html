@@ -1,5 +1,5 @@
 <h3>Schedule of Events</h3>
-<table class="lcc-schedule-table">
+<table class="lcc-table lcc-schedule-table">
 	<thead>
 		<th>Date</th>
 		<th>Event</th>
@@ -7,11 +7,9 @@
 	<tbody>
 		<tr *ngFor="let event of mockEvents; let last = last;"
 				[ngClass]="{'last-row': last}">
-			<td class="date">
-				<h6>{{ event.date }}</h6>
-			</td>
+			<td class="date">{{ event.date }}</td>
 			<td class="title-and-description">
-				<h5>{{ event.title }}</h5>
+				<h6>{{ event.title }}</h6>
 				<p>{{ event.description }}</p>
 			</td>
 		</tr>

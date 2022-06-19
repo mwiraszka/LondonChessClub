@@ -1,13 +1,142 @@
+@import 'styles/abstracts/mixins';
+@import 'styles/abstracts/variables';
+
+$icon-width: 32px;
+
 :host {
   display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
   justify-content: center;
 }
 
 .lcc-canvas {
-  width: 100%;
-  max-width: calc(100% - 60px);
+  max-width: unset;
 }
 
-button {
-  align-self: flex-start;
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $lcc-white;
+  width: 100%;
+  line-height: 50px;
+  padding: 8px;
+
+  h3 span {
+    color: $lcc-secondary-text;
+  }
+}
+
+table {
+  th {
+    .header-content {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .icon-container {
+      display: inline-block;
+      width: 10px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: lighten($lcc-primary, 5%);
+    }
+  }
+
+  tr {
+    .row-controls {
+      display: none;
+    }
+
+    &:focus,
+    &:hover {
+      background-color: lighten($lcc-select, 15%);
+
+      .row-controls {
+        position: absolute;
+        z-index: 10;
+        translate: calc(#{-2 * $icon-width});
+        display: flex;
+        flex-flow: row nowrap;
+
+        button {
+          background-color: $lcc-white;
+          padding: 3px;
+          border: 3px solid darken($lcc-white, 5%);
+          border-radius: $lcc-border-radius-lg;
+
+          &:focus,
+          &:hover {
+            cursor: pointer;
+            background-color: white;
+          }
+        }
+      }
+    }
+  }
+
+  td {
+    &.rating,
+    &.peak-rating {
+      text-align: right;
+    }
+
+    &.phone-number,
+    &.date-of-birth,
+    &.date-joined {
+      text-align: center;
+    }
+  }
+
+  footer {
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    justify-content: space-between;
+    padding: 4px 12px;
+    color: $lcc-secondary-text;
+
+    a {
+      background-color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      span {
+        // Manual adjustment to compensate for icon offset
+        margin-top: 2px;
+      }
+    }
+
+    aside {
+      display: flex;
+      align-items: center;
+      font-size: 90%;
+    }
+  }
+}
+
+@include respond-to('lt-lg') {
+  .date-of-birth,
+  .date-joined {
+    display: none;
+  }
+}
+
+@include respond-to('lt-md') {
+  .phone-number {
+    display: none;
+  }
+}
+
+@include respond-to('lt-sm') {
+  .city,
+  .peak-rating {
+    display: none;
+  }
 }

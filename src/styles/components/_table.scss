@@ -1,0 +1,32 @@
+@import 'styles/abstracts/variables';
+
+.lcc-table {
+  display: inline-block;
+  font-size: $h4;
+  margin: 8px;
+  border-spacing: 0;
+  border-radius: $lcc-border-radius-sm;
+  box-shadow: 3px 2px 8px 0 lighten($color: $lcc-gray, $amount: 2%);
+  overflow: hidden;
+  color: $lcc-primary-text;
+
+  th {
+    padding: 6px 12px;
+    background-color: $lcc-primary;
+    white-space: nowrap;
+    color: $lcc-white;
+    font-weight: 200;
+  }
+
+  tr {
+    background-color: lighten($lcc-white, 2%);
+
+    &:nth-child(even) {
+      background-color: lighten($lcc-white, 7%);
+    }
+  }
+
+  td {
+    padding: 8px 12px;
+  }
+}

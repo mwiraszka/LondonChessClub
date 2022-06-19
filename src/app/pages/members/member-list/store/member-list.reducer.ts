@@ -7,6 +7,8 @@ const initialState: MemberListState = {
   members: [],
   selectedMember: null,
   isLoading: false,
+  sortedBy: 'rating',
+  isAscending: false,
 };
 
 const memberListReducer = createReducer(
@@ -23,6 +25,12 @@ const memberListReducer = createReducer(
   on(MemberListActions.loadMembersFailed, (state) => ({
     ...state,
     isLoading: false,
+  })),
+  on(MemberListActions.membersSorted, (state, action) => ({
+    ...state,
+    members: action.sortedMembers,
+    isAscending: action.isAscending,
+    sortedBy: action.sortedBy,
   })),
   on(MemberListActions.createMemberSelected, (state) => ({
     ...state,

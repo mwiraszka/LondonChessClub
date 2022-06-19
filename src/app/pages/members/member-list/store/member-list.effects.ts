@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { map, switchMap, tap } from 'rxjs/operators';
 
 import { ServiceResponse } from '@app/shared/types';
+import { camelize, customSort } from '@app/shared/utils';
 
 import * as MemberListActions from './member-list.actions';
 import * as MemberListSelectors from './member-list.selectors';
@@ -43,6 +44,26 @@ export class MemberListEffects {
           )
         )
       )
+    )
+  );
+
+  sortMembers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MemberListActions.tableHeaderSelected),
+      concatLatestFrom(() => [
+        this.store.select(MemberListSelectors.members),
+        this.store.select(MemberListSelectors.sortedBy),
+        this.store.select(MemberListSelectors.isAscending),
+      ]),
+      map(([{ header }, members, sortedBy, isAscending]) => {
+        const key = header;
+        isAscending = sortedBy === key ? !isAscending : isAscending;
+        return MemberListActions.membersSorted({
+          sortedMembers: [...members].sort(customSort(key, isAscending)),
+          sortedBy: header,
+          isAscending,
+        });
+      })
     )
   );
 

@@ -1,32 +1,75 @@
 <div class="lcc-canvas">
-  <button class="lcc-secondary-button lcc-primary-button"
-          (click)="facade.onAddMember()">
-    Add new member
-  </button>
-  <clr-datagrid>
-    <clr-dg-column [clrDgField]="'firstName'">First Name</clr-dg-column>
-    <clr-dg-column [clrDgField]="'lastName'">Last Name</clr-dg-column>
-    <clr-dg-column [clrDgField]="'city'">City</clr-dg-column>
-    <clr-dg-column [clrDgField]="'rating'">Rating</clr-dg-column>
-    <clr-dg-column [clrDgField]="'peakRating'">Peak Rating</clr-dg-column>
+	<header>
+		<h3>
+			<span>London Chess Club</span>&nbsp;Members
+		</h3>
+	</header>
 
-    <clr-dg-row *clrDgItems="let member of facade.members$ | async">
-      <clr-dg-action-overflow>
-        <button class="action-item"
-                (click)="facade.onEditMember(member)">
-          Edit
-        </button>
-        <button class="action-item"
-                (click)="facade.onDeleteMember(member)">
-          Delete
-        </button>
-      </clr-dg-action-overflow>
-      <clr-dg-cell>{{ member.firstName }}</clr-dg-cell>
-      <clr-dg-cell>{{ member.lastName }}</clr-dg-cell>
-      <clr-dg-cell>{{ member.city }}</clr-dg-cell>
-      <clr-dg-cell>{{ member.rating }}</clr-dg-cell>
-      <clr-dg-cell>{{ member.peakRating }}</clr-dg-cell>
-    </clr-dg-row>
-    <clr-dg-footer>{{ (facade.members$ | async)?.length }} members</clr-dg-footer>
-  </clr-datagrid>
+	<table class="lcc-table">
+		<thead>
+			<th *ngFor="let header of tableHeaders"
+					[ngClass]="kebabize(header)"
+					(click)="facade.onSelectTableHeader(camelize(kebabize(header)))">
+				<div class="header-content">
+					<span>{{ header }}</span>
+					<div class="icon-container">
+						<cds-icon *ngIf="(facade.sortedBy$ | async) === camelize(kebabize(header))"
+											shape="angle"
+											size="xs"
+											[attr.flip]="(facade.isAscending$ | async) ? 'vertical' : undefined">
+						</cds-icon>
+					</div>
+				</div>
+			</th>
+		</thead>
+
+		<tbody>
+			<tr *ngFor="let member of facade.members$ | async; let last = last;"
+					[ngClass]="{'last-row': last}">
+				<td class="first-name">{{ member.firstName }}</td>
+				<td class="last-name">{{ member.lastName }}</td>
+				<td class="city">{{ member.city }}</td>
+				<td class="rating">{{ member.rating }}</td>
+				<td class="peak-rating">{{ member.peakRating }}</td>
+				<ng-container *ngIf="facade.isAdmin$ | async">
+					<td class="phone-number">{{ member.phoneNumber }}</td>
+					<td class="date-of-birth">{{ member?.dateOfBirth }}</td>
+					<td class="date-joined">{{ member.dateJoined }}</td>
+				</ng-container>
+
+				<div *ngIf="facade.isAdmin$ | async"
+						 class="row-controls">
+					<button (click)="facade.onEditMember(member)">
+						<cds-icon shape="pencil"
+											size="sm"
+											[tooltip]="'Edit ' + member.firstName">
+						</cds-icon>
+					</button>
+					<button (click)="facade.onDeleteMember(member)">
+						<cds-icon shape="trash"
+											size="sm"
+											status="danger"
+											[tooltip]="'Delete ' + member.firstName">
+						</cds-icon>
+					</button>
+				</div>
+
+			</tr>
+		</tbody>
+
+		<footer>
+			<aside>
+				<span>{{ (facade.members$ | async)?.length }} members</span>
+			</aside>
+			<a *ngIf="facade.isAdmin$ | async"
+				 class="lcc-link"
+				 (click)="facade.onAddMember()">
+				<cds-icon shape="plus-circle"
+									size="sm">
+				</cds-icon>
+				<span>Add member</span>
+			</a>
+		</footer>
+
+	</table>
 </div>

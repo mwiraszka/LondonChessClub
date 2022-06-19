@@ -7,6 +7,9 @@ enum MemberListActionTypes {
   LOAD_MEMBERS_SUCCEEDED = '[Member List] Load members succeeded',
   LOAD_MEMBERS_FAILED = '[Member List] Load members failed',
 
+  TABLE_HEADER_SELECTED = '[Member List] Table header selected',
+  MEMBERS_SORTED = '[Member List] Members sorted',
+
   CREATE_MEMBER_SELECTED = '[Member List] Create member selected',
   EDIT_MEMBER_SELECTED = '[Member List] Edit member selected',
 
@@ -27,6 +30,15 @@ export const loadMembersSucceeded = createAction(
 export const loadMembersFailed = createAction(
   MemberListActionTypes.LOAD_MEMBERS_FAILED,
   props<{ error: Error }>()
+);
+
+export const tableHeaderSelected = createAction(
+  MemberListActionTypes.TABLE_HEADER_SELECTED,
+  props<{ header: string }>()
+);
+export const membersSorted = createAction(
+  MemberListActionTypes.MEMBERS_SORTED,
+  props<{ sortedMembers: Member[]; sortedBy: string; isAscending: boolean }>()
 );
 
 export const createMemberSelected = createAction(

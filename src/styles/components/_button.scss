@@ -25,7 +25,6 @@
   &:hover,
   &:focus {
     box-shadow: 2px 4px 7px -2px lighten($lcc-box-shadow, 5%);
-    transform: translate(0, -1px);
     outline: none;
   }
 }

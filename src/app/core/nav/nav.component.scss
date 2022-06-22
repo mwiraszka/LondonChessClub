@@ -3,7 +3,9 @@
 
 :host {
   display: flex;
-  background-color: lighten($lcc-white, 10%);
+  justify-content: center;
+  background-color: $lcc-color--bg-nav;
+  padding: 8px $lcc-app-side-padding;
 }
 
 .lcc-nav-items {
@@ -11,20 +13,26 @@
   flex-flow: row nowrap;
   gap: 16px;
   width: 100%;
-  padding: 8px 14px;
+  max-width: $lcc-app-max-width;
+}
+
+.lcc-nav-links {
+  display: flex;
+  flex-flow: row nowrap;
 }
 
 .lcc-user-account {
-  margin-left: auto;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
   gap: 4px;
+  margin-left: auto;
+  padding-right: 8px; // manually line up with alert close icon above
 
   p {
     font-size: $h4;
-    color: lighten($lcc-black, 15%);
+    color: lighten($lcc-color--black, 15%);
   }
 
   .lcc-login-text {
@@ -38,15 +46,15 @@
   left: 0;
   height: 28px;
   width: 80px;
-  background-color: lighten($lcc-gray, 20%);
-  border-top: 3px solid lighten($lcc-black, 10%);
+  background-color: lighten($lcc-color--gray, 20%);
+  border-top: 3px solid lighten($lcc-color--black, 10%);
 }
 
 .lcc-logout-button {
   width: 100%;
   border: none;
   background-color: inherit;
-  color: lighten($lcc-black, 10%);
+  color: lighten($lcc-color--black, 10%);
   font-size: $h4;
 }
 

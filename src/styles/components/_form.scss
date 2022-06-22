@@ -16,7 +16,7 @@
 
   h3 {
     // !important should only be necessary for as long as CDS styles are present
-    color: $lcc-primary-text !important;
+    color: $lcc-color--text-primary !important;
     width: 100%;
   }
 }
@@ -32,7 +32,7 @@
     align-self: center;
     text-align: right;
     font-size: $h4;
-    color: $lcc-secondary-text;
+    color: $lcc-color--text-secondary;
   }
 
   input {
@@ -47,7 +47,7 @@
     align-items: center;
 
     .lcc-form-error-icon {
-      color: $lcc-warning;
+      color: $lcc-color--warning;
     }
   }
 
@@ -57,7 +57,7 @@
     height: 2px;
     width: 90%;
     margin: 1em 0;
-    border-top: 1px solid lighten($lcc-gray, 30%);
+    border-top: 1px solid lighten($lcc-color--gray, 30%);
   }
 }
 

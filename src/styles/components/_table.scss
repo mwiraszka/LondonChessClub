@@ -6,23 +6,23 @@
   margin: 8px;
   border-spacing: 0;
   border-radius: $lcc-border-radius-sm;
-  box-shadow: 3px 2px 8px 0 lighten($color: $lcc-gray, $amount: 2%);
+  box-shadow: 3px 2px 8px 0 lighten($color: $lcc-color--gray, $amount: 2%);
   overflow: hidden;
-  color: $lcc-primary-text;
+  color: $lcc-color--text-primary;
 
   th {
     padding: 6px 12px;
-    background-color: $lcc-primary;
+    background-color: $lcc-color--primary;
     white-space: nowrap;
-    color: $lcc-white;
+    color: $lcc-color--white;
     font-weight: 200;
   }
 
   tr {
-    background-color: lighten($lcc-white, 2%);
+    background-color: lighten($lcc-color--white, 2%);
 
     &:nth-child(even) {
-      background-color: lighten($lcc-white, 7%);
+      background-color: lighten($lcc-color--white, 7%);
     }
   }
 

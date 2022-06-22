@@ -3,7 +3,7 @@ export enum AppPageTypes {
   MEMBERS = 'members',
   SCHEDULE = 'schedule',
   ARTICLES = 'articles',
-  CITY_CHAMPION = 'city-champion',
+  LONDON_CHESS_CHAMPION = 'london-chess-champion',
   LESSONS = 'lessons',
   SUPPLIES = 'supplies',
   ABOUT = 'about',

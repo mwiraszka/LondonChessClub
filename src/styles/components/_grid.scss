@@ -1,0 +1,29 @@
+@import 'styles/abstracts/variables';
+
+.lcc-grid {
+  display: grid;
+  grid-template-rows: auto;
+  gap: 4px;
+
+  [class*=' grid-item'],
+  [class^='grid-item'] {
+    place-self: stretch;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    &:not(figure) {
+      gap: 24px;
+    }
+  }
+
+  .grid-item-1 { grid-area: grid-item-1; }
+  .grid-item-2 { grid-area: grid-item-2; }
+  .grid-item-3 { grid-area: grid-item-3; }
+  .grid-item-4 { grid-area: grid-item-4; }
+  .grid-item-5 { grid-area: grid-item-5; }
+  .grid-item-6 { grid-area: grid-item-6; }
+  .grid-item-7 { grid-area: grid-item-7; }
+  .grid-item-8 { grid-area: grid-item-8; }
+}

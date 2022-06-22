@@ -2,7 +2,7 @@ input {
   -webkit-appearance: none;
   display: block;
   width: 100%;
-  border: 1px solid lighten($lcc-gray, 22%);
+  border: 1px solid lighten($lcc-color--gray, 22%);
   border-radius: $lcc-border-radius-sm !important;
   font-size: $h4 !important;
   height: 36px;
@@ -10,14 +10,14 @@ input {
   margin: 3px 0 !important;
 
   &.ng-invalid.ng-dirty {
-    border-color: lighten($lcc-warning, 15%);
+    border-color: lighten($lcc-color--warning, 15%);
   }
 
   &:hover,
   &:focus {
     outline: none;
-    border: 1px solid lighten($lcc-gray, 15%);
-    box-shadow: 0 0 4px 1px lighten($lcc-select, 15%);
+    border: 1px solid lighten($lcc-color--gray, 15%);
+    box-shadow: 0 0 4px 1px lighten($lcc-color--select, 15%);
   }
 
   &::placeholder {

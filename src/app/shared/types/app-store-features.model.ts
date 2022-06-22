@@ -5,7 +5,7 @@ export enum AppStoreFeatureTypes {
   SCHEDULE = 'schedule',
   ARTICLE_LIST = 'article-list',
   ARTICLE_EDITOR = 'article-editor',
-  CITY_CHAMPION = 'city-champion',
+  LONDON_CHESS_CHAMPION = 'london-chess-champion',
   LESSONS = 'lessons',
   SUPPLIES = 'supplies',
   ABOUT = 'about',

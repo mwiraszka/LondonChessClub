@@ -18,13 +18,13 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $lcc-white;
+  background-color: $lcc-color--white;
   width: 100%;
   line-height: 50px;
   padding: 8px;
 
   h3 span {
-    color: $lcc-secondary-text;
+    color: $lcc-color--text-secondary;
   }
 }
 
@@ -45,7 +45,7 @@ table {
 
     &:hover {
       cursor: pointer;
-      background-color: lighten($lcc-primary, 5%);
+      background-color: lighten($lcc-color--primary, 5%);
     }
   }
 
@@ -56,7 +56,7 @@ table {
 
     &:focus,
     &:hover {
-      background-color: lighten($lcc-select, 15%);
+      background-color: lighten($lcc-color--select, 15%);
 
       .row-controls {
         position: absolute;
@@ -66,9 +66,9 @@ table {
         flex-flow: row nowrap;
 
         button {
-          background-color: $lcc-white;
+          background-color: $lcc-color--white;
           padding: 3px;
-          border: 3px solid darken($lcc-white, 5%);
+          border: 3px solid darken($lcc-color--white, 5%);
           border-radius: $lcc-border-radius-lg;
 
           &:focus,
@@ -99,7 +99,7 @@ table {
     flex-flow: row-reverse nowrap;
     justify-content: space-between;
     padding: 4px 12px;
-    color: $lcc-secondary-text;
+    color: $lcc-color--text-secondary;
 
     a {
       background-color: inherit;

@@ -1,0 +1,33 @@
+@import 'styles/abstracts/variables';
+
+.lcc-figure {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+  margin: 12px 8px;
+  min-width: 100px;
+
+  img {
+    border-top-left-radius: $lcc-border-radius-lg;
+    border-top-right-radius: $lcc-border-radius-lg;
+    width: 100%;
+  }
+
+  figcaption {
+    background-color: darken($lcc-color--bg-figure, 10%);
+    color: darken($lcc-color--white, 10%);
+    border-bottom-left-radius: $lcc-border-radius-lg;
+    border-bottom-right-radius: $lcc-border-radius-lg;
+    font-size: $h5;
+    padding: 8px 6px;
+    width: 100%;
+    line-height: normal;
+  }
+
+  @include respond-to('lt-md') {
+    padding: 2px;
+  }
+}

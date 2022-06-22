@@ -1,7 +1,7 @@
 .lcc-canvas {
-  background-color: lighten($lcc-white, 20%);
+  background-color: $lcc-color--bg-canvas;
   border-radius: $lcc-border-radius-sm;
-  box-shadow: 1px 1px 5px 2px $lcc-box-shadow;
+  box-shadow: 1px 1px 5px 2px $lcc-color--box-shadow;
   padding: 10px;
 
   display: flex;
@@ -10,6 +10,7 @@
   align-items: center;
 
   margin-top: 10px;
-  max-width: 800px;
+  width: 900px;
+  max-width: 900px;
   min-width: 250px;
 }

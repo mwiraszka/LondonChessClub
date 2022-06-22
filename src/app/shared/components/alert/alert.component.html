@@ -1,12 +1,14 @@
-<p class="lcc-alert-message">{{ alert?.message }}</p>
-<div class="lcc-alert-controls">
-	<button class="lcc-ghost-button lcc-alert-action-button"
-					(click)="onSelectAction(alert?.action)">
-		{{ alert?.action }}
-	</button>
-	<cds-icon class="lcc-icon-button lcc-alert-close-button"
-						shape="window-close"
-						size="lg"
-						(click)="onSelectAction(AlertAction.CLOSE)">
-	</cds-icon>
+<div class="lcc-alert-message-container">
+	<p class="lcc-alert-message">{{ alert?.message }}</p>
+	<div class="lcc-alert-controls">
+		<button class="lcc-ghost-button lcc-alert-action-button"
+						(click)="onSelectAction(alert?.action)">
+			{{ alert?.action }}
+		</button>
+		<cds-icon class="lcc-icon-button lcc-alert-close-button"
+							shape="window-close"
+							size="md"
+							(click)="onSelectAction(AlertAction.CLOSE)">
+		</cds-icon>
+	</div>
 </div>

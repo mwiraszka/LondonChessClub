@@ -58,15 +58,15 @@
 	</li>
 	<li class="lcc-nav-item">
 		<a class="lcc-nav-link"
-			 aria-label="City Champion"
-			 [routerLink]="NavPathTypes.CITY_CHAMPION"
+			 aria-label="London Chess Champion"
+			 [routerLink]="NavPathTypes.LONDON_CHESS_CHAMPION"
 			 routerLinkActive="link-active"
-			 (click)="facade.onCityChampion()">
-			<span class="wide-view">City&nbsp;Champion</span>
-			<cds-icon class="lcc-city-champion-icon narrow-view"
+			 (click)="facade.onLondonChessChampion()">
+			<span class="wide-view">London&nbsp;Chess&nbsp;Champion</span>
+			<cds-icon class="lcc-london-chess-champion-icon narrow-view"
 								shape="crown"
 								size="md"
-								[tooltip]="'City Champion'">
+								[tooltip]="'London Chess Champion'">
 			</cds-icon>
 		</a>
 	</li>
@@ -118,7 +118,6 @@
 		</ng-container>
 
 		<ng-template #loggedOut>
-
 			<a class="lcc-nav-link"
 				 aria-label="Login"
 				 routerLinkActive="link-active"

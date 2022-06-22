@@ -7,16 +7,16 @@
   margin-top: 6px;
   padding: 2px 5px;
   border-radius: $lcc-border-radius-sm;
-  box-shadow: 0 0 2px 2px lighten($lcc-gray, 20%);
+  box-shadow: 0 0 2px 2px lighten($lcc-color--gray, 20%);
 
   &.lcc-toast-success {
-    background-color: $lcc-success;
+    background-color: $lcc-color--success;
   }
   &.lcc-toast-warning {
-    background-color: $lcc-warning;
+    background-color: $lcc-color--warning;
   }
   &.lcc-toast-info {
-    background-color: $lcc-info;
+    background-color: $lcc-color--info;
   }
 }
 
@@ -26,7 +26,7 @@
   justify-content: center;
 
   cds-icon {
-    color: lighten($lcc-white, 10%);
+    color: lighten($lcc-color--white, 10%);
   }
 }
 
@@ -39,13 +39,13 @@
   .lcc-toast-title {
     padding: 2px;
     font-size: $h4;
-    color: lighten($lcc-white, 10%);
+    color: lighten($lcc-color--white, 10%);
   }
 
   .lcc-toast-message {
     padding: 2px;
     font-size: $h5;
-    color: $lcc-white;
+    color: $lcc-color--white;
   }
 }
 

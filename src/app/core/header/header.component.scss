@@ -2,10 +2,17 @@
 
 :host {
   display: flex;
+  justify-content: center;
+  height: 90px;
+  background-color: darken($lcc-color--primary, 20%);
+  padding: 2px $lcc-app-side-padding;
+}
+
+.lcc-header-container {
+  max-width: $lcc-app-max-width;
+  display: flex;
+  flex: 1;
   justify-content: flex-start;
-  height: 100px;
-  padding: 2px 12px;
-  background-color: darken($lcc-primary, 20%);
 }
 
 a {
@@ -22,9 +29,10 @@ a {
 }
 
 h1 {
-  color: darken($lcc-white, 10%);
+  color: darken($lcc-color--white, 10%);
+  line-height: unset; // Should be able to remove after CDS styles are removed
 }
 
 img {
-  width: 80px;
+  width: 60px;
 }

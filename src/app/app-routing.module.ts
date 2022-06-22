@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NavPathTypes } from '@app/core/nav';
 import { AboutComponent } from '@app/pages/about';
 import { ArticleEditorComponent, ArticleListComponent } from '@app/pages/articles';
-import { CityChampionComponent } from '@app/pages/city-champion';
+import { LondonChessChampionComponent } from '@app/pages/london-chess-champion';
 import { HomeComponent } from '@app/pages/home';
 import { PhotoGalleryComponent } from '@app/pages/photo-gallery';
 import { LoginComponent } from '@app/pages/login';
@@ -52,8 +52,8 @@ const routes: Routes = [
     canDeactivate: [UnsavedArticleGuard],
   },
   {
-    path: NavPathTypes.CITY_CHAMPION,
-    component: CityChampionComponent,
+    path: NavPathTypes.LONDON_CHESS_CHAMPION,
+    component: LondonChessChampionComponent,
   },
   {
     path: NavPathTypes.PHOTO_GALLERY,

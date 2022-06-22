@@ -1,0 +1,24 @@
+@import 'styles/abstracts/variables';
+
+.lcc-page-header {
+  background-color: $lcc-color--bg-page-header;
+  border-radius: $lcc-border-radius-sm;
+  box-shadow: 1px 1px 5px 2px $lcc-color--box-shadow;
+  padding: 8px 18px;
+  margin: 16px 10px;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: unset; // temp (necessary due to clarity)
+  font-size: $h3;
+
+  color: $lcc-color--text-secondary;
+
+  em {
+    color: $lcc-color--text-primary;
+    font-style: normal;
+  }
+}

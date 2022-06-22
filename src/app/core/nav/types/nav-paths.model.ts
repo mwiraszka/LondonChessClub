@@ -7,7 +7,7 @@ export enum NavPathTypes {
   NEWS = 'news',
   NEWS_COMPOSE = 'news/compose',
   NEWS_EDIT = 'news/edit',
-  CITY_CHAMPION = 'city-champion',
+  LONDON_CHESS_CHAMPION = 'london-chess-champion',
   PHOTO_GALLERY = 'photo-gallery',
   ABOUT = 'about',
   LOGIN = 'login',

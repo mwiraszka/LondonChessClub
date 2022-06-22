@@ -1,23 +1,38 @@
 /* LCC custom color palette */
-$lcc-primary: hsl(210, 40%, 40%);
-$lcc-accent: hsl(100, 50%, 70%);
-$lcc-success: hsl(100, 50%, 40%);
-$lcc-warning: hsl(0, 90%, 60%);
-$lcc-info: hsl(210, 60%, 50%);
-$lcc-link: hsl(210, 70%, 55%, 0.9);
-$lcc-select: hsl(210, 100%, 80%);
+$lcc-color--primary: hsl(210, 40%, 40%);
+$lcc-color--accent: hsl(100, 50%, 70%);
+$lcc-color--success: hsl(100, 50%, 40%);
+$lcc-color--warning: hsl(0, 90%, 60%);
+$lcc-color--info: hsl(210, 60%, 50%);
+$lcc-color--link: hsl(210, 70%, 55%, 0.9);
+$lcc-color--select: hsl(210, 100%, 80%);
 
-$lcc-background: hsl(0, 0%, 90%);
-$lcc-white: hsl(0, 0%, 95%);
-$lcc-gray: hsl(0, 0%, 60%);
-$lcc-black: hsl(0, 0%, 5%);
-$lcc-primary-text: hsl(0, 0%, 5%);
-$lcc-secondary-text: hsl(0, 0%, 60%);
-$lcc-fully-transparent: hsla(0, 0%, 100%, 0);
-$lcc-mostly-transparent: hsla(0, 0%, 100%, 0.2);
-$lcc-semi-transparent: hsla(0, 0%, 100%, 0.5);
+$lcc-color--white: hsl(0, 0%, 95%);
+$lcc-color--gray: hsl(0, 0%, 60%);
+$lcc-color--black: hsl(0, 0%, 5%);
 
-$lcc-box-shadow: hsla(0, 0%, 84%, 0.8);
+$lcc-color--text-primary: hsl(0, 0%, 5%);
+$lcc-color--text-secondary: hsl(0, 0%, 60%);
+
+$lcc-color--bg-main: hsl(0, 0%, 95%);
+$lcc-color--bg-nav: hsl(0, 0%, 98%);
+$lcc-color--bg-canvas: hsl(0, 0%, 97%);
+$lcc-color--bg-figure: hsl(0, 0%, 32%);
+$lcc-color--bg-page-header: hsl(12, 17%, 94%);
+
+$lcc-color--transparent-fully: hsla(0, 0%, 100%, 0);
+$lcc-color--transparent-mostly: hsla(0, 0%, 100%, 0.2);
+$lcc-color--transparent-half: hsla(0, 0%, 100%, 0.5);
+$lcc-color--box-shadow: hsla(0, 0%, 84%, 0.8);
+
+
+/* Other custom LCC constants */
+$lcc-app-max-width: 900px;
+$lcc-app-side-padding: 12px;
+$lcc-border-radius-sm: 2px;
+$lcc-border-radius-lg: 5px;
+$lcc-spacing: 20px;
+
 
 /* Global font sizes */
 $h1: 30px;
@@ -54,8 +69,3 @@ $breakpoints: (
     min-width: 1200px,
   ),
 );
-
-/* Miscellaneous default global variables */
-$lcc-border-radius-sm: 2px;
-$lcc-border-radius-lg: 5px;
-$lcc-spacing: 20px;

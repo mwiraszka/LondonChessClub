@@ -2,27 +2,17 @@
 
 :host {
   display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
   justify-content: center;
-  text-align: center;
   gap: 16px;
 }
 
-.lcc-canvas {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
-  min-width: 300px;
 
-  h5 {
-    color: darken($lcc-secondary-text, 10%);
-    line-height: 50px;
-  }
+h5 {
+  color: darken($lcc-color--text-secondary, 5%);
+  line-height: 40px;
+}
 
-  a {
-    padding: 6px;
-  }
+a {
+  font-size: $h5;
+  padding: 6px;
 }

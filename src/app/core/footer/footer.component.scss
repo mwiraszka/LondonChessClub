@@ -1,3 +1,5 @@
+@import 'styles/abstracts/variables';
+
 :host {
   display: flex;
   flex-flow: column nowrap;
@@ -8,4 +10,8 @@
 
 small {
   font-size: 60%;
+}
+
+a {
+  font-size: $h5;
 }

@@ -34,8 +34,8 @@ export class NavFacade {
     this.store.dispatch(NavActions.newsSelected());
   }
 
-  onCityChampion(): void {
-    this.store.dispatch(NavActions.cityChampionSelected());
+  onLondonChessChampion(): void {
+    this.store.dispatch(NavActions.londonChessChampionSelected());
   }
 
   onPhotoGallery(): void {

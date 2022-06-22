@@ -1,27 +1,27 @@
 .lcc-link {
-  font-size: $h5;
+  font-size: inherit;
   font-weight: 200;
 
   /**
    * A little hacky for the time being (will likely no longer be necessary
    * once clr-vendor styles can be deleted)
    */
-   color: $lcc-link !important;
+   color: $lcc-color--link !important;
   
   &:hover {
-    color: lighten($lcc-link, 10%) !important;
+    color: lighten($lcc-color--link, 10%) !important;
   }
 }
 
 .lcc-nav-link {
   @extend .lcc-link;
 
-  color: lighten($lcc-black, 30%) !important;
+  color: lighten($lcc-color--black, 30%) !important;
   font-size: $h4;
   font-weight: 400;
 
   &:hover {
-    color: lighten($lcc-black, 5%) !important;
+    color: lighten($lcc-color--black, 5%) !important;
   }
 
   /**
@@ -41,7 +41,7 @@
   &.link-active {
     cursor: default;
     pointer-events: none;
-    color: lighten($lcc-black, 10%) !important;
+    color: lighten($lcc-color--black, 10%) !important;
     font-weight: bolder;
   }
 }

@@ -27,7 +27,7 @@ h4 {
   margin: 20px 0 !important;
 
   span {
-    color: darken($lcc-secondary-text, 10%);
+    color: darken($lcc-color--text-secondary, 10%);
     font-weight: 100;
   }
 }
@@ -45,7 +45,7 @@ h4 {
   margin: 4px;
   padding: 16px;
   border-radius: $lcc-border-radius-sm;
-  background-color: darken($lcc-white, 6%);
+  background-color: darken($lcc-color--white, 6%);
 
   &.lcc-about-details {
     grid-area: details;
@@ -68,7 +68,7 @@ h4 {
       height: 2px;
       width: 90%;
       margin: 1em auto;
-      border-top: 1px solid lighten($lcc-gray, 30%);
+      border-top: 1px solid lighten($lcc-color--gray, 30%);
     }
   }
 

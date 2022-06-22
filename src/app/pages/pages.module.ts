@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AboutModule } from '@app/pages/about';
 import { ArticleEditorModule, ArticleListModule } from '@app/pages/articles';
-import { CityChampionModule } from '@app/pages/city-champion';
+import { LondonChessChampionModule } from '@app/pages/london-chess-champion';
 import { HomeModule } from '@app/pages/home';
 import { LoginModule } from '@app/pages/login';
 import { PhotoGalleryModule } from '@app/pages/photo-gallery';
@@ -15,7 +15,7 @@ const modules = [
   AboutModule,
   ArticleEditorModule,
   ArticleListModule,
-  CityChampionModule,
+  LondonChessChampionModule,
   HomeModule,
   LoginModule,
   PhotoGalleryModule,

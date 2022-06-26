@@ -3,9 +3,9 @@ import {
   announcementIcon,
   ClarityIcons,
   crownIcon,
+  eventIcon,
   homeIcon,
   imageGalleryIcon,
-  tasksIcon,
   unknownStatusIcon,
   userIcon,
   usersIcon,
@@ -26,13 +26,15 @@ export class NavComponent {
   constructor(public facade: NavFacade) {}
 
   ngOnInit(): void {
-    ClarityIcons.addIcons(announcementIcon);
-    ClarityIcons.addIcons(crownIcon);
-    ClarityIcons.addIcons(homeIcon);
-    ClarityIcons.addIcons(imageGalleryIcon);
-    ClarityIcons.addIcons(tasksIcon);
-    ClarityIcons.addIcons(unknownStatusIcon);
-    ClarityIcons.addIcons(userIcon);
-    ClarityIcons.addIcons(usersIcon);
+    ClarityIcons.addIcons(
+      announcementIcon,
+      crownIcon,
+      homeIcon,
+      imageGalleryIcon,
+      eventIcon,
+      unknownStatusIcon,
+      userIcon,
+      usersIcon
+    );
   }
 }

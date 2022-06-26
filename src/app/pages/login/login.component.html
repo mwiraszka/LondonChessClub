@@ -1,13 +1,13 @@
 ﻿<div class="lcc-canvas">
+	<header class="lcc-page-header">
+		<span class="lcc-secondary-text">Member&nbsp;</span>
+		Log In
+	</header>
+
 	<form class="lcc-form"
 				[formGroup]="form"
 				(keyup)="onKeyUp($event)"
 				(ngSubmit)="onLogin()">
-
-		<header class="lcc-form-header">
-			<h3>Log In</h3>
-		</header>
-
 		<div class="lcc-form-fields">
 			<label for="email-input">
 				Email:

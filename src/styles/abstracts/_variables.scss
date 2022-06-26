@@ -1,6 +1,6 @@
 /* LCC custom color palette */
 $lcc-color--primary: hsl(210, 40%, 40%);
-$lcc-color--accent: hsl(100, 50%, 70%);
+$lcc-color--accent: hsl(101, 33%, 44%);
 $lcc-color--success: hsl(100, 50%, 40%);
 $lcc-color--warning: hsl(0, 90%, 60%);
 $lcc-color--info: hsl(210, 60%, 50%);
@@ -17,8 +17,11 @@ $lcc-color--text-secondary: hsl(0, 0%, 60%);
 $lcc-color--bg-main: hsl(0, 0%, 95%);
 $lcc-color--bg-nav: hsl(0, 0%, 98%);
 $lcc-color--bg-canvas: hsl(0, 0%, 97%);
-$lcc-color--bg-figure: hsl(0, 0%, 32%);
-$lcc-color--bg-page-header: hsl(12, 17%, 94%);
+$lcc-color--bg-figure: hsl(7, 3%, 12%);
+$lcc-color--bg-page-header: hsl(7, 3%, 94%);
+$lcc-color--bg-grid-item: hsl(7, 3%, 94%);
+$lcc-color--bg-table-row-light: hsl(0, 0%, 98%);
+$lcc-color--bg-table-row-dark: hsl(0, 0%, 94%);
 
 $lcc-color--transparent-fully: hsla(0, 0%, 100%, 0);
 $lcc-color--transparent-mostly: hsla(0, 0%, 100%, 0.2);

@@ -6,8 +6,11 @@
 @import 'base/reset';
 @import 'base/typography';
 
+@import 'layout/align';
+@import 'layout/display';
 @import 'layout/truncate';
 
+@import 'components/admin-controls';
 @import 'components/button';
 @import 'components/canvas';
 @import 'components/figure';

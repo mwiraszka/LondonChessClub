@@ -1,8 +1,8 @@
 @import 'styles/abstracts/variables';
 
 .lcc-table {
-  display: inline-block;
-  font-size: $h4;
+  display: table;
+  font-size: $h5;
   margin: 8px;
   border-spacing: 0;
   border-radius: $lcc-border-radius-sm;
@@ -10,23 +10,39 @@
   overflow: hidden;
   color: $lcc-color--text-primary;
 
-  th {
-    padding: 6px 12px;
-    background-color: $lcc-color--primary;
-    white-space: nowrap;
-    color: $lcc-color--white;
-    font-weight: 200;
+  &:hover {
+    cursor: default;
   }
-
-  tr {
-    background-color: lighten($lcc-color--white, 2%);
-
-    &:nth-child(even) {
-      background-color: lighten($lcc-color--white, 7%);
+  
+  thead {
+    th {
+      padding: 6px 12px;
+      color: $lcc-color--white;
+      background-color: $lcc-color--primary;
+      white-space: nowrap;
+      font-weight: 200;
+    }
+  }
+  
+  tbody {
+    tr {
+      background-color: $lcc-color--bg-table-row-dark;
+  
+      &:nth-child(even) {
+        background-color: $lcc-color--bg-table-row-light;
+      }
+  
+      td {
+        padding: 8px 12px;
+      }
     }
   }
 
-  td {
-    padding: 8px 12px;
+  tfoot {
+    color: $lcc-color--text-secondary;
+    td {
+      padding: 8px 12px;
+      text-align: right;
+    }
   }
 }

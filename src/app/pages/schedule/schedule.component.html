@@ -1,17 +1,28 @@
-<h3>Schedule of Events</h3>
-<table class="lcc-table lcc-schedule-table">
-	<thead>
-		<th>Date</th>
-		<th>Event</th>
-	</thead>
-	<tbody>
-		<tr *ngFor="let event of mockEvents; let last = last;"
-				[ngClass]="{'last-row': last}">
-			<td class="date">{{ event.date }}</td>
-			<td class="title-and-description">
-				<h6>{{ event.title }}</h6>
-				<p>{{ event.description }}</p>
-			</td>
-		</tr>
-	</tbody>
-</table>
+<div class="lcc-canvas">
+	<header class="lcc-page-header">
+		Schedule&nbsp;
+		<span class="lcc-secondary-text">of&nbsp;Events</span>
+		<cds-icon shape="event"
+							size="sm">
+		</cds-icon>
+	</header>
+
+	<table class="lcc-table">
+		<thead>
+			<th>Date</th>
+			<th>Event</th>
+		</thead>
+		<tbody>
+			<tr *ngFor="let event of mockEvents; let last = last;"
+					[ngClass]="{'last-row': last}">
+				<td class="date">
+					<p>{{ event.date }}</p>
+				</td>
+				<td class="title-and-description">
+					<h5>{{ event.title }}</h5>
+					<p>{{ event.description }}</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

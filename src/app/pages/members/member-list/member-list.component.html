@@ -1,16 +1,28 @@
 <div class="lcc-canvas">
-	<header>
-		<h3>
-			<span>London Chess Club</span>&nbsp;Members
-		</h3>
+	<header class="lcc-page-header">
+		Members
+		<cds-icon shape="users"
+							size="sm">
+		</cds-icon>
 	</header>
+
+	<div class="link-container">
+		<a *ngIf="facade.isAdmin$ | async"
+			 class="lcc-link"
+			 (click)="facade.onAddMember()">
+			<cds-icon shape="plus-circle"
+								size="xs">
+			</cds-icon>
+			<span>Add member</span>
+		</a>
+	</div>
 
 	<table class="lcc-table">
 		<thead>
-			<th *ngFor="let header of tableHeaders"
-					[ngClass]="kebabize(header)"
-					(click)="facade.onSelectTableHeader(camelize(kebabize(header)))">
-				<div class="header-content">
+			<tr>
+				<th *ngFor="let header of tableHeaders"
+						[ngClass]="kebabize(header)"
+						(click)="facade.onSelectTableHeader(camelize(kebabize(header)))">
 					<span>{{ header }}</span>
 					<div class="icon-container">
 						<cds-icon *ngIf="(facade.sortedBy$ | async) === camelize(kebabize(header))"
@@ -19,12 +31,13 @@
 											[attr.flip]="(facade.isAscending$ | async) ? 'vertical' : undefined">
 						</cds-icon>
 					</div>
-				</div>
-			</th>
+				</th>
+			</tr>
 		</thead>
 
 		<tbody>
 			<tr *ngFor="let member of facade.members$ | async; let last = last;"
+					class="lcc-admin-controls-container"
 					[ngClass]="{'last-row': last}">
 				<td class="first-name">{{ member.firstName }}</td>
 				<td class="last-name">{{ member.lastName }}</td>
@@ -38,7 +51,7 @@
 				</ng-container>
 
 				<div *ngIf="facade.isAdmin$ | async"
-						 class="row-controls">
+						 class="lcc-admin-controls">
 					<button (click)="facade.onEditMember(member)">
 						<cds-icon shape="pencil"
 											size="sm"
@@ -53,23 +66,13 @@
 						</cds-icon>
 					</button>
 				</div>
-
 			</tr>
 		</tbody>
 
-		<footer>
-			<aside>
-				<span>{{ (facade.members$ | async)?.length }} members</span>
-			</aside>
-			<a *ngIf="facade.isAdmin$ | async"
-				 class="lcc-link"
-				 (click)="facade.onAddMember()">
-				<cds-icon shape="plus-circle"
-									size="sm">
-				</cds-icon>
-				<span>Add member</span>
-			</a>
-		</footer>
-
+		<tfoot>
+			<tr>
+				<td colspan="100%">{{ (facade.members$ | async)?.length }} members</td>
+			</tr>
+		</tfoot>
 	</table>
 </div>

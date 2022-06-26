@@ -4,26 +4,61 @@
   display: grid;
   grid-template-rows: auto;
   gap: 4px;
+  margin: 16px 12px;
+  width: 90%;
 
-  [class*=' grid-item'],
-  [class^='grid-item'] {
+  @include respond-to('lt-md') {
+    width: 100%;
+  }
+
+  [class*=' lcc-grid-item'],
+  [class^='lcc-grid-item'] {
     place-self: stretch;
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
     align-items: center;
+    gap: 12px;
+    border-radius: $lcc-border-radius-sm;
+    background-color: $lcc-color--bg-grid-item;
+    border: 2px solid darken($lcc-color--bg-grid-item, 1%);
 
-    &:not(figure) {
-      gap: 24px;
+    &.lcc-darker-grid-item {
+      background-color: darken($lcc-color--bg-grid-item, 5%);
+      border: 2px solid darken($lcc-color--bg-grid-item, 7%);
+    }
+
+    p {
+      font-size: $h5;
+      text-align: left;
+      line-height: 22px;
+      width: 87%;
+      max-width: 500px;
+      padding: 4px 10px;
+    }
+
+    li {
+      font-size: $h4;
+      padding: 3px;
     }
   }
 
-  .grid-item-1 { grid-area: grid-item-1; }
-  .grid-item-2 { grid-area: grid-item-2; }
-  .grid-item-3 { grid-area: grid-item-3; }
-  .grid-item-4 { grid-area: grid-item-4; }
-  .grid-item-5 { grid-area: grid-item-5; }
-  .grid-item-6 { grid-area: grid-item-6; }
-  .grid-item-7 { grid-area: grid-item-7; }
-  .grid-item-8 { grid-area: grid-item-8; }
+  .lcc-grid-item-1 { grid-area: grid-item-1; }
+  .lcc-grid-item-2 { grid-area: grid-item-2; }
+  .lcc-grid-item-3 { grid-area: grid-item-3; }
+  .lcc-grid-item-4 { grid-area: grid-item-4; }
+  .lcc-grid-item-5 { grid-area: grid-item-5; }
+  .lcc-grid-item-6 { grid-area: grid-item-6; }
+  .lcc-grid-item-7 { grid-area: grid-item-7; }
+  .lcc-grid-item-8 { grid-area: grid-item-8; }
+
+  hr {
+    width: 70%;
+    height: 3px;
+    margin: 18px auto;
+    border-left: unset !important;
+    border-right: unset !important;
+    background: $lcc-color--bg-canvas !important;
+    border-top: 1px solid darken($lcc-color--bg-canvas, 5%) !important;
+    border-bottom: 1px solid darken($lcc-color--bg-canvas, 5%) !important;
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { announcementIcon, ClarityIcons, plusCircleIcon } from '@cds/core/icon';
 
 import { LoaderService } from '@app/shared/services';
 
@@ -14,9 +15,10 @@ export class ArticleListComponent implements OnInit {
   constructor(public facade: ArticleListFacade, private loader: LoaderService) {}
 
   ngOnInit(): void {
-    this.facade.loadArticles();
     this.facade.isLoading$.subscribe((isLoading) => {
       this.loader.display(isLoading);
     });
+    ClarityIcons.addIcons(announcementIcon, plusCircleIcon);
+    this.facade.loadArticles();
   }
 }

@@ -11,56 +11,23 @@ section {
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
     'grid-item-1 grid-item-2'
-    'grid-item-3 grid-item-3'
-    'grid-item-4 grid-item-5'
+    'grid-item-3 grid-item-4'
+    'grid-item-5 grid-item-5'
     'grid-item-6 grid-item-6'
-    'grid-item-7 grid-item-7'
-    'grid-item-8 grid-item-8';
-  width: 90%;
-  padding: 0 40px;
+    'grid-item-7 grid-item-7';
 
   article {
-    padding: 0;
-    margin: 0;
-    width: auto;
+    justify-content: center;
 
-    &:not(.links) {
-      border: 1px solid lighten($lcc-color--gray, 32%);
-      border-radius: $lcc-border-radius-lg;
-      background-color: darken($lcc-color--bg-canvas, 3%);
+    &.links {
+      background-color: unset;
+      border: unset;
+      margin-bottom: 20px;
     }
-  }
 
-  p {
-    font-size: $h4;
-    text-align: justify;
-    line-height: 22px;
-    padding: 8px 12px;
-  }
-
-  li {
-    font-size: $h4;
-    padding: 3px;
-  }
-
-  hr {
-    margin: 24px 0;
-    height: 2px;
-    border-top: 1px solid lighten($lcc-color--gray, 28%);
-    border-bottom: 1px solid lighten($lcc-color--gray, 20%);
-  }
-
-  img {
-    &.full-width {
-      display: block;
+    &.champion-2019-figure {
+      width: 180px;
     }
-    &.narrow {
-      display: none;
-    }
-  }
-
-  .champion-2019-figure {
-    width: 180px;
   }
 
   @include respond-to('lt-md') {
@@ -68,26 +35,11 @@ section {
     grid-template-areas:
       'grid-item-1'
       'grid-item-2'
-      'grid-item-3'
       'grid-item-4'
+      'grid-item-3'
       'grid-item-5'
       'grid-item-6'
-      'grid-item-7'
-      'grid-item-8';
-    padding: 0 20px;
-
-    hr {
-      margin: 4px 20px;
-    }
-
-    img {
-      &.full-width {
-        display: none;
-      }
-      &.narrow {
-        display: block;
-      }
-    }
+      'grid-item-7';   
   }
 }
 

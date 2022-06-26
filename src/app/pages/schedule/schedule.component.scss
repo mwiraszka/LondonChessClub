@@ -3,28 +3,36 @@
 
 :host {
   display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
   justify-content: center;
 }
 
-h3 {
-  line-height: 50px;
-}
+table {
+  width: 85%;
+  margin-bottom: 18px;
 
-.lcc-schedule-table {
-  max-width: 800px;
+  @include respond-to('lt-md') {
+    width: 100%;
+  }
 
-  td {
-    &.date {
-      min-width: 90px;
-    }
-
-    &.title-and-description {
-      min-width: 210px;
+  tbody {
+    td {
+      &.date {
+        white-space: nowrap;
+      }
+  
+      &.title-and-description {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 10px;
+  
+        h5 {
+          color: $lcc-color--text-primary;
+        }
+      }
 
       p {
         color: $lcc-color--text-secondary;
+        line-height: 150%;
       }
     }
   }

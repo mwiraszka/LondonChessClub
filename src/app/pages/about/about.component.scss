@@ -7,109 +7,87 @@
   justify-content: center;
 }
 
-.lcc-canvas {
-  display: grid;
+section {
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
-    'details     details'
-    'fee         sets'
-    'tournaments ratings'
-    'children    parking'
-    'committee   committee';
-  gap: 12px 4px;
+    'grid-item-1 grid-item-1'
+    'grid-item-2 grid-item-3'
+    'grid-item-4 grid-item-5'
+    'grid-item-6 grid-item-7'
+    'grid-item-8 grid-item-8';
+
+  @include respond-to('lt-md') {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'grid-item-1'
+      'grid-item-2'
+      'grid-item-3'
+      'grid-item-5'
+      'grid-item-4'
+      'grid-item-6'
+      'grid-item-7'
+      'grid-item-8';
+  }
 }
 
-h3,
 h4 {
+  margin: 10px 0 !important;
   text-align: center;
-  font-weight: 400;
-  line-height: 26px;
-  margin: 20px 0 !important;
-
-  span {
-    color: darken($lcc-color--text-secondary, 10%);
-    font-weight: 100;
-  }
 }
 
 .lcc-link {
   font-size: inherit;
 }
 
-.align-center {
-  text-align: center;
-}
+.about-details {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 
-.grid-item {
-  height: 100%;
-  margin: 4px;
-  padding: 16px;
-  border-radius: $lcc-border-radius-sm;
-  background-color: darken($lcc-color--white, 6%);
-
-  &.lcc-about-details {
-    grid-area: details;
+  .meet-details-container {
     display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
+    gap: 20px;
+    flex-flow: row nowrap;
+    width: 90%;
 
-    .meet-details-container {
-      display: flex;
-      gap: 20px;
-      flex-flow: row nowrap;
-      width: 90%;
+    .meet-details {
+      width: auto;
 
-      img {
-        width: 60px;
+      .meet-time {
+        color: $lcc-color--accent;
+        font-size: 90%;
+        line-height: 30px;
+        white-space: nowrap;
       }
     }
 
-    hr {
-      height: 2px;
-      width: 90%;
-      margin: 1em auto;
-      border-top: 1px solid lighten($lcc-color--gray, 30%);
+    img {
+      width: 60px;
     }
   }
 
-  &.lcc-about-fee { grid-area: fee; }
-  &.lcc-about-sets { grid-area: sets; }
-  &.lcc-about-tournaments { grid-area: tournaments; }
-  &.lcc-about-ratings { grid-area: ratings; }
-  &.lcc-about-children { grid-area: children; }
-  &.lcc-about-parking { grid-area: parking; }
+  hr {
+    // Decrease to manually bring paragraph below closer
+    margin-bottom: 6px;
+  }
+}
 
-  &.lcc-about-committee {
-    grid-area: committee;
+.about-committee {
+  .committee {
+    font-size: $h5;
 
-    .committee-container {
-      display: flex;
-      flex-flow: row wrap;
-      gap: 40px;
-      text-align: left;
-      justify-content: center;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+
+    @include respond-to('lt-md') {
+      columns: 1;
+      -webkit-columns: 1;
+      -moz-columns: 1;
     }
   }
 }
 
-@include respond-to('lt-sm') {
-  .lcc-canvas {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      'details' 'fee' 'sets' 'tournaments'
-      'ratings' 'children' 'parking' 'committee';
-  }
-
-  .meet-details-container,
-  hr {
-    width: 100% !important;
-  }
-
-  :not(.meet-details) > p {
-    text-align: center;
-  }
-
-  .committee-container {
-    gap: 0 !important;
-  }
+cds-icon {
+  padding: 1px !important;
 }

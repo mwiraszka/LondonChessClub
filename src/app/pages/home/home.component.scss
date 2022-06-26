@@ -5,23 +5,4 @@
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-}
-
-h3 {
-  line-height: 30px;
-}
-
-h4 {
-  line-height: 20px;
-  color: $lcc-color--text-secondary;
-  
-}
-
-.lcc-canvas {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
 }

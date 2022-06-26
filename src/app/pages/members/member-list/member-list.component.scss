@@ -1,125 +1,74 @@
 @import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
-$icon-width: 32px;
-
 :host {
   display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
   justify-content: center;
 }
 
-.lcc-canvas {
-  max-width: unset;
-}
+.link-container {
+  width: 90%;
 
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $lcc-color--white;
-  width: 100%;
-  line-height: 50px;
-  padding: 8px;
+  @include respond-to ('lt-md') {
+    width: 100%;
+  }
 
-  h3 span {
-    color: $lcc-color--text-secondary;
+  a {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: $h5;
+  
+    cds-icon {
+      width: 10px;
+      margin-bottom: 3px;
+    }
   }
 }
 
 table {
+  width: 90%;
+
+  @include respond-to ('lt-md') {
+    width: 100%;
+  }
+}
+
+thead {
   th {
-    .header-content {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: center;
-      align-items: center;
-      gap: 2px;
-    }
-
-    .icon-container {
-      display: inline-block;
-      width: 10px;
-    }
-
     &:hover {
       cursor: pointer;
       background-color: lighten($lcc-color--primary, 5%);
     }
-  }
+  
+    .icon-container {
+      display: inline-flex;
+      width: 11px; // fix to icon width to prevent header text from shifting
 
-  tr {
-    .row-controls {
-      display: none;
-    }
-
-    &:focus,
-    &:hover {
-      background-color: lighten($lcc-color--select, 15%);
-
-      .row-controls {
-        position: absolute;
-        z-index: 10;
-        translate: calc(#{-2 * $icon-width});
-        display: flex;
-        flex-flow: row nowrap;
-
-        button {
-          background-color: $lcc-color--white;
-          padding: 3px;
-          border: 3px solid darken($lcc-color--white, 5%);
-          border-radius: $lcc-border-radius-lg;
-
-          &:focus,
-          &:hover {
-            cursor: pointer;
-            background-color: white;
-          }
-        }
+      cds-icon {
+        margin: 2px;
       }
-    }
-  }
-
-  td {
-    &.rating,
-    &.peak-rating {
-      text-align: right;
-    }
-
-    &.phone-number,
-    &.date-of-birth,
-    &.date-joined {
-      text-align: center;
-    }
-  }
-
-  footer {
-    display: flex;
-    flex-flow: row-reverse nowrap;
-    justify-content: space-between;
-    padding: 4px 12px;
-    color: $lcc-color--text-secondary;
-
-    a {
-      background-color: inherit;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-
-      span {
-        // Manual adjustment to compensate for icon offset
-        margin-top: 2px;
-      }
-    }
-
-    aside {
-      display: flex;
-      align-items: center;
-      font-size: 90%;
     }
   }
 }
+
+thead,
+tbody {
+  tr {
+    td,
+    th {
+      &.rating,
+      &.peak-rating,
+      &.phone-number,
+      &.date-of-birth,
+      &.date-joined {
+        text-align: center;
+      }
+    }
+  }
+}
+
 
 @include respond-to('lt-lg') {
   .date-of-birth,

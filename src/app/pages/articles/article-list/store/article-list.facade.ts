@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
+import { AuthSelectors } from '@app/core/auth';
+
 import * as ArticleListActions from './article-list.actions';
 import * as ArticleListSelectors from './article-list.selectors';
 import { Article } from '../../types/article.model';
@@ -8,6 +10,7 @@ import { Article } from '../../types/article.model';
 @Injectable()
 export class ArticleListFacade {
   readonly articles$ = this.store.select(ArticleListSelectors.articles);
+  readonly isAdmin$ = this.store.select(AuthSelectors.isAdmin);
   readonly isLoading$ = this.store.select(ArticleListSelectors.isLoading);
 
   constructor(private readonly store: Store) {}

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ClarityIcons, eventIcon } from '@cds/core/icon';
 
 import { MOCK_EVENTS } from './mock-events';
 
@@ -7,6 +8,10 @@ import { MOCK_EVENTS } from './mock-events';
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss'],
 })
-export class ScheduleComponent {
+export class ScheduleComponent implements OnInit {
   public mockEvents = MOCK_EVENTS;
+
+  ngOnInit(): void {
+    ClarityIcons.addIcons(eventIcon);
+  }
 }

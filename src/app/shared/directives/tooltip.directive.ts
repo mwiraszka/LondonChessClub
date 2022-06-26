@@ -51,11 +51,11 @@ export class TooltipDirective implements OnDestroy {
     document.body.appendChild(popup);
     this.myPopup = popup;
 
-    // Remove tooltip after 7 seconds
+    // Remove tooltip after 10 seconds
     setTimeout(() => {
       if (this.myPopup) {
         this.myPopup.remove();
       }
-    }, 7000);
+    }, 10000);
   }
 }

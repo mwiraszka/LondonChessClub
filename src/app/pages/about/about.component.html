@@ -1,114 +1,116 @@
 <div class="lcc-canvas">
-	<div class="grid-item lcc-about-details">
-		<h3><span>About&nbsp;the</span> London&nbsp;Chess&nbsp;Club</h3>
-		<div class="meet-details-container lcc-canvas">
-			<img src="assets/lcc-branding.svg"
-					 alt="LCC branding">
-			<div class="meet-details">
-				<p>Kiwanis&nbsp;Seniors' Community&nbsp;Centre</p>
-				<p>78 Riverside Drive</p>
-				<p>Thursdays, 6:00pm&nbsp;&mdash;&nbsp;9:00pm</p>
+	<header class="lcc-page-header">
+		<span class="lcc-secondary-text">About&nbsp;the&nbsp;</span>
+		London Chess Club
+		<cds-icon shape="unknown-status"
+							size="sm">
+		</cds-icon>
+	</header>
+
+	<section class="lcc-grid">
+		<article class="lcc-grid-item-1 about-details">
+			<div class="lcc-canvas meet-details-container">
+				<img src="assets/lcc-branding.svg"
+						 alt="LCC branding">
+				<p class="h4 meet-details">
+					Kiwanis Seniors' Community Centre<br />
+					78 Riverside Drive<br />
+					<span class="meet-time">Thursdays, 6:00pm&ndash;9:00pm</span>
+				</p>
 			</div>
-		</div>
-		<hr />
-		<p>
-			The London Chess Club is dedicated to players of all ages and abilities. We hold
-			regular blitz and rapid tournaments on-site, with occasional lectures and simul
-			events (see
-			<a class="lcc-link"
-				 [routerLink]="NavPathTypes.SCHEDULE"
-				 (click)="onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
-			for upcoming events). Come join our thriving chess community
-			&mdash; first visit is free!
-			<br /><br />
-		</p>
-		<p class="align-center">
-			Have any questions or suggestions? Email us at
-			<a href="mailto:londonchessclubcanada@gmail.com"
-				 class="lcc-link"
-				 alt="londonchessclubcanada@gmail.com">
-				londonchessclub&shy;canada@gmail.com
-			</a>
-		</p>
-	</div>
+			<hr />
+			<p>
+				The London Chess Club is dedicated to players of all ages and abilities. We hold
+				regular blitz and rapid tournaments on-site, with occasional lectures and simul
+				events (see
+				<a class="lcc-link"
+					 [routerLink]="NavPathTypes.SCHEDULE"
+					 (click)="onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
+				for upcoming events). Come join our thriving chess community
+				&mdash; first visit is free!
+			</p>
+			<p>
+				Have any questions or suggestions? Email us at
+				<a href="mailto:londonchessclubcanada@gmail.com"
+					 class="lcc-link"
+					 alt="londonchessclubcanada@gmail.com">
+					londonchessclub&shy;canada@gmail.com
+				</a>
+			</p>
+		</article>
 
-	<div class="grid-item lcc-about-fee">
-		<h4>Membership Fee</h4>
-		<p>
-			$40 per calendar year (Jan 1 &mdash; Dec 31), calculated pro rata
-			(you only pay for the months remaining in the year).
-		</p>
-		<br />
-		<p><b>Family discount:</b> additional family members get 50% off.</p>
-	</div>
+		<article class="lcc-grid-item-2 lcc-darker-grid-item about-fee">
+			<h4>Membership Fee</h4>
+			<p>
+				$40 per calendar year (Jan 1&ndash;Dec 31), calculated pro rata
+				(you only pay for the months remaining in the year).
+			</p>
+			<p><b>Family discount:</b> additional family members get 50% off.</p>
+		</article>
 
-	<div class="grid-item lcc-about-sets">
-		<h4>Chess Sets and Clocks</h4>
-		<p>
-			Please bring your own chess sets and clocks. Don't own a set? No problem &mdash;
-			you can purchase chess supplies at the club.
-		</p>
-	</div>
+		<article class="lcc-grid-item-3 about-sets">
+			<h4>Chess Sets and Clocks</h4>
+			<p>
+				Please bring your own chess sets and clocks. Don't own a set? No problem &mdash;
+				you can purchase chess supplies at the club.
+			</p>
+		</article>
 
-	<div class="grid-item lcc-about-tournaments">
-		<h4>Tournaments</h4>
-		<p>
-			Chess tournaments are held throughout the year. These include casual blitz
-			tournaments, rapid tournaments, and the LCC Championship held in the fall. See
-			<a class="lcc-link"
-				 [routerLink]="NavPathTypes.SCHEDULE"
-				 (click)="onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
-			for a list of upcoming events.
-		</p>
-	</div>
+		<article class="lcc-grid-item-4 about-tournaments">
+			<h4>Tournaments</h4>
+			<p>
+				Chess tournaments are held throughout the year. These include casual blitz
+				tournaments, rapid tournaments, and the LCC Championship held in the fall. See
+				<a class="lcc-link"
+					 [routerLink]="NavPathTypes.SCHEDULE"
+					 (click)="onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
+				for a list of upcoming events.
+			</p>
+		</article>
 
-	<div class="grid-item lcc-about-ratings">
-		<h4>Chess Ratings</h4>
-		<p>
-			We use our own London & Region rating system, managed by Gerry Litchfield. Current
-			ratings can be found
-			<a class="lcc-link"
-				 [routerLink]="NavPathTypes.MEMBERS"
-				 (click)="onNavigate(NavPathTypes.MEMBERS)">here</a>.
-		</p>
-	</div>
+		<article class="lcc-grid-item-5 lcc-darker-grid-item about-ratings">
+			<h4>Chess Ratings</h4>
+			<p>
+				We use our own London & Region rating system, managed by Gerry Litchfield. Current
+				ratings can be found
+				<a class="lcc-link"
+					 [routerLink]="NavPathTypes.MEMBERS"
+					 (click)="onNavigate(NavPathTypes.MEMBERS)">here</a>.
+			</p>
+		</article>
 
-	<div class="grid-item lcc-about-children">
-		<h4>Children</h4>
-		<p>
-			Children must be attended by a parent or guardian at all times.
-		</p>
-	</div>
+		<article class="lcc-grid-item-6 lcc-darker-grid-item about-children">
+			<h4>Children</h4>
+			<p>
+				Children must be attended by a parent or guardian at all times.
+			</p>
+		</article>
 
-	<div class="grid-item lcc-about-parking">
-		<h4>Parking</h4>
-		<p class="align-center">
-			Parking is free during chess club hours.
-		</p>
-	</div>
+		<article class="lcc-grid-item-7 about-parking">
+			<h4>Parking</h4>
+			<p>
+				There is plenty of parking space available behind the building.
+			</p>
+		</article>
 
-	<div class="grid-item lcc-about-committee">
-		<h4>Executive Committee</h4>
-		<div class="committee-container">
-			<div class="left-column">
-				<p><b>President:</b> Michal Wiraszka</p>
-				<p><b>Vice President:</b> Edgar Zapata</p>
-				<p><b>Treasurer:</b> Jim Kearley</p>
-			</div>
-			<div class="right-column">
-				<p><b>Ratings Auditor:</b> Gerry Litchfield</p>
-				<p><b>Member at Large:</b> Hugo Ortiz</p>
-				<p><b>Member at Large:</b> Ryan Sarson</p>
-			</div>
-		</div>
-		<br />
-		<p>
-			Every December we hold our Annual General Meeting where all club members are
-			invited to elect a new committee (see
-			<a class="lcc-link"
-				 [routerLink]="NavPathTypes.SCHEDULE"
-				 (click)="onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
-			for exact dates).
-		</p>
-	</div>
+		<article class="lcc-grid-item-8 lcc-darker-grid-item about-committee">
+			<h4>Executive Committee</h4>
+			<ul class="committee">
+				<li>President: <b>Michal Wiraszka</b></li>
+				<li>Vice President: <b>Edgar Zapata</b></li>
+				<li>Treasurer: <b>Jim Kearley</b></li>
+				<li>Ratings Auditor: <b>Gerry Litchfield</b></li>
+				<li>Member at Large: <b>Hugo Ortiz</b></li>
+				<li>Member at Large: <b>Ryan Sarson</b></li>
+			</ul>
+			<p>
+				Every December we hold our Annual General Meeting where all club members are
+				invited to elect a new committee (see
+				<a class="lcc-link"
+					 [routerLink]="NavPathTypes.SCHEDULE"
+					 (click)="onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
+				for exact dates).
+			</p>
+		</article>
+	</section>
 </div>

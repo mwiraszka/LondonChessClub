@@ -76,9 +76,10 @@
   flex-flow: column nowrap;
   justify-content: center;
   text-align: center;
-}
 
-.lcc-form-link {
-  @extend .lcc-link;
-  padding: 3px;
+  .lcc-form-link {
+    @extend .lcc-link;
+    padding: 3px;
+    font-size: $h5 !important;
+  }
 }

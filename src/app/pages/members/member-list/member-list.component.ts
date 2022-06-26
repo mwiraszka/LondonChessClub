@@ -8,6 +8,7 @@ import {
   pencilIcon,
   plusCircleIcon,
   trashIcon,
+  usersIcon,
 } from '@cds/core/icon';
 
 import { MemberListFacade } from './store/member-list.facade';
@@ -26,19 +27,16 @@ export class MemberListComponent implements OnInit {
   constructor(public facade: MemberListFacade, private loader: LoaderService) {}
 
   ngOnInit(): void {
-    this.facade.loadMembers();
     this.facade.isLoading$.subscribe((isLoading) => {
       this.loader.display(isLoading);
     });
+    this.facade.loadMembers();
+    ClarityIcons.addIcons(angleIcon, pencilIcon, plusCircleIcon, trashIcon, usersIcon);
     this.facade.isAdmin$.pipe(take(1)).subscribe((isAdmin) => {
       if (isAdmin) {
         this.tableHeaders.push(...this.adminOnlyTableHeaders);
       }
     });
-    ClarityIcons.addIcons(angleIcon);
-    ClarityIcons.addIcons(pencilIcon);
-    ClarityIcons.addIcons(plusCircleIcon);
-    ClarityIcons.addIcons(trashIcon);
   }
 
   // Re-assign to make utils functions available in template

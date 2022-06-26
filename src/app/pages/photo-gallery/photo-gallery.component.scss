@@ -1,18 +1,50 @@
+@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
 :host {
   display: flex;
   justify-content: center;
-  gap: 16px;
 }
 
+section {
+  background-color: $lcc-color--bg-grid-item;
+  width: 90%;
+  padding: 12px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
 
-h5 {
-  color: darken($lcc-color--text-secondary, 5%);
-  line-height: 40px;
+  @include respond-to('lt-md') {
+    width: 100%;
+  }
+}
+
+ul {
+  display: inline-block;
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+
+  @include respond-to('lt-md') {
+    columns: 1;
+    -webkit-columns: 1;
+    -moz-columns: 1;
+  }
+}
+
+li {
+  padding: 6px;
 }
 
 a {
-  font-size: $h5;
-  padding: 6px;
+  font-size: $h4;
+}
+
+cds-icon {
+  padding: 3px;
+}
+
+a cds-icon {
+  margin-bottom: 4px; // manual centering
+  margin-right: 3px;
 }

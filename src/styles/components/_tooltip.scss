@@ -1,18 +1,20 @@
 .tooltip-container {
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: 100;
   width: auto;
   text-align: center;
-  padding: 3px 6px;
+  padding: 2px 5px;
   font-size: $h5;
   font-weight: 300;
   line-height: initial;
   color: white;
-  background-color: lighten($lcc-color--black, 10%);
-  border-radius: $lcc-border-radius-lg;
+  background-color: lighten($lcc-color--accent, 10%);
+  border-radius: $lcc-border-radius-sm;
   box-sizing: border-box;
   opacity: 0;
-  transform: translate(-50%, -30%);
+  transform: translate(-50%, 10px);
   animation: tooltip-slide 0.18s ease-out 0.5s;
   animation-fill-mode: forwards;
   pointer-events: none;

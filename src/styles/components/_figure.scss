@@ -9,6 +9,7 @@
   gap: 2px;
   margin: 12px 8px;
   min-width: 100px;
+  border-radius: $lcc-border-radius-lg;
 
   img {
     border-top-left-radius: $lcc-border-radius-lg;
@@ -17,17 +18,13 @@
   }
 
   figcaption {
-    background-color: darken($lcc-color--bg-figure, 10%);
+    background-color: $lcc-color--bg-figure;
     color: darken($lcc-color--white, 10%);
     border-bottom-left-radius: $lcc-border-radius-lg;
     border-bottom-right-radius: $lcc-border-radius-lg;
     font-size: $h5;
-    padding: 8px 6px;
+    padding: 6px 8px;
     width: 100%;
     line-height: normal;
-  }
-
-  @include respond-to('lt-md') {
-    padding: 2px;
   }
 }

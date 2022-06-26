@@ -1,3 +1,4 @@
+@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
 :host {
@@ -5,7 +6,28 @@
   justify-content: center;
 }
 
-.lcc-articles {
+.link-container {
+  width: 90%;
+
+  @include respond-to ('lt-md') {
+    width: 100%;
+  }
+
+  a {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: $h5;
+  
+    cds-icon {
+      width: 10px;
+      margin-bottom: 3px;
+    }
+  }
+}
+
+.articles {
   display: flex;
   flex-flow: row wrap;
   gap: 10px;
@@ -13,11 +35,16 @@
   align-items: center;
   text-align: center;
   margin-top: 10px;
-}
+  width: 90%;
 
-.lcc-article {
-  width: 240px;
-  height: 280px;
-  padding: 6px;
-  background-color: darken($lcc-color--white, 6%);
+  @include respond-to ('lt-md') {
+    width: 100%;
+  }
+
+  .article {
+    width: 240px;
+    height: 280px;
+    padding: 6px;
+    background-color: darken($lcc-color--white, 6%);
+  }
 }

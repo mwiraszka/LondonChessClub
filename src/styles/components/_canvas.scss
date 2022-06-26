@@ -1,16 +1,21 @@
-.lcc-canvas {
-  background-color: $lcc-color--bg-canvas;
-  border-radius: $lcc-border-radius-sm;
-  box-shadow: 1px 1px 5px 2px $lcc-color--box-shadow;
-  padding: 10px;
+@import 'styles/abstracts/mixins';
 
+.lcc-canvas {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-
-  margin-top: 10px;
   width: 900px;
   max-width: 900px;
   min-width: 250px;
+  padding: 10px 30px;
+  margin-top: 10px;
+
+  box-shadow: 1px 1px 5px 2px $lcc-color--box-shadow;
+  background-color: $lcc-color--bg-canvas;
+  border-radius: $lcc-border-radius-sm;
+
+  @include respond-to('lt-md') {
+    padding: 6px 20px;
+  }
 }

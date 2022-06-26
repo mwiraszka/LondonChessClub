@@ -1,0 +1,21 @@
+@import 'styles/abstracts/mixins';
+
+@include respond-to('lt-md') {
+  .lcc-lt-md-only { display: block !important; }
+  .lcc-gt-md-only { display: none !important; }
+}
+
+@include respond-to('lt-sm') {
+  .lcc-lt-sm-only { display: block !important; }
+  .lcc-gt-sm-only { display: none !important; }
+}
+
+@include respond-to('gt-md') {
+  .lcc-gt-md-only { display: block !important; }
+  .lcc-lt-md-only { display: none !important; }
+}
+
+@include respond-to('gt-sm') {
+  .lcc-gt-sm-only { display: block !important; }
+  .lcc-lt-sm-only { display: none !important; }
+}

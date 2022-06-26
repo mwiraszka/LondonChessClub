@@ -1,67 +1,22 @@
-<div class="lcc-canvas">
-
+<div class="lcc-canvas container">
 	<header class="lcc-page-header">
-		<em>Photo Gallery</em>
+		Photo Gallery
+		<cds-icon shape="image-gallery"
+							size="sm">
+		</cds-icon>
 	</header>
-	<h5>A blast from our past...</h5>
-
-	<ul>
-		<li>
-			<a href="https://www.flickr.com/photos/184509003@N07/"
-				 class="lcc-link"
-				 alt="Photos &mdash; 2019 to present day">
-				Photos &mdash; 2019 to present day
-			</a>
-		</li>
-		<li>
-			<a href="http://londonchessclub.ca/?page_id=4918"
-				 class="lcc-link"
-				 alt="Photos &mdash; June 2016">
-				Photos &mdash; June 2016
-			</a>
-		</li>
-		<li>
-			<a href="http://londonchessclub.ca/?page_id=4535"
-				 class="lcc-link"
-				 alt="Photos &mdash; April 2016">
-				Photos &mdash; April 2016
-			</a>
-		</li>
-		<li>
-			<a href="http://londonchessclub.ca/?page_id=3644"
-				 class="lcc-link"
-				 alt="Photos &mdash; 2015">
-				Photos &mdash; 2015
-			</a>
-		</li>
-		<li>
-			<a href="http://londonchessclub.ca/?page_id=1343"
-				 class="lcc-link"
-				 alt="Photos &mdash; 2011">
-				Photos &mdash; 2011
-			</a>
-		</li>
-		<li>
-			<a href="http://londonchessclub.ca/?page_id=926"
-				 class="lcc-link"
-				 alt="Photos &mdash; 2009">
-				Photos &mdash; 2009
-			</a>
-		</li>
-		<li>
-			<a href="http://londonchessclub.ca/?page_id=924"
-				 class="lcc-link"
-				 alt="Photos &mdash; 2008">
-				Photos &mdash; 2008
-			</a>
-		</li>
-		<li>
-			<a href="http://londonchessclub.ca/?page_id=916"
-				 class="lcc-link"
-				 alt="Photos &mdash; 2007 and older">
-				Photos &mdash; 2007 and older
-			</a>
-		</li>
-	</ul>
-
+	<section class="links-container">
+		<ul class="links">
+			<li *ngFor="let link of links">
+				<a [href]="link.url"
+					 class="lcc-link"
+					 alt="link.alt"
+					 target="_blank">
+					<cds-icon shape="camera"
+										size="sm">
+					</cds-icon>{{ link.text }}
+				</a>
+			</li>
+		</ul>
+	</section>
 </div>

@@ -1,13 +1,12 @@
 ﻿<div class="lcc-canvas">
+	<header class="lcc-page-header">
+		Sign Up
+	</header>
+
 	<form class="lcc-form"
 				[formGroup]="form"
 				(keyup)="onKeyUp($event)"
 				(ngSubmit)="onSignUp()">
-
-		<header class="lcc-form-header">
-			<h3>Sign Up</h3>
-		</header>
-
 		<div class="lcc-form-fields">
 			<label for="email-input">
 				Email:

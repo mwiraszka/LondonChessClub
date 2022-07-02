@@ -8,9 +8,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ClarityIcons, exclamationTriangleIcon } from '@cds/core/icon';
+import { Subscription } from 'rxjs';
 
-import { AuthFacade, SignUpRequest } from '@app/core/auth';
-import { LoaderService } from '@app/shared/services';
 import {
   confirmPasswordValidator,
   dateValidator,
@@ -21,7 +20,8 @@ import {
   phoneNumberValidator,
   signUpTokenValidator,
 } from '@app/shared/validators';
-import { Subscription } from 'rxjs';
+
+import { SignUpFacade } from './sign-up.facade';
 
 const PASSWORD_VALIDATORS: ValidatorFn[] = [
   Validators.required,
@@ -41,11 +41,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   passwordChangesSub!: Subscription;
 
-  constructor(
-    private facade: AuthFacade,
-    private formBuilder: FormBuilder,
-    private loader: LoaderService
-  ) {}
+  constructor(public facade: SignUpFacade, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -106,22 +102,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
       console.log('Could not recognize', control.errors);
       return 'Unknown error';
     }
-  }
-
-  onKeyUp(event: any): void {
-    if (event.keyCode === 13 && this.form.valid) {
-      this.onSignUp();
-    }
-  }
-
-  onAlreadyHaveAccount(): void {
-    this.facade.onAlreadyHaveAccount();
-  }
-
-  onSignUp(): void {
-    this.loader.display(true);
-    this.facade.onSignUp(this.form.value as SignUpRequest);
-    setTimeout(() => this.loader.display(false), 1000);
   }
 
   ngOnDestroy(): void {

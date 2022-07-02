@@ -4,7 +4,7 @@ import { BehaviorSubject, of } from 'rxjs';
 
 import { AuthSelectors } from '@app/core/auth';
 
-import * as NavActions from './nav.actions';
+import * as NavActions from './store/nav.actions';
 
 @Injectable()
 export class NavFacade {

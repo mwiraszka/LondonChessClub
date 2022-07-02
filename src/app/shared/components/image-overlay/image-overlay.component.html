@@ -1,0 +1,14 @@
+<div class="overlay"
+		 (click)="facade.onClickOverlay($event)">
+	<div class="content">
+		<header>
+			<button class="close-button"
+							(click)="facade.onClickClose()">
+				<cds-icon shape="window-close"
+									size="sm">
+				</cds-icon>
+			</button>
+		</header>
+		<img [src]="facade.imagePath$ | async" />
+	</div>
+</div>

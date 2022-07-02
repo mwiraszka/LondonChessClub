@@ -1,0 +1,72 @@
+@import 'styles/abstracts/variables';
+
+$screen-edge-padding: 20px;
+
+.overlay {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: hsla(0, 0%, 30%, 80%);
+  animation: dim 0.2s ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .content {
+    padding: $screen-edge-padding;
+    min-width: 300px;
+    min-height: 320px;
+    max-height: 100%;
+    max-width: 100%;
+    animation: appear 0.3s ease-out;
+
+    header {
+      background-color: darken($lcc-color--primary, 20%);
+      border-top-left-radius: $lcc-border-radius-lg;
+      border-top-right-radius: $lcc-border-radius-lg;
+      border-bottom: 2px solid darken($lcc-color--primary, 30%);
+      height: 26px;
+      display: flex;
+  
+      button {
+        margin: 0 4px 0 auto;
+        border: none;
+        background-color: inherit;
+        color: darken($lcc-color--white, 10%);
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+  
+    img {
+      z-index: 101;
+      opacity: 100%;
+      width: 100%;
+      max-width: 1000px;
+      max-height: 800px;
+      border-bottom-left-radius: $lcc-border-radius-lg;
+      border-bottom-right-radius: $lcc-border-radius-lg;
+    }
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 20%;
+    transform: translateY(-120px);
+  }
+  100% {
+    opacity: 100%;
+    transform: 'none';
+  }
+}
+
+@keyframes dim {
+  0% { background: hsla(0, 0%, 30%, 0%); }
+  100% { background: hsla(0, 0%, 30%, 80%); }
+}

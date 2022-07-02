@@ -7,7 +7,7 @@ import {
   CognitoUserPool,
   CognitoUserSession,
 } from 'amazon-cognito-identity-js';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { LoginRequest } from './types/login-request.model';
 import { LoginResponse } from './types/login-response.model';
 import { SignUpRequest } from './types/sign-up-request.model';

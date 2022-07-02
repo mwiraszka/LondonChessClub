@@ -3,6 +3,7 @@ import { NavState } from '@app/core/nav';
 import { ArticleEditorState, ArticleListState } from '@app/pages/articles';
 import { MemberEditorState, MemberListState } from '@app/pages/members';
 import { AlertState } from '@app/shared/components/alert';
+import { ImageOverlayState } from '@app/shared/components/image-overlay';
 import { ModalState } from '@app/shared/components/modal';
 import { ToasterState } from '@app/shared/components/toaster';
 
@@ -11,6 +12,7 @@ export interface AppState {
   articleEditorState: ArticleEditorState;
   articleListState: ArticleListState;
   authState: AuthState;
+  imageOverlayState: ImageOverlayState;
   memberEditorState: MemberEditorState;
   memberListState: MemberListState;
   modalState: ModalState;

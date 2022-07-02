@@ -3,7 +3,6 @@ export { AuthService } from './auth.service';
 
 export * as AuthActions from './store/auth.actions';
 export { AuthEffects } from './store/auth.effects';
-export { AuthFacade } from './store/auth.facade';
 export * as AuthSelectors from './store/auth.selectors';
 export { reducer } from './store/auth.reducer';
 

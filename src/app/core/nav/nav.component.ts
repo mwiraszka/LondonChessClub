@@ -11,7 +11,7 @@ import {
   usersIcon,
 } from '@cds/core/icon';
 
-import { NavFacade } from './store/nav.facade';
+import { NavFacade } from './nav.facade';
 import { NavPathTypes } from './types/nav-paths.model';
 
 @Component({

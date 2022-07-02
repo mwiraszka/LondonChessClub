@@ -1,14 +1,14 @@
 <div class="lcc-alert-message-container">
-	<p class="lcc-alert-message">{{ alert?.message }}</p>
+	<p class="lcc-alert-message">{{ (facade.alert$ | async)?.message }}</p>
 	<div class="lcc-alert-controls">
 		<button class="lcc-ghost-button lcc-alert-action-button"
-						(click)="onSelectAction(alert?.action)">
-			{{ alert?.action }}
+						(click)="facade.onClickAction()">
+			{{ (facade.alert$ | async)?.action }}
 		</button>
 		<cds-icon class="lcc-icon-button lcc-alert-close-button"
 							shape="window-close"
 							size="md"
-							(click)="onSelectAction(AlertAction.CLOSE)">
+							(click)="facade.onClickClose()">
 		</cds-icon>
 	</div>
 </div>

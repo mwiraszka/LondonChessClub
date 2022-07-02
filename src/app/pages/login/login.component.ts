@@ -7,9 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { AuthFacade } from '@app/core/auth';
 import { LoaderService } from '@app/shared/services';
 
+import { LoginFacade } from './login.facade';
 @Component({
   selector: 'lcc-login',
   templateUrl: './login.component.html',
@@ -19,7 +19,7 @@ export class LoginComponent {
   form!: FormGroup;
 
   constructor(
-    public facade: AuthFacade,
+    public facade: LoginFacade,
     private formBuilder: FormBuilder,
     private loader: LoaderService
   ) {

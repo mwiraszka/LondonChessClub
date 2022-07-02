@@ -1,4 +1,4 @@
-export { ScheduleComponent } from './schedule.component';
-export { ScheduleModule } from './schedule.module';
+export { SchedulePageComponent } from './schedule-page.component';
+export { SchedulePageModule } from './schedule-page.module';
 
 export { ClubEvent } from './types/club-event.model';

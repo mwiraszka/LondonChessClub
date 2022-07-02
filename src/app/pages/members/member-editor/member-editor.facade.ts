@@ -3,9 +3,9 @@ import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 
-import * as MemberEditorActions from './member-editor.actions';
-import * as MemberEditorSelectors from './member-editor.selectors';
-import { Member } from '../../types/member.model';
+import * as MemberEditorActions from './store/member-editor.actions';
+import * as MemberEditorSelectors from './store/member-editor.selectors';
+import { Member } from '../types/member.model';
 
 @Injectable()
 export class MemberEditorFacade {

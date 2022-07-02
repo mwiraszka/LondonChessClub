@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClarityModule } from '@clr/angular';
 
-import { ScheduleComponent } from '@app/pages/schedule';
+import { ScheduleComponent } from './schedule.component';
 
 @NgModule({
   declarations: [ScheduleComponent],
-  imports: [ClarityModule, CommonModule],
+  imports: [CommonModule],
+  exports: [ScheduleComponent],
 })
 export class ScheduleModule {}

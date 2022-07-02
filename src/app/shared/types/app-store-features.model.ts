@@ -16,4 +16,5 @@ export enum AppStoreFeatureTypes {
   ALERT = 'alert',
   NAV = 'nav',
   TOASTER = 'toaster',
+  IMAGE_OVERLAY = 'image-overlay',
 }

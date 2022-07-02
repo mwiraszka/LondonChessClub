@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Link } from '@app/shared/types';
 import { cameraIcon, ClarityIcons, imageGalleryIcon } from '@cds/core/icon';
+
+import { PhotoGalleryFacade } from './photo-gallery.facade';
+import { Link } from '@app/shared/types';
 
 @Component({
   selector: 'lcc-photo-gallery',
@@ -52,7 +53,13 @@ export class PhotoGalleryComponent implements OnInit {
     },
   ];
 
+  constructor(public facade: PhotoGalleryFacade) {}
+
   ngOnInit(): void {
     ClarityIcons.addIcons(cameraIcon, imageGalleryIcon);
+  }
+
+  numSequence(n: number): Array<number> {
+    return Array(n);
   }
 }

@@ -3,7 +3,7 @@ import { announcementIcon, ClarityIcons, plusCircleIcon } from '@cds/core/icon';
 
 import { LoaderService } from '@app/shared/services';
 
-import { ArticleListFacade } from './store/article-list.facade';
+import { ArticleListFacade } from './article-list.facade';
 
 @Component({
   selector: 'lcc-article-list',

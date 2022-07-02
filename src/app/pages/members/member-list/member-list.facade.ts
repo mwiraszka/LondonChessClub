@@ -3,9 +3,9 @@ import { Store } from '@ngrx/store';
 
 import * as AuthSelectors from '@app/core/auth/store/auth.selectors';
 
-import * as MemberListActions from './member-list.actions';
-import * as MemberListSelectors from './member-list.selectors';
-import { Member } from '../../types/member.model';
+import * as MemberListActions from './store/member-list.actions';
+import * as MemberListSelectors from './store/member-list.selectors';
+import { Member } from '../types/member.model';
 
 @Injectable()
 export class MemberListFacade {

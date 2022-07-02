@@ -3,9 +3,9 @@ import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 
-import * as ArticleEditorActions from './article-editor.actions';
-import * as ArticleEditorSelectors from './article-editor.selectors';
-import { Article } from '../../types/article.model';
+import * as ArticleEditorActions from './store/article-editor.actions';
+import * as ArticleEditorSelectors from './store/article-editor.selectors';
+import { Article } from '../types/article.model';
 
 @Injectable()
 export class ArticleEditorFacade {

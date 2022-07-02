@@ -17,8 +17,6 @@ export class ToastComponent implements OnInit {
   @Input() toast: Toast;
   iconShape: 'check-circle' | 'exclamation-circle' | 'exclamation-triangle';
 
-  constructor() {}
-
   ngOnInit(): void {
     ClarityIcons.addIcons(
       checkCircleIcon,

@@ -7,14 +7,13 @@ import {
   ModalActions,
   ModalButtonActionTypes,
   ModalButtonStyleTypes,
-  ModalState,
 } from '@app/shared/components/modal';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UpdateService {
-  constructor(private store: Store<ModalState>, private swUpdate: SwUpdate) {}
+  constructor(private store: Store, private swUpdate: SwUpdate) {}
 
   subscribeToVersionUpdates(): void {
     this.swUpdate.versionUpdates.subscribe(() => {

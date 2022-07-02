@@ -9,7 +9,7 @@ import { HomeComponent } from '@app/pages/home';
 import { PhotoGalleryComponent } from '@app/pages/photo-gallery';
 import { LoginComponent } from '@app/pages/login';
 import { MemberEditorComponent, MemberListComponent } from '@app/pages/members';
-import { ScheduleComponent } from '@app/pages/schedule';
+import { SchedulePageComponent } from '@app/pages/schedule';
 import { UnsavedArticleGuard, UnsavedMemberGuard } from '@app/shared/guards';
 import { SignUpComponent } from './pages/sign-up';
 
@@ -35,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: NavPathTypes.SCHEDULE,
-    component: ScheduleComponent,
+    component: SchedulePageComponent,
   },
   {
     path: NavPathTypes.NEWS,

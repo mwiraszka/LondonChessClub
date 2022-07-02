@@ -5,7 +5,14 @@
 							size="sm">
 		</cds-icon>
 	</header>
-	<section class="links-container">
+
+	<section class="photos-section">
+		<img *ngFor="let n of numSequence(16); let i = index;"
+				 [src]="'assets/photos/' + (i + 1) + '-thumbnail.jpg'"
+				 (click)="facade.onClickImage(i + 1)" />
+	</section>
+
+	<section class="links-section">
 		<ul class="links">
 			<li *ngFor="let link of links">
 				<a [href]="link.url"
@@ -14,7 +21,8 @@
 					 target="_blank">
 					<cds-icon shape="camera"
 										size="sm">
-					</cds-icon>{{ link.text }}
+					</cds-icon>
+					{{ link.text }}
 				</a>
 			</li>
 		</ul>

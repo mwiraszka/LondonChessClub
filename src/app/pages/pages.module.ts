@@ -8,7 +8,7 @@ import { HomeModule } from '@app/pages/home';
 import { LoginModule } from '@app/pages/login';
 import { PhotoGalleryModule } from '@app/pages/photo-gallery';
 import { MemberEditorModule, MemberListModule } from '@app/pages/members';
-import { ScheduleModule } from '@app/pages/schedule';
+import { SchedulePageModule } from '@app/pages/schedule';
 import { SignUpModule } from '@app/pages/sign-up';
 
 const modules = [
@@ -21,7 +21,7 @@ const modules = [
   PhotoGalleryModule,
   MemberEditorModule,
   MemberListModule,
-  ScheduleModule,
+  SchedulePageModule,
   SignUpModule,
 ];
 

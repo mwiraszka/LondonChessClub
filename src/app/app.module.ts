@@ -14,6 +14,7 @@ import { AppComponent } from '@app/app.component';
 import { CoreModule } from '@app/core/core.module';
 import { PagesModule } from '@app/pages/pages.module';
 import { AlertModule } from '@app/shared/components/alert';
+import { ImageOverlayModule } from '@app/shared/components/image-overlay';
 import { ModalModule } from '@app/shared/components/modal';
 import { ToastModule } from '@app/shared/components/toast';
 import { ToasterModule } from '@app/shared/components/toaster';
@@ -31,6 +32,7 @@ import { environment } from '@environments/environment';
     CoreModule,
     EffectsModule.forRoot([]),
     HttpClientModule,
+    ImageOverlayModule,
     ModalModule,
     PagesModule,
     ServiceWorkerModule.register('ngsw-worker.js', {

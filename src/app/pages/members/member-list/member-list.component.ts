@@ -11,7 +11,7 @@ import {
   usersIcon,
 } from '@cds/core/icon';
 
-import { MemberListFacade } from './store/member-list.facade';
+import { MemberListFacade } from './member-list.facade';
 import { camelize, kebabize } from '@app/shared/utils';
 
 @Component({

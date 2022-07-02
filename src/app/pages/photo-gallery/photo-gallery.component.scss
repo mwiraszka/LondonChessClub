@@ -6,7 +6,27 @@
   justify-content: center;
 }
 
-section {
+.photos-section {
+  background-color: $lcc-color--bg-grid-item;
+  width: 90%;
+  padding: 12px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  img {
+    padding: 2px;
+    border-radius: $lcc-border-radius-lg;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.links-section {
   background-color: $lcc-color--bg-grid-item;
   width: 90%;
   padding: 12px;

@@ -1,16 +1,11 @@
 ﻿<div class="lcc-canvas">
-	<header class="lcc-page-header">
-		Sign Up
-	</header>
+	<header class="lcc-page-header">Sign Up</header>
 
 	<form class="lcc-form"
 				[formGroup]="form"
-				(keyup)="onKeyUp($event)"
-				(ngSubmit)="onSignUp()">
+				(ngSubmit)="facade.onSignUp(form.value)">
 		<div class="lcc-form-fields">
-			<label for="email-input">
-				Email:
-			</label>
+			<label for="email-input">Email:</label>
 			<input id="email-input"
 						 type="text"
 						 name="email"
@@ -24,9 +19,7 @@
 				</cds-icon>
 			</div>
 
-			<label for="password-input">
-				Password:
-			</label>
+			<label for="password-input">Password:</label>
 			<input id="password-input"
 						 type="password"
 						 name="password"
@@ -40,9 +33,7 @@
 				</cds-icon>
 			</div>
 
-			<label for="password-confirm-input">
-				Confirm password:
-			</label>
+			<label for="password-confirm-input">Confirm password:</label>
 			<input id="password-confirm-input"
 						 type="password"
 						 name="confirm-password"
@@ -58,9 +49,7 @@
 
 			<hr class="lcc-form-divider-line" />
 
-			<label for="first-name-input">
-				First name:
-			</label>
+			<label for="first-name-input">First name:</label>
 			<input id="first-name-input"
 						 type="text"
 						 name="first-name"
@@ -74,9 +63,7 @@
 				</cds-icon>
 			</div>
 
-			<label for="last-name-input">
-				Last name:
-			</label>
+			<label for="last-name-input">Last name:</label>
 			<input id="last-name-input"
 						 type="text"
 						 name="last-name"
@@ -90,9 +77,7 @@
 				</cds-icon>
 			</div>
 
-			<label for="date-of-birth-input">
-				Date of birth:<em>(optional)</em>
-			</label>
+			<label for="date-of-birth-input">Date of birth:<em>(optional)</em></label>
 			<input id="date-of-birth-input"
 						 type="text"
 						 name="date-of-birth"
@@ -106,9 +91,7 @@
 				</cds-icon>
 			</div>
 
-			<label for="phone-number-input">
-				Phone number:
-			</label>
+			<label for="phone-number-input">Phone number:</label>
 			<input id="phone-number-input"
 						 type="text"
 						 name="phone-number"
@@ -122,9 +105,7 @@
 				</cds-icon>
 			</div>
 
-			<label for="city-input">
-				City:
-			</label>
+			<label for="city-input">City:</label>
 			<input id="city-input"
 						 type="text"
 						 name="city"
@@ -140,9 +121,7 @@
 
 			<hr class="lcc-form-divider-line" />
 
-			<label for="sign-up-token">
-				Sign-up token:
-			</label>
+			<label for="sign-up-token">Sign-up token:</label>
 			<input id="sign-up-token"
 						 type="text"
 						 name="signUpToken"
@@ -167,7 +146,7 @@
 
 		<div class="lcc-form-links-container">
 			<a class="lcc-form-link"
-				 (click)="onAlreadyHaveAccount()">
+				 (click)="facade.onAlreadyHaveAccount()">
 				Already have an account?
 			</a>
 		</div>

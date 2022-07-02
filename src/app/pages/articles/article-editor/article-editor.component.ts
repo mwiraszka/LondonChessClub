@@ -6,7 +6,7 @@ import { debounceTime, first, tap } from 'rxjs/operators';
 import { LoaderService } from '@app/shared/services';
 import { dateValidator, mimeTypeValidator } from '@app/shared/validators';
 
-import { ArticleEditorFacade } from './store/article-editor.facade';
+import { ArticleEditorFacade } from './article-editor.facade';
 import { Article } from '../types/article.model';
 
 @Component({
@@ -33,7 +33,7 @@ export class ArticleEditorComponent implements OnInit, OnDestroy {
       .pipe(
         tap((article) => {
           this.initForm(article);
-          this.imagePreview = article.headerImageUrl as string;
+          this.imagePreview = article.headerImagePath as string;
         }),
         first()
       )
@@ -69,7 +69,7 @@ export class ArticleEditorComponent implements OnInit, OnDestroy {
 
   onImageChange(event: Event): void {
     const file = (event.target as HTMLInputElement).files[0];
-    this.form.get('headerImageUrl').patchValue(file);
+    this.form.get('headerImagePath').patchValue(file);
 
     const reader = new FileReader();
     reader.onload = () => {
@@ -94,7 +94,7 @@ export class ArticleEditorComponent implements OnInit, OnDestroy {
     this.form = this.formBuilder.group({
       title: [article.title, [Validators.required, Validators.pattern(/[^\s]/)]],
       subtitle: [article.subtitle, [Validators.required, Validators.pattern(/[^\s]/)]],
-      headerImageUrl: [article.headerImageUrl, Validators.required, mimeTypeValidator],
+      headerImagePath: [article.headerImagePath, Validators.required, mimeTypeValidator],
       authorId: [article.authorId, Validators.required],
       dateCreated: [article.dateCreated, [Validators.required, dateValidator]],
       dateEdited: [article.dateEdited, dateValidator],

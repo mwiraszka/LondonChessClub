@@ -3,9 +3,9 @@ import { Store } from '@ngrx/store';
 
 import { AuthSelectors } from '@app/core/auth';
 
-import * as ArticleListActions from './article-list.actions';
-import * as ArticleListSelectors from './article-list.selectors';
-import { Article } from '../../types/article.model';
+import * as ArticleListActions from './store/article-list.actions';
+import * as ArticleListSelectors from './store/article-list.selectors';
+import { Article } from '../types/article.model';
 
 @Injectable()
 export class ArticleListFacade {

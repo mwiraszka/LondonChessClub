@@ -11,7 +11,7 @@ import {
   ratingValidator,
 } from '@app/shared/validators';
 
-import { MemberEditorFacade } from './store/member-editor.facade';
+import { MemberEditorFacade } from './member-editor.facade';
 import { Member } from '../types/member.model';
 
 @Component({

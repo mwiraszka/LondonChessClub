@@ -9,8 +9,8 @@ $screen-edge-padding: 20px;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: hsla(0, 0%, 30%, 80%);
-  animation: dim 0.2s ease-out;
+  background: $lcc-color--overlay;
+  animation: dim 0.5s ease-in;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +21,7 @@ $screen-edge-padding: 20px;
     min-height: 320px;
     max-height: 100%;
     max-width: 100%;
-    animation: appear 0.3s ease-out;
+    animation: appear 0.5s ease-in;
 
     header {
       background-color: darken($lcc-color--primary, 20%);
@@ -56,17 +56,11 @@ $screen-edge-padding: 20px;
 }
 
 @keyframes appear {
-  0% {
-    opacity: 20%;
-    transform: translateY(-120px);
-  }
-  100% {
-    opacity: 100%;
-    transform: 'none';
-  }
+  0% { opacity: 20%; }
+  100% { opacity: 100%; }
 }
 
 @keyframes dim {
-  0% { background: hsla(0, 0%, 30%, 0%); }
-  100% { background: hsla(0, 0%, 30%, 80%); }
+  0% { background: $lcc-color--transparent-fully; }
+  100% { background: $lcc-color--overlay; }
 }

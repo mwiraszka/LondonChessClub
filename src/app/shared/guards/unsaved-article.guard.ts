@@ -4,7 +4,10 @@ import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
 
-import { ArticleEditorComponent, ArticleEditorSelectors } from '@app/pages/articles';
+import {
+  ArticleEditorScreenComponent,
+  ArticleEditorScreenSelectors,
+} from '@app/screens/articles';
 import {
   ModalActions,
   ModalButtonActionTypes,
@@ -14,11 +17,11 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class UnsavedArticleGuard implements CanDeactivate<ArticleEditorComponent> {
+export class UnsavedArticleGuard implements CanDeactivate<ArticleEditorScreenComponent> {
   constructor(private store: Store) {}
 
   canDeactivate(): Observable<boolean> {
-    return this.store.select(ArticleEditorSelectors.hasUnsavedChanges).pipe(
+    return this.store.select(ArticleEditorScreenSelectors.hasUnsavedChanges).pipe(
       switchMap((hasUnsavedChanges) => {
         if (!hasUnsavedChanges) {
           return of(true);

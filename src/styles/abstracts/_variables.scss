@@ -18,7 +18,7 @@ $lcc-color--bg-main: hsl(0, 0%, 95%);
 $lcc-color--bg-nav: hsl(0, 0%, 98%);
 $lcc-color--bg-canvas: hsl(0, 0%, 97%);
 $lcc-color--bg-figure: hsl(7, 3%, 12%);
-$lcc-color--bg-page-header: hsl(7, 3%, 94%);
+$lcc-color--bg-screen-header: hsl(7, 3%, 94%);
 $lcc-color--bg-grid-item: hsl(7, 3%, 94%);
 $lcc-color--bg-table-row-light: hsl(0, 0%, 98%);
 $lcc-color--bg-table-row-dark: hsl(0, 0%, 94%);
@@ -27,6 +27,7 @@ $lcc-color--transparent-fully: hsla(0, 0%, 100%, 0);
 $lcc-color--transparent-mostly: hsla(0, 0%, 100%, 0.2);
 $lcc-color--transparent-half: hsla(0, 0%, 100%, 0.5);
 $lcc-color--box-shadow: hsla(0, 0%, 84%, 0.8);
+$lcc-color--overlay: hsla(0, 0%, 30%, 0.8);
 
 
 /* Other custom LCC constants */

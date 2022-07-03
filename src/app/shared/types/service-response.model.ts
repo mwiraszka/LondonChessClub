@@ -1,5 +1,5 @@
-import { Article } from '@app/pages/articles';
-import { Member } from '@app/pages/members';
+import { Article } from '@app/screens/articles';
+import { Member } from '@app/screens/members';
 
 export interface ServiceResponse {
   error?: Error;

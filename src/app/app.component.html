@@ -15,7 +15,8 @@
 	<main>
 		<router-outlet>
 			<span *ngIf="isLoading"
-						class="loading-spinner"></span>
+						class="loading-spinner">
+			</span>
 			<ng-container *ngIf="showToaster$ | async">
 				<lcc-toaster></lcc-toaster>
 			</ng-container>

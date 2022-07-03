@@ -1,6 +1,6 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
-import { MOCK_EVENTS } from '@app/pages/schedule/mock-events';
+import { MOCK_EVENTS } from '@app/screens/schedule/mock-events';
 
 import * as AlertActions from './alert.actions';
 import { AlertAction } from '../types/alert-action.model';

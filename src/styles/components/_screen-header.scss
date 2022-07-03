@@ -1,0 +1,48 @@
+@import 'styles/abstracts/variables';
+
+.lcc-screen-header {
+  border-radius: $lcc-border-radius-sm;
+  border-bottom-left-radius: 0;
+  border-bottom: 2px solid darken($lcc-color--bg-screen-header, 4%);
+  border-left: 2px solid darken($lcc-color--bg-screen-header, 4%);
+  box-shadow: 1px 1px 8px 1px $lcc-color--box-shadow;
+  padding: 8px 4px;
+  margin: 16px 12px;
+  padding-bottom: -5px !important;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: unset; // temp (necessary due to clarity)
+  word-spacing: 1px;
+  font-size: $h3;
+  background-color: $lcc-color--bg-screen-header;
+  color: $lcc-color--text-primary;
+
+  .lcc-secondary-text {
+    color: $lcc-color--text-secondary;
+  }
+
+  cds-icon {
+    color: $lcc-color--accent;
+    margin-left: 12px;
+    margin-bottom: 2px; // manually line up with text beside
+    border: 3px solid $lcc-color--transparent-mostly;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.1); 
+    border-radius: 50%;
+    height: 28px;
+    width: 28px;
+    padding: 1px;
+  }
+
+  @include respond-to('lt-sm') {
+    font-size: 80%;
+
+    cds-icon {
+      height: 24px;
+      width: 24px;
+    }
+  }
+}

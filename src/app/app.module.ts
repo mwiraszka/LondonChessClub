@@ -12,7 +12,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
 import { CoreModule } from '@app/core/core.module';
-import { PagesModule } from '@app/pages/pages.module';
+import { ScreensModule } from '@app/screens/screens.module';
 import { AlertModule } from '@app/shared/components/alert';
 import { ImageOverlayModule } from '@app/shared/components/image-overlay';
 import { ModalModule } from '@app/shared/components/modal';
@@ -34,7 +34,7 @@ import { environment } from '@environments/environment';
     HttpClientModule,
     ImageOverlayModule,
     ModalModule,
-    PagesModule,
+    ScreensModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

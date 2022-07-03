@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { ClubEvent } from '@app/pages/schedule';
+import { ClubEvent } from '@app/screens/schedule';
 
 @Component({
   selector: 'lcc-schedule',

@@ -2,74 +2,81 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { NavPathTypes } from '@app/core/nav';
-import { AboutComponent } from '@app/pages/about';
-import { ArticleEditorComponent, ArticleListComponent } from '@app/pages/articles';
-import { LondonChessChampionComponent } from '@app/pages/london-chess-champion';
-import { HomeComponent } from '@app/pages/home';
-import { PhotoGalleryComponent } from '@app/pages/photo-gallery';
-import { LoginComponent } from '@app/pages/login';
-import { MemberEditorComponent, MemberListComponent } from '@app/pages/members';
-import { SchedulePageComponent } from '@app/pages/schedule';
+import { AboutScreenComponent } from '@app/screens/about';
+import {
+  ArticleEditorScreenComponent,
+  ArticleListScreenComponent,
+} from '@app/screens/articles';
+import { ChampionScreenComponent } from '@app/screens/champion';
+import { HomeScreenComponent } from '@app/screens/home';
+import { PhotoGalleryScreenComponent } from '@app/screens/photo-gallery';
+import { LoginScreenComponent } from '@app/screens/login';
+import {
+  MemberEditorScreenComponent,
+  MemberListScreenComponent,
+} from '@app/screens/members';
+import { SignUpScreenComponent } from '@app/screens/sign-up';
 import { UnsavedArticleGuard, UnsavedMemberGuard } from '@app/shared/guards';
-import { SignUpComponent } from './pages/sign-up';
+
+import { ScheduleScreenComponent } from '@app/screens/schedule';
 
 const routes: Routes = [
   {
     path: NavPathTypes.HOME,
-    component: HomeComponent,
+    component: HomeScreenComponent,
     pathMatch: 'full',
   },
   {
     path: NavPathTypes.MEMBERS,
-    component: MemberListComponent,
+    component: MemberListScreenComponent,
   },
   {
     path: NavPathTypes.MEMBERS_ADD,
-    component: MemberEditorComponent,
+    component: MemberEditorScreenComponent,
     canDeactivate: [UnsavedMemberGuard],
   },
   {
     path: `${NavPathTypes.MEMBERS_EDIT}/:member_id`,
-    component: MemberEditorComponent,
+    component: MemberEditorScreenComponent,
     canDeactivate: [UnsavedMemberGuard],
   },
   {
     path: NavPathTypes.SCHEDULE,
-    component: SchedulePageComponent,
+    component: ScheduleScreenComponent,
   },
   {
     path: NavPathTypes.NEWS,
-    component: ArticleListComponent,
+    component: ArticleListScreenComponent,
   },
   {
     path: NavPathTypes.NEWS_COMPOSE,
-    component: ArticleEditorComponent,
+    component: ArticleEditorScreenComponent,
     canDeactivate: [UnsavedArticleGuard],
   },
   {
     path: `${NavPathTypes.NEWS_EDIT}/:article_id`,
-    component: ArticleEditorComponent,
+    component: ArticleEditorScreenComponent,
     canDeactivate: [UnsavedArticleGuard],
   },
   {
     path: NavPathTypes.LONDON_CHESS_CHAMPION,
-    component: LondonChessChampionComponent,
+    component: ChampionScreenComponent,
   },
   {
     path: NavPathTypes.PHOTO_GALLERY,
-    component: PhotoGalleryComponent,
+    component: PhotoGalleryScreenComponent,
   },
   {
     path: NavPathTypes.ABOUT,
-    component: AboutComponent,
+    component: AboutScreenComponent,
   },
   {
     path: NavPathTypes.LOGIN,
-    component: LoginComponent,
+    component: LoginScreenComponent,
   },
   {
     path: NavPathTypes.SIGN_UP,
-    component: SignUpComponent,
+    component: SignUpScreenComponent,
   },
   {
     path: '**',

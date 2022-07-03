@@ -4,8 +4,11 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 
 import { AuthActions } from '@app/core/auth';
-import { ArticleEditorActions, ArticleListActions } from '@app/pages/articles';
-import { MemberEditorActions, MemberListActions } from '@app/pages/members';
+import {
+  ArticleEditorScreenActions,
+  ArticleListScreenActions,
+} from '@app/screens/articles';
+import { MemberEditorScreenActions, MemberListScreenActions } from '@app/screens/members';
 import { AlertActions } from '@app/shared/components/alert';
 
 import * as NavActions from './nav.actions';
@@ -18,8 +21,8 @@ export class NavEffects {
       this.actions$.pipe(
         ofType(
           NavActions.homeSelected,
-          MemberEditorActions.addMemberSucceeded,
-          MemberEditorActions.updateMemberSucceeded
+          MemberEditorScreenActions.addMemberSucceeded,
+          MemberEditorScreenActions.updateMemberSucceeded
         ),
         tap(() => this.router.navigate([NavPathTypes.HOME]))
       ),
@@ -31,9 +34,9 @@ export class NavEffects {
       this.actions$.pipe(
         ofType(
           NavActions.membersSelected,
-          MemberEditorActions.cancelSelected,
-          MemberEditorActions.addMemberSucceeded,
-          MemberEditorActions.updateMemberSucceeded
+          MemberEditorScreenActions.cancelSelected,
+          MemberEditorScreenActions.addMemberSucceeded,
+          MemberEditorScreenActions.updateMemberSucceeded
         ),
         tap(() => this.router.navigate([NavPathTypes.MEMBERS]))
       ),
@@ -43,7 +46,7 @@ export class NavEffects {
   navigateToMembersAdd$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(MemberListActions.createMemberSelected),
+        ofType(MemberListScreenActions.createMemberSelected),
         tap(() => this.router.navigate([NavPathTypes.MEMBERS_ADD]))
       ),
     { dispatch: false }
@@ -52,7 +55,7 @@ export class NavEffects {
   navigateToMembersEdit$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(MemberListActions.editMemberSelected),
+        ofType(MemberListScreenActions.editMemberSelected),
         tap((val) => console.log('::', val)),
         tap(({ memberToEdit }) =>
           this.router.navigate([NavPathTypes.MEMBERS_EDIT, memberToEdit.id])
@@ -75,9 +78,9 @@ export class NavEffects {
       this.actions$.pipe(
         ofType(
           NavActions.newsSelected,
-          ArticleEditorActions.cancelSelected,
-          ArticleEditorActions.publishArticleSucceeded,
-          ArticleEditorActions.updateArticleSucceeded
+          ArticleEditorScreenActions.cancelSelected,
+          ArticleEditorScreenActions.publishArticleSucceeded,
+          ArticleEditorScreenActions.updateArticleSucceeded
         ),
         tap(() => this.router.navigate([NavPathTypes.NEWS]))
       ),
@@ -87,7 +90,7 @@ export class NavEffects {
   navigateToNewsCompose$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(ArticleListActions.createArticleSelected),
+        ofType(ArticleListScreenActions.createArticleSelected),
         tap(() => this.router.navigate([NavPathTypes.NEWS_COMPOSE]))
       ),
     { dispatch: false }
@@ -96,7 +99,7 @@ export class NavEffects {
   navigateToNewsEdit$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(ArticleListActions.editArticleSelected),
+        ofType(ArticleListScreenActions.editArticleSelected),
         tap(({ articleToEdit }) =>
           this.router.navigate([NavPathTypes.NEWS_EDIT, articleToEdit.id])
         )

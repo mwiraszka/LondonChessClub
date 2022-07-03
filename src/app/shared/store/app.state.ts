@@ -1,7 +1,7 @@
 import { AuthState } from '@app/core/auth';
 import { NavState } from '@app/core/nav';
-import { ArticleEditorState, ArticleListState } from '@app/pages/articles';
-import { MemberEditorState, MemberListState } from '@app/pages/members';
+import { ArticleEditorScreenState, ArticleListScreenState } from '@app/screens/articles';
+import { MemberEditorScreenState, MemberListScreenState } from '@app/screens/members';
 import { AlertState } from '@app/shared/components/alert';
 import { ImageOverlayState } from '@app/shared/components/image-overlay';
 import { ModalState } from '@app/shared/components/modal';
@@ -9,12 +9,12 @@ import { ToasterState } from '@app/shared/components/toaster';
 
 export interface AppState {
   alertState: AlertState;
-  articleEditorState: ArticleEditorState;
-  articleListState: ArticleListState;
+  articleEditorScreenState: ArticleEditorScreenState;
+  articleListScreenState: ArticleListScreenState;
   authState: AuthState;
   imageOverlayState: ImageOverlayState;
-  memberEditorState: MemberEditorState;
-  memberListState: MemberListState;
+  memberEditorScreenState: MemberEditorScreenState;
+  memberListScreenState: MemberListScreenState;
   modalState: ModalState;
   navState: NavState;
   toasterState: ToasterState;

@@ -1,0 +1,18 @@
+@import 'styles/abstracts/mixins';
+@import 'styles/abstracts/variables';
+
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+lcc-photo-grid,
+lcc-link-list {
+  background-color: $lcc-color--bg-grid-item;
+  width: 90%;
+  padding: 12px;
+
+  @include respond-to('lt-md') {
+    width: 100%;
+  }
+}

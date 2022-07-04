@@ -1,0 +1,86 @@
+<div class="lcc-canvas">
+	<lcc-screen-header [preTitle]="'About the'"
+										 [title]="'London Chess Club'"
+										 [iconShape]="'unknown-status'">
+	</lcc-screen-header>
+
+	<section class="lcc-grid">
+		<article class="lcc-grid-item-1">
+			<lcc-about></lcc-about>
+		</article>
+
+		<article class="lcc-grid-item-2 lcc-darker-grid-item">
+			<h4>Membership Fee</h4>
+			<p>
+				$40 per calendar year (Jan 1&ndash;Dec 31), calculated pro rata
+				(you only pay for the months remaining in the year).
+			</p>
+			<p><b>Family discount:</b> additional family members get 50% off.</p>
+		</article>
+
+		<article class="lcc-grid-item-3">
+			<h4>Chess Sets and Clocks</h4>
+			<p>
+				Please bring your own chess sets and clocks. Don't own a set? No problem &mdash;
+				you can purchase chess supplies at the club.
+			</p>
+		</article>
+
+		<article class="lcc-grid-item-4">
+			<h4>Tournaments</h4>
+			<p>
+				Chess tournaments are held throughout the year. These include casual blitz
+				tournaments, rapid tournaments, and the LCC Championship held in the fall. See
+				<a class="lcc-link"
+					 [routerLink]="NavPathTypes.SCHEDULE"
+					 (click)="onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
+				for a list of upcoming events.
+			</p>
+		</article>
+
+		<article class="lcc-grid-item-5 lcc-darker-grid-item">
+			<h4>Chess Ratings</h4>
+			<p>
+				We use our own London & Region rating system, managed by Gerry Litchfield. Current
+				ratings can be found
+				<a class="lcc-link"
+					 [routerLink]="NavPathTypes.MEMBERS"
+					 (click)="onNavigate(NavPathTypes.MEMBERS)">here</a>.
+			</p>
+		</article>
+
+		<article class="lcc-grid-item-6 lcc-darker-grid-item about-children">
+			<h4>Children</h4>
+			<p>
+				Children must be attended by a parent or guardian at all times.
+			</p>
+		</article>
+
+		<article class="lcc-grid-item-7 about-parking">
+			<h4>Parking</h4>
+			<p>
+				There is plenty of parking space available behind the building.
+			</p>
+		</article>
+
+		<article class="lcc-grid-item-8 about-committee">
+			<h4>Executive Committee</h4>
+			<ul class="committee">
+				<li>President: <b>Michal Wiraszka</b></li>
+				<li>Vice President: <b>Edgar Zapata</b></li>
+				<li>Treasurer: <b>Jim Kearley</b></li>
+				<li>Ratings Auditor: <b>Gerry Litchfield</b></li>
+				<li>Member at Large: <b>Hugo Ortiz</b></li>
+				<li>Member at Large: <b>Ryan Sarson</b></li>
+			</ul>
+			<p>
+				Every December we hold our Annual General Meeting where all club members are
+				invited to elect a new committee (see
+				<a class="lcc-link"
+					 [routerLink]="NavPathTypes.SCHEDULE"
+					 (click)="onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
+				for exact dates).
+			</p>
+		</article>
+	</section>
+</div>

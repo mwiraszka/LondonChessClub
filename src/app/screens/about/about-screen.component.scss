@@ -1,0 +1,62 @@
+@import 'styles/abstracts/mixins';
+@import 'styles/abstracts/variables';
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section {
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'grid-item-1 grid-item-1'
+    'grid-item-2 grid-item-3'
+    'grid-item-4 grid-item-5'
+    'grid-item-6 grid-item-7'
+    'grid-item-8 grid-item-8';
+
+  @include respond-to('lt-md') {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'grid-item-1'
+      'grid-item-2'
+      'grid-item-3'
+      'grid-item-5'
+      'grid-item-4'
+      'grid-item-6'
+      'grid-item-7'
+      'grid-item-8';
+  }
+
+  article {
+    h4 {
+      margin: 10px 0 !important;
+      text-align: center;
+    }
+
+    .lcc-link {
+      font-size: inherit;
+    }
+  }
+}
+
+.about-committee {
+  .committee {
+    font-size: $h5;
+
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+
+    @include respond-to('lt-md') {
+      columns: 1;
+      -webkit-columns: 1;
+      -moz-columns: 1;
+    }
+  }
+}
+
+cds-icon {
+  padding: 1px !important;
+}

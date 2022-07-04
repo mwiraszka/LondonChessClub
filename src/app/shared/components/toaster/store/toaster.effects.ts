@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { delay, map } from 'rxjs/operators';
 
-import { ArticleEditorActions, ArticleListActions } from '@app/pages/articles';
-import { MemberEditorActions, MemberListActions } from '@app/pages/members';
+import { ArticleEditorScreenActions, ArticleGridActions } from '@app/screens/articles';
+import { MemberEditorScreenActions, MemberListScreenActions } from '@app/screens/members';
 import { Toast, ToastTypes } from '@app/shared/components/toast';
 
 import * as ToasterActions from './toaster.actions';
@@ -13,7 +13,7 @@ export class ToasterEffects {
   // ARTICLES -------------------------------------------------------------------------------------
   addPublishArticleSucceededToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleEditorActions.publishArticleSucceeded),
+      ofType(ArticleEditorScreenActions.publishArticleSucceeded),
       map(({ publishedArticle }) => {
         const toast: Toast = {
           title: 'Article published',
@@ -27,7 +27,7 @@ export class ToasterEffects {
 
   addPublishArticleFailedToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleEditorActions.publishArticleFailed),
+      ofType(ArticleEditorScreenActions.publishArticleFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Failed to publish article',
@@ -41,7 +41,7 @@ export class ToasterEffects {
 
   addUpdateArticleSucceededToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleEditorActions.updateArticleSucceeded),
+      ofType(ArticleEditorScreenActions.updateArticleSucceeded),
       map(({ updatedArticle }) => {
         const toast: Toast = {
           title: 'Article updated',
@@ -55,7 +55,7 @@ export class ToasterEffects {
 
   addUpdateArticleFailedToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleEditorActions.updateArticleFailed),
+      ofType(ArticleEditorScreenActions.updateArticleFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Failed to update article',
@@ -69,7 +69,7 @@ export class ToasterEffects {
 
   addDeleteArticleSucceededToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListActions.deleteArticleSucceeded),
+      ofType(ArticleGridActions.deleteArticleSucceeded),
       map(({ deletedArticle }) => {
         const toast: Toast = {
           title: 'Article deleted',
@@ -83,7 +83,7 @@ export class ToasterEffects {
 
   addDeleteArticleFailedToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListActions.deleteArticleFailed),
+      ofType(ArticleGridActions.deleteArticleFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Failed to delete article',
@@ -97,7 +97,7 @@ export class ToasterEffects {
 
   addLoadArticlesFailedToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListActions.loadArticlesFailed),
+      ofType(ArticleGridActions.loadArticlesFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Failed to load articles',
@@ -112,7 +112,7 @@ export class ToasterEffects {
   // MEMBERS --------------------------------------------------------------------------------------
   addAddMemberSucceededToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MemberEditorActions.addMemberSucceeded),
+      ofType(MemberEditorScreenActions.addMemberSucceeded),
       map(({ addedMember }) => {
         const toast: Toast = {
           title: 'Member added',
@@ -126,7 +126,7 @@ export class ToasterEffects {
 
   addAddMemberFailedToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MemberEditorActions.addMemberFailed),
+      ofType(MemberEditorScreenActions.addMemberFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Failed to add member',
@@ -140,7 +140,7 @@ export class ToasterEffects {
 
   addUpdateMemberSucceededToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MemberEditorActions.updateMemberSucceeded),
+      ofType(MemberEditorScreenActions.updateMemberSucceeded),
       map(({ updatedMember }) => {
         const toast: Toast = {
           title: 'Member updated',
@@ -154,7 +154,7 @@ export class ToasterEffects {
 
   addUpdateMemberFailedToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MemberEditorActions.updateMemberFailed),
+      ofType(MemberEditorScreenActions.updateMemberFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Failed to update member',
@@ -168,7 +168,7 @@ export class ToasterEffects {
 
   addDeleteMemberSucceededToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MemberListActions.deleteMemberSucceeded),
+      ofType(MemberListScreenActions.deleteMemberSucceeded),
       map(({ deletedMember }) => {
         const toast: Toast = {
           title: 'Member deleted',
@@ -182,7 +182,7 @@ export class ToasterEffects {
 
   addDeleteMemberFailedToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MemberListActions.deleteMemberFailed),
+      ofType(MemberListScreenActions.deleteMemberFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Failed to delete Member',
@@ -196,7 +196,7 @@ export class ToasterEffects {
 
   addLoadMembersFailedToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MemberListActions.loadMembersFailed),
+      ofType(MemberListScreenActions.loadMembersFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Failed to load members',

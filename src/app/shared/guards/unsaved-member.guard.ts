@@ -4,21 +4,22 @@ import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
 
-import { MemberEditorComponent, MemberEditorSelectors } from '@app/pages/members';
+import {
+  MemberEditorScreenComponent,
+  MemberEditorScreenSelectors,
+} from '@app/screens/members';
 import {
   ModalActions,
   ModalButtonActionTypes,
   ModalSelectors,
 } from '@app/shared/components/modal';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class UnsavedMemberGuard implements CanDeactivate<MemberEditorComponent> {
+@Injectable({ providedIn: 'root' })
+export class UnsavedMemberGuard implements CanDeactivate<MemberEditorScreenComponent> {
   constructor(private store: Store) {}
 
   canDeactivate(): Observable<boolean> {
-    return this.store.select(MemberEditorSelectors.hasUnsavedChanges).pipe(
+    return this.store.select(MemberEditorScreenSelectors.hasUnsavedChanges).pipe(
       switchMap((hasUnsavedChanges) => {
         if (!hasUnsavedChanges) {
           return of(true);

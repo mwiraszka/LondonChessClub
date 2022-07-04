@@ -4,15 +4,15 @@ import { Store } from '@ngrx/store';
 import { filter, map, tap } from 'rxjs/operators';
 
 import {
-  ArticleEditorActions,
-  ArticleEditorSelectors,
-  ArticleListActions,
-} from '@app/pages/articles';
+  ArticleEditorScreenActions,
+  ArticleEditorScreenSelectors,
+  ArticleGridActions,
+} from '@app/screens/articles';
 import {
-  MemberEditorActions,
-  MemberEditorSelectors,
-  MemberListActions,
-} from '@app/pages/members';
+  MemberEditorScreenActions,
+  MemberEditorScreenSelectors,
+  MemberListScreenActions,
+} from '@app/screens/members';
 import { UpdateService } from '@app/shared/services';
 
 import * as ModalActions from './modal.actions';
@@ -26,7 +26,7 @@ import {
 export class ModalEffects {
   openAddMemberModal$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MemberEditorActions.addMemberSelected),
+      ofType(MemberEditorScreenActions.addMemberSelected),
       map(({ memberToAdd }) => {
         const modal: Modal = {
           title: 'Confirm new member',
@@ -51,8 +51,10 @@ export class ModalEffects {
 
   openUpdateMemberModal$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MemberEditorActions.updateMemberSelected),
-      concatLatestFrom(() => this.store.select(MemberEditorSelectors.memberBeforeEdit)),
+      ofType(MemberEditorScreenActions.updateMemberSelected),
+      concatLatestFrom(() =>
+        this.store.select(MemberEditorScreenSelectors.memberBeforeEdit)
+      ),
       map(([, memberBeforeEdit]) => {
         const modal: Modal = {
           title: 'Confirm member update',
@@ -77,7 +79,7 @@ export class ModalEffects {
 
   openDeleteMemberModal$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MemberListActions.deleteMemberSelected),
+      ofType(MemberListScreenActions.deleteMemberSelected),
       map(({ memberToDelete }) => {
         const modal: Modal = {
           title: 'Confirm member deletion',
@@ -102,7 +104,7 @@ export class ModalEffects {
 
   openPublishArticleModal$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleEditorActions.publishArticleSelected),
+      ofType(ArticleEditorScreenActions.publishArticleSelected),
       map(({ articleToPublish }) => {
         const modal: Modal = {
           title: 'Confirm new article',
@@ -127,8 +129,10 @@ export class ModalEffects {
 
   openUpdateArticleModal$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleEditorActions.updateArticleSelected),
-      concatLatestFrom(() => this.store.select(ArticleEditorSelectors.articleBeforeEdit)),
+      ofType(ArticleEditorScreenActions.updateArticleSelected),
+      concatLatestFrom(() =>
+        this.store.select(ArticleEditorScreenSelectors.articleBeforeEdit)
+      ),
       map(([, articleBeforeEdit]) => {
         const modal: Modal = {
           title: 'Confirm article update',
@@ -153,7 +157,7 @@ export class ModalEffects {
 
   openDeleteArticleModal$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListActions.deleteArticleSelected),
+      ofType(ArticleGridActions.deleteArticleSelected),
       map(({ articleToDelete }) => {
         const modal: Modal = {
           title: 'Confirm article deletion',
@@ -182,7 +186,7 @@ export class ModalEffects {
       map(() => {
         const modal: Modal = {
           title: 'Unsaved changes',
-          body: 'Are you sure you want to leave this page? Any unsaved changes will be lost.',
+          body: 'Are you sure you want to leave this screen? Any unsaved changes will be lost.',
           buttons: [
             {
               text: 'Cancel',
@@ -229,29 +233,29 @@ export class ModalEffects {
       map(({ action }) => {
         switch (action) {
           case ModalButtonActionTypes.ADD_MEMBER_OK:
-            return MemberEditorActions.addMemberConfirmed();
+            return MemberEditorScreenActions.addMemberConfirmed();
           case ModalButtonActionTypes.ADD_MEMBER_CANCEL:
-            return MemberEditorActions.addMemberCancelled();
+            return MemberEditorScreenActions.addMemberCancelled();
           case ModalButtonActionTypes.UPDATE_MEMBER_OK:
-            return MemberEditorActions.updateMemberConfirmed();
+            return MemberEditorScreenActions.updateMemberConfirmed();
           case ModalButtonActionTypes.UPDATE_MEMBER_CANCEL:
-            return MemberEditorActions.updateMemberCancelled();
+            return MemberEditorScreenActions.updateMemberCancelled();
           case ModalButtonActionTypes.DELETE_MEMBER_OK:
-            return MemberListActions.deleteMemberConfirmed();
+            return MemberListScreenActions.deleteMemberConfirmed();
           case ModalButtonActionTypes.DELETE_MEMBER_CANCEL:
-            return MemberListActions.deleteMemberCancelled();
+            return MemberListScreenActions.deleteMemberCancelled();
           case ModalButtonActionTypes.PUBLISH_ARTICLE_OK:
-            return ArticleEditorActions.publishArticleConfirmed();
+            return ArticleEditorScreenActions.publishArticleConfirmed();
           case ModalButtonActionTypes.PUBLISH_ARTICLE_CANCEL:
-            return ArticleEditorActions.publishArticleCancelled();
+            return ArticleEditorScreenActions.publishArticleCancelled();
           case ModalButtonActionTypes.UPDATE_ARTICLE_OK:
-            return ArticleEditorActions.updateArticleConfirmed();
+            return ArticleEditorScreenActions.updateArticleConfirmed();
           case ModalButtonActionTypes.UPDATE_ARTICLE_CANCEL:
-            return ArticleEditorActions.updateArticleCancelled();
+            return ArticleEditorScreenActions.updateArticleCancelled();
           case ModalButtonActionTypes.DELETE_ARTICLE_OK:
-            return ArticleListActions.deleteArticleConfirmed();
+            return ArticleGridActions.deleteArticleConfirmed();
           default:
-            return ArticleListActions.deleteArticleCancelled();
+            return ArticleGridActions.deleteArticleCancelled();
         }
       })
     )

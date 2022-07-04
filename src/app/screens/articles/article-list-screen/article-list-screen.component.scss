@@ -1,0 +1,16 @@
+@import 'styles/abstracts/mixins';
+@import 'styles/abstracts/variables';
+
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+lcc-article-grid {
+  margin-top: 10px;
+  width: 90%;
+
+  @include respond-to ('lt-md') {
+    width: 100%;
+  }
+}

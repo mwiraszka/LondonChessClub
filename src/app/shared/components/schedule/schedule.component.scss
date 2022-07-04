@@ -1,6 +1,12 @@
 @import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 table {
   width: 85%;
   margin-bottom: 18px;

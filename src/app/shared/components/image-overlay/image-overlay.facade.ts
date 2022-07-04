@@ -6,9 +6,9 @@ import {
   ImageOverlaySelectors,
 } from '@app/shared/components/image-overlay';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class ImageOverlayFacade {
-  imagePath$ = this.store.select(ImageOverlaySelectors.imagePath);
+  imageUrl$ = this.store.select(ImageOverlaySelectors.imageUrl);
 
   constructor(private store: Store) {}
 

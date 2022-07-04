@@ -1,13 +1,7 @@
 <div class="lcc-canvas">
-	<header class="lcc-screen-header">
-		<ng-container *ngIf="facade.isEditMode$ | async; else createModeHeader">
-			<span class="lcc-secondary-text">Edit&nbsp;</span>
-			{{ memberFullName }}
-		</ng-container>
-		<ng-template #createModeHeader>
-			Add a member
-		</ng-template>
-	</header>
+	<lcc-screen-header [preTitle]="(facade.isEditMode$ | async) ? 'Edit' : null"
+										 [title]="(facade.isEditMode$ | async) ? memberFullName : 'Add a member'">
+	</lcc-screen-header>
 
 	<form *ngIf="form"
 				class="lcc-form"

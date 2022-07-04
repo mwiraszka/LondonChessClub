@@ -1,5 +1,4 @@
 export { ArticlesService } from './articles.service';
-export { Article, newArticleFormTemplate } from './types/article.model';
 
 export { ArticleEditorScreenComponent } from './article-editor-screen/article-editor-screen.component';
 export { ArticleEditorScreenModule } from './article-editor-screen/article-editor-screen.module';
@@ -11,8 +10,8 @@ export { ArticleEditorScreenState } from './article-editor-screen/store/article-
 
 export { ArticleListScreenComponent } from './article-list-screen/article-list-screen.component';
 export { ArticleListScreenModule } from './article-list-screen/article-list-screen.module';
-export * as ArticleListScreenActions from './article-list-screen/store/article-list-screen.actions';
-export { ArticleListScreenEffects } from './article-list-screen/store/article-list-screen.effects';
-export * as ArticleListScreenSelectors from './article-list-screen/store/article-list-screen.selectors';
-export { reducer as articleListScreenReducer } from './article-list-screen/store/article-list-screen.reducer';
-export { ArticleListScreenState } from './article-list-screen/store/article-list-screen.state';
+export * as ArticleGridActions from '../../shared/components/article-grid/store/article-grid.actions';
+export { ArticleGridEffects } from '../../shared/components/article-grid/store/article-grid.effects';
+export * as ArticleGridSelectors from '../../shared/components/article-grid/store/article-grid.selectors';
+export { reducer as articleGridReducer } from '../../shared/components/article-grid/store/article-grid.reducer';
+export { ArticleGridState } from '../../shared/components/article-grid/store/article-grid.state';

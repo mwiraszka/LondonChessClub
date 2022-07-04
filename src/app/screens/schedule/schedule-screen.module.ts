@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClarityModule } from '@clr/angular';
 
 import { ScheduleModule } from '@app/shared/components/schedule';
+import { ScreenHeaderModule } from '@app/shared/components/screen-header';
 
 import { ScheduleScreenComponent } from './schedule-screen.component';
 
 @NgModule({
   declarations: [ScheduleScreenComponent],
-  imports: [ClarityModule, CommonModule, ScheduleModule],
+  imports: [CommonModule, ScheduleModule, ScreenHeaderModule],
 })
 export class ScheduleScreenModule {}

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 
 import { AuthActions, LoginRequest } from '@app/core/auth';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class LoginScreenFacade {
   constructor(private store: Store) {}
 

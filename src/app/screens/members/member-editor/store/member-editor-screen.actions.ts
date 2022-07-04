@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Member } from '../../types/member.model';
+import { Member } from '@app/shared/types';
 
 enum MemberEditorScreenActionTypes {
   MEMBER_TO_EDIT_RECEIVED = '[Member Editor Screen] Member to edit received',

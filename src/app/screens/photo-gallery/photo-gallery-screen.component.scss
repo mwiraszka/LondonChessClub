@@ -6,65 +6,13 @@
   justify-content: center;
 }
 
-.photos-section {
+lcc-photo-grid,
+lcc-link-list {
   background-color: $lcc-color--bg-grid-item;
   width: 90%;
   padding: 12px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-
-  img {
-    padding: 2px;
-    border-radius: $lcc-border-radius-lg;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-}
-
-.links-section {
-  background-color: $lcc-color--bg-grid-item;
-  width: 90%;
-  padding: 12px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
 
   @include respond-to('lt-md') {
     width: 100%;
   }
-}
-
-ul {
-  display: inline-block;
-  columns: 2;
-  -webkit-columns: 2;
-  -moz-columns: 2;
-
-  @include respond-to('lt-md') {
-    columns: 1;
-    -webkit-columns: 1;
-    -moz-columns: 1;
-  }
-}
-
-li {
-  padding: 6px;
-}
-
-a {
-  font-size: $h4;
-}
-
-cds-icon {
-  padding: 3px;
-}
-
-a cds-icon {
-  margin-bottom: 4px; // manual centering
-  margin-right: 3px;
 }

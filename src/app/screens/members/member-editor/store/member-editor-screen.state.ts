@@ -1,4 +1,4 @@
-import { Member } from '../../types/member.model';
+import { Member } from '@app/shared/types';
 
 export interface MemberEditorScreenState {
   memberBeforeEdit: Member;

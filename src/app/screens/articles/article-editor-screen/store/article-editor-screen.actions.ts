@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Article } from '../../types/article.model';
+import { Article } from '../../../../shared/types/article.model';
 
 enum ArticleEditorScreenActionTypes {
   ARTICLE_TO_EDIT_RECEIVED = '[Article Editor Screen] Article to edit received',

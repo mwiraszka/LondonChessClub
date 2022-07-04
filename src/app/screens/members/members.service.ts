@@ -4,10 +4,8 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { AuthService } from '@app/core/auth';
-import { ServiceResponse } from '@app/shared/types';
+import { Member, ServiceResponse } from '@app/shared/types';
 import { environment } from '@environments/environment';
-
-import { Member } from './types/member.model';
 
 const API_ENDPOINT = environment.cognito.membersEndpoint;
 @Injectable({

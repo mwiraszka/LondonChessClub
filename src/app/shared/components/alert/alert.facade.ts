@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import * as AlertActions from './store/alert.actions';
 import * as AlertSelectors from './store/alert.selectors';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class AlertFacade {
   alert$ = this.store.select(AlertSelectors.alert);
 

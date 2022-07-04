@@ -6,6 +6,7 @@ import { ClarityModule } from '@clr/angular';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
+import { ScreenHeaderModule } from '@app/shared/components/screen-header';
 import { DirectivesModule } from '@app/shared/directives';
 import { AppStoreFeatureTypes } from '@app/shared/types';
 
@@ -22,6 +23,7 @@ import { reducer } from './store/member-list-screen.reducer';
     EffectsModule.forFeature([MemberListScreenEffects]),
     ReactiveFormsModule,
     RouterModule,
+    ScreenHeaderModule,
     StoreModule.forFeature(AppStoreFeatureTypes.MEMBER_LIST_SCREEN, reducer),
   ],
   exports: [MemberListScreenComponent],

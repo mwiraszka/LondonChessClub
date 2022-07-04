@@ -2,22 +2,23 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { AppStoreFeatureTypes } from '@app/shared/types';
 
-import { ArticleListScreenState } from './article-list-screen.state';
+import { ArticleGridState } from './article-grid.state';
 
-export const articleListScreenFeatureSelector =
-  createFeatureSelector<ArticleListScreenState>(AppStoreFeatureTypes.ARTICLE_LIST_SCREEN);
+export const articleGridFeatureSelector = createFeatureSelector<ArticleGridState>(
+  AppStoreFeatureTypes.ARTICLE_GRID
+);
 
 export const articles = createSelector(
-  articleListScreenFeatureSelector,
+  articleGridFeatureSelector,
   (state) => state.articles
 );
 
 export const selectedArticle = createSelector(
-  articleListScreenFeatureSelector,
+  articleGridFeatureSelector,
   (state) => state.selectedArticle
 );
 
 export const isLoading = createSelector(
-  articleListScreenFeatureSelector,
+  articleGridFeatureSelector,
   (state) => state.isLoading
 );

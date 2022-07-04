@@ -1,8 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Article } from '../../types/article.model';
+import { Article } from '../../../types/article.model';
 
-enum ArticleListScreenActionTypes {
+enum ArticleGridActionTypes {
   LOAD_ARTICLES_STARTED = '[Article List Screen] Load articles started',
   LOAD_ARTICLES_SUCCEEDED = '[Article List Screen] Load articles succeeded',
   LOAD_ARTICLES_FAILED = '[Article List Screen] Load articles failed',
@@ -18,40 +18,40 @@ enum ArticleListScreenActionTypes {
 }
 
 export const loadArticlesStarted = createAction(
-  ArticleListScreenActionTypes.LOAD_ARTICLES_STARTED
+  ArticleGridActionTypes.LOAD_ARTICLES_STARTED
 );
 export const loadArticlesSucceeded = createAction(
-  ArticleListScreenActionTypes.LOAD_ARTICLES_SUCCEEDED,
+  ArticleGridActionTypes.LOAD_ARTICLES_SUCCEEDED,
   props<{ allArticles: Article[] }>()
 );
 export const loadArticlesFailed = createAction(
-  ArticleListScreenActionTypes.LOAD_ARTICLES_FAILED,
+  ArticleGridActionTypes.LOAD_ARTICLES_FAILED,
   props<{ error: Error }>()
 );
 
 export const createArticleSelected = createAction(
-  ArticleListScreenActionTypes.COMPOSE_ARTICLE_SELECTED
+  ArticleGridActionTypes.COMPOSE_ARTICLE_SELECTED
 );
 export const editArticleSelected = createAction(
-  ArticleListScreenActionTypes.EDIT_ARTICLE_SELECTED,
+  ArticleGridActionTypes.EDIT_ARTICLE_SELECTED,
   props<{ articleToEdit: Article }>()
 );
 
 export const deleteArticleSelected = createAction(
-  ArticleListScreenActionTypes.DELETE_ARTICLE_SELECTED,
+  ArticleGridActionTypes.DELETE_ARTICLE_SELECTED,
   props<{ articleToDelete: Article }>()
 );
 export const deleteArticleConfirmed = createAction(
-  ArticleListScreenActionTypes.DELETE_ARTICLE_CONFIRMED
+  ArticleGridActionTypes.DELETE_ARTICLE_CONFIRMED
 );
 export const deleteArticleCancelled = createAction(
-  ArticleListScreenActionTypes.DELETE_ARTICLE_CANCELLED
+  ArticleGridActionTypes.DELETE_ARTICLE_CANCELLED
 );
 export const deleteArticleSucceeded = createAction(
-  ArticleListScreenActionTypes.DELETE_ARTICLE_SUCCEEDED,
+  ArticleGridActionTypes.DELETE_ARTICLE_SUCCEEDED,
   props<{ deletedArticle: Article }>()
 );
 export const deleteArticleFailed = createAction(
-  ArticleListScreenActionTypes.DELETE_ARTICLE_FAILED,
+  ArticleGridActionTypes.DELETE_ARTICLE_FAILED,
   props<{ error: Error }>()
 );

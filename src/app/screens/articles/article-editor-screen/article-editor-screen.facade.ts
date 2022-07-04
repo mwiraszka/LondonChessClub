@@ -5,7 +5,7 @@ import { first, map } from 'rxjs/operators';
 
 import * as ArticleEditorScreenActions from './store/article-editor-screen.actions';
 import * as ArticleEditorScreenSelectors from './store/article-editor-screen.selectors';
-import { Article } from '../types/article.model';
+import { Article } from '../../../shared/types/article.model';
 
 @Injectable()
 export class ArticleEditorScreenFacade {

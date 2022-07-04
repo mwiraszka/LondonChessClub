@@ -1,13 +1,9 @@
 <div class="lcc-canvas">
-	<header class="lcc-screen-header">
-		<ng-container *ngIf="facade.isEditMode$ | async; else createModeHeader">
-			<span class="lcc-secondary-text">Edit&nbsp;</span>
-			{{ (facade.articleBeforeEdit$ | async).title }}
-		</ng-container>
-		<ng-template #createModeHeader>
-			Compose an article
-		</ng-template>
-	</header>
+	<lcc-screen-header [preTitle]="(facade.isEditMode$ | async) ? 'Edit' : null"
+										 [title]="(facade.isEditMode$ | async)
+                               ? (facade.articleBeforeEdit$ | async).title
+                               : 'Compose an article'">
+	</lcc-screen-header>
 
 	<form *ngIf="form"
 				class="lcc-form"

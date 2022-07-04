@@ -1,0 +1,37 @@
+@import 'styles/abstracts/mixins';
+@import 'styles/abstracts/variables';
+
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  ul {
+    display: inline-block;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+  
+    @include respond-to('lt-md') {
+      columns: 1;
+      -webkit-columns: 1;
+      -moz-columns: 1;
+    }
+  
+    li {
+      padding: 2px;
+  
+      a {
+        font-size: $h4;
+  
+        cds-icon {
+          padding: 3px;
+          margin-bottom: 4px; // manual centering
+          margin-right: 3px;
+        }
+      }
+    }
+  }
+}

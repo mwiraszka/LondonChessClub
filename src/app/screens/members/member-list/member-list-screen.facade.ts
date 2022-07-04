@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import * as AuthSelectors from '@app/core/auth/store/auth.selectors';
+import { Member } from '@app/shared/types';
 
 import * as MemberListScreenActions from './store/member-list-screen.actions';
 import * as MemberListScreenSelectors from './store/member-list-screen.selectors';
-import { Member } from '../types/member.model';
 
 @Injectable()
 export class MemberListScreenFacade {

@@ -7,6 +7,7 @@ import { ImageOverlayFacade } from './image-overlay.facade';
   selector: 'lcc-image-overlay',
   templateUrl: './image-overlay.component.html',
   styleUrls: ['./image-overlay.component.scss'],
+  providers: [ImageOverlayFacade],
 })
 export class ImageOverlayComponent implements OnInit, OnDestroy {
   constructor(public facade: ImageOverlayFacade, private renderer: Renderer2) {}

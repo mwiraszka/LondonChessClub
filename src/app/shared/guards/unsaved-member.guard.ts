@@ -14,9 +14,7 @@ import {
   ModalSelectors,
 } from '@app/shared/components/modal';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class UnsavedMemberGuard implements CanDeactivate<MemberEditorScreenComponent> {
   constructor(private store: Store) {}
 

@@ -1,10 +1,7 @@
 <div class="lcc-canvas">
-	<header class="lcc-screen-header">
-		Members
-		<cds-icon shape="users"
-							size="sm">
-		</cds-icon>
-	</header>
+	<lcc-screen-header [title]="'Members'"
+										 [iconShape]="'users'">
+	</lcc-screen-header>
 
 	<div class="link-container">
 		<a *ngIf="facade.isAdmin$ | async"

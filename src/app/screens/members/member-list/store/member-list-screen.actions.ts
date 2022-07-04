@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Member } from '../../types/member.model';
+import { Member } from '@app/shared/types';
 
 enum MemberListScreenActionTypes {
   LOAD_MEMBERS_STARTED = '[Member List Screen] Load members started',

@@ -4,10 +4,7 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 
 import { AuthActions } from '@app/core/auth';
-import {
-  ArticleEditorScreenActions,
-  ArticleListScreenActions,
-} from '@app/screens/articles';
+import { ArticleEditorScreenActions, ArticleGridActions } from '@app/screens/articles';
 import { MemberEditorScreenActions, MemberListScreenActions } from '@app/screens/members';
 import { AlertActions } from '@app/shared/components/alert';
 
@@ -90,7 +87,7 @@ export class NavEffects {
   navigateToNewsCompose$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(ArticleListScreenActions.createArticleSelected),
+        ofType(ArticleGridActions.createArticleSelected),
         tap(() => this.router.navigate([NavPathTypes.NEWS_COMPOSE]))
       ),
     { dispatch: false }
@@ -99,7 +96,7 @@ export class NavEffects {
   navigateToNewsEdit$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(ArticleListScreenActions.editArticleSelected),
+        ofType(ArticleGridActions.editArticleSelected),
         tap(({ articleToEdit }) =>
           this.router.navigate([NavPathTypes.NEWS_EDIT, articleToEdit.id])
         )

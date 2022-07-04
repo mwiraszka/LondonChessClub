@@ -7,7 +7,7 @@ import { LoaderService } from '@app/shared/services';
 import { dateValidator, mimeTypeValidator } from '@app/shared/validators';
 
 import { ArticleEditorScreenFacade } from './article-editor-screen.facade';
-import { Article } from '../types/article.model';
+import { Article } from '../../../shared/types/article.model';
 
 @Component({
   selector: 'lcc-article-editor-screen',
@@ -33,7 +33,7 @@ export class ArticleEditorScreenComponent implements OnInit, OnDestroy {
       .pipe(
         tap((article) => {
           this.initForm(article);
-          this.imagePreview = article.headerImagePath as string;
+          this.imagePreview = article.headerImageUrl as string;
         }),
         first()
       )
@@ -69,7 +69,7 @@ export class ArticleEditorScreenComponent implements OnInit, OnDestroy {
 
   onImageChange(event: Event): void {
     const file = (event.target as HTMLInputElement).files[0];
-    this.form.get('headerImagePath').patchValue(file);
+    this.form.get('headerImageUrl').patchValue(file);
 
     const reader = new FileReader();
     reader.onload = () => {
@@ -94,7 +94,7 @@ export class ArticleEditorScreenComponent implements OnInit, OnDestroy {
     this.form = this.formBuilder.group({
       title: [article.title, [Validators.required, Validators.pattern(/[^\s]/)]],
       subtitle: [article.subtitle, [Validators.required, Validators.pattern(/[^\s]/)]],
-      headerImagePath: [article.headerImagePath, Validators.required, mimeTypeValidator],
+      headerImageUrl: [article.headerImageUrl, Validators.required, mimeTypeValidator],
       authorId: [article.authorId, Validators.required],
       dateCreated: [article.dateCreated, [Validators.required, dateValidator]],
       dateEdited: [article.dateEdited, dateValidator],

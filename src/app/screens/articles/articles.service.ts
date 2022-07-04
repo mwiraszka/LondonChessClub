@@ -7,7 +7,7 @@ import { AuthService } from '@app/core/auth';
 import { ServiceResponse } from '@app/shared/types';
 import { environment } from '@environments/environment';
 
-import { Article } from './types/article.model';
+import { Article } from '../../shared/types/article.model';
 
 const API_ENDPOINT = environment.cognito.articlesEndpoint;
 @Injectable({

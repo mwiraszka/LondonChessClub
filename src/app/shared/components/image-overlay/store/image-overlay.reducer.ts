@@ -4,14 +4,14 @@ import * as ImageOverlayActions from './image-overlay.actions';
 import { ImageOverlayState } from '../types/image-overlay.state';
 
 const initialState: ImageOverlayState = {
-  imagePath: null,
+  imageUrl: null,
 };
 
 const modalReducer = createReducer(
   initialState,
   on(ImageOverlayActions.overlayOpened, (state, action) => ({
     ...state,
-    imagePath: action.imagePath,
+    imageUrl: action.imageUrl,
   })),
   on(ImageOverlayActions.overlayClosed, () => initialState)
 );

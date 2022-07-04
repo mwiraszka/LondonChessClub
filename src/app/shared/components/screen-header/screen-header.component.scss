@@ -1,6 +1,7 @@
+@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
-.lcc-screen-header {
+:host {
   border-radius: $lcc-border-radius-sm;
   border-bottom-left-radius: 0;
   border-bottom: 2px solid darken($lcc-color--bg-screen-header, 4%);

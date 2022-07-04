@@ -3,9 +3,10 @@ import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 
+import { Member } from '@app/shared/types';
+
 import * as MemberEditorScreenActions from './store/member-editor-screen.actions';
 import * as MemberEditorScreenSelectors from './store/member-editor-screen.selectors';
-import { Member } from '../types/member.model';
 
 @Injectable()
 export class MemberEditorScreenFacade {

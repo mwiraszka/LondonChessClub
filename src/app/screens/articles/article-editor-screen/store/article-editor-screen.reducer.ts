@@ -2,7 +2,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 
 import * as ArticleEditorScreenActions from './article-editor-screen.actions';
 import { ArticleEditorScreenState } from './article-editor-screen.state';
-import { newArticleFormTemplate } from '../../types/article.model';
+import { newArticleFormTemplate } from '../../../../shared/types/article.model';
 
 const initialState: ArticleEditorScreenState = {
   articleBeforeEdit: newArticleFormTemplate,

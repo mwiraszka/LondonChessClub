@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
 
+import { ScreenHeaderModule } from '@app/shared/components/screen-header';
 import { DirectivesModule } from '@app/shared/directives';
 import { PipesModule } from '@app/shared/pipes';
 
@@ -19,6 +20,7 @@ import { SignUpScreenComponent } from './sign-up-screen.component';
     PipesModule,
     ReactiveFormsModule,
     RouterModule,
+    ScreenHeaderModule,
   ],
   exports: [SignUpScreenComponent],
 })

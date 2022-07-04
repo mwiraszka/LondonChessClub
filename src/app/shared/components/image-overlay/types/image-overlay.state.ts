@@ -1,3 +1,3 @@
 export interface ImageOverlayState {
-  imagePath: string | null;
+  imageUrl: string | null;
 }

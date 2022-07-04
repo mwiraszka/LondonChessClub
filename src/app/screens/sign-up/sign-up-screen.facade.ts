@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 
 import { AuthActions, SignUpRequest } from '@app/core/auth';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class SignUpScreenFacade {
   constructor(private store: Store) {}
 

@@ -7,21 +7,21 @@ import { ServiceResponse } from '@app/shared/types';
 
 import * as ArticleEditorScreenActions from './article-editor-screen.actions';
 import * as ArticleEditorScreenSelectors from './article-editor-screen.selectors';
-import * as ArticleListScreenActions from '../../article-list-screen/store/article-list-screen.actions';
+import * as ArticleGridActions from '../../../../shared/components/article-grid/store/article-grid.actions';
 import { ArticlesService } from '../../articles.service';
 
 @Injectable()
 export class ArticleEditorScreenEffects {
   resetArticleForm$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListScreenActions.createArticleSelected),
+      ofType(ArticleGridActions.createArticleSelected),
       map(() => ArticleEditorScreenActions.resetArticleForm())
     )
   );
 
   getArticleToEdit$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListScreenActions.editArticleSelected),
+      ofType(ArticleGridActions.editArticleSelected),
       map((articleToEdit) =>
         ArticleEditorScreenActions.articleToEditReceived(articleToEdit)
       )

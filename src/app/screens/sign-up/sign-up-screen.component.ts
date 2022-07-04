@@ -36,6 +36,7 @@ const PASSWORD_VALIDATORS: ValidatorFn[] = [
   selector: 'lcc-sign-up-screen',
   templateUrl: './sign-up-screen.component.html',
   styleUrls: ['./sign-up-screen.component.scss'],
+  providers: [SignUpScreenFacade],
 })
 export class SignUpScreenComponent implements OnInit, OnDestroy {
   form!: FormGroup;

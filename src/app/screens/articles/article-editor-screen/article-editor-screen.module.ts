@@ -7,6 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { DirectivesModule } from '@app/shared/directives';
+import { ScreenHeaderModule } from '@app/shared/components/screen-header';
 import { AppStoreFeatureTypes } from '@app/shared/types';
 
 import { ArticleEditorScreenComponent } from './article-editor-screen.component';
@@ -22,6 +23,7 @@ import { reducer } from './store/article-editor-screen.reducer';
     EffectsModule.forFeature([ArticleEditorScreenEffects]),
     ReactiveFormsModule,
     RouterModule,
+    ScreenHeaderModule,
     StoreModule.forFeature(AppStoreFeatureTypes.ARTICLE_EDITOR_SCREEN, reducer),
   ],
   exports: [ArticleEditorScreenComponent],

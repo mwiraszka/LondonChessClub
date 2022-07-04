@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { debounceTime, first, tap } from 'rxjs/operators';
 
 import { LoaderService } from '@app/shared/services';
+import { Member } from '@app/shared/types';
 import {
   dateValidator,
   emailValidator,
@@ -12,7 +13,6 @@ import {
 } from '@app/shared/validators';
 
 import { MemberEditorScreenFacade } from './member-editor-screen.facade';
-import { Member } from '../types/member.model';
 
 @Component({
   selector: 'lcc-member-editor-screen',

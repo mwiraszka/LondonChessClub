@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ClarityModule } from '@clr/angular';
 
-import { ChampionScreenComponent } from '@app/screens/champion';
+import { ScreenHeaderModule } from '@app/shared/components/screen-header';
 
+import { ChampionScreenComponent } from './champion-screen.component';
 @NgModule({
   declarations: [ChampionScreenComponent],
-  imports: [ClarityModule, CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ScreenHeaderModule],
 })
 export class ChampionScreenModule {}

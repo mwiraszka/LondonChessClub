@@ -2,10 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { delay, map } from 'rxjs/operators';
 
-import {
-  ArticleEditorScreenActions,
-  ArticleListScreenActions,
-} from '@app/screens/articles';
+import { ArticleEditorScreenActions, ArticleGridActions } from '@app/screens/articles';
 import { MemberEditorScreenActions, MemberListScreenActions } from '@app/screens/members';
 import { Toast, ToastTypes } from '@app/shared/components/toast';
 
@@ -72,7 +69,7 @@ export class ToasterEffects {
 
   addDeleteArticleSucceededToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListScreenActions.deleteArticleSucceeded),
+      ofType(ArticleGridActions.deleteArticleSucceeded),
       map(({ deletedArticle }) => {
         const toast: Toast = {
           title: 'Article deleted',
@@ -86,7 +83,7 @@ export class ToasterEffects {
 
   addDeleteArticleFailedToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListScreenActions.deleteArticleFailed),
+      ofType(ArticleGridActions.deleteArticleFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Failed to delete article',
@@ -100,7 +97,7 @@ export class ToasterEffects {
 
   addLoadArticlesFailedToast$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListScreenActions.loadArticlesFailed),
+      ofType(ArticleGridActions.loadArticlesFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Failed to load articles',

@@ -1,4 +1,4 @@
-import { Article } from '../../types/article.model';
+import { Article } from '../../../../shared/types/article.model';
 
 export interface ArticleEditorScreenState {
   articleBeforeEdit: Article;

@@ -28,47 +28,16 @@ section {
       'grid-item-7'
       'grid-item-8';
   }
-}
 
-h4 {
-  margin: 10px 0 !important;
-  text-align: center;
-}
-
-.lcc-link {
-  font-size: inherit;
-}
-
-.about-details {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-
-  .meet-details-container {
-    display: flex;
-    gap: 20px;
-    flex-flow: row nowrap;
-    width: 90%;
-
-    .meet-details {
-      width: auto;
-
-      .meet-time {
-        color: $lcc-color--accent;
-        font-size: 90%;
-        line-height: 30px;
-        white-space: nowrap;
-      }
+  article {
+    h4 {
+      margin: 10px 0 !important;
+      text-align: center;
     }
 
-    img {
-      width: 60px;
+    .lcc-link {
+      font-size: inherit;
     }
-  }
-
-  hr {
-    // Decrease to manually bring paragraph below closer
-    margin-bottom: 6px;
   }
 }
 

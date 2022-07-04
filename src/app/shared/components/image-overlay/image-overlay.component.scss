@@ -10,7 +10,6 @@ $screen-edge-padding: 20px;
   width: 100vw;
   height: 100vh;
   background: $lcc-color--overlay;
-  animation: dim 0.5s ease-in;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +20,6 @@ $screen-edge-padding: 20px;
     min-height: 320px;
     max-height: 100%;
     max-width: 100%;
-    animation: appear 0.5s ease-in;
 
     header {
       background-color: darken($lcc-color--primary, 20%);
@@ -53,14 +51,4 @@ $screen-edge-padding: 20px;
       border-bottom-right-radius: $lcc-border-radius-lg;
     }
   }
-}
-
-@keyframes appear {
-  0% { opacity: 20%; }
-  100% { opacity: 100%; }
-}
-
-@keyframes dim {
-  0% { background: $lcc-color--transparent-fully; }
-  100% { background: $lcc-color--overlay; }
 }

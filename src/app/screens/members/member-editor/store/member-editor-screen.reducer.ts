@@ -1,8 +1,9 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
+import { newMemberFormTemplate } from '@app/shared/types';
+
 import * as MemberEditorScreenActions from './member-editor-screen.actions';
 import { MemberEditorScreenState } from './member-editor-screen.state';
-import { newMemberFormTemplate } from '../../types/member.model';
 
 const initialState: MemberEditorScreenState = {
   memberBeforeEdit: newMemberFormTemplate,

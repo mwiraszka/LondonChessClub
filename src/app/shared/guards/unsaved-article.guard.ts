@@ -14,9 +14,7 @@ import {
   ModalSelectors,
 } from '@app/shared/components/modal';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class UnsavedArticleGuard implements CanDeactivate<ArticleEditorScreenComponent> {
   constructor(private store: Store) {}
 

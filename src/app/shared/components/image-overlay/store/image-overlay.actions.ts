@@ -7,7 +7,7 @@ enum ImageOverlayActionTypes {
 
 export const overlayOpened = createAction(
   ImageOverlayActionTypes.OVERLAY_OPENED,
-  props<{ imagePath: string }>()
+  props<{ imageUrl: string }>()
 );
 
 export const overlayClosed = createAction(ImageOverlayActionTypes.OVERLAY_CLOSED);

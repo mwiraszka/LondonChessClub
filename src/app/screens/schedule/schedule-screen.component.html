@@ -1,9 +1,6 @@
 <div class="lcc-canvas">
-	<header class="lcc-screen-header">
-		Schedule
-		<cds-icon shape="event"
-							size="sm">
-		</cds-icon>
-	</header>
+	<lcc-screen-header [title]="'Schedule'"
+										 [iconShape]="'event'">
+	</lcc-screen-header>
 	<lcc-schedule [events]="mockEvents"></lcc-schedule>
 </div>

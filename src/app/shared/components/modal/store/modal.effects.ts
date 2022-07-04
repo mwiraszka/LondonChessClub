@@ -6,7 +6,7 @@ import { filter, map, tap } from 'rxjs/operators';
 import {
   ArticleEditorScreenActions,
   ArticleEditorScreenSelectors,
-  ArticleListScreenActions,
+  ArticleGridActions,
 } from '@app/screens/articles';
 import {
   MemberEditorScreenActions,
@@ -157,7 +157,7 @@ export class ModalEffects {
 
   openDeleteArticleModal$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListScreenActions.deleteArticleSelected),
+      ofType(ArticleGridActions.deleteArticleSelected),
       map(({ articleToDelete }) => {
         const modal: Modal = {
           title: 'Confirm article deletion',
@@ -253,9 +253,9 @@ export class ModalEffects {
           case ModalButtonActionTypes.UPDATE_ARTICLE_CANCEL:
             return ArticleEditorScreenActions.updateArticleCancelled();
           case ModalButtonActionTypes.DELETE_ARTICLE_OK:
-            return ArticleListScreenActions.deleteArticleConfirmed();
+            return ArticleGridActions.deleteArticleConfirmed();
           default:
-            return ArticleListScreenActions.deleteArticleCancelled();
+            return ArticleGridActions.deleteArticleCancelled();
         }
       })
     )

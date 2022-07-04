@@ -5,21 +5,21 @@ import { map, switchMap, tap } from 'rxjs/operators';
 
 import { ServiceResponse } from '@app/shared/types';
 
-import * as ArticleListScreenActions from './article-list-screen.actions';
-import * as ArticleListScreenSelectors from './article-list-screen.selectors';
-import { ArticlesService } from '../../articles.service';
+import * as ArticleGridActions from './article-grid.actions';
+import * as ArticleGridSelectors from './article-grid.selectors';
+import { ArticlesService } from '../../../../screens/articles/articles.service';
 
 @Injectable()
-export class ArticleListScreenEffects {
+export class ArticleGridEffects {
   getArticles$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListScreenActions.loadArticlesStarted),
+      ofType(ArticleGridActions.loadArticlesStarted),
       switchMap(() =>
         this.articlesService.getArticles().pipe(
           map((response: ServiceResponse) =>
             response.error
-              ? ArticleListScreenActions.loadArticlesFailed({ error: response.error })
-              : ArticleListScreenActions.loadArticlesSucceeded({
+              ? ArticleGridActions.loadArticlesFailed({ error: response.error })
+              : ArticleGridActions.loadArticlesSucceeded({
                   allArticles: response.payload.articles,
                 })
           )
@@ -30,16 +30,14 @@ export class ArticleListScreenEffects {
 
   deleteArticle$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListScreenActions.deleteArticleConfirmed),
-      concatLatestFrom(() =>
-        this.store.select(ArticleListScreenSelectors.selectedArticle)
-      ),
+      ofType(ArticleGridActions.deleteArticleConfirmed),
+      concatLatestFrom(() => this.store.select(ArticleGridSelectors.selectedArticle)),
       switchMap(([, articleToDelete]) =>
         this.articlesService.deleteArticle(articleToDelete).pipe(
           map((response: ServiceResponse) =>
             response.error
-              ? ArticleListScreenActions.deleteArticleFailed({ error: response.error })
-              : ArticleListScreenActions.deleteArticleSucceeded({
+              ? ArticleGridActions.deleteArticleFailed({ error: response.error })
+              : ArticleGridActions.deleteArticleSucceeded({
                   deletedArticle: response.payload.article,
                 })
           )
@@ -52,8 +50,8 @@ export class ArticleListScreenEffects {
     () =>
       this.actions$.pipe(
         ofType(
-          ArticleListScreenActions.loadArticlesFailed,
-          ArticleListScreenActions.deleteArticleFailed
+          ArticleGridActions.loadArticlesFailed,
+          ArticleGridActions.deleteArticleFailed
         ),
         tap(({ error }) => {
           console.error(`[Article List Screen Effects]' ${error.message}`);

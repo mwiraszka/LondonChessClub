@@ -6,23 +6,26 @@ import { ClarityModule } from '@clr/angular';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
+import { ArticleGridModule } from '@app/shared/components/article-grid';
+import { ScreenHeaderModule } from '@app/shared/components/screen-header';
 import { DirectivesModule } from '@app/shared/directives';
 import { AppStoreFeatureTypes } from '@app/shared/types';
 
 import { ArticleListScreenComponent } from './article-list-screen.component';
-import { ArticleListScreenEffects } from './store/article-list-screen.effects';
-import { reducer } from './store/article-list-screen.reducer';
+import { ArticleGridEffects } from '../../../shared/components/article-grid/store/article-grid.effects';
+import { reducer } from '../../../shared/components/article-grid/store/article-grid.reducer';
 
 @NgModule({
   declarations: [ArticleListScreenComponent],
   imports: [
+    ArticleGridModule,
     ClarityModule,
     CommonModule,
     DirectivesModule,
-    EffectsModule.forFeature([ArticleListScreenEffects]),
+    EffectsModule.forFeature([ArticleGridEffects]),
     ReactiveFormsModule,
     RouterModule,
-    StoreModule.forFeature(AppStoreFeatureTypes.ARTICLE_LIST_SCREEN, reducer),
+    ScreenHeaderModule,
   ],
   exports: [ArticleListScreenComponent],
 })

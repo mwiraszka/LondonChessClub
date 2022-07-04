@@ -1,5 +1,4 @@
 export { MembersService } from './members.service';
-export { Member, newMemberFormTemplate } from './types/member.model';
 
 export { MemberEditorScreenComponent } from './member-editor/member-editor-screen.component';
 export { MemberEditorScreenModule } from './member-editor/member-editor-screen.module';

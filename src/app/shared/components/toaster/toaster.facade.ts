@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 
 import * as ToasterSelectors from './store/toaster.selectors';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class ToasterFacade {
   toasts$ = this.store.select(ToasterSelectors.toasts);
 

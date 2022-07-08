@@ -1,32 +1,14 @@
 @import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
+$icon-width: 30px;
+
 :host {
   display: flex;
   justify-content: center;
 }
 
-.link-container {
-  width: 90%;
-
-  @include respond-to ('lt-md') {
-    width: 100%;
-  }
-
-  a {
-    align-self: flex-start;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: $h5;
-  
-    cds-icon {
-      width: 10px;
-      margin-bottom: 3px;
-    }
-  }
-}
-
+lcc-link-list,
 table {
   width: 90%;
 
@@ -49,6 +31,14 @@ thead {
       cds-icon {
         margin: 2px;
       }
+    }
+  }
+}
+
+tbody {
+  tr {
+    lcc-admin-controls {
+      translate: calc(#{-2 * $icon-width});
     }
   }
 }

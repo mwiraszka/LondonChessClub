@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ToasterFacade } from './toaster.facade';
 
@@ -10,6 +10,7 @@ import { ToasterFacade } from './toaster.facade';
     </div>
   `,
   styleUrls: ['./toaster.component.scss'],
+  providers: [ToasterFacade],
 })
 export class ToasterComponent {
   constructor(public facade: ToasterFacade) {}

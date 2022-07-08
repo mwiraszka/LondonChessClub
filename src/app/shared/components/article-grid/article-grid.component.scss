@@ -1,25 +1,52 @@
 @import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
+$article-padding: 6px;
+
 :host {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
+  align-items: center;
   gap: 10px;
+}
 
-  ul {
+lcc-link-list,
+.articles-container {
+  width: 90%;
+
+  @include respond-to ('lt-md') {
+    width: 100%;
+  }
+}
+
+lcc-link-list {
+  align-items: start;
+}
+
+.articles-container {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  article {
     display: flex;
-    flex-flow: row wrap;
-    gap: 4px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    flex-flow: column nowrap;
+    width: 240px;
+    height: 280px;
+    padding: $article-padding;
+    background-color: darken($lcc-color--white, 6%);
 
-    li {
-      width: 240px;
-      height: 280px;
-      padding: 6px;
-      background-color: darken($lcc-color--white, 6%);
+    lcc-admin-controls {
+      transform: translate(-$article-padding, -$article-padding); 
+    }
+
+    p {
+      height: auto;
+      width: auto;
     }
   }
 }

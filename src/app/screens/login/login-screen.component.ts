@@ -15,6 +15,7 @@ import { LoginScreenFacade } from './login-screen.facade';
   selector: 'lcc-login-screen',
   templateUrl: './login-screen.component.html',
   styleUrls: ['./login-screen.component.scss'],
+  providers: [LoginScreenFacade],
 })
 export class LoginScreenComponent {
   form!: FormGroup;

@@ -20,7 +20,7 @@ table {
       &.date {
         white-space: nowrap;
       }
-  
+
       &.title-and-description {
         display: flex;
         flex-flow: column nowrap;
@@ -32,8 +32,10 @@ table {
       }
 
       p {
-        color: $lcc-color--text-secondary;
+        width: 100%;
         line-height: 150%;
+        padding: 0;
+        color: $lcc-color--text-secondary;
       }
     }
   }

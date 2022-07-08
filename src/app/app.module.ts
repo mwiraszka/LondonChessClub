@@ -13,8 +13,10 @@ import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
 import { CoreModule } from '@app/core/core.module';
 import { ScreensModule } from '@app/screens/screens.module';
+import { AdminControlsModule } from '@app/shared/components/admin-controls';
 import { AlertModule } from '@app/shared/components/alert';
 import { ImageOverlayModule } from '@app/shared/components/image-overlay';
+import { LinkListModule } from '@app/shared/components/link-list';
 import { ModalModule } from '@app/shared/components/modal';
 import { ToastModule } from '@app/shared/components/toast';
 import { ToasterModule } from '@app/shared/components/toaster';
@@ -24,6 +26,7 @@ import { environment } from '@environments/environment';
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    AdminControlsModule,
     AlertModule,
     AppRoutingModule,
     BrowserModule,
@@ -33,6 +36,7 @@ import { environment } from '@environments/environment';
     EffectsModule.forRoot([]),
     HttpClientModule,
     ImageOverlayModule,
+    LinkListModule,
     ModalModule,
     ScreensModule,
     ServiceWorkerModule.register('ngsw-worker.js', {

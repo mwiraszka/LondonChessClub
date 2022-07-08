@@ -31,14 +31,46 @@ export class PhotoGalleryScreenComponent {
   ];
 
   links: Link[] = [
-    { url: 'https://www.flickr.com/photos/184509003@N07/', text: '2019 onwards' },
-    { url: 'http://londonchessclub.ca/?page_id=4918', text: 'June 2016' },
-    { url: 'http://londonchessclub.ca/?page_id=4535', text: 'April 2016' },
-    { url: 'http://londonchessclub.ca/?page_id=3644', text: '2015' },
-    { url: 'http://londonchessclub.ca/?page_id=1343', text: '2011' },
-    { url: 'http://londonchessclub.ca/?page_id=926', text: '2009' },
-    { url: 'http://londonchessclub.ca/?page_id=924', text: '2008' },
-    { url: 'http://londonchessclub.ca/?page_id=916', text: '2007 and older' },
+    {
+      path: 'https://www.flickr.com/photos/184509003@N07/',
+      text: '2019 onwards',
+      iconShape: 'camera',
+    },
+    {
+      path: 'http://londonchessclub.ca/?page_id=4918',
+      text: 'June 2016',
+      iconShape: 'camera',
+    },
+    {
+      path: 'http://londonchessclub.ca/?page_id=4535',
+      text: 'April 2016',
+      iconShape: 'camera',
+    },
+    {
+      path: 'http://londonchessclub.ca/?page_id=3644',
+      text: '2015',
+      iconShape: 'camera',
+    },
+    {
+      path: 'http://londonchessclub.ca/?page_id=1343',
+      text: '2011',
+      iconShape: 'camera',
+    },
+    {
+      path: 'http://londonchessclub.ca/?page_id=926',
+      text: '2009',
+      iconShape: 'camera',
+    },
+    {
+      path: 'http://londonchessclub.ca/?page_id=924',
+      text: '2008',
+      iconShape: 'camera',
+    },
+    {
+      path: 'http://londonchessclub.ca/?page_id=916',
+      text: '2007 and older',
+      iconShape: 'camera',
+    },
   ];
 
   constructor(public facade: PhotoGalleryScreenFacade) {}

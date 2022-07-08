@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClarityModule } from '@clr/angular';
 import { StoreModule } from '@ngrx/store';
 
+import { AdminControlsModule } from '@app/shared/components/admin-controls';
+import { LinkListModule } from '@app/shared/components/link-list';
 import { DirectivesModule } from '@app/shared/directives';
 import { AppStoreFeatureTypes } from '@app/shared/types';
 
@@ -12,8 +13,9 @@ import { reducer } from './store/article-grid.reducer';
 @NgModule({
   declarations: [ArticleGridComponent],
   imports: [
-    ClarityModule,
+    AdminControlsModule,
     CommonModule,
+    LinkListModule,
     DirectivesModule,
     StoreModule.forFeature(AppStoreFeatureTypes.ARTICLE_GRID, reducer),
   ],

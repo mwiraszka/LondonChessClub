@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { ClarityIcons, plusCircleIcon } from '@cds/core/icon';
+import { NavPathTypes } from '@app/core/nav';
 
 import { LoaderService } from '@app/shared/services';
-import { Article } from '@app/shared/types';
+import { Article, Link, MOCK_ARTICLES } from '@app/shared/types';
 
 import { ArticleGridFacade } from './article-grid.facade';
 
@@ -14,6 +14,13 @@ import { ArticleGridFacade } from './article-grid.facade';
 })
 export class ArticleGridComponent {
   @Input() articles: Article[];
+  MOCK_ARTICLES = MOCK_ARTICLES;
+
+  composeArticleLink: Link = {
+    path: NavPathTypes.NEWS_COMPOSE,
+    text: 'Compose new article',
+    iconShape: 'plus-circle',
+  };
 
   constructor(public facade: ArticleGridFacade, private loader: LoaderService) {}
 
@@ -21,8 +28,6 @@ export class ArticleGridComponent {
     this.facade.isLoading$.subscribe((isLoading) => {
       this.loader.display(isLoading);
     });
-
-    ClarityIcons.addIcons(plusCircleIcon);
     this.facade.loadArticles();
   }
 }

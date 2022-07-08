@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { cameraIcon, ClarityIcons, plusCircleIcon } from '@cds/core/icon';
 
 import { Link } from '@app/shared/types';
 
@@ -7,7 +9,21 @@ import { Link } from '@app/shared/types';
   templateUrl: './link-list.component.html',
   styleUrls: ['./link-list.component.scss'],
 })
-export class LinkListComponent {
+export class LinkListComponent implements OnInit {
   @Input() linkListTitle?: string;
   @Input() links: Link[];
+
+  ngOnInit(): void {
+    ClarityIcons.addIcons(cameraIcon, plusCircleIcon);
+  }
+
+  onSelect(link: Link): void {
+    if (link.path.includes('londonchessclub.ca')) {
+      window.open(link.path, '_blank');
+    } else {
+      this.router.navigate([link.path]);
+    }
+  }
+
+  constructor(private router: Router) {}
 }

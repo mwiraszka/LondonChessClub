@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { NavPathTypes } from '@app/core/nav';
 
 import { MOCK_EVENTS } from '@app/screens/schedule/mock-events';
-import { Photo } from '@app/shared/types';
+import { Link, Photo } from '@app/shared/types';
 
 @Component({
   selector: 'lcc-home-screen',
@@ -21,4 +22,14 @@ export class HomeScreenComponent {
     { index: 15, description: '' },
     { index: 13, description: '' },
   ];
+
+  scheduleLink: Link = {
+    path: NavPathTypes.SCHEDULE,
+    text: 'See all scheduled events',
+  };
+
+  photoGalleryLink: Link = {
+    path: NavPathTypes.PHOTO_GALLERY,
+    text: 'See more photos',
+  };
 }

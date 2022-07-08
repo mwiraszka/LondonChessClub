@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HomeScreenComponent } from '@app/screens/home';
 import { AboutModule } from '@app/shared/components/about';
 import { ArticleGridModule } from '@app/shared/components/article-grid';
+import { LinkListModule } from '@app/shared/components/link-list';
 import { PhotoGridModule } from '@app/shared/components/photo-grid';
 import { ScheduleModule } from '@app/shared/components/schedule';
 
@@ -14,6 +15,7 @@ import { ScheduleModule } from '@app/shared/components/schedule';
     AboutModule,
     ArticleGridModule,
     CommonModule,
+    LinkListModule,
     RouterModule,
     PhotoGridModule,
     ScheduleModule,

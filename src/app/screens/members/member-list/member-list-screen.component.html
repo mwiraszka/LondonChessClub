@@ -3,16 +3,11 @@
 										 [iconShape]="'users'">
 	</lcc-screen-header>
 
-	<div class="link-container">
-		<a *ngIf="facade.isAdmin$ | async"
-			 class="lcc-link"
-			 (click)="facade.onAddMember()">
-			<cds-icon shape="plus-circle"
-								size="xs">
-			</cds-icon>
-			<span>Add member</span>
-		</a>
-	</div>
+	<ng-container *ngIf="facade.isAdmin$ | async">
+		<lcc-link-list [links]="[addMemberLink]"
+									 (select)="facade.onAddMember()">
+		</lcc-link-list>
+	</ng-container>
 
 	<table class="lcc-table">
 		<thead>
@@ -33,7 +28,7 @@
 		</thead>
 
 		<tbody>
-			<tr *ngFor="let member of facade.members$ | async; let last = last;"
+			<tr *ngFor="let member of MOCK_MEMBERS; let last = last;"
 					class="lcc-admin-controls-container"
 					[ngClass]="{'last-row': last}">
 				<td class="first-name">{{ member.firstName }}</td>
@@ -47,22 +42,12 @@
 					<td class="date-joined">{{ member.dateJoined }}</td>
 				</ng-container>
 
-				<div *ngIf="facade.isAdmin$ | async"
-						 class="lcc-admin-controls">
-					<button (click)="facade.onEditMember(member)">
-						<cds-icon shape="pencil"
-											size="sm"
-											[tooltip]="'Edit ' + member.firstName">
-						</cds-icon>
-					</button>
-					<button (click)="facade.onDeleteMember(member)">
-						<cds-icon shape="trash"
-											size="sm"
-											status="danger"
-											[tooltip]="'Delete ' + member.firstName">
-						</cds-icon>
-					</button>
-				</div>
+				<ng-container *ngIf="facade.isAdmin$ | async">
+					<lcc-admin-controls [itemName]="member.firstName"
+															(edit)="facade.onEditMember(member)"
+															(delete)="facade.onDeleteMember(member)">
+					</lcc-admin-controls>
+				</ng-container>
 			</tr>
 		</tbody>
 

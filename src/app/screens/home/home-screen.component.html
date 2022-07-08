@@ -3,15 +3,20 @@
 		<article class="lcc-grid-item-1">
 			<lcc-about></lcc-about>
 		</article>
+
 		<article class="lcc-grid-item-2">
 			<h4>Coming up soon</h4>
 			<lcc-schedule [events]="mockEvents"></lcc-schedule>
+			<lcc-link-list [links]="[scheduleLink]"></lcc-link-list>
 		</article>
+
 		<article class="lcc-grid-item-3">
 			<lcc-photo-grid [photos]="photos"></lcc-photo-grid>
+			<lcc-link-list [links]="[photoGalleryLink]"></lcc-link-list>
 		</article>
+
 		<article class="lcc-grid-item-4">
-			<h4>What's new</h4>
+			<h4>Announcements</h4>
 			<lcc-article-grid></lcc-article-grid>
 		</article>
 	</section>

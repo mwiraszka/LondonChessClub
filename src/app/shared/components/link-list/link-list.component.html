@@ -1,12 +1,12 @@
 <h4>{{ linkListTitle }}</h4>
-<ul class="links">
+<ul class="links"
+		[ngClass]="links.length < 4 ? 'single-column' : ''">
 	<li *ngFor="let link of links">
-		<a [href]="link.url"
-			 alt="link.text"
+		<a alt="link.text"
 			 class="lcc-link"
-			 target="_blank">
+			 (click)="onSelect(link)">
 			<cds-icon *ngIf="link.iconShape"
-								shape="link.iconShape"
+								[attr.shape]="link.iconShape"
 								size="sm">
 			</cds-icon>{{ link.text }} <!-- same line to remove space -->
 		</a>

@@ -6,6 +6,8 @@ import { ClarityModule } from '@clr/angular';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
+import { AdminControlsModule } from '@app/shared/components/admin-controls';
+import { LinkListModule } from '@app/shared/components/link-list';
 import { ScreenHeaderModule } from '@app/shared/components/screen-header';
 import { DirectivesModule } from '@app/shared/directives';
 import { AppStoreFeatureTypes } from '@app/shared/types';
@@ -17,10 +19,12 @@ import { reducer } from './store/member-list-screen.reducer';
 @NgModule({
   declarations: [MemberListScreenComponent],
   imports: [
+    AdminControlsModule,
     ClarityModule,
     CommonModule,
     DirectivesModule,
     EffectsModule.forFeature([MemberListScreenEffects]),
+    LinkListModule,
     ReactiveFormsModule,
     RouterModule,
     ScreenHeaderModule,

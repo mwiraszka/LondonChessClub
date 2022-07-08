@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { NavPathTypes } from '@app/core/nav';
+import { Link } from '@app/shared/types';
 
 @Component({
   selector: 'lcc-champion-screen',
@@ -10,6 +11,25 @@ import { NavPathTypes } from '@app/core/nav';
 })
 export class ChampionScreenComponent {
   NavPathTypes = NavPathTypes;
+
+  links: Link[] = [
+    {
+      path: 'http://londonchessclub.ca/?p=78',
+      text: 'Past London Chess Champions (1967-2019)',
+    },
+    {
+      path: 'http://londonchessclub.ca/?p=79',
+      text: 'Past London Junior Chess Champions (1996-2011)',
+    },
+    {
+      path: 'http://londonchessclub.ca/?p=75',
+      text: 'Past London Active Chess Champions (1994-2019)',
+    },
+    {
+      path: 'http://londonchessclub.ca/?p=72',
+      text: 'Past London Speed Chess Champions (1993-2019)',
+    },
+  ];
 
   constructor(private router: Router) {}
 

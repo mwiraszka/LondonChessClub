@@ -7,6 +7,7 @@ import { AlertFacade } from './alert.facade';
   selector: 'lcc-alert',
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
+  providers: [AlertFacade],
 })
 export class AlertComponent implements OnInit {
   constructor(public facade: AlertFacade) {}

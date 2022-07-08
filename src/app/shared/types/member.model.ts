@@ -23,3 +23,24 @@ export const newMemberFormTemplate: Member = {
   peakRating: 1000,
   dateJoined: new Date().toISOString().substring(0, 10),
 };
+
+export const MOCK_MEMBERS: Member[] = [
+  {
+    ...newMemberFormTemplate,
+    firstName: 'Michal',
+    lastName: 'Wiraszka',
+    rating: 1000,
+  },
+  {
+    ...newMemberFormTemplate,
+    firstName: 'Johnny',
+    lastName: 'Depp',
+    rating: 800,
+  },
+  {
+    ...newMemberFormTemplate,
+    firstName: 'Elton',
+    lastName: 'John',
+    rating: 1900,
+  },
+];

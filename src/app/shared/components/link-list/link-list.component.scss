@@ -9,11 +9,13 @@
   gap: 8px;
 
   ul {
-    display: inline-block;
-    columns: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
-  
+    &:not(.single-column) {
+      display: inline-block;
+      columns: 2;
+      -webkit-columns: 2;
+      -moz-columns: 2;
+    }
+
     @include respond-to('lt-md') {
       columns: 1;
       -webkit-columns: 1;
@@ -24,7 +26,7 @@
       padding: 2px;
   
       a {
-        font-size: $h4;
+        font-size: $h5;
   
         cds-icon {
           padding: 3px;

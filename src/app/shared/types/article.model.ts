@@ -19,3 +19,30 @@ export const newArticleFormTemplate: Article = {
   dateEdited: '',
   body: '',
 };
+
+export const MOCK_ARTICLES: Article[] = [
+  {
+    ...newArticleFormTemplate,
+    title: 'Mock Article 1 Title',
+    subtitle: 'Mock Subtitle',
+    body: 'goiwergiwjre weogiwjge wegoweigj wegowe giwegj weogijw egwoeigjw egow. woegijw egoweig w. woeigjw eogij SWoAEigw eglwe . wiejgwoeigjw egw.egi wegjwlegi...',
+  },
+  {
+    ...newArticleFormTemplate,
+    title: 'Mock Article 2 Title',
+    subtitle: 'Mock Subtitle',
+    body: 'goiwergiwjre weogiwjge wegoweigj wegowe giwegj weogijw egwoeigjw egow. woegijw egoweig w. woeigjw eogij SWoAEigw eglwe . wiejgwoeigjw egw.egi wegjwlegi...',
+  },
+  {
+    ...newArticleFormTemplate,
+    title: 'Mock Article 3 Title',
+    subtitle: 'Mock Subtitle',
+    body: 'goiwergiwjre weogiwjge wegoweigj wegowe giwegj weogijw egwoeigjw egow. woegijw egoweig w. woeigjw eogij SWoAEigw eglwe . wiejgwoeigjw egw.egi wegjwlegi...',
+  },
+  {
+    ...newArticleFormTemplate,
+    title: 'Mock Article 4 Title',
+    subtitle: 'Mock Subtitle',
+    body: 'goiwergiwjre weogiwjge wegoweigj wegowe giwegj weogijw egwoeigjw egow. woegijw egoweig w. woeigjw eogij SWoAEigw eglwe . wiejgwoeigjw egw.egi wegjwlegi...',
+  },
+];

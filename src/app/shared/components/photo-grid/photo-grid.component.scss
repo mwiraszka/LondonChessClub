@@ -17,12 +17,16 @@
     flex: 1;
     max-width: 320px;
     min-width: 160px;
-
-    padding: 2px;
+    margin: 2px;
     border-radius: $lcc-border-radius-lg;
+    border: 1px solid $lcc-color--transparent-mostly;
+    opacity: 0.85;
 
     &:hover {
       cursor: pointer;
+      box-shadow: 1px 1px 4px 1px $lcc-color--box-shadow;
+      border: 1px solid $lcc-color--primary;
+      opacity: 1;
     }
   }
 }

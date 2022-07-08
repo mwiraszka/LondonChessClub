@@ -16,7 +16,7 @@
   
   thead {
     th {
-      padding: 6px 12px;
+      padding: 6px 8px;
       color: $lcc-color--white;
       background-color: $lcc-color--primary;
       white-space: nowrap;
@@ -33,7 +33,7 @@
       }
   
       td {
-        padding: 8px 12px;
+        padding: 8px;
       }
     }
   }
@@ -41,7 +41,7 @@
   tfoot {
     color: $lcc-color--text-secondary;
     td {
-      padding: 8px 12px;
+      padding: 8px;
       text-align: right;
     }
   }

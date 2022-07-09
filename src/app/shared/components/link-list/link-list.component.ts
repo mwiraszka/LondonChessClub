@@ -18,7 +18,7 @@ export class LinkListComponent implements OnInit {
   }
 
   onSelect(link: Link): void {
-    if (link.path.includes('londonchessclub.ca')) {
+    if (link.path.includes('www.')) {
       window.open(link.path, '_blank');
     } else {
       this.router.navigate([link.path]);

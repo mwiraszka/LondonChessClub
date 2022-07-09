@@ -12,6 +12,13 @@ small {
   font-size: 60%;
 }
 
-a {
+address {
+  p {
+    display: inline;
+    margin-right: 2px;
+    font-style: normal;
+  }
+
   font-size: $h5;
+  text-decoration: none;
 }

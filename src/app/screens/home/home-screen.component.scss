@@ -13,7 +13,7 @@ section {
     'grid-item-2 grid-item-3'
     'grid-item-4 grid-item-4';
 
-  @include respond-to('lt-md') {
+  @include respond-to('lt-lg') {
     grid-template-columns: 1fr;
     grid-template-areas:
       'grid-item-1'

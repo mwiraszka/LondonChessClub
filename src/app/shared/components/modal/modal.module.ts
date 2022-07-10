@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ClarityModule } from '@clr/angular';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
@@ -13,7 +12,6 @@ import { reducer } from './store/modal.reducer';
 @NgModule({
   declarations: [ModalComponent],
   imports: [
-    ClarityModule,
     CommonModule,
     EffectsModule.forFeature([ModalEffects]),
     StoreModule.forFeature(AppStoreFeatureTypes.MODAL, reducer),

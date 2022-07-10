@@ -1,3 +1,12 @@
-button {
-  margin: 0 3px;
+@import 'styles/abstracts/variables';
+
+.overlay-content {
+  margin: 8px;
+  max-width: 400px;
+  box-shadow: unset;
+  padding: 12px 8px;
+
+  button {
+    margin: 0 3px;
+  }
 }

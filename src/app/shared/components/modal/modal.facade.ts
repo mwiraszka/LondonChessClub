@@ -8,7 +8,6 @@ import { ModalButtonActionTypes } from './types/modal-button.model';
 @Injectable()
 export class ModalFacade {
   modal$ = this.store.select(ModalSelectors.modal);
-  isOpen$ = this.store.select(ModalSelectors.isOpen);
 
   constructor(private store: Store) {}
 

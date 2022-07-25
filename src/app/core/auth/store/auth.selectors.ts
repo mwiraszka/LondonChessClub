@@ -16,3 +16,8 @@ export const isAdmin = createSelector(
 );
 
 export const user = createSelector(authFeatureSelector, (state) => state.user);
+
+export const isUserVerified = createSelector(
+  authFeatureSelector,
+  (state) => state.user?.isVerified
+);

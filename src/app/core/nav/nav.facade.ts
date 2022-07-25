@@ -1,60 +1,64 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, of } from 'rxjs';
+import { of } from 'rxjs';
 
 import { AuthSelectors } from '@app/core/auth';
 
 import * as NavActions from './store/nav.actions';
+import * as NavSelectors from './store/nav.selectors';
 
 @Injectable()
 export class NavFacade {
   constructor(private readonly store: Store) {}
 
   user$ = this.store.select(AuthSelectors.user);
+  isUserVerified$ = this.store.select(AuthSelectors.isUserVerified);
+  isDropdownOpen$ = this.store.select(NavSelectors.isDropdownOpen);
 
   // WIP: Need to find a good way to 'get member by ID' using their common UUID
-  tempFirstName$ = of('Michal*');
+  tempFirstName$ = of('Michal');
 
-  private _isUserDropdownOpen$ = new BehaviorSubject<boolean>(true);
-  isUserDropdownOpen$ = this._isUserDropdownOpen$.asObservable();
-
-  onHome(): void {
-    this.store.dispatch(NavActions.homeSelected());
+  onSelectHomeTab(): void {
+    this.store.dispatch(NavActions.homeTabSelected());
   }
 
-  onMembers(): void {
-    this.store.dispatch(NavActions.membersSelected());
+  onSelectMembersTab(): void {
+    this.store.dispatch(NavActions.membersTabSelected());
   }
 
-  onSchedule(): void {
-    this.store.dispatch(NavActions.scheduleSelected());
+  onSelectScheduleTab(): void {
+    this.store.dispatch(NavActions.scheduleTabSelected());
   }
 
-  onNews(): void {
-    this.store.dispatch(NavActions.newsSelected());
+  onSelectNewsTab(): void {
+    this.store.dispatch(NavActions.newsTabSelected());
   }
 
-  onLondonChessChampion(): void {
-    this.store.dispatch(NavActions.londonChessChampionSelected());
+  onSelectLondonChessChampionTab(): void {
+    this.store.dispatch(NavActions.londonChessChampionTabSelected());
   }
 
-  onPhotoGallery(): void {
-    this.store.dispatch(NavActions.photoGallerySelected());
+  onSelectPhotoGalleryTab(): void {
+    this.store.dispatch(NavActions.photoGalleryTabSelected());
   }
 
-  onAbout(): void {
-    this.store.dispatch(NavActions.aboutSelected());
+  onSelectAboutTab(): void {
+    this.store.dispatch(NavActions.aboutTabSelected());
   }
 
-  onLogin(): void {
-    this.store.dispatch(NavActions.loginSelected());
+  onSelectLoginTab(): void {
+    this.store.dispatch(NavActions.loginTabSelected());
   }
 
-  onLogout(): void {
-    this.store.dispatch(NavActions.logoutSelected());
+  onToggleDropdown(): void {
+    this.store.dispatch(NavActions.dropdownToggled());
   }
 
-  onToggleUserDropdown(): void {
-    this._isUserDropdownOpen$.next(!this.isUserDropdownOpen$);
+  onLogOut(): void {
+    this.store.dispatch(NavActions.logOutSelected());
+  }
+
+  onResendValidationEmail(): void {
+    this.store.dispatch(NavActions.resendVerificationLinkSelected());
   }
 }

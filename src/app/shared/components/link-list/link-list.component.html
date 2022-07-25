@@ -4,7 +4,7 @@
 	<li *ngFor="let link of links">
 		<a alt="link.text"
 			 class="lcc-link"
-			 (click)="onSelect(link)">
+			 (click)="facade.onSelect(link)">
 			<cds-icon *ngIf="link.iconShape"
 								[attr.shape]="link.iconShape"
 								size="sm">

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { delay, map } from 'rxjs/operators';
 
+import { AuthActions } from '@app/core/auth';
 import { ArticleEditorScreenActions, ArticleGridActions } from '@app/screens/articles';
 import { MemberEditorScreenActions, MemberListScreenActions } from '@app/screens/members';
 import { Toast, ToastTypes } from '@app/shared/components/toast';
@@ -202,6 +203,50 @@ export class ToasterEffects {
           title: 'Failed to load members',
           message: `${error.message}`,
           type: ToastTypes.WARNING,
+        };
+        return ToasterActions.toastAdded({ toast });
+      })
+    )
+  );
+
+  // AUTH ---------------------------------------------------------------------------------------
+  addLoginSucceededToast$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.loginSucceeded),
+      map(() => {
+        const toast: Toast = {
+          title: 'Login',
+          message: 'Successfully logged in',
+          type: ToastTypes.SUCCESS,
+        };
+        return ToasterActions.toastAdded({ toast });
+      })
+    )
+  );
+
+  addLogoutSucceededToast$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.logoutSucceeded),
+      map(() => {
+        const toast: Toast = {
+          title: 'Logout',
+          message: 'Successfully logged out',
+          type: ToastTypes.SUCCESS,
+        };
+        return ToasterActions.toastAdded({ toast });
+      })
+    )
+  );
+
+  addResendVerificationLinkSucceededToast$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.resendVerificationLinkSucceeded),
+      map(() => {
+        const toast: Toast = {
+          title: 'Verification link',
+          message:
+            'Verification link successfully sent to the email used to register this LCC account',
+          type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
       })

@@ -20,6 +20,7 @@ enum AuthActionTypes {
   ALREADY_HAVE_ACCOUNT_SELECTED = '[Auth] Already have account selected',
   DONT_HAVE_ACCOUNT_SELECTED = "[Auth] Don't have account selected",
   FORGOT_PASSWORD_SELECTED = '[Auth] Forgot password selected',
+  RESEND_VERIFICATION_LINK_SUCCEEDED = '[Auth] Resend verification link succeeded',
 }
 
 export const loginRequested = createAction(
@@ -63,4 +64,8 @@ export const dontHaveAccountSelected = createAction(
 // WIP - not implemented yet
 export const forgotPasswordSelected = createAction(
   AuthActionTypes.FORGOT_PASSWORD_SELECTED
+);
+
+export const resendVerificationLinkSucceeded = createAction(
+  AuthActionTypes.RESEND_VERIFICATION_LINK_SUCCEEDED
 );

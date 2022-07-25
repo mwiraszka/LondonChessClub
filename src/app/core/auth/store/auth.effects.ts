@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, filter, map, switchMap } from 'rxjs/operators';
 
 import { NavActions } from '@app/core/nav';
-import { User, UserRoleTypes } from '@app/shared/types';
+import { DropdownActionTypes, User, UserRoleTypes } from '@app/shared/types';
 
 import { AuthService } from '../auth.service';
 import * as AuthActions from './auth.actions';
@@ -19,6 +19,10 @@ export class AuthEffects {
       switchMap(({ loginRequest }) => {
         return this.authService.logIn(loginRequest).pipe(
           map((loginResponse: LoginResponse) => {
+            /**
+             * TODO: need to find a way to get real user data using the
+             * tokens received from the loginResponse object
+             */
             const user: User = {
               id: 'test-3nfo13-1j3nf',
               email: 'michal@test.com*',
@@ -44,7 +48,7 @@ export class AuthEffects {
 
   logOut$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(NavActions.logoutSelected),
+      ofType(NavActions.logOutSelected),
       map(() => {
         this.authService.logOut();
         return AuthActions.logoutSucceeded();
@@ -77,6 +81,20 @@ export class AuthEffects {
             )
           )
         );
+      })
+    )
+  );
+
+  resendVerificationLink$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(NavActions.resendVerificationLinkSelected),
+      map(() => {
+        /**
+         * Configured in AWS to only send email to the user (no SMS);
+         * Note: no callback function configured - it's simply assumed that this email gets sent
+         */
+        this.authService.resendVerificationLink();
+        return AuthActions.resendVerificationLinkSucceeded();
       })
     )
   );

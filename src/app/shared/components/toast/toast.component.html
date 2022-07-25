@@ -1,13 +1,13 @@
-<div class="lcc-toast-container lcc-animate-fade"
-     [ngClass]="'lcc-toast-' + toast.type">
-  <div class="lcc-toast-icon-container">
-    <cds-icon [attr.shape]="iconShape"
-              size="lg"
-              solid>
-    </cds-icon>
-  </div>
-  <div class="lcc-toast-notification-container lcc-truncate">
-    <div class="lcc-toast-title">{{ toast.title }}</div>
-    <div class="lcc-toast-message">{{ toast.message }}</div>
-  </div>
+<div class="toast-container"
+		 [ngClass]="'toast-' + toast.type">
+	<div class="toast-icon-container">
+		<cds-icon [attr.shape]="iconShape"
+							size="lg"
+							solid>
+		</cds-icon>
+	</div>
+	<div class="toast-notification-container">
+		<h4 class="lcc-truncate">{{ toast.title }}</h4>
+		<p>{{ toast.message }}</p>
+	</div>
 </div>

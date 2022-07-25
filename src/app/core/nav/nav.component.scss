@@ -1,79 +1,188 @@
 @import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
+$dropdown-tab-width: 48px;
+$dropdown-list-width: 120px;
+
 :host {
   display: flex;
+  flex-flow: row nowrap;
   justify-content: center;
   background-color: $lcc-color--bg-nav;
-  padding: 8px $lcc-app-side-padding;
+  margin-top: 2px;
 }
 
-.lcc-nav-items {
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 16px;
-  width: 100%;
-  max-width: $lcc-app-max-width;
+.nav-left,
+.nav-right,
+.nav-login-spacer {
+  flex: 1;
+  border-bottom: 2px solid darken($lcc-color--bg-main, 10%);
 }
 
-.lcc-nav-links {
-  display: flex;
-  flex-flow: row nowrap;
+.nav-left,
+.nav-right {
+  min-width: $lcc-app-side-padding;
 }
 
-.lcc-user-account {
+.nav-items-container {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  align-items: center;
-  gap: 4px;
-  margin-left: auto;
-  padding-right: 8px; // manually line up with alert close icon above
-
-  p {
-    font-size: $h4;
-    color: lighten($lcc-color--black, 15%);
-  }
-
-  .lcc-login-text {
-    margin-left: 0.2em;
-  }
-}
-
-.lcc-user-account-dropdown {
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 28px;
-  width: 80px;
-  background-color: lighten($lcc-color--gray, 20%);
-  border-top: 3px solid lighten($lcc-color--black, 10%);
-}
-
-.lcc-logout-button {
+  max-width: $lcc-app-max-width;
+  min-width: 290px;
   width: 100%;
-  border: none;
-  background-color: inherit;
-  color: lighten($lcc-color--black, 10%);
-  font-size: $h4;
-}
-
-// WIP - should be larger icons on medium widths, and centred better;
-// should also have borders to make it clearer that these are buttons
-@include respond-to('lt-md') {
-  .lcc-nav-item {
-    width: 30px !important; // temp fix
+  
+  a,
+  .user-account-dropdown .dropdown-tab {
+    border-top: 2px solid $lcc-color--transparent-fully;
+    border-top-left-radius: $lcc-border-radius-lg;
+    border-top-right-radius: $lcc-border-radius-lg;
   }
 
-  .wide-view {
-    visibility: hidden;
-    display: none;
-  }
-}
+  a {
+    display: flex;
+    flex-flow: row nowrap;
+    font-size: $h4;
+    font-weight: 400;
+    height: auto;
+    color: $lcc-color--text-primary-black;
+    padding: 5px 8px;
 
-@include respond-to('gt-md') {
-  .narrow-view {
-    visibility: hidden;
-    display: none;
+    @include respond-to('lt-sm') {
+      padding: 5px;
+    }
+  
+    &:hover,
+    &:focus {
+      color: lighten($lcc-color--text-primary-black, 10%);
+      background-color: darken($lcc-color--bg-nav, 5%);
+      text-decoration: none;
+    }
+  
+    &.link-active {
+      cursor: default;
+      pointer-events: none;
+      box-shadow: 1px 1px 6px 4px $lcc-color--bg-main inset;
+      border-top: 2px solid darken($lcc-color--bg-main, 10%);
+      border-left: 2px solid darken($lcc-color--bg-main, 10%);
+      border-right: 2px solid darken($lcc-color--bg-main, 10%);
+      border-bottom: 2px solid $lcc-color--bg-main;
+      font-weight: bolder;
+    }
+
+    &:not(.link-active) {
+      border-bottom: 2px solid darken($lcc-color--bg-main, 10%);
+    }
+  }
+
+  .user-account-dropdown {
+    position: relative;
+    z-index: 100;
+    
+    .dropdown-tab {
+      position: absolute;
+      top: 0;
+      left: -$dropdown-tab-width;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1px;
+      width: $dropdown-tab-width;
+      height: 100%;
+      border-bottom: 2px solid $lcc-color--transparent-fully;
+      padding: 4px 8px;
+      font-size: $h5;
+      color: $lcc-color--text-primary-black;
+
+      &.dropdown-open {
+        background-color: darken($lcc-color--bg-nav, 5%);
+        border-top: 2px solid darken($lcc-color--bg-main, 10%);
+        border-left: 2px solid darken($lcc-color--bg-main, 10%);
+        border-right: 2px solid darken($lcc-color--bg-main, 10%);
+      }
+
+      &:hover,
+      &:focus {
+        cursor: pointer;
+      }
+
+      &:not(.dropdown-open) {
+        &:hover,
+        &:focus {
+          color: lighten($lcc-color--text-primary-black, 10%);
+          background-color: darken($lcc-color--bg-nav, 5%);
+          border-bottom: 2px solid darken($lcc-color--bg-main, 10%);
+        }
+      }
+    }
+  
+    .dropdown-items {
+      position: absolute;
+      left: -$dropdown-list-width;
+      display: flex;
+      flex-flow: column nowrap;
+      text-align: center;
+      width: $dropdown-list-width;
+      border-top: 7px solid darken($lcc-color--white, 8%);
+      margin-top: 1px;
+      font-size: $h5;
+
+      // hacky way to keep dropdown items directly below tab on all viewport widths
+      top: 30px;
+      @include respond-to('lt-md') {
+        top: 38px;
+      }
+  
+      li {
+        color: $lcc-color--text-primary-white;
+        padding: 6px;
+
+        &.login-welcome {
+          display: flex !important; // must override lcc-gt-md class default
+          flex-flow: column nowrap;
+          justify-content: center;
+          align-items: center;
+          gap: 4px;
+          background-color: darken($lcc-color--white, 5%);
+  
+          small {
+            white-space: nowrap;
+            color: darken($lcc-color--text-primary-black, 10%);
+          }
+  
+          .first-name {
+            color: $lcc-color--text-primary-black;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+            border: 1px solid darken($lcc-color--white, 15%);
+            border-radius: $lcc-border-radius-lg;
+            padding: 1px 8px;
+          }
+        };
+
+        &:not(.login-welcome) {
+          background-color: $lcc-color--primary;
+
+          &:hover {
+            cursor: pointer;
+            background-color: lighten($lcc-color--primary, 10%);
+          }
+        }
+
+        &.last-item {
+          border-bottom-left-radius: $lcc-border-radius-sm;
+          border-bottom-right-radius: $lcc-border-radius-sm;
+        }
+      }
+    }
+  }
+
+  .user-account-dropdown,
+  .login-link {
+    margin-left: auto;
   }
 }

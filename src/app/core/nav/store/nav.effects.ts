@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { AuthActions } from '@app/core/auth';
 import { ArticleEditorScreenActions, ArticleGridActions } from '@app/screens/articles';
@@ -17,7 +17,7 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(
-          NavActions.homeSelected,
+          NavActions.homeTabSelected,
           MemberEditorScreenActions.addMemberSucceeded,
           MemberEditorScreenActions.updateMemberSucceeded
         ),
@@ -30,7 +30,7 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(
-          NavActions.membersSelected,
+          NavActions.membersTabSelected,
           MemberEditorScreenActions.cancelSelected,
           MemberEditorScreenActions.addMemberSucceeded,
           MemberEditorScreenActions.updateMemberSucceeded
@@ -53,7 +53,6 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(MemberListScreenActions.editMemberSelected),
-        tap((val) => console.log('::', val)),
         tap(({ memberToEdit }) =>
           this.router.navigate([NavPathTypes.MEMBERS_EDIT, memberToEdit.id])
         )
@@ -64,7 +63,7 @@ export class NavEffects {
   navigateToSchedule$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.scheduleSelected, AlertActions.seeScheduleSelected),
+        ofType(NavActions.scheduleTabSelected, AlertActions.seeScheduleSelected),
         tap(() => this.router.navigate([NavPathTypes.SCHEDULE]))
       ),
     { dispatch: false }
@@ -74,7 +73,7 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(
-          NavActions.newsSelected,
+          NavActions.newsTabSelected,
           ArticleEditorScreenActions.cancelSelected,
           ArticleEditorScreenActions.publishArticleSucceeded,
           ArticleEditorScreenActions.updateArticleSucceeded
@@ -107,7 +106,7 @@ export class NavEffects {
   navigateToLondonChessChampion$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.londonChessChampionSelected),
+        ofType(NavActions.londonChessChampionTabSelected),
         tap(() => this.router.navigate([NavPathTypes.LONDON_CHESS_CHAMPION]))
       ),
     { dispatch: false }
@@ -116,7 +115,7 @@ export class NavEffects {
   navigateToPhotoGallery$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.photoGallerySelected),
+        ofType(NavActions.photoGalleryTabSelected),
         tap(() => this.router.navigate([NavPathTypes.PHOTO_GALLERY]))
       ),
     { dispatch: false }
@@ -125,7 +124,7 @@ export class NavEffects {
   navigateToAbout$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.aboutSelected),
+        ofType(NavActions.aboutTabSelected),
         tap(() => this.router.navigate([NavPathTypes.ABOUT]))
       ),
     { dispatch: false }
@@ -135,9 +134,10 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(
-          NavActions.loginSelected,
-          NavActions.logoutSelected,
-          AuthActions.alreadyHaveAccountSelected
+          NavActions.loginTabSelected,
+          NavActions.logOutSelected,
+          AuthActions.alreadyHaveAccountSelected,
+          AuthActions.logoutSucceeded
         ),
         tap(() => this.router.navigate([NavPathTypes.LOGIN]))
       ),
@@ -149,6 +149,21 @@ export class NavEffects {
       this.actions$.pipe(
         ofType(AuthActions.dontHaveAccountSelected),
         tap(() => this.router.navigate([NavPathTypes.SIGN_UP]))
+      ),
+    { dispatch: false }
+  );
+
+  navigateToLink$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(NavActions.linkSelected),
+        map(({ link }) => {
+          if (link.path.includes('www.')) {
+            window.open(link.path, '_blank');
+          } else {
+            this.router.navigate([link.path]);
+          }
+        })
       ),
     { dispatch: false }
   );

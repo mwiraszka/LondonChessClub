@@ -1,6 +1,6 @@
 @import 'styles/abstracts/variables';
 
-.lcc-toast-container {
+.toast-container {
   display: flex;
   flex-flow: row nowrap;
   width: 300px;
@@ -8,19 +8,24 @@
   padding: 2px 5px;
   border-radius: $lcc-border-radius-sm;
   box-shadow: 0 0 2px 2px lighten($lcc-color--gray, 20%);
+  -o-animation: fadeAnimation 5s;
+  -moz-animation: fadeAnimation 5s;
+  -ms-animation: fadeAnimation 5s;
+  -webkit-animation: fadeAnimation 5s;
+  animation: fadeAnimation 5s;
 
-  &.lcc-toast-success {
+  &.toast-success {
     background-color: $lcc-color--success;
   }
-  &.lcc-toast-warning {
+  &.toast-warning {
     background-color: $lcc-color--warning;
   }
-  &.lcc-toast-info {
+  &.toast-info {
     background-color: $lcc-color--info;
   }
 }
 
-.lcc-toast-icon-container {
+.toast-icon-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,84 +35,49 @@
   }
 }
 
-.lcc-toast-notification-container {
+.toast-notification-container {
+  padding: 6px;
+  overflow: hidden;
   display: flex;
-  justify-content: center;
   flex-flow: column nowrap;
-  padding: 4px;
+  gap: 6px;
 
-  .lcc-toast-title {
-    padding: 2px;
-    font-size: $h4;
-    color: lighten($lcc-color--white, 10%);
+  h4 {
+    width: 100%;
+    color: lighten($lcc-color--text-primary-white, 5%);
+    line-height: 100%;
   }
 
-  .lcc-toast-message {
-    padding: 2px;
+  p {
+    width: 100%;
     font-size: $h5;
-    color: $lcc-color--white;
+    color: darken($lcc-color--text-primary-white, 5%);
+    line-height: 110%;
   }
 }
 
-@keyframes fadeAnimation {
-  0% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
+
 @-o-keyframes fadeAnimation {
-  0% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
 }
 @-moz-keyframes fadeAnimation {
-  0% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
 }
 @-webkit-keyframes fadeAnimation {
-  0% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
 }
-.lcc-animate-fade {
-  -webkit-animation: fadeAnimation 5s;
-  -moz-animation: fadeAnimation 5s;
-  -o-animation: fadeAnimation 5s;
-  animation: fadeAnimation 5s;
+@keyframes fadeAnimation {
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
 }

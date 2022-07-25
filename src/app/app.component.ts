@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { NavActions, NavSelectors } from '@app/core/nav';
 import { AlertSelectors } from '@app/shared/components/alert';
 import { ImageOverlaySelectors } from '@app/shared/components/image-overlay';
 import { ModalSelectors } from '@app/shared/components/modal';
@@ -37,5 +38,14 @@ export class AppComponent implements OnInit {
       this.isLoading = isLoading;
       this.changeDetectionRef.detectChanges();
     });
+  }
+
+  onClickApp(event: MouseEvent): void {
+    if (
+      this.store.select(NavSelectors.isDropdownOpen) &&
+      !(event.target as HTMLElement).classList.contains('lcc-dropdown-element')
+    ) {
+      this.store.dispatch(NavActions.dropdownClosed());
+    }
   }
 }

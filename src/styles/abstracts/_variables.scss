@@ -11,7 +11,8 @@ $lcc-color--white: hsl(0, 0%, 95%);
 $lcc-color--gray: hsl(0, 0%, 60%);
 $lcc-color--black: hsl(0, 0%, 5%);
 
-$lcc-color--text-primary: hsl(0, 0%, 5%);
+$lcc-color--text-primary-black: hsl(0, 0%, 5%);
+$lcc-color--text-primary-white: hsl(0, 0%, 95%);
 $lcc-color--text-secondary: hsl(0, 0%, 60%);
 
 $lcc-color--bg-main: hsl(0, 0%, 95%);
@@ -44,7 +45,7 @@ $h2: 24px;
 $h3: 19px;
 $h4: 14px;
 $h5: 12px;
-$h6: 11px;
+$h6: 10px;
 
 /* Viewport breakpoint map */
 $breakpoints: (

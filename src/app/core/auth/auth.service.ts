@@ -94,6 +94,7 @@ export class AuthService {
     return new Observable<LoginResponse>((observer) => {
       cognitoUser.authenticateUser(authDetails, {
         onSuccess(cognitoUserSession: CognitoUserSession) {
+          // TODO: need to add user data ('cognitoUser') to this observer's emission
           observer.next({ cognitoUserSession });
           observer.complete();
         },
@@ -106,5 +107,13 @@ export class AuthService {
 
   logOut(): void {
     this.getAuthenticatedUser().signOut();
+  }
+
+  resendVerificationLink(): void {
+    /**
+     * Configured in AWS to only send email to the user (no SMS);
+     * Note: no callback function configured - it's simply assumed that this email gets sent
+     */
+    this.getAuthenticatedUser().resendConfirmationCode(() => null);
   }
 }

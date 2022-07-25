@@ -8,7 +8,7 @@
   border-radius: $lcc-border-radius-sm;
   box-shadow: 3px 2px 8px 0 lighten($color: $lcc-color--gray, $amount: 2%);
   overflow: hidden;
-  color: $lcc-color--text-primary;
+  color: $lcc-color--text-primary-black;
 
   &:hover {
     cursor: default;

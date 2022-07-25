@@ -1,1 +1,3 @@
-export interface NavState {}
+export interface NavState {
+  isDropdownOpen: boolean;
+}

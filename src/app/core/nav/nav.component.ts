@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {
+  administratorIcon,
+  angleIcon,
   announcementIcon,
   ClarityIcons,
   crownIcon,
@@ -27,6 +29,8 @@ export class NavComponent {
 
   ngOnInit(): void {
     ClarityIcons.addIcons(
+      administratorIcon,
+      angleIcon,
       announcementIcon,
       crownIcon,
       homeIcon,

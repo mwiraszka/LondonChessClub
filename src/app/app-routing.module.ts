@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { NavPathTypes } from '@app/core/nav';
 import { AboutScreenComponent } from '@app/screens/about';
 import {
   ArticleEditorScreenComponent,
@@ -15,10 +14,10 @@ import {
   MemberEditorScreenComponent,
   MemberListScreenComponent,
 } from '@app/screens/members';
+import { ScheduleScreenComponent } from '@app/screens/schedule';
 import { SignUpScreenComponent } from '@app/screens/sign-up';
 import { UnsavedArticleGuard, UnsavedMemberGuard } from '@app/shared/guards';
-
-import { ScheduleScreenComponent } from '@app/screens/schedule';
+import { NavPathTypes } from '@app/shared/types';
 
 const routes: Routes = [
   {

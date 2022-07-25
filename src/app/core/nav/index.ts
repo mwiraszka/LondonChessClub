@@ -5,6 +5,4 @@ export * as NavActions from './store/nav.actions';
 export { NavEffects } from './store/nav.effects';
 export * as NavSelectors from './store/nav.selectors';
 export { reducer } from './store/nav.reducer';
-
-export { NavPathTypes } from './types/nav-paths.model';
-export { NavState } from './types/nav.state';
+export { NavState } from './store/nav.state';

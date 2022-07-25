@@ -1,9 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
-import { User } from '@app/shared/types';
+import { LoginRequest, SignUpRequest, User } from '@app/shared/types';
 
-import { LoginRequest } from '../types/login-request.model';
-import { SignUpRequest } from '../types/sign-up-request.model';
 import { CognitoUserSession } from 'amazon-cognito-identity-js';
 
 enum AuthActionTypes {

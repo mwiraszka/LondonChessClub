@@ -14,7 +14,7 @@ import {
 } from '@cds/core/icon';
 
 import { NavFacade } from './nav.facade';
-import { NavPathTypes } from './types/nav-paths.model';
+import { NavPathTypes } from '../../shared/types/nav-paths.model';
 
 @Component({
   selector: 'lcc-nav',

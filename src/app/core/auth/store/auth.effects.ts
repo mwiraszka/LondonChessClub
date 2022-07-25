@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, filter, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { NavActions } from '@app/core/nav';
-import { DropdownActionTypes, User, UserRoleTypes } from '@app/shared/types';
+import { LoginResponse, SignUpResponse, User, UserRoleTypes } from '@app/shared/types';
 
 import { AuthService } from '../auth.service';
 import * as AuthActions from './auth.actions';
-import { SignUpResponse } from '../types/sign-up-response.model';
-import { LoginResponse } from '../types/login-response.model';
 
 @Injectable()
 export class AuthEffects {

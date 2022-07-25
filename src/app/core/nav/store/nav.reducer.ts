@@ -1,7 +1,7 @@
 import { createReducer, Action, on } from '@ngrx/store';
 
 import * as NavActions from './nav.actions';
-import { NavState } from '../types/nav.state';
+import { NavState } from './nav.state';
 
 const initialState: NavState = {
   isDropdownOpen: false,

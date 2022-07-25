@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { AppStoreFeatureTypes } from '@app/shared/types/app-store-features.model';
 
-import { AuthState } from '../types/auth.state';
+import { AuthState } from './auth.state';
 import { UserRoleTypes } from '@app/shared/types';
 
 export const authFeatureSelector = createFeatureSelector<AuthState>(

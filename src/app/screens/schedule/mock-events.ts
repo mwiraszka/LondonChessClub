@@ -1,4 +1,4 @@
-import { ClubEvent, ClubEventTypes } from './types/club-event.model';
+import { ClubEvent, ClubEventTypes } from '../../shared/types/club-event.model';
 
 export const MOCK_EVENTS: ClubEvent[] = [
   {

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NavPathTypes } from '@app/core/nav';
 
 import { MOCK_EVENTS } from '@app/screens/schedule/mock-events';
-import { Link, Photo } from '@app/shared/types';
+import { Link, NavPathTypes, Photo } from '@app/shared/types';
 
 @Component({
   selector: 'lcc-home-screen',

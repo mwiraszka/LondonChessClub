@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { NavPathTypes } from '@app/core/nav';
+import { NavPathTypes } from '@app/shared/types';
 
 @Component({
   selector: 'lcc-about',

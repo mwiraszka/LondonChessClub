@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Alert } from '../types/alert.model';
+import { Alert } from '../../../types/alert.model';
 
 enum AlertActionTypes {
   CREATED = '[Alert] Created',

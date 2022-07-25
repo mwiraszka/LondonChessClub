@@ -3,11 +3,10 @@ import { angleIcon, ClarityIcons } from '@cds/core/icon';
 import { take } from 'rxjs/operators';
 
 import { LoaderService } from '@app/shared/services';
-import { Link, MOCK_MEMBERS } from '@app/shared/types';
+import { Link, MOCK_MEMBERS, NavPathTypes } from '@app/shared/types';
 import { camelize, kebabize } from '@app/shared/utils';
 
 import { MemberListScreenFacade } from './member-list-screen.facade';
-import { NavPathTypes } from '@app/core/nav';
 
 @Component({
   selector: 'lcc-member-list-screen',

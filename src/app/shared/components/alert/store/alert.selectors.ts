@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { AppStoreFeatureTypes } from '@app/shared/types';
 
-import { AlertState } from '../types/alert.state';
+import { AlertState } from './alert.state';
 
 export const alertFeatureSelector = createFeatureSelector<AlertState>(
   AppStoreFeatureTypes.ALERT

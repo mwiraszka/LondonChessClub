@@ -1,10 +1,10 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
 import { MOCK_EVENTS } from '@app/screens/schedule/mock-events';
+import { AlertAction } from '@app/shared/types';
 
 import * as AlertActions from './alert.actions';
-import { AlertAction } from '../types/alert-action.model';
-import { AlertState } from '../types/alert.state';
+import { AlertState } from './alert.state';
 
 const initialState: AlertState = {
   alert: {

@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { NavPathTypes } from '@app/core/nav';
 
 import { LoaderService } from '@app/shared/services';
-import { Article, Link, MOCK_ARTICLES } from '@app/shared/types';
+import { Article, Link, MOCK_ARTICLES, NavPathTypes } from '@app/shared/types';
 
 import { ArticleGridFacade } from './article-grid.facade';
 

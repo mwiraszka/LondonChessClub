@@ -9,7 +9,7 @@ import { MemberEditorScreenActions, MemberListScreenActions } from '@app/screens
 import { AlertActions } from '@app/shared/components/alert';
 
 import * as NavActions from './nav.actions';
-import { NavPathTypes } from '../types/nav-paths.model';
+import { NavPathTypes } from '../../../shared/types/nav-paths.model';
 
 @Injectable()
 export class NavEffects {

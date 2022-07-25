@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from '@environments/environment';
 import {
   AuthenticationDetails,
   CognitoUser,
@@ -8,10 +7,14 @@ import {
   CognitoUserSession,
 } from 'amazon-cognito-identity-js';
 import { Observable } from 'rxjs';
-import { LoginRequest } from './types/login-request.model';
-import { LoginResponse } from './types/login-response.model';
-import { SignUpRequest } from './types/sign-up-request.model';
-import { SignUpResponse } from './types/sign-up-response.model';
+
+import {
+  LoginRequest,
+  LoginResponse,
+  SignUpRequest,
+  SignUpResponse,
+} from '@app/shared/types';
+import { environment } from '@environments/environment';
 
 const userPool = new CognitoUserPool({
   UserPoolId: environment.cognito.userPoolId,

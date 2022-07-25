@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { AuthActions, LoginRequest } from '@app/core/auth';
+import { AuthActions } from '@app/core/auth';
+import { LoginRequest } from '@app/shared/types';
 
 @Injectable()
 export class LoginScreenFacade {

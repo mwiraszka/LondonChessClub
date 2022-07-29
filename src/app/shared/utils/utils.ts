@@ -53,3 +53,17 @@ export function kebabize(anyString: string): string {
 export function camelize(kebabString: string): string {
   return kebabString.replace(/-./g, (hyphen) => hyphen[1].toUpperCase());
 }
+
+/**
+ * Recursively searches for the given class name by traversing all of
+ * the given element's parent nodes in the DOM
+ * @param {Node} node The current HTML node
+ * @param {string} className The CSS class being searched for up the DOM tree
+ * @returns {boolean} Whether the class was found
+ */
+export function hasParentNodeWithClass(element: Element, className: string): boolean {
+  const currentElement = element.parentElement;
+  return currentElement.classList.contains(className)
+    ? true
+    : hasParentNodeWithClass(currentElement, className);
+}

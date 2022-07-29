@@ -124,8 +124,8 @@ $dropdown-list-width: 120px;
       flex-flow: column nowrap;
       text-align: center;
       width: $dropdown-list-width;
-      border-top: 7px solid darken($lcc-color--white, 8%);
-      margin-top: 1px;
+      border-top: 2px solid darken($lcc-color--bg-main, 10%);
+      margin-top: 2px;
       font-size: $h5;
 
       // hacky way to keep dropdown items directly below tab on all viewport widths

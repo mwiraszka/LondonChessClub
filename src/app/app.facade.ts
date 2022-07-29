@@ -17,11 +17,19 @@ export class AppFacade {
   constructor(private readonly store: Store) {}
 
   onClickApp(event: MouseEvent): void {
-    if (
-      this.store.select(NavSelectors.isDropdownOpen) &&
-      !(event.target as HTMLElement).classList.contains('lcc-dropdown-element')
-    ) {
-      this.store.dispatch(NavActions.dropdownClosed());
+    // TODO... continue implementing; create an app-level NgRx action for click event & move if statement to an effect
+
+    if (this.store.select(NavSelectors.isDropdownOpen)) {
+      // TODO: figure out node vs. element issue in util file
+      // if (hasParentNodeWithClass(event.target as Element, 'user-account-dropdown')) {
+      //   this.store.dispatch(NavActions.dropdownClosed());
+      // }
+
+      // temp: ddcomp = dropdown component
+      console.log(':: event.target.classList', (event.target as HTMLElement).classList);
+      if (!(event.target as HTMLElement).classList.contains('ddcomp')) {
+        this.store.dispatch(NavActions.dropdownClosed());
+      }
     }
   }
 }

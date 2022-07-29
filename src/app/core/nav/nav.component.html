@@ -89,37 +89,39 @@
 	<div class="nav-login-spacer"></div>
 
 	<ng-container *ngIf="facade.user$ | async; else loggedOut">
-		<div class="user-account-dropdown">
-			<div class="dropdown-tab lcc-dropdown-element"
+		<div class="user-account-dropdown ddcomp">
+			<div class="dropdown-tab ddcomp"
 					 [ngClass]="(facade.isDropdownOpen$ | async) ? 'dropdown-open' : 'dropdown-closed'"
 					 (click)="facade.onToggleDropdown()">
-				<cds-icon class="lcc-dropdown-element"
+				<cds-icon class="ddcomp"
 									shape="angle"
 									size="xs"
 									[attr.flip]="(facade.isDropdownOpen$ | async) ? undefined : 'vertical'">
 				</cds-icon>
-				<cds-icon class="lcc-dropdown-element"
+				<cds-icon class="ddcomp"
 									shape="user"
 									size="md">
 				</cds-icon>
 			</div>
 
 			<ul *ngIf="facade.isDropdownOpen$ | async"
-					class="dropdown-items">
-				<li class="login-welcome">
-					<small>Logged in as Admin</small>
-					<div class="first-name">
-						<span>{{ facade.tempFirstName$ | async }}</span>
-						<cds-icon shape="administrator"
+					class="dropdown-items ddcomp">
+				<li class="login-welcome ddcomp">
+					<small class="ddcomp">Logged in as Admin</small>
+					<div class="first-name ddcomp">
+						<span class="ddcomp">{{ facade.tempFirstName$ | async }}</span>
+						<cds-icon class="ddcomp"
+											shape="administrator"
 											size="sm">
 						</cds-icon>
 					</div>
 				</li>
-				<li *ngIf="!(facade.isUserVerified$ | async)"
+				<li class="ddcomp"
+						*ngIf="!(facade.isUserVerified$ | async)"
 						(click)="facade.onResendValidationEmail()">
 					Resend verification link
 				</li>
-				<li class="last-item"
+				<li class="last-item ddcomp"
 						(click)="facade.onLogOut()">
 					Log out
 				</li>

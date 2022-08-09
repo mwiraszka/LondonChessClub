@@ -26,7 +26,7 @@
       padding: 2px;
   
       a {
-        font-size: $h5;
+        font-size: calc(#{$h4} - 1px);
   
         cds-icon {
           padding: 3px;

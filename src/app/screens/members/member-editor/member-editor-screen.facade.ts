@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { combineLatest } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 
 import { Member } from '@app/shared/types';
@@ -21,34 +20,25 @@ export class MemberEditorScreenFacade {
     MemberEditorScreenSelectors.hasUnsavedChanges
   );
 
+  constructor(private readonly store: Store) {}
+
   onCancel(): void {
     this.store.dispatch(MemberEditorScreenActions.cancelSelected());
   }
 
   onSubmit(member: Member): void {
-    combineLatest([this.isEditMode$, this.memberBeforeEdit$])
+    this.isEditMode$
       .pipe(
-        map(([isEditMode, memberBeforeEdit]) => {
-          const newRating = member.rating;
-          const oldPeakRating = memberBeforeEdit.peakRating;
-          const newPeakRating = newRating > oldPeakRating ? newRating : oldPeakRating;
-
-          const memberToSubmit: Member = {
-            ...member,
-            id: memberBeforeEdit.id,
-            dateOfBirth: member.dateOfBirth ?? '',
-            peakRating: newPeakRating,
-          };
-
+        map((isEditMode) => {
           if (isEditMode) {
             this.store.dispatch(
               MemberEditorScreenActions.updateMemberSelected({
-                memberToUpdate: memberToSubmit,
+                memberToUpdate: member,
               })
             );
           } else {
             this.store.dispatch(
-              MemberEditorScreenActions.addMemberSelected({ memberToAdd: memberToSubmit })
+              MemberEditorScreenActions.addMemberSelected({ memberToAdd: member })
             );
           }
         }),
@@ -57,9 +47,37 @@ export class MemberEditorScreenFacade {
       .subscribe();
   }
 
-  onValueChange(formData: Member): void {
-    this.store.dispatch(MemberEditorScreenActions.formDataChanged({ formData }));
+  onValueChange(member: Member): void {
+    this.memberBeforeEdit$
+      .pipe(
+        map((memberBeforeEdit) => {
+          const updatedMember = this.updatePeakRating(member, memberBeforeEdit);
+          this.store.dispatch(
+            MemberEditorScreenActions.formDataChanged({ member: updatedMember })
+          );
+        }),
+        first()
+      )
+      .subscribe();
   }
 
-  constructor(private readonly store: Store) {}
+  private updatePeakRating(member: Member, memberBeforeEdit: Member): Member {
+    let newPeakRating = '';
+    if (member.rating.includes('/')) {
+      newPeakRating = '(provisional)';
+    } else if (
+      memberBeforeEdit.peakRating === '(provisional)' ||
+      +member.rating > +memberBeforeEdit.rating
+    ) {
+      newPeakRating = member.rating;
+    } else {
+      newPeakRating = memberBeforeEdit.peakRating;
+    }
+
+    return {
+      ...member,
+      id: memberBeforeEdit.id,
+      peakRating: newPeakRating,
+    };
+  }
 }

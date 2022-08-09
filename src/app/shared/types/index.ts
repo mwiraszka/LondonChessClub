@@ -7,7 +7,7 @@ export { DropdownAction, DropdownActionTypes } from './dropdown-action.model';
 export { Link } from './link.model';
 export { LoginRequest } from './login-request.model';
 export { LoginResponse } from './login-response.model';
-export { Member, newMemberFormTemplate, MOCK_MEMBERS } from './member.model';
+export { Member, newMemberFormTemplate } from './member.model';
 export { NavPathTypes } from './nav-paths.model';
 export { Photo } from './photo.model';
 export { ServiceResponse } from './service-response.model';

@@ -11,8 +11,7 @@ export const authFeatureSelector = createFeatureSelector<AuthState>(
 
 export const isAdmin = createSelector(
   authFeatureSelector,
-  // (state) => state.user?.role === UserRoleTypes.ADMIN ?? false
-  () => true // temp
+  (state) => state.user?.role === UserRoleTypes.ADMIN ?? false
 );
 
 export const user = createSelector(authFeatureSelector, (state) => state.user);

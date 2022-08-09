@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { map } from 'rxjs/operators';
 
 import * as AuthSelectors from '@app/core/auth/store/auth.selectors';
 import { Member } from '@app/shared/types';
@@ -10,6 +11,10 @@ import * as MemberListScreenSelectors from './store/member-list-screen.selectors
 @Injectable()
 export class MemberListScreenFacade {
   readonly members$ = this.store.select(MemberListScreenSelectors.members);
+  readonly activeMembers$ = this.members$.pipe(
+    map((members) => members.filter((member) => member.isActive))
+  );
+
   readonly isLoading$ = this.store.select(MemberListScreenSelectors.isLoading);
   readonly isAdmin$ = this.store.select(AuthSelectors.isAdmin);
   readonly sortedBy$ = this.store.select(MemberListScreenSelectors.sortedBy);

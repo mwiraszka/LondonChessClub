@@ -19,23 +19,17 @@ const memberEditorScreenReducer = createReducer(
     memberCurrently: action.memberToEdit,
     isEditMode: true,
   })),
-  on(MemberEditorScreenActions.resetMemberForm, () => initialState),
-  on(MemberEditorScreenActions.addMemberSelected, (state, action) => ({
-    ...state,
-    memberCurrently: action.memberToAdd,
-  })),
+  on(MemberEditorScreenActions.resetMemberForm, () => {
+    return initialState;
+  }),
   on(MemberEditorScreenActions.addMemberSucceeded, () => initialState),
   on(MemberEditorScreenActions.addMemberFailed, () => initialState),
-  on(MemberEditorScreenActions.updateMemberSelected, (state, action) => ({
-    ...state,
-    memberCurrently: action.memberToUpdate,
-  })),
   on(MemberEditorScreenActions.updateMemberSucceeded, () => initialState),
   on(MemberEditorScreenActions.updateMemberFailed, () => initialState),
   on(MemberEditorScreenActions.cancelConfirmed, () => initialState),
   on(MemberEditorScreenActions.formDataChanged, (state, action) => ({
     ...state,
-    memberCurrently: action.formData,
+    memberCurrently: action.member,
   }))
 );
 

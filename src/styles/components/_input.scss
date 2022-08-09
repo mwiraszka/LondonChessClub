@@ -1,4 +1,4 @@
-input {
+input[type="text"] {
   -webkit-appearance: none;
   display: block;
   width: 100%;
@@ -23,4 +23,9 @@ input {
   &::placeholder {
     font-size: $h4;
   }
+}
+
+input[type="checkbox"] {
+  margin: 4px;
+  justify-self: flex-start;
 }

@@ -4,7 +4,7 @@ export interface SignUpRequest {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  dateOfBirth: string;
+  yearOfBirth: string;
   city: string;
   accessToken: string;
 }

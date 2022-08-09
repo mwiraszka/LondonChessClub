@@ -1,46 +1,24 @@
 export interface Member {
   id: string | undefined;
-  email: string;
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   city: string;
-  phoneNumber: string;
-  dateOfBirth?: string;
-  rating: number;
-  peakRating: number;
+  rating: string;
+  peakRating: string;
   dateJoined: string;
+  isActive: boolean | string; // Stored as a string in DynamoDB
+  email?: string;
+  phoneNumber?: string;
+  yearOfBirth?: string;
+  chesscomUsername?: string;
+  lichessUsername?: string;
 }
 
 export const newMemberFormTemplate: Member = {
   id: undefined,
-  email: '',
-  firstName: '',
-  lastName: '',
   city: 'London',
-  phoneNumber: '',
-  dateOfBirth: '',
-  rating: 1000,
-  peakRating: 1000,
+  rating: '1000/0',
+  peakRating: '(provisional)',
   dateJoined: new Date().toISOString().substring(0, 10),
+  isActive: false,
 };
-
-export const MOCK_MEMBERS: Member[] = [
-  {
-    ...newMemberFormTemplate,
-    firstName: 'Michal',
-    lastName: 'Wiraszka',
-    rating: 1000,
-  },
-  {
-    ...newMemberFormTemplate,
-    firstName: 'Johnny',
-    lastName: 'Depp',
-    rating: 800,
-  },
-  {
-    ...newMemberFormTemplate,
-    firstName: 'Elton',
-    lastName: 'John',
-    rating: 1900,
-  },
-];

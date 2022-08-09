@@ -40,6 +40,7 @@ export function customSort(key: string, isAscending: boolean) {
  */
 export function kebabize(anyString: string): string {
   return anyString
+    .replace('.', '')
     .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
     .join('-')
     .toLowerCase();

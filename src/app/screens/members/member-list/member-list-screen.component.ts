@@ -3,7 +3,7 @@ import { angleIcon, ClarityIcons } from '@cds/core/icon';
 import { take } from 'rxjs/operators';
 
 import { LoaderService } from '@app/shared/services';
-import { Link, MOCK_MEMBERS, NavPathTypes } from '@app/shared/types';
+import { Link, NavPathTypes } from '@app/shared/types';
 import { camelize, kebabize } from '@app/shared/utils';
 
 import { MemberListScreenFacade } from './member-list-screen.facade';
@@ -15,10 +15,20 @@ import { MemberListScreenFacade } from './member-list-screen.facade';
   providers: [MemberListScreenFacade],
 })
 export class MemberListScreenComponent implements OnInit {
-  MOCK_MEMBERS = MOCK_MEMBERS;
+  showActiveOnly = false;
 
-  tableHeaders = ['First Name', 'Last Name', 'City', 'Rating', 'Peak Rating'];
-  adminOnlyTableHeaders = ['Phone Number', 'Date of Birth', 'Date Joined'];
+  tableHeaders = [
+    'First Name',
+    'Last Name',
+    'Rating',
+    'Peak Rating',
+    'City',
+    'Born',
+    'Chess.com Username',
+    'Lichess Username',
+  ];
+
+  adminOnlyTableHeaders = ['Email', 'Phone Number', 'Date Joined'];
 
   addMemberLink: Link = {
     path: NavPathTypes.MEMBERS_ADD,
@@ -37,6 +47,7 @@ export class MemberListScreenComponent implements OnInit {
       if (isAdmin) {
         this.tableHeaders.push(...this.adminOnlyTableHeaders);
       }
+      this.facade.members$.subscribe((members) => console.log(':::', members));
     });
 
     ClarityIcons.addIcons(angleIcon);

@@ -55,7 +55,7 @@ export class MemberEditorScreenComponent implements OnInit, OnDestroy {
   }
 
   hasError(control: AbstractControl): boolean {
-    return control.value !== '' && control.invalid;
+    return control.dirty && control.invalid;
   }
 
   getErrorMessage(control: AbstractControl): string {
@@ -69,6 +69,12 @@ export class MemberEditorScreenComponent implements OnInit, OnDestroy {
       return 'Invalid phone number';
     } else if (control.errors.hasOwnProperty('invalidRating')) {
       return 'Invalid rating';
+    } else if (control.errors.hasOwnProperty('pattern')) {
+      return 'Invalid input (incorrect format)';
+    } else if (control.errors.hasOwnProperty('minlength')) {
+      return 'Invalid input (number too low)';
+    } else if (control.errors.hasOwnProperty('maxlength')) {
+      return 'Invalid input (number too high)';
     } else {
       return 'Unknown error';
     }
@@ -88,21 +94,69 @@ export class MemberEditorScreenComponent implements OnInit, OnDestroy {
 
   private initForm(member: Member): void {
     this.form = this.formBuilder.group({
-      firstName: [member.firstName, [Validators.required, Validators.pattern(/[^\s]/)]],
-      lastName: [member.lastName, [Validators.required, Validators.pattern(/[^\s]/)]],
-      city: [member.city, [Validators.required, Validators.pattern(/[^\s]/)]],
-      phoneNumber: [member.phoneNumber, [Validators.required, phoneNumberValidator]],
-      dateOfBirth: [member.dateOfBirth, dateValidator],
-      email: [member.email, [Validators.required, emailValidator]],
-      dateJoined: [member.dateJoined, [Validators.required, dateValidator]],
+      firstName: [
+        member.firstName,
+        {
+          validators: [Validators.required, Validators.pattern(/[^\s]/)],
+          updateOn: 'change',
+        },
+      ],
+      lastName: [
+        member.lastName,
+        {
+          validators: [Validators.required, Validators.pattern(/[^\s]/)],
+          updateOn: 'change',
+        },
+      ],
+      city: [
+        member.city,
+        {
+          validators: [Validators.required, Validators.pattern(/[^\s]/)],
+          updateOn: 'change',
+        },
+      ],
       rating: [
         member.rating,
-        [Validators.required, ratingValidator, Validators.max(2500)],
+        {
+          validators: [Validators.required, ratingValidator, Validators.max(3000)],
+          updateOn: 'change',
+        },
+      ],
+      dateJoined: [
+        member.dateJoined,
+        { validators: [Validators.required, dateValidator], updateOn: 'change' },
+      ],
+      email: [member.email, { validators: emailValidator, updateOn: 'change' }],
+      phoneNumber: [
+        member.phoneNumber,
+        { validators: phoneNumberValidator, updateOn: 'change' },
+      ],
+      yearOfBirth: [
+        member.yearOfBirth,
+        {
+          validators: [
+            Validators.min(1900),
+            Validators.max(new Date().getFullYear() - 4),
+          ],
+          updateOn: 'change',
+        },
+      ],
+      chesscomUsername: [
+        member.chesscomUsername,
+        { validators: Validators.pattern(/[^\s]/), updateOn: 'change' },
+      ],
+      lichessUsername: [
+        member.lichessUsername,
+        { validators: Validators.pattern(/[^\s]/), updateOn: 'change' },
+      ],
+      isActive: [
+        member.isActive,
+        { validators: Validators.required, updateOn: 'change' },
       ],
     });
 
     this.valueChangesSubscription = this.form.valueChanges
       .pipe(debounceTime(200))
-      .subscribe((formData: Member) => this.facade.onValueChange(formData));
+      .subscribe((member: Member) => this.facade.onValueChange(member));
   }
 }

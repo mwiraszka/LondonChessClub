@@ -12,6 +12,7 @@
 	<table class="lcc-table">
 		<thead>
 			<tr>
+				<th class="row-number"></th>
 				<th *ngFor="let header of tableHeaders"
 						[ngClass]="kebabize(header)"
 						(click)="facade.onSelectTableHeader(camelize(kebabize(header)))">
@@ -20,7 +21,7 @@
 						<cds-icon *ngIf="(facade.sortedBy$ | async) === camelize(kebabize(header))"
 											shape="angle"
 											size="xs"
-											[attr.flip]="(facade.isAscending$ | async) ? 'vertical' : undefined">
+											[attr.flip]="(facade.isAscending$ | async) ? undefined : 'vertical'">
 						</cds-icon>
 					</div>
 				</th>
@@ -28,17 +29,24 @@
 		</thead>
 
 		<tbody>
-			<tr *ngFor="let member of MOCK_MEMBERS; let last = last;"
+			<tr *ngFor="let member of (showActiveOnly ? (facade.activeMembers$ | async) : (facade.members$ | async));
+                  let i = index;
+                  let last = last;"
 					class="lcc-admin-controls-container"
-					[ngClass]="{'last-row': last}">
+					[ngClass]="{'last-row': last}"
+					[class.inactive]="!member.isActive">
+				<td class="row-number">{{ i + 1 }}</td>
 				<td class="first-name">{{ member.firstName }}</td>
 				<td class="last-name">{{ member.lastName }}</td>
-				<td class="city">{{ member.city }}</td>
 				<td class="rating">{{ member.rating }}</td>
 				<td class="peak-rating">{{ member.peakRating }}</td>
+				<td class="city">{{ member.city }}</td>
+				<td class="year-of-birth">{{ member?.yearOfBirth }}</td>
+				<td class="chesscom-username">{{ member?.chesscomUsername }}</td>
+				<td class="lichess-username">{{ member?.lichessUsername }}</td>
 				<ng-container *ngIf="facade.isAdmin$ | async">
-					<td class="phone-number">{{ member.phoneNumber }}</td>
-					<td class="date-of-birth">{{ member?.dateOfBirth }}</td>
+					<td class="email">{{ member?.email }}</td>
+					<td class="phone-number">{{ member?.phoneNumber }}</td>
 					<td class="date-joined">{{ member.dateJoined }}</td>
 				</ng-container>
 
@@ -53,8 +61,22 @@
 
 		<tfoot>
 			<tr>
-				<td colspan="100%">{{ (facade.members$ | async)?.length }} members</td>
+				<td colspan="100%">
+					{{ (facade.members$ | async)?.length }} members
+					({{ (facade.activeMembers$ | async)?.length }} active)
+				</td>
 			</tr>
 		</tfoot>
 	</table>
+
+	<aside>
+		<h5>inactive members *</h5>
+		<div class="checkbox-section">
+			<label for="active-only">Show active members only</label>
+			<input id="active-only"
+						 type="checkbox"
+						 [checked]="showActiveOnly"
+						 (change)="showActiveOnly = !showActiveOnly" />
+		</div>
+	</aside>
 </div>

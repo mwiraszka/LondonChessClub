@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { map, switchMap, tap } from 'rxjs/operators';
 
 import { ServiceResponse } from '@app/shared/types';
-import { camelize, customSort } from '@app/shared/utils';
+import { customSort } from '@app/shared/utils';
 
 import * as MemberListScreenActions from './member-list-screen.actions';
 import * as MemberListScreenSelectors from './member-list-screen.selectors';

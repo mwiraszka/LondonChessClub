@@ -77,17 +77,17 @@
 				</cds-icon>
 			</div>
 
-			<label for="date-of-birth-input">Date of birth:<em>(optional)</em></label>
-			<input id="date-of-birth-input"
+			<label for="year-of-birth-input">Date of birth:<em>(optional)</em></label>
+			<input id="year-of-birth-input"
 						 type="text"
-						 name="date-of-birth"
-						 formControlName="dateOfBirth" />
+						 name="year-of-birth"
+						 formControlName="yearOfBirth" />
 			<div class="lcc-form-error-container">
-				<cds-icon *ngIf="hasError(form.controls['dateOfBirth'])"
+				<cds-icon *ngIf="hasError(form.controls['yearOfBirth'])"
 									class="lcc-form-error-icon"
 									shape="exclamation-triangle"
 									size="md"
-									[tooltip]="getErrorMessage(form.controls['dateOfBirth'])">
+									[tooltip]="getErrorMessage(form.controls['yearOfBirth'])">
 				</cds-icon>
 			</div>
 
@@ -116,22 +116,6 @@
 									shape="exclamation-triangle"
 									size="md"
 									[tooltip]="getErrorMessage(form.controls['city'])">
-				</cds-icon>
-			</div>
-
-			<hr class="lcc-form-divider-line" />
-
-			<label for="sign-up-token">Sign-up token:</label>
-			<input id="sign-up-token"
-						 type="text"
-						 name="signUpToken"
-						 formControlName="signUpToken" />
-			<div class="lcc-form-error-container">
-				<cds-icon *ngIf="hasError(form.controls['signUpToken'])"
-									class="lcc-form-error-icon"
-									shape="exclamation-triangle"
-									size="md"
-									[tooltip]="getErrorMessage(form.controls['signUpToken'])">
 				</cds-icon>
 			</div>
 		</div>

@@ -3,6 +3,7 @@
 .lcc-form {
   display: flex;
   flex-flow: column nowrap;
+  text-align: center;
   gap: 20px;
 }
 
@@ -82,4 +83,9 @@
     padding: 3px;
     font-size: $h5 !important;
   }
+}
+
+.lcc-required-field::before {
+  content: '* ';
+  color: $lcc-color--warning;
 }

@@ -1,20 +1,22 @@
 @import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
-$icon-width: 30px;
+$caret-icon-width: 11px;
+$control-icon-width: 26px;
 
 :host {
   display: flex;
   justify-content: center;
 }
 
+.lcc-canvas {
+  width: unset;
+  max-width: unset;
+}
+
 lcc-link-list,
 table {
-  width: 90%;
-
-  @include respond-to ('lt-md') {
-    width: 100%;
-  }
+  width: 100%;
 }
 
 lcc-link-list {
@@ -23,17 +25,17 @@ lcc-link-list {
 
 thead {
   th {
-    &:hover {
+    &:hover:not(.row-number) {
       cursor: pointer;
       background-color: lighten($lcc-color--primary, 5%);
     }
-  
+
     .icon-container {
       display: inline-flex;
-      width: 11px; // fix to icon width to prevent header text from shifting
+      width: $caret-icon-width;
 
       cds-icon {
-        margin: 2px;
+        margin-left: 2px;
       }
     }
   }
@@ -41,45 +43,74 @@ thead {
 
 tbody {
   tr {
+    &.inactive {
+      :not(.row-number) {
+        color: darken($lcc-color--text-secondary, 5%);
+        font-style: italic;
+      }
+
+      .first-name::before {
+        content: '* ';
+        color: $lcc-color--text-secondary;
+      }
+    }
+
     lcc-admin-controls {
-      translate: calc(#{-2 * $icon-width});
+      translate: calc(#{-2 * $control-icon-width});
     }
   }
 }
 
-thead,
-tbody {
-  tr {
-    td,
-    th {
-      &.rating,
-      &.peak-rating,
-      &.phone-number,
-      &.date-of-birth,
-      &.date-joined {
-        text-align: center;
-      }
+aside {
+  align-self: start;
+  text-align: center;
+  border: 1px solid rgba($lcc-color--gray, 0.3);
+  border-radius: $lcc-border-radius-lg;
+  
+  h5 {
+    font-style: italic;
+    border-bottom: 1px solid rgba($lcc-color--gray, 0.2);
+  }
+
+  .checkbox-section {
+    padding: 2px 16px;
+    background-color: rgba($lcc-color--accent, 0.1);
+    margin-top: 2px;
+    border-top: 1px solid rgba($lcc-color--gray, 0.2);
+
+    label {
+      font-size: $h5;
+      margin-right: 4px;
+      font-weight: bold;
     }
   }
 }
 
+@include respond-to('lt-xl') {
+  .chesscom-username,
+  .lichess-username {
+    display: none;
+  }
+}
 
 @include respond-to('lt-lg') {
-  .date-of-birth,
-  .date-joined {
+  .date-joined,
+  .phone-number {
     display: none;
   }
 }
 
 @include respond-to('lt-md') {
-  .phone-number {
+  .peak-rating,
+  .email {
     display: none;
   }
 }
 
 @include respond-to('lt-sm') {
   .city,
-  .peak-rating {
+  .year-of-birth,
+  .born {
     display: none;
   }
 }

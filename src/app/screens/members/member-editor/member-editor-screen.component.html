@@ -3,12 +3,18 @@
 										 [title]="(facade.isEditMode$ | async) ? memberFullName : 'Add a member'">
 	</lcc-screen-header>
 
+	<aside>
+		Required fields
+		<span class="red"> *</span>
+	</aside>
+
 	<form *ngIf="form"
 				class="lcc-form"
 				[formGroup]="form"
 				(ngSubmit)="onSubmit()">
 		<div class="lcc-form-fields">
-			<label for="first-name-input">
+			<label for="first-name-input"
+						 class="lcc-required-field">
 				First name:
 			</label>
 			<input id="first-name-input"
@@ -24,7 +30,8 @@
 				</cds-icon>
 			</div>
 
-			<label for="last-name-input">
+			<label for="last-name-input"
+						 class="lcc-required-field">
 				Last name:
 			</label>
 			<input id="last-name-input"
@@ -40,7 +47,8 @@
 				</cds-icon>
 			</div>
 
-			<label for="city-input">
+			<label for="city-input"
+						 class="lcc-required-field">
 				City:
 			</label>
 			<input id="city-input"
@@ -56,55 +64,26 @@
 				</cds-icon>
 			</div>
 
-			<label>
-				Phone number:
+			<label for="rating-input"
+						 class="lcc-required-field">
+				LCC rating:
 			</label>
-			<input id="phone-number-input"
+			<input id="rating-input"
 						 type="text"
-						 name="phone-number"
-						 formControlName="phoneNumber" />
+						 name="rating"
+						 formControlName="rating"
+						 maxlength="6" />
 			<div class="lcc-form-error-container">
-				<cds-icon *ngIf="hasError(form.controls['phoneNumber'])"
+				<cds-icon *ngIf="hasError(form.controls['rating'])"
 									class="lcc-form-error-icon"
 									shape="exclamation-triangle"
 									size="md"
-									[tooltip]="getErrorMessage(form.controls['phoneNumber'])">
+									[tooltip]="getErrorMessage(form.controls['rating'])">
 				</cds-icon>
 			</div>
 
-			<label>
-				Date of birth:
-			</label>
-			<input id="date-of-birth-input"
-						 type="text"
-						 name="date-of-birth"
-						 formControlName="dateOfBirth" />
-			<div class="lcc-form-error-container">
-				<cds-icon *ngIf="hasError(form.controls['dateOfBirth'])"
-									class="lcc-form-error-icon"
-									shape="exclamation-triangle"
-									size="md"
-									[tooltip]="getErrorMessage(form.controls['dateOfBirth'])">
-				</cds-icon>
-			</div>
-
-			<label for="email-input">
-				Email:
-			</label>
-			<input id="email-input"
-						 type="text"
-						 name="email"
-						 formControlName="email" />
-			<div class="lcc-form-error-container">
-				<cds-icon *ngIf="hasError(form.controls['email'])"
-									class="lcc-form-error-icon"
-									shape="exclamation-triangle"
-									size="md"
-									[tooltip]="getErrorMessage(form.controls['email'])">
-				</cds-icon>
-			</div>
-
-			<label for="date-joined-input">
+			<label for="date-joined-input"
+						 class="lcc-required-field">
 				Date joined:
 			</label>
 			<input id="date-joined-input"
@@ -120,19 +99,95 @@
 				</cds-icon>
 			</div>
 
-			<label for="rating-input">
-				LCC Rating:
-			</label>
-			<input id="rating-input"
+			<label for="email-input">Email:</label>
+			<input id="email-input"
 						 type="text"
-						 name="rating"
-						 formControlName="rating" />
+						 name="email"
+						 formControlName="email" />
 			<div class="lcc-form-error-container">
-				<cds-icon *ngIf="hasError(form.controls['rating'])"
+				<cds-icon *ngIf="hasError(form.controls['email'])"
 									class="lcc-form-error-icon"
 									shape="exclamation-triangle"
 									size="md"
-									[tooltip]="getErrorMessage(form.controls['rating'])">
+									[tooltip]="getErrorMessage(form.controls['email'])">
+				</cds-icon>
+			</div>
+
+			<label for="phone-number-input">Phone number:</label>
+			<input id="phone-number-input"
+						 type="text"
+						 name="phone-number"
+						 formControlName="phoneNumber" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(form.controls['phoneNumber'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(form.controls['phoneNumber'])">
+				</cds-icon>
+			</div>
+
+			<label for="year-of-birth-input">Year of birth:</label>
+			<input id="year-of-birth-input"
+						 type="text"
+						 name="year-of-birth"
+						 formControlName="yearOfBirth"
+						 maxlength="4" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(form.controls['yearOfBirth'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(form.controls['yearOfBirth'])">
+				</cds-icon>
+			</div>
+
+			<label for="chesscom-username-input">Chess.com username:</label>
+			<input id="chesscom-username-input"
+						 type="text"
+						 name="chesscom-username"
+						 formControlName="chesscomUsername"
+						 maxlength="20" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(form.controls['chesscomUsername'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(form.controls['chesscomUsername'])">
+				</cds-icon>
+			</div>
+
+			<label for="lichess-username-input">Lichess username:</label>
+			<input id="lichess-username-input"
+						 type="text"
+						 name="lichess-username"
+						 formControlName="lichessUsername"
+						 maxlength="20" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(form.controls['lichessUsername'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(form.controls['lichessUsername'])">
+				</cds-icon>
+			</div>
+
+			<hr class="lcc-form-divider-line" />
+
+			<label for="is-active-input"
+						 class="lcc-required-field">
+				Active:
+			</label>
+			<input id="is-active-input"
+						 type="checkbox"
+						 name="is-active"
+						 formControlName="isActive" />
+			<div class="lcc-form-error-container">
+				<cds-icon *ngIf="hasError(form.controls['isActive'])"
+									class="lcc-form-error-icon"
+									shape="exclamation-triangle"
+									size="md"
+									[tooltip]="getErrorMessage(form.controls['isActive'])">
 				</cds-icon>
 			</div>
 		</div>

@@ -82,5 +82,5 @@ export const cancelConfirmed = createAction(
 
 export const formDataChanged = createAction(
   MemberEditorScreenActionTypes.FORM_DATA_CHANGED,
-  props<{ formData: Member }>()
+  props<{ member: Member }>()
 );

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { cameraIcon, ClarityIcons, plusCircleIcon } from '@cds/core/icon';
 
 import { Link } from '@app/shared/types';
@@ -15,9 +15,16 @@ export class LinkListComponent implements OnInit {
   @Input() linkListTitle?: string;
   @Input() links: Link[];
 
+  @Output() select = new EventEmitter<void>();
+
   constructor(public facade: LinkListFacade) {}
 
   ngOnInit(): void {
     ClarityIcons.addIcons(cameraIcon, plusCircleIcon);
+  }
+
+  onSelect(link: Link) {
+    this.facade.onSelect(link);
+    this.select.emit();
   }
 }

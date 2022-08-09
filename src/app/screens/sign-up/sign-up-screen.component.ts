@@ -18,7 +18,6 @@ import {
   hasSpecialCharValidator,
   hasUppercaseLetterValidator,
   phoneNumberValidator,
-  signUpTokenValidator,
 } from '@app/shared/validators';
 
 import { SignUpScreenFacade } from './sign-up-screen.facade';
@@ -59,10 +58,9 @@ export class SignUpScreenComponent implements OnInit, OnDestroy {
       ]),
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
-      dateOfBirth: new FormControl('', dateValidator),
+      yearOfBirth: new FormControl('', dateValidator),
       phoneNumber: new FormControl('', [Validators.required, phoneNumberValidator]),
       city: new FormControl('London', Validators.required),
-      signUpToken: new FormControl('', [Validators.required, signUpTokenValidator]),
     });
 
     this.passwordChangesSub = this.form.controls['password'].valueChanges.subscribe(
@@ -97,8 +95,6 @@ export class SignUpScreenComponent implements OnInit, OnDestroy {
       return 'Password needs to be at least 8 characters long';
     } else if (control.errors.hasOwnProperty('passwordMismatch')) {
       return "Passwords don't match";
-    } else if (control.errors.hasOwnProperty('invalidSignUpToken')) {
-      return 'Invalid sign up token - please contact an LCC admin';
     } else {
       console.log('Could not recognize', control.errors);
       return 'Unknown error';

@@ -8,4 +8,3 @@ export { hasUppercaseLetterValidator } from './has-uppercase-letter.validator';
 export { mimeTypeValidator } from './mime-type.validator';
 export { phoneNumberValidator } from './phone-number.validator';
 export { ratingValidator } from './rating.validator';
-export { signUpTokenValidator } from './sign-up-token.validator';

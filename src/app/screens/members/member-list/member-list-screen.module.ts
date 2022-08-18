@@ -9,7 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { AdminControlsModule } from '@app/shared/components/admin-controls';
 import { LinkListModule } from '@app/shared/components/link-list';
 import { ScreenHeaderModule } from '@app/shared/components/screen-header';
-import { DirectivesModule } from '@app/shared/directives';
+import { TooltipModule } from '@app/shared/components/tooltip';
 import { AppStoreFeatureTypes } from '@app/shared/types';
 
 import { MemberListScreenComponent } from './member-list-screen.component';
@@ -22,13 +22,13 @@ import { reducer } from './store/member-list-screen.reducer';
     AdminControlsModule,
     ClarityModule,
     CommonModule,
-    DirectivesModule,
     EffectsModule.forFeature([MemberListScreenEffects]),
     LinkListModule,
     ReactiveFormsModule,
     RouterModule,
     ScreenHeaderModule,
     StoreModule.forFeature(AppStoreFeatureTypes.MEMBER_LIST_SCREEN, reducer),
+    TooltipModule,
   ],
   exports: [MemberListScreenComponent],
 })

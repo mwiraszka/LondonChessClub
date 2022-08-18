@@ -5,6 +5,7 @@ import { map, switchMap, tap } from 'rxjs/operators';
 
 import { ServiceResponse } from '@app/shared/types';
 import { customSort } from '@app/shared/utils';
+import { AuthSelectors } from '@app/core/auth';
 
 import * as MemberListScreenActions from './member-list-screen.actions';
 import * as MemberListScreenSelectors from './member-list-screen.selectors';
@@ -15,8 +16,9 @@ export class MemberListScreenEffects {
   getMembers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(MemberListScreenActions.loadMembersStarted),
-      switchMap(() =>
-        this.membersService.getMembers().pipe(
+      concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
+      switchMap(([, isAdmin]) =>
+        this.membersService.getMembers(isAdmin).pipe(
           map((response: ServiceResponse) =>
             response.error
               ? MemberListScreenActions.loadMembersFailed({ error: response.error })

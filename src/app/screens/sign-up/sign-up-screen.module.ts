@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
 
 import { ScreenHeaderModule } from '@app/shared/components/screen-header';
-import { DirectivesModule } from '@app/shared/directives';
+import { TooltipModule } from '@app/shared/components/tooltip';
 import { PipesModule } from '@app/shared/pipes';
 
 import { SignUpScreenComponent } from './sign-up-screen.component';
@@ -15,12 +15,12 @@ import { SignUpScreenComponent } from './sign-up-screen.component';
   imports: [
     ClarityModule,
     CommonModule,
-    DirectivesModule,
     FormsModule,
     PipesModule,
     ReactiveFormsModule,
     RouterModule,
     ScreenHeaderModule,
+    TooltipModule,
   ],
   exports: [SignUpScreenComponent],
 })

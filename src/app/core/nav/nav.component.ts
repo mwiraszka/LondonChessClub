@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import {
   administratorIcon,
   angleIcon,
@@ -24,10 +24,19 @@ import { NavPathTypes } from '../../shared/types/nav-paths.model';
 })
 export class NavComponent {
   NavPathTypes = NavPathTypes;
+  screenWidth!: number;
+  tooltipScreenWidthCutoff = 699; // Match lt-md breakpoint value
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.screenWidth = window.innerWidth;
+  }
 
   constructor(public facade: NavFacade) {}
 
   ngOnInit(): void {
+    this.screenWidth = window.innerWidth;
+
     ClarityIcons.addIcons(
       administratorIcon,
       angleIcon,

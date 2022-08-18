@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ScreenHeaderModule } from '@app/shared/components/screen-header';
-import { DirectivesModule } from '@app/shared/directives';
+import { TooltipModule } from '@app/shared/components/tooltip';
 
 import { LoginScreenComponent } from './login-screen.component';
 @NgModule({
   declarations: [LoginScreenComponent],
   imports: [
     CommonModule,
-    DirectivesModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
     ScreenHeaderModule,
+    TooltipModule,
   ],
   exports: [LoginScreenComponent],
 })

@@ -5,5 +5,5 @@ export interface MemberListScreenState {
   selectedMember: Member | null;
   isLoading: boolean;
   sortedBy: string;
-  isAscending: boolean;
+  isDescending: boolean;
 }

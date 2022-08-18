@@ -18,7 +18,7 @@ export class MemberListScreenFacade {
   readonly isLoading$ = this.store.select(MemberListScreenSelectors.isLoading);
   readonly isAdmin$ = this.store.select(AuthSelectors.isAdmin);
   readonly sortedBy$ = this.store.select(MemberListScreenSelectors.sortedBy);
-  readonly isAscending$ = this.store.select(MemberListScreenSelectors.isAscending);
+  readonly isDescending$ = this.store.select(MemberListScreenSelectors.isDescending);
 
   constructor(private readonly store: Store) {}
 

@@ -1,14 +1,14 @@
-<button (click)="edit.emit()">
+<button [tooltip]="'Edit ' + itemName"
+				(click)="edit.emit()">
 	<cds-icon shape="pencil"
-						size="sm"
-						[tooltip]="'Edit ' + itemName">
+						size="sm">
 	</cds-icon>
 </button>
 
-<button (click)="delete.emit()">
+<button [tooltip]="'Delete ' + itemName"
+				(click)="delete.emit()">
 	<cds-icon shape="trash"
 						size="sm"
-						status="danger"
-						[tooltip]="'Delete ' + itemName">
+						status="danger">
 	</cds-icon>
 </button>

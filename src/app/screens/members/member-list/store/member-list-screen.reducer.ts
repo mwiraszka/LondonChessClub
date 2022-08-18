@@ -8,7 +8,7 @@ const initialState: MemberListScreenState = {
   selectedMember: null,
   isLoading: false,
   sortedBy: 'rating',
-  isAscending: false,
+  isDescending: true,
 };
 
 const memberListScreenReducer = createReducer(
@@ -29,7 +29,7 @@ const memberListScreenReducer = createReducer(
   on(MemberListScreenActions.membersSorted, (state, action) => ({
     ...state,
     members: action.sortedMembers,
-    isAscending: action.isAscending,
+    isDescending: action.isDescending,
     sortedBy: action.sortedBy,
   })),
   on(MemberListScreenActions.createMemberSelected, (state) => ({

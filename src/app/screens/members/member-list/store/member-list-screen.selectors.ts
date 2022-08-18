@@ -27,7 +27,7 @@ export const sortedBy = createSelector(
   (state) => state.sortedBy
 );
 
-export const isAscending = createSelector(
+export const isDescending = createSelector(
   memberListScreenFeatureSelector,
-  (state) => state.isAscending
+  (state) => state.isDescending
 );

@@ -38,7 +38,7 @@ export const tableHeaderSelected = createAction(
 );
 export const membersSorted = createAction(
   MemberListScreenActionTypes.MEMBERS_SORTED,
-  props<{ sortedMembers: Member[]; sortedBy: string; isAscending: boolean }>()
+  props<{ sortedMembers: Member[]; sortedBy: string; isDescending: boolean }>()
 );
 
 export const createMemberSelected = createAction(

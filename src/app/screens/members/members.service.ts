@@ -28,18 +28,29 @@ export class MembersService {
     );
   }
 
-  getMembers(): Observable<ServiceResponse> {
-    return this.authService.getToken().pipe(
-      switchMap((token) =>
-        this.http.get<Member[]>(API_ENDPOINT, {
-          headers: new HttpHeaders({
-            Authorization: token,
-          }),
-        })
-      ),
-      map((members) => ({ payload: { members } })),
-      catchError(() => of({ error: new Error('Failed to fetch members from database') }))
-    );
+  getMembers(isAdmin: boolean): Observable<ServiceResponse> {
+    if (isAdmin) {
+      return this.authService.getToken().pipe(
+        switchMap((token) =>
+          this.http.get<Member[]>(API_ENDPOINT, {
+            headers: new HttpHeaders({
+              Authorization: token,
+            }),
+          })
+        ),
+        map((members) => ({ payload: { members } })),
+        catchError(() =>
+          of({ error: new Error('Failed to fetch members from database') })
+        )
+      );
+    } else {
+      return this.http.get<Member[]>(API_ENDPOINT + 'public/').pipe(
+        map((members) => ({ payload: { members } })),
+        catchError(() =>
+          of({ error: new Error('Failed to fetch members from database') })
+        )
+      );
+    }
   }
 
   addMember(memberToAdd: Member): Observable<ServiceResponse> {

@@ -5,84 +5,84 @@
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.HOME"
 		 [routerLinkActiveOptions]="{ exact: true }"
+		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Home' : null"
 		 (click)="facade.onSelectHomeTab()">
 		<span class="lcc-gt-md">Home</span>
 		<cds-icon class="lcc-lt-md"
 							shape="home"
-							size="md"
-							[tooltip]="'Home'">
+							size="md">
 		</cds-icon>
 	</a>
 
 	<a aria-label="Members"
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.MEMBERS"
+		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Members' : null"
 		 (click)="facade.onSelectMembersTab()">
 		<span class="lcc-gt-md">Members</span>
 		<cds-icon class="lcc-lt-md"
 							shape="users"
-							size="md"
-							[tooltip]="'Members'">
+							size="md">
 		</cds-icon>
 	</a>
 
 	<a aria-label="Schedule"
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.SCHEDULE"
+		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Schedule' : null"
 		 (click)="facade.onSelectScheduleTab()">
 		<span class="lcc-gt-md">Schedule</span>
 		<cds-icon class="lcc-lt-md"
 							shape="event"
-							size="md"
-							[tooltip]="'Schedule'">
+							size="md">
 		</cds-icon>
 	</a>
 
 	<a aria-label="News"
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.NEWS"
+		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'News' : null"
 		 (click)="facade.onSelectNewsTab()">
 		<span class="lcc-gt-md">News</span>
 		<cds-icon class="lcc-lt-md"
 							shape="announcement"
-							size="md"
-							[tooltip]="'News'">
+							size="md">
 		</cds-icon>
 	</a>
 
 	<a aria-label="London Chess Champion"
 		 [routerLink]="NavPathTypes.LONDON_CHESS_CHAMPION"
+		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'London Chess Champion' : null"
 		 routerLinkActive="link-active"
 		 (click)="facade.onSelectLondonChessChampionTab()">
 		<span class="lcc-gt-md">London&nbsp;Chess&nbsp;Champion</span>
 		<cds-icon class="lcc-lt-md"
 							shape="crown"
-							size="md"
-							[tooltip]="'London Chess Champion'">
+							size="md">
 		</cds-icon>
 	</a>
 
 	<a aria-label="Photo Gallery"
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.PHOTO_GALLERY"
+		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Photo Gallery' : null"
 		 (click)="facade.onSelectPhotoGalleryTab()">
 		<span class="lcc-gt-md">Photo&nbsp;Gallery</span>
 		<cds-icon class="lcc-lt-md"
 							shape="image-gallery"
-							size="md"
-							[tooltip]="'Photo Gallery'">
+							size="md">
 		</cds-icon>
 	</a>
 
 	<a aria-label="About"
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.ABOUT"
+		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'About' : null"
 		 (click)="facade.onSelectAboutTab()">
 		<span class="lcc-gt-md">About</span>
 		<cds-icon class="lcc-lt-md"
 							shape="unknown-status"
-							size="md"
-							[tooltip]="'About'">
+							size="md">
 		</cds-icon>
 	</a>
 
@@ -134,12 +134,12 @@
 			 aria-label="Login"
 			 routerLinkActive="link-active"
 			 [routerLink]="NavPathTypes.LOGIN"
+			 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Login' : null"
 			 (click)="facade.onSelectLoginTab()">
 			<span class="lcc-gt-md">Login</span>
 			<cds-icon class="lcc-lt-md"
 								shape="user"
-								size="md"
-								[tooltip]="'Login'">
+								size="md">
 			</cds-icon>
 		</a>
 	</ng-template>

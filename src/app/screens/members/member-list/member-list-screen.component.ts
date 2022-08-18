@@ -47,7 +47,6 @@ export class MemberListScreenComponent implements OnInit {
       if (isAdmin) {
         this.tableHeaders.push(...this.adminOnlyTableHeaders);
       }
-      this.facade.members$.subscribe((members) => console.log(':::', members));
     });
 
     ClarityIcons.addIcons(angleIcon);

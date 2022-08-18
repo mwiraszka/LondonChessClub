@@ -21,7 +21,7 @@
 						<cds-icon *ngIf="(facade.sortedBy$ | async) === camelize(kebabize(header))"
 											shape="angle"
 											size="xs"
-											[attr.flip]="(facade.isAscending$ | async) ? undefined : 'vertical'">
+											[attr.flip]="(facade.isDescending$ | async) ? undefined : 'vertical'">
 						</cds-icon>
 					</div>
 				</th>

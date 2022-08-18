@@ -49,21 +49,31 @@ export class MemberListScreenEffects {
     )
   );
 
+  initiallySortMembers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MemberListScreenActions.loadMembersSucceeded),
+      concatLatestFrom(() => this.store.select(MemberListScreenSelectors.sortedBy)),
+      map(([, sortedBy]) =>
+        MemberListScreenActions.tableHeaderSelected({ header: sortedBy })
+      )
+    )
+  );
+
   sortMembers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(MemberListScreenActions.tableHeaderSelected),
       concatLatestFrom(() => [
         this.store.select(MemberListScreenSelectors.members),
         this.store.select(MemberListScreenSelectors.sortedBy),
-        this.store.select(MemberListScreenSelectors.isAscending),
+        this.store.select(MemberListScreenSelectors.isDescending),
       ]),
-      map(([{ header }, members, sortedBy, isAscending]) => {
+      map(([{ header }, members, sortedBy, isDescending]) => {
         const key = header;
-        isAscending = sortedBy === key ? !isAscending : isAscending;
+        isDescending = sortedBy === key ? !isDescending : isDescending;
         return MemberListScreenActions.membersSorted({
-          sortedMembers: [...members].sort(customSort(key, isAscending)),
+          sortedMembers: [...members].sort(customSort(key, isDescending)),
           sortedBy: header,
-          isAscending,
+          isDescending,
         });
       })
     )

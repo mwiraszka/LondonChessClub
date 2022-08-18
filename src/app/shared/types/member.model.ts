@@ -19,6 +19,6 @@ export const newMemberFormTemplate: Member = {
   city: 'London',
   rating: '1000/0',
   peakRating: '(provisional)',
-  dateJoined: new Date().toISOString().substring(0, 10),
+  dateJoined: new Date().toLocaleDateString(),
   isActive: false,
 };

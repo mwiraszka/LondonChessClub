@@ -17,19 +17,26 @@ export function areSame(a: Object, b: Object): boolean {
  * A custom sorting algorithm, to be used within an array sort method, for example
  * `sortedItems = items.sort(customSort(key, order))`
  * @param {string} key The object property to sort by
- * @param {boolean} isAscending Whether sort is in ascending order
+ * @param {boolean} isDescending Whether sort is in descending order
  */
-export function customSort(key: string, isAscending: boolean) {
+export function customSort(key: string, isDescending: boolean) {
   return function innerSort(a: Object, b: Object): number {
     if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
       return 0; // Property doesn't exist on either object
     }
 
-    const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
-    const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
+    let varA: any = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
+    let varB: any = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
+
+    // If both objects (before a potential slash) are valid numbers, convert to number type
+    if (!isNaN(varA.split('/')[0]) && !isNaN(varB.split('/')[0])) {
+      varA = +varA.split('/')[0];
+      varB = +varB.split('/')[0];
+    }
+
     const comparison = varA > varB ? 1 : varA < varB ? -1 : 0;
 
-    return isAscending ? comparison : comparison * -1;
+    return isDescending ? comparison : comparison * -1;
   };
 }
 

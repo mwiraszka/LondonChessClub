@@ -88,29 +88,29 @@ aside {
 
 @include respond-to('lt-xl') {
   .chesscom-username,
-  .lichess-username {
+  .lichess-username,
+  .date-joined {
     display: none;
   }
 }
 
 @include respond-to('lt-lg') {
-  .date-joined,
+  .email,
   .phone-number {
     display: none;
   }
 }
 
 @include respond-to('lt-md') {
-  .peak-rating,
-  .email {
+  .born,
+  .year-of-birth,
+  .city {
     display: none;
   }
 }
 
 @include respond-to('lt-sm') {
-  .city,
-  .year-of-birth,
-  .born {
+  .peak-rating {
     display: none;
   }
 }

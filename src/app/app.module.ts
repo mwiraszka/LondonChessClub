@@ -18,6 +18,7 @@ import { AlertModule } from '@app/shared/components/alert';
 import { ImageOverlayModule } from '@app/shared/components/image-overlay';
 import { LinkListModule } from '@app/shared/components/link-list';
 import { ModalModule } from '@app/shared/components/modal';
+import { PaginatorModule } from '@app/shared/components/paginator';
 import { ToastModule } from '@app/shared/components/toast';
 import { ToasterModule } from '@app/shared/components/toaster';
 import { metaReducers } from '@app/shared/store';

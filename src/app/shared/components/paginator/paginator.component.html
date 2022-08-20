@@ -1,0 +1,51 @@
+<button class="lcc-icon-button"
+				[disabled]="page === 1"
+				[tooltip]="page === 1 ? null : 'First page'"
+				(click)="onFirst()">
+	<cds-icon shape="step-forward-2"
+						size="md"
+						flip="horizontal">
+	</cds-icon>
+</button>
+
+<button class="lcc-icon-button"
+				[disabled]="page === 1"
+				[tooltip]="page === 1 ? null : 'Previous page'"
+				(click)="onPrevious()">
+	<cds-icon shape="angle"
+						size="md"
+						style="transform: rotate(-90deg);">
+	</cds-icon>
+</button>
+
+<section class="center-section">
+	<div class="page-counter">Page: {{ page }} / {{ lastPage() }}</div>
+	<div class="center-section-buttons">
+		<button *ngFor="let size of PAGE_SIZES"
+						class="lcc-secondary-button center-section-button"
+						[class.selected]="pageSize === size"
+						[tooltip]="'Show ' + size + ' ' + typeOfItems + ' per page'"
+						(click)="onPageSizeChange(size)">
+			{{ size }}
+		</button>
+	</div>
+</section>
+
+<button class="lcc-icon-button"
+				[disabled]="page === lastPage()"
+				[tooltip]="page === lastPage() ? null : 'Next page'"
+				(click)="onNext()">
+	<cds-icon shape="angle"
+						size="md"
+						style="transform: rotate(90deg);">
+	</cds-icon>
+</button>
+
+<button class="lcc-icon-button"
+				[disabled]="page === lastPage()"
+				[tooltip]="page === lastPage() ? null : 'Last page'"
+				(click)="onLast()">
+	<cds-icon shape="step-forward-2"
+						size="md">
+	</cds-icon>
+</button>

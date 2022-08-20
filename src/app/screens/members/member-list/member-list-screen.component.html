@@ -29,13 +29,15 @@
 		</thead>
 
 		<tbody>
-			<tr *ngFor="let member of (showActiveOnly ? (facade.activeMembers$ | async) : (facade.members$ | async));
+			<tr *ngFor="let member of (showActiveOnly
+                    ? (facade.activeMembers$ | async).slice(from, to)
+                    : (facade.members$ | async).slice(from, to));
                   let i = index;
                   let last = last;"
 					class="lcc-admin-controls-container"
 					[ngClass]="{'last-row': last}"
 					[class.inactive]="!member.isActive">
-				<td class="row-number">{{ i + 1 }}</td>
+				<td class="row-number">{{ i + from + 1 }}</td>
 				<td class="first-name">{{ member.firstName }}</td>
 				<td class="last-name">{{ member.lastName }}</td>
 				<td class="rating">{{ member.rating }}</td>
@@ -69,6 +71,14 @@
 		</tfoot>
 	</table>
 
+	<lcc-paginator [totalItems]="showActiveOnly
+                                 ? (facade.activeMembers$ | async).length
+                                 : (facade.members$ | async).length"
+								 [typeOfItems]="'members'"
+								 [pageSize]="10"
+								 (update)="onUpdateRange($event)">
+	</lcc-paginator>
+
 	<aside>
 		<h5>inactive members *</h5>
 		<div class="checkbox-section">
@@ -76,7 +86,7 @@
 			<input id="active-only"
 						 type="checkbox"
 						 [checked]="showActiveOnly"
-						 (change)="showActiveOnly = !showActiveOnly" />
+						 (change)="onToggleShowActiveOnly()" />
 		</div>
 	</aside>
 </div>

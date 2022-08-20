@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { AdminControlsModule } from '@app/shared/components/admin-controls';
 import { LinkListModule } from '@app/shared/components/link-list';
+import { PaginatorModule } from '@app/shared/components/paginator';
 import { ScreenHeaderModule } from '@app/shared/components/screen-header';
 import { TooltipModule } from '@app/shared/components/tooltip';
 import { AppStoreFeatureTypes } from '@app/shared/types';
@@ -24,6 +25,7 @@ import { reducer } from './store/member-list-screen.reducer';
     CommonModule,
     EffectsModule.forFeature([MemberListScreenEffects]),
     LinkListModule,
+    PaginatorModule,
     ReactiveFormsModule,
     RouterModule,
     ScreenHeaderModule,

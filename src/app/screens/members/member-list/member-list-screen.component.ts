@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { angleIcon, ClarityIcons } from '@cds/core/icon';
 import { take } from 'rxjs/operators';
 
 import { LoaderService } from '@app/shared/services';
+import { PaginatorComponent } from '@app/shared/components/paginator';
 import { Link, NavPathTypes } from '@app/shared/types';
 import { camelize, kebabize } from '@app/shared/utils';
 
@@ -15,7 +16,11 @@ import { MemberListScreenFacade } from './member-list-screen.facade';
   providers: [MemberListScreenFacade],
 })
 export class MemberListScreenComponent implements OnInit {
+  @ViewChild(PaginatorComponent) paginator: PaginatorComponent;
+
   showActiveOnly = false;
+  from = 0;
+  to = 10;
 
   tableHeaders = [
     'First Name',
@@ -50,6 +55,16 @@ export class MemberListScreenComponent implements OnInit {
     });
 
     ClarityIcons.addIcons(angleIcon);
+  }
+
+  onUpdateRange([from, to]: [number, number]): void {
+    this.from = from;
+    this.to = to;
+  }
+
+  onToggleShowActiveOnly(): void {
+    this.showActiveOnly = !this.showActiveOnly;
+    this.paginator.onFirst();
   }
 
   // Re-assign to make utils functions available in template

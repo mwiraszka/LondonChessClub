@@ -12,6 +12,7 @@ $control-icon-width: 26px;
 .lcc-canvas {
   width: unset;
   max-width: unset;
+  box-sizing: border-box;
 }
 
 lcc-link-list,
@@ -62,7 +63,6 @@ tbody {
 }
 
 aside {
-  align-self: start;
   text-align: center;
   border: 1px solid rgba($lcc-color--gray, 0.3);
   border-radius: $lcc-border-radius-lg;

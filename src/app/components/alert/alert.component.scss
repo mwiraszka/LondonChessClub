@@ -1,0 +1,46 @@
+@import 'styles/abstracts/variables';
+
+:host {
+  display: flex;
+  justify-content: center;
+  background-color: $lcc-color--primary;
+  padding: 2px $lcc-app-side-padding;
+}
+
+.alert-message-container {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  max-width: $lcc-app-max-width;
+}
+
+.alert-message {
+  display: inline-block;
+  padding: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: $lcc-color--white;
+  font-size: $h4;
+}
+
+.alert-controls {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  .alert-action-button {
+    white-space: nowrap;
+    padding: 4px;
+    height: 22px;
+    color: darken($lcc-color--white, 10%);
+  }
+
+  .alert-close-button {
+    padding: 4px;
+    color: darken($lcc-color--white, 10%);
+  }
+}

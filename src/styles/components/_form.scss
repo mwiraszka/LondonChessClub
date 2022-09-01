@@ -36,8 +36,22 @@
     color: $lcc-color--text-secondary;
   }
 
-  input {
+  input,
+  textarea,
+  fieldset {
     grid-column: 2 / 3;
+  }
+
+  fieldset {
+    border: 1px solid rgba($lcc-color--gray, 0.4);
+    border-radius: $lcc-border-radius-sm;
+    background: white;
+    padding: 4px 12px;
+    text-align: left;
+
+    label {
+      margin-left: 4px;
+    }
   }
 
   .lcc-form-error-container {

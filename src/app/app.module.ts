@@ -10,35 +10,50 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from '@app/app-routing.module';
-import { AppComponent } from '@app/app.component';
-import { CoreModule } from '@app/core/core.module';
+import { AlertModule } from '@app/components/alert';
+import { FooterModule } from '@app/components/footer';
+import { HeaderModule } from '@app/components/header';
+import { ImageOverlayModule } from '@app/components/image-overlay';
+import { ModalModule } from '@app/components/modal';
+import { NavModule } from '@app/components/nav';
+import { ToastModule } from '@app/components/toast';
+import { ToasterModule } from '@app/components/toaster';
 import { ScreensModule } from '@app/screens/screens.module';
-import { AdminControlsModule } from '@app/shared/components/admin-controls';
-import { AlertModule } from '@app/shared/components/alert';
-import { ImageOverlayModule } from '@app/shared/components/image-overlay';
-import { LinkListModule } from '@app/shared/components/link-list';
-import { ModalModule } from '@app/shared/components/modal';
-import { PaginatorModule } from '@app/shared/components/paginator';
-import { ToastModule } from '@app/shared/components/toast';
-import { ToasterModule } from '@app/shared/components/toaster';
-import { metaReducers } from '@app/shared/store';
+import { metaReducers } from '@app/store';
+import { ArticlesStoreModule } from '@app/store/articles';
+import { AuthStoreModule } from '@app/store/auth';
+import { ImageOverlayStoreModule } from '@app/store/image-overlay';
+import { MembersStoreModule } from '@app/store/members';
+import { ModalStoreModule } from '@app/store/modal';
+import { NavStoreModule } from '@app/store/nav';
+import { ScheduleStoreModule } from '@app/store/schedule';
+import { ToasterStoreModule } from '@app/store/toaster';
 import { environment } from '@environments/environment';
+
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    AdminControlsModule,
     AlertModule,
     AppRoutingModule,
+    ArticlesStoreModule,
+    AuthStoreModule,
     BrowserModule,
     BrowserAnimationsModule,
     ClarityModule,
-    CoreModule,
     EffectsModule.forRoot([]),
+    FooterModule,
+    HeaderModule,
     HttpClientModule,
     ImageOverlayModule,
-    LinkListModule,
+    ImageOverlayStoreModule,
+    MembersStoreModule,
     ModalModule,
+    ModalStoreModule,
+    NavModule,
+    NavStoreModule,
+    ScheduleStoreModule,
     ScreensModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
@@ -54,6 +69,7 @@ import { environment } from '@environments/environment';
     }),
     ToastModule,
     ToasterModule,
+    ToasterStoreModule,
   ],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,86 @@
+<ng-container *ngIf="facade.isAdmin$ | async">
+	<lcc-link-list [links]="[addMemberLink]"
+								 (select)="facade.onAddMember()">
+	</lcc-link-list>
+</ng-container>
+
+<table class="lcc-table">
+	<thead>
+		<tr>
+			<th *ngIf="facade.isAdmin$ | async"></th>
+			<th class="row-number"></th>
+			<th *ngFor="let header of tableHeaders"
+					[ngClass]="kebabize(header)"
+					(click)="facade.onSelectTableHeader(camelize(kebabize(header)))">
+				<span>{{ header }}</span>
+				<div class="icon-container">
+					<cds-icon *ngIf="(facade.sortedBy$ | async) === camelize(kebabize(header))"
+										shape="angle"
+										size="xs"
+										[attr.flip]="(facade.isDescending$ | async) ? undefined : 'vertical'">
+					</cds-icon>
+				</div>
+			</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr *ngFor="let member of (showActiveOnly
+                  ? (facade.activeMembers$ | async).slice(from, to)
+                  : (facade.members$ | async).slice(from, to));
+                let i = index;
+                let last = last;"
+				class="lcc-admin-controls-container"
+				[ngClass]="{'last-row': last}"
+				[class.inactive]="!member.isActive">
+			<ng-container *ngIf="facade.isAdmin$ | async">
+				<lcc-admin-controls [itemName]="member.firstName"
+														(edit)="facade.onEditMember(member)"
+														(delete)="facade.onDeleteMember(member)">
+				</lcc-admin-controls>
+			</ng-container>
+			<td class="row-number">{{ i + from + 1 }}</td>
+			<td class="first-name">{{ member.firstName }}</td>
+			<td class="last-name">{{ member.lastName }}</td>
+			<td class="rating">{{ member.rating }}</td>
+			<td class="peak-rating">{{ member.peakRating }}</td>
+			<td class="city">{{ member.city }}</td>
+			<td class="year-of-birth">{{ member?.yearOfBirth }}</td>
+			<td class="chesscom-username">{{ member?.chesscomUsername }}</td>
+			<td class="lichess-username">{{ member?.lichessUsername }}</td>
+			<ng-container *ngIf="facade.isAdmin$ | async">
+				<td class="email">{{ member?.email }}</td>
+				<td class="phone-number">{{ member?.phoneNumber }}</td>
+				<td class="date-joined">{{ member.dateJoined }}</td>
+			</ng-container>
+		</tr>
+	</tbody>
+
+	<tfoot>
+		<tr>
+			<td colspan="100%">
+				{{ (facade.members$ | async)?.length }} members
+				({{ (facade.activeMembers$ | async)?.length }} active)
+			</td>
+		</tr>
+	</tfoot>
+</table>
+
+<lcc-paginator [totalItems]="showActiveOnly
+                               ? (facade.activeMembers$ | async).length
+                               : (facade.members$ | async).length"
+							 [typeOfItems]="'members'"
+							 [pageSize]="10"
+							 (update)="onUpdateRange($event)">
+</lcc-paginator>
+
+<aside>
+	<h5>inactive members *</h5>
+	<div class="checkbox-section">
+		<label for="active-only">Show active members only</label>
+		<input id="active-only"
+					 type="checkbox"
+					 [checked]="showActiveOnly"
+					 (change)="onToggleShowActiveOnly()" />
+	</div>
+</aside>

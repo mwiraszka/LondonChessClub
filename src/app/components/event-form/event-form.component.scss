@@ -1,0 +1,18 @@
+@import 'styles/abstracts/variables';
+
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 16px;
+}
+
+aside {
+  font-style: italic;
+  font-size: $h4;
+  color: $lcc-color--text-secondary;
+
+  span {
+    color: $lcc-color--warning;
+  }
+}

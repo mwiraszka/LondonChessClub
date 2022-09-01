@@ -1,0 +1,29 @@
+@import 'styles/abstracts/variables';
+
+$icon-width: 30px;
+
+:host {
+  visibility: hidden; // visible on parent hover (see _admin-controls-container.scss)
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-flow: row nowrap;
+
+  button {
+    width: $icon-width;
+    height: $icon-width;
+    background-color: $lcc-color--white;
+    padding: 4px; // 4px perfectly matches a table row's height 
+    border: 3px solid darken($lcc-color--white, 5%);
+    border-radius: $lcc-border-radius-lg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:focus,
+    &:hover {
+      cursor: pointer;
+      background-color: white;
+    }
+  }
+}

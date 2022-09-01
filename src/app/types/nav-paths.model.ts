@@ -1,0 +1,17 @@
+export enum NavPathTypes {
+  HOME = '',
+  MEMBERS = 'members',
+  MEMBER_ADD = 'member/add',
+  MEMBER_EDIT = 'member/edit',
+  SCHEDULE = 'schedule',
+  EVENT_ADD = 'event/add',
+  EVENT_EDIT = 'event/edit',
+  NEWS = 'news',
+  ARTICLE_ADD = 'article/add',
+  ARTICLE_EDIT = 'article/edit',
+  LONDON_CHESS_CHAMPION = 'london-chess-champion',
+  PHOTO_GALLERY = 'photo-gallery',
+  ABOUT = 'about',
+  LOGIN = 'login',
+  SIGN_UP = 'signup',
+}

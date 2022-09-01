@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { LinkListModule } from '@app/shared/components/link-list';
-import { ScreenHeaderModule } from '@app/shared/components/screen-header';
+import { LinkListModule } from '@app/components/link-list';
+import { ScreenHeaderModule } from '@app/components/screen-header';
 
 import { ChampionScreenComponent } from './champion-screen.component';
 @NgModule({

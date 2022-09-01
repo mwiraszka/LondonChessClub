@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Link, NavPathTypes } from '@app/shared/types';
+import { Link, NavPathTypes } from '@app/types';
 
 @Component({
   selector: 'lcc-champion-screen',

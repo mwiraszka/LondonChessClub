@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Link, Photo } from '@app/shared/types';
+import { Link, Photo } from '@app/types';
 
 import { PhotoGalleryScreenFacade } from './photo-gallery-screen.facade';
 

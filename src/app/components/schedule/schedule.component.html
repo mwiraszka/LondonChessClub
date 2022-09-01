@@ -1,0 +1,46 @@
+<ng-container *ngIf="facade.isAdmin$ | async">
+	<lcc-link-list [links]="[addEventLink]"
+								 (select)="facade.onAddEvent()">
+	</lcc-link-list>
+</ng-container>
+
+<table class="lcc-table">
+	<thead>
+		<th *ngIf="facade.isAdmin$ | async"></th>
+		<th>Date</th>
+		<th>Event</th>
+	</thead>
+	<tbody>
+		<tr *ngFor="let event of (numEvents
+                  ? (facade.events$ | async).slice(0, numEvents)
+                  : (facade.events$ | async)
+                ); let last = last;"
+				class="lcc-admin-controls-container"
+				[ngClass]="{'last-row': last}">
+			<ng-container *ngIf="facade.isAdmin$ | async">
+				<lcc-admin-controls [itemName]="event.title"
+														(edit)="facade.onEditEvent(event)"
+														(delete)="facade.onDeleteEvent(event)">
+				</lcc-admin-controls>
+			</ng-container>
+			<td class="date">
+				<p>{{ event.eventDate }}</p>
+			</td>
+			<td class="details-container">
+				<h5 class="title">
+					{{ event.title }}<br />
+					<span class="type"
+								[ngClass]="kebabize(event.type)">
+						{{ event.type }}
+					</span>
+				</h5>
+				<p class="details">{{ event.details }}</p>
+				<aside *ngIf="includeEditHistory"
+							 class="created-and-edited">
+					Event created on {{ event.dateCreated }}<br />
+					Last edited on {{ event.dateEdited }}
+				</aside>
+			</td>
+		</tr>
+	</tbody>
+</table>

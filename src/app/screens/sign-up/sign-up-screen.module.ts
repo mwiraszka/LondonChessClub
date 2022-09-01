@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
 
-import { ScreenHeaderModule } from '@app/shared/components/screen-header';
-import { TooltipModule } from '@app/shared/components/tooltip';
-import { PipesModule } from '@app/shared/pipes';
+import { ScreenHeaderModule } from '@app/components/screen-header';
+import { TooltipModule } from '@app/components/tooltip';
+import { PipesModule } from '@app/pipes';
 
 import { SignUpScreenComponent } from './sign-up-screen.component';
 

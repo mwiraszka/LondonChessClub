@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: unset;
+  width: unset;
+  box-sizing: border-box;
+}

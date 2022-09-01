@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
-import { LoaderService, UpdateService } from '@app/shared/services';
+import { LoaderService, UpdateService } from '@app/services';
 
 import { AppFacade } from './app.facade';
 
@@ -12,6 +12,7 @@ import { AppFacade } from './app.facade';
 })
 export class AppComponent implements OnInit {
   isLoading!: boolean;
+  showAlert = true;
 
   constructor(
     private changeDetectionRef: ChangeDetectorRef,
@@ -26,5 +27,9 @@ export class AppComponent implements OnInit {
       this.isLoading = isLoading;
       this.changeDetectionRef.detectChanges();
     });
+  }
+
+  onCloseAlert(): void {
+    this.showAlert = false;
   }
 }

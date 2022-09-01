@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { ScreenHeaderModule } from '@app/shared/components/screen-header';
-import { TooltipModule } from '@app/shared/components/tooltip';
+import { ScreenHeaderModule } from '@app/components/screen-header';
+import { TooltipModule } from '@app/components/tooltip';
 
 import { LoginScreenComponent } from './login-screen.component';
 @NgModule({

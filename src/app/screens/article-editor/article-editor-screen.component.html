@@ -1,0 +1,8 @@
+<div class="lcc-canvas">
+	<lcc-screen-header [preTitle]="(facade.isEditMode$ | async) ? 'Edit' : null"
+										 [title]="(facade.isEditMode$ | async)
+                                ? (facade.titleBeforeEdit$ | async)
+                                : 'Create an article'">
+	</lcc-screen-header>
+	<lcc-article-form></lcc-article-form>
+</div>

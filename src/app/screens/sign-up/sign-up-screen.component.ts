@@ -18,7 +18,7 @@ import {
   hasSpecialCharValidator,
   hasUppercaseLetterValidator,
   phoneNumberValidator,
-} from '@app/shared/validators';
+} from '@app/validators';
 
 import { SignUpScreenFacade } from './sign-up-screen.facade';
 

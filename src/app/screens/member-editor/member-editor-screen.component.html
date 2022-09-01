@@ -1,0 +1,6 @@
+<div class="lcc-canvas">
+	<lcc-screen-header [preTitle]="(facade.isEditMode$ | async) ? 'Edit' : null"
+										 [title]="(facade.isEditMode$ | async) ? (facade.fullName$ | async) : 'Add a member'">
+	</lcc-screen-header>
+	<lcc-member-form></lcc-member-form>
+</div>

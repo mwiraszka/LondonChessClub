@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
-import { MOCK_EVENTS } from '@app/screens/schedule/mock-events';
-import { Link, NavPathTypes, Photo } from '@app/shared/types';
+import { Link, NavPathTypes, Photo } from '@app/types';
 
 @Component({
   selector: 'lcc-home-screen',
@@ -9,8 +8,6 @@ import { Link, NavPathTypes, Photo } from '@app/shared/types';
   styleUrls: ['./home-screen.component.scss'],
 })
 export class HomeScreenComponent {
-  mockEvents = MOCK_EVENTS.slice(0, 3); // temp
-
   photos: Photo[] = [
     { index: 1, description: '' },
     { index: 2, description: '' },

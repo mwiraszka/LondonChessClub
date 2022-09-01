@@ -1,0 +1,21 @@
+<ng-container *ngIf="facade.isAdmin$ | async">
+	<lcc-link-list [links]="[composeArticleLink]"
+								 (select)="facade.onComposeArticle()">
+	</lcc-link-list>
+</ng-container>
+
+<div class="articles-container">
+	<article *ngFor="let article of (facade.articles$ | async)"
+					 class="lcc-admin-controls-container">
+		<ng-container *ngIf="facade.isAdmin$ | async">
+			<lcc-admin-controls [itemName]="article.title"
+													(edit)="facade.onEditArticle(article)"
+													(delete)="facade.onDeleteArticle(article)">
+			</lcc-admin-controls>
+		</ng-container>
+
+		<h4>{{ article.title }}</h4>
+		<h5>{{ article.subtitle }}</h5>
+		<p>{{ article.body }}</p>
+	</article>
+</div>

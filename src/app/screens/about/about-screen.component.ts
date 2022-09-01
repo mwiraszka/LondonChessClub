@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { NavPathTypes } from '@app/shared/types';
+import { NavPathTypes } from '@app/types';
 
 @Component({
   selector: 'lcc-about-screen',

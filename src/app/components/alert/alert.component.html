@@ -1,0 +1,14 @@
+<div class="alert-message-container">
+	<p class="alert-message">{{ facade.alertMessage$ | async }}</p>
+	<div class="alert-controls">
+		<button class="lcc-ghost-button alert-action-button"
+						(click)="facade.onClickAction()">
+			See schedule
+		</button>
+		<cds-icon class="lcc-icon-button alert-close-button"
+							shape="window-close"
+							size="md"
+							(click)="close.emit()">
+		</cds-icon>
+	</div>
+</div>

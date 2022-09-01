@@ -1,0 +1,94 @@
+@import 'styles/abstracts/mixins';
+@import 'styles/abstracts/variables';
+
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  width: 85%;
+}
+
+lcc-link-list {
+  align-self: flex-start;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 18px;
+
+  @include respond-to('lt-md') {
+    width: 100%;
+  }
+
+  tbody {
+    tr {
+      td {
+        &.date {
+          white-space: nowrap;
+        }
+  
+        &.details-container {
+          display: flex;
+          flex-flow: column nowrap;
+          gap: 10px;
+    
+          .title {
+            color: $lcc-color--text-primary-black;
+          }
+
+          .type {
+            border-radius: $lcc-border-radius-lg;
+            padding: 2px 5px;
+
+            &.blitz-tournament {
+              background: lighten(rgba(red, 0.3), 40%);
+              border: 1px solid rgba(red, 0.3);
+            }
+
+            &.rapid-tournament {
+              background: lighten(rgba(orange, 0.3), 40%);
+              border: 1px solid rgba(orange, 0.3);
+            }
+
+            &.classical-tournament {
+              background: lighten(rgba(gold, 0.3), 40%);
+              border: 1px solid rgba(gold, 0.3);
+            }
+
+            &.lecture {
+              background: lighten(rgba(brown, 0.3), 40%);
+              border: 1px solid rgba(brown, 0.3);
+            }
+
+            &.simul {
+              background: lighten(rgba(green, 0.3), 40%);
+              border: 1px solid rgba(green, 0.3);
+            }
+
+            &.casual {
+              background: lighten(rgba(blue, 0.3), 40%);
+              border: 1px solid rgba(blue, 0.3);
+            }
+          }
+
+          .details {
+            width: 100%;
+            line-height: 150%;
+            padding: 0;
+            color: $lcc-color--text-secondary;
+            white-space: pre-wrap;
+          }
+  
+          .created-and-edited {
+            font-size: $h6 !important;
+            font-weight: 100;
+            color: lighten($lcc-color--text-secondary, 10%);
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+}

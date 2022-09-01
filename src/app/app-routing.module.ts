@@ -1,23 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { UnsavedArticleGuard, UnsavedEventGuard, UnsavedMemberGuard } from '@app/guards';
 import { AboutScreenComponent } from '@app/screens/about';
-import {
-  ArticleEditorScreenComponent,
-  ArticleListScreenComponent,
-} from '@app/screens/articles';
+import { ArticleEditorScreenComponent } from '@app/screens/article-editor';
 import { ChampionScreenComponent } from '@app/screens/champion';
+import { EventEditorScreenComponent } from '@app/screens/event-editor';
 import { HomeScreenComponent } from '@app/screens/home';
 import { PhotoGalleryScreenComponent } from '@app/screens/photo-gallery';
 import { LoginScreenComponent } from '@app/screens/login';
-import {
-  MemberEditorScreenComponent,
-  MemberListScreenComponent,
-} from '@app/screens/members';
+import { MemberEditorScreenComponent } from '@app/screens/member-editor';
+import { MembersScreenComponent } from '@app/screens/members';
+import { NewsScreenComponent } from '@app/screens/news';
 import { ScheduleScreenComponent } from '@app/screens/schedule';
 import { SignUpScreenComponent } from '@app/screens/sign-up';
-import { UnsavedArticleGuard, UnsavedMemberGuard } from '@app/shared/guards';
-import { NavPathTypes } from '@app/shared/types';
+import { NavPathTypes } from '@app/types';
 
 const routes: Routes = [
   {
@@ -27,15 +24,15 @@ const routes: Routes = [
   },
   {
     path: NavPathTypes.MEMBERS,
-    component: MemberListScreenComponent,
+    component: MembersScreenComponent,
   },
   {
-    path: NavPathTypes.MEMBERS_ADD,
+    path: NavPathTypes.MEMBER_ADD,
     component: MemberEditorScreenComponent,
     canDeactivate: [UnsavedMemberGuard],
   },
   {
-    path: `${NavPathTypes.MEMBERS_EDIT}/:member_id`,
+    path: `${NavPathTypes.MEMBER_EDIT}/:member_id`,
     component: MemberEditorScreenComponent,
     canDeactivate: [UnsavedMemberGuard],
   },
@@ -44,16 +41,26 @@ const routes: Routes = [
     component: ScheduleScreenComponent,
   },
   {
-    path: NavPathTypes.NEWS,
-    component: ArticleListScreenComponent,
+    path: NavPathTypes.EVENT_ADD,
+    component: EventEditorScreenComponent,
+    canDeactivate: [UnsavedEventGuard],
   },
   {
-    path: NavPathTypes.NEWS_COMPOSE,
+    path: `${NavPathTypes.EVENT_EDIT}/:event_id`,
+    component: EventEditorScreenComponent,
+    canDeactivate: [UnsavedEventGuard],
+  },
+  {
+    path: NavPathTypes.NEWS,
+    component: NewsScreenComponent,
+  },
+  {
+    path: NavPathTypes.ARTICLE_ADD,
     component: ArticleEditorScreenComponent,
     canDeactivate: [UnsavedArticleGuard],
   },
   {
-    path: `${NavPathTypes.NEWS_EDIT}/:article_id`,
+    path: `${NavPathTypes.ARTICLE_EDIT}/:article_id`,
     component: ArticleEditorScreenComponent,
     canDeactivate: [UnsavedArticleGuard],
   },

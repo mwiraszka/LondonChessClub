@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { LoaderService } from '@app/shared/services';
+import { LoaderService } from '@app/services';
 
 import { LoginScreenFacade } from './login-screen.facade';
 

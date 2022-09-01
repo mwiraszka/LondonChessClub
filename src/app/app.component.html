@@ -7,8 +7,8 @@
 </ng-container>
 
 <div class="lcc-app-container">
-	<ng-container *ngIf="facade.showAlert$ | async">
-		<lcc-alert></lcc-alert>
+	<ng-container *ngIf="showAlert && (facade.nextEvent$ | async)">
+		<lcc-alert (close)="onCloseAlert()"></lcc-alert>
 	</ng-container>
 	<lcc-header></lcc-header>
 	<lcc-nav></lcc-nav>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { ImageOverlayActions } from '@app/shared/components/image-overlay';
+import { ImageOverlayActions } from '@app/store/image-overlay';
 
 @Injectable()
 export class PhotoGalleryScreenFacade {

@@ -7,6 +7,7 @@ export const environment = {
       'https://lgqi8xer38.execute-api.us-east-2.amazonaws.com/dev/articles/',
     membersEndpoint:
       'https://lgqi8xer38.execute-api.us-east-2.amazonaws.com/dev/members/',
+    scheduleEndpoint:
+      'https://lgqi8xer38.execute-api.us-east-2.amazonaws.com/dev/club-events/',
   },
-  signUpToken: 'londonsystem',
 };

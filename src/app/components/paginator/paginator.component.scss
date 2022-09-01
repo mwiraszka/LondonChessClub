@@ -1,0 +1,59 @@
+@import 'styles/abstracts/mixins';
+@import 'styles/abstracts/variables';
+
+:host {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  background: rgba($lcc-color--accent, 0.1);
+  border-radius: $lcc-border-radius-lg;
+  
+  padding: 4px 32px;
+  gap: 8px;
+}
+
+button {
+  padding: 3px;
+  color: lighten($lcc-color--black, 20%);
+
+  &:hover {
+    &:not([disabled]):not(.selected) {
+      box-shadow: 1px 1px 4px $lcc-color--gray;
+      color: $lcc-color--black !important;
+    }
+  }
+}
+
+.center-section {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 4px;
+  font-size: $h5;
+
+  padding: 0 12px;
+  @include respond-to('lt-sm') {
+    padding: 0 6px;
+  }
+
+  .center-section-buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 6px;
+
+    .center-section-button {
+      border: none;
+      font-size: $h5;
+      background: rgba($lcc-color--accent, 0.2) !important;
+
+      &.selected {
+        cursor: default;
+        background: $lcc-color--accent;
+        border: 1px solid rgba(lighten($lcc-color--black, 20%), 0.5);
+      }
+    }
+  }
+}

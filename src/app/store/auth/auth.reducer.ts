@@ -8,13 +8,21 @@ const authReducer = createReducer(
   on(AuthActions.loginSucceeded, (state, action) => ({
     ...state,
     user: action.user,
-    cognitoUserSession: action.cognitoUserSession,
+    session: action.session,
   })),
   on(AuthActions.logoutSucceeded, () => initialState),
   on(AuthActions.signUpSucceeded, (state, action) => ({
     ...state,
     user: action.user,
-    cognitoUserSession: action.cognitoUserSession,
+    session: action.session,
+  })),
+  on(AuthActions.codeForPasswordChangeSucceeded, (state) => ({
+    ...state,
+    user: { ...state.user, hasCode: true },
+  })),
+  on(AuthActions.codeForPasswordChangeFailed, (state) => ({
+    ...state,
+    user: { ...state.user, hasCode: false },
   }))
 );
 

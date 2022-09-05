@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -7,9 +7,8 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { ClarityIcons, exclamationTriangleIcon } from '@cds/core/icon';
-import { Subscription } from 'rxjs';
 
+import { PasswordChangeRequest } from '@app/types';
 import {
   hasLowercaseLetterValidator,
   hasNumberValidator,
@@ -17,52 +16,54 @@ import {
   hasUppercaseLetterValidator,
   matchingPasswordsValidator,
 } from '@app/validators';
+import { Subscription } from 'rxjs';
 
-import { SignUpScreenFacade } from './sign-up-screen.facade';
-
-const PASSWORD_VALIDATORS: ValidatorFn[] = [
-  Validators.required,
-  Validators.minLength(8),
-  hasLowercaseLetterValidator,
-  hasUppercaseLetterValidator,
-  hasSpecialCharValidator,
-  hasNumberValidator,
-];
+import { ChangePasswordFormFacade } from './change-password-form.facade';
 
 @Component({
-  selector: 'lcc-sign-up-screen',
-  templateUrl: './sign-up-screen.component.html',
-  styleUrls: ['./sign-up-screen.component.scss'],
-  providers: [SignUpScreenFacade],
+  selector: 'lcc-change-password-form',
+  templateUrl: './change-password-form.component.html',
+  styleUrls: ['./change-password-form.component.scss'],
+  providers: [ChangePasswordFormFacade],
 })
-export class SignUpScreenComponent implements OnInit, OnDestroy {
+export class ChangePasswordFormComponent implements OnInit {
   form!: FormGroup;
-  passwordChangesSub!: Subscription;
+  passwordValueChangeSubscription!: Subscription;
 
-  constructor(public facade: SignUpScreenFacade, private formBuilder: FormBuilder) {}
+  PASSWORD_VALIDATORS: ValidatorFn[] = [
+    Validators.required,
+    Validators.minLength(8),
+    hasLowercaseLetterValidator,
+    hasUppercaseLetterValidator,
+    hasSpecialCharValidator,
+    hasNumberValidator,
+  ];
+
+  constructor(
+    public facade: ChangePasswordFormFacade,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.initForm();
-    ClarityIcons.addIcons(exclamationTriangleIcon);
-  }
-
-  initForm(): void {
     this.form = this.formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
-      newPassword: new FormControl('', PASSWORD_VALIDATORS),
+      code: new FormControl('', [Validators.required, Validators.pattern(/\d{6}/)]),
+      newPassword: new FormControl('', this.PASSWORD_VALIDATORS),
       confirmPassword: new FormControl('', [
-        ...PASSWORD_VALIDATORS,
+        ...this.PASSWORD_VALIDATORS,
         matchingPasswordsValidator,
       ]),
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
     });
 
-    this.passwordChangesSub = this.form.controls['newPassword'].valueChanges.subscribe(
-      () => {
-        this.form.controls['confirmPassword'].updateValueAndValidity();
-      }
-    );
+    this.passwordValueChangeSubscription = this.form.controls[
+      'newPassword'
+    ].valueChanges.subscribe(() => {
+      this.form.controls['confirmPassword'].updateValueAndValidity();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.passwordValueChangeSubscription.unsubscribe();
   }
 
   hasError(control: AbstractControl): boolean {
@@ -74,6 +75,8 @@ export class SignUpScreenComponent implements OnInit, OnDestroy {
       return 'This field is required';
     } else if (control.errors.hasOwnProperty('email')) {
       return 'Invalid email';
+    } else if (control.errors.hasOwnProperty('pattern')) {
+      return 'Invalid input (incorrect format)';
     } else if (control.errors.hasOwnProperty('noLowercaseLetter')) {
       return 'Password needs to include at least one lowercase letter';
     } else if (control.errors.hasOwnProperty('noUppercaseLetter')) {
@@ -87,12 +90,16 @@ export class SignUpScreenComponent implements OnInit, OnDestroy {
     } else if (control.errors.hasOwnProperty('passwordMismatch')) {
       return "Passwords don't match";
     } else {
-      console.log('Could not recognize', control.errors);
       return 'Unknown error';
     }
   }
 
-  ngOnDestroy(): void {
-    this.passwordChangesSub.unsubscribe();
+  onSubmit(): void {
+    const request: PasswordChangeRequest = {
+      email: this.form.value['email'],
+      newPassword: this.form.value['password'],
+      code: this.form.value['code'].toString(),
+    };
+    this.facade.onSubmit(request);
   }
 }

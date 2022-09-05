@@ -1,7 +1,9 @@
-import { CognitoUser, CognitoUserSession } from 'amazon-cognito-identity-js';
+import { CognitoUserSession } from 'amazon-cognito-identity-js';
 
 export interface LoginResponse {
-  cognitoUser?: CognitoUser;
-  cognitoUserSession?: CognitoUserSession;
+  isVerified?: boolean;
+  firstName?: string;
+  email?: string;
+  session?: CognitoUserSession;
   error?: Error;
 }

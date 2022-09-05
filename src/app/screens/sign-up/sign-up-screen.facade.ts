@@ -8,11 +8,7 @@ import { SignUpRequest } from '@app/types';
 export class SignUpScreenFacade {
   constructor(private store: Store) {}
 
-  onAlreadyHaveAccount() {
-    this.store.dispatch(AuthActions.alreadyHaveAccountSelected());
-  }
-
-  onSignUp(signUpRequest: SignUpRequest) {
-    this.store.dispatch(AuthActions.signUpRequested({ signUpRequest }));
+  onSignUp(request: SignUpRequest) {
+    this.store.dispatch(AuthActions.signUpRequested({ request }));
   }
 }

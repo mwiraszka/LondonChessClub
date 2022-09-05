@@ -1,6 +1,6 @@
 export interface SignUpRequest {
   email: string;
-  password: string;
+  newPassword: string;
   firstName: string;
   lastName: string;
   phoneNumber: string;

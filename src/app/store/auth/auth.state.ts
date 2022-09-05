@@ -3,10 +3,10 @@ import { CognitoUserSession } from 'amazon-cognito-identity-js';
 
 export interface AuthState {
   user: User | null;
-  cognitoUserSession?: CognitoUserSession;
+  session?: CognitoUserSession;
 }
 
 export const initialState: AuthState = {
   user: null,
-  cognitoUserSession: null,
+  session: null,
 };

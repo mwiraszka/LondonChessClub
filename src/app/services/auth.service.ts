@@ -8,27 +8,43 @@ import {
 } from 'amazon-cognito-identity-js';
 import { Observable } from 'rxjs';
 
-import { LoginRequest, LoginResponse, SignUpRequest, SignUpResponse } from '@app/types';
+import {
+  LoginRequest,
+  LoginResponse,
+  PasswordChangeRequest,
+  PasswordChangeResponse,
+  SignUpRequest,
+  SignUpResponse,
+} from '@app/types';
 import { environment } from '@environments/environment';
-
-const userPool = new CognitoUserPool({
-  UserPoolId: environment.cognito.userPoolId,
-  ClientId: environment.cognito.clientId,
-});
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  getAuthenticatedUser(): CognitoUser {
-    return userPool.getCurrentUser();
+  userPool(): CognitoUserPool {
+    return new CognitoUserPool({
+      UserPoolId: environment.cognito.userPoolId,
+      ClientId: environment.cognito.clientId,
+    });
   }
 
-  getToken(): Observable<string> {
+  currentUser(): CognitoUser {
+    return this.userPool().getCurrentUser();
+  }
+
+  userByEmail(email: string): CognitoUser {
+    return new CognitoUser({
+      Username: email,
+      Pool: this.userPool(),
+    });
+  }
+
+  token(): Observable<string> {
     return new Observable<string>((observer) => {
-      this.getAuthenticatedUser().getSession((err, session) => {
-        if (err) {
-          observer.error(err);
+      this.currentUser()?.getSession((error, session) => {
+        if (error) {
+          observer.error(error);
           return;
         }
         observer.next(session.getIdToken().getJwtToken());
@@ -39,21 +55,25 @@ export class AuthService {
 
   isAuthenticated(): Observable<boolean> {
     return new Observable<boolean>((observer) => {
-      this.getAuthenticatedUser().getSession((err, session) => {
+      this.currentUser()?.getSession((error, session) => {
+        if (error) {
+          observer.error(error);
+          return;
+        }
         observer.next(session?.isValid());
         observer.complete();
       });
     });
   }
 
-  signUp(signUpRequest: SignUpRequest): Observable<SignUpResponse> {
+  signUp(request: SignUpRequest): Observable<SignUpResponse> {
     const givenNameAttribute = new CognitoUserAttribute({
       Name: 'given_name',
-      Value: signUpRequest.firstName,
+      Value: request.firstName,
     });
     const familyNameAttribute = new CognitoUserAttribute({
       Name: 'family_name',
-      Value: signUpRequest.lastName,
+      Value: request.lastName,
     });
     const attributeList: CognitoUserAttribute[] = [
       givenNameAttribute,
@@ -61,16 +81,16 @@ export class AuthService {
     ];
 
     return new Observable<SignUpResponse>((observer) => {
-      userPool.signUp(
-        signUpRequest.email,
-        signUpRequest.password,
+      this.userPool().signUp(
+        request.email,
+        request.newPassword,
         attributeList,
         null,
         (err, result) => {
           if (err) {
             observer.next({ error: err });
           } else {
-            observer.next({ cognitoUser: result.user });
+            observer.next({ user: result.user });
             observer.complete();
           }
         }
@@ -78,33 +98,90 @@ export class AuthService {
     });
   }
 
-  logIn(loginRequest: LoginRequest): Observable<LoginResponse> {
+  logIn(request: LoginRequest): Observable<LoginResponse> {
     const authDetails = new AuthenticationDetails({
-      Username: loginRequest.email,
-      Password: loginRequest.password,
-    });
-
-    const cognitoUser = new CognitoUser({
-      Username: loginRequest.email,
-      Pool: userPool,
+      Username: request.email,
+      Password: request.password,
     });
 
     return new Observable<LoginResponse>((observer) => {
-      cognitoUser.authenticateUser(authDetails, {
-        onSuccess(cognitoUserSession: CognitoUserSession) {
-          // TODO: need to add user data ('cognitoUser') to this observer's emission
-          observer.next({ cognitoUserSession });
+      this.userByEmail(request.email).authenticateUser(authDetails, {
+        onSuccess(session: CognitoUserSession) {
+          observer.next({ isVerified: true, email: request.email, session });
           observer.complete();
         },
         onFailure(err) {
-          observer.next({ error: err });
+          if (`${err}` === 'UserNotConfirmedException: User is not confirmed.') {
+            observer.next({ isVerified: false, email: request.email });
+            observer.complete();
+          }
+
+          let errorMessage: string;
+          switch (`${err}`) {
+            case 'NotAuthorizedException: Incorrect username or password.':
+              errorMessage = '[Auth] Incorrect username or password';
+              break;
+            case 'NotAuthorizedException: Password attempts exceeded':
+              errorMessage = '[Auth] Password attempt limit exceeded';
+              break;
+            case 'CodeMismatchException: Invalid verification code provided, please try again.':
+              errorMessage = '[Auth] Invalid verification code';
+              break;
+            default:
+              errorMessage = `[Auth] ${err}`;
+          }
+          observer.next({ error: new Error(errorMessage) });
         },
       });
     });
   }
 
   logOut(): void {
-    this.getAuthenticatedUser().signOut();
+    this.currentUser()?.signOut();
+  }
+
+  sendChangePasswordCode(email: string): Observable<PasswordChangeResponse> {
+    return new Observable<PasswordChangeResponse>((observer) => {
+      this.userByEmail(email).forgotPassword({
+        onSuccess(data: string) {
+          observer.next();
+          observer.complete();
+        },
+        onFailure(err) {
+          let errorMessage: string;
+          switch (`${err}`) {
+            case 'LimitExceededException: Attempt limit exceeded, please try after some time.':
+              errorMessage = '[Auth] Code attempt limit reached; please try again later';
+              break;
+            default:
+              errorMessage = `[Auth] ${err}`;
+          }
+          observer.next({ error: new Error(errorMessage) });
+        },
+      });
+    });
+  }
+
+  changePassword(request: PasswordChangeRequest): Observable<PasswordChangeResponse> {
+    return new Observable<PasswordChangeResponse>((observer) => {
+      this.userByEmail(request.email).confirmPassword(request.code, request.newPassword, {
+        onSuccess(success: string) {
+          observer.next(null);
+          observer.complete();
+        },
+        onFailure(err) {
+          let errorMessage: string;
+          switch (`${err}`) {
+            case 'CodeMismatchException: Invalid verification code provided, please try again.':
+              errorMessage = '[Auth] Invalid verification code';
+              break;
+            default:
+              errorMessage = `[Auth] ${err}`;
+          }
+          observer.next({ error: new Error(errorMessage) });
+        },
+      });
+    });
   }
 
   resendVerificationLink(): void {
@@ -112,6 +189,6 @@ export class AuthService {
      * Configured in AWS to only send email to the user (no SMS);
      * Note: no callback function configured - it's simply assumed that this email gets sent
      */
-    this.getAuthenticatedUser().resendConfirmationCode(() => null);
+    this.currentUser()?.resendConfirmationCode(() => null);
   }
 }

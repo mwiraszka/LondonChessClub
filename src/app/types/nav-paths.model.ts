@@ -13,5 +13,6 @@ export enum NavPathTypes {
   PHOTO_GALLERY = 'photo-gallery',
   ABOUT = 'about',
   LOGIN = 'login',
+  CHANGE_PASSWORD = 'change-password',
   SIGN_UP = 'signup',
 }

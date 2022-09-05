@@ -42,7 +42,7 @@ export class ScheduleService {
       details: eventToAdd.details.replaceAll('\n', '\\n'),
     };
 
-    return this.authService.getToken().pipe(
+    return this.authService.token().pipe(
       switchMap((token) =>
         this.http.post<null>(API_ENDPOINT, eventToAdd, {
           headers: new HttpHeaders({
@@ -56,7 +56,7 @@ export class ScheduleService {
   }
 
   updateEvent(eventToUpdate: ClubEvent): Observable<ServiceResponse> {
-    return this.authService.getToken().pipe(
+    return this.authService.token().pipe(
       switchMap((token) =>
         this.http.put<null>(API_ENDPOINT + eventToUpdate.id, eventToUpdate, {
           headers: new HttpHeaders({
@@ -70,7 +70,7 @@ export class ScheduleService {
   }
 
   deleteEvent(eventToDelete: ClubEvent): Observable<ServiceResponse> {
-    return this.authService.getToken().pipe(
+    return this.authService.token().pipe(
       switchMap((token) =>
         this.http.delete<null>(API_ENDPOINT + eventToDelete.id, {
           headers: new HttpHeaders({

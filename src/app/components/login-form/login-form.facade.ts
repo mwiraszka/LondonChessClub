@@ -5,15 +5,11 @@ import { AuthActions } from '@app/store/auth';
 import { LoginRequest } from '@app/types';
 
 @Injectable()
-export class LoginScreenFacade {
+export class LoginFormFacade {
   constructor(private store: Store) {}
 
-  onLogin(loginRequest: LoginRequest) {
-    this.store.dispatch(AuthActions.loginRequested({ loginRequest }));
-  }
-
-  onDontHaveAccount() {
-    this.store.dispatch(AuthActions.dontHaveAccountSelected());
+  onLogin(request: LoginRequest) {
+    this.store.dispatch(AuthActions.loginRequested({ request }));
   }
 
   onForgotPassword() {

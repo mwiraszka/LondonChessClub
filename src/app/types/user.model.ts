@@ -1,11 +1,8 @@
-export enum UserRoleTypes {
-  DEFAULT,
-  ADMIN,
-}
-
 export interface User {
-  id: string;
-  email: string;
-  isVerified: boolean;
-  role: UserRoleTypes.DEFAULT | UserRoleTypes.ADMIN;
+  id?: string;
+  firstName?: string;
+  email?: string;
+  isVerified?: boolean;
+  hasCode?: boolean;
+  role?: 'admin' | 'default';
 }

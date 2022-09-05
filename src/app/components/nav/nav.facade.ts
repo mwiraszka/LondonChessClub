@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { fromEvent, of, Subscription } from 'rxjs';
 import { filter, withLatestFrom } from 'rxjs/operators';
 
-import { AuthSelectors } from '@app/store/auth';
+import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { NavActions, NavSelectors } from '@app/store/nav';
 
 @Injectable()
@@ -74,12 +74,16 @@ export class NavFacade implements OnDestroy {
     this.store.dispatch(NavActions.dropdownClosed());
   }
 
-  onLogOut(): void {
-    this.store.dispatch(NavActions.logOutSelected());
+  onChangePassword(): void {
+    this.store.dispatch(NavActions.changePasswordNavigationRequested());
   }
 
-  onResendValidationEmail(): void {
-    this.store.dispatch(NavActions.resendVerificationLinkSelected());
+  onResendVerificationLink(): void {
+    this.store.dispatch(AuthActions.resendVerificationLinkRequested());
+  }
+
+  onLogOut(): void {
+    this.store.dispatch(AuthActions.logoutRequested());
   }
 
   ngOnDestroy(): void {

@@ -116,12 +116,14 @@
 						</cds-icon>
 					</div>
 				</li>
-				<li class="ddcomp"
-						*ngIf="!(facade.isUserVerified$ | async)"
-						(click)="facade.onResendValidationEmail()">
+				<li (click)="facade.onChangePassword()">
+					Change password
+				</li>
+				<li *ngIf="!(facade.isUserVerified$ | async)"
+						(click)="facade.onResendVerificationLink()">
 					Resend verification link
 				</li>
-				<li class="last-item ddcomp"
+				<li class="last-item"
 						(click)="facade.onLogOut()">
 					Log out
 				</li>

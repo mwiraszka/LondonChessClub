@@ -1,4 +1,4 @@
-export { confirmPasswordValidator } from './confirm-password.validator';
+export { matchingPasswordsValidator } from './matching-passwords.validator';
 export { dateValidator } from './date.validator';
 export { emailValidator } from './email.validator';
 export { hasLowercaseLetterValidator } from './has-lowercase-letter.validator';

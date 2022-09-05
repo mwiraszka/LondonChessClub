@@ -16,7 +16,6 @@ import { HeaderModule } from '@app/components/header';
 import { ImageOverlayModule } from '@app/components/image-overlay';
 import { ModalModule } from '@app/components/modal';
 import { NavModule } from '@app/components/nav';
-import { ToastModule } from '@app/components/toast';
 import { ToasterModule } from '@app/components/toaster';
 import { ScreensModule } from '@app/screens/screens.module';
 import { metaReducers } from '@app/store';
@@ -67,7 +66,6 @@ import { AppComponent } from './app.component';
       maxAge: 25,
       logOnly: environment.production,
     }),
-    ToastModule,
     ToasterModule,
     ToasterStoreModule,
   ],

@@ -12,14 +12,6 @@ const navReducer = createReducer(
   on(NavActions.dropdownClosed, (state) => ({
     ...state,
     isDropdownOpen: false,
-  })),
-  on(NavActions.logOutSelected, (state) => ({
-    ...state,
-    isDropdownOpen: false,
-  })),
-  on(NavActions.resendVerificationLinkSelected, (state) => ({
-    ...state,
-    isDropdownOpen: false,
   }))
 );
 

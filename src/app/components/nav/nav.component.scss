@@ -127,6 +127,7 @@ $dropdown-list-width: 120px;
       border-top: 2px solid darken($lcc-color--bg-main, 10%);
       margin-top: 2px;
       font-size: $h5;
+      background-color: darken($lcc-color--bg-main, 5%);
 
       // hacky way to keep dropdown items directly below tab on all viewport widths
       top: 30px;
@@ -137,6 +138,7 @@ $dropdown-list-width: 120px;
       li {
         color: $lcc-color--text-primary-white;
         padding: 6px;
+        margin: 1px 0;
 
         &.login-welcome {
           display: flex !important; // must override lcc-gt-md class default

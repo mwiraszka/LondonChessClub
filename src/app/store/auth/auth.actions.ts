@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { LoginRequest, SignUpRequest, User } from '@app/types';
+import { LoginRequest, PasswordChangeRequest, SignUpRequest, User } from '@app/types';
 
 import { CognitoUserSession } from 'amazon-cognito-identity-js';
 
@@ -13,57 +13,79 @@ enum AuthActionTypes {
   SIGN_UP_SUCCEEDED = '[Auth] Sign up succeeded',
   SIGN_UP_FAILED = '[Auth] Sign up failed',
 
+  LOGOUT_REQUESTED = '[Auth] Logout requested',
   LOGOUT_SUCCEEDED = '[Auth] Logout succeeded',
 
-  ALREADY_HAVE_ACCOUNT_SELECTED = '[Auth] Already have account selected',
-  DONT_HAVE_ACCOUNT_SELECTED = "[Auth] Don't have account selected",
-  FORGOT_PASSWORD_SELECTED = '[Auth] Forgot password selected',
+  RESEND_VERIFICATION_LINK_REQUESTED = '[Auth] Resend verification link requested',
   RESEND_VERIFICATION_LINK_SUCCEEDED = '[Auth] Resend verification link succeeded',
+
+  FORGOT_PASSWORD_SELECTED = '[Auth] Forgot password selected',
+  CODE_FOR_PASSWORD_CHANGE_REQUESTED = '[Auth] Code for password change requested',
+  CODE_FOR_PASSWORD_CHANGE_SUCCEEDED = '[Auth] Code for password change succeeded',
+  CODE_FOR_PASSWORD_CHANGE_FAILED = '[Auth] Code for password change failed',
+  PASSWORD_CHANGE_REQUESTED = '[Auth] Password change requested',
+  PASSWORD_CHANGE_SUCCEEDED = '[Auth] Password change succeeded',
+  PASSWORD_CHANGE_FAILED = '[Auth] Password change failed',
 }
 
 export const loginRequested = createAction(
   AuthActionTypes.LOGIN_REQUESTED,
-  props<{ loginRequest: LoginRequest }>()
+  props<{ request: LoginRequest }>()
 );
 export const loginSucceeded = createAction(
   AuthActionTypes.LOGIN_SUCCEEDED,
-  props<{ user: User; cognitoUserSession: CognitoUserSession }>()
+  props<{ user: User; session: CognitoUserSession }>()
 );
 export const loginFailed = createAction(
   AuthActionTypes.LOGIN_FAILED,
-  props<{ errorMessage: string }>()
+  props<{ error: Error }>()
 );
 
 export const signUpRequested = createAction(
   AuthActionTypes.SIGN_UP_REQUESTED,
-  props<{ signUpRequest: SignUpRequest }>()
+  props<{ request: SignUpRequest }>()
 );
 export const signUpSucceeded = createAction(
   AuthActionTypes.SIGN_UP_SUCCEEDED,
-  props<{ user: User; cognitoUserSession: CognitoUserSession }>()
+  props<{ user: User; session: CognitoUserSession }>()
 );
 export const signUpFailed = createAction(
   AuthActionTypes.SIGN_UP_FAILED,
-  props<{ errorMessage: string }>()
+  props<{ error: Error }>()
 );
 
+export const logoutRequested = createAction(AuthActionTypes.LOGOUT_REQUESTED);
 export const logoutSucceeded = createAction(AuthActionTypes.LOGOUT_SUCCEEDED);
 
-// WIP - not implemented yet
-export const alreadyHaveAccountSelected = createAction(
-  AuthActionTypes.ALREADY_HAVE_ACCOUNT_SELECTED
+export const resendVerificationLinkRequested = createAction(
+  AuthActionTypes.RESEND_VERIFICATION_LINK_REQUESTED
+);
+export const resendVerificationLinkSucceeded = createAction(
+  AuthActionTypes.RESEND_VERIFICATION_LINK_SUCCEEDED
 );
 
-// WIP - not implemented yet
-export const dontHaveAccountSelected = createAction(
-  AuthActionTypes.DONT_HAVE_ACCOUNT_SELECTED
-);
-
-// WIP - not implemented yet
 export const forgotPasswordSelected = createAction(
   AuthActionTypes.FORGOT_PASSWORD_SELECTED
 );
-
-export const resendVerificationLinkSucceeded = createAction(
-  AuthActionTypes.RESEND_VERIFICATION_LINK_SUCCEEDED
+export const codeForPasswordChangeRequested = createAction(
+  AuthActionTypes.CODE_FOR_PASSWORD_CHANGE_REQUESTED,
+  props<{ email: string }>()
+);
+export const codeForPasswordChangeSucceeded = createAction(
+  AuthActionTypes.CODE_FOR_PASSWORD_CHANGE_SUCCEEDED
+);
+export const codeForPasswordChangeFailed = createAction(
+  AuthActionTypes.CODE_FOR_PASSWORD_CHANGE_FAILED,
+  props<{ error: Error }>()
+);
+export const passwordChangeRequested = createAction(
+  AuthActionTypes.PASSWORD_CHANGE_REQUESTED,
+  props<{ request: PasswordChangeRequest }>()
+);
+export const passwordChangeSucceeded = createAction(
+  AuthActionTypes.PASSWORD_CHANGE_SUCCEEDED
+);
+export const passwordChangeFailed = createAction(
+  AuthActionTypes.PASSWORD_CHANGE_FAILED,
+  props<{ error: Error }>()
 );

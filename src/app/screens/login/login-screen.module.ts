@@ -1,22 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 
+import { LoginFormModule } from '@app/components/login-form';
 import { ScreenHeaderModule } from '@app/components/screen-header';
-import { TooltipModule } from '@app/components/tooltip';
 
 import { LoginScreenComponent } from './login-screen.component';
 @NgModule({
   declarations: [LoginScreenComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    ScreenHeaderModule,
-    TooltipModule,
-  ],
+  imports: [CommonModule, LoginFormModule, ScreenHeaderModule],
   exports: [LoginScreenComponent],
 })
 export class LoginScreenModule {}

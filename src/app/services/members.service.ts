@@ -16,7 +16,7 @@ export class MembersService {
   constructor(private authService: AuthService, private http: HttpClient) {}
 
   getMember(id: string): Observable<ServiceResponse> {
-    return this.authService.getToken().pipe(
+    return this.authService.token().pipe(
       switchMap((token) =>
         this.http.get<Member>(API_ENDPOINT + id, {
           headers: new HttpHeaders({
@@ -31,7 +31,7 @@ export class MembersService {
 
   getMembers(isAdmin: boolean): Observable<ServiceResponse> {
     if (isAdmin) {
-      return this.authService.getToken().pipe(
+      return this.authService.token().pipe(
         switchMap((token) =>
           this.http.get<Member[]>(API_ENDPOINT, {
             headers: new HttpHeaders({
@@ -56,7 +56,7 @@ export class MembersService {
   }
 
   addMember(memberToAdd: Member): Observable<ServiceResponse> {
-    return this.authService.getToken().pipe(
+    return this.authService.token().pipe(
       switchMap((token) =>
         this.http.post<null>(API_ENDPOINT, memberToAdd, {
           headers: new HttpHeaders({
@@ -70,7 +70,7 @@ export class MembersService {
   }
 
   updateMember(memberToUpdate: Member): Observable<ServiceResponse> {
-    return this.authService.getToken().pipe(
+    return this.authService.token().pipe(
       switchMap((token) =>
         this.http.put<null>(API_ENDPOINT + memberToUpdate.id, memberToUpdate, {
           headers: new HttpHeaders({
@@ -84,7 +84,7 @@ export class MembersService {
   }
 
   deleteMember(memberToDelete: Member): Observable<ServiceResponse> {
-    return this.authService.getToken().pipe(
+    return this.authService.token().pipe(
       switchMap((token) =>
         this.http.delete<null>(API_ENDPOINT + memberToDelete.id, {
           headers: new HttpHeaders({

@@ -19,7 +19,9 @@ export class NavEffects {
         ofType(
           NavActions.homeNavigationRequested,
           MembersActions.addMemberSucceeded,
-          MembersActions.updateMemberSucceeded
+          MembersActions.updateMemberSucceeded,
+          AuthActions.loginSucceeded,
+          AuthActions.passwordChangeSucceeded
         ),
         tap(() => this.router.navigate([NavPathTypes.HOME]))
       ),
@@ -158,22 +160,17 @@ export class NavEffects {
   navigateToLogin$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(
-          NavActions.loginNavigationRequested,
-          NavActions.logOutSelected,
-          AuthActions.alreadyHaveAccountSelected,
-          AuthActions.logoutSucceeded
-        ),
+        ofType(NavActions.loginNavigationRequested, AuthActions.logoutSucceeded),
         tap(() => this.router.navigate([NavPathTypes.LOGIN]))
       ),
     { dispatch: false }
   );
 
-  navigateToSignUp$ = createEffect(
+  navigateToChangePassword$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(AuthActions.dontHaveAccountSelected),
-        tap(() => this.router.navigate([NavPathTypes.SIGN_UP]))
+        ofType(NavActions.changePasswordNavigationRequested),
+        tap(() => this.router.navigate([NavPathTypes.CHANGE_PASSWORD]))
       ),
     { dispatch: false }
   );

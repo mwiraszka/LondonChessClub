@@ -19,17 +19,17 @@
 				</cds-icon>
 			</div>
 
-			<label for="password-input">Password:</label>
-			<input id="password-input"
+			<label for="new-password-input">New Password:</label>
+			<input id="new-password-input"
 						 type="password"
-						 name="password"
-						 formControlName="password" />
+						 name="new-password"
+						 formControlName="newPassword" />
 			<div class="lcc-form-error-container">
-				<cds-icon *ngIf="hasError(form.controls['password'])"
+				<cds-icon *ngIf="hasError(form.controls['newPassword'])"
 									class="lcc-form-error-icon"
 									shape="exclamation-triangle"
 									size="md"
-									[tooltip]="getErrorMessage(form.controls['password'])">
+									[tooltip]="getErrorMessage(form.controls['newPassword'])">
 				</cds-icon>
 			</div>
 
@@ -76,63 +76,13 @@
 									[tooltip]="getErrorMessage(form.controls['lastName'])">
 				</cds-icon>
 			</div>
-
-			<label for="year-of-birth-input">Date of birth:<em>(optional)</em></label>
-			<input id="year-of-birth-input"
-						 type="text"
-						 name="year-of-birth"
-						 formControlName="yearOfBirth" />
-			<div class="lcc-form-error-container">
-				<cds-icon *ngIf="hasError(form.controls['yearOfBirth'])"
-									class="lcc-form-error-icon"
-									shape="exclamation-triangle"
-									size="md"
-									[tooltip]="getErrorMessage(form.controls['yearOfBirth'])">
-				</cds-icon>
+			<div class="lcc-form-buttons-container">
+				<button class="lcc-primary-button"
+								type="submit"
+								[disabled]="form.invalid">
+					Sign up
+				</button>
 			</div>
-
-			<label for="phone-number-input">Phone number:</label>
-			<input id="phone-number-input"
-						 type="text"
-						 name="phone-number"
-						 formControlName="phoneNumber" />
-			<div class="lcc-form-error-container">
-				<cds-icon *ngIf="hasError(form.controls['phoneNumber'])"
-									class="lcc-form-error-icon"
-									shape="exclamation-triangle"
-									size="md"
-									[tooltip]="getErrorMessage(form.controls['phoneNumber'])">
-				</cds-icon>
-			</div>
-
-			<label for="city-input">City:</label>
-			<input id="city-input"
-						 type="text"
-						 name="city"
-						 formControlName="city" />
-			<div class="lcc-form-error-container">
-				<cds-icon *ngIf="hasError(form.controls['city'])"
-									class="lcc-form-error-icon"
-									shape="exclamation-triangle"
-									size="md"
-									[tooltip]="getErrorMessage(form.controls['city'])">
-				</cds-icon>
-			</div>
-		</div>
-
-		<div class="lcc-form-buttons-container">
-			<button class="lcc-primary-button"
-							type="submit"
-							[disabled]="form.invalid">
-				Sign up
-			</button>
-		</div>
-
-		<div class="lcc-form-links-container">
-			<a class="lcc-form-link"
-				 (click)="facade.onAlreadyHaveAccount()">
-				Already have an account?
-			</a>
 		</div>
 	</form>
 </div>

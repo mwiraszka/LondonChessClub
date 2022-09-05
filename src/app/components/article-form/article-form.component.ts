@@ -5,7 +5,7 @@ import { debounceTime, first, tap } from 'rxjs/operators';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoaderService } from '@app/services';
 import { Article } from '@app/types';
-import { dateValidator, mimeTypeValidator } from '@app/validators';
+import { mimeTypeValidator } from '@app/validators';
 
 import { ArticleFormFacade } from './article-form.facade';
 

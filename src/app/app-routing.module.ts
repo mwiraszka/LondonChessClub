@@ -5,6 +5,7 @@ import { UnsavedArticleGuard, UnsavedEventGuard, UnsavedMemberGuard } from '@app
 import { AboutScreenComponent } from '@app/screens/about';
 import { ArticleEditorScreenComponent } from '@app/screens/article-editor';
 import { ChampionScreenComponent } from '@app/screens/champion';
+import { ChangePasswordScreenComponent } from '@app/screens/change-password';
 import { EventEditorScreenComponent } from '@app/screens/event-editor';
 import { HomeScreenComponent } from '@app/screens/home';
 import { PhotoGalleryScreenComponent } from '@app/screens/photo-gallery';
@@ -79,6 +80,10 @@ const routes: Routes = [
   {
     path: NavPathTypes.LOGIN,
     component: LoginScreenComponent,
+  },
+  {
+    path: NavPathTypes.CHANGE_PASSWORD,
+    component: ChangePasswordScreenComponent,
   },
   {
     path: NavPathTypes.SIGN_UP,

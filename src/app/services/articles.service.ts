@@ -31,7 +31,7 @@ export class ArticlesService {
   }
 
   addArticle(articleToAdd: Article): Observable<ServiceResponse> {
-    return this.authService.getToken().pipe(
+    return this.authService.token().pipe(
       switchMap((token) =>
         this.http.post<any>(API_ENDPOINT, articleToAdd, {
           headers: new HttpHeaders({
@@ -45,7 +45,7 @@ export class ArticlesService {
   }
 
   updateArticle(articleToUpdate: Article): Observable<ServiceResponse> {
-    return this.authService.getToken().pipe(
+    return this.authService.token().pipe(
       switchMap((token) =>
         this.http.put<null>(API_ENDPOINT + articleToUpdate.id, articleToUpdate, {
           headers: new HttpHeaders({
@@ -59,7 +59,7 @@ export class ArticlesService {
   }
 
   deleteArticle(articleToDelete: Article): Observable<ServiceResponse> {
-    return this.authService.getToken().pipe(
+    return this.authService.token().pipe(
       switchMap((token) =>
         this.http.delete<null>(API_ENDPOINT + articleToDelete.id, {
           headers: new HttpHeaders({

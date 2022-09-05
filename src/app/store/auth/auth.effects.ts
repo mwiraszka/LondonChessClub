@@ -3,9 +3,8 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
-import { AuthService } from '@app/services/auth.service';
-import { LoginResponse, SignUpResponse, User, UserRoleTypes } from '@app/types';
-import { NavActions } from '@app/store/nav';
+import { AuthService } from '@app/services';
+import { LoginResponse, SignUpResponse, User } from '@app/types';
 
 import * as AuthActions from './auth.actions';
 
@@ -14,28 +13,27 @@ export class AuthEffects {
   logIn$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.loginRequested),
-      switchMap(({ loginRequest }) => {
-        return this.authService.logIn(loginRequest).pipe(
-          map((loginResponse: LoginResponse) => {
-            /**
-             * TODO: need to find a way to get real user data using the
-             * tokens received from the loginResponse object
-             */
+      switchMap(({ request }) => {
+        return this.authService.logIn(request).pipe(
+          map((response: LoginResponse) => {
             const user: User = {
               id: 'test-3nfo13-1j3nf',
-              email: 'michal@test.com*',
-              role: UserRoleTypes.ADMIN,
-              isVerified: true,
+              firstName: response?.firstName,
+              email: response?.email,
+              isVerified: response?.isVerified,
+              role: 'admin',
             };
-            return AuthActions.loginSucceeded({
-              user,
-              cognitoUserSession: loginResponse.cognitoUserSession,
-            });
+            return response?.error
+              ? AuthActions.loginFailed({ error: response.error })
+              : AuthActions.loginSucceeded({
+                  user,
+                  session: response.session,
+                });
           }),
           catchError(() =>
             of(
               AuthActions.loginFailed({
-                errorMessage: '[Auth Effects] Unknown sign-up error',
+                error: new Error('[Auth Effects] Unknown login error'),
               })
             )
           )
@@ -46,7 +44,7 @@ export class AuthEffects {
 
   logOut$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(NavActions.logOutSelected),
+      ofType(AuthActions.logoutRequested),
       map(() => {
         this.authService.logOut();
         return AuthActions.logoutSucceeded();
@@ -57,24 +55,70 @@ export class AuthEffects {
   signUp$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.signUpRequested),
-      switchMap(({ signUpRequest }) => {
-        return this.authService.signUp(signUpRequest).pipe(
-          map((signUpResponse: SignUpResponse) => {
+      switchMap(({ request }) => {
+        return this.authService.signUp(request).pipe(
+          map((response: SignUpResponse) => {
             const user: User = {
               id: 'test-3nfo13-1j3nf',
               email: 'michal@test.com*',
-              role: UserRoleTypes.ADMIN,
-              isVerified: true,
+              role: 'admin',
+              isVerified: false,
             };
             return AuthActions.signUpSucceeded({
               user,
-              cognitoUserSession: signUpResponse.cognitoUserSession,
+              session: response.session,
             });
           }),
           catchError(() =>
             of(
               AuthActions.signUpFailed({
-                errorMessage: '[Auth Effects] Unknown sign-up error',
+                error: new Error('[Auth Effects] Unknown sign-up error'),
+              })
+            )
+          )
+        );
+      })
+    )
+  );
+
+  requestPasswordChangeCode$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.codeForPasswordChangeRequested),
+      switchMap(({ email }) => {
+        return this.authService.sendChangePasswordCode(email).pipe(
+          map((response) => {
+            return response?.error
+              ? AuthActions.codeForPasswordChangeFailed({ error: response.error })
+              : AuthActions.codeForPasswordChangeSucceeded();
+          }),
+          catchError(() =>
+            of(
+              AuthActions.codeForPasswordChangeFailed({
+                error: new Error(
+                  '[Auth] Unknown error attempting to send password change request'
+                ),
+              })
+            )
+          )
+        );
+      })
+    )
+  );
+
+  changePassword$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.passwordChangeRequested),
+      switchMap(({ request }) => {
+        return this.authService.changePassword(request).pipe(
+          map((response) => {
+            return response?.error
+              ? AuthActions.passwordChangeFailed({ error: response.error })
+              : AuthActions.passwordChangeSucceeded();
+          }),
+          catchError(() =>
+            of(
+              AuthActions.passwordChangeFailed({
+                error: new Error('[Auth] Unknown password change error'),
               })
             )
           )
@@ -85,7 +129,7 @@ export class AuthEffects {
 
   resendVerificationLink$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(NavActions.resendVerificationLinkSelected),
+      ofType(AuthActions.resendVerificationLinkRequested),
       map(() => {
         /**
          * Configured in AWS to only send email to the user (no SMS);

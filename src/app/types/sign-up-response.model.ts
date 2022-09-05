@@ -1,7 +1,7 @@
 import { CognitoUser, CognitoUserSession } from 'amazon-cognito-identity-js';
 
 export interface SignUpResponse {
-  cognitoUser?: CognitoUser;
-  cognitoUserSession?: CognitoUserSession;
+  user?: CognitoUser;
+  session?: CognitoUserSession;
   error?: Error;
 }

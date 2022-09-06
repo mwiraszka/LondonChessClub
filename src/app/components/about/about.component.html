@@ -1,24 +1,28 @@
 <div class="lcc-canvas meet-details-container">
 	<img src="assets/lcc-branding.svg"
 			 alt="LCC branding" />
-	<p class="h4 meet-details">
-		Kiwanis Seniors' Community Centre<br />
-		78 Riverside Drive<br />
-		<span class="meet-time">Thursdays, 6:00pm&ndash;9:00pm</span>
-	</p>
+	<div class="h4 meet-details">
+		<div class="meet-address">
+			Kiwanis Seniors' Community Centre<br />
+			78 Riverside Drive
+		</div>
+		<div class="meet-time">Thursdays,<wbr> 6:00pm&ndash;9:00pm</div>
+	</div>
 </div>
+
 <hr />
-<p>
+
+<p class="welcome">
 	The London Chess Club is dedicated to players of all ages and abilities. We hold
 	regular blitz and rapid tournaments on-site, with occasional lectures and simul
 	events (see
 	<a class="lcc-link"
 		 [routerLink]="NavPathTypes.SCHEDULE"
 		 (click)="onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
-	for upcoming events). Come join our thriving chess community
-	&mdash; first visit is free!
+	for upcoming events). Join our thriving chess community every Thursday evening at the
+	Kiwanis Centre. Your first visit is free!
 </p>
-<p>
+<p class="email-us">
 	Have any questions or suggestions? Email us at
 	<a href="mailto:londonchessclubcanada@gmail.com"
 		 class="lcc-link"

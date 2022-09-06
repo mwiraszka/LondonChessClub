@@ -3,9 +3,21 @@
 
 :host {
   display: flex;
+  flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
 }
+
+  lcc-screen-header {
+    @include respond-to('lt-sm') {
+      font-size: $h4;
+    }
+
+    @include respond-to('lt-xs') {
+      font-size: calc(#{$h4} - 1px);
+    }
+  }
+
 
 section {
   grid-template-columns: 1fr 1fr;
@@ -17,7 +29,7 @@ section {
     'grid-item-8 grid-item-8';
 
   @include respond-to('lt-md') {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
       'grid-item-1'
       'grid-item-2'
@@ -31,7 +43,7 @@ section {
 
   article {
     h4 {
-      margin: 10px 0 !important;
+      margin-top: 8px !important;
       text-align: center;
     }
 
@@ -50,9 +62,9 @@ section {
     -moz-columns: 2;
 
     @include respond-to('lt-md') {
-      columns: 1;
-      -webkit-columns: 1;
-      -moz-columns: 1;
+      columns: 1 !important;
+      -webkit-columns: 1 !important;
+      -moz-columns: 1 !important;
     }
   }
 }

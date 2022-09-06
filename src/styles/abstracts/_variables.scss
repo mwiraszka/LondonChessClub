@@ -1,6 +1,6 @@
 /* LCC custom color palette */
 $lcc-color--primary: hsl(210, 40%, 40%);
-$lcc-color--accent: hsl(101, 33%, 44%);
+$lcc-color--accent: hsl(218, 10%, 44%);
 $lcc-color--success: hsl(100, 50%, 40%);
 $lcc-color--warning: hsl(0, 90%, 60%);
 $lcc-color--info: hsl(210, 60%, 50%);
@@ -48,10 +48,17 @@ $h4: 14px;
 $h5: 12px;
 $h6: 10px;
 
+
 /* Viewport breakpoint map */
 $breakpoints: (
+  'lt-xs': (
+    max-width: 319px,
+  ),
+  'gt-xs': (
+    min-width: 320px,
+  ),
   'lt-sm': (
-    max-width: 500px,
+    max-width: 499px,
   ),
   'gt-sm': (
     min-width: 500px,

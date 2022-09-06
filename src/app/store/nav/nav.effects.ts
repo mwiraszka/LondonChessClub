@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { NavPathTypes } from '@app/types';
 import { AuthActions } from '@app/store/auth';
@@ -179,11 +179,11 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(NavActions.linkSelected),
-        map(({ link }) => {
-          if (link.path.includes('www.')) {
-            window.open(link.path, '_blank');
+        tap(({ path }) => {
+          if (path.includes('www.') || path.includes('http')) {
+            window.open(path, '_blank');
           } else {
-            this.router.navigate([link.path]);
+            this.router.navigate([path]);
           }
         })
       ),

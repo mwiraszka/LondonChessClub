@@ -15,7 +15,9 @@ export class LinkListComponent implements OnInit {
   @Input() linkListTitle?: string;
   @Input() links: Link[];
 
-  @Output() select = new EventEmitter<void>();
+  // Return the link to the parent component in case additional logic
+  // needs to be implemented on top of the navigation itself
+  @Output() select = new EventEmitter<Link>();
 
   constructor(public facade: LinkListFacade) {}
 
@@ -24,7 +26,7 @@ export class LinkListComponent implements OnInit {
   }
 
   onSelect(link: Link) {
-    this.facade.onSelect(link);
-    this.select.emit();
+    this.facade.onSelect(link.path);
+    this.select.emit(link);
   }
 }

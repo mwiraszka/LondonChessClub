@@ -1,6 +1,6 @@
 <ng-container *ngIf="facade.isAdmin$ | async">
-	<lcc-link-list [links]="[composeArticleLink]"
-								 (select)="facade.onComposeArticle()">
+	<lcc-link-list [links]="[createArticleLink]"
+								 (select)="facade.onCreateArticle()">
 	</lcc-link-list>
 </ng-container>
 

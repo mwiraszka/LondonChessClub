@@ -1,5 +1,16 @@
+@import 'styles/abstracts/mixins';
+@import 'styles/abstracts/variables';
+
 :host {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;  
+}
+
+lcc-schedule {
+  width: 85%;
+
+  @include respond-to('lt-md') {
+    width: 95% !important;
+  }
 }

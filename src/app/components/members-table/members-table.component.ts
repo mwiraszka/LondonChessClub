@@ -18,7 +18,7 @@ import { MembersTableFacade } from './members-table.facade';
 export class MembersTableComponent implements OnInit {
   camelize = camelize;
   kebabize = kebabize;
-  showActiveOnly = false;
+  showActiveOnly = true;
   from = 0;
   to = 10;
 

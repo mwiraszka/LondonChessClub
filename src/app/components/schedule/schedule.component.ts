@@ -16,7 +16,7 @@ export class ScheduleComponent implements OnInit {
   kebabize = kebabize;
 
   @Input() numEvents?: number;
-  @Input() includeEditHistory? = false;
+  @Input() includeDetails = true;
 
   addEventLink: Link = {
     path: NavPathTypes.EVENT_ADD,

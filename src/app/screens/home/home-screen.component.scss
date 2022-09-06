@@ -14,7 +14,7 @@ section {
     'grid-item-4 grid-item-4';
 
   @include respond-to('lt-lg') {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
       'grid-item-1'
       'grid-item-2'
@@ -29,6 +29,10 @@ section {
       width: 90%;
       text-align: left;
       border-bottom: 1px solid lighten($lcc-color--gray, 20%);
+    }
+
+    &.lcc-grid-item-3 lcc-photo-grid {
+      width: 100%;
     }
   }
 }

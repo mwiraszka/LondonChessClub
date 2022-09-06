@@ -12,29 +12,24 @@
 		<article class="lcc-grid-item-2 lcc-darker-grid-item">
 			<h4>Membership Fee</h4>
 			<p>
-				$40 per calendar year (Jan 1&ndash;Dec 31), calculated pro rata
-				(you only pay for the months remaining in the year).
+				$60 per year (calculated pro rata), meaning you only pay for the remainder of
+				the current calendar year (Jan&nbsp;1&ndash;Dec&nbsp;31).
 			</p>
-			<p><b>Family discount:</b> additional family members get 50% off.</p>
 		</article>
 
 		<article class="lcc-grid-item-3">
-			<h4>Chess Sets and Clocks</h4>
+			<h4>Chess Supplies</h4>
 			<p>
-				Please bring your own chess sets and clocks. Don't own a set? No problem &mdash;
-				you can purchase chess supplies at the club.
+				Please bring your own chess sets and clocks! New to chess? No problem
+				&mdash; we have chess sets and scorebooks available for sale at the club.
 			</p>
 		</article>
 
 		<article class="lcc-grid-item-4">
-			<h4>Tournaments</h4>
+			<h4>Parking</h4>
 			<p>
-				Chess tournaments are held throughout the year. These include casual blitz
-				tournaments, rapid tournaments, and the LCC Championship held in the fall. See
-				<a class="lcc-link"
-					 [routerLink]="NavPathTypes.SCHEDULE"
-					 (click)="onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
-				for a list of upcoming events.
+				There is plenty of parking space available behind the building, free of charge
+				during chess club hours.
 			</p>
 		</article>
 
@@ -44,22 +39,44 @@
 				We use our own London & Region rating system, managed by Gerry Litchfield. Current
 				ratings can be found
 				<a class="lcc-link"
-					 [routerLink]="NavPathTypes.MEMBERS"
-					 (click)="onNavigate(NavPathTypes.MEMBERS)">here</a>.
+					 (click)="facade.onNavigate(NavPathTypes.MEMBERS)">here</a>.
 			</p>
 		</article>
 
-		<article class="lcc-grid-item-6 lcc-darker-grid-item about-children">
-			<h4>Children</h4>
+		<article class="lcc-grid-item-6 lcc-darker-grid-item">
+			<h4>Rules of the Game</h4>
 			<p>
-				Children must be attended by a parent or guardian at all times.
+				During tournament play we generally follow the
+				<a class="lcc-link"
+					 (click)="facade.onNavigate('https://handbook.fide.com/chapter/E012018')">
+					laws of chess</a>, set by the International Chess Federation (FIDE). Notable
+				differences are the <i>touch-move</i> rule: we enforce touch-move during rated
+				rapid tournaments but <i>clock-move</i> for our casual blitz tournaments.
+			</p>
+			<p>
+				Members are encouraged to try to resolve any disputes with their opponents before
+				seeking arbitration. If still unresolved, pause the clock and raise your hand, and
+				an arbiter will come help you out.
 			</p>
 		</article>
 
-		<article class="lcc-grid-item-7 about-parking">
-			<h4>Parking</h4>
+		<article class="lcc-grid-item-7">
+			<h4>Tournaments</h4>
 			<p>
-				There is plenty of parking space available behind the building.
+				Chess tournaments are held throughout the year. These include casual blitz
+				tournaments, rapid tournaments, and the London Chess Championship held in the
+				fall. Our blitz tournaments are free to play, usually with a time-control of 10+0
+				(10 minutes for each player, with no increment after each move), whereas our rapid
+				tournaments are usually 40+0. The rapid tournaments generally last 3&ndash;4
+				Thursdays to complete and are LCC rated. For longer tournaments there is a nominal
+				entry fee that goes towards the prize pool and covers any expenses in organizing
+				the event.
+			</p>
+			<p>
+				See
+				<a class="lcc-link"
+					 (click)="facade.onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
+				for a list of upcoming events.
 			</p>
 		</article>
 
@@ -77,8 +94,7 @@
 				Every December we hold our Annual General Meeting where all club members are
 				invited to elect a new committee (see
 				<a class="lcc-link"
-					 [routerLink]="NavPathTypes.SCHEDULE"
-					 (click)="onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
+					 (click)="facade.onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
 				for exact dates).
 			</p>
 		</article>

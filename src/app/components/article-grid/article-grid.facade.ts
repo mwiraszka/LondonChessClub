@@ -17,7 +17,7 @@ export class ArticleGridFacade {
     this.store.dispatch(ArticlesActions.loadArticlesStarted());
   }
 
-  onComposeArticle(): void {
+  onCreateArticle(): void {
     this.store.dispatch(ArticlesActions.createArticleSelected());
   }
 

@@ -10,6 +10,7 @@ import {
   Input,
   OnDestroy,
 } from '@angular/core';
+import { isTouchScreen } from '@app/utils';
 
 import { TooltipComponent } from './tooltip.component';
 
@@ -33,7 +34,7 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
-    if (!this.componentRef) {
+    if (!this.componentRef && !isTouchScreen()) {
       const componentFactory =
         this.componentFactoryResolver.resolveComponentFactory(TooltipComponent);
       this.componentRef = componentFactory.create(this.injector);

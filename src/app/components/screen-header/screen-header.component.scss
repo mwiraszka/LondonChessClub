@@ -8,17 +8,17 @@
   border-left: 2px solid darken($lcc-color--bg-screen-header, 4%);
   box-shadow: 1px 1px 8px 1px $lcc-color--box-shadow;
   padding: 8px 4px;
-  margin: 16px 12px;
+  // margin: 16px 50px !important;
   padding-bottom: -5px !important;
 
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 95%;
   height: unset; // temp (necessary due to clarity)
   word-spacing: 1px;
-  font-size: $h3;
+  font-size: calc(#{$h3} - 1px); // temp until font-sizes cleaned up
   background-color: $lcc-color--bg-screen-header;
   color: $lcc-color--text-primary-black;
 

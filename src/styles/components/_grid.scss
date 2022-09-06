@@ -1,15 +1,9 @@
-@import 'styles/abstracts/variables';
-
 .lcc-grid {
   display: grid;
   grid-template-rows: auto;
   gap: 4px;
   margin: 16px 12px;
   width: 90%;
-
-  @include respond-to('lt-md') {
-    width: 100%;
-  }
 
   [class*=' lcc-grid-item'],
   [class^='lcc-grid-item'] {

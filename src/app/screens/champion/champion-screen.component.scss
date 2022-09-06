@@ -28,10 +28,14 @@ section {
     &.champion-2019-figure {
       width: 180px;
     }
+
+    p > b {
+      color: darken($lcc-color--text-primary-black, 5%);
+    }
   }
 
   @include respond-to('lt-md') {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
       'grid-item-1'
       'grid-item-2'
@@ -42,5 +46,3 @@ section {
       'grid-item-7';   
   }
 }
-
-

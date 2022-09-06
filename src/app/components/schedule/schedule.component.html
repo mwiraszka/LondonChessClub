@@ -34,8 +34,11 @@
 						{{ event.type }}
 					</span>
 				</h5>
-				<p class="details">{{ event.details }}</p>
-				<aside *ngIf="includeEditHistory"
+				<p *ngIf="includeDetails"
+					 class="details">
+					{{ event.details }}
+				</p>
+				<aside *ngIf="includeDetails"
 							 class="created-and-edited">
 					Event created on {{ event.dateCreated }}<br />
 					Last edited on {{ event.dateEdited }}

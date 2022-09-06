@@ -1,15 +1,11 @@
-@import 'styles/abstracts/mixins';
-
 .lcc-canvas {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  width: 900px;
   max-width: 900px;
-  min-width: 250px;
-  padding: 10px 30px;
-  margin-top: 10px;
+  min-width: 210px;
+  padding: 8px 24px;
   gap: 8px;
 
   box-shadow: 1px 1px 5px 2px $lcc-color--box-shadow;
@@ -17,6 +13,6 @@
   border-radius: $lcc-border-radius-sm;
 
   @include respond-to('lt-md') {
-    padding: 6px 20px;
+    padding: 8px 6px !important;
   }
 }

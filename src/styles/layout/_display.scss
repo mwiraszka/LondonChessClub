@@ -1,5 +1,3 @@
-@import 'styles/abstracts/mixins';
-
 @include respond-to('lt-md') {
   .lcc-lt-md {
     display: block !important;

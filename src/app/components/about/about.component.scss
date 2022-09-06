@@ -1,9 +1,12 @@
+@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
 :host {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
 
   img {
     width: 60px !important;
@@ -11,20 +14,38 @@
 
   .meet-details-container {
     display: flex;
-    gap: 20px;
     flex-flow: row nowrap;
+    margin: 8px;
     width: 90%;
+    gap: 32px;
+
+    @include respond-to('lt-md') {
+      gap: 18px;
+    }
+    @include respond-to('lt-sm') {
+      gap: 12px;
+    }
 
     .meet-details {
       width: auto;
+      display: flex;
+      flex-flow: column nowrap;
+      gap: 12px;
 
       .meet-time {
         color: $lcc-color--accent;
         font-size: 90%;
-        line-height: 30px;
-        white-space: nowrap;
+
+        // For some reason this is needed to break at the <wbr> point
+        @include respond-to('lt-xs') {
+          display: grid;
+        }
       }
     }
+  }
+
+  .email-us {
+    text-align: center;
   }
 
   hr {

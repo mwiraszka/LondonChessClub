@@ -1,3 +1,4 @@
+@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
 .lcc-app-container {
@@ -10,6 +11,10 @@ main {
   flex-grow: 1;
   padding: 10px;
   background-color: $lcc-color--bg-main;
+
+  @include respond-to('lt-md') {
+    padding: 8px 0 !important;
+  }
 }
 
 lcc-alert,

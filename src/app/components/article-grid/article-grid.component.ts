@@ -12,7 +12,7 @@ import { ArticleGridFacade } from './article-grid.facade';
   providers: [ArticleGridFacade],
 })
 export class ArticleGridComponent implements OnInit {
-  composeArticleLink: Link = {
+  createArticleLink: Link = {
     path: NavPathTypes.ARTICLE_ADD,
     text: 'Compose new article',
     iconShape: 'plus-circle',

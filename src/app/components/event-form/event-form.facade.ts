@@ -19,6 +19,7 @@ export class EventFormFacade {
   }
 
   onSubmit(event: ClubEvent): void {
+    event = { ...event, dateEdited: new Date().toLocaleDateString() };
     this.isEditMode$
       .pipe(
         map((isEditMode) => {

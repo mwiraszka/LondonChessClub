@@ -53,7 +53,14 @@ export class MembersEffects {
     this.actions$.pipe(
       ofType(MembersActions.loadMembersSucceeded),
       concatLatestFrom(() => this.store.select(MembersSelectors.sortedBy)),
-      map(([, sortedBy]) => MembersActions.tableHeaderSelected({ header: sortedBy }))
+      map(([{ allMembers }, sortedBy]) => {
+        const key = sortedBy;
+        return MembersActions.membersSorted({
+          sortedMembers: [...allMembers].sort(customSort(key, false)),
+          sortedBy,
+          isDescending: false,
+        });
+      })
     )
   );
 

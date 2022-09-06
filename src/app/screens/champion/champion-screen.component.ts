@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Link, NavPathTypes } from '@app/types';
+
+import { ChampionScreenFacade } from './champion-screen.facade';
 
 @Component({
   selector: 'lcc-champion-screen',
   templateUrl: './champion-screen.component.html',
   styleUrls: ['./champion-screen.component.scss'],
+  providers: [ChampionScreenFacade],
 })
 export class ChampionScreenComponent {
   NavPathTypes = NavPathTypes;
@@ -30,9 +32,5 @@ export class ChampionScreenComponent {
     },
   ];
 
-  constructor(private router: Router) {}
-
-  onNavigate(path: NavPathTypes) {
-    this.router.navigate([path]);
-  }
+  constructor(public facade: ChampionScreenFacade) {}
 }

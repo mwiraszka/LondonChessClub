@@ -23,8 +23,14 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: $lcc-color--white;
+  color: darken($lcc-color--white, 10%);
   font-size: $h4;
+
+  span {
+    color: darken($lcc-color--white, 5%);
+    font-weight: bold;
+    padding: 0 4px;
+  }
 }
 
 .alert-controls {

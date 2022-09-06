@@ -1,7 +1,5 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Link } from '@app/types';
-
 enum NavActionTypes {
   LINK_SELECTED = '[Nav] Link selected',
 
@@ -21,7 +19,7 @@ enum NavActionTypes {
 
 export const linkSelected = createAction(
   NavActionTypes.LINK_SELECTED,
-  props<{ link: Link }>()
+  props<{ path: string }>()
 );
 
 export const homeNavigationRequested = createAction(

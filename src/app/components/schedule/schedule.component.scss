@@ -1,4 +1,3 @@
-@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
 :host {
@@ -7,7 +6,6 @@
   align-items: center;
   justify-content: center;
   min-width: 220px;
-  width: 85%;
 }
 
 lcc-link-list {
@@ -17,10 +15,6 @@ lcc-link-list {
 table {
   width: 100%;
   margin-bottom: 18px;
-
-  @include respond-to('lt-md') {
-    width: 100%;
-  }
 
   tbody {
     tr {

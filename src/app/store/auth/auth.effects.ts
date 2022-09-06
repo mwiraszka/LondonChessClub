@@ -21,7 +21,7 @@ export class AuthEffects {
               firstName: response?.firstName,
               email: response?.email,
               isVerified: response?.isVerified,
-              role: 'admin',
+              isAdmin: true,
             };
             return response?.error
               ? AuthActions.loginFailed({ error: response.error })
@@ -61,8 +61,8 @@ export class AuthEffects {
             const user: User = {
               id: 'test-3nfo13-1j3nf',
               email: 'michal@test.com*',
-              role: 'admin',
               isVerified: false,
+              isAdmin: false,
             };
             return AuthActions.signUpSucceeded({
               user,

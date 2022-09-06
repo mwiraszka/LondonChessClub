@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { TooltipModule } from '@app/components/tooltip';
 
 import { LoginFormComponent } from './login-form.component';
+
 @NgModule({
   declarations: [LoginFormComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, TooltipModule],

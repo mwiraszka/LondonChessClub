@@ -3,6 +3,6 @@ export interface User {
   firstName?: string;
   email?: string;
   isVerified?: boolean;
+  isAdmin?: boolean;
   hasCode?: boolean;
-  role?: 'admin' | 'default';
 }

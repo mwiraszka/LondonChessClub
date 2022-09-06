@@ -20,10 +20,6 @@ lcc-link-list,
   }
 }
 
-lcc-link-list {
-  align-items: start;
-}
-
 .articles-container {
   display: flex;
   flex-flow: row wrap;
@@ -35,7 +31,7 @@ lcc-link-list {
   article {
     display: flex;
     flex-flow: column nowrap;
-    width: 240px;
+    max-width: 280px;
     height: 280px;
     padding: $article-padding;
     background-color: darken($lcc-color--white, 6%);
@@ -47,6 +43,8 @@ lcc-link-list {
     p {
       height: auto;
       width: auto;
+      overflow: hidden;
+      padding: 24px 6px;
     }
   }
 }

@@ -17,17 +17,21 @@
     }
 
     @include respond-to('lt-md') {
-      columns: 1;
-      -webkit-columns: 1;
-      -moz-columns: 1;
+      columns: 1 !important;
+      -webkit-columns: 1 !important;
+      -moz-columns: 1 !important;
     }
   
     li {
       padding: 2px;
   
       a {
-        font-size: calc(#{$h4} - 1px);
         white-space: nowrap;
+        font-size: $h5;
+
+        @include respond-to('lt-sm') {
+          font-size: calc(#{$h5} - 1px);
+        }
   
         cds-icon {
           padding: 3px;

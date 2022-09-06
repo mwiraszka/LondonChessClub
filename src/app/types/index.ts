@@ -1,4 +1,3 @@
-export { Alert, AlertAction } from './alert.model';
 export { AppScreenTypes } from './app-screens.model';
 export { AppStoreFeatureTypes } from './app-store-features.model';
 export { Article, newArticleFormTemplate, MOCK_ARTICLES } from './article.model';

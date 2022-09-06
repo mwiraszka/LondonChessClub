@@ -18,7 +18,7 @@ import { ModalModule } from '@app/components/modal';
 import { NavModule } from '@app/components/nav';
 import { ToasterModule } from '@app/components/toaster';
 import { ScreensModule } from '@app/screens/screens.module';
-import { metaReducers } from '@app/store';
+import { metaReducers } from '@app/store/app';
 import { ArticlesStoreModule } from '@app/store/articles';
 import { AuthStoreModule } from '@app/store/auth';
 import { ImageOverlayStoreModule } from '@app/store/image-overlay';

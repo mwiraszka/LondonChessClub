@@ -4,10 +4,10 @@ import { Store } from '@ngrx/store';
 import { NavActions } from '@app/store/nav';
 
 @Injectable()
-export class LinkListFacade {
+export class AboutScreenFacade {
   constructor(private store: Store) {}
 
-  onSelect(path: string): void {
+  onNavigate(path: string): void {
     this.store.dispatch(NavActions.linkSelected({ path }));
   }
 }

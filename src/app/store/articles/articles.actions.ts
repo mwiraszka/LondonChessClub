@@ -7,7 +7,7 @@ enum ArticlesActionTypes {
   LOAD_ARTICLES_SUCCEEDED = '[Articles] Load articles succeeded',
   LOAD_ARTICLES_FAILED = '[Articles] Load articles failed',
 
-  COMPOSE_ARTICLE_SELECTED = '[Articles] Compose article selected',
+  CREATE_ARTICLE_SELECTED = '[Articles] Create article selected',
   EDIT_ARTICLE_SELECTED = '[Articles] Edit article selected',
 
   DELETE_ARTICLE_SELECTED = '[Articles] Delete article selected',
@@ -51,7 +51,7 @@ export const loadArticlesFailed = createAction(
 );
 
 export const createArticleSelected = createAction(
-  ArticlesActionTypes.COMPOSE_ARTICLE_SELECTED
+  ArticlesActionTypes.CREATE_ARTICLE_SELECTED
 );
 export const editArticleSelected = createAction(
   ArticlesActionTypes.EDIT_ARTICLE_SELECTED,

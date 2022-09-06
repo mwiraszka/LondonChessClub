@@ -75,3 +75,10 @@ export function hasParentNodeWithClass(element: Element, className: string): boo
     ? true
     : hasParentNodeWithClass(currentElement, className);
 }
+
+/**
+ * @returns {boolean} Whether the user is on a touch screen device
+ */
+export function isTouchScreen(): boolean {
+  return window.matchMedia('(pointer: coarse)').matches;
+}

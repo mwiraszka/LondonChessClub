@@ -12,7 +12,7 @@ export const user = createSelector(authFeatureSelector, (state) => state.user);
 
 export const isAdmin = createSelector(
   authFeatureSelector,
-  (state) => state.user?.role === 'admin' && state.user?.isVerified
+  (state) => state.user?.isAdmin && state.user?.isVerified
 );
 
 export const isUserVerified = createSelector(

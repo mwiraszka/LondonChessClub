@@ -35,8 +35,8 @@ export class ScheduleService {
   }
 
   addEvent(eventToAdd: ClubEvent): Observable<ServiceResponse> {
-    // Escaping the backslash for new lines seems necessary to work with API Gateway's
-    // integration mapping used for this endpoint (not needed for updateEvent())
+    // Escaping the backslash for new lines seems necessary to work with API Gateway
+    // integration mapping set up for this endpoint (not needed for updateEvent())
     eventToAdd = {
       ...eventToAdd,
       details: eventToAdd.details.replaceAll('\n', '\\n'),

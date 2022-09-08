@@ -7,8 +7,8 @@
 <table class="lcc-table">
 	<thead>
 		<th *ngIf="facade.isAdmin$ | async"></th>
-		<th>Date</th>
-		<th>Event</th>
+		<th class="date">Date</th>
+		<th class="event">Event</th>
 	</thead>
 	<tbody>
 		<tr *ngFor="let event of (numEvents
@@ -24,7 +24,7 @@
 				</lcc-admin-controls>
 			</ng-container>
 			<td class="date">
-				<p>{{ event.eventDate }}</p>
+				<p>{{ formatDate(event.eventDate) }}</p>
 			</td>
 			<td class="details-container">
 				<h5 class="title">

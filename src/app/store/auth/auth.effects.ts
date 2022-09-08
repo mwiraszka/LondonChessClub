@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { AuthService } from '@app/services';
-import { LoginResponse, SignUpResponse, User } from '@app/types';
+import { SignUpResponse, User } from '@app/types';
 
 import * as AuthActions from './auth.actions';
 
@@ -15,19 +15,20 @@ export class AuthEffects {
       ofType(AuthActions.loginRequested),
       switchMap(({ request }) => {
         return this.authService.logIn(request).pipe(
-          map((response: LoginResponse) => {
+          map((loginResponse) => {
+            // temp - see note above auth service's userData() method
             const user: User = {
               id: 'test-3nfo13-1j3nf',
-              firstName: response?.firstName,
-              email: response?.email,
-              isVerified: response?.isVerified,
+              firstName: loginResponse?.firstName,
+              email: loginResponse?.email,
+              isVerified: loginResponse?.isVerified,
               isAdmin: true,
             };
-            return response?.error
-              ? AuthActions.loginFailed({ error: response.error })
+            return loginResponse?.error
+              ? AuthActions.loginFailed({ error: loginResponse.error })
               : AuthActions.loginSucceeded({
                   user,
-                  session: response.session,
+                  session: loginResponse.session,
                 });
           }),
           catchError(() =>
@@ -123,20 +124,6 @@ export class AuthEffects {
             )
           )
         );
-      })
-    )
-  );
-
-  resendVerificationLink$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AuthActions.resendVerificationLinkRequested),
-      map(() => {
-        /**
-         * Configured in AWS to only send email to the user (no SMS);
-         * Note: no callback function configured - it's simply assumed that this email gets sent
-         */
-        this.authService.resendVerificationLink();
-        return AuthActions.resendVerificationLinkSucceeded();
       })
     )
   );

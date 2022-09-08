@@ -32,4 +32,8 @@ export class ScheduleComponent implements OnInit {
     });
     this.facade.loadEvents();
   }
+
+  formatDate(date: string): string {
+    return new Date(date).toDateString();
+  }
 }

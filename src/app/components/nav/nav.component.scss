@@ -146,14 +146,14 @@ $dropdown-list-width: 120px;
           justify-content: center;
           align-items: center;
           gap: 4px;
-          background-color: darken($lcc-color--white, 5%);
+          background-color: darken($lcc-color--white, 10%);
   
           small {
             white-space: nowrap;
             color: darken($lcc-color--text-primary-black, 10%);
           }
   
-          .first-name {
+          .admin-text {
             color: $lcc-color--text-primary-black;
             display: flex;
             flex-flow: row nowrap;
@@ -176,8 +176,8 @@ $dropdown-list-width: 120px;
         }
 
         &.last-item {
-          border-bottom-left-radius: $lcc-border-radius-sm;
-          border-bottom-right-radius: $lcc-border-radius-sm;
+          border-bottom-left-radius: $lcc-border-radius-lg;
+          border-bottom-right-radius: $lcc-border-radius-lg;
         }
       }
     }

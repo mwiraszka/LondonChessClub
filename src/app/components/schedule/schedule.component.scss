@@ -16,13 +16,18 @@ table {
   width: 100%;
   margin-bottom: 18px;
 
+  thead {
+    th {
+      &.date {
+        min-width: 75px;
+        max-width: 120px;
+      }
+    }
+  }
+
   tbody {
     tr {
       td {
-        &.date {
-          white-space: nowrap;
-        }
-  
         &.details-container {
           display: flex;
           flex-flow: column nowrap;

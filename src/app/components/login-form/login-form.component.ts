@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -17,14 +17,16 @@ import { LoginFormFacade } from './login-form.facade';
   styleUrls: ['./login-form.component.scss'],
   providers: [LoginFormFacade],
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
   form!: FormGroup;
 
   constructor(
     public facade: LoginFormFacade,
     private formBuilder: FormBuilder,
     private loader: LoaderService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.form = this.formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),

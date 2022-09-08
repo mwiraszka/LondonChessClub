@@ -14,5 +14,5 @@ export enum NavPathTypes {
   ABOUT = 'about',
   LOGIN = 'login',
   CHANGE_PASSWORD = 'change-password',
-  SIGN_UP = 'signup',
+  // SIGN_UP = 'signup',
 }

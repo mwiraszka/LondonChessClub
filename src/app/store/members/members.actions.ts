@@ -9,6 +9,9 @@ enum MembersActionTypes {
 
   TABLE_HEADER_SELECTED = '[Members] Table header selected',
   MEMBERS_SORTED = '[Members] Members sorted',
+  PAGE_CHANGED = '[Members] Page changed',
+  PAGE_SIZE_CHANGED = '[Members] Page size changed',
+  INACTIVE_MEMBERS_TOGGLED = '[Members] Inactive members toggled',
 
   CREATE_MEMBER_SELECTED = '[Members] Create member selected',
   EDIT_MEMBER_SELECTED = '[Members] Edit member selected',
@@ -18,10 +21,6 @@ enum MembersActionTypes {
   DELETE_MEMBER_CANCELLED = '[Members] Delete member cancelled',
   DELETE_MEMBER_SUCCEEDED = '[Members] Delete member succeeded',
   DELETE_MEMBER_FAILED = '[Members] Delete member failed',
-
-  MEMBER_TO_EDIT_RECEIVED = '[Members] Member to edit received',
-  GET_MEMBER_TO_EDIT_SUCCEEDED = '[Members] Get member to edit succeeded',
-  RESET_MEMBER_FORM = '[Members] Reset member form',
 
   ADD_MEMBER_SELECTED = '[Members] Add member selected',
   ADD_MEMBER_CONFIRMED = '[Members] Add member confirmed',
@@ -57,7 +56,18 @@ export const tableHeaderSelected = createAction(
 );
 export const membersSorted = createAction(
   MembersActionTypes.MEMBERS_SORTED,
-  props<{ sortedMembers: Member[]; sortedBy: string; isDescending: boolean }>()
+  props<{ sortedMembers: Member[]; sortedBy: string; isAscending: boolean }>()
+);
+export const pageChanged = createAction(
+  MembersActionTypes.PAGE_CHANGED,
+  props<{ pageNum: number }>()
+);
+export const pageSizeChanged = createAction(
+  MembersActionTypes.PAGE_SIZE_CHANGED,
+  props<{ pageSize: number }>()
+);
+export const inactiveMembersToggled = createAction(
+  MembersActionTypes.INACTIVE_MEMBERS_TOGGLED
 );
 
 export const createMemberSelected = createAction(
@@ -86,12 +96,6 @@ export const deleteMemberFailed = createAction(
   MembersActionTypes.DELETE_MEMBER_FAILED,
   props<{ error: Error }>()
 );
-
-export const getMemberToEditSucceeded = createAction(
-  MembersActionTypes.GET_MEMBER_TO_EDIT_SUCCEEDED,
-  props<{ memberToEdit: Member }>()
-);
-export const resetMemberForm = createAction(MembersActionTypes.RESET_MEMBER_FORM);
 
 export const addMemberSelected = createAction(
   MembersActionTypes.ADD_MEMBER_SELECTED,

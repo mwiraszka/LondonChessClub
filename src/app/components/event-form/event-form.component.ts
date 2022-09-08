@@ -49,7 +49,7 @@ export class EventFormComponent {
     if (control.errors.hasOwnProperty('required')) {
       return 'This field is required';
     } else if (control.errors.hasOwnProperty('invalidDateFormat')) {
-      return 'Invalid date';
+      return 'Invalid date format - please input as YYYY-MM-DD';
     } else if (control.errors.hasOwnProperty('pattern')) {
       return 'Invalid input (incorrect format)';
     } else {
@@ -71,34 +71,10 @@ export class EventFormComponent {
 
   private initForm(event: ClubEvent): void {
     this.form = this.formBuilder.group({
-      eventDate: [
-        event.eventDate,
-        {
-          validators: [Validators.required, dateValidator],
-          updateOn: 'change',
-        },
-      ],
-      title: [
-        event.title,
-        {
-          validators: [Validators.required, Validators.pattern(/[^\s]/)],
-          updateOn: 'change',
-        },
-      ],
-      details: [
-        event.details,
-        {
-          validators: [Validators.required, Validators.pattern(/[^\s]/)],
-          updateOn: 'change',
-        },
-      ],
-      type: [
-        event.type,
-        {
-          validators: [Validators.required],
-          updateOn: 'change',
-        },
-      ],
+      eventDate: [event.eventDate, [Validators.required, dateValidator]],
+      title: [event.title, [Validators.required, Validators.pattern(/[^\s]/)]],
+      details: [event.details, [Validators.required, Validators.pattern(/[^\s]/)]],
+      type: [event.type, [Validators.required]],
       id: [event.id],
       dateCreated: [event.dateCreated],
       dateEdited: [event.dateEdited],

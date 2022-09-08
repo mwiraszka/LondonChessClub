@@ -1,5 +1,8 @@
 @import 'styles/abstracts/variables';
 
+$arrow-height: 4px;
+$arrow-semi-width: 6px;
+
 .tooltip {
   position: fixed;
   color: white;
@@ -8,23 +11,24 @@
   padding: 4px 8px 3px;
   margin-top: 8px;
   transform:translateX(-50%);
-  animation: tooltip-slide 0.3s;
+  animation: tooltip-slide 0.2s;
   pointer-events: none;
   font-size: $h5;
   z-index: 100;
   line-height: normal;
   text-align: center;
+  max-width: 90px;
 
   &::before {
     content: '';
     width: 0;
     height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid lighten($lcc-color--accent, 10%);
+    border-left: $arrow-semi-width solid transparent;
+    border-right: $arrow-semi-width solid transparent;
+    border-bottom: $arrow-height solid lighten($lcc-color--accent, 10%);
     position: absolute;
-    left: calc(50% - 5px);
-    top: -5px;
+    left: calc(50% - #{$arrow-semi-width});
+    top: -$arrow-height;
   }
 }
 

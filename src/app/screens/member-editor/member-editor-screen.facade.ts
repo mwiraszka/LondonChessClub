@@ -8,7 +8,7 @@ import { MembersSelectors } from '@app/store/members';
 export class MemberEditorScreenFacade {
   isEditMode$ = this.store.select(MembersSelectors.isEditMode);
   fullName$ = this.store
-    .select(MembersSelectors.memberBeforeEdit)
+    .select(MembersSelectors.selectedMember)
     .pipe(map((member) => `${member.firstName} ${member.lastName}`));
 
   constructor(private store: Store) {}

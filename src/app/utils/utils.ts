@@ -17,9 +17,9 @@ export function areSame(a: Object, b: Object): boolean {
  * A custom sorting algorithm, to be used within an array sort method, for example
  * `sortedItems = items.sort(customSort(key, order))`
  * @param {string} key The object property to sort by
- * @param {boolean} isDescending Whether sort is in descending order
+ * @param {boolean} isAscending Whether sort is in ascending order (i.e. 1..10, a..z)
  */
-export function customSort(key: string, isDescending: boolean) {
+export function customSort(key: string, isAscending: boolean) {
   return function innerSort(a: Object, b: Object): number {
     if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
       return 0; // Property doesn't exist on either object
@@ -34,9 +34,9 @@ export function customSort(key: string, isDescending: boolean) {
       varB = +varB.split('/')[0];
     }
 
-    const comparison = varA > varB ? 1 : varA < varB ? -1 : 0;
+    const ascendingOrder = varA > varB ? 1 : varA < varB ? -1 : 0;
 
-    return isDescending ? comparison : comparison * -1;
+    return isAscending ? ascendingOrder : ascendingOrder * -1;
   };
 }
 

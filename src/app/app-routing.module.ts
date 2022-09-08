@@ -85,10 +85,11 @@ const routes: Routes = [
     path: NavPathTypes.CHANGE_PASSWORD,
     component: ChangePasswordScreenComponent,
   },
-  {
-    path: NavPathTypes.SIGN_UP,
-    component: SignUpScreenComponent,
-  },
+  // temporarily removed to prevent unauthorized access
+  // {
+  //   path: NavPathTypes.SIGN_UP,
+  //   component: SignUpScreenComponent,
+  // },
   {
     path: '**',
     redirectTo: '',

@@ -1,8 +1,7 @@
 import { createAction, props } from '@ngrx/store';
+import { CognitoUserSession } from 'amazon-cognito-identity-js';
 
 import { LoginRequest, PasswordChangeRequest, SignUpRequest, User } from '@app/types';
-
-import { CognitoUserSession } from 'amazon-cognito-identity-js';
 
 enum AuthActionTypes {
   LOGIN_REQUESTED = '[Auth] Login requested',
@@ -15,9 +14,6 @@ enum AuthActionTypes {
 
   LOGOUT_REQUESTED = '[Auth] Logout requested',
   LOGOUT_SUCCEEDED = '[Auth] Logout succeeded',
-
-  RESEND_VERIFICATION_LINK_REQUESTED = '[Auth] Resend verification link requested',
-  RESEND_VERIFICATION_LINK_SUCCEEDED = '[Auth] Resend verification link succeeded',
 
   FORGOT_PASSWORD_SELECTED = '[Auth] Forgot password selected',
   CODE_FOR_PASSWORD_CHANGE_REQUESTED = '[Auth] Code for password change requested',
@@ -56,13 +52,6 @@ export const signUpFailed = createAction(
 
 export const logoutRequested = createAction(AuthActionTypes.LOGOUT_REQUESTED);
 export const logoutSucceeded = createAction(AuthActionTypes.LOGOUT_SUCCEEDED);
-
-export const resendVerificationLinkRequested = createAction(
-  AuthActionTypes.RESEND_VERIFICATION_LINK_REQUESTED
-);
-export const resendVerificationLinkSucceeded = createAction(
-  AuthActionTypes.RESEND_VERIFICATION_LINK_SUCCEEDED
-);
 
 export const forgotPasswordSelected = createAction(
   AuthActionTypes.FORGOT_PASSWORD_SELECTED

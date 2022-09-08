@@ -10,6 +10,7 @@ import {
   emailValidator,
   phoneNumberValidator,
   ratingValidator,
+  yearValidator,
 } from '@app/validators';
 
 import { MemberFormFacade } from './member-form.facade';
@@ -61,14 +62,16 @@ export class MemberFormComponent implements OnInit, OnDestroy {
   getErrorMessage(control: AbstractControl): string {
     if (control.errors.hasOwnProperty('required')) {
       return 'This field is required';
+    } else if (control.errors.hasOwnProperty('invalidRating')) {
+      return 'Invalid rating';
     } else if (control.errors.hasOwnProperty('invalidDateFormat')) {
-      return 'Invalid date';
+      return 'Invalid date format - please input as YYYY-MM-DD';
     } else if (control.errors.hasOwnProperty('invalidEmailFormat')) {
       return 'Invalid email';
     } else if (control.errors.hasOwnProperty('invalidPhoneNumberFormat')) {
-      return 'Invalid phone number';
-    } else if (control.errors.hasOwnProperty('invalidRating')) {
-      return 'Invalid rating';
+      return 'Invalid phone number format - please input as XXX-XXX-XXXX';
+    } else if (control.errors.hasOwnProperty('invalidYear')) {
+      return 'Invalid year';
     } else if (control.errors.hasOwnProperty('pattern')) {
       return 'Invalid input (incorrect format)';
     } else if (control.errors.hasOwnProperty('minlength')) {
@@ -94,65 +97,20 @@ export class MemberFormComponent implements OnInit, OnDestroy {
 
   private initForm(member: Member): void {
     this.form = this.formBuilder.group({
-      firstName: [
-        member.firstName,
-        {
-          validators: [Validators.required, Validators.pattern(/[^\s]/)],
-          updateOn: 'change',
-        },
-      ],
-      lastName: [
-        member.lastName,
-        {
-          validators: [Validators.required, Validators.pattern(/[^\s]/)],
-          updateOn: 'change',
-        },
-      ],
-      city: [
-        member.city,
-        {
-          validators: [Validators.required, Validators.pattern(/[^\s]/)],
-          updateOn: 'change',
-        },
-      ],
+      firstName: [member.firstName, [Validators.required, Validators.pattern(/[^\s]/)]],
+      lastName: [member.lastName, [Validators.required, Validators.pattern(/[^\s]/)]],
+      city: [member.city, [Validators.required, Validators.pattern(/[^\s]/)]],
       rating: [
         member.rating,
-        {
-          validators: [Validators.required, ratingValidator, Validators.max(3000)],
-          updateOn: 'change',
-        },
+        [Validators.required, ratingValidator, Validators.max(3000)],
       ],
-      dateJoined: [
-        member.dateJoined,
-        { validators: [Validators.required, dateValidator], updateOn: 'change' },
-      ],
-      email: [member.email, { validators: emailValidator, updateOn: 'change' }],
-      phoneNumber: [
-        member.phoneNumber,
-        { validators: phoneNumberValidator, updateOn: 'change' },
-      ],
-      yearOfBirth: [
-        member.yearOfBirth,
-        {
-          validators: [
-            Validators.min(1900),
-            Validators.max(new Date().getFullYear() - 4),
-          ],
-          updateOn: 'change',
-        },
-      ],
-      chesscomUsername: [
-        member.chesscomUsername,
-        { validators: Validators.pattern(/[^\s]/), updateOn: 'change' },
-      ],
-      lichessUsername: [
-        member.lichessUsername,
-        { validators: Validators.pattern(/[^\s]/), updateOn: 'change' },
-      ],
-      isActive: [
-        member.isActive,
-        { validators: Validators.required, updateOn: 'change' },
-      ],
+      dateJoined: [member.dateJoined, [Validators.required, dateValidator]],
+      email: [member.email, emailValidator],
+      phoneNumber: [member.phoneNumber, phoneNumberValidator],
+      yearOfBirth: [member.yearOfBirth, yearValidator],
+      chesscomUsername: [member.chesscomUsername, Validators.pattern(/[^\s]/)],
+      lichessUsername: [member.lichessUsername, Validators.pattern(/[^\s]/)],
+      isActive: [member.isActive, Validators.required],
       id: [member.id],
       peakRating: [member.peakRating],
     });

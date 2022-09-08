@@ -408,21 +408,6 @@ export class ToasterEffects {
     )
   );
 
-  addResendVerificationLinkSucceededToast$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AuthActions.resendVerificationLinkSucceeded),
-      map(() => {
-        const toast: Toast = {
-          title: 'Verification link',
-          message:
-            'Verification link successfully sent to the email used to register this LCC account',
-          type: ToastTypes.SUCCESS,
-        };
-        return ToasterActions.toastAdded({ toast });
-      })
-    )
-  );
-
   // EXPIRE ---------------------------------------------------------------------------------------
   expireToast$ = createEffect(() =>
     this.actions$.pipe(

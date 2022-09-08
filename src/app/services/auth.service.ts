@@ -5,6 +5,7 @@ import {
   CognitoUserAttribute,
   CognitoUserPool,
   CognitoUserSession,
+  UserData,
 } from 'amazon-cognito-identity-js';
 import { Observable } from 'rxjs';
 
@@ -53,6 +54,23 @@ export class AuthService {
     });
   }
 
+  // TODO: Implement once user logged in (must be authenticated) to
+  // fetch Cognito User data (first name, isAdmin, etc.)?
+  userData(): Observable<UserData | Error> {
+    return new Observable<UserData | Error>((observer) => {
+      this.currentUser()?.getUserData((error, data) => {
+        if (error) {
+          observer.error(error);
+          return;
+        }
+        if (data) {
+        }
+        observer.next(data);
+        observer.complete();
+      });
+    });
+  }
+
   isAuthenticated(): Observable<boolean> {
     return new Observable<boolean>((observer) => {
       this.currentUser()?.getSession((error, session) => {
@@ -66,6 +84,10 @@ export class AuthService {
     });
   }
 
+  /**
+   * Currently not hooked up in UI, but code is fully functional;
+   * here for future reference in case we decide to re-implement it
+   */
   signUp(request: SignUpRequest): Observable<SignUpResponse> {
     const givenNameAttribute = new CognitoUserAttribute({
       Name: 'given_name',
@@ -111,11 +133,6 @@ export class AuthService {
           observer.complete();
         },
         onFailure(err) {
-          if (`${err}` === 'UserNotConfirmedException: User is not confirmed.') {
-            observer.next({ isVerified: false, email: request.email });
-            observer.complete();
-          }
-
           let errorMessage: string;
           switch (`${err}`) {
             case 'NotAuthorizedException: Incorrect username or password.':
@@ -124,8 +141,9 @@ export class AuthService {
             case 'NotAuthorizedException: Password attempts exceeded':
               errorMessage = '[Auth] Password attempt limit exceeded';
               break;
-            case 'CodeMismatchException: Invalid verification code provided, please try again.':
-              errorMessage = '[Auth] Invalid verification code';
+            case 'UserNotConfirmedException: User is not confirmed.':
+              errorMessage =
+                '[Auth] Please verify your account by clicking on the link that was sent to your email';
               break;
             default:
               errorMessage = `[Auth] ${err}`;
@@ -175,6 +193,13 @@ export class AuthService {
             case 'CodeMismatchException: Invalid verification code provided, please try again.':
               errorMessage = '[Auth] Invalid verification code';
               break;
+            case 'ExpiredCodeException: Invalid code provided, please request a code again.':
+              errorMessage = '[Auth] Invalid verification code';
+              break;
+            case 'LimitExceededException: Attempt limit exceeded, please try after some time.':
+              errorMessage =
+                '[Auth] Password change attempt limit reached; please try again later';
+              break;
             default:
               errorMessage = `[Auth] ${err}`;
           }
@@ -182,13 +207,5 @@ export class AuthService {
         },
       });
     });
-  }
-
-  resendVerificationLink(): void {
-    /**
-     * Configured in AWS to only send email to the user (no SMS);
-     * Note: no callback function configured - it's simply assumed that this email gets sent
-     */
-    this.currentUser()?.resendConfirmationCode(() => null);
   }
 }

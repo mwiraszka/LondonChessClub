@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 
-import { NavPathTypes } from '@app/types';
-import { AuthActions } from '@app/store/auth';
 import { ArticlesActions } from '@app/store/articles';
+import { AuthActions } from '@app/store/auth';
 import { ScheduleActions } from '@app/store/schedule';
 import { MembersActions } from '@app/store/members';
+import { NavPathTypes } from '@app/types';
 
 import * as NavActions from './nav.actions';
 
@@ -169,7 +169,10 @@ export class NavEffects {
   navigateToChangePassword$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.changePasswordNavigationRequested),
+        ofType(
+          AuthActions.forgotPasswordSelected,
+          NavActions.changePasswordNavigationRequested
+        ),
         tap(() => this.router.navigate([NavPathTypes.CHANGE_PASSWORD]))
       ),
     { dispatch: false }

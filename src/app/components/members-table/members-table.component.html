@@ -9,7 +9,7 @@
 		<tr>
 			<th *ngIf="facade.isAdmin$ | async"></th>
 			<th class="row-number"></th>
-			<th *ngFor="let header of tableHeaders"
+			<th *ngFor="let header of (facade.isAdmin$ | async) ? tableHeaders : tableHeaders.slice(0, -3)"
 					[ngClass]="kebabize(header)"
 					(click)="facade.onSelectTableHeader(camelize(kebabize(header)))">
 				<span>{{ header }}</span>
@@ -17,7 +17,7 @@
 					<cds-icon *ngIf="(facade.sortedBy$ | async) === camelize(kebabize(header))"
 										shape="angle"
 										size="xs"
-										[attr.flip]="(facade.isDescending$ | async) ? undefined : 'vertical'">
+										[attr.flip]="(facade.isAscending$ | async) ? undefined : 'vertical'">
 					</cds-icon>
 				</div>
 			</th>
@@ -25,9 +25,8 @@
 	</thead>
 
 	<tbody>
-		<tr *ngFor="let member of (showActiveOnly
-                  ? (facade.activeMembers$ | async).slice(from, to)
-                  : (facade.members$ | async).slice(from, to));
+		<tr *ngFor="let member of (facade.filteredMembers$ | async).slice(
+                  (facade.startIndex$ | async), (facade.endIndex$ | async));
                 let i = index;
                 let last = last;"
 				class="lcc-admin-controls-container"
@@ -39,7 +38,7 @@
 														(delete)="facade.onDeleteMember(member)">
 				</lcc-admin-controls>
 			</ng-container>
-			<td class="row-number">{{ i + from + 1 }}</td>
+			<td class="row-number">{{ i + (facade.startIndex$ | async) + 1 }}</td>
 			<td class="first-name">{{ member.firstName }}</td>
 			<td class="last-name">{{ member.lastName }}</td>
 			<td class="rating">{{ member.rating }}</td>
@@ -66,12 +65,12 @@
 	</tfoot>
 </table>
 
-<lcc-paginator [totalItems]="showActiveOnly
-                               ? (facade.activeMembers$ | async).length
-                               : (facade.members$ | async).length"
+<lcc-paginator [pageNum]="facade.pageNum$ | async"
+							 [pageSize]="facade.pageSize$ | async"
+							 [totalItems]="(facade.filteredMembers$ | async).length"
 							 [typeOfItems]="'members'"
-							 [pageSize]="10"
-							 (update)="onUpdateRange($event)">
+							 (pageChange)="facade.onChangePage($event)"
+							 (pageSizeChange)="facade.onChangePageSize($event)">
 </lcc-paginator>
 
 <aside>
@@ -80,7 +79,7 @@
 		<label for="active-only">Show active members only</label>
 		<input id="active-only"
 					 type="checkbox"
-					 [checked]="showActiveOnly"
-					 (change)="onToggleShowActiveOnly()" />
+					 [checked]="facade.showActiveOnly$ | async"
+					 (change)="facade.onToggleInactiveMembers()" />
 	</div>
 </aside>

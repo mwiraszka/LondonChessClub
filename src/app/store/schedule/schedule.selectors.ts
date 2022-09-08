@@ -48,7 +48,7 @@ export const hasUnsavedChanges = createSelector(
 function getNextEvent(events: ClubEvent[]): ClubEvent | null {
   for (let event of events) {
     // Since events are already sorted, find the first future date
-    if (new Date(event.eventDate) > new Date(Date.now())) {
+    if (new Date(event.eventDate) >= new Date(Date.now())) {
       return event;
     }
   }

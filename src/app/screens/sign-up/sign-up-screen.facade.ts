@@ -9,6 +9,7 @@ export class SignUpScreenFacade {
   constructor(private store: Store) {}
 
   onSignUp(request: SignUpRequest) {
-    this.store.dispatch(AuthActions.signUpRequested({ request }));
+    // this.store.dispatch(AuthActions.signUpRequested({ request }));
+    console.error('User sign up functionality temporarily disabled');
   }
 }

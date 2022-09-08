@@ -41,11 +41,11 @@ export class ModalEffects {
   openUpdateMemberModal$ = createEffect(() =>
     this.actions$.pipe(
       ofType(MembersActions.updateMemberSelected),
-      concatLatestFrom(() => this.store.select(MembersSelectors.memberBeforeEdit)),
-      map(([, memberBeforeEdit]) => {
+      concatLatestFrom(() => this.store.select(MembersSelectors.selectedMember)),
+      map(([, selectedMember]) => {
         const modal: Modal = {
           title: 'Confirm member update',
-          body: `Update ${memberBeforeEdit.firstName} ${memberBeforeEdit.lastName}?`,
+          body: `Update ${selectedMember.firstName} ${selectedMember.lastName}?`,
           buttons: [
             {
               text: 'Cancel',

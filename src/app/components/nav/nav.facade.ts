@@ -15,9 +15,6 @@ export class NavFacade implements OnDestroy {
 
   documentSub: Subscription;
 
-  // TODO: Need to find a good way to 'get member by ID' using their common UUID
-  tempFirstName$ = of('Michal');
-
   constructor(private readonly store: Store) {
     /**
      * Only close the dropdown if it's currently open and the user clicked outside
@@ -76,10 +73,6 @@ export class NavFacade implements OnDestroy {
 
   onChangePassword(): void {
     this.store.dispatch(NavActions.changePasswordNavigationRequested());
-  }
-
-  onResendVerificationLink(): void {
-    this.store.dispatch(AuthActions.resendVerificationLinkRequested());
   }
 
   onLogOut(): void {

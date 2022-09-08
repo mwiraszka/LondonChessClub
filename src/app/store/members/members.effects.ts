@@ -6,7 +6,6 @@ import { map, switchMap, tap } from 'rxjs/operators';
 import { MembersService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { ServiceResponse } from '@app/types';
-import { customSort } from '@app/utils';
 
 import * as MembersActions from './members.actions';
 import * as MembersSelectors from './members.selectors';
@@ -46,48 +45,6 @@ export class MembersEffects {
           )
         )
       )
-    )
-  );
-
-  initiallySortMembers$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(MembersActions.loadMembersSucceeded),
-      concatLatestFrom(() => this.store.select(MembersSelectors.sortedBy)),
-      map(([{ allMembers }, sortedBy]) => {
-        const key = sortedBy;
-        return MembersActions.membersSorted({
-          sortedMembers: [...allMembers].sort(customSort(key, false)),
-          sortedBy,
-          isDescending: false,
-        });
-      })
-    )
-  );
-
-  sortMembers$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(MembersActions.tableHeaderSelected),
-      concatLatestFrom(() => [
-        this.store.select(MembersSelectors.members),
-        this.store.select(MembersSelectors.sortedBy),
-        this.store.select(MembersSelectors.isDescending),
-      ]),
-      map(([{ header }, members, sortedBy, isDescending]) => {
-        const key = header;
-        isDescending = sortedBy === key ? !isDescending : isDescending;
-        return MembersActions.membersSorted({
-          sortedMembers: [...members].sort(customSort(key, isDescending)),
-          sortedBy: header,
-          isDescending,
-        });
-      })
-    )
-  );
-
-  resetMemberForm$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(MembersActions.createMemberSelected),
-      map(() => MembersActions.resetMemberForm())
     )
   );
 

@@ -13,8 +13,8 @@ import * as ModalActions from './modal.actions';
 
 @Injectable()
 export class ModalEffects {
-  openAddMemberModal$ = createEffect(() =>
-    this.actions$.pipe(
+  openAddMemberModal$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(MembersActions.addMemberSelected),
       map(({ memberToAdd }) => {
         const modal: Modal = {
@@ -35,11 +35,11 @@ export class ModalEffects {
         };
         return ModalActions.modalOpened({ modal });
       })
-    )
-  );
+    );
+  });
 
-  openUpdateMemberModal$ = createEffect(() =>
-    this.actions$.pipe(
+  openUpdateMemberModal$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(MembersActions.updateMemberSelected),
       concatLatestFrom(() => this.store.select(MembersSelectors.selectedMember)),
       map(([, selectedMember]) => {
@@ -61,11 +61,11 @@ export class ModalEffects {
         };
         return ModalActions.modalOpened({ modal });
       })
-    )
-  );
+    );
+  });
 
-  openDeleteMemberModal$ = createEffect(() =>
-    this.actions$.pipe(
+  openDeleteMemberModal$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(MembersActions.deleteMemberSelected),
       map(({ memberToDelete }) => {
         const modal: Modal = {
@@ -86,11 +86,11 @@ export class ModalEffects {
         };
         return ModalActions.modalOpened({ modal });
       })
-    )
-  );
+    );
+  });
 
-  openAddEventModal$ = createEffect(() =>
-    this.actions$.pipe(
+  openAddEventModal$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ScheduleActions.addEventSelected),
       map(({ eventToAdd }) => {
         const modal: Modal = {
@@ -111,11 +111,11 @@ export class ModalEffects {
         };
         return ModalActions.modalOpened({ modal });
       })
-    )
-  );
+    );
+  });
 
-  openUpdateEventModal$ = createEffect(() =>
-    this.actions$.pipe(
+  openUpdateEventModal$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ScheduleActions.updateEventSelected),
       concatLatestFrom(() => this.store.select(ScheduleSelectors.eventBeforeEdit)),
       map(([, eventBeforeEdit]) => {
@@ -137,11 +137,11 @@ export class ModalEffects {
         };
         return ModalActions.modalOpened({ modal });
       })
-    )
-  );
+    );
+  });
 
-  openDeleteEventModal$ = createEffect(() =>
-    this.actions$.pipe(
+  openDeleteEventModal$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ScheduleActions.deleteEventSelected),
       map(({ eventToDelete }) => {
         const modal: Modal = {
@@ -162,11 +162,11 @@ export class ModalEffects {
         };
         return ModalActions.modalOpened({ modal });
       })
-    )
-  );
+    );
+  });
 
-  openPublishArticleModal$ = createEffect(() =>
-    this.actions$.pipe(
+  openPublishArticleModal$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ArticlesActions.publishArticleSelected),
       map(({ articleToPublish }) => {
         const modal: Modal = {
@@ -187,11 +187,11 @@ export class ModalEffects {
         };
         return ModalActions.modalOpened({ modal });
       })
-    )
-  );
+    );
+  });
 
-  openUpdateArticleModal$ = createEffect(() =>
-    this.actions$.pipe(
+  openUpdateArticleModal$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleSelected),
       concatLatestFrom(() => this.store.select(ArticlesSelectors.articleBeforeEdit)),
       map(([, articleBeforeEdit]) => {
@@ -213,11 +213,11 @@ export class ModalEffects {
         };
         return ModalActions.modalOpened({ modal });
       })
-    )
-  );
+    );
+  });
 
-  openDeleteArticleModal$ = createEffect(() =>
-    this.actions$.pipe(
+  openDeleteArticleModal$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleSelected),
       map(({ articleToDelete }) => {
         const modal: Modal = {
@@ -238,11 +238,11 @@ export class ModalEffects {
         };
         return ModalActions.modalOpened({ modal });
       })
-    )
-  );
+    );
+  });
 
-  openUnsavedChangesModal$ = createEffect(() =>
-    this.actions$.pipe(
+  openUnsavedChangesModal$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ModalActions.leaveWithUnsavedChangesRequested),
       map(() => {
         const modal: Modal = {
@@ -263,18 +263,18 @@ export class ModalEffects {
         };
         return ModalActions.modalOpened({ modal });
       })
-    )
-  );
+    );
+  });
 
-  closeModal$ = createEffect(() =>
-    this.actions$.pipe(
+  closeModal$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ModalActions.selectionMade),
       map(() => ModalActions.modalClosed())
-    )
-  );
+    );
+  });
 
-  broadcastSelection$ = createEffect(() =>
-    this.actions$.pipe(
+  broadcastSelection$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ModalActions.selectionMade),
       filter(
         ({ action }) =>
@@ -339,8 +339,8 @@ export class ModalEffects {
             return ArticlesActions.deleteArticleCancelled();
         }
       })
-    )
-  );
+    );
+  });
 
   activateVersionUpdate$ = createEffect(
     () =>

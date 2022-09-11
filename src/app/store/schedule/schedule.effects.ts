@@ -11,8 +11,8 @@ import * as ScheduleSelectors from './schedule.selectors';
 
 @Injectable()
 export class ScheduleEffects {
-  getEvents$ = createEffect(() =>
-    this.actions$.pipe(
+  getEvents$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ScheduleActions.loadEventsStarted),
       switchMap(() =>
         this.scheduleService.getEvents().pipe(
@@ -25,11 +25,11 @@ export class ScheduleEffects {
           )
         )
       )
-    )
-  );
+    );
+  });
 
-  deleteEvent$ = createEffect(() =>
-    this.actions$.pipe(
+  deleteEvent$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ScheduleActions.deleteEventConfirmed),
       concatLatestFrom(() => this.store.select(ScheduleSelectors.selectedEvent)),
       switchMap(([, eventToDelete]) =>
@@ -43,18 +43,18 @@ export class ScheduleEffects {
           )
         )
       )
-    )
-  );
+    );
+  });
 
-  resetEventForm$ = createEffect(() =>
-    this.actions$.pipe(
+  resetEventForm$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ScheduleActions.createEventSelected),
       map(() => ScheduleActions.resetEventForm())
-    )
-  );
+    );
+  });
 
-  addEvent$ = createEffect(() =>
-    this.actions$.pipe(
+  addEvent$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ScheduleActions.addEventConfirmed),
       concatLatestFrom(() => this.store.select(ScheduleSelectors.eventCurrently)),
       switchMap(([, eventToAdd]) => {
@@ -68,11 +68,11 @@ export class ScheduleEffects {
           )
         );
       })
-    )
-  );
+    );
+  });
 
-  updateEvent$ = createEffect(() =>
-    this.actions$.pipe(
+  updateEvent$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ScheduleActions.updateEventConfirmed),
       concatLatestFrom(() => this.store.select(ScheduleSelectors.eventCurrently)),
       switchMap(([, eventToUpdate]) => {
@@ -86,8 +86,8 @@ export class ScheduleEffects {
           )
         );
       })
-    )
-  );
+    );
+  });
 
   logError$ = createEffect(
     () =>
@@ -99,7 +99,7 @@ export class ScheduleEffects {
           ScheduleActions.deleteEventFailed
         ),
         tap(({ error }) => {
-          console.error(`[Schedule Effects] ${error.message}`);
+          console.error(`[Schedule] ${error.message}`);
         })
       ),
     { dispatch: false }

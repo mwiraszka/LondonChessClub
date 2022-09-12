@@ -33,7 +33,7 @@ export class ScheduleComponent implements OnInit {
     this.facade.loadEvents();
   }
 
-  trackById(index: number, event: ClubEvent): string {
+  trackByFn(index: number, event: ClubEvent): string {
     return event.id;
   }
 

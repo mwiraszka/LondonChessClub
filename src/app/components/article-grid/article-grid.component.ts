@@ -27,7 +27,7 @@ export class ArticleGridComponent implements OnInit {
     this.facade.loadArticles();
   }
 
-  trackById(index: number, article: Article): string {
+  trackByFn(index: number, article: Article): string {
     return article.id;
   }
 }

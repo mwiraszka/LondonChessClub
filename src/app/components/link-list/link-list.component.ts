@@ -25,7 +25,7 @@ export class LinkListComponent implements OnInit {
     ClarityIcons.addIcons(cameraIcon, plusCircleIcon);
   }
 
-  trackByPath(index: number, link: Link): string {
+  trackByFn(index: number, link: Link): string {
     return link.path;
   }
 

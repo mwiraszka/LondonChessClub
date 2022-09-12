@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { LoaderService } from '@app/services';
-import { Link, NavPathTypes } from '@app/types';
+import { ClubEvent, Link, NavPathTypes } from '@app/types';
 import { kebabize } from '@app/utils';
 
 import { ScheduleFacade } from './schedule.facade';
@@ -31,6 +31,10 @@ export class ScheduleComponent implements OnInit {
       this.loader.display(isLoading);
     });
     this.facade.loadEvents();
+  }
+
+  trackById(index: number, event: ClubEvent): string {
+    return event.id;
   }
 
   formatDate(date: string): string {

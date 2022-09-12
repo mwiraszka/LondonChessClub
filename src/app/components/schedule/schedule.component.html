@@ -14,7 +14,8 @@
 		<tr *ngFor="let event of (numEvents
                   ? (facade.events$ | async).slice(0, numEvents)
                   : (facade.events$ | async)
-                ); let last = last;"
+                ); let last = last;
+                trackBy: trackById"
 				class="lcc-admin-controls-container"
 				[ngClass]="{'last-row': last}">
 			<ng-container *ngIf="facade.isAdmin$ | async">

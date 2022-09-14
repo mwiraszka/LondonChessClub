@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { LoaderService } from '@app/services';
 import { ClubEvent, Link, NavPathTypes } from '@app/types';
-import { kebabize } from '@app/utils';
+import { formatDate, kebabize } from '@app/utils';
 
 import { ScheduleFacade } from './schedule.facade';
 
@@ -13,6 +13,7 @@ import { ScheduleFacade } from './schedule.facade';
   providers: [ScheduleFacade],
 })
 export class ScheduleComponent implements OnInit {
+  formatDate = formatDate;
   kebabize = kebabize;
 
   @Input() numEvents?: number;
@@ -35,9 +36,5 @@ export class ScheduleComponent implements OnInit {
 
   trackByFn(index: number, event: ClubEvent): string {
     return event.id;
-  }
-
-  formatDate(date: string): string {
-    return new Date(date).toDateString();
   }
 }

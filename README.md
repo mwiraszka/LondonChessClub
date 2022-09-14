@@ -37,3 +37,22 @@ http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/<br /><br />
 - [Home] Created a responsive grid layout to showcase only the most pertinent information from other pages (such as only the next 4 events from the schedule, and a more limited amount of photos from the photo gallery)
 
 </details>
+
+<details>
+<summary style="cursor: pointer">v0.8.1-alpha</summary>
+
+**Released on September 8th, 2022**
+
+<h4 style="color: green">Features</h4>
+
+- [Core] Implement custom trackBy function to improve performance of ngFor directive's tracking algorithm
+
+<h4 style="color: orange">Refactor</h4>
+
+- [Core] Wrapped createEffect() callbacks with 'return' for easier debugging
+
+<h4 style="color: red">Bug Fixes</h4>
+
+- [Schedule] Corrected faulty date format conversions used in schedule component
+
+</details>

@@ -25,6 +25,10 @@ export class LinkListComponent implements OnInit {
     ClarityIcons.addIcons(cameraIcon, plusCircleIcon);
   }
 
+  trackByFn(index: number, link: Link): string {
+    return link.path;
+  }
+
   onSelect(link: Link) {
     this.facade.onSelect(link.path);
     this.select.emit(link);

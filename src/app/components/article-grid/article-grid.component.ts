@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { LoaderService } from '@app/services';
-import { Link, NavPathTypes } from '@app/types';
+import { Article, Link, NavPathTypes } from '@app/types';
 
 import { ArticleGridFacade } from './article-grid.facade';
 
@@ -25,5 +25,9 @@ export class ArticleGridComponent implements OnInit {
       this.loader.display(isLoading);
     });
     this.facade.loadArticles();
+  }
+
+  trackByFn(index: number, article: Article): string {
+    return article.id;
   }
 }

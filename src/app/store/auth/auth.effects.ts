@@ -10,8 +10,8 @@ import * as AuthActions from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
-  logIn$ = createEffect(() =>
-    this.actions$.pipe(
+  logIn$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.loginRequested),
       switchMap(({ request }) => {
         return this.authService.logIn(request).pipe(
@@ -34,27 +34,27 @@ export class AuthEffects {
           catchError(() =>
             of(
               AuthActions.loginFailed({
-                error: new Error('[Auth Effects] Unknown login error'),
+                error: new Error('[Auth] Unknown login error'),
               })
             )
           )
         );
       })
-    )
-  );
+    );
+  });
 
-  logOut$ = createEffect(() =>
-    this.actions$.pipe(
+  logOut$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.logoutRequested),
       map(() => {
         this.authService.logOut();
         return AuthActions.logoutSucceeded();
       })
-    )
-  );
+    );
+  });
 
-  signUp$ = createEffect(() =>
-    this.actions$.pipe(
+  signUp$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.signUpRequested),
       switchMap(({ request }) => {
         return this.authService.signUp(request).pipe(
@@ -73,17 +73,17 @@ export class AuthEffects {
           catchError(() =>
             of(
               AuthActions.signUpFailed({
-                error: new Error('[Auth Effects] Unknown sign-up error'),
+                error: new Error('[Auth] Unknown sign-up error'),
               })
             )
           )
         );
       })
-    )
-  );
+    );
+  });
 
-  requestPasswordChangeCode$ = createEffect(() =>
-    this.actions$.pipe(
+  requestPasswordChangeCode$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.codeForPasswordChangeRequested),
       switchMap(({ email }) => {
         return this.authService.sendChangePasswordCode(email).pipe(
@@ -103,11 +103,11 @@ export class AuthEffects {
           )
         );
       })
-    )
-  );
+    );
+  });
 
-  changePassword$ = createEffect(() =>
-    this.actions$.pipe(
+  changePassword$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.passwordChangeRequested),
       switchMap(({ request }) => {
         return this.authService.changePassword(request).pipe(
@@ -125,8 +125,8 @@ export class AuthEffects {
           )
         );
       })
-    )
-  );
+    );
+  });
 
   constructor(private actions$: Actions, private authService: AuthService) {}
 }

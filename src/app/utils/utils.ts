@@ -82,3 +82,12 @@ export function hasParentNodeWithClass(element: Element, className: string): boo
 export function isTouchScreen(): boolean {
   return window.matchMedia('(pointer: coarse)').matches;
 }
+
+/**
+ * @param {string} date The date in YYYY-MM-DD format
+ * @returns {string} User-friendly version of the input date
+ */
+export function formatDate(date: string): string {
+  const d = new Date(date);
+  return new Date(d.getTime() + Math.abs(d.getTimezoneOffset() * 60000)).toDateString();
+}

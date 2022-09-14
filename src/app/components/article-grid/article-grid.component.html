@@ -5,7 +5,7 @@
 </ng-container>
 
 <div class="articles-container">
-	<article *ngFor="let article of (facade.articles$ | async)"
+	<article *ngFor="let article of (facade.articles$ | async); trackBy: trackByFn"
 					 class="lcc-admin-controls-container">
 		<ng-container *ngIf="facade.isAdmin$ | async">
 			<lcc-admin-controls [itemName]="article.title"

@@ -12,9 +12,9 @@ import * as ToasterActions from './toaster.actions';
 
 @Injectable()
 export class ToasterEffects {
-  // ARTICLES -------------------------------------------------------------------------------------
-  addPublishArticleSucceededToast$ = createEffect(() =>
-    this.actions$.pipe(
+  //#region Articles
+  addPublishArticleSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ArticlesActions.publishArticleSucceeded),
       map(({ publishedArticle }) => {
         const toast: Toast = {
@@ -24,11 +24,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addPublishArticleFailedToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addPublishArticleFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ArticlesActions.publishArticleFailed),
       map(({ error }) => {
         const toast: Toast = {
@@ -38,11 +38,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addUpdateArticleSucceededToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addUpdateArticleSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleSucceeded),
       map(({ updatedArticle }) => {
         const toast: Toast = {
@@ -52,11 +52,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addUpdateArticleFailedToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addUpdateArticleFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleFailed),
       map(({ error }) => {
         const toast: Toast = {
@@ -66,11 +66,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addDeleteArticleSucceededToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addDeleteArticleSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleSucceeded),
       map(({ deletedArticle }) => {
         const toast: Toast = {
@@ -80,11 +80,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addDeleteArticleFailedToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addDeleteArticleFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleFailed),
       map(({ error }) => {
         const toast: Toast = {
@@ -94,11 +94,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addLoadArticlesFailedToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addLoadArticlesFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ArticlesActions.loadArticlesFailed),
       map(({ error }) => {
         const toast: Toast = {
@@ -108,12 +108,13 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
+  //#endregion
 
-  // MEMBERS --------------------------------------------------------------------------------------
-  addAddMemberSucceededToast$ = createEffect(() =>
-    this.actions$.pipe(
+  //#region Members
+  addAddMemberSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(MembersActions.addMemberSucceeded),
       map(({ addedMember }) => {
         const toast: Toast = {
@@ -123,11 +124,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addAddMemberFailedToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addAddMemberFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(MembersActions.addMemberFailed),
       map(({ error }) => {
         const toast: Toast = {
@@ -137,11 +138,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addUpdateMemberSucceededToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addUpdateMemberSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(MembersActions.updateMemberSucceeded),
       map(({ updatedMember }) => {
         const toast: Toast = {
@@ -151,11 +152,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addUpdateMemberFailedToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addUpdateMemberFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(MembersActions.updateMemberFailed),
       map(({ error }) => {
         const toast: Toast = {
@@ -165,11 +166,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addDeleteMemberSucceededToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addDeleteMemberSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(MembersActions.deleteMemberSucceeded),
       map(({ deletedMember }) => {
         const toast: Toast = {
@@ -179,11 +180,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addDeleteMemberFailedToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addDeleteMemberFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(MembersActions.deleteMemberFailed),
       map(({ error }) => {
         const toast: Toast = {
@@ -193,11 +194,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addLoadMembersFailedToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addLoadMembersFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(MembersActions.loadMembersFailed),
       map(({ error }) => {
         const toast: Toast = {
@@ -207,12 +208,13 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
+  //#endregion
 
-  // SCHEDULE --------------------------------------------------------------------------------------
-  addAddEventSucceededToast$ = createEffect(() =>
-    this.actions$.pipe(
+  //#region Schedule
+  addAddEventSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ScheduleActions.addEventSucceeded),
       map(({ addedEvent }) => {
         const toast: Toast = {
@@ -222,11 +224,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addAddEventFailedToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addAddEventFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ScheduleActions.addEventFailed),
       map(({ error }) => {
         const toast: Toast = {
@@ -236,11 +238,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addUpdateEventSucceededToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addUpdateEventSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ScheduleActions.updateEventSucceeded),
       map(({ updatedEvent }) => {
         const toast: Toast = {
@@ -250,11 +252,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addUpdateEventFailedToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addUpdateEventFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ScheduleActions.updateEventFailed),
       map(({ error }) => {
         const toast: Toast = {
@@ -264,11 +266,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addDeleteEventSucceededToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addDeleteEventSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ScheduleActions.deleteEventSucceeded),
       map(({ deletedEvent }) => {
         const toast: Toast = {
@@ -278,11 +280,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addDeleteEventFailedToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addDeleteEventFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ScheduleActions.deleteEventFailed),
       map(({ error }) => {
         const toast: Toast = {
@@ -292,11 +294,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addLoadEventsFailedToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addLoadEventsFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ScheduleActions.loadEventsFailed),
       map(({ error }) => {
         const toast: Toast = {
@@ -306,12 +308,13 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
+  //#endregion
 
-  // AUTH ---------------------------------------------------------------------------------------
-  addLoginSucceededToast$ = createEffect(() =>
-    this.actions$.pipe(
+  //#region Auth
+  addLoginSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.loginSucceeded),
       map(() => {
         const toast: Toast = {
@@ -321,11 +324,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addLoginFailedToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addLoginFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.loginFailed),
       map(({ error }) => {
         const toast: Toast = {
@@ -335,11 +338,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addLogoutSucceededToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addLogoutSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.logoutSucceeded),
       map(() => {
         const toast: Toast = {
@@ -349,11 +352,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addSendPasswordChangeCodeSucceededToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addSendPasswordChangeCodeSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.codeForPasswordChangeSucceeded),
       map(() => {
         const toast: Toast = {
@@ -363,11 +366,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addSendPasswordChangeCodeFailedToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addSendPasswordChangeCodeFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.codeForPasswordChangeFailed),
       map(({ error }) => {
         const toast: Toast = {
@@ -377,11 +380,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addChangePasswordSucceededToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addChangePasswordSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.passwordChangeSucceeded),
       map(() => {
         const toast: Toast = {
@@ -391,11 +394,11 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
 
-  addChangePasswordFailedToast$ = createEffect(() =>
-    this.actions$.pipe(
+  addChangePasswordFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.passwordChangeFailed),
       map(({ error }) => {
         const toast: Toast = {
@@ -405,17 +408,17 @@ export class ToasterEffects {
         };
         return ToasterActions.toastAdded({ toast });
       })
-    )
-  );
+    );
+  });
+  //#endregion
 
-  // EXPIRE ---------------------------------------------------------------------------------------
-  expireToast$ = createEffect(() =>
-    this.actions$.pipe(
+  expireToast$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ToasterActions.toastAdded),
       delay(5000),
       map(({ toast }) => ToasterActions.toastExpired({ toast }))
-    )
-  );
+    );
+  });
 
   constructor(private actions$: Actions) {}
 }

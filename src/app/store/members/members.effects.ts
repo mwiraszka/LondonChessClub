@@ -12,8 +12,8 @@ import * as MembersSelectors from './members.selectors';
 
 @Injectable()
 export class MembersEffects {
-  getMembers$ = createEffect(() =>
-    this.actions$.pipe(
+  getMembers$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(MembersActions.loadMembersStarted),
       concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
       switchMap(([, isAdmin]) =>
@@ -27,11 +27,11 @@ export class MembersEffects {
           )
         )
       )
-    )
-  );
+    );
+  });
 
-  deleteMember$ = createEffect(() =>
-    this.actions$.pipe(
+  deleteMember$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(MembersActions.deleteMemberConfirmed),
       concatLatestFrom(() => this.store.select(MembersSelectors.selectedMember)),
       switchMap(([, memberToDelete]) =>
@@ -45,11 +45,11 @@ export class MembersEffects {
           )
         )
       )
-    )
-  );
+    );
+  });
 
-  addMember$ = createEffect(() =>
-    this.actions$.pipe(
+  addMember$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(MembersActions.addMemberConfirmed),
       concatLatestFrom(() => this.store.select(MembersSelectors.memberCurrently)),
       switchMap(([, memberToAdd]) => {
@@ -63,11 +63,11 @@ export class MembersEffects {
           )
         );
       })
-    )
-  );
+    );
+  });
 
-  updateMember$ = createEffect(() =>
-    this.actions$.pipe(
+  updateMember$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(MembersActions.updateMemberConfirmed),
       concatLatestFrom(() => this.store.select(MembersSelectors.memberCurrently)),
       switchMap(([, memberToUpdate]) => {
@@ -81,8 +81,8 @@ export class MembersEffects {
           )
         );
       })
-    )
-  );
+    );
+  });
 
   logError$ = createEffect(
     () =>
@@ -94,7 +94,7 @@ export class MembersEffects {
           MembersActions.deleteMemberFailed
         ),
         tap(({ error }) => {
-          console.error(`[Members Effects]' ${error.message}`);
+          console.error(`[Members]' ${error.message}`);
         })
       ),
     { dispatch: false }

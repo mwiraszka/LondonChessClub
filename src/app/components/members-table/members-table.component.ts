@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { angleIcon, ClarityIcons } from '@cds/core/icon';
 
 import { LoaderService } from '@app/services';
-import { Link, NavPathTypes } from '@app/types';
+import { Link, Member, NavPathTypes } from '@app/types';
 import { camelize, kebabize } from '@app/utils';
 
 import { MembersTableFacade } from './members-table.facade';
@@ -45,5 +45,9 @@ export class MembersTableComponent implements OnInit {
     });
     this.facade.loadMembers();
     ClarityIcons.addIcons(angleIcon);
+  }
+
+  trackByFn(index: number, member: Member): string {
+    return member.id;
   }
 }

@@ -11,8 +11,8 @@ import * as ArticlesSelectors from './articles.selectors';
 
 @Injectable()
 export class ArticlesEffects {
-  getArticles$ = createEffect(() =>
-    this.actions$.pipe(
+  getArticles$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ArticlesActions.loadArticlesStarted),
       switchMap(() =>
         this.articlesService.getArticles().pipe(
@@ -25,11 +25,11 @@ export class ArticlesEffects {
           )
         )
       )
-    )
-  );
+    );
+  });
 
-  deleteArticle$ = createEffect(() =>
-    this.actions$.pipe(
+  deleteArticle$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleConfirmed),
       concatLatestFrom(() => this.store.select(ArticlesSelectors.selectedArticle)),
       switchMap(([, articleToDelete]) =>
@@ -43,18 +43,18 @@ export class ArticlesEffects {
           )
         )
       )
-    )
-  );
+    );
+  });
 
-  resetArticleForm$ = createEffect(() =>
-    this.actions$.pipe(
+  resetArticleForm$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ArticlesActions.createArticleSelected),
       map(() => ArticlesActions.resetArticleForm())
-    )
-  );
+    );
+  });
 
-  publishArticle$ = createEffect(() =>
-    this.actions$.pipe(
+  publishArticle$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ArticlesActions.publishArticleConfirmed),
       concatLatestFrom(() => this.store.select(ArticlesSelectors.articleCurrently)),
       switchMap(([, articleToPublish]) => {
@@ -68,11 +68,11 @@ export class ArticlesEffects {
           )
         );
       })
-    )
-  );
+    );
+  });
 
-  updateArticle$ = createEffect(() =>
-    this.actions$.pipe(
+  updateArticle$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleConfirmed),
       concatLatestFrom(() => this.store.select(ArticlesSelectors.articleCurrently)),
       switchMap(([, articleToUpdate]) => {
@@ -86,8 +86,8 @@ export class ArticlesEffects {
           )
         );
       })
-    )
-  );
+    );
+  });
 
   logError$ = createEffect(
     () =>
@@ -99,12 +99,11 @@ export class ArticlesEffects {
           ArticlesActions.deleteArticleFailed
         ),
         tap(({ error }) => {
-          console.error(`[Articles Effects] ${error.message}`);
+          console.error(`[Articles] ${error.message}`);
         })
       ),
     { dispatch: false }
   );
-
   constructor(
     private actions$: Actions,
     private articlesService: ArticlesService,

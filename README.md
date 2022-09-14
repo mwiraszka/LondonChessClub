@@ -10,7 +10,7 @@ http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/<br /><br />
 <details>
 <summary style="cursor: pointer">v0.8.0-alpha</summary>
 
-**Released on September 8th, 2022**
+**Released on September 13th, 2022**
 
 <h4 style="color: green">Features</h4>
 

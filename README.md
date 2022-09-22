@@ -9,15 +9,40 @@ http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/<br /><br />
 <h3>Releases</h3>
 
 <details>
+<summary style="cursor: pointer">v0.8.2-alpha</summary>
+
+**Released on September 22nd, 2022**
+
+<h4 style="color: green">Features</h4>
+
+- [Articles] Added 'date created' and 'date edited' information to article cards
+
+- [Schedule] Improved date formatting in schedule component
+
+- [Core] Centred admin control links displayed above the schedule, members, and article-grid components
+
+- [Core] Sanitized any actions in NgRx DevTools that include sensitive information
+
+<h4 style="color: orange">Refactor / Chores</h4>
+
+- [Core] Cleaned up .gitignore file
+
+- [Core] Updated README.md and app version
+
+- [Articles] Removed any unused code from article-grid and article-form components and resized the cards that make up the article-grid
+
+</details>
+
+<details>
 <summary style="cursor: pointer">v0.8.1-alpha</summary>
 
 **Released on September 13th, 2022**
 
 <h4 style="color: green">Features</h4>
 
-- [Core] Implement custom trackBy function to improve performance of ngFor directive's tracking algorithm
+- [Core] Implemented custom trackBy function to improve performance of ngFor directive's tracking algorithm
 
-<h4 style="color: orange">Refactor</h4>
+<h4 style="color: orange">Refactor / Chores</h4>
 
 - [Core] Wrapped createEffect() callbacks with 'return' for easier debugging
 

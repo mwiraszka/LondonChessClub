@@ -41,8 +41,8 @@
 				</p>
 				<aside *ngIf="includeDetails"
 							 class="created-and-edited">
-					Event created on {{ event.dateCreated }}<br />
-					Last edited on {{ event.dateEdited }}
+					Event created on {{ formatDate(event.dateCreated) }}<br />
+					Last edited on {{ formatDate(event.dateEdited) }}
 				</aside>
 			</td>
 		</tr>

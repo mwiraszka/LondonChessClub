@@ -1,6 +1,6 @@
 export { AppScreenTypes } from './app-screens.model';
 export { AppStoreFeatureTypes } from './app-store-features.model';
-export { Article, newArticleFormTemplate, MOCK_ARTICLES } from './article.model';
+export { Article, newArticleFormTemplate } from './article.model';
 export { ClubEvent, ClubEventTypes, newClubEventFormTemplate } from './club-event.model';
 export { Link } from './link.model';
 export { LoginRequest } from './login-request.model';

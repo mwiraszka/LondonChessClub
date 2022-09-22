@@ -1,3 +1,7 @@
+import { Action } from '@ngrx/store';
+
+import { AuthActions } from '@app/store/auth';
+
 /**
  * Checks each of a's parameters' values against b's
  * (b could still have additional properties unaccounted for)
@@ -90,4 +94,23 @@ export function isTouchScreen(): boolean {
 export function formatDate(date: string): string {
   const d = new Date(date);
   return new Date(d.getTime() + Math.abs(d.getTimezoneOffset() * 60000)).toDateString();
+}
+
+/**
+ * Sanitizes the action by replacing sensitive props if it includes any;
+ * otherwise returns the same action
+ * @param {Action} action
+ * @returns {Action}
+ */
+export function actionSanitizer(action: Action) {
+  if (
+    action.type === AuthActions.loginRequested.type ||
+    action.type === AuthActions.passwordChangeRequested.type
+  ) {
+    return {
+      ...action,
+      request: '¯\\_(ツ)_/¯',
+    };
+  }
+  return action;
 }

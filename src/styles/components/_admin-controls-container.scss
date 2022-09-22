@@ -3,8 +3,6 @@
 
   &:focus,
   &:hover {
-    background-color: lighten($lcc-color--select, 15%) !important;
-    
     lcc-admin-controls {
       visibility: visible;
     }

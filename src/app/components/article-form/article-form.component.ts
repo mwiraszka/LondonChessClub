@@ -5,7 +5,6 @@ import { debounceTime, first, tap } from 'rxjs/operators';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoaderService } from '@app/services';
 import { Article } from '@app/types';
-import { mimeTypeValidator } from '@app/validators';
 
 import { ArticleFormFacade } from './article-form.facade';
 
@@ -31,16 +30,7 @@ export class ArticleFormComponent {
 
     this.facade.articleCurrently$
       .pipe(
-        tap((article) => {
-          this.initForm(article);
-          this.imagePreview = article.headerImageUrl as string;
-        }),
-        first()
-      )
-      .subscribe();
-
-    this.facade.articleBeforeEdit$
-      .pipe(
+        tap((article) => this.initForm(article)),
         tap(() => this.loader.display(false)),
         first()
       )
@@ -60,22 +50,9 @@ export class ArticleFormComponent {
       return 'This field is required';
     } else if (control.errors.hasOwnProperty('invalidDateFormat')) {
       return 'Invalid date';
-    } else if (control.errors.hasOwnProperty('invalidMimeType')) {
-      return "Invalid file type\n(Allowable formats: 'png' & 'jpg'";
     } else {
       return 'Unknown error';
     }
-  }
-
-  onImageChange(event: Event): void {
-    const file = (event.target as HTMLInputElement).files[0];
-    this.form.get('headerImageUrl').patchValue(file);
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imagePreview = reader.result as string;
-    };
-    reader.readAsDataURL(file);
   }
 
   onCancel(): void {
@@ -94,8 +71,6 @@ export class ArticleFormComponent {
     this.form = this.formBuilder.group({
       title: [article.title, [Validators.required, Validators.pattern(/[^\s]/)]],
       subtitle: [article.subtitle, [Validators.required, Validators.pattern(/[^\s]/)]],
-      headerImageUrl: [article.headerImageUrl, Validators.required, mimeTypeValidator],
-      authorId: [article.authorId, Validators.required],
       body: [article.body, [Validators.required, Validators.pattern(/[^\s]/)]],
       id: [article.id],
       dateCreated: [article.dateCreated],

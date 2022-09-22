@@ -1,51 +1,5 @@
-# Compiled output
-/dist
-/tmp
-/out-tsc
-package-lock.json
-
-# Server config files
-/server
-
-# Backend images
-/backend/images
-
-# Angular and Babel Webpack
-/.angular
-
 # Dependencies
 /node_modules
-
-# Profiling files
-chrome-profiler-events*.json
-speed-measure-plugin*.json
-
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
-
-# Miscellaneous
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
 
 # Beautify
 .jsbeautifyrc
@@ -56,3 +10,24 @@ Thumbs.db
 
 # Work in progress
 /wip
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+package-lock.json
+
+# Angular and Babel Webpack
+/.angular
+
+# Profiling files
+chrome-profiler-events*.json
+speed-measure-plugin*.json
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*

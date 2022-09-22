@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { Article, ServiceResponse } from '@app/types';
 import { environment } from '@environments/environment';
@@ -27,10 +27,16 @@ export class ArticlesService {
       map((articles) => ({ payload: { articles } })),
       catchError(() => of({ error: new Error('Failed to fetch articles from database') }))
     );
-    // return of({ error: new Error('Articles API call temporarily disabled') });
   }
 
   addArticle(articleToAdd: Article): Observable<ServiceResponse> {
+    // Escaping the backslash for new lines seems necessary to work with API Gateway
+    // integration mapping set up for this endpoint (not needed for updateEvent())
+    articleToAdd = {
+      ...articleToAdd,
+      body: articleToAdd.body.replaceAll('\n', '\\n'),
+    };
+
     return this.authService.token().pipe(
       switchMap((token) =>
         this.http.post<any>(API_ENDPOINT, articleToAdd, {

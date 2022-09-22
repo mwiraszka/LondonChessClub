@@ -16,6 +16,10 @@
 
 		<h4>{{ article.title }}</h4>
 		<h5>{{ article.subtitle }}</h5>
+		<h6>{{ formatDate(article.dateCreated) }}</h6>
+		<h6 *ngIf="article.dateCreated !== article.dateEdited">
+			| edited {{ formatDate(article.dateEdited) }}
+		</h6>
 		<p>{{ article.body }}</p>
 	</article>
 </div>

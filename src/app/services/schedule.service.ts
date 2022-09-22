@@ -31,7 +31,6 @@ export class ScheduleService {
       }),
       catchError(() => of({ error: new Error('Failed to fetch schedule from database') }))
     );
-    // return of({ error: new Error('Schedule API call temporarily disabled') });
   }
 
   addEvent(eventToAdd: ClubEvent): Observable<ServiceResponse> {

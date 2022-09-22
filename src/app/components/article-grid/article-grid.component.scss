@@ -32,7 +32,7 @@ lcc-link-list,
     display: flex;
     flex-flow: column nowrap;
     max-width: 280px;
-    height: 280px;
+    height: 350px;
     padding: $article-padding;
     background-color: darken($lcc-color--white, 6%);
 
@@ -40,11 +40,18 @@ lcc-link-list,
       transform: translate(-$article-padding, -$article-padding); 
     }
 
+    h6 {
+      display: contents;
+    }
+
     p {
+      text-align: justify;
       height: auto;
       width: auto;
       overflow: hidden;
+      white-space: pre-wrap;
       padding: 24px 6px;
+      line-height: 1.5em;
     }
   }
 }

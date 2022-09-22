@@ -8,10 +8,6 @@
   min-width: 220px;
 }
 
-lcc-link-list {
-  align-self: flex-start;
-}
-
 table {
   width: 100%;
   margin-bottom: 18px;
@@ -75,9 +71,8 @@ table {
           .details {
             width: 100%;
             line-height: 1.5em;
-            padding: 0;
+            padding-right: 12px;
             color: $lcc-color--text-secondary;
-            white-space: pre-wrap;
           }
   
           .created-and-edited {

@@ -27,6 +27,7 @@ import { ModalStoreModule } from '@app/store/modal';
 import { NavStoreModule } from '@app/store/nav';
 import { ScheduleStoreModule } from '@app/store/schedule';
 import { ToasterStoreModule } from '@app/store/toaster';
+import { actionSanitizer } from '@app/utils';
 import { environment } from '@environments/environment';
 
 import { AppComponent } from './app.component';
@@ -63,8 +64,9 @@ import { AppComponent } from './app.component';
     StoreModule.forRoot({ router: routerReducer }, { metaReducers }),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
+      name: 'London Chess Club - NgRx Store DevTools',
       maxAge: 25,
-      logOnly: environment.production,
+      actionSanitizer,
     }),
     ToasterModule,
     ToasterStoreModule,

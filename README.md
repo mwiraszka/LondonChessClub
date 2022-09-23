@@ -9,6 +9,17 @@ http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/<br /><br />
 <h3>Releases</h3>
 
 <details>
+<summary style="cursor: pointer">v1.0.0-beta</summary>
+
+**Released on September 23rd, 2022**
+
+<h4 style="color: red">Bug Fixes</h4>
+
+- [Core] Revert accidental removal of DevTools module property 'logOnly' to re-disable all but logs when in a production environment
+
+</details>
+
+<details>
 <summary style="cursor: pointer">v0.8.2-alpha</summary>
 
 **Released on September 22nd, 2022**
@@ -26,8 +37,6 @@ http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/<br /><br />
 <h4 style="color: orange">Refactor / Chores</h4>
 
 - [Core] Cleaned up .gitignore file
-
-- [Core] Updated README.md and app version
 
 - [Articles] Removed any unused code from article-grid and article-form components and resized the cards that make up the article-grid
 

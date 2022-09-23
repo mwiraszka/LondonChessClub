@@ -65,6 +65,7 @@ import { AppComponent } from './app.component';
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       name: 'London Chess Club - NgRx Store DevTools',
+      logOnly: environment.production,
       maxAge: 25,
       actionSanitizer,
     }),

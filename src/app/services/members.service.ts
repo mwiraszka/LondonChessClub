@@ -52,7 +52,6 @@ export class MembersService {
         )
       );
     }
-    // return of({ error: new Error('Members API call temporarily disabled') });
   }
 
   addMember(memberToAdd: Member): Observable<ServiceResponse> {

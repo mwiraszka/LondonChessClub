@@ -16,7 +16,8 @@ export class AuthEffects {
       switchMap(({ request }) => {
         return this.authService.logIn(request).pipe(
           map((loginResponse) => {
-            // temp - see note above auth service's userData() method
+            // Create fake user object since this information is currently
+            // not received from Cognito when logging in
             const user: User = {
               id: 'test-3nfo13-1j3nf',
               firstName: loginResponse?.firstName,
@@ -53,34 +54,36 @@ export class AuthEffects {
     );
   });
 
-  signUp$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(AuthActions.signUpRequested),
-      switchMap(({ request }) => {
-        return this.authService.signUp(request).pipe(
-          map((response: SignUpResponse) => {
-            const user: User = {
-              id: 'test-3nfo13-1j3nf',
-              email: 'michal@test.com*',
-              isVerified: false,
-              isAdmin: false,
-            };
-            return AuthActions.signUpSucceeded({
-              user,
-              session: response.session,
-            });
-          }),
-          catchError(() =>
-            of(
-              AuthActions.signUpFailed({
-                error: new Error('[Auth] Unknown sign-up error'),
-              })
-            )
-          )
-        );
-      })
-    );
-  });
+  // Fully functional, just disabled for the time being:
+
+  // signUp$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(AuthActions.signUpRequested),
+  //     switchMap(({ request }) => {
+  //       return this.authService.signUp(request).pipe(
+  //         map((response: SignUpResponse) => {
+  //           const user: User = {
+  //             id: 'test-3nfo13-1j3nf',
+  //             email: 'michal@test.com*',
+  //             isVerified: false,
+  //             isAdmin: false,
+  //           };
+  //           return AuthActions.signUpSucceeded({
+  //             user,
+  //             session: response.session,
+  //           });
+  //         }),
+  //         catchError(() =>
+  //           of(
+  //             AuthActions.signUpFailed({
+  //               error: new Error('[Auth] Unknown sign-up error'),
+  //             })
+  //           )
+  //         )
+  //       );
+  //     })
+  //   );
+  // });
 
   requestPasswordChangeCode$ = createEffect(() => {
     return this.actions$.pipe(

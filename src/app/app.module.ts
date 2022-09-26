@@ -58,13 +58,14 @@ import { AppComponent } from './app.component';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
+      // or after 30 seconds (whichever comes first)
       registrationStrategy: 'registerWhenStable:30000',
     }),
     StoreModule.forRoot({ router: routerReducer }, { metaReducers }),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       name: 'London Chess Club - NgRx Store DevTools',
+      logOnly: environment.production,
       maxAge: 25,
       actionSanitizer,
     }),

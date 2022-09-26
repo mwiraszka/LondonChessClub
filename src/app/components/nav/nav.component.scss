@@ -129,7 +129,7 @@ $dropdown-list-width: 120px;
       font-size: $h5;
       background-color: darken($lcc-color--bg-main, 5%);
 
-      // hacky way to keep dropdown items directly below tab on all viewport widths
+      // Hacky way to keep dropdown items directly below tab on all viewport widths
       top: 30px;
       @include respond-to('lt-md') {
         top: 38px;
@@ -141,7 +141,7 @@ $dropdown-list-width: 120px;
         margin: 1px 0;
 
         &.login-welcome {
-          display: flex !important; // must override lcc-gt-md class default
+          display: flex !important; // Must override lcc-gt-md class default
           flex-flow: column nowrap;
           justify-content: center;
           align-items: center;

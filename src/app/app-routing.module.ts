@@ -85,7 +85,7 @@ const routes: Routes = [
     path: NavPathTypes.CHANGE_PASSWORD,
     component: ChangePasswordScreenComponent,
   },
-  // temporarily removed to prevent unauthorized access
+  // Temporarily removed to prevent unauthorized access
   // {
   //   path: NavPathTypes.SIGN_UP,
   //   component: SignUpScreenComponent,

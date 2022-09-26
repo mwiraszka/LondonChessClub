@@ -3,7 +3,7 @@
 $icon-width: 30px;
 
 :host {
-  visibility: hidden; // visible on parent hover (see _admin-controls-container.scss)
+  visibility: hidden; // Visible on parent hover (see _admin-controls-container.scss)
   position: absolute;
   z-index: 10;
   display: flex;

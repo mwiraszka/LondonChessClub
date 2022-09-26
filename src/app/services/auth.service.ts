@@ -54,23 +54,6 @@ export class AuthService {
     });
   }
 
-  // TODO: Implement once user logged in (must be authenticated) to
-  // fetch Cognito User data (first name, isAdmin, etc.)?
-  userData(): Observable<UserData | Error> {
-    return new Observable<UserData | Error>((observer) => {
-      this.currentUser()?.getUserData((error, data) => {
-        if (error) {
-          observer.error(error);
-          return;
-        }
-        if (data) {
-        }
-        observer.next(data);
-        observer.complete();
-      });
-    });
-  }
-
   isAuthenticated(): Observable<boolean> {
     return new Observable<boolean>((observer) => {
       this.currentUser()?.getSession((error, session) => {
@@ -84,41 +67,40 @@ export class AuthService {
     });
   }
 
-  /**
-   * Currently not hooked up in UI, but code is fully functional;
-   * here for future reference in case we decide to re-implement it
-   */
-  signUp(request: SignUpRequest): Observable<SignUpResponse> {
-    const givenNameAttribute = new CognitoUserAttribute({
-      Name: 'given_name',
-      Value: request.firstName,
-    });
-    const familyNameAttribute = new CognitoUserAttribute({
-      Name: 'family_name',
-      Value: request.lastName,
-    });
-    const attributeList: CognitoUserAttribute[] = [
-      givenNameAttribute,
-      familyNameAttribute,
-    ];
+  // Currently not hooked up in UI, but code is fully functional;
+  // here for future reference in case we decide to re-implement it:
 
-    return new Observable<SignUpResponse>((observer) => {
-      this.userPool().signUp(
-        request.email,
-        request.newPassword,
-        attributeList,
-        null,
-        (err, result) => {
-          if (err) {
-            observer.next({ error: err });
-          } else {
-            observer.next({ user: result.user });
-            observer.complete();
-          }
-        }
-      );
-    });
-  }
+  // signUp(request: SignUpRequest): Observable<SignUpResponse> {
+  //   const givenNameAttribute = new CognitoUserAttribute({
+  //     Name: 'given_name',
+  //     Value: request.firstName,
+  //   });
+  //   const familyNameAttribute = new CognitoUserAttribute({
+  //     Name: 'family_name',
+  //     Value: request.lastName,
+  //   });
+  //   const attributeList: CognitoUserAttribute[] = [
+  //     givenNameAttribute,
+  //     familyNameAttribute,
+  //   ];
+
+  //   return new Observable<SignUpResponse>((observer) => {
+  //     this.userPool().signUp(
+  //       request.email,
+  //       request.newPassword,
+  //       attributeList,
+  //       null,
+  //       (err, result) => {
+  //         if (err) {
+  //           observer.next({ error: err });
+  //         } else {
+  //           observer.next({ user: result.user });
+  //           observer.complete();
+  //         }
+  //       }
+  //     );
+  //   });
+  // }
 
   logIn(request: LoginRequest): Observable<LoginResponse> {
     const authDetails = new AuthenticationDetails({

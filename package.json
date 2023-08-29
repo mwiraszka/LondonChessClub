@@ -1,6 +1,6 @@
 {
   "name": "lcc-angular",
-  "version": "1.0.0-beta",
+  "version": "1.1.0-beta",
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
@@ -17,6 +17,7 @@
     "@angular/compiler": "^14.0.1",
     "@angular/core": "^14.0.1",
     "@angular/forms": "^14.0.1",
+    "@angular/google-maps": "^14.0.1",
     "@angular/platform-browser": "^14.0.1",
     "@angular/platform-browser-dynamic": "^14.0.1",
     "@angular/router": "^14.0.1",

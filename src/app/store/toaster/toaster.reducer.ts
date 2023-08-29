@@ -15,6 +15,6 @@ const toasterReducer = createReducer(
   }))
 );
 
-export function reducer(state: ToasterState, action: Action) {
+export function reducer(state: ToasterState, action: Action): ToasterState {
   return toasterReducer(state, action);
 }

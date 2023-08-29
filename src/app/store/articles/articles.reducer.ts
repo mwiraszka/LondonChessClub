@@ -66,6 +66,6 @@ const articlesReducer = createReducer(
   }))
 );
 
-export function reducer(state: ArticlesState, action: Action) {
+export function reducer(state: ArticlesState, action: Action): ArticlesState {
   return articlesReducer(state, action);
 }

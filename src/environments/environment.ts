@@ -10,4 +10,7 @@ export const environment = {
     scheduleEndpoint:
       'https://lgqi8xer38.execute-api.us-east-2.amazonaws.com/dev/club-events/',
   },
+  googleMaps: {
+    apiKey: 'AIzaSyAuLCJPCzFJXPWYUPM61Txue8PeJabI6DI',
+  },
 };

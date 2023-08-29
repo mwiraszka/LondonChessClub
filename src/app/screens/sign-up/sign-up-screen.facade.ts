@@ -8,7 +8,7 @@ import { SignUpRequest } from '@app/types';
 export class SignUpScreenFacade {
   constructor(private store: Store) {}
 
-  onSignUp(request: SignUpRequest) {
+  onSignUp(request: SignUpRequest): void {
     // this.store.dispatch(AuthActions.signUpRequested({ request }));
     console.error('User sign up functionality temporarily disabled');
   }

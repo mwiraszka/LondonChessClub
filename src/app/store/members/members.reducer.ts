@@ -107,6 +107,6 @@ const membersReducer = createReducer(
   }))
 );
 
-export function reducer(state: MembersState, action: Action) {
+export function reducer(state: MembersState, action: Action): MembersState {
   return membersReducer(state, action);
 }

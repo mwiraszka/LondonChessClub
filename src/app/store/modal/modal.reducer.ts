@@ -17,6 +17,6 @@ const modalReducer = createReducer(
   }))
 );
 
-export function reducer(state: ModalState, action: Action) {
+export function reducer(state: ModalState, action: Action): ModalState {
   return modalReducer(state, action);
 }

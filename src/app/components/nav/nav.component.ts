@@ -29,7 +29,7 @@ export class NavComponent {
   tooltipScreenWidthCutoff = 699; // Match lt-md breakpoint value
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
+  onResize(): void {
     this.screenWidth = window.innerWidth;
   }
 

@@ -29,7 +29,7 @@ export class LinkListComponent implements OnInit {
     return link.path;
   }
 
-  onSelect(link: Link) {
+  onSelect(link: Link): void {
     this.facade.onSelect(link.path);
     this.select.emit(link);
   }

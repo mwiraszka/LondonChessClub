@@ -15,6 +15,6 @@ const navReducer = createReducer(
   }))
 );
 
-export function reducer(state: NavState, action: Action) {
+export function reducer(state: NavState, action: Action): NavState {
   return navReducer(state, action);
 }

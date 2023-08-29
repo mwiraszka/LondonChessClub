@@ -74,6 +74,6 @@ const scheduleReducer = createReducer(
   }))
 );
 
-export function reducer(state: ScheduleState, action: Action) {
+export function reducer(state: ScheduleState, action: Action): ScheduleState {
   return scheduleReducer(state, action);
 }

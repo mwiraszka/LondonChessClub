@@ -12,7 +12,7 @@
 	</thead>
 	<tbody>
 		<tr *ngFor="let event of (numEvents
-                  ? (facade.events$ | async).slice(0, numEvents)
+                  ? (facade.events$ | async)?.slice(0, numEvents)
                   : (facade.events$ | async)
                 ); let last = last;
                 trackBy: trackByFn"

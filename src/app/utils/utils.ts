@@ -1,20 +1,18 @@
+/* eslint-disable no-prototype-builtins */
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Action } from '@ngrx/store';
+import { isEqual } from 'lodash';
 
 import { AuthActions } from '@app/store/auth';
 
 /**
- * Checks each of a's parameters' values against b's
- * (b could still have additional properties unaccounted for)
+ * A wrapper for lodash's isEqual()
  * @param {Object} a The first object to compare
  * @param {Object} b The second object to compare
  */
 export function areSame(a: Object, b: Object): boolean {
-  for (const key in a) {
-    if (a[key] !== b[key]) {
-      return false;
-    }
-  }
-  return true;
+  return isEqual(a, b);
 }
 
 /**
@@ -29,8 +27,14 @@ export function customSort(key: string, isAscending: boolean) {
       return 0; // Property doesn't exist on either object
     }
 
-    let varA: any = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
-    let varB: any = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
+    let varA: any =
+      typeof (a as any)[key] === 'string'
+        ? (a as any)[key].toUpperCase()
+        : (a as any)[key];
+    let varB: any =
+      typeof (b as any)[key] === 'string'
+        ? (b as any)[key].toUpperCase()
+        : (b as any)[key];
 
     // If both objects (before a potential slash) are valid numbers, convert to number type
     if (!isNaN(varA.split('/')[0]) && !isNaN(varB.split('/')[0])) {
@@ -46,15 +50,15 @@ export function customSort(key: string, isAscending: boolean) {
 
 /**
  * Converts any string to kebab-case
+ * (see https://stackoverflow.com/questions/63116039/camelcase-to-kebab-case)
  * @param {string} anyString The input string Like This, LikeThis, or Like_This
  * @returns {string} The same text in kebab-case
  */
 export function kebabize(anyString: string): string {
-  return anyString
-    .replace('.', '')
-    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
-    .join('-')
-    .toLowerCase();
+  return anyString.replace(
+    /[A-Z]+(?![a-z])|[A-Z]/g,
+    (str, ofs) => (ofs ? '-' : '') + str.toLowerCase(),
+  );
 }
 
 /**
@@ -63,7 +67,7 @@ export function kebabize(anyString: string): string {
  * @returns {string} The same text in camelCase
  */
 export function camelize(kebabString: string): string {
-  return kebabString.replace(/-./g, (hyphen) => hyphen[1].toUpperCase());
+  return kebabString.replace(/-./g, hyphen => hyphen[1].toUpperCase());
 }
 
 /**
@@ -73,9 +77,15 @@ export function camelize(kebabString: string): string {
  * @param {string} className The CSS class being searched for up the DOM tree
  * @returns {boolean} Whether the class was found
  */
-export function hasParentNodeWithClass(element: Element, className: string): boolean {
+export function hasParentNodeWithClass(
+  element: Element | null,
+  className: string,
+): boolean {
+  if (!element) {
+    return false;
+  }
   const currentElement = element.parentElement;
-  return currentElement.classList.contains(className)
+  return currentElement?.classList.contains(className)
     ? true
     : hasParentNodeWithClass(currentElement, className);
 }

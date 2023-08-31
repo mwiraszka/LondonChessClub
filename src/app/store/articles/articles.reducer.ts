@@ -5,7 +5,7 @@ import { ArticlesState, initialState } from './articles.state';
 
 const articlesReducer = createReducer(
   initialState,
-  on(ArticlesActions.loadArticlesStarted, (state) => ({
+  on(ArticlesActions.loadArticlesStarted, state => ({
     ...state,
     isLoading: true,
   })),
@@ -14,11 +14,11 @@ const articlesReducer = createReducer(
     articles: action.allArticles,
     isLoading: false,
   })),
-  on(ArticlesActions.loadArticlesFailed, (state) => ({
+  on(ArticlesActions.loadArticlesFailed, state => ({
     ...state,
     isLoading: false,
   })),
-  on(ArticlesActions.createArticleSelected, (state) => ({
+  on(ArticlesActions.createArticleSelected, state => ({
     ...state,
     selectedArticle: null,
     isEditMode: false,
@@ -36,14 +36,14 @@ const articlesReducer = createReducer(
   })),
   on(ArticlesActions.deleteArticleSucceeded, (state, action) => ({
     ...state,
-    articles: state.articles.filter((x) => x.id != action.deletedArticle.id),
+    articles: state.articles.filter(x => x.id != action.deletedArticle.id),
     selectedArticle: null,
   })),
-  on(ArticlesActions.deleteArticleFailed, (state) => ({
+  on(ArticlesActions.deleteArticleFailed, state => ({
     ...state,
     selectedArticle: null,
   })),
-  on(ArticlesActions.deleteArticleCancelled, (state) => ({
+  on(ArticlesActions.deleteArticleCancelled, state => ({
     ...state,
     selectedArticle: null,
   })),
@@ -54,16 +54,16 @@ const articlesReducer = createReducer(
     ArticlesActions.updateArticleSucceeded,
     ArticlesActions.updateArticleFailed,
     ArticlesActions.cancelConfirmed,
-    (state) => ({
+    state => ({
       ...state,
       articleBeforeEdit: initialState.articleBeforeEdit,
       articleCurrently: initialState.articleCurrently,
-    })
+    }),
   ),
   on(ArticlesActions.formDataChanged, (state, action) => ({
     ...state,
     articleCurrently: action.article,
-  }))
+  })),
 );
 
 export function reducer(state: ArticlesState, action: Action): ArticlesState {

@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { first, map } from 'rxjs/operators';
+
+import { Injectable } from '@angular/core';
 
 import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
 import { ClubEvent } from '@app/types';
@@ -22,18 +23,18 @@ export class EventFormFacade {
     event = { ...event, dateEdited: new Date().toLocaleDateString() };
     this.isEditMode$
       .pipe(
-        map((isEditMode) => {
+        map(isEditMode => {
           if (isEditMode) {
             this.store.dispatch(
               ScheduleActions.updateEventSelected({
                 eventToUpdate: event,
-              })
+              }),
             );
           } else {
             this.store.dispatch(ScheduleActions.addEventSelected({ eventToAdd: event }));
           }
         }),
-        first()
+        first(),
       )
       .subscribe();
   }

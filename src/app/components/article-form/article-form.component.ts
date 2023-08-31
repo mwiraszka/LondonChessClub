@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+/* eslint-disable no-prototype-builtins */
 import { Subscription } from 'rxjs';
 import { debounceTime, first, tap } from 'rxjs/operators';
 
+import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { LoaderService } from '@app/services';
 import { Article } from '@app/types';
 
@@ -16,13 +18,12 @@ import { ArticleFormFacade } from './article-form.facade';
 })
 export class ArticleFormComponent {
   form!: FormGroup;
-  imagePreview: string;
   valueChangesSubscription!: Subscription;
 
   constructor(
     public facade: ArticleFormFacade,
     private formBuilder: FormBuilder,
-    private loader: LoaderService
+    private loader: LoaderService,
   ) {}
 
   ngOnInit(): void {
@@ -30,9 +31,9 @@ export class ArticleFormComponent {
 
     this.facade.articleCurrently$
       .pipe(
-        tap((article) => this.initForm(article)),
+        tap(article => this.initForm(article)),
         tap(() => this.loader.display(false)),
-        first()
+        first(),
       )
       .subscribe();
   }
@@ -45,10 +46,11 @@ export class ArticleFormComponent {
     return control.value !== '' && control.invalid;
   }
 
+  // TODO: Get error messages without accessing the errors' properties like this
   getErrorMessage(control: AbstractControl): string {
-    if (control.errors.hasOwnProperty('required')) {
+    if (control.errors?.hasOwnProperty('required')) {
       return 'This field is required';
-    } else if (control.errors.hasOwnProperty('invalidDateFormat')) {
+    } else if (control.errors?.hasOwnProperty('invalidDateFormat')) {
       return 'Invalid date';
     } else {
       return 'Unknown error';

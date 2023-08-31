@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { first, map } from 'rxjs/operators';
+import { filter, first, map } from 'rxjs/operators';
+
+import { Injectable } from '@angular/core';
 
 import { MembersActions, MembersSelectors } from '@app/store/members';
 import { Member } from '@app/types';
@@ -21,20 +22,20 @@ export class MemberFormFacade {
   onSubmit(member: Member): void {
     this.isEditMode$
       .pipe(
-        map((isEditMode) => {
+        map(isEditMode => {
           if (isEditMode) {
             this.store.dispatch(
               MembersActions.updateMemberSelected({
                 memberToUpdate: member,
-              })
+              }),
             );
           } else {
             this.store.dispatch(
-              MembersActions.addMemberSelected({ memberToAdd: member })
+              MembersActions.addMemberSelected({ memberToAdd: member }),
             );
           }
         }),
-        first()
+        first(),
       )
       .subscribe();
   }
@@ -42,11 +43,13 @@ export class MemberFormFacade {
   onValueChange(member: Member): void {
     this.memberBeforeEdit$
       .pipe(
-        map((memberBeforeEdit) => {
-          const updatedMember = this.updatePeakRating(member, memberBeforeEdit);
+        filter(memberBeforeEdit => !!memberBeforeEdit),
+        map(memberBeforeEdit => {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          const updatedMember = this.updatePeakRating(member, memberBeforeEdit!);
           this.store.dispatch(MembersActions.formDataChanged({ member: updatedMember }));
         }),
-        first()
+        first(),
       )
       .subscribe();
   }

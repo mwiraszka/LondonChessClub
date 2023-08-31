@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
-import { concatLatestFrom, createEffect, Actions, ofType } from '@ngrx/effects';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, switchMap, tap } from 'rxjs/operators';
+
+import { Injectable } from '@angular/core';
 
 import { ArticlesService } from '@app/services';
 import { ServiceResponse } from '@app/types';
@@ -20,11 +22,11 @@ export class ArticlesEffects {
             response.error
               ? ArticlesActions.loadArticlesFailed({ error: response.error })
               : ArticlesActions.loadArticlesSucceeded({
-                  allArticles: response.payload.articles,
-                })
-          )
-        )
-      )
+                  allArticles: response.payload!.articles!,
+                }),
+          ),
+        ),
+      ),
     );
   });
 
@@ -33,23 +35,23 @@ export class ArticlesEffects {
       ofType(ArticlesActions.deleteArticleConfirmed),
       concatLatestFrom(() => this.store.select(ArticlesSelectors.selectedArticle)),
       switchMap(([, articleToDelete]) =>
-        this.articlesService.deleteArticle(articleToDelete).pipe(
+        this.articlesService.deleteArticle(articleToDelete!).pipe(
           map((response: ServiceResponse) =>
             response.error
               ? ArticlesActions.deleteArticleFailed({ error: response.error })
               : ArticlesActions.deleteArticleSucceeded({
-                  deletedArticle: response.payload.article,
-                })
-          )
-        )
-      )
+                  deletedArticle: response.payload!.article!,
+                }),
+          ),
+        ),
+      ),
     );
   });
 
   resetArticleForm$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.createArticleSelected),
-      map(() => ArticlesActions.resetArticleForm())
+      map(() => ArticlesActions.resetArticleForm()),
     );
   });
 
@@ -63,11 +65,11 @@ export class ArticlesEffects {
             response.error
               ? ArticlesActions.publishArticleFailed({ error: response.error })
               : ArticlesActions.publishArticleSucceeded({
-                  publishedArticle: response.payload.article,
-                })
-          )
+                  publishedArticle: response.payload!.article!,
+                }),
+          ),
         );
-      })
+      }),
     );
   });
 
@@ -81,11 +83,11 @@ export class ArticlesEffects {
             response.error
               ? ArticlesActions.updateArticleFailed({ error: response.error })
               : ArticlesActions.updateArticleSucceeded({
-                  updatedArticle: response.payload.article,
-                })
-          )
+                  updatedArticle: response.payload!.article!,
+                }),
+          ),
         );
-      })
+      }),
     );
   });
 
@@ -96,17 +98,17 @@ export class ArticlesEffects {
           ArticlesActions.publishArticleFailed,
           ArticlesActions.updateArticleFailed,
           ArticlesActions.loadArticlesFailed,
-          ArticlesActions.deleteArticleFailed
+          ArticlesActions.deleteArticleFailed,
         ),
         tap(({ error }) => {
           console.error(`[Articles] ${error.message}`);
-        })
+        }),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
   constructor(
     private actions$: Actions,
     private articlesService: ArticlesService,
-    private store: Store
+    private store: Store,
   ) {}
 }

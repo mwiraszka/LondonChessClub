@@ -1,21 +1,24 @@
-import { Injectable, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { fromEvent, of, Subscription } from 'rxjs';
+import { Subscription, fromEvent } from 'rxjs';
 import { filter, withLatestFrom } from 'rxjs/operators';
+
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
 
 import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { NavActions, NavSelectors } from '@app/store/nav';
 
 @Injectable()
-export class NavFacade implements OnDestroy {
+export class NavFacade implements OnInit, OnDestroy {
   user$ = this.store.select(AuthSelectors.user);
   isUserVerified$ = this.store.select(AuthSelectors.isUserVerified);
   isDropdownOpen$ = this.store.select(NavSelectors.isDropdownOpen);
   documentClick$ = fromEvent(document, 'click');
 
-  documentSub: Subscription;
+  documentSub!: Subscription;
 
-  constructor(private readonly store: Store) {
+  constructor(private readonly store: Store) {}
+
+  ngOnInit(): void {
     /**
      * Only close the dropdown if it's currently open and the user clicked outside
      * of a part of the dropdown component (i.e. any element with class 'ddcomp')
@@ -25,10 +28,14 @@ export class NavFacade implements OnDestroy {
         withLatestFrom(this.isDropdownOpen$),
         filter(
           ([click, isOpen]) =>
-            isOpen && !(click.target as HTMLElement).classList.contains('ddcomp')
-        )
+            isOpen && !(click.target as HTMLElement).classList.contains('ddcomp'),
+        ),
       )
       .subscribe(() => this.onCloseDropdown());
+  }
+
+  ngOnDestroy(): void {
+    this.documentSub.unsubscribe();
   }
 
   onSelectHomeTab(): void {
@@ -77,9 +84,5 @@ export class NavFacade implements OnDestroy {
 
   onLogOut(): void {
     this.store.dispatch(AuthActions.logoutRequested());
-  }
-
-  ngOnDestroy(): void {
-    this.documentSub.unsubscribe();
   }
 }

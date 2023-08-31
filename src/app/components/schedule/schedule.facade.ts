@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+
+import { Injectable } from '@angular/core';
 
 import { AuthSelectors } from '@app/store/auth';
 import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';

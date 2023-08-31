@@ -1,12 +1,13 @@
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+
 import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { NavPathTypes } from '@app/types';
-import { environment } from '@environments/environment';
 
-import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'lcc-about',
@@ -29,8 +30,8 @@ export class AboutComponent implements OnInit {
   markerOptions: google.maps.MarkerOptions = {
     position: this.clubLocation,
     icon: '../../../assets/lcc-logo-black.png',
-  }
- 
+  };
+
   @HostListener('window:resize', ['$event'])
   onResize(): void {
     this.resizeMap(window.innerWidth);
@@ -42,8 +43,8 @@ export class AboutComponent implements OnInit {
     this.resizeMap(window.innerWidth);
     this.isMapLoaded$ = this.httpClient
       .jsonp(
-        `https://maps.googleapis.com/maps/api/js?key=${environment.googleMaps.apiKey}`, 
-        'callback'
+        `https://maps.googleapis.com/maps/api/js?key=${environment.googleMaps.apiKey}`,
+        'callback',
       )
       .pipe(
         map(() => true),

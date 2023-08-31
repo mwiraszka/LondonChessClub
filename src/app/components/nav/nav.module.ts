@@ -1,7 +1,8 @@
+import { ClarityModule } from '@clr/angular';
+
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ClarityModule } from '@clr/angular';
 
 import { TooltipModule } from '@app/components/tooltip';
 

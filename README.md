@@ -41,6 +41,7 @@ This is a web app built for the London Chess Club to demonstrate an all-in-one S
 
 <h4>Refactor / Chores</h4>
 
+- [Core] Enforce strict typing and apply better formatting in all files using new ESLint, Prettier and Beautify set up
 - [Core] Update and clean up this README file
 - [Core] Ensure all functions have an explicit return type
 

@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
+
+import { Injectable } from '@angular/core';
 
 import { AuthService } from '@app/services';
 import { SignUpResponse, User } from '@app/types';
@@ -15,7 +17,7 @@ export class AuthEffects {
       ofType(AuthActions.loginRequested),
       switchMap(({ request }) => {
         return this.authService.logIn(request).pipe(
-          map((loginResponse) => {
+          map(loginResponse => {
             // Create fake user object since this information is currently
             // not received from Cognito when logging in
             const user: User = {
@@ -29,18 +31,18 @@ export class AuthEffects {
               ? AuthActions.loginFailed({ error: loginResponse.error })
               : AuthActions.loginSucceeded({
                   user,
-                  session: loginResponse.session,
+                  session: loginResponse.session!,
                 });
           }),
           catchError(() =>
             of(
               AuthActions.loginFailed({
                 error: new Error('[Auth] Unknown login error'),
-              })
-            )
-          )
+              }),
+            ),
+          ),
         );
-      })
+      }),
     );
   });
 
@@ -50,7 +52,7 @@ export class AuthEffects {
       map(() => {
         this.authService.logOut();
         return AuthActions.logoutSucceeded();
-      })
+      }),
     );
   });
 
@@ -90,7 +92,7 @@ export class AuthEffects {
       ofType(AuthActions.codeForPasswordChangeRequested),
       switchMap(({ email }) => {
         return this.authService.sendChangePasswordCode(email).pipe(
-          map((response) => {
+          map(response => {
             return response?.error
               ? AuthActions.codeForPasswordChangeFailed({ error: response.error })
               : AuthActions.codeForPasswordChangeSucceeded();
@@ -99,13 +101,13 @@ export class AuthEffects {
             of(
               AuthActions.codeForPasswordChangeFailed({
                 error: new Error(
-                  '[Auth] Unknown error attempting to send password change request'
+                  '[Auth] Unknown error attempting to send password change request',
                 ),
-              })
-            )
-          )
+              }),
+            ),
+          ),
         );
-      })
+      }),
     );
   });
 
@@ -114,7 +116,7 @@ export class AuthEffects {
       ofType(AuthActions.passwordChangeRequested),
       switchMap(({ request }) => {
         return this.authService.changePassword(request).pipe(
-          map((response) => {
+          map(response => {
             return response?.error
               ? AuthActions.passwordChangeFailed({ error: response.error })
               : AuthActions.passwordChangeSucceeded();
@@ -123,11 +125,11 @@ export class AuthEffects {
             of(
               AuthActions.passwordChangeFailed({
                 error: new Error('[Auth] Unknown password change error'),
-              })
-            )
-          )
+              }),
+            ),
+          ),
         );
-      })
+      }),
     );
   });
 

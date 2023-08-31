@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
+
+import { Injectable } from '@angular/core';
 
 import { ScheduleSelectors } from '@app/store/schedule';
 
@@ -10,7 +11,7 @@ export class EventEditorScreenFacade {
 
   readonly titleBeforeEdit$ = this.store
     .select(ScheduleSelectors.eventBeforeEdit)
-    .pipe(map((event) => event.title));
+    .pipe(map(event => event.title));
 
   constructor(private store: Store) {}
 }

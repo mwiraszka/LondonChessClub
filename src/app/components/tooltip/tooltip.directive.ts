@@ -10,6 +10,7 @@ import {
   Input,
   OnDestroy,
 } from '@angular/core';
+
 import { isTouchScreen } from '@app/utils';
 
 import { TooltipComponent } from './tooltip.component';
@@ -21,15 +22,16 @@ import { TooltipComponent } from './tooltip.component';
   selector: '[tooltip]',
 })
 export class TooltipDirective implements OnDestroy {
-  @Input() tooltip = '';
+  @Input() tooltip: string | null = null;
 
-  private componentRef: ComponentRef<any> = null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private componentRef: ComponentRef<any> | null = null;
 
   constructor(
     private elementRef: ElementRef,
     private appRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private injector: Injector
+    private injector: Injector,
   ) {}
 
   @HostListener('mouseenter')
@@ -39,6 +41,7 @@ export class TooltipDirective implements OnDestroy {
         this.componentFactoryResolver.resolveComponentFactory(TooltipComponent);
       this.componentRef = componentFactory.create(this.injector);
       this.appRef.attachView(this.componentRef.hostView);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const domElem = (this.componentRef.hostView as EmbeddedViewRef<any>)
         .rootNodes[0] as HTMLElement;
       document.body.appendChild(domElem);

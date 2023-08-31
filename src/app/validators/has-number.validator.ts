@@ -1,6 +1,8 @@
-import { FormControl } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
-export const hasNumberValidator = (control: FormControl): { noNumber: true } => {
-  const regExp = new RegExp(/\d/);
-  return regExp.test(control.value) ? null : { noNumber: true };
-};
+export function hasNumberValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const regExp = new RegExp(/\d/);
+    return regExp.test(control.value) ? null : { noNumber: true };
+  };
+}

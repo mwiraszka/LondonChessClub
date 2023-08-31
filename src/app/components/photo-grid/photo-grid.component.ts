@@ -11,7 +11,7 @@ import { PhotoGridFacade } from './photo-grid.facade';
   providers: [PhotoGridFacade],
 })
 export class PhotoGridComponent {
-  @Input() photos: Photo[];
+  @Input() photos?: Photo[];
 
   constructor(public facade: PhotoGridFacade) {}
 }

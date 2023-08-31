@@ -3,9 +3,7 @@
 			[formGroup]="form"
 			(ngSubmit)="onSubmit()">
 	<div class="lcc-form-fields">
-		<label for="title-input">
-			Title:
-		</label>
+		<label for="title-input">Title:</label>
 		<input id="title-input"
 					 type="text"
 					 name="title"
@@ -19,9 +17,7 @@
 			</cds-icon>
 		</div>
 
-		<label for="subtitle-input">
-			Subtitle:
-		</label>
+		<label for="subtitle-input">Subtitle:</label>
 		<input id="subtitle-input"
 					 type="text"
 					 name="subtitle"
@@ -35,9 +31,7 @@
 			</cds-icon>
 		</div>
 
-		<label for="body-input">
-			Content:
-		</label>
+		<label for="body-input">Content:</label>
 		<textarea id="body-input"
 							name="body"
 							formControlName="body"
@@ -62,8 +56,9 @@
 		<button class="lcc-primary-button"
 						type="submit"
 						[disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
-			<ng-container *ngIf="facade.isEditMode$ | async; else createModeButton">Update
-				article</ng-container>
+			<ng-container *ngIf="facade.isEditMode$ | async; else createModeButton">
+				Update article
+			</ng-container>
 			<ng-template #createModeButton>Publish article</ng-template>
 		</button>
 	</div>

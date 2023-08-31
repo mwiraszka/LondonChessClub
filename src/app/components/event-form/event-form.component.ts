@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+/* eslint-disable no-prototype-builtins */
 import { Subscription } from 'rxjs';
 import { debounceTime, first, tap } from 'rxjs/operators';
+
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoaderService } from '@app/services';
 import { ClubEvent } from '@app/types';
@@ -15,14 +17,14 @@ import { EventFormFacade } from './event-form.facade';
   styleUrls: ['./event-form.component.scss'],
   providers: [EventFormFacade],
 })
-export class EventFormComponent {
+export class EventFormComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   valueChangesSubscription!: Subscription;
 
   constructor(
     public facade: EventFormFacade,
     private formBuilder: FormBuilder,
-    private loader: LoaderService
+    private loader: LoaderService,
   ) {}
 
   ngOnInit(): void {
@@ -30,9 +32,9 @@ export class EventFormComponent {
 
     this.facade.eventCurrently$
       .pipe(
-        tap((event) => this.initForm(event)),
+        tap(event => this.initForm(event)),
         tap(() => this.loader.display(false)),
-        first()
+        first(),
       )
       .subscribe();
   }
@@ -45,12 +47,13 @@ export class EventFormComponent {
     return control.dirty && control.invalid;
   }
 
+  // TODO: Get error messages without accessing the errors' properties like this
   getErrorMessage(control: AbstractControl): string {
-    if (control.errors.hasOwnProperty('required')) {
+    if (control.errors?.hasOwnProperty('required')) {
       return 'This field is required';
-    } else if (control.errors.hasOwnProperty('invalidDateFormat')) {
+    } else if (control.errors?.hasOwnProperty('invalidDateFormat')) {
       return 'Invalid date format - please input as YYYY-MM-DD';
-    } else if (control.errors.hasOwnProperty('pattern')) {
+    } else if (control.errors?.hasOwnProperty('pattern')) {
       return 'Invalid input (incorrect format)';
     } else {
       return 'Unknown error';

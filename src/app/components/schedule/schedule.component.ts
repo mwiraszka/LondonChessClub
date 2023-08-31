@@ -28,13 +28,13 @@ export class ScheduleComponent implements OnInit {
   constructor(public facade: ScheduleFacade, private loader: LoaderService) {}
 
   ngOnInit(): void {
-    this.facade.isLoading$.subscribe((isLoading) => {
+    this.facade.isLoading$.subscribe(isLoading => {
       this.loader.display(isLoading);
     });
     this.facade.loadEvents();
   }
 
-  trackByFn(index: number, event: ClubEvent): string {
+  trackByFn(index: number, event: ClubEvent): string | undefined {
     return event.id;
   }
 }

@@ -3,12 +3,13 @@ import { localStorageSync } from 'ngrx-store-localstorage';
 
 import { AppState } from './app.state';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function actionLogMetaReducer(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
   return (state, action) => {
     const timestamp = new Date().toLocaleTimeString();
     console.info(
       `%c [${timestamp}] ${action.type} `,
-      'background-color: #ddd; color: #222'
+      'background-color: #ddd; color: #222',
     );
     console.log('State:', state);
     console.log('Action:', action);
@@ -27,4 +28,5 @@ function hydrationMetaReducer(reducer: ActionReducer<AppState>): ActionReducer<A
   return localStorageSync({ keys: keysOfStoresToSync, rehydrate: true })(reducer);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const metaReducers: Array<MetaReducer<any, any>> = [hydrationMetaReducer];

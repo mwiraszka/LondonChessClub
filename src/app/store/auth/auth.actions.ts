@@ -26,55 +26,55 @@ enum AuthActionTypes {
 
 export const loginRequested = createAction(
   AuthActionTypes.LOGIN_REQUESTED,
-  props<{ request: LoginRequest }>()
+  props<{ request: LoginRequest }>(),
 );
 export const loginSucceeded = createAction(
   AuthActionTypes.LOGIN_SUCCEEDED,
-  props<{ user: User; session: CognitoUserSession }>()
+  props<{ user: User; session: CognitoUserSession }>(),
 );
 export const loginFailed = createAction(
   AuthActionTypes.LOGIN_FAILED,
-  props<{ error: Error }>()
+  props<{ error: Error }>(),
 );
 
 export const signUpRequested = createAction(
   AuthActionTypes.SIGN_UP_REQUESTED,
-  props<{ request: SignUpRequest }>()
+  props<{ request: SignUpRequest }>(),
 );
 export const signUpSucceeded = createAction(
   AuthActionTypes.SIGN_UP_SUCCEEDED,
-  props<{ user: User; session: CognitoUserSession }>()
+  props<{ user: User; session: CognitoUserSession }>(),
 );
 export const signUpFailed = createAction(
   AuthActionTypes.SIGN_UP_FAILED,
-  props<{ error: Error }>()
+  props<{ error: Error }>(),
 );
 
 export const logoutRequested = createAction(AuthActionTypes.LOGOUT_REQUESTED);
 export const logoutSucceeded = createAction(AuthActionTypes.LOGOUT_SUCCEEDED);
 
 export const forgotPasswordSelected = createAction(
-  AuthActionTypes.FORGOT_PASSWORD_SELECTED
+  AuthActionTypes.FORGOT_PASSWORD_SELECTED,
 );
 export const codeForPasswordChangeRequested = createAction(
   AuthActionTypes.CODE_FOR_PASSWORD_CHANGE_REQUESTED,
-  props<{ email: string }>()
+  props<{ email: string }>(),
 );
 export const codeForPasswordChangeSucceeded = createAction(
-  AuthActionTypes.CODE_FOR_PASSWORD_CHANGE_SUCCEEDED
+  AuthActionTypes.CODE_FOR_PASSWORD_CHANGE_SUCCEEDED,
 );
 export const codeForPasswordChangeFailed = createAction(
   AuthActionTypes.CODE_FOR_PASSWORD_CHANGE_FAILED,
-  props<{ error: Error }>()
+  props<{ error: Error }>(),
 );
 export const passwordChangeRequested = createAction(
   AuthActionTypes.PASSWORD_CHANGE_REQUESTED,
-  props<{ request: PasswordChangeRequest }>()
+  props<{ request: PasswordChangeRequest }>(),
 );
 export const passwordChangeSucceeded = createAction(
-  AuthActionTypes.PASSWORD_CHANGE_SUCCEEDED
+  AuthActionTypes.PASSWORD_CHANGE_SUCCEEDED,
 );
 export const passwordChangeFailed = createAction(
   AuthActionTypes.PASSWORD_CHANGE_FAILED,
-  props<{ error: Error }>()
+  props<{ error: Error }>(),
 );

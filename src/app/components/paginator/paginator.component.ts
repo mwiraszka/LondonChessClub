@@ -1,5 +1,6 @@
+import { ClarityIcons, angleIcon, stepForward2Icon } from '@cds/core/icon';
+
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { angleIcon, ClarityIcons, stepForward2Icon } from '@cds/core/icon';
 
 @Component({
   selector: 'lcc-paginator',

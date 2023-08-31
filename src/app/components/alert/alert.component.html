@@ -1,7 +1,9 @@
 <div class="alert-message-container">
 	<p class="alert-message">
-		Next event: <span>{{ (facade.nextEvent$ | async)?.title }}</span>
-		on <span>{{ (facade.nextEvent$ | async)?.eventDate }}</span>
+		Next event:
+		<span>{{ (facade.nextEvent$ | async)?.title }}</span>
+		on
+		<span>{{ (facade.nextEvent$ | async)?.eventDate }}</span>
 	</p>
 	<div class="alert-controls">
 		<button class="lcc-ghost-button alert-action-button"

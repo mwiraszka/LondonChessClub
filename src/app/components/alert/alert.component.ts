@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ClarityIcons, windowCloseIcon } from '@cds/core/icon';
+
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { AlertFacade } from './alert.facade';
 

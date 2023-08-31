@@ -11,16 +11,16 @@ enum ModalActionTypes {
 
 export const modalOpened = createAction(
   ModalActionTypes.MODAL_OPENED,
-  props<{ modal: Modal }>()
+  props<{ modal: Modal }>(),
 );
 
 export const modalClosed = createAction(ModalActionTypes.MODAL_CLOSED);
 
 export const selectionMade = createAction(
   ModalActionTypes.SELECTION_MADE,
-  props<{ action: ModalButtonActionTypes }>()
+  props<{ action: ModalButtonActionTypes }>(),
 );
 
 export const leaveWithUnsavedChangesRequested = createAction(
-  ModalActionTypes.LEAVE_WITH_UNSAVED_CHANGES_REQUESTED
+  ModalActionTypes.LEAVE_WITH_UNSAVED_CHANGES_REQUESTED,
 );

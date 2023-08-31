@@ -129,7 +129,8 @@
 		<button class="lcc-primary-button"
 						type="submit"
 						[disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
-			<ng-container *ngIf="facade.isEditMode$ | async; else createModeButton">Update
+			<ng-container *ngIf="facade.isEditMode$ | async; else createModeButton">
+				Update
 			</ng-container>
 			<ng-template #createModeButton>Add event</ng-template>
 		</button>

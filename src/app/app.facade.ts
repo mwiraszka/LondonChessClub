@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+
+import { Injectable } from '@angular/core';
 
 import { ImageOverlaySelectors } from '@app/store/image-overlay';
 import { ModalSelectors } from '@app/store/modal';
-import { ScheduleSelectors } from './store/schedule';
 import { ToasterSelectors } from '@app/store/toaster';
+
+import { ScheduleSelectors } from './store/schedule';
 
 @Injectable()
 export class AppFacade {

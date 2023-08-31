@@ -1,5 +1,6 @@
+import { ClarityIcons, angleIcon } from '@cds/core/icon';
+
 import { Component, OnInit } from '@angular/core';
-import { angleIcon, ClarityIcons } from '@cds/core/icon';
 
 import { LoaderService } from '@app/services';
 import { Link, Member, NavPathTypes } from '@app/types';
@@ -40,14 +41,14 @@ export class MembersTableComponent implements OnInit {
   constructor(public facade: MembersTableFacade, private loader: LoaderService) {}
 
   ngOnInit(): void {
-    this.facade.isLoading$.subscribe((isLoading) => {
+    this.facade.isLoading$.subscribe(isLoading => {
       this.loader.display(isLoading);
     });
     this.facade.loadMembers();
     ClarityIcons.addIcons(angleIcon);
   }
 
-  trackByFn(index: number, member: Member): string {
+  trackByFn(index: number, member: Member): string | undefined {
     return member.id;
   }
 }

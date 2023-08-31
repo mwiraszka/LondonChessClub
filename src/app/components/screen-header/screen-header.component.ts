@@ -1,12 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
 import {
-  announcementIcon,
   ClarityIcons,
+  announcementIcon,
   crownIcon,
   imageGalleryIcon,
   unknownStatusIcon,
   usersIcon,
 } from '@cds/core/icon';
+
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'lcc-screen-header',
@@ -14,10 +15,10 @@ import {
   styleUrls: ['./screen-header.component.scss'],
 })
 export class ScreenHeaderComponent implements OnInit {
-  @Input() iconShape: string;
-  @Input() title: string;
-  @Input() preTitle?: string;
-  @Input() postTitle: string;
+  @Input() iconShape?: string | null;
+  @Input() title?: string | null;
+  @Input() preTitle?: string | null;
+  @Input() postTitle?: string | null;
 
   ngOnInit(): void {
     ClarityIcons.addIcons(
@@ -25,7 +26,7 @@ export class ScreenHeaderComponent implements OnInit {
       crownIcon,
       imageGalleryIcon,
       unknownStatusIcon,
-      usersIcon
+      usersIcon,
     );
   }
 }

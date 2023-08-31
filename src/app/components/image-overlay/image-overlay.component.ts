@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ClarityIcons, windowCloseIcon } from '@cds/core/icon';
+
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 
 import { ImageOverlayFacade } from './image-overlay.facade';
 

@@ -1,6 +1,7 @@
+import { Store } from '@ngrx/store';
+
 import { Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
-import { Store } from '@ngrx/store';
 
 import { ModalActions } from '@app/store/modal';
 import { Modal, ModalButtonActionTypes, ModalButtonStyleTypes } from '@app/types';

@@ -19,35 +19,35 @@ enum NavActionTypes {
 
 export const linkSelected = createAction(
   NavActionTypes.LINK_SELECTED,
-  props<{ path: string }>()
+  props<{ path: string }>(),
 );
 
 export const homeNavigationRequested = createAction(
-  NavActionTypes.HOME_NAVIGATION_REQUESTED
+  NavActionTypes.HOME_NAVIGATION_REQUESTED,
 );
 export const membersNavigationRequested = createAction(
-  NavActionTypes.MEMBERS_NAVIGATION_REQUESTED
+  NavActionTypes.MEMBERS_NAVIGATION_REQUESTED,
 );
 export const scheduleNavigationRequested = createAction(
-  NavActionTypes.SCHEDULE_NAVIGATION_REQUESTED
+  NavActionTypes.SCHEDULE_NAVIGATION_REQUESTED,
 );
 export const newsNavigationRequested = createAction(
-  NavActionTypes.NEWS_NAVIGATION_REQUESTED
+  NavActionTypes.NEWS_NAVIGATION_REQUESTED,
 );
 export const londonChessChampionNavigationRequested = createAction(
-  NavActionTypes.LONDON_CHESS_CHAMPION_NAVIGATION_REQUESTED
+  NavActionTypes.LONDON_CHESS_CHAMPION_NAVIGATION_REQUESTED,
 );
 export const photoGalleryNavigationRequested = createAction(
-  NavActionTypes.PHOTO_GALLERY_NAVIGATION_REQUESTED
+  NavActionTypes.PHOTO_GALLERY_NAVIGATION_REQUESTED,
 );
 export const aboutNavigationRequested = createAction(
-  NavActionTypes.ABOUT_NAVIGATION_REQUESTED
+  NavActionTypes.ABOUT_NAVIGATION_REQUESTED,
 );
 export const loginNavigationRequested = createAction(
-  NavActionTypes.LOGIN_NAVIGATION_REQUESTED
+  NavActionTypes.LOGIN_NAVIGATION_REQUESTED,
 );
 export const changePasswordNavigationRequested = createAction(
-  NavActionTypes.CHANGE_PASSWORD_NAVIGATION_REQUESTED
+  NavActionTypes.CHANGE_PASSWORD_NAVIGATION_REQUESTED,
 );
 
 export const dropdownToggled = createAction(NavActionTypes.DROPDOWN_TOGGLED);

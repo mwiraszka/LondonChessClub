@@ -1,12 +1,13 @@
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { tap } from 'rxjs/operators';
+
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { tap } from 'rxjs/operators';
 
 import { ArticlesActions } from '@app/store/articles';
 import { AuthActions } from '@app/store/auth';
-import { ScheduleActions } from '@app/store/schedule';
 import { MembersActions } from '@app/store/members';
+import { ScheduleActions } from '@app/store/schedule';
 import { NavPathTypes } from '@app/types';
 
 import * as NavActions from './nav.actions';
@@ -21,11 +22,11 @@ export class NavEffects {
           MembersActions.addMemberSucceeded,
           MembersActions.updateMemberSucceeded,
           AuthActions.loginSucceeded,
-          AuthActions.passwordChangeSucceeded
+          AuthActions.passwordChangeSucceeded,
         ),
-        tap(() => this.router.navigate([NavPathTypes.HOME]))
+        tap(() => this.router.navigate([NavPathTypes.HOME])),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   navigateToMembers$ = createEffect(
@@ -35,20 +36,20 @@ export class NavEffects {
           NavActions.membersNavigationRequested,
           MembersActions.cancelSelected,
           MembersActions.addMemberSucceeded,
-          MembersActions.updateMemberSucceeded
+          MembersActions.updateMemberSucceeded,
         ),
-        tap(() => this.router.navigate([NavPathTypes.MEMBERS]))
+        tap(() => this.router.navigate([NavPathTypes.MEMBERS])),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   navigateToMemberAdd$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(MembersActions.createMemberSelected),
-        tap(() => this.router.navigate([NavPathTypes.MEMBER_ADD]))
+        tap(() => this.router.navigate([NavPathTypes.MEMBER_ADD])),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   navigateToMemberEdit$ = createEffect(
@@ -56,10 +57,10 @@ export class NavEffects {
       this.actions$.pipe(
         ofType(MembersActions.editMemberSelected),
         tap(({ memberToEdit }) =>
-          this.router.navigate([NavPathTypes.MEMBER_EDIT, memberToEdit.id])
-        )
+          this.router.navigate([NavPathTypes.MEMBER_EDIT, memberToEdit.id]),
+        ),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   navigateToSchedule$ = createEffect(
@@ -69,20 +70,20 @@ export class NavEffects {
           NavActions.scheduleNavigationRequested,
           ScheduleActions.cancelSelected,
           ScheduleActions.addEventSucceeded,
-          ScheduleActions.updateEventSucceeded
+          ScheduleActions.updateEventSucceeded,
         ),
-        tap(() => this.router.navigate([NavPathTypes.SCHEDULE]))
+        tap(() => this.router.navigate([NavPathTypes.SCHEDULE])),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   navigateToEventAdd$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(ScheduleActions.createEventSelected),
-        tap(() => this.router.navigate([NavPathTypes.EVENT_ADD]))
+        tap(() => this.router.navigate([NavPathTypes.EVENT_ADD])),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   navigateToEventEdit$ = createEffect(
@@ -90,10 +91,10 @@ export class NavEffects {
       this.actions$.pipe(
         ofType(ScheduleActions.editEventSelected),
         tap(({ eventToEdit }) =>
-          this.router.navigate([NavPathTypes.EVENT_EDIT, eventToEdit.id])
-        )
+          this.router.navigate([NavPathTypes.EVENT_EDIT, eventToEdit.id]),
+        ),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   navigateToNews$ = createEffect(
@@ -103,20 +104,20 @@ export class NavEffects {
           NavActions.newsNavigationRequested,
           ArticlesActions.cancelSelected,
           ArticlesActions.publishArticleSucceeded,
-          ArticlesActions.updateArticleSucceeded
+          ArticlesActions.updateArticleSucceeded,
         ),
-        tap(() => this.router.navigate([NavPathTypes.NEWS]))
+        tap(() => this.router.navigate([NavPathTypes.NEWS])),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   navigateToArticleAdd$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(ArticlesActions.createArticleSelected),
-        tap(() => this.router.navigate([NavPathTypes.ARTICLE_ADD]))
+        tap(() => this.router.navigate([NavPathTypes.ARTICLE_ADD])),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   navigateToArticleEdit$ = createEffect(
@@ -124,46 +125,46 @@ export class NavEffects {
       this.actions$.pipe(
         ofType(ArticlesActions.editArticleSelected),
         tap(({ articleToEdit }) =>
-          this.router.navigate([NavPathTypes.ARTICLE_EDIT, articleToEdit.id])
-        )
+          this.router.navigate([NavPathTypes.ARTICLE_EDIT, articleToEdit.id]),
+        ),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   navigateToLondonChessChampion$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(NavActions.londonChessChampionNavigationRequested),
-        tap(() => this.router.navigate([NavPathTypes.LONDON_CHESS_CHAMPION]))
+        tap(() => this.router.navigate([NavPathTypes.LONDON_CHESS_CHAMPION])),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   navigateToPhotoGallery$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(NavActions.photoGalleryNavigationRequested),
-        tap(() => this.router.navigate([NavPathTypes.PHOTO_GALLERY]))
+        tap(() => this.router.navigate([NavPathTypes.PHOTO_GALLERY])),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   navigateToAbout$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(NavActions.aboutNavigationRequested),
-        tap(() => this.router.navigate([NavPathTypes.ABOUT]))
+        tap(() => this.router.navigate([NavPathTypes.ABOUT])),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   navigateToLogin$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(NavActions.loginNavigationRequested, AuthActions.logoutSucceeded),
-        tap(() => this.router.navigate([NavPathTypes.LOGIN]))
+        tap(() => this.router.navigate([NavPathTypes.LOGIN])),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   navigateToChangePassword$ = createEffect(
@@ -171,11 +172,11 @@ export class NavEffects {
       this.actions$.pipe(
         ofType(
           AuthActions.forgotPasswordSelected,
-          NavActions.changePasswordNavigationRequested
+          NavActions.changePasswordNavigationRequested,
         ),
-        tap(() => this.router.navigate([NavPathTypes.CHANGE_PASSWORD]))
+        tap(() => this.router.navigate([NavPathTypes.CHANGE_PASSWORD])),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   navigateToLink$ = createEffect(
@@ -188,9 +189,9 @@ export class NavEffects {
           } else {
             this.router.navigate([path]);
           }
-        })
+        }),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   constructor(private actions$: Actions, private router: Router) {}

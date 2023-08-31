@@ -1,11 +1,11 @@
-import { createReducer, on, Action } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as ScheduleActions from './schedule.actions';
-import { initialState, ScheduleState } from './schedule.state';
+import { ScheduleState, initialState } from './schedule.state';
 
 const scheduleReducer = createReducer(
   initialState,
-  on(ScheduleActions.loadEventsStarted, (state) => ({
+  on(ScheduleActions.loadEventsStarted, state => ({
     ...state,
     isLoading: true,
   })),
@@ -14,11 +14,11 @@ const scheduleReducer = createReducer(
     events: action.allEvents,
     isLoading: false,
   })),
-  on(ScheduleActions.loadEventsFailed, (state) => ({
+  on(ScheduleActions.loadEventsFailed, state => ({
     ...state,
     isLoading: false,
   })),
-  on(ScheduleActions.createEventSelected, (state) => ({
+  on(ScheduleActions.createEventSelected, state => ({
     ...state,
     selectedEvent: null,
     isEditMode: false,
@@ -36,14 +36,14 @@ const scheduleReducer = createReducer(
   })),
   on(ScheduleActions.deleteEventSucceeded, (state, action) => ({
     ...state,
-    events: state.events.filter((x) => x.id != action.deletedEvent.id),
+    events: state.events.filter(x => x.id != action.deletedEvent.id),
     selectedEvent: null,
   })),
-  on(ScheduleActions.deleteEventFailed, (state) => ({
+  on(ScheduleActions.deleteEventFailed, state => ({
     ...state,
     selectedEvent: null,
   })),
-  on(ScheduleActions.deleteEventCancelled, (state) => ({
+  on(ScheduleActions.deleteEventCancelled, state => ({
     ...state,
     selectedEvent: null,
   })),
@@ -62,18 +62,18 @@ const scheduleReducer = createReducer(
     ScheduleActions.updateEventSucceeded,
     ScheduleActions.updateEventFailed,
     ScheduleActions.cancelConfirmed,
-    (state) => ({
+    state => ({
       ...state,
       eventBeforeEdit: initialState.eventBeforeEdit,
       eventCurrently: initialState.eventCurrently,
-    })
+    }),
   ),
   on(ScheduleActions.formDataChanged, (state, action) => ({
     ...state,
     eventCurrently: action.event,
-  }))
+  })),
 );
 
-export function reducer(state: ScheduleState, action: Action) {
+export function reducer(state: ScheduleState, action: Action): ScheduleState {
   return scheduleReducer(state, action);
 }

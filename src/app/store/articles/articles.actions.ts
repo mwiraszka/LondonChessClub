@@ -39,86 +39,86 @@ enum ArticlesActionTypes {
 }
 
 export const loadArticlesStarted = createAction(
-  ArticlesActionTypes.LOAD_ARTICLES_STARTED
+  ArticlesActionTypes.LOAD_ARTICLES_STARTED,
 );
 export const loadArticlesSucceeded = createAction(
   ArticlesActionTypes.LOAD_ARTICLES_SUCCEEDED,
-  props<{ allArticles: Article[] }>()
+  props<{ allArticles: Article[] }>(),
 );
 export const loadArticlesFailed = createAction(
   ArticlesActionTypes.LOAD_ARTICLES_FAILED,
-  props<{ error: Error }>()
+  props<{ error: Error }>(),
 );
 
 export const createArticleSelected = createAction(
-  ArticlesActionTypes.CREATE_ARTICLE_SELECTED
+  ArticlesActionTypes.CREATE_ARTICLE_SELECTED,
 );
 export const editArticleSelected = createAction(
   ArticlesActionTypes.EDIT_ARTICLE_SELECTED,
-  props<{ articleToEdit: Article }>()
+  props<{ articleToEdit: Article }>(),
 );
 
 export const deleteArticleSelected = createAction(
   ArticlesActionTypes.DELETE_ARTICLE_SELECTED,
-  props<{ articleToDelete: Article }>()
+  props<{ articleToDelete: Article }>(),
 );
 export const deleteArticleConfirmed = createAction(
-  ArticlesActionTypes.DELETE_ARTICLE_CONFIRMED
+  ArticlesActionTypes.DELETE_ARTICLE_CONFIRMED,
 );
 export const deleteArticleCancelled = createAction(
-  ArticlesActionTypes.DELETE_ARTICLE_CANCELLED
+  ArticlesActionTypes.DELETE_ARTICLE_CANCELLED,
 );
 export const deleteArticleSucceeded = createAction(
   ArticlesActionTypes.DELETE_ARTICLE_SUCCEEDED,
-  props<{ deletedArticle: Article }>()
+  props<{ deletedArticle: Article }>(),
 );
 export const deleteArticleFailed = createAction(
   ArticlesActionTypes.DELETE_ARTICLE_FAILED,
-  props<{ error: Error }>()
+  props<{ error: Error }>(),
 );
 
 export const getArticleToEditSucceeded = createAction(
   ArticlesActionTypes.GET_ARTICLE_TO_EDIT_SUCCEEDED,
-  props<{ articleToEdit: Article }>()
+  props<{ articleToEdit: Article }>(),
 );
 export const resetArticleForm = createAction(ArticlesActionTypes.RESET_ARTICLE_FORM);
 
 export const publishArticleSelected = createAction(
   ArticlesActionTypes.PUBLISH_ARTICLE_SELECTED,
-  props<{ articleToPublish: Article }>()
+  props<{ articleToPublish: Article }>(),
 );
 export const publishArticleConfirmed = createAction(
-  ArticlesActionTypes.PUBLISH_ARTICLE_CONFIRMED
+  ArticlesActionTypes.PUBLISH_ARTICLE_CONFIRMED,
 );
 export const publishArticleCancelled = createAction(
-  ArticlesActionTypes.PUBLISH_ARTICLE_CANCELLED
+  ArticlesActionTypes.PUBLISH_ARTICLE_CANCELLED,
 );
 export const publishArticleSucceeded = createAction(
   ArticlesActionTypes.PUBLISH_ARTICLE_SUCCEEDED,
-  props<{ publishedArticle: Article }>()
+  props<{ publishedArticle: Article }>(),
 );
 export const publishArticleFailed = createAction(
   ArticlesActionTypes.PUBLISH_ARTICLE_FAILED,
-  props<{ error: Error }>()
+  props<{ error: Error }>(),
 );
 
 export const updateArticleSelected = createAction(
   ArticlesActionTypes.UPDATE_ARTICLE_SELECTED,
-  props<{ articleToUpdate: Article }>()
+  props<{ articleToUpdate: Article }>(),
 );
 export const updateArticleConfirmed = createAction(
-  ArticlesActionTypes.UPDATE_ARTICLE_CONFIRMED
+  ArticlesActionTypes.UPDATE_ARTICLE_CONFIRMED,
 );
 export const updateArticleCancelled = createAction(
-  ArticlesActionTypes.UPDATE_ARTICLE_CANCELLED
+  ArticlesActionTypes.UPDATE_ARTICLE_CANCELLED,
 );
 export const updateArticleSucceeded = createAction(
   ArticlesActionTypes.UPDATE_ARTICLE_SUCCEEDED,
-  props<{ updatedArticle: Article }>()
+  props<{ updatedArticle: Article }>(),
 );
 export const updateArticleFailed = createAction(
   ArticlesActionTypes.UPDATE_ARTICLE_FAILED,
-  props<{ error: Error }>()
+  props<{ error: Error }>(),
 );
 
 export const cancelSelected = createAction(ArticlesActionTypes.CANCEL_SELECTED);
@@ -126,5 +126,5 @@ export const cancelConfirmed = createAction(ArticlesActionTypes.CANCEL_CONFIRMED
 
 export const formDataChanged = createAction(
   ArticlesActionTypes.FORM_DATA_CHANGED,
-  props<{ article: Article }>()
+  props<{ article: Article }>(),
 );

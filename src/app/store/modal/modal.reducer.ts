@@ -1,7 +1,7 @@
-import { createReducer, on, Action } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as ModalActions from './modal.actions';
-import { initialState, ModalState } from './modal.state';
+import { ModalState, initialState } from './modal.state';
 
 const modalReducer = createReducer(
   initialState,
@@ -14,9 +14,9 @@ const modalReducer = createReducer(
     ...state,
     modal: null,
     selection: action.action,
-  }))
+  })),
 );
 
-export function reducer(state: ModalState, action: Action) {
+export function reducer(state: ModalState, action: Action): ModalState {
   return modalReducer(state, action);
 }

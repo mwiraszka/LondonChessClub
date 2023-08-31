@@ -1,5 +1,6 @@
+import { ClarityIcons, cameraIcon, plusCircleIcon } from '@cds/core/icon';
+
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { cameraIcon, ClarityIcons, plusCircleIcon } from '@cds/core/icon';
 
 import { Link } from '@app/types';
 
@@ -13,7 +14,7 @@ import { LinkListFacade } from './link-list.facade';
 })
 export class LinkListComponent implements OnInit {
   @Input() linkListTitle?: string;
-  @Input() links: Link[];
+  @Input() links?: Link[];
 
   // Return the link to the parent component in case additional logic
   // needs to be implemented on top of the navigation itself
@@ -29,7 +30,7 @@ export class LinkListComponent implements OnInit {
     return link.path;
   }
 
-  onSelect(link: Link) {
+  onSelect(link: Link): void {
     this.facade.onSelect(link.path);
     this.select.emit(link);
   }

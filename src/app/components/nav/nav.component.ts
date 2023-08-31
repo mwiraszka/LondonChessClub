@@ -1,9 +1,8 @@
-import { Component, HostListener } from '@angular/core';
 import {
+  ClarityIcons,
   administratorIcon,
   angleIcon,
   announcementIcon,
-  ClarityIcons,
   crownIcon,
   eventIcon,
   homeIcon,
@@ -12,6 +11,8 @@ import {
   userIcon,
   usersIcon,
 } from '@cds/core/icon';
+
+import { Component, HostListener, OnInit } from '@angular/core';
 
 import { NavPathTypes } from '@app/types';
 
@@ -23,13 +24,13 @@ import { NavFacade } from './nav.facade';
   styleUrls: ['./nav.component.scss'],
   providers: [NavFacade],
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
   NavPathTypes = NavPathTypes;
   screenWidth!: number;
   tooltipScreenWidthCutoff = 699; // Match lt-md breakpoint value
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
+  onResize(): void {
     this.screenWidth = window.innerWidth;
   }
 
@@ -48,7 +49,7 @@ export class NavComponent {
       eventIcon,
       unknownStatusIcon,
       userIcon,
-      usersIcon
+      usersIcon,
     );
   }
 }

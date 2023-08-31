@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ClarityModule } from '@clr/angular';
+
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { ToastComponent } from '@app/components/toast';
 import { PipesModule } from '@app/pipes';

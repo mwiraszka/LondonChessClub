@@ -24,13 +24,13 @@ export class ArticleGridComponent implements OnInit {
   constructor(public facade: ArticleGridFacade, private loader: LoaderService) {}
 
   ngOnInit(): void {
-    this.facade.isLoading$.subscribe((isLoading) => {
+    this.facade.isLoading$.subscribe(isLoading => {
       this.loader.display(isLoading);
     });
     this.facade.loadArticles();
   }
 
-  trackByFn(index: number, article: Article): string {
+  trackByFn(index: number, article: Article): string | undefined {
     return article.id;
   }
 }

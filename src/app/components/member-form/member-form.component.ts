@@ -1,7 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+/* eslint-disable no-prototype-builtins */
 import { Subscription } from 'rxjs';
 import { debounceTime, first, tap } from 'rxjs/operators';
+
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoaderService } from '@app/services';
 import { Member } from '@app/types';
@@ -29,7 +31,7 @@ export class MemberFormComponent implements OnInit, OnDestroy {
   constructor(
     public facade: MemberFormFacade,
     private formBuilder: FormBuilder,
-    private loader: LoaderService
+    private loader: LoaderService,
   ) {}
 
   ngOnInit(): void {
@@ -37,16 +39,22 @@ export class MemberFormComponent implements OnInit, OnDestroy {
 
     this.facade.memberCurrently$
       .pipe(
-        tap((member) => this.initForm(member)),
-        first()
+        tap(member => (member ? this.initForm(member) : undefined)),
+        first(),
       )
       .subscribe();
 
     this.facade.memberBeforeEdit$
       .pipe(
-        tap((member) => (this.memberFullName = member.firstName + ' ' + member.lastName)),
+        tap(
+          member =>
+            (this.memberFullName =
+              member?.firstName && member?.lastName
+                ? member.firstName + ' ' + member.lastName
+                : 'undefined'),
+        ),
         tap(() => this.loader.display(false)),
-        first()
+        first(),
       )
       .subscribe();
   }
@@ -59,24 +67,25 @@ export class MemberFormComponent implements OnInit, OnDestroy {
     return control.dirty && control.invalid;
   }
 
+  // TODO: Get error messages without accessing the errors' properties like this
   getErrorMessage(control: AbstractControl): string {
-    if (control.errors.hasOwnProperty('required')) {
+    if (control.errors?.hasOwnProperty('required')) {
       return 'This field is required';
-    } else if (control.errors.hasOwnProperty('invalidRating')) {
+    } else if (control.errors?.hasOwnProperty('invalidRating')) {
       return 'Invalid rating';
-    } else if (control.errors.hasOwnProperty('invalidDateFormat')) {
+    } else if (control.errors?.hasOwnProperty('invalidDateFormat')) {
       return 'Invalid date format - please input as YYYY-MM-DD';
-    } else if (control.errors.hasOwnProperty('invalidEmailFormat')) {
+    } else if (control.errors?.hasOwnProperty('invalidEmailFormat')) {
       return 'Invalid email';
-    } else if (control.errors.hasOwnProperty('invalidPhoneNumberFormat')) {
+    } else if (control.errors?.hasOwnProperty('invalidPhoneNumberFormat')) {
       return 'Invalid phone number format - please input as XXX-XXX-XXXX';
-    } else if (control.errors.hasOwnProperty('invalidYear')) {
+    } else if (control.errors?.hasOwnProperty('invalidYear')) {
       return 'Invalid year';
-    } else if (control.errors.hasOwnProperty('pattern')) {
+    } else if (control.errors?.hasOwnProperty('pattern')) {
       return 'Invalid input (incorrect format)';
-    } else if (control.errors.hasOwnProperty('minlength')) {
+    } else if (control.errors?.hasOwnProperty('minlength')) {
       return 'Invalid input (number too low)';
-    } else if (control.errors.hasOwnProperty('maxlength')) {
+    } else if (control.errors?.hasOwnProperty('maxlength')) {
       return 'Invalid input (number too high)';
     } else {
       return 'Unknown error';

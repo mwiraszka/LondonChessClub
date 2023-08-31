@@ -1,3 +1,7 @@
+/* eslint-disable no-prototype-builtins */
+import { ClarityIcons, exclamationTriangleIcon } from '@cds/core/icon';
+import { Subscription } from 'rxjs';
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   AbstractControl,
@@ -7,8 +11,6 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { ClarityIcons, exclamationTriangleIcon } from '@cds/core/icon';
-import { Subscription } from 'rxjs';
 
 import {
   hasLowercaseLetterValidator,
@@ -20,15 +22,6 @@ import {
 
 import { SignUpScreenFacade } from './sign-up-screen.facade';
 
-const PASSWORD_VALIDATORS: ValidatorFn[] = [
-  Validators.required,
-  Validators.minLength(8),
-  hasLowercaseLetterValidator,
-  hasUppercaseLetterValidator,
-  hasSpecialCharValidator,
-  hasNumberValidator,
-];
-
 @Component({
   selector: 'lcc-sign-up-screen',
   templateUrl: './sign-up-screen.component.html',
@@ -36,6 +29,15 @@ const PASSWORD_VALIDATORS: ValidatorFn[] = [
   providers: [SignUpScreenFacade],
 })
 export class SignUpScreenComponent implements OnInit, OnDestroy {
+  PASSWORD_VALIDATORS: ValidatorFn[] = [
+    Validators.required,
+    Validators.minLength(8),
+    hasLowercaseLetterValidator,
+    hasUppercaseLetterValidator,
+    hasSpecialCharValidator,
+    hasNumberValidator,
+  ];
+
   form!: FormGroup;
   passwordChangesSub!: Subscription;
 
@@ -46,12 +48,16 @@ export class SignUpScreenComponent implements OnInit, OnDestroy {
     ClarityIcons.addIcons(exclamationTriangleIcon);
   }
 
+  ngOnDestroy(): void {
+    this.passwordChangesSub.unsubscribe();
+  }
+
   initForm(): void {
     this.form = this.formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
-      newPassword: new FormControl('', PASSWORD_VALIDATORS),
+      newPassword: new FormControl('', this.PASSWORD_VALIDATORS),
       confirmPassword: new FormControl('', [
-        ...PASSWORD_VALIDATORS,
+        ...this.PASSWORD_VALIDATORS,
         matchingPasswordsValidator,
       ]),
       firstName: new FormControl('', Validators.required),
@@ -61,7 +67,7 @@ export class SignUpScreenComponent implements OnInit, OnDestroy {
     this.passwordChangesSub = this.form.controls['newPassword'].valueChanges.subscribe(
       () => {
         this.form.controls['confirmPassword'].updateValueAndValidity();
-      }
+      },
     );
   }
 
@@ -69,30 +75,27 @@ export class SignUpScreenComponent implements OnInit, OnDestroy {
     return control.value !== '' && control.invalid;
   }
 
+  // TODO: Get error messages without accessing the errors' properties like this
   getErrorMessage(control: AbstractControl): string {
-    if (control.errors.hasOwnProperty('required')) {
+    if (control.errors?.hasOwnProperty('required')) {
       return 'This field is required';
-    } else if (control.errors.hasOwnProperty('email')) {
+    } else if (control.errors?.hasOwnProperty('email')) {
       return 'Invalid email';
-    } else if (control.errors.hasOwnProperty('noLowercaseLetter')) {
+    } else if (control.errors?.hasOwnProperty('noLowercaseLetter')) {
       return 'Password needs to include at least one lowercase letter';
-    } else if (control.errors.hasOwnProperty('noUppercaseLetter')) {
+    } else if (control.errors?.hasOwnProperty('noUppercaseLetter')) {
       return 'Password needs to include at least one uppercase letter';
-    } else if (control.errors.hasOwnProperty('noSpecialChar')) {
+    } else if (control.errors?.hasOwnProperty('noSpecialChar')) {
       return 'Password needs to include at least one special character';
-    } else if (control.errors.hasOwnProperty('noNumber')) {
+    } else if (control.errors?.hasOwnProperty('noNumber')) {
       return 'Password needs to include at least one number';
-    } else if (control.errors.hasOwnProperty('minlength')) {
+    } else if (control.errors?.hasOwnProperty('minlength')) {
       return 'Password needs to be at least 8 characters long';
-    } else if (control.errors.hasOwnProperty('passwordMismatch')) {
+    } else if (control.errors?.hasOwnProperty('passwordMismatch')) {
       return "Passwords don't match";
     } else {
       console.log('Could not recognize', control.errors);
       return 'Unknown error';
     }
-  }
-
-  ngOnDestroy(): void {
-    this.passwordChangesSub.unsubscribe();
   }
 }

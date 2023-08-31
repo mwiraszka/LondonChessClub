@@ -1,15 +1,15 @@
-import { createReducer, on, Action } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import { newMemberFormTemplate } from '@app/types';
 import { customSort } from '@app/utils';
 
 import * as MembersActions from './members.actions';
-import { initialState, MembersState } from './members.state';
+import { MembersState, initialState } from './members.state';
 
 const membersReducer = createReducer(
   initialState,
 
-  on(MembersActions.loadMembersStarted, (state) => ({
+  on(MembersActions.loadMembersStarted, state => ({
     ...state,
     isLoading: true,
   })),
@@ -20,7 +20,7 @@ const membersReducer = createReducer(
     isLoading: false,
   })),
 
-  on(MembersActions.loadMembersFailed, (state) => ({
+  on(MembersActions.loadMembersFailed, state => ({
     ...state,
     isLoading: false,
   })),
@@ -41,20 +41,20 @@ const membersReducer = createReducer(
     members: [...state.members].sort(
       customSort(
         action.header,
-        action.header === state.sortedBy ? !state.isAscending : false
-      )
+        action.header === state.sortedBy ? !state.isAscending : false,
+      ),
     ),
     sortedBy: action.header,
     isAscending: action.header === state.sortedBy ? !state.isAscending : false,
   })),
 
-  on(MembersActions.inactiveMembersToggled, (state) => ({
+  on(MembersActions.inactiveMembersToggled, state => ({
     ...state,
     showActiveOnly: !state.showActiveOnly,
     pageNum: 1,
   })),
 
-  on(MembersActions.createMemberSelected, (state) => ({
+  on(MembersActions.createMemberSelected, state => ({
     ...state,
     isEditMode: false,
     selectedMember: newMemberFormTemplate,
@@ -75,18 +75,14 @@ const membersReducer = createReducer(
 
   on(MembersActions.deleteMemberSucceeded, (state, action) => ({
     ...state,
-    members: state.members.filter((x) => x.id != action.deletedMember.id),
+    members: state.members.filter(x => x.id != action.deletedMember.id),
     selectedMember: null,
   })),
 
-  on(
-    MembersActions.deleteMemberFailed,
-    MembersActions.deleteMemberCancelled,
-    (state) => ({
-      ...state,
-      selectedMember: null,
-    })
-  ),
+  on(MembersActions.deleteMemberFailed, MembersActions.deleteMemberCancelled, state => ({
+    ...state,
+    selectedMember: null,
+  })),
 
   on(
     MembersActions.addMemberSucceeded,
@@ -94,19 +90,19 @@ const membersReducer = createReducer(
     MembersActions.updateMemberSucceeded,
     MembersActions.updateMemberFailed,
     MembersActions.cancelConfirmed,
-    (state) => ({
+    state => ({
       ...state,
       selectedMember: null,
       memberCurrently: null,
-    })
+    }),
   ),
 
   on(MembersActions.formDataChanged, (state, action) => ({
     ...state,
     memberCurrently: action.member,
-  }))
+  })),
 );
 
-export function reducer(state: MembersState, action: Action) {
+export function reducer(state: MembersState, action: Action): MembersState {
   return membersReducer(state, action);
 }

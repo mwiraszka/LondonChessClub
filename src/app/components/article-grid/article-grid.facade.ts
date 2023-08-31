@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
+import { Injectable } from '@angular/core';
+
+import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
 import { Article } from '@app/types';
-import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 
 @Injectable()
 export class ArticleGridFacade {
@@ -27,7 +28,7 @@ export class ArticleGridFacade {
 
   onDeleteArticle(article: Article): void {
     this.store.dispatch(
-      ArticlesActions.deleteArticleSelected({ articleToDelete: article })
+      ArticlesActions.deleteArticleSelected({ articleToDelete: article }),
     );
   }
 }

@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { ModalButtonActionTypes } from '@app/types';
+import { Injectable } from '@angular/core';
+
 import { ModalActions, ModalSelectors } from '@app/store/modal';
+import { ModalButtonActionTypes } from '@app/types';
 
 @Injectable()
 export class ModalFacade {

@@ -1,8 +1,8 @@
 import { Modal, ModalButtonActionTypesType } from '@app/types';
 
 export interface ModalState {
-  modal?: Modal;
-  selection?: ModalButtonActionTypesType;
+  modal: Modal | null;
+  selection: ModalButtonActionTypesType | null;
 }
 
 export const initialState: ModalState = {

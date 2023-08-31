@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
@@ -23,7 +24,7 @@ export class LoginFormComponent implements OnInit {
   constructor(
     public facade: LoginFormFacade,
     private formBuilder: FormBuilder,
-    private loader: LoaderService
+    private loader: LoaderService,
   ) {}
 
   ngOnInit(): void {
@@ -37,16 +38,18 @@ export class LoginFormComponent implements OnInit {
     return control.value !== '' && control.invalid;
   }
 
+  // TODO: Get error messages without accessing the errors' properties like this
   getErrorMessage(control: AbstractControl): string {
-    if (control.errors.hasOwnProperty('required')) {
+    if (control.errors?.hasOwnProperty('required')) {
       return 'This field is required';
-    } else if (control.errors.hasOwnProperty('email')) {
+    } else if (control.errors?.hasOwnProperty('email')) {
       return 'Invalid email';
     } else {
       return 'Unknown error';
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onKeyUp(event: any): void {
     if (event.keyCode === 13) {
       this.onLogin();

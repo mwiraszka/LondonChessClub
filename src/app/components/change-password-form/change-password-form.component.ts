@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+/* eslint-disable no-prototype-builtins */
+import { Subscription } from 'rxjs';
+
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -16,7 +19,6 @@ import {
   hasUppercaseLetterValidator,
   matchingPasswordsValidator,
 } from '@app/validators';
-import { Subscription } from 'rxjs';
 
 import { ChangePasswordFormFacade } from './change-password-form.facade';
 
@@ -26,10 +28,7 @@ import { ChangePasswordFormFacade } from './change-password-form.facade';
   styleUrls: ['./change-password-form.component.scss'],
   providers: [ChangePasswordFormFacade],
 })
-export class ChangePasswordFormComponent implements OnInit {
-  form!: FormGroup;
-  passwordValueChangeSubscription!: Subscription;
-
+export class ChangePasswordFormComponent implements OnInit, OnDestroy {
   PASSWORD_VALIDATORS: ValidatorFn[] = [
     Validators.required,
     Validators.minLength(8),
@@ -39,9 +38,12 @@ export class ChangePasswordFormComponent implements OnInit {
     hasNumberValidator,
   ];
 
+  form!: FormGroup;
+  passwordValueChangeSubscription!: Subscription;
+
   constructor(
     public facade: ChangePasswordFormFacade,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
@@ -70,24 +72,25 @@ export class ChangePasswordFormComponent implements OnInit {
     return control.value !== '' && control.invalid;
   }
 
+  // TODO: Get error messages without accessing the errors' properties like this
   getErrorMessage(control: AbstractControl): string {
-    if (control.errors.hasOwnProperty('required')) {
+    if (control.errors?.hasOwnProperty('required')) {
       return 'This field is required';
-    } else if (control.errors.hasOwnProperty('email')) {
+    } else if (control.errors?.hasOwnProperty('email')) {
       return 'Invalid email';
-    } else if (control.errors.hasOwnProperty('pattern')) {
+    } else if (control.errors?.hasOwnProperty('pattern')) {
       return 'Invalid input (incorrect format)';
-    } else if (control.errors.hasOwnProperty('noLowercaseLetter')) {
+    } else if (control.errors?.hasOwnProperty('noLowercaseLetter')) {
       return 'Password needs to include at least one lowercase letter';
-    } else if (control.errors.hasOwnProperty('noUppercaseLetter')) {
+    } else if (control.errors?.hasOwnProperty('noUppercaseLetter')) {
       return 'Password needs to include at least one uppercase letter';
-    } else if (control.errors.hasOwnProperty('noSpecialChar')) {
+    } else if (control.errors?.hasOwnProperty('noSpecialChar')) {
       return 'Password needs to include at least one special character';
-    } else if (control.errors.hasOwnProperty('noNumber')) {
+    } else if (control.errors?.hasOwnProperty('noNumber')) {
       return 'Password needs to include at least one number';
-    } else if (control.errors.hasOwnProperty('minlength')) {
+    } else if (control.errors?.hasOwnProperty('minlength')) {
       return 'Password needs to be at least 8 characters long';
-    } else if (control.errors.hasOwnProperty('passwordMismatch')) {
+    } else if (control.errors?.hasOwnProperty('passwordMismatch')) {
       return "Passwords don't match";
     } else {
       return 'Unknown error';

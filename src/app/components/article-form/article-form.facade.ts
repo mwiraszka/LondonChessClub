@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { first, map } from 'rxjs/operators';
+
+import { Injectable } from '@angular/core';
 
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { Article } from '@app/types';
@@ -12,6 +13,8 @@ export class ArticleFormFacade {
   readonly isEditMode$ = this.store.select(ArticlesSelectors.isEditMode);
   readonly hasUnsavedChanges$ = this.store.select(ArticlesSelectors.hasUnsavedChanges);
 
+  constructor(private readonly store: Store) {}
+
   onCancel(): void {
     this.store.dispatch(ArticlesActions.cancelSelected());
   }
@@ -19,22 +22,22 @@ export class ArticleFormFacade {
   onSubmit(article: Article): void {
     this.isEditMode$
       .pipe(
-        map((isEditMode) => {
+        map(isEditMode => {
           if (isEditMode) {
             this.store.dispatch(
               ArticlesActions.updateArticleSelected({
                 articleToUpdate: article,
-              })
+              }),
             );
           } else {
             this.store.dispatch(
               ArticlesActions.publishArticleSelected({
                 articleToPublish: article,
-              })
+              }),
             );
           }
         }),
-        first()
+        first(),
       )
       .subscribe();
   }
@@ -43,6 +46,4 @@ export class ArticleFormFacade {
     article = { ...article, dateEdited: new Date().toLocaleDateString() };
     this.store.dispatch(ArticlesActions.formDataChanged({ article }));
   }
-
-  constructor(private readonly store: Store) {}
 }

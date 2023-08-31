@@ -8,13 +8,13 @@ import { ChampionScreenComponent } from '@app/screens/champion';
 import { ChangePasswordScreenComponent } from '@app/screens/change-password';
 import { EventEditorScreenComponent } from '@app/screens/event-editor';
 import { HomeScreenComponent } from '@app/screens/home';
-import { PhotoGalleryScreenComponent } from '@app/screens/photo-gallery';
 import { LoginScreenComponent } from '@app/screens/login';
 import { MemberEditorScreenComponent } from '@app/screens/member-editor';
 import { MembersScreenComponent } from '@app/screens/members';
 import { NewsScreenComponent } from '@app/screens/news';
+import { PhotoGalleryScreenComponent } from '@app/screens/photo-gallery';
 import { ScheduleScreenComponent } from '@app/screens/schedule';
-import { SignUpScreenComponent } from '@app/screens/sign-up';
+// import { SignUpScreenComponent } from '@app/screens/sign-up';
 import { NavPathTypes } from '@app/types';
 
 const routes: Routes = [

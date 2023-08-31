@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import {
   AuthenticationDetails,
   CognitoUser,
@@ -9,6 +8,8 @@ import {
 } from 'amazon-cognito-identity-js';
 import { Observable } from 'rxjs';
 
+import { Injectable } from '@angular/core';
+
 import {
   LoginRequest,
   LoginResponse,
@@ -17,6 +18,7 @@ import {
   SignUpRequest,
   SignUpResponse,
 } from '@app/types';
+
 import { environment } from '@environments/environment';
 
 @Injectable({
@@ -30,7 +32,7 @@ export class AuthService {
     });
   }
 
-  currentUser(): CognitoUser {
+  currentUser(): CognitoUser | null {
     return this.userPool().getCurrentUser();
   }
 
@@ -42,8 +44,9 @@ export class AuthService {
   }
 
   token(): Observable<string> {
-    return new Observable<string>((observer) => {
-      this.currentUser()?.getSession((error, session) => {
+    return new Observable<string>(observer => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      this.currentUser()?.getSession((error: Error, session: any) => {
         if (error) {
           observer.error(error);
           return;
@@ -55,8 +58,9 @@ export class AuthService {
   }
 
   isAuthenticated(): Observable<boolean> {
-    return new Observable<boolean>((observer) => {
-      this.currentUser()?.getSession((error, session) => {
+    return new Observable<boolean>(observer => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      this.currentUser()?.getSession((error: Error, session: any) => {
         if (error) {
           observer.error(error);
           return;
@@ -108,7 +112,7 @@ export class AuthService {
       Password: request.password,
     });
 
-    return new Observable<LoginResponse>((observer) => {
+    return new Observable<LoginResponse>(observer => {
       this.userByEmail(request.email).authenticateUser(authDetails, {
         onSuccess(session: CognitoUserSession) {
           observer.next({ isVerified: true, email: request.email, session });
@@ -141,9 +145,9 @@ export class AuthService {
   }
 
   sendChangePasswordCode(email: string): Observable<PasswordChangeResponse> {
-    return new Observable<PasswordChangeResponse>((observer) => {
+    return new Observable<PasswordChangeResponse>(observer => {
       this.userByEmail(email).forgotPassword({
-        onSuccess(data: string) {
+        onSuccess() {
           observer.next();
           observer.complete();
         },
@@ -162,10 +166,12 @@ export class AuthService {
     });
   }
 
-  changePassword(request: PasswordChangeRequest): Observable<PasswordChangeResponse> {
-    return new Observable<PasswordChangeResponse>((observer) => {
+  changePassword(
+    request: PasswordChangeRequest,
+  ): Observable<PasswordChangeResponse | null> {
+    return new Observable<PasswordChangeResponse | null>(observer => {
       this.userByEmail(request.email).confirmPassword(request.code, request.newPassword, {
-        onSuccess(success: string) {
+        onSuccess() {
           observer.next(null);
           observer.complete();
         },

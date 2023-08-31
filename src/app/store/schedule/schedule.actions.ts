@@ -41,78 +41,78 @@ enum ScheduleActionTypes {
 export const loadEventsStarted = createAction(ScheduleActionTypes.LOAD_EVENTS_STARTED);
 export const loadEventsSucceeded = createAction(
   ScheduleActionTypes.LOAD_EVENTS_SUCCEEDED,
-  props<{ allEvents: ClubEvent[] }>()
+  props<{ allEvents: ClubEvent[] }>(),
 );
 export const loadEventsFailed = createAction(
   ScheduleActionTypes.LOAD_EVENTS_FAILED,
-  props<{ error: Error }>()
+  props<{ error: Error }>(),
 );
 
 export const createEventSelected = createAction(
-  ScheduleActionTypes.CREATE_EVENT_SELECTED
+  ScheduleActionTypes.CREATE_EVENT_SELECTED,
 );
 export const editEventSelected = createAction(
   ScheduleActionTypes.EDIT_EVENT_SELECTED,
-  props<{ eventToEdit: ClubEvent }>()
+  props<{ eventToEdit: ClubEvent }>(),
 );
 
 export const deleteEventSelected = createAction(
   ScheduleActionTypes.DELETE_EVENT_SELECTED,
-  props<{ eventToDelete: ClubEvent }>()
+  props<{ eventToDelete: ClubEvent }>(),
 );
 export const deleteEventConfirmed = createAction(
-  ScheduleActionTypes.DELETE_EVENT_CONFIRMED
+  ScheduleActionTypes.DELETE_EVENT_CONFIRMED,
 );
 export const deleteEventCancelled = createAction(
-  ScheduleActionTypes.DELETE_EVENT_CANCELLED
+  ScheduleActionTypes.DELETE_EVENT_CANCELLED,
 );
 export const deleteEventSucceeded = createAction(
   ScheduleActionTypes.DELETE_EVENT_SUCCEEDED,
-  props<{ deletedEvent: ClubEvent }>()
+  props<{ deletedEvent: ClubEvent }>(),
 );
 export const deleteEventFailed = createAction(
   ScheduleActionTypes.DELETE_EVENT_FAILED,
-  props<{ error: Error }>()
+  props<{ error: Error }>(),
 );
 
 export const getEventToEditSucceeded = createAction(
   ScheduleActionTypes.GET_EVENT_TO_EDIT_SUCCEEDED,
-  props<{ eventToEdit: ClubEvent }>()
+  props<{ eventToEdit: ClubEvent }>(),
 );
 export const resetEventForm = createAction(ScheduleActionTypes.RESET_EVENT_FORM);
 
 export const addEventSelected = createAction(
   ScheduleActionTypes.ADD_EVENT_SELECTED,
-  props<{ eventToAdd: ClubEvent }>()
+  props<{ eventToAdd: ClubEvent }>(),
 );
 export const addEventConfirmed = createAction(ScheduleActionTypes.ADD_EVENT_CONFIRMED);
 export const addEventCancelled = createAction(ScheduleActionTypes.ADD_EVENT_CANCELLED);
 export const addEventSucceeded = createAction(
   ScheduleActionTypes.ADD_EVENT_SUCCEEDED,
-  props<{ addedEvent: ClubEvent }>()
+  props<{ addedEvent: ClubEvent }>(),
 );
 export const addEventFailed = createAction(
   ScheduleActionTypes.ADD_EVENT_FAILED,
-  props<{ error: Error }>()
+  props<{ error: Error }>(),
 );
 
 export const updateEventSelected = createAction(
   ScheduleActionTypes.UPDATE_EVENT_SELECTED,
-  props<{ eventToUpdate: ClubEvent }>()
+  props<{ eventToUpdate: ClubEvent }>(),
 );
 export const updateEventConfirmed = createAction(
-  ScheduleActionTypes.UPDATE_EVENT_CONFIRMED
+  ScheduleActionTypes.UPDATE_EVENT_CONFIRMED,
 );
 export const updateEventCancelled = createAction(
-  ScheduleActionTypes.UPDATE_EVENT_CANCELLED
+  ScheduleActionTypes.UPDATE_EVENT_CANCELLED,
 );
 export const updateEventSucceeded = createAction(
   ScheduleActionTypes.UPDATE_EVENT_SUCCEEDED,
-  props<{ updatedEvent: ClubEvent }>()
+  props<{ updatedEvent: ClubEvent }>(),
 );
 export const updateEventFailed = createAction(
   ScheduleActionTypes.UPDATE_EVENT_FAILED,
-  props<{ error: Error }>()
+  props<{ error: Error }>(),
 );
 
 export const cancelSelected = createAction(ScheduleActionTypes.CANCEL_SELECTED);
@@ -120,5 +120,5 @@ export const cancelConfirmed = createAction(ScheduleActionTypes.CANCEL_CONFIRMED
 
 export const formDataChanged = createAction(
   ScheduleActionTypes.FORM_DATA_CHANGED,
-  props<{ event: ClubEvent }>()
+  props<{ event: ClubEvent }>(),
 );

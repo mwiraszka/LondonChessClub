@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ClarityIcons, pencilIcon, trashIcon } from '@cds/core/icon';
+
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'lcc-admin-controls',
@@ -7,7 +8,7 @@ import { ClarityIcons, pencilIcon, trashIcon } from '@cds/core/icon';
   styleUrls: ['./admin-controls.component.scss'],
 })
 export class AdminControlsComponent implements OnInit {
-  @Input() itemName: string = '';
+  @Input() itemName = '';
 
   @Output() edit = new EventEmitter<void>();
   @Output() delete = new EventEmitter<void>();

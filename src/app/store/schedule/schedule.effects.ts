@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType, concatLatestFrom } from '@ngrx/effects';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, switchMap, tap } from 'rxjs/operators';
+
+import { Injectable } from '@angular/core';
 
 import { ScheduleService } from '@app/services';
 import { ServiceResponse } from '@app/types';
@@ -20,11 +22,11 @@ export class ScheduleEffects {
             response.error
               ? ScheduleActions.loadEventsFailed({ error: response.error })
               : ScheduleActions.loadEventsSucceeded({
-                  allEvents: response.payload.events,
-                })
-          )
-        )
-      )
+                  allEvents: response.payload!.events!,
+                }),
+          ),
+        ),
+      ),
     );
   });
 
@@ -33,23 +35,23 @@ export class ScheduleEffects {
       ofType(ScheduleActions.deleteEventConfirmed),
       concatLatestFrom(() => this.store.select(ScheduleSelectors.selectedEvent)),
       switchMap(([, eventToDelete]) =>
-        this.scheduleService.deleteEvent(eventToDelete).pipe(
+        this.scheduleService.deleteEvent(eventToDelete!).pipe(
           map((response: ServiceResponse) =>
             response.error
               ? ScheduleActions.deleteEventFailed({ error: response.error })
               : ScheduleActions.deleteEventSucceeded({
-                  deletedEvent: response.payload.event,
-                })
-          )
-        )
-      )
+                  deletedEvent: response.payload!.event!,
+                }),
+          ),
+        ),
+      ),
     );
   });
 
   resetEventForm$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.createEventSelected),
-      map(() => ScheduleActions.resetEventForm())
+      map(() => ScheduleActions.resetEventForm()),
     );
   });
 
@@ -63,11 +65,11 @@ export class ScheduleEffects {
             response.error
               ? ScheduleActions.addEventFailed({ error: response.error })
               : ScheduleActions.addEventSucceeded({
-                  addedEvent: response.payload.event,
-                })
-          )
+                  addedEvent: response.payload!.event!,
+                }),
+          ),
         );
-      })
+      }),
     );
   });
 
@@ -81,11 +83,11 @@ export class ScheduleEffects {
             response.error
               ? ScheduleActions.updateEventFailed({ error: response.error })
               : ScheduleActions.updateEventSucceeded({
-                  updatedEvent: response.payload.event,
-                })
-          )
+                  updatedEvent: response.payload!.event!,
+                }),
+          ),
         );
-      })
+      }),
     );
   });
 
@@ -96,18 +98,18 @@ export class ScheduleEffects {
           ScheduleActions.loadEventsFailed,
           ScheduleActions.addEventFailed,
           ScheduleActions.updateEventFailed,
-          ScheduleActions.deleteEventFailed
+          ScheduleActions.deleteEventFailed,
         ),
         tap(({ error }) => {
           console.error(`[Schedule] ${error.message}`);
-        })
+        }),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   constructor(
     private actions$: Actions,
     private scheduleService: ScheduleService,
-    private store: Store
+    private store: Store,
   ) {}
 }

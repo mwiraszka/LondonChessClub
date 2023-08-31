@@ -1,4 +1,4 @@
-import { createReducer, Action, on } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as AuthActions from './auth.actions';
 import { AuthState, initialState } from './auth.state';
@@ -16,16 +16,16 @@ const authReducer = createReducer(
     user: action.user,
     session: action.session,
   })),
-  on(AuthActions.codeForPasswordChangeSucceeded, (state) => ({
+  on(AuthActions.codeForPasswordChangeSucceeded, state => ({
     ...state,
     user: { ...state.user, hasCode: true },
   })),
-  on(AuthActions.codeForPasswordChangeFailed, (state) => ({
+  on(AuthActions.codeForPasswordChangeFailed, state => ({
     ...state,
     user: { ...state.user, hasCode: false },
-  }))
+  })),
 );
 
-export function reducer(state: AuthState, action: Action) {
+export function reducer(state: AuthState, action: Action): AuthState {
   return authReducer(state, action);
 }

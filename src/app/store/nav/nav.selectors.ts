@@ -5,10 +5,10 @@ import { AppStoreFeatureTypes } from '@app/types';
 import { NavState } from './nav.state';
 
 export const navFeatureSelector = createFeatureSelector<NavState>(
-  AppStoreFeatureTypes.NAV
+  AppStoreFeatureTypes.NAV,
 );
 
 export const isDropdownOpen = createSelector(
   navFeatureSelector,
-  (state) => state.isDropdownOpen
+  state => state.isDropdownOpen,
 );

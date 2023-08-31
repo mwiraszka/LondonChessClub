@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { filter, map, tap } from 'rxjs/operators';
+
+import { Injectable } from '@angular/core';
 
 import { UpdateService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
@@ -34,7 +36,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      })
+      }),
     );
   });
 
@@ -45,7 +47,7 @@ export class ModalEffects {
       map(([, selectedMember]) => {
         const modal: Modal = {
           title: 'Confirm member update',
-          body: `Update ${selectedMember.firstName} ${selectedMember.lastName}?`,
+          body: `Update ${selectedMember!.firstName} ${selectedMember!.lastName}?`,
           buttons: [
             {
               text: 'Cancel',
@@ -60,7 +62,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      })
+      }),
     );
   });
 
@@ -85,7 +87,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      })
+      }),
     );
   });
 
@@ -110,7 +112,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      })
+      }),
     );
   });
 
@@ -136,7 +138,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      })
+      }),
     );
   });
 
@@ -161,7 +163,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      })
+      }),
     );
   });
 
@@ -186,7 +188,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      })
+      }),
     );
   });
 
@@ -212,7 +214,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      })
+      }),
     );
   });
 
@@ -237,7 +239,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      })
+      }),
     );
   });
 
@@ -262,14 +264,14 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      })
+      }),
     );
   });
 
   closeModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ModalActions.selectionMade),
-      map(() => ModalActions.modalClosed())
+      map(() => ModalActions.modalClosed()),
     );
   });
 
@@ -295,7 +297,7 @@ export class ModalEffects {
           action === ModalButtonActionTypes.UPDATE_ARTICLE_OK ||
           action === ModalButtonActionTypes.UPDATE_ARTICLE_CANCEL ||
           action === ModalButtonActionTypes.DELETE_ARTICLE_OK ||
-          action === ModalButtonActionTypes.DELETE_ARTICLE_CANCEL
+          action === ModalButtonActionTypes.DELETE_ARTICLE_CANCEL,
       ),
       map(({ action }) => {
         switch (action) {
@@ -338,7 +340,7 @@ export class ModalEffects {
           default:
             return ArticlesActions.deleteArticleCancelled();
         }
-      })
+      }),
     );
   });
 
@@ -347,14 +349,14 @@ export class ModalEffects {
       this.actions$.pipe(
         ofType(ModalActions.selectionMade),
         filter(({ action }) => action === ModalButtonActionTypes.ACTIVATE_VERSION_UPDATE),
-        tap(() => this.updateService.activateUpdate())
+        tap(() => this.updateService.activateUpdate()),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   constructor(
     private actions$: Actions,
     private store: Store,
-    private updateService: UpdateService
+    private updateService: UpdateService,
   ) {}
 }

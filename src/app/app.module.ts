@@ -1,13 +1,14 @@
+import { ClarityModule } from '@clr/angular';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { ClarityModule } from '@clr/angular';
-import { EffectsModule } from '@ngrx/effects';
-import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AlertModule } from '@app/components/alert';
@@ -28,6 +29,7 @@ import { NavStoreModule } from '@app/store/nav';
 import { ScheduleStoreModule } from '@app/store/schedule';
 import { ToasterStoreModule } from '@app/store/toaster';
 import { actionSanitizer } from '@app/utils';
+
 import { environment } from '@environments/environment';
 
 import { AppComponent } from './app.component';

@@ -6,9 +6,17 @@
 			Kiwanis Seniors' Community Centre<br />
 			78 Riverside Drive
 		</div>
-		<div class="meet-time">Thursdays,<wbr> 6:00pm&ndash;9:00pm</div>
+		<div class="meet-time">Thursdays,<wbr> 6:00pm&nbsp;&ndash;&nbsp;9:00pm</div>
 	</div>
 </div>
+
+<ng-container *ngIf="isMapLoaded$ | async">
+	<google-map [height]="mapHeight"
+							[width]="mapWidth"
+							[options]="mapOptions">
+		<map-marker [options]="markerOptions"></map-marker>
+	</google-map>
+</ng-container>
 
 <hr />
 
@@ -18,7 +26,9 @@
 	events (see
 	<a class="lcc-link"
 		 [routerLink]="NavPathTypes.SCHEDULE"
-		 (click)="onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
+		 (click)="onNavigate(NavPathTypes.SCHEDULE)">
+		schedule
+	</a>
 	for upcoming events). Join our thriving chess community every Thursday evening at the
 	Kiwanis Centre. Your first visit is free!
 </p>

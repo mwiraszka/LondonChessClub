@@ -8,16 +8,15 @@
   justify-content: center;
 }
 
-  lcc-screen-header {
-    @include respond-to('lt-sm') {
-      font-size: $h4;
-    }
-
-    @include respond-to('lt-xs') {
-      font-size: calc(#{$h4} - 1px);
-    }
+lcc-screen-header {
+  @include respond-to('lt-sm') {
+    font-size: $h4;
   }
 
+  @include respond-to('lt-xs') {
+    font-size: calc(#{$h4} - 1px);
+  }
+}
 
 section {
   grid-template-columns: 1fr 1fr;

@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     private changeDetectionRef: ChangeDetectorRef,
     private loader: LoaderService,
     private update: UpdateService,
-    public facade: AppFacade
+    public facade: AppFacade,
   ) {}
 
   ngOnInit(): void {

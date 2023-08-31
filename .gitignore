@@ -4,6 +4,9 @@
 # Beautify
 .jsbeautifyrc
 
+# Prettier
+.prettierrc
+
 # System files
 .DS_Store
 Thumbs.db

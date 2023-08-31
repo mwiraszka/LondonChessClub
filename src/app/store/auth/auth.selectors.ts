@@ -5,22 +5,22 @@ import { AppStoreFeatureTypes } from '@app/types';
 import { AuthState } from './auth.state';
 
 export const authFeatureSelector = createFeatureSelector<AuthState>(
-  AppStoreFeatureTypes.AUTH
+  AppStoreFeatureTypes.AUTH,
 );
 
-export const user = createSelector(authFeatureSelector, (state) => state.user);
+export const user = createSelector(authFeatureSelector, state => state.user);
 
 export const isAdmin = createSelector(
   authFeatureSelector,
-  (state) => state.user?.isAdmin && state.user?.isVerified
+  state => state.user?.isAdmin && state.user?.isVerified,
 );
 
 export const isUserVerified = createSelector(
   authFeatureSelector,
-  (state) => state.user?.isVerified
+  state => state.user?.isVerified,
 );
 
 export const userHasCode = createSelector(
   authFeatureSelector,
-  (state) => state.user?.hasCode
+  state => state.user?.hasCode,
 );

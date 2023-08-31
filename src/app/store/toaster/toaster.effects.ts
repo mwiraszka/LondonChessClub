@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { delay, map } from 'rxjs/operators';
 
-import { Toast, ToastTypes } from '@app/types';
+import { Injectable } from '@angular/core';
+
 import { ArticlesActions } from '@app/store/articles';
 import { AuthActions } from '@app/store/auth';
 import { MembersActions } from '@app/store/members';
 import { ScheduleActions } from '@app/store/schedule';
+import { Toast, ToastTypes } from '@app/types';
 
 import * as ToasterActions from './toaster.actions';
 
@@ -23,7 +24,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -37,7 +38,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -51,7 +52,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -65,7 +66,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -79,7 +80,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -93,7 +94,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -107,7 +108,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
   //#endregion
@@ -123,7 +124,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -137,7 +138,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -151,7 +152,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -165,7 +166,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -179,7 +180,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -193,7 +194,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -207,7 +208,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
   //#endregion
@@ -223,7 +224,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -237,7 +238,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -251,7 +252,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -265,7 +266,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -279,7 +280,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -293,7 +294,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -307,7 +308,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
   //#endregion
@@ -323,7 +324,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -337,7 +338,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -351,7 +352,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -365,7 +366,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -379,7 +380,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -393,7 +394,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
 
@@ -407,7 +408,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      })
+      }),
     );
   });
   //#endregion
@@ -416,7 +417,7 @@ export class ToasterEffects {
     return this.actions$.pipe(
       ofType(ToasterActions.toastAdded),
       delay(5000),
-      map(({ toast }) => ToasterActions.toastExpired({ toast }))
+      map(({ toast }) => ToasterActions.toastExpired({ toast })),
     );
   });
 

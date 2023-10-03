@@ -50,15 +50,15 @@ export function customSort(key: string, isAscending: boolean) {
 
 /**
  * Converts any string to kebab-case
- * (see https://stackoverflow.com/questions/63116039/camelcase-to-kebab-case)
+ * (see https://www.geeksforgeeks.org/how-to-convert-a-string-into-kebab-case-using-javascript)
  * @param {string} anyString The input string Like This, LikeThis, or Like_This
  * @returns {string} The same text in kebab-case
  */
 export function kebabize(anyString: string): string {
-  return anyString.replace(
-    /[A-Z]+(?![a-z])|[A-Z]/g,
-    (str, ofs) => (ofs ? '-' : '') + str.toLowerCase(),
-  );
+  const wordArray = anyString
+    .replace('.', '')
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g);
+  return wordArray?.join('-').toLowerCase() ?? '';
 }
 
 /**

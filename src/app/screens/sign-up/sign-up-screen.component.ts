@@ -1,4 +1,3 @@
-/* eslint-disable no-prototype-builtins */
 import { ClarityIcons, exclamationTriangleIcon } from '@cds/core/icon';
 import { Subscription } from 'rxjs';
 
@@ -75,27 +74,34 @@ export class SignUpScreenComponent implements OnInit, OnDestroy {
     return control.value !== '' && control.invalid;
   }
 
-  // TODO: Get error messages without accessing the errors' properties like this
   getErrorMessage(control: AbstractControl): string {
-    if (control.errors?.hasOwnProperty('required')) {
+    if (control.hasError('required')) {
       return 'This field is required';
-    } else if (control.errors?.hasOwnProperty('email')) {
+    } else if (control.hasError('email')) {
       return 'Invalid email';
-    } else if (control.errors?.hasOwnProperty('noLowercaseLetter')) {
+    } else if (control.hasError('noLowercaseLetter')) {
       return 'Password needs to include at least one lowercase letter';
-    } else if (control.errors?.hasOwnProperty('noUppercaseLetter')) {
+    } else if (control.hasError('noUppercaseLetter')) {
       return 'Password needs to include at least one uppercase letter';
-    } else if (control.errors?.hasOwnProperty('noSpecialChar')) {
+    } else if (control.hasError('noSpecialChar')) {
       return 'Password needs to include at least one special character';
-    } else if (control.errors?.hasOwnProperty('noNumber')) {
+    } else if (control.hasError('noNumber')) {
       return 'Password needs to include at least one number';
-    } else if (control.errors?.hasOwnProperty('minlength')) {
+    } else if (control.hasError('minlength')) {
       return 'Password needs to be at least 8 characters long';
-    } else if (control.errors?.hasOwnProperty('passwordMismatch')) {
+    } else if (control.hasError('passwordMismatch')) {
       return "Passwords don't match";
     } else {
       console.log('Could not recognize', control.errors);
       return 'Unknown error';
     }
+  }
+
+  onSubmit(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+    this.facade.onSignUp(this.form.value);
   }
 }

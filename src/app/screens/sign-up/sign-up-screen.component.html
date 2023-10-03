@@ -3,7 +3,8 @@
 
 	<form class="lcc-form"
 				[formGroup]="form"
-				(ngSubmit)="facade.onSignUp(form.value)">
+				(keyup.enter)="onSubmit()"
+				(ngSubmit)="onSubmit()">
 		<div class="lcc-form-fields">
 			<label for="email-input">Email:</label>
 			<input id="email-input"

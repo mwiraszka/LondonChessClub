@@ -1,4 +1,3 @@
-/* eslint-disable no-prototype-builtins */
 import { Subscription } from 'rxjs';
 import { debounceTime, first, tap } from 'rxjs/operators';
 
@@ -67,25 +66,24 @@ export class MemberFormComponent implements OnInit, OnDestroy {
     return control.dirty && control.invalid;
   }
 
-  // TODO: Get error messages without accessing the errors' properties like this
   getErrorMessage(control: AbstractControl): string {
-    if (control.errors?.hasOwnProperty('required')) {
+    if (control.hasError('required')) {
       return 'This field is required';
-    } else if (control.errors?.hasOwnProperty('invalidRating')) {
+    } else if (control.hasError('invalidRating')) {
       return 'Invalid rating';
-    } else if (control.errors?.hasOwnProperty('invalidDateFormat')) {
+    } else if (control.hasError('invalidDateFormat')) {
       return 'Invalid date format - please input as YYYY-MM-DD';
-    } else if (control.errors?.hasOwnProperty('invalidEmailFormat')) {
+    } else if (control.hasError('invalidEmailFormat')) {
       return 'Invalid email';
-    } else if (control.errors?.hasOwnProperty('invalidPhoneNumberFormat')) {
+    } else if (control.hasError('invalidPhoneNumberFormat')) {
       return 'Invalid phone number format - please input as XXX-XXX-XXXX';
-    } else if (control.errors?.hasOwnProperty('invalidYear')) {
+    } else if (control.hasError('invalidYear')) {
       return 'Invalid year';
-    } else if (control.errors?.hasOwnProperty('pattern')) {
+    } else if (control.hasError('pattern')) {
       return 'Invalid input (incorrect format)';
-    } else if (control.errors?.hasOwnProperty('minlength')) {
+    } else if (control.hasError('minlength')) {
       return 'Invalid input (number too low)';
-    } else if (control.errors?.hasOwnProperty('maxlength')) {
+    } else if (control.hasError('maxlength')) {
       return 'Invalid input (number too high)';
     } else {
       return 'Unknown error';

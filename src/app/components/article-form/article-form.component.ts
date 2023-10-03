@@ -1,4 +1,3 @@
-/* eslint-disable no-prototype-builtins */
 import { Subscription } from 'rxjs';
 import { debounceTime, first, tap } from 'rxjs/operators';
 
@@ -46,11 +45,10 @@ export class ArticleFormComponent {
     return control.value !== '' && control.invalid;
   }
 
-  // TODO: Get error messages without accessing the errors' properties like this
   getErrorMessage(control: AbstractControl): string {
-    if (control.errors?.hasOwnProperty('required')) {
+    if (control.hasError('required')) {
       return 'This field is required';
-    } else if (control.errors?.hasOwnProperty('invalidDateFormat')) {
+    } else if (control.hasError('invalidDateFormat')) {
       return 'Invalid date';
     } else {
       return 'Unknown error';

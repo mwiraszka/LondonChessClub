@@ -6,6 +6,7 @@
 <form *ngIf="form"
 			class="lcc-form"
 			[formGroup]="form"
+			(keyup.enter)="onSubmit()"
 			(ngSubmit)="onSubmit()">
 	<div class="lcc-form-fields">
 		<label for="first-name-input"

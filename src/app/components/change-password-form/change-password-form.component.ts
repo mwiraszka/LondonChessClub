@@ -1,4 +1,3 @@
-/* eslint-disable no-prototype-builtins */
 import { Subscription } from 'rxjs';
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -13,6 +12,7 @@ import {
 
 import { PasswordChangeRequest } from '@app/types';
 import {
+  emailValidator,
   hasLowercaseLetterValidator,
   hasNumberValidator,
   hasSpecialCharValidator,
@@ -40,6 +40,7 @@ export class ChangePasswordFormComponent implements OnInit, OnDestroy {
 
   form!: FormGroup;
   passwordValueChangeSubscription!: Subscription;
+  userHasCode?: boolean;
 
   constructor(
     public facade: ChangePasswordFormFacade,
@@ -48,7 +49,7 @@ export class ChangePasswordFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [Validators.required, emailValidator]),
       code: new FormControl('', [Validators.required, Validators.pattern(/\d{6}/)]),
       newPassword: new FormControl('', this.PASSWORD_VALIDATORS),
       confirmPassword: new FormControl('', [
@@ -62,6 +63,8 @@ export class ChangePasswordFormComponent implements OnInit, OnDestroy {
     ].valueChanges.subscribe(() => {
       this.form.controls['confirmPassword'].updateValueAndValidity();
     });
+
+    this.facade.userHasCode$.subscribe(hasCode => (this.userHasCode = hasCode));
   }
 
   ngOnDestroy(): void {
@@ -72,25 +75,24 @@ export class ChangePasswordFormComponent implements OnInit, OnDestroy {
     return control.value !== '' && control.invalid;
   }
 
-  // TODO: Get error messages without accessing the errors' properties like this
   getErrorMessage(control: AbstractControl): string {
-    if (control.errors?.hasOwnProperty('required')) {
+    if (control.hasError('required')) {
       return 'This field is required';
-    } else if (control.errors?.hasOwnProperty('email')) {
+    } else if (control.hasError('invalidEmailFormat')) {
       return 'Invalid email';
-    } else if (control.errors?.hasOwnProperty('pattern')) {
+    } else if (control.hasError('pattern')) {
       return 'Invalid input (incorrect format)';
-    } else if (control.errors?.hasOwnProperty('noLowercaseLetter')) {
+    } else if (control.hasError('noLowercaseLetter')) {
       return 'Password needs to include at least one lowercase letter';
-    } else if (control.errors?.hasOwnProperty('noUppercaseLetter')) {
+    } else if (control.hasError('noUppercaseLetter')) {
       return 'Password needs to include at least one uppercase letter';
-    } else if (control.errors?.hasOwnProperty('noSpecialChar')) {
+    } else if (control.hasError('noSpecialChar')) {
       return 'Password needs to include at least one special character';
-    } else if (control.errors?.hasOwnProperty('noNumber')) {
+    } else if (control.hasError('noNumber')) {
       return 'Password needs to include at least one number';
-    } else if (control.errors?.hasOwnProperty('minlength')) {
+    } else if (control.hasError('minlength')) {
       return 'Password needs to be at least 8 characters long';
-    } else if (control.errors?.hasOwnProperty('passwordMismatch')) {
+    } else if (control.hasError('passwordMismatch')) {
       return "Passwords don't match";
     } else {
       return 'Unknown error';
@@ -98,6 +100,14 @@ export class ChangePasswordFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
+    if (
+      (!this.userHasCode && this.form.controls['email'].invalid) ||
+      (this.userHasCode && this.form.invalid)
+    ) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     const request: PasswordChangeRequest = {
       email: this.form.value['email'],
       newPassword: this.form.value['password'],

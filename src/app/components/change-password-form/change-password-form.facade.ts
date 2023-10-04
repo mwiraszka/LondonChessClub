@@ -28,4 +28,8 @@ export class ChangePasswordFormFacade {
       )
       .subscribe();
   }
+
+  onRequestNewCode(): void {
+    this.store.dispatch(AuthActions.requestNewCodeSelected());
+  }
 }

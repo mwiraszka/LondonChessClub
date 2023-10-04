@@ -88,7 +88,7 @@
 
 	<div class="nav-login-spacer"></div>
 
-	<ng-container *ngIf="facade.user$ | async; else loggedOut">
+	<ng-container *ngIf="(facade.user$ | async)?.isAdmin; else loggedOut">
 		<div class="user-account-dropdown ddcomp">
 			<div class="dropdown-tab ddcomp"
 					 [ngClass]="(facade.isDropdownOpen$ | async) ? 'dropdown-open' : 'dropdown-closed'"

@@ -31,9 +31,30 @@ This is a web app built for the London Chess Club to demonstrate an all-in-one S
 <h3>Releases</h3>
 
 <details>
+<summary style="cursor: pointer">v1.2.0-beta</summary>
+
+**Released on October 4th, 2023**
+
+<h4>Features</h4>
+
+- [Core] Support submitting via 'enter' key in all forms
+- [Change Password] Add ability to return to the previous page and request a new code after an email has already been entered
+
+<h4>Refactor / Chores</h4>
+
+- [Core] Simplify handling of form validation messages
+
+<h4>Fixes</h4>
+
+- [Core] Revert changes to algorithm of 'kebabize' helper function, ensuring that the correct CSS classes are added in the Members Table component
+- [Core] Ensure all validator functions work as expected again, after major code refactor in the previous release
+
+</details>
+
+<details>
 <summary style="cursor: pointer">v1.1.0-beta</summary>
 
-**Released on TBD**
+**Released on August 31st, 2023**
 
 <h4>Features</h4>
 

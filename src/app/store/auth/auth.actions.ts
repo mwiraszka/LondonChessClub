@@ -16,6 +16,7 @@ enum AuthActionTypes {
   LOGOUT_SUCCEEDED = '[Auth] Logout succeeded',
 
   FORGOT_PASSWORD_SELECTED = '[Auth] Forgot password selected',
+  REQUEST_NEW_CODE_SELECTED = '[Auth] Request new code selected',
   CODE_FOR_PASSWORD_CHANGE_REQUESTED = '[Auth] Code for password change requested',
   CODE_FOR_PASSWORD_CHANGE_SUCCEEDED = '[Auth] Code for password change succeeded',
   CODE_FOR_PASSWORD_CHANGE_FAILED = '[Auth] Code for password change failed',
@@ -55,6 +56,9 @@ export const logoutSucceeded = createAction(AuthActionTypes.LOGOUT_SUCCEEDED);
 
 export const forgotPasswordSelected = createAction(
   AuthActionTypes.FORGOT_PASSWORD_SELECTED,
+);
+export const requestNewCodeSelected = createAction(
+  AuthActionTypes.REQUEST_NEW_CODE_SELECTED,
 );
 export const codeForPasswordChangeRequested = createAction(
   AuthActionTypes.CODE_FOR_PASSWORD_CHANGE_REQUESTED,

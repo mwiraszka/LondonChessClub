@@ -1,4 +1,3 @@
-/* eslint-disable no-prototype-builtins */
 import { Subscription } from 'rxjs';
 import { debounceTime, first, tap } from 'rxjs/operators';
 
@@ -47,13 +46,12 @@ export class EventFormComponent implements OnInit, OnDestroy {
     return control.dirty && control.invalid;
   }
 
-  // TODO: Get error messages without accessing the errors' properties like this
   getErrorMessage(control: AbstractControl): string {
-    if (control.errors?.hasOwnProperty('required')) {
+    if (control.hasError('required')) {
       return 'This field is required';
-    } else if (control.errors?.hasOwnProperty('invalidDateFormat')) {
+    } else if (control.hasError('invalidDateFormat')) {
       return 'Invalid date format - please input as YYYY-MM-DD';
-    } else if (control.errors?.hasOwnProperty('pattern')) {
+    } else if (control.hasError('pattern')) {
       return 'Invalid input (incorrect format)';
     } else {
       return 'Unknown error';

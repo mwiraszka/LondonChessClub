@@ -1,4 +1,3 @@
-/* eslint-disable no-prototype-builtins */
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
@@ -9,6 +8,7 @@ import {
 } from '@angular/forms';
 
 import { LoaderService } from '@app/services';
+import { emailValidator } from '@app/validators';
 
 import { LoginFormFacade } from './login-form.facade';
 
@@ -29,7 +29,7 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [Validators.required, emailValidator]),
       password: new FormControl('', Validators.required),
     });
   }
@@ -38,25 +38,21 @@ export class LoginFormComponent implements OnInit {
     return control.value !== '' && control.invalid;
   }
 
-  // TODO: Get error messages without accessing the errors' properties like this
   getErrorMessage(control: AbstractControl): string {
-    if (control.errors?.hasOwnProperty('required')) {
+    if (control.hasError('required')) {
       return 'This field is required';
-    } else if (control.errors?.hasOwnProperty('email')) {
+    } else if (control.hasError('invalidEmailFormat')) {
       return 'Invalid email';
-    } else {
-      return 'Unknown error';
     }
+    return 'Unknown error';
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onKeyUp(event: any): void {
-    if (event.keyCode === 13) {
-      this.onLogin();
+  onSubmit(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
     }
-  }
 
-  onLogin(): void {
     this.loader.display(true);
     this.facade.onLogin(this.form.value);
     setTimeout(() => this.loader.display(false), 1000);

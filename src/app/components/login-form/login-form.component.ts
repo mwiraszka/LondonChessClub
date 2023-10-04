@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 
 import { LoaderService } from '@app/services';
+import { emailValidator } from '@app/validators';
 
 import { LoginFormFacade } from './login-form.facade';
 
@@ -28,7 +29,7 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [Validators.required, emailValidator]),
       password: new FormControl('', Validators.required),
     });
   }
@@ -40,7 +41,7 @@ export class LoginFormComponent implements OnInit {
   getErrorMessage(control: AbstractControl): string {
     if (control.hasError('required')) {
       return 'This field is required';
-    } else if (control.hasError('email')) {
+    } else if (control.hasError('invalidEmailFormat')) {
       return 'Invalid email';
     }
     return 'Unknown error';

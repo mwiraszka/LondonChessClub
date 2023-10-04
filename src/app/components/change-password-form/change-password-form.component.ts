@@ -12,6 +12,7 @@ import {
 
 import { PasswordChangeRequest } from '@app/types';
 import {
+  emailValidator,
   hasLowercaseLetterValidator,
   hasNumberValidator,
   hasSpecialCharValidator,
@@ -39,6 +40,7 @@ export class ChangePasswordFormComponent implements OnInit, OnDestroy {
 
   form!: FormGroup;
   passwordValueChangeSubscription!: Subscription;
+  userHasCode?: boolean;
 
   constructor(
     public facade: ChangePasswordFormFacade,
@@ -47,7 +49,7 @@ export class ChangePasswordFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [Validators.required, emailValidator]),
       code: new FormControl('', [Validators.required, Validators.pattern(/\d{6}/)]),
       newPassword: new FormControl('', this.PASSWORD_VALIDATORS),
       confirmPassword: new FormControl('', [
@@ -61,6 +63,8 @@ export class ChangePasswordFormComponent implements OnInit, OnDestroy {
     ].valueChanges.subscribe(() => {
       this.form.controls['confirmPassword'].updateValueAndValidity();
     });
+
+    this.facade.userHasCode$.subscribe(hasCode => (this.userHasCode = hasCode));
   }
 
   ngOnDestroy(): void {
@@ -74,7 +78,7 @@ export class ChangePasswordFormComponent implements OnInit, OnDestroy {
   getErrorMessage(control: AbstractControl): string {
     if (control.hasError('required')) {
       return 'This field is required';
-    } else if (control.hasError('email')) {
+    } else if (control.hasError('invalidEmailFormat')) {
       return 'Invalid email';
     } else if (control.hasError('pattern')) {
       return 'Invalid input (incorrect format)';
@@ -96,7 +100,10 @@ export class ChangePasswordFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    if (this.form.invalid) {
+    if (
+      (!this.userHasCode && this.form.controls['email'].invalid) ||
+      (this.userHasCode && this.form.invalid)
+    ) {
       this.form.markAllAsTouched();
       return;
     }

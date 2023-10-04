@@ -1,8 +1,8 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 
-export function hasUppercaseLetterValidator(): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const regExp = new RegExp(/[A-Z]/);
-    return regExp.test(control.value) ? null : { noUppercaseLetter: true };
-  };
+export function hasUppercaseLetterValidator(
+  control: AbstractControl,
+): ValidationErrors | null {
+  const regExp = new RegExp(/[A-Z]/);
+  return regExp.test(control.value) ? null : { noUppercaseLetter: true };
 }

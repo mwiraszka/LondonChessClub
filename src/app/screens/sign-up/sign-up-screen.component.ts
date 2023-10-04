@@ -12,6 +12,7 @@ import {
 } from '@angular/forms';
 
 import {
+  emailValidator,
   hasLowercaseLetterValidator,
   hasNumberValidator,
   hasSpecialCharValidator,
@@ -53,7 +54,7 @@ export class SignUpScreenComponent implements OnInit, OnDestroy {
 
   initForm(): void {
     this.form = this.formBuilder.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [Validators.required, emailValidator]),
       newPassword: new FormControl('', this.PASSWORD_VALIDATORS),
       confirmPassword: new FormControl('', [
         ...this.PASSWORD_VALIDATORS,
@@ -77,7 +78,7 @@ export class SignUpScreenComponent implements OnInit, OnDestroy {
   getErrorMessage(control: AbstractControl): string {
     if (control.hasError('required')) {
       return 'This field is required';
-    } else if (control.hasError('email')) {
+    } else if (control.hasError('invalidEmailFormat')) {
       return 'Invalid email';
     } else if (control.hasError('noLowercaseLetter')) {
       return 'Password needs to include at least one lowercase letter';

@@ -1,8 +1,8 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 
-export function hasSpecialCharValidator(): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const regExp = new RegExp(/[*.!@#$%^&(){}[\]:;,.?~_+-=|]/);
-    return regExp.test(control.value) ? null : { noSpecialChar: true };
-  };
+export function hasSpecialCharValidator(
+  control: AbstractControl,
+): ValidationErrors | null {
+  const regExp = new RegExp(/[*.!@#$%^&(){}[\]:;,.?~_+-=|]/);
+  return regExp.test(control.value) ? null : { noSpecialChar: true };
 }

@@ -28,6 +28,10 @@ const authReducer = createReducer(
     ...state,
     user: { ...state.user, hasCode: false },
   })),
+  on(AuthActions.passwordChangeSucceeded, state => ({
+    ...state,
+    user: { ...state.user, hasCode: false },
+  })),
 );
 
 export function reducer(state: AuthState, action: Action): AuthState {

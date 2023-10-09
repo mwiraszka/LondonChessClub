@@ -110,7 +110,7 @@ export class ChangePasswordFormComponent implements OnInit, OnDestroy {
 
     const request: PasswordChangeRequest = {
       email: this.form.value['email'],
-      newPassword: this.form.value['password'],
+      newPassword: this.form.value['newPassword'],
       code: this.form.value['code'].toString(),
     };
     this.facade.onSubmit(request);

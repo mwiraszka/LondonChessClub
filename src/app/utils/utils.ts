@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Action } from '@ngrx/store';
 import { isEqual } from 'lodash';
+import * as uuid from 'uuid';
 
 import { AuthActions } from '@app/store/auth';
 
@@ -123,4 +124,25 @@ export function actionSanitizer(action: Action) {
     };
   }
   return action;
+}
+
+/**
+ * Generates an article ID based on the current date and a random string of hex values
+ * @returns {string}
+ */
+export function generateArticleId(): string {
+  const currentDate = new Date();
+  const formattedDate = currentDate.toISOString().split('T')[0].replaceAll('-', '');
+  const uniqueId = uuid.v4().slice(-8);
+  return `art-${formattedDate}-${uniqueId}`;
+}
+
+/**
+ * Generates an article image ID based on the article ID, the current date,
+ * and a random string of hex values
+ * @returns {string}
+ */
+export function generateArticleImageId(articleId: string): string {
+  const uniqueId = uuid.v4().slice(-8);
+  return `${articleId}-img1-${uniqueId}`;
 }

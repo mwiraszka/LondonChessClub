@@ -9,6 +9,7 @@ $article-padding: 6px;
   justify-content: center;
   align-items: center;
   gap: 10px;
+  width: 100%;
 }
 
 lcc-link-list,
@@ -31,9 +32,10 @@ lcc-link-list,
   article {
     display: flex;
     flex-flow: column nowrap;
+    gap: 6px;
     width: 100%;
-    max-width: 280px;
-    height: 350px;
+    max-width: 312px;
+    height: 400px;
     padding: $article-padding;
     background-color: darken($lcc-color--white, 6%);
 
@@ -41,18 +43,30 @@ lcc-link-list,
       transform: translate(-$article-padding, -$article-padding); 
     }
 
-    h6 {
-      display: contents;
+    .lcc-article-thumbnail-image {
+      min-height: 200px;
+      width: 100%;
+      object-fit: cover;
+      border-radius: $lcc-border-radius-lg;
     }
 
-    p {
-      text-align: justify;
-      height: auto;
-      width: auto;
-      overflow: hidden;
-      white-space: pre-wrap;
-      padding: 24px 6px;
-      line-height: 1.5em;
+    .lcc-article-summary-container {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+      height: 100%;
+
+      p {
+        width: 100%;
+        padding: 0 6px;
+        text-align: left;
+        overflow-wrap: break-word;          
+        overflow: hidden;
+        display: -webkit-box;
+        line-clamp: 5;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;  
+      }
     }
   }
 }

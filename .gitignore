@@ -1,10 +1,13 @@
-# Dependencies
+# Server
+/server
+
+# Generated code
 /node_modules
 
-# Beautify
+# Beautify config
 .jsbeautifyrc
 
-# Prettier
+# Prettier config
 .prettierrc
 
 # System files

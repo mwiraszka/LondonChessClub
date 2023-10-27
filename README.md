@@ -36,8 +36,16 @@ This is a web app built for the London Chess Club to demonstrate an all-in-one S
 **Released on TBD**
 
 <h4>Features</h4>
+
+- [Articles] Support banner images for articles
+- [Articles] Remove unnecessary 'subtitle' field
+
 <h4>Refactor / Chores</h4>
+
+- [Core] Use generic types for ServiceResponse's payload property for better type safety
+
 <h4>Fixes</h4>
+
 - [Core] Fix bug causing forms to submit twice when using the 'enter' key
 - [Change Password] Fix bug preventing new password from being sent to the server
 

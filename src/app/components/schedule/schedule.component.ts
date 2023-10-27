@@ -34,7 +34,5 @@ export class ScheduleComponent implements OnInit {
     this.facade.loadEvents();
   }
 
-  trackByFn(index: number, event: ClubEvent): string | undefined {
-    return event.id;
-  }
+  trackByFn = (index: number, event: ClubEvent) => event.id;
 }

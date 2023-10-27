@@ -8,17 +8,12 @@
   white-space: nowrap;
 }
 
-small {
-  font-size: 60%;
-}
-
 address {
-  p {
+  span {
     display: inline;
     margin-right: 2px;
     font-style: normal;
   }
 
-  font-size: $h5;
   text-decoration: none;
 }

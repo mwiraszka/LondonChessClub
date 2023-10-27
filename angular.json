@@ -81,7 +81,8 @@
               "browserTarget": "lcc-angular:build:production"
             },
             "development": {
-              "browserTarget": "lcc-angular:build:development"
+              "browserTarget": "lcc-angular:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

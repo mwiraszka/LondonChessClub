@@ -1,84 +1,116 @@
-import { Observable, of } from 'rxjs';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { Observable, forkJoin, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { AuthService, ImagesService } from '@app/services';
 import { Article, ServiceResponse } from '@app/types';
+import { generateArticleId, generateArticleImageId } from '@app/utils';
 
 import { environment } from '@environments/environment';
 
-import { AuthService } from './auth.service';
-
-const API_ENDPOINT = environment.cognito.articlesEndpoint;
 @Injectable({
   providedIn: 'root',
 })
 export class ArticlesService {
-  constructor(private authService: AuthService, private http: HttpClient) {}
+  readonly API_ENDPOINT = environment.cognito.articlesEndpoint;
 
-  getArticle(id: string): Observable<ServiceResponse> {
-    return this.http.get<Article>(API_ENDPOINT + id).pipe(
-      map(article => ({ payload: { article } })),
+  constructor(
+    private authService: AuthService,
+    private imagesService: ImagesService,
+    private http: HttpClient,
+  ) {}
+
+  // Not currently used anywhere
+  getArticle(id: string): Observable<ServiceResponse<Article>> {
+    return this.http.get<Article>(this.API_ENDPOINT + id).pipe(
+      switchMap(article =>
+        this.imagesService.getImageUrl(article.imageId!).pipe(
+          map(response => {
+            return { payload: { ...article, imageUrl: response.payload! } };
+          }),
+        ),
+      ),
       catchError(() => of({ error: new Error('Failed to fetch article from database') })),
     );
   }
 
-  getArticles(): Observable<ServiceResponse> {
-    return this.http.get<Article[]>(API_ENDPOINT).pipe(
-      map(articles => ({ payload: { articles } })),
+  getArticles(): Observable<ServiceResponse<Article[]>> {
+    return this.http.get<Article[]>(this.API_ENDPOINT).pipe(
+      switchMap(articles => {
+        const articlesWithImageUrls$: Observable<Article>[] = [];
+        articles.forEach(article => {
+          const thumbnailImageId = `${article.imageId!}-300x200`;
+          const articleWithImageUrl$ = this.imagesService
+            .getImageUrl(thumbnailImageId)
+            .pipe(
+              map(response => {
+                return { ...article, thumbnailImageUrl: response.payload! };
+              }),
+            );
+          articlesWithImageUrls$.push(articleWithImageUrl$);
+        });
+        return forkJoin(articlesWithImageUrls$);
+      }),
+      map(articlesWithImageUrls => {
+        return { payload: articlesWithImageUrls };
+      }),
       catchError(() =>
         of({ error: new Error('Failed to fetch articles from database') }),
       ),
     );
   }
 
-  addArticle(articleToAdd: Article): Observable<ServiceResponse> {
+  addArticle(articleToAdd: Article): Observable<ServiceResponse<Article>> {
     // Escaping the backslash for new lines seems necessary to work with API Gateway
-    // integration mapping set up for this endpoint (not needed for updateEvent())
-    articleToAdd = {
+    // integration mapping set up for this endpoint (not needed for updateArticle())
+    const articleId = generateArticleId();
+    const modifiedArticleToAdd = {
       ...articleToAdd,
+      id: articleId,
+      imageId: generateArticleImageId(articleId),
       body: articleToAdd.body.replaceAll('\n', '\\n'),
     };
 
     return this.authService.token().pipe(
       switchMap(token =>
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        this.http.post<any>(API_ENDPOINT, articleToAdd, {
+        this.http.post<null>(this.API_ENDPOINT, modifiedArticleToAdd, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
         }),
       ),
-      map(() => ({ payload: { article: articleToAdd } })),
+      switchMap(() => this.imagesService.uploadArticleImage(modifiedArticleToAdd)),
       catchError(() => of({ error: new Error('Failed to add article to database') })),
     );
   }
 
-  updateArticle(articleToUpdate: Article): Observable<ServiceResponse> {
+  updateArticle(articleToUpdate: Article): Observable<ServiceResponse<Article>> {
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.put<null>(API_ENDPOINT + articleToUpdate.id, articleToUpdate, {
+        this.http.put<null>(this.API_ENDPOINT + articleToUpdate.id, articleToUpdate, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
         }),
       ),
-      map(() => ({ payload: { article: articleToUpdate } })),
+      switchMap(() => this.imagesService.uploadArticleImage(articleToUpdate)),
       catchError(() => of({ error: new Error('Failed to update article') })),
     );
   }
 
-  deleteArticle(articleToDelete: Article): Observable<ServiceResponse> {
+  deleteArticle(articleToDelete: Article): Observable<ServiceResponse<Article>> {
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.delete<null>(API_ENDPOINT + articleToDelete.id, {
+        this.http.delete<null>(this.API_ENDPOINT + articleToDelete.id, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
         }),
       ),
-      map(() => ({ payload: { article: articleToDelete } })),
+      switchMap(() => this.imagesService.deleteImage(articleToDelete)),
       catchError(() =>
         of({ error: new Error('Failed to delete article from database') }),
       ),

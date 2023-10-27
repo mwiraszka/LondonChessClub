@@ -6,7 +6,7 @@ import { map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { ScheduleService } from '@app/services';
-import { ServiceResponse } from '@app/types';
+import { ClubEvent, ServiceResponse } from '@app/types';
 
 import * as ScheduleActions from './schedule.actions';
 import * as ScheduleSelectors from './schedule.selectors';
@@ -18,11 +18,11 @@ export class ScheduleEffects {
       ofType(ScheduleActions.loadEventsStarted),
       switchMap(() =>
         this.scheduleService.getEvents().pipe(
-          map((response: ServiceResponse) =>
+          map((response: ServiceResponse<ClubEvent[]>) =>
             response.error
               ? ScheduleActions.loadEventsFailed({ error: response.error })
               : ScheduleActions.loadEventsSucceeded({
-                  allEvents: response.payload!.events!,
+                  allEvents: response.payload!,
                 }),
           ),
         ),
@@ -36,11 +36,11 @@ export class ScheduleEffects {
       concatLatestFrom(() => this.store.select(ScheduleSelectors.selectedEvent)),
       switchMap(([, eventToDelete]) =>
         this.scheduleService.deleteEvent(eventToDelete!).pipe(
-          map((response: ServiceResponse) =>
+          map((response: ServiceResponse<ClubEvent>) =>
             response.error
               ? ScheduleActions.deleteEventFailed({ error: response.error })
               : ScheduleActions.deleteEventSucceeded({
-                  deletedEvent: response.payload!.event!,
+                  deletedEvent: response.payload!,
                 }),
           ),
         ),
@@ -61,11 +61,11 @@ export class ScheduleEffects {
       concatLatestFrom(() => this.store.select(ScheduleSelectors.eventCurrently)),
       switchMap(([, eventToAdd]) => {
         return this.scheduleService.addEvent(eventToAdd).pipe(
-          map((response: ServiceResponse) =>
+          map((response: ServiceResponse<ClubEvent>) =>
             response.error
               ? ScheduleActions.addEventFailed({ error: response.error })
               : ScheduleActions.addEventSucceeded({
-                  addedEvent: response.payload!.event!,
+                  addedEvent: response.payload!,
                 }),
           ),
         );
@@ -79,11 +79,11 @@ export class ScheduleEffects {
       concatLatestFrom(() => this.store.select(ScheduleSelectors.eventCurrently)),
       switchMap(([, eventToUpdate]) => {
         return this.scheduleService.updateEvent(eventToUpdate).pipe(
-          map((response: ServiceResponse) =>
+          map((response: ServiceResponse<ClubEvent>) =>
             response.error
               ? ScheduleActions.updateEventFailed({ error: response.error })
               : ScheduleActions.updateEventSucceeded({
-                  updatedEvent: response.payload!.event!,
+                  updatedEvent: response.payload!,
                 }),
           ),
         );

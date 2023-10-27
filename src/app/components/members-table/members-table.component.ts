@@ -48,7 +48,5 @@ export class MembersTableComponent implements OnInit {
     ClarityIcons.addIcons(angleIcon);
   }
 
-  trackByFn(index: number, member: Member): string | undefined {
-    return member.id;
-  }
+  trackByFn = (index: number, member: Member) => member.id;
 }

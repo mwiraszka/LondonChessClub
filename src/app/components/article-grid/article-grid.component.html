@@ -14,12 +14,19 @@
 			</lcc-admin-controls>
 		</ng-container>
 
-		<h4>{{ article.title }}</h4>
-		<h5>{{ article.subtitle }}</h5>
-		<h6>{{ formatDate(article.dateCreated) }}</h6>
-		<h6 *ngIf="article.dateCreated !== article.dateEdited">
-			| edited {{ formatDate(article.dateEdited) }}
-		</h6>
-		<p>{{ article.body }}</p>
+		<img class="lcc-article-thumbnail-image"
+				 [src]="(article?.thumbnailImageUrl ?? 'assets/image-placeholder.png') | sanitizeUrl"
+				 alt="Article banner image" />
+
+		<div class="lcc-article-summary-container">
+			<h4>{{ article.title }}</h4>
+			<p class="h5">{{ article.body }}</p>
+			<div class="lcc-article-dates-container h6">
+				<span>{{ formatDate(article.dateCreated) }}</span>
+				<span *ngIf="article.dateCreated !== article.dateEdited">
+					&nbsp;&nbsp;|&nbsp;&nbsp;edited {{ formatDate(article.dateEdited) }}
+				</span>
+			</div>
+		</div>
 	</article>
 </div>

@@ -1,23 +1,29 @@
+@import 'styles/abstracts/variables';
+
 :host {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  width: 100%;
   gap: 16px;
-
-  input[type='file'] {
-    visibility: hidden;
-  }
   
   textarea {
     height: 320px;
   }
   
-  .image-preview {
-    height: 5rem;
-    margin: 1rem 0;
-  
-    img {
-      height: 100%;
-    }
+  .lcc-banner-image-preview {
+    aspect-ratio: 3/2;
+    width: 90%;
+    object-fit: cover;
+    border-radius: $lcc-border-radius-lg;
+  }
+
+  .lcc-image-controls-container {
+    display: flex;
+    justify-content: start;
+  }
+
+  input[type="file"] {
+    display: none;
   }
 }

@@ -4,14 +4,29 @@
 :host {
   display: flex;
   justify-content: center;
+
+  .lcc-canvas {
+    width: $lcc-app-width-xl;
+
+    @include respond-to('lt-xl') {
+      width: $lcc-app-width-lg;
+    }
+  }
 }
 
 section {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 380px 380px 1fr;
   grid-template-areas:
-    'grid-item-1 grid-item-1'
-    'grid-item-2 grid-item-3'
-    'grid-item-4 grid-item-4';
+    'grid-item-1 grid-item-1 grid-item-4'
+    'grid-item-2 grid-item-3 grid-item-4';
+
+  @include respond-to('lt-xl') {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'grid-item-1 grid-item-1'
+      'grid-item-2 grid-item-3'
+      'grid-item-4 grid-item-4';
+  }
 
   @include respond-to('lt-lg') {
     grid-template-columns: minmax(0, 1fr);

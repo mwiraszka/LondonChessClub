@@ -8,9 +8,11 @@
 	</div>
 	<div class="lcc-article-dates-container article-dates-container h4">
 		<span>{{ formatDate(article.dateCreated) }}</span>
-		<span class="lcc-vertical-spacer">|</span>
-		<span class="edited">edited&nbsp;</span>
-		<span *ngIf="article?.dateEdited">{{ formatDate(article.dateEdited) }}</span>
+		<ng-container *ngIf="article?.dateEdited !== article.dateCreated">
+			<span class="lcc-vertical-spacer">|</span>
+			<span class="edited">edited&nbsp;</span>
+			<span>{{ formatDate(article.dateEdited) }}</span>
+		</ng-container>
 	</div>
 	<p>{{ article.body }}</p>
 </ng-container>

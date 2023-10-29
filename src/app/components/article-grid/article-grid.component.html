@@ -24,9 +24,11 @@
 			<p class="lcc-truncate-max-5-lines">{{ article.body }}</p>
 			<div class="lcc-article-dates-container h6">
 				<span>{{ formatDate(article.dateCreated) }}</span>
-				<span class="lcc-vertical-spacer">|</span>
-				<span class="edited">edited&nbsp;</span>
-				<span *ngIf="article?.dateEdited">{{ formatDate(article.dateEdited) }}</span>
+				<ng-container *ngIf="article?.dateEdited !== article.dateCreated">
+					<span class="lcc-vertical-spacer">|</span>
+					<span class="edited">edited&nbsp;</span>
+					<span>{{ formatDate(article.dateEdited) }}</span>
+				</ng-container>
 			</div>
 		</div>
 	</article>

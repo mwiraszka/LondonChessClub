@@ -41,6 +41,7 @@ lcc-link-list,
 
     &:hover {
       cursor: pointer;
+      background-color: darken($lcc-color--white, 2%);
     }
 
     lcc-admin-controls {
@@ -59,15 +60,19 @@ lcc-link-list,
       flex-flow: column nowrap;
       justify-content: space-between;
       height: 100%;
-      padding: 6px 9px 0;
 
       h3 {
-        height: 50px;
+        height: 2.8em;
+        border-bottom: 1px solid #ccc;
       }
 
       p {
         text-align: left;
-        line-height: 1.4em;
+        line-height: 1.5em;
+      }
+
+      .lcc-article-dates-container {
+        margin-top: 6px;
       }
     }
   }

@@ -70,6 +70,20 @@ export class ToasterEffects {
     );
   });
 
+  addGetArticleImageUrlFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.getArticleImageUrlFailed),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Failed to get article image',
+          message: error.message,
+          type: ToastTypes.WARNING,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
+
   addDeleteArticleSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleSucceeded),

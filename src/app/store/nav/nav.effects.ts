@@ -110,6 +110,17 @@ export class NavEffects {
     { dispatch: false },
   );
 
+  navigateToArticle$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ArticlesActions.articleSelected),
+        tap(({ article }) =>
+          this.router.navigate([NavPathTypes.ARTICLE_VIEW, article.id]),
+        ),
+      ),
+    { dispatch: false },
+  );
+
   navigateToArticleAdd$ = createEffect(
     () =>
       this.actions$.pipe(

@@ -21,11 +21,11 @@ export class ArticleGridComponent implements OnInit {
     iconShape: 'plus-circle',
   };
 
-  constructor(public facade: ArticleGridFacade, private loader: LoaderService) {}
+  constructor(public facade: ArticleGridFacade, private loaderService: LoaderService) {}
 
   ngOnInit(): void {
     this.facade.isLoading$.subscribe(isLoading => {
-      this.loader.display(isLoading);
+      this.loaderService.display(isLoading);
     });
     this.facade.loadArticles();
   }

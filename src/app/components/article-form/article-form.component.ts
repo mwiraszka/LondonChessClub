@@ -27,15 +27,15 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     public facade: ArticleFormFacade,
     private formBuilder: FormBuilder,
     private imagesService: ImagesService,
-    private loader: LoaderService,
+    private loaderService: LoaderService,
   ) {}
 
   ngOnInit(): void {
-    this.loader.display(true);
+    this.loaderService.display(true);
     this.facade.articleCurrently$.pipe(first()).subscribe(article => {
       this.initForm(article);
       this.getPreviewImageUrl(article);
-      this.loader.display(false);
+      this.loaderService.display(false);
     });
   }
 

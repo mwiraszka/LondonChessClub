@@ -36,7 +36,8 @@
 		<input id="title-input"
 					 type="text"
 					 name="title"
-					 formControlName="title" />
+					 formControlName="title"
+					 maxlength="120" />
 		<div class="lcc-form-error-container">
 			<cds-icon *ngIf="hasError(form.controls['title'])"
 								class="lcc-form-error-icon"

@@ -38,7 +38,10 @@ This is a web app built for the London Chess Club to demonstrate an all-in-one S
 <h4>Features</h4>
 
 - [Articles] Support banner images for articles
+- [Articles] Create an Article Viewer screen to display the entire article whenever one is selected in the Article Grid
 - [Articles] Remove unnecessary 'subtitle' field
+- [Core] Improve screen layouts for XL-wide devices
+- [Core] Improve truncation logic and support truncation by line count
 
 <h4>Refactor / Chores</h4>
 

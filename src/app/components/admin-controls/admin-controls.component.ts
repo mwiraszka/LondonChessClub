@@ -10,8 +10,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class AdminControlsComponent implements OnInit {
   @Input() itemName = '';
 
-  @Output() edit = new EventEmitter<void>();
   @Output() delete = new EventEmitter<void>();
+  @Output() edit = new EventEmitter<void>();
 
   ngOnInit(): void {
     ClarityIcons.addIcons(pencilIcon, trashIcon);

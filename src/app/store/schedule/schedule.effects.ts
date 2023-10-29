@@ -78,7 +78,12 @@ export class ScheduleEffects {
       ofType(ScheduleActions.updateEventConfirmed),
       concatLatestFrom(() => this.store.select(ScheduleSelectors.eventCurrently)),
       switchMap(([, eventToUpdate]) => {
-        return this.scheduleService.updateEvent(eventToUpdate).pipe(
+        const modifiedEventToUpdate = {
+          ...eventToUpdate,
+          dateEdited: new Date().toLocaleDateString(),
+        };
+
+        return this.scheduleService.updateEvent(modifiedEventToUpdate).pipe(
           map((response: ServiceResponse<ClubEvent>) =>
             response.error
               ? ScheduleActions.updateEventFailed({ error: response.error })

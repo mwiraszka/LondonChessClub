@@ -6,7 +6,8 @@
 
 <div class="articles-container">
 	<article *ngFor="let article of (facade.articles$ | async); trackBy: trackByFn"
-					 class="lcc-admin-controls-container">
+					 class="lcc-admin-controls-container"
+					 (click)="facade.onSelectArticle(article)">
 		<ng-container *ngIf="facade.isAdmin$ | async">
 			<lcc-admin-controls [itemName]="article.title"
 													(edit)="facade.onEditArticle(article)"
@@ -19,13 +20,13 @@
 				 alt="Article banner image" />
 
 		<div class="lcc-article-summary-container">
-			<h4>{{ article.title }}</h4>
-			<p class="h5">{{ article.body }}</p>
+			<h3 class="lcc-truncate-max-2-lines">{{ article.title }}</h3>
+			<p class="lcc-truncate-max-5-lines">{{ article.body }}</p>
 			<div class="lcc-article-dates-container h6">
 				<span>{{ formatDate(article.dateCreated) }}</span>
-				<span *ngIf="article.dateCreated !== article.dateEdited">
-					&nbsp;&nbsp;|&nbsp;&nbsp;edited {{ formatDate(article.dateEdited) }}
-				</span>
+				<span class="lcc-vertical-spacer">|</span>
+				<span class="edited">edited&nbsp;</span>
+				<span *ngIf="article?.dateEdited">{{ formatDate(article.dateEdited) }}</span>
 			</div>
 		</div>
 	</article>

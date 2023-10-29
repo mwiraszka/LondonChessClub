@@ -18,6 +18,16 @@ const articlesReducer = createReducer(
     ...state,
     isLoading: false,
   })),
+  on(ArticlesActions.articleSelected, (state, action) => ({
+    ...state,
+    selectedArticle: action.article,
+  })),
+  on(ArticlesActions.getArticleImageUrlSucceeded, (state, action) => ({
+    ...state,
+    selectedArticle: state.selectedArticle
+      ? { ...state.selectedArticle, imageUrl: action.imageUrl }
+      : null,
+  })),
   on(ArticlesActions.createArticleSelected, state => ({
     ...state,
     selectedArticle: null,

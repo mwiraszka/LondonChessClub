@@ -7,7 +7,7 @@ import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { ArticlesService, ImagesService } from '@app/services';
-import { Article, ServiceResponse } from '@app/types';
+import { Article, ImageId, ServiceResponse } from '@app/types';
 
 import * as ArticlesActions from './articles.actions';
 import * as ArticlesSelectors from './articles.selectors';
@@ -86,7 +86,11 @@ export class ArticlesEffects {
       ofType(ArticlesActions.updateArticleConfirmed),
       concatLatestFrom(() => this.store.select(ArticlesSelectors.articleCurrently)),
       switchMap(([, articleToUpdate]) => {
-        return this.articlesService.updateArticle(articleToUpdate).pipe(
+        const modifiedArticleToUpdate = {
+          ...articleToUpdate,
+          dateEdited: new Date().toLocaleDateString(),
+        };
+        return this.articlesService.updateArticle(modifiedArticleToUpdate).pipe(
           map((response: ServiceResponse<Article>) =>
             response.error
               ? ArticlesActions.updateArticleFailed({ error: response.error })
@@ -96,6 +100,18 @@ export class ArticlesEffects {
           ),
         );
       }),
+    );
+  });
+
+  getArticleImageUrl$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.articleSelected),
+      switchMap(({ article }) => this.imagesService.getImageUrl(article.imageId!)),
+      map((response: ServiceResponse<ImageId>) =>
+        response.error
+          ? ArticlesActions.getArticleImageUrlFailed({ error: response.error })
+          : ArticlesActions.getArticleImageUrlSucceeded({ imageUrl: response.payload! }),
+      ),
     );
   });
 

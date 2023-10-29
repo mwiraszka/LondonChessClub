@@ -30,11 +30,11 @@ export class MemberFormComponent implements OnInit, OnDestroy {
   constructor(
     public facade: MemberFormFacade,
     private formBuilder: FormBuilder,
-    private loader: LoaderService,
+    private loaderService: LoaderService,
   ) {}
 
   ngOnInit(): void {
-    this.loader.display(true);
+    this.loaderService.display(true);
 
     this.facade.memberCurrently$
       .pipe(
@@ -52,7 +52,7 @@ export class MemberFormComponent implements OnInit, OnDestroy {
                 ? member.firstName + ' ' + member.lastName
                 : 'undefined'),
         ),
-        tap(() => this.loader.display(false)),
+        tap(() => this.loaderService.display(false)),
         first(),
       )
       .subscribe();

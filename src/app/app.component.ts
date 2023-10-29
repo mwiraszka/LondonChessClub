@@ -16,14 +16,14 @@ export class AppComponent implements OnInit {
 
   constructor(
     private changeDetectionRef: ChangeDetectorRef,
-    private loader: LoaderService,
+    private loaderService: LoaderService,
     private update: UpdateService,
     public facade: AppFacade,
   ) {}
 
   ngOnInit(): void {
     this.update.subscribeToVersionUpdates();
-    this.loader.status$.subscribe((isLoading: boolean) => {
+    this.loaderService.status$.subscribe((isLoading: boolean) => {
       this.isLoading = isLoading;
       this.changeDetectionRef.detectChanges();
     });

@@ -7,30 +7,22 @@ import { AuthSelectors } from '@app/store/auth';
 import { Article } from '@app/types';
 
 @Injectable()
-export class ArticleGridFacade {
-  readonly articles$ = this.store.select(ArticlesSelectors.articles);
+export class ArticleViewerScreenFacade {
+  readonly article$ = this.store.select(ArticlesSelectors.selectedArticle);
   readonly isAdmin$ = this.store.select(AuthSelectors.isAdmin);
   readonly isLoading$ = this.store.select(ArticlesSelectors.isLoading);
 
   constructor(private readonly store: Store) {}
 
-  loadArticles(): void {
-    this.store.dispatch(ArticlesActions.loadArticlesStarted());
-  }
-
-  onSelectArticle(article: Article): void {
-    this.store.dispatch(ArticlesActions.articleSelected({ article }));
-  }
-
-  onCreateArticle(): void {
+  onCreate(): void {
     this.store.dispatch(ArticlesActions.createArticleSelected());
   }
 
-  onEditArticle(article: Article): void {
+  onEdit(article: Article): void {
     this.store.dispatch(ArticlesActions.editArticleSelected({ articleToEdit: article }));
   }
 
-  onDeleteArticle(article: Article): void {
+  onDelete(article: Article): void {
     this.store.dispatch(
       ArticlesActions.deleteArticleSelected({ articleToDelete: article }),
     );

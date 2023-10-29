@@ -24,7 +24,7 @@ export class LoginFormComponent implements OnInit {
   constructor(
     public facade: LoginFormFacade,
     private formBuilder: FormBuilder,
-    private loader: LoaderService,
+    private loaderService: LoaderService,
   ) {}
 
   ngOnInit(): void {
@@ -56,8 +56,8 @@ export class LoginFormComponent implements OnInit {
       return;
     }
 
-    this.loader.display(true);
+    this.loaderService.display(true);
     this.facade.onLogin(this.form.value);
-    setTimeout(() => this.loader.display(false), 1000);
+    setTimeout(() => this.loaderService.display(false), 1000);
   }
 }

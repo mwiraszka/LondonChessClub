@@ -11,13 +11,13 @@ $arrow-semi-width: 6px;
   padding: 4px 8px 3px;
   margin-top: 8px;
   transform:translateX(-50%);
-  animation: tooltip-slide 0.2s;
+  animation: tooltip-slide 0.5s;
   pointer-events: none;
   font-size: $h5;
   z-index: 100;
   line-height: normal;
   text-align: center;
-  max-width: 90px;
+  max-width: 120px;
 
   &::before {
     content: '';

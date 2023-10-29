@@ -25,11 +25,11 @@ export class ScheduleComponent implements OnInit {
     iconShape: 'plus-circle',
   };
 
-  constructor(public facade: ScheduleFacade, private loader: LoaderService) {}
+  constructor(public facade: ScheduleFacade, private loaderService: LoaderService) {}
 
   ngOnInit(): void {
     this.facade.isLoading$.subscribe(isLoading => {
-      this.loader.display(isLoading);
+      this.loaderService.display(isLoading);
     });
     this.facade.loadEvents();
   }

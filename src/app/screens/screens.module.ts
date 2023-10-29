@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AboutScreenModule } from './about';
 import { ArticleEditorScreenModule } from './article-editor';
+import { ArticleViewerScreenModule } from './article-viewer';
 import { ChampionScreenModule } from './champion';
 import { EventEditorScreenModule } from './event-editor';
 import { HomeScreenModule } from './home';
@@ -17,6 +18,7 @@ import { SignUpScreenModule } from './sign-up';
 const modules = [
   AboutScreenModule,
   ArticleEditorScreenModule,
+  ArticleViewerScreenModule,
   ChampionScreenModule,
   EventEditorScreenModule,
   HomeScreenModule,

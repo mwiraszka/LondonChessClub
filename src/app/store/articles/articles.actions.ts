@@ -1,12 +1,16 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Article } from '@app/types';
+import { Article, Url } from '@app/types';
 
 enum ArticlesActionTypes {
   LOAD_ARTICLES_STARTED = '[Articles] Load articles started',
   LOAD_ARTICLES_SUCCEEDED = '[Articles] Load articles succeeded',
   LOAD_ARTICLES_FAILED = '[Articles] Load articles failed',
 
+  GET_ARTICLE_IMAGE_URL_FAILED = '[Articles] Get article image URL failed',
+  GET_ARTICLE_IMAGE_URL_SUCCEEDED = '[Articles] Get article image URL succeeded',
+
+  ARTICLE_SELECTED = '[Articles] Article selected',
   CREATE_ARTICLE_SELECTED = '[Articles] Create article selected',
   EDIT_ARTICLE_SELECTED = '[Articles] Edit article selected',
 
@@ -50,6 +54,19 @@ export const loadArticlesFailed = createAction(
   props<{ error: Error }>(),
 );
 
+export const getArticleImageUrlSucceeded = createAction(
+  ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_SUCCEEDED,
+  props<{ imageUrl: Url }>(),
+);
+export const getArticleImageUrlFailed = createAction(
+  ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_FAILED,
+  props<{ error: Error }>(),
+);
+
+export const articleSelected = createAction(
+  ArticlesActionTypes.ARTICLE_SELECTED,
+  props<{ article: Article }>(),
+);
 export const createArticleSelected = createAction(
   ArticlesActionTypes.CREATE_ARTICLE_SELECTED,
 );

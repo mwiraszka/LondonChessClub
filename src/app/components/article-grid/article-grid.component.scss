@@ -35,9 +35,13 @@ lcc-link-list,
     gap: 6px;
     width: 100%;
     max-width: 312px;
-    height: 400px;
+    height: 420px;
     padding: $article-padding;
     background-color: darken($lcc-color--white, 6%);
+
+    &:hover {
+      cursor: pointer;
+    }
 
     lcc-admin-controls {
       transform: translate(-$article-padding, -$article-padding); 
@@ -55,17 +59,15 @@ lcc-link-list,
       flex-flow: column nowrap;
       justify-content: space-between;
       height: 100%;
+      padding: 6px 9px 0;
+
+      h3 {
+        height: 50px;
+      }
 
       p {
-        width: 100%;
-        padding: 0 6px;
         text-align: left;
-        overflow-wrap: break-word;          
-        overflow: hidden;
-        display: -webkit-box;
-        line-clamp: 5;
-        -webkit-line-clamp: 5;
-        -webkit-box-orient: vertical;  
+        line-height: 1.4em;
       }
     }
   }

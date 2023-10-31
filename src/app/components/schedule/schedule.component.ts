@@ -16,8 +16,8 @@ export class ScheduleComponent implements OnInit {
   formatDate = formatDate;
   kebabize = kebabize;
 
-  @Input() numEvents?: number;
   @Input() includeDetails = true;
+  @Input() maxEvents?: number;
 
   addEventLink: Link = {
     path: NavPathTypes.EVENT_ADD,

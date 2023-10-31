@@ -21,11 +21,16 @@ export class HomeScreenComponent {
 
   scheduleLink: Link = {
     path: NavPathTypes.SCHEDULE,
-    text: 'See all scheduled events',
+    text: 'All scheduled events',
   };
 
   photoGalleryLink: Link = {
     path: NavPathTypes.PHOTO_GALLERY,
-    text: 'See more photos',
+    text: 'More photos',
+  };
+
+  newsLink: Link = {
+    path: NavPathTypes.NEWS,
+    text: 'All articles',
   };
 }

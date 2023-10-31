@@ -5,7 +5,8 @@
 </ng-container>
 
 <div class="articles-container">
-	<article *ngFor="let article of (facade.articles$ | async); trackBy: trackByFn"
+	<article *ngFor="let article of (facade.articles$ | async)?.slice(0, maxArticles ?? (facade.articles$ | async)?.length);
+                     trackBy: trackByFn"
 					 class="lcc-admin-controls-container"
 					 (click)="facade.onSelectArticle(article)">
 		<ng-container *ngIf="facade.isAdmin$ | async">

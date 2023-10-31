@@ -1,11 +1,11 @@
-import { Subscription, firstValueFrom } from 'rxjs';
-import { debounceTime, first, map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { debounceTime, first } from 'rxjs/operators';
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { ImagesService, LoaderService } from '@app/services';
-import { Article } from '@app/types';
+import { LoaderService } from '@app/services';
+import { Article, Url } from '@app/types';
 
 import { ArticleFormFacade } from './article-form.facade';
 
@@ -18,15 +18,12 @@ import { ArticleFormFacade } from './article-form.facade';
 export class ArticleFormComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   valueChangesSubscription!: Subscription;
-  previewImageUrl!: string | null;
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  imageFile: any;
+  previewImageUrl!: Url | null;
+  imageFile?: File;
 
   constructor(
     public facade: ArticleFormFacade,
     private formBuilder: FormBuilder,
-    private imagesService: ImagesService,
     private loaderService: LoaderService,
   ) {}
 
@@ -34,7 +31,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     this.loaderService.display(true);
     this.facade.articleCurrently$.pipe(first()).subscribe(article => {
       this.initForm(article);
-      this.getPreviewImageUrl(article);
+      this.previewImageUrl = article.imageUrl ?? null;
       this.loaderService.display(false);
     });
   }
@@ -94,24 +91,12 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
       dateEdited: [article.dateEdited],
     });
 
+    // TODO: investigate why setErrors({ required: null }) doesn't work
+    this.form.controls['imageFile'].patchValue({});
+
     this.valueChangesSubscription = this.form.valueChanges
       .pipe(debounceTime(200))
       .subscribe((formData: Article) => this.facade.onValueChange(formData));
-  }
-
-  private async getPreviewImageUrl(article: Article): Promise<void> {
-    if (!article.imageId) {
-      this.previewImageUrl = null;
-    } else {
-      // TODO: investigate why setErrors({ required: null }) doesn't work
-      this.form.controls['imageFile'].patchValue({});
-
-      this.previewImageUrl = await firstValueFrom(
-        this.imagesService
-          .getImageUrl(article.imageId)
-          .pipe(map(response => response?.payload ?? null)),
-      );
-    }
   }
 
   private clearImage(): void {

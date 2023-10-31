@@ -27,7 +27,7 @@ export class ArticlesService {
   getArticle(id: string): Observable<ServiceResponse<Article>> {
     return this.http.get<Article>(this.API_ENDPOINT + id).pipe(
       switchMap(article =>
-        this.imagesService.getImageUrl(article.imageId!).pipe(
+        this.imagesService.getArticleImageUrl(article.imageId!).pipe(
           map(response => {
             return { payload: { ...article, imageUrl: response.payload! } };
           }),
@@ -44,7 +44,7 @@ export class ArticlesService {
         articles.forEach(article => {
           const thumbnailImageId = `${article.imageId!}-300x200`;
           const articleWithImageUrl$ = this.imagesService
-            .getImageUrl(thumbnailImageId)
+            .getArticleImageUrl(thumbnailImageId)
             .pipe(
               map(response => {
                 return { ...article, thumbnailImageUrl: response.payload! };
@@ -110,7 +110,7 @@ export class ArticlesService {
           }),
         }),
       ),
-      switchMap(() => this.imagesService.deleteImage(articleToDelete)),
+      switchMap(() => this.imagesService.deleteArticleImage(articleToDelete)),
       catchError(() =>
         of({ error: new Error('Failed to delete article from database') }),
       ),

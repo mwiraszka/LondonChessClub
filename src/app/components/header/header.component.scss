@@ -1,3 +1,4 @@
+@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
 :host {
@@ -9,10 +10,14 @@
 }
 
 .lcc-header-container {
-  max-width: $lcc-app-width-lg;
   display: flex;
   flex: 1;
   justify-content: flex-start;
+  max-width: $lcc-app-width-xl;
+
+  @include respond-to('lt-xl') {
+    max-width: $lcc-app-width-lg;
+  }
 }
 
 a {

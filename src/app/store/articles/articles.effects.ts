@@ -7,7 +7,7 @@ import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { ArticlesService, ImagesService } from '@app/services';
-import { Article, ImageId, ServiceResponse } from '@app/types';
+import { Article, ServiceResponse, Url } from '@app/types';
 
 import * as ArticlesActions from './articles.actions';
 import * as ArticlesSelectors from './articles.selectors';
@@ -37,7 +37,7 @@ export class ArticlesEffects {
       concatLatestFrom(() => this.store.select(ArticlesSelectors.selectedArticle)),
       filter(([, articleToDelete]) => !!articleToDelete),
       switchMap(([, articleToDelete]) =>
-        this.imagesService.deleteImage(articleToDelete!),
+        this.imagesService.deleteArticleImage(articleToDelete!),
       ),
       switchMap(response => {
         if (response.error) {
@@ -103,11 +103,25 @@ export class ArticlesEffects {
     );
   });
 
-  getArticleImageUrl$ = createEffect(() => {
+  getImageUrlForSelectedArticle$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.articleSelected),
-      switchMap(({ article }) => this.imagesService.getImageUrl(article.imageId!)),
-      map((response: ServiceResponse<ImageId>) =>
+      switchMap(({ article }) => this.imagesService.getArticleImageUrl(article.imageId!)),
+      map((response: ServiceResponse<Url>) =>
+        response.error
+          ? ArticlesActions.getArticleImageUrlFailed({ error: response.error })
+          : ArticlesActions.getArticleImageUrlSucceeded({ imageUrl: response.payload! }),
+      ),
+    );
+  });
+
+  getImageUrlForArticleBeingEdited$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.editArticleSelected),
+      switchMap(({ articleToEdit }) =>
+        this.imagesService.getArticleImageUrl(articleToEdit.imageId!),
+      ),
+      map((response: ServiceResponse<Url>) =>
         response.error
           ? ArticlesActions.getArticleImageUrlFailed({ error: response.error })
           : ArticlesActions.getArticleImageUrlSucceeded({ imageUrl: response.payload! }),

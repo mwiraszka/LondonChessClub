@@ -42,6 +42,7 @@ This is a web app built for the London Chess Club to demonstrate an all-in-one S
 - [Articles] Remove unnecessary 'subtitle' field
 - [Core] Improve screen layouts for XL-wide devices
 - [Core] Improve truncation logic and support truncation by line count
+- [Toasts] Modify all toast titles to make them more distinct from notification descriptions directly below
 
 <h4>Refactor / Chores</h4>
 

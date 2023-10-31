@@ -11,10 +11,10 @@
     height: 320px;
   }
   
-  .lcc-banner-image-preview {
+  .lcc-banner-image {
     aspect-ratio: 3/2;
-    width: 90%;
     object-fit: cover;
+    width: 100%;
     border-radius: $lcc-border-radius-lg;
   }
 

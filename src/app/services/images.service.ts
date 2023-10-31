@@ -33,7 +33,7 @@ export class ImagesService {
     );
   }
 
-  getImageUrl(id: string): Observable<ServiceResponse<Url>> {
+  getArticleImageUrl(id: string): Observable<ServiceResponse<Url>> {
     return this.http
       .get<ServiceResponse<Url>>(this.API_ENDPOINT + id)
       .pipe(
@@ -41,7 +41,7 @@ export class ImagesService {
       );
   }
 
-  deleteImage(article: Article): Observable<ServiceResponse<Article>> {
+  deleteArticleImage(article: Article): Observable<ServiceResponse<Article>> {
     return this.http
       .delete<ServiceResponse<void>>(this.API_ENDPOINT + article.imageId)
       .pipe(

@@ -19,7 +19,7 @@ export class ToasterEffects {
       ofType(ArticlesActions.publishArticleSucceeded),
       map(({ publishedArticle }) => {
         const toast: Toast = {
-          title: 'Article published',
+          title: 'New article',
           message: `Successfully published ${publishedArticle.title}`,
           type: ToastTypes.SUCCESS,
         };
@@ -33,7 +33,7 @@ export class ToasterEffects {
       ofType(ArticlesActions.publishArticleFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Failed to publish article',
+          title: 'New article',
           message: error.message,
           type: ToastTypes.WARNING,
         };
@@ -47,7 +47,7 @@ export class ToasterEffects {
       ofType(ArticlesActions.updateArticleSucceeded),
       map(({ updatedArticle }) => {
         const toast: Toast = {
-          title: 'Article updated',
+          title: 'Article update',
           message: `Successfully updated ${updatedArticle.title}`,
           type: ToastTypes.SUCCESS,
         };
@@ -61,7 +61,7 @@ export class ToasterEffects {
       ofType(ArticlesActions.updateArticleFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Failed to update article',
+          title: 'Article update',
           message: error.message,
           type: ToastTypes.WARNING,
         };
@@ -75,7 +75,7 @@ export class ToasterEffects {
       ofType(ArticlesActions.getArticleImageUrlFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Failed to get article image',
+          title: 'Article image',
           message: error.message,
           type: ToastTypes.WARNING,
         };
@@ -89,7 +89,7 @@ export class ToasterEffects {
       ofType(ArticlesActions.deleteArticleSucceeded),
       map(({ deletedArticle }) => {
         const toast: Toast = {
-          title: 'Article deleted',
+          title: 'Article deletion',
           message: `Successfully deleted ${deletedArticle.title}`,
           type: ToastTypes.SUCCESS,
         };
@@ -103,7 +103,7 @@ export class ToasterEffects {
       ofType(ArticlesActions.deleteArticleFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Failed to delete article',
+          title: 'Article deletion',
           message: error.message,
           type: ToastTypes.WARNING,
         };
@@ -117,7 +117,7 @@ export class ToasterEffects {
       ofType(ArticlesActions.loadArticlesFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Failed to load articles',
+          title: 'Load articles',
           message: error.message,
           type: ToastTypes.WARNING,
         };
@@ -133,7 +133,7 @@ export class ToasterEffects {
       ofType(MembersActions.addMemberSucceeded),
       map(({ addedMember }) => {
         const toast: Toast = {
-          title: 'Member added',
+          title: 'New member',
           message: `Successfully added ${addedMember.firstName} ${addedMember.lastName}`,
           type: ToastTypes.SUCCESS,
         };
@@ -147,7 +147,7 @@ export class ToasterEffects {
       ofType(MembersActions.addMemberFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Failed to add member',
+          title: 'New member',
           message: error.message,
           type: ToastTypes.WARNING,
         };
@@ -161,7 +161,7 @@ export class ToasterEffects {
       ofType(MembersActions.updateMemberSucceeded),
       map(({ updatedMember }) => {
         const toast: Toast = {
-          title: 'Member updated',
+          title: 'Member update',
           message: `Successfully updated ${updatedMember.firstName} ${updatedMember.lastName}`,
           type: ToastTypes.SUCCESS,
         };
@@ -175,7 +175,7 @@ export class ToasterEffects {
       ofType(MembersActions.updateMemberFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Failed to update member',
+          title: 'Member update',
           message: error.message,
           type: ToastTypes.WARNING,
         };
@@ -189,7 +189,7 @@ export class ToasterEffects {
       ofType(MembersActions.deleteMemberSucceeded),
       map(({ deletedMember }) => {
         const toast: Toast = {
-          title: 'Member deleted',
+          title: 'Member deletion',
           message: `Successfully deleted ${deletedMember.firstName} ${deletedMember.lastName}`,
           type: ToastTypes.SUCCESS,
         };
@@ -203,7 +203,7 @@ export class ToasterEffects {
       ofType(MembersActions.deleteMemberFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Failed to delete member',
+          title: 'Member deletion',
           message: error.message,
           type: ToastTypes.WARNING,
         };
@@ -217,7 +217,7 @@ export class ToasterEffects {
       ofType(MembersActions.loadMembersFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Failed to load members',
+          title: 'Load members',
           message: error.message,
           type: ToastTypes.WARNING,
         };
@@ -233,7 +233,7 @@ export class ToasterEffects {
       ofType(ScheduleActions.addEventSucceeded),
       map(({ addedEvent }) => {
         const toast: Toast = {
-          title: 'Event added to schedule',
+          title: 'New event',
           message: `Successfully added ${addedEvent.title}`,
           type: ToastTypes.SUCCESS,
         };
@@ -247,7 +247,7 @@ export class ToasterEffects {
       ofType(ScheduleActions.addEventFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Failed to add event to schedule',
+          title: 'New event',
           message: error.message,
           type: ToastTypes.WARNING,
         };
@@ -261,7 +261,7 @@ export class ToasterEffects {
       ofType(ScheduleActions.updateEventSucceeded),
       map(({ updatedEvent }) => {
         const toast: Toast = {
-          title: 'Event updated in schedule',
+          title: 'Event update',
           message: `Successfully updated ${updatedEvent.title}`,
           type: ToastTypes.SUCCESS,
         };
@@ -275,7 +275,7 @@ export class ToasterEffects {
       ofType(ScheduleActions.updateEventFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Failed to update event in schedule',
+          title: 'Event update',
           message: error.message,
           type: ToastTypes.WARNING,
         };
@@ -289,7 +289,7 @@ export class ToasterEffects {
       ofType(ScheduleActions.deleteEventSucceeded),
       map(({ deletedEvent }) => {
         const toast: Toast = {
-          title: 'Event deleted from schedule',
+          title: 'Event deletion',
           message: `Successfully deleted ${deletedEvent.title}`,
           type: ToastTypes.SUCCESS,
         };
@@ -303,7 +303,7 @@ export class ToasterEffects {
       ofType(ScheduleActions.deleteEventFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Failed to delete event from schedule',
+          title: 'Event deletion',
           message: error.message,
           type: ToastTypes.WARNING,
         };
@@ -317,7 +317,7 @@ export class ToasterEffects {
       ofType(ScheduleActions.loadEventsFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Failed to load events',
+          title: 'Load events',
           message: error.message,
           type: ToastTypes.WARNING,
         };
@@ -375,7 +375,7 @@ export class ToasterEffects {
       ofType(AuthActions.codeForPasswordChangeSucceeded),
       map(() => {
         const toast: Toast = {
-          title: 'Password Change',
+          title: 'Password change',
           message: 'A 6-digit code has been sent to the email provided',
           type: ToastTypes.SUCCESS,
         };
@@ -389,7 +389,7 @@ export class ToasterEffects {
       ofType(AuthActions.codeForPasswordChangeFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Password Change',
+          title: 'Password change',
           message: error.message,
           type: ToastTypes.WARNING,
         };
@@ -403,7 +403,7 @@ export class ToasterEffects {
       ofType(AuthActions.passwordChangeSucceeded),
       map(() => {
         const toast: Toast = {
-          title: 'Password Change',
+          title: 'Password change',
           message: 'Successfully changed password',
           type: ToastTypes.SUCCESS,
         };
@@ -417,7 +417,7 @@ export class ToasterEffects {
       ofType(AuthActions.passwordChangeFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Password Change',
+          title: 'Password change',
           message: error.message,
           type: ToastTypes.WARNING,
         };

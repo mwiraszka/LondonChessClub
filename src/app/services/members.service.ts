@@ -10,45 +10,46 @@ import { environment } from '@environments/environment';
 
 import { AuthService } from './auth.service';
 
-const API_ENDPOINT = environment.cognito.membersEndpoint;
 @Injectable({
   providedIn: 'root',
 })
 export class MembersService {
+  readonly API_ENDPOINT = environment.cognito.membersEndpoint;
+
   constructor(private authService: AuthService, private http: HttpClient) {}
 
-  getMember(id: string): Observable<ServiceResponse> {
+  getMember(id: string): Observable<ServiceResponse<Member>> {
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.get<Member>(API_ENDPOINT + id, {
+        this.http.get<Member>(this.API_ENDPOINT + id, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
         }),
       ),
-      map(member => ({ payload: { member } })),
+      map(member => ({ payload: member })),
       catchError(() => of({ error: new Error('Failed to fetch member from database') })),
     );
   }
 
-  getMembers(isAdmin: boolean): Observable<ServiceResponse> {
+  getMembers(isAdmin: boolean): Observable<ServiceResponse<Member[]>> {
     if (isAdmin) {
       return this.authService.token().pipe(
         switchMap(token =>
-          this.http.get<Member[]>(API_ENDPOINT, {
+          this.http.get<Member[]>(this.API_ENDPOINT, {
             headers: new HttpHeaders({
               Authorization: token,
             }),
           }),
         ),
-        map(members => ({ payload: { members } })),
+        map(members => ({ payload: members })),
         catchError(() =>
           of({ error: new Error('Failed to fetch members from database') }),
         ),
       );
     } else {
-      return this.http.get<Member[]>(API_ENDPOINT + 'public/').pipe(
-        map(members => ({ payload: { members } })),
+      return this.http.get<Member[]>(this.API_ENDPOINT + 'public/').pipe(
+        map(members => ({ payload: members })),
         catchError(() =>
           of({ error: new Error('Failed to fetch members from database') }),
         ),
@@ -56,44 +57,44 @@ export class MembersService {
     }
   }
 
-  addMember(memberToAdd: Member): Observable<ServiceResponse> {
+  addMember(memberToAdd: Member): Observable<ServiceResponse<Member>> {
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.post<null>(API_ENDPOINT, memberToAdd, {
+        this.http.post<null>(this.API_ENDPOINT, memberToAdd, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
         }),
       ),
-      map(() => ({ payload: { member: memberToAdd } })),
+      map(() => ({ payload: memberToAdd })),
       catchError(() => of({ error: new Error('Failed to add member to database') })),
     );
   }
 
-  updateMember(memberToUpdate: Member): Observable<ServiceResponse> {
+  updateMember(memberToUpdate: Member): Observable<ServiceResponse<Member>> {
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.put<null>(API_ENDPOINT + memberToUpdate.id, memberToUpdate, {
+        this.http.put<null>(this.API_ENDPOINT + memberToUpdate.id, memberToUpdate, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
         }),
       ),
-      map(() => ({ payload: { member: memberToUpdate } })),
+      map(() => ({ payload: memberToUpdate })),
       catchError(() => of({ error: new Error('Failed to update member') })),
     );
   }
 
-  deleteMember(memberToDelete: Member): Observable<ServiceResponse> {
+  deleteMember(memberToDelete: Member): Observable<ServiceResponse<Member>> {
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.delete<null>(API_ENDPOINT + memberToDelete.id, {
+        this.http.delete<null>(this.API_ENDPOINT + memberToDelete.id, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
         }),
       ),
-      map(() => ({ payload: { member: memberToDelete } })),
+      map(() => ({ payload: memberToDelete })),
       catchError(() => of({ error: new Error('Failed to delete member from database') })),
     );
   }

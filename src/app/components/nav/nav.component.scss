@@ -28,9 +28,13 @@ $dropdown-list-width: 120px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  max-width: $lcc-app-max-width;
+  max-width: $lcc-app-width-xl;
   min-width: 290px;
   width: 100%;
+
+  @include respond-to('lt-xl') {
+    max-width: $lcc-app-width-lg;
+  }
   
   a,
   .user-account-dropdown .dropdown-tab {

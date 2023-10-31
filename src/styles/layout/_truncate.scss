@@ -1,5 +1,31 @@
 .lcc-truncate {
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  word-break: normal;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.lcc-truncate-max-1-line {
+  @extend .lcc-truncate;
+}
+
+.lcc-truncate-max-2-lines {
+  @extend .lcc-truncate;
+  -webkit-line-clamp: 2;
+}
+
+.lcc-truncate-max-3-lines {
+  @extend .lcc-truncate;
+  -webkit-line-clamp: 3;
+}
+
+.lcc-truncate-max-4-lines {
+  @extend .lcc-truncate;
+  -webkit-line-clamp: 4;
+}
+
+.lcc-truncate-max-5-lines {
+  @extend .lcc-truncate;
+  -webkit-line-clamp: 5;
 }

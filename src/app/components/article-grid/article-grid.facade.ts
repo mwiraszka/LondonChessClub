@@ -18,6 +18,10 @@ export class ArticleGridFacade {
     this.store.dispatch(ArticlesActions.loadArticlesStarted());
   }
 
+  onSelectArticle(article: Article): void {
+    this.store.dispatch(ArticlesActions.articleSelected({ article }));
+  }
+
   onCreateArticle(): void {
     this.store.dispatch(ArticlesActions.createArticleSelected());
   }

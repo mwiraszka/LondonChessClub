@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { SanitizeUrlPipe } from './sanitize-url.pipe';
 import { TruncateByCharsPipe } from './truncate-by-chars.pipe';
 
 @NgModule({
-  declarations: [TruncateByCharsPipe],
+  declarations: [SanitizeUrlPipe, TruncateByCharsPipe],
   imports: [CommonModule],
-  exports: [TruncateByCharsPipe],
+  exports: [SanitizeUrlPipe, TruncateByCharsPipe],
 })
 export class PipesModule {}

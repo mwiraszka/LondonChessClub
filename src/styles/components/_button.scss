@@ -1,6 +1,8 @@
 .lcc-button {
   border-radius: $lcc-border-radius-lg;
   font-size: $h4;
+  cursor: pointer;
+  white-space: nowrap;
 
   &:disabled {
     cursor: default;
@@ -71,7 +73,6 @@
 .lcc-icon-button {
   @extend .lcc-button;
 
-  cursor: pointer;
   background-color: inherit;
   border: none;
 

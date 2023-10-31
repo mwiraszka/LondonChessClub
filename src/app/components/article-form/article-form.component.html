@@ -1,34 +1,49 @@
 <form *ngIf="form"
 			class="lcc-form"
 			[formGroup]="form"
-			(keyup.enter)="onSubmit()"
 			(ngSubmit)="onSubmit()">
+	<img class="lcc-banner-image"
+			 [src]="previewImageUrl ?? 'assets/image-placeholder.png' | sanitizeUrl"
+			 alt="Article banner image" />
 	<div class="lcc-form-fields">
+		<label for="image-file-input">Banner Image:</label>
+		<div class="lcc-image-controls-container">
+			<label for="image-file-input"
+						 class="lcc-button lcc-secondary-button">
+				Choose file
+			</label>
+			<input id="image-file-input"
+						 type="file"
+						 name="imageFile"
+						 accept="image/*"
+						 (change)="onChooseImage($event)" />
+			<button class="lcc-secondary-button"
+							type="button"
+							(click)="onReset()">
+				Reset
+			</button>
+		</div>
+		<div class="lcc-form-error-container">
+			<cds-icon *ngIf="hasError(form.controls['imageFile'])"
+								class="lcc-form-error-icon"
+								shape="exclamation-triangle"
+								size="md"
+								[tooltip]="getErrorMessage(form.controls['imageFile'])">
+			</cds-icon>
+		</div>
+
 		<label for="title-input">Title:</label>
 		<input id="title-input"
 					 type="text"
 					 name="title"
-					 formControlName="title" />
+					 formControlName="title"
+					 maxlength="120" />
 		<div class="lcc-form-error-container">
 			<cds-icon *ngIf="hasError(form.controls['title'])"
 								class="lcc-form-error-icon"
 								shape="exclamation-triangle"
 								size="md"
 								[tooltip]="getErrorMessage(form.controls['title'])">
-			</cds-icon>
-		</div>
-
-		<label for="subtitle-input">Subtitle:</label>
-		<input id="subtitle-input"
-					 type="text"
-					 name="subtitle"
-					 formControlName="subtitle" />
-		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['subtitle'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['subtitle'])">
 			</cds-icon>
 		</div>
 

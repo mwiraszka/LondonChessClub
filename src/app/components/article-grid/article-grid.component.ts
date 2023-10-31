@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { LoaderService } from '@app/services';
 import { Article, Link, NavPathTypes } from '@app/types';
@@ -15,22 +15,22 @@ import { ArticleGridFacade } from './article-grid.facade';
 export class ArticleGridComponent implements OnInit {
   formatDate = formatDate;
 
+  @Input() maxArticles?: number;
+
   createArticleLink: Link = {
     path: NavPathTypes.ARTICLE_ADD,
     text: 'Compose new article',
     iconShape: 'plus-circle',
   };
 
-  constructor(public facade: ArticleGridFacade, private loader: LoaderService) {}
+  constructor(public facade: ArticleGridFacade, private loaderService: LoaderService) {}
 
   ngOnInit(): void {
     this.facade.isLoading$.subscribe(isLoading => {
-      this.loader.display(isLoading);
+      this.loaderService.display(isLoading);
     });
     this.facade.loadArticles();
   }
 
-  trackByFn(index: number, article: Article): string | undefined {
-    return article.id;
-  }
+  trackByFn = (index: number, article: Article) => article.id;
 }

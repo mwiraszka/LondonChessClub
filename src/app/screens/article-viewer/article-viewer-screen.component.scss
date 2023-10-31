@@ -1,0 +1,11 @@
+@import 'styles/abstracts/variables';
+
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: $lcc-app-width-lg;
+  padding-top: unset;
+}

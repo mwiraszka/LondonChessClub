@@ -1,5 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
+import * as AuthActions from '../auth/auth.actions';
 import * as NavActions from './nav.actions';
 import { NavState, initialState } from './nav.state';
 
@@ -10,6 +11,10 @@ const navReducer = createReducer(
     isDropdownOpen: !state.isDropdownOpen,
   })),
   on(NavActions.dropdownClosed, state => ({
+    ...state,
+    isDropdownOpen: false,
+  })),
+  on(AuthActions.logoutSucceeded, state => ({
     ...state,
     isDropdownOpen: false,
   })),

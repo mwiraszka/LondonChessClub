@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { UnsavedArticleGuard, UnsavedEventGuard, UnsavedMemberGuard } from '@app/guards';
 import { AboutScreenComponent } from '@app/screens/about';
+import { ArticleViewerScreenComponent } from '@app/screens/article-viewer';
 import { ArticleEditorScreenComponent } from '@app/screens/article-editor';
 import { ChampionScreenComponent } from '@app/screens/champion';
 import { ChangePasswordScreenComponent } from '@app/screens/change-password';
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path: NavPathTypes.NEWS,
     component: NewsScreenComponent,
+  },
+  {
+    path: `${NavPathTypes.ARTICLE_VIEW}/:article_id`,
+    component: ArticleViewerScreenComponent,
   },
   {
     path: NavPathTypes.ARTICLE_ADD,

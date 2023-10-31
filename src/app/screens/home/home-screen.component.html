@@ -6,7 +6,7 @@
 
 		<article class="lcc-grid-item-2">
 			<h4>Coming up soon</h4>
-			<lcc-schedule [numEvents]="5"
+			<lcc-schedule [maxEvents]="5"
 										[includeDetails]="false">
 			</lcc-schedule>
 			<lcc-link-list [links]="[scheduleLink]"></lcc-link-list>
@@ -19,7 +19,8 @@
 
 		<article class="lcc-grid-item-4">
 			<h4>Announcements</h4>
-			<lcc-article-grid></lcc-article-grid>
+			<lcc-article-grid [maxArticles]="6"></lcc-article-grid>
+			<lcc-link-list [links]="[newsLink]"></lcc-link-list>
 		</article>
 	</section>
 </div>

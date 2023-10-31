@@ -11,25 +11,26 @@ import { environment } from '@environments/environment';
 
 import { AuthService } from './auth.service';
 
-const API_ENDPOINT = environment.cognito.scheduleEndpoint;
 @Injectable({
   providedIn: 'root',
 })
 export class ScheduleService {
+  readonly API_ENDPOINT = environment.cognito.scheduleEndpoint;
+
   constructor(private authService: AuthService, private http: HttpClient) {}
 
-  getEvent(id: string): Observable<ServiceResponse> {
-    return this.http.get<ClubEvent>(API_ENDPOINT + id).pipe(
-      map(event => ({ payload: { event } })),
+  getEvent(id: string): Observable<ServiceResponse<ClubEvent>> {
+    return this.http.get<ClubEvent>(this.API_ENDPOINT + id).pipe(
+      map(event => ({ payload: event })),
       catchError(() => of({ error: new Error('Failed to fetch event from database') })),
     );
   }
 
-  getEvents(): Observable<ServiceResponse> {
-    return this.http.get<ClubEvent[]>(API_ENDPOINT).pipe(
+  getEvents(): Observable<ServiceResponse<ClubEvent[]>> {
+    return this.http.get<ClubEvent[]>(this.API_ENDPOINT).pipe(
       map(events => {
         const sortedEvents = [...events].sort(customSort('eventDate', true));
-        return { payload: { events: sortedEvents } };
+        return { payload: sortedEvents };
       }),
       catchError(() =>
         of({ error: new Error('Failed to fetch schedule from database') }),
@@ -37,7 +38,7 @@ export class ScheduleService {
     );
   }
 
-  addEvent(eventToAdd: ClubEvent): Observable<ServiceResponse> {
+  addEvent(eventToAdd: ClubEvent): Observable<ServiceResponse<ClubEvent>> {
     // Escaping the backslash for new lines seems necessary to work with API Gateway
     // integration mapping set up for this endpoint (not needed for updateEvent())
     eventToAdd = {
@@ -47,41 +48,41 @@ export class ScheduleService {
 
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.post<null>(API_ENDPOINT, eventToAdd, {
+        this.http.post<null>(this.API_ENDPOINT, eventToAdd, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
         }),
       ),
-      map(() => ({ payload: { event: eventToAdd } })),
+      map(() => ({ payload: eventToAdd })),
       catchError(() => of({ error: new Error('Failed to add event to database') })),
     );
   }
 
-  updateEvent(eventToUpdate: ClubEvent): Observable<ServiceResponse> {
+  updateEvent(eventToUpdate: ClubEvent): Observable<ServiceResponse<ClubEvent>> {
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.put<null>(API_ENDPOINT + eventToUpdate.id, eventToUpdate, {
+        this.http.put<null>(this.API_ENDPOINT + eventToUpdate.id, eventToUpdate, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
         }),
       ),
-      map(() => ({ payload: { event: eventToUpdate } })),
+      map(() => ({ payload: eventToUpdate })),
       catchError(() => of({ error: new Error('Failed to update schedule') })),
     );
   }
 
-  deleteEvent(eventToDelete: ClubEvent): Observable<ServiceResponse> {
+  deleteEvent(eventToDelete: ClubEvent): Observable<ServiceResponse<ClubEvent>> {
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.delete<null>(API_ENDPOINT + eventToDelete.id, {
+        this.http.delete<null>(this.API_ENDPOINT + eventToDelete.id, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
         }),
       ),
-      map(() => ({ payload: { event: eventToDelete } })),
+      map(() => ({ payload: eventToDelete })),
       catchError(() => of({ error: new Error('Failed to delete event from database') })),
     );
   }

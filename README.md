@@ -31,6 +31,31 @@ This is a web app built for the London Chess Club to demonstrate an all-in-one S
 <h3>Releases</h3>
 
 <details>
+<summary style="cursor: pointer">v1.3.0-beta</summary>
+
+**Released on TBD**
+
+<h4>Features</h4>
+
+- [Articles] Support banner images for articles
+- [Articles] Create an Article Viewer screen to display the entire article whenever one is selected in the Article Grid
+- [Articles] Remove unnecessary 'subtitle' field
+- [Core] Improve screen layouts for XL-wide devices
+- [Core] Improve truncation logic and support truncation by line count
+- [Toasts] Modify all toast titles to make them more distinct from notification descriptions directly below
+
+<h4>Refactor / Chores</h4>
+
+- [Core] Use generic types for ServiceResponse's payload property for better type safety
+
+<h4>Fixes</h4>
+
+- [Core] Fix bug causing forms to submit twice when using the 'enter' key
+- [Change Password] Fix bug preventing new password from being sent to the server
+
+</details>
+
+<details>
 <summary style="cursor: pointer">v1.2.0-beta</summary>
 
 **Released on October 4th, 2023**

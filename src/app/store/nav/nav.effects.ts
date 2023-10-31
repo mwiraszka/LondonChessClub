@@ -22,7 +22,6 @@ export class NavEffects {
           MembersActions.addMemberSucceeded,
           MembersActions.updateMemberSucceeded,
           AuthActions.loginSucceeded,
-          AuthActions.passwordChangeSucceeded,
         ),
         tap(() => this.router.navigate([NavPathTypes.HOME])),
       ),
@@ -111,6 +110,17 @@ export class NavEffects {
     { dispatch: false },
   );
 
+  navigateToArticle$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ArticlesActions.articleSelected),
+        tap(({ article }) =>
+          this.router.navigate([NavPathTypes.ARTICLE_VIEW, article.id]),
+        ),
+      ),
+    { dispatch: false },
+  );
+
   navigateToArticleAdd$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -161,7 +171,11 @@ export class NavEffects {
   navigateToLogin$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.loginNavigationRequested, AuthActions.logoutSucceeded),
+        ofType(
+          NavActions.loginNavigationRequested,
+          AuthActions.logoutSucceeded,
+          AuthActions.passwordChangeSucceeded,
+        ),
         tap(() => this.router.navigate([NavPathTypes.LOGIN])),
       ),
     { dispatch: false },

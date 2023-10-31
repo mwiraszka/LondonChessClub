@@ -1,0 +1,28 @@
+@import 'styles/abstracts/variables';
+
+.banner-image-container {
+  position: relative;
+
+  img {
+    width: $lcc-app-width-lg;
+    height: 100%;
+  }
+
+  h2 {
+    position: absolute;
+    bottom: 9px;
+    left: 18px;
+    right: 18px;
+    height: unset;
+    line-height: 1.5em;
+    padding: 3px 6px;
+    color: black;
+    background-color: white;
+    border-radius: $lcc-border-radius-sm;
+  }
+}
+
+.article-dates-container,
+p {
+  padding: 18px;
+}

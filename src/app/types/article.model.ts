@@ -1,17 +1,23 @@
 export interface Article {
-  id: string | undefined;
+  id: string | null;
   title: string;
-  subtitle: string;
+  body: string;
+  imageFile: File | null;
+  imageId: string | null;
+  imageUrl: string | null;
+  thumbnailImageUrl: string | null;
   dateCreated: string;
   dateEdited: string;
-  body: string;
 }
 
 export const newArticleFormTemplate: Article = {
-  id: undefined,
+  id: null,
   title: '',
-  subtitle: '',
+  body: '',
+  imageFile: null,
+  imageId: null,
+  imageUrl: null,
+  thumbnailImageUrl: null,
   dateCreated: new Date().toLocaleDateString(),
   dateEdited: '',
-  body: '',
 };

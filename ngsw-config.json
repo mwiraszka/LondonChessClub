@@ -18,7 +18,6 @@
     {
       "name": "assets",
       "installMode": "lazy",
-      "editMode": "prefetch",
       "resources": {
         "files": [
           "/assets/**",

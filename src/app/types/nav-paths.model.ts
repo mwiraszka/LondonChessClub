@@ -9,6 +9,7 @@ export enum NavPathTypes {
   NEWS = 'news',
   ARTICLE_ADD = 'article/add',
   ARTICLE_EDIT = 'article/edit',
+  ARTICLE_VIEW = 'article/view',
   LONDON_CHESS_CHAMPION = 'london-chess-champion',
   PHOTO_GALLERY = 'photo-gallery',
   ABOUT = 'about',

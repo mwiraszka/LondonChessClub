@@ -32,7 +32,8 @@ $lcc-color--overlay: hsla(0, 0%, 30%, 0.8);
 
 
 /* Other custom LCC constants */
-$lcc-app-max-width: 900px;
+$lcc-app-width-lg: 900px;
+$lcc-app-width-xl: 1700px;
 $lcc-app-side-padding: 12px;
 $lcc-border-radius-sm: 2px;
 $lcc-border-radius-lg: 5px;
@@ -45,8 +46,8 @@ $h1: 30px;
 $h2: 24px;
 $h3: 19px;
 $h4: 14px;
-$h5: 12px;
-$h6: 10px;
+$h5: 13px;
+$h6: 11px;
 
 
 /* Viewport breakpoint map */
@@ -76,9 +77,9 @@ $breakpoints: (
     min-width: 1000px,
   ),
   'lt-xl': (
-    max-width: 1249px,
+    max-width: 1799px,
   ),
   'gt-xl': (
-    min-width: 1250px,
+    min-width: 1800px,
   ),
 );

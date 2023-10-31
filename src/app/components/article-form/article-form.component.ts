@@ -1,11 +1,11 @@
 import { Subscription } from 'rxjs';
-import { debounceTime, first, tap } from 'rxjs/operators';
+import { debounceTime, first } from 'rxjs/operators';
 
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoaderService } from '@app/services';
-import { Article } from '@app/types';
+import { Article, Url } from '@app/types';
 
 import { ArticleFormFacade } from './article-form.facade';
 
@@ -15,26 +15,25 @@ import { ArticleFormFacade } from './article-form.facade';
   styleUrls: ['./article-form.component.scss'],
   providers: [ArticleFormFacade],
 })
-export class ArticleFormComponent {
+export class ArticleFormComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   valueChangesSubscription!: Subscription;
+  previewImageUrl!: Url | null;
+  imageFile?: File;
 
   constructor(
     public facade: ArticleFormFacade,
     private formBuilder: FormBuilder,
-    private loader: LoaderService,
+    private loaderService: LoaderService,
   ) {}
 
   ngOnInit(): void {
-    this.loader.display(true);
-
-    this.facade.articleCurrently$
-      .pipe(
-        tap(article => this.initForm(article)),
-        tap(() => this.loader.display(false)),
-        first(),
-      )
-      .subscribe();
+    this.loaderService.display(true);
+    this.facade.articleCurrently$.pipe(first()).subscribe(article => {
+      this.initForm(article);
+      this.previewImageUrl = article.imageUrl ?? null;
+      this.loaderService.display(false);
+    });
   }
 
   ngOnDestroy(): void {
@@ -59,6 +58,20 @@ export class ArticleFormComponent {
     this.facade.onCancel();
   }
 
+  onReset(): void {
+    this.clearImage();
+  }
+
+  onChooseImage(event: Event): void {
+    const fileInputElement = event.target as HTMLInputElement;
+    if (fileInputElement.files?.length) {
+      this.form.patchValue({ imageFile: fileInputElement.files[0] });
+      this.previewImageUrl = URL.createObjectURL(fileInputElement.files[0]);
+    } else {
+      this.clearImage();
+    }
+  }
+
   onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -69,16 +82,25 @@ export class ArticleFormComponent {
 
   private initForm(article: Article): void {
     this.form = this.formBuilder.group({
-      title: [article.title, [Validators.required, Validators.pattern(/[^\s]/)]],
-      subtitle: [article.subtitle, [Validators.required, Validators.pattern(/[^\s]/)]],
-      body: [article.body, [Validators.required, Validators.pattern(/[^\s]/)]],
       id: [article.id],
+      title: [article.title, [Validators.required, Validators.pattern(/[^\s]/)]],
+      body: [article.body, [Validators.required, Validators.pattern(/[^\s]/)]],
+      imageFile: [article.imageFile, [Validators.required]],
+      imageId: [article.imageId],
       dateCreated: [article.dateCreated],
       dateEdited: [article.dateEdited],
     });
 
+    // TODO: investigate why setErrors({ required: null }) doesn't work
+    this.form.controls['imageFile'].patchValue({});
+
     this.valueChangesSubscription = this.form.valueChanges
       .pipe(debounceTime(200))
       .subscribe((formData: Article) => this.facade.onValueChange(formData));
+  }
+
+  private clearImage(): void {
+    this.form.patchValue({ imageFile: null });
+    this.previewImageUrl = null;
   }
 }

@@ -23,16 +23,16 @@ export class EventFormComponent implements OnInit, OnDestroy {
   constructor(
     public facade: EventFormFacade,
     private formBuilder: FormBuilder,
-    private loader: LoaderService,
+    private loaderService: LoaderService,
   ) {}
 
   ngOnInit(): void {
-    this.loader.display(true);
+    this.loaderService.display(true);
 
     this.facade.eventCurrently$
       .pipe(
         tap(event => this.initForm(event)),
-        tap(() => this.loader.display(false)),
+        tap(() => this.loaderService.display(false)),
         first(),
       )
       .subscribe();

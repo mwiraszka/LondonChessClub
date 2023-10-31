@@ -43,7 +43,6 @@ export class ArticleFormFacade {
   }
 
   onValueChange(article: Article): void {
-    article = { ...article, dateEdited: new Date().toLocaleDateString() };
     this.store.dispatch(ArticlesActions.formDataChanged({ article }));
   }
 }

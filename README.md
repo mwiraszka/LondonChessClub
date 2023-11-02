@@ -1,39 +1,54 @@
-# London Chess Club
-
-<span style="color: lightblue; border: 1px solid lightblue; border-radius: 2px; padding: 4px;">LCC web app (development server)</span>
-<br />
-http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/
-<br />
-<br />
+# London Chess Club - Frontend
 
 <p>
-This is a web app built for the London Chess Club to demonstrate an all-in-one Software-as-a-Service (SaaS) design. Current beta version features include:
+This is a web app for the London Chess Club.
 </p>
 
-> <b>FRONTEND</b>
+### Live development server:
 
-- Angular for a component-based frontend architecture
-- NgRx for reactive state management
-- Clarity Design System (CDS) for icons
+http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/
+
+<br />
+
+### Architecture:
+
+> <b>FRONTEND</b> (Angular)
+
+- [NgRx] for reactive state management
+- [SCSS] for style preprocessing with Sass
+- [Clarity Design System] for icons
   <br /><br />
 
 > <b>BACKEND</b> (AWS)
 
-- S3 for static web hosting
-- Route 53 for DNS and traffic management
-- CodeBuild for configuring the build process and CI/CD pipeline
-- Cognito for user authentication
-- Lambda for serverless backend functions
-- API Gateway for API management and routing
-- DynamoDB for a NoSQL database system
+- [S3] for static web hosting and image storage
+- [Route 53] for DNS and traffic management
+- [DynamoDB] for a NoSQL database system
+- [CodeBuild] for configuring the build process and CI/CD pipeline
+- [API Gateway] for API management and routing
+- [Cognito & IAM] for user authentication
+- [Lambda] for serverless backend functions
+- [EC2] instance to run Express.js server, responsible for article image CRUD operations
 
 <br />
-<h3>Releases</h3>
+
+### Releases:
+
+<details>
+<summary style="cursor: pointer">v1.3.1-beta</summary>
+
+**Released on November 1st, 2023**
+
+<h4>Refactor / Chores</h4>
+
+- [Core] Update README and .gitignore files
+
+</details>
 
 <details>
 <summary style="cursor: pointer">v1.3.0-beta</summary>
 
-**Released on TBD**
+**Released on October 30th, 2023**
 
 <h4>Features</h4>
 
@@ -167,8 +182,8 @@ This is a web app built for the London Chess Club to demonstrate an all-in-one S
 - [Home] Create a responsive grid layout to showcase only the most pertinent information from other pages (such as only the next 4 events from the schedule, and a more limited amount of photos from the photo gallery)
 
 </details>
-
 <br />
-<h3>The London Chess Club</h3>
+
+### The London Chess Club
 
 The London Chess Club (est. 1965) hosts a mix of blitz and rapid chess tournaments, lectures and simuls for players of all ages and skill levels. Its current static WordPress website can be found at [londonchessclub.ca](https://www.londonchessclub.ca).

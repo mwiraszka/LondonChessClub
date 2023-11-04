@@ -35,6 +35,17 @@ http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/
 ### Releases:
 
 <details>
+<summary style="cursor: pointer">v1.3.2-beta</summary>
+
+**Released on November 4th, 2023**
+
+<h4>Features</h4>
+
+- [Core] Update production environment variable for article images endpoint to use IP address of server running on the new EC2 instance
+
+</details>
+
+<details>
 <summary style="cursor: pointer">v1.3.1-beta</summary>
 
 **Released on November 1st, 2023**

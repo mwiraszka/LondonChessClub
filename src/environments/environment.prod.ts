@@ -13,5 +13,5 @@ export const environment = {
   googleMaps: {
     apiKey: 'AIzaSyAuLCJPCzFJXPWYUPM61Txue8PeJabI6DI',
   },
-  imagesEndpoint: 'http://localhost:8080/api/images/',
+  imagesEndpoint: 'http://3.131.157.220:8080/api/images/',
 };

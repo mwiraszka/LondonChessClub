@@ -35,6 +35,17 @@ http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/
 ### Releases:
 
 <details>
+<summary style="cursor: pointer">v1.3.3-beta</summary>
+
+**Released on November 5th, 2023**
+
+<h4>Features</h4>
+
+- [Core] Update production environment variable for article images endpoint to not include port number now that nginx reverse proxy is set up
+
+</details>
+
+<details>
 <summary style="cursor: pointer">v1.3.2-beta</summary>
 
 **Released on November 4th, 2023**

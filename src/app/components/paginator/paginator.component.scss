@@ -7,14 +7,14 @@
   justify-content: center;
   align-items: center;
   background: rgba($lcc-color--accent, 0.1);
-  border-radius: $lcc-border-radius-lg;
+  border-radius: $lcc-border-radius--lg;
   
-  padding: 4px 32px;
-  gap: 8px;
+  padding: $lcc-space--xs $lcc-space--lg;
+  gap: $lcc-space--sm;
 }
 
 button {
-  padding: 3px;
+  padding: $lcc-space--xs;
   color: lighten($lcc-color--black, 20%);
 
   &:hover {
@@ -31,18 +31,14 @@ button {
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 4px;
+  gap: $lcc-space--sm;
   font-size: $h5;
-
-  padding: 0 12px;
-  @include respond-to('lt-sm') {
-    padding: 0 6px;
-  }
+  padding: 0 $lcc-space--xs;
 
   .center-section-buttons {
     display: flex;
     flex-flow: row nowrap;
-    gap: 6px;
+    gap: $lcc-space--sm;
 
     .center-section-button {
       border: none;

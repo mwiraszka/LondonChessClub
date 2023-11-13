@@ -1,9 +1,8 @@
 .lcc-table {
   display: table;
   font-size: $h5;
-  margin: 8px;
+  border-radius: $lcc-border-radius--sm;
   border-spacing: 0;
-  border-radius: $lcc-border-radius-sm;
   box-shadow: 3px 2px 8px 0 lighten($color: $lcc-color--gray, $amount: 2%);
   overflow: hidden;
   color: $lcc-color--text-primary-black;
@@ -14,11 +13,14 @@
   
   thead {
     th {
-      padding: 6px 8px;
       color: $lcc-color--white;
       background-color: $lcc-color--primary;
       white-space: nowrap;
       font-weight: 200;
+      
+      &:not(.lcc-table-admin-controls-filler) {
+        padding: $lcc-space--sm $lcc-space--md;
+      }
     }
   }
   
@@ -31,15 +33,16 @@
       }
   
       td {
-        padding: 8px;
+        padding: $lcc-space--sm $lcc-space--md;
       }
     }
   }
 
   tfoot {
     color: $lcc-color--text-secondary;
+
     td {
-      padding: 8px;
+      padding: $lcc-space--sm;
       text-align: right;
     }
   }

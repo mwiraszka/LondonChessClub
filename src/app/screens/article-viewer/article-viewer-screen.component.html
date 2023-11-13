@@ -1,6 +1,6 @@
-<div class="lcc-canvas container">
+<div class="container">
 	<div *ngIf="facade.article$ | async as article"
-			 class="lcc-article-container lcc-admin-controls-container">
+			 class="lcc-admin-controls-container">
 		<ng-container *ngIf="facade.isAdmin$ | async">
 			<lcc-admin-controls [itemName]="article.title"
 													(delete)="facade.onDelete(article)"

@@ -7,7 +7,9 @@
 <table class="lcc-table">
 	<thead>
 		<tr>
-			<th *ngIf="facade.isAdmin$ | async"></th>
+			<th *ngIf="facade.isAdmin$ | async"
+					class="lcc-table-admin-controls-filler">
+			</th>
 			<th class="row-number"></th>
 			<th *ngFor="let header of (facade.isAdmin$ | async) ? tableHeaders : tableHeaders.slice(0, -3)"
 					[ngClass]="kebabize(header)"
@@ -32,12 +34,11 @@
 				class="lcc-admin-controls-container"
 				[ngClass]="{'last-row': last}"
 				[class.inactive]="!member.isActive">
-			<ng-container *ngIf="facade.isAdmin$ | async">
-				<lcc-admin-controls [itemName]="member.firstName ?? ''"
-														(edit)="facade.onEditMember(member)"
-														(delete)="facade.onDeleteMember(member)">
-				</lcc-admin-controls>
-			</ng-container>
+			<lcc-admin-controls *ngIf="facade.isAdmin$ | async"
+													[itemName]="member.firstName ?? ''"
+													(edit)="facade.onEditMember(member)"
+													(delete)="facade.onDeleteMember(member)">
+			</lcc-admin-controls>
 			<td class="row-number">{{ i + ((facade.startIndex$ | async) ?? 0) + 1 }}</td>
 			<td class="first-name">{{ member.firstName }}</td>
 			<td class="last-name">{{ member.lastName }}</td>

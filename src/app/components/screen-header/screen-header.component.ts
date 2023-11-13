@@ -2,8 +2,9 @@ import {
   ClarityIcons,
   announcementIcon,
   crownIcon,
+  eventIcon,
   imageGalleryIcon,
-  unknownStatusIcon,
+  infoStandardIcon,
   usersIcon,
 } from '@cds/core/icon';
 
@@ -24,8 +25,9 @@ export class ScreenHeaderComponent implements OnInit {
     ClarityIcons.addIcons(
       announcementIcon,
       crownIcon,
+      eventIcon,
       imageGalleryIcon,
-      unknownStatusIcon,
+      infoStandardIcon,
       usersIcon,
     );
   }

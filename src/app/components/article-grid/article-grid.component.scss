@@ -1,78 +1,78 @@
 @import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
-$article-padding: 6px;
-
 :host {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  gap: 10px;
   width: 100%;
 }
 
 lcc-link-list,
 .articles-container {
-  width: 90%;
-
-  @include respond-to ('lt-md') {
-    width: 100%;
-  }
+  width: 100%;
 }
 
 .articles-container {
   display: flex;
   flex-flow: row wrap;
-  gap: 4px;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  gap: $lcc-space--sm;
 
   article {
     display: flex;
     flex-flow: column nowrap;
-    gap: 6px;
-    width: 100%;
-    max-width: 312px;
-    height: 420px;
-    padding: $article-padding;
-    background-color: darken($lcc-color--white, 6%);
+    gap: $lcc-space--xs;
+    width: 282px;
+    height: 400px;
+    padding: $lcc-space--sm;
+    background-color: $lcc-color--primary;
+    border-radius: $lcc-border-radius--lg;
 
     &:hover {
       cursor: pointer;
-      background-color: darken($lcc-color--white, 2%);
+      background-color: lighten($lcc-color--primary, 5%);
     }
 
-    lcc-admin-controls {
-      transform: translate(-$article-padding, -$article-padding); 
-    }
-
-    .lcc-article-thumbnail-image {
-      min-height: 200px;
+    .article-thumbnail-image {
+      min-height: 180px;
       width: 100%;
       object-fit: cover;
-      border-radius: $lcc-border-radius-lg;
+      border-radius: $lcc-border-radius--lg;
     }
 
-    .lcc-article-summary-container {
+    .article-summary-container {
       display: flex;
       flex-flow: column nowrap;
       justify-content: space-between;
       height: 100%;
+      padding:$lcc-space--xs $lcc-space--sm;
 
       h3 {
+        text-align: center;
         height: 2.8em;
-        border-bottom: 1px solid #ccc;
+        color: darken($lcc-color--text-primary-white, 5%);
+      }
+
+      hr {
+        border-top: 1px solid $lcc-color--gray;
+        padding-top: $lcc-space--sm;
+        width: 100%;
       }
 
       p {
-        text-align: left;
-        line-height: 1.5em;
+        font-size: $h4;
+        color: darken($lcc-color--text-primary-white, 10%);
+        line-height: 1.3em !important;
       }
 
-      .lcc-article-dates-container {
-        margin-top: 6px;
+      .article-dates-container {
+        font-size: $h6;
+        text-align: center;
+        margin-top: $lcc-space--sm;
+        color: darken($lcc-color--text-primary-white, 20%);
       }
     }
   }

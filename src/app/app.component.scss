@@ -5,15 +5,20 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: darken($lcc-color--primary, 20%);
+
+  @include respond-to('gt-sm') {
+    background: linear-gradient(to right, darken($lcc-color--primary, 17%), darken($lcc-color--primary, 22%) 100%);
+  }
 }
 
 main {
   flex-grow: 1;
-  padding: 10px;
+  padding: $lcc-space--sm 0;
   background-color: $lcc-color--bg-main;
 
-  @include respond-to('lt-md') {
-    padding: 8px 0 !important;
+  @include respond-to('gt-sm') {
+    padding: $lcc-space--sm;
   }
 }
 

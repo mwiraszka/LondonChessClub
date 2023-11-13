@@ -14,4 +14,11 @@ export class ModalFacade {
   onSelect(action: ModalButtonActionTypes): void {
     this.store.dispatch(ModalActions.selectionMade({ action }));
   }
+
+  // TODO: Hook up for all other 'cancel' action types
+  onClose(): void {
+    this.store.dispatch(
+      ModalActions.selectionMade({ action: ModalButtonActionTypes.LEAVE_CANCEL }),
+    );
+  }
 }

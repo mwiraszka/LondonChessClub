@@ -1,32 +1,31 @@
+@import 'styles/abstracts/mixins';
+
 .lcc-grid {
   display: grid;
   grid-template-rows: auto;
-  gap: 4px;
-  margin: 16px 12px;
-  width: 90%;
+  gap: $lcc-space--xs;
+  
+  @include respond-to('gt-sm') {
+    margin: $lcc-space--sm;
+  }
 
-  [class*=' lcc-grid-item'],
+  [class*='lcc-grid-item'],
   [class^='lcc-grid-item'] {
     place-self: stretch;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     gap: 12px;
-    border-radius: $lcc-border-radius-sm;
+    border-radius: $lcc-border-radius--sm;
     background-color: $lcc-color--bg-grid-item;
-    border: 2px solid darken($lcc-color--bg-grid-item, 1%);
+
+    @include respond-to('gt-sm') {
+      border: 2px solid darken($lcc-color--bg-grid-item, 1%);
+    }
 
     &.lcc-darker-grid-item {
       background-color: darken($lcc-color--bg-grid-item, 5%);
       border: 2px solid darken($lcc-color--bg-grid-item, 7%);
-    }
-
-    p {
-      font-size: $h5;
-      text-align: left;
-      line-height: 22px;
-      width: 87%;
-      padding: 4px 10px;
     }
 
     li {
@@ -43,15 +42,4 @@
   .lcc-grid-item-6 { grid-area: grid-item-6; }
   .lcc-grid-item-7 { grid-area: grid-item-7; }
   .lcc-grid-item-8 { grid-area: grid-item-8; }
-
-  hr {
-    width: 70%;
-    height: 3px;
-    margin: 18px auto;
-    border-left: unset !important;
-    border-right: unset !important;
-    background: $lcc-color--bg-canvas !important;
-    border-top: 1px solid darken($lcc-color--bg-canvas, 5%) !important;
-    border-bottom: 1px solid darken($lcc-color--bg-canvas, 5%) !important;
-  }
 }

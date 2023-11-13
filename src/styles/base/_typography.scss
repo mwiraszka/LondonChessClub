@@ -1,5 +1,5 @@
 * {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif !important;
 }
 
 h1,
@@ -30,12 +30,4 @@ h5,
 h6,
 .h6 {
   font-size: $h6 !important;
-}
-
-.success {
-  color: $lcc-color--success;
-}
-
-.warn {
-  color: $lcc-color--warning;
 }

@@ -35,7 +35,7 @@ export class MembersTableComponent implements OnInit {
   addMemberLink: Link = {
     path: NavPathTypes.MEMBER_ADD,
     text: 'Add new member',
-    iconShape: 'plus-circle',
+    iconShape: 'plus',
   };
 
   constructor(public facade: MembersTableFacade, private loaderService: LoaderService) {}

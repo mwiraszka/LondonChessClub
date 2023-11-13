@@ -1,13 +1,23 @@
 <div class="lcc-overlay">
-	<div class="lcc-canvas overlay-content">
-		<h3>{{ (facade.modal$ | async)?.title }}</h3>
-		<p>{{ (facade.modal$ | async)?.body }}</p>
-		<div *ngIf="(facade.modal$ | async)?.buttons">
-			<button *ngFor="let button of (facade.modal$ | async)?.buttons"
-							[ngClass]="button.style"
-							(click)="facade.onSelect(button.action)">
-				{{ button.text }}
-			</button>
+	<div class="overlay-content">
+		<cds-icon class="close-icon"
+							shape="window-close"
+							size="md"
+							(click)="facade.onClose()">
+		</cds-icon>
+		<div class="modal-content">
+			<div class="text-container">
+				<h3>{{ (facade.modal$ | async)?.title }}</h3>
+				<p>{{ (facade.modal$ | async)?.body }}</p>
+			</div>
+			<div *ngIf="(facade.modal$ | async)?.buttons"
+					 class="action-buttons">
+				<button *ngFor="let button of (facade.modal$ | async)?.buttons"
+								[ngClass]="button.style"
+								(click)="facade.onSelect(button.action)">
+					{{ button.text }}
+				</button>
+			</div>
 		</div>
 	</div>
 </div>

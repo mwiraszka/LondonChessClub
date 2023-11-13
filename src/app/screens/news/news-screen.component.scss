@@ -6,11 +6,16 @@
   justify-content: center;
 }
 
-lcc-article-grid {
-  margin-top: 10px;
-  width: 90%;
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  justify-content: stretch;
+  gap: $lcc-space--sm;
+  width: 100%;
+  max-width: $lcc-width--app-content;
+}
 
-  @include respond-to ('lt-md') {
-    width: 100%;
-  }
+lcc-article-grid {
+  width: 100%;
 }

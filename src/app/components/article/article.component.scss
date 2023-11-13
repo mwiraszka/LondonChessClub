@@ -4,25 +4,29 @@
   position: relative;
 
   img {
-    width: $lcc-app-width-lg;
     height: 100%;
+    width: 100%;
   }
 
   h2 {
     position: absolute;
-    bottom: 9px;
-    left: 18px;
-    right: 18px;
+    bottom: $lcc-space--sm;
+    left: $lcc-space--md;
+    right: $lcc-space--md;
     height: unset;
     line-height: 1.5em;
-    padding: 3px 6px;
+    padding: $lcc-space--xs $lcc-space--sm;
     color: black;
-    background-color: white;
-    border-radius: $lcc-border-radius-sm;
+    background-color: hsla(0, 0%, 99%, 0.8);
+    border-radius: $lcc-border-radius--sm;
   }
+}
+
+.edited {
+  font-weight: 100;
 }
 
 .article-dates-container,
 p {
-  padding: 18px;
+  padding: $lcc-space--md;
 }

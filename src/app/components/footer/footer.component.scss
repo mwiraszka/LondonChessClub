@@ -4,15 +4,21 @@
   display: flex;
   flex-flow: column nowrap;
   text-align: center;
-  padding: 30px 0;
+  padding: $lcc-space--lg 0;
   white-space: nowrap;
+  background-color: $lcc-color--bg-canvas;
+}
+
+small {
+  font-size: $h5;
 }
 
 address {
   span {
     display: inline;
-    margin-right: 2px;
+    margin-right: $lcc-space--xxs;
     font-style: normal;
+    font-size: $h5;
   }
 
   text-decoration: none;

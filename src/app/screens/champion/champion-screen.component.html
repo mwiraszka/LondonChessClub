@@ -1,10 +1,10 @@
-<div class="lcc-canvas">
-	<lcc-screen-header [title]="'London Chess Champion'"
-										 [iconShape]="'crown'">
+<div class="container">
+	<lcc-screen-header title="London Chess Champion"
+										 iconShape="crown">
 	</lcc-screen-header>
 
-	<section class="lcc-grid">
-		<article class="lcc-grid-item-1 lcc-darker-grid-item">
+	<section class="grid-container">
+		<article class="cup">
 			<figure class="lcc-figure cup-figure">
 				<img src="assets/london-chess-champion/championship-cup.jpg"
 						 alt="Championship Cup" />
@@ -12,7 +12,7 @@
 			</figure>
 		</article>
 
-		<article class="lcc-grid-item-2">
+		<article class="history">
 			<p>
 				Every fall, chess players from around London and the surrounding region gather
 				to compete for the city's most coveted chess prize:
@@ -32,7 +32,7 @@
 			</p>
 		</article>
 
-		<article class="lcc-grid-item-3">
+		<article class="upcoming">
 			<p>
 				The London Chess Championship was canceled in 2020 and 2021 due to the pandemic,
 				but 2022 will more than make up for it. <b>50 players</b> are currently
@@ -57,7 +57,7 @@
 			</p>
 		</article>
 
-		<article class="lcc-grid-item-4 lcc-darker-grid-item">
+		<article class="winner">
 			<figure class="lcc-figure champion-2019-figure">
 				<img src="assets/london-chess-champion/2019-champion.jpg"
 						 alt="2019 London Chess Champion" />
@@ -68,22 +68,20 @@
 			</figure>
 		</article>
 
-		<article class="lcc-grid-item-5 lcc-darker-grid-item">
+		<article class="crosstable">
 			<figure class="lcc-figure crosstable-figure">
-				<img src="assets/london-chess-champion/2019-championship-crosstable.png"
-						 alt="2019 Championship Crosstable"
-						 class="lcc-gt-sm" />
-				<img src="assets/london-chess-champion/2019-championship-crosstable--narrow.png"
-						 alt="2019 Championship Crosstable"
-						 class="lcc-lt-sm" />
-				<figcaption>2019&nbsp;Championship &mdash; Final&nbsp;Results</figcaption>
+				<picture>
+					<source media="(min-width: 500px)"
+									srcset="assets/london-chess-champion/2019-championship-crosstable.png">
+					<img src="assets/london-chess-champion/2019-championship-crosstable--narrow.png"
+							 alt="2019 Championship Crosstable" />
+				</picture>
+				<figcaption>2019 Championship &mdash; Final Results</figcaption>
 			</figure>
 		</article>
-
-		<hr class="lcc-grid-item-6" />
-
-		<article class="lcc-grid-item-7 links">
-			<lcc-link-list [links]="links"></lcc-link-list>
-		</article>
 	</section>
+
+	<hr />
+
+	<lcc-link-list [links]="links"></lcc-link-list>
 </div>

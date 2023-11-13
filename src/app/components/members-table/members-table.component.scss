@@ -7,7 +7,7 @@ $caret-icon-width: 11px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  gap: 8px;
+  gap: $lcc-space--md;
 }
 
 lcc-link-list,
@@ -27,7 +27,7 @@ thead {
       width: $caret-icon-width;
 
       cds-icon {
-        margin-left: 2px;
+        margin-left: $lcc-space--xxs;
       }
     }
   }
@@ -59,7 +59,7 @@ aside {
   width: 300px;
   text-align: center;
   border: 1px solid rgba($lcc-color--gray, 0.3);
-  border-radius: $lcc-border-radius-lg;
+  border-radius: $lcc-border-radius--lg;
   
   h5 {
     font-style: italic;
@@ -67,14 +67,14 @@ aside {
   }
 
   .checkbox-section {
-    padding: 2px 16px;
+    padding: $lcc-space--xxs $lcc-space--md;
     background-color: rgba($lcc-color--accent, 0.1);
     margin-top: 2px;
     border-top: 1px solid rgba($lcc-color--gray, 0.2);
 
     label {
       font-size: $h5;
-      margin-right: 4px;
+      margin-right: $lcc-space--xs;
       font-weight: bold;
     }
   }

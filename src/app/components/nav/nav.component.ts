@@ -7,7 +7,7 @@ import {
   eventIcon,
   homeIcon,
   imageGalleryIcon,
-  unknownStatusIcon,
+  infoStandardIcon,
   userIcon,
   usersIcon,
 } from '@cds/core/icon';
@@ -44,10 +44,10 @@ export class NavComponent implements OnInit {
       angleIcon,
       announcementIcon,
       crownIcon,
+      eventIcon,
       homeIcon,
       imageGalleryIcon,
-      eventIcon,
-      unknownStatusIcon,
+      infoStandardIcon,
       userIcon,
       usersIcon,
     );

@@ -1,73 +1,131 @@
 @import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
+@mixin dark-bg {
+  background-color: darken($lcc-color--bg-grid-item, 2%);
+  border: 2px solid darken($lcc-color--bg-grid-item, 4%);
+}
+
 :host {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: $lcc-width--app-content;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
+  gap: $lcc-space--sm;
 }
 
-lcc-screen-header {
-  @include respond-to('lt-sm') {
-    font-size: $h4;
-  }
-
-  @include respond-to('lt-xs') {
-    font-size: calc(#{$h4} - 1px);
-  }
-}
-
-section {
-  grid-template-columns: 1fr 1fr;
+.grid-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
-    'grid-item-1 grid-item-1'
-    'grid-item-2 grid-item-3'
-    'grid-item-4 grid-item-5'
-    'grid-item-6 grid-item-7'
-    'grid-item-8 grid-item-8';
+    'about'
+    'membership'
+    'supplies'
+    'ratings'
+    'parking'
+    'rules'
+    'tournaments'
+    'leadership';
+  gap: $lcc-space--xs;
 
-  @include respond-to('lt-md') {
-    grid-template-columns: minmax(0, 1fr);
+  @include respond-to('gt-md') {
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      'grid-item-1'
-      'grid-item-2'
-      'grid-item-3'
-      'grid-item-5'
-      'grid-item-4'
-      'grid-item-6'
-      'grid-item-7'
-      'grid-item-8';
-  }
-
-  article {
-    h4 {
-      margin-top: 8px !important;
-      text-align: center;
-    }
-
-    .lcc-link {
-      font-size: inherit;
-    }
+      'about about'
+      'membership supplies'
+      'parking ratings'
+      'rules tournaments'
+      'leadership leadership';
   }
 }
 
-.about-committee {
-  .committee {
-    font-size: $h5;
+article {
+  place-self: stretch;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: $lcc-space--sm;
+  border-radius: $lcc-border-radius--sm;
+  background-color: lighten($lcc-color--bg-grid-item, 2%);
+  padding: $lcc-space--md $lcc-space--lg;
 
-    columns: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
+  &.about {
+    grid-area: about;
+    padding: unset;
+    display: flex;
+    flex-flow: row wrap;
 
+    // Adjust divider line colour for the
+    // background colour used in this screen
+    ::ng-deep {
+      lcc-about {
+        hr {
+          border-color: lighten($lcc-color--gray, 25%);
+        }
+      }
+    }
+  }
+  
+  &.membership {
+    grid-area: membership;
+    @include dark-bg;
+  }
+  
+  &.supplies {
+    grid-area: supplies;
+  }
+  
+  &.parking {
+    grid-area: parking;
+  }
+  
+  &.ratings {
+    grid-area: ratings;
+    @include dark-bg;
+  }
+  
+  &.rules {
+    grid-area: rules;
+    @include dark-bg;
+  }
+  
+  &.tournaments {
+    grid-area: tournaments;
+  }
+  
+  &.leadership {
+    grid-area: leadership;
+  
     @include respond-to('lt-md') {
-      columns: 1 !important;
-      -webkit-columns: 1 !important;
-      -moz-columns: 1 !important;
+      @include dark-bg;
+    }
+
+    .leadership-roles {
+      columns: 1;
+      -webkit-columns: 1;
+      -moz-columns: 1;
+  
+      @include respond-to('gt-sm') {
+        columns: 2;
+        -webkit-columns: 2;
+        -moz-columns: 2;
+      }
+  
+      li {
+        font-size: $h4;
+        padding: 3px;
+      }
     }
   }
-}
 
-cds-icon {
-  padding: 1px !important;
+  h3 {
+    font-weight: 400;
+    color: $lcc-color--text-secondary;
+  }
 }

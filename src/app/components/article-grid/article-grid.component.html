@@ -16,14 +16,15 @@
 			</lcc-admin-controls>
 		</ng-container>
 
-		<img class="lcc-article-thumbnail-image"
+		<img class="article-thumbnail-image"
 				 [src]="(article?.thumbnailImageUrl ?? 'assets/image-placeholder.png') | sanitizeUrl"
 				 alt="Article banner image" />
 
-		<div class="lcc-article-summary-container">
+		<div class="article-summary-container">
 			<h3 class="lcc-truncate-max-2-lines">{{ article.title }}</h3>
+			<hr />
 			<p class="lcc-truncate-max-5-lines">{{ article.body }}</p>
-			<div class="lcc-article-dates-container h6">
+			<div class="article-dates-container">
 				<span>{{ formatDate(article.dateCreated) }}</span>
 				<ng-container *ngIf="article?.dateEdited !== article.dateCreated">
 					<span class="lcc-vertical-spacer">|</span>

@@ -6,7 +6,7 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: $lcc-space--sm;
 
   ul {
     &:not(.single-column) {
@@ -17,26 +17,20 @@
     }
 
     @include respond-to('lt-md') {
-      columns: 1 !important;
-      -webkit-columns: 1 !important;
-      -moz-columns: 1 !important;
+      columns: 1;
+      -webkit-columns: 1;
+      -moz-columns: 1;
     }
   
     li {
-      padding: 2px;
-  
       a {
         white-space: nowrap;
-        font-size: $h5;
-
-        @include respond-to('lt-sm') {
-          font-size: calc(#{$h5} - 1px);
-        }
+        font-size: $h4;
   
         cds-icon {
-          padding: 3px;
+          padding: $lcc-space--xxs;
           margin-bottom: 4px; // Manual centering
-          margin-right: 3px;
+          margin-right: $lcc-space--xxs;
         }
       }
     }

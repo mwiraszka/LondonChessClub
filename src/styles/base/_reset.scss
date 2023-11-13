@@ -73,6 +73,7 @@ body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
 }
+
 html {
   height: -webkit-fill-available;
 }
@@ -120,6 +121,5 @@ h6 {
 p {
   margin-top: 0 !important;
   text-justify: inter-character;
-  font-weight: 100 !important;
-  font-size: 14px !important;
+  line-height: 1.5em !important;
 }

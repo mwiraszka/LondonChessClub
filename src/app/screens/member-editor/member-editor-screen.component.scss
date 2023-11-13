@@ -1,3 +1,4 @@
+@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
 :host {
@@ -6,5 +7,27 @@
 }
 
 .container {
-  width: $lcc-app-width-lg;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: $lcc-space--sm;
+  width: 100%;
+  max-width: $lcc-width--app-content;
+}
+
+lcc-member-form {
+  width: 100%;
+  box-shadow: 1px 1px 5px 2px $lcc-color--box-shadow;
+  padding: $lcc-space--sm $lcc-space--md;
+  background-color: $lcc-color--bg-canvas;
+  border-radius: $lcc-border-radius--sm;
+
+  @include respond-to('gt-md') {
+    padding: $lcc-space--lg $lcc-space--xl;
+  }
+}
+
+lcc-link-list {
+  margin: $lcc-space--lg 0;
 }

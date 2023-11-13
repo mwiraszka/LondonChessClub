@@ -2,7 +2,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { NavPathTypes } from '@app/types';
@@ -17,16 +17,12 @@ import { environment } from '@environments/environment';
 export class AboutComponent implements OnInit {
   NavPathTypes = NavPathTypes;
 
-  mapHeight!: string;
-  mapWidth!: string;
-  isMapLoaded$?: Observable<boolean> = of(true);
+  @Input() singleRowLayoutOnXl = false;
 
+  isMapLoaded$!: Observable<boolean>;
+  mapHeight!: string;
   clubLocation: google.maps.LatLngLiteral = { lat: 42.982618, lng: -81.261501 };
-  mapOptions: google.maps.MapOptions = {
-    center: this.clubLocation,
-    zoom: 16,
-    mapTypeControl: false,
-  };
+  mapOptions!: google.maps.MapOptions;
   markerOptions: google.maps.MarkerOptions = {
     position: this.clubLocation,
     icon: '../../../assets/lcc-logo-black.png',
@@ -56,22 +52,12 @@ export class AboutComponent implements OnInit {
     this.router.navigate([path]);
   }
 
-  private resizeMap(screenWidthPx: number): void {
-    if (screenWidthPx > 860) {
-      this.mapHeight = '400px';
-      this.mapWidth = '620px';
-    } else if (screenWidthPx >= 700) {
-      this.mapHeight = `${window.innerWidth - 460}px`;
-      this.mapWidth = `${window.innerWidth - 240}px`;
-    } else if (screenWidthPx >= 500) {
-      this.mapHeight = '240px';
-      this.mapWidth = `${window.innerWidth - 140}px`;
-    } else if (screenWidthPx >= 350) {
-      this.mapHeight = '200px';
-      this.mapWidth = `${window.innerWidth - 110}px`;
-    } else {
-      this.mapHeight = '180px';
-      this.mapWidth = '250px';
-    }
+  private resizeMap(screenWidth: number): void {
+    this.mapHeight = screenWidth > 500 && screenWidth < 700 ? '350px' : '250px';
+    this.mapOptions = {
+      center: this.clubLocation,
+      zoom: screenWidth > 500 ? 16 : 15,
+      mapTypeControl: false,
+    };
   }
 }

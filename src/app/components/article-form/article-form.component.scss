@@ -5,20 +5,21 @@
   flex-flow: column nowrap;
   align-items: center;
   width: 100%;
-  gap: 16px;
+  gap: $lcc-space--md;
   
   textarea {
     height: 320px;
   }
   
-  .lcc-banner-image {
+  .banner-image {
     aspect-ratio: 3/2;
     object-fit: cover;
     width: 100%;
-    border-radius: $lcc-border-radius-lg;
+    border-radius: $lcc-border-radius--lg;
+    max-width: 800px;
   }
 
-  .lcc-image-controls-container {
+  .image-controls-container {
     display: flex;
     justify-content: start;
   }

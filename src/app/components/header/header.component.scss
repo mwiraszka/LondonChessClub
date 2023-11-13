@@ -4,40 +4,33 @@
 :host {
   display: flex;
   justify-content: center;
-  height: 90px;
-  background-color: darken($lcc-color--primary, 20%);
-  padding: 2px $lcc-app-side-padding;
+  width: 100%;
+  background: repeating-conic-gradient(
+    darken($lcc-color--primary, 5%) 0% 25%,
+    $lcc-color--transparent-mostly 0% 50%
+  ) 50% / 3px 3px;
 }
 
-.lcc-header-container {
+.app-header-container {
   display: flex;
-  flex: 1;
-  justify-content: flex-start;
-  max-width: $lcc-app-width-xl;
-
-  @include respond-to('lt-xl') {
-    max-width: $lcc-app-width-lg;
-  }
-}
-
-a {
-  display: flex;
-  flex-flow: row nowrap;
   justify-content: center;
-  align-items: center;
-  gap: 8px;
+  padding: $lcc-space--md;
+  width: 100%;
 
-  &:hover,
-  &:focus {
-    text-decoration: none;
+  @include respond-to('gt-xs') {
+    justify-content: flex-start;
+    width: $lcc-width--app-content;
+    padding: $lcc-space--md calc($lcc-space--md + 2px);
   }
-}
 
-h1 {
-  color: darken($lcc-color--white, 10%);
-  line-height: unset; // Should be able to remove after CDS styles are removed
-}
-
-img {
-  width: 60px;
+  a {
+    color: darken($lcc-color--white, 2%);
+    font-size: $h1;
+    white-space: nowrap;
+  
+    &:hover {
+      text-decoration: none;
+      color: white;
+    }
+  }
 }

@@ -3,11 +3,11 @@
 .toast-container {
   display: flex;
   flex-flow: row nowrap;
+  margin-top: $lcc-space--xs;
+  padding: 0 $lcc-space--sm;
   width: 300px;
-  margin-top: 6px;
-  padding: 2px 5px;
-  border-radius: $lcc-border-radius-sm;
-  box-shadow: 0 0 2px 2px lighten($lcc-color--gray, 20%);
+  border-radius: $lcc-border-radius--sm;
+  box-shadow: $lcc-color--box-shadow;
   -o-animation: fadeAnimation 5s;
   -moz-animation: fadeAnimation 5s;
   -ms-animation: fadeAnimation 5s;
@@ -36,23 +36,20 @@
 }
 
 .toast-notification-container {
-  padding: 6px;
+  padding: $lcc-space--sm;
   overflow: hidden;
   display: flex;
   flex-flow: column nowrap;
-  gap: 6px;
 
   h4 {
     width: 100%;
     color: lighten($lcc-color--text-primary-white, 5%);
-    line-height: 100%;
   }
 
   p {
     width: 100%;
     font-size: $h5;
     color: darken($lcc-color--text-primary-white, 5%);
-    line-height: 110%;
   }
 }
 

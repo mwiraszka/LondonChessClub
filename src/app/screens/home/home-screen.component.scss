@@ -1,53 +1,73 @@
 @import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
-:host {
-  display: flex;
-  justify-content: center;
-
-  .lcc-canvas {
-    width: $lcc-app-width-xl;
-
-    @include respond-to('lt-xl') {
-      width: $lcc-app-width-lg;
-    }
-  }
-}
-
-section {
-  grid-template-columns: 380px 380px 1fr;
-  grid-template-areas:
-    'grid-item-1 grid-item-1 grid-item-4'
-    'grid-item-2 grid-item-3 grid-item-4';
-
-  @include respond-to('lt-xl') {
-    grid-template-columns: 1fr 1fr;
+.container {
+  max-width: $lcc-width--app-content;
+  display: grid;
+  grid-template-areas: 'about' 'schedule' 'articles' 'photos';
+  grid-template-columns: minmax(0, 1fr);
+  margin: auto;
+  gap: $lcc-space--sm;
+  
+  @include respond-to('gt-md') {
+    grid-template-columns: 3fr 2fr;
     grid-template-areas:
-      'grid-item-1 grid-item-1'
-      'grid-item-2 grid-item-3'
-      'grid-item-4 grid-item-4';
-  }
-
-  @include respond-to('lt-lg') {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      'grid-item-1'
-      'grid-item-2'
-      'grid-item-3'
-      'grid-item-4';
+      'about schedule'
+      'articles articles'
+      'photos photos';
   }
 
   article {
-    padding: 8px;
-
-    h4 {
-      width: 90%;
-      text-align: left;
-      border-bottom: 1px solid lighten($lcc-color--gray, 20%);
+    background-color: $lcc-color--bg-grid-item;
+    padding: $lcc-space--sm $lcc-space--md;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: $lcc-space--md;
+    
+    @include respond-to('gt-lg') {
+      border-radius: $lcc-border-radius--sm;
     }
 
-    &.lcc-grid-item-3 lcc-photo-grid {
-      width: 100%;
+    &.about {
+      grid-area: about;
+      display: flex;
+      flex-flow: column nowrap;
+      background-color: $lcc-color--bg-canvas;
+      border-radius: $lcc-border-radius--sm;
+      box-shadow: $lcc-box-shadow;
+    }
+  
+    &.schedule {
+      grid-area: schedule;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+    }
+  
+    &.articles {
+      grid-area: articles;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+    }
+
+    &.photos {
+      grid-area: photos;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+    }
+
+    section {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: $lcc-space--sm;
+
+      h4 {
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid lighten($lcc-color--gray, 20%);
+      }
     }
   }
 }

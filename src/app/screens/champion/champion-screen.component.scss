@@ -1,48 +1,140 @@
 @import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
-:host {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@mixin dark-bg {
+  background-color: darken($lcc-color--bg-grid-item, 2%);
+  border: 2px solid darken($lcc-color--bg-grid-item, 4%);
 }
 
-section {
-  grid-template-columns: 1fr 1fr;
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: $lcc-space--sm;
+  margin: auto;
+  max-width: $lcc-width--app-content;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
   grid-template-areas:
-    'grid-item-1 grid-item-2'
-    'grid-item-3 grid-item-4'
-    'grid-item-5 grid-item-5'
-    'grid-item-6 grid-item-6'
-    'grid-item-7 grid-item-7';
+    'history'
+    'cup'
+    'winner'
+    'upcoming'
+    'crosstable';
+  gap: $lcc-space--xs;
+
+  @include respond-to('gt-sm') {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'history history'
+      'cup winner'
+      'upcoming upcoming'
+      'crosstable crosstable';
+  }
+
+  @include respond-to('gt-md') {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'cup history'
+      'upcoming winner'
+      'crosstable crosstable';
+  }
+
+  @include respond-to('gt-lg') {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      'cup winner history history'
+      'upcoming upcoming crosstable crosstable';
+  }
 
   article {
+    place-self: stretch;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
     justify-content: center;
+    gap: $lcc-space--sm;
+    background-color: lighten($lcc-color--bg-grid-item, 2%);
 
-    &.links {
-      background-color: unset;
-      border: unset;
-      margin-bottom: 20px;
+    @include respond-to('gt-sm') {
+      border-radius: $lcc-border-radius--sm;
+
+      img {
+        max-height: 350px;
+      }
     }
 
-    &.champion-2019-figure {
-      width: 180px;
+    &.cup {
+      grid-area: cup;
+      @include dark-bg;
+
+      @include respond-to('lt-sm') {
+        margin: 0 $lcc-space--sm;
+        border-radius: $lcc-border-radius--lg;
+      }
+    }
+    
+    &.history {
+      grid-area: history;
+      padding: $lcc-space--sm $lcc-space--md;
+    }
+    
+    &.upcoming {
+      grid-area: upcoming;
+      padding: $lcc-space--sm $lcc-space--md;
+
+      @include respond-to('gt-lg') {
+        padding: $lcc-space--lg $lcc-space--md;
+      }
+    }
+    
+    &.winner {
+      grid-area: winner;
+      @include dark-bg;
+
+      @include respond-to('lt-sm') {
+        margin: 0 $lcc-space--sm;
+        border-radius: $lcc-border-radius--lg;
+      }
+    }
+    
+    &.crosstable {
+      grid-area: crosstable;
+      @include dark-bg;
+
+      @include respond-to('lt-sm') {
+        margin: 0 $lcc-space--sm;
+        border-radius: $lcc-border-radius--lg;
+      }
     }
 
-    p > b {
-      color: darken($lcc-color--text-primary-black, 5%);
+    figcaption {
+      white-space: nowrap;
+    }
+
+    p {
+      padding: $lcc-space--sm;
+
+      & > b {
+        color: lighten($lcc-color--text-primary-black, 20%);
+      }
     }
   }
+}
 
-  @include respond-to('lt-md') {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      'grid-item-1'
-      'grid-item-2'
-      'grid-item-4'
-      'grid-item-3'
-      'grid-item-5'
-      'grid-item-6'
-      'grid-item-7';   
-  }
+hr {
+  width: 100%;
+  border-top: 1px solid lighten($lcc-color--gray, 30%);
+  padding-top: $lcc-space--sm;
+  margin-top: $lcc-space--md;
 }

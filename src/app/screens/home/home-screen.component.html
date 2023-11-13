@@ -1,26 +1,28 @@
-<div class="lcc-canvas">
-	<section class="lcc-grid">
-		<article class="lcc-grid-item-1">
-			<lcc-about></lcc-about>
-		</article>
+<div class="container">
+	<section class="about">
+		<lcc-about></lcc-about>
+	</section>
 
-		<article class="lcc-grid-item-2">
+	<article class="schedule">
+		<section>
 			<h4>Coming up soon</h4>
 			<lcc-schedule [maxEvents]="5"
 										[includeDetails]="false">
 			</lcc-schedule>
-			<lcc-link-list [links]="[scheduleLink]"></lcc-link-list>
-		</article>
+		</section>
+		<lcc-link-list [links]="[scheduleLink]"></lcc-link-list>
+	</article>
 
-		<article class="lcc-grid-item-3">
-			<lcc-photo-grid [photos]="photos"></lcc-photo-grid>
-			<lcc-link-list [links]="[photoGalleryLink]"></lcc-link-list>
-		</article>
-
-		<article class="lcc-grid-item-4">
+	<article class="articles">
+		<section>
 			<h4>Announcements</h4>
 			<lcc-article-grid [maxArticles]="6"></lcc-article-grid>
-			<lcc-link-list [links]="[newsLink]"></lcc-link-list>
-		</article>
-	</section>
+		</section>
+		<lcc-link-list [links]="[newsLink]"></lcc-link-list>
+	</article>
+
+	<article class="photos">
+		<lcc-photo-grid [photos]="photos"></lcc-photo-grid>
+		<lcc-link-list [links]="[photoGalleryLink]"></lcc-link-list>
+	</article>
 </div>

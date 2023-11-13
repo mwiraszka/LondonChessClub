@@ -1,18 +1,16 @@
-@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
-:host {
+.container {
   display: flex;
-  justify-content: center;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: $lcc-space--sm;
+  margin: auto;
+  max-width: $lcc-width--app-content;
 }
 
-lcc-photo-grid,
-lcc-link-list {
-  background-color: $lcc-color--bg-grid-item;
-  width: 90%;
-  padding: 12px;
-
-  @include respond-to('lt-md') {
-    width: 100%;
-  }
+hr {
+  width: 100%;
+  border-top: 1px solid lighten($lcc-color--gray, 30%);
+  margin-top: $lcc-space--md;
 }

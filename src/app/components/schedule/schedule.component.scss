@@ -5,84 +5,82 @@
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  min-width: 220px;
+  width: 100%;
 }
 
 table {
   width: 100%;
-  margin-bottom: 18px;
+  max-width: 1000px;
 
-  thead {
-    th {
-      &.date {
-        min-width: 75px;
-        max-width: 120px;
+  tbody {
+    tr {
+      .details-container {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: start;
+        gap: $lcc-space--sm;
+  
+        .title {
+          color: $lcc-color--text-primary-black;
+          line-height: normal;
+        }
+
+        .type {
+          border-radius: $lcc-border-radius--lg;
+          padding: $lcc-space--xs $lcc-space--sm;
+          width: auto;
+
+          &.blitz-tournament {
+            background: lighten(rgba(red, 0.3), 40%);
+            border: 1px solid rgba(red, 0.3);
+          }
+
+          &.rapid-tournament {
+            background: lighten(rgba(orange, 0.3), 40%);
+            border: 1px solid rgba(orange, 0.3);
+          }
+
+          &.classical-tournament {
+            background: lighten(rgba(gold, 0.3), 40%);
+            border: 1px solid rgba(gold, 0.3);
+          }
+
+          &.lecture {
+            background: lighten(rgba(brown, 0.3), 40%);
+            border: 1px solid rgba(brown, 0.3);
+          }
+
+          &.simul {
+            background: lighten(rgba(green, 0.3), 40%);
+            border: 1px solid rgba(green, 0.3);
+          }
+
+          &.casual {
+            background: lighten(rgba(blue, 0.3), 40%);
+            border: 1px solid rgba(blue, 0.3);
+          }
+        }
+
+        .details {
+          width: 100%;
+          color: $lcc-color--text-secondary;
+        }
+
+        .created-and-edited {
+          font-size: $h6 !important;
+          font-weight: 100;
+          color: lighten($lcc-color--text-secondary, 10%);
+          align-self: flex-end;
+          text-align: right;
+        }
       }
     }
   }
 
-  tbody {
-    tr {
-      td {
-        &.details-container {
-          display: flex;
-          flex-flow: column nowrap;
-          gap: 10px;
+  .date {
+    padding-right: unset;
     
-          .title {
-            color: $lcc-color--text-primary-black;
-          }
-
-          .type {
-            border-radius: $lcc-border-radius-lg;
-            padding: 2px 5px;
-
-            &.blitz-tournament {
-              background: lighten(rgba(red, 0.3), 40%);
-              border: 1px solid rgba(red, 0.3);
-            }
-
-            &.rapid-tournament {
-              background: lighten(rgba(orange, 0.3), 40%);
-              border: 1px solid rgba(orange, 0.3);
-            }
-
-            &.classical-tournament {
-              background: lighten(rgba(gold, 0.3), 40%);
-              border: 1px solid rgba(gold, 0.3);
-            }
-
-            &.lecture {
-              background: lighten(rgba(brown, 0.3), 40%);
-              border: 1px solid rgba(brown, 0.3);
-            }
-
-            &.simul {
-              background: lighten(rgba(green, 0.3), 40%);
-              border: 1px solid rgba(green, 0.3);
-            }
-
-            &.casual {
-              background: lighten(rgba(blue, 0.3), 40%);
-              border: 1px solid rgba(blue, 0.3);
-            }
-          }
-
-          .details {
-            width: 100%;
-            line-height: 1.5em;
-            padding-right: 12px;
-            color: $lcc-color--text-secondary;
-          }
-  
-          .created-and-edited {
-            font-size: $h6 !important;
-            font-weight: 100;
-            color: lighten($lcc-color--text-secondary, 10%);
-            text-align: right;
-          }
-        }
-      }
-    }
+    // Minimum width needed to fit longest month and day on a single line
+    width: 105px;
   }
 }

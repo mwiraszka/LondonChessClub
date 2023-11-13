@@ -6,6 +6,15 @@
 }
 
 .container {
-  width: $lcc-app-width-lg;
-  padding-top: unset;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: $lcc-space--sm;
+  width: 100%;
+  max-width: 1000px;
+}
+
+lcc-link-list {
+  margin-top: $lcc-space--md;
 }

@@ -1,11 +1,15 @@
 <ng-container *ngIf="preTitle">
-	<span class="lcc-secondary-text">{{ preTitle }}&nbsp;</span>
+	<span class="lcc-secondary-text pre-title">
+		{{ preTitle }}&nbsp;
+	</span>
 </ng-container>
 
 <span>{{ title }}</span>
 
 <ng-container *ngIf="postTitle">
-	<span class="lcc-secondary-text">&nbsp;{{ postTitle }}</span>
+	<span class="lcc-secondary-text post-title">
+		&nbsp;{{ postTitle }}
+	</span>
 </ng-container>
 
 <ng-container *ngIf="iconShape">

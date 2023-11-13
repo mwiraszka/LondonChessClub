@@ -4,7 +4,7 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  gap: 16px;
+  gap: $lcc-space--md;
 
   aside {
     font-style: italic;
@@ -14,5 +14,9 @@
     span {
       color: $lcc-color--warning;
     }
+  }
+
+  form {
+    max-width: 600px;
   }
 }

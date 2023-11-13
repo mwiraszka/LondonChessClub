@@ -2,12 +2,12 @@
 			class="lcc-form"
 			[formGroup]="form"
 			(ngSubmit)="onSubmit()">
-	<img class="lcc-banner-image"
+	<img class="banner-image"
 			 [src]="previewImageUrl ?? 'assets/image-placeholder.png' | sanitizeUrl"
 			 alt="Article banner image" />
 	<div class="lcc-form-fields">
 		<label for="image-file-input">Banner Image:</label>
-		<div class="lcc-image-controls-container">
+		<div class="image-controls-container">
 			<label for="image-file-input"
 						 class="lcc-button lcc-secondary-button">
 				Choose file

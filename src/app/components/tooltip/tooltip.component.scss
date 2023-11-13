@@ -1,21 +1,21 @@
 @import 'styles/abstracts/variables';
 
-$arrow-height: 4px;
-$arrow-semi-width: 6px;
+$arrow-height: 3px;
+$arrow-semi-width: 4px;
 
 .tooltip {
   position: fixed;
   color: white;
-  background-color: lighten($lcc-color--accent, 10%);
-  border-radius: $lcc-border-radius-lg;
-  padding: 4px 8px 3px;
-  margin-top: 8px;
+  background-color: $lcc-color--bg-tooltip;
+  border-radius: $lcc-border-radius--lg;
+  padding: $lcc-space--xs $lcc-space--sm;
+  margin-top: $lcc-space--sm;
   transform:translateX(-50%);
   animation: tooltip-slide 0.5s;
   pointer-events: none;
   font-size: $h5;
   z-index: 100;
-  line-height: normal;
+  line-height: 1.2em;
   text-align: center;
   max-width: 120px;
 
@@ -25,7 +25,7 @@ $arrow-semi-width: 6px;
     height: 0;
     border-left: $arrow-semi-width solid transparent;
     border-right: $arrow-semi-width solid transparent;
-    border-bottom: $arrow-height solid lighten($lcc-color--accent, 10%);
+    border-bottom: $arrow-height solid $lcc-color--bg-tooltip;
     position: absolute;
     left: calc(50% - #{$arrow-semi-width});
     top: -$arrow-height;

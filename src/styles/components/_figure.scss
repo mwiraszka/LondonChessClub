@@ -4,25 +4,25 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 2px;
-  margin: 12px 8px;
+  gap: $lcc-space--xxs;
+  margin: $lcc-space--sm;
   min-width: 100px;
-  border-radius: $lcc-border-radius-lg;
+  border-radius: $lcc-border-radius--lg;
 
   img {
-    border-top-left-radius: $lcc-border-radius-lg;
-    border-top-right-radius: $lcc-border-radius-lg;
+    border-top-left-radius: $lcc-border-radius--lg;
+    border-top-right-radius: $lcc-border-radius--lg;
     width: 100%;
   }
 
   figcaption {
     background-color: $lcc-color--bg-figure;
     color: darken($lcc-color--white, 10%);
-    border-bottom-left-radius: $lcc-border-radius-lg;
-    border-bottom-right-radius: $lcc-border-radius-lg;
+    border-bottom-left-radius: $lcc-border-radius--lg;
+    border-bottom-right-radius: $lcc-border-radius--lg;
     font-size: $h5;
-    padding: 6px 8px;
+    padding: $lcc-space--xs $lcc-space--sm;
     width: 100%;
-    line-height: normal;
+    line-height: 1.5em;
   }
 }

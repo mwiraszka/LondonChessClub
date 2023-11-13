@@ -4,22 +4,22 @@
   display: flex;
   justify-content: center;
   background-color: $lcc-color--primary;
-  padding: 2px $lcc-app-side-padding;
+  padding: $lcc-space--xxs $lcc-space--md;
 }
 
 .alert-message-container {
   flex: 1;
   display: flex;
-  gap: 4px;
+  gap: $lcc-space--xs;
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
-  max-width: $lcc-app-width-lg;
+  max-width: $lcc-width--app-content;
 }
 
 .alert-message {
   display: inline-block;
-  padding: 4px;
+  padding: $lcc-space--xs;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -29,7 +29,7 @@
   span {
     color: darken($lcc-color--white, 5%);
     font-weight: bold;
-    padding: 0 4px;
+    padding: 0 $lcc-space--xs;
   }
 }
 
@@ -40,8 +40,8 @@
 
   .alert-action-button {
     white-space: nowrap;
-    padding: 4px;
-    height: 22px;
+    padding: $lcc-space--xs;
+    height: $lcc-space--md;
     color: darken($lcc-color--white, 10%);
   }
 

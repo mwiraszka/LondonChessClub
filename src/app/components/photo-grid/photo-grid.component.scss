@@ -4,21 +4,13 @@
 :host {
   display: flex;
   flex-flow: row wrap;
-  justify-content: stretch;
-  align-items: stretch;
-  gap: 4px;
-
-  @include respond-to('lt-md') {
-    gap: unset;
-  }
+  justify-content: center;
+  align-items: center;
+  gap: $lcc-space--xs;
 
   img {
-    overflow: hidden;
-    flex: 1;
-    max-width: 320px;
-    min-width: 160px;
-    margin: 2px;
-    border-radius: $lcc-border-radius-lg;
+    width: 250px;
+    border-radius: $lcc-border-radius--sm;
     border: 1px solid $lcc-color--transparent-mostly;
     opacity: 0.85;
 

@@ -1,5 +1,5 @@
 .lcc-button {
-  border-radius: $lcc-border-radius-lg;
+  border-radius: $lcc-border-radius--lg;
   font-size: $h4;
   cursor: pointer;
   white-space: nowrap;
@@ -31,15 +31,15 @@
   }
 }
 
-.lcc-secondary-button {
-  @extend .lcc-raised-button;
-  background-color: $lcc-color--accent !important;
-  color: $lcc-color--white;
-}
-
 .lcc-primary-button {
   @extend .lcc-raised-button;
   background-color: $lcc-color--primary !important;
+  color: $lcc-color--white;
+}
+
+.lcc-secondary-button {
+  @extend .lcc-raised-button;
+  background-color: $lcc-color--secondary !important;
   color: $lcc-color--white;
 }
 

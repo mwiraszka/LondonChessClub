@@ -1,9 +1,10 @@
-<div class="lcc-canvas">
-	<lcc-screen-header [title]="'Photo Gallery'"
-										 [iconShape]="'image-gallery'">
+<div class="container">
+	<lcc-screen-header title="Photo Gallery"
+										 iconShape="image-gallery">
 	</lcc-screen-header>
 	<lcc-photo-grid [photos]="photos"></lcc-photo-grid>
-	<lcc-link-list [linkListTitle]="'Archives'"
+	<hr />
+	<lcc-link-list title="Archives"
 								 [links]="links">
 	</lcc-link-list>
 </div>

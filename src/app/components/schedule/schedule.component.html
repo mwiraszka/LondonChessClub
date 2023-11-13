@@ -6,7 +6,9 @@
 
 <table class="lcc-table">
 	<thead>
-		<th *ngIf="facade.isAdmin$ | async"></th>
+		<th *ngIf="facade.isAdmin$ | async"
+				class="lcc-table-admin-controls-filler">
+		</th>
 		<th class="date">Date</th>
 		<th class="event">Event</th>
 	</thead>
@@ -16,23 +18,18 @@
                   trackBy: trackByFn"
 				class="lcc-admin-controls-container"
 				[ngClass]="{'last-row': last}">
-			<ng-container *ngIf="facade.isAdmin$ | async">
-				<lcc-admin-controls [itemName]="event.title"
-														(edit)="facade.onEditEvent(event)"
-														(delete)="facade.onDeleteEvent(event)">
-				</lcc-admin-controls>
-			</ng-container>
-			<td class="date">
-				<p>{{ formatDate(event.eventDate) }}</p>
-			</td>
+			<lcc-admin-controls *ngIf="facade.isAdmin$ | async"
+													[itemName]="event.title"
+													(edit)="facade.onEditEvent(event)"
+													(delete)="facade.onDeleteEvent(event)">
+			</lcc-admin-controls>
+			<td class="date">{{ formatDate(event.eventDate, true) }}</td>
 			<td class="details-container">
-				<h5 class="title">
-					{{ event.title }}<br />
-					<span class="type"
-								[ngClass]="kebabize(event.type)">
-						{{ event.type }}
-					</span>
-				</h5>
+				<h5 class="title">{{ event.title }}</h5>
+				<span class="type"
+							[ngClass]="kebabize(event.type)">
+					{{ event.type }}
+				</span>
 				<p *ngIf="includeDetails"
 					 class="details">
 					{{ event.details }}

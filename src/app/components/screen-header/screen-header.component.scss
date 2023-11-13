@@ -2,13 +2,9 @@
 @import 'styles/abstracts/variables';
 
 :host {
-  border-radius: $lcc-border-radius-sm;
-  border-bottom-left-radius: 0;
-  border-bottom: 2px solid darken($lcc-color--bg-screen-header, 4%);
-  border-left: 2px solid darken($lcc-color--bg-screen-header, 4%);
+  border-radius: $lcc-border-radius--sm;
   box-shadow: 1px 1px 8px 1px $lcc-color--box-shadow;
-  padding: 8px 4px;
-  padding-bottom: -5px !important;
+  padding: $lcc-space--sm $lcc-space--xs;
 
   display: flex;
   flex-flow: row nowrap;
@@ -17,9 +13,21 @@
   width: 100%;
   height: unset; // Necessary due to Clarity
   word-spacing: 1px;
-  font-size: calc(#{$h3} - 1px);
+  font-size: $h3;
   background-color: $lcc-color--bg-screen-header;
   color: $lcc-color--text-primary-black;
+
+  @include respond-to('lt-sm') {
+    font-size: 80%;
+  }
+
+  .pre-title {
+    margin-right: $lcc-space--xs;
+  }
+
+  .post-title {
+    margin-left: $lcc-space--xs;
+  }
 
   .lcc-secondary-text {
     color: $lcc-color--text-secondary;
@@ -27,22 +35,13 @@
 
   cds-icon {
     color: $lcc-color--accent;
-    margin-left: 12px;
+    margin-left: $lcc-space--sm;
     margin-bottom: 2px; // Manually line up with text beside
     border: 3px solid $lcc-color--transparent-mostly;
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.1); 
     border-radius: 50%;
-    height: 28px;
-    width: 28px;
-    padding: 1px;
-  }
-
-  @include respond-to('lt-sm') {
-    font-size: 80%;
-
-    cds-icon {
-      height: 24px;
-      width: 24px;
-    }
+    height: $lcc-space--lg;
+    width: $lcc-space--lg;
+    padding: 1px; // Ensure icon does not get cut off in its container
   }
 }

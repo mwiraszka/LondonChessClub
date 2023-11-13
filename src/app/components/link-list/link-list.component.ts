@@ -1,4 +1,4 @@
-import { ClarityIcons, cameraIcon, plusCircleIcon } from '@cds/core/icon';
+import { ClarityIcons, cameraIcon, plusIcon } from '@cds/core/icon';
 
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -10,11 +10,11 @@ import { Link } from '@app/types';
   styleUrls: ['./link-list.component.scss'],
 })
 export class LinkListComponent implements OnInit {
-  @Input() linkListTitle?: string;
+  @Input() title?: string;
   @Input() links?: Link[];
 
   ngOnInit(): void {
-    ClarityIcons.addIcons(cameraIcon, plusCircleIcon);
+    ClarityIcons.addIcons(cameraIcon, plusIcon);
   }
 
   trackByFn = (index: number, link: Link) => link.path;

@@ -1,8 +1,19 @@
+@import 'styles/abstracts/variables';
+
 :host {
   display: flex;
   justify-content: center;
+  align-items: center;  
 }
 
 .container {
-  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: $lcc-space--sm;
+  width: 100%;
+  max-width: $lcc-width--app-content;
+}
+
+lcc-members-table {
+  padding: 0 $lcc-space--sm;
 }

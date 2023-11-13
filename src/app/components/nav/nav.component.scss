@@ -8,8 +8,8 @@ $dropdown-list-width: 120px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  padding-top: 1px; // Minimal spacing for selected tab
   background-color: $lcc-color--bg-nav;
-  margin-top: 2px;
 }
 
 .nav-left,
@@ -21,26 +21,22 @@ $dropdown-list-width: 120px;
 
 .nav-left,
 .nav-right {
-  min-width: $lcc-app-side-padding;
+  min-width: $lcc-space--md;
 }
 
 .nav-items-container {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  max-width: $lcc-app-width-xl;
-  min-width: 290px;
   width: 100%;
-
-  @include respond-to('lt-xl') {
-    max-width: $lcc-app-width-lg;
-  }
+  max-width: $lcc-width--app-content;
+  min-width: 290px; // To ensure login link never overlaps with other links 
   
   a,
   .user-account-dropdown .dropdown-tab {
     border-top: 2px solid $lcc-color--transparent-fully;
-    border-top-left-radius: $lcc-border-radius-lg;
-    border-top-right-radius: $lcc-border-radius-lg;
+    border-top-left-radius: $lcc-border-radius--lg;
+    border-top-right-radius: $lcc-border-radius--lg;
   }
 
   a {
@@ -50,7 +46,7 @@ $dropdown-list-width: 120px;
     font-weight: 400;
     height: auto;
     color: $lcc-color--text-primary-black;
-    padding: 5px 8px;
+    padding: $lcc-space--xs $lcc-space--sm;
 
     @include respond-to('lt-sm') {
       padding: 5px;
@@ -95,7 +91,7 @@ $dropdown-list-width: 120px;
       width: $dropdown-tab-width;
       height: 100%;
       border-bottom: 2px solid $lcc-color--transparent-fully;
-      padding: 4px 8px;
+      padding: $lcc-space--xs $lcc-space--sm;
       font-size: $h5;
       color: $lcc-color--text-primary-black;
 
@@ -129,7 +125,7 @@ $dropdown-list-width: 120px;
       text-align: center;
       width: $dropdown-list-width;
       border-top: 2px solid darken($lcc-color--bg-main, 10%);
-      margin-top: 2px;
+      margin-top: $lcc-space--xs;
       font-size: $h5;
       background-color: darken($lcc-color--bg-main, 5%);
 
@@ -141,7 +137,7 @@ $dropdown-list-width: 120px;
   
       li {
         color: $lcc-color--text-primary-white;
-        padding: 6px;
+        padding: $lcc-space--sm;
         margin: 1px 0;
 
         &.login-welcome {
@@ -149,12 +145,12 @@ $dropdown-list-width: 120px;
           flex-flow: column nowrap;
           justify-content: center;
           align-items: center;
-          gap: 4px;
+          gap: $lcc-space--xs;
           background-color: darken($lcc-color--white, 10%);
   
           small {
             white-space: nowrap;
-            color: darken($lcc-color--text-primary-black, 10%);
+            color: darken($lcc-color--text-primary-black, 10%); 
           }
   
           .admin-text {
@@ -163,10 +159,10 @@ $dropdown-list-width: 120px;
             flex-flow: row nowrap;
             justify-content: center;
             align-items: center;
-            gap: 2px;
+            gap: $lcc-space--xxs;
             border: 1px solid darken($lcc-color--white, 15%);
-            border-radius: $lcc-border-radius-lg;
-            padding: 1px 8px;
+            border-radius: $lcc-border-radius--lg;
+            padding: $lcc-space--xxs $lcc-space--sm;
           }
         };
 
@@ -180,8 +176,8 @@ $dropdown-list-width: 120px;
         }
 
         &.last-item {
-          border-bottom-left-radius: $lcc-border-radius-lg;
-          border-bottom-right-radius: $lcc-border-radius-lg;
+          border-bottom-left-radius: $lcc-border-radius--lg;
+          border-bottom-right-radius: $lcc-border-radius--lg;
         }
       }
     }

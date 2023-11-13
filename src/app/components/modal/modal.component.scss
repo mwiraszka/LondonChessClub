@@ -1,12 +1,44 @@
+@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
 .overlay-content {
-  margin: 8px;
-  max-width: 400px;
-  box-shadow: unset;
-  padding: 16px 24px;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 95%;
+  background-color: $lcc-color--bg-canvas;
+  border-radius: $lcc-border-radius--sm;
+  box-shadow: $lcc-box-shadow;
 
-  button {
-    margin: 0 3px;
+  @include respond-to('gt-sm') {
+    width: 450px;
+  }
+
+  .close-icon {
+    align-self: flex-end;
+    margin: $lcc-space--sm;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.modal-content {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: $lcc-space--md;
+  padding: 0 $lcc-space--lg $lcc-space--lg;
+
+  .text-container {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: $lcc-space--sm;
+  }
+
+  .action-buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    gap: $lcc-space--sm;
   }
 }

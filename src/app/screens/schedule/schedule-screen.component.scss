@@ -1,4 +1,3 @@
-@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
 :host {
@@ -7,10 +6,14 @@
   align-items: center;  
 }
 
-lcc-schedule {
-  width: 85%;
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: $lcc-space--sm;
+  width: 100%;
+  max-width: $lcc-width--app-content;
+}
 
-  @include respond-to('lt-md') {
-    width: 95% !important;
-  }
+lcc-schedule {
+  padding: 0 $lcc-space--sm;
 }

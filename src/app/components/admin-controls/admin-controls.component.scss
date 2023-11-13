@@ -15,7 +15,7 @@ $icon-width: 30px;
     background-color: $lcc-color--white;
     padding: 4px; // 4px perfectly matches a table row's height 
     border: 3px solid darken($lcc-color--white, 5%);
-    border-radius: $lcc-border-radius-lg;
+    border-radius: $lcc-border-radius--lg;
     display: flex;
     align-items: center;
     justify-content: center;

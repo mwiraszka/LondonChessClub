@@ -33,7 +33,7 @@ export class PhotoGalleryScreenComponent {
   links: Link[] = [
     {
       path: 'https://www.flickr.com/photos/184509003@N07/',
-      text: '2019 onwards',
+      text: '2017 onwards',
       iconShape: 'camera',
     },
     {
@@ -53,12 +53,12 @@ export class PhotoGalleryScreenComponent {
     },
     {
       path: 'http://londonchessclub.ca/?page_id=1343',
-      text: '2011',
+      text: '2011 - 2014',
       iconShape: 'camera',
     },
     {
       path: 'http://londonchessclub.ca/?page_id=926',
-      text: '2009',
+      text: '2009 - 2010',
       iconShape: 'camera',
     },
     {

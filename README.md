@@ -35,6 +35,23 @@ http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/
 ### Releases:
 
 <details>
+<summary style="cursor: pointer">v1.4.0-beta</summary>
+
+**Released on November 13th, 2023**
+
+<h4>Features</h4>
+
+- [Core] Overhaul layout upgrades on all screens
+
+<h4>Refactor / Chores</h4>
+
+- [Core] Implement power-of-2 't-shirt size' naming conventions for spacing style rules, including paddings, margins and flex gaps
+- [Core] Update some copy
+- [Core] Remove unnecessary/ unused style sheet partials
+
+</details>
+
+<details>
 <summary style="cursor: pointer">v1.3.3-beta</summary>
 
 **Released on November 5th, 2023**

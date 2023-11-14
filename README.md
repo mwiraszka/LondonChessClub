@@ -35,6 +35,19 @@ http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/
 ### Releases:
 
 <details>
+<summary style="cursor: pointer">v1.4.1-beta</summary>
+
+**Released on November TBD, 2023**
+
+<h4>Features</h4>
+- [About Screen] Add tables for executive committee and board of directors
+
+<h4>Fixes</h4>
+- [Champion Screen] Fix some small layout bugs
+
+</details>
+
+<details>
 <summary style="cursor: pointer">v1.4.0-beta</summary>
 
 **Released on November 13th, 2023**

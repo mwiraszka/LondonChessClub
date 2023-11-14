@@ -10,6 +10,7 @@ $dropdown-list-width: 120px;
   justify-content: center;
   padding-top: 1px; // Minimal spacing for selected tab
   background-color: $lcc-color--bg-nav;
+  overflow: hidden;
 }
 
 .nav-left,

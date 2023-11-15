@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, filter, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
@@ -9,6 +10,7 @@ import { AuthService } from '@app/services';
 import { SignUpResponse, User } from '@app/types';
 
 import * as AuthActions from './auth.actions';
+import * as AuthSelectors from './auth.selectors';
 
 @Injectable()
 export class AuthEffects {
@@ -119,7 +121,10 @@ export class AuthEffects {
           map(response => {
             return response?.error
               ? AuthActions.passwordChangeFailed({ error: response.error })
-              : AuthActions.passwordChangeSucceeded();
+              : AuthActions.passwordChangeSucceeded({
+                  email: response!.email!,
+                  newPassword: response!.newPassword!,
+                });
           }),
           catchError(() =>
             of(
@@ -133,5 +138,25 @@ export class AuthEffects {
     );
   });
 
-  constructor(private actions$: Actions, private authService: AuthService) {}
+  loginAfterSuccessfulPasswordChange$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.passwordChangeSucceeded),
+      concatLatestFrom(() => this.store.select(AuthSelectors.session)),
+      filter(([, session]) => !session),
+      map(([response]) =>
+        AuthActions.loginRequested({
+          request: {
+            email: response.email,
+            password: response.newPassword,
+          },
+        }),
+      ),
+    );
+  });
+
+  constructor(
+    private actions$: Actions,
+    private store: Store,
+    private authService: AuthService,
+  ) {}
 }

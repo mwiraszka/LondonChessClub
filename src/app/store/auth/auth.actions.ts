@@ -77,6 +77,7 @@ export const passwordChangeRequested = createAction(
 );
 export const passwordChangeSucceeded = createAction(
   AuthActionTypes.PASSWORD_CHANGE_SUCCEEDED,
+  props<{ email: string; newPassword: string }>(),
 );
 export const passwordChangeFailed = createAction(
   AuthActionTypes.PASSWORD_CHANGE_FAILED,

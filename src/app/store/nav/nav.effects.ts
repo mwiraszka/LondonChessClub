@@ -22,6 +22,7 @@ export class NavEffects {
           MembersActions.addMemberSucceeded,
           MembersActions.updateMemberSucceeded,
           AuthActions.loginSucceeded,
+          AuthActions.passwordChangeSucceeded,
         ),
         tap(() => this.router.navigate([NavPathTypes.HOME])),
       ),
@@ -171,11 +172,7 @@ export class NavEffects {
   navigateToLogin$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(
-          NavActions.loginNavigationRequested,
-          AuthActions.logoutSucceeded,
-          AuthActions.passwordChangeSucceeded,
-        ),
+        ofType(NavActions.loginNavigationRequested, AuthActions.logoutSucceeded),
         tap(() => this.router.navigate([NavPathTypes.LOGIN])),
       ),
     { dispatch: false },

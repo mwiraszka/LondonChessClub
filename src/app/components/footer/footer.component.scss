@@ -14,12 +14,11 @@ small {
 }
 
 address {
+  text-decoration: none;
+
   span {
     display: inline;
-    margin-right: $lcc-space--xxs;
     font-style: normal;
     font-size: $h5;
   }
-
-  text-decoration: none;
 }

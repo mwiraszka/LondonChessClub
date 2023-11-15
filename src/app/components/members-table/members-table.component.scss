@@ -1,8 +1,6 @@
 @import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
-$caret-icon-width: 11px;
-
 :host {
   display: flex;
   flex-flow: column nowrap;
@@ -10,41 +8,171 @@ $caret-icon-width: 11px;
   gap: $lcc-space--md;
 }
 
-lcc-link-list,
 table {
+  table-layout: fixed;
   width: 100%;
-}
 
-thead {
-  th {
-    &:hover:not(.row-number) {
-      cursor: pointer;
-      background-color: lighten($lcc-color--primary, 5%);
-    }
-
-    .icon-container {
-      display: inline-flex;
-      width: $caret-icon-width;
-
-      cds-icon {
-        margin-left: $lcc-space--xxs;
+  thead {
+    th {
+      &:hover:not(.row-number) {
+        cursor: pointer;
+        background-color: lighten($lcc-color--primary, 5%);
+      }
+  
+      .icon-container {
+        display: inline-flex;
+        width: 11px; // caret icon width
+  
+        cds-icon {
+          margin-left: $lcc-space--xxs;
+        }
       }
     }
   }
+  
+  tbody {
+    tr {
+      &.inactive {
+        :not(.row-number) {
+          color: darken($lcc-color--text-secondary, 5%);
+          font-style: italic;
+        }
+  
+        .first-name::before {
+          content: '* ';
+          color: $lcc-color--text-secondary;
+        }
+      }
+    }
+  }
+
+  td,
+  th {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  // All widths below hard-coded based on minimum width needed to display full header
+  // text along with caret icon, a sensible minimum for the content of each column, and
+  // to prevent any excessive empty space between columns 
+  .row-number {
+    text-align: right;
+    padding: $lcc-space--sm !important;
+    width: 40px;
+  }
+
+  .first-name {
+    width: 50%;
+
+    @include respond-to('gt-lg') {
+      width: 13.5%;
+    }
+  }
+  
+  .last-name {
+    width: 50%;
+
+    @include respond-to('gt-lg') {
+      width: 13.5%;
+    }
+  }
+  
+  .rating {
+    width: 80px;
+  }
+  
+  .peak-rating {
+    display: none;
+
+    @include respond-to('gt-sm') {
+      display: table-cell;
+      width: 110px;
+    }
+  }
+  
+  .city {
+    display: none;
+
+    @include respond-to('gt-md') {
+      display: table-cell;
+      width: 140px;
+    }
+
+    @include respond-to('gt-lg') {
+      width: 16%;
+    }
+  }
+  
+  .born {
+    display: none;
+
+    @include respond-to('gt-md') {
+      display: table-cell;
+      width: 70px;
+    }
+  }
+  
+  .chesscom-username {
+    display: none;
+
+    @include respond-to('gt-lg') {
+      display: table-cell;
+      width: 22%;
+    }
+  }
+
+  .lichess-username {
+    display: none;
+
+    @include respond-to('gt-lg') {
+      display: table-cell;
+      width: 19%;
+    }
+  }
+
+  .email,
+  .phone-number,
+  .date-joined {
+    display: none;
+  }
 }
 
-tbody {
-  tr {
-    &.inactive {
-      :not(.row-number) {
-        color: darken($lcc-color--text-secondary, 5%);
-        font-style: italic;
-      }
+// Adjustments to some column widths to accomodate for admin-only columns
+@include respond-to('gt-xl') {
+  .lcc-show-admin-columns {
+    .first-name {
+      width: 8%;
+    }
 
-      .first-name::before {
-        content: '* ';
-        color: $lcc-color--text-secondary;
-      }
+    .last-name {
+      width: 8%;
+    }
+
+    .city {
+      width: 8%;
+    }
+
+    .chesscom-username {
+      width: 13.5%;
+    }
+  
+    .lichess-username {
+      width: 12%;
+    }
+
+    .email {
+      display: table-cell;
+      width: 15%;
+    }
+    
+    .phone-number {
+      display: table-cell;
+      width: 10%;
+    }
+  
+    .date-joined {
+      display: table-cell;
+      width: 9%;
     }
   }
 }
@@ -77,34 +205,5 @@ aside {
       margin-right: $lcc-space--xs;
       font-weight: bold;
     }
-  }
-}
-
-@include respond-to('lt-xl') {
-  .chesscom-username,
-  .lichess-username,
-  .date-joined {
-    display: none;
-  }
-}
-
-@include respond-to('lt-lg') {
-  .email,
-  .phone-number {
-    display: none;
-  }
-}
-
-@include respond-to('lt-md') {
-  .born,
-  .year-of-birth,
-  .city {
-    display: none;
-  }
-}
-
-@include respond-to('lt-sm') {
-  .peak-rating {
-    display: none;
   }
 }

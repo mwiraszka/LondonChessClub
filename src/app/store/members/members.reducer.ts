@@ -40,7 +40,7 @@ const membersReducer = createReducer(
     ...state,
     members: [...state.members].sort(
       customSort(
-        action.header,
+        action.header === 'born' ? 'yearOfBirth' : action.header,
         action.header === state.sortedBy ? !state.isAscending : false,
       ),
     ),

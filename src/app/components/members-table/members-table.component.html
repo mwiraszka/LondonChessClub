@@ -4,7 +4,8 @@
 	</lcc-link-list>
 </ng-container>
 
-<table class="lcc-table">
+<table class="lcc-table"
+			 [class.lcc-show-admin-columns]="facade.isAdmin$ | async">
 	<thead>
 		<tr>
 			<th *ngIf="facade.isAdmin$ | async"
@@ -45,7 +46,7 @@
 			<td class="rating">{{ member.rating }}</td>
 			<td class="peak-rating">{{ member.peakRating }}</td>
 			<td class="city">{{ member.city }}</td>
-			<td class="year-of-birth">{{ member?.yearOfBirth }}</td>
+			<td class="born">{{ member?.yearOfBirth }}</td>
 			<td class="chesscom-username">{{ member?.chesscomUsername }}</td>
 			<td class="lichess-username">{{ member?.lichessUsername }}</td>
 			<ng-container *ngIf="facade.isAdmin$ | async">

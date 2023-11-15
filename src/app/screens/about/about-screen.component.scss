@@ -49,7 +49,6 @@ article {
   place-self: stretch;
   display: flex;
   flex-flow: column nowrap;
-  align-items: center;
   gap: $lcc-space--sm;
   border-radius: $lcc-border-radius--sm;
   background-color: lighten($lcc-color--bg-grid-item, 2%);
@@ -60,16 +59,6 @@ article {
     padding: unset;
     display: flex;
     flex-flow: row wrap;
-
-    // Adjust divider line colour for the
-    // background colour used in this screen
-    ::ng-deep {
-      lcc-about {
-        hr {
-          border-color: lighten($lcc-color--gray, 25%);
-        }
-      }
-    }
   }
   
   &.membership {
@@ -101,31 +90,27 @@ article {
   
   &.leadership {
     grid-area: leadership;
-  
+
     @include respond-to('lt-md') {
       @include dark-bg;
     }
 
-    .leadership-roles {
-      columns: 1;
-      -webkit-columns: 1;
-      -moz-columns: 1;
-  
-      @include respond-to('gt-sm') {
-        columns: 2;
-        -webkit-columns: 2;
-        -moz-columns: 2;
-      }
-  
-      li {
-        font-size: $h4;
-        padding: 3px;
+    .tables-container {
+      display: flex;
+      flex-flow: column wrap;
+      gap: $lcc-space--md;
+      margin: $lcc-space--md 0;
+
+      table {
+        td {
+          width: 50%;
+        }
       }
     }
   }
 
   h3 {
     font-weight: 400;
-    color: $lcc-color--text-secondary;
+    color: $lcc-color--primary;
   }
 }

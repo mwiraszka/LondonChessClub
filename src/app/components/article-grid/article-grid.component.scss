@@ -28,12 +28,12 @@ lcc-link-list,
     width: 282px;
     height: 400px;
     padding: $lcc-space--sm;
-    background-color: $lcc-color--primary;
+    background-color: darken($lcc-color--primary, 20%);
     border-radius: $lcc-border-radius--lg;
 
     &:hover {
       cursor: pointer;
-      background-color: lighten($lcc-color--primary, 5%);
+      background-color: darken($lcc-color--primary, 12%);
     }
 
     .article-thumbnail-image {

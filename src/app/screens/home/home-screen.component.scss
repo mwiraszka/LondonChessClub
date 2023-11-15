@@ -18,7 +18,7 @@
   }
 
   article {
-    background-color: $lcc-color--bg-grid-item;
+    background-color: lighten($lcc-color--bg-grid-item, 4%);
     padding: $lcc-space--sm $lcc-space--md;
     display: flex;
     flex-flow: column nowrap;

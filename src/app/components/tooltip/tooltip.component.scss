@@ -10,7 +10,7 @@ $arrow-semi-width: 4px;
   border-radius: $lcc-border-radius--lg;
   padding: $lcc-space--xs $lcc-space--sm;
   margin-top: $lcc-space--sm;
-  transform:translateX(-50%);
+  transform: translateX(-50%);
   animation: tooltip-slide 0.5s;
   pointer-events: none;
   font-size: $h5;

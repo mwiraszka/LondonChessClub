@@ -1,6 +1,6 @@
 <div *ngIf="tooltip"
 		 class="tooltip lcc-truncate-max-2-lines"
-		 [style.left]="left + 'px'"
-		 [style.top]="top + 'px'">
+		 [style.left.px]="left"
+		 [style.top.px]="top">
 	{{ tooltip | truncateByChars:80 }}
 </div>

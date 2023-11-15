@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { UnsavedArticleGuard, UnsavedEventGuard, UnsavedMemberGuard } from '@app/guards';
 import { AboutScreenComponent } from '@app/screens/about';
-import { ArticleViewerScreenComponent } from '@app/screens/article-viewer';
 import { ArticleEditorScreenComponent } from '@app/screens/article-editor';
+import { ArticleViewerScreenComponent } from '@app/screens/article-viewer';
 import { ChampionScreenComponent } from '@app/screens/champion';
 import { ChangePasswordScreenComponent } from '@app/screens/change-password';
 import { EventEditorScreenComponent } from '@app/screens/event-editor';

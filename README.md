@@ -41,9 +41,11 @@ http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/
 
 <h4>Features</h4>
 - [About Screen] Add tables for executive committee and board of directors
+- [Members Screen] Fix table column widths for all breakpoints to prevent layout shifts when sorting and awkward gaps between columns
 
 <h4>Fixes</h4>
 - [Champion Screen] Fix some small layout bugs
+- [Nav] Fix bug preventing user menu to open
 
 </details>
 

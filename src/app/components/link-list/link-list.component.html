@@ -4,7 +4,7 @@
 	<li *ngFor="let link of links; trackBy: trackByFn">
 		<a alt="link.text"
 			 class="lcc-link"
-			 [routerLink]="link.path">
+			 [routerLink]="'/' + link.path">
 			<cds-icon *ngIf="link.iconShape"
 								[attr.shape]="link.iconShape"
 								size="md">

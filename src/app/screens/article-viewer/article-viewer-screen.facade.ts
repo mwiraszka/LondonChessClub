@@ -14,10 +14,6 @@ export class ArticleViewerScreenFacade {
 
   constructor(private readonly store: Store) {}
 
-  onCreate(): void {
-    this.store.dispatch(ArticlesActions.createArticleSelected());
-  }
-
   onEdit(article: Article): void {
     this.store.dispatch(ArticlesActions.editArticleSelected({ articleToEdit: article }));
   }

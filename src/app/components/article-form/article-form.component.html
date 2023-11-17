@@ -71,7 +71,7 @@
 		</button>
 		<button class="lcc-primary-button"
 						type="submit"
-						[disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
+						[disabled]="form.invalid || !previewImageUrl || !(facade.hasUnsavedChanges$ | async)">
 			<ng-container *ngIf="facade.isEditMode$ | async; else createModeButton">
 				Update article
 			</ng-container>

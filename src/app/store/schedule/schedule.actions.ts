@@ -7,7 +7,6 @@ enum ScheduleActionTypes {
   LOAD_EVENTS_SUCCEEDED = '[Schedule] Load events succeeded',
   LOAD_EVENTS_FAILED = '[Schedule] Load events failed',
 
-  CREATE_EVENT_SELECTED = '[Schedule] Create event selected',
   EDIT_EVENT_SELECTED = '[Schedule] Edit event selected',
 
   DELETE_EVENT_SELECTED = '[Schedule] Delete event selected',
@@ -15,10 +14,6 @@ enum ScheduleActionTypes {
   DELETE_EVENT_CANCELLED = '[Schedule] Delete event cancelled',
   DELETE_EVENT_SUCCEEDED = '[Schedule] Delete event succeeded',
   DELETE_EVENT_FAILED = '[Schedule] Delete event failed',
-
-  EVENT_TO_EDIT_RECEIVED = '[Schedule] Event to edit received',
-  GET_EVENT_TO_EDIT_SUCCEEDED = '[Schedule] Get event to edit succeeded',
-  RESET_EVENT_FORM = '[Schedule] Reset event form',
 
   ADD_EVENT_SELECTED = '[Schedule] Add event selected',
   ADD_EVENT_CONFIRMED = '[Schedule] Add event confirmed',
@@ -36,6 +31,7 @@ enum ScheduleActionTypes {
   CANCEL_CONFIRMED = '[Schedule] Cancel confirmed',
 
   FORM_DATA_CHANGED = '[Schedule] Form data changed',
+  RESET_EVENT_FORM = '[Schedule] Reset event form',
 }
 
 export const loadEventsStarted = createAction(ScheduleActionTypes.LOAD_EVENTS_STARTED);
@@ -48,9 +44,6 @@ export const loadEventsFailed = createAction(
   props<{ error: Error }>(),
 );
 
-export const createEventSelected = createAction(
-  ScheduleActionTypes.CREATE_EVENT_SELECTED,
-);
 export const editEventSelected = createAction(
   ScheduleActionTypes.EDIT_EVENT_SELECTED,
   props<{ eventToEdit: ClubEvent }>(),
@@ -74,12 +67,6 @@ export const deleteEventFailed = createAction(
   ScheduleActionTypes.DELETE_EVENT_FAILED,
   props<{ error: Error }>(),
 );
-
-export const getEventToEditSucceeded = createAction(
-  ScheduleActionTypes.GET_EVENT_TO_EDIT_SUCCEEDED,
-  props<{ eventToEdit: ClubEvent }>(),
-);
-export const resetEventForm = createAction(ScheduleActionTypes.RESET_EVENT_FORM);
 
 export const addEventSelected = createAction(
   ScheduleActionTypes.ADD_EVENT_SELECTED,
@@ -122,3 +109,4 @@ export const formDataChanged = createAction(
   ScheduleActionTypes.FORM_DATA_CHANGED,
   props<{ event: ClubEvent }>(),
 );
+export const resetEventForm = createAction(ScheduleActionTypes.RESET_EVENT_FORM);

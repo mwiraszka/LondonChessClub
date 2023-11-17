@@ -20,7 +20,7 @@ export interface ClubEvent {
 export const newClubEventFormTemplate: ClubEvent = {
   id: undefined,
   dateCreated: new Date().toLocaleDateString(),
-  dateEdited: '',
+  dateEdited: new Date().toLocaleDateString(),
   eventDate: '',
   title: '',
   details: '',

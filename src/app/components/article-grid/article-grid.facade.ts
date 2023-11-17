@@ -22,10 +22,6 @@ export class ArticleGridFacade {
     this.store.dispatch(ArticlesActions.articleSelected({ article }));
   }
 
-  onCreateArticle(): void {
-    this.store.dispatch(ArticlesActions.createArticleSelected());
-  }
-
   onEditArticle(article: Article): void {
     this.store.dispatch(ArticlesActions.editArticleSelected({ articleToEdit: article }));
   }

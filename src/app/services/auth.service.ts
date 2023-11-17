@@ -172,7 +172,7 @@ export class AuthService {
     return new Observable<PasswordChangeResponse | null>(observer => {
       this.userByEmail(request.email).confirmPassword(request.code, request.newPassword, {
         onSuccess() {
-          observer.next(null);
+          observer.next({ email: request.email, newPassword: request.newPassword });
           observer.complete();
         },
         onFailure(err) {

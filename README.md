@@ -35,9 +35,24 @@ http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/
 ### Releases:
 
 <details>
+<summary style="cursor: pointer">v1.4.2-beta</summary>
+
+**Released on November 16th, 2023**
+
+<h4>Features</h4>
+- [Change Password] Automatically log in after a successful password change, redirect user to home page, and hide sensitive information from Redux Devtools
+- [Core] Improve how images are displayed on small devices
+
+<h4>Fixes</h4>
+- [Core] Fix bug preventing user from accessing add member, add article and add event screens
+- [Articles] Fix bug causing 'Last edited: Invalid Date' to be displayed after creating a new article
+
+</details>
+
+<details>
 <summary style="cursor: pointer">v1.4.1-beta</summary>
 
-**Released on November TBD, 2023**
+**Released on November 15th, 2023**
 
 <h4>Features</h4>
 - [About Screen] Add tables for executive committee and board of directors

@@ -6,6 +6,7 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  gap: $lcc-space--sm;
   width: 100%;
 }
 
@@ -28,12 +29,15 @@ lcc-link-list,
     width: 282px;
     height: 400px;
     padding: $lcc-space--sm;
-    background-color: darken($lcc-color--primary, 20%);
+    background: repeating-conic-gradient(
+        darken($lcc-color--primary, 2%) 0% 25%,
+        darken($lcc-color--primary, 10%) 0% 50%
+      ) 50% / 5px 5px;
     border-radius: $lcc-border-radius--lg;
 
     &:hover {
       cursor: pointer;
-      background-color: darken($lcc-color--primary, 12%);
+      background: darken($lcc-color--primary, 12%);
     }
 
     .article-thumbnail-image {
@@ -53,7 +57,9 @@ lcc-link-list,
       h3 {
         text-align: center;
         height: 2.8em;
-        color: darken($lcc-color--text-primary-white, 5%);
+        letter-spacing: 1px;
+        font-weight: 400;
+        color: darken($lcc-color--text-primary-white, 4%);
       }
 
       hr {

@@ -6,9 +6,9 @@
   justify-content: center;
   width: 100%;
   background: repeating-conic-gradient(
-    darken($lcc-color--primary, 5%) 0% 25%,
-    $lcc-color--transparent-mostly 0% 50%
-  ) 50% / 3px 3px;
+      darken($lcc-color--primary, 5%) 0% 25%,
+      $lcc-color--transparent-mostly 0% 50%
+    ) 50% / 5px 5px;
 }
 
 .app-header-container {
@@ -20,6 +20,8 @@
   @include respond-to('gt-xs') {
     justify-content: flex-start;
     width: $lcc-width--app-content;
+
+    // Account for the border thickness in Nav below
     padding: $lcc-space--md calc($lcc-space--md + 2px);
   }
 

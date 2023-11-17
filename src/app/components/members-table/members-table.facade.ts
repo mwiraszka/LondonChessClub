@@ -29,10 +29,6 @@ export class MembersTableFacade {
     this.store.dispatch(MembersActions.loadMembersStarted());
   }
 
-  onAddMember(): void {
-    this.store.dispatch(MembersActions.createMemberSelected());
-  }
-
   onEditMember(memberToEdit: Member): void {
     this.store.dispatch(MembersActions.editMemberSelected({ memberToEdit }));
   }

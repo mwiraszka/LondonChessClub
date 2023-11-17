@@ -22,6 +22,7 @@ export class NavEffects {
           MembersActions.addMemberSucceeded,
           MembersActions.updateMemberSucceeded,
           AuthActions.loginSucceeded,
+          AuthActions.passwordChangeSucceeded,
         ),
         tap(() => this.router.navigate([NavPathTypes.HOME])),
       ),
@@ -38,15 +39,6 @@ export class NavEffects {
           MembersActions.updateMemberSucceeded,
         ),
         tap(() => this.router.navigate([NavPathTypes.MEMBERS])),
-      ),
-    { dispatch: false },
-  );
-
-  navigateToMemberAdd$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(MembersActions.createMemberSelected),
-        tap(() => this.router.navigate([NavPathTypes.MEMBER_ADD])),
       ),
     { dispatch: false },
   );
@@ -76,15 +68,6 @@ export class NavEffects {
     { dispatch: false },
   );
 
-  navigateToEventAdd$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(ScheduleActions.createEventSelected),
-        tap(() => this.router.navigate([NavPathTypes.EVENT_ADD])),
-      ),
-    { dispatch: false },
-  );
-
   navigateToEventEdit$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -96,6 +79,8 @@ export class NavEffects {
     { dispatch: false },
   );
 
+  // TODO: check activated route when deleteArticleSucceeded action dispatched
+  // and only navigate to News screen if coming from the Article Viewer screen
   navigateToNews$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -104,6 +89,7 @@ export class NavEffects {
           ArticlesActions.cancelSelected,
           ArticlesActions.publishArticleSucceeded,
           ArticlesActions.updateArticleSucceeded,
+          ArticlesActions.deleteArticleSucceeded,
         ),
         tap(() => this.router.navigate([NavPathTypes.NEWS])),
       ),
@@ -117,15 +103,6 @@ export class NavEffects {
         tap(({ article }) =>
           this.router.navigate([NavPathTypes.ARTICLE_VIEW, article.id]),
         ),
-      ),
-    { dispatch: false },
-  );
-
-  navigateToArticleAdd$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(ArticlesActions.createArticleSelected),
-        tap(() => this.router.navigate([NavPathTypes.ARTICLE_ADD])),
       ),
     { dispatch: false },
   );
@@ -171,11 +148,7 @@ export class NavEffects {
   navigateToLogin$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(
-          NavActions.loginNavigationRequested,
-          AuthActions.logoutSucceeded,
-          AuthActions.passwordChangeSucceeded,
-        ),
+        ofType(NavActions.loginNavigationRequested, AuthActions.logoutSucceeded),
         tap(() => this.router.navigate([NavPathTypes.LOGIN])),
       ),
     { dispatch: false },

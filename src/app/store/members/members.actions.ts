@@ -13,7 +13,6 @@ enum MembersActionTypes {
   PAGE_SIZE_CHANGED = '[Members] Page size changed',
   INACTIVE_MEMBERS_TOGGLED = '[Members] Inactive members toggled',
 
-  CREATE_MEMBER_SELECTED = '[Members] Create member selected',
   EDIT_MEMBER_SELECTED = '[Members] Edit member selected',
 
   DELETE_MEMBER_SELECTED = '[Members] Delete member selected',
@@ -38,6 +37,7 @@ enum MembersActionTypes {
   CANCEL_CONFIRMED = '[Members] Cancel confirmed',
 
   FORM_DATA_CHANGED = '[Members] Form data changed',
+  RESET_MEMBER_FORM = '[Members] Reset member form',
 }
 
 export const loadMembersStarted = createAction(MembersActionTypes.LOAD_MEMBERS_STARTED);
@@ -70,9 +70,6 @@ export const inactiveMembersToggled = createAction(
   MembersActionTypes.INACTIVE_MEMBERS_TOGGLED,
 );
 
-export const createMemberSelected = createAction(
-  MembersActionTypes.CREATE_MEMBER_SELECTED,
-);
 export const editMemberSelected = createAction(
   MembersActionTypes.EDIT_MEMBER_SELECTED,
   props<{ memberToEdit: Member }>(),
@@ -138,3 +135,4 @@ export const formDataChanged = createAction(
   MembersActionTypes.FORM_DATA_CHANGED,
   props<{ member: Member }>(),
 );
+export const resetMemberForm = createAction(MembersActionTypes.RESET_MEMBER_FORM);

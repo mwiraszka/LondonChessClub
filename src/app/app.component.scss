@@ -5,12 +5,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: darken($lcc-color--primary, 20%);
+  background: darken($lcc-color--primary, 10%);
   overflow-x: hidden;
-
-  @include respond-to('gt-sm') {
-    background: linear-gradient(to right, darken($lcc-color--primary, 17%), darken($lcc-color--primary, 22%) 100%);
-  }
 }
 
 main {

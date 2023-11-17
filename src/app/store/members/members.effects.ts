@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
+import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
@@ -85,6 +86,17 @@ export class MembersEffects {
       }),
     );
   });
+
+  resetMemberEditorForm$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ROUTER_NAVIGATED),
+      filter(
+        (action: RouterNavigatedAction) =>
+          action.payload.event.urlAfterRedirects === '/member/add',
+      ),
+      map(() => MembersActions.resetMemberForm()),
+    ),
+  );
 
   logError$ = createEffect(
     () =>

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
+import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
 import { throwError } from 'rxjs';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
@@ -53,13 +54,6 @@ export class ArticlesEffects {
           ),
         );
       }),
-    );
-  });
-
-  resetArticleForm$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.createArticleSelected),
-      map(() => ArticlesActions.resetArticleForm()),
     );
   });
 
@@ -128,6 +122,17 @@ export class ArticlesEffects {
       ),
     );
   });
+
+  resetArticleEditorForm$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ROUTER_NAVIGATED),
+      filter(
+        (action: RouterNavigatedAction) =>
+          action.payload.event.urlAfterRedirects === '/article/add',
+      ),
+      map(() => ArticlesActions.resetArticleForm()),
+    ),
+  );
 
   logError$ = createEffect(
     () =>

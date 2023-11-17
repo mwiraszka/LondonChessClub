@@ -124,15 +124,24 @@ export function formatDate(date: string, longFormat = false): string {
  * @returns {Action}
  */
 export function actionSanitizer(action: Action) {
+  const shruggy = '¯\\_(ツ)_/¯';
   if (
     action.type === AuthActions.loginRequested.type ||
     action.type === AuthActions.passwordChangeRequested.type
   ) {
     return {
       ...action,
-      request: '¯\\_(ツ)_/¯',
+      request: shruggy,
     };
   }
+
+  if (action.type === AuthActions.passwordChangeSucceeded.type) {
+    return {
+      ...action,
+      newPassword: shruggy,
+    };
+  }
+
   return action;
 }
 

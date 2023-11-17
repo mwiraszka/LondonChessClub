@@ -1,6 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { newMemberFormTemplate } from '@app/types';
 import { customSort } from '@app/utils';
 
 import * as MembersActions from './members.actions';
@@ -54,13 +53,6 @@ const membersReducer = createReducer(
     pageNum: 1,
   })),
 
-  on(MembersActions.createMemberSelected, state => ({
-    ...state,
-    isEditMode: false,
-    selectedMember: newMemberFormTemplate,
-    memberCurrently: newMemberFormTemplate,
-  })),
-
   on(MembersActions.editMemberSelected, (state, action) => ({
     ...state,
     selectedMember: action.memberToEdit,
@@ -90,10 +82,12 @@ const membersReducer = createReducer(
     MembersActions.updateMemberSucceeded,
     MembersActions.updateMemberFailed,
     MembersActions.cancelConfirmed,
+    MembersActions.resetMemberForm,
     state => ({
       ...state,
-      selectedMember: null,
-      memberCurrently: null,
+      memberCurrently: initialState.memberCurrently,
+      memberBeforeEdit: initialState.memberBeforeEdit,
+      isEditMode: false,
     }),
   ),
 

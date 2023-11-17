@@ -19,7 +19,6 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   valueChangesSubscription!: Subscription;
   previewImageUrl!: Url | null;
-  imageFile?: File;
 
   constructor(
     public facade: ArticleFormFacade,
@@ -29,7 +28,8 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loaderService.display(true);
-    this.facade.articleCurrently$.pipe(first()).subscribe(article => {
+    this.facade.articleBeforeEdit$.pipe(first()).subscribe(article => {
+      console.log(':: article', article);
       this.initForm(article);
       this.previewImageUrl = article.imageUrl ?? null;
       this.loaderService.display(false);
@@ -67,8 +67,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     if (fileInputElement.files?.length) {
       this.form.patchValue({ imageFile: fileInputElement.files[0] });
       this.previewImageUrl = URL.createObjectURL(fileInputElement.files[0]);
-    } else {
-      this.clearImage();
+      fileInputElement.value = '';
     }
   }
 
@@ -92,7 +91,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     });
 
     // TODO: investigate why setErrors({ required: null }) doesn't work
-    this.form.controls['imageFile'].patchValue({});
+    this.form.controls['imageFile'].patchValue(null);
 
     this.valueChangesSubscription = this.form.valueChanges
       .pipe(debounceTime(200))
@@ -100,7 +99,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   }
 
   private clearImage(): void {
-    this.form.patchValue({ imageFile: null });
+    this.form.controls['imageFile'].patchValue(null);
     this.previewImageUrl = null;
   }
 }

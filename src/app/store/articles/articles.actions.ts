@@ -11,7 +11,6 @@ enum ArticlesActionTypes {
   GET_ARTICLE_IMAGE_URL_SUCCEEDED = '[Articles] Get article image URL succeeded',
 
   ARTICLE_SELECTED = '[Articles] Article selected',
-  CREATE_ARTICLE_SELECTED = '[Articles] Create article selected',
   EDIT_ARTICLE_SELECTED = '[Articles] Edit article selected',
 
   DELETE_ARTICLE_SELECTED = '[Articles] Delete article selected',
@@ -19,10 +18,6 @@ enum ArticlesActionTypes {
   DELETE_ARTICLE_CANCELLED = '[Articles] Delete article cancelled',
   DELETE_ARTICLE_SUCCEEDED = '[Articles] Delete article succeeded',
   DELETE_ARTICLE_FAILED = '[Articles] Delete article failed',
-
-  ARTICLE_TO_EDIT_RECEIVED = '[Articles] Article to edit received',
-  GET_ARTICLE_TO_EDIT_SUCCEEDED = '[Articles] Get article to edit succeeded',
-  RESET_ARTICLE_FORM = '[Articles] Reset article form',
 
   PUBLISH_ARTICLE_SELECTED = '[Articles] Publish article selected',
   PUBLISH_ARTICLE_CONFIRMED = '[Articles] Publish article confirmed',
@@ -40,6 +35,7 @@ enum ArticlesActionTypes {
   CANCEL_CONFIRMED = '[Articles] Cancel confirmed',
 
   FORM_DATA_CHANGED = '[Articles] Form data changed',
+  RESET_ARTICLE_FORM = '[Articles] Reset article form',
 }
 
 export const loadArticlesStarted = createAction(
@@ -67,9 +63,6 @@ export const articleSelected = createAction(
   ArticlesActionTypes.ARTICLE_SELECTED,
   props<{ article: Article }>(),
 );
-export const createArticleSelected = createAction(
-  ArticlesActionTypes.CREATE_ARTICLE_SELECTED,
-);
 export const editArticleSelected = createAction(
   ArticlesActionTypes.EDIT_ARTICLE_SELECTED,
   props<{ articleToEdit: Article }>(),
@@ -93,12 +86,6 @@ export const deleteArticleFailed = createAction(
   ArticlesActionTypes.DELETE_ARTICLE_FAILED,
   props<{ error: Error }>(),
 );
-
-export const getArticleToEditSucceeded = createAction(
-  ArticlesActionTypes.GET_ARTICLE_TO_EDIT_SUCCEEDED,
-  props<{ articleToEdit: Article }>(),
-);
-export const resetArticleForm = createAction(ArticlesActionTypes.RESET_ARTICLE_FORM);
 
 export const publishArticleSelected = createAction(
   ArticlesActionTypes.PUBLISH_ARTICLE_SELECTED,
@@ -145,3 +132,4 @@ export const formDataChanged = createAction(
   ArticlesActionTypes.FORM_DATA_CHANGED,
   props<{ article: Article }>(),
 );
+export const resetArticleForm = createAction(ArticlesActionTypes.RESET_ARTICLE_FORM);

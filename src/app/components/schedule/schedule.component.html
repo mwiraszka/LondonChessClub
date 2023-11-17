@@ -1,7 +1,5 @@
 <ng-container *ngIf="facade.isAdmin$ | async">
-	<lcc-link-list [links]="[addEventLink]"
-								 (select)="facade.onAddEvent()">
-	</lcc-link-list>
+	<lcc-link-list [links]="[addEventLink]"></lcc-link-list>
 </ng-container>
 
 <table class="lcc-table">

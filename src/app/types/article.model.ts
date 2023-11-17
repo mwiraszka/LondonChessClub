@@ -19,5 +19,5 @@ export const newArticleFormTemplate: Article = {
   imageUrl: null,
   thumbnailImageUrl: null,
   dateCreated: new Date().toLocaleDateString(),
-  dateEdited: '',
+  dateEdited: new Date().toLocaleDateString(),
 };

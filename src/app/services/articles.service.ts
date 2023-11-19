@@ -42,7 +42,7 @@ export class ArticlesService {
       switchMap(articles => {
         const articlesWithImageUrls$: Observable<Article>[] = [];
         articles.forEach(article => {
-          const thumbnailImageId = `${article.imageId!}-300x200`;
+          const thumbnailImageId = `${article.imageId!}-600x400`;
           const articleWithImageUrl$ = this.imagesService
             .getArticleImageUrl(thumbnailImageId)
             .pipe(

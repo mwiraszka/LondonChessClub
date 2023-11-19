@@ -59,6 +59,7 @@ http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/
 <h4>Fixes</h4>
 - [Core] Fix bug preventing user from accessing add member, add article and add event screens
 - [Articles] Fix bug causing 'Last edited: Invalid Date' to be displayed after creating a new article
+- [Core] Ensure admin control buttons don't propagate and trigger click events on their parent components
 
 </details>
 

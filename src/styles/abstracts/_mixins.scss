@@ -20,3 +20,24 @@
          + 'Please make sure it is defined in `$breakpoints` map.';
   }
 }
+
+/// A mixin to be applied to flex items to keep item widths the same
+/// when row wrapping and stretching to fit flex container
+/// Courtesy of: https://stackoverflow.com/questions/23274338
+@mixin flex-wrap-fix-width($item-min-width, $grid-gap, $max-viewport-width) {
+  flex-grow: 1;
+  flex-basis: $item-min-width;
+  max-width: 100%;
+
+  $multiplier: 1;
+  $current-width: 0px;
+
+  @while $current-width < $max-viewport-width {
+    $current-width: $current-width + $item-min-width;
+    $multiplier: $multiplier + 1;
+
+    @media(min-width: ($item-min-width * $multiplier)) {
+      max-width: calc(percentage(1 / $multiplier) - $grid-gap);
+    }
+  }
+}

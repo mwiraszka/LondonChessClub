@@ -1,15 +1,19 @@
 @import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
+$grid-gap: $lcc-space--xs;
+$card-min-width: 200px;
+
 :host {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  gap: $lcc-space--xs;
+  gap: $grid-gap;
 
   img {
-    width: 250px;
+    @include flex-wrap-fix-width($card-min-width, $grid-gap, $lcc-width--app-content);
+
     border-radius: $lcc-border-radius--sm;
     border: 1px solid $lcc-color--transparent-mostly;
     opacity: 0.85;

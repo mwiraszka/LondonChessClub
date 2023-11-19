@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { LoaderService } from '@app/services';
 import { Article, Link, NavPathTypes } from '@app/types';
-import { formatDate } from '@app/utils';
 
 import { ArticleGridFacade } from './article-grid.facade';
 
@@ -13,8 +12,6 @@ import { ArticleGridFacade } from './article-grid.facade';
   providers: [ArticleGridFacade],
 })
 export class ArticleGridComponent implements OnInit {
-  formatDate = formatDate;
-
   @Input() maxArticles?: number;
 
   createArticleLink: Link = {

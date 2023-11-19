@@ -35,6 +35,19 @@ http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/
 ### Releases:
 
 <details>
+<summary style="cursor: pointer">v1.4.3-beta</summary>
+
+**Released on November TBD, 2023**
+
+<h4>Features</h4>
+- [Alert] Display next event as a banner with option to link to that particular event on the Schedule screen
+
+<h4>Refactor / Chores</h4>
+- [Core] Create a formatDate pipe that invokes the formatDate util function
+
+</details>
+
+<details>
 <summary style="cursor: pointer">v1.4.2-beta</summary>
 
 **Released on November 16th, 2023**

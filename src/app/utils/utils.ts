@@ -102,18 +102,17 @@ export function isTouchScreen(): boolean {
  * @param {string} date The date in YYYY-MM-DD format
  * @returns {string} A user-friendly version of the input date
  */
-export function formatDate(date: string, longFormat = false): string {
-  const d = new Date(date);
-
+export function formatDate(date: string, format: 'long' | 'short'): string {
+  const today = new Date(date);
   const formatOptions: any = {
-    weekday: longFormat ? 'long' : 'short',
+    weekday: format,
     year: 'numeric',
-    month: longFormat ? 'long' : 'short',
+    month: format,
     day: 'numeric',
   };
 
   return new Date(
-    d.getTime() + Math.abs(d.getTimezoneOffset() * 60000),
+    today.getTime() + Math.abs(today.getTimezoneOffset() * 60000),
   ).toLocaleDateString('en-US', formatOptions);
 }
 

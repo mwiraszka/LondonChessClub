@@ -80,6 +80,11 @@ const scheduleReducer = createReducer(
     ...state,
     eventCurrently: action.event,
   })),
+
+  on(ScheduleActions.alertDetailsSelected, (state, action) => ({
+    ...state,
+    highlightedEventId: action.eventId,
+  })),
 );
 
 export function reducer(state: ScheduleState, action: Action): ScheduleState {

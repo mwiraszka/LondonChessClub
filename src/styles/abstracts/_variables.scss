@@ -1,7 +1,7 @@
 /* LCC color palette */
 $lcc-color--primary: hsl(210, 40%, 40%);
 $lcc-color--secondary: hsl(214, 40%, 20%);
-$lcc-color--accent: hsl(24, 100%, 30%);
+$lcc-color--accent: hsl(24, 67%, 45%);
 $lcc-color--success: hsl(100, 50%, 40%);
 $lcc-color--warning: hsl(0, 90%, 60%);
 $lcc-color--info: hsl(210, 60%, 50%);
@@ -27,6 +27,7 @@ $lcc-color--bg-grid-item: hsl(0, 0%, 97%);
 $lcc-color--bg-table-row-light: hsl(0, 0%, 98%);
 $lcc-color--bg-table-row-dark: hsl(0, 0%, 94%);
 $lcc-color--bg-tooltip: hsl(0, 0%, 27%);
+$lcc-color--bg-highlighted-event: hsl(65, 100%, 98%);
 
 $lcc-color--transparent-fully: hsla(0, 0%, 100%, 0);
 $lcc-color--transparent-mostly: hsla(0, 0%, 100%, 0.2);

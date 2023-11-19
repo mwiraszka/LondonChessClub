@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { LoaderService } from '@app/services';
 import { ClubEvent, Link, NavPathTypes } from '@app/types';
-import { formatDate, kebabize } from '@app/utils';
+import { kebabize } from '@app/utils';
 
 import { ScheduleFacade } from './schedule.facade';
 
@@ -13,7 +13,6 @@ import { ScheduleFacade } from './schedule.facade';
   providers: [ScheduleFacade],
 })
 export class ScheduleComponent implements OnInit {
-  formatDate = formatDate;
   kebabize = kebabize;
 
   @Input() includeDetails = true;
@@ -32,7 +31,24 @@ export class ScheduleComponent implements OnInit {
       this.loaderService.display(isLoading);
     });
     this.facade.loadEvents();
+    this.facade.highlightedEventId$.subscribe(eventId => {
+      if (eventId) {
+        setTimeout(() => this.scrollToEvent(eventId), 400);
+      }
+    });
   }
 
   trackByFn = (index: number, event: ClubEvent) => event.id;
+
+  scrollToEvent(eventId: string): void {
+    const highlightedEvent = document.getElementById(eventId);
+
+    if (highlightedEvent) {
+      highlightedEvent.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest',
+      });
+    }
+  }
 }

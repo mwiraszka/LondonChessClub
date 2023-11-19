@@ -2,7 +2,7 @@ import { Store } from '@ngrx/store';
 
 import { Injectable } from '@angular/core';
 
-import { NavActions } from '@app/store/nav';
+import { ScheduleActions } from '@app/store/schedule';
 import { ScheduleSelectors } from '@app/store/schedule';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class AlertFacade {
 
   constructor(private store: Store) {}
 
-  onClickAction(): void {
-    this.store.dispatch(NavActions.scheduleNavigationRequested());
+  onDetails(eventId: string): void {
+    this.store.dispatch(ScheduleActions.alertDetailsSelected({ eventId }));
   }
 }

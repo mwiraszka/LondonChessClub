@@ -40,6 +40,11 @@ export const isEditMode = createSelector(
   state => state.isEditMode,
 );
 
+export const highlightedEventId = createSelector(
+  scheduleFeatureSelector,
+  state => state.highlightedEventId,
+);
+
 export const hasUnsavedChanges = createSelector(
   scheduleFeatureSelector,
   state => !areSame(state.eventCurrently, state.eventBeforeEdit),

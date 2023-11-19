@@ -23,11 +23,11 @@
 			<hr />
 			<p class="lcc-truncate-max-5-lines">{{ article.body }}</p>
 			<div class="article-dates-container">
-				<span>{{ formatDate(article.dateCreated) }}</span>
+				<span>{{ article.dateCreated | formatDate:'short' }}</span>
 				<ng-container *ngIf="article?.dateEdited !== article.dateCreated">
 					<span class="lcc-vertical-spacer">|</span>
 					<span class="edited">edited&nbsp;</span>
-					<span>{{ formatDate(article.dateEdited) }}</span>
+					<span>{{ article.dateEdited | formatDate:'short' }}</span>
 				</ng-container>
 			</div>
 		</div>

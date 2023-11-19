@@ -9,6 +9,8 @@ import { ClubEvent } from '@app/types';
 @Injectable()
 export class ScheduleFacade {
   readonly events$ = this.store.select(ScheduleSelectors.events);
+  readonly highlightedEventId$ = this.store.select(ScheduleSelectors.highlightedEventId);
+
   readonly isLoading$ = this.store.select(ScheduleSelectors.isLoading);
   readonly isAdmin$ = this.store.select(AuthSelectors.isAdmin);
 

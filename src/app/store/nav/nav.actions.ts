@@ -1,5 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
+import { ClubEvent } from '@app/types';
+
 enum NavActionTypes {
   LINK_SELECTED = '[Nav] Link selected',
 

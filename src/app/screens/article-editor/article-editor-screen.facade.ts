@@ -13,5 +13,5 @@ export class ArticleEditorScreenFacade {
     .select(ArticlesSelectors.articleBeforeEdit)
     .pipe(map(article => article.title));
 
-  constructor(private store: Store) {}
+  constructor(private readonly store: Store) {}
 }

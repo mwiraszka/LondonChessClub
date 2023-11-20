@@ -2,16 +2,16 @@ import { Store } from '@ngrx/store';
 
 import { Injectable } from '@angular/core';
 
-import { ScheduleActions } from '@app/store/schedule';
+import { NavActions } from '@app/store/nav';
 import { ScheduleSelectors } from '@app/store/schedule';
 
 @Injectable()
 export class AlertFacade {
-  nextEvent$ = this.store.select(ScheduleSelectors.nextEvent);
+  upcomingEvent$ = this.store.select(ScheduleSelectors.upcomingEvent);
 
-  constructor(private store: Store) {}
+  constructor(private readonly store: Store) {}
 
-  onDetails(eventId: string): void {
-    this.store.dispatch(ScheduleActions.alertDetailsSelected({ eventId }));
+  onDetails(): void {
+    this.store.dispatch(NavActions.scheduleNavigationRequested());
   }
 }

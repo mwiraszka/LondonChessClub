@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { AppStoreFeatureTypes, ClubEvent } from '@app/types';
-import { areSame } from '@app/utils';
+import { AppStoreFeatureTypes } from '@app/types';
+import { areSame, getUpcomingEvents } from '@app/utils';
 
 import { ScheduleState } from './schedule.state';
 
@@ -11,9 +11,10 @@ export const scheduleFeatureSelector = createFeatureSelector<ScheduleState>(
 
 export const events = createSelector(scheduleFeatureSelector, state => state.events);
 
-export const nextEvent = createSelector(scheduleFeatureSelector, state =>
-  getNextEvent(state?.events),
-);
+export const upcomingEvent = createSelector(scheduleFeatureSelector, state => {
+  const upcomingEvents = getUpcomingEvents(state?.events, 1);
+  return upcomingEvents?.length ? upcomingEvents[0] : null;
+});
 
 export const selectedEvent = createSelector(
   scheduleFeatureSelector,
@@ -40,22 +41,12 @@ export const isEditMode = createSelector(
   state => state.isEditMode,
 );
 
-export const highlightedEventId = createSelector(
+export const nextEventId = createSelector(
   scheduleFeatureSelector,
-  state => state.highlightedEventId,
+  state => state.nextEventId,
 );
 
 export const hasUnsavedChanges = createSelector(
   scheduleFeatureSelector,
   state => !areSame(state.eventCurrently, state.eventBeforeEdit),
 );
-
-function getNextEvent(events: ClubEvent[]): ClubEvent | null {
-  for (const event of events) {
-    // Since events are already sorted, find the first future date
-    if (new Date(event.eventDate) >= new Date(Date.now())) {
-      return event;
-    }
-  }
-  return null;
-}

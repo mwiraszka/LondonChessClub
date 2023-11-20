@@ -16,7 +16,7 @@ export class ScheduleComponent implements OnInit {
   kebabize = kebabize;
 
   @Input() includeDetails = true;
-  @Input() maxEvents?: number;
+  @Input() limitToUpcoming?: number;
 
   addEventLink: Link = {
     path: NavPathTypes.EVENT_ADD,
@@ -30,25 +30,8 @@ export class ScheduleComponent implements OnInit {
     this.facade.isLoading$.subscribe(isLoading => {
       this.loaderService.display(isLoading);
     });
-    this.facade.loadEvents();
-    this.facade.highlightedEventId$.subscribe(eventId => {
-      if (eventId) {
-        setTimeout(() => this.scrollToEvent(eventId), 400);
-      }
-    });
+    this.facade.loadEvents(this.limitToUpcoming ?? null);
   }
 
   trackByFn = (index: number, event: ClubEvent) => event.id;
-
-  scrollToEvent(eventId: string): void {
-    const highlightedEvent = document.getElementById(eventId);
-
-    if (highlightedEvent) {
-      highlightedEvent.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'nearest',
-      });
-    }
-  }
 }

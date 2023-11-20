@@ -10,7 +10,7 @@ import { PasswordChangeRequest } from '@app/types';
 export class ChangePasswordFormFacade {
   userHasCode$ = this.store.select(AuthSelectors.userHasCode);
 
-  constructor(private store: Store) {}
+  constructor(private readonly store: Store) {}
 
   onSubmit(request: PasswordChangeRequest): void {
     this.userHasCode$

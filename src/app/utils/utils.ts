@@ -6,6 +6,7 @@ import { isEqual } from 'lodash';
 import * as uuid from 'uuid';
 
 import { AuthActions } from '@app/store/auth';
+import { ClubEvent } from '@app/types';
 
 /**
  * A wrapper for lodash's isEqual()
@@ -114,6 +115,28 @@ export function formatDate(date: string, format: 'long' | 'short'): string {
   return new Date(
     today.getTime() + Math.abs(today.getTimezoneOffset() * 60000),
   ).toLocaleDateString('en-US', formatOptions);
+}
+
+/**
+ * Filters out a limited number of future events from an array of sorted events
+ * @returns {ClubEvent[] | null} An array of upcoming club events
+ */
+export function getUpcomingEvents(
+  sortedEvents: ClubEvent[],
+  limit?: number,
+): ClubEvent[] | null {
+  const today = new Date(Date.now());
+  const upcomingEvents = sortedEvents.filter(event => new Date(event.eventDate) >= today);
+
+  if (!upcomingEvents.length || (limit && limit < 1)) {
+    return null;
+  }
+
+  if (limit) {
+    return upcomingEvents.slice(0, limit);
+  }
+
+  return upcomingEvents;
 }
 
 /**

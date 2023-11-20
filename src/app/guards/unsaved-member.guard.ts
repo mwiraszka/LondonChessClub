@@ -12,7 +12,7 @@ import { ModalButtonActionTypes } from '@app/types';
 
 @Injectable({ providedIn: 'root' })
 export class UnsavedMemberGuard implements CanDeactivate<MemberEditorScreenComponent> {
-  constructor(private store: Store) {}
+  constructor(private readonly store: Store) {}
 
   canDeactivate(): Observable<boolean> {
     return this.store.select(MembersSelectors.hasUnsavedChanges).pipe(

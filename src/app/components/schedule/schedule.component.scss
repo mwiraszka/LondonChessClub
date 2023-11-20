@@ -14,7 +14,7 @@ table {
 
   tbody {
     tr {
-      &.highlighted {
+      &.next-event {
         background-color: $lcc-color--bg-highlighted-event !important;
         box-shadow: $lcc-box-shadow !important;
       }
@@ -64,6 +64,16 @@ table {
             background: lighten(rgba(blue, 0.3), 40%);
             border: 1px solid rgba(blue, 0.3);
           }
+
+          &.other {
+            background: lighten(rgba(purple, 0.3), 40%);
+            border: 1px solid rgba(purple, 0.3);
+          }
+
+          &.closed {
+            background: lighten(rgba(black, 0.3), 40%);
+            border: 1px solid rgba(black, 0.3);
+          }
         }
 
         .details {
@@ -72,11 +82,12 @@ table {
         }
 
         .created-and-edited {
+          min-width: 200px;
+          align-self: flex-end;
+          text-align: right;
           font-size: $h6 !important;
           font-weight: 100;
           color: lighten($lcc-color--text-secondary, 10%);
-          align-self: flex-end;
-          text-align: right;
         }
       }
     }

@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ClubEvent, ServiceResponse } from '@app/types';
-import { customSort } from '@app/utils';
+import { customSort, getUpcomingEvents } from '@app/utils';
 
 import { environment } from '@environments/environment';
 
@@ -26,10 +26,14 @@ export class ScheduleService {
     );
   }
 
-  getEvents(): Observable<ServiceResponse<ClubEvent[]>> {
+  getEvents(limitToUpcoming: number | null): Observable<ServiceResponse<ClubEvent[]>> {
     return this.http.get<ClubEvent[]>(this.API_ENDPOINT).pipe(
       map(events => {
         const sortedEvents = [...events].sort(customSort('eventDate', true));
+        if (limitToUpcoming) {
+          const upcomingEvents = getUpcomingEvents(sortedEvents, limitToUpcoming);
+          return { payload: upcomingEvents ?? sortedEvents };
+        }
         return { payload: sortedEvents };
       }),
       catchError(() =>

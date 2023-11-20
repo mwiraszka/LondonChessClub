@@ -1,14 +1,14 @@
-<div *ngIf="(facade.nextEvent$ | async) as nextEvent"
+<div *ngIf="(facade.upcomingEvent$ | async) as upcomingEvent"
 		 class="alert-message-container">
 	<p class="alert-message">
 		Next event:
-		<span>{{ nextEvent.title }}</span>
+		<span>{{ upcomingEvent.title }}</span>
 		on
-		<span>{{ nextEvent.eventDate | formatDate:'short' }}</span>
+		<span>{{ upcomingEvent.eventDate | formatDate:'short' }}</span>
 	</p>
 	<div class="alert-controls">
 		<button class="lcc-ghost-button alert-action-button"
-						(click)="facade.onDetails(nextEvent.id!)">
+						(click)="facade.onDetails()">
 			Details
 		</button>
 		<cds-icon class="lcc-icon-button alert-close-button"

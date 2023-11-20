@@ -10,7 +10,7 @@ import { Modal, ModalButtonActionTypes, ModalButtonStyleTypes } from '@app/types
   providedIn: 'root',
 })
 export class UpdateService {
-  constructor(private store: Store, private swUpdate: SwUpdate) {}
+  constructor(private readonly store: Store, private swUpdate: SwUpdate) {}
 
   subscribeToVersionUpdates(): void {
     this.swUpdate.versionUpdates.subscribe(() => {

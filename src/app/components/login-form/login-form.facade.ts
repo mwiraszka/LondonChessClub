@@ -7,7 +7,7 @@ import { LoginRequest } from '@app/types';
 
 @Injectable()
 export class LoginFormFacade {
-  constructor(private store: Store) {}
+  constructor(private readonly store: Store) {}
 
   onLogin(request: LoginRequest): void {
     this.store.dispatch(AuthActions.loginRequested({ request }));

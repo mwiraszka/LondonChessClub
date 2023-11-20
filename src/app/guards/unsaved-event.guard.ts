@@ -12,7 +12,7 @@ import { ModalButtonActionTypes } from '@app/types';
 
 @Injectable({ providedIn: 'root' })
 export class UnsavedEventGuard implements CanDeactivate<EventEditorScreenComponent> {
-  constructor(private store: Store) {}
+  constructor(private readonly store: Store) {}
 
   canDeactivate(): Observable<boolean> {
     return this.store.select(ScheduleSelectors.hasUnsavedChanges).pipe(

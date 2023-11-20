@@ -32,11 +32,12 @@ enum ScheduleActionTypes {
 
   FORM_DATA_CHANGED = '[Schedule] Form data changed',
   RESET_EVENT_FORM = '[Schedule] Reset event form',
-
-  ALERT_DETAILS_SELECTED = '[Schedule] Alert details selected',
 }
 
-export const loadEventsStarted = createAction(ScheduleActionTypes.LOAD_EVENTS_STARTED);
+export const loadEventsStarted = createAction(
+  ScheduleActionTypes.LOAD_EVENTS_STARTED,
+  props<{ limitToUpcoming: number | null }>(),
+);
 export const loadEventsSucceeded = createAction(
   ScheduleActionTypes.LOAD_EVENTS_SUCCEEDED,
   props<{ allEvents: ClubEvent[] }>(),
@@ -112,8 +113,3 @@ export const formDataChanged = createAction(
   props<{ event: ClubEvent }>(),
 );
 export const resetEventForm = createAction(ScheduleActionTypes.RESET_EVENT_FORM);
-
-export const alertDetailsSelected = createAction(
-  ScheduleActionTypes.ALERT_DETAILS_SELECTED,
-  props<{ eventId: string }>(),
-);

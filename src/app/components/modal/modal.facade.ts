@@ -9,7 +9,7 @@ import { ModalButtonActionTypes } from '@app/types';
 export class ModalFacade {
   modal$ = this.store.select(ModalSelectors.modal);
 
-  constructor(private store: Store) {}
+  constructor(private readonly store: Store) {}
 
   onSelect(action: ModalButtonActionTypes): void {
     this.store.dispatch(ModalActions.selectionMade({ action }));

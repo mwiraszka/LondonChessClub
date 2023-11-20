@@ -7,7 +7,7 @@ export interface ScheduleState {
   eventBeforeEdit: ClubEvent;
   eventCurrently: ClubEvent;
   isEditMode: boolean;
-  highlightedEventId: string | null; // by clicking 'details' in alert
+  nextEventId: string | null;
 }
 
 export const initialState: ScheduleState = {
@@ -17,5 +17,5 @@ export const initialState: ScheduleState = {
   eventBeforeEdit: newClubEventFormTemplate,
   eventCurrently: newClubEventFormTemplate,
   isEditMode: false,
-  highlightedEventId: null,
+  nextEventId: null,
 };

@@ -62,7 +62,6 @@ export class NavEffects {
           ScheduleActions.cancelSelected,
           ScheduleActions.addEventSucceeded,
           ScheduleActions.updateEventSucceeded,
-          ScheduleActions.alertDetailsSelected,
         ),
         tap(() => this.router.navigate([NavPathTypes.SCHEDULE])),
       ),

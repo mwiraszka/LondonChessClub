@@ -3,7 +3,7 @@
 :host {
   display: flex;
   justify-content: center;
-  background-color: $lcc-color--accent;
+  background-color: lighten($lcc-color--black, 10%);
   padding: $lcc-space--xxs $lcc-space--md;
 }
 

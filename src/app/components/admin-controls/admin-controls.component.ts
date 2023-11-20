@@ -16,4 +16,14 @@ export class AdminControlsComponent implements OnInit {
   ngOnInit(): void {
     ClarityIcons.addIcons(pencilIcon, trashIcon);
   }
+
+  onEdit(event: MouseEvent): void {
+    event.stopPropagation();
+    this.edit.emit();
+  }
+
+  onDelete(event: MouseEvent): void {
+    event.stopPropagation();
+    this.delete.emit();
+  }
 }

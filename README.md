@@ -35,13 +35,30 @@ http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/
 ### Releases:
 
 <details>
+<summary style="cursor: pointer">v1.4.3-beta</summary>
+
+**Released on November TBD, 2023**
+
+<h4>Features</h4>
+- [Alert] Display next event as a banner with option to link to that particular event on the Schedule screen
+- [Core] Improve how images are displayed on small devices
+- [Schedule] Add more event categories and only display upcoming events on home page
+
+<h4>Refactor / Chores</h4>
+- [Core] Create a formatDate pipe that invokes the formatDate util function
+
+<h4>Fixes</h4>
+- [Core] Ensure admin control buttons don't propagate and trigger click events on their parent components
+
+</details>
+
+<details>
 <summary style="cursor: pointer">v1.4.2-beta</summary>
 
 **Released on November 16th, 2023**
 
 <h4>Features</h4>
 - [Change Password] Automatically log in after a successful password change, redirect user to home page, and hide sensitive information from Redux Devtools
-- [Core] Improve how images are displayed on small devices
 
 <h4>Fixes</h4>
 - [Core] Fix bug preventing user from accessing add member, add article and add event screens

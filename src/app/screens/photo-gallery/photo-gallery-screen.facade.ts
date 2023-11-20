@@ -6,7 +6,7 @@ import { ImageOverlayActions } from '@app/store/image-overlay';
 
 @Injectable()
 export class PhotoGalleryScreenFacade {
-  constructor(private store: Store) {}
+  constructor(private readonly store: Store) {}
 
   onClickImage(index: number): void {
     const imageUrl = `assets/photos/${index}-lg.jpg`;

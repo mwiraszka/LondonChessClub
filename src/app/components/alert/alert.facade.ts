@@ -7,11 +7,11 @@ import { ScheduleSelectors } from '@app/store/schedule';
 
 @Injectable()
 export class AlertFacade {
-  nextEvent$ = this.store.select(ScheduleSelectors.nextEvent);
+  upcomingEvent$ = this.store.select(ScheduleSelectors.upcomingEvent);
 
-  constructor(private store: Store) {}
+  constructor(private readonly store: Store) {}
 
-  onClickAction(): void {
+  onDetails(): void {
     this.store.dispatch(NavActions.scheduleNavigationRequested());
   }
 }

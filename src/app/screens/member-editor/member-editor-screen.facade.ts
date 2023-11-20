@@ -14,5 +14,5 @@ export class MemberEditorScreenFacade {
     map(member => `${member!.firstName} ${member!.lastName}`),
   );
 
-  constructor(private store: Store) {}
+  constructor(private readonly store: Store) {}
 }

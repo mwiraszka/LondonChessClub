@@ -1,6 +1,9 @@
 @import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
+$card-min-width: 310px; // Enough to keep dates on one line
+$grid-gap: $lcc-space--sm;
+
 :host {
   display: flex;
   flex-flow: column nowrap;
@@ -20,14 +23,15 @@ lcc-link-list,
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  gap: $lcc-space--sm;
+  gap: $grid-gap;
 
   article {
+    @include flex-wrap-fix-width($card-min-width, $grid-gap, $lcc-width--app-content);
+
     display: flex;
     flex-flow: column nowrap;
     gap: $lcc-space--xs;
-    width: 282px;
-    height: 400px;
+    height: auto;
     padding: $lcc-space--sm;
     background: repeating-conic-gradient(
         darken($lcc-color--primary, 2%) 0% 25%,
@@ -41,7 +45,7 @@ lcc-link-list,
     }
 
     .article-thumbnail-image {
-      min-height: 180px;
+      aspect-ratio: 3/2;
       width: 100%;
       object-fit: cover;
       border-radius: $lcc-border-radius--lg;

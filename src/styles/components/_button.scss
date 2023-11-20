@@ -11,6 +11,10 @@
     color: lighten($lcc-color--gray, 30%);
     opacity: 50%;
   }
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .lcc-raised-button {
@@ -20,14 +24,12 @@
   color: $lcc-color--primary;
   border: 1px solid darken($lcc-color--white, 3%);
   box-shadow: 1px 1px 4px -2px darken($lcc-color--box-shadow, 10%);
-  padding: 8px 14px;
+  padding: $lcc-space--sm $lcc-space--md;
   text-transform: uppercase;
   font-weight: 400;
 
-  &:hover,
-  &:focus {
+  &:hover {
     box-shadow: 2px 4px 7px -2px lighten($lcc-color--box-shadow, 5%);
-    outline: none;
   }
 }
 
@@ -59,7 +61,7 @@
   @extend .lcc-button;
 
   background-color: inherit;
-  padding: 2px 8px;
+  padding: $lcc-space--xs $lcc-space--md;
   border: 1px solid rgba($lcc-color--white, 0.2);
   box-shadow: inset 0 0 20px $lcc-color--transparent-fully;
   text-shadow: none;

@@ -9,13 +9,15 @@ import { ClubEvent } from '@app/types';
 @Injectable()
 export class ScheduleFacade {
   readonly events$ = this.store.select(ScheduleSelectors.events);
+  readonly nextEventId$ = this.store.select(ScheduleSelectors.nextEventId);
+
   readonly isLoading$ = this.store.select(ScheduleSelectors.isLoading);
   readonly isAdmin$ = this.store.select(AuthSelectors.isAdmin);
 
   constructor(private readonly store: Store) {}
 
-  loadEvents(): void {
-    this.store.dispatch(ScheduleActions.loadEventsStarted());
+  loadEvents(limitToUpcoming: number | null): void {
+    this.store.dispatch(ScheduleActions.loadEventsStarted({ limitToUpcoming }));
   }
 
   onEditEvent(eventToEdit: ClubEvent): void {

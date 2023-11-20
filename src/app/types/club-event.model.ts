@@ -5,6 +5,8 @@ export enum ClubEventTypes {
   LECTURE = 'lecture',
   SIMUL = 'simul',
   CASUAL = 'casual',
+  CLOSED = 'closed',
+  OTHER = 'other',
 }
 
 export interface ClubEvent {

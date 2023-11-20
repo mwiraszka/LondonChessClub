@@ -1,5 +1,7 @@
 @import 'styles/abstracts/variables';
 
+$header-height: 26px;
+
 .content {
   padding: $lcc-space--md;
 
@@ -8,7 +10,7 @@
     border-top-left-radius: $lcc-border-radius--lg;
     border-top-right-radius: $lcc-border-radius--lg;
     border-bottom: 2px solid darken($lcc-color--primary, 30%);
-    height: 26px;
+    height: $header-height;
     display: flex;
 
     .close-button {
@@ -27,7 +29,8 @@
     z-index: 101;
     opacity: 100%;
     width: 100%;
-    max-height: 100vh;
+    max-width: calc(100vw - #{$lcc-space--md});
+    max-height: calc(100vh - #{$header-height} - #{$lcc-space--md});
     border-bottom-left-radius: $lcc-border-radius--lg;
     border-bottom-right-radius: $lcc-border-radius--lg;
   }

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { LoaderService } from '@app/services';
 import { ClubEvent, Link, NavPathTypes } from '@app/types';
-import { formatDate, kebabize } from '@app/utils';
+import { kebabize } from '@app/utils';
 
 import { ScheduleFacade } from './schedule.facade';
 
@@ -13,11 +13,10 @@ import { ScheduleFacade } from './schedule.facade';
   providers: [ScheduleFacade],
 })
 export class ScheduleComponent implements OnInit {
-  formatDate = formatDate;
   kebabize = kebabize;
 
   @Input() includeDetails = true;
-  @Input() maxEvents?: number;
+  @Input() limitToUpcoming?: number;
 
   addEventLink: Link = {
     path: NavPathTypes.EVENT_ADD,
@@ -31,7 +30,7 @@ export class ScheduleComponent implements OnInit {
     this.facade.isLoading$.subscribe(isLoading => {
       this.loaderService.display(isLoading);
     });
-    this.facade.loadEvents();
+    this.facade.loadEvents(this.limitToUpcoming ?? null);
   }
 
   trackByFn = (index: number, event: ClubEvent) => event.id;

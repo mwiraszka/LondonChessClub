@@ -6,6 +6,7 @@ import { isEqual } from 'lodash';
 import * as uuid from 'uuid';
 
 import { AuthActions } from '@app/store/auth';
+import { ClubEvent } from '@app/types';
 
 /**
  * A wrapper for lodash's isEqual()
@@ -102,19 +103,40 @@ export function isTouchScreen(): boolean {
  * @param {string} date The date in YYYY-MM-DD format
  * @returns {string} A user-friendly version of the input date
  */
-export function formatDate(date: string, longFormat = false): string {
-  const d = new Date(date);
-
+export function formatDate(date: string, format: 'long' | 'short'): string {
+  const today = new Date(date);
   const formatOptions: any = {
-    weekday: longFormat ? 'long' : 'short',
+    weekday: format,
     year: 'numeric',
-    month: longFormat ? 'long' : 'short',
+    month: format,
     day: 'numeric',
   };
 
   return new Date(
-    d.getTime() + Math.abs(d.getTimezoneOffset() * 60000),
+    today.getTime() + Math.abs(today.getTimezoneOffset() * 60000),
   ).toLocaleDateString('en-US', formatOptions);
+}
+
+/**
+ * Filters out a limited number of future events from an array of sorted events
+ * @returns {ClubEvent[] | null} An array of upcoming club events
+ */
+export function getUpcomingEvents(
+  sortedEvents: ClubEvent[],
+  limit?: number,
+): ClubEvent[] | null {
+  const today = new Date(Date.now());
+  const upcomingEvents = sortedEvents.filter(event => new Date(event.eventDate) >= today);
+
+  if (!upcomingEvents.length || (limit && limit < 1)) {
+    return null;
+  }
+
+  if (limit) {
+    return upcomingEvents.slice(0, limit);
+  }
+
+  return upcomingEvents;
 }
 
 /**

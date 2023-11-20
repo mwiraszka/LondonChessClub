@@ -117,6 +117,24 @@
 							 [checked]="form.value.type === 'casual'" />
 				<label for="casual-input">Casual</label>
 			</div>
+			<div>
+				<input type="radio"
+							 id="closed-input"
+							 name="type"
+							 formControlName="type"
+							 value="closed"
+							 [checked]="form.value.type === 'closed'" />
+				<label for="casual-input">Closed</label>
+			</div>
+			<div>
+				<input type="radio"
+							 id="other-input"
+							 name="type"
+							 formControlName="type"
+							 value="other"
+							 [checked]="form.value.type === 'other'" />
+				<label for="casual-input">Other</label>
+			</div>
 		</fieldset>
 	</div>
 

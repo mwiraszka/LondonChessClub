@@ -31,6 +31,6 @@ export class HomeScreenComponent {
 
   newsLink: Link = {
     path: NavPathTypes.NEWS,
-    text: 'All articles',
+    text: 'More news',
   };
 }

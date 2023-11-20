@@ -11,17 +11,17 @@
 		<th class="event">Event</th>
 	</thead>
 	<tbody>
-		<tr *ngFor="let event of (facade.events$ | async)?.slice(0, maxEvents ?? (facade.events$ | async)?.length);
-                  let last = last;
-                  trackBy: trackByFn"
+		<tr *ngFor="let event of (facade.events$ | async); let last = last; trackBy: trackByFn"
 				class="lcc-admin-controls-container"
+				[id]="event.id"
+				[class.next-event]="event.id === (facade.nextEventId$ | async)"
 				[ngClass]="{'last-row': last}">
 			<lcc-admin-controls *ngIf="facade.isAdmin$ | async"
 													[itemName]="event.title"
 													(edit)="facade.onEditEvent(event)"
 													(delete)="facade.onDeleteEvent(event)">
 			</lcc-admin-controls>
-			<td class="date">{{ formatDate(event.eventDate, true) }}</td>
+			<td class="date">{{ event.eventDate | formatDate }}</td>
 			<td class="details-container">
 				<h5 class="title">{{ event.title }}</h5>
 				<span class="type"
@@ -34,8 +34,8 @@
 				</p>
 				<aside *ngIf="includeDetails"
 							 class="created-and-edited">
-					Event created on {{ formatDate(event.dateCreated) }}<br />
-					Last edited on {{ formatDate(event.dateEdited) }}
+					Event created on {{ event.dateCreated | formatDate:'short' }}<br />
+					Last edited on {{ event.dateEdited | formatDate:'short' }}
 				</aside>
 			</td>
 		</tr>

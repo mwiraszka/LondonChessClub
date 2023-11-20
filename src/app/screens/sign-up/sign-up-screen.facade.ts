@@ -7,7 +7,7 @@ import { SignUpRequest } from '@app/types';
 
 @Injectable()
 export class SignUpScreenFacade {
-  constructor(private store: Store) {}
+  constructor(private readonly store: Store) {}
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onSignUp(request: SignUpRequest): void {

@@ -12,7 +12,7 @@ import { ScheduleSelectors } from './store/schedule';
 export class AppFacade {
   showImageOverlay$ = this.store.select(ImageOverlaySelectors.isOpen);
   showModal$ = this.store.select(ModalSelectors.isOpen);
-  nextEvent$ = this.store.select(ScheduleSelectors.nextEvent);
+  upcomingEvent$ = this.store.select(ScheduleSelectors.upcomingEvent);
   showToaster$ = this.store.select(ToasterSelectors.isDisplayingToasts);
 
   constructor(private readonly store: Store) {}

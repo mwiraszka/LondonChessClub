@@ -8,7 +8,7 @@ import { ImageOverlayActions, ImageOverlaySelectors } from '@app/store/image-ove
 export class ImageOverlayFacade {
   imageUrl$ = this.store.select(ImageOverlaySelectors.imageUrl);
 
-  constructor(private store: Store) {}
+  constructor(private readonly store: Store) {}
 
   onClickClose(): void {
     this.store.dispatch(ImageOverlayActions.overlayClosed());

@@ -13,5 +13,5 @@ export class EventEditorScreenFacade {
     .select(ScheduleSelectors.eventBeforeEdit)
     .pipe(map(event => event.title));
 
-  constructor(private store: Store) {}
+  constructor(private readonly store: Store) {}
 }

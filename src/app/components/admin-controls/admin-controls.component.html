@@ -1,12 +1,12 @@
 <button [tooltip]="'Edit ' + itemName"
-				(click)="edit.emit()">
+				(click)="onEdit($event)">
 	<cds-icon shape="pencil"
 						size="sm">
 	</cds-icon>
 </button>
 
 <button [tooltip]="'Delete ' + itemName"
-				(click)="delete.emit()">
+				(click)="onDelete($event)">
 	<cds-icon shape="trash"
 						size="sm"
 						status="danger">

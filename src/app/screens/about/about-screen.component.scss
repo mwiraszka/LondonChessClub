@@ -97,11 +97,14 @@ article {
 
     .tables-container {
       display: flex;
-      flex-flow: column wrap;
+      flex-flow: row wrap;
       gap: $lcc-space--md;
       margin: $lcc-space--md 0;
 
       table {
+        min-width: 300px;
+        flex: 1 1 0;
+
         td {
           width: 50%;
         }

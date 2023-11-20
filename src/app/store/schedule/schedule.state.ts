@@ -7,6 +7,7 @@ export interface ScheduleState {
   eventBeforeEdit: ClubEvent;
   eventCurrently: ClubEvent;
   isEditMode: boolean;
+  nextEventId: string | null;
 }
 
 export const initialState: ScheduleState = {
@@ -16,4 +17,5 @@ export const initialState: ScheduleState = {
   eventBeforeEdit: newClubEventFormTemplate,
   eventCurrently: newClubEventFormTemplate,
   isEditMode: false,
+  nextEventId: null,
 };

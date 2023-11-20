@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { AlertComponent } from '@app/components/alert';
+import { PipesModule } from '@app/pipes';
 
 @NgModule({
   declarations: [AlertComponent],
-  imports: [ClarityModule, CommonModule],
+  imports: [ClarityModule, CommonModule, PipesModule],
   exports: [AlertComponent],
 })
 export class AlertModule {}

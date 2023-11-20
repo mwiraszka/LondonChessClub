@@ -8,5 +8,5 @@ import { ToasterSelectors } from '@app/store/toaster';
 export class ToasterFacade {
   toasts$ = this.store.select(ToasterSelectors.toasts);
 
-  constructor(private store: Store) {}
+  constructor(private readonly store: Store) {}
 }

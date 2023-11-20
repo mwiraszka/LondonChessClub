@@ -1,5 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
+import { getUpcomingEvents } from '@app/utils';
+
 import * as ScheduleActions from './schedule.actions';
 import { ScheduleState, initialState } from './schedule.state';
 
@@ -11,11 +13,17 @@ const scheduleReducer = createReducer(
     isLoading: true,
   })),
 
-  on(ScheduleActions.loadEventsSucceeded, (state, action) => ({
-    ...state,
-    events: action.allEvents,
-    isLoading: false,
-  })),
+  on(ScheduleActions.loadEventsSucceeded, (state, action) => {
+    const upcomingEvents = getUpcomingEvents(action.allEvents, 1);
+    const nextEvent = upcomingEvents?.length ? upcomingEvents[0] : null;
+
+    return {
+      ...state,
+      events: action.allEvents,
+      nextEventId: nextEvent?.id ?? null,
+      isLoading: false,
+    };
+  }),
 
   on(ScheduleActions.loadEventsFailed, state => ({
     ...state,

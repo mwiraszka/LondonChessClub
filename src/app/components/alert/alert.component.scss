@@ -3,7 +3,7 @@
 :host {
   display: flex;
   justify-content: center;
-  background-color: $lcc-color--primary;
+  background-color: lighten($lcc-color--black, 10%);
   padding: $lcc-space--xxs $lcc-space--md;
 }
 
@@ -40,13 +40,12 @@
 
   .alert-action-button {
     white-space: nowrap;
-    padding: $lcc-space--xs;
-    height: $lcc-space--md;
+    padding: $lcc-space--xs $lcc-space--sm;
     color: darken($lcc-color--white, 10%);
   }
 
   .alert-close-button {
-    padding: 4px;
+    padding: $lcc-space--xs;
     color: darken($lcc-color--white, 10%);
   }
 }

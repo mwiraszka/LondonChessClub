@@ -6,12 +6,8 @@
 @import 'base/reset';
 @import 'base/typography';
 
-@import 'layout/align';
-@import 'layout/disable-scrolling';
 @import 'layout/display';
-@import 'layout/overlay';
-@import 'layout/spacer';
-@import 'layout/truncate';
+@import 'layout/text';
 
 @import 'components/admin-controls-container';
 @import 'components/button';
@@ -22,3 +18,4 @@
 @import 'components/link';
 @import 'components/loading-spinner';
 @import 'components/table';
+@import 'components/vertical-spacer';

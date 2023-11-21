@@ -333,7 +333,7 @@ export class ToasterEffects {
       ofType(AuthActions.loginSucceeded),
       map(() => {
         const toast: Toast = {
-          title: 'Login',
+          title: 'Admin Login',
           message: 'Successfully logged in',
           type: ToastTypes.SUCCESS,
         };
@@ -361,7 +361,7 @@ export class ToasterEffects {
       ofType(AuthActions.logoutSucceeded),
       map(() => {
         const toast: Toast = {
-          title: 'Logout',
+          title: 'Admin Logout',
           message: 'Successfully logged out',
           type: ToastTypes.SUCCESS,
         };

@@ -1,5 +1,5 @@
 ﻿<div class="container">
-	<lcc-screen-header title="Sign Up"></lcc-screen-header>
+	<lcc-screen-header title="Admin Sign Up"></lcc-screen-header>
 
 	<form class="lcc-form"
 				[formGroup]="form"
@@ -76,13 +76,14 @@
 									[tooltip]="getErrorMessage(form.controls['lastName'])">
 				</cds-icon>
 			</div>
-			<div class="lcc-form-buttons-container">
-				<button class="lcc-primary-button"
-								type="submit"
-								[disabled]="form.invalid">
-					Sign up
-				</button>
-			</div>
+		</div>
+
+		<div class="lcc-form-buttons-container">
+			<button class="lcc-primary-button"
+							type="submit"
+							[disabled]="form.invalid">
+				Sign up
+			</button>
 		</div>
 	</form>
 </div>

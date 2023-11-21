@@ -129,12 +129,12 @@
 
 	<ng-template #loggedOut>
 		<a class="login-link"
-			 aria-label="Login"
+			 aria-label="Admin Login"
 			 routerLinkActive="link-active"
 			 [routerLink]="NavPathTypes.LOGIN"
-			 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Login' : null"
+			 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Log in as an administrator' : null"
 			 (click)="facade.onSelectLoginTab()">
-			<span class="lcc-gt-md">Login</span>
+			<span class="lcc-gt-md">Admin Login</span>
 			<cds-icon class="lcc-lt-md"
 								shape="user"
 								size="md">

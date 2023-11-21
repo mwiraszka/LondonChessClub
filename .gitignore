@@ -7,6 +7,9 @@
 # Prettier config
 .prettierrc
 
+# Markdown lint config
+.markdownlint.json
+
 # System files
 .DS_Store
 Thumbs.db

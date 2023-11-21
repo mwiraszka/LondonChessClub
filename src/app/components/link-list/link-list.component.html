@@ -2,13 +2,24 @@
 <ul class="links"
 		[ngClass]="(links?.length ?? 0) < 4 ? 'single-column' : ''">
 	<li *ngFor="let link of links; trackBy: trackByFn">
-		<a alt="link.text"
-			 class="lcc-link"
-			 [routerLink]="'/' + link.path">
+		<a *ngIf="link.path.startsWith('http'); else internalLink"
+			 [href]="link.path"
+			 class="lcc-link">
 			<cds-icon *ngIf="link.iconShape"
 								[attr.shape]="link.iconShape"
 								size="md">
-			</cds-icon>{{ link.text }} <!-- same line to remove space -->
+			</cds-icon>{{ link.text }}
 		</a>
+
+		<ng-template #internalLink>
+			<a alt="link.text"
+				 class="lcc-link"
+				 [routerLink]="'/' + link.path">
+				<cds-icon *ngIf="link.iconShape"
+									[attr.shape]="link.iconShape"
+									size="md">
+				</cds-icon>{{ link.text }}
+			</a>
+		</ng-template>
 	</li>
 </ul>

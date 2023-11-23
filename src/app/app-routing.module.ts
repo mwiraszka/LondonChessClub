@@ -15,7 +15,6 @@ import { MembersScreenComponent } from '@app/screens/members';
 import { NewsScreenComponent } from '@app/screens/news';
 import { PhotoGalleryScreenComponent } from '@app/screens/photo-gallery';
 import { ScheduleScreenComponent } from '@app/screens/schedule';
-// import { SignUpScreenComponent } from '@app/screens/sign-up';
 import { NavPathTypes } from '@app/types';
 
 const routes: Routes = [
@@ -71,7 +70,7 @@ const routes: Routes = [
     canDeactivate: [UnsavedArticleGuard],
   },
   {
-    path: NavPathTypes.LONDON_CHESS_CHAMPION,
+    path: NavPathTypes.CITY_CHAMPION,
     component: ChampionScreenComponent,
   },
   {
@@ -90,11 +89,6 @@ const routes: Routes = [
     path: NavPathTypes.CHANGE_PASSWORD,
     component: ChangePasswordScreenComponent,
   },
-  // Temporarily removed to prevent unauthorized access
-  // {
-  //   path: NavPathTypes.SIGN_UP,
-  //   component: SignUpScreenComponent,
-  // },
   {
     path: '**',
     redirectTo: '',

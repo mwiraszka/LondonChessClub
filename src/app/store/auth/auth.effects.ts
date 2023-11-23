@@ -7,7 +7,7 @@ import { catchError, filter, map, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { AuthService } from '@app/services';
-import { SignUpResponse, User } from '@app/types';
+import { User } from '@app/types';
 
 import * as AuthActions from './auth.actions';
 import * as AuthSelectors from './auth.selectors';
@@ -39,7 +39,7 @@ export class AuthEffects {
           catchError(() =>
             of(
               AuthActions.loginFailed({
-                error: new Error('[Auth] Unknown login error'),
+                error: new Error('Unknown login error'),
               }),
             ),
           ),
@@ -58,37 +58,6 @@ export class AuthEffects {
     );
   });
 
-  // Fully functional, just disabled for the time being:
-
-  // signUp$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(AuthActions.signUpRequested),
-  //     switchMap(({ request }) => {
-  //       return this.authService.signUp(request).pipe(
-  //         map((response: SignUpResponse) => {
-  //           const user: User = {
-  //             id: 'test-3nfo13-1j3nf',
-  //             email: 'michal@test.com*',
-  //             isVerified: false,
-  //             isAdmin: false,
-  //           };
-  //           return AuthActions.signUpSucceeded({
-  //             user,
-  //             session: response.session,
-  //           });
-  //         }),
-  //         catchError(() =>
-  //           of(
-  //             AuthActions.signUpFailed({
-  //               error: new Error('[Auth] Unknown sign-up error'),
-  //             })
-  //           )
-  //         )
-  //       );
-  //     })
-  //   );
-  // });
-
   requestPasswordChangeCode$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.codeForPasswordChangeRequested),
@@ -103,7 +72,7 @@ export class AuthEffects {
             of(
               AuthActions.codeForPasswordChangeFailed({
                 error: new Error(
-                  '[Auth] Unknown error attempting to send password change request',
+                  'Unknown error attempting to send password change request',
                 ),
               }),
             ),
@@ -129,7 +98,7 @@ export class AuthEffects {
           catchError(() =>
             of(
               AuthActions.passwordChangeFailed({
-                error: new Error('[Auth] Unknown password change error'),
+                error: new Error('Unknown password change error'),
               }),
             ),
           ),

@@ -1,7 +1,9 @@
+import { Photo } from '@app/types';
+
 export interface ImageOverlayState {
-  imageUrl: string | null;
+  photo: Photo | null;
 }
 
 export const initialState: ImageOverlayState = {
-  imageUrl: null,
+  photo: null,
 };

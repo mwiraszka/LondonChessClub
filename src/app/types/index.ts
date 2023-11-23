@@ -19,8 +19,6 @@ export {
 export { NavPathTypes } from './nav-paths.model';
 export { Photo } from './photo.model';
 export { ServiceResponse } from './service-response.model';
-export { SignUpRequest } from './sign-up-request.model';
-export { SignUpResponse } from './sign-up-response.model';
 export { Toast, ToastTypes } from './toast.model';
 export { Url } from './url.model';
 export { User } from './user.model';

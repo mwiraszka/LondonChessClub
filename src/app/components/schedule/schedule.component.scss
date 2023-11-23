@@ -6,6 +6,7 @@
   align-items: center;
   gap: $lcc-space--sm;
   width: 100%;
+  min-width: 280px;
 }
 
 table {
@@ -16,7 +17,11 @@ table {
     tr {
       &.next-event {
         background-color: $lcc-color--bg-highlighted-event !important;
-        box-shadow: $lcc-box-shadow !important;
+        outline: 1px solid darken($lcc-color--bg-highlighted-event, 10%) !important;
+
+        .title {
+          font-weight: 600;
+        }
       }
 
       .details-container {
@@ -24,10 +29,12 @@ table {
         flex-flow: column nowrap;
         align-items: start;
         gap: $lcc-space--sm;
+        padding: $lcc-space--md;
   
         .title {
-          color: $lcc-color--text-primary-black;
+          color: lighten($lcc-color--text-primary-black, 20%);
           line-height: normal;
+          font-size: 15px !important;
         }
 
         .type {
@@ -66,8 +73,8 @@ table {
           }
 
           &.other {
-            background: lighten(rgba(purple, 0.3), 40%);
-            border: 1px solid rgba(purple, 0.3);
+            background: lighten(rgba(silver, 0.3), 40%);
+            border: 1px solid rgba(silver, 0.3);
           }
 
           &.closed {
@@ -78,7 +85,10 @@ table {
 
         .details {
           width: 100%;
-          color: $lcc-color--text-secondary;
+          color: $lcc-color--text-primary-black;
+          padding-top: $lcc-space--md;
+          font-size: $h4;
+          font-weight: 200;
         }
 
         .created-and-edited {

@@ -4,6 +4,7 @@
 	<li *ngFor="let link of links; trackBy: trackByFn">
 		<a *ngIf="link.path.startsWith('http'); else internalLink"
 			 [href]="link.path"
+			 target="_blank"
 			 class="lcc-link">
 			<cds-icon *ngIf="link.iconShape"
 								[attr.shape]="link.iconShape"

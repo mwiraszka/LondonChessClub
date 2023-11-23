@@ -6,7 +6,7 @@ import { ImageOverlayActions, ImageOverlaySelectors } from '@app/store/image-ove
 
 @Injectable()
 export class ImageOverlayFacade {
-  imageUrl$ = this.store.select(ImageOverlaySelectors.imageUrl);
+  photo$ = this.store.select(ImageOverlaySelectors.photo);
 
   constructor(private readonly store: Store) {}
 

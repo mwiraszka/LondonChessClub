@@ -1,5 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
+import { Photo } from '@app/types';
+
 enum ImageOverlayActionTypes {
   OVERLAY_OPENED = '[Image Overlay] Overlay opened',
   OVERLAY_CLOSED = '[Image Overlay] Overlay closed',
@@ -7,7 +9,7 @@ enum ImageOverlayActionTypes {
 
 export const overlayOpened = createAction(
   ImageOverlayActionTypes.OVERLAY_OPENED,
-  props<{ imageUrl: string }>(),
+  props<{ photo: Photo }>(),
 );
 
 export const overlayClosed = createAction(ImageOverlayActionTypes.OVERLAY_CLOSED);

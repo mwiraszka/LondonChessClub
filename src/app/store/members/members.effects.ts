@@ -107,9 +107,6 @@ export class MembersEffects {
           MembersActions.loadMembersFailed,
           MembersActions.deleteMemberFailed,
         ),
-        tap(({ error }) => {
-          console.error(`[Members]' ${error.message}`);
-        }),
       ),
     { dispatch: false },
   );

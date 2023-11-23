@@ -121,8 +121,8 @@ export class NavEffects {
   navigateToLondonChessChampion$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(NavActions.londonChessChampionNavigationRequested),
-        tap(() => this.router.navigate([NavPathTypes.LONDON_CHESS_CHAMPION])),
+        ofType(NavActions.cityChampionNavigationRequested),
+        tap(() => this.router.navigate([NavPathTypes.CITY_CHAMPION])),
       ),
     { dispatch: false },
   );

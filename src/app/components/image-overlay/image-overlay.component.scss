@@ -27,11 +27,22 @@ $header-height: 26px;
 
   img {
     z-index: 101;
-    opacity: 100%;
     width: 100%;
     max-width: calc(100vw - #{$lcc-space--md});
     max-height: calc(100vh - #{$header-height} - #{$lcc-space--md});
     border-bottom-left-radius: $lcc-border-radius--lg;
     border-bottom-right-radius: $lcc-border-radius--lg;
+  }
+
+  .description {
+    position: relative;
+    top: -2.8em;
+    left: $lcc-space--sm;
+    right: -$lcc-space--sm;
+    width: calc(100% - 2 * $lcc-space--sm);
+    padding: $lcc-space--xs $lcc-space--sm;
+    border-radius: $lcc-border-radius--sm;
+    background-color: hsla(0, 0%, 99%, 0.8);
+    color: $lcc-color--text-primary-black;
   }
 }

@@ -1,7 +1,5 @@
 import { createAction, props } from '@ngrx/store';
 
-import { ClubEvent } from '@app/types';
-
 enum NavActionTypes {
   LINK_SELECTED = '[Nav] Link selected',
 
@@ -9,7 +7,7 @@ enum NavActionTypes {
   MEMBERS_NAVIGATION_REQUESTED = '[Nav] Members navigation requested',
   SCHEDULE_NAVIGATION_REQUESTED = '[Nav] Schedule navigation requested',
   NEWS_NAVIGATION_REQUESTED = '[Nav] News navigation requested',
-  LONDON_CHESS_CHAMPION_NAVIGATION_REQUESTED = '[Nav] London chess champion navigation requested',
+  CITY_CHAMPION_NAVIGATION_REQUESTED = '[Nav] City champion navigation requested',
   PHOTO_GALLERY_NAVIGATION_REQUESTED = '[Nav] Photo gallery navigation requested',
   ABOUT_NAVIGATION_REQUESTED = '[Nav] About navigation requested',
   LOGIN_NAVIGATION_REQUESTED = '[Nav] Login navigation requested',
@@ -36,8 +34,8 @@ export const scheduleNavigationRequested = createAction(
 export const newsNavigationRequested = createAction(
   NavActionTypes.NEWS_NAVIGATION_REQUESTED,
 );
-export const londonChessChampionNavigationRequested = createAction(
-  NavActionTypes.LONDON_CHESS_CHAMPION_NAVIGATION_REQUESTED,
+export const cityChampionNavigationRequested = createAction(
+  NavActionTypes.CITY_CHAMPION_NAVIGATION_REQUESTED,
 );
 export const photoGalleryNavigationRequested = createAction(
   NavActionTypes.PHOTO_GALLERY_NAVIGATION_REQUESTED,

@@ -1,10 +1,8 @@
 import {
   AuthenticationDetails,
   CognitoUser,
-  CognitoUserAttribute,
   CognitoUserPool,
   CognitoUserSession,
-  UserData,
 } from 'amazon-cognito-identity-js';
 import { Observable } from 'rxjs';
 
@@ -15,8 +13,6 @@ import {
   LoginResponse,
   PasswordChangeRequest,
   PasswordChangeResponse,
-  SignUpRequest,
-  SignUpResponse,
 } from '@app/types';
 
 import { environment } from '@environments/environment';
@@ -71,41 +67,6 @@ export class AuthService {
     });
   }
 
-  // Currently not hooked up in UI, but code is fully functional;
-  // here for future reference in case we decide to re-implement it:
-
-  // signUp(request: SignUpRequest): Observable<SignUpResponse> {
-  //   const givenNameAttribute = new CognitoUserAttribute({
-  //     Name: 'given_name',
-  //     Value: request.firstName,
-  //   });
-  //   const familyNameAttribute = new CognitoUserAttribute({
-  //     Name: 'family_name',
-  //     Value: request.lastName,
-  //   });
-  //   const attributeList: CognitoUserAttribute[] = [
-  //     givenNameAttribute,
-  //     familyNameAttribute,
-  //   ];
-
-  //   return new Observable<SignUpResponse>((observer) => {
-  //     this.userPool().signUp(
-  //       request.email,
-  //       request.newPassword,
-  //       attributeList,
-  //       null,
-  //       (err, result) => {
-  //         if (err) {
-  //           observer.next({ error: err });
-  //         } else {
-  //           observer.next({ user: result.user });
-  //           observer.complete();
-  //         }
-  //       }
-  //     );
-  //   });
-  // }
-
   logIn(request: LoginRequest): Observable<LoginResponse> {
     const authDetails = new AuthenticationDetails({
       Username: request.email,
@@ -122,17 +83,17 @@ export class AuthService {
           let errorMessage: string;
           switch (`${err}`) {
             case 'NotAuthorizedException: Incorrect username or password.':
-              errorMessage = '[Auth] Incorrect username or password';
+              errorMessage = 'Incorrect username or password';
               break;
             case 'NotAuthorizedException: Password attempts exceeded':
-              errorMessage = '[Auth] Password attempt limit exceeded';
+              errorMessage = 'Password attempt limit exceeded';
               break;
             case 'UserNotConfirmedException: User is not confirmed.':
               errorMessage =
-                '[Auth] Please verify your account by clicking on the link that was sent to your email';
+                'Please verify your account by clicking on the link that was sent to your email';
               break;
             default:
-              errorMessage = `[Auth] ${err}`;
+              errorMessage = `Unknown error: ${err}`;
           }
           observer.next({ error: new Error(errorMessage) });
         },
@@ -155,10 +116,10 @@ export class AuthService {
           let errorMessage: string;
           switch (`${err}`) {
             case 'LimitExceededException: Attempt limit exceeded, please try after some time.':
-              errorMessage = '[Auth] Code attempt limit reached; please try again later';
+              errorMessage = 'Code attempt limit reached; please try again later';
               break;
             default:
-              errorMessage = `[Auth] ${err}`;
+              errorMessage = `Unknown error: ${err}`;
           }
           observer.next({ error: new Error(errorMessage) });
         },
@@ -179,17 +140,15 @@ export class AuthService {
           let errorMessage: string;
           switch (`${err}`) {
             case 'CodeMismatchException: Invalid verification code provided, please try again.':
-              errorMessage = '[Auth] Invalid verification code';
-              break;
             case 'ExpiredCodeException: Invalid code provided, please request a code again.':
-              errorMessage = '[Auth] Invalid verification code';
+              errorMessage = 'Invalid verification code';
               break;
             case 'LimitExceededException: Attempt limit exceeded, please try after some time.':
               errorMessage =
-                '[Auth] Password change attempt limit reached; please try again later';
+                'Password change attempt limit reached; please try again later';
               break;
             default:
-              errorMessage = `[Auth] ${err}`;
+              errorMessage = `Unknown error: ${err}`;
           }
           observer.next({ error: new Error(errorMessage) });
         },

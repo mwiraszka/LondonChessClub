@@ -46,10 +46,29 @@ $dropdown-list-width: 120px;
     font-weight: 400;
     height: auto;
     color: $lcc-color--text-primary-black;
-    padding: $lcc-space--xs $lcc-space--sm;
+    padding: 6px;
 
-    @include respond-to('lt-sm') {
-      padding: 5px;
+    .text {
+      display: none;
+      visibility: hidden;
+    }
+
+    @include respond-to('gt-sm') {
+      padding: 6px $lcc-space--sm;
+    }
+
+    @include respond-to('gt-md') {
+      // Set padding so that height is kept constant on breakpoint transitions
+      padding: 10px $lcc-space--sm;
+      .icon {
+        display: none;
+        visibility: hidden;
+      }
+
+      .text {
+        display: block;
+        visibility: unset;
+      }
     }
   
     &:hover,
@@ -141,7 +160,7 @@ $dropdown-list-width: 120px;
         margin: 1px 0;
 
         &.login-welcome {
-          display: flex !important; // Must override lcc-gt-md class default
+          display: flex;
           flex-flow: column nowrap;
           justify-content: center;
           align-items: center;

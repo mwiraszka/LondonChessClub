@@ -1,16 +1,12 @@
 import { createAction, props } from '@ngrx/store';
 import { CognitoUserSession } from 'amazon-cognito-identity-js';
 
-import { LoginRequest, PasswordChangeRequest, SignUpRequest, User } from '@app/types';
+import { LoginRequest, PasswordChangeRequest, User } from '@app/types';
 
 enum AuthActionTypes {
   LOGIN_REQUESTED = '[Auth] Login requested',
   LOGIN_SUCCEEDED = '[Auth] Login succeeded',
   LOGIN_FAILED = '[Auth] Login failed',
-
-  SIGN_UP_REQUESTED = '[Auth] Sign up requested',
-  SIGN_UP_SUCCEEDED = '[Auth] Sign up succeeded',
-  SIGN_UP_FAILED = '[Auth] Sign up failed',
 
   LOGOUT_REQUESTED = '[Auth] Logout requested',
   LOGOUT_SUCCEEDED = '[Auth] Logout succeeded',
@@ -35,19 +31,6 @@ export const loginSucceeded = createAction(
 );
 export const loginFailed = createAction(
   AuthActionTypes.LOGIN_FAILED,
-  props<{ error: Error }>(),
-);
-
-export const signUpRequested = createAction(
-  AuthActionTypes.SIGN_UP_REQUESTED,
-  props<{ request: SignUpRequest }>(),
-);
-export const signUpSucceeded = createAction(
-  AuthActionTypes.SIGN_UP_SUCCEEDED,
-  props<{ user: User; session: CognitoUserSession }>(),
-);
-export const signUpFailed = createAction(
-  AuthActionTypes.SIGN_UP_FAILED,
   props<{ error: Error }>(),
 );
 

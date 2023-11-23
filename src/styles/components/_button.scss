@@ -19,7 +19,6 @@
 
 .lcc-raised-button {
   @extend .lcc-button;
-
   background-color: lighten($lcc-color--white, 5%);
   color: $lcc-color--primary;
   border: 1px solid darken($lcc-color--white, 3%);
@@ -36,25 +35,37 @@
 .lcc-primary-button {
   @extend .lcc-raised-button;
   background-color: $lcc-color--primary !important;
-  color: $lcc-color--white;
+  color: $lcc-color--text-primary-white;
+
+  &:hover {
+    background-color: lighten($lcc-color--primary, 5%) !important;
+  }
 }
 
 .lcc-secondary-button {
   @extend .lcc-raised-button;
-  background-color: $lcc-color--secondary !important;
-  color: $lcc-color--white;
+  background-color: $lcc-color--transparent-fully !important;
+  color: $lcc-color--text-primary-black;
 }
 
 .lcc-success-button {
   @extend .lcc-raised-button;
   background-color: $lcc-color--success !important;
-  color: $lcc-color--white;
+  color: $lcc-color--text-primary-white;
+
+  &:hover {
+    background-color: lighten($lcc-color--success, 5%) !important;
+  }
 }
 
 .lcc-warning-button {
   @extend .lcc-raised-button;
   background-color: $lcc-color--warning !important;
   color: $lcc-color--white;
+
+  &:hover {
+    background-color: lighten($lcc-color--warning, 5%) !important;
+  }
 }
 
 .lcc-ghost-button {

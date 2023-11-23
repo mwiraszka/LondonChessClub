@@ -51,6 +51,19 @@ export function customSort(key: string, isAscending: boolean) {
 }
 
 /**
+ * Takes 'n' random items from an array
+ * @param {T[]} array The array (any type)
+ * @param {number} n The number of items to take
+ */
+export function takeRandomly<T>(array: T[], n: number): T[] {
+  if (array?.length <= n) {
+    return array;
+  }
+
+  return array.sort(() => 0.5 - Math.random()).slice(0, n);
+}
+
+/**
  * Converts any string to kebab-case
  * (see https://www.geeksforgeeks.org/how-to-convert-a-string-into-kebab-case-using-javascript)
  * @param {string} anyString The input string Like This, LikeThis, or Like_This

@@ -7,8 +7,8 @@
 		 [routerLinkActiveOptions]="{ exact: true }"
 		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Home' : null"
 		 (click)="facade.onSelectHomeTab()">
-		<span class="lcc-gt-md">Home</span>
-		<cds-icon class="lcc-lt-md"
+		<span class="text">Home</span>
+		<cds-icon class="icon"
 							shape="home"
 							size="md">
 		</cds-icon>
@@ -19,8 +19,8 @@
 		 [routerLink]="NavPathTypes.MEMBERS"
 		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Members' : null"
 		 (click)="facade.onSelectMembersTab()">
-		<span class="lcc-gt-md">Members</span>
-		<cds-icon class="lcc-lt-md"
+		<span class="text">Members</span>
+		<cds-icon class="icon"
 							shape="users"
 							size="md">
 		</cds-icon>
@@ -31,8 +31,8 @@
 		 [routerLink]="NavPathTypes.SCHEDULE"
 		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Schedule' : null"
 		 (click)="facade.onSelectScheduleTab()">
-		<span class="lcc-gt-md">Schedule</span>
-		<cds-icon class="lcc-lt-md"
+		<span class="text">Schedule</span>
+		<cds-icon class="icon"
 							shape="event"
 							size="md">
 		</cds-icon>
@@ -43,20 +43,20 @@
 		 [routerLink]="NavPathTypes.NEWS"
 		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'News' : null"
 		 (click)="facade.onSelectNewsTab()">
-		<span class="lcc-gt-md">News</span>
-		<cds-icon class="lcc-lt-md"
+		<span class="text">News</span>
+		<cds-icon class="icon"
 							shape="announcement"
 							size="md">
 		</cds-icon>
 	</a>
 
-	<a aria-label="London Chess Champion"
-		 [routerLink]="NavPathTypes.LONDON_CHESS_CHAMPION"
-		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'London Chess Champion' : null"
+	<a aria-label="City Champion"
+		 [routerLink]="NavPathTypes.CITY_CHAMPION"
+		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'City Champion' : null"
 		 routerLinkActive="link-active"
-		 (click)="facade.onSelectLondonChessChampionTab()">
-		<span class="lcc-gt-md">London&nbsp;Chess&nbsp;Champion</span>
-		<cds-icon class="lcc-lt-md"
+		 (click)="facade.onSelectCityChampionTab()">
+		<span class="text">City&nbsp;Champion</span>
+		<cds-icon class="icon"
 							shape="crown"
 							size="md">
 		</cds-icon>
@@ -67,8 +67,8 @@
 		 [routerLink]="NavPathTypes.PHOTO_GALLERY"
 		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Photo Gallery' : null"
 		 (click)="facade.onSelectPhotoGalleryTab()">
-		<span class="lcc-gt-md">Photo&nbsp;Gallery</span>
-		<cds-icon class="lcc-lt-md"
+		<span class="text">Photo&nbsp;Gallery</span>
+		<cds-icon class="icon"
 							shape="image-gallery"
 							size="md">
 		</cds-icon>
@@ -79,8 +79,8 @@
 		 [routerLink]="NavPathTypes.ABOUT"
 		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'About' : null"
 		 (click)="facade.onSelectAboutTab()">
-		<span class="lcc-gt-md">About</span>
-		<cds-icon class="lcc-lt-md"
+		<span class="text">About</span>
+		<cds-icon class="icon"
 							shape="info-standard"
 							size="md">
 		</cds-icon>
@@ -134,8 +134,8 @@
 			 [routerLink]="NavPathTypes.LOGIN"
 			 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Log in as an administrator' : null"
 			 (click)="facade.onSelectLoginTab()">
-			<span class="lcc-gt-md">Admin Login</span>
-			<cds-icon class="lcc-lt-md"
+			<span class="text">Admin Login</span>
+			<cds-icon class="icon"
 								shape="user"
 								size="md">
 			</cds-icon>

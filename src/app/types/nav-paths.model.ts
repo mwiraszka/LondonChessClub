@@ -10,10 +10,9 @@ export enum NavPathTypes {
   ARTICLE_ADD = 'article/add',
   ARTICLE_EDIT = 'article/edit',
   ARTICLE_VIEW = 'article/view',
-  LONDON_CHESS_CHAMPION = 'london-chess-champion',
+  CITY_CHAMPION = 'city-champion',
   PHOTO_GALLERY = 'photo-gallery',
   ABOUT = 'about',
   LOGIN = 'login',
   CHANGE_PASSWORD = 'change-password',
-  SIGN_UP = 'sign-up',
 }

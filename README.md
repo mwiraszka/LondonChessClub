@@ -41,8 +41,14 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v1.4.4-beta - November 21st, 2023
+v1.4.4-beta - November 22nd, 2023
 </summary>
+
+- 🚀 Improve typography and layout of Schedule and Nav components
+- 🚀 Add more photos and archive links to Photo Gallery screen
+- 🚀 Improve styling of 'secondary' buttons throughout app
+
+- 🐛 Fix various minor bugs on Article Editor and Article Viewer screens
 
 - 🔧 Revamp this `README` file and issue tickets for upcoming full release (v2.0.0)
 - 🔧 Reorganize `layout` style partials

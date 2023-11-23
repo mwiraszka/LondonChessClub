@@ -6,5 +6,4 @@ export enum AppScreenTypes {
   CHAMPION = 'champion',
   ABOUT = 'about',
   LOGIN = 'login',
-  SIGN_UP = 'signUp',
 }

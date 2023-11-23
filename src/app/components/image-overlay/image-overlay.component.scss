@@ -2,16 +2,18 @@
 
 $header-height: 26px;
 
+
 .content {
-  padding: $lcc-space--md;
+  position: absolute;
+  top: $lcc-space--sm;
 
   header {
+    display: flex;
+    height: $header-height;
     background-color: darken($lcc-color--primary, 20%);
     border-top-left-radius: $lcc-border-radius--lg;
     border-top-right-radius: $lcc-border-radius--lg;
     border-bottom: 2px solid darken($lcc-color--primary, 30%);
-    height: $header-height;
-    display: flex;
 
     .close-button {
       margin: 0 $lcc-space--xs 0 auto;
@@ -37,6 +39,7 @@ $header-height: 26px;
   .description {
     position: relative;
     top: -2.8em;
+    bottom: 1.8em;
     left: $lcc-space--sm;
     right: -$lcc-space--sm;
     width: calc(100% - 2 * $lcc-space--sm);

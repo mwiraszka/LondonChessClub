@@ -42,7 +42,7 @@ export class ArticlesEffects {
       ),
       switchMap(response => {
         if (response.error) {
-          return throwError(() => new Error('[Articles] Unable to delete image'));
+          return throwError(() => new Error('Unable to delete image'));
         }
         return this.articlesService.deleteArticle(response!.payload!).pipe(
           map((response: ServiceResponse<Article>) =>
@@ -143,9 +143,6 @@ export class ArticlesEffects {
           ArticlesActions.loadArticlesFailed,
           ArticlesActions.deleteArticleFailed,
         ),
-        tap(({ error }) => {
-          console.error(`[Articles] ${error.message}`);
-        }),
       ),
     { dispatch: false },
   );

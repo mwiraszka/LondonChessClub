@@ -3,13 +3,13 @@ import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 
 import { ImageOverlayActions } from '@app/store/image-overlay';
+import { Photo } from '@app/types';
 
 @Injectable()
 export class PhotoGridFacade {
   constructor(private readonly store: Store) {}
 
-  onClickPhoto(index: number): void {
-    const imageUrl = `assets/photos/${index}-lg.jpg`;
-    this.store.dispatch(ImageOverlayActions.overlayOpened({ imageUrl }));
+  onClickPhoto(photo: Photo): void {
+    this.store.dispatch(ImageOverlayActions.overlayOpened({ photo }));
   }
 }

@@ -1,39 +1,17 @@
-@include respond-to('lt-md') {
-  .lcc-lt-md {
-    display: block !important;
-  }
-  .lcc-gt-md {
-    display: none !important;
-    visibility: hidden;
-  }
+.lcc-overlay {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: $lcc-color--overlay;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@include respond-to('lt-sm') {
-  .lcc-lt-sm {
-    display: block !important;
-  }
-  .lcc-gt-sm {
-    display: none !important;
-    visibility: hidden;
-  }
-}
-
-@include respond-to('gt-md') {
-  .lcc-gt-md {
-    display: block !important;
-  }
-  .lcc-lt-md {
-    display: none !important;
-    visibility: hidden;
-  }
-}
-
-@include respond-to('gt-sm') {
-  .lcc-gt-sm {
-    display: block !important;
-  }
-  .lcc-lt-sm {
-    display: none !important;
-    visibility: hidden;
-  }
+.lcc-disable-scrolling {
+  overflow: hidden;
+  height: 100%;
 }

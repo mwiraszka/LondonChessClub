@@ -9,6 +9,9 @@
 				</cds-icon>
 			</button>
 		</header>
-		<img [src]="facade.imageUrl$ | async" />
+		<img [src]="'assets/photos/' + (facade.photo$ | async)?.filename + '.jpg'" />
+		<h4 class="description lcc-truncate-max-1-line">
+			{{ (facade.photo$ | async)?.description }}
+		</h4>
 	</div>
 </div>

@@ -7,7 +7,7 @@ const modalReducer = createReducer(
   initialState,
   on(ImageOverlayActions.overlayOpened, (state, action) => ({
     ...state,
-    imageUrl: action.imageUrl,
+    photo: action.photo,
   })),
   on(ImageOverlayActions.overlayClosed, () => initialState),
 );

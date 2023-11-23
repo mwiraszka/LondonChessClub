@@ -29,7 +29,6 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loaderService.display(true);
     this.facade.articleBeforeEdit$.pipe(first()).subscribe(article => {
-      console.log(':: article', article);
       this.initForm(article);
       this.previewImageUrl = article.imageUrl ?? null;
       this.loaderService.display(false);
@@ -56,10 +55,6 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
 
   onCancel(): void {
     this.facade.onCancel();
-  }
-
-  onReset(): void {
-    this.clearImage();
   }
 
   onChooseImage(event: Event): void {
@@ -91,15 +86,10 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     });
 
     // TODO: investigate why setErrors({ required: null }) doesn't work
-    this.form.controls['imageFile'].patchValue(null);
+    this.form.controls['imageFile'].patchValue({});
 
     this.valueChangesSubscription = this.form.valueChanges
       .pipe(debounceTime(200))
       .subscribe((formData: Article) => this.facade.onValueChange(formData));
-  }
-
-  private clearImage(): void {
-    this.form.controls['imageFile'].patchValue(null);
-    this.previewImageUrl = null;
   }
 }

@@ -54,8 +54,8 @@ export class NavFacade implements OnInit, OnDestroy {
     this.store.dispatch(NavActions.newsNavigationRequested());
   }
 
-  onSelectLondonChessChampionTab(): void {
-    this.store.dispatch(NavActions.londonChessChampionNavigationRequested());
+  onSelectCityChampionTab(): void {
+    this.store.dispatch(NavActions.cityChampionNavigationRequested());
   }
 
   onSelectPhotoGalleryTab(): void {

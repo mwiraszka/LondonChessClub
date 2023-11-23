@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 
-import { Link, NavPathTypes, Photo } from '@app/types';
+import { Link, NavPathTypes } from '@app/types';
+import { takeRandomly } from '@app/utils';
+
+import { photos } from '@assets/photos';
 
 @Component({
   selector: 'lcc-home-screen',
@@ -8,16 +11,7 @@ import { Link, NavPathTypes, Photo } from '@app/types';
   styleUrls: ['./home-screen.component.scss'],
 })
 export class HomeScreenComponent {
-  photos: Photo[] = [
-    { index: 1, description: '' },
-    { index: 2, description: '' },
-    { index: 3, description: '' },
-    { index: 4, description: '' },
-    { index: 9, description: '' },
-    { index: 10, description: '' },
-    { index: 15, description: '' },
-    { index: 13, description: '' },
-  ];
+  photos = takeRandomly(photos, 10);
 
   scheduleLink: Link = {
     path: NavPathTypes.SCHEDULE,

@@ -11,11 +11,6 @@ const authReducer = createReducer(
     session: action.session,
   })),
   on(AuthActions.logoutSucceeded, () => initialState),
-  on(AuthActions.signUpSucceeded, (state, action) => ({
-    ...state,
-    user: action.user,
-    session: action.session,
-  })),
   on(AuthActions.codeForPasswordChangeSucceeded, state => ({
     ...state,
     user: { ...state.user, hasCode: true },

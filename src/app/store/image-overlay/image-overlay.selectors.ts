@@ -8,11 +8,5 @@ export const imageOverlayFeatureSelector = createFeatureSelector<ImageOverlaySta
   AppStoreFeatureTypes.IMAGE_OVERLAY,
 );
 
-export const imageUrl = createSelector(
-  imageOverlayFeatureSelector,
-  state => state.imageUrl,
-);
-export const isOpen = createSelector(
-  imageOverlayFeatureSelector,
-  state => !!state.imageUrl,
-);
+export const photo = createSelector(imageOverlayFeatureSelector, state => state.photo);
+export const isOpen = createSelector(imageOverlayFeatureSelector, state => !!state.photo);

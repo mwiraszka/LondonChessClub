@@ -1,4 +1,4 @@
-<img *ngFor="let photo of photos"
-		 [src]="'assets/photos/' + photo.index + '-thumbnail.jpg'"
-		 [alt]="photo.description ?? ''"
-		 (click)="facade.onClickPhoto(photo.index)" />
+<img *ngFor="let photo of photos?.reverse()"
+		 [src]="'assets/photos/' + photo.filename + '-320.jpg'"
+		 [alt]="photo.description"
+		 (click)="facade.onClickPhoto(photo)" />

@@ -13,7 +13,6 @@ import { MembersScreenModule } from './members';
 import { NewsScreenModule } from './news';
 import { PhotoGalleryScreenModule } from './photo-gallery';
 import { ScheduleScreenModule } from './schedule';
-import { SignUpScreenModule } from './sign-up';
 
 const modules = [
   AboutScreenModule,
@@ -28,7 +27,6 @@ const modules = [
   NewsScreenModule,
   PhotoGalleryScreenModule,
   ScheduleScreenModule,
-  SignUpScreenModule,
 ];
 
 @NgModule({

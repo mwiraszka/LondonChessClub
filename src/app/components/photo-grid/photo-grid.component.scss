@@ -1,20 +1,39 @@
 @import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
-$grid-gap: $lcc-space--xs;
-$card-min-width: 200px;
-
 :host {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  gap: $grid-gap;
+  // 'Masonry' layout effect:
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  column-count: 2;
+
+  @include respond-to('gt-sm') {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+  }
+
+  @include respond-to('gt-md') {
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+  }
+
+  @include respond-to('gt-lg') {
+    -webkit-column-count: 5;
+    -moz-column-count: 5;
+    column-count: 5;
+  }
+    
+  -webkit-column-gap: $lcc-space--xs;
+  -moz-column-gap: $lcc-space--xs;
+  column-gap: $lcc-space--xs;
 
   img {
-    @include flex-wrap-fix-width($card-min-width, $grid-gap, $lcc-width--app-content);
-
-    border-radius: $lcc-border-radius--sm;
+    display: block;
+    width: 100%;
+    margin-bottom: $lcc-space--xs;
+    border-radius: $lcc-border-radius--lg;
     border: 1px solid $lcc-color--transparent-mostly;
     opacity: 0.85;
 

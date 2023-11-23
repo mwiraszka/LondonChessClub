@@ -25,9 +25,9 @@ $lcc-color--bg-figure: hsl(7, 3%, 12%);
 $lcc-color--bg-screen-header: hsl(7, 3%, 94%);
 $lcc-color--bg-grid-item: hsl(0, 0%, 97%);
 $lcc-color--bg-table-row-light: hsl(0, 0%, 98%);
-$lcc-color--bg-table-row-dark: hsl(0, 0%, 94%);
+$lcc-color--bg-table-row-dark: hsl(220, 10%, 96%);
 $lcc-color--bg-tooltip: hsl(0, 0%, 27%);
-$lcc-color--bg-highlighted-event: hsl(65, 100%, 92%);
+$lcc-color--bg-highlighted-event: hsl(52, 50%, 96%);
 
 $lcc-color--transparent-fully: hsla(0, 0%, 100%, 0);
 $lcc-color--transparent-mostly: hsla(0, 0%, 100%, 0.2);
@@ -48,6 +48,7 @@ $lcc-space--xxs: 2px;
 
 /* LCC widths */
 $lcc-width--app-content: 1800px;
+$lcc-width--small-form: 600px;
 
 
 /* Other LCC constants */

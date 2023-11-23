@@ -23,7 +23,7 @@
 			</lcc-admin-controls>
 			<td class="date">{{ event.eventDate | formatDate }}</td>
 			<td class="details-container">
-				<h5 class="title">{{ event.title }}</h5>
+				<h4 class="title">{{ event.title }}</h4>
 				<span class="type"
 							[ngClass]="kebabize(event.type)">
 					{{ event.type }}
@@ -32,7 +32,7 @@
 					 class="details">
 					{{ event.details }}
 				</p>
-				<aside *ngIf="includeDetails"
+				<aside *ngIf="includeDetails && (facade.isAdmin$ | async)"
 							 class="created-and-edited">
 					Event created on {{ event.dateCreated | formatDate:'short' }}<br />
 					Last edited on {{ event.dateEdited | formatDate:'short' }}

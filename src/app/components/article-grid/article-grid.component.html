@@ -25,7 +25,7 @@
 			<div class="article-dates-container">
 				<span>{{ article.dateCreated | formatDate:'short' }}</span>
 				<ng-container *ngIf="article?.dateEdited !== article.dateCreated">
-					<span class="lcc-vertical-spacer">|</span>
+					<span class="vertical-spacer">|</span>
 					<span class="edited">edited&nbsp;</span>
 					<span>{{ article.dateEdited | formatDate:'short' }}</span>
 				</ng-container>

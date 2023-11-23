@@ -16,10 +16,14 @@
     height: unset;
     line-height: 1.5em;
     padding: $lcc-space--xs $lcc-space--sm;
-    color: black;
+    color:  $lcc-color--text-primary-black;
     background-color: hsla(0, 0%, 99%, 0.8);
     border-radius: $lcc-border-radius--sm;
   }
+}
+
+.vertical-spacer {
+  padding: 0 1em;
 }
 
 .edited {

@@ -67,7 +67,7 @@ lcc-link-list,
       }
 
       hr {
-        border-top: 1px solid $lcc-color--gray;
+        border-top: 1px solid $lcc-color--transparent-mostly;
         padding-top: $lcc-space--sm;
         width: 100%;
       }
@@ -83,6 +83,10 @@ lcc-link-list,
         text-align: center;
         margin-top: $lcc-space--sm;
         color: darken($lcc-color--text-primary-white, 20%);
+
+        .vertical-spacer {
+          padding: 0 1em;
+        }
       }
     }
   }

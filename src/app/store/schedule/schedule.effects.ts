@@ -110,9 +110,6 @@ export class ScheduleEffects {
           ScheduleActions.updateEventFailed,
           ScheduleActions.deleteEventFailed,
         ),
-        tap(({ error }) => {
-          console.error(`[Schedule] ${error.message}`);
-        }),
       ),
     { dispatch: false },
   );

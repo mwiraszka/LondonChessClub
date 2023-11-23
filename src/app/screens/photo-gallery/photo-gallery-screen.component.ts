@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { Link } from '@app/types';
+import { Link, Photo } from '@app/types';
 
-import { photos } from '@assets/photos';
+import { allPhotos } from '@assets/photos';
 
 import { PhotoGalleryScreenFacade } from './photo-gallery-screen.facade';
 
@@ -12,8 +12,8 @@ import { PhotoGalleryScreenFacade } from './photo-gallery-screen.facade';
   styleUrls: ['./photo-gallery-screen.component.scss'],
   providers: [PhotoGalleryScreenFacade],
 })
-export class PhotoGalleryScreenComponent {
-  photos = photos;
+export class PhotoGalleryScreenComponent implements OnInit {
+  photos!: Photo[];
   links: Link[] = [
     {
       path: 'https://drive.google.com/drive/folders/13J4PN7VCSs7XXnQi6VCmvShLwJmoPopv',
@@ -82,6 +82,11 @@ export class PhotoGalleryScreenComponent {
   ].map(link => {
     return { ...link, iconShape: 'camera' };
   });
+
+  ngOnInit(): void {
+    // Shuffle all photos
+    this.photos = allPhotos.sort(() => Math.random() - 0.5);
+  }
 
   constructor(public facade: PhotoGalleryScreenFacade) {}
 }

@@ -41,6 +41,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v1.4.5-beta - November 22nd, 2023
+</summary>
+
+- 🐛 Fix various minor bugs on Photo Gallery screen
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v1.4.4-beta - November 22nd, 2023
 </summary>
 

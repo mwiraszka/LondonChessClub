@@ -3,7 +3,7 @@ import { Photo } from '@app/types';
 // This file lists all the photos used in the Photo Gallery screen
 // (some of which are also used on the Home screen)
 
-export const photos: Photo[] = [
+export const allPhotos: Photo[] = [
   { filename: 'the-old-guard', description: 'The old guard' },
   { filename: 'steve-lecture', description: 'Steve Demmery Lecture' },
   {

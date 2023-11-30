@@ -48,6 +48,7 @@ v1.5.0-beta - November TBD, 2023
 
 - 🐛 Fix various minor layout bugs on News and Photo Gallery screens
 - 🐛 Restrict article banner image size to 1MB to ensure image uploads do not fail
+- 🐛 Ensure dates used to determine upcoming events are compared correctly
 
 - 🔧 Clean up various warnings showing up in the console, related to issues with the webmanifest and common JS packages
 

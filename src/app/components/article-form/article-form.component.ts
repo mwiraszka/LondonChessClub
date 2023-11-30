@@ -50,7 +50,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     } else if (control.hasError('invalidDateFormat')) {
       return 'Invalid date';
     } else if (control.hasError('imageTooLarge')) {
-      return 'Banner image must be smaller than 1MB';
+      return 'Banner image file must be smaller than 1MB';
     } else {
       return 'Unknown error';
     }

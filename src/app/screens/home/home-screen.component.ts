@@ -29,6 +29,6 @@ export class HomeScreenComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.photos = takeRandomly(allPhotos, 10);
+    this.photos = takeRandomly(allPhotos, 12);
   }
 }

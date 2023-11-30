@@ -21,10 +21,30 @@
 
   .image-controls-container {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
   }
 
   input[type="file"] {
     display: none;
+  }
+
+  .preview-section-container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    width: 100%;
+  
+    h4 {
+      align-self: flex-start;
+      font-weight: 400;
+      color: $lcc-color--text-secondary;
+    }
+
+    .markdown-container {
+      width: 100%;
+      border: 1px solid transparentize($lcc-color--primary, 0.9);
+      background-color: white;
+      border-radius: $lcc-border-radius--lg;
+    }
   }
 }

@@ -3,6 +3,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -50,6 +51,7 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     ImageOverlayModule,
     ImageOverlayStoreModule,
+    MarkdownModule.forRoot(),
     MembersStoreModule,
     ModalModule,
     ModalStoreModule,

@@ -41,6 +41,20 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v1.5.0-beta - November TBD, 2023
+</summary>
+
+- 🚀 Add support for markdown in articles!
+
+- 🐛 Fix various minor layout bugs on News and Photo Gallery screens
+- 🐛 Restrict article banner image size to 1MB to ensure image uploads do not fail
+
+- 🔧 Clean up various warnings showing up in the console, related to issues with the webmanifest and common JS packages
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v1.4.5-beta - November 22nd, 2023
 </summary>
 

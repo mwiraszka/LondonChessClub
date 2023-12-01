@@ -14,6 +14,10 @@ table {
 
   thead {
     th {
+      span {
+        color: unset;
+      }
+
       &:hover:not(.row-number) {
         cursor: pointer;
         background-color: lighten($lcc-color--primary, 5%);

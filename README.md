@@ -45,6 +45,7 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 v1.5.1-beta - December 2nd, 2023
 </summary>
 
+- 🚀 Add support for LCC-styled markdown tables in articles' content section
 - 🚀 Replace CDS with Angular Feather library for icons
 - 🚀 Increase limit on article body length and align text left in markdown preview section of Article Editor
 

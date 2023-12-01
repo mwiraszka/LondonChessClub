@@ -1,4 +1,5 @@
 @import 'styles/abstracts/variables';
+@import 'styles/components/table';
 
 :host {
   display: flex;
@@ -34,6 +35,10 @@
     justify-content: flex-start;
     text-align: left;
     width: 100%;
+
+    ::ng-deep table {
+      @include lcc-table;
+    }
   
     h4 {
       align-self: flex-start;

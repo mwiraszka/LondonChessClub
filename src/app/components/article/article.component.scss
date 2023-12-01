@@ -1,4 +1,5 @@
 @import 'styles/abstracts/variables';
+@import 'styles/components/table';
 
 .banner-image-container {
   position: relative;
@@ -22,15 +23,22 @@
   }
 }
 
-.vertical-spacer {
-  padding: 0 1em;
+.article-dates-container {
+  padding: $lcc-space--md;
+
+  .vertical-spacer {
+    padding: 0 1em;
+  }
+  
+  .edited {
+    font-weight: 100;
+  }
 }
 
-.edited {
-  font-weight: 100;
-}
-
-.article-dates-container,
 p {
   padding: $lcc-space--md;
+
+  ::ng-deep table {
+    @include lcc-table;
+  }
 }

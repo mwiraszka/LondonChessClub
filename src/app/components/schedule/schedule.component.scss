@@ -27,7 +27,7 @@ table {
       .details-container {
         display: flex;
         flex-flow: column nowrap;
-        align-items: start;
+        align-items: flex-start;
         gap: $lcc-space--sm;
         padding: $lcc-space--md;
   

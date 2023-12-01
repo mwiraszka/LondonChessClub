@@ -58,6 +58,15 @@
 		</div>
 	</div>
 
+	<div class="preview-section-container">
+		<h4>Preview:</h4>
+		<div class="markdown-container">
+			<markdown ngPreserveWhitespaces
+								[data]="form.controls['body'].value">
+			</markdown>
+		</div>
+	</div>
+
 	<div class="lcc-form-buttons-container">
 		<button class="lcc-secondary-button"
 						type="button"

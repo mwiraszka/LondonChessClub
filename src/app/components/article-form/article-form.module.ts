@@ -1,3 +1,5 @@
+import { MarkdownModule } from 'ngx-markdown';
+
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -9,7 +11,13 @@ import { ArticleFormComponent } from './article-form.component';
 
 @NgModule({
   declarations: [ArticleFormComponent],
-  imports: [CommonModule, PipesModule, ReactiveFormsModule, TooltipModule],
+  imports: [
+    CommonModule,
+    MarkdownModule,
+    PipesModule,
+    ReactiveFormsModule,
+    TooltipModule,
+  ],
   exports: [ArticleFormComponent],
 })
 export class ArticleFormModule {}

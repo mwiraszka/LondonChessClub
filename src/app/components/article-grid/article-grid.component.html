@@ -21,7 +21,7 @@
 		<div class="article-summary-container">
 			<h3 class="lcc-truncate-max-2-lines">{{ article.title }}</h3>
 			<hr />
-			<p class="lcc-truncate-max-5-lines">{{ article.body }}</p>
+			<p class="lcc-truncate-max-5-lines">{{ article.body | stripMarkdown }}</p>
 			<div class="article-dates-container">
 				<span>{{ article.dateCreated | formatDate:'short' }}</span>
 				<ng-container *ngIf="article?.dateEdited !== article.dateCreated">

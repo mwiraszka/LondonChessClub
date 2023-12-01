@@ -20,19 +20,19 @@
   }
 
   @include respond-to('gt-lg') {
-    -webkit-column-count: 5;
-    -moz-column-count: 5;
-    column-count: 5;
+    -webkit-column-count: 6;
+    -moz-column-count: 6;
+    column-count: 6;
   }
     
-  -webkit-column-gap: $lcc-space--xs;
-  -moz-column-gap: $lcc-space--xs;
-  column-gap: $lcc-space--xs;
+  -webkit-column-gap: $lcc-space--xxs;
+  -moz-column-gap: $lcc-space--xxs;
+  column-gap: $lcc-space--xxs;
 
   img {
     display: block;
     width: 100%;
-    margin-bottom: $lcc-space--xs;
+    margin-bottom: $lcc-space--xxs;
     border-radius: $lcc-border-radius--lg;
     border: 1px solid $lcc-color--transparent-mostly;
     opacity: 0.85;

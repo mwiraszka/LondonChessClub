@@ -73,6 +73,9 @@ lcc-link-list,
       }
 
       p {
+        // hard-coded to keep alignment in case
+        // there are fewer than 5 lines of text
+        height: 91px; 
         font-size: $h4;
         color: darken($lcc-color--text-primary-white, 10%);
         line-height: 1.3em !important;

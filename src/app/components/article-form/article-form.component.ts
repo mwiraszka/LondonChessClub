@@ -1,11 +1,12 @@
 import { Subscription } from 'rxjs';
-import { debounceTime, first } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoaderService } from '@app/services';
 import { Article, Url } from '@app/types';
+import { imageSizeValidator } from '@app/validators';
 
 import { ArticleFormFacade } from './article-form.facade';
 
@@ -28,7 +29,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loaderService.display(true);
-    this.facade.articleBeforeEdit$.pipe(first()).subscribe(article => {
+    this.facade.articleBeforeEdit$.subscribe(article => {
       this.initForm(article);
       this.previewImageUrl = article.imageUrl ?? null;
       this.loaderService.display(false);
@@ -48,6 +49,8 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
       return 'This field is required';
     } else if (control.hasError('invalidDateFormat')) {
       return 'Invalid date';
+    } else if (control.hasError('imageTooLarge')) {
+      return 'Banner image file must be smaller than 1MB';
     } else {
       return 'Unknown error';
     }
@@ -79,7 +82,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
       id: [article.id],
       title: [article.title, [Validators.required, Validators.pattern(/[^\s]/)]],
       body: [article.body, [Validators.required, Validators.pattern(/[^\s]/)]],
-      imageFile: [article.imageFile, [Validators.required]],
+      imageFile: [article.imageFile, [Validators.required, imageSizeValidator]],
       imageId: [article.imageId],
       dateCreated: [article.dateCreated],
       dateEdited: [article.dateEdited],

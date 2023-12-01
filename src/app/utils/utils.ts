@@ -138,8 +138,11 @@ export function getUpcomingEvents(
   sortedEvents: ClubEvent[],
   limit?: number,
 ): ClubEvent[] | null {
-  const today = new Date(Date.now());
-  const upcomingEvents = sortedEvents.filter(event => new Date(event.eventDate) >= today);
+  const today = Date.now();
+  const upcomingEvents = sortedEvents.filter(event => {
+    const eventDateAsUtc = new Date(event.eventDate);
+    return eventDateAsUtc.setDate(eventDateAsUtc.getDate() + 1) >= today;
+  });
 
   if (!upcomingEvents.length || (limit && limit < 1)) {
     return null;

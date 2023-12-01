@@ -41,7 +41,7 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v1.5.0-beta - November TBD, 2023
+v1.5.0-beta - December 1st, 2023
 </summary>
 
 - 🚀 Add support for markdown in articles!

@@ -42,7 +42,16 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v1.5.1-beta - December 2nd, 2023
+v1.5.2-beta - December 1st, 2023
+</summary>
+
+- 🔧 Increase production budgets in `angular.json` to accomodate for the new icon library
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
+v1.5.1-beta - December 1st, 2023
 </summary>
 
 - 🚀 Add support for LCC-styled markdown tables in articles' content section

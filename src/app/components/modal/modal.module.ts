@@ -1,13 +1,13 @@
-import { FeatherModule } from 'angular-feather';
-
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+
+import { IconsModule } from '@app/icons';
 
 import { ModalComponent } from './modal.component';
 
 @NgModule({
   declarations: [ModalComponent],
-  imports: [CommonModule, FeatherModule],
+  imports: [CommonModule, IconsModule],
   exports: [ModalComponent],
 })
 export class ModalModule {}

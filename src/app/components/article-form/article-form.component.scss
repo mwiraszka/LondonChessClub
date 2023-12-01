@@ -45,6 +45,7 @@
       border: 1px solid transparentize($lcc-color--primary, 0.9);
       background-color: white;
       border-radius: $lcc-border-radius--lg;
+      padding: $lcc-space--sm;
     }
   }
 }

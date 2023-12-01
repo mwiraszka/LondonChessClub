@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { debounceTime, first } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -29,7 +29,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loaderService.display(true);
-    this.facade.articleBeforeEdit$.pipe(first()).subscribe(article => {
+    this.facade.articleBeforeEdit$.subscribe(article => {
       this.initForm(article);
       this.previewImageUrl = article.imageUrl ?? null;
       this.loaderService.display(false);
@@ -74,13 +74,10 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
       this.form.markAllAsTouched();
       return;
     }
-    console.log(':: article being submitted', this.form.value);
     this.facade.onSubmit(this.form.value);
   }
 
   private initForm(article: Article): void {
-    console.log(':: article being initialized', article);
-
     this.form = this.formBuilder.group({
       id: [article.id],
       title: [article.title, [Validators.required, Validators.pattern(/[^\s]/)]],

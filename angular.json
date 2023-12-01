@@ -51,7 +51,7 @@
               "@aws-sdk/url-parser-node", "@aws-sdk/util-uri-escape", "@aws-sdk/middleware-sdk-s3",
               "@aws-sdk/middleware-bucket-endpoint", "@aws-sdk/querystring-parser", "@aws-sdk/middleware-apply-body-checksum",
               "@aws-sdk/middleware-ssec", "@aws-sdk/middleware-expect-continue", "fast-xml-parser",
-              "@aws-sdk/xml-builder", "@aws-sdk/md5-js", "@aws-sdk/hash-blob-browser",
+              "@aws-sdk/xml-builder", "@aws-sdk/md5-js", "@aws-sdk/hash-blob-browser", "remove-markdown",
               "@aws-sdk/eventstream-serde-browser", "@aws-sdk/middleware-location-constraint", "uuid", "deepmerge",
               "events", "xstate/lib/waitFor.js", "style-dictionary/lib/utils/deepExtend.js", 
               "style-dictionary/lib/utils/flattenProperties.js", "style-dictionary/lib/utils/references/usesReference.js", "cookie",

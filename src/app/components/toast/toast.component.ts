@@ -1,10 +1,3 @@
-import {
-  ClarityIcons,
-  checkCircleIcon,
-  exclamationCircleIcon,
-  exclamationTriangleIcon,
-} from '@cds/core/icon';
-
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Toast, ToastTypes } from '@app/types';
@@ -16,23 +9,18 @@ import { Toast, ToastTypes } from '@app/types';
 })
 export class ToastComponent implements OnInit {
   @Input() toast?: Toast;
-  iconShape?: 'check-circle' | 'exclamation-circle' | 'exclamation-triangle';
+  iconShape!: 'check-circle' | 'alert-triangle' | 'info';
 
   ngOnInit(): void {
-    ClarityIcons.addIcons(
-      checkCircleIcon,
-      exclamationCircleIcon,
-      exclamationTriangleIcon,
-    );
     switch (this.toast?.type) {
       case ToastTypes.SUCCESS:
         this.iconShape = 'check-circle';
         break;
       case ToastTypes.WARNING:
-        this.iconShape = 'exclamation-circle';
+        this.iconShape = 'alert-triangle';
         break;
       default:
-        this.iconShape = 'exclamation-triangle';
+        this.iconShape = 'info';
         break;
     }
   }

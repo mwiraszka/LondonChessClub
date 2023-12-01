@@ -1,10 +1,9 @@
 <div class="toast-container"
 		 [ngClass]="'toast-' + toast?.type">
 	<div class="toast-icon-container">
-		<cds-icon [attr.shape]="iconShape"
-							size="lg"
-							solid>
-		</cds-icon>
+		<i-feather [name]="iconShape"
+							 class="icon">
+		</i-feather>
 	</div>
 	<div class="toast-notification-container">
 		<h4 class="lcc-truncate-max-1-line">{{ toast?.title }}</h4>

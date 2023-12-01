@@ -29,6 +29,10 @@
       }
 
       a {
+        display: flex;
+        align-items: center;
+        gap: $lcc-space--sm;
+        padding: $lcc-space--xs;
         white-space: nowrap;
         font-size: $h6;
 
@@ -40,10 +44,9 @@
           font-size: $h4;
         }
   
-        cds-icon {
-          padding: $lcc-space--xxs;
-          margin-bottom: 4px; // Manual centering
-          margin-right: $lcc-space--xxs;
+        .icon {
+          height: 14px;
+          width: 14px;
         }
       }
     }

@@ -1,3 +1,5 @@
+import { FeatherModule } from 'angular-feather';
+
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,7 +11,14 @@ import { LoginFormComponent } from './login-form.component';
 
 @NgModule({
   declarations: [LoginFormComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, TooltipModule],
+  imports: [
+    CommonModule,
+    FeatherModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    TooltipModule,
+  ],
   exports: [LoginFormComponent],
 })
 export class LoginFormModule {}

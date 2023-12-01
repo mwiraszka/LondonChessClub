@@ -19,12 +19,11 @@
 						 (change)="onChooseImage($event)" />
 		</div>
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['imageFile'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['imageFile'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['imageFile'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['imageFile'])">
+			</i-feather>
 		</div>
 
 		<label for="title-input">Title:</label>
@@ -34,12 +33,11 @@
 					 formControlName="title"
 					 maxlength="120" />
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['title'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['title'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['title'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['title'])">
+			</i-feather>
 		</div>
 
 		<label for="body-input">Content:</label>
@@ -49,12 +47,11 @@
 							maxlength="50000">
     </textarea>
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['body'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['body'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['body'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['body'])">
+			</i-feather>
 		</div>
 	</div>
 

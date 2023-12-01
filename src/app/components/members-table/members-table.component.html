@@ -15,11 +15,10 @@
 					(click)="facade.onSelectTableHeader(camelize(kebabize(header)))">
 				<span>{{ header }}</span>
 				<div class="icon-container">
-					<cds-icon *ngIf="(facade.sortedBy$ | async) === camelize(kebabize(header))"
-										shape="angle"
-										size="xs"
-										[attr.flip]="(facade.isAscending$ | async) ? undefined : 'vertical'">
-					</cds-icon>
+					<i-feather *ngIf="(facade.sortedBy$ | async) === camelize(kebabize(header))"
+										 [name]="(facade.isAscending$ | async) ? 'chevron-up' : 'chevron-down'"
+										 class="sort-icon">
+					</i-feather>
 				</div>
 			</th>
 		</tr>

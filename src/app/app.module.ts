@@ -1,4 +1,3 @@
-import { ClarityModule } from '@clr/angular';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
@@ -45,7 +44,6 @@ import { AppComponent } from './app.component';
     AuthStoreModule,
     BrowserModule,
     BrowserAnimationsModule,
-    ClarityModule,
     EffectsModule.forRoot([]),
     FooterModule,
     HeaderModule,

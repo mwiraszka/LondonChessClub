@@ -1,12 +1,49 @@
 import { FeatherModule } from 'angular-feather';
-import { Camera, Edit, Trash2, X } from 'angular-feather/icons';
+import {
+  Activity,
+  AlertTriangle,
+  Award,
+  Calendar,
+  Camera,
+  CheckCircle,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
+  ChevronsLeft,
+  ChevronsRight,
+  Edit,
+  Home,
+  Info,
+  PlusCircle,
+  Trash2,
+  User,
+  Users,
+  X,
+} from 'angular-feather/icons';
 
 import { NgModule } from '@angular/core';
 
 const icons = {
+  Activity,
+  AlertTriangle,
+  Award,
+  Calendar,
   Camera,
+  CheckCircle,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
+  ChevronsLeft,
+  ChevronsRight,
   Edit,
+  Home,
+  Info,
+  PlusCircle,
   Trash2,
+  User,
+  Users,
   X,
 };
 

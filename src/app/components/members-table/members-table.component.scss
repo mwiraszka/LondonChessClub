@@ -21,10 +21,11 @@ table {
   
       .icon-container {
         display: inline-flex;
-        width: 11px; // caret icon width
   
-        cds-icon {
+        .sort-icon {
           margin-left: $lcc-space--xxs;
+          height: 11px;
+          width: 11px;
         }
       }
     }

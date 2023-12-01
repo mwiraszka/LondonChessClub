@@ -1,26 +1,20 @@
-import { ClarityIcons, angleIcon, stepForward2Icon } from '@cds/core/icon';
-
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'lcc-paginator',
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss'],
 })
-export class PaginatorComponent implements OnInit {
+export class PaginatorComponent {
   PAGE_SIZES = [10, 20, 50, 100];
 
   @Input() pageNum = 1;
   @Input() pageSize = this.PAGE_SIZES[1];
-  @Input() totalItems!: number;
+  @Input() totalItems = 0;
   @Input() typeOfItems = 'items';
 
   @Output() pageChange = new EventEmitter<number>();
   @Output() pageSizeChange = new EventEmitter<number>();
-
-  ngOnInit(): void {
-    ClarityIcons.addIcons(angleIcon, stepForward2Icon);
-  }
 
   onFirst(): void {
     this.onPageChange(1);

@@ -18,12 +18,11 @@
 					 formControlName="firstName"
 					 maxlength="30" />
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['firstName'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['firstName'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['firstName'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['firstName'])">
+			</i-feather>
 		</div>
 
 		<label for="last-name-input"
@@ -36,12 +35,11 @@
 					 formControlName="lastName"
 					 maxlength="30" />
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['lastName'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['lastName'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['lastName'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['lastName'])">
+			</i-feather>
 		</div>
 
 		<label for="city-input"
@@ -54,12 +52,11 @@
 					 formControlName="city"
 					 maxlength="30" />
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['city'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['city'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['city'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['city'])">
+			</i-feather>
 		</div>
 
 		<label for="rating-input"
@@ -72,12 +69,11 @@
 					 formControlName="rating"
 					 maxlength="6" />
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['rating'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['rating'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['rating'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['rating'])">
+			</i-feather>
 		</div>
 
 		<label for="date-joined-input"
@@ -90,12 +86,11 @@
 					 formControlName="dateJoined"
 					 maxlength="10" />
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['dateJoined'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['dateJoined'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['dateJoined'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['dateJoined'])">
+			</i-feather>
 		</div>
 
 		<label for="email-input">Email:</label>
@@ -105,12 +100,11 @@
 					 formControlName="email"
 					 maxlength="50" />
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['email'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['email'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['email'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['email'])">
+			</i-feather>
 		</div>
 
 		<label for="phone-number-input">Phone number:</label>
@@ -120,12 +114,11 @@
 					 formControlName="phoneNumber"
 					 maxlength="12" />
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['phoneNumber'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['phoneNumber'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['phoneNumber'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['phoneNumber'])">
+			</i-feather>
 		</div>
 
 		<label for="year-of-birth-input">Year of birth:</label>
@@ -135,12 +128,11 @@
 					 formControlName="yearOfBirth"
 					 maxlength="4" />
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['yearOfBirth'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['yearOfBirth'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['yearOfBirth'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['yearOfBirth'])">
+			</i-feather>
 		</div>
 
 		<label for="chesscom-username-input">Chess.com username:</label>
@@ -150,12 +142,11 @@
 					 formControlName="chesscomUsername"
 					 maxlength="20" />
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['chesscomUsername'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['chesscomUsername'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['chesscomUsername'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['chesscomUsername'])">
+			</i-feather>
 		</div>
 
 		<label for="lichess-username-input">Lichess username:</label>
@@ -165,12 +156,11 @@
 					 formControlName="lichessUsername"
 					 maxlength="20" />
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['lichessUsername'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['lichessUsername'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['lichessUsername'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['lichessUsername'])">
+			</i-feather>
 		</div>
 
 		<hr class="lcc-form-divider-line" />
@@ -180,14 +170,6 @@
 					 type="checkbox"
 					 name="is-active"
 					 formControlName="isActive" />
-		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['isActive'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['isActive'])">
-			</cds-icon>
-		</div>
 	</div>
 
 	<div class="lcc-form-buttons-container">

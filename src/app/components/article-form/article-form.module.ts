@@ -1,3 +1,4 @@
+import { FeatherModule } from 'angular-feather';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { CommonModule } from '@angular/common';
@@ -13,6 +14,7 @@ import { ArticleFormComponent } from './article-form.component';
   declarations: [ArticleFormComponent],
   imports: [
     CommonModule,
+    FeatherModule,
     MarkdownModule,
     PipesModule,
     ReactiveFormsModule,

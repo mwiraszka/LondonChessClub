@@ -2,13 +2,9 @@
   font-size: inherit;
   font-weight: 200;
 
-  /**
-   * A little hacky for the time being (will likely no longer be necessary
-   * once clr-vendor styles can be deleted)
-   */
-   color: $lcc-color--link !important;
+  color: $lcc-color--link;
   
   &:hover {
-    color: lighten($lcc-color--link, 10%) !important;
+    color: lighten($lcc-color--link, 10%);
   }
 }

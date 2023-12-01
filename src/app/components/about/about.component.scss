@@ -109,11 +109,11 @@ hr {
   max-width: 800px;
 
   p {
-    font-size: $h5;
+    font-size: $h4;
     color: lighten($lcc-color--text-primary-black, 30%);
 
     @include respond-to('gt-sm') {
-      font-size: $h4;
+      font-size: calc($h4 + 1px);
     }
   }
 }

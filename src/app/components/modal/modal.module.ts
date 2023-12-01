@@ -1,4 +1,3 @@
-import { ClarityModule } from '@clr/angular';
 import { FeatherModule } from 'angular-feather';
 
 import { CommonModule } from '@angular/common';
@@ -8,7 +7,7 @@ import { ModalComponent } from './modal.component';
 
 @NgModule({
   declarations: [ModalComponent],
-  imports: [ClarityModule, CommonModule, FeatherModule],
+  imports: [CommonModule, FeatherModule],
   exports: [ModalComponent],
 })
 export class ModalModule {}

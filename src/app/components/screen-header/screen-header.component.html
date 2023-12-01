@@ -1,19 +1,16 @@
-<ng-container *ngIf="preTitle">
-	<span class="lcc-secondary-text pre-title">
-		{{ preTitle }}&nbsp;
-	</span>
-</ng-container>
+<span *ngIf="preTitle"
+			class="lcc-secondary-text pre-title">
+	{{ preTitle }}&nbsp;
+</span>
 
 <span>{{ title }}</span>
 
-<ng-container *ngIf="postTitle">
-	<span class="lcc-secondary-text post-title">
-		&nbsp;{{ postTitle }}
-	</span>
-</ng-container>
+<span *ngIf="postTitle"
+			class="lcc-secondary-text post-title">
+	&nbsp;{{ postTitle }}
+</span>
 
-<ng-container *ngIf="iconShape">
-	<cds-icon [attr.shape]="iconShape"
-						size="sm">
-	</cds-icon>
-</ng-container>
+<i-feather *ngIf="iconShape"
+					 [name]="iconShape"
+					 class="icon">
+</i-feather>

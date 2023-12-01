@@ -17,12 +17,11 @@
 					 name="event-date"
 					 formControlName="eventDate" />
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['eventDate'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['eventDate'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['eventDate'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['eventDate'])">
+			</i-feather>
 		</div>
 
 		<label for="title-input"
@@ -34,12 +33,11 @@
 					 name="title"
 					 formControlName="title" />
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['title'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['title'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['title'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['title'])">
+			</i-feather>
 		</div>
 
 		<label for="details-input"
@@ -52,12 +50,11 @@
 							maxlength="400">
     </textarea>
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['details'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['details'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['details'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['details'])">
+			</i-feather>
 		</div>
 
 		<label class="lcc-required-field">Event type:</label>

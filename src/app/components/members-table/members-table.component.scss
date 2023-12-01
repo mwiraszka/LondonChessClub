@@ -14,6 +14,10 @@ table {
 
   thead {
     th {
+      span {
+        color: unset;
+      }
+
       &:hover:not(.row-number) {
         cursor: pointer;
         background-color: lighten($lcc-color--primary, 5%);
@@ -21,10 +25,11 @@ table {
   
       .icon-container {
         display: inline-flex;
-        width: 11px; // caret icon width
   
-        cds-icon {
+        .sort-icon {
           margin-left: $lcc-space--xxs;
+          height: 11px;
+          width: 11px;
         }
       }
     }
@@ -32,6 +37,7 @@ table {
   
   tbody {
     tr {
+      
       &.inactive {
         :not(.row-number) {
           color: darken($lcc-color--text-secondary, 5%);

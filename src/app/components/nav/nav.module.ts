@@ -1,4 +1,4 @@
-import { ClarityModule } from '@clr/angular';
+import { FeatherModule } from 'angular-feather';
 
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -10,7 +10,7 @@ import { NavComponent } from './nav.component';
 
 @NgModule({
   declarations: [NavComponent],
-  imports: [ClarityModule, CommonModule, RouterModule, TooltipModule],
+  imports: [CommonModule, FeatherModule, RouterModule, TooltipModule],
   exports: [NavComponent],
 })
 export class NavModule {}

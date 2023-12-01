@@ -1,4 +1,4 @@
-import { ClarityModule } from '@clr/angular';
+import { FeatherModule } from 'angular-feather';
 
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -8,7 +8,7 @@ import { PipesModule } from '@app/pipes';
 
 @NgModule({
   declarations: [AlertComponent],
-  imports: [ClarityModule, CommonModule, PipesModule],
+  imports: [CommonModule, FeatherModule, PipesModule],
   exports: [AlertComponent],
 })
 export class AlertModule {}

@@ -29,14 +29,11 @@
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
             "inlineStyleLanguage": "scss",
             "styles": [
-              "src/styles/main.scss",
-              "node_modules/@clr/icons/clr-icons.min.css",
-              "node_modules/@clr/ui/clr-ui.min.css"
+              "src/styles/main.scss"
             ],
             "scripts": [
               "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
-              "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js",
-              "node_modules/@clr/icons/clr-icons.min.js"
+              "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"
             ],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json",
@@ -122,14 +119,9 @@
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
-            "styles": [
-              "node_modules/@clr/icons/clr-icons.min.css",
-              "node_modules/@clr/ui/clr-ui.min.css"
-            ],
             "scripts": [
               "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
-              "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js",
-              "node_modules/@clr/icons/clr-icons.min.js"
+              "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"
             ]
           }
         }

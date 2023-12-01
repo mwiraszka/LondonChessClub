@@ -2,27 +2,29 @@
 
 $header-height: 26px;
 
-
 .content {
   position: absolute;
   top: $lcc-space--sm;
 
   header {
     display: flex;
+    align-items: center;
     height: $header-height;
     background-color: darken($lcc-color--primary, 20%);
     border-top-left-radius: $lcc-border-radius--lg;
     border-top-right-radius: $lcc-border-radius--lg;
     border-bottom: 2px solid darken($lcc-color--primary, 30%);
 
-    .close-button {
+    .close-icon {
       margin: 0 $lcc-space--xs 0 auto;
-      border: none;
       background-color: inherit;
+      height: 18px;
+      width: 18px;
       color: darken($lcc-color--white, 10%);
 
       &:hover {
-        color: white;
+        cursor: pointer;
+        color: darken($lcc-color--white, 2%);
       }
     }
   }

@@ -1,6 +1,4 @@
-import { ClarityIcons, windowCloseIcon } from '@cds/core/icon';
-
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 import { AlertFacade } from './alert.facade';
 
@@ -10,12 +8,8 @@ import { AlertFacade } from './alert.facade';
   styleUrls: ['./alert.component.scss'],
   providers: [AlertFacade],
 })
-export class AlertComponent implements OnInit {
+export class AlertComponent {
   @Output() close = new EventEmitter<void>();
 
   constructor(public facade: AlertFacade) {}
-
-  ngOnInit(): void {
-    ClarityIcons.addIcons(windowCloseIcon);
-  }
 }

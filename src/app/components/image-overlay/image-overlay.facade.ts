@@ -10,11 +10,11 @@ export class ImageOverlayFacade {
 
   constructor(private readonly store: Store) {}
 
-  onClickClose(): void {
+  onClose(): void {
     this.store.dispatch(ImageOverlayActions.overlayClosed());
   }
 
-  onClickOverlay(event: MouseEvent): void {
+  onOverlay(event: MouseEvent): void {
     const clickedElement = (event.target as HTMLElement).tagName;
 
     // Only close overlay if user clicks outside of image and its header

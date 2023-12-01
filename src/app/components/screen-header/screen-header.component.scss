@@ -11,7 +11,6 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: unset; // Necessary due to Clarity
   word-spacing: 1px;
   font-size: $h3;
   background-color: $lcc-color--bg-screen-header;
@@ -21,27 +20,18 @@
     font-size: 80%;
   }
 
-  .pre-title {
-    margin-right: $lcc-space--xs;
-  }
-
-  .post-title {
-    margin-left: $lcc-space--xs;
-  }
-
   .lcc-secondary-text {
     color: $lcc-color--text-secondary;
   }
 
-  cds-icon {
+  .icon {
     color: $lcc-color--accent;
     margin-left: $lcc-space--sm;
-    margin-bottom: 2px; // Manually line up with text beside
     border: 3px solid $lcc-color--transparent-mostly;
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.1); 
     border-radius: 50%;
-    height: $lcc-space--lg;
-    width: $lcc-space--lg;
-    padding: 1px; // Ensure icon does not get cut off in its container
+    height: 30px;
+    width: 30px;
+    padding: $lcc-space--xxs;
   }
 }

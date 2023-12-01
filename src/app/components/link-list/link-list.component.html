@@ -6,20 +6,22 @@
 			 [href]="link.path"
 			 target="_blank"
 			 class="lcc-link">
-			<cds-icon *ngIf="link.iconShape"
-								[attr.shape]="link.iconShape"
-								size="md">
-			</cds-icon>{{ link.text }}
+			<i-feather *ngIf="link.iconShape"
+								 [name]="link.iconShape"
+								 class="icon">
+			</i-feather>
+			{{ link.text }}
 		</a>
 
 		<ng-template #internalLink>
 			<a alt="link.text"
 				 class="lcc-link"
 				 [routerLink]="'/' + link.path">
-				<cds-icon *ngIf="link.iconShape"
-									[attr.shape]="link.iconShape"
-									size="md">
-				</cds-icon>{{ link.text }}
+				<i-feather *ngIf="link.iconShape"
+									 [name]="link.iconShape"
+									 class="icon">
+				</i-feather>
+				{{ link.text }}
 			</a>
 		</ng-template>
 	</li>

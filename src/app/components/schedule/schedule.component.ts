@@ -21,7 +21,7 @@ export class ScheduleComponent implements OnInit {
   addEventLink: Link = {
     path: NavPathTypes.EVENT_ADD,
     text: 'Add new event',
-    iconShape: 'plus',
+    iconShape: 'plus-circle',
   };
 
   constructor(public facade: ScheduleFacade, private loaderService: LoaderService) {}

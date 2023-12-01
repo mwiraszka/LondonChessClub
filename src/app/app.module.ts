@@ -1,4 +1,3 @@
-import { ClarityModule } from '@clr/angular';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
@@ -19,6 +18,7 @@ import { ImageOverlayModule } from '@app/components/image-overlay';
 import { ModalModule } from '@app/components/modal';
 import { NavModule } from '@app/components/nav';
 import { ToasterModule } from '@app/components/toaster';
+import { IconsModule } from '@app/icons';
 import { ScreensModule } from '@app/screens/screens.module';
 import { metaReducers } from '@app/store/app';
 import { ArticlesStoreModule } from '@app/store/articles';
@@ -44,11 +44,11 @@ import { AppComponent } from './app.component';
     AuthStoreModule,
     BrowserModule,
     BrowserAnimationsModule,
-    ClarityModule,
     EffectsModule.forRoot([]),
     FooterModule,
     HeaderModule,
     HttpClientModule,
+    IconsModule,
     ImageOverlayModule,
     ImageOverlayStoreModule,
     MarkdownModule.forRoot(),

@@ -1,24 +1,22 @@
 @import 'styles/abstracts/variables';
 
-$icon-width: 30px;
-
 :host {
-  visibility: hidden; // Visible on parent hover (see _admin-controls-container.scss)
   position: absolute;
   z-index: 10;
   display: flex;
   flex-flow: row nowrap;
 
+  // Visible on parent hover (see _admin-controls-container.scss)
+  visibility: hidden;
+
   button {
-    width: $icon-width;
-    height: $icon-width;
-    background-color: $lcc-color--white;
-    padding: 4px; // 4px perfectly matches a table row's height
-    border: 3px solid darken($lcc-color--white, 5%);
-    border-radius: $lcc-border-radius--lg;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: $lcc-space--xxs;
+    border: 3px solid darken($lcc-color--white, 5%);
+    border-radius: $lcc-border-radius--lg;
+    background-color: $lcc-color--white;
 
     &:first-child {
       margin-right: $lcc-space--xxs;
@@ -28,6 +26,10 @@ $icon-width: 30px;
     &:hover {
       cursor: pointer;
       background-color: white;
+    }
+
+    .trash-icon {
+      color: $lcc-color--warning;
     }
   }
 }

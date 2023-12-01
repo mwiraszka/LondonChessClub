@@ -10,12 +10,11 @@
 					 autocomplete="email"
 					 maxlength="50" />
 		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['email'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['email'])">
-			</cds-icon>
+			<i-feather *ngIf="hasError(form.controls['email'])"
+								 name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['email'])">
+			</i-feather>
 		</div>
 
 		<label for="password-input">Password:</label>
@@ -24,14 +23,6 @@
 					 name="password"
 					 formControlName="password"
 					 maxlength="50" />
-		<div class="lcc-form-error-container">
-			<cds-icon *ngIf="hasError(form.controls['password'])"
-								class="lcc-form-error-icon"
-								shape="exclamation-triangle"
-								size="md"
-								[tooltip]="getErrorMessage(form.controls['password'])">
-			</cds-icon>
-		</div>
 	</div>
 
 	<div class="lcc-form-buttons-container">

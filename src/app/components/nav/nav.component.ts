@@ -1,17 +1,3 @@
-import {
-  ClarityIcons,
-  administratorIcon,
-  angleIcon,
-  announcementIcon,
-  crownIcon,
-  eventIcon,
-  homeIcon,
-  imageGalleryIcon,
-  infoStandardIcon,
-  userIcon,
-  usersIcon,
-} from '@cds/core/icon';
-
 import { Component, HostListener, OnInit } from '@angular/core';
 
 import { NavPathTypes } from '@app/types';
@@ -38,18 +24,5 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
-
-    ClarityIcons.addIcons(
-      administratorIcon,
-      angleIcon,
-      announcementIcon,
-      crownIcon,
-      eventIcon,
-      homeIcon,
-      imageGalleryIcon,
-      infoStandardIcon,
-      userIcon,
-      usersIcon,
-    );
   }
 }

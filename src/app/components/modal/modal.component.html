@@ -1,10 +1,9 @@
 <div class="lcc-overlay">
 	<div class="overlay-content">
-		<cds-icon class="close-icon"
-							shape="window-close"
-							size="md"
-							(click)="facade.onClose()">
-		</cds-icon>
+		<i-feather name="x"
+							 class="close-button"
+							 (click)="facade.onClose()">
+		</i-feather>
 		<div class="modal-content">
 			<div class="text-container">
 				<h3>{{ (facade.modal$ | async)?.title }}</h3>

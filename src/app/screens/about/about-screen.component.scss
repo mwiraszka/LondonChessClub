@@ -49,7 +49,7 @@ article {
   place-self: stretch;
   display: flex;
   flex-flow: column nowrap;
-  gap: $lcc-space--sm;
+  gap: $lcc-space--md;
   border-radius: $lcc-border-radius--sm;
   background-color: lighten($lcc-color--bg-grid-item, 2%);
   padding: $lcc-space--md $lcc-space--lg;

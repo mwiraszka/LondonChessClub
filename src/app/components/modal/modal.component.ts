@@ -1,6 +1,4 @@
-import { ClarityIcons, windowCloseIcon } from '@cds/core/icon';
-
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ModalFacade } from './modal.facade';
 
@@ -10,10 +8,6 @@ import { ModalFacade } from './modal.facade';
   styleUrls: ['./modal.component.scss'],
   providers: [ModalFacade],
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
   constructor(public facade: ModalFacade) {}
-
-  ngOnInit(): void {
-    ClarityIcons.addIcons(windowCloseIcon);
-  }
 }

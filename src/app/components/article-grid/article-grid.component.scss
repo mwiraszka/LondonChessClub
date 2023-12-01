@@ -90,6 +90,10 @@ lcc-link-list,
         .vertical-spacer {
           padding: 0 1em;
         }
+
+        > * {
+          color: darken($lcc-color--text-primary-white, 30%);
+        }
       }
     }
   }

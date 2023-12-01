@@ -1,4 +1,4 @@
-import { ClarityModule } from '@clr/angular';
+import { FeatherModule } from 'angular-feather';
 
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -9,7 +9,7 @@ import { AdminControlsComponent } from './admin-controls.component';
 
 @NgModule({
   declarations: [AdminControlsComponent],
-  imports: [ClarityModule, CommonModule, TooltipModule],
+  imports: [CommonModule, FeatherModule, TooltipModule],
   exports: [AdminControlsComponent],
 })
 export class AdminControlsModule {}

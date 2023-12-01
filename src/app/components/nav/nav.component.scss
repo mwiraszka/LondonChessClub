@@ -51,6 +51,12 @@ $dropdown-list-width: 120px;
     .text {
       display: none;
       visibility: hidden;
+      color: $lcc-color--text-primary-black;
+    }
+
+    .icon {
+      height: 20px;
+      width: 20px;
     }
 
     @include respond-to('gt-sm') {
@@ -114,6 +120,12 @@ $dropdown-list-width: 120px;
       font-size: $h5;
       color: $lcc-color--text-primary-black;
 
+      // Prevent dropdown icon bleeding through when an overlay is open,
+      // a consequence of the dropdown having absolute positioning  
+      &.hide {
+        visibility: hidden;
+      }
+
       &.dropdown-open {
         background-color: darken($lcc-color--bg-nav, 5%);
         border-top: 2px solid darken($lcc-color--bg-main, 10%);
@@ -133,6 +145,11 @@ $dropdown-list-width: 120px;
           background-color: darken($lcc-color--bg-nav, 5%);
           border-bottom: 2px solid darken($lcc-color--bg-main, 10%);
         }
+      }
+
+      .dropdown-open-icon {
+        height: 14px;
+        width: 14px;
       }
     }
   
@@ -182,6 +199,11 @@ $dropdown-list-width: 120px;
             border: 1px solid darken($lcc-color--white, 15%);
             border-radius: $lcc-border-radius--lg;
             padding: $lcc-space--xxs $lcc-space--sm;
+
+            .admin-user-icon {
+              height: 18px;
+              width: 18px;
+            }
           }
         };
 

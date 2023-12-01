@@ -1,4 +1,4 @@
-import { ClarityModule } from '@clr/angular';
+import { FeatherModule } from 'angular-feather';
 
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -8,7 +8,7 @@ import { LinkListComponent } from './link-list.component';
 
 @NgModule({
   declarations: [LinkListComponent],
-  imports: [ClarityModule, CommonModule, RouterModule],
+  imports: [CommonModule, FeatherModule, RouterModule],
   exports: [LinkListComponent],
 })
 export class LinkListModule {}

@@ -1,13 +1,11 @@
 <div class="lcc-overlay"
-		 (click)="facade.onClickOverlay($event)">
+		 (click)="facade.onOverlay($event)">
 	<div class="content">
 		<header>
-			<button class="close-button"
-							(click)="facade.onClickClose()">
-				<cds-icon shape="window-close"
-									size="sm">
-				</cds-icon>
-			</button>
+			<i-feather name="x"
+								 class="close-icon"
+								 (click)="facade.onClose()">
+			</i-feather>
 		</header>
 		<img [src]="'assets/photos/' + (facade.photo$ | async)?.filename + '.jpg'" />
 		<h4 class="description lcc-truncate-max-1-line">

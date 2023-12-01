@@ -8,10 +8,9 @@
 		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Home' : null"
 		 (click)="facade.onSelectHomeTab()">
 		<span class="text">Home</span>
-		<cds-icon class="icon"
-							shape="home"
-							size="md">
-		</cds-icon>
+		<i-feather name="home"
+							 class="icon home-icon">
+		</i-feather>
 	</a>
 
 	<a aria-label="Members"
@@ -20,10 +19,9 @@
 		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Members' : null"
 		 (click)="facade.onSelectMembersTab()">
 		<span class="text">Members</span>
-		<cds-icon class="icon"
-							shape="users"
-							size="md">
-		</cds-icon>
+		<i-feather name="users"
+							 class="icon users-icon">
+		</i-feather>
 	</a>
 
 	<a aria-label="Schedule"
@@ -32,10 +30,9 @@
 		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Schedule' : null"
 		 (click)="facade.onSelectScheduleTab()">
 		<span class="text">Schedule</span>
-		<cds-icon class="icon"
-							shape="event"
-							size="md">
-		</cds-icon>
+		<i-feather name="calendar"
+							 class="icon calendar-icon">
+		</i-feather>
 	</a>
 
 	<a aria-label="News"
@@ -44,10 +41,9 @@
 		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'News' : null"
 		 (click)="facade.onSelectNewsTab()">
 		<span class="text">News</span>
-		<cds-icon class="icon"
-							shape="announcement"
-							size="md">
-		</cds-icon>
+		<i-feather name="activity"
+							 class="icon activity-icon">
+		</i-feather>
 	</a>
 
 	<a aria-label="City Champion"
@@ -56,10 +52,9 @@
 		 routerLinkActive="link-active"
 		 (click)="facade.onSelectCityChampionTab()">
 		<span class="text">City&nbsp;Champion</span>
-		<cds-icon class="icon"
-							shape="crown"
-							size="md">
-		</cds-icon>
+		<i-feather name="award"
+							 class="icon award-icon">
+		</i-feather>
 	</a>
 
 	<a aria-label="Photo Gallery"
@@ -68,10 +63,9 @@
 		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Photo Gallery' : null"
 		 (click)="facade.onSelectPhotoGalleryTab()">
 		<span class="text">Photo&nbsp;Gallery</span>
-		<cds-icon class="icon"
-							shape="image-gallery"
-							size="md">
-		</cds-icon>
+		<i-feather name="camera"
+							 class="icon camera-icon">
+		</i-feather>
 	</a>
 
 	<a aria-label="About"
@@ -80,10 +74,9 @@
 		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'About' : null"
 		 (click)="facade.onSelectAboutTab()">
 		<span class="text">About</span>
-		<cds-icon class="icon"
-							shape="info-standard"
-							size="md">
-		</cds-icon>
+		<i-feather name="info"
+							 class="icon info-icon">
+		</i-feather>
 	</a>
 
 	<div class="nav-login-spacer"></div>
@@ -91,17 +84,15 @@
 	<ng-container *ngIf="(facade.user$ | async)?.isAdmin; else loggedOut">
 		<div class="user-account-dropdown ddcomp">
 			<div class="dropdown-tab ddcomp"
+					 [class.hide]="facade.isOverlayOpen$ | async"
 					 [ngClass]="(facade.isDropdownOpen$ | async) ? 'dropdown-open' : 'dropdown-closed'"
 					 (click)="facade.onToggleDropdown()">
-				<cds-icon class="ddcomp"
-									shape="angle"
-									size="xs"
-									[attr.flip]="(facade.isDropdownOpen$ | async) ? undefined : 'vertical'">
-				</cds-icon>
-				<cds-icon class="ddcomp"
-									shape="user"
-									size="md">
-				</cds-icon>
+				<i-feather name="user"
+									 class="icon user-icon">
+				</i-feather>
+				<i-feather [name]="(facade.isDropdownOpen$ | async) ? 'chevron-up' : 'chevron-down'"
+									 class="ddcomp icon dropdown-open-icon">
+				</i-feather>
 			</div>
 
 			<ul *ngIf="facade.isDropdownOpen$ | async"
@@ -110,10 +101,9 @@
 					<small class="ddcomp">Logged in as</small>
 					<div class="admin-text ddcomp">
 						<span class="ddcomp">Admin</span>
-						<cds-icon class="ddcomp"
-											shape="administrator"
-											size="sm">
-						</cds-icon>
+						<i-feather name="user"
+											 class="ddcomp icon admin-user-icon">
+						</i-feather>
 					</div>
 				</li>
 				<li (click)="facade.onChangePassword()">
@@ -135,10 +125,9 @@
 			 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Log in as an administrator' : null"
 			 (click)="facade.onSelectLoginTab()">
 			<span class="text">Admin Login</span>
-			<cds-icon class="icon"
-								shape="user"
-								size="md">
-			</cds-icon>
+			<i-feather name="user"
+								 class="icon user-icon">
+			</i-feather>
 		</a>
 	</ng-template>
 </div>

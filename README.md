@@ -12,11 +12,12 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 ## Architecture
 
-> FRONTEND (Angular)
+> FRONTEND
 
+- `Angular v14` for frontend framework
 - `NgRx` for reactive state management
+- `Feather` for icons
 - `SCSS` for style preprocessing with Sass
-- `Clarity Design System` for icons
 
 > BACKEND (AWS)
 
@@ -27,17 +28,32 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 - `API Gateway` for API management and routing
 - `Cognito & IAM` for user authentication
 - `Lambda` for serverless backend functions
-- `EC2` instance to run Express.js server, responsible for article image CRUD operations
+- `EC2` for running an Express.js server, responsible for article image CRUD operations
 
 ## Release notes
 
-|   |   |
-|---|---|
+|     |     |
+| --- | --- |
 | 🚀 | New **features** and **improvements** to the website |
 | 🐛 | Bug fixes |
 | 🔧 | Code refactoring (no visible changes) |
 
 ### Beta version release notes
+
+<details>
+<summary style="cursor: pointer">
+v1.5.1-beta - December 2nd, 2023
+</summary>
+
+- 🚀 Add support for LCC-styled markdown tables in articles' content section
+- 🚀 Replace CDS with Angular Feather library for icons
+- 🚀 Increase limit on article body length and align text left in markdown preview section of Article Editor
+
+- 🐛 Prevent user menu dropdown icon from displaying above the image previews when an image is selected in the Photo Gallery
+
+- 🔧 Remove all dependencies to Clarity Design System library and replace with a more lightweight alternative solutions jfor icons
+
+</details>
 
 <details>
 <summary style="cursor: pointer">
@@ -269,7 +285,7 @@ v0.8.0-alpha - September 8th, 2022
 
 ## Report a bug / Request a change
 
-Have an idea about how to improve the website? Find a bug?
+Have an idea how we can improve the website? Find a bug?
 
 1. Submit a new issue [here](https://github.com/mwiraszka/LondonChessClub/issues); or
 2. Contact a club committee member

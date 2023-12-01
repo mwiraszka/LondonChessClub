@@ -1,4 +1,4 @@
-import { ClarityModule } from '@clr/angular';
+import { FeatherModule } from 'angular-feather';
 
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -14,8 +14,8 @@ import { MembersTableComponent } from './members-table.component';
   declarations: [MembersTableComponent],
   imports: [
     AdminControlsModule,
-    ClarityModule,
     CommonModule,
+    FeatherModule,
     LinkListModule,
     PaginatorModule,
     TooltipModule,

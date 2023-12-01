@@ -1,4 +1,6 @@
-.lcc-table {
+@import 'styles/abstracts/variables';
+
+@mixin lcc-table {
   display: table;
   font-size: $h5;
   border-radius: $lcc-border-radius--sm;
@@ -46,4 +48,8 @@
       text-align: right;
     }
   }
+}
+
+.lcc-table {
+  @include lcc-table;
 }

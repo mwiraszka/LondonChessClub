@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { isEmpty } from 'lodash';
 import { Observable, forkJoin, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
@@ -96,7 +97,13 @@ export class ArticlesService {
           }),
         }),
       ),
-      switchMap(() => this.imagesService.uploadArticleImage(articleToUpdate)),
+      switchMap(() => {
+        if (isEmpty(articleToUpdate.imageFile)) {
+          return of({ payload: articleToUpdate });
+        } else {
+          return this.imagesService.uploadArticleImage(articleToUpdate);
+        }
+      }),
       catchError(() => of({ error: new Error('Failed to update article') })),
     );
   }

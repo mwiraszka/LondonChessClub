@@ -114,6 +114,12 @@ $dropdown-list-width: 120px;
       font-size: $h5;
       color: $lcc-color--text-primary-black;
 
+      // Prevent dropdown icon bleeding through when an overlay is open,
+      // a consequence of the dropdown having absolute positioning  
+      &.hide {
+        visibility: hidden;
+      }
+
       &.dropdown-open {
         background-color: darken($lcc-color--bg-nav, 5%);
         border-top: 2px solid darken($lcc-color--bg-main, 10%);

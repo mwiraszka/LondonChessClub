@@ -91,6 +91,7 @@
 	<ng-container *ngIf="(facade.user$ | async)?.isAdmin; else loggedOut">
 		<div class="user-account-dropdown ddcomp">
 			<div class="dropdown-tab ddcomp"
+					 [class.hide]="facade.isOverlayOpen$ | async"
 					 [ngClass]="(facade.isDropdownOpen$ | async) ? 'dropdown-open' : 'dropdown-closed'"
 					 (click)="facade.onToggleDropdown()">
 				<cds-icon class="ddcomp"

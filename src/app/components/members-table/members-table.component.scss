@@ -32,6 +32,7 @@ table {
   
   tbody {
     tr {
+      
       &.inactive {
         :not(.row-number) {
           color: darken($lcc-color--text-secondary, 5%);

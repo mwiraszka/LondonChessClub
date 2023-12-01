@@ -39,6 +39,7 @@
     "@types/lodash": "^4.14.197",
     "@webcomponents/webcomponentsjs": "2.6.0",
     "amazon-cognito-identity-js": "^5.2.8",
+    "angular-feather": "^6.5.0",
     "lodash": "^4.17.21",
     "ngrx-store-localstorage": "^13.0.1",
     "ngx-markdown": "^14.0.1",

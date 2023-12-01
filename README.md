@@ -16,6 +16,7 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 - `Angular v14` for frontend framework
 - `NgRx` for reactive state management
+- `Feather` for icons
 - `SCSS` for style preprocessing with Sass
 
 > BACKEND (AWS)
@@ -44,7 +45,10 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 v1.5.1-beta - December 2nd, 2023
 </summary>
 
+- 🚀 Replace CDS with Angular Feather library for icons
 - 🚀 Increase limit on article body length and align text left in markdown preview section of Article Editor
+
+- 🐛 Prevent user menu dropdown icon from displaying above the image previews when an image is selected in the Photo Gallery
 
 - 🔧 Remove all dependencies to Clarity Design System library and replace with a more lightweight alternative solutions jfor icons
 

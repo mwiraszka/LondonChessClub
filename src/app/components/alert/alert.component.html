@@ -7,14 +7,13 @@
 		<span>{{ upcomingEvent.eventDate | formatDate:'short' }}</span>
 	</p>
 	<div class="alert-controls">
-		<button class="lcc-ghost-button alert-action-button"
+		<button class="lcc-ghost-button details-button"
 						(click)="facade.onDetails()">
 			Details
 		</button>
-		<cds-icon class="lcc-icon-button alert-close-button"
-							shape="window-close"
-							size="md"
-							(click)="close.emit()">
-		</cds-icon>
+		<i-feather name="x"
+							 class="close-button"
+							 (click)="close.emit()">
+		</i-feather>
 	</div>
 </div>

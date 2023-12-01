@@ -1,14 +1,17 @@
 <button [tooltip]="'Edit ' + itemName"
 				(click)="onEdit($event)">
-	<cds-icon shape="pencil"
-						size="sm">
-	</cds-icon>
+	<i-feather name="edit"
+						 class="edit-icon"
+						 [style.height.px]="height - 10"
+						 [style.width.px]="height - 10">
+	</i-feather>
 </button>
 
 <button [tooltip]="'Delete ' + itemName"
 				(click)="onDelete($event)">
-	<cds-icon shape="trash"
-						size="sm"
-						status="danger">
-	</cds-icon>
+	<i-feather name="trash-2"
+						 class="trash-icon"
+						 [style.height.px]="height - 10"
+						 [style.width.px]="height - 10">
+	</i-feather>
 </button>

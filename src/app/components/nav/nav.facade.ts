@@ -5,6 +5,7 @@ import { filter, withLatestFrom } from 'rxjs/operators';
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
 
 import { AuthActions, AuthSelectors } from '@app/store/auth';
+import { ImageOverlaySelectors } from '@app/store/image-overlay';
 import { NavActions, NavSelectors } from '@app/store/nav';
 
 @Injectable()
@@ -12,6 +13,7 @@ export class NavFacade implements OnInit, OnDestroy {
   user$ = this.store.select(AuthSelectors.user);
   isUserVerified$ = this.store.select(AuthSelectors.isUserVerified);
   isDropdownOpen$ = this.store.select(NavSelectors.isDropdownOpen);
+  isOverlayOpen$ = this.store.select(ImageOverlaySelectors.isOpen);
   documentClick$ = fromEvent(document, 'click');
 
   documentSub!: Subscription;

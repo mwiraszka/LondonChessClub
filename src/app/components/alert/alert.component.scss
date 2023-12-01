@@ -37,15 +37,22 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  gap: $lcc-space--xs;
 
-  .alert-action-button {
+  .details-button {
     white-space: nowrap;
     padding: $lcc-space--xs $lcc-space--sm;
     color: darken($lcc-color--white, 10%);
   }
 
-  .alert-close-button {
-    padding: $lcc-space--xs;
+  .close-button {
+    height: 18px;
+    width: 18px;
     color: darken($lcc-color--white, 10%);
+
+    &:hover {
+      cursor: pointer;
+      color: darken($lcc-color--white, 2%);
+    }
   }
 }

@@ -20,7 +20,7 @@ export class UpdateService {
         buttons: [
           {
             text: 'Ok',
-            style: ModalButtonStyleTypes.PRIMARY_SUCCESS,
+            style: ModalButtonStyleTypes.CONFIRM,
             action: ModalButtonActionTypes.ACTIVATE_VERSION_UPDATE,
           },
         ],

@@ -1,18 +1,20 @@
-<ng-container *ngIf="article">
-	<div class="banner-image-container">
-		<img [src]="(article.imageUrl ?? 'assets/image-placeholder.png') | sanitizeUrl"
-				 alt="Article image banner" />
-		<h2 class="lcc-truncate-max-2-lines">
-			{{ article.title | truncateByChars:120 }}
-		</h2>
-	</div>
-	<div class="article-dates-container h4">
-		<span class="date-created">{{ article.dateCreated | formatDate:'short' }}</span>
-		<ng-container *ngIf="article?.dateEdited !== article.dateCreated">
-			<span class="vertical-spacer">|</span>
-			<span class="edited">edited&nbsp;</span>
-			<span class="date-edited">{{ article.dateEdited | formatDate:'short' }}</span>
-		</ng-container>
-	</div>
-	<p markdown>{{ article.body }}</p>
-</ng-container>
+<div class="banner-image-container">
+	<img [src]="(article?.imageUrl ?? 'assets/image-placeholder.png') | sanitizeUrl"
+			 alt="Article image banner" />
+	<h2 class="lcc-truncate-max-2-lines">
+		{{ article?.title | truncateByChars:120 }}
+	</h2>
+</div>
+
+<div class="article-dates-container h4">
+	<span class="date-created">{{ article?.dateCreated | formatDate:'short' }}</span>
+	<ng-container *ngIf="article?.dateEdited !== article?.dateCreated">
+		<span class="vertical-spacer">|</span>
+		<span class="edited">edited&nbsp;</span>
+		<span class="date-edited">{{ article?.dateEdited | formatDate:'short' }}</span>
+	</ng-container>
+</div>
+
+<div class="article-preview-container">
+	<p markdown>{{ article?.body }}</p>
+</div>

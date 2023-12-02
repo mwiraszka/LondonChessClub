@@ -5,10 +5,9 @@ export interface ModalButton {
 }
 
 export enum ModalButtonStyleTypes {
-  PRIMARY_DEFAULT = 'lcc-primary-button',
-  PRIMARY_SUCCESS = 'lcc-success-button',
-  PRIMARY_WARNING = 'lcc-warning-button',
-  SECONDARY = 'lcc-secondary-button',
+  CONFIRM = 'lcc-primary-button',
+  WARN_CONFIRM = 'lcc-warning-button',
+  CANCEL = 'lcc-secondary-button',
 }
 
 export enum ModalButtonActionTypes {

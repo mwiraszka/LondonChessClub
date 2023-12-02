@@ -35,10 +35,14 @@
   }
 }
 
-p {
-  padding: $lcc-space--md;
-
-  ::ng-deep table {
-    @include lcc-table;
+.article-preview-container {
+  p {
+    padding: $lcc-space--md;
+    line-height: unset;
+    word-break: break-all;
+  
+    ::ng-deep table {
+      @include lcc-table;
+    }
   }
 }

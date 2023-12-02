@@ -16,10 +16,6 @@
   background-color: $lcc-color--bg-screen-header;
   color: $lcc-color--text-primary-black;
 
-  @include respond-to('lt-sm') {
-    font-size: 80%;
-  }
-
   .lcc-secondary-text {
     color: $lcc-color--text-secondary;
   }

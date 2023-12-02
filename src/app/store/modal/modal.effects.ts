@@ -25,12 +25,12 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyleTypes.SECONDARY,
+              style: ModalButtonStyleTypes.CANCEL,
               action: ModalButtonActionTypes.ADD_MEMBER_CANCEL,
             },
             {
               text: 'Add',
-              style: ModalButtonStyleTypes.PRIMARY_SUCCESS,
+              style: ModalButtonStyleTypes.CONFIRM,
               action: ModalButtonActionTypes.ADD_MEMBER_OK,
             },
           ],
@@ -51,12 +51,12 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyleTypes.SECONDARY,
+              style: ModalButtonStyleTypes.CANCEL,
               action: ModalButtonActionTypes.UPDATE_MEMBER_CANCEL,
             },
             {
               text: 'Update',
-              style: ModalButtonStyleTypes.PRIMARY_SUCCESS,
+              style: ModalButtonStyleTypes.CONFIRM,
               action: ModalButtonActionTypes.UPDATE_MEMBER_OK,
             },
           ],
@@ -76,12 +76,12 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyleTypes.SECONDARY,
+              style: ModalButtonStyleTypes.CANCEL,
               action: ModalButtonActionTypes.DELETE_MEMBER_CANCEL,
             },
             {
               text: 'Delete',
-              style: ModalButtonStyleTypes.PRIMARY_WARNING,
+              style: ModalButtonStyleTypes.WARN_CONFIRM,
               action: ModalButtonActionTypes.DELETE_MEMBER_OK,
             },
           ],
@@ -101,12 +101,12 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyleTypes.SECONDARY,
+              style: ModalButtonStyleTypes.CANCEL,
               action: ModalButtonActionTypes.ADD_EVENT_CANCEL,
             },
             {
               text: 'Add',
-              style: ModalButtonStyleTypes.PRIMARY_SUCCESS,
+              style: ModalButtonStyleTypes.CONFIRM,
               action: ModalButtonActionTypes.ADD_EVENT_OK,
             },
           ],
@@ -127,12 +127,12 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyleTypes.SECONDARY,
+              style: ModalButtonStyleTypes.CANCEL,
               action: ModalButtonActionTypes.UPDATE_EVENT_CANCEL,
             },
             {
               text: 'Update',
-              style: ModalButtonStyleTypes.PRIMARY_SUCCESS,
+              style: ModalButtonStyleTypes.CONFIRM,
               action: ModalButtonActionTypes.UPDATE_EVENT_OK,
             },
           ],
@@ -152,12 +152,12 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyleTypes.SECONDARY,
+              style: ModalButtonStyleTypes.CANCEL,
               action: ModalButtonActionTypes.DELETE_EVENT_CANCEL,
             },
             {
               text: 'Delete',
-              style: ModalButtonStyleTypes.PRIMARY_WARNING,
+              style: ModalButtonStyleTypes.WARN_CONFIRM,
               action: ModalButtonActionTypes.DELETE_EVENT_OK,
             },
           ],
@@ -177,12 +177,12 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyleTypes.SECONDARY,
+              style: ModalButtonStyleTypes.CANCEL,
               action: ModalButtonActionTypes.PUBLISH_ARTICLE_CANCEL,
             },
             {
               text: 'Publish',
-              style: ModalButtonStyleTypes.PRIMARY_SUCCESS,
+              style: ModalButtonStyleTypes.CONFIRM,
               action: ModalButtonActionTypes.PUBLISH_ARTICLE_OK,
             },
           ],
@@ -203,12 +203,12 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyleTypes.SECONDARY,
+              style: ModalButtonStyleTypes.CANCEL,
               action: ModalButtonActionTypes.UPDATE_ARTICLE_CANCEL,
             },
             {
               text: 'Update',
-              style: ModalButtonStyleTypes.PRIMARY_SUCCESS,
+              style: ModalButtonStyleTypes.CONFIRM,
               action: ModalButtonActionTypes.UPDATE_ARTICLE_OK,
             },
           ],
@@ -228,12 +228,12 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyleTypes.SECONDARY,
+              style: ModalButtonStyleTypes.CANCEL,
               action: ModalButtonActionTypes.DELETE_ARTICLE_CANCEL,
             },
             {
               text: 'Delete',
-              style: ModalButtonStyleTypes.PRIMARY_WARNING,
+              style: ModalButtonStyleTypes.WARN_CONFIRM,
               action: ModalButtonActionTypes.DELETE_ARTICLE_OK,
             },
           ],
@@ -253,12 +253,12 @@ export class ModalEffects {
           buttons: [
             {
               text: 'Cancel',
-              style: ModalButtonStyleTypes.SECONDARY,
+              style: ModalButtonStyleTypes.CANCEL,
               action: ModalButtonActionTypes.LEAVE_CANCEL,
             },
             {
               text: 'Leave',
-              style: ModalButtonStyleTypes.PRIMARY_DEFAULT,
+              style: ModalButtonStyleTypes.CONFIRM,
               action: ModalButtonActionTypes.LEAVE_OK,
             },
           ],

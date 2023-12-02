@@ -42,6 +42,17 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v1.5.3-beta - December 2nd, 2023
+</summary>
+
+- 🚀 Improve modal (pop-up) button colour scheme
+
+- 🐛 Fix bug where long links in the article body would break the layout on small devices
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v1.5.2-beta - December 1st, 2023
 </summary>
 

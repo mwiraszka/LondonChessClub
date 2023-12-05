@@ -36,10 +36,11 @@
 }
 
 .toast-notification-container {
-  padding: $lcc-space--sm;
-  overflow: hidden;
   display: flex;
   flex-flow: column nowrap;
+  gap: $lcc-space--xs;
+  padding: $lcc-space--sm;
+  overflow: hidden;
 
   h4 {
     width: 100%;

@@ -5,7 +5,7 @@
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.HOME"
 		 [routerLinkActiveOptions]="{ exact: true }"
-		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Home' : null"
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Home' : null"
 		 (click)="facade.onSelectHomeTab()">
 		<span class="text">Home</span>
 		<i-feather name="home"
@@ -16,7 +16,7 @@
 	<a aria-label="Members"
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.MEMBERS"
-		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Members' : null"
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Members' : null"
 		 (click)="facade.onSelectMembersTab()">
 		<span class="text">Members</span>
 		<i-feather name="users"
@@ -27,7 +27,7 @@
 	<a aria-label="Schedule"
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.SCHEDULE"
-		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Schedule' : null"
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Schedule' : null"
 		 (click)="facade.onSelectScheduleTab()">
 		<span class="text">Schedule</span>
 		<i-feather name="calendar"
@@ -38,7 +38,7 @@
 	<a aria-label="News"
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.NEWS"
-		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'News' : null"
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'News' : null"
 		 (click)="facade.onSelectNewsTab()">
 		<span class="text">News</span>
 		<i-feather name="activity"
@@ -48,7 +48,7 @@
 
 	<a aria-label="City Champion"
 		 [routerLink]="NavPathTypes.CITY_CHAMPION"
-		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'City Champion' : null"
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'City Champion' : null"
 		 routerLinkActive="link-active"
 		 (click)="facade.onSelectCityChampionTab()">
 		<span class="text">City&nbsp;Champion</span>
@@ -60,7 +60,7 @@
 	<a aria-label="Photo Gallery"
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.PHOTO_GALLERY"
-		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Photo Gallery' : null"
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Photo Gallery' : null"
 		 (click)="facade.onSelectPhotoGalleryTab()">
 		<span class="text">Photo&nbsp;Gallery</span>
 		<i-feather name="camera"
@@ -71,7 +71,7 @@
 	<a aria-label="About"
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.ABOUT"
-		 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'About' : null"
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'About' : null"
 		 (click)="facade.onSelectAboutTab()">
 		<span class="text">About</span>
 		<i-feather name="info"
@@ -81,48 +81,38 @@
 
 	<div class="nav-login-spacer"></div>
 
-	<ng-container *ngIf="(facade.user$ | async)?.isAdmin; else loggedOut">
-		<div class="user-account-dropdown ddcomp">
-			<div class="dropdown-tab ddcomp"
-					 [class.hide]="facade.isOverlayOpen$ | async"
-					 [ngClass]="(facade.isDropdownOpen$ | async) ? 'dropdown-open' : 'dropdown-closed'"
-					 (click)="facade.onToggleDropdown()">
-				<i-feather name="user"
-									 class="icon user-icon">
-				</i-feather>
-				<i-feather [name]="(facade.isDropdownOpen$ | async) ? 'chevron-up' : 'chevron-down'"
-									 class="ddcomp icon dropdown-open-icon">
-				</i-feather>
-			</div>
+	<div *ngIf="facade.user$ | async; else loggedOut"
+			 class="lcc-dropdown-tab">
+		<i-feather name="user"
+							 class="icon user-icon">
+		</i-feather>
+		<i-feather [name]="isDropdownOpen ? 'chevron-up' : 'chevron-down'"
+							 class="icon chevron-icon">
+		</i-feather>
 
-			<ul *ngIf="facade.isDropdownOpen$ | async"
-					class="dropdown-items ddcomp">
-				<li class="login-welcome ddcomp">
-					<small class="ddcomp">Logged in as</small>
-					<div class="admin-text ddcomp">
-						<span class="ddcomp">Admin</span>
-						<i-feather name="user"
-											 class="ddcomp icon admin-user-icon">
-						</i-feather>
-					</div>
-				</li>
-				<li (click)="facade.onChangePassword()">
-					Change password
-				</li>
-				<li class="last-item"
-						(click)="facade.onLogOut()">
-					Log out
-				</li>
+		<div class="user-dropdown"
+				 dropdown>
+			<div class="admin-welcome-container">
+				<i-feather name="user"
+									 class="icon admin-user-icon">
+				</i-feather>
+				<span class="h4 admin-name">
+					{{ (facade.user$ | async)?.firstName || 'Michal' }}
+				</span>
+			</div>
+			<ul class="dropdown-items">
+				<li (click)="facade.onChangePassword()">Change password</li>
+				<li (click)="facade.onLogOut()">Log out</li>
 			</ul>
 		</div>
-	</ng-container>
+	</div>
 
 	<ng-template #loggedOut>
 		<a class="login-link"
 			 aria-label="Admin Login"
 			 routerLinkActive="link-active"
 			 [routerLink]="NavPathTypes.LOGIN"
-			 [tooltip]="screenWidth < tooltipScreenWidthCutoff ? 'Log in as an administrator' : null"
+			 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Log in as admin' : null"
 			 (click)="facade.onSelectLoginTab()">
 			<span class="text">Admin Login</span>
 			<i-feather name="user"

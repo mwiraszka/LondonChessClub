@@ -1,44 +1,18 @@
 import { Store } from '@ngrx/store';
-import { Subscription, fromEvent } from 'rxjs';
-import { filter, withLatestFrom } from 'rxjs/operators';
 
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { ImageOverlaySelectors } from '@app/store/image-overlay';
-import { NavActions, NavSelectors } from '@app/store/nav';
+import { NavActions } from '@app/store/nav';
 
 @Injectable()
-export class NavFacade implements OnInit, OnDestroy {
+export class NavFacade {
   user$ = this.store.select(AuthSelectors.user);
   isUserVerified$ = this.store.select(AuthSelectors.isUserVerified);
-  isDropdownOpen$ = this.store.select(NavSelectors.isDropdownOpen);
   isOverlayOpen$ = this.store.select(ImageOverlaySelectors.isOpen);
-  documentClick$ = fromEvent(document, 'click');
-
-  documentSub!: Subscription;
 
   constructor(private readonly store: Store) {}
-
-  ngOnInit(): void {
-    /**
-     * Only close the dropdown if it's currently open and the user clicked outside
-     * of a part of the dropdown component (i.e. any element with class 'ddcomp')
-     */
-    this.documentSub = this.documentClick$
-      .pipe(
-        withLatestFrom(this.isDropdownOpen$),
-        filter(
-          ([click, isOpen]) =>
-            isOpen && !(click.target as HTMLElement).classList.contains('ddcomp'),
-        ),
-      )
-      .subscribe(() => this.onCloseDropdown());
-  }
-
-  ngOnDestroy(): void {
-    this.documentSub.unsubscribe();
-  }
 
   onSelectHomeTab(): void {
     this.store.dispatch(NavActions.homeNavigationRequested());
@@ -70,14 +44,6 @@ export class NavFacade implements OnInit, OnDestroy {
 
   onSelectLoginTab(): void {
     this.store.dispatch(NavActions.loginNavigationRequested());
-  }
-
-  onToggleDropdown(): void {
-    this.store.dispatch(NavActions.dropdownToggled());
-  }
-
-  onCloseDropdown(): void {
-    this.store.dispatch(NavActions.dropdownClosed());
   }
 
   onChangePassword(): void {

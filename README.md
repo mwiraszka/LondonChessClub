@@ -42,6 +42,17 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v1.5.4-beta - December 4th, 2023
+</summary>
+
+- 🚀 Revamp top-right dropdown user menu
+- 🚀 In the admin-only article/event/member edit forms, display author's name next to each article/event/member; display in the new user dropdown menu as well
+- 🚀 Various minor layout improvements in form and toaster components
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v1.5.3-beta - December 2nd, 2023
 </summary>
 

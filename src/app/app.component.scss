@@ -5,7 +5,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: darken($lcc-color--primary, 10%);
+  background-color: darken($lcc-color--primary, 10%);
   overflow-x: hidden;
 }
 

@@ -43,7 +43,7 @@ $alert-icon-width: 18px;
   fieldset {
     border: 1px solid rgba($lcc-color--gray, 0.4);
     border-radius: $lcc-border-radius--sm;
-    background: white;
+    background-color: white;
     padding: 4px 12px;
     text-align: left;
 
@@ -60,7 +60,7 @@ $alert-icon-width: 18px;
     width: $alert-icon-width;
 
     .lcc-form-error-icon {
-      color: lighten($lcc-color--warning, 10%);
+      color: lighten($lcc-color--warn, 10%);
       height: $alert-icon-width;
       width: $alert-icon-width;
     }
@@ -99,7 +99,18 @@ $alert-icon-width: 18px;
   }
 }
 
+.lcc-required-fields-legend {
+  font-style: italic;
+  font-size: $h4;
+  color: $lcc-color--text-secondary;
+
+  &::after {
+    color: $lcc-color--warn;
+    content: ' *';
+  }
+}
+
 .lcc-required-field::before {
   content: '* ';
-  color: $lcc-color--warning;
+  color: $lcc-color--warn;
 }

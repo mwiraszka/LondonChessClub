@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Action } from '@ngrx/store';
 import { isEqual } from 'lodash';
+import moment from 'moment';
 import * as uuid from 'uuid';
 
 import { AuthActions } from '@app/store/auth';
@@ -113,21 +114,31 @@ export function isTouchScreen(): boolean {
 }
 
 /**
- * @param {string} date The date in YYYY-MM-DD format
+ * @param {string} date The date either as a JS Date object or as a string in YYYY-MM-DD format
  * @returns {string} A user-friendly version of the input date
+ *
+ * Long with time (default): Thursday, January 1, 2024 at 6:00 PM
+ * Short with time: Thu, Jan 1, 2024, 6:00 PM
+ * Long without time: Thursday, January 1, 2024
+ * Short without time: Thu, Jan 1, 2024
  */
-export function formatDate(date: string, format: 'long' | 'short'): string {
+export function formatDate(
+  date: string | Date,
+  length: 'long' | 'short' = 'long',
+  showTime: 'time' | 'no-time' = 'time',
+): string {
   const today = new Date(date);
   const formatOptions: any = {
-    weekday: format,
+    weekday: length,
     year: 'numeric',
-    month: format,
+    month: length,
     day: 'numeric',
+    hour: showTime === 'time' ? 'numeric' : undefined,
+    minute: showTime === 'time' ? 'numeric' : undefined,
   };
 
-  return new Date(
-    today.getTime() + Math.abs(today.getTimezoneOffset() * 60000),
-  ).toLocaleDateString('en-US', formatOptions);
+  const temp = new Date(today.getTime()).toLocaleDateString('en-US', formatOptions);
+  return temp;
 }
 
 /**

@@ -2,13 +2,13 @@
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { filter, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { MembersService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { Member, ServiceResponse } from '@app/types';
+import { Member, ModificationInfo, ServiceResponse } from '@app/types';
 
 import * as MembersActions from './members.actions';
 import * as MembersSelectors from './members.selectors';
@@ -54,9 +54,21 @@ export class MembersEffects {
   addMember$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.addMemberConfirmed),
-      concatLatestFrom(() => this.store.select(MembersSelectors.memberCurrently)),
-      switchMap(([, memberToAdd]) => {
-        return this.membersService.addMember(memberToAdd!).pipe(
+      concatLatestFrom(() => [
+        this.store.select(MembersSelectors.memberCurrently),
+        this.store.select(AuthSelectors.user),
+      ]),
+      switchMap(([, memberToAdd, user]) => {
+        const dateNow = new Date(Date.now());
+        const modificationInfo: ModificationInfo = {
+          createdBy: `${user!.firstName} ${user!.lastName}`,
+          dateCreated: dateNow,
+          lastEditedBy: `${user!.firstName} ${user!.lastName}`,
+          dateLastEdited: dateNow,
+        };
+        const modifiedMember = { ...memberToAdd, modificationInfo };
+
+        return this.membersService.addMember(modifiedMember!).pipe(
           map((response: ServiceResponse<Member>) =>
             response.error
               ? MembersActions.addMemberFailed({ error: response.error })
@@ -72,9 +84,21 @@ export class MembersEffects {
   updateMember$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.updateMemberConfirmed),
-      concatLatestFrom(() => this.store.select(MembersSelectors.memberCurrently)),
-      switchMap(([, memberToUpdate]) => {
-        return this.membersService.updateMember(memberToUpdate!).pipe(
+      concatLatestFrom(() => [
+        this.store.select(MembersSelectors.memberCurrently),
+        this.store.select(AuthSelectors.user),
+      ]),
+      switchMap(([, memberToUpdate, user]) => {
+        const dateNow = new Date(Date.now());
+        const modificationInfo: ModificationInfo = {
+          createdBy: memberToUpdate.modificationInfo!.createdBy,
+          dateCreated: memberToUpdate.modificationInfo!.dateCreated,
+          lastEditedBy: `${user!.firstName} ${user!.lastName}`,
+          dateLastEdited: dateNow,
+        };
+        const modifiedMember = { ...memberToUpdate, modificationInfo };
+
+        return this.membersService.updateMember(modifiedMember!).pipe(
           map((response: ServiceResponse<Member>) =>
             response.error
               ? MembersActions.updateMemberFailed({ error: response.error })

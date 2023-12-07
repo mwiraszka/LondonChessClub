@@ -6,7 +6,10 @@
 			 [src]="previewImageUrl ?? 'assets/image-placeholder.png' | sanitizeUrl"
 			 alt="Article banner image" />
 	<div class="lcc-form-fields">
-		<label for="image-file-input">Banner Image:</label>
+		<label for="image-file-input"
+					 class="lcc-required-field">
+			Banner Image:
+		</label>
 		<div class="image-controls-container">
 			<label for="image-file-input"
 						 class="lcc-button lcc-secondary-button">
@@ -26,7 +29,10 @@
 			</i-feather>
 		</div>
 
-		<label for="title-input">Title:</label>
+		<label for="title-input"
+					 class="lcc-required-field">
+			Title:
+		</label>
 		<input id="title-input"
 					 type="text"
 					 name="title"
@@ -40,7 +46,10 @@
 			</i-feather>
 		</div>
 
-		<label for="body-input">Content:</label>
+		<label for="body-input"
+					 class="lcc-required-field">
+			Content:
+		</label>
 		<textarea id="body-input"
 							name="body"
 							formControlName="body"
@@ -63,6 +72,10 @@
 			</markdown>
 		</div>
 	</div>
+
+	<lcc-modification-info *ngIf=modificationInfo
+												 [info]="modificationInfo">
+	</lcc-modification-info>
 
 	<div class="lcc-form-buttons-container">
 		<button class="lcc-secondary-button"

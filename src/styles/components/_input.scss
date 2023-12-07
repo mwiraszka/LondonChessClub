@@ -12,7 +12,7 @@ textarea {
   margin: 3px 0 !important;
 
   &.ng-invalid.ng-dirty {
-    border-color: lighten($lcc-color--warning, 15%);
+    border-color: lighten($lcc-color--warn, 15%);
   }
 
   &:hover,

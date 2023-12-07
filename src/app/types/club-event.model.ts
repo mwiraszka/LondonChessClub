@@ -1,3 +1,5 @@
+import { ModificationInfo } from '@app/types';
+
 export enum ClubEventTypes {
   BLITZ_TOURNAMENT = 'blitz tournament',
   RAPID_TOURNAMENT = 'rapid tournament',
@@ -11,20 +13,31 @@ export enum ClubEventTypes {
 
 export interface ClubEvent {
   id: string | undefined;
-  dateCreated: string;
-  dateEdited: string;
   eventDate: string;
   title: string;
   details: string;
   type: ClubEventTypes;
+  modificationInfo: ModificationInfo | null;
 }
 
 export const newClubEventFormTemplate: ClubEvent = {
   id: undefined,
-  dateCreated: new Date().toLocaleDateString(),
-  dateEdited: new Date().toLocaleDateString(),
   eventDate: '',
   title: '',
   details: '',
   type: ClubEventTypes.BLITZ_TOURNAMENT,
+  modificationInfo: null,
 };
+
+// Backend representation of the type
+export interface FlatClubEvent {
+  id: string | undefined;
+  eventDate: string;
+  title: string;
+  details: string;
+  type: ClubEventTypes;
+  dateCreated: string;
+  createdBy: string;
+  dateLastEdited: string;
+  lastEditedBy: string;
+}

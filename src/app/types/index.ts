@@ -1,14 +1,20 @@
 export { AppScreenTypes } from './app-screens.model';
 export { AppStoreFeatureTypes } from './app-store-features.model';
-export { Article, newArticleFormTemplate } from './article.model';
-export { ClubEvent, ClubEventTypes, newClubEventFormTemplate } from './club-event.model';
+export { Article, FlatArticle, newArticleFormTemplate } from './article.model';
+export {
+  ClubEvent,
+  ClubEventTypes,
+  FlatClubEvent,
+  newClubEventFormTemplate,
+} from './club-event.model';
 export { ImageId } from './image-id.model';
 export { Link } from './link.model';
 export { LoginRequest } from './login-request.model';
 export { LoginResponse } from './login-response.model';
+export { ModificationInfo } from './modification-info.model';
 export { PasswordChangeRequest } from './password-change-request.model';
 export { PasswordChangeResponse } from './password-change-response.model';
-export { Member, newMemberFormTemplate } from './member.model';
+export { Member, FlatMember, newMemberFormTemplate } from './member.model';
 export { Modal } from './modal.model';
 export {
   ModalButton,

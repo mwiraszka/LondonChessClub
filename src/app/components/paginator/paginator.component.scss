@@ -6,7 +6,7 @@
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  background: rgba($lcc-color--accent, 0.1);
+  background-color: rgba($lcc-color--accent, 0.1);
   border-radius: $lcc-border-radius--lg;
   
   padding: $lcc-space--xs $lcc-space--lg;
@@ -43,11 +43,11 @@ button {
     .center-section-button {
       border: none;
       font-size: $h5;
-      background: rgba($lcc-color--accent, 0.2) !important;
+      background-color: rgba($lcc-color--accent, 0.2) !important;
 
       &.selected {
         cursor: default;
-        background: $lcc-color--accent;
+        background-color: $lcc-color--accent;
         border: 1px solid rgba(lighten($lcc-color--black, 20%), 0.5);
       }
     }

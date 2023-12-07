@@ -5,10 +5,12 @@ import { ImageOverlayState, initialState } from './image-overlay.state';
 
 const modalReducer = createReducer(
   initialState,
+
   on(ImageOverlayActions.overlayOpened, (state, action) => ({
     ...state,
     photo: action.photo,
   })),
+
   on(ImageOverlayActions.overlayClosed, () => initialState),
 );
 

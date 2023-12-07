@@ -10,8 +10,6 @@ export const authFeatureSelector = createFeatureSelector<AuthState>(
 
 export const user = createSelector(authFeatureSelector, state => state.user);
 
-export const session = createSelector(authFeatureSelector, state => state.session);
-
 export const isAdmin = createSelector(
   authFeatureSelector,
   state => state.user?.isAdmin && state.user?.isVerified,
@@ -22,7 +20,4 @@ export const isUserVerified = createSelector(
   state => state.user?.isVerified,
 );
 
-export const userHasCode = createSelector(
-  authFeatureSelector,
-  state => state.user?.hasCode,
-);
+export const userHasCode = createSelector(authFeatureSelector, state => state?.hasCode);

@@ -5,7 +5,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoaderService } from '@app/services';
-import { Member } from '@app/types';
+import { Member, ModificationInfo } from '@app/types';
 import {
   dateValidator,
   emailValidator,
@@ -24,8 +24,9 @@ import { MemberFormFacade } from './member-form.facade';
 })
 export class MemberFormComponent implements OnInit, OnDestroy {
   form!: FormGroup;
-  valueChangesSubscription!: Subscription;
   memberFullName!: string;
+  modificationInfo!: ModificationInfo | null;
+  valueChangesSubscription!: Subscription;
 
   constructor(
     public facade: MemberFormFacade,
@@ -38,6 +39,11 @@ export class MemberFormComponent implements OnInit, OnDestroy {
 
     this.facade.memberCurrently$
       .pipe(
+        tap(member =>
+          this.modificationInfo === member?.modificationInfo
+            ? member.modificationInfo
+            : null,
+        ),
         tap(member => (member ? this.initForm(member) : undefined)),
         first(),
       )

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Subscription } from 'rxjs';
 import { debounceTime, first, tap } from 'rxjs/operators';
 
@@ -5,7 +6,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoaderService } from '@app/services';
-import { ClubEvent } from '@app/types';
+import { ClubEvent, ModificationInfo } from '@app/types';
 import { dateValidator } from '@app/validators';
 
 import { EventFormFacade } from './event-form.facade';
@@ -18,6 +19,7 @@ import { EventFormFacade } from './event-form.facade';
 })
 export class EventFormComponent implements OnInit, OnDestroy {
   form!: FormGroup;
+  modificationInfo!: ModificationInfo | null;
   valueChangesSubscription!: Subscription;
 
   constructor(
@@ -32,6 +34,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
     this.facade.eventCurrently$
       .pipe(
         tap(event => this.initForm(event)),
+        tap(event => (this.modificationInfo = event.modificationInfo)),
         tap(() => this.loaderService.display(false)),
         first(),
       )
@@ -76,9 +79,6 @@ export class EventFormComponent implements OnInit, OnDestroy {
       title: [event.title, [Validators.required, Validators.pattern(/[^\s]/)]],
       details: [event.details, [Validators.required, Validators.pattern(/[^\s]/)]],
       type: [event.type, [Validators.required]],
-      id: [event.id],
-      dateCreated: [event.dateCreated],
-      dateEdited: [event.dateEdited],
     });
 
     this.valueChangesSubscription = this.form.valueChanges

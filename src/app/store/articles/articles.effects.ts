@@ -3,12 +3,13 @@ import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
 import { throwError } from 'rxjs';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { filter, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { ArticlesService, ImagesService } from '@app/services';
-import { Article, ServiceResponse, Url } from '@app/types';
+import { AuthSelectors } from '@app/store/auth';
+import { Article, ModificationInfo, ServiceResponse, Url } from '@app/types';
 
 import * as ArticlesActions from './articles.actions';
 import * as ArticlesSelectors from './articles.selectors';
@@ -60,9 +61,21 @@ export class ArticlesEffects {
   publishArticle$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.publishArticleConfirmed),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.articleCurrently)),
-      switchMap(([, articleToPublish]) => {
-        return this.articlesService.addArticle(articleToPublish).pipe(
+      concatLatestFrom(() => [
+        this.store.select(ArticlesSelectors.articleCurrently),
+        this.store.select(AuthSelectors.user),
+      ]),
+      switchMap(([, articleToPublish, user]) => {
+        const dateNow = new Date(Date.now());
+        const modificationInfo: ModificationInfo = {
+          createdBy: `${user!.firstName} ${user!.lastName}`,
+          dateCreated: dateNow,
+          lastEditedBy: `${user!.firstName} ${user!.lastName}`,
+          dateLastEdited: dateNow,
+        };
+        const modifiedArticle = { ...articleToPublish, modificationInfo };
+
+        return this.articlesService.addArticle(modifiedArticle).pipe(
           map((response: ServiceResponse<Article>) =>
             response.error
               ? ArticlesActions.publishArticleFailed({ error: response.error })
@@ -78,13 +91,21 @@ export class ArticlesEffects {
   updateArticle$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleConfirmed),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.articleCurrently)),
-      switchMap(([, articleToUpdate]) => {
-        const modifiedArticleToUpdate = {
-          ...articleToUpdate,
-          dateEdited: new Date().toLocaleDateString(),
+      concatLatestFrom(() => [
+        this.store.select(ArticlesSelectors.articleCurrently),
+        this.store.select(AuthSelectors.user),
+      ]),
+      switchMap(([, articleToUpdate, user]) => {
+        const dateNow = new Date(Date.now());
+        const modificationInfo: ModificationInfo = {
+          createdBy: articleToUpdate.modificationInfo!.createdBy,
+          dateCreated: articleToUpdate.modificationInfo!.dateCreated,
+          lastEditedBy: `${user!.firstName} ${user!.lastName}`,
+          dateLastEdited: dateNow,
         };
-        return this.articlesService.updateArticle(modifiedArticleToUpdate).pipe(
+        const modifiedArticle = { ...articleToUpdate, modificationInfo };
+
+        return this.articlesService.updateArticle(modifiedArticle).pipe(
           map((response: ServiceResponse<Article>) =>
             response.error
               ? ArticlesActions.updateArticleFailed({ error: response.error })

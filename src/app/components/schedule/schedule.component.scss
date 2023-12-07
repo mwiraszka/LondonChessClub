@@ -1,3 +1,4 @@
+@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
 :host {
@@ -24,17 +25,33 @@ table {
         }
       }
 
-      .details-container {
+      .main-container {
+        display: flex;
+        flex-flow: column nowrap;
+
+        @include respond-to('gt-md') {
+          flex-flow: row nowrap;
+
+          .created-and-edited {
+            justify-self: flex-end;
+            align-self: flex-end;
+          }
+        }
+      }
+
+      .main-content {
+        flex: 1;
         display: flex;
         flex-flow: column nowrap;
         align-items: flex-start;
-        gap: $lcc-space--sm;
-        padding: $lcc-space--md;
+        gap: $lcc-space--xs;
+        padding: $lcc-space--sm;
   
         .title {
           color: lighten($lcc-color--text-primary-black, 20%);
           line-height: normal;
           font-size: 15px !important;
+          margin-bottom: $lcc-space--xs;
         }
 
         .type {
@@ -43,62 +60,62 @@ table {
           width: auto;
 
           &.blitz-tournament {
-            background: lighten(rgba(red, 0.3), 40%);
+            background-color: lighten(rgba(red, 0.3), 40%);
             border: 1px solid rgba(red, 0.3);
           }
 
           &.rapid-tournament {
-            background: lighten(rgba(orange, 0.3), 40%);
+            background-color: lighten(rgba(orange, 0.3), 40%);
             border: 1px solid rgba(orange, 0.3);
           }
 
           &.classical-tournament {
-            background: lighten(rgba(gold, 0.3), 40%);
+            background-color: lighten(rgba(gold, 0.3), 40%);
             border: 1px solid rgba(gold, 0.3);
           }
 
           &.lecture {
-            background: lighten(rgba(brown, 0.3), 40%);
+            background-color: lighten(rgba(brown, 0.3), 40%);
             border: 1px solid rgba(brown, 0.3);
           }
 
           &.simul {
-            background: lighten(rgba(green, 0.3), 40%);
+            background-color: lighten(rgba(green, 0.3), 40%);
             border: 1px solid rgba(green, 0.3);
           }
 
           &.casual {
-            background: lighten(rgba(blue, 0.3), 40%);
+            background-color: lighten(rgba(blue, 0.3), 40%);
             border: 1px solid rgba(blue, 0.3);
           }
 
           &.other {
-            background: lighten(rgba(silver, 0.3), 40%);
+            background-color: lighten(rgba(silver, 0.3), 40%);
             border: 1px solid rgba(silver, 0.3);
           }
 
           &.closed {
-            background: lighten(rgba(black, 0.3), 40%);
+            background-color: lighten(rgba(black, 0.3), 40%);
             border: 1px solid rgba(black, 0.3);
           }
         }
 
-        .details {
+        .event-details {
           width: 100%;
           color: $lcc-color--text-primary-black;
           padding-top: $lcc-space--md;
           font-size: $h4;
           font-weight: 200;
         }
+      }
 
-        .created-and-edited {
-          min-width: 200px;
-          align-self: flex-end;
-          text-align: right;
-          font-size: $h6 !important;
-          font-weight: 100;
-          color: lighten($lcc-color--text-secondary, 10%);
-        }
+      .created-and-edited {
+        min-width: 200px;
+        align-self: flex-end;
+        text-align: right;
+        font-size: $h6 !important;
+        font-weight: 100;
+        color: lighten($lcc-color--text-secondary, 10%);
       }
     }
   }

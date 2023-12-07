@@ -1,3 +1,4 @@
+@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
 :host {
@@ -21,5 +22,9 @@ lcc-login-form {
   box-shadow: 1px 1px 5px 2px $lcc-color--box-shadow;
   background-color: $lcc-color--bg-canvas;
   border-radius: $lcc-border-radius--sm;
-  padding: $lcc-space--lg $lcc-space--xl;
+  padding: $lcc-space--lg $lcc-space--md;
+
+  @include respond-to('gt-sm') {
+    padding: $lcc-space--lg;
+  }
 }

@@ -12,9 +12,6 @@ enum NavActionTypes {
   ABOUT_NAVIGATION_REQUESTED = '[Nav] About navigation requested',
   LOGIN_NAVIGATION_REQUESTED = '[Nav] Login navigation requested',
   CHANGE_PASSWORD_NAVIGATION_REQUESTED = '[Nav] Change password navigation requested',
-
-  DROPDOWN_TOGGLED = '[Nav] Dropdown toggled',
-  DROPDOWN_CLOSED = '[Nav] Dropdown closed',
 }
 
 export const linkSelected = createAction(
@@ -49,6 +46,3 @@ export const loginNavigationRequested = createAction(
 export const changePasswordNavigationRequested = createAction(
   NavActionTypes.CHANGE_PASSWORD_NAVIGATION_REQUESTED,
 );
-
-export const dropdownToggled = createAction(NavActionTypes.DROPDOWN_TOGGLED);
-export const dropdownClosed = createAction(NavActionTypes.DROPDOWN_CLOSED);

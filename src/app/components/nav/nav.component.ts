@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 import { NavPathTypes } from '@app/types';
 
@@ -10,10 +10,11 @@ import { NavFacade } from './nav.facade';
   styleUrls: ['./nav.component.scss'],
   providers: [NavFacade],
 })
-export class NavComponent implements OnInit {
+export class NavComponent {
+  ICON_TEXT_BREAKPOINT = 699; // Match lt-md breakpoint value
   NavPathTypes = NavPathTypes;
-  screenWidth!: number;
-  tooltipScreenWidthCutoff = 699; // Match lt-md breakpoint value
+  isDropdownOpen = false;
+  screenWidth = window.innerWidth;
 
   @HostListener('window:resize', ['$event'])
   onResize(): void {
@@ -21,8 +22,4 @@ export class NavComponent implements OnInit {
   }
 
   constructor(public facade: NavFacade) {}
-
-  ngOnInit(): void {
-    this.screenWidth = window.innerWidth;
-  }
 }

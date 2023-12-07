@@ -6,16 +6,6 @@
   align-items: center;
   gap: $lcc-space--xs;
 
-  aside {
-    font-style: italic;
-    font-size: $h4;
-    color: $lcc-color--text-secondary;
-  
-    span {
-      color: $lcc-color--warning;
-    }
-  }
-
   form {
     max-width: $lcc-width--small-form;
   }

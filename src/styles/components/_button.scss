@@ -60,11 +60,11 @@
 
 .lcc-warning-button {
   @extend .lcc-raised-button;
-  background-color: $lcc-color--warning !important;
+  background-color: $lcc-color--warn !important;
   color: $lcc-color--white;
 
   &:hover {
-    background-color: lighten($lcc-color--warning, 5%) !important;
+    background-color: lighten($lcc-color--warn, 5%) !important;
   }
 }
 

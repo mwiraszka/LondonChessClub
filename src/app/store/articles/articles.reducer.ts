@@ -24,6 +24,8 @@ const articlesReducer = createReducer(
   on(ArticlesActions.articleSelected, (state, action) => ({
     ...state,
     selectedArticle: action.article,
+    articleBeforeEdit: action.article,
+    articleCurrently: action.article,
   })),
 
   on(ArticlesActions.getArticleImageUrlSucceeded, (state, action) => ({

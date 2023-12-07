@@ -23,16 +23,55 @@
   }
 }
 
-.article-dates-container {
+.article-details-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  gap: $lcc-space--md;
   padding: $lcc-space--md;
 
-  .vertical-spacer {
-    padding: 0 1em;
+  .creator-container,
+  .editor-container {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: $lcc-space--sm;
   }
-  
-  .edited {
-    font-weight: 100;
+
+  .creator-container {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: $lcc-space--xs;
+    font-size: $h3;
+
+    .date-created {
+      font-size: $h4;
+    }
   }
+
+  .editor-container {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: $lcc-space--sm;
+    font-size: $h4;
+    
+    .updated {
+      font-weight: 100;
+    }
+
+    .vertical-spacer {
+      padding: 0 0.5em;
+    }
+
+    .editor-name {
+      margin-left: 0.5em;
+    }
+  }
+}
+
+hr {
+  height: 1px;
+  border-top: 1px solid lighten($lcc-color--gray, 30%);
+  margin: 0.5em 0;
 }
 
 .article-preview-container {

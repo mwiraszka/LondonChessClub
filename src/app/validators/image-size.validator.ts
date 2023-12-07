@@ -1,9 +1,7 @@
-import { isEmpty } from 'lodash';
-
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 export function imageSizeValidator(control: AbstractControl): ValidationErrors | null {
-  if (isEmpty(control.value)) {
+  if (!control || !control.value || !control.value?.size) {
     return null;
   }
 

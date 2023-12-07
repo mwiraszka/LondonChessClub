@@ -1,0 +1,41 @@
+@import 'styles/abstracts/variables';
+
+:host {
+  padding: $lcc-space--sm $lcc-space--md;
+  background: darken($lcc-color--white, 2%);
+  border: 2px solid darken($lcc-color--white, 4%);
+  border-radius: $lcc-border-radius--lg;
+}
+
+.modification-info-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  gap: $lcc-space--sm;
+  font-size: $h5;
+  color: $lcc-color--text-secondary;
+
+  .create-details-container,
+  .edit-details-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: $lcc-space--sm;
+  }
+
+  i-feather {
+    height: 15px;
+    width: 15px;
+  }
+
+  .name,
+  .date {
+    color: $lcc-color--text-primary-black;
+    padding-left: 0.5em;
+  }
+
+  .vertical-spacer {
+    padding: 0 0.5em;
+  }
+}

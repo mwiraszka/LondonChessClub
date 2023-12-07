@@ -1,5 +1,5 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { delay, map } from 'rxjs/operators';
+import { delay, filter, map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
@@ -430,6 +430,7 @@ export class ToasterEffects {
   expireToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ToasterActions.toastAdded),
+      filter(({ toast }) => toast.type !== ToastTypes.WARNING),
       delay(5000),
       map(({ toast }) => ToasterActions.toastExpired({ toast })),
     );

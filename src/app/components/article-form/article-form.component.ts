@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -5,7 +6,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoaderService } from '@app/services';
-import { Article, Url } from '@app/types';
+import { Article, ModificationInfo, Url } from '@app/types';
 import { imageSizeValidator } from '@app/validators';
 
 import { ArticleFormFacade } from './article-form.facade';
@@ -18,8 +19,9 @@ import { ArticleFormFacade } from './article-form.facade';
 })
 export class ArticleFormComponent implements OnInit, OnDestroy {
   form!: FormGroup;
-  valueChangesSubscription!: Subscription;
+  modificationInfo!: ModificationInfo | null;
   previewImageUrl!: Url | null;
+  valueChangesSubscription!: Subscription;
 
   constructor(
     public facade: ArticleFormFacade,
@@ -32,6 +34,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     this.facade.articleBeforeEdit$.subscribe(article => {
       this.initForm(article);
       this.previewImageUrl = article.imageUrl ?? null;
+      this.modificationInfo = article.modificationInfo;
       this.loaderService.display(false);
     });
   }
@@ -74,18 +77,20 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
       this.form.markAllAsTouched();
       return;
     }
+
     this.facade.onSubmit(this.form.value);
   }
 
   private initForm(article: Article): void {
     this.form = this.formBuilder.group({
-      id: [article.id],
       title: [article.title, [Validators.required, Validators.pattern(/[^\s]/)]],
       body: [article.body, [Validators.required, Validators.pattern(/[^\s]/)]],
       imageFile: [article.imageFile, [Validators.required, imageSizeValidator]],
+      id: [article.id],
       imageId: [article.imageId],
-      dateCreated: [article.dateCreated],
-      dateEdited: [article.dateEdited],
+      imageUrl: [article.imageUrl],
+      thumbnailImageUrl: [article.thumbnailImageUrl],
+      modificationInfo: [article.modificationInfo],
     });
 
     // TODO: investigate why setErrors({ required: null }) doesn't work

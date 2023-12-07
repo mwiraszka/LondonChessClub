@@ -97,7 +97,7 @@
 									 class="icon admin-user-icon">
 				</i-feather>
 				<span class="h4 admin-name">
-					{{ (facade.user$ | async)?.firstName || 'Michal' }}
+					{{ (facade.user$ | async)?.firstName }} {{ (facade.user$ | async)?.lastName }}
 				</span>
 			</div>
 			<ul class="dropdown-items">

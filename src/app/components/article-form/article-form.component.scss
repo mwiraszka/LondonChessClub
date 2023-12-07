@@ -34,9 +34,13 @@
     flex-flow: column nowrap;
     justify-content: flex-start;
     text-align: left;
-    width: 100%;
+    gap: $lcc-space--xs;
+    // width: 100%;
+    min-width: 600px;
+    overflow-x: scroll;
     line-height: unset;
-    word-break: break-all;
+    // word-break: break-all;
+    overflow-wrap: break-word;
 
     ::ng-deep table {
       @include lcc-table;

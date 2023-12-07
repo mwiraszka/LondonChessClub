@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { CognitoUserSession } from 'amazon-cognito-identity-js';
 
 import { LoginRequest, PasswordChangeRequest, User } from '@app/types';
 
@@ -27,7 +26,7 @@ export const loginRequested = createAction(
 );
 export const loginSucceeded = createAction(
   AuthActionTypes.LOGIN_SUCCEEDED,
-  props<{ user: User; session: CognitoUserSession }>(),
+  props<{ user: User }>(),
 );
 export const loginFailed = createAction(
   AuthActionTypes.LOGIN_FAILED,

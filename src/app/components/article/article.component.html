@@ -6,14 +6,32 @@
 	</h2>
 </div>
 
-<div class="article-dates-container h4">
-	<span class="date-created">{{ article?.dateCreated | formatDate:'short' }}</span>
-	<ng-container *ngIf="article?.dateEdited !== article?.dateCreated">
-		<span class="vertical-spacer">|</span>
-		<span class="edited">edited&nbsp;</span>
-		<span class="date-edited">{{ article?.dateEdited | formatDate:'short' }}</span>
-	</ng-container>
+<div class="article-details-container h4">
+	<div class="creator-container">
+		<span class="creator-name">
+			{{ article?.modificationInfo?.createdBy }}
+		</span>
+		<span class="date-created">
+			{{ article?.modificationInfo?.dateCreated | formatDate:'short' }}
+		</span>
+	</div>
+
+	<div class="editor-container">
+		<div *ngIf="article?.modificationInfo?.dateLastEdited
+                  !== article?.modificationInfo?.dateCreated">
+			<span class="updated">last updated</span>
+			<span class="editor-name">
+				{{ article?.modificationInfo?.lastEditedBy }}
+			</span>
+			<span class="vertical-spacer">|</span>
+			<span class="date-last-edited">
+				{{ article?.modificationInfo?.dateLastEdited | formatDate:'short' }}
+			</span>
+		</div>
+	</div>
 </div>
+
+<hr />
 
 <div class="article-preview-container">
 	<p markdown>{{ article?.body }}</p>

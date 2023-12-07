@@ -7,7 +7,6 @@ import { catchError, filter, map, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { AuthService } from '@app/services';
-import { User } from '@app/types';
 
 import * as AuthActions from './auth.actions';
 import * as AuthSelectors from './auth.selectors';
@@ -19,23 +18,11 @@ export class AuthEffects {
       ofType(AuthActions.loginRequested),
       switchMap(({ request }) => {
         return this.authService.logIn(request).pipe(
-          map(loginResponse => {
-            // Create fake user object since this information is currently
-            // not received from Cognito when logging in
-            const user: User = {
-              id: 'test-3nfo13-1j3nf',
-              firstName: loginResponse?.firstName,
-              email: loginResponse?.email,
-              isVerified: loginResponse?.isVerified,
-              isAdmin: true,
-            };
-            return loginResponse?.error
+          map(loginResponse =>
+            loginResponse?.error
               ? AuthActions.loginFailed({ error: loginResponse.error })
-              : AuthActions.loginSucceeded({
-                  user,
-                  session: loginResponse.session!,
-                });
-          }),
+              : AuthActions.loginSucceeded({ user: loginResponse.adminUser! }),
+          ),
           catchError(() =>
             of(
               AuthActions.loginFailed({
@@ -110,8 +97,8 @@ export class AuthEffects {
   loginAfterSuccessfulPasswordChange$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.passwordChangeSucceeded),
-      concatLatestFrom(() => this.store.select(AuthSelectors.session)),
-      filter(([, session]) => !session),
+      concatLatestFrom(() => this.store.select(AuthSelectors.user)),
+      filter(([, user]) => !user),
       map(([response]) =>
         AuthActions.loginRequested({
           request: {

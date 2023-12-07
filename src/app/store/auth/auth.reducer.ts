@@ -5,27 +5,32 @@ import { AuthState, initialState } from './auth.state';
 
 const authReducer = createReducer(
   initialState,
+
   on(AuthActions.loginSucceeded, (state, action) => ({
     ...state,
     user: action.user,
-    session: action.session,
   })),
+
   on(AuthActions.logoutSucceeded, () => initialState),
+
   on(AuthActions.codeForPasswordChangeSucceeded, state => ({
     ...state,
-    user: { ...state.user, hasCode: true },
+    hasCode: false,
   })),
+
   on(AuthActions.codeForPasswordChangeFailed, state => ({
     ...state,
-    user: { ...state.user, hasCode: false },
+    hasCode: false,
   })),
+
   on(AuthActions.requestNewCodeSelected, state => ({
     ...state,
-    user: { ...state.user, hasCode: false },
+    hasCode: false,
   })),
+
   on(AuthActions.passwordChangeSucceeded, state => ({
     ...state,
-    user: { ...state.user, hasCode: false },
+    hasCode: false,
   })),
 );
 

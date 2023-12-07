@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { ClubEvent, ServiceResponse } from '@app/types';
+import { ClubEvent, FlatClubEvent, ServiceResponse } from '@app/types';
 import { customSort, getUpcomingEvents } from '@app/utils';
 
 import { environment } from '@environments/environment';
@@ -20,39 +21,32 @@ export class ScheduleService {
   constructor(private authService: AuthService, private http: HttpClient) {}
 
   getEvent(id: string): Observable<ServiceResponse<ClubEvent>> {
-    return this.http.get<ClubEvent>(this.API_ENDPOINT + id).pipe(
-      map(event => ({ payload: event })),
+    return this.http.get<FlatClubEvent>(this.API_ENDPOINT + id).pipe(
+      map(event => ({ payload: this.adaptForFrontend([event])[0] })),
       catchError(() => of({ error: new Error('Failed to fetch event from database') })),
     );
   }
 
-  getEvents(limitToUpcoming: number | null): Observable<ServiceResponse<ClubEvent[]>> {
-    return this.http.get<ClubEvent[]>(this.API_ENDPOINT).pipe(
+  getEvents(numUpcomingEvents: number | null): Observable<ServiceResponse<ClubEvent[]>> {
+    return this.http.get<FlatClubEvent[]>(this.API_ENDPOINT).pipe(
       map(events => {
-        const sortedEvents = [...events].sort(customSort('eventDate', true));
-        if (limitToUpcoming) {
-          const upcomingEvents = getUpcomingEvents(sortedEvents, limitToUpcoming);
+        const adaptedEvents = this.adaptForFrontend(events);
+        const sortedEvents = [...adaptedEvents].sort(customSort('eventDate', true));
+        if (numUpcomingEvents) {
+          const upcomingEvents = getUpcomingEvents(sortedEvents, numUpcomingEvents);
           return { payload: upcomingEvents ?? sortedEvents };
         }
         return { payload: sortedEvents };
       }),
-      catchError(() =>
-        of({ error: new Error('Failed to fetch schedule from database') }),
-      ),
+      catchError(() => of({ error: new Error('Failed to fetch events from database') })),
     );
   }
 
   addEvent(eventToAdd: ClubEvent): Observable<ServiceResponse<ClubEvent>> {
-    // Escaping the backslash for new lines seems necessary to work with API Gateway
-    // integration mapping set up for this endpoint (not needed for updateEvent())
-    eventToAdd = {
-      ...eventToAdd,
-      details: eventToAdd.details.replaceAll('\n', '\\n'),
-    };
-
+    const flattenedEvent = this.adaptForBackend([eventToAdd])[0];
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.post<null>(this.API_ENDPOINT, eventToAdd, {
+        this.http.post<null>(this.API_ENDPOINT, flattenedEvent, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
@@ -64,16 +58,17 @@ export class ScheduleService {
   }
 
   updateEvent(eventToUpdate: ClubEvent): Observable<ServiceResponse<ClubEvent>> {
+    const flattenedEvent = this.adaptForBackend([eventToUpdate])[0];
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.put<null>(this.API_ENDPOINT + eventToUpdate.id, eventToUpdate, {
+        this.http.put<null>(this.API_ENDPOINT + eventToUpdate.id, flattenedEvent, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
         }),
       ),
       map(() => ({ payload: eventToUpdate })),
-      catchError(() => of({ error: new Error('Failed to update schedule') })),
+      catchError(() => of({ error: new Error('Failed to update event') })),
     );
   }
 
@@ -89,5 +84,39 @@ export class ScheduleService {
       map(() => ({ payload: eventToDelete })),
       catchError(() => of({ error: new Error('Failed to delete event from database') })),
     );
+  }
+
+  private adaptForFrontend(events: FlatClubEvent[]): ClubEvent[] {
+    return events.map(event => {
+      return {
+        id: event.id,
+        eventDate: event.eventDate,
+        title: event.title,
+        details: event.details,
+        type: event.type,
+        modificationInfo: {
+          dateCreated: new Date(event.dateCreated),
+          createdBy: event.createdBy,
+          dateLastEdited: new Date(event.dateLastEdited),
+          lastEditedBy: event.lastEditedBy,
+        },
+      };
+    });
+  }
+
+  private adaptForBackend(events: ClubEvent[]): FlatClubEvent[] {
+    return events.map(event => {
+      return {
+        id: event.id,
+        eventDate: event.eventDate,
+        title: event.title,
+        details: event.details,
+        type: event.type,
+        dateCreated: event.modificationInfo!.dateCreated.toISOString(),
+        createdBy: event.modificationInfo!.createdBy,
+        dateLastEdited: event.modificationInfo!.dateLastEdited.toISOString(),
+        lastEditedBy: event.modificationInfo!.lastEditedBy,
+      };
+    });
   }
 }

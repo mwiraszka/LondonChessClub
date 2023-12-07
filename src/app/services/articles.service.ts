@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { AuthService, ImagesService } from '@app/services';
-import { Article, ServiceResponse } from '@app/types';
+import { Article, FlatArticle, ServiceResponse } from '@app/types';
 import { generateArticleId, generateArticleImageId } from '@app/utils';
 
 import { environment } from '@environments/environment';
@@ -24,25 +24,28 @@ export class ArticlesService {
     private http: HttpClient,
   ) {}
 
-  // Not currently used anywhere
   getArticle(id: string): Observable<ServiceResponse<Article>> {
-    return this.http.get<Article>(this.API_ENDPOINT + id).pipe(
-      switchMap(article =>
-        this.imagesService.getArticleImageUrl(article.imageId!).pipe(
+    return this.http.get<FlatArticle>(this.API_ENDPOINT + id).pipe(
+      switchMap(article => {
+        const adaptedArticle = this.adaptForFrontend([article])[0];
+
+        return this.imagesService.getArticleImageUrl(adaptedArticle.imageId!).pipe(
           map(response => {
-            return { payload: { ...article, imageUrl: response.payload! } };
+            return { payload: { ...adaptedArticle, imageUrl: response.payload! } };
           }),
-        ),
-      ),
+        );
+      }),
       catchError(() => of({ error: new Error('Failed to fetch article from database') })),
     );
   }
 
   getArticles(): Observable<ServiceResponse<Article[]>> {
-    return this.http.get<Article[]>(this.API_ENDPOINT).pipe(
+    return this.http.get<FlatArticle[]>(this.API_ENDPOINT).pipe(
       switchMap(articles => {
+        const adaptedArticles = this.adaptForFrontend(articles);
+
         const articlesWithImageUrls$: Observable<Article>[] = [];
-        articles.forEach(article => {
+        adaptedArticles.forEach(article => {
           const thumbnailImageId = `${article.imageId!}-600x400`;
           const articleWithImageUrl$ = this.imagesService
             .getArticleImageUrl(thumbnailImageId)
@@ -65,19 +68,18 @@ export class ArticlesService {
   }
 
   addArticle(articleToAdd: Article): Observable<ServiceResponse<Article>> {
-    // Escaping the backslash for new lines seems necessary to work with API Gateway
-    // integration mapping set up for this endpoint (not needed for updateArticle())
     const articleId = generateArticleId();
     const modifiedArticleToAdd = {
       ...articleToAdd,
       id: articleId,
+      body: this.formatForBackend(articleToAdd.body),
       imageId: generateArticleImageId(articleId),
-      body: articleToAdd.body.replaceAll('\n', '\\n'),
     };
+    const flattenedArticle = this.adaptForBackend([modifiedArticleToAdd])[0];
 
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.post<null>(this.API_ENDPOINT, modifiedArticleToAdd, {
+        this.http.post<null>(this.API_ENDPOINT, flattenedArticle, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
@@ -89,9 +91,11 @@ export class ArticlesService {
   }
 
   updateArticle(articleToUpdate: Article): Observable<ServiceResponse<Article>> {
+    const flattenedArticle = this.adaptForBackend([articleToUpdate])[0];
+
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.put<null>(this.API_ENDPOINT + articleToUpdate.id, articleToUpdate, {
+        this.http.put<null>(this.API_ENDPOINT + flattenedArticle.id, flattenedArticle, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
@@ -122,5 +126,53 @@ export class ArticlesService {
         of({ error: new Error('Failed to delete article from database') }),
       ),
     );
+  }
+
+  private formatForBackend(body: string): string {
+    // Strip control codes
+    // eslint-disable-next-line no-control-regex
+    const bodyWithNoControlCodes = body.replace(/[\u0000-\u001F\u007F-\u009F]/g, '');
+
+    // Escape the backslash for new lines (seems necessary to work with API Gateway
+    // integration mapping set up for this endpoint (not needed for updateArticle())
+    return bodyWithNoControlCodes.replaceAll('\n', '\\n');
+  }
+
+  private adaptForFrontend(articles: FlatArticle[]): Article[] {
+    return articles.map(article => {
+      return {
+        id: article.id,
+        title: article.title,
+        body: article.body,
+        imageFile: null,
+        imageId: article.imageId,
+        imageUrl: null,
+        thumbnailImageUrl: null,
+        modificationInfo: {
+          dateCreated: new Date(article.dateCreated),
+          createdBy: article.createdBy,
+          dateLastEdited: new Date(article.dateLastEdited),
+          lastEditedBy: article.lastEditedBy,
+        },
+      };
+    });
+  }
+
+  private adaptForBackend(articles: Article[]): FlatArticle[] {
+    return articles.map(article => {
+      return {
+        id: article.id,
+        title: article.title,
+        body: article.body,
+        imageFile: article.imageFile,
+        imageId: article.imageId,
+        imageUrl: article.imageUrl,
+        thumbnailImageUrl: article.thumbnailImageUrl,
+        dateCreated: article.modificationInfo!.dateCreated.toISOString(),
+        createdBy: article.modificationInfo!.createdBy,
+        dateLastEdited: article.modificationInfo!.dateLastEdited.toISOString(),
+        lastEditedBy: article.modificationInfo!.lastEditedBy,
+      };
+    });
   }
 }

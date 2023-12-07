@@ -13,6 +13,7 @@ import {
   LoginResponse,
   PasswordChangeRequest,
   PasswordChangeResponse,
+  User,
 } from '@app/types';
 
 import { environment } from '@environments/environment';
@@ -76,7 +77,17 @@ export class AuthService {
     return new Observable<LoginResponse>(observer => {
       this.userByEmail(request.email).authenticateUser(authDetails, {
         onSuccess(session: CognitoUserSession) {
-          observer.next({ isVerified: true, email: request.email, session });
+          const idTokenPayload = session.getIdToken().decodePayload();
+          const adminUser: User = {
+            id: idTokenPayload['sub'],
+            firstName: idTokenPayload['given_name'],
+            lastName: idTokenPayload['family_name'],
+            email: idTokenPayload['email'],
+            isVerified: idTokenPayload['email_verified'],
+            isAdmin: true,
+          };
+
+          observer.next({ adminUser });
           observer.complete();
         },
         onFailure(err) {

@@ -1,3 +1,5 @@
+import { ModificationInfo } from '@app/types';
+
 export interface Article {
   id: string | null;
   title: string;
@@ -6,8 +8,7 @@ export interface Article {
   imageId: string | null;
   imageUrl: string | null;
   thumbnailImageUrl: string | null;
-  dateCreated: string;
-  dateEdited: string;
+  modificationInfo: ModificationInfo | null;
 }
 
 export const newArticleFormTemplate: Article = {
@@ -18,6 +19,20 @@ export const newArticleFormTemplate: Article = {
   imageId: null,
   imageUrl: null,
   thumbnailImageUrl: null,
-  dateCreated: new Date().toLocaleDateString(),
-  dateEdited: new Date().toLocaleDateString(),
+  modificationInfo: null,
 };
+
+// Backend representation of the type
+export interface FlatArticle {
+  id: string | null;
+  title: string;
+  body: string;
+  imageFile: File | null;
+  imageId: string | null;
+  imageUrl: string | null;
+  thumbnailImageUrl: string | null;
+  dateCreated: string;
+  createdBy: string;
+  dateLastEdited: string;
+  lastEditedBy: string;
+}

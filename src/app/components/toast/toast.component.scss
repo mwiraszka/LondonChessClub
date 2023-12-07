@@ -1,5 +1,13 @@
 @import 'styles/abstracts/variables';
 
+@mixin fadeoutAnimation {
+  -o-animation: fadeAnimation 5s;
+  -moz-animation: fadeAnimation 5s;
+  -ms-animation: fadeAnimation 5s;
+  -webkit-animation: fadeAnimation 5s;
+  animation: fadeAnimation 5s;
+}
+
 .toast-container {
   display: flex;
   flex-flow: row nowrap;
@@ -8,20 +16,20 @@
   width: 300px;
   border-radius: $lcc-border-radius--sm;
   box-shadow: $lcc-color--box-shadow;
-  -o-animation: fadeAnimation 5s;
-  -moz-animation: fadeAnimation 5s;
-  -ms-animation: fadeAnimation 5s;
-  -webkit-animation: fadeAnimation 5s;
-  animation: fadeAnimation 5s;
 
   &.toast-success {
     background-color: $lcc-color--success;
+    @include fadeoutAnimation();
   }
+
   &.toast-warning {
-    background-color: $lcc-color--warning;
+    background-color: $lcc-color--warn;
+    // No fade out animation since warning-type toasts do not auto-expire
   }
+
   &.toast-info {
     background-color: $lcc-color--info;
+    @include fadeoutAnimation();
   }
 }
 
@@ -38,7 +46,7 @@
 .toast-notification-container {
   display: flex;
   flex-flow: column nowrap;
-  gap: $lcc-space--xs;
+  gap: $lcc-space--sm;
   padding: $lcc-space--sm;
   overflow: hidden;
 

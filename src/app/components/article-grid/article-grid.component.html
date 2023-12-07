@@ -23,12 +23,17 @@
 			<hr />
 			<p class="lcc-truncate-max-5-lines">{{ article.body | stripMarkdown }}</p>
 			<div class="article-dates-container">
-				<span class="date-created">{{ article.dateCreated | formatDate:'short' }}</span>
-				<ng-container *ngIf="article?.dateEdited !== article.dateCreated">
+				<span class="date-created">
+					{{ article?.modificationInfo?.dateCreated | formatDate:'short':'no-time' }}
+				</span>
+				<div *ngIf="article?.modificationInfo?.dateLastEdited
+                      !== article?.modificationInfo?.dateCreated">
 					<span class="vertical-spacer">|</span>
 					<span class="edited">edited&nbsp;</span>
-					<span class="date-edited">{{ article.dateEdited | formatDate:'short' }}</span>
-				</ng-container>
+					<span class="date-last-edited">
+						{{ article?.modificationInfo?.dateLastEdited | formatDate:'short':'no-time' }}
+					</span>
+				</div>
 			</div>
 		</div>
 	</article>

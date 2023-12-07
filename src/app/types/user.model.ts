@@ -1,8 +1,8 @@
 export interface User {
-  id?: string;
-  firstName?: string;
-  email?: string;
-  isVerified?: boolean;
-  isAdmin?: boolean;
-  hasCode?: boolean;
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  isVerified: boolean;
+  isAdmin: boolean;
 }

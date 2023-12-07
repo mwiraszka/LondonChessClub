@@ -1,7 +1,4 @@
-<aside>
-	Required fields
-	<span class="red"> *</span>
-</aside>
+<aside class="lcc-required-fields-legend">Required fields</aside>
 
 <form *ngIf="form"
 			class="lcc-form"
@@ -171,6 +168,10 @@
 					 name="is-active"
 					 formControlName="isActive" />
 	</div>
+
+	<lcc-modification-info *ngIf=modificationInfo
+												 [info]="modificationInfo">
+	</lcc-modification-info>
 
 	<div class="lcc-form-buttons-container">
 		<button class="lcc-secondary-button"

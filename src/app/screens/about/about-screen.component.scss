@@ -43,6 +43,15 @@
       'rules tournaments'
       'leadership leadership';
   }
+
+  @include respond-to('gt-lg') {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+      'about about about'
+      'membership supplies ratings'
+      'parking rules tournaments'
+      'leadership leadership leadership';
+  }
 }
 
 article {

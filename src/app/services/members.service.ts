@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Member, ServiceResponse } from '@app/types';
+import { FlatMember, Member, ServiceResponse } from '@app/types';
 
 import { environment } from '@environments/environment';
 
@@ -21,13 +22,13 @@ export class MembersService {
   getMember(id: string): Observable<ServiceResponse<Member>> {
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.get<Member>(this.API_ENDPOINT + id, {
+        this.http.get<FlatMember>(this.API_ENDPOINT + id, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
         }),
       ),
-      map(member => ({ payload: member })),
+      map(member => ({ payload: this.adaptForFrontend([member])[0] })),
       catchError(() => of({ error: new Error('Failed to fetch member from database') })),
     );
   }
@@ -36,20 +37,20 @@ export class MembersService {
     if (isAdmin) {
       return this.authService.token().pipe(
         switchMap(token =>
-          this.http.get<Member[]>(this.API_ENDPOINT, {
+          this.http.get<FlatMember[]>(this.API_ENDPOINT, {
             headers: new HttpHeaders({
               Authorization: token,
             }),
           }),
         ),
-        map(members => ({ payload: members })),
+        map(members => ({ payload: this.adaptForFrontend(members) })),
         catchError(() =>
           of({ error: new Error('Failed to fetch members from database') }),
         ),
       );
     } else {
-      return this.http.get<Member[]>(this.API_ENDPOINT + 'public/').pipe(
-        map(members => ({ payload: members })),
+      return this.http.get<FlatMember[]>(this.API_ENDPOINT + 'public/').pipe(
+        map(members => ({ payload: this.adaptForFrontend(members) })),
         catchError(() =>
           of({ error: new Error('Failed to fetch members from database') }),
         ),
@@ -58,9 +59,11 @@ export class MembersService {
   }
 
   addMember(memberToAdd: Member): Observable<ServiceResponse<Member>> {
+    const flattenedMember = this.adaptForBackend([memberToAdd])[0];
+
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.post<null>(this.API_ENDPOINT, memberToAdd, {
+        this.http.post<null>(this.API_ENDPOINT, flattenedMember, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
@@ -72,9 +75,11 @@ export class MembersService {
   }
 
   updateMember(memberToUpdate: Member): Observable<ServiceResponse<Member>> {
+    const flattenedMember = this.adaptForBackend([memberToUpdate])[0];
+
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.put<null>(this.API_ENDPOINT + memberToUpdate.id, memberToUpdate, {
+        this.http.put<null>(this.API_ENDPOINT + flattenedMember.id, flattenedMember, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
@@ -97,5 +102,55 @@ export class MembersService {
       map(() => ({ payload: memberToDelete })),
       catchError(() => of({ error: new Error('Failed to delete member from database') })),
     );
+  }
+
+  private adaptForFrontend(members: FlatMember[]): Member[] {
+    return members.map(member => {
+      return {
+        id: member.id,
+        firstName: member.firstName,
+        lastName: member.lastName,
+        city: member.city,
+        rating: member.rating,
+        peakRating: member.peakRating,
+        dateJoined: member.dateJoined,
+        isActive: member.isActive,
+        email: member.email,
+        phoneNumber: member.phoneNumber,
+        yearOfBirth: member.yearOfBirth,
+        chesscomUsername: member.chesscomUsername,
+        lichessUsername: member.lichessUsername,
+        modificationInfo: {
+          dateCreated: new Date(member.dateCreated),
+          createdBy: member.createdBy,
+          dateLastEdited: new Date(member.dateLastEdited),
+          lastEditedBy: member.lastEditedBy,
+        },
+      };
+    });
+  }
+
+  private adaptForBackend(members: Member[]): FlatMember[] {
+    return members.map(member => {
+      return {
+        id: member.id,
+        firstName: member.firstName,
+        lastName: member.lastName,
+        city: member.city,
+        rating: member.rating,
+        peakRating: member.peakRating,
+        dateJoined: member.dateJoined,
+        isActive: member.isActive,
+        email: member.email,
+        phoneNumber: member.phoneNumber,
+        yearOfBirth: member.yearOfBirth,
+        chesscomUsername: member.chesscomUsername,
+        lichessUsername: member.lichessUsername,
+        dateCreated: member.modificationInfo!.dateCreated.toISOString(),
+        createdBy: member.modificationInfo!.createdBy,
+        dateLastEdited: member.modificationInfo!.dateLastEdited.toISOString(),
+        lastEditedBy: member.modificationInfo!.lastEditedBy,
+      };
+    });
   }
 }

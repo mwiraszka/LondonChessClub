@@ -1,0 +1,26 @@
+<div class="lcc-canvas modification-info-container">
+	<div class="create-details-container">
+		<i-feather name="file-plus"
+							 class="create-icon">
+		</i-feather>
+		<div>
+			<span>created by</span>
+			<span class="name">{{ info.createdBy }}</span>
+			<span class="vertical-spacer">|</span>
+			<span class="date">{{ info.dateCreated | formatDate:'short' }}</span>
+		</div>
+	</div>
+
+	<div *ngIf="info.dateCreated !== info.dateLastEdited"
+			 class="edit-details-container">
+		<i-feather name="edit-2"
+							 class="edit-icon">
+		</i-feather>
+		<div>
+			<span>last edited by</span>
+			<span class="name">{{ info.lastEditedBy }}</span>
+			<span class="vertical-spacer">|</span>
+			<span class="date">{{ info.dateLastEdited | formatDate:'short' }}</span>
+		</div>
+	</div>
+</div>

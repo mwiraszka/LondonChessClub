@@ -7,16 +7,6 @@
   gap: $lcc-space--md;
 }
 
-aside {
-  font-style: italic;
-  font-size: $h4;
-  color: $lcc-color--text-secondary;
-
-  span {
-    color: $lcc-color--warning;
-  }
-}
-
 form {
   max-width: $lcc-width--small-form;
 }

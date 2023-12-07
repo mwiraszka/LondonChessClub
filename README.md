@@ -42,7 +42,7 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v1.6.0-beta - December 5th, 2023
+v1.6.0-beta - December 7th, 2023
 </summary>
 
 - 🚀 Revamp top-right dropdown user menu

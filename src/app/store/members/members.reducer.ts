@@ -57,6 +57,7 @@ const membersReducer = createReducer(
     ...state,
     selectedMember: action.memberToEdit,
     memberCurrently: action.memberToEdit,
+    memberBeforeEdit: action.memberToEdit,
     isEditMode: true,
   })),
 

@@ -1,9 +1,10 @@
+@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
 :host {
-  padding: $lcc-space--sm $lcc-space--md;
-  background: darken($lcc-color--white, 2%);
-  border: 2px solid darken($lcc-color--white, 4%);
+  padding: $lcc-space--xs $lcc-space--md;
+  background: lighten($lcc-color--primary, 50%);
+  border: 1px solid darken($lcc-color--white, 8%);
   border-radius: $lcc-border-radius--lg;
 }
 
@@ -21,21 +22,45 @@
     flex-flow: row nowrap;
     align-items: center;
     justify-content: center;
+    text-align: left;
     gap: $lcc-space--sm;
-  }
 
-  i-feather {
-    height: 15px;
-    width: 15px;
-  }
+    .create-icon,
+    .edit-icon {
+      height: 15px;
+      width: 15px;
+      color: lighten($lcc-color--black, 20%);
+    }
 
-  .name,
-  .date {
-    color: $lcc-color--text-primary-black;
-    padding-left: 0.5em;
-  }
+    .create-text,
+    .edit-text {
+      & > * {
+        white-space: nowrap;
+        line-height: 1.3em;
+      }
 
-  .vertical-spacer {
-    padding: 0 0.5em;
+      .name {
+        color: $lcc-color--text-primary-black;
+        padding: 0 1em 0 0.5em;
+      }
+  
+      .vertical-spacer {
+        display: none;
+  
+        @include respond-to('gt-md') {
+          display: inline;
+        }
+      }
+  
+      .date {
+        display: block;
+        color: $lcc-color--text-primary-black;
+        
+        @include respond-to('gt-md') {
+          display: inline;
+          padding-left: 1em;
+        }
+      }
+    }
   }
 }

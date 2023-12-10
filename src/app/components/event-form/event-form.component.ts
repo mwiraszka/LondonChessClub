@@ -79,6 +79,8 @@ export class EventFormComponent implements OnInit, OnDestroy {
       title: [event.title, [Validators.required, Validators.pattern(/[^\s]/)]],
       details: [event.details, [Validators.required, Validators.pattern(/[^\s]/)]],
       type: [event.type, [Validators.required]],
+      id: [event.id],
+      modificationInfo: [event.modificationInfo],
     });
 
     this.valueChangesSubscription = this.form.valueChanges

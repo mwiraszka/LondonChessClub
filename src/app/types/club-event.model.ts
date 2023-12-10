@@ -3,10 +3,10 @@ import { ModificationInfo } from '@app/types';
 export enum ClubEventTypes {
   BLITZ_TOURNAMENT = 'blitz tournament',
   RAPID_TOURNAMENT = 'rapid tournament',
-  CLASSICAL_TOURNAMENT = 'classical tournament',
+  ACTIVE_TOURNAMENT = 'active tournament',
   LECTURE = 'lecture',
   SIMUL = 'simul',
-  CASUAL = 'casual',
+  CHAMPIONSHIP = 'championship',
   CLOSED = 'closed',
   OTHER = 'other',
 }
@@ -25,7 +25,7 @@ export const newClubEventFormTemplate: ClubEvent = {
   eventDate: '',
   title: '',
   details: '',
-  type: ClubEventTypes.BLITZ_TOURNAMENT,
+  type: ClubEventTypes.RAPID_TOURNAMENT,
   modificationInfo: null,
 };
 

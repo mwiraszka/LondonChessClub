@@ -25,10 +25,15 @@
 			<td class="main-container">
 				<div class="main-content">
 					<h4 class="title">{{ event.title }}</h4>
-					<span class="type"
-								[ngClass]="kebabize(event.type)">
-						{{ event.type }}
-					</span>
+					<div class="type-container"
+							 [ngClass]="kebabize(event.type)">
+						<span class="type">{{ event.type }}</span>
+						<ng-container *ngIf="kebabize(event.type) === 'championship'">
+							<i-feather name="award"
+												 class="award-icon">
+							</i-feather>
+						</ng-container>
+					</div>
 					<p *ngIf="includeDetails"
 						 class="event-details">
 						{{ event.details }}

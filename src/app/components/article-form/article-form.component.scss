@@ -35,16 +35,6 @@
     justify-content: flex-start;
     text-align: left;
     gap: $lcc-space--xs;
-    // width: 100%;
-    min-width: 600px;
-    overflow-x: scroll;
-    line-height: unset;
-    // word-break: break-all;
-    overflow-wrap: break-word;
-
-    ::ng-deep table {
-      @include lcc-table;
-    }
   
     h4 {
       align-self: flex-start;
@@ -58,6 +48,7 @@
       background-color: white;
       border-radius: $lcc-border-radius--lg;
       padding: $lcc-space--sm;
+      overflow: hidden;
     }
   }
 }

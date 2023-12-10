@@ -1,5 +1,4 @@
 @import 'styles/abstracts/variables';
-@import 'styles/components/table';
 
 .banner-image-container {
   position: relative;
@@ -74,14 +73,7 @@ hr {
   margin: 0.5em 0;
 }
 
-.article-preview-container {
-  p {
-    padding: $lcc-space--md;
-    line-height: unset;
-    word-break: break-all;
-  
-    ::ng-deep table {
-      @include lcc-table;
-    }
-  }
+.markdown-container {
+  padding: $lcc-space--md;
+  overflow-x: hidden;
 }

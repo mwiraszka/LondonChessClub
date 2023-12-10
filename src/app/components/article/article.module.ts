@@ -1,8 +1,7 @@
-import { MarkdownModule } from 'ngx-markdown';
-
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { MarkdownRendererModule } from '@app/components/markdown-renderer';
 import { ModificationInfoModule } from '@app/components/modification-info';
 import { ScreenHeaderModule } from '@app/components/screen-header';
 import { PipesModule } from '@app/pipes';
@@ -13,7 +12,7 @@ import { ArticleComponent } from './article.component';
   declarations: [ArticleComponent],
   imports: [
     CommonModule,
-    MarkdownModule,
+    MarkdownRendererModule,
     ModificationInfoModule,
     PipesModule,
     ScreenHeaderModule,

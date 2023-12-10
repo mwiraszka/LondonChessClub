@@ -67,9 +67,7 @@
 	<div class="preview-section-container">
 		<h4>Preview:</h4>
 		<div class="markdown-container">
-			<markdown ngPreserveWhitespaces
-								[data]="form.controls['body'].value">
-			</markdown>
+			<lcc-markdown-renderer [data]="form.controls['body'].value"></lcc-markdown-renderer>
 		</div>
 	</div>
 

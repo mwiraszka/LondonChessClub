@@ -33,6 +33,6 @@
 
 <hr />
 
-<div class="article-preview-container">
-	<p markdown>{{ article?.body }}</p>
+<div class="markdown-container">
+	<lcc-markdown-renderer [data]="article?.body"></lcc-markdown-renderer>
 </div>

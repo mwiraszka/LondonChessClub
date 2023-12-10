@@ -1,0 +1,30 @@
+@import 'styles/abstracts/variables';
+@import 'styles/components/table';
+
+::ng-deep {
+  .lcc-markdown-table-wrapper {
+    overflow-x: scroll;
+
+    // Prevent scrollbar from auto-hiding
+    &::-webkit-scrollbar {
+      background: rgba(0, 0, 0, 0);
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: transparentize($lcc-color--primary, 0.2);
+      border-radius: $lcc-border-radius--lg;
+    }
+    
+    table {
+      @include lcc-table;
+      font-size: 16px;
+
+      // TODO: Might be a nuisance with lots of text,
+      // so maybe better to not prevent text wrapping?
+      th, td {
+        white-space: nowrap;
+      }
+    }
+  }
+}

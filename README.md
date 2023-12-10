@@ -42,6 +42,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v1.6.1-beta - December 9th, 2023
+</summary>
+
+- 🐛 Fix bug causing embedded tables in articles to mess up the screen layout
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v1.6.0-beta - December 7th, 2023
 </summary>
 

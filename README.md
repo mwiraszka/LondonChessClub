@@ -42,6 +42,18 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v1.6.2-beta - December 9th, 2023
+</summary>
+
+- 🚀 Improve styling on divider lines used throughout app
+
+- 🐛 Fix layout of Modification Info component, particularly for small devices
+- 🐛 Fix bug where the create/edit member form incorrectly detected changes in the member's details
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v1.6.1-beta - December 9th, 2023
 </summary>
 

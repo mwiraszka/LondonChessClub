@@ -160,17 +160,19 @@
 			</i-feather>
 		</div>
 
-		<hr class="lcc-form-divider-line" />
-
-		<label for="is-active-input">Active:</label>
-		<input id="is-active-input"
-					 type="checkbox"
-					 name="is-active"
-					 formControlName="isActive" />
+		<ng-container *ngIf="facade.isEditMode$ | async">
+			<label for="is-active-input">Active:</label>
+			<input id="is-active-input"
+						 type="checkbox"
+						 name="is-active"
+						 formControlName="isActive" />
+		</ng-container>
 	</div>
 
-	<lcc-modification-info *ngIf=modificationInfo
-												 [info]="modificationInfo">
+	<hr />
+
+	<lcc-modification-info *ngIf="facade.isEditMode$ | async"
+												 [info]="modificationInfo!">
 	</lcc-modification-info>
 
 	<div class="lcc-form-buttons-container">

@@ -39,25 +39,8 @@ export class MemberFormComponent implements OnInit, OnDestroy {
 
     this.facade.memberCurrently$
       .pipe(
-        tap(member =>
-          this.modificationInfo === member?.modificationInfo
-            ? member.modificationInfo
-            : null,
-        ),
+        tap(member => (this.modificationInfo = member.modificationInfo)),
         tap(member => (member ? this.initForm(member) : undefined)),
-        first(),
-      )
-      .subscribe();
-
-    this.facade.memberBeforeEdit$
-      .pipe(
-        tap(
-          member =>
-            (this.memberFullName =
-              member?.firstName && member?.lastName
-                ? member.firstName + ' ' + member.lastName
-                : 'undefined'),
-        ),
         tap(() => this.loaderService.display(false)),
         first(),
       )
@@ -105,6 +88,7 @@ export class MemberFormComponent implements OnInit, OnDestroy {
       this.form.markAllAsTouched();
       return;
     }
+
     this.facade.onSubmit(this.form.value);
   }
 
@@ -123,8 +107,9 @@ export class MemberFormComponent implements OnInit, OnDestroy {
       yearOfBirth: [member.yearOfBirth, yearValidator],
       chesscomUsername: [member.chesscomUsername, Validators.pattern(/[^\s]/)],
       lichessUsername: [member.lichessUsername, Validators.pattern(/[^\s]/)],
-      isActive: [member.isActive, Validators.required],
+      isActive: [member.isActive],
       id: [member.id],
+      modificationInfo: [member.modificationInfo],
       peakRating: [member.peakRating],
     });
 

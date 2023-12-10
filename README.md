@@ -42,6 +42,17 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v1.6.3-beta - December 10th, 2023
+</summary>
+
+- 🚀 Update schedule event types; add icon beside championship type
+
+- 🐛 Fix various small bugs in Event Form component
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v1.6.2-beta - December 9th, 2023
 </summary>
 

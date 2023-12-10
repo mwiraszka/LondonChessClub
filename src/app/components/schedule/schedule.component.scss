@@ -54,7 +54,11 @@ table {
           margin-bottom: $lcc-space--xs;
         }
 
-        .type {
+        .type-container {
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+          gap: $lcc-space--sm;
           border-radius: $lcc-border-radius--lg;
           padding: $lcc-space--xs $lcc-space--sm;
           width: auto;
@@ -65,13 +69,13 @@ table {
           }
 
           &.rapid-tournament {
-            background-color: lighten(rgba(orange, 0.3), 40%);
-            border: 1px solid rgba(orange, 0.3);
+            background-color: lighten(rgba(goldenrod, 0.3), 30%);
+            border: 1px solid rgba(goldenrod, 0.3);
           }
 
-          &.classical-tournament {
-            background-color: lighten(rgba(gold, 0.3), 40%);
-            border: 1px solid rgba(gold, 0.3);
+          &.active-tournament {
+            background-color: lighten(rgba(green, 0.3), 40%);
+            border: 1px solid rgba(green, 0.3);
           }
 
           &.lecture {
@@ -80,13 +84,13 @@ table {
           }
 
           &.simul {
-            background-color: lighten(rgba(green, 0.3), 40%);
-            border: 1px solid rgba(green, 0.3);
+            background-color: lighten(rgba(purple, 0.3), 40%);
+            border: 1px solid rgba(purple, 0.3);
           }
 
-          &.casual {
-            background-color: lighten(rgba(blue, 0.3), 40%);
-            border: 1px solid rgba(blue, 0.3);
+          &.championship {
+            background-color: lighten(rgba($lcc-color--primary, 0.3), 40%);
+            border: 2px solid rgba($lcc-color--primary, 0.3);
           }
 
           &.other {
@@ -97,6 +101,12 @@ table {
           &.closed {
             background-color: lighten(rgba(black, 0.3), 40%);
             border: 1px solid rgba(black, 0.3);
+          }
+
+          .award-icon {
+            color: goldenrod;
+            height: 16px;
+            width: 16px;
           }
         }
 

@@ -45,6 +45,8 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 v1.6.2-beta - December 9th, 2023
 </summary>
 
+- 🚀 Improve styling on divider lines used throughout app
+
 - 🐛 Fix layout of Modification Info component, particularly for small devices
 
 </details>

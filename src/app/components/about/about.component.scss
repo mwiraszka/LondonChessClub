@@ -93,12 +93,12 @@ hr {
   grid-area: divider;
   height: unset;
   width: 100%;
-  border-top: 1px solid lighten($lcc-color--gray, 30%);
+  border-top: $lcc-color--fg-divider;
 
   @include respond-to('gt-lg') {
     width: unset;
     height: 100%;
-    border-right: 1px solid lighten($lcc-color--gray, 30%);
+    border-right: 1px solid $lcc-color--fg-divider;
   }
 }
 

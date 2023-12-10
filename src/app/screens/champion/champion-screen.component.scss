@@ -135,7 +135,7 @@
 
 hr {
   width: 100%;
-  border-top: 1px solid lighten($lcc-color--gray, 30%);
+  border-top: 1px solid $lcc-color--fg-divider;
   padding-top: $lcc-space--sm;
   margin-top: $lcc-space--md;
 }

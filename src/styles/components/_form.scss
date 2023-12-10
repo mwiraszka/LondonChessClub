@@ -65,15 +65,6 @@ $alert-icon-width: 18px;
       width: $alert-icon-width;
     }
   }
-
-  .lcc-form-divider-line {
-    grid-column: 1 / 4;
-    place-self: center;
-    height: 2px;
-    width: 90%;
-    margin: 1em 0;
-    border-top: 1px solid lighten($lcc-color--gray, 30%);
-  }
 }
 
 .lcc-form-buttons-container {

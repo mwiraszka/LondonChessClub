@@ -21,13 +21,13 @@ export class MembersEffects {
       concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
       switchMap(([, isAdmin]) =>
         this.membersService.getMembers(isAdmin!).pipe(
-          map((response: ServiceResponse<Member[]>) =>
-            response.error
+          map((response: ServiceResponse<Member[]>) => {
+            return response.error
               ? MembersActions.loadMembersFailed({ error: response.error })
               : MembersActions.loadMembersSucceeded({
                   allMembers: response.payload!,
-                }),
-          ),
+                });
+          }),
         ),
       ),
     );

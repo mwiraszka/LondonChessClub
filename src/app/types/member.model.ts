@@ -23,7 +23,7 @@ export const newMemberFormTemplate: Member = {
   rating: '1000/0',
   peakRating: '(provisional)',
   dateJoined: new Date().toLocaleDateString(),
-  isActive: false,
+  isActive: true,
   modificationInfo: null,
 };
 

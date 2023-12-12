@@ -17,8 +17,8 @@
 	</div>
 
 	<div class="editor-container">
-		<div *ngIf="article?.modificationInfo?.dateLastEdited
-                  !== article?.modificationInfo?.dateCreated">
+		<div *ngIf="article?.modificationInfo?.dateLastEdited?.getTime()
+                  !== article?.modificationInfo?.dateCreated?.getTime()">
 			<span class="updated">last updated</span>
 			<span class="editor-name">
 				{{ article?.modificationInfo?.lastEditedBy }}

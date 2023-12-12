@@ -42,6 +42,17 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v1.6.4-beta - December 12th, 2023
+</summary>
+
+- 🚀 Sort articles based on creation date
+
+- 🐛 Only show article edit date if different from creation date
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v1.6.3-beta - December 10th, 2023
 </summary>
 

@@ -1,5 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
+import { customSort } from '@app/utils';
+
 import * as ArticlesActions from './articles.actions';
 import { ArticlesState, initialState } from './articles.state';
 
@@ -12,7 +14,9 @@ const articlesReducer = createReducer(
 
   on(ArticlesActions.loadArticlesSucceeded, (state, action) => ({
     ...state,
-    articles: action.allArticles,
+    articles: [...action.allArticles].sort(
+      customSort('modificationInfo.dateCreated', false),
+    ),
     isLoading: false,
   })),
 

@@ -12,6 +12,7 @@ export class MarkdownRendererComponent implements AfterViewChecked {
 
   // Must match $lcc-width--app-content value set in _variables.scss
   @Input() containerMaxWidth = 1500;
+  @Input() screen: 'viewer' | 'editor' = 'viewer';
 
   constructor(@Inject(DOCUMENT) private _document: Document) {}
 
@@ -33,23 +34,27 @@ export class MarkdownRendererComponent implements AfterViewChecked {
 
     if (tableWrapperElements) {
       tableWrapperElements.forEach(tableWrapperElement => {
-        let articleBodyContainerWidth: number;
+        let wrapperWidth: number;
 
-        switch (true) {
-          case window.innerWidth < 500:
-            articleBodyContainerWidth = window.innerWidth - 32 - 16 - 2;
-            break;
-          case window.innerWidth < 700:
-            articleBodyContainerWidth = window.innerWidth - 32 - 16 - 2 - 16;
-            break;
-          case window.innerWidth < this.containerMaxWidth:
-            articleBodyContainerWidth = window.innerWidth - 32 - 16 - 2 - 16 - 64 - 32;
-            break;
-          default:
-            articleBodyContainerWidth =
-              this.containerMaxWidth - 32 - 16 - 2 - 16 - 64 - 16;
+        if (this.screen === 'viewer') {
+          wrapperWidth = Math.min(window.innerWidth, this.containerMaxWidth) - 16 - 2;
+        } else {
+          switch (true) {
+            case window.innerWidth < 500:
+              wrapperWidth = window.innerWidth - 32 - 16 - 2;
+              break;
+            case window.innerWidth < 700:
+              wrapperWidth = window.innerWidth - 32 - 16 - 2 - 16;
+              break;
+            case window.innerWidth < this.containerMaxWidth:
+              wrapperWidth = window.innerWidth - 32 - 16 - 2 - 16 - 64 - 32;
+              break;
+            default:
+              wrapperWidth = this.containerMaxWidth - 32 - 16 - 2 - 16 - 64 - 16;
+          }
         }
-        tableWrapperElement.style.width = `${articleBodyContainerWidth}px`;
+
+        tableWrapperElement.style.width = `${wrapperWidth}px`;
       });
     }
   }

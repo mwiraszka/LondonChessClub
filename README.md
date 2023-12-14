@@ -46,8 +46,10 @@ v1.6.4-beta - December 12th, 2023
 </summary>
 
 - 🚀 Sort articles based on creation date
+- 🚀 Hide more markdown characters from article body preview in Article Grid
 
 - 🐛 Only show article edit date if different from creation date
+- 🐛 Ensure new lines are at least preserved with HTML 'break' tags for now
 
 </details>
 

@@ -19,12 +19,6 @@
     table {
       @include lcc-table;
       font-size: 16px;
-
-      // TODO: Might be a nuisance with lots of text,
-      // so maybe better to not prevent text wrapping?
-      th, td {
-        white-space: nowrap;
-      }
     }
   }
 }

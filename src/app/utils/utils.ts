@@ -3,7 +3,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Action } from '@ngrx/store';
 import { isEqual } from 'lodash';
-import moment from 'moment';
 import * as uuid from 'uuid';
 
 import { AuthActions } from '@app/store/auth';
@@ -25,21 +24,37 @@ export function areSame(a: Object, b: Object): boolean {
  * @param {boolean} isAscending Whether sort is in ascending order (i.e. 1..10, a..z)
  */
 export function customSort(key: string, isAscending: boolean) {
-  return function innerSort(a: Object, b: Object): number {
-    if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+  return function innerSort(a: Object, b: Object, _key = key): number {
+    if (
+      _key.includes('.') &&
+      a.hasOwnProperty(_key.split('.')[0]) &&
+      b.hasOwnProperty(_key.split('.')[0])
+    ) {
+      // Call innerSort recursively until lowest-level property reached
+      const aInnerObject = (a as any)[_key.split('.')[0]];
+      const bInnerObject = (b as any)[_key.split('.')[0]];
+      return innerSort(aInnerObject, bInnerObject, _key.split('.')[1]);
+    }
+
+    if (!a.hasOwnProperty(_key) || !b.hasOwnProperty(_key)) {
       return 0; // Property doesn't exist on either object
     }
 
     let varA: any =
-      typeof (a as any)[key] === 'string'
-        ? (a as any)[key].toUpperCase()
-        : (a as any)[key];
+      typeof (a as any)[_key] === 'string'
+        ? (a as any)[_key].toUpperCase()
+        : (a as any)[_key];
     let varB: any =
-      typeof (b as any)[key] === 'string'
-        ? (b as any)[key].toUpperCase()
-        : (b as any)[key];
+      typeof (b as any)[_key] === 'string'
+        ? (b as any)[_key].toUpperCase()
+        : (b as any)[_key];
 
-    // If both objects (before a potential slash) are valid numbers, convert to number type
+    if (varA instanceof Date && varB instanceof Date) {
+      return varB.getTime() - varA.getTime();
+    }
+
+    // If both objects (before a potential slash) are valid numbers, convert
+    // to number type (used specifically for provisional ratings in the format 1234/5)
     if (!isNaN(varA.split('/')[0]) && !isNaN(varB.split('/')[0])) {
       varA = +varA.split('/')[0];
       varB = +varB.split('/')[0];

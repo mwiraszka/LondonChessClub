@@ -66,8 +66,11 @@
 
 	<div class="preview-section-container">
 		<h4>Preview:</h4>
-		<div class="markdown-container">
-			<lcc-markdown-renderer [data]="form.controls['body'].value"></lcc-markdown-renderer>
+		<div *ngIf="!!form.controls['body'].value"
+				 class="markdown-container">
+			<lcc-markdown-renderer screen="editor"
+														 [data]="form.controls['body'].value">
+			</lcc-markdown-renderer>
 		</div>
 	</div>
 

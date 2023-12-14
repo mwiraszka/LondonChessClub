@@ -72,7 +72,6 @@ export class ArticlesService {
     const modifiedArticleToAdd = {
       ...articleToAdd,
       id: articleId,
-      body: this.formatForBackend(articleToAdd.body),
       imageId: generateArticleImageId(articleId),
     };
     const flattenedArticle = this.adaptForBackend([modifiedArticleToAdd])[0];
@@ -126,16 +125,6 @@ export class ArticlesService {
         of({ error: new Error('Failed to delete article from database') }),
       ),
     );
-  }
-
-  private formatForBackend(body: string): string {
-    // Strip control codes
-    // eslint-disable-next-line no-control-regex
-    const bodyWithNoControlCodes = body.replace(/[\u0000-\u001F\u007F-\u009F]/g, '');
-
-    // Escape the backslash for new lines (seems necessary to work with API Gateway
-    // integration mapping set up for this endpoint (not needed for updateArticle())
-    return bodyWithNoControlCodes.replaceAll('\n', '\\n');
   }
 
   private adaptForFrontend(articles: FlatArticle[]): Article[] {

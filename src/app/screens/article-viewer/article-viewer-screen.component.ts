@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { Article, Link, NavPathTypes } from '@app/types';
+import { Link, NavPathTypes } from '@app/types';
 
 import { ArticleViewerScreenFacade } from './article-viewer-screen.facade';
 
@@ -11,8 +11,6 @@ import { ArticleViewerScreenFacade } from './article-viewer-screen.facade';
   providers: [ArticleViewerScreenFacade],
 })
 export class ArticleViewerScreenComponent {
-  @Input() article?: Article;
-
   links: Link[] = [
     {
       path: NavPathTypes.NEWS,

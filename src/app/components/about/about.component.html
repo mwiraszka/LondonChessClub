@@ -1,21 +1,5 @@
 <div class="container"
-		 [class.single-row-layout-on-xl]="singleRowLayoutOnXl">
-	<section class="details-header-section">
-		<img src="assets/lcc-branding.svg"
-				 alt="LCC branding" />
-		<div class="details-text">
-			<div class="address">
-				Kiwanis Seniors' Community Centre<br />
-				78 Riverside Drive, London ON
-			</div>
-			<div class="time">
-				Thursdays,<wbr> 6:00pm&nbsp;&ndash;&nbsp;9:00pm
-			</div>
-		</div>
-	</section>
-
-	<hr />
-
+		 [class.about-screen]="aboutScreen">
 	<section class="welcome-text-section">
 		<p>
 			Welcome to the LCC! The London Chess Club is open to players of all ages and
@@ -31,9 +15,23 @@
 			<a href="mailto:londonchessclubcanada@gmail.com"
 				 class="lcc-link"
 				 alt="londonchessclubcanada@gmail.com">
-				londonchessclub&shy;canada@gmail.com
+				londonchessclubcanada@gmail.com
 			</a>
 		</p>
+	</section>
+
+	<hr />
+
+	<section class="details-section">
+		<div class="details-container">
+			<div class="address">
+				Kiwanis Seniors' Community Centre<br />
+				78 Riverside Drive, London ON
+			</div>
+			<div class="time">
+				Thursdays,<wbr> 6:00pm&nbsp;&ndash;&nbsp;9:00pm
+			</div>
+		</div>
 	</section>
 
 	<section *ngIf="isMapLoaded$ | async"

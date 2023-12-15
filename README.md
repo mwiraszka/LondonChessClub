@@ -42,6 +42,16 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v1.6.5-beta - December 15th, 2023
+</summary>
+
+- 🚀 Minor revamping of home screen, about screen, and app header
+- 🚀 Update some static content on about screen
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v1.6.4-beta - December 12th, 2023
 </summary>
 

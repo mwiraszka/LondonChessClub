@@ -7,7 +7,7 @@
 
 .container {
   display: grid;
-  grid-template-areas: 'header' 'divider' 'welcome' 'map';
+  grid-template-areas: 'welcome' 'divider' 'details' 'map';
   justify-content: center;
   align-items: center;
   gap: $lcc-space--xs;
@@ -24,68 +24,34 @@
   }
 
   @include respond-to('gt-lg') {
-    grid-template-areas:
-      'header divider welcome'
-      'map map map';
+    &.about-screen {
+      grid-template-columns: 2fr 5px 1fr;
+      grid-template-areas:
+        'welcome divider details'
+        'map map map';
+    }
   }
 
-  &.single-row-layout-on-xl {
-    @include respond-to('gt-xl') {
-      grid-template-areas:
-        'header divider welcome map';
+  @include respond-to('gt-xl') {
+    grid-template-areas:
+      'welcome divider details'
+      'map map map';
+
+    &.about-screen {
+      grid-template-areas: 'welcome divider details map';
     }
   }
 }
 
-.details-header-section {
-  grid-area: header;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
-  gap: $lcc-space--sm;
-  height: 100%;
+.welcome-text-section {
+  grid-area: welcome;
+  padding: $lcc-space--md;
+  min-width: 250px;  
+  // max-width: 800px;
 
-
-  @include respond-to('gt-sm') {
-    padding: $lcc-space--md;
-  }
-  
-  img {
-    width: 45px;
-    margin: $lcc-space--sm;
-
-    @include respond-to('gt-xs') {
-      width: 60px;
-    }
-  }
-
-  .details-text {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: $lcc-space--sm;
-    white-space: nowrap;
-
-    @include respond-to('gt-sm') {
-      gap: $lcc-space--md;
-    }
-
-    .address {
-      font-size: $h5;
-
-      @include respond-to('gt-xs') {
-        font-size: $h4;
-      }
-    }
-
-    .time {
-      font-size: $h5;
-      color: $lcc-color--text-secondary;
-
-      @include respond-to('gt-xs') {
-        font-size: $h4;
-      }
-    }
+  p {
+    font-size: calc($h4 + 2px);
+    color: lighten($lcc-color--text-primary-black, 30%);
   }
 }
 
@@ -102,19 +68,36 @@ hr {
   }
 }
 
-.welcome-text-section {
-  grid-area: welcome;
-  padding: $lcc-space--md;
-  min-width: 250px;  
-  max-width: 800px;
+.details-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap; 
+  padding: $lcc-space--sm;
+  border: 1px solid transparentize(lighten($lcc-color--gray, 10%), 0.8);
+  box-shadow: $lcc-box-shadow;
+  border-radius: $lcc-border-radius--lg;
+  font-size: calc($h4 + 2px);
+  color: $lcc-color--text-primary-black;
 
-  p {
-    font-size: $h4;
-    color: lighten($lcc-color--text-primary-black, 30%);
+  @include respond-to('gt-sm') {
+    gap: $lcc-space--md;
+    padding: $lcc-space--md;
+  }
 
-    @include respond-to('gt-sm') {
-      font-size: calc($h4 + 1px);
-    }
+  @include respond-to('gt-lg') {
+    height: 100%;
+  }
+
+  .details-container {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: $lcc-space--md;
+    white-space: nowrap;
+  }
+
+  .time {
+    color: $lcc-color--text-secondary;
   }
 }
 

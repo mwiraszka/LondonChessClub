@@ -17,7 +17,7 @@ import { environment } from '@environments/environment';
 export class AboutComponent implements OnInit {
   NavPathTypes = NavPathTypes;
 
-  @Input() singleRowLayoutOnXl = false;
+  @Input() aboutScreen = false;
 
   isMapLoaded$!: Observable<boolean>;
   mapHeight!: string;

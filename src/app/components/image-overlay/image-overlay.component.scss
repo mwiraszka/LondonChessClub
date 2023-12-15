@@ -44,7 +44,7 @@ $header-height: 26px;
     bottom: 1.8em;
     left: $lcc-space--sm;
     right: -$lcc-space--sm;
-    width: calc(100% - 2 * $lcc-space--sm);
+    width: calc(100% - 2 * #{$lcc-space--sm});
     padding: $lcc-space--xs $lcc-space--sm;
     border-radius: $lcc-border-radius--sm;
     background-color: hsla(0, 0%, 99%, 0.8);

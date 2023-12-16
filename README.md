@@ -42,6 +42,21 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v1.6.5-beta - December 16th, 2023
+</summary>
+
+- 🚀 Add support for hyperlinks and bullet points in article bodies
+- 🚀 Minor revamping of home screen, about screen, and app header
+- 🚀 Update some static content on about screen
+
+- 🐛 Fix some minor layout bugs in Article Grid component
+- 🐛 Fix bug causing unsaved changes modal to appear after successfully updating a member
+- 🐛 Display correct 6:00 PM start time in banner alert message
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v1.6.4-beta - December 12th, 2023
 </summary>
 

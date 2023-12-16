@@ -36,7 +36,7 @@ export const isEditMode = createSelector(
 
 export const hasUnsavedChanges = createSelector(
   membersFeatureSelector,
-  state => !areSame(state.selectedMember ?? {}, state.memberCurrently ?? {}),
+  state => !areSame(state.memberCurrently, state.memberBeforeEdit),
 );
 
 export const isLoading = createSelector(membersFeatureSelector, state => state.isLoading);

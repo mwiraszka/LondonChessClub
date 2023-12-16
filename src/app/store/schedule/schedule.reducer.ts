@@ -30,12 +30,22 @@ const scheduleReducer = createReducer(
     isLoading: false,
   })),
 
+  on(ScheduleActions.addEventSelected, (state, action) => ({
+    ...state,
+    eventCurrently: action.eventToAdd,
+  })),
+
   on(ScheduleActions.editEventSelected, (state, action) => ({
     ...state,
     selectedEvent: action.eventToEdit,
     eventBeforeEdit: action.eventToEdit,
     eventCurrently: action.eventToEdit,
     isEditMode: true,
+  })),
+
+  on(ScheduleActions.updateEventSelected, (state, action) => ({
+    ...state,
+    eventCurrently: action.eventToUpdate,
   })),
 
   on(ScheduleActions.deleteEventSelected, (state, action) => ({
@@ -57,16 +67,6 @@ const scheduleReducer = createReducer(
   on(ScheduleActions.deleteEventCancelled, state => ({
     ...state,
     selectedEvent: null,
-  })),
-
-  on(ScheduleActions.addEventSelected, (state, action) => ({
-    ...state,
-    eventCurrently: action.eventToAdd,
-  })),
-
-  on(ScheduleActions.updateEventSelected, (state, action) => ({
-    ...state,
-    eventCurrently: action.eventToUpdate,
   })),
 
   on(

@@ -8,25 +8,37 @@
   background: repeating-conic-gradient(
       darken($lcc-color--primary, 5%) 0% 25%,
       $lcc-color--transparent-mostly 0% 50%
-    ) 50% / 5px 5px;
+    ) 50% / 3px 3px;
 }
 
 .app-header-container {
   display: flex;
-  justify-content: center;
-  padding: $lcc-space--md;
-  width: 100%;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: $lcc-space--md;
+  padding: $lcc-space--sm calc(#{$lcc-space--md} - 2px);
+  width: $lcc-width--app-content;
 
-  @include respond-to('gt-xs') {
-    justify-content: flex-start;
-    width: $lcc-width--app-content;
+  // Account for changing icon padding values in Nav below
+  @include respond-to('gt-sm') {
+    padding: $lcc-space--sm $lcc-space--md;
+  }
 
-    // Account for the border thickness in Nav below
-    padding: $lcc-space--md calc($lcc-space--md + 2px);
+  @include respond-to('gt-xl') {
+    // padding: $lcc-space--sm;
+  }
+
+  img {
+    height: 60px;
+    width: 60px;
+    background: darken($lcc-color--white, 8%);
+    border-radius: 50%;
+    padding: 3px;
   }
 
   a {
-    color: darken($lcc-color--white, 2%);
+    color: darken($lcc-color--white, 8%);
     font-size: $h1;
     white-space: nowrap;
   

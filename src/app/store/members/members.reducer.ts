@@ -53,12 +53,22 @@ const membersReducer = createReducer(
     pageNum: 1,
   })),
 
+  on(MembersActions.addMemberSelected, (state, action) => ({
+    ...state,
+    memberCurrently: action.memberToAdd,
+  })),
+
   on(MembersActions.editMemberSelected, (state, action) => ({
     ...state,
     selectedMember: action.memberToEdit,
     memberCurrently: action.memberToEdit,
     memberBeforeEdit: action.memberToEdit,
     isEditMode: true,
+  })),
+
+  on(MembersActions.updateMemberSelected, (state, action) => ({
+    ...state,
+    memberCurrently: action.memberToUpdate,
   })),
 
   on(MembersActions.deleteMemberSelected, (state, action) => ({

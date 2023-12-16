@@ -7,7 +7,7 @@
 
 .container {
   display: grid;
-  grid-template-areas: 'welcome' 'divider' 'details' 'map';
+  grid-template-areas: 'welcome' 'details' 'map';
   justify-content: center;
   align-items: center;
   gap: $lcc-space--xs;
@@ -25,20 +25,22 @@
 
   @include respond-to('gt-lg') {
     &.about-screen {
-      grid-template-columns: 2fr 5px 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       grid-template-areas:
-        'welcome divider details'
+        'welcome welcome details'
         'map map map';
     }
   }
 
   @include respond-to('gt-xl') {
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
-      'welcome divider details'
+      'welcome welcome details'
       'map map map';
 
     &.about-screen {
-      grid-template-areas: 'welcome divider details map';
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-areas: 'welcome details map';
     }
   }
 }
@@ -47,24 +49,10 @@
   grid-area: welcome;
   padding: $lcc-space--md;
   min-width: 250px;  
-  max-width: 800px;
 
   p {
     font-size: calc($h4 + 2px);
     color: lighten($lcc-color--text-primary-black, 30%);
-  }
-}
-
-hr {
-  grid-area: divider;
-  height: unset;
-  width: 100%;
-  border-top: $lcc-color--fg-divider;
-
-  @include respond-to('gt-lg') {
-    width: unset;
-    height: 100%;
-    border-right: 1px solid $lcc-color--fg-divider;
   }
 }
 
@@ -78,6 +66,7 @@ hr {
   box-shadow: $lcc-box-shadow;
   border-radius: $lcc-border-radius--lg;
   font-size: calc($h4 + 2px);
+  min-width: 350px;
   color: $lcc-color--text-primary-black;
 
   @include respond-to('gt-sm') {

@@ -32,6 +32,9 @@ lcc-link-list,
     flex-flow: column nowrap;
     gap: $lcc-space--xs;
     height: auto;
+    // Minimum width to keep dates on one line, while still being narrow enough to
+    // to fit two cards side-by-side at gt-md breakpoint (700px)
+    min-width: 275px;
     padding: $lcc-space--sm;
     background: repeating-conic-gradient(
         darken($lcc-color--primary, 2%) 0% 25%,
@@ -60,9 +63,10 @@ lcc-link-list,
 
       h3 {
         text-align: center;
-        height: 2.8em;
-        letter-spacing: 1px;
         font-weight: 400;
+        // Hardcode height to ensure title sections align between cards
+        // regardless of whether there is 1 or 2 lines of text
+        height: 2.5em;
         color: darken($lcc-color--text-primary-white, 4%);
       }
 
@@ -73,8 +77,7 @@ lcc-link-list,
       }
 
       p {
-        // hard-coded to keep alignment in case
-        // there are fewer than 5 lines of text
+        // Hardcode to keep alignment in case there are fewer than 5 lines of text
         height: 91px; 
         font-size: $h4;
         color: darken($lcc-color--text-primary-white, 10%);

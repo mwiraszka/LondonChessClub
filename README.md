@@ -50,6 +50,7 @@ v1.6.5-beta - December 16th, 2023
 - 🚀 Update some static content on about screen
 
 - 🐛 Fix some minor layout bugs in Article Grid component
+- 🐛 Display correct 6:00 PM start time in banner alert message
 
 </details>
 

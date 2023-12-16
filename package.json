@@ -37,6 +37,7 @@
     "amazon-cognito-identity-js": "^5.2.8",
     "angular-feather": "^6.5.0",
     "lodash": "^4.17.21",
+    "marked": "^9.1.6",
     "ngrx-store-localstorage": "^13.0.1",
     "ngx-markdown": "^14.0.1",
     "remove-markdown": "^0.5.0",

@@ -1,4 +1,4 @@
-.lcc-link {
+@mixin lcc-link {
   font-size: inherit;
   font-weight: 200;
 
@@ -7,4 +7,8 @@
   &:hover {
     color: lighten($lcc-color--link, 10%);
   }
+}
+
+.lcc-link {
+  @include lcc-link;
 }

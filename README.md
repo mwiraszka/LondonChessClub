@@ -45,6 +45,7 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 v1.6.5-beta - December 16th, 2023
 </summary>
 
+- 🚀 Add support for hyperlinks and bullet points in article bodies
 - 🚀 Minor revamping of home screen, about screen, and app header
 - 🚀 Update some static content on about screen
 

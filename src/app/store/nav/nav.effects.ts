@@ -19,8 +19,6 @@ export class NavEffects {
       this.actions$.pipe(
         ofType(
           NavActions.homeNavigationRequested,
-          MembersActions.addMemberSucceeded,
-          MembersActions.updateMemberSucceeded,
           AuthActions.loginSucceeded,
           AuthActions.passwordChangeSucceeded,
         ),

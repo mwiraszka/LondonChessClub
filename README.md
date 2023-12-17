@@ -42,6 +42,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v1.6.6-beta - December 17th, 2023
+</summary>
+
+- 🚀 Add a 'report a bug' link to the website footer
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v1.6.5-beta - December 16th, 2023
 </summary>
 

@@ -46,6 +46,9 @@ v1.6.6-beta - December 17th, 2023
 </summary>
 
 - 🚀 Add a 'report a bug' link to the website footer
+- 🚀 Limit banner image height so that it doesn't expand too much on larger screens  
+
+- 🐛 Fix bug preventing new banner images from being uploaded in some scenarios
 
 </details>
 

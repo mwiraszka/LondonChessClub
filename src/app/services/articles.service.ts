@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { isEmpty } from 'lodash';
 import { Observable, forkJoin, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
@@ -8,7 +7,7 @@ import { Injectable } from '@angular/core';
 
 import { AuthService, ImagesService } from '@app/services';
 import { Article, FlatArticle, ServiceResponse } from '@app/types';
-import { generateArticleId, generateArticleImageId } from '@app/utils';
+import { generateArticleId, generateArticleImageId, isEmpty } from '@app/utils';
 
 import { environment } from '@environments/environment';
 

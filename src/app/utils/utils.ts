@@ -18,6 +18,14 @@ export function areSame(a: Object, b: Object): boolean {
 }
 
 /**
+ * Checks if given value is an empty object
+ * @param {any} value
+ */
+export function isEmpty(value: any): boolean {
+  return value && Object.keys(value).length === 0 && value.constructor === Object;
+}
+
+/**
  * A custom sorting algorithm, to be used within an array sort method, for example
  * `sortedItems = items.sort(customSort(key, order))`
  * @param {string} key The object property to sort by

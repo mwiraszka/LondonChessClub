@@ -34,7 +34,7 @@ lcc-link-list,
     height: auto;
     // Minimum width to keep dates on one line, while still being narrow enough to
     // to fit two cards side-by-side at gt-md breakpoint (700px)
-    min-width: 275px;
+    min-width: 280px;
     padding: $lcc-space--sm;
     background: repeating-conic-gradient(
         darken($lcc-color--primary, 2%) 0% 25%,

@@ -1,11 +1,20 @@
+@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
 .banner-image-container {
   position: relative;
+  display: flex;
+  justify-content: center;
+  background-color: $lcc-color--black;
 
   img {
-    height: 100%;
-    width: 100%;
+    // Set based on md-breakpoint value of 700px and 3:2 aspect ratio
+    max-height: calc(700px / 1.5);
+    box-sizing: border-box;
+
+    @include respond-to('lt-md') {
+      width: 100%;
+    }
   }
 
   h2 {

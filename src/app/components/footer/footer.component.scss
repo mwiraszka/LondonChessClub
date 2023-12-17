@@ -1,4 +1,5 @@
 @import 'styles/abstracts/variables';
+@import 'styles/components/link';
 
 :host {
   display: flex;
@@ -7,9 +8,6 @@
   padding: $lcc-space--lg 0;
   white-space: nowrap;
   background-color: $lcc-color--bg-canvas;
-}
-
-small {
   font-size: $h5;
 }
 
@@ -19,6 +17,14 @@ address {
   span {
     display: inline;
     font-style: normal;
-    font-size: $h5;
+  }
+
+  a {
+    @include lcc-link;
+    margin: 0 0.5em;
+  }
+
+  .divider {
+    margin: 0 0.5em;
   }
 }

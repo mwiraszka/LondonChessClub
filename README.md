@@ -42,11 +42,12 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v1.6.7-beta - December 17th, 2023
+v1.6.7-beta - December 18th, 2023
 </summary>
 
 - 🚀 Make member's year of birth field visible only to admins
 
+- 🐛 Correct peak rating calculation for when a member's rating is edited
 - 🐛 Ensure current date in new member empty form template correctly uses local timezone and not UTC time
 
 </details>

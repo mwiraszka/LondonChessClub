@@ -138,7 +138,7 @@ export class MembersService {
         lastName: member.lastName,
         city: member.city,
         rating: member.rating,
-        peakRating: member.peakRating,
+        peakRating: this.getNewPeakRating(member),
         dateJoined: member.dateJoined,
         isActive: member.isActive,
         email: member.email,
@@ -152,5 +152,17 @@ export class MembersService {
         lastEditedBy: member.modificationInfo!.lastEditedBy,
       };
     });
+  }
+
+  private getNewPeakRating(member: Member): string {
+    if (member.rating.includes('/')) {
+      return '(provisional)';
+    }
+
+    if (member.peakRating === '(provisional)' || +member.rating > +member.peakRating) {
+      return member.rating;
+    }
+
+    return member.peakRating;
   }
 }

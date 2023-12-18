@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import { ModificationInfo } from '@app/types';
 
 export interface Member {
@@ -9,11 +11,11 @@ export interface Member {
   peakRating: string;
   dateJoined: string;
   isActive: boolean | string; // Stored as a string in DynamoDB
-  email?: string;
-  phoneNumber?: string;
-  yearOfBirth?: string;
   chesscomUsername?: string;
   lichessUsername?: string;
+  yearOfBirth?: string;
+  email?: string;
+  phoneNumber?: string;
   modificationInfo: ModificationInfo | null;
 }
 
@@ -22,7 +24,7 @@ export const newMemberFormTemplate: Member = {
   city: 'London',
   rating: '1000/0',
   peakRating: '(provisional)',
-  dateJoined: new Date().toLocaleDateString(),
+  dateJoined: moment().subtract(5, 'hours').toISOString().split('T')[0],
   isActive: true,
   modificationInfo: null,
 };
@@ -37,11 +39,11 @@ export interface FlatMember {
   peakRating: string;
   dateJoined: string;
   isActive: boolean | string; // Stored as a string in DynamoDB
-  email?: string;
-  phoneNumber?: string;
-  yearOfBirth?: string;
   chesscomUsername?: string;
   lichessUsername?: string;
+  yearOfBirth?: string;
+  email?: string;
+  phoneNumber?: string;
   dateCreated: string;
   createdBy: string;
   dateLastEdited: string;

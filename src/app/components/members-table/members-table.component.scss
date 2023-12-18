@@ -108,15 +108,6 @@ table {
     }
   }
   
-  .born {
-    display: none;
-
-    @include respond-to('gt-md') {
-      display: table-cell;
-      width: 70px;
-    }
-  }
-  
   .chesscom-username {
     display: none;
 
@@ -135,6 +126,7 @@ table {
     }
   }
 
+  .born,
   .email,
   .phone-number,
   .date-joined {
@@ -163,6 +155,11 @@ table {
   
     .lichess-username {
       width: 12%;
+    }
+
+    .born {
+      display: table-cell;
+      width: 70px;
     }
 
     .email {

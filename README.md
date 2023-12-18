@@ -42,6 +42,17 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v1.6.7-beta - December 17th, 2023
+</summary>
+
+- 🚀 Make member's year of birth field visible only to admins
+
+- 🐛 Ensure current date in new member empty form template correctly uses local timezone and not UTC time
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v1.6.6-beta - December 17th, 2023
 </summary>
 

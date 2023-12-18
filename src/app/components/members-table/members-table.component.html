@@ -10,7 +10,7 @@
 					class="lcc-table-admin-controls-filler">
 			</th>
 			<th class="row-number"></th>
-			<th *ngFor="let header of (facade.isAdmin$ | async) ? tableHeaders : tableHeaders.slice(0, -3)"
+			<th *ngFor="let header of (facade.isAdmin$ | async) ? tableHeaders : tableHeaders.slice(0, -4)"
 					[ngClass]="kebabize(header)"
 					(click)="facade.onSelectTableHeader(camelize(kebabize(header)))">
 				<span>{{ header }}</span>
@@ -44,10 +44,10 @@
 			<td class="rating">{{ member.rating }}</td>
 			<td class="peak-rating">{{ member.peakRating }}</td>
 			<td class="city">{{ member.city }}</td>
-			<td class="born">{{ member?.yearOfBirth }}</td>
 			<td class="chesscom-username">{{ member?.chesscomUsername }}</td>
 			<td class="lichess-username">{{ member?.lichessUsername }}</td>
 			<ng-container *ngIf="facade.isAdmin$ | async">
+				<td class="born">{{ member?.yearOfBirth }}</td>
 				<td class="email">{{ member?.email }}</td>
 				<td class="phone-number">{{ member?.phoneNumber }}</td>
 				<td class="date-joined">{{ member.dateJoined }}</td>

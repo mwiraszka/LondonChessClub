@@ -1,5 +1,5 @@
 import { Store } from '@ngrx/store';
-import { filter, first, map } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
@@ -41,35 +41,6 @@ export class MemberFormFacade {
   }
 
   onValueChange(member: Member): void {
-    this.memberBeforeEdit$
-      .pipe(
-        filter(memberBeforeEdit => !!memberBeforeEdit),
-        map(memberBeforeEdit => {
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          const updatedMember = this.updatePeakRating(member, memberBeforeEdit!);
-          this.store.dispatch(MembersActions.formDataChanged({ member: updatedMember }));
-        }),
-        first(),
-      )
-      .subscribe();
-  }
-
-  private updatePeakRating(member: Member, memberBeforeEdit: Member): Member {
-    let newPeakRating = '';
-    if (member.rating.includes('/')) {
-      newPeakRating = '(provisional)';
-    } else if (
-      memberBeforeEdit.peakRating === '(provisional)' ||
-      +member.rating > +memberBeforeEdit.rating
-    ) {
-      newPeakRating = member.rating;
-    } else {
-      newPeakRating = memberBeforeEdit.peakRating;
-    }
-
-    return {
-      ...member,
-      peakRating: newPeakRating,
-    };
+    this.store.dispatch(MembersActions.formDataChanged({ member }));
   }
 }

@@ -19,7 +19,7 @@
     
     table {
       @include lcc-table;
-      font-size: 16px;
+      font-size: calc($h4 + 2px);
     }
   }
 

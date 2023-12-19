@@ -1,7 +1,8 @@
 {
-  "name": "lcc-angular",
-  "short_name": "lcc-angular",
-  "theme_color": "#1976d2",
+  "name": "London Chess Club",
+  "short_name": "LCC",
+  "description": "The official London Chess Club website",
+  "theme_color": "#3d668f",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
@@ -23,7 +24,7 @@
       "type": "image/png"
     },
     {
-      "src": "assets/icons/safari-pinner-tab.svg",
+      "src": "assets/icons/safari-pinned-tab.svg",
       "sizes": "128x128",
       "type": "image/svg"
     }

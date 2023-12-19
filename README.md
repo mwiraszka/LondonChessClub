@@ -42,6 +42,20 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v1.6.8-beta - December 19th, 2023
+</summary>
+
+- 🚀 Update content on About page
+- 🚀 Update content on Champion page
+
+- 🐛 Fix password change bug
+
+- 🔧 Update `manifest.webmanifest` file
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v1.6.7-beta - December 18th, 2023
 </summary>
 

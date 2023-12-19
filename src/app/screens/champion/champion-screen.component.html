@@ -12,53 +12,8 @@
 			</figure>
 		</article>
 
-		<article class="history">
-			<p>
-				Every fall, chess players from around London and the surrounding region gather
-				to compete for the city's most coveted chess prize:
-				<b>the Championship Cup</b>.
-			</p>
-			<p>
-				Peter Murray won the inaugural tournament in 1967, and defended his title the
-				following year. Since then, the trophy has changed hands over 20 times, with 17
-				different players having been crowned <b>City Champion</b> to date.
-			</p>
-			<p>
-				In 2019, <b>Kevin Gibson (2296)</b> defeated Steve Demmery (2230) to retain his
-				title as London Champion. The city could not have asked for a better spectacle:
-				the match was drawn after three rounds, meaning a win in round 4 could clinch
-				the victory for either player. Kevin did just that, winning his <b>5th <i>(!!)</i>
-					consecutive title</b>, and 8th total.
-			</p>
-		</article>
-
-		<article class="upcoming">
-			<p>
-				The London Chess Championship was canceled in 2020 and 2021 due to the pandemic,
-				but 2022 will more than make up for it. <b>50 players</b> are currently
-				participating in the event &mdash; more than ever before in its entire 55-year
-				history!
-			</p>
-			<p>
-				Players are split into 3 sections by rating, with each section comprising
-				of two groups. Section A and B groups play an 8-player round robin, whereas
-				Section C groups have 9 players each, thus completing this phase of the tournament
-				one week later.
-			</p>
-			<p>
-				Winners and runner-ups from each group will then play each other in a 4-game
-				playoff to determine the winners for each section. The winner of Section B gets
-				automatically bumped up to Section A next year. The winner of Section A is crowned
-				the new London Chess Champion. For more information, please speak to
-				tournament director Gerry Litchfield, or visit our
-				<a class="lcc-link"
-					 (click)="facade.onNavigate(NavPathTypes.SCHEDULE)">
-					schedule</a> page.
-			</p>
-		</article>
-
-		<article class="winner">
-			<figure class="lcc-figure champion-2019-figure">
+		<article class="champion-2019">
+			<figure class="lcc-figure 2019-champion-figure">
 				<img src="assets/london-chess-champion/2019-champion.jpg"
 						 alt="2019 London Chess Champion" />
 				<figcaption>
@@ -68,20 +23,71 @@
 			</figure>
 		</article>
 
-		<article class="crosstable">
-			<figure class="lcc-figure crosstable-figure">
-				<picture>
-					<source media="(min-width: 500px)"
-									srcset="assets/london-chess-champion/2019-championship-crosstable.png">
-					<img src="assets/london-chess-champion/2019-championship-crosstable--narrow.png"
-							 alt="2019 Championship Crosstable" />
-				</picture>
-				<figcaption>2019 Championship &mdash; Final Results</figcaption>
+		<article class="championship-match-2022">
+			<figure class="lcc-figure 2022-championship-match-figure">
+				<img src="assets/london-chess-champion/2022-championship-match.png"
+						 alt="2022 Championship Match" />
+				<figcaption>
+					2022&nbsp;Championship&nbsp;Match<br />
+					<b>Carl Ehrman</b> vs. <b>Geoffrey Ruelland</b>
+				</figcaption>
 			</figure>
 		</article>
-	</section>
 
-	<hr />
+		<article class="history">
+			<p>
+				Every fall, chess players from around London and the surrounding region gather
+				to compete for the title of <b>London Chess Champion</b>.
+			</p>
+			<p>
+				Peter Murray won the inaugural tournament in 1967, and defended his title the
+				following year. Since then, the trophy has changed hands over 20 times, with 17
+				different players crowned champion to date.
+			</p>
+			<p>
+				In 2019, Kevin Gibson (2296) defeated Steve Demmery (2230) to retain his title and
+				the city could not have asked for a better spectacle! The match was drawn after
+				three rounds, meaning a win in round 4 could clinch the victory for either player.
+				Gibson did just that, winning his 5th <i>(!!)</i> consecutive title, and 8th
+				total.
+			</p>
+			<p>
+				In 2022, the club re-opened its doors after the pandemic and saw another fantastic
+				Championship match up, this time between Carl Ehrman (2087) and Geoffrey Ruelland
+				(2162). The match was tied 1.5-1.5 after 3 rounds, but it was Ruelland who
+				ultimately came out ahead in round 4 and crowned City Champion on December 22nd,
+				2022.
+			</p>
+			<p>
+				The 2023 Championship Match (Section A) is currently underway between
+				<b>Sasha Chen (2000)</b> and
+				<b>Serhii Ivanchuk (2148)</b>, expected to finish by the end of January 2024.
+			</p>
+		</article>
+
+		<article class="past-winners">
+			<h3>Past winners</h3>
+			<table class="lcc-table">
+				<thead>
+					<th>Year</th>
+					<th>Winner</th>
+				</thead>
+				<tbody>
+					<tr *ngFor="let championship of pastChampionships">
+						<td [style]="championship.style">{{ championship.year }}</td>
+						<td [style]="championship.style">{{ championship.winner }}</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="100%">
+							Club formed c.1965
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		</article>
+	</section>
 
 	<lcc-link-list [links]="links"></lcc-link-list>
 </div>

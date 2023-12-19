@@ -29,33 +29,27 @@
   grid-template-areas:
     'history'
     'cup'
-    'winner'
-    'upcoming'
-    'crosstable';
+    'champ-2019'
+    'champ-2022'
+    'past-winners';
   gap: $lcc-space--xs;
 
   @include respond-to('gt-sm') {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       'history history'
-      'cup winner'
-      'upcoming upcoming'
-      'crosstable crosstable';
-  }
-
-  @include respond-to('gt-md') {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      'cup history'
-      'upcoming winner'
-      'crosstable crosstable';
+      'cup champ-2019'
+      'champ-2022 champ-2022'
+      'past-winners past-winners';
   }
 
   @include respond-to('gt-lg') {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
-      'cup winner history history'
-      'upcoming upcoming crosstable crosstable';
+      'history history past-winners'
+      'cup champ-2019 past-winners'
+      'champ-2022 champ-2022 past-winners'
+      '. . past-winners';
   }
 
   article {
@@ -75,6 +69,16 @@
       }
     }
 
+    &.history {
+      grid-area: history;
+      padding: $lcc-space--md;
+      align-items: flex-start;
+
+      p {
+        margin: 0.5em 0;
+      }
+    }
+
     &.cup {
       grid-area: cup;
       @include dark-bg;
@@ -85,22 +89,30 @@
       }
     }
     
-    &.history {
-      grid-area: history;
-      padding: $lcc-space--sm $lcc-space--md;
-    }
-    
-    &.upcoming {
-      grid-area: upcoming;
-      padding: $lcc-space--sm $lcc-space--md;
+    &.past-winners {
+      grid-area: past-winners;
+      padding: $lcc-space--md;
 
-      @include respond-to('gt-lg') {
-        padding: $lcc-space--lg $lcc-space--md;
+      h3 {
+        width: 100%;
+        text-align: left;
+        padding: $lcc-space--xxs;
+        border-bottom: 1px solid lighten($lcc-color--gray, 20%);
+        margin-bottom: 0.5em;
+      }
+
+      table {
+        font-size: calc($h4 + 2px);
+        min-width: 350px;
+
+        tfoot tr td {
+          text-align: center;
+        }
       }
     }
     
-    &.winner {
-      grid-area: winner;
+    &.champion-2019 {
+      grid-area: champ-2019;
       @include dark-bg;
 
       @include respond-to('lt-sm') {
@@ -108,38 +120,15 @@
         border-radius: $lcc-border-radius--lg;
       }
     }
-    
-    &.crosstable {
-      grid-area: crosstable;
+
+    &.championship-match-2022 {
+      grid-area: champ-2022;
       @include dark-bg;
 
       @include respond-to('lt-sm') {
         margin: 0 $lcc-space--xs;
         border-radius: $lcc-border-radius--lg;
-      }
-    }
-
-    figcaption {
-      white-space: nowrap;
-    }
-
-    p {
-      padding: $lcc-space--sm;
-
-      & > b {
-        color: lighten($lcc-color--text-primary-black, 20%);
       }
     }
   }
-}
-
-hr {
-  width: 100%;
-  border-top: 1px solid $lcc-color--fg-divider;
-  padding-top: $lcc-space--sm;
-  margin-top: $lcc-space--md;
-}
-
-lcc-link-list {
-  margin-bottom: $lcc-space--sm;
 }

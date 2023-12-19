@@ -15,7 +15,7 @@ const authReducer = createReducer(
 
   on(AuthActions.codeForPasswordChangeSucceeded, state => ({
     ...state,
-    hasCode: false,
+    hasCode: true,
   })),
 
   on(AuthActions.codeForPasswordChangeFailed, state => ({

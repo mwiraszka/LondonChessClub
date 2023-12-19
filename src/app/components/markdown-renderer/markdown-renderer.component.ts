@@ -5,7 +5,6 @@ import { AfterViewChecked, Component, HostListener, Inject, Input } from '@angul
   selector: 'lcc-markdown-renderer',
   templateUrl: './markdown-renderer.component.html',
   styleUrls: ['./markdown-renderer.component.scss'],
-  preserveWhitespaces: true,
 })
 export class MarkdownRendererComponent implements AfterViewChecked {
   @Input() data?: string;

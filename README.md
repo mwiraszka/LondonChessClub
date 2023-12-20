@@ -39,6 +39,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v2.0.2 - December 20th, 2023
+</summary>
+
+- 🔧 Revert changes made in v2.0.1 to test out effects of the directive in the `index.html`
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v2.0.1 - December 20th, 2023
 </summary>
 

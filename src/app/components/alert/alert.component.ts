@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
+import { setLocalTime } from '@app/utils';
+
 import { AlertFacade } from './alert.facade';
 
 @Component({
@@ -9,14 +11,9 @@ import { AlertFacade } from './alert.facade';
   providers: [AlertFacade],
 })
 export class AlertComponent {
+  setLocalTime = setLocalTime;
+
   @Output() close = new EventEmitter<void>();
 
   constructor(public facade: AlertFacade) {}
-
-  // Set time on event date to 6:00 PM
-  setTime(date: string): Date {
-    const asDate = new Date(date);
-    asDate.setHours(18);
-    return asDate;
-  }
 }

@@ -2,13 +2,11 @@
 
 Welcome to the source code repository for the new LCC website! Here you'll find links to test out new features, a summary of what's changed with each release, and instructions on how to report a bug or request a change.
 
-## Staging environment
+<https://londonchess.ca>
 
-<http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com/>
+## Staging environment (for testing new features)
 
-## Old (current) website
-
-<http://londonchessclub.ca>
+<http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com>
 
 ## Architecture
 
@@ -28,6 +26,7 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 - `API Gateway` for API management and routing
 - `Cognito & IAM` for user authentication
 - `Lambda` for serverless backend functions
+- `CloudFront` for content delivery
 - `EC2` for running an Express.js server, responsible for article image CRUD operations
 
 ## Release notes
@@ -37,6 +36,25 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 | 🚀 | New **features** and **improvements** to the website |
 | 🐛 | Bug fixes |
 | 🔧 | Code refactoring (no visible changes) |
+
+<details>
+<summary style="cursor: pointer">
+v2.0.0 - December 20th, 2023
+</summary>
+
+- 🚀 Make adjustments to this README.md prior to v2.0.0 launch
+- 🚀 Move About page to after Home page in the navigation tabs
+- 🚀 Improve About page layout and content
+- 🚀 Display only future events in Schedule by default, with an option to show past events
+
+- 🐛 Fix issue which prevented article banner images from being fetched using secure connection (HTTPS protocol)  
+- 🐛 Correct club event date-time tiemzone calculations which were causing Thursday club event dates to show up as Wednesday
+- 🐛 Fix Angular Service Worker issues when app is running on a production environment
+- 🐛 Fix bug which prevented form validation icon from appearing in Create/Edit Event page
+
+- 🔧 Split `utils.ts` into more categorized util files, and leverage `moment.js` library for better date-time calculations  
+
+</details>
 
 ### Beta version release notes
 

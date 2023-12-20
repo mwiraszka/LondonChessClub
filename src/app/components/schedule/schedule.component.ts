@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { LoaderService } from '@app/services';
 import { ClubEvent, Link, NavPathTypes } from '@app/types';
-import { kebabize } from '@app/utils';
+import { kebabize, setLocalTime } from '@app/utils';
 
 import { ScheduleFacade } from './schedule.facade';
 
@@ -14,9 +14,13 @@ import { ScheduleFacade } from './schedule.facade';
 })
 export class ScheduleComponent implements OnInit {
   kebabize = kebabize;
+  setLocalTime = setLocalTime;
 
   @Input() includeDetails = true;
+  @Input() allowTogglePastEvents = true;
   @Input() limitToUpcoming?: number;
+
+  showPast = false;
 
   addEventLink: Link = {
     path: NavPathTypes.EVENT_ADD,
@@ -30,7 +34,7 @@ export class ScheduleComponent implements OnInit {
     this.facade.isLoading$.subscribe(isLoading => {
       this.loaderService.display(isLoading);
     });
-    this.facade.loadEvents(this.limitToUpcoming ?? null);
+    this.facade.loadEvents();
   }
 
   trackByFn = (index: number, event: ClubEvent) => event.id;

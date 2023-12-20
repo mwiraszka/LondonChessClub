@@ -11,6 +11,10 @@ export const scheduleFeatureSelector = createFeatureSelector<ScheduleState>(
 
 export const events = createSelector(scheduleFeatureSelector, state => state.events);
 
+export const upcomingEvents = createSelector(scheduleFeatureSelector, state => {
+  return getUpcomingEvents(state?.events);
+});
+
 export const upcomingEvent = createSelector(scheduleFeatureSelector, state => {
   const upcomingEvents = getUpcomingEvents(state?.events, 1);
   return upcomingEvents?.length ? upcomingEvents[0] : null;

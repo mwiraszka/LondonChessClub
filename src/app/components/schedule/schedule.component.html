@@ -11,7 +11,8 @@
 		<th class="event">Event</th>
 	</thead>
 	<tbody>
-		<tr *ngFor="let event of (facade.events$ | async); let last = last; trackBy: trackByFn"
+		<tr *ngFor="let event of showPast ? (facade.events$ | async) : (facade.upcomingEvents$ | async)?.slice(0, limitToUpcoming);
+                  let last = last; trackBy: trackByFn"
 				class="lcc-admin-controls-container"
 				[id]="event.id"
 				[class.next-event]="event.id === (facade.nextEventId$ | async)"
@@ -21,7 +22,8 @@
 													(edit)="facade.onEditEvent(event)"
 													(delete)="facade.onDeleteEvent(event)">
 			</lcc-admin-controls>
-			<td class="date">{{ event.eventDate | formatDate:'long':'no-time' }}</td>
+			<td class="date">{{ setLocalTime(event.eventDate) | formatDate:'long':'no-time' }}
+			</td>
 			<td class="main-container">
 				<div class="main-content">
 					<h4 class="title">{{ event.title }}</h4>
@@ -50,3 +52,9 @@
 		</tr>
 	</tbody>
 </table>
+
+<button *ngIf="allowTogglePastEvents"
+				class="lcc-raised-button toggle-past-events-button"
+				(click)="showPast = !showPast">
+	{{ showPast ? 'Hide' : 'Show' }} past events
+</button>

@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ClubEvent, FlatClubEvent, ServiceResponse } from '@app/types';
-import { customSort, getUpcomingEvents } from '@app/utils';
+import { customSort } from '@app/utils';
 
 import { environment } from '@environments/environment';
 
@@ -27,15 +27,11 @@ export class ScheduleService {
     );
   }
 
-  getEvents(numUpcomingEvents: number | null): Observable<ServiceResponse<ClubEvent[]>> {
+  getEvents(): Observable<ServiceResponse<ClubEvent[]>> {
     return this.http.get<FlatClubEvent[]>(this.API_ENDPOINT).pipe(
       map(events => {
         const adaptedEvents = this.adaptForFrontend(events);
         const sortedEvents = [...adaptedEvents].sort(customSort('eventDate', true));
-        if (numUpcomingEvents) {
-          const upcomingEvents = getUpcomingEvents(sortedEvents, numUpcomingEvents);
-          return { payload: upcomingEvents ?? sortedEvents };
-        }
         return { payload: sortedEvents };
       }),
       catchError(() => of({ error: new Error('Failed to fetch events from database') })),

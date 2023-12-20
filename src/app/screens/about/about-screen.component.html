@@ -5,10 +5,6 @@
 	</lcc-screen-header>
 
 	<section class="grid-container">
-		<article class="about">
-			<lcc-about [aboutScreen]="true"></lcc-about>
-		</article>
-
 		<article class="membership">
 			<h3>Membership Fee</h3>
 			<p>
@@ -142,6 +138,10 @@
 					 (click)="facade.onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
 				for exact dates.
 			</p>
+		</article>
+
+		<article class="about">
+			<lcc-about [isAboutScreen]="true"></lcc-about>
 		</article>
 	</section>
 </div>

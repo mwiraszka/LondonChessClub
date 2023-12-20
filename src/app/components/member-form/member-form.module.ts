@@ -1,3 +1,5 @@
+import { FeatherModule } from 'angular-feather';
+
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,6 +14,7 @@ import { MemberFormComponent } from './member-form.component';
   declarations: [MemberFormComponent],
   imports: [
     CommonModule,
+    FeatherModule,
     IconsModule,
     ModificationInfoModule,
     ReactiveFormsModule,

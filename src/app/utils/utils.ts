@@ -88,28 +88,6 @@ export function takeRandomly<T>(array: T[], n: number): T[] {
 }
 
 /**
- * Converts any string to kebab-case
- * (see https://www.geeksforgeeks.org/how-to-convert-a-string-into-kebab-case-using-javascript)
- * @param {string} anyString The input string Like This, LikeThis, or Like_This
- * @returns {string} The same text in kebab-case
- */
-export function kebabize(anyString: string): string {
-  const wordArray = anyString
-    .replace('.', '')
-    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g);
-  return wordArray?.join('-').toLowerCase() ?? '';
-}
-
-/**
- * Converts kebab-case to CamelCase
- * @param {string} kebabString The input string in kebab-case
- * @returns {string} The same text in camelCase
- */
-export function camelize(kebabString: string): string {
-  return kebabString.replace(/-./g, hyphen => hyphen[1].toUpperCase());
-}
-
-/**
  * Recursively searches for the given class name by traversing all of
  * the given element's parent nodes in the DOM
  * @param {Node} node The current HTML node
@@ -134,34 +112,6 @@ export function hasParentNodeWithClass(
  */
 export function isTouchScreen(): boolean {
   return window.matchMedia('(pointer: coarse)').matches;
-}
-
-/**
- * @param {string} date The date either as a JS Date object or as a string in YYYY-MM-DD format
- * @returns {string} A user-friendly version of the input date
- *
- * Long with time (default): Thursday, January 1, 2024 at 6:00 PM
- * Short with time: Thu, Jan 1, 2024, 6:00 PM
- * Long without time: Thursday, January 1, 2024
- * Short without time: Thu, Jan 1, 2024
- */
-export function formatDate(
-  date: string | Date,
-  length: 'long' | 'short' = 'long',
-  showTime: 'time' | 'no-time' = 'time',
-): string {
-  const today = new Date(date);
-  const formatOptions: any = {
-    weekday: length,
-    year: 'numeric',
-    month: length,
-    day: 'numeric',
-    hour: showTime === 'time' ? 'numeric' : undefined,
-    minute: showTime === 'time' ? 'numeric' : undefined,
-  };
-
-  const temp = new Date(today.getTime()).toLocaleDateString('en-US', formatOptions);
-  return temp;
 }
 
 /**

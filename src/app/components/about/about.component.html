@@ -1,10 +1,11 @@
 <div class="container"
-		 [class.about-screen]="aboutScreen">
+		 [class.about-screen]="isAboutScreen">
 	<section class="welcome-text-section">
 		<p>
-			Welcome to the LCC! The London Chess Club is open to players of all ages and
-			abilities. We host regular blitz and rapid chess tournaments, as well as a variety
-			of lectures, simuls and team competitions (see
+			<span *ngIf="!isAboutScreen">Welcome to the LCC!</span>
+			The London Chess Club is open to players of all ages and abilities. We host regular
+			blitz and rapid chess tournaments, as well as a variety of lectures, simuls and team
+			competitions (see
 			<a class="lcc-link"
 				 [routerLink]="NavPathTypes.SCHEDULE"
 				 (click)="onNavigate(NavPathTypes.SCHEDULE)">

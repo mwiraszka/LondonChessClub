@@ -6,8 +6,9 @@
 	<article class="schedule">
 		<section>
 			<h4>Upcoming events</h4>
-			<lcc-schedule [includeDetails]="false"
-										[limitToUpcoming]="5">
+			<lcc-schedule [allowTogglePastEvents]="false"
+										[includeDetails]="false"
+										[limitToUpcoming]="4">
 			</lcc-schedule>
 		</section>
 		<lcc-link-list [links]="[scheduleLink]"></lcc-link-list>

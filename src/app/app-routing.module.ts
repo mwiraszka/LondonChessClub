@@ -24,6 +24,10 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: NavPathTypes.ABOUT,
+    component: AboutScreenComponent,
+  },
+  {
     path: NavPathTypes.MEMBERS,
     component: MembersScreenComponent,
   },
@@ -76,10 +80,6 @@ const routes: Routes = [
   {
     path: NavPathTypes.PHOTO_GALLERY,
     component: PhotoGalleryScreenComponent,
-  },
-  {
-    path: NavPathTypes.ABOUT,
-    component: AboutScreenComponent,
   },
   {
     path: NavPathTypes.LOGIN,

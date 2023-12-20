@@ -17,6 +17,10 @@
   box-sizing: border-box;
   font-size: $h5;
 
+  &.about-screen {
+    padding: $lcc-space--md;
+  }
+
   @include respond-to('gt-sm') {
     gap: $lcc-space--sm;
     padding: $lcc-space--sm;

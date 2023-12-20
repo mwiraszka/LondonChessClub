@@ -13,6 +13,17 @@
 		</i-feather>
 	</a>
 
+	<a aria-label="About"
+		 routerLinkActive="link-active"
+		 [routerLink]="NavPathTypes.ABOUT"
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'About' : null"
+		 (click)="facade.onSelectAboutTab()">
+		<span class="text">About</span>
+		<i-feather name="info"
+							 class="icon info-icon">
+		</i-feather>
+	</a>
+
 	<a aria-label="Members"
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.MEMBERS"
@@ -65,17 +76,6 @@
 		<span class="text">Photo&nbsp;Gallery</span>
 		<i-feather name="camera"
 							 class="icon camera-icon">
-		</i-feather>
-	</a>
-
-	<a aria-label="About"
-		 routerLinkActive="link-active"
-		 [routerLink]="NavPathTypes.ABOUT"
-		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'About' : null"
-		 (click)="facade.onSelectAboutTab()">
-		<span class="text">About</span>
-		<i-feather name="info"
-							 class="icon info-icon">
 		</i-feather>
 	</a>
 

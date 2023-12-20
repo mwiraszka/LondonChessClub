@@ -24,33 +24,33 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
-    'about'
     'membership'
     'supplies'
     'ratings'
     'parking'
     'rules'
     'tournaments'
-    'leadership';
+    'leadership'
+    'about';
   gap: $lcc-space--xs;
 
   @include respond-to('gt-md') {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      'about about'
       'membership supplies'
       'parking ratings'
       'rules tournaments'
-      'leadership leadership';
+      'leadership leadership'
+      'about about';
   }
 
   @include respond-to('gt-lg') {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
-      'about about about'
       'membership supplies ratings'
       'parking rules tournaments'
-      'leadership leadership leadership';
+      'leadership leadership leadership'
+      'about about about';
   }
 }
 

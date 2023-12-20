@@ -45,7 +45,9 @@ v2.0.0 - December 20th, 2023
 - 🚀 Make adjustments to this README.md prior to v2.0.0 launch
 - 🚀 Move About page to after Home page in the navigation tabs
 - 🚀 Improve About page layout and content
+- 🚀 Display only future events in Schedule by default, with an option to show past events
 
+- 🐛 Fix issue which prevented article banner images from being fetched using secure connection (HTTPS protocol)  
 - 🐛 Correct club event date-time tiemzone calculations which were causing Thursday club event dates to show up as Wednesday
 - 🐛 Fix Angular Service Worker issues when app is running on a production environment
 - 🐛 Fix bug which prevented form validation icon from appearing in Create/Edit Event page

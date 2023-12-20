@@ -17,7 +17,10 @@ export class ScheduleComponent implements OnInit {
   setLocalTime = setLocalTime;
 
   @Input() includeDetails = true;
+  @Input() allowTogglePastEvents = true;
   @Input() limitToUpcoming?: number;
+
+  showPast = false;
 
   addEventLink: Link = {
     path: NavPathTypes.EVENT_ADD,
@@ -31,7 +34,7 @@ export class ScheduleComponent implements OnInit {
     this.facade.isLoading$.subscribe(isLoading => {
       this.loaderService.display(isLoading);
     });
-    this.facade.loadEvents(this.limitToUpcoming ?? null);
+    this.facade.loadEvents();
   }
 
   trackByFn = (index: number, event: ClubEvent) => event.id;

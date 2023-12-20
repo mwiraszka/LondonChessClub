@@ -34,10 +34,7 @@ enum ScheduleActionTypes {
   RESET_EVENT_FORM = '[Schedule] Reset event form',
 }
 
-export const loadEventsStarted = createAction(
-  ScheduleActionTypes.LOAD_EVENTS_STARTED,
-  props<{ limitToUpcoming: number | null }>(),
-);
+export const loadEventsStarted = createAction(ScheduleActionTypes.LOAD_EVENTS_STARTED);
 export const loadEventsSucceeded = createAction(
   ScheduleActionTypes.LOAD_EVENTS_SUCCEEDED,
   props<{ allEvents: ClubEvent[] }>(),

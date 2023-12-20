@@ -18,8 +18,8 @@ export class ScheduleEffects {
   getEvents$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.loadEventsStarted),
-      switchMap(({ limitToUpcoming }) =>
-        this.scheduleService.getEvents(limitToUpcoming).pipe(
+      switchMap(() =>
+        this.scheduleService.getEvents().pipe(
           map((response: ServiceResponse<ClubEvent[]>) =>
             response.error
               ? ScheduleActions.loadEventsFailed({ error: response.error })

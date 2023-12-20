@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { LoaderService } from '@app/services';
 import { ClubEvent, Link, NavPathTypes } from '@app/types';
-import { kebabize } from '@app/utils';
+import { kebabize, setLocalTime } from '@app/utils';
 
 import { ScheduleFacade } from './schedule.facade';
 
@@ -14,6 +14,7 @@ import { ScheduleFacade } from './schedule.facade';
 })
 export class ScheduleComponent implements OnInit {
   kebabize = kebabize;
+  setLocalTime = setLocalTime;
 
   @Input() includeDetails = true;
   @Input() limitToUpcoming?: number;

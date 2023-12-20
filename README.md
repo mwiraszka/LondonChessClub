@@ -42,11 +42,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 v2.0.0 - December 20th, 2023
 </summary>
 
+- 🚀 Make adjustments to this README.md prior to v2.0.0 launch
 - 🚀 Move About page to after Home page in the navigation tabs
 - 🚀 Improve About page layout and content
 
+- 🐛 Correct club event date-time tiemzone calculations which were causing Thursday club event dates to show up as Wednesday
 - 🐛 Fix Angular Service Worker issues when app is running on a production environment
-- 🐛 Fix bug preventing form validation icon from appearing in Create/Edit Event page
+- 🐛 Fix bug which prevented form validation icon from appearing in Create/Edit Event page
+
+- 🔧 Split `utils.ts` into more categorized util files, and leverage `moment.js` library for better date-time calculations  
 
 </details>
 

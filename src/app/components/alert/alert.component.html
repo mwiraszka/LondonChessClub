@@ -4,7 +4,7 @@
 		Next event:
 		<span>{{ upcomingEvent.title }}</span>
 		on
-		<span>{{ setTime(upcomingEvent.eventDate) | formatDate:'short' }}</span>
+		<span>{{ setLocalTime(upcomingEvent.eventDate) | formatDate:'short' }}</span>
 	</p>
 	<div class="alert-controls">
 		<button class="lcc-ghost-button details-button"

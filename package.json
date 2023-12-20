@@ -13,6 +13,7 @@
     "ng": "ng",
     "start": "ng serve -o",
     "build": "ng build",
+    "build:prod": "ng build --configuration production && http-server ./dist",
     "build:stats": "ng build --stats-json && webpack-bundle-analyzer dist/stats.json",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

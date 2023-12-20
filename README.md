@@ -39,6 +39,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v2.0.1 - December 20th, 2023
+</summary>
+
+- 🐛 Use `upgrade-insecure-requests` directive to ensure article images endpoint can be reached via HTTP on both staging and prod environments
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v2.0.0 - December 20th, 2023
 </summary>
 

@@ -39,6 +39,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v2.0.3 - December 21st, 2023
+</summary>
+
+- 🔧 Update `environment.prod.ts` to make API calls via HTTPS when in a production environment
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v2.0.2 - December 20th, 2023
 </summary>
 

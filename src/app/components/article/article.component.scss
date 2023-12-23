@@ -9,7 +9,7 @@
 
   img {
     // Set based on md-breakpoint value of 700px and 3:2 aspect ratio
-    max-height: calc(700px / 1.5);
+    max-height: calc((700px - 16px) / 1.5);
     box-sizing: border-box;
 
     @include respond-to('lt-md') {
@@ -38,17 +38,9 @@
   gap: $lcc-space--md;
   padding: $lcc-space--md;
 
-  .creator-container,
-  .editor-container {
-    display: flex;
-    flex-flow: row nowrap;
-    gap: $lcc-space--sm;
-  }
-
   .creator-container {
     display: flex;
     flex-flow: column nowrap;
-    gap: $lcc-space--xs;
     font-size: $h3;
 
     .date-created {
@@ -57,9 +49,6 @@
   }
 
   .editor-container {
-    display: flex;
-    flex-flow: row nowrap;
-    gap: $lcc-space--sm;
     font-size: $h4;
     
     .updated {

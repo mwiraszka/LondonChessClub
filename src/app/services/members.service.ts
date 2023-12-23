@@ -121,9 +121,17 @@ export class MembersService {
         chesscomUsername: member.chesscomUsername,
         lichessUsername: member.lichessUsername,
         modificationInfo: {
-          dateCreated: new Date(member.dateCreated),
+          dateCreated: new Date(
+            member.dateCreated === '2023-01-01T05:00:00.000Z'
+              ? '2023-01-01T00:00:00.000Z'
+              : member.dateCreated,
+          ),
           createdBy: member.createdBy,
-          dateLastEdited: new Date(member.dateLastEdited),
+          dateLastEdited: new Date(
+            member.dateLastEdited === '2023-01-01T05:00:00.000Z'
+              ? '2023-01-01T00:00:00.000Z'
+              : member.dateLastEdited,
+          ),
           lastEditedBy: member.lastEditedBy,
         },
       };

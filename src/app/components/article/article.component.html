@@ -1,24 +1,25 @@
-<div class="banner-image-container">
-	<img [src]="(article?.imageUrl ?? 'assets/image-placeholder.png') | sanitizeUrl"
-			 alt="Article image banner" />
-	<h2 class="lcc-truncate-max-2-lines">
-		{{ article?.title | truncateByChars:120 }}
-	</h2>
-</div>
-
-<div class="article-details-container h4">
-	<div class="creator-container">
-		<span class="creator-name">
-			{{ article?.modificationInfo?.createdBy }}
-		</span>
-		<span class="date-created">
-			{{ article?.modificationInfo?.dateCreated | formatDate:'short' }}
-		</span>
+<div class="article-container">
+	<div class="banner-image-container">
+		<img [src]="(article?.imageUrl ?? 'assets/image-placeholder.png') | sanitizeUrl"
+				 alt="Article image banner" />
+		<h2 class="lcc-truncate-max-2-lines">
+			{{ article?.title | truncateByChars:120 }}
+		</h2>
 	</div>
 
-	<div class="editor-container">
+	<div class="article-details-container h4">
+		<div class="creator-container">
+			<span class="creator-name">
+				{{ article?.modificationInfo?.createdBy }}
+			</span>
+			<span class="date-created">
+				{{ article?.modificationInfo?.dateCreated | formatDate:'short' }}
+			</span>
+		</div>
+
 		<div *ngIf="article?.modificationInfo?.dateLastEdited?.getTime()
-                  !== article?.modificationInfo?.dateCreated?.getTime()">
+                  !== article?.modificationInfo?.dateCreated?.getTime()"
+				 class="editor-container">
 			<span class="updated">last updated</span>
 			<span class="editor-name">
 				{{ article?.modificationInfo?.lastEditedBy }}
@@ -29,12 +30,10 @@
 			</span>
 		</div>
 	</div>
-</div>
 
-<hr />
+	<hr />
 
-<div class="markdown-container">
-	<lcc-markdown-renderer screen="viewer"
-												 [data]="article?.body">
-	</lcc-markdown-renderer>
+	<div class="markdown-container">
+		<lcc-markdown-renderer [data]="article?.body"></lcc-markdown-renderer>
+	</div>
 </div>

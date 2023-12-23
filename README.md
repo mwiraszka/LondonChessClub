@@ -39,11 +39,13 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v2.0.4 - December 22nd, 2023
+v2.0.4 - December 23rd, 2023
 </summary>
 
 - 🐛 Fix some layout issues on Article Viewer screen
 - 🐛 Fix timezone of default 'created by' & 'last edited by' dates for member edits when value is not found in database
+
+- 🔧 Revert table width hacks in Markdown Renderer component now that layout has been corrected
 
 </details>
 

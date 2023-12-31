@@ -430,7 +430,6 @@ export class ToasterEffects {
   expireToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ToasterActions.toastAdded),
-      filter(({ toast }) => toast.type !== ToastTypes.WARNING),
       delay(5000),
       map(({ toast }) => ToasterActions.toastExpired({ toast })),
     );

@@ -39,6 +39,20 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v2.1.0 - December 31st, 2023
+</summary>
+
+- 🚀 Add support for 'sticky' articles, allowing admins to bump up selected articles to the top of the list
+- 🚀 Auto-expire warning toasts (red notifications in bottom-left of screen) just as with success toasts
+- 🚀 Navigate to home page when clicking on either London Chess Club logo or text in main app header, and always in the current browser tab
+
+- 🐛 Fix bug causing unsaved changes dialog from appearing when editing an article, even when it was returned to its original state
+- 🐛 Fix some broken links on the About page, and make sure they open up in a new tab when expected
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v2.0.4 - December 23rd, 2023
 </summary>
 

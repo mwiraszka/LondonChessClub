@@ -14,6 +14,10 @@
 			</lcc-admin-controls>
 		</ng-container>
 
+		<i-feather *ngIf="article.isSticky"
+							 class="sticky-icon"
+							 name="star">
+		</i-feather>
 		<img class="article-thumbnail-image"
 				 [src]="(article?.thumbnailImageUrl ?? 'assets/image-placeholder.png') | sanitizeUrl"
 				 alt="Article banner image" />

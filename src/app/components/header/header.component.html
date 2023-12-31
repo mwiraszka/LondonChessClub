@@ -1,8 +1,10 @@
 <div class="app-header-container">
 	<img src="assets/lcc-branding.svg"
-			 alt="LCC branding" />
-	<a href="https://londonchess.ca"
-		 target="_blank">
+			 alt="LCC branding"
+			 [routerLink]="NavPathTypes.HOME"
+			 (click)="onNavigate(NavPathTypes.HOME)" />
+	<a [routerLink]="NavPathTypes.HOME"
+		 (click)="onNavigate(NavPathTypes.HOME)">
 		London Chess Club
 	</a>
 </div>

@@ -1,5 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
+import { Article } from '@app/types';
 import { customSort } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
@@ -14,9 +15,7 @@ const articlesReducer = createReducer(
 
   on(ArticlesActions.loadArticlesSucceeded, (state, action) => ({
     ...state,
-    articles: [...action.allArticles].sort(
-      customSort('modificationInfo.dateCreated', false),
-    ),
+    articles: getSortedArtices(action.allArticles),
     isLoading: false,
   })),
 
@@ -93,4 +92,15 @@ const articlesReducer = createReducer(
 
 export function reducer(state: ArticlesState, action: Action): ArticlesState {
   return articlesReducer(state, action);
+}
+
+// TODO: Add support for booleans in customSort function and refactor to be more efficient/performant
+function getSortedArtices(articles: Article[]): Article[] {
+  const stickyArticles = [...articles.filter(article => article.isSticky)].sort(
+    customSort('modificationInfo.dateCreated', false),
+  );
+  const remainingArticles = [...articles.filter(article => !article.isSticky)].sort(
+    customSort('modificationInfo.dateCreated', false),
+  );
+  return [...stickyArticles, ...remainingArticles];
 }

@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { Article } from '@app/types';
+import { isEmpty } from '@app/utils';
 
 @Injectable()
 export class ArticleFormFacade {
@@ -43,6 +44,9 @@ export class ArticleFormFacade {
   }
 
   onValueChange(article: Article): void {
+    if (isEmpty(article.imageFile)) {
+      article = { ...article, imageFile: null };
+    }
     this.store.dispatch(ArticlesActions.formDataChanged({ article }));
   }
 }

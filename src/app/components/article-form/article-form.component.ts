@@ -90,6 +90,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
       imageId: [article.imageId],
       imageUrl: [article.imageUrl],
       thumbnailImageUrl: [article.thumbnailImageUrl],
+      isSticky: [article.isSticky],
       modificationInfo: [article.modificationInfo],
     });
 

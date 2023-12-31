@@ -54,6 +54,14 @@ lcc-link-list,
       border-radius: $lcc-border-radius--lg;
     }
 
+    .sticky-icon {
+      position: absolute;
+      margin: $lcc-space--xs;
+      color: transparentize($lcc-color--white, 0.1);
+      height: 18px;
+      width: 18px;
+    }
+
     .article-summary-container {
       display: flex;
       flex-flow: column nowrap;

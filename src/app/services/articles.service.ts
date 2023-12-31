@@ -136,6 +136,7 @@ export class ArticlesService {
         imageId: article.imageId,
         imageUrl: null,
         thumbnailImageUrl: null,
+        isSticky: article?.isSticky,
         modificationInfo: {
           dateCreated: new Date(article.dateCreated),
           createdBy: article.createdBy,
@@ -156,6 +157,7 @@ export class ArticlesService {
         imageId: article.imageId,
         imageUrl: article.imageUrl,
         thumbnailImageUrl: article.thumbnailImageUrl,
+        isSticky: article.isSticky,
         dateCreated: article.modificationInfo!.dateCreated.toISOString(),
         createdBy: article.modificationInfo!.createdBy,
         dateLastEdited: article.modificationInfo!.dateLastEdited.toISOString(),

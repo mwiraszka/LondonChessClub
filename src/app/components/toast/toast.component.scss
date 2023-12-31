@@ -24,7 +24,7 @@
 
   &.toast-warning {
     background-color: $lcc-color--warn;
-    // No fade out animation since warning-type toasts do not auto-expire
+    @include fadeoutAnimation();
   }
 
   &.toast-info {

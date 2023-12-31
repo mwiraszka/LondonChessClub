@@ -8,6 +8,7 @@ export interface Article {
   imageId: string | null;
   imageUrl: string | null;
   thumbnailImageUrl: string | null;
+  isSticky: boolean | string; // Stored as a string in DynamoDB
   modificationInfo: ModificationInfo | null;
 }
 
@@ -19,6 +20,7 @@ export const newArticleFormTemplate: Article = {
   imageId: null,
   imageUrl: null,
   thumbnailImageUrl: null,
+  isSticky: false,
   modificationInfo: null,
 };
 
@@ -31,6 +33,7 @@ export interface FlatArticle {
   imageId: string | null;
   imageUrl: string | null;
   thumbnailImageUrl: string | null;
+  isSticky: boolean | string; // Stored as a string in DynamoDB
   dateCreated: string;
   createdBy: string;
   dateLastEdited: string;

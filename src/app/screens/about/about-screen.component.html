@@ -40,7 +40,10 @@
 				We use our own London & Region rating system, managed by Gerry Litchfield. Current
 				ratings can be found
 				<a class="lcc-link"
-					 (click)="facade.onNavigate(NavPathTypes.MEMBERS)">here</a>.
+					 [routerLink]="NavPathTypes.MEMBERS"
+					 (click)="onNavigate(NavPathTypes.MEMBERS)">
+					here
+				</a>.
 			</p>
 		</article>
 
@@ -48,9 +51,11 @@
 			<h3>Rules of the Game</h3>
 			<p>
 				For tournaments we generally follow the
-				<a class="lcc-link"
-					 (click)="facade.onNavigate('https://handbook.fide.com/chapter/E012018')">
-					laws of chess</a>, set by the International Chess Federation (FIDE). Notable
+				<a href="https://handbook.fide.com/chapter/E012018"
+					 class="lcc-link"
+					 target="_blank">
+					laws of chess
+				</a>, set by the International Chess Federation (FIDE). Notable
 				differences are the <i>touch-move</i> rule: we enforce touch-move during rated
 				rapid tournaments but <i>clock-move</i> for our casual blitz tournaments.
 			</p>
@@ -75,7 +80,10 @@
 			<p>
 				See
 				<a class="lcc-link"
-					 (click)="facade.onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
+					 [routerLink]="NavPathTypes.SCHEDULE"
+					 (click)="onNavigate(NavPathTypes.SCHEDULE)">
+					schedule
+				</a>
 				for a list of upcoming events.
 			</p>
 		</article>
@@ -139,7 +147,10 @@
 				past year, review the club's finances, and elect any new board & committee members
 				for the following year. All club members are invited to attend the AGM &ndash; see
 				<a class="lcc-link"
-					 (click)="facade.onNavigate(NavPathTypes.SCHEDULE)">schedule</a>
+					 [routerLink]="NavPathTypes.SCHEDULE"
+					 (click)="onNavigate(NavPathTypes.SCHEDULE)">
+					schedule
+				</a>
 				for exact dates.
 			</p>
 		</article>

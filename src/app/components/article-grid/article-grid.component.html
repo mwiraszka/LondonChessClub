@@ -8,8 +8,8 @@
 		 class="lcc-admin-controls-container article"
 		 [routerLink]="'/' + NavPathTypes.ARTICLE_VIEW + '/' + article.id">
 		<ng-container *ngIf="facade.isAdmin$ | async">
-			<lcc-admin-controls [itemName]="article.title"
-													(edit)="facade.onEditArticle(article)"
+			<lcc-admin-controls [editPath]="'/' + NavPathTypes.ARTICLE_EDIT + '/' + article.id"
+													[itemName]="article.title"
 													(delete)="facade.onDeleteArticle(article)">
 			</lcc-admin-controls>
 		</ng-container>

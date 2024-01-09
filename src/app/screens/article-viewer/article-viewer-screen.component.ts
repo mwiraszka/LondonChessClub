@@ -11,6 +11,8 @@ import { ArticleViewerScreenFacade } from './article-viewer-screen.facade';
   providers: [ArticleViewerScreenFacade],
 })
 export class ArticleViewerScreenComponent {
+  NavPathTypes = NavPathTypes;
+
   links: Link[] = [
     {
       path: NavPathTypes.NEWS,

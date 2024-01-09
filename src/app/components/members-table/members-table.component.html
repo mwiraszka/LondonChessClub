@@ -33,9 +33,9 @@
 				[ngClass]="{'last-row': last}"
 				[class.inactive]="!member.isActive">
 			<lcc-admin-controls *ngIf="facade.isAdmin$ | async"
+													[editPath]="'/' + NavPathTypes.MEMBER_EDIT + '/' + member.id"
 													[height]="31"
 													[itemName]="member.firstName ?? ''"
-													(edit)="facade.onEditMember(member)"
 													(delete)="facade.onDeleteMember(member)">
 			</lcc-admin-controls>
 			<td class="row-number">{{ i + ((facade.startIndex$ | async) ?? 0) + 1 }}</td>

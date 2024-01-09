@@ -45,6 +45,7 @@ v2.2.0 - January 9th, 2024
 - 🚀 Add ability to open any linkable item in a new tab by ctrl-clicking, and also display URL in browser on hover (previously was only possible on certain standard text links)
 - 🚀 Various minor improvements to admin user dropdown component
 - 🚀 Scroll to top of page after toggling past events in the Schedule screen
+- 🚀 Brief update on 2023 Championship Match (more details and photos to follow)
 
 - 🔧 Refactor navigation logic throughout app to make better use of Angular's routing features
 

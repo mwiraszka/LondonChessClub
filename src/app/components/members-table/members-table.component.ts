@@ -13,6 +13,7 @@ import { MembersTableFacade } from './members-table.facade';
   providers: [MembersTableFacade],
 })
 export class MembersTableComponent implements OnInit {
+  NavPathTypes = NavPathTypes;
   camelize = camelize;
   kebabize = kebabize;
 

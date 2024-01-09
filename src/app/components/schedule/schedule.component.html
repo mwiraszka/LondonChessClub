@@ -18,8 +18,8 @@
 				[class.next-event]="event.id === (facade.nextEventId$ | async)"
 				[ngClass]="{'last-row': last}">
 			<lcc-admin-controls *ngIf="facade.isAdmin$ | async"
+													[editPath]="'/' + NavPathTypes.EVENT_EDIT + '/' + event.id"
 													[itemName]="event.title"
-													(edit)="facade.onEditEvent(event)"
 													(delete)="facade.onDeleteEvent(event)">
 			</lcc-admin-controls>
 			<td class="date">{{ setLocalTime(event.eventDate) | formatDate:'long':'no-time' }}

@@ -13,6 +13,7 @@ import { ScheduleFacade } from './schedule.facade';
   providers: [ScheduleFacade],
 })
 export class ScheduleComponent implements OnInit {
+  NavPathTypes = NavPathTypes;
   kebabize = kebabize;
   setLocalTime = setLocalTime;
 

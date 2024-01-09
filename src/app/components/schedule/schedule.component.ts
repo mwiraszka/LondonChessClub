@@ -13,6 +13,7 @@ import { ScheduleFacade } from './schedule.facade';
   providers: [ScheduleFacade],
 })
 export class ScheduleComponent implements OnInit {
+  NavPathTypes = NavPathTypes;
   kebabize = kebabize;
   setLocalTime = setLocalTime;
 
@@ -38,4 +39,13 @@ export class ScheduleComponent implements OnInit {
   }
 
   trackByFn = (index: number, event: ClubEvent) => event.id;
+
+  onShowHidePastEvents(): void {
+    this.showPast = !this.showPast;
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
 }

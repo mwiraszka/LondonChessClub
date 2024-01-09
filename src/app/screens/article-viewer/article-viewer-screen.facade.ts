@@ -14,10 +14,6 @@ export class ArticleViewerScreenFacade {
 
   constructor(private readonly store: Store) {}
 
-  onEdit(article: Article): void {
-    this.store.dispatch(ArticlesActions.editArticleSelected({ articleToEdit: article }));
-  }
-
   onDelete(article: Article): void {
     this.store.dispatch(
       ArticlesActions.deleteArticleSelected({ articleToDelete: article }),

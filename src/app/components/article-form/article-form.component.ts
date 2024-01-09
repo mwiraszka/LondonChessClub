@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoaderService } from '@app/services';
@@ -11,13 +12,14 @@ import { imageSizeValidator } from '@app/validators';
 
 import { ArticleFormFacade } from './article-form.facade';
 
+@UntilDestroy()
 @Component({
   selector: 'lcc-article-form',
   templateUrl: './article-form.component.html',
   styleUrls: ['./article-form.component.scss'],
   providers: [ArticleFormFacade],
 })
-export class ArticleFormComponent implements OnInit, OnDestroy {
+export class ArticleFormComponent implements OnInit {
   form!: FormGroup;
   modificationInfo!: ModificationInfo | null;
   previewImageUrl!: Url | null;
@@ -37,10 +39,6 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
       this.modificationInfo = article.modificationInfo;
       this.loaderService.display(false);
     });
-  }
-
-  ngOnDestroy(): void {
-    this.valueChangesSubscription.unsubscribe();
   }
 
   hasError(control: AbstractControl): boolean {
@@ -98,7 +96,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     this.form.controls['imageFile'].patchValue({});
 
     this.valueChangesSubscription = this.form.valueChanges
-      .pipe(debounceTime(200))
+      .pipe(debounceTime(200), untilDestroyed(this))
       .subscribe((formData: Article) => this.facade.onValueChange(formData));
   }
 }

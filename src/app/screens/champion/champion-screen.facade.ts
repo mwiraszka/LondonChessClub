@@ -9,6 +9,6 @@ export class ChampionScreenFacade {
   constructor(private readonly store: Store) {}
 
   onNavigate(path: string): void {
-    this.store.dispatch(NavActions.linkSelected({ path }));
+    this.store.dispatch(NavActions.navigationRequested({ path }));
   }
 }

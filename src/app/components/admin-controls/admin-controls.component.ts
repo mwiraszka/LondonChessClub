@@ -8,17 +8,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class AdminControlsComponent {
   @Input() height = 28;
   @Input() itemName = '';
+  @Input() editPath = '';
 
   @Output() delete = new EventEmitter<void>();
-  @Output() edit = new EventEmitter<void>();
-
-  onEdit(event: MouseEvent): void {
-    event.stopPropagation();
-    this.edit.emit();
-  }
 
   onDelete(event: MouseEvent): void {
     event.stopPropagation();
+    event.preventDefault();
     this.delete.emit();
   }
 }

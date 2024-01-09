@@ -1,7 +1,8 @@
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Subscription } from 'rxjs';
 import { debounceTime, first, tap } from 'rxjs/operators';
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoaderService } from '@app/services';
@@ -16,13 +17,14 @@ import {
 
 import { MemberFormFacade } from './member-form.facade';
 
+@UntilDestroy()
 @Component({
   selector: 'lcc-member-form',
   templateUrl: './member-form.component.html',
   styleUrls: ['./member-form.component.scss'],
   providers: [MemberFormFacade],
 })
-export class MemberFormComponent implements OnInit, OnDestroy {
+export class MemberFormComponent implements OnInit {
   form!: FormGroup;
   memberFullName!: string;
   modificationInfo!: ModificationInfo | null;
@@ -45,10 +47,6 @@ export class MemberFormComponent implements OnInit, OnDestroy {
         first(),
       )
       .subscribe();
-  }
-
-  ngOnDestroy(): void {
-    this.valueChangesSubscription.unsubscribe();
   }
 
   hasError(control: AbstractControl): boolean {
@@ -114,7 +112,7 @@ export class MemberFormComponent implements OnInit, OnDestroy {
     });
 
     this.valueChangesSubscription = this.form.valueChanges
-      .pipe(debounceTime(200))
+      .pipe(debounceTime(200), untilDestroyed(this))
       .subscribe((member: Member) => this.facade.onValueChange(member));
   }
 }

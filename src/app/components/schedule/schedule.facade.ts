@@ -20,10 +20,6 @@ export class ScheduleFacade {
     this.store.dispatch(ScheduleActions.loadEventsStarted());
   }
 
-  onEditEvent(eventToEdit: ClubEvent): void {
-    this.store.dispatch(ScheduleActions.editEventSelected({ eventToEdit }));
-  }
-
   onDeleteEvent(eventToDelete: ClubEvent): void {
     this.store.dispatch(ScheduleActions.deleteEventSelected({ eventToDelete }));
   }

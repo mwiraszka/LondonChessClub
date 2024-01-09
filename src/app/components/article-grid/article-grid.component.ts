@@ -12,6 +12,8 @@ import { ArticleGridFacade } from './article-grid.facade';
   providers: [ArticleGridFacade],
 })
 export class ArticleGridComponent implements OnInit {
+  readonly NavPathTypes = NavPathTypes;
+
   @Input() maxArticles?: number;
 
   createArticleLink: Link = {

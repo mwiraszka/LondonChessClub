@@ -12,8 +12,4 @@ export class LoginFormFacade {
   onLogin(request: LoginRequest): void {
     this.store.dispatch(AuthActions.loginRequested({ request }));
   }
-
-  onForgotPassword(): void {
-    this.store.dispatch(AuthActions.forgotPasswordSelected());
-  }
 }

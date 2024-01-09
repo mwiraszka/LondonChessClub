@@ -86,6 +86,10 @@ const routes: Routes = [
     component: LoginScreenComponent,
   },
   {
+    path: NavPathTypes.LOGOUT,
+    redirectTo: NavPathTypes.LOGIN,
+  },
+  {
     path: NavPathTypes.CHANGE_PASSWORD,
     component: ChangePasswordScreenComponent,
   },

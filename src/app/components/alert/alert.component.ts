@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
+import { NavPathTypes } from '@app/types';
 import { setLocalTime } from '@app/utils';
 
 import { AlertFacade } from './alert.facade';
@@ -12,6 +13,7 @@ import { AlertFacade } from './alert.facade';
 })
 export class AlertComponent {
   setLocalTime = setLocalTime;
+  NavPathTypes = NavPathTypes;
 
   @Output() close = new EventEmitter<void>();
 

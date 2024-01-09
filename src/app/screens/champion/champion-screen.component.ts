@@ -35,13 +35,12 @@ export class ChampionScreenComponent {
   pastChampionships: Array<{ year: number; winner: string; style?: string }> = [
     {
       year: 2023,
-      winner: '(Currently underway)',
-      style: 'font-style: italic;',
+      winner: 'Serhii Ivanchuk',
+      style: 'font-weight: bold;',
     },
     {
       year: 2022,
       winner: 'Geoffrey Ruelland',
-      style: 'font-weight: bold;',
     },
     {
       year: 2021,

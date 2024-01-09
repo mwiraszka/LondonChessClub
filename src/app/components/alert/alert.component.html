@@ -7,10 +7,10 @@
 		<span>{{ setLocalTime(upcomingEvent.eventDate) | formatDate:'short' }}</span>
 	</p>
 	<div class="alert-controls">
-		<button class="lcc-ghost-button details-button"
-						(click)="facade.onDetails()">
+		<a class="lcc-ghost-button details-button"
+			 [routerLink]="NavPathTypes.SCHEDULE">
 			Details
-		</button>
+		</a>
 		<i-feather name="x"
 							 class="close-icon"
 							 (click)="close.emit()">

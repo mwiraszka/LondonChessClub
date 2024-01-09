@@ -3,13 +3,13 @@
 </ng-container>
 
 <div class="articles-container">
-	<article *ngFor="let article of (facade.articles$ | async)?.slice(0, maxArticles ?? (facade.articles$ | async)?.length);
+	<a *ngFor="let article of (facade.articles$ | async)?.slice(0, maxArticles ?? (facade.articles$ | async)?.length);
                      trackBy: trackByFn"
-					 class="lcc-admin-controls-container"
-					 (click)="facade.onSelectArticle(article)">
+		 class="lcc-admin-controls-container article"
+		 [routerLink]="'/' + NavPathTypes.ARTICLE_VIEW + '/' + article.id">
 		<ng-container *ngIf="facade.isAdmin$ | async">
-			<lcc-admin-controls [itemName]="article.title"
-													(edit)="facade.onEditArticle(article)"
+			<lcc-admin-controls [editPath]="'/' + NavPathTypes.ARTICLE_EDIT + '/' + article.id"
+													[itemName]="article.title"
 													(delete)="facade.onDeleteArticle(article)">
 			</lcc-admin-controls>
 		</ng-container>
@@ -40,5 +40,5 @@
 				</div>
 			</div>
 		</div>
-	</article>
+	</a>
 </div>

@@ -11,6 +11,11 @@ export const membersFeatureSelector = createFeatureSelector<MembersState>(
 
 export const members = createSelector(membersFeatureSelector, state => state.members);
 
+export const memberById = (id: string) =>
+  createSelector(members, allMembers => {
+    return allMembers ? allMembers.find(member => member.id === id) : null;
+  });
+
 export const activeMembers = createSelector(membersFeatureSelector, state =>
   state.members.filter(member => member.isActive),
 );

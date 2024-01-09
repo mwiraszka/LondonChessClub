@@ -11,6 +11,11 @@ export const articlesFeatureSelector = createFeatureSelector<ArticlesState>(
 
 export const articles = createSelector(articlesFeatureSelector, state => state.articles);
 
+export const articleById = (id: string) =>
+  createSelector(articles, allArticles => {
+    return allArticles ? allArticles.find(article => article.id === id) : null;
+  });
+
 export const selectedArticle = createSelector(
   articlesFeatureSelector,
   state => state.selectedArticle,

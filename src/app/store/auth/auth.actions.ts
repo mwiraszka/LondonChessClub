@@ -36,9 +36,6 @@ export const loginFailed = createAction(
 export const logoutRequested = createAction(AuthActionTypes.LOGOUT_REQUESTED);
 export const logoutSucceeded = createAction(AuthActionTypes.LOGOUT_SUCCEEDED);
 
-export const forgotPasswordSelected = createAction(
-  AuthActionTypes.FORGOT_PASSWORD_SELECTED,
-);
 export const requestNewCodeSelected = createAction(
   AuthActionTypes.REQUEST_NEW_CODE_SELECTED,
 );

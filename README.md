@@ -39,11 +39,12 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v2.2.0 - January 5th, 2024
+v2.2.0 - January 9th, 2024
 </summary>
 
 - 🚀 Add ability to open any linkable item in a new tab by ctrl-clicking, and also display URL in browser on hover (previously was only possible on certain standard text links)
 - 🚀 Various minor improvements to admin user dropdown component
+- 🚀 Scroll to top of page after toggling past events in the Schedule screen
 
 - 🔧 Refactor navigation logic throughout app to make better use of Angular's routing features
 

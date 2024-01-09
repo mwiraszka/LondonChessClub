@@ -55,6 +55,6 @@
 
 <button *ngIf="allowTogglePastEvents"
 				class="lcc-raised-button toggle-past-events-button"
-				(click)="showPast = !showPast">
+				(click)="onShowHidePastEvents()">
 	{{ showPast ? 'Hide' : 'Show' }} past events
 </button>

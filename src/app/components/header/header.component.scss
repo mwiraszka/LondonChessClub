@@ -17,21 +17,18 @@
   justify-content: flex-start;
   align-items: center;
   gap: $lcc-space--md;
-  padding: $lcc-space--sm calc(#{$lcc-space--md} - 2px);
+  padding: $lcc-space--sm $lcc-space--md;
   width: $lcc-width--app-content;
 
-  // Account for changing icon padding values in Nav below
-  @include respond-to('gt-sm') {
-    padding: $lcc-space--sm $lcc-space--md;
-  }
-
-  @include respond-to('gt-xl') {
-    // padding: $lcc-space--sm;
-  }
-
   img {
-    height: 60px;
-    width: 60px;
+    height: 40px;
+    width: 40px;
+
+    @include respond-to('gt-sm') {
+      height: 60px;
+      width: 60px;
+    }
+
     background: darken($lcc-color--white, 8%);
     border-radius: 50%;
     padding: 3px;
@@ -44,8 +41,12 @@
 
   a {
     color: darken($lcc-color--white, 8%);
-    font-size: $h1;
     white-space: nowrap;
+    font-size: $h2;
+
+    @include respond-to('gt-sm') {
+      font-size: $h1;
+    }
   
     &:hover {
       text-decoration: none;

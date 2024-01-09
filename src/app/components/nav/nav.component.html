@@ -5,8 +5,7 @@
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.HOME"
 		 [routerLinkActiveOptions]="{ exact: true }"
-		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Home' : null"
-		 (click)="facade.onSelectHomeTab()">
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Home' : null">
 		<span class="text">Home</span>
 		<i-feather name="home"
 							 class="icon home-icon">
@@ -16,8 +15,7 @@
 	<a aria-label="About"
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.ABOUT"
-		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'About' : null"
-		 (click)="facade.onSelectAboutTab()">
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'About' : null">
 		<span class="text">About</span>
 		<i-feather name="info"
 							 class="icon info-icon">
@@ -27,8 +25,7 @@
 	<a aria-label="Members"
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.MEMBERS"
-		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Members' : null"
-		 (click)="facade.onSelectMembersTab()">
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Members' : null">
 		<span class="text">Members</span>
 		<i-feather name="users"
 							 class="icon users-icon">
@@ -38,8 +35,7 @@
 	<a aria-label="Schedule"
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.SCHEDULE"
-		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Schedule' : null"
-		 (click)="facade.onSelectScheduleTab()">
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Schedule' : null">
 		<span class="text">Schedule</span>
 		<i-feather name="calendar"
 							 class="icon calendar-icon">
@@ -49,8 +45,7 @@
 	<a aria-label="News"
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.NEWS"
-		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'News' : null"
-		 (click)="facade.onSelectNewsTab()">
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'News' : null">
 		<span class="text">News</span>
 		<i-feather name="activity"
 							 class="icon activity-icon">
@@ -60,8 +55,7 @@
 	<a aria-label="City Champion"
 		 [routerLink]="NavPathTypes.CITY_CHAMPION"
 		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'City Champion' : null"
-		 routerLinkActive="link-active"
-		 (click)="facade.onSelectCityChampionTab()">
+		 routerLinkActive="link-active">
 		<span class="text">City&nbsp;Champion</span>
 		<i-feather name="award"
 							 class="icon award-icon">
@@ -71,8 +65,7 @@
 	<a aria-label="Photo Gallery"
 		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.PHOTO_GALLERY"
-		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Photo Gallery' : null"
-		 (click)="facade.onSelectPhotoGalleryTab()">
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Photo Gallery' : null">
 		<span class="text">Photo&nbsp;Gallery</span>
 		<i-feather name="camera"
 							 class="icon camera-icon">
@@ -86,12 +79,13 @@
 		<i-feather name="user"
 							 class="icon user-icon">
 		</i-feather>
-		<i-feather [name]="isDropdownOpen ? 'chevron-up' : 'chevron-down'"
+		<i-feather [name]="isDropdownOpen ? 'chevron-down' : 'chevron-up'"
 							 class="icon chevron-icon">
 		</i-feather>
 
-		<div class="user-dropdown"
-				 dropdown>
+		<div class="lcc-dropdown user-dropdown"
+				 dropdown
+				 (opened)="isDropdownOpen = $event">
 			<div class="admin-welcome-container">
 				<i-feather name="user"
 									 class="icon admin-user-icon">
@@ -101,8 +95,8 @@
 				</span>
 			</div>
 			<ul class="dropdown-items">
-				<li (click)="facade.onChangePassword()">Change password</li>
-				<li (click)="facade.onLogOut()">Log out</li>
+				<a [routerLink]="NavPathTypes.CHANGE_PASSWORD">Change password</a>
+				<a [routerLink]="NavPathTypes.LOGOUT">Log out</a>
 			</ul>
 		</div>
 	</div>
@@ -112,8 +106,7 @@
 			 aria-label="Admin Login"
 			 routerLinkActive="link-active"
 			 [routerLink]="NavPathTypes.LOGIN"
-			 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Log in as admin' : null"
-			 (click)="facade.onSelectLoginTab()">
+			 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Log in as admin' : null">
 			<span class="text">Admin Login</span>
 			<i-feather name="user"
 								 class="icon user-icon">

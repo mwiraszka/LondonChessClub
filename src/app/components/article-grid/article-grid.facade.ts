@@ -18,10 +18,6 @@ export class ArticleGridFacade {
     this.store.dispatch(ArticlesActions.loadArticlesStarted());
   }
 
-  onSelectArticle(article: Article): void {
-    this.store.dispatch(ArticlesActions.articleSelected({ article }));
-  }
-
   onEditArticle(article: Article): void {
     this.store.dispatch(ArticlesActions.editArticleSelected({ articleToEdit: article }));
   }

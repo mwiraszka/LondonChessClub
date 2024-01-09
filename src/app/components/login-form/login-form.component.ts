@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 
 import { LoaderService } from '@app/services';
+import { NavPathTypes } from '@app/types';
 import { emailValidator } from '@app/validators';
 
 import { LoginFormFacade } from './login-form.facade';
@@ -19,6 +20,7 @@ import { LoginFormFacade } from './login-form.facade';
   providers: [LoginFormFacade],
 })
 export class LoginFormComponent implements OnInit {
+  NavPathTypes = NavPathTypes;
   form!: FormGroup;
 
   constructor(
@@ -56,8 +58,6 @@ export class LoginFormComponent implements OnInit {
       return;
     }
 
-    this.loaderService.display(true);
     this.facade.onLogin(this.form.value);
-    setTimeout(() => this.loaderService.display(false), 1000);
   }
 }

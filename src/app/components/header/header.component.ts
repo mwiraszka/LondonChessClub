@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { NavPathTypes } from '@app/types';
 
@@ -10,10 +9,4 @@ import { NavPathTypes } from '@app/types';
 })
 export class HeaderComponent {
   NavPathTypes = NavPathTypes;
-
-  constructor(private router: Router) {}
-
-  onNavigate(path: NavPathTypes): void {
-    this.router.navigate([path]);
-  }
 }

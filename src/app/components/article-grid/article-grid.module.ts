@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { AdminControlsModule } from '@app/components/admin-controls';
 import { LinkListModule } from '@app/components/link-list';
@@ -17,6 +18,7 @@ import { ArticleGridComponent } from './article-grid.component';
     IconsModule,
     LinkListModule,
     PipesModule,
+    RouterModule,
     TooltipModule,
   ],
   exports: [ArticleGridComponent],

@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Subscription } from 'rxjs';
 import { debounceTime, first, tap } from 'rxjs/operators';
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoaderService } from '@app/services';
@@ -11,13 +12,14 @@ import { dateValidator } from '@app/validators';
 
 import { EventFormFacade } from './event-form.facade';
 
+@UntilDestroy()
 @Component({
   selector: 'lcc-event-form',
   templateUrl: './event-form.component.html',
   styleUrls: ['./event-form.component.scss'],
   providers: [EventFormFacade],
 })
-export class EventFormComponent implements OnInit, OnDestroy {
+export class EventFormComponent implements OnInit {
   form!: FormGroup;
   modificationInfo!: ModificationInfo | null;
   valueChangesSubscription!: Subscription;
@@ -39,10 +41,6 @@ export class EventFormComponent implements OnInit, OnDestroy {
         first(),
       )
       .subscribe();
-  }
-
-  ngOnDestroy(): void {
-    this.valueChangesSubscription.unsubscribe();
   }
 
   hasError(control: AbstractControl): boolean {
@@ -84,7 +82,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
     });
 
     this.valueChangesSubscription = this.form.valueChanges
-      .pipe(debounceTime(200))
+      .pipe(debounceTime(200), untilDestroyed(this))
       .subscribe((event: ClubEvent) => this.facade.onValueChange(event));
   }
 }

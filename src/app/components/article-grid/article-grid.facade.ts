@@ -18,10 +18,6 @@ export class ArticleGridFacade {
     this.store.dispatch(ArticlesActions.loadArticlesStarted());
   }
 
-  onEditArticle(article: Article): void {
-    this.store.dispatch(ArticlesActions.editArticleSelected({ articleToEdit: article }));
-  }
-
   onDeleteArticle(article: Article): void {
     this.store.dispatch(
       ArticlesActions.deleteArticleSelected({ articleToDelete: article }),

@@ -1,6 +1,7 @@
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Subscription } from 'rxjs';
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -22,13 +23,14 @@ import {
 
 import { ChangePasswordFormFacade } from './change-password-form.facade';
 
+@UntilDestroy()
 @Component({
   selector: 'lcc-change-password-form',
   templateUrl: './change-password-form.component.html',
   styleUrls: ['./change-password-form.component.scss'],
   providers: [ChangePasswordFormFacade],
 })
-export class ChangePasswordFormComponent implements OnInit, OnDestroy {
+export class ChangePasswordFormComponent implements OnInit {
   PASSWORD_VALIDATORS: ValidatorFn[] = [
     Validators.required,
     Validators.minLength(8),
@@ -58,17 +60,13 @@ export class ChangePasswordFormComponent implements OnInit, OnDestroy {
       ]),
     });
 
-    this.passwordValueChangeSubscription = this.form.controls[
-      'newPassword'
-    ].valueChanges.subscribe(() => {
-      this.form.controls['confirmPassword'].updateValueAndValidity();
-    });
+    this.passwordValueChangeSubscription = this.form.controls['newPassword'].valueChanges
+      .pipe(untilDestroyed(this))
+      .subscribe(() => {
+        this.form.controls['confirmPassword'].updateValueAndValidity();
+      });
 
     this.facade.userHasCode$.subscribe(hasCode => (this.userHasCode = hasCode));
-  }
-
-  ngOnDestroy(): void {
-    this.passwordValueChangeSubscription.unsubscribe();
   }
 
   hasError(control: AbstractControl): boolean {

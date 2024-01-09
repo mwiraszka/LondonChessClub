@@ -29,10 +29,6 @@ export class MembersTableFacade {
     this.store.dispatch(MembersActions.loadMembersStarted());
   }
 
-  onEditMember(memberToEdit: Member): void {
-    this.store.dispatch(MembersActions.editMemberSelected({ memberToEdit }));
-  }
-
   onDeleteMember(memberToDelete: Member): void {
     this.store.dispatch(MembersActions.deleteMemberSelected({ memberToDelete }));
   }

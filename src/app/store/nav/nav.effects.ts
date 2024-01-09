@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
-import { MembersActions } from '@app/store/members';
-import { ScheduleActions } from '@app/store/schedule';
+import { MembersActions, MembersSelectors } from '@app/store/members';
+import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
 import { NavPathTypes } from '@app/types';
 
 import * as NavActions from './nav.actions';
@@ -48,6 +48,57 @@ export class NavEffects {
     ),
   );
 
+  handleArticleEditRouteNavigation$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      filter(({ payload }) => payload.event.url.startsWith('/article/edit/')),
+      concatLatestFrom(({ payload }) => [
+        this.store.select(
+          ArticlesSelectors.articleById(payload.event.url.split('/article/edit/')[1]),
+        ),
+      ]),
+      map(([, article]) =>
+        article
+          ? ArticlesActions.articleSelected({ article })
+          : NavActions.navigationRequested({ path: NavPathTypes.NEWS }),
+      ),
+    ),
+  );
+
+  handleMemberEditRouteNavigation$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      filter(({ payload }) => payload.event.url.startsWith('/member/edit/')),
+      concatLatestFrom(({ payload }) => [
+        this.store.select(
+          MembersSelectors.memberById(payload.event.url.split('/member/edit/')[1]),
+        ),
+      ]),
+      map(([, memberToEdit]) =>
+        memberToEdit
+          ? MembersActions.editMemberSelected({ memberToEdit })
+          : NavActions.navigationRequested({ path: NavPathTypes.MEMBERS }),
+      ),
+    ),
+  );
+
+  handleEventEditRouteNavigation$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      filter(({ payload }) => payload.event.url.startsWith('/event/edit/')),
+      concatLatestFrom(({ payload }) => [
+        this.store.select(
+          ScheduleSelectors.eventById(payload.event.url.split('/event/edit/')[1]),
+        ),
+      ]),
+      map(([, eventToEdit]) =>
+        eventToEdit
+          ? ScheduleActions.editEventSelected({ eventToEdit })
+          : NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE }),
+      ),
+    ),
+  );
+
   handleLogoutRouteNavigation$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
@@ -76,17 +127,6 @@ export class NavEffects {
     ),
   );
 
-  navigateToMemberEdit$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(MembersActions.editMemberSelected),
-      map(({ memberToEdit }) =>
-        NavActions.navigationRequested({
-          path: NavPathTypes.HOME + '/' + memberToEdit.id,
-        }),
-      ),
-    ),
-  );
-
   navigateToSchedule$ = createEffect(() =>
     this.actions$.pipe(
       ofType(
@@ -95,17 +135,6 @@ export class NavEffects {
         ScheduleActions.updateEventSucceeded,
       ),
       map(() => NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE })),
-    ),
-  );
-
-  navigateToEventEdit$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ScheduleActions.editEventSelected),
-      map(({ eventToEdit }) =>
-        NavActions.navigationRequested({
-          path: NavPathTypes.SCHEDULE + '/' + eventToEdit.id,
-        }),
-      ),
     ),
   );
 
@@ -120,17 +149,6 @@ export class NavEffects {
         ArticlesActions.deleteArticleSucceeded,
       ),
       map(() => NavActions.navigationRequested({ path: NavPathTypes.NEWS })),
-    ),
-  );
-
-  navigateToArticleEdit$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ArticlesActions.editArticleSelected),
-      map(({ articleToEdit }) =>
-        NavActions.navigationRequested({
-          path: NavPathTypes.NEWS + '/' + articleToEdit.id,
-        }),
-      ),
     ),
   );
 

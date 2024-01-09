@@ -130,20 +130,6 @@ export class ArticlesEffects {
     );
   });
 
-  getImageUrlForArticleBeingEdited$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.editArticleSelected),
-      switchMap(({ articleToEdit }) =>
-        this.imagesService.getArticleImageUrl(articleToEdit.imageId!),
-      ),
-      map((response: ServiceResponse<Url>) =>
-        response.error
-          ? ArticlesActions.getArticleImageUrlFailed({ error: response.error })
-          : ArticlesActions.getArticleImageUrlSucceeded({ imageUrl: response.payload! }),
-      ),
-    );
-  });
-
   resetArticleEditorForm$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ROUTER_NAVIGATED),

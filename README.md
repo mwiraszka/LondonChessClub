@@ -48,6 +48,7 @@ v2.2.0 - January 9th, 2024
 - 🚀 Brief update on 2023 Championship Match (more details and photos to follow)
 
 - 🔧 Refactor navigation logic throughout app to make better use of Angular's routing features
+- 🔧 Leverage NgNeat's `until-destroy` library for a neater way to unsubscribe from observables when a component is destroyed
 
 </details>
 

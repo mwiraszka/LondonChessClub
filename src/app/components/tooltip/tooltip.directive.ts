@@ -1,51 +1,46 @@
 import {
-  ApplicationRef,
-  ComponentFactoryResolver,
   ComponentRef,
   Directive,
   ElementRef,
-  EmbeddedViewRef,
   HostListener,
-  Injector,
   Input,
   OnDestroy,
+  ViewContainerRef,
 } from '@angular/core';
 
-import { isTouchScreen } from '@app/utils';
+import { getTextWidth, isTouchScreen } from '@app/utils';
 
 import { TooltipComponent } from './tooltip.component';
 
-/**
- * Courtesy of https://accesto.com/blog/how-to-create-angular-tooltip-directive/
- */
 @Directive({
   selector: '[tooltip]',
 })
 export class TooltipDirective implements OnDestroy {
+  private readonly TOOLTIP_MAX_WIDTH_PX = 120;
+  private readonly SIDE_SCREEN_PADDING_PX = 1;
+
+  // Must match the sum of the left and right
+  // padding values set in the tooltip component
+  private readonly TOOLTIP_SIDE_PADDING_PX = 16;
+
   @Input() tooltip: string | null = null;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private componentRef: ComponentRef<any> | null = null;
+  private componentRef: ComponentRef<TooltipComponent> | null = null;
+  private screenWidth = window.innerWidth;
 
   constructor(
     private elementRef: ElementRef,
-    private appRef: ApplicationRef,
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private injector: Injector,
+    private viewContainerRef: ViewContainerRef,
   ) {}
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
     if (!this.componentRef && !isTouchScreen()) {
-      const componentFactory =
-        this.componentFactoryResolver.resolveComponentFactory(TooltipComponent);
-      this.componentRef = componentFactory.create(this.injector);
-      this.appRef.attachView(this.componentRef.hostView);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const domElem = (this.componentRef.hostView as EmbeddedViewRef<any>)
-        .rootNodes[0] as HTMLElement;
-      document.body.appendChild(domElem);
-      this.setTooltipComponentProperties();
+      this.componentRef = this.viewContainerRef.createComponent(TooltipComponent);
+      this.setTooltipPlacement();
+
+      const host = this.elementRef.nativeElement;
+      host.insertBefore(this.componentRef.location.nativeElement, host.firstChild);
     }
   }
 
@@ -54,24 +49,49 @@ export class TooltipDirective implements OnDestroy {
     this.destroy();
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(): void {
+    this.screenWidth = window.innerWidth;
+  }
+
   ngOnDestroy(): void {
     this.destroy();
   }
 
   destroy(): void {
     if (this.componentRef) {
-      this.appRef.detachView(this.componentRef.hostView);
       this.componentRef.destroy();
       this.componentRef = null;
     }
   }
 
-  private setTooltipComponentProperties(): void {
-    if (this.componentRef !== null) {
-      this.componentRef.instance.tooltip = this.tooltip;
+  private setTooltipPlacement(): void {
+    if (this.componentRef) {
       const { left, right, bottom } =
         this.elementRef.nativeElement.getBoundingClientRect();
-      this.componentRef.instance.left = (right - left) / 2 + left;
+      const elementCenter = (right - left) / 2 + left;
+
+      const tooltipTextWidth = getTextWidth(
+        this.tooltip,
+        this.TOOLTIP_MAX_WIDTH_PX - this.TOOLTIP_SIDE_PADDING_PX,
+      );
+
+      const rightOverflow =
+        this.screenWidth -
+        elementCenter -
+        (tooltipTextWidth + this.TOOLTIP_SIDE_PADDING_PX) / 2 -
+        this.SIDE_SCREEN_PADDING_PX;
+      const rightOffset = rightOverflow > 0 ? 0 : rightOverflow;
+
+      const leftOverflow =
+        elementCenter -
+        (tooltipTextWidth + this.TOOLTIP_SIDE_PADDING_PX) / 2 -
+        this.SIDE_SCREEN_PADDING_PX;
+      const leftOffset = leftOverflow > 0 ? 0 : leftOverflow;
+
+      this.componentRef.instance.tooltip = this.tooltip;
+      this.componentRef.instance.width = tooltipTextWidth + this.TOOLTIP_SIDE_PADDING_PX;
+      this.componentRef.instance.left = elementCenter + rightOffset - leftOffset;
       this.componentRef.instance.top = bottom;
     }
   }

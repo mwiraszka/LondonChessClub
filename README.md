@@ -31,11 +31,20 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 ## Release notes
 
-|     |     |
-| --- | --- |
-| 🚀 | New **features** and **improvements** to the website |
+|    |    |
+| -- | -- |
+| 🚀 | New **features** and **improvements** |
 | 🐛 | Bug fixes |
-| 🔧 | Code refactoring (no visible changes) |
+| 🔧 | Code refactoring |
+
+<details>
+<summary style="cursor: pointer">
+v2.2.1 - January TBD, 2024
+</summary>
+
+- 🐛 Prevent tooltips from displaying out of screen's bounds
+
+</details>
 
 <details>
 <summary style="cursor: pointer">

@@ -35,11 +35,11 @@ const scheduleReducer = createReducer(
     eventCurrently: action.eventToAdd,
   })),
 
-  on(ScheduleActions.editEventSelected, (state, action) => ({
+  on(ScheduleActions.editEventRouteEntered, (state, action) => ({
     ...state,
-    selectedEvent: action.eventToEdit,
-    eventBeforeEdit: action.eventToEdit,
-    eventCurrently: action.eventToEdit,
+    selectedEvent: action.event,
+    eventBeforeEdit: action.event,
+    eventCurrently: action.event,
     isEditMode: true,
   })),
 

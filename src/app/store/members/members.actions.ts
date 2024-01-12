@@ -13,7 +13,7 @@ enum MembersActionTypes {
   PAGE_SIZE_CHANGED = '[Members] Page size changed',
   INACTIVE_MEMBERS_TOGGLED = '[Members] Inactive members toggled',
 
-  EDIT_MEMBER_SELECTED = '[Members] Edit member selected',
+  EDIT_MEMBER_ROUTE_ENTERED = '[Members] Edit member route entered',
 
   DELETE_MEMBER_SELECTED = '[Members] Delete member selected',
   DELETE_MEMBER_CONFIRMED = '[Members] Delete member confirmed',
@@ -70,9 +70,9 @@ export const inactiveMembersToggled = createAction(
   MembersActionTypes.INACTIVE_MEMBERS_TOGGLED,
 );
 
-export const editMemberSelected = createAction(
-  MembersActionTypes.EDIT_MEMBER_SELECTED,
-  props<{ memberToEdit: Member }>(),
+export const editMemberRouteEntered = createAction(
+  MembersActionTypes.EDIT_MEMBER_ROUTE_ENTERED,
+  props<{ member: Member }>(),
 );
 
 export const deleteMemberSelected = createAction(

@@ -24,7 +24,7 @@ const articlesReducer = createReducer(
     isLoading: false,
   })),
 
-  on(ArticlesActions.articleSelected, (state, action) => ({
+  on(ArticlesActions.viewArticleRouteEntered, (state, action) => ({
     ...state,
     selectedArticle: action.article,
     articleBeforeEdit: action.article,
@@ -40,11 +40,11 @@ const articlesReducer = createReducer(
     articleCurrently: { ...state.articleCurrently, imageUrl: action.imageUrl },
   })),
 
-  on(ArticlesActions.editArticleSelected, (state, action) => ({
+  on(ArticlesActions.editArticleRouteEntered, (state, action) => ({
     ...state,
-    selectedArticle: action.articleToEdit,
-    articleBeforeEdit: action.articleToEdit,
-    articleCurrently: action.articleToEdit,
+    selectedArticle: action.article,
+    articleBeforeEdit: action.article,
+    articleCurrently: action.article,
     isEditMode: true,
   })),
 

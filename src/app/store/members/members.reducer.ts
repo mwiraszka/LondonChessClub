@@ -58,11 +58,11 @@ const membersReducer = createReducer(
     memberCurrently: action.memberToAdd,
   })),
 
-  on(MembersActions.editMemberSelected, (state, action) => ({
+  on(MembersActions.editMemberRouteEntered, (state, action) => ({
     ...state,
-    selectedMember: action.memberToEdit,
-    memberCurrently: action.memberToEdit,
-    memberBeforeEdit: action.memberToEdit,
+    selectedMember: action.member,
+    memberCurrently: action.member,
+    memberBeforeEdit: action.member,
     isEditMode: true,
   })),
 

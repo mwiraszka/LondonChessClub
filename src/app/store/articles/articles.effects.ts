@@ -120,7 +120,10 @@ export class ArticlesEffects {
 
   getImageUrlForSelectedArticle$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.articleSelected),
+      ofType(
+        ArticlesActions.viewArticleRouteEntered,
+        ArticlesActions.editArticleRouteEntered,
+      ),
       switchMap(({ article }) => this.imagesService.getArticleImageUrl(article.imageId!)),
       map((response: ServiceResponse<Url>) =>
         response.error

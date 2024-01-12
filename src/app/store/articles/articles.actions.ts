@@ -10,8 +10,8 @@ enum ArticlesActionTypes {
   GET_ARTICLE_IMAGE_URL_FAILED = '[Articles] Get article image URL failed',
   GET_ARTICLE_IMAGE_URL_SUCCEEDED = '[Articles] Get article image URL succeeded',
 
-  ARTICLE_SELECTED = '[Articles] Article selected',
-  EDIT_ARTICLE_SELECTED = '[Articles] Edit article selected',
+  VIEW_ARTICLE_ROUTE_ENTERED = '[Articles] View article route entered',
+  EDIT_ARTICLE_ROUTE_ENTERED = '[Articles] Edit article route entered',
 
   DELETE_ARTICLE_SELECTED = '[Articles] Delete article selected',
   DELETE_ARTICLE_CONFIRMED = '[Articles] Delete article confirmed',
@@ -59,13 +59,13 @@ export const getArticleImageUrlFailed = createAction(
   props<{ error: Error }>(),
 );
 
-export const articleSelected = createAction(
-  ArticlesActionTypes.ARTICLE_SELECTED,
+export const viewArticleRouteEntered = createAction(
+  ArticlesActionTypes.VIEW_ARTICLE_ROUTE_ENTERED,
   props<{ article: Article }>(),
 );
-export const editArticleSelected = createAction(
-  ArticlesActionTypes.EDIT_ARTICLE_SELECTED,
-  props<{ articleToEdit: Article }>(),
+export const editArticleRouteEntered = createAction(
+  ArticlesActionTypes.EDIT_ARTICLE_ROUTE_ENTERED,
+  props<{ article: Article }>(),
 );
 
 export const deleteArticleSelected = createAction(

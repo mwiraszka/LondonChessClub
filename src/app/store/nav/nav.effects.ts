@@ -42,7 +42,7 @@ export class NavEffects {
       ]),
       map(([, article]) =>
         article
-          ? ArticlesActions.articleSelected({ article })
+          ? ArticlesActions.viewArticleRouteEntered({ article })
           : NavActions.navigationRequested({ path: NavPathTypes.NEWS }),
       ),
     ),
@@ -59,7 +59,7 @@ export class NavEffects {
       ]),
       map(([, article]) =>
         article
-          ? ArticlesActions.articleSelected({ article })
+          ? ArticlesActions.editArticleRouteEntered({ article })
           : NavActions.navigationRequested({ path: NavPathTypes.NEWS }),
       ),
     ),
@@ -74,9 +74,9 @@ export class NavEffects {
           MembersSelectors.memberById(payload.event.url.split('/member/edit/')[1]),
         ),
       ]),
-      map(([, memberToEdit]) =>
-        memberToEdit
-          ? MembersActions.editMemberSelected({ memberToEdit })
+      map(([, member]) =>
+        member
+          ? MembersActions.editMemberRouteEntered({ member })
           : NavActions.navigationRequested({ path: NavPathTypes.MEMBERS }),
       ),
     ),
@@ -91,9 +91,9 @@ export class NavEffects {
           ScheduleSelectors.eventById(payload.event.url.split('/event/edit/')[1]),
         ),
       ]),
-      map(([, eventToEdit]) =>
-        eventToEdit
-          ? ScheduleActions.editEventSelected({ eventToEdit })
+      map(([, event]) =>
+        event
+          ? ScheduleActions.editEventRouteEntered({ event })
           : NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE }),
       ),
     ),

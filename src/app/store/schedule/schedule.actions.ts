@@ -7,7 +7,7 @@ enum ScheduleActionTypes {
   LOAD_EVENTS_SUCCEEDED = '[Schedule] Load events succeeded',
   LOAD_EVENTS_FAILED = '[Schedule] Load events failed',
 
-  EDIT_EVENT_SELECTED = '[Schedule] Edit event selected',
+  EDIT_EVENT_ROUTE_ENTERED = '[Schedule] Edit event route entered',
 
   DELETE_EVENT_SELECTED = '[Schedule] Delete event selected',
   DELETE_EVENT_CONFIRMED = '[Schedule] Delete event confirmed',
@@ -44,9 +44,9 @@ export const loadEventsFailed = createAction(
   props<{ error: Error }>(),
 );
 
-export const editEventSelected = createAction(
-  ScheduleActionTypes.EDIT_EVENT_SELECTED,
-  props<{ eventToEdit: ClubEvent }>(),
+export const editEventRouteEntered = createAction(
+  ScheduleActionTypes.EDIT_EVENT_ROUTE_ENTERED,
+  props<{ event: ClubEvent }>(),
 );
 
 export const deleteEventSelected = createAction(

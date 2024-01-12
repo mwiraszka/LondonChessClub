@@ -39,6 +39,17 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v2.2.2 - January 12th, 2024
+</summary>
+
+- 🐛 Fix various bugs which sometimes prevented an admin user from posting or editing an article
+
+- 🔧 Improve some NgRx action names following v2.2.0's navigation refactor
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v2.2.1 - January 11th, 2024
 </summary>
 

@@ -22,6 +22,10 @@ export function areSame(a: Object, b: Object): boolean {
  * @param {any} value
  */
 export function isEmpty(value: any): boolean {
+  if (value === null || value === undefined) {
+    return true;
+  }
+
   return value && Object.keys(value).length === 0 && value.constructor === Object;
 }
 

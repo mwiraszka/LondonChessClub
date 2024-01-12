@@ -31,11 +31,23 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 ## Release notes
 
-|     |     |
-| --- | --- |
-| 🚀 | New **features** and **improvements** to the website |
+|    |    |
+| -- | -- |
+| 🚀 | New **features** and **improvements** |
 | 🐛 | Bug fixes |
-| 🔧 | Code refactoring (no visible changes) |
+| 🔧 | Code refactoring |
+
+<details>
+<summary style="cursor: pointer">
+v2.2.1 - January 11th, 2024
+</summary>
+
+- 🚀 Add fun chess pieces graphic to app header and update header font
+- 🚀 Increase number of articles shown on the home page from 4 to 5
+
+- 🐛 Prevent tooltips from displaying out of screen's bounds
+
+</details>
 
 <details>
 <summary style="cursor: pointer">

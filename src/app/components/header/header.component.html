@@ -1,7 +1,15 @@
 <div class="app-header-container">
-	<a [routerLink]="NavPathTypes.HOME">
-		<img src="assets/lcc-branding.svg"
-				 alt="LCC branding" />
-	</a>
-	<a [routerLink]="NavPathTypes.HOME">London Chess Club</a>
+	<section class="branding">
+		<a [routerLink]="NavPathTypes.HOME">
+			<img src="assets/lcc-branding.svg"
+					 alt="LCC branding" />
+		</a>
+		<a [routerLink]="NavPathTypes.HOME">London Chess Club</a>
+	</section>
+	<section class="chess-pieces">
+		<img *ngFor="let num of [1,2,3,4,5]"
+				 [ngClass]="'pieces-' + num"
+				 src="assets/chess-pieces.svg"
+				 alt="Chess pieces" />
+	</section>
 </div>

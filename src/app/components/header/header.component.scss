@@ -14,43 +14,114 @@
 .app-header-container {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  gap: $lcc-space--md;
-  padding: $lcc-space--sm $lcc-space--md;
   width: $lcc-width--app-content;
 
-  img {
-    height: 40px;
-    width: 40px;
+  .branding {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: $lcc-space--md;
+    padding: $lcc-space--sm $lcc-space--md;
 
-    @include respond-to('gt-sm') {
-      height: 60px;
-      width: 60px;
+    img {
+      height: 40px;
+      width: 40px;
+  
+      @include respond-to('gt-sm') {
+        height: 60px;
+        width: 60px;
+      }
+  
+      background: darken($lcc-color--white, 8%);
+      border-radius: 50%;
+      padding: 3px;
+  
+      &:hover {
+        cursor: pointer;
+        background: $lcc-color--white;
+      }
     }
-
-    background: darken($lcc-color--white, 8%);
-    border-radius: 50%;
-    padding: 3px;
-
-    &:hover {
-      cursor: pointer;
-      background: $lcc-color--white;
+  
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: darken($lcc-color--white, 8%);
+      white-space: nowrap;
+      font-family: 'Caveat', sans-serif;
+      font-size: calc(#{$h1} - 6px);
+  
+      @include respond-to('gt-sm') {
+        font-size: $h1;
+      }
+    
+      &:hover {
+        text-decoration: none;
+        color: white;
+      }
     }
   }
 
-  a {
-    color: darken($lcc-color--white, 8%);
-    white-space: nowrap;
-    font-size: $h2;
-
-    @include respond-to('gt-sm') {
-      font-size: $h1;
+  .chess-pieces {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin-right: $lcc-space--sm;
+    
+    @include respond-to('gt-md') {
+      display: flex;
     }
-  
-    &:hover {
-      text-decoration: none;
-      color: white;
+
+    img {
+      display: none;
+      margin-right: 4px;
+
+      &.pieces-1 {
+        height: 55px;
+        transform: rotate(-3deg);
+        filter: opacity(0.65);
+        -webkit-filter: opacity(0.65);
+        -moz-filter: opacity(0.65);
+      }
+
+      &.pieces-2 {
+        height: 42px;
+        transform: rotate(1deg);
+        filter: opacity(0.55);
+        -webkit-filter: opacity(0.55);
+        -moz-filter: opacity(0.55);
+      }
+
+      &.pieces-3 {
+        height: 35px;
+        transform: rotate(-2deg);
+        filter: opacity(0.45);
+        -webkit-filter: opacity(0.45);
+        -moz-filter: opacity(0.45);
+      }
+
+      &.pieces-4 {
+        height: 30px;
+        transform: rotate(1.5deg);
+        filter: opacity(0.4);
+        -webkit-filter: opacity(0.4);
+        -moz-filter: opacity(0.4);
+      }
+
+      &.pieces-5 {
+        height: 27px;
+        transform: rotate(-1deg);
+        filter: opacity(0.3);
+        -webkit-filter: opacity(0.3);
+        -moz-filter: opacity(0.3);
+      }
+
+      @include respond-to('gt-xl') {
+        display: flex;
+      }
     }
   }
 }

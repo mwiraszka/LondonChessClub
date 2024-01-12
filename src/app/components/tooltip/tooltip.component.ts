@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./tooltip.component.scss'],
 })
 export class TooltipComponent {
-  tooltip = '';
+  tooltip: string | null = null;
   left = 0;
   top = 0;
+  width = 120;
 }

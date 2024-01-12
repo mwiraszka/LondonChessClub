@@ -39,8 +39,10 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v2.2.1 - January TBD, 2024
+v2.2.1 - January 11th, 2024
 </summary>
+
+- 🚀 Add fun chess pieces graphic to app header and update header font
 
 - 🐛 Prevent tooltips from displaying out of screen's bounds
 

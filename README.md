@@ -43,6 +43,7 @@ v2.2.1 - January 11th, 2024
 </summary>
 
 - 🚀 Add fun chess pieces graphic to app header and update header font
+- 🚀 Increase number of articles shown on the home page from 4 to 5
 
 - 🐛 Prevent tooltips from displaying out of screen's bounds
 

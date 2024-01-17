@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import { Component, OnInit } from '@angular/core';
 
 import { LoaderService } from '@app/services';
@@ -25,6 +27,7 @@ export class MembersTableComponent implements OnInit {
     'City',
     'Chess.com Username',
     'Lichess Username',
+    'Last Updated',
     'Born',
     'Email',
     'Phone Number',
@@ -47,4 +50,10 @@ export class MembersTableComponent implements OnInit {
   }
 
   trackByFn = (index: number, member: Member) => member.id;
+
+  convertToUtcTimezone(localDate: string): string {
+    // Since we are only concerned with the day and since UTC @ 12:00am
+    // is always a day ahead of local time, we can simply add one day
+    return moment(localDate).add(1, 'days').toISOString().split('T')[0];
+  }
 }

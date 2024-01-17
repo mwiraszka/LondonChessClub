@@ -8,7 +8,7 @@
 			</i-feather>
 		</header>
 		<img [src]="'assets/photos/' + (facade.photo$ | async)?.filename + '.jpg'" />
-		<h4 class="description lcc-truncate-max-1-line">
+		<h4 class="description lcc-truncate">
 			{{ (facade.photo$ | async)?.description }}
 		</h4>
 	</div>

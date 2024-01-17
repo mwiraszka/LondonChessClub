@@ -42,6 +42,8 @@ button {
 
     .center-section-button {
       border: none;
+      text-transform: unset;
+      white-space: unset;
       font-size: $h5;
       background-color: rgba($lcc-color--accent, 0.2) !important;
 

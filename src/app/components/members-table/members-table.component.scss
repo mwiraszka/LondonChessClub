@@ -9,28 +9,35 @@
 }
 
 table {
-  table-layout: fixed;
-  width: 100%;
+  @include respond-to('lt-sm') {
+    font-size: $h5;
+  }
+
+  &:not(.lcc-show-admin-columns) {
+    .born,
+    .email,
+    .phone-number,
+    .date-joined {
+      display: none !important;
+    }
+  }
 
   thead {
     th {
-      span {
+      .header-text {
         color: unset;
+      }
+
+      .sort-icon-container {
+        display: inline-flex;
+        height: 11px;
+        width: 11px;
+        margin-left: $lcc-space--xxs;
       }
 
       &:hover:not(.row-number) {
         cursor: pointer;
         background-color: lighten($lcc-color--primary, 5%);
-      }
-  
-      .icon-container {
-        display: inline-flex;
-  
-        .sort-icon {
-          margin-left: $lcc-space--xxs;
-          height: 11px;
-          width: 11px;
-        }
       }
     }
   }
@@ -48,133 +55,95 @@ table {
           color: $lcc-color--text-secondary;
         }
       }
+
+      td {
+        white-space: nowrap;
+
+        &.row-number {
+          text-align: right;
+        }
+
+        &.first-name {
+          min-width: 150px;
+          max-width: 180px;
+
+          // More room with smaller font size
+          @include respond-to('lt-sm') {
+            min-width: 120px;
+            max-width: 140px;
+          }
+
+          &.lcc-truncate {
+            display: table-cell;
+            text-overflow: ellipsis;
+          }
+        }
+
+        &.last-name {
+          min-width: 150px;
+          max-width: 180px;
+
+          // More room with smaller font size
+          @include respond-to('lt-sm') {
+            min-width: 120px;
+            max-width: 140px;
+          }
+
+          &.lcc-truncate {
+            display: table-cell;
+            text-overflow: ellipsis;
+          }
+        }
+
+        &.city {
+          min-width: 150px;
+          max-width: 200px;
+        }
+
+        &.chesscom-username {
+          max-width: 200px;
+        }
+
+        &.lichess-username {
+          max-width: 200px;
+        }
+
+        &.last-updated {
+          text-align: right;
+          min-width: 150px;
+        }
+
+        &.email {
+          min-width: 250px;
+        }
+
+        &.date-joined {
+          text-align: right;
+          min-width: 150px;
+        }
+      }
     }
   }
 
-  td,
-  th {
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  // All widths below hard-coded based on minimum width needed to display full header
-  // text along with caret icon, a sensible minimum for the content of each column, and
-  // to prevent any excessive empty space between columns 
-  .row-number {
-    text-align: right;
-    padding: $lcc-space--sm !important;
-    width: 40px;
-  }
-
-  .first-name {
-    width: 50%;
-
-    @include respond-to('gt-lg') {
-      width: 13.5%;
-    }
-  }
-  
-  .last-name {
-    width: 50%;
-
-    @include respond-to('gt-lg') {
-      width: 13.5%;
-    }
-  }
-  
-  .rating {
-    width: 80px;
-  }
-  
-  .peak-rating {
-    display: none;
-
-    @include respond-to('gt-sm') {
-      display: table-cell;
-      width: 110px;
-    }
-  }
-  
-  .city {
-    display: none;
-
-    @include respond-to('gt-md') {
-      display: table-cell;
-      width: 140px;
-    }
-
-    @include respond-to('gt-lg') {
-      width: 16%;
-    }
-  }
-  
-  .chesscom-username {
-    display: none;
-
-    @include respond-to('gt-lg') {
-      display: table-cell;
-      width: 22%;
-    }
-  }
-
-  .lichess-username {
-    display: none;
-
-    @include respond-to('gt-lg') {
-      display: table-cell;
-      width: 19%;
-    }
-  }
-
+  .peak-rating,
+  .city,
+  .chesscom-username,
+  .lichess-username,
+  .last-updated,
   .born,
   .email,
   .phone-number,
   .date-joined {
     display: none;
-  }
-}
 
-// Adjustments to some column widths to accomodate for admin-only columns
-@include respond-to('gt-xl') {
-  .lcc-show-admin-columns {
-    .first-name {
-      width: 8%;
-    }
-
-    .last-name {
-      width: 8%;
-    }
-
-    .city {
-      width: 8%;
-    }
-
-    .chesscom-username {
-      width: 13.5%;
-    }
-  
-    .lichess-username {
-      width: 12%;
-    }
-
-    .born {
+    @include respond-to('gt-sm') {
       display: table-cell;
-      width: 70px;
-    }
 
-    .email {
-      display: table-cell;
-      width: 15%;
-    }
-    
-    .phone-number {
-      display: table-cell;
-      width: 10%;
-    }
-  
-    .date-joined {
-      display: table-cell;
-      width: 9%;
+      // Override truncation strategy for table
+      &.lcc-truncate {
+        display: table-cell;
+        text-overflow: ellipsis;
+      }
     }
   }
 }

@@ -122,14 +122,14 @@ export class MembersService {
         lichessUsername: member.lichessUsername,
         modificationInfo: {
           dateCreated: new Date(
-            member.dateCreated === '2023-01-01T05:00:00.000Z'
-              ? '2023-01-01T00:00:00.000Z'
+            member.dateCreated === '2023-01-01T00:00:00.000Z'
+              ? '2023-01-01T05:00:00.000Z'
               : member.dateCreated,
           ),
           createdBy: member.createdBy,
           dateLastEdited: new Date(
-            member.dateLastEdited === '2023-01-01T05:00:00.000Z'
-              ? '2023-01-01T00:00:00.000Z'
+            member.dateLastEdited === '2023-01-01T00:00:00.000Z'
+              ? '2023-01-01T05:00:00.000Z'
               : member.dateLastEdited,
           ),
           lastEditedBy: member.lastEditedBy,
@@ -149,11 +149,11 @@ export class MembersService {
         peakRating: this.getNewPeakRating(member),
         dateJoined: member.dateJoined,
         isActive: member.isActive,
-        email: member.email,
-        phoneNumber: member.phoneNumber,
-        yearOfBirth: member.yearOfBirth,
-        chesscomUsername: member.chesscomUsername,
-        lichessUsername: member.lichessUsername,
+        email: member.email ?? '',
+        phoneNumber: member.phoneNumber ?? '',
+        yearOfBirth: member.yearOfBirth ?? '',
+        chesscomUsername: member.chesscomUsername ?? '',
+        lichessUsername: member.lichessUsername ?? '',
         dateCreated: member.modificationInfo!.dateCreated.toISOString(),
         createdBy: member.modificationInfo!.createdBy,
         dateLastEdited: member.modificationInfo!.dateLastEdited.toISOString(),

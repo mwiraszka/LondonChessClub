@@ -39,6 +39,21 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v2.2.3 - January 16th, 2024
+</summary>
+
+- 🚀 Display each member's last update date in the members table
+- 🚀 Carry over some markdown table features to the members table (i.e. horizontal scrollbar and larger font sizes)
+
+- 🐛 Fix issue preventing admin user from adding a new member without supplying certain optional properties
+- 🐛 Fix paginator tooltip text
+
+- 🔧 Consolidate/remove repeated or no longer used table code
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v2.2.2 - January 12th, 2024
 </summary>
 

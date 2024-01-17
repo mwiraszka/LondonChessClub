@@ -3,26 +3,6 @@
 @import 'styles/components/table';
 
 :host ::ng-deep {
-  .lcc-markdown-table-wrapper {
-    overflow-x: scroll;
-
-    // Prevent scrollbar from auto-hiding
-    &::-webkit-scrollbar {
-      background: rgba(0, 0, 0, 0);
-      height: 8px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: transparentize($lcc-color--primary, 0.2);
-      border-radius: $lcc-border-radius--lg;
-    }
-    
-    table {
-      @include lcc-table;
-      font-size: calc($h4 + 2px);
-    }
-  }
-
   a {
     @include lcc-link;
   }

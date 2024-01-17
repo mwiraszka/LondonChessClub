@@ -20,13 +20,11 @@ export class MarkdownRendererComponent implements AfterViewChecked {
 
     if (tableElements) {
       tableElements.forEach(tableElement => {
-        if (
-          !Array.from(tableElement?.parentElement?.classList ?? []).includes(
-            'lcc-markdown-table-wrapper',
-          )
-        ) {
+        if (!Array.from(tableElement?.classList ?? []).includes('lcc-table')) {
+          tableElement.classList.add('lcc-table');
+
           const wrapperElement = this._document.createElement('div');
-          wrapperElement.classList.add('lcc-markdown-table-wrapper');
+          wrapperElement.classList.add('lcc-table-wrapper');
           tableElement?.parentNode?.insertBefore(wrapperElement, tableElement);
           wrapperElement.appendChild(tableElement);
         }

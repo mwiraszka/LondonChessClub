@@ -2,68 +2,75 @@
 	<lcc-link-list [links]="[addMemberLink]"></lcc-link-list>
 </ng-container>
 
-<table class="lcc-table"
-			 [class.lcc-show-admin-columns]="facade.isAdmin$ | async">
-	<thead>
-		<tr>
-			<th *ngIf="facade.isAdmin$ | async"
-					class="lcc-table-admin-controls-filler">
-			</th>
-			<th class="row-number"></th>
-			<th *ngFor="let header of (facade.isAdmin$ | async) ? tableHeaders : tableHeaders.slice(0, -4)"
-					[ngClass]="kebabize(header)"
-					(click)="facade.onSelectTableHeader(camelize(kebabize(header)))">
-				<span>{{ header }}</span>
-				<div class="icon-container">
-					<i-feather *ngIf="(facade.sortedBy$ | async) === camelize(kebabize(header))"
-										 [name]="(facade.isAscending$ | async) ? 'chevron-up' : 'chevron-down'"
-										 class="sort-icon">
-					</i-feather>
-				</div>
-			</th>
-		</tr>
-	</thead>
+<div class="lcc-table-wrapper">
+	<table class="lcc-table"
+				 [class.lcc-show-admin-columns]="facade.isAdmin$ | async">
+		<thead>
+			<tr>
+				<th *ngIf="facade.isAdmin$ | async"
+						class="lcc-table-admin-controls-filler">
+				</th>
+				<th class="row-number"></th>
+				<th *ngFor="let header of (facade.isAdmin$ | async) ? tableHeaders : tableHeaders.slice(0, -4)"
+						[ngClass]="kebabize(header)"
+						(click)="facade.onSelectTableHeader(camelize(kebabize(header)))">
+					<span class="header-text">{{ header }}</span>
+					<div class="sort-icon-container">
+						<i-feather *ngIf="(facade.sortedBy$ | async) === camelize(kebabize(header))"
+											 class="sort-icon"
+											 [name]="(facade.isAscending$ | async) ? 'chevron-up' : 'chevron-down'">
+						</i-feather>
+					</div>
+				</th>
+			</tr>
+		</thead>
 
-	<tbody *ngIf="(facade.filteredMembers$ | async) as filteredMembers">
-		<tr *ngFor="let member of filteredMembers.slice((facade.startIndex$ | async) ?? 0, (facade.endIndex$ | async) ?? 0);
-                let i = index;
-                let last = last;
-                trackBy: trackByFn"
-				class="lcc-admin-controls-container"
-				[ngClass]="{'last-row': last}"
-				[class.inactive]="!member.isActive">
-			<lcc-admin-controls *ngIf="facade.isAdmin$ | async"
-													[editPath]="'/' + NavPathTypes.MEMBER_EDIT + '/' + member.id"
-													[height]="31"
-													[itemName]="member.firstName ?? ''"
-													(delete)="facade.onDeleteMember(member)">
-			</lcc-admin-controls>
-			<td class="row-number">{{ i + ((facade.startIndex$ | async) ?? 0) + 1 }}</td>
-			<td class="first-name">{{ member.firstName }}</td>
-			<td class="last-name">{{ member.lastName }}</td>
-			<td class="rating">{{ member.rating }}</td>
-			<td class="peak-rating">{{ member.peakRating }}</td>
-			<td class="city">{{ member.city }}</td>
-			<td class="chesscom-username">{{ member?.chesscomUsername }}</td>
-			<td class="lichess-username">{{ member?.lichessUsername }}</td>
-			<ng-container *ngIf="facade.isAdmin$ | async">
-				<td class="born">{{ member?.yearOfBirth }}</td>
-				<td class="email">{{ member?.email }}</td>
-				<td class="phone-number">{{ member?.phoneNumber }}</td>
-				<td class="date-joined">{{ member.dateJoined }}</td>
-			</ng-container>
-		</tr>
-	</tbody>
+		<tbody *ngIf="(facade.filteredMembers$ | async) as filteredMembers">
+			<tr *ngFor="let member of filteredMembers.slice((facade.startIndex$ | async) ?? 0, (facade.endIndex$ | async) ?? 0);
+                  let i = index;
+                  let last = last;
+                  trackBy: trackByFn"
+					class="lcc-admin-controls-container"
+					[ngClass]="{'last-row': last}"
+					[class.inactive]="!member.isActive">
+				<lcc-admin-controls *ngIf="facade.isAdmin$ | async"
+														[editPath]="'/' + NavPathTypes.MEMBER_EDIT + '/' + member.id"
+														[height]="31"
+														[itemName]="member.firstName ?? ''"
+														(delete)="facade.onDeleteMember(member)">
+				</lcc-admin-controls>
+				<td class="row-number">{{ i + ((facade.startIndex$ | async) ?? 0) + 1 }}</td>
+				<td class="first-name lcc-truncate">{{ member.firstName }}</td>
+				<td class="last-name lcc-truncate">{{ member.lastName }}</td>
+				<td class="rating">{{ member.rating }}</td>
+				<td class="peak-rating">{{ member.peakRating }}</td>
+				<td class="city lcc-truncate">{{ member.city }}</td>
+				<td class="chesscom-username lcc-truncate">{{ member?.chesscomUsername }}</td>
+				<td class="lichess-username lcc-truncate">{{ member?.lichessUsername }}</td>
+				<td class="last-updated">
+					{{ member.modificationInfo!.dateLastEdited | formatDate:'short':'no-time' }}
+				</td>
+				<ng-container *ngIf="facade.isAdmin$ | async">
+					<td class="born">{{ member?.yearOfBirth }}</td>
+					<td class="email">{{ member?.email }}</td>
+					<td class="phone-number">{{ member?.phoneNumber }}</td>
+					<td class="date-joined">
+						{{ convertToUtcTimezone(member.dateJoined) | formatDate:'short':'no-time' }}
+					</td>
+				</ng-container>
+			</tr>
+		</tbody>
 
-	<tfoot>
-		<tr>
-			<td colspan="100%">
-				{{ (facade.members$ | async)?.length }} members
-				({{ (facade.activeMembers$ | async)?.length }} active)
-			</td>
-		</tr>
-	</tfoot>
-</table>
+		<tfoot>
+			<tr>
+				<td colspan="100%">
+					{{ (facade.members$ | async)?.length }} members
+					({{ (facade.activeMembers$ | async)?.length }} active)
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
 
 <lcc-paginator [pageNum]="(facade.pageNum$ | async) ?? 0"
 							 [pageSize]="(facade.pageSize$ | async) ?? 0"

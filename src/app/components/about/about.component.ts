@@ -28,11 +28,6 @@ export class AboutComponent implements OnInit {
     icon: '../../../assets/lcc-logo-black.png',
   };
 
-  @HostListener('window:resize', ['$event'])
-  onResize(): void {
-    this.resizeMap(window.innerWidth);
-  }
-
   constructor(private httpClient: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
@@ -46,6 +41,11 @@ export class AboutComponent implements OnInit {
         map(() => true),
         catchError(() => of(false)),
       );
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(): void {
+    this.resizeMap(window.innerWidth);
   }
 
   onNavigate(path: NavPathTypes): void {

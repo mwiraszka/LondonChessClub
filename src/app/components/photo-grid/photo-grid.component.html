@@ -1,4 +1,4 @@
-<img *ngFor="let photo of photos"
+<img *ngFor="let photo of (facade.photos$ | async)?.slice(0, maxPhotos ?? (facade.photos$ | async)?.length)"
 		 [src]="'assets/photos/' + photo.filename + '-320.jpg'"
 		 [alt]="photo.description"
 		 (click)="facade.onClickPhoto(photo)" />

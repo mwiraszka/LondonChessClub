@@ -1,18 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { Link, NavPathTypes, Photo } from '@app/types';
-import { takeRandomly } from '@app/utils';
-
-import { allPhotos } from '@assets/photos';
+import { Link, NavPathTypes } from '@app/types';
 
 @Component({
   selector: 'lcc-home-screen',
   templateUrl: './home-screen.component.html',
   styleUrls: ['./home-screen.component.scss'],
 })
-export class HomeScreenComponent implements OnInit {
-  photos!: Photo[];
-
+export class HomeScreenComponent {
   scheduleLink: Link = {
     path: NavPathTypes.SCHEDULE,
     text: 'All scheduled events',
@@ -27,8 +22,4 @@ export class HomeScreenComponent implements OnInit {
     path: NavPathTypes.NEWS,
     text: 'More news',
   };
-
-  ngOnInit(): void {
-    this.photos = takeRandomly(allPhotos, 12);
-  }
 }

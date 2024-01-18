@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
 
-import { Photo } from '@app/types';
-
 import { PhotoGridFacade } from './photo-grid.facade';
 
 @Component({
@@ -11,7 +9,7 @@ import { PhotoGridFacade } from './photo-grid.facade';
   providers: [PhotoGridFacade],
 })
 export class PhotoGridComponent {
-  @Input() photos?: Photo[];
+  @Input() maxPhotos?: number;
 
   constructor(public facade: PhotoGridFacade) {}
 }

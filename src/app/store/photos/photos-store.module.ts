@@ -5,12 +5,9 @@ import { NgModule } from '@angular/core';
 
 import { AppStoreFeatureTypes } from '@app/types';
 
-import { reducer } from './image-overlay.reducer';
+import { reducer } from './photos.reducer';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    StoreModule.forFeature(AppStoreFeatureTypes.IMAGE_OVERLAY, reducer),
-  ],
+  imports: [CommonModule, StoreModule.forFeature(AppStoreFeatureTypes.PHOTOS, reducer)],
 })
-export class ImageOverlayStoreModule {}
+export class PhotosStoreModule {}

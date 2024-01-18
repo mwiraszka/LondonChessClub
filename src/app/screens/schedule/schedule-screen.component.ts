@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 
 import { ScheduleScreenFacade } from './schedule-screen.facade';
 
@@ -9,7 +10,10 @@ import { ScheduleScreenFacade } from './schedule-screen.facade';
   providers: [ScheduleScreenFacade],
 })
 export class ScheduleScreenComponent implements OnInit {
-  constructor(public facade: ScheduleScreenFacade) {}
+  constructor(
+    public facade: ScheduleScreenFacade,
+    @Inject(DOCUMENT) private _document: Document,
+  ) {}
 
   ngOnInit(): void {
     this.facade.nextEventId$.subscribe(eventId => {
@@ -20,7 +24,7 @@ export class ScheduleScreenComponent implements OnInit {
   }
 
   scrollToNextEvent(eventId: string): void {
-    const nextEvent = document.getElementById(eventId);
+    const nextEvent = this._document.getElementById(eventId);
     if (nextEvent) {
       nextEvent.scrollIntoView({
         behavior: 'smooth',

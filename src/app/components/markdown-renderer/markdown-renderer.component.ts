@@ -13,6 +13,7 @@ export class MarkdownRendererComponent implements AfterViewChecked {
 
   ngAfterViewChecked(): void {
     this.wrapMarkdownTables();
+    this.styleMarkdownText();
   }
 
   private wrapMarkdownTables(): void {
@@ -30,5 +31,11 @@ export class MarkdownRendererComponent implements AfterViewChecked {
         }
       });
     }
+  }
+
+  private styleMarkdownText(): void {
+    const markdown = this._document.querySelector('markdown');
+
+    console.log(':: markdown', markdown);
   }
 }

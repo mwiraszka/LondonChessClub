@@ -39,7 +39,7 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v2.2.4 - January TBD, 2024
+v2.2.4 - January 17th, 2024
 </summary>
 
 - 🚀 Add next/previous image buttons on Photo Gallery screen

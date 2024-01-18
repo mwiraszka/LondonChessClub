@@ -22,10 +22,10 @@ import { ScreensModule } from '@app/screens/screens.module';
 import { metaReducers } from '@app/store/app';
 import { ArticlesStoreModule } from '@app/store/articles';
 import { AuthStoreModule } from '@app/store/auth';
-import { ImageOverlayStoreModule } from '@app/store/image-overlay';
 import { MembersStoreModule } from '@app/store/members';
 import { ModalStoreModule } from '@app/store/modal';
 import { NavStoreModule } from '@app/store/nav';
+import { PhotosStoreModule } from '@app/store/photos';
 import { ScheduleStoreModule } from '@app/store/schedule';
 import { ToasterStoreModule } from '@app/store/toaster';
 import { actionSanitizer } from '@app/utils';
@@ -48,7 +48,7 @@ import { AppComponent } from './app.component';
     HeaderModule,
     HttpClientModule,
     ImageOverlayModule,
-    ImageOverlayStoreModule,
+    PhotosStoreModule,
     MarkdownModule.forRoot(),
     MembersStoreModule,
     ModalModule,

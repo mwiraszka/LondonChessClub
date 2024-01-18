@@ -2,10 +2,10 @@ export enum AppStoreFeatureTypes {
   ALERT = 'alert',
   ARTICLES = 'articles',
   AUTH = 'auth',
-  IMAGE_OVERLAY = 'image-overlay',
   MEMBERS = 'members',
   MODAL = 'modal',
   NAV = 'nav',
+  PHOTOS = 'photos',
   SCHEDULE = 'schedule',
   TOASTER = 'toaster',
 }

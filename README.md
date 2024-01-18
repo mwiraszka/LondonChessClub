@@ -39,6 +39,17 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v2.2.4 - January TBD, 2024
+</summary>
+
+- 🚀 Add next/previous image buttons on Photo Gallery screen
+
+- 🔧 Refactor ImageOverlay state as a general Photos state, and add more photo-related actions and selectors
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v2.2.3 - January 17th, 2024
 </summary>
 

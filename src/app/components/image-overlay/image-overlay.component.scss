@@ -40,14 +40,33 @@ $header-height: 26px;
 
   .description {
     position: relative;
-    top: -2.8em;
-    bottom: 1.8em;
     left: $lcc-space--sm;
     right: -$lcc-space--sm;
+    // Must match first value of bottom offset used on image-navigation-icons-container
+    bottom: 32px;
     width: calc(100% - 2 * #{$lcc-space--sm});
     padding: $lcc-space--xs $lcc-space--sm;
     border-radius: $lcc-border-radius--sm;
     background-color: hsla(0, 0%, 99%, 0.8);
     color: $lcc-color--text-primary-black;
+  }
+}
+
+.image-navigation-icons-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  .previous-image-icon,
+  .next-image-icon {
+    color: darken(white, 10%);
+    width: 50px;
+    height: 50px;
+
+    &:hover {
+      cursor: pointer;
+      color: white;
+    }
   }
 }

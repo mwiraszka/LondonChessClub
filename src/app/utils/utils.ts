@@ -82,12 +82,8 @@ export function customSort(key: string, isAscending: boolean) {
  * @param {T[]} array The array (any type)
  * @param {number} n The number of items to take
  */
-export function takeRandomly<T>(array: T[], n: number): T[] {
-  if (array?.length <= n) {
-    return array;
-  }
-
-  return array.sort(() => 0.5 - Math.random()).slice(0, n);
+export function takeRandomly<T>(array: T[], n?: number): T[] {
+  return array.sort(() => 0.5 - Math.random()).slice(0, n ?? array?.length ?? 0);
 }
 
 /**

@@ -2,7 +2,7 @@ import { Store } from '@ngrx/store';
 
 import { Injectable } from '@angular/core';
 
-import { ImageOverlayActions } from '@app/store/image-overlay';
+import { PhotosActions } from '@app/store/photos';
 import { Photo } from '@app/types';
 
 @Injectable()
@@ -10,6 +10,6 @@ export class PhotoGalleryScreenFacade {
   constructor(private readonly store: Store) {}
 
   onClickPhoto(photo: Photo): void {
-    this.store.dispatch(ImageOverlayActions.overlayOpened({ photo }));
+    this.store.dispatch(PhotosActions.imageOverlayOpened({ photo }));
   }
 }

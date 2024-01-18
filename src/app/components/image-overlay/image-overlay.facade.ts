@@ -2,24 +2,32 @@ import { Store } from '@ngrx/store';
 
 import { Injectable } from '@angular/core';
 
-import { ImageOverlayActions, ImageOverlaySelectors } from '@app/store/image-overlay';
+import { PhotosActions, PhotosSelectors } from '@app/store/photos';
 
 @Injectable()
 export class ImageOverlayFacade {
-  photo$ = this.store.select(ImageOverlaySelectors.photo);
+  photo$ = this.store.select(PhotosSelectors.overlayPhoto);
 
   constructor(private readonly store: Store) {}
 
   onClose(): void {
-    this.store.dispatch(ImageOverlayActions.overlayClosed());
+    this.store.dispatch(PhotosActions.imageOverlayClosed());
   }
 
   onOverlay(event: MouseEvent): void {
     const clickedElement = (event.target as HTMLElement).tagName;
 
-    // Only close overlay if user clicks outside of image and its header
-    if (clickedElement !== 'IMG' && clickedElement !== 'HEADER') {
-      this.store.dispatch(ImageOverlayActions.overlayClosed());
+    // Only close overlay if user clicks outside of image and its components
+    if (!['IMG', 'HEADER', 'H4', 'polyline', 'svg'].includes(clickedElement)) {
+      this.store.dispatch(PhotosActions.imageOverlayClosed());
     }
+  }
+
+  onPreviousImage(): void {
+    this.store.dispatch(PhotosActions.previousPhotoRequested());
+  }
+
+  onNextImage(): void {
+    this.store.dispatch(PhotosActions.nextPhotoRequested());
   }
 }

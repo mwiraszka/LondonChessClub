@@ -1,4 +1,12 @@
-import { Component, HostListener, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import {
+  Component,
+  HostListener,
+  Inject,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 
 import { ImageOverlayFacade } from './image-overlay.facade';
 
@@ -11,14 +19,18 @@ import { ImageOverlayFacade } from './image-overlay.facade';
 export class ImageOverlayComponent implements OnInit, OnDestroy {
   imageHeight!: number | null;
 
-  constructor(public facade: ImageOverlayFacade, private renderer: Renderer2) {}
+  constructor(
+    public facade: ImageOverlayFacade,
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private _document: Document,
+  ) {}
 
   ngOnInit(): void {
-    this.renderer.addClass(document.body, 'lcc-disable-scrolling');
+    this.renderer.addClass(this._document.body, 'lcc-disable-scrolling');
   }
 
   ngOnDestroy(): void {
-    this.renderer.removeClass(document.body, 'lcc-disable-scrolling');
+    this.renderer.removeClass(this._document.body, 'lcc-disable-scrolling');
   }
 
   @HostListener('window:resize', ['$event'])
@@ -38,7 +50,7 @@ export class ImageOverlayComponent implements OnInit, OnDestroy {
   }
 
   calculateImageHeight(): void {
-    const image = document.getElementById('overlayImage');
+    const image = this._document.getElementById('overlayImage');
     this.imageHeight = image?.clientHeight ?? null;
   }
 }

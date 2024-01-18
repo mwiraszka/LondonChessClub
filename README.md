@@ -39,6 +39,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v2.2.5 - January 18th, 2024
+</summary>
+
+- 🚀 Update main contact email to `welcome@londonchess.ca`
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v2.2.4 - January 17th, 2024
 </summary>
 

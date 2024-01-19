@@ -15,7 +15,11 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
-    "lib": ["es2020", "ES2021.String", "dom"],
+    "lib": [
+      "es2020",
+      "ES2021.String",
+      "dom"
+    ],
     "module": "es2020",
     "moduleResolution": "node",
     "noImplicitAny": true,
@@ -24,13 +28,20 @@
     "noPropertyAccessFromIndexSignature": true,
     "outDir": "./dist/out-tsc",
     "paths": {
-      "@app/*": ["app/*"],
-      "@assets/*": ["assets/*"],
-      "@environments/*": ["environments/*"]
+      "@app/*": [
+        "app/*"
+      ],
+      "@assets/*": [
+        "assets/*"
+      ],
+      "@environments/*": [
+        "environments/*"
+      ]
     },
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "ES2022",
+    "useDefineForClassFields": false
   }
 }

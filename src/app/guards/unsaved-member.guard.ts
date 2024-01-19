@@ -3,15 +3,13 @@ import { Observable, of } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { CanDeactivate } from '@angular/router';
 
-import { MemberEditorScreenComponent } from '@app/screens/member-editor';
 import { MembersSelectors } from '@app/store/members';
 import { ModalActions, ModalSelectors } from '@app/store/modal';
 import { ModalButtonActionTypes } from '@app/types';
 
 @Injectable({ providedIn: 'root' })
-export class UnsavedMemberGuard implements CanDeactivate<MemberEditorScreenComponent> {
+export class UnsavedMemberGuard {
   constructor(private readonly store: Store) {}
 
   canDeactivate(): Observable<boolean> {

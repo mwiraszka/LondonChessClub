@@ -8,6 +8,8 @@ import {
   Renderer2,
 } from '@angular/core';
 
+import { LoaderService } from '@app/services';
+
 import { ImageOverlayFacade } from './image-overlay.facade';
 
 @Component({
@@ -21,11 +23,13 @@ export class ImageOverlayComponent implements OnInit, OnDestroy {
 
   constructor(
     public facade: ImageOverlayFacade,
+    private loaderService: LoaderService,
     private renderer: Renderer2,
     @Inject(DOCUMENT) private _document: Document,
   ) {}
 
   ngOnInit(): void {
+    this.loaderService.display(true);
     this.renderer.addClass(this._document.body, 'lcc-disable-scrolling');
   }
 
@@ -41,12 +45,19 @@ export class ImageOverlayComponent implements OnInit, OnDestroy {
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.key == 'ArrowLeft') {
+      this.loaderService.display(true);
       this.facade.onPreviousImage();
     } else if (event.key == 'ArrowRight') {
+      this.loaderService.display(true);
       this.facade.onNextImage();
     } else if (event.key == 'Escape') {
       this.facade.onClose();
     }
+  }
+
+  imageLoaded(): void {
+    this.calculateImageHeight();
+    this.loaderService.display(false);
   }
 
   calculateImageHeight(): void {

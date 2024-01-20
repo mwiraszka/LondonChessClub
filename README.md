@@ -43,6 +43,7 @@ v3.0.0 - January TBD, 2024
 </summary>
 
 - 🚀 Upgrade to Angular v17
+- 🚀 Show loading spinner over Photo Gallery photo while it loads
 - 🚀 Create a PGN viewer widget and use to display archived games in new Game Archives screen
 
 </details>

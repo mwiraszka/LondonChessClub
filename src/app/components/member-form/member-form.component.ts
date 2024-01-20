@@ -38,7 +38,6 @@ export class MemberFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.loaderService.display(true);
-
     this.facade.memberCurrently$
       .pipe(
         tap(member => (this.modificationInfo = member.modificationInfo)),

@@ -9,7 +9,7 @@
 		</header>
 		<img id="overlayImage"
 				 [src]="'assets/photos/' + (facade.photo$ | async)?.filename + '.jpg'"
-				 (load)="calculateImageHeight()" />
+				 (load)="imageLoaded()" />
 		<h4 class="description lcc-truncate">
 			{{ (facade.photo$ | async)?.description }}
 		</h4>

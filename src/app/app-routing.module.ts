@@ -8,6 +8,7 @@ import { ArticleViewerScreenComponent } from '@app/screens/article-viewer';
 import { ChampionScreenComponent } from '@app/screens/champion';
 import { ChangePasswordScreenComponent } from '@app/screens/change-password';
 import { EventEditorScreenComponent } from '@app/screens/event-editor';
+import { GameArchivesScreenComponent } from '@app/screens/game-archives';
 import { HomeScreenComponent } from '@app/screens/home';
 import { LoginScreenComponent } from '@app/screens/login';
 import { MemberEditorScreenComponent } from '@app/screens/member-editor';
@@ -80,6 +81,10 @@ const routes: Routes = [
   {
     path: NavPathTypes.PHOTO_GALLERY,
     component: PhotoGalleryScreenComponent,
+  },
+  {
+    path: NavPathTypes.GAME_ARCHIVES,
+    component: GameArchivesScreenComponent,
   },
   {
     path: NavPathTypes.LOGIN,

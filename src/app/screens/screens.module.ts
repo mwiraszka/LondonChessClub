@@ -6,6 +6,7 @@ import { ArticleEditorScreenModule } from './article-editor';
 import { ArticleViewerScreenModule } from './article-viewer';
 import { ChampionScreenModule } from './champion';
 import { EventEditorScreenModule } from './event-editor';
+import { GameArchivesScreenModule } from './game-archives';
 import { HomeScreenModule } from './home';
 import { LoginScreenModule } from './login';
 import { MemberEditorScreenModule } from './member-editor';
@@ -20,6 +21,7 @@ const modules = [
   ArticleViewerScreenModule,
   ChampionScreenModule,
   EventEditorScreenModule,
+  GameArchivesScreenModule,
   HomeScreenModule,
   LoginScreenModule,
   MemberEditorScreenModule,

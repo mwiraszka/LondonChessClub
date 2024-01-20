@@ -53,9 +53,9 @@
 	</a>
 
 	<a aria-label="City Champion"
+		 routerLinkActive="link-active"
 		 [routerLink]="NavPathTypes.CITY_CHAMPION"
-		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'City Champion' : null"
-		 routerLinkActive="link-active">
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'City Champion' : null">
 		<span class="text">City&nbsp;Champion</span>
 		<i-feather name="award"
 							 class="icon award-icon">
@@ -69,6 +69,16 @@
 		<span class="text">Photo&nbsp;Gallery</span>
 		<i-feather name="camera"
 							 class="icon camera-icon">
+		</i-feather>
+	</a>
+
+	<a aria-label="Game Archives"
+		 routerLinkActive="link-active"
+		 [routerLink]="NavPathTypes.GAME_ARCHIVES"
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Game Archives' : null">
+		<span class="text">Game&nbsp;Archives</span>
+		<i-feather name="grid"
+							 class="icon grid-icon">
 		</i-feather>
 	</a>
 

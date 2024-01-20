@@ -1,0 +1,10 @@
+@import 'styles/abstracts/variables';
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: $lcc-space--sm;
+  margin: auto;
+  max-width: $lcc-width--app-content;
+}

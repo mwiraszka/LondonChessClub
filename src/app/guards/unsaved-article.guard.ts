@@ -3,15 +3,13 @@ import { Observable, of } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { CanDeactivate } from '@angular/router';
 
-import { ArticleEditorScreenComponent } from '@app/screens/article-editor';
 import { ArticlesSelectors } from '@app/store/articles';
 import { ModalActions, ModalSelectors } from '@app/store/modal';
 import { ModalButtonActionTypes } from '@app/types';
 
 @Injectable({ providedIn: 'root' })
-export class UnsavedArticleGuard implements CanDeactivate<ArticleEditorScreenComponent> {
+export class UnsavedArticleGuard {
   constructor(private readonly store: Store) {}
 
   canDeactivate(): Observable<boolean> {

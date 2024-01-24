@@ -12,10 +12,11 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 > FRONTEND
 
-- `Angular v14` for frontend framework
+- `Angular v17` for frontend framework
 - `NgRx` for reactive state management
 - `Feather` for icons
 - `SCSS` for style preprocessing with Sass
+- `Lichess PGN Viewer` for chess games
 
 > BACKEND (AWS)
 
@@ -36,6 +37,19 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 | 🚀 | New **features** and **improvements** |
 | 🐛 | Bug fixes |
 | 🔧 | Code refactoring |
+
+<details>
+<summary style="cursor: pointer">
+v3.0.0 - January 24th, 2024
+</summary>
+
+- 🚀 Upgrade to Angular v17
+- 🚀 Show loading spinner over Photo Gallery photo while it loads
+- 🚀 Create a PGN viewer widget and use to display archived games in new Game Archives screen
+
+- 🐛 Remove spaces between link text and any punctuation that follows
+
+</details>
 
 <details>
 <summary style="cursor: pointer">
@@ -89,7 +103,7 @@ v2.2.1 - January 11th, 2024
 </summary>
 
 - 🚀 Add fun chess pieces graphic to app header and update header font
-- 🚀 Increase number of articles shown on the home page from 4 to 5
+- 🚀 Increase number of articles shown on the Home screen from 4 to 5
 
 - 🐛 Prevent tooltips from displaying out of screen's bounds
 
@@ -102,7 +116,7 @@ v2.2.0 - January 9th, 2024
 
 - 🚀 Add ability to open any linkable item in a new tab by ctrl-clicking, and also display URL in browser on hover (previously was only possible on certain standard text links)
 - 🚀 Various minor improvements to admin user dropdown component
-- 🚀 Scroll to top of page after toggling past events in the Schedule screen
+- 🚀 Scroll to top of screen after toggling past events in the Schedule screen
 - 🚀 Brief update on 2023 Championship Match (more details and photos to follow)
 
 - 🔧 Refactor navigation logic throughout app to make better use of Angular's routing features
@@ -117,10 +131,10 @@ v2.1.0 - December 31st, 2023
 
 - 🚀 Add support for 'sticky' articles, allowing admins to bump up selected articles to the top of the list
 - 🚀 Auto-expire warning toasts (red notifications in bottom-left of screen) just as with success toasts
-- 🚀 Navigate to home page when clicking on either London Chess Club logo or text in main app header, and always in the current browser tab
+- 🚀 Navigate to Home screen when clicking on either London Chess Club logo or text in main app header, and always in the current browser tab
 
 - 🐛 Fix bug causing unsaved changes dialog from appearing when editing an article, even when it was returned to its original state
-- 🐛 Fix some broken links on the About page, and make sure they open up in a new tab when expected
+- 🐛 Fix some broken links on the About screen, and make sure they open up in a new tab when expected
 
 </details>
 
@@ -170,14 +184,14 @@ v2.0.0 - December 20th, 2023
 </summary>
 
 - 🚀 Make adjustments to this README.md prior to v2.0.0 launch
-- 🚀 Move About page to after Home page in the navigation tabs
-- 🚀 Improve About page layout and content
+- 🚀 Move About screen to after Home screen in the navigation tabs
+- 🚀 Improve About screen layout and content
 - 🚀 Display only future events in Schedule by default, with an option to show past events
 
 - 🐛 Fix issue which prevented article banner images from being fetched using secure connection (HTTPS protocol)  
 - 🐛 Correct club event date-time tiemzone calculations which were causing Thursday club event dates to show up as Wednesday
 - 🐛 Fix Angular Service Worker issues when app is running on a production environment
-- 🐛 Fix bug which prevented form validation icon from appearing in Create/Edit Event page
+- 🐛 Fix bug which prevented form validation icon from appearing in Create/Edit Event screen
 
 - 🔧 Split `utils.ts` into more categorized util files, and leverage `moment.js` library for better date-time calculations  
 
@@ -190,8 +204,8 @@ v2.0.0 - December 20th, 2023
 v1.6.8-beta - December 19th, 2023
 </summary>
 
-- 🚀 Update content on About page
-- 🚀 Update content on Champion page
+- 🚀 Update content on About screen
+- 🚀 Update content on Champion screen
 
 - 🐛 Fix password change bug
 
@@ -379,7 +393,7 @@ v1.4.3-beta - November 19th, 2023
 
 - 🚀 Display next event as a banner with option to link to that particular event on the Schedule screen
 - 🚀 Improve how images are displayed on small devices
-- 🚀 Add more event categories and only display upcoming events on home page
+- 🚀 Add more event categories and only display upcoming events on the Home screen
 
 - 🐛 Ensure admin control buttons don't propagate and trigger click events on their parent components
 
@@ -392,7 +406,7 @@ v1.4.3-beta - November 19th, 2023
 v1.4.2-beta - November 16th, 2023
 </summary>
 
-- 🚀 Automatically log in after a successful password change, redirect user to home page, and hide sensitive information from Redux Devtools
+- 🚀 Automatically log in after a successful password change, redirect user to Home screen, and hide sensitive information from Redux Devtools
 
 - 🐛 Fix bug preventing user from accessing add member, add article and add event screens
 - 🐛 Fix bug causing 'Last edited: Invalid Date' to be displayed after creating a new article
@@ -477,7 +491,7 @@ v1.2.0-beta - October 4th, 2023
 </summary>
 
 - 🚀 Support submitting via 'enter' key in all forms
-- 🚀 Add ability to return to the previous page and request a new code after an email has already been entered
+- 🚀 Add ability to return to the previous screen and request a new code after an email has already been entered
 
 - 🐛 Revert changes to algorithm of 'kebabize' helper function, ensuring that the correct CSS classes are added in the Members Table component
 - 🐛 Ensure all validator functions work as expected again, after major code refactor in the previous release
@@ -549,14 +563,14 @@ v0.8.0-alpha - September 8th, 2022
 - 🚀 Integrate an NgRx (redux-based) infrastructure for state management
 - 🚀 Integrate various backend solutions through AWS, including: DynamoDB for a NoSQL database, Cognito and IAM for user authentication and authorization, API Gateway and Lambda functions for HTTP request manipulation and routing, S3 for static hosting, CodeBuild for an automated CI/CD pipeline triggered directly by GitHub PR merges, and Route 53 and CloudFront for DNS record management, CDN services, and traffic management
 - 🚀 Implement an assortment of basic UI/UX features, such as toast notifications, modals (pop-ups) for action confirmation, an alert bar at the top of the screen, and a loading spinner for when data is being fetched from the database
-- 🚀 Implement a standard nav bar to route to the various pages available, including an icon-only view on smaller devices, and a user account section to house any account-specific information and actions
+- 🚀 Implement a standard nav bar to route to the various screens available, including an icon-only view on smaller devices, and a user account section to house any account-specific information and actions
 - 🚀 Implement user sign up, login, and change password flows, granting LCC committee members admin access to perform Create, Read, Update and Delete (CRUD) actions on any data which is regularly updated: currently members, articles, and scheduled events
 - 🚀 Implement basic members table and paginator components, fully fitted with sorting and filtering algorithms
 - 🚀 _(Work in progress)_ Implement basic database CRUD functionality and a responsive grid layout for articles
 - 🚀 Implement basic CRUD functionality and a responsive table layout for all club events stored in the database
 - 🚀 Create a responsive grid layout to organize the most commonly sought information about the club
 - 🚀 Create a responsive grid layout to house photos from club meetings and club-organized events, including the functionality to enlarge photos in an image overlay 'preview' mode
-- 🚀 Create a responsive grid layout to showcase only the most pertinent information from other pages (such as only the next 4 events from the schedule, and a more limited amount of photos from the photo gallery)
+- 🚀 Create a responsive grid layout to showcase only the most pertinent information from other screens (such as only the next 4 events from the schedule, and a more limited amount of photos from the photo gallery)
 
 </details>
 

@@ -23,7 +23,9 @@
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
@@ -96,10 +98,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "lcc-angular:build:production"
+              "buildTarget": "lcc-angular:build:production"
             },
             "development": {
-              "browserTarget": "lcc-angular:build:development",
+              "buildTarget": "lcc-angular:build:development",
               "proxyConfig": "proxy.conf.json"
             }
           },
@@ -108,13 +110,15 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "lcc-angular:build"
+            "buildTarget": "lcc-angular:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
@@ -127,6 +131,5 @@
         }
       }
     }
-  },
-  "defaultProject": "lcc-angular"
+  }
 }

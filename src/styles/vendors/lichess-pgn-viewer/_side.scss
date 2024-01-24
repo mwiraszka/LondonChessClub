@@ -1,0 +1,159 @@
+$lpv-bg-inaccuracy-hover: c-dimmer($lpv-inaccuracy, 70%) !default;
+$lpv-bg-mistake-hover: c-dimmer($lpv-mistake, 70%) !default;
+$lpv-bg-blunder-hover: c-dimmer($lpv-blunder, 70%) !default;
+$lpv-bg-good-hover: c-dimmer($lpv-good-move, 70%) !default;
+$lpv-bg-brilliant-hover: c-dimmer($lpv-brilliant, 70%) !default;
+$lpv-bg-interesting-hover: c-dimmer($lpv-interesting, 70%) !default;
+$lpv-border: hsl(37deg, 5%, 13%) !default;
+
+.lpv {
+  &__side {
+    overflow: hidden;
+    display: flex;
+    flex-flow: column;
+  }
+  &__moves {
+    position: relative; // required for autoscroll
+    flex: 1 1 0;
+    display: flex;
+    flex-flow: row wrap;
+    overflow-y: auto;
+    background: $lpv-bg-movelist;
+    align-items: center;
+    align-content: flex-start;
+    will-change: scroll-position;
+    user-select: none;
+    line-height: 1.7;
+    min-width: 20ch;
+    index {
+      color: $lpv-font-shy;
+    }
+    > index {
+      flex: 0 0 15%;
+      margin-right: 3%;
+      display: flex;
+      justify-content: flex-end;
+    }
+    move {
+      border-radius: 3px;
+      padding-left: 3%;
+      font-weight: bold;
+      white-space: nowrap;
+      &.empty {
+        color: mix($lpv-font, $lpv-bg, 50%);
+      }
+      &:not(.empty):hover {
+        background: mix($lpv-accent, $lpv-bg, 30%);
+        color: $lpv-accent-over;
+        cursor: pointer;
+      }
+      &.ancestor {
+        color: $lpv-font-accent;
+      }
+      &.current {
+        background: mix($lpv-accent, $lpv-bg, 70%) !important;
+        color: $lpv-accent-over;
+      }
+      &.inaccuracy {
+        color: $lpv-inaccuracy;
+        &:hover {
+          background: $lpv-bg-inaccuracy-hover;
+        }
+      }
+      &.mistake {
+        color: $lpv-mistake;
+        &:hover {
+          background: $lpv-bg-mistake-hover;
+        }
+      }
+      &.blunder {
+        color: $lpv-blunder;
+        &:hover {
+          background: $lpv-bg-blunder-hover;
+        }
+      }
+      &.good {
+        color: $lpv-good-move;
+        &:hover {
+          background: $lpv-bg-good-hover;
+        }
+      }
+      &.brilliant {
+        color: $lpv-brilliant;
+        &:hover {
+          background: $lpv-bg-brilliant-hover;
+        }
+      }
+      &.interesting {
+        color: $lpv-interesting;
+        &:hover {
+          background: $lpv-bg-interesting-hover;
+        }
+      }
+    }
+    > move {
+      flex: 0 0 41%;
+      font-size: 1.1em;
+    }
+    comment {
+      user-select: text;
+      font-size: 0.9em;
+    }
+    > comment {
+      flex: 1 1 100%;
+      background: $lpv-bg-variation;
+      border: 1px solid $lpv-border;
+      border-width: 1px 0;
+      padding: 0.4em 1em;
+      line-height: 1.4;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      + variation,
+      + comment {
+        border-top: none;
+      }
+    }
+    > variation {
+      flex: 1 1 100%;
+      display: block;
+      overflow: hidden;
+      font-size: 0.8em;
+      background: $lpv-bg-variation;
+      border: 1px solid $lpv-border;
+      border-width: 1px 0;
+      padding: 0em 0.6em;
+      + variation {
+        border-top: none;
+      }
+      move {
+        display: inline-block;
+        padding: 0.1em 0.2em;
+        min-width: 2.5ch;
+        text-align: center;
+        + index {
+          margin-left: 0.2em;
+        }
+      }
+      index {
+        margin: 0;
+        padding: 0.1em 0;
+        + move {
+          margin-left: 0.1em;
+        }
+      }
+      comment {
+        align-self: center;
+        margin: 0 0.3em;
+      }
+      paren {
+        color: $lpv-font-shy;
+        &.open {
+          margin: 0 0.1em 0 0.2em;
+        }
+        &.close {
+          margin: 0 0.2em 0 0.1em;
+        }
+      }
+    }
+  }
+}

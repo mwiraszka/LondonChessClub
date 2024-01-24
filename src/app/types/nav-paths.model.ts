@@ -12,6 +12,7 @@ export enum NavPathTypes {
   ARTICLE_VIEW = 'article/view',
   CITY_CHAMPION = 'city-champion',
   PHOTO_GALLERY = 'photo-gallery',
+  GAME_ARCHIVES = 'game-archives',
   ABOUT = 'about',
   LOGIN = 'login',
   LOGOUT = 'logout',

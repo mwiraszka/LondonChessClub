@@ -1,0 +1,14 @@
+<div class="container">
+	<lcc-screen-header title="Game Archives"
+										 iconShape="grid">
+	</lcc-screen-header>
+	<p>Here you will soon be able to play through our
+		<a href="https://londonchessclub.ca/?page_id=3308"
+			 class="lcc-link">archived games</a>. For now, enjoy some of these classics:
+	</p>
+	<div class="games-grid">
+		<lcc-pgn-viewer *ngFor="let pgn of pgns"
+										[pgn]="pgn">
+		</lcc-pgn-viewer>
+	</div>
+</div>

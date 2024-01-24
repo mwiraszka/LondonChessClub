@@ -8,3 +8,21 @@
   margin: auto;
   max-width: $lcc-width--app-content;
 }
+
+p {
+  margin: $lcc-space--sm;
+}
+
+.games-grid {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: $lcc-space--sm;
+  gap: $lcc-space--sm;
+
+  lcc-pgn-viewer {
+    min-width: 300px;
+    max-width: 500px;
+  }
+}

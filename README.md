@@ -12,10 +12,11 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 > FRONTEND
 
-- `Angular v14` for frontend framework
+- `Angular v17` for frontend framework
 - `NgRx` for reactive state management
 - `Feather` for icons
 - `SCSS` for style preprocessing with Sass
+- `Lichess PGN Viewer` for chess games
 
 > BACKEND (AWS)
 
@@ -39,12 +40,14 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v3.0.0 - January TBD, 2024
+v3.0.0 - January 24th, 2024
 </summary>
 
 - 🚀 Upgrade to Angular v17
 - 🚀 Show loading spinner over Photo Gallery photo while it loads
 - 🚀 Create a PGN viewer widget and use to display archived games in new Game Archives screen
+
+- 🐛 Remove spaces between link text and any punctuation that follows
 
 </details>
 

@@ -2,8 +2,10 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 14
+      nodejs: 16
     commands:
+      - echo "Upgrading node.js version..."
+      - n 18
       - echo "Installing dependencies..."
       - npm install
       - npm install -g @angular/cli@17.1.0

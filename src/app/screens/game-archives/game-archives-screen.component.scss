@@ -13,12 +13,20 @@ p {
   margin: $lcc-space--sm;
 }
 
-.games-grid {
+.header-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  flex: 1;
+  padding: 0 $lcc-space--md;
+}
+
+.games-container {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  margin: $lcc-space--sm;
+  padding: $lcc-space--sm;
   gap: $lcc-space--sm;
 
   lcc-pgn-viewer {

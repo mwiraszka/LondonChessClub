@@ -40,7 +40,7 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v3.0.1 - January 28th, 2024
+v3.0.1 - January 31st, 2024
 </summary>
 
 - 🚀 Migrate archived games (1974-2000) from old website

@@ -1,0 +1,39 @@
+@import 'styles/abstracts/variables';
+
+:host {
+  width: 100%;
+}
+
+.header-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: $lcc-space--sm;
+  background-color: lighten($lcc-color--secondary, 15%);
+  border-top-left-radius: $lcc-border-radius--lg;
+  border-top-right-radius: $lcc-border-radius--lg;
+  
+  ::ng-deep * {
+    color: darken($lcc-color--text-primary-white, 10%);
+  }
+
+  &:not(.isOpen) {
+    border-bottom-left-radius: $lcc-border-radius--lg;
+    border-bottom-right-radius: $lcc-border-radius--lg;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    .expand-icon {
+      color: lighten($lcc-color--text-primary-black, 40%);
+    }
+  }
+}
+
+.content-container {
+  padding: $lcc-space--sm;
+  background-color: $lcc-color--bg-expansion-panel;
+  border-bottom-left-radius: $lcc-border-radius--lg;
+  border-bottom-right-radius: $lcc-border-radius--lg;
+}

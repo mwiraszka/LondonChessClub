@@ -16,7 +16,7 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 - `NgRx` for reactive state management
 - `Feather` for icons
 - `SCSS` for style preprocessing with Sass
-- `Lichess PGN Viewer` for chess games
+- `Lichess PGN Viewer` for rendering chess games
 
 > BACKEND (AWS)
 
@@ -37,6 +37,16 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 | 🚀 | New **features** and **improvements** |
 | 🐛 | Bug fixes |
 | 🔧 | Code refactoring |
+
+<details>
+<summary style="cursor: pointer">
+v3.0.1 - January 31st, 2024
+</summary>
+
+- 🚀 Migrate archived games (1974-2000) from old website
+- 🚀 Update City Champion screen with result from 2023 Championship match
+
+</details>
 
 <details>
 <summary style="cursor: pointer">

@@ -2,13 +2,43 @@
 	<lcc-screen-header title="Game Archives"
 										 iconShape="grid">
 	</lcc-screen-header>
-	<p>Here you will soon be able to play through our
-		<a href="https://londonchessclub.ca/?page_id=3308"
-			 class="lcc-link">archived games</a>. For now, enjoy some of these classics:
+
+	<p>
+		Take a trip down memory lane! Here you will find a collection of games played by
+		London Chess Club members over the years (more games from 2000–2024 coming soon).
 	</p>
-	<div class="games-grid">
-		<lcc-pgn-viewer *ngFor="let pgn of pgns"
-										[pgn]="pgn">
-		</lcc-pgn-viewer>
-	</div>
+	<p>
+		Want to submit a game or make a correction? Email us at
+		<a href="mailto:welcome@londonchess.ca"
+			 class="lcc-link"
+			 alt="welcome@londonchess.ca">
+			welcome&#64;londonchess.ca</a>.
+	</p>
+
+	@for (panel of expansionPanels; track panel) {
+	<lcc-expansion-panel [headerTemplate]="headerTemplateRef"
+											 [contentTemplate]="contentTemplateRef">
+	</lcc-expansion-panel>
+
+	<ng-template #headerTemplateRef>
+		<div class="header-container">
+			<span>{{ panel.label }}</span>
+			<span>{{ panel.pgns.length }} games</span>
+		</div>
+	</ng-template>
+
+	<ng-template #contentTemplateRef>
+		<div class="games-container">
+
+			@defer {
+			@for (pgn of panel.pgns; track pgn) {
+			<lcc-pgn-viewer [pgn]="pgn"></lcc-pgn-viewer>
+			}
+			} @placeholder {
+			<span>Loading...</span>
+			<span class="lcc-loading-spinner"></span>
+			}
+		</div>
+	</ng-template>
+	}
 </div>

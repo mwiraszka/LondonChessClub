@@ -13,6 +13,11 @@ p {
   margin: $lcc-space--sm;
 }
 
+// Wide enough to fit two pgn viewers side-by-side
+lcc-expansion-panel {
+  max-width: 1050px;
+}
+
 .header-container {
   display: flex;
   flex-flow: row wrap;

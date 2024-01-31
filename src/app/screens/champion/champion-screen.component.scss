@@ -28,28 +28,30 @@
   grid-template-columns: 1fr;
   grid-template-areas:
     'history'
+    'champ-2023'
+    'trophies-2023'
     'cup'
-    'champ-2019'
     'champ-2022'
+    'champ-2019'
     'past-winners';
   gap: $lcc-space--xs;
 
   @include respond-to('gt-sm') {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 3fr 2fr 2fr;
     grid-template-areas:
-      'history history'
-      'cup champ-2019'
-      'champ-2022 champ-2022'
-      'past-winners past-winners';
-  }
+      'history history history'
+      'champ-2023 trophies-2023 trophies-2023'
+      'champ-2022 cup champ-2019'
+        'past-winners past-winners past-winners';
+    }
 
   @include respond-to('gt-lg') {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 3fr 2fr 2fr 2fr;
     grid-template-areas:
-      'history history past-winners'
-      'cup champ-2019 past-winners'
-      'champ-2022 champ-2022 past-winners'
-      '. . past-winners';
+    'history history history past-winners'
+    'champ-2023 trophies-2023 trophies-2023 past-winners'
+    'champ-2022 cup champ-2019 past-winners'
+    '. . . past-winners'
   }
 
   article {
@@ -107,6 +109,26 @@
         tfoot tr td {
           text-align: center;
         }
+      }
+    }
+
+    &.champion-2023 {
+      grid-area: champ-2023;
+      @include dark-bg;
+
+      @include respond-to('lt-sm') {
+        margin: 0 $lcc-space--xs;
+        border-radius: $lcc-border-radius--lg;
+      }
+    }
+
+    &.trophies-2023 {
+      grid-area: trophies-2023;
+      @include dark-bg;
+
+      @include respond-to('lt-sm') {
+        margin: 0 $lcc-space--xs;
+        border-radius: $lcc-border-radius--lg;
       }
     }
     

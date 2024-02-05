@@ -1,3 +1,4 @@
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -9,6 +10,12 @@ import { GameArchivesScreenComponent } from './game-archives-screen.component';
 
 @NgModule({
   declarations: [GameArchivesScreenComponent],
-  imports: [CommonModule, ExpansionPanelModule, PgnViewerModule, ScreenHeaderModule],
+  imports: [
+    CommonModule,
+    ExpansionPanelModule,
+    PgnViewerModule,
+    ScreenHeaderModule,
+    ScrollingModule,
+  ],
 })
 export class GameArchivesScreenModule {}

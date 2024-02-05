@@ -29,11 +29,13 @@
 
 	<ng-template #contentTemplateRef>
 		<div class="games-container">
-
 			@defer {
-			@for (pgn of panel.pgns; track pgn) {
-			<lcc-pgn-viewer [pgn]="pgn"></lcc-pgn-viewer>
-			}
+			<cdk-virtual-scroll-viewport itemSize="432"
+																	 orientation="horizontal">
+				<lcc-pgn-viewer *cdkVirtualFor="let pgn of panel.pgns"
+												[pgn]="pgn">
+				</lcc-pgn-viewer>
+			</cdk-virtual-scroll-viewport>
 			} @placeholder {
 			<span>Loading...</span>
 			<span class="lcc-loading-spinner"></span>

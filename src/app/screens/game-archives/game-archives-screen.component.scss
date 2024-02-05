@@ -1,41 +1,52 @@
 @import 'styles/abstracts/variables';
 
-.container {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  gap: $lcc-space--sm;
-  margin: auto;
-  max-width: $lcc-width--app-content;
-}
+:host {
+  .container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: $lcc-space--sm;
+    margin: auto;
+    max-width: $lcc-width--app-content;
+  }
 
-p {
-  margin: $lcc-space--sm;
-}
+  p {
+    margin: $lcc-space--sm;
+  }
 
-// Wide enough to fit two pgn viewers side-by-side
-lcc-expansion-panel {
-  max-width: 1050px;
-}
+  // Wide enough to fit two pgn viewers side-by-side
+  lcc-expansion-panel {
+    max-width: 1050px;
+  }
 
-.header-container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  flex: 1;
-  padding: 0 $lcc-space--md;
-}
+  .header-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    flex: 1;
+    padding: 0 $lcc-space--md;
+  }
 
-.games-container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  padding: $lcc-space--sm;
-  gap: $lcc-space--sm;
+  .games-container {
+    width: 100%;
+    text-align: center;
 
-  lcc-pgn-viewer {
-    min-width: 300px;
-    max-width: 500px;
+    cdk-virtual-scroll-viewport {
+      height: 352px;
+
+      ::ng-deep .cdk-virtual-scroll-content-wrapper {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
+
+        lcc-pgn-viewer {
+          display: flex;
+          flex-flow: row nowrap;
+          margin: $lcc-space--xs;
+          max-width: 432px;
+        }
+      }
+    }
   }
 }

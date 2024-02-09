@@ -1,9 +1,30 @@
 @import 'styles/abstracts/variables';
 
-cg-board {
-  background-color: tan;
-}
+lcc-pgn-viewer {
+  cg-board {
+    background-color: tan;
+  }
+  
+  .lpv:focus {
+    outline: none;
+  }
 
-.lpv__player__name {
-  color: darken($lcc-color--text-primary-white, 15%);
+  .lpv__player__name {
+    color: darken($lcc-color--text-primary-white, 15%);
+  }
+
+  .lpv__moves,
+  .lpv__pgn__text {
+    &::-webkit-scrollbar-thumb {
+      background: darken($lcc-color--gray, 20%);
+
+      &:hover {
+        background: darken($lcc-color--gray, 10%);
+      }
+    }
+  
+    &::-webkit-scrollbar {
+      background: unset;
+    }
+  }
 }

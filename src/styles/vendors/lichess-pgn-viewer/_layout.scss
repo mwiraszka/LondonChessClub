@@ -49,17 +49,17 @@ $board-min-width: 200px !default;
       'controls   side';
     grid-template-columns: minmax($board-min-width, calc(100vh - var(--controls-height))) $grid-side-column-full-screen;
     grid-template-rows: auto var(--controls-height);
-    @media (max-width: #{$moves-auto-to-right}) {
-      grid-template-areas:
-        'board'
-        'controls'
-        'side';
-      grid-template-columns: minmax(
-        $board-min-width,
-        calc(100vh - var(--controls-height) - #{$grid-side-row})
-      );
-      grid-template-rows: auto var(--controls-height);
-    }
+    // @media (max-width: #{$moves-auto-to-right}) {
+    //   grid-template-areas:
+    //     'board'
+    //     'controls'
+    //     'side';
+    //   grid-template-columns: minmax(
+    //     $board-min-width,
+    //     calc(100vh - var(--controls-height) - #{$grid-side-row})
+    //   );
+    //   grid-template-rows: auto var(--controls-height);
+    // }
   }
 
   &--players {
@@ -104,19 +104,19 @@ $board-min-width: 200px !default;
         minmax($board-min-width, calc(100vh - 2 * #{$player-height} - var(--controls-height)))
         $grid-side-column-full-screen;
       grid-template-rows: $player-height auto $player-height var(--controls-height);
-      @media (max-width: #{$moves-auto-to-right}) {
-        grid-template-areas:
-          'player-top'
-          'board'
-          'player-bot'
-          'controls'
-          'side';
-        grid-template-columns: minmax(
-          $board-min-width,
-          calc(100vh - 2 * #{$player-height} - var(--controls-height) - #{$grid-side-row})
-        );
-        grid-template-rows: $player-height auto $player-height var(--controls-height);
-      }
+      // @media (max-width: #{$moves-auto-to-right}) {
+      //   grid-template-areas:
+      //     'player-top'
+      //     'board'
+      //     'player-bot'
+      //     'controls'
+      //     'side';
+      //   grid-template-columns: minmax(
+      //     $board-min-width,
+      //     calc(100vh - 2 * #{$player-height} - var(--controls-height) - #{$grid-side-row})
+      //   );
+      //   grid-template-rows: $player-height auto $player-height var(--controls-height);
+      // }
     }
   }
 

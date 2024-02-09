@@ -14,9 +14,19 @@
     margin: $lcc-space--sm;
   }
 
-  // Wide enough to fit two pgn viewers side-by-side
-  lcc-expansion-panel {
+  .panels-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .panel-container {
+    width: 100%;
+    // Wide enough to fit two pgn viewers side-by-side
     max-width: 1050px;
+    padding-bottom: 2px;
+
   }
 
   .header-container {
@@ -28,24 +38,24 @@
   }
 
   .games-container {
-    width: 100%;
     text-align: center;
+    width: 100%;
 
     cdk-virtual-scroll-viewport {
       height: 352px;
 
       ::ng-deep .cdk-virtual-scroll-content-wrapper {
         display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-        justify-content: center;
 
         lcc-pgn-viewer {
-          display: flex;
-          flex-flow: row nowrap;
           margin: $lcc-space--xs;
           max-width: 432px;
         }
+      }
+
+      &::-webkit-scrollbar,
+      &::-webkit-scrollbar-corner {
+        background: unset;
       }
     }
   }

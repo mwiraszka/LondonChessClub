@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { Component, HostListener, OnInit, ViewChildren } from '@angular/core';
 
 import { GameArchivesScreenFacade } from './game-archives-screen.facade';
 import * as fromPgns from './pgns';
@@ -12,7 +13,15 @@ import * as fromPgns from './pgns';
 export class GameArchivesScreenComponent implements OnInit {
   expansionPanels!: { label: string; pgns: string[] }[];
 
+  @ViewChildren(CdkVirtualScrollViewport)
+  cdkVirtualScrollViewport?: CdkVirtualScrollViewport;
+
   constructor(public facade: GameArchivesScreenFacade) {}
+
+  @HostListener('window:resize', ['$event'])
+  onResize(): void {
+    this.cdkVirtualScrollViewport?.checkViewportSize();
+  }
 
   ngOnInit(): void {
     this.expansionPanels = [

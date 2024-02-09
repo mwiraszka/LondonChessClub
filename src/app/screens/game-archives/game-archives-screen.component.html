@@ -5,7 +5,8 @@
 
 	<p>
 		Take a trip down memory lane! Here you will find a collection of games played by
-		London Chess Club members over the years (more games from 2000–2024 coming soon).
+		London Chess Club members all the way back to 1974 (more games from 2000–2024 coming
+		soon).
 	</p>
 	<p>
 		Want to submit a game or make a correction? Email us at
@@ -15,32 +16,39 @@
 			welcome&#64;londonchess.ca</a>.
 	</p>
 
-	@for (panel of expansionPanels; track panel) {
-	<lcc-expansion-panel [headerTemplate]="headerTemplateRef"
-											 [contentTemplate]="contentTemplateRef">
-	</lcc-expansion-panel>
+	<div class="panels-container">
+		<div *ngFor="let panel of expansionPanels"
+				 class="panel-container">
+			<lcc-expansion-panel [headerTemplate]="headerTemplateRef"
+													 [contentTemplate]="contentTemplateRef">
+			</lcc-expansion-panel>
 
-	<ng-template #headerTemplateRef>
-		<div class="header-container">
-			<span>{{ panel.label }}</span>
-			<span>{{ panel.pgns.length }} games</span>
-		</div>
-	</ng-template>
+			<ng-template #headerTemplateRef>
+				<div class="header-container">
+					<span>{{ panel.label }}</span>
+					<span>
+						{{ panel.pgns.length }}
+						{{ panel.pgns.length > 1 ? 'games' : 'game' }}
+					</span>
+				</div>
+			</ng-template>
 
-	<ng-template #contentTemplateRef>
-		<div class="games-container">
-			@defer {
-			<cdk-virtual-scroll-viewport itemSize="432"
-																	 orientation="horizontal">
-				<lcc-pgn-viewer *cdkVirtualFor="let pgn of panel.pgns"
-												[pgn]="pgn">
-				</lcc-pgn-viewer>
-			</cdk-virtual-scroll-viewport>
-			} @placeholder {
-			<span>Loading...</span>
-			<span class="lcc-loading-spinner"></span>
-			}
+			<ng-template #contentTemplateRef>
+				<div class="games-container">
+					@defer {
+					<cdk-virtual-scroll-viewport [itemSize]="436"
+																			 [maxBufferPx]="12000"
+																			 orientation="horizontal">
+						<lcc-pgn-viewer *cdkVirtualFor="let pgn of panel.pgns; let index = index"
+														[index]="index"
+														[pgn]="pgn">
+						</lcc-pgn-viewer>
+					</cdk-virtual-scroll-viewport>
+					} @placeholder {
+					<span>Loading...</span>
+					}
+				</div>
+			</ng-template>
 		</div>
-	</ng-template>
-	}
+	</div>
 </div>

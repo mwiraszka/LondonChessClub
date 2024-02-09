@@ -24,6 +24,7 @@
 
   &:hover {
     cursor: pointer;
+    background-color: lighten($lcc-color--secondary, 18%);
 
     .expand-icon {
       color: lighten($lcc-color--text-primary-black, 40%);

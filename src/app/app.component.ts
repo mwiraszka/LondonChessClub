@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
-import { LoaderService, UpdateService } from '@app/services';
+import { LoaderService } from '@app/services';
 
 import { AppFacade } from './app.facade';
 
@@ -17,12 +17,10 @@ export class AppComponent implements OnInit {
   constructor(
     private changeDetectionRef: ChangeDetectorRef,
     private loaderService: LoaderService,
-    private update: UpdateService,
     public facade: AppFacade,
   ) {}
 
   ngOnInit(): void {
-    this.update.subscribeToVersionUpdates();
     this.loaderService.status$.subscribe((isLoading: boolean) => {
       this.isLoading = isLoading;
       this.changeDetectionRef.detectChanges();

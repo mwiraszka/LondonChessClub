@@ -31,7 +31,6 @@ export enum ModalButtonActionTypes {
   UPDATE_ARTICLE_CANCEL = 'Update article cancel',
   DELETE_ARTICLE_OK = 'Delete article OK',
   DELETE_ARTICLE_CANCEL = 'Delete article cancel',
-  ACTIVATE_VERSION_UPDATE = 'Activate version update',
 }
 
 export type ModalButtonActionTypesType =
@@ -54,5 +53,4 @@ export type ModalButtonActionTypesType =
   | ModalButtonActionTypes.UPDATE_ARTICLE_OK
   | ModalButtonActionTypes.UPDATE_ARTICLE_CANCEL
   | ModalButtonActionTypes.DELETE_ARTICLE_OK
-  | ModalButtonActionTypes.DELETE_ARTICLE_CANCEL
-  | ModalButtonActionTypes.ACTIVATE_VERSION_UPDATE;
+  | ModalButtonActionTypes.DELETE_ARTICLE_CANCEL;

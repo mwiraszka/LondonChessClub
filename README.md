@@ -40,6 +40,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.0.4 - March 2nd, 2024
+</summary>
+
+- 🐛 Fix minor alignment issue in app footer
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.0.3 - March 2nd, 2024
 </summary>
 

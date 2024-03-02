@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { filter, map, tap } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { UpdateService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { MembersActions, MembersSelectors } from '@app/store/members';
 import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
@@ -344,19 +343,5 @@ export class ModalEffects {
     );
   });
 
-  activateVersionUpdate$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(ModalActions.selectionMade),
-        filter(({ action }) => action === ModalButtonActionTypes.ACTIVATE_VERSION_UPDATE),
-        tap(() => this.updateService.activateUpdate()),
-      ),
-    { dispatch: false },
-  );
-
-  constructor(
-    private actions$: Actions,
-    private store: Store,
-    private updateService: UpdateService,
-  ) {}
+  constructor(private actions$: Actions, private store: Store) {}
 }

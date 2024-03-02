@@ -12,6 +12,9 @@
 }
 
 address {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
   text-decoration: none;
 
   span {
@@ -26,4 +29,9 @@ address {
   .divider {
     margin: 0 0.5em;
   }
+}
+
+aside {
+  margin-top: $lcc-space--md;
+  color: $lcc-color--text-secondary;
 }

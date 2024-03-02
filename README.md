@@ -40,6 +40,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.0.2 - March 2nd, 2024
+</summary>
+
+- 🐛 No longer force user from refreshing the page when a new version of the website becomes available, and instead only display a notification in the app footer that a new version is available
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.0.1 - February 5th, 2024
 </summary>
 

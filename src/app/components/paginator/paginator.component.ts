@@ -25,12 +25,15 @@ export class PaginatorComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['totalItems']) {
-      this.pageSizes[this.pageSizes.length - 1] = this.totalItems;
+      // setTimeout to avoid ExpressionChangedAfterItHasBeenCheckedError
+      setTimeout(() => {
+        this.pageSizes[this.pageSizes.length - 1] = this.totalItems;
 
-      if (this.pageSize > this.pageSizes[2]) {
-        this.pageSize = this.totalItems;
-        this.onPageSizeChange(this.totalItems);
-      }
+        if (this.pageSize > this.pageSizes[2]) {
+          this.pageSize = this.totalItems;
+          this.onPageSizeChange(this.totalItems);
+        }
+      }, 0);
     }
   }
 

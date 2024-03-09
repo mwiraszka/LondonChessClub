@@ -51,7 +51,7 @@
 
 .welcome-text-section {
   grid-area: welcome;
-  padding: $lcc-space--md;
+  padding: $lcc-space--md 0;
   min-width: 250px;  
 
   p {

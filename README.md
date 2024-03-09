@@ -40,6 +40,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.0.6 - March 9th, 2024
+</summary>
+
+- 🐛 Fix issue where Members table sometimes hangs when sorting
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.0.5 - March 9th, 2024
 </summary>
 

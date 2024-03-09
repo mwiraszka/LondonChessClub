@@ -64,7 +64,7 @@ export function customSort(key: string, isAscending: boolean) {
     if (varA instanceof Date && varB instanceof Date) {
       varA = varA.getTime();
       varB = varB.getTime();
-    } else if (!isNaN(varA.split('/')[0]) && !isNaN(varB.split('/')[0])) {
+    } else if (!isNaN(varA?.split('/')[0]) && !isNaN(varB?.split('/')[0])) {
       // If both objects (before a potential slash) are valid numbers, convert
       // to number type (used specifically for provisional ratings in the format 1234/5)
       varA = +varA.split('/')[0];

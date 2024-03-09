@@ -4,3 +4,4 @@ export { ImagesService } from './images.service';
 export { LoaderService } from './loader.service';
 export { MembersService } from './members.service';
 export { ScheduleService } from './schedule.service';
+export { UpdateService } from './update.service';

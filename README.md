@@ -40,6 +40,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.0.7 - March 10th, 2024
+</summary>
+
+- 🐛 Reinstate Angular Service Worker to prevent page from not being found when deep-linking into subroutes such as `/members` or `/news`
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.0.6 - March 9th, 2024
 </summary>
 

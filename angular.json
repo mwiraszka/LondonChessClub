@@ -37,8 +37,6 @@
               "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
               "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"
             ],
-            "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json",
             "allowedCommonJsDependencies": ["crypto-js", "@aws-sdk/eventstream-marshaller", "buffer", "js-cookie", 
               "@aws-crypto", "zen-observable", "@aws-sdk/util-utf8-node", "@aws-crypto/sha256-js", "@aws-sdk/util-buffer-from",
               "@aws-sdk/smithy-client", "@aws-sdk/middleware-serde", "@aws-sdk/middleware-user-agent",

@@ -1,20 +1,38 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'lcc-paginator',
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss'],
 })
-export class PaginatorComponent {
-  PAGE_SIZES = [10, 20, 50, 100];
+export class PaginatorComponent implements OnChanges {
+  pageSizes = [10, 20, 50, 100];
 
   @Input() pageNum = 1;
-  @Input() pageSize = this.PAGE_SIZES[1];
   @Input() totalItems = 0;
   @Input() typeOfItems = 'items';
+  @Input() pageSize = this.pageSizes[1];
 
   @Output() pageChange = new EventEmitter<number>();
   @Output() pageSizeChange = new EventEmitter<number>();
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['totalItems']) {
+      this.pageSizes[this.pageSizes.length - 1] = this.totalItems;
+
+      if (this.pageSize > this.pageSizes[2]) {
+        this.pageSize = this.totalItems;
+        this.onPageSizeChange(this.totalItems);
+      }
+    }
+  }
 
   onFirst(): void {
     this.onPageChange(1);

@@ -40,6 +40,17 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.0.5 - March 9th, 2024
+</summary>
+
+- 🚀 Replace 100-items per page option in paginator component with one that allows user to see *all* table items at once
+
+- 🐛 Remove the option to install a bootable version of the website, and all ngsw (Angular Service Worker) related code
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.0.4 - March 2nd, 2024
 </summary>
 

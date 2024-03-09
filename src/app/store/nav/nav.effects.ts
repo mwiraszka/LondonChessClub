@@ -35,12 +35,17 @@ export class NavEffects {
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       filter(({ payload }) => payload.event.url.startsWith('/article/view/')),
-      concatLatestFrom(({ payload }) => [
-        this.store.select(
-          ArticlesSelectors.articleById(payload.event.url.split('/article/view/')[1]),
-        ),
+      map(({ payload }) => {
+        const [articleId, pageSection] = payload.event.url
+          .split('/article/view/')[1]
+          .split('#');
+        return { articleId, pageSection };
+      }),
+      concatLatestFrom(({ articleId }) => [
+        this.store.select(ArticlesSelectors.articleById(articleId)),
       ]),
-      map(([, article]) =>
+      map(([{ articleId, pageSection }, article]) =>
+        // TODO: Support linking to section of page
         article
           ? ArticlesActions.viewArticleRouteEntered({ article })
           : NavActions.navigationRequested({ path: NavPathTypes.NEWS }),

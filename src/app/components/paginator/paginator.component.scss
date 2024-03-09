@@ -31,14 +31,14 @@ button {
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: $lcc-space--sm;
+  gap: $lcc-space--xs;
   font-size: $h5;
   padding: 0 $lcc-space--xs;
 
   .center-section-buttons {
     display: flex;
     flex-flow: row nowrap;
-    gap: $lcc-space--sm;
+    gap: $lcc-space--xs;
 
     .center-section-button {
       border: none;

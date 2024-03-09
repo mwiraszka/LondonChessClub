@@ -19,7 +19,7 @@
 <section class="center-section">
 	<div class="page-counter">Page: {{ pageNum }} / {{ lastPage() }}</div>
 	<div class="center-section-buttons">
-		<button *ngFor="let size of PAGE_SIZES"
+		<button *ngFor="let size of pageSizes"
 						class="lcc-secondary-button center-section-button"
 						[class.selected]="pageSize === size"
 						[tooltip]="'Show ' + size + ' ' + typeOfItems + ' per page'"

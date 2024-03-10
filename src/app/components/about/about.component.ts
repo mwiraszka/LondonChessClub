@@ -21,12 +21,8 @@ export class AboutComponent implements OnInit {
 
   isMapLoaded$!: Observable<boolean>;
   mapHeight!: string;
-  clubLocation: google.maps.LatLngLiteral = { lat: 42.982618, lng: -81.261501 };
+  clubLocation: google.maps.LatLngLiteral = { lat: 42.982528, lng: -81.261401 };
   mapOptions!: google.maps.MapOptions;
-  markerOptions: google.maps.MarkerOptions = {
-    position: this.clubLocation,
-    icon: '../../../assets/lcc-logo-black.png',
-  };
 
   constructor(private httpClient: HttpClient, private router: Router) {}
 

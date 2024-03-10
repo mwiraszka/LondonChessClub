@@ -38,8 +38,11 @@
 					 class="map-section">
 		<google-map width="100%"
 								[height]="mapHeight"
+								mapId="club-map"
 								[options]="mapOptions">
-			<map-marker [options]="markerOptions"></map-marker>
+			<map-advanced-marker [position]="clubLocation"
+													 title="London Chess Club">
+			</map-advanced-marker>
 		</google-map>
 	</section>
 </div>

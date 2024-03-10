@@ -1,6 +1,6 @@
 {
   "name": "lcc-angular",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "description": "Frontend for the London Chess Club website, built with Angular",
   "author": "Michal Wiraszka (https://wiraszka.com)",
   "repository": {
@@ -25,7 +25,7 @@
     "@angular/compiler": "^17.1.0",
     "@angular/core": "^17.1.0",
     "@angular/forms": "^17.1.0",
-    "@angular/google-maps": "^17.1.0",
+    "@angular/google-maps": "^17.3.0-rc.0",
     "@angular/platform-browser": "^17.1.0",
     "@angular/platform-browser-dynamic": "^17.1.0",
     "@angular/router": "^17.1.0",

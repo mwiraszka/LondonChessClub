@@ -7,6 +7,7 @@ export interface ArticlesState {
   articleBeforeEdit: Article;
   articleCurrently: Article;
   isEditMode: boolean;
+  sectionToScrollTo: string | null;
 }
 
 export const initialState: ArticlesState = {
@@ -16,4 +17,5 @@ export const initialState: ArticlesState = {
   articleBeforeEdit: newArticleFormTemplate,
   articleCurrently: newArticleFormTemplate,
   isEditMode: false,
+  sectionToScrollTo: null,
 };

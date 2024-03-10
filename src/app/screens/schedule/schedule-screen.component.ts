@@ -18,7 +18,7 @@ export class ScheduleScreenComponent implements OnInit {
   ngOnInit(): void {
     this.facade.nextEventId$.subscribe(eventId => {
       if (eventId) {
-        setTimeout(() => this.scrollToNextEvent(eventId), 300);
+        setTimeout(() => this.scrollToNextEvent(eventId), 150);
       }
     });
   }

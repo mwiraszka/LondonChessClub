@@ -29,6 +29,7 @@ const articlesReducer = createReducer(
     selectedArticle: action.article,
     articleBeforeEdit: action.article,
     articleCurrently: action.article,
+    sectionToScrollTo: action.sectionToScrollTo ?? null,
   })),
 
   on(ArticlesActions.getArticleImageUrlSucceeded, (state, action) => ({
@@ -87,6 +88,11 @@ const articlesReducer = createReducer(
   on(ArticlesActions.formDataChanged, (state, action) => ({
     ...state,
     articleCurrently: action.article,
+  })),
+
+  on(ArticlesActions.scrollToSection, state => ({
+    ...state,
+    sectionToScrollTo: null,
   })),
 );
 

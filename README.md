@@ -40,6 +40,18 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.0.8 - March 11th, 2024
+</summary>
+
+- 🚀 Add support for linking to sections of article pages
+- 🚀 Revert club map back to Google Maps' default red marker styling and improve marker's longitude and latitude co-ordinates
+
+- 🔧 Update Angular Google Maps library to `v17.3.0-rc.0` and replace deprecated `map-marker` with `advanced-map-marker` HTML element
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.0.7 - March 10th, 2024
 </summary>
 

@@ -44,10 +44,12 @@ export class NavEffects {
       concatLatestFrom(({ articleId }) => [
         this.store.select(ArticlesSelectors.articleById(articleId)),
       ]),
-      map(([{ articleId, pageSection }, article]) =>
-        // TODO: Support linking to section of page
+      map(([{ pageSection }, article]) =>
         article
-          ? ArticlesActions.viewArticleRouteEntered({ article })
+          ? ArticlesActions.viewArticleRouteEntered({
+              article,
+              sectionToScrollTo: pageSection,
+            })
           : NavActions.navigationRequested({ path: NavPathTypes.NEWS }),
       ),
     ),

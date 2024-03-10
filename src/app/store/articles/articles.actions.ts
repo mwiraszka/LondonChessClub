@@ -36,6 +36,8 @@ enum ArticlesActionTypes {
 
   FORM_DATA_CHANGED = '[Articles] Form data changed',
   RESET_ARTICLE_FORM = '[Articles] Reset article form',
+
+  SCROLL_TO_SECTION = '[Articles] Scroll to section',
 }
 
 export const loadArticlesStarted = createAction(
@@ -61,7 +63,7 @@ export const getArticleImageUrlFailed = createAction(
 
 export const viewArticleRouteEntered = createAction(
   ArticlesActionTypes.VIEW_ARTICLE_ROUTE_ENTERED,
-  props<{ article: Article }>(),
+  props<{ article: Article; sectionToScrollTo?: string }>(),
 );
 export const editArticleRouteEntered = createAction(
   ArticlesActionTypes.EDIT_ARTICLE_ROUTE_ENTERED,
@@ -133,3 +135,5 @@ export const formDataChanged = createAction(
   props<{ article: Article }>(),
 );
 export const resetArticleForm = createAction(ArticlesActionTypes.RESET_ARTICLE_FORM);
+
+export const scrollToSection = createAction(ArticlesActionTypes.SCROLL_TO_SECTION);

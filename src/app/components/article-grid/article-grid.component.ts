@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { LoaderService } from '@app/services';
 import { Article, Link, NavPathTypes } from '@app/types';
 
 import { ArticleGridFacade } from './article-grid.facade';
@@ -22,13 +21,10 @@ export class ArticleGridComponent implements OnInit {
     iconShape: 'plus-circle',
   };
 
-  constructor(public facade: ArticleGridFacade, private loaderService: LoaderService) {}
+  constructor(public facade: ArticleGridFacade) {}
 
   ngOnInit(): void {
-    this.facade.isLoading$.subscribe(isLoading => {
-      this.loaderService.display(isLoading);
-    });
-    this.facade.loadArticles();
+    this.facade.fetchArticles();
   }
 
   trackByFn = (index: number, article: Article) => article.id;

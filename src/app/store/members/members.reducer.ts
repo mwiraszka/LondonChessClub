@@ -8,20 +8,9 @@ import { MembersState, initialState } from './members.state';
 const membersReducer = createReducer(
   initialState,
 
-  on(MembersActions.loadMembersStarted, state => ({
-    ...state,
-    isLoading: true,
-  })),
-
-  on(MembersActions.loadMembersSucceeded, (state, action) => ({
+  on(MembersActions.fetchMembersSucceeded, (state, action) => ({
     ...state,
     members: [...action.allMembers].sort(customSort(state.sortedBy, state.isAscending)),
-    isLoading: false,
-  })),
-
-  on(MembersActions.loadMembersFailed, state => ({
-    ...state,
-    isLoading: false,
   })),
 
   on(MembersActions.pageChanged, (state, action) => ({
@@ -82,7 +71,7 @@ const membersReducer = createReducer(
 
   on(MembersActions.deleteMemberSucceeded, (state, action) => ({
     ...state,
-    members: state.members.filter(x => x.id != action.deletedMember.id),
+    members: state.members.filter(member => member.id !== action.deletedMember.id),
     selectedMember: null,
   })),
 

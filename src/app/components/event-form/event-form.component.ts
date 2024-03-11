@@ -6,7 +6,6 @@ import { debounceTime, first, tap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { LoaderService } from '@app/services';
 import { ClubEvent, ModificationInfo } from '@app/types';
 import { dateValidator } from '@app/validators';
 
@@ -24,20 +23,15 @@ export class EventFormComponent implements OnInit {
   modificationInfo!: ModificationInfo | null;
   valueChangesSubscription!: Subscription;
 
-  constructor(
-    public facade: EventFormFacade,
-    private formBuilder: FormBuilder,
-    private loaderService: LoaderService,
-  ) {}
+  constructor(public facade: EventFormFacade, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.loaderService.display(true);
-
     this.facade.eventCurrently$
       .pipe(
-        tap(event => this.initForm(event)),
-        tap(event => (this.modificationInfo = event.modificationInfo)),
-        tap(() => this.loaderService.display(false)),
+        tap(event => {
+          this.initForm(event);
+          this.modificationInfo = event.modificationInfo;
+        }),
         first(),
       )
       .subscribe();

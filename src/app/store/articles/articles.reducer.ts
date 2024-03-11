@@ -8,20 +8,10 @@ import { ArticlesState, initialState } from './articles.state';
 
 const articlesReducer = createReducer(
   initialState,
-  on(ArticlesActions.loadArticlesStarted, state => ({
-    ...state,
-    isLoading: true,
-  })),
 
-  on(ArticlesActions.loadArticlesSucceeded, (state, action) => ({
+  on(ArticlesActions.fetchArticlesSucceeded, (state, action) => ({
     ...state,
     articles: getSortedArtices(action.allArticles),
-    isLoading: false,
-  })),
-
-  on(ArticlesActions.loadArticlesFailed, state => ({
-    ...state,
-    isLoading: false,
   })),
 
   on(ArticlesActions.viewArticleRouteEntered, (state, action) => ({
@@ -56,7 +46,7 @@ const articlesReducer = createReducer(
 
   on(ArticlesActions.deleteArticleSucceeded, (state, action) => ({
     ...state,
-    articles: state.articles.filter(x => x.id != action.deletedArticle.id),
+    articles: state.articles.filter(article => article.id !== action.deletedArticle.id),
     selectedArticle: null,
   })),
 
@@ -72,7 +62,6 @@ const articlesReducer = createReducer(
 
   on(
     ArticlesActions.resetArticleForm,
-    ArticlesActions.publishArticleSucceeded,
     ArticlesActions.publishArticleFailed,
     ArticlesActions.updateArticleSucceeded,
     ArticlesActions.updateArticleFailed,
@@ -84,6 +73,26 @@ const articlesReducer = createReducer(
       isEditMode: false,
     }),
   ),
+
+  on(ArticlesActions.publishArticleSucceeded, (state, action) => ({
+    ...state,
+    articleBeforeEdit: initialState.articleBeforeEdit,
+    articleCurrently: initialState.articleCurrently,
+    isEditMode: false,
+    articles: [...state.articles, action.article],
+  })),
+
+  on(ArticlesActions.updateArticleSucceeded, (state, action) => ({
+    ...state,
+    articleBeforeEdit: initialState.articleBeforeEdit,
+    articleCurrently: initialState.articleCurrently,
+    isEditMode: false,
+    articles: [
+      ...state.articles.map(article =>
+        article.id === action.article.id ? action.article : article,
+      ),
+    ],
+  })),
 
   on(ArticlesActions.formDataChanged, (state, action) => ({
     ...state,

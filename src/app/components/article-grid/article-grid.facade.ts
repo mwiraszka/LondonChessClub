@@ -10,12 +10,11 @@ import { Article } from '@app/types';
 export class ArticleGridFacade {
   readonly articles$ = this.store.select(ArticlesSelectors.articles);
   readonly isAdmin$ = this.store.select(AuthSelectors.isAdmin);
-  readonly isLoading$ = this.store.select(ArticlesSelectors.isLoading);
 
   constructor(private readonly store: Store) {}
 
-  loadArticles(): void {
-    this.store.dispatch(ArticlesActions.loadArticlesStarted());
+  fetchArticles(): void {
+    this.store.dispatch(ArticlesActions.fetchArticlesRequested());
   }
 
   onDeleteArticle(article: Article): void {

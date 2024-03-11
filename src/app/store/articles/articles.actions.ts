@@ -3,9 +3,12 @@ import { createAction, props } from '@ngrx/store';
 import { Article, Url } from '@app/types';
 
 enum ArticlesActionTypes {
-  LOAD_ARTICLES_STARTED = '[Articles] Load articles started',
-  LOAD_ARTICLES_SUCCEEDED = '[Articles] Load articles succeeded',
-  LOAD_ARTICLES_FAILED = '[Articles] Load articles failed',
+  FETCH_ARTICLES_REQUESTED = '[Articles] Fetch articles requested',
+  FETCH_ARTICLES_SUCCEEDED = '[Articles] Fetch articles succeeded',
+  FETCH_ARTICLES_FAILED = '[Articles] Fetch articles failed',
+
+  FETCH_ARTICLE_SUCCEEDED = '[Articles] Fetch article succeeded',
+  FETCH_ARTICLE_FAILED = '[Articles] Fetch article failed',
 
   GET_ARTICLE_IMAGE_URL_FAILED = '[Articles] Get article image URL failed',
   GET_ARTICLE_IMAGE_URL_SUCCEEDED = '[Articles] Get article image URL succeeded',
@@ -40,15 +43,24 @@ enum ArticlesActionTypes {
   SCROLL_TO_SECTION = '[Articles] Scroll to section',
 }
 
-export const loadArticlesStarted = createAction(
-  ArticlesActionTypes.LOAD_ARTICLES_STARTED,
+export const fetchArticlesRequested = createAction(
+  ArticlesActionTypes.FETCH_ARTICLES_REQUESTED,
 );
-export const loadArticlesSucceeded = createAction(
-  ArticlesActionTypes.LOAD_ARTICLES_SUCCEEDED,
+export const fetchArticlesSucceeded = createAction(
+  ArticlesActionTypes.FETCH_ARTICLES_SUCCEEDED,
   props<{ allArticles: Article[] }>(),
 );
-export const loadArticlesFailed = createAction(
-  ArticlesActionTypes.LOAD_ARTICLES_FAILED,
+export const fetchArticlesFailed = createAction(
+  ArticlesActionTypes.FETCH_ARTICLES_FAILED,
+  props<{ error: Error }>(),
+);
+
+export const fetchArticleSucceeded = createAction(
+  ArticlesActionTypes.FETCH_ARTICLE_SUCCEEDED,
+  props<{ article: Article }>(),
+);
+export const fetchArticleFailed = createAction(
+  ArticlesActionTypes.FETCH_ARTICLE_FAILED,
   props<{ error: Error }>(),
 );
 
@@ -101,7 +113,7 @@ export const publishArticleCancelled = createAction(
 );
 export const publishArticleSucceeded = createAction(
   ArticlesActionTypes.PUBLISH_ARTICLE_SUCCEEDED,
-  props<{ publishedArticle: Article }>(),
+  props<{ article: Article }>(),
 );
 export const publishArticleFailed = createAction(
   ArticlesActionTypes.PUBLISH_ARTICLE_FAILED,
@@ -120,7 +132,7 @@ export const updateArticleCancelled = createAction(
 );
 export const updateArticleSucceeded = createAction(
   ArticlesActionTypes.UPDATE_ARTICLE_SUCCEEDED,
-  props<{ updatedArticle: Article }>(),
+  props<{ article: Article }>(),
 );
 export const updateArticleFailed = createAction(
   ArticlesActionTypes.UPDATE_ARTICLE_FAILED,

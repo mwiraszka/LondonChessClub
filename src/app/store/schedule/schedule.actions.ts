@@ -3,9 +3,9 @@ import { createAction, props } from '@ngrx/store';
 import { ClubEvent } from '@app/types';
 
 enum ScheduleActionTypes {
-  LOAD_EVENTS_STARTED = '[Schedule] Load events started',
-  LOAD_EVENTS_SUCCEEDED = '[Schedule] Load events succeeded',
-  LOAD_EVENTS_FAILED = '[Schedule] Load events failed',
+  FETCH_EVENTS_REQUESTED = '[Schedule] Fetch events requested',
+  FETCH_EVENTS_SUCCEEDED = '[Schedule] Fetch events succeeded',
+  FETCH_EVENTS_FAILED = '[Schedule] Fetch events failed',
 
   EDIT_EVENT_ROUTE_ENTERED = '[Schedule] Edit event route entered',
 
@@ -34,13 +34,15 @@ enum ScheduleActionTypes {
   RESET_EVENT_FORM = '[Schedule] Reset event form',
 }
 
-export const loadEventsStarted = createAction(ScheduleActionTypes.LOAD_EVENTS_STARTED);
-export const loadEventsSucceeded = createAction(
-  ScheduleActionTypes.LOAD_EVENTS_SUCCEEDED,
+export const fetchEventsRequested = createAction(
+  ScheduleActionTypes.FETCH_EVENTS_REQUESTED,
+);
+export const fetchEventsSucceeded = createAction(
+  ScheduleActionTypes.FETCH_EVENTS_SUCCEEDED,
   props<{ allEvents: ClubEvent[] }>(),
 );
-export const loadEventsFailed = createAction(
-  ScheduleActionTypes.LOAD_EVENTS_FAILED,
+export const fetchEventsFailed = createAction(
+  ScheduleActionTypes.FETCH_EVENTS_FAILED,
   props<{ error: Error }>(),
 );
 

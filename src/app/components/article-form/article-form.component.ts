@@ -6,7 +6,6 @@ import { debounceTime } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { LoaderService } from '@app/services';
 import { Article, ModificationInfo, Url } from '@app/types';
 import { imageSizeValidator } from '@app/validators';
 
@@ -25,19 +24,13 @@ export class ArticleFormComponent implements OnInit {
   previewImageUrl!: Url | null;
   valueChangesSubscription!: Subscription;
 
-  constructor(
-    public facade: ArticleFormFacade,
-    private formBuilder: FormBuilder,
-    private loaderService: LoaderService,
-  ) {}
+  constructor(public facade: ArticleFormFacade, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.loaderService.display(true);
     this.facade.articleBeforeEdit$.subscribe(article => {
       this.initForm(article);
       this.previewImageUrl = article.imageUrl ?? null;
       this.modificationInfo = article.modificationInfo;
-      this.loaderService.display(false);
     });
   }
 
@@ -92,7 +85,7 @@ export class ArticleFormComponent implements OnInit {
       modificationInfo: [article.modificationInfo],
     });
 
-    // TODO: investigate why setErrors({ required: null }) doesn't work
+    // TODO: Investigate why setErrors({ required: null }) doesn't work
     this.form.controls['imageFile'].patchValue({});
 
     this.valueChangesSubscription = this.form.valueChanges

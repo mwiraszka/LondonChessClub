@@ -5,7 +5,6 @@ export interface MembersState {
   selectedMember: Member | null;
   memberCurrently: Member;
   memberBeforeEdit: Member;
-  isLoading: boolean;
   isEditMode: boolean;
   sortedBy: string;
   isAscending: boolean;
@@ -19,7 +18,6 @@ export const initialState: MembersState = {
   selectedMember: null,
   memberCurrently: newMemberFormTemplate,
   memberBeforeEdit: newMemberFormTemplate,
-  isLoading: false,
   isEditMode: false,
   sortedBy: 'rating',
   isAscending: false,

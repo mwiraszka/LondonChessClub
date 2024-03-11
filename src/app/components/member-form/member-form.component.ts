@@ -5,7 +5,6 @@ import { debounceTime, first, tap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { LoaderService } from '@app/services';
 import { Member, ModificationInfo } from '@app/types';
 import {
   dateValidator,
@@ -30,19 +29,15 @@ export class MemberFormComponent implements OnInit {
   modificationInfo!: ModificationInfo | null;
   valueChangesSubscription!: Subscription;
 
-  constructor(
-    public facade: MemberFormFacade,
-    private formBuilder: FormBuilder,
-    private loaderService: LoaderService,
-  ) {}
+  constructor(public facade: MemberFormFacade, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.loaderService.display(true);
     this.facade.memberCurrently$
       .pipe(
-        tap(member => (this.modificationInfo = member.modificationInfo)),
-        tap(member => (member ? this.initForm(member) : undefined)),
-        tap(() => this.loaderService.display(false)),
+        tap(member => {
+          this.initForm(member);
+          this.modificationInfo = member.modificationInfo;
+        }),
         first(),
       )
       .subscribe();

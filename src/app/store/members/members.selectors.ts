@@ -44,8 +44,6 @@ export const hasUnsavedChanges = createSelector(
   state => !areSame(state.memberCurrently, state.memberBeforeEdit),
 );
 
-export const isLoading = createSelector(membersFeatureSelector, state => state.isLoading);
-
 export const sortedBy = createSelector(membersFeatureSelector, state => state.sortedBy);
 
 export const isAscending = createSelector(

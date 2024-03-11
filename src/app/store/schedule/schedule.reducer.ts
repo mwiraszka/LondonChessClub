@@ -8,12 +8,7 @@ import { ScheduleState, initialState } from './schedule.state';
 const scheduleReducer = createReducer(
   initialState,
 
-  on(ScheduleActions.loadEventsStarted, state => ({
-    ...state,
-    isLoading: true,
-  })),
-
-  on(ScheduleActions.loadEventsSucceeded, (state, action) => {
+  on(ScheduleActions.fetchEventsSucceeded, (state, action) => {
     const upcomingEvents = getUpcomingEvents(action.allEvents, 1);
     const nextEvent = upcomingEvents?.length ? upcomingEvents[0] : null;
 
@@ -21,14 +16,8 @@ const scheduleReducer = createReducer(
       ...state,
       events: action.allEvents,
       nextEventId: nextEvent?.id ?? null,
-      isLoading: false,
     };
   }),
-
-  on(ScheduleActions.loadEventsFailed, state => ({
-    ...state,
-    isLoading: false,
-  })),
 
   on(ScheduleActions.addEventSelected, (state, action) => ({
     ...state,
@@ -55,7 +44,7 @@ const scheduleReducer = createReducer(
 
   on(ScheduleActions.deleteEventSucceeded, (state, action) => ({
     ...state,
-    events: state.events.filter(x => x.id != action.deletedEvent.id),
+    events: state.events.filter(event => event.id !== action.deletedEvent.id),
     selectedEvent: null,
   })),
 

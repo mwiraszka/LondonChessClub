@@ -10,7 +10,6 @@ import { Article } from '@app/types';
 export class ArticleViewerScreenFacade {
   readonly article$ = this.store.select(ArticlesSelectors.selectedArticle);
   readonly isAdmin$ = this.store.select(AuthSelectors.isAdmin);
-  readonly isLoading$ = this.store.select(ArticlesSelectors.isLoading);
 
   constructor(private readonly store: Store) {}
 

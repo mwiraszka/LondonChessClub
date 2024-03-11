@@ -3,11 +3,11 @@ import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
 import { throwError } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { ArticlesService, ImagesService } from '@app/services';
+import { ArticlesService, ImagesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { Article, ModificationInfo, ServiceResponse, Url } from '@app/types';
 
@@ -18,13 +18,13 @@ import * as ArticlesSelectors from './articles.selectors';
 export class ArticlesEffects {
   getArticles$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.loadArticlesStarted),
+      ofType(ArticlesActions.fetchArticlesRequested),
       switchMap(() =>
         this.articlesService.getArticles().pipe(
           map((response: ServiceResponse<Article[]>) =>
             response.error
-              ? ArticlesActions.loadArticlesFailed({ error: response.error })
-              : ArticlesActions.loadArticlesSucceeded({
+              ? ArticlesActions.fetchArticlesFailed({ error: response.error })
+              : ArticlesActions.fetchArticlesSucceeded({
                   allArticles: response.payload!,
                 }),
           ),
@@ -37,6 +37,7 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleConfirmed),
       concatLatestFrom(() => this.store.select(ArticlesSelectors.selectedArticle)),
+      tap(() => this.loaderService.display(true)),
       filter(([, articleToDelete]) => !!articleToDelete),
       switchMap(([, articleToDelete]) =>
         this.imagesService.deleteArticleImage(articleToDelete!),
@@ -55,6 +56,7 @@ export class ArticlesEffects {
           ),
         );
       }),
+      tap(() => this.loaderService.display(false)),
     );
   });
 
@@ -65,6 +67,7 @@ export class ArticlesEffects {
         this.store.select(ArticlesSelectors.articleCurrently),
         this.store.select(AuthSelectors.user),
       ]),
+      tap(() => this.loaderService.display(true)),
       switchMap(([, articleToPublish, user]) => {
         const dateNow = new Date(Date.now());
         const modificationInfo: ModificationInfo = {
@@ -80,11 +83,12 @@ export class ArticlesEffects {
             response.error
               ? ArticlesActions.publishArticleFailed({ error: response.error })
               : ArticlesActions.publishArticleSucceeded({
-                  publishedArticle: response.payload!,
+                  article: response.payload!,
                 }),
           ),
         );
       }),
+      tap(() => this.loaderService.display(false)),
     );
   });
 
@@ -95,6 +99,7 @@ export class ArticlesEffects {
         this.store.select(ArticlesSelectors.articleCurrently),
         this.store.select(AuthSelectors.user),
       ]),
+      tap(() => this.loaderService.display(true)),
       switchMap(([, articleToUpdate, user]) => {
         const dateNow = new Date(Date.now());
         const modificationInfo: ModificationInfo = {
@@ -110,11 +115,12 @@ export class ArticlesEffects {
             response.error
               ? ArticlesActions.updateArticleFailed({ error: response.error })
               : ArticlesActions.updateArticleSucceeded({
-                  updatedArticle: response.payload!,
+                  article: response.payload!,
                 }),
           ),
         );
       }),
+      tap(() => this.loaderService.display(false)),
     );
   });
 
@@ -148,9 +154,10 @@ export class ArticlesEffects {
     () =>
       this.actions$.pipe(
         ofType(
+          ArticlesActions.fetchArticlesFailed,
+          ArticlesActions.fetchArticleFailed,
           ArticlesActions.publishArticleFailed,
           ArticlesActions.updateArticleFailed,
-          ArticlesActions.loadArticlesFailed,
           ArticlesActions.deleteArticleFailed,
         ),
       ),
@@ -161,6 +168,7 @@ export class ArticlesEffects {
     private actions$: Actions,
     private articlesService: ArticlesService,
     private imagesService: ImagesService,
+    private loaderService: LoaderService,
     private store: Store,
   ) {}
 }

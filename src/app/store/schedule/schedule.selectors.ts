@@ -30,11 +30,6 @@ export const selectedEvent = createSelector(
   state => state.selectedEvent,
 );
 
-export const isLoading = createSelector(
-  scheduleFeatureSelector,
-  state => state.isLoading,
-);
-
 export const eventBeforeEdit = createSelector(
   scheduleFeatureSelector,
   state => state.eventBeforeEdit,

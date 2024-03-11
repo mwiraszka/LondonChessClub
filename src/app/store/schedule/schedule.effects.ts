@@ -2,11 +2,11 @@
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { ScheduleService } from '@app/services';
+import { LoaderService, ScheduleService } from '@app/services';
 import { ClubEvent, ModificationInfo, ServiceResponse } from '@app/types';
 
 import { AuthSelectors } from '../auth';
@@ -17,24 +17,27 @@ import * as ScheduleSelectors from './schedule.selectors';
 export class ScheduleEffects {
   getEvents$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.loadEventsStarted),
+      ofType(ScheduleActions.fetchEventsRequested),
+      tap(() => this.loaderService.display(true)),
       switchMap(() =>
         this.scheduleService.getEvents().pipe(
           map((response: ServiceResponse<ClubEvent[]>) =>
             response.error
-              ? ScheduleActions.loadEventsFailed({ error: response.error })
-              : ScheduleActions.loadEventsSucceeded({
+              ? ScheduleActions.fetchEventsFailed({ error: response.error })
+              : ScheduleActions.fetchEventsSucceeded({
                   allEvents: response.payload!,
                 }),
           ),
         ),
       ),
+      tap(() => this.loaderService.display(false)),
     );
   });
 
   deleteEvent$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.deleteEventConfirmed),
+      tap(() => this.loaderService.display(true)),
       concatLatestFrom(() => this.store.select(ScheduleSelectors.selectedEvent)),
       switchMap(([, eventToDelete]) =>
         this.scheduleService.deleteEvent(eventToDelete!).pipe(
@@ -47,12 +50,14 @@ export class ScheduleEffects {
           ),
         ),
       ),
+      tap(() => this.loaderService.display(false)),
     );
   });
 
   addEvent$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.addEventConfirmed),
+      tap(() => this.loaderService.display(true)),
       concatLatestFrom(() => [
         this.store.select(ScheduleSelectors.eventCurrently),
         this.store.select(AuthSelectors.user),
@@ -77,12 +82,14 @@ export class ScheduleEffects {
           ),
         );
       }),
+      tap(() => this.loaderService.display(false)),
     );
   });
 
   updateEvent$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.updateEventConfirmed),
+      tap(() => this.loaderService.display(true)),
       concatLatestFrom(() => [
         this.store.select(ScheduleSelectors.eventCurrently),
         this.store.select(AuthSelectors.user),
@@ -107,6 +114,7 @@ export class ScheduleEffects {
           ),
         );
       }),
+      tap(() => this.loaderService.display(false)),
     );
   });
 
@@ -125,7 +133,7 @@ export class ScheduleEffects {
     () =>
       this.actions$.pipe(
         ofType(
-          ScheduleActions.loadEventsFailed,
+          ScheduleActions.fetchEventsFailed,
           ScheduleActions.addEventFailed,
           ScheduleActions.updateEventFailed,
           ScheduleActions.deleteEventFailed,
@@ -136,6 +144,7 @@ export class ScheduleEffects {
 
   constructor(
     private actions$: Actions,
+    private loaderService: LoaderService,
     private scheduleService: ScheduleService,
     private store: Store,
   ) {}

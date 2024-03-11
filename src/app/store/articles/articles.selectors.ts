@@ -21,11 +21,6 @@ export const selectedArticle = createSelector(
   state => state.selectedArticle,
 );
 
-export const isLoading = createSelector(
-  articlesFeatureSelector,
-  state => state.isLoading,
-);
-
 export const articleBeforeEdit = createSelector(
   articlesFeatureSelector,
   state => state.articleBeforeEdit,

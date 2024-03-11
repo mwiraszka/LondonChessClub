@@ -2,7 +2,6 @@ import moment from 'moment';
 
 import { Component, OnInit } from '@angular/core';
 
-import { LoaderService } from '@app/services';
 import { Link, Member, NavPathTypes } from '@app/types';
 import { camelize, kebabize } from '@app/utils';
 
@@ -40,13 +39,10 @@ export class MembersTableComponent implements OnInit {
     iconShape: 'plus-circle',
   };
 
-  constructor(public facade: MembersTableFacade, private loaderService: LoaderService) {}
+  constructor(public facade: MembersTableFacade) {}
 
   ngOnInit(): void {
-    this.facade.isLoading$.subscribe(isLoading => {
-      this.loaderService.display(isLoading);
-    });
-    this.facade.loadMembers();
+    this.facade.fetchMembers();
   }
 
   trackByFn = (index: number, member: Member) => member.id;

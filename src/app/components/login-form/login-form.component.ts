@@ -7,7 +7,6 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { LoaderService } from '@app/services';
 import { NavPathTypes } from '@app/types';
 import { emailValidator } from '@app/validators';
 
@@ -23,11 +22,7 @@ export class LoginFormComponent implements OnInit {
   NavPathTypes = NavPathTypes;
   form!: FormGroup;
 
-  constructor(
-    public facade: LoginFormFacade,
-    private formBuilder: FormBuilder,
-    private loaderService: LoaderService,
-  ) {}
+  constructor(public facade: LoginFormFacade, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({

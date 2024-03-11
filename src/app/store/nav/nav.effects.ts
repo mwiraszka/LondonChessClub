@@ -13,6 +13,7 @@ import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
 import { NavPathTypes } from '@app/types';
 
 import * as NavActions from './nav.actions';
+import { selectCurrentRoute } from './router.selectors';
 
 @Injectable()
 export class NavEffects {
@@ -116,6 +117,18 @@ export class NavEffects {
     ),
   );
 
+  navigateAfterArticleDeletion$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ArticlesActions.deleteArticleSucceeded),
+      concatLatestFrom(() => [this.store.select(selectCurrentRoute)]),
+      filter(
+        ([, currentRoute]) =>
+          currentRoute?.routeConfig?.path === 'article/view/:article_id',
+      ),
+      map(() => NavActions.navigationRequested({ path: NavPathTypes.NEWS })),
+    ),
+  );
+
   navigateHome$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.loginSucceeded, AuthActions.passwordChangeSucceeded),
@@ -145,17 +158,24 @@ export class NavEffects {
     ),
   );
 
-  // TODO: check activated route when deleteArticleSucceeded action dispatched
-  // and only navigate to News screen if coming from the Article Viewer screen
   navigateToNews$ = createEffect(() =>
     this.actions$.pipe(
+      ofType(ArticlesActions.cancelSelected),
+      map(() => NavActions.navigationRequested({ path: NavPathTypes.NEWS })),
+    ),
+  );
+
+  navigateToArticle$ = createEffect(() =>
+    this.actions$.pipe(
       ofType(
-        ArticlesActions.cancelSelected,
         ArticlesActions.publishArticleSucceeded,
         ArticlesActions.updateArticleSucceeded,
-        ArticlesActions.deleteArticleSucceeded,
       ),
-      map(() => NavActions.navigationRequested({ path: NavPathTypes.NEWS })),
+      map(({ article }) =>
+        NavActions.navigationRequested({
+          path: `${NavPathTypes.ARTICLE_VIEW}/${article.id}`,
+        }),
+      ),
     ),
   );
 

@@ -3,9 +3,9 @@ import { createAction, props } from '@ngrx/store';
 import { Member } from '@app/types';
 
 enum MembersActionTypes {
-  LOAD_MEMBERS_STARTED = '[Members] Load members started',
-  LOAD_MEMBERS_SUCCEEDED = '[Members] Load members succeeded',
-  LOAD_MEMBERS_FAILED = '[Members] Load members failed',
+  FETCH_MEMBERS_REQUESTED = '[Members] Fetch members requested',
+  FETCH_MEMBERS_SUCCEEDED = '[Members] Fetch members succeeded',
+  FETCH_MEMBERS_FAILED = '[Members] Fetch members failed',
 
   TABLE_HEADER_SELECTED = '[Members] Table header selected',
   MEMBERS_SORTED = '[Members] Members sorted',
@@ -40,13 +40,15 @@ enum MembersActionTypes {
   RESET_MEMBER_FORM = '[Members] Reset member form',
 }
 
-export const loadMembersStarted = createAction(MembersActionTypes.LOAD_MEMBERS_STARTED);
-export const loadMembersSucceeded = createAction(
-  MembersActionTypes.LOAD_MEMBERS_SUCCEEDED,
+export const fetchMembersRequested = createAction(
+  MembersActionTypes.FETCH_MEMBERS_REQUESTED,
+);
+export const fetchMembersSucceeded = createAction(
+  MembersActionTypes.FETCH_MEMBERS_SUCCEEDED,
   props<{ allMembers: Member[] }>(),
 );
-export const loadMembersFailed = createAction(
-  MembersActionTypes.LOAD_MEMBERS_FAILED,
+export const fetchMembersFailed = createAction(
+  MembersActionTypes.FETCH_MEMBERS_FAILED,
   props<{ error: Error }>(),
 );
 

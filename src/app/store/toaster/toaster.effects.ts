@@ -1,5 +1,5 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { delay, filter, map } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
@@ -17,10 +17,10 @@ export class ToasterEffects {
   addPublishArticleSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.publishArticleSucceeded),
-      map(({ publishedArticle }) => {
+      map(({ article }) => {
         const toast: Toast = {
           title: 'New article',
-          message: `Successfully published ${publishedArticle.title}`,
+          message: `Successfully published ${article.title}`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -45,10 +45,10 @@ export class ToasterEffects {
   addUpdateArticleSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleSucceeded),
-      map(({ updatedArticle }) => {
+      map(({ article }) => {
         const toast: Toast = {
           title: 'Article update',
-          message: `Successfully updated ${updatedArticle.title}`,
+          message: `Successfully updated ${article.title}`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -112,9 +112,9 @@ export class ToasterEffects {
     );
   });
 
-  addLoadArticlesFailedToast$ = createEffect(() => {
+  addFetchArticlesFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.loadArticlesFailed),
+      ofType(ArticlesActions.fetchArticlesFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Load articles',
@@ -212,9 +212,9 @@ export class ToasterEffects {
     );
   });
 
-  addLoadMembersFailedToast$ = createEffect(() => {
+  addFetchMembersFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(MembersActions.loadMembersFailed),
+      ofType(MembersActions.fetchMembersFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Load members',
@@ -312,9 +312,9 @@ export class ToasterEffects {
     );
   });
 
-  addLoadEventsFailedToast$ = createEffect(() => {
+  addFetchEventsFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.loadEventsFailed),
+      ofType(ScheduleActions.fetchEventsFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Load events',

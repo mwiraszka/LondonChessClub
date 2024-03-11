@@ -40,6 +40,21 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.0.9 - March 11th, 2024
+</summary>
+
+- 🚀 Display a loading spinner whenever any database operation takes place, such as updating an article or deleting an event
+- 🚀 Change lecture event tag colour to blue to help differentiate from blitz tournament tags
+- 🚀 After an article has been published or edited, navigate the admin user to that article instead of the News screen
+
+- 🐛 Ensure members table remains sorted after a create/edit/delete operation has completed
+
+- 🔧 Rename all requesting database actions, changing prefix from 'load' to 'fetch'
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.0.8 - March 11th, 2024
 </summary>
 

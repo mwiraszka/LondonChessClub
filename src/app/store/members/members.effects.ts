@@ -2,11 +2,11 @@
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { MembersService } from '@app/services';
+import { LoaderService, MembersService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { Member, ModificationInfo, ServiceResponse } from '@app/types';
 
@@ -17,25 +17,28 @@ import * as MembersSelectors from './members.selectors';
 export class MembersEffects {
   getMembers$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(MembersActions.loadMembersStarted),
+      ofType(MembersActions.fetchMembersRequested),
+      tap(() => this.loaderService.display(true)),
       concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
       switchMap(([, isAdmin]) =>
         this.membersService.getMembers(isAdmin!).pipe(
           map((response: ServiceResponse<Member[]>) => {
             return response.error
-              ? MembersActions.loadMembersFailed({ error: response.error })
-              : MembersActions.loadMembersSucceeded({
+              ? MembersActions.fetchMembersFailed({ error: response.error })
+              : MembersActions.fetchMembersSucceeded({
                   allMembers: response.payload!,
                 });
           }),
         ),
       ),
+      tap(() => this.loaderService.display(false)),
     );
   });
 
   deleteMember$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.deleteMemberConfirmed),
+      tap(() => this.loaderService.display(true)),
       concatLatestFrom(() => this.store.select(MembersSelectors.selectedMember)),
       switchMap(([, memberToDelete]) =>
         this.membersService.deleteMember(memberToDelete!).pipe(
@@ -48,12 +51,14 @@ export class MembersEffects {
           ),
         ),
       ),
+      tap(() => this.loaderService.display(false)),
     );
   });
 
   addMember$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.addMemberConfirmed),
+      tap(() => this.loaderService.display(true)),
       concatLatestFrom(() => [
         this.store.select(MembersSelectors.memberCurrently),
         this.store.select(AuthSelectors.user),
@@ -78,12 +83,14 @@ export class MembersEffects {
           ),
         );
       }),
+      tap(() => this.loaderService.display(false)),
     );
   });
 
   updateMember$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.updateMemberConfirmed),
+      tap(() => this.loaderService.display(true)),
       concatLatestFrom(() => [
         this.store.select(MembersSelectors.memberCurrently),
         this.store.select(AuthSelectors.user),
@@ -108,6 +115,7 @@ export class MembersEffects {
           ),
         );
       }),
+      tap(() => this.loaderService.display(false)),
     );
   });
 
@@ -126,9 +134,9 @@ export class MembersEffects {
     () =>
       this.actions$.pipe(
         ofType(
+          MembersActions.fetchMembersFailed,
           MembersActions.addMemberFailed,
           MembersActions.updateMemberFailed,
-          MembersActions.loadMembersFailed,
           MembersActions.deleteMemberFailed,
         ),
       ),
@@ -137,6 +145,7 @@ export class MembersEffects {
 
   constructor(
     private actions$: Actions,
+    private loaderService: LoaderService,
     private membersService: MembersService,
     private store: Store,
   ) {}

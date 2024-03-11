@@ -14,7 +14,6 @@ export class MembersTableFacade {
   readonly activeMembers$ = this.store.select(MembersSelectors.activeMembers);
   readonly filteredMembers$ = this.store.select(MembersSelectors.filteredMembers);
 
-  readonly isLoading$ = this.store.select(MembersSelectors.isLoading);
   readonly isAscending$ = this.store.select(MembersSelectors.isAscending);
   readonly sortedBy$ = this.store.select(MembersSelectors.sortedBy);
   readonly pageNum$ = this.store.select(MembersSelectors.pageNum);
@@ -25,8 +24,8 @@ export class MembersTableFacade {
 
   constructor(private readonly store: Store) {}
 
-  loadMembers(): void {
-    this.store.dispatch(MembersActions.loadMembersStarted());
+  fetchMembers(): void {
+    this.store.dispatch(MembersActions.fetchMembersRequested());
   }
 
   onDeleteMember(memberToDelete: Member): void {

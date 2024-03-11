@@ -16,6 +16,7 @@ address {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  margin: 0 $lcc-space--sm;
   text-decoration: none;
 
   span {
@@ -23,12 +24,25 @@ address {
     font-style: normal;
   }
 
-  a {
+  a,
+  a > * {
     @include lcc-link;
   }
 
   .divider {
     margin: 0 0.5em;
+  }
+
+  .instagram-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $lcc-space--xs;
+  
+    .instagram-icon {
+      width: 15px;
+      height: 15px;
+    }
   }
 }
 

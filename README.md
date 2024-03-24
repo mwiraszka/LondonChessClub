@@ -43,7 +43,7 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 v3.0.10 - March 25th, 2024
 </summary>
 
-- 🔧 Add `type` to certain imports and exports to future-proof app in the event that a transpiler (such as Babel or Vite) is introduced in the future and it becomes unclear which imports/exports should be available at runtime (see: [this article](https://typescript-eslint.io/blog/consistent-type-imports-and-exports-why-and-how/))
+- 🔧 Add `type` modifier to certain imports and exports to future-proof app in the event that a transpiler (such as Babel or Vite) is introduced in the future and it becomes unclear which imports/exports should be available at runtime (see: [this article](https://typescript-eslint.io/blog/consistent-type-imports-and-exports-why-and-how/))
 
 </details>
 

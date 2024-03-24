@@ -6,7 +6,7 @@ import { debounceTime, first, tap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { ClubEvent, ModificationInfo } from '@app/types';
+import type { ClubEvent, ModificationInfo } from '@app/types';
 import { dateValidator } from '@app/validators';
 
 import { EventFormFacade } from './event-form.facade';

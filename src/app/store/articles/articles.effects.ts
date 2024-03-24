@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 
 import { ArticlesService, ImagesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { Article, ModificationInfo, ServiceResponse, Url } from '@app/types';
+import type { Article, ModificationInfo, ServiceResponse, Url } from '@app/types';
 
 import * as ArticlesActions from './articles.actions';
 import * as ArticlesSelectors from './articles.selectors';

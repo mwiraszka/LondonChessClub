@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { MembersActions, MembersSelectors } from '@app/store/members';
 import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
-import { Modal, ModalButtonActionTypes, ModalButtonStyleTypes } from '@app/types';
+import { type Modal, ModalButtonActionTypes, ModalButtonStyleTypes } from '@app/types';
 
 import * as ModalActions from './modal.actions';
 

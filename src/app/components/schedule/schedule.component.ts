@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { ClubEvent, Link, NavPathTypes } from '@app/types';
+import { type ClubEvent, type Link, NavPathTypes } from '@app/types';
 import { kebabize, setLocalTime } from '@app/utils';
 
 import { ScheduleFacade } from './schedule.facade';

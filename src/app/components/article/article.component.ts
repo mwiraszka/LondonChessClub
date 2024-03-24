@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Article } from '@app/types';
+import type { Article } from '@app/types';
 
 @Component({
   selector: 'lcc-article',

@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 
 import { LoaderService, MembersService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { Member, ModificationInfo, ServiceResponse } from '@app/types';
+import type { Member, ModificationInfo, ServiceResponse } from '@app/types';
 
 import * as MembersActions from './members.actions';
 import * as MembersSelectors from './members.selectors';

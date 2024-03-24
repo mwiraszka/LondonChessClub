@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Modal, ModalButtonActionTypes } from '@app/types';
+import type { Modal, ModalButtonActionTypes } from '@app/types';
 
 enum ModalActionTypes {
   MODAL_OPENED = '[Modal] Modal opened',

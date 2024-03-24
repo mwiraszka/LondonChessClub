@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { ModificationInfo } from '@app/types';
+import type { ModificationInfo } from '@app/types';
 
 @Component({
   selector: 'lcc-modification-info',

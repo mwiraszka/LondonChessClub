@@ -5,7 +5,7 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { ClubEvent, FlatClubEvent, ServiceResponse } from '@app/types';
+import type { ClubEvent, FlatClubEvent, ServiceResponse } from '@app/types';
 import { customSort } from '@app/utils';
 
 import { environment } from '@environments/environment';

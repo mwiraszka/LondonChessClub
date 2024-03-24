@@ -4,7 +4,7 @@ import { first, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
-import { ClubEvent } from '@app/types';
+import type { ClubEvent } from '@app/types';
 
 @Injectable()
 export class EventFormFacade {

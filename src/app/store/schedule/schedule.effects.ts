@@ -7,7 +7,7 @@ import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { LoaderService, ScheduleService } from '@app/services';
-import { ClubEvent, ModificationInfo, ServiceResponse } from '@app/types';
+import type { ClubEvent, ModificationInfo, ServiceResponse } from '@app/types';
 
 import { AuthSelectors } from '../auth';
 import * as ScheduleActions from './schedule.actions';

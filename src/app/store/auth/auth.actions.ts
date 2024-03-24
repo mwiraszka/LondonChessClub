@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { LoginRequest, PasswordChangeRequest, User } from '@app/types';
+import type { LoginRequest, PasswordChangeRequest, User } from '@app/types';
 
 enum AuthActionTypes {
   LOGIN_REQUESTED = '[Auth] Login requested',

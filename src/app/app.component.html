@@ -6,7 +6,7 @@
 	<lcc-image-overlay></lcc-image-overlay>
 </ng-container>
 
-<div class="lcc-app-container">
+<div class="app-container">
 	<ng-container *ngIf="showAlert && (facade.upcomingEvent$ | async)">
 		<lcc-alert (close)="onCloseAlert()"></lcc-alert>
 	</ng-container>

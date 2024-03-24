@@ -6,7 +6,7 @@ import { isEqual } from 'lodash';
 import * as uuid from 'uuid';
 
 import { AuthActions } from '@app/store/auth';
-import { ClubEvent } from '@app/types';
+import type { ClubEvent } from '@app/types';
 
 /**
  * A wrapper for lodash's isEqual()

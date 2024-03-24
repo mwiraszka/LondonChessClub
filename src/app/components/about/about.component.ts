@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 

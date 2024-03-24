@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { ClubEvent } from '@app/types';
+import type { ClubEvent } from '@app/types';
 
 enum ScheduleActionTypes {
   FETCH_EVENTS_REQUESTED = '[Schedule] Fetch events requested',

@@ -5,7 +5,7 @@ import { debounceTime, first, tap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Member, ModificationInfo } from '@app/types';
+import type { Member, ModificationInfo } from '@app/types';
 import {
   dateValidator,
   emailValidator,

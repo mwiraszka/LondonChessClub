@@ -7,7 +7,7 @@ import { ArticlesActions } from '@app/store/articles';
 import { AuthActions } from '@app/store/auth';
 import { MembersActions } from '@app/store/members';
 import { ScheduleActions } from '@app/store/schedule';
-import { Toast, ToastTypes } from '@app/types';
+import { type Toast, ToastTypes } from '@app/types';
 
 import * as ToasterActions from './toaster.actions';
 

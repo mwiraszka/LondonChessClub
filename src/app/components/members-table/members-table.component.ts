@@ -2,7 +2,7 @@ import moment from 'moment';
 
 import { Component, OnInit } from '@angular/core';
 
-import { Link, Member, NavPathTypes } from '@app/types';
+import { type Link, type Member, NavPathTypes } from '@app/types';
 import { camelize, kebabize } from '@app/utils';
 
 import { MembersTableFacade } from './members-table.facade';

@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Article, Url } from '@app/types';
+import type { Article, Url } from '@app/types';
 
 enum ArticlesActionTypes {
   FETCH_ARTICLES_REQUESTED = '[Articles] Fetch articles requested',

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 import { AuthSelectors } from '@app/store/auth';
 import { MembersActions, MembersSelectors } from '@app/store/members';
-import { Member } from '@app/types';
+import type { Member } from '@app/types';
 
 @Injectable()
 export class MembersTableFacade {

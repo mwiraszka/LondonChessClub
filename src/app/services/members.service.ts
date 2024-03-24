@@ -5,7 +5,7 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { FlatMember, Member, ServiceResponse } from '@app/types';
+import type { FlatMember, Member, ServiceResponse } from '@app/types';
 
 import { environment } from '@environments/environment';
 

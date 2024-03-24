@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Toast, ToastTypes } from '@app/types';
+import { type Toast, ToastTypes } from '@app/types';
 
 @Component({
   selector: 'lcc-toast',

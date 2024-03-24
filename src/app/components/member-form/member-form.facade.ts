@@ -4,7 +4,7 @@ import { first, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { MembersActions, MembersSelectors } from '@app/store/members';
-import { Member } from '@app/types';
+import type { Member } from '@app/types';
 
 @Injectable()
 export class MemberFormFacade {

@@ -6,7 +6,7 @@ import { debounceTime } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Article, ModificationInfo, Url } from '@app/types';
+import type { Article, ModificationInfo, Url } from '@app/types';
 import { imageSizeValidator } from '@app/validators';
 
 import { ArticleFormFacade } from './article-form.facade';

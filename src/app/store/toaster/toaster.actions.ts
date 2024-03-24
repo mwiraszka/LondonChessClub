@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Toast } from '@app/types';
+import type { Toast } from '@app/types';
 
 enum ToasterActionTypes {
   TOAST_ADDED = '[Toaster] Toast added',

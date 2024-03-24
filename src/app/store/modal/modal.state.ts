@@ -1,4 +1,4 @@
-import { Modal, ModalButtonActionTypesType } from '@app/types';
+import type { Modal, ModalButtonActionTypesType } from '@app/types';
 
 export interface ModalState {
   modal: Modal | null;

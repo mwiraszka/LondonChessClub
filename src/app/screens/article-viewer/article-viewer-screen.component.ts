@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Link, NavPathTypes } from '@app/types';
+import { type Link, NavPathTypes } from '@app/types';
 
 import { ArticleViewerScreenFacade } from './article-viewer-screen.facade';
 

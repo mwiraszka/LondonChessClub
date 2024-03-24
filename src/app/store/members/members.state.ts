@@ -1,4 +1,4 @@
-import { Member, newMemberFormTemplate } from '@app/types';
+import { type Member, newMemberFormTemplate } from '@app/types';
 
 export interface MembersState {
   members: Member[];

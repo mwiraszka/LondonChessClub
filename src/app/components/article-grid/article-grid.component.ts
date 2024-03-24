@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Article, Link, NavPathTypes } from '@app/types';
+import { type Article, type Link, NavPathTypes } from '@app/types';
 
 import { ArticleGridFacade } from './article-grid.facade';
 

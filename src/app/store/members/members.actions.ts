@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Member } from '@app/types';
+import type { Member } from '@app/types';
 
 enum MembersActionTypes {
   FETCH_MEMBERS_REQUESTED = '[Members] Fetch members requested',

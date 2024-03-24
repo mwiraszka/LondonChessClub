@@ -11,7 +11,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { PasswordChangeRequest } from '@app/types';
+import type { PasswordChangeRequest } from '@app/types';
 import {
   emailValidator,
   hasLowercaseLetterValidator,

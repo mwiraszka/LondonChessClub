@@ -1,4 +1,4 @@
-import { Article, newArticleFormTemplate } from '@app/types';
+import { type Article, newArticleFormTemplate } from '@app/types';
 
 export interface ArticlesState {
   articles: Article[];

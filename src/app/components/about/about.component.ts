@@ -16,7 +16,7 @@ import { environment } from '@environments/environment';
   styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent implements OnInit {
-  NavPathTypes = NavPathTypes;
+  readonly NavPathTypes = NavPathTypes;
 
   @Input() isAboutScreen = false;
 

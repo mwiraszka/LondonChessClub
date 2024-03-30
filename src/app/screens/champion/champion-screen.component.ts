@@ -11,7 +11,7 @@ import { ChampionScreenFacade } from './champion-screen.facade';
   providers: [ChampionScreenFacade],
 })
 export class ChampionScreenComponent {
-  NavPathTypes = NavPathTypes;
+  readonly NavPathTypes = NavPathTypes;
 
   links: Link[] = [
     {

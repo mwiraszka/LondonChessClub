@@ -1,9 +1,12 @@
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+
 import { Component, Input, OnInit } from '@angular/core';
 
-import { type Article, type Link, NavPathTypes } from '@app/types';
+import { Article, type Link, NavPathTypes } from '@app/types';
 
 import { ArticleGridFacade } from './article-grid.facade';
 
+@UntilDestroy()
 @Component({
   selector: 'lcc-article-grid',
   templateUrl: './article-grid.component.html',
@@ -15,6 +18,7 @@ export class ArticleGridComponent implements OnInit {
 
   @Input() maxArticles?: number;
 
+  articles!: Article[];
   createArticleLink: Link = {
     path: NavPathTypes.ARTICLE_ADD,
     text: 'Compose new article',
@@ -25,7 +29,9 @@ export class ArticleGridComponent implements OnInit {
 
   ngOnInit(): void {
     this.facade.fetchArticles();
-  }
 
-  trackByFn = (index: number, article: Article) => article.id;
+    this.facade.articles$.pipe(untilDestroyed(this)).subscribe(articles => {
+      this.articles = articles.slice(0, this.maxArticles ?? articles.length);
+    });
+  }
 }

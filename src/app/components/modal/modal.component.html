@@ -11,11 +11,12 @@
 			</div>
 			<div *ngIf="(facade.modal$ | async)?.buttons"
 					 class="action-buttons">
-				<button *ngFor="let button of (facade.modal$ | async)?.buttons"
-								[ngClass]="button.style"
+				@for (button of (facade.modal$ | async)?.buttons; track button.text) {
+				<button [ngClass]="button.style"
 								(click)="facade.onSelect(button.action)">
 					{{ button.text }}
 				</button>
+				}
 			</div>
 		</div>
 	</div>

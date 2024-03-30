@@ -10,6 +10,4 @@ import type { Link } from '@app/types';
 export class LinkListComponent {
   @Input() title?: string;
   @Input() links?: Link[];
-
-  trackByFn = (index: number, link: Link) => link.path;
 }

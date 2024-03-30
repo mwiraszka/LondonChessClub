@@ -5,9 +5,9 @@ import { ToasterFacade } from './toaster.facade';
 @Component({
   selector: 'lcc-toaster',
   template: `
-    <div *ngFor="let toast of facade.toasts$ | async">
-      <lcc-toast [toast]="toast"></lcc-toast>
-    </div>
+    @for (toast of facade.toasts$ | async; track toast.title) {
+    <lcc-toast [toast]="toast"></lcc-toast>
+    }
   `,
   styleUrls: ['./toaster.component.scss'],
   providers: [ToasterFacade],

@@ -12,7 +12,7 @@ import { AboutScreenFacade } from './about-screen.facade';
   providers: [AboutScreenFacade],
 })
 export class AboutScreenComponent {
-  NavPathTypes = NavPathTypes;
+  readonly NavPathTypes = NavPathTypes;
 
   constructor(public facade: AboutScreenFacade, private router: Router) {}
 

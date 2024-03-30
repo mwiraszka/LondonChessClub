@@ -9,6 +9,7 @@ import { type Toast, ToastTypes } from '@app/types';
 })
 export class ToastComponent implements OnInit {
   @Input() toast?: Toast;
+
   iconShape!: 'check-circle' | 'alert-triangle' | 'info';
 
   ngOnInit(): void {

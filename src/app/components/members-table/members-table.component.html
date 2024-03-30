@@ -5,14 +5,14 @@
 <div class="lcc-table-wrapper">
 	<table class="lcc-table"
 				 [class.lcc-show-admin-columns]="facade.isAdmin$ | async">
-		<thead>
+		<thead *ngIf="(facade.displayedMembers$ | async)?.length">
 			<tr>
 				<th *ngIf="facade.isAdmin$ | async"
 						class="lcc-table-admin-controls-filler">
 				</th>
 				<th class="row-number"></th>
-				<th *ngFor="let header of (facade.isAdmin$ | async) ? tableHeaders : tableHeaders.slice(0, -4)"
-						[ngClass]="kebabize(header)"
+				@for (header of tableHeaders; track header) {
+				<th [ngClass]="kebabize(header)"
 						(click)="facade.onSelectTableHeader(camelize(kebabize(header)))">
 					<span class="header-text">{{ header }}</span>
 					<div class="sort-icon-container">
@@ -22,15 +22,14 @@
 						</i-feather>
 					</div>
 				</th>
+				}
 			</tr>
 		</thead>
 
-		<tbody *ngIf="(facade.filteredMembers$ | async) as filteredMembers">
-			<tr *ngFor="let member of filteredMembers.slice((facade.startIndex$ | async) ?? 0, (facade.endIndex$ | async) ?? 0);
-                  let i = index;
-                  let last = last;
-                  trackBy: trackByFn"
-					class="lcc-admin-controls-container"
+		<tbody>
+			@for (member of facade.displayedMembers$ | async; track member.id; let i = $index;
+			let last = $last) {
+			<tr class="lcc-admin-controls-container"
 					[ngClass]="{'last-row': last}"
 					[class.inactive]="!member.isActive">
 				<lcc-admin-controls *ngIf="facade.isAdmin$ | async"
@@ -59,6 +58,7 @@
 					</td>
 				</ng-container>
 			</tr>
+			}
 		</tbody>
 
 		<tfoot>

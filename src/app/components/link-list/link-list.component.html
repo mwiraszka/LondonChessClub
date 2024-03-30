@@ -1,7 +1,8 @@
 <h4 *ngIf="title">{{ title }}</h4>
 <ul class="links"
 		[ngClass]="(links?.length ?? 0) < 4 ? 'single-column' : ''">
-	<li *ngFor="let link of links; trackBy: trackByFn">
+	@for (link of links; track link.path) {
+	<li>
 		<a *ngIf="link.path.startsWith('http'); else internalLink"
 			 [href]="link.path"
 			 target="_blank"
@@ -25,4 +26,5 @@
 			</a>
 		</ng-template>
 	</li>
+	}
 </ul>

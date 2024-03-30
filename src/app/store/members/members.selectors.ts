@@ -20,10 +20,6 @@ export const activeMembers = createSelector(membersFeatureSelector, state =>
   state.members.filter(member => member.isActive),
 );
 
-export const filteredMembers = createSelector(membersFeatureSelector, state =>
-  state.showActiveOnly ? state.members.filter(member => member.isActive) : state.members,
-);
-
 export const selectedMember = createSelector(
   membersFeatureSelector,
   state => state.selectedMember,
@@ -68,4 +64,16 @@ export const endIndex = createSelector(
 export const showActiveOnly = createSelector(
   membersFeatureSelector,
   state => state.showActiveOnly,
+);
+
+export const filteredMembers = createSelector(membersFeatureSelector, state =>
+  state.showActiveOnly ? state.members.filter(member => member.isActive) : state.members,
+);
+
+export const displayedMembers = createSelector(
+  filteredMembers,
+  startIndex,
+  endIndex,
+  (filteredMembers, startIndex, endIndex) =>
+    filteredMembers.slice(startIndex ?? 0, endIndex ?? 0),
 );

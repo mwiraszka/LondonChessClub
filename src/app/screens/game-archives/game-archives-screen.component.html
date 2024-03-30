@@ -17,8 +17,8 @@
 	</p>
 
 	<div class="panels-container">
-		<div *ngFor="let panel of expansionPanels"
-				 class="panel-container">
+		@for (panel of expansionPanels; track panel.label) {
+		<div class="panel-container">
 			<lcc-expansion-panel [headerTemplate]="headerTemplateRef"
 													 [contentTemplate]="contentTemplateRef">
 			</lcc-expansion-panel>
@@ -50,5 +50,6 @@
 				</div>
 			</ng-template>
 		</div>
+		}
 	</div>
 </div>

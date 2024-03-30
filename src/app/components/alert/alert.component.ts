@@ -12,8 +12,8 @@ import { AlertFacade } from './alert.facade';
   providers: [AlertFacade],
 })
 export class AlertComponent {
-  setLocalTime = setLocalTime;
-  NavPathTypes = NavPathTypes;
+  readonly setLocalTime = setLocalTime;
+  readonly NavPathTypes = NavPathTypes;
 
   @Output() close = new EventEmitter<void>();
 

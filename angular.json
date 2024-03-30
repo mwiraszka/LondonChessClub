@@ -28,7 +28,11 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest"
+            ],
             "inlineStyleLanguage": "scss",
             "styles": [
               "src/styles/main.scss"
@@ -39,7 +43,8 @@
             ],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json",
-            "allowedCommonJsDependencies": ["crypto-js", "@aws-sdk/eventstream-marshaller", "buffer", "js-cookie", 
+            "allowedCommonJsDependencies": [
+              "crypto-js", "@aws-sdk/eventstream-marshaller", "buffer", "js-cookie", 
               "@aws-crypto", "zen-observable", "@aws-sdk/util-utf8-node", "@aws-crypto/sha256-js", "@aws-sdk/util-buffer-from",
               "@aws-sdk/smithy-client", "@aws-sdk/middleware-serde", "@aws-sdk/middleware-user-agent",
               "@aws-sdk/middleware-retry", "@aws-sdk/middleware-signing", "@aws-sdk/middleware-content-length",
@@ -59,7 +64,7 @@
               "crypto-js/lib-typedarrays", "crypto-js/hmac-sha256", "crypto", "camelcase-keys",
               "xstate/lib/actions", "style-dictionary/lib/utils/deepExtend", "style-dictionary/lib/utils/flattenProperties",
               "style-dictionary/lib/utils/references/usesReference"
-    ]
+            ]
           },
           "configurations": {
             "production": {
@@ -101,8 +106,7 @@
               "buildTarget": "lcc-angular:build:production"
             },
             "development": {
-              "buildTarget": "lcc-angular:build:development",
-              "proxyConfig": "proxy.conf.json"
+              "buildTarget": "lcc-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -116,9 +120,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": "zone.js",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",

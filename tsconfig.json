@@ -15,11 +15,7 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
-    "lib": [
-      "es2020",
-      "ES2021.String",
-      "dom"
-    ],
+    "lib": ["dom", "es2020", "ES2021.String"],
     "module": "es2020",
     "moduleResolution": "node",
     "noImplicitAny": true,
@@ -28,15 +24,9 @@
     "noPropertyAccessFromIndexSignature": true,
     "outDir": "./dist/out-tsc",
     "paths": {
-      "@app/*": [
-        "app/*"
-      ],
-      "@assets/*": [
-        "assets/*"
-      ],
-      "@environments/*": [
-        "environments/*"
-      ]
+      "@app/*": ["app/*"],
+      "@assets/*": ["assets/*"],
+      "@environments/*": ["environments/*"]
     },
     "resolveJsonModule": true,
     "sourceMap": true,

@@ -15,7 +15,7 @@ import * as ScheduleSelectors from './schedule.selectors';
 
 @Injectable()
 export class ScheduleEffects {
-  getEvents$ = createEffect(() => {
+  fetchEvents$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.fetchEventsRequested),
       tap(() => this.loaderService.display(true)),
@@ -34,7 +34,7 @@ export class ScheduleEffects {
     );
   });
 
-  getEvent$ = createEffect(() => {
+  fetchEventForEventEditRoute$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.fetchEventForEventEditRouteRequested),
       tap(() => this.loaderService.display(true)),

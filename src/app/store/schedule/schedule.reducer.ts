@@ -24,13 +24,17 @@ const scheduleReducer = createReducer(
     eventCurrently: action.eventToAdd,
   })),
 
-  on(ScheduleActions.fetchEventForEventEditRouteSucceeded, (state, action) => ({
-    ...state,
-    selectedEvent: action.event,
-    eventBeforeEdit: action.event,
-    eventCurrently: action.event,
-    isEditMode: true,
-  })),
+  on(
+    ScheduleActions.eventEditRouteEntered,
+    ScheduleActions.fetchEventForEventEditRouteSucceeded,
+    (state, { event }) => ({
+      ...state,
+      selectedEvent: event,
+      eventBeforeEdit: event,
+      eventCurrently: event,
+      isEditMode: true,
+    }),
+  ),
 
   on(ScheduleActions.updateEventSelected, (state, action) => ({
     ...state,
@@ -48,14 +52,14 @@ const scheduleReducer = createReducer(
     selectedEvent: null,
   })),
 
-  on(ScheduleActions.deleteEventFailed, state => ({
+  on(ScheduleActions.deleteEventFailed, ScheduleActions.deleteEventCancelled, state => ({
     ...state,
     selectedEvent: null,
   })),
 
   on(ScheduleActions.deleteEventCancelled, state => ({
     ...state,
-    selectedEvent: null,
+    selectedEventId: null,
   })),
 
   on(

@@ -104,9 +104,7 @@ export class NavEffects {
       ]),
       map(([eventId, eventInStore, isAdmin]) => {
         if (eventInStore && isAdmin) {
-          return NavActions.navigationRequested({
-            path: NavPathTypes.EVENT_EDIT + eventId,
-          });
+          return ScheduleActions.eventEditRouteEntered({ event: eventInStore });
         } else if (!isValidEventId(eventId) && isAdmin) {
           return ScheduleActions.fetchEventForEventEditRouteRequested({ eventId });
         } else {
@@ -162,6 +160,7 @@ export class NavEffects {
         ScheduleActions.cancelSelected,
         ScheduleActions.addEventSucceeded,
         ScheduleActions.updateEventSucceeded,
+        ScheduleActions.fetchEventForEventEditRouteFailed,
       ),
       map(() => NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE })),
     ),

@@ -16,7 +16,7 @@ import * as ArticlesSelectors from './articles.selectors';
 
 @Injectable()
 export class ArticlesEffects {
-  getArticles$ = createEffect(() => {
+  fetchArticles$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticlesRequested),
       switchMap(() =>

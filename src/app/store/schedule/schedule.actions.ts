@@ -7,11 +7,10 @@ enum ScheduleActionTypes {
   FETCH_EVENTS_SUCCEEDED = '[Schedule] Fetch events succeeded',
   FETCH_EVENTS_FAILED = '[Schedule] Fetch events failed',
 
+  EVENT_EDIT_ROUTE_ENTERED = '[Schedule] Event edit route entered',
   FETCH_EVENT_FOR_EVENT_EDIT_ROUTE_REQUESTED = '[Schedule] Fetch event for event edit route requested',
   FETCH_EVENT_FOR_EVENT_EDIT_ROUTE_SUCCEEDED = '[Schedule] Fetch event for event edit route succeeded',
   FETCH_EVENT_FOR_EVENT_EDIT_ROUTE_FAILED = '[Schedule] Fetch event for event edit route failed',
-
-  EVENT_EDIT_ROUTE_REQUESTED = '[Schedule] Event edit route requested',
 
   DELETE_EVENT_SELECTED = '[Schedule] Delete event selected',
   DELETE_EVENT_CONFIRMED = '[Schedule] Delete event confirmed',
@@ -48,6 +47,11 @@ export const fetchEventsSucceeded = createAction(
 export const fetchEventsFailed = createAction(
   ScheduleActionTypes.FETCH_EVENTS_FAILED,
   props<{ error: Error }>(),
+);
+
+export const eventEditRouteEntered = createAction(
+  ScheduleActionTypes.EVENT_EDIT_ROUTE_ENTERED,
+  props<{ event: ClubEvent }>(),
 );
 
 export const fetchEventForEventEditRouteRequested = createAction(

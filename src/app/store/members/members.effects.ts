@@ -15,7 +15,7 @@ import * as MembersSelectors from './members.selectors';
 
 @Injectable()
 export class MembersEffects {
-  getMembers$ = createEffect(() => {
+  fetchMembers$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.fetchMembersRequested),
       tap(() => this.loaderService.display(true)),

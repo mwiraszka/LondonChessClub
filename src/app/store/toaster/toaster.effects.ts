@@ -312,6 +312,20 @@ export class ToasterEffects {
     );
   });
 
+  addFetchEventFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ScheduleActions.fetchEventForEventEditRouteFailed),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Load requested event',
+          message: error.message,
+          type: ToastTypes.WARNING,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
+
   addFetchEventsFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.fetchEventsFailed),

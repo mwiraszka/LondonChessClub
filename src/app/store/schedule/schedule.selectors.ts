@@ -22,7 +22,7 @@ export const upcomingEvents = createSelector(scheduleFeatureSelector, state => {
 
 export const upcomingEvent = createSelector(scheduleFeatureSelector, state => {
   const upcomingEvents = getUpcomingEvents(state?.events, 1);
-  return upcomingEvents?.length ? upcomingEvents[0] : null;
+  return upcomingEvents.length ? upcomingEvents[0] : null;
 });
 
 export const selectedEvent = createSelector(

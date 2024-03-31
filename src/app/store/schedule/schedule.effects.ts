@@ -7,9 +7,9 @@ import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { LoaderService, ScheduleService } from '@app/services';
+import { AuthSelectors } from '@app/store/auth';
 import type { ClubEvent, ModificationInfo, ServiceResponse } from '@app/types';
 
-import { AuthSelectors } from '../auth';
 import * as ScheduleActions from './schedule.actions';
 import * as ScheduleSelectors from './schedule.selectors';
 
@@ -26,6 +26,27 @@ export class ScheduleEffects {
               ? ScheduleActions.fetchEventsFailed({ error: response.error })
               : ScheduleActions.fetchEventsSucceeded({
                   allEvents: response.payload!,
+                }),
+          ),
+        ),
+      ),
+      tap(() => this.loaderService.display(false)),
+    );
+  });
+
+  getEvent$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ScheduleActions.fetchEventForEventEditRouteRequested),
+      tap(() => this.loaderService.display(true)),
+      switchMap(({ eventId }) =>
+        this.scheduleService.getEvent(eventId).pipe(
+          map((response: ServiceResponse<ClubEvent>) =>
+            response.error
+              ? ScheduleActions.fetchEventForEventEditRouteFailed({
+                  error: response.error,
+                })
+              : ScheduleActions.fetchEventForEventEditRouteSucceeded({
+                  event: response.payload!,
                 }),
           ),
         ),

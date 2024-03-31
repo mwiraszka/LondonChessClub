@@ -11,6 +11,7 @@ import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { MembersActions, MembersSelectors } from '@app/store/members';
 import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
 import { NavPathTypes } from '@app/types';
+import { isValidEventId } from '@app/utils';
 
 import * as NavActions from './nav.actions';
 import { selectCurrentRoute } from './router.selectors';
@@ -64,9 +65,10 @@ export class NavEffects {
         this.store.select(
           ArticlesSelectors.articleById(payload.event.url.split('/article/edit/')[1]),
         ),
+        this.store.select(AuthSelectors.isAdmin),
       ]),
-      map(([, article]) =>
-        article
+      map(([, article, isAdmin]) =>
+        article && isAdmin
           ? ArticlesActions.editArticleRouteEntered({ article })
           : NavActions.navigationRequested({ path: NavPathTypes.NEWS }),
       ),
@@ -81,9 +83,10 @@ export class NavEffects {
         this.store.select(
           MembersSelectors.memberById(payload.event.url.split('/member/edit/')[1]),
         ),
+        this.store.select(AuthSelectors.isAdmin),
       ]),
-      map(([, member]) =>
-        member
+      map(([, member, isAdmin]) =>
+        member && isAdmin
           ? MembersActions.editMemberRouteEntered({ member })
           : NavActions.navigationRequested({ path: NavPathTypes.MEMBERS }),
       ),
@@ -94,16 +97,22 @@ export class NavEffects {
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       filter(({ payload }) => payload.event.url.startsWith('/event/edit/')),
-      concatLatestFrom(({ payload }) => [
-        this.store.select(
-          ScheduleSelectors.eventById(payload.event.url.split('/event/edit/')[1]),
-        ),
+      map(({ payload }) => payload.event.url.split('/event/edit/')[1]),
+      concatLatestFrom(eventId => [
+        this.store.select(ScheduleSelectors.eventById(eventId)),
+        this.store.select(AuthSelectors.isAdmin),
       ]),
-      map(([, event]) =>
-        event
-          ? ScheduleActions.editEventRouteEntered({ event })
-          : NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE }),
-      ),
+      map(([eventId, eventInStore, isAdmin]) => {
+        if (eventInStore && isAdmin) {
+          return NavActions.navigationRequested({
+            path: NavPathTypes.EVENT_EDIT + eventId,
+          });
+        } else if (!isValidEventId(eventId) && isAdmin) {
+          return ScheduleActions.fetchEventForEventEditRouteRequested({ eventId });
+        } else {
+          return NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE });
+        }
+      }),
     ),
   );
 
@@ -155,6 +164,15 @@ export class NavEffects {
         ScheduleActions.updateEventSucceeded,
       ),
       map(() => NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE })),
+    ),
+  );
+
+  navigateToEventEdit$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ScheduleActions.fetchEventForEventEditRouteSucceeded),
+      map(({ event }) =>
+        NavActions.navigationRequested({ path: NavPathTypes.EVENT_EDIT + event.id }),
+      ),
     ),
   );
 

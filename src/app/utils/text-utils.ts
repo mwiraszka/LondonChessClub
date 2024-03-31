@@ -1,7 +1,9 @@
 /**
  * Converts any string to kebab-case
  * (see https://www.geeksforgeeks.org/how-to-convert-a-string-into-kebab-case-using-javascript)
+ *
  * @param {string} anyString The input string Like This, LikeThis, or Like_This
+ *
  * @returns {string} The same text in kebab-case
  */
 export function kebabize(anyString: string): string {
@@ -13,7 +15,9 @@ export function kebabize(anyString: string): string {
 
 /**
  * Converts kebab-case to CamelCase
+ *
  * @param {string} kebabString The input string in kebab-case
+ *
  * @returns {string} The same text in camelCase
  */
 export function camelize(kebabString: string): string {
@@ -21,11 +25,13 @@ export function camelize(kebabString: string): string {
 }
 
 /**
- * Calculates the width of the canvas for given text and an optional canvas max width
- * @param {string} text The text
+ * Calculates the width of the canvas for the given text and an optional canvas max width
+ *
+ * @param {string | null} text The text
  * @param {number} maxLineWidth Maximum space available for the text on each line (px)
- * @param {string} font All font information that affects text width,
- * space-separated (e.g. 'italic 16pt Verdana')
+ * @param font All font information that affects text width, space-separated
+ * (e.g. 'italic 16pt Verdana')
+ *
  * @returns {number} The width in pixels (-1 denotes failure in creating context)
  */
 export function getTextWidth(

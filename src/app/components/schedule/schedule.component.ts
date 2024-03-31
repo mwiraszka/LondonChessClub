@@ -47,7 +47,7 @@ export class ScheduleComponent implements OnInit {
       .subscribe(([allEvents, upcomingEvents, showPast]) => {
         this.shownEvents = showPast
           ? allEvents
-          : upcomingEvents?.slice(0, this.limitToUpcoming);
+          : upcomingEvents.slice(0, this.limitToUpcoming);
       });
   }
 

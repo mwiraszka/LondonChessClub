@@ -10,7 +10,7 @@ const scheduleReducer = createReducer(
 
   on(ScheduleActions.fetchEventsSucceeded, (state, action) => {
     const upcomingEvents = getUpcomingEvents(action.allEvents, 1);
-    const nextEvent = upcomingEvents?.length ? upcomingEvents[0] : null;
+    const nextEvent = upcomingEvents.length ? upcomingEvents[0] : null;
 
     return {
       ...state,
@@ -24,7 +24,7 @@ const scheduleReducer = createReducer(
     eventCurrently: action.eventToAdd,
   })),
 
-  on(ScheduleActions.editEventRouteEntered, (state, action) => ({
+  on(ScheduleActions.fetchEventForEventEditRouteSucceeded, (state, action) => ({
     ...state,
     selectedEvent: action.event,
     eventBeforeEdit: action.event,

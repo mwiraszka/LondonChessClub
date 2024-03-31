@@ -35,6 +35,34 @@ export class MembersEffects {
     );
   });
 
+  fetchMemberForEditScreen$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(MembersActions.fetchMemberForEditScreenRequested),
+      tap(() => this.loaderService.display(true)),
+      switchMap(({ memberId }) =>
+        this.membersService.getMember(memberId).pipe(
+          map((response: ServiceResponse<Member>) =>
+            response.error
+              ? MembersActions.fetchMemberForEditScreenFailed({
+                  error: response.error,
+                })
+              : MembersActions.fetchMemberForEditScreenSucceeded({
+                  member: response.payload!,
+                }),
+          ),
+        ),
+      ),
+      tap(() => this.loaderService.display(false)),
+    );
+  });
+
+  setMemberForEditing$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(MembersActions.fetchMemberForEditScreenSucceeded),
+      map(({ member }) => MembersActions.memberSetForEditing({ member })),
+    );
+  });
+
   deleteMember$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.deleteMemberConfirmed),
@@ -128,19 +156,6 @@ export class MembersEffects {
       ),
       map(() => MembersActions.resetMemberForm()),
     ),
-  );
-
-  logError$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(
-          MembersActions.fetchMembersFailed,
-          MembersActions.addMemberFailed,
-          MembersActions.updateMemberFailed,
-          MembersActions.deleteMemberFailed,
-        ),
-      ),
-    { dispatch: false },
   );
 
   constructor(

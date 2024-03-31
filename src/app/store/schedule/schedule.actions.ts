@@ -7,10 +7,10 @@ enum ScheduleActionTypes {
   FETCH_EVENTS_SUCCEEDED = '[Schedule] Fetch events succeeded',
   FETCH_EVENTS_FAILED = '[Schedule] Fetch events failed',
 
-  EVENT_EDIT_ROUTE_ENTERED = '[Schedule] Event edit route entered',
-  FETCH_EVENT_FOR_EVENT_EDIT_ROUTE_REQUESTED = '[Schedule] Fetch event for event edit route requested',
-  FETCH_EVENT_FOR_EVENT_EDIT_ROUTE_SUCCEEDED = '[Schedule] Fetch event for event edit route succeeded',
-  FETCH_EVENT_FOR_EVENT_EDIT_ROUTE_FAILED = '[Schedule] Fetch event for event edit route failed',
+  FETCH_EVENT_FOR_EDIT_SCREEN_REQUESTED = '[Schedule] Fetch event for edit screen requested',
+  FETCH_EVENT_FOR_EDIT_SCREEN_SUCCEEDED = '[Schedule] Fetch event for edit screen succeeded',
+  FETCH_EVENT_FOR_EDIT_SCREEN_FAILED = '[Schedule] Fetch event for edit screen failed',
+  EVENT_SET_FOR_EDITING = '[Schedule] Event set for editing',
 
   DELETE_EVENT_SELECTED = '[Schedule] Delete event selected',
   DELETE_EVENT_CONFIRMED = '[Schedule] Delete event confirmed',
@@ -49,22 +49,21 @@ export const fetchEventsFailed = createAction(
   props<{ error: Error }>(),
 );
 
-export const eventEditRouteEntered = createAction(
-  ScheduleActionTypes.EVENT_EDIT_ROUTE_ENTERED,
-  props<{ event: ClubEvent }>(),
-);
-
-export const fetchEventForEventEditRouteRequested = createAction(
-  ScheduleActionTypes.FETCH_EVENT_FOR_EVENT_EDIT_ROUTE_REQUESTED,
+export const fetchEventForEditScreenRequested = createAction(
+  ScheduleActionTypes.FETCH_EVENT_FOR_EDIT_SCREEN_REQUESTED,
   props<{ eventId: string }>(),
 );
-export const fetchEventForEventEditRouteSucceeded = createAction(
-  ScheduleActionTypes.FETCH_EVENT_FOR_EVENT_EDIT_ROUTE_SUCCEEDED,
+export const fetchEventForEditScreenSucceeded = createAction(
+  ScheduleActionTypes.FETCH_EVENT_FOR_EDIT_SCREEN_SUCCEEDED,
   props<{ event: ClubEvent }>(),
 );
-export const fetchEventForEventEditRouteFailed = createAction(
-  ScheduleActionTypes.FETCH_EVENT_FOR_EVENT_EDIT_ROUTE_FAILED,
+export const fetchEventForEditScreenFailed = createAction(
+  ScheduleActionTypes.FETCH_EVENT_FOR_EDIT_SCREEN_FAILED,
   props<{ error: Error }>(),
+);
+export const eventSetForEditing = createAction(
+  ScheduleActionTypes.EVENT_SET_FOR_EDITING,
+  props<{ event: ClubEvent }>(),
 );
 
 export const deleteEventSelected = createAction(

@@ -8,47 +8,48 @@ import { ScheduleState, initialState } from './schedule.state';
 const scheduleReducer = createReducer(
   initialState,
 
-  on(ScheduleActions.fetchEventsSucceeded, (state, action) => {
-    const upcomingEvents = getUpcomingEvents(action.allEvents, 1);
+  on(ScheduleActions.fetchEventsSucceeded, (state, { allEvents }) => {
+    const upcomingEvents = getUpcomingEvents(allEvents, 1);
     const nextEvent = upcomingEvents.length ? upcomingEvents[0] : null;
 
     return {
       ...state,
-      events: action.allEvents,
+      events: allEvents,
       nextEventId: nextEvent?.id ?? null,
     };
   }),
 
-  on(ScheduleActions.addEventSelected, (state, action) => ({
+  on(ScheduleActions.fetchEventForEditScreenSucceeded, (state, { event }) => ({
     ...state,
-    eventCurrently: action.eventToAdd,
+    events: [...state.events.filter(storedEvent => storedEvent.id === event.id), event],
   })),
 
-  on(
-    ScheduleActions.eventEditRouteEntered,
-    ScheduleActions.fetchEventForEventEditRouteSucceeded,
-    (state, { event }) => ({
-      ...state,
-      selectedEvent: event,
-      eventBeforeEdit: event,
-      eventCurrently: event,
-      isEditMode: true,
-    }),
-  ),
-
-  on(ScheduleActions.updateEventSelected, (state, action) => ({
+  on(ScheduleActions.eventSetForEditing, (state, { event }) => ({
     ...state,
-    eventCurrently: action.eventToUpdate,
+    selectedEvent: event,
+    eventBeforeEdit: event,
+    eventCurrently: event,
+    isEditMode: true,
   })),
 
-  on(ScheduleActions.deleteEventSelected, (state, action) => ({
+  on(ScheduleActions.addEventSelected, (state, { eventToAdd }) => ({
     ...state,
-    selectedEvent: action.eventToDelete,
+    eventCurrently: eventToAdd,
   })),
 
-  on(ScheduleActions.deleteEventSucceeded, (state, action) => ({
+  on(ScheduleActions.updateEventSelected, (state, { eventToUpdate }) => ({
     ...state,
-    events: state.events.filter(event => event.id !== action.deletedEvent.id),
+    eventCurrently: eventToUpdate,
+  })),
+
+  on(ScheduleActions.deleteEventSelected, (state, { eventToDelete }) => ({
+    ...state,
+    selectedEvent: eventToDelete,
+  })),
+
+  on(ScheduleActions.deleteEventSucceeded, (state, { deletedEvent }) => ({
+    ...state,
+    events: state.events.filter(event => event.id !== deletedEvent.id),
     selectedEvent: null,
   })),
 
@@ -77,9 +78,9 @@ const scheduleReducer = createReducer(
     }),
   ),
 
-  on(ScheduleActions.formDataChanged, (state, action) => ({
+  on(ScheduleActions.formDataChanged, (state, { event }) => ({
     ...state,
-    eventCurrently: action.event,
+    eventCurrently: event,
   })),
 );
 

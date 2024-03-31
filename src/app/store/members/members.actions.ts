@@ -7,13 +7,16 @@ enum MembersActionTypes {
   FETCH_MEMBERS_SUCCEEDED = '[Members] Fetch members succeeded',
   FETCH_MEMBERS_FAILED = '[Members] Fetch members failed',
 
+  FETCH_MEMBER_FOR_EDIT_SCREEN_REQUESTED = '[Members] Fetch member for edit screen requested',
+  FETCH_MEMBER_FOR_EDIT_SCREEN_SUCCEEDED = '[Members] Fetch member for edit screen succeeded',
+  FETCH_MEMBER_FOR_EDIT_SCREEN_FAILED = '[Members] Fetch member for edit screen failed',
+  MEMBER_SET_FOR_EDITING = '[Members] Member set for editing',
+
   TABLE_HEADER_SELECTED = '[Members] Table header selected',
   MEMBERS_SORTED = '[Members] Members sorted',
   PAGE_CHANGED = '[Members] Page changed',
   PAGE_SIZE_CHANGED = '[Members] Page size changed',
   INACTIVE_MEMBERS_TOGGLED = '[Members] Inactive members toggled',
-
-  EDIT_MEMBER_ROUTE_ENTERED = '[Members] Edit member route entered',
 
   DELETE_MEMBER_SELECTED = '[Members] Delete member selected',
   DELETE_MEMBER_CONFIRMED = '[Members] Delete member confirmed',
@@ -52,6 +55,23 @@ export const fetchMembersFailed = createAction(
   props<{ error: Error }>(),
 );
 
+export const fetchMemberForEditScreenRequested = createAction(
+  MembersActionTypes.FETCH_MEMBER_FOR_EDIT_SCREEN_REQUESTED,
+  props<{ memberId: string }>(),
+);
+export const fetchMemberForEditScreenSucceeded = createAction(
+  MembersActionTypes.FETCH_MEMBER_FOR_EDIT_SCREEN_SUCCEEDED,
+  props<{ member: Member }>(),
+);
+export const fetchMemberForEditScreenFailed = createAction(
+  MembersActionTypes.FETCH_MEMBER_FOR_EDIT_SCREEN_FAILED,
+  props<{ error: Error }>(),
+);
+export const memberSetForEditing = createAction(
+  MembersActionTypes.MEMBER_SET_FOR_EDITING,
+  props<{ member: Member }>(),
+);
+
 export const tableHeaderSelected = createAction(
   MembersActionTypes.TABLE_HEADER_SELECTED,
   props<{ header: string }>(),
@@ -70,11 +90,6 @@ export const pageSizeChanged = createAction(
 );
 export const inactiveMembersToggled = createAction(
   MembersActionTypes.INACTIVE_MEMBERS_TOGGLED,
-);
-
-export const editMemberRouteEntered = createAction(
-  MembersActionTypes.EDIT_MEMBER_ROUTE_ENTERED,
-  props<{ member: Member }>(),
 );
 
 export const deleteMemberSelected = createAction(

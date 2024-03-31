@@ -33,6 +33,62 @@ export class ArticlesEffects {
     );
   });
 
+  fetchArticleForViewScreen$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.fetchArticleForViewScreenRequested),
+      tap(() => this.loaderService.display(true)),
+      switchMap(({ articleId }) =>
+        this.articlesService.getArticle(articleId).pipe(
+          map((response: ServiceResponse<Article>) =>
+            response.error
+              ? ArticlesActions.fetchArticleForViewScreenFailed({
+                  error: response.error,
+                })
+              : ArticlesActions.fetchArticleForViewScreenSucceeded({
+                  article: response.payload!,
+                }),
+          ),
+        ),
+      ),
+      tap(() => this.loaderService.display(false)),
+    );
+  });
+
+  setArticleForViewing$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.fetchArticleForViewScreenSucceeded),
+      map(({ article }) => ArticlesActions.articleSetForViewing({ article })),
+    );
+  });
+
+  fetchArticleForEditScreen$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.fetchArticleForEditScreenRequested),
+      tap(() => this.loaderService.display(true)),
+      switchMap(({ articleId }) =>
+        this.articlesService.getArticle(articleId).pipe(
+          map((response: ServiceResponse<Article>) =>
+            response.error
+              ? ArticlesActions.fetchArticleForEditScreenFailed({
+                  error: response.error,
+                })
+              : ArticlesActions.fetchArticleForEditScreenSucceeded({
+                  article: response.payload!,
+                }),
+          ),
+        ),
+      ),
+      tap(() => this.loaderService.display(false)),
+    );
+  });
+
+  setArticleForEditing$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.fetchArticleForEditScreenSucceeded),
+      map(({ article }) => ArticlesActions.articleSetForEditing({ article })),
+    );
+  });
+
   deleteArticle$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleConfirmed),
@@ -126,10 +182,7 @@ export class ArticlesEffects {
 
   getImageUrlForSelectedArticle$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(
-        ArticlesActions.viewArticleRouteEntered,
-        ArticlesActions.editArticleRouteEntered,
-      ),
+      ofType(ArticlesActions.articleSetForEditing, ArticlesActions.articleSetForViewing),
       switchMap(({ article }) => this.imagesService.getArticleImageUrl(article.imageId!)),
       map((response: ServiceResponse<Url>) =>
         response.error
@@ -148,20 +201,6 @@ export class ArticlesEffects {
       ),
       map(() => ArticlesActions.resetArticleForm()),
     ),
-  );
-
-  logError$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(
-          ArticlesActions.fetchArticlesFailed,
-          ArticlesActions.fetchArticleFailed,
-          ArticlesActions.publishArticleFailed,
-          ArticlesActions.updateArticleFailed,
-          ArticlesActions.deleteArticleFailed,
-        ),
-      ),
-    { dispatch: false },
   );
 
   constructor(

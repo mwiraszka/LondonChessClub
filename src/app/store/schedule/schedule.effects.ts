@@ -34,24 +34,31 @@ export class ScheduleEffects {
     );
   });
 
-  fetchEventForEventEditRoute$ = createEffect(() => {
+  fetchEventForEditScreen$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.fetchEventForEventEditRouteRequested),
+      ofType(ScheduleActions.fetchEventForEditScreenRequested),
       tap(() => this.loaderService.display(true)),
       switchMap(({ eventId }) =>
         this.scheduleService.getEvent(eventId).pipe(
           map((response: ServiceResponse<ClubEvent>) =>
             response.error
-              ? ScheduleActions.fetchEventForEventEditRouteFailed({
+              ? ScheduleActions.fetchEventForEditScreenFailed({
                   error: response.error,
                 })
-              : ScheduleActions.fetchEventForEventEditRouteSucceeded({
+              : ScheduleActions.fetchEventForEditScreenSucceeded({
                   event: response.payload!,
                 }),
           ),
         ),
       ),
       tap(() => this.loaderService.display(false)),
+    );
+  });
+
+  setEventForEditing$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ScheduleActions.fetchEventForEditScreenSucceeded),
+      map(({ event }) => ScheduleActions.eventSetForEditing({ event })),
     );
   });
 
@@ -148,19 +155,6 @@ export class ScheduleEffects {
       ),
       map(() => ScheduleActions.resetEventForm()),
     ),
-  );
-
-  logError$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(
-          ScheduleActions.fetchEventsFailed,
-          ScheduleActions.addEventFailed,
-          ScheduleActions.updateEventFailed,
-          ScheduleActions.deleteEventFailed,
-        ),
-      ),
-    { dispatch: false },
   );
 
   constructor(

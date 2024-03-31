@@ -125,6 +125,23 @@ export class ToasterEffects {
       }),
     );
   });
+
+  addFetchArticleFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(
+        ArticlesActions.fetchArticleForViewScreenFailed,
+        ArticlesActions.fetchArticleForEditScreenFailed,
+      ),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Load article',
+          message: error.message,
+          type: ToastTypes.WARNING,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
   //#endregion
 
   //#region Members
@@ -225,6 +242,20 @@ export class ToasterEffects {
       }),
     );
   });
+
+  addFetchMemberFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(MembersActions.fetchMemberForEditScreenFailed),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Load member',
+          message: error.message,
+          type: ToastTypes.WARNING,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
   //#endregion
 
   //#region Schedule
@@ -312,12 +343,12 @@ export class ToasterEffects {
     );
   });
 
-  addFetchEventFailedToast$ = createEffect(() => {
+  addFetchEventsFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.fetchEventForEventEditRouteFailed),
+      ofType(ScheduleActions.fetchEventsFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Load requested event',
+          title: 'Load events',
           message: error.message,
           type: ToastTypes.WARNING,
         };
@@ -326,12 +357,12 @@ export class ToasterEffects {
     );
   });
 
-  addFetchEventsFailedToast$ = createEffect(() => {
+  addFetchEventFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.fetchEventsFailed),
+      ofType(ScheduleActions.fetchEventForEditScreenFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Load events',
+          title: 'Load event',
           message: error.message,
           type: ToastTypes.WARNING,
         };

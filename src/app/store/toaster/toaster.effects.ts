@@ -480,5 +480,5 @@ export class ToasterEffects {
     );
   });
 
-  constructor(private actions$: Actions) {}
+  constructor(private readonly actions$: Actions) {}
 }

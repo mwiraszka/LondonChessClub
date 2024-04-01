@@ -159,9 +159,9 @@ export class MembersEffects {
   );
 
   constructor(
-    private actions$: Actions,
+    private readonly store: Store,
+    private readonly actions$: Actions,
     private loaderService: LoaderService,
     private membersService: MembersService,
-    private store: Store,
   ) {}
 }

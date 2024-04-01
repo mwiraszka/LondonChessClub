@@ -158,9 +158,9 @@ export class ScheduleEffects {
   );
 
   constructor(
-    private actions$: Actions,
+    private readonly actions$: Actions,
+    private readonly store: Store,
     private loaderService: LoaderService,
     private scheduleService: ScheduleService,
-    private store: Store,
   ) {}
 }

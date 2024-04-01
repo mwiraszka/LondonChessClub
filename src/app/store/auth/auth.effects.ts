@@ -111,8 +111,8 @@ export class AuthEffects {
   });
 
   constructor(
-    private actions$: Actions,
-    private store: Store,
+    private readonly actions$: Actions,
+    private readonly store: Store,
     private authService: AuthService,
   ) {}
 }

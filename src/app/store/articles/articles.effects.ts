@@ -204,10 +204,10 @@ export class ArticlesEffects {
   );
 
   constructor(
-    private actions$: Actions,
+    private readonly actions$: Actions,
+    private readonly store: Store,
     private articlesService: ArticlesService,
     private imagesService: ImagesService,
     private loaderService: LoaderService,
-    private store: Store,
   ) {}
 }

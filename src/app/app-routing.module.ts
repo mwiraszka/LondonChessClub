@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { UnsavedArticleGuard, UnsavedEventGuard, UnsavedMemberGuard } from '@app/guards';
+import {
+  AdminGuard,
+  UnsavedArticleGuard,
+  UnsavedEventGuard,
+  UnsavedMemberGuard,
+} from '@app/guards';
 import { AboutScreenComponent } from '@app/screens/about';
 import { ArticleEditorScreenComponent } from '@app/screens/article-editor';
 import { ArticleViewerScreenComponent } from '@app/screens/article-viewer';
@@ -35,12 +40,12 @@ const routes: Routes = [
   {
     path: NavPathTypes.MEMBER_ADD,
     component: MemberEditorScreenComponent,
-    canDeactivate: [UnsavedMemberGuard],
+    canDeactivate: [AdminGuard, UnsavedMemberGuard],
   },
   {
     path: `${NavPathTypes.MEMBER_EDIT}/:member_id`,
     component: MemberEditorScreenComponent,
-    canDeactivate: [UnsavedMemberGuard],
+    canDeactivate: [AdminGuard, UnsavedMemberGuard],
   },
   {
     path: NavPathTypes.SCHEDULE,
@@ -49,12 +54,12 @@ const routes: Routes = [
   {
     path: NavPathTypes.EVENT_ADD,
     component: EventEditorScreenComponent,
-    canDeactivate: [UnsavedEventGuard],
+    canDeactivate: [AdminGuard, UnsavedEventGuard],
   },
   {
     path: `${NavPathTypes.EVENT_EDIT}/:event_id`,
     component: EventEditorScreenComponent,
-    canDeactivate: [UnsavedEventGuard],
+    canDeactivate: [AdminGuard, UnsavedEventGuard],
   },
   {
     path: NavPathTypes.NEWS,
@@ -67,12 +72,12 @@ const routes: Routes = [
   {
     path: NavPathTypes.ARTICLE_ADD,
     component: ArticleEditorScreenComponent,
-    canDeactivate: [UnsavedArticleGuard],
+    canDeactivate: [AdminGuard, UnsavedArticleGuard],
   },
   {
     path: `${NavPathTypes.ARTICLE_EDIT}/:article_id`,
     component: ArticleEditorScreenComponent,
-    canDeactivate: [UnsavedArticleGuard],
+    canDeactivate: [AdminGuard, UnsavedArticleGuard],
   },
   {
     path: NavPathTypes.CITY_CHAMPION,

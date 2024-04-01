@@ -343,5 +343,5 @@ export class ModalEffects {
     );
   });
 
-  constructor(private actions$: Actions, private store: Store) {}
+  constructor(private readonly actions$: Actions, private readonly store: Store) {}
 }

@@ -164,7 +164,9 @@ export class NavEffects {
     this.actions$.pipe(
       ofType(MembersActions.fetchMemberForEditScreenSucceeded),
       map(({ member }) =>
-        NavActions.navigationRequested({ path: NavPathTypes.MEMBER_EDIT + member.id }),
+        NavActions.navigationRequested({
+          path: NavPathTypes.MEMBER_EDIT + '/' + member.id,
+        }),
       ),
     ),
   );
@@ -185,7 +187,9 @@ export class NavEffects {
     this.actions$.pipe(
       ofType(ScheduleActions.fetchEventForEditScreenSucceeded),
       map(({ event }) =>
-        NavActions.navigationRequested({ path: NavPathTypes.EVENT_EDIT + event.id }),
+        NavActions.navigationRequested({
+          path: NavPathTypes.EVENT_EDIT + '/' + event.id,
+        }),
       ),
     ),
   );
@@ -210,7 +214,7 @@ export class NavEffects {
       ),
       map(({ article }) =>
         NavActions.navigationRequested({
-          path: `${NavPathTypes.ARTICLE_VIEW}/${article.id}`,
+          path: NavPathTypes.ARTICLE_VIEW + '/' + article.id,
         }),
       ),
     ),
@@ -221,11 +225,15 @@ export class NavEffects {
       ofType(ArticlesActions.fetchArticleForEditScreenSucceeded),
       map(({ article }) =>
         NavActions.navigationRequested({
-          path: `${NavPathTypes.ARTICLE_EDIT}/${article.id}`,
+          path: NavPathTypes.ARTICLE_EDIT + '/' + article.id,
         }),
       ),
     ),
   );
 
-  constructor(private actions$: Actions, private router: Router, private store: Store) {}
+  constructor(
+    private readonly actions$: Actions,
+    private readonly store: Store,
+    private router: Router,
+  ) {}
 }

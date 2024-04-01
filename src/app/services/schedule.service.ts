@@ -16,7 +16,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class ScheduleService {
-  readonly API_ENDPOINT = environment.cognito.scheduleEndpoint;
+  readonly API_ENDPOINT = environment.aws.scheduleEndpoint;
 
   constructor(private authService: AuthService, private http: HttpClient) {}
 

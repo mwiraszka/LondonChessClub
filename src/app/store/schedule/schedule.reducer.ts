@@ -21,7 +21,7 @@ const scheduleReducer = createReducer(
 
   on(ScheduleActions.fetchEventForEditScreenSucceeded, (state, { event }) => ({
     ...state,
-    events: [...state.events.filter(storedEvent => storedEvent.id === event.id), event],
+    events: [...state.events.filter(storedEvent => storedEvent.id !== event.id), event],
   })),
 
   on(ScheduleActions.eventSetForEditing, (state, { event }) => ({

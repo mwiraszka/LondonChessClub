@@ -15,8 +15,8 @@ const membersReducer = createReducer(
 
   on(MembersActions.fetchMemberForEditScreenSucceeded, (state, { member }) => ({
     ...state,
-    events: [
-      ...state.members.filter(storedMember => storedMember.id === member.id),
+    members: [
+      ...state.members.filter(storedMember => storedMember.id !== member.id),
       member,
     ],
   })),

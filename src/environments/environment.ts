@@ -1,14 +1,16 @@
+const ROOT_API_URL = 'https://lgqi8xer38.execute-api.us-east-2.amazonaws.com';
+
 export const environment = {
   production: false,
-  cognito: {
-    userPoolId: 'us-east-2_W9IbTHSe9',
-    clientId: '646fep86clslssd31shun84u',
-    articlesEndpoint:
-      'https://lgqi8xer38.execute-api.us-east-2.amazonaws.com/dev/articles/',
-    membersEndpoint:
-      'https://lgqi8xer38.execute-api.us-east-2.amazonaws.com/dev/members/',
-    scheduleEndpoint:
-      'https://lgqi8xer38.execute-api.us-east-2.amazonaws.com/dev/club-events/',
+  aws: {
+    cognitoUserPool: {
+      userPoolId: 'us-east-2_W9IbTHSe9',
+      clientId: '646fep86clslssd31shun84u',
+    },
+    articlesEndpoint: ROOT_API_URL + '/dev/articles/',
+    membersPublicEndpoint: ROOT_API_URL + '/dev/members/public/',
+    membersPrivateEndpoint: ROOT_API_URL + '/dev/members/',
+    scheduleEndpoint: ROOT_API_URL + '/dev/club-events/',
   },
   googleMaps: {
     apiKey: 'AIzaSyAuLCJPCzFJXPWYUPM61Txue8PeJabI6DI',

@@ -20,7 +20,7 @@ const articlesReducer = createReducer(
     (state, { article }) => ({
       ...state,
       articles: [
-        ...state.articles.filter(storedArticle => storedArticle.id === article.id),
+        ...state.articles.filter(storedArticle => storedArticle.id !== article.id),
         article,
       ],
     }),

@@ -15,14 +15,15 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class MembersService {
-  readonly API_ENDPOINT = environment.cognito.membersEndpoint;
+  readonly PUBLIC_API_ENDPOINT = environment.aws.membersPublicEndpoint;
+  readonly PRIVATE_API_ENDPOINT = environment.aws.membersPrivateEndpoint;
 
   constructor(private authService: AuthService, private http: HttpClient) {}
 
   getMember(id: string): Observable<ServiceResponse<Member>> {
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.get<FlatMember>(this.API_ENDPOINT + id, {
+        this.http.get<FlatMember>(this.PRIVATE_API_ENDPOINT + id, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
@@ -37,7 +38,7 @@ export class MembersService {
     if (isAdmin) {
       return this.authService.token().pipe(
         switchMap(token =>
-          this.http.get<FlatMember[]>(this.API_ENDPOINT, {
+          this.http.get<FlatMember[]>(this.PRIVATE_API_ENDPOINT, {
             headers: new HttpHeaders({
               Authorization: token,
             }),
@@ -49,7 +50,7 @@ export class MembersService {
         ),
       );
     } else {
-      return this.http.get<FlatMember[]>(this.API_ENDPOINT + 'public/').pipe(
+      return this.http.get<FlatMember[]>(this.PUBLIC_API_ENDPOINT).pipe(
         map(members => ({ payload: this.adaptForFrontend(members) })),
         catchError(() =>
           of({ error: new Error('Failed to fetch members from database') }),
@@ -63,7 +64,7 @@ export class MembersService {
 
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.post<null>(this.API_ENDPOINT, flattenedMember, {
+        this.http.post<null>(this.PRIVATE_API_ENDPOINT, flattenedMember, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
@@ -79,11 +80,15 @@ export class MembersService {
 
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.put<null>(this.API_ENDPOINT + flattenedMember.id, flattenedMember, {
-          headers: new HttpHeaders({
-            Authorization: token,
-          }),
-        }),
+        this.http.put<null>(
+          this.PRIVATE_API_ENDPOINT + flattenedMember.id,
+          flattenedMember,
+          {
+            headers: new HttpHeaders({
+              Authorization: token,
+            }),
+          },
+        ),
       ),
       map(() => ({ payload: memberToUpdate })),
       catchError(() => of({ error: new Error('Failed to update member') })),
@@ -93,7 +98,7 @@ export class MembersService {
   deleteMember(memberToDelete: Member): Observable<ServiceResponse<Member>> {
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.delete<null>(this.API_ENDPOINT + memberToDelete.id, {
+        this.http.delete<null>(this.PRIVATE_API_ENDPOINT + memberToDelete.id, {
           headers: new HttpHeaders({
             Authorization: token,
           }),

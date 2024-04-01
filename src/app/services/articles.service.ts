@@ -15,7 +15,7 @@ import { environment } from '@environments/environment';
   providedIn: 'root',
 })
 export class ArticlesService {
-  readonly API_ENDPOINT = environment.cognito.articlesEndpoint;
+  readonly API_ENDPOINT = environment.aws.articlesEndpoint;
 
   constructor(
     private authService: AuthService,

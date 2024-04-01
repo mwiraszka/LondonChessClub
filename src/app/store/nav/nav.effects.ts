@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
-import { MembersActions, MembersSelectors } from '@app/store/members';
+import { MembersActions } from '@app/store/members';
 import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
 import { NavPathTypes } from '@app/types';
 import { isValidArticleId, isValidEventId, isValidMemberId } from '@app/utils';
@@ -87,18 +87,13 @@ export class NavEffects {
       ofType(routerNavigatedAction),
       filter(({ payload }) => payload.event.url.startsWith('/member/edit/')),
       map(({ payload }) => payload.event.url.split('/member/edit/')[1]),
-      concatLatestFrom(memberId => [
-        this.store.select(MembersSelectors.memberById(memberId)),
-        this.store.select(AuthSelectors.isAdmin),
-      ]),
-      map(([memberId, memberInStore, isAdmin]) => {
-        if (memberInStore && isAdmin) {
-          return MembersActions.memberSetForEditing({ member: memberInStore });
-        } else if (isValidMemberId(memberId) && isAdmin) {
-          return MembersActions.fetchMemberForEditScreenRequested({ memberId });
-        } else {
-          return NavActions.navigationRequested({ path: NavPathTypes.MEMBERS });
-        }
+      concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
+      map(([memberId, isAdmin]) => {
+        // Attempt to re-fetch member (even if a member with the same id already exists
+        // in the store) because admin-only properties might not have been fetched yet
+        return isValidMemberId(memberId) && isAdmin
+          ? MembersActions.fetchMemberForEditScreenRequested({ memberId })
+          : NavActions.navigationRequested({ path: NavPathTypes.MEMBERS });
       }),
     ),
   );

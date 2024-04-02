@@ -8,74 +8,70 @@ import { ScheduleState, initialState } from './schedule.state';
 const scheduleReducer = createReducer(
   initialState,
 
-  on(ScheduleActions.fetchEventsSucceeded, (state, action) => {
-    const upcomingEvents = getUpcomingEvents(action.allEvents, 1);
-    const nextEvent = upcomingEvents?.length ? upcomingEvents[0] : null;
+  on(ScheduleActions.fetchEventsSucceeded, (state, { allEvents }) => {
+    const upcomingEvents = getUpcomingEvents(allEvents, 1);
+    const nextEvent = upcomingEvents.length ? upcomingEvents[0] : null;
 
     return {
       ...state,
-      events: action.allEvents,
+      events: allEvents,
       nextEventId: nextEvent?.id ?? null,
     };
   }),
 
-  on(ScheduleActions.addEventSelected, (state, action) => ({
+  on(ScheduleActions.fetchEventForEditScreenSucceeded, (state, { event }) => ({
     ...state,
-    eventCurrently: action.eventToAdd,
+    events: [...state.events.filter(storedEvent => storedEvent.id !== event.id), event],
   })),
 
-  on(ScheduleActions.editEventRouteEntered, (state, action) => ({
+  on(ScheduleActions.eventSetForEditing, (state, { event }) => ({
     ...state,
-    selectedEvent: action.event,
-    eventBeforeEdit: action.event,
-    eventCurrently: action.event,
+    selectedEvent: event,
+    eventCurrently: event,
     isEditMode: true,
   })),
 
-  on(ScheduleActions.updateEventSelected, (state, action) => ({
+  on(ScheduleActions.addEventSelected, (state, { eventToAdd }) => ({
     ...state,
-    eventCurrently: action.eventToUpdate,
+    eventCurrently: eventToAdd,
   })),
 
-  on(ScheduleActions.deleteEventSelected, (state, action) => ({
+  on(ScheduleActions.updateEventSelected, (state, { eventToUpdate }) => ({
     ...state,
-    selectedEvent: action.eventToDelete,
+    eventCurrently: eventToUpdate,
   })),
 
-  on(ScheduleActions.deleteEventSucceeded, (state, action) => ({
+  on(ScheduleActions.deleteEventSelected, (state, { eventToDelete }) => ({
     ...state,
-    events: state.events.filter(event => event.id !== action.deletedEvent.id),
+    selectedEvent: eventToDelete,
+  })),
+
+  on(ScheduleActions.deleteEventSucceeded, (state, { deletedEvent }) => ({
+    ...state,
+    events: state.events.filter(event => event.id !== deletedEvent.id),
     selectedEvent: null,
   })),
 
-  on(ScheduleActions.deleteEventFailed, state => ({
+  on(ScheduleActions.deleteEventFailed, ScheduleActions.deleteEventCancelled, state => ({
     ...state,
     selectedEvent: null,
   })),
 
   on(ScheduleActions.deleteEventCancelled, state => ({
     ...state,
-    selectedEvent: null,
+    selectedEventId: null,
   })),
 
-  on(
-    ScheduleActions.resetEventForm,
-    ScheduleActions.addEventSucceeded,
-    ScheduleActions.addEventFailed,
-    ScheduleActions.updateEventSucceeded,
-    ScheduleActions.updateEventFailed,
-    ScheduleActions.cancelConfirmed,
-    state => ({
-      ...state,
-      eventBeforeEdit: initialState.eventBeforeEdit,
-      eventCurrently: initialState.eventCurrently,
-      isEditMode: false,
-    }),
-  ),
-
-  on(ScheduleActions.formDataChanged, (state, action) => ({
+  on(ScheduleActions.scheduleScreenEntered, ScheduleActions.resetEventForm, state => ({
     ...state,
-    eventCurrently: action.event,
+    selectedEvent: initialState.selectedEvent,
+    eventCurrently: initialState.eventCurrently,
+    isEditMode: false,
+  })),
+
+  on(ScheduleActions.formDataChanged, (state, { event }) => ({
+    ...state,
+    eventCurrently: event,
   })),
 );
 

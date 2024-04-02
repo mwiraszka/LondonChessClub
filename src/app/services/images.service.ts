@@ -7,7 +7,7 @@ import { catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Article, ServiceResponse, Url } from '@app/types';
+import type { Article, ServiceResponse, Url } from '@app/types';
 
 import { environment } from '@environments/environment';
 

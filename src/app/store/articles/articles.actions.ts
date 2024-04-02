@@ -1,20 +1,26 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Article, Url } from '@app/types';
+import type { Article, Url } from '@app/types';
 
 enum ArticlesActionTypes {
+  NEWS_SCREEN_ENTERED = '[Articles] News screen entered',
+
   FETCH_ARTICLES_REQUESTED = '[Articles] Fetch articles requested',
   FETCH_ARTICLES_SUCCEEDED = '[Articles] Fetch articles succeeded',
   FETCH_ARTICLES_FAILED = '[Articles] Fetch articles failed',
 
-  FETCH_ARTICLE_SUCCEEDED = '[Articles] Fetch article succeeded',
-  FETCH_ARTICLE_FAILED = '[Articles] Fetch article failed',
+  FETCH_ARTICLE_FOR_VIEW_SCREEN_REQUESTED = '[Articles] Fetch article for view screen requested',
+  FETCH_ARTICLE_FOR_VIEW_SCREEN_SUCCEEDED = '[Articles] Fetch article for view screen succeeded',
+  FETCH_ARTICLE_FOR_VIEW_SCREEN_FAILED = '[Articles] Fetch article for view screen failed',
+  ARTICLE_SET_FOR_VIEWING = '[Articles] Article set for viewing',
+
+  FETCH_ARTICLE_FOR_EDIT_SCREEN_REQUESTED = '[Articles] Fetch article for edit screen requested',
+  FETCH_ARTICLE_FOR_EDIT_SCREEN_SUCCEEDED = '[Articles] Fetch article for edit screen succeeded',
+  FETCH_ARTICLE_FOR_EDIT_SCREEN_FAILED = '[Articles] Fetch article for edit screen failed',
+  ARTICLE_SET_FOR_EDITING = '[Articles] Article set for editing',
 
   GET_ARTICLE_IMAGE_URL_FAILED = '[Articles] Get article image URL failed',
   GET_ARTICLE_IMAGE_URL_SUCCEEDED = '[Articles] Get article image URL succeeded',
-
-  VIEW_ARTICLE_ROUTE_ENTERED = '[Articles] View article route entered',
-  EDIT_ARTICLE_ROUTE_ENTERED = '[Articles] Edit article route entered',
 
   DELETE_ARTICLE_SELECTED = '[Articles] Delete article selected',
   DELETE_ARTICLE_CONFIRMED = '[Articles] Delete article confirmed',
@@ -43,6 +49,8 @@ enum ArticlesActionTypes {
   SCROLL_TO_SECTION = '[Articles] Scroll to section',
 }
 
+export const newsScreenEntered = createAction(ArticlesActionTypes.NEWS_SCREEN_ENTERED);
+
 export const fetchArticlesRequested = createAction(
   ArticlesActionTypes.FETCH_ARTICLES_REQUESTED,
 );
@@ -55,13 +63,38 @@ export const fetchArticlesFailed = createAction(
   props<{ error: Error }>(),
 );
 
-export const fetchArticleSucceeded = createAction(
-  ArticlesActionTypes.FETCH_ARTICLE_SUCCEEDED,
+export const fetchArticleForViewScreenRequested = createAction(
+  ArticlesActionTypes.FETCH_ARTICLE_FOR_VIEW_SCREEN_REQUESTED,
+  props<{ articleId: string }>(),
+);
+export const fetchArticleForViewScreenSucceeded = createAction(
+  ArticlesActionTypes.FETCH_ARTICLE_FOR_VIEW_SCREEN_SUCCEEDED,
   props<{ article: Article }>(),
 );
-export const fetchArticleFailed = createAction(
-  ArticlesActionTypes.FETCH_ARTICLE_FAILED,
+export const fetchArticleForViewScreenFailed = createAction(
+  ArticlesActionTypes.FETCH_ARTICLE_FOR_VIEW_SCREEN_FAILED,
   props<{ error: Error }>(),
+);
+export const articleSetForViewing = createAction(
+  ArticlesActionTypes.ARTICLE_SET_FOR_EDITING,
+  props<{ article: Article; sectionToScrollTo?: string }>(),
+);
+
+export const fetchArticleForEditScreenRequested = createAction(
+  ArticlesActionTypes.FETCH_ARTICLE_FOR_EDIT_SCREEN_REQUESTED,
+  props<{ articleId: string }>(),
+);
+export const fetchArticleForEditScreenSucceeded = createAction(
+  ArticlesActionTypes.FETCH_ARTICLE_FOR_EDIT_SCREEN_SUCCEEDED,
+  props<{ article: Article }>(),
+);
+export const fetchArticleForEditScreenFailed = createAction(
+  ArticlesActionTypes.FETCH_ARTICLE_FOR_EDIT_SCREEN_FAILED,
+  props<{ error: Error }>(),
+);
+export const articleSetForEditing = createAction(
+  ArticlesActionTypes.ARTICLE_SET_FOR_EDITING,
+  props<{ article: Article }>(),
 );
 
 export const getArticleImageUrlSucceeded = createAction(
@@ -71,15 +104,6 @@ export const getArticleImageUrlSucceeded = createAction(
 export const getArticleImageUrlFailed = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_FAILED,
   props<{ error: Error }>(),
-);
-
-export const viewArticleRouteEntered = createAction(
-  ArticlesActionTypes.VIEW_ARTICLE_ROUTE_ENTERED,
-  props<{ article: Article; sectionToScrollTo?: string }>(),
-);
-export const editArticleRouteEntered = createAction(
-  ArticlesActionTypes.EDIT_ARTICLE_ROUTE_ENTERED,
-  props<{ article: Article }>(),
 );
 
 export const deleteArticleSelected = createAction(
@@ -140,7 +164,6 @@ export const updateArticleFailed = createAction(
 );
 
 export const cancelSelected = createAction(ArticlesActionTypes.CANCEL_SELECTED);
-export const cancelConfirmed = createAction(ArticlesActionTypes.CANCEL_CONFIRMED);
 
 export const formDataChanged = createAction(
   ArticlesActionTypes.FORM_DATA_CHANGED,

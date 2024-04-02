@@ -22,7 +22,7 @@ export const upcomingEvents = createSelector(scheduleFeatureSelector, state => {
 
 export const upcomingEvent = createSelector(scheduleFeatureSelector, state => {
   const upcomingEvents = getUpcomingEvents(state?.events, 1);
-  return upcomingEvents?.length ? upcomingEvents[0] : null;
+  return upcomingEvents.length ? upcomingEvents[0] : null;
 });
 
 export const selectedEvent = createSelector(
@@ -30,10 +30,7 @@ export const selectedEvent = createSelector(
   state => state.selectedEvent,
 );
 
-export const eventBeforeEdit = createSelector(
-  scheduleFeatureSelector,
-  state => state.eventBeforeEdit,
-);
+export const selectedEventTitle = createSelector(selectedEvent, event => event?.title);
 
 export const eventCurrently = createSelector(
   scheduleFeatureSelector,
@@ -52,5 +49,5 @@ export const nextEventId = createSelector(
 
 export const hasUnsavedChanges = createSelector(
   scheduleFeatureSelector,
-  state => !areSame(state.eventCurrently, state.eventBeforeEdit),
+  state => !areSame(state.eventCurrently, state.selectedEvent),
 );

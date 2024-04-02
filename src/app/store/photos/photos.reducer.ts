@@ -1,7 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
 import { Photo } from '@app/types';
-import { takeRandomly } from '@app/utils';
 
 import * as PhotosActions from './photos.actions';
 import { PhotosState, initialState } from './photos.state';

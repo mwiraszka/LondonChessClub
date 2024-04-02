@@ -3,9 +3,8 @@
 </ng-container>
 
 <div class="articles-container">
-	<a *ngFor="let article of (facade.articles$ | async)?.slice(0, maxArticles ?? (facade.articles$ | async)?.length);
-                     trackBy: trackByFn"
-		 class="lcc-admin-controls-container article"
+	@for (article of articles; track article.id) {
+	<a class="lcc-admin-controls-container article"
 		 [routerLink]="'/' + NavPathTypes.ARTICLE_VIEW + '/' + article.id">
 		<ng-container *ngIf="facade.isAdmin$ | async">
 			<lcc-admin-controls [editPath]="'/' + NavPathTypes.ARTICLE_EDIT + '/' + article.id"
@@ -31,7 +30,7 @@
 					{{ article?.modificationInfo?.dateCreated | formatDate:'short':'no-time' }}
 				</span>
 				<div *ngIf="article?.modificationInfo?.dateLastEdited
-                      !== article?.modificationInfo?.dateCreated">
+                     !== article?.modificationInfo?.dateCreated">
 					<span class="vertical-spacer">|</span>
 					<span class="edited">edited&nbsp;</span>
 					<span class="date-last-edited">
@@ -41,4 +40,5 @@
 			</div>
 		</div>
 	</a>
+	}
 </div>

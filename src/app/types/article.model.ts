@@ -1,4 +1,4 @@
-import { ModificationInfo } from '@app/types';
+import type { ModificationInfo } from '@app/types';
 
 export interface Article {
   id: string | null;

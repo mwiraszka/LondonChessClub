@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { Article } from '@app/types';
+import type { Article } from '@app/types';
 import { customSort } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
@@ -9,44 +9,54 @@ import { ArticlesState, initialState } from './articles.state';
 const articlesReducer = createReducer(
   initialState,
 
-  on(ArticlesActions.fetchArticlesSucceeded, (state, action) => ({
+  on(ArticlesActions.fetchArticlesSucceeded, (state, { allArticles }) => ({
     ...state,
-    articles: getSortedArtices(action.allArticles),
+    articles: getSortedArtices(allArticles),
   })),
 
-  on(ArticlesActions.viewArticleRouteEntered, (state, action) => ({
+  on(
+    ArticlesActions.fetchArticleForViewScreenSucceeded,
+    ArticlesActions.fetchArticleForEditScreenSucceeded,
+    (state, { article }) => ({
+      ...state,
+      articles: [
+        ...state.articles.filter(storedArticle => storedArticle.id !== article.id),
+        article,
+      ],
+    }),
+  ),
+
+  on(ArticlesActions.articleSetForViewing, (state, { article, sectionToScrollTo }) => ({
     ...state,
-    selectedArticle: action.article,
-    articleBeforeEdit: action.article,
-    articleCurrently: action.article,
-    sectionToScrollTo: action.sectionToScrollTo ?? null,
+    selectedArticle: article,
+    articleCurrently: article,
+    sectionToScrollTo: sectionToScrollTo ?? null,
+    isEditMode: false,
   })),
 
-  on(ArticlesActions.getArticleImageUrlSucceeded, (state, action) => ({
+  on(ArticlesActions.articleSetForEditing, (state, { article }) => ({
     ...state,
-    selectedArticle: state.selectedArticle
-      ? { ...state.selectedArticle, imageUrl: action.imageUrl }
-      : null,
-    articleBeforeEdit: { ...state.articleBeforeEdit, imageUrl: action.imageUrl },
-    articleCurrently: { ...state.articleCurrently, imageUrl: action.imageUrl },
-  })),
-
-  on(ArticlesActions.editArticleRouteEntered, (state, action) => ({
-    ...state,
-    selectedArticle: action.article,
-    articleBeforeEdit: action.article,
-    articleCurrently: action.article,
+    selectedArticle: article,
+    articleCurrently: article,
     isEditMode: true,
   })),
 
-  on(ArticlesActions.deleteArticleSelected, (state, action) => ({
+  on(ArticlesActions.getArticleImageUrlSucceeded, (state, { imageUrl }) => ({
     ...state,
-    selectedArticle: action.articleToDelete,
+    selectedArticle: state.selectedArticle
+      ? { ...state.selectedArticle, imageUrl }
+      : null,
+    articleCurrently: { ...state.articleCurrently, imageUrl },
   })),
 
-  on(ArticlesActions.deleteArticleSucceeded, (state, action) => ({
+  on(ArticlesActions.deleteArticleSelected, (state, { articleToDelete }) => ({
     ...state,
-    articles: state.articles.filter(article => article.id !== action.deletedArticle.id),
+    selectedArticle: articleToDelete,
+  })),
+
+  on(ArticlesActions.deleteArticleSucceeded, (state, { deletedArticle }) => ({
+    ...state,
+    articles: state.articles.filter(article => article.id !== deletedArticle.id),
     selectedArticle: null,
   })),
 
@@ -60,43 +70,34 @@ const articlesReducer = createReducer(
     selectedArticle: null,
   })),
 
-  on(
-    ArticlesActions.resetArticleForm,
-    ArticlesActions.publishArticleFailed,
-    ArticlesActions.updateArticleSucceeded,
-    ArticlesActions.updateArticleFailed,
-    ArticlesActions.cancelConfirmed,
-    state => ({
-      ...state,
-      articleBeforeEdit: initialState.articleBeforeEdit,
-      articleCurrently: initialState.articleCurrently,
-      isEditMode: false,
-    }),
-  ),
-
-  on(ArticlesActions.publishArticleSucceeded, (state, action) => ({
+  on(ArticlesActions.newsScreenEntered, ArticlesActions.resetArticleForm, state => ({
     ...state,
-    articleBeforeEdit: initialState.articleBeforeEdit,
+    selectedArticle: initialState.selectedArticle,
     articleCurrently: initialState.articleCurrently,
     isEditMode: false,
-    articles: [...state.articles, action.article],
   })),
 
-  on(ArticlesActions.updateArticleSucceeded, (state, action) => ({
+  on(ArticlesActions.publishArticleSucceeded, (state, { article }) => ({
     ...state,
-    articleBeforeEdit: initialState.articleBeforeEdit,
+    articleCurrently: initialState.articleCurrently,
+    isEditMode: false,
+    articles: [...state.articles, article],
+  })),
+
+  on(ArticlesActions.updateArticleSucceeded, (state, { article }) => ({
+    ...state,
     articleCurrently: initialState.articleCurrently,
     isEditMode: false,
     articles: [
-      ...state.articles.map(article =>
-        article.id === action.article.id ? action.article : article,
+      ...state.articles.map(storedArticle =>
+        storedArticle.id === article.id ? article : storedArticle,
       ),
     ],
   })),
 
-  on(ArticlesActions.formDataChanged, (state, action) => ({
+  on(ArticlesActions.formDataChanged, (state, { article }) => ({
     ...state,
-    articleCurrently: action.article,
+    articleCurrently: article,
   })),
 
   on(ArticlesActions.scrollToSection, state => ({

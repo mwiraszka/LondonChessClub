@@ -40,6 +40,22 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.0.10 - March 31st, 2024
+</summary>
+
+- 🚀 When linking directly to a 'create' or 'edit' screen for an item that could not be found in the store, make an API call to fetch that item before resorting to redirecting the user to another screen
+
+- 🐛 Fix bug where non-admin users were able to access certain 'edit' screens (in readonly mode)
+
+- 🔧 Reorganize app's reusable utility functions
+- 🔧 Add `type` modifier to certain imports and exports to future-proof app in the event that a transpiler (such as Babel or Vite) is introduced and it becomes unclear which imports/exports should be available at runtime (see: [this article](https://typescript-eslint.io/blog/consistent-type-imports-and-exports-why-and-how/))
+- 🔧 Refactor `*ngFor` and `*ngIf` directives to Angular's new `@for` and `@if` control-flow syntax for better DX and a slightly smaller bundle size since the new syntax is built into the template engine
+- 🔧 Add `readonly` modifier to all imported types and methods used in templates or help prevent accidental overwrites
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.0.9 - March 12th, 2024
 </summary>
 
@@ -661,7 +677,7 @@ v0.8.0-alpha - September 8th, 2022
 - 🚀 Implement a standard nav bar to route to the various screens available, including an icon-only view on smaller devices, and a user account section to house any account-specific information and actions
 - 🚀 Implement user sign up, login, and change password flows, granting LCC committee members admin access to perform Create, Read, Update and Delete (CRUD) actions on any data which is regularly updated: currently members, articles, and scheduled events
 - 🚀 Implement basic members table and paginator components, fully fitted with sorting and filtering algorithms
-- 🚀 _(Work in progress)_ Implement basic database CRUD functionality and a responsive grid layout for articles
+- 🚀 *(Work in progress)* Implement basic database CRUD functionality and a responsive grid layout for articles
 - 🚀 Implement basic CRUD functionality and a responsive table layout for all club events stored in the database
 - 🚀 Create a responsive grid layout to organize the most commonly sought information about the club
 - 🚀 Create a responsive grid layout to house photos from club meetings and club-organized events, including the functionality to enlarge photos in an image overlay 'preview' mode

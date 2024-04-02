@@ -1,4 +1,4 @@
-import { User } from '@app/types';
+import type { User } from '@app/types';
 
 export interface AuthState {
   user: User | null;

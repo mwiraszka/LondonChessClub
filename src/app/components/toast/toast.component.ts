@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Toast, ToastTypes } from '@app/types';
+import { type Toast, ToastTypes } from '@app/types';
 
 @Component({
   selector: 'lcc-toast',
@@ -9,6 +9,7 @@ import { Toast, ToastTypes } from '@app/types';
 })
 export class ToastComponent implements OnInit {
   @Input() toast?: Toast;
+
   iconShape!: 'check-circle' | 'alert-triangle' | 'info';
 
   ngOnInit(): void {

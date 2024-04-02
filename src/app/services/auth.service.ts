@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 
-import {
+import type {
   LoginRequest,
   LoginResponse,
   PasswordChangeRequest,
@@ -24,8 +24,8 @@ import { environment } from '@environments/environment';
 export class AuthService {
   userPool(): CognitoUserPool {
     return new CognitoUserPool({
-      UserPoolId: environment.cognito.userPoolId,
-      ClientId: environment.cognito.clientId,
+      UserPoolId: environment.aws.cognitoUserPool.userPoolId,
+      ClientId: environment.aws.cognitoUserPool.clientId,
     });
   }
 

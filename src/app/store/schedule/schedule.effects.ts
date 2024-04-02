@@ -7,15 +7,15 @@ import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { LoaderService, ScheduleService } from '@app/services';
-import { ClubEvent, ModificationInfo, ServiceResponse } from '@app/types';
+import { AuthSelectors } from '@app/store/auth';
+import type { ClubEvent, ModificationInfo, ServiceResponse } from '@app/types';
 
-import { AuthSelectors } from '../auth';
 import * as ScheduleActions from './schedule.actions';
 import * as ScheduleSelectors from './schedule.selectors';
 
 @Injectable()
 export class ScheduleEffects {
-  getEvents$ = createEffect(() => {
+  fetchEvents$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.fetchEventsRequested),
       tap(() => this.loaderService.display(true)),
@@ -31,6 +31,34 @@ export class ScheduleEffects {
         ),
       ),
       tap(() => this.loaderService.display(false)),
+    );
+  });
+
+  fetchEventForEditScreen$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ScheduleActions.fetchEventForEditScreenRequested),
+      tap(() => this.loaderService.display(true)),
+      switchMap(({ eventId }) =>
+        this.scheduleService.getEvent(eventId).pipe(
+          map((response: ServiceResponse<ClubEvent>) =>
+            response.error
+              ? ScheduleActions.fetchEventForEditScreenFailed({
+                  error: response.error,
+                })
+              : ScheduleActions.fetchEventForEditScreenSucceeded({
+                  event: response.payload!,
+                }),
+          ),
+        ),
+      ),
+      tap(() => this.loaderService.display(false)),
+    );
+  });
+
+  setEventForEditing$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ScheduleActions.fetchEventForEditScreenSucceeded),
+      map(({ event }) => ScheduleActions.eventSetForEditing({ event })),
     );
   });
 
@@ -129,23 +157,10 @@ export class ScheduleEffects {
     ),
   );
 
-  logError$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(
-          ScheduleActions.fetchEventsFailed,
-          ScheduleActions.addEventFailed,
-          ScheduleActions.updateEventFailed,
-          ScheduleActions.deleteEventFailed,
-        ),
-      ),
-    { dispatch: false },
-  );
-
   constructor(
-    private actions$: Actions,
+    private readonly actions$: Actions,
+    private readonly store: Store,
     private loaderService: LoaderService,
     private scheduleService: ScheduleService,
-    private store: Store,
   ) {}
 }

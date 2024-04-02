@@ -13,12 +13,12 @@ import {
   styleUrls: ['./paginator.component.scss'],
 })
 export class PaginatorComponent implements OnChanges {
-  pageSizes = [10, 20, 50, 100];
+  readonly PAGE_SIZES = [10, 20, 50, 100];
 
   @Input() pageNum = 1;
   @Input() totalItems = 0;
   @Input() typeOfItems = 'items';
-  @Input() pageSize = this.pageSizes[1];
+  @Input() pageSize = this.PAGE_SIZES[1];
 
   @Output() pageChange = new EventEmitter<number>();
   @Output() pageSizeChange = new EventEmitter<number>();
@@ -27,9 +27,9 @@ export class PaginatorComponent implements OnChanges {
     if (changes['totalItems']) {
       // setTimeout to avoid ExpressionChangedAfterItHasBeenCheckedError
       setTimeout(() => {
-        this.pageSizes[this.pageSizes.length - 1] = this.totalItems;
+        this.PAGE_SIZES[this.PAGE_SIZES.length - 1] = this.totalItems;
 
-        if (this.pageSize > this.pageSizes[2]) {
+        if (this.pageSize > this.PAGE_SIZES[2]) {
           this.pageSize = this.totalItems;
           this.onPageSizeChange(this.totalItems);
         }

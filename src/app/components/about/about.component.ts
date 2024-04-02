@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
@@ -15,7 +16,7 @@ import { environment } from '@environments/environment';
   styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent implements OnInit {
-  NavPathTypes = NavPathTypes;
+  readonly NavPathTypes = NavPathTypes;
 
   @Input() isAboutScreen = false;
 

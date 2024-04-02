@@ -4,11 +4,11 @@ import { first, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
-import { ClubEvent } from '@app/types';
+import type { ClubEvent } from '@app/types';
 
 @Injectable()
 export class EventFormFacade {
-  readonly eventBeforeEdit$ = this.store.select(ScheduleSelectors.eventBeforeEdit);
+  readonly selectedEvent$ = this.store.select(ScheduleSelectors.selectedEvent);
   readonly eventCurrently$ = this.store.select(ScheduleSelectors.eventCurrently);
   readonly isEditMode$ = this.store.select(ScheduleSelectors.isEditMode);
   readonly hasUnsavedChanges$ = this.store.select(ScheduleSelectors.hasUnsavedChanges);

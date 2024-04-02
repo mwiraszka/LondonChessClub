@@ -1,8 +1,8 @@
 <div class="container">
 	<lcc-screen-header [preTitle]="(facade.isEditMode$ | async) ? 'Edit' : null"
 										 [title]="(facade.isEditMode$ | async)
-                                ? (facade.titleBeforeEdit$ | async)
-                                : 'Create an article'">
+                       ? (facade.selectedArticleTitle$ | async)
+                       : 'Create an article'">
 	</lcc-screen-header>
 	<lcc-article-form></lcc-article-form>
 	<lcc-link-list [links]="links"></lcc-link-list>

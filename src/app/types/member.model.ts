@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import { ModificationInfo } from '@app/types';
+import type { ModificationInfo } from '@app/types';
 
 export interface Member {
   id: string | undefined;

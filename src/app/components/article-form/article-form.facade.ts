@@ -4,12 +4,12 @@ import { first, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import { Article } from '@app/types';
+import type { Article } from '@app/types';
 import { isEmpty } from '@app/utils';
 
 @Injectable()
 export class ArticleFormFacade {
-  readonly articleBeforeEdit$ = this.store.select(ArticlesSelectors.articleBeforeEdit);
+  readonly selectedArticle$ = this.store.select(ArticlesSelectors.selectedArticle);
   readonly articleCurrently$ = this.store.select(ArticlesSelectors.articleCurrently);
   readonly isEditMode$ = this.store.select(ArticlesSelectors.isEditMode);
   readonly hasUnsavedChanges$ = this.store.select(ArticlesSelectors.hasUnsavedChanges);

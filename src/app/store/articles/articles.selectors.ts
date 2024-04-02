@@ -21,9 +21,9 @@ export const selectedArticle = createSelector(
   state => state.selectedArticle,
 );
 
-export const articleBeforeEdit = createSelector(
-  articlesFeatureSelector,
-  state => state.articleBeforeEdit,
+export const selectedArticleTitle = createSelector(
+  selectedArticle,
+  article => article?.title,
 );
 
 export const articleCurrently = createSelector(
@@ -43,5 +43,5 @@ export const sectionToScrollTo = createSelector(
 
 export const hasUnsavedChanges = createSelector(
   articlesFeatureSelector,
-  state => !areSame(state.articleCurrently, state.articleBeforeEdit),
+  state => !areSame(state.articleCurrently, state.selectedArticle),
 );

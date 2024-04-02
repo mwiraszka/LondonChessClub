@@ -20,13 +20,14 @@ export const activeMembers = createSelector(membersFeatureSelector, state =>
   state.members.filter(member => member.isActive),
 );
 
-export const filteredMembers = createSelector(membersFeatureSelector, state =>
-  state.showActiveOnly ? state.members.filter(member => member.isActive) : state.members,
-);
-
 export const selectedMember = createSelector(
   membersFeatureSelector,
   state => state.selectedMember,
+);
+
+export const selectedMemberName = createSelector(
+  selectedMember,
+  member => `${member?.firstName} ${member?.lastName}`,
 );
 
 export const memberCurrently = createSelector(
@@ -41,7 +42,7 @@ export const isEditMode = createSelector(
 
 export const hasUnsavedChanges = createSelector(
   membersFeatureSelector,
-  state => !areSame(state.memberCurrently, state.memberBeforeEdit),
+  state => !areSame(state.memberCurrently, state.selectedMember),
 );
 
 export const sortedBy = createSelector(membersFeatureSelector, state => state.sortedBy);
@@ -68,4 +69,16 @@ export const endIndex = createSelector(
 export const showActiveOnly = createSelector(
   membersFeatureSelector,
   state => state.showActiveOnly,
+);
+
+export const filteredMembers = createSelector(membersFeatureSelector, state =>
+  state.showActiveOnly ? state.members.filter(member => member.isActive) : state.members,
+);
+
+export const displayedMembers = createSelector(
+  filteredMembers,
+  startIndex,
+  endIndex,
+  (filteredMembers, startIndex, endIndex) =>
+    filteredMembers.slice(startIndex ?? 0, endIndex ?? 0),
 );

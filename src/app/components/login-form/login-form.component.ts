@@ -19,7 +19,8 @@ import { LoginFormFacade } from './login-form.facade';
   providers: [LoginFormFacade],
 })
 export class LoginFormComponent implements OnInit {
-  NavPathTypes = NavPathTypes;
+  readonly NavPathTypes = NavPathTypes;
+
   form!: FormGroup;
 
   constructor(public facade: LoginFormFacade, private formBuilder: FormBuilder) {}

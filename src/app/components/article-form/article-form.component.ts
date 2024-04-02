@@ -1,12 +1,12 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Subscription } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, filter } from 'rxjs/operators';
 
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Article, ModificationInfo, Url } from '@app/types';
+import type { Article, ModificationInfo, Url } from '@app/types';
+import { isDefined } from '@app/utils';
 import { imageSizeValidator } from '@app/validators';
 
 import { ArticleFormFacade } from './article-form.facade';
@@ -27,11 +27,13 @@ export class ArticleFormComponent implements OnInit {
   constructor(public facade: ArticleFormFacade, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.facade.articleBeforeEdit$.subscribe(article => {
-      this.initForm(article);
-      this.previewImageUrl = article.imageUrl ?? null;
-      this.modificationInfo = article.modificationInfo;
-    });
+    this.facade.articleCurrently$
+      .pipe(filter(isDefined), untilDestroyed(this))
+      .subscribe(article => {
+        this.initForm(article);
+        this.previewImageUrl = article.imageUrl ?? null;
+        this.modificationInfo = article.modificationInfo;
+      });
   }
 
   hasError(control: AbstractControl): boolean {

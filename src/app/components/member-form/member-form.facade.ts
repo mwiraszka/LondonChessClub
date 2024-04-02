@@ -4,11 +4,11 @@ import { first, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { MembersActions, MembersSelectors } from '@app/store/members';
-import { Member } from '@app/types';
+import type { Member } from '@app/types';
 
 @Injectable()
 export class MemberFormFacade {
-  readonly memberBeforeEdit$ = this.store.select(MembersSelectors.selectedMember);
+  readonly selectedMember$ = this.store.select(MembersSelectors.selectedMember);
   readonly memberCurrently$ = this.store.select(MembersSelectors.memberCurrently);
   readonly isEditMode$ = this.store.select(MembersSelectors.isEditMode);
   readonly hasUnsavedChanges$ = this.store.select(MembersSelectors.hasUnsavedChanges);

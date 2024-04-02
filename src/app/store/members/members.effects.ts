@@ -8,14 +8,14 @@ import { Injectable } from '@angular/core';
 
 import { LoaderService, MembersService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { Member, ModificationInfo, ServiceResponse } from '@app/types';
+import type { Member, ModificationInfo, ServiceResponse } from '@app/types';
 
 import * as MembersActions from './members.actions';
 import * as MembersSelectors from './members.selectors';
 
 @Injectable()
 export class MembersEffects {
-  getMembers$ = createEffect(() => {
+  fetchMembers$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.fetchMembersRequested),
       tap(() => this.loaderService.display(true)),
@@ -32,6 +32,34 @@ export class MembersEffects {
         ),
       ),
       tap(() => this.loaderService.display(false)),
+    );
+  });
+
+  fetchMemberForEditScreen$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(MembersActions.fetchMemberForEditScreenRequested),
+      tap(() => this.loaderService.display(true)),
+      switchMap(({ memberId }) =>
+        this.membersService.getMember(memberId).pipe(
+          map((response: ServiceResponse<Member>) =>
+            response.error
+              ? MembersActions.fetchMemberForEditScreenFailed({
+                  error: response.error,
+                })
+              : MembersActions.fetchMemberForEditScreenSucceeded({
+                  member: response.payload!,
+                }),
+          ),
+        ),
+      ),
+      tap(() => this.loaderService.display(false)),
+    );
+  });
+
+  setMemberForEditing$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(MembersActions.fetchMemberForEditScreenSucceeded),
+      map(({ member }) => MembersActions.memberSetForEditing({ member })),
     );
   });
 
@@ -130,23 +158,10 @@ export class MembersEffects {
     ),
   );
 
-  logError$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(
-          MembersActions.fetchMembersFailed,
-          MembersActions.addMemberFailed,
-          MembersActions.updateMemberFailed,
-          MembersActions.deleteMemberFailed,
-        ),
-      ),
-    { dispatch: false },
-  );
-
   constructor(
-    private actions$: Actions,
+    private readonly store: Store,
+    private readonly actions$: Actions,
     private loaderService: LoaderService,
     private membersService: MembersService,
-    private store: Store,
   ) {}
 }

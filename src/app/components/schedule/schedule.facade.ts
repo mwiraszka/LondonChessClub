@@ -4,14 +4,14 @@ import { Injectable } from '@angular/core';
 
 import { AuthSelectors } from '@app/store/auth';
 import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
-import { ClubEvent } from '@app/types';
+import type { ClubEvent } from '@app/types';
 
 @Injectable()
 export class ScheduleFacade {
   readonly events$ = this.store.select(ScheduleSelectors.events);
-  readonly upcomingEvents$ = this.store.select(ScheduleSelectors.upcomingEvents);
-  readonly nextEventId$ = this.store.select(ScheduleSelectors.nextEventId);
   readonly isAdmin$ = this.store.select(AuthSelectors.isAdmin);
+  readonly nextEventId$ = this.store.select(ScheduleSelectors.nextEventId);
+  readonly upcomingEvents$ = this.store.select(ScheduleSelectors.upcomingEvents);
 
   constructor(private readonly store: Store) {}
 

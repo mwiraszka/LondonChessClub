@@ -8,5 +8,5 @@ import { NavPathTypes } from '@app/types';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  NavPathTypes = NavPathTypes;
+  readonly NavPathTypes = NavPathTypes;
 }

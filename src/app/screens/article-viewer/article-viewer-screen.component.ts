@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Link, NavPathTypes } from '@app/types';
+import { type Link, NavPathTypes } from '@app/types';
 
 import { ArticleViewerScreenFacade } from './article-viewer-screen.facade';
 
@@ -11,7 +11,7 @@ import { ArticleViewerScreenFacade } from './article-viewer-screen.facade';
   providers: [ArticleViewerScreenFacade],
 })
 export class ArticleViewerScreenComponent {
-  NavPathTypes = NavPathTypes;
+  readonly NavPathTypes = NavPathTypes;
 
   links: Link[] = [
     {

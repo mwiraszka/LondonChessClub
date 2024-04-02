@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { AuthService, ImagesService } from '@app/services';
-import { Article, FlatArticle, ServiceResponse } from '@app/types';
+import type { Article, FlatArticle, ServiceResponse } from '@app/types';
 import { generateArticleId, generateArticleImageId, isEmpty } from '@app/utils';
 
 import { environment } from '@environments/environment';
@@ -15,7 +15,7 @@ import { environment } from '@environments/environment';
   providedIn: 'root',
 })
 export class ArticlesService {
-  readonly API_ENDPOINT = environment.cognito.articlesEndpoint;
+  readonly API_ENDPOINT = environment.aws.articlesEndpoint;
 
   constructor(
     private authService: AuthService,

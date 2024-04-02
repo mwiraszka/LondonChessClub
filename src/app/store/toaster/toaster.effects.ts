@@ -7,7 +7,7 @@ import { ArticlesActions } from '@app/store/articles';
 import { AuthActions } from '@app/store/auth';
 import { MembersActions } from '@app/store/members';
 import { ScheduleActions } from '@app/store/schedule';
-import { Toast, ToastTypes } from '@app/types';
+import { type Toast, ToastTypes } from '@app/types';
 
 import * as ToasterActions from './toaster.actions';
 
@@ -125,6 +125,23 @@ export class ToasterEffects {
       }),
     );
   });
+
+  addFetchArticleFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(
+        ArticlesActions.fetchArticleForViewScreenFailed,
+        ArticlesActions.fetchArticleForEditScreenFailed,
+      ),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Load article',
+          message: error.message,
+          type: ToastTypes.WARNING,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
   //#endregion
 
   //#region Members
@@ -225,6 +242,20 @@ export class ToasterEffects {
       }),
     );
   });
+
+  addFetchMemberFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(MembersActions.fetchMemberForEditScreenFailed),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Load member',
+          message: error.message,
+          type: ToastTypes.WARNING,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
   //#endregion
 
   //#region Schedule
@@ -318,6 +349,20 @@ export class ToasterEffects {
       map(({ error }) => {
         const toast: Toast = {
           title: 'Load events',
+          message: error.message,
+          type: ToastTypes.WARNING,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addFetchEventFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ScheduleActions.fetchEventForEditScreenFailed),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Load event',
           message: error.message,
           type: ToastTypes.WARNING,
         };
@@ -435,5 +480,5 @@ export class ToasterEffects {
     );
   });
 
-  constructor(private actions$: Actions) {}
+  constructor(private readonly actions$: Actions) {}
 }

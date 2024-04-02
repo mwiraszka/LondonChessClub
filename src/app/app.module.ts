@@ -5,7 +5,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -68,11 +68,12 @@ import { AppComponent } from './app.component';
     StoreDevtoolsModule.instrument({
       name: 'London Chess Club - NgRx Store DevTools',
       logOnly: environment.production,
-      maxAge: 25,
+      maxAge: 100,
       actionSanitizer,
     }),
     ToasterModule,
     ToasterStoreModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   bootstrap: [AppComponent],
 })

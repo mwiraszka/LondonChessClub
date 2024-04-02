@@ -1,8 +1,8 @@
 <div class="container">
 	<lcc-screen-header [preTitle]="(facade.isEditMode$ | async) ? 'Edit' : null"
 										 [title]="(facade.isEditMode$ | async)
-                                ? (facade.titleBeforeEdit$ | async)
-                                : 'Create an event'">
+                       ? (facade.selectedEventTitle$ | async)
+                       : 'Create an event'">
 	</lcc-screen-header>
 	<lcc-event-form></lcc-event-form>
 </div>

@@ -1,4 +1,4 @@
-import { Toast } from '@app/types';
+import type { Toast } from '@app/types';
 
 export interface ToasterState {
   toasts: Toast[];

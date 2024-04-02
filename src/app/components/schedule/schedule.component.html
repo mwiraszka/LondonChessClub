@@ -3,7 +3,7 @@
 </ng-container>
 
 <table class="lcc-table">
-	<thead>
+	<thead *ngIf="shownEvents?.length">
 		<th *ngIf="facade.isAdmin$ | async"
 				class="lcc-table-admin-controls-filler">
 		</th>
@@ -11,9 +11,8 @@
 		<th class="event">Event</th>
 	</thead>
 	<tbody>
-		<tr *ngFor="let event of showPast ? (facade.events$ | async) : (facade.upcomingEvents$ | async)?.slice(0, limitToUpcoming);
-                  let last = last; trackBy: trackByFn"
-				class="lcc-admin-controls-container"
+		@for (event of shownEvents; track event.id; let last = $last) {
+		<tr class="lcc-admin-controls-container"
 				[id]="event.id"
 				[class.next-event]="event.id === (facade.nextEventId$ | async)"
 				[ngClass]="{'last-row': last}">
@@ -50,11 +49,12 @@
 				</aside>
 			</td>
 		</tr>
+		}
 	</tbody>
 </table>
 
 <button *ngIf="allowTogglePastEvents"
 				class="lcc-raised-button toggle-past-events-button"
 				(click)="onShowHidePastEvents()">
-	{{ showPast ? 'Hide' : 'Show' }} past events
+	{{ showPast$ ? 'Hide' : 'Show' }} past events
 </button>

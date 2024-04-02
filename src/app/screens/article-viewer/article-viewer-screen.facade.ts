@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
-import { Article } from '@app/types';
+import type { Article } from '@app/types';
 
 @Injectable()
 export class ArticleViewerScreenFacade {

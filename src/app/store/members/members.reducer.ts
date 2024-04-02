@@ -8,36 +8,51 @@ import { MembersState, initialState } from './members.state';
 const membersReducer = createReducer(
   initialState,
 
-  on(MembersActions.fetchMembersSucceeded, (state, action) => ({
+  on(MembersActions.fetchMembersSucceeded, (state, { allMembers }) => ({
     ...state,
-    members: [...action.allMembers].sort(customSort(state.sortedBy, state.isAscending)),
+    members: [...allMembers].sort(customSort(state.sortedBy, state.isAscending)),
   })),
 
-  on(MembersActions.pageChanged, (state, action) => ({
+  on(MembersActions.fetchMemberForEditScreenSucceeded, (state, { member }) => ({
     ...state,
-    pageNum: action.pageNum,
+    members: [
+      ...state.members.filter(storedMember => storedMember.id !== member.id),
+      member,
+    ],
   })),
 
-  on(MembersActions.pageSizeChanged, (state, action) => ({
+  on(MembersActions.memberSetForEditing, (state, { member }) => ({
     ...state,
-    pageSize: action.pageSize,
+    selectedMember: member,
+    memberCurrently: member,
+    isEditMode: true,
+  })),
+
+  on(MembersActions.pageChanged, (state, { pageNum }) => ({
+    ...state,
+    pageNum,
+  })),
+
+  on(MembersActions.pageSizeChanged, (state, { pageSize }) => ({
+    ...state,
+    pageSize,
     pageNum: 1,
   })),
 
-  on(MembersActions.tableHeaderSelected, (state, action) => ({
+  on(MembersActions.tableHeaderSelected, (state, { header }) => ({
     ...state,
     members: [...state.members].sort(
       customSort(
-        action.header === 'born'
+        header === 'born'
           ? 'yearOfBirth'
-          : action.header === 'lastUpdated'
+          : header === 'lastUpdated'
           ? 'modificationInfo.dateLastEdited'
-          : action.header,
-        action.header === state.sortedBy ? !state.isAscending : false,
+          : header,
+        header === state.sortedBy ? !state.isAscending : false,
       ),
     ),
-    sortedBy: action.header,
-    isAscending: action.header === state.sortedBy ? !state.isAscending : false,
+    sortedBy: header,
+    isAscending: header === state.sortedBy ? !state.isAscending : false,
   })),
 
   on(MembersActions.inactiveMembersToggled, state => ({
@@ -46,32 +61,24 @@ const membersReducer = createReducer(
     pageNum: 1,
   })),
 
-  on(MembersActions.addMemberSelected, (state, action) => ({
+  on(MembersActions.addMemberSelected, (state, { memberToAdd }) => ({
     ...state,
-    memberCurrently: action.memberToAdd,
+    memberCurrently: memberToAdd,
   })),
 
-  on(MembersActions.editMemberRouteEntered, (state, action) => ({
+  on(MembersActions.updateMemberSelected, (state, { memberToUpdate }) => ({
     ...state,
-    selectedMember: action.member,
-    memberCurrently: action.member,
-    memberBeforeEdit: action.member,
-    isEditMode: true,
+    memberCurrently: memberToUpdate,
   })),
 
-  on(MembersActions.updateMemberSelected, (state, action) => ({
+  on(MembersActions.deleteMemberSelected, (state, { memberToDelete }) => ({
     ...state,
-    memberCurrently: action.memberToUpdate,
+    selectedMember: memberToDelete,
   })),
 
-  on(MembersActions.deleteMemberSelected, (state, action) => ({
+  on(MembersActions.deleteMemberSucceeded, (state, { deletedMember }) => ({
     ...state,
-    selectedMember: action.memberToDelete,
-  })),
-
-  on(MembersActions.deleteMemberSucceeded, (state, action) => ({
-    ...state,
-    members: state.members.filter(member => member.id !== action.deletedMember.id),
+    members: state.members.filter(member => member.id !== deletedMember.id),
     selectedMember: null,
   })),
 
@@ -80,24 +87,16 @@ const membersReducer = createReducer(
     selectedMember: null,
   })),
 
-  on(
-    MembersActions.addMemberSucceeded,
-    MembersActions.addMemberFailed,
-    MembersActions.updateMemberSucceeded,
-    MembersActions.updateMemberFailed,
-    MembersActions.cancelConfirmed,
-    MembersActions.resetMemberForm,
-    state => ({
-      ...state,
-      memberCurrently: initialState.memberCurrently,
-      memberBeforeEdit: initialState.memberBeforeEdit,
-      isEditMode: false,
-    }),
-  ),
-
-  on(MembersActions.formDataChanged, (state, action) => ({
+  on(MembersActions.membersScreenEntered, MembersActions.resetMemberForm, state => ({
     ...state,
-    memberCurrently: action.member,
+    selectedMember: initialState.selectedMember,
+    memberCurrently: initialState.memberCurrently,
+    isEditMode: false,
+  })),
+
+  on(MembersActions.formDataChanged, (state, { member }) => ({
+    ...state,
+    memberCurrently: member,
   })),
 );
 

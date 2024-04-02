@@ -9,14 +9,14 @@ import { Injectable } from '@angular/core';
 
 import { ArticlesService, ImagesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { Article, ModificationInfo, ServiceResponse, Url } from '@app/types';
+import type { Article, ModificationInfo, ServiceResponse, Url } from '@app/types';
 
 import * as ArticlesActions from './articles.actions';
 import * as ArticlesSelectors from './articles.selectors';
 
 @Injectable()
 export class ArticlesEffects {
-  getArticles$ = createEffect(() => {
+  fetchArticles$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticlesRequested),
       switchMap(() =>
@@ -30,6 +30,62 @@ export class ArticlesEffects {
           ),
         ),
       ),
+    );
+  });
+
+  fetchArticleForViewScreen$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.fetchArticleForViewScreenRequested),
+      tap(() => this.loaderService.display(true)),
+      switchMap(({ articleId }) =>
+        this.articlesService.getArticle(articleId).pipe(
+          map((response: ServiceResponse<Article>) =>
+            response.error
+              ? ArticlesActions.fetchArticleForViewScreenFailed({
+                  error: response.error,
+                })
+              : ArticlesActions.fetchArticleForViewScreenSucceeded({
+                  article: response.payload!,
+                }),
+          ),
+        ),
+      ),
+      tap(() => this.loaderService.display(false)),
+    );
+  });
+
+  setArticleForViewing$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.fetchArticleForViewScreenSucceeded),
+      map(({ article }) => ArticlesActions.articleSetForViewing({ article })),
+    );
+  });
+
+  fetchArticleForEditScreen$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.fetchArticleForEditScreenRequested),
+      tap(() => this.loaderService.display(true)),
+      switchMap(({ articleId }) =>
+        this.articlesService.getArticle(articleId).pipe(
+          map((response: ServiceResponse<Article>) =>
+            response.error
+              ? ArticlesActions.fetchArticleForEditScreenFailed({
+                  error: response.error,
+                })
+              : ArticlesActions.fetchArticleForEditScreenSucceeded({
+                  article: response.payload!,
+                }),
+          ),
+        ),
+      ),
+      tap(() => this.loaderService.display(false)),
+    );
+  });
+
+  setArticleForEditing$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.fetchArticleForEditScreenSucceeded),
+      map(({ article }) => ArticlesActions.articleSetForEditing({ article })),
     );
   });
 
@@ -126,10 +182,7 @@ export class ArticlesEffects {
 
   getImageUrlForSelectedArticle$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(
-        ArticlesActions.viewArticleRouteEntered,
-        ArticlesActions.editArticleRouteEntered,
-      ),
+      ofType(ArticlesActions.articleSetForEditing, ArticlesActions.articleSetForViewing),
       switchMap(({ article }) => this.imagesService.getArticleImageUrl(article.imageId!)),
       map((response: ServiceResponse<Url>) =>
         response.error
@@ -150,25 +203,11 @@ export class ArticlesEffects {
     ),
   );
 
-  logError$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(
-          ArticlesActions.fetchArticlesFailed,
-          ArticlesActions.fetchArticleFailed,
-          ArticlesActions.publishArticleFailed,
-          ArticlesActions.updateArticleFailed,
-          ArticlesActions.deleteArticleFailed,
-        ),
-      ),
-    { dispatch: false },
-  );
-
   constructor(
-    private actions$: Actions,
+    private readonly actions$: Actions,
+    private readonly store: Store,
     private articlesService: ArticlesService,
     private imagesService: ImagesService,
     private loaderService: LoaderService,
-    private store: Store,
   ) {}
 }

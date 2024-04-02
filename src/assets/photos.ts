@@ -1,4 +1,4 @@
-import { Photo } from '@app/types';
+import type { Photo } from '@app/types';
 
 // This file lists all the photos used in the Photo Gallery screen
 // (some of which are also used on the Home screen)

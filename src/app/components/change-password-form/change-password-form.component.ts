@@ -11,7 +11,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { PasswordChangeRequest } from '@app/types';
+import type { PasswordChangeRequest } from '@app/types';
 import {
   emailValidator,
   hasLowercaseLetterValidator,
@@ -31,7 +31,7 @@ import { ChangePasswordFormFacade } from './change-password-form.facade';
   providers: [ChangePasswordFormFacade],
 })
 export class ChangePasswordFormComponent implements OnInit {
-  PASSWORD_VALIDATORS: ValidatorFn[] = [
+  readonly PASSWORD_VALIDATORS: ValidatorFn[] = [
     Validators.required,
     Validators.minLength(8),
     hasLowercaseLetterValidator,

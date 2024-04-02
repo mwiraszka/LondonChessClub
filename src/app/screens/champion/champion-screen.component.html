@@ -97,10 +97,12 @@
 					<th>Winner</th>
 				</thead>
 				<tbody>
-					<tr *ngFor="let championship of pastChampionships">
+					@for (championship of pastChampionships; track championship.year) {
+					<tr>
 						<td [style]="championship.style">{{ championship.year }}</td>
 						<td [style]="championship.style">{{ championship.winner }}</td>
 					</tr>
+					}
 				</tbody>
 				<tfoot>
 					<tr>

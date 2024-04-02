@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Photo } from '@app/types';
+import type { Photo } from '@app/types';
 
 enum PhotosActionTypes {
   IMAGE_OVERLAY_OPENED = '[Photos] Image overlay opened',

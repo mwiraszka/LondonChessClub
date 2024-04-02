@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 
 import { PhotosActions, PhotosSelectors } from '@app/store/photos';
-import { Photo } from '@app/types';
+import type { Photo } from '@app/types';
 
 @Injectable()
 export class PhotoGridFacade {

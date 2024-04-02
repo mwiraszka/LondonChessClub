@@ -11,8 +11,9 @@ import { NavFacade } from './nav.facade';
   providers: [NavFacade],
 })
 export class NavComponent {
-  ICON_TEXT_BREAKPOINT = 699; // Match lt-md breakpoint value
-  NavPathTypes = NavPathTypes;
+  readonly ICON_TEXT_BREAKPOINT = 699; // Match lt-md breakpoint value
+  readonly NavPathTypes = NavPathTypes;
+
   isDropdownOpen = false;
   screenWidth = window.innerWidth;
 

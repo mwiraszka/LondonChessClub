@@ -1,4 +1,4 @@
-import { Member } from '@app/types';
+import type { Member } from '@app/types';
 
 export const MOCK_MEMBERS: Member[] = [
   {

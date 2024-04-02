@@ -4,7 +4,7 @@ import { first, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { AuthActions, AuthSelectors } from '@app/store/auth';
-import { PasswordChangeRequest } from '@app/types';
+import type { PasswordChangeRequest } from '@app/types';
 
 @Injectable()
 export class ChangePasswordFormFacade {

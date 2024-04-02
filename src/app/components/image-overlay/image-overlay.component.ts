@@ -44,15 +44,23 @@ export class ImageOverlayComponent implements OnInit, OnDestroy {
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    if (event.key == 'ArrowLeft') {
-      this.loaderService.display(true);
-      this.facade.onPreviousImage();
-    } else if (event.key == 'ArrowRight') {
-      this.loaderService.display(true);
-      this.facade.onNextImage();
-    } else if (event.key == 'Escape') {
+    if (event.key === 'ArrowLeft') {
+      this.onPreviousImage();
+    } else if (event.key === 'ArrowRight' || event.key === 'Space') {
+      this.onNextImage();
+    } else if (event.key === 'Escape') {
       this.facade.onClose();
     }
+  }
+
+  onNextImage(): void {
+    this.loaderService.display(true);
+    this.facade.onNextImage();
+  }
+
+  onPreviousImage(): void {
+    this.loaderService.display(true);
+    this.facade.onPreviousImage();
   }
 
   imageLoaded(): void {

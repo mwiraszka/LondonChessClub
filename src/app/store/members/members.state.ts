@@ -1,10 +1,9 @@
-import { Member, newMemberFormTemplate } from '@app/types';
+import { type Member, newMemberFormTemplate } from '@app/types';
 
 export interface MembersState {
   members: Member[];
   selectedMember: Member | null;
   memberCurrently: Member;
-  memberBeforeEdit: Member;
   isEditMode: boolean;
   sortedBy: string;
   isAscending: boolean;
@@ -17,7 +16,6 @@ export const initialState: MembersState = {
   members: [],
   selectedMember: null,
   memberCurrently: newMemberFormTemplate,
-  memberBeforeEdit: newMemberFormTemplate,
   isEditMode: false,
   sortedBy: 'rating',
   isAscending: false,

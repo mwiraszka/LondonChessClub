@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 import { AuthSelectors } from '@app/store/auth';
 import { MembersActions, MembersSelectors } from '@app/store/members';
-import { Member } from '@app/types';
+import type { Member } from '@app/types';
 
 @Injectable()
 export class MembersTableFacade {
@@ -13,13 +13,13 @@ export class MembersTableFacade {
   readonly members$ = this.store.select(MembersSelectors.members);
   readonly activeMembers$ = this.store.select(MembersSelectors.activeMembers);
   readonly filteredMembers$ = this.store.select(MembersSelectors.filteredMembers);
+  readonly displayedMembers$ = this.store.select(MembersSelectors.displayedMembers);
 
   readonly isAscending$ = this.store.select(MembersSelectors.isAscending);
   readonly sortedBy$ = this.store.select(MembersSelectors.sortedBy);
   readonly pageNum$ = this.store.select(MembersSelectors.pageNum);
   readonly pageSize$ = this.store.select(MembersSelectors.pageSize);
   readonly startIndex$ = this.store.select(MembersSelectors.startIndex);
-  readonly endIndex$ = this.store.select(MembersSelectors.endIndex);
   readonly showActiveOnly$ = this.store.select(MembersSelectors.showActiveOnly);
 
   constructor(private readonly store: Store) {}

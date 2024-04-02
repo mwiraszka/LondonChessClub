@@ -17,9 +17,9 @@
 			</span>
 		</div>
 
-		<div *ngIf="article?.modificationInfo?.dateLastEdited?.getTime()
-                  !== article?.modificationInfo?.dateCreated?.getTime()"
-				 class="editor-container">
+		@if (article?.modificationInfo?.dateLastEdited?.getTime()
+		!== article?.modificationInfo?.dateCreated?.getTime()) {
+		<div class="editor-container">
 			<span class="updated">last updated</span>
 			<span class="editor-name">
 				{{ article?.modificationInfo?.lastEditedBy }}
@@ -29,6 +29,7 @@
 				{{ article?.modificationInfo?.dateLastEdited | formatDate:'short' }}
 			</span>
 		</div>
+		}
 	</div>
 
 	<hr />

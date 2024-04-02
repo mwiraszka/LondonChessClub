@@ -1,26 +1,30 @@
-<ng-container *ngIf="facade.isAdmin$ | async">
-	<lcc-link-list [links]="[addEventLink]"></lcc-link-list>
-</ng-container>
+@if (facade.isAdmin$ | async) {
+<lcc-link-list [links]="[addEventLink]"></lcc-link-list>
+}
 
 <table class="lcc-table">
-	<thead *ngIf="shownEvents?.length">
-		<th *ngIf="facade.isAdmin$ | async"
-				class="lcc-table-admin-controls-filler">
+	@if (shownEvents?.length) {
+	<thead>
+		@if (facade.isAdmin$ | async) {
+		<th class="lcc-table-admin-controls-filler">
 		</th>
+		}
 		<th class="date">Date</th>
 		<th class="event">Event</th>
 	</thead>
+	}
 	<tbody>
 		@for (event of shownEvents; track event.id; let last = $last) {
 		<tr class="lcc-admin-controls-container"
 				[id]="event.id"
 				[class.next-event]="event.id === (facade.nextEventId$ | async)"
 				[ngClass]="{'last-row': last}">
-			<lcc-admin-controls *ngIf="facade.isAdmin$ | async"
-													[editPath]="'/' + NavPathTypes.EVENT_EDIT + '/' + event.id"
+			@if (facade.isAdmin$ | async) {
+			<lcc-admin-controls [editPath]="'/' + NavPathTypes.EVENT_EDIT + '/' + event.id"
 													[itemName]="event.title"
 													(delete)="facade.onDeleteEvent(event)">
 			</lcc-admin-controls>
+			}
 			<td class="date">{{ setLocalTime(event.eventDate) | formatDate:'long':'no-time' }}
 			</td>
 			<td class="main-container">
@@ -29,32 +33,35 @@
 					<div class="type-container"
 							 [ngClass]="kebabize(event.type)">
 						<span class="type">{{ event.type }}</span>
-						<ng-container *ngIf="kebabize(event.type) === 'championship'">
-							<i-feather name="award"
-												 class="award-icon">
-							</i-feather>
-						</ng-container>
+						@if (kebabize(event.type) === 'championship') {
+						<i-feather name="award"
+											 class="award-icon">
+						</i-feather>
+						}
 					</div>
-					<p *ngIf="includeDetails"
-						 class="event-details">
+					@if (includeDetails) {
+					<p class="event-details">
 						{{ event.details }}
 					</p>
+					}
 				</div>
-				<aside *ngIf="includeDetails && (facade.isAdmin$ | async)"
-							 class="created-and-edited">
+				@if (includeDetails && (facade.isAdmin$ | async)) {
+				<aside class="created-and-edited">
 					Event created
 					{{ event.modificationInfo?.dateCreated | formatDate:'short':'no-time' }}<br />
 					Last edited
 					{{ event.modificationInfo?.dateLastEdited | formatDate:'short':'no-time' }}
 				</aside>
+				}
 			</td>
 		</tr>
 		}
 	</tbody>
 </table>
 
-<button *ngIf="allowTogglePastEvents"
-				class="lcc-raised-button toggle-past-events-button"
+@if (allowTogglePastEvents) {
+<button class="lcc-raised-button toggle-past-events-button"
 				(click)="onShowHidePastEvents()">
 	{{ showPast$ ? 'Hide' : 'Show' }} past events
 </button>
+}

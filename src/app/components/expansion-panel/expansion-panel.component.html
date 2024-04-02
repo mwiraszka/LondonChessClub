@@ -7,7 +7,8 @@
 	</i-feather>
 </div>
 
-<div *ngIf="isOpen"
-		 class="content-container">
+@if (isOpen) {
+<div class="content-container">
 	<ng-container [ngTemplateOutlet]="contentTemplate"></ng-container>
 </div>
+}

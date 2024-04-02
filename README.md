@@ -40,10 +40,11 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v3.0.10 - March 31st, 2024
+v3.0.10 - April 2nd, 2024
 </summary>
 
-- 🚀 When linking directly to a 'create' or 'edit' screen for an item that could not be found in the store, make an API call to fetch that item before resorting to redirecting the user to another screen
+- 🚀 Save working progress in forms so that refreshing the page does not return the form to the item's original state
+- 🚀 When linking directly to a 'create' or 'edit' screen for an item that could not be found in the store, make an API call to fetch that item before resorting to redirecting the user to another screen. This will allow the user to send links that take you directly to a specific article - the full collection of articles doesn't need to first be fetched from the database for this to work anymore
 
 - 🐛 Fix bug where non-admin users were able to access certain 'edit' screens (in readonly mode)
 

@@ -84,15 +84,14 @@
 
 	<div class="nav-login-spacer"></div>
 
-	<div *ngIf="facade.user$ | async; else loggedOut"
-			 class="lcc-dropdown-tab">
+	@if (facade.user$ | async) {
+	<div class="lcc-dropdown-tab">
 		<i-feather name="user"
 							 class="icon user-icon">
 		</i-feather>
 		<i-feather [name]="isDropdownOpen ? 'chevron-down' : 'chevron-up'"
 							 class="icon chevron-icon">
 		</i-feather>
-
 		<div class="lcc-dropdown user-dropdown"
 				 dropdown
 				 (opened)="isDropdownOpen = $event">
@@ -110,19 +109,19 @@
 			</ul>
 		</div>
 	</div>
+	} @else {
+	<a class="login-link"
+		 aria-label="Admin Login"
+		 routerLinkActive="link-active"
+		 [routerLink]="NavPathTypes.LOGIN"
+		 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Log in as admin' : null">
+		<span class="text">Admin Login</span>
+		<i-feather name="user"
+							 class="icon user-icon">
+		</i-feather>
+	</a>
+	}
 
-	<ng-template #loggedOut>
-		<a class="login-link"
-			 aria-label="Admin Login"
-			 routerLinkActive="link-active"
-			 [routerLink]="NavPathTypes.LOGIN"
-			 [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Log in as admin' : null">
-			<span class="text">Admin Login</span>
-			<i-feather name="user"
-								 class="icon user-icon">
-			</i-feather>
-		</a>
-	</ng-template>
 </div>
 
 <div class="nav-right"></div>

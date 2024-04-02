@@ -1,22 +1,23 @@
-<ng-container *ngIf="facade.isAdmin$ | async">
-	<lcc-link-list [links]="[createArticleLink]"></lcc-link-list>
-</ng-container>
+@if (facade.isAdmin$ | async) {
+<lcc-link-list [links]="[createArticleLink]"></lcc-link-list>
+}
 
 <div class="articles-container">
 	@for (article of articles; track article.id) {
 	<a class="lcc-admin-controls-container article"
 		 [routerLink]="'/' + NavPathTypes.ARTICLE_VIEW + '/' + article.id">
-		<ng-container *ngIf="facade.isAdmin$ | async">
-			<lcc-admin-controls [editPath]="'/' + NavPathTypes.ARTICLE_EDIT + '/' + article.id"
-													[itemName]="article.title"
-													(delete)="facade.onDeleteArticle(article)">
-			</lcc-admin-controls>
-		</ng-container>
+		@if (facade.isAdmin$ | async) {
+		<lcc-admin-controls [editPath]="'/' + NavPathTypes.ARTICLE_EDIT + '/' + article.id"
+												[itemName]="article.title"
+												(delete)="facade.onDeleteArticle(article)">
+		</lcc-admin-controls>
+		}
 
-		<i-feather *ngIf="article.isSticky"
-							 class="sticky-icon"
+		@if (article.isSticky) {
+		<i-feather class="sticky-icon"
 							 name="star">
 		</i-feather>
+		}
 		<img class="article-thumbnail-image"
 				 [src]="(article?.thumbnailImageUrl ?? 'assets/image-placeholder.png') | sanitizeUrl"
 				 alt="Article banner image" />
@@ -29,14 +30,16 @@
 				<span class="date-created">
 					{{ article?.modificationInfo?.dateCreated | formatDate:'short':'no-time' }}
 				</span>
-				<div *ngIf="article?.modificationInfo?.dateLastEdited
-                     !== article?.modificationInfo?.dateCreated">
+				@if (article?.modificationInfo?.dateLastEdited
+				!== article?.modificationInfo?.dateCreated) {
+				<div>
 					<span class="vertical-spacer">|</span>
 					<span class="edited">edited&nbsp;</span>
 					<span class="date-last-edited">
 						{{ article?.modificationInfo?.dateLastEdited | formatDate:'short':'no-time' }}
 					</span>
 				</div>
+				}
 			</div>
 		</div>
 	</a>

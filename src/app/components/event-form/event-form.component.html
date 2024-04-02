@@ -1,7 +1,7 @@
 <aside class="lcc-required-fields-legend">Required fields</aside>
 
-<form *ngIf="form"
-			class="lcc-form"
+@if (form) {
+<form class="lcc-form"
 			[formGroup]="form"
 			(ngSubmit)="onSubmit()">
 	<div class="lcc-form-fields">
@@ -14,13 +14,13 @@
 					 name="event-date"
 					 formControlName="eventDate" />
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['eventDate'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['eventDate'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['eventDate'])">
 			</i-feather>
+			}
 		</div>
-
 		<label for="title-input"
 					 class="lcc-required-field">
 			Title:
@@ -30,13 +30,13 @@
 					 name="title"
 					 formControlName="title" />
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['title'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['title'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['title'])">
 			</i-feather>
+			}
 		</div>
-
 		<label for="details-input"
 					 class="lcc-required-field">
 			Details:
@@ -45,17 +45,16 @@
 							name="details"
 							formControlName="details"
 							maxlength="400">
-    </textarea>
+      </textarea>
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['details'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['details'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['details'])">
 			</i-feather>
+			}
 		</div>
-
 		<label class="lcc-required-field">Event type:</label>
-
 		<fieldset class="lcc-form-radio-buttons">
 			<div>
 				<input type="radio"
@@ -131,13 +130,11 @@
 			</div>
 		</fieldset>
 	</div>
-
 	<hr />
-
-	<lcc-modification-info *ngIf="modificationInfo"
-												 [info]="modificationInfo">
+	@if (modificationInfo) {
+	<lcc-modification-info [info]="modificationInfo">
 	</lcc-modification-info>
-
+	}
 	<div class="lcc-form-buttons-container">
 		<button class="lcc-secondary-button"
 						type="button"
@@ -147,10 +144,12 @@
 		<button class="lcc-primary-button"
 						type="submit"
 						[disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
-			<ng-container *ngIf="facade.isEditMode$ | async; else createModeButton">
-				Update
-			</ng-container>
-			<ng-template #createModeButton>Add event</ng-template>
+			@if (facade.isEditMode$ | async) {
+			Update
+			} @else {
+			Add event
+			}
 		</button>
 	</div>
 </form>
+}

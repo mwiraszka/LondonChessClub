@@ -1,5 +1,5 @@
-<div *ngIf="(facade.upcomingEvent$ | async) as upcomingEvent"
-		 class="alert-message-container">
+@if ((facade.upcomingEvent$ | async); as upcomingEvent) {
+<div class="alert-message-container">
 	<p class="alert-message">
 		Next event:
 		<span>{{ upcomingEvent.title }}</span>
@@ -17,3 +17,4 @@
 		</i-feather>
 	</div>
 </div>
+}

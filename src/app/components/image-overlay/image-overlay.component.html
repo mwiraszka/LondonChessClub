@@ -13,8 +13,8 @@
 		<h4 class="description lcc-truncate">
 			{{ (facade.photo$ | async)?.description }}
 		</h4>
-		<div *ngIf="imageHeight"
-				 class="image-navigation-icons-container"
+		@if (imageHeight) {
+		<div class="image-navigation-icons-container"
 				 [style.bottom.px]="32 + (50 / 2) + (imageHeight / 2)">
 			<div class="previous-image-icon-container">
 				<i-feather name="chevron-left"
@@ -31,5 +31,6 @@
 				</i-feather>
 			</div>
 		</div>
+		}
 	</div>
 </div>

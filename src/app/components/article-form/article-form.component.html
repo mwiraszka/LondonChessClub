@@ -1,5 +1,5 @@
-<form *ngIf="form"
-			class="lcc-form"
+@if (form) {
+<form class="lcc-form"
 			[formGroup]="form"
 			(ngSubmit)="onSubmit()">
 	<img class="banner-image"
@@ -22,13 +22,13 @@
 						 (change)="onChooseImage($event)" />
 		</div>
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['imageFile'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['imageFile'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['imageFile'])">
 			</i-feather>
+			}
 		</div>
-
 		<label for="title-input"
 					 class="lcc-required-field">
 			Title:
@@ -39,13 +39,13 @@
 					 formControlName="title"
 					 maxlength="120" />
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['title'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['title'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['title'])">
 			</i-feather>
+			}
 		</div>
-
 		<label for="body-input"
 					 class="lcc-required-field">
 			Content:
@@ -54,35 +54,34 @@
 							name="body"
 							formControlName="body"
 							maxlength="50000">
-    </textarea>
+      </textarea>
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['body'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['body'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['body'])">
 			</i-feather>
+			}
 		</div>
-
 		<label for="is-sticky-input">Sticky:</label>
 		<input id="is-sticky-input"
 					 type="checkbox"
 					 name="is-sticky"
 					 formControlName="isSticky" />
 	</div>
-
 	<div class="preview-section-container">
 		<h4>Preview:</h4>
-		<div *ngIf="!!form.controls['body'].value"
-				 class="markdown-container">
+		@if (!!form.controls['body'].value) {
+		<div class="markdown-container">
 			<lcc-markdown-renderer [data]="form.controls['body'].value">
 			</lcc-markdown-renderer>
 		</div>
+		}
 	</div>
-
-	<lcc-modification-info *ngIf=modificationInfo
-												 [info]="modificationInfo">
+	@if (modificationInfo) {
+	<lcc-modification-info [info]="modificationInfo">
 	</lcc-modification-info>
-
+	}
 	<div class="lcc-form-buttons-container">
 		<button class="lcc-secondary-button"
 						type="button"
@@ -92,10 +91,12 @@
 		<button class="lcc-primary-button"
 						type="submit"
 						[disabled]="form.invalid || !previewImageUrl || !(facade.hasUnsavedChanges$ | async)">
-			<ng-container *ngIf="facade.isEditMode$ | async; else createModeButton">
-				Update article
-			</ng-container>
-			<ng-template #createModeButton>Publish article</ng-template>
+			@if (facade.isEditMode$ | async) {
+			Update article
+			} @else {
+			Publish article
+			}
 		</button>
 	</div>
 </form>
+}

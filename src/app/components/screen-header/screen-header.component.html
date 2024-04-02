@@ -1,16 +1,19 @@
-<span *ngIf="preTitle"
-			class="lcc-secondary-text pre-title">
+@if (preTitle) {
+<span class="lcc-secondary-text pre-title">
 	{{ preTitle }}&nbsp;
 </span>
+}
 
 <span>{{ title }}</span>
 
-<span *ngIf="postTitle"
-			class="lcc-secondary-text post-title">
+@if (postTitle) {
+<span class="lcc-secondary-text post-title">
 	&nbsp;{{ postTitle }}
 </span>
+}
 
-<i-feather *ngIf="iconShape"
-					 [name]="iconShape"
+@if (iconShape) {
+<i-feather [name]="iconShape"
 					 class="icon">
 </i-feather>
+}

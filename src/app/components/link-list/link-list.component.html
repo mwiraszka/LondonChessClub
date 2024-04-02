@@ -1,30 +1,34 @@
-<h4 *ngIf="title">{{ title }}</h4>
+@if (title) {
+<h4>{{ title }}</h4>
+}
 <ul class="links"
 		[ngClass]="(links?.length ?? 0) < 4 ? 'single-column' : ''">
 	@for (link of links; track link.path) {
 	<li>
-		<a *ngIf="link.path.startsWith('http'); else internalLink"
-			 [href]="link.path"
+		@if (link.path.startsWith('http')) {
+		<a [href]="link.path"
 			 target="_blank"
 			 class="lcc-link">
-			<i-feather *ngIf="link.iconShape"
-								 [name]="link.iconShape"
+			@if (link.iconShape) {
+			<i-feather [name]="link.iconShape"
 								 class="icon">
 			</i-feather>
+			}
 			{{ link.text }}
 		</a>
+		} @else {
+		<a alt="link.text"
+			 class="lcc-link"
+			 [routerLink]="'/' + link.path">
+			@if (link.iconShape) {
+			<i-feather [name]="link.iconShape"
+								 class="icon">
+			</i-feather>
+			}
+			{{ link.text }}
+		</a>
+		}
 
-		<ng-template #internalLink>
-			<a alt="link.text"
-				 class="lcc-link"
-				 [routerLink]="'/' + link.path">
-				<i-feather *ngIf="link.iconShape"
-									 [name]="link.iconShape"
-									 class="icon">
-				</i-feather>
-				{{ link.text }}
-			</a>
-		</ng-template>
 	</li>
 	}
 </ul>

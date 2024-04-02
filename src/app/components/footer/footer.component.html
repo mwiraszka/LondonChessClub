@@ -29,7 +29,8 @@
 	</a>
 </address>
 
-<aside *ngIf="isNewVersionAvailable"
-			 class="new-version">
+@if (isNewVersionAvailable) {
+<aside class="new-version">
 	[ New website version available! Refresh page to update. ]
 </aside>
+}

@@ -10,11 +10,12 @@
 					 autocomplete="email"
 					 maxlength="50" />
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['email'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['email'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['email'])">
 			</i-feather>
+			}
 		</div>
 
 		<label for="password-input">Password:</label>

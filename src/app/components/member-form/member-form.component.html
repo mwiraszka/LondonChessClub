@@ -1,7 +1,7 @@
 <aside class="lcc-required-fields-legend">Required fields</aside>
 
-<form *ngIf="form"
-			class="lcc-form"
+@if (form) {
+<form class="lcc-form"
 			[formGroup]="form"
 			(ngSubmit)="onSubmit()">
 	<div class="lcc-form-fields">
@@ -15,13 +15,13 @@
 					 formControlName="firstName"
 					 maxlength="30" />
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['firstName'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['firstName'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['firstName'])">
 			</i-feather>
+			}
 		</div>
-
 		<label for="last-name-input"
 					 class="lcc-required-field">
 			Last name:
@@ -32,13 +32,13 @@
 					 formControlName="lastName"
 					 maxlength="30" />
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['lastName'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['lastName'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['lastName'])">
 			</i-feather>
+			}
 		</div>
-
 		<label for="city-input"
 					 class="lcc-required-field">
 			City:
@@ -49,13 +49,13 @@
 					 formControlName="city"
 					 maxlength="30" />
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['city'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['city'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['city'])">
 			</i-feather>
+			}
 		</div>
-
 		<label for="rating-input"
 					 class="lcc-required-field">
 			LCC rating:
@@ -66,13 +66,13 @@
 					 formControlName="rating"
 					 maxlength="6" />
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['rating'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['rating'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['rating'])">
 			</i-feather>
+			}
 		</div>
-
 		<label for="date-joined-input"
 					 class="lcc-required-field">
 			Date joined:
@@ -83,13 +83,13 @@
 					 formControlName="dateJoined"
 					 maxlength="10" />
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['dateJoined'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['dateJoined'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['dateJoined'])">
 			</i-feather>
+			}
 		</div>
-
 		<label for="email-input">Email:</label>
 		<input id="email-input"
 					 type="text"
@@ -97,13 +97,13 @@
 					 formControlName="email"
 					 maxlength="50" />
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['email'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['email'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['email'])">
 			</i-feather>
+			}
 		</div>
-
 		<label for="phone-number-input">Phone number:</label>
 		<input id="phone-number-input"
 					 type="text"
@@ -111,13 +111,13 @@
 					 formControlName="phoneNumber"
 					 maxlength="12" />
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['phoneNumber'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['phoneNumber'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['phoneNumber'])">
 			</i-feather>
+			}
 		</div>
-
 		<label for="year-of-birth-input">Year of birth:</label>
 		<input id="year-of-birth-input"
 					 type="text"
@@ -125,13 +125,13 @@
 					 formControlName="yearOfBirth"
 					 maxlength="4" />
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['yearOfBirth'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['yearOfBirth'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['yearOfBirth'])">
 			</i-feather>
+			}
 		</div>
-
 		<label for="chesscom-username-input">Chess.com username:</label>
 		<input id="chesscom-username-input"
 					 type="text"
@@ -139,13 +139,13 @@
 					 formControlName="chesscomUsername"
 					 maxlength="20" />
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['chesscomUsername'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['chesscomUsername'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['chesscomUsername'])">
 			</i-feather>
+			}
 		</div>
-
 		<label for="lichess-username-input">Lichess username:</label>
 		<input id="lichess-username-input"
 					 type="text"
@@ -153,28 +153,26 @@
 					 formControlName="lichessUsername"
 					 maxlength="20" />
 		<div class="lcc-form-error-container">
-			<i-feather *ngIf="hasError(form.controls['lichessUsername'])"
-								 name="alert-triangle"
+			@if (hasError(form.controls['lichessUsername'])) {
+			<i-feather name="alert-triangle"
 								 class="lcc-form-error-icon validation-alert-icon"
 								 [tooltip]="getErrorMessage(form.controls['lichessUsername'])">
 			</i-feather>
+			}
 		</div>
-
-		<ng-container *ngIf="facade.isEditMode$ | async">
-			<label for="is-active-input">Active:</label>
-			<input id="is-active-input"
-						 type="checkbox"
-						 name="is-active"
-						 formControlName="isActive" />
-		</ng-container>
+		@if (facade.isEditMode$ | async) {
+		<label for="is-active-input">Active:</label>
+		<input id="is-active-input"
+					 type="checkbox"
+					 name="is-active"
+					 formControlName="isActive" />
+		}
 	</div>
-
 	<hr />
-
-	<lcc-modification-info *ngIf="facade.isEditMode$ | async"
-												 [info]="modificationInfo!">
+	@if (facade.isEditMode$ | async) {
+	<lcc-modification-info [info]="modificationInfo!">
 	</lcc-modification-info>
-
+	}
 	<div class="lcc-form-buttons-container">
 		<button class="lcc-secondary-button"
 						type="button"
@@ -184,10 +182,12 @@
 		<button class="lcc-primary-button"
 						type="submit"
 						[disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
-			<ng-container *ngIf="facade.isEditMode$ | async; else createModeButton">
-				Update
-			</ng-container>
-			<ng-template #createModeButton>Add member</ng-template>
+			@if (facade.isEditMode$ | async) {
+			Update
+			} @else {
+			Add member
+			}
 		</button>
 	</div>
 </form>
+}

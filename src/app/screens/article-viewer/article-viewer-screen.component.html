@@ -1,13 +1,14 @@
 <div class="container">
-	<div *ngIf="facade.article$ | async as article"
-			 class="lcc-admin-controls-container">
-		<ng-container *ngIf="facade.isAdmin$ | async">
-			<lcc-admin-controls [editPath]="'/' + NavPathTypes.ARTICLE_EDIT + '/' + article.id"
-													[itemName]="article.title"
-													(delete)="facade.onDelete(article)">
-			</lcc-admin-controls>
-		</ng-container>
+	@if (facade.article$ | async; as article) {
+	<div class="lcc-admin-controls-container">
+		@if (facade.isAdmin$ | async) {
+		<lcc-admin-controls [editPath]="'/' + NavPathTypes.ARTICLE_EDIT + '/' + article.id"
+												[itemName]="article.title"
+												(delete)="facade.onDelete(article)">
+		</lcc-admin-controls>
+		}
 		<lcc-article [article]="article"></lcc-article>
 		<lcc-link-list [links]="links"></lcc-link-list>
 	</div>
+	}
 </div>

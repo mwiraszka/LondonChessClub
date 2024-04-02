@@ -1,30 +1,34 @@
-<ng-container *ngIf="facade.isAdmin$ | async">
-	<lcc-link-list [links]="[addMemberLink]"></lcc-link-list>
-</ng-container>
+@if (facade.isAdmin$ | async) {
+<lcc-link-list [links]="[addMemberLink]"></lcc-link-list>
+}
 
 <div class="lcc-table-wrapper">
 	<table class="lcc-table"
 				 [class.lcc-show-admin-columns]="facade.isAdmin$ | async">
-		<thead *ngIf="(facade.displayedMembers$ | async)?.length">
+		@if ((facade.displayedMembers$ | async)?.length) {
+		<thead>
 			<tr>
-				<th *ngIf="facade.isAdmin$ | async"
-						class="lcc-table-admin-controls-filler">
+				@if (facade.isAdmin$ | async) {
+				<th class="lcc-table-admin-controls-filler">
 				</th>
+				}
 				<th class="row-number"></th>
 				@for (header of tableHeaders; track header) {
 				<th [ngClass]="kebabize(header)"
 						(click)="facade.onSelectTableHeader(camelize(kebabize(header)))">
 					<span class="header-text">{{ header }}</span>
 					<div class="sort-icon-container">
-						<i-feather *ngIf="(facade.sortedBy$ | async) === camelize(kebabize(header))"
-											 class="sort-icon"
+						@if ((facade.sortedBy$ | async) === camelize(kebabize(header))) {
+						<i-feather class="sort-icon"
 											 [name]="(facade.isAscending$ | async) ? 'chevron-up' : 'chevron-down'">
 						</i-feather>
+						}
 					</div>
 				</th>
 				}
 			</tr>
 		</thead>
+		}
 
 		<tbody>
 			@for (member of facade.displayedMembers$ | async; track member.id; let i = $index;
@@ -32,12 +36,13 @@
 			<tr class="lcc-admin-controls-container"
 					[ngClass]="{'last-row': last}"
 					[class.inactive]="!member.isActive">
-				<lcc-admin-controls *ngIf="facade.isAdmin$ | async"
-														[editPath]="'/' + NavPathTypes.MEMBER_EDIT + '/' + member.id"
+				@if (facade.isAdmin$ | async) {
+				<lcc-admin-controls [editPath]="'/' + NavPathTypes.MEMBER_EDIT + '/' + member.id"
 														[height]="31"
 														[itemName]="member.firstName ?? ''"
 														(delete)="facade.onDeleteMember(member)">
 				</lcc-admin-controls>
+				}
 				<td class="row-number">{{ i + ((facade.startIndex$ | async) ?? 0) + 1 }}</td>
 				<td class="first-name lcc-truncate">{{ member.firstName }}</td>
 				<td class="last-name lcc-truncate">{{ member.lastName }}</td>
@@ -49,14 +54,14 @@
 				<td class="last-updated">
 					{{ member.modificationInfo!.dateLastEdited | formatDate:'short':'no-time' }}
 				</td>
-				<ng-container *ngIf="facade.isAdmin$ | async">
-					<td class="born">{{ member?.yearOfBirth }}</td>
-					<td class="email">{{ member?.email }}</td>
-					<td class="phone-number">{{ member?.phoneNumber }}</td>
-					<td class="date-joined">
-						{{ convertToUtcTimezone(member.dateJoined) | formatDate:'short':'no-time' }}
-					</td>
-				</ng-container>
+				@if (facade.isAdmin$ | async) {
+				<td class="born">{{ member?.yearOfBirth }}</td>
+				<td class="email">{{ member?.email }}</td>
+				<td class="phone-number">{{ member?.phoneNumber }}</td>
+				<td class="date-joined">
+					{{ convertToUtcTimezone(member.dateJoined) | formatDate:'short':'no-time' }}
+				</td>
+				}
 			</tr>
 			}
 		</tbody>

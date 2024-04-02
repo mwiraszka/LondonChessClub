@@ -2,7 +2,9 @@
 		 [class.about-screen]="isAboutScreen">
 	<section class="welcome-text-section">
 		<p>
-			<span *ngIf="!isAboutScreen">Welcome to the LCC!</span>
+			@if (!isAboutScreen) {
+			<span>Welcome to the LCC!</span>
+			}
 			The London Chess Club is open to players of all ages and abilities. We host regular
 			blitz and rapid chess tournaments, as well as a variety of lectures, simuls and team
 			competitions (see
@@ -30,12 +32,13 @@
 			</div>
 			<div class="time">
 				Thursdays,<wbr> 6:00pm&nbsp;&ndash;&nbsp;9:00pm
+
 			</div>
 		</div>
 	</section>
 
-	<section *ngIf="isMapLoaded$ | async"
-					 class="map-section">
+	@if (isMapLoaded$ | async) {
+	<section class="map-section">
 		<google-map width="100%"
 								[height]="mapHeight"
 								mapId="club-map"
@@ -45,4 +48,5 @@
 			</map-advanced-marker>
 		</google-map>
 	</section>
+	}
 </div>

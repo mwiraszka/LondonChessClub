@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { filter, map } from 'rxjs/operators';
@@ -46,7 +45,7 @@ export class ModalEffects {
       map(([, selectedMember]) => {
         const modal: Modal = {
           title: 'Confirm member update',
-          body: `Update ${selectedMember!.firstName} ${selectedMember!.lastName}?`,
+          body: `Update ${selectedMember?.firstName} ${selectedMember?.lastName}?`,
           buttons: [
             {
               text: 'Cancel',
@@ -118,11 +117,11 @@ export class ModalEffects {
   openUpdateEventModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.updateEventSelected),
-      concatLatestFrom(() => this.store.select(ScheduleSelectors.eventBeforeEdit)),
-      map(([, eventBeforeEdit]) => {
+      concatLatestFrom(() => this.store.select(ScheduleSelectors.selectedEvent)),
+      map(([, selectedEvent]) => {
         const modal: Modal = {
           title: 'Confirm event update',
-          body: `Update ${eventBeforeEdit.title}?`,
+          body: `Update ${selectedEvent?.title}?`,
           buttons: [
             {
               text: 'Cancel',
@@ -194,11 +193,11 @@ export class ModalEffects {
   openUpdateArticleModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleSelected),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.articleBeforeEdit)),
-      map(([, articleBeforeEdit]) => {
+      concatLatestFrom(() => this.store.select(ArticlesSelectors.selectedArticle)),
+      map(([, selectedArticle]) => {
         const modal: Modal = {
           title: 'Confirm article update',
-          body: `Update ${articleBeforeEdit.title}?`,
+          body: `Update ${selectedArticle?.title}?`,
           buttons: [
             {
               text: 'Cancel',

@@ -3,6 +3,8 @@ import { createAction, props } from '@ngrx/store';
 import type { ClubEvent } from '@app/types';
 
 enum ScheduleActionTypes {
+  SCHEDULE_SCREEN_ENTERED = '[Schedule] Schedule screen entered',
+
   FETCH_EVENTS_REQUESTED = '[Schedule] Fetch events requested',
   FETCH_EVENTS_SUCCEEDED = '[Schedule] Fetch events succeeded',
   FETCH_EVENTS_FAILED = '[Schedule] Fetch events failed',
@@ -36,6 +38,10 @@ enum ScheduleActionTypes {
   FORM_DATA_CHANGED = '[Schedule] Form data changed',
   RESET_EVENT_FORM = '[Schedule] Reset event form',
 }
+
+export const scheduleScreenEntered = createAction(
+  ScheduleActionTypes.SCHEDULE_SCREEN_ENTERED,
+);
 
 export const fetchEventsRequested = createAction(
   ScheduleActionTypes.FETCH_EVENTS_REQUESTED,
@@ -120,7 +126,6 @@ export const updateEventFailed = createAction(
 );
 
 export const cancelSelected = createAction(ScheduleActionTypes.CANCEL_SELECTED);
-export const cancelConfirmed = createAction(ScheduleActionTypes.CANCEL_CONFIRMED);
 
 export const formDataChanged = createAction(
   ScheduleActionTypes.FORM_DATA_CHANGED,

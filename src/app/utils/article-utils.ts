@@ -24,6 +24,6 @@ export function generateArticleImageId(articleId: string): string {
  * @returns {boolean} Whether the article id is in a valid (LCC-specific) format
  */
 export function isValidArticleId(articleId: string): boolean {
-  const regExp = new RegExp(/^art-[0-9-]{10}-[a-fA-F0-9]{8}$/);
+  const regExp = new RegExp(/^art-[0-9]{8}-[a-fA-F0-9]{8}$/);
   return regExp.test(articleId);
 }

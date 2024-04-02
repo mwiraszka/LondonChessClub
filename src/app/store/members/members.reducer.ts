@@ -24,7 +24,6 @@ const membersReducer = createReducer(
   on(MembersActions.memberSetForEditing, (state, { member }) => ({
     ...state,
     selectedMember: member,
-    memberBeforeEdit: member,
     memberCurrently: member,
     isEditMode: true,
   })),
@@ -88,20 +87,12 @@ const membersReducer = createReducer(
     selectedMember: null,
   })),
 
-  on(
-    MembersActions.addMemberSucceeded,
-    MembersActions.addMemberFailed,
-    MembersActions.updateMemberSucceeded,
-    MembersActions.updateMemberFailed,
-    MembersActions.cancelConfirmed,
-    MembersActions.resetMemberForm,
-    state => ({
-      ...state,
-      memberCurrently: initialState.memberCurrently,
-      memberBeforeEdit: initialState.memberBeforeEdit,
-      isEditMode: false,
-    }),
-  ),
+  on(MembersActions.membersScreenEntered, MembersActions.resetMemberForm, state => ({
+    ...state,
+    selectedMember: initialState.selectedMember,
+    memberCurrently: initialState.memberCurrently,
+    isEditMode: false,
+  })),
 
   on(MembersActions.formDataChanged, (state, { member }) => ({
     ...state,

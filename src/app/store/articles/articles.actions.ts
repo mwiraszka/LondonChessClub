@@ -3,6 +3,8 @@ import { createAction, props } from '@ngrx/store';
 import type { Article, Url } from '@app/types';
 
 enum ArticlesActionTypes {
+  NEWS_SCREEN_ENTERED = '[Articles] News screen entered',
+
   FETCH_ARTICLES_REQUESTED = '[Articles] Fetch articles requested',
   FETCH_ARTICLES_SUCCEEDED = '[Articles] Fetch articles succeeded',
   FETCH_ARTICLES_FAILED = '[Articles] Fetch articles failed',
@@ -46,6 +48,8 @@ enum ArticlesActionTypes {
 
   SCROLL_TO_SECTION = '[Articles] Scroll to section',
 }
+
+export const newsScreenEntered = createAction(ArticlesActionTypes.NEWS_SCREEN_ENTERED);
 
 export const fetchArticlesRequested = createAction(
   ArticlesActionTypes.FETCH_ARTICLES_REQUESTED,
@@ -160,7 +164,6 @@ export const updateArticleFailed = createAction(
 );
 
 export const cancelSelected = createAction(ArticlesActionTypes.CANCEL_SELECTED);
-export const cancelConfirmed = createAction(ArticlesActionTypes.CANCEL_CONFIRMED);
 
 export const formDataChanged = createAction(
   ArticlesActionTypes.FORM_DATA_CHANGED,

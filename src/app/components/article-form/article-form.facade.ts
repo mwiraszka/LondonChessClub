@@ -9,7 +9,7 @@ import { isEmpty } from '@app/utils';
 
 @Injectable()
 export class ArticleFormFacade {
-  readonly articleBeforeEdit$ = this.store.select(ArticlesSelectors.articleBeforeEdit);
+  readonly selectedArticle$ = this.store.select(ArticlesSelectors.selectedArticle);
   readonly articleCurrently$ = this.store.select(ArticlesSelectors.articleCurrently);
   readonly isEditMode$ = this.store.select(ArticlesSelectors.isEditMode);
   readonly hasUnsavedChanges$ = this.store.select(ArticlesSelectors.hasUnsavedChanges);

@@ -8,7 +8,7 @@ import type { Member } from '@app/types';
 
 @Injectable()
 export class MemberFormFacade {
-  readonly memberBeforeEdit$ = this.store.select(MembersSelectors.selectedMember);
+  readonly selectedMember$ = this.store.select(MembersSelectors.selectedMember);
   readonly memberCurrently$ = this.store.select(MembersSelectors.memberCurrently);
   readonly isEditMode$ = this.store.select(MembersSelectors.isEditMode);
   readonly hasUnsavedChanges$ = this.store.select(MembersSelectors.hasUnsavedChanges);

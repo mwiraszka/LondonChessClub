@@ -4,6 +4,13 @@
 import { isEqual } from 'lodash';
 
 /**
+ * @returns A type predicate to eliminate `null` and `undefined` types
+ */
+export function isDefined<T extends {}>(x: T | null | undefined): x is T {
+  return x !== null && x !== undefined;
+}
+
+/**
  * @returns {boolean} Whether the user is on a touch screen device
  */
 export function isTouchScreen(): boolean {
@@ -13,12 +20,16 @@ export function isTouchScreen(): boolean {
 /**
  * A wrapper for lodash's `isEqual()`
  *
- * @param {Object} a The first object to compare
- * @param {Object} b The second object to compare
+ * @param {Object | null} a The first object to compare
+ * @param {Object | null} b The second object to compare
  *
  * @returns {boolean} Whether the two objects are (deeply) equal
  */
-export function areSame(a: Object, b: Object): boolean {
+export function areSame(a: Object | null, b: Object | null): boolean {
+  if (a === null || b === null) {
+    return false;
+  }
+
   return isEqual(a, b);
 }
 

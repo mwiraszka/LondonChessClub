@@ -1,11 +1,12 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Subscription } from 'rxjs';
-import { debounceTime, first, tap } from 'rxjs/operators';
+import { debounceTime, filter } from 'rxjs/operators';
 
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import type { Member, ModificationInfo } from '@app/types';
+import { isDefined } from '@app/utils';
 import {
   dateValidator,
   emailValidator,
@@ -33,14 +34,11 @@ export class MemberFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.facade.memberCurrently$
-      .pipe(
-        tap(member => {
-          this.initForm(member);
-          this.modificationInfo = member.modificationInfo;
-        }),
-        first(),
-      )
-      .subscribe();
+      .pipe(filter(isDefined), untilDestroyed(this))
+      .subscribe(member => {
+        this.initForm(member);
+        this.modificationInfo = member.modificationInfo;
+      });
   }
 
   hasError(control: AbstractControl): boolean {

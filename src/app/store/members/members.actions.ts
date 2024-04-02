@@ -3,6 +3,8 @@ import { createAction, props } from '@ngrx/store';
 import type { Member } from '@app/types';
 
 enum MembersActionTypes {
+  MEMBERS_SCREEN_ENTERED = '[Members] Members screen entered',
+
   FETCH_MEMBERS_REQUESTED = '[Members] Fetch members requested',
   FETCH_MEMBERS_SUCCEEDED = '[Members] Fetch members succeeded',
   FETCH_MEMBERS_FAILED = '[Members] Fetch members failed',
@@ -42,6 +44,10 @@ enum MembersActionTypes {
   FORM_DATA_CHANGED = '[Members] Form data changed',
   RESET_MEMBER_FORM = '[Members] Reset member form',
 }
+
+export const membersScreenEntered = createAction(
+  MembersActionTypes.MEMBERS_SCREEN_ENTERED,
+);
 
 export const fetchMembersRequested = createAction(
   MembersActionTypes.FETCH_MEMBERS_REQUESTED,
@@ -146,7 +152,6 @@ export const updateMemberFailed = createAction(
 );
 
 export const cancelSelected = createAction(MembersActionTypes.CANCEL_SELECTED);
-export const cancelConfirmed = createAction(MembersActionTypes.CANCEL_CONFIRMED);
 
 export const formDataChanged = createAction(
   MembersActionTypes.FORM_DATA_CHANGED,

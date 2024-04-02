@@ -25,6 +25,11 @@ export const selectedMember = createSelector(
   state => state.selectedMember,
 );
 
+export const selectedMemberName = createSelector(
+  selectedMember,
+  member => `${member?.firstName} ${member?.lastName}`,
+);
+
 export const memberCurrently = createSelector(
   membersFeatureSelector,
   state => state.memberCurrently,
@@ -37,7 +42,7 @@ export const isEditMode = createSelector(
 
 export const hasUnsavedChanges = createSelector(
   membersFeatureSelector,
-  state => !areSame(state.memberCurrently, state.memberBeforeEdit),
+  state => !areSame(state.memberCurrently, state.selectedMember),
 );
 
 export const sortedBy = createSelector(membersFeatureSelector, state => state.sortedBy);

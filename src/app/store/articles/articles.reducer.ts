@@ -29,7 +29,6 @@ const articlesReducer = createReducer(
   on(ArticlesActions.articleSetForViewing, (state, { article, sectionToScrollTo }) => ({
     ...state,
     selectedArticle: article,
-    articleBeforeEdit: article,
     articleCurrently: article,
     sectionToScrollTo: sectionToScrollTo ?? null,
     isEditMode: false,
@@ -38,7 +37,6 @@ const articlesReducer = createReducer(
   on(ArticlesActions.articleSetForEditing, (state, { article }) => ({
     ...state,
     selectedArticle: article,
-    articleBeforeEdit: article,
     articleCurrently: article,
     isEditMode: true,
   })),
@@ -48,7 +46,6 @@ const articlesReducer = createReducer(
     selectedArticle: state.selectedArticle
       ? { ...state.selectedArticle, imageUrl }
       : null,
-    articleBeforeEdit: { ...state.articleBeforeEdit, imageUrl },
     articleCurrently: { ...state.articleCurrently, imageUrl },
   })),
 
@@ -73,23 +70,15 @@ const articlesReducer = createReducer(
     selectedArticle: null,
   })),
 
-  on(
-    ArticlesActions.resetArticleForm,
-    ArticlesActions.publishArticleFailed,
-    ArticlesActions.updateArticleSucceeded,
-    ArticlesActions.updateArticleFailed,
-    ArticlesActions.cancelConfirmed,
-    state => ({
-      ...state,
-      articleBeforeEdit: initialState.articleBeforeEdit,
-      articleCurrently: initialState.articleCurrently,
-      isEditMode: false,
-    }),
-  ),
+  on(ArticlesActions.newsScreenEntered, ArticlesActions.resetArticleForm, state => ({
+    ...state,
+    selectedArticle: initialState.selectedArticle,
+    articleCurrently: initialState.articleCurrently,
+    isEditMode: false,
+  })),
 
   on(ArticlesActions.publishArticleSucceeded, (state, { article }) => ({
     ...state,
-    articleBeforeEdit: initialState.articleBeforeEdit,
     articleCurrently: initialState.articleCurrently,
     isEditMode: false,
     articles: [...state.articles, article],
@@ -97,7 +86,6 @@ const articlesReducer = createReducer(
 
   on(ArticlesActions.updateArticleSucceeded, (state, { article }) => ({
     ...state,
-    articleBeforeEdit: initialState.articleBeforeEdit,
     articleCurrently: initialState.articleCurrently,
     isEditMode: false,
     articles: [

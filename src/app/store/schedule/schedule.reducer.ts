@@ -27,7 +27,6 @@ const scheduleReducer = createReducer(
   on(ScheduleActions.eventSetForEditing, (state, { event }) => ({
     ...state,
     selectedEvent: event,
-    eventBeforeEdit: event,
     eventCurrently: event,
     isEditMode: true,
   })),
@@ -63,20 +62,12 @@ const scheduleReducer = createReducer(
     selectedEventId: null,
   })),
 
-  on(
-    ScheduleActions.resetEventForm,
-    ScheduleActions.addEventSucceeded,
-    ScheduleActions.addEventFailed,
-    ScheduleActions.updateEventSucceeded,
-    ScheduleActions.updateEventFailed,
-    ScheduleActions.cancelConfirmed,
-    state => ({
-      ...state,
-      eventBeforeEdit: initialState.eventBeforeEdit,
-      eventCurrently: initialState.eventCurrently,
-      isEditMode: false,
-    }),
-  ),
+  on(ScheduleActions.scheduleScreenEntered, ScheduleActions.resetEventForm, state => ({
+    ...state,
+    selectedEvent: initialState.selectedEvent,
+    eventCurrently: initialState.eventCurrently,
+    isEditMode: false,
+  })),
 
   on(ScheduleActions.formDataChanged, (state, { event }) => ({
     ...state,

@@ -6,9 +6,10 @@ import { filter, map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { ExtendedRouterService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
-import { MembersActions } from '@app/store/members';
+import { MembersActions, MembersSelectors } from '@app/store/members';
 import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
 import { NavPathTypes } from '@app/types';
 import { isValidArticleId, isValidEventId, isValidMemberId } from '@app/utils';
@@ -31,6 +32,30 @@ export class NavEffects {
         }),
       ),
     { dispatch: false },
+  );
+
+  handleNewsRouteNavigation$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      filter(({ payload }) => payload.event.url === '/news'),
+      map(() => ArticlesActions.newsScreenEntered()),
+    ),
+  );
+
+  handleMembersRouteNavigation$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      filter(({ payload }) => payload.event.url === '/members'),
+      map(() => MembersActions.membersScreenEntered()),
+    ),
+  );
+
+  handleScheduleRouteNavigation$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      filter(({ payload }) => payload.event.url === '/schedule'),
+      map(() => ScheduleActions.scheduleScreenEntered()),
+    ),
   );
 
   handleArticleViewRouteNavigation$ = createEffect(() =>
@@ -65,6 +90,7 @@ export class NavEffects {
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       filter(({ payload }) => payload.event.url.startsWith('/article/edit/')),
+      filter(() => !this.extendedRouterService.isSameUrlNavigation()),
       map(({ payload }) => payload.event.url.split('/article/edit/')[1]),
       concatLatestFrom(articleId => [
         this.store.select(ArticlesSelectors.articleById(articleId)),
@@ -86,14 +112,20 @@ export class NavEffects {
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       filter(({ payload }) => payload.event.url.startsWith('/member/edit/')),
+      filter(() => !this.extendedRouterService.isSameUrlNavigation()),
       map(({ payload }) => payload.event.url.split('/member/edit/')[1]),
-      concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
-      map(([memberId, isAdmin]) => {
-        // Attempt to re-fetch member (even if a member with the same id already exists
-        // in the store) because admin-only properties might not have been fetched yet
-        return isValidMemberId(memberId) && isAdmin
-          ? MembersActions.fetchMemberForEditScreenRequested({ memberId })
-          : NavActions.navigationRequested({ path: NavPathTypes.MEMBERS });
+      concatLatestFrom(memberId => [
+        this.store.select(MembersSelectors.memberById(memberId)),
+        this.store.select(AuthSelectors.isAdmin),
+      ]),
+      map(([memberId, memberInStore, isAdmin]) => {
+        if (memberInStore && isAdmin) {
+          return MembersActions.memberSetForEditing({ member: memberInStore });
+        } else if (isValidMemberId(memberId) && isAdmin) {
+          return MembersActions.fetchMemberForEditScreenRequested({ memberId });
+        } else {
+          return NavActions.navigationRequested({ path: NavPathTypes.MEMBERS });
+        }
       }),
     ),
   );
@@ -102,6 +134,7 @@ export class NavEffects {
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       filter(({ payload }) => payload.event.url.startsWith('/event/edit/')),
+      filter(() => !this.extendedRouterService.isSameUrlNavigation()),
       map(({ payload }) => payload.event.url.split('/event/edit/')[1]),
       concatLatestFrom(eventId => [
         this.store.select(ScheduleSelectors.eventById(eventId)),
@@ -162,7 +195,7 @@ export class NavEffects {
 
   navigateToMemberEdit$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MembersActions.fetchMemberForEditScreenSucceeded),
+      ofType(MembersActions.memberSetForEditing),
       map(({ member }) =>
         NavActions.navigationRequested({
           path: NavPathTypes.MEMBER_EDIT + '/' + member.id,
@@ -185,7 +218,7 @@ export class NavEffects {
 
   navigateToEventEdit$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ScheduleActions.fetchEventForEditScreenSucceeded),
+      ofType(ScheduleActions.eventSetForEditing),
       map(({ event }) =>
         NavActions.navigationRequested({
           path: NavPathTypes.EVENT_EDIT + '/' + event.id,
@@ -210,7 +243,7 @@ export class NavEffects {
       ofType(
         ArticlesActions.publishArticleSucceeded,
         ArticlesActions.updateArticleSucceeded,
-        ArticlesActions.fetchArticleForViewScreenSucceeded,
+        ArticlesActions.articleSetForViewing,
       ),
       map(({ article }) =>
         NavActions.navigationRequested({
@@ -222,7 +255,7 @@ export class NavEffects {
 
   navigateToArticleEdit$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticlesActions.fetchArticleForEditScreenSucceeded),
+      ofType(ArticlesActions.articleSetForEditing),
       map(({ article }) =>
         NavActions.navigationRequested({
           path: NavPathTypes.ARTICLE_EDIT + '/' + article.id,
@@ -235,5 +268,6 @@ export class NavEffects {
     private readonly actions$: Actions,
     private readonly store: Store,
     private router: Router,
+    private extendedRouterService: ExtendedRouterService,
   ) {}
 }

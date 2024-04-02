@@ -1,12 +1,12 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Subscription } from 'rxjs';
-import { debounceTime, first, tap } from 'rxjs/operators';
+import { debounceTime, filter } from 'rxjs/operators';
 
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import type { ClubEvent, ModificationInfo } from '@app/types';
+import { isDefined } from '@app/utils';
 import { dateValidator } from '@app/validators';
 
 import { EventFormFacade } from './event-form.facade';
@@ -27,14 +27,11 @@ export class EventFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.facade.eventCurrently$
-      .pipe(
-        tap(event => {
-          this.initForm(event);
-          this.modificationInfo = event.modificationInfo;
-        }),
-        first(),
-      )
-      .subscribe();
+      .pipe(filter(isDefined), untilDestroyed(this))
+      .subscribe(event => {
+        this.initForm(event);
+        this.modificationInfo = event.modificationInfo;
+      });
   }
 
   hasError(control: AbstractControl): boolean {

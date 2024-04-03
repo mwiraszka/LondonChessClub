@@ -40,6 +40,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.0.11 - April 3rd, 2024
+</summary>
+
+- 🐛 Fix some security vulnerabilities
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.0.10 - April 2nd, 2024
 </summary>
 

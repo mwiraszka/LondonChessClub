@@ -21,7 +21,7 @@ export class MembersEffects {
       tap(() => this.loaderService.display(true)),
       concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
       switchMap(([, isAdmin]) =>
-        this.membersService.getMembers(isAdmin!).pipe(
+        this.membersService.getMembers(isAdmin).pipe(
           map((response: ServiceResponse<Member[]>) => {
             return response.error
               ? MembersActions.fetchMembersFailed({ error: response.error })

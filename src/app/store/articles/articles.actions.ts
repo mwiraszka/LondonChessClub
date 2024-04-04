@@ -76,7 +76,7 @@ export const fetchArticleForViewScreenFailed = createAction(
   props<{ error: Error }>(),
 );
 export const articleSetForViewing = createAction(
-  ArticlesActionTypes.ARTICLE_SET_FOR_EDITING,
+  ArticlesActionTypes.ARTICLE_SET_FOR_VIEWING,
   props<{ article: Article; sectionToScrollTo?: string }>(),
 );
 

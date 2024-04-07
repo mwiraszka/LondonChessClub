@@ -43,6 +43,9 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 v3.0.13 - April 7th, 2024
 </summary>
 
+- 🚀 Keep admin user on the Add Member and Add Event pages after a new item (member/event) has been successfully created, to prevent them from having to re-navigate to the page each time when adding multiple items
+- 🚀 Style scrollbars more consistently across app
+
 - 🐛 Fix bug preventing admin user from setting an image on a new article
 
 - 🔧 Implement new navigation flow to help differentiate between deep-linking and page refreshing, which require slightly page setup logic

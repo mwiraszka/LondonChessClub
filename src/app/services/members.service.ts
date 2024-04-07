@@ -61,7 +61,6 @@ export class MembersService {
 
   addMember(memberToAdd: Member): Observable<ServiceResponse<Member>> {
     const flattenedMember = this.adaptForBackend([memberToAdd])[0];
-
     return this.authService.token().pipe(
       switchMap(token =>
         this.http.post<null>(this.PRIVATE_API_ENDPOINT, flattenedMember, {

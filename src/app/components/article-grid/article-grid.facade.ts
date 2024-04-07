@@ -18,8 +18,6 @@ export class ArticleGridFacade {
   }
 
   onDeleteArticle(article: Article): void {
-    this.store.dispatch(
-      ArticlesActions.deleteArticleSelected({ articleToDelete: article }),
-    );
+    this.store.dispatch(ArticlesActions.deleteArticleSelected({ article }));
   }
 }

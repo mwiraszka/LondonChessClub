@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthSelectors } from '@app/store/auth';
-import { selectCurrentRoute } from '@app/store/nav/router.selectors';
+import { selectCurrentRoute } from '@app/store/nav/nav.selectors';
 import { NavPathTypes } from '@app/types';
 
 @Injectable({ providedIn: 'root' })

@@ -4,15 +4,15 @@ import { first, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import type { Article } from '@app/types';
+import { type Article } from '@app/types';
 import { isEmpty } from '@app/utils';
 
 @Injectable()
 export class ArticleFormFacade {
-  readonly selectedArticle$ = this.store.select(ArticlesSelectors.selectedArticle);
   readonly articleCurrently$ = this.store.select(ArticlesSelectors.articleCurrently);
-  readonly isEditMode$ = this.store.select(ArticlesSelectors.isEditMode);
   readonly hasUnsavedChanges$ = this.store.select(ArticlesSelectors.hasUnsavedChanges);
+  readonly isEditMode$ = this.store.select(ArticlesSelectors.isEditMode);
+  readonly selectedArticle$ = this.store.select(ArticlesSelectors.selectedArticle);
 
   constructor(private readonly store: Store) {}
 
@@ -23,21 +23,19 @@ export class ArticleFormFacade {
   onSubmit(article: Article): void {
     this.isEditMode$
       .pipe(
-        map(isEditMode => {
-          if (isEditMode) {
-            this.store.dispatch(
-              ArticlesActions.updateArticleSelected({
-                articleToUpdate: article,
-              }),
-            );
-          } else {
-            this.store.dispatch(
-              ArticlesActions.publishArticleSelected({
-                articleToPublish: article,
-              }),
-            );
-          }
-        }),
+        map(isEditMode =>
+          isEditMode
+            ? this.store.dispatch(
+                ArticlesActions.updateArticleSelected({
+                  article,
+                }),
+              )
+            : this.store.dispatch(
+                ArticlesActions.publishArticleSelected({
+                  article,
+                }),
+              ),
+        ),
         first(),
       )
       .subscribe();

@@ -11,6 +11,6 @@ export class MarkdownRendererFacade {
   constructor(private readonly store: Store) {}
 
   onScrollToSection(): void {
-    this.store.dispatch(ArticlesActions.scrollToSection());
+    this.store.dispatch(ArticlesActions.scrolledToArticleSection());
   }
 }

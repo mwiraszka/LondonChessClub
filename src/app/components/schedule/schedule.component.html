@@ -62,6 +62,6 @@
 @if (allowTogglePastEvents) {
 <button class="lcc-raised-button toggle-past-events-button"
 				(click)="onShowHidePastEvents()">
-	{{ showPast$ ? 'Hide' : 'Show' }} past events
+	{{ (showPast$ | async) ? 'Hide' : 'Show' }} past events
 </button>
 }

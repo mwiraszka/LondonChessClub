@@ -87,10 +87,10 @@ export class ToasterEffects {
   addDeleteArticleSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleSucceeded),
-      map(({ deletedArticle }) => {
+      map(({ article }) => {
         const toast: Toast = {
           title: 'Article deletion',
-          message: `Successfully deleted ${deletedArticle.title}`,
+          message: `Successfully deleted ${article.title}`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -128,10 +128,7 @@ export class ToasterEffects {
 
   addFetchArticleFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(
-        ArticlesActions.fetchArticleForViewScreenFailed,
-        ArticlesActions.fetchArticleForEditScreenFailed,
-      ),
+      ofType(ArticlesActions.fetchArticleFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Load article',
@@ -148,10 +145,10 @@ export class ToasterEffects {
   addAddMemberSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.addMemberSucceeded),
-      map(({ addedMember }) => {
+      map(({ member }) => {
         const toast: Toast = {
           title: 'New member',
-          message: `Successfully added ${addedMember.firstName} ${addedMember.lastName}`,
+          message: `Successfully added ${member.firstName} ${member.lastName}`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -176,10 +173,10 @@ export class ToasterEffects {
   addUpdateMemberSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.updateMemberSucceeded),
-      map(({ updatedMember }) => {
+      map(({ member }) => {
         const toast: Toast = {
           title: 'Member update',
-          message: `Successfully updated ${updatedMember.firstName} ${updatedMember.lastName}`,
+          message: `Successfully updated ${member.firstName} ${member.lastName}`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -204,10 +201,10 @@ export class ToasterEffects {
   addDeleteMemberSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.deleteMemberSucceeded),
-      map(({ deletedMember }) => {
+      map(({ member }) => {
         const toast: Toast = {
           title: 'Member deletion',
-          message: `Successfully deleted ${deletedMember.firstName} ${deletedMember.lastName}`,
+          message: `Successfully deleted ${member.firstName} ${member.lastName}`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -245,7 +242,7 @@ export class ToasterEffects {
 
   addFetchMemberFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(MembersActions.fetchMemberForEditScreenFailed),
+      ofType(MembersActions.fetchMemberFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Load member',
@@ -262,10 +259,10 @@ export class ToasterEffects {
   addAddEventSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.addEventSucceeded),
-      map(({ addedEvent }) => {
+      map(({ event }) => {
         const toast: Toast = {
           title: 'New event',
-          message: `Successfully added ${addedEvent.title}`,
+          message: `Successfully added ${event.title}`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -290,10 +287,10 @@ export class ToasterEffects {
   addUpdateEventSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.updateEventSucceeded),
-      map(({ updatedEvent }) => {
+      map(({ event }) => {
         const toast: Toast = {
           title: 'Event update',
-          message: `Successfully updated ${updatedEvent.title}`,
+          message: `Successfully updated ${event.title}`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -318,10 +315,10 @@ export class ToasterEffects {
   addDeleteEventSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.deleteEventSucceeded),
-      map(({ deletedEvent }) => {
+      map(({ event }) => {
         const toast: Toast = {
           title: 'Event deletion',
-          message: `Successfully deleted ${deletedEvent.title}`,
+          message: `Successfully deleted ${event.title}`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -359,7 +356,7 @@ export class ToasterEffects {
 
   addFetchEventFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.fetchEventForEditScreenFailed),
+      ofType(ScheduleActions.fetchEventFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Load event',

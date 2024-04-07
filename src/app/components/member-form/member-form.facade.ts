@@ -8,10 +8,10 @@ import type { Member } from '@app/types';
 
 @Injectable()
 export class MemberFormFacade {
-  readonly selectedMember$ = this.store.select(MembersSelectors.selectedMember);
-  readonly memberCurrently$ = this.store.select(MembersSelectors.memberCurrently);
-  readonly isEditMode$ = this.store.select(MembersSelectors.isEditMode);
   readonly hasUnsavedChanges$ = this.store.select(MembersSelectors.hasUnsavedChanges);
+  readonly isEditMode$ = this.store.select(MembersSelectors.isEditMode);
+  readonly memberCurrently$ = this.store.select(MembersSelectors.memberCurrently);
+  readonly selectedMember$ = this.store.select(MembersSelectors.selectedMember);
 
   constructor(private readonly store: Store) {}
 
@@ -22,19 +22,15 @@ export class MemberFormFacade {
   onSubmit(member: Member): void {
     this.isEditMode$
       .pipe(
-        map(isEditMode => {
-          if (isEditMode) {
-            this.store.dispatch(
-              MembersActions.updateMemberSelected({
-                memberToUpdate: member,
-              }),
-            );
-          } else {
-            this.store.dispatch(
-              MembersActions.addMemberSelected({ memberToAdd: member }),
-            );
-          }
-        }),
+        map(isEditMode =>
+          isEditMode
+            ? this.store.dispatch(
+                MembersActions.updateMemberSelected({
+                  member,
+                }),
+              )
+            : this.store.dispatch(MembersActions.addMemberSelected({ member })),
+        ),
         first(),
       )
       .subscribe();

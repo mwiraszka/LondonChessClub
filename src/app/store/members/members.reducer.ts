@@ -1,5 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
+import { newMemberFormTemplate } from '@app/types';
 import { customSort } from '@app/utils';
 
 import * as MembersActions from './members.actions';
@@ -8,12 +9,44 @@ import { MembersState, initialState } from './members.state';
 const membersReducer = createReducer(
   initialState,
 
+  on(MembersActions.setMember, (state, { member, isEditMode }) => ({
+    ...state,
+    selectedMember: member,
+    memberCurrently: member,
+    isEditMode,
+  })),
+
+  on(
+    MembersActions.cancelSelected,
+    MembersActions.fetchMemberFailed,
+    MembersActions.updateMemberSucceeded,
+    MembersActions.deleteMemberFailed,
+    MembersActions.deleteMemberCancelled,
+    state => ({
+      ...state,
+      selectedMember: null,
+      memberCurrently: null,
+      isEditMode: null,
+    }),
+  ),
+
+  on(MembersActions.addMemberSucceeded, state => ({
+    ...state,
+    selectedMember: newMemberFormTemplate,
+    memberCurrently: newMemberFormTemplate,
+  })),
+
+  on(MembersActions.fetchMemberRequested, state => ({
+    ...state,
+    isEditMode: true,
+  })),
+
   on(MembersActions.fetchMembersSucceeded, (state, { allMembers }) => ({
     ...state,
     members: [...allMembers].sort(customSort(state.sortedBy, state.isAscending)),
   })),
 
-  on(MembersActions.fetchMemberForEditScreenSucceeded, (state, { member }) => ({
+  on(MembersActions.fetchMemberSucceeded, (state, { member }) => ({
     ...state,
     members: [
       ...state.members.filter(storedMember => storedMember.id !== member.id),
@@ -21,11 +54,20 @@ const membersReducer = createReducer(
     ],
   })),
 
-  on(MembersActions.memberSetForEditing, (state, { member }) => ({
+  on(MembersActions.deleteMemberSelected, (state, { member }) => ({
     ...state,
     selectedMember: member,
+  })),
+
+  on(MembersActions.deleteMemberSucceeded, (state, { member }) => ({
+    ...state,
+    members: state.members.filter(memberInStore => memberInStore.id !== member.id),
+    selectedMember: null,
+  })),
+
+  on(MembersActions.formDataChanged, (state, { member }) => ({
+    ...state,
     memberCurrently: member,
-    isEditMode: true,
   })),
 
   on(MembersActions.pageChanged, (state, { pageNum }) => ({
@@ -59,44 +101,6 @@ const membersReducer = createReducer(
     ...state,
     showActiveOnly: !state.showActiveOnly,
     pageNum: 1,
-  })),
-
-  on(MembersActions.addMemberSelected, (state, { memberToAdd }) => ({
-    ...state,
-    memberCurrently: memberToAdd,
-  })),
-
-  on(MembersActions.updateMemberSelected, (state, { memberToUpdate }) => ({
-    ...state,
-    memberCurrently: memberToUpdate,
-  })),
-
-  on(MembersActions.deleteMemberSelected, (state, { memberToDelete }) => ({
-    ...state,
-    selectedMember: memberToDelete,
-  })),
-
-  on(MembersActions.deleteMemberSucceeded, (state, { deletedMember }) => ({
-    ...state,
-    members: state.members.filter(member => member.id !== deletedMember.id),
-    selectedMember: null,
-  })),
-
-  on(MembersActions.deleteMemberFailed, MembersActions.deleteMemberCancelled, state => ({
-    ...state,
-    selectedMember: null,
-  })),
-
-  on(MembersActions.membersScreenEntered, MembersActions.resetMemberForm, state => ({
-    ...state,
-    selectedMember: initialState.selectedMember,
-    memberCurrently: initialState.memberCurrently,
-    isEditMode: false,
-  })),
-
-  on(MembersActions.formDataChanged, (state, { member }) => ({
-    ...state,
-    memberCurrently: member,
   })),
 );
 

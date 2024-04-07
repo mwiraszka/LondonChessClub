@@ -9,36 +9,39 @@ import { ArticlesState, initialState } from './articles.state';
 const articlesReducer = createReducer(
   initialState,
 
+  on(ArticlesActions.setArticle, (state, { article, isEditMode, sectionToScrollTo }) => ({
+    ...state,
+    selectedArticle: article,
+    articleCurrently: article,
+    sectionToScrollTo: sectionToScrollTo ?? null,
+    isEditMode,
+  })),
+
+  on(
+    ArticlesActions.cancelSelected,
+    ArticlesActions.fetchArticleFailed,
+    ArticlesActions.updateArticleSucceeded,
+    ArticlesActions.deleteArticleFailed,
+    ArticlesActions.deleteArticleCancelled,
+    state => ({
+      ...state,
+      selectedArticle: null,
+      articleCurrently: null,
+      isEditMode: null,
+    }),
+  ),
+
   on(ArticlesActions.fetchArticlesSucceeded, (state, { allArticles }) => ({
     ...state,
     articles: getSortedArtices(allArticles),
   })),
 
-  on(
-    ArticlesActions.fetchArticleForViewScreenSucceeded,
-    ArticlesActions.fetchArticleForEditScreenSucceeded,
-    (state, { article }) => ({
-      ...state,
-      articles: [
-        ...state.articles.filter(storedArticle => storedArticle.id !== article.id),
-        article,
-      ],
-    }),
-  ),
-
-  on(ArticlesActions.articleSetForViewing, (state, { article, sectionToScrollTo }) => ({
+  on(ArticlesActions.fetchArticleSucceeded, (state, { article }) => ({
     ...state,
-    selectedArticle: article,
-    articleCurrently: article,
-    sectionToScrollTo: sectionToScrollTo ?? null,
-    isEditMode: false,
-  })),
-
-  on(ArticlesActions.articleSetForEditing, (state, { article }) => ({
-    ...state,
-    selectedArticle: article,
-    articleCurrently: article,
-    isEditMode: true,
+    articles: [
+      ...state.articles.filter(storedArticle => storedArticle.id !== article.id),
+      article,
+    ],
   })),
 
   on(ArticlesActions.getArticleImageUrlSucceeded, (state, { imageUrl }) => ({
@@ -46,48 +49,33 @@ const articlesReducer = createReducer(
     selectedArticle: state.selectedArticle
       ? { ...state.selectedArticle, imageUrl }
       : null,
-    articleCurrently: { ...state.articleCurrently, imageUrl },
+    articleCurrently: state.articleCurrently
+      ? { ...state.articleCurrently, imageUrl }
+      : null,
   })),
 
-  on(ArticlesActions.deleteArticleSelected, (state, { articleToDelete }) => ({
+  on(ArticlesActions.deleteArticleSelected, (state, { article }) => ({
     ...state,
-    selectedArticle: articleToDelete,
+    selectedArticle: article,
   })),
 
-  on(ArticlesActions.deleteArticleSucceeded, (state, { deletedArticle }) => ({
+  on(ArticlesActions.deleteArticleSucceeded, (state, { article }) => ({
     ...state,
-    articles: state.articles.filter(article => article.id !== deletedArticle.id),
+    articles: state.articles.filter(storedArticle => storedArticle.id !== article.id),
     selectedArticle: null,
-  })),
-
-  on(ArticlesActions.deleteArticleFailed, state => ({
-    ...state,
-    selectedArticle: null,
-  })),
-
-  on(ArticlesActions.deleteArticleCancelled, state => ({
-    ...state,
-    selectedArticle: null,
-  })),
-
-  on(ArticlesActions.newsScreenEntered, ArticlesActions.resetArticleForm, state => ({
-    ...state,
-    selectedArticle: initialState.selectedArticle,
-    articleCurrently: initialState.articleCurrently,
-    isEditMode: false,
   })),
 
   on(ArticlesActions.publishArticleSucceeded, (state, { article }) => ({
     ...state,
-    articleCurrently: initialState.articleCurrently,
-    isEditMode: false,
+    articleCurrently: null,
+    isEditMode: null,
     articles: [...state.articles, article],
   })),
 
   on(ArticlesActions.updateArticleSucceeded, (state, { article }) => ({
     ...state,
     articleCurrently: initialState.articleCurrently,
-    isEditMode: false,
+    isEditMode: null,
     articles: [
       ...state.articles.map(storedArticle =>
         storedArticle.id === article.id ? article : storedArticle,
@@ -100,7 +88,7 @@ const articlesReducer = createReducer(
     articleCurrently: article,
   })),
 
-  on(ArticlesActions.scrollToSection, state => ({
+  on(ArticlesActions.scrolledToArticleSection, state => ({
     ...state,
     sectionToScrollTo: null,
   })),

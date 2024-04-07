@@ -14,7 +14,7 @@ import { AboutScreenFacade } from './about-screen.facade';
 export class AboutScreenComponent {
   readonly NavPathTypes = NavPathTypes;
 
-  constructor(public facade: AboutScreenFacade, private router: Router) {}
+  constructor(public facade: AboutScreenFacade, private readonly router: Router) {}
 
   onNavigate(path: NavPathTypes): void {
     this.router.navigate([path]);

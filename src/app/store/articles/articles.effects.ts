@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
-import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
 import { throwError } from 'rxjs';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
@@ -19,6 +18,7 @@ export class ArticlesEffects {
   fetchArticles$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticlesRequested),
+      tap(() => this.loaderService.display(true)),
       switchMap(() =>
         this.articlesService.getArticles().pipe(
           map((response: ServiceResponse<Article[]>) =>
@@ -30,88 +30,27 @@ export class ArticlesEffects {
           ),
         ),
       ),
+      tap(() => this.loaderService.display(false)),
     );
   });
 
-  fetchArticleForViewScreen$ = createEffect(() => {
+  fetchArticle$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.fetchArticleForViewScreenRequested),
+      ofType(ArticlesActions.fetchArticleRequested),
       tap(() => this.loaderService.display(true)),
       switchMap(({ articleId }) =>
         this.articlesService.getArticle(articleId).pipe(
           map((response: ServiceResponse<Article>) =>
             response.error
-              ? ArticlesActions.fetchArticleForViewScreenFailed({
+              ? ArticlesActions.fetchArticleFailed({
                   error: response.error,
                 })
-              : ArticlesActions.fetchArticleForViewScreenSucceeded({
+              : ArticlesActions.fetchArticleSucceeded({
                   article: response.payload!,
                 }),
           ),
         ),
       ),
-      tap(() => this.loaderService.display(false)),
-    );
-  });
-
-  setArticleForViewing$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.fetchArticleForViewScreenSucceeded),
-      map(({ article }) => ArticlesActions.articleSetForViewing({ article })),
-    );
-  });
-
-  fetchArticleForEditScreen$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.fetchArticleForEditScreenRequested),
-      tap(() => this.loaderService.display(true)),
-      switchMap(({ articleId }) =>
-        this.articlesService.getArticle(articleId).pipe(
-          map((response: ServiceResponse<Article>) =>
-            response.error
-              ? ArticlesActions.fetchArticleForEditScreenFailed({
-                  error: response.error,
-                })
-              : ArticlesActions.fetchArticleForEditScreenSucceeded({
-                  article: response.payload!,
-                }),
-          ),
-        ),
-      ),
-      tap(() => this.loaderService.display(false)),
-    );
-  });
-
-  setArticleForEditing$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.fetchArticleForEditScreenSucceeded),
-      map(({ article }) => ArticlesActions.articleSetForEditing({ article })),
-    );
-  });
-
-  deleteArticle$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.deleteArticleConfirmed),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.selectedArticle)),
-      tap(() => this.loaderService.display(true)),
-      filter(([, articleToDelete]) => !!articleToDelete),
-      switchMap(([, articleToDelete]) =>
-        this.imagesService.deleteArticleImage(articleToDelete!),
-      ),
-      switchMap(response => {
-        if (response.error) {
-          return throwError(() => new Error('Unable to delete image'));
-        }
-        return this.articlesService.deleteArticle(response!.payload!).pipe(
-          map((response: ServiceResponse<Article>) =>
-            response.error
-              ? ArticlesActions.deleteArticleFailed({ error: response.error })
-              : ArticlesActions.deleteArticleSucceeded({
-                  deletedArticle: response.payload!,
-                }),
-          ),
-        );
-      }),
       tap(() => this.loaderService.display(false)),
     );
   });
@@ -132,7 +71,7 @@ export class ArticlesEffects {
           lastEditedBy: `${user!.firstName} ${user!.lastName}`,
           dateLastEdited: dateNow,
         };
-        const modifiedArticle = { ...articleToPublish, modificationInfo };
+        const modifiedArticle = { ...articleToPublish!, modificationInfo };
 
         return this.articlesService.addArticle(modifiedArticle).pipe(
           map((response: ServiceResponse<Article>) =>
@@ -159,12 +98,12 @@ export class ArticlesEffects {
       switchMap(([, articleToUpdate, user]) => {
         const dateNow = new Date(Date.now());
         const modificationInfo: ModificationInfo = {
-          createdBy: articleToUpdate.modificationInfo!.createdBy,
-          dateCreated: articleToUpdate.modificationInfo!.dateCreated,
+          createdBy: articleToUpdate!.modificationInfo!.createdBy,
+          dateCreated: articleToUpdate!.modificationInfo!.dateCreated,
           lastEditedBy: `${user!.firstName} ${user!.lastName}`,
           dateLastEdited: dateNow,
         };
-        const modifiedArticle = { ...articleToUpdate, modificationInfo };
+        const modifiedArticle = { ...articleToUpdate!, modificationInfo };
 
         return this.articlesService.updateArticle(modifiedArticle).pipe(
           map((response: ServiceResponse<Article>) =>
@@ -180,9 +119,37 @@ export class ArticlesEffects {
     );
   });
 
-  getImageUrlForSelectedArticle$ = createEffect(() => {
+  deleteArticle$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.articleSetForEditing, ArticlesActions.articleSetForViewing),
+      ofType(ArticlesActions.deleteArticleConfirmed),
+      concatLatestFrom(() => this.store.select(ArticlesSelectors.selectedArticle)),
+      tap(() => this.loaderService.display(true)),
+      filter(([, articleToDelete]) => !!articleToDelete),
+      switchMap(([, articleToDelete]) =>
+        this.imagesService.deleteArticleImage(articleToDelete!),
+      ),
+      switchMap(response => {
+        if (response.error) {
+          return throwError(() => new Error('Unable to delete image'));
+        }
+        return this.articlesService.deleteArticle(response!.payload!).pipe(
+          map((response: ServiceResponse<Article>) =>
+            response.error
+              ? ArticlesActions.deleteArticleFailed({ error: response.error })
+              : ArticlesActions.deleteArticleSucceeded({
+                  article: response.payload!,
+                }),
+          ),
+        );
+      }),
+      tap(() => this.loaderService.display(false)),
+    );
+  });
+
+  geArticleImageUrl$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.setArticle, ArticlesActions.fetchArticleSucceeded),
+      filter(({ article }) => !article.imageUrl),
       switchMap(({ article }) => this.imagesService.getArticleImageUrl(article.imageId!)),
       map((response: ServiceResponse<Url>) =>
         response.error
@@ -191,17 +158,6 @@ export class ArticlesEffects {
       ),
     );
   });
-
-  resetArticleEditorForm$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ROUTER_NAVIGATED),
-      filter(
-        (action: RouterNavigatedAction) =>
-          action.payload.event.urlAfterRedirects === '/article/add',
-      ),
-      map(() => ArticlesActions.resetArticleForm()),
-    ),
-  );
 
   constructor(
     private readonly actions$: Actions,

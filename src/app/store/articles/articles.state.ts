@@ -1,17 +1,17 @@
-import { type Article, newArticleFormTemplate } from '@app/types';
+import type { Article } from '@app/types';
 
 export interface ArticlesState {
   articles: Article[];
   selectedArticle: Article | null;
-  articleCurrently: Article;
-  isEditMode: boolean;
+  articleCurrently: Article | null;
+  isEditMode: boolean | null;
   sectionToScrollTo: string | null;
 }
 
 export const initialState: ArticlesState = {
   articles: [],
   selectedArticle: null,
-  articleCurrently: newArticleFormTemplate,
-  isEditMode: false,
+  articleCurrently: null,
+  isEditMode: null,
   sectionToScrollTo: null,
 };

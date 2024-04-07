@@ -25,7 +25,7 @@ export class AboutComponent implements OnInit {
   clubLocation: google.maps.LatLngLiteral = { lat: 42.982528, lng: -81.261401 };
   mapOptions!: google.maps.MapOptions;
 
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(private readonly httpClient: HttpClient, private readonly router: Router) {}
 
   ngOnInit(): void {
     this.resizeMap(window.innerWidth);

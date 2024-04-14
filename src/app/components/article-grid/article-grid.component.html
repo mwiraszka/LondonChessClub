@@ -18,9 +18,17 @@
 							 name="star">
 		</i-feather>
 		}
+
+		@defer {
 		<img class="article-thumbnail-image"
-				 [src]="(article?.thumbnailImageUrl ?? 'assets/image-placeholder.png') | sanitizeUrl"
+				 [src]="article.thumbnailImageUrl"
+				 default="assets/image-placeholder.png"
 				 alt="Article banner image" />
+		} @placeholder {
+		<div class="lcc-content-placeholder-wrapper loading-placeholder-image">
+			<div class="lcc-content-placeholder"></div>
+		</div>
+		}
 
 		<div class="article-summary-container">
 			<h3 class="lcc-truncate-max-2-lines">{{ article.title }}</h3>

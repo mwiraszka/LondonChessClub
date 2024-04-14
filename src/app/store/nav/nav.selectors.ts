@@ -1,10 +1,20 @@
-import { RouterReducerState, getRouterSelectors } from '@ngrx/router-store';
-import { createFeatureSelector } from '@ngrx/store';
+import { getRouterSelectors } from '@ngrx/router-store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { AppStoreFeatureTypes } from '@app/types';
 
-export const selectRouter = createFeatureSelector<RouterReducerState>(
+import { NavState } from './nav.state';
+
+export const navFeatureSelector = createFeatureSelector<NavState>(
   AppStoreFeatureTypes.NAV,
+);
+
+export const pathHistory = createSelector(
+  navFeatureSelector,
+  state => state?.pathHistory,
+);
+export const previousPath = createSelector(pathHistory, pathHistory =>
+  pathHistory ? pathHistory[pathHistory.length - 1] : null,
 );
 
 export const {

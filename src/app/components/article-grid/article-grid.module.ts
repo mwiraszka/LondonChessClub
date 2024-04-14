@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AdminControlsModule } from '@app/components/admin-controls';
+import { ImagePreloadModule } from '@app/components/image-preload';
 import { LinkListModule } from '@app/components/link-list';
 import { TooltipModule } from '@app/components/tooltip';
 import { IconsModule } from '@app/icons';
@@ -16,6 +17,7 @@ import { ArticleGridComponent } from './article-grid.component';
     AdminControlsModule,
     CommonModule,
     IconsModule,
+    ImagePreloadModule,
     LinkListModule,
     PipesModule,
     RouterModule,

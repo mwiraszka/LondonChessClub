@@ -3,22 +3,15 @@ import { createAction, props } from '@ngrx/store';
 import type { ClubEvent } from '@app/types';
 
 enum ScheduleActionTypes {
-  SCHEDULE_SCREEN_ENTERED = '[Schedule] Schedule screen entered',
+  SET_EVENT = '[Schedule] Set event',
 
   FETCH_EVENTS_REQUESTED = '[Schedule] Fetch events requested',
   FETCH_EVENTS_SUCCEEDED = '[Schedule] Fetch events succeeded',
   FETCH_EVENTS_FAILED = '[Schedule] Fetch events failed',
 
-  FETCH_EVENT_FOR_EDIT_SCREEN_REQUESTED = '[Schedule] Fetch event for edit screen requested',
-  FETCH_EVENT_FOR_EDIT_SCREEN_SUCCEEDED = '[Schedule] Fetch event for edit screen succeeded',
-  FETCH_EVENT_FOR_EDIT_SCREEN_FAILED = '[Schedule] Fetch event for edit screen failed',
-  EVENT_SET_FOR_EDITING = '[Schedule] Event set for editing',
-
-  DELETE_EVENT_SELECTED = '[Schedule] Delete event selected',
-  DELETE_EVENT_CONFIRMED = '[Schedule] Delete event confirmed',
-  DELETE_EVENT_CANCELLED = '[Schedule] Delete event cancelled',
-  DELETE_EVENT_SUCCEEDED = '[Schedule] Delete event succeeded',
-  DELETE_EVENT_FAILED = '[Schedule] Delete event failed',
+  FETCH_EVENT_REQUESTED = '[Schedule] Fetch event requested',
+  FETCH_EVENT_SUCCEEDED = '[Schedule] Fetch event succeeded',
+  FETCH_EVENT_FAILED = '[Schedule] Fetch event failed',
 
   ADD_EVENT_SELECTED = '[Schedule] Add event selected',
   ADD_EVENT_CONFIRMED = '[Schedule] Add event confirmed',
@@ -32,15 +25,21 @@ enum ScheduleActionTypes {
   UPDATE_EVENT_SUCCEEDED = '[Schedule] Update event succeeded',
   UPDATE_EVENT_FAILED = '[Schedule] Update event failed',
 
+  DELETE_EVENT_SELECTED = '[Schedule] Delete event selected',
+  DELETE_EVENT_CONFIRMED = '[Schedule] Delete event confirmed',
+  DELETE_EVENT_CANCELLED = '[Schedule] Delete event cancelled',
+  DELETE_EVENT_SUCCEEDED = '[Schedule] Delete event succeeded',
+  DELETE_EVENT_FAILED = '[Schedule] Delete event failed',
+
   CANCEL_SELECTED = '[Schedule] Cancel selected',
   CANCEL_CONFIRMED = '[Schedule] Cancel confirmed',
 
   FORM_DATA_CHANGED = '[Schedule] Form data changed',
-  RESET_EVENT_FORM = '[Schedule] Reset event form',
 }
 
-export const scheduleScreenEntered = createAction(
-  ScheduleActionTypes.SCHEDULE_SCREEN_ENTERED,
+export const setEvent = createAction(
+  ScheduleActionTypes.SET_EVENT,
+  props<{ event: ClubEvent; isEditMode: boolean }>(),
 );
 
 export const fetchEventsRequested = createAction(
@@ -55,51 +54,28 @@ export const fetchEventsFailed = createAction(
   props<{ error: Error }>(),
 );
 
-export const fetchEventForEditScreenRequested = createAction(
-  ScheduleActionTypes.FETCH_EVENT_FOR_EDIT_SCREEN_REQUESTED,
+export const fetchEventRequested = createAction(
+  ScheduleActionTypes.FETCH_EVENT_REQUESTED,
   props<{ eventId: string }>(),
 );
-export const fetchEventForEditScreenSucceeded = createAction(
-  ScheduleActionTypes.FETCH_EVENT_FOR_EDIT_SCREEN_SUCCEEDED,
+export const fetchEventSucceeded = createAction(
+  ScheduleActionTypes.FETCH_EVENT_SUCCEEDED,
   props<{ event: ClubEvent }>(),
 );
-export const fetchEventForEditScreenFailed = createAction(
-  ScheduleActionTypes.FETCH_EVENT_FOR_EDIT_SCREEN_FAILED,
-  props<{ error: Error }>(),
-);
-export const eventSetForEditing = createAction(
-  ScheduleActionTypes.EVENT_SET_FOR_EDITING,
-  props<{ event: ClubEvent }>(),
-);
-
-export const deleteEventSelected = createAction(
-  ScheduleActionTypes.DELETE_EVENT_SELECTED,
-  props<{ eventToDelete: ClubEvent }>(),
-);
-export const deleteEventConfirmed = createAction(
-  ScheduleActionTypes.DELETE_EVENT_CONFIRMED,
-);
-export const deleteEventCancelled = createAction(
-  ScheduleActionTypes.DELETE_EVENT_CANCELLED,
-);
-export const deleteEventSucceeded = createAction(
-  ScheduleActionTypes.DELETE_EVENT_SUCCEEDED,
-  props<{ deletedEvent: ClubEvent }>(),
-);
-export const deleteEventFailed = createAction(
-  ScheduleActionTypes.DELETE_EVENT_FAILED,
+export const fetchEventFailed = createAction(
+  ScheduleActionTypes.FETCH_EVENT_FAILED,
   props<{ error: Error }>(),
 );
 
 export const addEventSelected = createAction(
   ScheduleActionTypes.ADD_EVENT_SELECTED,
-  props<{ eventToAdd: ClubEvent }>(),
+  props<{ event: ClubEvent }>(),
 );
 export const addEventConfirmed = createAction(ScheduleActionTypes.ADD_EVENT_CONFIRMED);
 export const addEventCancelled = createAction(ScheduleActionTypes.ADD_EVENT_CANCELLED);
 export const addEventSucceeded = createAction(
   ScheduleActionTypes.ADD_EVENT_SUCCEEDED,
-  props<{ addedEvent: ClubEvent }>(),
+  props<{ event: ClubEvent }>(),
 );
 export const addEventFailed = createAction(
   ScheduleActionTypes.ADD_EVENT_FAILED,
@@ -108,7 +84,7 @@ export const addEventFailed = createAction(
 
 export const updateEventSelected = createAction(
   ScheduleActionTypes.UPDATE_EVENT_SELECTED,
-  props<{ eventToUpdate: ClubEvent }>(),
+  props<{ event: ClubEvent }>(),
 );
 export const updateEventConfirmed = createAction(
   ScheduleActionTypes.UPDATE_EVENT_CONFIRMED,
@@ -118,10 +94,29 @@ export const updateEventCancelled = createAction(
 );
 export const updateEventSucceeded = createAction(
   ScheduleActionTypes.UPDATE_EVENT_SUCCEEDED,
-  props<{ updatedEvent: ClubEvent }>(),
+  props<{ event: ClubEvent }>(),
 );
 export const updateEventFailed = createAction(
   ScheduleActionTypes.UPDATE_EVENT_FAILED,
+  props<{ error: Error }>(),
+);
+
+export const deleteEventSelected = createAction(
+  ScheduleActionTypes.DELETE_EVENT_SELECTED,
+  props<{ event: ClubEvent }>(),
+);
+export const deleteEventConfirmed = createAction(
+  ScheduleActionTypes.DELETE_EVENT_CONFIRMED,
+);
+export const deleteEventCancelled = createAction(
+  ScheduleActionTypes.DELETE_EVENT_CANCELLED,
+);
+export const deleteEventSucceeded = createAction(
+  ScheduleActionTypes.DELETE_EVENT_SUCCEEDED,
+  props<{ event: ClubEvent }>(),
+);
+export const deleteEventFailed = createAction(
+  ScheduleActionTypes.DELETE_EVENT_FAILED,
   props<{ error: Error }>(),
 );
 
@@ -131,4 +126,3 @@ export const formDataChanged = createAction(
   ScheduleActionTypes.FORM_DATA_CHANGED,
   props<{ event: ClubEvent }>(),
 );
-export const resetEventForm = createAction(ScheduleActionTypes.RESET_EVENT_FORM);

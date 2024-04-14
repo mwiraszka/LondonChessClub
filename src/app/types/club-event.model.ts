@@ -12,7 +12,7 @@ export enum ClubEventTypes {
 }
 
 export interface ClubEvent {
-  id: string | undefined;
+  id: string | null;
   eventDate: string;
   title: string;
   details: string;
@@ -21,7 +21,7 @@ export interface ClubEvent {
 }
 
 export const newClubEventFormTemplate: ClubEvent = {
-  id: undefined,
+  id: null,
   eventDate: '',
   title: '',
   details: '',
@@ -31,7 +31,7 @@ export const newClubEventFormTemplate: ClubEvent = {
 
 // Backend representation of the type
 export interface FlatClubEvent {
-  id: string | undefined;
+  id: string | null;
   eventDate: string;
   title: string;
   details: string;

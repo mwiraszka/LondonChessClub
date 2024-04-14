@@ -26,6 +26,10 @@ export function isTouchScreen(): boolean {
  * @returns {boolean} Whether the two objects are (deeply) equal
  */
 export function areSame(a: Object | null, b: Object | null): boolean {
+  if (a === null && b === null) {
+    return true;
+  }
+
   if (a === null || b === null) {
     return false;
   }

@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
-import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
@@ -34,46 +33,19 @@ export class ScheduleEffects {
     );
   });
 
-  fetchEventForEditScreen$ = createEffect(() => {
+  fetchEvent$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.fetchEventForEditScreenRequested),
+      ofType(ScheduleActions.fetchEventRequested),
       tap(() => this.loaderService.display(true)),
       switchMap(({ eventId }) =>
         this.scheduleService.getEvent(eventId).pipe(
           map((response: ServiceResponse<ClubEvent>) =>
             response.error
-              ? ScheduleActions.fetchEventForEditScreenFailed({
+              ? ScheduleActions.fetchEventFailed({
                   error: response.error,
                 })
-              : ScheduleActions.fetchEventForEditScreenSucceeded({
+              : ScheduleActions.fetchEventSucceeded({
                   event: response.payload!,
-                }),
-          ),
-        ),
-      ),
-      tap(() => this.loaderService.display(false)),
-    );
-  });
-
-  setEventForEditing$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ScheduleActions.fetchEventForEditScreenSucceeded),
-      map(({ event }) => ScheduleActions.eventSetForEditing({ event })),
-    );
-  });
-
-  deleteEvent$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ScheduleActions.deleteEventConfirmed),
-      tap(() => this.loaderService.display(true)),
-      concatLatestFrom(() => this.store.select(ScheduleSelectors.selectedEvent)),
-      switchMap(([, eventToDelete]) =>
-        this.scheduleService.deleteEvent(eventToDelete!).pipe(
-          map((response: ServiceResponse<ClubEvent>) =>
-            response.error
-              ? ScheduleActions.deleteEventFailed({ error: response.error })
-              : ScheduleActions.deleteEventSucceeded({
-                  deletedEvent: response.payload!,
                 }),
           ),
         ),
@@ -98,14 +70,14 @@ export class ScheduleEffects {
           lastEditedBy: `${user!.firstName} ${user!.lastName}`,
           dateLastEdited: dateNow,
         };
-        const modifiedEvent = { ...eventToAdd, modificationInfo };
+        const modifiedEvent = { ...eventToAdd!, modificationInfo };
 
         return this.scheduleService.addEvent(modifiedEvent).pipe(
           map((response: ServiceResponse<ClubEvent>) =>
             response.error
               ? ScheduleActions.addEventFailed({ error: response.error })
               : ScheduleActions.addEventSucceeded({
-                  addedEvent: response.payload!,
+                  event: response.payload!,
                 }),
           ),
         );
@@ -125,19 +97,19 @@ export class ScheduleEffects {
       switchMap(([, eventToUpdate, user]) => {
         const dateNow = new Date(Date.now());
         const modificationInfo: ModificationInfo = {
-          createdBy: eventToUpdate.modificationInfo!.createdBy,
-          dateCreated: eventToUpdate.modificationInfo!.dateCreated,
+          createdBy: eventToUpdate!.modificationInfo!.createdBy,
+          dateCreated: eventToUpdate!.modificationInfo!.dateCreated,
           lastEditedBy: `${user!.firstName} ${user!.lastName}`,
           dateLastEdited: dateNow,
         };
-        const modifiedEvent = { ...eventToUpdate, modificationInfo };
+        const modifiedEvent = { ...eventToUpdate!, modificationInfo };
 
         return this.scheduleService.updateEvent(modifiedEvent).pipe(
           map((response: ServiceResponse<ClubEvent>) =>
             response.error
               ? ScheduleActions.updateEventFailed({ error: response.error })
               : ScheduleActions.updateEventSucceeded({
-                  updatedEvent: response.payload!,
+                  event: response.payload!,
                 }),
           ),
         );
@@ -146,16 +118,25 @@ export class ScheduleEffects {
     );
   });
 
-  resetEventEditorForm$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ROUTER_NAVIGATED),
-      filter(
-        (action: RouterNavigatedAction) =>
-          action.payload.event.urlAfterRedirects === '/event/add',
+  deleteEvent$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ScheduleActions.deleteEventConfirmed),
+      tap(() => this.loaderService.display(true)),
+      concatLatestFrom(() => this.store.select(ScheduleSelectors.selectedEvent)),
+      switchMap(([, eventToDelete]) =>
+        this.scheduleService.deleteEvent(eventToDelete!).pipe(
+          map((response: ServiceResponse<ClubEvent>) =>
+            response.error
+              ? ScheduleActions.deleteEventFailed({ error: response.error })
+              : ScheduleActions.deleteEventSucceeded({
+                  event: response.payload!,
+                }),
+          ),
+        ),
       ),
-      map(() => ScheduleActions.resetEventForm()),
-    ),
-  );
+      tap(() => this.loaderService.display(false)),
+    );
+  });
 
   constructor(
     private readonly actions$: Actions,

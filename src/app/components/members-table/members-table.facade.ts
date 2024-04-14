@@ -28,8 +28,8 @@ export class MembersTableFacade {
     this.store.dispatch(MembersActions.fetchMembersRequested());
   }
 
-  onDeleteMember(memberToDelete: Member): void {
-    this.store.dispatch(MembersActions.deleteMemberSelected({ memberToDelete }));
+  onDeleteMember(member: Member): void {
+    this.store.dispatch(MembersActions.deleteMemberSelected({ member }));
   }
 
   onSelectTableHeader(header: string): void {

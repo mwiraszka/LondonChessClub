@@ -3,16 +3,6 @@
 .lcc-table-wrapper {
   width: 100%;
   overflow-x: scroll;
-
-  // Prevent scrollbar from auto-hiding
-  &::-webkit-scrollbar {
-    background: rgba(0, 0, 0, 0);
-    height: 8px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: transparentize($lcc-color--primary, 0.2);
-  }
 }
 
 .lcc-table {

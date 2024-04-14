@@ -5,7 +5,7 @@ import { debounceTime, filter } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import type { Member, ModificationInfo } from '@app/types';
+import type { Member } from '@app/types';
 import { isDefined } from '@app/utils';
 import {
   dateValidator,
@@ -26,8 +26,6 @@ import { MemberFormFacade } from './member-form.facade';
 })
 export class MemberFormComponent implements OnInit {
   form!: FormGroup;
-  memberFullName!: string;
-  modificationInfo!: ModificationInfo | null;
   valueChangesSubscription!: Subscription;
 
   constructor(public facade: MemberFormFacade, private formBuilder: FormBuilder) {}
@@ -35,10 +33,7 @@ export class MemberFormComponent implements OnInit {
   ngOnInit(): void {
     this.facade.memberCurrently$
       .pipe(filter(isDefined), untilDestroyed(this))
-      .subscribe(member => {
-        this.initForm(member);
-        this.modificationInfo = member.modificationInfo;
-      });
+      .subscribe(member => this.initForm(member));
   }
 
   hasError(control: AbstractControl): boolean {

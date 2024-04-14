@@ -19,7 +19,7 @@ export class ScheduleFacade {
     this.store.dispatch(ScheduleActions.fetchEventsRequested());
   }
 
-  onDeleteEvent(eventToDelete: ClubEvent): void {
-    this.store.dispatch(ScheduleActions.deleteEventSelected({ eventToDelete }));
+  onDeleteEvent(event: ClubEvent): void {
+    this.store.dispatch(ScheduleActions.deleteEventSelected({ event }));
   }
 }

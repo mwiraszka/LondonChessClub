@@ -40,6 +40,22 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.1.0 - April 14th, 2024
+</summary>
+
+- 🚀 Implement articlel image placeholders and URL source fallbacks for better UX and to help prevent layout shift on page load when an image source is still unavailable
+- 🚀 Keep admin user on the Add Member and Add Event pages after a new item (member/event) has been successfully created, to prevent them from having to re-navigate to the page each time when adding multiple items
+- 🚀 Style scrollbars more consistently across app
+- 🚀 Add ability to revert chosen article banner image when creating/editing an article
+- 🚀 Retain form state on page refresh, and store chosen image's URL in local storage
+- 🐛 Fix bug preventing admin user from setting an image on a new article
+- 🔧 Major rework of the article image presigned URL/ image file serialization
+- 🔧 Implement new navigation flow to help differentiate between deep-linking and page refreshing, which require slightly different page setup logic
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.0.12 - April 3rd, 2024
 </summary>
 
@@ -63,9 +79,7 @@ v3.0.10 - April 2nd, 2024
 
 - 🚀 Save working progress in forms so that refreshing the page does not return the form to the item's original state
 - 🚀 When linking directly to a 'create' or 'edit' screen for an item that could not be found in the store, make an API call to fetch that item before resorting to redirecting the user to another screen. This will allow the user to send links that take you directly to a specific article - the full collection of articles doesn't need to first be fetched from the database for this to work anymore
-
 - 🐛 Fix bug where non-admin users were able to access certain 'edit' screens (in readonly mode)
-
 - 🔧 Reorganize app's reusable utility functions
 - 🔧 Add `type` modifier to certain imports and exports to future-proof app in the event that a transpiler (such as Babel or Vite) is introduced and it becomes unclear which imports/exports should be available at runtime (see: [this article](https://typescript-eslint.io/blog/consistent-type-imports-and-exports-why-and-how/))
 - 🔧 Refactor `*ngFor` and `*ngIf` directives to Angular's new `@for` and `@if` control-flow syntax for better DX and a slightly smaller bundle size since the new syntax is built into the template engine
@@ -83,9 +97,7 @@ v3.0.9 - March 12th, 2024
 - 🚀 Change lecture event tag colour to blue to help differentiate from blitz tournament tags
 - 🚀 After an article has been published or edited, navigate the admin user to that article instead of the News screen
 - 🚀 After an article has been deleted, only navigate the user to the News screen if they're coming from the Article View screen
-
 - 🐛 Ensure members table remains sorted after a create/edit/delete operation has completed
-
 - 🔧 Rename all requesting database actions, changing prefix from 'load' to 'fetch'
 
 </details>
@@ -97,7 +109,6 @@ v3.0.8 - March 11th, 2024
 
 - 🚀 Add support for linking to sections of article pages
 - 🚀 Revert club map back to Google Maps' default red marker styling and improve marker's longitude and latitude co-ordinates
-
 - 🔧 Update Angular Google Maps library to `v17.3.0-rc.0` and replace deprecated `map-marker` with `advanced-map-marker` HTML element
 
 </details>
@@ -126,7 +137,6 @@ v3.0.5 - March 9th, 2024
 </summary>
 
 - 🚀 Replace 100-items per page option in paginator component with one that allows user to see *all* table items at once
-
 - 🐛 Remove the option to install a bootable version of the website, and all ngsw (Angular Service Worker) related code
 
 </details>
@@ -176,7 +186,6 @@ v3.0.0 - January 24th, 2024
 - 🚀 Upgrade to Angular v17
 - 🚀 Show loading spinner over Photo Gallery photo while it loads
 - 🚀 Create a PGN viewer widget and use to display archived games in new Game Archives screen
-
 - 🐛 Remove spaces between link text and any punctuation that follows
 
 </details>
@@ -196,7 +205,6 @@ v2.2.4 - January 17th, 2024
 </summary>
 
 - 🚀 Add next/previous image buttons on Photo Gallery screen
-
 - 🔧 Refactor ImageOverlay state as a general Photos state, and add more photo-related actions and selectors
 
 </details>
@@ -208,10 +216,8 @@ v2.2.3 - January 17th, 2024
 
 - 🚀 Display each member's last update date in the members table
 - 🚀 Carry over some markdown table features to the members table (i.e. horizontal scrollbar and larger font sizes)
-
 - 🐛 Fix issue preventing admin user from adding a new member without supplying certain optional properties
 - 🐛 Fix paginator tooltip text
-
 - 🔧 Consolidate/remove repeated or no longer used table code
 
 </details>
@@ -222,7 +228,6 @@ v2.2.2 - January 12th, 2024
 </summary>
 
 - 🐛 Fix various bugs which sometimes prevented an admin user from posting or editing an article
-
 - 🔧 Improve some NgRx action names following v2.2.0's navigation refactor
 
 </details>
@@ -234,7 +239,6 @@ v2.2.1 - January 11th, 2024
 
 - 🚀 Add fun chess pieces graphic to app header and update header font
 - 🚀 Increase number of articles shown on the Home screen from 4 to 5
-
 - 🐛 Prevent tooltips from displaying out of screen's bounds
 
 </details>
@@ -248,7 +252,6 @@ v2.2.0 - January 9th, 2024
 - 🚀 Various minor improvements to admin user dropdown component
 - 🚀 Scroll to top of screen after toggling past events in the Schedule screen
 - 🚀 Brief update on 2023 Championship Match (more details and photos to follow)
-
 - 🔧 Refactor navigation logic throughout app to make better use of Angular's routing features
 - 🔧 Leverage NgNeat's `until-destroy` library for a neater way to unsubscribe from observables when a component is destroyed
 
@@ -262,7 +265,6 @@ v2.1.0 - December 31st, 2023
 - 🚀 Add support for 'sticky' articles, allowing admins to bump up selected articles to the top of the list
 - 🚀 Auto-expire warning toasts (red notifications in bottom-left of screen) just as with success toasts
 - 🚀 Navigate to Home screen when clicking on either London Chess Club logo or text in main app header, and always in the current browser tab
-
 - 🐛 Fix bug causing unsaved changes dialog from appearing when editing an article, even when it was returned to its original state
 - 🐛 Fix some broken links on the About screen, and make sure they open up in a new tab when expected
 
@@ -275,7 +277,6 @@ v2.0.4 - December 23rd, 2023
 
 - 🐛 Fix some layout issues on Article Viewer screen
 - 🐛 Fix timezone of default 'created by' & 'last edited by' dates for member edits when value is not found in database
-
 - 🔧 Revert table width hacks in Markdown Renderer component now that layout has been corrected
 
 </details>
@@ -317,12 +318,10 @@ v2.0.0 - December 20th, 2023
 - 🚀 Move About screen to after Home screen in the navigation tabs
 - 🚀 Improve About screen layout and content
 - 🚀 Display only future events in Schedule by default, with an option to show past events
-
 - 🐛 Fix issue which prevented article banner images from being fetched using secure connection (HTTPS protocol)  
 - 🐛 Correct club event date-time tiemzone calculations which were causing Thursday club event dates to show up as Wednesday
 - 🐛 Fix Angular Service Worker issues when app is running on a production environment
 - 🐛 Fix bug which prevented form validation icon from appearing in Create/Edit Event screen
-
 - 🔧 Split `utils.ts` into more categorized util files, and leverage `moment.js` library for better date-time calculations  
 
 </details>
@@ -336,9 +335,7 @@ v1.6.8-beta - December 19th, 2023
 
 - 🚀 Update content on About screen
 - 🚀 Update content on Champion screen
-
 - 🐛 Fix password change bug
-
 - 🔧 Update `manifest.webmanifest` file
 
 </details>
@@ -349,7 +346,6 @@ v1.6.7-beta - December 18th, 2023
 </summary>
 
 - 🚀 Make member's year of birth field visible only to admins
-
 - 🐛 Correct peak rating calculation for when a member's rating is edited
 - 🐛 Ensure current date in new member empty form template correctly uses local timezone and not UTC time
 
@@ -362,7 +358,6 @@ v1.6.6-beta - December 17th, 2023
 
 - 🚀 Add a 'report a bug' link to the website footer
 - 🚀 Limit banner image height so that it doesn't expand too much on larger screens  
-
 - 🐛 Fix bug preventing new banner images from being uploaded in some scenarios
 
 </details>
@@ -375,7 +370,6 @@ v1.6.5-beta - December 16th, 2023
 - 🚀 Add support for hyperlinks and bullet points in article bodies
 - 🚀 Minor revamping of home screen, about screen, and app header
 - 🚀 Update some static content on about screen
-
 - 🐛 Fix some minor layout bugs in Article Grid component
 - 🐛 Fix bug causing unsaved changes modal to appear after successfully updating a member
 - 🐛 Display correct 6:00 PM start time in banner alert message
@@ -389,7 +383,6 @@ v1.6.4-beta - December 12th, 2023
 
 - 🚀 Sort articles based on creation date
 - 🚀 Hide more markdown characters from article body preview in Article Grid
-
 - 🐛 Only show article edit date if different from creation date
 - 🐛 Ensure new lines are at least preserved with HTML 'break' tags for now
 
@@ -401,7 +394,6 @@ v1.6.3-beta - December 10th, 2023
 </summary>
 
 - 🚀 Update schedule event types; add icon beside championship type
-
 - 🐛 Fix various small bugs in Event Form component
 
 </details>
@@ -412,7 +404,6 @@ v1.6.2-beta - December 9th, 2023
 </summary>
 
 - 🚀 Improve styling on divider lines used throughout app
-
 - 🐛 Fix layout of Modification Info component, particularly for small devices
 - 🐛 Fix bug where the create/edit member form incorrectly detected changes in the member's details
 
@@ -435,7 +426,6 @@ v1.6.0-beta - December 7th, 2023
 - 🚀 Revamp top-right dropdown user menu
 - 🚀 In the admin-only article/event/member edit forms, display author's name next to each article/event/member; display in the new user dropdown menu as well
 - 🚀 Various minor layout improvements in form and toaster components
-
 - 🔧 Improve user login and Cognito auth flow
 - 🔧 Overhaul refactor of item creation and update dates to support JS Date objects, as well as store and read items' new creation & update details
 
@@ -447,7 +437,6 @@ v1.5.3-beta - December 2nd, 2023
 </summary>
 
 - 🚀 Improve modal (pop-up) button colour scheme
-
 - 🐛 Fix bug where long links in the article body would break the layout on small devices
 
 </details>
@@ -469,9 +458,7 @@ v1.5.1-beta - December 1st, 2023
 - 🚀 Add support for LCC-styled markdown tables in articles' content section
 - 🚀 Replace CDS with Angular Feather library for icons
 - 🚀 Increase limit on article body length and align text left in markdown preview section of Article Editor
-
 - 🐛 Prevent user menu dropdown icon from displaying above the image previews when an image is selected in the Photo Gallery
-
 - 🔧 Remove all dependencies to Clarity Design System library and replace with a more lightweight alternative solutions jfor icons
 
 </details>
@@ -482,11 +469,9 @@ v1.5.0-beta - December 1st, 2023
 </summary>
 
 - 🚀 Add support for markdown in articles!
-
 - 🐛 Fix various minor layout bugs on News and Photo Gallery screens
 - 🐛 Restrict article banner image size to 1MB to ensure image uploads do not fail
 - 🐛 Ensure dates used to determine upcoming events are compared correctly
-
 - 🔧 Clean up various warnings showing up in the console, related to issues with the webmanifest and common JS packages
 
 </details>
@@ -508,9 +493,7 @@ v1.4.4-beta - November 22nd, 2023
 - 🚀 Improve typography and layout of Schedule and Nav components
 - 🚀 Add more photos and archive links to Photo Gallery screen
 - 🚀 Improve styling of 'secondary' buttons throughout app
-
 - 🐛 Fix various minor bugs on Article Editor and Article Viewer screens
-
 - 🔧 Revamp this `README` file and issue tickets for upcoming full release (v2.0.0)
 - 🔧 Reorganize `layout` style partials
 
@@ -524,9 +507,7 @@ v1.4.3-beta - November 19th, 2023
 - 🚀 Display next event as a banner with option to link to that particular event on the Schedule screen
 - 🚀 Improve how images are displayed on small devices
 - 🚀 Add more event categories and only display upcoming events on the Home screen
-
 - 🐛 Ensure admin control buttons don't propagate and trigger click events on their parent components
-
 - 🔧 Create a `formatDate` pipe that invokes the `formatDate` utility function
 
 </details>
@@ -537,7 +518,6 @@ v1.4.2-beta - November 16th, 2023
 </summary>
 
 - 🚀 Automatically log in after a successful password change, redirect user to Home screen, and hide sensitive information from Redux Devtools
-
 - 🐛 Fix bug preventing user from accessing add member, add article and add event screens
 - 🐛 Fix bug causing 'Last edited: Invalid Date' to be displayed after creating a new article
 
@@ -550,7 +530,6 @@ v1.4.1-beta - November 15th, 2023
 
 - 🚀 Add tables for executive committee and board of directors
 - 🚀 Fix table column widths for all breakpoints to prevent layout shifts when sorting and awkward gaps between columns
-
 - 🐛 Fix some small layout bugs on Champion screen
 - 🐛 Fix bug preventing user menu to open
 
@@ -562,7 +541,6 @@ v1.4.0-beta - November 13th, 2023
 </summary>
 
 - 🚀 Overhaul layout upgrades on all screens
-
 - 🔧 Implement power-of-2 't-shirt size' naming conventions for spacing style rules, including paddings, margins and flex gaps
 - 🔧 Update some copy
 - 🔧 Remove unnecessary/ unused style sheet partials
@@ -607,7 +585,6 @@ v1.3.0-beta - October 30th, 2023
 - 🚀 Improve screen layouts for XL-wide devices
 - 🚀 Improve truncation logic and support truncation by line count
 - 🚀 Modify all toast titles to make them more distinct from notification descriptions directly below
-
 - 🐛 Fix bug causing forms to submit twice when using the 'enter' key
 - 🐛 Fix bug preventing new password from being sent to the server
 
@@ -622,7 +599,6 @@ v1.2.0-beta - October 4th, 2023
 
 - 🚀 Support submitting via 'enter' key in all forms
 - 🚀 Add ability to return to the previous screen and request a new code after an email has already been entered
-
 - 🐛 Revert changes to algorithm of 'kebabize' helper function, ensuring that the correct CSS classes are added in the Members Table component
 - 🐛 Ensure all validator functions work as expected again, after major code refactor in the previous release
 
@@ -636,7 +612,6 @@ v1.1.0-beta - August 31st, 2023
 </summary>
 
 - 🚀 Embed Google Maps map of club location
-
 - 🔧 Enforce strict typing and apply better formatting in all files using new ESLint, Prettier and Beautify set up
 - 🔧 Update and clean up this `README` file
 - 🔧 Ensure all functions have an explicit return type
@@ -649,7 +624,6 @@ v1.0.0-beta - September 26th, 2022
 </summary>
 
 - 🐛 Revert accidental removal of DevTools module property 'logOnly' to re-disable all but logs when in a production environment
-
 - 🔧 Clean up comments throughout codebase
 - 🔧 Add any missing information to this `README` file
 
@@ -666,7 +640,6 @@ v0.8.2-alpha - September 22nd, 2022
 - 🚀 Improve date formatting in schedule component
 - 🚀 Centre admin control links displayed above the schedule, members, and article grid components
 - 🚀 Sanitize any actions in NgRx DevTools that include sensitive information
-
 - 🔧 Remove any unused code from article grid and article form components and resize the cards that make up the article grid
 - 🔧 Clean up `.gitignore` file
 
@@ -678,9 +651,7 @@ v0.8.1-alpha - September 13th, 2022
 </summary>
 
 - 🚀 Implement custom trackBy function to improve performance of ngFor directive's tracking algorithm
-
 - 🐛 Correct faulty date format conversions used in schedule component
-
 - 🔧 Wrap `createEffect()` callbacks with `return` for easier debugging
 
 </details>

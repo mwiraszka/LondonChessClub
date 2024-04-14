@@ -16,10 +16,10 @@ export class ModalEffects {
   openAddMemberModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.addMemberSelected),
-      map(({ memberToAdd }) => {
+      map(({ member }) => {
         const modal: Modal = {
           title: 'Confirm new member',
-          body: `Add ${memberToAdd.firstName} ${memberToAdd.lastName} to database?`,
+          body: `Add ${member.firstName} ${member.lastName} to database?`,
           buttons: [
             {
               text: 'Cancel',
@@ -67,10 +67,10 @@ export class ModalEffects {
   openDeleteMemberModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.deleteMemberSelected),
-      map(({ memberToDelete }) => {
+      map(({ member }) => {
         const modal: Modal = {
           title: 'Confirm member deletion',
-          body: `Delete ${memberToDelete.firstName} ${memberToDelete.lastName}?`,
+          body: `Delete ${member.firstName} ${member.lastName}?`,
           buttons: [
             {
               text: 'Cancel',
@@ -92,10 +92,10 @@ export class ModalEffects {
   openAddEventModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.addEventSelected),
-      map(({ eventToAdd }) => {
+      map(({ event }) => {
         const modal: Modal = {
           title: 'Confirm new event',
-          body: `Add ${eventToAdd.title} to database?`,
+          body: `Add ${event.title} to database?`,
           buttons: [
             {
               text: 'Cancel',
@@ -143,10 +143,10 @@ export class ModalEffects {
   openDeleteEventModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.deleteEventSelected),
-      map(({ eventToDelete }) => {
+      map(({ event }) => {
         const modal: Modal = {
           title: 'Confirm event deletion',
-          body: `Delete ${eventToDelete.title}?`,
+          body: `Delete ${event.title}?`,
           buttons: [
             {
               text: 'Cancel',
@@ -168,10 +168,10 @@ export class ModalEffects {
   openPublishArticleModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.publishArticleSelected),
-      map(({ articleToPublish }) => {
+      map(({ article }) => {
         const modal: Modal = {
           title: 'Confirm new article',
-          body: `Publish ${articleToPublish.title}`,
+          body: `Publish ${article.title}`,
           buttons: [
             {
               text: 'Cancel',
@@ -194,10 +194,10 @@ export class ModalEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleSelected),
       concatLatestFrom(() => this.store.select(ArticlesSelectors.selectedArticle)),
-      map(([, selectedArticle]) => {
+      map(([, originalArticle]) => {
         const modal: Modal = {
           title: 'Confirm article update',
-          body: `Update ${selectedArticle?.title}?`,
+          body: `Update ${originalArticle?.title}?`,
           buttons: [
             {
               text: 'Cancel',
@@ -219,10 +219,10 @@ export class ModalEffects {
   openDeleteArticleModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleSelected),
-      map(({ articleToDelete }) => {
+      map(({ article }) => {
         const modal: Modal = {
           title: 'Confirm article deletion',
-          body: `Update ${articleToDelete.title}?`,
+          body: `Update ${article.title}?`,
           buttons: [
             {
               text: 'Cancel',

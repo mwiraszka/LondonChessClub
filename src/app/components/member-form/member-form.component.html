@@ -168,11 +168,13 @@
 					 formControlName="isActive" />
 		}
 	</div>
+
 	<hr />
-	@if (facade.isEditMode$ | async) {
-	<lcc-modification-info [info]="modificationInfo!">
-	</lcc-modification-info>
+
+	@if ((facade.memberCurrently$ | async)?.modificationInfo; as modificationInfo) {
+	<lcc-modification-info [info]="modificationInfo"></lcc-modification-info>
 	}
+
 	<div class="lcc-form-buttons-container">
 		<button class="lcc-secondary-button"
 						type="button"

@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
-import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
@@ -35,46 +34,19 @@ export class MembersEffects {
     );
   });
 
-  fetchMemberForEditScreen$ = createEffect(() => {
+  fetchMember$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(MembersActions.fetchMemberForEditScreenRequested),
+      ofType(MembersActions.fetchMemberRequested),
       tap(() => this.loaderService.display(true)),
       switchMap(({ memberId }) =>
         this.membersService.getMember(memberId).pipe(
           map((response: ServiceResponse<Member>) =>
             response.error
-              ? MembersActions.fetchMemberForEditScreenFailed({
+              ? MembersActions.fetchMemberFailed({
                   error: response.error,
                 })
-              : MembersActions.fetchMemberForEditScreenSucceeded({
+              : MembersActions.fetchMemberSucceeded({
                   member: response.payload!,
-                }),
-          ),
-        ),
-      ),
-      tap(() => this.loaderService.display(false)),
-    );
-  });
-
-  setMemberForEditing$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(MembersActions.fetchMemberForEditScreenSucceeded),
-      map(({ member }) => MembersActions.memberSetForEditing({ member })),
-    );
-  });
-
-  deleteMember$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(MembersActions.deleteMemberConfirmed),
-      tap(() => this.loaderService.display(true)),
-      concatLatestFrom(() => this.store.select(MembersSelectors.selectedMember)),
-      switchMap(([, memberToDelete]) =>
-        this.membersService.deleteMember(memberToDelete!).pipe(
-          map((response: ServiceResponse<Member>) =>
-            response.error
-              ? MembersActions.deleteMemberFailed({ error: response.error })
-              : MembersActions.deleteMemberSucceeded({
-                  deletedMember: response.payload!,
                 }),
           ),
         ),
@@ -99,14 +71,14 @@ export class MembersEffects {
           lastEditedBy: `${user!.firstName} ${user!.lastName}`,
           dateLastEdited: dateNow,
         };
-        const modifiedMember = { ...memberToAdd, modificationInfo };
+        const modifiedMember = { ...memberToAdd!, modificationInfo };
 
-        return this.membersService.addMember(modifiedMember!).pipe(
+        return this.membersService.addMember(modifiedMember).pipe(
           map((response: ServiceResponse<Member>) =>
             response.error
               ? MembersActions.addMemberFailed({ error: response.error })
               : MembersActions.addMemberSucceeded({
-                  addedMember: response.payload!,
+                  member: response.payload!,
                 }),
           ),
         );
@@ -126,19 +98,19 @@ export class MembersEffects {
       switchMap(([, memberToUpdate, user]) => {
         const dateNow = new Date(Date.now());
         const modificationInfo: ModificationInfo = {
-          createdBy: memberToUpdate.modificationInfo!.createdBy,
-          dateCreated: memberToUpdate.modificationInfo!.dateCreated,
+          createdBy: memberToUpdate!.modificationInfo!.createdBy,
+          dateCreated: memberToUpdate!.modificationInfo!.dateCreated,
           lastEditedBy: `${user!.firstName} ${user!.lastName}`,
           dateLastEdited: dateNow,
         };
-        const modifiedMember = { ...memberToUpdate, modificationInfo };
+        const modifiedMember = { ...memberToUpdate!, modificationInfo };
 
         return this.membersService.updateMember(modifiedMember!).pipe(
           map((response: ServiceResponse<Member>) =>
             response.error
               ? MembersActions.updateMemberFailed({ error: response.error })
               : MembersActions.updateMemberSucceeded({
-                  updatedMember: response.payload!,
+                  member: response.payload!,
                 }),
           ),
         );
@@ -147,16 +119,25 @@ export class MembersEffects {
     );
   });
 
-  resetMemberEditorForm$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ROUTER_NAVIGATED),
-      filter(
-        (action: RouterNavigatedAction) =>
-          action.payload.event.urlAfterRedirects === '/member/add',
+  deleteMember$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(MembersActions.deleteMemberConfirmed),
+      tap(() => this.loaderService.display(true)),
+      concatLatestFrom(() => this.store.select(MembersSelectors.selectedMember)),
+      switchMap(([, memberToDelete]) =>
+        this.membersService.deleteMember(memberToDelete!).pipe(
+          map((response: ServiceResponse<Member>) =>
+            response.error
+              ? MembersActions.deleteMemberFailed({ error: response.error })
+              : MembersActions.deleteMemberSucceeded({
+                  member: response.payload!,
+                }),
+          ),
+        ),
       ),
-      map(() => MembersActions.resetMemberForm()),
-    ),
-  );
+      tap(() => this.loaderService.display(false)),
+    );
+  });
 
   constructor(
     private readonly store: Store,

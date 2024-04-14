@@ -3,7 +3,7 @@ import moment from 'moment';
 import type { ModificationInfo } from '@app/types';
 
 export interface Member {
-  id: string | undefined;
+  id: string | null;
   firstName?: string;
   lastName?: string;
   city: string;
@@ -20,7 +20,7 @@ export interface Member {
 }
 
 export const newMemberFormTemplate: Member = {
-  id: undefined,
+  id: null,
   city: 'London',
   rating: '1000/0',
   peakRating: '(provisional)',
@@ -31,7 +31,7 @@ export const newMemberFormTemplate: Member = {
 
 // Backend representation of the type
 export interface FlatMember {
-  id: string | undefined;
+  id: string | null;
   firstName?: string;
   lastName?: string;
   city: string;

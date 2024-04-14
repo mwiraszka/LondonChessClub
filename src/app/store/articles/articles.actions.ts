@@ -1,32 +1,30 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Article, Url } from '@app/types';
+import { type Article, type Url } from '@app/types';
 
 enum ArticlesActionTypes {
-  NEWS_SCREEN_ENTERED = '[Articles] News screen entered',
+  SET_ARTICLE = '[Articles] Set article',
 
   FETCH_ARTICLES_REQUESTED = '[Articles] Fetch articles requested',
   FETCH_ARTICLES_SUCCEEDED = '[Articles] Fetch articles succeeded',
   FETCH_ARTICLES_FAILED = '[Articles] Fetch articles failed',
 
-  FETCH_ARTICLE_FOR_VIEW_SCREEN_REQUESTED = '[Articles] Fetch article for view screen requested',
-  FETCH_ARTICLE_FOR_VIEW_SCREEN_SUCCEEDED = '[Articles] Fetch article for view screen succeeded',
-  FETCH_ARTICLE_FOR_VIEW_SCREEN_FAILED = '[Articles] Fetch article for view screen failed',
-  ARTICLE_SET_FOR_VIEWING = '[Articles] Article set for viewing',
+  GET_ARTICLE_THUMBNAIL_IMAGE_URLS_REQUESTED = '[Articles] Get article thumbnail image URLs requested',
+  GET_ARTICLE_THUMBNAIL_IMAGE_URLS_FAILED = '[Articles] Get article thumbnail image URLs failed',
+  GET_ARTICLE_THUMBNAIL_IMAGE_URLS_SUCCEEDED = '[Articles] Get article thumbnail image URLs succeeded',
 
-  FETCH_ARTICLE_FOR_EDIT_SCREEN_REQUESTED = '[Articles] Fetch article for edit screen requested',
-  FETCH_ARTICLE_FOR_EDIT_SCREEN_SUCCEEDED = '[Articles] Fetch article for edit screen succeeded',
-  FETCH_ARTICLE_FOR_EDIT_SCREEN_FAILED = '[Articles] Fetch article for edit screen failed',
-  ARTICLE_SET_FOR_EDITING = '[Articles] Article set for editing',
+  FETCH_ARTICLE_REQUESTED = '[Articles] Fetch article requested',
+  FETCH_ARTICLE_SUCCEEDED = '[Articles] Fetch article succeeded',
+  FETCH_ARTICLE_FAILED = '[Articles] Fetch article failed',
 
+  GET_ARTICLE_IMAGE_URL_REQUESTED = '[Articles] Get article image URL requested',
   GET_ARTICLE_IMAGE_URL_FAILED = '[Articles] Get article image URL failed',
   GET_ARTICLE_IMAGE_URL_SUCCEEDED = '[Articles] Get article image URL succeeded',
 
-  DELETE_ARTICLE_SELECTED = '[Articles] Delete article selected',
-  DELETE_ARTICLE_CONFIRMED = '[Articles] Delete article confirmed',
-  DELETE_ARTICLE_CANCELLED = '[Articles] Delete article cancelled',
-  DELETE_ARTICLE_SUCCEEDED = '[Articles] Delete article succeeded',
-  DELETE_ARTICLE_FAILED = '[Articles] Delete article failed',
+  GET_ARTICLE_IMAGE_FILE_REQUESTED = '[Articles] Get article image file requested',
+  GET_ARTICLE_IMAGE_FILE_FAILED = '[Articles] Get article image file failed',
+  GET_ARTICLE_IMAGE_FILE_SUCCEEDED = '[Articles] Get article image file succeeded',
+  REVERT_ARTICLE_IMAGE_CHANGE = '[Articles] Revert article image change',
 
   PUBLISH_ARTICLE_SELECTED = '[Articles] Publish article selected',
   PUBLISH_ARTICLE_CONFIRMED = '[Articles] Publish article confirmed',
@@ -40,63 +38,67 @@ enum ArticlesActionTypes {
   UPDATE_ARTICLE_SUCCEEDED = '[Articles] Update article succeeded',
   UPDATE_ARTICLE_FAILED = '[Articles] Update article failed',
 
+  DELETE_ARTICLE_SELECTED = '[Articles] Delete article selected',
+  DELETE_ARTICLE_CONFIRMED = '[Articles] Delete article confirmed',
+  DELETE_ARTICLE_CANCELLED = '[Articles] Delete article cancelled',
+  DELETE_ARTICLE_SUCCEEDED = '[Articles] Delete article succeeded',
+  DELETE_ARTICLE_FAILED = '[Articles] Delete article failed',
+
   CANCEL_SELECTED = '[Articles] Cancel selected',
   CANCEL_CONFIRMED = '[Articles] Cancel confirmed',
 
   FORM_DATA_CHANGED = '[Articles] Form data changed',
-  RESET_ARTICLE_FORM = '[Articles] Reset article form',
 
-  SCROLL_TO_SECTION = '[Articles] Scroll to section',
+  SCROLLED_TO_ARTICLE_SECTION = '[Articles] Scrolled to article section',
 }
 
-export const newsScreenEntered = createAction(ArticlesActionTypes.NEWS_SCREEN_ENTERED);
+export const setArticle = createAction(
+  ArticlesActionTypes.SET_ARTICLE,
+  props<{ article: Article; isEditMode: boolean | null; sectionToScrollTo?: string }>(),
+);
 
 export const fetchArticlesRequested = createAction(
   ArticlesActionTypes.FETCH_ARTICLES_REQUESTED,
 );
 export const fetchArticlesSucceeded = createAction(
   ArticlesActionTypes.FETCH_ARTICLES_SUCCEEDED,
-  props<{ allArticles: Article[] }>(),
+  props<{ articles: Article[] }>(),
 );
 export const fetchArticlesFailed = createAction(
   ArticlesActionTypes.FETCH_ARTICLES_FAILED,
   props<{ error: Error }>(),
 );
 
-export const fetchArticleForViewScreenRequested = createAction(
-  ArticlesActionTypes.FETCH_ARTICLE_FOR_VIEW_SCREEN_REQUESTED,
-  props<{ articleId: string }>(),
+export const getArticleThumbnailImageUrlsRequested = createAction(
+  ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_REQUESTED,
+  props<{ articles: Article[] }>(),
 );
-export const fetchArticleForViewScreenSucceeded = createAction(
-  ArticlesActionTypes.FETCH_ARTICLE_FOR_VIEW_SCREEN_SUCCEEDED,
-  props<{ article: Article }>(),
+export const getArticleThumbnailImageUrlsSucceeded = createAction(
+  ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_SUCCEEDED,
+  props<{ articles: Article[] }>(),
 );
-export const fetchArticleForViewScreenFailed = createAction(
-  ArticlesActionTypes.FETCH_ARTICLE_FOR_VIEW_SCREEN_FAILED,
+export const getArticleThumbnailImageUrlsFailed = createAction(
+  ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_FAILED,
   props<{ error: Error }>(),
 );
-export const articleSetForViewing = createAction(
-  ArticlesActionTypes.ARTICLE_SET_FOR_VIEWING,
-  props<{ article: Article; sectionToScrollTo?: string }>(),
-);
 
-export const fetchArticleForEditScreenRequested = createAction(
-  ArticlesActionTypes.FETCH_ARTICLE_FOR_EDIT_SCREEN_REQUESTED,
+export const fetchArticleRequested = createAction(
+  ArticlesActionTypes.FETCH_ARTICLE_REQUESTED,
   props<{ articleId: string }>(),
 );
-export const fetchArticleForEditScreenSucceeded = createAction(
-  ArticlesActionTypes.FETCH_ARTICLE_FOR_EDIT_SCREEN_SUCCEEDED,
+export const fetchArticleSucceeded = createAction(
+  ArticlesActionTypes.FETCH_ARTICLE_SUCCEEDED,
   props<{ article: Article }>(),
 );
-export const fetchArticleForEditScreenFailed = createAction(
-  ArticlesActionTypes.FETCH_ARTICLE_FOR_EDIT_SCREEN_FAILED,
+export const fetchArticleFailed = createAction(
+  ArticlesActionTypes.FETCH_ARTICLE_FAILED,
   props<{ error: Error }>(),
 );
-export const articleSetForEditing = createAction(
-  ArticlesActionTypes.ARTICLE_SET_FOR_EDITING,
-  props<{ article: Article }>(),
-);
 
+export const getArticleImageUrlRequested = createAction(
+  ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_REQUESTED,
+  props<{ imageId?: string }>(),
+);
 export const getArticleImageUrlSucceeded = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_SUCCEEDED,
   props<{ imageUrl: Url }>(),
@@ -106,28 +108,25 @@ export const getArticleImageUrlFailed = createAction(
   props<{ error: Error }>(),
 );
 
-export const deleteArticleSelected = createAction(
-  ArticlesActionTypes.DELETE_ARTICLE_SELECTED,
-  props<{ articleToDelete: Article }>(),
+export const getArticleImageFileRequested = createAction(
+  ArticlesActionTypes.GET_ARTICLE_IMAGE_FILE_REQUESTED,
+  props<{ imageUrl: Url }>(),
 );
-export const deleteArticleConfirmed = createAction(
-  ArticlesActionTypes.DELETE_ARTICLE_CONFIRMED,
+export const getArticleImageFileSucceeded = createAction(
+  ArticlesActionTypes.GET_ARTICLE_IMAGE_FILE_SUCCEEDED,
+  props<{ imageFile: File }>(),
 );
-export const deleteArticleCancelled = createAction(
-  ArticlesActionTypes.DELETE_ARTICLE_CANCELLED,
-);
-export const deleteArticleSucceeded = createAction(
-  ArticlesActionTypes.DELETE_ARTICLE_SUCCEEDED,
-  props<{ deletedArticle: Article }>(),
-);
-export const deleteArticleFailed = createAction(
-  ArticlesActionTypes.DELETE_ARTICLE_FAILED,
+export const getArticleImageFileFailed = createAction(
+  ArticlesActionTypes.GET_ARTICLE_IMAGE_FILE_FAILED,
   props<{ error: Error }>(),
+);
+export const revertArticleImageChange = createAction(
+  ArticlesActionTypes.REVERT_ARTICLE_IMAGE_CHANGE,
 );
 
 export const publishArticleSelected = createAction(
   ArticlesActionTypes.PUBLISH_ARTICLE_SELECTED,
-  props<{ articleToPublish: Article }>(),
+  props<{ article: Article }>(),
 );
 export const publishArticleConfirmed = createAction(
   ArticlesActionTypes.PUBLISH_ARTICLE_CONFIRMED,
@@ -146,7 +145,7 @@ export const publishArticleFailed = createAction(
 
 export const updateArticleSelected = createAction(
   ArticlesActionTypes.UPDATE_ARTICLE_SELECTED,
-  props<{ articleToUpdate: Article }>(),
+  props<{ article: Article }>(),
 );
 export const updateArticleConfirmed = createAction(
   ArticlesActionTypes.UPDATE_ARTICLE_CONFIRMED,
@@ -163,12 +162,32 @@ export const updateArticleFailed = createAction(
   props<{ error: Error }>(),
 );
 
+export const deleteArticleSelected = createAction(
+  ArticlesActionTypes.DELETE_ARTICLE_SELECTED,
+  props<{ article: Article }>(),
+);
+export const deleteArticleConfirmed = createAction(
+  ArticlesActionTypes.DELETE_ARTICLE_CONFIRMED,
+);
+export const deleteArticleCancelled = createAction(
+  ArticlesActionTypes.DELETE_ARTICLE_CANCELLED,
+);
+export const deleteArticleSucceeded = createAction(
+  ArticlesActionTypes.DELETE_ARTICLE_SUCCEEDED,
+  props<{ article: Article }>(),
+);
+export const deleteArticleFailed = createAction(
+  ArticlesActionTypes.DELETE_ARTICLE_FAILED,
+  props<{ error: Error }>(),
+);
+
 export const cancelSelected = createAction(ArticlesActionTypes.CANCEL_SELECTED);
 
 export const formDataChanged = createAction(
   ArticlesActionTypes.FORM_DATA_CHANGED,
   props<{ article: Article }>(),
 );
-export const resetArticleForm = createAction(ArticlesActionTypes.RESET_ARTICLE_FORM);
 
-export const scrollToSection = createAction(ArticlesActionTypes.SCROLL_TO_SECTION);
+export const scrolledToArticleSection = createAction(
+  ArticlesActionTypes.SCROLLED_TO_ARTICLE_SECTION,
+);

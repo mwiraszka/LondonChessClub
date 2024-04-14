@@ -13,7 +13,7 @@ import { AboutScreenComponent } from './about-screen.component';
   imports: [AboutModule, CommonModule, RouterModule, ScreenHeaderModule],
 })
 export class AboutScreenModule {
-  constructor(private router: Router) {}
+  constructor(private readonly router: Router) {}
 
   onNavigate(path: NavPathTypes): void {
     this.router.navigate([path]);

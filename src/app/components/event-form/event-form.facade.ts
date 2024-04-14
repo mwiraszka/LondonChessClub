@@ -8,10 +8,10 @@ import type { ClubEvent } from '@app/types';
 
 @Injectable()
 export class EventFormFacade {
-  readonly selectedEvent$ = this.store.select(ScheduleSelectors.selectedEvent);
   readonly eventCurrently$ = this.store.select(ScheduleSelectors.eventCurrently);
-  readonly isEditMode$ = this.store.select(ScheduleSelectors.isEditMode);
   readonly hasUnsavedChanges$ = this.store.select(ScheduleSelectors.hasUnsavedChanges);
+  readonly isEditMode$ = this.store.select(ScheduleSelectors.isEditMode);
+  readonly selectedEvent$ = this.store.select(ScheduleSelectors.selectedEvent);
 
   constructor(private readonly store: Store) {}
 
@@ -22,17 +22,15 @@ export class EventFormFacade {
   onSubmit(event: ClubEvent): void {
     this.isEditMode$
       .pipe(
-        map(isEditMode => {
-          if (isEditMode) {
-            this.store.dispatch(
-              ScheduleActions.updateEventSelected({
-                eventToUpdate: event,
-              }),
-            );
-          } else {
-            this.store.dispatch(ScheduleActions.addEventSelected({ eventToAdd: event }));
-          }
-        }),
+        map(isEditMode =>
+          isEditMode
+            ? this.store.dispatch(
+                ScheduleActions.updateEventSelected({
+                  event,
+                }),
+              )
+            : this.store.dispatch(ScheduleActions.addEventSelected({ event })),
+        ),
         first(),
       )
       .subscribe();

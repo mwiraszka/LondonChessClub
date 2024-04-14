@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Observable, forkJoin, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -25,14 +25,8 @@ export class ArticlesService {
 
   getArticle(id: string): Observable<ServiceResponse<Article>> {
     return this.http.get<FlatArticle>(this.API_ENDPOINT + id).pipe(
-      switchMap(article => {
-        const adaptedArticle = this.adaptForFrontend([article])[0];
-
-        return this.imagesService.getArticleImageUrl(adaptedArticle.imageId!).pipe(
-          map(response => {
-            return { payload: { ...adaptedArticle, imageUrl: response.payload! } };
-          }),
-        );
+      map(article => {
+        return { payload: this.adaptForFrontend([article])[0] };
       }),
       catchError(() => of({ error: new Error('Failed to fetch article from database') })),
     );
@@ -40,25 +34,8 @@ export class ArticlesService {
 
   getArticles(): Observable<ServiceResponse<Article[]>> {
     return this.http.get<FlatArticle[]>(this.API_ENDPOINT).pipe(
-      switchMap(articles => {
-        const adaptedArticles = this.adaptForFrontend(articles);
-
-        const articlesWithImageUrls$: Observable<Article>[] = [];
-        adaptedArticles.forEach(article => {
-          const thumbnailImageId = `${article.imageId!}-600x400`;
-          const articleWithImageUrl$ = this.imagesService
-            .getArticleImageUrl(thumbnailImageId)
-            .pipe(
-              map(response => {
-                return { ...article, thumbnailImageUrl: response.payload! };
-              }),
-            );
-          articlesWithImageUrls$.push(articleWithImageUrl$);
-        });
-        return forkJoin(articlesWithImageUrls$);
-      }),
-      map(articlesWithImageUrls => {
-        return { payload: articlesWithImageUrls };
+      map(articles => {
+        return { payload: this.adaptForFrontend(articles) };
       }),
       catchError(() =>
         of({ error: new Error('Failed to fetch articles from database') }),

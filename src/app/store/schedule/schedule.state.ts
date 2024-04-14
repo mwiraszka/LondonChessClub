@@ -1,17 +1,17 @@
-import { ClubEvent, newClubEventFormTemplate } from '@app/types';
+import type { ClubEvent } from '@app/types';
 
 export interface ScheduleState {
   events: ClubEvent[];
   selectedEvent: ClubEvent | null;
-  eventCurrently: ClubEvent;
-  isEditMode: boolean;
+  eventCurrently: ClubEvent | null;
+  isEditMode: boolean | null;
   nextEventId: string | null;
 }
 
 export const initialState: ScheduleState = {
   events: [],
   selectedEvent: null,
-  eventCurrently: newClubEventFormTemplate,
-  isEditMode: false,
+  eventCurrently: null,
+  isEditMode: null,
   nextEventId: null,
 };

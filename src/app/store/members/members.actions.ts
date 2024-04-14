@@ -3,28 +3,21 @@ import { createAction, props } from '@ngrx/store';
 import type { Member } from '@app/types';
 
 enum MembersActionTypes {
-  MEMBERS_SCREEN_ENTERED = '[Members] Members screen entered',
+  SET_MEMBER = '[Members] Set member',
 
   FETCH_MEMBERS_REQUESTED = '[Members] Fetch members requested',
   FETCH_MEMBERS_SUCCEEDED = '[Members] Fetch members succeeded',
   FETCH_MEMBERS_FAILED = '[Members] Fetch members failed',
 
-  FETCH_MEMBER_FOR_EDIT_SCREEN_REQUESTED = '[Members] Fetch member for edit screen requested',
-  FETCH_MEMBER_FOR_EDIT_SCREEN_SUCCEEDED = '[Members] Fetch member for edit screen succeeded',
-  FETCH_MEMBER_FOR_EDIT_SCREEN_FAILED = '[Members] Fetch member for edit screen failed',
-  MEMBER_SET_FOR_EDITING = '[Members] Member set for editing',
+  FETCH_MEMBER_REQUESTED = '[Members] Fetch member requested',
+  FETCH_MEMBER_SUCCEEDED = '[Members] Fetch member succeeded',
+  FETCH_MEMBER_FAILED = '[Members] Fetch member failed',
 
   TABLE_HEADER_SELECTED = '[Members] Table header selected',
   MEMBERS_SORTED = '[Members] Members sorted',
   PAGE_CHANGED = '[Members] Page changed',
   PAGE_SIZE_CHANGED = '[Members] Page size changed',
   INACTIVE_MEMBERS_TOGGLED = '[Members] Inactive members toggled',
-
-  DELETE_MEMBER_SELECTED = '[Members] Delete member selected',
-  DELETE_MEMBER_CONFIRMED = '[Members] Delete member confirmed',
-  DELETE_MEMBER_CANCELLED = '[Members] Delete member cancelled',
-  DELETE_MEMBER_SUCCEEDED = '[Members] Delete member succeeded',
-  DELETE_MEMBER_FAILED = '[Members] Delete member failed',
 
   ADD_MEMBER_SELECTED = '[Members] Add member selected',
   ADD_MEMBER_CONFIRMED = '[Members] Add member confirmed',
@@ -38,15 +31,21 @@ enum MembersActionTypes {
   UPDATE_MEMBER_SUCCEEDED = '[Members] Update member succeeded',
   UPDATE_MEMBER_FAILED = '[Members] Update member failed',
 
+  DELETE_MEMBER_SELECTED = '[Members] Delete member selected',
+  DELETE_MEMBER_CONFIRMED = '[Members] Delete member confirmed',
+  DELETE_MEMBER_CANCELLED = '[Members] Delete member cancelled',
+  DELETE_MEMBER_SUCCEEDED = '[Members] Delete member succeeded',
+  DELETE_MEMBER_FAILED = '[Members] Delete member failed',
+
   CANCEL_SELECTED = '[Members] Cancel selected',
   CANCEL_CONFIRMED = '[Members] Cancel confirmed',
 
   FORM_DATA_CHANGED = '[Members] Form data changed',
-  RESET_MEMBER_FORM = '[Members] Reset member form',
 }
 
-export const membersScreenEntered = createAction(
-  MembersActionTypes.MEMBERS_SCREEN_ENTERED,
+export const setMember = createAction(
+  MembersActionTypes.SET_MEMBER,
+  props<{ member: Member; isEditMode: boolean }>(),
 );
 
 export const fetchMembersRequested = createAction(
@@ -61,21 +60,17 @@ export const fetchMembersFailed = createAction(
   props<{ error: Error }>(),
 );
 
-export const fetchMemberForEditScreenRequested = createAction(
-  MembersActionTypes.FETCH_MEMBER_FOR_EDIT_SCREEN_REQUESTED,
+export const fetchMemberRequested = createAction(
+  MembersActionTypes.FETCH_MEMBER_REQUESTED,
   props<{ memberId: string }>(),
 );
-export const fetchMemberForEditScreenSucceeded = createAction(
-  MembersActionTypes.FETCH_MEMBER_FOR_EDIT_SCREEN_SUCCEEDED,
+export const fetchMemberSucceeded = createAction(
+  MembersActionTypes.FETCH_MEMBER_SUCCEEDED,
   props<{ member: Member }>(),
 );
-export const fetchMemberForEditScreenFailed = createAction(
-  MembersActionTypes.FETCH_MEMBER_FOR_EDIT_SCREEN_FAILED,
+export const fetchMemberFailed = createAction(
+  MembersActionTypes.FETCH_MEMBER_FAILED,
   props<{ error: Error }>(),
-);
-export const memberSetForEditing = createAction(
-  MembersActionTypes.MEMBER_SET_FOR_EDITING,
-  props<{ member: Member }>(),
 );
 
 export const tableHeaderSelected = createAction(
@@ -98,34 +93,15 @@ export const inactiveMembersToggled = createAction(
   MembersActionTypes.INACTIVE_MEMBERS_TOGGLED,
 );
 
-export const deleteMemberSelected = createAction(
-  MembersActionTypes.DELETE_MEMBER_SELECTED,
-  props<{ memberToDelete: Member }>(),
-);
-export const deleteMemberConfirmed = createAction(
-  MembersActionTypes.DELETE_MEMBER_CONFIRMED,
-);
-export const deleteMemberCancelled = createAction(
-  MembersActionTypes.DELETE_MEMBER_CANCELLED,
-);
-export const deleteMemberSucceeded = createAction(
-  MembersActionTypes.DELETE_MEMBER_SUCCEEDED,
-  props<{ deletedMember: Member }>(),
-);
-export const deleteMemberFailed = createAction(
-  MembersActionTypes.DELETE_MEMBER_FAILED,
-  props<{ error: Error }>(),
-);
-
 export const addMemberSelected = createAction(
   MembersActionTypes.ADD_MEMBER_SELECTED,
-  props<{ memberToAdd: Member }>(),
+  props<{ member: Member }>(),
 );
 export const addMemberConfirmed = createAction(MembersActionTypes.ADD_MEMBER_CONFIRMED);
 export const addMemberCancelled = createAction(MembersActionTypes.ADD_MEMBER_CANCELLED);
 export const addMemberSucceeded = createAction(
   MembersActionTypes.ADD_MEMBER_SUCCEEDED,
-  props<{ addedMember: Member }>(),
+  props<{ member: Member }>(),
 );
 export const addMemberFailed = createAction(
   MembersActionTypes.ADD_MEMBER_FAILED,
@@ -134,7 +110,7 @@ export const addMemberFailed = createAction(
 
 export const updateMemberSelected = createAction(
   MembersActionTypes.UPDATE_MEMBER_SELECTED,
-  props<{ memberToUpdate: Member }>(),
+  props<{ member: Member }>(),
 );
 export const updateMemberConfirmed = createAction(
   MembersActionTypes.UPDATE_MEMBER_CONFIRMED,
@@ -144,10 +120,29 @@ export const updateMemberCancelled = createAction(
 );
 export const updateMemberSucceeded = createAction(
   MembersActionTypes.UPDATE_MEMBER_SUCCEEDED,
-  props<{ updatedMember: Member }>(),
+  props<{ member: Member }>(),
 );
 export const updateMemberFailed = createAction(
   MembersActionTypes.UPDATE_MEMBER_FAILED,
+  props<{ error: Error }>(),
+);
+
+export const deleteMemberSelected = createAction(
+  MembersActionTypes.DELETE_MEMBER_SELECTED,
+  props<{ member: Member }>(),
+);
+export const deleteMemberConfirmed = createAction(
+  MembersActionTypes.DELETE_MEMBER_CONFIRMED,
+);
+export const deleteMemberCancelled = createAction(
+  MembersActionTypes.DELETE_MEMBER_CANCELLED,
+);
+export const deleteMemberSucceeded = createAction(
+  MembersActionTypes.DELETE_MEMBER_SUCCEEDED,
+  props<{ member: Member }>(),
+);
+export const deleteMemberFailed = createAction(
+  MembersActionTypes.DELETE_MEMBER_FAILED,
   props<{ error: Error }>(),
 );
 
@@ -157,4 +152,3 @@ export const formDataChanged = createAction(
   MembersActionTypes.FORM_DATA_CHANGED,
   props<{ member: Member }>(),
 );
-export const resetMemberForm = createAction(MembersActionTypes.RESET_MEMBER_FORM);

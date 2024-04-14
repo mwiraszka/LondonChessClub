@@ -111,14 +111,13 @@ export function reducer(state: ArticlesState, action: Action): ArticlesState {
   return articlesReducer(state, action);
 }
 
-// TODO: Add support for booleans in customSort function and refactor to be more efficient/performant
 function getSortedArticles(articles: Article[]): Article[] {
-  const stickyArticles = [...articles.filter(article => article.isSticky)].sort(
-    customSort('modificationInfo.dateCreated', false),
-  );
-  const remainingArticles = [...articles.filter(article => !article.isSticky)].sort(
-    customSort('modificationInfo.dateCreated', false),
-  );
+  const stickyArticles = articles
+    .filter(article => article.isSticky)
+    .sort(customSort('modificationInfo.dateCreated', false));
+  const remainingArticles = articles
+    .filter(article => !article.isSticky)
+    .sort(customSort('modificationInfo.dateCreated', false));
 
   return [...stickyArticles, ...remainingArticles];
 }

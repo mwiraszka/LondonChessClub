@@ -5,7 +5,8 @@ import { debounceTime, filter } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import type { Article, ModificationInfo, Url } from '@app/types';
+import { ImagesService } from '@app/services';
+import type { Article } from '@app/types';
 import { isDefined } from '@app/utils';
 import { imageSizeValidator } from '@app/validators';
 
@@ -20,20 +21,18 @@ import { ArticleFormFacade } from './article-form.facade';
 })
 export class ArticleFormComponent implements OnInit {
   form!: FormGroup;
-  modificationInfo!: ModificationInfo | null;
-  previewImageUrl!: Url | null;
   valueChangesSubscription!: Subscription;
 
-  constructor(public facade: ArticleFormFacade, private formBuilder: FormBuilder) {}
+  constructor(
+    public facade: ArticleFormFacade,
+    private formBuilder: FormBuilder,
+    private imagesService: ImagesService,
+  ) {}
 
   ngOnInit(): void {
     this.facade.articleCurrently$
       .pipe(filter(isDefined), untilDestroyed(this))
-      .subscribe(article => {
-        this.initForm(article);
-        this.previewImageUrl = article.imageUrl ?? null;
-        this.modificationInfo = article.modificationInfo;
-      });
+      .subscribe(article => this.initForm(article));
   }
 
   hasError(control: AbstractControl): boolean {
@@ -59,9 +58,13 @@ export class ArticleFormComponent implements OnInit {
   onChooseImage(event: Event): void {
     const fileInputElement = event.target as HTMLInputElement;
     if (fileInputElement.files?.length) {
-      this.form.patchValue({ imageFile: fileInputElement.files[0] });
-      this.previewImageUrl = URL.createObjectURL(fileInputElement.files[0]);
+      const imageFile = fileInputElement.files[0];
       fileInputElement.value = '';
+
+      this.imagesService.storeImageDataUrlInLocalStorage(imageFile);
+
+      this.form.patchValue({ imageFile });
+      this.form.patchValue({ imageUrl: URL.createObjectURL(imageFile) });
     }
   }
 
@@ -70,7 +73,6 @@ export class ArticleFormComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
-
     this.facade.onSubmit(this.form.value);
   }
 
@@ -78,7 +80,7 @@ export class ArticleFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       title: [article.title, [Validators.required, Validators.pattern(/[^\s]/)]],
       body: [article.body, [Validators.required, Validators.pattern(/[^\s]/)]],
-      imageFile: [article.imageFile, [Validators.required, imageSizeValidator]],
+      imageFile: [article.imageFile ?? null, [Validators.required, imageSizeValidator]],
       id: [article.id],
       imageId: [article.imageId],
       imageUrl: [article.imageUrl],
@@ -86,9 +88,6 @@ export class ArticleFormComponent implements OnInit {
       isSticky: [article.isSticky],
       modificationInfo: [article.modificationInfo],
     });
-
-    // TODO: Investigate why setErrors({ required: null }) doesn't work
-    this.form.controls['imageFile'].patchValue({});
 
     this.valueChangesSubscription = this.form.valueChanges
       .pipe(debounceTime(200), untilDestroyed(this))

@@ -5,7 +5,7 @@ import { debounceTime, filter } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import type { ClubEvent, ModificationInfo } from '@app/types';
+import type { ClubEvent } from '@app/types';
 import { isDefined } from '@app/utils';
 import { dateValidator } from '@app/validators';
 
@@ -20,7 +20,6 @@ import { EventFormFacade } from './event-form.facade';
 })
 export class EventFormComponent implements OnInit {
   form!: FormGroup;
-  modificationInfo!: ModificationInfo | null;
   valueChangesSubscription!: Subscription;
 
   constructor(public facade: EventFormFacade, private formBuilder: FormBuilder) {}
@@ -28,10 +27,7 @@ export class EventFormComponent implements OnInit {
   ngOnInit(): void {
     this.facade.eventCurrently$
       .pipe(filter(isDefined), untilDestroyed(this))
-      .subscribe(event => {
-        this.initForm(event);
-        this.modificationInfo = event.modificationInfo;
-      });
+      .subscribe(event => this.initForm(event));
   }
 
   hasError(control: AbstractControl): boolean {

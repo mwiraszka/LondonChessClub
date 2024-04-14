@@ -5,19 +5,23 @@ import { Injectable } from '@angular/core';
 
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { type Article } from '@app/types';
-import { isEmpty } from '@app/utils';
 
 @Injectable()
 export class ArticleFormFacade {
   readonly articleCurrently$ = this.store.select(ArticlesSelectors.articleCurrently);
   readonly hasUnsavedChanges$ = this.store.select(ArticlesSelectors.hasUnsavedChanges);
   readonly isEditMode$ = this.store.select(ArticlesSelectors.isEditMode);
+  readonly hasNewImage$ = this.store.select(ArticlesSelectors.hasNewImage);
   readonly selectedArticle$ = this.store.select(ArticlesSelectors.selectedArticle);
 
   constructor(private readonly store: Store) {}
 
   onCancel(): void {
     this.store.dispatch(ArticlesActions.cancelSelected());
+  }
+
+  onRevert(): void {
+    this.store.dispatch(ArticlesActions.revertArticleImageChange());
   }
 
   onSubmit(article: Article): void {
@@ -42,9 +46,6 @@ export class ArticleFormFacade {
   }
 
   onValueChange(article: Article): void {
-    if (isEmpty(article.imageFile)) {
-      article = { ...article, imageFile: null };
-    }
     this.store.dispatch(ArticlesActions.formDataChanged({ article }));
   }
 }

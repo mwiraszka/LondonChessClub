@@ -31,6 +31,13 @@ export const articleCurrently = createSelector(
   state => state.articleCurrently,
 );
 
+export const hasNewImage = createSelector(
+  articleCurrently,
+  selectedArticle,
+  (articleCurrently, selectedArticle) =>
+    articleCurrently?.imageUrl !== selectedArticle?.imageUrl,
+);
+
 export const isEditMode = createSelector(
   articlesFeatureSelector,
   state => state.isEditMode,

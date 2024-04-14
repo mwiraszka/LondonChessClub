@@ -75,7 +75,35 @@ export class ToasterEffects {
       ofType(ArticlesActions.getArticleImageUrlFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Article image',
+          title: 'Article image URL',
+          message: error.message,
+          type: ToastTypes.WARNING,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addGetArticleThumbnailImageUrlsFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.getArticleThumbnailImageUrlsFailed),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Article thumbnail image URLs',
+          message: error.message,
+          type: ToastTypes.WARNING,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addGetArticleImageFileFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.getArticleImageFileFailed),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Article image file',
           message: error.message,
           type: ToastTypes.WARNING,
         };

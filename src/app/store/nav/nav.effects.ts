@@ -76,14 +76,19 @@ export class NavEffects {
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       filter(({ payload }) => payload.event.url === '/article/add'),
-      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-      filter(([{ payload }, previousPath]) => payload.event.url !== previousPath),
-      map(() =>
-        ArticlesActions.setArticle({
-          article: newArticleFormTemplate,
-          isEditMode: false,
-        }),
-      ),
+      concatLatestFrom(() => [
+        this.store.select(NavSelectors.previousPath),
+        this.store.select(ArticlesSelectors.articleCurrently),
+      ]),
+      map(([, previousPath, articleCurrently]) => {
+        return previousPath === '/article/add' &&
+          (articleCurrently?.imageUrl || localStorage.getItem('imageUrl'))
+          ? ArticlesActions.getArticleImageUrlRequested({})
+          : ArticlesActions.setArticle({
+              article: newArticleFormTemplate,
+              isEditMode: false,
+            });
+      }),
     ),
   );
 
@@ -91,14 +96,20 @@ export class NavEffects {
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       filter(({ payload }) => payload.event.url.startsWith('/article/edit/')),
-      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-      filter(([{ payload }, previousPath]) => payload.event.url !== previousPath),
-      map(([{ payload }]) => payload.event.url.split('/article/edit/')[1]),
-      concatLatestFrom(articleId =>
-        this.store.select(ArticlesSelectors.articleById(articleId)),
-      ),
-      map(([articleId, articleInStore]) => {
-        if (articleInStore) {
+      map(({ payload }) => payload.event.url),
+      concatLatestFrom(currentPath => [
+        this.store.select(
+          ArticlesSelectors.articleById(currentPath.split('/article/edit/')[1]),
+        ),
+        this.store.select(NavSelectors.previousPath),
+      ]),
+      map(([currentPath, articleInStore, previousPath]) => {
+        const articleId = currentPath.split('/article/edit/')[1];
+        if (currentPath === previousPath && articleInStore?.imageId) {
+          return ArticlesActions.getArticleImageUrlRequested({
+            imageId: articleInStore.imageId,
+          });
+        } else if (articleInStore) {
           return ArticlesActions.setArticle({
             article: articleInStore,
             isEditMode: true,
@@ -110,6 +121,23 @@ export class NavEffects {
         }
       }),
     ),
+  );
+
+  clearArticleImageUrlFromLocalStorage$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(routerNavigatedAction),
+        concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
+        tap(([{ payload }, previousPath]) => {
+          if (
+            payload.event.url !== previousPath &&
+            (previousPath?.startsWith('/article/edit') || previousPath === '/article/add')
+          ) {
+            localStorage.removeItem('imageUrl');
+          }
+        }),
+      ),
+    { dispatch: false },
   );
 
   handleMemberAddRouteNavigation$ = createEffect(() =>
@@ -168,13 +196,8 @@ export class NavEffects {
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       filter(({ payload }) => payload.event.url.startsWith('/event/edit/')),
-      tap(() => console.log(':: 1')),
       concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-      filter(([{ payload }, previousPath]) => {
-        console.log(':: current path (?)', payload.event.url);
-        console.log(':: previousPath', previousPath);
-        return payload.event.url !== previousPath;
-      }),
+      filter(([{ payload }, previousPath]) => payload.event.url !== previousPath),
       map(([{ payload }]) => payload.event.url.split('/event/edit/')[1]),
       concatLatestFrom(eventId =>
         this.store.select(ScheduleSelectors.eventById(eventId)),
@@ -205,7 +228,9 @@ export class NavEffects {
     this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleSucceeded),
       concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-      filter(([, previousPath]) => previousPath === 'article/view/:article_id'),
+      filter(
+        ([{ article }, previousPath]) => previousPath === `/article/view/${article.id}`,
+      ),
       map(() => NavActions.navigationRequested({ path: NavPathTypes.NEWS })),
     ),
   );
@@ -263,7 +288,7 @@ export class NavEffects {
       map(([{ article }, isEditMode]) => {
         const path = isEditMode
           ? NavPathTypes.ARTICLE_EDIT + '/' + article.id
-          : NavPathTypes.ARTICLE_VIEW;
+          : NavPathTypes.ARTICLE_VIEW + '/' + article.id;
         return NavActions.navigationRequested({ path });
       }),
     ),

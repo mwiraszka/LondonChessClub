@@ -7,9 +7,7 @@
   &:disabled {
     cursor: default;
     pointer-events: none;
-    background-color: lighten($lcc-color--gray, 15%) !important;
-    color: lighten($lcc-color--gray, 30%);
-    opacity: 50%;
+    color: $lcc-color--disabled-fg;
   }
 
   &:focus {
@@ -26,6 +24,10 @@
   padding: $lcc-space--sm $lcc-space--md;
   text-transform: uppercase;
   font-weight: 400;
+
+  &:disabled {
+    background-color: $lcc-color--disabled-bg !important;
+  }
 
   &:hover {
     box-shadow: 2px 4px 7px -2px lighten($lcc-color--box-shadow, 5%);
@@ -89,7 +91,7 @@
   background-color: inherit;
   border: none;
 
-  &:not([disabled]):hover {
-    color: lighten($lcc-color--white, 5%) !important;
+  &:disabled {
+    color: $lcc-color--disabled-fg !important;
   }
 }

@@ -21,6 +21,10 @@ button {
     &:not([disabled]):not(.selected) {
       box-shadow: 1px 1px 4px $lcc-color--gray;
       color: $lcc-color--black !important;
+
+      &:hover {
+        color: $lcc-color--hover !important;
+      }
     }
   }
 }

@@ -12,7 +12,8 @@
     height: 320px;
   }
   
-  .banner-image {
+  .banner-image,
+  .loading-placeholder-image {
     aspect-ratio: 3/2;
     object-fit: cover;
     width: 100%;
@@ -23,6 +24,25 @@
   .image-controls-container {
     display: flex;
     justify-content: flex-start;
+    gap: $lcc-space--sm;
+
+    .image-revert-button {
+      padding: $lcc-space--xxs;
+      color: $lcc-color--text-primary-black;
+
+      &:hover {
+        color: lighten($lcc-color--text-primary-black, 30%);
+      }
+
+      &:disabled {
+        color: $lcc-color--disabled-fg;
+      }
+      
+      .revert-icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
   }
 
   input[type="file"] {

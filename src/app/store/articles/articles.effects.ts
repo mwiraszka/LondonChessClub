@@ -8,7 +8,8 @@ import { Injectable } from '@angular/core';
 
 import { ArticlesService, ImagesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import type { Article, ModificationInfo, ServiceResponse, Url } from '@app/types';
+import type { Article, ModificationInfo, ServiceResponse } from '@app/types';
+import { isDefined } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
 import * as ArticlesSelectors from './articles.selectors';
@@ -25,7 +26,7 @@ export class ArticlesEffects {
             response.error
               ? ArticlesActions.fetchArticlesFailed({ error: response.error })
               : ArticlesActions.fetchArticlesSucceeded({
-                  allArticles: response.payload!,
+                  articles: response.payload!,
                 }),
           ),
         ),
@@ -146,15 +147,77 @@ export class ArticlesEffects {
     );
   });
 
-  geArticleImageUrl$ = createEffect(() => {
+  requestThumbnailImageUrls$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.setArticle, ArticlesActions.fetchArticleSucceeded),
-      filter(({ article }) => !article.imageUrl),
-      switchMap(({ article }) => this.imagesService.getArticleImageUrl(article.imageId!)),
-      map((response: ServiceResponse<Url>) =>
+      ofType(ArticlesActions.fetchArticlesSucceeded),
+      map(({ articles }) =>
+        ArticlesActions.getArticleThumbnailImageUrlsRequested({ articles }),
+      ),
+    );
+  });
+
+  getThumbnailImageUrls$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.getArticleThumbnailImageUrlsRequested),
+      switchMap(({ articles }) =>
+        this.imagesService.getArticleThumbnailImageUrls(articles),
+      ),
+      map((response: ServiceResponse<Article[]>) =>
+        response.error
+          ? ArticlesActions.getArticleThumbnailImageUrlsFailed({ error: response.error })
+          : ArticlesActions.getArticleThumbnailImageUrlsSucceeded({
+              articles: response.payload!,
+            }),
+      ),
+    );
+  });
+
+  requestImageUrl$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.fetchArticleSucceeded, ArticlesActions.setArticle),
+      map(({ article }) => article.imageId),
+      filter(isDefined),
+      map(imageId => ArticlesActions.getArticleImageUrlRequested({ imageId })),
+    );
+  });
+
+  getImageUrl$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.getArticleImageUrlRequested),
+      concatLatestFrom(() => this.store.select(ArticlesSelectors.isEditMode)),
+      switchMap(([{ imageId }, isEditMode]) => {
+        const hydrateFromLocalStorage = isEditMode !== null;
+        return this.imagesService.getArticleImageUrl(imageId, hydrateFromLocalStorage);
+      }),
+      map(response =>
         response.error
           ? ArticlesActions.getArticleImageUrlFailed({ error: response.error })
-          : ArticlesActions.getArticleImageUrlSucceeded({ imageUrl: response.payload! }),
+          : ArticlesActions.getArticleImageUrlSucceeded({
+              imageUrl: response.payload!,
+            }),
+      ),
+    );
+  });
+
+  requestImageFile$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.getArticleImageUrlSucceeded),
+      concatLatestFrom(() => this.store.select(ArticlesSelectors.isEditMode)),
+      filter(([, isEditMode]) => isEditMode !== null),
+      map(([{ imageUrl }]) => ArticlesActions.getArticleImageFileRequested({ imageUrl })),
+    );
+  });
+
+  getImageFile$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.getArticleImageFileRequested),
+      switchMap(({ imageUrl }) => this.imagesService.getArticleImageFile(imageUrl)),
+      map((response: ServiceResponse<File>) =>
+        response.error
+          ? ArticlesActions.getArticleImageFileFailed({ error: response.error })
+          : ArticlesActions.getArticleImageFileSucceeded({
+              imageFile: response.payload!,
+            }),
       ),
     );
   });

@@ -130,11 +130,13 @@
 			</div>
 		</fieldset>
 	</div>
+
 	<hr />
-	@if (modificationInfo) {
-	<lcc-modification-info [info]="modificationInfo">
-	</lcc-modification-info>
+
+	@if ((facade.eventCurrently$ | async)?.modificationInfo; as modificationInfo) {
+	<lcc-modification-info [info]="modificationInfo"></lcc-modification-info>
 	}
+
 	<div class="lcc-form-buttons-container">
 		<button class="lcc-secondary-button"
 						type="button"

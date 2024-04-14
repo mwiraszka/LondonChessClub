@@ -2,14 +2,22 @@
 <form class="lcc-form"
 			[formGroup]="form"
 			(ngSubmit)="onSubmit()">
+	@defer {
 	<img class="banner-image"
-			 [src]="previewImageUrl ?? 'assets/image-placeholder.png' | sanitizeUrl"
+			 [src]="form.controls['imageUrl'].value"
+			 default="assets/image-placeholder.png"
 			 alt="Article banner image" />
+	} @placeholder {
+	<div class="lcc-content-placeholder-wrapper loading-placeholder-image">
+		<div class="lcc-content-placeholder"></div>
+	</div>
+	}
 	<div class="lcc-form-fields">
 		<label for="image-file-input"
 					 class="lcc-required-field">
 			Banner Image:
 		</label>
+
 		<div class="image-controls-container">
 			<label for="image-file-input"
 						 class="lcc-button lcc-secondary-button">
@@ -20,7 +28,16 @@
 						 name="imageFile"
 						 accept="image/*"
 						 (change)="onChooseImage($event)" />
+			<button class="lcc-button lcc-icon-button image-revert-button"
+							tooltip="Revert to original"
+							[disabled]="!(facade.hasNewImage$ | async)"
+							(click)="facade.onRevert()">
+				<i-feather class="revert-icon"
+									 name="rotate-ccw">
+				</i-feather>
+			</button>
 		</div>
+
 		<div class="lcc-form-error-container">
 			@if (hasError(form.controls['imageFile'])) {
 			<i-feather name="alert-triangle"
@@ -29,6 +46,7 @@
 			</i-feather>
 			}
 		</div>
+
 		<label for="title-input"
 					 class="lcc-required-field">
 			Title:
@@ -46,6 +64,7 @@
 			</i-feather>
 			}
 		</div>
+
 		<label for="body-input"
 					 class="lcc-required-field">
 			Content:
@@ -63,6 +82,7 @@
 			</i-feather>
 			}
 		</div>
+
 		<label for="is-sticky-input">Sticky:</label>
 		<input id="is-sticky-input"
 					 type="checkbox"
@@ -70,18 +90,19 @@
 					 formControlName="isSticky" />
 	</div>
 	<div class="preview-section-container">
-		<h4>Preview:</h4>
 		@if (!!form.controls['body'].value) {
+		<h4>Preview:</h4>
 		<div class="markdown-container">
 			<lcc-markdown-renderer [data]="form.controls['body'].value">
 			</lcc-markdown-renderer>
 		</div>
 		}
 	</div>
-	@if (modificationInfo) {
-	<lcc-modification-info [info]="modificationInfo">
-	</lcc-modification-info>
+
+	@if ((facade.articleCurrently$ | async)?.modificationInfo; as modificationInfo) {
+	<lcc-modification-info [info]="modificationInfo"></lcc-modification-info>
 	}
+
 	<div class="lcc-form-buttons-container">
 		<button class="lcc-secondary-button"
 						type="button"
@@ -90,7 +111,7 @@
 		</button>
 		<button class="lcc-primary-button"
 						type="submit"
-						[disabled]="form.invalid || !previewImageUrl || !(facade.hasUnsavedChanges$ | async)">
+						[disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
 			@if (facade.isEditMode$ | async) {
 			Update article
 			} @else {

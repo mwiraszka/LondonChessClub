@@ -9,12 +9,22 @@ enum ArticlesActionTypes {
   FETCH_ARTICLES_SUCCEEDED = '[Articles] Fetch articles succeeded',
   FETCH_ARTICLES_FAILED = '[Articles] Fetch articles failed',
 
+  GET_ARTICLE_THUMBNAIL_IMAGE_URLS_REQUESTED = '[Articles] Get article thumbnail image URLs requested',
+  GET_ARTICLE_THUMBNAIL_IMAGE_URLS_FAILED = '[Articles] Get article thumbnail image URLs failed',
+  GET_ARTICLE_THUMBNAIL_IMAGE_URLS_SUCCEEDED = '[Articles] Get article thumbnail image URLs succeeded',
+
   FETCH_ARTICLE_REQUESTED = '[Articles] Fetch article requested',
   FETCH_ARTICLE_SUCCEEDED = '[Articles] Fetch article succeeded',
   FETCH_ARTICLE_FAILED = '[Articles] Fetch article failed',
 
+  GET_ARTICLE_IMAGE_URL_REQUESTED = '[Articles] Get article image URL requested',
   GET_ARTICLE_IMAGE_URL_FAILED = '[Articles] Get article image URL failed',
   GET_ARTICLE_IMAGE_URL_SUCCEEDED = '[Articles] Get article image URL succeeded',
+
+  GET_ARTICLE_IMAGE_FILE_REQUESTED = '[Articles] Get article image file requested',
+  GET_ARTICLE_IMAGE_FILE_FAILED = '[Articles] Get article image file failed',
+  GET_ARTICLE_IMAGE_FILE_SUCCEEDED = '[Articles] Get article image file succeeded',
+  REVERT_ARTICLE_IMAGE_CHANGE = '[Articles] Revert article image change',
 
   PUBLISH_ARTICLE_SELECTED = '[Articles] Publish article selected',
   PUBLISH_ARTICLE_CONFIRMED = '[Articles] Publish article confirmed',
@@ -52,10 +62,23 @@ export const fetchArticlesRequested = createAction(
 );
 export const fetchArticlesSucceeded = createAction(
   ArticlesActionTypes.FETCH_ARTICLES_SUCCEEDED,
-  props<{ allArticles: Article[] }>(),
+  props<{ articles: Article[] }>(),
 );
 export const fetchArticlesFailed = createAction(
   ArticlesActionTypes.FETCH_ARTICLES_FAILED,
+  props<{ error: Error }>(),
+);
+
+export const getArticleThumbnailImageUrlsRequested = createAction(
+  ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_REQUESTED,
+  props<{ articles: Article[] }>(),
+);
+export const getArticleThumbnailImageUrlsSucceeded = createAction(
+  ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_SUCCEEDED,
+  props<{ articles: Article[] }>(),
+);
+export const getArticleThumbnailImageUrlsFailed = createAction(
+  ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_FAILED,
   props<{ error: Error }>(),
 );
 
@@ -72,6 +95,10 @@ export const fetchArticleFailed = createAction(
   props<{ error: Error }>(),
 );
 
+export const getArticleImageUrlRequested = createAction(
+  ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_REQUESTED,
+  props<{ imageId?: string }>(),
+);
 export const getArticleImageUrlSucceeded = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_SUCCEEDED,
   props<{ imageUrl: Url }>(),
@@ -79,6 +106,22 @@ export const getArticleImageUrlSucceeded = createAction(
 export const getArticleImageUrlFailed = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_FAILED,
   props<{ error: Error }>(),
+);
+
+export const getArticleImageFileRequested = createAction(
+  ArticlesActionTypes.GET_ARTICLE_IMAGE_FILE_REQUESTED,
+  props<{ imageUrl: Url }>(),
+);
+export const getArticleImageFileSucceeded = createAction(
+  ArticlesActionTypes.GET_ARTICLE_IMAGE_FILE_SUCCEEDED,
+  props<{ imageFile: File }>(),
+);
+export const getArticleImageFileFailed = createAction(
+  ArticlesActionTypes.GET_ARTICLE_IMAGE_FILE_FAILED,
+  props<{ error: Error }>(),
+);
+export const revertArticleImageChange = createAction(
+  ArticlesActionTypes.REVERT_ARTICLE_IMAGE_CHANGE,
 );
 
 export const publishArticleSelected = createAction(

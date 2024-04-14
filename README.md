@@ -43,8 +43,7 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 v3.1.0 - April 14th, 2024
 </summary>
 
-- 🚀 Add ability to navigate to next and previous article directly from the View Article page
-- 🚀 Implement image placeholders for better UX and to help prevent layout shift on page load when an image source is still unavailable
+- 🚀 Implement articlel image placeholders and URL source fallbacks for better UX and to help prevent layout shift on page load when an image source is still unavailable
 - 🚀 Keep admin user on the Add Member and Add Event pages after a new item (member/event) has been successfully created, to prevent them from having to re-navigate to the page each time when adding multiple items
 - 🚀 Style scrollbars more consistently across app
 - 🚀 Add ability to revert chosen article banner image when creating/editing an article

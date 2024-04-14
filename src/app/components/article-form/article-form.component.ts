@@ -1,6 +1,5 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Subscription } from 'rxjs';
-import { debounceTime, filter } from 'rxjs/operators';
+import { debounceTime, filter, first } from 'rxjs/operators';
 
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -21,7 +20,6 @@ import { ArticleFormFacade } from './article-form.facade';
 })
 export class ArticleFormComponent implements OnInit {
   form!: FormGroup;
-  valueChangesSubscription!: Subscription;
 
   constructor(
     public facade: ArticleFormFacade,
@@ -30,9 +28,11 @@ export class ArticleFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.facade.articleCurrently$
-      .pipe(filter(isDefined), untilDestroyed(this))
-      .subscribe(article => this.initForm(article));
+    this.facade.articleCurrently$.pipe(filter(isDefined), first()).subscribe(article => {
+      this.initForm(article);
+      this.initValueChangesListener();
+      this.initArticleImageRehydration();
+    });
   }
 
   hasError(control: AbstractControl): boolean {
@@ -63,9 +63,16 @@ export class ArticleFormComponent implements OnInit {
 
       this.imagesService.storeImageDataUrlInLocalStorage(imageFile);
 
-      this.form.patchValue({ imageFile });
-      this.form.patchValue({ imageUrl: URL.createObjectURL(imageFile) });
+      this.form.patchValue({
+        imageFile,
+        imageUrl: URL.createObjectURL(imageFile),
+      });
     }
+  }
+
+  onRevert(): void {
+    localStorage.removeItem('imageUrl');
+    this.facade.onRevert();
   }
 
   onSubmit(): void {
@@ -73,6 +80,7 @@ export class ArticleFormComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
+
     this.facade.onSubmit(this.form.value);
   }
 
@@ -88,9 +96,23 @@ export class ArticleFormComponent implements OnInit {
       isSticky: [article.isSticky],
       modificationInfo: [article.modificationInfo],
     });
+  }
 
-    this.valueChangesSubscription = this.form.valueChanges
-      .pipe(debounceTime(200), untilDestroyed(this))
+  private initValueChangesListener(): void {
+    this.form.valueChanges
+      .pipe(debounceTime(500), untilDestroyed(this))
       .subscribe((formData: Article) => this.facade.onValueChange(formData));
+  }
+
+  private initArticleImageRehydration(): void {
+    this.facade.articleImageCurrently$.pipe(untilDestroyed(this)).subscribe(article => {
+      this.form.patchValue(
+        {
+          imageFile: article.imageFile,
+          imageUrl: article.imageUrl,
+        },
+        { emitEvent: false },
+      );
+    });
   }
 }

@@ -1,6 +1,5 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Subscription } from 'rxjs';
-import { debounceTime, filter } from 'rxjs/operators';
+import { debounceTime, filter, first } from 'rxjs/operators';
 
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -20,14 +19,14 @@ import { EventFormFacade } from './event-form.facade';
 })
 export class EventFormComponent implements OnInit {
   form!: FormGroup;
-  valueChangesSubscription!: Subscription;
 
   constructor(public facade: EventFormFacade, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.facade.eventCurrently$
-      .pipe(filter(isDefined), untilDestroyed(this))
-      .subscribe(event => this.initForm(event));
+    this.facade.eventCurrently$.pipe(filter(isDefined), first()).subscribe(event => {
+      this.initForm(event);
+      this.initValueChangesListener();
+    });
   }
 
   hasError(control: AbstractControl): boolean {
@@ -67,9 +66,11 @@ export class EventFormComponent implements OnInit {
       id: [event.id],
       modificationInfo: [event.modificationInfo],
     });
+  }
 
-    this.valueChangesSubscription = this.form.valueChanges
-      .pipe(debounceTime(200), untilDestroyed(this))
+  private initValueChangesListener(): void {
+    this.form.valueChanges
+      .pipe(debounceTime(500), untilDestroyed(this))
       .subscribe((event: ClubEvent) => this.facade.onValueChange(event));
   }
 }

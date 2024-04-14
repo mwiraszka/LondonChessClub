@@ -12,6 +12,7 @@
 		<div class="lcc-content-placeholder"></div>
 	</div>
 	}
+
 	<div class="lcc-form-fields">
 		<label for="image-file-input"
 					 class="lcc-required-field">
@@ -29,9 +30,9 @@
 						 accept="image/*"
 						 (change)="onChooseImage($event)" />
 			<button class="lcc-button lcc-icon-button image-revert-button"
-							tooltip="Revert to original"
+							tooltip="Revert to original image"
 							[disabled]="!(facade.hasNewImage$ | async)"
-							(click)="facade.onRevert()">
+							(click)="onRevert()">
 				<i-feather class="revert-icon"
 									 name="rotate-ccw">
 				</i-feather>

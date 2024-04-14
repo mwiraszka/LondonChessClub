@@ -90,6 +90,7 @@
 
   background-color: inherit;
   border: none;
+  white-space: unset;
 
   &:disabled {
     color: $lcc-color--disabled-fg !important;

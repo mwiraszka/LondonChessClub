@@ -40,6 +40,17 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.1.1 - April 14th, 2024
+</summary>
+
+- 🚀 Display provisional peak ratings in Members Table in regular `XXXX/X` format instead of converting to `(provisional)` fallback text
+- 🐛 Several minor improvements and bug fixes related to article/member/event editing as well as image URL/file retrieval
+- 🐛 Fix a bug where the Members Table would unsort itself after a member was edited or deleted
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.1.0 - April 14th, 2024
 </summary>
 

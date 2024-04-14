@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { AppStoreFeatureTypes } from '@app/types';
-import { areSame } from '@app/utils';
+import { areSame, customSort } from '@app/utils';
 
 import { MembersState } from './members.state';
 
@@ -71,8 +71,26 @@ export const showActiveOnly = createSelector(
   state => state.showActiveOnly,
 );
 
-export const filteredMembers = createSelector(membersFeatureSelector, state =>
-  state.showActiveOnly ? state.members.filter(member => member.isActive) : state.members,
+export const sortedMembers = createSelector(
+  members,
+  sortedBy,
+  isAscending,
+  (members, sortedBy, isAscending) => {
+    const sortKey =
+      sortedBy === 'born'
+        ? 'yearOfBirth'
+        : sortedBy === 'lastUpdated'
+        ? 'modificationInfo.dateLastEdited'
+        : sortedBy;
+    return [...members].sort(customSort(sortKey, isAscending));
+  },
+);
+
+export const filteredMembers = createSelector(
+  sortedMembers,
+  showActiveOnly,
+  (sortedMembers, showActiveOnly) =>
+    showActiveOnly ? sortedMembers.filter(member => member.isActive) : sortedMembers,
 );
 
 export const displayedMembers = createSelector(
@@ -80,5 +98,5 @@ export const displayedMembers = createSelector(
   startIndex,
   endIndex,
   (filteredMembers, startIndex, endIndex) =>
-    filteredMembers.slice(startIndex ?? 0, endIndex ?? 0),
+    filteredMembers.slice(startIndex ?? 0, endIndex ?? undefined),
 );

@@ -80,26 +80,26 @@ export function customSort(key: string, isAscending: boolean) {
       return 0; // Property doesn't exist on either object
     }
 
-    let varA: any =
-      typeof (a as any)[_key] === 'string'
-        ? (a as any)[_key].toUpperCase()
-        : (a as any)[_key];
-    let varB: any =
-      typeof (b as any)[_key] === 'string'
-        ? (b as any)[_key].toUpperCase()
-        : (b as any)[_key];
+    let aVal = (a as any)[_key];
+    let bVal = (b as any)[_key];
 
-    if (varA instanceof Date && varB instanceof Date) {
-      varA = varA.getTime();
-      varB = varB.getTime();
-    } else if (!isNaN(varA?.split('/')[0]) && !isNaN(varB?.split('/')[0])) {
+    if (aVal instanceof Date && bVal instanceof Date) {
+      aVal = aVal.getTime();
+      bVal = bVal.getTime();
+    } else if (!isNaN(aVal?.split('/')[0]) && !isNaN(bVal?.split('/')[0])) {
       // If both objects (before a potential slash) are valid numbers, convert
       // to number type (used specifically for provisional ratings in the format 1234/5)
-      varA = +varA.split('/')[0];
-      varB = +varB.split('/')[0];
+      aVal = +aVal.split('/')[0];
+      bVal = +bVal.split('/')[0];
+    } else if (typeof aVal === 'string' && typeof bVal === 'string') {
+      aVal = aVal.toUpperCase();
+      bVal = bVal.toUpperCase();
     }
 
-    const ascendingOrder = varA > varB ? 1 : varA < varB ? -1 : 0;
+    let ascendingOrder = aVal > bVal ? 1 : aVal < bVal ? -1 : 0;
+    if (typeof aVal === 'string' && typeof bVal === 'string') {
+      ascendingOrder *= -1;
+    }
 
     return isAscending ? ascendingOrder : ascendingOrder * -1;
   };

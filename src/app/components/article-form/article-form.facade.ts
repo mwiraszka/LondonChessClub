@@ -9,6 +9,9 @@ import { type Article } from '@app/types';
 @Injectable()
 export class ArticleFormFacade {
   readonly articleCurrently$ = this.store.select(ArticlesSelectors.articleCurrently);
+  readonly articleImageCurrently$ = this.store.select(
+    ArticlesSelectors.articleImageCurrently,
+  );
   readonly hasUnsavedChanges$ = this.store.select(ArticlesSelectors.hasUnsavedChanges);
   readonly isEditMode$ = this.store.select(ArticlesSelectors.isEditMode);
   readonly hasNewImage$ = this.store.select(ArticlesSelectors.hasNewImage);

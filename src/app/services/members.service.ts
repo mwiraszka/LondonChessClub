@@ -112,18 +112,18 @@ export class MembersService {
     return members.map(member => {
       return {
         id: member.id,
-        firstName: member.firstName,
-        lastName: member.lastName,
+        firstName: member.firstName!,
+        lastName: member.lastName!,
         city: member.city,
         rating: member.rating,
         peakRating: member.peakRating,
         dateJoined: member.dateJoined,
-        isActive: member.isActive,
-        email: member.email,
-        phoneNumber: member.phoneNumber,
-        yearOfBirth: member.yearOfBirth,
-        chesscomUsername: member.chesscomUsername,
-        lichessUsername: member.lichessUsername,
+        isActive: member.isActive!,
+        email: member.email ?? null,
+        phoneNumber: member.phoneNumber ?? null,
+        yearOfBirth: member.yearOfBirth ?? null,
+        chesscomUsername: member.chesscomUsername ?? null,
+        lichessUsername: member.lichessUsername ?? null,
         modificationInfo: {
           dateCreated: new Date(
             member.dateCreated === '2023-01-01T00:00:00.000Z'
@@ -146,11 +146,11 @@ export class MembersService {
     return members.map(member => {
       return {
         id: member.id,
-        firstName: member.firstName,
-        lastName: member.lastName,
+        firstName: member.firstName!,
+        lastName: member.lastName!,
         city: member.city,
         rating: member.rating,
-        peakRating: this.getNewPeakRating(member),
+        peakRating: this.getNewPeakRating(member.rating, member.peakRating),
         dateJoined: member.dateJoined,
         isActive: member.isActive,
         email: member.email ?? '',
@@ -166,15 +166,13 @@ export class MembersService {
     });
   }
 
-  private getNewPeakRating(member: Member): string {
-    if (member.rating.includes('/')) {
-      return '(provisional)';
-    }
+  private getNewPeakRating(rating: string, peakRating: string): string {
+    const ratingNum = +rating.split('/')[0];
+    const peakRatingNum = +peakRating.split('/')[0];
 
-    if (member.peakRating === '(provisional)' || +member.rating > +member.peakRating) {
-      return member.rating;
-    }
+    const surpassedCurrentPeakRating = ratingNum > peakRatingNum;
+    const firstNonProvisionalRating = !rating.includes('/') && peakRating.includes('/');
 
-    return member.peakRating;
+    return surpassedCurrentPeakRating || firstNonProvisionalRating ? rating : peakRating;
   }
 }

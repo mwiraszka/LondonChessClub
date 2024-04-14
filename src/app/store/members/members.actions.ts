@@ -53,7 +53,7 @@ export const fetchMembersRequested = createAction(
 );
 export const fetchMembersSucceeded = createAction(
   MembersActionTypes.FETCH_MEMBERS_SUCCEEDED,
-  props<{ allMembers: Member[] }>(),
+  props<{ members: Member[] }>(),
 );
 export const fetchMembersFailed = createAction(
   MembersActionTypes.FETCH_MEMBERS_FAILED,

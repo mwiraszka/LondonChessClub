@@ -77,10 +77,10 @@
 	</table>
 </div>
 
-<lcc-paginator [pageNum]="(facade.pageNum$ | async) ?? 0"
+<lcc-paginator typeOfItems="members"
+							 [pageNum]="(facade.pageNum$ | async) ?? 0"
 							 [pageSize]="(facade.pageSize$ | async) ?? 0"
 							 [totalItems]="(facade.filteredMembers$ | async)?.length ?? 0"
-							 [typeOfItems]="'members'"
 							 (pageChange)="facade.onChangePage($event)"
 							 (pageSizeChange)="facade.onChangePageSize($event)">
 </lcc-paginator>

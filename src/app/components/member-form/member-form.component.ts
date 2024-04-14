@@ -1,6 +1,5 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Subscription } from 'rxjs';
-import { debounceTime, filter } from 'rxjs/operators';
+import { debounceTime, filter, first } from 'rxjs/operators';
 
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -26,14 +25,14 @@ import { MemberFormFacade } from './member-form.facade';
 })
 export class MemberFormComponent implements OnInit {
   form!: FormGroup;
-  valueChangesSubscription!: Subscription;
 
   constructor(public facade: MemberFormFacade, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.facade.memberCurrently$
-      .pipe(filter(isDefined), untilDestroyed(this))
-      .subscribe(member => this.initForm(member));
+    this.facade.memberCurrently$.pipe(filter(isDefined), first()).subscribe(member => {
+      this.initForm(member);
+      this.initValueChangesListener();
+    });
   }
 
   hasError(control: AbstractControl): boolean {
@@ -97,9 +96,11 @@ export class MemberFormComponent implements OnInit {
       modificationInfo: [member.modificationInfo],
       peakRating: [member.peakRating],
     });
+  }
 
-    this.valueChangesSubscription = this.form.valueChanges
-      .pipe(debounceTime(200), untilDestroyed(this))
-      .subscribe((member: Member) => this.facade.onValueChange(member));
+  private initValueChangesListener(): void {
+    this.form.valueChanges
+      .pipe(debounceTime(500), untilDestroyed(this))
+      .subscribe((formData: Member) => this.facade.onValueChange(formData));
   }
 }

@@ -8,19 +8,17 @@ import type { Member } from '@app/types';
 
 @Injectable()
 export class MembersTableFacade {
-  readonly isAdmin$ = this.store.select(AuthSelectors.isAdmin);
-
-  readonly members$ = this.store.select(MembersSelectors.members);
   readonly activeMembers$ = this.store.select(MembersSelectors.activeMembers);
-  readonly filteredMembers$ = this.store.select(MembersSelectors.filteredMembers);
   readonly displayedMembers$ = this.store.select(MembersSelectors.displayedMembers);
-
+  readonly filteredMembers$ = this.store.select(MembersSelectors.filteredMembers);
+  readonly isAdmin$ = this.store.select(AuthSelectors.isAdmin);
   readonly isAscending$ = this.store.select(MembersSelectors.isAscending);
-  readonly sortedBy$ = this.store.select(MembersSelectors.sortedBy);
+  readonly members$ = this.store.select(MembersSelectors.members);
   readonly pageNum$ = this.store.select(MembersSelectors.pageNum);
   readonly pageSize$ = this.store.select(MembersSelectors.pageSize);
-  readonly startIndex$ = this.store.select(MembersSelectors.startIndex);
   readonly showActiveOnly$ = this.store.select(MembersSelectors.showActiveOnly);
+  readonly sortedBy$ = this.store.select(MembersSelectors.sortedBy);
+  readonly startIndex$ = this.store.select(MembersSelectors.startIndex);
 
   constructor(private readonly store: Store) {}
 

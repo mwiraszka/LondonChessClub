@@ -31,6 +31,16 @@ export const articleCurrently = createSelector(
   state => state.articleCurrently,
 );
 
+export const articleImageCurrently = createSelector(
+  articleCurrently,
+  articleCurrently => {
+    return {
+      imageFile: articleCurrently?.imageFile ?? null,
+      imageUrl: articleCurrently?.imageUrl ?? null,
+    };
+  },
+);
+
 export const hasNewImage = createSelector(
   articleCurrently,
   selectedArticle,
@@ -49,6 +59,7 @@ export const sectionToScrollTo = createSelector(
 );
 
 export const hasUnsavedChanges = createSelector(
-  articlesFeatureSelector,
-  state => !areSame(state.articleCurrently, state.selectedArticle),
+  articleCurrently,
+  selectedArticle,
+  (articleCurrently, selectedArticle) => !areSame(articleCurrently, selectedArticle),
 );

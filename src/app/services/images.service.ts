@@ -128,6 +128,14 @@ export class ImagesService {
     const imageFile = new File([data], 'lcc-file', {
       type: data.type ?? 'image/jpeg',
     });
+
+    if (!response || !data || !imageFile) {
+      console.info('[LCC] Unable to build the image file from the given URL');
+      console.info('[LCC] URL response:', response);
+      console.info('[LCC] Data as blob:', data);
+      console.info('[LCC] Image file:', imageFile);
+    }
+
     return imageFile;
   }
 }

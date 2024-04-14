@@ -21,6 +21,7 @@ export class ArticleFormFacade {
   }
 
   onRevert(): void {
+    localStorage.removeItem('imageUrl');
     this.store.dispatch(ArticlesActions.revertArticleImageChange());
   }
 

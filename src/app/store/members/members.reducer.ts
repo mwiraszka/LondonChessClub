@@ -1,7 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
 import { newMemberFormTemplate } from '@app/types';
-import { customSort } from '@app/utils';
 
 import * as MembersActions from './members.actions';
 import { MembersState, initialState } from './members.state';
@@ -41,9 +40,9 @@ const membersReducer = createReducer(
     isEditMode: true,
   })),
 
-  on(MembersActions.fetchMembersSucceeded, (state, { allMembers }) => ({
+  on(MembersActions.fetchMembersSucceeded, (state, { members }) => ({
     ...state,
-    members: [...allMembers].sort(customSort(state.sortedBy, state.isAscending)),
+    members,
   })),
 
   on(MembersActions.fetchMemberSucceeded, (state, { member }) => ({
@@ -83,18 +82,9 @@ const membersReducer = createReducer(
 
   on(MembersActions.tableHeaderSelected, (state, { header }) => ({
     ...state,
-    members: [...state.members].sort(
-      customSort(
-        header === 'born'
-          ? 'yearOfBirth'
-          : header === 'lastUpdated'
-          ? 'modificationInfo.dateLastEdited'
-          : header,
-        header === state.sortedBy ? !state.isAscending : false,
-      ),
-    ),
     sortedBy: header,
     isAscending: header === state.sortedBy ? !state.isAscending : false,
+    pageNum: 1,
   })),
 
   on(MembersActions.inactiveMembersToggled, state => ({

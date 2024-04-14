@@ -40,6 +40,16 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.1.1 - April 14th, 2024
+</summary>
+
+- 🐛 Several minor improvements and bug fixes related to article editing and image URL/file retrieval
+- 🐛 Fix a bug where the members table would unsort itself after a member was edited or deleted
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.1.0 - April 14th, 2024
 </summary>
 

@@ -25,7 +25,7 @@ export class MembersEffects {
             return response.error
               ? MembersActions.fetchMembersFailed({ error: response.error })
               : MembersActions.fetchMembersSucceeded({
-                  allMembers: response.payload!,
+                  members: response.payload!,
                 });
           }),
         ),

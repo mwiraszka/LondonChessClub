@@ -19,7 +19,6 @@ export class ImagePreloadDirective {
   @HostBinding('class') className?: string;
 
   updateUrl(): void {
-    console.error('[LCC] Image source error - falling back to default URL');
     this.src = this.default;
   }
 

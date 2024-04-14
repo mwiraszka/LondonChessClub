@@ -49,6 +49,7 @@ export const sectionToScrollTo = createSelector(
 );
 
 export const hasUnsavedChanges = createSelector(
-  articlesFeatureSelector,
-  state => !areSame(state.articleCurrently, state.selectedArticle),
+  articleCurrently,
+  selectedArticle,
+  (articleCurrently, selectedArticle) => !areSame(articleCurrently, selectedArticle),
 );

@@ -12,6 +12,7 @@ import { ArticleEditorScreenComponent } from '@app/screens/article-editor';
 import { ArticleViewerScreenComponent } from '@app/screens/article-viewer';
 import { ChampionScreenComponent } from '@app/screens/champion';
 import { ChangePasswordScreenComponent } from '@app/screens/change-password';
+import { DocumentsScreenComponent } from '@app/screens/documents';
 import { EventEditorScreenComponent } from '@app/screens/event-editor';
 import { GameArchivesScreenComponent } from '@app/screens/game-archives';
 import { HomeScreenComponent } from '@app/screens/home';
@@ -96,6 +97,10 @@ const routes: Routes = [
   {
     path: NavPathTypes.GAME_ARCHIVES,
     component: GameArchivesScreenComponent,
+  },
+  {
+    path: NavPathTypes.DOCUMENTS,
+    component: DocumentsScreenComponent,
   },
   {
     path: NavPathTypes.LOGIN,

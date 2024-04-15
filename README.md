@@ -40,6 +40,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.1.2 - April 15th, 2024
+</summary>
+
+- 🚀 Post PDFs of minutes from club's first three board meetings and the club's bylaws
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.1.1 - April 14th, 2024
 </summary>
 

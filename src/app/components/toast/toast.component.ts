@@ -10,18 +10,18 @@ import { type Toast, ToastTypes } from '@app/types';
 export class ToastComponent implements OnInit {
   @Input() toast?: Toast;
 
-  iconShape!: 'check-circle' | 'alert-triangle' | 'info';
+  icon!: 'check-circle' | 'alert-triangle' | 'info';
 
   ngOnInit(): void {
     switch (this.toast?.type) {
       case ToastTypes.SUCCESS:
-        this.iconShape = 'check-circle';
+        this.icon = 'check-circle';
         break;
       case ToastTypes.WARNING:
-        this.iconShape = 'alert-triangle';
+        this.icon = 'alert-triangle';
         break;
       default:
-        this.iconShape = 'info';
+        this.icon = 'info';
         break;
     }
   }

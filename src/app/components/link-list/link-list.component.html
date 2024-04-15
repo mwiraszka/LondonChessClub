@@ -9,8 +9,8 @@
 		<a [href]="link.path"
 			 target="_blank"
 			 class="lcc-link">
-			@if (link.iconShape) {
-			<i-feather [name]="link.iconShape"
+			@if (link.icon) {
+			<i-feather [name]="link.icon"
 								 class="icon">
 			</i-feather>
 			}
@@ -20,8 +20,8 @@
 		<a alt="link.text"
 			 class="lcc-link"
 			 [routerLink]="'/' + link.path">
-			@if (link.iconShape) {
-			<i-feather [name]="link.iconShape"
+			@if (link.icon) {
+			<i-feather [name]="link.icon"
 								 class="icon">
 			</i-feather>
 			}

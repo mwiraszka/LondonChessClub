@@ -13,6 +13,7 @@ export enum NavPathTypes {
   CITY_CHAMPION = 'city-champion',
   PHOTO_GALLERY = 'photo-gallery',
   GAME_ARCHIVES = 'game-archives',
+  DOCUMENTS = 'documents',
   ABOUT = 'about',
   LOGIN = 'login',
   LOGOUT = 'logout',

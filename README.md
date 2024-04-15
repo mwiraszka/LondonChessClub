@@ -40,6 +40,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.1.2 - April 15th, 2024
+</summary>
+
+- 🐛 Fix a bug where scheduled club events would get sorted by date in the reverse order
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.1.1 - April 14th, 2024
 </summary>
 

@@ -31,7 +31,7 @@ export class ScheduleService {
     return this.http.get<FlatClubEvent[]>(this.API_ENDPOINT).pipe(
       map(events => {
         const adaptedEvents = this.adaptForFrontend(events);
-        const sortedEvents = [...adaptedEvents].sort(customSort('eventDate', true));
+        const sortedEvents = [...adaptedEvents].sort(customSort('eventDate', false));
         return { payload: sortedEvents };
       }),
       catchError(() => of({ error: new Error('Failed to fetch events from database') })),

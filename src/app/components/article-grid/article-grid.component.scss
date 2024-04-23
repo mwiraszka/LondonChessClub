@@ -32,6 +32,7 @@ lcc-link-list,
     flex-flow: column nowrap;
     gap: $lcc-space--xs;
     height: auto;
+    margin: 0 $lcc-space--xs;
     // Minimum width to keep dates on one line, while still being narrow enough to
     // to fit two cards side-by-side at gt-md breakpoint (700px)
     min-width: 282px;
@@ -41,6 +42,10 @@ lcc-link-list,
         darken($lcc-color--primary, 10%) 0% 50%
       ) 50% / 5px 5px;
     border-radius: $lcc-border-radius--lg;
+
+    @include respond-to('gt-sm') {
+      margin: 0;
+    }
 
     &:hover {
       cursor: pointer;

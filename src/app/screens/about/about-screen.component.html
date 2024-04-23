@@ -40,8 +40,7 @@
 				We use our own London & Region rating system, managed by Gerry Litchfield. Current
 				ratings can be found
 				<a class="lcc-link"
-					 [routerLink]="NavPathTypes.MEMBERS"
-					 (click)="onNavigate(NavPathTypes.MEMBERS)">
+					 [routerLink]="'/' + NavPathTypes.MEMBERS">
 					here</a>.
 			</p>
 		</article>
@@ -78,8 +77,7 @@
 			<p>
 				See
 				<a class="lcc-link"
-					 [routerLink]="NavPathTypes.SCHEDULE"
-					 (click)="onNavigate(NavPathTypes.SCHEDULE)">
+					 [routerLink]="'/' + NavPathTypes.SCHEDULE">
 					schedule
 				</a>
 				for a list of upcoming events.
@@ -142,14 +140,23 @@
 			</div>
 			<p>
 				Every December we hold our Annual General Meeting (AGM) where we look back on the
-				past year, review the club's finances, and elect any new board & committee members
-				for the following year. All club members are invited to attend the AGM &ndash; see
+				past year, review the club's finances, and elect any new board & committee
+				members for the following year. All club members are invited to attend the AGM
+				&ndash; see
 				<a class="lcc-link"
-					 [routerLink]="NavPathTypes.SCHEDULE"
-					 (click)="onNavigate(NavPathTypes.SCHEDULE)">
+					 [routerLink]="'/' + NavPathTypes.SCHEDULE">
 					schedule
 				</a>
 				for exact dates.
+			</p>
+			<p>
+				The board of directors meets monthly to go over the club's finances, plan out
+				future events, and discuss any proposals brought forward by the club's members.
+				You can find minutes from the meetings, as well as the club's bylaws
+				<a class="lcc-link"
+					 [routerLink]="'/' + NavPathTypes.DOCUMENTS">
+					here.
+				</a>
 			</p>
 		</article>
 

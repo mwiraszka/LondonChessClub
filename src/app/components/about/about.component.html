@@ -1,6 +1,7 @@
 <div class="container"
 		 [class.about-screen]="isAboutScreen">
-	<section class="welcome-text-section">
+	<section class="welcome-text-section"
+					 [style.padding]="isAboutScreen ? '16px' : '0 16px'">
 		<p>
 			@if (!isAboutScreen) {
 			<span>Welcome to the LCC!</span>

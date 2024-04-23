@@ -1,5 +1,10 @@
 @import 'styles/abstracts/variables';
 
+$document-max-width: 1000px;
+$header-height: 40px;
+$close-icon-height: $header-height - (2 * $lcc-space--sm);
+$document-icon-height: 18px;
+
 :host {
   display: flex;
   justify-content: center;
@@ -20,21 +25,118 @@
   td {
     white-space: nowrap;
     color: lighten($lcc-color--text-primary-black, 40%);
+
+    &.lcc-truncate {
+      display: table-cell;
+      text-overflow: ellipsis;
+    }
   }
 
   .document {
     display: flex;
-    align-items: center;
-    gap: $lcc-space--sm;
+    justify-content: space-between;
+    gap: $lcc-space--md;
 
-    i-feather {
-      width: 18px;
-      height: 18px;
-      min-width: 18px;
+    .document-label-container {
+      display: flex;
+      align-items: center;
+      gap: $lcc-space--xs;
+
+      .file-icon {
+        width: $document-icon-height;
+        height: $document-icon-height;
+        min-width: $document-icon-height;
+      }
+  
+      .document-title {
+        color: lighten($lcc-color--text-primary-black, 20%);
+      }
+
+      &:hover {
+        .file-icon,
+        .document-title {
+          cursor: pointer;
+          color: $lcc-color--primary;
+        }
+      }
     }
 
-    span {
-      color: $lcc-color--text-primary-black;
+    .download-link {
+      color: lighten($lcc-color--text-primary-black, 20%);
+
+      &:hover {
+        cursor: pointer;
+        color: $lcc-color--primary;
+      }
+
+      .download-icon {
+        width: $document-icon-height;
+        height: $document-icon-height;
+        min-width: $document-icon-height;
+      }
+    }
+
+    .document-date-published-container,
+    .document-date-last-modified-container {
+      display: flex;
+      align-items: center;
+      justify-self: center;
+      text-align: center;
+      height: 100%;
+    }
+  }
+}
+
+.pdf-viewer-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: $lcc-color--overlay;
+
+  .pdf-viewer-header {
+    display: flex;
+    align-items: center;
+    height: $header-height;
+    width: 100%;
+    max-width: $document-max-width;
+    background-color: darken($lcc-color--primary, 20%);
+
+    .close-icon {
+      margin: 0 $lcc-space--sm 0 auto;
+      height: $close-icon-height;
+      width: $close-icon-height;
+      color: darken($lcc-color--white, 10%);
+
+      &:hover {
+        cursor: pointer;
+        color: $lcc-color--white;
+      }
+    }
+  }
+
+  .loading-progress-indicator {
+    position: absolute;
+    top: $header-height;
+    left: 0;
+    height: $lcc-space--sm;
+    background-color: white;
+    box-shadow: $lcc-box-shadow;
+    border-bottom: $lcc-space--xs solid darken($lcc-color--primary, 10%);
+  }
+
+  pdf-viewer {
+    width: 100%;
+    max-width: $document-max-width;
+    height: 100%;
+    overflow-x: hidden;
+
+    ::ng-deep .ng2-pdf-viewer-container::-webkit-scrollbar {
+        background-color: $lcc-color--transparent-half !important;
     }
   }
 }

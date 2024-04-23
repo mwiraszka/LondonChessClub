@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { NavPathTypes } from '@app/types';
 
@@ -14,9 +13,5 @@ import { AboutScreenFacade } from './about-screen.facade';
 export class AboutScreenComponent {
   readonly NavPathTypes = NavPathTypes;
 
-  constructor(public facade: AboutScreenFacade, private readonly router: Router) {}
-
-  onNavigate(path: NavPathTypes): void {
-    this.router.navigate([path]);
-  }
+  constructor(public facade: AboutScreenFacade) {}
 }

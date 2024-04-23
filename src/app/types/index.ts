@@ -2,6 +2,7 @@ export { AppScreenTypes } from './app-screens.model';
 export { AppStoreFeatureTypes } from './app-store-features.model';
 export type { Article, FlatArticle } from './article.model';
 export { newArticleFormTemplate } from './article.model';
+export type { ClubDocument } from './club-document.model';
 export type { ClubEvent, FlatClubEvent } from './club-event.model';
 export { ClubEventTypes, newClubEventFormTemplate } from './club-event.model';
 export type { ImageId } from './image-id.model';

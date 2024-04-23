@@ -5,43 +5,71 @@
 
 	<table class="lcc-table documents-table">
 		<thead>
-			<th>Document</th>
-			<th>Published</th>
-			<th>Last Modified</th>
+			<th class="document">Document</th>
+			<th class="published">Published</th>
+			<th class="last-modified">Last Modified</th>
 		</thead>
 		<tbody>
+			@for (document of documents; track document.title) {
 			<tr>
-				<td class="document">
-					<i-feather name="file-text"></i-feather>
-					<span>Club Bylaws</span>
+				<td class="document lcc-truncate">
+					<div class="document-label-container"
+							 (click)="onSelectDocument(document.documentName)">
+						<i-feather name="file-text"
+											 class="file-icon">
+						</i-feather>
+						<span class="document-title">{{ document.title }}</span>
+					</div>
+					<a [href]="'assets/documents/' + document.documentName + '.pdf'"
+						 class="download-link"
+						 download>
+						<i-feather name="download"
+											 class="download-icon">
+						</i-feather>
+					</a>
+
 				</td>
-				<td class="published">Mon, Apr 15, 2024</td>
-				<td class="last-modified">Mon, Apr 15, 2024</td>
-			</tr>
-			<tr>
-				<td class="document">
-					<i-feather name="file-text"></i-feather>
-					<span>Board Meeting - DEC 12, 2023 - Minutes</span>
+				<td class="published lcc-truncate">
+					<div class="document-date-published-container">
+						{{ document.datePublished }}
+					</div>
 				</td>
-				<td class="published">Mon, Apr 15, 2024</td>
-				<td class="last-modified">Mon, Apr 15, 2024</td>
-			</tr>
-			<tr>
-				<td class="document">
-					<i-feather name="file-text"></i-feather>
-					<span>Board Meeting - JAN 9, 2024 - Minutes</span>
+				<td class="last-modified lcc-truncate">
+					<div class="document-date-last-modified-container">
+						{{ document.dateLastModified }}
+					</div>
 				</td>
-				<td class="published">Mon, Apr 15, 2024</td>
-				<td class="last-modified">Mon, Apr 15, 2024</td>
 			</tr>
-			<tr>
-				<td class="document">
-					<i-feather name="file-text"></i-feather>
-					<span>Board Meeting - APR 2, 2024 - Minutes</span>
-				</td>
-				<td class="published">Mon, Apr 15, 2024</td>
-				<td class="last-modified">Mon, Apr 15, 2024</td>
-			</tr>
+			}
 		</tbody>
 	</table>
 </div>
+
+<ng-template #pdfViewer>
+	<div class="pdf-viewer-container"
+			 (click)="onCloseViewer()">
+		<header class="pdf-viewer-header"
+						(click)="onClickViewer($event)">
+			<i-feather name="x"
+								 class="close-icon"
+								 (click)="onCloseViewer()">
+			</i-feather>
+		</header>
+
+		@if (loadedPercentage < 100){
+			<div
+			class="loading-progress-indicator"
+			[style.width.%]="loadedPercentage">
+	</div>
+	}
+
+	<pdf-viewer [src]="documentSrc"
+							[render-text]="true"
+							[render-text-mode]="2"
+							[original-size]="false"
+							(after-load-complete)="onDocumentLoaded()"
+							(click)="onClickViewer($event)"
+							(on-progress)="onProgress($event)">
+	</pdf-viewer>
+	</div>
+</ng-template>

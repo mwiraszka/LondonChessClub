@@ -1,3 +1,5 @@
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -8,7 +10,7 @@ import { DocumentsScreenComponent } from './documents-screen.component';
 
 @NgModule({
   declarations: [DocumentsScreenComponent],
-  imports: [CommonModule, IconsModule, ScreenHeaderModule],
+  imports: [CommonModule, IconsModule, PdfViewerModule, ScreenHeaderModule],
   exports: [DocumentsScreenComponent],
 })
 export class DocumentsScreenModule {}

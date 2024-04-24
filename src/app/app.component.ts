@@ -1,3 +1,5 @@
+import moment from 'moment-timezone';
+
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 import { LoaderService } from '@app/services';
@@ -18,7 +20,9 @@ export class AppComponent implements OnInit {
     private changeDetectionRef: ChangeDetectorRef,
     private loaderService: LoaderService,
     public facade: AppFacade,
-  ) {}
+  ) {
+    moment.tz.setDefault('America/Toronto');
+  }
 
   ngOnInit(): void {
     this.loaderService.status$.subscribe((isLoading: boolean) => {

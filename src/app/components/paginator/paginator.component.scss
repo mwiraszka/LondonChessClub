@@ -19,7 +19,7 @@ button {
 
   &:hover {
     &:not([disabled]):not(.selected) {
-      box-shadow: 1px 1px 4px $lcc-color--gray;
+      box-shadow: 1px 1px 4px $lcc-box-shadow;
       color: $lcc-color--black !important;
 
       &:hover {

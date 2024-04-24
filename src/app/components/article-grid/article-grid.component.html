@@ -15,7 +15,7 @@
 
 		@if (article.isSticky) {
 		<i-feather class="sticky-icon"
-							 name="star">
+							 name="bookmark">
 		</i-feather>
 		}
 
@@ -36,7 +36,7 @@
 			<p class="lcc-truncate-max-5-lines">{{ article.body | stripMarkdown }}</p>
 			<div class="article-dates-container">
 				<span class="date-created">
-					{{ article?.modificationInfo?.dateCreated | formatDate:'short':'no-time' }}
+					{{ article?.modificationInfo?.dateCreated | formatDate:'short no-time' }}
 				</span>
 				@if (article?.modificationInfo?.dateLastEdited
 				!== article?.modificationInfo?.dateCreated) {
@@ -44,7 +44,7 @@
 					<span class="vertical-spacer">|</span>
 					<span class="edited">edited&nbsp;</span>
 					<span class="date-last-edited">
-						{{ article?.modificationInfo?.dateLastEdited | formatDate:'short':'no-time' }}
+						{{ article?.modificationInfo?.dateLastEdited | formatDate:'short no-time' }}
 					</span>
 				</div>
 				}

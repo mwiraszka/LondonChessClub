@@ -57,7 +57,7 @@
               "@aws-sdk/middleware-ssec", "@aws-sdk/middleware-expect-continue", "fast-xml-parser",
               "@aws-sdk/xml-builder", "@aws-sdk/md5-js", "@aws-sdk/hash-blob-browser", "remove-markdown",
               "@aws-sdk/eventstream-serde-browser", "@aws-sdk/middleware-location-constraint", "uuid", "deepmerge",
-              "events", "xstate/lib/waitFor.js", "style-dictionary/lib/utils/deepExtend.js", "moment",
+              "events", "xstate/lib/waitFor.js", "style-dictionary/lib/utils/deepExtend.js", "moment-timezone",
               "style-dictionary/lib/utils/flattenProperties.js", "style-dictionary/lib/utils/references/usesReference.js", "cookie",
               "@aws-sdk/credential-provider-cognito-identity", "@aws-sdk/eventstream-serde-config-resolver",
               "ulid", "zen-push", "lodash", "@aws-amplify/core", "url", "@aws-crypto/crc32", "isomorphic-unfetch",

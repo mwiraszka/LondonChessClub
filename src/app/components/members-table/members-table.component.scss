@@ -157,19 +157,19 @@ lcc-paginator {
 aside {
   width: 300px;
   text-align: center;
-  border: 1px solid rgba($lcc-color--gray, 0.3);
+  border: 1px solid rgba($lcc-color--grey, 0.3);
   border-radius: $lcc-border-radius--lg;
   
   h5 {
     font-style: italic;
-    border-bottom: 1px solid rgba($lcc-color--gray, 0.2);
+    border-bottom: 1px solid rgba($lcc-color--grey, 0.2);
   }
 
   .checkbox-section {
     padding: $lcc-space--xxs $lcc-space--md;
     background-color: rgba($lcc-color--accent, 0.1);
     margin-top: 2px;
-    border-top: 1px solid rgba($lcc-color--gray, 0.2);
+    border-top: 1px solid rgba($lcc-color--grey, 0.2);
 
     label {
       font-size: $h5;

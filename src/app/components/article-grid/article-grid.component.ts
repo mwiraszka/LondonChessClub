@@ -22,7 +22,7 @@ export class ArticleGridComponent implements OnInit {
   createArticleLink: Link = {
     path: NavPathTypes.ARTICLE_ADD,
     text: 'Compose new article',
-    iconShape: 'plus-circle',
+    icon: 'plus-circle',
   };
 
   constructor(public facade: ArticleGridFacade) {}

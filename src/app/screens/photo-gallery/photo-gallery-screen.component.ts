@@ -77,7 +77,7 @@ export class PhotoGalleryScreenComponent {
       text: '2007 and older',
     },
   ].map(link => {
-    return { ...link, iconShape: 'camera' };
+    return { ...link, icon: 'camera' };
   });
 
   constructor(public facade: PhotoGalleryScreenFacade) {}

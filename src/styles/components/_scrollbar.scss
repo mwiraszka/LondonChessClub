@@ -6,6 +6,6 @@ body {
 
   ::-webkit-scrollbar-thumb {
     border-radius: $lcc-border-radius--lg;
-    background: transparentize($lcc-color--primary, 0.2) !important;
+    background: $lcc-color--scrollbar !important;
   }
 }

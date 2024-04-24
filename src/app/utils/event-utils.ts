@@ -1,7 +1,11 @@
+import moment from 'moment-timezone';
+
 import type { ClubEvent } from '@app/types';
+import { setLocalTime } from '@app/utils/time-utils';
 
 /**
- * Filters out a limited number of future events from an array of sorted events
+ * Filters out a limited number of future events (using 9:00pm as the cut-off time) from
+ * an array of sorted events
  *
  * @returns {ClubEvent[]} An array of upcoming club events
  */
@@ -9,10 +13,11 @@ export function getUpcomingEvents(
   sortedEvents: ClubEvent[],
   limit?: number,
 ): ClubEvent[] {
-  const today = Date.now();
+  const now = moment().tz('America/Toronto').format();
+
   const upcomingEvents = sortedEvents.filter(event => {
-    const eventDateAsUtc = new Date(event.eventDate);
-    return eventDateAsUtc.setDate(eventDateAsUtc.getDate() + 1) >= today;
+    const endOfEvent = setLocalTime(event.eventDate, '21:00');
+    return moment(endOfEvent).isAfter(now);
   });
 
   if (!upcomingEvents.length || (limit && limit < 1)) {

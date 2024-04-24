@@ -52,14 +52,14 @@
 				<td class="chesscom-username lcc-truncate">{{ member?.chesscomUsername }}</td>
 				<td class="lichess-username lcc-truncate">{{ member?.lichessUsername }}</td>
 				<td class="last-updated">
-					{{ member.modificationInfo!.dateLastEdited | formatDate:'short':'no-time' }}
+					{{ member.modificationInfo!.dateLastEdited | formatDate:'short no-time' }}
 				</td>
 				@if (facade.isAdmin$ | async) {
 				<td class="born">{{ member?.yearOfBirth }}</td>
 				<td class="email">{{ member?.email }}</td>
 				<td class="phone-number">{{ member?.phoneNumber }}</td>
 				<td class="date-joined">
-					{{ convertToUtcTimezone(member.dateJoined) | formatDate:'short':'no-time' }}
+					{{ convertToUtcTimezone(member.dateJoined) | formatDate:'short no-time' }}
 				</td>
 				}
 			</tr>

@@ -1,5 +1,5 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 import { Component, OnInit } from '@angular/core';
 
@@ -39,7 +39,7 @@ export class MembersTableComponent implements OnInit {
   addMemberLink: Link = {
     path: NavPathTypes.MEMBER_ADD,
     text: 'Add new member',
-    iconShape: 'plus-circle',
+    icon: 'plus-circle',
   };
 
   constructor(public facade: MembersTableFacade) {}

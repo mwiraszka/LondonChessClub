@@ -3,46 +3,45 @@
 										 icon="file-text">
 	</lcc-screen-header>
 
-	<table class="lcc-table documents-table">
-		<thead>
-			<th class="document">Document</th>
-			<th class="published">Published</th>
-			<th class="last-modified">Last Modified</th>
-		</thead>
-		<tbody>
-			@for (document of documents; track document.title) {
-			<tr>
-				<td class="document lcc-truncate">
-					<div class="document-label-container"
-							 (click)="onSelectDocument(document.documentName)">
-						<i-feather name="file-text"
-											 class="file-icon">
-						</i-feather>
-						<span class="document-title">{{ document.title }}</span>
-					</div>
-					<a [href]="'assets/documents/' + document.documentName + '.pdf'"
-						 class="download-link"
-						 download>
-						<i-feather name="download"
-											 class="download-icon">
-						</i-feather>
-					</a>
+	<div class="lcc-table-wrapper">
+		<table class="lcc-table documents-table">
+			<thead>
+				<th class="document">Document</th>
+				<th class="published">Published</th>
+				<th class="last-modified">Last Modified</th>
+			</thead>
+			<tbody>
+				@for (document of documents; track document.title) {
+				<tr>
+					<td class="document">
+						<div class="document-label-container"
+								 (click)="onSelectDocument(document.documentName)">
+							<i-feather name="file-text"
+												 class="file-icon">
+							</i-feather>
+							<span class="document-title">{{ document.title }}</span>
+						</div>
+						<a [href]="'assets/documents/' + document.documentName + '.pdf'"
+							 class="download-link"
+							 download>
+							<i-feather name="download"
+												 class="download-icon">
+							</i-feather>
+						</a>
+					</td>
 
-				</td>
-				<td class="published lcc-truncate">
-					<div class="document-date-published-container">
+					<td class="published">
 						{{ document.datePublished | formatDate:'short no-time' }}
-					</div>
-				</td>
-				<td class="last-modified lcc-truncate">
-					<div class="document-date-last-modified-container">
+					</td>
+
+					<td class="last-modified">
 						{{ document.dateLastModified | formatDate:'short no-time' }}
-					</div>
-				</td>
-			</tr>
-			}
-		</tbody>
-	</table>
+					</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+	</div>
 </div>
 
 <ng-template #pdfViewer>

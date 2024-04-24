@@ -45,6 +45,7 @@ v3.1.3 - April 24th, 2024
 
 - 🚀 Post PDFs of minutes from club's first three board meetings, as well as the club's bylaws
 - 🚀 Change scrollbar colour to grey
+- 🚀 Change article 'sticky' icon to be a bookmark
 - 🐛 Ensure the next club event (in the app banner as well as the highlighted row on the Schedule screen) changes over at 9:00pm EST instead of midnight on Friday UTC time (which is currently equivalent to 7:00pm EST)
 - 🔧 Replace `moment.js` library with `moment-timezone`, and improve date formatting algorithm
 

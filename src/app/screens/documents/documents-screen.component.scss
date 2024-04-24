@@ -25,11 +25,12 @@ $document-icon-height: 18px;
   td {
     white-space: nowrap;
     color: lighten($lcc-color--text-primary-black, 40%);
+  }
 
-    &.lcc-truncate {
-      display: table-cell;
-      text-overflow: ellipsis;
-    }
+  .published,
+  .last-modified {
+    width: 180px;
+    vertical-align: middle;
   }
 
   .document {
@@ -132,11 +133,18 @@ $document-icon-height: 18px;
   pdf-viewer {
     width: 100%;
     max-width: $document-max-width;
-    height: 100%;
-    overflow-x: hidden;
+    height: calc(100% - $header-height);
 
-    ::ng-deep .ng2-pdf-viewer-container::-webkit-scrollbar {
+    ::ng-deep .ng2-pdf-viewer-container {
+      overflow-x: hidden;
+    
+      &::-webkit-scrollbar {
         background-color: $lcc-color--transparent-half !important;
+      }
+      
+      .page {
+        margin: 0;
+      }
     }
   }
 }

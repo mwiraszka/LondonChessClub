@@ -40,10 +40,13 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v3.1.3 - April 23rd, 2024
+v3.1.3 - April 24th, 2024
 </summary>
 
 - 🚀 Post PDFs of minutes from club's first three board meetings, as well as the club's bylaws
+- 🚀 Change scrollbar colour to grey
+- 🐛 Ensure the next club event (in the app banner as well as the highlighted row on the Schedule screen) changes over at 9:00pm EST instead of midnight on Friday UTC time (which is currently equivalent to 7:00pm EST)
+- 🔧 Replace `moment.js` library with `moment-timezone`, and improve date formatting algorithm
 
 </details>
 

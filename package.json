@@ -43,7 +43,7 @@
     "lichess-pgn-viewer": "^2.0.1",
     "lodash": "^4.17.21",
     "marked": "^9.1.6",
-    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.45",
     "ng2-pdf-viewer": "^10.0.0",
     "ngrx-store-localstorage": "17.0.0",
     "ngx-markdown": "^17.1.1",

@@ -31,12 +31,12 @@
 				</td>
 				<td class="published lcc-truncate">
 					<div class="document-date-published-container">
-						{{ document.datePublished }}
+						{{ document.datePublished | formatDate:'short no-time' }}
 					</div>
 				</td>
 				<td class="last-modified lcc-truncate">
 					<div class="document-date-last-modified-container">
-						{{ document.dateLastModified }}
+						{{ document.dateLastModified | formatDate:'short no-time' }}
 					</div>
 				</td>
 			</tr>

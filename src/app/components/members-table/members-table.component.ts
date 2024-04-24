@@ -1,5 +1,5 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 import { Component, OnInit } from '@angular/core';
 

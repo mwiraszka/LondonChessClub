@@ -1,10 +1,9 @@
 input[type="text"],
 input[type="password"],
 textarea {
-  -webkit-appearance: none;
   display: block;
   width: 100%;
-  border: 1px solid lighten($lcc-color--gray, 22%);
+  border: 1px solid lighten($lcc-color--grey, 22%);
   border-radius: $lcc-border-radius--sm !important;
   font-size: $h4 !important;
   height: 36px;
@@ -18,7 +17,7 @@ textarea {
   &:hover,
   &:focus {
     outline: none;
-    border: 1px solid lighten($lcc-color--gray, 15%);
+    border: 1px solid lighten($lcc-color--grey, 15%);
     box-shadow: 0 0 4px 1px lighten($lcc-color--select, 15%);
   }
 

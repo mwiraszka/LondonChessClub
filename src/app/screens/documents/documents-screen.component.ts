@@ -31,26 +31,26 @@ export class DocumentsScreenComponent implements OnDestroy {
     {
       title: 'Club Bylaws',
       documentName: 'lcc-bylaws',
-      datePublished: 'Mon, Apr 22, 2024',
-      dateLastModified: 'Mon, Apr 22, 2024',
+      datePublished: '2024-04-22',
+      dateLastModified: '2024-04-22',
     },
     {
       title: 'Board Meeting - DEC 12, 2023 - Minutes',
       documentName: 'lcc-board-meeting-2023-12-12-minutes',
-      datePublished: 'Mon, Apr 22, 2024',
-      dateLastModified: 'Mon, Apr 22, 2024',
+      datePublished: '2024-04-22',
+      dateLastModified: '2024-04-22',
     },
     {
       title: 'Board Meeting - JAN 9, 2024 - Minutes',
       documentName: 'lcc-board-meeting-2024-01-09-minutes',
-      datePublished: 'Mon, Apr 22, 2024',
-      dateLastModified: 'Mon, Apr 22, 2024',
+      datePublished: '2024-04-22',
+      dateLastModified: '2024-04-22',
     },
     {
       title: 'Board Meeting - APR 2, 2024 - Minutes',
       documentName: 'lcc-board-meeting-2024-04-02-minutes',
-      datePublished: 'Mon, Apr 22, 2024',
-      dateLastModified: 'Mon, Apr 22, 2024',
+      datePublished: '2024-04-22',
+      dateLastModified: '2024-04-22',
     },
   ];
 

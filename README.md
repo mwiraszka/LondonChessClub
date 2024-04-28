@@ -40,6 +40,18 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.1.4 - TBD
+</summary>
+
+- 🚀 Improve website SEO by 1) including more meaningful text within `<noscript>` tags for better description in SERPs, 2) using `<h1>` tags in Screen Header component, 3) adding more meta tags to root index.html file
+- 🚀 Dynamically generate page metadata and title (what's displayed in the browser tab) for each individual screen
+- 🔧 Implement module lazy-loading for a quicker initial load
+- 🔧 Refactor separate add/edit/view screens as child variants of their parent member/article/event screens, and create dedicated member/article/event routing modules to handle their routing
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.1.3 - April 24th, 2024
 </summary>
 

@@ -1,21 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { AboutModule } from '@app/components/about';
 import { ScreenHeaderModule } from '@app/components/screen-header';
-import { NavPathTypes } from '@app/types';
 
+import { AboutScreenRoutingModule } from './about-screen-routing.module';
 import { AboutScreenComponent } from './about-screen.component';
 
 @NgModule({
   declarations: [AboutScreenComponent],
-  imports: [AboutModule, CommonModule, RouterModule, ScreenHeaderModule],
+  imports: [
+    AboutModule,
+    AboutScreenRoutingModule,
+    CommonModule,
+    RouterModule,
+    ScreenHeaderModule,
+  ],
 })
-export class AboutScreenModule {
-  constructor(private readonly router: Router) {}
-
-  onNavigate(path: NavPathTypes): void {
-    this.router.navigate([path]);
-  }
-}
+export class AboutScreenModule {}

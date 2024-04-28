@@ -29,7 +29,7 @@ export class ScheduleComponent implements OnInit {
 
   shownEvents?: ClubEvent[];
   addEventLink: Link = {
-    path: NavPathTypes.EVENT_ADD,
+    path: NavPathTypes.EVENT + '/' + NavPathTypes.ADD,
     text: 'Add new event',
     icon: 'plus-circle',
   };

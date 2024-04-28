@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
+import { MetaAndTitleService } from '@app/services';
 import { type Link, NavPathTypes } from '@app/types';
 
 import { ChampionScreenFacade } from './champion-screen.facade';
@@ -10,7 +11,7 @@ import { ChampionScreenFacade } from './champion-screen.facade';
   styleUrls: ['./champion-screen.component.scss'],
   providers: [ChampionScreenFacade],
 })
-export class ChampionScreenComponent {
+export class ChampionScreenComponent implements OnInit {
   readonly NavPathTypes = NavPathTypes;
 
   links: Link[] = [
@@ -266,5 +267,15 @@ export class ChampionScreenComponent {
     },
   ];
 
-  constructor(public facade: ChampionScreenFacade) {}
+  constructor(
+    public facade: ChampionScreenFacade,
+    private metaAndTitleService: MetaAndTitleService,
+  ) {}
+
+  ngOnInit(): void {
+    this.metaAndTitleService.updateTitle('City Champion');
+    this.metaAndTitleService.updateDescription(
+      'All about the London Chess Championship and past winners.',
+    );
+  }
 }

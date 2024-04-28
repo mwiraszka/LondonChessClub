@@ -18,7 +18,6 @@ import { ImageOverlayModule } from '@app/components/image-overlay';
 import { ModalModule } from '@app/components/modal';
 import { NavModule } from '@app/components/nav';
 import { ToasterModule } from '@app/components/toaster';
-import { ScreensModule } from '@app/screens/screens.module';
 import { metaReducers } from '@app/store/app';
 import { ArticlesStoreModule } from '@app/store/articles';
 import { AuthStoreModule } from '@app/store/auth';
@@ -56,7 +55,6 @@ import { AppComponent } from './app.component';
     NavModule,
     NavStoreModule,
     ScheduleStoreModule,
-    ScreensModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

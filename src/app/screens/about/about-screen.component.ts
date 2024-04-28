@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
+import { MetaAndTitleService } from '@app/services';
 import { NavPathTypes } from '@app/types';
-
-import { AboutScreenFacade } from './about-screen.facade';
 
 @Component({
   selector: 'lcc-about-screen',
   templateUrl: './about-screen.component.html',
   styleUrls: ['./about-screen.component.scss'],
-  providers: [AboutScreenFacade],
 })
-export class AboutScreenComponent {
+export class AboutScreenComponent implements OnInit {
   readonly NavPathTypes = NavPathTypes;
 
-  constructor(public facade: AboutScreenFacade) {}
+  constructor(private metaAndTitleService: MetaAndTitleService) {}
+
+  ngOnInit(): void {
+    this.metaAndTitleService.updateTitle('About');
+    this.metaAndTitleService.updateDescription('Learn all about the London Chess Club.');
+  }
 }

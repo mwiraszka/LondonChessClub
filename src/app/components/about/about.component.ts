@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/consistent-type-imports */
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { NavPathTypes } from '@app/types';
 
@@ -25,7 +23,7 @@ export class AboutComponent implements OnInit {
   clubLocation: google.maps.LatLngLiteral = { lat: 42.982528, lng: -81.261401 };
   mapOptions!: google.maps.MapOptions;
 
-  constructor(private readonly httpClient: HttpClient, private readonly router: Router) {}
+  constructor(private readonly httpClient: HttpClient) {}
 
   ngOnInit(): void {
     this.resizeMap(window.innerWidth);
@@ -43,10 +41,6 @@ export class AboutComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(): void {
     this.resizeMap(window.innerWidth);
-  }
-
-  onNavigate(path: NavPathTypes): void {
-    this.router.navigate([path]);
   }
 
   private resizeMap(screenWidth: number): void {

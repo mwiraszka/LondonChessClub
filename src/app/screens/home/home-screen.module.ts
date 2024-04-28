@@ -8,6 +8,7 @@ import { LinkListModule } from '@app/components/link-list';
 import { PhotoGridModule } from '@app/components/photo-grid';
 import { ScheduleModule } from '@app/components/schedule';
 
+import { HomeScreenRoutingModule } from './home-screen-routing.module';
 import { HomeScreenComponent } from './home-screen.component';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { HomeScreenComponent } from './home-screen.component';
     AboutModule,
     ArticleGridModule,
     CommonModule,
+    HomeScreenRoutingModule,
     LinkListModule,
     RouterModule,
     PhotoGridModule,

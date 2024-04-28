@@ -6,13 +6,14 @@ import {
   HostListener,
   Inject,
   OnDestroy,
+  OnInit,
   Renderer2,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
 
-import { LoaderService } from '@app/services';
+import { LoaderService, MetaAndTitleService } from '@app/services';
 import { ClubDocument } from '@app/types';
 
 @Component({
@@ -20,7 +21,7 @@ import { ClubDocument } from '@app/types';
   templateUrl: './documents-screen.component.html',
   styleUrls: ['./documents-screen.component.scss'],
 })
-export class DocumentsScreenComponent implements OnDestroy {
+export class DocumentsScreenComponent implements OnInit, OnDestroy {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @ViewChild('pdfViewer') pdfViewer!: TemplateRef<any>;
 
@@ -64,9 +65,17 @@ export class DocumentsScreenComponent implements OnDestroy {
   constructor(
     private readonly viewContainerRef: ViewContainerRef,
     private loaderService: LoaderService,
+    private metaAndTitleService: MetaAndTitleService,
     private renderer: Renderer2,
     @Inject(DOCUMENT) private _document: Document,
   ) {}
+
+  ngOnInit(): void {
+    this.metaAndTitleService.updateTitle('Documents');
+    this.metaAndTitleService.updateDescription(
+      'A place for all London Chess Club documentation.',
+    );
+  }
 
   ngOnDestroy(): void {
     this.onCloseViewer();

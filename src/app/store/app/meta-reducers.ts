@@ -11,8 +11,8 @@ function actionLogMetaReducer(reducer: ActionReducer<AppState>): ActionReducer<A
       `%c [${timestamp}] ${action.type} `,
       'background-color: #ddd; color: #222',
     );
-    console.log('State:', state);
-    console.log('Action:', action);
+    console.info('[LCC] State:', state);
+    console.info('[LCC] Action:', action);
 
     const nextState = reducer(state, action);
 

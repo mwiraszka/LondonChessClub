@@ -9,6 +9,7 @@
   }
 }
 
-.lcc-link {
+.lcc-link,
+.lcc-link > * {
   @include lcc-link;
 }

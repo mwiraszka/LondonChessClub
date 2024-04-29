@@ -1,14 +1,15 @@
 <div class="container">
-	<section class="about">
-		<lcc-about></lcc-about>
-	</section>
+	<article class="welcome">
+		<h1>Welcome to the London Chess Club!</h1>
+		<lcc-club-summary></lcc-club-summary>
+	</article>
 
 	<article class="schedule">
 		<section>
 			<h4>Upcoming events</h4>
 			<lcc-schedule [allowTogglePastEvents]="false"
 										[includeDetails]="false"
-										[limitToUpcoming]="4">
+										[limitToUpcoming]="5">
 			</lcc-schedule>
 		</section>
 		<lcc-link-list [links]="[scheduleLink]"></lcc-link-list>

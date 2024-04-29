@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MarkdownModule } from 'ngx-markdown';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -47,6 +47,7 @@ import { AppComponent } from './app.component';
     HeaderModule,
     HttpClientModule,
     ImageOverlayModule,
+    HttpClientJsonpModule,
     PhotosStoreModule,
     MarkdownModule.forRoot(),
     MembersStoreModule,

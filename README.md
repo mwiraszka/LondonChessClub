@@ -40,13 +40,16 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v3.1.4 - TBD
+v3.2.0 - April 28th, 2024
 </summary>
 
-- 🚀 Improve website SEO by 1) including more meaningful text within `<noscript>` tags for better description in SERPs, 2) using `<h1>` tags in Screen Header component, 3) adding more meta tags to root index.html file
-- 🚀 Dynamically generate page metadata and title (what's displayed in the browser tab) for each individual screen
+- 🚀 Revamp home screen and app footer with more user-friendly layouts, and include links to club Instagram page and noticeboard on WhatsApp
+- 🚀 Improve website SEO by 1) including more meaningful text within `<noscript>` tags for better description in SERPs, 2) using `<h1>` tags in Screen Header component, and 3) adding more meta tags to root index.html file
+- 🚀 Dynamically generate metadata and title for each individual screen so that screen-specific titles appear in the browser tab (e.g. tab now says 'Members' when viewing the members table)
 - 🔧 Implement module lazy-loading for a quicker initial load
-- 🔧 Refactor separate add/edit/view screens as child variants of their parent member/article/event screens, and create dedicated member/article/event routing modules to handle their routing
+- 🔧 Refactor website routing to split add/edit/view screens as variants of their parent member/article/event screens instead of standalone screens, and create dedicated member/article/event routing modules to handle their routing instead of a single app-level routing module
+- 🔧 Refactor club map component to follow best practices with latest Google Maps API changes
+- 🔧 Improve console log and error handling
 
 </details>
 

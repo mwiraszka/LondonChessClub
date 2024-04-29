@@ -3,50 +3,50 @@
 
 :host {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   text-align: center;
+  gap: $lcc-space--xs;
   padding: $lcc-space--lg 0;
   white-space: nowrap;
   background-color: $lcc-color--bg-canvas;
   font-size: $h5;
 }
 
-address {
+.club-socials {
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
-  margin: 0 $lcc-space--sm;
-  text-decoration: none;
+  margin: $lcc-space--sm;
+  gap: $lcc-space--md;
+  font-size: $h3;
 
-  span {
-    display: inline;
-    font-style: normal;
-  }
-
-  a,
-  a > * {
-    @include lcc-link;
-  }
-
-  .divider {
-    margin: 0 0.5em;
-  }
-
-  .instagram-link {
+  a {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: $lcc-space--xs;
-  
-    .instagram-icon {
-      width: 15px;
-      height: 15px;
+
+    .icon {
+      width: 24px;
+      height: 24px;
     }
   }
 }
 
-aside {
+.website-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 $lcc-space--sm;
+  text-decoration: none;
+  font-style: normal;
+
+  .divider {
+    margin: 0 $lcc-space--sm;
+  }
+}
+
+.new-version-notice {
   margin-top: $lcc-space--sm;
   color: $lcc-color--text-secondary;
 }

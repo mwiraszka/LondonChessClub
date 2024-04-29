@@ -1,0 +1,8 @@
+@import 'styles/abstracts/mixins';
+@import 'styles/abstracts/variables';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $lcc-space--md;
+}

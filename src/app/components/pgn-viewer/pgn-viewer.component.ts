@@ -17,7 +17,7 @@ export class PgnViewerComponent implements AfterViewChecked {
   constructor(@Inject(DOCUMENT) private _document: Document) {}
 
   ngAfterViewChecked(): void {
-    this.container = this._document.getElementById(`pgn-viewer-${this.index}`);
+    this.container = this._document.getElementById(`pgnViewer${this.index}`);
     if (this.container) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const _ = LichessPgnViewer(this.container, { pgn: this.pgn });

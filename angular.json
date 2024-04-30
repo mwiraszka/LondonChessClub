@@ -91,6 +91,8 @@
               "js-cookie",
               "lodash",
               "moment-timezone",
+              "pdfjs-dist",
+              "pdfjs-dist/web/pdf_viewer",
               "remove-markdown",
               "style-dictionary/lib/utils/deepExtend.js",
               "style-dictionary/lib/utils/deepExtend",

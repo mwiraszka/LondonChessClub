@@ -43,7 +43,7 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 v3.2.0 - April 28th, 2024
 </summary>
 
-- 🚀 Revamp home screen and app footer with more user-friendly layouts, and include links to club Instagram page and noticeboard on WhatsApp
+- 🚀 Revamp home screen with a more user-friendly layout and links to club's Instagram page and noticeboard on WhatsApp
 - 🚀 Improve website SEO by 1) including more meaningful text within `<noscript>` tags for better description in SERPs, 2) using `<h1>` tags in Screen Header component, and 3) adding more meta tags to root index.html file
 - 🚀 Dynamically generate metadata and title for each individual screen so that screen-specific titles appear in the browser tab (e.g. tab now says 'Members' when viewing the members table)
 - 🔧 Implement module lazy-loading for a quicker initial load

@@ -1,5 +1,4 @@
 @import 'styles/abstracts/variables';
-@import 'styles/components/link';
 
 :host {
   display: flex;
@@ -10,26 +9,6 @@
   white-space: nowrap;
   background-color: $lcc-color--bg-canvas;
   font-size: $h5;
-}
-
-.club-socials {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: $lcc-space--sm;
-  gap: $lcc-space--md;
-  font-size: $h3;
-
-  a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .icon {
-      width: 24px;
-      height: 24px;
-    }
-  }
 }
 
 .website-details {

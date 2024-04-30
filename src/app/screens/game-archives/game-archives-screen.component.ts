@@ -1,6 +1,8 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { Component, HostListener, OnInit, ViewChildren } from '@angular/core';
 
+import { MetaAndTitleService } from '@app/services';
+
 import { GameArchivesScreenFacade } from './game-archives-screen.facade';
 import * as fromPgns from './pgns';
 
@@ -16,7 +18,10 @@ export class GameArchivesScreenComponent implements OnInit {
   @ViewChildren(CdkVirtualScrollViewport)
   cdkVirtualScrollViewport?: CdkVirtualScrollViewport;
 
-  constructor(public facade: GameArchivesScreenFacade) {}
+  constructor(
+    public facade: GameArchivesScreenFacade,
+    private metaAndTitleService: MetaAndTitleService,
+  ) {}
 
   @HostListener('window:resize', ['$event'])
   onResize(): void {
@@ -24,6 +29,11 @@ export class GameArchivesScreenComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.metaAndTitleService.updateTitle('Game Archives');
+    this.metaAndTitleService.updateDescription(
+      'A collection of games played by London Chess Club members, going all the way back to 1974.',
+    );
+
     this.expansionPanels = [
       {
         label: '2005',

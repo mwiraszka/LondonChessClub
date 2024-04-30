@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
+import { MetaAndTitleService } from '@app/services';
 import type { Link } from '@app/types';
 
 import { PhotoGalleryScreenFacade } from './photo-gallery-screen.facade';
@@ -10,7 +11,7 @@ import { PhotoGalleryScreenFacade } from './photo-gallery-screen.facade';
   styleUrls: ['./photo-gallery-screen.component.scss'],
   providers: [PhotoGalleryScreenFacade],
 })
-export class PhotoGalleryScreenComponent {
+export class PhotoGalleryScreenComponent implements OnInit {
   links: Link[] = [
     {
       path: 'https://drive.google.com/drive/folders/13J4PN7VCSs7XXnQi6VCmvShLwJmoPopv',
@@ -80,5 +81,15 @@ export class PhotoGalleryScreenComponent {
     return { ...link, icon: 'camera' };
   });
 
-  constructor(public facade: PhotoGalleryScreenFacade) {}
+  constructor(
+    public facade: PhotoGalleryScreenFacade,
+    private metaAndTitleService: MetaAndTitleService,
+  ) {}
+
+  ngOnInit(): void {
+    this.metaAndTitleService.updateTitle('Photo Gallery');
+    this.metaAndTitleService.updateDescription(
+      'Browse through photos of our club events over the years.',
+    );
+  }
 }

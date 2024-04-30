@@ -1,6 +1,8 @@
 @import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
 
+$app-header-font-size: 42px;
+
 :host {
   display: flex;
   justify-content: center;
@@ -52,10 +54,10 @@
       color: darken($lcc-color--white, 8%);
       white-space: nowrap;
       font-family: 'Caveat', sans-serif;
-      font-size: calc(#{$h1} - 6px);
+      font-size: calc(#{$app-header-font-size} - 6px);
   
       @include respond-to('gt-sm') {
-        font-size: $h1;
+        font-size: $app-header-font-size;
       }
     
       &:hover {

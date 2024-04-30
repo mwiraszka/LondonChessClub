@@ -13,7 +13,7 @@
       "rules": {
         "@typescript-eslint/ban-types": "off",
         "prettier/prettier": [
-          "error",
+          "warn",
           {
             "arrowParens": "avoid",
             "bracketSameLine": true,

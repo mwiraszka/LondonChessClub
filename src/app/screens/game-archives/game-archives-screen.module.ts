@@ -6,6 +6,7 @@ import { ExpansionPanelModule } from '@app/components/expansion-panel';
 import { PgnViewerModule } from '@app/components/pgn-viewer';
 import { ScreenHeaderModule } from '@app/components/screen-header';
 
+import { GameArchivesScreenRoutingModule } from './game-archives-screen-routing.module';
 import { GameArchivesScreenComponent } from './game-archives-screen.component';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { GameArchivesScreenComponent } from './game-archives-screen.component';
   imports: [
     CommonModule,
     ExpansionPanelModule,
+    GameArchivesScreenRoutingModule,
     PgnViewerModule,
     ScreenHeaderModule,
     ScrollingModule,

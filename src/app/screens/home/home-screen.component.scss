@@ -4,15 +4,15 @@
 .container {
   max-width: $lcc-width--app-content;
   display: grid;
-  grid-template-areas: 'about' 'schedule' 'articles' 'photos';
+  grid-template-areas: 'welcome' 'schedule' 'articles' 'photos';
   grid-template-columns: minmax(0, 1fr);
   margin: auto;
   gap: $lcc-space--sm;
   
-  @include respond-to('gt-md') {
+  @include respond-to('gt-lg') {
     grid-template-columns: 3fr 2fr;
     grid-template-areas:
-      'about schedule'
+      'welcome schedule'
       'articles articles'
       'photos photos';
   }
@@ -28,13 +28,41 @@
       border-radius: $lcc-border-radius--sm;
     }
 
-    &.about {
-      grid-area: about;
+    &.welcome {
+      grid-area: welcome;
       display: flex;
       flex-flow: column nowrap;
+      padding: $lcc-space--md;
       background-color: $lcc-color--bg-canvas;
       border-radius: $lcc-border-radius--sm;
       box-shadow: $lcc-box-shadow;
+
+      @include respond-to('gt-sm') {
+        padding: $lcc-space--lg;
+      }
+
+      @include respond-to('gt-md') {
+        min-width: 650px;
+      }
+
+      h1 {
+        color: $lcc-color--text-primary-black;
+        font-weight: 300;
+        font-size: 23px !important;
+        text-align: center;
+
+        @include respond-to('gt-sm') {
+          text-align: left;
+        }
+
+        @include respond-to('gt-md') {
+          font-size: 28px !important;
+        }
+      }
+
+      lcc-club-summary {
+        flex: 1;
+      }
     }
   
     &.schedule {

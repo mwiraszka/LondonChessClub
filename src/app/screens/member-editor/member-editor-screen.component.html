@@ -1,8 +1,0 @@
-<div class="container">
-	<lcc-screen-header [preTitle]="(facade.isEditMode$ | async) ? 'Edit' : null"
-										 [title]="(facade.isEditMode$ | async)
-                       ? (facade.selectedMemberName$ | async)
-                       : 'Add a member'">
-	</lcc-screen-header>
-	<lcc-member-form></lcc-member-form>
-</div>

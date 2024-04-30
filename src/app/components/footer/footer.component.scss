@@ -1,52 +1,31 @@
 @import 'styles/abstracts/variables';
-@import 'styles/components/link';
 
 :host {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   text-align: center;
+  gap: $lcc-space--xs;
   padding: $lcc-space--lg 0;
   white-space: nowrap;
   background-color: $lcc-color--bg-canvas;
   font-size: $h5;
 }
 
-address {
+.website-details {
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   margin: 0 $lcc-space--sm;
   text-decoration: none;
-
-  span {
-    display: inline;
-    font-style: normal;
-  }
-
-  a,
-  a > * {
-    @include lcc-link;
-  }
+  font-style: normal;
 
   .divider {
-    margin: 0 0.5em;
-  }
-
-  .instagram-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: $lcc-space--xs;
-  
-    .instagram-icon {
-      width: 15px;
-      height: 15px;
-    }
+    margin: 0 $lcc-space--sm;
   }
 }
 
-aside {
+.new-version-notice {
   margin-top: $lcc-space--sm;
   color: $lcc-color--text-secondary;
 }

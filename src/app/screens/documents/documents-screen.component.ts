@@ -6,13 +6,14 @@ import {
   HostListener,
   Inject,
   OnDestroy,
+  OnInit,
   Renderer2,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
 
-import { LoaderService } from '@app/services';
+import { LoaderService, MetaAndTitleService } from '@app/services';
 import { ClubDocument } from '@app/types';
 
 @Component({
@@ -20,7 +21,7 @@ import { ClubDocument } from '@app/types';
   templateUrl: './documents-screen.component.html',
   styleUrls: ['./documents-screen.component.scss'],
 })
-export class DocumentsScreenComponent implements OnDestroy {
+export class DocumentsScreenComponent implements OnInit, OnDestroy {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @ViewChild('pdfViewer') pdfViewer!: TemplateRef<any>;
 
@@ -30,25 +31,25 @@ export class DocumentsScreenComponent implements OnDestroy {
   readonly documents: ClubDocument[] = [
     {
       title: 'Club Bylaws',
-      documentName: 'lcc-bylaws',
+      fileName: 'lcc-bylaws.pdf',
       datePublished: '2024-04-24',
       dateLastModified: '2024-04-24',
     },
     {
       title: 'Board Meeting - DEC 12, 2023 - Minutes',
-      documentName: 'lcc-board-meeting-2023-12-12-minutes',
+      fileName: 'lcc-board-meeting-2023-12-12-minutes.pdf',
       datePublished: '2024-04-24',
       dateLastModified: '2024-04-24',
     },
     {
       title: 'Board Meeting - JAN 9, 2024 - Minutes',
-      documentName: 'lcc-board-meeting-2024-01-09-minutes',
+      fileName: 'lcc-board-meeting-2024-01-09-minutes.pdf',
       datePublished: '2024-04-24',
       dateLastModified: '2024-04-24',
     },
     {
       title: 'Board Meeting - APR 2, 2024 - Minutes',
-      documentName: 'lcc-board-meeting-2024-04-02-minutes',
+      fileName: 'lcc-board-meeting-2024-04-02-minutes.pdf',
       datePublished: '2024-04-24',
       dateLastModified: '2024-04-24',
     },
@@ -64,21 +65,29 @@ export class DocumentsScreenComponent implements OnDestroy {
   constructor(
     private readonly viewContainerRef: ViewContainerRef,
     private loaderService: LoaderService,
+    private metaAndTitleService: MetaAndTitleService,
     private renderer: Renderer2,
     @Inject(DOCUMENT) private _document: Document,
   ) {}
+
+  ngOnInit(): void {
+    this.metaAndTitleService.updateTitle('Documents');
+    this.metaAndTitleService.updateDescription(
+      'A place for all London Chess Club documentation.',
+    );
+  }
 
   ngOnDestroy(): void {
     this.onCloseViewer();
   }
 
-  onSelectDocument(documentName: string): void {
+  onSelectDocument(fileName: string): void {
     this.loaderService.display(true);
-    this.documentSrc = `assets/documents/${documentName}.pdf`;
+    this.documentSrc = `assets/documents/${fileName}`;
     this.viewContainerRef?.createEmbeddedView(this.pdfViewer);
   }
 
-  onProgress(progressData: PDFProgressData) {
+  onProgress(progressData: PDFProgressData): void {
     this.loadedPercentage = Math.floor((progressData.loaded / progressData.total) * 100);
   }
 

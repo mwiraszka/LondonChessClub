@@ -41,7 +41,7 @@ export function formatDate(
  */
 export function setLocalTime(date: string, time = '18:00'): string {
   if (!HH_MM_REG_EXP.test(time)) {
-    console.error(`Invalid time provided to setLocalTime util function: ${time}`);
+    console.error(`[LCC] Invalid time provided to setLocalTime util function: ${time}`);
     time = '00:00';
   }
 

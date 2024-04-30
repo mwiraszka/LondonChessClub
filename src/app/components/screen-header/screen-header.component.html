@@ -1,16 +1,4 @@
-@if (preTitle) {
-<span class="lcc-secondary-text pre-title">
-	{{ preTitle }}&nbsp;
-</span>
-}
-
-<span>{{ title }}</span>
-
-@if (postTitle) {
-<span class="lcc-secondary-text post-title">
-	&nbsp;{{ postTitle }}
-</span>
-}
+<h1 class="screen-title">{{ title }}</h1>
 
 @if (icon) {
 <i-feather [name]="icon"

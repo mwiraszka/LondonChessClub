@@ -20,7 +20,7 @@
 				[class.next-event]="event.id === (facade.nextEventId$ | async)"
 				[ngClass]="{'last-row': last}">
 			@if (facade.isAdmin$ | async) {
-			<lcc-admin-controls [editPath]="'/' + NavPathTypes.EVENT_EDIT + '/' + event.id"
+			<lcc-admin-controls [editPath]="'/' + NavPathTypes.EVENT + '/' + NavPathTypes.EDIT + '/' + event.id"
 													[itemName]="event.title"
 													(delete)="facade.onDeleteEvent(event)">
 			</lcc-admin-controls>

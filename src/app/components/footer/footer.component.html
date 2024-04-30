@@ -2,35 +2,23 @@
 	Copyright &copy; {{ currentYear }} <b>London Chess Club</b>
 </small>
 
-<address>
+<address class="website-details">
 	<span class="current-version">v{{ currentVersion }}</span>
-
 	<span class="divider">|</span>
-
 	<a href="https://github.com/mwiraszka/LondonChessClub#readme"
+		 class="lcc-link"
 		 target="_blank">
-		Source code
+		<span>Source code</span>
 	</a>
-
 	<span class="divider">|</span>
-
-	<a href="mailto:welcome@londonchess.ca?subject=LCC%20Website%20-%20Bug%20Report">
-		Report a bug
-	</a>
-
-	<span class="divider">|</span>
-
-	<a href="https://www.instagram.com/londonchessclub_?igsh=MWxqM25sMDdzemV5aA%3D%3D&utm_source=qr"
-		 class="instagram-link">
-		<i-feather name="instagram"
-							 class="instagram-icon">
-		</i-feather>
-		<span>Instagram</span>
+	<a href="mailto:welcome@londonchess.ca?subject=LCC%20Website%20-%20Bug%20Report"
+		 class="lcc-link">
+		<span>Report a bug</span>
 	</a>
 </address>
 
 @if (isNewVersionAvailable) {
-<aside class="new-version">
+<aside class="new-version-notice">
 	[ New website version available! Refresh page to update. ]
 </aside>
 }

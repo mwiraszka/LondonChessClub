@@ -1,110 +1,86 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import {
-  AuthGuard,
-  UnsavedArticleGuard,
-  UnsavedEventGuard,
-  UnsavedMemberGuard,
-} from '@app/guards';
-import { AboutScreenComponent } from '@app/screens/about';
-import { ArticleEditorScreenComponent } from '@app/screens/article-editor';
-import { ArticleViewerScreenComponent } from '@app/screens/article-viewer';
-import { ChampionScreenComponent } from '@app/screens/champion';
-import { ChangePasswordScreenComponent } from '@app/screens/change-password';
-import { DocumentsScreenComponent } from '@app/screens/documents';
-import { EventEditorScreenComponent } from '@app/screens/event-editor';
-import { GameArchivesScreenComponent } from '@app/screens/game-archives';
-import { HomeScreenComponent } from '@app/screens/home';
-import { LoginScreenComponent } from '@app/screens/login';
-import { MemberEditorScreenComponent } from '@app/screens/member-editor';
-import { MembersScreenComponent } from '@app/screens/members';
-import { NewsScreenComponent } from '@app/screens/news';
-import { PhotoGalleryScreenComponent } from '@app/screens/photo-gallery';
-import { ScheduleScreenComponent } from '@app/screens/schedule';
+import { AuthGuard } from '@app/guards';
 import { NavPathTypes } from '@app/types';
 
 const routes: Routes = [
   {
     path: NavPathTypes.HOME,
-    component: HomeScreenComponent,
+    loadChildren: () =>
+      import('./screens/home/home-screen.module').then(m => m.HomeScreenModule),
     pathMatch: 'full',
   },
   {
     path: NavPathTypes.ABOUT,
-    component: AboutScreenComponent,
+    loadChildren: () =>
+      import('./screens/about/about-screen.module').then(m => m.AboutScreenModule),
   },
   {
     path: NavPathTypes.MEMBERS,
-    component: MembersScreenComponent,
+    loadChildren: () =>
+      import('./screens/members/members-screen.module').then(m => m.MembersScreenModule),
   },
   {
-    path: NavPathTypes.MEMBER_ADD,
-    component: MemberEditorScreenComponent,
-    canActivate: [AuthGuard],
-    canDeactivate: [UnsavedMemberGuard],
-  },
-  {
-    path: `${NavPathTypes.MEMBER_EDIT}/:member_id`,
-    component: MemberEditorScreenComponent,
-    canActivate: [AuthGuard],
-    canDeactivate: [UnsavedMemberGuard],
+    path: NavPathTypes.MEMBER,
+    loadChildren: () =>
+      import('./screens/member/member-screen.module').then(m => m.MemberScreenModule),
   },
   {
     path: NavPathTypes.SCHEDULE,
-    component: ScheduleScreenComponent,
+    loadChildren: () =>
+      import('./screens/schedule/schedule-screen.module').then(
+        m => m.ScheduleScreenModule,
+      ),
   },
   {
-    path: NavPathTypes.EVENT_ADD,
-    component: EventEditorScreenComponent,
+    path: NavPathTypes.EVENT,
+    loadChildren: () =>
+      import('./screens/event/event-screen.module').then(m => m.EventScreenModule),
     canActivate: [AuthGuard],
-    canDeactivate: [UnsavedEventGuard],
-  },
-  {
-    path: `${NavPathTypes.EVENT_EDIT}/:event_id`,
-    component: EventEditorScreenComponent,
-    canActivate: [AuthGuard],
-    canDeactivate: [UnsavedEventGuard],
   },
   {
     path: NavPathTypes.NEWS,
-    component: NewsScreenComponent,
+    loadChildren: () =>
+      import('./screens/news/news-screen.module').then(m => m.NewsScreenModule),
   },
   {
-    path: `${NavPathTypes.ARTICLE_VIEW}/:article_id`,
-    component: ArticleViewerScreenComponent,
-  },
-  {
-    path: NavPathTypes.ARTICLE_ADD,
-    component: ArticleEditorScreenComponent,
-    canActivate: [AuthGuard],
-    canDeactivate: [UnsavedArticleGuard],
-  },
-  {
-    path: `${NavPathTypes.ARTICLE_EDIT}/:article_id`,
-    component: ArticleEditorScreenComponent,
-    canActivate: [AuthGuard],
-    canDeactivate: [UnsavedArticleGuard],
+    path: NavPathTypes.ARTICLE,
+    loadChildren: () =>
+      import('./screens/article/article-screen.module').then(m => m.ArticleScreenModule),
   },
   {
     path: NavPathTypes.CITY_CHAMPION,
-    component: ChampionScreenComponent,
+    loadChildren: () =>
+      import('./screens/champion/champion-screen.module').then(
+        m => m.ChampionScreenModule,
+      ),
   },
   {
     path: NavPathTypes.PHOTO_GALLERY,
-    component: PhotoGalleryScreenComponent,
+    loadChildren: () =>
+      import('./screens/photo-gallery/photo-gallery-screen.module').then(
+        m => m.PhotoGalleryScreenModule,
+      ),
   },
   {
     path: NavPathTypes.GAME_ARCHIVES,
-    component: GameArchivesScreenComponent,
+    loadChildren: () =>
+      import('./screens/game-archives/game-archives-screen.module').then(
+        m => m.GameArchivesScreenModule,
+      ),
   },
   {
     path: NavPathTypes.DOCUMENTS,
-    component: DocumentsScreenComponent,
+    loadChildren: () =>
+      import('./screens/documents/documents-screen.module').then(
+        m => m.DocumentsScreenModule,
+      ),
   },
   {
     path: NavPathTypes.LOGIN,
-    component: LoginScreenComponent,
+    loadChildren: () =>
+      import('./screens/login/login-screen.module').then(m => m.LoginScreenModule),
   },
   {
     path: NavPathTypes.LOGOUT,
@@ -112,7 +88,10 @@ const routes: Routes = [
   },
   {
     path: NavPathTypes.CHANGE_PASSWORD,
-    component: ChangePasswordScreenComponent,
+    loadChildren: () =>
+      import('./screens/change-password/change-password-screen.module').then(
+        m => m.ChangePasswordScreenModule,
+      ),
   },
   {
     path: '**',

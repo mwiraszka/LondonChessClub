@@ -5,9 +5,9 @@
 <div class="articles-container">
 	@for (article of articles; track article.id) {
 	<a class="lcc-admin-controls-container article"
-		 [routerLink]="'/' + NavPathTypes.ARTICLE_VIEW + '/' + article.id">
+		 [routerLink]="'/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + article.id">
 		@if (facade.isAdmin$ | async) {
-		<lcc-admin-controls [editPath]="'/' + NavPathTypes.ARTICLE_EDIT + '/' + article.id"
+		<lcc-admin-controls [editPath]="'/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.EDIT + '/' + article.id"
 												[itemName]="article.title"
 												(delete)="facade.onDeleteArticle(article)">
 		</lcc-admin-controls>

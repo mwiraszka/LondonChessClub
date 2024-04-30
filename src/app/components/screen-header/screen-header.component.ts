@@ -8,6 +8,4 @@ import { Component, Input } from '@angular/core';
 export class ScreenHeaderComponent {
   @Input() icon?: string | null;
   @Input() title?: string | null;
-  @Input() preTitle?: string | null;
-  @Input() postTitle?: string | null;
 }

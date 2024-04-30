@@ -275,7 +275,7 @@ export class NavEffects {
       ),
       map(({ article }) =>
         NavActions.navigationRequested({
-          path: NavPathTypes.ARTICLE_VIEW + '/' + article.id,
+          path: NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + article.id,
         }),
       ),
     ),
@@ -287,8 +287,8 @@ export class NavEffects {
       concatLatestFrom(() => this.store.select(ArticlesSelectors.isEditMode)),
       map(([{ article }, isEditMode]) => {
         const path = isEditMode
-          ? NavPathTypes.ARTICLE_EDIT + '/' + article.id
-          : NavPathTypes.ARTICLE_VIEW + '/' + article.id;
+          ? NavPathTypes.ARTICLE + '/' + NavPathTypes.EDIT + '/' + article.id
+          : NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + article.id;
         return NavActions.navigationRequested({ path });
       }),
     ),
@@ -299,7 +299,7 @@ export class NavEffects {
       ofType(ScheduleActions.fetchEventSucceeded),
       map(({ event }) => {
         return NavActions.navigationRequested({
-          path: NavPathTypes.EVENT_EDIT + '/' + event.id,
+          path: NavPathTypes.EVENT + '/' + NavPathTypes.EDIT + '/' + event.id,
         });
       }),
     ),
@@ -310,7 +310,7 @@ export class NavEffects {
       ofType(MembersActions.fetchMemberSucceeded),
       map(({ member }) => {
         return NavActions.navigationRequested({
-          path: NavPathTypes.MEMBER_EDIT + '/' + member.id,
+          path: NavPathTypes.MEMBER + '/' + NavPathTypes.EDIT + '/' + member.id,
         });
       }),
     ),

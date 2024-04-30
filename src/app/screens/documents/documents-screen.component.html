@@ -15,15 +15,15 @@
 				<tr>
 					<td class="document">
 						<div class="document-label-container"
-								 (click)="onSelectDocument(document.documentName)">
+								 (click)="onSelectDocument(document.fileName)">
 							<i-feather name="file-text"
 												 class="file-icon">
 							</i-feather>
 							<span class="document-title">{{ document.title }}</span>
 						</div>
-						<a [href]="'assets/documents/' + document.documentName + '.pdf'"
+						<a [href]="'assets/documents/' + document.fileName"
 							 class="download-link"
-							 download>
+							 [download]="document.title">
 							<i-feather name="download"
 												 class="download-icon">
 							</i-feather>

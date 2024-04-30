@@ -7,11 +7,19 @@ import { ScreenHeaderModule } from '@app/components/screen-header';
 import { IconsModule } from '@app/icons';
 import { PipesModule } from '@app/pipes';
 
+import { DocumentsScreenRoutingModule } from './documents-screen-routing.module';
 import { DocumentsScreenComponent } from './documents-screen.component';
 
 @NgModule({
   declarations: [DocumentsScreenComponent],
-  imports: [CommonModule, IconsModule, PdfViewerModule, PipesModule, ScreenHeaderModule],
+  imports: [
+    CommonModule,
+    DocumentsScreenRoutingModule,
+    IconsModule,
+    PdfViewerModule,
+    PipesModule,
+    ScreenHeaderModule,
+  ],
   exports: [DocumentsScreenComponent],
 })
 export class DocumentsScreenModule {}

@@ -40,7 +40,7 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v3.2.0 - April 28th, 2024
+v3.2.0 - April 30th, 2024
 </summary>
 
 - 🚀 Revamp home screen with a more user-friendly layout and links to club's Instagram page and noticeboard on WhatsApp

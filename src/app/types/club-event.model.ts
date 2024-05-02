@@ -1,4 +1,4 @@
-import type { ModificationInfo } from '@app/types';
+import type { ModificationInfo } from './modification-info.model';
 
 export enum ClubEventTypes {
   BLITZ_TOURNAMENT = 'blitz tournament',

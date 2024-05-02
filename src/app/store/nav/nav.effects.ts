@@ -279,6 +279,13 @@ export class NavEffects {
     ),
   );
 
+  navigateToChangePassword$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.newPasswordChallengeRequested),
+      map(() => NavActions.navigationRequested({ path: NavPathTypes.CHANGE_PASSWORD })),
+    ),
+  );
+
   navigateAfterSuccessfulArticleFetch$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ArticlesActions.fetchArticleSucceeded),

@@ -1,5 +1,5 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { delay, map } from 'rxjs/operators';
+import { delay, map, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
@@ -412,6 +412,20 @@ export class ToasterEffects {
     );
   });
 
+  addNewPasswordChallengeRequestedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.newPasswordChallengeRequested),
+      map(({ user }) => {
+        const toast: Toast = {
+          title: `Welcome, ${user.firstName}`,
+          message: "Just need to create a new password and you're all set!",
+          type: ToastTypes.INFO,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
+
   addLoginFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.loginFailed),
@@ -446,8 +460,8 @@ export class ToasterEffects {
       map(() => {
         const toast: Toast = {
           title: 'Password change',
-          message: 'A 6-digit code has been sent to the email provided',
-          type: ToastTypes.SUCCESS,
+          message: 'A 6-digit code has been sent to your email',
+          type: ToastTypes.INFO,
         };
         return ToasterActions.toastAdded({ toast });
       }),
@@ -500,10 +514,42 @@ export class ToasterEffects {
   expireToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ToasterActions.toastAdded),
-      delay(5000),
+      delay(4900),
       map(({ toast }) => ToasterActions.toastExpired({ toast })),
     );
   });
+
+  displayErrorNotificationInConsole$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(
+          ArticlesActions.publishArticleFailed,
+          ArticlesActions.updateArticleFailed,
+          ArticlesActions.getArticleImageUrlFailed,
+          ArticlesActions.getArticleThumbnailImageUrlsFailed,
+          ArticlesActions.getArticleImageFileFailed,
+          ArticlesActions.deleteArticleFailed,
+          ArticlesActions.fetchArticlesFailed,
+          ArticlesActions.fetchArticleFailed,
+          MembersActions.addMemberFailed,
+          MembersActions.updateMemberFailed,
+          MembersActions.deleteMemberFailed,
+          MembersActions.fetchMembersFailed,
+          MembersActions.fetchMemberFailed,
+          ScheduleActions.addEventFailed,
+          ScheduleActions.updateEventFailed,
+          ScheduleActions.deleteEventFailed,
+          ScheduleActions.fetchEventsFailed,
+          ScheduleActions.fetchEventFailed,
+          AuthActions.loginFailed,
+          AuthActions.codeForPasswordChangeFailed,
+          AuthActions.passwordChangeFailed,
+        ),
+        tap(error => console.info('[LCC Error]', error)),
+      );
+    },
+    { dispatch: false },
+  );
 
   constructor(private readonly actions$: Actions) {}
 }

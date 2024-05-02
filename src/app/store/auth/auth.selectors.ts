@@ -8,16 +8,16 @@ export const authFeatureSelector = createFeatureSelector<AuthState>(
   AppStoreFeatureTypes.AUTH,
 );
 
-export const user = createSelector(authFeatureSelector, state => state.user);
-
 export const isAdmin = createSelector(
   authFeatureSelector,
-  state => (state.user?.isAdmin && state.user?.isVerified) ?? false,
+  state => state.user?.isVerified ?? false,
 );
 
-export const isUserVerified = createSelector(
+export const tempInitialPassword = createSelector(
   authFeatureSelector,
-  state => state.user?.isVerified,
+  state => state.tempInitialPassword,
 );
 
-export const userHasCode = createSelector(authFeatureSelector, state => state?.hasCode);
+export const user = createSelector(authFeatureSelector, state => state.user);
+
+export const userHasCode = createSelector(authFeatureSelector, state => state.hasCode);

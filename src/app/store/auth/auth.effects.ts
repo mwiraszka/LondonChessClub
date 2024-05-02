@@ -18,11 +18,21 @@ export class AuthEffects {
       ofType(AuthActions.loginRequested),
       switchMap(({ request }) => {
         return this.authService.logIn(request).pipe(
-          map(loginResponse =>
-            loginResponse?.error
-              ? AuthActions.loginFailed({ error: loginResponse.error })
-              : AuthActions.loginSucceeded({ user: loginResponse.adminUser! }),
-          ),
+          map(loginResponse => {
+            if (loginResponse.error) {
+              return AuthActions.loginFailed({ error: loginResponse.error });
+            } else if (
+              loginResponse.unverifiedUser &&
+              loginResponse.tempInitialPassword
+            ) {
+              return AuthActions.newPasswordChallengeRequested({
+                user: loginResponse.unverifiedUser,
+                tempInitialPassword: loginResponse.tempInitialPassword,
+              });
+            } else {
+              return AuthActions.loginSucceeded({ user: loginResponse.adminUser! });
+            }
+          }),
           catchError(() =>
             of(
               AuthActions.loginFailed({

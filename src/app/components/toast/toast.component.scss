@@ -20,27 +20,62 @@
   &.toast-success {
     background-color: $lcc-color--success;
     @include fadeoutAnimation();
+    
+    .toast-notification-container {
+      .toast-title {
+        color: lighten($lcc-color--text-primary-white, 10%);
+      }
+      .toast-message {
+        color: $lcc-color--text-primary-white;
+      }
+    }
+
+    .icon {
+      color: lighten($lcc-color--white, 10%);
+    }
   }
 
   &.toast-warning {
     background-color: $lcc-color--warn;
     @include fadeoutAnimation();
+
+    .toast-notification-container {
+      .toast-title {
+        color: lighten($lcc-color--text-primary-white, 10%);
+      }
+      .toast-message {
+        color: $lcc-color--text-primary-white;
+      }
+    }
+
+    .icon {
+      color: lighten($lcc-color--white, 10%);
+    }
   }
 
   &.toast-info {
     background-color: $lcc-color--info;
     @include fadeoutAnimation();
+
+    .toast-notification-container {
+      .toast-title {
+        color: $lcc-color--text-primary-black;
+      }
+      .toast-message {
+        color: lighten($lcc-color--text-primary-black, 10%);
+      }
+    }
+
+    .icon {
+      color: lighten($lcc-color--black, 10%);
+    }
   }
 }
 
 .toast-icon-container {
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  .icon {
-    color: lighten($lcc-color--white, 10%);
-  }
+  justify-content: center;  
 }
 
 .toast-notification-container {
@@ -50,15 +85,13 @@
   padding: $lcc-space--sm;
   overflow: hidden;
 
-  h4 {
+  .toast-title {
     width: 100%;
-    color: lighten($lcc-color--text-primary-white, 5%);
   }
 
-  p {
+  .toast-message {
     width: 100%;
     font-size: $h5;
-    color: darken($lcc-color--text-primary-white, 5%);
   }
 }
 

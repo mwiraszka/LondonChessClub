@@ -1,8 +1,9 @@
 export interface User {
-  id: string;
   firstName: string;
   lastName: string;
   email: string;
   isVerified: boolean;
-  isAdmin: boolean;
 }
+
+export type AdminUser = User & { isVerified: true };
+export type UnverifiedUser = User & { isVerified: false };

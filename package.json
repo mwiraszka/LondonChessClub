@@ -1,6 +1,6 @@
 {
   "name": "lcc-angular",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "Frontend for the London Chess Club website, built with Angular",
   "author": "Michal Wiraszka (https://wiraszka.com)",
   "repository": {
@@ -39,7 +39,7 @@
     "@types/lodash": "^4.14.197",
     "@types/ws": "^8.5.4",
     "@webcomponents/webcomponentsjs": "2.6.0",
-    "amazon-cognito-identity-js": "^5.2.8",
+    "amazon-cognito-identity-js": "^6.3.12",
     "angular-feather": "^6.5.0",
     "lichess-pgn-viewer": "^2.0.1",
     "lodash": "^4.17.21",

@@ -5,7 +5,6 @@ export interface ArticlesState {
   selectedArticle: Article | null;
   articleCurrently: Article | null;
   isEditMode: boolean | null;
-  sectionToScrollTo: string | null;
 }
 
 export const initialState: ArticlesState = {
@@ -13,5 +12,4 @@ export const initialState: ArticlesState = {
   selectedArticle: null,
   articleCurrently: null,
   isEditMode: null,
-  sectionToScrollTo: null,
 };

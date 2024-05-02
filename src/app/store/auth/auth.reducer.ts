@@ -6,9 +6,10 @@ import { AuthState, initialState } from './auth.state';
 const authReducer = createReducer(
   initialState,
 
-  on(AuthActions.loginSucceeded, (state, action) => ({
+  on(AuthActions.loginSucceeded, (state, { user }) => ({
     ...state,
-    user: action.user,
+    user,
+    tempInitialPassword: null,
   })),
 
   on(AuthActions.logoutSucceeded, () => initialState),
@@ -27,6 +28,15 @@ const authReducer = createReducer(
     ...state,
     hasCode: false,
   })),
+
+  on(
+    AuthActions.newPasswordChallengeRequested,
+    (state, { tempInitialPassword, user }) => ({
+      ...state,
+      user,
+      tempInitialPassword,
+    }),
+  ),
 
   on(AuthActions.passwordChangeSucceeded, state => ({
     ...state,

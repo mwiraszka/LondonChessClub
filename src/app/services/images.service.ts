@@ -130,10 +130,10 @@ export class ImagesService {
     });
 
     if (!response || !data || !imageFile) {
-      console.info('[LCC] Unable to build the image file from the given URL');
-      console.info('[LCC] URL response:', response);
-      console.info('[LCC] Data as blob:', data);
-      console.info('[LCC] Image file:', imageFile);
+      console.info('[LCC Error] Unable to build the image file from the given URL');
+      console.info('[LCC Error] URL response:', response);
+      console.info('[LCC Error] Data as blob:', data);
+      console.info('[LCC Error] Image file:', imageFile);
     }
 
     return imageFile;

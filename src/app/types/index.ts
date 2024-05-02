@@ -7,11 +7,13 @@ export type { ClubEvent, FlatClubEvent } from './club-event.model';
 export { ClubEventTypes, newClubEventFormTemplate } from './club-event.model';
 export type { ImageId } from './image-id.model';
 export type { Link } from './link.model';
-export type { LoginRequest } from './login-request.model';
-export type { LoginResponse } from './login-response.model';
+export type { LoginRequest, LoginResponse } from './login.model';
 export type { ModificationInfo } from './modification-info.model';
-export type { PasswordChangeRequest } from './password-change-request.model';
-export type { PasswordChangeResponse } from './password-change-response.model';
+export type {
+  PasswordChangeFormData,
+  PasswordChangeRequest,
+  PasswordChangeResponse,
+} from './password-change.model';
 export type { Member, FlatMember } from './member.model';
 export { newMemberFormTemplate } from './member.model';
 export type { Modal } from './modal.model';
@@ -23,4 +25,4 @@ export type { ServiceResponse } from './service-response.model';
 export type { Toast } from './toast.model';
 export { ToastTypes } from './toast.model';
 export type { Url } from './url.model';
-export type { User } from './user.model';
+export type { AdminUser, UnverifiedUser, User } from './user.model';

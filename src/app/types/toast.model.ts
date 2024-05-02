@@ -7,5 +7,5 @@ export enum ToastTypes {
 export interface Toast {
   title: string;
   message: string;
-  type: ToastTypes.SUCCESS | ToastTypes.WARNING | ToastTypes.INFO;
+  type: ToastTypes;
 }

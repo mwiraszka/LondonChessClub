@@ -40,6 +40,19 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.3.0 - May 2nd, 2024
+</summary>
+
+- 🚀 Highlight the London Chess Championship event in the new homepage welcome section
+- 🚀 Improve styling of notification toasts
+- 🐛 Fix a bug which sometimes caused the page to redirect to a 404 error page
+- 🐛 Fix a bug which prevented the user from navigating to the same anchor (section) of an article multiple times consecutively
+- 🔧 Overhaul redesign of AWS Cognito admin authentication and password change flows
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.2.0 - April 30th, 2024
 </summary>
 

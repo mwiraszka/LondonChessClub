@@ -48,13 +48,11 @@ enum ArticlesActionTypes {
   CANCEL_CONFIRMED = '[Articles] Cancel confirmed',
 
   FORM_DATA_CHANGED = '[Articles] Form data changed',
-
-  SCROLLED_TO_ARTICLE_SECTION = '[Articles] Scrolled to article section',
 }
 
 export const setArticle = createAction(
   ArticlesActionTypes.SET_ARTICLE,
-  props<{ article: Article; isEditMode: boolean | null; sectionToScrollTo?: string }>(),
+  props<{ article: Article; isEditMode: boolean | null }>(),
 );
 
 export const fetchArticlesRequested = createAction(
@@ -186,8 +184,4 @@ export const cancelSelected = createAction(ArticlesActionTypes.CANCEL_SELECTED);
 export const formDataChanged = createAction(
   ArticlesActionTypes.FORM_DATA_CHANGED,
   props<{ article: Article }>(),
-);
-
-export const scrolledToArticleSection = createAction(
-  ArticlesActionTypes.SCROLLED_TO_ARTICLE_SECTION,
 );

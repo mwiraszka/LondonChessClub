@@ -1,43 +1,34 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { filter } from 'rxjs/operators';
 
 import { DOCUMENT } from '@angular/common';
 import { AfterViewChecked, Component, Inject, Input, OnInit } from '@angular/core';
+import { Router, Scroll } from '@angular/router';
 
 import { kebabize } from '@app/utils';
-
-import { MarkdownRendererFacade } from './markdown-renderer.facade';
 
 @UntilDestroy()
 @Component({
   selector: 'lcc-markdown-renderer',
   templateUrl: './markdown-renderer.component.html',
   styleUrls: ['./markdown-renderer.component.scss'],
-  providers: [MarkdownRendererFacade],
 })
 export class MarkdownRendererComponent implements OnInit, AfterViewChecked {
   @Input() data?: string;
 
   constructor(
-    public facade: MarkdownRendererFacade,
-    @Inject(DOCUMENT) private _document: Document,
+    private router: Router,
+    @Inject(DOCUMENT)
+    private _document: Document,
   ) {}
 
   ngOnInit(): void {
-    this.facade.sectionToScrollTo$
-      .pipe(untilDestroyed(this))
-      .subscribe(sectionToScrollTo => {
-        setTimeout(() => {
-          if (sectionToScrollTo) {
-            this.scrollToArticleSection(sectionToScrollTo);
-          }
-        }, 100);
-      });
+    this.setUpRouterListener();
   }
 
   ngAfterViewChecked(): void {
     this.wrapMarkdownTables();
-    this.addSectionClasses();
+    this.addArticleAnchorIds();
   }
 
   private wrapMarkdownTables(): void {
@@ -57,31 +48,42 @@ export class MarkdownRendererComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  private addSectionClasses(): void {
+  private addArticleAnchorIds(): void {
     const headerElements = this._document.querySelectorAll(
       'markdown h1, markdown h2, markdown h3, markdown h4, markdown h5, markdown h6',
     );
 
     if (headerElements) {
       headerElements.forEach(headerElement => {
-        const kebabizedSectionName = kebabize(headerElement.innerHTML);
-        headerElement.classList.add(`lcc-section-${kebabizedSectionName}`);
+        const headerTextContent = (
+          headerElement.textContent || headerElement.innerHTML
+        ).replace(/(<([^>]+)>)/gi, '');
+        const kebabizedAnchorName = kebabize(headerTextContent);
+        headerElement.setAttribute('id', kebabizedAnchorName);
       });
     }
   }
 
-  private scrollToArticleSection(sectionToScrollTo: string): void {
-    this.facade.onScrollToSection();
-    const sectionElement = this._document.getElementsByClassName(
-      `lcc-section-${sectionToScrollTo}`,
-    )[0];
+  private setUpRouterListener(): void {
+    this.router.events
+      .pipe(
+        filter(event => event instanceof Scroll),
+        untilDestroyed(this),
+      )
+      .subscribe(event => this.scrollToAnchor((event as Scroll).anchor!));
+  }
 
-    if (sectionElement) {
-      sectionElement.scrollIntoView({
-        behavior: 'instant',
-        block: 'start',
-        inline: 'nearest',
-      });
+  private scrollToAnchor(anchorToScrollTo: string): void {
+    const anchorElement = this._document.getElementById(anchorToScrollTo);
+
+    if (anchorElement) {
+      setTimeout(() => {
+        anchorElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest',
+        });
+      }, 200);
     }
   }
 }

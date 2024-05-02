@@ -53,11 +53,6 @@ export const isEditMode = createSelector(
   state => state.isEditMode,
 );
 
-export const sectionToScrollTo = createSelector(
-  articlesFeatureSelector,
-  state => state.sectionToScrollTo,
-);
-
 export const hasUnsavedChanges = createSelector(
   articleCurrently,
   selectedArticle,

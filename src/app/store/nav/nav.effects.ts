@@ -49,23 +49,21 @@ export class NavEffects {
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       filter(({ payload }) => payload.event.url.startsWith('/article/view/')),
-      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-      filter(([{ payload }, previousPath]) => payload.event.url !== previousPath),
-      map(([{ payload }]) => {
-        const [articleId, pageSection] = payload.event.url
-          .split('/article/view/')[1]
-          .split('#');
-        return { articleId, pageSection };
+      map(({ payload }) => {
+        const currentPath = payload.event.url;
+        const articleId = currentPath.split('/article/view/')[1].split('#')[0];
+        return { currentPath, articleId };
       }),
-      concatLatestFrom(({ articleId }) =>
+      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
+      filter(([{ currentPath }, previousPath]) => currentPath !== previousPath),
+      concatLatestFrom(([{ articleId }]) =>
         this.store.select(ArticlesSelectors.articleById(articleId)),
       ),
-      map(([{ articleId, pageSection }, articleInStore]) => {
+      map(([[{ articleId }], articleInStore]) => {
         return articleInStore
           ? ArticlesActions.setArticle({
               article: articleInStore,
               isEditMode: null,
-              sectionToScrollTo: pageSection,
             })
           : ArticlesActions.fetchArticleRequested({ articleId });
       }),

@@ -9,11 +9,10 @@ import { ArticlesState, initialState } from './articles.state';
 const articlesReducer = createReducer(
   initialState,
 
-  on(ArticlesActions.setArticle, (state, { article, isEditMode, sectionToScrollTo }) => ({
+  on(ArticlesActions.setArticle, (state, { article, isEditMode }) => ({
     ...state,
     selectedArticle: article,
     articleCurrently: article,
-    sectionToScrollTo: sectionToScrollTo ?? null,
     isEditMode,
   })),
 
@@ -98,12 +97,6 @@ const articlesReducer = createReducer(
   on(ArticlesActions.formDataChanged, (state, { article }) => ({
     ...state,
     articleCurrently: article,
-  })),
-
-  on(ArticlesActions.scrolledToArticleSection, state => ({
-    ...state,
-    articleCurrently: null,
-    sectionToScrollTo: null,
   })),
 );
 

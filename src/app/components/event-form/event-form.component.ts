@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import type { ClubEvent } from '@app/types';
-import { isDefined } from '@app/utils';
+import { articleIdRegExp, isDefined } from '@app/utils';
 import { dateValidator } from '@app/validators';
 
 import { EventFormFacade } from './event-form.facade';
@@ -63,6 +63,10 @@ export class EventFormComponent implements OnInit {
       title: [event.title, [Validators.required, Validators.pattern(/[^\s]/)]],
       details: [event.details, [Validators.required, Validators.pattern(/[^\s]/)]],
       type: [event.type, [Validators.required]],
+      associatedArticleId: [
+        event.associatedArticleId,
+        [Validators.pattern(articleIdRegExp)],
+      ],
       id: [event.id],
       modificationInfo: [event.modificationInfo],
     });

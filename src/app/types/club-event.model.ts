@@ -13,29 +13,32 @@ export enum ClubEventTypes {
 
 export interface ClubEvent {
   id: string | null;
+  type: ClubEventTypes;
   eventDate: string;
   title: string;
   details: string;
-  type: ClubEventTypes;
+  associatedArticleId: string;
   modificationInfo: ModificationInfo | null;
 }
 
 export const newClubEventFormTemplate: ClubEvent = {
   id: null,
+  type: ClubEventTypes.BLITZ_TOURNAMENT,
   eventDate: '',
   title: '',
   details: '',
-  type: ClubEventTypes.RAPID_TOURNAMENT,
+  associatedArticleId: '',
   modificationInfo: null,
 };
 
 // Backend representation of the type
 export interface FlatClubEvent {
   id: string | null;
+  type: ClubEventTypes;
   eventDate: string;
   title: string;
   details: string;
-  type: ClubEventTypes;
+  associatedArticleId: string;
   dateCreated: string;
   createdBy: string;
   dateLastEdited: string;

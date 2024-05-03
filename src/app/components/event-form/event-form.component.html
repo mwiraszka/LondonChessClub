@@ -44,10 +44,11 @@
 			Details:
 		</label>
 		<textarea id="details-input"
+							class="details-textarea"
 							name="details"
 							formControlName="details"
-							maxlength="400">
-      </textarea>
+							maxlength="200">
+    </textarea>
 		<div class="lcc-form-error-container">
 			@if (hasError(form.controls['details'])) {
 			<i-feather name="alert-triangle"
@@ -57,7 +58,10 @@
 			}
 		</div>
 
-		<label class="lcc-required-field">Event type:</label>
+		<label for="type-input"
+					 class="lcc-required-field">
+			Event type:
+		</label>
 		<fieldset class="lcc-form-radio-buttons">
 			<div>
 				<input type="radio"
@@ -132,6 +136,23 @@
 				<label for="casual-input">Other</label>
 			</div>
 		</fieldset>
+
+		<label for="associated-article-id-input">
+			Associated Article ID:
+		</label>
+		<input id="associated-article-id-input"
+					 type="text"
+					 name="associated-article-id"
+					 formControlName="associatedArticleId"
+					 maxlength="21" />
+		<div class="lcc-form-error-container">
+			@if (hasError(form.controls['associatedArticleId'])) {
+			<i-feather name="alert-triangle"
+								 class="lcc-form-error-icon validation-alert-icon"
+								 [tooltip]="getErrorMessage(form.controls['associatedArticleId'])">
+			</i-feather>
+			}
+		</div>
 	</div>
 
 	<hr />

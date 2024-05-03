@@ -40,6 +40,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.3.1 - May 3rd, 2024
+</summary>
+
+- 🚀 Add support for linking scheduled club events to an article where more details can be found
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.3.0 - May 2nd, 2024
 </summary>
 

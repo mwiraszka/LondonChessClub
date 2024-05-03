@@ -11,9 +11,12 @@ form {
   max-width: $lcc-width--small-form;
 }
 
+.details-textarea {
+  height: 100px;
+}
+
 hr {
   width: 100%;
-  height: 1px;
   border-top: 1px solid $lcc-color--fg-divider;
   margin: 1em 0;
 }

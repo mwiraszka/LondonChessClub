@@ -25,8 +25,7 @@
 													(delete)="facade.onDeleteEvent(event)">
 			</lcc-admin-controls>
 			}
-			<td class="date">
-				{{ setLocalTime(event.eventDate) | formatDate:'long no-time' }}
+			<td class="date">{{ setLocalTime(event.eventDate) | formatDate:'long no-time' }}
 			</td>
 			<td class="main-container">
 				<div class="main-content">
@@ -44,6 +43,12 @@
 					<p class="event-details">
 						{{ event.details }}
 					</p>
+					}
+					@if (event.associatedArticleId) {
+					<a [routerLink]="'/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + event?.associatedArticleId"
+						 class="lcc-link event-associated-article">
+						More details
+					</a>
 					}
 				</div>
 				@if (includeDetails && (facade.isAdmin$ | async)) {

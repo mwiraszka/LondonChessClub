@@ -90,6 +90,7 @@ export class ScheduleService {
         title: event.title,
         details: event.details,
         type: event.type,
+        associatedArticleId: event.associatedArticleId,
         modificationInfo: {
           dateCreated: new Date(event.dateCreated),
           createdBy: event.createdBy,
@@ -108,6 +109,7 @@ export class ScheduleService {
         title: event.title,
         details: event.details,
         type: event.type,
+        associatedArticleId: event.associatedArticleId,
         dateCreated: event.modificationInfo!.dateCreated.toISOString(),
         createdBy: event.modificationInfo!.createdBy,
         dateLastEdited: event.modificationInfo!.dateLastEdited.toISOString(),

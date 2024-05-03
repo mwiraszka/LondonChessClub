@@ -20,10 +20,11 @@ export function generateArticleImageId(articleId: string): string {
   return `${articleId}-img1-${uniqueId}`;
 }
 
+export const articleIdRegExp: RegExp = /^art-[0-9]{8}-[a-fA-F0-9]{8}$/;
+
 /**
  * @returns {boolean} Whether the article id is in a valid (LCC-specific) format
  */
 export function isValidArticleId(articleId: string): boolean {
-  const regExp = new RegExp(/^art-[0-9]{8}-[a-fA-F0-9]{8}$/);
-  return regExp.test(articleId);
+  return new RegExp(articleIdRegExp).test(articleId);
 }

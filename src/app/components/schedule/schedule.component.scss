@@ -25,9 +25,10 @@ table {
         }
       }
 
-      .main-container {
+      td.main-container {
         display: flex;
         flex-flow: column nowrap;
+        padding: $lcc-space--xs;
 
         @include respond-to('gt-md') {
           flex-flow: row nowrap;
@@ -60,7 +61,7 @@ table {
           align-items: center;
           gap: $lcc-space--sm;
           border-radius: $lcc-border-radius--lg;
-          padding: $lcc-space--xs $lcc-space--sm;
+          padding: $lcc-space--xxs $lcc-space--sm;
           width: auto;
 
           &.blitz-tournament {
@@ -130,10 +131,10 @@ table {
     }
   }
 
-  .date {
-    padding-right: unset;
+  td.date {
+    padding: $lcc-space--xs $lcc-space--md 0;
     
-    // Minimum width needed to fit longest month and day on a single line
+    // Minimum width needed to fit all month names on a single line
     width: 105px;
   }
 }

@@ -3,27 +3,38 @@
 										 icon="grid">
 	</lcc-screen-header>
 
-	<p>
-		Take a trip down memory lane! Here you will find a collection of games played by
-		London Chess Club members all the way back to 1974.
-	</p>
-	<p>
-		Want to submit a game or make a correction? Email us at
-		<a href="mailto:welcome@londonchess.ca"
-			 class="lcc-link"
-			 alt="welcome@londonchess.ca">
-			welcome&#64;londonchess.ca</a>.
-	</p>
+	<section class="intro-section">
+		<div class="image-container">
+			<img src="assets/photos/game-archives.png" />
+		</div>
+		<div class="text-container">
+			<h3>A little piece of history</h3>
+			<p>
+				Here you will find a collection of games by London
+				Chess Club members from a variety of events dating as far back as 1974. All game
+				PGNs meticulously transcribed and compiled over the years by our very own Gerry
+				Litchfield &mdash; thank you, Gerry!
+			</p>
+			<p>
+				Want to submit a game or make a correction? Email us at
+				<a href="mailto:welcome@londonchess.ca"
+					 class="lcc-link"
+					 alt="welcome@londonchess.ca">
+					welcome&#64;londonchess.ca</a>.
+			</p>
+		</div>
+	</section>
 
 	<div class="panels-container">
 		@for (panel of expansionPanels; track panel.label) {
-		<div class="panel-container">
+		<div class="panel-content">
 			<lcc-expansion-panel [headerTemplate]="headerTemplateRef"
-													 [contentTemplate]="contentTemplateRef">
+													 [contentTemplate]="contentTemplateRef"
+													 [isOpen]="panel.label === '2023'">
 			</lcc-expansion-panel>
 
 			<ng-template #headerTemplateRef>
-				<div class="header-container">
+				<div class="header-content">
 					<span>{{ panel.label }}</span>
 					<span>
 						{{ panel.pgns.length }}

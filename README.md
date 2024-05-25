@@ -44,7 +44,8 @@ v3.3.2 - May 25th, 2024
 </summary>
 
 - 🚀 Add more recent games (from 2017 to 2023) to club game archives
-- 🐛 Fix a bug which prevented more than just a handful of game PGNs from being accessible for each year
+- 🚀 Various minor improvements to spruce up the Game Archives page
+- 🐛 Fix a bug which made only a handful of game PGNs accessible in each expansion panel
 
 </details>
 

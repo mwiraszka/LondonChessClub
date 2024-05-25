@@ -32,11 +32,22 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 ## Release notes
 
-|    |    |
-| -- | -- |
-| 🚀 | New **features** and **improvements** |
-| 🐛 | Bug fixes |
-| 🔧 | Code refactoring |
+|     |                                       |
+| --- | ------------------------------------- |
+| 🚀  | New **features** and **improvements** |
+| 🐛  | Bug fixes                             |
+| 🔧  | Code refactoring                      |
+
+<details>
+<summary style="cursor: pointer">
+v3.3.2 - May 25th, 2024
+</summary>
+
+- 🚀 Add more recent games (from 2017 to 2023) to club game archives
+- 🚀 Various minor improvements to spruce up the Game Archives page
+- 🐛 Fix a bug which made only a handful of game PGNs accessible in each expansion panel
+
+</details>
 
 <details>
 <summary style="cursor: pointer">
@@ -206,7 +217,7 @@ v3.0.6 - March 9th, 2024
 v3.0.5 - March 9th, 2024
 </summary>
 
-- 🚀 Replace 100-items per page option in paginator component with one that allows user to see *all* table items at once
+- 🚀 Replace 100-items per page option in paginator component with one that allows user to see _all_ table items at once
 - 🐛 Remove the option to install a bootable version of the website, and all ngsw (Angular Service Worker) related code
 
 </details>
@@ -388,11 +399,11 @@ v2.0.0 - December 20th, 2023
 - 🚀 Move About screen to after Home screen in the navigation tabs
 - 🚀 Improve About screen layout and content
 - 🚀 Display only future events in Schedule by default, with an option to show past events
-- 🐛 Fix issue which prevented article banner images from being fetched using secure connection (HTTPS protocol)  
+- 🐛 Fix issue which prevented article banner images from being fetched using secure connection (HTTPS protocol)
 - 🐛 Correct club event date-time tiemzone calculations which were causing Thursday club event dates to show up as Wednesday
 - 🐛 Fix Angular Service Worker issues when app is running on a production environment
 - 🐛 Fix bug which prevented form validation icon from appearing in Create/Edit Event screen
-- 🔧 Split `utils.ts` into more categorized util files, and leverage `moment.js` library for better date-time calculations  
+- 🔧 Split `utils.ts` into more categorized util files, and leverage `moment.js` library for better date-time calculations
 
 </details>
 
@@ -427,7 +438,7 @@ v1.6.6-beta - December 17th, 2023
 </summary>
 
 - 🚀 Add a 'report a bug' link to the website footer
-- 🚀 Limit banner image height so that it doesn't expand too much on larger screens  
+- 🚀 Limit banner image height so that it doesn't expand too much on larger screens
 - 🐛 Fix bug preventing new banner images from being uploaded in some scenarios
 
 </details>
@@ -737,7 +748,7 @@ v0.8.0-alpha - September 8th, 2022
 - 🚀 Implement a standard nav bar to route to the various screens available, including an icon-only view on smaller devices, and a user account section to house any account-specific information and actions
 - 🚀 Implement user sign up, login, and change password flows, granting LCC committee members admin access to perform Create, Read, Update and Delete (CRUD) actions on any data which is regularly updated: currently members, articles, and scheduled events
 - 🚀 Implement basic members table and paginator components, fully fitted with sorting and filtering algorithms
-- 🚀 *(Work in progress)* Implement basic database CRUD functionality and a responsive grid layout for articles
+- 🚀 _(Work in progress)_ Implement basic database CRUD functionality and a responsive grid layout for articles
 - 🚀 Implement basic CRUD functionality and a responsive table layout for all club events stored in the database
 - 🚀 Create a responsive grid layout to organize the most commonly sought information about the club
 - 🚀 Create a responsive grid layout to house photos from club meetings and club-organized events, including the functionality to enlarge photos in an image overlay 'preview' mode

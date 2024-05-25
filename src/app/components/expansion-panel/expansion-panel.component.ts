@@ -9,6 +9,5 @@ import { Component, Input, TemplateRef } from '@angular/core';
 export class ExpansionPanelComponent {
   @Input() headerTemplate!: TemplateRef<any>;
   @Input() contentTemplate!: TemplateRef<any>;
-
-  isOpen = false;
+  @Input() isOpen = false;
 }

@@ -1,4 +1,9 @@
+@import 'styles/abstracts/mixins';
 @import 'styles/abstracts/variables';
+
+$pgn-viewer-width: 432px;
+$pgn-viewer-height: 336px;
+$container-max-width: calc($pgn-viewer-width * 3 + $lcc-space--xs * 6);
 
 :host {
   .container {
@@ -6,12 +11,51 @@
     flex-flow: column nowrap;
     align-items: center;
     gap: $lcc-space--sm;
-    margin: auto;
     max-width: $lcc-width--app-content;
+    margin: 0 $lcc-space--sm;
+
+    @include respond-to('gt-sm') {
+      margin: 0;
+    }
   }
 
-  p {
-    margin: $lcc-space--sm;
+  .intro-section {
+    margin: $lcc-space--md 0;
+    max-width: $container-max-width;
+    display: flex;
+    flex-direction: column;
+
+    @include respond-to('gt-lg') {
+      flex-direction: row;
+    }
+
+    .image-container {
+      flex: 2;
+
+      img {
+        max-width: 100%;
+        max-height: 534px;
+        border-radius: $lcc-border-radius--lg;
+      }
+    }
+
+    .text-container {
+      flex: 1;
+      padding: $lcc-space--sm;
+
+      @include respond-to('gt-lg') {
+        padding: 0 $lcc-space--lg;
+      }
+
+      h3 {
+        margin: $lcc-space--sm 0 $lcc-space--md;
+        font-style: italic;
+      }
+  
+      p {
+        margin-bottom: $lcc-space--md;
+      }
+    }
   }
 
   .panels-container {
@@ -21,15 +65,17 @@
     width: 100%;
   }
 
-  .panel-container {
+  .panel-content {
     width: 100%;
-    // Wide enough to fit two pgn viewers side-by-side
-    max-width: 1050px;
-    padding-bottom: 2px;
-
+    max-width: $container-max-width;
+    padding-bottom: $lcc-space--xxs;
   }
 
-  .header-container {
+  ::ng-deep lcc-expansion-panel .header-container {
+    padding-right: $lcc-space--md !important;
+  }
+
+  .header-content {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
@@ -42,14 +88,14 @@
     width: 100%;
 
     cdk-virtual-scroll-viewport {
-      height: 352px;
+      height: $pgn-viewer-height + 2 * $lcc-space--xs;
 
       ::ng-deep .cdk-virtual-scroll-content-wrapper {
         display: flex;
 
         lcc-pgn-viewer {
           margin: $lcc-space--xs;
-          max-width: 432px;
+          max-width: $pgn-viewer-width;
         }
       }
     }

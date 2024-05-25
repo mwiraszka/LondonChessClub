@@ -3,14 +3,12 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 
 import { MetaAndTitleService } from '@app/services';
 
-import { GameArchivesScreenFacade } from './game-archives-screen.facade';
 import * as fromPgns from './pgns';
 
 @Component({
   selector: 'lcc-game-archives-screen',
   templateUrl: './game-archives-screen.component.html',
   styleUrls: ['./game-archives-screen.component.scss'],
-  providers: [GameArchivesScreenFacade],
 })
 export class GameArchivesScreenComponent implements OnInit {
   expansionPanels!: { label: string; pgns: string[] }[];
@@ -18,10 +16,7 @@ export class GameArchivesScreenComponent implements OnInit {
   @ViewChild(CdkVirtualScrollViewport)
   cdkVirtualScrollViewport?: CdkVirtualScrollViewport;
 
-  constructor(
-    public facade: GameArchivesScreenFacade,
-    private metaAndTitleService: MetaAndTitleService,
-  ) {}
+  constructor(private metaAndTitleService: MetaAndTitleService) {}
 
   @HostListener('window:resize', ['$event'])
   onResize(): void {
@@ -35,6 +30,26 @@ export class GameArchivesScreenComponent implements OnInit {
     );
 
     this.expansionPanels = [
+      {
+        label: '2023',
+        pgns: fromPgns.pgns2023,
+      },
+      {
+        label: '2022',
+        pgns: fromPgns.pgns2022,
+      },
+      {
+        label: '2019',
+        pgns: fromPgns.pgns2019,
+      },
+      {
+        label: '2018',
+        pgns: fromPgns.pgns2018,
+      },
+      {
+        label: '2017',
+        pgns: fromPgns.pgns2017,
+      },
       {
         label: '2005',
         pgns: fromPgns.pgns2005,

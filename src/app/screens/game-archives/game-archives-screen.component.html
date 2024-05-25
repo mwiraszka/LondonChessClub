@@ -5,8 +5,7 @@
 
 	<p>
 		Take a trip down memory lane! Here you will find a collection of games played by
-		London Chess Club members all the way back to 1974 (more games from 2000–2024 coming
-		soon).
+		London Chess Club members all the way back to 1974.
 	</p>
 	<p>
 		Want to submit a game or make a correction? Email us at
@@ -37,9 +36,10 @@
 				<div class="games-container">
 					@defer {
 					<cdk-virtual-scroll-viewport [itemSize]="436"
-																			 [maxBufferPx]="12000"
+																			 [minBufferPx]="1000"
+																			 [maxBufferPx]="2000"
 																			 orientation="horizontal">
-						<lcc-pgn-viewer *cdkVirtualFor="let pgn of panel.pgns; let index = index"
+						<lcc-pgn-viewer *cdkVirtualFor="let pgn of panel.pgns; let index = index; templateCacheSize: 0"
 														[index]="index"
 														[pgn]="pgn">
 						</lcc-pgn-viewer>

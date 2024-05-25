@@ -1,5 +1,5 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { Component, HostListener, OnInit, ViewChildren } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 
 import { MetaAndTitleService } from '@app/services';
 
@@ -15,7 +15,7 @@ import * as fromPgns from './pgns';
 export class GameArchivesScreenComponent implements OnInit {
   expansionPanels!: { label: string; pgns: string[] }[];
 
-  @ViewChildren(CdkVirtualScrollViewport)
+  @ViewChild(CdkVirtualScrollViewport)
   cdkVirtualScrollViewport?: CdkVirtualScrollViewport;
 
   constructor(

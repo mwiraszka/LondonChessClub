@@ -8,4 +8,5 @@ export enum AppStoreFeatureTypes {
   PHOTOS = 'photos',
   SCHEDULE = 'schedule',
   TOASTER = 'toaster',
+  USER_SETTINGS = 'user-settings',
 }

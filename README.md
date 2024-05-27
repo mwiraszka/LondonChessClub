@@ -40,6 +40,16 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v3.4.0 - May TBD, 2024
+</summary>
+
+- 🚀 Improve colour theming throughout app and introduce a dark mode
+- 🚀 Revamp the user settings dropdown menu
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v3.3.2 - May 25th, 2024
 </summary>
 

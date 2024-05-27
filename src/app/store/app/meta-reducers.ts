@@ -24,7 +24,14 @@ function actionLogMetaReducer(reducer: ActionReducer<AppState>): ActionReducer<A
  * Source: https://nils-mehlhorn.de/posts/ngrx-keep-state-refresh
  */
 function hydrationMetaReducer(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
-  const keysOfStoresToSync = ['articles', 'auth', 'members', 'schedule', 'nav'];
+  const keysOfStoresToSync = [
+    'articles',
+    'auth',
+    'members',
+    'nav',
+    'schedule',
+    'user-settings',
+  ];
   return localStorageSync({ keys: keysOfStoresToSync, rehydrate: true })(reducer);
 }
 

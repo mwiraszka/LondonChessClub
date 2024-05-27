@@ -5,7 +5,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -27,6 +27,7 @@ import { NavStoreModule } from '@app/store/nav';
 import { PhotosStoreModule } from '@app/store/photos';
 import { ScheduleStoreModule } from '@app/store/schedule';
 import { ToasterStoreModule } from '@app/store/toaster';
+import { UserSettingsStoreModule } from '@app/store/user-settings';
 import { actionSanitizer } from '@app/utils';
 
 import { environment } from '@environments/environment';
@@ -72,7 +73,7 @@ import { AppComponent } from './app.component';
     }),
     ToasterModule,
     ToasterStoreModule,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    UserSettingsStoreModule,
   ],
   bootstrap: [AppComponent],
 })

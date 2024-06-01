@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 @import 'styles/abstracts/variables';
 
 $switch-height: 22px;
@@ -31,8 +33,8 @@ $slider-diameter: 16px;
 
   &:before {
     position: absolute;
-    bottom: ($switch-height - $slider-diameter) / 2;
-    left: ($switch-height - $slider-diameter) / 2;
+    bottom: math.div($switch-height - $slider-diameter, 2);
+    left: math.div($switch-height - $slider-diameter, 2);
     background-color: #fff;
     height: $slider-diameter;
     width: $slider-diameter;

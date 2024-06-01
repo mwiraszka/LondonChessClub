@@ -1,0 +1,85 @@
+[data-theme="light"] {
+  --lcc-bg-main: hsl(0, 0%, 97%);
+  --lcc-text-primary-black: hsl(0, 0%, 5%);
+  --lcc-text-primary-white: hsl(0, 0%, 95%);
+
+  --lcc-primary: rgb(61, 102, 143);
+  --lcc-secondary: hsl(214, 40%, 20%);
+  --lcc-accent: hsl(24, 67%, 45%);
+  --lcc-success: hsl(100, 50%, 40%);
+  --lcc-warn: hsl(0, 90%, 60%);
+  --lcc-info: hsl(211, 79%, 85%);
+  --lcc-link: hsl(210, 70%, 55%, 0.9);
+  --lcc-hover: hsl(208, 11%, 35%);
+  --lcc-select: hsl(210, 100%, 80%);
+  --lcc-admin: hsl(0, 62%, 20%);
+  --lcc-disabled-bg: hsla(0, 0%, 88%, 0.641);
+  --lcc-disabled-fg: hsl(0, 0%, 78%);
+  --lcc-scrollbar: hsla(0, 0%, 5%, 0.5);
+
+  --lcc-white: hsl(0, 0%, 95%);
+  --lcc-grey: hsl(0, 0%, 60%);
+  --lcc-black: hsl(0, 0%, 5%);
+
+  --lcc-fg-divider: hsl(0, 0%, 85%);
+
+  --lcc-bg-nav: hsl(0, 0%, 99%);
+  --lcc-bg-canvas: hsl(0, 0%, 99%);
+  --lcc-bg-figure: hsl(7, 3%, 12%);
+  --lcc-bg-screen-header: hsl(7, 3%, 94%);
+  --lcc-bg-grid-item: hsl(0, 0%, 97%);
+  --lcc-bg-table-row-light: hsl(0, 0%, 98%);
+  --lcc-bg-table-row-dark: hsl(220, 10%, 96%);
+  --lcc-bg-tooltip: hsl(0, 0%, 27%);
+  --lcc-bg-highlighted-event: hsl(28, 80%, 95%);
+  --lcc-bg-expansion-panel: hsl(0, 0%, 88%);
+
+  --lcc-transparent-fully: hsla(0, 0%, 100%, 0);
+  --lcc-transparent-mostly: hsla(0, 0%, 100%, 0.2);
+  --lcc-transparent-half: hsla(0, 0%, 100%, 0.5);
+  --lcc-box-shadow: hsla(0, 0%, 84%, 0.8);
+  --lcc-overlay: hsla(0, 0%, 30%, 0.8);
+}
+
+[data-theme="dark"] {
+  --lcc-bg-main: hsl(0, 0%, 0%);
+  --lcc-text-primary-black: hsl(0, 0%, 95%);
+  --lcc-text-primary-white: hsl(0, 0%, 5%);
+
+  --lcc-primary: rgb(61, 102, 143);
+  --lcc-secondary: hsl(214, 40%, 20%);
+  --lcc-accent: hsl(24, 67%, 45%);
+  --lcc-success: hsl(100, 50%, 40%);
+  --lcc-warn: hsl(0, 90%, 60%);
+  --lcc-info: hsl(211, 79%, 85%);
+  --lcc-link: hsl(210, 70%, 55%, 0.9);
+  --lcc-hover: hsl(208, 11%, 35%);
+  --lcc-select: hsl(210, 100%, 80%);
+  --lcc-admin: hsl(0, 62%, 20%);
+  --lcc-disabled-bg: hsla(0, 0%, 88%, 0.641);
+  --lcc-disabled-fg: hsl(0, 0%, 78%);
+  --lcc-scrollbar: hsla(0, 0%, 5%, 0.5);
+
+  --lcc-white: hsl(0, 0%, 95%);
+  --lcc-grey: hsl(0, 0%, 60%);
+  --lcc-black: hsl(0, 0%, 5%);
+
+  --lcc-fg-divider: hsl(0, 0%, 85%);
+
+  --lcc-bg-nav: hsl(0, 0%, 99%);
+  --lcc-bg-canvas: hsl(0, 0%, 99%);
+  --lcc-bg-figure: hsl(7, 3%, 12%);
+  --lcc-bg-screen-header: hsl(7, 3%, 94%);
+  --lcc-bg-grid-item: hsl(0, 0%, 97%);
+  --lcc-bg-table-row-light: hsl(0, 0%, 98%);
+  --lcc-bg-table-row-dark: hsl(220, 10%, 96%);
+  --lcc-bg-tooltip: hsl(0, 0%, 27%);
+  --lcc-bg-highlighted-event: hsl(28, 80%, 95%);
+  --lcc-bg-expansion-panel: hsl(0, 0%, 88%);
+
+  --lcc-transparent-fully: hsla(0, 0%, 100%, 0);
+  --lcc-transparent-mostly: hsla(0, 0%, 100%, 0.2);
+  --lcc-transparent-half: hsla(0, 0%, 100%, 0.5);
+  --lcc-box-shadow: hsla(0, 0%, 84%, 0.8);
+  --lcc-overlay: hsla(0, 0%, 30%, 0.8);
+}

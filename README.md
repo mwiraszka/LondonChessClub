@@ -40,11 +40,12 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v3.4.0 - May TBD, 2024
+v3.4.0 - June 2nd, 2024
 </summary>
 
 - 🚀 Improve colour theming throughout app and introduce a dark mode
 - 🚀 Revamp the user settings dropdown menu
+- 🐛 Fix layout issue on Game Archives page
 
 </details>
 

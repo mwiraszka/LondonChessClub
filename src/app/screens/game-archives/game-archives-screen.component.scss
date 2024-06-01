@@ -15,7 +15,7 @@ $container-max-width: calc($pgn-viewer-width * 3 + $lcc-space--xs * 6);
     margin: 0 $lcc-space--sm;
 
     @include respond-to('gt-sm') {
-      margin: 0;
+      margin: auto;
     }
   }
 

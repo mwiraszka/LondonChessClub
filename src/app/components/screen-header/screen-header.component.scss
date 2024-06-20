@@ -1,31 +1,28 @@
-@import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
-
 :host {
-  border-radius: $lcc-border-radius--sm;
-  box-shadow: 1px 1px 8px 1px $lcc-color--box-shadow;
-  padding: $lcc-space--sm;
+  border-radius: var(--lcc-borderRadius--small);
+  box-shadow: 1px 1px 8px 1px var(--lcc-color--screenHeader-boxShadow);
+  padding: 8px;
 
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color: $lcc-color--bg-screen-header;
+  background-color: var(--lcc-color--screenHeader-background);
   
   .screen-title {
-    font-size: $h3 !important;
-    color: $lcc-color--text-primary-black;
+    font-size: var(--lcc-fontSize--h3) !important;
+    color: var(--lcc-color--screenHeader-text);
   }
 
   .icon {
-    color: $lcc-color--accent;
-    margin-left: $lcc-space--sm;
-    border: 3px solid $lcc-color--transparent-mostly;
-    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.1); 
+    color: var(--lcc-color--screenHeader-icon);
+    margin-left: 8px;
+    border: 3px solid var(--lcc-color--screenHeader-iconBorder);
+    box-shadow: 0px 0px 5px 2px var(--lcc-color--screenHeader-iconBoxShadow);
     border-radius: 50%;
     height: 30px;
     width: 30px;
-    padding: $lcc-space--xxs;
+    padding: 2px;
   }
 }

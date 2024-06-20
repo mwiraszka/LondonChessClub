@@ -1,5 +1,4 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 :host {
   display: flex;
@@ -11,20 +10,20 @@
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  gap: $lcc-space--sm;
+  gap: 8px;
   width: 100%;
-  max-width: $lcc-width--app-content;
+  max-width: var(--lcc-width--appContent);
 }
 
 lcc-login-form {
   width: 100%;
-  max-width: $lcc-width--small-form;
-  box-shadow: 1px 1px 5px 2px $lcc-color--box-shadow;
-  background-color: $lcc-color--bg-canvas;
-  border-radius: $lcc-border-radius--sm;
-  padding: $lcc-space--lg $lcc-space--md;
+  max-width: var(--lcc-width--smallForm);
+  box-shadow: 1px 1px 5px 2px var(--lcc-color--form-boxShadow);
+  background-color: var(--lcc-color--form-background);
+  border-radius: var(--lcc-borderRadius--small);
+  padding: 32px 16px;
 
   @include respond-to('gt-sm') {
-    padding: $lcc-space--lg;
+    padding: 32px;
   }
 }

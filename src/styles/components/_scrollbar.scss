@@ -1,11 +1,11 @@
 body {
   ::-webkit-scrollbar {
-    height: $lcc-space--sm;
+    height: 8px;
     background: unset !important;
   }
 
   ::-webkit-scrollbar-thumb {
-    border-radius: $lcc-border-radius--lg;
-    background: $lcc-color--scrollbar !important;
+    border-radius: var(--lcc-borderRadius--large);
+    background: var(--lcc-color--scrollbar-background) !important;
   }
 }

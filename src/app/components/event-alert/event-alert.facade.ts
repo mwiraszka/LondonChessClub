@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { ScheduleSelectors } from '@app/store/schedule';
 
 @Injectable()
-export class AlertFacade {
+export class EventAlertFacade {
   upcomingEvent$ = this.store.select(ScheduleSelectors.upcomingEvent);
 
   constructor(private readonly store: Store) {}

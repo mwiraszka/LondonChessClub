@@ -1,11 +1,10 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 .banner-image-container {
   position: relative;
   display: flex;
   justify-content: center;
-  background-color: $lcc-color--black;
+  background-color: var(--lcc-color--article-bannerImageBackground);
 
   img,
   .loading-placeholder-image {
@@ -20,15 +19,15 @@
 
   h2 {
     position: absolute;
-    bottom: $lcc-space--sm;
-    left: $lcc-space--md;
-    right: $lcc-space--md;
+    bottom: 8px;
+    left: 16px;
+    right: 16px;
     height: unset;
     line-height: 1.5em;
-    padding: $lcc-space--xs $lcc-space--sm;
-    color:  $lcc-color--text-primary-black;
-    background-color: hsla(0, 0%, 99%, 0.8);
-    border-radius: $lcc-border-radius--sm;
+    padding: 4px 8px;
+    color: var(--lcc-color--article-bannerImageHeaderText);
+    background-color: var(--lcc-color--article-bannerImageHeaderBackground);
+    border-radius: var(--lcc-borderRadius--small);
   }
 }
 
@@ -36,21 +35,21 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
-  gap: $lcc-space--md;
-  padding: $lcc-space--md;
+  gap: 16px;
+  padding: 16px;
 
   .creator-container {
     display: flex;
     flex-flow: column nowrap;
-    font-size: $h3;
+    font-size: var(--lcc-fontSize--h3);
 
     .date-created {
-      font-size: $h4;
+      font-size: var(--lcc-fontSize--h4);
     }
   }
 
   .editor-container {
-    font-size: $h4;
+    font-size: var(--lcc-fontSize--h4);
     
     .updated {
       font-weight: 100;
@@ -68,11 +67,11 @@
 
 hr {
   height: 1px;
-  border-top: 1px solid $lcc-color--fg-divider;
+  border-top: 1px solid var(--lcc-color--general-dividerLine);
   margin: 0.5em 0;
 }
 
 .markdown-container {
-  padding: $lcc-space--md;
+  padding: 16px;
   overflow-x: hidden;
 }

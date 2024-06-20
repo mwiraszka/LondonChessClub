@@ -1,9 +1,8 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 @mixin dark-bg {
-  background-color: darken($lcc-color--bg-grid-item, 2%);
-  border: 2px solid darken($lcc-color--bg-grid-item, 4%);
+  background-color: var(--lcc-color--championScreen-darkCellBackground);
+  border: 2px solid var(--lcc-color--championScreen-darkCellBorder);
 }
 
 :host {
@@ -17,10 +16,10 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  gap: $lcc-space--sm;
+  gap: 8px;
   margin: auto;
   width: 100%;
-  max-width: $lcc-width--app-content;
+  max-width: var(--lcc-width--appContent);
 }
 
 .grid-container {
@@ -34,7 +33,7 @@
     'champ-2022'
     'champ-2019'
     'past-winners';
-  gap: $lcc-space--xs;
+  gap: 4px;
 
   @include respond-to('gt-sm') {
     grid-template-columns: 3fr 2fr 2fr;
@@ -60,11 +59,11 @@
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
-    gap: $lcc-space--sm;
-    background-color: lighten($lcc-color--bg-grid-item, 2%);
+    gap: 8px;
+    background-color: var(--lcc-color--championScreen-articleBackground);
 
     @include respond-to('gt-sm') {
-      border-radius: $lcc-border-radius--sm;
+      border-radius: var(--lcc-borderRadius--small);
 
       img {
         max-height: 350px;
@@ -73,7 +72,7 @@
 
     &.history {
       grid-area: history;
-      padding: $lcc-space--md;
+      padding: 16px;
       align-items: flex-start;
 
       p {
@@ -86,20 +85,20 @@
       @include dark-bg;
 
       @include respond-to('lt-sm') {
-        margin: 0 $lcc-space--xs;
-        border-radius: $lcc-border-radius--lg;
+        margin: 0 4px;
+        border-radius: var(--lcc-borderRadius--large);
       }
     }
     
     &.past-winners {
       grid-area: past-winners;
-      padding: $lcc-space--md;
+      padding: 16px;
 
       h3 {
         width: 100%;
         text-align: left;
-        padding: $lcc-space--xxs;
-        border-bottom: 1px solid lighten($lcc-color--grey, 20%);
+        padding: 2px;
+        border-bottom: 1px solid var(--lcc-color--championScreen-pastWinnersHeaderText);
         margin-bottom: 0.5em;
       }
 
@@ -117,8 +116,8 @@
       @include dark-bg;
 
       @include respond-to('lt-sm') {
-        margin: 0 $lcc-space--xs;
-        border-radius: $lcc-border-radius--lg;
+        margin: 0 4px;
+        border-radius: var(--lcc-borderRadius--large);
       }
     }
 
@@ -127,8 +126,8 @@
       @include dark-bg;
 
       @include respond-to('lt-sm') {
-        margin: 0 $lcc-space--xs;
-        border-radius: $lcc-border-radius--lg;
+        margin: 0 4px;
+        border-radius: var(--lcc-borderRadius--large);
       }
     }
     
@@ -137,8 +136,8 @@
       @include dark-bg;
 
       @include respond-to('lt-sm') {
-        margin: 0 $lcc-space--xs;
-        border-radius: $lcc-border-radius--lg;
+        margin: 0 4px;
+        border-radius: var(--lcc-borderRadius--large);
       }
     }
 
@@ -147,8 +146,8 @@
       @include dark-bg;
 
       @include respond-to('lt-sm') {
-        margin: 0 $lcc-space--xs;
-        border-radius: $lcc-border-radius--lg;
+        margin: 0 4px;
+        border-radius: var(--lcc-borderRadius--large);
       }
     }
   }

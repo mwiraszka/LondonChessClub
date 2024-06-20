@@ -1,12 +1,11 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 :host {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: $lcc-space--md;
+  gap: 16px;
 }
 
 .icon {
@@ -17,7 +16,7 @@
 .address-section {
   display: flex;
   flex-flow: column nowrap;
-  gap: $lcc-space--sm;
+  gap: 8px;
   white-space: nowrap;
 
   .address-and-time-container {
@@ -25,14 +24,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: $lcc-space--md;
-    border: 2px solid transparentize($lcc-color--accent, 0.9);
-    border-radius: $lcc-border-radius--lg;
-    padding: $lcc-space--sm $lcc-space--md;
-    color: darken($lcc-color--text-secondary, 10%);
+    gap: 16px;
+    border: 2px solid var(--lcc-color--clubSummary-addressAndTimeContainerBorder);
+    border-radius: var(--lcc-borderRadius--large);
+    padding: 8px 16px;
+    color: var(--lcc-color--clubSummary-addressAndTimeContainerForeground);
 
     @include respond-to('gt-lg') {
-      gap: $lcc-space--lg;
+      gap: 32px;
       flex-direction: row;
     }
 
@@ -41,7 +40,7 @@
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      gap: $lcc-space--md;
+      gap: 16px;
     }
 
     .time {
@@ -54,12 +53,12 @@
 .contact-section {
   display: flex;
   flex-direction: column;
-  gap: $lcc-space--sm;
+  gap: 8px;
 
   .contact-line {
     display: flex;
     flex-direction: row;
-    gap: $lcc-space--sm;
+    gap: 8px;
   }
 
   .icon {

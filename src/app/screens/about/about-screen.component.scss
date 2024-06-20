@@ -1,9 +1,8 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 @mixin dark-bg {
-  background-color: darken($lcc-color--bg-grid-item, 2%);
-  border: 2px solid darken($lcc-color--bg-grid-item, 4%);
+  background-color: var(--lcc-color--aboutScreen-darkCellBackground);
+  border: 2px solid var(--lcc-color--aboutScreen-darkCellBorder);
 }
 
 :host {
@@ -12,12 +11,12 @@
 }
 
 .container {
-  max-width: $lcc-width--app-content;
+  max-width: var(--lcc-width--appContent);
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  gap: $lcc-space--sm;
+  gap: 8px;
 }
 
 .grid-container {
@@ -31,7 +30,7 @@
     'rules'
     'tournaments'
     'leadership';
-  gap: $lcc-space--xs;
+  gap: 4px;
 
   @include respond-to('gt-md') {
     grid-template-columns: 1fr 1fr;
@@ -55,10 +54,10 @@ article {
   place-self: stretch;
   display: flex;
   flex-flow: column nowrap;
-  gap: $lcc-space--md;
-  border-radius: $lcc-border-radius--sm;
-  background-color: lighten($lcc-color--bg-grid-item, 2%);
-  padding: $lcc-space--md $lcc-space--lg;
+  gap: 16px;
+  border-radius: var(--lcc-borderRadius--small);
+  background-color: var(--lcc-color--aboutScreen-articleBackground);
+  padding: 16px 32px;
   
   &.membership {
     grid-area: membership;
@@ -97,8 +96,8 @@ article {
     .tables-container {
       display: flex;
       flex-flow: row wrap;
-      gap: $lcc-space--md;
-      margin: $lcc-space--md 0;
+      gap: 16px;
+      margin: 16px 0;
 
       table {
         min-width: 300px;
@@ -109,7 +108,7 @@ article {
           vertical-align: middle;
 
           .chair {
-            color: $lcc-color--text-secondary;
+            color: (--lcc-color--aboutScreen-leadershipChairText);
           }
         }
       }
@@ -118,6 +117,6 @@ article {
 
   h3 {
     font-weight: 400;
-    color: $lcc-color--primary;
+    color: var(--lcc-color--aboutScreen-sectionHeading);
   }
 }

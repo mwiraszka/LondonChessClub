@@ -1,30 +1,25 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 :host {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  background-color: rgba($lcc-color--accent, 0.1);
-  border-radius: $lcc-border-radius--lg;
+  background-color: var(--lcc-color--paginator-background);
+  border-radius: var(--lcc-borderRadius--large);
   
-  padding: $lcc-space--xs $lcc-space--lg;
-  gap: $lcc-space--sm;
+  padding: 4px 32px;
+  gap: 8px;
 }
 
 button {
-  padding: $lcc-space--xs;
-  color: lighten($lcc-color--black, 20%);
+  padding: 4px;
+  color: var(--lcc-color--paginator-buttonText);
 
   &:hover {
     &:not([disabled]):not(.selected) {
-      box-shadow: 1px 1px 4px $lcc-box-shadow;
-      color: $lcc-color--black !important;
-
-      &:hover {
-        color: $lcc-color--hover !important;
-      }
+      box-shadow: 1px 1px 5px 0 var(--lcc-color--paginator-buttonBoxShadowOnHover);
+      color: var(--lcc-color--paginator-buttonTextOnHover) !important;
     }
   }
 }
@@ -35,26 +30,26 @@ button {
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: $lcc-space--xs;
-  font-size: $h5;
-  padding: 0 $lcc-space--xs;
+  gap: 4px;
+  font-size: var(--lcc-fontSize--h5);
+  padding: 0 4px;
 
   .center-section-buttons {
     display: flex;
     flex-flow: row nowrap;
-    gap: $lcc-space--xs;
+    gap: 4px;
 
     .center-section-button {
       border: none;
       text-transform: unset;
       white-space: unset;
-      font-size: $h5;
-      background-color: rgba($lcc-color--accent, 0.2) !important;
+      font-size: var(--lcc-fontSize--h5);
+      background-color: var(--lcc-color--paginator-centerSectionButton);
 
       &.selected {
         cursor: default;
-        background-color: $lcc-color--accent;
-        border: 1px solid rgba(lighten($lcc-color--black, 20%), 0.5);
+        background-color: var(--lcc-color--paginator-selectedBackground);
+        border: 1px solid var(--lcc-color--paginator-selectedBorder);
       }
     }
   }

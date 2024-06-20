@@ -1,7 +1,5 @@
 @use 'sass:math';
 
-@import 'styles/abstracts/variables';
-
 $switch-height: 22px;
 $switch-width: 42px;
 $slider-diameter: 16px;
@@ -27,7 +25,7 @@ $slider-diameter: 16px;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #ccc;
+  background-color: var(--lcc-color--themeToggle-sliderBackgroundWhenOff);
   cursor: pointer;
   transition: 0.4s;
 
@@ -35,7 +33,7 @@ $slider-diameter: 16px;
     position: absolute;
     bottom: math.div($switch-height - $slider-diameter, 2);
     left: math.div($switch-height - $slider-diameter, 2);
-    background-color: #fff;
+    background-color: var(--lcc-color--themeToggle-slider);
     height: $slider-diameter;
     width: $slider-diameter;
     content: '';
@@ -44,7 +42,7 @@ $slider-diameter: 16px;
 }
 
 input:checked + .slider {
-  background-color: #2b2b2b;
+  background-color: var(--lcc-color--themeToggle-sliderBackgroundWhenOn);
 }
 
 input:checked + .slider:before {

@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppRoutingModule } from '@app/app-routing.module';
-import { AlertModule } from '@app/components/alert';
+import { EventAlertModule } from '@app/components/event-alert';
 import { FooterModule } from '@app/components/footer';
 import { HeaderModule } from '@app/components/header';
 import { ImageOverlayModule } from '@app/components/image-overlay';
@@ -37,13 +37,13 @@ import { AppComponent } from './app.component';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    AlertModule,
     AppRoutingModule,
     ArticlesStoreModule,
     AuthStoreModule,
     BrowserModule,
     BrowserAnimationsModule,
     EffectsModule.forRoot([]),
+    EventAlertModule,
     FooterModule,
     HeaderModule,
     HttpClientModule,

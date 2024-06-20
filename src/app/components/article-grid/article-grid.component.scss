@@ -1,15 +1,15 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 $card-min-width: 310px; // Enough to keep dates on one line
-$grid-gap: $lcc-space--sm;
+$grid-gap: 8px;
+$app-content-width: 1500px; // Re-declare since CSS var cannot be passed to mixin
 
 :host {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  gap: $lcc-space--sm;
+  gap: 8px;
   width: 100%;
 }
 
@@ -26,22 +26,22 @@ lcc-link-list,
   gap: $grid-gap;
 
   .article {
-    @include flex-wrap-fix-width($card-min-width, $grid-gap, $lcc-width--app-content);
+    @include flex-wrap-fix-width($card-min-width, $grid-gap, $app-content-width);
 
     display: flex;
     flex-flow: column nowrap;
-    gap: $lcc-space--xs;
+    gap: 4px;
     height: auto;
-    margin: 0 $lcc-space--xs;
+    margin: 0 4px;
     // Minimum width to keep dates on one line, while still being narrow enough to
     // to fit two cards side-by-side at gt-md breakpoint (700px)
     min-width: 282px;
-    padding: $lcc-space--sm;
+    padding: 8px;
     background: repeating-conic-gradient(
-        darken($lcc-color--primary, 2%) 0% 25%,
-        darken($lcc-color--primary, 10%) 0% 50%
-      ) 50% / 5px 5px;
-    border-radius: $lcc-border-radius--lg;
+      var(--lcc-color--articleGrid-cardBackground1) 0% 25%,
+      var(--lcc-color--articleGrid-cardBackground2) 0% 50%
+    ) 50% / 5px 5px;
+    border-radius: var(--lcc-borderRadius--large);
 
     @include respond-to('gt-sm') {
       margin: 0;
@@ -49,7 +49,7 @@ lcc-link-list,
 
     &:hover {
       cursor: pointer;
-      background: darken($lcc-color--primary, 12%);
+      background: var(--lcc-color--articleGrid-cardBackgroundOnHover);
     }
 
     .article-thumbnail-image,
@@ -57,13 +57,13 @@ lcc-link-list,
       aspect-ratio: 3/2;
       width: 100%;
       object-fit: cover;
-      border-radius: $lcc-border-radius--lg;
+      border-radius: var(--lcc-borderRadius--large);
     }
 
     .sticky-icon {
       position: absolute;
-      margin: $lcc-space--xs;
-      color: transparentize($lcc-color--white, 0.1);
+      margin: 4px;
+      color: var(--lcc-color--articleGrid-stickyIcon);
       height: 18px;
       width: 18px;
     }
@@ -73,7 +73,7 @@ lcc-link-list,
       flex-flow: column nowrap;
       justify-content: space-between;
       height: 100%;
-      padding:$lcc-space--xs $lcc-space--sm;
+      padding: 4px 8px;
 
       h3 {
         text-align: center;
@@ -81,20 +81,20 @@ lcc-link-list,
         // Hardcode height to ensure title sections align between cards
         // regardless of whether there is 1 or 2 lines of text
         height: 2.4em;
-        color: darken($lcc-color--text-primary-white, 4%);
+        color: var(--lcc-color--articleGrid-articleSummaryHeaderText);
       }
 
       hr {
-        border-top: 1px solid $lcc-color--transparent-mostly;
-        padding-top: $lcc-space--sm;
+        border-top: 1px solid var(--lcc-color--general-dividerLine);
+        padding-top: 8px;
         width: 100%;
       }
 
       p {
         // Hardcode to keep alignment in case there are fewer than 5 lines of text
         height: 91px; 
-        font-size: $h4;
-        color: darken($lcc-color--text-primary-white, 10%);
+        font-size: var(--lcc-fontSize--h4);
+        color: var(--lcc-color--articleGrid-articleSummaryText);
         line-height: 1.3em !important;
       }
 
@@ -102,18 +102,18 @@ lcc-link-list,
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: $h6;
+        font-size: var(--lcc-fontSize--h6);
         text-align: center;
-        margin-top: $lcc-space--sm;
+        margin-top: 8px;
 
         .date-created,
         .date-last-edited {
-          color: darken($lcc-color--text-primary-white, 10%);
+          color: var(--lcc-color--articleGrid-articleDatesPrimaryText);
         }
 
         .edited,
         .vertical-spacer {
-          color: darken($lcc-color--text-primary-white, 30%);
+          color: var(--lcc-color--articleGrid-articleDatesSecondaryText);
         }
 
         .vertical-spacer {

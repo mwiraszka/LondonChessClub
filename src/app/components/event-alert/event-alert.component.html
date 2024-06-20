@@ -1,0 +1,27 @@
+@if ((facade.upcomingEvent$ | async); as upcomingEvent) {
+<div class="container"
+		 [ngClass]="kebabize(upcomingEvent.type)">
+	<div class="alert-message-container">
+		<p class="alert-message">
+			Next event:
+			<span class="bolder-text">
+				{{ upcomingEvent.title }}
+			</span>
+			on
+			<span class="bolder-text">
+				{{ setLocalTime(upcomingEvent.eventDate) | formatDate:'short' }}
+			</span>
+		</p>
+		<div class="alert-controls">
+			<a class="lcc-ghost-button details-button"
+				 [routerLink]="NavPathTypes.SCHEDULE">
+				Details
+			</a>
+			<i-feather name="x"
+								 class="close-icon"
+								 (click)="close.emit()">
+			</i-feather>
+		</div>
+	</div>
+</div>
+}

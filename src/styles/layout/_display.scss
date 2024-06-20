@@ -5,7 +5,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: $lcc-color--overlay;
+  background-color: var(--lcc-color--general-backgroundOverlay);
   display: flex;
   justify-content: center;
   align-items: center;

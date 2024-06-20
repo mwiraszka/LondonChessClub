@@ -1,4 +1,3 @@
-@import 'styles/abstracts/variables';
 @import 'styles/components/table';
 
 :host {
@@ -6,7 +5,7 @@
   flex-flow: column nowrap;
   align-items: center;
   width: 100%;
-  gap: $lcc-space--md;
+  gap: 16px;
   
   textarea {
     height: 320px;
@@ -17,25 +16,25 @@
     aspect-ratio: 3/2;
     object-fit: cover;
     width: 100%;
-    border-radius: $lcc-border-radius--lg;
+    border-radius: var(--lcc-borderRadius--large);
     max-width: 800px;
   }
 
   .image-controls-container {
     display: flex;
     justify-content: flex-start;
-    gap: $lcc-space--sm;
+    gap: 8px;
 
     .image-revert-button {
-      padding: $lcc-space--xxs;
-      color: $lcc-color--text-primary-black;
+      padding: 2px;
+      color: var(--lcc-color--articleForm-imageRevertButtonForeground);
 
       &:hover {
-        color: lighten($lcc-color--text-primary-black, 30%);
+        color: var(--lcc-color--articleForm-imageRevertButtonTextOnHover);
       }
 
       &:disabled {
-        color: $lcc-color--disabled-fg;
+        color: var(--lcc-color--button-disabled);
       }
       
       .revert-icon {
@@ -54,21 +53,21 @@
     flex-flow: column nowrap;
     justify-content: flex-start;
     text-align: left;
-    gap: $lcc-space--xs;
+    gap: 4px;
     width: 100%;
   
     h4 {
       align-self: flex-start;
       font-weight: 400;
-      color: $lcc-color--text-secondary;
+      color: var(--lcc-color--articleForm-previewSectionContainerForeground);
     }
 
     .markdown-container {
       width: 100%;
-      border: 1px solid transparentize($lcc-color--primary, 0.9);
-      background-color: white;
-      border-radius: $lcc-border-radius--lg;
-      padding: $lcc-space--sm;
+      border: 1px solid var(--lcc-color--articleForm-markdownContainerBorder);
+      background-color: var(--lcc-color--articleForm-markdownContainerBackground);
+      border-radius: var(--lcc-borderRadius--large);
+      padding: 8px;
       overflow: hidden;
     }
   }

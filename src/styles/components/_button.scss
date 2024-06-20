@@ -1,13 +1,13 @@
 .lcc-button {
-  border-radius: $lcc-border-radius--lg;
-  font-size: $h4;
+  border-radius: var(--lcc-borderRadius--large);
+  font-size: var(--lcc-fontSize--h4);
   cursor: pointer;
   white-space: nowrap;
 
   &:disabled {
     cursor: default;
     pointer-events: none;
-    color: $lcc-color--disabled-fg;
+    color: var(--lcc-color--button-disabled);
   }
 
   &:focus {
@@ -17,56 +17,56 @@
 
 .lcc-raised-button {
   @extend .lcc-button;
-  background-color: lighten($lcc-color--white, 5%);
-  color: $lcc-color--primary;
-  border: 1px solid darken($lcc-color--white, 3%);
-  box-shadow: 1px 1px 4px -2px darken($lcc-color--box-shadow, 10%);
-  padding: $lcc-space--sm $lcc-space--md;
+  background-color: var(--lcc-color--button-raisedButtonBackground);
+  color: var(--lcc-color--button-raisedButtonForeground);
+  border: 1px solid var(--lcc-color--button-raisedButtonBorder);
+  box-shadow: 1px 1px 4px -2px var(--lcc-color--button-raisedButtonBoxShadow);
+  padding: 8px 16px;
   text-transform: uppercase;
   font-weight: 400;
 
   &:disabled {
-    background-color: $lcc-color--disabled-bg !important;
+    background-color: var(--lcc-color--button-disabled) !important;
   }
 
   &:hover {
-    box-shadow: 2px 4px 7px -2px lighten($lcc-color--box-shadow, 5%);
+    box-shadow: 2px 4px 7px -2px var(--lcc-color--button-raisedButtonBoxShadowOnHover);
   }
 }
 
 .lcc-primary-button {
   @extend .lcc-raised-button;
-  background-color: $lcc-color--primary !important;
-  color: $lcc-color--text-primary-white;
+  background-color: var(--lcc-color--button-primaryButtonBackground) !important;
+  color: var(--lcc-color--button-primaryButtonForeground);
 
   &:hover {
-    background-color: lighten($lcc-color--primary, 5%) !important;
+    background-color: var(--lcc-color--button-primaryButtonBackgroundOnHover) !important;
   }
 }
 
 .lcc-secondary-button {
   @extend .lcc-raised-button;
-  background-color: $lcc-color--transparent-fully !important;
-  color: $lcc-color--text-primary-black;
+  background-color: var(--lcc-color--button-secondaryButtonBackground) !important;
+  color: var(--lcc-color--button-secondaryButtonForeground);
 }
 
 .lcc-success-button {
   @extend .lcc-raised-button;
-  background-color: $lcc-color--success !important;
-  color: $lcc-color--text-primary-white;
+  background-color: var(--lcc-color--button-successButtonBackground) !important;
+  color: var(--lcc-color--button-successButtonForeground);
 
   &:hover {
-    background-color: lighten($lcc-color--success, 5%) !important;
+    background-color: var(--lcc-color--button-successButtonBackgroundOnHover) !important;
   }
 }
 
 .lcc-warning-button {
   @extend .lcc-raised-button;
-  background-color: $lcc-color--warn !important;
-  color: $lcc-color--white;
+  background-color: var(--lcc-color--button-warningButtonBackground) !important;
+  color: var(--lcc-color--button-warningButtonForeground);
 
   &:hover {
-    background-color: lighten($lcc-color--warn, 5%) !important;
+    background-color: var(--lcc-color--button-warningButtonBackgroundOnHover) !important;
   }
 }
 
@@ -74,14 +74,12 @@
   @extend .lcc-button;
 
   background-color: inherit;
-  padding: $lcc-space--xs $lcc-space--md;
-  border: 1px solid rgba($lcc-color--white, 0.2);
-  box-shadow: inset 0 0 20px $lcc-color--transparent-fully;
+  padding: 4px 16px;
+  border: 1px solid var(--lcc-color--button-ghostButtonBorder);
   text-shadow: none;
 
   &:hover {
-    border: 1px solid rgba($lcc-color--white, 0.5);
-    text-shadow: 1px 1px 2px rgba($lcc-color--grey, 0.5);
+    border: 1px solid var(--lcc-color--button-ghostButtonBorderOnHover);
   }
 }
 
@@ -93,6 +91,6 @@
   white-space: unset;
 
   &:disabled {
-    color: $lcc-color--disabled-fg !important;
+    color: var(--lcc-color--button-disabled) !important;
   }
 }

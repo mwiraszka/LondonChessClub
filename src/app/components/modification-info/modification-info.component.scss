@@ -1,20 +1,19 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 :host {
-  padding: $lcc-space--xs $lcc-space--md;
-  background: lighten($lcc-color--primary, 55%);
-  border: 1px solid darken($lcc-color--white, 8%);
-  border-radius: $lcc-border-radius--lg;
+  padding: 4px 16px;
+  background: var(--lcc-color--modificationInfo-background);
+  border: 1px solid var(--lcc-color--modificationInfo-border);
+  border-radius: var(--lcc-borderRadius--large);
 }
 
 .modification-info-container {
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
-  gap: $lcc-space--sm;
-  font-size: $h5;
-  color: $lcc-color--text-secondary;
+  gap: 8px;
+  font-size: var(--lcc-fontSize--h5);
+  color: var(--lcc-color--modificationInfo-text);
 
   .create-details-container,
   .edit-details-container {
@@ -23,13 +22,13 @@
     align-items: center;
     justify-content: center;
     text-align: left;
-    gap: $lcc-space--sm;
+    gap: 8px;
 
     .create-icon,
     .edit-icon {
       height: 15px;
       width: 15px;
-      color: lighten($lcc-color--black, 20%);
+      color: var(--lcc-color--modificationInfo-createAndEditIcons);
     }
 
     .create-text,
@@ -40,7 +39,7 @@
       }
 
       .name {
-        color: $lcc-color--text-primary-black;
+        color: var(--lcc-color--modificationInfo-nameAndDateText);
         padding: 0 1em 0 0.5em;
       }
   
@@ -54,7 +53,7 @@
   
       .date {
         display: block;
-        color: $lcc-color--text-primary-black;
+        color: var(--lcc-color--modificationInfo-nameAndDateText);
         
         @include respond-to('gt-md') {
           display: inline;

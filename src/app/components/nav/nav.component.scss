@@ -1,6 +1,6 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
+$nav-height: 42px;
 $dropdown-tab-width: 60px;
 $dropdown-list-width: 170px;
 
@@ -8,9 +8,9 @@ $dropdown-list-width: 170px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  padding-top: 1px;
-  background-color: $lcc-color--bg-nav;
-  height: $lcc-height--nav;
+  padding-top: 2px;
+  background-color: var(--lcc-color--nav-background);
+  height: $nav-height;
 }
 
 i-feather {
@@ -22,12 +22,12 @@ i-feather {
 .nav-right,
 .nav-login-spacer {
   flex: 1;
-  border-bottom: 2px solid darken($lcc-color--bg-main, 10%);
+  border-bottom: 2px solid var(--lcc-color--nav-border)
 }
 
 .nav-left,
 .nav-right {
-  min-width: $lcc-space--md;
+  min-width: 16px;
 }
 
 .nav-items-container {
@@ -35,39 +35,59 @@ i-feather {
   flex-flow: row nowrap;
   justify-content: center;
   width: 100%;
-  max-width: $lcc-width--app-content;
+  max-width: var(--lcc-width--appContent);
   min-width: 290px; // To ensure login link never overlaps with other links 
   
   .nav-link,
-  .lcc-dropdown-tab {
-    border-top: 2px solid $lcc-color--transparent-fully;
-    border-top-left-radius: $lcc-border-radius--lg;
-    border-top-right-radius: $lcc-border-radius--lg;
+  .settings-dropdown-tab {
+    border-top: 2px solid var(--lcc-color--nav-borderTopWhenInactive);
+    border-top-left-radius: var(--lcc-borderRadius--large);
+    border-top-right-radius: var(--lcc-borderRadius--large);
+    color: var(--lcc-color--nav-linkForeground);
   }
 
   .nav-link {
     display: flex;
     align-items: center;
     flex-flow: row nowrap;
-    font-size: $h4;
+    font-size: var(--lcc-fontSize--h4);
     font-weight: 400;
     height: auto;
-    color: $lcc-color--text-primary-black;
     padding: 6px;
+
+    &:hover,
+    &:focus {
+      color: var(--lcc-color--nav-linkTextOnHover);
+      background-color: var(--lcc-color--nav-linkBackgroundOnHover);
+      text-decoration: none;
+    }
+  
+    &.link-active {
+      cursor: default;
+      pointer-events: none;
+      background-color: var(--lcc-color--app-mainBackground);
+      border-top: 2px solid var(--lcc-color--nav-border);
+      border-left: 2px solid var(--lcc-color--nav-border);
+      border-right: 2px solid var(--lcc-color--nav-border);
+      border-bottom: 2px solid var(--lcc-color--app-mainBackground);
+    }
+
+    &:not(.link-active) {
+      border-bottom: 2px solid var(--lcc-color--nav-border);
+    }
 
     .text {
       display: none;
       visibility: hidden;
-      color: $lcc-color--text-primary-black;
     }
 
     @include respond-to('gt-sm') {
-      padding: 6px $lcc-space--sm;
+      padding: 6px 8px;
     }
 
     @include respond-to('gt-md') {
       // Set padding so that height is kept constant on breakpoint transitions
-      padding: 10px $lcc-space--sm;
+      padding: 10px 8px;
 
       i-feather {
         display: none;
@@ -79,47 +99,25 @@ i-feather {
         visibility: unset;
       }
     }
-  
-    &:hover,
-    &:focus {
-      color: lighten($lcc-color--text-primary-black, 10%);
-      background-color: darken($lcc-color--bg-nav, 5%);
-      text-decoration: none;
-    }
-  
-    &.link-active {
-      cursor: default;
-      pointer-events: none;
-      box-shadow: 1px 1px 6px 4px $lcc-color--bg-main inset;
-      border-top: 2px solid darken($lcc-color--bg-main, 10%);
-      border-left: 2px solid darken($lcc-color--bg-main, 10%);
-      border-right: 2px solid darken($lcc-color--bg-main, 10%);
-      border-bottom: 2px solid $lcc-color--bg-main;
-    }
-
-    &:not(.link-active) {
-      border-bottom: 2px solid darken($lcc-color--bg-main, 10%);
-    }
   }
 
-  .lcc-dropdown-tab {
+  .settings-dropdown-tab {
     position: relative;
     display: flex;
     flex-direction: row;
-    gap: $lcc-space--xs;
+    gap: 4px;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: $dropdown-tab-width;
-    padding: $lcc-space--xs $lcc-space--sm;
-    font-size: $h5;
-    color: $lcc-color--text-primary-black;
-    border-bottom: 2px solid darken($lcc-color--bg-main, 10%);
+    padding: 4px 8px;
+    font-size: var(--lcc-fontSize--h5);
+    border-bottom: 2px solid var(--lcc-color--nav-border);
 
     &:hover,
     &:focus {
       cursor: pointer;
-      background-color: darken($lcc-color--bg-nav, 5%);
+      background-color: var(--lcc-color--nav-linkBackgroundOnHover);
     }
 
     .chevron-icon {
@@ -132,12 +130,12 @@ i-feather {
     visibility: hidden;
     display: none;
     position: absolute;
-    top: $lcc-height--nav - $lcc-space--xs;
+    top: $nav-height - 4px;
     left: $dropdown-tab-width - $dropdown-list-width;
     z-index: 100;
-    box-shadow: $lcc-box-shadow;
-    border-bottom-left-radius: $lcc-border-radius--sm;
-    border-bottom-right-radius: $lcc-border-radius--sm;
+    box-shadow: 1px 1px 5px 0 var(--lcc-color--nav-dropdownBoxShadow);
+    border-bottom-left-radius: var(--lcc-borderRadius--small);
+    border-bottom-right-radius: var(--lcc-borderRadius--small);
 
     &.lcc-dropdown-open {
       visibility: visible;
@@ -150,26 +148,27 @@ i-feather {
       display: flex;
       flex-flow: column nowrap;
       width: $dropdown-list-width;
-      background-color: lighten($lcc-color--bg-nav, 5%);
-      border-bottom-left-radius: $lcc-border-radius--sm;
-      border-bottom-right-radius: $lcc-border-radius--sm;
+      background-color: var(--lcc-color--nav-dropdownItemsBackground);
+      border-bottom-left-radius: var(--lcc-borderRadius--small);
+      border-bottom-right-radius: var(--lcc-borderRadius--small);
 
       .dropdown-item {
         display: flex;
         flex-direction: row;
         align-items: center;
+        color: var(--lcc-color--nav-dropdownItemForeground);
 
         &.user-name {
           flex: 1;
           justify-content: center;
-          border-bottom: 1px solid transparentize($lcc-color--grey, 0.7);
-          padding-bottom: $lcc-space--xs;
-          margin: $lcc-space--xs;
+          border-bottom: 1px solid var(--lcc-color--nav-dropdownDividerLine);
+          padding-bottom: 4px;
+          margin: 4px;
         }
 
         span {
-          font-size: $h4;
-          padding: $lcc-space--sm;
+          font-size: var(--lcc-fontSize--h4);
+          padding: 8px;
         }
 
         a {
@@ -177,8 +176,8 @@ i-feather {
 
           &:hover > * {
             cursor: pointer;
-            background-color: darken($lcc-color--bg-nav, 5%);
-            color: black;
+            background-color: var(--lcc-color--nav-dropdownItemBackgroundOnHover);
+            color: var(--lcc-color--nav-dropdownItemTextOnHover);
           }
 
           span {

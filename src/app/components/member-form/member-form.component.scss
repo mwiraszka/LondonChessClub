@@ -1,19 +1,17 @@
-@import 'styles/abstracts/variables';
-
 :host {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  gap: $lcc-space--md;
+  gap: 16px;
 }
 
 form {
-  max-width: $lcc-width--small-form;
+  max-width: var(--lcc-width--smallForm);
 }
 
 hr {
   width: 100%;
   height: 1px;
-  border-top: 1px solid $lcc-color--fg-divider;
+  border-top: 1px solid var(--lcc-color--general-dividerLine);
   margin: 1em 0;
 }

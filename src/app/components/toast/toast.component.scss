@@ -1,5 +1,3 @@
-@import 'styles/abstracts/variables';
-
 @mixin fadeoutAnimation {
   -o-animation: fadeAnimation 5s;
   -moz-animation: fadeAnimation 5s;
@@ -11,63 +9,63 @@
 .toast-container {
   display: flex;
   flex-flow: row nowrap;
-  margin-top: $lcc-space--xs;
-  padding: 0 $lcc-space--sm;
+  margin-top: 4px;
+  padding: 0 8px;
   width: 300px;
-  border-radius: $lcc-border-radius--sm;
-  box-shadow: $lcc-color--box-shadow;
+  border-radius: var(--lcc-borderRadius--small);
+  box-shadow: var(--lcc-color--toast-boxShadow);
 
   &.toast-success {
-    background-color: $lcc-color--success;
+    background-color: var(--lcc-color--toast-successBackground);
     @include fadeoutAnimation();
     
     .toast-notification-container {
       .toast-title {
-        color: lighten($lcc-color--text-primary-white, 10%);
+        color: var(--lcc-color--toast-successTitleText);
       }
       .toast-message {
-        color: $lcc-color--text-primary-white;
+        color: var(--lcc-color--toast-successMessageText);
       }
     }
 
     .icon {
-      color: lighten($lcc-color--white, 10%);
+      color: var(--lcc-color--toast-successIcon);
     }
   }
 
   &.toast-warning {
-    background-color: $lcc-color--warn;
+    background-color: var(--lcc-color--toast-warningBackground);
     @include fadeoutAnimation();
 
     .toast-notification-container {
       .toast-title {
-        color: lighten($lcc-color--text-primary-white, 10%);
+        color: var(--lcc-color--toast-warningTitleText);
       }
       .toast-message {
-        color: $lcc-color--text-primary-white;
+        color: var(--lcc-color--toast-warningMessageText);
       }
     }
 
     .icon {
-      color: lighten($lcc-color--white, 10%);
+      color: var(--lcc-color--toast-warningIcon);
     }
   }
 
   &.toast-info {
-    background-color: $lcc-color--info;
+    background-color: var(--lcc-color--toast-infoBackground);
     @include fadeoutAnimation();
 
     .toast-notification-container {
       .toast-title {
-        color: $lcc-color--text-primary-black;
+        color: var(--lcc-color--toast-infoTitleText);
       }
       .toast-message {
-        color: lighten($lcc-color--text-primary-black, 10%);
+        color: var(--lcc-color--toast-infoMessageText);
       }
     }
 
     .icon {
-      color: lighten($lcc-color--black, 10%);
+      color: var(--lcc-color--toast-infoIcon);
     }
   }
 }
@@ -81,8 +79,8 @@
 .toast-notification-container {
   display: flex;
   flex-flow: column nowrap;
-  gap: $lcc-space--sm;
-  padding: $lcc-space--sm;
+  gap: 8px;
+  padding: 8px;
   overflow: hidden;
 
   .toast-title {
@@ -91,7 +89,7 @@
 
   .toast-message {
     width: 100%;
-    font-size: $h5;
+    font-size: var(--lcc-fontSize--h5);
   }
 }
 

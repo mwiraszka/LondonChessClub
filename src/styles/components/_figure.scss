@@ -4,23 +4,23 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: $lcc-space--sm;
+  margin: 8px;
   min-width: 100px;
-  border-radius: $lcc-border-radius--lg;
+  border-radius: var(--lcc-borderRadius--large);
 
   img {
-    border-top-left-radius: $lcc-border-radius--lg;
-    border-top-right-radius: $lcc-border-radius--lg;
+    border-top-left-radius: var(--lcc-borderRadius--large);
+    border-top-right-radius: var(--lcc-borderRadius--large);
     width: 100%;
   }
 
   figcaption {
-    background-color: $lcc-color--bg-figure;
-    color: darken($lcc-color--white, 10%);
-    border-bottom-left-radius: $lcc-border-radius--lg;
-    border-bottom-right-radius: $lcc-border-radius--lg;
-    font-size: $h5;
-    padding: $lcc-space--xs $lcc-space--sm;
+    background-color: var(--lcc-color--figure-captionBackground);
+    color: var(--lcc-color--figure-captionText);
+    border-bottom-left-radius: var(--lcc-borderRadius--large);
+    border-bottom-right-radius: var(--lcc-borderRadius--large);
+    font-size: var(--lcc-fontSize--h5);
+    padding: 4px 8px;
     width: 100%;
     line-height: 1.5em;
   }

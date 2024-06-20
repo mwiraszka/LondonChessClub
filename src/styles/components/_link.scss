@@ -2,10 +2,10 @@
   font-size: inherit;
   font-weight: 200;
 
-  color: $lcc-color--link;
+  color: var(--lcc-color--link);
   
   &:hover {
-    color: lighten($lcc-color--link, 10%);
+    color: var(--lcc-color--linkOnHover);
   }
 }
 

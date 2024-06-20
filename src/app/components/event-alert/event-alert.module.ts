@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AlertComponent } from '@app/components/alert';
+import { EventAlertComponent } from '@app/components/event-alert';
 import { IconsModule } from '@app/icons';
 import { PipesModule } from '@app/pipes';
 
 @NgModule({
-  declarations: [AlertComponent],
+  declarations: [EventAlertComponent],
   imports: [CommonModule, IconsModule, PipesModule, RouterModule],
-  exports: [AlertComponent],
+  exports: [EventAlertComponent],
 })
-export class AlertModule {}
+export class EventAlertModule {}

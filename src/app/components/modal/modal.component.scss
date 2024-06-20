@@ -1,13 +1,12 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 .overlay-content {
   display: flex;
   flex-flow: column nowrap;
   width: 95%;
-  background-color: $lcc-color--bg-canvas;
-  border-radius: $lcc-border-radius--sm;
-  box-shadow: $lcc-box-shadow;
+  background-color: var(--lcc-color--modal-background);
+  border-radius: var(--lcc-borderRadius--small);
+  box-shadow: 1px 1px 5px 0 var(--lcc-color--modal-overlayContentBoxShadow);
 
   @include respond-to('gt-sm') {
     width: 450px;
@@ -17,7 +16,7 @@
     height: 18px;
     width: 18px;
     align-self: flex-end;
-    margin: $lcc-space--sm;
+    margin: 8px;
 
     &:hover {
       cursor: pointer;
@@ -28,19 +27,19 @@
 .modal-content {
   display: flex;
   flex-flow: column nowrap;
-  gap: $lcc-space--md;
-  padding: 0 $lcc-space--lg $lcc-space--lg;
+  gap: 16px;
+  padding: 0 32px 32px;
 
   .text-container {
     display: flex;
     flex-flow: column nowrap;
-    gap: $lcc-space--sm;
+    gap: 8px;
   }
 
   .action-buttons {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-    gap: $lcc-space--sm;
+    gap: 8px;
   }
 }

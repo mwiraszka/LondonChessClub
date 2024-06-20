@@ -1,16 +1,15 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 :host {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  gap: $lcc-space--sm;
+  gap: 8px;
 }
 
 table {
   @include respond-to('lt-sm') {
-    font-size: $h5;
+    font-size: var(--lcc-fontSize--h5);
   }
 
   &:not(.lcc-show-admin-columns) {
@@ -25,19 +24,19 @@ table {
   thead {
     th {
       .header-text {
-        color: unset;
+        color: var(--lcc-color--membersTable-headerText);
       }
 
       .sort-icon-container {
         display: inline-flex;
         height: 11px;
         width: 11px;
-        margin-left: $lcc-space--xxs;
+        margin-left: 2px;
       }
 
       &:hover:not(.row-number) {
         cursor: pointer;
-        background-color: lighten($lcc-color--primary, 5%);
+        background-color: var(--lcc-color--membersTable-headerTextOnHover);
       }
     }
   }
@@ -46,13 +45,13 @@ table {
     tr {
       &.inactive {
         :not(.row-number) {
-          color: darken($lcc-color--text-secondary, 5%);
+          color: var(--lcc-color--membersTable-inactiveMemberText);
           font-style: italic;
         }
   
         .first-name::before {
           content: '* ';
-          color: $lcc-color--text-secondary;
+          color: var(--lcc-color--membersTable-inactiveMemberAsterisk);
         }
       }
 
@@ -157,23 +156,23 @@ lcc-paginator {
 aside {
   width: 300px;
   text-align: center;
-  border: 1px solid rgba($lcc-color--grey, 0.3);
-  border-radius: $lcc-border-radius--lg;
+  border: 1px solid var(--lcc-color--membersTable-asideBorder);
+  border-radius: var(--lcc-borderRadius--large);
   
   h5 {
     font-style: italic;
-    border-bottom: 1px solid rgba($lcc-color--grey, 0.2);
+    border-bottom: 1px solid var(--lcc-color--membersTable-asideHeaderText);
   }
 
   .checkbox-section {
-    padding: $lcc-space--xxs $lcc-space--md;
-    background-color: rgba($lcc-color--accent, 0.1);
+    padding: 2px 16px;
+    background-color: var(--lcc-color--membersTable-asideCheckboxSectionBackground);
     margin-top: 2px;
-    border-top: 1px solid rgba($lcc-color--grey, 0.2);
+    border-top: 1px solid var(--lcc-color--membersTable-asideCheckboxSectionBorderTop);
 
     label {
-      font-size: $h5;
-      margin-right: $lcc-space--xs;
+      font-size: var(--lcc-fontSize--h5);
+      margin-right: 4px;
       font-weight: bold;
     }
   }

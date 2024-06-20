@@ -1,5 +1,4 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 :host {
   display: flex;
@@ -11,9 +10,9 @@
   flex-flow: column nowrap;
   align-items: stretch;
   justify-content: stretch;
-  gap: $lcc-space--sm;
+  gap: 8px;
   width: 100%;
-  max-width: $lcc-width--app-content;
+  max-width: var(--lcc-width--appContent);
 }
 
 lcc-article-grid {

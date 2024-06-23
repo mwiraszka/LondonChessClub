@@ -22,10 +22,10 @@ $alert-icon-width: 18px;
 .lcc-form-fields {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  grid-gap: 6px;
+  grid-gap: 8px 12px;
   width: 100%;
 
-  label:not(.lcc-button) {
+  label {
     grid-column: 1 / 2;
     max-width: 100px;
     align-self: center;

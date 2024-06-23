@@ -9,7 +9,7 @@ $app-header-font-size: 42px;
   background: repeating-conic-gradient(
     var(--lcc-color--header-background1) 0% 25%,
     var(--lcc-color--header-background2) 0% 50%
-  ) 50% / 3px 3px;
+  ) 50% / 2px 2px;
 }
 
 .app-header-container {
@@ -18,6 +18,7 @@ $app-header-font-size: 42px;
   justify-content: space-between;
   align-items: center;
   width: var(--lcc-width--appContent);
+  margin: 0 16px;
 
   .branding {
     display: flex;
@@ -25,7 +26,7 @@ $app-header-font-size: 42px;
     justify-content: center;
     align-items: center;
     gap: 16px;
-    padding: 8px 16px;
+    padding: 8px 0;
 
     img {
       height: 40px;

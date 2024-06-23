@@ -1,14 +1,14 @@
 :host {
-  border-radius: var(--lcc-borderRadius--small);
-  box-shadow: 1px 1px 8px 1px var(--lcc-color--screenHeader-boxShadow);
-  padding: 8px;
-
+  width: 100%;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  box-shadow: 1px 1px 8px 1px var(--lcc-color--screenHeader-boxShadow);
+  gap: 8px;
+  padding: 8px;
   background-color: var(--lcc-color--screenHeader-background);
+  border-radius: var(--lcc-borderRadius--small);
   
   .screen-title {
     font-size: var(--lcc-fontSize--h3) !important;
@@ -17,12 +17,7 @@
 
   .icon {
     color: var(--lcc-color--screenHeader-icon);
-    margin-left: 8px;
-    border: 3px solid var(--lcc-color--screenHeader-iconBorder);
-    box-shadow: 0px 0px 5px 2px var(--lcc-color--screenHeader-iconBoxShadow);
-    border-radius: 50%;
-    height: 30px;
-    width: 30px;
-    padding: 2px;
+    height: 24px;
+    width: 24px;
   }
 }

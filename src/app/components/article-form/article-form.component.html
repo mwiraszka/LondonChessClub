@@ -21,7 +21,7 @@
 
 		<div class="image-controls-container">
 			<label for="image-file-input"
-						 class="lcc-button lcc-secondary-button">
+						 class="lcc-secondary-button">
 				Choose file
 			</label>
 			<input id="image-file-input"
@@ -29,7 +29,7 @@
 						 name="imageFile"
 						 accept="image/*"
 						 (change)="onChooseImage($event)" />
-			<button class="lcc-button lcc-icon-button image-revert-button"
+			<button class="lcc-secondary-button image-revert-button"
 							tooltip="Revert to original image"
 							[disabled]="!(facade.hasNewImage$ | async)"
 							(click)="onRevert()">

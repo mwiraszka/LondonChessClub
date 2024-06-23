@@ -3,6 +3,7 @@
   z-index: 100;
   background-color: var(--lcc-color--tooltip-background);
   color: var(--lcc-color--tooltip-text);
+  outline: 1px solid var(--lcc-color--tooltip-border);
   border-radius: var(--lcc-borderRadius--large);
   padding: 2px 8px;
   margin-top: 8px;

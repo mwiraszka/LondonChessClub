@@ -32,20 +32,22 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 ## Release notes
 
-|     |                                       |
-| --- | ------------------------------------- |
-| 🚀  | New **features** and **improvements** |
-| 🐛  | Bug fixes                             |
-| 🔧  | Code refactoring                      |
+|     |                                   |
+| --- | --------------------------------- |
+| 🚀  | **New features** and improvements |
+| 🐛  | Bug fixes                         |
+| 🔧  | Code refactoring                  |
 
 <details>
 <summary style="cursor: pointer">
-v3.4.0 - June 2nd, 2024
+v4.0.0 - June 23rd, 2024
 </summary>
 
-- 🚀 Improve colour theming throughout app and introduce a dark mode
+- 🚀 Overhaul redesign of colour theming throughout app and introduce a dark mode
 - 🚀 Revamp the user settings dropdown menu
+- 🚀 Minor improvements to various UI components: tooltips, forms, screen headers, modification info boxes, and the loading spinner
 - 🐛 Fix layout issue on Game Archives page
+- 🐛 Fix layout issue in app header when viewing app on a large screen
 
 </details>
 

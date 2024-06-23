@@ -1,8 +1,9 @@
 @import 'styles/abstracts/mixins';
 
-$nav-height: 42px;
+$border-thickness: 1px;
 $dropdown-tab-width: 60px;
 $dropdown-list-width: 170px;
+$nav-height: 42px;
 
 :host {
   display: flex;
@@ -22,7 +23,7 @@ i-feather {
 .nav-right,
 .nav-login-spacer {
   flex: 1;
-  border-bottom: 2px solid var(--lcc-color--nav-border)
+  border-bottom: $border-thickness solid var(--lcc-color--nav-border)
 }
 
 .nav-left,
@@ -40,7 +41,7 @@ i-feather {
   
   .nav-link,
   .settings-dropdown-tab {
-    border-top: 2px solid var(--lcc-color--nav-borderTopWhenInactive);
+    border-top: $border-thickness solid var(--lcc-color--nav-background);
     border-top-left-radius: var(--lcc-borderRadius--large);
     border-top-right-radius: var(--lcc-borderRadius--large);
     color: var(--lcc-color--nav-linkForeground);
@@ -55,10 +56,8 @@ i-feather {
     height: auto;
     padding: 6px;
 
-    &:hover,
-    &:focus {
-      color: var(--lcc-color--nav-linkTextOnHover);
-      background-color: var(--lcc-color--nav-linkBackgroundOnHover);
+    &:hover {
+      color: var(--lcc-color--nav-linkForegroundOnHover);
       text-decoration: none;
     }
   
@@ -66,14 +65,14 @@ i-feather {
       cursor: default;
       pointer-events: none;
       background-color: var(--lcc-color--app-mainBackground);
-      border-top: 2px solid var(--lcc-color--nav-border);
-      border-left: 2px solid var(--lcc-color--nav-border);
-      border-right: 2px solid var(--lcc-color--nav-border);
-      border-bottom: 2px solid var(--lcc-color--app-mainBackground);
+      color: var(--lcc-color--nav-linkForegroundWhenActive);
+      border-top: $border-thickness solid var(--lcc-color--nav-border);
+      border-left: $border-thickness solid var(--lcc-color--nav-border);
+      border-right: $border-thickness solid var(--lcc-color--nav-border);
     }
 
     &:not(.link-active) {
-      border-bottom: 2px solid var(--lcc-color--nav-border);
+      border-bottom: $border-thickness solid var(--lcc-color--nav-border);
     }
 
     .text {
@@ -112,7 +111,7 @@ i-feather {
     width: $dropdown-tab-width;
     padding: 4px 8px;
     font-size: var(--lcc-fontSize--h5);
-    border-bottom: 2px solid var(--lcc-color--nav-border);
+    border-bottom: $border-thickness solid var(--lcc-color--nav-border);
 
     &:hover,
     &:focus {
@@ -130,10 +129,10 @@ i-feather {
     visibility: hidden;
     display: none;
     position: absolute;
-    top: $nav-height - 4px;
+    top: $nav-height - 3px;
     left: $dropdown-tab-width - $dropdown-list-width;
     z-index: 100;
-    box-shadow: 1px 1px 5px 0 var(--lcc-color--nav-dropdownBoxShadow);
+    box-shadow: 2px 2px 4px 0 var(--lcc-color--nav-dropdownBoxShadow);
     border-bottom-left-radius: var(--lcc-borderRadius--small);
     border-bottom-right-radius: var(--lcc-borderRadius--small);
 
@@ -148,9 +147,14 @@ i-feather {
       display: flex;
       flex-flow: column nowrap;
       width: $dropdown-list-width;
-      background-color: var(--lcc-color--nav-dropdownItemsBackground);
+      background-color: var(--lcc-color--nav-dropdownBackground);
       border-bottom-left-radius: var(--lcc-borderRadius--small);
       border-bottom-right-radius: var(--lcc-borderRadius--small);
+
+      hr {
+        border-top: 1px solid var(--lcc-color--general-dividerLine);
+        margin: 8px;
+      }
 
       .dropdown-item {
         display: flex;
@@ -162,13 +166,20 @@ i-feather {
           flex: 1;
           justify-content: center;
           border-bottom: 1px solid var(--lcc-color--nav-dropdownDividerLine);
-          padding-bottom: 4px;
-          margin: 4px;
+          margin: 4px 4px 0;
+        }
+
+        &.theme-toggle {
+          margin-top: 2px;
+
+          span {
+            padding-right: 8px !important;
+          }
         }
 
         span {
           font-size: var(--lcc-fontSize--h4);
-          padding: 8px;
+          padding: 8px 16px;
         }
 
         a {

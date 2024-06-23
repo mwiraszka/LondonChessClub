@@ -9,6 +9,8 @@ textarea {
   height: 36px;
   padding: 10px;
   margin: 3px 0 !important;
+  background-color: var(--lcc-color--input-background);
+  color: var(--lcc-color--input-text);
 
   &.ng-invalid.ng-dirty {
     border-color: var(--lcc-color--input-invalidBorder);
@@ -29,6 +31,17 @@ textarea {
 input[type="checkbox"] {
   margin: 4px;
   justify-self: flex-start;
+  accent-color: var(--lcc-color--input-checkbox);
+
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  transform: scale(1.5);
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 textarea {

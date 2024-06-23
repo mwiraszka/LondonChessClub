@@ -10,9 +10,6 @@
 }
 
 table {
-  width: 100%;
-  max-width: 1000px;
-
   tbody {
     tr {
       &.next-event {
@@ -74,13 +71,13 @@ table {
           }
 
           &.active-tournament {
-            background-color: var(--lcc-color--schedule-rapidTournamentBackground);
-            border: 1px solid var(--lcc-color--schedule-rapidTournamentBorder);
+            background-color: var(--lcc-color--schedule-activeTournamentBackground);
+            border: 1px solid var(--lcc-color--schedule-activeTournamentBorder);
           }
 
           &.lecture {
-            background-color: var(--lcc-color--schedule-rapidTournamentBackground);
-            border: 1px solid var(--lcc-color--schedule-rapidTournamentBorder);
+            background-color: var(--lcc-color--schedule-lectureTournamentBackground);
+            border: 1px solid var(--lcc-color--schedule-lectureTournamentBorder);
           }
 
           &.simul {

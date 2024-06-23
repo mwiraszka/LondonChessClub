@@ -23,20 +23,16 @@ table {
 
   thead {
     th {
-      .header-text {
-        color: var(--lcc-color--membersTable-headerText);
-      }
-
       .sort-icon-container {
         display: inline-flex;
         height: 11px;
         width: 11px;
-        margin-left: 2px;
+        margin-left: 4px;
       }
 
       &:hover:not(.row-number) {
         cursor: pointer;
-        background-color: var(--lcc-color--membersTable-headerTextOnHover);
+        background-color: var(--lcc-color--membersTable-headerBackgroundOnHover);
       }
     }
   }
@@ -49,8 +45,8 @@ table {
           font-style: italic;
         }
   
-        .first-name::before {
-          content: '* ';
+        .first-name::after {
+          content: ' *';
           color: var(--lcc-color--membersTable-inactiveMemberAsterisk);
         }
       }
@@ -156,23 +152,25 @@ lcc-paginator {
 aside {
   width: 300px;
   text-align: center;
+  color: var(--lcc-color--membersTable-asideText);
   border: 1px solid var(--lcc-color--membersTable-asideBorder);
   border-radius: var(--lcc-borderRadius--large);
   
   h5 {
+    padding: 4px;
     font-style: italic;
-    border-bottom: 1px solid var(--lcc-color--membersTable-asideHeaderText);
   }
 
   .checkbox-section {
-    padding: 2px 16px;
+    padding: 8px 16px;
     background-color: var(--lcc-color--membersTable-asideCheckboxSectionBackground);
-    margin-top: 2px;
-    border-top: 1px solid var(--lcc-color--membersTable-asideCheckboxSectionBorderTop);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 
     label {
       font-size: var(--lcc-fontSize--h5);
-      margin-right: 4px;
       font-weight: bold;
     }
   }

@@ -5,28 +5,21 @@
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  background-color: var(--lcc-color--paginator-background);
   border-radius: var(--lcc-borderRadius--large);
+  background-color: var(--lcc-color--paginator-background);
+  color: var(--lcc-color--paginator-pageNumberText);
   
   padding: 4px 32px;
   gap: 8px;
 }
 
-button {
-  padding: 4px;
-  color: var(--lcc-color--paginator-buttonText);
-
-  &:hover {
-    &:not([disabled]):not(.selected) {
-      box-shadow: 1px 1px 5px 0 var(--lcc-color--paginator-buttonBoxShadowOnHover);
-      color: var(--lcc-color--paginator-buttonTextOnHover) !important;
-    }
-  }
+.page-navigation-button {
+  padding: 2px;
 }
 
-.center-section {
+.page-control-section {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -34,22 +27,16 @@ button {
   font-size: var(--lcc-fontSize--h5);
   padding: 0 4px;
 
-  .center-section-buttons {
+  .page-size-buttons {
     display: flex;
-    flex-flow: row nowrap;
+    flex-direction: row;
     gap: 4px;
 
-    .center-section-button {
-      border: none;
-      text-transform: unset;
-      white-space: unset;
-      font-size: var(--lcc-fontSize--h5);
-      background-color: var(--lcc-color--paginator-centerSectionButton);
+    .page-size-button {
+      padding: 4px;
 
       &.selected {
-        cursor: default;
-        background-color: var(--lcc-color--paginator-selectedBackground);
-        border: 1px solid var(--lcc-color--paginator-selectedBorder);
+        border: 2px solid var(--lcc-color--paginator-selectedButtonBorder) !important;
       }
     }
   }

@@ -6,7 +6,7 @@
   width: 95%;
   background-color: var(--lcc-color--modal-background);
   border-radius: var(--lcc-borderRadius--small);
-  box-shadow: 1px 1px 5px 0 var(--lcc-color--modal-overlayContentBoxShadow);
+  box-shadow: 1px 1px 5px 0 var(--lcc-color--modal-boxShadow);
 
   @include respond-to('gt-sm') {
     width: 450px;

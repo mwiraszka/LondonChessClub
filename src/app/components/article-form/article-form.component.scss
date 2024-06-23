@@ -34,7 +34,7 @@
       }
 
       &:disabled {
-        color: var(--lcc-color--button-disabled);
+        color: var(--lcc-color--button-disabledButtonForeground);
       }
       
       .revert-icon {

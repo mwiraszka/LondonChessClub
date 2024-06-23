@@ -2,37 +2,38 @@
   display: flex;
   justify-content: center;
   padding: 2px 16px;
+  border-bottom: 1px solid var(--lcc-color--eventAlert-borderBottom);
 
   &.blitz-tournament {
-    background-color: var(--lcc-color--alert-background-blitzTournament);
+    background-color: var(--lcc-color--eventAlert-background-blitzTournament);
   }
 
   &.rapid-tournament {
-    background-color: var(--lcc-color--alert-background-rapidTournament);
+    background-color: var(--lcc-color--eventAlert-background-rapidTournament);
   }
 
   &.active-tournament {
-    background-color: var(--lcc-color--alert-background-activeTournament);
+    background-color: var(--lcc-color--eventAlert-background-activeTournament);
   }
 
   &.lecture {
-    background-color: var(--lcc-color--alert-background-lecture);
+    background-color: var(--lcc-color--eventAlert-background-lecture);
   }
   
   &.simul {
-    background-color: var(--lcc-color--alert-background-simul);
+    background-color: var(--lcc-color--eventAlert-background-simul);
   }
 
   &.championship {
-    background-color: var(--lcc-color--alert-background-championship);
+    background-color: var(--lcc-color--eventAlert-background-championship);
   }
 
   &.other {
-    background-color: var(--lcc-color--alert-background-other);
+    background-color: var(--lcc-color--eventAlert-background-other);
   }
 
   &.closed {
-    background-color: var(--lcc-color--alert-background-closed);
+    background-color: var(--lcc-color--eventAlert-background-closed);
   }
 }
 
@@ -51,11 +52,11 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: var(--lcc-color--alert-text);
+  color: var(--lcc-color--eventAlert-text);
   font-size: var(--lcc-fontSize--h4);
 
   .bolder-text {
-    color: var(--lcc-color--alert-textBold);
+    color: var(--lcc-color--eventAlert-textBold);
     font-weight: bold;
     padding: 0 2px;
   }
@@ -65,28 +66,16 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  gap: 4px; 
-
-  .details-button {
-    white-space: nowrap;
-    padding: 4px 8px;
-    color: var(--lcc-color--alert-detailsButtonText);
-    border-color: var(--lcc-color--alert-detailsButtonBorder);
-
-    &:hover {
-      color: var(--lcc-color--alert-detailsButtonTextOnHover);
-      border-color: var(--lcc-color--alert-detailsButtonBorderOnHover);
-    }
-  }
+  gap: 4px;
 
   .close-icon {
     height: 18px;
     width: 18px;
-    color: var(--lcc-color--alert-closeIcon);
+    color: var(--lcc-color--eventAlert-closeIcon);
 
     &:hover {
       cursor: pointer;
-      color: var(--lcc-color--alert-closeIconOnHover);
+      color: var(--lcc-color--eventAlert-closeIconOnHover);
     }
   }
 }

@@ -30,8 +30,8 @@ $header-height: 26px;
   img {
     z-index: 101;
     width: 100%;
-    max-width: calc(100vw - #{16px});
-    max-height: calc(100vh - #{$header-height} - #{16px});
+    max-width: calc(100vw - 16px);
+    max-height: calc(100vh - #{$header-height} - 16px);
     border-bottom-left-radius: var(--lcc-borderRadius--large);
     border-bottom-right-radius: var(--lcc-borderRadius--large);
   }
@@ -42,10 +42,10 @@ $header-height: 26px;
     right: -8px;
     // Must match first value of bottom offset used on image-navigation-icons-container
     bottom: 32px;
-    width: calc(100% - 2 * #{8px});
+    width: calc(100% - 16px);
     padding: 4px 8px;
     border-radius: var(--lcc-borderRadius--small);
-    background-color: hsla(0, 0%, 99%, 0.8);
+    background-color: var(--lcc-color--imageOverlay-descriptionBackground);
     color: var(--lcc-color--imageOverlay-descriptionText);
   }
 }
@@ -58,13 +58,13 @@ $header-height: 26px;
 
   .previous-image-icon,
   .next-image-icon {
-    color: darken(white, 10%);
+    color: var(--lcc-color--imageOverlay-navigationIcons);
     width: 50px;
     height: 50px;
 
     &:hover {
       cursor: pointer;
-      color: white;
+      color: var(--lcc-color--imageOverlay-navigationIconsOnHover);
     }
   }
 }

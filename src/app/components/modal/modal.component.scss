@@ -2,7 +2,7 @@
 
 .overlay-content {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   width: 95%;
   background-color: var(--lcc-color--modal-background);
   border-radius: var(--lcc-borderRadius--small);
@@ -26,19 +26,19 @@
 
 .modal-content {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   gap: 16px;
   padding: 0 32px 32px;
 
   .text-container {
     display: flex;
-    flex-flow: column nowrap;
+    flex-direction: column;
     gap: 8px;
   }
 
   .action-buttons {
     display: flex;
-    flex-flow: row nowrap;
+    flex-direction: row;
     justify-content: center;
     gap: 8px;
   }

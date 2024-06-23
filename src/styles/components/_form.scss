@@ -2,7 +2,7 @@ $alert-icon-width: 18px;
 
 .lcc-form {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   text-align: center;
   align-items: center;
   width: 100%;
@@ -25,7 +25,7 @@ $alert-icon-width: 18px;
   grid-gap: 8px 12px;
   width: 100%;
 
-  label {
+  label:not(.file-button) {
     grid-column: 1 / 2;
     max-width: 100px;
     align-self: center;
@@ -79,7 +79,7 @@ $alert-icon-width: 18px;
 
 .lcc-form-links-container {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
 

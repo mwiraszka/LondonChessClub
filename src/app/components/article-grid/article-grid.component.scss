@@ -6,7 +6,7 @@ $app-content-width: 1500px; // Re-declare since CSS var cannot be passed to mixi
 
 :host {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -40,7 +40,7 @@ lcc-link-list,
     background: repeating-conic-gradient(
       var(--lcc-color--articleGrid-cardBackground1) 0% 25%,
       var(--lcc-color--articleGrid-cardBackground2) 0% 50%
-    ) 50% / 5px 5px;
+    ) 50% / 2px 2px;
     border-radius: var(--lcc-borderRadius--large);
 
     @include respond-to('gt-sm') {
@@ -81,12 +81,12 @@ lcc-link-list,
         // Hardcode height to ensure title sections align between cards
         // regardless of whether there is 1 or 2 lines of text
         height: 2.4em;
-        color: var(--lcc-color--articleGrid-articleSummaryHeaderText);
+        color: var(--lcc-color--articleGrid-articleHeaderText);
       }
 
       hr {
         width: 100%;
-        border-top: 1px solid var(--lcc-color--general-dividerLine);
+        border-top: 1px solid var(--lcc-color--articleGrid-cardDividerLine);
         padding-top: 8px;
       }
 

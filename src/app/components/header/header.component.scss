@@ -14,7 +14,7 @@ $app-header-font-size: 42px;
 
 .app-header-container {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: var(--lcc-width--appContent);
@@ -22,7 +22,7 @@ $app-header-font-size: 42px;
 
   .branding {
     display: flex;
-    flex-flow: row nowrap;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 16px;

@@ -2,7 +2,7 @@
 
 :host {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   align-items: center;
   gap: 8px;
   width: 100%;
@@ -13,25 +13,30 @@ table {
   tbody {
     tr {
       &.next-event {
-        background-color: var(--lcc-color--schedule-nextEventBackground) !important;
-        outline: 1px solid var(--lcc-color--schedule-nextEventOutline) !important;
-
         .title {
           font-weight: 600;
+          background-color: var(--lcc-color--schedule-nextEventBackgroundHighlight);
+          color: var(--lcc-color--schedule-nextEventText) !important;
+          padding: 4px 8px;
         }
       }
 
       td.main-container {
         display: flex;
-        flex-flow: column nowrap;
+        flex-direction: column;
         padding: 4px;
 
         @include respond-to('gt-md') {
-          flex-flow: row nowrap;
+          flex-direction: row;
+        }
 
-          .created-and-edited {
-            justify-self: flex-end;
-            align-self: flex-end;
+        .created-and-edited {
+          padding: 4px;
+          justify-self: flex-end;
+          align-self: flex-end;
+
+          & > div {
+            padding: 2px;
           }
         }
       }
@@ -39,7 +44,7 @@ table {
       .main-content {
         flex: 1;
         display: flex;
-        flex-flow: column nowrap;
+        flex-direction: column;
         align-items: flex-start;
         gap: 4px;
         padding: 8px;
@@ -53,12 +58,13 @@ table {
 
         .type-container {
           display: flex;
-          flex-flow: row nowrap;
+          flex-direction: row;
           align-items: center;
           gap: 8px;
+          width: auto;
           border-radius: var(--lcc-borderRadius--large);
           padding: 2px 8px;
-          width: auto;
+          color: var(--lcc-color--schedule-eventType);
 
           &.blitz-tournament {
             background-color: var(--lcc-color--schedule-blitzTournamentBackground);
@@ -101,7 +107,7 @@ table {
           }
 
           .award-icon {
-            color: var(--lcc-color--schedule-medalIcon);
+            color: var(--lcc-color--schedule-championshipMedalIcon);
             height: 16px;
             width: 16px;
           }

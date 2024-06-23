@@ -1,10 +1,5 @@
 @import 'styles/abstracts/mixins';
 
-@mixin dark-bg {
-  background-color: var(--lcc-color--aboutScreen-darkCellBackground);
-  border: 2px solid var(--lcc-color--aboutScreen-darkCellBorder);
-}
-
 :host {
   display: flex;
   justify-content: center;
@@ -13,7 +8,7 @@
 .container {
   max-width: var(--lcc-width--appContent);
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -53,44 +48,48 @@
 article {
   place-self: stretch;
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   gap: 16px;
   border-radius: var(--lcc-borderRadius--small);
-  background-color: var(--lcc-color--aboutScreen-articleBackground);
+  border: 2px solid var(--lcc-color--aboutScreen-cellBorder);
   padding: 16px 32px;
   
   &.membership {
     grid-area: membership;
-    @include dark-bg;
+    background-color: var(--lcc-color--aboutScreen-darkCellBackground);
   }
   
   &.supplies {
     grid-area: supplies;
+    background-color: var(--lcc-color--aboutScreen-lightCellBackground);
   }
   
   &.parking {
     grid-area: parking;
+    background-color: var(--lcc-color--aboutScreen-lightCellBackground);
   }
   
   &.ratings {
     grid-area: ratings;
-    @include dark-bg;
+    background-color: var(--lcc-color--aboutScreen-darkCellBackground);
   }
   
   &.rules {
     grid-area: rules;
-    @include dark-bg;
+    background-color: var(--lcc-color--aboutScreen-darkCellBackground);
   }
   
   &.tournaments {
     grid-area: tournaments;
+    background-color: var(--lcc-color--aboutScreen-lightCellBackground);
   }
   
   &.leadership {
     grid-area: leadership;
+    background-color: var(--lcc-color--aboutScreen-lightCellBackground);
 
     @include respond-to('lt-md') {
-      @include dark-bg;
+      background-color: var(--lcc-color--aboutScreen-darkCellBackground);
     }
 
     .tables-container {
@@ -108,7 +107,7 @@ article {
           vertical-align: middle;
 
           .chair {
-            color: (--lcc-color--aboutScreen-leadershipChairText);
+            color: var(--lcc-color--aboutScreen-boardChairText);
           }
         }
       }
@@ -117,6 +116,10 @@ article {
 
   h3 {
     font-weight: 400;
-    color: var(--lcc-color--aboutScreen-sectionHeading);
+    color: var(--lcc-color--aboutScreen-sectionHeaderText);
+  }
+
+  p {
+    color: var(--lcc-color--aboutScreen-text);
   }
 }

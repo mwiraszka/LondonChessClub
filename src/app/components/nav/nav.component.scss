@@ -7,7 +7,7 @@ $nav-height: 42px;
 
 :host {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
   justify-content: center;
   padding-top: 2px;
   background-color: var(--lcc-color--nav-background);
@@ -33,7 +33,7 @@ i-feather {
 
 .nav-items-container {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
   justify-content: center;
   width: 100%;
   max-width: var(--lcc-width--appContent);
@@ -50,7 +50,7 @@ i-feather {
   .nav-link {
     display: flex;
     align-items: center;
-    flex-flow: row nowrap;
+    flex-direction: row;
     font-size: var(--lcc-fontSize--h4);
     font-weight: 400;
     height: auto;
@@ -139,13 +139,13 @@ i-feather {
     &.lcc-dropdown-open {
       visibility: visible;
       display: flex;
-      flex-flow: column nowrap;
+      flex-direction: column;
     }
     
     .dropdown-items {
       cursor: default;
       display: flex;
-      flex-flow: column nowrap;
+      flex-direction: column;
       width: $dropdown-list-width;
       background-color: var(--lcc-color--nav-dropdownBackground);
       border-bottom-left-radius: var(--lcc-borderRadius--small);

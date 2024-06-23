@@ -8,6 +8,7 @@
 .lcc-table {
   display: table;
   font-size: var(--lcc-fontSize--h4);
+  border: 1px solid var(--lcc-color--table-border);
   border-radius: var(--lcc-borderRadius--small);
   border-spacing: 0;
   overflow: hidden;

@@ -4,7 +4,7 @@
 
 .header-container {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
   justify-content: space-between;
   padding: 4px;
   background-color: var(--lcc-color--expansionPanel-headerBackground);
@@ -24,10 +24,6 @@
   &:hover {
     cursor: pointer;
     background-color: var(--lcc-color--expansionPanel-headerBackgroundOnHover);
-
-    .expand-icon {
-      color: var(--lcc-color--expansionPanel-headerExpandIconOnHover);
-    }
   }
 }
 

@@ -2,7 +2,7 @@
 
 :host {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   align-items: center;
   width: 100%;
   gap: 16px;
@@ -26,16 +26,8 @@
     gap: 8px;
 
     .image-revert-button {
+      width: 34px; // Match button height
       padding: 2px;
-      color: var(--lcc-color--articleForm-imageRevertButtonForeground);
-
-      &:hover {
-        color: var(--lcc-color--articleForm-imageRevertButtonTextOnHover);
-      }
-
-      &:disabled {
-        color: var(--lcc-color--button-disabledButtonForeground);
-      }
       
       .revert-icon {
         width: 18px;
@@ -50,7 +42,7 @@
 
   .preview-section-container {
     display: flex;
-    flex-flow: column nowrap;
+    flex-direction: column;
     justify-content: flex-start;
     text-align: left;
     gap: 4px;
@@ -59,13 +51,18 @@
     h4 {
       align-self: flex-start;
       font-weight: 400;
-      color: var(--lcc-color--articleForm-previewSectionContainerForeground);
+      color: var(--lcc-color--articleForm-previewHeaderText);
+    }
+
+    hr {
+      width: 100%;
+      border-top: 1px solid var(--lcc-color--general-dividerLine);
+      margin: 4px 0 16px;
     }
 
     .markdown-container {
       width: 100%;
-      border: 1px solid var(--lcc-color--articleForm-markdownContainerBorder);
-      background-color: var(--lcc-color--articleForm-markdownContainerBackground);
+      box-shadow: 1px 1px 8px 1px var(--lcc-color--articleForm-markdownPreviewBoxShadow);
       border-radius: var(--lcc-borderRadius--large);
       padding: 8px;
       overflow: hidden;

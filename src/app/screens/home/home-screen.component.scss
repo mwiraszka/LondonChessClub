@@ -20,7 +20,7 @@
     background-color: var(--lcc-color--homeScreen-articleBackground);
     padding: 8px 16px;
     display: flex;
-    flex-flow: column nowrap;
+    flex-direction: column;
     gap: 16px;
     
     @include respond-to('gt-lg') {
@@ -30,11 +30,10 @@
     &.welcome {
       grid-area: welcome;
       display: flex;
-      flex-flow: column nowrap;
+      flex-direction: column;
       padding: 16px;
-      background-color: var(--lcc-color--homeScreen-welcomeSectionBackground);
       border-radius: var(--lcc-borderRadius--small);
-      box-shadow: 1px 1px 5px 0 var(--lcc-color--homeScreen-welcomeSectionBoxShadow);
+      color: var(--lcc-color--homeScreen-welcomeSectionText);
 
       @include respond-to('gt-sm') {
         padding: 32px;
@@ -67,34 +66,35 @@
     &.schedule {
       grid-area: schedule;
       display: flex;
-      flex-flow: column nowrap;
+      flex-direction: column;
       justify-content: space-between;
     }
   
     &.articles {
       grid-area: articles;
       display: flex;
-      flex-flow: column nowrap;
+      flex-direction: column;
       justify-content: space-between;
     }
 
     &.photos {
       grid-area: photos;
       display: flex;
-      flex-flow: column nowrap;
+      flex-direction: column;
       justify-content: space-between;
     }
 
     section {
       display: flex;
-      flex-flow: column nowrap;
+      flex-direction: column;
       gap: 8px;
 
       h4 {
         width: 100%;
         text-align: left;
-        padding: 2px;
-        border-bottom: 1px solid var(--lcc-color--homeScreen-sectionHeaderText);
+        padding: 2px 2px 4px;
+        color: var(--lcc-color--homeScreen-sectionHeaderText);
+        border-bottom: 1px solid var(--lcc-color--general-dividerLine);
       }
     }
   }

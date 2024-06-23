@@ -6,6 +6,7 @@ $lcc-color-palette: (
     black-5: hsl(0, 0%, 5%),
     black-10: hsl(0, 0%, 10%),
     black-15: hsl(0, 0%, 15%),
+    black-20: hsl(0, 0%, 20%),
     gray-25: hsl(0, 0%, 25%),
     gray-35: hsl(0, 0%, 35%),
     gray-50: hsl(0, 0%, 50%),
@@ -85,6 +86,9 @@ $lcc-color-palette: (
   ),
   chessboard: (
     base: hsl(34, 44%, 69%),
+  ),
+  highlight: (
+    base: hsl(51, 100%, 70%),
   ),
 );
 

@@ -1,6 +1,6 @@
 :host {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   align-items: center;
   gap: 16px;
 }

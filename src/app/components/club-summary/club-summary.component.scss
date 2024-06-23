@@ -15,7 +15,7 @@
 
 .address-section {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   gap: 8px;
   white-space: nowrap;
 

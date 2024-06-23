@@ -1,7 +1,7 @@
 :host {
   width: 100%;
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   box-shadow: 1px 1px 8px 1px var(--lcc-color--screenHeader-boxShadow);

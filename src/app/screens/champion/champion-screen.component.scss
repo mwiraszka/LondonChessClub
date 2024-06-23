@@ -1,20 +1,15 @@
 @import 'styles/abstracts/mixins';
 
-@mixin dark-bg {
-  background-color: var(--lcc-color--championScreen-darkCellBackground);
-  border: 2px solid var(--lcc-color--championScreen-darkCellBorder);
-}
-
 :host {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 .container {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   align-items: center;
   gap: 8px;
   margin: auto;
@@ -56,11 +51,12 @@
   article {
     place-self: stretch;
     display: flex;
-    flex-flow: column nowrap;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background-color: var(--lcc-color--championScreen-articleBackground);
+    border: 1px solid var(--lcc-color--championScreen-cellBorder);
+    background-color: var(--lcc-color--championScreen-cellBackground);
 
     @include respond-to('gt-sm') {
       border-radius: var(--lcc-borderRadius--small);
@@ -74,15 +70,19 @@
       grid-area: history;
       padding: 16px;
       align-items: flex-start;
-
+      
       p {
         margin: 0.5em 0;
+        color: var(--lcc-color--championScreen-historyText);
+
+        b {
+          color: var(--lcc-color--championScreen-historyTextBold);
+        }
       }
     }
 
     &.cup {
       grid-area: cup;
-      @include dark-bg;
 
       @include respond-to('lt-sm') {
         margin: 0 4px;
@@ -97,9 +97,10 @@
       h3 {
         width: 100%;
         text-align: left;
-        padding: 2px;
-        border-bottom: 1px solid var(--lcc-color--championScreen-pastWinnersHeaderText);
+        padding: 2px 2px 4px;
+        border-bottom: 1px solid var(--lcc-color--general-dividerLine);
         margin-bottom: 0.5em;
+        color: var(--lcc-color--championScreen-pastWinnersHeaderText);
       }
 
       table {
@@ -113,7 +114,6 @@
 
     &.champion-2023 {
       grid-area: champ-2023;
-      @include dark-bg;
 
       @include respond-to('lt-sm') {
         margin: 0 4px;
@@ -123,7 +123,6 @@
 
     &.trophies-2023 {
       grid-area: trophies-2023;
-      @include dark-bg;
 
       @include respond-to('lt-sm') {
         margin: 0 4px;
@@ -133,7 +132,6 @@
     
     &.champion-2019 {
       grid-area: champ-2019;
-      @include dark-bg;
 
       @include respond-to('lt-sm') {
         margin: 0 4px;
@@ -143,7 +141,6 @@
 
     &.championship-match-2022 {
       grid-area: champ-2022;
-      @include dark-bg;
 
       @include respond-to('lt-sm') {
         margin: 0 4px;

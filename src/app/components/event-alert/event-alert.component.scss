@@ -64,7 +64,7 @@
 
 .alert-controls {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
   align-items: center;
   gap: 4px;
 

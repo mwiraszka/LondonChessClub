@@ -7,7 +7,7 @@ $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
 :host {
   .container {
     display: flex;
-    flex-flow: column nowrap;
+    flex-direction: column;
     align-items: center;
     gap: 8px;
     max-width: var(--lcc-width--appContent);
@@ -49,10 +49,12 @@ $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
       h3 {
         margin: 8px 0 16px;
         font-style: italic;
+        color: var(--lcc-color--gameArchivesScreen-headerText);
       }
   
       p {
         margin-bottom: 16px;
+        color: var(--lcc-color--gameArchivesScreen-text);
       }
     }
   }
@@ -97,6 +99,10 @@ $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
           max-width: $pgn-viewer-width;
         }
       }
+    }
+
+    .loading-text {
+      color: var(--lcc-color--gameArchivesScreen-loadingText);
     }
   }
 }

@@ -2,7 +2,7 @@
   position: absolute;
   z-index: 10;
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
 
   // Visible on parent hover (see _admin-controls-container.scss)
   visibility: hidden;

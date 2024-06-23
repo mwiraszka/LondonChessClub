@@ -11,13 +11,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppRoutingModule } from '@app/app-routing.module';
-import { EventAlertModule } from '@app/components/event-alert';
 import { FooterModule } from '@app/components/footer';
 import { HeaderModule } from '@app/components/header';
 import { ImageOverlayModule } from '@app/components/image-overlay';
 import { ModalModule } from '@app/components/modal';
 import { NavModule } from '@app/components/nav';
 import { ToasterModule } from '@app/components/toaster';
+import { UpcomingEventBannerModule } from '@app/components/upcoming-event-banner';
 import { metaReducers } from '@app/store/app';
 import { ArticlesStoreModule } from '@app/store/articles';
 import { AuthStoreModule } from '@app/store/auth';
@@ -43,7 +43,6 @@ import { AppComponent } from './app.component';
     BrowserModule,
     BrowserAnimationsModule,
     EffectsModule.forRoot([]),
-    EventAlertModule,
     FooterModule,
     HeaderModule,
     HttpClientModule,
@@ -73,6 +72,7 @@ import { AppComponent } from './app.component';
     }),
     ToasterModule,
     ToasterStoreModule,
+    UpcomingEventBannerModule,
     UserSettingsStoreModule,
   ],
   bootstrap: [AppComponent],

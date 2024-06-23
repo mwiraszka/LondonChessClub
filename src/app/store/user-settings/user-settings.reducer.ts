@@ -10,6 +10,11 @@ const userSettingsReducer = createReducer(
     ...state,
     isDarkMode: !state.isDarkMode,
   })),
+
+  on(UserSettingsActions.clearUpcomingEventBanner, state => ({
+    ...state,
+    showUpcomingEventBanner: false,
+  })),
 );
 
 export function reducer(state: UserSettingsState, action: Action): UserSettingsState {

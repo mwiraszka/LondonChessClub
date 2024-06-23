@@ -17,6 +17,9 @@ export class AppFacade {
   showImageOverlay$ = this.store.select(PhotosSelectors.isOpen);
   showModal$ = this.store.select(ModalSelectors.isOpen);
   showToaster$ = this.store.select(ToasterSelectors.isDisplayingToasts);
+  showUpcomingEventBanner$ = this.store.select(
+    UserSettingsSelectors.showUpcomingEventBanner,
+  );
   upcomingEvent$ = this.store.select(ScheduleSelectors.upcomingEvent);
 
   constructor(

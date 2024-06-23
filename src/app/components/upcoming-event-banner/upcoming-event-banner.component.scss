@@ -1,0 +1,82 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 2px 16px;
+  border-bottom: 1px solid var(--lcc-color--upcomingEventBanner-borderBottom);
+
+  &.blitz-tournament {
+    background-color: var(--lcc-color--upcomingEventBanner-background-blitzTournament);
+  }
+
+  &.rapid-tournament {
+    background-color: var(--lcc-color--upcomingEventBanner-background-rapidTournament);
+  }
+
+  &.active-tournament {
+    background-color: var(--lcc-color--upcomingEventBanner-background-activeTournament);
+  }
+
+  &.lecture {
+    background-color: var(--lcc-color--upcomingEventBanner-background-lecture);
+  }
+  
+  &.simul {
+    background-color: var(--lcc-color--upcomingEventBanner-background-simul);
+  }
+
+  &.championship {
+    background-color: var(--lcc-color--upcomingEventBanner-background-championship);
+  }
+
+  &.other {
+    background-color: var(--lcc-color--upcomingEventBanner-background-other);
+  }
+
+  &.closed {
+    background-color: var(--lcc-color--upcomingEventBanner-background-closed);
+  }
+}
+
+.banner-message-container {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  max-width: var(--lcc-width--appContent);
+}
+
+.banner-message {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--lcc-color--upcomingEventBanner-text);
+  font-size: var(--lcc-fontSize--h4);
+
+  &:hover {
+    color: var(--lcc-color--upcomingEventBanner-textOnHover);
+
+    b {
+      color: var(--lcc-color--upcomingEventBanner-boldTextOnHover);
+    }
+  }
+
+  b {
+    color: var(--lcc-color--upcomingEventBanner-boldText);
+    font-weight: bold;
+    padding: 0 2px;
+  }
+}
+
+.close-icon {
+  height: 18px;
+  width: 18px;
+  color: var(--lcc-color--upcomingEventBanner-closeIcon);
+
+  &:hover {
+    cursor: pointer;
+    color: var(--lcc-color--upcomingEventBanner-closeIconOnHover);
+  }
+}

@@ -12,3 +12,8 @@ export const isDarkMode = createSelector(
   userSettingsFeatureSelector,
   state => state.isDarkMode,
 );
+
+export const showUpcomingEventBanner = createSelector(
+  userSettingsFeatureSelector,
+  state => state.showUpcomingEventBanner,
+);

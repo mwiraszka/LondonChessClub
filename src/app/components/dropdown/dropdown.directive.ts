@@ -36,18 +36,20 @@ export class DropdownDirective {
     const clickedOnDropdownTab = this._document
       .querySelector('.lcc-dropdown-tab')
       ?.contains(targetElement);
-    const clickedOnDropdown = this._document
-      .querySelector('.lcc-dropdown')
-      ?.contains(targetElement);
+
+    const clickedOnDropdownLink = Array.from(
+      this._document.querySelectorAll('.lcc-dropdown .lcc-dropdown-link'),
+    ).some(element => element?.contains(targetElement));
+
     const clickedOutside = !this.dropdownElement.contains(targetElement);
 
-    if (clickedOnDropdownTab && !clickedOnDropdown && !this.isOpen) {
+    if (clickedOnDropdownTab && !clickedOnDropdownLink && !this.isOpen) {
       this.isOpen = true;
       this.opened.emit(true);
       return;
     }
 
-    if ((clickedOnDropdown || clickedOutside) && this.isOpen) {
+    if ((clickedOnDropdownLink || clickedOutside) && this.isOpen) {
       this.isOpen = false;
       this.opened.emit(false);
     }

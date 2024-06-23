@@ -53,10 +53,12 @@
 				</div>
 				@if (includeDetails && (facade.isAdmin$ | async)) {
 				<aside class="created-and-edited">
-					Event created
-					{{ event.modificationInfo?.dateCreated | formatDate:'short no-time' }}<br />
-					Last edited
-					{{ event.modificationInfo?.dateLastEdited | formatDate:'short no-time' }}
+					<div>Event created
+						{{ event.modificationInfo?.dateCreated | formatDate:'short no-time' }}
+					</div>
+					<div>Last edited
+						{{ event.modificationInfo?.dateLastEdited | formatDate:'short no-time' }}
+					</div>
 				</aside>
 				}
 			</td>
@@ -66,7 +68,7 @@
 </table>
 
 @if (allowTogglePastEvents) {
-<button class="lcc-raised-button toggle-past-events-button"
+<button class="lcc-secondary-button toggle-past-events-button"
 				(click)="onShowHidePastEvents()">
 	{{ (showPast$ | async) ? 'Hide' : 'Show' }} past events
 </button>

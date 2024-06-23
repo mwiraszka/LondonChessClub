@@ -3,7 +3,7 @@
     font-size: 0.8em;
     background: $lpv-bg-player;
     display: flex;
-    flex-flow: row nowrap;
+    flex-direction: row;
     padding: 0 1em;
     // justify-content: stretch;
     &--bottom {
@@ -15,7 +15,7 @@
     &__person {
       flex: 1 1 auto;
       display: flex;
-      flex-flow: row nowrap;
+      flex-direction: row;
       align-items: center;
       gap: 1ch;
       color: $lpv-font;
@@ -26,7 +26,7 @@
     }
     &__clock {
       display: flex;
-      flex-flow: row nowrap;
+      flex-direction: row;
       align-items: center;
       font-family: monospace;
       font-size: 1.4em;

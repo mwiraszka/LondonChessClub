@@ -1,7 +1,7 @@
 .lpv {
   &__controls {
     display: flex;
-    flex-flow: row nowrap;
+    flex-direction: row;
     align-items: stretch;
     user-select: none;
     background: $lpv-bg-controls;

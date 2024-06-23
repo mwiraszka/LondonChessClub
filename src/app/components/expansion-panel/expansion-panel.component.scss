@@ -1,41 +1,35 @@
-@import 'styles/abstracts/variables';
-
 :host {
   width: 100%;
 }
 
 .header-container {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
   justify-content: space-between;
-  padding: $lcc-space--xs;
-  background-color: lighten($lcc-color--secondary, 15%);
-  border-top-left-radius: $lcc-border-radius--lg;
-  border-top-right-radius: $lcc-border-radius--lg;
+  padding: 4px;
+  background-color: var(--lcc-color--expansionPanel-headerBackground);
+  border-top-left-radius: var(--lcc-borderRadius--large);
+  border-top-right-radius: var(--lcc-borderRadius--large);
   
   ::ng-deep * {
-    color: darken($lcc-color--text-primary-white, 10%);
+    color: var(--lcc-color--expansionPanel-headerForeground);
   }
 
   &:not(.isOpen) {
     filter: grayscale(40%);
-    border-bottom-left-radius: $lcc-border-radius--lg;
-    border-bottom-right-radius: $lcc-border-radius--lg;
+    border-bottom-left-radius: var(--lcc-borderRadius--large);
+    border-bottom-right-radius: var(--lcc-borderRadius--large);
   }
 
   &:hover {
     cursor: pointer;
-    background-color: lighten($lcc-color--secondary, 18%);
-
-    .expand-icon {
-      color: lighten($lcc-color--text-primary-black, 40%);
-    }
+    background-color: var(--lcc-color--expansionPanel-headerBackgroundOnHover);
   }
 }
 
 .content-container {
-  background-color: $lcc-color--bg-expansion-panel;
-  border-bottom-left-radius: $lcc-border-radius--lg;
-  border-bottom-right-radius: $lcc-border-radius--lg;
-  margin-bottom: $lcc-space--md;
+  background-color: var(--lcc-color--expansionPanel-contentBackground);
+  border-bottom-left-radius: var(--lcc-borderRadius--large);
+  border-bottom-right-radius: var(--lcc-borderRadius--large);
+  margin-bottom: 16px;
 }

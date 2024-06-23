@@ -1,97 +1,51 @@
-@import 'styles/abstracts/variables';
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  margin-top: 4px;
+  width: 300px;
+  border-radius: var(--lcc-borderRadius--small);
+  box-shadow: 1px 1px 5px 2px var(--lcc-color--toast-boxShadow);
 
-@mixin fadeoutAnimation {
   -o-animation: fadeAnimation 5s;
   -moz-animation: fadeAnimation 5s;
   -ms-animation: fadeAnimation 5s;
   -webkit-animation: fadeAnimation 5s;
   animation: fadeAnimation 5s;
-}
-
-.toast-container {
-  display: flex;
-  flex-flow: row nowrap;
-  margin-top: $lcc-space--xs;
-  padding: 0 $lcc-space--sm;
-  width: 300px;
-  border-radius: $lcc-border-radius--sm;
-  box-shadow: $lcc-color--box-shadow;
 
   &.toast-success {
-    background-color: $lcc-color--success;
-    @include fadeoutAnimation();
-    
-    .toast-notification-container {
-      .toast-title {
-        color: lighten($lcc-color--text-primary-white, 10%);
-      }
-      .toast-message {
-        color: $lcc-color--text-primary-white;
-      }
-    }
-
-    .icon {
-      color: lighten($lcc-color--white, 10%);
-    }
+    background-color: var(--lcc-color--toast-successBackground);
   }
 
   &.toast-warning {
-    background-color: $lcc-color--warn;
-    @include fadeoutAnimation();
-
-    .toast-notification-container {
-      .toast-title {
-        color: lighten($lcc-color--text-primary-white, 10%);
-      }
-      .toast-message {
-        color: $lcc-color--text-primary-white;
-      }
-    }
-
-    .icon {
-      color: lighten($lcc-color--white, 10%);
-    }
+    background-color: var(--lcc-color--toast-warningBackground);
   }
 
   &.toast-info {
-    background-color: $lcc-color--info;
-    @include fadeoutAnimation();
-
-    .toast-notification-container {
-      .toast-title {
-        color: $lcc-color--text-primary-black;
-      }
-      .toast-message {
-        color: lighten($lcc-color--text-primary-black, 10%);
-      }
-    }
-
-    .icon {
-      color: lighten($lcc-color--black, 10%);
-    }
-  }
-}
-
-.toast-icon-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;  
-}
-
-.toast-notification-container {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: $lcc-space--sm;
-  padding: $lcc-space--sm;
-  overflow: hidden;
-
-  .toast-title {
-    width: 100%;
+    background-color: var(--lcc-color--toast-infoBackground);
   }
 
-  .toast-message {
-    width: 100%;
-    font-size: $h5;
+  .icon {
+    color: var(--lcc-color--toast-icon);
+  }
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    overflow: hidden;
+
+    .toast-title {
+      color: var(--lcc-color--toast-primaryText);
+    }
+
+    .toast-message {
+      font-size: var(--lcc-fontSize--h5);
+      color: var(--lcc-color--toast-secondaryText);
+    }
   }
 }
 

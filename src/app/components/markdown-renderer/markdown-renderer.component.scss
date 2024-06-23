@@ -1,6 +1,4 @@
-@import 'styles/abstracts/variables';
 @import 'styles/components/link';
-@import 'styles/components/table';
 
 :host ::ng-deep {
   a {
@@ -11,5 +9,18 @@
     list-style-type: disc;
     margin-left: 1em;
     line-height: 1.5em;
+    color: var(--lcc-color--markdownRenderer-secondaryText);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--lcc-color--markdownRenderer-primaryText);
+  }
+
+  p {
+    color: var(--lcc-color--markdownRenderer-secondaryText);
+  }
+
+  b, strong {
+    color: var(--lcc-color--markdownRenderer-primaryText);
   }
 }

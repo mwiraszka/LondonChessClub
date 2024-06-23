@@ -1,5 +1,3 @@
-@import 'styles/abstracts/variables';
-
 :host {
   display: flex;
   justify-content: center;
@@ -8,12 +6,9 @@
 
 .container {
   display: flex;
-  flex-flow: column nowrap;
-  gap: $lcc-space--sm;
+  flex-direction: column;
+  gap: 8px;
   width: 100%;
-  max-width: $lcc-width--app-content;
-}
-
-lcc-members-table {
-  padding: 0 $lcc-space--sm;
+  max-width: var(--lcc-width--appContent);
+  margin-bottom: 32px;
 }

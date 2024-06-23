@@ -3,32 +3,45 @@ input[type="password"],
 textarea {
   display: block;
   width: 100%;
-  border: 1px solid lighten($lcc-color--grey, 22%);
-  border-radius: $lcc-border-radius--sm !important;
-  font-size: $h4 !important;
+  border: 1px solid var(--lcc-color--input-border);
+  border-radius: var(--lcc-borderRadius--small) !important;
+  font-size: var(--lcc-fontSize--h4) !important;
   height: 36px;
   padding: 10px;
   margin: 3px 0 !important;
+  background-color: var(--lcc-color--input-background);
+  color: var(--lcc-color--input-text);
 
   &.ng-invalid.ng-dirty {
-    border-color: lighten($lcc-color--warn, 15%);
+    border-color: var(--lcc-color--input-invalidBorder);
   }
 
   &:hover,
   &:focus {
     outline: none;
-    border: 1px solid lighten($lcc-color--grey, 15%);
-    box-shadow: 0 0 4px 1px lighten($lcc-color--select, 15%);
+    border: 1px solid var(--lcc-color--input-borderOnHover);
+    box-shadow: 0 0 4px 1px var(--lcc-color--input-boxShadowOnHover);
   }
 
   &::placeholder {
-    font-size: $h4;
+    font-size: var(--lcc-fontSize--h4);
   }
 }
 
 input[type="checkbox"] {
   margin: 4px;
   justify-self: flex-start;
+  accent-color: var(--lcc-color--input-checkbox);
+
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  transform: scale(1.5);
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 textarea {

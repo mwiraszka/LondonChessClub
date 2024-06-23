@@ -2,7 +2,7 @@ $alert-icon-width: 18px;
 
 .lcc-form {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   text-align: center;
   align-items: center;
   width: 100%;
@@ -14,7 +14,7 @@ $alert-icon-width: 18px;
   padding: 0.6em 1em;
 
   h3 {
-    color: $lcc-color--text-primary-black;
+    color: var(--lcc-color--form-headerText);
     width: 100%;
   }
 }
@@ -22,16 +22,16 @@ $alert-icon-width: 18px;
 .lcc-form-fields {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  grid-gap: 6px;
+  grid-gap: 8px 12px;
   width: 100%;
 
-  label:not(.lcc-button) {
+  label:not(.file-button) {
     grid-column: 1 / 2;
     max-width: 100px;
     align-self: center;
     text-align: right;
-    font-size: $h4;
-    color: $lcc-color--text-secondary;
+    font-size: var(--lcc-fontSize--h4);
+    color: var(--lcc-color--form-labelText);
   }
 
   input,
@@ -41,9 +41,9 @@ $alert-icon-width: 18px;
   }
 
   fieldset {
-    border: 1px solid rgba($lcc-color--grey, 0.4);
-    border-radius: $lcc-border-radius--sm;
-    background-color: white;
+    border: 1px solid var(--lcc-color--form-fieldsetBorder);
+    border-radius: var(--lcc-borderRadius--small);
+    background-color: var(--lcc-color--form-fieldsetBackground);
     padding: 4px 12px;
     text-align: left;
 
@@ -60,7 +60,7 @@ $alert-icon-width: 18px;
     width: $alert-icon-width;
 
     .lcc-form-error-icon {
-      color: lighten($lcc-color--warn, 10%);
+      color: var(--lcc-color--form-errorIcon);
       height: $alert-icon-width;
       width: $alert-icon-width;
     }
@@ -73,35 +73,35 @@ $alert-icon-width: 18px;
   margin-top: 20px;
 
   button {
-    margin: 0 $lcc-space--xs;
+    margin: 0 4px;
   }
 }
 
 .lcc-form-links-container {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
 
   .lcc-form-link {
     @extend .lcc-link;
     padding: 3px;
-    font-size: $h5 !important;
+    font-size: var(--lcc-fontSize--h5) !important;
   }
 }
 
 .lcc-required-fields-legend {
   font-style: italic;
-  font-size: $h4;
-  color: $lcc-color--text-secondary;
+  font-size: var(--lcc-fontSize--h4);
+  color: var(--lcc-color--form-requiredFieldText);
 
   &::after {
-    color: $lcc-color--warn;
+    color: var(--lcc-color--form-requiredFieldAsterisk);
     content: ' *';
   }
 }
 
 .lcc-required-field::before {
   content: '* ';
-  color: $lcc-color--warn;
+  color: var(--lcc-color--form-requiredFieldAsterisk);
 }

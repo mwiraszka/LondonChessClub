@@ -4,7 +4,9 @@ import {
   ElementRef,
   HostListener,
   Input,
+  OnChanges,
   OnDestroy,
+  SimpleChanges,
   ViewContainerRef,
 } from '@angular/core';
 
@@ -15,7 +17,7 @@ import { TooltipComponent } from './tooltip.component';
 @Directive({
   selector: '[tooltip]',
 })
-export class TooltipDirective implements OnDestroy {
+export class TooltipDirective implements OnChanges, OnDestroy {
   private readonly TOOLTIP_MAX_WIDTH_PX = 120;
   private readonly SIDE_SCREEN_PADDING_PX = 1;
 
@@ -35,13 +37,7 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
-    if (!this.componentRef && !isTouchScreen()) {
-      this.componentRef = this.viewContainerRef.createComponent(TooltipComponent);
-      this.setTooltipPlacement();
-
-      const host = this.elementRef.nativeElement;
-      host.insertBefore(this.componentRef.location.nativeElement, host.firstChild);
-    }
+    this.init();
   }
 
   @HostListener('mouseleave')
@@ -54,8 +50,26 @@ export class TooltipDirective implements OnDestroy {
     this.screenWidth = window.innerWidth;
   }
 
+  // Manually re-draw tooltip if text already existed and it changed
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['tooltip'].previousValue) {
+      this.destroy();
+      this.init();
+    }
+  }
+
   ngOnDestroy(): void {
     this.destroy();
+  }
+
+  init(): void {
+    if (!this.componentRef && !isTouchScreen()) {
+      this.componentRef = this.viewContainerRef.createComponent(TooltipComponent);
+      this.setTooltipPlacement();
+
+      const host = this.elementRef.nativeElement;
+      host.insertBefore(this.componentRef.location.nativeElement, host.firstChild);
+    }
   }
 
   destroy(): void {

@@ -1,108 +1,17 @@
-/* LCC color palette */
-$lcc-color--primary: rgb(61, 102, 143);
-$lcc-color--secondary: hsl(214, 40%, 20%);
-$lcc-color--accent: hsl(24, 67%, 45%);
-$lcc-color--success: hsl(100, 50%, 40%);
-$lcc-color--warn: hsl(0, 90%, 60%);
-$lcc-color--info: hsl(211, 79%, 85%);
-$lcc-color--link: hsl(210, 70%, 55%, 0.9);
-$lcc-color--hover: hsl(208, 11%, 35%);
-$lcc-color--select: hsl(210, 100%, 80%);
-$lcc-color--admin: hsl(0, 62%, 20%);
-$lcc-color--disabled-bg: hsla(0, 0%, 88%, 0.641);
-$lcc-color--disabled-fg: hsl(0, 0%, 78%);
-$lcc-color--scrollbar: hsla(0, 0%, 5%, 0.5);
+:root {
+  /* Container widths & heights */
+  --lcc-width--appContent: 1500px;
+  --lcc-width--smallForm: 600px;
 
-$lcc-color--white: hsl(0, 0%, 95%);
-$lcc-color--grey: hsl(0, 0%, 60%);
-$lcc-color--black: hsl(0, 0%, 5%);
+  /* Border radii */
+  --lcc-borderRadius--small: 3px;
+  --lcc-borderRadius--large: 5px;
 
-$lcc-color--text-primary-black: hsl(0, 0%, 5%);
-$lcc-color--text-primary-white: hsl(0, 0%, 95%);
-$lcc-color--text-secondary: hsl(0, 0%, 40%);
-
-$lcc-color--fg-divider: hsl(0, 0%, 85%);
-
-$lcc-color--bg-main: hsl(0, 0%, 97%);
-$lcc-color--bg-nav: hsl(0, 0%, 99%);
-$lcc-color--bg-canvas: hsl(0, 0%, 99%);
-$lcc-color--bg-figure: hsl(7, 3%, 12%);
-$lcc-color--bg-screen-header: hsl(7, 3%, 94%);
-$lcc-color--bg-grid-item: hsl(0, 0%, 97%);
-$lcc-color--bg-table-row-light: hsl(0, 0%, 98%);
-$lcc-color--bg-table-row-dark: hsl(220, 10%, 96%);
-$lcc-color--bg-tooltip: hsl(0, 0%, 27%);
-$lcc-color--bg-highlighted-event: hsl(28, 80%, 95%);
-$lcc-color--bg-expansion-panel: hsl(0, 0%, 88%);
-
-$lcc-color--transparent-fully: hsla(0, 0%, 100%, 0);
-$lcc-color--transparent-mostly: hsla(0, 0%, 100%, 0.2);
-$lcc-color--transparent-half: hsla(0, 0%, 100%, 0.5);
-$lcc-color--box-shadow: hsla(0, 0%, 84%, 0.8);
-$lcc-color--overlay: hsla(0, 0%, 30%, 0.8);
-
-
-/* LCC spacing */
-$lcc-space--xxl: 128px;
-$lcc-space--xl: 64px;
-$lcc-space--lg: 32px;
-$lcc-space--md: 16px;
-$lcc-space--sm: 8px;
-$lcc-space--xs: 4px;
-$lcc-space--xxs: 2px;
-
-
-/* LCC widths & heights */
-$lcc-width--app-content: 1500px;
-$lcc-width--small-form: 600px;
-$lcc-height--nav: 42px;
-
-
-/* Other LCC constants */
-$lcc-border-radius--sm: 3px;
-$lcc-border-radius--lg: 5px;
-$lcc-box-shadow: 1px 1px 5px 0 $lcc-color--box-shadow;
-
-
-/* Global font sizes */
-$h1: 28px;
-$h2: 22px;
-$h3: 18px;
-$h4: 14px;
-$h5: 13px;
-$h6: 11px;
-
-
-/* Viewport breakpoint map */
-$breakpoints: (
-  'lt-xs': (
-    max-width: 320px,
-  ),
-  'gt-xs': (
-    min-width: 320px,
-  ),
-  'lt-sm': (
-    max-width: 500px,
-  ),
-  'gt-sm': (
-    min-width: 500px,
-  ),
-  'lt-md': (
-    max-width: 700px,
-  ),
-  'gt-md': (
-    min-width: 700px,
-  ),
-  'lt-lg': (
-    max-width: 1000px,
-  ),
-  'gt-lg': (
-    min-width: 1000px,
-  ),
-  'lt-xl': (
-    max-width: 1400px,
-  ),
-  'gt-xl': (
-    min-width: 1400px,
-  ),
-);
+  /* Font sizes */
+  --lcc-fontSize--h1: 28px;
+  --lcc-fontSize--h2: 22px;
+  --lcc-fontSize--h3: 18px;
+  --lcc-fontSize--h4: 14px;
+  --lcc-fontSize--h5: 13px;
+  --lcc-fontSize--h6: 11px;
+}

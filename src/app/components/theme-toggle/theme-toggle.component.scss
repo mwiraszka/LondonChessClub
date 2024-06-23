@@ -1,0 +1,58 @@
+@use 'sass:math';
+
+$switch-height: 22px;
+$switch-width: 42px;
+$slider-diameter: 16px;
+
+:host {
+  height: $switch-height;
+}
+  
+.theme-mode-switch {
+  position: relative;
+  display: inline-block;
+  height: $switch-height;
+  width: $switch-width;
+
+  input {
+    display: none;
+  }
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--lcc-color--themeToggle-sliderBackgroundWhenOff);
+  cursor: pointer;
+  transition: 0.4s;
+
+  &:before {
+    position: absolute;
+    bottom: math.div($switch-height - $slider-diameter, 2);
+    left: math.div($switch-height - $slider-diameter, 2);
+    background-color: var(--lcc-color--themeToggle-slider);
+    height: $slider-diameter;
+    width: $slider-diameter;
+    content: '';
+    transition: 0.4s;
+  }
+}
+
+input:checked + .slider {
+  background-color: var(--lcc-color--themeToggle-sliderBackgroundWhenOn);
+}
+
+input:checked + .slider:before {
+  transform: translateX(calc($switch-width - $slider-diameter) - ($switch-height - $slider-diameter));
+}
+
+.slider.round {
+  border-radius: $switch-height;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

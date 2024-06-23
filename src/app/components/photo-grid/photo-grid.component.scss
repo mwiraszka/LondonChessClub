@@ -1,5 +1,4 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 :host {
   // 'Masonry' layout effect:
@@ -25,22 +24,22 @@
     column-count: 6;
   }
     
-  -webkit-column-gap: $lcc-space--xxs;
-  -moz-column-gap: $lcc-space--xxs;
-  column-gap: $lcc-space--xxs;
+  -webkit-column-gap: 2px;
+  -moz-column-gap: 2px;
+  column-gap: 2px;
 
   img {
     display: block;
     width: 100%;
-    margin-bottom: $lcc-space--xxs;
-    border-radius: $lcc-border-radius--lg;
-    border: 1px solid $lcc-color--transparent-mostly;
+    margin-bottom: 2px;
+    border-radius: var(--lcc-borderRadius--large);
+    border: 1px solid var(--lcc-color--photoGrid-imageBorder);
     opacity: 0.85;
 
     &:hover {
       cursor: pointer;
-      box-shadow: 1px 1px 4px 1px $lcc-color--box-shadow;
-      border: 1px solid $lcc-color--primary;
+      box-shadow: 1px 1px 4px 1px var(--lcc-color--photoGrid-imageBoxShadowOnHover);
+      border: 1px solid var(--lcc-color--photoGrid-imageBorderOnHover);
       opacity: 1;
     }
   }

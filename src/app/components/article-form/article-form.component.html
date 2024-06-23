@@ -21,7 +21,7 @@
 
 		<div class="image-controls-container">
 			<label for="image-file-input"
-						 class="lcc-button lcc-secondary-button">
+						 class="lcc-secondary-button file-button">
 				Choose file
 			</label>
 			<input id="image-file-input"
@@ -29,7 +29,7 @@
 						 name="imageFile"
 						 accept="image/*"
 						 (change)="onChooseImage($event)" />
-			<button class="lcc-button lcc-icon-button image-revert-button"
+			<button class="lcc-secondary-button image-revert-button"
 							tooltip="Revert to original image"
 							[disabled]="!(facade.hasNewImage$ | async)"
 							(click)="onRevert()">
@@ -90,9 +90,13 @@
 					 name="is-sticky"
 					 formControlName="isSticky" />
 	</div>
+
+	<aside class="lcc-required-fields-legend">Required fields</aside>
+
 	<div class="preview-section-container">
 		@if (!!form.controls['body'].value) {
-		<h4>Preview:</h4>
+		<h4>Preview</h4>
+		<hr />
 		<div class="markdown-container">
 			<lcc-markdown-renderer [data]="form.controls['body'].value">
 			</lcc-markdown-renderer>

@@ -1,25 +1,23 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 .app-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: darken($lcc-color--primary, 10%);
   overflow-x: hidden;
 }
 
 main {
   flex-grow: 1;
-  padding: $lcc-space--sm 0;
-  background-color: $lcc-color--bg-main;
+  padding: 8px 0;
+  background-color: var(--lcc-color--app-mainBackground);
 
   @include respond-to('gt-sm') {
-    padding: $lcc-space--sm;
+    padding: 8px;
   }
 }
 
-lcc-alert,
+lcc-upcoming-event-banner,
 lcc-header,
 lcc-nav,
 lcc-footer {

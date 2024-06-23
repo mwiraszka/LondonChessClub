@@ -1,12 +1,11 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 :host {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: $lcc-space--sm;
+  gap: 8px;
 
   ul {
     columns: 1;
@@ -31,17 +30,17 @@
       a {
         display: flex;
         align-items: center;
-        gap: $lcc-space--sm;
-        padding: $lcc-space--xs;
+        gap: 4px;
+        padding: 4px;
         white-space: nowrap;
-        font-size: $h6;
+        font-size: var(--lcc-fontSize--h6);
 
         @include respond-to('gt-xs') {
-          font-size: $h5;
+          font-size: var(--lcc-fontSize--h5);
         }
 
         @include respond-to('gt-sm') {
-          font-size: $h4;
+          font-size: var(--lcc-fontSize--h4);
         }
   
         .icon {

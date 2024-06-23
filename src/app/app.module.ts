@@ -5,19 +5,19 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppRoutingModule } from '@app/app-routing.module';
-import { AlertModule } from '@app/components/alert';
 import { FooterModule } from '@app/components/footer';
 import { HeaderModule } from '@app/components/header';
 import { ImageOverlayModule } from '@app/components/image-overlay';
 import { ModalModule } from '@app/components/modal';
 import { NavModule } from '@app/components/nav';
 import { ToasterModule } from '@app/components/toaster';
+import { UpcomingEventBannerModule } from '@app/components/upcoming-event-banner';
 import { metaReducers } from '@app/store/app';
 import { ArticlesStoreModule } from '@app/store/articles';
 import { AuthStoreModule } from '@app/store/auth';
@@ -27,6 +27,7 @@ import { NavStoreModule } from '@app/store/nav';
 import { PhotosStoreModule } from '@app/store/photos';
 import { ScheduleStoreModule } from '@app/store/schedule';
 import { ToasterStoreModule } from '@app/store/toaster';
+import { UserSettingsStoreModule } from '@app/store/user-settings';
 import { actionSanitizer } from '@app/utils';
 
 import { environment } from '@environments/environment';
@@ -36,7 +37,6 @@ import { AppComponent } from './app.component';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    AlertModule,
     AppRoutingModule,
     ArticlesStoreModule,
     AuthStoreModule,
@@ -72,7 +72,8 @@ import { AppComponent } from './app.component';
     }),
     ToasterModule,
     ToasterStoreModule,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    UpcomingEventBannerModule,
+    UserSettingsStoreModule,
   ],
   bootstrap: [AppComponent],
 })

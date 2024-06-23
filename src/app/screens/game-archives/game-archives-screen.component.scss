@@ -1,26 +1,25 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 $pgn-viewer-width: 432px;
 $pgn-viewer-height: 336px;
-$container-max-width: calc($pgn-viewer-width * 3 + $lcc-space--xs * 6);
+$container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
 
 :host {
   .container {
     display: flex;
-    flex-flow: column nowrap;
+    flex-direction: column;
     align-items: center;
-    gap: $lcc-space--sm;
-    max-width: $lcc-width--app-content;
-    margin: 0 $lcc-space--sm;
+    gap: 8px;
+    max-width: var(--lcc-width--appContent);
+    margin: 0 8px;
 
     @include respond-to('gt-sm') {
-      margin: 0;
+      margin: auto;
     }
   }
 
   .intro-section {
-    margin: $lcc-space--md 0;
+    margin: 16px 0;
     max-width: $container-max-width;
     display: flex;
     flex-direction: column;
@@ -35,25 +34,27 @@ $container-max-width: calc($pgn-viewer-width * 3 + $lcc-space--xs * 6);
       img {
         max-width: 100%;
         max-height: 534px;
-        border-radius: $lcc-border-radius--lg;
+        border-radius: var(--lcc-borderRadius--large);
       }
     }
 
     .text-container {
       flex: 1;
-      padding: $lcc-space--sm;
+      padding: 8px;
 
       @include respond-to('gt-lg') {
-        padding: 0 $lcc-space--lg;
+        padding: 0 32px;
       }
 
       h3 {
-        margin: $lcc-space--sm 0 $lcc-space--md;
+        margin: 8px 0 16px;
         font-style: italic;
+        color: var(--lcc-color--gameArchivesScreen-headerText);
       }
   
       p {
-        margin-bottom: $lcc-space--md;
+        margin-bottom: 16px;
+        color: var(--lcc-color--gameArchivesScreen-text);
       }
     }
   }
@@ -68,11 +69,11 @@ $container-max-width: calc($pgn-viewer-width * 3 + $lcc-space--xs * 6);
   .panel-content {
     width: 100%;
     max-width: $container-max-width;
-    padding-bottom: $lcc-space--xxs;
+    padding-bottom: 2px;
   }
 
   ::ng-deep lcc-expansion-panel .header-container {
-    padding-right: $lcc-space--md !important;
+    padding-right: 16px !important;
   }
 
   .header-content {
@@ -80,7 +81,7 @@ $container-max-width: calc($pgn-viewer-width * 3 + $lcc-space--xs * 6);
     flex-flow: row wrap;
     justify-content: space-between;
     flex: 1;
-    padding: 0 $lcc-space--md;
+    padding: 0 16px;
   }
 
   .games-container {
@@ -88,16 +89,20 @@ $container-max-width: calc($pgn-viewer-width * 3 + $lcc-space--xs * 6);
     width: 100%;
 
     cdk-virtual-scroll-viewport {
-      height: $pgn-viewer-height + 2 * $lcc-space--xs;
+      height: $pgn-viewer-height + 2 * 4px;
 
       ::ng-deep .cdk-virtual-scroll-content-wrapper {
         display: flex;
 
         lcc-pgn-viewer {
-          margin: $lcc-space--xs;
+          margin: 4px;
           max-width: $pgn-viewer-width;
         }
       }
+    }
+
+    .loading-text {
+      color: var(--lcc-color--gameArchivesScreen-loadingText);
     }
   }
 }

@@ -1,14 +1,13 @@
-@import 'styles/abstracts/variables';
-
 :host {
   display: flex;
   flex-direction: column;
   text-align: center;
-  gap: $lcc-space--xs;
-  padding: $lcc-space--lg 0;
+  gap: 4px;
+  padding: 32px 0;
   white-space: nowrap;
-  background-color: $lcc-color--bg-canvas;
-  font-size: $h5;
+  background-color: var(--lcc-color--footer-background);
+  color: var(--lcc-color--footer-text);
+  font-size: var(--lcc-fontSize--h5);
 }
 
 .website-details {
@@ -16,16 +15,16 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 0 $lcc-space--sm;
+  margin: 0 8px;
   text-decoration: none;
   font-style: normal;
 
   .divider {
-    margin: 0 $lcc-space--sm;
+    margin: 0 8px;
+    color: var(--lcc-color--general-dividerLine);
   }
 }
 
 .new-version-notice {
-  margin-top: $lcc-space--sm;
-  color: $lcc-color--text-secondary;
+  margin-top: 8px;
 }

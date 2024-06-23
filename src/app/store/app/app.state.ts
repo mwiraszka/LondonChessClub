@@ -6,6 +6,7 @@ import { NavState } from '@app/store/nav/nav.state';
 import { PhotosState } from '@app/store/photos/photos.state';
 import { ScheduleState } from '@app/store/schedule/schedule.state';
 import { ToasterState } from '@app/store/toaster/toaster.state';
+import { UserSettingsState } from '@app/store/user-settings/user-settings.state';
 
 export interface AppState {
   articlesState: ArticlesState;
@@ -16,4 +17,5 @@ export interface AppState {
   navState: NavState;
   scheduleState: ScheduleState;
   toasterState: ToasterState;
+  userSettingsState: UserSettingsState;
 }

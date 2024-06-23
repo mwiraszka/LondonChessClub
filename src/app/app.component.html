@@ -8,8 +8,8 @@
 
 
 <div class="app-container">
-	@if (showAlert && (facade.upcomingEvent$ | async)) {
-	<lcc-alert (close)="onCloseAlert()"></lcc-alert>
+	@if ((facade.showUpcomingEventBanner$ | async) && (facade.upcomingEvent$ | async)) {
+	<lcc-upcoming-event-banner></lcc-upcoming-event-banner>
 	}
 
 	<lcc-header></lcc-header>

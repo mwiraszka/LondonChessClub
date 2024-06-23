@@ -1,3 +1,37 @@
+/* Viewport breakpoint map */
+$breakpoints: (
+  'lt-xs': (
+    max-width: 350px,
+  ),
+  'gt-xs': (
+    min-width: 350px,
+  ),
+  'lt-sm': (
+    max-width: 500px,
+  ),
+  'gt-sm': (
+    min-width: 500px,
+  ),
+  'lt-md': (
+    max-width: 700px,
+  ),
+  'gt-md': (
+    min-width: 700px,
+  ),
+  'lt-lg': (
+    max-width: 1000px,
+  ),
+  'gt-lg': (
+    min-width: 1000px,
+  ),
+  'lt-xl': (
+    max-width: 1500px,
+  ),
+  'gt-xl': (
+    min-width: 1500px,
+  ),
+);
+
 /// Responsive breakpoint manager
 /// @access public
 /// @param {String} $breakpoint - Breakpoint
@@ -16,7 +50,7 @@
       @content;
     }
   } @else {
-    @error 'No value found for `#{$breakpoint}`. '
+    @error '[LCC] No value found for `#{$breakpoint}`. '
          + 'Please make sure it is defined in `$breakpoints` map.';
   }
 }
@@ -32,7 +66,7 @@
   $multiplier: 1;
   $current-width: 0px;
 
-  @while $current-width < $max-viewport-width {
+  @while ($current-width < $max-viewport-width) {
     $current-width: $current-width + $item-min-width;
     $multiplier: $multiplier + 1;
 

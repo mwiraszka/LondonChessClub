@@ -1,0 +1,109 @@
+@use "sass:map";
+
+$lcc-color-palette: (
+  grayscale: (
+    black-2: hsl(0, 0%, 2%),
+    black-5: hsl(0, 0%, 5%),
+    black-10: hsl(0, 0%, 10%),
+    black-15: hsl(0, 0%, 15%),
+    black-20: hsl(0, 0%, 20%),
+    gray-25: hsl(0, 0%, 25%),
+    gray-35: hsl(0, 0%, 35%),
+    gray-50: hsl(0, 0%, 50%),
+    gray-65: hsl(0, 0%, 65%),
+    gray-75: hsl(0, 0%, 75%),
+    white-80: hsl(0, 0%, 80%),
+    white-85: hsl(0, 0%, 85%),
+    white-90: hsl(0, 0%, 90%),
+    white-92: hsl(0, 0%, 92%),
+    white-95: hsl(0, 0%, 95%),
+    white-98: hsl(0, 0%, 98%),
+  ),
+  primary: (
+    darker: hsl(210, 40%, 20%),
+    dark: hsl(210, 40%, 33%),
+    base: hsl(210, 40%, 40%),
+    light: hsl(210, 40%, 49%),
+    lighter: hsl(210, 40%, 58%),
+    lightest: hsl(210, 40%, 75%),
+  ),
+  secondary: (
+    darker: hsl(24, 73%, 38%),
+    dark: hsl(24, 73%, 51%),
+    base: hsl(24, 73%, 58%),
+    light: hsl(24, 73%, 65%),
+    lighter: hsl(24, 73%, 78%),
+  ),
+  success: (
+    base: hsl(101, 50%, 55%),
+    light: hsl(100, 50%, 70%),
+  ),
+  warning: (
+    base: hsl(0, 60%, 45%),
+    light: hsl(0, 55%, 50%),
+    lighter: hsl(0, 60%, 65%),
+    lightest: hsl(0, 70%, 75%),
+  ),
+  info: (
+    base: hsl(215, 70%, 55%),
+    light: hsl(215, 70%, 75%),
+  ),
+  event-blitz-tournament: (
+    base: hsl(0, 50%, 60%),
+    light: hsl(0, 50%, 80%),
+  ),
+  event-rapid-tournament: (
+    base: hsl(43, 60%, 60%),
+    light: hsl(43, 60%, 80%),
+  ),
+  event-active-tournament: (
+    base: hsl(107, 45%, 50%),
+    light: hsl(107, 45%, 70%),
+  ),
+  event-lecture: (
+    base: hsl(170, 35%, 50%),
+    light: hsl(170, 35%, 70%),
+  ),
+  event-simul: (
+    base: hsl(247, 30%, 60%),
+    light: hsl(247, 30%, 80%),
+  ),
+  event-championship: (
+    base: hsl(50, 70%, 60%),
+    light: hsl(50, 70%, 80%),
+  ),
+  event-other: (
+    base: hsl(240, 10%, 60%),
+    light: hsl(240, 10%, 80%),
+  ),
+  event-closed: (
+    base: hsl(0, 0%, 50%),
+    light: hsl(0, 0%, 70%),
+  ),
+  tooltip: (
+    base: hsl(260, 11%, 23%),
+    light: hsl(260, 11%, 25%),
+  ),
+  chessboard: (
+    base: hsl(34, 44%, 69%),
+  ),
+  highlight: (
+    base: hsl(61, 100%, 57%),
+  ),
+);
+
+@function color($color, $tone: base, $opacity: 1) {
+  @if map.has-key($lcc-color-palette, $color) {
+    $colorKey: map.get($lcc-color-palette, $color);
+
+    @if map.has-key($colorKey, $tone) {
+      @return rgba(map.get($colorKey, $tone), $opacity);
+    }
+
+    @warn "[LCC] Unknown tone '#{$tone}' in color '#{$color}'";
+    @return null;
+  }
+
+  @warn "[LCC] Unknown color '#{$color}' in palette";
+  @return null;
+}

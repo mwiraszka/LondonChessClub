@@ -7,13 +7,12 @@
 
 .lcc-table {
   display: table;
-  font-size: calc($h4 + 1px);
-  border-radius: $lcc-border-radius--sm;
+  font-size: var(--lcc-fontSize--h4);
+  border: 1px solid var(--lcc-color--table-border);
+  border-radius: var(--lcc-borderRadius--small);
   border-spacing: 0;
-  box-shadow: 3px 2px 8px 0 lighten($color: $lcc-color--grey, $amount: 2%);
   overflow: hidden;
   width: 100%;
-  color: $lcc-color--text-primary-black;
 
   &:hover {
     cursor: default;
@@ -21,16 +20,16 @@
   
   thead {
     th {
-      color: darken($lcc-color--white, 5%);
-      background-color: $lcc-color--primary;
+      color: var(--lcc-color--table-headerForeground);
+      background-color: var(--lcc-color--table-headerBackground);
       white-space: nowrap;
       font-weight: 200;
       
       &:not(.lcc-table-admin-controls-filler) {
-        padding: $lcc-space--sm;
+        padding: 8px;
 
         @include respond-to('gt-sm') {
-          padding: $lcc-space--sm $lcc-space--md;
+          padding: 8px 16px;
         }
       }
     }
@@ -38,27 +37,28 @@
   
   tbody {
     tr {
-      background-color: $lcc-color--bg-table-row-dark;
+      background-color: var(--lcc-color--table-rowBackgroundOdd);
+      color: var(--lcc-color--table-rowForeground);
   
       &:nth-child(even) {
-        background-color: $lcc-color--bg-table-row-light;
+        background-color: var(--lcc-color--table-rowBackgroundEven);
       }
   
       td {
-        padding: $lcc-space--sm;
+        padding: 8px;
 
         @include respond-to('gt-sm') {
-          padding: $lcc-space--sm $lcc-space--md;
+          padding: 8px 16px;
         }
       }
     }
   }
 
   tfoot {
-    color: $lcc-color--text-secondary;
+    color: var(--lcc-color--table-footerForeground);
 
     td {
-      padding: $lcc-space--sm;
+      padding: 8px;
       text-align: right;
     }
   }

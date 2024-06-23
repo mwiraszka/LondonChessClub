@@ -1,3 +1,6 @@
+$spinner-color1: var(--lcc-color--loadingSpinner1);
+$spinner-color2: var(--lcc-color--loadingSpinner2);
+
 /* Absolute center spinner */
 .lcc-loading-spinner {
   position: fixed;
@@ -21,7 +24,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: var(--lcc-color--loadingSpinner-screenOverlay);
 }
 
 /* :not(:required) hides these rules from IE9 and below */
@@ -41,32 +44,31 @@
   width: 1em;
   height: 1em;
   margin-top: -0.5em;
-  -o-animation: spin 1500ms infinite linear;
-  -moz-animation: spin 1500ms infinite linear;
-  -ms-animation: spin 1500ms infinite linear;
-  -webkit-animation: spin 1500ms infinite linear;
-  animation: spin 1500ms infinite linear;
+  -o-animation: spin 1200ms infinite linear;
+  -moz-animation: spin 1200ms infinite linear;
+  -ms-animation: spin 1200ms infinite linear;
+  -webkit-animation: spin 1200ms infinite linear;
+  animation: spin 1200ms infinite linear;
   border-radius: 0.5em;
   -webkit-box-shadow:
-  rgba(0, 0, 0, 0.75) 1.5em 0 0 0,
-  rgba(105, 71, 71, 0.75) 1.1em 1.1em 0 0,
-  rgba(0, 0, 0, 0.75) 0 1.5em 0 0,
-  rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0,
-  rgba(0, 0, 0, 0.5) -1.5em 0 0 0,
-  rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0,
-  rgba(0, 0, 0, 0.75) 0 -1.5em 0 0,
-  rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+    $spinner-color1 1.7em 0 0 0,
+    $spinner-color2 1.1em 1.1em 0 0,
+    $spinner-color1 0 1.7em 0 0,
+    $spinner-color2 -1.1em 1.1em 0 0,
+    $spinner-color1 -1.7em 0 0 0,
+    $spinner-color2 -1.1em -1.1em 0 0,
+    $spinner-color1 0 -1.7em 0 0,
+    $spinner-color2 1.1em -1.1em 0 0;
   box-shadow:
-  rgba(0, 0, 0, 0.75) 1.5em 0 0 0,
-  rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0,
-  rgba(0, 0, 0, 0.75) 0 1.5em 0 0,
-  rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0,
-  rgba(0, 0, 0, 0.75) -1.5em 0 0 0,
-  rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0,
-  rgba(0, 0, 0, 0.75) 0 -1.5em 0 0,
-  rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+    $spinner-color1 1.7em 0 0 0,
+    $spinner-color2 1.1em 1.1em 0 0,
+    $spinner-color1 0 1.7em 0 0,
+    $spinner-color2 -1.1em 1.1em 0 0,
+    $spinner-color1 -1.7em 0 0 0,
+    $spinner-color2 -1.1em -1.1em 0 0,
+    $spinner-color1 0 -1.7em 0 0,
+    $spinner-color2 1.1em -1.1em 0 0;
 }
-
 
 @-o-keyframes spin {
   0% {

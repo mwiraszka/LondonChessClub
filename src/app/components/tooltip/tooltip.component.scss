@@ -1,21 +1,21 @@
-@import 'styles/abstracts/variables';
-
 .tooltip {
   position: fixed;
   z-index: 100;
-  background-color: $lcc-color--bg-tooltip;
-  color: white;
-  border-radius: $lcc-border-radius--lg;
-  padding: $lcc-space--xxs $lcc-space--sm;
-  margin-top: $lcc-space--sm;
+  background-color: var(--lcc-color--tooltip-background);
+  color: var(--lcc-color--tooltip-text);
+  outline: 1px solid var(--lcc-color--tooltip-border);
+  border-radius: var(--lcc-borderRadius--large);
+  padding: 4px 8px;
+  margin-top: 8px;
   transform: translateX(-50%);
   animation: tooltip-slide 0.5s;
   pointer-events: none;
-  font-size: $h5;
+  font-size: var(--lcc-fontSize--h5);
   line-height: 1.2em;
   text-align: center;
   word-wrap: break-word;
   text-transform: none;
+  white-space: wrap;
 }
 
 @keyframes tooltip-slide {

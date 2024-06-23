@@ -1,30 +1,28 @@
-@import 'styles/abstracts/variables';
-
 $header-height: 26px;
 
 .content {
   position: absolute;
-  top: $lcc-space--sm;
+  top: 8px;
 
   header {
     display: flex;
     align-items: center;
     height: $header-height;
-    background-color: darken($lcc-color--primary, 20%);
-    border-top-left-radius: $lcc-border-radius--lg;
-    border-top-right-radius: $lcc-border-radius--lg;
-    border-bottom: 2px solid darken($lcc-color--primary, 30%);
+    background-color: var(--lcc-color--imageOverlay-headerBackground);
+    border-top-left-radius: var(--lcc-borderRadius--large);
+    border-top-right-radius: var(--lcc-borderRadius--large);
+    border-bottom: 2px solid var(--lcc-color--imageOverlay-headerBorderBottom);
 
     .close-icon {
-      margin: 0 $lcc-space--xs 0 auto;
+      margin: 0 4px 0 auto;
       background-color: inherit;
       height: 18px;
       width: 18px;
-      color: darken($lcc-color--white, 10%);
+      color: var(--lcc-color--imageOverlay-closeIcon);
 
       &:hover {
         cursor: pointer;
-        color: darken($lcc-color--white, 2%);
+        color: var(--lcc-color--imageOverlay-closeIconOnHover);
       }
     }
   }
@@ -32,23 +30,23 @@ $header-height: 26px;
   img {
     z-index: 101;
     width: 100%;
-    max-width: calc(100vw - #{$lcc-space--md});
-    max-height: calc(100vh - #{$header-height} - #{$lcc-space--md});
-    border-bottom-left-radius: $lcc-border-radius--lg;
-    border-bottom-right-radius: $lcc-border-radius--lg;
+    max-width: calc(100vw - 16px);
+    max-height: calc(100vh - #{$header-height} - 16px);
+    border-bottom-left-radius: var(--lcc-borderRadius--large);
+    border-bottom-right-radius: var(--lcc-borderRadius--large);
   }
 
   .description {
     position: relative;
-    left: $lcc-space--sm;
-    right: -$lcc-space--sm;
+    left: 8px;
+    right: -8px;
     // Must match first value of bottom offset used on image-navigation-icons-container
     bottom: 32px;
-    width: calc(100% - 2 * #{$lcc-space--sm});
-    padding: $lcc-space--xs $lcc-space--sm;
-    border-radius: $lcc-border-radius--sm;
-    background-color: hsla(0, 0%, 99%, 0.8);
-    color: $lcc-color--text-primary-black;
+    width: calc(100% - 16px);
+    padding: 4px 8px;
+    border-radius: var(--lcc-borderRadius--small);
+    background-color: var(--lcc-color--imageOverlay-descriptionBackground);
+    color: var(--lcc-color--imageOverlay-descriptionText);
   }
 }
 
@@ -60,13 +58,13 @@ $header-height: 26px;
 
   .previous-image-icon,
   .next-image-icon {
-    color: darken(white, 10%);
+    color: var(--lcc-color--imageOverlay-navigationIcons);
     width: 50px;
     height: 50px;
 
     &:hover {
       cursor: pointer;
-      color: white;
+      color: var(--lcc-color--imageOverlay-navigationIconsOnHover);
     }
   }
 }

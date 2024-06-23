@@ -1,8 +1,6 @@
-@import 'styles/abstracts/variables';
-
 $document-max-width: 1000px;
 $header-height: 40px;
-$close-icon-height: $header-height - (2 * $lcc-space--sm);
+$close-icon-height: $header-height - (2 * 8px);
 $document-icon-height: 18px;
 
 :host {
@@ -12,19 +10,18 @@ $document-icon-height: 18px;
 
 .container {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: $lcc-space--sm;
+  gap: 8px;
   width: 100%;
-  max-width: $lcc-width--app-content;
-  padding: 0 $lcc-space--sm;
+  max-width: var(--lcc-width--appContent);
+  padding: 0 8px;
 }
 
 .documents-table {
   td {
     white-space: nowrap;
-    color: lighten($lcc-color--text-primary-black, 40%);
   }
 
   .published,
@@ -36,38 +33,32 @@ $document-icon-height: 18px;
   .document {
     display: flex;
     justify-content: space-between;
-    gap: $lcc-space--md;
+    gap: 16px;
 
     .document-label-container {
       display: flex;
       align-items: center;
-      gap: $lcc-space--xs;
+      gap: 4px;
 
       .file-icon {
         width: $document-icon-height;
         height: $document-icon-height;
         min-width: $document-icon-height;
       }
-  
-      .document-title {
-        color: lighten($lcc-color--text-primary-black, 20%);
-      }
 
       &:hover {
         .file-icon,
         .document-title {
           cursor: pointer;
-          color: $lcc-color--primary;
+          color: var(--lcc-color--documentsScreen-documentLabelOnHover);
         }
       }
     }
 
     .download-link {
-      color: lighten($lcc-color--text-primary-black, 20%);
-
       &:hover {
         cursor: pointer;
-        color: $lcc-color--primary;
+        color: var(--lcc-color--documentsScreen-downloadLinkOnHover);
       }
 
       .download-icon {
@@ -97,7 +88,7 @@ $document-icon-height: 18px;
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: $lcc-color--overlay;
+  background-color: var(--lcc-color--documentsScreen-pdfViewerOverlayBackground);
 
   .pdf-viewer-header {
     display: flex;
@@ -105,17 +96,17 @@ $document-icon-height: 18px;
     height: $header-height;
     width: 100%;
     max-width: $document-max-width;
-    background-color: darken($lcc-color--primary, 20%);
+    background-color: var(--lcc-color--documentsScreen-pdfViewerHeaderBackground);
 
     .close-icon {
-      margin: 0 $lcc-space--sm 0 auto;
+      margin: 0 8px 0 auto;
       height: $close-icon-height;
       width: $close-icon-height;
-      color: darken($lcc-color--white, 10%);
+      color: var(--lcc-color--documentsScreen-pdfViewerCloseIcon);
 
       &:hover {
         cursor: pointer;
-        color: $lcc-color--white;
+        color: var(--lcc-color--documentsScreen-pdfViewerCloseIconOnHover);
       }
     }
   }
@@ -124,10 +115,10 @@ $document-icon-height: 18px;
     position: absolute;
     top: $header-height;
     left: 0;
-    height: $lcc-space--sm;
-    background-color: white;
-    box-shadow: $lcc-box-shadow;
-    border-bottom: $lcc-space--xs solid darken($lcc-color--primary, 10%);
+    height: 8px;
+    background-color: var(--lcc-color--documentsScreen-pdfViewerLoaderBoxBackground);
+    box-shadow: 1px 1px 5px 0 var(--lcc-color--documentsScreen-pdfViewerLoaderBoxShadow);
+    border-bottom: 4px solid var(--lcc-color--documentsScreen-pdfViewerLoaderBoxBorderBottom);
   }
 
   pdf-viewer {
@@ -139,11 +130,19 @@ $document-icon-height: 18px;
       overflow-x: hidden;
     
       &::-webkit-scrollbar {
-        background-color: $lcc-color--transparent-half !important;
+        background-color: var(--lcc-color--documentsScreen-pdfViewerScrollbarBackground) !important;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--lcc-color--documentsScreen-pdfViewerScrollbar) !important;
       }
       
       .page {
         margin: 0;
+
+        .textLayer {
+          background-color: var(--lcc-color--documentsScreen-pdfViewerPageBackground) !important;
+        }
       }
     }
   }

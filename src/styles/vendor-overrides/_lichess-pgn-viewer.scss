@@ -1,8 +1,6 @@
-@import 'styles/abstracts/variables';
-
 lcc-pgn-viewer {
   cg-board {
-    background-color: tan;
+    background-color: var(--lcc-color--pgnViewer-board);
   }
   
   .lpv:focus {
@@ -10,6 +8,6 @@ lcc-pgn-viewer {
   }
 
   .lpv__player__name {
-    color: darken($lcc-color--text-primary-white, 15%);
+    color: var(--lcc-color--pgnViewer-playerNameText);
   }
 }

@@ -1,60 +1,43 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 :host {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: rgba($lcc-color--accent, 0.1);
-  border-radius: $lcc-border-radius--lg;
+  border: 1px solid var(--lcc-color--paginator-border);
+  border-radius: var(--lcc-borderRadius--large);
+  background-color: var(--lcc-color--paginator-background);
+  color: var(--lcc-color--paginator-pageNumberText);
   
-  padding: $lcc-space--xs $lcc-space--lg;
-  gap: $lcc-space--sm;
+  padding: 4px 32px;
+  gap: 8px;
 }
 
-button {
-  padding: $lcc-space--xs;
-  color: lighten($lcc-color--black, 20%);
-
-  &:hover {
-    &:not([disabled]):not(.selected) {
-      box-shadow: 1px 1px 4px $lcc-box-shadow;
-      color: $lcc-color--black !important;
-
-      &:hover {
-        color: $lcc-color--hover !important;
-      }
-    }
-  }
+.page-navigation-button {
+  padding: 2px;
 }
 
-.center-section {
+.page-control-section {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: $lcc-space--xs;
-  font-size: $h5;
-  padding: 0 $lcc-space--xs;
+  gap: 4px;
+  font-size: var(--lcc-fontSize--h5);
+  padding: 0 4px;
 
-  .center-section-buttons {
+  .page-size-buttons {
     display: flex;
-    flex-flow: row nowrap;
-    gap: $lcc-space--xs;
+    flex-direction: row;
+    gap: 4px;
 
-    .center-section-button {
-      border: none;
-      text-transform: unset;
-      white-space: unset;
-      font-size: $h5;
-      background-color: rgba($lcc-color--accent, 0.2) !important;
+    .page-size-button {
+      padding: 4px;
 
       &.selected {
-        cursor: default;
-        background-color: $lcc-color--accent;
-        border: 1px solid rgba(lighten($lcc-color--black, 20%), 0.5);
+        border: 2px solid var(--lcc-color--paginator-selectedButtonBorder) !important;
       }
     }
   }

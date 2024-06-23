@@ -1,14 +1,12 @@
-@import 'styles/abstracts/variables';
-
 :host {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   align-items: center;
-  gap: $lcc-space--xs;
+  gap: 4px;
 }
 
 form {
-  max-width: $lcc-width--small-form;
+  max-width: var(--lcc-width--smallForm);
 }
 
 .details-textarea {
@@ -17,6 +15,6 @@ form {
 
 hr {
   width: 100%;
-  border-top: 1px solid $lcc-color--fg-divider;
+  border-top: 1px solid var(--lcc-color--general-dividerLine);
   margin: 1em 0;
 }

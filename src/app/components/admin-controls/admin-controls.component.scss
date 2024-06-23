@@ -1,10 +1,8 @@
-@import 'styles/abstracts/variables';
-
 :host {
   position: absolute;
   z-index: 10;
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
 
   // Visible on parent hover (see _admin-controls-container.scss)
   visibility: hidden;
@@ -13,23 +11,34 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: $lcc-space--xxs;
-    border: 3px solid darken($lcc-color--white, 5%);
-    border-radius: $lcc-border-radius--lg;
-    background-color: $lcc-color--white;
+    padding: 2px;
+    border: 3px solid var(--lcc-color--adminControls-buttonBorder);
+    border-radius: var(--lcc-borderRadius--large);
+    background-color: var(--lcc-color--adminControls-buttonBackground);
 
-    &:first-child {
-      margin-right: $lcc-space--xxs;
+    &.edit-button {
+      color: var(--lcc-color--adminControls-editIcon);
+      margin-right: 2px;
+
+      &:focus,
+      &:hover {
+        color: var(--lcc-color--adminControls-editIconOnHover);
+      }
+    }
+
+    &.delete-button {
+      color: var(--lcc-color--adminControls-deleteIcon);
+
+      &:focus,
+      &:hover {
+        color: var(--lcc-color--adminControls-deleteIconOnHover);
+      }
     }
 
     &:focus,
     &:hover {
       cursor: pointer;
-      background-color: white;
-    }
-
-    .trash-icon {
-      color: $lcc-color--warn;
+      background-color: var(--lcc-color--adminControls-buttonBackgroundOnHover);
     }
   }
 }

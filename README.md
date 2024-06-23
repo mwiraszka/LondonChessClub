@@ -32,11 +32,26 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 ## Release notes
 
-|     |                                       |
-| --- | ------------------------------------- |
-| 🚀  | New **features** and **improvements** |
-| 🐛  | Bug fixes                             |
-| 🔧  | Code refactoring                      |
+|     |                                   |
+| --- | --------------------------------- |
+| 🚀  | **New features** and improvements |
+| 🐛  | Bug fixes                         |
+| 🔧  | Code refactoring                  |
+
+<details>
+<summary style="cursor: pointer">
+v4.0.0 - June 23rd, 2024
+</summary>
+
+- 🚀 Overhaul redesign of colour theming throughout app
+- 🚀 Revamp the user settings dropdown menu
+- 🚀 Introduce a dark mode, and add ability to toggle theme from the dropdown menu, defaulting to the user's browser preferences
+- 🚀 Minor improvements to various UI components: tooltips, toasts, forms, screen headers, modification info boxes, event alert banners, and the page loading spinner
+- 🐛 Fix layout issue on Game Archives page
+- 🐛 Fix layout issue in app header when viewing app on a large screen
+- 🔧 Simplify some CSS Flex code throughout codebase and remove other redundant/unused styles
+
+</details>
 
 <details>
 <summary style="cursor: pointer">

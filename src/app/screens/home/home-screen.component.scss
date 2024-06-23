@@ -1,13 +1,12 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
 .container {
-  max-width: $lcc-width--app-content;
+  max-width: var(--lcc-width--appContent);
   display: grid;
   grid-template-areas: 'welcome' 'schedule' 'articles' 'photos';
   grid-template-columns: minmax(0, 1fr);
   margin: auto;
-  gap: $lcc-space--sm;
+  gap: 8px;
   
   @include respond-to('gt-lg') {
     grid-template-columns: 3fr 2fr;
@@ -18,27 +17,26 @@
   }
 
   article {
-    background-color: lighten($lcc-color--bg-grid-item, 4%);
-    padding: $lcc-space--sm $lcc-space--md;
+    background-color: var(--lcc-color--homeScreen-articleBackground);
+    padding: 8px 16px;
     display: flex;
-    flex-flow: column nowrap;
-    gap: $lcc-space--md;
+    flex-direction: column;
+    gap: 16px;
     
     @include respond-to('gt-lg') {
-      border-radius: $lcc-border-radius--sm;
+      border-radius: var(--lcc-borderRadius--small);
     }
 
     &.welcome {
       grid-area: welcome;
       display: flex;
-      flex-flow: column nowrap;
-      padding: $lcc-space--md;
-      background-color: $lcc-color--bg-canvas;
-      border-radius: $lcc-border-radius--sm;
-      box-shadow: $lcc-box-shadow;
+      flex-direction: column;
+      padding: 16px;
+      border-radius: var(--lcc-borderRadius--small);
+      color: var(--lcc-color--homeScreen-welcomeSectionText);
 
       @include respond-to('gt-sm') {
-        padding: $lcc-space--lg;
+        padding: 32px;
       }
 
       @include respond-to('gt-md') {
@@ -46,7 +44,7 @@
       }
 
       h1 {
-        color: $lcc-color--text-primary-black;
+        color: var(--lcc-color--homeScreen-welcomeHeaderText);
         font-weight: 300;
         font-size: 23px !important;
         text-align: center;
@@ -68,34 +66,35 @@
     &.schedule {
       grid-area: schedule;
       display: flex;
-      flex-flow: column nowrap;
+      flex-direction: column;
       justify-content: space-between;
     }
   
     &.articles {
       grid-area: articles;
       display: flex;
-      flex-flow: column nowrap;
+      flex-direction: column;
       justify-content: space-between;
     }
 
     &.photos {
       grid-area: photos;
       display: flex;
-      flex-flow: column nowrap;
+      flex-direction: column;
       justify-content: space-between;
     }
 
     section {
       display: flex;
-      flex-flow: column nowrap;
-      gap: $lcc-space--sm;
+      flex-direction: column;
+      gap: 8px;
 
       h4 {
         width: 100%;
         text-align: left;
-        padding: $lcc-space--xxs;
-        border-bottom: 1px solid lighten($lcc-color--grey, 20%);
+        padding: 2px 2px 4px;
+        color: var(--lcc-color--homeScreen-sectionHeaderText);
+        border-bottom: 1px solid var(--lcc-color--general-dividerLine);
       }
     }
   }

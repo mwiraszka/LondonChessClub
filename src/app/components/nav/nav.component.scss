@@ -1,75 +1,94 @@
 @import 'styles/abstracts/mixins';
-@import 'styles/abstracts/variables';
 
+$border-thickness: 1px;
 $dropdown-tab-width: 60px;
-$dropdown-list-width: 150px;
+$dropdown-list-width: 170px;
+$nav-height: 42px;
 
 :host {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
   justify-content: center;
-  padding-top: 1px;
-  background-color: $lcc-color--bg-nav;
-  height: $lcc-height--nav;
+  padding-top: 2px;
+  background-color: var(--lcc-color--nav-background);
+  height: $nav-height;
+}
+
+i-feather {
+  height: 20px;
+  width: 20px;
 }
 
 .nav-left,
 .nav-right,
 .nav-login-spacer {
   flex: 1;
-  border-bottom: 2px solid darken($lcc-color--bg-main, 10%);
+  border-bottom: $border-thickness solid var(--lcc-color--nav-border)
 }
 
 .nav-left,
 .nav-right {
-  min-width: $lcc-space--md;
+  min-width: 16px;
 }
 
 .nav-items-container {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
   justify-content: center;
   width: 100%;
-  max-width: $lcc-width--app-content;
+  max-width: var(--lcc-width--appContent);
   min-width: 290px; // To ensure login link never overlaps with other links 
   
-  a,
-  .lcc-dropdown-tab {
-    border-top: 2px solid $lcc-color--transparent-fully;
-    border-top-left-radius: $lcc-border-radius--lg;
-    border-top-right-radius: $lcc-border-radius--lg;
+  .nav-link,
+  .settings-dropdown-tab {
+    border-top: $border-thickness solid var(--lcc-color--nav-background);
+    border-top-left-radius: var(--lcc-borderRadius--large);
+    border-top-right-radius: var(--lcc-borderRadius--large);
+    color: var(--lcc-color--nav-linkForeground);
   }
 
-  a {
+  .nav-link {
     display: flex;
     align-items: center;
-    flex-flow: row nowrap;
-    font-size: $h4;
+    flex-direction: row;
+    font-size: var(--lcc-fontSize--h4);
     font-weight: 400;
     height: auto;
-    color: $lcc-color--text-primary-black;
     padding: 6px;
+
+    &:hover {
+      color: var(--lcc-color--nav-linkForegroundOnHover);
+      text-decoration: none;
+    }
+  
+    &.link-active {
+      cursor: default;
+      pointer-events: none;
+      background-color: var(--lcc-color--app-mainBackground);
+      color: var(--lcc-color--nav-linkForegroundWhenActive);
+      border-top: $border-thickness solid var(--lcc-color--nav-border);
+      border-left: $border-thickness solid var(--lcc-color--nav-border);
+      border-right: $border-thickness solid var(--lcc-color--nav-border);
+    }
+
+    &:not(.link-active) {
+      border-bottom: $border-thickness solid var(--lcc-color--nav-border);
+    }
 
     .text {
       display: none;
       visibility: hidden;
-      color: $lcc-color--text-primary-black;
-    }
-
-    .icon {
-      height: 20px;
-      width: 20px;
     }
 
     @include respond-to('gt-sm') {
-      padding: 6px $lcc-space--sm;
+      padding: 6px 8px;
     }
 
     @include respond-to('gt-md') {
       // Set padding so that height is kept constant on breakpoint transitions
-      padding: 10px $lcc-space--sm;
+      padding: 10px 8px;
 
-      .icon {
+      i-feather {
         display: none;
         visibility: hidden;
       }
@@ -79,46 +98,25 @@ $dropdown-list-width: 150px;
         visibility: unset;
       }
     }
-  
-    &:hover,
-    &:focus {
-      color: lighten($lcc-color--text-primary-black, 10%);
-      background-color: darken($lcc-color--bg-nav, 5%);
-      text-decoration: none;
-    }
-  
-    &.link-active {
-      cursor: default;
-      pointer-events: none;
-      box-shadow: 1px 1px 6px 4px $lcc-color--bg-main inset;
-      border-top: 2px solid darken($lcc-color--bg-main, 10%);
-      border-left: 2px solid darken($lcc-color--bg-main, 10%);
-      border-right: 2px solid darken($lcc-color--bg-main, 10%);
-      border-bottom: 2px solid $lcc-color--bg-main;
-    }
-
-    &:not(.link-active) {
-      border-bottom: 2px solid darken($lcc-color--bg-main, 10%);
-    }
   }
 
-  .lcc-dropdown-tab {
+  .settings-dropdown-tab {
     position: relative;
     display: flex;
-    flex-flow: row nowrap;
+    flex-direction: row;
+    gap: 4px;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: $dropdown-tab-width;
-    padding: $lcc-space--xs $lcc-space--sm;
-    font-size: $h5;
-    color: $lcc-color--text-primary-black;
-    border-bottom: 2px solid darken($lcc-color--bg-main, 10%);
+    padding: 4px 8px;
+    font-size: var(--lcc-fontSize--h5);
+    border-bottom: $border-thickness solid var(--lcc-color--nav-border);
 
     &:hover,
     &:focus {
       cursor: pointer;
-      background-color: darken($lcc-color--bg-nav, 5%);
+      background-color: var(--lcc-color--nav-linkBackgroundOnHover);
     }
 
     .chevron-icon {
@@ -131,62 +129,72 @@ $dropdown-list-width: 150px;
     visibility: hidden;
     display: none;
     position: absolute;
-    top: $lcc-height--nav - $lcc-space--xs;
+    top: $nav-height - 3px;
     left: $dropdown-tab-width - $dropdown-list-width;
     z-index: 100;
-    box-shadow: $lcc-box-shadow;
-    border-bottom-left-radius: $lcc-border-radius--sm;
-    border-bottom-right-radius: $lcc-border-radius--sm;
+    box-shadow: 2px 2px 4px 0 var(--lcc-color--nav-dropdownBoxShadow);
+    border-bottom-left-radius: var(--lcc-borderRadius--small);
+    border-bottom-right-radius: var(--lcc-borderRadius--small);
 
     &.lcc-dropdown-open {
       visibility: visible;
       display: flex;
-      flex-flow: column nowrap;
-    }
-
-    .admin-welcome-container {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: center;
-      gap: $lcc-space--xs;
-      padding: $lcc-space--sm;
-      background-color: darken($lcc-color--primary, 15%);
-      color: $lcc-color--text-primary-white;
-      border-top-left-radius: $lcc-border-radius--sm;
-      border-top-right-radius: $lcc-border-radius--sm;
-
-      .admin-name {
-        color: $lcc-color--text-primary-white;
-      }
-
-      .admin-user-icon {
-        height: 15px;
-        width: 15px;
-      }
+      flex-direction: column;
     }
     
     .dropdown-items {
+      cursor: default;
       display: flex;
-      flex-flow: column nowrap;
+      flex-direction: column;
       width: $dropdown-list-width;
-      font-size: $h5;
-      background-color: lighten($lcc-color--bg-nav, 5%);
-      border-bottom-left-radius: $lcc-border-radius--sm;
-      border-bottom-right-radius: $lcc-border-radius--sm;
-  
-      a {
-        padding: $lcc-space--sm;
-        border: unset;
-        border-radius: unset;
-        
-        &:last-child {
-          border-bottom-left-radius: $lcc-border-radius--sm;
-          border-bottom-right-radius: $lcc-border-radius--sm;
+      background-color: var(--lcc-color--nav-dropdownBackground);
+      border-bottom-left-radius: var(--lcc-borderRadius--small);
+      border-bottom-right-radius: var(--lcc-borderRadius--small);
+
+      hr {
+        border-top: 1px solid var(--lcc-color--general-dividerLine);
+        margin: 8px;
+      }
+
+      .dropdown-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: var(--lcc-color--nav-dropdownItemForeground);
+
+        &.user-name {
+          flex: 1;
+          justify-content: center;
+          border-bottom: 1px solid var(--lcc-color--nav-dropdownDividerLine);
+          margin: 4px 4px 0;
         }
 
-        &:hover {
-          background-color: darken($lcc-color--bg-nav, 5%);
+        &.theme-toggle {
+          margin-top: 2px;
+
+          span {
+            padding-right: 8px !important;
+          }
         }
+
+        span {
+          font-size: var(--lcc-fontSize--h4);
+          padding: 8px 16px;
+        }
+
+        a {
+          flex: 1;
+
+          &:hover > * {
+            cursor: pointer;
+            background-color: var(--lcc-color--nav-dropdownItemBackgroundOnHover);
+            color: var(--lcc-color--nav-dropdownItemTextOnHover);
+          }
+
+          span {
+            display: block;
+          }
+        } 
       }
     }
   }

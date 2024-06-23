@@ -6,6 +6,7 @@
   padding: 32px 0;
   white-space: nowrap;
   background-color: var(--lcc-color--footer-background);
+  color: var(--lcc-color--footer-text);
   font-size: var(--lcc-fontSize--h5);
 }
 
@@ -20,10 +21,10 @@
 
   .divider {
     margin: 0 8px;
+    color: var(--lcc-color--footer-verticalSpacers);
   }
 }
 
 .new-version-notice {
   margin-top: 8px;
-  color: var(--lcc-color--footer-newVersionNoticeText);
 }

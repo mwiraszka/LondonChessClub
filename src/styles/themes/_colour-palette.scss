@@ -22,8 +22,8 @@ $lcc-color-palette: (
     darker: hsl(210, 40%, 20%),
     dark: hsl(210, 40%, 33%),
     base: hsl(210, 40%, 40%),
-    light: hsl(210, 40%, 47%),
-    lighter: hsl(210, 40%, 60%),
+    light: hsl(210, 40%, 49%),
+    lighter: hsl(210, 40%, 58%),
     lightest: hsl(210, 40%, 75%),
   ),
   secondary: (
@@ -34,16 +34,18 @@ $lcc-color-palette: (
     lighter: hsl(24, 73%, 78%),
   ),
   success: (
-    base: hsl(101, 50%, 60%),
-    light: hsl(100, 50%, 65%),
+    base: hsl(101, 50%, 55%),
+    light: hsl(100, 50%, 70%),
   ),
   warning: (
     base: hsl(0, 60%, 45%),
-    light: hsl(0, 60%, 50%),
+    light: hsl(0, 55%, 50%),
+    lighter: hsl(0, 60%, 65%),
+    lightest: hsl(0, 70%, 75%),
   ),
   info: (
-    base: hsl(215, 70%, 45%),
-    light: hsl(215, 70%, 50%),
+    base: hsl(215, 70%, 55%),
+    light: hsl(215, 70%, 75%),
   ),
   event-blitz-tournament: (
     base: hsl(0, 50%, 60%),
@@ -78,7 +80,7 @@ $lcc-color-palette: (
     light: hsl(0, 0%, 70%),
   ),
   tooltip: (
-    base: hsl(260, 11%, 15%),
+    base: hsl(260, 11%, 23%),
     light: hsl(260, 11%, 25%),
   ),
   chessboard: (

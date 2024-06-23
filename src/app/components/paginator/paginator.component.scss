@@ -5,6 +5,7 @@
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
+  border: 1px solid var(--lcc-color--paginator-border);
   border-radius: var(--lcc-borderRadius--large);
   background-color: var(--lcc-color--paginator-background);
   color: var(--lcc-color--paginator-pageNumberText);

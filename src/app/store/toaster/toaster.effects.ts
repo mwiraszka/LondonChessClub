@@ -20,7 +20,7 @@ export class ToasterEffects {
       map(({ article }) => {
         const toast: Toast = {
           title: 'New article',
-          message: `Successfully published ${article.title}`,
+          message: `Successfully published ${article.title} and updated database`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -48,7 +48,7 @@ export class ToasterEffects {
       map(({ article }) => {
         const toast: Toast = {
           title: 'Article update',
-          message: `Successfully updated ${article.title}`,
+          message: `Successfully updated ${article.title} in the database`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -118,7 +118,7 @@ export class ToasterEffects {
       map(({ article }) => {
         const toast: Toast = {
           title: 'Article deletion',
-          message: `Successfully deleted ${article.title}`,
+          message: `Successfully deleted ${article.title} from the database`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -176,7 +176,7 @@ export class ToasterEffects {
       map(({ member }) => {
         const toast: Toast = {
           title: 'New member',
-          message: `Successfully added ${member.firstName} ${member.lastName}`,
+          message: `Successfully added ${member.firstName} ${member.lastName} to the database`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -204,7 +204,7 @@ export class ToasterEffects {
       map(({ member }) => {
         const toast: Toast = {
           title: 'Member update',
-          message: `Successfully updated ${member.firstName} ${member.lastName}`,
+          message: `Successfully updated ${member.firstName} ${member.lastName} in the database`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -232,7 +232,7 @@ export class ToasterEffects {
       map(({ member }) => {
         const toast: Toast = {
           title: 'Member deletion',
-          message: `Successfully deleted ${member.firstName} ${member.lastName}`,
+          message: `Successfully deleted ${member.firstName} ${member.lastName} from the database`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -290,7 +290,7 @@ export class ToasterEffects {
       map(({ event }) => {
         const toast: Toast = {
           title: 'New event',
-          message: `Successfully added ${event.title}`,
+          message: `Successfully added ${event.title} to the database`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -318,7 +318,7 @@ export class ToasterEffects {
       map(({ event }) => {
         const toast: Toast = {
           title: 'Event update',
-          message: `Successfully updated ${event.title}`,
+          message: `Successfully updated ${event.title} in the database`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
@@ -346,7 +346,7 @@ export class ToasterEffects {
       map(({ event }) => {
         const toast: Toast = {
           title: 'Event deletion',
-          message: `Successfully deleted ${event.title}`,
+          message: `Successfully deleted ${event.title} from the database`,
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });

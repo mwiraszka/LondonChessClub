@@ -13,7 +13,7 @@
   align-items: flex-start;
   gap: 8px;
   font-size: var(--lcc-fontSize--h5);
-  color: var(--lcc-color--modificationInfo-text);
+  color: var(--lcc-color--modificationInfo-secondaryText);
 
   .create-details-container,
   .edit-details-container {
@@ -28,7 +28,7 @@
     .edit-icon {
       height: 15px;
       width: 15px;
-      color: var(--lcc-color--modificationInfo-createAndEditIcons);
+      color: var(--lcc-color--modificationInfo-icons);
     }
 
     .create-text,
@@ -39,12 +39,13 @@
       }
 
       .name {
-        color: var(--lcc-color--modificationInfo-nameAndDateText);
+        color: var(--lcc-color--modificationInfo-primaryText);
         padding: 0 1em 0 0.5em;
       }
   
       .vertical-spacer {
         display: none;
+        color: var(--lcc-color--modificationInfo-verticalSpacers);
   
         @include respond-to('gt-md') {
           display: inline;
@@ -53,7 +54,7 @@
   
       .date {
         display: block;
-        color: var(--lcc-color--modificationInfo-nameAndDateText);
+        color: var(--lcc-color--modificationInfo-primaryText);
         
         @include respond-to('gt-md') {
           display: inline;

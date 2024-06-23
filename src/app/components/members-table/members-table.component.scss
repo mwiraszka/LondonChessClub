@@ -144,9 +144,13 @@ table {
 }
 
 lcc-paginator {
-  max-width: 300px;
+  width: 300px;
   justify-content: center;
   align-items: center;
+
+  @include respond-to('gt-xs') {
+    width: 340px;
+  }
 }
 
 aside {
@@ -155,6 +159,10 @@ aside {
   color: var(--lcc-color--membersTable-asideText);
   border: 1px solid var(--lcc-color--membersTable-asideBorder);
   border-radius: var(--lcc-borderRadius--large);
+
+  @include respond-to('gt-xs') {
+    width: 340px;
+  }
   
   h5 {
     padding: 4px;
@@ -172,6 +180,11 @@ aside {
     label {
       font-size: var(--lcc-fontSize--h5);
       font-weight: bold;
+
+      &:hover {
+        cursor: pointer;
+        color: var(--lcc-color--membersTable-asideCheckboxLabelTextOnHover);
+      }
     }
   }
 }

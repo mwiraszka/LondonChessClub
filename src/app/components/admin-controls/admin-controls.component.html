@@ -1,4 +1,4 @@
-<a class="admin-control-button"
+<a class="admin-control-button edit-button"
 	 [tooltip]="'Edit ' + itemName"
 	 [routerLink]="editPath">
 	<i-feather name="edit"
@@ -8,7 +8,7 @@
 	</i-feather>
 </a>
 
-<button class="admin-control-button"
+<button class="admin-control-button delete-button"
 				[tooltip]="'Delete ' + itemName"
 				(click)="onDelete($event)">
 	<i-feather name="trash-2"

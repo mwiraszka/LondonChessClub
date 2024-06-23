@@ -16,18 +16,29 @@
     border-radius: var(--lcc-borderRadius--large);
     background-color: var(--lcc-color--adminControls-buttonBackground);
 
-    &:first-child {
+    &.edit-button {
+      color: var(--lcc-color--adminControls-editIcon);
       margin-right: 2px;
+
+      &:focus,
+      &:hover {
+        color: var(--lcc-color--adminControls-editIconOnHover);
+      }
+    }
+
+    &.delete-button {
+      color: var(--lcc-color--adminControls-deleteIcon);
+
+      &:focus,
+      &:hover {
+        color: var(--lcc-color--adminControls-deleteIconOnHover);
+      }
     }
 
     &:focus,
     &:hover {
       cursor: pointer;
       background-color: var(--lcc-color--adminControls-buttonBackgroundOnHover);
-    }
-
-    .delete-icon {
-      color: var(--lcc-color--adminControls-deleteIcon);
     }
   }
 }

@@ -1,4 +1,4 @@
-<button class="lcc-icon-button lcc-secondary-button page-navigation-button"
+<button class="lcc-secondary-button page-navigation-button"
 				[disabled]="pageNum === 1"
 				[tooltip]="pageNum === 1 ? null : 'First page'"
 				(click)="onFirst()">
@@ -7,7 +7,7 @@
 	</i-feather>
 </button>
 
-<button class="lcc-icon-button lcc-secondary-button page-navigation-button"
+<button class="lcc-secondary-button page-navigation-button"
 				[disabled]="pageNum === 1"
 				[tooltip]="pageNum === 1 ? null : 'Previous page'"
 				(click)="onPrevious()">
@@ -30,7 +30,7 @@
 	</div>
 </section>
 
-<button class="lcc-icon-button lcc-secondary-button page-navigation-button"
+<button class="lcc-secondary-button page-navigation-button"
 				[disabled]="pageNum === lastPage()"
 				[tooltip]="pageNum === lastPage() ? null : 'Next page'"
 				(click)="onNext()">
@@ -39,7 +39,7 @@
 	</i-feather>
 </button>
 
-<button class="lcc-icon-button lcc-secondary-button page-navigation-button"
+<button class="lcc-secondary-button page-navigation-button"
 				[disabled]="pageNum === lastPage()"
 				[tooltip]="pageNum === lastPage() ? null : 'Last page'"
 				(click)="onLast()">

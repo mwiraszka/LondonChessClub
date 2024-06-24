@@ -41,9 +41,9 @@ $alert-icon-width: 18px;
   }
 
   fieldset {
-    border: 1px solid var(--lcc-color--form-fieldsetBorder);
+    border: 1px solid var(--lcc-color--input-border);
     border-radius: var(--lcc-borderRadius--small);
-    background-color: var(--lcc-color--form-fieldsetBackground);
+    background-color: var(--lcc-color--input-background);
     padding: 4px 12px;
     text-align: left;
 

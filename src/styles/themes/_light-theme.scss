@@ -38,20 +38,26 @@
   --lcc-color--articleGrid-cardDividerLine: #{color(grayscale, gray-75, 0.5)};
   --lcc-color--articleGrid-stickyIcon: #{color(grayscale, white-90, 0.6)};
 
+  --lcc-color--button-border: #{color(grayscale, white-95, 0.2)};
+  --lcc-color--button-darkSecondaryButtonBorder: #{color(grayscale, gray-50)};
+  --lcc-color--button-darkSecondaryButtonBorderOnHover: #{color(grayscale, black-15)};
+  --lcc-color--button-darkSecondaryButtonForeground: #{color(grayscale, gray-25)};
+  --lcc-color--button-darkSecondaryButtonForegroundOnHover: #{color(grayscale, black-2)};
   --lcc-color--button-disabledButtonBackground: #{color(grayscale, white-90)};
+  --lcc-color--button-disabledButtonBorder: #{color(grayscale, gray-50, 0.1)};
   --lcc-color--button-disabledButtonForeground: #{color(grayscale, gray-75, 0.4)};
-  --lcc-color--button-ghostButtonText: #{color(grayscale, black-20)};
-  --lcc-color--button-ghostButtonTextOnHover: #{color(grayscale, black-2)};
-  --lcc-color--button-ghostButtonBorder: #{color(grayscale, black-20)};
-  --lcc-color--button-ghostButtonBorderOnHover: #{color(grayscale, black-2)};
+  --lcc-color--button-lightSecondaryButtonBorder: #{color(grayscale, gray-75)};
+  --lcc-color--button-lightSecondaryButtonBorderOnHover: #{color(grayscale, white-85)};
+  --lcc-color--button-lightSecondaryButtonForeground: #{color(grayscale, gray-75)};
+  --lcc-color--button-lightSecondaryButtonForegroundOnHover: #{color(grayscale, white-85)};
   --lcc-color--button-primaryButtonBackground: #{color(primary)};
   --lcc-color--button-primaryButtonBackgroundOnHover: #{color(primary, light)};
   --lcc-color--button-primaryButtonForeground: #{color(grayscale, white-90)};
-  --lcc-color--button-raisedButtonBorder: #{color(grayscale, white-95, 0.2)};
   --lcc-color--button-raisedButtonBoxShadow: #{color(grayscale, gray-65, 0.7)};
-  --lcc-color--button-secondaryButtonBackground: #{color(grayscale, white-92)};
-  --lcc-color--button-secondaryButtonBackgroundOnHover: #{color(grayscale, white-95)};
-  --lcc-color--button-secondaryButtonForeground: #{color(grayscale, black-10)};
+  --lcc-color--button-secondaryButtonBorder: #{color(grayscale, gray-50)};
+  --lcc-color--button-secondaryButtonBorderOnHover: #{color(grayscale, black-15)};
+  --lcc-color--button-secondaryButtonForeground: #{color(grayscale, gray-25)};
+  --lcc-color--button-secondaryButtonForegroundOnHover: #{color(grayscale, black-2)};
   --lcc-color--button-warningButtonBackground: #{color(warning)};
   --lcc-color--button-warningButtonBackgroundOnHover: #{color(warning, light)};
   --lcc-color--button-warningButtonForeground: #{color(grayscale, white-90)};
@@ -97,8 +103,6 @@
   --lcc-color--form-background: #{color(grayscale, white-98)};
   --lcc-color--form-boxShadow: #{color(grayscale, white-95, 0.7)};
   --lcc-color--form-errorIcon: #{color(warning, lighter)};
-  --lcc-color--form-fieldsetBackground: #{color(grayscale, white-98)};
-  --lcc-color--form-fieldsetBorder: #{color(grayscale, gray-50, 0.6)};
   --lcc-color--form-headerText: #{color(grayscale, black-10)};
   --lcc-color--form-labelText: #{color(grayscale, black-15)};
   --lcc-color--form-requiredFieldAsterisk: #{color(warning, light)};
@@ -138,7 +142,7 @@
   --lcc-color--input-border: #{color(grayscale, gray-65)};
   --lcc-color--input-borderOnHover: #{color(grayscale, gray-75)};
   --lcc-color--input-boxShadowOnHover: #{color(primary, lightest, 0.6)};
-  --lcc-color--input-checkbox: #{color(primary)};
+  --lcc-color--input-checkboxAndRadio: #{color(primary)};
   --lcc-color--input-invalidBorder: #{color(warning, lighter)};
   --lcc-color--input-text: #{color(grayscale, black-5)};
 

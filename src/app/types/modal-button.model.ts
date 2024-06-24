@@ -7,7 +7,7 @@ export interface ModalButton {
 export enum ModalButtonStyleTypes {
   CONFIRM = 'lcc-primary-button',
   WARN_CONFIRM = 'lcc-warning-button',
-  CANCEL = 'lcc-secondary-button',
+  CANCEL = 'lcc-secondary-button lcc-dark-button',
 }
 
 export enum ModalButtonActionTypes {

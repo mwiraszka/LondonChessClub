@@ -45,7 +45,7 @@
   
       .vertical-spacer {
         display: none;
-        color: var(--lcc-color--general-dividerLine);
+        color: var(--lcc-color--modificationInfo-verticalSpacer);
   
         @include respond-to('gt-md') {
           display: inline;

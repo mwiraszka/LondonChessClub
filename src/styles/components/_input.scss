@@ -28,10 +28,11 @@ textarea {
   }
 }
 
-input[type="checkbox"] {
+input[type="checkbox"],
+input[type="radio"] {
   margin: 4px;
   justify-self: flex-start;
-  accent-color: var(--lcc-color--input-checkbox);
+  accent-color: var(--lcc-color--input-checkboxAndRadio);
 
   -ms-transform: scale(1.5); /* IE */
   -moz-transform: scale(1.5); /* FF */
@@ -42,6 +43,10 @@ input[type="checkbox"] {
   &:hover {
     cursor: pointer;
   }
+}
+
+input[type="radio"] {
+  margin: 6px 4px;
 }
 
 textarea {

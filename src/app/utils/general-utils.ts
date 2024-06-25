@@ -18,6 +18,13 @@ export function isTouchScreen(): boolean {
 }
 
 /**
+ * @returns {boolean} Whether the user has dark mode set as a preference on their device
+ */
+export function isSystemDark(): boolean {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
+/**
  * A wrapper for lodash's `isEqual()`
  *
  * @param {Object | null} a The first object to compare

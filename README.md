@@ -12,7 +12,7 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 > FRONTEND
 
-- `Angular v17` for frontend framework
+- `Angular v18` for frontend framework
 - `NgRx` for reactive state management
 - `Feather` for icons
 - `SCSS` for style preprocessing with Sass
@@ -40,13 +40,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v4.0.0 - June 23rd, 2024
+v4.0.0 - June 25th, 2024
 </summary>
 
+- 🚀 Upgrade to Angular v18
 - 🚀 Overhaul redesign of colour theming throughout app
-- 🚀 Revamp the user settings dropdown menu
+- 🚀 Revamp the user settings dropdown menu (top-right of app header)
+- 🚀 Revamp the upcoming event banner (top of screen), and do not show again for at least 24 hours once it's been clicked
 - 🚀 Introduce a dark mode, and add ability to toggle theme from the dropdown menu, defaulting to the user's browser preferences
-- 🚀 Minor improvements to various UI components: tooltips, toasts, forms, screen headers, modification info boxes, event alert banners, and the page loading spinner
+- 🚀 Minor improvements to various UI components: buttons, tooltips, toasts, forms, screen headers, modification info boxes, event alert banners, and the page loading spinner
 - 🐛 Fix layout issue on Game Archives page
 - 🐛 Fix layout issue in app header when viewing app on a large screen
 - 🔧 Simplify some CSS Flex code throughout codebase and remove other redundant/unused styles

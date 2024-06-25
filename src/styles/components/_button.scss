@@ -1,14 +1,19 @@
 @mixin lcc-button {
+  border: 1px solid var(--lcc-color--button-border);
   border-radius: var(--lcc-borderRadius--large);
-  font-size: var(--lcc-fontSize--h4);
   cursor: pointer;
   white-space: nowrap;
+  padding: 8px 16px;
+  font-size: var(--lcc-fontSize--h4);
+  text-transform: uppercase;
+  font-weight: 400;
 
   &:disabled {
     cursor: default;
     pointer-events: none;
-    background-color: var(--lcc-color--button-disabledButtonBackground) !important;
-    color: var(--lcc-color--button-disabledButtonForeground) !important;
+    border-color: var(--lcc-color--button-disabledButtonBorder);
+    background-color: var(--lcc-color--button-disabledButtonBackground);
+    color: var(--lcc-color--button-disabledButtonForeground);
   }
 
   &:focus {
@@ -16,59 +21,61 @@
   }
 }
 
-@mixin lcc-raised-button {
+.lcc-secondary-button {
   @include lcc-button;
 
-  border: 1px solid var(--lcc-color--button-raisedButtonBorder) !important;
-  box-shadow: 1px 1px 4px -2px var(--lcc-color--button-raisedButtonBoxShadow);
-  padding: 8px 16px;
-  text-transform: uppercase;
-  font-weight: 400;
-}
-
-.lcc-primary-button {
-  @include lcc-raised-button;
-
-  background-color: var(--lcc-color--button-primaryButtonBackground) !important;
-  color: var(--lcc-color--button-primaryButtonForeground);
-
-  &:hover {
-    background-color: var(--lcc-color--button-primaryButtonBackgroundOnHover) !important;
-  }
-}
-
-.lcc-secondary-button {
-  @include lcc-raised-button;
-
-  background-color: var(--lcc-color--button-secondaryButtonBackground) !important;
+  border: 1px solid var(--lcc-color--button-secondaryButtonBorder);
+  background-color: unset !important;
   color: var(--lcc-color--button-secondaryButtonForeground);
 
   &:hover {
-    background-color: var(--lcc-color--button-secondaryButtonBackgroundOnHover) !important;
+    border-color: var(--lcc-color--button-secondaryButtonBorderOnHover);
+    color: var(--lcc-color--button-secondaryButtonForegroundOnHover);
+  }
+
+  // Keep button colour light in all themes
+  &.lcc-light-button {
+    border-color: var(--lcc-color--button-lightSecondaryButtonBorder);
+    color: var(--lcc-color--button-lightSecondaryButtonForeground);
+  
+    &:hover {
+      border-color: var(--lcc-color--button-lightSecondaryButtonBorderOnHover);
+      color: var(--lcc-color--button-lightSecondaryButtonForegroundOnHover);
+    }
+  }
+  
+  // Keep button colour dark in all themes
+  &.lcc-dark-button {
+    border: var(--lcc-color--button-darkSecondaryButtonBorder);
+    color: var(--lcc-color--button-darkSecondaryButtonForeground);
+  
+    &:hover {
+      border-color: var(--lcc-color--button-darkSecondaryButtonBorderOnHover);
+      color: var(--lcc-color--button-darkSecondaryButtonForegroundOnHover);
+    }
+  }
+}
+
+.lcc-primary-button {
+  @include lcc-button;
+
+  box-shadow: 1px 1px 4px -2px var(--lcc-color--button-raisedButtonBoxShadow);
+  background-color: var(--lcc-color--button-primaryButtonBackground);
+  color: var(--lcc-color--button-primaryButtonForeground);
+
+  &:hover {
+    background-color: var(--lcc-color--button-primaryButtonBackgroundOnHover);
   }
 }
 
 .lcc-warning-button {
-  @include lcc-raised-button;
+  @include lcc-button;
   
-  background-color: var(--lcc-color--button-warningButtonBackground) !important;
+  box-shadow: 1px 1px 4px -2px var(--lcc-color--button-raisedButtonBoxShadow);
+  background-color: var(--lcc-color--button-warningButtonBackground);
   color: var(--lcc-color--button-warningButtonForeground);
 
   &:hover {
-    background-color: var(--lcc-color--button-warningButtonBackgroundOnHover) !important;
-  }
-}
-
-.lcc-ghost-button {
-  @include lcc-button;
-
-  padding: 4px 8px;
-  border: 1px solid var(--lcc-color--button-ghostButtonBorder);
-  background-color: inherit;
-  color: var(--lcc-color--button-ghostButtonText);
-
-  &:hover {
-    border-color: var(--lcc-color--button-ghostButtonBorderOnHover);
-    color: var(--lcc-color--button-ghostButtonTextOnHover);
+    background-color: var(--lcc-color--button-warningButtonBackgroundOnHover);
   }
 }

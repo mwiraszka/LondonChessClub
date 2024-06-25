@@ -14,6 +14,13 @@ const userSettingsReducer = createReducer(
   on(UserSettingsActions.clearUpcomingEventBanner, state => ({
     ...state,
     showUpcomingEventBanner: false,
+    bannerlastCleared: new Date().getTime(),
+  })),
+
+  on(UserSettingsActions.reinstateUpcomingEventBanner, state => ({
+    ...state,
+    showUpcomingEventBanner: true,
+    bannerlastCleared: null,
   })),
 );
 

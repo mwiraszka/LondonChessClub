@@ -17,3 +17,8 @@ export const showUpcomingEventBanner = createSelector(
   userSettingsFeatureSelector,
   state => state.showUpcomingEventBanner,
 );
+
+export const bannerLastCleared = createSelector(
+  userSettingsFeatureSelector,
+  state => state.bannerlastCleared,
+);

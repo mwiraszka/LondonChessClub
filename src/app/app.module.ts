@@ -4,7 +4,11 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MarkdownModule } from 'ngx-markdown';
 
-import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+  withJsonpSupport,
+} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -36,6 +40,7 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
+  bootstrap: [AppComponent],
   imports: [
     AppRoutingModule,
     ArticlesStoreModule,
@@ -45,9 +50,7 @@ import { AppComponent } from './app.component';
     EffectsModule.forRoot([]),
     FooterModule,
     HeaderModule,
-    HttpClientModule,
     ImageOverlayModule,
-    HttpClientJsonpModule,
     PhotosStoreModule,
     MarkdownModule.forRoot(),
     MembersStoreModule,
@@ -75,6 +78,6 @@ import { AppComponent } from './app.component';
     UpcomingEventBannerModule,
     UserSettingsStoreModule,
   ],
-  bootstrap: [AppComponent],
+  providers: [provideHttpClient(withInterceptorsFromDi(), withJsonpSupport())],
 })
 export class AppModule {}

@@ -1,3 +1,5 @@
+@use 'sass:math' as math;
+
 /* Viewport breakpoint map */
 $breakpoints: (
   'lt-xs': (
@@ -71,7 +73,7 @@ $breakpoints: (
     $multiplier: $multiplier + 1;
 
     @media(min-width: ($item-min-width * $multiplier)) {
-      max-width: calc(percentage(1 / $multiplier) - $grid-gap);
+      max-width: calc(percentage(math.div(1, $multiplier)) - $grid-gap);
     }
   }
 }

@@ -40,7 +40,7 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
-v4.0.0 - June 24th, 2024
+v4.0.0 - June 25th, 2024
 </summary>
 
 - 🚀 Upgrade to Angular v18

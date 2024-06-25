@@ -5,10 +5,10 @@ phases:
       nodejs: 14
     commands:
       - echo "Upgrading node.js version..."
-      - n 18
+      - n 20
       - echo "Installing dependencies..."
       - npm install
-      - npm install -g @angular/cli@17.1.0
+      - npm install -g @angular/cli@18.0.4
   build:
     commands:
       - echo "Building Angular project..."

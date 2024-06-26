@@ -14,6 +14,7 @@ import { ArticleGridFacade } from './article-grid.facade';
   providers: [ArticleGridFacade],
 })
 export class ArticleGridComponent implements OnInit {
+  readonly FIVE_MINUTES_MS = 300_000;
   readonly NavPathTypes = NavPathTypes;
 
   @Input() maxArticles?: number;
@@ -33,5 +34,17 @@ export class ArticleGridComponent implements OnInit {
     this.facade.articles$.pipe(untilDestroyed(this)).subscribe(articles => {
       this.articles = articles.slice(0, this.maxArticles ?? articles.length);
     });
+  }
+
+  wasEdited(article: Article): boolean {
+    if (!article || !article.modificationInfo) {
+      return false;
+    }
+
+    return (
+      article.modificationInfo.dateLastEdited.getTime() -
+        article.modificationInfo.dateCreated.getTime() >
+      this.FIVE_MINUTES_MS
+    );
   }
 }

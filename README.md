@@ -40,6 +40,17 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v4.0.1 - June 26th, 2024
+</summary>
+
+- 🚀 Some minor styling touch-ups
+- 🚀 Only display an article has been edited if it's at least 5 minutes after the creation time
+- 🔧 Remove all 'MB' and empty {Fritz} annotations from archived games' PGNs
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.0.0 - June 25th, 2024
 </summary>
 

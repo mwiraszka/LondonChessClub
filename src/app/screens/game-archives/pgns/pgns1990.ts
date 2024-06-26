@@ -311,7 +311,7 @@ export const pgns1990 = [
   b3 Bg7 8. Bb2 Bd7 9. e4 Bxa4 10. bxa4 Qa5 11. O-O-O Nbd7 12. f4 Nb6 13. e5 Nfd7
   14. exd6 Bxb2+ 15. Qxb2 O-O 16. dxe7 Rfe8 17. d6 Nxa4 18. Qb3 Nc3 19. Rd2 Ne4
   20. Re2 Nc3 21. Rc2 Qa6 22. g3 Qxd6 23. Rd2 Qxe7 24. Bg2 Rad8 $6 (24... Qe1+ $1
-  25. Kc2 Ne4 26. Re2 Qc3+ 27. Qxc3 Nxc3 $15 {Fritz}) 25. Nf3 Nb6 26. Rxd8 Qe3+
+  25. Kc2 Ne4 26. Re2 Qc3+ 27. Qxc3 Nxc3 $15) 25. Nf3 Nb6 26. Rxd8 Qe3+
   27. Rd2 Ne2+ 28. Kb2 Nxc4+ 29. Qxc4 Qa3+ *`,
 
   `[Event "London, Canada (Grand Opening)"]
@@ -588,7 +588,7 @@ export const pgns1990 = [
   Bg7 9. Bg5 {[N]} (9. O-O {Rendboe,J-Adrian,C; Lyngby (op); 1989.}) 9... Nbd7
   10. O-O O-O 11. Nc3 Qc7 12. Qd2 Rfb8 13. b3 Nb6 14. Bh6 Bh8 15. Rfe1 Ng4 16.
   Bg5 Bxc3 17. Qxc3 Nxd5 18. Qb2 c4 19. h3 Ngf6 20. e4 c3 21. Qc1 Nb4 22. Be3 c2
-  (22... Nd3 {Fritz}) 23. e5 Nfd5 24. exd6 exd6 25. Nd4 Qc5 26. Qb2 Nxe3 27. Bxa8
+  (22... Nd3) 23. e5 Nfd5 24. exd6 exd6 25. Nd4 Qc5 26. Qb2 Nxe3 27. Bxa8
   Nd1 28. Ne6 fxe6 29. Qf6 Qf5 30. Qe7 Qxf2+ 31. Kh1 Qf7 32. Qxd6 Rxa8 33. Qxb4
   Bb7+ 34. Qxb7 Qxb7+ 35. Kh2 Rxa2 36. Rxa2 Qxb3 37. Ra8+ Kf7 38. Ra7+ Ke8 39.
   Rxh7 c1=Q {[The rest of the score was lost.]} 0-1`,
@@ -641,7 +641,7 @@ export const pgns1990 = [
 
   1. c4 e5 2. g3 Nf6 3. Bg2 g6 4. Nc3 Bg7 5. d3 {[N]} (5. Nf3 {
   Spiridonov,N-Akopian,V; Erevan; 1989.}) 5... O-O 6. Bg5 d6 7. Nf3 Nc6 8. O-O
-  Qd7 9. Bxf6 Bxf6 10. Nd5 Bg7 11. b4 $2 (11. Rc1 {Fritz}) 11... e4 12. Ng5 Bxa1
+  Qd7 9. Bxf6 Bxf6 10. Nd5 Bg7 11. b4 $2 (11. Rc1) 11... e4 12. Ng5 Bxa1
   13. Qxa1 Qd8 14. Nf6+ Kh8 15. Nd7+ Kg8 16. Nxf8 Qxg5 17. b5 Nd8 18. Nxg6 hxg6
   19. Bxe4 Qh5 20. Qf6 Bf5 21. Bf3 Bg4 22. Qe7 Bxf3 23. exf3 Ne6 24. Re1 Qxf3 25.
   d4 Nxd4 26. Re3 Qh5 27. Qxc7 Nf3+ 28. Kg2 Ng5 29. h4 Ne6 30. Qxb7 Re8 31. Qxa7

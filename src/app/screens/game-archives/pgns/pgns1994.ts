@@ -659,7 +659,7 @@ export const pgns1994 = [
   a3 Bxc3+ 10. Qxc3 c5 11. g4 Qf6 12. Be3 d6 13. h4 cxd4 14. Qxd4 e5 15. Qc3 Nc5
   16. b4 Nxd3+ (16... Ne6 {Van de Ven}) 17. Qxd3 Rc8 18. Rc1 Ne7 19. c5 dxc5 20.
   bxc5 bxc5 21. Qb5+ Bc6 22. Qxc5 Qe6 $2 23. Qxa7 O-O 24. a4 Ra8 25. Qc5 Rfe8 $2
-  (25... Rxa4 $13 {Fritz}) 1/2-1/2`,
+  (25... Rxa4 $13) 1/2-1/2`,
 
   `[Event "London, Canada (Active Championship)"]
   [Site "?"]
@@ -743,8 +743,8 @@ export const pgns1994 = [
   1. e4 g6 2. d4 Bg7 3. e5 $5 e6 $6 (3... c5 {
   Jaskulski-Hansel; cr East Germany Junior Championship; 1988.}) 4. f4 Nc6 5. Nf3
   d6 6. Be3 dxe5 7. fxe5 Nge7 8. Bd3 Nd5 9. Bg5 Qd7 10. O-O b6 $6 (10... h6 {
-  Fritz}) 11. Qd2 $6 Bf8 $6 (11... Ncb4 12. Bc4 $13 {Fritz}) 12. c3 a6 $6 (12...
-  h6 {Fritz}) 13. Qe1 b5 14. Qg3 b4 15. h4 bxc3 16. Nxc3 Rg8 $2 (16... Bg7 $14 {
+  Fritz}) 11. Qd2 $6 Bf8 $6 (11... Ncb4 12. Bc4 $13) 12. c3 a6 $6 (12...
+  h6) 13. Qe1 b5 14. Qg3 b4 15. h4 bxc3 16. Nxc3 Rg8 $2 (16... Bg7 $14 {
   Fritz}) 17. h5 Bg7 18. hxg6 h6 19. Bd2 Qe7 20. gxf7+ Qxf7 21. Bg6 Bxe5 22.
   Bxf7+ Ke7 23. Qxg8 Bb7 24. Qg6 Rh8 25. Qxe6+ Kd8 26. Qxd5+ Bd6 27. Rae1 Na5 28.
   Qxa5 1-0`,
@@ -761,12 +761,12 @@ export const pgns1994 = [
   
   1. e4 e5 2. Nf3 d6 3. d4 exd4 4. Nxd4 Nf6 5. Bg5 Be7 6. Nd2 {[N]} (6. Nc3 {
   Schwarz,A-Paulsen,L; Vienna; 1873.}) 6... O-O (6... Nxe4 $5 7. Bb5+ (7. Nxe4
-  Bxg5 $15 {Fritz}) 7... c6 8. Nxe4 Bxg5 $17 {Fritz}) 7. Bd3 Nbd7 (7... Nd5 {
+  Bxg5 $15) 7... c6 8. Nxe4 Bxg5 $17) 7. Bd3 Nbd7 (7... Nd5 {
   Fritz}) 8. Nf5 h6 9. Bh4 Ne5 10. O-O $2 (10. Nxe7+ Qxe7 11. Nf3) 10... Bxf5 11.
   exf5 Nxd3 12. cxd3 d5 13. Re1 Re8 14. Qb3 b6 15. Nf3 c5 16. Ne5 Rc8 17. Re3 Bd6
-  18. Rae1 (18. Ng4 $1 {Fritz}) 18... Bxe5 19. Rxe5 Rxe5 20. Rxe5 c4 21. Qd1 cxd3
+  18. Rae1 (18. Ng4 $1) 18... Bxe5 19. Rxe5 Rxe5 20. Rxe5 c4 21. Qd1 cxd3
   22. Re3 Rc2 23. Rxd3 Rxb2 24. h3 Qe7 25. Rxd5 Qe4 26. Rd8+ Kh7 27. Bxf6 $4 (27.
-  Qd4 Qxd4 28. Rxd4 Rxa2 29. Bxf6 gxf6 $17 {Fritz}) 27... Rb1 0-1`,
+  Qd4 Qxd4 28. Rxd4 Rxa2 29. Bxf6 gxf6 $17) 27... Rb1 0-1`,
 
   `[Event "London, Canada (Active Championship)"]
   [Site "?"]
@@ -781,12 +781,12 @@ export const pgns1994 = [
   1. e4 e6 2. d4 d5 3. e5 c5 4. c3 cxd4 $6 (4... Nc6 {ECO}) 5. cxd4 Bb4+ 6. Nc3
   Nc6 7. Nf3 Nge7 8. a3 {[N]} (8. Bd3 {
   El Ghaidi,I-Cummins,J; Lucerne Olympics; 1982.}) 8... Ba5 9. Bd3 Bb6 10. Be3 a6
-  11. O-O Qc7 12. Rc1 O-O $2 (12... Bd7 {Fritz}) 13. Bxh7+ $5 Kxh7 14. Ng5+ Kg8 (
-  14... Kg6 {Fritz} 15. Qg4 f5 16. exf6 Kxf6 17. Nh7+ Kf7 18. Qf3+ Nf5 19. Nxf8
+  11. O-O Qc7 12. Rc1 O-O $2 (12... Bd7) 13. Bxh7+ $5 Kxh7 14. Ng5+ Kg8 (
+  14... Kg6 15. Qg4 f5 16. exf6 Kxf6 17. Nh7+ Kf7 18. Qf3+ Nf5 19. Nxf8
   Kxf8 20. g4 $16) 15. Qh5 Rd8 16. Qxf7+ (16. Qh7+ Kf8 17. Qh8+ Ng8 18. Nh7+ Ke7
-  19. Qxg7 Re8 20. Bg5+ Kd7 21. Qxf7+ Nce7 22. Nxd5 $3 $18 {Fritz}) 16... Kh8 17.
-  Qh5+ Kg8 18. Qh7+ Kf8 19. g4 $5 (19. Ne2 {Fritz} 19... Nf5 $13) 19... Ng8 (
-  19... Bxd4 20. Qh5 Ng6 21. Bxd4 Nxd4 22. Qxg6 Qe7 23. f4 $16 {Fritz}) 20. Qh5
+  19. Qxg7 Re8 20. Bg5+ Kd7 21. Qxf7+ Nce7 22. Nxd5 $3 $18) 16... Kh8 17.
+  Qh5+ Kg8 18. Qh7+ Kf8 19. g4 $5 (19. Ne2 19... Nf5 $13) 19... Ng8 (
+  19... Bxd4 20. Qh5 Ng6 21. Bxd4 Nxd4 22. Qxg6 Qe7 23. f4 $16) 20. Qh5
   Ke7 $4 (20... Nh6 21. Nh7+ Kg8 22. Bxh6 gxh6 23. Nf6+ Kf8 24. Qxh6+ Qg7 $13 {
   Fritz} 25. Nh7+ Kg8) 21. Qf7# 1-0`,
 
@@ -823,15 +823,15 @@ export const pgns1994 = [
   
   1. e4 e6 2. c4 b6 3. Nc3 {[N]} (3. d4 {ECO}) 3... Bb7 4. d3 Bb4 5. a3 Be7 6.
   Nf3 Nc6 7. Be3 Nf6 8. h3 O-O 9. e5 Ne8 10. d4 d6 (10... f6 11. Bd3 fxe5 12. d5
-  (12. dxe5 Na5 $13 {Fritz}) 12... exd5 13. cxd5 Nb8 14. Nxe5 $40 {Fritz}) 11.
+  (12. dxe5 Na5 $13) 12... exd5 13. cxd5 Nb8 14. Nxe5 $40) 11.
   Qc2 f6 $5 (11... dxe5 12. dxe5 $14 {JP}) 12. O-O-O Rc8 $2 (12... fxe5 13. dxe5
-  Rxf3 $5 14. gxf3 Nxe5 15. Ne4 Nxf3 $13 {Fritz}) 13. Bd3 f5 14. h4 Nb8 15. d5
-  Nd7 $2 (15... dxe5 16. dxe6 Bxf3 17. gxf3 Nd6 $11 {Fritz}) 16. dxe6 Nc5 17.
+  Rxf3 $5 14. gxf3 Nxe5 15. Ne4 Nxf3 $13) 13. Bd3 f5 14. h4 Nb8 15. d5
+  Nd7 $2 (15... dxe5 16. dxe6 Bxf3 17. gxf3 Nd6 $11) 16. dxe6 Nc5 17.
   Bxf5 g6 18. Bg4 Ng7 19. Ng5 Qe8 (19... Bxg2 20. Nf7 Qe8 21. Rhg1 Bb7 22. Bxc5
-  dxc5 23. h5 $18 {Fritz}) 20. f4 h5 21. Bh3 Nf5 (21... dxe5 22. Bxc5 Bxc5 23. e7
-  Rxf4 24. Bxc8 $16 {Fritz}) 22. Bxc5 bxc5 23. Nf7 Ne3 $4 (23... Nxh4 24. g3 $16
-  {Fritz}) (23... Kg7 $2 24. Bxf5 gxf5 25. Qxf5 $18 {Fritz}) (23... Rxf7 24.
-  exf7+ Qxf7 25. Nd5 $16 {Fritz}) 24. Qxg6# 1-0`,
+  dxc5 23. h5 $18) 20. f4 h5 21. Bh3 Nf5 (21... dxe5 22. Bxc5 Bxc5 23. e7
+  Rxf4 24. Bxc8 $16) 22. Bxc5 bxc5 23. Nf7 Ne3 $4 (23... Nxh4 24. g3 $16
+ ) (23... Kg7 $2 24. Bxf5 gxf5 25. Qxf5 $18) (23... Rxf7 24.
+  exf7+ Qxf7 25. Nd5 $16) 24. Qxg6# 1-0`,
 
   `[Event "London, Canada (Active Championship)"]
   [Site "?"]
@@ -904,8 +904,8 @@ export const pgns1994 = [
   Nc5 21. Kg2 Ba6 22. Bxa6 Nxa6 23. Ba3 Kf8 24. f4 Bc3 25. Nb3 Nb4 26. Bxb4 Bxb4
   27. Nd4 Bc5 28. Nc6 a5 29. e5 Ke8 30. Kf3 Kd7 31. Ke4 e6 32. a4 exd5+ 33. Kxd5
   Bg1 34. Nd4 Bxh2 35. Ne2 h5 36. Ke4 Kc6 (36... f6 37. exf6 Ke6 38. Kf3 Kxf6 39.
-  Kg2 Bxg3 40. Kxg3 $13 {Fritz}) 37. Kf3 b5 38. axb5+ Kxb5 39. Kg2 Bxg3 40. Kxg3
-  Kc4 41. Kh4 (41. f5 gxf5 42. Kf4 a4 43. Kxf5 a3 44. Nc1 h4 $19 {Fritz} 45. Kg4
+  Kg2 Bxg3 40. Kxg3 $13) 37. Kf3 b5 38. axb5+ Kxb5 39. Kg2 Bxg3 40. Kxg3
+  Kc4 41. Kh4 (41. f5 gxf5 42. Kf4 a4 43. Kxf5 a3 44. Nc1 h4 $19 45. Kg4
   h3 46. Kxh3 Kd5 47. Kg4 Kxe5 48. Kf3 Kd4 (48... f5 49. Na2 Ke6 50. Kf4 Kf6 51.
   Nb4 Ke6 52. Na2 $11) 49. Ke2 Kc3 50. Kd1 Kb2 51. Kd2 f5 52. Nd3+ Kb1 53. Nb4
   Kb2 54. Nd3+ Kb1 55. Nb4 f4 56. Ke2 Kb2 57. Kf3 Kb3 58. Nd3 a2 59. Nc1+ $11 {
@@ -980,14 +980,14 @@ export const pgns1994 = [
   Nd7 {Hartston-Garcia,G; Las Palmas; 1974.}) (8... b5 $1 {
   Rukavina-Prandstetter; Decin; 1977.} 9. Ncd2 (9. Ncxe5 $2 f6 $15)) 9. c3 Be6
   10. cxd4 Nxd4 $2 (10... Bxc4 11. dxc4 exd4 $13) 11. Ncxe5 $16 c5 12. Be3 (12.
-  Nxd4 cxd4 13. f4 Bxe5 14. fxe5 Nc6 15. Bh6 Re8 16. Bf4 $16 {Fritz}) 12... Rc8
+  Nxd4 cxd4 13. f4 Bxe5 14. fxe5 Nc6 15. Bh6 Re8 16. Bf4 $16) 12... Rc8
   13. Qd2 b5 14. h3 h5 15. Bh6 Nxf3+ 16. Nxf3 Bxh6 17. Qxh6 Qxd3 18. Ng5 (18.
   Rfd1 Qc4 19. b3 $1 Qb4 20. Ng5 Rfd8 21. Qh7+ Kf8 22. Qh8+ Ng8 23. Qe5 $40 {
-  Fritz} (23. Nxe6+ fxe6 24. Qe5 $40 {Fritz})) 18... Rfd8 19. Qh7+ Kf8 20. Qh8+ (
-  20. a4 {Fritz}) 20... Ng8 21. Nxe6+ fxe6 22. Qe5 Qd6 23. Qg5 e5 24. Rac1 Qf6
+  Fritz} (23. Nxe6+ fxe6 24. Qe5 $40)) 18... Rfd8 19. Qh7+ Kf8 20. Qh8+ (
+  20. a4) 20... Ng8 21. Nxe6+ fxe6 22. Qe5 Qd6 23. Qg5 e5 24. Rac1 Qf6
   25. Qe3 c4 26. f4 Rd3 27. Qxd3 cxd3 28. Rxc8+ Kg7 29. fxe5 Qb6+ $2 (29... Qxe5
-  $13 {Fritz}) 30. Kh1 Ne7 31. Rc3 d2 32. Rd1 Qf2 33. Rc2 $2 (33. Rf3 $1 $14)
-  33... h4 $2 (33... Qe1+ $3 $19 {Fritz}) 1/2-1/2`,
+  $13) 30. Kh1 Ne7 31. Rc3 d2 32. Rd1 Qf2 33. Rc2 $2 (33. Rf3 $1 $14)
+  33... h4 $2 (33... Qe1+ $3 $19) 1/2-1/2`,
 
   `[Event "London, Canada (Active Championship)"]
   [Site "?"]
@@ -3728,11 +3728,11 @@ export const pgns1994 = [
   
   1. e4 e5 2. Nf3 d6 3. Nc3 Nf6 4. d4 exd4 5. Nxd4 g6 6. Be2 Bg7 7. Bg5 {[N]} (7.
   Be3 {Arkell,S-Polgar,Z; Thessaloniki Olympics; 1988.}) 7... c6 8. O-O Qc7 9. h3
-  Nbd7 10. Bf4 Nc5 11. Bf3 O-O $2 (11... Ncd7 {Fritz}) 12. Re1 $6 (12. Nb3 $14 {
+  Nbd7 10. Bf4 Nc5 11. Bf3 O-O $2 (11... Ncd7) 12. Re1 $6 (12. Nb3 $14 {
   Fritz}) 12... Re8 13. Re2 Nfd7 14. Qd2 Ne5 15. Rd1 $6 (15. Bxe5 dxe5 16. Nb3 {
   Fritz}) 15... Nxf3+ 16. Nxf3 Bxc3 17. Qxc3 Nxe4 18. Rxe4 $2 (18. Rxd6 $1 {Fritz
-  }) 18... Rxe4 19. Qf6 $2 (19. Bxd6 Qd7 $17 {Fritz}) 19... Re6 20. Bxd6 Rxf6 21.
-  Bxc7 Bf5 $6 (21... Bxh3 $17 {Fritz}) 22. Nd4 Re8 23. Rd2 c5 24. Nb5 a6 25. Nd6
+  }) 18... Rxe4 19. Qf6 $2 (19. Bxd6 Qd7 $17) 19... Re6 20. Bxd6 Rxf6 21.
+  Bxc7 Bf5 $6 (21... Bxh3 $17) 22. Nd4 Re8 23. Rd2 c5 24. Nb5 a6 25. Nd6
   Re1+ 26. Kh2 b5 27. Nb7 c4 28. Bf4 Kg7 29. Rd7 $2 Bxd7 0-1`,
 
   `[Event "London, Canada (Geza Fuster Memorial -"]
@@ -3944,7 +3944,7 @@ export const pgns1994 = [
   
   1. c4 e5 2. Nc3 Nf6 3. Nf3 Nc6 4. d4 exd4 5. Nxd4 Ne5 6. Bg5 $1 {Bagirov {ECO}
   (6. e4 {Sanguinetti-Faruy; Varna Olympics; 1962.}) 6... Nxc4 7. e4 Nb6 (7...
-  Ne5 {Fritz}) (7... Nxb2 $6 8. Qe2 {
+  Ne5) (7... Nxb2 $6 8. Qe2 {
   The Knight-b2 dies. White has better development. -Fritz}) 8. e5 h6 9. Bh4 $6 (
   9. exf6 hxg5 10. Qe2+ {Advantage White. -Fritz}) 9... g5 $6 (9... Qe7 10. Qe2
   g5 {About equal. -Fritz}) 10. exf6 Qxf6 11. Bg3 Bg7 12. Qe2+ Kd8 13. Ndb5 d6
@@ -4215,7 +4215,7 @@ export const pgns1994 = [
   7. O-O gxf3 8. Qxf3 h5 9. Bxf4 Bg4 10. Qb3 Nh6 11. Nc3 b6 12. e5 dxe5 13. Rae1
   Qxd4+ 14. Kh1 Nd7 15. Bxh6 Rxh6 16. Bf7+ Kd8 17. Re4 Qc5 18. Bd5 Rb8 19. Rc4
   Qe3 20. Bc6 Nc5 21. Qa3 Qg3 22. Qxa7 (22. Qxa7 Qxh4+ 23. Kg1 Rc8 24. Rd1+ Bd6
-  $19 {Fritz}) 1/2-1/2`,
+  $19) 1/2-1/2`,
 
   `[Event "London, Canada (Geza Fuster Memorial -"]
   [Site "?"]
@@ -4230,10 +4230,10 @@ export const pgns1994 = [
   1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. f4 O-O 6. Nf3 Nbd7 7. Bd3 e5 8. fxe5
   dxe5 9. d5 Nc5 10. Bc2 a6 11. Nxe5 {[N]} (11. O-O {
   Alekhine,A-Lasker,Ed; New York; 1924.}) 11... Nfxe4 12. Nxe4 Nxe4 13. O-O Nd6
-  $6 (13... Bxe5 14. Bxe4 Qh4 $17 {Fritz}) 14. Nf3 Nxc4 15. Rb1 Qd6 16. Qd3 Qc5+
-  17. Kh1 Bf5 18. Qb3 Bxc2 (18... Na5 $1 {Fritz}) 19. Qxc2 Qxd5 20. b3 Nd6 21.
-  Rd1 Qf5 22. Rd3 Rad8 23. Ba3 Rfe8 24. Rbd1 Re3 (24... Rd7 {Fritz}) 25. Qxc7
-  Rxd3 26. Qxd8+ Bf8 27. Bxd6 $2 (27. Re1 Qh5 $15 {Fritz}) 27... Rxd1+ 28. Ng1
+  $6 (13... Bxe5 14. Bxe4 Qh4 $17) 14. Nf3 Nxc4 15. Rb1 Qd6 16. Qd3 Qc5+
+  17. Kh1 Bf5 18. Qb3 Bxc2 (18... Na5 $1) 19. Qxc2 Qxd5 20. b3 Nd6 21.
+  Rd1 Qf5 22. Rd3 Rad8 23. Ba3 Rfe8 24. Rbd1 Re3 (24... Rd7) 25. Qxc7
+  Rxd3 26. Qxd8+ Bf8 27. Bxd6 $2 (27. Re1 Qh5 $15) 27... Rxd1+ 28. Ng1
   Rxd6 29. Qh4 Rd1 30. h3 Qc5 0-1`,
 
   `[Event "London, Canada (Geza Fuster Memorial -"]
@@ -4269,16 +4269,16 @@ export const pgns1994 = [
   1. e4 d5 2. Nc3 d4 3. Nce2 e5 4. d3 f5 {[N]} (4... c5 {
   Kotr-Prohazka; cr Austria; 1910.}) (4... Nc6 {Suttles-Furman; Polanica; 1967.})
   (4... Bb4+ {Popchev-Donchev; Sofia; 1985.}) (4... g6 {
-  Ristic,N-Szekely,P; Dortmund Open; 1988.}) 5. Ng3 f4 $6 (5... Bb4+ {Fritz}) 6.
+  Ristic,N-Szekely,P; Dortmund Open; 1988.}) 5. Ng3 f4 $6 (5... Bb4+) 6.
   Qh5+ Kd7 7. Nf3 Nc6 8. Ne2 Bd6 9. g3 (9. Qg4+ Ke8 10. Qxg7 Qf6 11. Qg5 $14 {
   Fritz}) 9... fxg3 10. Bh3+ Ke7 11. fxg3 Nf6 12. Bg5 Bxh3 13. Qxh3 Bb4+ 14. Kf2
-  Rf8 $2 (14... Qd6 {Fritz}) 15. a3 Kd6 (15... Bd6 16. Qxh7 Rf7 17. Raf1 $16) 16.
+  Rf8 $2 (14... Qd6) 15. a3 Kd6 (15... Bd6 16. Qxh7 Rf7 17. Raf1 $16) 16.
   Kg2 (16. axb4 Nxe4+ 17. dxe4 Qxg5 18. Ra3 Nxb4 19. Qxh7 Nxc2 20. Nf4 $1 Qh6 21.
-  Qxh6+ gxh6 22. Ng6 $13 {Fritz}) 16... h6 17. Bxf6 (17. Nxe5 $1 Nxe5 18. Nxd4 $1
+  Qxh6+ gxh6 22. Ng6 $13) 16... h6 17. Bxf6 (17. Nxe5 $1 Nxe5 18. Nxd4 $1
   Qd7 (18... hxg5 $4 {Mate in 3. -Fritz}) (18... Ba5 $4 {Mate in 4. -Fritz}) 19.
-  Nf5+ Kc6 20. Bxf6 Rxf6 21. axb4 $16 {Fritz}) 17... Qxf6 18. Rhf1 Bc5 19. Nfxd4
+  Nf5+ Kc6 20. Bxf6 Rxf6 21. axb4 $16) 17... Qxf6 18. Rhf1 Bc5 19. Nfxd4
   Nxd4 (19... Qe7 $4 20. Nb5#) 20. Rxf6+ Rxf6 21. Nxd4 Bxd4 22. c3 Rf2+ 23. Kh1
-  Be3 24. Re1 Bd2 25. Rf1 Raf8 26. Rd1 $6 (26. Rxf2 Rxf2 27. Qc8 $18 {Fritz})
+  Be3 24. Re1 Bd2 25. Rf1 Raf8 26. Rd1 $6 (26. Rxf2 Rxf2 27. Qc8 $18)
   26... Be3 27. b4 Bb6 {[time]} 1-0`,
 
   `[Event "London, Canada (Geza Fuster Memorial -"]
@@ -4517,9 +4517,9 @@ export const pgns1994 = [
   Ljubojevic,L-Salov,V; Rotterdam; 1989.}) 7. Nd2 Ne7 8. Qf3 Qxf3 9. Nxf3 c5 $2 (
   9... d5 10. exd5 Nxd5 11. Bxd5 Bb4+ 12. Bd2 Bxd2+ 13. Kxd2 cxd5 14. Rhe1+ $16 {
   Fritz}) 10. Ne5 d5 (10... f5 11. Nf7 d5 12. Bxd5 Nxd5 13. Nxh8 fxe4 14. dxe4
-  Nf6 15. f3 $16 {Fritz}) 11. exd5 (11. Bb5+ $1 Nc6 12. exd5 $18 {Fritz}) 11...
+  Nf6 15. f3 $16) 11. exd5 (11. Bb5+ $1 Nc6 12. exd5 $18) 11...
   Nf5 12. Bb5+ Ke7 13. O-O Nd6 14. Ba4 f6 15. Nc4 Kf7 16. Bf4 Nf5 17. Rae1 Be7 $2
-  (17... g5 18. Bc7 $16 {Fritz}) 18. d6 Bf8 19. d7 Bxd7 20. Bxd7 Rd8 21. Bxf5 Be7
+  (17... g5 18. Bc7 $16) 18. d6 Bf8 19. d7 Bxd7 20. Bxd7 Rd8 21. Bxf5 Be7
   22. Bc7 Rd5 23. Be6+ Kg6 24. Bxd5 Kg5 25. Rxe7 Kg4 26. Be6+ Kg5 27. Rxg7+ Kh6
   28. Rg3 Kh5 29. Bf7+ Kh4 30. Rg7 a5 31. Bg3# 1-0`,
 
@@ -4901,8 +4901,8 @@ export const pgns1994 = [
   8. Bd3 b6 9. Nf3 Ba6 10. Bxa6 Nxa6 11. Qd3 Nb4 12. Qb5+ Nbc6 13. O-O-O a6 14.
   Qe2 O-O 15. g4 b5 16. Ng5 h6 17. h4 g6 18. Nf3 b4 19. Na4 a5 20. h5 Kg7 21. g5
   Nf5 22. gxh6+ Nxh6 23. Rdg1 Rh8 24. Nc5 Qe7 25. Qg2 Rag8 26. hxg6 Nxd4 $2 (
-  26... f5 27. exf6+ Qxf6 28. Qg5 $16 {Fritz}) (26... Nf5 $2 27. Rh7+ Kf8 28. g7+
-  $18 {Fritz}) (26... Kf8 $2 27. g7+ $18 {Fritz}) 27. Nxd4 Qxc5 (27... f5 $4 {
+  26... f5 27. exf6+ Qxf6 28. Qg5 $16) (26... Nf5 $2 27. Rh7+ Kf8 28. g7+
+  $18) (26... Kf8 $2 27. g7+ $18) 27. Nxd4 Qxc5 (27... f5 $4 {
   Mate in 2. -Fritz}) (27... Nf5 $2 28. Nxf5+ exf5 29. Rh7+ Kf8 30. g7+ $18 {
   Fritz}) 28. Rxh6 Kxh6 29. g7 1-0`,
 
@@ -6760,7 +6760,7 @@ export const pgns1994 = [
   
   1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Nf6 5. Nxc6 bxc6 6. e5 Nd5 7. Bc4 {[N]}
   (7. c4 {ECO}) 7... Bb7 8. Bd2 Qh4 9. Qe2 Bc5 10. Nc3 O-O 11. Ne4 Bd4 $2 (11...
-  Be3 {Fritz}) 12. Bg5 Bxf2+ 13. Kd1 Ne3+ 14. Qxe3 1-0`,
+  Be3) 12. Bg5 Bxf2+ 13. Kd1 Ne3+ 14. Qxe3 1-0`,
 
   `[Event "London, Canada (Spring Open)"]
   [Site "?"]
@@ -7284,13 +7284,13 @@ export const pgns1994 = [
   
   1. e4 c5 2. d3 Nc6 3. g3 d5 4. Bg2 d4 $146 (4... Nf6 {
   Djonovic,M-Kpagelj,I; Bled Open; 1992.}) 5. c3 e5 6. Ne2 Be7 7. f4 f6 8. O-O
-  Be6 9. f5 Bf7 10. Bf3 Qd7 11. Qc2 O-O-O 12. a3 $2 (12. c4 $11 {Fritz}) 12...
-  dxc3 13. Nbxc3 Qxd3 14. Qa4 Nd4 15. Nxd4 Rxd4 $2 (15... Qxd4+ $17 {Fritz}) 16.
-  Qxa7 Bc4 $2 (16... Bd6 17. Na4 $40 {Fritz}) 17. Be2 Qc2 18. Bd1 (18. Qa8+ Kc7
-  19. Bxc4 Rxc4 20. Nd5+ $18 {Fritz}) 18... Qd3 19. Be2 Qc2 20. Bd1 Rxd1 21. Rxd1
-  g6 (21... Qb3 22. Qa8+ Kc7 23. Qe8 Kb6 24. Rd7 Ka7 25. Rxe7 $18 {Fritz}) 22.
+  Be6 9. f5 Bf7 10. Bf3 Qd7 11. Qc2 O-O-O 12. a3 $2 (12. c4 $11) 12...
+  dxc3 13. Nbxc3 Qxd3 14. Qa4 Nd4 15. Nxd4 Rxd4 $2 (15... Qxd4+ $17) 16.
+  Qxa7 Bc4 $2 (16... Bd6 17. Na4 $40) 17. Be2 Qc2 18. Bd1 (18. Qa8+ Kc7
+  19. Bxc4 Rxc4 20. Nd5+ $18) 18... Qd3 19. Be2 Qc2 20. Bd1 Rxd1 21. Rxd1
+  g6 (21... Qb3 22. Qa8+ Kc7 23. Qe8 Kb6 24. Rd7 Ka7 25. Rxe7 $18) 22.
   Be3 Kc7 23. Bxc5 Be2 (23... Qb3 24. Bxe7 Nxe7 25. Qc5+ Nc6 26. Qd6+ Kb6 27.
-  Qxf6 $18 {Fritz}) 24. Nd5+ Kc6 25. Qb6+ (25. Nxe7+ {Mate in 3. -Fritz}) 25...
+  Qxf6 $18) 24. Nd5+ Kc6 25. Qb6+ (25. Nxe7+ {Mate in 3. -Fritz}) 25...
   Kd7 26. Qc7+ Ke8 27. Nxe7 Bxd1 28. Nxg8 1-0`,
 
   `[Event "London, Canada (Tolpuddle Open)"]
@@ -7436,23 +7436,23 @@ export const pgns1994 = [
   14. Bd5 $18 {Bronstein {ECO}) 12. d4 (12. Bxd5 {
   Safvat-Zwaig; Varna Olympics; 1962.}) 12... Bd6 13. Re1 Qh4 14. a4 $6 (14. Qf3
   $16 {Matanovic {ECO}) 14... Bxh3 15. Bxd5 cxd5 (15... Bh2+ $5 16. Kf1 cxd5 17.
-  gxh3 Qxh3+ 18. Ke2 Qg4+ (18... Rfe8+ $2 19. Be3 $16 {Fritz}) 19. f3 Qg2+ 20.
-  Kd3 Qg6+ 21. Kd2 Bf4+ 22. Ke2 Qg2+ 23. Kd3 Qg6+ 24. Ke2 $11 {Fritz}) 16. gxh3
+  gxh3 Qxh3+ 18. Ke2 Qg4+ (18... Rfe8+ $2 19. Be3 $16) 19. f3 Qg2+ 20.
+  Kd3 Qg6+ 21. Kd2 Bf4+ 22. Ke2 Qg2+ 23. Kd3 Qg6+ 24. Ke2 $11) 16. gxh3
   Qxh3 17. Re5 f5 (17... Bxe5 18. dxe5 Rac8 19. axb5 (19. Ra3 Qf5 20. Rd3 (20.
-  Rf3 Qxc2 $15 {Fritz}) 20... bxa4 21. Nc3 (21. Rxd5 Rxc2 22. Rd2 Rc6 $15 {Fritz}
-  ) 21... Rfe8 $11 {Fritz}) (19. Nc3 Rc4 20. f4 Qg3+ 21. Kf1 Qh3+ 22. Kg1 $11 {
+  Rf3 Qxc2 $15) 20... bxa4 21. Nc3 (21. Rxd5 Rxc2 22. Rd2 Rc6 $15
+  ) 21... Rfe8 $11) (19. Nc3 Rc4 20. f4 Qg3+ 21. Kf1 Qh3+ 22. Kg1 $11 {
   Fritz}) (19. Nd2 Rc6 20. Nf1 Rg6+ 21. Ng3 Rxg3+ 22. fxg3 Qxg3+ 23. Kf1 Qh3+ 24.
-  Kf2 Qh2+ 25. Kf1 Qh3+ $11 {Fritz}) 19... Rc4 20. f4 Qg3+ 21. Kf1 Qh3+ 22. Kg1
-  $11 {Fritz}) 18. Bf4 Rf6 19. Qf1 $2 (19. axb5 Rg6+ 20. Bg3 Rxg3+ 21. fxg3 Qxg3+
-  22. Kf1 Qh3+ 23. Kf2 Qh2+ 24. Kf1 $11 {Fritz}) 19... Qg4+ 20. Qg2 Qxf4 $2 (
-  20... Qd1+ $1 21. Kh2 Qxd4 22. Qg3 Bxe5 23. Bxe5 Rh6+ $19 {Fritz}) 21. Qxd5+
+  Kf2 Qh2+ 25. Kf1 Qh3+ $11) 19... Rc4 20. f4 Qg3+ 21. Kf1 Qh3+ 22. Kg1
+  $11) 18. Bf4 Rf6 19. Qf1 $2 (19. axb5 Rg6+ 20. Bg3 Rxg3+ 21. fxg3 Qxg3+
+  22. Kf1 Qh3+ 23. Kf2 Qh2+ 24. Kf1 $11) 19... Qg4+ 20. Qg2 Qxf4 $2 (
+  20... Qd1+ $1 21. Kh2 Qxd4 22. Qg3 Bxe5 23. Bxe5 Rh6+ $19) 21. Qxd5+
   Kh8 22. Qxa8+ Rf8 23. Qd5 Bxe5 (23... Qc1+) (23... Qc1+ 24. Kg2 Bxe5 25. dxe5
-  Qxb2 26. Qc5 Rb8 27. Qc3 $14 {Fritz}) 24. dxe5 Qc1+ 25. Kg2 Qg5+ 26. Kh2 Qh4+
-  27. Kg1 Rd8 28. Qf3 Qg5+ 29. Qg3 $2 (29. Kh2 Rd4 30. Qa8+ Rd8 31. Qf3 {Fritz}
-  31... Rd4 $11 {Fritz}) 29... Qc1+ (29... Rd1+ $3 30. Kg2 Qh6 31. Kf3 (31. Qh3
-  Qc6+ 32. Qf3 Rg1+ $17 {Fritz}) (31. Qh2 Qc6+ 32. f3 Qg6+ 33. Kh3 Rf1 $19 {Fritz
-  }) 31... Qc6+ $3 $19 {Fritz}) 30. Kh2 Rd1 31. Qf3 (31. axb5 $2 Rh1+ 32. Kg2
-  Rg1+ $19 {Fritz}) (31. Nd2 Rh1+ 32. Kg2 Qxa1 $17 {Fritz}) 31... Qh6+ 32. Kg2
+  Qxb2 26. Qc5 Rb8 27. Qc3 $14) 24. dxe5 Qc1+ 25. Kg2 Qg5+ 26. Kh2 Qh4+
+  27. Kg1 Rd8 28. Qf3 Qg5+ 29. Qg3 $2 (29. Kh2 Rd4 30. Qa8+ Rd8 31. Qf3
+  31... Rd4 $11) 29... Qc1+ (29... Rd1+ $3 30. Kg2 Qh6 31. Kf3 (31. Qh3
+  Qc6+ 32. Qf3 Rg1+ $17) (31. Qh2 Qc6+ 32. f3 Qg6+ 33. Kh3 Rf1 $19 {Fritz
+  }) 31... Qc6+ $3 $19) 30. Kh2 Rd1 31. Qf3 (31. axb5 $2 Rh1+ 32. Kg2
+  Rg1+ $19) (31. Nd2 Rh1+ 32. Kg2 Qxa1 $17) 31... Qh6+ 32. Kg2
   Qh1+ 33. Kg3 Rg1+ 34. Kf4 g5+ 35. Ke3 Re1+ 36. Kd2 Qxf3 37. Kxe1 Qe4+ 38. Kd2
   Qf4+ 39. Kd1 Qxf2 40. axb5 Qf1+ 41. Kd2 Qxb5 42. Nc3 Qxe5 43. Rxa6 f4 44. Ra4
   Qe3+ 45. Kd1 f3 46. Re4 Qg1+ 47. Kd2 f2 48. Ne2 Qe1+ 49. Kd3 f1=Q 0-1`,
@@ -7643,19 +7643,19 @@ export const pgns1994 = [
   
   1. e4 e6 2. d4 d5 3. Nd2 Nf6 4. Bd3 c5 5. c3 Nc6 6. Ngf3 Qb6 7. dxc5 (7. exd5 {
   Strazyk,T-Rogalewicz,J; Poznan Open; 1983.}) 7... Bxc5 8. O-O O-O 9. e5 Ng4 10.
-  Bxh7+ $5 Kh8 11. Bb1 (11. Nd4 Ncxe5 12. Bc2 Bxd4 $15 {Fritz}) 11... Bxf2+ 12.
+  Bxh7+ $5 Kh8 11. Bb1 (11. Nd4 Ncxe5 12. Bc2 Bxd4 $15) 11... Bxf2+ 12.
   Kh1 Ne3 13. Qe2 Nxf1 14. Nd4 $5 (14. Nxf1 Bc5 15. Ng5 g6 16. Qf3 Nxe5 17. Qh3+
   Kg7 18. Qh7+ Kf6 19. Qh4 Nd7 (19... Ke7 20. Nf3+ g5 21. Bxg5+ f6 22. Nxe5 Qxb2
-  $1 (22... fxg5 23. Qxg5+ Kd6 24. Nd2 Kc7 $15 {Fritz} (24... Qxb2 25. Nec4+ dxc4
-  26. Nxc4+ Kd7 27. Qg7+ Kd8 28. Qxf8+ Bxf8 29. Nxb2 $13 {Fritz})) 23. Ng6+ Ke8
+  $1 (22... fxg5 23. Qxg5+ Kd6 24. Nd2 Kc7 $15 (24... Qxb2 25. Nec4+ dxc4
+  26. Nxc4+ Kd7 27. Qg7+ Kd8 28. Qxf8+ Bxf8 29. Nxb2 $13)) 23. Ng6+ Ke8
   24. Nxf8 Qxa1 25. Nxe6 Bxe6 26. Qh8+ Kd7 27. Qg7+ Be7 28. Bxf6 Re8 29. Bd3 a6
-  $15 {Fritz}) 20. Ne4+ Kg7 21. Bh6+ Kg8 22. Nf6+ Nxf6 23. Qxf6 $18) 14... g6 15.
-  Qxf2 Nxe5 $2 (15... Nxd2 16. Qf6+ Kg8 17. Bxd2 Qd8 $1 $17 {Fritz}) 16. Qf6+ Kh7
-  (16... Kg8 17. Qxf1 (17. Nxf1 Ng4 18. Qf3 e5 $13 {Fritz}) 17... Ng4 $13 {Fritz}
-  ) 17. Nxf1 Nd7 18. Qh4+ Kg8 19. Ng3 (19. Be3 Qxb2 $17 {Fritz}) 19... Re8 (19...
-  e5 20. Nf3 Re8 $13 {Fritz}) 20. Qh6 e5 $2 (20... Nf8 21. Bg5 (21. Nh5 gxh5 22.
+  $15) 20. Ne4+ Kg7 21. Bh6+ Kg8 22. Nf6+ Nxf6 23. Qxf6 $18) 14... g6 15.
+  Qxf2 Nxe5 $2 (15... Nxd2 16. Qf6+ Kg8 17. Bxd2 Qd8 $1 $17) 16. Qf6+ Kh7
+  (16... Kg8 17. Qxf1 (17. Nxf1 Ng4 18. Qf3 e5 $13) 17... Ng4 $13
+  ) 17. Nxf1 Nd7 18. Qh4+ Kg8 19. Ng3 (19. Be3 Qxb2 $17) 19... Re8 (19...
+  e5 20. Nf3 Re8 $13) 20. Qh6 e5 $2 (20... Nf8 21. Bg5 (21. Nh5 gxh5 22.
   Qg5+ Ng6 23. Bxg6 $18) 21... e5 22. Nh5 gxh5 23. Bf6 $18) 21. Nh5 $1 (21. Nh5
-  Qf6 $18 {Fritz} (21... gxh5 {Mate in 4. -Fritz} 22. Bh7+)) 1-0`,
+  Qf6 $18 (21... gxh5 {Mate in 4. -Fritz} 22. Bh7+)) 1-0`,
 
   `[Event "London, Canada (Tolpuddle Open)"]
   [Site "?"]
@@ -7686,7 +7686,7 @@ export const pgns1994 = [
   
   1. e4 e5 2. c4 Nf6 3. Nc3 Bc5 4. d3 d6 5. a3 Ng4 $146 (5... Nc6 {
   Maderna,C-Piazzini,L; Buenos Aires match (Argentina Championship); 1940.}) 6.
-  Be3 $2 (6. Nh3 {Fritz}) 6... Bxe3 7. fxe3 Nxe3 8. Qe2 Qg5 9. Nf3 Qh6 10. Nd5
+  Be3 $2 (6. Nh3) 6... Bxe3 7. fxe3 Nxe3 8. Qe2 Qg5 9. Nf3 Qh6 10. Nd5
   Nxd5 11. cxd5 Nd7 12. Rc1 $2 Qxc1+ 13. Kf2 Nf6 14. g3 O-O 15. h3 Nh5 16. Bg2
   Qc5+ 17. Qe3 Nxg3 18. Qxc5 Nxh1+ 19. Bxh1 dxc5 20. Nxe5 f6 21. Nc4 Bxh3 22. d6
   cxd6 23. Nxd6 b6 24. e5 fxe5+ 25. Kg3 Bf1 26. Bxa8 Rxa8 27. Kf3 Bxd3 28. Ke3 e4
@@ -8076,21 +8076,21 @@ export const pgns1994 = [
   1. e4 e5 2. Nc3 Bc5 3. g3 Nf6 4. Bg2 d6 {4...h5 is a bit dubious because White
   can still guard h4 with Nf3. But 4...c6 to try to push the queen's pawn 2
   squares, was worth considering.} 5. Nge2 Ng4 $146 (5... Nc6 {
-  Chodera-Pechmann; Prague; 1910.}) (5... h5 $5 {-Ehrman} 6. d4 $13 {Fritz}) 6.
+  Chodera-Pechmann; Prague; 1910.}) (5... h5 $5 {-Ehrman} 6. d4 $13) 6.
   O-O h5 (6... Qf6 $6 7. Nd5 $1 {-Ehrman} (7. Nd5 $2 Bxf2+ $1 8. Kh1 Qh6 $40 {
-  Fritz}) (7. d4 $13 {Fritz})) 7. h3 $5 (7. d3 {Safer.}) 7... h4 $5 {
+  Fritz}) (7. d4 $13)) 7. h3 $5 (7. d3 {Safer.}) 7... h4 $5 {
   The speculation starts.} 8. d4 (8. hxg4 hxg3 9. Nxg3 $2 (9. d4 exd4 (9... Qh4
-  10. fxg3 Qh2+ 11. Kf2 exd4 12. Nxd4 Bxg4 13. Qd3 Bh3 14. Rg1 $16 {Fritz})) 9...
-  Qh4 $19) 8... exd4 9. Nxd4 hxg3 (9... Ne5 {Fritz}) 10. fxg3 $6 (10. hxg4 Bxg4 (
-  10... Qh4 11. fxg3 Qxg3 12. Nce2 $6 (12. Bf4 $1 $16 {Fritz}) 12... Qxg4 {
-  Yields Black some attack for his sacrifice.} 13. Be3 $14 {Fritz}) 11. Qd3 (11.
-  Qxg4 gxf2+ 12. Kxf2 Bxd4+ 13. Be3 Bxe3+ 14. Kxe3 $16 {Fritz}) 11... gxf2+ 12.
-  Rxf2 $14 {Fritz}) 10... Nc6 11. Nce2 Nge5 {
+  10. fxg3 Qh2+ 11. Kf2 exd4 12. Nxd4 Bxg4 13. Qd3 Bh3 14. Rg1 $16)) 9...
+  Qh4 $19) 8... exd4 9. Nxd4 hxg3 (9... Ne5) 10. fxg3 $6 (10. hxg4 Bxg4 (
+  10... Qh4 11. fxg3 Qxg3 12. Nce2 $6 (12. Bf4 $1 $16) 12... Qxg4 {
+  Yields Black some attack for his sacrifice.} 13. Be3 $14) 11. Qd3 (11.
+  Qxg4 gxf2+ 12. Kxf2 Bxd4+ 13. Be3 Bxe3+ 14. Kxe3 $16) 11... gxf2+ 12.
+  Rxf2 $14) 10... Nc6 11. Nce2 Nge5 {
   White's King-side is now compromised without Balck's sacrificing.} 12. Kh2 $6 (
   12. g4 {Be3, c3, Nc2, etc.}) 12... g5 13. c3 Bxh3 14. Bxh3 g4 15. Nf4 gxh3 16.
   Nxh3 $6 {This opens the Rook-file for Black.} (16. Nf5 $1) 16... Bxd4 $1 17.
-  cxd4 Qd7 18. g4 (18. Rf5 Ne7 (18... Nxd4 19. Qxd4 Qxf5 $19 {Fritz}) 19. dxe5
-  Nxf5 {Fritz} 20. e6 Qxe6 21. exf5 Qxf5 22. Qe2+ Qe6 23. Qf1 O-O-O $17 {Fritz})
+  cxd4 Qd7 18. g4 (18. Rf5 Ne7 (18... Nxd4 19. Qxd4 Qxf5 $19) 19. dxe5
+  Nxf5 20. e6 Qxe6 21. exf5 Qxf5 22. Qe2+ Qe6 23. Qf1 O-O-O $17)
   18... Nxg4+ 19. Kg3 (19. Kg2 Rxh3 $19) 19... Rxh3+ 0-1`,
 
   `[Event "London, Canada (Tolpuddle Open)"]
@@ -8120,11 +8120,11 @@ export const pgns1994 = [
   1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Bc4 Bc5 5. Ng5 Ne5 $2 (5... Nh6 {ECO}) 6.
   Bxf7+ Nxf7 7. Nxf7 Qh4 $6 (7... Bb4+ {Cochrane,J-Deschapelles,A; Paris; 1821.})
   (7... Kxf7 {Balckburne,J-Gilpin; Notthingham; 1873.}) 8. Qf3 d6 9. Nxh8 (9. Bg5
-  {John Pope}) 9... Nf6 10. O-O Bg4 (10... Qxe4 {Fritz}) 11. Qb3 Nxe4 $2 (11...
-  O-O-O {Fritz}) 12. Qf7+ Kd8 13. Qf8+ Kd7 14. Qxg7+ (14. Qxa8 $5 {Fritz}) 14...
-  Kc6 15. Nf7 Nxf2 (15... d3 {Fritz}) 16. Rxf2 (16. Qg5 {Fritz}) 16... d3 17. g3
+  {John Pope}) 9... Nf6 10. O-O Bg4 (10... Qxe4) 11. Qb3 Nxe4 $2 (11...
+  O-O-O) 12. Qf7+ Kd8 13. Qf8+ Kd7 14. Qxg7+ (14. Qxa8 $5) 14...
+  Kc6 15. Nf7 Nxf2 (15... d3) 16. Rxf2 (16. Qg5) 16... d3 17. g3
   Qe7 (17... Bxf2+ 18. Kxf2 Qxh2+ 19. Ke3 Re8+ 20. Kf4 Qf2+ $1 21. Kxg4 Re4+ 22.
-  Bf4 Rxf4+ 23. gxf4 Qg2+ 24. Kh5 Qxg7 $19 {Fritz}) 18. Nd8+ $1 Qxd8 19. Qxg4 Qf6
+  Bf4 Rxf4+ 23. gxf4 Qg2+ 24. Kh5 Qxg7 $19) 18. Nd8+ $1 Qxd8 19. Qxg4 Qf6
   20. Qf4 Qxf4 21. Bxf4 dxc2 22. Nc3 Re8 23. Kf1 Bxf2 24. Kxf2 b5 25. Rc1 b4 26.
   Ne2 1-0`,
 
@@ -8368,9 +8368,9 @@ export const pgns1994 = [
   Tan,H-Kool,G; Amsterdam IBM; 1962.}) 7. Bd2 Bxd2+ 8. Nbxd2 Bxd5 9. Qc2 Nbd7 10.
   O-O c5 11. e4 Bb7 12. Rfe1 O-O 13. Rad1 cxd4 14. Nxd4 Rc8 15. Qb1 a6 16. N2b3
   Qc7 17. e5 Ng4 18. f4 Bxg2 19. Kxg2 Qb7+ 20. Qe4 Qxe4+ 21. Rxe4 Nc5 22. Re2 (
-  22. Nxc5 bxc5 23. Ne2 $14 {Fritz}) 22... Rfd8 23. h3 Nxb3 24. axb3 Nh6 25. Red2
+  22. Nxc5 bxc5 23. Ne2 $14) 22... Rfd8 23. h3 Nxb3 24. axb3 Nh6 25. Red2
   Rd5 26. Kf3 Kf8 27. g4 g6 28. Ke3 Ke8 29. Nf3 Rxd2 30. Rxd2 Rd8 $2 (30... Ng8
-  $11 {Fritz}) 31. Rxd8+ Kxd8 32. Ng5 Kd7 33. Kd4 Kc6 34. Kc4 a5 35. Nxh7 Ng8 36.
+  $11) 31. Rxd8+ Kxd8 32. Ng5 Kd7 33. Kd4 Kc6 34. Kc4 a5 35. Nxh7 Ng8 36.
   Nf6 Ne7 37. h4 b5+ 38. Kd4 Kb6 39. h5 gxh5 40. gxh5 Nf5+ 41. Kc3 Nh6 42. Ne4
   Kc6 43. b4 a4 44. Kd3 Nf5 45. Nd6 Nh6 46. Ke4 f5+ 47. Kd4 Kb6 48. Ne8 Nf7 49.
   Ng7 Nd8 50. h6 Nc6+ 51. Kc3 Nd8 52. h7 1-0`,
@@ -8386,7 +8386,7 @@ export const pgns1994 = [
   [EventDate "1994.??.??"]
   
   1. e4 e5 2. Nf3 d6 3. d4 exd4 4. Bc4 g6 5. Bg5 Qd7 $2 (5... Be7 6. Qxd4 Bf6 $11
-  {Fritz}) 6. Qxd4 Nf6 $2 (6... f6 7. Bxg8 Rxg8 8. Bxf6 $16 {Fritz}) 7. Qxf6 Rg8
+ ) 6. Qxd4 Nf6 $2 (6... f6 7. Bxg8 Rxg8 8. Bxf6 $16) 7. Qxf6 Rg8
   8. Bxf7+ 1-0`,
 
   `[Event "London, Canada (Tolpuddle Open)"]
@@ -8405,15 +8405,15 @@ export const pgns1994 = [
   (7... Nbd7 {Pelikan,V-Puiggros,G; Mar del Plata; 1944.}) (7... Ne4 {
   Iliesco,J-Puiggros,G; Mar del Plata; 1944.}) (7... Bf5 {
   Gurieli,N-Auvinen,E; Helsinki Open; 1992.}) 8. cxd5 cxd5 9. Qb3 Nc7 10. Bf4 Ne6
-  11. Be5 Nc7 12. Rac1 (12. Bxc7 Qxc7 13. Nxd5 Nxd5 14. Qxd5 Rd8 $132 {Fritz})
-  12... Nfe8 13. Rfd1 e6 14. Bxg7 Kxg7 (14... Nxg7 {Fritz}) 15. a4 (15. e4 {Fritz
+  11. Be5 Nc7 12. Rac1 (12. Bxc7 Qxc7 13. Nxd5 Nxd5 14. Qxd5 Rd8 $132)
+  12... Nfe8 13. Rfd1 e6 14. Bxg7 Kxg7 (14... Nxg7) 15. a4 (15. e4 {Fritz
   }) 15... Nd6 16. Nd2 f5 17. e3 Rb8 18. Qa3 a6 19. a5 Ne4 20. Na4 (20. Ndxe4 {
   Fritz}) 20... Nb5 21. Qb4 Bd7 22. Nb6 Bc6 23. Nb3 (23. Nxe4 dxe4 24. Na4 $36 {
-  Fritz}) 23... Rf7 24. f3 Qd6 (24... Nf6 {Fritz}) 25. Qxd6 Nexd6 26. Nc5 Re8 $2
-  (26... Nc7 {-GS} 27. b4 Nc8 28. Rd3 $36 {Fritz}) 27. Nxa6 Na7 28. Nb4 (28. Nc5
-  {Fritz} 28... Bb5) 28... Bb5 29. b3 Nc6 30. Nxc6 bxc6 31. Bf1 Ra7 32. b4 Rc7
+  Fritz}) 23... Rf7 24. f3 Qd6 (24... Nf6) 25. Qxd6 Nexd6 26. Nc5 Re8 $2
+  (26... Nc7 {-GS} 27. b4 Nc8 28. Rd3 $36) 27. Nxa6 Na7 28. Nb4 (28. Nc5
+  28... Bb5) 28... Bb5 29. b3 Nc6 30. Nxc6 bxc6 31. Bf1 Ra7 32. b4 Rc7
   33. Rc5 Bxf1 34. Kxf1 Nb7 35. Rc3 Ree7 36. Rdc1 Nd8 37. b5 Ra7 38. Nc8 cxb5 39.
-  Nxa7 (39. Nxe7 {Fritz}) 39... Rxa7 40. Rc7+ Rxc7 41. Rxc7+ Kf6 42. a6 1-0`,
+  Nxa7 (39. Nxe7) 39... Rxa7 40. Rc7+ Rxc7 41. Rxc7+ Kf6 42. a6 1-0`,
 
   `[Event "London, Canada (Tolpuddle Open)"]
   [Site "?"]
@@ -10405,7 +10405,7 @@ export const pgns1994 = [
   pawns and is behind in development, but has two Bishops to w ork with.}) 11...
   Nd5 12. Ne4 Bb7 13. Be2 Nc6 14. Nxc6 Bxc6 15. O-O Be7 16. Bh5 O-O 17. Qe2 Rc8
   18. Rad1 Qb6+ 19. Bf2 Qb7 20. Bd4 Nf4 21. Rxf4 gxf4 22. Nf6+ Bxf6 23. exf6 Kh7
-  24. Rf1 Rg8 25. Rf2 Rg5 26. h4 Rgg8 (26... Rg6 {Fritz}) 27. Be5 f3 28. Qe3 $2 (
+  24. Rf1 Rg8 25. Rf2 Rg5 26. h4 Rgg8 (26... Rg6) 27. Be5 f3 28. Qe3 $2 (
   28. Bxf3) 28... Rxg2+ 29. Rxg2 fxg2 30. Be2 Be4 $1 {
   Stops mate (starting with Bd3+) without the loss of material.} 31. Bf4 Rxc2 32.
   Bxh6 Rxe2 $1 33. Qxe2 Kxh6 34. Qe3+ Kh7 35. Kh2 Qd5 36. Kg1 Qd1+ 0-1`,
@@ -10442,12 +10442,12 @@ export const pgns1994 = [
   Bellon Lopez,J-Gligoric,S; Linares; 1981.}) (5. g3 {
   Comas Fabrego,L-Mackay,I; Adelaide World Junior Championship; 1988.}) 5... e5
   6. g3 Nf6 7. Bg2 Be7 8. O-O O-O 9. Nd2 Ne8 10. f4 f6 11. f5 Nd6 12. Nf3 Bd7 13.
-  Kh1 c4 14. dxc4 Nxe4 15. Nfxd4 Nxg3+ $5 {Fritz} 16. hxg3 exd4 17. Nxd4 Ne5 $2 (
-  17... Nxd4 18. Qxd4 Bc6 19. Bd5+ $5 Kh8 20. Bf4 Qd7 $132 {Fritz}) 18. Bxb7 Kh8
-  19. Bd5 (19. Bxa8 Qxa8+ 20. Kh2 Nxc4 21. Ne6 $16 {Fritz}) 19... Qb6 {#} 20. Kg2
+  Kh1 c4 14. dxc4 Nxe4 15. Nfxd4 Nxg3+ $5 16. hxg3 exd4 17. Nxd4 Ne5 $2 (
+  17... Nxd4 18. Qxd4 Bc6 19. Bd5+ $5 Kh8 20. Bf4 Qd7 $132) 18. Bxb7 Kh8
+  19. Bd5 (19. Bxa8 Qxa8+ 20. Kh2 Nxc4 21. Ne6 $16) 19... Qb6 {#} 20. Kg2
   $3 g6 $2 (20... Rad8 21. Qh5 $1 h6 (21... Be8 $4 22. Qxh7+ Kxh7 {
   Mate in 2 -Fritz}) (21... g6 $4 22. Qxh7+ $3 Kxh7 {Mate in 3 -Fritz}) 22. Bxh6
-  $1 Be8 23. Qh4 $18 {Fritz}) 21. Rh1 $1 h5 (21... Nf7 22. fxg6 $18 {Fritz}) 22.
+  $1 Be8 23. Qh4 $18) 21. Rh1 $1 h5 (21... Nf7 22. fxg6 $18) 22.
   Rxh5+ Kg7 23. Bh6+ 1-0`,
 
   `[Event "London, Canada (ch)"]
@@ -10463,10 +10463,10 @@ export const pgns1994 = [
   1. Nf3 b5 2. g3 Bb7 3. Bg2 f5 4. O-O e6 5. d3 Nf6 6. Nbd2 Be7 7. e4 fxe4 8. Ng5
   $146 (8. dxe4 {Grooten,H-Bohm,H; Wijk Aan Zee II; 1985.}) 8... O-O 9. Ndxe4 Qc8
   10. Nxf6+ Bxf6 11. Ne4 Nc6 12. Qh5 b4 13. c3 a5 14. Bg5 Rb8 15. Rae1 Qd8 16. d4
-  {#} 16... Ne7 $2 (16... Bxg5 $1 17. Nxg5 h6 $15 {Fritz}) 17. Bxf6 gxf6 18. Qxa5
+  {#} 16... Ne7 $2 (16... Bxg5 $1 17. Nxg5 h6 $15) 17. Bxf6 gxf6 18. Qxa5
   bxc3 19. bxc3 f5 20. Nc5 Bc6 21. c4 f4 22. Bxc6 Nxc6 23. Qd2 Rb4 24. Qc3 (24.
-  d5 $1 {Fritz}) 24... Qe7 25. Nd3 Ra4 26. Nxf4 Qb4 27. Qf3 Nxd4 28. Qg4+ Kf7 29.
-  Qh5+ Kg8 30. Qg4+ Kf7 31. Nh5 (31. Nd3 {Fritz}) 31... Qxc4 32. Qg7+ Ke8 33.
+  d5 $1) 24... Qe7 25. Nd3 Ra4 26. Nxf4 Qb4 27. Qf3 Nxd4 28. Qg4+ Kf7 29.
+  Qh5+ Kg8 30. Qg4+ Kf7 31. Nh5 (31. Nd3) 31... Qxc4 32. Qg7+ Ke8 33.
   Nf6+ Rxf6 34. Qxf6 d6 $6 35. Qh8+ Kd7 36. Qxh7+ Kc6 37. Kg2 Ne2 38. h4 e5 39.
   h5 e4 40. h6 Qd3 1-0`,
 
@@ -10484,7 +10484,7 @@ export const pgns1994 = [
   9. c3 Qc7 $146 (9... b5 {Morales,J-Schmittdiel,E; Candas Open; 1992.}) 10. d4
   Re8 11. Rf2 b6 12. Na3 Ba6 13. Nc2 Rad8 14. Ne3 Nf8 15. f5 cxd4 16. cxd4 exf5
   17. Nxf5 Bc8 18. Nxe7+ Nxe7 19. Ng5 Be6 20. Qh5 Neg6 21. Be3 Qd7 22. Raf1 $2 (
-  22. Nxe6 $11 {Fritz}) 22... Bg4 23. Bh3 Bxh5 24. Bxd7 Rxd7 25. Nxf7 Ne6 26. Nd6
+  22. Nxe6 $11) 22... Bg4 23. Bh3 Bxh5 24. Bxd7 Rxd7 25. Nxf7 Ne6 26. Nd6
   Rf8 27. Rxf8+ Ngxf8 28. Rc1 Nc7 29. Nc8 Ne8 30. Bg5 h6 31. Be3 Be2 32. Rc2 Ba6
   33. Kg2 Bxc8 34. Rxc8 Kf7 35. Bd2 Rc7 36. Rxc7+ Nxc7 37. a4 Nfe6 38. Bc3 b5 39.
   b3 bxa4 40. bxa4 Ng5 41. Bb2 Ke6 42. g4 Kd7 43. Kg3 Nge6 44. Kf3 Kc6 45. Kg3
@@ -10502,9 +10502,9 @@ export const pgns1994 = [
   
   1. Nf3 d6 2. e4 Nf6 3. Nc3 e5 4. d4 Nbd7 5. Bc4 h6 6. O-O Be7 7. dxe5 $146 (7.
   Qe2 {Morrisson-Tartakower; Buenos Aires Olympics; 1939.}) 7... dxe5 8. Nh4 $5 {
-  Fritz} (8. Qe2 {Fritz}) 8... Nb6 9. Bd3 Nxe4 10. Nxe4 Bxh4 11. f4 exf4 12. Bxf4
+  Fritz} (8. Qe2) 8... Nb6 9. Bd3 Nxe4 10. Nxe4 Bxh4 11. f4 exf4 12. Bxf4
   O-O 13. Qh5 f5 14. Qg6 {#} 14... Qe8 (14... Qd4+ $6 15. Kh1 fxe4 16. Bxe4 Bf6
-  17. Qh7+ Kf7 18. Bg6+ Ke7 19. Rae1+ Be6 20. Bf5 $40 {Fritz}) 15. Qxe8 Rxe8 16.
+  17. Qh7+ Kf7 18. Bg6+ Ke7 19. Rae1+ Be6 20. Bf5 $40) 15. Qxe8 Rxe8 16.
   Nc5 Bf6 17. c3 Nd5 18. Bc4 c6 19. Rae1 Rxe1 20. Rxe1 b6 21. Ne6 Bb7 22. Nc7 Rd8
   23. Ne8 Kf8 24. Bd6+ Kf7 25. Nxf6 Rxd6 26. Nxd5 cxd5 27. Bb3 Re6 28. Rd1 Re5
   29. c4 Ke6 30. Kf2 dxc4 31. Bxc4+ Bd5 32. Rd4 Bxc4 33. Rxc4 Rc5 34. Rb4 Ke5 35.
@@ -10527,14 +10527,14 @@ export const pgns1994 = [
   } 16. Kxg3 Qg5+ $2 (16... Be5+ $1 17. f4 Qg5+ 18. Kf3 Qxf4+ 19. Ke2 Qh2 $40 {
   Fritz} (19... Bxh3 20. Bxh3 Bxd4 21. Bxd4 Qh2+ 22. Rf2 Qxh3)) 17. Kh2 Be5+ 18.
   Kh1 Qf4 19. Bg1 Qh6 20. Rad1 $6 (20. f4 Bxd4 (20... Bxf4 $2 21. Qf2 g5 22. Qf3
-  $14 {Fritz}) 21. Bxd4 Bxh3 22. Bxc5 dxc5 23. b3 $14 {Fritz}) 20... Bxh3 21. f4
-  Bg4+ (21... Bxf4 22. Bxh3 (22. Rxf4 $2 Bxg2+ 23. Kxg2 Qxf4 $17 {Fritz}) 22...
-  Qxh3+ 23. Bh2 Qxh2+ 24. Qxh2 Bxh2 25. Kxh2 Nxe4 $15 {Fritz}) 22. Bh2 Bxd1 23.
+  $14) 21. Bxd4 Bxh3 22. Bxc5 dxc5 23. b3 $14) 20... Bxh3 21. f4
+  Bg4+ (21... Bxf4 22. Bxh3 (22. Rxf4 $2 Bxg2+ 23. Kxg2 Qxf4 $17) 22...
+  Qxh3+ 23. Bh2 Qxh2+ 24. Qxh2 Bxh2 25. Kxh2 Nxe4 $15) 22. Bh2 Bxd1 23.
   Qxd1 Bf6 24. Nde2 Rad8 25. Qc2 Kh8 26. Kg1 g5 27. Rf3 g4 28. Rf1 Qg6 29. Rd1
-  Kg8 $2 (29... Bg7 {Fritz} 30. Ng3 h5 $40 {Fritz}) 30. f5 Qh6 31. Bxd6 Qe3+ 32.
+  Kg8 $2 (29... Bg7 30. Ng3 h5 $40) 30. f5 Qh6 31. Bxd6 Qe3+ 32.
   Kh1 Bxc3 (32... Qh6+ 33. Kg1 Qe3+ $11 {Draw. -Fritz}) 33. Bf4 Rxd1+ 34. Qxd1
-  Qd3 35. Nxc3 h5 36. Qe1 Qd8 (36... Qxc4 37. Bd6 $14 {Fritz}) 37. Qe3 Nd3 38.
-  Bg5 f6 39. Bh4 (39. Bxf6 Qxf6 40. Qxd3 $16 {Fritz}) 39... Ne5 (39... Kg7 {Fritz
+  Qd3 35. Nxc3 h5 36. Qe1 Qd8 (36... Qxc4 37. Bd6 $14) 37. Qe3 Nd3 38.
+  Bg5 f6 39. Bh4 (39. Bxf6 Qxf6 40. Qxd3 $16) 39... Ne5 (39... Kg7 {Fritz
   }) 40. Qh6 Qe7 41. Bxf6 Qh7 42. Qf4 Nd3 43. Qg5+ Kf7 44. Bd4 Ne5 45. c5 Qg7 46.
   Qf4 Kf6 47. Be3 Rd8 48. Qh2 Rd3 49. Qh4+ Kf7 50. Qxh5+ Ke7 51. Bh6 Qf7 52. f6+
   1-0`,
@@ -10552,11 +10552,11 @@ export const pgns1994 = [
   1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 a6 5. Bd3 Qc7 6. f4 Bc5 7. Nf3 $146 (7.
   Nb3 {Coleman,D-Plaskett,J; Great Britain Championship; 1991.}) 7... Nf6 8. Qe2
   Ng4 9. Rf1 Qb6 10. c3 Qa7 11. h3 Nf6 12. b4 Bb6 13. a4 Nc6 14. a5 Bc7 15. Be3
-  Qb8 16. g3 e5 17. f5 (17. Nxe5 Nxe5 18. fxe5 Bxe5 19. Bf4 $11 {Fritz}) 17... d5
-  18. Nbd2 $6 (18. exd5 Nxd5 19. Bc5 $36 {Fritz}) 18... d4 $1 19. cxd4 exd4 20.
+  Qb8 16. g3 e5 17. f5 (17. Nxe5 Nxe5 18. fxe5 Bxe5 19. Bf4 $11) 17... d5
+  18. Nbd2 $6 (18. exd5 Nxd5 19. Bc5 $36) 18... d4 $1 19. cxd4 exd4 20.
   Bxd4 Nxd4 21. Nxd4 Be5 22. N2f3 Qd6 23. Rb1 O-O 24. Nxe5 Qxe5 25. Nf3 (25. Qe3
-  $13 {Fritz}) 25... Qxg3+ 26. Qf2 Qd6 27. Bc2 Re8 {#} (27... Bxf5 $1 $16 {Fritz}
-  ) 28. Rd1 $2 (28. Nd2 Nd5 $40 {Fritz}) 28... Qxb4+ 29. Nd2 $2 Nxe4 0-1`,
+  $13) 25... Qxg3+ 26. Qf2 Qd6 27. Bc2 Re8 {#} (27... Bxf5 $1 $16
+  ) 28. Rd1 $2 (28. Nd2 Nd5 $40) 28... Qxb4+ 29. Nd2 $2 Nxe4 0-1`,
 
   `[Event "London, Canada (ch)"]
   [Site "?"]
@@ -10570,13 +10570,13 @@ export const pgns1994 = [
   
   1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 g6 6. Be2 Bg7 7. Be3 Nc6 8.
   Qd2 O-O 9. O-O-O Bd7 10. Kb1 $146 (10. f3 {Wood,B-Winter,W; London; 1948.})
-  10... Nxd4 11. Bxd4 b5 $5 (11... Bc6 {Fritz}) 12. e5 dxe5 13. Bxe5 Bc6 14. Bxb5
+  10... Nxd4 11. Bxd4 b5 $5 (11... Bc6) 12. e5 dxe5 13. Bxe5 Bc6 14. Bxb5
   Bxg2 15. Rhg1 Bf3 16. Be2 Bxe2 17. Qxe2 Qc8 18. Rd4 Qe6 19. Rgd1 Rac8 20. Bg3
   Qb6 21. Qb5 Qe6 22. Qe5 Nh5 23. Qxe6 fxe6 24. Rd7 Nxg3 25. fxg3 Rxc3 26. bxc3
   Rb8+ 27. Kc1 Bh6+ 28. R1d2 Rb6 29. Kd1 Bxd2 30. Rxd2 Ra6 31. Rd7 (31. Ke2 Rxa2)
-  31... Rd6+ (31... Kf7 $15 {Fritz}) 32. Rxd6 exd6 33. Kd2 Kf7 34. Kd3 Kf6 35.
+  31... Rd6+ (31... Kf7 $15) 32. Rxd6 exd6 33. Kd2 Kf7 34. Kd3 Kf6 35.
   Kd4 Kf5 36. c4 e5+ 37. Ke3 h5 38. h3 g5 39. Kf3 e4+ 40. Ke3 Ke5 41. c3 a6 42.
-  a3 Kf5 43. h4 gxh4 44. gxh4 a5 45. a4 {#} 45... Kg4 $4 (45... Ke5 $19 {Fritz}
+  a3 Kf5 43. h4 gxh4 44. gxh4 a5 45. a4 {#} 45... Kg4 $4 (45... Ke5 $19
   46. Ke2 Kf4 47. Kd2 Kf3 48. c5 e3+ 49. Ke1 dxc5 50. Kd1 e2+ 51. Kd2 Kf2 52. Kd3
   ) 46. Kxe4 Kxh4 47. Kd5 Kg3 48. Kxd6 h4 49. c5 h3 50. c6 h2 51. c7 h1=Q 52.
   c8=Q Qd1+ 1/2-1/2`,
@@ -10593,18 +10593,18 @@ export const pgns1994 = [
   
   1. e3 Nf6 2. c4 c5 3. Nc3 d5 $146 (3... Nc6 {Johannessen-Ofstad; Halle; 1963.})
   (3... g6 {Jadoul,M-Spiridanov,N; Belfort Open; 1989.}) 4. cxd5 Nxd5 5. Bb5+ Bd7
-  6. d4 Nxc3 $6 (6... Bxb5 7. Nxb5 Qa5+ $15 {Fritz}) 7. Bxd7+ Nxd7 8. bxc3 g6 9.
-  f4 cxd4 10. cxd4 Bg7 11. Nf3 Qa5+ 12. Bd2 Qa6 13. Qe2 (13. e4 {Fritz}) 13...
+  6. d4 Nxc3 $6 (6... Bxb5 7. Nxb5 Qa5+ $15) 7. Bxd7+ Nxd7 8. bxc3 g6 9.
+  f4 cxd4 10. cxd4 Bg7 11. Nf3 Qa5+ 12. Bd2 Qa6 13. Qe2 (13. e4) 13...
   Qxe2+ 14. Kxe2 O-O 15. Rab1 b6 16. Rhc1 Rfc8 17. a4 e6 18. Kd3 Bf8 19. g4 Ba3
   20. Rg1 Rc7 21. h4 Kf8 22. h5 Rd8 23. a5 Rc6 24. Ke2 Rdc8 25. hxg6 hxg6 26. Rh1
-  Nf6 $2 (26... Ke7 {Fritz}) 27. Rh8+ (27. Ne5 Rc2 28. axb6 axb6 29. Rh8+ Ke7 30.
-  Rxc8 Rxc8 31. Rxb6 $16 {Fritz}) 27... Ke7 28. Rxc8 Rxc8 29. axb6 axb6 30. Rxb6
+  Nf6 $2 (26... Ke7) 27. Rh8+ (27. Ne5 Rc2 28. axb6 axb6 29. Rh8+ Ke7 30.
+  Rxc8 Rxc8 31. Rxb6 $16) 27... Ke7 28. Rxc8 Rxc8 29. axb6 axb6 30. Rxb6
   Nxg4 31. Rb7+ Kf6 32. Ng5 Nh6 33. e4 Bc1 34. Bb4 Re8 (34... Bxf4 35. Be7+ Kg7
-  36. Nxe6+ fxe6 37. Bd6+ $14 {Fritz}) 35. Kf3 Bb2 36. Bc5 $6 (36. Bf8 $1 {Fritz}
+  36. Nxe6+ fxe6 37. Bd6+ $14) 35. Kf3 Bb2 36. Bc5 $6 (36. Bf8 $1
   ) 36... Bc3 37. Ke2 Kg7 38. Kd3 Ba5 39. Be7 Kg8 40. Rd7 Ng4 $2 (40... Rc8 41.
-  Bc5 $40 {Fritz}) 41. Nxf7 Nf2+ 42. Ke3 Nd1+ 43. Kf3 Rb8 $2 (43... Kxf7 44. Bb4+
-  Kg8 45. Bxa5 $16 {Fritz}) 44. Nh6+ Kh8 $4 (44... Kg7 45. Bd8+ Kf8 (45... Kxh6
-  $4 46. Bg5+ Kh5 47. Rh7# {Fritz}) 46. Bxa5 $18 {Fritz}) 45. Bf6# 1-0`,
+  Bc5 $40) 41. Nxf7 Nf2+ 42. Ke3 Nd1+ 43. Kf3 Rb8 $2 (43... Kxf7 44. Bb4+
+  Kg8 45. Bxa5 $16) 44. Nh6+ Kh8 $4 (44... Kg7 45. Bd8+ Kf8 (45... Kxh6
+  $4 46. Bg5+ Kh5 47. Rh7#) 46. Bxa5 $18) 45. Bf6# 1-0`,
 
   `[Event "London, Canada (ch)"]
   [Site "?"]
@@ -10619,12 +10619,12 @@ export const pgns1994 = [
   1. Nf3 Nf6 2. b3 g6 3. Bb2 Bg7 4. g3 O-O 5. Bg2 d6 6. O-O Nbd7 7. c4 c6 8. d3
   e5 $146 (8... Qc7 {Duemmke,J-Klotzki,W; Bargteheide Open; 1989.}) 9. Nc3 Re8
   10. Qc2 Nf8 11. Rac1 Bf5 12. e4 Be6 13. d4 Bg4 14. d5 c5 15. h3 Bd7 16. Ne2 Nh5
-  17. Nd2 g5 $5 18. f4 $6 (18. Rfd1 {Fritz}) 18... gxf4 19. gxf4 Ng6 20. f5 Ngf4
+  17. Nd2 g5 $5 18. f4 $6 (18. Rfd1) 18... gxf4 19. gxf4 Ng6 20. f5 Ngf4
   21. Nxf4 Nxf4 22. Kh2 Bh6 23. Nf3 Kh8 24. Rce1 Qf6 25. Rg1 Rg8 26. Bh1 $2 {#} (
-  26. Rd1 Nxg2 27. Rxg2 Bf4+ 28. Kh1 Rxg2 29. Qxg2 Rg8 30. Qf1 Qh6 $40 {Fritz})
-  26... Nd3 $1 27. h4 $2 (27. Bg2 Nxe1 $17 {Fritz}) 27... Bf4+ 28. Kh3 {
+  26. Rd1 Nxg2 27. Rxg2 Bf4+ 28. Kh1 Rxg2 29. Qxg2 Rg8 30. Qf1 Qh6 $40)
+  26... Nd3 $1 27. h4 $2 (27. Bg2 Nxe1 $17) 27... Bf4+ 28. Kh3 {
   Mate in 4. -Fritz} 28... Bxf5+ 29. exf5 (29. Rg4 Rxg4 30. exf5 Rg3+ 31. Kh2
-  Rg7+ 32. Kh3 Qxf5# {Fritz}) 29... Qxf5+ 30. Rg4 Qxg4# 0-1`,
+  Rg7+ 32. Kh3 Qxf5#) 29... Qxf5+ 30. Rg4 Qxg4# 0-1`,
 
   `[Event "London, Canada (ch)"]
   [Site "?"]
@@ -10638,8 +10638,8 @@ export const pgns1994 = [
   
   1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Ba6 5. b3 Ne4 $146 (5... Bb4+ {ECO}) (5...
   Bb7 {ECO}) (5... b5 {ECO}) (5... d5 {ECO}) 6. Bg2 Bb4+ 7. Nfd2 Bb7 8. O-O {#}
-  8... f5 (8... Nc3 $1 $11 9. Qe1 (9. Nxc3 Bxg2 10. Kxg2 Bxc3 $15 {Fritz}) 9...
-  Bxg2 10. Kxg2 Nxb1 11. Rxb1 d5 $11 {Fritz}) 9. Nxe4 fxe4 10. Qc2 d5 11. Bb2 Be7
+  8... f5 (8... Nc3 $1 $11 9. Qe1 (9. Nxc3 Bxg2 10. Kxg2 Bxc3 $15) 9...
+  Bxg2 10. Kxg2 Nxb1 11. Rxb1 d5 $11) 9. Nxe4 fxe4 10. Qc2 d5 11. Bb2 Be7
   12. f3 exf3 13. Bxf3 O-O 14. Nd2 Bg5 15. h4 Bh6 16. Bg4 Qd6 17. Rxf8+ Kxf8 18.
   Kh2 Nd7 19. Qxh7 Nf6 20. Rf1 Ke7 21. Rxf6 Kxf6 22. Nf3 Qf8 23. Ne5 Qg8 24. Qg6+
   Ke7 25. Ba3+ c5 26. dxc5 Bc1 27. Bxc1 bxc5 28. Bg5+ Kd6 29. Nf7+ Kc7 30. Qxe6
@@ -10662,25 +10662,25 @@ export const pgns1994 = [
   This is the quiet approach. -HJ} (7... exd4 8. Nxd4 Bb7 {
   c7-c5 Pointed out to me by Carl Ehrman. -HJ} 9. Nf5 g6 10. Ng3 Qh4 $1 11. O-O
   Nf6 12. Nc3 O-O-O 13. Qd4 $1 c5 14. Qd3 {
-  With interesting play, but Black has pressure. -HJ} 14... c4 $17 {Fritz}) 8.
+  With interesting play, but Black has pressure. -HJ} 14... c4 $17) 8.
   axb3 f6 9. c4 {Given "!" in Batsford Chess Openings. -HJ} 9... Bd7 10. O-O g6
   11. Nc3 Bg7 12. Be3 Ne7 13. dxe5 dxe5 (13... fxe5 14. Bg5 (14. c5 $16 {HJ})
   14... h6 15. Bxe7 Kxe7 $16 {-HJ} (15... Qxe7 $2 16. cxb5 $16 {-HJ})) 14. Bc5 c6
   15. Qd2 Kf7 16. cxb5 cxb5 17. Rfd1 Be6 18. Qxd8 Rhxd8 19. Rxd8 Rxd8 20. Rxa6
   Bxb3 21. Nxb5 Nc8 22. Ra8 Rd1+ 23. Kh2 Be6 24. Nc7 Bd7 25. Nd5 h6 26. b4 f5 27.
   b5 $1 Rb1 28. b6 $1 (28. exf5 Rxb5 29. fxg6+ Kxg6 30. Ne7+ Nxe7 31. Bxe7 $15 {
-  Fritz}) 28... Rb5 29. Rb8 (29. Nd2 $1 $16 {Fritz}) 29... Rxc5 30. b7 fxe4 31.
+  Fritz}) 28... Rb5 29. Rb8 (29. Nd2 $1 $16) 29... Rxc5 30. b7 fxe4 31.
   Nd2 (31. Nb6 {HJ} 31... Nxb6 (31... Nd6 32. Nxd7 Rb5 33. Nfxe5+ Ke6 34. Rg8 $18
   {HJ}) 32. Rd8 exf3 33. b8=Q Rc6 $13 {HJ}) 31... Rxd5 {
   White has sacrificed 2 pieces! -HJ} 32. Nxe4 {#} 32... Bf8 $2 {
   A blunder. But Black has about 20 seconds on the clock. -HJ} (32... Ne7 33.
   Rf8+ (33. Rd8 Nc6 34. Rc8 Ke7 35. Rxc6 Rb5 36. Rxg6 Bf8 37. Nd6 Rb4 38. Nc8+
-  Kd8 39. Rg8 $18 {HJ}) 33... Kxf8 34. b8=Q+ Kf7 $17 {Fritz}) (32... Nd6 33.
+  Kd8 39. Rg8 $18 {HJ}) 33... Kxf8 34. b8=Q+ Kf7 $17) (32... Nd6 33.
   Nxd6+ Rxd6 34. Rd8 Rb6 35. Rxd7+ Kf6 36. Rd6+ Rxd6 37. b8=Q Rd4 $1 {Black sets
   up a fortress, and White can't win! This position isn't fair, but who said
   chess is fair? The rest of the game was just a race to make time con trol. -HJ}
   ) 33. Rxc8 Rb5 34. b8=Q Rxb8 35. Rxb8 Ba3 36. Ra8 Bb4 37. Ra7 Ke8 $2 (37... Ke6
-  38. Ra6+ $16 {Fritz}) 38. Nf6+ Kf7 39. Nxd7 Ke6 40. Nb6 Kf5 41. Na4 Ke4 42. Rb7
+  38. Ra6+ $16) 38. Nf6+ Kf7 39. Nxd7 Ke6 40. Nb6 Kf5 41. Na4 Ke4 42. Rb7
   Bf8 43. Nc3+ Kd3 44. Nb1 Kc2 (44... Kc2 45. Kg1 {And f1 will decide. -HJ}) 1-0`,
 
   `[Event "London, Canada (ch)"]
@@ -10695,9 +10695,9 @@ export const pgns1994 = [
   
   1. e4 e5 2. Nf3 Nc6 3. Bb5 f5 4. Nc3 Nd4 5. Ba4 c6 6. O-O d6 $146 (6... b5 {
   Nemet-Bojkovic; Vrnjacka Banja, Yugoslavia Championship; 1962.}) 7. Re1 f4 $2 (
-  7... Nxf3+ 8. Qxf3 f4 $11 {Fritz}) 8. Nxd4 exd4 9. Ne2 Qf6 10. e5 $5 {#} (10.
-  d3 g5 $32 {Fritz}) 10... dxe5 11. Nxd4 Kd8 12. Nf3 Bg4 (12... Bd6 13. d4 exd4
-  14. Nxd4 $40 {Fritz}) 13. d4 exd4 14. Re4 Bd6 (14... Bxf3 15. Qxf3 $14 {Fritz})
+  7... Nxf3+ 8. Qxf3 f4 $11) 8. Nxd4 exd4 9. Ne2 Qf6 10. e5 $5 {#} (10.
+  d3 g5 $32) 10... dxe5 11. Nxd4 Kd8 12. Nf3 Bg4 (12... Bd6 13. d4 exd4
+  14. Nxd4 $40) 13. d4 exd4 14. Re4 Bd6 (14... Bxf3 15. Qxf3 $14)
   15. Bxf4 Bxf3 16. Qxf3 Ne7 17. Rd1 Rf8 18. Bxd6 1-0`,
 
   `[Event "London, Canada (ch)"]
@@ -10714,7 +10714,7 @@ export const pgns1994 = [
   h5 9. h4 {#} 9... g4 $146 (9... Nxg3 {
   Naumkin,I-Kovacevic,V; Belgrade Open; 1988.}) 10. Ne5 Nc6 11. Nxc6 bxc6 12. Be5
   f6 13. Bf4 Kf7 14. e3 Qe7 15. Bd3 e5 16. dxe5 Bxc3+ 17. bxc3 fxe5 18. Bxe4 exf4
-  (18... dxe4 19. Bg5 Qa3 20. O-O $14 {Fritz}) 19. cxd5 fxe3 20. fxe3 Kg7 21. O-O
+  (18... dxe4 19. Bg5 Qa3 20. O-O $14) 19. cxd5 fxe3 20. fxe3 Kg7 21. O-O
   Ba6 22. Rf5 Qxh4 23. c4 Rhf8 24. Qc3+ Kg8 25. Qe5 Rxf5 26. Bxf5 g3 27. Be6+ Kh7
   28. Qxc7+ Kh6 29. Bh3 Rf8 30. Qxc6+ Rf6 31. d6 Bxc4 32. Qe8 Kg7 33. d7 Rd6 34.
   Qe5+ Qf6 35. Qxg3+ Kh7 36. Rc1 h4 37. Qf4 Qxf4 38. exf4 Bb5 39. Rc8 Bxd7 40.
@@ -10733,10 +10733,10 @@ export const pgns1994 = [
   1. e4 e6 2. d3 d5 3. Nd2 c5 4. g3 g6 5. Bg2 Bg7 6. h4 Nf6 $146 (6... h6 {
   Mortenson,E-Hansen,L; Vejstrup; 1989.}) 7. e5 Nfd7 8. f4 O-O 9. h5 f6 10. hxg6
   hxg6 11. Qg4 Qe8 12. Ndf3 fxe5 13. Qh4 Rf5 14. g4 Rxf4 15. Bxf4 (15. Nxe5 $1
-  Rf6 16. Bg5 $16 {Fritz}) 15... exf4 16. Qh7+ Kf8 17. Nh4 Ne5 18. Nh3 $1 {#}
-  18... g5 (18... Qf7 19. Nxf4 $1 $40 {Fritz}) (18... Qa4 19. O-O $1 g5 20. Nxg5
-  Qd4+ 21. Kh1 $16 {Fritz}) 19. Nxg5 Qe7 20. Ng6+ Nxg6 21. Qxg6 Kg8 $4 (21... Nc6
-  22. Rf1 $18 {Fritz}) (21... Bd7 22. Rf1 $18 {Fritz}) (21... e5 $4 {
+  Rf6 16. Bg5 $16) 15... exf4 16. Qh7+ Kf8 17. Nh4 Ne5 18. Nh3 $1 {#}
+  18... g5 (18... Qf7 19. Nxf4 $1 $40) (18... Qa4 19. O-O $1 g5 20. Nxg5
+  Qd4+ 21. Kh1 $16) 19. Nxg5 Qe7 20. Ng6+ Nxg6 21. Qxg6 Kg8 $4 (21... Nc6
+  22. Rf1 $18) (21... Bd7 22. Rf1 $18) (21... e5 $4 {
   Mate in 6. Fritz}) 22. Rh8+ 1-0`,
 
   `[Event "London, Canada (ch)"]
@@ -10754,10 +10754,10 @@ export const pgns1994 = [
   Qb6 9. Qh4 Bg7 10. Bh6 O-O 11. c4 Qxb2 12. Nbd2 Nc7 13. Ne4 f6 14. Rfb1 Qe2 15.
   Re1 Qc2 16. exf6 exf6 17. Bxg7 Kxg7 18. Nxf6 Rxf6 19. Re7+ Rf7 20. Qd4+ (20.
   Rxf7+ $1 Kxf7 21. Qxh7+ Kf6 22. Qxc7 Qa4 (22... Qxc4 23. Re1 Be6 24. Qe5+ Ke7
-  25. Nd4 $18 {Fritz}) 23. Qd8+ Kf7 24. Ng5+ Kg7 25. Qc7+ Kh6 26. Nf7+ Kg7 27.
-  Nd6+ $18 {Fritz}) 20... Kg8 21. Qd8+ Rf8 22. Qxc7 Qb2 23. Rae1 Bg4 24. Nd2 Qf6
+  25. Nd4 $18) 23. Qd8+ Kf7 24. Ng5+ Kg7 25. Qc7+ Kh6 26. Nf7+ Kg7 27.
+  Nd6+ $18) 20... Kg8 21. Qd8+ Rf8 22. Qxc7 Qb2 23. Rae1 Bg4 24. Nd2 Qf6
   25. Ne4 Qd4 26. Rxh7 Rae8 27. Re7 Rxe7 28. Qxe7 Be2 29. Kh1 Bxc4 30. Qxb7 Bxa2
-  31. Qxc6 Bd5 $2 (31... Bf7 $14 {Fritz}) 32. Qxg6+ Kh8 33. f3 Qb4 34. Qh5+ Kg7
+  31. Qxc6 Bd5 $2 (31... Bf7 $14) 32. Qxg6+ Kh8 33. f3 Qb4 34. Qh5+ Kg7
   35. Qe5+ Kh7 36. Rc1 Bxe4 {#Mate in 6. -Fritz} 37. Qxe4+ $6 (37. Rc7+ Qe7 38.
   Rxe7+ Rf7 39. Rxf7+ Kh6 40. Qf4+ Kh5 41. g4+ Kg6 42. Qf6#) 37... Qxe4 38. fxe4
   Rf2 39. Ra1 Re2 40. Rxa7+ Kg6 41. h3 Rxe4 42. Ra5 Re3 43. Kh2 Rb3 44. h4 Rb4
@@ -10782,10 +10782,10 @@ export const pgns1994 = [
   1. e4 c5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bb5 Qc7 5. O-O Nd4 6. a4 a6 7. Bc4 e6 8. d3
   Ng4 $146 (8... d6 {
   Pastircak,M-Priehoda,V; Czechoslovakia Team Championship; 1985.}) 9. g3 h5 (
-  9... Nxf3+ 10. Qxf3 Ne5 $36 {Fritz}) 10. Be3 (10. Nxd4 cxd4 11. Ne2 Bc5 12. Nf4
-  $32 {Fritz}) 10... Nxf3+ 11. Qxf3 Ne5 12. Qe2 Nxc4 13. dxc4 h4 14. Rad1 Bd6 15.
+  9... Nxf3+ 10. Qxf3 Ne5 $36) 10. Be3 (10. Nxd4 cxd4 11. Ne2 Bc5 12. Nf4
+  $32) 10... Nxf3+ 11. Qxf3 Ne5 12. Qe2 Nxc4 13. dxc4 h4 14. Rad1 Bd6 15.
   f4 hxg3 16. hxg3 b6 17. Rf2 Bb7 18. Rh2 O-O-O 19. a5 bxa5 {#} 20. Rxd6 $6 (20.
-  Rxh8 Rxh8 21. Qg4 $132 {Fritz}) 20... Qxd6 21. Na4 Rxh2 22. Kxh2 Rh8+ 23. Kg1
+  Rxh8 Rxh8 21. Qg4 $132) 20... Qxd6 21. Na4 Rxh2 22. Kxh2 Rh8+ 23. Kg1
   Bxe4 24. Bxc5 Qc6 0-1`,
 
   `[Event "London, Canada (ch)"]
@@ -10800,13 +10800,13 @@ export const pgns1994 = [
   
   1. e4 e6 2. d3 d5 3. Nd2 Nc6 4. Ngf3 e5 5. Be2 Nf6 6. O-O Bc5 $146 (6... Be7 {
   Allan,D-De Loughry,D; Lugano Olympics; 1968.}) 7. c3 O-O 8. Qc2 h6 9. Nb3 Bb6
-  10. exd5 Qxd5 (10... Nxd5 {Fritz}) 11. c4 Qe6 12. c5 Ba5 13. Nxa5 Nxa5 14. d4
-  e4 15. Ne5 Nc6 16. Nxc6 Qxc6 17. b4 (17. f3 $1 $36 {Fritz}) 17... Bf5 18. Bb2
-  Nd5 19. Qb3 Nf4 20. Bc4 $2 (20. Rae1 $11 {Fritz}) 20... e3 21. d5 (21. f3 Qg6
-  22. g3 Nh3+ 23. Kg2 Rfe8 24. Rfe1 $13 {Fritz}) 21... Qg6 22. g3 exf2+ $6 (22...
+  10. exd5 Qxd5 (10... Nxd5) 11. c4 Qe6 12. c5 Ba5 13. Nxa5 Nxa5 14. d4
+  e4 15. Ne5 Nc6 16. Nxc6 Qxc6 17. b4 (17. f3 $1 $36) 17... Bf5 18. Bb2
+  Nd5 19. Qb3 Nf4 20. Bc4 $2 (20. Rae1 $11) 20... e3 21. d5 (21. f3 Qg6
+  22. g3 Nh3+ 23. Kg2 Rfe8 24. Rfe1 $13) 21... Qg6 22. g3 exf2+ $6 (22...
   Nh3+ 23. Kg2 exf2 24. Be2 Rae8 25. Bf3 Bd3 $1 26. Kxh3 Re3 $1 27. Rxf2 Bf5+ $15
-  {Fritz}) 23. Kxf2 Nh3+ 24. Ke1 Rae8+ 25. Kd1 Qg4+ {#} 26. Qf3 $2 (26. Kc1 Qg5+
-  27. Kd1 Re3 $1 $40 {Fritz}) 26... Qxf3+ 27. Rxf3 Bg4 28. Be2 Rxe2 29. Kxe2 Re8+
+ ) 23. Kxf2 Nh3+ 24. Ke1 Rae8+ 25. Kd1 Qg4+ {#} 26. Qf3 $2 (26. Kc1 Qg5+
+  27. Kd1 Re3 $1 $40) 26... Qxf3+ 27. Rxf3 Bg4 28. Be2 Rxe2 29. Kxe2 Re8+
   30. Kd3 Bxf3 31. d6 Nf2+ 32. Kc4 cxd6 33. cxd6 Ne4 34. Kd5 Nc3+ 35. Kd4 Na4 36.
   Bc1 Bc6 37. Bf4 Re4+ 38. Kd3 Re8 39. Rc1 a6 40. Be3 Rd8 41. Bf4 f6 0-1`,
 
@@ -10827,7 +10827,7 @@ export const pgns1994 = [
   Qe3 Bc8 23. Ra3 a6 24. Qd3 h6 25. Nxf6+ Qxf6 26. f4 exf4 27. Qe4 Bd8 28. Rf3 g5
   29. gxf4 Bf5 30. Qe3 g4 31. Rg3 Qf7 32. h3 Bh4 33. hxg4 Bxg3 34. Qxg3 Qg7 {#}
   35. Re3 (35. g5 hxg5 36. Bc3 Qg6 37. Re7 Rf7 38. Rxf7 Qxf7 39. Qxg5+ Qg6 40.
-  Kf2 $13 {Fritz}) 35... Qxg4 36. Qe1 Qh5 37. Rg3+ Kh7 38. Bc3 Rf7 39. Bf3 Qh4
+  Kf2 $13) 35... Qxg4 36. Qe1 Qh5 37. Rg3+ Kh7 38. Bc3 Rf7 39. Bf3 Qh4
   40. Bg4 Bxg4 41. Qe4+ Bf5 0-1`,
 
   `[Event "London, Canada (ch)"]
@@ -10843,9 +10843,9 @@ export const pgns1994 = [
   1. e3 Nf6 2. c4 g6 3. b3 Bg7 4. Bb2 O-O 5. Nc3 $146 (5. Nf3 {
   Bougel-Angelov,R; Cappelle Open; 1989.}) 5... d6 6. d4 c6 7. Be2 Na6 8. Nf3 Bf5
   9. O-O Re8 10. Nd2 e5 11. a3 Re7 12. b4 Nc7 13. g4 exd4 14. exd4 Be6 15. f4 Qd7
-  16. h3 d5 17. c5 h5 $5 18. Nf3 $6 {#} (18. f5 $36 {Fritz}) 18... Bxg4 $1 19.
+  16. h3 d5 17. c5 h5 $5 18. Nf3 $6 {#} (18. f5 $36) 18... Bxg4 $1 19.
   hxg4 Qxg4+ 20. Kh1 Qxf4 21. Nh2 Qh4 22. Qd3 Rae8 23. Bf3 Re3 (23... Ne4 24.
-  Bxe4 dxe4 25. Qe3 f5 $17 {Fritz}) 24. Qd2 Bh6 25. Qf2 Qxf2 26. Rxf2 Re1+ 27.
+  Bxe4 dxe4 25. Qe3 f5 $17) 24. Qd2 Bh6 25. Qf2 Qxf2 26. Rxf2 Re1+ 27.
   Rf1 Rxa1 28. Rxa1 Ne4 29. Nxe4 dxe4 30. Be2 f5 31. a4 Kh7 32. b5 f4 33. b6 axb6
   34. cxb6 Nd5 35. a5 Bf8 36. Ba3 Bxa3 37. Rxa3 Kh6 38. Rb3 Rb8 39. a6 bxa6 40.
   b7 a5 41. Bc4 Nb4 42. Ra3 Rxb7 43. Rxa5 Re7 44. Kg2 Nc2 45. Nf1 Nxd4 46. Ba6 e3
@@ -10864,7 +10864,7 @@ export const pgns1994 = [
   1. e4 e6 2. d4 d5 3. Nd2 dxe4 4. Nxe4 b6 5. Nf3 Bb7 6. Bb5+ c6 7. Bd3 Nd7 8.
   Qe2 $146 (8. Bg5 {Zielinski,M-Kaluzny,W; Lubniewice, Poland ch; 1981.}) 8... h6
   9. Bf4 Ngf6 10. Nd6+ Bxd6 11. Bxd6 Nf8 12. Ba3 Nd5 13. g3 Nd7 $2 {#} (13... Nf6
-  14. O-O Qc7 $11 {Fritz}) 14. Qxe6+ Ne7 15. Qe2 O-O $2 (15... c5 16. dxc5 $16 {
+  14. O-O Qc7 $11) 14. Qxe6+ Ne7 15. Qe2 O-O $2 (15... c5 16. dxc5 $16 {
   Fritz}) 16. Bxe7 1-0`,
 
   `[Event "London, Canada (ch)"]
@@ -10880,15 +10880,15 @@ export const pgns1994 = [
   1. d4 Nf6 2. Nf3 g6 3. g3 Bg7 4. Bg2 O-O 5. O-O d6 6. Nc3 Nbd7 7. e4 e5 8. h3
   c6 9. a4 Re8 10. Re1 Qc7 11. Be3 Nf8 $146 (11... b6 {
   Kluger,G-Honfi,K; Hungary; 1968.}) 12. Qd2 Be6 13. Ng5 Bc4 14. f4 Nh5 15. Qf2
-  h6 16. Nf3 a6 17. Nd2 b5 $2 (17... exd4 $11 {Fritz}) 18. Nxc4 (18. dxe5 $1 dxe5
-  19. Bb6 Qb7 20. f5 Nxg3 21. b3 $16 {Fritz}) 18... bxc4 19. dxe5 dxe5 20. f5
-  Rab8 21. Nd1 Nd7 22. Bf1 c3 $5 (22... gxf5 {Fritz}) 23. Nxc3 Rxb2 $5 (23...
-  gxf5 {Fritz}) 24. fxg6 (24. Bc1 Rbb8 25. fxg6 fxg6 26. Bxa6 $14 {Fritz}) 24...
-  fxg6 25. Bc4+ $5 (25. Bxa6 $14 {Fritz}) 25... Kh7 26. Bb3 Rb8 27. Qf7 $1 Rf8 (
-  27... Nxg3 28. Rad1 $13 {Fritz}) 28. Qe7 Qa5 (28... Rf3 $1 {Fritz}) 29. Ne2 (
-  29. Qa3 Rxb3 30. Qxb3 Nxg3 31. Rad1 $14 {Fritz}) 29... Rf3 $1 {#} 30. Ba7 (30.
-  Bf2 Rxf2 31. Kxf2 Nc5 $13 {Fritz}) 30... Ndf6 31. Qe6 $2 (31. Qa3 Qc7 32. Be3
-  Rxe3 33. Qxb2 Nxe4 $15 {Fritz}) 31... Nxg3 32. Qxc6 Nxe2+ 33. Rxe2 Rfxb3 34.
+  h6 16. Nf3 a6 17. Nd2 b5 $2 (17... exd4 $11) 18. Nxc4 (18. dxe5 $1 dxe5
+  19. Bb6 Qb7 20. f5 Nxg3 21. b3 $16) 18... bxc4 19. dxe5 dxe5 20. f5
+  Rab8 21. Nd1 Nd7 22. Bf1 c3 $5 (22... gxf5) 23. Nxc3 Rxb2 $5 (23...
+  gxf5) 24. fxg6 (24. Bc1 Rbb8 25. fxg6 fxg6 26. Bxa6 $14) 24...
+  fxg6 25. Bc4+ $5 (25. Bxa6 $14) 25... Kh7 26. Bb3 Rb8 27. Qf7 $1 Rf8 (
+  27... Nxg3 28. Rad1 $13) 28. Qe7 Qa5 (28... Rf3 $1) 29. Ne2 (
+  29. Qa3 Rxb3 30. Qxb3 Nxg3 31. Rad1 $14) 29... Rf3 $1 {#} 30. Ba7 (30.
+  Bf2 Rxf2 31. Kxf2 Nc5 $13) 30... Ndf6 31. Qe6 $2 (31. Qa3 Qc7 32. Be3
+  Rxe3 33. Qxb2 Nxe4 $15) 31... Nxg3 32. Qxc6 Nxe2+ 33. Rxe2 Rfxb3 34.
   Rf1 Rg3+ 35. Kh2 Qc3 36. Qe6 Nh5 37. Bf2 Nf4 0-1`,
 
   `[Event "London, Canada (ch)"]
@@ -10910,8 +10910,8 @@ export const pgns1994 = [
   Nc5 30. Qxa4 Nxa4 31. Bb5 Rc8 32. Bxa4 Rxc3 33. Rxa7 $18 {JP}) 25. Qd1 b6 26.
   Nd3 Qe7 27. Bh3 g6 28. Bxe6 fxe6 29. Ne5 g5 30. Bc1 c5 31. b4 cxb4 32. cxb4
   Qxb4 33. Bxg5 Rc8 34. Qd3 Ng7 35. Bf6 Nf5 36. Ng6 Rc3 37. Qd2 Qb1+ 38. Re1 Rc2
-  {#} 39. Rxb1 (39. Ne7+ Kf7 40. Rxb1 Rxd2 41. Bg5 Rxd4 $17 {Fritz}) 39... Rxd2
-  40. Be5 (40. Nf4 {Fritz}) 40... Nxd4 41. Bxd4 Rxd4 42. Re1 Rxa4 43. Nf4 Nb3 44.
+  {#} 39. Rxb1 (39. Ne7+ Kf7 40. Rxb1 Rxd2 41. Bg5 Rxd4 $17) 39... Rxd2
+  40. Be5 (40. Nf4) 40... Nxd4 41. Bxd4 Rxd4 42. Re1 Rxa4 43. Nf4 Nb3 44.
   Rxe6 d4 45. Kg2 Ra2+ 46. Kh3 Nc5 47. Re7 d3 48. Kh4 d2 49. Re8+ Kf7 50. Rd8 Nb3
   51. Nh3 Ra1 52. Nf2 Rf1 0-1`,
 
@@ -10927,11 +10927,11 @@ export const pgns1994 = [
   
   1. e4 d6 2. d4 Nf6 3. Bd3 g6 4. Nf3 Bg7 5. h3 O-O 6. Be3 Nc6 $146 (6... Nbd7 {
   Taha-Dell'Accio; Tunis Team Tournament; 1977.}) 7. Qd2 e5 8. d5 Ne7 9. Bh6 c6
-  10. c4 Nh5 11. g4 Nf4 12. Bxf4 exf4 13. Nc3 f5 (13... Qa5 $13 {Fritz}) 14. gxf5
+  10. c4 Nh5 11. g4 Nf4 12. Bxf4 exf4 13. Nc3 f5 (13... Qa5 $13) 14. gxf5
   gxf5 15. O-O-O Qa5 16. Rdg1 Kh8 {#} 17. Rxg7 $1 Kxg7 18. Qxf4 Ng6 19. Rg1 fxe4
   20. Qxe4 Bf5 21. Qd4+ Kg8 22. Bxf5 Rxf5 23. Nh4 Raf8 (23... c5 24. Qd3 Rf6 25.
-  Nxg6 hxg6 26. Rxg6+ Kf7 27. Rxf6+ Kxf6 28. Ne4+ $16 {Fritz}) (23... Re5 24. f4
-  c5 25. Qd3 $18 {Fritz}) 24. Nxg6 hxg6 {Mate in 7. -Fritz} 25. Rxg6+ Kf7 26.
+  Nxg6 hxg6 26. Rxg6+ Kf7 27. Rxf6+ Kxf6 28. Ne4+ $16) (23... Re5 24. f4
+  c5 25. Qd3 $18) 24. Nxg6 hxg6 {Mate in 7. -Fritz} 25. Rxg6+ Kf7 26.
   Rg7+ Ke8 27. Qe4+ Re5 28. Qg6+ 1-0`,
 
   `[Event "London, Canada (ch)"]
@@ -10948,8 +10948,8 @@ export const pgns1994 = [
   Busch,K-Armas,I; Naestved Open; 1988.}) 4... d6 5. d4 Nf6 6. Be2 Nbd7 7. c4 b4
   8. O-O g6 9. a3 a5 10. Qe1 c5 11. d5 Bg7 12. a4 O-O 13. Ng5 Re8 14. Nd2 e6 15.
   dxe6 fxe6 16. Rd1 Qc7 17. Bf3 d5 18. Qe2 Nb6 19. e4 {#} 19... Ng4 $2 (19... Qf4
-  $11 {Fritz}) (19... d4 $5 20. e5 Bxf3 21. Ngxf3 Nfd7 $15 {X e5 -JP}) 20. Bxg7
-  $4 (20. Bxg4 Bxb2 21. Bxe6+ $16 {Fritz}) 20... Qxh2# 0-1`,
+  $11) (19... d4 $5 20. e5 Bxf3 21. Ngxf3 Nfd7 $15 {X e5 -JP}) 20. Bxg7
+  $4 (20. Bxg4 Bxb2 21. Bxe6+ $16) 20... Qxh2# 0-1`,
 
   `[Event "London, Canada (ch)"]
   [Site "?"]
@@ -10985,11 +10985,11 @@ export const pgns1994 = [
   7... Bxd3 {Basman,M-Asmundsson,I; Lugano Olympics; 1968.}) (7... c5 {
   Mista,L-Fichtl,J; Czechoslovakia Championship; 1974.}) 8. Ne2 c5 9. c3 Ba5 10.
   Be3 Bxd3 11. Qxd3 c4 12. Qc2 b5 13. Ng3 Nbc6 14. Nh5 {#} 14... O-O-O $6 (14...
-  Nf5 $11 {Fritz}) 15. b4 Bb6 16. a4 (16. Nxg7 h5 17. Ng5 Ng8 18. a4 $16 {Fritz})
+  Nf5 $11) 15. b4 Bb6 16. a4 (16. Nxg7 h5 17. Ng5 Ng8 18. a4 $16)
   16... Nf5 17. axb5 Nce7 18. Qa4 Nxe3 19. fxe3 Nf5 20. Rae1 Qe7 21. Qc2 g6 (
-  21... Qd7 22. e4 dxe4 23. Qxe4 Qxb5 24. g4 $40 {Fritz}) 22. Nf6 h5 23. e4 Nh6
+  21... Qd7 22. e4 dxe4 23. Qxe4 Qxb5 24. g4 $40) 22. Nf6 h5 23. e4 Nh6
   24. Ng5 Rhf8 25. Qd2 Ng4 26. exd5 exd5 27. Qf4 Nh6 (27... Nxf6 28. Qxf6 Qxf6
-  29. Rxf6 $16 {Fritz}) 28. Ngh7 Nf5 29. Nxf8 Rxf8 (29... Qxf8 {Fritz}) 30. Nxd5
+  29. Rxf6 $16) 28. Ngh7 Nf5 29. Nxf8 Rxf8 (29... Qxf8) 30. Nxd5
   Qe6 31. Nxb6+ Qxb6 32. Qe4 Ne7 33. e6 f6 34. Qa8+ Qb8 35. Qxb8+ Kxb8 36. Re5
   fxe5 37. Rxf8+ Kc7 38. Rf7 Kd6 39. Rxe7 Kxe7 40. d5 g5 41. Kf2 Kd6 42. Ke3 Ke7
   43. Ke4 Kd6 44. Kf5 g4 45. Kg6 1-0`,
@@ -11056,11 +11056,11 @@ export const pgns1994 = [
   Duenhaupt,H-Van Geet,D; cr Europe; 1986.}) 2... Nh6 {#} 3. c4 g6 4. h4 Bg7 5.
   h5 c6 6. Nc3 d6 7. Be2 Nc7 8. Be3 Bd7 9. f3 f6 10. Qd2 Nf7 11. hxg6 hxg6 12.
   Rxh8+ Bxh8 13. O-O-O b5 14. Bd3 e6 15. Nh3 e5 16. f4 Qe7 17. cxb5 cxb5 18. Kb1
-  b4 19. Nd5 $6 (19. Ne2 $11 {Fritz}) 19... Nxd5 20. exd5 e4 21. Bc2 a5 22. f5 $2
-  (22. Nf2 f5 23. Rh1 Bb5 $15 {Fritz}) 22... Bxf5 23. Nf4 g5 24. Ba4+ Kf8 25. Ne2
+  b4 19. Nd5 $6 (19. Ne2 $11) 19... Nxd5 20. exd5 e4 21. Bc2 a5 22. f5 $2
+  (22. Nf2 f5 23. Rh1 Bb5 $15) 22... Bxf5 23. Nf4 g5 24. Ba4+ Kf8 25. Ne2
   Bd7 26. Bxd7 Qxd7 27. Rf1 Qb5 28. Ng3 Qxd5 29. Rf5 Qc6 30. Qc2 Qb7 31. d5 Nh6
   32. Rf1 Kg8 33. Qxe4 Qh7 34. Nf5 Nxf5 35. Rxf5 Qd7 36. Qg4 Bg7 $2 (36... Qb5
-  $17 {Fritz}) 37. Bxg5 fxg5 (37... Rf8 $11 {Fritz}) 38. Rf8+ Rxf8 39. Qxd7 Be5
+  $17) 37. Bxg5 fxg5 (37... Rf8 $11) 38. Rf8+ Rxf8 39. Qxd7 Be5
   40. Qg4 Rf1+ 41. Kc2 Rf2+ 42. Kd3 Rxb2 43. Qxg5+ Kf7 44. Qf5+ Ke7 45. Qe6+ Kd8
   46. g4 Rxa2 47. Qg8+ Kc7 48. Qa8 Ra3+ 49. Ke4 b3 50. Kf5 b2 1/2-1/2`,
 
@@ -11076,17 +11076,17 @@ export const pgns1994 = [
   
   1. d4 Nf6 2. c4 d5 3. g3 e6 4. Bg2 c5 5. cxd5 Nxd5 6. Nf3 Nc6 7. e3 $146 (7.
   O-O {Smyslov,V-Prins,L; Helsinki Olympics; 1952.}) 7... c4 8. O-O b6 9. Nc3 Bd6
-  $6 (9... Bb4 {Fritz}) 10. Nd2 Nde7 11. Nxc4 Ba6 12. Nxd6+ Qxd6 13. Re1 Rd8 14.
+  $6 (9... Bb4) 10. Nd2 Nde7 11. Nxc4 Ba6 12. Nxd6+ Qxd6 13. Re1 Rd8 14.
   Qa4 Bb7 15. Ne4 Qb4 16. Qxb4 Nxb4 17. Rd1 Bxe4 18. Bxe4 O-O 19. Bd2 Nbc6 20.
   Rac1 Rd6 21. Rc2 Rfd8 22. Rdc1 Nxd4 $5 23. Bb4 $2 (23. exd4 Rxd4 24. Rc7 Kf8
-  25. Bg5 $14 {Fritz}) 23... Nxc2 24. Bxd6 Rxd6 25. Rxc2 $11 {Fritz} 25... f5 26.
+  25. Bg5 $14) 23... Nxc2 24. Bxd6 Rxd6 25. Rxc2 $11 25... f5 26.
   Rc7 Ng6 27. Bc2 a5 28. Bb3 h6 29. Kg2 Kh7 30. Bc2 Rd2 31. Bb3 Rd6 32. Kf1 Ne5
   33. Re7 Kg6 34. Rxe6+ Rxe6 35. Bxe6 Nd3 36. b3 Nc1 37. a4 Kf6 38. Bc4 Ke5 39.
   f3 g5 40. Kf2 f4 41. h3 Na2 42. g4 Nc3 43. e4 Kd4 44. Be6 Ke5 45. Bc4 Kd4 46.
   Bf7 Ke5 47. Ke1 Kd4 48. Kd2 Na2 49. e5 Kxe5 50. Kd3 Nb4+ 51. Kc4 Kd6 52. Kd4
-  Nc6+ 53. Ke4 Ne7 54. Bc4 Ng6 55. Be2 Ne7 56. h4 $6 (56. Bc4 $11 {Fritz}) 56...
+  Nc6+ 53. Ke4 Ne7 54. Bc4 Ng6 55. Be2 Ne7 56. h4 $6 (56. Bc4 $11) 56...
   gxh4 57. Kxf4 Nd5+ 58. Kf5 h3 59. Bf1 $4 (59. f4 Ne3+ 60. Kf6 h2 61. Bf3 Nxg4+
-  62. Kg7 Nf2 63. f5 $13 {Fritz}) 59... h2 60. Bg2 Ne3+ 0-1`,
+  62. Kg7 Nf2 63. f5 $13) 59... h2 60. Bg2 Ne3+ 0-1`,
 
   `[Event "London, Canada (ch-B)"]
   [Site "?"]
@@ -11101,9 +11101,9 @@ export const pgns1994 = [
   1. Nf3 Nf6 2. g3 g6 3. Bg2 Bg7 4. O-O O-O 5. c3 c6 6. d4 d5 7. Ne5 Nbd7 8. f4
   $146 (8. Nxd7 {Vasiliev,R-Yandemirov,V; Ufa; 1993.}) 8... Qc7 9. Nd2 e6 10. e4
   c5 11. Nxd7 Bxd7 12. e5 Ne8 13. Nf3 Rc8 14. b3 a5 15. a4 c4 $2 (15... cxd4 16.
-  Nxd4 $13 {Fritz} (16. Ba3 dxc3 17. Qc2 $13 {Fritz} (17. Bxf8 c2 18. Qd3 Bxf8
-  $36 {Fritz}))) 16. Ba3 b5 17. Bxf8 Bxf8 {#} 18. h4 $6 (18. axb5 Bxb5 19. Re1
-  cxb3 20. Qxb3 $16 {Fritz}) 18... cxb3 19. Qxb3 bxa4 20. Qa2 Qxc3 21. Qd2 Bb4
+  Nxd4 $13 (16. Ba3 dxc3 17. Qc2 $13 (17. Bxf8 c2 18. Qd3 Bxf8
+  $36))) 16. Ba3 b5 17. Bxf8 Bxf8 {#} 18. h4 $6 (18. axb5 Bxb5 19. Re1
+  cxb3 20. Qxb3 $16) 18... cxb3 19. Qxb3 bxa4 20. Qa2 Qxc3 21. Qd2 Bb4
   22. Qxc3 Bxc3 23. Ra2 Bb4 24. Rff2 Bb5 25. Rfc2 Rxc2 26. Rxc2 a3 27. Bf1 Ba4
   28. Rc1 a2 29. Ra1 Bb3 30. Bb5 Nc7 31. Ba4 Bxa4 32. Rxa2 Bb3 33. Ra1 a4 34. Rc1
   Nb5 35. Rc8+ Kg7 36. Rb8 Bc4 37. Ng5 Be7 38. Nf3 Bb4 39. Ng5 h6 40. Nf3 a3 41.
@@ -11125,8 +11125,8 @@ export const pgns1994 = [
   Bg4 9. Be2 Bxf3 10. Bxf3 Qd6 $146 (10... c5 {
   Misojcic,M-Sekulic,D; Belgrade II; 1990.}) 11. Qd3 c6 12. O-O b6 (12... Nbd7 {
   Fritz}) 13. a3 Nfd7 14. Be3 f5 15. Rad1 Nc5 16. Qc2 fxe4 {#} 17. dxc6 $5 Qe6 (
-  17... Qxc6 18. Nxe4 $16 {Fritz}) 18. Nxe4 Nxe4 19. Bxe4 Rxf1+ 20. Rxf1 Nxc6 $2
-  (20... Kh8 21. c7 Nc6 22. Qa4 $18 {Fritz}) 21. Bd5 1-0`,
+  17... Qxc6 18. Nxe4 $16) 18. Nxe4 Nxe4 19. Bxe4 Rxf1+ 20. Rxf1 Nxc6 $2
+  (20... Kh8 21. c7 Nc6 22. Qa4 $18) 21. Bd5 1-0`,
 
   `[Event "London, Canada (ch-B)"]
   [Site "?"]
@@ -11142,13 +11142,13 @@ export const pgns1994 = [
   d6 9. exd6 Qxd6 10. O-O Bg4 11. Rd1 e6 $146 (11... Rd8 {
   Lacasse-Cote; cr Canada; 1987.}) 12. cxd4 Be7 13. Nc3 Rc8 14. Be3 O-O 15. Rac1
   Rfd8 16. Ne4 Qb8 17. Neg5 Bxg5 18. Bxh7+ Kh8 19. Rxc6 $6 (19. Bxg5 Rd5 $17 {
-  Fritz}) 19... Bxe3 (19... bxc6 20. Bxg5 Rd5 $17 {Fritz}) 20. Rxc8 Bxf2+ $2 (
-  20... Rxc8 21. fxe3 Bxf3 22. Qxf3 Kxh7 23. Qxf7 Rc6 $15 {Fritz}) 21. Qxf2 Rxc8
+  Fritz}) 19... Bxe3 (19... bxc6 20. Bxg5 Rd5 $17) 20. Rxc8 Bxf2+ $2 (
+  20... Rxc8 21. fxe3 Bxf3 22. Qxf3 Kxh7 23. Qxf7 Rc6 $15) 21. Qxf2 Rxc8
   22. Qh4 Bxf3 23. gxf3 g5 24. Qh5 (24. Qh6 $1 Qf4 25. Be4+ Kg8 26. Qh7+ Kf8 27.
-  Bxb7 $13 {Fritz}) 24... Kg7 25. Be4 Qf4 26. Qh7+ Kf6 27. Kh1 $2 (27. Bxb7 $14 {
+  Bxb7 $13) 24... Kg7 25. Be4 Qf4 26. Qh7+ Kf6 27. Kh1 $2 (27. Bxb7 $14 {
   Fritz}) 27... Rc1 28. Rxc1 Qxc1+ 29. Kg2 Qxb2+ 30. Kg3 Qd2 31. Bxb7 Qf4+ 32.
   Kg2 Nd5 33. Bxd5 exd5 34. a4 Ke7 35. Qd3 f5 36. Qe2+ Kf7 {#} 37. Qe5 $2 (37.
-  Qc2 $11 {Fritz}) 37... Qxe5 38. dxe5 Ke6 39. f4 gxf4 40. Kf3 Kxe5 41. h4 d4 42.
+  Qc2 $11) 37... Qxe5 38. dxe5 Ke6 39. f4 gxf4 40. Kf3 Kxe5 41. h4 d4 42.
   h5 d3 43. Kf2 Kf6 44. Ke1 Kg5 45. Kd2 Kxh5 0-1`,
 
   `[Event "London, Canada (ch-B)"]
@@ -11164,14 +11164,14 @@ export const pgns1994 = [
   1. e4 g6 2. d4 Bg7 3. Bc4 d6 4. Ne2 Nf6 5. Nbc3 $146 (5. f3 {
   Calvo Minguez,R-Ivkov,B; Palma de Mallorca; 1967.}) 5... O-O 6. O-O c6 7. a4
   Nxe4 8. Nxe4 d5 9. Bd3 dxe4 10. Bxe4 Bg4 11. f3 Be6 12. c3 Nd7 13. Bd3 f5 14.
-  Re1 Nb6 15. Nf4 Bf7 16. Ne6 Bxe6 17. Rxe6 f4 18. b3 $2 (18. a5 $36 {Fritz})
+  Re1 Nb6 15. Nf4 Bf7 16. Ne6 Bxe6 17. Rxe6 f4 18. b3 $2 (18. a5 $36)
   18... c5 (18... Bxd4+ $5 19. cxd4 Qxd4+ 20. Be3 fxe3 21. Rxg6+ $1 Kh8 (21...
-  hxg6 22. Bc4+ $13 {Fritz}) 22. Rg4 Qf6 $13 {Fritz}) 19. Ba3 cxd4 {#} 20. Rxe7
+  hxg6 22. Bc4+ $13) 22. Rg4 Qf6 $13) 19. Ba3 cxd4 {#} 20. Rxe7
   $6 (20. Bxe7 Qd7 21. Bxf8 Rxf8 (21... Qxe6 22. Bxg7 Qe3+ 23. Kh1 Kxg7 $13 {
-  Fritz}) 22. Qe2 dxc3 23. Rd1 Qd4+ 24. Kh1 $14 {Fritz}) 20... dxc3 21. Qc2 Re8
-  22. Rae1 $2 (22. Rxb7 Qd4+ 23. Kh1 $13 {Fritz}) 22... Rxe7 23. Rxe7 Bf8 24. Qe2
+  Fritz}) 22. Qe2 dxc3 23. Rd1 Qd4+ 24. Kh1 $14) 20... dxc3 21. Qc2 Re8
+  22. Rae1 $2 (22. Rxb7 Qd4+ 23. Kh1 $13) 22... Rxe7 23. Rxe7 Bf8 24. Qe2
   Bxe7 25. Qe6+ Kg7 26. Bxe7 Qd4+ 27. Kh1 c2 28. Qe1 Qe3 29. Qc3+ Kh6 30. Ba3 Re8
-  (30... Rc8 {Fritz}) 0-1`,
+  (30... Rc8) 0-1`,
 
   `[Event "London, Canada (ch-B)"]
   [Site "?"]
@@ -11187,8 +11187,8 @@ export const pgns1994 = [
   {Feller-Keene; Siegen Olympics; 1970. {ECO}) 7... b4 8. e5 bxc3 9. exf6 Bxf6
   10. bxc3 O-O 11. Bh6 Re8 12. Ng5 Bxg5 13. Bxg5 a5 14. a4 Bf5 15. Qf3 d5 16. c4
   Be6 17. cxd5 Bxd5 18. Bxd5 Qxd5 19. Qf4 f6 20. Bh6 g5 21. Qg4 {#} 21... Qf7 $2
-  (21... Qc4 22. Rfe1 $5 Kh8 23. h4 $40 {Fritz}) (21... e5 $13 {Fritz}) 22. h4
-  Qg6 23. hxg5 (23. Qe6+ $1 Kh8 24. hxg5 $16 {Fritz}) 23... fxg5 24. Qxg5 Qxg5
+  (21... Qc4 22. Rfe1 $5 Kh8 23. h4 $40) (21... e5 $13) 22. h4
+  Qg6 23. hxg5 (23. Qe6+ $1 Kh8 24. hxg5 $16) 23... fxg5 24. Qxg5 Qxg5
   25. Bxg5 e5 26. Rfe1 Nd7 27. Rad1 exd4 28. Rxe8+ Rxe8 29. Rxd4 Re1+ 30. Kh2 Nb6
   31. Bd8 Nd5 32. Bxa5 Re2 33. Rc4 Rxf2 34. Rxc6 Ne3 35. c4 Rxg2+ 36. Kh3 Rg4 37.
   c5 Rxa4 38. Bd2 Nc2 39. Rc8+ Kf7 40. c6 Rc4 41. c7 Nd4 42. Rh8 $1 Kg7 43. c8=Q
@@ -11213,10 +11213,10 @@ export const pgns1994 = [
   Be3 h5 9. Bg5 Be7 10. Nbd2 Nh7 11. Bxe7 Qxe7 12. Qa4 Bd7 13. b4 a6 14. c4 Nb8
   15. b5 Rdf8 16. Qb4 b6 17. bxa6 Nxa6 18. Qa3 Kb7 19. d4 f6 20. Rab1 Ra8 21. Qb2
   Rhb8 22. Nh4 Kc8 23. f4 Ra7 24. Qb3 Nf8 25. fxe5 dxe5 26. Nf5 $2 (26. dxe5 $13
-  {Fritz}) 26... Bxf5 27. exf5 Nd7 (27... exd4 28. Rfe1 $13 {Fritz}) 28. c5 bxc5
-  29. Qg8+ Qf8 30. Qe6 $2 (30. Qxf8+ Nxf8 31. dxe5 fxe5 32. Nc4 $11 {Fritz})
+ ) 26... Bxf5 27. exf5 Nd7 (27... exd4 28. Rfe1 $13) 28. c5 bxc5
+  29. Qg8+ Qf8 30. Qe6 $2 (30. Qxf8+ Nxf8 31. dxe5 fxe5 32. Nc4 $11)
   30... Rxb1 31. Rxb1 cxd4 32. Bc6 Nac5 33. Bxd7+ Nxd7 34. Ne4 d3 35. Kg2 {#}
-  35... Rb7 $2 (35... Kd8 $17 {Fritz}) 36. Rxb7 Kxb7 37. Qxd7 Qa3 38. Qd5+ Kc8
+  35... Rb7 $2 (35... Kd8 $17) 36. Rxb7 Kxb7 37. Qxd7 Qa3 38. Qd5+ Kc8
   39. Qg8+ Kb7 40. Qb3+ Qxb3 41. axb3 Kb6 42. Kf3 Kb5 43. Ke3 Kb4 44. Kxd3 Kxb3
   45. Nc5+ Kb4 46. Na6+ Kb5 47. Nxc7+ Kc6 48. Ne6 Kd5 49. Nxg7 e4+ 50. Ke3 Ke5
   1-0`,
@@ -11234,11 +11234,11 @@ export const pgns1994 = [
   1. e4 c5 2. c3 d5 3. exd5 Qxd5 4. d4 cxd4 5. cxd4 Nc6 6. Nf3 e6 7. Nc3 Bb4 8.
   Bd2 Bxc3 $146 (8... Qd8 {Loda,D-Giacometti,F; Bologna Open; 1988.}) 9. Bxc3 Nf6
   10. Bd3 Ne4 11. O-O Nxc3 12. bxc3 O-O 13. Qc2 h6 14. Rfe1 Bd7 15. Rab1 b6 16.
-  Rb5 Qd6 17. Rh5 f5 18. a4 Rac8 19. Qa2 Rf6 $2 (19... Ne7 $11 {Fritz}) 20. Rxf5
+  Rb5 Qd6 17. Rh5 f5 18. a4 Rac8 19. Qa2 Rf6 $2 (19... Ne7 $11) 20. Rxf5
   Rcf8 21. Rxf6 Rxf6 22. Bc4 Na5 23. Bb5 Bc8 24. Ne5 Bb7 25. Be8 Bd5 26. Qe2 Qc7
   27. Qe3 Nc4 28. Qg3 Rf5 {#} 29. Nc6 $2 (29. Bg6 $6 Rg5 30. Bf7+ Qxf7 $1 (30...
-  Kh7 $2 31. Qd3+ $16 {Fritz}) 31. Qxg5 hxg5 32. Nxf7 Kxf7 $15 {Fritz}) (29. Nxc4
-  Qxg3 30. hxg3 Bxc4 31. f3 $14 {Fritz}) 29... Nd6 30. Bg6 Rg5 31. Bf7+ Qxf7 0-1`,
+  Kh7 $2 31. Qd3+ $16) 31. Qxg5 hxg5 32. Nxf7 Kxf7 $15) (29. Nxc4
+  Qxg3 30. hxg3 Bxc4 31. f3 $14) 29... Nd6 30. Bg6 Rg5 31. Bf7+ Qxf7 0-1`,
 
   `[Event "London, Canada (ch-B)"]
   [Site "?"]
@@ -11256,12 +11256,12 @@ export const pgns1994 = [
   9. Ne2 e5 10. f5 Qc7 11. Bg5 Ng4 12. Bd2 (12. Nxd4 $5 Nxd4 13. Qxg4 Nxc2 $13 {
   Fritz}) 12... Nf6 13. Bf3 Rd8 14. g4 h6 15. Ng3 b5 16. g5 hxg5 17. Bxg5 c4 18.
   Kh1 Bb7 19. Rg1 Rac8 20. Nh5 Nxh5 21. Bxh5 Rd6 22. Bxf7+ Kxf7 23. Qh5+ (23.
-  Bxe7 Qxe7 24. Ng5+ Kg8 25. Qg4 cxd3 26. cxd3 Nd8 $17 {Fritz}) 23... Kg8 24. f6
+  Bxe7 Qxe7 24. Ng5+ Kg8 25. Qg4 cxd3 26. cxd3 Nd8 $17) 23... Kg8 24. f6
   $2 (24. Raf1 Rf8 25. Bxe7 Qxe7 26. Rxg7+ Qxg7 27. Rg1 Rd7 28. Rxg7+ Rxg7 $17 {
-  Fritz}) (24. Bxe7 Qxe7 25. Rg6 $1 (25. Ng5 Rh6 $17 {Fritz}) 25... Rxg6 26. fxg6
+  Fritz}) (24. Bxe7 Qxe7 25. Rg6 $1 (25. Ng5 Rh6 $17) 25... Rxg6 26. fxg6
   Qf6 27. Kg1 $1 cxd3 28. cxd3 Ne7 29. Qh7+ Kf8 30. Rf1 $14 {JP}) 24... Bxf6 25.
-  Bxf6 (25. Raf1 Rf8 $17 {Fritz}) 25... Rxf6 26. Ng5 Rh6 27. Qxh6 gxh6 28. Ne6+
-  Kh7 29. Nxc7 Rxc7 30. Rg3 (30. a3 {Fritz}) 30... Nb4 31. Kg1 Nxc2 32. Rc1 cxd3
+  Bxf6 (25. Raf1 Rf8 $17) 25... Rxf6 26. Ng5 Rh6 27. Qxh6 gxh6 28. Ne6+
+  Kh7 29. Nxc7 Rxc7 30. Rg3 (30. a3) 30... Nb4 31. Kg1 Nxc2 32. Rc1 cxd3
   0-1`,
 
   `[Event "London, Canada (ch-B)"]
@@ -11275,19 +11275,19 @@ export const pgns1994 = [
   [EventDate "1994.??.??"]
   
   1. c4 Nf6 2. d4 c5 3. Nf3 g6 4. Bg5 $146 (4. dxc5 {ECO}) 4... Bg7 5. g3 O-O (
-  5... Ne4 $36 {Fritz}) 6. Bg2 d6 7. O-O Nbd7 8. Bxf6 Bxf6 9. e3 Rb8 10. Nbd2 b5
-  11. b3 Ba6 12. Rb1 bxc4 13. bxc4 cxd4 (13... Rxb1 14. Qxb1 d5 $1 $15 {Fritz})
-  14. exd4 d5 15. Rxb8 $2 (15. Qa4 $11 {Fritz}) 15... Qxb8 (15... Nxb8 16. Qa4
-  dxc4 $15 {Fritz}) 16. Qa4 Qc8 17. Rc1 Nb6 18. Qa5 dxc4 19. Ne4 Bg7 20. Nc5 Bb7
-  21. Nxb7 (21. Qxa7 Bxf3 22. Bxf3 Qd8 $15 {Fritz}) 21... Qxb7 22. Ne5 Qb8 23.
-  Nc6 Qd6 24. Qxa7 Bxd4 (24... Nc8 25. Qa6 Bxd4 26. Qxc4 $14 {Fritz}) 25. Nxd4
+  5... Ne4 $36) 6. Bg2 d6 7. O-O Nbd7 8. Bxf6 Bxf6 9. e3 Rb8 10. Nbd2 b5
+  11. b3 Ba6 12. Rb1 bxc4 13. bxc4 cxd4 (13... Rxb1 14. Qxb1 d5 $1 $15)
+  14. exd4 d5 15. Rxb8 $2 (15. Qa4 $11) 15... Qxb8 (15... Nxb8 16. Qa4
+  dxc4 $15) 16. Qa4 Qc8 17. Rc1 Nb6 18. Qa5 dxc4 19. Ne4 Bg7 20. Nc5 Bb7
+  21. Nxb7 (21. Qxa7 Bxf3 22. Bxf3 Qd8 $15) 21... Qxb7 22. Ne5 Qb8 23.
+  Nc6 Qd6 24. Qxa7 Bxd4 (24... Nc8 25. Qa6 Bxd4 26. Qxc4 $14) 25. Nxd4
   Qxd4 26. Rb1 c3 $1 27. Qa3 (27. Qxe7 c2 28. Re1 (28. Rc1 Qb2 29. Qg5 Re8 $15 {
-  Fritz}) 28... Rc8 $1 $19 {Fritz}) 27... c2 28. Re1 Qd2 29. Qc1 Rd8 30. Bf3 Qc3
-  31. Kg2 Nc4 32. a4 $2 (32. Rxe7 Qd2 33. Re1 $11 {Fritz}) 32... Rb8 $1 (32...
-  Rd3 33. Be2 Rd7 34. Bxc4 Qxc4 35. a5 (35. Kh3 Qxa4 $17 {Fritz}) 35... Qd5+ $1
-  36. f3 Qd2+ 37. Kh3 Qxe1 38. Qxe1 Rd1 $19 {Fritz}) 33. Be4 $2 {#} (33. Re2 Rc8
-  $1 $15) 33... Na3 $6 (33... Rb1 $19 {Fritz}) 34. Re3 Qc4 35. Bxc2 Qxc2 $2 (
-  35... Nxc2 $19 {Fritz}) 36. Qxa3 Qc6+ 37. Rf3 e6 38. Qe7 Rf8 39. Qa3 Qb7 40. a5
+  Fritz}) 28... Rc8 $1 $19) 27... c2 28. Re1 Qd2 29. Qc1 Rd8 30. Bf3 Qc3
+  31. Kg2 Nc4 32. a4 $2 (32. Rxe7 Qd2 33. Re1 $11) 32... Rb8 $1 (32...
+  Rd3 33. Be2 Rd7 34. Bxc4 Qxc4 35. a5 (35. Kh3 Qxa4 $17) 35... Qd5+ $1
+  36. f3 Qd2+ 37. Kh3 Qxe1 38. Qxe1 Rd1 $19) 33. Be4 $2 {#} (33. Re2 Rc8
+  $1 $15) 33... Na3 $6 (33... Rb1 $19) 34. Re3 Qc4 35. Bxc2 Qxc2 $2 (
+  35... Nxc2 $19) 36. Qxa3 Qc6+ 37. Rf3 e6 38. Qe7 Rf8 39. Qa3 Qb7 40. a5
   Ra8 41. Qa4 f5 42. h3 Qd5 43. a6 Kf7 44. Qa3 $2 Qc6 45. Kh2 Rxa6 46. Qb3 Qd5
   47. Qc3 Rc6 48. Qe3 g5 49. Qa7+ Kg6 50. Qa3 h5 51. Rd3 Qc5 52. Qxc5 Rxc5 53.
   Rd8 Rc7 54. Re8 Kf6 55. Rh8 h4 56. Rh6+ Ke5 57. gxh4 gxh4 58. Rxh4 Rg7 59. Rb4
@@ -11310,7 +11310,7 @@ export const pgns1994 = [
   1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. f4 O-O 6. Nf3 Bg4 7. Be2 Nbd7 8. h3
   Bxf3 9. Bxf3 c5 10. d5 Qc7 11. O-O e5 $2 (11... Rfe8 {
   Sozin,V-Kutuzov,N; Leningrad, USSR Championship; 1925.}) 12. f5 $6 (12. dxe6
-  fxe6 13. Nb5 $16 {Fritz}) 12... Rfe8 13. g4 h6 14. fxg6 fxg6 15. Be3 Re7 16.
+  fxe6 13. Nb5 $16) 12... Rfe8 13. g4 h6 14. fxg6 fxg6 15. Be3 Re7 16.
   Qd2 Kh7 17. Rf2 Rf7 18. Raf1 Raf8 19. h4 Ng8 20. g5 h5 21. Bg2 Nb6 22. b3 Qd7
   23. Rxf7 Rxf7 24. Rxf7 Qxf7 25. Bf1 Qf3 26. Qf2 Qxf2+ 27. Kxf2 Ne7 28. Nb5 Nec8
   29. Bh3 a5 30. a4 Bf8 31. Nc7 Be7 32. Bd2 Na7 33. Bxa5 Nbc8 34. Na8 Kg8 35. Nb6
@@ -11338,7 +11338,7 @@ export const pgns1994 = [
   Nxh5 Ka7 43. Qd2 Re8 44. Nf4 Qd6 45. Ra1 c5 46. d5 c4 47. Re1 Rg8 48. Re6 Qxa3
   49. d6 Qc5+ 50. Kh1 Rh8 51. Be7 Qf5 52. d7 Bxg2+ 53. Nxg2 Qxe6 54. d8=Q Rxd8
   55. Bxd8 a4 56. Qd4 a3 {#} 57. Qxb6+ $5 (57. Nf4 Qc6+ (57... Qe1+ 58. Kg2 Ka8
-  59. Qd5+ Ka7 60. Qf7+ Ka8 61. Bxb6 $18 {Fritz}) 58. Nd5 $18 {Fritz}) 57... Qxb6
+  59. Qd5+ Ka7 60. Qf7+ Ka8 61. Bxb6 $18) 58. Nd5 $18) 57... Qxb6
   58. Bxb6+ Kxb6 59. Ne3 Kb5 60. Nc2 a2 61. h5 Ka4 62. h6 Kb3 63. Na1+ Kb2 64. h7
   Kxa1 65. h8=Q Kb2 66. Qh2+ Kb1 67. Qg1+ Kb2 68. Qf2+ Kb3 69. Qe1 Kb2 70. Qd2+
   Kb1 71. Qd1+ Kb2 72. Qe2+ Kb1 73. Qxc4 Kb2 74. Qxa2+ Kxa2 75. c4 Kb3 76. c5 1-0`,
@@ -11356,17 +11356,17 @@ export const pgns1994 = [
   1. e4 c5 2. Nc3 Nc6 3. f4 g6 4. Nf3 Bg7 5. Bc4 e6 6. a4 $146 (6. f5 {ECO}) 6...
   Nge7 7. d3 d5 8. Ba2 O-O 9. O-O a6 10. Kh1 b6 11. Qe1 Nd4 12. Nxd4 cxd4 13. Ne2
   dxe4 14. dxe4 Bb7 15. e5 Nf5 16. Ng3 Nh4 17. Ne4 Rc8 18. Bb3 Qe7 19. Kg1 Rfd8
-  $5 (19... Nf5 $11 {Fritz}) 20. Nd6 $2 (20. a5 $11 {Fritz}) 20... Rxd6 (20...
+  $5 (19... Nf5 $11) 20. Nd6 $2 (20. a5 $11) 20... Rxd6 (20...
   Bxg2 21. Nxc8 Rxc8 22. Rf2 Nf3+ 23. Rxf3 Bxf3 $17 {JP}) 21. exd6 Qd8 22. d7 Ra8
-  (22... Rc7 23. Rf2 Bxg2 $1 $40 {Fritz}) 23. Qg3 Nf5 (23... Bxg2 24. Rf2 Bc6 $36
-  {Fritz}) 24. Qd3 Qxd7 25. Bd2 Qc6 26. Rf2 Bf6 27. Be1 $6 (27. a5 b5 28. Re2 $13
-  {Fritz}) 27... Ne3 28. Qe2 h5 29. Bd2 Nf5 30. Raf1 Rd8 (30... d3 31. Qxd3 Rd8
-  32. Qc4 Bd4 33. Qxc6 $11 {Fritz}) 31. Rf3 Qc5 32. Rd3 Kg7 $6 (32... a5 $1 {
+  (22... Rc7 23. Rf2 Bxg2 $1 $40) 23. Qg3 Nf5 (23... Bxg2 24. Rf2 Bc6 $36
+ ) 24. Qd3 Qxd7 25. Bd2 Qc6 26. Rf2 Bf6 27. Be1 $6 (27. a5 b5 28. Re2 $13
+ ) 27... Ne3 28. Qe2 h5 29. Bd2 Nf5 30. Raf1 Rd8 (30... d3 31. Qxd3 Rd8
+  32. Qc4 Bd4 33. Qxc6 $11) 31. Rf3 Qc5 32. Rd3 Kg7 $6 (32... a5 $1 {
   Fritz}) 33. Kf2 $2 (33. a5 Ne3 34. Bxe3 dxe3 35. Rxd8 Bxd8 36. axb6 Bxb6 $44 {
-  Fritz}) 33... a5 $1 {#} 34. g4 (34. Ke1 Ba6 $17 {Fritz}) 34... Bh4+ 35. Kg1
+  Fritz}) 33... a5 $1 {#} 34. g4 (34. Ke1 Ba6 $17) 34... Bh4+ 35. Kg1
   hxg4 36. Qe5+ Qxe5 37. fxe5 Ba6 38. c4 Rc8 39. Rc1 Rc5 40. Bf4 g5 41. Bg3 Bxg3
   42. hxg3 Rxe5 43. Kf2 Re3 44. Rxe3 dxe3+ 45. Kg2 Bb7+ {adjourned.} (45... Bb7+
-  46. Kh2 Nd4 47. Ba2 Nf3+ (47... e5 $19 {Fritz}) 48. Kg2 e2 49. Kf2 e1=Q+ 50.
+  46. Kh2 Nd4 47. Ba2 Nf3+ (47... e5 $19) 48. Kg2 e2 49. Kf2 e1=Q+ 50.
   Rxe1 Nxe1 51. Kxe1 e5 $19 {GS}) 0-1`,
 
   `[Event "London, Canada (ch-B)"]
@@ -11382,9 +11382,9 @@ export const pgns1994 = [
   1. d4 Nf6 2. c4 c5 3. Nf3 cxd4 4. Nxd4 e5 5. Nb3 d5 6. e3 $146 (6. cxd5 {
   Cifuentes Parada,R-Morovic Fernandez,I; Santiago; 1989.}) 6... Nc6 7. cxd5 Qxd5
   8. Qxd5 Nxd5 9. N1d2 Ndb4 10. Kd1 Be6 11. Bb5 Rd8 12. Na5 a6 13. Nxc6 (13. Ba4
-  b5 14. Nxc6 Nxc6 15. Bb3 Bxb3+ $11 {Fritz}) 13... Nxc6 14. Bxc6+ bxc6 15. b3
+  b5 14. Nxc6 Nxc6 15. Bb3 Bxb3+ $11) 13... Nxc6 14. Bxc6+ bxc6 15. b3
   Bb4 16. Ke2 Bc3 17. Rb1 Bf5 18. e4 Bxd2 19. exf5 Bc3 20. Be3 Bd4 21. b4 Ke7 22.
-  Rhd1 Bxe3 23. fxe3 Rxd1 24. Rxd1 {#} 24... Rd8 $2 (24... g6 $13 {Fritz}) 25.
+  Rhd1 Bxe3 23. fxe3 Rxd1 24. Rxd1 {#} 24... Rd8 $2 (24... g6 $13) 25.
   Rxd8 Kxd8 26. Kd3 Kc7 27. e4 Kb6 28. Kc4 f6 29. g4 h6 30. h4 Kc7 31. Kc5 Kb7
   32. a4 Kc7 33. a5 Kd7 34. Kb6 Kd6 35. Kxa6 Kc7 36. h5 c5 37. Kb5 cxb4 38. Kxb4
   Kb7 39. Kb5 Ka7 40. a6 Ka8 41. Kb6 Kb8 42. a7+ Ka8 43. Ka6 1-0`,
@@ -11402,9 +11402,9 @@ export const pgns1994 = [
   1. e4 c5 2. c4 Nc6 3. Nc3 Nf6 4. d3 g6 $146 (4... e6 {
   Beni,A-Tal,M; Munich Olympics; 1958.}) 5. h3 Bg7 6. Nge2 O-O 7. a3 d6 8. Be3
   Bd7 9. Qd2 Re8 10. Bh6 Bh8 11. O-O-O a6 12. f4 Rb8 (12... b5 13. Ng3 Nd4 $40 {
-  Fritz}) 13. a4 Nd4 (13... b5 14. axb5 axb5 15. cxb5 Na5 $15 {Fritz}) 14. Kb1
+  Fritz}) 13. a4 Nd4 (13... b5 14. axb5 axb5 15. cxb5 Na5 $15) 14. Kb1
   Qa5 15. e5 Nh5 16. g4 Ng7 17. Nxd4 cxd4 18. Ne2 {#} 18... dxe5 $4 (18... Qxd2
-  19. Rxd2 dxe5 20. fxe5 Ne6 $15 {Fritz}) 19. Qxa5 1-0`,
+  19. Rxd2 dxe5 20. fxe5 Ne6 $15) 19. Qxa5 1-0`,
 
   `[Event "London, Canada (ch-B)"]
   [Site "?"]
@@ -11419,13 +11419,13 @@ export const pgns1994 = [
   1. e4 d6 2. d4 Nf6 3. Nc3 a6 4. f4 $146 (4. Bg5 {
   Melamedoff,M-Binner; Buenos Aires JM; 1959.}) 4... g6 5. Nf3 Bg7 6. Bd3 Nc6 7.
   O-O Bg4 8. d5 Nd4 9. Be3 Nxf3+ 10. gxf3 Bh3 11. Rf2 c5 12. e5 Nh5 13. exd6 exd6
-  (13... Bxc3 14. bxc3 Qxd6 $17 {Fritz}) 14. Ne4 h6 15. Qd2 O-O 16. f5 gxf5 17.
+  (13... Bxc3 14. bxc3 Qxd6 $17) 14. Ne4 h6 15. Qd2 O-O 16. f5 gxf5 17.
   Ng3 f4 18. Bxf4 Nxf4 (18... Bxb2 19. Rb1 Nxf4 20. Rxb2 Qh4 21. c4 Rab8 $14 {
   Fritz}) 19. Qxf4 Qf6 20. Qxf6 Bxf6 21. c3 b5 $6 {#} (21... Rad8) 22. Bf5 $1
   Bxf5 23. Nxf5 b4 24. cxb4 cxb4 25. Rg2+ Kh7 26. Nxd6 Rad8 27. Ne4 Bd4+ 28. Kf1
-  f5 29. Ng3 f4 (29... Rxd5 30. Rd2 Rdd8 31. Rad1 Bf6 32. Rxd8 Bxd8 $11 {Fritz})
-  30. Ne4 Rg8 (30... Rxd5 $11 {Fritz}) 31. Rxg8 Rxg8 32. Rd1 Rg1+ 33. Ke2 Rg2+
-  34. Kd3 Bb6 (34... Bxb2 35. d6 Rg8 36. Kc4 a5 37. d7 Rd8 38. Nc5 $18 {Fritz})
+  f5 29. Ng3 f4 (29... Rxd5 30. Rd2 Rdd8 31. Rad1 Bf6 32. Rxd8 Bxd8 $11)
+  30. Ne4 Rg8 (30... Rxd5 $11) 31. Rxg8 Rxg8 32. Rd1 Rg1+ 33. Ke2 Rg2+
+  34. Kd3 Bb6 (34... Bxb2 35. d6 Rg8 36. Kc4 a5 37. d7 Rd8 38. Nc5 $18)
   35. Rd2 Rg1 36. Kc4 Ba5 37. b3 Rc1+ 38. Kd4 Bb6+ 39. Ke5 Be3 40. Rg2 Rc8 41.
   Ke6 h5 42. d6 Bb6 {Mate in 8. Fritz} 43. Nf6+ Kh6 44. Kf7 1-0`,
 
@@ -11442,7 +11442,7 @@ export const pgns1994 = [
   1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Bc4 Bc5 5. Ng5 {Black Death} 5... Nh6 6. Qh5
   {# Vitzthum Attack} 6... d5 $2 (6... Qe7 {Vitzthum,C-Falkbeer,E; ?; 1856.}) 7.
   Bxd5 O-O $2 (7... Qe7 {JP}) 8. Bxf7+ Rxf7 $2 (8... Kh8 9. Ne6 $6 (9. h3 $36 {JP
-  }) 9... Bxe6 10. Bxe6 Bb4+ 11. c3 Qf6 $44 {Fritz}) 9. Nxf7 Nxf7 10. Qxc5 d3 11.
+  }) 9... Bxe6 10. Bxe6 Bb4+ 11. c3 Qf6 $44) 9. Nxf7 Nxf7 10. Qxc5 d3 11.
   c3 Nce5 12. O-O Qf6 13. f4 b6 14. Qd5 c6 15. Qd4 Ba6 16. Nd2 Ng4 17. Qxf6 Nxf6
   18. b3 c5 19. c4 Bb7 20. e5 Ng4 21. Nf3 Rd8 22. Bd2 Ngh6 23. Rae1 Nf5 24. e6
   N7d6 25. g4 Ne7 26. f5 Ne4 27. Rd1 a5 28. Ne5 Rd4 29. Be3 Rd8 30. Rxd3 $138 1-0`,
@@ -11460,8 +11460,8 @@ export const pgns1994 = [
   1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Bb7 5. Bg2 Bb4+ 6. Bd2 Bxd2+ 7. Nbxd2 O-O 8.
   O-O d6 9. Re1 Nbd7 10. e4 c6 $146 (10... e5 {Csom,I-Anastasian,A; Erevan; 1989.
   }) 11. e5 dxe5 12. dxe5 Ne8 13. Qc2 g6 14. Rad1 Qc7 15. b4 c5 16. b5 a6 17. a4
-  Ng7 18. Qc3 Rad8 {#} 19. Ne4 $6 (19. bxa6 Bxa6 20. Ne4 $11 {Fritz}) 19... Bxe4
-  20. Rxe4 axb5 21. axb5 Nxe5 22. Rxd8 $2 (22. Nd2 Nd3 23. Re3 Nb4 $15 {Fritz})
+  Ng7 18. Qc3 Rad8 {#} 19. Ne4 $6 (19. bxa6 Bxa6 20. Ne4 $11) 19... Bxe4
+  20. Rxe4 axb5 21. axb5 Nxe5 22. Rxd8 $2 (22. Nd2 Nd3 23. Re3 Nb4 $15)
   22... Nxf3+ 23. Bxf3 Rxd8 24. Re1 Nf5 25. Kh1 Nd4 26. Bg2 Qd6 27. Ra1 h5 28. h4
   Qe5 29. Ra7 Rd6 30. Qa1 Qe2 31. Qa6 Qxf2 32. Qc8+ Kg7 33. Ra8 Qe1+ 34. Kh2 Kf6
   35. Qh8+ Kf5 36. Qh6 Nf3+ 37. Bxf3 Rd2+ 38. Bg2 Rxg2+ 39. Kxg2 Qe2+ 1/2-1/2`,
@@ -11478,13 +11478,13 @@ export const pgns1994 = [
   
   1. e4 c5 2. c3 d6 3. d4 cxd4 4. cxd4 Nf6 5. Nc3 g6 6. Bg5 Bg7 7. Qd2 $146 (7.
   e5 {Sefc,J-Ujtelky,M; Teplice; 1949.}) 7... O-O 8. Bh6 Bxh6 9. Qxh6 Qb6 10.
-  O-O-O Nc6 11. Qd2 Bd7 12. f4 Rac8 {#} 13. e5 $2 (13. g3 {Fritz}) 13... Nd5 (
-  13... Nb4 $1 14. Kb1 (14. Re1 Nxa2+ 15. Kd1 Nxc3+ 16. bxc3 Ne4 $19 {Fritz}) (
-  14. exf6 Nxa2+ 15. Kc2 Bf5+ 16. Bd3 Nb4+ $19 {Fritz}) 14... Bf5+ 15. Ka1 Nc2+
-  16. Kb1 Ne3+ 17. Ka1 Rxc3 18. Qxc3 Nxd1 $19 {Fritz}) 14. Nxd5 $6 (14. Bc4 Nxc3
-  15. bxc3 (15. Qxc3 Nb4 16. exd6 Nxa2+ $19) 15... Nxe5 16. Bb3 Nc4 $17 {Fritz})
+  O-O-O Nc6 11. Qd2 Bd7 12. f4 Rac8 {#} 13. e5 $2 (13. g3) 13... Nd5 (
+  13... Nb4 $1 14. Kb1 (14. Re1 Nxa2+ 15. Kd1 Nxc3+ 16. bxc3 Ne4 $19) (
+  14. exf6 Nxa2+ 15. Kc2 Bf5+ 16. Bd3 Nb4+ $19) 14... Bf5+ 15. Ka1 Nc2+
+  16. Kb1 Ne3+ 17. Ka1 Rxc3 18. Qxc3 Nxd1 $19) 14. Nxd5 $6 (14. Bc4 Nxc3
+  15. bxc3 (15. Qxc3 Nb4 16. exd6 Nxa2+ $19) 15... Nxe5 16. Bb3 Nc4 $17)
   14... Nb4+ 15. Kb1 Nxd5 16. Ne2 $2 (16. Ka1 Bf5 17. Bd3 Bxd3 18. Qxd3 Nxf4 $17
-  {Fritz}) 16... Bf5+ 17. Ka1 Rc2 18. Qxc2 Bxc2 19. Rc1 Bd3 20. Nc3 Nxc3 21. Bxd3
+ ) 16... Bf5+ 17. Ka1 Rc2 18. Qxc2 Bxc2 19. Rc1 Bd3 20. Nc3 Nxc3 21. Bxd3
   Na4 0-1`,
 
   `[Event "London, Canada (ch-B)"]
@@ -11499,13 +11499,13 @@ export const pgns1994 = [
   
   1. e4 e5 2. f4 d5 3. Nc3 d4 4. Nce2 Nc6 5. Nf3 Bg4 $146 (5... Bd6 {
   Basman,M-Garcia,G; Hastings; 1974.}) 6. h4 $2 (6. Nxe5 Nxe5 7. fxe5 Qe7 8. d3
-  $11 {Fritz}) 6... Nf6 $6 (6... Bxf3 7. gxf3 Be7 $40 {Fritz}) 7. d3 Bb4+ 8. Bd2
+  $11) 6... Nf6 $6 (6... Bxf3 7. gxf3 Be7 $40) 7. d3 Bb4+ 8. Bd2
   Qd6 9. a3 Bxd2+ 10. Qxd2 O-O-O 11. O-O-O Nd7 12. f5 g6 13. Nh2 gxf5 14. Nxg4
   fxg4 15. h5 Rdf8 16. Ng3 Ne7 17. Be2 f5 (17... Rhg8 18. Rdf1 Qe6 19. Kb1 f5 $15
-  {Fritz}) 18. exf5 Nxf5 19. Nxf5 Rxf5 20. Bxg4 Rf4 21. Bxd7+ Qxd7 22. Qe2 (22.
-  Qa5 $1 {Fritz}) 22... Re8 23. Rdf1 Qf5 24. Rxf4 Qxf4+ 25. Kd1 {#} 25... e4 $2 (
-  25... Kd7 $11 {Fritz}) 26. Rf1 Qg5 27. dxe4 c5 28. Rf5 Qe7 (28... Qxf5 29. exf5
-  Rxe2 30. Kxe2 $18 {Fritz}) 29. Qg4 Kb8 30. Qf4+ Ka8 31. Rf7 Qd8 32. Qc7 Qxc7
+ ) 18. exf5 Nxf5 19. Nxf5 Rxf5 20. Bxg4 Rf4 21. Bxd7+ Qxd7 22. Qe2 (22.
+  Qa5 $1) 22... Re8 23. Rdf1 Qf5 24. Rxf4 Qxf4+ 25. Kd1 {#} 25... e4 $2 (
+  25... Kd7 $11) 26. Rf1 Qg5 27. dxe4 c5 28. Rf5 Qe7 (28... Qxf5 29. exf5
+  Rxe2 30. Kxe2 $18) 29. Qg4 Kb8 30. Qf4+ Ka8 31. Rf7 Qd8 32. Qc7 Qxc7
   33. Rxc7 b6 34. Rxh7 Rxe4 35. Rg7 Rh4 36. g4 Kb8 37. Rg6 Kc8 38. h6 1-0`,
 
   `[Event "London, Canada (ch-B)"]
@@ -11521,7 +11521,7 @@ export const pgns1994 = [
   1. Nf3 c5 2. c4 Nf6 3. b3 e6 4. Bb2 Be7 5. g3 Nc6 6. Bg2 d5 7. cxd5 $146 (7.
   O-O {Filiopwicz,A-Sydor,A; Polanica Zdroj; 1965.}) 7... Qxd5 $6 (7... exd5 {
   Fritz}) 8. Nc3 Qd8 9. O-O e5 10. d3 h6 11. e4 Bg4 12. h3 Bh5 13. Qd2 Qa5 14.
-  Na4 $2 (14. Qe3 {Fritz}) 14... Qxd2 15. Nxd2 {#} 15... Be2 $6 (15... Rd8 $15 {
+  Na4 $2 (14. Qe3) 14... Qxd2 15. Nxd2 {#} 15... Be2 $6 (15... Rd8 $15 {
   Fritz}) 16. Rfc1 Nd7 17. Bf1 Nd4 18. Bxd4 Bxf1 19. Kxf1 cxd4 20. Rc7 b5 21. Nb2
   Bb4 22. Nb1 Ke7 23. a3 Ba5 24. Rb7 Bb6 25. a4 a6 26. b4 Rhc8 27. Na3 Rc7 28.
   Rxc7 Bxc7 29. axb5 axb5 30. Nc2 Rxa1+ 31. Nxa1 Bd6 32. Nc2 Nb8 33. Na3 Bxb4 34.
@@ -11541,13 +11541,13 @@ export const pgns1994 = [
   
   1. e4 d6 2. h3 (2. d4 {ECO}) 2... g6 (2... e5 {
   Pellini,A-Hirsch,R; Bologna Open; 1988.}) 3. Nf3 Bg7 4. a3 c5 5. Bc4 Nf6 6. c3
-  Nc6 (6... Nxe4 7. Qa4+ Kf8 $15 {Fritz} (7... Bd7 8. Bxf7+ Kxf7 9. Qxe4 $16 {
+  Nc6 (6... Nxe4 7. Qa4+ Kf8 $15 (7... Bd7 8. Bxf7+ Kxf7 9. Qxe4 $16 {
   Fritz})) 7. d3 O-O 8. Be3 a6 9. Ba2 Qc7 10. Nbd2 b5 11. Rc1 Bb7 12. d4 c4 13.
   O-O d5 14. e5 Nd7 15. Bf4 e6 16. Nh2 Ne7 17. Ndf3 Nb6 18. Qd2 Na4 19. b3 cxb3
   20. Bxb3 Nb6 21. Bh6 Bxh6 22. Qxh6 Nf5 23. Qf4 Nc4 24. g4 Ng7 25. Qh6 {#} 25...
-  f5 $2 (25... f6 26. exf6 Rxf6 27. Ng5 Ne8 $11 {Fritz}) 26. Ng5 Ne8 27. Nxe6 Qf7
+  f5 $2 (25... f6 26. exf6 Rxf6 27. Ng5 Ne8 $11) 26. Ng5 Ne8 27. Nxe6 Qf7
   28. Nxf8 Qxf8 29. Qg5 Ng7 30. gxf5 Nxf5 31. Ng4 Qxa3 32. Bc2 Bc8 $2 (32... Qe7
-  $16 {Fritz}) 33. Bxf5 Bxf5 34. Nh6+ Kh8 35. Qf6# 1-0`,
+  $16) 33. Bxf5 Bxf5 34. Nh6+ Kh8 35. Qf6# 1-0`,
 
   `[Event "London, Canada (ch-B)"]
   [Site "?"]
@@ -11563,9 +11563,9 @@ export const pgns1994 = [
   O-O Be7 9. Nc3 Qd8 10. Be3 O-O 11. Rc1 Nb4 12. Re1 $146 (12. Ne5 {
   Schurr-Ljubisavljevic; Imperia; 1970.}) 12... b6 13. a3 Nbd5 14. Nxd5 Nxd5 15.
   Bd3 Bb7 16. Ne5 Rc8 17. Qh5 Nf6 18. Qh3 Be4 19. Ba6 Rxc1 20. Rxc1 Qd5 21. Nc6
-  Bd6 22. Nxa7 Qa8 {#} (22... Bf5 {Fritz}) 23. Nb5 (23. Nc8 {Fritz}) 23... Bb8
-  24. Bc8 Bxh2+ $6 (24... Bc6 $1 $17 {Fritz}) 25. Qxh2 Rxc8 26. Rxc8+ Qxc8 27.
-  Nd6 Qc2 28. Qf4 g6 $2 (28... Bc6 $11 {Fritz}) 29. Qxf6 Qd1+ 30. Kh2 Qh5+ 31.
+  Bd6 22. Nxa7 Qa8 {#} (22... Bf5) 23. Nb5 (23. Nc8) 23... Bb8
+  24. Bc8 Bxh2+ $6 (24... Bc6 $1 $17) 25. Qxh2 Rxc8 26. Rxc8+ Qxc8 27.
+  Nd6 Qc2 28. Qf4 g6 $2 (28... Bc6 $11) 29. Qxf6 Qd1+ 30. Kh2 Qh5+ 31.
   Kg3 1-0`,
 
   `[Event "London, Canada (ch-B)"]
@@ -11584,7 +11584,7 @@ export const pgns1994 = [
   18. axb6 axb6 19. Bg5 Rde8 20. Qb3 b5 21. Nc5 Nxc5 22. bxc5 Rb8 23. Qa2 e6 24.
   Qa7 Rb7 25. Qa6 Rfb8 26. Ra2 Nb2 27. Qa3 Na4 28. Qb4 Ra7 29. Rea1 Rba8 30. Bd1
   Qa5 31. Qxa5 Rxa5 32. Bd2 R5a7 33. c3 Ra6 34. Bxa4 {#} 34... Rxa4 $2 (34...
-  bxa4 $13 {Fritz}) 35. Rxa4 Rxa4 36. Rxa4 bxa4 37. Bc1 Kf7 38. Kf1 Ke8 39. Ke2
+  bxa4 $13) 35. Rxa4 Rxa4 36. Rxa4 bxa4 37. Bc1 Kf7 38. Kf1 Ke8 39. Ke2
   Kd7 40. Kd3 Kc7 41. c4 Kd7 42. cxd5 exd5 43. Kc3 Ke6 44. Kb4 Bf8 45. Kxa4 Be7
   46. Ka5 g5 47. Ka6 h5 48. Kb7 h4 49. Kxc6 g4 50. Kb7 Bd8 51. c6 1-0`,
 
@@ -11601,17 +11601,17 @@ export const pgns1994 = [
   1. e4 c5 2. Nf3 Nc6 3. b3 e5 4. Bb2 d6 5. Bc4 h6 $146 (5... g6 {
   Lokasto,A-Manolov,I; Copenhagen Obro-B; 1990.}) 6. c3 Nf6 7. d3 a6 8. a4 Be7 9.
   Nbd2 O-O 10. d4 Qb6 11. dxe5 dxe5 12. Bd5 Bg4 13. Bxc6 bxc6 14. O-O Rad8 15.
-  Qc2 Qc7 16. c4 Nd7 17. h3 Bh5 18. Bc3 a5 19. Qb2 f6 20. Ne1 $2 (20. Qc2 {Fritz}
+  Qc2 Qc7 16. c4 Nd7 17. h3 Bh5 18. Bc3 a5 19. Qb2 f6 20. Ne1 $2 (20. Qc2
   ) (20. Nh4 {JP}) 20... Be2 21. Nc2 Bxf1 22. Rxf1 Nb8 23. Ne3 Rd3 24. Nf5 Kf7
-  25. f4 exf4 26. e5 $5 (26. Nf3 {Fritz}) 26... Rfd8 $6 (26... fxe5 27. Bxe5 $2
-  Rxd2 28. Qxd2 (28. Bxc7 Rxb2 29. Rxf4 Bf6 $19 {Fritz}) 28... Qxe5 29. Nxe7 Qxe7
-  30. Rxf4+ Kg8 31. Rxf8+ Qxf8 32. Qxa5 Qd6 $17 {Fritz}) 27. Rxf4 $5 (27. Ne4
-  fxe5 28. Bxe5 Rxb3 $15 {Fritz}) 27... Qd7 $2 (27... fxe5 28. Bxe5 Rxd2 29.
-  Nxh6+ Ke8 30. Bxc7 Rxb2 31. Bxd8 Bxd8 $19 {Fritz}) 28. exf6 $1 Bxf6 29. Bxf6 (
-  29. Nxg7 Rxc3 30. Qxc3 $13 {Fritz}) 29... Rxd2 30. Nxh6+ $1 Kg6 31. Qe5 $1 {#}
+  25. f4 exf4 26. e5 $5 (26. Nf3) 26... Rfd8 $6 (26... fxe5 27. Bxe5 $2
+  Rxd2 28. Qxd2 (28. Bxc7 Rxb2 29. Rxf4 Bf6 $19) 28... Qxe5 29. Nxe7 Qxe7
+  30. Rxf4+ Kg8 31. Rxf8+ Qxf8 32. Qxa5 Qd6 $17) 27. Rxf4 $5 (27. Ne4
+  fxe5 28. Bxe5 Rxb3 $15) 27... Qd7 $2 (27... fxe5 28. Bxe5 Rxd2 29.
+  Nxh6+ Ke8 30. Bxc7 Rxb2 31. Bxd8 Bxd8 $19) 28. exf6 $1 Bxf6 29. Bxf6 (
+  29. Nxg7 Rxc3 30. Qxc3 $13) 29... Rxd2 30. Nxh6+ $1 Kg6 31. Qe5 $1 {#}
   31... Kh7 (31... Rd1+ 32. Kh2 Re8 33. Qg5+ Kh7 34. Nf5 Ree1 (34... Qf7) 35. Be7
-  Rxe7 (35... Rh1+ 36. Kg3 Rxh3+ 37. Kxh3 Rh1+ 38. Kg3 $18 {Fritz}) 36. Qh4+ Kg8
-  37. Nxe7+ $18 {Fritz}) 32. Bxd8 Qxd8 33. Nf7 Rxg2+ 34. Kxg2 Qd1 {
+  Rxe7 (35... Rh1+ 36. Kg3 Rxh3+ 37. Kxh3 Rh1+ 38. Kg3 $18) 36. Qh4+ Kg8
+  37. Nxe7+ $18) 32. Bxd8 Qxd8 33. Nf7 Rxg2+ 34. Kxg2 Qd1 {
   Mate in 3. -Fritz} 35. Rh4+ 1-0`,
 
   `[Event "London, Canada (ch-B)"]
@@ -11628,9 +11628,9 @@ export const pgns1994 = [
   d6 9. d4 c5 10. Re1 Qc7 11. Nbd2 Nf6 12. Nf1 h6 $146 (12... cxd4 {
   Smyslov,V-Euwe,M; The Hague, World Championship; 1948.(!)}) (12... Rc8 {
   Balogh,J-Bely,M; Hungary; 1950.}) 13. Ng3 g6 14. h3 $5 {
-  A "wait and see" move? -JP} 14... O-O-O $6 (14... cxd4 $11 {Fritz}) 15. a4 $1
+  A "wait and see" move? -JP} 14... O-O-O $6 (14... cxd4 $11) 15. a4 $1
   b4 16. cxb4 cxb4 17. d5 Kd7 18. b3 Rc8 19. Re2 Qc3 20. Be3 {#} 20... Rc7 $2 (
-  20... Qc7 {JP} 21. Rc1 Qb8 22. Bd2 Ba8 23. Ne1 $16 {Fritz} (23. Qe1 Rc7 $132 {
+  20... Qc7 {JP} 21. Rc1 Qb8 22. Bd2 Ba8 23. Ne1 $16 (23. Qe1 Rc7 $132 {
   Fritz})) 21. Bb6 Nxb3 $2 (21... Rcc8 22. Bxa5 Qc5 23. Bxb4 Qxb4 24. Rc1 $14 {
   Fritz}) 22. Bxb3 Rhc8 23. Bxc7 Qxc7 24. Rc2 Qb6 25. Rxc8 Bxc8 26. a5 Qb7 27.
   Rc1 Bd8 28. Ba4+ Ke7 29. Bc6 Qb8 30. Qa4 Nd7 31. Rb1 Qc7 32. Bxd7 Bxd7 33. Qxb4
@@ -11651,16 +11651,16 @@ export const pgns1994 = [
   1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. Nc3 g6 6. e4 d6 7. Nf3 Bg7 8. Be2
   Nbd7 $146 (8... O-O {Gounder-Al Awadhi; Novi Sad Olympics; 1990.}) 9. O-O O-O
   10. h3 axb5 11. Bxb5 Ba6 12. Bxa6 Rxa6 13. Qe2 Qb6 14. Nd2 Nh5 15. Nc4 Qb7 16.
-  g4 Nhf6 17. Be3 Nb6 18. Nxb6 Rxb6 19. Rab1 $2 (19. Bc1 e6 $44 {Fritz}) 19...
-  Nxg4 20. hxg4 Bxc3 21. b3 Ra8 22. Rfc1 Bg7 23. Rc2 Qa6 (23... Ra4 $5 {Fritz})
-  24. Qxa6 Rbxa6 25. b4 Rb8 (25... cxb4 26. Rxb4 Rxa2 $2 (26... Ra3 $13 {Fritz})
+  g4 Nhf6 17. Be3 Nb6 18. Nxb6 Rxb6 19. Rab1 $2 (19. Bc1 e6 $44) 19...
+  Nxg4 20. hxg4 Bxc3 21. b3 Ra8 22. Rfc1 Bg7 23. Rc2 Qa6 (23... Ra4 $5)
+  24. Qxa6 Rbxa6 25. b4 Rb8 (25... cxb4 26. Rxb4 Rxa2 $2 (26... Ra3 $13)
   27. Rxa2 Rxa2 {Mate in 5. -Fritz}) 26. Rb3 {#} 26... c4 $2 (26... cxb4 $17 {
   Fritz}) 27. Rxc4 Rxa2 28. b5 Kf8 29. b6 Ke8 30. Rc7 Rb2 31. Ra3 (31. Rxb2 Bxb2
-  32. b7 Kd8 33. Bb6 $18 {Fritz}) 31... Rb4 32. f3 Kd8 33. Raa7 Bf8 34. Rd7+ Ke8
+  32. b7 Kd8 33. Bb6 $18) 31... Rb4 32. f3 Kd8 33. Raa7 Bf8 34. Rd7+ Ke8
   35. Rac7 Rd8 36. Rxd8+ Kxd8 37. Ra7 Bg7 38. Kg2 Bd4 39. Ra8+ Kd7 40. b7 Rb2+
-  41. Kh3 Be5 42. f4 $2 (42. b8=N+ $1 Kc7 43. Na6+ Kd7 44. Bg1 $18 {Fritz}) 42...
+  41. Kh3 Be5 42. f4 $2 (42. b8=N+ $1 Kc7 43. Na6+ Kd7 44. Bg1 $18) 42...
   Rxb7 43. fxe5 Rb3 44. Kg3 Rxe3+ 45. Kf4 Rc3 46. Ra7+ Rc7 (46... Kd8 47. exd6
-  exd6 48. Rxf7 $18 {Fritz} 48... Rc7 49. Rxc7 Kxc7 50. Kg5 Kd7 51. Kh6 Ke7 52.
+  exd6 48. Rxf7 $18 48... Rc7 49. Rxc7 Kxc7 50. Kg5 Kd7 51. Kh6 Ke7 52.
   g5 Ke8 53. Kxh7 Kf7 54. Kh6) 47. e6+ $1 fxe6 48. dxe6+ Kd8 49. Ra8+ Rc8 50.
   Rxc8+ Kxc8 51. Kg5 h5 52. gxh5 gxh5 53. Kxh5 Kc7 54. Kg6 d5 55. exd5 1-0`,
 
@@ -12583,9 +12583,9 @@ export const pgns1994 = [
   1. d4 e6 2. c4 Nf6 3. Nc3 Bb4 4. Nf3 b6 5. e3 Bb7 6. Be2 Ne4 7. Qc2 d6 {[N]} (
   7... f5 {Alsulaiti,A-Dimitrov,V; Adelaide World Junior Championship; 1988.}) 8.
   O-O Bxc3 9. bxc3 Nd7 10. Nd2 f5 (10... Nxd2 $13) 11. Bd3 {#} 11... Ndf6 (11...
-  Nxd2 $13 {0-0, Nf6, Qe1}) 12. Nxe4 (12. Qa4+ {Fritz}) 12... Nxe4 13. f3 Nf6 14.
-  e4 fxe4 15. fxe4 e5 $11 16. Bg5 O-O 17. Rae1 Qe7 (17... c5 {Fritz}) 18. Qd2 c5
-  19. d5 Rf7 (19... h6 20. Bxf6 Rxf6 21. Rxf6 Qxf6 22. Rf1 Qh4 $11 {Fritz}) 20.
+  Nxd2 $13 {0-0, Nf6, Qe1}) 12. Nxe4 (12. Qa4+) 12... Nxe4 13. f3 Nf6 14.
+  e4 fxe4 15. fxe4 e5 $11 16. Bg5 O-O 17. Rae1 Qe7 (17... c5) 18. Qd2 c5
+  19. d5 Rf7 (19... h6 20. Bxf6 Rxf6 21. Rxf6 Qxf6 22. Rf1 Qh4 $11) 20.
   Rf3 Raf8 21. Ref1 h6 {#} 22. Bxf6 (22. Be3 Ng4 $36) 22... Rxf6 23. Rxf6 Rxf6
   24. Rxf6 Qxf6 25. Qf2 Qg5 (25... Qxf2+ 26. Kxf2 Kf7 {Fritz (?)}) 26. Qe1 (26.
   Qf1 Qd2 $17) 26... Bc8 (26... g6 {Fritz (?)}) 1/2-1/2`,
@@ -12604,15 +12604,15 @@ export const pgns1994 = [
   Nxf6+ Bxf6 9. c3 Nd7 10. Re1 O-O 11. Bf4 g6 {[N]} (11... Re8 {
   Gligoric,S-Barcza,G; Stockholm Interzonal; 1962.}) 12. Ne5 Nxe5 13. Bxe5 Bxe5
   14. Rxe5 Qd6 (14... Qh4 {Duralia}) 15. Qg4 Rae8 16. Rae1 Bd7 17. Bc4 b6 $6 (
-  17... Bc6 {Fritz}) 18. h4 $1 $40 {#} 18... Kh8 (18... Bc6) 19. h5 f6 (19... Bc6
-  20. Qh4 Qe7 21. Qxe7 Rxe7 22. d5 $16 {Fritz}) 20. hxg6 $1 Rg8 21. Rh5 Re7 22.
+  17... Bc6) 18. h4 $1 $40 {#} 18... Kh8 (18... Bc6) 19. h5 f6 (19... Bc6
+  20. Qh4 Qe7 21. Qxe7 Rxe7 22. d5 $16) 20. hxg6 $1 Rg8 21. Rh5 Re7 22.
   Rh6 Rgg7 23. Qh4 {#} 23... e5 (23... f5 $2 24. Qf6 $1 Kg8 25. Qxf5 $1 Rxg6 26.
-  Rxg6+ hxg6 27. Qxg6+ Rg7 28. Rxe6 $18 {Fritz}) (23... b5 24. Bd3 f5 25. Qf6 Kg8
-  26. g3 $16 {Fritz}) 24. gxh7 $16 {time trouble.} (24. Bf7 Rexf7 25. gxf7 Rxf7
+  Rxg6+ hxg6 27. Qxg6+ Rg7 28. Rxe6 $18) (23... b5 24. Bd3 f5 25. Qf6 Kg8
+  26. g3 $16) 24. gxh7 $16 {time trouble.} (24. Bf7 Rexf7 25. gxf7 Rxf7
   26. Rxe5 $18) 24... Rg5 (24... Rxh7 25. dxe5 $1 fxe5 (25... Qc6 26. e6 Be8 27.
-  Qxf6+ Reg7 28. Rxh7+ Kxh7 29. Qh4+ Kg8 30. e7+ $18 {Fritz}) 26. Qg5 $18 {Fritz}
+  Qxf6+ Reg7 28. Rxh7+ Kxh7 29. Qh4+ Kg8 30. e7+ $18) 26. Qg5 $18
   ) 25. Qxg5 fxg5 26. Rxd6 cxd6 27. dxe5 dxe5 $6 28. Bd3 Bc6 {time trouble.} (
-  28... e4 29. f3 Rxh7 30. Bxe4 $16 {Fritz}) 29. f3 Bd5 30. c4 Bf7 31. b3 Re6 32.
+  28... e4 29. f3 Rxh7 30. Bxe4 $16) 29. f3 Bd5 30. c4 Bf7 31. b3 Re6 32.
   Kf2 Re7 33. Re2 a5 34. Kg3 Bh5 35. Bc2 Kg7 36. a3 Kh8 37. Rd2 Re8 $138 {flag!}
   0-1`,
 
@@ -12635,12 +12635,12 @@ export const pgns1994 = [
   34. Ke2 Kh7 35. Qc3 Qa2 36. Kd2 Qb1 37. Qc2+ Qxc2+ 38. Kxc2 Kg6 39. Kc3 Kf5 40.
   Kd4 Ke6 41. Kc5 Ke5 42. g3 Ke6 43. a4 c3 44. bxc3 bxa4 45. Kb4 Kd5 46. c4+ Kc6
   47. Kxa4 Kc5 48. Kb3 a5 49. e4 a4+ 50. Kxa4 Kxc4 {#} 51. e5 Kd5 52. f4 Ke4 53.
-  Kb4 g5 (53... g6 $11 {Fritz}) 54. Kc4 (54. fxg5 hxg5 55. Kc3 Kxe5 (55... Kf3
-  56. h4 $11 {Fritz}) 56. Kd3 f5 57. Ke3 $11 {Fritz}) 54... gxf4 55. gxf4 Kxf4
-  56. Kd4 {#} (56. Kd5 h5 57. Kd6 Ke4 (57... h4 58. Kd5 $11 {Fritz}) 58. h4 Kd4
-  59. e6 fxe6 60. Kxe6 $11 {Fritz}) 56... Kg3 $6 (56... h5 $1 57. h4 Kg4 58. Ke4
-  Kxh4 59. Kf4 Kh3 60. Kg5 Kg3 $1 (60... h4 $11 {Fritz}) 61. Kxh5 Kf4 62. Kh4
-  Kxe5 63. Kg4 f6 $19 {Fritz}) 57. Ke4 Kxh3 58. Kf5 h5 59. Kf6 Kg4 60. Kxf7 h4
+  Kb4 g5 (53... g6 $11) 54. Kc4 (54. fxg5 hxg5 55. Kc3 Kxe5 (55... Kf3
+  56. h4 $11) 56. Kd3 f5 57. Ke3 $11) 54... gxf4 55. gxf4 Kxf4
+  56. Kd4 {#} (56. Kd5 h5 57. Kd6 Ke4 (57... h4 58. Kd5 $11) 58. h4 Kd4
+  59. e6 fxe6 60. Kxe6 $11) 56... Kg3 $6 (56... h5 $1 57. h4 Kg4 58. Ke4
+  Kxh4 59. Kf4 Kh3 60. Kg5 Kg3 $1 (60... h4 $11) 61. Kxh5 Kf4 62. Kh4
+  Kxe5 63. Kg4 f6 $19) 57. Ke4 Kxh3 58. Kf5 h5 59. Kf6 Kg4 60. Kxf7 h4
   61. e6 h3 62. e7 h2 63. e8=Q h1=Q 64. Qe6+ Kf4 65. Qf6+ Ke3 1/2-1/2`,
 
   `[Event "North Bay (U-1800)"]
@@ -12654,16 +12654,16 @@ export const pgns1994 = [
   [EventDate "1994.??.??"]
   
   1. e4 e6 2. d4 d5 3. e5 c5 4. c3 Nc6 5. Nf3 Nge7 6. Bd3 Qb6 $6 (6... Nf5 {ECO})
-  7. Bc2 $6 (7. dxc5 Qxc5 8. Be3 $32 {Fritz}) 7... cxd4 8. cxd4 Nf5 9. Bxf5 exf5
-  10. Nc3 Be6 11. O-O Be7 12. Qa4 $6 (12. Re1 {Fritz}) (12. a3 $6 f6 $36 {Fritz})
-  12... a6 (12... O-O 13. Qb5 f6 $13 {Fritz}) 13. a3 O-O 14. Ne2 Rac8 15. Bd2 $2
-  (15. b4 $11 {Fritz}) 15... Bd7 $1 (15... Qxb2 $4 16. Rfb1 $18) 16. Nf4 $2 (16.
+  7. Bc2 $6 (7. dxc5 Qxc5 8. Be3 $32) 7... cxd4 8. cxd4 Nf5 9. Bxf5 exf5
+  10. Nc3 Be6 11. O-O Be7 12. Qa4 $6 (12. Re1) (12. a3 $6 f6 $36)
+  12... a6 (12... O-O 13. Qb5 f6 $13) 13. a3 O-O 14. Ne2 Rac8 15. Bd2 $2
+  (15. b4 $11) 15... Bd7 $1 (15... Qxb2 $4 16. Rfb1 $18) 16. Nf4 $2 (16.
   Qd1 Qxb2 $5 17. Rb1 Qxa3 18. Rxb7 Be6 19. Bc1 (19. Nf4 Rb8 20. Bc1 Qa1 $15 {
-  Fritz}) 19... Qa5 20. Qd3 Rb8 $15 {Fritz}) 16... Nxe5 $1 17. Nxd5 Nxf3+ 18.
-  gxf3 Qd6 (18... Bxa4 19. Nxb6 Rc2 20. Bc3 Bc6 21. d5 $5 $11 {Fritz}) 19. Nxe7+
-  Qxe7 20. Qb4 Qe2 21. Kg2 Rc6 22. Bf4 Rg6+ 23. Bg3 Bc6 24. Qb3 (24. Qc3 {Fritz})
-  24... f4 25. Rfe1 Qb5 26. Qc2 fxg3 27. hxg3 Qd5 28. Re3 (28. Qd3 {Fritz}) 28...
-  Qxd4 (28... Rg4 {Fritz}) 29. Rd1 Qf6 30. Qc5 $5 Rg5 (30... Qxb2 $4) 31. Qb4 Rb5
+  Fritz}) 19... Qa5 20. Qd3 Rb8 $15) 16... Nxe5 $1 17. Nxd5 Nxf3+ 18.
+  gxf3 Qd6 (18... Bxa4 19. Nxb6 Rc2 20. Bc3 Bc6 21. d5 $5 $11) 19. Nxe7+
+  Qxe7 20. Qb4 Qe2 21. Kg2 Rc6 22. Bf4 Rg6+ 23. Bg3 Bc6 24. Qb3 (24. Qc3)
+  24... f4 25. Rfe1 Qb5 26. Qc2 fxg3 27. hxg3 Qd5 28. Re3 (28. Qd3) 28...
+  Qxd4 (28... Rg4) 29. Rd1 Qf6 30. Qc5 $5 Rg5 (30... Qxb2 $4) 31. Qb4 Rb5
   32. Qc3 Rxb2 33. Qxf6 gxf6 34. Rd4 Rb5 35. Rd6 Kg7 36. Rd4 h5 37. Rd6 Rd5 38.
   Rxd5 Bxd5 39. Rd3 Rd8 40. Rc3 Bc6 41. Kh3 Rd2 42. Kg2 Bb5 43. Re3 Rd3 0-1`,
 
@@ -12715,17 +12715,17 @@ export const pgns1994 = [
   
   1. e4 e5 2. Nf3 d6 3. Bc4 Be7 4. d4 exd4 5. Nxd4 Nf6 6. Nc3 O-O 7. Qd3 {[N]} (
   7. O-O {Black,R-Kostic,B; New York; 1918.}) 7... c6 8. O-O b5 9. Bb3 a5 10. a4
-  b4 11. Nce2 Bb7 $2 (11... c5 12. Nf3 $13 {Fritz}) 12. Nf5 $1 Ne8 13. Qg3 $1 {#}
-  13... Bf6 $2 (13... Kh8 {Fritz}) 14. Nh6+ Kh8 15. Nxf7+ Rxf7 16. Bxf7 $16 Ba6
+  b4 11. Nce2 Bb7 $2 (11... c5 12. Nf3 $13) 12. Nf5 $1 Ne8 13. Qg3 $1 {#}
+  13... Bf6 $2 (13... Kh8) 14. Nh6+ Kh8 15. Nxf7+ Rxf7 16. Bxf7 $16 Ba6
   17. Re1 Nd7 18. Bxe8 (18. Nf4 $1 Be5 $2 {Mate in 3. -Fritz} (18... Qe7 19. Be6
-  $16 {Fritz})) 18... Qxe8 19. Qxd6 Bxe2 (19... Qxe4 $132 20. Qxd7 Bxe2 21. Qb7
-  $16 {Fritz}) 20. Rxe2 Be5 21. Qxc6 $18 Rc8 22. Qa6 Nc5 23. Qb5 Qh5 24. g3 (24.
-  f4 {Fritz}) 24... Ne6 25. Be3 Rd8 26. Rae1 h6 {#} 27. f4 $6 (27. c3 $18) 27...
+  $16)) 18... Qxe8 19. Qxd6 Bxe2 (19... Qxe4 $132 20. Qxd7 Bxe2 21. Qb7
+  $16) 20. Rxe2 Be5 21. Qxc6 $18 Rc8 22. Qa6 Nc5 23. Qb5 Qh5 24. g3 (24.
+  f4) 24... Ne6 25. Be3 Rd8 26. Rae1 h6 {#} 27. f4 $6 (27. c3 $18) 27...
   Nd4 28. Bxd4 Bxd4+ 29. Kg2 Qxb5 30. axb5 Bxb2 31. e5 Kg8 32. e6 a4 33. e7 Re8
-  34. Rd1 (34. b6 $18 {Fritz}) 34... a3 35. Re6 (35. Rd8 Kf7 36. Rxe8 Kxe8 37. b6
-  Bd4 38. b7 Ba7 39. Re6 $18 {Fritz}) 35... Kf7 (35... a2 36. Ra6 a1=Q 37. Raxa1
+  34. Rd1 (34. b6 $18) 34... a3 35. Re6 (35. Rd8 Kf7 36. Rxe8 Kxe8 37. b6
+  Bd4 38. b7 Ba7 39. Re6 $18) 35... Kf7 (35... a2 36. Ra6 a1=Q 37. Raxa1
   Bxa1 38. Rxa1 Rxe7 39. Kf3 $18) 36. Ra6 Rxe7 37. Kf3 Rb7 38. Rd5 Ke7 39. b6 Ke6
-  40. Rb5 Kd6 (40... Bc3 {Fritz}) 41. Rxb4 Kc5 42. Rb3 Kc6 43. Ke4 Kc5 44. g4
+  40. Rb5 Kd6 (40... Bc3) 41. Rxb4 Kc5 42. Rb3 Kc6 43. Ke4 Kc5 44. g4
   Re7+ 45. Kf5 $6 Rf7+ 46. Ke4 Re7+ 47. Kf3 Re6 $2 48. Ra5+ 1-0`,
 
   `[Event "North Bay (U-1800)"]
@@ -12742,9 +12742,9 @@ export const pgns1994 = [
   O-O 9. Be3 a6 10. Qd2 Qc7 11. Rae1 {[N]} (11. Qf2 {
   Gerzadowicz-Edwards; cr USA; 1989.}) 11... b5 12. g4 f5 13. exf5 exf5 14. g5
   Bb7 15. h4 Rac8 16. h5 Nd4 17. Nh4 b4 18. Nd1 Bd5 19. hxg6 Bxg2 20. Qxg2 hxg6
-  21. c3 bxc3 22. bxc3 Nb5 23. Bd2 {#} 23... Kf7 $2 (23... Rfe8 {Fritz}) 24.
+  21. c3 bxc3 22. bxc3 Nb5 23. Bd2 {#} 23... Kf7 $2 (23... Rfe8) 24.
   Rxe7+ $1 Kxe7 (24... Qxe7 $2 25. Re1 $16) 25. Nxg6+ Kf7 26. Nxf8 Kxf8 27. Qd5
-  Qf7 28. Qxf7+ Kxf7 29. a4 Nc7 30. Ne3 Kg6 31. Rb1 d5 $2 (31... Re8 {Fritz}) 32.
+  Qf7 28. Qxf7+ Kxf7 29. a4 Nc7 30. Ne3 Kg6 31. Rb1 d5 $2 (31... Re8) 32.
   Rb6+ Kh7 33. Nxf5 Re8 34. Kf2 Ne6 35. Nxg7 Kxg7 36. f5 Nc7 37. Rc6 1-0`,
 
   `[Event "North Bay (U-1800)"]
@@ -12759,25 +12759,25 @@ export const pgns1994 = [
   
   1. g3 Nf6 2. Bg2 g6 3. d4 d5 4. c4 c6 5. cxd5 cxd5 6. Nc3 Bg7 7. Bf4 O-O {[N]}
   (7... Nc6 {Kuro-Salokanges; cr Finland; 1988.}) 8. Qb3 e6 9. Nf3 a6 10. O-O
-  Nbd7 $6 (10... Nc6 {Fritz}) 11. Bd6 $6 (11. Rfc1 {Fritz}) 11... Re8 12. Na4 $6
-  (12. Rfc1 {Fritz}) 12... Ne4 13. Bf4 b5 14. Nc3 Bb7 15. Rac1 (15. Rfc1 {Fritz})
-  15... Qb6 (15... Nb6 {Nc4} 16. Nxb5 $1 axb5 17. Bc7 $16 {Fritz}) (15... Nxc3 {
-  Fritz}) 16. Be3 Nd6 17. Ne5 $1 {#} 17... Red8 (17... Qd8 $13 {Fritz}) 18. Nxd7
+  Nbd7 $6 (10... Nc6) 11. Bd6 $6 (11. Rfc1) 11... Re8 12. Na4 $6
+  (12. Rfc1) 12... Ne4 13. Bf4 b5 14. Nc3 Bb7 15. Rac1 (15. Rfc1)
+  15... Qb6 (15... Nb6 {Nc4} 16. Nxb5 $1 axb5 17. Bc7 $16) (15... Nxc3 {
+  Fritz}) 16. Be3 Nd6 17. Ne5 $1 {#} 17... Red8 (17... Qd8 $13) 18. Nxd7
   Rxd7 19. Na4 Qa7 20. Nc5 Re7 21. Qd3 Nc4 22. b3 Nxe3 23. fxe3 Rc8 (23... f5 {
-  Fritz}) 24. Rc2 e5 $5 (24... Rec7 25. Rfc1 e5 {Fritz}) 25. Rfc1 exd4 26. exd4
-  Bh6 27. Rf1 (27. Nxb7 Rxc2 28. Rxc2 Qxb7 29. Rc5 $36 {Fritz}) 27... Re3 28. Qd1
-  Rce8 (28... Re7 {Fritz}) 29. Nd7 Bg7 30. Nf6+ Bxf6 31. Rxf6 R8e7 32. Rf3 R3e4
+  Fritz}) 24. Rc2 e5 $5 (24... Rec7 25. Rfc1 e5) 25. Rfc1 exd4 26. exd4
+  Bh6 27. Rf1 (27. Nxb7 Rxc2 28. Rxc2 Qxb7 29. Rc5 $36) 27... Re3 28. Qd1
+  Rce8 (28... Re7) 29. Nd7 Bg7 30. Nf6+ Bxf6 31. Rxf6 R8e7 32. Rf3 R3e4
   33. Rd3 R4e6 34. Bf3 b4 35. Qc1 Qb6 36. Kf2 a5 37. Rc5 Ba6 38. Rd2 Bb5 39. Rc8+
-  {time trouble.} (39. Rxd5 {Fritz}) 39... Kg7 40. Rc5 Qa6 41. Qc2 Re3 (41... a4
-  {Fritz}) 42. Rc7 R7e6 (42... Qf6 {Fritz}) 43. g4 $6 (43. Rc5 {Fritz}) 43... Bc6
-  {#} (43... Qd6 $1 44. Kg2 Bxe2 $1 $15 {Fritz}) 44. Qc5 $1 Rc3 45. Qa7 Qxa7 (
-  45... Be8 46. Qxa6 Rxa6 47. Rxc3 bxc3 48. Rc2 $16 {Fritz} 48... a4) 46. Rxa7 a4
+  {time trouble.} (39. Rxd5) 39... Kg7 40. Rc5 Qa6 41. Qc2 Re3 (41... a4
+ ) 42. Rc7 R7e6 (42... Qf6) 43. g4 $6 (43. Rc5) 43... Bc6
+  {#} (43... Qd6 $1 44. Kg2 Bxe2 $1 $15) 44. Qc5 $1 Rc3 45. Qa7 Qxa7 (
+  45... Be8 46. Qxa6 Rxa6 47. Rxc3 bxc3 48. Rc2 $16 48... a4) 46. Rxa7 a4
   47. bxa4 b3 48. axb3 Rxb3 49. a5 Ra3 50. Rd3 Ra2 51. Re3 Rf6 52. g5 Rf4 53.
   Ree7 Bb5 54. Kg3 (54. Rxf7+ $5 Rxf7 55. Rxf7+ Kxf7 56. Bxd5+ Ke7 57. Bxa2 $18 {
   Fritz}) 54... Rf5 55. h4 Bc4 56. Re8 {Raa8, Rg8#} (56. Bg4 $1 Rf1 57. Bh3 Rg1+
   58. Kf2 Rh1 $4 {Mate in 8. -Fritz} 59. Rxf7+ Kg8 60. Rg7+ Kf8 61. Raf7+ Ke8 62.
   Bd7+ Kd8 63. Rf8+ Kc7 64. Be8+ Kd6 65. Rf6#) 56... Bxe2 $2 (56... h6 57. gxh6+
-  Kxh6 58. e3 $16 {Fritz}) 57. Rxe2 Ra3 58. Rf2 Ra4 59. a6 Rxd4 60. Rd7 Ra4 61.
+  Kxh6 58. e3 $16) 57. Rxe2 Ra3 58. Rf2 Ra4 59. a6 Rxd4 60. Rd7 Ra4 61.
   a7 Ra3 62. Kg2 Re5 63. Bxd5 1-0`,
 
   `[Event "North Bay - Open"]

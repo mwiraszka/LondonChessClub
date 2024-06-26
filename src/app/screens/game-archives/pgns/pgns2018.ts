@@ -12,7 +12,7 @@ export const pgns2018 = [
   [PlyCount "62"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. c4 Nf6 2. Nc3 e6 3. e4 Nc6 4. f4 Bb4 5. d3 d6 6. Nf3 Bxc3+ 7. bxc3
+  1. c4 Nf6 2. Nc3 e6 3. e4 Nc6 4. f4 Bb4 5. d3 d6 6. Nf3 Bxc3+ 7. bxc3
   O-O 8. h3 b6 9. g4 Bb7 10. Bg2 Rb8 11. Be3 Re8 12. O-O Qe7 13. g5 Nh5 14. Nh2
   g6 15. Bf3 Ng7 16. Ng4 Red8 17. h4 Ne8 18. h5 f6 19. hxg6 hxg6 20. Qd2 f5 21.
   Nh6+ Kf8 22. Rae1 Qg7 23. Kf2 Rd7 24. Rh1 Rbd8 25. Rh2 Qh8 26. Reh1 Rh7 27. Kg1
@@ -31,7 +31,7 @@ export const pgns2018 = [
   [PlyCount "77"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Bb7 5. Bg2 Bb4+ 6. Bd2 Bxd2+ 7.
+  1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Bb7 5. Bg2 Bb4+ 6. Bd2 Bxd2+ 7.
   Nbxd2 O-O 8. O-O Qe7 9. Qc2 c5 10. e4 cxd4 11. Nxd4 d6 12. Rfe1 Na6 13. Rad1
   Rfc8 14. b3 Nb4 15. Qb1 Nc6 16. Nf1 h6 17. Rd2 Ne8 18. Red1 a6 19. Ne3 Ne5 20.
   f4 Nc6 21. Nf3 Rc7 22. a3 Rac8 23. b4 b5 24. Bf1 Na7 25. cxb5 Nxb5 26. Bxb5
@@ -52,7 +52,7 @@ export const pgns2018 = [
   [PlyCount "100"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Bc5 5. c3 Nf6 6. Bxc6 dxc6 7. Nxe5
+  1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Bc5 5. c3 Nf6 6. Bxc6 dxc6 7. Nxe5
   Nxe4 8. d4 Bd6 9. Qf3 Nf6 10. Bg5 Be7 11. O-O h6 12. Bh4 Be6 13. Nd2 Nd5 14.
   Bxe7 Nxe7 15. Rfe1 Qd5 16. b3 Qxf3 17. Ndxf3 Rf8 18. Rad1 Nd5 19. c4 Nc3 20.
   Rd2 O-O-O 21. Rc2 Nb5 22. cxb5 axb5 23. h3 Bd5 24. Rce2 Rfe8 25. a4 Bxb3 26.
@@ -74,7 +74,7 @@ export const pgns2018 = [
   [PlyCount "94"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. c4 f5 2. d4 Nf6 3. Nc3 e6 4. Nf3 Be7 5. g3 O-O 6. Bg2 d6 7. O-O Nc6
+  1. c4 f5 2. d4 Nf6 3. Nc3 e6 4. Nf3 Be7 5. g3 O-O 6. Bg2 d6 7. O-O Nc6
   8. d5 Ne5 9. Ng5 exd5 10. cxd5 Nfg4 11. Ne6 Bxe6 12. dxe6 c6 13. e4 Qe8 14.
   exf5 Qh5 15. h3 Rxf5 16. f4 Raf8 17. fxe5 Rxf1+ 18. Bxf1 Qf5 19. Bf4 Nxe5 20.
   Qe2 Ng6 21. Bg2 Nxf4 22. gxf4 Qc5+ 23. Qf2 Qxf2+ 24. Kxf2 Rxf4+ 25. Kg3 Rf6 26.
@@ -96,7 +96,7 @@ export const pgns2018 = [
   [PlyCount "95"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 Nc6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. g3 d6 7. Bg2 g6
+  1. e4 c5 2. Nf3 Nc6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. g3 d6 7. Bg2 g6
   8. Nxc6 bxc6 9. e5 Nd5 10. Nxd5 cxd5 11. exd6 Qxd6 12. Qxd5 Qxd5 13. Bxd5 Ra7
   14. Be3 Rc7 15. c3 Bb7 16. Bxb7 Rxb7 17. Bd4 e5 18. Be3 Rxb2 19. O-O Bd6 20.
   Bh6 Ke7 21. Rfe1 f6 22. Be3 Kf7 23. Red1 Ke6 24. Rdc1 Rc8 25. Kf1 Ba3 26. c4
@@ -118,7 +118,7 @@ export const pgns2018 = [
   [PlyCount "74"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. Nf3 Bg7 5. g3 O-O 6. cxd5 Nxd5 7. Bg2
+  1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. Nf3 Bg7 5. g3 O-O 6. cxd5 Nxd5 7. Bg2
   Nxc3 8. bxc3 c5 9. e3 Nc6 10. O-O Qa5 11. Bb2 Rd8 12. Qc2 Be6 13. Nd2 Rac8 14.
   Nb3 Qa4 15. Qd1 b6 16. d5 Ne5 17. e4 Bd7 18. f4 Nc4 19. Qe2 Bb5 20. Rfd1 Ne5
   21. Qe3 Nd3 22. Rxd3 Bxd3 23. Qxd3 c4 24. Qd1 cxb3 25. axb3 Qd7 26. e5 Qc7 27.
@@ -138,7 +138,7 @@ export const pgns2018 = [
   [PlyCount "81"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 Nc6 2. d4 e5 3. d5 Nce7 4. Nf3 d6 5. Bd3 f5 6. c4 Nf6 7. Nc3 Ng6
+  1. e4 Nc6 2. d4 e5 3. d5 Nce7 4. Nf3 d6 5. Bd3 f5 6. c4 Nf6 7. Nc3 Ng6
   8. exf5 Nf4 9. Bxf4 exf4 10. Qd2 Qe7+ 11. Ne2 Bd7 12. O-O-O O-O-O 13. Nxf4 Re8
   14. Rhe1 Qd8 15. Ng5 Rxe1 16. Rxe1 Be8 17. Nfe6 Qd7 18. Qe3 Kb8 19. Nxf8 Rxf8
   20. Qe7 Rh8 21. Qxd7 Nxd7 22. Re7 Ne5 23. Be2 g6 24. f6 h6 25. f7 Bxf7 26. Nxf7
@@ -159,7 +159,7 @@ export const pgns2018 = [
   [PlyCount "67"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. Bf4 Nf6 3. e3 Nc6 4. Bd3 Bd7 5. c3 e6 6. Nd2 Qe7 7. Ngf3
+  1. d4 d5 2. Bf4 Nf6 3. e3 Nc6 4. Bd3 Bd7 5. c3 e6 6. Nd2 Qe7 7. Ngf3
   Qd8 8. O-O Bd6 9. Ne5 Qe7 10. e4 Bxe5 11. dxe5 Ng8 12. exd5 exd5 13. Re1 Be6
   14. Nf3 h6 15. Bb5 a6 16. Qa4 Qd7 17. Nd4 Nge7 18. Rad1 O-O 19. Bxc6 bxc6 20.
   Nb3 Qc8 21. Nc5 Rb8 22. b3 Qe8 23. Bc1 a5 24. Rd3 Ng6 25. Rg3 Rb5 26. Na6 Qc8
@@ -179,7 +179,7 @@ export const pgns2018 = [
   [PlyCount "42"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Nd7 5. Nf3 Ngf6 6. Nxf6+ Nxf6 7.
+  1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Nd7 5. Nf3 Ngf6 6. Nxf6+ Nxf6 7.
   Be2 Bg4 8. O-O h6 9. h3 Bh5 10. Be3 e6 11. c4 Bd6 12. c5 Bc7 13. b4 a6 14. a4
   O-O 15. a5 Nd5 16. Bd2 Qf6 17. Be1 Rad8 18. Nh2 Bxe2 19. Qxe2 Qxd4 20. Rc1 Qf4
   21. Rc4 Qxh2# 0-1`,
@@ -197,7 +197,7 @@ export const pgns2018 = [
   [PlyCount "76"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. d3 Bc5 5. O-O O-O 6. c3 d5 7. Bb3 Bg4
+  1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. d3 Bc5 5. O-O O-O 6. c3 d5 7. Bb3 Bg4
   8. Bg5 dxe4 9. dxe4 Qxd1 10. Bxd1 Nxe4 11. Nbd2 Bxf3 12. Nxf3 h6 13. Bh4 g5 14.
   Bg3 Rfe8 15. Ba4 Nxg3 16. hxg3 e4 17. Bxc6 bxc6 18. Nd4 e3 19. fxe3 Rxe3 20.
   Rf3 Rae8 21. Raf1 R8e7 22. Kh2 g4 23. Nf5 gxf3 24. Nxe7+ Bxe7 25. gxf3 Re2+ 26.
@@ -217,7 +217,7 @@ export const pgns2018 = [
   [PlyCount "159"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Nc3 Bc5 5. O-O d6 6. h3 a6 7. a3 b5
+  1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Nc3 Bc5 5. O-O d6 6. h3 a6 7. a3 b5
   8. Ba2 Bb7 9. d3 h6 10. Be3 Nd4 11. Bxd4 exd4 12. Nd5 O-O 13. Nh2 c6 14. Nf4
   Kh8 15. Nh5 d5 16. Ng3 Bd6 17. Nf5 Bb8 18. Ng4 Qc7 19. g3 dxe4 20. Nxf6 e3 21.
   Qg4 g6 22. Nxh6 exf2+ 23. Rxf2 Bc8 24. Qh4 Qxg3+ 25. Qxg3 Bxg3 26. Rg2 Bf4 27.
@@ -244,7 +244,7 @@ export const pgns2018 = [
   [PlyCount "97"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. Nf3 d5 2. c4 c6 3. cxd5 cxd5 4. b3 Nf6 5. Bb2 e6 6. g3 g6 7. Bg2 Nc6
+  1. Nf3 d5 2. c4 c6 3. cxd5 cxd5 4. b3 Nf6 5. Bb2 e6 6. g3 g6 7. Bg2 Nc6
   8. O-O Bg7 9. Qc2 O-O 10. d3 Qe7 11. a3 e5 12. Nbd2 b6 13. Qxc6 Bg4 14. Qc1 d4
   15. a4 Bh6 16. Ba3 Rfc8 17. Qxc8+ Rxc8 18. Bxe7 Nd5 19. Bg5 Bxg5 20. Nxg5 Nc3
   21. Kh1 Bxe2 22. Rfe1 Bxd3 23. Rxe5 f6 24. Re7 fxg5 25. Rxa7 b5 26. axb5 Nxb5
@@ -266,7 +266,7 @@ export const pgns2018 = [
   [PlyCount "65"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. Nf3 d5 3. Bf4 Bf5 4. e3 e6 5. c4 Bb4+ 6. Nc3 Ne4 7. Qb3
+  1. d4 Nf6 2. Nf3 d5 3. Bf4 Bf5 4. e3 e6 5. c4 Bb4+ 6. Nc3 Ne4 7. Qb3
   Nc6 8. Be2 O-O 9. O-O dxc4 10. Bxc4 Bxc3 11. bxc3 Na5 12. Qb4 Nxc4 13. Qxc4 Rc8
   14. Qb3 b6 15. h3 Qe7 16. Rfd1 Rfd8 17. a4 c5 18. c4 f6 19. a5 cxd4 20. exd4
   Nd6 21. axb6 axb6 22. Rac1 Qb7 23. Bxd6 Rxd6 24. c5 Rdc6 25. d5 Rxc5 26. Rxc5
@@ -286,7 +286,7 @@ export const pgns2018 = [
   [PlyCount "28"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nf6 3. Nc3 Nc6 4. Bc4 Bc5 5. O-O O-O 6. a3 d6 7. h3 Ne7
+  1. e4 e5 2. Nf3 Nf6 3. Nc3 Nc6 4. Bc4 Bc5 5. O-O O-O 6. a3 d6 7. h3 Ne7
   8. d4 exd4 9. Nxd4 h6 10. Re1 Ng6 11. Na4 Ne5 12. Ba2 Bxd4 13. Qxd4 Bxh3 14.
   gxh3 Nf3+ 0-1`,
 
@@ -303,7 +303,7 @@ export const pgns2018 = [
   [PlyCount "47"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Nxd5 6. Qf3 Be6 7.
+  1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Nxd5 6. Qf3 Be6 7.
   Nxe6 fxe6 8. Qb3 Bb4 9. a3 Bc5 10. Qxb7 Na5 11. Qb5+ c6 12. Qxc5 Rc8 13. Bxd5
   exd5 14. Qxa7 O-O 15. O-O Ra8 16. Qe3 d4 17. Qxe5 Ra7 18. b4 Nc4 19. Qc5 Nd6
   20. Qxa7 Qf6 21. Bb2 Ne4 22. f3 Ng5 23. Bxd4 Qd8 24. Qxg7# 1-0`,
@@ -321,7 +321,7 @@ export const pgns2018 = [
   [PlyCount "78"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 Nc6 3. Nc3 Nf6 4. d4 cxd4 5. Nxd4 d6 6. Bb5 Bd7 7. Be3
+  1. e4 c5 2. Nf3 Nc6 3. Nc3 Nf6 4. d4 cxd4 5. Nxd4 d6 6. Bb5 Bd7 7. Be3
   g6 8. O-O Bg7 9. Qd3 O-O 10. Rfe1 Ne5 11. Qe2 Bxb5 12. Qxb5 a6 13. Qb3 Qd7 14.
   Rad1 Rac8 15. h3 b5 16. a3 Rfd8 17. Rd2 Nc4 18. Rd3 Nxe3 19. Rexe3 e5 20. Nf3
   Qb7 21. Ng5 h6 22. Nf3 Rc4 23. Nd5 Nxe4 24. Rd2 Nxd2 25. Nxd2 Rd4 26. Rd3 Rxd3
@@ -342,7 +342,7 @@ export const pgns2018 = [
   [PlyCount "98"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c6 2. Nc3 d5 3. Nf3 dxe4 4. Nxe4 Bg4 5. Be2 Nd7 6. O-O Ngf6 7.
+  1. e4 c6 2. Nc3 d5 3. Nf3 dxe4 4. Nxe4 Bg4 5. Be2 Nd7 6. O-O Ngf6 7.
   Neg5 Bh5 8. d4 e6 9. Re1 Be7 10. b3 Nd5 11. Bd3 h6 12. Nh7 g6 13. Nf6+ N7xf6
   14. h3 Nc3 15. Qd2 Bxf3 16. gxf3 Qxd4 17. Qe3 Ne2+ 18. Rxe2 Qxa1 19. Re1 Qc3
   20. Bd2 Qc5 21. Bc4 Qxe3 22. fxe3 O-O 23. Kf2 Ne4+ 24. fxe4 Bh4+ 25. Ke2 Bxe1
@@ -364,7 +364,7 @@ export const pgns2018 = [
   [PlyCount "35"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. b3 e5 2. Bb2 Nc6 3. e3 Nf6 4. Bb5 Be7 5. Bxc6 dxc6 6. Bxe5 O-O 7.
+  1. b3 e5 2. Bb2 Nc6 3. e3 Nf6 4. Bb5 Be7 5. Bxc6 dxc6 6. Bxe5 O-O 7.
   Ne2 Qd5 8. Bxc7 Qxg2 9. Rg1 Qd5 10. c4 Qd7 11. Bf4 Kh8 12. d3 b5 13. Nbc3 bxc4
   14. dxc4 Qb7 15. a3 Rd8 16. Qc2 g6 17. Be5 Bf5 18. e4 1-0`,
 
@@ -381,7 +381,7 @@ export const pgns2018 = [
   [PlyCount "56"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. Nf3 Bg7 5. Bg5 dxc4 6. e4 Bg4 7. Bxc4
+  1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. Nf3 Bg7 5. Bg5 dxc4 6. e4 Bg4 7. Bxc4
   Bxf3 8. gxf3 h6 9. Be3 e6 10. Qd2 Nbd7 11. O-O-O Nb6 12. Bb3 a5 13. Na4 Nxa4
   14. Bxa4+ c6 15. a3 b5 16. Bb3 a4 17. Ba2 Qe7 18. Qc3 Rc8 19. Qc5 Nd7 20. Qxe7+
   Kxe7 21. Kd2 c5 22. Ke2 cxd4 23. Bc1 Nb6 24. Rd3 Rc2+ 25. Rd2 Rhc8 26. Rxc2
@@ -400,7 +400,7 @@ export const pgns2018 = [
   [PlyCount "60"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 d6 3. Bc4 Nc6 4. d3 g6 5. c3 Nf6 6. O-O Bg7 7. h3 O-O
+  1. e4 c5 2. Nf3 d6 3. Bc4 Nc6 4. d3 g6 5. c3 Nf6 6. O-O Bg7 7. h3 O-O
   8. Be3 Na5 9. Na3 Nxc4 10. Nxc4 b5 11. Na3 b4 12. cxb4 cxb4 13. Nc4 Ba6 14. b3
   d5 15. exd5 Nxd5 16. Rc1 Nxe3 17. fxe3 Qd5 18. e4 Qh5 19. Nfe5 Bxe5 20. Qxh5
   Bd4+ 21. Kh2 gxh5 22. Rf5 f6 23. Rxh5 Bxc4 24. bxc4 Be5+ 25. g3 Rfd8 26. Rd1
@@ -419,7 +419,7 @@ export const pgns2018 = [
   [PlyCount "131"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 d6 2. d4 c6 3. Nf3 Bg4 4. Be2 Nf6 5. Nbd2 e6 6. O-O Nbd7 7. e5
+  1. e4 d6 2. d4 c6 3. Nf3 Bg4 4. Be2 Nf6 5. Nbd2 e6 6. O-O Nbd7 7. e5
   Nd5 8. Ne4 Bxf3 9. Bxf3 dxe5 10. Bg5 f6 11. Bh4 Qe7 12. c4 Nc7 13. c5 O-O-O 14.
   Nd6+ Kb8 15. Bxc6 exd4 16. Nxb7 Nxc5 17. Nxd8 Qxd8 18. b4 N5a6 19. Bg3 e5 20.
   b5 Nb4 21. a3 Nxc6 22. bxc6 Bc5 23. Rb1+ Bb6 24. Qa4 Qd5 25. Rfc1 Kc8 26. Rxb6
@@ -444,7 +444,7 @@ export const pgns2018 = [
   [PlyCount "81"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nc3 Nc6 3. f4 g6 4. Nf3 Bg7 5. Bc4 d6 6. d3 Nf6 7. O-O O-O
+  1. e4 c5 2. Nc3 Nc6 3. f4 g6 4. Nf3 Bg7 5. Bc4 d6 6. d3 Nf6 7. O-O O-O
   8. Qe1 Bg4 9. Be3 Bxf3 10. Rxf3 Ng4 11. Kh1 Nxe3 12. Rxe3 Nd4 13. Rc1 a6 14. a3
   b5 15. Ba2 e6 16. Nd1 b4 17. axb4 cxb4 18. Qxb4 Rb8 19. Qd2 Qb6 20. c3 Nb3 21.
   Bxb3 Qxb3 22. g4 f5 23. exf5 gxf5 24. g5 e5 25. Rh3 Rbe8 26. fxe5 dxe5 27. Qf2
@@ -465,7 +465,7 @@ export const pgns2018 = [
   [PlyCount "93"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 d6 3. Bc4 Be6 4. Be2 Nc6 5. O-O g6 6. Nc3 Nge7 7. Re1
+  1. e4 e5 2. Nf3 d6 3. Bc4 Be6 4. Be2 Nc6 5. O-O g6 6. Nc3 Nge7 7. Re1
   Qd7 8. a4 Bg7 9. Rb1 a5 10. Bb5 O-O 11. h3 f5 12. Ng5 h6 13. Nxe6 Qxe6 14. d3
   d5 15. exd5 Qf6 16. dxc6 bxc6 17. Bc4+ Kh7 18. b3 Rae8 19. Bb2 Nc8 20. Re2 Qd6
   21. Rd2 Nb6 22. Ne2 Nd5 23. d4 e4 24. Bxd5 cxd5 25. Qf1 f4 26. f3 g5 27. c3 Rf6
@@ -487,7 +487,7 @@ export const pgns2018 = [
   [PlyCount "87"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. f4 d6 3. Nf3 Nc6 4. Bb5 Bd7 5. d3 a6 6. Bxc6 Bxc6 7. fxe5
+  1. e4 e5 2. f4 d6 3. Nf3 Nc6 4. Bb5 Bd7 5. d3 a6 6. Bxc6 Bxc6 7. fxe5
   dxe5 8. Nxe5 Qf6 9. Nxc6 Qxc6 10. Nc3 Bc5 11. Qf3 Ne7 12. Be3 Bb4 13. O-O O-O
   14. Bd2 f5 15. a3 Ba5 16. e5 Qc5+ 17. Qe3 Qc6 18. Kh1 Ng6 19. Qf3 Qc5 20. b4
   Qxe5 21. bxa5 f4 22. Qd5+ Qxd5 23. Nxd5 Rae8 24. Rae1 Rxe1 25. Rxe1 c6 26. Ne7+
@@ -508,7 +508,7 @@ export const pgns2018 = [
   [PlyCount "87"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 c5 3. d5 e6 4. Nc3 exd5 5. cxd5 d6 6. e4 g6 7. Nf3 Bg7
+  1. d4 Nf6 2. c4 c5 3. d5 e6 4. Nc3 exd5 5. cxd5 d6 6. e4 g6 7. Nf3 Bg7
   8. Bd3 O-O 9. O-O Bg4 10. h3 Bxf3 11. Qxf3 a6 12. a4 Re8 13. Bf4 Nh5 14. Bh2
   Qc7 15. Rfe1 Nd7 16. Qd1 Ne5 17. Bf1 Nf6 18. Qd2 Rad8 19. Bf4 Nfd7 20. Be3 Nb6
   21. b3 Rc8 22. Rac1 c4 23. a5 Na8 24. b4 Qd7 25. Bf4 f5 26. exf5 Qxf5 27. Bg3
@@ -529,7 +529,7 @@ export const pgns2018 = [
   [PlyCount "79"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. cxd5 Nxd5 5. e4 Nf6 6. Nf3 h6 7. Be2
+  1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. cxd5 Nxd5 5. e4 Nf6 6. Nf3 h6 7. Be2
   Bb4 8. e5 Ne4 9. Qc2 Nxc3 10. bxc3 Be7 11. O-O O-O 12. Qb3 b6 13. Rd1 Bb7 14.
   Ba3 Nc6 15. Ne1 Bxa3 16. Qxa3 Qe7 17. Qc1 f5 18. f4 Qf7 19. Rd3 Ne7 20. Bf3 Be4
   21. Re3 Nd5 22. Bxe4 fxe4 23. Rxe4 Nxf4 24. Nf3 Nxg2 25. Rg4 Qxf3 26. Rxg2 Qf4
@@ -550,7 +550,7 @@ export const pgns2018 = [
   [PlyCount "83"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. d4 exd4 7. Re1
+  1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. d4 exd4 7. Re1
   b5 8. e5 Nd5 9. Bb3 Nb6 10. c3 dxc3 11. Nxc3 O-O 12. Bf4 Na5 13. a4 Nxb3 14.
   Qxb3 b4 15. a5 bxc3 16. axb6 cxb6 17. bxc3 b5 18. Qd5 Ra7 19. Be3 Bb7 20. Qd3
   Ra8 21. Nd4 f6 22. exf6 Bxf6 23. Rad1 Qc7 24. Ne2 Qc6 25. f3 d5 26. Nd4 Qc4 27.
@@ -571,7 +571,7 @@ export const pgns2018 = [
   [PlyCount "59"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 d6 3. d4 Nf6 4. Nc3 Nbd7 5. Bc4 Be7 6. O-O O-O 7. Re1
+  1. e4 e5 2. Nf3 d6 3. d4 Nf6 4. Nc3 Nbd7 5. Bc4 Be7 6. O-O O-O 7. Re1
   c6 8. a4 b6 9. h3 a6 10. Qe2 Bb7 11. Bb3 b5 12. axb5 axb5 13. Rxa8 Bxa8 14. Rd1
   Qc7 15. Bg5 Nb6 16. Be3 Bb7 17. dxe5 dxe5 18. Bxb6 Qxb6 19. Nxe5 Bb4 20. Qd3
   Bxc3 21. bxc3 c5 22. Bd5 Bxd5 23. exd5 Re8 24. Nc6 Ne4 25. Re1 f5 26. c4 bxc4
@@ -590,7 +590,7 @@ export const pgns2018 = [
   [PlyCount "44"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. c4 f5 2. d4 Nf6 3. Nc3 e6 4. Nf3 d6 5. g3 Be7 6. Bg2 O-O 7. O-O Nc6
+  1. c4 f5 2. d4 Nf6 3. Nc3 e6 4. Nf3 d6 5. g3 Be7 6. Bg2 O-O 7. O-O Nc6
   8. b3 Qe8 9. d5 exd5 10. Nxd5 Nxd5 11. Qxd5+ Kh8 12. Bb2 Bf6 13. Bxf6 Rxf6 14.
   Rfe1 Nb4 15. Qd2 a5 16. Nd4 f4 17. a3 fxg3 18. hxg3 Nc6 19. Nxc6 bxc6 20. f3
   Qh5 21. Kf2 Rb8 22. b4 axb4 1/2-1/2`,
@@ -608,7 +608,7 @@ export const pgns2018 = [
   [PlyCount "125"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Nf3 c5 5. a3 Bxc3+ 6. bxc3 O-O 7. Bg5
+  1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Nf3 c5 5. a3 Bxc3+ 6. bxc3 O-O 7. Bg5
   Qa5 8. Qb3 Ne4 9. Rc1 Nxg5 10. Nxg5 cxd4 11. Nf3 Nc6 12. g3 d5 13. cxd5 exd5
   14. Bg2 dxc3 15. Qxc3 Qxc3+ 16. Rxc3 Re8 17. e3 d4 18. Rd3 Bf5 19. Rd2 dxe3 20.
   fxe3 Rxe3+ 21. Kf2 Rae8 22. Rhd1 h6 23. Rb2 R3e7 24. Rdd2 Be4 25. Bf1 g6 26.
@@ -632,7 +632,7 @@ export const pgns2018 = [
   [PlyCount "56"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nc3 d6 3. Nf3 Nf6 4. Bb5+ Bd7 5. Bc4 Bg4 6. O-O g6 7. h3
+  1. e4 c5 2. Nc3 d6 3. Nf3 Nf6 4. Bb5+ Bd7 5. Bc4 Bg4 6. O-O g6 7. h3
   Bxf3 8. Qxf3 Bg7 9. Bb5+ Nbd7 10. e5 dxe5 11. Qxb7 O-O 12. d3 Qb6 13. Qxb6 axb6
   14. Re1 Rfd8 15. Bxd7 Nxd7 16. f4 e6 17. a4 f5 18. Bd2 Rac8 19. b3 Rc6 20. Rad1
   exf4 21. Nb5 e5 22. Na7 Rd6 23. Nb5 Rd5 24. Bc1 Nb8 25. Nc7 R5d6 26. Nb5 Rd5
@@ -651,7 +651,7 @@ export const pgns2018 = [
   [PlyCount "83"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 c6 3. Nc3 Bf5 4. Nf3 Nf6 5. cxd5 cxd5 6. Qb3 Qd7 7. Ne5
+  1. d4 d5 2. c4 c6 3. Nc3 Bf5 4. Nf3 Nf6 5. cxd5 cxd5 6. Qb3 Qd7 7. Ne5
   Qc8 8. Nxd5 Nxd5 9. Qxd5 e6 10. Qb5+ Nd7 11. Qxd7+ Qxd7 12. Nxd7 Kxd7 13. f3
   Bb4+ 14. Bd2 Bxd2+ 15. Kxd2 Rac8 16. e4 Bg6 17. Bb5+ Ke7 18. Rac1 Rhd8 19. Rxc8
   Rxc8 20. Rc1 Rxc1 21. Kxc1 Kd6 22. Kd2 f6 23. Ke3 Bf7 24. Bc4 Be8 25. g3 g5 26.
@@ -672,7 +672,7 @@ export const pgns2018 = [
   [PlyCount "61"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. c4 f5 2. Nc3 Nf6 3. g3 e6 4. Bg2 d5 5. b3 Bd6 6. Nf3 O-O 7. O-O c6
+  1. c4 f5 2. Nc3 Nf6 3. g3 e6 4. Bg2 d5 5. b3 Bd6 6. Nf3 O-O 7. O-O c6
   8. d4 Qe7 9. Bb2 Nbd7 10. cxd5 exd5 11. Re1 Ne4 12. Nd2 Rf6 13. Ndxe4 fxe4 14.
   e3 Qf7 15. Rf1 Nf8 16. f3 exf3 17. Bxf3 h5 18. Qe2 h4 19. g4 g5 20. e4 Bb4 21.
   exd5 Bxc3 22. Bxc3 cxd5 23. Rf2 Ng6 24. Bd2 Nf4 25. Bxf4 Rxf4 26. h3 Be6 27.
@@ -691,7 +691,7 @@ export const pgns2018 = [
   [PlyCount "85"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. d3 Nf6 6. Be2 Be7 7. O-O
+  1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. d3 Nf6 6. Be2 Be7 7. O-O
   O-O 8. Bf4 Nc6 9. d4 Be6 10. c4 d5 11. b3 h6 12. Nc3 Re8 13. Ne5 Bb4 14. Nxc6
   bxc6 15. Rc1 Bd6 16. Qd2 Rb8 17. Bf3 Qd7 18. c5 Bxf4 19. Qxf4 a5 20. Rfe1 Rb7
   21. Re3 Kf8 22. Rce1 Rb4 23. Na4 Rb7 24. Nb2 Bf5 25. Rxe8+ Nxe8 26. Be2 Nf6 27.
@@ -712,7 +712,7 @@ export const pgns2018 = [
   [PlyCount "109"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Bc4 h6 5. O-O Bc5 6. c3 d6 7. cxd4
+  1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Bc4 h6 5. O-O Bc5 6. c3 d6 7. cxd4
   Bb6 8. h3 Bd7 9. Nc3 Nf6 10. a3 a6 11. e5 dxe5 12. dxe5 Nh7 13. Nd5 Ba7 14. Bf4
   Be6 15. Rc1 O-O 16. Qd2 Ne7 17. Nxc7 Qxd2 18. Bxd2 Bxc4 19. Nxa8 Bxf1 20. Kxf1
   Rxa8 21. Rc7 Nf5 22. Rxb7 Bd4 23. g4 Nh4 24. Nxd4 Rd8 25. Be3 Ng6 26. f4 Nxf4
@@ -735,7 +735,7 @@ export const pgns2018 = [
   [PlyCount "177"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. Nf3 Nf6 3. Bg5 Ne4 4. Bh4 c5 5. dxc5 Qa5+ 6. c3 Qxc5 7. Qd4
+  1. d4 d5 2. Nf3 Nf6 3. Bg5 Ne4 4. Bh4 c5 5. dxc5 Qa5+ 6. c3 Qxc5 7. Qd4
   Nc6 8. Qxc5 Nxc5 9. e3 Bf5 10. Nd4 Nxd4 11. exd4 Nd3+ 12. Bxd3 Bxd3 13. Nd2 Rc8
   14. O-O-O e6 15. Nb3 Bg6 16. Rhe1 b5 17. Re3 Bd6 18. Bg3 Be7 19. h4 O-O 20. a3
   b4 21. axb4 Bxb4 22. Kd2 Be7 23. Ra1 Ra8 24. Ra6 Rfc8 25. Re1 Rd8 26. Rea1 Rd7
@@ -763,7 +763,7 @@ export const pgns2018 = [
   [PlyCount "76"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c6 2. c4 e6 3. Nf3 Ne7 4. Bd3 Ng6 5. e5 Be7 6. Bxg6 hxg6 7. O-O
+  1. e4 c6 2. c4 e6 3. Nf3 Ne7 4. Bd3 Ng6 5. e5 Be7 6. Bxg6 hxg6 7. O-O
   Qc7 8. d4 d6 9. Bf4 Bd7 10. Qd2 Na6 11. Bg5 Rh5 12. Bxe7 Kxe7 13. a3 Rah8 14.
   h3 f5 15. Qf4 d5 16. c5 Qd8 17. Nc3 Kf8 18. Ne2 g5 19. Qg3 g4 20. Nf4 R5h6 21.
   Nh2 g5 22. Ne2 gxh3 23. Nf3 g4 24. Nh2 hxg2 25. Kxg2 Rxh2+ 26. Qxh2 Rxh2+ 27.
@@ -783,7 +783,7 @@ export const pgns2018 = [
   [PlyCount "53"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e6 2. d4 d5 3. Bd3 Nc6 4. Nf3 e5 5. c3 f6 6. Be3 Nge7 7. O-O Qd6
+  1. e4 e6 2. d4 d5 3. Bd3 Nc6 4. Nf3 e5 5. c3 f6 6. Be3 Nge7 7. O-O Qd6
   8. Nbd2 Bd7 9. Nb3 b6 10. Qc2 Bg4 11. Nfd2 Qd7 12. Rfe1 f5 13. f3 fxe4 14. fxe4
   O-O-O 15. Ba6+ Kb8 16. Nc5 Qe8 17. a4 Bc8 18. Bxc8 Rxc8 19. a5 b5 20. Qb3 Nd8
   21. exd5 Nf5 22. Na6+ Ka8 23. Bf4 Qg6 24. Rxe5 Bd6 25. Qxb5 Bxe5 26. Bxe5 Rb8
@@ -802,7 +802,7 @@ export const pgns2018 = [
   [PlyCount "21"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. d3 Bb4+ 5. c3 Bc5 6. O-O O-O 7. Bg5
+  1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. d3 Bb4+ 5. c3 Bc5 6. O-O O-O 7. Bg5
   h6 8. Bh4 g5 9. Bg3 Ng4 10. h4 gxh4 11. Bxh4 1-0`,
 
   `[Event "2018 London Ch Phase 1"]
@@ -818,7 +818,7 @@ export const pgns2018 = [
   [PlyCount "68"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nc3 Nc6 3. f4 g6 4. Nf3 Bg7 5. Bc4 d6 6. O-O Na5 7. Bb5+
+  1. e4 c5 2. Nc3 Nc6 3. f4 g6 4. Nf3 Bg7 5. Bc4 d6 6. O-O Na5 7. Bb5+
   Bd7 8. Bxd7+ Qxd7 9. d3 Nc6 10. a3 Nf6 11. Qe1 O-O 12. h3 Rab8 13. Qh4 b5 14.
   g4 b4 15. axb4 cxb4 16. Ne2 Rfc8 17. Ng3 Qc7 18. Be3 Nd7 19. f5 Nde5 20. fxg6
   Nxf3+ 21. Rxf3 hxg6 22. Raf1 Ne5 23. R3f2 Rf8 24. Bh6 b3 25. d4 Nc4 26. c3 Nxb2
@@ -838,7 +838,7 @@ export const pgns2018 = [
   [PlyCount "115"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c6 2. Nf3 d5 3. exd5 cxd5 4. d4 Bg4 5. Nc3 Nc6 6. Bb5 a6 7. Be2
+  1. e4 c6 2. Nf3 d5 3. exd5 cxd5 4. d4 Bg4 5. Nc3 Nc6 6. Bb5 a6 7. Be2
   Bxf3 8. Bxf3 e6 9. O-O Bd6 10. Re1 Nge7 11. Ne2 O-O 12. c3 b5 13. Qd3 Ng6 14.
   g3 f6 15. h4 Bc7 16. h5 Nge7 17. Nf4 e5 18. dxe5 Nxe5 19. Qe2 Nxf3+ 20. Qxf3
   Bxf4 21. Bxf4 Qd7 22. Kg2 Qb7 23. Bd6 Rae8 24. Rad1 Qd7 25. Bxe7 Rxe7 26. Rxe7
@@ -861,7 +861,7 @@ export const pgns2018 = [
   [PlyCount "51"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. e3 Be7 5. Nf3 O-O 6. Bd3 b6 7. O-O Bb7
+  1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. e3 Be7 5. Nf3 O-O 6. Bd3 b6 7. O-O Bb7
   8. cxd5 exd5 9. b3 Nbd7 10. Bb2 Ne4 11. Rc1 Nxc3 12. Bxc3 c5 13. Qe2 Bf6 14.
   Rfd1 Re8 15. Qc2 g6 16. Bb5 Rc8 17. Qb2 a6 18. Bf1 cxd4 19. Bxd4 Bxd4 20. Qxd4
   Rxc1 21. Rxc1 Qf6 22. Rc7 Qxd4 23. Nxd4 Bc8 24. Nc6 Nb8 25. Rxc8 Rxc8 26. Ne7+
@@ -880,7 +880,7 @@ export const pgns2018 = [
   [PlyCount "100"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. Nf3 g6 3. g3 Bg7 4. Bg2 O-O 5. O-O d6 6. c4 Nbd7 7. b3 c5
+  1. d4 Nf6 2. Nf3 g6 3. g3 Bg7 4. Bg2 O-O 5. O-O d6 6. c4 Nbd7 7. b3 c5
   8. Bb2 Qc7 9. Nbd2 a5 10. d5 a4 11. e4 Nxe4 12. Bxg7 Nxd2 13. Qxd2 Kxg7 14. h4
   Nf6 15. Qb2 h5 16. Ng5 Bf5 17. Be4 Qd7 18. f3 Kg8 19. Qc2 axb3 20. axb3 Rxa1
   21. Rxa1 Bxe4 22. fxe4 b5 23. Qe2 bxc4 24. bxc4 Ng4 25. Kg2 Ne5 26. Nf3 Qg4 27.
@@ -902,7 +902,7 @@ export const pgns2018 = [
   [PlyCount "54"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 d6 3. Bc4 Nc6 4. c3 Nf6 5. Qa4 Bd7 6. Qb3 e6 7. Qc2 d5
+  1. e4 c5 2. Nf3 d6 3. Bc4 Nc6 4. c3 Nf6 5. Qa4 Bd7 6. Qb3 e6 7. Qc2 d5
   8. exd5 exd5 9. Be2 Bd6 10. O-O O-O 11. d4 cxd4 12. cxd4 Rc8 13. Nc3 Bg4 14.
   Be3 Re8 15. Rac1 Ne4 16. Qd1 Bb8 17. h3 Bh5 18. Nxe4 dxe4 19. Ne1 Qd6 20. g3
   Bxe2 21. Qxe2 Nxd4 22. Qd1 Nf5 23. Rxc8 Rxc8 24. Qxd6 Bxd6 25. Bxa7 Ra8 26. Be3
@@ -921,7 +921,7 @@ export const pgns2018 = [
   [PlyCount "62"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. Bf4 d5 3. e3 Bf5 4. Nf3 e6 5. c4 Bxb1 6. Rxb1 Bb4+ 7. Nd2
+  1. d4 Nf6 2. Bf4 d5 3. e3 Bf5 4. Nf3 e6 5. c4 Bxb1 6. Rxb1 Bb4+ 7. Nd2
   Ne4 8. Qa4+ Nc6 9. Rd1 Bxd2+ 10. Rxd2 Nxd2 11. Kxd2 O-O 12. c5 f6 13. Bb5 Ne7
   14. Rd1 Ng6 15. Bg3 e5 16. Ke2 c6 17. Bd3 e4 18. Bb1 f5 19. Bd6 Rf7 20. Kf1 f4
   21. Kg1 f3 22. Qc2 fxg2 23. Qe2 Nh4 24. Qg4 Nf3+ 25. Kxg2 Rf6 26. Kh1 Rg6 27.
@@ -940,7 +940,7 @@ export const pgns2018 = [
   [PlyCount "100"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 d5 2. exd5 Qxd5 3. Nc3 Qd6 4. Nf3 Nf6 5. d4 a6 6. h3 Bf5 7. Be3
+  1. e4 d5 2. exd5 Qxd5 3. Nc3 Qd6 4. Nf3 Nf6 5. d4 a6 6. h3 Bf5 7. Be3
   Nc6 8. Bd3 Bxd3 9. Qxd3 g6 10. O-O Bg7 11. Rfe1 O-O 12. Rad1 Rad8 13. a3 Rfe8
   14. d5 Nb8 15. g4 c6 16. Bb6 Rc8 17. g5 Nxd5 18. Nxd5 cxd5 19. Qb3 e6 20. c3
   Qf4 21. Kg2 Nd7 22. Be3 Qc7 23. h4 b5 24. Rh1 Qc4 25. Qxc4 bxc4 26. h5 Rb8 27.
@@ -962,7 +962,7 @@ export const pgns2018 = [
   [PlyCount "94"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. a3 Bxc3+ 5. bxc3 b6 6. Nf3 Bb7 7. Bg5
+  1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. a3 Bxc3+ 5. bxc3 b6 6. Nf3 Bb7 7. Bg5
   d6 8. e3 Nbd7 9. Bd3 h6 10. Bh4 Qc8 11. Qc2 d5 12. cxd5 Bxd5 13. e4 Bb7 14. Nd2
   c5 15. f3 cxd4 16. cxd4 Qxc2 17. Bxc2 Ba6 18. Kf2 O-O 19. Rhd1 Rac8 20. Rac1
   Rc3 21. Nb1 Rc4 22. Bb3 Rxc1 23. Rxc1 Rc8 24. Rc3 Rxc3 25. Nxc3 Nh5 26. a4 g5
@@ -984,7 +984,7 @@ export const pgns2018 = [
   [PlyCount "59"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. d4 d6 5. d5 Ne7 6. Bd3 Bg4 7. c4 g6
+  1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. d4 d6 5. d5 Ne7 6. Bd3 Bg4 7. c4 g6
   8. Be3 c5 9. dxc6 Nxc6 10. Nc3 Rc8 11. O-O Bg7 12. Rc1 Qd7 13. Be2 O-O 14. Bg5
   Rfe8 15. Bxf6 Bxf6 16. Nd5 Bg7 17. Qd2 b6 18. Rfd1 Qe6 19. Ne3 Bh6 20. Qxd6
   Rcd8 21. Qxe6 Rxe6 22. Rxd8+ Nxd8 23. Rd1 Nc6 24. Nxg4 Bf4 25. g3 Bg5 26. Nxg5
@@ -1003,7 +1003,7 @@ export const pgns2018 = [
   [PlyCount "126"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 Nc6 3. c3 d6 4. Bc4 e6 5. Bb5 a6 6. Ba4 b5 7. Bc2 Nf6
+  1. e4 c5 2. Nf3 Nc6 3. c3 d6 4. Bc4 e6 5. Bb5 a6 6. Ba4 b5 7. Bc2 Nf6
   8. d4 cxd4 9. cxd4 Bb7 10. Bg5 Be7 11. Nbd2 O-O 12. O-O Rc8 13. Rc1 Qb6 14. Nb3
   Rfe8 15. Qd3 Nb4 16. Qd2 Nxc2 17. Rxc2 Bxe4 18. Rxc8 Rxc8 19. Qf4 Bd5 20. Qg3
   Ne4 21. Qf4 Nxg5 22. Nxg5 Bf6 23. Nd2 h6 24. Nge4 Bxd4 25. Nf3 Bxe4 26. Qxe4
@@ -1027,7 +1027,7 @@ export const pgns2018 = [
   [PlyCount "40"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 Nc6 3. Bb5 e6 4. O-O Be7 5. d4 Nf6 6. d5 exd5 7. exd5
+  1. e4 c5 2. Nf3 Nc6 3. Bb5 e6 4. O-O Be7 5. d4 Nf6 6. d5 exd5 7. exd5
   Nb4 8. d6 Bf8 9. Re1+ Be7 10. dxe7 Qb6 11. Nc3 Qc7 12. a3 Nc6 13. Bxc6 Qxc6 14.
   Bg5 h6 15. Bxf6 Qxf6 16. Nb5 d6 17. Nxd6+ Qxd6 18. Qxd6 Bf5 19. Rad1 f6 20.
   Qd8+ Kf7 1-0`,
@@ -1045,7 +1045,7 @@ export const pgns2018 = [
   [PlyCount "91"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 c6 3. cxd5 cxd5 4. Bf4 Nf6 5. e3 g6 6. Nf3 Bg7 7. Bd3
+  1. d4 d5 2. c4 c6 3. cxd5 cxd5 4. Bf4 Nf6 5. e3 g6 6. Nf3 Bg7 7. Bd3
   O-O 8. O-O Ne4 9. Nbd2 Bf5 10. Qc2 Qc8 11. Qb1 Qe6 12. Be5 Bxe5 13. dxe5 Nxd2
   14. Bxf5 Nxb1 15. Bxe6 fxe6 16. Raxb1 Nc6 17. Nd4 Nxe5 18. Nxe6 Rf6 19. Nc7 Rd8
   20. Rfd1 e6 21. Nb5 a6 22. Nd4 Rdf8 23. Rd2 Nc4 24. Re2 e5 25. Nf3 e4 26. Nd4
@@ -1067,7 +1067,7 @@ export const pgns2018 = [
   [PlyCount "149"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. d4 d6 5. Bg5 Be7 6. O-O O-O 7. Nc3
+  1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. d4 d6 5. Bg5 Be7 6. O-O O-O 7. Nc3
   Bg4 8. h3 Bxf3 9. Qxf3 Nxd4 10. Qd3 Qd7 11. Nd5 c6 12. Nxe7+ Qxe7 13. c3 Ne6
   14. Rad1 Rad8 15. Qc2 d5 16. exd5 Nxg5 17. h4 cxd5 18. hxg5 Ne4 19. Bxd5 Nxg5
   20. Rfe1 Kh8 21. f4 Ne6 22. Rxe5 Rfe8 23. Bxe6 Rxd1+ 24. Qxd1 fxe6 25. Qe2 Qf6
@@ -1092,7 +1092,7 @@ export const pgns2018 = [
   [PlyCount "72"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 d5 2. Nc3 d4 3. Nd5 e6 4. Nb4 Bxb4 5. c3 dxc3 6. bxc3 Be7 7. Bc4
+  1. e4 d5 2. Nc3 d4 3. Nd5 e6 4. Nb4 Bxb4 5. c3 dxc3 6. bxc3 Be7 7. Bc4
   Nc6 8. Ne2 Nf6 9. O-O Nxe4 10. d4 Nd6 11. Qd3 Nxc4 12. d5 Qxd5 13. Nd4 Nxd4 14.
   Qxd4 Qxd4 15. cxd4 O-O 16. Re1 Ba3 17. Bg5 h6 18. Bf4 Bd6 19. Bc1 f5 20. Rd1 f4
   21. d5 e5 22. f3 Bc5+ 23. Kf1 Ne3+ 24. Bxe3 Bxe3 25. d6 cxd6 26. Rxd6 Bd4 27.
@@ -1112,7 +1112,7 @@ export const pgns2018 = [
   [PlyCount "51"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. Nc3 Nxc3 6. dxc3 Be7 7.
+  1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. Nc3 Nxc3 6. dxc3 Be7 7.
   Bd3 Nd7 8. Be3 Nf6 9. h3 Nd5 10. Bb5+ c6 11. Qxd5 cxb5 12. Qxb5+ Qd7 13. Qxd7+
   Bxd7 14. O-O-O O-O 15. Bf4 d5 16. Rxd5 Be6 17. Re5 Bd6 18. Re4 Bc5 19. Be3 Rac8
   20. Bxc5 Rxc5 21. Rd1 Rfc8 22. Red4 h6 23. Rd8+ Rxd8 24. Rxd8+ Kh7 25. a3 Bd5
@@ -1131,7 +1131,7 @@ export const pgns2018 = [
   [PlyCount "59"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Be3 Bd7 7. Be2
+  1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Be3 Bd7 7. Be2
   Nc6 8. O-O g6 9. h4 Bg7 10. h5 gxh5 11. Nxc6 Bxc6 12. Bxh5 Qa5 13. Bf3 O-O-O
   14. a3 e6 15. b4 Qe5 16. Bd4 Qg5 17. a4 d5 18. Qe2 dxe4 19. Nxe4 Bxe4 20. Bxf6
   Qxf6 21. Qxe4 Qe7 22. Rab1 Rd4 23. Qe1 Qc7 24. b5 a5 25. b6 Qf4 26. Qxa5 Rxa4
@@ -1150,7 +1150,7 @@ export const pgns2018 = [
   [PlyCount "96"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. cxd5 exd5 5. Bg5 c6 6. e3 Be7 7. Bd3 h6
+  1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. cxd5 exd5 5. Bg5 c6 6. e3 Be7 7. Bd3 h6
   8. Bh4 Ne4 9. Bxe7 Qxe7 10. Nge2 Bf5 11. O-O O-O 12. Bxe4 dxe4 13. d5 Rd8 14.
   Nd4 Bg6 15. Qb3 c5 16. Nde2 b6 17. Nf4 Bf5 18. Rae1 Nd7 19. f3 Nf6 20. Qc4 a6
   21. a4 Qe5 22. fxe4 Bxe4 23. Nxe4 Qxe4 24. Qxe4 Nxe4 25. Rd1 b5 26. axb5 axb5
@@ -1172,7 +1172,7 @@ export const pgns2018 = [
   [PlyCount "71"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. Nf3 Nd7 7. h4
+  1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. Nf3 Nd7 7. h4
   h6 8. h5 Bh7 9. Bd3 Bxd3 10. Qxd3 Ngf6 11. O-O e6 12. Re1 Qc7 13. c4 Bd6 14.
   Nf5 Nxh5 15. d5 Nc5 16. Qc2 O-O-O 17. b4 Nd7 18. dxe6 Bxb4 19. exd7+ Rxd7 20.
   Re4 Bc5 21. Bb2 f6 22. Rae1 g6 23. N5d4 Bxd4 24. Nxd4 Rhd8 25. c5 Qa5 26. Ne6
@@ -1192,7 +1192,7 @@ export const pgns2018 = [
   [PlyCount "99"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 d5 3. exd5 e4 4. Nd4 Qxd5 5. Nb3 Nf6 6. Nc3 Qd8 7. d4
+  1. e4 e5 2. Nf3 d5 3. exd5 e4 4. Nd4 Qxd5 5. Nb3 Nf6 6. Nc3 Qd8 7. d4
   Bg4 8. Be2 Bxe2 9. Qxe2 Be7 10. Qb5+ Nbd7 11. Qxb7 O-O 12. Nxe4 Nxe4 13. O-O
   Ndf6 14. Be3 Qd6 15. Qb5 Ng4 16. Qh5 Nxe3 17. fxe3 Qg6 18. Qe2 Bd6 19. Nd2 Rfe8
   20. Nf3 Qg4 21. Rfe1 h5 22. Qf1 Re6 23. Re2 Rf6 24. Kh1 Re8 25. Rd1 Bg3 26. Rd3
@@ -1214,7 +1214,7 @@ export const pgns2018 = [
   [PlyCount "93"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 Nf6 3. Nf3 Bg4 4. e3 e6 5. cxd5 Nxd5 6. Qa4+ Qd7 7. Bb5
+  1. d4 d5 2. c4 Nf6 3. Nf3 Bg4 4. e3 e6 5. cxd5 Nxd5 6. Qa4+ Qd7 7. Bb5
   c6 8. Bd3 Bxf3 9. gxf3 Bb4+ 10. Nd2 c5 11. Bb5 Nc6 12. Bxc6 Qxc6 13. Qxc6+ bxc6
   14. dxc5 Bxc5 15. Ne4 Bb4+ 16. Ke2 Rd8 17. a3 Be7 18. Bd2 Nf6 19. Ng3 O-O 20.
   e4 Rd7 21. Bc3 Rfd8 22. Rad1 Bc5 23. Rxd7 Rxd7 24. Bxf6 gxf6 25. Nh5 Bd4 26.
@@ -1236,7 +1236,7 @@ export const pgns2018 = [
   [PlyCount "61"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nc3 Nc6 3. g3 e6 4. Bg2 Nf6 5. d3 Be7 6. Nf3 d6 7. O-O O-O
+  1. e4 c5 2. Nc3 Nc6 3. g3 e6 4. Bg2 Nf6 5. d3 Be7 6. Nf3 d6 7. O-O O-O
   8. b3 a6 9. Bb2 b5 10. e5 Nd5 11. Ne4 dxe5 12. Nxe5 Bb7 13. Nxc6 Bxc6 14. Qg4
   g6 15. Qe2 Qc7 16. c4 Nb6 17. Nf6+ Bxf6 18. Bxf6 Nd7 19. Bxc6 Qxc6 20. Bb2 Rfe8
   21. d4 cxd4 22. Bxd4 e5 23. Bb2 e4 24. Qe3 bxc4 25. Rac1 Qe6 26. Rxc4 f5 27.
@@ -1255,7 +1255,7 @@ export const pgns2018 = [
   [PlyCount "93"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. Nf3 Nc6 2. d4 d5 3. Nc3 Nf6 4. g3 Bf5 5. a3 Ne4 6. Nxe4 Bxe4 7. Bg2
+  1. Nf3 Nc6 2. d4 d5 3. Nc3 Nf6 4. g3 Bf5 5. a3 Ne4 6. Nxe4 Bxe4 7. Bg2
   h6 8. c3 e5 9. O-O Be7 10. dxe5 Bxf3 11. Bxf3 O-O 12. Bxd5 Nxe5 13. Bxb7 Qxd1
   14. Rxd1 Rab8 15. Bg2 Bf6 16. Bf4 Rxb2 17. Rd2 Rb3 18. Rc2 Rfb8 19. Bd5 R3b5
   20. Rd1 Rb2 21. Rdd2 Rb1+ 22. Kg2 Ra1 23. Bxe5 Bxe5 24. Ba2 Bd6 25. a4 a5 26.
@@ -1277,7 +1277,7 @@ export const pgns2018 = [
   [PlyCount "128"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c6 2. Nf3 d5 3. exd5 cxd5 4. d4 Nc6 5. h3 Nf6 6. Bb5 Bf5 7. O-O
+  1. e4 c6 2. Nf3 d5 3. exd5 cxd5 4. d4 Nc6 5. h3 Nf6 6. Bb5 Bf5 7. O-O
   e6 8. c3 a6 9. Ba4 b5 10. Bc2 Bxc2 11. Qxc2 Be7 12. Nbd2 O-O 13. Ne5 Rc8 14.
   Qd3 Qc7 15. f4 Rfe8 16. a3 g6 17. Qf3 Bf8 18. Ng4 Bg7 19. Nxf6+ Bxf6 20. Qg4
   Ne7 21. Nf3 Nf5 22. Ne5 Red8 23. Qf3 Qe7 24. g4 Nd6 25. g5 Bxe5 26. fxe5 Nf5
@@ -1302,7 +1302,7 @@ export const pgns2018 = [
   [PlyCount "90"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 g6 2. d4 d6 3. Nf3 Bg7 4. Nc3 Nf6 5. Bc4 O-O 6. O-O c6 7. d5 c5
+  1. e4 g6 2. d4 d6 3. Nf3 Bg7 4. Nc3 Nf6 5. Bc4 O-O 6. O-O c6 7. d5 c5
   8. Bg5 Nbd7 9. Qd2 a6 10. Rfe1 b5 11. Be2 Qc7 12. Qe3 Ng4 13. Qf4 Nde5 14. Nxe5
   Bxe5 15. Qf3 Nxh2 16. Qe3 Ng4 17. Bxg4 Bxg4 18. f3 Bd4 19. fxg4 Bxe3+ 20. Rxe3
   Kg7 21. Rf1 h6 22. Bf4 g5 23. Bg3 Qd7 24. e5 dxe5 25. Bxe5+ f6 26. Bg3 Qxg4 27.
@@ -1324,7 +1324,7 @@ export const pgns2018 = [
   [PlyCount "62"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 Qa5+ 6. Bd2 Qa6 7. Qb3
+  1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 Qa5+ 6. Bd2 Qa6 7. Qb3
   e6 8. Nf3 Nd7 9. Be3 c5 10. c3 cxd4 11. cxd4 Ne7 12. Nc3 Nf5 13. Bd2 Be7 14.
   Nb5 Rc8 15. O-O O-O 16. Nc3 Nb6 17. Bf4 Nc4 18. Nd2 Nxd4 19. Qd1 Nxb2 20. Qg4
   Rxc3 21. Bh6 Nf5 22. Bxg7 Nxg7 23. h4 Nc4 24. h5 Nxe5 25. Qd4 Qd3 26. Qxe5 Qxd2
@@ -1343,7 +1343,7 @@ export const pgns2018 = [
   [PlyCount "49"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e3 e5 2. e4 Nc6 3. Nf3 Nf6 4. d3 d5 5. exd5 Nxd5 6. Bg5 f6 7. Bd2
+  1. e3 e5 2. e4 Nc6 3. Nf3 Nf6 4. d3 d5 5. exd5 Nxd5 6. Bg5 f6 7. Bd2
   Bc5 8. Be2 O-O 9. O-O f5 10. Bg5 Nce7 11. a3 Nf4 12. b4 Bb6 13. Nxe5 Qd6 14.
   Nc4 Qe6 15. Bxe7 Qxe7 16. Nxb6 axb6 17. Re1 Be6 18. Qd2 Qg5 19. g3 Nh3+ 20. Kg2
   Qh6 21. Qd1 Bd5+ 22. Bf3 c6 23. Bxd5+ cxd5 24. Nd2 Rfe8 25. Nf3 1-0`,
@@ -1361,7 +1361,7 @@ export const pgns2018 = [
   [PlyCount "50"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. d4 cxd4 3. c3 d3 4. Bxd3 e5 5. Nf3 Nc6 6. O-O Nf6 7. Re1
+  1. e4 c5 2. d4 cxd4 3. c3 d3 4. Bxd3 e5 5. Nf3 Nc6 6. O-O Nf6 7. Re1
   Be7 8. Bc4 O-O 9. Bg5 d6 10. Bxf6 Bxf6 11. Bd5 Bg4 12. h3 Bh5 13. g4 Bg6 14.
   Nbd2 h5 15. Qb3 hxg4 16. hxg4 Rb8 17. Bxc6 bxc6 18. Qa4 Bg5 19. Nxg5 Qxg5 20.
   Rad1 Qxg4+ 21. Kf1 Bh5 22. f3 Qf4 23. Ke2 Rxb2 24. Rh1 Qxf3+ 25. Ke1 Qe2# 0-1`,
@@ -1379,7 +1379,7 @@ export const pgns2018 = [
   [PlyCount "86"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 f5 2. e4 e6 3. Nc3 d5 4. e5 c5 5. Nf3 Nc6 6. Bb5 Qb6 7. a4 Bd7 8.
+  1. d4 f5 2. e4 e6 3. Nc3 d5 4. e5 c5 5. Nf3 Nc6 6. Bb5 Qb6 7. a4 Bd7 8.
   Bxc6 bxc6 9. O-O cxd4 10. Nxd4 c5 11. Nf3 Ne7 12. b3 Nc6 13. Bg5 a6 14. Qd2 h6
   15. Bh4 g5 16. Nxg5 hxg5 17. Qxg5 Be7 18. Qg6+ Kd8 19. Bxe7+ Nxe7 20. Qf6 Re8
   21. Nxd5 Qc6 22. Nf4 Kc7 23. Rfd1 Nd5 24. Nxd5+ exd5 25. Qf7 Qe6 26. Qxe6 Bxe6
@@ -1400,7 +1400,7 @@ export const pgns2018 = [
   [PlyCount "68"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 d6 3. Bc4 Nf6 4. Nc3 a6 5. d4 Bd7 6. Be3 Be7 7. Qd2 O-O
+  1. e4 e5 2. Nf3 d6 3. Bc4 Nf6 4. Nc3 a6 5. d4 Bd7 6. Be3 Be7 7. Qd2 O-O
   8. O-O-O Nc6 9. d5 Nd4 10. Nxd4 exd4 11. Qxd4 Rb8 12. Rhg1 c6 13. Rde1 cxd5 14.
   exd5 b5 15. Bb3 a5 16. a3 b4 17. g4 Bxg4 18. Bg5 bxc3 19. Bxf6 cxb2+ 20. Kd2
   Bxf6 21. Qxg4 Rc8 22. Ke2 g6 23. Kf1 Qb6 24. Kg2 Bd4 25. Kh1 Bxf2 26. Rgf1 Bxe1
@@ -1420,7 +1420,7 @@ export const pgns2018 = [
   [PlyCount "87"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. c3 Nf6 5. d4 exd4 6. cxd4 Bb4+ 7. Bd2
+  1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. c3 Nf6 5. d4 exd4 6. cxd4 Bb4+ 7. Bd2
   Bxd2+ 8. Nbxd2 d5 9. exd5 Nxd5 10. O-O O-O 11. Re1 Nb6 12. Rc1 Nxd4 13. Nxd4
   Qxd4 14. Nf3 Qxd1 15. Rexd1 Nxc4 16. Rxc4 c6 17. Re4 Be6 18. b3 h6 19. h3 Rfd8
   20. Rde1 c5 21. Kf1 Rd6 22. Rc1 b6 23. Ke2 Rad8 24. g4 Rd3 25. Rc2 R3d6 26. Rd2
@@ -1441,7 +1441,7 @@ export const pgns2018 = [
   [PlyCount "109"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 g6 3. d4 cxd4 4. Nxd4 Bg7 5. Nc3 Nc6 6. Be3 Nf6 7. f3
+  1. e4 c5 2. Nf3 g6 3. d4 cxd4 4. Nxd4 Bg7 5. Nc3 Nc6 6. Be3 Nf6 7. f3
   d5 8. Nxc6 bxc6 9. exd5 Nxd5 10. Nxd5 cxd5 11. Bb5+ Bd7 12. Qxd5 Rb8 13. Qxd7+
   Qxd7 14. Bxd7+ Kxd7 15. O-O-O+ Ke8 16. b3 a5 17. Bd4 f6 18. Rd3 a4 19. Rhd1
   axb3 20. axb3 Kf7 21. Kb1 h5 22. Bb2 h4 23. Rd7 h3 24. g3 Rhc8 25. Ra7 Ra8 26.
@@ -1464,7 +1464,7 @@ export const pgns2018 = [
   [PlyCount "59"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nc3 Nf6 3. Bc4 Bc5 4. Nf3 Nc6 5. d3 h6 6. O-O d6 7. Nd5 Bg4
+  1. e4 e5 2. Nc3 Nf6 3. Bc4 Bc5 4. Nf3 Nc6 5. d3 h6 6. O-O d6 7. Nd5 Bg4
   8. Be3 Nd4 9. Bxd4 Bxd4 10. Ne3 Qd7 11. c3 Bxe3 12. fxe3 O-O-O 13. Qe2 h5 14.
   Qf2 Rde8 15. Ng5 Be6 16. Bb3 Ng4 17. Qe2 Re7 18. d4 Bxb3 19. axb3 f6 20. Nh3
   Kb8 21. d5 Qe8 22. c4 Qg6 23. Qd3 Rh6 24. b4 h4 25. c5 Qe8 26. Ra5 dxc5 27.
@@ -1483,7 +1483,7 @@ export const pgns2018 = [
   [PlyCount "129"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nc3 d6 3. g3 Nf6 4. Bg2 g6 5. d3 Bg7 6. Nf3 Nc6 7. O-O O-O
+  1. e4 c5 2. Nc3 d6 3. g3 Nf6 4. Bg2 g6 5. d3 Bg7 6. Nf3 Nc6 7. O-O O-O
   8. h3 Bd7 9. Be3 Qc8 10. Kh2 a6 11. Qd2 Re8 12. Rab1 b5 13. Ng1 b4 14. Nd5 Rb8
   15. Bh6 Bh8 16. Bg5 Nd4 17. c3 Nxd5 18. cxd4 Bxd4 19. exd5 Bg7 20. Rfe1 e6 21.
   Qf4 e5 22. Qh4 Bb5 23. Re3 c4 24. dxc4 Qxc4 25. Qxc4 Bxc4 26. b3 Bb5 27. Ree1
@@ -1508,7 +1508,7 @@ export const pgns2018 = [
   [PlyCount "83"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Bb7 5. Bg2 d5 6. O-O Be7 7. Nc3 O-O
+  1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Bb7 5. Bg2 d5 6. O-O Be7 7. Nc3 O-O
   8. cxd5 exd5 9. b3 Nbd7 10. Bb2 c5 11. Rc1 Rc8 12. e3 Re8 13. Re1 Ne4 14. Bh3
   Nxc3 15. Bxc3 Rc7 16. Re2 Nf6 17. dxc5 Bxc5 18. Bg2 Ne4 19. Bb2 Ba6 20. Rec2
   Nxf2 21. Rxf2 Bxe3 22. Rxc7 Bxf2+ 23. Kxf2 Qxc7 24. Bf1 Bxf1 25. Kxf1 Qc5 26.
@@ -1529,7 +1529,7 @@ export const pgns2018 = [
   [PlyCount "90"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. Nf3 d5 2. d4 Nf6 3. Bg5 e6 4. Nbd2 Be7 5. e3 O-O 6. Bd3 Nbd7 7. c3
+  1. Nf3 d5 2. d4 Nf6 3. Bg5 e6 4. Nbd2 Be7 5. e3 O-O 6. Bd3 Nbd7 7. c3
   c5 8. O-O c4 9. Bb1 b5 10. a3 Bb7 11. Re1 Re8 12. e4 Nxe4 13. Bxe7 Qxe7 14.
   Nxe4 dxe4 15. Bxe4 Bxe4 16. Rxe4 Nf6 17. Re5 a6 18. Nd2 Nd5 19. Qf3 f6 20. Re2
   Qc7 21. g3 Qd7 22. Rae1 Re7 23. Ne4 Rae8 24. Nc5 Qd6 25. h4 e5 26. Ne4 Qd7 27.
@@ -1550,7 +1550,7 @@ export const pgns2018 = [
   [PlyCount "60"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 d6 3. d4 Nf6 4. Bd3 Nbd7 5. Nc3 c6 6. b3 Be7 7. Bb2 O-O
+  1. e4 e5 2. Nf3 d6 3. d4 Nf6 4. Bd3 Nbd7 5. Nc3 c6 6. b3 Be7 7. Bb2 O-O
   8. Qd2 Re8 9. O-O-O b5 10. h4 a6 11. dxe5 dxe5 12. Nh2 Qc7 13. g4 Nc5 14. f3
   Nxd3+ 15. Qxd3 Be6 16. Qe3 c5 17. Nd5 Bxd5 18. exd5 Nd7 19. g5 Bd6 20. Ng4 c4
   21. c3 cxb3 22. axb3 e4 23. Kb1 Nc5 24. b4 exf3 25. Qxf3 Na4 26. Rc1 Nxb2 27.
@@ -1569,7 +1569,7 @@ export const pgns2018 = [
   [PlyCount "94"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. c4 e5 2. Nc3 Nf6 3. g3 Bb4 4. Bg2 Nc6 5. e3 Bxc3 6. bxc3 O-O 7. Nf3
+  1. c4 e5 2. Nc3 Nf6 3. g3 Bb4 4. Bg2 Nc6 5. e3 Bxc3 6. bxc3 O-O 7. Nf3
   d6 8. O-O Bg4 9. Qc2 Qd7 10. Ba3 Bf5 11. d3 e4 12. Ne1 exd3 13. Nxd3 Rab8 14.
   Qe2 Rfe8 15. c5 d5 16. Qd2 Ne4 17. Qe1 Ng5 18. Nf4 Ne5 19. Kh1 c6 20. Rd1 Bg4
   21. Rd4 Bf3 22. Qb1 Bxg2+ 23. Nxg2 Nef3 24. Rd3 Re4 25. Nf4 Nh3 26. Qd1 Nxf4
@@ -1591,7 +1591,7 @@ export const pgns2018 = [
   [PlyCount "119"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 e6 3. Nc3 Bb4 4. Nf3 Bxc3+ 5. bxc3 Nf6 6. Bg5 h6 7. Bh4
+  1. d4 d5 2. c4 e6 3. Nc3 Bb4 4. Nf3 Bxc3+ 5. bxc3 Nf6 6. Bg5 h6 7. Bh4
   Nbd7 8. e3 O-O 9. cxd5 exd5 10. c4 g5 11. Nxg5 hxg5 12. Bxg5 Qe8 13. Qf3 Kg7
   14. cxd5 Qe4 15. Qxe4 Nxe4 16. h4 f6 17. Bf4 c6 18. dxc6 bxc6 19. Bd3 f5 20. g4
   Nef6 21. gxf5 Nd5 22. Rg1+ Kf7 23. Bc4 N7b6 24. Bb3 Ke8 25. Bd6 Rf7 26. e4 Rd7
@@ -1615,7 +1615,7 @@ export const pgns2018 = [
   [PlyCount "93"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Bc4 Nh6 4. d3 d6 5. h3 Qe7 6. O-O Bd7 7. Be3 Nd8
+  1. e4 e5 2. Nf3 Nc6 3. Bc4 Nh6 4. d3 d6 5. h3 Qe7 6. O-O Bd7 7. Be3 Nd8
   8. d4 Ne6 9. dxe5 O-O-O 10. Nc3 f5 11. a4 f4 12. Bxa7 g5 13. exd6 Qxd6 14. Qxd6
   Bxd6 15. Bxe6 Bxe6 16. Nxg5 Bd7 17. Bd4 f3 18. Bxh8 Rxh8 19. Nxf3 Rg8 20. Kh1
   c6 21. Rfe1 Bb4 22. e5 Be6 23. Nd4 Kd7 24. Nxe6 Kxe6 25. Rad1 Nf5 26. Rd3 Nh4
@@ -1637,7 +1637,7 @@ export const pgns2018 = [
   [PlyCount "56"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 d5 2. exd5 Qxd5 3. Nc3 Qd8 4. d4 Nf6 5. Nf3 Bg4 6. Be2 e6 7. O-O
+  1. e4 d5 2. exd5 Qxd5 3. Nc3 Qd8 4. d4 Nf6 5. Nf3 Bg4 6. Be2 e6 7. O-O
   c5 8. Be3 cxd4 9. Bxd4 Nc6 10. Be3 a6 11. Qxd8+ Rxd8 12. Rad1 Rxd1 13. Rxd1 Nb4
   14. h3 Bh5 15. Rd2 Be7 16. a3 Nbd5 17. Nxd5 Nxd5 18. Bd4 Nf4 19. Bxg7 Nxe2+ 20.
   Rxe2 Rg8 21. Re3 Bxf3 22. Rxf3 Rxg7 23. a4 Rg5 24. h4 Rc5 25. c3 Rd5 26. Kh2
@@ -1656,7 +1656,7 @@ export const pgns2018 = [
   [PlyCount "81"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bb5 a6 5. Ba4 d6 6. d4 Bd7 7. Bg5 Be7
+  1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bb5 a6 5. Ba4 d6 6. d4 Bd7 7. Bg5 Be7
   8. dxe5 Nxe5 9. Nxe5 Bxa4 10. Nxa4 dxe5 11. Nc3 g6 12. Bh4 Qxd1+ 13. Rxd1 Nxe4
   14. Nxe4 Bxh4 15. O-O O-O 16. Rfe1 Rfd8 17. g3 Be7 18. c4 Bb4 19. Nc3 Bxc3 20.
   Rxd8+ Rxd8 21. bxc3 f6 22. f4 exf4 23. gxf4 Kf7 24. Re3 Rd1+ 25. Kf2 Rd2+ 26.
@@ -1677,7 +1677,7 @@ export const pgns2018 = [
   [PlyCount "46"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nc3 Nf6 3. Nf3 Nc6 4. Bd3 Bc5 5. O-O a6 6. a3 d6 7. b4 Ba7
+  1. e4 e5 2. Nc3 Nf6 3. Nf3 Nc6 4. Bd3 Bc5 5. O-O a6 6. a3 d6 7. b4 Ba7
   8. b5 axb5 9. Nxb5 Bg4 10. Nxa7 Rxa7 11. h3 Bh5 12. g4 Nxg4 13. hxg4 Bxg4 14.
   Be2 h5 15. Bc4 Nd4 16. Bb5+ Nxb5 17. Qe1 Bxf3 18. d3 Nd4 19. Be3 Nxc2 20. Qc1
   Qh4 21. Qxc2 g5 22. Qc4 Qg4+ 23. Kh2 Qg2# 0-1`,
@@ -1695,7 +1695,7 @@ export const pgns2018 = [
   [PlyCount "42"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. d4 cxd4 3. c3 Nf6 4. e5 Nd5 5. cxd4 Nc6 6. Nf3 e6 7. a3 Be7
+  1. e4 c5 2. d4 cxd4 3. c3 Nf6 4. e5 Nd5 5. cxd4 Nc6 6. Nf3 e6 7. a3 Be7
   8. Bb5 Qa5+ 9. b4 Qxb5 10. Bb2 Qb6 11. O-O O-O 12. Qd3 Qd8 13. Nfd2 f6 14. Nc3
   d6 15. Nxd5 exd5 16. Rfe1 fxe5 17. dxe5 dxe5 18. Bxe5 Nxe5 19. Rxe5 Bf6 20.
   Qxd5+ Qxd5 21. Rxd5 Bxa1 0-1`,
@@ -1713,7 +1713,7 @@ export const pgns2018 = [
   [PlyCount "59"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nc3 Nc6 3. f4 g6 4. Nf3 Bg7 5. Bc4 e6 6. d3 Nge7 7. O-O O-O
+  1. e4 c5 2. Nc3 Nc6 3. f4 g6 4. Nf3 Bg7 5. Bc4 e6 6. d3 Nge7 7. O-O O-O
   8. Qe1 d5 9. Bb3 Na5 10. exd5 Nxb3 11. axb3 exd5 12. Na4 Qc7 13. Nc3 Be6 14.
   Ng5 Bf5 15. Qh4 h6 16. Nf3 Be6 17. g4 Qd7 18. f5 gxf5 19. Bxh6 fxg4 20. Bxg7
   Kxg7 21. Ne5 Qc7 22. Qg5+ Ng6 23. Qf6+ Kh7 24. Nxg6 Rg8 25. Qh4+ Kg7 26. Nf4
@@ -1732,7 +1732,7 @@ export const pgns2018 = [
   [PlyCount "96"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. Bg5 Ne4 3. Bf4 d5 4. Nd2 Bf5 5. Nxe4 Bxe4 6. Qd2 e6 7. e3
+  1. d4 Nf6 2. Bg5 Ne4 3. Bf4 d5 4. Nd2 Bf5 5. Nxe4 Bxe4 6. Qd2 e6 7. e3
   Bd6 8. Ne2 Qe7 9. Bxd6 Qxd6 10. Ng3 Bg6 11. c3 Nd7 12. h4 h6 13. h5 Bh7 14. Bd3
   Bxd3 15. Qxd3 c5 16. O-O-O O-O-O 17. Kb1 Kb8 18. c4 Nf6 19. cxd5 Qxd5 20. Qf1
   cxd4 21. Rxd4 Qe5 22. Rhh4 Rxd4 23. Rxd4 Nxh5 24. Nxh5 Qxh5 25. a3 Rc8 26. Ka2
@@ -1754,7 +1754,7 @@ export const pgns2018 = [
   [PlyCount "70"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. c4 e5 2. g3 Nc6 3. Bg2 g6 4. Nc3 Bg7 5. d3 d6 6. Rb1 a5 7. Nf3 Nge7
+  1. c4 e5 2. g3 Nc6 3. Bg2 g6 4. Nc3 Bg7 5. d3 d6 6. Rb1 a5 7. Nf3 Nge7
   8. O-O O-O 9. h3 h6 10. Ne1 Be6 11. Nc2 d5 12. cxd5 Nxd5 13. a3 Qd7 14. Kh2
   Rad8 15. Na4 b6 16. Bd2 f5 17. b4 axb4 18. axb4 e4 19. dxe4 fxe4 20. Qc1 Nce7
   21. b5 Kh7 22. Nb4 Qxb5 23. Nc3 Nxc3 24. Bxc3 Qxe2 25. Bxg7 Kxg7 26. Qxc7 Rd7
@@ -1774,7 +1774,7 @@ export const pgns2018 = [
   [PlyCount "103"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. cxd5 Nxd5 5. Bd2 Bg7 6. e4 Nxc3 7. Bxc3
+  1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. cxd5 Nxd5 5. Bd2 Bg7 6. e4 Nxc3 7. Bxc3
   c6 8. Bc4 Nd7 9. Ne2 O-O 10. O-O e5 11. d5 Nb6 12. Bb3 cxd5 13. exd5 Re8 14.
   Ng3 Bd7 15. f4 Bb5 16. Rf2 Bc4 17. Bxc4 Nxc4 18. f5 Ne3 19. Qf3 Nxf5 20. Nxf5
   gxf5 21. Rd1 f4 22. g3 Qg5 23. Kh1 fxg3 24. Rg2 Qf4 25. Qxg3 Qxg3 26. Rxg3 f6
@@ -1797,7 +1797,7 @@ export const pgns2018 = [
   [PlyCount "91"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. Nf3 Bg7 5. Bg5 Ne4 6. Bf4 Nxc3 7. bxc3
+  1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. Nf3 Bg7 5. Bg5 Ne4 6. Bf4 Nxc3 7. bxc3
   c5 8. e3 Nc6 9. cxd5 Qxd5 10. Qb3 Qxb3 11. axb3 Be6 12. Ra3 a6 13. Bd3 O-O 14.
   O-O Rfd8 15. Bc7 Rd7 16. Bb6 cxd4 17. exd4 Ne5 18. Nxe5 Bxe5 19. Bb5 Bd6 20. b4
   Rc8 21. Bxd7 Bxd7 22. Bc5 Bb5 23. Re1 Bxc5 24. bxc5 e6 25. f4 h5 26. Rb1 Bc6
@@ -1819,7 +1819,7 @@ export const pgns2018 = [
   [PlyCount "51"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. Nf3 c5 2. e4 d6 3. c3 Nf6 4. Bd3 Nc6 5. h3 g6 6. O-O Bg7 7. Bc2 O-O
+  1. Nf3 c5 2. e4 d6 3. c3 Nf6 4. Bd3 Nc6 5. h3 g6 6. O-O Bg7 7. Bc2 O-O
   8. d4 cxd4 9. cxd4 Bd7 10. Nc3 Rc8 11. Be3 Na5 12. Nd2 b5 13. a3 Nc6 14. Nxb5
   Qb6 15. Bd3 Qb7 16. Rb1 Rfd8 17. Qe2 Be8 18. Nc3 Nb8 19. Rfe1 a5 20. d5 a4 21.
   Nc4 Nfd7 22. Nxa4 Rxc4 23. Bxc4 Ne5 24. Nb6 f5 25. f3 f4 26. Bf2 1-0`,
@@ -1837,7 +1837,7 @@ export const pgns2018 = [
   [PlyCount "63"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e6 2. d4 d5 3. e5 Bd7 4. c3 a6 5. Bd3 Bb5 6. Bc2 c5 7. a4 Bc6 8.
+  1. e4 e6 2. d4 d5 3. e5 Bd7 4. c3 a6 5. Bd3 Bb5 6. Bc2 c5 7. a4 Bc6 8.
   Nf3 Nd7 9. O-O Ne7 10. Re1 Ng6 11. g3 cxd4 12. cxd4 Bb4 13. Nc3 O-O 14. h4 Re8
   15. Ng5 Ndf8 16. h5 Nxe5 17. dxe5 d4 18. Qg4 Qb6 19. Nxh7 Nxh7 20. Bh6 g5 21.
   hxg6 Ng5 22. gxf7+ Kxf7 23. Qxg5 Rg8 24. Qf6+ Ke8 25. Qxe6+ Kd8 26. Qxg8+ Kc7
@@ -1856,7 +1856,7 @@ export const pgns2018 = [
   [PlyCount "66"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 d6 2. d4 Nf6 3. Nc3 c6 4. Nf3 Bg4 5. h3 Bh5 6. Bd3 e6 7. Bg5 Be7
+  1. e4 d6 2. d4 Nf6 3. Nc3 c6 4. Nf3 Bg4 5. h3 Bh5 6. Bd3 e6 7. Bg5 Be7
   8. Qe2 a6 9. g4 Bg6 10. Bxf6 Bxf6 11. h4 h6 12. O-O-O Nd7 13. Kb1 Qa5 14. g5
   hxg5 15. hxg5 Rxh1 16. Rxh1 Bxg5 17. Rh8+ Nf8 18. d5 Be7 19. dxe6 fxe6 20. Nd4
   Qe5 21. Nf3 Qc5 22. Nd2 Qg5 23. a4 Bf6 24. Nf3 Qg4 25. e5 Bxd3 26. Qxd3 dxe5
@@ -1876,7 +1876,7 @@ export const pgns2018 = [
   [PlyCount "92"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. Nc3 g6 3. e4 d6 4. g3 Bg7 5. Bg2 O-O 6. Nge2 Na6 7. O-O c5
+  1. d4 Nf6 2. Nc3 g6 3. e4 d6 4. g3 Bg7 5. Bg2 O-O 6. Nge2 Na6 7. O-O c5
   8. h3 Bd7 9. e5 Ne8 10. Bxb7 Nec7 {0} 11. exd6 exd6 12. Bxa8 Qxa8 13. dxc5 Bxh3
   14. Nf4 Bf5 15. cxd6 Ne6 16. Nfd5 Bh3 17. Re1 Nb4 18. Qf3 Nd4 19. Ne7+ Kh8 20.
   Qxa8 Rxa8 21. f4 Nf3+ 22. Kf2 Nxe1 23. Be3 Nexc2 24. Rh1 Bg4 25. Bd2 Nd3+ 26.
@@ -1898,7 +1898,7 @@ export const pgns2018 = [
   [PlyCount "82"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 Nc6 6. Be3 e5 7. Nb3
+  1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 Nc6 6. Be3 e5 7. Nb3
   Be6 8. Be2 Be7 9. O-O O-O 10. f4 exf4 11. Bxf4 d5 12. e5 Ne8 13. Bf3 Qb6+ 14.
   Kh1 Nc7 15. Qe1 d4 16. Ne4 Nd5 17. Qg3 Nxf4 18. Qxf4 Qc7 19. Rad1 Rad8 20. Nf6+
   Bxf6 21. Bxc6 Bxe5 22. Qe4 bxc6 23. Rde1 Bxh2 24. Nxd4 Bd5 25. Qh4 Bg3 26. Re7
@@ -1919,7 +1919,7 @@ export const pgns2018 = [
   [PlyCount "117"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nc3 Nc6 3. f4 g6 4. Nf3 Bg7 5. Bc4 e6 6. O-O Nge7 7. d3 d5
+  1. e4 c5 2. Nc3 Nc6 3. f4 g6 4. Nf3 Bg7 5. Bc4 e6 6. O-O Nge7 7. d3 d5
   8. Bb5 O-O 9. Bxc6 Nxc6 10. h3 b6 11. e5 a6 12. d4 cxd4 13. Nxd4 Nxd4 14. Qxd4
   Bd7 15. Be3 b5 16. Qd2 Rc8 17. Kh2 Qc7 18. Rac1 b4 19. Ne2 Bb5 20. Rf2 Bxe2 21.
   Rxe2 Qc4 22. Bd4 a5 23. b3 Qb5 24. g4 Rc6 25. Rce1 Rfc8 26. Rc1 a4 27. Rg2 axb3
@@ -1942,7 +1942,7 @@ export const pgns2018 = [
   [PlyCount "86"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. c4 c5 2. Nf3 g6 3. g3 Bg7 4. Bg2 Nc6 5. O-O e5 6. Nc3 Nge7 7. d3 O-O
+  1. c4 c5 2. Nf3 g6 3. g3 Bg7 4. Bg2 Nc6 5. O-O e5 6. Nc3 Nge7 7. d3 O-O
   8. Be3 d6 9. Qc1 Rb8 10. Bh6 a6 11. Bxg7 Kxg7 12. Ne1 b5 13. cxb5 axb5 14. f4
   b4 15. Nd1 Nd4 16. Qd2 Bb7 17. Bxb7 Rxb7 18. e3 Ne6 19. Nf3 f6 20. e4 Nc6 21.
   f5 Ned4 22. Nxd4 Nxd4 23. fxg6 hxg6 24. Ne3 f5 25. exf5 gxf5 26. Nd5 Qe8 27.
@@ -1963,7 +1963,7 @@ export const pgns2018 = [
   [PlyCount "85"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 g6 3. Nf3 Bg7 4. Nc3 d5 5. Qb3 dxc4 6. Qxc4 Nbd7 7. e4
+  1. d4 Nf6 2. c4 g6 3. Nf3 Bg7 4. Nc3 d5 5. Qb3 dxc4 6. Qxc4 Nbd7 7. e4
   Nb6 8. Qb3 O-O 9. Be2 c6 10. O-O Be6 11. Qc2 Rc8 12. Rd1 Qc7 13. Bg5 h6 14. Bh4
   Nh5 15. Ne5 Nf4 16. Bf1 g5 17. Bg3 Bxe5 18. dxe5 Qxe5 19. Ne2 Qf6 20. Nd4 Rfd8
   21. Nxe6 Qxe6 22. a4 Qf6 23. Qb3 Rxd1 24. Rxd1 Qe5 25. Qa3 Qxe4 26. a5 Nbd5 27.
@@ -1984,7 +1984,7 @@ export const pgns2018 = [
   [PlyCount "97"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nc3 Nc6 3. Bb5 Nd4 4. Bc4 e6 5. Nge2 Nf6 6. O-O Nxe2+ 7.
+  1. e4 c5 2. Nc3 Nc6 3. Bb5 Nd4 4. Bc4 e6 5. Nge2 Nf6 6. O-O Nxe2+ 7.
   Qxe2 d6 8. f4 Be7 9. d3 O-O 10. e5 dxe5 11. fxe5 Nd7 12. Bf4 Bg5 13. Bg3 Bh4
   14. Rf3 Bxg3 15. Rxg3 Qh4 16. Rg4 Qe7 17. Rf1 Kh8 18. Rf3 f6 19. Nd5 Qf7 20.
   Nc7 Nxe5 21. Qxe5 fxe5 22. Rxf7 Rxf7 23. Nxa8 b6 24. Rg5 Bb7 25. Bxe6 Re7 26.
@@ -2006,7 +2006,7 @@ export const pgns2018 = [
   [PlyCount "65"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nc3 Nc6 3. f4 e6 4. Nf3 a6 5. g3 b5 6. Bg2 Bb7 7. d3 Rc8 8.
+  1. e4 c5 2. Nc3 Nc6 3. f4 e6 4. Nf3 a6 5. g3 b5 6. Bg2 Bb7 7. d3 Rc8 8.
   O-O h5 9. f5 Be7 10. Bf4 h4 11. g4 h3 12. Bh1 Nf6 13. g5 Nh5 14. Bd2 Nd4 15. g6
   fxg6 16. fxg6 Qc7 17. Ne2 Nxe2+ 18. Qxe2 Ng3 19. hxg3 Qxg3+ 20. Bg2 Qxg6 21.
   Ne5 Qxg2+ 22. Qxg2 hxg2 23. Kxg2 d5 24. Ng6 Rh5 25. e5 d4+ 26. Kg3 c4 27. Rf2
@@ -2026,7 +2026,7 @@ export const pgns2018 = [
   [PlyCount "90"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Bb7 5. Bg2 Bb4+ 6. Bd2 Be7 7. Nc3
+  1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Bb7 5. Bg2 Bb4+ 6. Bd2 Be7 7. Nc3
   O-O 8. O-O d5 9. cxd5 exd5 10. Ne5 Nbd7 11. Qa4 Nxe5 12. dxe5 Ne4 13. Nxe4 dxe4
   14. Rfd1 Qd5 15. Bc3 Qc6 16. Qxc6 Bxc6 17. Rac1 Rad8 18. Rd4 Bb7 19. Rcd1 c5
   20. Rd7 Bc6 21. R7d2 Rxd2 22. Rxd2 Rd8 23. Rxd8+ Bxd8 24. Kf1 a5 25. f4 exf3
@@ -2048,7 +2048,7 @@ export const pgns2018 = [
   [PlyCount "98"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. Nc3 d5 3. Bg5 Nbd7 4. f4 g6 5. Nf3 Bg7 6. e3 O-O 7. Bd3 b6
+  1. d4 Nf6 2. Nc3 d5 3. Bg5 Nbd7 4. f4 g6 5. Nf3 Bg7 6. e3 O-O 7. Bd3 b6
   8. Ne5 Bb7 9. Qf3 a6 10. O-O c5 11. Qh3 Nxe5 12. dxe5 d4 13. exd4 cxd4 14. exf6
   exf6 15. Ne4 fxg5 16. fxg5 Bxe4 17. Bxe4 Ra7 18. Qg4 Re8 19. Rae1 Re5 20. h4
   Rae7 21. Re2 Qc7 22. Rfe1 Qc4 23. b3 Qc5 24. Kh1 h6 25. gxh6 Bxh6 26. Bd3 Be3
@@ -2070,7 +2070,7 @@ export const pgns2018 = [
   [PlyCount "78"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. Nf3 g6 3. g3 c6 4. Bg2 d5 5. O-O Bg7 6. Nbd2 O-O 7. b3
+  1. d4 Nf6 2. Nf3 g6 3. g3 c6 4. Bg2 d5 5. O-O Bg7 6. Nbd2 O-O 7. b3
   Nbd7 8. Bb2 e5 9. dxe5 Ng4 10. c4 Ngxe5 11. Qc2 dxc4 12. Nxc4 Nxc4 13. Bxg7
   Kxg7 14. Qxc4 Qe7 15. Rad1 Nf6 16. Nd4 Bd7 17. Rfe1 Rad8 18. Rd3 c5 19. Nc2 Be6
   20. Qc3 Rxd3 21. Qxd3 Kg8 22. Rd1 Bf5 23. Qe3 Qc7 24. Qc3 Ne4 25. Qc4 b5 26.
@@ -2091,7 +2091,7 @@ export const pgns2018 = [
   [PlyCount "51"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. c4 e5 2. Nc3 f5 3. g3 Nf6 4. Bg2 c6 5. d4 e4 6. d5 d6 7. Bg5 Be7 8.
+  1. c4 e5 2. Nc3 f5 3. g3 Nf6 4. Bg2 c6 5. d4 e4 6. d5 d6 7. Bg5 Be7 8.
   h4 Nbd7 9. e3 Ne5 10. Qb3 Nd3+ 11. Kf1 Qb6 12. Nge2 Qxb3 13. axb3 Ng4 14. Bxe7
   Kxe7 15. Na4 Ngxf2 16. Nb6 Rb8 17. Rxa7 Kf6 18. Rg1 Ng4 19. Nf4 Nxe3+ 20. Ke2
   Nxf4+ 21. gxf4 Nxg2 22. Rxg2 Re8 23. dxc6 Re7 24. Nd5+ Ke6 25. Nxe7 Kxe7 26. c7
@@ -2110,7 +2110,7 @@ export const pgns2018 = [
   [PlyCount "99"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. Nc3 b5 6. Bb3 Be7 7. Nd5 d6
+  1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. Nc3 b5 6. Bb3 Be7 7. Nd5 d6
   8. Nxe7 Qxe7 9. c3 Na5 10. Bc2 Bb7 11. d3 h6 12. Qe2 Nd7 13. Be3 c5 14. O-O O-O
   15. Nd2 f5 16. exf5 d5 17. Rae1 Rae8 18. Qg4 Qf6 19. Nb3 Nxb3 20. Bxb3 Qxf5 21.
   Qxf5 Rxf5 22. Bd1 h5 23. d4 c4 24. dxe5 Rfxe5 25. Bd2 Rxe1 26. Rxe1 Rxe1+ 27.
@@ -2132,7 +2132,7 @@ export const pgns2018 = [
   [PlyCount "56"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Bd3 Nc6 5. c3 Qc7 6. Ne2 Bg4 7. f3
+  1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Bd3 Nc6 5. c3 Qc7 6. Ne2 Bg4 7. f3
   Bd7 8. Bf4 e5 9. Bg3 Bd6 10. O-O Nf6 11. Na3 a6 12. Rc1 O-O 13. c4 exd4 14.
   cxd5 Nxd5 15. Bxd6 Qxd6 16. Nc4 Qh6 17. Be4 Ne3 18. Nxe3 Qxe3+ 19. Kh1 Rad8 20.
   Rc2 d3 21. Qxd3 Qxd3 22. Bxd3 Nb4 23. Rc3 Nxd3 24. Rxd3 Bb5 25. Re3 Rfe8 26.
@@ -2151,7 +2151,7 @@ export const pgns2018 = [
   [PlyCount "58"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 a6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 e5 6. Nf5 d5 7. Bg5
+  1. e4 c5 2. Nf3 a6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 e5 6. Nf5 d5 7. Bg5
   Bxf5 8. exf5 d4 9. Bxf6 Qxf6 10. Ne4 Qxf5 11. Bd3 Qd7 12. O-O Be7 13. Qh5 Nc6
   14. f4 g6 15. Qh6 f5 16. Ng5 Bxg5 17. Qxg5 e4 18. Rae1 O-O 19. Bc4+ Kh8 20. a3
   Na5 21. Ba2 Rac8 22. c3 d3 23. Re3 Qd8 24. Qh6 Qb6 25. Qh3 Qxb2 26. Be6 Rce8
@@ -2170,7 +2170,7 @@ export const pgns2018 = [
   [PlyCount "52"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 e6 3. Nf3 d5 4. Nc3 c5 5. cxd5 Nxd5 6. e4 Nxc3 7. bxc3
+  1. d4 Nf6 2. c4 e6 3. Nf3 d5 4. Nc3 c5 5. cxd5 Nxd5 6. e4 Nxc3 7. bxc3
   cxd4 8. cxd4 Nc6 9. Bc4 Bb4+ 10. Bd2 Bxd2+ 11. Qxd2 O-O 12. O-O Na5 13. Bd3 b6
   14. Rac1 Bb7 15. Bb1 Qe7 16. Qd3 g6 17. Ne5 f6 18. Ng4 f5 19. exf5 exf5 20. Ne5
   Rac8 21. Qg3 Qd6 22. Rxc8 Bxc8 23. Rd1 f4 24. Qg5 Bf5 25. Bxf5 Rxf5 26. Qg4 Nc6
@@ -2189,7 +2189,7 @@ export const pgns2018 = [
   [PlyCount "43"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. Nf3 g6 3. Bg5 Ne4 4. Bf4 Bg7 5. Nbd2 d5 6. e3 c5 7. c3 O-O
+  1. d4 Nf6 2. Nf3 g6 3. Bg5 Ne4 4. Bf4 Bg7 5. Nbd2 d5 6. e3 c5 7. c3 O-O
   8. Nxe4 dxe4 9. Nd2 cxd4 10. cxd4 Qa5 11. a3 Nc6 12. Rc1 Qf5 13. Rc5 e5 14. Bg3
   Rd8 15. Bb5 Qe6 16. Bxc6 exd4 17. Ba4 dxe3 18. fxe3 b6 19. Bb3 Qf6 20. Rf1 Qxb2
   21. Rxf7 bxc5 22. Rd7+ 1-0`,
@@ -2207,7 +2207,7 @@ export const pgns2018 = [
   [PlyCount "61"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 Nc6 3. Nc3 g6 4. d4 cxd4 5. Nxd4 Bg7 6. Nb3 Nf6 7. Be2
+  1. e4 c5 2. Nf3 Nc6 3. Nc3 g6 4. d4 cxd4 5. Nxd4 Bg7 6. Nb3 Nf6 7. Be2
   d6 8. Be3 Be6 9. f4 a6 10. g4 b5 11. g5 Nd7 12. Nd4 Nxd4 13. Bxd4 Bxd4 14. Qxd4
   Rg8 15. O-O-O Qb6 16. h4 Qxd4 17. Rxd4 Nc5 18. a4 Bd7 19. Nd5 Rc8 20. Kd2 bxa4
   21. Nb6 Rb8 22. Nxd7 Kxd7 23. Kc1 a5 24. Rhd1 Kc7 25. Bc4 Ne6 26. Bxe6 fxe6 27.
@@ -2226,7 +2226,7 @@ export const pgns2018 = [
   [PlyCount "57"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. Bg5 e6 3. e4 h6 4. Bxf6 Qxf6 5. Nf3 d6 6. Bd3 Nd7 7. O-O
+  1. d4 Nf6 2. Bg5 e6 3. e4 h6 4. Bxf6 Qxf6 5. Nf3 d6 6. Bd3 Nd7 7. O-O
   g6 8. Re1 Bg7 9. e5 Qe7 10. Nc3 dxe5 11. dxe5 O-O 12. Qe2 Nc5 13. Bc4 a6 14. a4
   b6 15. b4 Nd7 16. Qe4 Rb8 17. Rab1 Bb7 18. Qf4 Bxf3 19. gxf3 Qg5+ 20. Qxg5 hxg5
   21. Bxa6 Nxe5 22. Re3 Rfd8 23. Be2 Nc6 24. Ne4 Ra8 25. c3 Ne5 26. Nxg5 Rd2 27.
@@ -2245,7 +2245,7 @@ export const pgns2018 = [
   [PlyCount "89"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. c4 e5 2. Nc3 Nf6 3. Nf3 Nc6 4. g3 Bb4 5. Nd5 Bc5 6. Bg2 O-O 7. O-O
+  1. c4 e5 2. Nc3 Nf6 3. Nf3 Nc6 4. g3 Bb4 5. Nd5 Bc5 6. Bg2 O-O 7. O-O
   d6 8. e3 Be6 9. d4 exd4 10. exd4 Bb6 11. Nxb6 axb6 12. d5 Bxd5 13. cxd5 Ne7 14.
   Ne1 Ra5 15. Bd2 Rb5 16. Rb1 Nexd5 17. b4 Ne7 18. a4 Rf5 19. Nc2 Ned5 20. Ne3
   Nxe3 21. Bxe3 d5 22. Re1 Re8 23. Bd4 c6 24. Rxe8+ Nxe8 25. Qg4 Rg5 26. Bxb6
@@ -2267,7 +2267,7 @@ export const pgns2018 = [
   [PlyCount "90"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. f4 exf4 3. Nf3 d6 4. Bc4 Be6 5. Bxe6 fxe6 6. O-O e5 7. d4
+  1. e4 e5 2. f4 exf4 3. Nf3 d6 4. Bc4 Be6 5. Bxe6 fxe6 6. O-O e5 7. d4
   Nd7 8. Nc3 h6 9. dxe5 dxe5 10. Nxe5 Bc5+ 11. Kh1 Ngf6 12. Ng6 Rg8 13. Bxf4 Nf8
   14. Nxf8 Rxf8 15. Qe2 Qe7 16. e5 O-O-O 17. exf6 Qxe2 18. Nxe2 Rxf6 19. Be5 Re6
   20. Bxg7 Rxe2 21. Rfe1 Rxc2 22. Rac1 Rxc1 23. Rxc1 Be3 24. Rf1 c5 25. Rf8 b5
@@ -2289,7 +2289,7 @@ export const pgns2018 = [
   [PlyCount "53"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nf6 3. Nc3 Nc6 4. Bc4 Bc5 5. d3 h6 6. Be3 Bb6 7. h3 d6
+  1. e4 e5 2. Nf3 Nf6 3. Nc3 Nc6 4. Bc4 Bc5 5. d3 h6 6. Be3 Bb6 7. h3 d6
   8. O-O Bxe3 9. fxe3 Na5 10. Bb3 Nxb3 11. axb3 O-O 12. Qe1 c6 13. Qg3 Nh5 14.
   Qh2 Re8 15. Rae1 Re6 16. Kh1 g5 17. g4 Ng7 18. Ne2 Qb6 19. Ng3 a5 20. h4 f6 21.
   hxg5 fxg5 22. Nf5 Nxf5 23. gxf5 Rf6 24. Qh5 Bd7 25. Rg1 Be8 26. Qh4 Kf7 27.
@@ -2308,7 +2308,7 @@ export const pgns2018 = [
   [PlyCount "64"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. Nf3 d5 2. g3 Nf6 3. Bg2 g6 4. d4 Bg7 5. O-O O-O 6. Bg5 h6 7. Bf4 c6
+  1. Nf3 d5 2. g3 Nf6 3. Bg2 g6 4. d4 Bg7 5. O-O O-O 6. Bg5 h6 7. Bf4 c6
   8. Qd2 Kh7 9. Nc3 Nbd7 10. Ne5 Nh5 11. Nxd7 Bxd7 12. e4 Nxf4 13. Qxf4 dxe4 14.
   Bxe4 Bh3 15. Rfd1 e6 16. Bg2 Bxg2 17. Kxg2 Qa5 18. Ne2 Rad8 19. b4 Qd5+ 20. Qf3
   Qc4 21. Qd3 Qd5+ 22. Qf3 Qb5 23. a4 Qxb4 24. Rab1 Qxa4 25. Rxb7 Qxc2 26. Rc1
@@ -2328,7 +2328,7 @@ export const pgns2018 = [
   [PlyCount "87"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. Nf3 g6 3. Nc3 Bg7 4. e4 d6 5. h3 O-O 6. Bc4 c5 7. O-O cxd4
+  1. d4 Nf6 2. Nf3 g6 3. Nc3 Bg7 4. e4 d6 5. h3 O-O 6. Bc4 c5 7. O-O cxd4
   8. Nxd4 Nc6 9. Be3 Bd7 10. Re1 Qc8 11. Bf1 Rd8 12. Qd2 Nxd4 13. Bxd4 Bc6 14.
   Rad1 e5 15. Be3 Nxe4 16. Nxe4 Bxe4 17. Bg5 f6 18. Bxf6 Bxf6 19. Rxe4 d5 20.
   Ree1 a6 21. c3 Kg7 22. g3 b5 23. Bg2 e4 24. Qe3 Qc7 25. Re2 Rac8 26. Red2 Qc5
@@ -2349,7 +2349,7 @@ export const pgns2018 = [
   [PlyCount "69"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 e6 2. Bf4 Nf6 3. e3 d5 4. Bd3 c5 5. c3 c4 6. Bc2 Nc6 7. Nd2 Bd6
+  1. d4 e6 2. Bf4 Nf6 3. e3 d5 4. Bd3 c5 5. c3 c4 6. Bc2 Nc6 7. Nd2 Bd6
   8. Bg3 Ne7 9. Ngf3 Bxg3 10. hxg3 Ng6 11. Bxg6 fxg6 12. Ne5 Rf8 13. Qc2 Qe7 14.
   Ndf3 Ne4 15. Rxh7 Qf6 16. Ng4 Qe7 17. Nfe5 Rg8 18. f3 Nf6 19. Qxg6+ Kd8 20.
   Nf7+ Kc7 21. Nxf6 Qxf6 22. Qxf6 gxf6 23. Nh6+ Bd7 24. Nxg8 Rxg8 25. Kf2 Kd6 26.
@@ -2369,7 +2369,7 @@ export const pgns2018 = [
   [PlyCount "79"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 c6 3. cxd5 cxd5 4. Nf3 Nf6 5. Nc3 Bf5 6. Bg5 Nc6 7. e3
+  1. d4 d5 2. c4 c6 3. cxd5 cxd5 4. Nf3 Nf6 5. Nc3 Bf5 6. Bg5 Nc6 7. e3
   a6 8. a3 e6 9. Be2 Bd6 10. Nh4 Bg6 11. Nf3 O-O 12. Nh4 Be7 13. Nxg6 hxg6 14.
   Bf3 a5 15. O-O Nh7 16. Bxe7 Qxe7 17. Rc1 f5 18. g3 g5 19. Ne2 g4 20. Bg2 Rf6
   21. Nf4 g5 22. Nd3 Rh6 23. f3 Nf6 24. Nf2 Kg7 25. fxg4 fxg4 26. Nxg4 Nxg4 27.
@@ -2390,7 +2390,7 @@ export const pgns2018 = [
   [PlyCount "60"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 e6 5. e3 Be7 6. Bd3 O-O 7. Qc2 Nbd7
+  1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 e6 5. e3 Be7 6. Bd3 O-O 7. Qc2 Nbd7
   8. O-O b6 9. Ne5 Qc7 10. f4 h6 11. b3 Re8 12. Nxf7 Kxf7 13. Bg6+ Kg8 14. Bxe8
   Nxe8 15. Qg6 Nef6 16. Rf3 Nf8 17. Qc2 Qd8 18. a4 Bb7 19. Ba3 Bxa3 20. Rxa3 dxc4
   21. f5 Qe7 22. Ra1 c5 23. Rf4 exf5 24. Rxf5 Qxe3+ 25. Kh1 cxd4 26. Nd5 Bxd5 27.
@@ -2409,7 +2409,7 @@ export const pgns2018 = [
   [PlyCount "114"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. Nf3 d6 2. d4 Nd7 3. e4 Ngf6 4. Nc3 e5 5. Bc4 Be7 6. O-O O-O 7. Re1
+  1. Nf3 d6 2. d4 Nd7 3. e4 Ngf6 4. Nc3 e5 5. Bc4 Be7 6. O-O O-O 7. Re1
   c6 8. dxe5 dxe5 9. a4 b6 10. Qe2 a6 11. Rd1 Qc7 12. Be3 Bb7 13. Nd2 b5 14. axb5
   axb5 15. Ba2 b4 16. Ncb1 c5 17. c3 Nxe4 18. cxb4 cxb4 19. Nxe4 Bxe4 20. Nd2 Bc6
   21. Rdc1 Qb7 22. f3 Bf6 23. Qc4 Rac8 24. Ne4 Bxe4 25. Qxe4 Qxe4 26. fxe4 Rxc1+
@@ -2432,7 +2432,7 @@ export const pgns2018 = [
   [PlyCount "29"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. Nd2 c5 3. c3 e6 4. e4 b6 5. e5 Nd5 6. c4 Nb4 7. Ngf3 Bb7
+  1. d4 Nf6 2. Nd2 c5 3. c3 e6 4. e4 b6 5. e5 Nd5 6. c4 Nb4 7. Ngf3 Bb7
   8. a3 N4c6 9. d5 exd5 10. cxd5 Ne7 11. d6 Nd5 12. Bc4 f6 13. Ne4 h6 14. Bxd5
   Qc8 15. exf6 1-0`,
 
@@ -2449,7 +2449,7 @@ export const pgns2018 = [
   [PlyCount "98"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. Nf3 d5 2. d4 Nf6 3. Bf4 Bg4 4. e3 e6 5. Bd3 Bd6 6. Bg3 Bxg3 7. hxg3
+  1. Nf3 d5 2. d4 Nf6 3. Bf4 Bg4 4. e3 e6 5. Bd3 Bd6 6. Bg3 Bxg3 7. hxg3
   Nbd7 8. c3 c6 9. Nbd2 Qb6 10. Qc2 O-O-O 11. Ne5 Nxe5 12. dxe5 Nd7 13. Nf3 Bxf3
   14. gxf3 Nxe5 15. Ke2 Nxd3 16. Kxd3 d4 17. cxd4 e5 18. d5 Rxd5+ 19. Ke2 Qb5+
   20. Ke1 Rhd8 21. a4 Qb4+ 22. Qc3 Qxc3+ 23. bxc3 h6 24. Kf1 Rd1+ 25. Kg2 Rxh1
@@ -2471,7 +2471,7 @@ export const pgns2018 = [
   [PlyCount "140"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 c6 3. Nc3 e6 4. Nf3 Nf6 5. Bg5 Be7 6. e3 O-O 7. Be2 a6
+  1. d4 d5 2. c4 c6 3. Nc3 e6 4. Nf3 Nf6 5. Bg5 Be7 6. e3 O-O 7. Be2 a6
   8. a4 Re8 9. Qc2 Nbd7 10. Bf4 Nf8 11. Ne5 N6d7 12. c5 Nxe5 13. Bxe5 Ng6 14. Bg3
   f6 15. Bh5 f5 16. Bxg6 hxg6 17. Be5 Bf6 18. f4 g5 19. g3 Qe7 20. a5 Qf7 21. Qe2
   gxf4 22. exf4 Bxe5 23. Qxe5 Qh5 24. Kf2 Qh3 25. Ne2 Kf7 26. Ng1 Qh5 27. Nf3 Qg6
@@ -2496,7 +2496,7 @@ export const pgns2018 = [
   [PlyCount "63"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 Nc6 3. Bb5 d6 4. Bxc6+ bxc6 5. Qe2 e5 6. O-O Nf6 7. d3
+  1. e4 c5 2. Nf3 Nc6 3. Bb5 d6 4. Bxc6+ bxc6 5. Qe2 e5 6. O-O Nf6 7. d3
   g6 8. c3 Bg4 9. h3 Bxf3 10. Qxf3 Bg7 11. Re1 O-O 12. Bg5 Qc7 13. Bxf6 Rab8 14.
   Bxg7 Kxg7 15. b3 f5 16. Nd2 fxe4 17. Qxe4 Rf4 18. Qe3 Rbf8 19. f3 Qa5 20. Rec1
   R4f5 21. Nc4 Qc7 22. b4 d5 23. Na5 d4 24. Qe4 dxc3 25. Qxc6 Qxc6 26. Nxc6 R8f7
@@ -2515,7 +2515,7 @@ export const pgns2018 = [
   [PlyCount "43"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 f5 2. Nf3 e6 3. g3 Nf6 4. Bg2 Be7 5. c4 d6 6. Nc3 O-O 7. O-O Nbd7
+  1. d4 f5 2. Nf3 e6 3. g3 Nf6 4. Bg2 Be7 5. c4 d6 6. Nc3 O-O 7. O-O Nbd7
   8. Re1 Ne4 9. Qb3 e5 10. c5+ Kh8 11. cxd6 cxd6 12. Nd5 Nef6 13. Nxe7 Qxe7 14.
   dxe5 dxe5 15. Bd2 Nb6 16. Bb4 Qf7 17. Bxf8 Qxf8 18. Nxe5 g6 19. Rac1 Qe7 20.
   Qc3 Nbd5 21. Bxd5 Nxd5 22. Nxg6+ 1-0`,
@@ -2533,7 +2533,7 @@ export const pgns2018 = [
   [PlyCount "85"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d6 2. Bf4 g6 3. Nc3 Bg7 4. e4 Nd7 5. Qd2 e5 6. dxe5 dxe5 7. Be3
+  1. d4 d6 2. Bf4 g6 3. Nc3 Bg7 4. e4 Nd7 5. Qd2 e5 6. dxe5 dxe5 7. Be3
   Ngf6 8. Bh6 O-O 9. Bxg7 Kxg7 10. Nf3 a6 11. Bd3 Qe7 12. O-O Nc5 13. h3 Rd8 14.
   Qe3 Nxd3 15. cxd3 b5 16. Rac1 Bb7 17. Nh4 c5 18. Qg3 Kh8 19. f4 Nh5 20. Qg5
   Qxg5 21. fxg5 Nf4 22. Nf3 Nxd3 23. Rc2 b4 24. Na4 Bxe4 25. Nxc5 Rac8 26. Nxd3
@@ -2554,7 +2554,7 @@ export const pgns2018 = [
   [PlyCount "85"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. Nd2 Nf6 3. Ngf3 e6 4. c4 c5 5. e3 Nc6 6. Bd3 Be7 7. dxc5
+  1. d4 d5 2. Nd2 Nf6 3. Ngf3 e6 4. c4 c5 5. e3 Nc6 6. Bd3 Be7 7. dxc5
   Bxc5 8. O-O O-O 9. Nb3 Be7 10. Nfd4 Ne5 11. cxd5 Nxd3 12. Qxd3 exd5 13. Bd2 Ne4
   14. f3 Nxd2 15. Qxd2 Be6 16. f4 Bd7 17. f5 Bf6 18. Nc5 Re8 19. Rf3 Rc8 20. Nxb7
   Qb6 21. Na5 Rxe3 22. Nab3 Rxf3 23. gxf3 Rc4 24. Rd1 Ba4 25. Kh1 Bxd4 26. Qe2 h6
@@ -2575,7 +2575,7 @@ export const pgns2018 = [
   [PlyCount "69"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. Nf3 b6 3. c4 Bb7 4. e3 e6 5. Nc3 Be7 6. Bd3 O-O 7. O-O d6
+  1. d4 Nf6 2. Nf3 b6 3. c4 Bb7 4. e3 e6 5. Nc3 Be7 6. Bd3 O-O 7. O-O d6
   8. Re1 c5 9. dxc5 dxc5 10. Be2 Nc6 11. a3 Qxd1 12. Rxd1 Rfd8 13. Bd2 Rd7 14.
   Be1 Rad8 15. Rxd7 Rxd7 16. Rd1 Rxd1 17. Bxd1 a6 18. Bc2 Nd7 19. Ba4 Nde5 20.
   Bxc6 Nxf3+ 21. Bxf3 Bxf3 22. gxf3 Bd6 23. f4 f5 24. f3 Kf7 25. Bh4 Ke8 26. Kg2
@@ -2595,7 +2595,7 @@ export const pgns2018 = [
   [PlyCount "58"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 Nc6 3. Bb5 a6 4. Bxc6 bxc6 5. O-O d6 6. h3 Nf6 7. Nc3
+  1. e4 c5 2. Nf3 Nc6 3. Bb5 a6 4. Bxc6 bxc6 5. O-O d6 6. h3 Nf6 7. Nc3
   e6 8. e5 dxe5 9. Nxe5 Bb7 10. d3 Be7 11. b3 O-O 12. Ba3 Qc7 13. Nc4 Nd5 14. Ne4
   f5 15. Nxc5 Rfe8 16. Nxe6 Qd7 17. Nc5 Bxc5 18. Bxc5 Nc3 19. Qd2 Ne2+ 20. Kh1
   Qd5 21. Be3 Nd4 22. Nb6 Qd6 23. Nxa8 Bxa8 24. Bxd4 Qxd4 25. c3 Qd7 26. Rae1 Rf8
@@ -2614,7 +2614,7 @@ export const pgns2018 = [
   [PlyCount "68"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 Nc6 3. Nc3 d6 4. Bb5 Bd7 5. O-O Nd4 6. Bxd7+ Qxd7 7. d3
+  1. e4 c5 2. Nf3 Nc6 3. Nc3 d6 4. Bb5 Bd7 5. O-O Nd4 6. Bxd7+ Qxd7 7. d3
   Nxf3+ 8. Qxf3 Nf6 9. Nd5 Nxd5 10. exd5 g6 11. Re1 O-O-O 12. Rb1 Qf5 13. Qe4
   Qxe4 14. Rxe4 Re8 15. Bg5 e5 16. Bf6 Rg8 17. Rbe1 Be7 18. Bxe7 Rxe7 19. f3 f5
   20. R4e3 g5 21. g3 f4 22. Re4 g4 23. Rxf4 exf4 24. Rxe7 gxf3 25. Rxh7 fxg3 26.
@@ -2634,7 +2634,7 @@ export const pgns2018 = [
   [PlyCount "95"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. Nf3 d5 2. c4 Nf6 3. cxd5 Nxd5 4. d4 e6 5. a3 b6 6. e4 Nf6 7. Nc3 c5
+  1. Nf3 d5 2. c4 Nf6 3. cxd5 Nxd5 4. d4 e6 5. a3 b6 6. e4 Nf6 7. Nc3 c5
   8. Bb5+ Bd7 9. O-O Bxb5 10. Nxb5 a6 11. Nc3 cxd4 12. Nxd4 e5 13. Nf5 Qxd1 14.
   Rxd1 Nbd7 15. Bg5 h6 16. Bh4 g5 17. Bg3 Rc8 18. Rac1 Nh5 19. Nd5 Rxc1 20. Rxc1
   Kd8 21. b4 Nxg3 22. hxg3 a5 23. Kf1 axb4 24. axb4 Rg8 25. Ra1 Nb8 26. Ra8 Kc8
@@ -2656,7 +2656,7 @@ export const pgns2018 = [
   [PlyCount "44"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. Bf4 e6 3. e3 d5 4. Nf3 Bd6 5. Bg3 O-O 6. Bd3 c5 7. c3 Nc6
+  1. d4 Nf6 2. Bf4 e6 3. e3 d5 4. Nf3 Bd6 5. Bg3 O-O 6. Bd3 c5 7. c3 Nc6
   8. Nbd2 Qc7 9. dxc5 Bxg3 10. hxg3 e5 11. Bc2 e4 12. Nd4 Bg4 13. f3 Qxg3+ 14.
   Kf1 Nxd4 15. cxd4 exf3 16. Nxf3 Ne4 17. Qe1 Bxf3 18. gxf3 Qxf3+ 19. Kg1 Qg4+
   20. Kh2 f5 21. Bxe4 fxe4 22. Qg3 Qe2+ 0-1`,
@@ -2674,7 +2674,7 @@ export const pgns2018 = [
   [PlyCount "62"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 e6 3. Nc3 d5 4. Nf3 b6 5. cxd5 Nxd5 6. e4 Nxc3 7. bxc3
+  1. d4 Nf6 2. c4 e6 3. Nc3 d5 4. Nf3 b6 5. cxd5 Nxd5 6. e4 Nxc3 7. bxc3
   Bb7 8. Bd3 Be7 9. O-O O-O 10. Bb2 Nd7 11. Re1 f5 12. exf5 exf5 13. Ne5 Nxe5 14.
   Rxe5 Bd6 15. Rxf5 Qh4 16. Rxf8+ Rxf8 17. g3 Qh3 18. Bf1 Qf5 19. Qd2 Qf3 20.
   Bc4+ Kh8 21. d5 Bc5 22. Rf1 Bc8 23. Qe2 Qxe2 24. Bxe2 Bh3 25. Bd3 Bxf1 26. Bxh7
@@ -2693,7 +2693,7 @@ export const pgns2018 = [
   [PlyCount "129"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 e6 3. Bg5 d5 4. e3 Be7 5. Nc3 O-O 6. Nf3 dxc4 7. Bxc4
+  1. d4 Nf6 2. c4 e6 3. Bg5 d5 4. e3 Be7 5. Nc3 O-O 6. Nf3 dxc4 7. Bxc4
   c5 8. dxc5 Bxc5 9. Qxd8 Rxd8 10. Ne4 Be7 11. Nxf6+ Bxf6 12. Bxf6 gxf6 13. O-O
   Nc6 14. Rfd1 Rb8 15. Rxd8+ Nxd8 16. Rd1 Nc6 17. Bb5 Kg7 18. h3 Nb4 19. Rd8 Nc6
   20. Bxc6 bxc6 21. Nd4 c5 22. Nc6 Ra8 23. Nxa7 Rxa7 24. Rxc8 Rxa2 25. Rxc5 Rxb2
@@ -2718,7 +2718,7 @@ export const pgns2018 = [
   [PlyCount "88"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d6 2. c4 Nd7 3. Nc3 c6 4. Nf3 Ngf6 5. g3 e5 6. Bg5 Be7 7. dxe5
+  1. d4 d6 2. c4 Nd7 3. Nc3 c6 4. Nf3 Ngf6 5. g3 e5 6. Bg5 Be7 7. dxe5
   dxe5 8. e4 O-O 9. Bg2 Qc7 10. O-O Nc5 11. Qc2 Bg4 12. h3 Bxf3 13. Bxf3 Ne6 14.
   Be3 Nd4 15. Bxd4 exd4 16. Ne2 Rad8 17. Nf4 Bd6 18. Nd3 c5 19. Rae1 Nd7 20. Bg2
   Ne5 21. f4 Nxd3 22. Qxd3 f6 23. Bf3 Rde8 24. Kg2 Re7 25. Re2 g5 26. e5 fxe5 27.
@@ -2739,7 +2739,7 @@ export const pgns2018 = [
   [PlyCount "133"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. Nf3 Nf6 3. e3 Bg4 4. c4 c6 5. Nc3 e6 6. Bd3 Be7 7. b3 Nbd7
+  1. d4 d5 2. Nf3 Nf6 3. e3 Bg4 4. c4 c6 5. Nc3 e6 6. Bd3 Be7 7. b3 Nbd7
   8. Bb2 O-O 9. Rc1 Re8 10. h3 Bh5 11. g4 Bg6 12. Ne5 Nxe5 13. dxe5 Ne4 14. Bxe4
   dxe4 15. Qxd8 Raxd8 16. Rd1 Rd3 17. Rxd3 exd3 18. Kd2 Rd8 19. f3 a6 20. h4 h6
   21. Nb1 b5 22. cxb5 cxb5 23. Nc3 b4 24. Ne4 Bxe4 25. fxe4 a5 26. Bd4 Ra8 27. h5
@@ -2764,7 +2764,7 @@ export const pgns2018 = [
   [PlyCount "105"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. c4 e5 2. Nc3 Nf6 3. d3 c6 4. e4 d5 5. cxd5 cxd5 6. exd5 Nxd5 7. Nf3
+  1. c4 e5 2. Nc3 Nf6 3. d3 c6 4. e4 d5 5. cxd5 cxd5 6. exd5 Nxd5 7. Nf3
   Nc6 8. a3 Be7 9. Be2 O-O 10. O-O Bg4 11. h3 Bh5 12. Bd2 a6 13. Rc1 Rc8 14. Ne4
   f5 15. Neg5 Qd6 16. Nh2 Bxe2 17. Qxe2 Bxg5 18. Bxg5 Nd4 19. Qd1 f4 20. Re1 Rxc1
   21. Qxc1 h6 22. Bxh6 gxh6 23. Qd1 f3 24. Ng4 Ne2+ 25. Kf1 Ndf4 26. gxf3 h5 27.
@@ -2787,7 +2787,7 @@ export const pgns2018 = [
   [PlyCount "67"]
   [EventDate "2018.??.??"]
   
-  {811MB} 1. e4 c5 2. Nf3 Nc6 3. g3 d6 4. Bg2 Nf6 5. Nc3 g6 6. O-O Bg7 7. d4 cxd4
+  1. e4 c5 2. Nf3 Nc6 3. g3 d6 4. Bg2 Nf6 5. Nc3 g6 6. O-O Bg7 7. d4 cxd4
   8. Nxd4 Bd7 9. h3 O-O 10. Be3 h6 11. Qd2 Kh7 12. Rad1 Ne5 13. f4 Nc4 14. Qe2
   Nxe3 15. Qxe3 Qb6 16. e5 dxe5 17. fxe5 Ng8 18. Kh2 e6 19. Qf4 Bc6 20. Nxc6 bxc6
   21. Rd7 Qxb2 22. Ne4 Qxe5 23. Qxe5 Bxe5 24. Rfxf7+ Rxf7 25. Rxf7+ Kh8 26. Nc5
@@ -2807,7 +2807,7 @@ export const pgns2018 = [
   [PlyCount "56"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c6 2. Nf3 d5 3. exd5 cxd5 4. d4 Nf6 5. Nc3 Nc6 6. Bd3 Bg4 7. O-O
+  1. e4 c6 2. Nf3 d5 3. exd5 cxd5 4. d4 Nf6 5. Nc3 Nc6 6. Bd3 Bg4 7. O-O
   e6 8. h3 Bh5 9. Bd2 Nxd4 10. Bb5+ Nd7 11. Be2 Nxf3+ 12. Bxf3 Bg6 13. Bf4 a6 14.
   Re1 Be7 15. Ne2 O-O 16. Ng3 Rc8 17. c3 Qb6 18. Rb1 Bxb1 19. Qxb1 Nf6 20. Bg5 h6
   21. Bxf6 Bxf6 22. Nh5 Be7 23. Bxd5 exd5 24. Rxe7 Rxc3 25. Qf5 Rc1+ 26. Kh2 Qd6+
@@ -2826,7 +2826,7 @@ export const pgns2018 = [
   [PlyCount "87"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 e6 3. g3 b6 4. Bg2 Bb7 5. Nf3 Nf6 6. O-O Bd6 7. Nc3 h6
+  1. d4 d5 2. c4 e6 3. g3 b6 4. Bg2 Bb7 5. Nf3 Nf6 6. O-O Bd6 7. Nc3 h6
   8. cxd5 Nxd5 9. Bd2 Nd7 10. Nxd5 exd5 11. Rc1 O-O 12. Rc2 Rc8 13. Qc1 Kh7 14.
   Re1 c5 15. Be3 Nf6 16. dxc5 bxc5 17. Bxc5 Bxc5 18. Rxc5 Qb6 19. Rc2 Ne4 20. e3
   Rcd8 21. Nd2 f5 22. Rd1 Qe6 23. Rc7 Rd7 24. Rxd7 Qxd7 25. Nxe4 fxe4 26. Bxe4+
@@ -2847,7 +2847,7 @@ export const pgns2018 = [
   [PlyCount "67"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 d6 3. Nc3 Nbd7 4. e4 e5 5. d5 Be7 6. h3 O-O 7. Nf3 Nc5
+  1. d4 Nf6 2. c4 d6 3. Nc3 Nbd7 4. e4 e5 5. d5 Be7 6. h3 O-O 7. Nf3 Nc5
   8. Bd3 Nxd3+ 9. Qxd3 a5 10. O-O Bd7 11. a4 Nh5 12. Ne1 Nf4 13. Bxf4 exf4 14.
   Ne2 Bg5 15. Qf3 Qf6 16. g3 Bxh3 17. Ng2 fxg3 18. fxg3 Qxb2 19. Rab1 Qa3 20. Qh5
   Be3+ 21. Nxe3 Qxe3+ 22. Kh2 Bxf1 23. Rxf1 Qxe4 24. Rf4 Qg6 25. g4 Qxh5+ 26.
@@ -2867,7 +2867,7 @@ export const pgns2018 = [
   [PlyCount "66"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nc3 Nf6 3. Nf3 Nc6 4. d3 h6 5. g3 Bc5 6. h4 d5 7. Nxd5 Nxd5
+  1. e4 e5 2. Nc3 Nf6 3. Nf3 Nc6 4. d3 h6 5. g3 Bc5 6. h4 d5 7. Nxd5 Nxd5
   8. exd5 Qxd5 9. Bg2 Bg4 10. O-O O-O 11. Re1 Rfe8 12. Re4 f5 13. Rc4 e4 14. Rxc5
   Qxc5 15. dxe4 fxe4 16. Be3 Qf5 17. Qe1 exf3 18. Bh1 Bh3 19. Kh2 Nd4 20. Bxd4
   Rxe1 21. Rxe1 Rd8 22. Bc3 Qxc2 23. Re3 Qxf2+ 24. Kxh3 Qxe3 25. Bb4 f2 26. Bg2
@@ -2886,7 +2886,7 @@ export const pgns2018 = [
   [PlyCount "104"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 Nc6 3. Bc4 d6 4. Nc3 a6 5. O-O Bg4 6. Nd5 Nd4 7. Be2
+  1. e4 c5 2. Nf3 Nc6 3. Bc4 d6 4. Nc3 a6 5. O-O Bg4 6. Nd5 Nd4 7. Be2
   Nxe2+ 8. Qxe2 e6 9. Ne3 Bh5 10. g3 Ne7 11. Ng2 Ng6 12. Qe3 Bxf3 13. Qxf3 Ne5
   14. Qe2 Be7 15. c3 c4 16. b4 O-O 17. Nf4 Rc8 18. Bb2 Bg5 19. d4 Bxf4 20. dxe5
   Bxe5 21. Rad1 Re8 22. f4 Qb6+ 23. Qf2 Bd4 24. Qxd4 Qc6 25. Rf2 b5 26. Re2 Red8
@@ -2909,7 +2909,7 @@ export const pgns2018 = [
   [PlyCount "35"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 b6 2. c4 Bb7 3. Nc3 e6 4. e4 Bb4 5. Qc2 Bxc3+ 6. bxc3 Nf6 7. Bd3
+  1. d4 b6 2. c4 Bb7 3. Nc3 e6 4. e4 Bb4 5. Qc2 Bxc3+ 6. bxc3 Nf6 7. Bd3
   O-O 8. e5 Bxg2 9. exf6 Qxf6 10. Bxh7+ Kh8 11. Be4 Bxh1 12. Bxh1 c6 13. Ba3 Rg8
   14. Bd6 Qg6 15. Qxg6 fxg6 16. Be4 Kh7 17. Rd1 Na6 18. Rd3 1-0`,
 
@@ -2926,7 +2926,7 @@ export const pgns2018 = [
   [PlyCount "109"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Nd7 5. Nf3 e6 6. Bd3 Ngf6 7. Ng3
+  1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Nd7 5. Nf3 e6 6. Bd3 Ngf6 7. Ng3
   Be7 8. O-O Nb6 9. h3 Bd7 10. Bf4 Nbd5 11. Be5 O-O 12. Qd2 Be8 13. a3 Bd6 14. c4
   Nc7 15. Rfe1 Bxe5 16. Nxe5 Bd7 17. Rac1 Nce8 18. Ne4 Nxe4 19. Rxe4 f5 20. Re3
   Nd6 21. c5 Nf7 22. Nxd7 Qxd7 23. Bc4 Rfe8 24. Rce1 Ng5 25. f3 Rad8 26. h4 Nf7
@@ -2949,7 +2949,7 @@ export const pgns2018 = [
   [PlyCount "74"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. Nf3 d5 2. c4 Nf6 3. g3 Bg4 4. Bg2 e6 5. O-O Nc6 6. cxd5 exd5 7. d3
+  1. Nf3 d5 2. c4 Nf6 3. g3 Bg4 4. Bg2 e6 5. O-O Nc6 6. cxd5 exd5 7. d3
   Bc5 8. Nc3 h6 9. Qe1 d4 10. Nb5 O-O 11. Bf4 Rc8 12. Bxc7 Rxc7 13. Nxc7 Qxc7 14.
   Rc1 Bb4 15. Qd1 Qe7 16. a3 Ba5 17. b4 Bb6 18. Re1 Re8 19. Rc2 a5 20. b5 Ne5 21.
   Nxe5 Qxe5 22. f3 Bf5 23. a4 Nd5 24. Qd2 Qe3+ 25. Kf1 Bc5 26. Qxa5 Bb4 27. Qa7
@@ -2969,7 +2969,7 @@ export const pgns2018 = [
   [PlyCount "98"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 d5 3. Nc3 Bf5 4. e3 Nc6 5. Nf3 h6 6. c5 a6 7. a3 e6 8.
+  1. d4 Nf6 2. c4 d5 3. Nc3 Bf5 4. e3 Nc6 5. Nf3 h6 6. c5 a6 7. a3 e6 8.
   Bd3 Bg4 9. O-O Be7 10. h3 Bh5 11. Be2 Bg6 12. Qb3 Qc8 13. Ne1 O-O 14. Bd3 Ne4
   15. Qc2 f5 16. Ne2 Nf6 17. Nf4 Bf7 18. Nf3 Ne4 19. Bxe4 dxe4 20. Ne5 Nxe5 21.
   dxe5 c6 22. b4 Qe8 23. Qc4 Bg5 24. Bb2 Rd8 25. Rfd1 Qe7 26. Rd6 Bxf4 27. exf4
@@ -2991,7 +2991,7 @@ export const pgns2018 = [
   [PlyCount "55"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. Bf4 d5 3. Nc3 e6 4. Nf3 a6 5. e3 Bd6 6. Ne5 Nc6 7. Bd3 Bd7
+  1. d4 Nf6 2. Bf4 d5 3. Nc3 e6 4. Nf3 a6 5. e3 Bd6 6. Ne5 Nc6 7. Bd3 Bd7
   8. a3 Qe7 9. Qe2 h6 10. h4 Bxe5 11. Bxe5 Nxe5 12. dxe5 Nh7 13. Qg4 O-O-O 14.
   O-O-O f5 15. Qe2 Qc5 16. Bxa6 bxa6 17. Qxa6+ Kb8 18. Rd4 Bc8 19. Qa4 Qa7 20.
   Qb3+ Bb7 21. Ra4 Qb6 22. Rb4 Qa7 23. Rd1 Nf8 24. Rdd4 Nd7 25. Rb5 c6 26. Ra4
@@ -3010,7 +3010,7 @@ export const pgns2018 = [
   [PlyCount "60"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nc3 Nc6 3. Bb5 e6 4. Nf3 Nf6 5. d3 Be7 6. Bf4 O-O 7. O-O a6
+  1. e4 c5 2. Nc3 Nc6 3. Bb5 e6 4. Nf3 Nf6 5. d3 Be7 6. Bf4 O-O 7. O-O a6
   8. Ba4 b5 9. Bb3 Bb7 10. Qd2 Nd4 11. Qe3 Nxb3 12. axb3 h6 13. Rfe1 Re8 14. h3
   d5 15. exd5 exd5 16. Ne2 d4 17. Qd2 Bxf3 18. gxf3 Bd6 19. Bxd6 Qxd6 20. c4 Nh5
   21. Kf1 b4 22. f4 Qd7 23. Ng1 Qc7 24. Ne2 Qc6 25. Ng3 Nxg3+ 26. fxg3 Qh1+ 27.
@@ -3029,7 +3029,7 @@ export const pgns2018 = [
   [PlyCount "43"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 d6 2. d4 Nc6 3. Be3 Nf6 4. Nd2 Bg4 5. Be2 Qd7 6. h3 Bxe2 7. Qxe2
+  1. e4 d6 2. d4 Nc6 3. Be3 Nf6 4. Nd2 Bg4 5. Be2 Qd7 6. h3 Bxe2 7. Qxe2
   O-O-O 8. c4 Nb4 9. Nb3 Qa4 10. Nf3 Nxe4 11. O-O Nxa2 12. Nbd2 Qc2 13. Rxa2 e5
   14. d5 Nf6 15. Rb1 Qf5 16. b4 e4 17. Nd4 Qe5 18. f3 g6 19. Raa1 h5 20. Rxa7 Kb8
   21. Rba1 g5 22. Ra8# 1-0`,
@@ -3047,7 +3047,7 @@ export const pgns2018 = [
   [PlyCount "88"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 7. Nf3
+  1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 7. Nf3
   Nd7 8. Bc4 e6 9. O-O Bd6 10. Ne2 Bh5 11. Bf4 Bxf4 12. Nxf4 Bxf3 13. Qxf3 Qxh4
   14. Rfe1 O-O-O 15. Bxe6 Ngf6 16. Bxd7+ Rxd7 17. g3 Qg5 18. Re5 Qg4 19. Qxg4
   Nxg4 20. Re4 Nf6 21. Ree1 Rxd4 22. Rad1 Rxd1 23. Rxd1 Rd8 24. Rxd8+ Kxd8 25.
@@ -3068,7 +3068,7 @@ export const pgns2018 = [
   [PlyCount "60"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Nc3 Bc5 4. Bb5 Nge7 5. d3 d5 6. exd5 Nxd5 7.
+  1. e4 e5 2. Nf3 Nc6 3. Nc3 Bc5 4. Bb5 Nge7 5. d3 d5 6. exd5 Nxd5 7.
   Nxe5 Bxf2+ 8. Kxf2 Qh4+ 9. Kf1 Nde7 10. Qf3 O-O 11. Nxc6 Nxc6 12. Bxc6 bxc6 13.
   Qxc6 Bg4 14. Be3 Rae8 15. Re1 Re6 16. Qc4 Rf6+ 17. Bf4 Be6 18. g3 Qh3+ 19. Kf2
   Bxc4 20. dxc4 g5 21. Nd5 Qh6 22. Nxf6+ Qxf6 23. Re4 Qc6 24. Re5 f6 25. Bxg5
@@ -3086,7 +3086,7 @@ export const pgns2018 = [
   [PlyCount "100"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 e6 3. Nf3 Nf6 4. e3 Be7 5. Nc3 Nbd7 6. Bd3 O-O 7. a3 Nb6
+  1. d4 d5 2. c4 e6 3. Nf3 Nf6 4. e3 Be7 5. Nc3 Nbd7 6. Bd3 O-O 7. a3 Nb6
   8. c5 Nbd7 9. O-O c6 10. e4 dxe4 11. Nxe4 Nxe4 12. Bxe4 Nf6 13. Bc2 Qc7 14. Qd3
   g6 15. Bh6 Rd8 16. b4 b6 17. Qc3 Ng4 18. Bd2 Bf6 19. h3 Bxd4 20. Qc4 Bxa1 21.
   hxg4 Bg7 22. Rd1 Bd7 23. Bf4 Qc8 24. Bd6 bxc5 25. bxc5 a5 26. Ne5 Be8 27. Qf4
@@ -3108,7 +3108,7 @@ export const pgns2018 = [
   [PlyCount "89"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c6 2. Nf3 d5 3. e5 Bf5 4. d4 e6 5. Be3 Qc7 6. Nc3 Bb4 7. a3 Bxc3+
+  1. e4 c6 2. Nf3 d5 3. e5 Bf5 4. d4 e6 5. Be3 Qc7 6. Nc3 Bb4 7. a3 Bxc3+
   8. bxc3 Nd7 9. Be2 c5 10. O-O c4 11. Nh4 Ne7 12. f4 Nf8 13. Nxf5 Nxf5 14. Bf2
   Ng6 15. Qd2 Qe7 16. Ra2 f6 17. Rb1 b6 18. a4 Rb8 19. Rab2 Qd7 20. a5 b5 21. Bh5
   Nfe7 22. Bh4 Nf5 23. Bf2 a6 24. g4 Nfe7 25. Bh4 O-O 26. Bg3 f5 27. g5 Nh8 28.
@@ -3129,7 +3129,7 @@ export const pgns2018 = [
   [PlyCount "51"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. d4 Nc6 3. d5 Nce7 4. Nf3 d6 5. Nc3 Nf6 6. Bg5 Ng6 7. g3 Bg4
+  1. e4 e5 2. d4 Nc6 3. d5 Nce7 4. Nf3 d6 5. Nc3 Nf6 6. Bg5 Ng6 7. g3 Bg4
   8. h3 Bxf3 9. Qxf3 Be7 10. Bb5+ Nd7 11. Bxe7 Qxe7 12. h4 Rf8 13. h5 Nh8 14. Qf5
   g6 15. hxg6 fxg6 16. Qxd7+ Qxd7 17. Bxd7+ Kxd7 18. Rxh7+ Nf7 19. O-O-O c6 20.
   Rdh1 Ke8 21. Rg7 cxd5 22. Nxd5 Ng5 23. Nc7+ Kd8 24. Nxa8 Rxf2 25. Rh8+ Rf8 26.
@@ -3148,7 +3148,7 @@ export const pgns2018 = [
   [PlyCount "93"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. cxd5 exd5 5. Bg5 Bb4 6. Qb3 Bxc3+ 7.
+  1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. cxd5 exd5 5. Bg5 Bb4 6. Qb3 Bxc3+ 7.
   Qxc3 Qd6 8. Bxf6 gxf6 9. g3 Bf5 10. a3 Nc6 11. Bh3 Qd7 12. Bxf5 Qxf5 13. Qe3+
   Kd7 14. O-O-O Rae8 15. Qf3 Qe6 16. e3 Na5 17. Qe2 Nc4 18. Qc2 b5 19. Ne2 Qd6
   20. Nf4 Re4 21. Qb3 a6 22. Nd3 Na5 23. Qc3 Nb7 24. Kb1 Rc8 25. Rc1 Re6 26. Qb4
@@ -3170,7 +3170,7 @@ export const pgns2018 = [
   [PlyCount "125"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 Nf6 3. Nf3 Nc6 4. g3 Bd7 5. Bg2 e6 6. Nc3 Be7 7. O-O O-O
+  1. d4 d5 2. c4 Nf6 3. Nf3 Nc6 4. g3 Bd7 5. Bg2 e6 6. Nc3 Be7 7. O-O O-O
   8. Bg5 h6 9. Bd2 Ne4 10. cxd5 exd5 11. Nxd5 Nxd2 12. Nxe7+ Qxe7 13. Qxd2 Rfe8
   14. e3 Rad8 15. Rac1 Bg4 16. Qc3 Qf6 17. Nd2 Be2 18. Rfe1 Ba6 19. a3 Ne7 20.
   Qxc7 Nd5 21. Qa5 Qg5 22. Rc5 b6 23. Rxd5 bxa5 24. Rxg5 hxg5 25. Nf3 g4 26. Ne5
@@ -3194,7 +3194,7 @@ export const pgns2018 = [
   [PlyCount "123"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bb5 a6 5. Bxc6 dxc6 6. d3 h6 7. Be3
+  1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bb5 a6 5. Bxc6 dxc6 6. d3 h6 7. Be3
   Bd6 8. h3 O-O 9. O-O Re8 10. Re1 c5 11. Qd2 b6 12. Rad1 Bb7 13. b3 Qd7 14. a4
   Rad8 15. Nh4 b5 16. axb5 axb5 17. Nf5 Bc6 18. Bxh6 gxh6 19. Qxh6 Bf8 20. Qxf6
   Re6 21. Qg5+ Rg6 22. Qh4 b4 23. Ne2 Re8 24. Neg3 Be7 25. Nxe7+ Qxe7 26. Nf5 Qg5
@@ -3217,7 +3217,7 @@ export const pgns2018 = [
   [PlyCount "54"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. c4 Nf6 2. Nc3 e6 3. Nf3 Bb4 4. Qc2 c6 5. g3 d5 6. cxd5 cxd5 7. Qa4+
+  1. c4 Nf6 2. Nc3 e6 3. Nf3 Bb4 4. Qc2 c6 5. g3 d5 6. cxd5 cxd5 7. Qa4+
   Nc6 8. a3 Be7 9. Nd4 Bd7 10. Nxc6 Bxc6 11. Qd4 O-O 12. Bg2 Qc7 13. O-O Rac8 14.
   d3 Bd7 15. Bf4 Bd6 16. Bxd6 Qxd6 17. Qxa7 Rc7 18. Qa5 Rfc8 19. Nb5 Bxb5 20.
   Qxb5 h5 21. Qa4 Rc2 22. e3 Rxb2 23. Rab1 Rcc2 24. Rxb2 Rxb2 25. Rc1 Qe5 26. d4
@@ -3236,7 +3236,7 @@ export const pgns2018 = [
   [PlyCount "112"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. d3 Bb4 5. Be3 Bxc3+ 6. bxc3 O-O 7. d4
+  1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. d3 Bb4 5. Be3 Bxc3+ 6. bxc3 O-O 7. d4
   exd4 8. cxd4 Nxe4 9. Be2 Nc3 10. Qd2 Ne4 11. Qd3 d5 12. O-O Nb4 13. Qb3 Qd6 14.
   Ne5 Nc6 15. c4 Nxe5 16. dxe5 Qxe5 17. cxd5 Rd8 18. f4 Qe8 19. Qd3 Nd6 20. Bh5
   Bf5 21. Qd4 Qe4 22. Qc3 Nb5 23. Qc5 a6 24. Bf3 Qc2 25. Rfc1 Qxc5 26. Bxc5 Bd7
@@ -3259,7 +3259,7 @@ export const pgns2018 = [
   [PlyCount "72"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. Nf3 d5 2. d4 Nf6 3. c4 e6 4. Nc3 Bb4 5. Qb3 Nc6 6. Bg5 b6 7. Ne5
+  1. Nf3 d5 2. d4 Nf6 3. c4 e6 4. Nc3 Bb4 5. Qb3 Nc6 6. Bg5 b6 7. Ne5
   Nxd4 8. Qd1 Bb7 9. Qxd4 O-O 10. e3 Be7 11. cxd5 exd5 12. Be2 Re8 13. Nf3 Qd6
   14. O-O Rad8 15. Bf4 Qd7 16. Rac1 c5 17. Qd1 Nh5 18. Ne5 Qf5 19. Bxh5 g6 20.
   Bg4 Qf6 21. Nf3 d4 22. Bc7 dxc3 23. Bxd8 Rxd8 24. Qc2 cxb2 25. Rb1 Ba6 26. Rfd1
@@ -3279,7 +3279,7 @@ export const pgns2018 = [
   [PlyCount "95"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 c6 3. Nc3 Nf6 4. Nf3 Bf5 5. e3 e6 6. Be2 Be7 7. Qb3 Qc7
+  1. d4 d5 2. c4 c6 3. Nc3 Nf6 4. Nf3 Bf5 5. e3 e6 6. Be2 Be7 7. Qb3 Qc7
   8. Bd2 O-O 9. O-O Nbd7 10. Rac1 Rab8 11. cxd5 exd5 12. Nxd5 Nxd5 13. Qxd5 cxd5
   14. Rxc7 Bd6 15. Rcc1 Bg4 16. h3 Bh5 17. g4 Bg6 18. Ne1 Nf6 19. Bf3 h5 20. g5
   Ne4 21. Bc3 Nxg5 22. Bxd5 Nxh3+ 23. Kg2 Bf5 24. Rh1 Ng5 25. Rxh5 Be4+ 26. Bxe4
@@ -3301,7 +3301,7 @@ export const pgns2018 = [
   [PlyCount "67"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 c6 3. Nc3 Bf5 4. Bf4 Nf6 5. e3 e6 6. a3 Be7 7. Bd3 Bg6
+  1. d4 d5 2. c4 c6 3. Nc3 Bf5 4. Bf4 Nf6 5. e3 e6 6. a3 Be7 7. Bd3 Bg6
   8. Nf3 Nbd7 9. O-O O-O 10. Qc2 dxc4 11. Bxg6 fxg6 12. Ng5 Qc8 13. Nxe6 Rf7 14.
   Ng5 Rf8 15. b4 Nd5 16. Ne6 Rf6 17. Nxd5 cxd5 18. Nc7 Bd6 19. Nxd5 Bxf4 20. Ne7+
   Kh8 21. Nxc8 Rxc8 22. exf4 Nb6 23. Qe4 c3 24. Rfe1 Rff8 25. Rac1 Na4 26. Qxb7
@@ -3321,7 +3321,7 @@ export const pgns2018 = [
   [PlyCount "88"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. a3 h6 5. e3 Bd6 6. h3 Nbd7 7. Nf3 O-O
+  1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. a3 h6 5. e3 Bd6 6. h3 Nbd7 7. Nf3 O-O
   8. c5 Be7 9. Bd3 b6 10. b4 c6 11. O-O a5 12. Bb2 axb4 13. axb4 Bb7 14. Na4 Ba6
   15. Qb3 bxc5 16. Nxc5 Nxc5 17. bxc5 Rb8 18. Qc3 Bxd3 19. Ne5 Bxf1 20. Nxc6 Qc7
   21. Nxb8 Rxb8 22. Kxf1 Ne4 23. Qc2 Qb7 24. Rb1 Qb3 25. Qxb3 Rxb3 26. c6 Ba3 27.
@@ -3342,7 +3342,7 @@ export const pgns2018 = [
   [PlyCount "81"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. f4 Nc6 3. Nf3 Nf6 4. Nc3 Bd6 5. fxe5 Nxe5 6. d4 Nc6 7. e5
+  1. e4 e5 2. f4 Nc6 3. Nf3 Nf6 4. Nc3 Bd6 5. fxe5 Nxe5 6. d4 Nc6 7. e5
   Qe7 8. Be2 Nxe5 9. dxe5 Bxe5 10. Nxe5 Qxe5 11. O-O O-O 12. Bf4 Qc5+ 13. Rf2 Re8
   14. Qd2 b6 15. Bf3 Ba6 16. Bxa8 Rxa8 17. h3 Re8 18. Re1 d5 19. Rxe8+ Nxe8 20.
   Qxd5 Nf6 21. Qd8+ Qf8 22. Qxf8+ Kxf8 23. Bxc7 b5 24. b4 Bb7 25. Bd6+ Ke8 26.
@@ -3363,7 +3363,7 @@ export const pgns2018 = [
   [PlyCount "45"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c6 2. Nc3 d5 3. d4 dxe4 4. Nxe4 Bf5 5. Bd3 Nf6 6. Nxf6+ gxf6 7.
+  1. e4 c6 2. Nc3 d5 3. d4 dxe4 4. Nxe4 Bf5 5. Bd3 Nf6 6. Nxf6+ gxf6 7.
   Bxf5 Qd5 8. Bh3 Rg8 9. Nf3 e6 10. Be3 Na6 11. O-O Be7 12. Qd2 O-O-O 13. Rac1
   Nc7 14. c4 Qe4 15. b4 Rg7 16. a4 c5 17. bxc5 Bxc5 18. Qc3 Be7 19. d5 Qxf3 20.
   c5 Qxh3 21. g3 Rxd5 22. c6 Rh5 23. cxb7+ 1-0`,
@@ -3381,7 +3381,7 @@ export const pgns2018 = [
   [PlyCount "71"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c6 2. Nf3 d5 3. e5 Bg4 4. d4 e6 5. Be2 c5 6. c3 Nc6 7. O-O Qb6 8.
+  1. e4 c6 2. Nf3 d5 3. e5 Bg4 4. d4 e6 5. Be2 c5 6. c3 Nc6 7. O-O Qb6 8.
   Nbd2 cxd4 9. cxd4 Nge7 10. Nb3 Nf5 11. a3 Bxf3 12. Bxf3 Nfxd4 13. Nxd4 Qxd4 14.
   Qb3 Qb6 15. Qd3 Nxe5 16. Qe2 Nxf3+ 17. gxf3 g6 18. Qe5 Rg8 19. Bg5 Qd6 20. Qd4
   Bg7 21. Qa4+ Qc6 22. Qb4 Bf8 23. Qd4 Bg7 24. Bf6 Bxf6 25. Qxf6 Qd7 26. Rad1 Kf8
@@ -3401,7 +3401,7 @@ export const pgns2018 = [
   [PlyCount "103"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. d3 h6 5. c3 Bc5 6. Nbd2 O-O 7. O-O d6
+  1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. d3 h6 5. c3 Bc5 6. Nbd2 O-O 7. O-O d6
   8. h3 Bd7 9. Re1 Re8 10. Nf1 Qe7 11. Ng3 Rad8 12. Bb3 Be6 13. Bc2 d5 14. Nf5
   Bxf5 15. exf5 e4 16. dxe4 dxe4 17. Nd2 Qe5 18. Re2 Qxf5 19. Qe1 a6 20. Nxe4
   Nxe4 21. Bxe4 Rxe4 22. Rxe4 Bxf2+ 23. Qxf2 Qxe4 24. Bf4 Rd7 25. Re1 Qd3 26.
@@ -3424,7 +3424,7 @@ export const pgns2018 = [
   [PlyCount "146"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. c4 d6 3. Be2 Nf6 4. d3 Nc6 5. Bg5 e6 6. Bxf6 Qxf6 7. Nc3 a6
+  1. e4 c5 2. c4 d6 3. Be2 Nf6 4. d3 Nc6 5. Bg5 e6 6. Bxf6 Qxf6 7. Nc3 a6
   8. Nf3 Qd8 9. O-O Be7 10. a3 O-O 11. Qa4 Bd7 12. Qc2 Nd4 13. Nxd4 cxd4 14. Nb1
   e5 15. Nd2 Rc8 16. Qd1 b5 17. Bg4 f5 18. exf5 Bxf5 19. Bxf5 Rxf5 20. b4 bxc4
   21. Nxc4 d5 22. Na5 Qe8 23. Rc1 Rf6 24. Rxc8 Qxc8 25. Qc1 Qd7 26. Qc2 Bd8 27.
@@ -3449,7 +3449,7 @@ export const pgns2018 = [
   [PlyCount "93"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e6 2. d4 Bb4+ 3. c3 Ba5 4. f4 Nf6 5. e5 Nd5 6. Nf3 c5 7. dxc5 Nc6
+  1. e4 e6 2. d4 Bb4+ 3. c3 Ba5 4. f4 Nf6 5. e5 Nd5 6. Nf3 c5 7. dxc5 Nc6
   8. Bc4 Nce7 9. O-O O-O 10. f5 Qc7 11. b4 b6 12. bxa5 Qxc5+ 13. Qd4 Qxa5 14. Ba3
   Nxf5 15. Qe4 Rd8 16. Bxd5 Qxd5 17. Qxd5 exd5 18. Rd1 Ne3 19. Rc1 Ba6 20. Nbd2
   Bd3 21. Nd4 Rac8 22. Bd6 Bc4 23. Re1 Ng4 24. h3 Nh6 25. a3 b5 26. Rab1 Bd3 27.
@@ -3471,7 +3471,7 @@ export const pgns2018 = [
   [PlyCount "50"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 dxc4 3. Nc3 Nf6 4. e3 c5 5. Bxc4 cxd4 6. exd4 a6 7. a3
+  1. d4 d5 2. c4 dxc4 3. Nc3 Nf6 4. e3 c5 5. Bxc4 cxd4 6. exd4 a6 7. a3
   b5 8. Ba2 Bb7 9. Nf3 Nbd7 10. O-O g6 11. Be3 Bg7 12. Qd2 Bxf3 13. gxf3 h5 14.
   Ne4 Nb6 15. Ng5 e6 16. Rac1 Nbd5 17. Qc2 O-O 18. Rfe1 Nxe3 19. fxe3 Nd5 20. Qe4
   Qxg5+ 21. Kf2 Rac8 22. Rc5 Rxc5 23. dxc5 Bxb2 24. h4 Qe5 25. Qc2 Qh2+ 0-1`,
@@ -3489,7 +3489,7 @@ export const pgns2018 = [
   [PlyCount "78"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. Nf3 d5 2. g3 Nf6 3. Bg2 g6 4. d4 Bg7 5. O-O O-O 6. c3 c5 7. Bf4 Nc6
+  1. Nf3 d5 2. g3 Nf6 3. Bg2 g6 4. d4 Bg7 5. O-O O-O 6. c3 c5 7. Bf4 Nc6
   8. e3 Nh5 9. Nbd2 Nxf4 10. gxf4 Bf5 11. Kh1 cxd4 12. cxd4 Rc8 13. Qb3 Na5 14.
   Qa3 a6 15. Rac1 Nc4 16. Nxc4 dxc4 17. Ne5 Bxe5 18. dxe5 Rc7 19. Rfd1 Qc8 20.
   Rc3 Rd8 21. Rxd8+ Qxd8 22. Rc1 Qd2 23. Qc3 Qxf2 24. Qd4 Rd7 25. Qxc4 Rd2 26.
@@ -3510,7 +3510,7 @@ export const pgns2018 = [
   [PlyCount "53"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 e6 2. Nc3 Nf6 3. e4 Bb4 4. Bd3 Nc6 5. Nf3 b6 6. O-O Bxc3 7. bxc3
+  1. d4 e6 2. Nc3 Nf6 3. e4 Bb4 4. Bd3 Nc6 5. Nf3 b6 6. O-O Bxc3 7. bxc3
   Bb7 8. Bg5 d6 9. e5 dxe5 10. dxe5 h6 11. exf6 hxg5 12. fxg7 Rg8 13. Qe2 Qf6 14.
   Rad1 O-O-O 15. Ba6 Rxg7 16. Rxd8+ Nxd8 17. Rd1 Nc6 18. Qd3 Bxa6 19. Qxa6+ Kb8
   20. Nd4 Nxd4 21. cxd4 Qd8 22. c4 Qd6 23. a4 Rh7 24. g3 f5 25. c5 Qd5 26. Rc1
@@ -3529,7 +3529,7 @@ export const pgns2018 = [
   [PlyCount "60"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. Nf3 d5 2. d4 Nf6 3. g3 e6 4. Bg2 Bd6 5. O-O O-O 6. Bg5 h6 7. Bh4 g5
+  1. Nf3 d5 2. d4 Nf6 3. g3 e6 4. Bg2 Bd6 5. O-O O-O 6. Bg5 h6 7. Bh4 g5
   8. Nxg5 hxg5 9. Bxg5 Nbd7 10. Nc3 c6 11. Qd3 Qb6 12. b3 e5 13. Qf5 Nh7 14. Bh4
   Ndf6 15. Qd3 e4 16. Qd2 Qc7 17. f3 Bb4 18. a3 Bxc3 19. Qxc3 exf3 20. exf3 Bf5
   21. Qd2 Kg7 22. Rae1 Rfe8 23. Bxf6+ Nxf6 24. Qg5+ Bg6 25. f4 Rh8 26. h4 Rh5 27.
@@ -3548,7 +3548,7 @@ export const pgns2018 = [
   [PlyCount "66"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e6 2. d4 c5 3. d5 e5 4. Nf3 d6 5. c4 Nf6 6. Nc3 Be7 7. Be2 Nbd7
+  1. e4 e6 2. d4 c5 3. d5 e5 4. Nf3 d6 5. c4 Nf6 6. Nc3 Be7 7. Be2 Nbd7
   8. O-O Nf8 9. a3 a5 10. Nb5 Ng6 11. Qc2 Nf4 12. Bxf4 exf4 13. e5 dxe5 14. Nxe5
   Bd6 15. Nxd6+ Qxd6 16. Nd3 Bf5 17. Qa4+ Nd7 18. Qb3 b6 19. Rae1 O-O 20. Qc3
   Rae8 21. f3 Re3 22. Qd2 Rfe8 23. Nc1 Ne5 24. b3 Qg6 25. Bd1 Rxe1 26. Rxe1 f6
@@ -3568,7 +3568,7 @@ export const pgns2018 = [
   [PlyCount "60"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. d3 Nc6 3. g3 Nf6 4. Bg2 d6 5. Nd2 Nd4 6. c3 Nc6 7. Ngf3 Bd7
+  1. e4 c5 2. d3 Nc6 3. g3 Nf6 4. Bg2 d6 5. Nd2 Nd4 6. c3 Nc6 7. Ngf3 Bd7
   8. O-O g6 9. Re1 Bg7 10. d4 cxd4 11. cxd4 Bg4 12. Nc4 d5 13. Nce5 Bxf3 14. Bxf3
   Nxe4 15. Nxc6 bxc6 16. Bxe4 dxe4 17. Rxe4 Qd5 18. Qc2 Bxd4 19. Bh6 f5 20. Re2
   e5 21. Rc1 c5 22. Qa4+ Qd7 23. Qxd7+ Kxd7 24. Bg7 Rhe8 25. b3 Rac8 26. Kf1 Rc6
@@ -3587,7 +3587,7 @@ export const pgns2018 = [
   [PlyCount "67"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O b5 6. Bb3 Bc5 7. c3 Bb6
+  1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O b5 6. Bb3 Bc5 7. c3 Bb6
   8. d4 d6 9. h3 O-O 10. Re1 exd4 11. cxd4 h6 12. Nc3 Bb7 13. Bf4 Na5 14. Bc2 c5
   15. d5 Bc7 16. Rc1 Nc4 17. b3 Ne5 18. Nxe5 dxe5 19. Be3 Bd6 20. Qf3 Rc8 21. Ne2
   Nd7 22. Ng3 Qf6 23. Nf5 Rfe8 24. Qg4 Kh7 25. f4 Nf8 26. Nxh6 gxh6 27. fxe5 Bxe5
@@ -3607,7 +3607,7 @@ export const pgns2018 = [
   [PlyCount "66"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d6 2. Bf4 Nd7 3. e3 g6 4. Nc3 Bg7 5. Nf3 e5 6. dxe5 dxe5 7. Bg5
+  1. d4 d6 2. Bf4 Nd7 3. e3 g6 4. Nc3 Bg7 5. Nf3 e5 6. dxe5 dxe5 7. Bg5
   Bf6 8. Bxf6 Ngxf6 9. Bb5 c6 10. Bc4 O-O 11. O-O Qc7 12. e4 b5 13. Bd3 a6 14. b4
   Bb7 15. a3 c5 16. Qd2 Rac8 17. bxc5 Nxc5 18. Rae1 Nxd3 19. cxd3 Qxc3 20. Qh6
   Qc5 21. Ng5 Rfd8 22. Re3 Qf8 23. Qh4 Qg7 24. f4 exf4 25. Rxf4 Rc1+ 26. Kf2 Rdc8
@@ -3627,7 +3627,7 @@ export const pgns2018 = [
   [PlyCount "68"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 dxc4 3. Nc3 e6 4. Nf3 a6 5. Qc2 c5 6. e3 Nf6 7. Bxc4 Qe7
+  1. d4 d5 2. c4 dxc4 3. Nc3 e6 4. Nf3 a6 5. Qc2 c5 6. e3 Nf6 7. Bxc4 Qe7
   8. d5 b5 9. dxe6 bxc4 10. exf7+ Qxf7 11. O-O Be7 12. Ne5 Qe6 13. Qa4+ Nbd7 14.
   Nxc4 O-O 15. Qb3 Kh8 16. Re1 Rb8 17. Qa4 Rb4 18. Qc2 Qxc4 19. Bd2 Rb8 20. Rac1
   Ne5 21. b3 Qd3 22. Qd1 Ne4 23. Nxe4 Qxe4 24. Rf1 Bb7 25. f3 Qd5 26. e4 Qd6 27.
@@ -3647,7 +3647,7 @@ export const pgns2018 = [
   [PlyCount "83"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. e3 Bxc3+ 5. bxc3 b6 6. Bd3 Bb7 7. f3
+  1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. e3 Bxc3+ 5. bxc3 b6 6. Bd3 Bb7 7. f3
   d6 8. Ne2 c5 9. Ba3 Nc6 10. O-O Ne7 11. e4 Ng6 12. Qa4+ Nd7 13. d5 e5 14. Bc1
   O-O 15. Qc2 Qh4 16. Ng3 Nf4 17. Bxf4 exf4 18. Nf5 Qf6 19. Rae1 Ne5 20. Rf2 Ba6
   21. Qe2 h5 22. g3 g6 23. Rg2 gxf5 24. gxf4+ Kh7 25. fxe5 Qxe5 26. f4 Qxf4 27.
@@ -3668,7 +3668,7 @@ export const pgns2018 = [
   [PlyCount "1"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. c4 0-1`,
+  1. c4 0-1`,
 
   `[Event "2018 Stratford Ch"]
   [Site "?"]
@@ -3704,7 +3704,7 @@ export const pgns2018 = [
   [PlyCount "19"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 Nc6 3. d4 e6 4. d5 exd5 5. exd5 Nce7 6. d6 Nc6 7. Qe2+
+  1. e4 c5 2. Nf3 Nc6 3. d4 e6 4. d5 exd5 5. exd5 Nce7 6. d6 Nc6 7. Qe2+
   Nge7 8. dxe7 Bxe7 9. Be3 O-O 10. Nc3 1-0`,
 
   `[Event "2018 Stratford Ch"]
@@ -3720,7 +3720,7 @@ export const pgns2018 = [
   [PlyCount "72"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 Nf6 3. Nf3 e6 4. Nc3 Nc6 5. e3 Bb4 6. a3 Bxc3+ 7. bxc3
+  1. d4 d5 2. c4 Nf6 3. Nf3 e6 4. Nc3 Nc6 5. e3 Bb4 6. a3 Bxc3+ 7. bxc3
   Ne4 8. Qc2 dxc4 9. Bxc4 Nd6 10. Bd3 f5 11. O-O O-O 12. c4 b6 13. Bb2 Ne7 14.
   Rad1 c5 15. Ne5 Bb7 16. dxc5 bxc5 17. Qc3 Rf6 18. f4 a6 19. Qd2 Ne4 20. Bxe4
   Qxd2 21. Rxd2 Bxe4 22. Nd7 Rg6 23. Nxc5 Bxg2 24. Rxg2 Rc8 25. Rxg6 Nxg6 26.
@@ -3740,7 +3740,7 @@ export const pgns2018 = [
   [PlyCount "107"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d3 Nf6 2. Nd2 d5 3. e4 dxe4 4. dxe4 e5 5. Ngf3 Bd6 6. Be2 O-O 7. O-O
+  1. d3 Nf6 2. Nd2 d5 3. e4 dxe4 4. dxe4 e5 5. Ngf3 Bd6 6. Be2 O-O 7. O-O
   Re8 8. c3 Bg4 9. Qc2 Qe7 10. Nc4 Bh5 11. Nxd6 Qxd6 12. Bg5 Bg6 13. Bxf6 Qxf6
   14. Rad1 Qf4 15. Bd3 Nc6 16. Rfe1 Rad8 17. Qd2 Qxd2 18. Rxd2 Rd6 19. Bb5 Rxd2
   20. Nxd2 Re6 21. Nf3 f6 22. Nh4 Bf7 23. Rd1 Rd6 24. Rxd6 cxd6 25. Nf5 d5 26.
@@ -3763,7 +3763,7 @@ export const pgns2018 = [
   [PlyCount "65"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 e6 3. Nc3 Bb4 4. Qc2 Nf6 5. Bg5 Nc6 6. Nf3 h6 7. Bh4 g5
+  1. d4 d5 2. c4 e6 3. Nc3 Bb4 4. Qc2 Nf6 5. Bg5 Nc6 6. Nf3 h6 7. Bh4 g5
   8. Bg3 Ne4 9. O-O-O Bxc3 10. bxc3 f5 11. e3 Bd7 12. cxd5 exd5 13. Qb3 Qe7 14.
   Bxc7 Nxf2 15. Ne5 b6 16. Ba6 Nxe5 17. Bxe5 Nxd1 18. Rxd1 Rf8 19. g3 Be6 20. Kc2
   g4 21. Bb5+ Kf7 22. Rf1 Qg5 23. Kd3 Kg8 24. c4 Rad8 25. Qa3 Rc8 26. cxd5 Bxd5
@@ -3783,7 +3783,7 @@ export const pgns2018 = [
   [PlyCount "45"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d5 2. c4 e6 3. Nf3 Nf6 4. g3 Bb4+ 5. Bd2 c5 6. Bg2 Nc6 7. dxc5
+  1. d4 d5 2. c4 e6 3. Nf3 Nf6 4. g3 Bb4+ 5. Bd2 c5 6. Bg2 Nc6 7. dxc5
   Bxc5 8. cxd5 exd5 9. O-O O-O 10. Qc2 Bb6 11. Nc3 a6 12. Bg5 Bg4 13. Rad1 Bxf3
   14. exf3 Rc8 15. Qa4 Qd6 16. Bxf6 Qxf6 17. Nxd5 Qxb2 18. f4 Rfe8 19. Nxb6 Qxb6
   20. Rb1 Qa7 21. Rfe1 Rxe1+ 22. Rxe1 b5 23. Qc2 1-0`,
@@ -3801,7 +3801,7 @@ export const pgns2018 = [
   [PlyCount "69"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 Nf6 2. c4 c5 3. d5 b5 4. Nc3 bxc4 5. e4 d6 6. Bxc4 g6 7. Nge2 Bg7
+  1. d4 Nf6 2. c4 c5 3. d5 b5 4. Nc3 bxc4 5. e4 d6 6. Bxc4 g6 7. Nge2 Bg7
   8. O-O O-O 9. Bg5 Ba6 10. Bxa6 Nxa6 11. Qd2 Rb8 12. Rab1 Ng4 13. h3 Ne5 14. f4
   Nd7 15. f5 Ne5 16. Rf2 Nb4 17. Nc1 c4 18. a3 Nbd3 19. Nxd3 Nxd3 20. Rff1 Rb3
   21. Rf3 Bxc3 22. Qc2 Ne1 23. Rxe1 Bxe1 24. Bh6 Rxf3 25. gxf3 Re8 26. Qe2 Qb6+
@@ -3821,7 +3821,7 @@ export const pgns2018 = [
   [PlyCount "72"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. Nf3 c5 2. g3 e6 3. c4 Qc7 4. d3 a6 5. Nc3 Nf6 6. Bg2 Nc6 7. O-O Be7
+  1. Nf3 c5 2. g3 e6 3. c4 Qc7 4. d3 a6 5. Nc3 Nf6 6. Bg2 Nc6 7. O-O Be7
   8. Bf4 d6 9. Nd2 O-O 10. Nde4 Nxe4 11. Nxe4 e5 12. Bd2 h6 13. Nc3 Be6 14. Nd5
   Bxd5 15. Bxd5 Rab8 16. Qa4 b5 17. Qxa6 Nd4 18. e3 Ne6 19. cxb5 Qd8 20. Ba5 Qc8
   21. Qxc8 Rfxc8 22. b6 Nd8 23. Rac1 Nb7 24. b4 Kf8 25. d4 f6 26. Bxb7 Rxb7 27.
@@ -3841,7 +3841,7 @@ export const pgns2018 = [
   [PlyCount "93"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 e6 2. Bf4 Nf6 3. e3 d5 4. f3 c5 5. g4 h6 6. Ne2 Bd6 7. Ng3 Bxf4
+  1. d4 e6 2. Bf4 Nf6 3. e3 d5 4. f3 c5 5. g4 h6 6. Ne2 Bd6 7. Ng3 Bxf4
   8. exf4 Nc6 9. Bb5 Bd7 10. dxc5 Qa5+ 11. Nc3 d4 12. Bxc6 Bxc6 13. Qxd4 Rd8 14.
   Qf2 Nd5 15. Nge2 O-O 16. O-O Qb4 17. Nxd5 Rxd5 18. b3 Rd2 19. c4 Qa3 20. g5 h5
   21. Qe3 Rfd8 22. Rf2 Qb2 23. Qc3 Qxc3 24. Nxc3 R2d3 25. Ne4 Bxe4 26. fxe4 g6
@@ -3863,7 +3863,7 @@ export const pgns2018 = [
   [PlyCount "1"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. c4 1-0`,
+  1. c4 1-0`,
 
   `[Event "2018 Stratford Ch"]
   [Site "?"]
@@ -3878,7 +3878,7 @@ export const pgns2018 = [
   [PlyCount "62"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 Nf6 5. Bd3 d6 6. c4 Be7 7. Nc3 a6
+  1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 Nf6 5. Bd3 d6 6. c4 Be7 7. Nc3 a6
   8. Be3 Nbd7 9. O-O Qc7 10. h3 Ne5 11. Qe2 Bd7 12. Rac1 Rc8 13. b3 Qa5 14. f4
   Nxd3 15. Qxd3 O-O 16. Rf2 b5 17. cxb5 axb5 18. Ncxb5 Rxc1+ 19. Bxc1 e5 20. Nf5
   Bxf5 21. exf5 e4 22. Qc4 d5 23. Qe2 Bc5 24. Be3 Bxe3 25. Qxe3 Qxb5 26. Rc2 Qb4
@@ -3897,7 +3897,7 @@ export const pgns2018 = [
   [PlyCount "53"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 d6 2. Nc3 Nd7 3. e4 e5 4. Nf3 Ngf6 5. Bc4 Be7 6. O-O O-O 7. Qe2
+  1. d4 d6 2. Nc3 Nd7 3. e4 e5 4. Nf3 Ngf6 5. Bc4 Be7 6. O-O O-O 7. Qe2
   exd4 8. Nxd4 Ne5 9. Bb3 c5 10. Nf5 Bxf5 11. exf5 Qd7 12. Nd5 Rae8 13. Nxe7+
   Rxe7 14. Rd1 Nc6 15. Qd3 Nd4 16. Bg5 Qxf5 17. Qxf5 Nxf5 18. c3 Re2 19. Bxf6
   gxf6 20. g4 Nh4 21. Rxd6 Rfe8 22. h3 Rxb2 23. Rxf6 Ree2 24. Rd1 Kg7 25. Rxf7+
@@ -3916,7 +3916,7 @@ export const pgns2018 = [
   [PlyCount "39"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 e6 2. e4 c5 3. Nf3 cxd4 4. Nxd4 Bc5 5. c3 Qb6 6. Na3 Nc6 7. Nc4
+  1. d4 e6 2. e4 c5 3. Nf3 cxd4 4. Nxd4 Bc5 5. c3 Qb6 6. Na3 Nc6 7. Nc4
   Qc7 8. Be3 Nxd4 9. cxd4 Bb4+ 10. Bd2 Be7 11. Bd3 d5 12. Ne5 f6 13. Qh5+ Kd8 14.
   Rc1 Qb6 15. Nf7+ Kd7 16. exd5 g6 17. Qg4 f5 18. Qe2 exd5 19. Bb5+ Qc6 20. Ne5+
   1-0`,
@@ -3934,7 +3934,7 @@ export const pgns2018 = [
   [PlyCount "89"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. Nf3 d5 2. g3 Nf6 3. d4 Bg4 4. Bg2 e6 5. O-O Bd6 6. c3 Nbd7 7. Nbd2
+  1. Nf3 d5 2. g3 Nf6 3. d4 Bg4 4. Bg2 e6 5. O-O Bd6 6. c3 Nbd7 7. Nbd2
   O-O 8. Re1 Ne4 9. Nxe4 dxe4 10. Ng5 Bf5 11. Nxe4 Be7 12. Nd2 c6 13. e4 Bg6 14.
   Nc4 Qc7 15. Bf4 Qc8 16. Bd6 Bxd6 17. Nxd6 Qc7 18. e5 Nb6 19. h4 h6 20. Be4 Nc8
   21. Bxg6 fxg6 22. Nxc8 Raxc8 23. Qg4 Qf7 24. Re2 Qf5 25. Qxf5 Rxf5 26. Rae1 h5
@@ -3956,5 +3956,5 @@ export const pgns2018 = [
   [PlyCount "1"]
   [EventDate "2018.??.??"]
   
-  {863MB} 1. d4 0-1`,
+  1. d4 0-1`,
 ];

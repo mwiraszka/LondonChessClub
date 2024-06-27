@@ -1,10 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Observable, forkJoin, from, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import type { Article, ServiceResponse, Url } from '@app/types';
@@ -74,10 +71,24 @@ export class ImagesService {
 
         return forkJoin(articlesWithThumbnailImageUrl$);
       }),
-      map(imageUrls => {
-        return { payload: imageUrls };
+      map(articles => {
+        return { payload: articles };
       }),
     );
+  }
+
+  sendPreflightRequest(imageId: string): Observable<string> {
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'ContentType: text',
+      'Access-Control-Max-Age': '86400',
+    });
+
+    return this.http.options(this.API_ENDPOINT + imageId, {
+      headers,
+      responseType: 'text',
+    });
   }
 
   getArticleImageUrl(
@@ -97,11 +108,20 @@ export class ImagesService {
       });
     }
 
-    return this.http
-      .get<ServiceResponse<Url>>(this.API_ENDPOINT + imageId)
-      .pipe(
-        catchError(() => of({ error: new Error('Failed to get image presigned URL') })),
-      );
+    return this.sendPreflightRequest(imageId).pipe(
+      switchMap(() => {
+        return this.http
+          .get<ServiceResponse<Url>>(this.API_ENDPOINT + imageId)
+          .pipe(
+            catchError(() =>
+              of({ error: new Error('Failed to get image presigned URL') }),
+            ),
+          );
+      }),
+      catchError(() =>
+        of({ error: new Error('Failed while attempting to send preflight request') }),
+      ),
+    );
   }
 
   getArticleImageFile(imageUrl: Url): Observable<ServiceResponse<File>> {

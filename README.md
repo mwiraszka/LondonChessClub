@@ -40,6 +40,16 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v4.0.2 - June 27th, 2024
+</summary>
+
+- 🚀 Improve colour contrast in warning toasts
+- 🐛 Send prefetch request with appropriate headers to article images API to prevent the need for CORS browser plug-ins when creating/editing articles
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.0.1 - June 26th, 2024
 </summary>
 

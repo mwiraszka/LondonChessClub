@@ -244,13 +244,13 @@
   --lcc-color--themeToggle-sliderBackgroundWhenOff: #{color(grayscale, gray-25)};
   --lcc-color--themeToggle-slider: #{color(grayscale, white-90)};
 
-  --lcc-color--toast-boxShadow: #{color(grayscale, gray-65, 0.7)};
+  --lcc-color--toast-boxShadow: #{color(grayscale, gray-35, 0.7)};
   --lcc-color--toast-icon: #{color(grayscale, black-2)};
   --lcc-color--toast-infoBackground: #{color(info, light)};
   --lcc-color--toast-primaryText: #{color(grayscale, black-2)};
-  --lcc-color--toast-secondaryText: #{color(grayscale, gray-25)};
+  --lcc-color--toast-secondaryText: #{color(grayscale, black-15)};
   --lcc-color--toast-successBackground: #{color(success, light)};
-  --lcc-color--toast-warningBackground: #{color(warning, light)};
+  --lcc-color--toast-warningBackground: #{color(warning, lightest)};
 
   --lcc-color--tooltip-background: #{color(tooltip, light)};
   --lcc-color--tooltip-border: #{color(tooltip)};

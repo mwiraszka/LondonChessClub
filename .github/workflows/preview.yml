@@ -1,4 +1,4 @@
-name: Preview Deployment
+name: Preview Website Deployment
 
 on:
   push:
@@ -6,27 +6,27 @@ on:
       - main
 
 jobs:
-  Build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out GitHub branch
-        uses: actions/checkout@v4
+  # Build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Check out GitHub branch
+  #       uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+  #     - name: Set up Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 20
 
-      - name: Set up GitHub action
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
+  #     - name: Set up GitHub action
+  #       uses: pnpm/action-setup@v3
+  #       with:
+  #         version: 9
     
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+  #     - name: Install dependencies
+  #       run: pnpm install --frozen-lockfile
 
-      - name: Build Angular project
-        run: pnpm run build
+  #     - name: Build Angular project
+  #       run: pnpm run build
 
   # Test:
   #   needs: [Build]
@@ -36,7 +36,7 @@ jobs:
   #       run: pnpm run test
 
   Deploy-Preview:
-    needs: [Build]
+    # needs: [Build]
     runs-on: ubuntu-latest
     steps:
       - name: Check out GitHub branch

@@ -69,7 +69,7 @@ export class ImageOverlayComponent implements OnInit, OnDestroy {
   }
 
   calculateImageHeight(): void {
-    const image = this._document.getElementById('overlayImage');
+    const image = this._document.getElementById('overlay-image');
     this.imageHeight = image?.clientHeight ?? null;
   }
 }

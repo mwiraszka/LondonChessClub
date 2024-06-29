@@ -28,7 +28,7 @@ export class ClubMapComponent implements OnInit {
       version: 'weekly',
     });
 
-    const mapElement = this._document.getElementById('clubMap');
+    const mapElement = this._document.getElementById('club-map');
     if (mapElement) {
       this.initMap(mapElement);
     }

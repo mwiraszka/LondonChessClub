@@ -40,6 +40,16 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v4.0.3 - June TBD, 2024
+</summary>
+
+- 🚀 Remember user's show/hide past events preference in the Schedule component
+- 🐛 Fix Link List component's header colour theming
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.0.2 - June 27th, 2024
 </summary>
 

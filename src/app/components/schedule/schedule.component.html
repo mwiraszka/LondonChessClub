@@ -3,7 +3,7 @@
 }
 
 <table class="lcc-table">
-	@if (shownEvents?.length) {
+	@if ((facade.shownEvents$ | async); as shownEvents) {
 	<thead>
 		@if (facade.isAdmin$ | async) {
 		<th class="lcc-table-admin-controls-filler">
@@ -14,7 +14,7 @@
 	</thead>
 	}
 	<tbody>
-		@for (event of shownEvents; track event.id; let last = $last) {
+		@for (event of facade.shownEvents$ | async; track event.id; let last = $last) {
 		<tr class="lcc-admin-controls-container"
 				[id]="event.id"
 				[class.next-event]="event.id === (facade.nextEventId$ | async)"
@@ -33,17 +33,20 @@
 					<div class="type-container"
 							 [ngClass]="kebabize(event.type)">
 						<span class="type">{{ event.type }}</span>
+
 						@if (kebabize(event.type) === 'championship') {
 						<i-feather name="award"
 											 class="award-icon">
 						</i-feather>
 						}
 					</div>
+
 					@if (includeDetails) {
 					<p class="event-details">
 						{{ event.details }}
 					</p>
 					}
+
 					@if (event.associatedArticleId) {
 					<a [routerLink]="'/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + event?.associatedArticleId"
 						 class="lcc-link event-associated-article">
@@ -51,6 +54,7 @@
 					</a>
 					}
 				</div>
+
 				@if (includeDetails && (facade.isAdmin$ | async)) {
 				<aside class="created-and-edited">
 					<div>Event created
@@ -61,6 +65,7 @@
 					</div>
 				</aside>
 				}
+
 			</td>
 		</tr>
 		}
@@ -69,7 +74,7 @@
 
 @if (allowTogglePastEvents) {
 <button class="lcc-secondary-button toggle-past-events-button"
-				(click)="onShowHidePastEvents()">
-	{{ (showPast$ | async) ? 'Hide' : 'Show' }} past events
+				(click)="facade.onTogglePastEvents()">
+	{{ (facade.showPastEvents$ | async) ? 'Hide' : 'Show' }} past events
 </button>
 }

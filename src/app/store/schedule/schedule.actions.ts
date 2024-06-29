@@ -35,6 +35,8 @@ enum ScheduleActionTypes {
   CANCEL_CONFIRMED = '[Schedule] Cancel confirmed',
 
   FORM_DATA_CHANGED = '[Schedule] Form data changed',
+
+  TOGGLE_PAST_EVENTS = '[Schedule] Toggle past events',
 }
 
 export const setEvent = createAction(
@@ -125,4 +127,9 @@ export const cancelSelected = createAction(ScheduleActionTypes.CANCEL_SELECTED);
 export const formDataChanged = createAction(
   ScheduleActionTypes.FORM_DATA_CHANGED,
   props<{ event: ClubEvent }>(),
+);
+
+export const togglePastEvents = createAction(
+  ScheduleActionTypes.TOGGLE_PAST_EVENTS,
+  props<{ showPastEvents: boolean }>(),
 );

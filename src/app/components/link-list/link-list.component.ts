@@ -8,6 +8,6 @@ import type { Link } from '@app/types';
   styleUrls: ['./link-list.component.scss'],
 })
 export class LinkListComponent {
-  @Input() title?: string;
+  @Input() header?: string;
   @Input() links?: Link[];
 }

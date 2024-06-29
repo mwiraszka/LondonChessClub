@@ -72,6 +72,11 @@ const scheduleReducer = createReducer(
     ...state,
     eventCurrently: event,
   })),
+
+  on(ScheduleActions.togglePastEvents, (state, { showPastEvents }) => ({
+    ...state,
+    showPastEvents,
+  })),
 );
 
 export function reducer(state: ScheduleState, action: Action): ScheduleState {

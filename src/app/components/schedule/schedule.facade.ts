@@ -14,8 +14,6 @@ export class ScheduleFacade {
   readonly showPastEvents$ = this.store.select(ScheduleSelectors.showPastEvents);
   readonly upcomingEvents$ = this.store.select(ScheduleSelectors.upcomingEvents);
 
-  readonly shownEvents$ = this.events$;
-
   constructor(private readonly store: Store) {}
 
   fetchEvents(): void {
@@ -26,10 +24,8 @@ export class ScheduleFacade {
     this.store.dispatch(ScheduleActions.deleteEventSelected({ event }));
   }
 
-  onTogglePastEvents(showPastEvents?: boolean): void {
-    this.store.dispatch(
-      ScheduleActions.togglePastEvents({ showPastEvents: showPastEvents ?? false }),
-    );
+  onTogglePastEvents(): void {
+    this.store.dispatch(ScheduleActions.togglePastEvents());
 
     window.scroll({
       top: 0,

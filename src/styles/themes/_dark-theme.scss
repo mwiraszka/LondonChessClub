@@ -220,7 +220,8 @@
   --lcc-color--schedule-lectureBackground: #{color(event-lecture, light, 0.5)};
   --lcc-color--schedule-lectureBorder: #{color(event-lecture, base, 0.5)};
   --lcc-color--schedule-nextEventText: #{color(grayscale, white-98)};
-  --lcc-color--schedule-nextEventBackgroundHighlight: #{color(highlight, base, 0.2)};
+  --lcc-color--schedule-nextEventBackgroundHighlight: #{color(highlight, base, 0.4)};
+  --lcc-color--schedule-nowLine: #{color(schedule-now-line, base, 0.5)};
   --lcc-color--schedule-otherBackground: #{color(event-other, light, 0.5)};
   --lcc-color--schedule-otherBorder: #{color(event-other, base, 0.5)};
   --lcc-color--schedule-rapidTournamentBackground: #{color(event-rapid-tournament, light, 0.5)};

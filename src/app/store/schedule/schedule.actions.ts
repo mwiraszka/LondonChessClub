@@ -129,7 +129,4 @@ export const formDataChanged = createAction(
   props<{ event: ClubEvent }>(),
 );
 
-export const togglePastEvents = createAction(
-  ScheduleActionTypes.TOGGLE_PAST_EVENTS,
-  props<{ showPastEvents: boolean }>(),
-);
+export const togglePastEvents = createAction(ScheduleActionTypes.TOGGLE_PAST_EVENTS);

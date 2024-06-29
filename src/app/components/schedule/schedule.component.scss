@@ -13,15 +13,29 @@ table {
   tbody {
     tr {
       &.next-event {
+        .date-content {
+          display: inline-flex;
+          padding: 4px 8px;
+          background-color: var(--lcc-color--schedule-nextEventBackgroundHighlight);
+
+          .date {
+            font-weight: 600;
+          }
+        }
+        
         .title {
           font-weight: 600;
           background-color: var(--lcc-color--schedule-nextEventBackgroundHighlight);
           color: var(--lcc-color--schedule-nextEventText) !important;
           padding: 4px 8px;
         }
+
+        &.showing-past-events td {
+          border-top: 3px solid var(--lcc-color--schedule-nowLine) !important;
+        }
       }
 
-      td.main-container {
+      td.main-cell {
         display: flex;
         flex-direction: column;
         padding: 4px;

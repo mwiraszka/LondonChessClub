@@ -73,12 +73,14 @@ export class MarkdownRendererComponent implements OnInit, AfterViewChecked {
       .subscribe(event => this.scrollToAnchor((event as Scroll).anchor!));
   }
 
-  private scrollToAnchor(anchorToScrollTo: string): void {
-    const anchorElement = this._document.getElementById(anchorToScrollTo);
+  private scrollToAnchor(anchorToScrollTo?: string): void {
+    const elementToScrollTo = this._document.getElementById(
+      anchorToScrollTo ?? 'app-container',
+    );
 
-    if (anchorElement) {
+    if (elementToScrollTo) {
       setTimeout(() => {
-        anchorElement.scrollIntoView({
+        elementToScrollTo.scrollIntoView({
           behavior: 'smooth',
           block: 'start',
           inline: 'nearest',

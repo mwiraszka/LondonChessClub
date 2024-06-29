@@ -7,6 +7,10 @@
   align-items: center;
   gap: 8px;
 
+  h4 {
+    color: var(--lcc-color--linkList-headerText)
+  }
+
   ul {
     columns: 1;
     -webkit-columns: 1;

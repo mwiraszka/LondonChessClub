@@ -92,6 +92,9 @@ $lcc-color-palette: (
   highlight: (
     base: hsl(61, 100%, 57%),
   ),
+  schedule-now-line: (
+    base: hsl(0, 80%, 50%),
+  ),
 );
 
 @function color($color, $tone: base, $opacity: 1) {

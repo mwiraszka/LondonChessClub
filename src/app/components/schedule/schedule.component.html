@@ -2,8 +2,8 @@
 <lcc-link-list [links]="[addEventLink]"></lcc-link-list>
 }
 
+@if (shownEvents) {
 <table class="lcc-table">
-	@if (shownEvents?.length) {
 	<thead>
 		@if (facade.isAdmin$ | async) {
 		<th class="lcc-table-admin-controls-filler">
@@ -12,38 +12,48 @@
 		<th class="date">Date</th>
 		<th class="event">Event</th>
 	</thead>
-	}
+
 	<tbody>
-		@for (event of shownEvents; track event.id; let last = $last) {
+		@for (event of shownEvents; track event.id) {
 		<tr class="lcc-admin-controls-container"
 				[id]="event.id"
 				[class.next-event]="event.id === (facade.nextEventId$ | async)"
-				[ngClass]="{'last-row': last}">
+				[ngClass]="!!(facade.showPastEvents$ | async) && allowTogglePastEvents ? 'showing-past-events' : undefined">
 			@if (facade.isAdmin$ | async) {
 			<lcc-admin-controls [editPath]="'/' + NavPathTypes.EVENT + '/' + NavPathTypes.EDIT + '/' + event.id"
 													[itemName]="event.title"
 													(delete)="facade.onDeleteEvent(event)">
 			</lcc-admin-controls>
 			}
-			<td class="date">{{ setLocalTime(event.eventDate) | formatDate:'long no-time' }}
+
+			<td class="date-cell">
+				<div class="date-content">
+					<span class="date">
+						{{ setLocalTime(event.eventDate) | formatDate:'long no-time' }}
+					</span>
+				</div>
 			</td>
-			<td class="main-container">
+
+			<td class="main-cell">
 				<div class="main-content">
 					<h4 class="title">{{ event.title }}</h4>
 					<div class="type-container"
 							 [ngClass]="kebabize(event.type)">
 						<span class="type">{{ event.type }}</span>
+
 						@if (kebabize(event.type) === 'championship') {
 						<i-feather name="award"
 											 class="award-icon">
 						</i-feather>
 						}
 					</div>
+
 					@if (includeDetails) {
 					<p class="event-details">
 						{{ event.details }}
 					</p>
 					}
+
 					@if (event.associatedArticleId) {
 					<a [routerLink]="'/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + event?.associatedArticleId"
 						 class="lcc-link event-associated-article">
@@ -51,6 +61,7 @@
 					</a>
 					}
 				</div>
+
 				@if (includeDetails && (facade.isAdmin$ | async)) {
 				<aside class="created-and-edited">
 					<div>Event created
@@ -66,10 +77,11 @@
 		}
 	</tbody>
 </table>
+}
 
 @if (allowTogglePastEvents) {
 <button class="lcc-secondary-button toggle-past-events-button"
-				(click)="onShowHidePastEvents()">
-	{{ (showPast$ | async) ? 'Hide' : 'Show' }} past events
+				(click)="facade.onTogglePastEvents()">
+	{{ (facade.showPastEvents$ | async) ? 'Hide' : 'Show' }} past events
 </button>
 }

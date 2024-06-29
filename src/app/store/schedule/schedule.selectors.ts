@@ -47,6 +47,11 @@ export const nextEventId = createSelector(
   state => state.nextEventId,
 );
 
+export const showPastEvents = createSelector(
+  scheduleFeatureSelector,
+  state => state.showPastEvents,
+);
+
 export const hasUnsavedChanges = createSelector(
   scheduleFeatureSelector,
   state => !areSame(state.eventCurrently, state.selectedEvent),

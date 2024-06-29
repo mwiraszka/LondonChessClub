@@ -149,6 +149,8 @@
   --lcc-color--link: #{color(primary, lighter)};
   --lcc-color--linkOnHover: #{color(primary, lightest)};
 
+  --lcc-color--linkList-headerText: #{color(grayscale, gray-75)};
+
   --lcc-color--loadingSpinner1: #{color(grayscale, black-2, 0.7)};
   --lcc-color--loadingSpinner2: #{color(grayscale, black-2, 0.9)};
   --lcc-color--loadingSpinner-screenOverlay: #{color(grayscale, black-10, 0.5)};
@@ -218,7 +220,8 @@
   --lcc-color--schedule-lectureBackground: #{color(event-lecture, light, 0.5)};
   --lcc-color--schedule-lectureBorder: #{color(event-lecture, base, 0.5)};
   --lcc-color--schedule-nextEventText: #{color(grayscale, white-98)};
-  --lcc-color--schedule-nextEventBackgroundHighlight: #{color(highlight, base, 0.2)};
+  --lcc-color--schedule-nextEventBackgroundHighlight: #{color(highlight, base, 0.4)};
+  --lcc-color--schedule-nowLine: #{color(schedule-now-line, base, 0.5)};
   --lcc-color--schedule-otherBackground: #{color(event-other, light, 0.5)};
   --lcc-color--schedule-otherBorder: #{color(event-other, base, 0.5)};
   --lcc-color--schedule-rapidTournamentBackground: #{color(event-rapid-tournament, light, 0.5)};

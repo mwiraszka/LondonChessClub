@@ -7,7 +7,7 @@
 								 (click)="facade.onClose()">
 			</i-feather>
 		</header>
-		<img id="overlayImage"
+		<img id="overlay-image"
 				 [src]="'assets/photos/' + (facade.photo$ | async)?.filename + '.jpg'"
 				 (load)="imageLoaded()" />
 		<h4 class="description lcc-truncate">

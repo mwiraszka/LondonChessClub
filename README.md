@@ -40,6 +40,16 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v4.0.4 - June 30th, 2024
+</summary>
+
+- 🔧 Switch to `pnpm` and set up separate GitHub workflows for preview and production websites
+- 🔧 Set up basic unit tests
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.0.3 - June 29th, 2024
 </summary>
 

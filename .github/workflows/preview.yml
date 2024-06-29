@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  Test:
+  Build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out GitHub branch
@@ -22,14 +22,21 @@ jobs:
         with:
           version: 9
     
-      - name: Install packages for test environment
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # - name: Run unit tests
-      #   run: pnpm run test
+      - name: Build Angular project
+        run: pnpm run build
+
+  # Test:
+  #   needs: [Build]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Run unit tests
+  #       run: pnpm run test
 
   Deploy-Preview:
-    needs: [Test]
+    needs: [Build]
     runs-on: ubuntu-latest
     steps:
       - name: Check out GitHub branch
@@ -40,6 +47,12 @@ jobs:
         with:
           version: 9
 
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Angular project
+        run: pnpm run build
+
       - name: Set AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -48,4 +61,4 @@ jobs:
           aws-region: us-east-2
       
       - name: Copy to AWS S3 bucket
-        run: aws s3 sync ./dist/. s3://lcc-website-preview --delete
+        run: aws s3 sync dist/ s3://lcc-website-preview --delete

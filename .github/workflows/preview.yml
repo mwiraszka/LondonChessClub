@@ -29,7 +29,7 @@ jobs:
         run: pnpm run build
 
       - name: Run unit tests
-        run: pnpm run test
+        run: pnpm run test:ci
 
   Update-S3-Bucket:
     runs-on: ubuntu-latest

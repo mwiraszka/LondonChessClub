@@ -23,12 +23,15 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 - `S3` for static web hosting and image storage
 - `Route 53` for DNS and traffic management
 - `DynamoDB` for a NoSQL database system
-- `CodeBuild` for configuring the build process and CI/CD pipeline
 - `API Gateway` for API management and routing
 - `Cognito & IAM` for user authentication
 - `Lambda` for serverless backend functions
 - `CloudFront` for content delivery
 - `EC2` for running an Express.js server, responsible for article image CRUD operations
+
+> DEV OPS
+
+- `GitHub Actions` for automated workflows to build project, run unit tests, and deploy preview & production versions of the website
 
 ## Release notes
 
@@ -37,6 +40,16 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 | 🚀  | **New features** and improvements |
 | 🐛  | Bug fixes                         |
 | 🔧  | Code refactoring                  |
+
+<details>
+<summary style="cursor: pointer">
+v4.0.4 - July 2nd, 2024
+</summary>
+
+- 🔧 Switch to `pnpm` and set up dedicated GitHub Actions workflows for preview and production static hosting buckets on S3
+- 🔧 Set up basic unit tests
+
+</details>
 
 <details>
 <summary style="cursor: pointer">

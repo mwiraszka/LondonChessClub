@@ -1,87 +1,109 @@
 @if (facade.isAdmin$ | async) {
-<lcc-link-list [links]="[addEventLink]"></lcc-link-list>
+  <lcc-link-list [links]="[addEventLink]"></lcc-link-list>
 }
 
 @if (shownEvents) {
-<table class="lcc-table">
-	<thead>
-		@if (facade.isAdmin$ | async) {
-		<th class="lcc-table-admin-controls-filler">
-		</th>
-		}
-		<th class="date">Date</th>
-		<th class="event">Event</th>
-	</thead>
+  <table class="lcc-table">
+    <thead>
+      @if (facade.isAdmin$ | async) {
+        <th class="lcc-table-admin-controls-filler"></th>
+      }
+      <th class="date">Date</th>
+      <th class="event">Event</th>
+    </thead>
 
-	<tbody>
-		@for (event of shownEvents; track event.id) {
-		<tr class="lcc-admin-controls-container"
-				[id]="event.id"
-				[class.next-event]="event.id === (facade.nextEventId$ | async)"
-				[ngClass]="!!(facade.showPastEvents$ | async) && allowTogglePastEvents ? 'showing-past-events' : undefined">
-			@if (facade.isAdmin$ | async) {
-			<lcc-admin-controls [editPath]="'/' + NavPathTypes.EVENT + '/' + NavPathTypes.EDIT + '/' + event.id"
-													[itemName]="event.title"
-													(delete)="facade.onDeleteEvent(event)">
-			</lcc-admin-controls>
-			}
+    <tbody>
+      @for (event of shownEvents; track event.id) {
+        <tr
+          class="lcc-admin-controls-container"
+          [id]="event.id"
+          [class.next-event]="event.id === (facade.nextEventId$ | async)"
+          [ngClass]="
+            !!(facade.showPastEvents$ | async) && allowTogglePastEvents
+              ? 'showing-past-events'
+              : undefined
+          ">
+          @if (facade.isAdmin$ | async) {
+            <lcc-admin-controls
+              [editPath]="
+                '/' + NavPathTypes.EVENT + '/' + NavPathTypes.EDIT + '/' + event.id
+              "
+              [itemName]="event.title"
+              (delete)="facade.onDeleteEvent(event)">
+            </lcc-admin-controls>
+          }
 
-			<td class="date-cell">
-				<div class="date-content">
-					<span class="date">
-						{{ setLocalTime(event.eventDate) | formatDate:'long no-time' }}
-					</span>
-				</div>
-			</td>
+          <td class="date-cell">
+            <div class="date-content">
+              <span class="date">
+                {{ setLocalTime(event.eventDate) | formatDate: 'long no-time' }}
+              </span>
+            </div>
+          </td>
 
-			<td class="main-cell">
-				<div class="main-content">
-					<h4 class="title">{{ event.title }}</h4>
-					<div class="type-container"
-							 [ngClass]="kebabize(event.type)">
-						<span class="type">{{ event.type }}</span>
+          <td class="main-cell">
+            <div class="main-content">
+              <h4 class="title">{{ event.title }}</h4>
+              <div
+                class="type-container"
+                [ngClass]="kebabize(event.type)">
+                <span class="type">{{ event.type }}</span>
 
-						@if (kebabize(event.type) === 'championship') {
-						<i-feather name="award"
-											 class="award-icon">
-						</i-feather>
-						}
-					</div>
+                @if (kebabize(event.type) === 'championship') {
+                  <i-feather
+                    name="award"
+                    class="award-icon">
+                  </i-feather>
+                }
+              </div>
 
-					@if (includeDetails) {
-					<p class="event-details">
-						{{ event.details }}
-					</p>
-					}
+              @if (includeDetails) {
+                <p class="event-details">
+                  {{ event.details }}
+                </p>
+              }
 
-					@if (event.associatedArticleId) {
-					<a [routerLink]="'/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + event?.associatedArticleId"
-						 class="lcc-link event-associated-article">
-						More details
-					</a>
-					}
-				</div>
+              @if (event.associatedArticleId) {
+                <a
+                  [routerLink]="
+                    '/' +
+                    NavPathTypes.ARTICLE +
+                    '/' +
+                    NavPathTypes.VIEW +
+                    '/' +
+                    event?.associatedArticleId
+                  "
+                  class="lcc-link event-associated-article">
+                  More details
+                </a>
+              }
+            </div>
 
-				@if (includeDetails && (facade.isAdmin$ | async)) {
-				<aside class="created-and-edited">
-					<div>Event created
-						{{ event.modificationInfo?.dateCreated | formatDate:'short no-time' }}
-					</div>
-					<div>Last edited
-						{{ event.modificationInfo?.dateLastEdited | formatDate:'short no-time' }}
-					</div>
-				</aside>
-				}
-			</td>
-		</tr>
-		}
-	</tbody>
-</table>
+            @if (includeDetails && (facade.isAdmin$ | async)) {
+              <aside class="created-and-edited">
+                <div>
+                  Event created
+                  {{ event.modificationInfo?.dateCreated | formatDate: 'short no-time' }}
+                </div>
+                <div>
+                  Last edited
+                  {{
+                    event.modificationInfo?.dateLastEdited | formatDate: 'short no-time'
+                  }}
+                </div>
+              </aside>
+            }
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
 }
 
 @if (allowTogglePastEvents) {
-<button class="lcc-secondary-button toggle-past-events-button"
-				(click)="facade.onTogglePastEvents()">
-	{{ (facade.showPastEvents$ | async) ? 'Hide' : 'Show' }} past events
-</button>
+  <button
+    class="lcc-secondary-button toggle-past-events-button"
+    (click)="facade.onTogglePastEvents()">
+    {{ (facade.showPastEvents$ | async) ? 'Hide' : 'Show' }} past events
+  </button>
 }

@@ -23,7 +23,7 @@ i-feather {
 .nav-right,
 .nav-login-spacer {
   flex: 1;
-  border-bottom: $border-thickness solid var(--lcc-color--nav-border)
+  border-bottom: $border-thickness solid var(--lcc-color--nav-border);
 }
 
 .nav-left,
@@ -37,8 +37,8 @@ i-feather {
   justify-content: center;
   width: 100%;
   max-width: var(--lcc-width--appContent);
-  min-width: 290px; // To ensure login link never overlaps with other links 
-  
+  min-width: 290px; // To ensure login link never overlaps with other links
+
   .nav-link,
   .settings-dropdown-tab {
     border-top: $border-thickness solid var(--lcc-color--nav-background);
@@ -60,7 +60,7 @@ i-feather {
       color: var(--lcc-color--nav-linkForegroundOnHover);
       text-decoration: none;
     }
-  
+
     &.link-active {
       cursor: default;
       pointer-events: none;
@@ -141,7 +141,7 @@ i-feather {
       display: flex;
       flex-direction: column;
     }
-    
+
     .dropdown-items {
       cursor: default;
       display: flex;
@@ -194,7 +194,7 @@ i-feather {
           span {
             display: block;
           }
-        } 
+        }
       }
     }
   }

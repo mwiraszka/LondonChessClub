@@ -1,8 +1,9 @@
 @if (tooltip) {
-<div class="tooltip lcc-truncate-max-5-lines"
-		 [style.left.px]="left"
-		 [style.top.px]="top"
-		 [style.width.px]="width">
-	{{ tooltip | truncateByChars:80 }}
-</div>
+  <div
+    class="tooltip lcc-truncate-max-5-lines"
+    [style.left.px]="left"
+    [style.top.px]="top"
+    [style.width.px]="width">
+    {{ tooltip | truncateByChars: 80 }}
+  </div>
 }

@@ -3,7 +3,7 @@ body {
     height: 8px;
     background: unset !important;
   }
-  
+
   ::-webkit-scrollbar-thumb {
     border-radius: var(--lcc-borderRadius--large);
     background-color: var(--lcc-color--general-scrollbar) !important;

@@ -38,9 +38,10 @@ lcc-link-list,
     min-width: 282px;
     padding: 8px;
     background: repeating-conic-gradient(
-      var(--lcc-color--articleGrid-cardBackground1) 0% 25%,
-      var(--lcc-color--articleGrid-cardBackground2) 0% 50%
-    ) 50% / 2px 2px;
+        var(--lcc-color--articleGrid-cardBackground1) 0% 25%,
+        var(--lcc-color--articleGrid-cardBackground2) 0% 50%
+      )
+      50% / 2px 2px;
     border-radius: var(--lcc-borderRadius--large);
 
     @include respond-to('gt-sm') {
@@ -92,7 +93,7 @@ lcc-link-list,
 
       p {
         // Hardcode to keep alignment in case there are fewer than 5 lines of text
-        height: 91px; 
+        height: 91px;
         font-size: var(--lcc-fontSize--h4);
         color: var(--lcc-color--articleGrid-articleSummaryText);
         line-height: 1.3em !important;

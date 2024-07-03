@@ -42,20 +42,20 @@
         color: var(--lcc-color--modificationInfo-primaryText);
         padding: 0 1em 0 0.5em;
       }
-  
+
       .vertical-spacer {
         display: none;
         color: var(--lcc-color--modificationInfo-verticalSpacer);
-  
+
         @include respond-to('gt-md') {
           display: inline;
         }
       }
-  
+
       .date {
         display: block;
         color: var(--lcc-color--modificationInfo-primaryText);
-        
+
         @include respond-to('gt-md') {
           display: inline;
           padding-left: 1em;

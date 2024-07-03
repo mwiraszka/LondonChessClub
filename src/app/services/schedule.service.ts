@@ -18,7 +18,10 @@ import { AuthService } from './auth.service';
 export class ScheduleService {
   readonly API_ENDPOINT = environment.aws.scheduleEndpoint;
 
-  constructor(private authService: AuthService, private http: HttpClient) {}
+  constructor(
+    private authService: AuthService,
+    private http: HttpClient,
+  ) {}
 
   getEvent(id: string): Observable<ServiceResponse<ClubEvent>> {
     return this.http.get<FlatClubEvent>(this.API_ENDPOINT + id).pipe(

@@ -31,7 +31,9 @@ export class AuthEffects {
                 tempInitialPassword: loginResponse.tempInitialPassword,
               });
             } else {
-              return AuthActions.loginSucceeded({ user: loginResponse.adminUser! });
+              return AuthActions.loginSucceeded({
+                user: loginResponse.adminUser!,
+              });
             }
           }),
           catchError(() =>
@@ -63,7 +65,9 @@ export class AuthEffects {
         return this.authService.sendChangePasswordCode(email).pipe(
           map(response => {
             return response?.error
-              ? AuthActions.codeForPasswordChangeFailed({ error: response.error })
+              ? AuthActions.codeForPasswordChangeFailed({
+                  error: response.error,
+                })
               : AuthActions.codeForPasswordChangeSucceeded();
           }),
           catchError(() =>

@@ -36,7 +36,7 @@ table {
       }
     }
   }
-  
+
   tbody {
     tr {
       &.inactive {
@@ -44,7 +44,7 @@ table {
           color: var(--lcc-color--membersTable-inactiveMemberText);
           font-style: italic;
         }
-  
+
         .first-name::after {
           content: ' *';
           color: var(--lcc-color--membersTable-inactiveMemberAsterisk);
@@ -163,7 +163,7 @@ aside {
   @include respond-to('gt-xs') {
     width: 340px;
   }
-  
+
   h5 {
     padding: 4px;
     font-style: italic;

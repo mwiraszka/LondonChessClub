@@ -4,12 +4,12 @@
   },
   "overrides": [
     {
+      "files": ["*.ts"],
       "extends": [
         "eslint:recommended",
         "plugin:prettier/recommended",
         "plugin:@typescript-eslint/recommended"
       ],
-      "files": ["*.ts"],
       "rules": {
         "@typescript-eslint/ban-types": "off",
         "prettier/prettier": [
@@ -40,10 +40,23 @@
             "tabWidth": 2,
             "trailingComma": "all",
             "useTabs": false
-          }
-        ]
-      }
-    }
+          },
+        ],
+      },
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    },
+    {
+      "files": ["*.html"],
+      "excludedFiles": ["*inline-template-*.component.html"],
+      "extends": ["plugin:prettier/recommended"],
+      "rules": {
+        "prettier/prettier": ["error", { "parser": "angular" }]
+      },
+    },
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

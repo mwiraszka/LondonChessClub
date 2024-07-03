@@ -7,9 +7,10 @@ $app-header-font-size: 42px;
   justify-content: center;
   width: 100%;
   background: repeating-conic-gradient(
-    var(--lcc-color--header-background1) 0% 25%,
-    var(--lcc-color--header-background2) 0% 50%
-  ) 50% / 2px 2px;
+      var(--lcc-color--header-background1) 0% 25%,
+      var(--lcc-color--header-background2) 0% 50%
+    )
+    50% / 2px 2px;
 }
 
 .app-header-container {
@@ -31,22 +32,22 @@ $app-header-font-size: 42px;
     img {
       height: 40px;
       width: 40px;
-  
+
       @include respond-to('gt-sm') {
         height: 60px;
         width: 60px;
       }
-  
+
       background-color: var(--lcc-color--header-brandingBackground);
       border-radius: 50%;
       padding: 3px;
-  
+
       &:hover {
         cursor: pointer;
         background: var(--lcc-color--header-brandingBackgroundOnHover);
       }
     }
-  
+
     a {
       display: flex;
       align-items: center;
@@ -55,11 +56,11 @@ $app-header-font-size: 42px;
       white-space: nowrap;
       font-family: 'Caveat', sans-serif;
       font-size: calc(#{$app-header-font-size} - 6px);
-  
+
       @include respond-to('gt-sm') {
         font-size: $app-header-font-size;
       }
-    
+
       &:hover {
         text-decoration: none;
         color: var(--lcc-color--header-textOnHover);
@@ -72,7 +73,7 @@ $app-header-font-size: 42px;
     align-items: center;
     justify-content: center;
     margin-right: 8px;
-    
+
     @include respond-to('gt-md') {
       display: flex;
     }

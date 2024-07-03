@@ -1,24 +1,26 @@
 <div class="lcc-overlay">
-	<div class="overlay-content">
-		<i-feather name="x"
-							 class="close-button"
-							 (click)="facade.onClose()">
-		</i-feather>
-		<div class="modal-content">
-			<div class="text-container">
-				<h3>{{ (facade.modal$ | async)?.title }}</h3>
-				<p>{{ (facade.modal$ | async)?.body }}</p>
-			</div>
-			@if ((facade.modal$ | async)?.buttons) {
-			<div class="action-buttons">
-				@for (button of (facade.modal$ | async)?.buttons; track button.text) {
-				<button [ngClass]="button.style"
-								(click)="facade.onSelect(button.action)">
-					{{ button.text }}
-				</button>
-				}
-			</div>
-			}
-		</div>
-	</div>
+  <div class="overlay-content">
+    <i-feather
+      name="x"
+      class="close-button"
+      (click)="facade.onClose()">
+    </i-feather>
+    <div class="modal-content">
+      <div class="text-container">
+        <h3>{{ (facade.modal$ | async)?.title }}</h3>
+        <p>{{ (facade.modal$ | async)?.body }}</p>
+      </div>
+      @if ((facade.modal$ | async)?.buttons) {
+        <div class="action-buttons">
+          @for (button of (facade.modal$ | async)?.buttons; track button.text) {
+            <button
+              [ngClass]="button.style"
+              (click)="facade.onSelect(button.action)">
+              {{ button.text }}
+            </button>
+          }
+        </div>
+      }
+    </div>
+  </div>
 </div>

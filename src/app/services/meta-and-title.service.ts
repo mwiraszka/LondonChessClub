@@ -5,7 +5,10 @@ import { Meta, Title } from '@angular/platform-browser';
   providedIn: 'root',
 })
 export class MetaAndTitleService {
-  constructor(private title: Title, private meta: Meta) {}
+  constructor(
+    private title: Title,
+    private meta: Meta,
+  ) {}
 
   updateTitle(title: string): void {
     this.title.setTitle(title);

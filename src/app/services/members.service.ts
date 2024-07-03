@@ -18,7 +18,10 @@ export class MembersService {
   readonly PUBLIC_API_ENDPOINT = environment.aws.membersPublicEndpoint;
   readonly PRIVATE_API_ENDPOINT = environment.aws.membersPrivateEndpoint;
 
-  constructor(private authService: AuthService, private http: HttpClient) {}
+  constructor(
+    private authService: AuthService,
+    private http: HttpClient,
+  ) {}
 
   getMember(id: string): Observable<ServiceResponse<Member>> {
     return this.authService.token().pipe(

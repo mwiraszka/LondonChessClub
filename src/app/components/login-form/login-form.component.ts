@@ -23,7 +23,10 @@ export class LoginFormComponent implements OnInit {
 
   form!: FormGroup;
 
-  constructor(public facade: LoginFormFacade, private formBuilder: FormBuilder) {}
+  constructor(
+    public facade: LoginFormFacade,
+    private formBuilder: FormBuilder,
+  ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({

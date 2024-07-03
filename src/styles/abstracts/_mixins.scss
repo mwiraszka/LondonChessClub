@@ -42,11 +42,7 @@ $breakpoints: (
   $raw-query: map-get($breakpoints, $breakpoint);
 
   @if $raw-query {
-    $query: if(
-      type-of($raw-query) == 'string',
-      unquote($raw-query),
-      inspect($raw-query)
-    );
+    $query: if(type-of($raw-query) == 'string', unquote($raw-query), inspect($raw-query));
 
     @media #{$query} {
       @content;
@@ -72,7 +68,7 @@ $breakpoints: (
     $current-width: $current-width + $item-min-width;
     $multiplier: $multiplier + 1;
 
-    @media(min-width: ($item-min-width * $multiplier)) {
+    @media (min-width: ($item-min-width * $multiplier)) {
       max-width: calc(percentage(math.div(1, $multiplier)) - $grid-gap);
     }
   }

@@ -1,5 +1,5 @@
-input[type="text"],
-input[type="password"],
+input[type='text'],
+input[type='password'],
 textarea {
   display: block;
   width: 100%;
@@ -28,8 +28,8 @@ textarea {
   }
 }
 
-input[type="checkbox"],
-input[type="radio"] {
+input[type='checkbox'],
+input[type='radio'] {
   margin: 4px;
   justify-self: flex-start;
   accent-color: var(--lcc-color--input-checkboxAndRadio);
@@ -45,7 +45,7 @@ input[type="radio"] {
   }
 }
 
-input[type="radio"] {
+input[type='radio'] {
   margin: 6px 4px;
 }
 

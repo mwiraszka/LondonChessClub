@@ -1,9 +1,11 @@
-<label class="theme-mode-switch"
-			 for="checkbox"
-			 [tooltip]="'Switch to ' + ((facade.isDarkMode$ | async) ? 'light' : 'dark') + ' mode'">
-	<input type="checkbox"
-				 id="checkbox"
-				 [checked]="facade.isDarkMode$ | async"
-				 (change)="facade.onToggleThemeMode()" />
-	<div class="slider round"></div>
+<label
+  class="theme-mode-switch"
+  for="checkbox"
+  [tooltip]="'Switch to ' + ((facade.isDarkMode$ | async) ? 'light' : 'dark') + ' mode'">
+  <input
+    type="checkbox"
+    id="checkbox"
+    [checked]="facade.isDarkMode$ | async"
+    (change)="facade.onToggleThemeMode()" />
+  <div class="slider round"></div>
 </label>

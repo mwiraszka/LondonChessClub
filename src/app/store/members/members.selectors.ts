@@ -80,8 +80,8 @@ export const sortedMembers = createSelector(
       sortedBy === 'born'
         ? 'yearOfBirth'
         : sortedBy === 'lastUpdated'
-        ? 'modificationInfo.dateLastEdited'
-        : sortedBy;
+          ? 'modificationInfo.dateLastEdited'
+          : sortedBy;
     return [...members].sort(customSort(sortKey, isAscending));
   },
 );

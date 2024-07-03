@@ -166,7 +166,10 @@ export class NavEffects {
       ),
       map(([memberId, memberInStore]) => {
         if (memberInStore) {
-          return MembersActions.setMember({ member: memberInStore, isEditMode: true });
+          return MembersActions.setMember({
+            member: memberInStore,
+            isEditMode: true,
+          });
         } else if (isValidMemberId(memberId)) {
           return MembersActions.fetchMemberRequested({ memberId });
         } else {
@@ -203,11 +206,16 @@ export class NavEffects {
       ),
       map(([eventId, eventInStore]) => {
         if (eventInStore) {
-          return ScheduleActions.setEvent({ event: eventInStore, isEditMode: true });
+          return ScheduleActions.setEvent({
+            event: eventInStore,
+            isEditMode: true,
+          });
         } else if (isValidEventId(eventId)) {
           return ScheduleActions.fetchEventRequested({ eventId });
         } else {
-          return NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE });
+          return NavActions.navigationRequested({
+            path: NavPathTypes.SCHEDULE,
+          });
         }
       }),
     ),

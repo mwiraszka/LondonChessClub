@@ -119,7 +119,9 @@ export class ImagesService {
           );
       }),
       catchError(() =>
-        of({ error: new Error('Failed while attempting to send preflight request') }),
+        of({
+          error: new Error('Failed while attempting to send preflight request'),
+        }),
       ),
     );
   }

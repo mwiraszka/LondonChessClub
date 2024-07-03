@@ -22,6 +22,6 @@ function updatePathHistory(
   return !currentPathHistory
     ? [newPath]
     : currentPathHistory[currentPathHistory.length - 1] === newPath
-    ? currentPathHistory
-    : [...currentPathHistory, newPath].slice(-5);
+      ? currentPathHistory
+      : [...currentPathHistory, newPath].slice(-5);
 }

@@ -104,7 +104,9 @@ export class AuthService {
                 observer.complete();
               },
               onFailure(error) {
-                observer.next({ error: new Error(`Unknown error: ${error}`) });
+                observer.next({
+                  error: new Error(`Unknown error: ${error}`),
+                });
                 observer.complete();
               },
             });
@@ -115,7 +117,10 @@ export class AuthService {
               email: userAttributes.email,
               isVerified: false,
             };
-            observer.next({ unverifiedUser, tempInitialPassword: request.password });
+            observer.next({
+              unverifiedUser,
+              tempInitialPassword: request.password,
+            });
             observer.complete();
           }
         },
@@ -177,7 +182,10 @@ export class AuthService {
     return new Observable<PasswordChangeResponse | null>(observer => {
       this.userByEmail(request.email).confirmPassword(request.code, request.newPassword, {
         onSuccess() {
-          observer.next({ email: request.email, newPassword: request.newPassword });
+          observer.next({
+            email: request.email,
+            newPassword: request.newPassword,
+          });
           observer.complete();
         },
 

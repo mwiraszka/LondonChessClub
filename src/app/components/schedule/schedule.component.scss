@@ -22,7 +22,7 @@ table {
             font-weight: 600;
           }
         }
-        
+
         .title {
           font-weight: 600;
           background-color: var(--lcc-color--schedule-nextEventBackgroundHighlight);
@@ -62,7 +62,7 @@ table {
         align-items: flex-start;
         gap: 4px;
         padding: 8px;
-  
+
         .title {
           color: var(--lcc-color--schedule-titleText);
           line-height: normal;
@@ -149,7 +149,7 @@ table {
 
   td.date {
     padding: 4px 16px 0;
-    
+
     // Minimum width needed to fit all month names on a single line
     width: 105px;
   }

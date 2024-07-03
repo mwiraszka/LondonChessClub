@@ -165,7 +165,9 @@ export class ArticlesEffects {
       ),
       map((response: ServiceResponse<Article[]>) =>
         response.error
-          ? ArticlesActions.getArticleThumbnailImageUrlsFailed({ error: response.error })
+          ? ArticlesActions.getArticleThumbnailImageUrlsFailed({
+              error: response.error,
+            })
           : ArticlesActions.getArticleThumbnailImageUrlsSucceeded({
               articles: response.payload!,
             }),

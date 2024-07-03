@@ -39,7 +39,9 @@ export class ChangePasswordFormFacade {
             this.store.dispatch(AuthActions.passwordChangeRequested({ request }));
           } else {
             this.store.dispatch(
-              AuthActions.codeForPasswordChangeRequested({ email: formData.email }),
+              AuthActions.codeForPasswordChangeRequested({
+                email: formData.email,
+              }),
             );
           }
         }),

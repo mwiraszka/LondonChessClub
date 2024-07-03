@@ -128,8 +128,8 @@ function updateSelectedArticleForImageUrlChange(
   return localStorage.hasOwnProperty('imageUrl')
     ? state.selectedArticle
     : state.selectedArticle
-    ? { ...state.selectedArticle, imageUrl }
-    : null;
+      ? { ...state.selectedArticle, imageUrl }
+      : null;
 }
 
 /**
@@ -143,6 +143,6 @@ function updateSelectedArticleForImageFileChange(
   return localStorage.hasOwnProperty('imageUrl')
     ? state.selectedArticle
     : state.selectedArticle
-    ? { ...state.selectedArticle, imageFile }
-    : null;
+      ? { ...state.selectedArticle, imageFile }
+      : null;
 }

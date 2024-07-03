@@ -20,13 +20,13 @@ export class ScheduleService {
 
   constructor(
     private authService: AuthService,
-    private http: HttpClient
+    private http: HttpClient,
   ) {}
 
   getEvent(id: string): Observable<ServiceResponse<ClubEvent>> {
     return this.http.get<FlatClubEvent>(this.API_ENDPOINT + id).pipe(
       map((event) => ({ payload: this.adaptForFrontend([event])[0] })),
-      catchError(() => of({ error: new Error('Failed to fetch event from database') }))
+      catchError(() => of({ error: new Error('Failed to fetch event from database') })),
     );
   }
 
@@ -37,7 +37,7 @@ export class ScheduleService {
         const sortedEvents = [...adaptedEvents].sort(customSort('eventDate', false));
         return { payload: sortedEvents };
       }),
-      catchError(() => of({ error: new Error('Failed to fetch events from database') }))
+      catchError(() => of({ error: new Error('Failed to fetch events from database') })),
     );
   }
 
@@ -49,10 +49,10 @@ export class ScheduleService {
           headers: new HttpHeaders({
             Authorization: token,
           }),
-        })
+        }),
       ),
       map(() => ({ payload: eventToAdd })),
-      catchError(() => of({ error: new Error('Failed to add event to database') }))
+      catchError(() => of({ error: new Error('Failed to add event to database') })),
     );
   }
 
@@ -64,10 +64,10 @@ export class ScheduleService {
           headers: new HttpHeaders({
             Authorization: token,
           }),
-        })
+        }),
       ),
       map(() => ({ payload: eventToUpdate })),
-      catchError(() => of({ error: new Error('Failed to update event') }))
+      catchError(() => of({ error: new Error('Failed to update event') })),
     );
   }
 
@@ -78,10 +78,10 @@ export class ScheduleService {
           headers: new HttpHeaders({
             Authorization: token,
           }),
-        })
+        }),
       ),
       map(() => ({ payload: eventToDelete })),
-      catchError(() => of({ error: new Error('Failed to delete event from database') }))
+      catchError(() => of({ error: new Error('Failed to delete event from database') })),
     );
   }
 

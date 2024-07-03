@@ -14,7 +14,7 @@ const toasterReducer = createReducer(
   on(ToasterActions.toastExpired, (state, action) => ({
     ...state,
     toasts: state.toasts.filter((toast) => toast !== action.toast),
-  }))
+  })),
 );
 
 export function reducer(state: ToasterState, action: Action): ToasterState {

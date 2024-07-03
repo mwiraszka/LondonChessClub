@@ -35,13 +35,13 @@ const authReducer = createReducer(
       ...state,
       user,
       tempInitialPassword,
-    })
+    }),
   ),
 
   on(AuthActions.passwordChangeSucceeded, (state) => ({
     ...state,
     hasCode: false,
-  }))
+  })),
 );
 
 export function reducer(state: AuthState, action: Action): AuthState {

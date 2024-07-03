@@ -10,10 +10,6 @@ import { isDefined } from '@app/utils';
 import { imageSizeValidator } from '@app/validators';
 import { debounceTime, filter, first } from 'rxjs/operators';
 
-
-
-
-
 import { ArticleFormFacade } from './article-form.facade';
 
 @UntilDestroy()
@@ -29,7 +25,7 @@ export class ArticleFormComponent implements OnInit {
   constructor(
     public facade: ArticleFormFacade,
     private formBuilder: FormBuilder,
-    private imagesService: ImagesService
+    private imagesService: ImagesService,
   ) {}
 
   ngOnInit(): void {
@@ -118,7 +114,7 @@ export class ArticleFormComponent implements OnInit {
           imageFile: article.imageFile,
           imageUrl: article.imageUrl,
         },
-        { emitEvent: false }
+        { emitEvent: false },
       );
     });
   }

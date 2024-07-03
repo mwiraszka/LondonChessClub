@@ -23,7 +23,7 @@ const photosReducer = createReducer(
   on(PhotosActions.nextPhotoRequested, (state) => ({
     ...state,
     overlayPhoto: getNextPhoto(state.photos, state.overlayPhoto),
-  }))
+  })),
 );
 
 export function reducer(state: PhotosState, action: Action) {

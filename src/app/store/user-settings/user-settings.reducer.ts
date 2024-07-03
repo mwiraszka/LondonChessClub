@@ -21,7 +21,7 @@ const userSettingsReducer = createReducer(
     ...state,
     showUpcomingEventBanner: true,
     bannerlastCleared: null,
-  }))
+  })),
 );
 
 export function reducer(state: UserSettingsState, action: Action): UserSettingsState {

@@ -13,7 +13,7 @@ import { NavPathTypes } from '@app/types';
 export class AuthGuard {
   constructor(
     private readonly router: Router,
-    private readonly store: Store
+    private readonly store: Store,
   ) {}
 
   canActivate(): Observable<boolean> {
@@ -45,7 +45,7 @@ export class AuthGuard {
 
         this.router.navigate([redirectPath]);
         return false;
-      })
+      }),
     );
   }
 }

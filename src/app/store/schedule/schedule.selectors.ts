@@ -6,7 +6,7 @@ import { areSame, getUpcomingEvents } from '@app/utils';
 import { ScheduleState } from './schedule.state';
 
 export const scheduleFeatureSelector = createFeatureSelector<ScheduleState>(
-  AppStoreFeatureTypes.SCHEDULE
+  AppStoreFeatureTypes.SCHEDULE,
 );
 
 export const events = createSelector(scheduleFeatureSelector, (state) => state.events);
@@ -27,32 +27,32 @@ export const upcomingEvent = createSelector(scheduleFeatureSelector, (state) => 
 
 export const selectedEvent = createSelector(
   scheduleFeatureSelector,
-  (state) => state.selectedEvent
+  (state) => state.selectedEvent,
 );
 
 export const selectedEventTitle = createSelector(selectedEvent, (event) => event?.title);
 
 export const eventCurrently = createSelector(
   scheduleFeatureSelector,
-  (state) => state.eventCurrently
+  (state) => state.eventCurrently,
 );
 
 export const isEditMode = createSelector(
   scheduleFeatureSelector,
-  (state) => state.isEditMode
+  (state) => state.isEditMode,
 );
 
 export const nextEventId = createSelector(
   scheduleFeatureSelector,
-  (state) => state.nextEventId
+  (state) => state.nextEventId,
 );
 
 export const showPastEvents = createSelector(
   scheduleFeatureSelector,
-  (state) => state.showPastEvents
+  (state) => state.showPastEvents,
 );
 
 export const hasUnsavedChanges = createSelector(
   scheduleFeatureSelector,
-  (state) => !areSame(state.eventCurrently, state.selectedEvent)
+  (state) => !areSame(state.eventCurrently, state.selectedEvent),
 );

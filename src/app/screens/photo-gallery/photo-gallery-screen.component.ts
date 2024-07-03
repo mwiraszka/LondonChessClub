@@ -83,13 +83,13 @@ export class PhotoGalleryScreenComponent implements OnInit {
 
   constructor(
     public facade: PhotoGalleryScreenFacade,
-    private metaAndTitleService: MetaAndTitleService
+    private metaAndTitleService: MetaAndTitleService,
   ) {}
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Photo Gallery');
     this.metaAndTitleService.updateDescription(
-      'Browse through photos of our club events over the years.'
+      'Browse through photos of our club events over the years.',
     );
   }
 }

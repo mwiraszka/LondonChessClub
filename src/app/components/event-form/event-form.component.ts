@@ -22,7 +22,7 @@ export class EventFormComponent implements OnInit {
 
   constructor(
     public facade: EventFormFacade,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {

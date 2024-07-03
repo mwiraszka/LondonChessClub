@@ -26,7 +26,7 @@ const membersReducer = createReducer(
       selectedMember: null,
       memberCurrently: null,
       isEditMode: null,
-    })
+    }),
   ),
 
   on(MembersActions.addMemberSucceeded, (state) => ({
@@ -91,7 +91,7 @@ const membersReducer = createReducer(
     ...state,
     showActiveOnly: !state.showActiveOnly,
     pageNum: 1,
-  }))
+  })),
 );
 
 export function reducer(state: MembersState, action: Action): MembersState {

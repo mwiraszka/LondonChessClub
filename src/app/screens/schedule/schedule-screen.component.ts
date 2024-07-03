@@ -15,13 +15,13 @@ export class ScheduleScreenComponent implements OnInit {
   constructor(
     public facade: ScheduleScreenFacade,
     private metaAndTitleService: MetaAndTitleService,
-    @Inject(DOCUMENT) private _document: Document
+    @Inject(DOCUMENT) private _document: Document,
   ) {}
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Schedule');
     this.metaAndTitleService.updateDescription(
-      "What's in store at the London Chess Club"
+      "What's in store at the London Chess Club",
     );
 
     this.facade.nextEventId$.subscribe((eventId) => {

@@ -11,7 +11,7 @@ import { setLocalTime } from '@app/utils/time-utils';
  */
 export function getUpcomingEvents(
   sortedEvents: ClubEvent[],
-  limit?: number
+  limit?: number,
 ): ClubEvent[] {
   const now = moment().tz('America/Toronto').format();
 
@@ -36,7 +36,7 @@ export function getUpcomingEvents(
  */
 export function isValidEventId(eventId: string): boolean {
   const regExp = new RegExp(
-    /^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/
+    /^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/,
   );
   return regExp.test(eventId);
 }

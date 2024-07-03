@@ -9,9 +9,9 @@ enum UserSettingsActionTypes {
 export const toggleThemeMode = createAction(UserSettingsActionTypes.TOGGLE_THEME_MODE);
 
 export const clearUpcomingEventBanner = createAction(
-  UserSettingsActionTypes.CLEAR_UPCOMING_EVENT_BANNER
+  UserSettingsActionTypes.CLEAR_UPCOMING_EVENT_BANNER,
 );
 
 export const reinstateUpcomingEventBanner = createAction(
-  UserSettingsActionTypes.REINSTATE_UPCOMING_EVENT_BANNER
+  UserSettingsActionTypes.REINSTATE_UPCOMING_EVENT_BANNER,
 );

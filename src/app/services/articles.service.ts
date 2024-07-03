@@ -20,7 +20,7 @@ export class ArticlesService {
   constructor(
     private authService: AuthService,
     private imagesService: ImagesService,
-    private http: HttpClient
+    private http: HttpClient,
   ) {}
 
   getArticle(id: string): Observable<ServiceResponse<Article>> {
@@ -28,7 +28,7 @@ export class ArticlesService {
       map((article) => {
         return { payload: this.adaptForFrontend([article])[0] };
       }),
-      catchError(() => of({ error: new Error('Failed to fetch article from database') }))
+      catchError(() => of({ error: new Error('Failed to fetch article from database') })),
     );
   }
 
@@ -37,7 +37,9 @@ export class ArticlesService {
       map((articles) => {
         return { payload: this.adaptForFrontend(articles) };
       }),
-      catchError(() => of({ error: new Error('Failed to fetch articles from database') }))
+      catchError(() =>
+        of({ error: new Error('Failed to fetch articles from database') }),
+      ),
     );
   }
 
@@ -56,10 +58,10 @@ export class ArticlesService {
           headers: new HttpHeaders({
             Authorization: token,
           }),
-        })
+        }),
       ),
       switchMap(() => this.imagesService.uploadArticleImage(modifiedArticleToAdd)),
-      catchError(() => of({ error: new Error('Failed to add article to database') }))
+      catchError(() => of({ error: new Error('Failed to add article to database') })),
     );
   }
 
@@ -72,7 +74,7 @@ export class ArticlesService {
           headers: new HttpHeaders({
             Authorization: token,
           }),
-        })
+        }),
       ),
       switchMap(() => {
         if (isEmpty(articleToUpdate.imageFile)) {
@@ -81,7 +83,7 @@ export class ArticlesService {
           return this.imagesService.uploadArticleImage(articleToUpdate);
         }
       }),
-      catchError(() => of({ error: new Error('Failed to update article') }))
+      catchError(() => of({ error: new Error('Failed to update article') })),
     );
   }
 
@@ -92,10 +94,12 @@ export class ArticlesService {
           headers: new HttpHeaders({
             Authorization: token,
           }),
-        })
+        }),
       ),
       switchMap(() => this.imagesService.deleteArticleImage(articleToDelete)),
-      catchError(() => of({ error: new Error('Failed to delete article from database') }))
+      catchError(() =>
+        of({ error: new Error('Failed to delete article from database') }),
+      ),
     );
   }
 

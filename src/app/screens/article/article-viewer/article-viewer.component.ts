@@ -30,7 +30,7 @@ export class ArticleViewerComponent implements OnInit {
 
   constructor(
     public facade: ArticleViewerFacade,
-    private metaAndTitleService: MetaAndTitleService
+    private metaAndTitleService: MetaAndTitleService,
   ) {}
 
   ngOnInit(): void {

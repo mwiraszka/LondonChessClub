@@ -16,7 +16,7 @@ export class AboutScreenComponent implements OnInit {
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('About');
     this.metaAndTitleService.updateDescription(
-      'A brief overview of the London Chess Club.'
+      'A brief overview of the London Chess Club.',
     );
   }
 }

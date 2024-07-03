@@ -23,13 +23,13 @@ export class AppFacade {
   showModal$ = this.store.select(ModalSelectors.isOpen);
   showToaster$ = this.store.select(ToasterSelectors.isDisplayingToasts);
   showUpcomingEventBanner$ = this.store.select(
-    UserSettingsSelectors.showUpcomingEventBanner
+    UserSettingsSelectors.showUpcomingEventBanner,
   );
   upcomingEvent$ = this.store.select(ScheduleSelectors.upcomingEvent);
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private readonly store: Store
+    private readonly store: Store,
   ) {
     this.isDarkMode$.pipe(untilDestroyed(this)).subscribe((isDarkMode) => {
       this.document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');

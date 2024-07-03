@@ -48,7 +48,7 @@ export class ChangePasswordFormComponent implements OnInit {
 
   constructor(
     public facade: ChangePasswordFormFacade,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
@@ -124,7 +124,7 @@ export class ChangePasswordFormComponent implements OnInit {
     this.facade.tempInitialPassword$
       .pipe(untilDestroyed(this))
       .subscribe(
-        (tempInitialPassword) => (this.tempInitialPassword = tempInitialPassword)
+        (tempInitialPassword) => (this.tempInitialPassword = tempInitialPassword),
       );
 
     this.facade.user$.pipe(untilDestroyed(this)).subscribe((user) => {

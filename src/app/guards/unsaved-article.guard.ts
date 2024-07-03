@@ -22,9 +22,9 @@ export class UnsavedArticleGuard {
         this.store.dispatch(ModalActions.leaveWithUnsavedChangesRequested());
         return this.store.select(ModalSelectors.selection).pipe(
           filter((selection) => !!selection),
-          map((selection) => selection === ModalButtonActionTypes.LEAVE_OK)
+          map((selection) => selection === ModalButtonActionTypes.LEAVE_OK),
         );
-      })
+      }),
     );
   }
 }

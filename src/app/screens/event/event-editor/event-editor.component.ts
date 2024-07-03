@@ -17,7 +17,7 @@ import { EventEditorFacade } from './event-editor.facade';
 export class EventEditorComponent implements OnInit {
   constructor(
     public facade: EventEditorFacade,
-    private metaAndTitleService: MetaAndTitleService
+    private metaAndTitleService: MetaAndTitleService,
   ) {}
 
   ngOnInit(): void {
@@ -28,7 +28,7 @@ export class EventEditorComponent implements OnInit {
           isEditMode && eventTitle ? `Edit ${eventTitle}` : 'Create an event';
         this.metaAndTitleService.updateTitle(screenTitle);
         this.metaAndTitleService.updateDescription(
-          `${screenTitle} for the London Chess Club.`
+          `${screenTitle} for the London Chess Club.`,
         );
       });
   }

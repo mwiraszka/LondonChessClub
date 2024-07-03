@@ -50,7 +50,7 @@ export class ClubMapComponent implements OnInit {
           });
         })
         .catch((error) =>
-          console.error(`[LCC] Error creating Google Maps advanced marker: ${error}`)
+          console.error(`[LCC] Error creating Google Maps advanced marker: ${error}`),
         );
     }
   }

@@ -25,7 +25,7 @@ export class ImageOverlayComponent implements OnInit, OnDestroy {
     public facade: ImageOverlayFacade,
     private loaderService: LoaderService,
     private renderer: Renderer2,
-    @Inject(DOCUMENT) private _document: Document
+    @Inject(DOCUMENT) private _document: Document,
   ) {}
 
   ngOnInit(): void {

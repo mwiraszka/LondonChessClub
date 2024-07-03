@@ -20,7 +20,7 @@ const routes: Routes = [
     path: NavPathTypes.MEMBERS,
     loadChildren: () =>
       import('./screens/members/members-screen.module').then(
-        (m) => m.MembersScreenModule
+        (m) => m.MembersScreenModule,
       ),
   },
   {
@@ -32,7 +32,7 @@ const routes: Routes = [
     path: NavPathTypes.SCHEDULE,
     loadChildren: () =>
       import('./screens/schedule/schedule-screen.module').then(
-        (m) => m.ScheduleScreenModule
+        (m) => m.ScheduleScreenModule,
       ),
   },
   {
@@ -50,35 +50,35 @@ const routes: Routes = [
     path: NavPathTypes.ARTICLE,
     loadChildren: () =>
       import('./screens/article/article-screen.module').then(
-        (m) => m.ArticleScreenModule
+        (m) => m.ArticleScreenModule,
       ),
   },
   {
     path: NavPathTypes.CITY_CHAMPION,
     loadChildren: () =>
       import('./screens/champion/champion-screen.module').then(
-        (m) => m.ChampionScreenModule
+        (m) => m.ChampionScreenModule,
       ),
   },
   {
     path: NavPathTypes.PHOTO_GALLERY,
     loadChildren: () =>
       import('./screens/photo-gallery/photo-gallery-screen.module').then(
-        (m) => m.PhotoGalleryScreenModule
+        (m) => m.PhotoGalleryScreenModule,
       ),
   },
   {
     path: NavPathTypes.GAME_ARCHIVES,
     loadChildren: () =>
       import('./screens/game-archives/game-archives-screen.module').then(
-        (m) => m.GameArchivesScreenModule
+        (m) => m.GameArchivesScreenModule,
       ),
   },
   {
     path: NavPathTypes.DOCUMENTS,
     loadChildren: () =>
       import('./screens/documents/documents-screen.module').then(
-        (m) => m.DocumentsScreenModule
+        (m) => m.DocumentsScreenModule,
       ),
   },
   {
@@ -94,7 +94,7 @@ const routes: Routes = [
     path: NavPathTypes.CHANGE_PASSWORD,
     loadChildren: () =>
       import('./screens/change-password/change-password-screen.module').then(
-        (m) => m.ChangePasswordScreenModule
+        (m) => m.ChangePasswordScreenModule,
       ),
   },
   {

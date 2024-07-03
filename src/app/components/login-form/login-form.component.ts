@@ -25,7 +25,7 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     public facade: LoginFormFacade,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {

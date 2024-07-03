@@ -37,7 +37,7 @@ export function camelize(kebabString: string): string {
 export function getTextWidth(
   text: string | null,
   maxLineWidth?: number,
-  font = '13px sans-serif'
+  font = '13px sans-serif',
 ): number {
   if (!text) {
     return 0;

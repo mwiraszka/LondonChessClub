@@ -19,7 +19,7 @@ const HH_MM_REG_EXP = new RegExp(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/);
  */
 export function formatDate(
   date: string | Date,
-  format: 'long' | 'long no-time' | 'short' | 'short no-time' = 'long'
+  format: 'long' | 'long no-time' | 'short' | 'short no-time' = 'long',
 ): string {
   switch (format) {
     case 'long':

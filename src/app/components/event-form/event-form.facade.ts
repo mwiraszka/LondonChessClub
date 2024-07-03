@@ -27,11 +27,11 @@ export class EventFormFacade {
             ? this.store.dispatch(
                 ScheduleActions.updateEventSelected({
                   event,
-                })
+                }),
               )
-            : this.store.dispatch(ScheduleActions.addEventSelected({ event }))
+            : this.store.dispatch(ScheduleActions.addEventSelected({ event })),
         ),
-        first()
+        first(),
       )
       .subscribe();
   }

@@ -80,7 +80,7 @@ export class AuthService {
           if (!userAttributes.given_name || !userAttributes.family_name) {
             observer.next({
               error: new Error(
-                'Admin user attributes not set - please contact the LCC root administrator.'
+                'Admin user attributes not set - please contact the LCC root administrator.',
               ),
             });
             observer.complete();
@@ -172,7 +172,7 @@ export class AuthService {
   }
 
   public changePassword(
-    request: PasswordChangeRequest
+    request: PasswordChangeRequest,
   ): Observable<PasswordChangeResponse | null> {
     return new Observable<PasswordChangeResponse | null>((observer) => {
       this.userByEmail(request.email).confirmPassword(request.code, request.newPassword, {

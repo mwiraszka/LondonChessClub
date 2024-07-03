@@ -26,7 +26,7 @@ const articlesReducer = createReducer(
       selectedArticle: null,
       articleCurrently: null,
       isEditMode: null,
-    })
+    }),
   ),
 
   on(
@@ -41,7 +41,7 @@ const articlesReducer = createReducer(
       selectedArticle: null,
       articleCurrently: null,
       isEditMode: null,
-    })
+    }),
   ),
 
   on(ArticlesActions.fetchArticleSucceeded, (state, { article }) => ({
@@ -97,7 +97,7 @@ const articlesReducer = createReducer(
   on(ArticlesActions.formDataChanged, (state, { article }) => ({
     ...state,
     articleCurrently: article,
-  }))
+  })),
 );
 
 export function reducer(state: ArticlesState, action: Action): ArticlesState {
@@ -122,7 +122,7 @@ function getSortedArticles(articles: Article[]): Article[] {
  */
 function updateSelectedArticleForImageUrlChange(
   state: ArticlesState,
-  imageUrl: Url
+  imageUrl: Url,
 ): Article | null {
   // eslint-disable-next-line no-prototype-builtins
   return localStorage.hasOwnProperty('imageUrl')
@@ -137,7 +137,7 @@ function updateSelectedArticleForImageUrlChange(
  */
 function updateSelectedArticleForImageFileChange(
   state: ArticlesState,
-  imageFile: File
+  imageFile: File,
 ): Article | null {
   // eslint-disable-next-line no-prototype-builtins
   return localStorage.hasOwnProperty('imageUrl')

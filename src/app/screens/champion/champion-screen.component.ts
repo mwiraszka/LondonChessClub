@@ -269,13 +269,13 @@ export class ChampionScreenComponent implements OnInit {
 
   constructor(
     public facade: ChampionScreenFacade,
-    private metaAndTitleService: MetaAndTitleService
+    private metaAndTitleService: MetaAndTitleService,
   ) {}
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('City Champion');
     this.metaAndTitleService.updateDescription(
-      'All about the London Chess Championship and past winners.'
+      'All about the London Chess Championship and past winners.',
     );
   }
 }

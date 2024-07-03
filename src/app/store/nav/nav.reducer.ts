@@ -8,7 +8,7 @@ const navReducer = createReducer(
 
   on(navActions.appendPathToHistory, (state, { path }) => ({
     pathHistory: updatePathHistory(state.pathHistory, path),
-  }))
+  })),
 );
 
 export function reducer(state: NavState, action: Action): NavState {
@@ -17,7 +17,7 @@ export function reducer(state: NavState, action: Action): NavState {
 
 function updatePathHistory(
   currentPathHistory: string[] | null,
-  newPath: string
+  newPath: string,
 ): string[] {
   return !currentPathHistory
     ? [newPath]

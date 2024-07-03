@@ -38,11 +38,11 @@ export class AuthEffects {
             of(
               AuthActions.loginFailed({
                 error: new Error('Unknown login error'),
-              })
-            )
-          )
+              }),
+            ),
+          ),
         );
-      })
+      }),
     );
   });
 
@@ -52,7 +52,7 @@ export class AuthEffects {
       map(() => {
         this.authService.logOut();
         return AuthActions.logoutSucceeded();
-      })
+      }),
     );
   });
 
@@ -70,13 +70,13 @@ export class AuthEffects {
             of(
               AuthActions.codeForPasswordChangeFailed({
                 error: new Error(
-                  'Unknown error attempting to send password change request'
+                  'Unknown error attempting to send password change request',
                 ),
-              })
-            )
-          )
+              }),
+            ),
+          ),
         );
-      })
+      }),
     );
   });
 
@@ -97,11 +97,11 @@ export class AuthEffects {
             of(
               AuthActions.passwordChangeFailed({
                 error: new Error('Unknown password change error'),
-              })
-            )
-          )
+              }),
+            ),
+          ),
         );
-      })
+      }),
     );
   });
 
@@ -116,14 +116,14 @@ export class AuthEffects {
             email: response.email,
             password: response.newPassword,
           },
-        })
-      )
+        }),
+      ),
     );
   });
 
   constructor(
     private readonly actions$: Actions,
     private readonly store: Store,
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
 }

@@ -29,7 +29,7 @@ export class ArticleEditorComponent implements OnInit {
 
   constructor(
     public facade: ArticleEditorFacade,
-    private metaAndTitleService: MetaAndTitleService
+    private metaAndTitleService: MetaAndTitleService,
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class ArticleEditorComponent implements OnInit {
           isEditMode && articleTitle ? `Edit ${articleTitle}` : 'Compose an article';
         this.metaAndTitleService.updateTitle(screenTitle);
         this.metaAndTitleService.updateDescription(
-          `${screenTitle} for the London Chess Club.`
+          `${screenTitle} for the London Chess Club.`,
         );
       });
   }

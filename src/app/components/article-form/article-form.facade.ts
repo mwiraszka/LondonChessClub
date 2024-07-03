@@ -10,7 +10,7 @@ import { type Article } from '@app/types';
 export class ArticleFormFacade {
   readonly articleCurrently$ = this.store.select(ArticlesSelectors.articleCurrently);
   readonly articleImageCurrently$ = this.store.select(
-    ArticlesSelectors.articleImageCurrently
+    ArticlesSelectors.articleImageCurrently,
   );
   readonly hasUnsavedChanges$ = this.store.select(ArticlesSelectors.hasUnsavedChanges);
   readonly isEditMode$ = this.store.select(ArticlesSelectors.isEditMode);
@@ -35,15 +35,15 @@ export class ArticleFormFacade {
             ? this.store.dispatch(
                 ArticlesActions.updateArticleSelected({
                   article,
-                })
+                }),
               )
             : this.store.dispatch(
                 ArticlesActions.publishArticleSelected({
                   article,
-                })
-              )
+                }),
+              ),
         ),
-        first()
+        first(),
       )
       .subscribe();
   }

@@ -28,7 +28,7 @@ export class MemberFormComponent implements OnInit {
 
   constructor(
     public facade: MemberFormFacade,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {

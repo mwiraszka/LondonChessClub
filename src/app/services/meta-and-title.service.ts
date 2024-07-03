@@ -7,7 +7,7 @@ import { Meta, Title } from '@angular/platform-browser';
 export class MetaAndTitleService {
   constructor(
     private title: Title,
-    private meta: Meta
+    private meta: Meta,
   ) {}
 
   updateTitle(title: string): void {

@@ -5,20 +5,20 @@ import { AppStoreFeatureTypes } from '@app/types';
 import { UserSettingsState } from './user-settings.state';
 
 export const userSettingsFeatureSelector = createFeatureSelector<UserSettingsState>(
-  AppStoreFeatureTypes.USER_SETTINGS
+  AppStoreFeatureTypes.USER_SETTINGS,
 );
 
 export const isDarkMode = createSelector(
   userSettingsFeatureSelector,
-  (state) => state.isDarkMode
+  (state) => state.isDarkMode,
 );
 
 export const showUpcomingEventBanner = createSelector(
   userSettingsFeatureSelector,
-  (state) => state.showUpcomingEventBanner
+  (state) => state.showUpcomingEventBanner,
 );
 
 export const bannerLastCleared = createSelector(
   userSettingsFeatureSelector,
-  (state) => state.bannerlastCleared
+  (state) => state.bannerlastCleared,
 );

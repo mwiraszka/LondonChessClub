@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   constructor(
     private changeDetectionRef: ChangeDetectorRef,
     private loaderService: LoaderService,
-    public facade: AppFacade
+    public facade: AppFacade,
   ) {
     moment.tz.setDefault('America/Toronto');
   }

@@ -10,14 +10,14 @@ enum PhotosActionTypes {
 }
 
 export const previousPhotoRequested = createAction(
-  PhotosActionTypes.PREVIOUS_PHOTO_REQUESTED
+  PhotosActionTypes.PREVIOUS_PHOTO_REQUESTED,
 );
 
 export const nextPhotoRequested = createAction(PhotosActionTypes.NEXT_PHOTO_REQUESTED);
 
 export const imageOverlayOpened = createAction(
   PhotosActionTypes.IMAGE_OVERLAY_OPENED,
-  props<{ photo: Photo }>()
+  props<{ photo: Photo }>(),
 );
 
 export const imageOverlayClosed = createAction(PhotosActionTypes.IMAGE_OVERLAY_CLOSED);

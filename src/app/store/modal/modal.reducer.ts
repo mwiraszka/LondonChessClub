@@ -17,7 +17,7 @@ const modalReducer = createReducer(
     ...state,
     modal: null,
     selection: action.action,
-  }))
+  })),
 );
 
 export function reducer(state: ModalState, action: Action): ModalState {

@@ -20,7 +20,7 @@ export class MembersService {
 
   constructor(
     private authService: AuthService,
-    private http: HttpClient
+    private http: HttpClient,
   ) {}
 
   getMember(id: string): Observable<ServiceResponse<Member>> {
@@ -30,10 +30,10 @@ export class MembersService {
           headers: new HttpHeaders({
             Authorization: token,
           }),
-        })
+        }),
       ),
       map((member) => ({ payload: this.adaptForFrontend([member])[0] })),
-      catchError(() => of({ error: new Error('Failed to fetch member from database') }))
+      catchError(() => of({ error: new Error('Failed to fetch member from database') })),
     );
   }
 
@@ -45,19 +45,19 @@ export class MembersService {
             headers: new HttpHeaders({
               Authorization: token,
             }),
-          })
+          }),
         ),
         map((members) => ({ payload: this.adaptForFrontend(members) })),
         catchError(() =>
-          of({ error: new Error('Failed to fetch members from database') })
-        )
+          of({ error: new Error('Failed to fetch members from database') }),
+        ),
       );
     } else {
       return this.http.get<FlatMember[]>(this.PUBLIC_API_ENDPOINT).pipe(
         map((members) => ({ payload: this.adaptForFrontend(members) })),
         catchError(() =>
-          of({ error: new Error('Failed to fetch members from database') })
-        )
+          of({ error: new Error('Failed to fetch members from database') }),
+        ),
       );
     }
   }
@@ -70,10 +70,10 @@ export class MembersService {
           headers: new HttpHeaders({
             Authorization: token,
           }),
-        })
+        }),
       ),
       map(() => ({ payload: memberToAdd })),
-      catchError(() => of({ error: new Error('Failed to add member to database') }))
+      catchError(() => of({ error: new Error('Failed to add member to database') })),
     );
   }
 
@@ -89,11 +89,11 @@ export class MembersService {
             headers: new HttpHeaders({
               Authorization: token,
             }),
-          }
-        )
+          },
+        ),
       ),
       map(() => ({ payload: memberToUpdate })),
-      catchError(() => of({ error: new Error('Failed to update member') }))
+      catchError(() => of({ error: new Error('Failed to update member') })),
     );
   }
 
@@ -104,10 +104,10 @@ export class MembersService {
           headers: new HttpHeaders({
             Authorization: token,
           }),
-        })
+        }),
       ),
       map(() => ({ payload: memberToDelete })),
-      catchError(() => of({ error: new Error('Failed to delete member from database') }))
+      catchError(() => of({ error: new Error('Failed to delete member from database') })),
     );
   }
 
@@ -131,13 +131,13 @@ export class MembersService {
           dateCreated: new Date(
             member.dateCreated === '2023-01-01T00:00:00.000Z'
               ? '2023-01-01T05:00:00.000Z'
-              : member.dateCreated
+              : member.dateCreated,
           ),
           createdBy: member.createdBy,
           dateLastEdited: new Date(
             member.dateLastEdited === '2023-01-01T00:00:00.000Z'
               ? '2023-01-01T05:00:00.000Z'
-              : member.dateLastEdited
+              : member.dateLastEdited,
           ),
           lastEditedBy: member.lastEditedBy,
         },

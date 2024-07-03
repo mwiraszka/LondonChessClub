@@ -39,7 +39,7 @@ export class ScheduleComponent implements OnInit {
     this.facade.events$
       .pipe(
         untilDestroyed(this),
-        combineLatestWith(this.facade.upcomingEvents$, this.facade.showPastEvents$)
+        combineLatestWith(this.facade.upcomingEvents$, this.facade.showPastEvents$),
       )
       .subscribe(([allEvents, upcomingEvents, showPastEvents]) => {
         this.shownEvents =

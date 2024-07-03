@@ -34,7 +34,7 @@ export class ArticleViewerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.facade.article$.pipe(untilDestroyed(this)).subscribe((article) => {
+    this.facade.article$.pipe(untilDestroyed(this)).subscribe(article => {
       if (article?.title && article?.body) {
         // Limit to 200 characters
         const articlePreview =

@@ -8,16 +8,14 @@
       class="lcc-admin-controls-container article"
       [routerLink]="
         '/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + article.id
-      "
-    >
+      ">
       @if (facade.isAdmin$ | async) {
         <lcc-admin-controls
           [editPath]="
             '/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.EDIT + '/' + article.id
           "
           [itemName]="article.title"
-          (delete)="facade.onDeleteArticle(article)"
-        >
+          (delete)="facade.onDeleteArticle(article)">
         </lcc-admin-controls>
       }
 
@@ -30,8 +28,7 @@
           class="article-thumbnail-image"
           [src]="article.thumbnailImageUrl"
           default="assets/image-placeholder.png"
-          alt="Article banner image"
-        />
+          alt="Article banner image" />
       } @placeholder {
         <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
           <div class="lcc-content-placeholder"></div>
@@ -41,7 +38,9 @@
       <div class="article-summary-container">
         <h3 class="lcc-truncate-max-2-lines">{{ article.title }}</h3>
         <hr />
-        <p class="lcc-truncate-max-5-lines">{{ article.body | stripMarkdown }}</p>
+        <p class="lcc-truncate-max-5-lines">
+          {{ article.body | stripMarkdown }}
+        </p>
         <div class="article-dates-container">
           <span class="date-created">
             {{ article?.modificationInfo?.dateCreated | formatDate: 'short no-time' }}

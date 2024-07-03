@@ -32,7 +32,7 @@ export class MemberFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.facade.memberCurrently$.pipe(filter(isDefined), first()).subscribe((member) => {
+    this.facade.memberCurrently$.pipe(filter(isDefined), first()).subscribe(member => {
       this.initForm(member);
       this.initValueChangesListener();
     });

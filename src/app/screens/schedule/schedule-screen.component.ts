@@ -24,7 +24,7 @@ export class ScheduleScreenComponent implements OnInit {
       "What's in store at the London Chess Club",
     );
 
-    this.facade.nextEventId$.subscribe((eventId) => {
+    this.facade.nextEventId$.subscribe(eventId => {
       if (eventId) {
         setTimeout(() => this.scrollToNextEvent(eventId), 150);
       }

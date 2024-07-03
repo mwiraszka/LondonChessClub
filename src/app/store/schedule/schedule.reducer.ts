@@ -22,7 +22,7 @@ const scheduleReducer = createReducer(
     ScheduleActions.updateEventSucceeded,
     ScheduleActions.deleteEventFailed,
     ScheduleActions.deleteEventCancelled,
-    (state) => ({
+    state => ({
       ...state,
       selectedEvent: null,
       eventCurrently: null,
@@ -30,7 +30,7 @@ const scheduleReducer = createReducer(
     }),
   ),
 
-  on(ScheduleActions.addEventSucceeded, (state) => ({
+  on(ScheduleActions.addEventSucceeded, state => ({
     ...state,
     selectedEvent: newClubEventFormTemplate,
     eventCurrently: newClubEventFormTemplate,
@@ -47,14 +47,14 @@ const scheduleReducer = createReducer(
     };
   }),
 
-  on(ScheduleActions.fetchEventRequested, (state) => ({
+  on(ScheduleActions.fetchEventRequested, state => ({
     ...state,
     isEditMode: true,
   })),
 
   on(ScheduleActions.fetchEventSucceeded, (state, { event }) => ({
     ...state,
-    events: [...state.events.filter((storedEvent) => storedEvent.id !== event.id), event],
+    events: [...state.events.filter(storedEvent => storedEvent.id !== event.id), event],
   })),
 
   on(ScheduleActions.deleteEventSelected, (state, { event }) => ({
@@ -64,7 +64,7 @@ const scheduleReducer = createReducer(
 
   on(ScheduleActions.deleteEventSucceeded, (state, { event }) => ({
     ...state,
-    events: state.events.filter((storedEvent) => storedEvent.id !== event.id),
+    events: state.events.filter(storedEvent => storedEvent.id !== event.id),
     selectedEvent: null,
   })),
 
@@ -73,7 +73,7 @@ const scheduleReducer = createReducer(
     eventCurrently: event,
   })),
 
-  on(ScheduleActions.togglePastEvents, (state) => ({
+  on(ScheduleActions.togglePastEvents, state => ({
     ...state,
     showPastEvents: !state.showPastEvents,
   })),

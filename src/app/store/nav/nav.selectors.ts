@@ -11,9 +11,9 @@ export const navFeatureSelector = createFeatureSelector<NavState>(
 
 export const pathHistory = createSelector(
   navFeatureSelector,
-  (state) => state?.pathHistory,
+  state => state?.pathHistory,
 );
-export const previousPath = createSelector(pathHistory, (pathHistory) =>
+export const previousPath = createSelector(pathHistory, pathHistory =>
   pathHistory ? pathHistory[pathHistory.length - 1] : null,
 );
 

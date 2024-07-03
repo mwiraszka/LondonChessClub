@@ -7,8 +7,7 @@
             '/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.EDIT + '/' + article.id
           "
           [itemName]="article.title"
-          (delete)="facade.onDelete(article)"
-        >
+          (delete)="facade.onDelete(article)">
         </lcc-admin-controls>
       }
       <lcc-article [article]="article"></lcc-article>

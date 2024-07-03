@@ -25,7 +25,7 @@ export class ArticlesService {
 
   getArticle(id: string): Observable<ServiceResponse<Article>> {
     return this.http.get<FlatArticle>(this.API_ENDPOINT + id).pipe(
-      map((article) => {
+      map(article => {
         return { payload: this.adaptForFrontend([article])[0] };
       }),
       catchError(() => of({ error: new Error('Failed to fetch article from database') })),
@@ -34,7 +34,7 @@ export class ArticlesService {
 
   getArticles(): Observable<ServiceResponse<Article[]>> {
     return this.http.get<FlatArticle[]>(this.API_ENDPOINT).pipe(
-      map((articles) => {
+      map(articles => {
         return { payload: this.adaptForFrontend(articles) };
       }),
       catchError(() =>
@@ -53,7 +53,7 @@ export class ArticlesService {
     const flattenedArticle = this.adaptForBackend([modifiedArticleToAdd])[0];
 
     return this.authService.token().pipe(
-      switchMap((token) =>
+      switchMap(token =>
         this.http.post<null>(this.API_ENDPOINT, flattenedArticle, {
           headers: new HttpHeaders({
             Authorization: token,
@@ -69,7 +69,7 @@ export class ArticlesService {
     const flattenedArticle = this.adaptForBackend([articleToUpdate])[0];
 
     return this.authService.token().pipe(
-      switchMap((token) =>
+      switchMap(token =>
         this.http.put<null>(this.API_ENDPOINT + flattenedArticle.id, flattenedArticle, {
           headers: new HttpHeaders({
             Authorization: token,
@@ -89,7 +89,7 @@ export class ArticlesService {
 
   deleteArticle(articleToDelete: Article): Observable<ServiceResponse<Article>> {
     return this.authService.token().pipe(
-      switchMap((token) =>
+      switchMap(token =>
         this.http.delete<null>(this.API_ENDPOINT + articleToDelete.id, {
           headers: new HttpHeaders({
             Authorization: token,
@@ -104,7 +104,7 @@ export class ArticlesService {
   }
 
   private adaptForFrontend(articles: FlatArticle[]): Article[] {
-    return articles.map((article) => {
+    return articles.map(article => {
       return {
         id: article.id,
         title: article.title,
@@ -125,7 +125,7 @@ export class ArticlesService {
   }
 
   private adaptForBackend(articles: Article[]): FlatArticle[] {
-    return articles.map((article) => {
+    return articles.map(article => {
       return {
         id: article.id,
         title: article.title,

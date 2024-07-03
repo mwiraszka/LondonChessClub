@@ -9,34 +9,31 @@ export const articlesFeatureSelector = createFeatureSelector<ArticlesState>(
   AppStoreFeatureTypes.ARTICLES,
 );
 
-export const articles = createSelector(
-  articlesFeatureSelector,
-  (state) => state.articles,
-);
+export const articles = createSelector(articlesFeatureSelector, state => state.articles);
 
 export const articleById = (id: string) =>
-  createSelector(articles, (allArticles) => {
-    return allArticles ? allArticles.find((article) => article.id === id) : null;
+  createSelector(articles, allArticles => {
+    return allArticles ? allArticles.find(article => article.id === id) : null;
   });
 
 export const selectedArticle = createSelector(
   articlesFeatureSelector,
-  (state) => state.selectedArticle,
+  state => state.selectedArticle,
 );
 
 export const selectedArticleTitle = createSelector(
   selectedArticle,
-  (article) => article?.title,
+  article => article?.title,
 );
 
 export const articleCurrently = createSelector(
   articlesFeatureSelector,
-  (state) => state.articleCurrently,
+  state => state.articleCurrently,
 );
 
 export const articleImageCurrently = createSelector(
   articleCurrently,
-  (articleCurrently) => {
+  articleCurrently => {
     return {
       imageFile: articleCurrently?.imageFile ?? null,
       imageUrl: articleCurrently?.imageUrl ?? null,
@@ -53,7 +50,7 @@ export const hasNewImage = createSelector(
 
 export const isEditMode = createSelector(
   articlesFeatureSelector,
-  (state) => state.isEditMode,
+  state => state.isEditMode,
 );
 
 export const hasUnsavedChanges = createSelector(

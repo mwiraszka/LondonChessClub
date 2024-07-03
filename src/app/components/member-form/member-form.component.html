@@ -7,15 +7,13 @@
         type="text"
         name="first-name"
         formControlName="firstName"
-        maxlength="30"
-      />
+        maxlength="30" />
       <div class="lcc-form-error-container">
         @if (hasError(form.controls['firstName'])) {
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['firstName'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['firstName'])">
           </i-feather>
         }
       </div>
@@ -26,15 +24,13 @@
         type="text"
         name="last-name"
         formControlName="lastName"
-        maxlength="30"
-      />
+        maxlength="30" />
       <div class="lcc-form-error-container">
         @if (hasError(form.controls['lastName'])) {
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['lastName'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['lastName'])">
           </i-feather>
         }
       </div>
@@ -45,15 +41,13 @@
         type="text"
         name="city"
         formControlName="city"
-        maxlength="30"
-      />
+        maxlength="30" />
       <div class="lcc-form-error-container">
         @if (hasError(form.controls['city'])) {
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['city'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['city'])">
           </i-feather>
         }
       </div>
@@ -64,15 +58,13 @@
         type="text"
         name="rating"
         formControlName="rating"
-        maxlength="6"
-      />
+        maxlength="6" />
       <div class="lcc-form-error-container">
         @if (hasError(form.controls['rating'])) {
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['rating'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['rating'])">
           </i-feather>
         }
       </div>
@@ -83,15 +75,13 @@
         type="text"
         name="date-joined"
         formControlName="dateJoined"
-        maxlength="10"
-      />
+        maxlength="10" />
       <div class="lcc-form-error-container">
         @if (hasError(form.controls['dateJoined'])) {
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['dateJoined'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['dateJoined'])">
           </i-feather>
         }
       </div>
@@ -102,15 +92,13 @@
         type="text"
         name="email"
         formControlName="email"
-        maxlength="50"
-      />
+        maxlength="50" />
       <div class="lcc-form-error-container">
         @if (hasError(form.controls['email'])) {
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['email'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['email'])">
           </i-feather>
         }
       </div>
@@ -121,15 +109,13 @@
         type="text"
         name="phone-number"
         formControlName="phoneNumber"
-        maxlength="12"
-      />
+        maxlength="12" />
       <div class="lcc-form-error-container">
         @if (hasError(form.controls['phoneNumber'])) {
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['phoneNumber'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['phoneNumber'])">
           </i-feather>
         }
       </div>
@@ -140,15 +126,13 @@
         type="text"
         name="year-of-birth"
         formControlName="yearOfBirth"
-        maxlength="4"
-      />
+        maxlength="4" />
       <div class="lcc-form-error-container">
         @if (hasError(form.controls['yearOfBirth'])) {
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['yearOfBirth'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['yearOfBirth'])">
           </i-feather>
         }
       </div>
@@ -159,15 +143,13 @@
         type="text"
         name="chesscom-username"
         formControlName="chesscomUsername"
-        maxlength="20"
-      />
+        maxlength="20" />
       <div class="lcc-form-error-container">
         @if (hasError(form.controls['chesscomUsername'])) {
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['chesscomUsername'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['chesscomUsername'])">
           </i-feather>
         }
       </div>
@@ -178,15 +160,13 @@
         type="text"
         name="lichess-username"
         formControlName="lichessUsername"
-        maxlength="20"
-      />
+        maxlength="20" />
       <div class="lcc-form-error-container">
         @if (hasError(form.controls['lichessUsername'])) {
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['lichessUsername'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['lichessUsername'])">
           </i-feather>
         }
       </div>
@@ -196,8 +176,7 @@
           id="is-active-input"
           type="checkbox"
           name="is-active"
-          formControlName="isActive"
-        />
+          formControlName="isActive" />
       }
     </div>
 
@@ -216,8 +195,7 @@
       <button
         class="lcc-primary-button"
         type="submit"
-        [disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)"
-      >
+        [disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
         @if (facade.isEditMode$ | async) {
           Update
         } @else {

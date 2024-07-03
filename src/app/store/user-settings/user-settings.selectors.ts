@@ -10,15 +10,15 @@ export const userSettingsFeatureSelector = createFeatureSelector<UserSettingsSta
 
 export const isDarkMode = createSelector(
   userSettingsFeatureSelector,
-  (state) => state.isDarkMode,
+  state => state.isDarkMode,
 );
 
 export const showUpcomingEventBanner = createSelector(
   userSettingsFeatureSelector,
-  (state) => state.showUpcomingEventBanner,
+  state => state.showUpcomingEventBanner,
 );
 
 export const bannerLastCleared = createSelector(
   userSettingsFeatureSelector,
-  (state) => state.bannerlastCleared,
+  state => state.bannerlastCleared,
 );

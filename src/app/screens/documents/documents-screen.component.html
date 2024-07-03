@@ -14,16 +14,14 @@
             <td class="document">
               <div
                 class="document-label-container"
-                (click)="onSelectDocument(document.fileName)"
-              >
+                (click)="onSelectDocument(document.fileName)">
                 <i-feather name="file-text" class="file-icon"> </i-feather>
                 <span class="document-title">{{ document.title }}</span>
               </div>
               <a
                 [href]="'assets/documents/' + document.fileName"
                 class="download-link"
-                [download]="document.title"
-              >
+                [download]="document.title">
                 <i-feather name="download" class="download-icon"> </i-feather>
               </a>
             </td>
@@ -59,8 +57,7 @@
       [original-size]="false"
       (after-load-complete)="onDocumentLoaded()"
       (click)="onClickViewer($event)"
-      (on-progress)="onProgress($event)"
-    >
+      (on-progress)="onProgress($event)">
     </pdf-viewer>
   </div>
 </ng-template>

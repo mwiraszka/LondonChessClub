@@ -5,8 +5,7 @@
         class="banner-image"
         [src]="form.controls['imageUrl'].value"
         default="assets/image-placeholder.png"
-        alt="Article banner image"
-      />
+        alt="Article banner image" />
     } @placeholder {
       <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
         <div class="lcc-content-placeholder"></div>
@@ -25,14 +24,12 @@
           type="file"
           name="imageFile"
           accept="image/*"
-          (change)="onChooseImage($event)"
-        />
+          (change)="onChooseImage($event)" />
         <button
           class="lcc-secondary-button image-revert-button"
           tooltip="Revert to original image"
           [disabled]="!(facade.hasNewImage$ | async)"
-          (click)="onRevert()"
-        >
+          (click)="onRevert()">
           <i-feather class="revert-icon" name="rotate-ccw"> </i-feather>
         </button>
       </div>
@@ -42,8 +39,7 @@
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['imageFile'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['imageFile'])">
           </i-feather>
         }
       </div>
@@ -54,15 +50,13 @@
         type="text"
         name="title"
         formControlName="title"
-        maxlength="120"
-      />
+        maxlength="120" />
       <div class="lcc-form-error-container">
         @if (hasError(form.controls['title'])) {
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['title'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['title'])">
           </i-feather>
         }
       </div>
@@ -75,8 +69,7 @@
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['body'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['body'])">
           </i-feather>
         }
       </div>
@@ -86,8 +79,7 @@
         id="is-sticky-input"
         type="checkbox"
         name="is-sticky"
-        formControlName="isSticky"
-      />
+        formControlName="isSticky" />
     </div>
 
     <aside class="lcc-required-fields-legend">Required fields</aside>
@@ -114,8 +106,7 @@
       <button
         class="lcc-primary-button"
         type="submit"
-        [disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)"
-      >
+        [disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
         @if (facade.isEditMode$ | async) {
           Update article
         } @else {

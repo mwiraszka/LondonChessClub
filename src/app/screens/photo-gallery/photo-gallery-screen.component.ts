@@ -77,7 +77,7 @@ export class PhotoGalleryScreenComponent implements OnInit {
       path: 'https://londonchessclub.ca/?page_id=916',
       text: '2007 and older',
     },
-  ].map((link) => {
+  ].map(link => {
     return { ...link, icon: 'camera' };
   });
 

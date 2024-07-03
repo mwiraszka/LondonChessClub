@@ -21,7 +21,7 @@ export class PhotoGridComponent implements OnInit {
   constructor(public facade: PhotoGridFacade) {}
 
   ngOnInit(): void {
-    this.facade.photos$.pipe(untilDestroyed(this)).subscribe((photos) => {
+    this.facade.photos$.pipe(untilDestroyed(this)).subscribe(photos => {
       this.photos = photos?.slice(0, this.maxPhotos ?? photos.length);
     });
   }

@@ -22,6 +22,6 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
     this.updateService.isNewVersionAvailable$
       .pipe(untilDestroyed(this))
-      .subscribe((val) => (this.isNewVersionAvailable = val));
+      .subscribe(val => (this.isNewVersionAvailable = val));
   }
 }

@@ -15,7 +15,7 @@ export function getUpcomingEvents(
 ): ClubEvent[] {
   const now = moment().tz('America/Toronto').format();
 
-  const upcomingEvents = sortedEvents.filter((event) => {
+  const upcomingEvents = sortedEvents.filter(event => {
     const endOfEvent = setLocalTime(event.eventDate, '21:00');
     return moment(endOfEvent).isAfter(now);
   });

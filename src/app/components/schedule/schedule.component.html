@@ -22,16 +22,14 @@
             !!(facade.showPastEvents$ | async) && allowTogglePastEvents
               ? 'showing-past-events'
               : undefined
-          "
-        >
+          ">
           @if (facade.isAdmin$ | async) {
             <lcc-admin-controls
               [editPath]="
                 '/' + NavPathTypes.EVENT + '/' + NavPathTypes.EDIT + '/' + event.id
               "
               [itemName]="event.title"
-              (delete)="facade.onDeleteEvent(event)"
-            >
+              (delete)="facade.onDeleteEvent(event)">
             </lcc-admin-controls>
           }
 
@@ -70,8 +68,7 @@
                     '/' +
                     event?.associatedArticleId
                   "
-                  class="lcc-link event-associated-article"
-                >
+                  class="lcc-link event-associated-article">
                   More details
                 </a>
               }
@@ -101,8 +98,7 @@
 @if (allowTogglePastEvents) {
   <button
     class="lcc-secondary-button toggle-past-events-button"
-    (click)="facade.onTogglePastEvents()"
-  >
+    (click)="facade.onTogglePastEvents()">
     {{ (facade.showPastEvents$ | async) ? 'Hide' : 'Show' }} past events
   </button>
 }

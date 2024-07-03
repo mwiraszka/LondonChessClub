@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   public token(): Observable<string> {
-    return new Observable<string>((observer) => {
+    return new Observable<string>(observer => {
       this.currentUser?.getSession((error: Error, session: CognitoUserSession | null) => {
         if (error) {
           observer.error(`Error getting Cognito user session: ${error}`);
@@ -60,7 +60,7 @@ export class AuthService {
       Password: request.tempInitialPassword ?? request.password,
     });
 
-    return new Observable<LoginResponse>((observer) => {
+    return new Observable<LoginResponse>(observer => {
       const user = this.userByEmail(request.email);
 
       user.authenticateUser(authenticationDetails, {
@@ -104,7 +104,9 @@ export class AuthService {
                 observer.complete();
               },
               onFailure(error) {
-                observer.next({ error: new Error(`Unknown error: ${error}`) });
+                observer.next({
+                  error: new Error(`Unknown error: ${error}`),
+                });
                 observer.complete();
               },
             });
@@ -115,7 +117,10 @@ export class AuthService {
               email: userAttributes.email,
               isVerified: false,
             };
-            observer.next({ unverifiedUser, tempInitialPassword: request.password });
+            observer.next({
+              unverifiedUser,
+              tempInitialPassword: request.password,
+            });
             observer.complete();
           }
         },
@@ -148,7 +153,7 @@ export class AuthService {
   }
 
   public sendChangePasswordCode(email: string): Observable<PasswordChangeResponse> {
-    return new Observable<PasswordChangeResponse>((observer) => {
+    return new Observable<PasswordChangeResponse>(observer => {
       this.userByEmail(email).forgotPassword({
         onSuccess() {
           observer.next();
@@ -174,10 +179,13 @@ export class AuthService {
   public changePassword(
     request: PasswordChangeRequest,
   ): Observable<PasswordChangeResponse | null> {
-    return new Observable<PasswordChangeResponse | null>((observer) => {
+    return new Observable<PasswordChangeResponse | null>(observer => {
       this.userByEmail(request.email).confirmPassword(request.code, request.newPassword, {
         onSuccess() {
-          observer.next({ email: request.email, newPassword: request.newPassword });
+          observer.next({
+            email: request.email,
+            newPassword: request.newPassword,
+          });
           observer.complete();
         },
 

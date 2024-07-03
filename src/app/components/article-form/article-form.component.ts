@@ -29,13 +29,11 @@ export class ArticleFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.facade.articleCurrently$
-      .pipe(filter(isDefined), first())
-      .subscribe((article) => {
-        this.initForm(article);
-        this.initValueChangesListener();
-        this.initArticleImageRehydration();
-      });
+    this.facade.articleCurrently$.pipe(filter(isDefined), first()).subscribe(article => {
+      this.initForm(article);
+      this.initValueChangesListener();
+      this.initArticleImageRehydration();
+    });
   }
 
   hasError(control: AbstractControl): boolean {
@@ -108,7 +106,7 @@ export class ArticleFormComponent implements OnInit {
   }
 
   private initArticleImageRehydration(): void {
-    this.facade.articleImageCurrently$.pipe(untilDestroyed(this)).subscribe((article) => {
+    this.facade.articleImageCurrently$.pipe(untilDestroyed(this)).subscribe(article => {
       this.form.patchValue(
         {
           imageFile: article.imageFile,

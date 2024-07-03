@@ -14,15 +14,15 @@
           @for (header of tableHeaders; track header) {
             <th
               [ngClass]="kebabize(header)"
-              (click)="facade.onSelectTableHeader(camelize(kebabize(header)))"
-            >
+              (click)="facade.onSelectTableHeader(camelize(kebabize(header)))">
               <span>{{ header }}</span>
               <div class="sort-icon-container">
                 @if ((facade.sortedBy$ | async) === camelize(kebabize(header))) {
                   <i-feather
                     class="sort-icon"
-                    [name]="(facade.isAscending$ | async) ? 'chevron-up' : 'chevron-down'"
-                  >
+                    [name]="
+                      (facade.isAscending$ | async) ? 'chevron-up' : 'chevron-down'
+                    ">
                   </i-feather>
                 }
               </div>
@@ -42,8 +42,7 @@
         <tr
           class="lcc-admin-controls-container"
           [ngClass]="{ 'last-row': last }"
-          [class.inactive]="!member.isActive"
-        >
+          [class.inactive]="!member.isActive">
           @if (facade.isAdmin$ | async) {
             <lcc-admin-controls
               [editPath]="
@@ -51,18 +50,23 @@
               "
               [height]="31"
               [itemName]="member.firstName ?? ''"
-              (delete)="facade.onDeleteMember(member)"
-            >
+              (delete)="facade.onDeleteMember(member)">
             </lcc-admin-controls>
           }
-          <td class="row-number">{{ i + ((facade.startIndex$ | async) ?? 0) + 1 }}</td>
+          <td class="row-number">
+            {{ i + ((facade.startIndex$ | async) ?? 0) + 1 }}
+          </td>
           <td class="first-name lcc-truncate">{{ member.firstName }}</td>
           <td class="last-name lcc-truncate">{{ member.lastName }}</td>
           <td class="rating">{{ member.rating }}</td>
           <td class="peak-rating">{{ member.peakRating }}</td>
           <td class="city lcc-truncate">{{ member.city }}</td>
-          <td class="chesscom-username lcc-truncate">{{ member?.chesscomUsername }}</td>
-          <td class="lichess-username lcc-truncate">{{ member?.lichessUsername }}</td>
+          <td class="chesscom-username lcc-truncate">
+            {{ member?.chesscomUsername }}
+          </td>
+          <td class="lichess-username lcc-truncate">
+            {{ member?.lichessUsername }}
+          </td>
           <td class="last-updated">
             {{ member.modificationInfo!.dateLastEdited | formatDate: 'short no-time' }}
           </td>
@@ -97,8 +101,7 @@
   [pageSize]="(facade.pageSize$ | async) ?? 0"
   [totalItems]="(facade.filteredMembers$ | async)?.length ?? 0"
   (pageChange)="facade.onChangePage($event)"
-  (pageSizeChange)="facade.onChangePageSize($event)"
->
+  (pageSizeChange)="facade.onChangePageSize($event)">
 </lcc-paginator>
 
 <aside>
@@ -109,7 +112,6 @@
       id="active-only"
       type="checkbox"
       [checked]="facade.showActiveOnly$ | async"
-      (change)="facade.onToggleInactiveMembers()"
-    />
+      (change)="facade.onToggleInactiveMembers()" />
   </div>
 </aside>

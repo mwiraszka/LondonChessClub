@@ -96,7 +96,7 @@ export class NavEffects {
       ofType(routerNavigatedAction),
       filter(({ payload }) => payload.event.url.startsWith('/article/edit/')),
       map(({ payload }) => payload.event.url),
-      concatLatestFrom((currentPath) => [
+      concatLatestFrom(currentPath => [
         this.store.select(
           ArticlesSelectors.articleById(currentPath.split('/article/edit/')[1]),
         ),
@@ -161,12 +161,15 @@ export class NavEffects {
       concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
       filter(([{ payload }, previousPath]) => payload.event.url !== previousPath),
       map(([{ payload }]) => payload.event.url.split('/member/edit/')[1]),
-      concatLatestFrom((memberId) =>
+      concatLatestFrom(memberId =>
         this.store.select(MembersSelectors.memberById(memberId)),
       ),
       map(([memberId, memberInStore]) => {
         if (memberInStore) {
-          return MembersActions.setMember({ member: memberInStore, isEditMode: true });
+          return MembersActions.setMember({
+            member: memberInStore,
+            isEditMode: true,
+          });
         } else if (isValidMemberId(memberId)) {
           return MembersActions.fetchMemberRequested({ memberId });
         } else {
@@ -198,16 +201,21 @@ export class NavEffects {
       concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
       filter(([{ payload }, previousPath]) => payload.event.url !== previousPath),
       map(([{ payload }]) => payload.event.url.split('/event/edit/')[1]),
-      concatLatestFrom((eventId) =>
+      concatLatestFrom(eventId =>
         this.store.select(ScheduleSelectors.eventById(eventId)),
       ),
       map(([eventId, eventInStore]) => {
         if (eventInStore) {
-          return ScheduleActions.setEvent({ event: eventInStore, isEditMode: true });
+          return ScheduleActions.setEvent({
+            event: eventInStore,
+            isEditMode: true,
+          });
         } else if (isValidEventId(eventId)) {
           return ScheduleActions.fetchEventRequested({ eventId });
         } else {
-          return NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE });
+          return NavActions.navigationRequested({
+            path: NavPathTypes.SCHEDULE,
+          });
         }
       }),
     ),

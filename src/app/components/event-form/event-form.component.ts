@@ -26,7 +26,7 @@ export class EventFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.facade.eventCurrently$.pipe(filter(isDefined), first()).subscribe((event) => {
+    this.facade.eventCurrently$.pipe(filter(isDefined), first()).subscribe(event => {
       this.initForm(event);
       this.initValueChangesListener();
     });

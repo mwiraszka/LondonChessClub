@@ -18,8 +18,7 @@
         <a
           href="mailto:welcome@londonchess.ca"
           class="lcc-link"
-          alt="welcome@londonchess.ca"
-        >
+          alt="welcome@londonchess.ca">
           welcome&#64;londonchess.ca</a
         >.
       </p>
@@ -32,8 +31,7 @@
         <lcc-expansion-panel
           [headerTemplate]="headerTemplateRef"
           [contentTemplate]="contentTemplateRef"
-          [isOpen]="panel.label === '2023'"
-        >
+          [isOpen]="panel.label === '2023'">
         </lcc-expansion-panel>
 
         <ng-template #headerTemplateRef>
@@ -53,8 +51,7 @@
                 [itemSize]="436"
                 [minBufferPx]="1000"
                 [maxBufferPx]="2000"
-                orientation="horizontal"
-              >
+                orientation="horizontal">
                 <lcc-pgn-viewer
                   *cdkVirtualFor="
                     let pgn of panel.pgns;
@@ -62,8 +59,7 @@
                     templateCacheSize: 0
                   "
                   [index]="index"
-                  [pgn]="pgn"
-                >
+                  [pgn]="pgn">
                 </lcc-pgn-viewer>
               </cdk-virtual-scroll-viewport>
             } @placeholder {

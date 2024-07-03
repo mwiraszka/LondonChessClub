@@ -130,7 +130,7 @@ export class ArticlesEffects {
       switchMap(([, articleToDelete]) =>
         this.imagesService.deleteArticleImage(articleToDelete!),
       ),
-      switchMap((response) => {
+      switchMap(response => {
         if (response.error) {
           return throwError(() => new Error('Unable to delete image'));
         }
@@ -165,7 +165,9 @@ export class ArticlesEffects {
       ),
       map((response: ServiceResponse<Article[]>) =>
         response.error
-          ? ArticlesActions.getArticleThumbnailImageUrlsFailed({ error: response.error })
+          ? ArticlesActions.getArticleThumbnailImageUrlsFailed({
+              error: response.error,
+            })
           : ArticlesActions.getArticleThumbnailImageUrlsSucceeded({
               articles: response.payload!,
             }),
@@ -178,7 +180,7 @@ export class ArticlesEffects {
       ofType(ArticlesActions.fetchArticleSucceeded, ArticlesActions.setArticle),
       map(({ article }) => article.imageId),
       filter(isDefined),
-      map((imageId) => ArticlesActions.getArticleImageUrlRequested({ imageId })),
+      map(imageId => ArticlesActions.getArticleImageUrlRequested({ imageId })),
     );
   });
 
@@ -190,7 +192,7 @@ export class ArticlesEffects {
         const hydrateFromLocalStorage = isEditMode !== null;
         return this.imagesService.getArticleImageUrl(imageId, hydrateFromLocalStorage);
       }),
-      map((response) =>
+      map(response =>
         response.error
           ? ArticlesActions.getArticleImageUrlFailed({ error: response.error })
           : ArticlesActions.getArticleImageUrlSucceeded({

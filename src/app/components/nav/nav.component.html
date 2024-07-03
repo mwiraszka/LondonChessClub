@@ -7,8 +7,7 @@
     routerLinkActive="link-active"
     [routerLink]="NavPathTypes.HOME"
     [routerLinkActiveOptions]="{ exact: true }"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Home' : null"
-  >
+    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Home' : null">
     <span class="text">Home</span>
     <i-feather name="home"></i-feather>
   </a>
@@ -18,8 +17,7 @@
     class="nav-link"
     routerLinkActive="link-active"
     [routerLink]="NavPathTypes.ABOUT"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'About' : null"
-  >
+    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'About' : null">
     <span class="text">About</span>
     <i-feather name="info"></i-feather>
   </a>
@@ -29,8 +27,7 @@
     class="nav-link"
     routerLinkActive="link-active"
     [routerLink]="NavPathTypes.MEMBERS"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Members' : null"
-  >
+    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Members' : null">
     <span class="text">Members</span>
     <i-feather name="users"></i-feather>
   </a>
@@ -40,8 +37,7 @@
     class="nav-link"
     routerLinkActive="link-active"
     [routerLink]="NavPathTypes.SCHEDULE"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Schedule' : null"
-  >
+    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Schedule' : null">
     <span class="text">Schedule</span>
     <i-feather name="calendar"></i-feather>
   </a>
@@ -51,8 +47,7 @@
     class="nav-link"
     routerLinkActive="link-active"
     [routerLink]="NavPathTypes.NEWS"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'News' : null"
-  >
+    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'News' : null">
     <span class="text">News</span>
     <i-feather name="activity"></i-feather>
   </a>
@@ -62,8 +57,7 @@
     class="nav-link"
     routerLinkActive="link-active"
     [routerLink]="NavPathTypes.CITY_CHAMPION"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'City Champion' : null"
-  >
+    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'City Champion' : null">
     <span class="text">City&nbsp;Champion</span>
     <i-feather name="award"></i-feather>
   </a>
@@ -73,8 +67,7 @@
     class="nav-link"
     routerLinkActive="link-active"
     [routerLink]="NavPathTypes.PHOTO_GALLERY"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Photo Gallery' : null"
-  >
+    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Photo Gallery' : null">
     <span class="text">Photo&nbsp;Gallery</span>
     <i-feather name="camera"></i-feather>
   </a>
@@ -84,8 +77,7 @@
     class="nav-link"
     routerLinkActive="link-active"
     [routerLink]="NavPathTypes.GAME_ARCHIVES"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Game Archives' : null"
-  >
+    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Game Archives' : null">
     <span class="text">Game&nbsp;Archives</span>
     <i-feather name="grid"></i-feather>
   </a>
@@ -96,8 +88,7 @@
     <i-feather name="settings"></i-feather>
     <i-feather
       [name]="isDropdownOpen ? 'chevron-down' : 'chevron-up'"
-      class="chevron-icon"
-    >
+      class="chevron-icon">
     </i-feather>
 
     <div class="lcc-dropdown user-dropdown" dropdown (opened)="isDropdownOpen = $event">
@@ -120,8 +111,7 @@
             <a
               aria-label="Change password"
               class="lcc-dropdown-link"
-              [routerLink]="NavPathTypes.CHANGE_PASSWORD"
-            >
+              [routerLink]="NavPathTypes.CHANGE_PASSWORD">
               <span>Change password</span>
             </a>
           </li>
@@ -130,8 +120,7 @@
             <a
               aria-label="Log out"
               class="lcc-dropdown-link"
-              [routerLink]="NavPathTypes.LOGOUT"
-            >
+              [routerLink]="NavPathTypes.LOGOUT">
               <span>Log out</span>
             </a>
           </li>
@@ -140,8 +129,7 @@
             <a
               aria-label="Admin login"
               class="lcc-dropdown-link"
-              [routerLink]="NavPathTypes.LOGIN"
-            >
+              [routerLink]="NavPathTypes.LOGIN">
               <span>Admin login</span>
             </a>
           </li>

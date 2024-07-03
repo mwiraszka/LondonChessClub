@@ -47,17 +47,17 @@ export class ImagesService {
   ): Observable<ServiceResponse<Article[]>> {
     // TODO: Implement an article image endpoint for fetching multiple image urls in a single call
     return of(articles).pipe(
-      switchMap((articles) => {
+      switchMap(articles => {
         const articlesWithThumbnailImageUrl$: Observable<Article>[] = [];
 
-        articles.forEach((article) => {
+        articles.forEach(article => {
           if (!article.imageId) {
             throw new Error('Article has no banner image ID');
           }
 
           const thumbnailImageId = `${article.imageId}-600x400`;
           const updatedArticle$ = this.getArticleImageUrl(thumbnailImageId).pipe(
-            map((response) => {
+            map(response => {
               if (!response.payload) {
                 throw new Error(
                   'Unable to get a presigned URL for all article thumbnails',
@@ -71,7 +71,7 @@ export class ImagesService {
 
         return forkJoin(articlesWithThumbnailImageUrl$);
       }),
-      map((articles) => {
+      map(articles => {
         return { payload: articles };
       }),
     );
@@ -119,14 +119,16 @@ export class ImagesService {
           );
       }),
       catchError(() =>
-        of({ error: new Error('Failed while attempting to send preflight request') }),
+        of({
+          error: new Error('Failed while attempting to send preflight request'),
+        }),
       ),
     );
   }
 
   getArticleImageFile(imageUrl: Url): Observable<ServiceResponse<File>> {
     return from(this.buildImageFileFromUrl(imageUrl)).pipe(
-      map((imageFile) => {
+      map(imageFile => {
         return { payload: imageFile };
       }),
       catchError(() => of({ error: new Error('Failed to build file from URL') })),

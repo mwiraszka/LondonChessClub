@@ -39,7 +39,7 @@ export class DropdownDirective {
 
     const clickedOnDropdownLink = Array.from(
       this._document.querySelectorAll('.lcc-dropdown .lcc-dropdown-link'),
-    ).some((element) => element?.contains(targetElement));
+    ).some(element => element?.contains(targetElement));
 
     const clickedOutside = !this.dropdownElement.contains(targetElement);
 

@@ -4,8 +4,7 @@
       <a
         class="banner-message"
         [routerLink]="NavPathTypes.SCHEDULE"
-        (click)="facade.onClearBanner()"
-      >
+        (click)="facade.onClearBanner()">
         <span>
           Next event: <b>{{ upcomingEvent.title }}</b> on
           <b>{{ setLocalTime(upcomingEvent.eventDate) | formatDate: 'short' }}</b>

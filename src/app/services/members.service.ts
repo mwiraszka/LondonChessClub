@@ -25,14 +25,14 @@ export class MembersService {
 
   getMember(id: string): Observable<ServiceResponse<Member>> {
     return this.authService.token().pipe(
-      switchMap((token) =>
+      switchMap(token =>
         this.http.get<FlatMember>(this.PRIVATE_API_ENDPOINT + id, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
         }),
       ),
-      map((member) => ({ payload: this.adaptForFrontend([member])[0] })),
+      map(member => ({ payload: this.adaptForFrontend([member])[0] })),
       catchError(() => of({ error: new Error('Failed to fetch member from database') })),
     );
   }
@@ -40,21 +40,21 @@ export class MembersService {
   getMembers(isAdmin: boolean): Observable<ServiceResponse<Member[]>> {
     if (isAdmin) {
       return this.authService.token().pipe(
-        switchMap((token) =>
+        switchMap(token =>
           this.http.get<FlatMember[]>(this.PRIVATE_API_ENDPOINT, {
             headers: new HttpHeaders({
               Authorization: token,
             }),
           }),
         ),
-        map((members) => ({ payload: this.adaptForFrontend(members) })),
+        map(members => ({ payload: this.adaptForFrontend(members) })),
         catchError(() =>
           of({ error: new Error('Failed to fetch members from database') }),
         ),
       );
     } else {
       return this.http.get<FlatMember[]>(this.PUBLIC_API_ENDPOINT).pipe(
-        map((members) => ({ payload: this.adaptForFrontend(members) })),
+        map(members => ({ payload: this.adaptForFrontend(members) })),
         catchError(() =>
           of({ error: new Error('Failed to fetch members from database') }),
         ),
@@ -65,7 +65,7 @@ export class MembersService {
   addMember(memberToAdd: Member): Observable<ServiceResponse<Member>> {
     const flattenedMember = this.adaptForBackend([memberToAdd])[0];
     return this.authService.token().pipe(
-      switchMap((token) =>
+      switchMap(token =>
         this.http.post<null>(this.PRIVATE_API_ENDPOINT, flattenedMember, {
           headers: new HttpHeaders({
             Authorization: token,
@@ -81,7 +81,7 @@ export class MembersService {
     const flattenedMember = this.adaptForBackend([memberToUpdate])[0];
 
     return this.authService.token().pipe(
-      switchMap((token) =>
+      switchMap(token =>
         this.http.put<null>(
           this.PRIVATE_API_ENDPOINT + flattenedMember.id,
           flattenedMember,
@@ -99,7 +99,7 @@ export class MembersService {
 
   deleteMember(memberToDelete: Member): Observable<ServiceResponse<Member>> {
     return this.authService.token().pipe(
-      switchMap((token) =>
+      switchMap(token =>
         this.http.delete<null>(this.PRIVATE_API_ENDPOINT + memberToDelete.id, {
           headers: new HttpHeaders({
             Authorization: token,
@@ -112,7 +112,7 @@ export class MembersService {
   }
 
   private adaptForFrontend(members: FlatMember[]): Member[] {
-    return members.map((member) => {
+    return members.map(member => {
       return {
         id: member.id,
         firstName: member.firstName!,
@@ -146,7 +146,7 @@ export class MembersService {
   }
 
   private adaptForBackend(members: Member[]): FlatMember[] {
-    return members.map((member) => {
+    return members.map(member => {
       return {
         id: member.id,
         firstName: member.firstName!,

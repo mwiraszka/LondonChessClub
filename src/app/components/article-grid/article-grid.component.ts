@@ -31,7 +31,7 @@ export class ArticleGridComponent implements OnInit {
   ngOnInit(): void {
     this.facade.fetchArticles();
 
-    this.facade.articles$.pipe(untilDestroyed(this)).subscribe((articles) => {
+    this.facade.articles$.pipe(untilDestroyed(this)).subscribe(articles => {
       this.articles = articles.slice(0, this.maxArticles ?? articles.length);
     });
   }

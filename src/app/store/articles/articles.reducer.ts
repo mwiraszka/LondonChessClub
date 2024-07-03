@@ -21,7 +21,7 @@ const articlesReducer = createReducer(
     ArticlesActions.fetchArticleFailed,
     ArticlesActions.deleteArticleFailed,
     ArticlesActions.deleteArticleCancelled,
-    (state) => ({
+    state => ({
       ...state,
       selectedArticle: null,
       articleCurrently: null,
@@ -35,7 +35,7 @@ const articlesReducer = createReducer(
     (state, { article }) => ({
       ...state,
       articles: getSortedArticles([
-        ...state.articles.filter((storedArticle) => storedArticle.id !== article.id),
+        ...state.articles.filter(storedArticle => storedArticle.id !== article.id),
         article,
       ]),
       selectedArticle: null,
@@ -47,7 +47,7 @@ const articlesReducer = createReducer(
   on(ArticlesActions.fetchArticleSucceeded, (state, { article }) => ({
     ...state,
     articles: [
-      ...state.articles.filter((storedArticle) => storedArticle.id !== article.id),
+      ...state.articles.filter(storedArticle => storedArticle.id !== article.id),
       article,
     ],
   })),
@@ -68,7 +68,7 @@ const articlesReducer = createReducer(
       : null,
   })),
 
-  on(ArticlesActions.revertArticleImageChange, (state) => ({
+  on(ArticlesActions.revertArticleImageChange, state => ({
     ...state,
     articleCurrently: {
       ...state.articleCurrently!,
@@ -89,7 +89,7 @@ const articlesReducer = createReducer(
 
   on(ArticlesActions.deleteArticleSucceeded, (state, { article }) => ({
     ...state,
-    articles: state.articles.filter((storedArticle) => storedArticle.id !== article.id),
+    articles: state.articles.filter(storedArticle => storedArticle.id !== article.id),
     articleCurrently: null,
     selectedArticle: null,
   })),
@@ -106,10 +106,10 @@ export function reducer(state: ArticlesState, action: Action): ArticlesState {
 
 function getSortedArticles(articles: Article[]): Article[] {
   const stickyArticles = articles
-    .filter((article) => article.isSticky)
+    .filter(article => article.isSticky)
     .sort(customSort('modificationInfo.dateCreated', false));
   const remainingArticles = articles
-    .filter((article) => !article.isSticky)
+    .filter(article => !article.isSticky)
     .sort(customSort('modificationInfo.dateCreated', false));
 
   return [...stickyArticles, ...remainingArticles];

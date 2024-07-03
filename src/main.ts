@@ -10,4 +10,4 @@ if (environment.production) {
 
 platformBrowserDynamic()
   .bootstrapModule(AppModule)
-  .catch((error) => console.error(`[LCC] Bootstrap error: ${error}`));
+  .catch(error => console.error(`[LCC] Bootstrap error: ${error}`));

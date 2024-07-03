@@ -6,15 +6,13 @@
         id="event-date-input"
         type="text"
         name="event-date"
-        formControlName="eventDate"
-      />
+        formControlName="eventDate" />
       <div class="lcc-form-error-container">
         @if (hasError(form.controls['eventDate'])) {
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['eventDate'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['eventDate'])">
           </i-feather>
         }
       </div>
@@ -26,8 +24,7 @@
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['title'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['title'])">
           </i-feather>
         }
       </div>
@@ -38,16 +35,14 @@
         class="details-textarea"
         name="details"
         formControlName="details"
-        maxlength="200"
-      >
+        maxlength="200">
       </textarea>
       <div class="lcc-form-error-container">
         @if (hasError(form.controls['details'])) {
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['details'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['details'])">
           </i-feather>
         }
       </div>
@@ -61,8 +56,7 @@
             name="type"
             formControlName="type"
             value="blitz tournament"
-            [checked]="form.value.type === 'blitz tournament'"
-          />
+            [checked]="form.value.type === 'blitz tournament'" />
           <label for="blitz-input">Blitz tournament</label>
         </div>
         <div>
@@ -72,8 +66,7 @@
             name="type"
             formControlName="type"
             value="rapid tournament"
-            [checked]="form.value.type === 'rapid tournament'"
-          />
+            [checked]="form.value.type === 'rapid tournament'" />
           <label for="rapid-input">Rapid tournament</label>
         </div>
         <div>
@@ -83,8 +76,7 @@
             name="type"
             formControlName="type"
             value="active tournament"
-            [checked]="form.value.type === 'active tournament'"
-          />
+            [checked]="form.value.type === 'active tournament'" />
           <label for="active-input">Active tournament</label>
         </div>
         <div>
@@ -94,8 +86,7 @@
             name="type"
             formControlName="type"
             value="lecture"
-            [checked]="form.value.type === 'lecture'"
-          />
+            [checked]="form.value.type === 'lecture'" />
           <label for="lecture-input">Lecture</label>
         </div>
         <div>
@@ -105,8 +96,7 @@
             name="type"
             formControlName="type"
             value="simul"
-            [checked]="form.value.type === 'simul'"
-          />
+            [checked]="form.value.type === 'simul'" />
           <label for="simul-input">Simul</label>
         </div>
         <div>
@@ -116,8 +106,7 @@
             name="type"
             formControlName="type"
             value="championship"
-            [checked]="form.value.type === 'championship'"
-          />
+            [checked]="form.value.type === 'championship'" />
           <label for="championship-input">Championship</label>
         </div>
         <div>
@@ -127,8 +116,7 @@
             name="type"
             formControlName="type"
             value="closed"
-            [checked]="form.value.type === 'closed'"
-          />
+            [checked]="form.value.type === 'closed'" />
           <label for="casual-input">Closed</label>
         </div>
         <div>
@@ -138,8 +126,7 @@
             name="type"
             formControlName="type"
             value="other"
-            [checked]="form.value.type === 'other'"
-          />
+            [checked]="form.value.type === 'other'" />
           <label for="casual-input">Other</label>
         </div>
       </fieldset>
@@ -150,15 +137,13 @@
         type="text"
         name="associated-article-id"
         formControlName="associatedArticleId"
-        maxlength="21"
-      />
+        maxlength="21" />
       <div class="lcc-form-error-container">
         @if (hasError(form.controls['associatedArticleId'])) {
           <i-feather
             name="alert-triangle"
             class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['associatedArticleId'])"
-          >
+            [tooltip]="getErrorMessage(form.controls['associatedArticleId'])">
           </i-feather>
         }
       </div>
@@ -179,8 +164,7 @@
       <button
         class="lcc-primary-button"
         type="submit"
-        [disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)"
-      >
+        [disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
         @if (facade.isEditMode$ | async) {
           Update
         } @else {

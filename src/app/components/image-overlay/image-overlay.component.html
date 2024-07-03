@@ -6,23 +6,20 @@
     <img
       id="overlay-image"
       [src]="'assets/photos/' + (facade.photo$ | async)?.filename + '.jpg'"
-      (load)="imageLoaded()"
-    />
+      (load)="imageLoaded()" />
     <h4 class="description lcc-truncate">
       {{ (facade.photo$ | async)?.description }}
     </h4>
     @if (imageHeight) {
       <div
         class="image-navigation-icons-container"
-        [style.bottom.px]="32 + 50 / 2 + imageHeight / 2"
-      >
+        [style.bottom.px]="32 + 50 / 2 + imageHeight / 2">
         <div class="previous-image-icon-container">
           <i-feather
             name="chevron-left"
             class="previous-image-icon"
             [tooltip]="'Previous photo'"
-            (click)="onPreviousImage()"
-          >
+            (click)="onPreviousImage()">
           </i-feather>
         </div>
         <div class="next-image-icon-container">
@@ -30,8 +27,7 @@
             name="chevron-right"
             class="next-image-icon"
             [tooltip]="'Next photo'"
-            (click)="onNextImage()"
-          >
+            (click)="onNextImage()">
           </i-feather>
         </div>
       </div>

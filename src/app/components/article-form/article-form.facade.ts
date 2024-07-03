@@ -30,7 +30,7 @@ export class ArticleFormFacade {
   onSubmit(article: Article): void {
     this.isEditMode$
       .pipe(
-        map((isEditMode) =>
+        map(isEditMode =>
           isEditMode
             ? this.store.dispatch(
                 ArticlesActions.updateArticleSelected({

@@ -19,7 +19,7 @@ export class AuthEffects {
       ofType(AuthActions.loginRequested),
       switchMap(({ request }) => {
         return this.authService.logIn(request).pipe(
-          map((loginResponse) => {
+          map(loginResponse => {
             if (loginResponse.error) {
               return AuthActions.loginFailed({ error: loginResponse.error });
             } else if (
@@ -31,7 +31,9 @@ export class AuthEffects {
                 tempInitialPassword: loginResponse.tempInitialPassword,
               });
             } else {
-              return AuthActions.loginSucceeded({ user: loginResponse.adminUser! });
+              return AuthActions.loginSucceeded({
+                user: loginResponse.adminUser!,
+              });
             }
           }),
           catchError(() =>
@@ -61,9 +63,11 @@ export class AuthEffects {
       ofType(AuthActions.codeForPasswordChangeRequested),
       switchMap(({ email }) => {
         return this.authService.sendChangePasswordCode(email).pipe(
-          map((response) => {
+          map(response => {
             return response?.error
-              ? AuthActions.codeForPasswordChangeFailed({ error: response.error })
+              ? AuthActions.codeForPasswordChangeFailed({
+                  error: response.error,
+                })
               : AuthActions.codeForPasswordChangeSucceeded();
           }),
           catchError(() =>
@@ -85,7 +89,7 @@ export class AuthEffects {
       ofType(AuthActions.passwordChangeRequested),
       switchMap(({ request }) => {
         return this.authService.changePassword(request).pipe(
-          map((response) => {
+          map(response => {
             return response?.error
               ? AuthActions.passwordChangeFailed({ error: response.error })
               : AuthActions.passwordChangeSucceeded({

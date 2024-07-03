@@ -25,14 +25,14 @@ export class ScheduleService {
 
   getEvent(id: string): Observable<ServiceResponse<ClubEvent>> {
     return this.http.get<FlatClubEvent>(this.API_ENDPOINT + id).pipe(
-      map((event) => ({ payload: this.adaptForFrontend([event])[0] })),
+      map(event => ({ payload: this.adaptForFrontend([event])[0] })),
       catchError(() => of({ error: new Error('Failed to fetch event from database') })),
     );
   }
 
   getEvents(): Observable<ServiceResponse<ClubEvent[]>> {
     return this.http.get<FlatClubEvent[]>(this.API_ENDPOINT).pipe(
-      map((events) => {
+      map(events => {
         const adaptedEvents = this.adaptForFrontend(events);
         const sortedEvents = [...adaptedEvents].sort(customSort('eventDate', false));
         return { payload: sortedEvents };
@@ -44,7 +44,7 @@ export class ScheduleService {
   addEvent(eventToAdd: ClubEvent): Observable<ServiceResponse<ClubEvent>> {
     const flattenedEvent = this.adaptForBackend([eventToAdd])[0];
     return this.authService.token().pipe(
-      switchMap((token) =>
+      switchMap(token =>
         this.http.post<null>(this.API_ENDPOINT, flattenedEvent, {
           headers: new HttpHeaders({
             Authorization: token,
@@ -59,7 +59,7 @@ export class ScheduleService {
   updateEvent(eventToUpdate: ClubEvent): Observable<ServiceResponse<ClubEvent>> {
     const flattenedEvent = this.adaptForBackend([eventToUpdate])[0];
     return this.authService.token().pipe(
-      switchMap((token) =>
+      switchMap(token =>
         this.http.put<null>(this.API_ENDPOINT + eventToUpdate.id, flattenedEvent, {
           headers: new HttpHeaders({
             Authorization: token,
@@ -73,7 +73,7 @@ export class ScheduleService {
 
   deleteEvent(eventToDelete: ClubEvent): Observable<ServiceResponse<ClubEvent>> {
     return this.authService.token().pipe(
-      switchMap((token) =>
+      switchMap(token =>
         this.http.delete<null>(this.API_ENDPOINT + eventToDelete.id, {
           headers: new HttpHeaders({
             Authorization: token,
@@ -86,7 +86,7 @@ export class ScheduleService {
   }
 
   private adaptForFrontend(events: FlatClubEvent[]): ClubEvent[] {
-    return events.map((event) => {
+    return events.map(event => {
       return {
         id: event.id,
         eventDate: event.eventDate,
@@ -105,7 +105,7 @@ export class ScheduleService {
   }
 
   private adaptForBackend(events: ClubEvent[]): FlatClubEvent[] {
-    return events.map((event) => {
+    return events.map(event => {
       return {
         id: event.id,
         eventDate: event.eventDate,

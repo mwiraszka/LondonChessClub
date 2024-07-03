@@ -31,13 +31,13 @@ export class AppFacade {
     @Inject(DOCUMENT) private document: Document,
     private readonly store: Store,
   ) {
-    this.isDarkMode$.pipe(untilDestroyed(this)).subscribe((isDarkMode) => {
+    this.isDarkMode$.pipe(untilDestroyed(this)).subscribe(isDarkMode => {
       this.document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
     });
 
     this.bannerLastCleared$
       .pipe(first(), filter(isDefined))
-      .subscribe((lastClearedTime) => {
+      .subscribe(lastClearedTime => {
         const currentTime = new Date().getTime();
         if (currentTime - lastClearedTime > this.ONE_DAY_MS) {
           this.store.dispatch(UserSettingsActions.reinstateUpcomingEventBanner());

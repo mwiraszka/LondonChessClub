@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
-import { IconsModule } from '@app/icons';
-import { TooltipModule } from '@app/components/tooltip';
 import { RouterModule } from '@angular/router';
+
+import { TooltipModule } from '@app/components/tooltip';
+import { IconsModule } from '@app/icons';
 
 import { AdminControlsComponent } from './admin-controls.component';
 

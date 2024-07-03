@@ -10,7 +10,7 @@ import { formatDate } from '@app/utils';
 export class FormatDatePipe implements PipeTransform {
   transform(
     date?: string | Date,
-    format?: 'long' | 'long no-time' | 'short' | 'short no-time',
+    format?: 'long' | 'long no-time' | 'short' | 'short no-time'
   ): string {
     return date ? formatDate(date, format) : '';
   }

@@ -25,11 +25,11 @@ export class ScheduleEffects {
               ? ScheduleActions.fetchEventsFailed({ error: response.error })
               : ScheduleActions.fetchEventsSucceeded({
                   allEvents: response.payload!,
-                }),
-          ),
-        ),
+                })
+          )
+        )
       ),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.display(false))
     );
   });
 
@@ -46,11 +46,11 @@ export class ScheduleEffects {
                 })
               : ScheduleActions.fetchEventSucceeded({
                   event: response.payload!,
-                }),
-          ),
-        ),
+                })
+          )
+        )
       ),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.display(false))
     );
   });
 
@@ -78,11 +78,11 @@ export class ScheduleEffects {
               ? ScheduleActions.addEventFailed({ error: response.error })
               : ScheduleActions.addEventSucceeded({
                   event: response.payload!,
-                }),
-          ),
+                })
+          )
         );
       }),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.display(false))
     );
   });
 
@@ -110,11 +110,11 @@ export class ScheduleEffects {
               ? ScheduleActions.updateEventFailed({ error: response.error })
               : ScheduleActions.updateEventSucceeded({
                   event: response.payload!,
-                }),
-          ),
+                })
+          )
         );
       }),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.display(false))
     );
   });
 
@@ -130,11 +130,11 @@ export class ScheduleEffects {
               ? ScheduleActions.deleteEventFailed({ error: response.error })
               : ScheduleActions.deleteEventSucceeded({
                   event: response.payload!,
-                }),
-          ),
-        ),
+                })
+          )
+        )
       ),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.display(false))
     );
   });
 
@@ -142,6 +142,6 @@ export class ScheduleEffects {
     private readonly actions$: Actions,
     private readonly store: Store,
     private loaderService: LoaderService,
-    private scheduleService: ScheduleService,
+    private scheduleService: ScheduleService
   ) {}
 }

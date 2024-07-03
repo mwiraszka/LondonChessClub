@@ -25,7 +25,7 @@ export class ImagesService {
       map(() => {
         return { payload: article };
       }),
-      catchError(() => of({ error: new Error('Failed to store image in database') })),
+      catchError(() => of({ error: new Error('Failed to store image in database') }))
     );
   }
 
@@ -36,44 +36,42 @@ export class ImagesService {
         map(() => {
           return { payload: article };
         }),
-        catchError(() =>
-          of({ error: new Error('Failed to delete image from database') }),
-        ),
+        catchError(() => of({ error: new Error('Failed to delete image from database') }))
       );
   }
 
   getArticleThumbnailImageUrls(
-    articles: Article[],
+    articles: Article[]
   ): Observable<ServiceResponse<Article[]>> {
     // TODO: Implement an article image endpoint for fetching multiple image urls in a single call
     return of(articles).pipe(
-      switchMap(articles => {
+      switchMap((articles) => {
         const articlesWithThumbnailImageUrl$: Observable<Article>[] = [];
 
-        articles.forEach(article => {
+        articles.forEach((article) => {
           if (!article.imageId) {
             throw new Error('Article has no banner image ID');
           }
 
           const thumbnailImageId = `${article.imageId}-600x400`;
           const updatedArticle$ = this.getArticleImageUrl(thumbnailImageId).pipe(
-            map(response => {
+            map((response) => {
               if (!response.payload) {
                 throw new Error(
-                  'Unable to get a presigned URL for all article thumbnails',
+                  'Unable to get a presigned URL for all article thumbnails'
                 );
               }
               return { ...article, thumbnailImageUrl: response.payload };
-            }),
+            })
           );
           articlesWithThumbnailImageUrl$.push(updatedArticle$);
         });
 
         return forkJoin(articlesWithThumbnailImageUrl$);
       }),
-      map(articles => {
+      map((articles) => {
         return { payload: articles };
-      }),
+      })
     );
   }
 
@@ -93,7 +91,7 @@ export class ImagesService {
 
   getArticleImageUrl(
     imageId?: string,
-    hydrateFromLocalStorage = false,
+    hydrateFromLocalStorage = false
   ): Observable<ServiceResponse<Url>> {
     if (hydrateFromLocalStorage) {
       const storedImageUrl = localStorage.getItem('imageUrl');
@@ -114,22 +112,22 @@ export class ImagesService {
           .get<ServiceResponse<Url>>(this.API_ENDPOINT + imageId)
           .pipe(
             catchError(() =>
-              of({ error: new Error('Failed to get image presigned URL') }),
-            ),
+              of({ error: new Error('Failed to get image presigned URL') })
+            )
           );
       }),
       catchError(() =>
-        of({ error: new Error('Failed while attempting to send preflight request') }),
-      ),
+        of({ error: new Error('Failed while attempting to send preflight request') })
+      )
     );
   }
 
   getArticleImageFile(imageUrl: Url): Observable<ServiceResponse<File>> {
     return from(this.buildImageFileFromUrl(imageUrl)).pipe(
-      map(imageFile => {
+      map((imageFile) => {
         return { payload: imageFile };
       }),
-      catchError(() => of({ error: new Error('Failed to build file from URL') })),
+      catchError(() => of({ error: new Error('Failed to build file from URL') }))
     );
   }
 

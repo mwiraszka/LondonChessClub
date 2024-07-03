@@ -1,31 +1,29 @@
 @if (facade.showModal$ | async) {
-<lcc-modal></lcc-modal>
+  <lcc-modal></lcc-modal>
 }
 
 @if (facade.showImageOverlay$ | async) {
-<lcc-image-overlay></lcc-image-overlay>
+  <lcc-image-overlay></lcc-image-overlay>
 }
 
+<div id="app-container" class="app-container">
+  @if ((facade.showUpcomingEventBanner$ | async) && (facade.upcomingEvent$ | async)) {
+    <lcc-upcoming-event-banner></lcc-upcoming-event-banner>
+  }
 
-<div id="app-container"
-		 class="app-container">
-	@if ((facade.showUpcomingEventBanner$ | async) && (facade.upcomingEvent$ | async)) {
-	<lcc-upcoming-event-banner></lcc-upcoming-event-banner>
-	}
+  <lcc-header></lcc-header>
+  <lcc-nav></lcc-nav>
 
-	<lcc-header></lcc-header>
-	<lcc-nav></lcc-nav>
+  <main>
+    <router-outlet>
+      @if (isLoading) {
+        <span class="lcc-loading-spinner"></span>
+      }
+      @if (facade.showToaster$ | async) {
+        <lcc-toaster></lcc-toaster>
+      }
+    </router-outlet>
+  </main>
 
-	<main>
-		<router-outlet>
-			@if (isLoading) {
-			<span class="lcc-loading-spinner"></span>
-			}
-			@if (facade.showToaster$ | async) {
-			<lcc-toaster></lcc-toaster>
-			}
-		</router-outlet>
-	</main>
-
-	<lcc-footer></lcc-footer>
+  <lcc-footer></lcc-footer>
 </div>

@@ -13,7 +13,7 @@ export class LoginScreenComponent implements OnInit {
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Log In');
     this.metaAndTitleService.updateDescription(
-      'Log in to your London Chess Club admin account',
+      'Log in to your London Chess Club admin account'
     );
   }
 }

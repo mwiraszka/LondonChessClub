@@ -13,7 +13,7 @@ export class ChangePasswordScreenComponent implements OnInit {
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Change Password');
     this.metaAndTitleService.updateDescription(
-      'Securely and conveniently change your London Chess Club password.',
+      'Securely and conveniently change your London Chess Club password.'
     );
   }
 }

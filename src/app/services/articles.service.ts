@@ -20,26 +20,24 @@ export class ArticlesService {
   constructor(
     private authService: AuthService,
     private imagesService: ImagesService,
-    private http: HttpClient,
+    private http: HttpClient
   ) {}
 
   getArticle(id: string): Observable<ServiceResponse<Article>> {
     return this.http.get<FlatArticle>(this.API_ENDPOINT + id).pipe(
-      map(article => {
+      map((article) => {
         return { payload: this.adaptForFrontend([article])[0] };
       }),
-      catchError(() => of({ error: new Error('Failed to fetch article from database') })),
+      catchError(() => of({ error: new Error('Failed to fetch article from database') }))
     );
   }
 
   getArticles(): Observable<ServiceResponse<Article[]>> {
     return this.http.get<FlatArticle[]>(this.API_ENDPOINT).pipe(
-      map(articles => {
+      map((articles) => {
         return { payload: this.adaptForFrontend(articles) };
       }),
-      catchError(() =>
-        of({ error: new Error('Failed to fetch articles from database') }),
-      ),
+      catchError(() => of({ error: new Error('Failed to fetch articles from database') }))
     );
   }
 
@@ -53,15 +51,15 @@ export class ArticlesService {
     const flattenedArticle = this.adaptForBackend([modifiedArticleToAdd])[0];
 
     return this.authService.token().pipe(
-      switchMap(token =>
+      switchMap((token) =>
         this.http.post<null>(this.API_ENDPOINT, flattenedArticle, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
-        }),
+        })
       ),
       switchMap(() => this.imagesService.uploadArticleImage(modifiedArticleToAdd)),
-      catchError(() => of({ error: new Error('Failed to add article to database') })),
+      catchError(() => of({ error: new Error('Failed to add article to database') }))
     );
   }
 
@@ -69,12 +67,12 @@ export class ArticlesService {
     const flattenedArticle = this.adaptForBackend([articleToUpdate])[0];
 
     return this.authService.token().pipe(
-      switchMap(token =>
+      switchMap((token) =>
         this.http.put<null>(this.API_ENDPOINT + flattenedArticle.id, flattenedArticle, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
-        }),
+        })
       ),
       switchMap(() => {
         if (isEmpty(articleToUpdate.imageFile)) {
@@ -83,28 +81,26 @@ export class ArticlesService {
           return this.imagesService.uploadArticleImage(articleToUpdate);
         }
       }),
-      catchError(() => of({ error: new Error('Failed to update article') })),
+      catchError(() => of({ error: new Error('Failed to update article') }))
     );
   }
 
   deleteArticle(articleToDelete: Article): Observable<ServiceResponse<Article>> {
     return this.authService.token().pipe(
-      switchMap(token =>
+      switchMap((token) =>
         this.http.delete<null>(this.API_ENDPOINT + articleToDelete.id, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
-        }),
+        })
       ),
       switchMap(() => this.imagesService.deleteArticleImage(articleToDelete)),
-      catchError(() =>
-        of({ error: new Error('Failed to delete article from database') }),
-      ),
+      catchError(() => of({ error: new Error('Failed to delete article from database') }))
     );
   }
 
   private adaptForFrontend(articles: FlatArticle[]): Article[] {
-    return articles.map(article => {
+    return articles.map((article) => {
       return {
         id: article.id,
         title: article.title,
@@ -125,7 +121,7 @@ export class ArticlesService {
   }
 
   private adaptForBackend(articles: Article[]): FlatArticle[] {
-    return articles.map(article => {
+    return articles.map((article) => {
       return {
         id: article.id,
         title: article.title,

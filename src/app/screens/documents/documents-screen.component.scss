@@ -118,7 +118,8 @@ $document-icon-height: 18px;
     height: 8px;
     background-color: var(--lcc-color--documentsScreen-pdfViewerLoaderBoxBackground);
     box-shadow: 1px 1px 5px 0 var(--lcc-color--documentsScreen-pdfViewerLoaderBoxShadow);
-    border-bottom: 4px solid var(--lcc-color--documentsScreen-pdfViewerLoaderBoxBorderBottom);
+    border-bottom: 4px solid
+      var(--lcc-color--documentsScreen-pdfViewerLoaderBoxBorderBottom);
   }
 
   pdf-viewer {
@@ -128,20 +129,24 @@ $document-icon-height: 18px;
 
     ::ng-deep .ng2-pdf-viewer-container {
       overflow-x: hidden;
-    
+
       &::-webkit-scrollbar {
-        background-color: var(--lcc-color--documentsScreen-pdfViewerScrollbarBackground) !important;
+        background-color: var(
+          --lcc-color--documentsScreen-pdfViewerScrollbarBackground
+        ) !important;
       }
 
       &::-webkit-scrollbar-thumb {
         background-color: var(--lcc-color--documentsScreen-pdfViewerScrollbar) !important;
       }
-      
+
       .page {
         margin: 0;
 
         .textLayer {
-          background-color: var(--lcc-color--documentsScreen-pdfViewerPageBackground) !important;
+          background-color: var(
+            --lcc-color--documentsScreen-pdfViewerPageBackground
+          ) !important;
         }
       }
     }

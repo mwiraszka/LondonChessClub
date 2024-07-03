@@ -84,7 +84,7 @@ a {
   font-style: normal;
 
   &:hover,
-  &>*:hover {
+  & > *:hover {
     cursor: pointer;
   }
 }

@@ -22,16 +22,16 @@ export class MemberFormFacade {
   onSubmit(member: Member): void {
     this.isEditMode$
       .pipe(
-        map(isEditMode =>
+        map((isEditMode) =>
           isEditMode
             ? this.store.dispatch(
                 MembersActions.updateMemberSelected({
                   member,
-                }),
+                })
               )
-            : this.store.dispatch(MembersActions.addMemberSelected({ member })),
+            : this.store.dispatch(MembersActions.addMemberSelected({ member }))
         ),
-        first(),
+        first()
       )
       .subscribe();
   }

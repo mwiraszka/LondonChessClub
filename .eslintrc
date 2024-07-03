@@ -1,15 +1,15 @@
 {
   "env": {
-    "jest": true
+    "jest": true,
   },
   "overrides": [
     {
+      "files": ["*.ts"],
       "extends": [
         "eslint:recommended",
         "plugin:prettier/recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
       ],
-      "files": ["*.ts"],
       "rules": {
         "@typescript-eslint/ban-types": "off",
         "prettier/prettier": [
@@ -24,13 +24,13 @@
               "^@app/(.*)$",
               "^@assets/(.*)$",
               "^@environments/(.*)$",
-              "^[./]"
+              "^[./]",
             ],
             "importOrderCaseInsensitive": false,
             "importOrderParserPlugins": [
               "typescript",
               "classProperties",
-              "decorators-legacy"
+              "decorators-legacy",
             ],
             "importOrderSeparation": true,
             "importOrderSortSpecifiers": true,
@@ -39,15 +39,28 @@
             "singleQuote": true,
             "tabWidth": 2,
             "trailingComma": "all",
-            "useTabs": false
-          }
-        ]
-      }
-    }
+            "useTabs": false,
+          },
+        ],
+      },
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {},
+    },
+    {
+      "files": ["*.html"],
+      "excludedFiles": ["*inline-template-*.component.html"],
+      "extends": ["plugin:prettier/recommended"],
+      "rules": {
+        "prettier/prettier": ["error", { "parser": "angular" }],
+      },
+    },
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": ["./tsconfig.json"]
+    "project": ["./tsconfig.json"],
   },
-  "root": true
+  "root": true,
 }

@@ -15,15 +15,15 @@ const photosReducer = createReducer(
 
   on(PhotosActions.imageOverlayClosed, () => initialState),
 
-  on(PhotosActions.previousPhotoRequested, state => ({
+  on(PhotosActions.previousPhotoRequested, (state) => ({
     ...state,
     overlayPhoto: getPreviousPhoto(state.photos, state.overlayPhoto),
   })),
 
-  on(PhotosActions.nextPhotoRequested, state => ({
+  on(PhotosActions.nextPhotoRequested, (state) => ({
     ...state,
     overlayPhoto: getNextPhoto(state.photos, state.overlayPhoto),
-  })),
+  }))
 );
 
 export function reducer(state: PhotosState, action: Action) {
@@ -36,7 +36,7 @@ function getPreviousPhoto(photos: Photo[], currentPhoto: Photo | null): Photo | 
   }
 
   const currentPhotoIndex = photos
-    .map(photo => photo.filename)
+    .map((photo) => photo.filename)
     .indexOf(currentPhoto.filename);
 
   return currentPhotoIndex > 0
@@ -50,7 +50,7 @@ function getNextPhoto(photos: Photo[], currentPhoto: Photo | null): Photo | null
   }
 
   const currentPhotoIndex = photos
-    .map(photo => photo.filename)
+    .map((photo) => photo.filename)
     .indexOf(currentPhoto.filename);
 
   return currentPhotoIndex < photos.length - 1

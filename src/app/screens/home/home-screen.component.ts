@@ -31,7 +31,7 @@ export class HomeScreenComponent implements OnInit {
     this.metaAndTitleService.updateDescription(
       `The London Chess Club is open to players of all ages and abilities. We host
       regular blitz and rapid chess tournaments, as well as a variety of lectures, simuls
-      and team competitions.`,
+      and team competitions.`
     );
   }
 }

@@ -1,9 +1,6 @@
 # Generated code
 /node_modules
 
-# Beautify config
-.jsbeautifyrc
-
 # Prettier config
 .prettierrc
 

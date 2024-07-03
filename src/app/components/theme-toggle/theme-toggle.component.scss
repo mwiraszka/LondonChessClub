@@ -7,7 +7,7 @@ $slider-diameter: 16px;
 :host {
   height: $switch-height;
 }
-  
+
 .theme-mode-switch {
   position: relative;
   display: inline-block;
@@ -46,7 +46,9 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-  transform: translateX(calc($switch-width - $slider-diameter) - ($switch-height - $slider-diameter));
+  transform: translateX(
+    calc($switch-width - $slider-diameter) - ($switch-height - $slider-diameter)
+  );
 }
 
 .slider.round {

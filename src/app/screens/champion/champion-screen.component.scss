@@ -36,16 +36,16 @@
       'history history history'
       'champ-2023 trophies-2023 trophies-2023'
       'champ-2022 cup champ-2019'
-        'past-winners past-winners past-winners';
-    }
+      'past-winners past-winners past-winners';
+  }
 
   @include respond-to('gt-lg') {
     grid-template-columns: 3fr 2fr 2fr 2fr;
     grid-template-areas:
-    'history history history past-winners'
-    'champ-2023 trophies-2023 trophies-2023 past-winners'
-    'champ-2022 cup champ-2019 past-winners'
-    '. . . past-winners'
+      'history history history past-winners'
+      'champ-2023 trophies-2023 trophies-2023 past-winners'
+      'champ-2022 cup champ-2019 past-winners'
+      '. . . past-winners';
   }
 
   article {
@@ -70,7 +70,7 @@
       grid-area: history;
       padding: 16px;
       align-items: flex-start;
-      
+
       p {
         margin: 0.5em 0;
         color: var(--lcc-color--championScreen-historyText);
@@ -89,7 +89,7 @@
         border-radius: var(--lcc-borderRadius--large);
       }
     }
-    
+
     &.past-winners {
       grid-area: past-winners;
       padding: 16px;
@@ -129,7 +129,7 @@
         border-radius: var(--lcc-borderRadius--large);
       }
     }
-    
+
     &.champion-2019 {
       grid-area: champ-2019;
 

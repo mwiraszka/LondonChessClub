@@ -21,12 +21,12 @@ const articlesReducer = createReducer(
     ArticlesActions.fetchArticleFailed,
     ArticlesActions.deleteArticleFailed,
     ArticlesActions.deleteArticleCancelled,
-    state => ({
+    (state) => ({
       ...state,
       selectedArticle: null,
       articleCurrently: null,
       isEditMode: null,
-    }),
+    })
   ),
 
   on(
@@ -35,19 +35,19 @@ const articlesReducer = createReducer(
     (state, { article }) => ({
       ...state,
       articles: getSortedArticles([
-        ...state.articles.filter(storedArticle => storedArticle.id !== article.id),
+        ...state.articles.filter((storedArticle) => storedArticle.id !== article.id),
         article,
       ]),
       selectedArticle: null,
       articleCurrently: null,
       isEditMode: null,
-    }),
+    })
   ),
 
   on(ArticlesActions.fetchArticleSucceeded, (state, { article }) => ({
     ...state,
     articles: [
-      ...state.articles.filter(storedArticle => storedArticle.id !== article.id),
+      ...state.articles.filter((storedArticle) => storedArticle.id !== article.id),
       article,
     ],
   })),
@@ -68,7 +68,7 @@ const articlesReducer = createReducer(
       : null,
   })),
 
-  on(ArticlesActions.revertArticleImageChange, state => ({
+  on(ArticlesActions.revertArticleImageChange, (state) => ({
     ...state,
     articleCurrently: {
       ...state.articleCurrently!,
@@ -89,7 +89,7 @@ const articlesReducer = createReducer(
 
   on(ArticlesActions.deleteArticleSucceeded, (state, { article }) => ({
     ...state,
-    articles: state.articles.filter(storedArticle => storedArticle.id !== article.id),
+    articles: state.articles.filter((storedArticle) => storedArticle.id !== article.id),
     articleCurrently: null,
     selectedArticle: null,
   })),
@@ -97,7 +97,7 @@ const articlesReducer = createReducer(
   on(ArticlesActions.formDataChanged, (state, { article }) => ({
     ...state,
     articleCurrently: article,
-  })),
+  }))
 );
 
 export function reducer(state: ArticlesState, action: Action): ArticlesState {
@@ -106,10 +106,10 @@ export function reducer(state: ArticlesState, action: Action): ArticlesState {
 
 function getSortedArticles(articles: Article[]): Article[] {
   const stickyArticles = articles
-    .filter(article => article.isSticky)
+    .filter((article) => article.isSticky)
     .sort(customSort('modificationInfo.dateCreated', false));
   const remainingArticles = articles
-    .filter(article => !article.isSticky)
+    .filter((article) => !article.isSticky)
     .sort(customSort('modificationInfo.dateCreated', false));
 
   return [...stickyArticles, ...remainingArticles];
@@ -122,14 +122,14 @@ function getSortedArticles(articles: Article[]): Article[] {
  */
 function updateSelectedArticleForImageUrlChange(
   state: ArticlesState,
-  imageUrl: Url,
+  imageUrl: Url
 ): Article | null {
   // eslint-disable-next-line no-prototype-builtins
   return localStorage.hasOwnProperty('imageUrl')
     ? state.selectedArticle
     : state.selectedArticle
-    ? { ...state.selectedArticle, imageUrl }
-    : null;
+      ? { ...state.selectedArticle, imageUrl }
+      : null;
 }
 
 /**
@@ -137,12 +137,12 @@ function updateSelectedArticleForImageUrlChange(
  */
 function updateSelectedArticleForImageFileChange(
   state: ArticlesState,
-  imageFile: File,
+  imageFile: File
 ): Article | null {
   // eslint-disable-next-line no-prototype-builtins
   return localStorage.hasOwnProperty('imageUrl')
     ? state.selectedArticle
     : state.selectedArticle
-    ? { ...state.selectedArticle, imageFile }
-    : null;
+      ? { ...state.selectedArticle, imageFile }
+      : null;
 }

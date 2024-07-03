@@ -8,7 +8,7 @@ import { ArticlesSelectors } from '@app/store/articles';
 export class ArticleEditorFacade {
   readonly isEditMode$ = this.store.select(ArticlesSelectors.isEditMode);
   readonly selectedArticleTitle$ = this.store.select(
-    ArticlesSelectors.selectedArticleTitle,
+    ArticlesSelectors.selectedArticleTitle
   );
 
   constructor(private readonly store: Store) {}

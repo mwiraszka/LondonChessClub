@@ -19,7 +19,7 @@ export class MarkdownRendererComponent implements OnInit, AfterViewChecked {
   constructor(
     private router: Router,
     @Inject(DOCUMENT)
-    private _document: Document,
+    private _document: Document
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +35,7 @@ export class MarkdownRendererComponent implements OnInit, AfterViewChecked {
     const tableElements = this._document.querySelectorAll('markdown table');
 
     if (tableElements) {
-      tableElements.forEach(tableElement => {
+      tableElements.forEach((tableElement) => {
         if (!Array.from(tableElement?.classList ?? []).includes('lcc-table')) {
           tableElement.classList.add('lcc-table');
 
@@ -50,11 +50,11 @@ export class MarkdownRendererComponent implements OnInit, AfterViewChecked {
 
   private addArticleAnchorIds(): void {
     const headerElements = this._document.querySelectorAll(
-      'markdown h1, markdown h2, markdown h3, markdown h4, markdown h5, markdown h6',
+      'markdown h1, markdown h2, markdown h3, markdown h4, markdown h5, markdown h6'
     );
 
     if (headerElements) {
-      headerElements.forEach(headerElement => {
+      headerElements.forEach((headerElement) => {
         const headerTextContent = (
           headerElement.textContent || headerElement.innerHTML
         ).replace(/(<([^>]+)>)/gi, '');
@@ -67,15 +67,15 @@ export class MarkdownRendererComponent implements OnInit, AfterViewChecked {
   private setUpRouterListener(): void {
     this.router.events
       .pipe(
-        filter(event => event instanceof Scroll),
-        untilDestroyed(this),
+        filter((event) => event instanceof Scroll),
+        untilDestroyed(this)
       )
-      .subscribe(event => this.scrollToAnchor((event as Scroll).anchor!));
+      .subscribe((event) => this.scrollToAnchor((event as Scroll).anchor!));
   }
 
   private scrollToAnchor(anchorToScrollTo?: string): void {
     const elementToScrollTo = this._document.getElementById(
-      anchorToScrollTo ?? 'app-container',
+      anchorToScrollTo ?? 'app-container'
     );
 
     if (elementToScrollTo) {

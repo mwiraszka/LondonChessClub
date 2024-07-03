@@ -28,11 +28,11 @@ export class ArticlesEffects {
               ? ArticlesActions.fetchArticlesFailed({ error: response.error })
               : ArticlesActions.fetchArticlesSucceeded({
                   articles: response.payload!,
-                }),
-          ),
-        ),
+                })
+          )
+        )
       ),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.display(false))
     );
   });
 
@@ -49,11 +49,11 @@ export class ArticlesEffects {
                 })
               : ArticlesActions.fetchArticleSucceeded({
                   article: response.payload!,
-                }),
-          ),
-        ),
+                })
+          )
+        )
       ),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.display(false))
     );
   });
 
@@ -81,11 +81,11 @@ export class ArticlesEffects {
               ? ArticlesActions.publishArticleFailed({ error: response.error })
               : ArticlesActions.publishArticleSucceeded({
                   article: response.payload!,
-                }),
-          ),
+                })
+          )
         );
       }),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.display(false))
     );
   });
 
@@ -113,11 +113,11 @@ export class ArticlesEffects {
               ? ArticlesActions.updateArticleFailed({ error: response.error })
               : ArticlesActions.updateArticleSucceeded({
                   article: response.payload!,
-                }),
-          ),
+                })
+          )
         );
       }),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.display(false))
     );
   });
 
@@ -128,9 +128,9 @@ export class ArticlesEffects {
       tap(() => this.loaderService.display(true)),
       filter(([, articleToDelete]) => !!articleToDelete),
       switchMap(([, articleToDelete]) =>
-        this.imagesService.deleteArticleImage(articleToDelete!),
+        this.imagesService.deleteArticleImage(articleToDelete!)
       ),
-      switchMap(response => {
+      switchMap((response) => {
         if (response.error) {
           return throwError(() => new Error('Unable to delete image'));
         }
@@ -140,11 +140,11 @@ export class ArticlesEffects {
               ? ArticlesActions.deleteArticleFailed({ error: response.error })
               : ArticlesActions.deleteArticleSucceeded({
                   article: response.payload!,
-                }),
-          ),
+                })
+          )
         );
       }),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.display(false))
     );
   });
 
@@ -152,8 +152,8 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticlesSucceeded),
       map(({ articles }) =>
-        ArticlesActions.getArticleThumbnailImageUrlsRequested({ articles }),
-      ),
+        ArticlesActions.getArticleThumbnailImageUrlsRequested({ articles })
+      )
     );
   });
 
@@ -161,15 +161,15 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.getArticleThumbnailImageUrlsRequested),
       switchMap(({ articles }) =>
-        this.imagesService.getArticleThumbnailImageUrls(articles),
+        this.imagesService.getArticleThumbnailImageUrls(articles)
       ),
       map((response: ServiceResponse<Article[]>) =>
         response.error
           ? ArticlesActions.getArticleThumbnailImageUrlsFailed({ error: response.error })
           : ArticlesActions.getArticleThumbnailImageUrlsSucceeded({
               articles: response.payload!,
-            }),
-      ),
+            })
+      )
     );
   });
 
@@ -178,7 +178,7 @@ export class ArticlesEffects {
       ofType(ArticlesActions.fetchArticleSucceeded, ArticlesActions.setArticle),
       map(({ article }) => article.imageId),
       filter(isDefined),
-      map(imageId => ArticlesActions.getArticleImageUrlRequested({ imageId })),
+      map((imageId) => ArticlesActions.getArticleImageUrlRequested({ imageId }))
     );
   });
 
@@ -190,13 +190,13 @@ export class ArticlesEffects {
         const hydrateFromLocalStorage = isEditMode !== null;
         return this.imagesService.getArticleImageUrl(imageId, hydrateFromLocalStorage);
       }),
-      map(response =>
+      map((response) =>
         response.error
           ? ArticlesActions.getArticleImageUrlFailed({ error: response.error })
           : ArticlesActions.getArticleImageUrlSucceeded({
               imageUrl: response.payload!,
-            }),
-      ),
+            })
+      )
     );
   });
 
@@ -205,7 +205,7 @@ export class ArticlesEffects {
       ofType(ArticlesActions.getArticleImageUrlSucceeded),
       concatLatestFrom(() => this.store.select(ArticlesSelectors.isEditMode)),
       filter(([, isEditMode]) => isEditMode !== null),
-      map(([{ imageUrl }]) => ArticlesActions.getArticleImageFileRequested({ imageUrl })),
+      map(([{ imageUrl }]) => ArticlesActions.getArticleImageFileRequested({ imageUrl }))
     );
   });
 
@@ -218,8 +218,8 @@ export class ArticlesEffects {
           ? ArticlesActions.getArticleImageFileFailed({ error: response.error })
           : ArticlesActions.getArticleImageFileSucceeded({
               imageFile: response.payload!,
-            }),
-      ),
+            })
+      )
     );
   });
 
@@ -228,6 +228,6 @@ export class ArticlesEffects {
     private readonly store: Store,
     private articlesService: ArticlesService,
     private imagesService: ImagesService,
-    private loaderService: LoaderService,
+    private loaderService: LoaderService
   ) {}
 }

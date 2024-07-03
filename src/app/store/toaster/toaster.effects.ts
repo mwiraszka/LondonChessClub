@@ -24,7 +24,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -38,7 +38,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -52,7 +52,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -66,7 +66,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -80,7 +80,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -94,7 +94,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -108,7 +108,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -122,7 +122,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -136,7 +136,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -150,7 +150,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -164,7 +164,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
   //#endregion
@@ -180,7 +180,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -194,7 +194,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -208,7 +208,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -222,7 +222,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -236,7 +236,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -250,7 +250,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -264,7 +264,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -278,7 +278,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
   //#endregion
@@ -294,7 +294,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -308,7 +308,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -322,7 +322,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -336,7 +336,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -350,7 +350,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -364,7 +364,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -378,7 +378,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -392,7 +392,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
   //#endregion
@@ -408,7 +408,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -422,7 +422,7 @@ export class ToasterEffects {
           type: ToastTypes.INFO,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -436,7 +436,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -450,7 +450,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -464,7 +464,7 @@ export class ToasterEffects {
           type: ToastTypes.INFO,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -478,7 +478,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -492,7 +492,7 @@ export class ToasterEffects {
           type: ToastTypes.SUCCESS,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
 
@@ -506,7 +506,7 @@ export class ToasterEffects {
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
-      }),
+      })
     );
   });
   //#endregion
@@ -515,7 +515,7 @@ export class ToasterEffects {
     return this.actions$.pipe(
       ofType(ToasterActions.toastAdded),
       delay(4900),
-      map(({ toast }) => ToasterActions.toastExpired({ toast })),
+      map(({ toast }) => ToasterActions.toastExpired({ toast }))
     );
   });
 
@@ -543,12 +543,12 @@ export class ToasterEffects {
           ScheduleActions.fetchEventFailed,
           AuthActions.loginFailed,
           AuthActions.codeForPasswordChangeFailed,
-          AuthActions.passwordChangeFailed,
+          AuthActions.passwordChangeFailed
         ),
-        tap(error => console.info('[LCC Error]', error)),
+        tap((error) => console.info('[LCC Error]', error))
       );
     },
-    { dispatch: false },
+    { dispatch: false }
   );
 
   constructor(private readonly actions$: Actions) {}

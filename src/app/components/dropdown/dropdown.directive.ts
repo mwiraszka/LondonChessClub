@@ -22,7 +22,7 @@ export class DropdownDirective {
 
   constructor(
     @Inject(DOCUMENT) private _document: Document,
-    private elementRef: ElementRef,
+    private elementRef: ElementRef
   ) {}
 
   @HostListener('document:click', ['$event', '$event.target'])
@@ -38,8 +38,8 @@ export class DropdownDirective {
       ?.contains(targetElement);
 
     const clickedOnDropdownLink = Array.from(
-      this._document.querySelectorAll('.lcc-dropdown .lcc-dropdown-link'),
-    ).some(element => element?.contains(targetElement));
+      this._document.querySelectorAll('.lcc-dropdown .lcc-dropdown-link')
+    ).some((element) => element?.contains(targetElement));
 
     const clickedOutside = !this.dropdownElement.contains(targetElement);
 

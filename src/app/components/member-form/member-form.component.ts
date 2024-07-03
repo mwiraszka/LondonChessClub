@@ -26,10 +26,13 @@ import { MemberFormFacade } from './member-form.facade';
 export class MemberFormComponent implements OnInit {
   form!: FormGroup;
 
-  constructor(public facade: MemberFormFacade, private formBuilder: FormBuilder) {}
+  constructor(
+    public facade: MemberFormFacade,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.facade.memberCurrently$.pipe(filter(isDefined), first()).subscribe(member => {
+    this.facade.memberCurrently$.pipe(filter(isDefined), first()).subscribe((member) => {
       this.initForm(member);
       this.initValueChangesListener();
     });

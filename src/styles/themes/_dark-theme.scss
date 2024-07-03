@@ -1,4 +1,4 @@
-[data-theme="dark"] {
+[data-theme='dark'] {
   --lcc-color--aboutScreen-boardChairText: #{color(grayscale, gray-65)};
   --lcc-color--aboutScreen-cellBorder: #{color(grayscale, black-20, 0.2)};
   --lcc-color--aboutScreen-darkCellBackground: #{color(grayscale, black-15)};
@@ -83,7 +83,11 @@
   --lcc-color--documentsScreen-pdfViewerLoaderBackground: #{color(grayscale, white-98)};
   --lcc-color--documentsScreen-pdfViewerLoaderBorderBottom: #{color(primary, darker)};
   --lcc-color--documentsScreen-pdfViewerLoaderBoxShadow: #{color(grayscale, white-85, 0.7)};
-  --lcc-color--documentsScreen-pdfViewerOverlayBackground: #{color(grayscale, black-10, 0.8)};
+  --lcc-color--documentsScreen-pdfViewerOverlayBackground: #{color(
+      grayscale,
+      black-10,
+      0.8
+    )};
   --lcc-color--documentsScreen-pdfViewerPageBackground: #{color(grayscale, gray-75)};
   --lcc-color--documentsScreen-pdfViewerScrollbarBackground: #{color(grayscale, white-90)};
   --lcc-color--documentsScreen-pdfViewerScrollbar: #{color(grayscale, gray-65)};
@@ -197,7 +201,7 @@
   --lcc-color--paginator-selectedButtonBackground: #{color(grayscale, white-98)};
   --lcc-color--paginator-selectedButtonBorder: #{color(secondary)};
   --lcc-color--paginator-selectedButtonColor: #{color(grayscale, black-2)};
-  
+
   --lcc-color--pgnViewer-board: #{color(chessboard)};
   --lcc-color--pgnViewer-playerNameText: #{color(grayscale, white-85)};
 
@@ -205,9 +209,21 @@
   --lcc-color--photoGrid-imageBorderOnHover: #{color(grayscale, gray-75)};
   --lcc-color--photoGrid-imageBoxShadowOnHover: #{color(grayscale, gray-65, 0.7)};
 
-  --lcc-color--schedule-activeTournamentBackground: #{color(event-active-tournament, light, 0.5)};
-  --lcc-color--schedule-activeTournamentBorder: #{color(event-active-tournament, base, 0.5)};
-  --lcc-color--schedule-blitzTournamentBackground: #{color(event-blitz-tournament, light, 0.5)};
+  --lcc-color--schedule-activeTournamentBackground: #{color(
+      event-active-tournament,
+      light,
+      0.5
+    )};
+  --lcc-color--schedule-activeTournamentBorder: #{color(
+      event-active-tournament,
+      base,
+      0.5
+    )};
+  --lcc-color--schedule-blitzTournamentBackground: #{color(
+      event-blitz-tournament,
+      light,
+      0.5
+    )};
   --lcc-color--schedule-blitzTournamentBorder: #{color(event-blitz-tournament, base, 0.5)};
   --lcc-color--schedule-championshipBackground: #{color(event-championship, light, 0.5)};
   --lcc-color--schedule-championshipBorder: #{color(event-championship, base, 0.5)};
@@ -224,7 +240,11 @@
   --lcc-color--schedule-nowLine: #{color(schedule-now-line, base, 0.5)};
   --lcc-color--schedule-otherBackground: #{color(event-other, light, 0.5)};
   --lcc-color--schedule-otherBorder: #{color(event-other, base, 0.5)};
-  --lcc-color--schedule-rapidTournamentBackground: #{color(event-rapid-tournament, light, 0.5)};
+  --lcc-color--schedule-rapidTournamentBackground: #{color(
+      event-rapid-tournament,
+      light,
+      0.5
+    )};
   --lcc-color--schedule-rapidTournamentBorder: #{color(event-rapid-tournament, base, 0.5)};
   --lcc-color--schedule-simulBackground: #{color(event-simul, light, 0.5)};
   --lcc-color--schedule-simulBorder: #{color(event-simul, base, 0.5)};
@@ -259,13 +279,25 @@
   --lcc-color--tooltip-border: #{color(tooltip)};
   --lcc-color--tooltip-text: #{color(grayscale, white-90)};
 
-  --lcc-color--upcomingEventBanner-background-activeTournament: #{color(event-active-tournament, light)};
-  --lcc-color--upcomingEventBanner-background-blitzTournament: #{color(event-blitz-tournament, light)};
-  --lcc-color--upcomingEventBanner-background-championship: #{color(event-championship, light)};
+  --lcc-color--upcomingEventBanner-background-activeTournament: #{color(
+      event-active-tournament,
+      light
+    )};
+  --lcc-color--upcomingEventBanner-background-blitzTournament: #{color(
+      event-blitz-tournament,
+      light
+    )};
+  --lcc-color--upcomingEventBanner-background-championship: #{color(
+      event-championship,
+      light
+    )};
   --lcc-color--upcomingEventBanner-background-closed: #{color(event-closed, light)};
   --lcc-color--upcomingEventBanner-background-lecture: #{color(event-lecture, light, 0.7)};
   --lcc-color--upcomingEventBanner-background-other: #{color(event-other, light)};
-  --lcc-color--upcomingEventBanner-background-rapidTournament: #{color(event-rapid-tournament, light)};
+  --lcc-color--upcomingEventBanner-background-rapidTournament: #{color(
+      event-rapid-tournament,
+      light
+    )};
   --lcc-color--upcomingEventBanner-background-simul: #{color(event-simul, light)};
   --lcc-color--upcomingEventBanner-borderBottom: #{color(grayscale, gray-50, 0.5)};
   --lcc-color--upcomingEventBanner-closeIcon: #{color(grayscale, black-20)};

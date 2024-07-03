@@ -11,7 +11,10 @@ import { NavPathTypes } from '@app/types';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard {
-  constructor(private readonly router: Router, private readonly store: Store) {}
+  constructor(
+    private readonly router: Router,
+    private readonly store: Store
+  ) {}
 
   canActivate(): Observable<boolean> {
     return this.store.select(AuthSelectors.isAdmin).pipe(
@@ -42,7 +45,7 @@ export class AuthGuard {
 
         this.router.navigate([redirectPath]);
         return false;
-      }),
+      })
     );
   }
 }

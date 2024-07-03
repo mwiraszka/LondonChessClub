@@ -52,136 +52,136 @@ enum ArticlesActionTypes {
 
 export const setArticle = createAction(
   ArticlesActionTypes.SET_ARTICLE,
-  props<{ article: Article; isEditMode: boolean | null }>(),
+  props<{ article: Article; isEditMode: boolean | null }>()
 );
 
 export const fetchArticlesRequested = createAction(
-  ArticlesActionTypes.FETCH_ARTICLES_REQUESTED,
+  ArticlesActionTypes.FETCH_ARTICLES_REQUESTED
 );
 export const fetchArticlesSucceeded = createAction(
   ArticlesActionTypes.FETCH_ARTICLES_SUCCEEDED,
-  props<{ articles: Article[] }>(),
+  props<{ articles: Article[] }>()
 );
 export const fetchArticlesFailed = createAction(
   ArticlesActionTypes.FETCH_ARTICLES_FAILED,
-  props<{ error: Error }>(),
+  props<{ error: Error }>()
 );
 
 export const getArticleThumbnailImageUrlsRequested = createAction(
   ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_REQUESTED,
-  props<{ articles: Article[] }>(),
+  props<{ articles: Article[] }>()
 );
 export const getArticleThumbnailImageUrlsSucceeded = createAction(
   ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_SUCCEEDED,
-  props<{ articles: Article[] }>(),
+  props<{ articles: Article[] }>()
 );
 export const getArticleThumbnailImageUrlsFailed = createAction(
   ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_FAILED,
-  props<{ error: Error }>(),
+  props<{ error: Error }>()
 );
 
 export const fetchArticleRequested = createAction(
   ArticlesActionTypes.FETCH_ARTICLE_REQUESTED,
-  props<{ articleId: string }>(),
+  props<{ articleId: string }>()
 );
 export const fetchArticleSucceeded = createAction(
   ArticlesActionTypes.FETCH_ARTICLE_SUCCEEDED,
-  props<{ article: Article }>(),
+  props<{ article: Article }>()
 );
 export const fetchArticleFailed = createAction(
   ArticlesActionTypes.FETCH_ARTICLE_FAILED,
-  props<{ error: Error }>(),
+  props<{ error: Error }>()
 );
 
 export const getArticleImageUrlRequested = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_REQUESTED,
-  props<{ imageId?: string }>(),
+  props<{ imageId?: string }>()
 );
 export const getArticleImageUrlSucceeded = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_SUCCEEDED,
-  props<{ imageUrl: Url }>(),
+  props<{ imageUrl: Url }>()
 );
 export const getArticleImageUrlFailed = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_FAILED,
-  props<{ error: Error }>(),
+  props<{ error: Error }>()
 );
 
 export const getArticleImageFileRequested = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_FILE_REQUESTED,
-  props<{ imageUrl: Url }>(),
+  props<{ imageUrl: Url }>()
 );
 export const getArticleImageFileSucceeded = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_FILE_SUCCEEDED,
-  props<{ imageFile: File }>(),
+  props<{ imageFile: File }>()
 );
 export const getArticleImageFileFailed = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_FILE_FAILED,
-  props<{ error: Error }>(),
+  props<{ error: Error }>()
 );
 export const revertArticleImageChange = createAction(
-  ArticlesActionTypes.REVERT_ARTICLE_IMAGE_CHANGE,
+  ArticlesActionTypes.REVERT_ARTICLE_IMAGE_CHANGE
 );
 
 export const publishArticleSelected = createAction(
   ArticlesActionTypes.PUBLISH_ARTICLE_SELECTED,
-  props<{ article: Article }>(),
+  props<{ article: Article }>()
 );
 export const publishArticleConfirmed = createAction(
-  ArticlesActionTypes.PUBLISH_ARTICLE_CONFIRMED,
+  ArticlesActionTypes.PUBLISH_ARTICLE_CONFIRMED
 );
 export const publishArticleCancelled = createAction(
-  ArticlesActionTypes.PUBLISH_ARTICLE_CANCELLED,
+  ArticlesActionTypes.PUBLISH_ARTICLE_CANCELLED
 );
 export const publishArticleSucceeded = createAction(
   ArticlesActionTypes.PUBLISH_ARTICLE_SUCCEEDED,
-  props<{ article: Article }>(),
+  props<{ article: Article }>()
 );
 export const publishArticleFailed = createAction(
   ArticlesActionTypes.PUBLISH_ARTICLE_FAILED,
-  props<{ error: Error }>(),
+  props<{ error: Error }>()
 );
 
 export const updateArticleSelected = createAction(
   ArticlesActionTypes.UPDATE_ARTICLE_SELECTED,
-  props<{ article: Article }>(),
+  props<{ article: Article }>()
 );
 export const updateArticleConfirmed = createAction(
-  ArticlesActionTypes.UPDATE_ARTICLE_CONFIRMED,
+  ArticlesActionTypes.UPDATE_ARTICLE_CONFIRMED
 );
 export const updateArticleCancelled = createAction(
-  ArticlesActionTypes.UPDATE_ARTICLE_CANCELLED,
+  ArticlesActionTypes.UPDATE_ARTICLE_CANCELLED
 );
 export const updateArticleSucceeded = createAction(
   ArticlesActionTypes.UPDATE_ARTICLE_SUCCEEDED,
-  props<{ article: Article }>(),
+  props<{ article: Article }>()
 );
 export const updateArticleFailed = createAction(
   ArticlesActionTypes.UPDATE_ARTICLE_FAILED,
-  props<{ error: Error }>(),
+  props<{ error: Error }>()
 );
 
 export const deleteArticleSelected = createAction(
   ArticlesActionTypes.DELETE_ARTICLE_SELECTED,
-  props<{ article: Article }>(),
+  props<{ article: Article }>()
 );
 export const deleteArticleConfirmed = createAction(
-  ArticlesActionTypes.DELETE_ARTICLE_CONFIRMED,
+  ArticlesActionTypes.DELETE_ARTICLE_CONFIRMED
 );
 export const deleteArticleCancelled = createAction(
-  ArticlesActionTypes.DELETE_ARTICLE_CANCELLED,
+  ArticlesActionTypes.DELETE_ARTICLE_CANCELLED
 );
 export const deleteArticleSucceeded = createAction(
   ArticlesActionTypes.DELETE_ARTICLE_SUCCEEDED,
-  props<{ article: Article }>(),
+  props<{ article: Article }>()
 );
 export const deleteArticleFailed = createAction(
   ArticlesActionTypes.DELETE_ARTICLE_FAILED,
-  props<{ error: Error }>(),
+  props<{ error: Error }>()
 );
 
 export const cancelSelected = createAction(ArticlesActionTypes.CANCEL_SELECTED);
 
 export const formDataChanged = createAction(
   ArticlesActionTypes.FORM_DATA_CHANGED,
-  props<{ article: Article }>(),
+  props<{ article: Article }>()
 );

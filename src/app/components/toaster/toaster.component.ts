@@ -6,7 +6,7 @@ import { ToasterFacade } from './toaster.facade';
   selector: 'lcc-toaster',
   template: `
     @for (toast of facade.toasts$ | async; track toast.title) {
-    <lcc-toast [toast]="toast"></lcc-toast>
+      <lcc-toast [toast]="toast"></lcc-toast>
     }
   `,
   styleUrls: ['./toaster.component.scss'],

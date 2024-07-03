@@ -23,21 +23,21 @@ export class AppFacade {
   showModal$ = this.store.select(ModalSelectors.isOpen);
   showToaster$ = this.store.select(ToasterSelectors.isDisplayingToasts);
   showUpcomingEventBanner$ = this.store.select(
-    UserSettingsSelectors.showUpcomingEventBanner,
+    UserSettingsSelectors.showUpcomingEventBanner
   );
   upcomingEvent$ = this.store.select(ScheduleSelectors.upcomingEvent);
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private readonly store: Store,
+    private readonly store: Store
   ) {
-    this.isDarkMode$.pipe(untilDestroyed(this)).subscribe(isDarkMode => {
+    this.isDarkMode$.pipe(untilDestroyed(this)).subscribe((isDarkMode) => {
       this.document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
     });
 
     this.bannerLastCleared$
       .pipe(first(), filter(isDefined))
-      .subscribe(lastClearedTime => {
+      .subscribe((lastClearedTime) => {
         const currentTime = new Date().getTime();
         if (currentTime - lastClearedTime > this.ONE_DAY_MS) {
           this.store.dispatch(UserSettingsActions.reinstateUpcomingEventBanner());

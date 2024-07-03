@@ -13,7 +13,7 @@ export class MembersScreenComponent implements OnInit {
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Members');
     this.metaAndTitleService.updateDescription(
-      'Discover where you among other members of the London Chess Club!',
+      'Discover where you among other members of the London Chess Club!'
     );
   }
 }

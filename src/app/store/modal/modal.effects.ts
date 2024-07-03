@@ -35,7 +35,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      }),
+      })
     );
   });
 
@@ -61,7 +61,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      }),
+      })
     );
   });
 
@@ -86,7 +86,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      }),
+      })
     );
   });
 
@@ -111,7 +111,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      }),
+      })
     );
   });
 
@@ -137,7 +137,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      }),
+      })
     );
   });
 
@@ -162,7 +162,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      }),
+      })
     );
   });
 
@@ -187,7 +187,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      }),
+      })
     );
   });
 
@@ -213,7 +213,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      }),
+      })
     );
   });
 
@@ -238,7 +238,7 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      }),
+      })
     );
   });
 
@@ -263,14 +263,14 @@ export class ModalEffects {
           ],
         };
         return ModalActions.modalOpened({ modal });
-      }),
+      })
     );
   });
 
   closeModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ModalActions.selectionMade),
-      map(() => ModalActions.modalClosed()),
+      map(() => ModalActions.modalClosed())
     );
   });
 
@@ -296,7 +296,7 @@ export class ModalEffects {
           action === ModalButtonActionTypes.UPDATE_ARTICLE_OK ||
           action === ModalButtonActionTypes.UPDATE_ARTICLE_CANCEL ||
           action === ModalButtonActionTypes.DELETE_ARTICLE_OK ||
-          action === ModalButtonActionTypes.DELETE_ARTICLE_CANCEL,
+          action === ModalButtonActionTypes.DELETE_ARTICLE_CANCEL
       ),
       map(({ action }) => {
         switch (action) {
@@ -339,9 +339,12 @@ export class ModalEffects {
           default:
             return ArticlesActions.deleteArticleCancelled();
         }
-      }),
+      })
     );
   });
 
-  constructor(private readonly actions$: Actions, private readonly store: Store) {}
+  constructor(
+    private readonly actions$: Actions,
+    private readonly store: Store
+  ) {}
 }

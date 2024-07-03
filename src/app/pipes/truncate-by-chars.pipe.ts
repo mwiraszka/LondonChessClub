@@ -9,7 +9,7 @@ export class TruncateByCharsPipe implements PipeTransform {
   transform(
     text: string | undefined,
     characterLimit: number,
-    addEllipsis = true,
+    addEllipsis = true
   ): string {
     if (!text) {
       return '';

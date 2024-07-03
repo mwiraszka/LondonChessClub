@@ -19,7 +19,7 @@ export class AuthEffects {
       ofType(AuthActions.loginRequested),
       switchMap(({ request }) => {
         return this.authService.logIn(request).pipe(
-          map(loginResponse => {
+          map((loginResponse) => {
             if (loginResponse.error) {
               return AuthActions.loginFailed({ error: loginResponse.error });
             } else if (
@@ -38,11 +38,11 @@ export class AuthEffects {
             of(
               AuthActions.loginFailed({
                 error: new Error('Unknown login error'),
-              }),
-            ),
-          ),
+              })
+            )
+          )
         );
-      }),
+      })
     );
   });
 
@@ -52,7 +52,7 @@ export class AuthEffects {
       map(() => {
         this.authService.logOut();
         return AuthActions.logoutSucceeded();
-      }),
+      })
     );
   });
 
@@ -61,7 +61,7 @@ export class AuthEffects {
       ofType(AuthActions.codeForPasswordChangeRequested),
       switchMap(({ email }) => {
         return this.authService.sendChangePasswordCode(email).pipe(
-          map(response => {
+          map((response) => {
             return response?.error
               ? AuthActions.codeForPasswordChangeFailed({ error: response.error })
               : AuthActions.codeForPasswordChangeSucceeded();
@@ -70,13 +70,13 @@ export class AuthEffects {
             of(
               AuthActions.codeForPasswordChangeFailed({
                 error: new Error(
-                  'Unknown error attempting to send password change request',
+                  'Unknown error attempting to send password change request'
                 ),
-              }),
-            ),
-          ),
+              })
+            )
+          )
         );
-      }),
+      })
     );
   });
 
@@ -85,7 +85,7 @@ export class AuthEffects {
       ofType(AuthActions.passwordChangeRequested),
       switchMap(({ request }) => {
         return this.authService.changePassword(request).pipe(
-          map(response => {
+          map((response) => {
             return response?.error
               ? AuthActions.passwordChangeFailed({ error: response.error })
               : AuthActions.passwordChangeSucceeded({
@@ -97,11 +97,11 @@ export class AuthEffects {
             of(
               AuthActions.passwordChangeFailed({
                 error: new Error('Unknown password change error'),
-              }),
-            ),
-          ),
+              })
+            )
+          )
         );
-      }),
+      })
     );
   });
 
@@ -116,14 +116,14 @@ export class AuthEffects {
             email: response.email,
             password: response.newPassword,
           },
-        }),
-      ),
+        })
+      )
     );
   });
 
   constructor(
     private readonly actions$: Actions,
     private readonly store: Store,
-    private authService: AuthService,
+    private authService: AuthService
   ) {}
 }

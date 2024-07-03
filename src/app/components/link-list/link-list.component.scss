@@ -8,7 +8,7 @@
   gap: 8px;
 
   h4 {
-    color: var(--lcc-color--linkList-headerText)
+    color: var(--lcc-color--linkList-headerText);
   }
 
   ul {
@@ -23,7 +23,7 @@
         -moz-columns: 2;
       }
     }
-  
+
     li {
       line-height: 0.75em;
 
@@ -46,7 +46,7 @@
         @include respond-to('gt-sm') {
           font-size: var(--lcc-fontSize--h4);
         }
-  
+
         .icon {
           height: 14px;
           width: 14px;

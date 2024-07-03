@@ -37,18 +37,18 @@
   &.lcc-light-button {
     border-color: var(--lcc-color--button-lightSecondaryButtonBorder);
     color: var(--lcc-color--button-lightSecondaryButtonForeground);
-  
+
     &:hover {
       border-color: var(--lcc-color--button-lightSecondaryButtonBorderOnHover);
       color: var(--lcc-color--button-lightSecondaryButtonForegroundOnHover);
     }
   }
-  
+
   // Keep button colour dark in all themes
   &.lcc-dark-button {
     border: var(--lcc-color--button-darkSecondaryButtonBorder);
     color: var(--lcc-color--button-darkSecondaryButtonForeground);
-  
+
     &:hover {
       border-color: var(--lcc-color--button-darkSecondaryButtonBorderOnHover);
       color: var(--lcc-color--button-darkSecondaryButtonForegroundOnHover);
@@ -70,7 +70,7 @@
 
 .lcc-warning-button {
   @include lcc-button;
-  
+
   box-shadow: 1px 1px 4px -2px var(--lcc-color--button-raisedButtonBoxShadow);
   background-color: var(--lcc-color--button-warningButtonBackground);
   color: var(--lcc-color--button-warningButtonForeground);

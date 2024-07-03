@@ -21,21 +21,21 @@ const membersReducer = createReducer(
     MembersActions.updateMemberSucceeded,
     MembersActions.deleteMemberFailed,
     MembersActions.deleteMemberCancelled,
-    state => ({
+    (state) => ({
       ...state,
       selectedMember: null,
       memberCurrently: null,
       isEditMode: null,
-    }),
+    })
   ),
 
-  on(MembersActions.addMemberSucceeded, state => ({
+  on(MembersActions.addMemberSucceeded, (state) => ({
     ...state,
     selectedMember: newMemberFormTemplate,
     memberCurrently: newMemberFormTemplate,
   })),
 
-  on(MembersActions.fetchMemberRequested, state => ({
+  on(MembersActions.fetchMemberRequested, (state) => ({
     ...state,
     isEditMode: true,
   })),
@@ -48,7 +48,7 @@ const membersReducer = createReducer(
   on(MembersActions.fetchMemberSucceeded, (state, { member }) => ({
     ...state,
     members: [
-      ...state.members.filter(storedMember => storedMember.id !== member.id),
+      ...state.members.filter((storedMember) => storedMember.id !== member.id),
       member,
     ],
   })),
@@ -60,7 +60,7 @@ const membersReducer = createReducer(
 
   on(MembersActions.deleteMemberSucceeded, (state, { member }) => ({
     ...state,
-    members: state.members.filter(memberInStore => memberInStore.id !== member.id),
+    members: state.members.filter((memberInStore) => memberInStore.id !== member.id),
     selectedMember: null,
   })),
 
@@ -87,11 +87,11 @@ const membersReducer = createReducer(
     pageNum: 1,
   })),
 
-  on(MembersActions.inactiveMembersToggled, state => ({
+  on(MembersActions.inactiveMembersToggled, (state) => ({
     ...state,
     showActiveOnly: !state.showActiveOnly,
     pageNum: 1,
-  })),
+  }))
 );
 
 export function reducer(state: MembersState, action: Action): MembersState {

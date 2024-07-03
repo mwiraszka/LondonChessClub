@@ -21,7 +21,7 @@ export function kebabize(anyString: string): string {
  * @returns {string} The same text in camelCase
  */
 export function camelize(kebabString: string): string {
-  return kebabString.replace(/-./g, hyphen => hyphen[1].toUpperCase());
+  return kebabString.replace(/-./g, (hyphen) => hyphen[1].toUpperCase());
 }
 
 /**
@@ -37,7 +37,7 @@ export function camelize(kebabString: string): string {
 export function getTextWidth(
   text: string | null,
   maxLineWidth?: number,
-  font = '13px sans-serif',
+  font = '13px sans-serif'
 ): number {
   if (!text) {
     return 0;

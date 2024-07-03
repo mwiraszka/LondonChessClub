@@ -53,37 +53,37 @@ article {
   border-radius: var(--lcc-borderRadius--small);
   border: 2px solid var(--lcc-color--aboutScreen-cellBorder);
   padding: 16px 32px;
-  
+
   &.membership {
     grid-area: membership;
     background-color: var(--lcc-color--aboutScreen-darkCellBackground);
   }
-  
+
   &.supplies {
     grid-area: supplies;
     background-color: var(--lcc-color--aboutScreen-lightCellBackground);
   }
-  
+
   &.parking {
     grid-area: parking;
     background-color: var(--lcc-color--aboutScreen-lightCellBackground);
   }
-  
+
   &.ratings {
     grid-area: ratings;
     background-color: var(--lcc-color--aboutScreen-darkCellBackground);
   }
-  
+
   &.rules {
     grid-area: rules;
     background-color: var(--lcc-color--aboutScreen-darkCellBackground);
   }
-  
+
   &.tournaments {
     grid-area: tournaments;
     background-color: var(--lcc-color--aboutScreen-lightCellBackground);
   }
-  
+
   &.leadership {
     grid-area: leadership;
     background-color: var(--lcc-color--aboutScreen-lightCellBackground);

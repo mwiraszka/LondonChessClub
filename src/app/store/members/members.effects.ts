@@ -28,10 +28,10 @@ export class MembersEffects {
               : MembersActions.fetchMembersSucceeded({
                   members: response.payload!,
                 });
-          }),
-        ),
+          })
+        )
       ),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.display(false))
     );
   });
 
@@ -48,11 +48,11 @@ export class MembersEffects {
                 })
               : MembersActions.fetchMemberSucceeded({
                   member: response.payload!,
-                }),
-          ),
-        ),
+                })
+          )
+        )
       ),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.display(false))
     );
   });
 
@@ -80,11 +80,11 @@ export class MembersEffects {
               ? MembersActions.addMemberFailed({ error: response.error })
               : MembersActions.addMemberSucceeded({
                   member: response.payload!,
-                }),
-          ),
+                })
+          )
         );
       }),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.display(false))
     );
   });
 
@@ -112,11 +112,11 @@ export class MembersEffects {
               ? MembersActions.updateMemberFailed({ error: response.error })
               : MembersActions.updateMemberSucceeded({
                   member: response.payload!,
-                }),
-          ),
+                })
+          )
         );
       }),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.display(false))
     );
   });
 
@@ -132,11 +132,11 @@ export class MembersEffects {
               ? MembersActions.deleteMemberFailed({ error: response.error })
               : MembersActions.deleteMemberSucceeded({
                   member: response.payload!,
-                }),
-          ),
-        ),
+                })
+          )
+        )
       ),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.display(false))
     );
   });
 
@@ -144,6 +144,6 @@ export class MembersEffects {
     private readonly store: Store,
     private readonly actions$: Actions,
     private loaderService: LoaderService,
-    private membersService: MembersService,
+    private membersService: MembersService
   ) {}
 }

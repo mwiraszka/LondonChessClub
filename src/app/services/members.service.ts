@@ -18,43 +18,46 @@ export class MembersService {
   readonly PUBLIC_API_ENDPOINT = environment.aws.membersPublicEndpoint;
   readonly PRIVATE_API_ENDPOINT = environment.aws.membersPrivateEndpoint;
 
-  constructor(private authService: AuthService, private http: HttpClient) {}
+  constructor(
+    private authService: AuthService,
+    private http: HttpClient
+  ) {}
 
   getMember(id: string): Observable<ServiceResponse<Member>> {
     return this.authService.token().pipe(
-      switchMap(token =>
+      switchMap((token) =>
         this.http.get<FlatMember>(this.PRIVATE_API_ENDPOINT + id, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
-        }),
+        })
       ),
-      map(member => ({ payload: this.adaptForFrontend([member])[0] })),
-      catchError(() => of({ error: new Error('Failed to fetch member from database') })),
+      map((member) => ({ payload: this.adaptForFrontend([member])[0] })),
+      catchError(() => of({ error: new Error('Failed to fetch member from database') }))
     );
   }
 
   getMembers(isAdmin: boolean): Observable<ServiceResponse<Member[]>> {
     if (isAdmin) {
       return this.authService.token().pipe(
-        switchMap(token =>
+        switchMap((token) =>
           this.http.get<FlatMember[]>(this.PRIVATE_API_ENDPOINT, {
             headers: new HttpHeaders({
               Authorization: token,
             }),
-          }),
+          })
         ),
-        map(members => ({ payload: this.adaptForFrontend(members) })),
+        map((members) => ({ payload: this.adaptForFrontend(members) })),
         catchError(() =>
-          of({ error: new Error('Failed to fetch members from database') }),
-        ),
+          of({ error: new Error('Failed to fetch members from database') })
+        )
       );
     } else {
       return this.http.get<FlatMember[]>(this.PUBLIC_API_ENDPOINT).pipe(
-        map(members => ({ payload: this.adaptForFrontend(members) })),
+        map((members) => ({ payload: this.adaptForFrontend(members) })),
         catchError(() =>
-          of({ error: new Error('Failed to fetch members from database') }),
-        ),
+          of({ error: new Error('Failed to fetch members from database') })
+        )
       );
     }
   }
@@ -62,15 +65,15 @@ export class MembersService {
   addMember(memberToAdd: Member): Observable<ServiceResponse<Member>> {
     const flattenedMember = this.adaptForBackend([memberToAdd])[0];
     return this.authService.token().pipe(
-      switchMap(token =>
+      switchMap((token) =>
         this.http.post<null>(this.PRIVATE_API_ENDPOINT, flattenedMember, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
-        }),
+        })
       ),
       map(() => ({ payload: memberToAdd })),
-      catchError(() => of({ error: new Error('Failed to add member to database') })),
+      catchError(() => of({ error: new Error('Failed to add member to database') }))
     );
   }
 
@@ -78,7 +81,7 @@ export class MembersService {
     const flattenedMember = this.adaptForBackend([memberToUpdate])[0];
 
     return this.authService.token().pipe(
-      switchMap(token =>
+      switchMap((token) =>
         this.http.put<null>(
           this.PRIVATE_API_ENDPOINT + flattenedMember.id,
           flattenedMember,
@@ -86,30 +89,30 @@ export class MembersService {
             headers: new HttpHeaders({
               Authorization: token,
             }),
-          },
-        ),
+          }
+        )
       ),
       map(() => ({ payload: memberToUpdate })),
-      catchError(() => of({ error: new Error('Failed to update member') })),
+      catchError(() => of({ error: new Error('Failed to update member') }))
     );
   }
 
   deleteMember(memberToDelete: Member): Observable<ServiceResponse<Member>> {
     return this.authService.token().pipe(
-      switchMap(token =>
+      switchMap((token) =>
         this.http.delete<null>(this.PRIVATE_API_ENDPOINT + memberToDelete.id, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
-        }),
+        })
       ),
       map(() => ({ payload: memberToDelete })),
-      catchError(() => of({ error: new Error('Failed to delete member from database') })),
+      catchError(() => of({ error: new Error('Failed to delete member from database') }))
     );
   }
 
   private adaptForFrontend(members: FlatMember[]): Member[] {
-    return members.map(member => {
+    return members.map((member) => {
       return {
         id: member.id,
         firstName: member.firstName!,
@@ -128,13 +131,13 @@ export class MembersService {
           dateCreated: new Date(
             member.dateCreated === '2023-01-01T00:00:00.000Z'
               ? '2023-01-01T05:00:00.000Z'
-              : member.dateCreated,
+              : member.dateCreated
           ),
           createdBy: member.createdBy,
           dateLastEdited: new Date(
             member.dateLastEdited === '2023-01-01T00:00:00.000Z'
               ? '2023-01-01T05:00:00.000Z'
-              : member.dateLastEdited,
+              : member.dateLastEdited
           ),
           lastEditedBy: member.lastEditedBy,
         },
@@ -143,7 +146,7 @@ export class MembersService {
   }
 
   private adaptForBackend(members: Member[]): FlatMember[] {
-    return members.map(member => {
+    return members.map((member) => {
       return {
         id: member.id,
         firstName: member.firstName!,

@@ -32,7 +32,7 @@ export class TooltipDirective implements OnChanges, OnDestroy {
 
   constructor(
     private elementRef: ElementRef,
-    private viewContainerRef: ViewContainerRef,
+    private viewContainerRef: ViewContainerRef
   ) {}
 
   @HostListener('mouseenter')
@@ -87,7 +87,7 @@ export class TooltipDirective implements OnChanges, OnDestroy {
 
       const tooltipTextWidth = getTextWidth(
         this.tooltip,
-        this.TOOLTIP_MAX_WIDTH_PX - this.TOOLTIP_SIDE_PADDING_PX,
+        this.TOOLTIP_MAX_WIDTH_PX - this.TOOLTIP_SIDE_PADDING_PX
       );
 
       const rightOverflow =

@@ -6,11 +6,11 @@
   align-items: center;
   width: 100%;
   gap: 16px;
-  
+
   textarea {
     height: 320px;
   }
-  
+
   .banner-image,
   .loading-placeholder-image {
     aspect-ratio: 3/2;
@@ -28,7 +28,7 @@
     .image-revert-button {
       width: 34px; // Match button height
       padding: 2px;
-      
+
       .revert-icon {
         width: 18px;
         height: 18px;
@@ -36,7 +36,7 @@
     }
   }
 
-  input[type="file"] {
+  input[type='file'] {
     display: none;
   }
 
@@ -47,7 +47,7 @@
     text-align: left;
     gap: 4px;
     width: 100%;
-  
+
     h4 {
       align-self: flex-start;
       font-weight: 400;

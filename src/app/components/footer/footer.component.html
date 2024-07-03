@@ -1,24 +1,26 @@
-<small>
-	Copyright &copy; {{ currentYear }} <b>London Chess Club</b>
-</small>
+<small> Copyright &copy; {{ currentYear }} <b>London Chess Club</b> </small>
 
 <address class="website-details">
-	<span class="current-version">v{{ currentVersion }}</span>
-	<span class="divider">|</span>
-	<a href="https://github.com/mwiraszka/LondonChessClub#readme"
-		 class="lcc-link"
-		 target="_blank">
-		<span>Source code</span>
-	</a>
-	<span class="divider">|</span>
-	<a href="mailto:welcome@londonchess.ca?subject=LCC%20Website%20-%20Bug%20Report"
-		 class="lcc-link">
-		<span>Report a bug</span>
-	</a>
+  <span class="current-version">v{{ currentVersion }}</span>
+  <span class="divider">|</span>
+  <a
+    href="https://github.com/mwiraszka/LondonChessClub#readme"
+    class="lcc-link"
+    target="_blank"
+  >
+    <span>Source code</span>
+  </a>
+  <span class="divider">|</span>
+  <a
+    href="mailto:welcome@londonchess.ca?subject=LCC%20Website%20-%20Bug%20Report"
+    class="lcc-link"
+  >
+    <span>Report a bug</span>
+  </a>
 </address>
 
 @if (isNewVersionAvailable) {
-<aside class="new-version-notice">
-	[ New website version available! Refresh page to update. ]
-</aside>
+  <aside class="new-version-notice">
+    [ New website version available! Refresh page to update. ]
+  </aside>
 }

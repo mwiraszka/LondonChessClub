@@ -17,14 +17,14 @@
   &:hover {
     cursor: default;
   }
-  
+
   thead {
     th {
       color: var(--lcc-color--table-headerForeground);
       background-color: var(--lcc-color--table-headerBackground);
       white-space: nowrap;
       font-weight: 200;
-      
+
       &:not(.lcc-table-admin-controls-filler) {
         padding: 8px;
 
@@ -34,16 +34,16 @@
       }
     }
   }
-  
+
   tbody {
     tr {
       background-color: var(--lcc-color--table-rowBackgroundOdd);
       color: var(--lcc-color--table-rowForeground);
-  
+
       &:nth-child(even) {
         background-color: var(--lcc-color--table-rowBackgroundEven);
       }
-  
+
       td {
         padding: 8px;
 

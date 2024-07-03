@@ -22,16 +22,16 @@ export class EventFormFacade {
   onSubmit(event: ClubEvent): void {
     this.isEditMode$
       .pipe(
-        map(isEditMode =>
+        map((isEditMode) =>
           isEditMode
             ? this.store.dispatch(
                 ScheduleActions.updateEventSelected({
                   event,
-                }),
+                })
               )
-            : this.store.dispatch(ScheduleActions.addEventSelected({ event })),
+            : this.store.dispatch(ScheduleActions.addEventSelected({ event }))
         ),
-        first(),
+        first()
       )
       .subscribe();
   }

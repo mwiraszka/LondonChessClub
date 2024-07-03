@@ -16,7 +16,7 @@ import { MemberEditorFacade } from './member-editor.facade';
 export class MemberEditorComponent implements OnInit {
   constructor(
     public facade: MemberEditorFacade,
-    private metaAndTitleService: MetaAndTitleService,
+    private metaAndTitleService: MetaAndTitleService
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class MemberEditorComponent implements OnInit {
           isEditMode && memberName ? `Edit ${memberName}` : 'Add a member';
         this.metaAndTitleService.updateTitle(screenTitle);
         this.metaAndTitleService.updateDescription(
-          `${screenTitle} for the London Chess Club.`,
+          `${screenTitle} for the London Chess Club.`
         );
       });
   }

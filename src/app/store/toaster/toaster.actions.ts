@@ -9,10 +9,10 @@ enum ToasterActionTypes {
 
 export const toastAdded = createAction(
   ToasterActionTypes.TOAST_ADDED,
-  props<{ toast: Toast }>(),
+  props<{ toast: Toast }>()
 );
 
 export const toastExpired = createAction(
   ToasterActionTypes.TOAST_EXPIRED,
-  props<{ toast: Toast }>(),
+  props<{ toast: Toast }>()
 );

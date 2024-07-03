@@ -26,7 +26,7 @@ export class GameArchivesScreenComponent implements OnInit {
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Game Archives');
     this.metaAndTitleService.updateDescription(
-      'A collection of games played by London Chess Club members, going all the way back to 1974.',
+      'A collection of games played by London Chess Club members, going all the way back to 1974.'
     );
 
     this.expansionPanels = [

@@ -67,13 +67,13 @@ export class DocumentsScreenComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService,
     private metaAndTitleService: MetaAndTitleService,
     private renderer: Renderer2,
-    @Inject(DOCUMENT) private _document: Document,
+    @Inject(DOCUMENT) private _document: Document
   ) {}
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Documents');
     this.metaAndTitleService.updateDescription(
-      'A place for all London Chess Club documentation.',
+      'A place for all London Chess Club documentation.'
     );
   }
 

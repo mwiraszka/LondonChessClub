@@ -1,5 +1,7 @@
 @for (photo of photos; track photo.filename) {
-<img [src]="'assets/photos/' + photo.filename + '-320.jpg'"
-		 [alt]="photo.description"
-		 (click)="facade.onClickPhoto(photo)" />
+  <img
+    [src]="'assets/photos/' + photo.filename + '-320.jpg'"
+    [alt]="photo.description"
+    (click)="facade.onClickPhoto(photo)"
+  />
 }

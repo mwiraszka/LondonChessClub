@@ -38,7 +38,7 @@ export class ClubMapComponent implements OnInit {
     const map = await this.loader
       .importLibrary('maps')
       .then(({ Map }) => new Map(mapElement, this.mapOptions))
-      .catch(error => console.error(`[LCC] Error creating Google Maps map: ${error}`));
+      .catch((error) => console.error(`[LCC] Error creating Google Maps map: ${error}`));
 
     if (map) {
       this.loader
@@ -49,8 +49,8 @@ export class ClubMapComponent implements OnInit {
             position: this.clubLocation,
           });
         })
-        .catch(error =>
-          console.error(`[LCC] Error creating Google Maps advanced marker: ${error}`),
+        .catch((error) =>
+          console.error(`[LCC] Error creating Google Maps advanced marker: ${error}`)
         );
     }
   }

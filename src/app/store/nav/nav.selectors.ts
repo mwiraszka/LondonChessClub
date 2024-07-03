@@ -6,15 +6,15 @@ import { AppStoreFeatureTypes } from '@app/types';
 import { NavState } from './nav.state';
 
 export const navFeatureSelector = createFeatureSelector<NavState>(
-  AppStoreFeatureTypes.NAV,
+  AppStoreFeatureTypes.NAV
 );
 
 export const pathHistory = createSelector(
   navFeatureSelector,
-  state => state?.pathHistory,
+  (state) => state?.pathHistory
 );
-export const previousPath = createSelector(pathHistory, pathHistory =>
-  pathHistory ? pathHistory[pathHistory.length - 1] : null,
+export const previousPath = createSelector(pathHistory, (pathHistory) =>
+  pathHistory ? pathHistory[pathHistory.length - 1] : null
 );
 
 export const {

@@ -1,13 +1,18 @@
+import { ImagesService } from '@app/services';
+
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { debounceTime, filter, first } from 'rxjs/operators';
+
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import type { Article } from '@app/types';
 
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { ImagesService } from '@app/services';
-import type { Article } from '@app/types';
 import { isDefined } from '@app/utils';
 import { imageSizeValidator } from '@app/validators';
+import { debounceTime, filter, first } from 'rxjs/operators';
+
+
+
+
 
 import { ArticleFormFacade } from './article-form.facade';
 
@@ -24,15 +29,17 @@ export class ArticleFormComponent implements OnInit {
   constructor(
     public facade: ArticleFormFacade,
     private formBuilder: FormBuilder,
-    private imagesService: ImagesService,
+    private imagesService: ImagesService
   ) {}
 
   ngOnInit(): void {
-    this.facade.articleCurrently$.pipe(filter(isDefined), first()).subscribe(article => {
-      this.initForm(article);
-      this.initValueChangesListener();
-      this.initArticleImageRehydration();
-    });
+    this.facade.articleCurrently$
+      .pipe(filter(isDefined), first())
+      .subscribe((article) => {
+        this.initForm(article);
+        this.initValueChangesListener();
+        this.initArticleImageRehydration();
+      });
   }
 
   hasError(control: AbstractControl): boolean {
@@ -105,13 +112,13 @@ export class ArticleFormComponent implements OnInit {
   }
 
   private initArticleImageRehydration(): void {
-    this.facade.articleImageCurrently$.pipe(untilDestroyed(this)).subscribe(article => {
+    this.facade.articleImageCurrently$.pipe(untilDestroyed(this)).subscribe((article) => {
       this.form.patchValue(
         {
           imageFile: article.imageFile,
           imageUrl: article.imageUrl,
         },
-        { emitEvent: false },
+        { emitEvent: false }
       );
     });
   }

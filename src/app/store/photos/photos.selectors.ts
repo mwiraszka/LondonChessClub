@@ -5,17 +5,17 @@ import { AppStoreFeatureTypes } from '@app/types';
 import { PhotosState } from './photos.state';
 
 export const photosFeatureSelector = createFeatureSelector<PhotosState>(
-  AppStoreFeatureTypes.PHOTOS,
+  AppStoreFeatureTypes.PHOTOS
 );
 
-export const photos = createSelector(photosFeatureSelector, state => state.photos);
+export const photos = createSelector(photosFeatureSelector, (state) => state.photos);
 
 export const overlayPhoto = createSelector(
   photosFeatureSelector,
-  state => state.overlayPhoto,
+  (state) => state.overlayPhoto
 );
 
 export const isOpen = createSelector(
   photosFeatureSelector,
-  state => !!state.overlayPhoto,
+  (state) => !!state.overlayPhoto
 );

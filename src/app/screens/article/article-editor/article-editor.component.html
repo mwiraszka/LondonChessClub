@@ -1,8 +1,12 @@
 <div class="container">
-	<lcc-screen-header [title]="(facade.isEditMode$ | async)
-                       ? 'Edit ' + (facade.selectedArticleTitle$ | async)
-                       : 'Create an article'">
-	</lcc-screen-header>
-	<lcc-article-form></lcc-article-form>
-	<lcc-link-list [links]="links"></lcc-link-list>
+  <lcc-screen-header
+    [title]="
+      (facade.isEditMode$ | async)
+        ? 'Edit ' + (facade.selectedArticleTitle$ | async)
+        : 'Create an article'
+    "
+  >
+  </lcc-screen-header>
+  <lcc-article-form></lcc-article-form>
+  <lcc-link-list [links]="links"></lcc-link-list>
 </div>

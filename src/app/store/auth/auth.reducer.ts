@@ -14,17 +14,17 @@ const authReducer = createReducer(
 
   on(AuthActions.logoutSucceeded, () => initialState),
 
-  on(AuthActions.codeForPasswordChangeSucceeded, state => ({
+  on(AuthActions.codeForPasswordChangeSucceeded, (state) => ({
     ...state,
     hasCode: true,
   })),
 
-  on(AuthActions.codeForPasswordChangeFailed, state => ({
+  on(AuthActions.codeForPasswordChangeFailed, (state) => ({
     ...state,
     hasCode: false,
   })),
 
-  on(AuthActions.requestNewCodeSelected, state => ({
+  on(AuthActions.requestNewCodeSelected, (state) => ({
     ...state,
     hasCode: false,
   })),
@@ -35,13 +35,13 @@ const authReducer = createReducer(
       ...state,
       user,
       tempInitialPassword,
-    }),
+    })
   ),
 
-  on(AuthActions.passwordChangeSucceeded, state => ({
+  on(AuthActions.passwordChangeSucceeded, (state) => ({
     ...state,
     hasCode: false,
-  })),
+  }))
 );
 
 export function reducer(state: AuthState, action: Action): AuthState {

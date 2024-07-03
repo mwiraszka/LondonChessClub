@@ -9,7 +9,7 @@ function actionLogMetaReducer(reducer: ActionReducer<AppState>): ActionReducer<A
     const timestamp = new Date().toLocaleTimeString();
     console.info(
       `%c [${timestamp}] ${action.type} `,
-      'background-color: #ddd; color: #222',
+      'background-color: #ddd; color: #222'
     );
     console.info('[LCC] State:', state);
     console.info('[LCC] Action:', action);

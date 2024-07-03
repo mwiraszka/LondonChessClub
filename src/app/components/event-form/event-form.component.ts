@@ -20,10 +20,13 @@ import { EventFormFacade } from './event-form.facade';
 export class EventFormComponent implements OnInit {
   form!: FormGroup;
 
-  constructor(public facade: EventFormFacade, private formBuilder: FormBuilder) {}
+  constructor(
+    public facade: EventFormFacade,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.facade.eventCurrently$.pipe(filter(isDefined), first()).subscribe(event => {
+    this.facade.eventCurrently$.pipe(filter(isDefined), first()).subscribe((event) => {
       this.initForm(event);
       this.initValueChangesListener();
     });

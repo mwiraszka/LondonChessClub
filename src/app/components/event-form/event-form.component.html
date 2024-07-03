@@ -1,7 +1,14 @@
 @if (form) {
-  <form class="lcc-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form
+    class="lcc-form"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()">
     <div class="lcc-form-fields">
-      <label for="event-date-input" class="lcc-required-field"> Event date: </label>
+      <label
+        for="event-date-input"
+        class="lcc-required-field">
+        Event date:
+      </label>
       <input
         id="event-date-input"
         type="text"
@@ -17,8 +24,16 @@
         }
       </div>
 
-      <label for="title-input" class="lcc-required-field"> Title: </label>
-      <input id="title-input" type="text" name="title" formControlName="title" />
+      <label
+        for="title-input"
+        class="lcc-required-field">
+        Title:
+      </label>
+      <input
+        id="title-input"
+        type="text"
+        name="title"
+        formControlName="title" />
       <div class="lcc-form-error-container">
         @if (hasError(form.controls['title'])) {
           <i-feather
@@ -29,7 +44,11 @@
         }
       </div>
 
-      <label for="details-input" class="lcc-required-field"> Details: </label>
+      <label
+        for="details-input"
+        class="lcc-required-field">
+        Details:
+      </label>
       <textarea
         id="details-input"
         class="details-textarea"
@@ -47,7 +66,11 @@
         }
       </div>
 
-      <label for="type-input" class="lcc-required-field"> Event type: </label>
+      <label
+        for="type-input"
+        class="lcc-required-field">
+        Event type:
+      </label>
       <fieldset class="lcc-form-radio-buttons event-type-fieldset">
         <div>
           <input
@@ -158,7 +181,10 @@
     }
 
     <div class="lcc-form-buttons-container">
-      <button class="lcc-secondary-button" type="button" (click)="onCancel()">
+      <button
+        class="lcc-secondary-button"
+        type="button"
+        (click)="onCancel()">
         Cancel
       </button>
       <button

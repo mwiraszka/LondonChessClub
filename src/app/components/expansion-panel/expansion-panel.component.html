@@ -1,6 +1,11 @@
-<div class="header-container" [class.isOpen]="isOpen" (click)="isOpen = !isOpen">
+<div
+  class="header-container"
+  [class.isOpen]="isOpen"
+  (click)="isOpen = !isOpen">
   <ng-container [ngTemplateOutlet]="headerTemplate"></ng-container>
-  <i-feather [name]="isOpen ? 'chevron-down' : 'chevron-up'" class="expand-icon">
+  <i-feather
+    [name]="isOpen ? 'chevron-down' : 'chevron-up'"
+    class="expand-icon">
   </i-feather>
 </div>
 

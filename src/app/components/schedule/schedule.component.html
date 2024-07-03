@@ -44,11 +44,16 @@
           <td class="main-cell">
             <div class="main-content">
               <h4 class="title">{{ event.title }}</h4>
-              <div class="type-container" [ngClass]="kebabize(event.type)">
+              <div
+                class="type-container"
+                [ngClass]="kebabize(event.type)">
                 <span class="type">{{ event.type }}</span>
 
                 @if (kebabize(event.type) === 'championship') {
-                  <i-feather name="award" class="award-icon"> </i-feather>
+                  <i-feather
+                    name="award"
+                    class="award-icon">
+                  </i-feather>
                 }
               </div>
 

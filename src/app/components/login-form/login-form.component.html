@@ -1,4 +1,7 @@
-﻿<form class="lcc-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+﻿<form
+  class="lcc-form"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()">
   <div class="lcc-form-fields">
     <label for="email-input">Email:</label>
     <input
@@ -28,13 +31,18 @@
   </div>
 
   <div class="lcc-form-buttons-container">
-    <button class="lcc-primary-button" type="submit" [disabled]="form.invalid">
+    <button
+      class="lcc-primary-button"
+      type="submit"
+      [disabled]="form.invalid">
       Log in
     </button>
   </div>
 
   <div class="lcc-form-links-container">
-    <a class="lcc-form-link" [routerLink]="'/' + NavPathTypes.CHANGE_PASSWORD">
+    <a
+      class="lcc-form-link"
+      [routerLink]="'/' + NavPathTypes.CHANGE_PASSWORD">
       Forgot password?
     </a>
   </div>

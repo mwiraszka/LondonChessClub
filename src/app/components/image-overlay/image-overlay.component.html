@@ -1,7 +1,13 @@
-<div class="lcc-overlay" (click)="facade.onOverlay($event)">
+<div
+  class="lcc-overlay"
+  (click)="facade.onOverlay($event)">
   <div class="content">
     <header>
-      <i-feather name="x" class="close-icon" (click)="facade.onClose()"> </i-feather>
+      <i-feather
+        name="x"
+        class="close-icon"
+        (click)="facade.onClose()">
+      </i-feather>
     </header>
     <img
       id="overlay-image"

@@ -1,7 +1,14 @@
 @if (form) {
-  <form class="lcc-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form
+    class="lcc-form"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()">
     <div class="lcc-form-fields">
-      <label for="first-name-input" class="lcc-required-field"> First name: </label>
+      <label
+        for="first-name-input"
+        class="lcc-required-field">
+        First name:
+      </label>
       <input
         id="first-name-input"
         type="text"
@@ -18,7 +25,11 @@
         }
       </div>
 
-      <label for="last-name-input" class="lcc-required-field"> Last name: </label>
+      <label
+        for="last-name-input"
+        class="lcc-required-field">
+        Last name:
+      </label>
       <input
         id="last-name-input"
         type="text"
@@ -35,7 +46,11 @@
         }
       </div>
 
-      <label for="city-input" class="lcc-required-field"> City: </label>
+      <label
+        for="city-input"
+        class="lcc-required-field">
+        City:
+      </label>
       <input
         id="city-input"
         type="text"
@@ -52,7 +67,11 @@
         }
       </div>
 
-      <label for="rating-input" class="lcc-required-field"> LCC rating: </label>
+      <label
+        for="rating-input"
+        class="lcc-required-field">
+        LCC rating:
+      </label>
       <input
         id="rating-input"
         type="text"
@@ -69,7 +88,11 @@
         }
       </div>
 
-      <label for="date-joined-input" class="lcc-required-field"> Date joined: </label>
+      <label
+        for="date-joined-input"
+        class="lcc-required-field">
+        Date joined:
+      </label>
       <input
         id="date-joined-input"
         type="text"
@@ -189,7 +212,10 @@
     }
 
     <div class="lcc-form-buttons-container">
-      <button class="lcc-secondary-button" type="button" (click)="onCancel()">
+      <button
+        class="lcc-secondary-button"
+        type="button"
+        (click)="onCancel()">
         Cancel
       </button>
       <button

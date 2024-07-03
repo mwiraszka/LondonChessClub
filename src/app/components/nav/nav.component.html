@@ -91,7 +91,10 @@
       class="chevron-icon">
     </i-feather>
 
-    <div class="lcc-dropdown user-dropdown" dropdown (opened)="isDropdownOpen = $event">
+    <div
+      class="lcc-dropdown user-dropdown"
+      dropdown
+      (opened)="isDropdownOpen = $event">
       <ul class="dropdown-items">
         @if (facade.user$ | async; as user) {
           <li class="dropdown-item user-name">

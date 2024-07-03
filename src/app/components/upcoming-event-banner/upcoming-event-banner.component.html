@@ -1,5 +1,7 @@
 @if (facade.upcomingEvent$ | async; as upcomingEvent) {
-  <div class="container" [ngClass]="kebabize(upcomingEvent.type)">
+  <div
+    class="container"
+    [ngClass]="kebabize(upcomingEvent.type)">
     <div class="banner-message-container">
       <a
         class="banner-message"
@@ -10,7 +12,10 @@
           <b>{{ setLocalTime(upcomingEvent.eventDate) | formatDate: 'short' }}</b>
         </span>
       </a>
-      <i-feather name="x" class="close-icon" (click)="facade.onClearBanner()">
+      <i-feather
+        name="x"
+        class="close-icon"
+        (click)="facade.onClearBanner()">
       </i-feather>
     </div>
   </div>

@@ -1,5 +1,8 @@
 ﻿<div class="container">
-  <lcc-screen-header title="Documents" icon="file-text"> </lcc-screen-header>
+  <lcc-screen-header
+    title="Documents"
+    icon="file-text">
+  </lcc-screen-header>
 
   <div class="lcc-table-wrapper">
     <table class="lcc-table documents-table">
@@ -15,14 +18,20 @@
               <div
                 class="document-label-container"
                 (click)="onSelectDocument(document.fileName)">
-                <i-feather name="file-text" class="file-icon"> </i-feather>
+                <i-feather
+                  name="file-text"
+                  class="file-icon">
+                </i-feather>
                 <span class="document-title">{{ document.title }}</span>
               </div>
               <a
                 [href]="'assets/documents/' + document.fileName"
                 class="download-link"
                 [download]="document.title">
-                <i-feather name="download" class="download-icon"> </i-feather>
+                <i-feather
+                  name="download"
+                  class="download-icon">
+                </i-feather>
               </a>
             </td>
 
@@ -41,13 +50,23 @@
 </div>
 
 <ng-template #pdfViewer>
-  <div class="pdf-viewer-container" (click)="onCloseViewer()">
-    <header class="pdf-viewer-header" (click)="onClickViewer($event)">
-      <i-feather name="x" class="close-icon" (click)="onCloseViewer()"> </i-feather>
+  <div
+    class="pdf-viewer-container"
+    (click)="onCloseViewer()">
+    <header
+      class="pdf-viewer-header"
+      (click)="onClickViewer($event)">
+      <i-feather
+        name="x"
+        class="close-icon"
+        (click)="onCloseViewer()">
+      </i-feather>
     </header>
 
     @if (loadedPercentage < 100) {
-      <div class="loading-progress-indicator" [style.width.%]="loadedPercentage"></div>
+      <div
+        class="loading-progress-indicator"
+        [style.width.%]="loadedPercentage"></div>
     }
 
     <pdf-viewer

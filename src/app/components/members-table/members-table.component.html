@@ -3,7 +3,9 @@
 }
 
 <div class="lcc-table-wrapper">
-  <table class="lcc-table" [class.lcc-show-admin-columns]="facade.isAdmin$ | async">
+  <table
+    class="lcc-table"
+    [class.lcc-show-admin-columns]="facade.isAdmin$ | async">
     @if ((facade.displayedMembers$ | async)?.length) {
       <thead>
         <tr>

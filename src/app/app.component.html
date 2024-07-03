@@ -6,7 +6,9 @@
   <lcc-image-overlay></lcc-image-overlay>
 }
 
-<div id="app-container" class="app-container">
+<div
+  id="app-container"
+  class="app-container">
   @if ((facade.showUpcomingEventBanner$ | async) && (facade.upcomingEvent$ | async)) {
     <lcc-upcoming-event-banner></lcc-upcoming-event-banner>
   }

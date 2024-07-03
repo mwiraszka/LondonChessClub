@@ -2,6 +2,7 @@
   "arrowParens": "avoid",
   "bracketSameLine": true,
   "bracketSpacing": true,
+  "htmlWhitespaceSensitivity": "strict",
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
     "^@angular/(.*)$",
@@ -18,7 +19,6 @@
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
-  "jsxBracketSameLine": true,
   "overrides": [
     {
       "files": "*.html",
@@ -30,6 +30,7 @@
   "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "printWidth": 90,
   "semi": true,
+  "singleAttributePerLine": true,
   "singleQuote": true,
   "tabWidth": 2,
   "trailingComma": "all",

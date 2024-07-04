@@ -4,10 +4,6 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <https://londonchess.ca>
 
-## Staging environment (for testing new features)
-
-<http://londonchessclub.ca.s3-website.us-east-2.amazonaws.com>
-
 ## Architecture
 
 > FRONTEND
@@ -37,9 +33,18 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 |     |                                   |
 | --- | --------------------------------- |
-| 🚀  | **New features** and improvements |
+| 🚀  | New features & improvements   |
 | 🐛  | Bug fixes                         |
-| 🔧  | Code refactoring                  |
+| 🔧  | Behind-the-scenes changes         |
+
+<details>
+<summary style="cursor: pointer">
+v4.0.5 - July 5th, 2024
+</summary>
+
+- 🔧 Add step in GitHub action workflow to automatically invalidate CloudFront distribution whenever updating the production website S3
+
+</details>
 
 <details>
 <summary style="cursor: pointer">
@@ -79,7 +84,7 @@ v4.0.1 - June 26th, 2024
 
 - 🚀 Some minor styling touch-ups
 - 🚀 Only display an article has been edited if it's at least 5 minutes after the creation time
-- 🔧 Remove all 'MB' and empty {Fritz} annotations from archived games' PGNs
+- 🚀 Remove all 'MB' and empty {Fritz} annotations from archived games' PGNs
 
 </details>
 

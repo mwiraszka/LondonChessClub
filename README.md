@@ -39,6 +39,16 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v4.0.6 - August 4th, 2024
+</summary>
+
+- 🚀 Display scores next to players' names in the PGN viewer component
+- 🚀 Add the ability to filter games in the Game Archives page by first/last name, whether the player was White or Black, and the number of moves 
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.0.5 - July 5th, 2024
 </summary>
 

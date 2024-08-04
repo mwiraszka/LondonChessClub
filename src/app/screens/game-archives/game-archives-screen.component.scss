@@ -59,6 +59,10 @@ $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
     }
   }
 
+  .game-filter-form {
+    width: 300px !important;
+  }
+
   .panels-container {
     display: flex;
     flex-direction: column;

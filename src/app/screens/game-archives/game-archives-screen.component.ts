@@ -1,22 +1,82 @@
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
-import { MetaAndTitleService } from '@app/services';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { KeyValue } from '@angular/common';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+
+import { LoaderService, MetaAndTitleService } from '@app/services';
+import { GameDetails } from '@app/types';
+import { getPlayerName, getPlyCount, getScore } from '@app/utils/pgn-utils';
 
 import * as fromPgns from './pgns';
 
+@UntilDestroy()
 @Component({
   selector: 'lcc-game-archives-screen',
   templateUrl: './game-archives-screen.component.html',
   styleUrls: ['./game-archives-screen.component.scss'],
 })
 export class GameArchivesScreenComponent implements OnInit {
-  expansionPanels!: { label: string; pgns: string[] }[];
+  readonly YEARS = [
+    '2023',
+    '2022',
+    '2019',
+    '2018',
+    '2017',
+    '2005',
+    '2000',
+    '1999',
+    '1998',
+    '1997',
+    '1996',
+    '1995',
+    '1994',
+    '1993',
+    '1992',
+    '1991',
+    '1990',
+    '1989',
+    '1988',
+    '1987',
+    '1985',
+    '1984',
+    '1983',
+    '1982',
+    '1980',
+    '1979',
+    '1977',
+    '1976',
+    '1974',
+  ] as const;
+
+  allGames: Map<string, GameDetails[]> = new Map();
+  filteredGames: Map<string, GameDetails[]> = new Map();
+  form!: FormGroup;
+
+  get searchResultSummaryMessage(): string {
+    const resultCount = Array.from(this.filteredGames.values()).flat().length;
+    if (resultCount === 0) {
+      return 'No games found';
+    }
+    return `${resultCount} ${resultCount === 1 ? 'game' : 'games'} found`;
+  }
 
   @ViewChild(CdkVirtualScrollViewport)
   cdkVirtualScrollViewport?: CdkVirtualScrollViewport;
 
-  constructor(private metaAndTitleService: MetaAndTitleService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private loaderService: LoaderService,
+    private metaAndTitleService: MetaAndTitleService,
+  ) {}
 
   @HostListener('window:resize', ['$event'])
   onResize(): void {
@@ -29,123 +89,154 @@ export class GameArchivesScreenComponent implements OnInit {
       'A collection of games played by London Chess Club members, going all the way back to 1974.',
     );
 
-    this.expansionPanels = [
-      {
-        label: '2023',
-        pgns: fromPgns.pgns2023,
-      },
-      {
-        label: '2022',
-        pgns: fromPgns.pgns2022,
-      },
-      {
-        label: '2019',
-        pgns: fromPgns.pgns2019,
-      },
-      {
-        label: '2018',
-        pgns: fromPgns.pgns2018,
-      },
-      {
-        label: '2017',
-        pgns: fromPgns.pgns2017,
-      },
-      {
-        label: '2005',
-        pgns: fromPgns.pgns2005,
-      },
-      {
-        label: '2000',
-        pgns: fromPgns.pgns2000,
-      },
-      {
-        label: '1999',
-        pgns: fromPgns.pgns1999,
-      },
-      {
-        label: '1998',
-        pgns: fromPgns.pgns1998,
-      },
-      {
-        label: '1997',
-        pgns: fromPgns.pgns1997,
-      },
-      {
-        label: '1996',
-        pgns: fromPgns.pgns1996,
-      },
-      {
-        label: '1995',
-        pgns: fromPgns.pgns1995,
-      },
-      {
-        label: '1994',
-        pgns: fromPgns.pgns1994,
-      },
-      {
-        label: '1993',
-        pgns: fromPgns.pgns1993,
-      },
-      {
-        label: '1992',
-        pgns: fromPgns.pgns1992,
-      },
-      {
-        label: '1991',
-        pgns: fromPgns.pgns1991,
-      },
-      {
-        label: '1990',
-        pgns: fromPgns.pgns1990,
-      },
-      {
-        label: '1989',
-        pgns: fromPgns.pgns1989,
-      },
-      {
-        label: '1988',
-        pgns: fromPgns.pgns1988,
-      },
-      {
-        label: '1987',
-        pgns: fromPgns.pgns1987,
-      },
-      {
-        label: '1985',
-        pgns: fromPgns.pgns1985,
-      },
-      {
-        label: '1984',
-        pgns: fromPgns.pgns1984,
-      },
-      {
-        label: '1983',
-        pgns: fromPgns.pgns1983,
-      },
-      {
-        label: '1982',
-        pgns: fromPgns.pgns1982,
-      },
-      {
-        label: '1980',
-        pgns: fromPgns.pgns1980,
-      },
-      {
-        label: '1979',
-        pgns: fromPgns.pgns1979,
-      },
-      {
-        label: '1977',
-        pgns: fromPgns.pgns1977,
-      },
-      {
-        label: '1976',
-        pgns: fromPgns.pgns1976,
-      },
-      {
-        label: '1974',
-        pgns: fromPgns.pgns1974,
-      },
-    ];
+    this.initForm();
+    this.initGames();
+    this.initValueChangesListeners();
+    this.filterGames();
+  }
+
+  hasError(control: AbstractControl): boolean {
+    return control.dirty && control.invalid;
+  }
+
+  getErrorMessage(): string {
+    return 'Invalid input';
+  }
+
+  originalOrder = (
+    a: KeyValue<string, GameDetails[]>,
+    b: KeyValue<string, GameDetails[]>,
+  ): number => {
+    return 0;
+  };
+
+  private initForm(): void {
+    this.form = this.formBuilder.group({
+      name: new FormControl(''),
+      asWhite: new FormControl(true),
+      asBlack: new FormControl(true),
+      movesMin: new FormControl('0', [
+        Validators.max(99),
+        Validators.pattern(/^[0-9]*$/),
+      ]),
+      movesMax: new FormControl('999', [
+        Validators.max(999),
+        Validators.pattern(/^[0-9]*$/),
+      ]),
+      resultWhiteWon: new FormControl(true),
+      resultDraw: new FormControl(true),
+      resultBlackWon: new FormControl(true),
+    });
+  }
+
+  private initGames(): void {
+    this.YEARS.forEach(year => {
+      const pgns = fromPgns[`pgns${year}`];
+      this.allGames.set(
+        year,
+        pgns.map(pgn => {
+          return {
+            pgn,
+            whiteName: getPlayerName(pgn, 'White'),
+            whiteScore: getScore(pgn, 'White'),
+            blackName: getPlayerName(pgn, 'Black'),
+            blackScore: getScore(pgn, 'Black'),
+            plyCount: getPlyCount(pgn),
+          };
+        }),
+      );
+    });
+  }
+
+  private initValueChangesListeners(): void {
+    this.form.valueChanges
+      .pipe(distinctUntilChanged(), debounceTime(100), untilDestroyed(this))
+      .subscribe(() => this.filterGames());
+
+    this.form.controls['asBlack'].valueChanges.subscribe(asBlack => {
+      if (!asBlack && !this.form.controls['asWhite'].value) {
+        this.form.controls['asWhite'].setValue(true);
+      }
+    });
+
+    this.form.controls['asWhite'].valueChanges.subscribe(asWhite => {
+      if (!asWhite && !this.form.controls['asBlack'].value) {
+        this.form.controls['asBlack'].setValue(true);
+      }
+    });
+
+    this.form.controls['resultWhiteWon'].valueChanges.subscribe(resultWhiteWon => {
+      if (
+        !resultWhiteWon &&
+        !this.form.controls['resultDraw'].value &&
+        !this.form.controls['resultBlackWon'].value
+      ) {
+        this.form.controls['resultDraw'].setValue(true);
+      }
+    });
+
+    this.form.controls['resultDraw'].valueChanges.subscribe(resultDraw => {
+      if (
+        !resultDraw &&
+        !this.form.controls['resultDraw'].value &&
+        !this.form.controls['resultBlackWon'].value
+      ) {
+        this.form.controls['resultWhiteWon'].setValue(true);
+      }
+    });
+
+    this.form.controls['resultBlackWon'].valueChanges.subscribe(resultBlackWon => {
+      if (
+        !resultBlackWon &&
+        !this.form.controls['resultWhiteWon'].value &&
+        !this.form.controls['resultDraw'].value
+      ) {
+        this.form.controls['resultWhiteWon'].setValue(true);
+      }
+    });
+  }
+
+  private filterGames(): void {
+    this.loaderService.display(true);
+
+    const name = this.form.value['name']?.toLowerCase();
+    const pliesMin = this.form.value['movesMin'] * 2;
+    const pliesMax = this.form.value['movesMax'] * 2;
+    const asWhite = this.form.value['asWhite'];
+    const asBlack = this.form.value['asBlack'];
+    const resultWhiteWon = this.form.value['resultWhiteWon'];
+    const resultDraw = this.form.value['resultDraw'];
+    const resultBlackWon = this.form.value['resultBlackWon'];
+
+    this.filteredGames = new Map();
+    this.allGames.forEach((games, year) => {
+      const filteredGames = games
+        .filter(game => {
+          if (!name) {
+            return true;
+          }
+          return (
+            name !== '' &&
+            ((asWhite && game.whiteName?.toLowerCase().includes(name)) ||
+              (asBlack && game.blackName?.toLowerCase().includes(name)))
+          );
+        })
+        .filter(game => {
+          if (!game.plyCount) {
+            return true;
+          }
+          return game.plyCount <= pliesMax && game.plyCount >= pliesMin;
+        })
+        .filter(game => {
+          return (
+            (resultWhiteWon && game.whiteScore === '1') ||
+            (resultDraw && game.whiteScore === '1/2' && game.blackScore === '1/2') ||
+            (resultBlackWon && game.blackScore === '1')
+          );
+        });
+      this.filteredGames.set(year, filteredGames);
+    });
+
+    this.loaderService.display(false);
   }
 }

@@ -3,11 +3,17 @@ lcc-pgn-viewer {
     background-color: var(--lcc-color--pgnViewer-board);
   }
 
-  .lpv:focus {
-    outline: none;
-  }
+  .lpv__player--top,
+  .lpv__player--bottom {
+    .lpv__player__person {
+      &::before {
+        content: attr(data-score);
+        font-size: var(--lcc-fontSize--h3);
+      }
 
-  .lpv__player__name {
-    color: var(--lcc-color--pgnViewer-playerNameText);
+      .lpv__player__name {
+        color: var(--lcc-color--pgnViewer-playerNameText);
+      }
+    }
   }
 }

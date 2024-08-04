@@ -1,26 +1,87 @@
 import LichessPgnViewer from 'lichess-pgn-viewer';
 
 import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, Component, Inject, Input } from '@angular/core';
+import { AfterViewInit, Component, Inject, Input, OnInit } from '@angular/core';
+
+import { getPlayerName, getScore } from '@app/utils/pgn-utils';
 
 @Component({
   selector: 'lcc-pgn-viewer',
   templateUrl: './pgn-viewer.component.html',
-  styleUrls: ['./pgn-viewer.component.scss'],
 })
-export class PgnViewerComponent implements AfterViewInit {
-  @Input() pgn?: string;
-  @Input() index!: number;
+export class PgnViewerComponent implements OnInit, AfterViewInit {
+  viewerId!: string;
 
-  container: HTMLElement | null = null;
+  @Input() index!: number;
+  @Input() label!: string;
+  @Input() pgn!: string;
 
   constructor(@Inject(DOCUMENT) private _document: Document) {}
 
+  ngOnInit(): void {
+    this.viewerId = `pgn-viewer--${this.label}--${this.index}`;
+  }
+
   ngAfterViewInit(): void {
-    this.container = this._document.getElementById(`pgn-viewer-${this.index}`);
-    if (this.container) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const _ = LichessPgnViewer(this.container, { pgn: this.pgn });
+    const container = this._document.getElementById(this.viewerId);
+
+    if (container) {
+      const _ = LichessPgnViewer(container, {
+        classes: this.viewerId, // Required for query selectors below
+        initialPly: 'last',
+        orientation: 'white',
+        pgn: this.pgn,
+        showClocks: false,
+      });
+
+      const whiteName = getPlayerName(this.pgn, 'White');
+      if (!whiteName) {
+        console.error(
+          '[LCC] A game with no defined White player was found: \n',
+          this.pgn,
+        );
+        return;
+      }
+
+      const blackName = getPlayerName(this.pgn, 'Black');
+      if (!blackName) {
+        console.error(
+          '[LCC] A game with no defined Black player was found: \n',
+          this.pgn,
+        );
+        return;
+      }
+
+      const whiteScore = getScore(this.pgn, 'White');
+      if (!whiteScore) {
+        console.error(
+          '[LCC] A game with no valid score for White was found: \n',
+          this.pgn,
+        );
+        return;
+      }
+
+      const blackScore = getScore(this.pgn, 'Black');
+      if (!blackScore) {
+        console.error(
+          '[LCC] A game with no valid score for Black was found: \n',
+          this.pgn,
+        );
+        return;
+      }
+
+      const whitePlayerElement = this._document.querySelector(
+        `.${this.viewerId} .lpv__player--bottom > .lpv__player__person`,
+      );
+      const blackPlayerElement = this._document.querySelector(
+        `.${this.viewerId} .lpv__player--top > .lpv__player__person`,
+      );
+
+      whitePlayerElement?.setAttribute('data-name', whiteName);
+      whitePlayerElement?.setAttribute('data-score', whiteScore);
+
+      blackPlayerElement?.setAttribute('data-name', blackName);
+      blackPlayerElement?.setAttribute('data-score', blackScore);
     }
   }
 }

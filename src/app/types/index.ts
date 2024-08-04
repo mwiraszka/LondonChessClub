@@ -5,6 +5,8 @@ export { newArticleFormTemplate } from './article.model';
 export type { ClubDocument } from './club-document.model';
 export type { ClubEvent, FlatClubEvent } from './club-event.model';
 export { ClubEventTypes, newClubEventFormTemplate } from './club-event.model';
+export type { GameDetails, GameScore } from './game-details.model';
+export { isValidGameScore } from './game-details.model';
 export type { ImageId } from './image-id.model';
 export type { Link } from './link.model';
 export type { LoginRequest, LoginResponse } from './login.model';

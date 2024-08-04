@@ -39,9 +39,14 @@ export function getScore(pgn?: string, color?: 'White' | 'Black'): GameScore | u
 
   const [whiteScore, blackScore] = pgn.split('[Result "')[1].split('"]')[0].split('-');
 
+  if (whiteScore === '*') {
+    return '*';
+  }
+
   if (!isValidGameScore(whiteScore) || !isValidGameScore(blackScore)) {
     return;
   }
+
   return color === 'White' ? whiteScore : blackScore;
 }
 

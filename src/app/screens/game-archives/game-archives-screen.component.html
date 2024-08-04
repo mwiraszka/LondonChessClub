@@ -27,91 +27,103 @@
     </div>
   </section>
 
-  <form
-    class="lcc-form game-filter-form"
-    [formGroup]="form">
-    <div class="lcc-form-fields">
-      <label for="name-input">Name</label>
-      <input
-        id="name-input"
-        type="text"
-        name="name"
-        formControlName="name"
-        maxlength="50" />
+  <div class="game-filter-container">
+    <span class="filter-games-text">Filter games:</span>
+    <form
+      class="lcc-form game-filter-form"
+      [formGroup]="form">
+      <section class="lcc-form-fields filter-section player-filter-section">
+        <label for="name-input">Player name</label>
+        <input
+          id="name-input"
+          type="text"
+          name="name"
+          formControlName="name"
+          maxlength="50" />
 
-      <label for="as-white-input">as White</label>
-      <input
-        id="as-white-input"
-        type="checkbox"
-        name="as-white"
-        formControlName="asWhite" />
+        <label for="as-white-input">as White</label>
+        <input
+          id="as-white-input"
+          type="checkbox"
+          name="as-white"
+          formControlName="asWhite" />
 
-      <label for="as-black-input">as Black</label>
-      <input
-        id="as-black-input"
-        type="checkbox"
-        name="as-black"
-        formControlName="asBlack" />
+        <label for="as-black-input">as Black</label>
+        <input
+          id="as-black-input"
+          type="checkbox"
+          name="as-black"
+          formControlName="asBlack" />
+      </section>
 
-      <label for="name-input">Moves (min)</label>
-      <input
-        id="moves-min-input"
-        type="text"
-        name="moves-min"
-        formControlName="movesMin"
-        maxlength="2" />
-      <div class="lcc-form-error-container">
-        @if (hasError(form.controls['movesMin'])) {
-          <i-feather
-            name="alert-triangle"
-            class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage()">
-          </i-feather>
-        }
-      </div>
+      <section class="lcc-form-fields filter-section moves-filter-section">
+        <label for="name-input">Moves (min)</label>
+        <input
+          id="moves-min-input"
+          type="text"
+          name="moves-min"
+          formControlName="movesMin"
+          maxlength="3" />
+        <div class="lcc-form-error-container">
+          @if (hasError(form.controls['movesMin'])) {
+            <i-feather
+              name="alert-triangle"
+              class="lcc-form-error-icon validation-alert-icon"
+              [tooltip]="getErrorMessage()">
+            </i-feather>
+          }
+        </div>
 
-      <label for="name-input">Moves (max)</label>
-      <input
-        id="moves-max-input"
-        type="text"
-        name="moves-max"
-        formControlName="movesMax"
-        maxlength="3" />
-      <div class="lcc-form-error-container">
-        @if (hasError(form.controls['movesMax'])) {
-          <i-feather
-            name="alert-triangle"
-            class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage()">
-          </i-feather>
-        }
-      </div>
+        <label for="name-input">Moves (max)</label>
+        <input
+          id="moves-max-input"
+          type="text"
+          name="moves-max"
+          formControlName="movesMax"
+          maxlength="3" />
+        <div class="lcc-form-error-container">
+          @if (hasError(form.controls['movesMax'])) {
+            <i-feather
+              name="alert-triangle"
+              class="lcc-form-error-icon validation-alert-icon"
+              [tooltip]="getErrorMessage()">
+            </i-feather>
+          }
+        </div>
+      </section>
 
-      <label for="result-white-won-input">White won</label>
-      <input
-        id="result-white-won-input"
-        type="checkbox"
-        name="result-white-won"
-        formControlName="resultWhiteWon" />
+      <section class="lcc-form-fields filter-section result-filter-section">
+        <label for="result-white-won-input">White won</label>
+        <input
+          id="result-white-won-input"
+          type="checkbox"
+          name="result-white-won"
+          formControlName="resultWhiteWon" />
 
-      <label for="result-draw-input">Draw</label>
-      <input
-        id="result-draw-input"
-        type="checkbox"
-        name="result-draw"
-        formControlName="resultDraw" />
+        <label for="result-draw-input">Draw</label>
+        <input
+          id="result-draw-input"
+          type="checkbox"
+          name="result-draw"
+          formControlName="resultDraw" />
 
-      <label for="result-black-won-input">Black won</label>
-      <input
-        id="result-black-won-input"
-        type="checkbox"
-        name="result-black-won-input"
-        formControlName="resultBlackWon" />
-    </div>
-  </form>
+        <label for="result-black-won-input">Black won</label>
+        <input
+          id="result-black-won-input"
+          type="checkbox"
+          name="result-black-won-input"
+          formControlName="resultBlackWon" />
 
-  <div class="result-summary-container">
-    {{ searchResultSummaryMessage }}
+        <label for="result-inconclusive-input">Inconclusive</label>
+        <input
+          id="result-inconclusive-input"
+          type="checkbox"
+          name="result-inconclusive-input"
+          formControlName="resultInconclusive" />
+      </section>
+    </form>
+
+    <span class="result-summary-text">{{ searchResultSummaryMessage }}</span>
   </div>
 
   <div class="panels-container">

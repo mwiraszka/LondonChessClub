@@ -59,8 +59,68 @@ $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
     }
   }
 
-  .game-filter-form {
-    width: 300px !important;
+  .game-filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: $container-max-width;
+    background-color: var(--lcc-color--gameArchivesScreen-filterContainerBackground);
+    border-radius: var(--lcc-borderRadius--large);
+    padding: 8px;
+
+    .filter-games-text {
+      align-self: start;
+      padding: 8px;
+      color: var(--lcc-color--gameArchivesScreen-headerText);
+    }
+
+    .game-filter-form {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-areas:
+        'player player'
+        'moves result';
+      gap: 2px;
+      align-items: stretch;
+
+      @include respond-to('gt-xs') {
+        gap: 8px;
+      }
+
+      @include respond-to('gt-md') {
+        grid-template-columns: 4fr 1fr 1fr;
+        grid-template-areas: 'player moves result';
+      }
+
+      .filter-section {
+        border: 1px solid var(--lcc-color--gameArchivesScreen-filterSectionBorder);
+        border-radius: var(--lcc-borderRadius--large);
+        padding: 8px;
+        gap: 4px 8px;
+
+        &.player-filter-section {
+          grid-area: player;
+        }
+
+        &.moves-filter-section {
+          grid-area: moves;
+
+          input {
+            max-width: 50px;
+          }
+        }
+
+        &.result-filter-section {
+          grid-area: result;
+        }
+      }
+    }
+
+    .result-summary-text {
+      padding: 8px;
+      color: var(--lcc-color--gameArchivesScreen-text);
+    }
   }
 
   .panels-container {

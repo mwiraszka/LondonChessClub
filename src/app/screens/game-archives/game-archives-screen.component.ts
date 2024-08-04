@@ -62,11 +62,18 @@ export class GameArchivesScreenComponent implements OnInit {
   form!: FormGroup;
 
   get searchResultSummaryMessage(): string {
+    const allGamesCount = Array.from(this.allGames.values()).flat().length;
     const resultCount = Array.from(this.filteredGames.values()).flat().length;
+
     if (resultCount === 0) {
-      return 'No games found';
+      return 'No games found 😢';
     }
-    return `${resultCount} ${resultCount === 1 ? 'game' : 'games'} found`;
+
+    if (resultCount === allGamesCount) {
+      return `Displaying all ${resultCount} games`;
+    }
+
+    return `Displaying ${resultCount} / ${allGamesCount} ${resultCount === 1 ? 'game' : 'games'} 😎`;
   }
 
   @ViewChild(CdkVirtualScrollViewport)
@@ -115,17 +122,18 @@ export class GameArchivesScreenComponent implements OnInit {
       name: new FormControl(''),
       asWhite: new FormControl(true),
       asBlack: new FormControl(true),
-      movesMin: new FormControl('0', [
-        Validators.max(99),
+      movesMin: new FormControl('', [
+        Validators.max(999),
         Validators.pattern(/^[0-9]*$/),
       ]),
-      movesMax: new FormControl('999', [
+      movesMax: new FormControl('', [
         Validators.max(999),
         Validators.pattern(/^[0-9]*$/),
       ]),
       resultWhiteWon: new FormControl(true),
       resultDraw: new FormControl(true),
       resultBlackWon: new FormControl(true),
+      resultInconclusive: new FormControl(true),
     });
   }
 
@@ -169,7 +177,8 @@ export class GameArchivesScreenComponent implements OnInit {
       if (
         !resultWhiteWon &&
         !this.form.controls['resultDraw'].value &&
-        !this.form.controls['resultBlackWon'].value
+        !this.form.controls['resultBlackWon'].value &&
+        !this.form.controls['resultInconclusive'].value
       ) {
         this.form.controls['resultDraw'].setValue(true);
       }
@@ -179,7 +188,8 @@ export class GameArchivesScreenComponent implements OnInit {
       if (
         !resultDraw &&
         !this.form.controls['resultDraw'].value &&
-        !this.form.controls['resultBlackWon'].value
+        !this.form.controls['resultBlackWon'].value &&
+        !this.form.controls['resultInconclusive'].value
       ) {
         this.form.controls['resultWhiteWon'].setValue(true);
       }
@@ -189,11 +199,25 @@ export class GameArchivesScreenComponent implements OnInit {
       if (
         !resultBlackWon &&
         !this.form.controls['resultWhiteWon'].value &&
-        !this.form.controls['resultDraw'].value
+        !this.form.controls['resultDraw'].value &&
+        !this.form.controls['resultInconclusive'].value
       ) {
         this.form.controls['resultWhiteWon'].setValue(true);
       }
     });
+
+    this.form.controls['resultInconclusive'].valueChanges.subscribe(
+      resultInconclusive => {
+        if (
+          !resultInconclusive &&
+          !this.form.controls['resultWhiteWon'].value &&
+          !this.form.controls['resultDraw'].value &&
+          !this.form.controls['resultBlackWon'].value
+        ) {
+          this.form.controls['resultWhiteWon'].setValue(true);
+        }
+      },
+    );
   }
 
   private filterGames(): void {
@@ -207,6 +231,7 @@ export class GameArchivesScreenComponent implements OnInit {
     const resultWhiteWon = this.form.value['resultWhiteWon'];
     const resultDraw = this.form.value['resultDraw'];
     const resultBlackWon = this.form.value['resultBlackWon'];
+    const resultInconclusive = this.form.value['resultInconclusive'];
 
     this.filteredGames = new Map();
     this.allGames.forEach((games, year) => {
@@ -222,16 +247,23 @@ export class GameArchivesScreenComponent implements OnInit {
           );
         })
         .filter(game => {
-          if (!game.plyCount) {
+          if (game.plyCount === undefined || !pliesMax) {
             return true;
           }
-          return game.plyCount <= pliesMax && game.plyCount >= pliesMin;
+          return game.plyCount <= pliesMax;
+        })
+        .filter(game => {
+          if (game.plyCount === undefined || !pliesMin) {
+            return true;
+          }
+          return game.plyCount >= pliesMin;
         })
         .filter(game => {
           return (
             (resultWhiteWon && game.whiteScore === '1') ||
             (resultDraw && game.whiteScore === '1/2' && game.blackScore === '1/2') ||
-            (resultBlackWon && game.blackScore === '1')
+            (resultBlackWon && game.blackScore === '1') ||
+            (resultInconclusive && (game.whiteScore === '*' || game.blackScore === '*'))
           );
         });
       this.filteredGames.set(year, filteredGames);

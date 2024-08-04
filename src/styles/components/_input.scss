@@ -3,6 +3,7 @@ input[type='password'],
 textarea {
   display: block;
   width: 100%;
+  min-width: 50px;
   border: 1px solid var(--lcc-color--input-border);
   border-radius: var(--lcc-borderRadius--small) !important;
   font-size: var(--lcc-fontSize--h4) !important;

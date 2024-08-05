@@ -39,6 +39,16 @@ Welcome to the source code repository for the new LCC website! Here you'll find 
 
 <details>
 <summary style="cursor: pointer">
+v4.0.7 - August 5th, 2024
+</summary>
+
+- 🚀 Improve admin user authentication error handling and how toast notifications are displayed when the error message is long
+- 🐛 Fix bug where Article and Members pages would sometimes hang while loading
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.0.6 - August 4th, 2024
 </summary>
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -33,7 +33,9 @@ export class MembersService {
         }),
       ),
       map(member => ({ payload: this.adaptForFrontend([member])[0] })),
-      catchError(() => of({ error: new Error('Failed to fetch member from database') })),
+      catchError(error =>
+        of({ error: new Error(`Failed to fetch member from database: \n${error}`) }),
+      ),
     );
   }
 
@@ -48,8 +50,8 @@ export class MembersService {
           }),
         ),
         map(members => ({ payload: this.adaptForFrontend(members) })),
-        catchError(() =>
-          of({ error: new Error('Failed to fetch members from database') }),
+        catchError(error =>
+          of({ error: new Error(`Failed to fetch members from database: \n${error}`) }),
         ),
       );
     } else {
@@ -73,7 +75,9 @@ export class MembersService {
         }),
       ),
       map(() => ({ payload: memberToAdd })),
-      catchError(() => of({ error: new Error('Failed to add member to database') })),
+      catchError(error =>
+        of({ error: new Error(`Failed to add member to database: \n${error}`) }),
+      ),
     );
   }
 
@@ -93,7 +97,9 @@ export class MembersService {
         ),
       ),
       map(() => ({ payload: memberToUpdate })),
-      catchError(() => of({ error: new Error('Failed to update member') })),
+      catchError(error =>
+        of({ error: new Error(`Failed to update member: \n${error}`) }),
+      ),
     );
   }
 
@@ -107,7 +113,9 @@ export class MembersService {
         }),
       ),
       map(() => ({ payload: memberToDelete })),
-      catchError(() => of({ error: new Error('Failed to delete member from database') })),
+      catchError(error =>
+        of({ error: new Error(`Failed to delete member from database: \n${error}`) }),
+      ),
     );
   }
 

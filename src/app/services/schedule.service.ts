@@ -52,7 +52,9 @@ export class ScheduleService {
         }),
       ),
       map(() => ({ payload: eventToAdd })),
-      catchError(() => of({ error: new Error('Failed to add event to database') })),
+      catchError(error =>
+        of({ error: new Error(`Failed to add event to database: \n${error}`) }),
+      ),
     );
   }
 
@@ -67,7 +69,7 @@ export class ScheduleService {
         }),
       ),
       map(() => ({ payload: eventToUpdate })),
-      catchError(() => of({ error: new Error('Failed to update event') })),
+      catchError(error => of({ error: new Error(`Failed to update event: \n${error}`) })),
     );
   }
 
@@ -81,7 +83,9 @@ export class ScheduleService {
         }),
       ),
       map(() => ({ payload: eventToDelete })),
-      catchError(() => of({ error: new Error('Failed to delete event from database') })),
+      catchError(error =>
+        of({ error: new Error(`Failed to delete event from database: \n${error}`) }),
+      ),
     );
   }
 

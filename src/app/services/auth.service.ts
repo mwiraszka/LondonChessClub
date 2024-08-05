@@ -24,7 +24,6 @@ import { environment } from '@environments/environment';
 })
 export class AuthService {
   userPool: CognitoUserPool;
-  currentUser: CognitoUser | null;
 
   protected tempInitialPassword = '';
 
@@ -33,19 +32,25 @@ export class AuthService {
       UserPoolId: environment.aws.cognitoUserPool.userPoolId,
       ClientId: environment.aws.cognitoUserPool.clientId,
     });
+  }
 
-    this.currentUser = this.userPool.getCurrentUser();
+  get currentUser(): CognitoUser | null {
+    return this.userPool.getCurrentUser();
   }
 
   public token(): Observable<string> {
     return new Observable<string>(observer => {
-      this.currentUser?.getSession((error: Error, session: CognitoUserSession | null) => {
+      if (!this.currentUser) {
+        observer.error('Unable to get data for current Cognito user.');
+      }
+
+      this.currentUser!.getSession((error: Error, session: CognitoUserSession | null) => {
         if (error) {
-          observer.error(`Error getting Cognito user session: ${error}`);
+          observer.error(`Unable to get Cognito user session: \n${error}.`);
         }
 
         if (!session) {
-          observer.error('Could not find Cognito user session');
+          observer.error('Unable to get Cognito user session.');
         }
 
         observer.next(session!.getIdToken().getJwtToken());

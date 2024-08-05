@@ -61,7 +61,9 @@ export class ArticlesService {
         }),
       ),
       switchMap(() => this.imagesService.uploadArticleImage(modifiedArticleToAdd)),
-      catchError(() => of({ error: new Error('Failed to add article to database') })),
+      catchError(error =>
+        of({ error: new Error(`Failed to add article to database: \n${error}`) }),
+      ),
     );
   }
 
@@ -83,7 +85,9 @@ export class ArticlesService {
           return this.imagesService.uploadArticleImage(articleToUpdate);
         }
       }),
-      catchError(() => of({ error: new Error('Failed to update article') })),
+      catchError(error =>
+        of({ error: new Error(`Failed to update article: \n${error}`) }),
+      ),
     );
   }
 
@@ -97,8 +101,8 @@ export class ArticlesService {
         }),
       ),
       switchMap(() => this.imagesService.deleteArticleImage(articleToDelete)),
-      catchError(() =>
-        of({ error: new Error('Failed to delete article from database') }),
+      catchError(error =>
+        of({ error: new Error(`Failed to delete article from database: \n${error}`) }),
       ),
     );
   }

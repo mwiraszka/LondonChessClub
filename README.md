@@ -1,6 +1,6 @@
-# The London Chess Club (LCC) Website
+# The London Chess Club (LCC) Web App
 
-Welcome to the source code repository for the new LCC website! Here you'll find links to test out new features, a summary of what's changed with each release, and instructions on how to report a bug or request a change.
+Welcome to the source code repository for the LCC web app! Here you'll find an overview of the application's architecture, a summary of what's changed with each release, and instructions on how to report a bug or request a change.
 
 <https://londonchess.ca>
 

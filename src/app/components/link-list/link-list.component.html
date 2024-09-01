@@ -10,8 +10,9 @@
       @if (link.path.startsWith('http')) {
         <a
           [href]="link.path"
+          class="lcc-link"
           target="_blank"
-          class="lcc-link">
+          rel="noopener noreferrer">
           @if (link.icon) {
             <i-feather
               [name]="link.icon"
@@ -22,7 +23,6 @@
         </a>
       } @else {
         <a
-          alt="link.text"
           class="lcc-link"
           [routerLink]="'/' + link.path">
           @if (link.icon) {

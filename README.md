@@ -39,6 +39,15 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
+v4.0.9 - September 1st, 2024
+</summary>
+
+- 🔧 Update how links are configured to follow best practices
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.0.8 - August 9th, 2024
 </summary>
 

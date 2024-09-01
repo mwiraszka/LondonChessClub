@@ -29,7 +29,7 @@ export class ImageOverlayComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.loaderService.display(true);
+    this.loaderService.setIsLoading(true);
     this.renderer.addClass(this._document.body, 'lcc-disable-scrolling');
   }
 
@@ -54,18 +54,18 @@ export class ImageOverlayComponent implements OnInit, OnDestroy {
   }
 
   onNextImage(): void {
-    this.loaderService.display(true);
+    this.loaderService.setIsLoading(true);
     this.facade.onNextImage();
   }
 
   onPreviousImage(): void {
-    this.loaderService.display(true);
+    this.loaderService.setIsLoading(true);
     this.facade.onPreviousImage();
   }
 
   imageLoaded(): void {
     this.calculateImageHeight();
-    this.loaderService.display(false);
+    this.loaderService.setIsLoading(false);
   }
 
   calculateImageHeight(): void {

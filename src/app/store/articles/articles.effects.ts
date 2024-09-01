@@ -20,7 +20,7 @@ export class ArticlesEffects {
   fetchArticles$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticlesRequested),
-      tap(() => this.loaderService.display(true)),
+      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() =>
         this.articlesService.getArticles().pipe(
           map((response: ServiceResponse<Article[]>) =>
@@ -32,14 +32,14 @@ export class ArticlesEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   fetchArticle$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticleRequested),
-      tap(() => this.loaderService.display(true)),
+      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ articleId }) =>
         this.articlesService.getArticle(articleId).pipe(
           map((response: ServiceResponse<Article>) =>
@@ -53,7 +53,7 @@ export class ArticlesEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
@@ -64,7 +64,7 @@ export class ArticlesEffects {
         this.store.select(ArticlesSelectors.articleCurrently),
         this.store.select(AuthSelectors.user),
       ]),
-      tap(() => this.loaderService.display(true)),
+      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(([, articleToPublish, user]) => {
         const dateNow = new Date(Date.now());
         const modificationInfo: ModificationInfo = {
@@ -85,7 +85,7 @@ export class ArticlesEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
@@ -96,7 +96,7 @@ export class ArticlesEffects {
         this.store.select(ArticlesSelectors.articleCurrently),
         this.store.select(AuthSelectors.user),
       ]),
-      tap(() => this.loaderService.display(true)),
+      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(([, articleToUpdate, user]) => {
         const dateNow = new Date(Date.now());
         const modificationInfo: ModificationInfo = {
@@ -117,7 +117,7 @@ export class ArticlesEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
@@ -125,7 +125,7 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleConfirmed),
       concatLatestFrom(() => this.store.select(ArticlesSelectors.selectedArticle)),
-      tap(() => this.loaderService.display(true)),
+      tap(() => this.loaderService.setIsLoading(true)),
       filter(([, articleToDelete]) => !!articleToDelete),
       switchMap(([, articleToDelete]) =>
         this.imagesService.deleteArticleImage(articleToDelete!),
@@ -144,7 +144,7 @@ export class ArticlesEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 

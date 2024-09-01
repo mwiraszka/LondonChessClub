@@ -24,8 +24,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loaderService.status$.subscribe((isLoading: boolean) => {
+    this.loaderService.isLoading$.subscribe((isLoading: boolean) => {
       this.isLoading = isLoading;
+
+      // Manually detect changes to prevent Angular's ExpressionChangedAfterItHasBeenCheckedError
       this.changeDetectionRef.detectChanges();
     });
   }

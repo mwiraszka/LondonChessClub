@@ -82,7 +82,7 @@ export class DocumentsScreenComponent implements OnInit, OnDestroy {
   }
 
   onSelectDocument(fileName: string): void {
-    this.loaderService.display(true);
+    this.loaderService.setIsLoading(true);
     this.documentSrc = `assets/documents/${fileName}`;
     this.viewContainerRef?.createEmbeddedView(this.pdfViewer);
   }
@@ -93,7 +93,7 @@ export class DocumentsScreenComponent implements OnInit, OnDestroy {
 
   onDocumentLoaded(): void {
     this.renderer.addClass(this._document.body, 'lcc-disable-scrolling');
-    this.loaderService.display(false);
+    this.loaderService.setIsLoading(false);
   }
 
   onClickViewer(event: MouseEvent): void {

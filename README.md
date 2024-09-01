@@ -39,6 +39,17 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
+v4.0.9 - September 1st, 2024
+</summary>
+
+- 🐛 Ensure article content persists on page reload when composing or editing an article
+- 🔧 Clean up some code related to the Loader Service
+- 🔧 Update how external and mailto links are configured to better follow [HTML standard](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element)
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.0.8 - August 9th, 2024
 </summary>
 

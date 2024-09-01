@@ -221,7 +221,7 @@ export class GameArchivesScreenComponent implements OnInit {
   }
 
   private filterGames(): void {
-    this.loaderService.display(true);
+    this.loaderService.setIsLoading(true);
 
     const name = this.form.value['name']?.toLowerCase();
     const pliesMin = this.form.value['movesMin'] * 2;
@@ -269,6 +269,6 @@ export class GameArchivesScreenComponent implements OnInit {
       this.filteredGames.set(year, filteredGames);
     });
 
-    this.loaderService.display(false);
+    this.loaderService.setIsLoading(false);
   }
 }

@@ -84,7 +84,7 @@ export class NavEffects {
           (articleCurrently?.imageUrl || localStorage.getItem('imageUrl'))
           ? ArticlesActions.getArticleImageUrlRequested({})
           : ArticlesActions.setArticle({
-              article: newArticleFormTemplate,
+              article: articleCurrently ?? newArticleFormTemplate,
               isEditMode: false,
             });
       }),

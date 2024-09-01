@@ -131,7 +131,13 @@ export class ImagesService {
       map(imageFile => {
         return { payload: imageFile };
       }),
-      catchError(() => of({ error: new Error('Failed to build file from URL') })),
+      catchError(() =>
+        of({
+          error: new Error(
+            'Failed to build file from URL. If running locally, ensure browser CORS extention is enabled.',
+          ),
+        }),
+      ),
     );
   }
 
@@ -152,10 +158,10 @@ export class ImagesService {
     });
 
     if (!response || !data || !imageFile) {
-      console.info('[LCC Error] Unable to build the image file from the given URL');
-      console.info('[LCC Error] URL response:', response);
-      console.info('[LCC Error] Data as blob:', data);
-      console.info('[LCC Error] Image file:', imageFile);
+      console.error('[LCC Error] Unable to build the image file from the given URL');
+      console.error('[LCC Error] URL response:', response);
+      console.error('[LCC Error] Data as blob:', data);
+      console.error('[LCC Error] Image file:', imageFile);
     }
 
     return imageFile;

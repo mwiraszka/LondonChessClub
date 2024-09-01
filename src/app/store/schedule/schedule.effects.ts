@@ -17,7 +17,7 @@ export class ScheduleEffects {
   fetchEvents$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.fetchEventsRequested),
-      tap(() => this.loaderService.display(true)),
+      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() =>
         this.scheduleService.getEvents().pipe(
           map((response: ServiceResponse<ClubEvent[]>) =>
@@ -29,14 +29,14 @@ export class ScheduleEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   fetchEvent$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.fetchEventRequested),
-      tap(() => this.loaderService.display(true)),
+      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ eventId }) =>
         this.scheduleService.getEvent(eventId).pipe(
           map((response: ServiceResponse<ClubEvent>) =>
@@ -50,14 +50,14 @@ export class ScheduleEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   addEvent$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.addEventConfirmed),
-      tap(() => this.loaderService.display(true)),
+      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store.select(ScheduleSelectors.eventCurrently),
         this.store.select(AuthSelectors.user),
@@ -82,14 +82,14 @@ export class ScheduleEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   updateEvent$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.updateEventConfirmed),
-      tap(() => this.loaderService.display(true)),
+      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store.select(ScheduleSelectors.eventCurrently),
         this.store.select(AuthSelectors.user),
@@ -114,14 +114,14 @@ export class ScheduleEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   deleteEvent$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.deleteEventConfirmed),
-      tap(() => this.loaderService.display(true)),
+      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => this.store.select(ScheduleSelectors.selectedEvent)),
       switchMap(([, eventToDelete]) =>
         this.scheduleService.deleteEvent(eventToDelete!).pipe(
@@ -134,7 +134,7 @@ export class ScheduleEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 

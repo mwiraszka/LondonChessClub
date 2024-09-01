@@ -42,7 +42,8 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 v4.0.9 - September 1st, 2024
 </summary>
 
-- 🔧 Update how links are configured to follow best practices
+- 🔧 Clean up some code related to the Loader Service
+- 🔧 Update how external and mailto links are configured to better follow [HTML standard](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element)
 
 </details>
 

@@ -18,7 +18,7 @@ export class MembersEffects {
   fetchMembers$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.fetchMembersRequested),
-      tap(() => this.loaderService.display(true)),
+      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
       switchMap(([, isAdmin]) =>
         this.membersService.getMembers(isAdmin).pipe(
@@ -31,14 +31,14 @@ export class MembersEffects {
           }),
         ),
       ),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   fetchMember$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.fetchMemberRequested),
-      tap(() => this.loaderService.display(true)),
+      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ memberId }) =>
         this.membersService.getMember(memberId).pipe(
           map((response: ServiceResponse<Member>) =>
@@ -52,14 +52,14 @@ export class MembersEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   addMember$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.addMemberConfirmed),
-      tap(() => this.loaderService.display(true)),
+      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store.select(MembersSelectors.memberCurrently),
         this.store.select(AuthSelectors.user),
@@ -84,14 +84,14 @@ export class MembersEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   updateMember$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.updateMemberConfirmed),
-      tap(() => this.loaderService.display(true)),
+      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store.select(MembersSelectors.memberCurrently),
         this.store.select(AuthSelectors.user),
@@ -116,14 +116,14 @@ export class MembersEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   deleteMember$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.deleteMemberConfirmed),
-      tap(() => this.loaderService.display(true)),
+      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => this.store.select(MembersSelectors.selectedMember)),
       switchMap(([, memberToDelete]) =>
         this.membersService.deleteMember(memberToDelete!).pipe(
@@ -136,7 +136,7 @@ export class MembersEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.display(false)),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 

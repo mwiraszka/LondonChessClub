@@ -6,9 +6,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LoaderService {
-  public status$ = new BehaviorSubject<boolean>(false);
+  private _isLoading$ = new BehaviorSubject<boolean>(false);
+  public isLoading$ = this._isLoading$.asObservable();
 
-  display(value: boolean): void {
-    this.status$.next(value);
+  setIsLoading(value: boolean): void {
+    this._isLoading$.next(value);
   }
 }

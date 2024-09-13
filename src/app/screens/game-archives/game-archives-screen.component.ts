@@ -26,6 +26,7 @@ import * as fromPgns from './pgns';
 })
 export class GameArchivesScreenComponent implements OnInit {
   readonly YEARS = [
+    '2024',
     '2023',
     '2022',
     '2019',

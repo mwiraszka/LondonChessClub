@@ -27,3 +27,4 @@ export { pgns2018 } from './pgns2018';
 export { pgns2019 } from './pgns2019';
 export { pgns2022 } from './pgns2022';
 export { pgns2023 } from './pgns2023';
+export { pgns2024 } from './pgns2024';

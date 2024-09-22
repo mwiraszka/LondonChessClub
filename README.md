@@ -39,6 +39,16 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
+v4.0.12 - September 22nd, 2024
+</summary>
+
+- 🐛 Update some game PGNs and add remainder of games from second round of LCC Championship
+- 🐛 Sort 2024's PGNs by tournament round number
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.0.11 - September 20th, 2024
 </summary>
 

@@ -884,7 +884,7 @@ export const pgns2024 = [
   [PlyCount "74"]
   [EventDate "2024.??.??"]
 
-  {863MB} 1. e4 g6 2. d4 Bg7 3. Nf3 d6 4. Nc3 a6 5. a4 Bg4 6. Be2 Nc6 7. Be3 h6
+  1. e4 g6 2. d4 Bg7 3. Nf3 d6 4. Nc3 a6 5. a4 Bg4 6. Be2 Nc6 7. Be3 h6
   8. h3 Bd7 9. O-O Qc8 10. Nh2 e5 11. d5 Nd4 12. Bg4 h5 13. Bxd7+ Qxd7 14. Nf3
   Nxf3+ 15. Qxf3 Bh6 16. Rfe1 c6 17. Bxh6 Nxh6 18. b3 O-O 19. Rad1 f5 20. Qg3 Kh7
   21. f3 Qd8 22. Re2 f4 23. Qf2 Qa5 24. Na2 g5 25. dxc6 bxc6 26. Rxd6 Qc7 27.
@@ -1094,4 +1094,294 @@ export const pgns2024 = [
   1. d4 c6 2. c4 d5 3. Nf3 Bf5 4. Nc3 g6 5. g3 Bg7 6. Bg2 Nf6 7. O-O O-O
   8. Ne5 Nbd7 9. Bf4 a6 10. Re1 Nh5 11. Nxd7 Qxd7 12. Be5 f6 13. e4 fxe5 14. exf5
   Qxf5 15. g4 Qxf2+ 16. Kh1 Nf4 17. Rf1 Qxg2# 0-1`,
+
+  `[Event "2024 London Ch A1"]
+  [Site "?"]
+  [Date "2024.09.26"]
+  [Round "3"]
+  [White "Liu, Joseph"]
+  [Black "Demmery, Steve"]
+  [Result "0-1"]
+  [ECO "B00"]
+  [WhiteElo "1980"]
+  [BlackElo "2205"]
+  [PlyCount "70"]
+  [EventDate "2024.??.??"]
+
+  1. e4 Nc6 2. Nf3 d6 3. d4 g6 4. Nc3 Bg7 5. Be3 Bg4 6. Be2 Bxf3 7. Bxf3
+  e5 8. d5 Nd4 9. Be2 a6 10. a4 Ne7 11. O-O O-O 12. Nb1 f5 13. f3 Nxe2+ 14. Qxe2
+  Kh8 15. c4 b6 16. a5 bxa5 17. Rxa5 c5 18. Ra2 Ng8 19. Nd2 Nf6 20. Rfa1 a5 21.
+  Bg5 Qb6 22. Qd3 fxe4 23. fxe4 Rf7 24. Nb3 Rfa7 25. Bxf6 Bxf6 26. Ra4 Rb8 27.
+  R1a3 Rba8 28. Qc3 Bd8 29. Nc1 Qb7 30. Qf3 Kg7 31. Rb3 Qd7 32. Rb5 Bg5 33. Ne2
+  Rf8 34. Qd3 Qf7 35. Ng3 Qf2+ 0-1`,
+
+  `[Event "2024 London Ch A1"]
+  [Site "?"]
+  [Date "2024.09.26"]
+  [Round "3"]
+  [White "Glew, Rick"]
+  [Black "Ramirez, Emilio"]
+  [Result "0-1"]
+  [ECO "B09"]
+  [WhiteElo "1761"]
+  [BlackElo "2081"]
+  [PlyCount "90"]
+  [EventDate "2024.??.??"]
+
+  1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. f4 Bg7 5. e5 Nfd7 6. Nf3 c5 7. dxc5
+  Nxc5 8. Bb5+ Bd7 9. Be3 Bxb5 10. Bxc5 Nd7 11. Bd4 Bc6 12. exd6 Bxf3 13. gxf3
+  Bxd4 14. Qxd4 O-O 15. O-O-O Nb6 16. dxe7 Qxe7 17. Ne4 f6 18. Rhe1 Rad8 19. Qc3
+  Rc8 20. Qd4 Rc4 21. Qd6 Qf7 22. Kb1 Rc6 23. Qd4 Qg7 24. f5 Nc4 25. fxg6 hxg6
+  26. Qd5+ Kh7 27. Qd7 Rf7 28. Qh3+ Kg8 29. Rd8+ Rf8 30. Rxf8+ Qxf8 31. Qg3 f5
+  32. Nc3 f4 33. Qg5 Rd6 34. Qb5 Na3+ 35. bxa3 Rb6 36. Qb3+ Rxb3+ 37. axb3 Qxa3
+  38. Re4 Qd6 39. Kb2 Qd2 40. Re2 Qd4 41. Re4 Qf6 42. Rc4 b5 43. Rc8+ Kh7 44.
+  Rc7+ Kh6 45. Ka3 b4+ 0-1`,
+
+  `[Event "2024 London Ch A1"]
+  [Site "?"]
+  [Date "2024.09.26"]
+  [Round "3"]
+  [White "Bartar, Rene"]
+  [Black "Angel, Boris"]
+  [Result "0-1"]
+  [ECO "A16"]
+  [WhiteElo "2035"]
+  [BlackElo "1852"]
+  [PlyCount "92"]
+  [EventDate "2024.??.??"]
+
+  1. c4 Nf6 2. Nc3 g6 3. g3 Bg7 4. Bg2 c6 5. e4 e5 6. Nge2 d6 7. O-O Be6
+  8. d3 O-O 9. h3 Qd7 10. Kh2 d5 11. b3 Na6 12. Rb1 d4 13. Na4 b5 14. Nb2 Rac8
+  15. f4 Ne8 16. fxe5 Bxe5 17. Nf4 Ng7 18. Qe2 Qc7 19. Bd2 g5 20. Nxe6 Bxg3+ 21.
+  Kh1 Nxe6 22. Qg4 Bh4 23. Rf3 Nac5 24. Rbf1 Nd7 25. Bxg5 Bxg5 26. Rf5 Ne5 27.
+  Qh5 Ng6 28. Rxg5 Nxg5 29. Qxg5 Rce8 30. h4 Qe7 31. Rf6 Kg7 32. e5 Qxe5 33. Rf5
+  Qe1+ 34. Rf1 Qxh4+ 35. Qxh4 Nxh4 36. Bxc6 Re2 37. Nd1 bxc4 38. bxc4 Rxa2 39.
+  Nf2 a5 40. Ne4 a4 41. Rg1+ Ng6 42. Rg5 f5 43. Nd6 a3 44. Rxf5 Rxf5 45. Nxf5+
+  Kf6 46. Nxd4 Rb2 0-1`,
+
+  `[Event "2024 London Ch A2"]
+  [Site "?"]
+  [Date "2024.09.26"]
+  [Round "3"]
+  [White "Vale, Noah"]
+  [Black "Nguyen, Nghi"]
+  [Result "0-1"]
+  [ECO "B90"]
+  [WhiteElo "1729"]
+  [BlackElo "2054"]
+  [PlyCount "50"]
+  [EventDate "2024.??.??"]
+
+  1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. a4 e5 7. Nf3 Be6
+  8. Be2 h6 9. h3 Nbd7 10. Be3 Qa5 11. O-O Be7 12. Qd2 Rc8 13. Rfc1 Bc4 14. Ne1
+  Qb4 15. Nd3 Bxd3 16. cxd3 Nc5 17. Nb1 Qxd2 18. Nxd2 Kd7 19. b4 Ne6 20. Nc4 Bd8
+  21. a5 Rc6 22. Bd1 Ke7 23. Ba4 Rc8 24. f4 exf4 25. Bxf4 Nxf4 0-1`,
+
+  `[Event "2024 London Ch A2"]
+  [Site "?"]
+  [Date "2024.09.26"]
+  [Round "3"]
+  [White "Boles, Fadi"]
+  [Black "Kononenko, Andrew"]
+  [Result "1-0"]
+  [ECO "C90"]
+  [WhiteElo "1966"]
+  [BlackElo "1863"]
+  [PlyCount "65"]
+  [EventDate "2024.??.??"]
+
+  1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O b5 6. Bb3 Be7 7. Re1 d6
+  8. c3 Na5 9. Bc2 c5 10. h3 Nc6 11. d4 cxd4 12. cxd4 Bb7 13. a4 Nb4 14. axb5
+  axb5 15. Rxa8 Qxa8 16. d5 Nd7 17. Nc3 Nxc2 18. Qxc2 Ba6 19. Be3 O-O 20. Ra1 Qb7
+  21. Qb3 Rc8 22. Qa3 Nb8 23. Na2 Qd7 24. Nb4 Bb7 25. Qa7 h6 26. Nd2 Bg5 27. Bxg5
+  hxg5 28. Nb3 Na6 29. Nxa6 Ra8 30. Qb6 Qc8 31. Rc1 Qd7 32. Rc7 Rxa6 33. Qxb7 1-0`,
+
+  `[Event "2024 London Ch A2"]
+  [Site "?"]
+  [Date "2024.09.26"]
+  [Round "3"]
+  [White "Ivanchuk, Serhii"]
+  [Black "Deras, Alfredo"]
+  [Result "1-0"]
+  [ECO "B54"]
+  [WhiteElo "2193"]
+  [BlackElo "1704"]
+  [PlyCount "65"]
+  [EventDate "2024.??.??"]
+
+  1. e4 c5 2. Nf3 Nc6 3. d4 cxd4 4. Nxd4 d6 5. Nc3 a6 6. Bc4 e6 7. O-O
+  Nf6 8. Nxc6 bxc6 9. Qe2 Qc7 10. Bf4 e5 11. Bg5 Be7 12. h3 O-O 13. Rfd1 Bb7 14.
+  Bb3 Rfd8 15. Qc4 Rf8 16. Bxf6 Bxf6 17. Nd5 Qd8 18. Nxf6+ Qxf6 19. Qb4 Rab8 20.
+  Rxd6 Qg5 21. Qd2 Qxd2 22. Rxd2 Rfd8 23. Rad1 Rxd2 24. Rxd2 Kf8 25. Rd7 Ba8 26.
+  Rxf7+ Ke8 27. Rxg7 Rd8 28. Rxh7 c5 29. Rh8+ Ke7 30. Rxd8 Kxd8 31. Bd5 Bxd5 32.
+  exd5 c4 33. h4 1-0`,
+
+  `[Event "2024 London Ch B1"]
+  [Site "?"]
+  [Date "2024.09.26"]
+  [Round "3"]
+  [White "Ortiz, Hugo"]
+  [Black "Xu, Lambert"]
+  [Result "0-1"]
+  [ECO "A46"]
+  [WhiteElo "1651"]
+  [BlackElo "1612"]
+  [PlyCount "95"]
+  [EventDate "2024.??.??"]
+
+  1. d4 Nf6 2. Nf3 c5 3. dxc5 Nc6 4. Nbd2 e6 5. Nb3 Na5 6. c3 Nxb3 7.
+  Qxb3 Bxc5 8. Bg5 O-O 9. e3 h6 10. Bh4 Be7 11. Be2 b6 12. O-O Bb7 13. Rfd1 Nd5
+  14. Bxe7 Nxe7 15. Nd2 Rc8 16. Bf3 d5 17. Qa3 Qc7 18. e4 Rfd8 19. exd5 Bxd5 20.
+  h3 Rd7 21. Bxd5 Rxd5 22. Nf3 Rcd8 23. Rxd5 Rxd5 24. Qa4 Nc6 25. Rd1 Ra5 26. Qb3
+  Ne5 27. Nxe5 Rxe5 28. Qc2 g6 29. Qd2 h5 30. Qd8+ Qxd8 31. Rxd8+ Kg7 32. Rd2
+  Re1+ 33. Kh2 Ra1 34. b3 Rc1 35. c4 Ra1 36. g3 Kf6 37. Kg2 g5 38. f3 Kf5 39. Rc2
+  Rb1 40. f4 g4 41. hxg4+ hxg4 42. Kf2 Rh1 43. Kg2 Rb1 44. Kf2 f6 45. c5 bxc5 46.
+  Rxc5+ e5 47. fxe5 fxe5 48. Ra5 0-1`,
+
+  `[Event "2024 London Ch B1"]
+  [Site "?"]
+  [Date "2024.09.26"]
+  [Round "3"]
+  [White "Bate, William"]
+  [Black "Young, John"]
+  [Result "0-1"]
+  [ECO "B07"]
+  [WhiteElo "1694"]
+  [BlackElo "1675"]
+  [PlyCount "100"]
+  [EventDate "2024.??.??"]
+
+  1. e4 d6 2. d4 Nf6 3. Nc3 e5 4. dxe5 dxe5 5. Qxd8+ Kxd8 6. Bg5 Be6 7.
+  Nf3 Bd6 8. Bb5 a6 9. Ba4 Ke7 10. Bb3 Nbd7 11. Bxe6 fxe6 12. O-O b5 13. a3 Rhb8
+  14. Na2 a5 15. c3 Nc5 16. Nd2 Nd3 17. Rab1 b4 18. a4 bxc3 19. Nxc3 Rxb2 20.
+  Rxb2 Nxb2 21. Rb1 Nd3 22. Rb7 Nc5 23. Rb1 Kd7 24. Bxf6 gxf6 25. Nc4 Ra7 26. Rd1
+  Ra6 27. f3 Nb3 28. Nb5 Rc6 29. Nd2 Rc1 30. Rxc1 Nxc1 31. Nxd6 Kxd6 32. Nc4+ Kc5
+  33. Nxa5 Ne2+ 34. Kf2 Nc3 35. Nb7+ Kb4 36. Nd8 Nxa4 37. Nxe6 c5 38. Nc7 Kb3 39.
+  Nd5 c4 40. Ke3 c3 41. Nxc3 Kxc3 42. f4 Nb6 43. fxe5 Nc4+ 44. Kf4 fxe5+ 45. Kf5
+  Kd4 46. Kg4 Kxe4 47. Kg3 Kd3 48. Kf2 Kd2 49. Kf3 Nd6 50. h4 e4+ 0-1`,
+
+  `[Event "2024 London Ch B1"]
+  [Site "?"]
+  [Date "2024.09.26"]
+  [Round "3"]
+  [White "Nizal, Demosthenes"]
+  [Black "Knezevic, Adam"]
+  [Result "1-0"]
+  [ECO "B40"]
+  [WhiteElo "1635"]
+  [BlackElo "1600"]
+  [PlyCount "88"]
+  [EventDate "2024.??.??"]
+
+  1. e4 e6 2. Nf3 c5 3. d4 cxd4 4. Nxd4 Bc5 5. Be2 Qb6 6. c3 e5 7. Nf3
+  Bxf2+ 8. Kf1 Nc6 9. Nbd2 Bc5 10. b4 Be7 11. Nc4 Qc7 12. Qb3 Nf6 13. Bd3 O-O 14.
+  b5 Na5 15. Nxa5 Qxa5 16. Nxe5 Qc7 17. Nf3 Ng4 18. h3 Ne5 19. Bf4 d6 20. Bxe5
+  dxe5 21. Ke2 Be6 22. Qb2 Rac8 23. Rac1 Rfd8 24. Bb1 Bc4+ 25. Kf2 Bc5+ 26. Kg3
+  f5 27. Kh2 Be3 28. Rce1 Bf4+ 29. g3 Rd2+ 30. Nxd2 Bxd2 31. Qxd2 Rd8 32. Qg5
+  fxe4 33. Bxe4 Bd5 34. Rd1 h6 35. Bxd5+ Rxd5 36. Qe3 Rxb5 37. Rd2 b6 38. Rhd1
+  Qc4 39. Rd8+ Kh7 40. Qd3+ Qxd3 41. R1xd3 a5 42. R8d5 Rb2+ 43. Rd2 Rb1 44. Rxe5
+  a4 1-0`,
+
+  `[Event "2024 London Ch B1"]
+  [Site "?"]
+  [Date "2024.09.26"]
+  [Round "3"]
+  [White "Gudimella, Veer"]
+  [Black "Khatab, Omar"]
+  [Result "1/2-1/2"]
+  [ECO "A22"]
+  [WhiteElo "1573"]
+  [BlackElo "1574"]
+  [PlyCount "103"]
+  [EventDate "2024.??.??"]
+
+  1. e4 c6 2. c4 e5 3. Nc3 Nf6 4. g3 Bb4 5. Bg2 Bxc3 6. bxc3 d5 7. cxd5
+  cxd5 8. exd5 Nxd5 9. Qb3 Nb6 10. Ba3 Be6 11. Qb5+ Nc6 12. Bxc6+ bxc6 13. Qxc6+
+  Bd7 14. Qc5 Be6 15. d4 Rc8 16. Qxe5 Nc4 17. Qxg7 Nxa3 18. Qxh8+ Ke7 19. Qxd8+
+  Rxd8 20. Rb1 Nxb1 21. Ne2 Bc4 22. O-O Bxa2 23. Re1 Kd6 24. Rc1 Nd2 25. Nf4 Bc4
+  26. Rd1 Ne4 27. Nd3 a5 28. Nc5 Bd5 29. c4 Ba8 30. Rd3 Nxc5 31. dxc5+ Ke7 32.
+  Re3+ Kd7 33. f4 Kc6 34. Ra3 Kxc5 35. Rxa5+ Kxc4 36. Ra7 Bd5 37. Rc7+ Kd4 38.
+  Rc1 Re8 39. Kf2 Bc4 40. Rd1+ Bd3 41. g4 Rg8 42. Kg3 f5 43. g5 h6 44. h4 Ke3 45.
+  Re1+ Be2 46. Ra1 h5 47. Ra3+ Bd3 48. Rb3 Kd4 49. Ra3 Re8 50. Ra4+ Bc4 51. Ra5
+  Re3+ 52. Kf2 1/2-1/2`,
+
+  `[Event "2024 London Ch B2"]
+  [Site "?"]
+  [Date "2024.09.26"]
+  [Round "3"]
+  [White "Hind, Ryan"]
+  [Black "Moorehouse, Dan"]
+  [Result "0-1"]
+  [ECO "A46"]
+  [WhiteElo "1648"]
+  [BlackElo "1632"]
+  [PlyCount "48"]
+  [EventDate "2024.??.??"]
+
+  1. d4 Nf6 2. Bf4 e6 3. Nf3 Nc6 4. e3 Be7 5. Nbd2 d5 6. Bd3 a6 7. a3 Nh5
+  8. Bg3 Nxg3 9. hxg3 h6 10. c4 Bf6 11. cxd5 exd5 12. Qa4 Bd7 13. Qc2 Qe7 14. Bf5
+  Bxf5 15. Qxf5 Qe6 16. Qf4 O-O-O 17. Nb3 g5 18. Nc5 gxf4 19. Nxe6 fxe6 20. gxf4
+  Na5 21. b4 Nc4 22. a4 Rd6 23. Rc1 Nb2 24. a5 Nd3+ 0-1`,
+
+  `[Event "2024 London Ch B2"]
+  [Site "?"]
+  [Date "2024.09.26"]
+  [Round "3"]
+  [White "Holden, Joe"]
+  [Black "Peel, Chris"]
+  [Result "1-0"]
+  [ECO "D00"]
+  [WhiteElo "1573"]
+  [BlackElo "1600"]
+  [PlyCount "72"]
+  [EventDate "2024.??.??"]
+
+  1. d4 d5 2. Bf4 Nf6 3. e3 a6 4. a4 Bf5 5. Bd3 Be4 6. Nf3 Nbd7 7. Nbd2
+  h6 8. O-O e6 9. Qe2 Be7 10. c4 c6 11. c5 b6 12. b4 O-O 13. Bxa6 bxc5 14. bxc5
+  Bxf3 15. Nxf3 Ne4 16. Bb7 Ra7 17. Bxc6 Nef6 18. h3 Qa5 19. Rfb1 Rc8 20. Bb5 Ne4
+  21. Qd3 Nc3 22. Rb3 Nxb5 23. Rxb5 Qa6 24. Qb3 Bf8 25. a5 Rca8 26. Ne5 Nxe5 27.
+  Bxe5 Qc6 28. Rb6 Qc8 29. Qb5 Ra6 30. Kh2 Rxb6 31. cxb6 Qc4 32. Qb2 Qa6 33. Bc7
+  Qb7 34. Qb5 Ra6 35. Rc1 Kh7 36. Bg3 Qe7 1-0`,
+
+  `[Event "2024 London Ch B2"]
+  [Site "?"]
+  [Date "2024.09.26"]
+  [Round "3"]
+  [White "Wozniak, Josiah"]
+  [Black "Corredor, Michelle"]
+  [Result "1-0"]
+  [ECO "B07"]
+  [WhiteElo "1686"]
+  [BlackElo "1669"]
+  [PlyCount "67"]
+  [EventDate "2024.??.??"]
+
+  1. d4 Nf6 2. Nf3 g6 3. Nbd2 Bg7 4. e4 d6 5. Bb5+ c6 6. Bc4 O-O 7. b4
+  Nbd7 8. Bb2 e5 9. O-O Re8 10. Bb3 exd4 11. Ng5 Re7 12. Bxd4 h6 13. Ngf3 Nxe4
+  14. Nxe4 Rxe4 15. Bxg7 Kxg7 16. Qxd6 Qb6 17. Rfe1 Nf6 18. Rxe4 Nxe4 19. Qe5+
+  Nf6 20. Qe7 Nd5 21. Bxd5 cxd5 22. Re1 Be6 23. c3 Rc8 24. Re3 Qa6 25. Nd4 Kg8
+  26. Nxe6 fxe6 27. Rxe6 Qd3 28. Re1 Qxc3 29. g3 Rf8 30. Qe6+ Rf7 31. Qxg6+ Qg7
+  32. Re8+ Rf8 33. Qe6+ Kh7 34. Re7 1-0`,
+
+  `[Event "2024 London Ch B2"]
+  [Site "?"]
+  [Date "2024.09.26"]
+  [Round "3"]
+  [White "Galypchak, Mark"]
+  [Black "Philippe, Erin"]
+  [Result "0-1"]
+  [ECO "A85"]
+  [WhiteElo "1540"]
+  [PlyCount "116"]
+  [EventDate "2024.??.??"]
+
+  1. d4 f5 2. c4 Nf6 3. Nc3 c6 4. Nf3 e6 5. g3 d5 6. cxd5 exd5 7. Bg2 Bd6
+  8. O-O O-O 9. Bg5 Nbd7 10. Qc2 h6 11. Bxf6 Nxf6 12. e3 Ne4 13. a3 a5 14. Rfd1
+  Bd7 15. Qb3 Be8 16. Nh4 Ng5 17. Rab1 Bh5 18. Rdc1 Qe7 19. Qc2 Qe6 20. Na4 Ne4
+  21. Bxe4 fxe4 22. Nc5 Qe7 23. Qb3 Rf7 24. Ng2 Raf8 25. Nf4 Bg4 26. Rc2 Rxf4 27.
+  exf4 Bxc5 28. dxc5 Bf3 29. Qc3 Qe6 30. Qe1 Rxf4 31. b4 Rh4 32. Qf1 Rh3 33. Rc3
+  Qg4 34. Rxf3 exf3 35. Re1 Qh5 36. Re8+ Qxe8 37. Qxh3 Qe1+ 38. Qf1 Qxf1+ 39.
+  Kxf1 g5 40. Ke1 h5 41. Kd2 Kf7 42. Ke3 g4 43. Kf4 Kf6 44. bxa5 Ke6 45. a4 Kf6
+  46. Ke3 Ke5 47. Kd3 d4 48. Kd2 Ke4 49. a6 bxa6 50. a5 Kd5 51. Kd3 Kxc5 52. Kd2
+  Kc4 53. Kc2 d3+ 54. Kd2 Kd4 55. Ke1 Kc3 56. Kd1 d2 57. h4 gxh3 58. g4 h2 0-1`,
 ];

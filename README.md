@@ -39,6 +39,16 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
+v4.0.13 - September 27th, 2024
+</summary>
+
+- 🐛 Add PGNs for round 3 of LCC Championship (Sections A and B)
+- 🐛 Reduce padding around Lichess PGN Viewer menu options
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.0.12 - September 22nd, 2024
 </summary>
 

@@ -33,9 +33,18 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 |     |                                   |
 | --- | --------------------------------- |
-| 🚀  | New features & improvements   |
+| 🚀  | New features & improvements       |
 | 🐛  | Bug fixes                         |
 | 🔧  | Behind-the-scenes changes         |
+
+<details>
+<summary style="cursor: pointer">
+v4.0.15 - October 4th, 2024
+</summary>
+
+- 🔧 Configure separate API endpoint for dev & prod environments 
+
+</details>
 
 <details>
 <summary style="cursor: pointer">

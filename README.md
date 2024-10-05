@@ -39,7 +39,7 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
-v4.0.17 - October 4th, 2024
+v4.0.16 - October 5th, 2024
 </summary>
 
 - 🐛 Add PGNs for round 4 of LCC Championship
@@ -48,10 +48,10 @@ v4.0.17 - October 4th, 2024
 
 <details>
 <summary style="cursor: pointer">
-v4.0.16 - October 4th, 2024
+v4.0.15 - October 4th, 2024
 </summary>
 
-- 🔧 Test 
+- 🔧 Configure separate API endpoint for dev & prod environments 
 
 </details>
 

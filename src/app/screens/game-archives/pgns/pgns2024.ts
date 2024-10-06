@@ -2190,4 +2190,3 @@ bxc5 Kc6 38. Kc4 h5 39. d5+ Kd7 40. c6+ Kd6 41. Kd4 a6 42. Kc4 a5 43. a4
 Ke7 44. Kc5 Kd8 45. d6 Kc8 46. d7+ Kc7 47. Kb5 Kb8 48. d8=Q+ Ka7 49. Qb6+
 Ka8 50. Qb7# 1-0`,
 ];
-

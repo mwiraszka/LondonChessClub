@@ -39,6 +39,15 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
+v4.0.17 - October 6th, 2024
+</summary>
+
+- 🐛 Fix formatting of all PGNs in the Game Archives
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.0.16 - October 5th, 2024
 </summary>
 

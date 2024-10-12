@@ -21,9 +21,7 @@ Kh7 33. Rf1 b2 34. a6 Ra4 35. Qb7 Rb4 36. Qxb4 Bxb4 37. a7 b1=Q 38. Rxb1
 Qxb1 39. a8=Q Qg6 40. Qa7 Qe6 41. e3 Bc3 42. Qa4 Bf6 43. Qc2+ Qe4 44. Qxe4+
 dxe4 45. Nd2 Bc3 46. Nxe4 Bb4 47. g4 Kg6 48. Kf3 f6 49. Kf4 Kf7 50. h4 Ke6
 51. g5 hxg5+ 52. hxg5 f5 53. Nd6 g6 54. Nb7 Kd5 55. f3 Bd2 56. Nd8 Bc3
-1/2-1/2
-
-`,
+1/2-1/2`,
 
 `[Event "2024 London Ch A1"]
 [Site "?"]
@@ -45,7 +43,7 @@ Qa7 21. Be3 Nxc2 22. Qxc2 Qe7 23. Ng3 a4 24. Rd3 h5 25. f3 h4 26. Ne2 axb3
 27. Rxb3 Rxb3 28. Qxb3 Qa7 29. Rd1 Rd8 30. Bf4 Qa5 31. Kf1 d5 32. cxd5 cxd5
 33. Rxd5 Rxd5 34. exd5 Ba6 35. Qc2 h3 36. g4 Bh4 37. Bg3 Bxg3 38. hxg3 Qb5
 39. d6 Kf8 40. Qd2 Qxe2+ 41. Qxe2 Bxe2+ 42. Kg1 c4 43. Kh2 c3 44. a4 c2 45.
-a5 c1=Q 46. d7 Ke7 47. a6 Qf1 0-1\n\n`,
+a5 c1=Q 46. d7 Ke7 47. a6 Qf1 0-1`,
 
 `[Event "2024 London Ch A1"]
 [Site "?"]

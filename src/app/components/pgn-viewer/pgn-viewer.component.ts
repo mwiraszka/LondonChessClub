@@ -4,7 +4,7 @@ import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, Inject, Input, OnInit } from '@angular/core';
 
 import { Link } from '@app/types';
-import { getPlayerName, getScore, preparePgnUrl } from '@app/utils/pgn-utils';
+import { getLichessAnalysisUrl, getPlayerName, getScore } from '@app/utils/pgn-utils';
 
 @Component({
   selector: 'lcc-pgn-viewer',
@@ -23,12 +23,12 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.viewerId = `pgn-viewer--${this.label}--${this.index}`;
-    const adaptedPgn = preparePgnUrl(this.pgn);
 
     this.lichessAnalysisBoardLink = {
       text: 'Lichess Analysis Board',
-      path: 'https://lichess.org/analysis/pgn/' + adaptedPgn,
+      path: getLichessAnalysisUrl(this.pgn),
       icon: 'external-link',
+      tooltip: 'Load game in Lichess Analysis Board',
     };
   }
 

@@ -67,15 +67,14 @@ export function getPlyCount(pgn?: string): number | undefined {
 /**
  * @param pgn The full PGN of the chess game
  *
- * @returns {string} Only the moves and score portion of the PGN in order for
- * the PGN to be able to be passed in via URL to Lichess' analysis board page;
- * return an empty string if pgn is undefined or no moves exist
+ * @returns {string} A URL to Lichess' analysis board, with only the moves and score portion
+ * of the PGN passed in; returns an empty string if pgn is undefined or no moves exist
  */
-export function preparePgnUrl(pgn?: string): string {
+export function getLichessAnalysisUrl(pgn?: string): string | null {
   if (!pgn) {
     return '';
   }
 
   const moves = pgn.split('"]\n\n')[1].replaceAll('\n', ' ');
-  return moves.startsWith('1. ') ? moves : '';
+  return moves.startsWith('1. ') ? 'https://lichess.org/analysis/pgn/' + moves : null;
 }

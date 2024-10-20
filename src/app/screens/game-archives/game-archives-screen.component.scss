@@ -2,7 +2,7 @@
 
 $pgn-viewer-width: 432px;
 $pgn-viewer-height: 336px;
-$lichess-analysis-board-link-height: 20px;
+$lichess-analysis-board-link-height: 80px;
 $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
 
 :host {

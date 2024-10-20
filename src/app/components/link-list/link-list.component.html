@@ -6,8 +6,21 @@
   class="links"
   [ngClass]="(links?.length ?? 0) < 4 ? 'single-column' : ''">
   @for (link of links; track link.path) {
-    <li>
-      @if (link.path.startsWith('http')) {
+    <li [tooltip]="link.tooltip ?? ''">
+      @if (!link.path) {
+        <a
+          disabled
+          href="#"
+          class="lcc-link">
+          @if (link.icon) {
+            <i-feather
+              [name]="link.icon"
+              class="icon">
+            </i-feather>
+          }
+          {{ link.text }}
+        </a>
+      } @else if (link.path.startsWith('http')) {
         <a
           [href]="link.path"
           class="lcc-link"

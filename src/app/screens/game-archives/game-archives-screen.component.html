@@ -154,6 +154,7 @@
                   [itemSize]="436"
                   [minBufferPx]="1000"
                   [maxBufferPx]="2000"
+                  (onkeydown)="onKeydown($event)"
                   orientation="horizontal">
                   <lcc-pgn-viewer
                     *cdkVirtualFor="
@@ -163,7 +164,8 @@
                     "
                     [index]="index"
                     [label]="group.key"
-                    [pgn]="gameDetails.pgn">
+                    [pgn]="gameDetails.pgn"
+                    (keydown)="onKeydown($event)">
                   </lcc-pgn-viewer>
                 </cdk-virtual-scroll-viewport>
               } @placeholder {

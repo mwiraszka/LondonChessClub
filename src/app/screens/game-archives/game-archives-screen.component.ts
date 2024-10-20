@@ -103,6 +103,13 @@ export class GameArchivesScreenComponent implements OnInit {
     this.filterGames();
   }
 
+  onKeydown(event: Event): void {
+    const key = (event as KeyboardEvent)?.key;
+    if (key === 'ArrowLeft' || key === 'ArrowRight') {
+      event.preventDefault();
+    }
+  }
+
   hasError(control: AbstractControl): boolean {
     return control.dirty && control.invalid;
   }

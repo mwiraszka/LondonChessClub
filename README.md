@@ -39,10 +39,19 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
+v4.0.20 - October 20th, 2024
+</summary>
+
+- 🐛 Prevent left-right arrow keys from controlling scrollbar in the expansion panel when a game is focused since they already control previous/next move in the Lichess PGN Viewer
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.0.19 - October 18th, 2024
 </summary>
 
-- 🐛 Add PGNs for round 6 of LCC Championship
+- 🚀 Add PGNs for round 6 of LCC Championship
 
 </details>
 
@@ -51,7 +60,7 @@ v4.0.19 - October 18th, 2024
 v4.0.18 - October 14th, 2024
 </summary>
 
-- 🐛 Add PGNs for round 5 of LCC Championship
+- 🚀 Add PGNs for round 5 of LCC Championship
 
 </details>
 
@@ -69,7 +78,7 @@ v4.0.17 - October 6th, 2024
 v4.0.16 - October 5th, 2024
 </summary>
 
-- 🐛 Add PGNs for round 4 of LCC Championship
+- 🚀 Add PGNs for round 4 of LCC Championship
 
 </details>
 

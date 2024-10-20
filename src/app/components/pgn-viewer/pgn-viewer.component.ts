@@ -3,14 +3,17 @@ import LichessPgnViewer from 'lichess-pgn-viewer';
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, Inject, Input, OnInit } from '@angular/core';
 
-import { getPlayerName, getScore } from '@app/utils/pgn-utils';
+import { Link } from '@app/types';
+import { getPlayerName, getScore, preparePgnUrl } from '@app/utils/pgn-utils';
 
 @Component({
   selector: 'lcc-pgn-viewer',
+  styleUrls: ['./pgn-viewer.component.scss'],
   templateUrl: './pgn-viewer.component.html',
 })
 export class PgnViewerComponent implements OnInit, AfterViewInit {
   viewerId!: string;
+  lichessAnalysisBoardLink!: Link;
 
   @Input() index!: number;
   @Input() label!: string;
@@ -20,6 +23,13 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.viewerId = `pgn-viewer--${this.label}--${this.index}`;
+    const adaptedPgn = preparePgnUrl(this.pgn);
+
+    this.lichessAnalysisBoardLink = {
+      text: 'Lichess Analysis Board',
+      path: 'https://lichess.org/analysis/pgn/' + adaptedPgn,
+      icon: 'external-link',
+    };
   }
 
   ngAfterViewInit(): void {

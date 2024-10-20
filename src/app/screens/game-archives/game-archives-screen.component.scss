@@ -2,6 +2,7 @@
 
 $pgn-viewer-width: 432px;
 $pgn-viewer-height: 336px;
+$lichess-analysis-board-link-height: 20px;
 $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
 
 :host {
@@ -153,7 +154,7 @@ $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
     width: 100%;
 
     cdk-virtual-scroll-viewport {
-      height: $pgn-viewer-height + 2 * 4px;
+      height: $pgn-viewer-height + $lichess-analysis-board-link-height + 2 * 4px;
 
       ::ng-deep .cdk-virtual-scroll-content-wrapper {
         display: flex;

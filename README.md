@@ -39,9 +39,11 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
-v4.0.20 - October 20th, 2024
+v4.1.0 - October 20th, 2024
 </summary>
 
+- 🚀 Add an 'Lichess Analysis Board' button for games in the Game Archives page that redirects you to Lichess' Analysis Board with the full PGN loaded
+- 🚀 Rename existing 'Analysis Board' button to 'Analyze this position' to help avoid confusion
 - 🐛 Prevent left-right arrow keys from controlling scrollbar in the expansion panel when a game is focused since they already control previous/next move in the Lichess PGN Viewer
 
 </details>

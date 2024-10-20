@@ -10,9 +10,9 @@ import { GameScore, isValidGameScore } from '@app/types';
  */
 export function getPlayerName(
   pgn?: string,
-  color?: 'White' | 'Black',
+  color: 'White' | 'Black' = 'White',
 ): string | undefined {
-  if (!pgn || !color) {
+  if (!pgn) {
     return;
   }
 
@@ -62,4 +62,20 @@ export function getPlyCount(pgn?: string): number | undefined {
 
   const plyCount = pgn.split('[PlyCount "')[1].split('"]')[0];
   return !plyCount || isNaN(+plyCount) ? undefined : +plyCount;
+}
+
+/**
+ * @param pgn The full PGN of the chess game
+ *
+ * @returns {string} Only the moves and score portion of the PGN in order for
+ * the PGN to be able to be passed in via URL to Lichess' analysis board page;
+ * return an empty string if pgn is undefined or no moves exist
+ */
+export function preparePgnUrl(pgn?: string): string {
+  if (!pgn) {
+    return '';
+  }
+
+  const moves = pgn.split('"]\n\n')[1].replaceAll('\n', ' ');
+  return moves.startsWith('1. ') ? moves : '';
 }

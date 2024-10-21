@@ -68,11 +68,80 @@ export function getPlyCount(pgn?: string): number | undefined {
 }
 
 /**
+ * @param pgns The PGNs of the chess games
+ *
+ * @returns {Map<string, number> | undefined} The Encyclopedia of Chess Openings (ECO)'s
+ * opening codes mapped to the number of occurrences in the given array
+ */
+export function getOpeningTallies(pgns?: string[]): Map<string, number> | undefined {
+  if (!pgns || !pgns.length) {
+    return;
+  }
+
+  const openingTallies: Map<string, number> = new Map([]);
+
+  for (let pgn of pgns) {
+    const eco = getEcoOpeningCode(pgn) ?? 'X99';
+
+    const talliesForThisEco = openingTallies.get(eco);
+
+    if (talliesForThisEco) {
+      openingTallies.set(eco, talliesForThisEco + 1);
+    } else {
+      openingTallies.set(eco, 1);
+    }
+  }
+
+  return openingTallies;
+}
+
+/**
+ * @param pgns The PGNs of the chess games
+ *
+ * @returns {Map<string, number> | undefined} The game result mapped to the number
+ * of occurrences of the result in the given array
+ */
+export function getResultTallies(pgns?: string[]): Map<string, number> | undefined {
+  if (!pgns || !pgns.length) {
+    return;
+  }
+
+  const resultTallies: Map<string, number> = new Map([]);
+
+  for (let pgn of pgns) {
+    const score = getScore(pgn, 'White');
+
+    if (!score) {
+      continue;
+    }
+
+    const result =
+      score === '1'
+        ? 'White wins'
+        : score === '0'
+          ? 'Black wins'
+          : score === '1/2'
+            ? 'Draw'
+            : 'Inconclusive';
+
+    const talliesForThisResult = resultTallies.get(result);
+
+    if (talliesForThisResult) {
+      resultTallies.set(result, talliesForThisResult + 1);
+    } else {
+      resultTallies.set(result, 1);
+    }
+  }
+
+  return resultTallies;
+}
+
+/**
  * @param pgn The PGN of the chess game
  *
  * @returns {number | undefined} The game's ECO opening code
  */
-export function getEcoOpeningCode(pgn?: string): string | undefined {
+function getEcoOpeningCode(pgn?: string): string | undefined {
   if (!pgn) {
     return;
   }

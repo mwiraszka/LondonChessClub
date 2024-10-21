@@ -127,14 +127,32 @@
     <span class="result-summary-text">{{ searchResultSummaryMessage }}</span>
     <button
       (click)="onShowStats()"
-      class="lcc-secondary-button search-stats-text">
-      {{ showStats ? 'Hide' : 'Show' }} search stats
+      class="lcc-secondary-button game-stats-button">
+      {{ showStats ? 'Hide' : 'Show' }} game stats
     </button>
+    @if (showStats) {
+      <div class="game-stats-container">
+        <canvas
+          class="openings-chart"
+          baseChart
+          [labels]="openingsChartLabels"
+          [datasets]="openingsChartDatasets"
+          [options]="chartOptions"
+          [legend]="true"
+          [type]="'doughnut'">
+        </canvas>
+        <canvas
+          class="results-chart"
+          baseChart
+          [labels]="resultsChartLabels"
+          [datasets]="resultsChartDatasets"
+          [options]="chartOptions"
+          [legend]="true"
+          [type]="'doughnut'">
+        </canvas>
+      </div>
+    }
   </div>
-
-  @if (showStats) {
-    <div class="search-stats-container"> Search stats go here! </div>
-  }
 
   <div class="panels-container">
     @for (group of filteredGames | keyvalue: originalOrder; track group.key) {

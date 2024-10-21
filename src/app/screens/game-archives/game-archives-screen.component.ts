@@ -1,4 +1,5 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ChartConfiguration } from 'chart.js';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
@@ -14,7 +15,13 @@ import {
 
 import { LoaderService, MetaAndTitleService } from '@app/services';
 import { GameDetails } from '@app/types';
-import { getPlayerName, getPlyCount, getScore } from '@app/utils/pgn-utils';
+import {
+  getOpeningTallies,
+  getPlayerName,
+  getPlyCount,
+  getResultTallies,
+  getScore,
+} from '@app/utils/pgn-utils';
 
 import * as fromPgns from './pgns';
 
@@ -62,6 +69,14 @@ export class GameArchivesScreenComponent implements OnInit {
   filteredGames: Map<string, GameDetails[]> = new Map();
   form!: FormGroup;
   showStats: boolean = false;
+
+  chartOptions: ChartConfiguration<'doughnut'>['options'] = {
+    responsive: false,
+  };
+  openingsChartLabels: string[] = [];
+  openingsChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
+  resultsChartLabels: string[] = [];
+  resultsChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
 
   get searchResultSummaryMessage(): string {
     const allGamesCount = Array.from(this.allGames.values()).flat().length;
@@ -284,6 +299,24 @@ export class GameArchivesScreenComponent implements OnInit {
       this.filteredGames.set(year, filteredGames);
     });
 
+    this.updateStats(this.filteredGames);
+
     this.loaderService.setIsLoading(false);
+  }
+
+  private updateStats(games: Map<string, GameDetails[]>): void {
+    const pgns: string[] = [];
+    for (let [year] of games) {
+      const pgnsForThisYear = games.get(year)?.map(game => game.pgn) ?? [];
+      pgns.push(...pgnsForThisYear);
+    }
+
+    const openingTallies = getOpeningTallies(pgns);
+    this.openingsChartLabels = Array.from(openingTallies?.keys() ?? []);
+    this.openingsChartDatasets = [{ data: Array.from(openingTallies?.values() ?? []) }];
+
+    const resultTallies = getResultTallies(pgns);
+    this.resultsChartLabels = Array.from(resultTallies?.keys() ?? []);
+    this.resultsChartDatasets = [{ data: Array.from(resultTallies?.values() ?? []) }];
   }
 }

@@ -14,9 +14,9 @@ export const pgns1991 = [
 exd4 Nxd5 9. O-O Nc6 10. a3 Be7 11. Bc2 b6 12. Qd3 g6 13. Bh6 Re8 14. Rad1
 Bb7 15. Nxd5 $6 exd5 { N } 16. Ba4 Rc8 17. Nc3 Bf6 18. Qf3 $1 $17 (18. Rfe1
 Rxe1+ 19. Rxe1 Nxd4 20. Re8+ Qxe8 21. Bxe8 Rxe8 $2) 18... Nxd4 19. Qg4 b5
-$17 *`,
+$17 *
 
-`[Event "Canadian Open"]
+`,`[Event "Canadian Open"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "3"]
@@ -32,9 +32,9 @@ Qe3 Qe7 15. Nd5 Nxd5 16. cxd5 Na5 17. Kb1 Nc4 18. Qc3 Nd6 19. Nc1 f5 20.
 Bd3 fxe4 21. Bxe4 Rf4 22. Rde1 b4 23. Qc2 Bf5 24. Bxf5 Rc4 25. Qe2 gxf5 26.
 Qxe5+ Qxe5 27. Rxe5 Kf7 28. Ne2 b3 29. axb3 Rxb3 30. Rc1 Rxc1+ 31. Kxc1
 Rxb2 32. Rxf5+ Nxf5 33. Kxb2 Nxh4 34. Nf4 Ke7 35. Kc3 Kd6 36. Kd4 a5 37.
-Nxh5 Nxg2 38. Ng3 Nh4 39. Ne4+ Ke7 40. f4 a4 1/2-1/2`,
+Nxh5 Nxg2 38. Ng3 Nh4 39. Ne4+ Ke7 40. f4 a4 1/2-1/2
 
-`[Event "London, Canada"]
+`,`[Event "London, Canada"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -49,9 +49,9 @@ Nxh5 Nxg2 38. Ng3 Nh4 39. Ne4+ Ke7 40. f4 a4 1/2-1/2`,
 Rc1 Bd7 15. O-O O-O 16. Bf4 Qe7 17. Rc7 a5 18. Rfc1 Ra6 19. d5 e5 20. Be3
 a4 21. Qc2 Rd8 22. Rb7 Bf8 23. Qc7 Raa8 24. Bc5 Qg5 25. Bxf8 Rac8 26. Be7
 Qd2 27. Bxd8 Rxc7 28. Bxc7 Qxe2 29. Bxe5 Be8 30. Rb8 Kf8 31. d6 Qd2 32.
-Rbc8 b4 33. d7 Qxd7 0-1`,
+Rbc8 b4 33. d7 Qxd7 0-1
 
-`[Event "London, Canada"]
+`,`[Event "London, Canada"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -67,9 +67,9 @@ Be7 15. Qf4 f5 16. Nbd2 Nb4 17. Qh6 Nxd3 18. cxd3 Rf7 19. Ng5 Bf8 20. Nxf7
 Bxh6 21. Nxh6+ Kg7 22. Nf3 Kxh6 23. Kh2 Rc8 24. Ng5 Qd4 25. Nf3 Qxd3 26.
 Rfd1 Qe4 27. Rd4 Qe2 28. Rd2 Qe4 29. Rd4 Qc2 30. Rd2 Qc3 31. Rad1 Bb5 32.
 Ng5 Qb4 33. g3 Qe7 34. a4 Ba6 35. Nh3 Rc3 36. Rb2 Qc7 37. Rdd2 Qxe5 38. Ng5
-Qe1 39. Rdc2 d4 40. b4 d3 41. Rd2 Rc1 42. g4 Qg1+ 43. Kh3 Qxg4+ 0-1`,
+Qe1 39. Rdc2 d4 40. b4 d3 41. Rd2 Rc1 42. g4 Qg1+ 43. Kh3 Qxg4+ 0-1
 
-`[Event "London, Canada"]
+`,`[Event "London, Canada"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -85,9 +85,9 @@ Rd1 Qa5 10. Ne4 Nxe4 11. Qxe4 Be7 12. Qc2 b5 13. Bd2 Qc7 14. a4 Bb7 15. Bf4
 Qc8 16. Ne5 a6 17. Nxd7 Qxd7 18. Rac1 Rac8 19. b3 cxb3 20. Qxb3 a5 $1 21.
 Be3 Ra8 22. Rc2 Rfc8 23. Rdc1 Bb4 24. Bd2 Bd6 25. axb5 a4 26. bxc6 Bxc6 27.
 Qb6 Bxg2 28. Rxc8+ Rxc8 29. Rxc8+ Qxc8 30. Qxd6 Bd5 31. f3 h6 32. e4 Qc2
-33. exd5 Qd1+ 34. Be1 Qxe1+ 35. Kg2 Qe2+ 36. Kh3 exd5 37. Qxd5 Qe6+ 0-1`,
+33. exd5 Qd1+ 34. Be1 Qxe1+ 35. Kg2 Qe2+ 36. Kh3 exd5 37. Qxd5 Qe6+ 0-1
 
-`[Event "London, Canada (Apr. 16)"]
+`,`[Event "London, Canada (Apr. 16)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -102,9 +102,9 @@ ECO }) 6... d6 7. Be3 Ng4 8. Qd2 Nxe3 9. Qxe3 a5 10. Nd4 Rf6 11. f4 a4 12.
 Qf3 c6 13. O-O e5 14. Nc2 Qb6+ 15. Ne3 Qxb2 16. Rfc1 Qb6 17. Rab1 Qd4 18.
 Kh1 Nd7 19. Rb4 d5 20. Rxa4 Rxa4 21. Nxa4 Qa7 22. fxe5 Nxe5 23. Qf4 Ng6 24.
 Qc7 Qxe3 25. Rb1 Rf8 26. cxd5 cxd5 27. Bxd5+ Kh8 28. Nb6 Be6 29. Bf3 Bxa2
-30. Rc1 0-1`,
+30. Rc1 0-1
 
-`[Event "London, Canada (Apr. 23)"]
+`,`[Event "London, Canada (Apr. 23)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -124,9 +124,9 @@ Bh3 f5 23. Bg5 Rf7 24. Rbc1 Bxc6 25. dxc6 Rxc6 26. exf5 Rxc1 27. Rxc1 Qxf5
 Rxe2 38. Rxd6 Rb2 39. Rd7+ Kf6 40. Rxh7 Rxb4 41. Kg2 g5 42. Kh3 Kg6 43. Ra7
 Kh5 44. Rh7+ Kg6 45. Rh8 Kg7 46. Ra8 Kg6 47. Rc8 Kh5 48. g4+ Kg6 49. Rc6+
 Kf7 50. Rc3 Rb6 51. Kg3 Rh6 52. Rc7+ Kg8 53. Rc5 Rg6 54. Kf3 Kh7 55. Ke4
-Rh6 56. Rc7+ Kh8 57. Kf5 Rxh2 58. Kg6 1-0`,
+Rh6 56. Rc7+ Kh8 57. Kf5 Rxh2 58. Kg6 1-0
 
-`[Event "London, Canada (Fall Classic RD2)"]
+`,`[Event "London, Canada (Fall Classic RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -141,9 +141,9 @@ Qb6 6. e3 d5 7. Bd3 Nb4 8. Bb1 Qa6 9. Nb3 Bg4 10. a3 Bxf3 11. Qxf3 Nd3+ 12.
 Bxd3 Qxd3 13. Nc5 Qb5 14. b4 b6 15. Nb3 Rc8 16. Qe2 Qa4 17. Qd3 Ne4 18. Bd2
 e6 19. f3 Nxd2 20. Kxd2 Bd6 21. f4 O-O 22. g4 Rc4 23. Ke2 Rfc8 24. Rhc1 Qe8
 25. Qd1 f5 26. h3 fxg4 27. hxg4 Qg6 28. Kf3 { # } 28... Qe4+ 29. Kf2 Rc2+
-30. Rxc2 Rxc2+ 31. Nd2 Qd3 32. Qxc2 Qxc2 33. Ke1 Qc3 0-1`,
+30. Rxc2 Rxc2+ 31. Nd2 Qd3 32. Qxc2 Qxc2 33. Ke1 Qc3 0-1
 
-`[Event "London, Canada (Fall Classic RD4)"]
+`,`[Event "London, Canada (Fall Classic RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -162,9 +162,9 @@ Kg7 21. cxd4 Ne7 22. Rfe1 Nf5 23. d5 Nxh4 24. Qd4+ Nf6 25. Nxh4 Rxe1+ 26.
 Rxe1 Qd7 27. Re5 h6 28. Nf3 Re8 29. Rxe8 Qxe8 30. Ne5 Kh7 31. f4 Nd7 32.
 Kf2 Nxe5 33. fxe5 Qb5 34. Qc4 Qxc4 35. bxc4 Kg7 36. d6 cxd6 37. exd6 Kf8
 38. c5 Ke8 39. Ke3 Kd7 40. Kd4 b6 41. b4 bxc5+ 42. bxc5 { # } 42... f5 $2
-43. Kd5 h5 44. h4 a5 45. c6+ Kd8 46. Ke6 a4 47. c7+ Kc8 1-0`,
+43. Kd5 h5 44. h4 a5 45. c6+ Kd8 46. Ke6 a4 47. c7+ Kc8 1-0
 
-`[Event "London, Canada (Fall Classic RD2)"]
+`,`[Event "London, Canada (Fall Classic RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -181,9 +181,9 @@ Bxf5 Qb6 19. Bd3 Nc5 20. f5 e5 $2 21. Qxe5+ Be7 22. Qxd4 Qc6 23. Be2 $2 { #
 } 23... Nb3 24. Qd3 Nxa1 25. Bf4 Rd8 26. Qe3 Nxc2 27. Qe5 Qc5+ 28. Qxc5
 Bxc5+ 29. Kh1 Ne3 30. Re1 Nxf5 31. Bxb5+ Kf8 32. Bc4 Rg4 33. Bxf7 Rxf4 34.
 Bxh5 Kg7 35. Ng5 Bd5 36. b4 Kh6 37. Nh3 Rh4 38. bxc5 Ng3+ 39. hxg3 Rxh3+
-40. Kg1 Rxh5 41. c6 Rc8 42. g4 Rg5 0-1`,
+40. Kg1 Rxh5 41. c6 Rc8 42. g4 Rg5 0-1
 
-`[Event "London, Canada (Fall Classic RD1)"]
+`,`[Event "London, Canada (Fall Classic RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -201,9 +201,9 @@ Nc4 18. Bf2 Be6 19. Rc1 Nb2 20. Qd2 Qb5 21. Qe2 Qb4+ 22. Qd2 Nd3+ 23. Kd1
 Qxd2+ 24. Kxd2 Nxc1 25. Rxc1 Bxa2 26. Ra1 Be6 27. Rxa7 Bc8 28. Kd3 e6 29.
 Bg3 Rd7 30. e5 b5 31. Ra8 Rc7 32. Rb8 Bf8 33. Be1 Bb7 34. Ba5 Rd7 35. Bb4
 Kg7 36. Bxf8+ Kf7 37. Bd6 Kg7 38. Kc3 Ba6 39. Rb6 b4+ 40. Bxb4 Rc7+ 41. Bc5
-{ [The rest of the score was not available.] } 1-0`,
+{ [The rest of the score was not available.] } 1-0
 
-`[Event "London, Canada (Fall Classic RD5)"]
+`,`[Event "London, Canada (Fall Classic RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -218,9 +218,9 @@ Kg7 36. Bxf8+ Kf7 37. Bd6 Kg7 38. Kc3 Ba6 39. Rb6 b4+ 40. Bxb4 Rc7+ 41. Bc5
 b6 9. Bd3 Qc7 10. Qc2 e5 11. O-O Nh5 12. g3 g6 13. Rfe1 Bf6 14. Nf1 Ng7 15.
 Ne3 exd4 16. Nxd4 Ne5 17. Be2 Bb7 18. f4 Nd7 19. Ng4 Be7 20. Qc3 f6 21.
 Nh6+ Kh8 22. Bg4 f5 23. Ne6 Bf6 24. Nxc7 Bxc3 25. Bxc3 Nf6 26. exf5 Nxg4
-27. Nxg4 Rxf5 28. Nxa8 h5 29. Re7 Bxa8 30. Bxg7+ Kg8 31. Nh6+ 1-0`,
+27. Nxg4 Rxf5 28. Nxa8 h5 29. Re7 Bxa8 30. Bxg7+ Kg8 31. Nh6+ 1-0
 
-`[Event "London, Canada (Fall Classic RD3)"]
+`,`[Event "London, Canada (Fall Classic RD3)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -236,9 +236,9 @@ Ne5 13. c4 Bxd3 14. Be2 Bxc4 15. Bxc4 Nxc4 16. Qb3 Ne5 17. Bf4 h6 18. Bxe5
 hxg5 19. Rad1 Rh6 20. Rfe1 e6 21. Nxd6+ Kf8 22. Nxb7 Qe8 23. Nxc5 Rc8 24.
 Rf1 Kg8 25. Bxf6 Bxf6 26. Ne4 Be7 27. h3 g4 28. Qe3 Rg6 29. hxg4 Rxg4 30.
 Nf6+ Bxf6 31. Rxf6 Rc2 32. Rd2 Rxd2 33. Qxd2 Qc6 34. Rf2 Qb6 { [The rest of
-the score was not available.] } 0-1`,
+the score was not available.] } 0-1
 
-`[Event "London, Canada (Fall Classic RD4)"]
+`,`[Event "London, Canada (Fall Classic RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -252,9 +252,9 @@ the score was not available.] } 0-1`,
 d4 { ["=" ECO] } 8... cxd4 9. exd4 Bf5 10. Be3 { [N 10.h3 Rogoff-Smejkal;
 Biel (izt); 1976. {I22/101 ] } 10... Rc8 11. Qd2 Qd7 12. Bh6 Bh3 13. Bxg7
 Bxg2 14. Kxg2 Kxg7 15. Nf4 b6 16. b3 Qb7 17. d5 Ne5 { # } 18. Kg1 $4 Nf3+
-0-1`,
+0-1
 
-`[Event "London, Canada (Fall Classic RD1)"]
+`,`[Event "London, Canada (Fall Classic RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -271,9 +271,9 @@ Rfc8 19. e4 Bh6 20. Rxc7 Qxc7 21. Qb5 Nb8 22. Re1 a6 23. Qd3 Qc2 24. Qxc2
 Rxc2 25. Rb1 Nd7 26. Bh3 Nb6 27. f4 exf4 28. Bd4 Nc4 29. b5 axb5 30. Rxb5
 fxg3 31. hxg3 Be3+ 32. Bxe3 Nxe3 33. Rxb7 Ra2 34. Rb3 Nc4 35. Bf1 Nd2 36.
 Rb8+ Kg7 37. Bg2 Rxa3 38. Rd8 Nc4 39. Kh2 Ra2 40. Kh3 h5 41. Bf1 Ne3 { [The
-rest of the game was not available.] } 0-1`,
+rest of the game was not available.] } 0-1
 
-`[Event "London, Canada (Fall Classic RD3)"]
+`,`[Event "London, Canada (Fall Classic RD3)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -287,9 +287,9 @@ rest of the game was not available.] } 0-1`,
 [7...Bg4 {ECO ] } 8. a3 e6 9. Be3 Be7 10. Be2 Bh4+ 11. g3 Be7 12. O-O O-O
 13. Qd2 f6 14. Qc3 Qe8 15. Nbd2 Na4 16. Qc1 fxe5 17. dxe5 Nc5 18. b4 Nd3
 19. Qc3 Rd8 20. Bg5 Bxg5 21. Nxg5 Ncxe5 22. Ngf3 Qg6 23. Nh4 Qg5 { # } 24.
-Rad1 $2 Qe3+ 25. Kh1 Nf2+ 0-1`,
+Rad1 $2 Qe3+ 25. Kh1 Nf2+ 0-1
 
-`[Event "London, Canada (Fall Classic RD5)"]
+`,`[Event "London, Canada (Fall Classic RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -305,9 +305,9 @@ Rad1 $2 Qe3+ 25. Kh1 Nf2+ 0-1`,
 10. a3 Nd7 11. b4 Rf6 12. b5 Rh6 13. bxc6 Bxh2+ 14. Kh1 Bd6+ 15. Kg1 bxc6
 16. Ne2 Qe8 17. Rd1 Ndf6 18. Kf1 Ng4 19. Bxe4 fxe4 20. Ng5 Rh1+ 21. Ng1
 Ba6+ 22. Ke1 Rxg1+ 23. Kd2 Rxg2 24. Nh3 Rh2 25. Qa4 Bb5 26. Qb3 Rxh3 27.
-Rg1 Nxf2 28. Rg2 Nd3 29. Kc3 Nxc1 30. Qxd5+ cxd5 31. Rxg7+ Kxg7 0-1`,
+Rg1 Nxf2 28. Rg2 Nd3 29. Kc3 Nxc1 30. Qxd5+ cxd5 31. Rxg7+ Kxg7 0-1
 
-`[Event "London, Canada (Fall Classic RD1)"]
+`,`[Event "London, Canada (Fall Classic RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -325,9 +325,9 @@ Rxd1+ 23. Rxd1 Kf8 24. Rd8+ Ke7 25. Rh8 b5 26. Bb3 Kf6 27. f3 a5 28. a3 b4
 29. cxb4 axb4 30. a4 Ra8 31. Rxh7 Ba6 32. Rd7 Rc8 33. Rd1 Rc3 34. Rd6 Rc1+
 35. Rd1 Rxd1+ 36. Bxd1 Ke5 37. Kf2 Kd4 38. Bb3 Ng7 39. g3 fxg3+ 40. Kxg3
 Kc3 41. Bd1 e5 42. Kg4 Ne6 43. h4 Nd4 44. Kg5 Nc2 45. Kxg6 b3 46. h5 b2 47.
-Bxc2 Kxc2 48. h6 b1=Q 49. Kg7 Qg1+ 50. Kf6 Qg8 0-1`,
+Bxc2 Kxc2 48. h6 b1=Q 49. Kg7 Qg1+ 50. Kf6 Qg8 0-1
 
-`[Event "London, Canada (Fall Classic RD2)"]
+`,`[Event "London, Canada (Fall Classic RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -341,9 +341,9 @@ Bxc2 Kxc2 48. h6 b1=Q 49. Kg7 Qg1+ 50. Kf6 Qg8 0-1`,
 Bxf6 exf6 7. exd5 cxd5 8. Qe2+ Be6 9. O-O-O Nc6 10. a3 a6 11. d4 b5 12. b4
 Be7 13. Nh3 g5 14. g4 h5 15. Nf2 Rc8 16. Qd3 { # } 16... Nxb4 17. axb4 Bxb4
 18. Na2 Bd6 { [The rest of the score is not readable.] } 19. Rd2 hxg4 20.
-fxg4 Qc7 0-1`,
+fxg4 Qc7 0-1
 
-`[Event "London, Canada (Fall Classic RD4)"]
+`,`[Event "London, Canada (Fall Classic RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -361,9 +361,9 @@ O-O Bg4 9. Be3 Nc6 10. Qd2 { [N 10.c5 Sunye Neto-Mokry; Zelnica; 1986. {ECO
 28. Re6 Rb5 { # } 29. Qxb5 axb5 30. Rxd6 exd6 31. Rb1 Ke6 32. Rxb5 Re7 33.
 Kf1 d5 34. Ke2 Kd6+ 35. Kd3 Kc6 36. a4 Re1 37. Rb2 Ra1 38. Rb4 f5 39. c4 $2
 Rd1+ 40. Ke3 f4+ $1 41. Ke2 Rxd4 42. cxd5+ Kxd5 43. Rxb7 Rxa4 44. Rxh7 Ke4
-45. Re7+ Kf5 46. Rd7 Ke4 1/2-1/2`,
+45. Re7+ Kf5 46. Rd7 Ke4 1/2-1/2
 
-`[Event "London, Canada (Fall Classic RD2)"]
+`,`[Event "London, Canada (Fall Classic RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -380,9 +380,9 @@ Rd1+ 40. Ke3 f4+ $1 41. Ke2 Rxd4 42. cxd5+ Kxd5 43. Rxb7 Rxa4 44. Rxh7 Ke4
 Bxe5 dxe5 25. hxg5 hxg5 26. Kf1 Rh8 27. Ke2 Rh2 28. Kf3 Rh4 29. g3 g4+ 30.
 Kg2 Rh8 31. Nd5 Bxd5 32. exd5 Rd8 33. Rd1 Bd4 34. f4 gxf3+ 35. Kxf3 Rxd5
 36. Rxa7 Kb8 37. Ke4 Rd6 38. Ra5 c6 39. g4 Kb7 40. Ra3 Kc7 41. Rf3 f6 42.
-Rdf1 Kb6 43. Rxf6 Rxf6 44. Rxf6 Bc3 45. g5 Bxb4 46. g6 1-0`,
+Rdf1 Kb6 43. Rxf6 Rxf6 44. Rxf6 Bc3 45. g5 Bxb4 46. g6 1-0
 
-`[Event "London, Canada (Fall Classic RD5)"]
+`,`[Event "London, Canada (Fall Classic RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -399,9 +399,9 @@ Rxf4 Qg5 16. g3 Qe5 17. Qd2 Rad8 18. Re1 Qd6 19. Nd4 Nxd4 20. cxd4 Rfe8 21.
 Rh4 h6 22. c3 Bd5 23. Rf1 Re7 24. Rhf4 Rde8 25. c4 Be6 26. Qb4 Qd7 27. d5
 Bh3 28. Bf5 Bxf5 29. Rxf5 f6 30. Qb5 Qxb5 31. cxb5 Kf7 32. Rd1 Re1+ 33. Rf1
 R1e5 34. Rf3 Re1+ 35. Rf1 R1e5 36. Rd3 Re1 37. Rxe1 Rxe1+ 38. Kf2 Re5 39.
-Rc3 Re7 40. Kf3 f5 41. a4 Kf6 1/2-1/2`,
+Rc3 Re7 40. Kf3 f5 41. a4 Kf6 1/2-1/2
 
-`[Event "London, Canada (Fall Classic RD2)"]
+`,`[Event "London, Canada (Fall Classic RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -416,9 +416,9 @@ Be3 Nc6 7. a3 O-O 8. Qd2 Re8 9. O-O-O Bd7 10. g4 Be6 11. h4 Nd7 12. Nh3 a6
 13. Bh6 Bh8 14. h5 Nde5 15. Ng5 Nd4 16. Nd5 Nexf3 17. Nxf3 Nxf3 18. Qf4 Ne5
 19. hxg6 Nxg6 20. Qh2 Bxg4 21. Be2 Bxe2 22. Qxe2 e6 23. Ne3 f6 24. Rdg1 Kf7
 25. Qf2 Ke7 26. Bg5 Kd7 27. Rxh7+ Kc8 28. Bf4 Nxf4 29. Qxf4 Qb6 30. Nc4 Qc6
-31. Nxd6+ Kd8 32. Nxe8 Qxe8 33. Qc7# 1-0`,
+31. Nxd6+ Kd8 32. Nxe8 Qxe8 33. Qc7# 1-0
 
-`[Event "London, Canada (Fall Classic RD2)"]
+`,`[Event "London, Canada (Fall Classic RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -434,9 +434,9 @@ h5 10. f3 Na6 11. Be3 b6 12. Qd2 Kh7 13. O-O-O Nc5 14. Rdg1 a4 15. Nf1 Qe8
 16. Qc2 a3 17. b3 Na6 18. g4 Nb4 19. Qb1 Rh8 20. Nb5 Na6 21. gxh5 Nxh5 22.
 f4 Bb2+ 23. Kd1 f5 24. Bxh5 gxh5 25. exf5 Bf6 26. Nd4 Bd7 27. Ne6 b5 { # }
 28. Rg7+ Bxg7 29. Nxg7 Kxg7 30. Bd4+ Kf7 31. Bxh8 Qxh8 32. f6 exf6 33. cxb5
-Bg4+ 34. Kd2 Nb4 35. Ne3 f5 36. Nxf5 Qf6 37. Nxd6+ cxd6 38. Qh7+ Qg7 0-1`,
+Bg4+ 34. Kd2 Nb4 35. Ne3 f5 36. Nxf5 Qf6 37. Nxd6+ cxd6 38. Qh7+ Qg7 0-1
 
-`[Event "London, Canada (Fall Classic RD5)"]
+`,`[Event "London, Canada (Fall Classic RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -452,9 +452,9 @@ d3 Nc6 9. a3 Ng4 10. h3 Nf6 11. f4 Nd4 12. b4 Nxe2+ 13. Qxe2 cxb4 14. axb4
 g6 15. fxe5 dxe5 16. Qf3 Rh7 17. Qxf6 Qd4+ 18. Kh2 Qxc3 19. Ba3 Bxb4 20.
 Bxb4 Qxb4 21. Qxe5+ Qe7 22. Qxe7+ Kxe7 23. Rab1 h5 24. Rb6 f5 25. exf5 Bxf5
 $2 26. Rxb7+ Bd7 27. Rxd7+ Kxd7 28. Bxa8 Kc7 29. Rf6 Kb8 30. Bd5 a5 31. Ra6
-1-0`,
+1-0
 
-`[Event "London, Canada (Fall Classic RD4)"]
+`,`[Event "London, Canada (Fall Classic RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -469,9 +469,9 @@ $2 26. Rxb7+ Bd7 27. Rxd7+ Kxd7 28. Bxa8 Kc7 29. Rf6 Kb8 30. Bd5 a5 31. Ra6
 1911. {CB-A2 ] } 8. Re1 Nc6 9. a3 O-O-O 10. Nxd5 Bxd5 11. d3 h5 12. b4 g5
 13. b5 Nd4 14. a4 { # } 14... h4 $1 15. Nxd4 Bxg2 16. Kxg2 hxg3 17. Nf3
 Qh3+ 18. Kg1 g4 19. fxg3 gxf3 20. exf3 Qxh2+ 21. Kf1 Qxg3 22. Ra2 Rh1+ 23.
-Ke2 Rh2+ 24. Kf1 Qh3+ 25. Kg1 Bc5+ 26. Be3 Rg8+ 0-1`,
+Ke2 Rh2+ 24. Kf1 Qh3+ 25. Kg1 Bc5+ 26. Be3 Rg8+ 0-1
 
-`[Event "London, Canada (Fall Classic RD2)"]
+`,`[Event "London, Canada (Fall Classic RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -489,9 +489,9 @@ Nf5 Bxf5 23. Rxf5 Re8 24. Ref1 g4 25. Qe2 Qc6 26. R5f4 Qxc3 27. Kh1 Rd8 28.
 Qb5 c6 29. Qxb7 Rd7 30. Qb3 Qxb3 31. axb3 Rd3 32. Rf5 Nf3 33. Kg2 Rxb3 34.
 Rc5 Rxe3 35. Rxc6 Rxe4 36. Ra6 Re7 37. Rxf3 gxf3+ 38. Kxf3 Kg7 39. g4 f6
 40. Kf4 Kg6 41. h4 h6 42. h5+ Kf7 43. Kf5 Re5+ 44. Kf4 Re7 45. Kf3 Kg7 46.
-Ra5 1/2-1/2`,
+Ra5 1/2-1/2
 
-`[Event "London, Canada (Fall Classic RD2)"]
+`,`[Event "London, Canada (Fall Classic RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -507,9 +507,9 @@ dxe5 dxe5 8. Qxd8 Rxd8 9. fxe5 Nh5 10. Bg5 Re8 11. Nf3 Bxe5 12. Nxe5 Rxe5
 13. Bd8 c6 14. O-O-O b5 15. Bc7 Re7 16. Rd8+ Kg7 17. Rxc8 b4 18. Rxb8 Rxb8
 19. Bxb8 bxc3 20. bxc3 Rxe4 21. Bd3 Ra4 22. Rf1 f5 23. Kb2 Ra5 24. g4 fxg4
 25. hxg4 Nf6 26. Rf4 Nd5 27. Be5+ Kh6 28. Re4 Kg5 29. c4 Nb6 30. Bc7 Na4+
-31. Kc1 Rc5 32. Bd8+ Kh6 { # } 33. Bf6 g5 34. Re7 1-0`,
+31. Kc1 Rc5 32. Bd8+ Kh6 { # } 33. Bf6 g5 34. Re7 1-0
 
-`[Event "London, Canada (Fall Classic RD5)"]
+`,`[Event "London, Canada (Fall Classic RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -523,9 +523,9 @@ dxe5 dxe5 8. Qxd8 Rxd8 9. fxe5 Nh5 10. Bg5 Re8 11. Nf3 Bxe5 12. Nxe5 Rxe5
 [N 7...Qb6 Olafsson-Aronin; Moscow; 1959. {ECO ] } 8. O-O Qb6 9. Be3 e5 10.
 fxe5 dxe5 11. Na4 Qc7 12. Nxc6 Qxc6 13. Bg5 Bg7 14. Nc3 O-O 15. Nd5 Nxd5
 16. Qxd5 Qb6+ 17. Kh1 Be6 18. Qd3 Qxb2 19. Rfb1 Qd4 20. a4 Rac8 21. Rxb7 $2
-Qxa1+ 0-1`,
+Qxa1+ 0-1
 
-`[Event "London, Canada (Fall Classic RD5)"]
+`,`[Event "London, Canada (Fall Classic RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -540,9 +540,9 @@ cxd4 7. Nxd4 Be7 8. Nxc6 bxc6 9. Nc3 O-O 10. Bf4 Bb7 11. a4 a6 12. Bb3 d5
 13. e5 Nd7 14. Qg4 f6 15. Qxe6+ Kh8 16. Qh3 Bc8 17. Qe3 Bc5 18. Qe2 fxe5
 19. Bg3 a5 20. Rad1 Qf6 21. Nb1 Ba6 22. Qd2 Rf7 23. c3 Raf8 24. h3 Bxf2+
 25. Qxf2 Qxf2+ 26. Bxf2 Rxf2 27. Nd2 e4 28. Ba2 Ne5 29. Bb1 Bd3 30. Nf1
-Rxb2 31. Bxd3 Nxd3 32. Re3 Nf4 33. Rg3 Nxg2 0-1`,
+Rxb2 31. Bxd3 Nxd3 32. Re3 Nf4 33. Rg3 Nxg2 0-1
 
-`[Event "London, Canada (Fall Classic RD1)"]
+`,`[Event "London, Canada (Fall Classic RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -557,9 +557,9 @@ Rxb2 31. Bxd3 Nxd3 32. Re3 Nf4 33. Rg3 Nxg2 0-1`,
 Rc8 13. Qd3 b5 14. Qe2 Qb6 15. Nf1 Bc4 16. Qe1 a5 17. Be3 Qb7 18. Ng3 a4
 19. Nd2 Be6 20. Nf5 Bxf5 21. exf5 d5 22. Be2 b4 23. f3 a3 24. bxa3 bxc3 25.
 Nb3 d4 26. Bc1 Qa7 27. Bd3 Bxa3 28. Qe2 Bxc1 29. Rdxc1 Rfe8 30. Ba6 $4 d3+
-0-1`,
+0-1
 
-`[Event "London, Canada (Fall Classic RD2)"]
+`,`[Event "London, Canada (Fall Classic RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -578,9 +578,9 @@ Nxe7 Kxe7 28. Qg3 Kf7 29. Qg4 Qe6 30. Qxe6+ Kxe6 31. cxb5 axb5 32. b4 cxb4
 33. Rxb5 Bd6 34. Bc1 Rc8 35. h3 Rc4 36. f3 Rc2 37. Bd2 Rxa2 38. Bxb4 Bxb4
 39. Rxb4 Nc5 40. Rb6+ Kf7 41. Rc6 Nb3 42. Rc7+ Ke6 43. Rxg7 Nd4 44. Kh2 Ra3
 45. Rf1 h5 46. Rh7 Ra2 47. Rxh5 Kf7 48. Kg3 Kg6 49. Rh4 Ne2+ 50. Kg4 Nf4 {
-[The rest of the score is not available.] } 0-1`,
+[The rest of the score is not available.] } 0-1
 
-`[Event "London, Canada (Fall Classic RD5)"]
+`,`[Event "London, Canada (Fall Classic RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -596,9 +596,9 @@ Nc6 5. dxc5 Nxe5 6. b4 a5 7. Bb2 Nd7 8. a3 Ngf6 9. Nb3 axb4 10. axb4 Rxa1
 Bxc5 17. Ng5 h6 18. Nh7 Nxh7 19. Bxg7 Re8 20. Bh8 Qg5 21. Bxh7+ Kxh7 22.
 Bf6 Qg6 23. Qa4 Rg8 24. g3 Qxf6 25. Qc6 Bd4 26. c3 Bxc3 27. Rc1 Bd4 28.
 Qc2+ Kh8 29. Rb1 Ba6 30. Rb4 h5 31. Ra4 Bc4 32. Ra3 h4 33. Kg2 hxg3 34.
-Rxg3 Rxg3+ 35. hxg3 Kg7 36. f4 Qg6 37. Qxg6+ Kxg6 0-1`,
+Rxg3 Rxg3+ 35. hxg3 Kg7 36. f4 Qg6 37. Qxg6+ Kxg6 0-1
 
-`[Event "London, Canada (Fall Classic RD3)"]
+`,`[Event "London, Canada (Fall Classic RD3)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -617,9 +617,9 @@ dxe4 29. Rg3+ Kf7 30. Kb2 Nd5 31. Rfg4 e3 32. Rg7+ Ke6 33. Rxe3+ Nxe3 34.
 Ra7 Rc8 35. Rxa6+ Kf7 36. Rb6 Rxc2+ 37. Kb1 Rxg2 38. Rxb5 Rxh2 39. a4 Rh1+
 40. Kb2 Rh2+ 41. Kc3 f5 42. Re5 Rh3 43. Kd4 Nc2+ 44. Kc5 Kf6 45. Re2 Rc3+
 46. Kd6 Nd4 47. Ra2 Rxb3 48. a5 Nb5+ 49. Kc5 Ra3 $4 50. Rxa3 Nxa3 51. a6 f4
-52. a7 f3 53. a8=Q f2 54. Qf8+ 1-0`,
+52. a7 f3 53. a8=Q f2 54. Qf8+ 1-0
 
-`[Event "London, Canada (Fall Classic RD5)"]
+`,`[Event "London, Canada (Fall Classic RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -634,9 +634,9 @@ reached in B08 with white to move.] } 5... O-O 6. Bd3 Nbd7 7. O-O c5 8. d5
 Ng4 9. Bf4 Nge5 10. Be2 Nxf3+ 11. Bxf3 Ne5 12. Be2 Bd7 13. Qd2 Re8 14. Bg5
 Qa5 15. f4 Ng4 16. f5 Bd4+ 17. Be3 $2 Bxe3+ 18. Qxe3 Nxe3 19. Rf3 Nxc2 20.
 Raf1 Nd4 21. fxg6 Nxf3+ 22. Rxf3 fxg6 23. Bd3 Rf8 24. Rg3 Rf6 25. h4 Raf8
-26. h5 Be8 27. e5 dxe5 28. h6 Qb4 29. Nd1 Qe1+ 30. Kh2 Qxd1 0-1`,
+26. h5 Be8 27. e5 dxe5 28. h6 Qb4 29. Nd1 Qe1+ 30. Kh2 Qxd1 0-1
 
-`[Event "London, Canada (Fall Classic RD2)"]
+`,`[Event "London, Canada (Fall Classic RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -654,9 +654,9 @@ Qxd6 Qxd6 19. Rxd6 b4 20. Nb5 Bxf3 21. gxf3 a6 22. Nc7 Ne8 23. Nxe8 Rfxe8
 Kxc4 Rxc2+ 30. Kxb4 Rxb2+ 31. Kc3 Rxf2 32. a4 Rxf3+ 33. Kc4 Rh3 34. Ra8+
 Kg7 35. a5 Rxh2 36. a6 Ra2 37. Kb5 g4 38. Rd8 h5 39. Kb6 Rb2+ 40. Kc5 Ra2
 41. Kb6 f5 42. Rd7+ Kg6 43. Rd5 g3 44. Ra5 Rxa5 45. Kxa5 g2 46. Kb5 g1=Q
-47. a7 Qxa7 0-1`,
+47. a7 Qxa7 0-1
 
-`[Event "London, Canada (Fall Classic RD4)"]
+`,`[Event "London, Canada (Fall Classic RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -673,9 +673,9 @@ Bb7 18. Rab1 Rbe8 19. Re2 c5 20. Rbe1 cxb4 21. Nb5 Rd8 22. e5 dxe5 23. fxe5
 Nd5 24. Nd6 Bc6 25. Nf5 Re6 { # } 26. Nd4 Nc3 27. Nxe6 Nxe2+ 28. Rxe2 fxe6
 29. Bc4 Rd1+ 30. Kf2 Bd5 31. Bb3 a5 32. c4 Rd4 33. cxd5 exd5 34. e6 Rf4+
 35. Kg3 Re4 36. Rd2 Re3+ 37. Kf4 Re4+ 38. Kf5 Kf8 39. Bxd5 Re1 40. Rc2 Rf1+
-41. Ke5 Re1+ 42. Kd6 Rd1 43. Rc8# 1-0`,
+41. Ke5 Re1+ 42. Kd6 Rd1 43. Rc8# 1-0
 
-`[Event "London, Canada (Fall Classic RD5)"]
+`,`[Event "London, Canada (Fall Classic RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -694,9 +694,9 @@ Ne2+ 28. Kh1 Bxd3 29. Qf3 Nc1 30. Rfd1 Qc5 31. Rxd3 Nxd3 32. Qxd3 Qxf2 33.
 Qf1 Qxf1+ 34. Bxf1 a5 35. Rxd6 Re1 36. Kg2 Re7 37. Bb5 Bc3 38. g4 Rb7 39.
 Ba4 Rb4 40. Bd1 Rd4 41. Rxd4 Bxd4 42. Bb3 Kg7 43. h3 Kf6 44. Kf3 Ke7 45. h4
 f5 46. gxf5 gxf5 47. Kf4 Kf6 48. Kf3 h5 49. Bd1 Bc3 50. Kf4 Be1 { [The rest
-of the score was not available.] } 1/2-1/2`,
+of the score was not available.] } 1/2-1/2
 
-`[Event "London, Canada (Fall Classic RD1)"]
+`,`[Event "London, Canada (Fall Classic RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -708,9 +708,9 @@ of the score was not available.] } 1/2-1/2`,
 
 1. e4 e5 2. Nf3 d6 3. d4 Bg4 4. dxe5 Bxf3 5. Qxf3 dxe5 6. Bc4 Nf6 {
 [6...Qf6, 6...Qd7!? {ECO ] } () { Maroczy } 7. Qb3 b6 $4 8. Bxf7+ Ke7 9.
-Qe6# 1-0`,
+Qe6# 1-0
 
-`[Event "London, Canada (Fall Classic RD3)"]
+`,`[Event "London, Canada (Fall Classic RD3)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -728,9 +728,9 @@ Rd8+ 25. Ke4 e6 26. Bf2 f5+ 27. Ke3 a6 28. Ke2 Bf8 29. Ng3 Be7 30. Nxh5 Kf7
 31. Na4 b6 32. Nb2 Kg6 33. Nf6 Bb4 34. Nd3 Bc3 35. g3 Kf7 36. Nh7 a5 37.
 Ng5+ Ke7 38. Be3 a4 39. b4 Bd4 40. c5 a3 41. Kd2 bxc5 42. bxc5 Rd5 43. Bxd4
 Rxd4 44. Kc3 Rd8 45. c6 Rd5 46. Kc4 Rd8 47. Nh7 Rb8 48. Nb4 Rh8 49. Nf6
-Rxh4 50. Nbd5+ 1-0`,
+Rxh4 50. Nbd5+ 1-0
 
-`[Event "London, Canada (Fall Classic RD5)"]
+`,`[Event "London, Canada (Fall Classic RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -747,9 +747,9 @@ Qd2 Rfe8 18. Rc5 Qd7 19. d5 Ne5 20. Nxe5 Bxe5 21. Rxc8 Rxc8 22. dxe6 Qxd2
 23. exf7+ Kxf7 24. Bxd2 Rd8 25. Kf1 Bf4 26. Ke2 Bxh2 27. g3 Re8+ 28. Be3
 Rc8 29. Rd7+ Kg8 30. Kf3 Rc2 31. Rd2 Rxd2 32. Bxd2 Bg1 33. Kg2 Bxf2 34.
 Kxf2 Kf7 35. Kf3 Kf6 36. Ke4 Ke6 37. Bh6 Kd6 38. b4 Ke6 39. Kd4 Kd6 40.
-Bf4+ Ke6 41. Kc5 1-0`,
+Bf4+ Ke6 41. Kc5 1-0
 
-`[Event "London, Canada (Fall Classic RD4)"]
+`,`[Event "London, Canada (Fall Classic RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -764,9 +764,9 @@ Gruenfeld,E-Marshall,F; Baden-Baden; 1925. {CB-D0 ] } 4... Nbd7 5. Nf3 e6
 6. h3 Bb4 7. e3 h6 8. Bf4 Qe7 9. c5 Ne4 10. Qb3 a5 11. Be2 { # } 11...
 Ndxc5 12. dxc5 Qxc5 13. O-O Bxc3 14. bxc3 Nxc3 15. Qxb7 O-O 16. Rac1 Nxe2+
 17. Kh2 Nxc1 18. Qxc7 Qxc7 19. Bxc7 Nxa2 20. Ra1 Rfc8 21. Bb6 Nb4 22. Rxa5
-Rxa5 23. Bxa5 { [the rest of the score is unreadable.] } 23... g5 0-1`,
+Rxa5 23. Bxa5 { [the rest of the score is unreadable.] } 23... g5 0-1
 
-`[Event "London, Canada (Fall Classic RD2)"]
+`,`[Event "London, Canada (Fall Classic RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -782,9 +782,9 @@ Rxa5 23. Bxa5 { [the rest of the score is unreadable.] } 23... g5 0-1`,
 18. Qg5 Qxg5 19. Nexg5 Bd7 20. Rac1 Bc6 21. Bxf5 exf5 22. Ne5 Rad8 23. Rfd1
 f6 24. Nxc6 bxc6 25. Nf3 Rd6 26. Re1 Rxe1+ 27. Rxe1 Kf7 28. b4 Re6 29. Rc1
 Re2 30. g3 Rxa2 31. Rxc6 Ra4 32. Rxc7+ Kg8 33. d5 Rxb4 34. d6 Rb8 35. d7 a6
-36. Rc8+ Rxc8 37. dxc8=Q+ Kg7 38. Qxa6 Kh6 39. Qxf6 Kh5 40. Qh4# 1-0`,
+36. Rc8+ Rxc8 37. dxc8=Q+ Kg7 38. Qxa6 Kh6 39. Qxf6 Kh5 40. Qh4# 1-0
 
-`[Event "London, Canada (Fall Classic RD3)"]
+`,`[Event "London, Canada (Fall Classic RD3)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -800,9 +800,9 @@ Bd7 7. Nf3 Bc6 8. O-O Nd7 9. Re1 e6 10. Ne5 Nxe5 11. dxe5 Be7 12. Qe2 Bg5
 13. f4 Bh4 14. Rd1 Be7 15. Be3 Qc8 16. Rf1 b6 17. Rad1 a6 18. f5 Bd7 19. f6
 gxf6 20. exf6 Bd6 21. Bh6 Bc6 22. Bg7 Bc5+ 23. Kh1 Rg8 24. Bxh7 Qb7 25.
 Bxg8 Rd8 26. Rxd8+ Kxd8 27. Rd1+ Bd6 28. Bxf7 e5 29. Be6 Bxg2+ 30. Qxg2
-Qxg2+ 31. Kxg2 Ke8 32. f7+ 1-0`,
+Qxg2+ 31. Kxg2 Ke8 32. f7+ 1-0
 
-`[Event "London, Canada (Fall Classic RD1)"]
+`,`[Event "London, Canada (Fall Classic RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -815,9 +815,9 @@ Qxg2+ 31. Kxg2 Ke8 32. f7+ 1-0`,
 1. e4 c5 2. Nf3 d6 3. Bb5+ Bd7 4. Bxd7+ Qxd7 5. O-O g6 { [5...Nc6, 5...Nf6
 {ECO ] } 6. d4 cxd4 7. Nxd4 Bg7 8. Be3 Nc6 9. f3 Nf6 10. c4 O-O 11. Qd2
 Rfc8 12. Na3 Ne5 13. b3 a6 14. Rac1 Rab8 15. Qe2 Nc6 16. Qd2 Ne5 17. Qe2 {
-# } 1/2-1/2`,
+# } 1/2-1/2
 
-`[Event "London, Canada (Fall Classic RD2)"]
+`,`[Event "London, Canada (Fall Classic RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -837,9 +837,9 @@ Bxd1 Rxf4 29. Bg4 e5 30. Qa6 Qe8 31. Qc8 Qxc8 32. Bxc8 h5 33. b3 Kg7 34.
 Ba6 Rd4 35. Re2 cxb3 36. cxb3 Rd1+ 37. Kf2 Ra1 38. Rc2 Be8 39. Rc7+ Kf6 40.
 Rc8 Rxa3 41. Rxe8 Rxa6 42. Rb8 Ra2+ 43. Kf1 d5 44. Rxb5 d4 45. g4 Rh2 46.
 gxh5 gxh5 47. b4 Rxh3 48. Rb6+ Kf5 49. Rh6 Rb3 50. Rxh5+ Ke4 { [The rest of
-the score not available.] } *`,
+the score not available.] } *
 
-`[Event "London, Canada (Fall Classic RD )"]
+`,`[Event "London, Canada (Fall Classic RD )"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -858,9 +858,9 @@ dxc5 13. Nc3 Re8 14. Bb2 Nxf3+ 15. Bxf3 Qf7 16. Rxe8+ Bxe8 17. Ne4 Be7 { #
 36. Kf1 a6 37. Rg7 Bb6 38. f3 Rd4 39. Rxb7 Kc5 40. Rg7 Rd2 41. Rg4 Ra2 42.
 Rxh4 Ra1+ 43. Kf2 Rxa3 44. g4 Kb4+ 45. Ke1 Kc3 46. g5 Ra1+ 47. Bd1 Bd4 48.
 g6 Kd3 49. Rxd4+ Kxd4 50. g7 Ra3 { [The rest of the score not available.] }
-*`,
+*
 
-`[Event "London, Canada (Fall Classic RD4)"]
+`,`[Event "London, Canada (Fall Classic RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -874,9 +874,9 @@ g6 Kd3 49. Rxd4+ Kxd4 50. g7 Ra3 { [The rest of the score not available.] }
 6...d5 {ECO ] } 7. Bd3 d5 8. Bd2 $2 dxc4 9. Bxc4 cxd4 10. exd4 Nxd4 11.
 Nxd4 Qxd4 12. Bd3 Rd8 13. Bxh7+ Nxh7 14. O-O-O Bd7 15. Be3 Qf6 16. Ne4 Qe7
 17. Kb1 Rac8 18. Qe2 a6 $6 19. Bb6 Re8 { # } 20. Qg4 $2 f5 21. Qg6 fxe4 22.
-h4 Bb5 23. Bd4 Bd3+ 24. Ka1 Rc6 25. h5 e5 26. Be3 Rxg6 27. hxg6 Nf8 0-1`,
+h4 Bb5 23. Bd4 Bd3+ 24. Ka1 Rc6 25. h5 e5 26. Be3 Rxg6 27. hxg6 Nf8 0-1
 
-`[Event "London, Canada (Fall Classic RD1)"]
+`,`[Event "London, Canada (Fall Classic RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -892,9 +892,9 @@ Nf6 8. O-O O-O 9. e5 Ng4 10. Bf4 d6 11. exd6 exd6 12. Nb5 { # } 12... Nce5
 dxe5 19. Re1 Bf5 20. a3 Rad8 21. Rd1 Rd4 22. g4 Be6 23. Rd2 e4 24. g5 Bxc4
 25. Kg2 exd3 26. Bd1 Re8 27. f3 Re1 28. Kf2 Re5 29. h4 Rxh4 30. Kg3 Rh1 31.
 f4 Ree1 32. Kf2 Rxd1 33. Ke3 Rhe1+ 34. Kf2 Re2+ 35. Rxe2 dxe2 36. Kf3 e1=Q
-37. a4 Rd3+ 38. Kg4 Be6+ 39. f5 Qe4# 0-1`,
+37. a4 Rd3+ 38. Kg4 Be6+ 39. f5 Qe4# 0-1
 
-`[Event "London, Canada (Fall Classic RD3)"]
+`,`[Event "London, Canada (Fall Classic RD3)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -913,9 +913,9 @@ g5 23. g3 f6 24. Kg2 Be4+ 25. Kg1 f5 26. h3 Rxg3+ 27. Kh2 f4 28. Nd3 Bxd3
 Rg5 35. Kf2 hxg4 36. Rc1 a4 37. Ra1 Ra5 38. Kg3 Kf7 39. Kxg4 f2 40. Rf1 a3
 41. Kg3 Ke6 42. Kxf2 Kd5 (42... Rf5+) 43. Ra1 Kc4 44. Ke2 a2 45. Kd2 Kb3
 46. Kc1 Rc5+ 47. Kd2 Rc2+ 48. Kd1 Rc4 49. Kd2 Kb2 50. Rxa2+ Kxa2 51. Kd3
-Kb3 52. Ke3 Kc3 53. Kf3 Kd3 54. Kg3 Ke3 55. Kh3 Kf2 56. Kh2 Rh4# 0-1`,
+Kb3 52. Ke3 Kc3 53. Kf3 Kd3 54. Kg3 Ke3 55. Kh3 Kf2 56. Kh2 Rh4# 0-1
 
-`[Event "London, Canada (Fall Classic RD1)"]
+`,`[Event "London, Canada (Fall Classic RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -930,9 +930,9 @@ Kb3 52. Ke3 Kc3 53. Kf3 Kd3 54. Kg3 Ke3 55. Kh3 Kf2 56. Kh2 Rh4# 0-1`,
 {CB-C7 ] } 7... O-O 8. d5 Na5 9. b4 Nc4 10. Bb3 Nb6 11. Bg5 a5 12. a3 Bd7
 13. h3 c6 14. Bxf6 Bxf6 15. Na4 Nxa4 16. Bxa4 cxd5 17. Bxd7 Qxd7 18. Qxd5
 axb4 19. axb4 Rxa1 20. Rxa1 Rc8 21. c4 Qc7 22. c5 Qc6 { # } 23. Qxd6 Qxe4
-24. c6 h6 25. Ra7 Rd8 26. Qc7 Rd1+ 27. Kh2 Qf4+ 28. g3 Qxf3 0-1`,
+24. c6 h6 25. Ra7 Rd8 26. Qc7 Rd1+ 27. Kh2 Qf4+ 28. g3 Qxf3 0-1
 
-`[Event "London, Canada (Fall Classic RD )"]
+`,`[Event "London, Canada (Fall Classic RD )"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -946,9 +946,9 @@ axb4 19. axb4 Rxa1 20. Rxa1 Rc8 21. c4 Qc7 22. c5 Qc6 { # } 23. Qxd6 Qxe4
 Qe2 { [N 8.0-0 Levenfish-Aronin; USSR; 1950. {ECO ] } 8... e6 9. O-O b4 10.
 Ba4+ Nbd7 11. Nd1 Be7 12. c3 bxc3 13. Nxc3 Rc8 14. Bc2 O-O 15. f4 Qb6 16.
 Qf2 Ng4 17. Qd2 e5 18. h3 Ngf6 19. Kh1 Qxd4 20. Qe2 Qc4 21. Bd3 Qc6 22. Bd2
-Nc5 23. Rad1 { [The rest of the score was inaccurate.] } *`,
+Nc5 23. Rad1 { [The rest of the score was inaccurate.] } *
 
-`[Event "London, Canada (Fall Classic RD )"]
+`,`[Event "London, Canada (Fall Classic RD )"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -963,9 +963,9 @@ Nc5 23. Rad1 { [The rest of the score was inaccurate.] } *`,
 corr ch E vr gr P; 1985. {CB-B5 ] } 7... bxc6 8. Bd3 d5 9. O-O e6 10. Re1
 Be7 11. e5 Ng8 12. Be3 Bb4 13. Bd2 Ne7 14. a3 Bxc3 15. Bxc3 O-O 16. Re3 c5
 17. Rh3 h6 18. Bd2 Qc7 19. Qh5 Nc6 { # } 20. Bxh6 Qxe5 21. Bh7+ Kxh7 22.
-Bg5+ 1-0`,
+Bg5+ 1-0
 
-`[Event "London, Canada (Fall Classic RD1)"]
+`,`[Event "London, Canada (Fall Classic RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -983,9 +983,9 @@ gxf6 25. Kh2 Rg8 26. Qe4 Qxe4 27. Rxe4 f5 28. Re3 Nf6 29. Rb3 Rb8 30. Be3
 b5 31. d5 exd5 32. cxb5 Rxb5 33. Rxb5 cxb5 34. Bxa7 Ne4 35. Kg2 Ke6 36. Kf3
 Nd2+ 37. Kg3 Nc4 38. Bd4 Kf7 39. b3 Nd6 40. a4 Ke6 41. a5 Kd7 42. Kh4 Ne4
 43. Kh5 Ng3+ 44. Kxh6 Ne2 45. Be3 d4 46. Bd2 d3 47. Kg6 Nd4 48. b4 Nb3 49.
-Bc3 d2 50. Bxd2 Nxd2 { [The rest of the score was not available.] } *`,
+Bc3 d2 50. Bxd2 Nxd2 { [The rest of the score was not available.] } *
 
-`[Event "London, Canada (Fall Classic RD5)"]
+`,`[Event "London, Canada (Fall Classic RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1003,9 +1003,9 @@ Qxe7 15. Qc2 Rbc8 16. e3 Bd5 17. Bc3 f6 18. Nh4 Bxg2 19. Kxg2 Rfd8 20. Rcd1
 Nd5 21. Nf5 Qe6 22. e4 g6 23. Nh4 Ndb4 24. Bxb4 Nxb4 25. Qe2 Qxa2 26. f4
 Rc7 27. fxe5 fxe5 28. Nf3 Nc6 29. Ng5 Nd4 30. Qf2 Re8 31. Rd2 Ne6 32. b3
 Qxb3 33. Rb2 Qxb2 34. Qxb2 Nxg5 35. h4 Nf7 36. h5 Re6 37. Qb3 Rd6 38. hxg6
-hxg6 39. Rf3 Kg7 40. g4 Ng5 41. Rf1 Ne6 42. Qb2 Rd4 43. Rh1 c4 0-1`,
+hxg6 39. Rf3 Kg7 40. g4 Ng5 41. Rf1 Ne6 42. Qb2 Rd4 43. Rh1 c4 0-1
 
-`[Event "London, Canada (Fall Classic RD4)"]
+`,`[Event "London, Canada (Fall Classic RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1023,9 +1023,9 @@ Ne8 23. Nf6+ Nxf6 24. Qxf6 Re8 25. Re5 Rxe5 26. Qxe5 Rd8 27. h4 Qb5 28. Re1
 Qc6 29. h5 Qd6 { # } 30. h6 Qxe5 31. Rxe5 Kf8 32. Kc1 Rd6 33. Kd2 f6 34.
 Re3 g5 35. Rc3 Rd7 36. Rc8+ Kf7 37. Kd3 Kg6 38. Rf8 Rd6 39. g4 Kxh6 40. Rf7
 Rb6 41. b3 Kg6 42. Rd7 Rb4 43. f3 Rf4 44. Ke2 h5 45. gxh5+ Kxh5 46. Rh7+
-Kg6 47. Rxb7 Rh4 48. Ra7 Rh2+ 49. Ke3 Rxc2 50. Rxa6 Kf5 0-1`,
+Kg6 47. Rxb7 Rh4 48. Ra7 Rh2+ 49. Ke3 Rxc2 50. Rxa6 Kf5 0-1
 
-`[Event "London, Canada (Fall Classic)"]
+`,`[Event "London, Canada (Fall Classic)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1040,9 +1040,9 @@ Kg6 47. Rxb7 Rh4 48. Ra7 Rh2+ 49. Ke3 Rxc2 50. Rxa6 Kf5 0-1`,
 Nd2 Bb4 12. Nc4 Bxc3 13. bxc3 Nbd7 14. Ba3 Bg6 15. Nd6+ Kd8 16. Rc1 b6 17.
 Ba6 Rb8 18. Qf3 { # } 18... Ne8 19. Nxf7+ Bxf7 20. Qxf7 Ndf6 21. Qxe6 Qd7
 22. Qxd7+ Kxd7 23. f3 Nd5 24. Bd3 b5 25. Rb1 Nd6 26. Bxd6 Kxd6 { [score
-unreadable.] } 27. c4 0-1`,
+unreadable.] } 27. c4 0-1
 
-`[Event "London, Canada (Fall Swiss RD1)"]
+`,`[Event "London, Canada (Fall Swiss RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1057,9 +1057,9 @@ unreadable.] } 27. c4 0-1`,
 12. O-O Rc8 13. a3 Be7 14. Rc1 Ne5 15. Ne4 f5 16. Bc3 Nc4 17. Nd2 b5 18.
 Nxc4 bxc4 19. Qd4 Rf7 20. Qxa7 Bc6 21. Rfd1 Qf8 22. Bxc6 Bg5 23. Qa6 Bxc1
 24. Rxc1 f4 25. Bf3 fxg3 26. hxg3 Qe8 27. Bh5 g6 28. Bg4 Rc6 29. Qb5 h5 30.
-Bf3 Rc8 31. Qe5 Rh7 32. Rd1 Qe7 33. Rd6 Re8 34. Rxe6 { 1-0 } 1-0`,
+Bf3 Rc8 31. Qe5 Rh7 32. Rd1 Qe7 33. Rd6 Re8 34. Rxe6 { 1-0 } 1-0
 
-`[Event "London, Canada (Fall Swiss RD1)"]
+`,`[Event "London, Canada (Fall Swiss RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1088,9 +1088,9 @@ f3 $4 (68... Rc1+ $1 { [draws.] }) 69. Rf6+ Ka7 70. Rxf3 $18 Rc1+ 71. Kb4
 Rc7 72. Rf8 Kb6 $2 73. Rf6+ Ka7 74. b6+ Kb8 75. Rf8+ Rc8 76. a7+ Kb7 77.
 Rxc8 Kxc8 $2 (77... Kxb6 $1 78. a8=Q $4 { [stalemate.] } (78. a8=R $18))
 78. a8=Q+ Kd7 79. Qe4 Kd6 80. Kc4 Kd7 81. Kc5 Kd8 82. Kc6 Kc8 83. Qe8# {
-[Overall, Marc played very impressively indeed!] } 1-0`,
+[Overall, Marc played very impressively indeed!] } 1-0
 
-`[Event "London, Canada (Fall Swiss RD1)"]
+`,`[Event "London, Canada (Fall Swiss RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1110,9 +1110,9 @@ Nd1 Kf7 25. Re2 e6 26. b3 c5 27. c3 Bf6 28. Kg2 Rfb8 29. Reb2 d4 30. c4 d3
 Rxa4 37. Ng4 Bd4 38. Ne5 Bxe5 39. fxe5 Rc4 40. Rxh7 Re4 41. Ra7 Rxe5 42.
 Rxa5 Kd7 43. Kf3 Kd6 44. h4 Kd5 45. Kf4 Rf5+ 46. Ke3 g5 47. hxg5 Rxg5 48.
 Kf4 Rg8 49. g4 Kd4 50. Ra4+ c4 51. g5 e5+ 52. Kf5 Rf8+ 53. Ke6 e4 54. g6 e3
-55. g7 Rb8 56. Rb4 Rg8 57. Kf7 Rxg7+ 58. Kxg7 e2 59. Rb1 c3 { 0-1 } 0-1`,
+55. g7 Rb8 56. Rb4 Rg8 57. Kf7 Rxg7+ 58. Kxg7 e2 59. Rb1 c3 { 0-1 } 0-1
 
-`[Event "London, Canada (Fall Swiss RD1)"]
+`,`[Event "London, Canada (Fall Swiss RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1132,9 +1132,9 @@ Qf2 Qg5 37. Rxe4 fxe4 38. Qf4 Qd5 39. Qf2 Kg6 40. Qc2 Kf5 41. c4 Qc5 42.
 Qf2+ Ke6 43. Qe2 h5 44. b4 Qe5 45. Qa2 Qc3 46. c5+ Ke5 47. Qf2 g5 48. Qg3+
 Kf5 49. Qf2+ Ke5 50. Qe2 Qxa3 51. Qd2 Qb3 52. Qd4+ Kf5 53. c6 g4 54. Qc5+
 Ke6 55. hxg4 Qd1+ 56. Kh2 Qxg4 57. Qc4+ Kd6 58. g3 h4 59. Qc5+ Ke6 { - }
-1/2-1/2`,
+1/2-1/2
 
-`[Event "London, Canada (Fall Swiss RD1)"]
+`,`[Event "London, Canada (Fall Swiss RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1148,9 +1148,9 @@ Ke6 55. hxg4 Qd1+ 56. Kh2 Qxg4 57. Qc4+ Kd6 58. g3 h4 59. Qc5+ Ke6 { - }
 {ECO ] } 6... Qxb5 7. Na3 Bxa3 8. bxa3 dxc3 9. Qb3 Qxb3 10. axb3 cxd2 11.
 Bxd2 d6 12. Bc3 f6 13. f4 Bd7 14. e5 fxe5 15. fxe5 O-O-O 16. exd6 Nf6 17.
 dxc7 Kxc7 18. Be5+ Kc8 19. Rac1+ Bc6 20. b4 Ng4 21. Bxg7 Rhg8 22. Rf7 Kb8
-23. h3 Ne3 24. Re1 Nxg2 25. Ree7 Nh4 { 0-1 } 0-1`,
+23. h3 Ne3 24. Re1 Nxg2 25. Ree7 Nh4 { 0-1 } 0-1
 
-`[Event "London, Canada (Fall Swiss RD1)"]
+`,`[Event "London, Canada (Fall Swiss RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1174,9 +1174,9 @@ e6 $1 Qd6 28. Bh4 Nc6 29. fxg6 hxg6 30. Qh6 Qxe6 31. Rf6 Qe3+ 32. Qxe3 dxe3
 Qh6+ Kg8 44. Qxg6+ Kh8 45. Qh6+ Kg8 { # } 46. Qg6+ (46. Rf5 $3 $18 Bxf5 47.
 Rxf5 Kf7 (47... Rff7 48. Rg5+ Rg7 49. Rxg7+ Rxg7 50. Qxg7#) 48. e6+ $1 Kxe6
 (48... Qxe6 49. Qxh5+ Kg8 50. Rg5+ Rg7 51. Rxg7#) (48... Ke8 49. Rxd5 $18)
-49. Rxd5 Kxd5 50. Qxf8 $18) 46... Kh8 47. Qh6+ Kg8 48. Qg6+ { - } 1/2-1/2`,
+49. Rxd5 Kxd5 50. Qxf8 $18) 46... Kh8 47. Qh6+ Kg8 48. Qg6+ { - } 1/2-1/2
 
-`[Event "London, Canada (Fall Swiss RD1)"]
+`,`[Event "London, Canada (Fall Swiss RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1191,9 +1191,9 @@ Rxf5 Kf7 (47... Rff7 48. Rg5+ Rg7 49. Rxg7+ Rxg7 50. Qxg7#) 48. e6+ $1 Kxe6
 11. Qxf3 Ne7 12. Bg5 Nc6 13. Nd5 Nd4 14. Qd1 c6 15. c3 cxd5 16. cxd4 h6 17.
 Bxf6 Bxf6 18. Bxd5 exd4 19. b4 Qe7 20. Qg4 Kg7 21. f4 h5 22. Qf3 Rac8 23.
 Rac1 Rc3 24. Rxc3 dxc3 25. Rc1 Rc8 26. Rc2 Bd4+ 27. Kh2 { [The rest of the
-game score is erroneous. Black lost on time.] } 27... b6 { 1-0 } 1-0`,
+game score is erroneous. Black lost on time.] } 27... b6 { 1-0 } 1-0
 
-`[Event "London, Canada (Fall Swiss RD1)"]
+`,`[Event "London, Canada (Fall Swiss RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1208,9 +1208,9 @@ game score is erroneous. Black lost on time.] } 27... b6 { 1-0 } 1-0`,
 h3 Nh6 10. Qc2 f5 11. Qf2 cxd4 12. exd4 a6 13. Bd2 b5 14. Ne3 b4 15. g4 a5
 16. g5 Nf7 17. h4 Nd6 18. h5 Ba6 19. Bxa6 Rxa6 20. Nh4 Ne4 21. Qh2 Qb6 22.
 Ng6 bxc3 23. bxc3 Bb4 24. Nxf8 Kxf8 25. O-O Nxd4 26. cxb4 axb4 27. Kh1 b3
-28. a3 Nc6 29. Qh3 Nb4 30. Rad1 { [time] 1-0 } 1-0`,
+28. a3 Nc6 29. Qh3 Nb4 30. Rad1 { [time] 1-0 } 1-0
 
-`[Event "London, Canada (Fall Swiss RD1)"]
+`,`[Event "London, Canada (Fall Swiss RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1226,9 +1226,9 @@ a3 a5 { #[8...d6 {ECO ] } 9. Nd5 a4 10. Nec3 Nxd5 11. cxd5 Na7 12. Nxa4 b5
 Qd2 Nd7 20. d4 e4 21. a4 bxa4 22. Rxa4 Nf6 23. Rfa1 Nxd5 24. Nxd5 Bxd5 25.
 b4 Bc6 26. Ra5 d5 27. b5 Bb7 28. Bb4 Bf8 29. Bf1 Qd7 30. Ra7 Ra8 31. Bc5
 Rxa7 32. Rxa7 Rc8 33. Qb4 Kg7 34. Kg2 h5 35. h4 Ra8 36. Rxa8 Bxc5 37. dxc5
-Bxa8 38. c6 Qc7 39. Qc5 Kh6 40. b6 Qxc6 41. Qxc6 Bxc6 42. Ba6 { 1-0 } 1-0`,
+Bxa8 38. c6 Qc7 39. Qc5 Kh6 40. b6 Qxc6 41. Qxc6 Bxc6 42. Ba6 { 1-0 } 1-0
 
-`[Event "London, Canada (Fall Swiss RD1)"]
+`,`[Event "London, Canada (Fall Swiss RD1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1242,9 +1242,9 @@ Bxa8 38. c6 Qc7 39. Qc5 Kh6 40. b6 Qxc6 41. Qxc6 Bxc6 42. Ba6 { 1-0 } 1-0`,
 6. O-O Be7 7. d4 O-O 8. Re1 Nxc3 9. bxc3 b6 10. Qe2 Bb7 11. Bf4 Bd6 12. Bg5
 Be7 13. h4 h6 14. Bxe7 Nxe7 15. Ne5 Nd5 16. Qg4 Qd6 17. Rad1 Nf6 18. Qh3
 Bd5 19. Bd3 Nd7 20. c4 Nxe5 21. dxe5 Bxg2 22. Qxg2 Qe7 23. Qe4 g6 24. Re3
-h5 25. Rf3 { 1-0 } 1-0`,
+h5 25. Rf3 { 1-0 } 1-0
 
-`[Event "London, Canada (Fall Swiss RD2)"]
+`,`[Event "London, Canada (Fall Swiss RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1259,9 +1259,9 @@ h5 25. Rf3 { 1-0 } 1-0`,
 Bxe7 Rxe7 13. O-O h5 14. h4 Rf8 15. Qe2 Nb8 16. a4 Bh6 17. a5 f5 18. exf6
 Ref7 19. axb6 cxb6 20. Nd6+ Kd8 21. Nxb7+ Kc7 22. Rxa7 Nc6 23. Ra2 Kxb7 24.
 Bb5 Rxf6 25. Bxc6+ dxc6 26. Qa6+ Kc7 27. Qa7+ Kd6 28. Qxb6 Rc8 29. Qc5+ Kd7
-30. Ra7+ Ke8 31. Qe7# { 1-0 } 1-0`,
+30. Ra7+ Ke8 31. Qe7# { 1-0 } 1-0
 
-`[Event "London, Canada (Fall Swiss RD2)"]
+`,`[Event "London, Canada (Fall Swiss RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1278,9 +1278,9 @@ fxg3 Qxg3+ 16. Kd1 b6 17. Rg1 h6 18. Bd2 Nc6 19. Bc3 Nh5 20. d4 cxd4 21.
 Bxd4 Nxd4 22. Nxd4 Qf2 23. Nf3 Rc8 24. Qd2 O-O 25. Rc1 Rxc1+ 26. Qxc1 Rd8
 27. Qc7 Ba4+ 28. Kc1 Qe3+ 29. Kb1 Qxe4+ 30. Ka1 Rd7 31. Qc8+ Kh7 32. Ng5+
 hxg5 33. Qc1 $2 Qxe2 34. b3 Qe5+ 35. Kb1 Bb5 36. Rd1 Bd3+ 37. Rxd3 Rxd3 38.
-Qc2 Qe1+ 39. Kb2 Qd2 0-1`,
+Qc2 Qe1+ 39. Kb2 Qd2 0-1
 
-`[Event "London, Canada (Fall Swiss RD2)"]
+`,`[Event "London, Canada (Fall Swiss RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1296,9 +1296,9 @@ Ne2 Qb6 13. Be3 Bc5 14. Bxc5 Qxc5 15. Ng3 b5 16. Ne4 Qxc4 17. Nxf6+ gxf6
 18. Qd1 Qh4 19. g3 Qh3 20. Qf3 Rb8 21. Qxf6 h6 22. Rad1 Bb7 23. f3 Qf5 24.
 Qxh6 Qg6 25. Qh4 f6 26. Rd4 f5 27. g4 Rf7 28. Qg3 Rc8 29. Rfd1 Bd5 30. h4
 Rg7 31. g5 Rc4 32. f4 Rxd4 33. Rxd4 Bxa2 34. b3 Bb1 35. Qe1 Be4 36. Rd6 Qh5
-37. Kh2 Qf3 38. Qg3 Qh1# 0-1`,
+37. Kh2 Qf3 38. Qg3 Qh1# 0-1
 
-`[Event "London, Canada (Fall Swiss RD2)"]
+`,`[Event "London, Canada (Fall Swiss RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1315,9 +1315,9 @@ Nxe3 17. fxe3 Bxa2 18. Bh3+ Kb8 19. Rd7 g5 20. Bf5 h6 21. Kf2 b6 22. cxb6
 axb6 23. Bg6 Be6 24. Rg7 Rg8 25. Rxg8+ Bxg8 26. Nd4 Ne5 27. Bh5 c5 28. Nf5
 { # } 28... Nc4 29. Nxh6 Bh7 30. Ng4 Bxe4 31. Nxf6 Bf5 32. e4 Be6 33. b3
 Ne5 34. Nd5 Kb7 35. Ke3 Ng4+ 36. Bxg4 Bxg4 37. Kd3 Kc6 38. h4 gxh4 39. gxh4
-Kd6 40. Nxb6 Ke5 41. Na4 Kf4 42. Nxc5 1-0`,
+Kd6 40. Nxb6 Ke5 41. Na4 Kf4 42. Nxc5 1-0
 
-`[Event "London, Canada (Fall Swiss RD2)"]
+`,`[Event "London, Canada (Fall Swiss RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1332,9 +1332,9 @@ $146 { [ECO] }) 6... Ba5 7. O-O Nge7 (7... d6 8. Qb3 Qd7 9. e5 $16 { [ECO]
 }) 8. Ng5 O-O 9. Qh5 h6 10. Nxf7 Rxf7 11. Bxf7+ Kh7 12. Bd5 b6 13. f4 Ba6
 14. Rd1 Nxd5 15. exd5 Nb8 16. Nd2 Bxc3 17. Rb1 Bd3 18. Rb3 Bd4+ 19. Kh1 Bg6
 20. Qf3 Bc2 21. Ne4 Bxd1 22. Qxd1 c5 23. Rh3 Qe8 24. Qd3 Kg8 25. f5 Qe7 26.
-g4 Bf6 27. Bf4 Be5 $2 28. d6 Qe8 29. Qd5+ Kh8 30. Rxh6+ gxh6 31. Bxe5+ 1-0`,
+g4 Bf6 27. Bf4 Be5 $2 28. d6 Qe8 29. Qd5+ Kh8 30. Rxh6+ gxh6 31. Bxe5+ 1-0
 
-`[Event "London, Canada (Fall Swiss RD2)"]
+`,`[Event "London, Canada (Fall Swiss RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1349,9 +1349,9 @@ vsky-Cejtlin; USSR; 1969. {ECO c6 see Wilkinson,A-Ma ndoshkin,J ; London,
 Canada ; ] } () 7. h3 Bd7 8. O-O c6 9. Be3 b5 10. Bd3 Na6 11. a3 Qb6 12.
 Qd2 c5 13. e5 Ne8 14. Nd5 Qd8 15. Rae1 c4 16. Be4 Rc8 17. f5 gxf5 18. Ng5
 fxe4 19. e6 Bxe6 20. Nxe6 fxe6 21. Rxf8+ Bxf8 22. Nf4 Bh6 23. Nxe6 Bxe3+
-24. Qxe3 Qb6 25. Qh6 1-0`,
+24. Qxe3 Qb6 25. Qh6 1-0
 
-`[Event "London, Canada (Fall Swiss RD2)"]
+`,`[Event "London, Canada (Fall Swiss RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1366,9 +1366,9 @@ d4 Bg4 { #[8...Nxb3 {ECO ] } 9. dxe5 Bxf3 10. Qxf3 dxe5 11. Bg5 Nxb3 12.
 Qxb3 Bd6 13. Nc3 h6 14. Bh4 O-O 15. Rad1 Re8 16. f3 g5 17. Bf2 Qe7 18. Nd5
 Qe6 19. Qc3 Nxd5 20. Rxd5 Qe7 21. Red1 Qd7 22. Bc5 Re6 23. Kf1 Qc6 24. Qe3
 Rd8 25. c3 Kg7 26. h4 Bxc5 27. Rxc5 Rxd1+ 28. Ke2 Qd6 29. hxg5 hxg5 30. Rc6
-Qd2+ 31. Qxd2 Rxd2+ 32. Kxd2 Rxc6 0-1`,
+Qd2+ 31. Qxd2 Rxd2+ 32. Kxd2 Rxc6 0-1
 
-`[Event "London, Canada (Fall Swiss RD2)"]
+`,`[Event "London, Canada (Fall Swiss RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1393,9 +1393,9 @@ Bf2 52. Re2 Bd4 53. Kd5 Bc5 54. Re6 Bf2 55. Ke4 h4 56. Kf3 Kf7 57. Rc6 Bd4
 Kf3 Kc5 71. Ke4 Bf2 72. Kd3 Bg3 73. Rb1 Bf2 74. Rf1 Bg3 75. Rf5+ Kd6 76.
 Ke4 Kc6 77. Kd4 Bh2 78. Rf6+ Kb7 79. Rg6 Bg3 80. Kd5 Kc7 81. Rg7+ Kb8 82.
 Kc6 Bf2 83. Rf7 Bg1 84. Rf1 Be3 85. Rh1 Bf2 86. Rh2 Bg3 87. Rg2 Bc7 88. c5
-bxc5 89. Rg8+ 1-0`,
+bxc5 89. Rg8+ 1-0
 
-`[Event "London, Canada (Fall Swiss RD2)"]
+`,`[Event "London, Canada (Fall Swiss RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1415,9 +1415,9 @@ Rb8 33. b3 Rd8 34. Kg2 Bc8 35. Kf1 Kg6 36. Ke2 Be6 37. Kd2 Bc8 38. Kc3 Bb7
 39. a3 a5 40. b4 cxb4+ 41. axb4 axb4+ 42. Kxb4 Rb8 43. Kc3 Ra8 44. Kd4 Ra3
 45. Nf5 Ra6 46. Ne7+ Kg7 47. Nd5 Ra1 48. e5 dxe5+ 49. Kxe5 Rh1 50. Rf3 Re1+
 51. Kd4 Rg1 52. Re3 Bxd5 53. cxd5 Rg3 54. Rxg3 hxg3 55. Ke3 g2 56. Kf2
-g1=Q+ 57. Kxg1 Kf6 58. d4 Ke7 59. Kf2 Kd6 60. Ke3 Kxd5 61. Kd3 1-0`,
+g1=Q+ 57. Kxg1 Kf6 58. d4 Ke7 59. Kf2 Kd6 60. Ke3 Kxd5 61. Kd3 1-0
 
-`[Event "London, Canada (Fall Swiss RD2)"]
+`,`[Event "London, Canada (Fall Swiss RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1432,9 +1432,9 @@ Glazkov-Jaroshevski; USSR; 1971. {ECO ] } 6. Bd3 Qf6 7. O-O Ne7 8. Ne5 Bxe5
 9. dxe5 Qxe5 10. Bxf4 Qxb2 11. Qh5+ Kd8 12. Nd2 Nd7 13. Rae1 Nc6 14. Nf3
 Nf6 15. Qf7 Bd7 16. Ng5 Re8 17. Ne6+ Kc8 18. Rb1 Qc3 19. Rb3 Qa5 20. Rb5
 Qc3 21. Rfb1 Nd8 22. Qxg7 Bxe6 23. fxe6 Qd4+ 24. Kh1 Qxf4 25. Rf1 Nxe6 26.
-Qxf6 Qxf6 27. Rxf6 c6 28. Rb1 Re7 29. Bf5 1-0`,
+Qxf6 Qxf6 27. Rxf6 c6 28. Rb1 Re7 29. Bf5 1-0
 
-`[Event "London, Canada (Fall Swiss RD2)"]
+`,`[Event "London, Canada (Fall Swiss RD2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1452,9 +1452,9 @@ ski-Cejtlin; USSR; 1969. {ECO Bg4 see Majstorovic,D ; London, Canada ; ] }
 25. Rxc7 Rxc7 26. a4 Qc6 27. Qxc6 Rxc6 28. Rc1 Rxc1+ 29. Bxc1 Bf8 30. Kh2
 Bb4 31. Bb2 Kg7 32. Kg3 g5 33. Kg4 Kg6 34. Ba1 h5+ 35. Kf3 h4 36. Kg4 a6
 37. Bb2 b5 38. axb5 axb5 39. Bc1 Be7 40. Bd2 f5+ 41. exf6 Bxf6 42. Be3 Bd8
-43. Bd2 Bc7 44. Be3 Bd6 45. Bf2 { - } 1/2-1/2`,
+43. Bd2 Bc7 44. Be3 Bd6 45. Bf2 { - } 1/2-1/2
 
-`[Event "London, Canada (Fall Swiss RD3)"]
+`,`[Event "London, Canada (Fall Swiss RD3)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1483,9 +1483,9 @@ $1 $11) 58. h4 $1 $18 Kg3 59. h5 gxh5 60. gxh5 Kh4 61. h6 Nf8 62. Ne4 Kh5
 63. Nxc5 Kxh6 64. Nb7 Kg5 65. Nxa5 Kf5 66. Kd4 Ke6 67. b4 Kd6 68. c5+ Kd7
 69. b5 Ne6+ 70. Kd5 Nc7+ 71. Kc4 Ne6 72. b6 Kc8 73. c6 Kb8 74. Kd5 Nf4+ 75.
 Kd6 Kc8 76. b7+ $6 (76. c7 $1) 76... Kb8 77. c7+ Ka7 78. b8=Q+ Ka6 79. Nc6
-$1 Ng6 80. c8=B# 1-0`,
+$1 Ng6 80. c8=B# 1-0
 
-`[Event "London, Canada (Fall Swiss RD3)"]
+`,`[Event "London, Canada (Fall Swiss RD3)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1501,9 +1501,9 @@ Bh5 9. Bg5 f6 10. Bh4 Bf4 11. g3 Bh6 12. g4 Bg6 13. Bg3 Na6 14. O-O Bxd3
 15. Qxd3 Ng6 16. Qf5 Re8 17. Rae1 Qc8 18. Qxc8 Rexc8 19. Nh4 Nf4 20. Bxf4
 Bxf4 21. Nf5 Re8 22. Ne7+ Kf7 23. Nxd5 c6 24. Nxf4 cxb5 25. c3 Red8 26. Re4
 b4 27. Rfe1 Rd7 28. Kg2 Rc8 29. R1e3 Rdc7 $2 30. Nd5 Rd7 31. Re7+ Rxe7 32.
-Rxe7+ Kg6 33. Rxb7 bxc3 34. bxc3 Ra8 35. c4 1-0`,
+Rxe7+ Kg6 33. Rxb7 bxc3 34. bxc3 Ra8 35. c4 1-0
 
-`[Event "London, Canada (Fall Swiss RD3)"]
+`,`[Event "London, Canada (Fall Swiss RD3)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1519,9 +1519,9 @@ Bxf6 10. Nxd5 Nxd4 11. Nxf6+ Qxf6 12. Qc3 Bf5 13. e3 Nc6 14. Qxf6 gxf6 15.
 Ne2 Bg6 16. h4 h5 17. O-O O-O 18. Rfd1 Rfe8 $2 19. Rd7 b6 20. Rc1 Ne5 21.
 Rd6 Kg7 $2 22. Nf4 Rac8 23. Rxc8 Rxc8 24. Nxg6 fxg6 25. Bxe4 f5 26. Re6
 fxe4 $2 27. Rxe5 Rc2 28. Rxe4 Rxb2 29. Re7+ Kf6 30. Rxa7 Rb1+ 31. Kg2 Rb5
-32. a4 Rc5 33. Ra6 Ra5 34. Rxb6+ Ke7 35. Rxg6 Rxa4 1-0`,
+32. a4 Rc5 33. Ra6 Ra5 34. Rxb6+ Ke7 35. Rxg6 Rxa4 1-0
 
-`[Event "London, Canada (Fall Swiss RD3)"]
+`,`[Event "London, Canada (Fall Swiss RD3)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1538,9 +1538,9 @@ Qxd7 8. e3 a6 9. cxd5 exd5 10. Bd3 Bd6 11. Qf3 O-O 12. Bd2 Ne7 13. h3 c6
 20. Qg4 Qc7 21. g3 g5 22. Nc5 Nf6 23. Qe2 Qc8 24. Kg2 h5 25. Nd3 g4 26.
 hxg4 hxg4 27. Rh1 g6 28. Qc2 Qf5 29. Nf4 Re4 30. Rce1 Bxf4 31. exf4 Rxd4
 32. Re8+ Kg7 33. Qxf5 gxf5 34. Rh5 Kg6 35. Rg5+ Kh6 36. Rh8+ Rh7 37. Rhg8
-Rf7 38. Rh8+ Rh7 39. Bf8# 1-0`,
+Rf7 38. Rh8+ Rh7 39. Bf8# 1-0
 
-`[Event "London, Canada (Fall Swiss RD3)"]
+`,`[Event "London, Canada (Fall Swiss RD3)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1558,9 +1558,9 @@ Ne4 17. Bb5 Re6 18. Qh3 Rc8 19. Bd3 Rxc3 20. f3 Nf6 21. a4 Qb6 22. Qh4 Nh5
 29. Rc5 Rxd4 $2 30. Rxc7 Ne2+ 31. Bxe2 Rxh4 32. Bd3 Rb4 33. Kf2 a4 34. Rc4
 Rxc4 35. Bxc4 Rc6 36. Bd3 Rc5 37. Rb1 a3 38. Ra1 Ra5 39. Ke2 b5 40. c3 Kg7
 41. Kd2 Kf6 42. Kc2 Ke5 43. Kb3 Kd5 44. Rxa3 Rxa3+ 45. Kxa3 Kc5 46. Kb3 h6
-47. g4 g5 48. h3 f6 49. Bf5 Kd5 50. Kb4 Kc6 51. Bd3 1-0`,
+47. g4 g5 48. h3 f6 49. Bf5 Kd5 50. Kb4 Kc6 51. Bd3 1-0
 
-`[Event "London, Canada (Fall Swiss RD3)"]
+`,`[Event "London, Canada (Fall Swiss RD3)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1576,9 +1576,9 @@ Rxc4 35. Bxc4 Rc6 36. Bd3 Rc5 37. Rb1 a3 38. Ra1 Ra5 39. Ke2 b5 40. c3 Kg7
 17. b4 Qe7 18. a3 Rb7 19. Rac1 Rfb8 20. Qd3 a5 21. bxa5 Rb3 22. Rc3 Qxa3
 23. Rxb3 Rxb3 24. Qd2 Rb2 25. Qc1 Qa2 26. h3 Rxf2 27. Qg5 Kf8 28. Rf1 Rxf1+
 29. Kxf1 Qxa5 30. Qd8+ Be8 31. Ng5 Qb5+ 32. Kg1 Qb4 33. Kh2 h6 34. Qd6+
-cxd6 0-1`,
+cxd6 0-1
 
-`[Event "London, Canada (Fall Swiss RD3)"]
+`,`[Event "London, Canada (Fall Swiss RD3)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1594,9 +1594,9 @@ cxd6 0-1`,
 18. Bxf6 Bxf6 19. f3 Bxa1 20. Qxa1 Qxc6 21. fxg4 Qe6 22. Bf3 Rfb8 23. Qb2
 Ra4 24. Qb3 Ra5 25. a4 Rc5 26. b5 Qe3+ 27. Kg2 Rbc8 28. b6 Rc1 29. b7 Rb8
 30. Rxc1 Qxc1 31. Bxd5 Qc7 32. Qb5 Kh8 33. Bf3 Rd8 34. Qa6 Kh7 35. Qb5 Rf8
-36. a5 Qe7 37. b8=Q Rxb8 38. Qxb8 1-0`,
+36. a5 Qe7 37. b8=Q Rxb8 38. Qxb8 1-0
 
-`[Event "London, Canada (Fall Swiss RD3)"]
+`,`[Event "London, Canada (Fall Swiss RD3)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1621,9 +1621,9 @@ Ke6 39. Ke4 h5 40. gxh5 gxh5 41. h4 Kf6 42. Kd5 Kf5 43. Kxd6 Kxf4 44. Kxc5
 Kg4 45. Kd4 Kxh4 46. c5 Kg3 47. c6) 32. Bd5 Re7 33. Re3 Rb1+ 34. Kg2 g5 35.
 Rf3+ Ke5 36. Nd8 $1 Rc7 37. Nc6+ Rxc6 38. Bxc6 Rc1 39. Bd5 Rd1 40. Re3+ Kf5
 41. g4+ Kf6 42. Re6+ Kg7 43. Rxd6 Ra1 44. Rc6 Ra5 45. Kg3 Ra3+ 46. Bf3 Ra5
-47. h4 Kh7 48. Be4+ Kh8 49. Rxh6+ 1-0`,
+47. h4 Kh7 48. Be4+ Kh8 49. Rxh6+ 1-0
 
-`[Event "London, Canada (Fall Swiss RD3)"]
+`,`[Event "London, Canada (Fall Swiss RD3)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1645,9 +1645,9 @@ Rxe3 Qxd5 $1 28. Nxd5 Bxb2 29. Be4 Bxd5 $1 30. Bxd5 Rd8 31. Bb7 Rd6 32.
 Re8+ Kg7 33. Re3 a5 34. Bf3 Rd3 35. Re2 Bxa3 36. Ra2 b4 37. Be2 Rc3 38. Kh2
 Rc1 39. f4 b3 $1 40. Rxa3 b2 41. Rxa5 b1=Q 42. Ra7 Qb8 43. Ra3 Qxf4+ 44.
 Rg3 Rc3 45. Bf3 Re3 46. h4 c3 47. Kh3 c2 48. h5 c1=Q 49. Rxg6+ fxg6 50. g3
-Qh1+ { [all annotations: K.E.] } 0-1`,
+Qh1+ { [all annotations: K.E.] } 0-1
 
-`[Event "London, Canada (Fall Swiss RD3)"]
+`,`[Event "London, Canada (Fall Swiss RD3)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1661,9 +1661,9 @@ Qh1+ { [all annotations: K.E.] } 0-1`,
 } 7... Be7 { [N 7...c6 Arnason,J-Hansen,C; Espoo zt; 1989. {CB-B0 ] } 8.
 Bd2 c6 9. Re1 Nbd7 10. Qe2 Qc7 11. d5 Nb6 12. dxe6 Nxc4 13. exf7+ Kxf7 14.
 Qxc4+ Kf8 15. Nb5 Qd7 16. Rxe7 Qxe7 17. Bb4 cxb5 18. Bxe7+ Kxe7 19. Re1+
-Ne4 20. Qc5+ 1-0`,
+Ne4 20. Qc5+ 1-0
 
-`[Event "London, Canada (Fall Swiss RD4)"]
+`,`[Event "London, Canada (Fall Swiss RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1680,9 +1680,9 @@ Ng3 Bc8 19. f5 Ne5 20. Nf3 Nxf3+ 21. Bxf3 Ra7 22. e5 Nh7 23. Bd5 Bb7 24. e6
 Bxd5 25. cxd5 Nf6 26. Rf4 Be7 27. Bxf6 Bxf6 28. Rg4 Kh8 29. Ne4 Bd4+ 30.
 Kf1 Rg8 31. Rd3 fxe6 32. fxe6 Qf8+ $2 33. Rf3 Qd8 34. Rgf4 Be5 35. Rf5 g5
 36. Rf7 Rxf7 37. Rxf7 Rg7 38. Qf2 Bf4 39. g3 Rxf7 40. exf7 Qa8 41. gxf4 Kg7
-42. fxg5 Kf8 43. Qf5 hxg5 44. Nxg5 Qa6+ 45. Ke1 Qa8 46. Ne6+ 1-0`,
+42. fxg5 Kf8 43. Qf5 hxg5 44. Nxg5 Qa6+ 45. Ke1 Qa8 46. Ne6+ 1-0
 
-`[Event "London, Canada (Fall Swiss RD4)"]
+`,`[Event "London, Canada (Fall Swiss RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1696,9 +1696,9 @@ Kf1 Rg8 31. Rd3 fxe6 32. fxe6 Qf8+ $2 33. Rf3 Qd8 34. Rgf4 Be5 35. Rf5 g5
 Bd3 { # } 8... Ne5 (8... d5 { [! {ECO ] } 9. exd5 exd5 10. O-O Bxc3 11.
 bxc3 O-O $11) 9. O-O O-O 10. Rc1 d5 11. exd5 exd5 12. Nxd5 Nxd5 13. cxd5
 Qxd5 14. Bb1 Ng4 15. Qd3 Qh5 16. Bf4 Rd8 17. Rfd1 Ba5 18. Rc5 Qxc5 19.
-Qxh7+ Kf8 20. Qh8+ Ke7 21. Nc6+ bxc6 22. Qxd8+ $4 0-1`,
+Qxh7+ Kf8 20. Qh8+ Ke7 21. Nc6+ bxc6 22. Qxd8+ $4 0-1
 
-`[Event "London, Canada (Fall Swiss RD4)"]
+`,`[Event "London, Canada (Fall Swiss RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1718,9 +1718,9 @@ Qxe6 Bxe6 36. Rxf7 Bxf7 37. Kg2 Ba2 38. Kf2 Bf6 39. h4 h5 40. Ke2 Kf7 41.
 Be3 Be6 42. Kd2 Be7 43. d4 exd4 44. Bxd4 g5 45. hxg5 Bxg5+ 46. Ke2 Bg4+ 47.
 Kf2 Ke6 48. Kg2 Ke7 49. Be5 Be3 50. Bf4 Bd4 51. Kf1 Ke6 52. Ke1 Be5 53. Kd2
 Bxf4+ 54. gxf4 h4 55. Ke3 Kf6 56. Kf2 Kg6 57. Kg2 Kh5 58. Kh2 Bd7 59. Kg2
-Kg4 60. f5 Bc6 61. f6 Bxe4+ 62. Kh2 Bd5 63. Kg1 Kg3 0-1`,
+Kg4 60. f5 Bc6 61. f6 Bxe4+ 62. Kh2 Bd5 63. Kg1 Kg3 0-1
 
-`[Event "London, Canada (Fall Swiss RD4)"]
+`,`[Event "London, Canada (Fall Swiss RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1740,9 +1740,9 @@ Rxf6 $1 Qxg6 36. Rxg6+ Kh7 37. Re5 Rg8 38. Rexe6 Rxe6 39. Rxe6 g4 $1 40.
 Re7+ Rg7 41. Rxg7+ Kxg7 42. Kf2 Kf6 43. Ke3 Kg5 44. g3 Kxh5 45. Kf4 b5 {
 [Black offers draw.] } 46. a5 Kg6 47. Kxg4 h5+ 48. Kh4 Kh6 49. g4 hxg4 50.
 Kxg4 Kg6 51. Kf4 Kf6 52. Ke4 Ke6 53. Kd3 Kd5 54. c4+ bxc4+ 55. Kc3 Ke6 (
-55... Kd6 $2 56. Kxc4 $18) 56. Kxc4 Kd6 57. Kb3 Kd5 58. Kc3 Ke6 1/2-1/2`,
+55... Kd6 $2 56. Kxc4 $18) 56. Kxc4 Kd6 57. Kb3 Kd5 58. Kc3 Ke6 1/2-1/2
 
-`[Event "London, Canada (Fall Swiss RD4)"]
+`,`[Event "London, Canada (Fall Swiss RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1758,9 +1758,9 @@ Qe8 10. h3 f5 11. Nh2 Nc5 12. Bxc5 dxc5 13. exf5 gxf5 14. g3 Qg6 15. Kh1
 Kh8 16. Be2 Nf6 17. Nd2 Nxd5 18. Bh5 Qc6 19. Bf3 e4 20. Nxe4 fxe4 21. Bxe4
 Bxh3 22. Bxd5 Qb6 23. Bg2 Rad8 24. Qh5 Bxg2+ 25. Kxg2 Qxb2 26. Qxc5 Qxc3
 27. Qxc3 Bxc3 28. Rac1 Ba5 29. Rc2 Rd2 30. Rxd2 Bxd2 31. Rd1 Ba5 32. f4 Rf7
-33. Rd8+ Kg7 34. Ng4 c5 35. Ne5 Bxd8 0-1`,
+33. Rd8+ Kg7 34. Ng4 c5 35. Ne5 Bxd8 0-1
 
-`[Event "London, Canada (Fall Swiss RD4)"]
+`,`[Event "London, Canada (Fall Swiss RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1782,9 +1782,9 @@ Ra2 47. f3 Rf2 48. Re5 Rf1 49. d5 Rxf3+ 50. Kxf3 Kxe5 51. d6 Kxd6 52. Kf4
 Ke6 53. e4 fxe4 54. Kxe4 Kf6 55. Kd5 g5 56. Kc6 gxh4 57. gxh4 Ke6 58. Kb6
 Kd6 59. Kxa6 Kc6 60. Ka7 Kc7 61. a6 Kc8 62. Kb6 Kb8 63. Kc6 Ka7 64. Kd5
 Kxa6 65. Ke5 Kb6 66. Kf5 Kc6 67. Kg5 Kd6 68. Kxh5 Ke7 69. Kg6 Kf8 70. Kh7
-Kf7 71. h5 Kf8 72. Kg6 Kg8 73. h6 Kh8 1/2-1/2`,
+Kf7 71. h5 Kf8 72. Kg6 Kg8 73. h6 Kh8 1/2-1/2
 
-`[Event "London, Canada (Fall Swiss RD4)"]
+`,`[Event "London, Canada (Fall Swiss RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1799,9 +1799,9 @@ Kf7 71. h5 Kf8 72. Kg6 Kg8 73. h6 Kh8 1/2-1/2`,
 Bb7 12. Nbd2 Nb4 13. Nf1 Nxd3 14. Qxd3 Re8 15. Bf4 c5 16. c3 Ne4 17. N3d2
 Bh4 18. g3 Bf6 19. Be3 Rc8 20. Rad1 Qd7 21. Kg2 Re6 22. dxc5 Nxd2 23. Nxd2
 bxc5 24. Kh2 Qc6 25. Qf1 Rce8 26. Qh1 d4 27. cxd4 cxd4 28. Bf4 Rxe1 29.
-Rxe1 Qb6 $4 (29... Rxe1 $19) 30. Rxe8# 1-0`,
+Rxe1 Qb6 $4 (29... Rxe1 $19) 30. Rxe8# 1-0
 
-`[Event "London, Canada (Fall Swiss RD4)"]
+`,`[Event "London, Canada (Fall Swiss RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1816,9 +1816,9 @@ Rxe1 Qb6 $4 (29... Rxe1 $19) 30. Rxe8# 1-0`,
 Ne3 Nf6 9. Ncd5 Nxd5 10. Nxd5 b5 11. Bb3 Be6 12. Be3 Bg7 13. Qd2 O-O 14.
 O-O Na5 15. Rfe1 Rc8 16. Nb6 Nxb3 17. cxb3 a5 18. Nd5 Rc6 19. Rac1 Rxc1 20.
 Rxc1 Qh4 21. f3 f5 22. exf5 Rxf5 23. Nc7 Bf7 $2 24. Nxb5 d5 25. Nd6 d4 26.
-Rc8+ Bf8 27. Bh6 Be6 28. Rb8 Rf6 $2 29. Bg5 Qh5 30. Bxf6 1-0`,
+Rc8+ Bf8 27. Bh6 Be6 28. Rb8 Rf6 $2 29. Bg5 Qh5 30. Bxf6 1-0
 
-`[Event "London, Canada (Fall Swiss RD4)"]
+`,`[Event "London, Canada (Fall Swiss RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1835,9 +1835,9 @@ Qxb7 15. Qh5 Qc7 16. Rae1 Qxe5 17. Qf3 Ra7 18. Nc6 Nxc6 19. Qxc6 Rc7 20.
 Qf3 Rxc4 21. Bxb6 Qb8 22. Bf2 Qxb2 23. Nd5 Bd6 24. Re2 Qb8 25. Ne3 Ne5 26.
 Qh5 Re4 27. Rc2 f5 28. Qd1 Rxe3 $5 29. Bxe3 Ng4 30. Qe2 Bc5 $1 31. g3 Bxe3+
 32. Kg2 Qb7+ 33. Qf3 Qb6 34. Re2 Bd4 35. Rfe1 e5 (35... e5 36. h3 e4 $1 37.
-Qf4 Ne5) 0-1`,
+Qf4 Ne5) 0-1
 
-`[Event "London, Canada (Fall Swiss RD4)"]
+`,`[Event "London, Canada (Fall Swiss RD4)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1852,9 +1852,9 @@ Qf4 Ne5) 0-1`,
 Vienna (op); 1986. {CB-B3 ] } 4... Nf6 5. O-O a6 6. Ng5 e6 7. Re1 b5 8. Bf1
 b4 9. Nb1 d5 10. exd5 Nxd5 11. Qf3 $2 Qxg5 12. d4 Qf6 13. Qxd5 Bb7 14. Bg5
 Qxd4 15. Qf3 Qxb2 16. Nd2 Qxc2 17. Bd3 Qc3 18. Rac1 Qd4 19. Nb3 Qd7 20. Qe3
-h6 21. Bf4 Nd4 22. Nxc5 Bxc5 23. Rxc5 O-O 24. Rc7 Qd5 25. Bc4 Qxg2# 0-1`,
+h6 21. Bf4 Nd4 22. Nxc5 Bxc5 23. Rxc5 O-O 24. Rc7 Qd5 25. Bc4 Qxg2# 0-1
 
-`[Event "London, Canada (Fall Swiss RD5)"]
+`,`[Event "London, Canada (Fall Swiss RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1870,9 +1870,9 @@ h6 21. Bf4 Nd4 22. Nxc5 Bxc5 23. Rxc5 O-O 24. Rc7 Qd5 25. Bc4 Qxg2# 0-1`,
 Nh5 13. exd6 Qxd6 14. Ne5 Nf4 15. Bb1 f6 16. Nd3 Nxd3 17. Bxd3 e5 18. Bg3
 Re8 19. Qh5 Bd7 20. dxe5 Qc6 21. Nf3 f5 22. Nd4 Qg6 23. Qxg6 Nxg6 24. f4 c5
 25. Nxf5 Bxf5 26. Bxf5 Ne7 27. Be6+ Kf8 28. Bf2 c4 29. Bc5 Rab8 30. f5 Red8
-31. f6 1-0`,
+31. f6 1-0
 
-`[Event "London, Canada (Fall Swiss RD5)"]
+`,`[Event "London, Canada (Fall Swiss RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1890,9 +1890,9 @@ Nxe7 Qxe7 13. Nc2 f5 $2 14. exf5 O-O 15. Ne3 Bb7 16. a4 $1 b4 17. Bc4 bxc3
 21... Qxf6 22. Bxb7 $18) 22. Bxb7 Qxb7 23. Nd5 $18) 21. Nxd5 Qh4 22. g3 Qh3
 23. Re1 Rc4 24. Qf3 Rh4 25. Qg2 Qxg2+ 26. Kxg2 Rc4 27. f6 Bh6 28. Red1 Rc5
 29. Rab1 Ra8 30. Rb7 Kg8 31. Ne7+ Kh8 32. Nf5 Bf8 33. Rxf7 e4 34. Nxd6 Kg8
-35. Rd7 Rxc3 1-0`,
+35. Rd7 Rxc3 1-0
 
-`[Event "London, Canada (Fall Swiss RD5)"]
+`,`[Event "London, Canada (Fall Swiss RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1910,9 +1910,9 @@ Nd7 24. Rdf1 Rd8 25. Qe6 Qh5 26. Bf3 Qg6 27. Qxg6 hxg6 28. Bc6 Re7 29. Rf3
 Kg7 30. Bxb5 Nf6 31. Bc4 Ne4 32. Rhf1 Rdd7 33. g4 Rc7 34. Bd3 a4 35. Bc2 a3
 36. Bxe4 axb2+ 37. Kxb2 Rxe4 38. Kc3 Re8 39. Kc4 Ra7 40. R1f2 Ra4+ 41. Kb3
 Rea8 42. Rf7+ Kh6 43. Re7 Ra3+ 44. Kc4 R3a4+ 45. Kd5 Rd8+ 46. Ke4 Rdxd4+
-47. exd4 Rxd4+ 48. Ke5 Rd5+ 49. Kf6 Rxc5 50. Re8 Rc6+ 51. Re6 1-0`,
+47. exd4 Rxd4+ 48. Ke5 Rd5+ 49. Kf6 Rxc5 50. Re8 Rc6+ 51. Re6 1-0
 
-`[Event "London, Canada (Fall Swiss RD5)"]
+`,`[Event "London, Canada (Fall Swiss RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1929,9 +1929,9 @@ Rf7 17. Be5 Nd7 18. Bc3 b6 19. b4 Bxe3 20. fxe3 a4 21. Rad1 Re7 22. Rd2 Rc8
 23. c5 Bf7 24. Bb5 Ne5 25. Bxe5 Rxe5 26. Rdf2 Rf8 27. Bc4 Rf5 28. Bxf7+
 R8xf7 29. cxb6 Rxf2 30. Rxf2 Rb7 31. Rf3 Rxb6 32. Kf2 Rc6 33. e4 Rc2+ 34.
 Kg3 Re2 35. Kf4 Kf7 36. Ke5+ Ke7 37. Kd5 Rxg2 38. h3 Rc2 39. b5 Rc1 40. b6
-Rd1+ 41. Kc6 Rc1+ 42. Kb7 Rc4 43. Ka7 Rd4 44. b7 Rd7 45. Ka8 1-0`,
+Rd1+ 41. Kc6 Rc1+ 42. Kb7 Rc4 43. Ka7 Rd4 44. b7 Rd7 45. Ka8 1-0
 
-`[Event "London, Canada (Fall Swiss RD5)"]
+`,`[Event "London, Canada (Fall Swiss RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1948,9 +1948,9 @@ Kd2 Qe3+ 11. Kc2 d3+ 12. Kb3 Na5+ 13. Ka4 b5+ 14. Kxa5 Qb6+ 15. Kb4 c5+ 16.
 Kb3 c4+ 17. Ka3 { # } 17... d5+ $6 (17... Qa5+ $3 18. Qa4 $8 Qxa4#) 18. b4
 cxb3+ 19. Kxb3 Qg6 20. Qf3+ Ke6 21. Re1+ Kd6 22. Bf4+ Kc6 23. Re5 Rd8 24.
 a4 Bd6 $2 25. Qxd5+ Kc7 26. axb5 Ne7 27. Rxa7+ Kc8 28. Bg5 Bxe5 29. Qc5+
-Kb8 30. Rxe7 1-0`,
+Kb8 30. Rxe7 1-0
 
-`[Event "London, Canada (Fall Swiss RD5)"]
+`,`[Event "London, Canada (Fall Swiss RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1969,9 +1969,9 @@ Rhc1 f3 31. Nxf3 Bh6 32. Nd2 Rca8 33. Rxb3 Qa6 34. Rbc3 Qb5 35. Kc2 Rb8 36.
 Rb1 Rc8 37. Qf3 Rf8 38. Qe2 Rc8 39. h4 Qc5 40. g4 Rf8 41. Rf1 Bxd2 42. Qxd2
 Ra7 43. gxh5 gxh5 44. Rg3+ Kf7 45. Rf3+ Ke8 46. Rxf8+ Kxf8 47. Qh6+ Rg7 48.
 Qh8+ Rg8 49. Qxh5 Qd4 50. Qf5+ Ke8 51. Qe6+ Kf8 52. Qxd6+ Ke8 53. Qe6+ Kf8
-54. Qh6+ Ke8 55. Qe3 1-0`,
+54. Qh6+ Ke8 55. Qe3 1-0
 
-`[Event "London, Canada (Fall Swiss RD5)"]
+`,`[Event "London, Canada (Fall Swiss RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -1988,9 +1988,9 @@ Ba6 19. Bd3 Bxd3 20. Rxd3 Nd7 21. Rhd1 Nc5 22. Rd4 Ke7 23. Ne4 Nxe4 $2 24.
 Kxe4 $2 Rhd8 25. Rxd8 Rxd8 26. Rxd8 Kxd8 27. g4 Kc7 28. f5 Kc6 29. Kf4 Kd5
 30. h4 b5 31. f6 gxf6 32. exf6 a5 33. h5 b4 34. axb4 axb4 35. g5 e5+ 36.
 Kf5 b3 37. g6 b2 38. gxf7 b1=Q+ 39. Kg5 Qb8 40. Kh6 Qf8+ 41. Kg5 Qxf7 42.
-h6 Ke4 0-1`,
+h6 Ke4 0-1
 
-`[Event "London, Canada (Fall Swiss RD5)"]
+`,`[Event "London, Canada (Fall Swiss RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2010,9 +2010,9 @@ dxe5+ fxe5 $11) 32... exd4 33. exd4 Nexd4+ 34. Nxd4 Nxd4+ 35. Kd3 Ne6 36.
 b4 g5 37. hxg5 (37. Nf3) 37... fxg5 38. Nf3 Ke7 39. Ke3 Kf6 40. Kd3 Kf5 41.
 Ke3 Kg4 42. Ne5+ Kf5 (42... Kh3 43. Nf3 $13) 43. Nf3 g4 $6 44. Nh4+ Ke5 45.
 Ng6+ Kf6 46. Nh4 Ng5 47. Kd4 Ke6 48. Ng2 Nf3+ 49. Kd3 Ke5 50. Nf4 d4 51.
-Nxh5 Ne1+ 52. Kd2 Ng2 53. Kd3 Ne1+ 54. Kd2 Nf3+ 1/2-1/2`,
+Nxh5 Ne1+ 52. Kd2 Ng2 53. Kd3 Ne1+ 54. Kd2 Nf3+ 1/2-1/2
 
-`[Event "London, Canada (Fall Swiss RD5)"]
+`,`[Event "London, Canada (Fall Swiss RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2029,9 +2029,9 @@ Qd1 Qc7 12. Be2 O-O 13. O-O f5 14. f4 Kh8 15. Nc3 e5 16. d5 Nb4 17. a3 Na6
 24. g4 Na6 25. gxf5 gxf5 26. Kh2 Bxd4 27. Qxd4+ Qg7 28. Qb6 Qc7 29. Qe3 Rg8
 30. Rg1 Rg7 31. Qd4 Rg8 32. Rg5 Qc5 33. Qxc5 Nxc5 34. h4 Rxg5 35. hxg5 h6
 36. gxh6 Kh7 37. Rg1 Nd3 38. Rxg8 Kxg8 39. Kg3 Kh7 40. Bxd3 exd3 41. Kf2
-Kxh6 42. Ke3 Kg6 43. Kxd3 Kf6 44. b4 Ke7 45. Kd4 b6 46. a4 1-0`,
+Kxh6 42. Ke3 Kg6 43. Kxd3 Kf6 44. b4 Ke7 45. Kd4 b6 46. a4 1-0
 
-`[Event "London, Canada (Fall Swiss RD5)"]
+`,`[Event "London, Canada (Fall Swiss RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2047,9 +2047,9 @@ O-O 13. g4 Bh7 14. Bd3 Bxd3 15. Nxd3 f5 16. Kh1 cxd4 17. cxd4 Bh4 18. Rg1
 Nc4 19. Nxc4 dxc4 20. Ne1 Bxe1 21. Qxe1 Nb6 22. Qf2 Nd5 $5 (22... Qd5+) 23.
 Rg2 Rc7 24. g5 hxg5 $6 25. Rxg5 Qe8 26. h3 b5 27. Rag1 b4 28. Bc1 Rff7 29.
 Qh4 Ne7 30. Rh5 Kf8 31. Rh8+ Ng8 32. Qh7 Ke7 33. Rxg8 Qc6+ 34. Kh2 Rc8 35.
-R1xg7 Rxg8 36. Rxf7+ Kd8 37. Qxg8+ Qe8 38. Rf8 1-0`,
+R1xg7 Rxg8 36. Rxf7+ Kd8 37. Qxg8+ Qe8 38. Rf8 1-0
 
-`[Event "London, Canada (Fall Swiss RD5)"]
+`,`[Event "London, Canada (Fall Swiss RD5)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2066,9 +2066,9 @@ Bb6 10. Bg5 h6 11. Bxf6 Qxf6 12. e5 Qf4 13. Nc3 Nxd4 14. Nxd4 Qxd4 15. Qf3
 Ra7 16. Nd5 Bb7 17. Ne7+ Kh8 18. Qg3 Be4 19. Rae1 Re8 20. Bd5 Rxe7 21. Bxe4
 Qxb2 22. Bb1 Ra8 23. Qd3 g6 24. Re2 Qd4 25. Qf3 Rae8 26. Re4 Qd2 27. Qf6+
 Kg8 28. e6 Rxe6 29. Rxe6 Rxe6 30. Qd8+ Kg7 31. Qh4 Re1 32. h3 Rxf1+ 33.
-Kxf1 Qd1# 0-1`,
+Kxf1 Qd1# 0-1
 
-`[Event "London, Canada (Fall Swiss RD6)"]
+`,`[Event "London, Canada (Fall Swiss RD6)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2084,9 +2084,9 @@ Kxf1 Qd1# 0-1`,
 Kf3 Nf6 17. Bf2 Qd6 18. Bd3 Ng4 19. Bg1 Qe7 20. N1d2 Bxd2 21. Nxd2 b6 22.
 h3 Nf6 23. Nc4 Bb7 24. Bf2 O-O-O 25. Qa1 Kb8 26. Re1 d5 27. Nxe5 dxe4+ 28.
 Bxe4 Nxe4 29. Ng6 Nxf2+ 30. Kxf2 Qc5+ 31. Kg3 Qd6+ 32. Ne5 Qd2 33. Nf3 h4+
-34. Kg4 Bxf3+ 35. Kxf3 Qxc2 36. Qxg7 Qxf5+ 37. Ke2 Rhe8+ 0-1`,
+34. Kg4 Bxf3+ 35. Kxf3 Qxc2 36. Qxg7 Qxf5+ 37. Ke2 Rhe8+ 0-1
 
-`[Event "London, Canada (Fall Swiss RD6)"]
+`,`[Event "London, Canada (Fall Swiss RD6)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2103,9 +2103,9 @@ a5 Nbd7 18. a6 b6 19. d4 cxd4 20. Bxd4 Nc5 21. O-O Nh5 22. Ne5 Bf6 23. Nc6
 Bxd4 24. Nxd4 Nf4 25. Bg4 Bg6 26. Ra3 e5 27. Qc1 Rxd4 28. g3 f5 29. gxf4
 fxg4 30. fxe5 gxh3 31. Rxh3 Rg4+ 32. Rg3 Rxg3+ 33. fxg3 Qxe5 34. Qf4 Qe2
 35. Nd1 Nd3 36. Qf3 Bh5 37. Qd5+ Kh7 38. Nc3 Qe3+ 39. Kh2 Qd2+ 40. Kg1 Re1
-41. Qf5+ Bg6 42. Qf3 Qxc3 43. Kh2 Be4 44. Qf7 Qd2+ 45. Kh3 Bg2+ 0-1`,
+41. Qf5+ Bg6 42. Qf3 Qxc3 43. Kh2 Be4 44. Qf7 Qd2+ 45. Kh3 Bg2+ 0-1
 
-`[Event "London, Canada (Fall Swiss RD6)"]
+`,`[Event "London, Canada (Fall Swiss RD6)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2119,9 +2119,9 @@ fxg4 30. fxe5 gxh3 31. Rxh3 Rg4+ 32. Rg3 Rxg3+ 33. fxg3 Qxe5 34. Qf4 Qe2
 c3 { [8.Bb3 {ECO ] } 8... dxc3 9. Nxc3 { # } 9... O-O { [9...d5 {ECO ] }
 10. Bb3+ Kh8 11. Ng5 Qe8 12. Nd5 Nxd5 13. Qxd5 Bd4 $6 14. Rd1 $5 h6 $6 15.
 Rxd4 $1 Nxd4 16. Qxd4 hxg5 17. Bxg5 Qh5 18. f4 $1 Kh7 19. Re1 d6 20. Re3
-Qe8 21. exd6 Qc6 22. Re7 Qb6 23. Rxg7+ Kh8 24. Rg8+ Kh7 25. Qxb6 1-0`,
+Qe8 21. exd6 Qc6 22. Re7 Qb6 23. Rxg7+ Kh8 24. Rg8+ Kh7 25. Qxb6 1-0
 
-`[Event "London, Canada (Fall Swiss RD6)"]
+`,`[Event "London, Canada (Fall Swiss RD6)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2137,9 +2137,9 @@ Bxc6 14. Bh3 Nxf4 15. gxf4 Bd7 16. e4 c6 17. e5 Bh6 18. Ne2 c5 19. Ng3 Bf8
 20. Qg2 Kh8 21. Kh1 cxd4 22. Rg1 Qd8 23. Nh5 Bg7 24. b3 Rg8 25. Nf6 Bxf6
 26. exf6 Qxf6 27. Qg3 Rac8 28. Ra2 Rc3 29. Bg4 d3 30. cxd3 Rxd3 31. b4 Bc6
 32. Rc2 Rb3 33. h4 Rxb4 34. Bh3 Qxf4 35. Qxf4 Rxf4 36. Kg2 Rxh4 37. Kg3 Rh5
-38. f4 f5 0-1`,
+38. f4 f5 0-1
 
-`[Event "London, Canada (Fall Swiss RD6)"]
+`,`[Event "London, Canada (Fall Swiss RD6)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2153,9 +2153,9 @@ Bxc6 14. Bh3 Nxf4 15. gxf4 Bd7 16. e4 c6 17. e5 Bh6 18. Ne2 c5 19. Ng3 Bf8
 [7...Be7 {ECO ] } 8. Be3 Be7 9. Qd2 O-O 10. g4 { # } 10... Kh8 11. Ng3 Ng8
 12. O-O-O g6 13. g5 f5 14. h4 Nxe4 15. Ngxe4 fxe4 16. h5 Rxf3 17. hxg6 Nh6
 18. Rxh6 Rxe3 19. Rxh7+ Kg8 20. Qh2 Bxg5 21. Kb1 $6 (21. Rh8+ $3 Kg7 22.
-Qh7+ Kf6 23. Qf7#) 21... Be8 22. Rh8+ Kg7 23. Qh7+ Kf6 24. Rf8+ 1-0`,
+Qh7+ Kf6 23. Qf7#) 21... Be8 22. Rh8+ Kg7 23. Qh7+ Kf6 24. Rf8+ 1-0
 
-`[Event "London, Canada (Fall Swiss RD6)"]
+`,`[Event "London, Canada (Fall Swiss RD6)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2175,9 +2175,9 @@ Rxe5 22. Nxd6 Rxe1+ 23. Rxe1 Nxd5 24. Nxf7+ Kg8 25. Ne5 Nxf4 26. Nxd7 Nd3
 Rd8 34. h4 Ne3 35. f6 Rxd7 36. f7+ Kf8 37. Rxd7 Nxg4 38. Rb7 b4 39. Rb5 Ne3
 40. Rxa5 Nc2 41. Rc5 Na3 42. Rc7 Nb1 43. Rc4 Kxf7 44. Rxb4 Na3 45. Rb3 Nc4
 46. a4 Ke6 47. Rb4 Kd5 48. a5 Nd6 49. a6 Nc8 50. Rb8 Na7 51. Rb7 Nc8 52.
-Rc7 Nb6 53. a7 Kd6 54. Rb7 Na8 55. Rb8 1-0`,
+Rc7 Nb6 53. a7 Kd6 54. Rb7 Na8 55. Rb8 1-0
 
-`[Event "London, Canada (Fall Swiss RD6)"]
+`,`[Event "London, Canada (Fall Swiss RD6)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2202,9 +2202,9 @@ fxg6 Nxg2 45. gxh7+ Kxh7 46. Kxg2 Ne4 47. Kf3 Nxc3 48. Nf5 b4 49. Nxd6 Nxd5
 50. Nc4 Nc3 51. a3 b3 52. Nb2 $6 Kg6 53. h4 Kh5 54. f5 Nd5 55. Ke4 Nf6+ 56.
 Ke5 Nh7 57. a4 Kxh4 58. a5 Kg5 59. Kd4 Nf6 $6 (59... Kxf5 $32) 60. Kc3 Ne4+
 61. Kxb3 Nc5+ 62. Kb4 Nb7 63. a6 Nd8 64. Kc5 Kxf5 65. Kd6 Ne6 66. Nc4 Nd4
-67. Na5 Nc2 68. Kc5 Ke6 69. Nc6 Kd7 70. Nxa7 Kc7 71. Nb5+ Kb8 1-0`,
+67. Na5 Nc2 68. Kc5 Ke6 69. Nc6 Kd7 70. Nxa7 Kc7 71. Nb5+ Kb8 1-0
 
-`[Event "London, Canada (Fall Swiss RD6)"]
+`,`[Event "London, Canada (Fall Swiss RD6)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2221,9 +2221,9 @@ O-O 8. d3 Re8 9. Qb3 Nf6 10. Bg5 Bd7 11. Nd5 Be6 12. e4 Bxd5 13. exd5 Qxd5
 Qd2 exd3 21. Nxd3 Nxf4 22. Nxf4 Rad8 23. Qc3 Rxd1+ 24. Rxd1 Qc5 25. Qxc5
 Bxc5 26. h4 Bd4 27. Bxc6 Bxf2+ 28. Kxf2 bxc6 29. Rc1 g5 30. Ne2 Re6 31. Nd4
 Rh6 32. Kg2 Rd6 33. Nxc6 a6 34. Ne7+ Kf8 35. Rxc7 h5 36. Nf5 Rd3 37. Rc8+
-1-0`,
+1-0
 
-`[Event "London, Canada (Fall Swiss RD6)"]
+`,`[Event "London, Canada (Fall Swiss RD6)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2242,9 +2242,9 @@ Re1 Qxe4 26. Rxe4 Bf8 27. Re2 Bb4 28. Kf1 $2 Rd1+ 29. Ne1 Ra1 30. f3 Bxe1
 31. Rxe1 Rxa2 32. Rd1 Kg7 33. Rd7 b6 34. Rb7 Kf6 35. Rd7 e5 36. Rb7 h5 37.
 Rd7 Ke6 38. Rb7 f5 39. Rg7 Kf6 40. Rd7 Kg5 41. Rd3 Kf4 42. Rc3 g5 43. b4
 Kg3 44. c5 bxc5 45. bxc5 Rd2 46. c6 Rd8 47. c7 Rc8 48. Rc5 Kf4 49. Kf2 a5
-50. g3# 1-0`,
+50. g3# 1-0
 
-`[Event "London, Canada (Fall Swiss RD6)"]
+`,`[Event "London, Canada (Fall Swiss RD6)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2263,9 +2263,9 @@ b4 Bb6 6. a4 a5 7. bxa5 Bxa5 8. d3 h6 9. c3 Qf6 10. Nbd2 Ne7 11. Qb3 O-O
 Kh7 36. Qf5+ Kg8 37. Qc8+ Kh7 38. Qf5+ Kg8 39. Rd3 Qf6 40. Qxf6 gxf6 41.
 Rb3 Bb6 42. Nb8 Re7 43. Kg3 d5 44. Nc6 Rd7 45. Kf3 Kg7 46. Nb4 f5 47. Rd3
 d4 48. Rb3 Kf6 49. Ke2 Ke6 50. Kd3 Kd6 { [The rest of the score is not
-available.] } 51. Rb2 1-0`,
+available.] } 51. Rb2 1-0
 
-`[Event "London, Canada (Fall Swiss)"]
+`,`[Event "London, Canada (Fall Swiss)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2279,9 +2279,9 @@ available.] } 51. Rb2 1-0`,
 Nd3 Bg7 { #[8...f3 {ECO ] } 9. Nxf4 Nc6 10. g3 Qf6 11. Nc3 Nxd4 12. Be3 Be6
 13. Bb3 O-O 14. Kg2 Nxb3 15. axb3 Qe5 16. Qd2 f5 17. Nh5 Nf7 18. Bf4 Qd4
 19. Qe2 Rae8 20. Rhd1 Qc5 21. Bd2 Qc6 22. Nxg7 Kxg7 23. Nd5 Ng5 24. Bxg5
-Bxd5 25. Bh6+ Kg8 26. Bxf8 Rxe4 27. Rxd5 Rxe2+ 28. Kf1 Qxd5 0-1`,
+Bxd5 25. Bh6+ Kg8 26. Bxf8 Rxe4 27. Rxd5 Rxe2+ 28. Kf1 Qxd5 0-1
 
-`[Event "London, Canada (February 4 in 1)"]
+`,`[Event "London, Canada (February 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2296,9 +2296,9 @@ Constellation; Nurnberg; 1985. }) 4... d5 5. d4 exd4 6. exd4 Bb4+ 7. Nc3
 Qe7+ 8. Ne2 Bxc3+ 9. bxc3 dxc4 10. O-O O-O 11. a4 Re8 12. Re1 c6 13. Ba3
 Qc7 14. Nf4 Be6 15. Nxe6 fxe6 16. Qe2 Nbd7 17. Qxc4 Nb6 18. Qb3 Qf7 19. Re2
 Nfd7 20. Rae1 Nd5 21. c4 N5b6 22. a5 Nc8 23. Qxb7 Rb8 24. Qxc6 Rb3 25. Bd6
-Ncb6 26. d5 Rc8 27. dxe6 Rxc6 28. exf7+ Kxf7 29. Bxc6 Nxc4 30. Re7+ 1-0`,
+Ncb6 26. d5 Rc8 27. dxe6 Rxc6 28. exf7+ Kxf7 29. Bxc6 Nxc4 30. Re7+ 1-0
 
-`[Event "London, Canada (February 4 in 1)"]
+`,`[Event "London, Canada (February 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2313,9 +2313,9 @@ Qxf6 Nxf6 6. b3 Bb4+ 7. Bd2 Nc6 8. Nc3 O-O 9. Bg2 Re8 10. Nd5 Nxd5 11. cxd5
 Bxd2+ 12. Kxd2 Ne5 13. f3 c6 14. Nh3 f5 15. Nf2 a5 16. e4 fxe4 17. Nxe4 Rf8
 18. f4 cxd5 19. Nd6 Nc6 20. Bxd5+ Kh8 21. Rhe1 a4 22. b4 Nxb4 23. Bxb7 Bxb7
 24. Nxb7 Rac8 25. Rec1 Rxc1 26. Rxc1 Nxa2 27. Rc4 Rb8 28. Rxa4 Rxb7 29.
-Rxa2 Kg7 30. Kc3 Kf6 31. Re2 d6 32. Kd4 1/2-1/2`,
+Rxa2 Kg7 30. Kc3 Kf6 31. Re2 d6 32. Kd4 1/2-1/2
 
-`[Event "London, Canada (February 4 in 1)"]
+`,`[Event "London, Canada (February 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2329,9 +2329,9 @@ Rxa2 Kg7 30. Kc3 Kf6 31. Re2 d6 32. Kd4 1/2-1/2`,
 6... c6 { Dizdar,G-Bilobrk; Pula Tito Cup; 1985. }) 7. Nf3 Re8 8. Be2 Be6
 9. Qc2 h6 10. Bh4 dxc4 11. O-O-O Nd5 12. Bxe7 Nxe7 13. Ne5 c6 14. g4 Nd7
 15. Nxc4 Nd5 16. Nd6 Qg5+ 17. Kb1 Nxc3+ 18. Qxc3 Bxa2+ 19. Kxa2 Rxe2 20.
-Nf5 Nf6 21. Qf3 Qxg4 22. Nxh6+ gxh6 23. Rhg1 1-0`,
+Nf5 Nf6 21. Qf3 Qxg4 22. Nxh6+ gxh6 23. Rhg1 1-0
 
-`[Event "London, Canada (February 4 in 1)"]
+`,`[Event "London, Canada (February 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2347,9 +2347,9 @@ c4 Qh5 14. h3 Be6 15. Qd2 f5 16. Rfe1 Rae8 17. Qg5 Qf7 18. Ne5 Nxe5 19.
 Rxe5 h6 20. Qf4 Qf6 21. Rae1 g5 22. Qe3 f4 23. Qxc5 Rc8 24. Qxa7 Rce8 25.
 Qb6 Kf7 26. Qxb7+ Re7 27. Qc6 Rfe8 28. a4 Bd7 29. Qd5+ Kg7 30. d4 Bxa4 31.
 Qc5 Rxe5 32. dxe5 Qf7 33. Qd4 Bxc2 34. e6+ Qf6 35. Qd7+ Re7 36. Qd6 Bf5 37.
-c5 Rxe6 38. Qd7+ Kg6 39. Rd1 Re1+ 0-1`,
+c5 Rxe6 38. Qd7+ Kg6 39. Rd1 Re1+ 0-1
 
-`[Event "London, Canada (Geza Fuster Memorial-B)"]
+`,`[Event "London, Canada (Geza Fuster Memorial-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2369,9 +2369,9 @@ $1 $16) 29... Rxe6 30. f4 Ne4+ 31. Kf3 f5 32. Nd7 Rfe8 33. Nc5 $2 Nxc5 34.
 dxc5 Rxe3+ 35. Rxe3 Rxe3+ 36. Kxe3 Kf7 37. Kd4 Kf6 38. b4 g5 39. g3 Ke6 $5
 40. a4 a6 $1 41. fxg5 hxg5 42. h4 $4 { zugzwang. } 42... gxh4 43. gxh4 f4
 $1 $19 44. Kd3 Kf5 45. c4 dxc4+ 46. Kxc4 Kg4 47. b5 axb5+ 48. axb5 f3 49.
-bxc6 bxc6 50. Kd3 Kxh4 51. Kd2 Kg3 52. Ke1 Kg2 0-1`,
+bxc6 bxc6 50. Kd3 Kxh4 51. Kd2 Kg3 52. Ke1 Kg2 0-1
 
-`[Event "London, Canada (Geza Fuster Memorial-C)"]
+`,`[Event "London, Canada (Geza Fuster Memorial-C)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2384,9 +2384,9 @@ bxc6 bxc6 50. Kd3 Kxh4 51. Kd2 Kg3 52. Ke1 Kg2 0-1`,
 1. e4 e5 2. Nf3 Nc6 3. Bb5 Nf6 4. Nc3 a6 5. Ba4 Bc5 6. h3 O-O 7. O-O b5 8.
 Bb3 Bb7 9. d3 Nd4 10. Nxe5 Nxb3 11. axb3 d6 12. Ng4 Re8 13. Bg5 Bd4 $1 14.
 Qf3 Re6 15. h4 h6 16. Nxh6+ gxh6 17. Bxh6 Nh7 18. Bd2 Qxh4 19. g3 Rg6 20.
-Kg2 Bc8 $2 21. Rh1 Qg4 22. Qxg4 Bxg4 23. Ra2 Bxc3 24. Bxc3 Ng5 25. Rh8# 1-0`,
+Kg2 Bc8 $2 21. Rh1 Qg4 22. Qxg4 Bxg4 23. Ra2 Bxc3 24. Bxc3 Ng5 25. Rh8# 1-0
 
-`[Event "London, Canada (Geza Fuster Memorial-D)"]
+`,`[Event "London, Canada (Geza Fuster Memorial-D)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2400,9 +2400,9 @@ Kg2 Bc8 $2 21. Rh1 Qg4 22. Qxg4 Bxg4 23. Ra2 Bxc3 24. Bxc3 Ng5 25. Rh8# 1-0`,
 7.0-0 or 7.cxd4 [ECO] } 7... Nxd4 8. cxd4 Bb4+ 9. Nd2 Nf6 10. Rb1 Qe7 11.
 Qb3 Bxd2+ 12. Bxd2 Qxe4+ 13. Kf1 O-O 14. f3 Qxd4 15. Bc3 Qh4 16. g3 Qh3+
 17. Kf2 d5 18. Bf1 Qf5 19. Bxf6 Qxf6 20. Qxd5 Rd8 21. Re1 Be6 22. Qxb7 Bd5
-23. Qxc7 Qxf3+ 24. Kg1 Qxh1+ 0-1`,
+23. Qxc7 Qxf3+ 24. Kg1 Qxh1+ 0-1
 
-`[Event "London, Canada (Geza Fuster Memorial)"]
+`,`[Event "London, Canada (Geza Fuster Memorial)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2416,9 +2416,9 @@ Qb3 Bxd2+ 12. Bxd2 Qxe4+ 13. Kf1 O-O 14. f3 Qxd4 15. Bc3 Qh4 16. g3 Qh3+
 [ECO] } 4... Be7 5. Nc3 O-O 6. Nf3 c6 7. h3 Nbd7 (7... Qc7) 8. Bf4 Re8 9.
 b4 b6 10. e3 a5 11. Bd3 Ba6 12. O-O Bxd3 13. Qxd3 Nf8 14. Ne5 Ng6 15. Nxc6
 Nxf4 16. exf4 Qc7 17. Ne5 bxc5 18. bxc5 Reb8 19. Nb5 Qc8 20. a4 Ne4 21.
-Rfc1 f6 22. Nf3 e5 $2 23. dxe5 fxe5 24. Qxd5+ 1-0`,
+Rfc1 f6 22. Nf3 e5 $2 23. dxe5 fxe5 24. Qxd5+ 1-0
 
-`[Event "London, Canada (Geza Fuster Memorial-B)"]
+`,`[Event "London, Canada (Geza Fuster Memorial-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2443,9 +2443,9 @@ Ra4 Rd6 57. Rc5 Rd5 58. Rxd5 cxd5 59. Ra6 Kb7 60. Rxh6 Kxa7 61. Re6 e4 62.
 fxe4 dxe4 63. Rxe4 Kb6 64. Re5 Rg8 65. Kf3 Kc6 66. h6 Kd6 67. Rxg5 $1 Rh8
 68. Rh5 Ke6 69. Kxf4 Kf6 70. g5+ Kg6 71. Rh1 Rf8+ 72. Kg4 Rc8 73. Rf1 Rc5
 74. Rf6+ Kh7 75. Kh5 Kh8 76. Kg6 Rc8 77. h7 Rb8 78. Kh6 Rc8 79. g6 Rc7 80.
-Rf8# 1-0`,
+Rf8# 1-0
 
-`[Event "London, Canada (Geza Fuster Memorial-B)"]
+`,`[Event "London, Canada (Geza Fuster Memorial-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2465,9 +2465,9 @@ b6 30. Bc3 Nc6 31. Nd5 $1 Rf8 32. Kf3 Rf7 33. Kf4 Ne7 34. Nxe7 Kxe7 35. d5
 (35. Kf5) 35... Kd6 36. Kf5 (36. Bb4+) 36... Kc5 37. b3 Re7 38. d6 Rd7 39.
 Bxf6 Kxd6 40. Ke4 Kc5 41. Bg5 Kb4 42. Ke5 Ka3 43. Ke6 Rd1 44. Be7+ Kxa2 45.
 b4 Kb3 46. c5 Kxb4 $4 47. cxb6+ Kb5 (47... Kc4) 48. b7 $1 Re1+ 49. Kd7 Rd1+
-50. Bd6 1-0`,
+50. Bd6 1-0
 
-`[Event "London, Canada (Geza Fuster Memorial)"]
+`,`[Event "London, Canada (Geza Fuster Memorial)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2483,9 +2483,9 @@ O-O Bg7 13. Bf4 Ned7 14. Qb3 Qb6 15. Nb5 O-O 16. Bc7 Qc5 17. d6 $1 Rfc8 (
 17... Ne8) 18. Rac1 Qe5 19. Bf3 Bh6 (19... e6) (19... exd6) (19... a6) 20.
 Rce1 Qf5 21. Rxe7 $16 (21. Bxb7 $1 Nc5 22. Bxc8 $1 $18) 21... Rf8 22. Bxb7
 $6 Nc5 23. Qf3 Nxb7 24. Qxb7 a6 25. Nc3 Bf4 26. d7 $1 Ng4 $2 (26... Bxc7)
-27. Bxf4 Qxf4 28. g3 Qh6 29. h4 g5 30. Qxa8 $1 1-0`,
+27. Bxf4 Qxf4 28. g3 Qh6 29. h4 g5 30. Qxa8 $1 1-0
 
-`[Event "London, Canada (Geza Fuster Memorial)"]
+`,`[Event "London, Canada (Geza Fuster Memorial)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2499,9 +2499,9 @@ $6 Nc5 23. Qf3 Nxb7 24. Qxb7 a6 25. Nc3 Bf4 26. d7 $1 Ng4 $2 (26... Bxc7)
 6. Nc3 d5 7. e5 Nd7 8. a3 Be7 9. Bd3 a6 10. Bd2 O-O 11. Qc2 f5 12. exf6
 Nxf6 13. Ne2 Bd7 14. h4 Rc8 15. Bc3 Na5 (15... Bd6 { ...Ne7 }) 16. Ng5 h6
 17. Bg6 $1 Nc4 $2 (17... Qc7) 18. Nf4 Qb6 $2 (18... hxg5 $16) 19. Bh7+ Kh8
-20. Ng6# 1-0`,
+20. Ng6# 1-0
 
-`[Event "London, Canada (June 2)"]
+`,`[Event "London, Canada (June 2)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2515,9 +2515,9 @@ Nxf6 13. Ne2 Bd7 14. h4 Rc8 15. Bc3 Na5 (15... Bd6 { ...Ne7 }) 16. Ng5 h6
 { Jurasin,M-Behrens,H; Sindelfi; 1984. }) 7. a3 Nxd5 8. cxd5 Ne7 9. e3 c6
 10. dxc6 Nxc6 11. Ne2 O-O 12. b4 Bb6 13. Bb2 d5 14. b5 Ba5+ 15. Kf1 Ne7 16.
 Bxe5 Ng6 17. Bb2 h5 18. h4 Bg4 19. Qb3 Be6 20. Nd4 Qd7 21. Bf3 Ne5 22. Nxe6
-Nxf3 23. Nxf8 Qg4 24. Kg2 Rd8 25. Qd1 1-0`,
+Nxf3 23. Nxf8 Qg4 24. Kg2 Rd8 25. Qd1 1-0
 
-`[Event "London, Canada (March 4 in 1 op)"]
+`,`[Event "London, Canada (March 4 in 1 op)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2531,9 +2531,9 @@ Nxf3 23. Nxf8 Qg4 24. Kg2 Rd8 25. Qd1 1-0`,
 1. Nf3 Nf6 2. c4 g6 3. Nc3 Bg7 4. g3 O-O 5. Bg2 d6 6. O-O Nc6 7. d4 e5 8.
 d5 Ne7 9. Qc2 Nh5 10. Bg5 h6 11. Bh4 $2 g5 12. Bxg5 hxg5 13. Nxg5 Bf5 14.
 Nce4 Ng6 15. h3 $2 Qxg5 16. g4 Bxe4 17. Bxe4 Nhf4 18. Kh2 Qh4 19. Qb3 Ne7
-20. Qg3 Qxg3+ 21. Kxg3 Nxe2+ 22. Kf3 Nd4+ 23. Ke3 f5 0-1`,
+20. Qg3 Qxg3+ 21. Kxg3 Nxe2+ 22. Kf3 Nd4+ 23. Ke3 f5 0-1
 
-`[Event "London, Canada (May 14)"]
+`,`[Event "London, Canada (May 14)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2551,9 +2551,9 @@ Bd3 17. Rd1 Rab8 18. Bf1 Bc2 19. Re1 Ne5 20. Be2 Bd3 21. a4 Bxe2 22. Rxe2
 Nd3 23. Ba3 Re4 24. a5 Rxc4 25. e4 Ra4 26. Re3 Ne5 27. Bb2 Rxa1+ 28. Bxa1
 Nc4 29. Rd3 Nxa5 30. Rd5 Nc4 31. d3 Nb6 32. Ra5 a6 33. c4 Nd7 34. Bd4 Ra8
 35. Kf1 b6 36. Rd5 f6 37. f4 Re8 38. Bb2 Kf7 39. f5 Ke7 40. Ba3 Nc5 41. Ke2
-Rd8 42. fxg6 hxg6 0-1`,
+Rd8 42. fxg6 hxg6 0-1
 
-`[Event "London, Canada (May 30)"]
+`,`[Event "London, Canada (May 30)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2567,9 +2567,9 @@ Rd8 42. fxg6 hxg6 0-1`,
 Nge2 Nc7 9. a4 { [N] } (9. O-O { Laustsen,A-Napolitano,M; cr Wch-2; 1956. }
 ) 9... e6 10. O-O exd5 11. cxd5 Na6 12. Nb5 Re8 13. Bf4 Nxe4 14. Bxe4 Rxe4
 15. Nec3 Rb4 16. Nxd6 Rxf4 17. Nxf7 Rxf7 18. d6 Bd4 19. Nb5 Bh3 20. Nxd4
-Bxf1 21. Ne6 0-1`,
+Bxf1 21. Ne6 0-1
 
-`[Event "London, Canada (May 30)"]
+`,`[Event "London, Canada (May 30)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2582,9 +2582,9 @@ Bxf1 21. Ne6 0-1`,
 1. c4 e5 2. Nc3 Nf6 3. g3 Nc6 4. Bg2 Bb4 5. Nf3 O-O 6. O-O e4 7. Ng5 Bxc3
 8. bxc3 Re8 9. Qc2 Qe7 10. d3 exd3 11. exd3 Qe2 { [N] } (11... b6 { ECO })
 12. Bd2 Ne5 13. Rfe1 Qxd3 14. Qxd3 Nxd3 15. Rxe8+ Nxe8 16. Be4 Ne5 17.
-Bxh7+ Kf8 18. Re1 Nxc4 19. Bd3 Nxd2 $2 20. Nh7+ 1-0`,
+Bxh7+ Kf8 18. Re1 Nxc4 19. Bd3 Nxd2 $2 20. Nh7+ 1-0
 
-`[Event "London, Canada (May 7)"]
+`,`[Event "London, Canada (May 7)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2599,9 +2599,9 @@ Rubinstein,A-Spielmann,R; Vienna; 1906. }) 6. Nf3 Bg7 7. Bc4 a6 8. O-O O-O
 9. a4 Qd6 10. Re1 Nbd7 11. b3 Re8 12. Ba3 Rxe1+ 13. Qxe1 Qf4 14. Rc1 Nb6
 15. Qe3 Qf5 16. d3 Bd7 17. Qc5 Bf8 18. Qxc7 Bxa3 19. Ra1 Nxc4 20. dxc4 Bb2
 21. Qxb7 Re8 22. Rd1 Bxc3 23. c5 Qc2 24. Rf1 Bc8 25. Qb6 Nxd5 26. Qc6 Nf6
-27. b4 Bd7 28. Qd6 Qxa4 29. g4 Qxb4 30. g5 Qg4+ 0-1`,
+27. b4 Bd7 28. Qd6 Qxa4 29. g4 Qxb4 30. g5 Qg4+ 0-1
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2618,9 +2618,9 @@ Rubinstein,A-Spielmann,R; Vienna; 1906. }) 6. Nf3 Bg7 7. Bc4 a6 8. O-O O-O
 Kxg7 19. Qxc5 Bb7 20. Bc6 Bxc6 21. Qxc6 Rc8 22. Qa4 Qb6 23. Rab1 Rc4 24.
 Qd1 Rfc8 25. Ne3 R4c6 26. b3 Qa5 27. Qd4+ Kg8 28. Qb2 Qc7 29. Ng4 Qf4 30.
 Nf6+ Kf8 31. Nxh7+ Kg8 32. Nf6+ Kf8 33. Nh7+ Kg8 34. Nf6+ Kf8 35. Nh7+
-1/2-1/2`,
+1/2-1/2
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2641,9 +2641,9 @@ Qf5 32. Rc1 $2 Bf4 33. Qxf4 Qxf4 34. Rxc6 a5 35. b5 Qe4 36. a4 Qb1+ 37. Kh2
 Qa2 38. b6 Qxa4 39. b7 Qb5 40. Rc5 Qxb7 41. Rxa5 Qc7+ 42. Re5 Qc2 43. Kg3
 g5 44. Rc5 Qe4 45. Rxg5 Qc6 46. Rc5 Qd6+ 47. Re5 g5 48. Kg4 Kg6 49. h4 h5+
 50. Kg3 g4 51. Ng5 Qxd4 52. Re6+ Kf5 53. Re4 Qd6+ 54. f4 Qd3+ 55. Kh2 Qc3
-0-1`,
+0-1
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2656,9 +2656,9 @@ g5 44. Rc5 Qe4 45. Rxg5 Qc6 46. Rc5 Qd6+ 47. Re5 g5 48. Kg4 Kg6 49. h4 h5+
 1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nc6 5. Nc3 g6 6. Bc4 { [6.Nd5, 6.Be2
 {ECO ] } 6... Bg7 7. f3 a6 8. Be3 Nf6 9. Qd2 h6 10. O-O-O O-O 11. Nxc6 bxc6
 12. Bxh6 Qb6 13. Na4 Qb7 14. h4 Rb8 15. Bb3 Bd7 16. h5 c5 17. hxg6 Qb4 18.
-gxf7+ Rxf7 19. Qg5 Bxa4 $2 20. Qxg7# 1-0`,
+gxf7+ Rxf7 19. Qg5 Bxa4 $2 20. Qxg7# 1-0
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2675,9 +2675,9 @@ Nc3 Bd4+ 19. Ke2 fxe4 20. dxe4 h6 21. Nf3 d5 22. cxd5 exd5 23. e5 Bg4 24.
 g3 Qb7 25. Rb1 Bf5 26. Qd2 Bxb1 27. Rxb1 Bxc3 28. Qxc3 d4 29. Qc4+ Kg7 30.
 Qd3 Qb5 31. Nd2 Qxd3+ 32. Kxd3 g5 33. Ke4 Kg6 34. Nc4 Rb3 35. fxg5 hxg5 36.
 Kd5 Rd8+ 37. Kxc5 Rb5+ 38. Kc6 Rc8+ 39. Kd7 Rxc4 40. e6 Rd5+ 41. Ke8 d3 42.
-e7 Rc8# 0-1`,
+e7 Rc8# 0-1
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2694,9 +2694,9 @@ ECO] }) 13. Qxf3 Nf6 14. d5 Nb4 15. Rd1 Nxd3 16. Rxd3 Bd6 17. Bg5 Re8 18.
 Rad1 h6 19. Bh4 g5 20. Bg3 Bxg3 21. fxg3 Qd6 22. Rf1 Kg7 23. Nb5 Qb6+ 24.
 Kh2 Re7 25. d6 Re6 26. Nxc7 Rxd6 27. Rxd6 Qxd6 28. Nxa8 Qc6 29. Qf5 Qe6 30.
 Qxe6 fxe6 31. Nc7 Kf7 32. Re1 g4 33. Nxe6 gxh3 34. gxh3 Nd5 35. Kg2 Nb4 36.
-a3 Nd3 37. Re2 Kf6 38. Kf3 Ne5+ { [score erroneous hereafter.] } 1-0`,
+a3 Nd3 37. Re2 Kf6 38. Kf3 Ne5+ { [score erroneous hereafter.] } 1-0
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2714,9 +2714,9 @@ Kd7 19. Ngxe7 Rxe7 20. Nxe7 Kxe7 21. Qe2 Nxb2 22. Qf2 Nc4 23. Bxh6 Qb6 24.
 Qxb6 Nxb6 25. Bxg7 Nxe4 26. Rab1 Nd2 $2 27. Rxb6 Nxf1 28. Rxb7+ Ke6 29.
 Kxf1 Rxc2 30. Ra7 Rc6 31. h4 Kf5 32. h5 Kg5 33. h6 Kg6 34. Ke2 e4 35. Ke3
 d5 36. Bf8 Rf6 37. Bg7 Rc6 38. g4 Kh7 39. g5 Kg6 40. Bf6 Rb6 41. h7 Rb3+
-42. Ke2 d4 43. h8=Q Rb2+ 44. Kd1 1-0`,
+42. Ke2 d4 43. h8=Q Rb2+ 44. Kd1 1-0
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2736,9 +2736,9 @@ cxd6 15. Bf4 d5 16. Rc1 O-O 17. Rc7 Bf5 18. Bg2 b6 19. h3 Nf6 20. Rhc1 h6
 39. dxe5 Re1 40. Be2 Rh1 41. Kf2 d4 42. Bf1 Rh2+ 43. Ke1 Rh1 44. Kf2 Rh2+
 45. Bg2 Bd5 46. Rg3 Bxg2 47. Rxg2 Rxh3 48. Rg3 Rh2+ 49. Rg2 Rh3 50. Rg3
 Rxg3 51. Kxg3 d3 52. Kf2 Kf8 53. Ke3 d2 54. Kxd2 Ke7 55. Kd3 Kd7 56. Kd4
-Kc6 57. Kc4 h5 58. gxh5 g4 59. h6 g3 60. h7 g2 1-0`,
+Kc6 57. Kc4 h5 58. gxh5 g4 59. h6 g3 60. h7 g2 1-0
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2751,9 +2751,9 @@ Kc6 57. Kc4 h5 58. gxh5 g4 59. h6 g3 60. h7 g2 1-0`,
 1. c4 Nf6 2. Nc3 g6 3. g3 Bg7 4. Bg2 O-O 5. e4 d6 6. Nge2 e5 7. d4 exd4 8.
 Nxd4 Nbd7 9. O-O Re8 10. Qd2 { [N] } (10. h3 { ECO }) 10... c6 11. b3 Nc5
 12. f3 d5 13. exd5 cxd5 14. cxd5 Nxd5 15. Nxd5 Qxd5 16. Bb2 Rd8 17. Rad1
-Ne6 18. Nxe6 Qxd2 19. Rxd2 Rxd2 20. Bc1 Rxg2+ 0-1`,
+Ne6 18. Nxe6 Qxd2 19. Rxd2 Rxd2 20. Bc1 Rxg2+ 0-1
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2768,9 +2768,9 @@ Nb5 { [transposed to D93: 1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Bf4 0-0
 6.e3 c5 7. Nb5 cxd4 8.exd4] } 8... Nh5 9. Qd2 Nxf4 10. Qxf4 Qa5+ 11. Nc3
 dxc4 12. Bxc4 Qb4 13. Bb3 Nc6 14. Ng5 Bxd4 15. Qd2 Bf5 16. O-O Rad8 17.
 Rad1 Ne5 18. Bd5 Nd3 19. Nge4 Nxb2 20. Qxd4 Qxd4 21. Rxd4 e6 22. Rb1 exd5
-23. Rxb2 dxe4 24. Rxd8 Rxd8 25. Rxb7 Rd3 26. Rc7 Be6 *`,
+23. Rxb2 dxe4 24. Rxd8 Rxd8 25. Rxb7 Rd3 26. Rc7 Be6 *
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2789,9 +2789,9 @@ Rfe1 Bd7 19. f3 Rxe1+ 20. Rxe1 Re8 21. Rxe8+ Bxe8 22. Kf2 Nd7 23. Ke3 Ne5
 Ke2 f4 31. Ne4+ Ke7 32. Kd2 h6 33. h3 d5 34. cxd5 cxd5 35. Nc5 Bxc2 36.
 Kxc2 b6 37. Nd3 Kd6 38. Nxe5 Kxe5 39. Kd3 a6 40. a3 b5 41. Kc3 d4+ 42. Kd3
 Kd5 43. Kc2 a5 44. Kd3 a4 45. Kc2 axb3+ 46. Kxb3 Kc5 47. Kc2 Kc4 48. Kd2
-Kb3 49. Kd3 Kxa3 50. Kxd4 b4 0-1`,
+Kb3 49. Kd3 Kxa3 50. Kxd4 b4 0-1
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2810,9 +2810,9 @@ Qxd8 26. c5 hxg3 27. hxg3 Qh4 28. Qf3 Qd8 29. Qf2 cxb5 30. Rxb5 Nd7 31.
 cxb6 Nxb6 32. Rc1+ Kb8 33. Qc2 Ne7 34. Rcb1 Ng6 35. Qc6 Nxf4 36. Rxb6+ axb6
 37. Rxb6+ Qxb6 38. Qxb6+ Ka8 39. a7 Rxg3+ 40. Kf2 Rg8 41. Kf3 Nh3 42. Qc6+
 Kxa7 43. Qc7+ Ka8 44. Ke2 Rg2+ 45. Kd1 Nf2+ 46. Kc1 Nd3+ 47. Kd1 Nf2+ {
-[time.] } 0-1`,
+[time.] } 0-1
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2828,9 +2828,9 @@ a3 O-O 10. b4 Rb8 11. c5 Nd4 12. e3 Ne6 13. Qb3 Qc8 14. cxd6 Bxd6 15. Nb5
 a6 16. Nxd6 cxd6 17. Rc1 Qe8 18. Rc7 Kh8 19. Rxd7 Qxd7 20. Nxe6 Rfc8 21.
 Ng5 Rc7 22. O-O d5 23. Rc1 Rbc8 24. Qb2 h6 25. Nf3 e4 26. Ne5 Qd6 27. Rxc7
 Qxc7 28. dxe4 fxe4 29. a4 Nd7 30. Bh3 $2 Nxe5 31. Bxc8 Nf3+ 32. Kg2 Qxc8
-33. Bc3 Qd7 34. a5 Kh7 1/2-1/2`,
+33. Bc3 Qd7 34. a5 Kh7 1/2-1/2
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2847,9 +2847,9 @@ Kh8 12. O-O Bf6 13. Qd3 Qh5 14. Rb1 a5 15. b4 axb4 16. axb4 Ra2 17. Rd1 Be6
 24. Nd4 Ra3 25. Qb2 Ra2 26. Qc1 c6 27. Nxe6 Rxd2 28. Qxd2 Qxe6 29. e3 Ng6
 30. Qd4 Qe5 31. Bh3 Qxd4 32. exd4 f4 33. b5 fxg3 34. hxg3 Kg8 35. bxc6 bxc6
 36. Bd7 Ne7 37. Rb6 Kf7 38. Bxc6 Ra1+ 39. Kg2 Rd1 40. Ba4 Rxd4 41. Bb3 Rd3
-42. Rb7 Ke6 43. Rb5 { [score incomprehensible from here on.] } 0-1`,
+42. Rb7 Ke6 43. Rb5 { [score incomprehensible from here on.] } 0-1
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2867,9 +2867,9 @@ Ke2 Bg1+ 22. Nge4 Bxh2 23. f5 Bxf5 24. gxf5 Qe5 25. Kf3 Qxf5+ 26. Kg2 Be5
 27. Qd2 Re6 28. Qf2 Rg6+ 29. Kf1 Qxh3+ 30. Ke1 Qh1+ 31. Kd2 Qxa1 32. Ne2
 Qxa3 33. c3 Qb2+ 34. Ke3 Rf8 35. d4 f5 36. Nd2 Qc2 37. dxe5 f4+ 38. Nxf4
 Qxc3+ 39. Ke4 Qxb4+ 40. Ke3 Qc5+ 41. Ke2 Qxf2+ 42. Kxf2 Rxf4+ 43. Ke3 Rfg4
-44. Kf3 h5 45. Nf1 a5 46. Ne3 Rg3+ 0-1`,
+44. Kf3 h5 45. Nf1 a5 46. Ne3 Rg3+ 0-1
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2887,9 +2887,9 @@ Bxd4 24. cxd4 Qc4 25. Rb4 Qc1+ 26. Kh2 Rc8 27. g3 h6 28. Qb3 Qf1 29. Rb8
 Qa6 30. Rxc8+ Qxc8 31. Qb5 Ne7 32. a6 Nc6 33. Kg2 Nb8 34. Nd2 Nxa6 35. Nb3
 Nc7 36. Qc6 Qb8 37. Nc5 Qb6 38. Qd7 a5 39. Qd8+ Kh7 40. Nd7 Qb4 41. Nf8+
 Kg8 42. Ng6+ Kh7 43. Ne7 h5 (43... h5 44. Qg8+ Kh6 45. Qh8+ Kg5 46. h4+ Kg4
-47. Qxg7#) 1-0`,
+47. Qxg7#) 1-0
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2903,9 +2903,9 @@ Kg8 42. Ng6+ Kh7 43. Ne7 h5 (43... h5 44. Qg8+ Kh6 45. Qh8+ Kg5 46. h4+ Kg4
 Nd2 { [N 4.Qd2 Kupreichik,V-Kristiansen,J; Esbjerg; 1988. {CB-B0 ] } 4...
 d5 5. c3 h5 6. Bd3 Nh6 7. h3 Qc7 8. Ngf3 b6 9. Qe2 a5 10. O-O O-O 11. Nh2
 e5 12. dxe5 Bxe5 13. Rae1 Nd7 14. Ndf3 Kh7 15. Ng5+ Kg8 16. f4 { [score
-erroneous hereafter.] } 1-0`,
+erroneous hereafter.] } 1-0
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2920,9 +2920,9 @@ erroneous hereafter.] } 1-0`,
 7. h3 Bh5 8. O-O e6 9. Bd2 Qc7 10. Ne2 Bxf3 11. gxf3 Bd6 12. f4 Nbd7 13. c4
 O-O 14. c5 Be7 15. f5 exf5 16. Bxf5 Rfe8 17. Bf4 Qd8 18. Nc3 Nf8 19. b4 Ng6
 20. Bxg6 hxg6 21. Re1 Nh5 22. Bg3 Nxg3 23. fxg3 Bf6 24. Rxe8+ Qxe8 25. Ne2
-Rd8 26. Kh2 Qe3 27. Rb1 Bxd4 28. Nxd4 Rxd4 0-1`,
+Rd8 26. Kh2 Qe3 27. Rb1 Bxd4 28. Nxd4 Rxd4 0-1
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2938,9 +2938,9 @@ saldo; 1986. {CB-C0 ] } 7. Nxf6+ Qxf6 8. Nf3 Bb4+ 9. Bd2 Bxd2+ 10. Qxd2 Nc6
 11. Bb5 Bd7 12. O-O O-O 13. Ne5 Rfd8 14. Rfd1 Rac8 15. Rac1 Be8 16. Nxc6
 bxc6 17. Ba4 c5 18. Bxe8 Rxd4 19. Qxd4 cxd4 20. Rxc8 h6 21. Rc7 Qe5 22. Rd7
 d3 23. R7xd3 Qxb2 24. R3d2 Qb8 25. Rd8 Qb2 26. Ba4+ Kh7 27. Bb3 a5 28. h4
-a4 29. Bxa4 Qxa2 30. R8d2 $2 Qxa4 1/2-1/2`,
+a4 29. Bxa4 Qxa2 30. R8d2 $2 Qxa4 1/2-1/2
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2957,9 +2957,9 @@ Bxd4 18. Qxd4 Rxc2 19. Rfe1 Qc7 20. Qe3 Rxb2 21. Rc1 Rc2 22. Rxc2 Qxc2 23.
 Qxe7 Bxd5 24. Qxd6 Qc6 25. Qxc6 Bxc6 26. Rc1 Bd5 27. Rd1 Bc4 28. Ne4 Kg7
 29. Rd6 Ra8 30. Nd2 Be6 31. Kf1 Kf6 32. Ne4+ Ke5 33. Rd1 Kxe4 34. Re1+ Kd4
 35. Rc1 Rc8 36. Rd1+ Kc3 37. Ke2 Bc4+ 38. Ke3 Kb3 39. Rb1+ Kxa3 40. Rc1 Kb2
-41. Rd1 a5 42. Rd7 a4 43. Ra7 a3 44. Rd7 a2 45. Rd2+ Kc1 0-1`,
+41. Rd1 a5 42. Rd7 a4 43. Ra7 a3 44. Rd7 a2 45. Rd2+ Kc1 0-1
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2973,9 +2973,9 @@ Qxe7 Bxd5 24. Qxd6 Qc6 25. Qxc6 Bxc6 26. Rc1 Bd5 27. Rd1 Bc4 28. Ne4 Kg7
 6. O-O Bd6 7. d4 O-O 8. Bg5 Nbd7 9. Re1 h6 10. Bh4 c6 11. Qe2 Nd5 12. Ne4
 Qc7 13. Nxd6 Qxd6 14. Bg3 Qe7 15. Bb3 N7f6 16. c4 Nb6 17. Rad1 Rd8 18. Ne5
 Nfd7 19. Bc2 Nxe5 20. dxe5 Rxd1 21. Rxd1 Bd7 22. Qe4 g6 23. Bh4 Qf8 24. Bf6
-Be8 25. Qg4 Qc5 26. Qf4 Kh7 27. Rd3 Qxc4 28. Qxh6+ 1-0`,
+Be8 25. Qg4 Qc5 26. Qf4 Kh7 27. Rd3 Qxc4 28. Qxh6+ 1-0
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -2993,9 +2993,9 @@ Bxd4 25. Rxd4 Qb8 26. Ng5 Ne5 27. d6 Re8 28. Qf6 Qd8 29. Nxh7 Nd7 30. Qxd8
 Rxd8 31. Ng5 Nc5 32. Re1 Rd7 33. Ne4 Nxe4 34. Rexe4 Kf8 35. Re5 Ra2 36.
 Rxb5 Rxa6 37. Rb8+ Kg7 38. Ra8 Kf6 39. h4 $6 Ke5 40. Rd2 Rdxd6 41. Rxd6
 Kxd6 42. g4 $6 Ra4 43. f3 Ra2 44. h5 gxh5 45. gxh5 Ke5 46. h6 Ra1+ 47. Kg2
-Ra2+ 48. Kg3 Ra1 49. h7 1-0`,
+Ra2+ 48. Kg3 Ra1 49. h7 1-0
 
-`[Event "London, Canada (October 4 in 1)"]
+`,`[Event "London, Canada (October 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3010,9 +3010,9 @@ Bd3 O-O 9. O-O Re8 10. Bf4 { [10.h3 {ECO ] } 10... a6 11. a4 Nh5 12. Be3
 Nd7 13. Nd2 Ne5 14. Be2 Nf6 15. h3 Qc7 16. Qc2 Rb8 17. a5 b5 18. axb6 Rxb6
 19. f4 Ned7 20. Nc4 Rb4 21. Bf2 Nb6 22. Nd2 (22. Nxd6 Qxd6 23. e5 Qc7 24.
 exf6 Bxf6 $13) 22... c4 23. Bd4 $6 Nxe4 24. Bxg7 Qc5+ { [score of the game
-erroneous after this move.] } 0-1`,
+erroneous after this move.] } 0-1
 
-`[Event "London, Canada (September 4 in 1)"]
+`,`[Event "London, Canada (September 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3027,9 +3027,9 @@ Bf4 d5 6. Nb5 Bd6 7. Nxd6+ cxd6 8. e3 O-O 9. Rc1 dxc4 10. Bxc4 Bxg2 11. f3
 Bxh1 12. Kf2 Nh5 13. Bg3 Nxg3 14. hxg3 Qf6 15. Bd3 Nd7 16. Nh3 Qxf3+ 17.
 Qxf3 Bxf3 18. Kxf3 Rfc8 19. Rxc8+ Rxc8 20. Bb5 Nf6 21. b4 Rc3 22. a4 Nd5
 23. Kf2 Nxe3 24. Nf4 Nf5 25. Bd3 Nxd4 26. Ke3 Nf5+ 27. Kd2 Rb3 28. g4 Rxb4
-0-1`,
+0-1
 
-`[Event "London, Canada (September 4 in 1)"]
+`,`[Event "London, Canada (September 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3044,9 +3044,9 @@ Qxf3 Bxf3 18. Kxf3 Rfc8 19. Rxc8+ Rxc8 20. Bb5 Nf6 21. b4 Rc3 22. a4 Nd5
 14. f3 Ng3+ 15. Kh2 Nde2 16. fxg4 Qd7 17. Rf3 Qxg4 18. Qe1 Qxh4+ 19. Nh3 g5
 20. Rxg3 Qxg3+ 21. Qxg3 Nxg3 22. Kxg3 Rg8 23. Rf1 g4 24. Nf2 O-O-O 25. Nxg4
 h5 26. Kf3 hxg4+ 27. Ke3 Rh8 28. Rxf7 Rh1 29. d4 g3 30. dxe5 dxe5 31. Rf3
-Re1# 0-1`,
+Re1# 0-1
 
-`[Event "London, Canada (September 4 in 1)"]
+`,`[Event "London, Canada (September 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3060,9 +3060,9 @@ Re1# 0-1`,
 8. Bh4 Be6 9. Qc2 Nc6 10. e3 { N 10.Rd1 [ECO] } 10... O-O 11. Be2 Nb4 12.
 Qb1 N6d5 13. O-O Nxc3 14. bxc3 Nd5 15. Rc1 b6 16. c4 Nf6 17. Ne5 Bf5 18.
 Bd3 Bxd3 19. Qxd3 c5 20. Qa3 g5 21. Bg3 Ne4 22. Rab1 Nxg3 23. hxg3 Qd6 24.
-Nf3 Rfc8 25. d5 Qg6 26. Re1 Qe4 27. Rbc1 b5 *`,
+Nf3 Rfc8 25. d5 Qg6 26. Re1 Qe4 27. Rbc1 b5 *
 
-`[Event "London, Canada (September 4 in 1)"]
+`,`[Event "London, Canada (September 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3075,9 +3075,9 @@ Nf3 Rfc8 25. d5 Qg6 26. Re1 Qe4 27. Rbc1 b5 *`,
 1. c4 e5 2. Nc3 Nc6 3. g3 Bc5 4. Bg2 Qf6 { 4...Nf6 [ECO] } 5. Ne4 Qe6 6.
 Nxc5 Qxc4 7. Na4 Nf6 8. b3 Qe6 9. Bb2 d6 10. Qc2 O-O 11. Nf3 Qe7 12. O-O
 Bd7 13. Nc3 Be6 14. Ng5 Bg4 15. Rae1 Nd4 16. Qb1 Rab8 17. e3 Nc6 18. Nd5
-Nxd5 19. Qxh7# 1-0`,
+Nxd5 19. Qxh7# 1-0
 
-`[Event "London, Canada (September 4 in 1)"]
+`,`[Event "London, Canada (September 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3091,9 +3091,9 @@ Nxd5 19. Qxh7# 1-0`,
 Bb7 7. Qe2 Nd7 8. Bxf7+ Kxf7 9. Ng5+ Ke8 10. Ne6 Qc8 11. Nxg7+ Kf7 12. Nh5
 gxh5 13. Qxh5+ Kf8 14. e5 Nb6 15. O-O Qe8 16. Qh4 Qg6 17. Rf2 h5 18. h3 Qf5
 19. Nc3 Nh6 20. Ne2 Nf7 21. Ng3 Qd7 22. Bd2 e6 23. Re1 Qe7 24. Qxe7+ Kxe7
-25. f5 dxe5 26. f6+ Kd7 *`,
+25. f5 dxe5 26. f6+ Kd7 *
 
-`[Event "London, Canada (September 4 in 1)"]
+`,`[Event "London, Canada (September 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3111,9 +3111,9 @@ h5 19. Qe4 hxg4 20. Qg6+ Kh8 21. Bf5 Bxf5 22. Qxf5 Na6 23. Rxg4 Qh7 24.
 Qxh7+ Kxh7 25. h4 Rg8 26. hxg5 f5 27. Rh4+ Kg7 28. f4 Nb4 29. fxe5 dxe5 30.
 Rxb4 b6 31. Rh4 Rac8 32. Rgh1 f4 33. Bd2 Rgd8 34. Rh7+ Kg6 35. Rxa7 Rxd5
 36. Re1 Rcd8 37. Bc3 e4 38. Rg7+ Kf5 39. Re7 e3 40. b3 R8d6 41. Rg1 Rg6 42.
-Bf6 Rd6 43. Re5# 1-0`,
+Bf6 Rd6 43. Re5# 1-0
 
-`[Event "London, Canada (September 4 in 1)"]
+`,`[Event "London, Canada (September 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3133,9 +3133,9 @@ c6 32. Rd8+ Rxd8 33. Qxd8+ Qe8 34. Qb6 Qd7 35. Qc5 Kg8 36. Qe5 Qd1+ 37. Kh2
 Qd7 38. Qg3 Kf7 39. Qg5 Qe7 40. Qxe7+ Kxe7 41. Kg3 Kd6 42. Kf4 h6 43. b4 b5
 44. b3 bxc4 45. bxc4 Ke6 46. g3 Kf6 47. g4 fxg4 48. Kxg4 c5 49. b5 a5 50.
 b6 Bf5+ 51. Kf4 Bc8 52. Kxe4 a4 53. Kd3 Ke5 54. h5 a3 55. Kc3 Ke4 56. Kb3
-Kxe3 57. Kxa3 Kd3 58. Kb3 Kd4 59. Ka4 Kxc4 60. Ka5 0-1`,
+Kxe3 57. Kxa3 Kd3 58. Kb3 Kd4 59. Ka4 Kxc4 60. Ka5 0-1
 
-`[Event "London, Canada (September 4 in 1)"]
+`,`[Event "London, Canada (September 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3150,9 +3150,9 @@ Kxe3 57. Kxa3 Kd3 58. Kb3 Kd4 59. Ka4 Kxc4 60. Ka5 0-1`,
 Nxf5 Bc5 11. Nxg7+ Kf8 12. Nf5 Nb6 13. O-O Qc7 14. Nb5 Qb8 15. b3 h5 16.
 Bb2 Ng4 17. Bxg4 hxg4 18. Qxg4 Rg8 19. Qh5 d4 20. Qh6+ Ke8 21. Rfe1 Nd5 22.
 Nbd6+ { The rest of the game score is erroneous. -JP } 22... Kd7 23. Nc4 {
-(?) } 1-0`,
+(?) } 1-0
 
-`[Event "London, Canada (September 4 in 1)"]
+`,`[Event "London, Canada (September 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3168,9 +3168,9 @@ Re2 d6 13. Qc2 c6 14. Bd3 Bg4 15. Re1 Bxf2+ 16. Qxf2 Qxf2+ 17. Kxf2 Rae8
 18. Rxe8 Rxe8 19. Be3 d5 20. Nd2 f6 21. Re1 b6 22. Bf4 Rxe1 23. Kxe1 c5 24.
 Be2 Bxe2 25. Kxe2 Kf7 26. Bb8 a6 27. Ba7 c4 28. Bxb6 f5 29. Bd4 g6 30. Kf3
 g5 31. Nb1 Kg6 32. Nc3 g4+ 33. Kf4 h5 34. Nxd5 h4 35. a4 Kh5 36. Nc7 h3 37.
-g3 1-0`,
+g3 1-0
 
-`[Event "London, Canada (September 4 in 1)"]
+`,`[Event "London, Canada (September 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3189,9 +3189,9 @@ b4 28. Qg7 Qe7 29. Re1 bxc3 30. bxc3 Rb2+ 31. Re2 Rxe2+ 32. Kxe2 Ke8 33.
 Qh6 Qa3 34. Qd2 Qf8 35. Qb2 Qh6 36. Qb8+ Ke7 37. Qb7+ Kf8 38. Qxa6 Qc1 39.
 Qa5 Qc2+ 40. Kf1 Qd1+ 41. Kf2 Qd2+ 42. Kf1 Kg7 43. a4 Kh6 44. Qb4 Kg5 45.
 f4+ Kg4 46. Qb1 Kxg3 47. Qe1+ Qxe1+ 48. Kxe1 Kxf4 49. Ke2 Ne7 50. a5 Nc6
-51. a6 Kg5 52. Kf3 f6 53. exf6 Kxf6 54. Kf4 Na7 55. Ke3 Kf5 0-1`,
+51. a6 Kg5 52. Kf3 f6 53. exf6 Kxf6 54. Kf4 Na7 55. Ke3 Kf5 0-1
 
-`[Event "London, Canada (September 4 in 1)"]
+`,`[Event "London, Canada (September 4 in 1)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3207,9 +3207,9 @@ O-O Bd7 12. Qf3 Bc6 13. Qe2 Bb5 14. Qf3 Qa6 15. e4 Bxf1 16. e5 Be2 17. Qg3
 Nh5 18. Qc3 Be7 19. f4 Qc4 20. Qe3 Qxc2 21. Bd2 Qd3 22. Re1 Qxe3+ 23. Bxe3
 Bg4 24. h3 Bxh3 25. gxh3 Nc6 26. a4 Rd8 27. Rd1 Rd5 28. b4 Nxb4 29. Rc1 Kd7
 30. Rc4 Rc8 31. Rxc8 Kxc8 32. Kg2 Nc2 33. Kf3 Nxe3 34. Kxe3 Ng3 35. Kf3 Nf5
-36. Kg4 Rxd4 37. a5 Rd3 38. a6 Rg3+ 39. Kh5 g6# 0-1`,
+36. Kg4 Rxd4 37. a5 Rd3 38. a6 Rg3+ 39. Kh5 g6# 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3226,9 +3226,9 @@ Ng3 { ***diagram*** } 19... e6 20. Nxh5 gxh5 21. Bxg7 Kxg7 22. Qd4+ Kg8 23.
 g6 hxg6 24. Bxe6 fxe6 25. Rhg1 Be8 26. Qf6 Qc7 27. Qxe6+ Kh7 28. Rg2 Bf7
 29. Qf6 Rc6 30. Rd5 Rc5 31. Rxc5 dxc5 32. Rd2 a4 33. e5 Re8 34. f4 Qb7 35.
 Rd1 a3 36. b3 Be6 { sealed move. } 37. Kc1 Bg4 38. Re1 Qd7 39. f5 Bxf5 40.
-Rd1 Qb7 41. Rf1 Qe4 42. Qf7+ Kh6 0-1`,
+Rd1 Qb7 41. Rf1 Qe4 42. Qf7+ Kh6 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3247,9 +3247,9 @@ White's position doesn't look too happy. -DS } 15. b5 c5 16. bxc6 Qd6 $1 {
 } 21... exf4 22. gxf4 $6 { Just when I was thinking about a long endgame
 battle, Kosta self-destructed. -DS } 22... f5 23. Bb2 $2 { -DS } 23... Ne7
 $1 { -DS } 24. Nxe7+ Rxe7 25. Bxg7 Kxg7 26. Rfe1 Rd7 27. Re3 Rad8 28. Kf2
-Rxd3 { White is lost. -DS (White resigned after move 59) } 0-1`,
+Rxd3 { White is lost. -DS (White resigned after move 59) } 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3263,9 +3263,9 @@ Rxd3 { White is lost. -DS (White resigned after move 59) } 0-1`,
 N 7...Nc6; 7...Nxc3 [ECO] } 8. d4 Nd7 9. e4 Nxc3 10. bxc3 e5 11. Qc2 Re8
 12. Rd1 Qc7 13. Be3 exd4 14. cxd4 Nf6 15. Nd2 Bg4 16. f3 Bd7 17. Bf4 Qd8
 18. Nc4 Be6 19. Rab1 Bxc4 20. Qxc4 Re7 { ***diagram*** } 21. e5 Nd5 22. Bg5
-Qd7 23. Bxe7 Ne3 24. Qc5 Nxd1 25. Rxd1 b6 26. Qd6 1-0`,
+Qd7 23. Bxe7 Ne3 24. Qc5 Nxd1 25. Rxd1 b6 26. Qd6 1-0
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3279,9 +3279,9 @@ Qd7 23. Bxe7 Ne3 24. Qc5 Nxd1 25. Rxd1 b6 26. Qd6 1-0`,
 Nc6 6. Nge2 b6 7. Bg2 Bb7 8. O-O Nf6 9. dxc5 bxc5 10. Bd2 O-O 11. Na4 d6
 12. Nf4 Qc8 13. Bc3 g5 14. Bxf6 Bxf6 15. Bd5+ Kh8 16. Ne6 Rg8 17. Qh5 Ne5
 18. f4 Nxc4 $5 19. Bxb7 Qxb7 20. fxg5 Nxe3 21. Rf2 Bd4 22. Nc3 Ng4 23. Nxd4
-Nxf2 24. Nxf5 { ***diagram*** } 24... Rxg5 $1 0-1`,
+Nxf2 24. Nxf5 { ***diagram*** } 24... Rxg5 $1 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3294,9 +3294,9 @@ Nxf2 24. Nxf5 { ***diagram*** } 24... Rxg5 $1 0-1`,
 1. d4 d5 2. c4 e6 3. Nf3 Nf6 4. g3 c6 5. Bg2 Nbd7 6. O-O $2 { N
 Krasenkov,M-Epishin,V; Vilnius; 1988 [CB] } (6. a4 { -DS }) 6... dxc4 7.
 Nbd2 $2 b5 8. a4 Bb7 9. b3 $2 c3 10. Nb1 b4 11. a5 c5 12. Qd3 $2 Be4 $1 13.
-Qc4 cxd4 14. Nxd4 Rc8 15. Nc6 $4 0-1`,
+Qc4 cxd4 14. Nxd4 Rc8 15. Nc6 $4 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3313,9 +3313,9 @@ Nc4 Rb8 16. a3 Nb6 17. Ne3 { ***diagram*** } 17... Na4 $1 { -JZ } 18. Nxa4
 Rxa4 19. f3 $2 { -JZ } 19... Nh5 $19 { -JZ } 20. Bg5 Bd4 21. Kh2 h6 22.
 Bxh6 Kh7 23. Ng4 f5 24. exf5 gxf5 25. Bg5 fxg4 26. fxg4 Nf6 27. Rae1 Be5+
 28. Rxe5 dxe5 29. d6 Kg6 30. Rf5 Rxg4 31. hxg4 Nxg4+ 32. Kg3 Kxf5 33. Bd2
-Nf6 0-1`,
+Nf6 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3334,9 +3334,9 @@ development. -HJ } 8. Nb3 Be7 9. c5 Nd7 10. Qc2 a5 11. Be3 a4 12. Nd4 Nxd4
 O-O 18. Bxa4 Bb7 19. Bb5 Ra8 20. Qf5 { Black obtains great counterplay. -HJ
 } (20. a4 { -HJ }) 20... Nc5 21. Na3 Qd5 22. f3 d3 23. Bc3 dxe2 24. Bxe2
 Na4 25. Bd3 g6 26. Qxe5 Bc5+ 27. Kg2 Nxc3 28. Qxc3 Rfe8 29. Rad1 Qh5 30.
-Bc4 Rad8 31. Qb3 Rxd1 32. Rxd1 Re3 33. Qxb7 Qe5 34. Qxf7+ Kh8 35. Qg8# 1-0`,
+Bc4 Rad8 31. Qb3 Rxd1 32. Rxd1 Re3 33. Qxb7 Qe5 34. Qxf7+ Kh8 35. Qg8# 1-0
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3355,9 +3355,9 @@ Nh6 20. Bd5 { Black could resign [here] after trapping his queen. -HJ }
 20... Qb4 21. a3 Qa5 22. b4 Qc7 (22... Qxa3 23. Ra1 Qxb4 24. Rfb1 { -HJ })
 23. Nb5 Qxc1 24. Nxd6+ exd6 25. Rxc1 O-O 26. Bb6 Rde8 27. Bc4 Nf5 28. Bxa6
 Ra8 29. b5 Bxb5 30. Bxb5 Rfb8 31. Bc6 Rxa3 32. exd6 Rxb6 33. d7 Rbb3 34.
-d8=Q+ Kh7 35. Be4 Nxg3 36. Bc2 Re3 37. Re1 Rf3 38. Qg2 Rac3 39. Qd1 1-0`,
+d8=Q+ Kh7 35. Be4 Nxg3 36. Bc2 Re3 37. Re1 Rf3 38. Qg2 Rac3 39. Qd1 1-0
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3376,9 +3376,9 @@ move intended to spice things up. -HJ ***diagram*** } 15... Bxd3 16. Rf2
 Bf5 17. bxc5 Nxf3+ 18. Qxf3 Bg4 19. Qd3 Bxc5 20. Bb2 Qd7 21. Bxd4 Bxd4 22.
 Qxd4 b6 23. a4 Rac8 24. a5 Rc5 25. axb6 axb6 26. Rb2 Rfc8 27. Bf1 Bh3 28.
 Be2 Qd6 29. Ra7 Bd7 30. Rb7 b5 31. Qf4 Qxf4 32. gxf4 Bf5 33. R2xb5 Be4 34.
-Rxc5 1-0`,
+Rxc5 1-0
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3404,9 +3404,9 @@ Bd4 32. Ng4 Re4 33. h3 Bb6 34. Kg2 Rxa4 35. Nxe3 $2 { -JZ } 35... Re4 $19 {
 -JZ } 36. Kf3 Rxe3+ 37. Rxe3 Bxe3 38. Kxe3 Kd7 39. h4 Ke6 40. Kd4 Kf5 41.
 Kc5 a5 42. Kb5 b6 43. h5 Kg5 44. g4 Kh6 45. Kc4 c5 46. Kb5 Kg5 47. Kc4 a4
 48. Kc3 b5 49. Kb2 b4 50. Ka2 c4 51. Kb2 b3 52. Ka1 c3 53. h6 Kxh6 54. g5+
-Kxg5 55. Kb1 c2+ 0-1`,
+Kxg5 55. Kb1 c2+ 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3420,9 +3420,9 @@ Kxg5 55. Kb1 c2+ 0-1`,
 Nxb4 8. Na3 Bf5 9. d3 Qxg2 10. Bf3 Qg6 11. Ne2 e5 12. Bxe5 Qe6 13. Nc4 Rd8
 14. O-O b5 15. Nf4 Qd7 16. Re1 bxc4 17. Bxg7+ Ne7 18. Bxh8 Qc7 19. Be5 Qb6
 20. Rb1 Qc5 21. Qd2 a5 22. Nh5 Kd7 23. Bb7 Ned5 24. Qg5 Be6 25. Nf6+ Nxf6
-26. Bxf6 Qxg5+ 27. Bxg5 Rb8 28. Be4 c3 29. d4 Rb5 30. Bf6 a4 0-1`,
+26. Bxf6 Qxg5+ 27. Bxg5 Rb8 28. Be4 c3 29. d4 Rb5 30. Bf6 a4 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3447,9 +3447,9 @@ c6 Ra2+ 42. Kf1 Nxc6 43. Rc4 Ne5 44. Rc7+ Ke6 45. Bf8 g5 46. Bc5 h5 47. g3
 g4 48. hxg4 hxg4 49. Ra7 Rc2 50. Be3 Kd5 51. Ra5+ Ke4 52. Ra4+ Nc4 53. Kg2
 f5 54. Bh6 Kd5 55. Ra1 Nd6 56. Rd1+ Ke6 57. Rd2 Rc8 58. Bf4 Ne4 59. Ra2 Rc6
 60. Rb2 Rc5 61. f3 gxf3+ 62. Kxf3 Rc3+ 63. Kg2 Kd5 64. Rb5+ Nc5 65. Rb8 Ne6
-66. Rb5+ Nc5 67. Rb8 Nd3 68. Rd8+ Ke6 69. Rd6+ Kf7 70. Rd7+ 1/2-1/2`,
+66. Rb5+ Nc5 67. Rb8 Nd3 68. Rd8+ Ke6 69. Rd6+ Kf7 70. Rd7+ 1/2-1/2
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3466,9 +3466,9 @@ Ne7 7. O-O O-O (7... Nd7 { Prevents 8.e5 }) 8. Re1 Nd7 9. a4 b6 10. Nf1 Bb7
 { ***diagram*** } 17. Bd2 a6 18. Rad1 fxe4 19. dxe4 h6 20. Nh3 d4 21. cxd4
 cxd4 22. Qb3+ Kh7 23. Bb4 Qf6 24. Rd2 Rc8 25. Qa3 Rf7 26. Nh2 Nc6 27. fxe5
 Ndxe5 28. Rf1 Qe6 29. Rxf7 Qxf7 30. Rf2 Qc4 31. Bd6 Rd8 32. Bc7 Rd7 33. Bd6
-d3 34. b3 Qc3 35. Qa2 d2 0-1`,
+d3 34. b3 Qc3 35. Qa2 d2 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3484,9 +3484,9 @@ NY (op); 1987 [CB] } 5... c5 6. c3 Bb7 7. O-O d5 8. Re1 { 8.dxc5 [ECO
 Bg5 cxd4 14. cxd4 Nbd5 15. Rc1 h6 16. Bd2 Qb6 17. a3 Qxd4 { ***diagram*** }
 18. Bxh6 Qxb2 19. Rc2 Qxa3 20. Bc1 Qd6 21. Rd2 Qc7 22. Nh5 Bb4 23. Rc2 Qe7
 24. Qf3 Bxe1 25. Nxg7 Rfc8 26. Qg3 Bxf2+ 27. Kxf2 Rxc2+ 28. Bxc2 Qc5+ 29.
-Kf1 Ne4 30. Qf3 Ndc3 31. Be3 Nd2+ 32. Bxd2 Bxf3 33. Nxf3 0-1`,
+Kf1 Ne4 30. Qf3 Ndc3 31. Be3 Nd2+ 32. Bxd2 Bxf3 33. Nxf3 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3517,9 +3517,9 @@ Nh5 19. Nf3 Kh7 20. g4 { ? -DS/ ? This gives Black lots of targets. -HJ }
 20... Nf4+ 21. Bxf4 exf4 22. Qc4 Qd7 23. h3 Rae8 24. Kf1 h5 25. Nh2 hxg4
 26. hxg4 { ***diagram*** } 26... f3 { ! Opens the position and gives Black
 a winning attack (threats Be5 and f5) -HJ } 27. Nxf3 Qxg4 28. Ng1 f5 29.
-exf5 $4 { -DS } 29... Qxc4 30. dxc4 Bxc3 0-1`,
+exf5 $4 { -DS } 29... Qxc4 30. dxc4 Bxc3 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3538,9 +3538,9 @@ Nf4 21. Nxf4 Bxc3 22. Rfd1 Rfb8 (22... Bb4 $5 { -DS }) 23. a3 Be5 $6 24.
 Ne2 b5 25. f4 Bg7 26. b4 Nd7 $2 { -DS } (26... Na4 $1 { Equal. -DS }) 27.
 c5 $1 { -DS } 27... dxc5 28. d6 Ra7 29. dxe7 Re8 30. bxc5 Nxc5 31. Rxb5 Ne6
 $4 { -DS } (31... Raxe7 $14 { -DS }) 32. f5 gxf5 33. gxf5 Ng5 34. Bc6 $1 {
--DS } 34... Rexe7 35. Rd8+ Bf8 36. f6 $1 { -DS } 36... Nxh3+ 37. Kf1 1-0`,
+-DS } 34... Rexe7 35. Rd8+ Bf8 36. f6 $1 { -DS } 36... Nxh3+ 37. Kf1 1-0
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3556,9 +3556,9 @@ Be2 e6 9. Qd2 Qc7 10. h3 Bh5 11. O-O-O O-O-O 12. Nh4 $1 Bxe2 13. Qxe2 Qa5
 $5 { Starting here, black is moving in the wrong direction - from bad to
 worse. -DS } 14. Kb1 Nb6 $2 15. c4 Qa6 $5 16. Rc1 Nd5 17. Qh5 $1 Nxe3 18.
 fxe3 Rd7 19. Rhf1 Bg7 20. Rf2 f5 21. g4 fxg4 22. Rxf7 Rf8 23. Rxf8+ Bxf8
-24. Qe8+ Rd8 25. Qxe6+ Kb8 26. hxg4 Bh6 $4 1-0`,
+24. Qe8+ Rd8 25. Qxe6+ Kb8 26. hxg4 Bh6 $4 1-0
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3580,9 +3580,9 @@ Qf2 $5 Ra3 { -DS }) 18... Nf6 19. Nec3 Ng4 { Now black's 'naive' attack
 starting on move 13. becomes justified. -DS } 20. Rf3 f5 21. h3 $2 { -DS
 ***diagram*** } 21... f4 { !! Winning move! -DS ! -JZ } 22. Qe1 Nxe3 23.
 Nxe3 fxe3 24. Rxf8+ Kxf8 25. Qe2 $4 { -DS } 25... Qg3 26. Qc2 Bf4 27. Ne2
-Qh2+ 28. Kf1 Qh1+ 0-1`,
+Qh2+ 28. Kf1 Qh1+ 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3604,9 +3604,9 @@ Rc1 45. g3 h6 46. Kg2 Ra8 47. b5 Ra2 48. Ne3 Rxc4 49. Nxc4 Ra4 50. Ne3 Rb4
 51. b6 Rxb6 52. Nc4 Rb4 53. Ne3 Kf8 54. Nc2 Rb2 55. Ne3 Ke7 56. Nd1 Rd2 57.
 Ne3 f6 58. h4 g5 59. hxg5 hxg5 60. g4 Kf7 61. Nf1 Rd4 62. Ne3 Kg6 63. Kg3
 f5 64. gxf5+ exf5 65. Kg2 Re4 66. Nf1 g4 67. Ne3 Kg5 68. Nf1 f4 69. Nh2 Re2
-70. Nf3+ gxf3+ 71. Kh3 Re1 72. Kh2 Ra1 0-1`,
+70. Nf3+ gxf3+ 71. Kh3 Re1 72. Kh2 Ra1 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3622,9 +3622,9 @@ c4 Nf4 7. g3 Ng6 8. Bg2 O-O 9. f4 a6 10. a4 axb5 11. axb5 Rxa1 12. Bxa1 d6
 19. Rg1 { ***diagram*** } 19... Ra8 20. Bc3 Ra3 21. Bb2 Ra2 22. Bc1 Ngxe5
 23. Nxe5 Nxe5 24. Qe3 Bg5 25. Qe2 Nf3+ 26. Nxf3 Rxe2+ 27. Bxe2 Bxc1 28. Kf2
 Bb2 29. Rb1 Bd4+ 30. Kg2 Qe5 31. Kf1 Bxf3 32. Bxf3 Qe3 33. Kg2 Qf2+ 34. Kh3
-Qxf3 35. Rb3 h5 0-1`,
+Qxf3 35. Rb3 h5 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3642,9 +3642,9 @@ is conducting his opening in too timid [a] manner. -DS } 7... Bg7 8. Be3 f5
 lost. -DS } 19. O-O Bxe6 20. dxe6 Qxe6 21. g4 Qxe4 22. gxf5 Bd4+ 23. Kh2
 Be5+ 24. Kg1 gxf5 25. Qh5 Bd4+ 26. Kh2 Qxc2+ 27. Kh1 Qc6+ 28. Kh2 Qc2+ 29.
 Kh1 Qe4+ 30. Kh2 Qe2+ 31. Qxe2 Rxe2+ 32. Kh1 Kh7 33. Rxf5 Re1+ 34. Kg2 Rg8+
-35. Kf3 Rf1+ 0-1`,
+35. Kf3 Rf1+ 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3665,9 +3665,9 @@ Be8 Ke7 43. Ba4 h4 44. Kf3 hxg3 45. hxg3 f6 46. Bc2 g5 47. g4 Kd6 48. Bd3
 Ke5 49. Bc2 Bb6 50. Bd3 { sealed move. } 50... f5 51. gxf5 exf5 52. Bc2 Ba5
 $1 53. Bb3 g4+ 54. Ke2 f4 55. Bc2 f3+ 56. Kf1 Kf4 57. Bd3 Bd8 58. Bg6 Bh4
 59. Bd3 Bxf2 60. Kxf2 g3+ 61. Kf1 Ke3 62. Bb5 d4 63. Bc4 d3 64. Bd5 d2 65.
-Bb3 g2+ 66. Kg1 Ke2 67. Bc4+ Ke1 68. Bb3 f2+ 0-1`,
+Bb3 g2+ 66. Kg1 Ke2 67. Bc4+ Ke1 68. Bb3 f2+ 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3688,9 +3688,9 @@ hxg6 17. f3 Nh5 18. Bc1 a6 19. Be3 Qe7 20. Qf2 Rd7 21. f4 e4 22. f5 gxf5
 42. Qxe2 Qf4 43. Qe7+ Kh6 44. Qe5 Qc1+ 45. Kf2 Qxc2+ 46. Kf3 Kh7 47. Qe7+
 Ng7 48. Qh4+ Kg8 49. Qd8+ Kh7 50. Qb6 $2 { -JZ } (50. Qh4+ $11 { -JZ })
 50... Qd3+ 51. Kf4 Qe2 $1 { -JZ } 52. Qc7 Kh6 53. Kg3 Nh5+ 54. Kh3 Qe3+ 55.
-g3 Qf3 56. Qe5 g5 57. Qh8+ Kg6 58. Qe8+ Kh7 59. Qe7+ Kh6 60. Qe6+ Nf6 0-1`,
+g3 Qf3 56. Qe5 g5 57. Qh8+ Kg6 58. Qe8+ Kh7 59. Qe7+ Kh6 60. Qe6+ Nf6 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3705,9 +3705,9 @@ e6 7. f5 $1 { -JZ } 7... Nb6 8. fxg6 $5 { -JZ } 8... hxg6 9. Bd3 Bf6 10.
 O-O g5 11. e5 Be7 { ***diagram*** } 12. h4 $1 { -JZ } 12... gxh4 13. exd6
 Qxd6 14. Ne5 Bf6 $6 { -JZ } (14... f5 $1 { -JZ }) 15. Bf4 Qe7 16. Nd2 Nd5
 17. Ne4 Nxf4 18. Rxf4 h3 19. g3 Rh7 $4 { Time pressure. -JZ } 20. Nxf6+
-Nxf6 21. Bxh7 1-0`,
+Nxf6 21. Bxh7 1-0
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3727,9 +3727,9 @@ Qd4 $1 { -JZ } 25... Qa8 $6 { -JZ } (25... Kh8 $1 { With the idea Ng8. -JZ
 exf6 e5 31. Qc5 Qe1+ 32. Kf3 Qh1+ $4 { -JZ } (32... Qd1+ $11 { -JZ }) 33.
 Ke2 Qg2+ 34. Kd1 Qf1+ 35. Kd2 Qf4+ 36. Kc2 Qe4+ 37. Kb2 Qe2+ 38. Ka3 Qa6+
 39. Kb3 { ***diagram*** } (39. Kb3 Qc4+ 40. Qxc4 dxc4+ 41. Kxc4 Kh8 42. Bf8
-Ng8 43. Bg7# { -JZ }) 1-0`,
+Ng8 43. Bg7# { -JZ }) 1-0
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3744,9 +3744,9 @@ Ng8 43. Bg7# { -JZ }) 1-0`,
 Qc7 10. Rc1 h5 11. d4 h4 12. d5 Bf7 13. dxc6 bxc6 14. Nb5 cxb5 15. Bxa8
 bxc4 16. Qc2 Nb6 17. Bf3 e4 18. Bg2 hxg3 19. fxg3 g6 20. Nf4 Rh6 21. Qc3 d5
 22. Qa5 Ng4 23. bxc4 dxc4 24. Bg7 Rxh2 25. Qb5+ Nd7 26. Nd5 Qxg3 27. Rc2
-0-1`,
+0-1
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3761,9 +3761,9 @@ bxc4 16. Qc2 Nb6 17. Bf3 e4 18. Bg2 hxg3 19. fxg3 g6 20. Nf4 Rh6 21. Qc3 d5
 12. Nec3 Nd6 13. b3 e4 14. Ba3 b6 15. h3 Ne5 16. Rad1 Nf3+ 17. Bxf3 exf3
 18. Kh2 Bb7 19. Bb2 Ne4 20. Nxe4 Bxb2 21. Ng5 Rd7 22. Nf6+ Bxf6 23. Rxd7
 Rb8 24. Nxf7 a6 25. Rfd1 Bc8 26. Nh6+ Kh8 27. Rf7 Bg5 28. h4 Bf6 29. Rxf6
-Kg7 30. Rxf3 Kxh6 31. Rf8 Kg7 32. Rdd8 1-0`,
+Kg7 30. Rxf3 Kxh6 31. Rf8 Kg7 32. Rdd8 1-0
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3783,9 +3783,9 @@ Rxd7 32. Rxd7 Kg7 33. c6 Rc8 34. Ne5 Kf6 35. Rxd5 Ke6 36. Rb5 Bc3 37. Ke4
 f6 38. Nc4 Rxc6 39. Nxa5 Ra6 40. Nb3 Rxa2 41. Nxd4+ Bxd4 42. Kxd4 Rxf2 43.
 Rb6+ Kf5 44. Rb5+ Kg4 45. Rb6 Rxh2 46. Rxf6 Kxg3 47. Ke3 g5 48. Rf1 h5 49.
 Rf3+ Kg4 50. Rf1 h4 51. Rg1+ Kh5 52. Kf3 Ra2 53. Ke4 Rf2 54. Rh1 g4 55. Rd1
-h3 56. Ke3 Rf7 57. Rg1 h2 0-1`,
+h3 56. Ke3 Rf7 57. Rg1 h2 0-1
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3807,9 +3807,9 @@ Bxe2 30. Re1 $16 { -JP }) 27... Rxe3 28. fxe3 Nxd5 $44 { -JP } 29. e4 Nf6
 30. e5 Nd5 31. e4 Ne7 (31... Ne3 $2 32. Rc3 Ng4 33. h3 $18 { -JP }) 32. Rd2
 Ng6 (32... Nxc6 33. Rdc2 $18 { -JP }) 33. Qa3 Rd8 34. Qc3 Bg4 35. d5 Nxe5
 $2 { -JP } 36. d6 $1 { -JP } 36... Nf3+ 37. Qxf3 Qc8 38. Qf6 (38. Qf6 Qe6
-39. Qxe6 Bxe6 40. d7 { c7 +- -JP }) 1-0`,
+39. Qxe6 Bxe6 40. d7 { c7 +- -JP }) 1-0
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3830,9 +3830,9 @@ Bxe5 Bxa3 30. Rc3 $5 Bb2 31. Bxd6 Bxc3 32. Bxc7 b5 33. d6 Ra2+ 34. Kf3 Ba5
 35. Kg3 Kf8 (35... Bxc7 $2 36. Bd5+ $16 { -GS }) 36. Bh3 b4 37. Be6 Ra3 (
 37... Bxc7 38. Bxa2 Bxd6+ $16 { -GS }) 38. Kf4 g6 $2 (38... Rxd3 39. Bxa5
 Rxd6 $14 40. Bf5 { -GS }) 39. Ke5 Bxc7 40. dxc7 Rc3 (40... Ra8 41. Kd4 $18
-{ -GS }) 41. Bc4 1-0`,
+{ -GS }) 41. Bc4 1-0
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3853,9 +3853,9 @@ Qf4+ { -GS }) 39... Kxg5 40. Qe5+ Nf5 41. Rg1+ Qg3 42. Rxg3+ Rxg3 43. Rxh7
 Re3 44. Qc7 d4 45. Qc4 d3 46. Rh2 e5 47. Qxa6 e4 48. Rg2+ Ng3 49. Qa5+ Kg4
 50. Qc5 Re2+ 51. Rxe2 Nxe2 52. Qe3 Kf5 53. a5 Nc3+ 54. Kb3 Nd5 55. Qd2 Nc7
 56. Kc4 g5 57. Qf2+ Ke5 58. Qg3+ Kf5 59. Qxc7 d2 60. Qd6 e3 61. Qd3+ Kf4
-62. Qf1+ Ke4 63. a6 1-0`,
+62. Qf1+ Ke4 63. a6 1-0
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3870,9 +3870,9 @@ Nbd2 { ECO }) 5... Bf5 6. Bb5+ Nc6 7. c3 a6 8. Ba4 b5 9. Bb3 e6 10. O-O h6
 11. Re1 Bd6 12. Nbd2 O-O 13. Nf1 Qc7 14. Bd2 a5 15. a3 Ne4 16. Ne3 Bh7 17.
 Ng4 Nxd2 18. Qxd2 Bf4 19. Qe2 b4 20. axb4 axb4 21. Bc2 Bxc2 22. Qxc2 bxc3
 23. Qxc3 Qb6 24. Nge5 Nxe5 25. dxe5 Rab8 26. Reb1 Rfc8 27. Qe1 Rc2 28. g3
-Bxg3 0-1`,
+Bxg3 0-1
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3887,9 +3887,9 @@ Bxg3 0-1`,
 cxd3 Be6 12. Kg1 Qf6 13. Qa4 O-O-O 14. Reb1 Bd5 { ***diagram*** } 15. Kf2
 Bxf3 16. gxf3 Rxd3 17. Qg4+ Kb8 18. Rxb7+ Kxb7 19. Rb1+ Ka8 20. Qe4 Rhd8
 21. Bc5 Rxc3 22. Bxa7 Qf4 (22... Qf4 23. Qxf4 exf4 $19 { The bishop is
-lost. -MK }) 0-1`,
+lost. -MK }) 0-1
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3909,9 +3909,9 @@ Rxd1 Kf7 35. Kg3 Nd7 36. Kg4 Qb6 37. Re3 Nc5 38. Qc3 Nb3 39. Rf3 d4 40. Qc2
 Rc6 41. Rb1 Qb4 $2 { -RP } 42. Rfxb3 cxb3 43. Qxc6 d3 44. Kf3 Qd2 45. Qc1
 Qe2+ 46. Kg3 Qc2 47. Qd1 d2 { Black offers a draw. } 48. Kf2 Bh8 49. Ke3
 Qc3+ 50. Ke2 Qc2 51. Rxb3 Qc4+ 52. Kxd2 Qxf4+ 53. Kc2 Qf5+ 54. Rd3 Bxe5 55.
-Kb3 Qxg5 1/2-1/2`,
+Kb3 Qxg5 1/2-1/2
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3933,9 +3933,9 @@ Rb8 $3 20. Qc4 Ra4 21. b4 (21. Qc5 $2 Rb6 $1 { 22.d3 -+ -JP }) 21... Nb5 $1
 $17 { -JP }) 20. Kd1 Nf4 21. Bf1 Rb8 22. Qc2 Ra1 23. Kd2 Ra2 24. Kc1 Nb5
 25. Qe4 Nd5 $5 { -JP } 26. Bxb5 Rxb5 27. c4 Qc6 28. Kd1 $2 { -JP } (28. Qc2
 $1 Nb4 29. Qc3 Rb8 $16 { -JP }) 28... Qxc4 29. Re2 $2 { -JP } 29... Nc3+ $1
-{ -JP } 30. bxc3 Qxe2+ 31. Qxe2 Rxb1# 0-1`,
+{ -JP } 30. bxc3 Qxe2+ 31. Qxe2 Rxb1# 0-1
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3957,9 +3957,9 @@ c5 31. a5 Qc6 32. Rcd1 f5 33. R1d6 Qc8 34. exf5 Nf8 35. fxg6 Nxd7 36. Qg4
 Nf6 37. Qxc8 Rxc8 38. Be6 Ne4 39. Rd5 Rf8 40. Rxe5 Nxf2 41. Rf5 Rxf5 42.
 Bxf5 Nd1 43. gxh7 $2 Ne3+ 44. Ke2 Nxf5 45. Kf3 Kxh7 46. bxc5 Ne7 47. Ke4
 Kg6 48. Ke5 Nc6+ 49. Kd6 Nxa5 50. g4 Kf6 51. Kd5 a6 52. Kd6 Nc6 53. Kd5 a5
-54. Kc4 Ke5 55. Kb5 Kf4 56. g5 Kg4 0-1`,
+54. Kc4 Ke5 55. Kb5 Kf4 56. g5 Kg4 0-1
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3974,9 +3974,9 @@ Kg6 48. Ke5 Nc6+ 49. Kd6 Nxa5 50. g4 Kf6 51. Kd5 a6 52. Kd6 Nc6 53. Kd5 a5
 b6 9. e5 Ba6 10. Nc4 Qc7 11. Bf4 Rad8 12. Re1 Nd5 { ***diagram*** } 13. Bg5
 f6 14. exf6 Nxf6 15. Bf4 Qb7 16. Nd6 Qa8 17. d4 Ne8 18. dxc5 bxc5 19. Qd2
 Bb7 20. Rad1 Ne7 21. Nxb7 Qxb7 22. Rxe6 dxe6 23. Qxd8 Nc6 24. Qd7 Qxd7 25.
-Rxd7 Rf7 26. Rxf7 Kxf7 27. Ng5+ Ke7 28. Bxc6 h6 29. Nxe6 Kxe6 30. Bxe8 1-0`,
+Rxd7 Rf7 26. Rxf7 Kxf7 27. Ng5+ Ke7 28. Bxc6 h6 29. Nxe6 Kxe6 30. Bxe8 1-0
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -3999,9 +3999,9 @@ Rd8 37. Nd1 Rd3+ 38. Ne3 Nd5 39. Nf1 c4 { sealed move - draw agreed } (
 $2 46. b4 Kf6 47. Kd3 Bf2 48. Kxc3 Bxg3 49. Nd4 Bxf4 50. Nxb5 Be5+ 51. Kd3
 $13 { -JP })) 40... Nxe3+ 41. Rxe3 (41. Nxe3 $2 h4 $1 42. Nxf5 $6 exf5 43.
 Re7+ Kg6 44. Rxc7 Rxg3+ 45. Kh2 Re3 $16 { -JP }) 41... Rxe3 42. Nxe3 Bb6
-43. Kf3 $11 { -JP }) 1/2-1/2`,
+43. Kf3 $11 { -JP }) 1/2-1/2
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4018,9 +4018,9 @@ Qd2 Bf8 17. Rfe1 a6 18. a4 Rc8 19. Rad1 c4 20. Bc2 (20. Bb1 { -MK }) 20...
 Nc5 21. Nd4 Qd7 22. Re3 Nxa4 23. Rg3 Kh8 24. Bb1 Nc5 25. Qe2 b5 26. Qf3 Qb7
 27. Bd2 Ne4 28. Bxe4 dxe4 29. Qe2 Bd5 (29... Rcd8 { -GS }) 30. Qg4 Qb6 (
 30... g6 { -GS }) 31. Nf5 Qe6 32. Bxh6 g6 33. Qh4 Qxf5 34. Bxf8+ Kg8 35.
-Bd6 Bc6 36. Qh6 Rcd8 37. Re1 a5 38. Rg4 Re6 39. Rh4 f6 40. Qh7# 1-0`,
+Bd6 Bc6 36. Qh6 Rcd8 37. Re1 a5 38. Rg4 Re6 39. Rh4 f6 40. Qh7# 1-0
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4035,9 +4035,9 @@ Bd3 b6 9. O-O Ba6 10. Re1 Bxd3 11. cxd3 Nd7 12. Bg5 Ng6 { [N] } (12... Rc8
 { Rogers-Whiteley; Lloyds Bank; 1987. }) 13. c4 dxc4 14. dxc4 O-O 15. h4
 cxd4 16. Qxd4 h6 17. h5 Ngxe5 18. Nxe5 Nxe5 19. Rxe5 hxg5 20. Rxg5 f6 21.
 Rg6 Rad8 22. Qe4 e5 23. h6 Rd7 24. Re1 Rd4 25. Qf5 Rf7 26. hxg7 Qxc4 27.
-Rxf6 Rf4 28. Qh5 Rxg7 29. Rh6 Kf8 30. Qxe5 Qa4 31. Rh8+ Kf7 1-0`,
+Rxf6 Rf4 28. Qh5 Rxg7 29. Rh6 Kf8 30. Qxe5 Qa4 31. Rh8+ Kf7 1-0
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4052,9 +4052,9 @@ N 5...Bxf2 [ECO] } 6. Qxc5 Nxh1 7. Bg5 d6 8. Qe3 Qd7 9. Nc3 O-O 10. O-O-O
 Re8 11. Bd3 Nc6 12. Bf6 Ne7 13. Bxe7 Qxe7 14. Nd5 Qd8 { ***diagram*** } 15.
 Nf6+ (15. Qf4 $1 { -RP }) 15... Qxf6 16. exf6 Rxe3 17. Rxh1 g6 18. Nd4 Bd7
 19. Kd2 Rae8 20. Rf1 c5 21. Nb5 Rxd3+ 22. Kxd3 Bxb5+ 23. c4 Bc6 24. g4 d5
-25. a3 dxc4+ 26. Kxc4 b6 27. Rd1 h6 28. Rd6 Re6 29. Rd2 Kh7 0-1`,
+25. a3 dxc4+ 26. Kxc4 b6 27. Rd1 h6 28. Rd6 Re6 29. Rd2 Kh7 0-1
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4074,9 +4074,9 @@ Rf3 c4 30. Rf2 Rxf2 31. Kxf2 Nxf4 32. exf4 $2 { -JP } (32. Kf3 $15 { -JP })
 Kd2 Rd5+ 39. Rxd5 Kxd5 40. Kc3 g5 41. g4 g6 42. h3 a6 43. a3 Kc6 44. Kxc4
 Kd6 45. Kb3 Kd5 46. Kc3 c4 47. Kd2 Kd4 48. Kc2 c3 49. Kc1 Kd3 50. Kd1 Kc4 (
 50... c2+ 51. Kc1 Kc3 52. a4 a5 53. h4 gxh4 $19 { -JP }) 51. Kc2 a5 52. a4
-Kb4 53. Kd3 Kb3 0-1`,
+Kb4 53. Kd3 Kb3 0-1
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4094,9 +4094,9 @@ Rxc4 21. Rab1 Qc7 22. Bd6 Qc8 23. Rd3 Bxa4 24. f4 Ne7 25. Rf1 (25. f5 { -RP
 }) 25... Nc6 26. Nb3 Qd8 27. h4 Bxb3 28. cxb3 Qb6+ 29. Kh1 Qxb3 30. f5 Qa4
 31. fxe6 fxe6 32. Qf2 Nd8 33. Rd4 Rxd4 34. cxd4 Qb3 35. Kh2 Qd3 36. Rc1 Nc6
 37. Qb2 g5 $2 { -RP } (37... Qb5 { -GS }) 38. Rxc6 bxc6 39. Qb8+ Kf7 40.
-Qc7+ Kg8 41. Qd8+ Kh7 42. Qe7+ Kg8 43. Qf8+ Kh7 44. Qf7# 1-0`,
+Qc7+ Kg8 41. Qd8+ Kh7 42. Qe7+ Kg8 43. Qf8+ Kh7 44. Qf7# 1-0
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4115,9 +4115,9 @@ Bxd3 b5 22. Nc3 b4 23. axb4 axb4 24. Ne2 Qd7 25. Kg2 Bh6 26. Ra6 Nh5 27.
 Ng1 f5 $2 28. exf5 Qxd5+ 29. Be4 Qxd1 30. Rxd1 gxf5 $2 (30... Nf6 { -JP })
 31. Rxh6 fxe4 32. Rxh5 Rc2 33. Nh3 e3 34. Re1 exf2 35. Rf1 Rxb2 36. Rg5+
 Kh8 37. Rxe5 Rd8 38. Rxf2 Rdd2 39. Rxd2 Rxd2+ 40. Nf2 b3 41. Rb5 b2 42. Kf3
-Kg7 43. Ke3 Rc2 44. h3 Rc3+ 45. Nd3 Rc1 46. Rxb2 Rh1 47. h4 1-0`,
+Kg7 43. Ke3 Rc2 44. h3 Rc3+ 45. Nd3 Rc1 46. Rxb2 Rh1 47. h4 1-0
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4140,9 +4140,9 @@ Kg8 32. Qb8+ Kf7 33. Qxa7+ Ke6 $4 (33... Kg8 34. Qb8+ Kf7 35. Qc7+ Kg8 36.
 Qc8+ Kf7 37. Qc7+ Kg8 $11 { -JP }) 34. f5+ $1 (34. Qe7+ $2 Kd5 $19 { -JP })
 34... gxf5 35. Qe7+ Kd5 36. Qd7+ Ke4 37. Qxd2 $6 (37. Qxf5# { Mate. I was
 so excited about winning the rook! -JP }) 37... Qb1+ 38. Kg2 fxg4 39. Qc1
-Qd3 40. Qe3+ $1 Qxe3 41. Bxe3 1-0`,
+Qd3 40. Qe3+ $1 Qxe3 41. Bxe3 1-0
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4158,9 +4158,9 @@ $6 (10. Nxe5 $6 dxe5 (10... fxe5 $4 11. Bg5+ $18 { -JP }) 11. Rd1+ (11.
 Rxe5 $6 Bd6 { -JP } (11... fxe5 $4 12. Bg5+ $18 { -JP })) 11... Bd6 $1 $17
 { -JP }) 10... Qd7 $1 $15 { -JP } 11. Ne6+ Bxe6 12. Bxe6 Qxf7 13. Bxf7 Nc6
 14. b4 a6 15. f4 Kd7 16. Be3 exf4 17. Bxf4 Ne5 18. Rad1 $4 (18. Bxe5 fxe5
-$17 { -JP }) 18... Nxf7 0-1`,
+$17 { -JP }) 18... Nxf7 0-1
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4186,9 +4186,9 @@ Qb4 39. Rc2 Ke7 { ***diagram*** } (39... Rh1 { -RP }) 40. e5 $1 { -RP }
 -JP/ -RP sealed move. } (44. Rc7 $1 { 1-0 -JP/ -RP }) 44... Qxe4 45. Rc3
 Qh4+ $6 { -JP } (45... Qb7 46. Qd3 d5 { -JP } (46... Qxa7 $2 47. Qc4+ Ke7
 48. Qc8 $18 { -JP })) 46. Ke3 Qg5+ 47. Ke2 Qg1 48. Qe3 Qb1 49. Qd2 Qg1 50.
-Qe3 (50. Qe1 Qd4 51. Rc4 $16 { -JP }) 50... Qb1 51. Qd2 Qg1 1/2-1/2`,
+Qe3 (50. Qe1 Qd4 51. Rc4 $16 { -JP }) 50... Qb1 51. Qd2 Qg1 1/2-1/2
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4208,9 +4208,9 @@ Nxe4 21. Ne5 c4 22. Nd7 Rb4 23. Rxb4 Bxb4 24. Rb2 Ba3 25. Rb6 Ra8 26. Nb8
 Bc8 27. Rc6 Bb7 28. Rb6 g5 $1 $17 { -JP } 29. Rxb7 gxf4 30. Nd7 (30. gxf4
 $2 c3 $1 $19 { -JP }) 30... fxg3 31. hxg3 Kg7 32. Ne5 Nd6 33. Rc7 Bb2 34.
 Nf3 Rxa2 $19 35. Bh3 Kf6 36. g4 h6 37. Rc6 Ne4 38. Bg2 Ra1+ 39. Bf1 Ng5 40.
-Nh4 Nh3+ 41. Kg2 Nf4+ 0-1`,
+Nh4 Nh3+ 41. Kg2 Nf4+ 0-1
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4226,9 +4226,9 @@ Be3 O-O (12... b5 { -GS }) 13. Qf3 e5 $6 14. Nf5 Bxf5 15. Qxf5 Rfd8 16. c3
 b5 17. Bb3 g6 18. Qh3 a5 19. Rad1 Qc7 20. Bg5 a4 21. Bc2 b4 22. Qf3 Ra6 23.
 Rxd8+ Bxd8 $8 { ***diagram*** } 24. Qe2 $1 Rb6 25. Bxa4 bxc3 26. bxc3 Qxc3
 27. Bb3 Rc6 (27... Bc7 $2 28. Rc1 $18 { -GS }) 28. Qxe5 Qxe5 29. Rxe5 Ng4
-$2 30. Re8+ Kg7 31. Rxd8 1-0`,
+$2 30. Re8+ Kg7 31. Rxd8 1-0
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4244,9 +4244,9 @@ $2 30. Re8+ Kg7 31. Rxd8 1-0`,
 18. Rh3 f5 19. Qg3 Rf7 20. Bg5 $1 Qf8 21. Rd1 Bd7 { ***diagram*** } 22. Be2
 { Bh5 -GS } 22... Bc6 23. Bc1 b5 { 23....Nd5 -GS } 24. Qg6 Qg8 25. Bg5 Be8
 26. Rdd3 Rd7 { 26....Qh7 -GS } 27. Rxh6+ gxh6 28. Qxh6+ Qh7 29. Bf6+ Kg8 (
-29... Rg7 30. Bxg7+ Kg8 31. Qf6 $18 { -GS }) 30. Rg3+ Bg6 31. Rxg6+ 1-0`,
+29... Rg7 30. Bxg7+ Kg8 31. Qf6 $18 { -GS }) 30. Rg3+ Bg6 31. Rxg6+ 1-0
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4267,9 +4267,9 @@ Bd4 a6 40. Be3 Re5 41. Bd4 Re6 42. Bc3 g5 43. g3 Kh7 44. Rb2 Kg6 45. g4 f5
 46. h3 h5 47. Bd4 hxg4 48. hxg4 fxg4 49. fxg4 Re4 50. Rb6+ Kf7 51. Be3 d2
 $2 52. Rd6 Rxg4 53. Rxd2 Ke6 54. Kf3 Kf5 55. Rd8 $2 (55. Rd4 $11 { -GS })
 55... Rh4 56. Rf8+ Kg6 57. Kg3 Be6 58. Rb8 Rh3+ 59. Kf2 Kf5 60. Rf8+ Kg4
-61. Rf6 Bc4 62. Rg6 $2 Rf3+ 0-1`,
+61. Rf6 Bc4 62. Rg6 $2 Rf3+ 0-1
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4290,9 +4290,9 @@ Kh2 { -GS }) 22... Kh8 23. Bd3 $2 { -RP } 23... Rg8 $19 { -RP } 24. Bf1
 Nh3+ 25. Kh2 Nxf2 26. Qe2 Nxe4 27. Qxe4 Bf4+ 28. Kh1 Rg3 29. Re1 Qf6 30.
 Ng1 Rag8 31. Nh3 R3g4 32. Be2 Rxg2 33. Nxf4 exf4 34. Qxf4 R2g3 35. Bf1 Qg5
 36. Qxg5 R8xg5 37. f6 Kh7 38. c4 Kg6 39. Kh2 Re5 40. Rd1 Kxf6 41. Rd4 Kg5
-42. b4 b6 $6 { -RP } (42... Re8 { -RP }) 43. a4 f5 0-1`,
+42. b4 b6 $6 { -RP } (42... Re8 { -RP }) 43. a4 f5 0-1
 
-`[Event "London, Canada (ch-B)"]
+`,`[Event "London, Canada (ch-B)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4309,9 +4309,9 @@ c4 10. O-O Nbc6 11. a4 O-O-O 12. Qb1 { N 12.Ng5 or 12.Re1 [ECO] } 12... f6
 19. Kh1 Ne7 $6 (19... h5 { -JP }) 20. Bd6 Nec6 21. Re1 $1 Nf7 22. Bb4 Nxb4
 23. cxb4 Qc7 24. Bh3 { The point of move 21. -JP } 24... Re4 $8 { Only
 move. -JP } 25. Qc3 f5 26. b5 b6 27. Nd2 Rxe1+ 28. Rxe1 Ng5 29. Bg2 Ne4 30.
-Nxe4 fxe4 31. Qb4 Rg7 $4 (31... Be8 $11 { -JP }) 32. Qf8+ 1-0`,
+Nxe4 fxe4 31. Qb4 Rg7 $4 (31... Be8 $11 { -JP }) 32. Qf8+ 1-0
 
-`[Event "London, Canada (ch-C)"]
+`,`[Event "London, Canada (ch-C)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4330,9 +4330,9 @@ Nxf3+ 17. Rxf3 Qe4 18. Bd3 Qxf4+ 19. Rxf4 Bd6 20. Bxh7+ Kxh7 21. Rxd6 Rb8
 34. Rd7 Rc5+ 35. Kf4 Re4+ 36. Kf3 Rg5 37. Rxb7 Rgxg4 38. Rxa7 Bh5 39. Kf2
 Rgf4+ 40. Kg3 Rf3+ 41. Kg2 Bg4 42. Ra5 Ref4 43. Rg5+ Kf6 44. Rxg4 Rxg4+ 45.
 Kxf3 Kg5 46. Rd5+ Kh4 47. Rd4 f5 48. Rxg4+ fxg4+ { white won. } 49. Kg2 g3
-50. a4 1-0`,
+50. a4 1-0
 
-`[Event "London, Canada (ch-C)"]
+`,`[Event "London, Canada (ch-C)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4352,9 +4352,9 @@ Rxd7 32. Rdxd7 Bxd7 33. Rxd7 b6 34. Be7+ Kg6 35. Bd8 Rc8 36. Bxb6 Rc4 37.
 exf5+ exf5 38. Bxa5 Rxa4 39. Bc3 Ra3 40. Bxe5 Ra5 41. Rxg7+ Kh5 42. Rb7 Kg4
 43. h3+ Kg5 44. Kg3 Ra3+ 45. Kh2 Rb3 46. b6 Rb5 47. Bc7 f4 48. Rb8 Rb2 49.
 b7 h5 50. Bxf4+ Kh4 51. Bg5+ Kxg5 52. Rg8+ Kh4 53. b8=Q Rxg2+ 54. Kh1 Rh2+
-55. Kg1 Rg2+ 56. Rxg2 1-0`,
+55. Kg1 Rg2+ 56. Rxg2 1-0
 
-`[Event "London, Canada (ch-C)"]
+`,`[Event "London, Canada (ch-C)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4373,9 +4373,9 @@ cxd5 9. Bd3 Nc6 10. a3 a6 11. Qd2 Qb6 12. Be2 Re8 13. Bf4 Ne4 14. Nxe4 dxe4
 Qxd3 33. Bc7 Qd5+ 34. Kg1 Qd1 35. Kf1 Qxe1+ 36. Kxe1 Rd4 37. Ke2 Rxb4 38.
 f4 a5 39. Bd6 Rb2+ 40. Ke3 Rxh2 41. g4 a4 42. f5 Rh3+ 43. Kf4 a3 44. g5 a2
 45. Be5 Nxe5 46. Kxe5 a1=Q+ 47. Kd6 Qa6+ 48. Ke7 Re3+ 49. Kxf7 Qc4+ 50. Kf8
-Qg8# 0-1`,
+Qg8# 0-1
 
-`[Event "London, Canada (ch-C)"]
+`,`[Event "London, Canada (ch-C)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4387,9 +4387,9 @@ Qg8# 0-1`,
 
 1. Nf3 a6 { ...d5, ...Nf6, etc. [ECO] } 2. d4 b5 3. e4 e6 4. Nc3 Bb7 5. g3
 b4 6. Na4 Bxe4 7. Nc5 Bxc5 8. dxc5 Nf6 9. Be2 O-O 10. O-O Qe7 11. Qd4 Nc6
-12. Qc4 Bd5 13. Qf4 e5 14. Qh4 Qxc5 15. Ne1 Nd4 16. Be3 Nxe2# 0-1`,
+12. Qc4 Bd5 13. Qf4 e5 14. Qh4 Qxc5 15. Ne1 Nd4 16. Be3 Nxe2# 0-1
 
-`[Event "London, Canada (ch-C)"]
+`,`[Event "London, Canada (ch-C)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4410,9 +4410,9 @@ move. } 37... a5 38. c4+ Kc5 39. Ne4+ Kb4 40. Nd2 Ng6 41. g5 Nf4+ 42. Kc2
 Ng6 43. Ne4 a4 44. bxa4 Kxc4 45. Kd2 Kb4 46. Nc3 Nf4 47. Ke3 Ng6 48. Ke4
 Nh4 49. Kxe5 Nxf3+ 50. Kf6 Nxg5 51. Kxg5 c5 52. Kf4 c4 53. Ke5 Kxc3 54. a5
 Kb2 55. a6 c3 56. a7 c2 57. a8=Q c1=Q 58. Qb7+ Ka3 59. Qa6+ Kb4 60. Qb7+
-Ka5 61. Qa7+ 1/2-1/2`,
+Ka5 61. Qa7+ 1/2-1/2
 
-`[Event "London, Canada (ch-C)"]
+`,`[Event "London, Canada (ch-C)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4431,9 +4431,9 @@ f4 gxf4 30. gxf4 Rg7+ 31. Kf3 h5 32. Rd3 h4 33. Rg2 Rxg2 34. Kxg2 Kh7 35.
 Nf3 Rg8+ 36. Kh2 Nd6 37. b3 a5 38. Nxh4 Kg7 39. a4 Kf6 40. Nf3 Ne4 41. Rd1
 Rg3 42. Rf1 Ke6 43. h4 Kf6 44. Ne5 Rxe3 45. Rg1 Re2+ 46. Kh3 Nf2+ 47. Kg3
 Ne4+ 48. Kh3 Nf2+ 49. Kg3 Ne4+ 50. Kh3 { (draw - third repeat. -JP) } 50...
-Re3+ 51. Kh2 Re2+ 52. Kh3 Nf2+ 53. Kg3 Ne4+ 54. Kh3 Re3+ 1/2-1/2`,
+Re3+ 51. Kh2 Re2+ 52. Kh3 Nf2+ 53. Kg3 Ne4+ 54. Kh3 Re3+ 1/2-1/2
 
-`[Event "London, Canada (ch-C)"]
+`,`[Event "London, Canada (ch-C)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4455,9 +4455,9 @@ Nd3+ 38. Ke2 Nb4 39. Kd2 Nxa6 40. Kc2 Ba3 41. g4 Bb4 42. Bf3 Nc7 43. e4 Kf6
 Kb2 Ne8 51. Bd7 a3+ 52. Ka2 Nf6 53. h6+ Kxh6 54. Bh3 Nxe4 55. Bf5 Nf6 56.
 Bh3 Kh5 57. Bf5 g4 58. Bd3 g3 59. Bf1 Kg4 60. Bg2 Kf4 61. Kb3 Ke3 62. Bf1
 Kf2 63. Bh3 g2 64. Bxg2 Kxg2 65. Kc2 Kf3 66. Kb3 Ke4 67. Kc2 Nxd5 68. Kb3
-Nb6 69. Ka2 Kd4 70. Kb3 Nxc4 71. Kc2 a2 72. Kb3 a1=Q 73. Kc2 Qb2+ 0-1`,
+Nb6 69. Ka2 Kd4 70. Kb3 Nxc4 71. Kc2 a2 72. Kb3 a1=Q 73. Kc2 Qb2+ 0-1
 
-`[Event "London, Canada (ch-C)"]
+`,`[Event "London, Canada (ch-C)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4478,9 +4478,9 @@ g4 Kd6 37. Kd4 Ke6 38. c4 Kd6 39. c5+ Kc6 40. a4 h6 41. Kc4 Kc7 42. Kb5 Kd7
 43. Kxa5 Kc6 44. Kb4 Kd5 45. a5 $2 { -BL } 45... Ke4 46. a6 Kf4 47. a7 Kxg4
 48. a8=Q h5 49. Qg2+ Kf5 50. f3 h4 51. Qg4+ Kg6 52. f4 h3 53. Qxg5+ Kf7 54.
 Qh5+ Kf6 55. Qxh3 Kg6 56. c6 Kf7 57. c7 Ke7 58. c8=R Kd6 59. Qd3+ Ke6 60.
-Re8+ Kf6 61. Qd5 Kg6 62. Re6+ Kf7 63. Qd7+ Kf8 64. Re8# 1-0`,
+Re8+ Kf6 61. Qd5 Kg6 62. Re6+ Kf7 63. Qd7+ Kf8 64. Re8# 1-0
 
-`[Event "London, Canada (ch-C)"]
+`,`[Event "London, Canada (ch-C)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4499,9 +4499,9 @@ Nf3 Ng6 25. Nh2 Qd8 $2 { -BL } 26. g4 h4 27. g3 h3 28. f4 Rh8 29. Nf3 e5
 34. Rxc7 Qxc7 35. Rb7 Bxe3+ 36. Kh2 Qf7 37. Rxf7+ Kxf7 38. Qxa7+ Ne7 39.
 dxe5 Rh6 40. Qd7 $2 { -BL } (40. Nf4 { -BL }) 40... Re6 41. Kxh3 Rxe5 42.
 a4 Re4 43. Nf4 Bxc5 44. a5 Be3 45. a6 Bxf4 46. a7 Ra4 47. gxf4 d4 48. f5
-1-0`,
+1-0
 
-`[Event "London, Canada (ch-C)"]
+`,`[Event "London, Canada (ch-C)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4514,9 +4514,9 @@ a4 Re4 43. Nf4 Bxc5 44. a5 Be3 45. a6 Bxf4 46. a7 Ra4 47. gxf4 d4 48. f5
 1. d4 d5 2. c4 Nf6 3. Nc3 e6 4. Bg5 dxc4 5. e4 { N 5.e3
 Gruenberg,HU-Blatny,P; Stara Zagora zt-A (1); 1990 } 5... Be7 6. Bxc4 Nxe4
 7. Bxe7 Qxe7 $2 (7... Nxf2 { -BL }) 8. Nxe4 b6 9. Nf3 O-O 10. O-O Bb7 11.
-Re1 h6 12. Qd3 Nc6 13. a3 e5 14. Bb3 Rad8 15. Bc2 Nxd4 16. Nf6+ 1-0`,
+Re1 h6 12. Qd3 Nc6 13. a3 e5 14. Bb3 Rad8 15. Bc2 Nxd4 16. Nf6+ 1-0
 
-`[Event "London, Canada (ch-C)"]
+`,`[Event "London, Canada (ch-C)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4533,9 +4533,9 @@ b5 19. Nd2 Nxd6 20. Nf3 h6 21. Re3 Nf5 22. Re2 Qxd3 23. Rae1 Qc4 24. Qc7
 Nh4 25. Nxh4 Qxh4 26. Re8 Bf5 27. Rxa8 Rxa8 28. Qxc6 Rc8 29. Re8+ Rxe8 30.
 Qxe8+ Kh7 31. Qe3 Qd8 32. Qxc5 Qg5 33. Qxb5 Qc1+ 34. Kh2 Qf4+ 35. Kg1 Be4
 36. f3 Qe3+ 37. Kh2 Bd3 38. Qd5 Qd2 39. a3 Qf4+ 40. Kg1 Bc4 41. Qe4+ Qxe4
-42. fxe4 1/2-1/2`,
+42. fxe4 1/2-1/2
 
-`[Event "New York - Open"]
+`,`[Event "New York - Open"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "1"]
@@ -4547,9 +4547,9 @@ Qxe8+ Kh7 31. Qe3 Qd8 32. Qxc5 Qg5 33. Qxb5 Qc1+ 34. Kh2 Qf4+ 35. Kg1 Be4
 
 1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. f4 O-O 6. Nf3 Na6 7. Be2 e5 8.
 fxe5 dxe5 9. Nxe5 c5 10. Be3 Qe7 11. Nf3 Nb4 12. Qb1 Re8 13. e5 Bf5 14.
-exf6 Qxe3 15. Qc1 Nd3+ 0-1`,
+exf6 Qxe3 15. Qc1 Nd3+ 0-1
 
-`[Event "New York - Open"]
+`,`[Event "New York - Open"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "2"]
@@ -4568,9 +4568,9 @@ Ne4 33. Bxe4 Rxe4 34. Kf3 a6 35. R5d2 Kb7 36. Rb2 Na5 37. Rd6 Nb3 38. Nxc4
 Kc7 39. Rxb3 Rxc4 40. Rdxb6 Ree4 41. Rb7+ Kc8 42. Rb8+ Kc7 43. R8b7+ Kc8
 44. Be3 Rxc3 45. Rb8+ Kc7 46. Rxc3 Kxb8 47. Bxc5 Rxa4 48. Bd6+ Kb7 49. Rc7+
 Kb6 50. Rxh7 Rd4 51. Be5 Rd3+ 52. Kf2 a5 53. Rh6 a4 54. Rxg6+ Kb5 55. Rf6
-a3 56. Rxf5 a2 57. Rf8 1-0`,
+a3 56. Rxf5 a2 57. Rf8 1-0
 
-`[Event "New York - Open"]
+`,`[Event "New York - Open"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "8"]
@@ -4593,9 +4593,9 @@ Nd5 57. Ne5 Nc3+ 58. Kd3 Nd5 59. Kc4 Ne3+ 60. Kc5 Ng2 61. Nf3 Ne3 62. g5+
 Kf5 63. Kd6 Nd5 64. Ne5 Nf4 65. Ke7 Ne2 66. h5 Kxg5 67. hxg6 Nxd4 68. Kf7
 Nf5 69. Nf3+ Kh6 70. Nh4 Ng7 71. Ng2 Nf5 72. Kf6 Nd6 73. Nf4 e5 74. Kxe5
 Ne8 75. Kf5 Kg7 76. Kg5 Kg8 77. Nh5 Ng7 78. Nf6+ Kh8 79. Nd5 Kg8 80. Ne7+
-Kf8 81. Kh6 Ne6 82. Nd5 Kg8 83. Nf6+ Kh8 84. Ng8 1/2-1/2`,
+Kf8 81. Kh6 Ne6 82. Nd5 Kg8 83. Nf6+ Kh8 84. Ng8 1/2-1/2
 
-`[Event "Philadelphia - World Open"]
+`,`[Event "Philadelphia - World Open"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "2"]
@@ -4609,9 +4609,9 @@ Kf8 81. Kh6 Ne6 82. Nd5 Kg8 83. Nf6+ Kh8 84. Ng8 1/2-1/2`,
 d5 Ne7 9. Nd2 a5 10. Rb1 Nd7 11. a3 f5 12. b4 Kh8 13. Qc2 Ng8 14. c5 axb4
 15. axb4 dxc5 16. bxc5 Nxc5 17. Nb5 b6 18. f3 fxe4 19. fxe4 Rxf1+ 20. Bxf1
 Nf6 21. Ba3 Ncxe4 22. Nxe4 Bf5 23. Bd3 Qxd5 24. Nf2 Bxd3 25. Qxd3 c6 26.
-Nd6 0-1`,
+Nd6 0-1
 
-`[Event "Philadelphia - World Open"]
+`,`[Event "Philadelphia - World Open"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "4"]
@@ -4625,9 +4625,9 @@ Nd6 0-1`,
 8. Be2 O-O 9. O-O Nc6 10. Qe1 h6 11. Qg3 Kh8 12. Bd2 d4 13. Rae1 Be6 14.
 Rf2 dxc3 15. Bxc3 Nd4 16. Bxd4 cxd4 17. Qf4 Qa5 18. Ref1 Rad8 19. g4 g5 20.
 Qg3 Qxa2 21. h4 Kg7 22. Rh2 Qxc2 23. hxg5 hxg5 24. Rff2 Qc1+ 25. Bf1 Qe3
-26. Qh3 Rh8 0-1`,
+26. Qh3 Rh8 0-1
 
-`[Event "Philadelphia - World Open"]
+`,`[Event "Philadelphia - World Open"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "6"]
@@ -4641,9 +4641,9 @@ Qg3 Qxa2 21. h4 Kg7 22. Rh2 Qxc2 23. hxg5 hxg5 24. Rff2 Qc1+ 25. Bf1 Qe3
 d5 e6 9. Bf4 e5 10. Bg5 h6 11. Bh4 g5 12. Bg3 Nh5 13. Nd2 Nxg3 14. hxg3 Nc7
 15. g4 Bd7 16. a4 Rb8 17. Re1 a6 18. Nf1 b5 19. axb5 axb5 20. cxb5 Bxb5 21.
 Bxb5 Nxb5 22. Nxb5 Rxb5 23. Ra2 Qb6 24. Ne3 Rb4 25. Qc2 Qb5 26. Rea1 Rb8
-27. Ra5 Qd7 28. Ra8 Qb7 29. R8a7 Qc8 30. Nf5 Rxb2 31. Ne7+ 1-0`,
+27. Ra5 Qd7 28. Ra8 Qb7 29. R8a7 Qc8 30. Nf5 Rxb2 31. Ne7+ 1-0
 
-`[Event "Philadelphia - World Open"]
+`,`[Event "Philadelphia - World Open"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4665,9 +4665,9 @@ Nxe5 23. Rxa6 Rb2 $1)) 20. Nc4 {  ec4 } 20... Rf6 $2 (20... Rab8) 21. Nxb6
 cxb6 22. Rc7 Rf7 $1 (22... Rd6 $5) 23. f3 $6 Re8 24. Rd1 Nc5 25. Rxf7 Kxf7
 26. Rd5 Kf6 27. Kf2 $13 g5 28. Ke3 Re7 29. g3 Re6 30. f4 gxf4+ 31. gxf4 Kf7
 32. f5 Rh6 33. Bxe5 Rh3+ 34. Bg3 h5 35. Rd6 $11 (35. Kf3 $14 h4 36. Kg2
-hxg3 37. Kxh3 gxh2 38. Kxh2 $6) 1-0`,
+hxg3 37. Kxh3 gxh2 38. Kxh2 $6) 1-0
 
-`[Event "Philidelphia - World Open"]
+`,`[Event "Philidelphia - World Open"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "6"]
@@ -4684,9 +4684,9 @@ Nac5 Bd5 21. Nxd3 exd3 22. Rxd3 Qg5 23. f4 Qg6 24. Nc5 Re7 25. Qd2 Rae8 26.
 Re1 Qd6 27. b4 g5 28. fxg5 hxg5 29. e4 fxe4 30. Rg3 Rg7 31. Nxe4 Rxe4 32.
 Rxe4 Qxg3 33. hxg3 Bxe4 34. Qd8+ Kh7 35. Qe8 Bd5 36. a4 Kh6 37. g4 Rf7 38.
 Qh8+ Kg6 39. Qh5+ Kf6 40. Qh6+ Ke5 41. Qxg5+ Kd4 42. Qd2+ Kc4 43. g5 Kb3
-44. g6 Rg7 45. b5 Bc4 46. bxc6 Rxg6 47. c7 Rc6 48. Qd7 1-0`,
+44. g6 Rg7 45. b5 Bc4 46. bxc6 Rxg6 47. c7 Rc6 48. Qd7 1-0
 
-`[Event "Scarborough (CAN-ch)"]
+`,`[Event "Scarborough (CAN-ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4698,9 +4698,9 @@ Qh8+ Kg6 39. Qh5+ Kf6 40. Qh6+ Ke5 41. Qxg5+ Kd4 42. Qd2+ Kc4 43. g5 Kb3
 
 1. g3 Nf6 2. Bg2 g6 3. c4 Bg7 4. Nc3 O-O 5. e3 d6 6. Nge2 c5 7. O-O Nc6 8.
 b3 Rb8 9. Bb2 a6 10. d4 cxd4 11. exd4 Bg4 12. h3 Bxe2 13. Nxe2 d5 14. Nf4
-e6 15. cxd5 Nxd5 1/2-1/2`,
+e6 15. cxd5 Nxd5 1/2-1/2
 
-`[Event "Scarborough (CAN-ch)"]
+`,`[Event "Scarborough (CAN-ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4715,9 +4715,9 @@ h3 Bxf3 9. Bxf3 Nd7 10. e3 e5 11. d5 Na5 12. Be2 b6 13. b4 Nb7 14. Bb2 a5
 15. a3 f5 16. Nb5 Nf6 17. Kh2 Qe7 18. Qc2 Kh8 19. Rae1 h5 20. Kg2 Nd8 21.
 g4 Nh7 22. f4 axb4 23. axb4 Qh4 24. Bc3 Nf7 25. Rc1 Nfg5 26. fxg5 Nxg5 27.
 Rh1 fxg4 28. Bxg4 Ne4 29. Be1 Qf6 30. Qxe4 hxg4 31. hxg4+ Kg8 32. Rc2 Ra1
-33. Nxc7 Bh6 34. Ne6 Rf7 35. Rf2 1-0`,
+33. Nxc7 Bh6 34. Ne6 Rf7 35. Rf2 1-0
 
-`[Event "Scarborough (CAN-ch)"]
+`,`[Event "Scarborough (CAN-ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4732,9 +4732,9 @@ O-O Re8 9. a3 Bxc3 10. bxc3 b6 11. f3 Ba6 12. Ng3 Qc7 13. e4 cxd4 14. cxd4
 Qc3 15. Bxa6 Qxa1 16. Bb7 Nbd7 17. Bxa8 Rxa8 18. e5 Ne8 19. Nf5 Qa2 20. Qa4
 Nf8 21. Qc6 Rb8 22. Ne7+ Kh8 23. Nxd5 Ne6 24. Nb4 Qe2 25. Qd7 Qc4 26. Nc6
 Ra8 27. d5 N6c7 28. d6 Qe6 29. Qxe6 Nxe6 30. d7 N8c7 31. Rd1 Nd8 32. Nxd8
-Rxd8 33. Bg5 1-0`,
+Rxd8 33. Bg5 1-0
 
-`[Event "Scarborough (CAN-ch)"]
+`,`[Event "Scarborough (CAN-ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4749,9 +4749,9 @@ Re1 Bg7 9. cxd5 exd5 10. Qb3 O-O 11. e3 a5 12. a3 Qd7 13. h4 g4 14. Nd2
 Rfe8 15. Qd1 Rac8 16. b3 Nd8 17. Bb2 c6 18. b4 axb4 19. axb4 b5 20. Nb3 Ne6
 21. Ne2 Rc7 22. Qd2 Nc8 23. Nc5 Qe7 24. Nf4 Nb6 25. Nfxe6 Bxe6 26. Bf1 Bf5
 27. Ra6 Nc4 28. Bxc4 bxc4 29. Bc3 Be4 30. Rea1 Bf3 31. Ra8 Bf6 32. Qc2 Kg7
-33. Qf5 Rxa8 1/2-1/2`,
+33. Qf5 Rxa8 1/2-1/2
 
-`[Event "Scarborough (CAN-ch)"]
+`,`[Event "Scarborough (CAN-ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4768,9 +4768,9 @@ Bc6 21. Bxc6 bxc6 22. g3 Bh6 23. Qa4 Rab8 24. Rxb8 Rxb8 25. Bc1 Bxc1 26.
 Rxc1 Rb2 27. Rc2 Rb1+ 28. Kg2 Qb7 29. Qc4 Rb4 30. Qe2 Kf7 31. Qd3 Qd7 32.
 Rc4 Rb7 33. Qe4 Rb2 34. Ra4 Rb7 35. Ra6 Rc7 36. Nd2 Qd5 37. Qxd5 exd5 38.
 Nb3 Ke7 39. Na5 Kd7 40. Kf3 Ne6 41. Ke3 g6 42. f3 Nd8 43. g4 Ne6 44. f4 Ng7
-1/2-1/2`,
+1/2-1/2
 
-`[Event "Scarborough (CAN-ch)"]
+`,`[Event "Scarborough (CAN-ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4781,9 +4781,9 @@ Nb3 Ke7 39. Na5 Kd7 40. Kf3 Ne6 41. Ke3 g6 42. f3 Nd8 43. g4 Ne6 44. f4 Ng7
 [PlyCount "24"]
 
 1. d4 d5 2. c4 e6 3. Nc3 c6 4. Nf3 Nf6 5. e3 Nbd7 6. Qc2 Bd6 7. b3 O-O 8.
-Be2 e5 9. cxd5 Nxd5 10. Nxd5 cxd5 11. dxe5 Nxe5 12. O-O Nxf3+ 1/2-1/2`,
+Be2 e5 9. cxd5 Nxd5 10. Nxd5 cxd5 11. dxe5 Nxe5 12. O-O Nxf3+ 1/2-1/2
 
-`[Event "Scarborough (CAN-ch)"]
+`,`[Event "Scarborough (CAN-ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "6"]
@@ -4799,9 +4799,9 @@ Nd7 15. Qg4 Kf8 16. bxc3 bxc3 17. Bg5 Bb4 18. Qe2 h6 19. Be3 Qd8 20. Rfc1
 N7b6 21. Ba6 Rb8 22. Rcb1 g6 23. Rb3 Kg7 24. g3 Qe7 25. h4 Rhd8 26. h5 g5
 27. a5 Na8 28. Qc4 c5 29. dxc5 Nac7 30. Nd6 Nxa6 31. Qxa6 Nxe3 32. fxe3
 Bxc5 33. Rxb8 Bxe3+ 34. Kh1 Rxb8 35. Qd3 Bf2 36. Rf1 Rf8 37. Nxf7 Rxf7 38.
-Qg6+ Kf8 39. Rb1 0-1`,
+Qg6+ Kf8 39. Rb1 0-1
 
-`[Event "Scarborough, Canada (Macedonian Open)"]
+`,`[Event "Scarborough, Canada (Macedonian Open)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4820,9 +4820,9 @@ Bc5 10. Qh4 Nd4 11. Nxd4 Bxd4 12. Qg3 Bd7 13. Be2 Qc5 14. f4 a5 15. b4 axb4
 Raa7 Be5 34. Rd7 Rb8 35. Ra8 Rxa8 36. Bxa8 Bf6 37. c5 Ke8 38. c6 Be5 39.
 Kd3 g6 40. Kc4 h5 41. Kb5 g5 42. Bb7 g4 43. Rh7 g3 44. c7 Bxc7 45. Rxc7 h4
 46. Kc5 Kd8 47. Kd6 Ke8 48. Kxe6 Kf8 49. Bc6 h3 50. gxh3 Kg8 51. Kf6 g2 52.
-Bxg2 1-0`,
+Bxg2 1-0
 
-`[Event "Scarborough, Canada (Macedonian Open)"]
+`,`[Event "Scarborough, Canada (Macedonian Open)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4839,9 +4839,9 @@ Kholmov,R-Doroshkievich,V; Tbilisi (USSR ch); 1967. {I3/673 }) 11... fxe4
 18. Nh4 Bd7 19. Rc2 Bf6 20. Nf3 Qe7 21. c5 Rac8 22. Qa3 Ra8 23. Rfc1 Bf5
 24. Rc4 b5 25. cxd6 cxd6 26. Rc7 Qd8 27. Qa6 Bd3 28. Bh3 Bc4 29. Be6+ Kh8
 30. Qb7 Qxc7 31. Qxc7 e4 32. Nd2 Bd4 33. Nxc4 h6 34. Nxd6 Bxf2+ 35. Kh1 Bb6
-36. Nf7+ Rxf7 37. Qxf7 Be3 38. Qf6+ Kh7 39. Bf7 1-0`,
+36. Nf7+ Rxf7 37. Qxf7 Be3 38. Qf6+ Kh7 39. Bf7 1-0
 
-`[Event "Scarborough, Canada (Macedonian Open)"]
+`,`[Event "Scarborough, Canada (Macedonian Open)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4858,9 +4858,9 @@ exd4 8. Nxd4 Be7 9. O-O O-O 10. b3 Re8 11. Bb2 Bf8 12. Qc2 c6 13. a3 Qb6
 20. Nxc8 Rxc8 21. Rxc2 Rb6 22. Rcc1 Rc7 23. Bd4 Rxb1 24. Rxb1 Nd7 25. Be3
 Ne5 26. Bb6 Rc8 27. c5 Nc4 28. cxd6 Nxb6 29. Bh3 Rd8 30. d7 Nxd7 31. Rd1
 Kf8 32. Rxd7 Rxd7 33. Bxd7 Ke7 34. Bc8 b5 35. Ba6 a4 36. f4 Ke6 37. Bc8+
-Kd6 38. e5+ Kd5 39. Bg4 *`,
+Kd6 38. e5+ Kd5 39. Bg4 *
 
-`[Event "Scarborough, Canada (Macedonian Open)"]
+`,`[Event "Scarborough, Canada (Macedonian Open)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4877,9 +4877,9 @@ Qxg4 Qf6 18. f4 Nxd4 19. Qd1 Nf5 20. Qd3 Qb6+ 21. Kh1 Ne3 22. Rf3 Ng4 23.
 Rcf1 Rfe8 24. h3 Re3 25. Qf5 Qe6 26. Qxe6 fxe6 27. hxg4 Rexc3 28. Kh2 d4
 29. Kg3 Rxf3+ 30. Kxf3 Rc2 31. Rd1 Rc3+ 32. Ke4 d3 33. Rxd3 Rxd3 34. Kxd3
 Kf7 35. Ke4 g5 36. f5 exf5+ 37. Kxf5 h6 38. a4 b6 39. Ke5 a6 40. Kd5 b5 41.
-axb5 axb5 42. Kc5 Ke6 43. Kxb5 Ke5 44. g3 Ke4 0-1`,
+axb5 axb5 42. Kc5 Ke6 43. Kxb5 Ke5 44. g3 Ke4 0-1
 
-`[Event "Scarborough, Canada (Macedonian Open)"]
+`,`[Event "Scarborough, Canada (Macedonian Open)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4896,9 +4896,9 @@ Qxd7+ Kxd7 15. O-O Rhc8 16. Rfb1 Bd8 17. Bd2 b5 18. Ng5 h6 19. Nxf7 Bc7 20.
 g3 Nb7 21. c4 Rf8 22. Nd6 Bxd6 23. exd6 Nxd6 24. cxb5 axb5 25. Bf4 Nef5 26.
 Be5 g6 27. Nc2 Rxa1 28. Rxa1 Rb8 29. Nb4 Rb7 30. Nd3 Rc7 31. Nc5+ Ke7 32.
 Ra6 Rc8 33. g4 Nc4 34. gxf5 exf5 35. Ra7+ Ke8 36. Bf6 Nd6 37. Re7+ Kf8 38.
-Ne6+ Kg8 39. Rg7+ Kh8 1-0`,
+Ne6+ Kg8 39. Rg7+ Kh8 1-0
 
-`[Event "Scarborough, Canada (Macedonian Open)"]
+`,`[Event "Scarborough, Canada (Macedonian Open)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4912,9 +4912,9 @@ Ne6+ Kg8 39. Rg7+ Kh8 1-0`,
 [N] } (7. Nxf6+ { Crawley,G-Huebner,R; Lugano (op); 1989. }) 7... Nxe4 8.
 Bxe4 Bb4+ 9. Bd2 Qd6 $2 10. Qa4+ Nc6 11. Bxc6+ bxc6 12. Qxb4 Qc7 13. Nf3
 Rb8 14. Qa3 f6 15. O-O Kf7 16. g3 Qb6 17. Bc3 Ba6 18. Rfe1 Bc4 19. Qc5 Qa6
-20. Qh5+ g6 21. Qh6 Rb5 22. Qe3 Rh5 23. Nd2 Bd5 24. Ne4 Qc8 $4 25. Nd6+ 1-0`,
+20. Qh5+ g6 21. Qh6 Rb5 22. Qe3 Rh5 23. Nd2 Bd5 24. Ne4 Qc8 $4 25. Nd6+ 1-0
 
-`[Event "Scorborough (CAN-ch)"]
+`,`[Event "Scorborough (CAN-ch)"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4930,9 +4930,9 @@ Rb1 Nxd4 15. Nxd4 Bxd4 16. Rxb7 Rc8 17. Be3 Rxc4 18. Rxa7 e5 19. Ra8 Qd6
 20. Qe2 Qc5 21. Bxd4 Rxd4 22. Re1 f6 23. a4 Nd6 24. Rxf8+ Kxf8 25. Qe3 Nf5
 26. Qb3 Rb4 27. Qe6 Rb6 28. Qd5 Qxd5 29. Bxd5 Ra6 30. Ra1 Ra5 31. Bb3 Nd4
 32. Bd1 Ke7 33. Rb1 Kd6 34. Rb6+ Ke7 35. Rb7+ Ke6 36. Rxh7 Rc5 37. Kf1 Rc1
-38. Ke1 Nf3+ 39. Ke2 Nd4+ 40. Kd2 1-0`,
+38. Ke1 Nf3+ 39. Ke2 Nd4+ 40. Kd2 1-0
 
-`[Event "United States"]
+`,`[Event "United States"]
 [Site "?"]
 [Date "1991.??.??"]
 [Round "?"]
@@ -4947,5 +4947,6 @@ Rb1 Nxd4 15. Nxd4 Bxd4 16. Rxb7 Rc8 17. Be3 Rxc4 18. Rxa7 e5 19. Ra8 Qd6
 15. dxc5 Bxc5 16. e4 d4 17. Nd5 Nxd5 18. exd5 Qxd5 19. Nf4 Qd6 20. b4 Ba7
 21. Nxh5 Bd7 22. Bf4 Ne5 23. Ng3 Qf6 24. Bxe5 Rxe5 25. Qd3 g6 26. Ne4 Qh4
 27. g3 Qe7 28. f4 Re6 29. f5 gxf5 30. Rxf5 Bc6 31. Re1 Re8 32. Rf4 f5 33.
-Qf3 fxe4 34. Rg4+ Kh8 35. Qf4 d3 36. Rh4+ Kg7 37. Rg4+ Rg6 0-1`,
-];
+Qf3 fxe4 34. Rg4+ Kh8 35. Qf4 d3 36. Rh4+ Kg7 37. Rg4+ Rg6 0-1
+
+`];

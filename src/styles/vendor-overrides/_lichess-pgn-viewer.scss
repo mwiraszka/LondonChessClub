@@ -22,4 +22,10 @@ lcc-pgn-viewer {
       padding: 0.5em;
     }
   }
+
+  .lpv__menu__entry.lpv__menu__analysis {
+    &:after {
+      content: ': analyze this position';
+    }
+  }
 }

@@ -21,9 +21,9 @@ Kh7 33. Rf1 b2 34. a6 Ra4 35. Qb7 Rb4 36. Qxb4 Bxb4 37. a7 b1=Q 38. Rxb1
 Qxb1 39. a8=Q Qg6 40. Qa7 Qe6 41. e3 Bc3 42. Qa4 Bf6 43. Qc2+ Qe4 44. Qxe4+
 dxe4 45. Nd2 Bc3 46. Nxe4 Bb4 47. g4 Kg6 48. Kf3 f6 49. Kf4 Kf7 50. h4 Ke6
 51. g5 hxg5+ 52. hxg5 f5 53. Nd6 g6 54. Nb7 Kd5 55. f3 Bd2 56. Nd8 Bc3
-1/2-1/2`,
+1/2-1/2
 
-`[Event "2024 London Ch A1"]
+`,`[Event "2024 London Ch A1"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -43,9 +43,9 @@ Qa7 21. Be3 Nxc2 22. Qxc2 Qe7 23. Ng3 a4 24. Rd3 h5 25. f3 h4 26. Ne2 axb3
 27. Rxb3 Rxb3 28. Qxb3 Qa7 29. Rd1 Rd8 30. Bf4 Qa5 31. Kf1 d5 32. cxd5 cxd5
 33. Rxd5 Rxd5 34. exd5 Ba6 35. Qc2 h3 36. g4 Bh4 37. Bg3 Bxg3 38. hxg3 Qb5
 39. d6 Kf8 40. Qd2 Qxe2+ 41. Qxe2 Bxe2+ 42. Kg1 c4 43. Kh2 c3 44. a4 c2 45.
-a5 c1=Q 46. d7 Ke7 47. a6 Qf1 0-1`,
+a5 c1=Q 46. d7 Ke7 47. a6 Qf1 0-1
 
-`[Event "2024 London Ch A1"]
+`,`[Event "2024 London Ch A1"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -61,9 +61,9 @@ a5 c1=Q 46. d7 Ke7 47. a6 Qf1 0-1`,
 1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O b5 6. Bb3 Be7 7. d4 exd4 8.
 Re1 d5 9. e5 Ne4 10. Nbd2 Nxd2 11. Bxd2 O-O 12. c3 Bg4 13. h3 Bh5 14. g4
 Bg6 15. cxd4 f5 16. exf6 Bxf6 17. Be3 Kh8 18. Rc1 Nb4 19. Rc3 Bh4 20. Nxh4
-Qxh4 21. a3 Be4 22. f3 Qg3+ 0-1`,
+Qxh4 21. a3 Be4 22. f3 Qg3+ 0-1
 
-`[Event "2024 London Ch A1"]
+`,`[Event "2024 London Ch A1"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -81,9 +81,9 @@ Nbxd7 8. Nf5 Nb6 9. c4 Qc7 10. b3 g6 11. Ne3 Be7 12. O-O O-O 13. Ba3 Rfd8
 14. Nc3 a6 15. Kh1 Qc6 16. Qd2 Bf8 17. Rad1 Nbd7 18. Ned5 b5 19. Nxf6+ Nxf6
 20. Nd5 Nxd5 21. cxd5 Qb7 22. f4 Bh6 23. Bb2 Rac8 24. Qe1 f6 25. Qh4 Bg7
 26. fxe5 fxe5 27. Qg4 Qd7 28. Qxd7 Rxd7 29. Rc1 Rdc7 30. Rxc7 Rxc7 31. Rc1
-Rc5 32. Ba3 Rxc1+ 33. Bxc1 Kf7 34. Kg1 Bf6 1/2-1/2`,
+Rc5 32. Ba3 Rxc1+ 33. Bxc1 Kf7 34. Kg1 Bf6 1/2-1/2
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -102,9 +102,9 @@ Re1 Rb8 15. Nf1 Qe7 16. Ne3 Rbd8 17. Nxd5 Rxd5 18. Bc4 Qe6 19. Qb3 Ne7 20.
 Bxd5 Nxd5 21. a3 Kh8 22. h3 Bh5 23. Rac1 b6 24. Qd3 c5 25. dxc5 bxc5 26.
 Nd2 Nf4 27. Qe3 Ne2+ 28. Rxe2 Bxe2 29. Qxe2 Qxe5 30. Nxe4 fxe4 31. Rc4 Re8
 32. Qc2 e3 33. fxe3 Qxe3+ 34. Qf2 Qb3 35. Qxc5 Qxb2 36. Qxa7 Re1+ 37. Kh2
-Qe5+ 38. g3 Qe2+ 0-1`,
+Qe5+ 38. g3 Qe2+ 0-1
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -123,9 +123,9 @@ cxd4 Qd6 15. Rab1 Bxd4 16. Nxd4 Qxd4 17. Be3 Qd6 18. Red1 Qe7 19. Qh5 a6
 20. Bd2 b5 21. Bb4 Qf6 22. Be4 Ra7 23. Rbc1 Qd8 24. Bc5 Rc7 25. Bb6 Rxc1
 26. Bxd8 Rxd1+ 27. Qxd1 Kxd8 28. Qd6 Re8 29. f4 Re7 30. Bc6 f6 31. Kf2 e5
 32. f5 Ke8 33. Qc7 Kf7 34. Bd5+ Kf8 35. Qxc8+ Re8 36. Qxd7 Re7 37. Qd8+ Re8
-38. Qd6+ Re7 39. Qxa6 b4 40. Qc8+ Re8 41. Qc5+ 1-0`,
+38. Qd6+ Re7 39. Qxa6 b4 40. Qc8+ Re8 41. Qc5+ 1-0
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -143,9 +143,9 @@ cxd4 Qd6 15. Rab1 Bxd4 16. Nxd4 Qxd4 17. Be3 Qd6 18. Red1 Qe7 19. Qh5 a6
 14. Nxc6 bxc6 15. Ra6 Kd7 16. Bf4 Bb4 17. Ke2 Rhe8 18. Rha1 e5 19. Rxa7+
 Rxa7 20. Rxa7+ Ke6 21. dxe5 h6 22. h4 f6 23. Rxg7 Kf5 24. Bxh6 Rxe5+ 25.
 Kf3 Ke6 26. Ne4 Rf5+ 27. Kg4 Rd5 28. Rg6 Be7 29. f4 Rd4 30. Ng5+ Kd5 31.
-Nf3 Rb4 32. Rg7 Bd6 33. Rd7 Ke6 34. Rxd6+ Kxd6 35. Bf8+ 1-0`,
+Nf3 Rb4 32. Rg7 Bd6 33. Rd7 Ke6 34. Rxd6+ Kxd6 35. Bf8+ 1-0
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -164,9 +164,9 @@ Bb3 b6 15. Bd2 Qd6 16. Rad1 Bb7 17. Ng3 Rfc8 18. Ne4 Bxe4 19. dxe4 Nxc2 20.
 Bc3 Qc5 21. e5 dxc3 22. Bxc2 cxb2 23. Be4 Rab8 24. Rd2 Qb4 25. Rd4 Qc3 26.
 Rb1 Bf8 27. Qxb2 Qxb2 28. Rxb2 Bc5 29. Kf1 Bxd4 30. Rb1 Rc4 31. a5 Ra4 32.
 axb6 Rxb6 33. Rd1 Rb2 34. Bf3 Rba2 35. Rd3 Ra1+ 36. Bd1 Bb6 37. Ke2 Rd4 38.
-Rc3 Raxd1 39. Rc8+ Kg7 40. Kf3 R1d3+ 41. Kg4 h5+ 42. Kg5 Bd8+ 0-1`,
+Rc3 Raxd1 39. Rc8+ Kg7 40. Kf3 R1d3+ 41. Kg4 h5+ 42. Kg5 Bd8+ 0-1
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -185,9 +185,9 @@ Kh8 15. Nh5 Bxe5 16. Ne2 g6 17. Nhf4 Bg7 18. Nh3 e5 19. Rd1 Ne3 20. Qf3
 Nxd1 21. g4 e4 22. Qg3 Nxb2 23. Qh4 Nc6 24. Bg5 Qd7 25. f3 exf3 26. Bxf3
 Ne5 27. Kg2 Nxg4 28. Nhf4 Ne3+ 29. Kg3 Nf5+ 30. Kf2 Nxh4 31. Bxh4 Nd3+ 32.
 cxd3 Bxa1 33. Nxd5 Qh3 34. Bg3 Ra7 35. Nef4 Bd4+ 36. Ke2 Re8+ 37. Be4 Qg4+
-38. Kd2 Bb7 39. h3 Qxg3 0-1`,
+38. Kd2 Bb7 39. h3 Qxg3 0-1
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -209,9 +209,9 @@ Kh2 Qf4+ 33. Qxf4 Bxf4+ 34. g3 Bxe5 35. dxe5 f6 36. f4 fxe5 37. fxe5 Kf7
 38. Kg2 Kg6 39. g4 Kg5 40. Kg3 b5 41. h4+ Kg6 42. Kf4 Kf7 43. Ke3 Kg6 44.
 Kf4 a5 45. h5+ Kf7 46. Ke3 g6 47. Kd4 gxh5 48. gxh5 b4 49. axb4 axb4 50.
 Kd3 Ke7 51. Kc2 Kd7 52. Kb3 Kc6 53. Kxb4 Kb6 54. Kc3 Kc5 55. Kd3 d4 56. Kd2
-Kd5 0-1`,
+Kd5 0-1
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -230,9 +230,9 @@ d4 15. Bg5 O-O 16. Bxf6 Bxf6 17. Nd2 Bb7 18. Nde4 Nd5 19. Nh5 Ra6 20. Qg4
 Qe7 21. Nexf6+ Qxf6 22. Nxf6+ Nxf6 23. Qd1 e4 24. dxe4 Nxe4 25. Qxd4 Rd6
 26. Qa7 Ba8 27. Qxa5 Rg6 28. g3 Nxg3 29. fxg3 Rxg3+ 30. Kf1 Rf3+ 31. Ke2
 Re8+ 32. Kd1 Rc8 33. Bd5 Rf5 34. Bxf7+ Rxf7 35. Kc1 b3 36. Qb5 Rxc2+ 37.
-Kb1 Be4 38. Qe8+ 1-0`,
+Kb1 Be4 38. Qe8+ 1-0
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -246,9 +246,9 @@ Kb1 Be4 38. Qe8+ 1-0`,
 [PlyCount "23"]
 
 1. e4 e5 2. f4 exf4 3. Nf3 g5 4. h3 Nf6 5. Nc3 Nh5 6. Bc4 Qe7 7. d4 Bg7 8.
-Qd3 Ng3 9. Rg1 c6 10. d5 d6 11. Bd2 O-O 12. O-O-O 1-0`,
+Qd3 Ng3 9. Rg1 c6 10. d5 d6 11. Bd2 O-O 12. O-O-O 1-0
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -265,9 +265,9 @@ Qd3 Ng3 9. Rg1 c6 10. d5 d6 11. Bd2 O-O 12. O-O-O 1-0`,
 O-O Nge7 9. Be3 Qc7 10. Rc1 h6 11. d5 Nd8 12. dxe6 Nxe6 13. Nd5 Qd8 14. Nd4
 Bxb5 15. Nxb5 Nc6 16. f4 Qd7 17. f5 a6 18. fxe6 fxe6 19. Qh5+ Kd8 20. Bb6+
 Kc8 21. Rf7 exd5 22. Rxd7 Kxd7 23. Nc7 Rc8 24. Qf7+ Be7 25. Qe6+ Kd8 26.
-Nxd5+ 1-0`,
+Nxd5+ 1-0
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -286,9 +286,9 @@ Be7 9. b5 Nd8 10. Nxe5 Qd6 11. Bf4 Qb6 12. Nd2 d4 13. c4 Bb4 14. O-O O-O
 21. Rxc4 Rxc4 22. dxc4 Bxg3 23. hxg3 Re8 24. Bd3 Ng4 25. c5 Qf6 26. Qc2 Ne6
 27. Ra1 Ne5 28. Be2 Rd8 29. Rd1 Rd7 30. f4 d3 31. Bxd3 Nxd3 32. Rxd3 Rxd3
 33. Qxd3 Qb2 34. Qc4 Qa2 35. Qb4 Qb1+ 36. Kh2 Nxc5 37. Qxc5 Qxb3 38. e5 Qd3
-39. Qxc7 Qxb5 40. Qc8+ Kh7 41. Qf5+ 1/2-1/2`,
+39. Qxc7 Qxb5 40. Qc8+ Kh7 41. Qf5+ 1/2-1/2
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -309,9 +309,9 @@ dxc6 26. Nxb6 Be6 27. Be4 g6 28. Bd3 Ke7 29. Nc4 e4 30. Be2 b5 31. Nd2 Bd5
 32. f4 Kf6 33. Kf2 Kf5 34. Ke3 h5 35. h3 Ke6 36. Nxe4 Bxe4 37. Kxe4 Kf6 38.
 Kd4 h4 39. g4 Ke6 40. Bd3 Ke7 41. Bxg6 Ke6 42. Be4 Ke7 43. Bxc6 Kd6 44.
 Bxb5 Kc7 45. f5 Kc8 46. Ke5 Kc7 47. Kf6 Kd6 48. Kg7 Ke5 49. f6 Kf4 50. f7
-Kg5 51. Kh7 Kf4 52. f8=Q+ Kg3 53. Bf1 Kh2 54. Qf2+ Kh1 55. Qg2# 1-0`,
+Kg5 51. Kh7 Kf4 52. f8=Q+ Kg3 53. Bf1 Kh2 54. Qf2+ Kh1 55. Qg2# 1-0
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -337,9 +337,9 @@ Rh7+ Kc8 57. Rh5 Rg7 58. Ke5 f4 59. a4 bxa4 60. bxa4 f3 61. Rh2 g4 62. Ke4
 g3 63. Rc2+ Kb7 64. Kxf3 g2 65. Rxg2 Rxg2 66. Kxg2 Kc6 67. Kf2 Kd5 68. Ke3
 Kc4 69. Kd2 Kb3 70. Kc1 Kxa4 71. Kb2 Kb4 72. Ka2 a5 73. Kb2 a4 74. Ka2 Kc4
 75. Kb2 Kb5 76. Ka2 Kb4 77. Kb2 a3+ 78. Ka2 Ka4 79. Kb1 Kb3 80. Ka1 Ka4 81.
-Ka2 Kb4 82. Kb1 Kc3 83. Ka2 1/2-1/2`,
+Ka2 Kb4 82. Kb1 Kc3 83. Ka2 1/2-1/2
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -355,9 +355,9 @@ Ka2 Kb4 82. Kb1 Kc3 83. Ka2 1/2-1/2`,
 1. e4 e6 2. d4 d5 3. e5 c5 4. c3 Nc6 5. Bb5 a6 6. Bxc6+ bxc6 7. Nh3 cxd4 8.
 Qxd4 c5 9. Qf4 Ne7 10. Ng5 Nf5 11. g4 Nh6 12. h3 Be7 13. h4 O-O 14. Qg3 f6
 15. Nxh7 Kxh7 16. Qd3+ f5 17. Bxh6 Kxh6 18. g5+ Kh7 19. f4 Bb7 20. Qf3 Rb8
-21. Qh5+ Kg8 22. g6 Bxh4+ 23. Rxh4 1-0`,
+21. Qh5+ Kg8 22. g6 Bxh4+ 23. Rxh4 1-0
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -376,9 +376,9 @@ Qf3 Be6 21. c4 b5 22. Kh2 Qf4+ 23. Qxf4 exf4 24. Rg1 bxc4 25. dxc4 d5 26.
 exd5 cxd5 27. cxd5 Bf5 28. g4 Be4 29. Re1 Bf3 30. Rc1 Rfd8 31. Rc5 a4 32.
 Bc4 Rab8 33. Bf1 Rb2 34. Kg1 Rxd5 35. Rc8+ Kg7 36. h4 Bxg4 37. Rc7 Rdd2 38.
 Bc4 Bh5 39. Ra7 Rxf2 40. Rxa4 Rg2+ 41. Kf1 Rgc2 42. Kg1 Rc1+ 43. Bf1 Be2
-44. Rxf4 Bxf1 45. Rxf1 Rxf1+ 46. Kxf1 Ra2 0-1`,
+44. Rxf4 Bxf1 45. Rxf1 Rxf1+ 46. Kxf1 Ra2 0-1
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -399,9 +399,9 @@ Kxe3 Kg7 27. e5 Re8 28. f4 Bd5 29. Rc3 Be6 30. a5 Rc8 31. Rxc8 Bxc8 32. Kd4
 Be6 33. b4 Kf8 34. Kc5 Ke7 35. Kb6 Bc8 36. Kc7 Bd7 37. Kxb7 Bb5 38. Kc7 Ke6
 39. Kb6 f6 40. exf6 Kxf6 41. Kc5 Kf5 42. Kd4 g5 43. Ke3 Bc6 44. fxg5 Kxg5
 45. Kf2 Kg4 46. h4 Bd5 47. h5 Kxh5 48. Kg1 Kg4 49. Kh2 Bc6 50. Kg1 Kxg3 51.
-Kf1 Kf3 52. Kg1 Ke3 53. Kh2 Kd3 54. Kh3 Kc3 0-1`,
+Kf1 Kf3 52. Kg1 Ke3 53. Kh2 Kd3 54. Kh3 Kc3 0-1
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.10.07"]
 [Round "1"]
@@ -418,9 +418,9 @@ Kf1 Kf3 52. Kg1 Ke3 53. Kh2 Kd3 54. Kh3 Kc3 0-1`,
 Bg5 Nf6 9. Nbd2 h6 10. Bxf6 Qxf6 11. c3 O-O-O 12. Qd1 Rde8 13. Be2 e4 14.
 dxe4 dxe4 15. Nh2 Bxh2 16. Rxh2 e3 17. fxe3 Rxe3 18. g4 Bd3 19. Rf2 Qh4 20.
 Kf1 Qxh3+ 21. Ke1 Rhe8 22. Qb3 Rxe2+ 23. Rxe2 Rxe2+ 24. Kd1 Qh1+ 25. Nf1
-Qxf1# 0-1`,
+Qxf1# 0-1
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -441,9 +441,9 @@ Qd6 27. Ng4 Rbe8 28. Rf5 Qb6 29. Nxe5 Rxe5 30. Qxe5 Qe3 31. Qf4 Qxd3 32.
 Nd5 Qb1+ 33. Qf1 Qxb2 34. Nxc7 Qxa3 35. e5 Rc8 36. Rxf7 a5 37. h3 Qc5 38.
 Ne6 Qxe5 39. Rxg7+ Kh8 40. Rg6 b4 41. Rxh6+ Kg8 42. Rg6+ Kh8 43. Ng5 Qb2
 44. Nf7+ Kh7 45. Rh6+ Kg7 46. Kh2 Rc1 47. Qf5 Kf8 48. Rh8+ Ke7 49. Rh7 Ke8
-50. Qe6+ Kf8 51. Qh6+ Ke8 52. Nd6+ Kd8 53. Qf8# 1-0`,
+50. Qe6+ Kf8 51. Qh6+ Ke8 52. Nd6+ Kd8 53. Qf8# 1-0
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -460,9 +460,9 @@ Ne6 Qxe5 39. Rxg7+ Kh8 40. Rg6 b4 41. Rxh6+ Kg8 42. Rg6+ Kh8 43. Ng5 Qb2
 Bg5 h6 9. Bxf6 Bxf6 10. Nbc3 Nb4 11. Bb3 c6 12. a3 Na6 13. O-O Nc5 14. Ba2
 Be6 15. b4 Bxa2 16. Rxa2 Ne6 17. Rd1 Bg7 18. Qe3 O-O 19. Nb1 f5 20. f3 f4
 21. Qf2 d5 22. Qf1 Qb6+ 23. Kh1 Rad8 24. c3 Ng5 25. a4 dxe4 26. a5 Qe3 27.
-fxe4 f3 28. Ng1 fxg2+ 29. Qxg2 Rf2 30. Rxf2 1-0`,
+fxe4 f3 28. Ng1 fxg2+ 29. Qxg2 Rf2 30. Rxf2 1-0
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -476,9 +476,9 @@ fxe4 f3 28. Ng1 fxg2+ 29. Qxg2 Rf2 30. Rxf2 1-0`,
 [PlyCount "14"]
 
 1. e4 e5 2. Nc3 Nf6 3. f4 exf4 4. e5 Qe7 5. d4 d6 6. Bxf4 Nc6 7. Nf3 Qd8
-0-1`,
+0-1
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -494,9 +494,9 @@ fxe4 f3 28. Ng1 fxg2+ 29. Qxg2 Rf2 30. Rxf2 1-0`,
 8. Nc3 O-O 9. Bg5 h6 10. Bxf6 Qxf6 11. e5 Qg6 12. Bd3 Qxg2 13. Rg1 Qh3 14.
 Rg3 Qh5 15. Qc2 Nb4 16. Qb1 Nxd3+ 17. Qxd3 Re8 18. O-O-O d6 19. Nd5 dxe5
 20. Nxb6 axb6 21. a3 e4 22. Qe2 Bg4 23. Rdg1 exf3 24. Qd3 f5 25. Qc4+ Qf7
-26. Qxf7+ Kxf7 27. h3 Bh5 28. Rxg7+ Kf6 0-1`,
+26. Qxf7+ Kxf7 27. h3 Bh5 28. Rxg7+ Kf6 0-1
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -513,9 +513,9 @@ Rg3 Qh5 15. Qc2 Nb4 16. Qb1 Nxd3+ 17. Qxd3 Re8 18. O-O-O d6 19. Nd5 dxe5
 8. Nf3 e6 9. Qe2 Nbd7 10. Nd4 Bg6 11. Nxe6 fxe6 12. Qxe6+ Be7 13. O-O Qd6
 14. Qe3 O-O-O 15. Qxa7 Qc7 16. d3 Bd6 17. f4 Qb6+ 18. Qxb6 Nxb6 19. Bb3
 Rhe8 20. f5 Nbd5 21. Nxd5 cxd5 22. fxg6 hxg6 23. Bb2 Rd7 24. c4 dxc4 25.
-dxc4 Re3 26. Ba2 Rc7 27. c5 1-0`,
+dxc4 Re3 26. Ba2 Rc7 27. c5 1-0
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -531,9 +531,9 @@ dxc4 Re3 26. Ba2 Rc7 27. c5 1-0`,
 8. Qe2 Re8 9. O-O-O Nbd7 10. Ne5 c5 11. Nxd7 Bxd7 12. Qe5 c4 13. Be2 b5 14.
 a3 Rb8 15. b4 cxb3 16. Kd2 bxc2 17. Rc1 Qa5 18. Qe3 Ne4+ 19. Ke1 Qxc3+ 20.
 Kf1 Nd2+ 21. Kg1 Rbc8 22. Bd3 Nb3 23. Bxc2 Nxc1 24. h3 Qxc2 25. Kh2 Nb3 26.
-g4 Rc3 0-1`,
+g4 Rc3 0-1
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -552,9 +552,9 @@ Bxe7 Qxe7 15. O-O-O Nd7 16. g4 Rf8 17. Qxf8 Qxf8 18. d4 b5 19. Bb3 a5 20.
 a4 b4 21. Ne2 c5 22. dxc5 Nxc5 23. Bd5 Nxa4 24. b3 Nc5 25. c3 Qf3 26. cxb4
 axb4 27. Ng3 Qc3+ 28. Kb1 Nd3 29. Rxd3 Qxd3+ 30. Kc1 hxg4 31. Nf5 Rxh3 32.
 Rxh3 gxh3 33. Ng3 Qf3 34. Be6 h2 35. Kd2 Qxf2+ 36. Kd3 Qxg3+ 37. Kc4 Kc6
-38. Bd5+ Kb6 39. Bf7 h1=Q 40. Be8 Qxe4# 0-1`,
+38. Bd5+ Kb6 39. Bf7 h1=Q 40. Be8 Qxe4# 0-1
 
-`[Event "2024 London Ch E"]
+`,`[Event "2024 London Ch E"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -574,9 +574,9 @@ Kxd3 Nxf4+ 20. Kc2 h5 21. d3 Nd5 22. Bd2 Rfe8 23. Bg2 Nf6 24. Bxa8 Rxa8 25.
 b4 h4 26. Rh1 h3 27. c4 Nh5 28. Rg1 f5 29. Be1 Bf3 30. Kd2 h2 31. Rf1 h1=Q
 32. Rxh1 Bxh1 33. c5 f4 34. a4 a6 35. b5 axb5 36. axb5 Ra5 37. Kc3 Rxb5 38.
 d4 Nf6 39. Kc4 Bc6 40. Bh4 f3 41. Kd3 Rb3+ 42. Kc4 Ra3 43. Kb4 Re3 44. Ka5
-Re4 45. Kb6 Rxh4 46. Kxc6 f2 47. Kd6 Rxd4+ 48. Ke5 Rc4 0-1`,
+Re4 45. Kb6 Rxh4 46. Kxc6 f2 47. Kd6 Rxd4+ 48. Ke5 Rc4 0-1
 
-`[Event "2024 London Ch E"]
+`,`[Event "2024 London Ch E"]
 [Site "?"]
 [Date "2024.09.12"]
 [Round "1"]
@@ -593,9 +593,9 @@ Re4 45. Kb6 Rxh4 46. Kxc6 f2 47. Kd6 Rxd4+ 48. Ke5 Rc4 0-1`,
 dxe5 d4 9. exf6 Bxf6 10. Ne4 Bg7 11. e3 Bg4 12. exd4 Qe7 13. Re1 f5 14. Nc5
 Bf6 15. Rxe7+ Bxe7 16. Nxb7 Bxf3 17. Bxf3 O-O 18. d5 c5 19. Be3 Nd7 20. d6
 Bf6 21. Nxc5 Nxc5 22. Bxa8 Rxa8 23. Bxc5 Bxb2 24. Qd5+ Kg7 25. Qxa8 Bxa1
-26. d7 1-0`,
+26. d7 1-0
 
-`[Event "2024 London Ch A1"]
+`,`[Event "2024 London Ch A1"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -615,9 +615,9 @@ Bh3 Kh8 22. Nb3 Nb7 23. Qd2 Nd5 24. Qd3 Rd6 25. Nd2 Ne3 26. Nc4 Rdd8 27.
 Bxe3 dxe3 28. Qg6 Rf6 29. Qe4 Nd6 30. Nxd6 Rxd6 31. Rfd1 Qa6 32. Kf1 Rf8
 33. b4 fxg3 34. hxg3 cxb4 35. axb4 Qb6 36. Qg6 Rf6 37. Rc8+ Bf8 38. Qb1 Qa6
 39. Rxd6 Rxf3+ 40. Ke1 Qxd6 41. Qb2+ Kg8 42. exf3 Qxg3+ 43. Kd1 Qxf3+ 44.
-Ke1 Qxh3 45. Rxf8+ 1-0`,
+Ke1 Qxh3 45. Rxf8+ 1-0
 
-`[Event "2024 London Ch A1"]
+`,`[Event "2024 London Ch A1"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -633,9 +633,9 @@ Ke1 Qxh3 45. Rxf8+ 1-0`,
 1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 a6 5. c4 Qc7 6. Be2 Nf6 7. Nc3 Bb4 8.
 O-O Bxc3 9. bxc3 Nxe4 10. Bd3 Nc5 11. Bc2 d6 12. Re1 Nbd7 13. Nf5 O-O 14.
 Nxg7 Kxg7 15. Qh5 f5 16. Bh6+ Kh8 17. Bxf5 Nf6 18. Qh4 Rf7 19. Bg5 Ng8 20.
-Bc2 e5 21. Bd8 Qc6 22. Re3 Bf5 23. Qh5 Rg7 24. Rg3 Rxg3 25. hxg3 Bxc2 0-1`,
+Bc2 e5 21. Bd8 Qc6 22. Re3 Bf5 23. Qh5 Rg7 24. Rg3 Rxg3 25. hxg3 Bxc2 0-1
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -654,9 +654,9 @@ g4 Be6 15. Be3 Qxb2 16. Nxc6 Bd6 17. Rfc1 Bd7 18. Qb5 Rb8 19. Qxb2 Rxb2 20.
 Ne5 Be6 21. Na4 Rbb8 22. Rc6 Rfd8 23. Rac1 h5 24. g5 Ne4 25. Kg2 Bxe5 26.
 dxe5 d4 27. f3 dxe3 28. fxe4 Rd2+ 29. Kf3 Rxa2 30. Nc3 Rh2 31. Kxe3 Rxh3+
 32. Kd4 Rb4+ 33. Kc5 Rc4+ 34. Kd6 Rd3+ 35. Nd5 Rxe4 36. g6 Rxd5+ 37. Ke7
-Rexe5 0-1`,
+Rexe5 0-1
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -677,9 +677,9 @@ Bb3 d4 9. Nd1 Re8 10. g4 Nbc6 11. Nf2 Kh8 12. Ng5 Rf8 13. h4 h6 14. Nf3 f5
 Rxf8 33. g7+ Kf7 34. Qxd6 Bxd6 35. gxf8=Q+ Bxf8 36. axb3 a6 37. Bh4 Bd6 38.
 Bxf2 Be5 39. Kg2 Ke7 40. Bg3 Bf6 41. Rf1 Bg7 42. Rf5 Ke6 43. Rd5 Bh8 44.
 Bf2 Be5 45. Bxd4 Bxd4 46. Rxd4 Ke7 47. Rc4 Kd6 48. d4 b5 49. Rc5 Kd7 50. e5
-Kd8 1-0`,
+Kd8 1-0
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -696,9 +696,9 @@ Kd8 1-0`,
 8. e4 O-O 9. Re1 Qc7 10. Bd2 e5 11. Rc1 exd4 12. Nb5 Qb8 13. Nbxd4 Ne5 14.
 Nf5 Bxf5 15. exf5 Bd6 16. h3 Nxc4 17. Rxc4 Re8 18. Bc3 Nd5 19. f6 Rxe1+ 20.
 Qxe1 Nxf6 21. Bxf6 gxf6 22. Re4 Qc7 23. Nd4 Qd7 24. g4 Be5 25. Nf5 Rd8 26.
-Rxe5 fxe5 27. Qxe5 f6 28. Qxf6 Qd1+ 29. Kg2 Qd5+ 30. Kh2 1-0`,
+Rxe5 fxe5 27. Qxe5 f6 28. Qxf6 Qd1+ 29. Kg2 Qd5+ 30. Kh2 1-0
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -721,9 +721,9 @@ Qd2 Qa6 34. Qb2 Rc8 35. Nxb5 Nxb5 36. Rxb5 Rxb5 37. Qxb5 Qxa3 38. Qe2 Qa4
 Rb2 Qc3 46. Qd2 Qc4 47. Qe2 Kf6 48. Qf3+ Kg7 49. Qe2 Qxe2 50. Rxe2 Kf6 51.
 f4 Kf5 52. Kf3 Rf1+ 53. Kg2 Rd1 54. Kf3 Rc1 55. Rf2 f6 56. Re2 e5 57. fxe5
 fxe5 58. dxe5 Kxe5 59. Kf2 Ke4 60. Rd2 Rc4 61. Rb2 Kd3 62. Rb3+ Rc3 63.
-Rxc3+ Kxc3 64. Kf3 Kd3 65. Kf2 Kd2 66. Kf3 1/2-1/2`,
+Rxc3+ Kxc3 64. Kf3 Kd3 65. Kf2 Kd2 66. Kf3 1/2-1/2
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -742,9 +742,9 @@ Rxc3+ Kxc3 64. Kf3 Kd3 65. Kf2 Kd2 66. Kf3 1/2-1/2`,
 20. Be2 Nxe4 21. Nxe4 Bxe2 22. Qxe2 Qxe2 23. Nxe2 O-O 24. Bd4 b5 25. Rg3 g6
 26. Nf6+ Bxf6 27. Bxf6 Rfe8 28. Nd4 Rac8 29. Kf2 Re4 30. Re1 Rf4+ 31. Rf3
 Rxf3+ 32. Kxf3 h6 33. Nc6 Ra8 34. Ne7+ Kh7 35. Nd5 g5 36. Re7 Kg6 37. Rd7
-Rc8 38. c3 a5 39. Ne7+ Kxf6 40. Nxc8 1-0`,
+Rc8 38. c3 a5 39. Ne7+ Kxf6 40. Nxc8 1-0
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -762,9 +762,9 @@ Bg5 Nbd7 9. Qd2 b5 10. Bb3 Bb7 11. Qf4 e5 12. Qg3 Re8 13. Rad1 Qc7 14. Nh4
 Nh5 15. Qg4 Ndf6 16. Bxf6 Nxf6 17. Qg3 Bc8 18. f4 Nh5 19. Qf2 c4 20. fxe5
 Be6 21. dxc4 dxe5 22. cxb5 Bc5 23. Bxe6 Bxf2+ 24. Rxf2 fxe6 25. g4 Nf4 26.
 Rf3 Rad8 27. Rc1 Qc5+ 28. Kh1 Rd2 29. b4 Qd4 30. bxa6 g5 31. b5 gxh4 32.
-Rb1 Rxh2+ 33. Kxh2 Qd2+ 0-1`,
+Rb1 Rxh2+ 33. Kxh2 Qd2+ 0-1
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -785,9 +785,9 @@ Rc6 27. Nh2 Qf8 28. Nf3 Qf7 29. h4 Be7 30. a3 b5 31. Nd2 Rc8 32. Nf1 Rg8
 33. Qh3 Nf8 34. Ne3 Kh7 35. Ng4 Qf5 36. Nf6+ Bxf6 37. Qxf5+ exf5 38. exf6
 Kg6 39. Kf2 Nd7 40. Kf3 Nxf6 41. h5+ Nxh5 42. Be5 Rc8 43. Ke3 Rc4 44. Bd4
 Rc8 45. Be5 Re8 46. Kd4 Nf6 47. g3 Rc8 48. Kd3 Nh5 49. Bd6 Kg5 50. Kd4 Rc4+
-51. Kxd5 Rxc3 52. Be5 Rxa3 53. Bb2 Ra2 54. Bc1+ f4 55. Ke5 Kg4 56. Kd4 0-1`,
+51. Kxd5 Rxc3 52. Be5 Rxa3 53. Bb2 Ra2 54. Bc1+ f4 55. Ke5 Kg4 56. Kd4 0-1
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -810,9 +810,9 @@ Nxd5 cxd5 39. Kf3 Ke5 40. Re3+ Kd6 41. Rc3 d4 42. Rd3 Kd5 43. Kf4 Re8 44.
 Rb3 Kc4 45. Rb7 d3 46. Rc7+ Kb3 47. Rd7 Kc2 48. Rc7+ Kd1 49. Rxg7 d2 50.
 Rd7 Ke2 51. Kf5 d1=Q 52. Rxd1 Kxd1 53. g4 Re3 54. h4 Rxa3 55. Kxf6 Ra6+ 56.
 Kf5 Ke2 57. g5 hxg5 58. hxg5 Ra5+ 59. Kf6 Ra6+ 60. Kf7 Ra7+ 61. Kf6 Kf3 62.
-g6 Ra6+ 63. Kf7 Rxg6 64. Kxg6 1/2-1/2`,
+g6 Ra6+ 63. Kf7 Rxg6 64. Kxg6 1/2-1/2
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -830,9 +830,9 @@ d4 Bg7 9. Nbd2 b5 10. Bc2 O-O 11. Nf1 h6 12. Nh4 d5 13. exd5 Nxd5 14. Nf3
 exd4 15. cxd4 Bg4 16. h3 Bxf3 17. Qxf3 Nxd4 18. Qd3 Nxc2 19. Qxc2 Rc8 20.
 Ne3 Re8 21. Rd1 Nxe3 22. Bxe3 Qe7 23. Rd3 Red8 24. Ra3 Ra8 25. Re1 Qb4 26.
 Rb1 Qd6 27. Bc5 Qd2 28. Qe4 Bxb2 29. Rg3 Bg7 30. a4 Qd5 31. Qc2 c6 32. Be3
-Qd3 33. Qa2 Be5 34. Rf3 Qd1+ 35. Rxd1 Rxd1# 0-1`,
+Qd3 33. Qa2 Be5 34. Rf3 Qd1+ 35. Rxd1 Rxd1# 0-1
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -852,9 +852,9 @@ Be2 21. Rd2 Bxf3 22. gxf3 c4 23. a3 Na6 24. b3 cxb3 25. Qxc7 Nxc7 26. Rb2
 Rb8 27. Bd2 O-O 28. Bxa5 Nb5 29. Rxb3 Nxd4 30. Rxb8 Rxb8 31. Kg2 Ra8 32.
 Bb4 Bxb4 33. axb4 Nc2 34. Rc1 Nxb4 35. f4 h6 36. Nb2 Ra2 37. Nd1 Nd3 38.
 Kg3 Kh7 39. Rc7 Kg6 40. Kf3 Ra3 41. Rc3 Rxc3 42. Nxc3 Kf5 43. Ne2 Ne1+ 44.
-Ke3 Kg4 45. Kd4 Kf3 46. Nc3 Kxf4 47. Nd1 Nf3+ 0-1`,
+Ke3 Kg4 45. Kd4 Kf3 46. Nc3 Kxf4 47. Nd1 Nf3+ 0-1
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -877,9 +877,9 @@ Rxc3 Rxc3+ 39. Kxc3 Kc5 40. Kd3 e5 41. Kc3 Kd6 42. Kd3 Kc5 43. Ke2 Kc4 44.
 Kf3 Kd3 45. h4 d4 46. e4 fxe4+ 47. Kg2 Ke2 48. g4 hxg4 49. h5 d3 50. h6 d2
 51. h7 d1=Q 52. h8=Q Qf1+ 53. Kg3 Qg1+ 54. Kh4 Qh2+ 55. Kxg4 Qxh8 56. Kf5
 Kf3 57. Kg6 e3 58. Kf5 e2 59. Kg6 e1=Q 60. Kf5 Qf8+ 61. Ke6 Qf4 62. Ke7
-Qeb4+ 63. Ke6 Qbc4+ 64. Kd6 Qfd4+ 65. Ke7 e4 66. Kf8 Qc7 67. Ke8 Qdd8# 0-1`,
+Qeb4+ 63. Ke6 Qbc4+ 64. Kd6 Qfd4+ 65. Ke7 e4 66. Kf8 Qc7 67. Ke8 Qdd8# 0-1
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -896,9 +896,9 @@ Qeb4+ 63. Ke6 Qbc4+ 64. Kd6 Qfd4+ 65. Ke7 e4 66. Kf8 Qc7 67. Ke8 Qdd8# 0-1`,
 8. Qf3 Bxh3 9. O-O Be6 10. d3 h6 11. Be3 Nd7 12. Nd2 Bc5 13. Rae1 Bxe3+ 14.
 Rxe3 Qb6 15. Nc4 Qc7 16. Qg3 O-O 17. Qh4 Bxc4 18. dxc4 Qb6 19. Rf3 Qxb2 20.
 g4 Qc1+ 21. Kf2 Qxc2+ 22. Re2 Qxc4 23. g5 Qe6 24. Rh3 Kh7 25. Kg1 Qg6 26.
-Rg2 h5 27. Rgg3 Kg8 28. Qxh5 Qxh5 29. Rxh5 g6 30. Rh6 Kg7 0-1`,
+Rg2 h5 27. Rgg3 Kg8 28. Qxh5 Qxh5 29. Rxh5 g6 30. Rh6 Kg7 0-1
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -916,9 +916,9 @@ Qc1 Bxf3 9. gxf3 Qg5+ 10. Kh1 Qf4 11. Be2 Nd4 12. Qd1 Nf6 13. Bxd4 Bxd4 14.
 c3 Bb6 15. d4 O-O-O 16. Qd3 Qh4 17. Nd2 c5 18. Qc4 Kb8 19. Qxf7 cxd4 20.
 Nc4 Rd7 21. Qe6 d3 22. Bxd3 Bxf2 23. Rad1 Bg3 24. Rd2 Re8 25. Qf5 g6 26.
 Qxf6 Qxf6 27. hxg3 Ka7 28. Ne3 Qg5 29. Nd5 Qxd2 30. Nf6 Qxd3 31. Rf2 Rde7
-32. Nxe8 Rxe8 0-1`,
+32. Nxe8 Rxe8 0-1
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -938,9 +938,9 @@ Kxd6 26. Rxf7 Ke5 27. Kd3 b6 28. Be4 b5 29. Bxg6 bxc4+ 30. bxc4 Rb8 31.
 Rf5+ Kd6 32. Rf6+ Ke5 33. Rxa6 Rb3+ 34. Kc2 Rh3 35. Re6+ Kf4 36. Re4+ Kf3
 37. d6 a5 38. d7 a4 39. d8=Q Kg2 40. Qd2+ Kf3 41. Qe3+ Kg2 42. Qxh3+ Kxh3
 43. Bf5+ Kg3 44. Kd2 Kf3 45. g6 Kg3 46. g7 Kh2 47. g8=Q Kh1 48. Re1+ Kh2
-49. Qg1# 1-0`,
+49. Qg1# 1-0
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.09.14"]
 [Round "2"]
@@ -959,9 +959,9 @@ Nxf3+ 15. Qxf3 Bh6 16. Rfe1 c6 17. Bxh6 Nxh6 18. b3 O-O 19. Rad1 f5 20. Qg3
 Kh7 21. f3 Qd8 22. Re2 f4 23. Qf2 Qa5 24. Na2 g5 25. dxc6 bxc6 26. Rxd6 Qc7
 27. Red2 Rad8 28. Rxd8 Rxd8 29. Rxd8 Qxd8 30. Qa7+ Kh8 31. Qxa6 Qd1+ 32.
 Kh2 Qxc2 33. Nb4 Qf2 34. Qc8+ Ng8 35. Qe6 Qg3+ 36. Kg1 Qe1+ 37. Kh2 Qg3+
-1/2-1/2`,
+1/2-1/2
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -985,9 +985,9 @@ Bxe6 Rxe6 21. Qf3 Qc4 22. Qxb7 Rae8 23. Re4 Qc6 24. Rxb4 Qd7 25. Qd5 Qe7
 Rd4+ 50. Ke3 Rc4 51. Rg3+ Kf5 52. Rf3+ Ke5 53. Raxf6 Rc3+ 54. Kf2 Rxc2+ 55.
 Ke3 Rc3+ 56. Kd2 Rc4 57. Rb6 Ra4 58. Rb2 Kd5 59. Rc3 Kd4 60. Rc8 Kd5 61.
 Kc3 Ra3+ 62. Kb4 Ra7 63. a4 Kd6 64. a5 Kd5 65. Rd2+ Ke6 66. Rcd8 Rb7+ 67.
-Ka4 Ke7 68. a6 Rb6 69. Ka5 1-0`,
+Ka4 Ke7 68. a6 Rb6 69. Ka5 1-0
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -1008,9 +1008,9 @@ Bb3 b4 15. Qxd8 Rxd8 16. Bxc7 Bh3 17. Rfd1 Rxd1+ 18. Nxd1 Rb7 19. Be5 Nd7
 32. Kf2 Rd2 33. Nf3 Rd8 34. Kxe2 Kf6 35. c4 bxc3 36. bxc3 e4 37. Ng5 Kf5
 38. c4 Rh8 39. Ke3 Rxh4 40. Nxe4 Rxe4+ 41. Kf3 Rf4+ 42. Kg3 g5 43. c5 g4
 44. c6 Rf3+ 45. Kg2 Rc3 46. Ba4 Rc4 47. c7 Rxc7 48. Bb3 Kf4 49. Kf2 g3+ 50.
-Kg2 Rd7 0-1`,
+Kg2 Rd7 0-1
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -1031,9 +1031,9 @@ Ne2+ 21. Qxe2 Bxd3 22. Qxe5+ fxe5 23. Bxd8 Bxf1 24. Kxf1 Rxd8 25. Nxe5 Rd2
 32. f4 Rg3+ 33. Kd2 Rxa3 34. Rxe5+ Kd7 35. Rd5+ Ke6 36. h4 c6 37. f5+ Kf6
 38. Rd6+ Kxf5 39. Rxc6 Rh3 40. Rc5+ Kf6 41. h5 g5 42. hxg6 hxg6 43. Ra5 Rh4
 44. Kd3 g5 45. c5 Rxb4 46. c6 Rb8 47. Rxa7 Rb6 48. c7 Rc6 49. Ke4 Ke6 50.
-Ra6 Rxa6 51. c8=Q+ Kf7 52. Qxa6 1-0`,
+Ra6 Rxa6 51. c8=Q+ Kf7 52. Qxa6 1-0
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -1049,9 +1049,9 @@ Ra6 Rxa6 51. c8=Q+ Kf7 52. Qxa6 1-0`,
 1. c4 e5 2. Nc3 Nc6 3. g3 Bc5 4. e4 Nf6 5. h3 d6 6. Nge2 Be6 7. d3 Bb4 8.
 Bg2 Nd4 9. O-O Qd7 10. Kh2 h5 11. Bg5 O-O-O 12. Nd5 c6 13. Nxb4 h4 14. Bxf6
 gxf6 15. Nxd4 exd4 16. Qf3 hxg3+ 17. fxg3 Rxh3+ 18. Bxh3 Bxh3 19. Rf2 Rh8
-20. Qxf6 Bf1+ 21. Qxh8+ 1-0`,
+20. Qxf6 Bf1+ 21. Qxh8+ 1-0
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -1070,9 +1070,9 @@ a4 b4 15. c3 Rc8 16. cxb4 Bxb4 17. Nc3 Bd3 18. Bd2 Bxf1 19. Qxf1 Be7 20.
 Qa6 Bd6 21. Qb6+ Bc7 22. Qc5 Bxh2+ 23. Kxh2 Rxc5 24. dxc5 Ne7 25. Nb5 Nc6
 26. f4 Kd7 27. f5 exf5 28. Bxd5 Ne5 29. Bf4 Nd3 30. c6+ Ke7 31. Bd6+ Kf6
 32. c7 Kg5 33. Bxf7 Kg4 34. Rd1 Nxb2 35. Re1 Rh6 36. c8=Q Nd3 37. Re4+ Kg5
-38. Be7+ Rf6 39. Bxf6+ gxf6 40. Qg8+ Kh6 41. Qg6# 1-0`,
+38. Be7+ Rf6 39. Bxf6+ gxf6 40. Qg8+ Kh6 41. Qg6# 1-0
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -1091,9 +1091,9 @@ Re2 Nd5 20. c4 Nxc7 21. Re5 Bd3 22. f4 Re8 23. Kf2 Kf7 24. Ke3 Bg6 25. Kd4
 Ne6+ 26. Kc3 Nxf4 27. Ra5 Ne2+ 28. Kb4 Rb8+ 29. Kc5 Rxb2 30. Kxc6 Nd4+ 31.
 Kd5 Nc2 32. Nb5 Nb4+ 33. Kd4 Nc6+ 34. Kc3 Nxa5 35. Kxb2 Nxc4+ 36. Kc3 Ne3
 37. Nd6+ Ke6 38. Nc4 Nxg2 39. Kd4 Kf6 40. Ne5 Ne1 41. a4 a5 42. Kd5 Be8 43.
-Kd6 Bxa4 44. Nc6 Bxc6 0-1`,
+Kd6 Bxa4 44. Nc6 Bxc6 0-1
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.09.28"]
 [Round "2"]
@@ -1113,9 +1113,9 @@ Bc1 Be7 28. Kg3 O-O 29. a3 Rb8 30. Bb2 Be8 31. Nc1 Ne3 32. Kf2 Ng4+ 33. Kg3
 Rd8 34. Na2 c5 35. Bxg4 fxg4 36. Kxg4 cxd4 37. cxd4 Ra8 38. Bc1 Bxa3 39.
 Nb4 Bxb4 40. Rxb4 Ra2 41. Bb2 Ra4 42. Bc3 Ra3 43. Bd2 c3 44. Bc1 Ra1 45.
 Be3 Re1 46. Kf3 c2 47. Kf2 Rxe3 48. Kxe3 c1=Q+ 49. Ke2 Qxf4 50. Kd3 Qxg5
-51. Rb1 Qf5+ 52. Ke3 Qxb1 0-1`,
+51. Rb1 Qf5+ 52. Ke3 Qxb1 0-1
 
-`[Event "2024 London Ch E"]
+`,`[Event "2024 London Ch E"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -1131,9 +1131,9 @@ Be3 Re1 46. Kf3 c2 47. Kf2 Rxe3 48. Kxe3 c1=Q+ 49. Ke2 Qxf4 50. Kd3 Qxg5
 1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. c3 Nf6 5. d4 exd4 6. cxd4 Bb4+ 7. Nc3 h6
 8. Bxf7+ Kxf7 9. Qd2 Nxe4 10. Qe2 Re8 11. O-O Bxc3 12. bxc3 Ng3 13. hxg3
 Rxe2 14. d5 Ne5 15. Nxe5+ Rxe5 16. Bf4 Rxd5 17. c4 Rf5 18. Rae1 g5 19. Bd2
-d5 20. c5 Bd7 21. g4 Rf6 22. Re3 d4 23. Re2 Bb5 0-1`,
+d5 20. c5 Bd7 21. g4 Rf6 22. Re3 d4 23. Re2 Bb5 0-1
 
-`[Event "2024 London Ch E"]
+`,`[Event "2024 London Ch E"]
 [Site "?"]
 [Date "2024.09.19"]
 [Round "2"]
@@ -1148,9 +1148,9 @@ d5 20. c5 Bd7 21. g4 Rf6 22. Re3 d4 23. Re2 Bb5 0-1`,
 
 1. d4 c6 2. c4 d5 3. Nf3 Bf5 4. Nc3 g6 5. g3 Bg7 6. Bg2 Nf6 7. O-O O-O 8.
 Ne5 Nbd7 9. Bf4 a6 10. Re1 Nh5 11. Nxd7 Qxd7 12. Be5 f6 13. e4 fxe5 14.
-exf5 Qxf5 15. g4 Qxf2+ 16. Kh1 Nf4 17. Rf1 Qxg2# 0-1`,
+exf5 Qxf5 15. g4 Qxf2+ 16. Kh1 Nf4 17. Rf1 Qxg2# 0-1
 
-`[Event "2024 London Ch A1"]
+`,`[Event "2024 London Ch A1"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1168,9 +1168,9 @@ exf5 Qxf5 15. g4 Qxf2+ 16. Kh1 Nf4 17. Rf1 Qxg2# 0-1`,
 Kh8 15. c4 b6 16. a5 bxa5 17. Rxa5 c5 18. Ra2 Ng8 19. Nd2 Nf6 20. Rfa1 a5
 21. Bg5 Qb6 22. Qd3 fxe4 23. fxe4 Rf7 24. Nb3 Rfa7 25. Bxf6 Bxf6 26. Ra4
 Rb8 27. R1a3 Rba8 28. Qc3 Bd8 29. Nc1 Qb7 30. Qf3 Kg7 31. Rb3 Qd7 32. Rb5
-Bg5 33. Ne2 Rf8 34. Qd3 Qf7 35. Ng3 Qf2+ 0-1`,
+Bg5 33. Ne2 Rf8 34. Qd3 Qf7 35. Ng3 Qf2+ 0-1
 
-`[Event "2024 London Ch A1"]
+`,`[Event "2024 London Ch A1"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1190,9 +1190,9 @@ Rc8 20. Qd4 Rc4 21. Qd6 Qf7 22. Kb1 Rc6 23. Qd4 Qg7 24. f5 Nc4 25. fxg6
 hxg6 26. Qd5+ Kh7 27. Qd7 Rf7 28. Qh3+ Kg8 29. Rd8+ Rf8 30. Rxf8+ Qxf8 31.
 Qg3 f5 32. Nc3 f4 33. Qg5 Rd6 34. Qb5 Na3+ 35. bxa3 Rb6 36. Qb3+ Rxb3+ 37.
 axb3 Qxa3 38. Re4 Qd6 39. Kb2 Qd2 40. Re2 Qd4 41. Re4 Qf6 42. Rc4 b5 43.
-Rc8+ Kh7 44. Rc7+ Kh6 45. Ka3 b4+ 0-1`,
+Rc8+ Kh7 44. Rc7+ Kh6 45. Ka3 b4+ 0-1
 
-`[Event "2024 London Ch A1"]
+`,`[Event "2024 London Ch A1"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1212,9 +1212,9 @@ d3 O-O 9. h3 Qd7 10. Kh2 d5 11. b3 Na6 12. Rb1 d4 13. Na4 b5 14. Nb2 Rac8
 Ne5 27. Qh5 Ng6 28. Rxg5 Nxg5 29. Qxg5 Rce8 30. h4 Qe7 31. Rf6 Kg7 32. e5
 Qxe5 33. Rf5 Qe1+ 34. Rf1 Qxh4+ 35. Qxh4 Nxh4 36. Bxc6 Re2 37. Nd1 bxc4 38.
 bxc4 Rxa2 39. Nf2 a5 40. Ne4 a4 41. Rg1+ Ng6 42. Rg5 f5 43. Nd6 a3 44. Rxf5
-Rxf5 45. Nxf5+ Kf6 46. Nxd4 Rb2 0-1`,
+Rxf5 45. Nxf5+ Kf6 46. Nxd4 Rb2 0-1
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1230,9 +1230,9 @@ Rxf5 45. Nxf5+ Kf6 46. Nxd4 Rb2 0-1`,
 1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. a4 e5 7. Nf3 Be6 8.
 Be2 h6 9. h3 Nbd7 10. Be3 Qa5 11. O-O Be7 12. Qd2 Rc8 13. Rfc1 Bc4 14. Ne1
 Qb4 15. Nd3 Bxd3 16. cxd3 Nc5 17. Nb1 Qxd2 18. Nxd2 Kd7 19. b4 Ne6 20. Nc4
-Bd8 21. a5 Rc6 22. Bd1 Ke7 23. Ba4 Rc8 24. f4 exf4 25. Bxf4 Nxf4 0-1`,
+Bd8 21. a5 Rc6 22. Bd1 Ke7 23. Ba4 Rc8 24. f4 exf4 25. Bxf4 Nxf4 0-1
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1250,9 +1250,9 @@ c3 Na5 9. Bc2 c5 10. h3 Nc6 11. d4 cxd4 12. cxd4 Bb7 13. a4 Nb4 14. axb5
 axb5 15. Rxa8 Qxa8 16. d5 Nd7 17. Nc3 Nxc2 18. Qxc2 Ba6 19. Be3 O-O 20. Ra1
 Qb7 21. Qb3 Rc8 22. Qa3 Nb8 23. Na2 Qd7 24. Nb4 Bb7 25. Qa7 h6 26. Nd2 Bg5
 27. Bxg5 hxg5 28. Nb3 Na6 29. Nxa6 Ra8 30. Qb6 Qc8 31. Rc1 Qd7 32. Rc7 Rxa6
-33. Qxb7 1-0`,
+33. Qxb7 1-0
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1270,9 +1270,9 @@ Nxc6 bxc6 9. Qe2 Qc7 10. Bf4 e5 11. Bg5 Be7 12. h3 O-O 13. Rfd1 Bb7 14. Bb3
 Rfd8 15. Qc4 Rf8 16. Bxf6 Bxf6 17. Nd5 Qd8 18. Nxf6+ Qxf6 19. Qb4 Rab8 20.
 Rxd6 Qg5 21. Qd2 Qxd2 22. Rxd2 Rfd8 23. Rad1 Rxd2 24. Rxd2 Kf8 25. Rd7 Ba8
 26. Rxf7+ Ke8 27. Rxg7 Rd8 28. Rxh7 c5 29. Rh8+ Ke7 30. Rxd8 Kxd8 31. Bd5
-Bxd5 32. exd5 c4 33. h4 1-0`,
+Bxd5 32. exd5 c4 33. h4 1-0
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.10.16"]
 [Round "3"]
@@ -1292,9 +1292,9 @@ Ne3 21. Qh6 Nxf1 22. Rxf1 Rf5 23. Ne4 Qf8 24. Qh4 d5 25. Neg5 h6 26. Nh3
 Rh5 27. Qxf4 Bxh3 28. Qxf8+ Kxf8 29. gxh3 Rf5 30. b3 Re8 31. Rf2 c4 32. d4
 Re3 33. Kg2 Ke7 34. Ne5 Rexe5 35. dxe5 Ke6 36. bxc4 dxc4 37. Rd2 Rxe5 38.
 c3 Re3 39. Rc2 Kd5 40. h4 Ke4 41. Kf2 Rh3 42. Kg2 Rxh4 43. Kg3 Rh5 44. Rf2
-Rg5+ 45. Kh4 Rf5 46. Rg2 Rh5+ 47. Kg4 Rg5+ 48. Kh3 Rxg2 49. Kxg2 0-1`,
+Rg5+ 45. Kh4 Rf5 46. Rg2 Rh5+ 47. Kg4 Rg5+ 48. Kh3 Rxg2 49. Kxg2 0-1
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1314,9 +1314,9 @@ Bxc5 8. Bg5 O-O 9. e3 h6 10. Bh4 Be7 11. Be2 b6 12. O-O Bb7 13. Rfd1 Nd5
 26. Qb3 Ne5 27. Nxe5 Rxe5 28. Qc2 g6 29. Qd2 h5 30. Qd8+ Qxd8 31. Rxd8+ Kg7
 32. Rd2 Re1+ 33. Kh2 Ra1 34. b3 Rc1 35. c4 Ra1 36. g3 Kf6 37. Kg2 g5 38. f3
 Kf5 39. Rc2 Rb1 40. f4 g4 41. hxg4+ hxg4 42. Kf2 Rh1 43. Kg2 Rb1 44. Kf2 f6
-45. c5 bxc5 46. Rxc5+ e5 47. fxe5 fxe5 48. Ra5 0-1`,
+45. c5 bxc5 46. Rxc5+ e5 47. fxe5 fxe5 48. Ra5 0-1
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1337,9 +1337,9 @@ Rd1 Ra6 27. f3 Nb3 28. Nb5 Rc6 29. Nd2 Rc1 30. Rxc1 Nxc1 31. Nxd6 Kxd6 32.
 Nc4+ Kc5 33. Nxa5 Ne2+ 34. Kf2 Nc3 35. Nb7+ Kb4 36. Nd8 Nxa4 37. Nxe6 c5
 38. Nc7 Kb3 39. Nd5 c4 40. Ke3 c3 41. Nxc3 Kxc3 42. f4 Nb6 43. fxe5 Nc4+
 44. Kf4 fxe5+ 45. Kf5 Kd4 46. Kg4 Kxe4 47. Kg3 Kd3 48. Kf2 Kd2 49. Kf3 Nd6
-50. h4 e4+ 0-1`,
+50. h4 e4+ 0-1
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1359,9 +1359,9 @@ Bxe5 dxe5 21. Ke2 Be6 22. Qb2 Rac8 23. Rac1 Rfd8 24. Bb1 Bc4+ 25. Kf2 Bc5+
 26. Kg3 f5 27. Kh2 Be3 28. Rce1 Bf4+ 29. g3 Rd2+ 30. Nxd2 Bxd2 31. Qxd2 Rd8
 32. Qg5 fxe4 33. Bxe4 Bd5 34. Rd1 h6 35. Bxd5+ Rxd5 36. Qe3 Rxb5 37. Rd2 b6
 38. Rhd1 Qc4 39. Rd8+ Kh7 40. Qd3+ Qxd3 41. R1xd3 a5 42. R8d5 Rb2+ 43. Rd2
-Rb1 44. Rxe5 a4 1-0`,
+Rb1 44. Rxe5 a4 1-0
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1382,9 +1382,9 @@ Qxd8+ Rxd8 20. Rb1 Nxb1 21. Ne2 Bc4 22. O-O Bxa2 23. Re1 Kd6 24. Rc1 Nd2
 dxc5+ Ke7 32. Re3+ Kd7 33. f4 Kc6 34. Ra3 Kxc5 35. Rxa5+ Kxc4 36. Ra7 Bd5
 37. Rc7+ Kd4 38. Rc1 Re8 39. Kf2 Bc4 40. Rd1+ Bd3 41. g4 Rg8 42. Kg3 f5 43.
 g5 h6 44. h4 Ke3 45. Re1+ Be2 46. Ra1 h5 47. Ra3+ Bd3 48. Rb3 Kd4 49. Ra3
-Re8 50. Ra4+ Bc4 51. Ra5 Re3+ 52. Kf2 1/2-1/2`,
+Re8 50. Ra4+ Bc4 51. Ra5 Re3+ 52. Kf2 1/2-1/2
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1400,9 +1400,9 @@ Re8 50. Ra4+ Bc4 51. Ra5 Re3+ 52. Kf2 1/2-1/2`,
 1. d4 Nf6 2. Bf4 e6 3. Nf3 Nc6 4. e3 Be7 5. Nbd2 d5 6. Bd3 a6 7. a3 Nh5 8.
 Bg3 Nxg3 9. hxg3 h6 10. c4 Bf6 11. cxd5 exd5 12. Qa4 Bd7 13. Qc2 Qe7 14.
 Bf5 Bxf5 15. Qxf5 Qe6 16. Qf4 O-O-O 17. Nb3 g5 18. Nc5 gxf4 19. Nxe6 fxe6
-20. gxf4 Na5 21. b4 Nc4 22. a4 Rd6 23. Rc1 Nb2 24. a5 Nd3+ 0-1`,
+20. gxf4 Na5 21. b4 Nc4 22. a4 Rd6 23. Rc1 Nb2 24. a5 Nd3+ 0-1
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1420,9 +1420,9 @@ O-O e6 9. Qe2 Be7 10. c4 c6 11. c5 b6 12. b4 O-O 13. Bxa6 bxc5 14. bxc5
 Bxf3 15. Nxf3 Ne4 16. Bb7 Ra7 17. Bxc6 Nef6 18. h3 Qa5 19. Rfb1 Rc8 20. Bb5
 Ne4 21. Qd3 Nc3 22. Rb3 Nxb5 23. Rxb5 Qa6 24. Qb3 Bf8 25. a5 Rca8 26. Ne5
 Nxe5 27. Bxe5 Qc6 28. Rb6 Qc8 29. Qb5 Ra6 30. Kh2 Rxb6 31. cxb6 Qc4 32. Qb2
-Qa6 33. Bc7 Qb7 34. Qb5 Ra6 35. Rc1 Kh7 36. Bg3 Qe7 1-0`,
+Qa6 33. Bc7 Qb7 34. Qb5 Ra6 35. Rc1 Kh7 36. Bg3 Qe7 1-0
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1440,9 +1440,9 @@ Qa6 33. Bc7 Qb7 34. Qb5 Ra6 35. Rc1 Kh7 36. Bg3 Qe7 1-0`,
 Nxe4 Rxe4 15. Bxg7 Kxg7 16. Qxd6 Qb6 17. Rfe1 Nf6 18. Rxe4 Nxe4 19. Qe5+
 Nf6 20. Qe7 Nd5 21. Bxd5 cxd5 22. Re1 Be6 23. c3 Rc8 24. Re3 Qa6 25. Nd4
 Kg8 26. Nxe6 fxe6 27. Rxe6 Qd3 28. Re1 Qxc3 29. g3 Rf8 30. Qe6+ Rf7 31.
-Qxg6+ Qg7 32. Re8+ Rf8 33. Qe6+ Kh7 34. Re7 1-0`,
+Qxg6+ Qg7 32. Re8+ Rf8 33. Qe6+ Kh7 34. Re7 1-0
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1463,9 +1463,9 @@ Rh3 33. Rc3 Qg4 34. Rxf3 exf3 35. Re1 Qh5 36. Re8+ Qxe8 37. Qxh3 Qe1+ 38.
 Qf1 Qxf1+ 39. Kxf1 g5 40. Ke1 h5 41. Kd2 Kf7 42. Ke3 g4 43. Kf4 Kf6 44.
 bxa5 Ke6 45. a4 Kf6 46. Ke3 Ke5 47. Kd3 d4 48. Kd2 Ke4 49. a6 bxa6 50. a5
 Kd5 51. Kd3 Kxc5 52. Kd2 Kc4 53. Kc2 d3+ 54. Kd2 Kd4 55. Ke1 Kc3 56. Kd1 d2
-57. h4 gxh3 58. g4 h2 0-1`,
+57. h4 gxh3 58. g4 h2 0-1
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1486,9 +1486,9 @@ Rxd1 Nd5 15. g5 O-O-O 16. Nxf6 Bg7 17. Ba6+ Kb8 18. a3 Bxf6 19. gxf6 Rhf8
 38. Bxf8 Rxf8 39. Rxh7 Ra8 40. Rg7 Rxa5 41. Rxg6 Ra2+ 42. Kf3 Ra7 43. h4
 Rf7+ 44. Ke2 Rh7 45. Rg4 Rh6 46. Kf3 Kd3 47. d5 Rf6+ 48. Rf4 Rd6 49. Rf5
 Kc4 50. e4 Kd4 51. h5 Rb6 52. Kf4 Rd6 53. f3 Rb6 54. Kg5 Ke3 55. e5 Kd4 56.
-d6 Rb7 57. e6 1-0`,
+d6 Rb7 57. e6 1-0
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1508,9 +1508,9 @@ Qc5 20. Qf4 Qd5 21. Qg4 Rg8 22. c3 f5 23. Qg3 Be5 24. Qf3 Qxf3 25. gxf3
 Bxf3 26. Rde1 g5 27. Bg3 Bxg3 28. fxg3 g4 29. Rxe6 Rd8 30. d4 Be4 31. Kf2
 Kd7 32. Re5 Re8 33. Rxe8 Kxe8 34. Ke3 Bc2 35. Kf4 Kf7 36. Re1 Kf6 37. Re8
 Bb3 38. Rf8+ Bf7 39. Ra8 h5 40. Rxa7 Bc4 41. Rb7 b5 42. Rb6+ Be6 43. Rxb5
-h4 44. gxh4 Bd7 45. Rb6+ Be6 46. d5 1-0`,
+h4 44. gxh4 Bd7 45. Rb6+ Be6 46. d5 1-0
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1530,9 +1530,9 @@ Nxc4 Bxf4 21. Qb2 f6 22. Ne3 Bh2+ 23. Kf1 Be5 24. Qa2 Bxa1 25. Qxa1 Qf4 26.
 Ke2 Rde8 27. Rf1 g3 28. Qc1 gxf2 29. Rxf2 Qg4+ 30. Kd2 Qg3 31. Re2 Rxe3 32.
 Rxe3 Qxg2+ 33. Kc3 Kd7 34. Qe1 Kd8 35. Rg3 Qd5 36. Rxg7 Qe5+ 37. Qxe5 fxe5
 38. Rxb7 Kc8 39. Re7 f4 40. Rxe5 Rf8 41. Kd2 f3 42. Ke1 Kb7 43. Kf2 Kb6 44.
-c4 Rf4 45. a4 Rd4 46. Re3 a5 47. c5+ Ka6 1-0`,
+c4 Rf4 45. a4 Rd4 46. Re3 a5 47. c5+ Ka6 1-0
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1547,9 +1547,9 @@ c4 Rf4 45. a4 Rd4 46. Re3 a5 47. c5+ Ka6 1-0`,
 
 1. e4 c6 2. d4 d5 3. e5 Bf5 4. Bd3 Bxd3 5. Qxd3 e6 6. Nf3 f6 7. Nc3 Bb4 8.
 Bd2 Qb6 9. a3 Bxc3 10. Bxc3 a5 11. O-O Nd7 12. Rfe1 Ne7 13. exf6 Nxf6 14.
-Rxe6 Ne4 15. Nd2 Kf7 16. Re5 Nxc3 17. Qxc3 Rhe8 18. Rae1 Ng6 19. Qf3+ 1-0`,
+Rxe6 Ne4 15. Nd2 Kf7 16. Re5 Nxc3 17. Qxc3 Rhe8 18. Rae1 Ng6 19. Qf3+ 1-0
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1565,9 +1565,9 @@ Rxe6 Ne4 15. Nd2 Kf7 16. Re5 Nxc3 17. Qxc3 Rhe8 18. Rae1 Ng6 19. Qf3+ 1-0`,
 1. e4 e5 2. Nc3 Nf6 3. f4 d5 4. fxe5 Nxe4 5. Qe2 Nxc3 6. bxc3 d4 7. cxd4
 Qxd4 8. Nf3 Qxa1 9. Kd1 Ba3 10. Ke1 Qxc1+ 11. Kf2 O-O 12. Qd3 Re8 13. g4
 Bxg4 14. Rg1 Bc5+ 15. Nd4 Be6 16. Bh3 Bxd4+ 17. Qxd4 Bxh3 18. Rxc1 Nc6 19.
-Qc3 Bf5 20. Qf3 Nd4 21. Qf4 Bxc2 22. Kg3 Ne2+ 0-1`,
+Qc3 Bf5 20. Qf3 Nd4 21. Qf4 Bxc2 22. Kg3 Ne2+ 0-1
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1587,9 +1587,9 @@ Bxf3 20. Qxf3 Nxd4 21. Qf6 Nxb3 22. Re7 Qxe7 23. Qxe7 c5 24. Qxb7 Rd8 25.
 h3 d4 26. Qf3 c4 27. Ne4 d3 28. Nf6+ Kg7 29. Ne4 d2 30. Qd1 f5 31. Ng5 Kf6
 32. Nf3 g5 33. g4 Rd3 34. Kg2 f4 35. Nh2 Ke5 36. Nf3+ Kd5 37. Nxg5 h6 38.
 Nf7 f3+ 39. Kg3 Nc1 40. Qa4 Ne2+ 41. Kh4 Bxf2+ 42. Kh5 d1=Q 43. Qd7+ Ke4
-44. Qe6+ Kd4 45. Qe5# 1-0`,
+44. Qe6+ Kd4 45. Qe5# 1-0
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1610,9 +1610,9 @@ Qxe4 f5 15. Qc2 a6 16. O-O Qh4 17. e4 f4 18. f3 Rf6 19. b4 Qh5 20. Rf2 Nh4
 Rxf2 33. Nxf2 Qf1+ 34. Re2 Rxf2 35. Qe8+ Rf8 36. Qe6+ Kh8 37. Qxe5 Qd1+ 38.
 Rd2 Rf3+ 39. Kxd4 Qxd2+ 40. Kc4 Qd3+ 41. Kc5 Qc3+ 42. Qxc3 Rxc3+ 43. Kd4
 Rxg3 44. a4 Rg4 45. Ke5 Kg8 46. Kf5 Rg6 47. e5 Kf7 48. e6+ Ke7 49. Ke5 Rg4
-50. b5 axb5 51. axb5 Rb4 52. b6 Rxb6 53. Kf5 Rd6 0-1`,
+50. b5 axb5 51. axb5 Rb4 52. b6 Rxb6 53. Kf5 Rd6 0-1
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1627,9 +1627,9 @@ Rxg3 44. a4 Rg4 45. Ke5 Kg8 46. Kf5 Rg6 47. e5 Kf7 48. e6+ Ke7 49. Ke5 Rg4
 1. d4 d5 2. Bf4 Nf6 3. e3 Bg4 4. Nf3 Bxf3 5. Qxf3 e6 6. Bd3 Bd6 7. O-O Bxf4
 8. Qxf4 Qd6 9. Qf3 Nbd7 10. Nc3 a6 11. h3 Ne4 12. Bxe4 dxe4 13. Qxe4 O-O
 14. a3 e5 15. Rad1 f5 16. Qh4 exd4 17. Rxd4 Qf6 18. Qf4 Qe6 19. Qxc7 b5 20.
-Rxd7 Rac8 21. Rxg7+ Kh8 22. Rxh7+ Kg8 23. Qg7# 1-0`,
+Rxd7 Rac8 21. Rxg7+ Kh8 22. Rxh7+ Kg8 23. Qg7# 1-0
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1646,9 +1646,9 @@ Rxd7 Rac8 21. Rxg7+ Kh8 22. Rxh7+ Kg8 23. Qg7# 1-0`,
 Ng4+ 8. Ke1 f6 9. Bh4 g5 10. Bg3 h5 11. h3 Ne3 12. Qe2 Nd4 13. Rc1 Nxe2 14.
 Nxe2 g4 15. Nh4 Rf8 16. Bb3 f5 17. Kf2 f4 18. Ng6 Rf7 19. Bh4 Rf6 20. Bxf6
 Qxf6 21. hxg4 Qxg6 22. gxh5 Qxg2+ 23. Ke1 Bg4 24. Kd2 Qxe2+ 25. Kc3 O-O-O
-26. h6 d5 27. Bxd5 c6 28. Bf7 b5 29. h7 Rh8 0-1`,
+26. h6 d5 27. Bxd5 c6 28. Bf7 b5 29. h7 Rh8 0-1
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1665,9 +1665,9 @@ Qxf6 21. hxg4 Qxg6 22. gxh5 Qxg2+ 23. Ke1 Bg4 24. Kd2 Qxe2+ 25. Kc3 O-O-O
 14. Nxe4 O-O-O 15. Qg4+ Kb8 16. Bxb4 Bxb4 17. Qxg7 Rhe8 18. f3 f5 19. c3
 fxe4 20. cxb4 exf3 21. Rc1 c6 22. Qg3+ Kc8 23. Qxf3 Rf8 24. Qg4+ Kb8 25.
 Qe6 a6 26. a4 Rfe8 27. Qf7 Rf8 28. Qxh7 Rd6 29. Rf1 Rxf1+ 30. Kxf1 Rd1+ 31.
-Kf2 Rd2+ 32. Kg3 Rxb2 33. Qh8+ Ka7 34. Qxb2 1-0`,
+Kf2 Rd2+ 32. Kg3 Rxb2 33. Qh8+ Ka7 34. Qxb2 1-0
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1689,9 +1689,9 @@ Ke1 Rc4 33. f5 Rxg4 34. fxe6 fxe6 35. Ke2 Rxh4 36. Kxe3 Rxb4 37. a5 Rb5 38.
 Rd7 Rxe5+ 39. Kd4 Rxa5 40. Rxb7 e5+ 41. Ke4 h5 42. Kf5 h4 43. Kg6 Ra6+ 44.
 Kf5 h3 45. Kxe5 h2 46. Rb1 Rh6 47. Rh1 a5 48. Kd4 Rh3 49. Ke4 a4 50. Kf4 a3
 51. Kg4 Rh6 52. Kg3 a2 53. Kg2 a1=Q 54. Rxa1 Kf7 55. Rh1 g5 56. Rxh2 Rg6
-57. Kg3 Kf6 58. Kg4 Rg7 59. Rf2+ Kg6 60. Rf5 1/2-1/2`,
+57. Kg3 Kf6 58. Kg4 Rg7 59. Rf2+ Kg6 60. Rf5 1/2-1/2
 
-`[Event "2024 London Ch E"]
+`,`[Event "2024 London Ch E"]
 [Site "?"]
 [Date "2024.09.26"]
 [Round "3"]
@@ -1707,9 +1707,9 @@ Kf5 h3 45. Kxe5 h2 46. Rb1 Rh6 47. Rh1 a5 48. Kd4 Rh3 49. Ke4 a4 50. Kf4 a3
 1. e4 c6 2. Nc3 d5 3. e5 Bf5 4. d4 e6 5. g4 Be4 6. f3 Qg5 7. Bxg5 f6 8. Bf4
 Bg6 9. Bh3 fxe5 10. Bxe5 Nd7 11. g5 Nxe5 12. dxe5 d4 13. Ne4 Bb4+ 14. c3
 Bc5 15. cxd4 Bb4+ 16. Nc3 O-O-O 17. Bxe6+ Kc7 18. Rc1 c5 19. Ne2 cxd4 20.
-Nxd4 Bc5 21. Nd5+ Kb8 22. Rxc5 Rf8 23. Qb3 Rf4 24. Rc8# 1-0`,
+Nxd4 Bc5 21. Nd5+ Kb8 22. Rxc5 Rf8 23. Qb3 Rf4 24. Rc8# 1-0
 
-`[Event "2024 London Ch A1"]
+`,`[Event "2024 London Ch A1"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -1729,9 +1729,9 @@ Bf3 Ne4 9. Nxe4 dxe4 10. Be2 Nxe5 11. dxe5 Qa5+ 12. Qd2 Qxd2+ 13. Kxd2 Rd8+
 h5 27. g3 Rf6 28. Rad1 Rfh6 29. Kc3 f5 30. c5 h4 31. Bg2 Bd5 32. b5 g4 33.
 bxc6 Bxc6 34. hxg4 h3 35. Bh1 fxg4 36. a5 Rf6 37. a6 bxa6 38. Ra1 Ba8 39.
 Rad1 Rc8 40. Rd7+ Ke6 41. Kb4 Bc6 42. Rxa7 Rb8+ 43. Kc3 Bb7 44. c6 Bxc6 45.
-Rxa6 Kf5 46. Rd2 Rb1 0-1`,
+Rxa6 Kf5 46. Rd2 Rb1 0-1
 
-`[Event "2024 London Ch A1"]
+`,`[Event "2024 London Ch A1"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -1748,9 +1748,9 @@ Rxa6 Kf5 46. Rd2 Rb1 0-1`,
 Bb2 O-O 9. Nbd2 d6 10. c4 b4 11. Qc2 Nbd7 12. Rad1 Qb6 13. h3 Rac8 14. Qb1
 a5 15. Ng5 Bxg2 16. Kxg2 Qc6+ 17. Kg1 d5 18. cxd5 exd5 19. e4 Qc7 20. Kg2
 h6 21. Ngf3 dxe4 22. Nxe4 Be7 23. Nd4 Qb7 24. Nf5 Rfe8 25. f3 Nxe4 26. fxe4
-Bf8 27. Kh2 Qxe4 28. Qxe4 Rxe4 29. Rf2 Ne5 30. Rd5 Bc5 31. Bxe5 1-0`,
+Bf8 27. Kh2 Qxe4 28. Qxe4 Rxe4 29. Rf2 Ne5 30. Rd5 Bc5 31. Bxe5 1-0
 
-`[Event "2024 London Ch A1"]
+`,`[Event "2024 London Ch A1"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -1766,9 +1766,9 @@ Bf8 27. Kh2 Qxe4 28. Qxe4 Rxe4 29. Rf2 Ne5 30. Rd5 Bc5 31. Bxe5 1-0`,
 1. e4 e5 2. Nc3 Nf6 3. f4 d5 4. fxe5 Nxe4 5. Qf3 Be6 6. Nxe4 dxe4 7. Qxe4
 Nc6 8. c3 Bd5 9. Qf4 Be7 10. Ne2 Bg5 11. Qa4 Bh4+ 12. Kd1 O-O 13. d4 Nxe5
 14. h3 Nd3 15. Rg1 Nf2+ 16. Kd2 Bg5+ 17. Ke1 Nd3+ 18. Kd1 Bxc1 19. Qb5 Nf2+
-20. Ke1 Be3 21. g4 c6 22. Qa4 Nd3+ 0-1`,
+20. Ke1 Be3 21. g4 c6 22. Qa4 Nd3+ 0-1
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -1790,9 +1790,9 @@ cxd6 32. Rb7 Rc4 33. Kb3 Kc8 34. Rxb6 Kc7 35. Ra6 h5 36. h4 f5 37. g3 Kd7
 38. b5 Kc7 39. Ra4 Kb6 40. Rxc4 dxc4+ 41. Kb4 d5 42. Na4+ Kc7 43. Kc5 Kb7
 44. Nc3 Kc7 45. f3 Kb7 46. e4 fxe4 47. fxe4 dxe4 48. Nxe4 Kc7 49. Nc3 Kb7
 50. d5 Bd7 51. Kxc4 Kb6 52. d6 Kb7 53. Kc5 Be6 54. b6 Bd7 55. Nd5 Bc6 56.
-Nf6 Ba4 1-0`,
+Nf6 Ba4 1-0
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -1810,9 +1810,9 @@ Nf6 Ba4 1-0`,
 14. Bd3 b4 15. O-O bxc3 16. Ne5 Ba6 17. Bxa6 Qxa6 18. Qxc3 Rc8 19. Rb3 Bd6
 20. Nc4 Be7 21. Rfb1 O-O 22. Rb7 Rfe8 23. e4 c5 24. d5 exd5 25. exd5 Bf6
 26. Qb3 Bd4 27. d6 Re2 28. Rxf7 Rce8 29. Re7 R8xe7 30. Ne5+ Kf8 31. Qf3+
-Kg8 32. Rb8+ Qc8 33. Rxc8+ Re8 34. Rxe8# 1-0`,
+Kg8 32. Rb8+ Qc8 33. Rxc8+ Re8 34. Rxe8# 1-0
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -1833,9 +1833,9 @@ Rf8 27. R1c2 Rf6 28. Rc5 Rh5 29. b5 cxb5 30. Rc7 Bc6 31. Be2 Rg5 32. g3 h5
 33. Rd2 Rg7 34. Rxg7+ Kxg7 35. Kg2 Kg6 36. Bd1 Rd6 37. Rd4 Rd7 38. h3 Kg5
 39. h4+ Kf6 40. Be2 b6 41. axb6 Rb7 42. Bd1 Rxb6 43. Bb3 Ke5 44. Bd1 a5 45.
 Kg1 b4 46. f3 gxf3 47. Kf2 b3 48. g4 hxg4 49. h5 b2 50. Bc2 b1=Q 51. Bxb1
-Rxb1 52. h6 Rh1 53. Kg3 Rxh6 54. Kxg4 f2 55. Rd1 Rf6 0-1`,
+Rxb1 52. h6 Rh1 53. Kg3 Rxh6 54. Kxg4 f2 55. Rd1 Rf6 0-1
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.10.07"]
 [Round "4"]
@@ -1856,9 +1856,9 @@ Be6 26. f4 Rd7+ 27. Ke3 Rc5 28. b3 b5 29. Bd3 bxc4 30. Bxc4 Rdc7 31. Kd4 a5
 32. Rc2 a4 33. Rhc1 axb3 34. Bxb3 Rxc2 35. Rxc2 Rd7+ 36. Kc3 Rc7+ 37. Kb2
 Rb7 38. Rc3 Kg7 39. Kc2 Rxb3 40. Rxb3 Bxb3+ 41. Kxb3 Kf6 42. Kc4 Kf5 43. g3
 Ke4 44. Kc5 Kf3 45. Kd6 Kg2 46. g4 Kf3 47. f5 Kxg4 48. f6 Kh3 49. Ke7 Kxh2
-50. Kxf7 g5 51. Kg7 g4 52. f7 g3 53. f8=Q g2 54. Qd6+ 1-0`,
+50. Kxf7 g5 51. Kg7 g4 52. f7 g3 53. f8=Q g2 54. Qd6+ 1-0
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -1876,9 +1876,9 @@ Nxd4 Nxd4 9. Qxd4 Be7 10. e5 dxe5 11. Qxe5 O-O 12. Rd1 Qb6 13. h3 Rd8 14.
 Be3 Qxb2 15. Rxd8+ Bxd8 16. Rd1 Bd7 17. Bb3 Qxa3 18. Bc5 Qa5 19. Qd6 Bc7
 20. Qd4 e5 21. Qc4 Be6 22. Qb4 Qxb4 23. Bxb4 Bxb3 24. cxb3 Rd8 25. Rc1 Bb6
 26. Rc2 e4 27. Be7 Re8 28. Bxf6 gxf6 29. g4 e3 30. fxe3 Bxe3+ 31. Kg2 Rc8
-32. Kf3 Bd4 33. Rd2 Rxc3+ 34. Kg2 Be5 35. h4 h6 36. Rd8+ Kg7 0-1`,
+32. Kf3 Bd4 33. Rd2 Rxc3+ 34. Kg2 Be5 35. h4 h6 36. Rd8+ Kg7 0-1
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -1897,9 +1897,9 @@ Be3 Qxb2 15. Rxd8+ Bxd8 16. Rd1 Bd7 17. Bb3 Qxa3 18. Bc5 Qa5 19. Qd6 Bc7
 20. Qg5 Bc8 21. g4 Qe7 22. gxf5 Qxg5+ 23. hxg5 Rxh1 24. Rxh1 exf5 25. Rh8+
 Ke7 26. Bxf5 Nb6 27. Bxc8 Rxc8 28. Rh7 Rg8 29. c4 Ke6 30. b3 Kf5 31. g6 Nc8
 32. Rh5+ Kf6 33. Rh3 Rd8 34. Rf3+ Ke6 35. Re3 Kf6 36. Rd3 Ne7 37. Nf7 Rd7
-38. Ne5 Rd8 39. Rf3+ Kg5 40. Nf7+ 1-0`,
+38. Ne5 Rd8 39. Rf3+ Kg5 40. Nf7+ 1-0
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -1916,9 +1916,9 @@ Ke7 26. Bxf5 Nb6 27. Bxc8 Rxc8 28. Rh7 Rg8 29. c4 Ke6 30. b3 Kf5 31. g6 Nc8
 Bxf6 Qxf6 9. Bc4 Bb7 10. O-O Nd7 11. Nd5 Qd8 12. Nd2 Nf6 13. Nc3 a6 14. f3
 Qe7 15. a3 O-O-O 16. b4 b5 17. Bd3 Nd7 18. Qe2 Nb6 19. a4 d5 20. axb5 axb5
 21. Nxb5 Qxb4 22. Rab1 Qc5+ 23. Kh1 d4 24. Nc4 Nxc4 25. Bxc4 c6 26. Be6+
-Kb8 27. Na3 Kc7 28. Qc4 Qd6 29. Nb5+ Kb8 30. Nxd6 Rxd6 31. Qa6 1-0`,
+Kb8 27. Na3 Kc7 28. Qc4 Qd6 29. Nb5+ Kb8 30. Nxd6 Rxd6 31. Qa6 1-0
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -1937,9 +1937,9 @@ Kb8 27. Na3 Kc7 28. Qc4 Qd6 29. Nb5+ Kb8 30. Nxd6 Rxd6 31. Qa6 1-0`,
 e3 e4 21. Qxf6 gxf6 22. Ne1 Nxb4 23. Rb1 Na6 24. Rxb7 Bc4 25. Ra7 Bxf1 26.
 Bxf1 Nb4 27. Rc7 Rdd2 28. Rc4 Nd3 29. Nxd3 exd3 30. Rd4 Rxf2 31. Rxd3 Rxh2
 32. e4 Rhd2 33. Re3 Kg7 34. e5 fxe5 35. Rxe5 f5 36. Rxf5 Kg6 37. Re5 Ra3
-38. g4 Rg3+ 39. Kh1 Rxg4 40. Re1 Kg5 41. Rc1 Kf4 42. Rb1 h5 0-1`,
+38. g4 Rg3+ 39. Kh1 Rxg4 40. Re1 Kg5 41. Rc1 Kf4 42. Rb1 h5 0-1
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -1957,9 +1957,9 @@ Ne4 15. Nxd7 Nxd7 16. Nd4 Rf6 17. Nc6 Qa8 18. Nxa7 Qxa7 19. Qd4 Qc7 20.
 Bxe4 fxe4 21. f4 Nb6 22. Rc2 Nc4 23. Kh1 Bd8 24. Bc1 Qd7 25. Rd1 Bb6 26.
 Qxe4 Qc6 27. Qf3 g5 28. e3 Rf5 29. Re2 Nd6 30. Rd3 Ne4 31. g4 Rf6 32. Bb2
 Qc4 33. Rd1 gxf4 34. exf4 Ng5 35. Qd3 Qxf4 36. Qg3 Qf1+ 37. Rxf1 Rxf1+ 38.
-Kg2 Rg1# 0-1`,
+Kg2 Rg1# 0-1
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -1979,9 +1979,9 @@ Be3 Be7 21. Bb6 Rd7 22. Rc8+ Bd8 23. Qh4 Qe7 24. Qxe7+ Kxe7 25. Bc5+ Ke6
 26. Bd6 Bc6 27. b4 f6 28. Re1 h5 29. Bb8 Rf8 30. exf6+ Kxf6 31. Be5+ Kf7
 32. h4 Bxh4 33. Rxf8+ Kxf8 34. g3 Bf6 35. Bf4 Rd4 36. Be3 Rxb4 37. Bc5+ Kf7
 38. Bxb4 Kg6 39. f4 h4 40. gxh4 Bxh4 41. Re6+ Bf6 42. Kf2 Kf7 43. Re2 Bd4+
-44. Ke1 Bf6 45. Kd2 Kg6 46. Rh2 Kf7 47. Rh8 0-1`,
+44. Ke1 Bf6 45. Kd2 Kg6 46. Rh2 Kf7 47. Rh8 0-1
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -2001,9 +2001,9 @@ Bxa4 Bxf3 9. gxf3 e6 10. Be3 cxd4 11. cxd4 Bb4+ 12. Nc3 Ne7 13. a3 Bxc3+
 Rh3+ 26. Kd2 Rxa3 27. Rc8+ Rf8 28. Rc7 g6 29. Rg1 Ra4 30. Rh1 Rxd4+ 31. Ke1
 Rf7 32. Rc8+ Kg7 33. Kf2 b5 34. Rc6 Re4 35. Rxa6 Rb7 36. Rb1 b4 37. Rb3 Nd4
 38. Rh3 b3 39. Bh6+ Kf6 40. Ra8 b2 41. Rf8+ Rf7 42. Bg5+ Kg7 43. Bh6+ Kf6
-44. Bg5+ Kf5 45. Rxf7+ Kg4 46. Rg3+ Kh5 47. Rxh7# 1-0`,
+44. Bg5+ Kf5 45. Rxf7+ Kg4 46. Rg3+ Kh5 47. Rxh7# 1-0
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -2023,9 +2023,9 @@ Bg5 21. Rf3 Bxe3+ 22. Rxe3 Re8 23. a4 Nxd5 24. Re2 Nb4 25. Qd2 Qxd2 26.
 Rxd2 c3 27. Re2 Nd3 28. Rc2 Nb4 29. Rcc1 c2 30. Bf1 Rxe4 31. Bg2 Re7 32.
 Ra3 Rd7 33. Raa1 Rcd8 34. Bf3 Nd3 35. Rxc2 b6 36. Rb1 Rd6 37. Bg4 Rd4 38.
 Be2 a5 39. Bxd3 Rxd3 40. Rxb6 Ra3 41. Rc4 Rd1+ 42. Kg2 Ra2+ 43. Kh3 Rh1 44.
-Rb5 Rhxh2+ 45. Kg4 Ra3 46. Rxa5 Rha2 47. Ra8+ Kh7 48. Kf5 Rxg3 49. Rh4# 1-0`,
+Rb5 Rhxh2+ 45. Kg4 Ra3 46. Rxa5 Rha2 47. Ra8+ Kh7 48. Kf5 Rxg3 49. Rh4# 1-0
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -2047,9 +2047,9 @@ e4 33. Kf2 h5 34. Ne3 Kf6 35. g4 fxg4 36. hxg4 h4 37. g5+ Kg6 38. Re2 Ra3
 39. Rc2 Ra6 40. Kg2 Rb6 41. Kh3 Kh5 42. g6 Kxg6 43. Kxh4 Rb5 44. Rg2+ Kf6
 45. Rg5 Rb8 46. Nc4 Re8 47. Nxd6 Rh8+ 48. Kg4 e3 49. Re5 Rg8+ 50. Kf3 Rd8
 51. Ne4+ Kg7 52. Kxe3 Rh8 53. Kd4 Rh1 54. Kc5 Rc1 55. d6 Kf8 56. d7 Rd1 57.
-Nd6 Kg7 58. d8=Q Kg6 59. Qg5+ Kh7 60. Re7+ Kh8 61. Qg7# 1-0`,
+Nd6 Kg7 58. d8=Q Kg6 59. Qg5+ Kh7 60. Re7+ Kh8 61. Qg7# 1-0
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -2069,9 +2069,9 @@ Rde8 21. f3 Bd8 22. Bd2 Qb5+ 23. Kf2 Bb6 24. Qf4 Re6 25. Be3 Qd7 26. Bxc5
 Ka7 27. Bxb6+ Kxb6 28. N1d2 Nh5 29. Qe3+ Kc6 30. Nd4+ Kc7 31. Nxe6+ Qxe6
 32. Qd4 Rg8 33. Nc4 Nf4 34. Qb6+ Kb8 35. Nxd6 Qd7 36. Rd1 h5 37. Rd4 Rg7
 38. Ra4 Qc6 39. Qd8+ Ka7 40. Nc8+ Qxc8 41. Qxc8 f6 42. Rd4 Kb6 43. Rd6+ Ka7
-44. Qc5+ b6 45. Qxb6+ Ka8 46. Rd8# 1-0`,
+44. Qc5+ b6 45. Qxb6+ Ka8 46. Rd8# 1-0
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -2092,9 +2092,9 @@ Bxf6 Nxf4+ 21. gxf4 Bxf6 22. d4 Bh4 23. Ne2 Qg4+ 24. Ng3 Bxg3 25. hxg3 h5
 32. Kf2 Kf6 33. Rg1 Rh5 34. Ne1 g5 35. fxg5+ Rxg5 36. Rg3 Rxg3 37. Kxg3
 Rg8+ 38. Kf2 c6 39. b4 b6 40. a4 a6 41. c5 a5 42. Nc2 bxc5 43. dxc5 axb4
 44. Nxb4 Ra8 45. Nxc6 Rxa4 46. Nd4 Ra7 47. c6 Rc7 48. Kg3 Ke5 49. Kf2 f4
-50. Ke2 f3+ 51. Kf2 Kd5 52. Ke1 Rxc6 53. Nxc6 Kxc6 0-1`,
+50. Ke2 f3+ 51. Kf2 Kd5 52. Ke1 Rxc6 53. Nxc6 Kxc6 0-1
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -2113,9 +2113,9 @@ Qc7 15. Rc1 c4 16. b4 e5 17. dxe5 dxe5 18. a4 Qd6 19. a5 e4 20. Nd4 Bg6 21.
 axb6 axb6 22. e3 Rac8 23. Ra1 Qd7 24. Qa4 Qd6 25. Rfd1 Qf6 26. Qd7 Rfd8 27.
 Qg4 Ra8 28. Qf4 Qe7 29. Nc6 Qe8 30. Nxd8 Rxd8 31. Ra7 Qe6 32. Rda1 Qc6 33.
 Rc7 Qe6 34. Raa7 Rf8 35. Re7 Qc6 36. Bh3 b5 37. Bf5 Qf6 38. Bxg6 Qxg6 39.
-Qe5 Qg4 40. Qxd5 Qf3 41. Qxe4 Qf6 42. Qe5 Qg6 43. Rab7 Qb1+ 44. Kg2 1-0`,
+Qe5 Qg4 40. Qxd5 Qf3 41. Qxe4 Qf6 42. Qe5 Qg6 43. Rab7 Qb1+ 44. Kg2 1-0
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -2135,9 +2135,9 @@ Bh7 20. Bxf7 Re7 21. Be6+ Kb8 22. Rd1 Ne8 23. e5 Bxe5 24. Nd5 Rg7 25. Rhf1
 c6 26. f6 Nxf6 27. Nxf6 Bxc2 28. Rd2 Ba4 29. Nd7+ Kc7 30. Nxe5 dxe5 31.
 Rf7+ Rxf7 32. Bxf7 c5 33. Ke4 b5 34. Bb3 Bxb3 35. axb3 a5 36. h4 b4 37. g5
 hxg5 38. hxg5 Kb6 39. g6 Kb5 40. g7 a4 41. bxa4+ Kxa4 42. g8=Q b3 43. Kxe5
-Kb4 44. Qb8+ Kc4 45. Rd5 1/2-1/2`,
+Kb4 44. Qb8+ Kc4 45. Rd5 1/2-1/2
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -2156,9 +2156,9 @@ Nf6 9. e5 Ng8 10. O-O dxe5 11. dxe5 Nxe5 12. Ng5 h6 13. Ne4 Nf6 14. f4 Nc4
 21. Bxe6 fxe6 22. Ne4 Nxa4 23. Be3 Qb7 24. Ra2 Nb6 25. Nc5 Qc8 26. Bf2 Nd5
 27. Nxe6 Rf7 28. Bd4 Bxd4+ 29. Rxd4 Rf6 30. Re4 Kf7 31. Nc5 Rxf4 32. Rxf4+
 Nxf4 33. Qf3 g5 34. Nd3 Qf5 35. Nxf4 gxf4 36. Qxc6 Qb1+ 37. Kh2 Rd8 38.
-Rxa6 Rd1 39. g3 Rd2+ 40. Qg2 Qxb2 0-1`,
+Rxa6 Rd1 39. g3 Rd2+ 40. Qg2 Qxb2 0-1
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -2177,9 +2177,9 @@ Rxa6 Rd1 39. g3 Rd2+ 40. Qg2 Qxb2 0-1`,
 Qf4+ 20. Qd2 Qxc4+ 21. Kb1 Be4+ 22. Ka1 O-O 23. Rc1 Qb4 24. Qe3 Bd5 25.
 Nxc5 Qa5 26. b3 Rfc8 27. f4 Ra7 28. Nd3 Rxc1+ 29. Qxc1 g6 30. Kb2 Be4 31.
 b4 Qb5 32. Qe3 Qb8 33. Qd4 Bd5 34. Ne5 Rb7 35. Nc6 Qxd6 36. Qc3 Bxc6 37. a3
-a5 38. Kb3 Bd5+ 39. Ka4 axb4 40. axb4 Qa6# 0-1`,
+a5 38. Kb3 Bd5+ 39. Ka4 axb4 40. axb4 Qa6# 0-1
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -2197,9 +2197,9 @@ Be2 c6 9. O-O b6 10. Rb1 f5 11. exf5 Nxf5 12. Bg5 Qd7 13. Qc2 Ba6 14. Nd2
 Ne7 15. h3 Qe8 16. Qd1 b5 17. Re1 cxd5 18. cxb5 Bb7 19. c4 d4 20. a4 d5 21.
 c5 a6 22. c6 Bc8 23. c7 Nd7 24. b6 Bb7 25. a5 Qg6 26. Bxe7 Rf5 27. Bg4 Rxf2
 28. Kxf2 Qf7+ 29. Kg1 Qxe7 30. Qf3 Rf8 31. Qb3 Nc5 32. Qa3 Qg5 33. Qxc5 Re8
-34. c8=Q Bxc8 35. Bxc8 Qxd2 36. Qxd5+ Kh8 37. b7 e4 38. b8=Q e3 39. Qf7 1-0`,
+34. c8=Q Bxc8 35. Bxc8 Qxd2 36. Qxd5+ Kh8 37. b7 e4 38. b8=Q e3 39. Qf7 1-0
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -2217,9 +2217,9 @@ Ne7 15. Nxd4 exd4 16. Bxd4 Nxd5 17. Qd2 Nxc3 18. Qxc3 f6 19. Rfe1 Re7 20.
 Rxe7 Qxe7 21. Re1 Qd8 22. f4 Rc8 23. g4 Kf7 24. Qb3+ Kf8 25. c4 Kg8 26.
 cxb5+ Kh8 27. bxa6 Qg8 28. Qc2 Re8 29. Rxe8 Qxe8 30. Bf2 Kg8 31. Qc4+ Kf8
 32. Qxc7 Bb5 33. a7 Qe2 34. a8=Q+ Be8 35. Qxd6+ Qe7 36. Qxe7+ Kxe7 37. Qe4+
-1-0`,
+1-0
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -2237,9 +2237,9 @@ Na4 b5 9. Nxc5 bxc4 10. Nxd4 exd4 11. Bxd4 dxc5 12. Bxc5 Qa5+ 13. b4 Qa6
 14. d4 Be6 15. Qe2 Qc8 16. d5 cxd5 17. exd5 Nxd5 18. Qe4 a5 19. Qxc4 axb4
 20. Qd4 f6 21. a4 bxa3 22. Bxa3 Qxc2 23. O-O Qb3 24. Rfe1 Kf7 25. Reb1 Qc2
 26. Rb2 Qg6 27. Rb7+ Ne7 28. Rxe7+ Kf8 29. Ra7+ Ke8 30. Rxa8+ Kf7 31. Qa7+
-Bd7 32. Qxd7# 1-0`,
+Bd7 32. Qxd7# 1-0
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -2256,9 +2256,9 @@ O-O Nd4 9. Bg5 h6 10. Bh4 g5 11. Bg3 h5 12. Nxg5 Nxe2+ 13. Qxe2 Kh8 14. h4
 Bg4 15. Qd2 Qd7 16. Nd5 Nxd5 17. exd5 f6 18. Ne4 Bd4 19. Rfe1 f5 20. Ng5 f4
 21. Bh2 Kg7 22. Re4 Rg8 23. Kh1 Kf6 24. Rxf4+ exf4 25. Qxf4+ Bf5 26. Qxd4+
 Ke7 27. Re1+ Kd8 28. Qf6+ Kc8 29. Re7 Qd8 30. Qxf5+ Kb8 31. Qe6 Ka7 32. c5
-Qf8 33. f3 Rg7 34. cxd6 Re8 35. Rxe8 1-0`,
+Qf8 33. f3 Rg7 34. cxd6 Re8 35. Rxe8 1-0
 
-`[Event "2024 London Ch E"]
+`,`[Event "2024 London Ch E"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -2275,9 +2275,9 @@ Qf8 33. f3 Rg7 34. cxd6 Re8 35. Rxe8 1-0`,
 8. fxe3 Bc5 9. Nhf3 Bxe3 10. b3 Bxd2+ 11. Bxd2 Ne4 12. e3 Nxd2 13. Nxd2 O-O
 14. Qe2 Nb4 15. O-O-O Nxa2+ 16. Kb1 Nc3+ 17. Kb2 Nxe2 18. Bf1 Qf6+ 19. Ka3
 Nc3 20. Bc4 Nxd1 21. Rxd1 Bf5 22. e4 Bg6 23. Nf3 Bxe4 24. Rd4 Bxf3 25. Rd7
-Qa1+ 26. Kb4 a5+ 27. Kb5 Bc6+ 0-1`,
+Qa1+ 26. Kb4 a5+ 27. Kb5 Bc6+ 0-1
 
-`[Event "2024 London Ch E"]
+`,`[Event "2024 London Ch E"]
 [Site "?"]
 [Date "2024.10.03"]
 [Round "4"]
@@ -2298,9 +2298,9 @@ Ke6 26. Re1+ Ne5 27. Rxe5+ Kd7 28. Rxb5 Rb8 29. c4 f5 30. gxf5 gxf5 31.
 Rxf5 b6 32. Rf7+ Kd8 33. Rf8+ Kc7 34. Rxb8 Kxb8 35. Kd3 Kc7 36. c5 bxc5 37.
 bxc5 Kc6 38. Kc4 h5 39. d5+ Kd7 40. c6+ Kd6 41. Kd4 a6 42. Kc4 a5 43. a4
 Ke7 44. Kc5 Kd8 45. d6 Kc8 46. d7+ Kc7 47. Kb5 Kb8 48. d8=Q+ Ka7 49. Qb6+
-Ka8 50. Qb7# 1-0`,
+Ka8 50. Qb7# 1-0
 
-`[Event "2024 London Ch A1"]
+`,`[Event "2024 London Ch A1"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2314,9 +2314,9 @@ Ka8 50. Qb7# 1-0`,
 [PlyCount "20"]
 
 1. e4 Nc6 2. d4 e5 3. dxe5 Nxe5 4. f4 Nc6 5. Be3 d5 6. exd5 Nb4 7. Bc4 Qe7
-8. Kf2 Nh6 9. h3 Nf5 10. Bd2 Qc5+ 0-1`,
+8. Kf2 Nh6 9. h3 Nf5 10. Bd2 Qc5+ 0-1
 
-`[Event "2024 London Ch A1"]
+`,`[Event "2024 London Ch A1"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2334,9 +2334,9 @@ Ka8 50. Qb7# 1-0`,
 cxd4 Qxc4 15. Rac1 Qd5 16. Bh6 b5 17. Rc5 Qb7 18. Bxg7 Kxg7 19. Rh5 f6 20.
 Qh6+ Kg8 21. Rc5 Bd7 22. d5 Rac8 23. Rxc8 Qxc8 24. Rc1 Qb7 25. dxe6 Bxe6
 26. a3 a5 27. Qf4 Rc8 28. Rxc8+ Qxc8 29. h4 Qd8 30. Nd4 Bc4 31. Nc6 Qf8 32.
-Nxa5 Bd5 33. Qe3 Qa8 34. Qc3 Bxg2 35. Qxf6 Bh3 36. Nc6 1-0`,
+Nxa5 Bd5 33. Qe3 Qa8 34. Qc3 Bxg2 35. Qxf6 Bh3 36. Nc6 1-0
 
-`[Event "2024 London Ch A1"]
+`,`[Event "2024 London Ch A1"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2354,9 +2354,9 @@ Bd3 Na6 9. O-O c5 10. e5 Nd7 11. Nd5 dxe5 12. Nxe7+ Kh8 13. d5 Nb4 14. c3
 Nxd3 15. Qxd3 f5 16. Ng5 Nf6 17. Nxc8 Rfxc8 18. Nf7+ Kg8 19. Nxe5 Re8 20.
 Nc4 Qa6 21. Rfd1 Rad8 22. d6 Ne4 23. Qd5+ Kh8 24. Bxc5 Nf6 25. Qd3 Re4 26.
 Ne3 Qc6 27. Qb5 Qc8 28. Bxa7 f4 29. f3 Rxe3 30. Bxe3 fxe3 31. Qd3 Qc5 32.
-b4 Qe5 33. Ra2 Nh5 34. Rc2 Nf4 35. Qe4 e2 36. Re1 Nxh3+ 0-1`,
+b4 Qe5 33. Ra2 Nh5 34. Rc2 Nf4 35. Qe4 e2 36. Re1 Nxh3+ 0-1
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2373,9 +2373,9 @@ b4 Qe5 33. Ra2 Nh5 34. Rc2 Nf4 35. Qe4 e2 36. Re1 Nxh3+ 0-1`,
 8. Qd2 Bxf2+ 9. Qxf2 Qxb2 10. Kd2 Qxa1 11. Bb5 Qxh1 12. Qc5 Qxg2+ 13. Kc1
 Qf1+ 14. Kb2 Qxb5+ 15. Qxb5 O-O 16. Qd3 Nc6 17. Bf4 Nc5 18. Qe3 d4 19. Nxd4
 Nxd4 20. Qxd4 b6 21. h4 Ba6 22. Bg5 h6 23. Be3 Rfd8 24. Qg4 Kf8 25. Qb4 Kg8
-26. Qg4 Kh8 27. Qh5 Kg8 28. Qg4 1/2-1/2`,
+26. Qg4 Kh8 27. Qh5 Kg8 28. Qg4 1/2-1/2
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2391,9 +2391,9 @@ Nxd4 20. Qxd4 b6 21. h4 Ba6 22. Bg5 h6 23. Be3 Rfd8 24. Qg4 Kf8 25. Qb4 Kg8
 1. e4 c5 2. Nc3 d6 3. Bc4 Nf6 4. d3 g6 5. f4 Nc6 6. Nf3 Bg4 7. h3 Bxf3 8.
 Qxf3 Nd4 9. Qd1 Bg7 10. Ne2 b5 11. c3 Qa5 12. b4 cxb4 13. Bxf7+ Kxf7 14.
 cxd4 Qa4 15. O-O Qxd1 16. Rxd1 Rhc8 17. a4 bxa3 18. Rxa3 Nd7 19. Bd2 Nb6
-20. Kf1 Na4 21. Rda1 Rc2 22. Ke1 1/2-1/2`,
+20. Kf1 Na4 21. Rda1 Rc2 22. Ke1 1/2-1/2
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2412,9 +2412,9 @@ Qe2 d5 15. exd5 Nxd5 16. Nxd5 cxd5 17. Bf4 f6 18. Rad1 Kh8 19. c3 Bc5 20.
 Be3 d4 21. cxd4 Bxd4 22. Bxd4 Rxd4 23. Rxd4 h6 24. Rd2 Rf8 25. Rc2 Qe7 26.
 Qc4 Rc8 27. Qf7 Qxf7 28. Rxc8+ Bxc8 29. Bxf7 g5 30. Rc1 Bf5 31. Rc7 a5 32.
 Ra7 a4 33. Rxa4 e4 34. b4 Bd7 35. Ra7 Bc6 36. a4 f5 37. b5 e3 38. bxc6 e2
-39. Re7 Kg7 40. Rxe2 Kxf7 1-0`,
+39. Re7 Kg7 40. Rxe2 Kxf7 1-0
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2436,9 +2436,9 @@ Bxb4 axb4 33. Nd2 Nc1 34. Kf1 b3 35. Ke1 b2 36. Nb1 Nb3 37. d5 exd5 38.
 cxd5 Nc5 39. Kd2 Kf8 40. Kc2 Na4 41. Kb3 Nc5+ 42. Kc4 Nd7 43. f4 g5 44. g3
 h5 45. fxg5 Nxe5+ 46. Kc3 Nf3 47. h4 Nh2 48. Kxb2 Nf1 49. Kc3 Nxg3 50. Nd2
 Ke7 51. Nf3 Kd6 52. Kd4 Nf5+ 53. Ke4 Ne7 54. Ne5 Nxd5 55. Nxf7+ Ke6 56.
-Nd8+ Kd6 57. Kf5 Ke7 58. Nc6+ Kf8 59. g6 Kg8 60. Kg5 Kg7 61. Nd4 1-0`,
+Nd8+ Kd6 57. Kf5 Ke7 58. Nc6+ Kf8 59. g6 Kg8 60. Kg5 Kg7 61. Nd4 1-0
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2458,9 +2458,9 @@ Nd5 Qd8 15. Nxf6+ Qxf6 16. Qxf6 gxf6 17. a5 Nd7 18. f4 Bxb3 19. cxb3 Nc5
 26. f5 Rc7 27. Bd5 h5 28. Rd3 Rc2 29. Rg3+ Kh8 30. Bxf7 Rxb2 31. Bxh5 Rxb4
 32. Ra1 d5 33. Rh3 Rb7 34. Be2+ Rh7 35. Rxh7+ Kxh7 36. Bxa6 d4 37. Bd3 Ra8
 38. a6 Ra7 39. Rb1 Nd7 40. Rb7 Rxb7 41. axb7 Nb8 42. Kf2 Kg7 43. Kf3 Kf8
-44. Ke4 Ke7 45. Kd5 Kd8 46. Kd6 Nd7 47. h4 Nb8 48. h5 1-0`,
+44. Ke4 Ke7 45. Kd5 Kd8 46. Kd6 Nd7 47. h4 Nb8 48. h5 1-0
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2477,9 +2477,9 @@ Nd5 Qd8 15. Nxf6+ Qxf6 16. Qxf6 gxf6 17. a5 Nd7 18. f4 Bxb3 19. cxb3 Nc5
 Be2 Bg7 9. Be3 O-O 10. Qd2 Be6 11. f3 f5 12. exf6 exf6 13. fxe4 Bc4 14. Bf3
 Ba6 15. b3 Qe7 16. Ne2 Rad8 17. O-O Nc6 18. a4 Ne5 19. Qa2 Nxf3+ 20. Rxf3
 b6 21. b4+ Kh8 22. Ng3 Bb7 23. d5 f5 24. Bd4 Bxd4+ 25. cxd4 Qxb4 26. Qf2
-fxe4 27. Nxe4 Rxf3 28. Qxf3 Qxd4+ 0-1`,
+fxe4 27. Nxe4 Rxf3 28. Qxf3 Qxd4+ 0-1
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2500,9 +2500,9 @@ Qc6 27. Qe5+ Rg7 28. Re1 Re8 29. Be4 Qb6+ 30. Qc5 Qxc5+ 31. bxc5 Bxe4 32.
 Rxe4 e5 33. Rce2 Rge7 34. Kh1 Kg7 35. Bg1 Kf6 36. Rd2 Re6 37. Rd6 Kf5 38.
 Rxe6 Kxe6 39. Re1 h5 40. Bd4 Kf5 41. c6 e4 42. c7 Rc8 43. Bb6 e3 44. Kg1 g4
 45. Kf1 Re8 46. Ke2 Ke4 47. Rd1 f3+ 48. gxf3+ gxf3+ 49. Ke1 Rg8 50. Rd4+
-Ke5 51. Kd1 Rg1+ 52. Kc2 0-1`,
+Ke5 51. Kd1 Rg1+ 52. Kc2 0-1
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2519,9 +2519,9 @@ Ke5 51. Kd1 Rg1+ 52. Kc2 0-1`,
 Nf3 b6 9. Be2 cxd4 10. Nxd4 Nc5 11. f3 Nh5 12. g4 Ng3 13. Rg1 Nxe2 14.
 Ncxe2 e5 15. Nb5 Qh4+ 16. Rg3 Ba6 17. Bg5 Nd3+ 18. Kf1 Qxg3 19. Nxg3 Nf4
 20. Bxf4 exf4 21. Ne2 Rac8 22. Rc1 Rc5 23. a4 h5 24. b4 Rc6 25. Nxf4 Bh6
-26. h4 hxg4 27. fxg4 g5 28. Nd5 Re8 29. Nf6+ Kg7 30. Nxe8+ Kh7 31. hxg5 1-0`,
+26. h4 hxg4 27. fxg4 g5 28. Nd5 Re8 29. Nf6+ Kg7 30. Nxe8+ Kh7 31. hxg5 1-0
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2537,9 +2537,9 @@ Ncxe2 e5 15. Nb5 Qh4+ 16. Rg3 Ba6 17. Bg5 Nd3+ 18. Kf1 Qxg3 19. Nxg3 Nf4
 8. h3 Nh6 9. Bg5 Qd7 10. Bxh6 gxh6 11. Bb5 a6 12. Qa4 Rb8 13. Bxc6 Bxc3+
 14. bxc3 Qxc6 15. Qxc6+ bxc6 16. O-O Rg8 17. Kh2 Rb2 18. exd6 cxd6 19. Rab1
 Rxa2 20. Rb6 Kd7 21. c4 Rc2 22. c5 Kc7 23. Rb4 dxc5 24. dxc5 Rxc5 25. Nd4
-Rcg5 26. g3 c5 27. Rc4 Kd6 1/2-1/2`,
+Rcg5 26. g3 c5 27. Rc4 Kd6 1/2-1/2
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2558,9 +2558,9 @@ e5 Qg7 15. Qe2 Rd8 16. Qe3 Nd4 17. Nxd4 cxd4 18. Qd3 Rb8 19. f4 Nc6 20. Nd6
 Qf8 21. Bxc6 bxc6 22. Qxd4 Rb5 23. Qc3 Rb6 24. Qc5 Rb5 25. Qxc6 Bd7 26. Qc7
 Qe7 27. Nxb5 axb5 28. Rac1 Ra8 29. Rc2 Rc8 30. Qxc8+ Bxc8 31. Rxc8+ Kg7 32.
 Rfc1 Qa7+ 33. R1c5 Qxa2 34. Rxb5 Qxd2 35. Rbb8 Qe3+ 36. Kg2 Qe2+ 37. Kg1
-Qe3+ 38. Kf1 Qf3+ 39. Kg1 Qe3+ 1/2-1/2`,
+Qe3+ 38. Kf1 Qf3+ 39. Kg1 Qe3+ 1/2-1/2
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2580,9 +2580,9 @@ Ra3 21. Nce2 Ra4 22. fxe6 fxe6 23. Qg5 Rxb4 24. Nf4 h6 25. Nxe6 Qe7 26. Qf4
 Bc8 27. Qb8 Qb7 28. Qf4 Bxe6 29. Rxe6 Rb1+ 30. Nf1 Kf7 31. Re2 Qd7 32. g3
 Qh3 33. Qc7+ Qd7 34. Qf4 Qg4 35. Qxg4 Nxg4 36. Kg2 g6 37. h3 Nf6 38. Nh2
 Nb2 39. Nf3 Nxd3 40. cxd3 Nd7 41. Rc2 Rb3 42. Rxc6 Rxd3 43. Rc7 Ke6 44.
-Rc6+ Kf5 45. Rd6 Ke4 46. Re6+ Kf5 47. Rd6 Nf8 48. Rxd5+ Ke4 49. Re5# 1-0`,
+Rc6+ Kf5 45. Rd6 Ke4 46. Re6+ Kf5 47. Rd6 Nf8 48. Rxd5+ Ke4 49. Re5# 1-0
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2602,9 +2602,9 @@ Qe2 Bb4+ 9. Nc3 Ne7 10. a3 Bxc3+ 11. Bxc3 a6 12. Bxd7+ Qxd7 13. Nh3 Nbc6
 26. Rxc2 Rxc2 27. Qg3 Qxg3 28. hxg3 Rxb2 29. d5 Kf8 30. a4 Ke8 31. b5 Re2
 32. bxa6 bxa6 33. d6 Kd7 34. Rd5 Rxe3 35. Kh2 Rd3 36. Rf5 Rd1 37. Rf2 Nd4
 38. Rb2 e3 39. Rb7+ Kxd6 40. Rb6+ Nc6 41. Rb2 Rd2 42. Rb1 e2 43. Re1 Nd4
-0-1`,
+0-1
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2620,9 +2620,9 @@ Qe2 Bb4+ 9. Nc3 Ne7 10. a3 Bxc3+ 11. Bxc3 a6 12. Bxd7+ Qxd7 13. Nh3 Nbc6
 Bb5 Nd7 9. Qd2 Nde5 10. Nxe5 Nxe5 11. Bh6 a6 12. Ba4 b5 13. Bb3 c4 14. dxc4
 Nxc4 15. Bxc4 bxc4 16. Bxg7 Kxg7 17. Qd4+ e5 18. Qxc4 a5 19. Qd5 Ba6 20.
 Rfd1 Qb6 21. Qxd6 Qxb2 22. Qxe5+ Kg8 23. Qd4 Qxc2 24. Nd5 h5 25. Rd2 Qc6
-26. Ne7+ 1-0`,
+26. Ne7+ 1-0
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2642,9 +2642,9 @@ Rfe8 21. Ne5 Kf8 22. a4 Qa6 23. Nd7+ Ke7 24. Ne5 Qb7 25. Qb3 g5 26. Bh2 Kf8
 27. Ng4 Bg7 28. Ne3 Nxe3 29. Rxe3 Kg8 30. Rbe1 Qd7 31. Qc2 b5 32. axb5 Qxb5
 33. Be5 Bxe5 34. Rxe5 Rab8 35. b4 a5 36. bxa5 Qxa5 37. R1e3 Qa1+ 38. Kh2
 Rb2 39. Qd3 Rxf2 40. Rf3 Rb2 41. Rf6 Kg7 42. Qf3 Rf8 43. Rexe6 fxe6 44.
-Rxf8 Rb7 45. Qf6+ 1-0`,
+Rxf8 Rb7 45. Qf6+ 1-0
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2663,9 +2663,9 @@ Ng3 a6 9. c3 Bd7 10. O-O b5 11. Bb3 a5 12. d4 exd4 13. cxd4 Bb6 14. e5 dxe5
 21. Qg4 Qg6 22. Qf4 Nd3 23. Qh4 Rfe8 24. Bf4 Nxf4 25. Qxf4 f6 26. Rae1 fxe5
 27. Rxe5 Rf8 28. Nf5 Kh8 29. Rxb5 Rab8 30. N3h4 Qf6 31. Qg4 Bxf2+ 32. Rxf2
 Rxb5 33. Ng6+ Kg8 34. Nfe7+ Kf7 35. Qc4+ Ke8 36. Qxb5+ c6 37. Qb8+ Kd7 38.
-Nxf8+ Kxe7 39. Rxf6 Nxf6 40. Ng6+ 1-0`,
+Nxf8+ Kxe7 39. Rxf6 Nxf6 40. Ng6+ 1-0
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2685,9 +2685,9 @@ b5 21. cxb6 Rc8 22. bxc7 Rf7 23. Rc1 Ng4 24. Qxe7 Rxe7 25. Bd6 Rf7 26. Bc6
 Nf2+ 27. Kg1 Nxd3 28. Rc3 Nb2 29. Bb7 Nc4 30. Bf4 Re8 31. Bxa6 Bc8 32. Bxc4
 dxc4 33. Nd4 Re4 34. Be3 Rxc7 35. Nxf5 Bxf5 36. a4 Rd7 37. a5 Rd3 38. Rxd3
 cxd3 39. Bd2 Re2 40. a6 Rxd2 41. b5 Ra2 42. b6 Rxa6 43. b7 Rb6 44. Kf1 Rxb7
-0-1`,
+0-1
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2712,9 +2712,9 @@ Ng4 Rd1+ 45. Ke4 h1=Q+ 46. Rxh1 Rxh1 47. Kd5 Rh4 48. Kxc5 Rxg4 49. Kb6 Kb8
 56. Kc5 Kxb7 57. Kd5 Ra6 58. Kc5 Kc7 59. Kb5 Rh6 60. Kc5 Rh5+ 61. Kd4 Kd6
 62. Ke4 Ra5 63. Kf4 Ke6 64. Ke4 Ra4+ 65. Kd3 Ke5 66. Kc3 Kd5 67. Kb3 Rh4
 68. Kc3 Rg4 69. Kd3 Rg3+ 70. Kc2 Kd4 71. Kb2 Kc4 72. Ka2 Kb4 73. Kb2 Rg2+
-74. Kc1 Kc3 75. Kd1 Kd3 76. Ke1 Ra2 77. Kf1 Ke3 78. Kg1 Kf3 0-1`,
+74. Kc1 Kc3 75. Kd1 Kd3 76. Ke1 Ra2 77. Kf1 Ke3 78. Kg1 Kf3 0-1
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2742,9 +2742,9 @@ Kg5 69. Ke7 Kg6 70. Kd6 Re2 71. Kd5 Kf5 72. Kd4 Re8 73. Kd3 Kf4 74. Kd2 Kf3
 75. Kd1 Kf2 76. Kd2 Rd8+ 77. Kc3 Ke2 78. Kc4 Ke3 79. Kc5 Ke4 80. Kc6 Rd1
 81. Kc5 Rd2 82. Kc6 Ke5 83. Kc7 Ke6 84. Kc8 Ke7 85. Kc7 Rc2+ 86. Kb7 Kd6
 87. Kb8 Kd7 88. Kb7 Rb2+ 89. Ka6 Kc6 90. Ka5 Kc5 91. Ka4 Rb8 92. Ka3 Kc4
-93. Ka2 Kc3 94. Ka1 Kc2 0-1`,
+93. Ka2 Kc3 94. Ka1 Kc2 0-1
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2760,9 +2760,9 @@ Kg5 69. Ke7 Kg6 70. Kd6 Re2 71. Kd5 Kf5 72. Kd4 Re8 73. Kd3 Kf4 74. Kd2 Kf3
 O-O Be6 9. Bxe6 fxe6 10. Na4 d5 11. exd5 exd5 12. Bxd4 Nxd4 13. Nxd4 O-O
 14. Ne6 Qd6 15. Nxf8 Qxf8 16. Re1 Qd6 17. d4 Re8 18. dxe5 Rxe5 19. Rxe5
 Qxe5 20. Qe1 Qd6 21. Rd1 c6 22. c4 Qd7 23. cxd5 Nxd5 24. Nc5 Qc8 25. Qe6+
-Kh8 26. Qxc8# 1-0`,
+Kh8 26. Qxc8# 1-0
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2779,9 +2779,9 @@ dxc5 Ng6 9. O-O Bxc5 10. Re1 O-O 11. Be3 Bb6 12. Bxb6 axb6 13. Nc3 Be6 14.
 Ng5 Qxg5 15. Nxd5 Rfd8 16. Qc1 Bxd5 17. Qxg5 Nd4 18. a3 Nxb5 19. Rad1 h6
 20. Qf5 Bb3 21. Rd7 Be6 22. Qd3 Bxd7 23. a4 Na7 24. b3 Re8 25. f4 Nxf4 26.
 Qd4 Ne6 27. Qxb6 Nc8 28. Qf2 Nc5 29. Qxc5 b6 30. Qf2 Re6 31. Qf4 Re8 32.
-Rf1 Rf8 33. Qd4 Rd8 34. Qf4 Be8 35. Kf2 b5 36. a5 Ne7 37. Ke3 Nd5+ 0-1`,
+Rf1 Rf8 33. Qd4 Rd8 34. Qf4 Be8 35. Kf2 b5 36. a5 Ne7 37. Ke3 Nd5+ 0-1
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2800,9 +2800,9 @@ O-O Nd7 15. a4 Rc8 16. bxc6 bxc6 17. Be5 f6 18. Bg3 g5 19. Ba6 Ra8 20. h3
 g4 21. Bb7 gxf3 22. Bxa8 fxg2 23. Kxg2 Rg8 24. Rab1 Kf7 25. Bxc6 Nf8 26.
 Rb8 Bd6 27. Rb7+ Kg6 28. e4 Kh6 29. f4 Ba3 30. exd5 Ng6 31. dxe6 Bd6 32.
 Ne4 Nxf4+ 33. Kf2 Nxh3+ 34. Kg2 Nf4+ 35. Kf2 Ne2 36. Nxd6 Rxg3 37. Nf7+ Kg6
-38. Be4+ f5 39. Ne5+ Kf6 40. Rf7+ Kxe6 41. Bxf5+ Kd5 42. Rd7# 1-0`,
+38. Be4+ f5 39. Ne5+ Kf6 40. Rf7+ Kxe6 41. Bxf5+ Kd5 42. Rd7# 1-0
 
-`[Event "2024 London Ch E"]
+`,`[Event "2024 London Ch E"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2821,9 +2821,9 @@ Bb4+ 14. c3 Ba5 15. Bxg7 Re8 16. Bxe8 Nf6 17. Bxh8 Ne4 18. b4 Bc7 19. c4
 Bg4 20. d5+ Kf5 21. Bd7+ Kf4 22. Be5+ Bxe5 23. Bxg4 Kxg4 24. Nxe5+ Kf4 25.
 Nxf7 h5 26. d6 Nc3 27. d7 Kf5 28. d8=Q Ne4 29. Nd6+ Nxd6 30. Qxd6 h4 31.
 Rd1 a6 32. Rd4 b5 33. Qf4+ Ke6 34. Qe3+ Kf5 35. Rxh4 bxc4 36. Rf4+ Kg5 37.
-Qg3+ Kh5 38. Rh4# 1-0`,
+Qg3+ Kh5 38. Rh4# 1-0
 
-`[Event "2024 London Ch E"]
+`,`[Event "2024 London Ch E"]
 [Site "?"]
 [Date "2024.10.10"]
 [Round "5"]
@@ -2846,9 +2846,9 @@ f3 Ra4 39. Rc5 Kg7 40. Kf2 h5 41. Bd1 Rc4 42. Rxc4 Bxc4 43. Ba4 Kf6 44. Bd7
 Bb5 45. Bc8 Bc6 46. Ke3 Ke5 47. g4 hxg4 48. fxg4 f5 49. gxf5 exf5 50. h4
 Kf6 51. Kf4 Be4 52. Kg3 g5 53. h5 g4 54. Kh4 Bf3 55. Bd7 g3 56. Kxg3 Bxh5
 57. Bc8 Be2 58. Bxb7 Ke5 59. Kf2 Bb5 60. Ke3 f4+ 61. Kf3 Kd4 62. Kxf4 Kc5
-63. Ke4 Bc6+ 64. Bxc6 1/2-1/2`,
+63. Ke4 Bc6+ 64. Bxc6 1/2-1/2
 
-`[Event "2024 London Ch A1"]
+`,`[Event "2024 London Ch A1"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -2867,9 +2867,9 @@ cxd5 Nxd5 15. Ne4 Nf6 16. Qe3 Nxe4 17. Bxe4 Bf6 18. Bb2 Bxe4 19. Qxe4 Rfd8
 20. Rfd1 Rbc8 21. Rac1 h5 22. Kg2 b5 23. Rxc8 Rxc8 24. Ba3 a5 25. d5 b4 26.
 Bc1 Qb7 27. Qf3 exd5 28. Rxd5 Qa6 29. Bg5 Bxg5 30. Rxg5 Rc1 31. h4 Qf1+ 32.
 Kh2 g6 33. Qg2 Qa6 34. Qe4 Qf6 35. Kg2 Qb6 36. Re5 Rc5 37. Re8+ Kh7 38. Re5
-1/2-1/2`,
+1/2-1/2
 
-`[Event "2024 London Ch A1"]
+`,`[Event "2024 London Ch A1"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -2890,9 +2890,9 @@ Rc5 Rxd3 27. Rxa5 Ra3 28. Ra8+ Kg7 29. a5 Nd7 30. a6 Nb6 31. Ra7 Kf6 32.
 Nd4 e5 33. Nb5 Ra1+ 34. Kh2 e4 35. Kg3 Ke6 36. Rb7 Nc8 37. Rb8 Kd7 38. a7
 Nxa7 39. Rb7+ Kc6 40. Rxa7 Rd1 41. Na3 Kb6 42. Ra8 d4 43. Rb8+ Kc5 44. Rb3
 d3 45. Kf2 Rd2+ 46. Kg3 e3 47. Kf3 e2 48. Rc3+ Kb4 49. Rc1 Kxa3 50. Ke3 Rd1
-0-1`,
+0-1
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -2910,9 +2910,9 @@ d3 45. Kf2 Rd2+ 46. Kg3 e3 47. Kf3 e2 48. Rc3+ Kb4 49. Rc1 Kxa3 50. Ke3 Rd1
 fxe6 14. Bc4 Nd5 15. O-O-O Nxc3 16. bxc3 e5 17. Rhe1 Rf8 18. f3 Rd8 19. Bb5
 Rxd1+ 20. Kxd1 Rf5 21. Ke2 Kd7 22. Rd1+ Kc7 23. Ke3 Rg5 24. g4 h5 25. h4
 Rg6 26. Bd3 Rf6 27. gxh5 Rf4 28. Rg1 Rxh4 29. Rxg7+ Kb6 30. Bg6 Na5 31. Bf7
-Kc5 32. Rg8 Nc4+ 33. Bxc4 Kxc4 34. Rg4+ 1-0`,
+Kc5 32. Rg8 Nc4+ 33. Bxc4 Kxc4 34. Rg4+ 1-0
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -2929,9 +2929,9 @@ Kc5 32. Rg8 Nc4+ 33. Bxc4 Kxc4 34. Rg4+ 1-0`,
 8. Bd3 Nc6 9. Be3 Nge7 10. Nc3 O-O 11. O-O Nf5 12. Bxf5 Bxf5 13. Qb3 b6 14.
 Rac1 Bg4 15. Ne5 Nxe5 16. dxe5 d4 17. Qb4 dxc3 18. Qxg4 cxb2 19. Rcd1 Qe7
 20. Rfe1 Rfd8 21. Rb1 Qxe5 22. Bxb6 Qxe1+ 23. Rxe1 axb6 24. Qc4 Rdc8 25.
-Qd5 Ra5 0-1`,
+Qd5 Ra5 0-1
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -2949,9 +2949,9 @@ Bxf6 Bxc3+ 9. bxc3 Qxc3+ 10. Nd2 gxf6 11. Rc1 Qa5 12. Qc2 Be6 13. Bd3 h6
 14. O-O Nd7 15. Nb3 Qc7 16. Nc5 Rg8 17. f4 Bh3 18. Rf2 Nxc5 19. Qxc5 Qe7
 20. Qc3 f5 21. Kh1 Bg4 22. Rb2 Rd8 23. Rcb1 Rd7 24. Rxb7 Rxb7 25. Qxc6+ Kf8
 26. Rxb7 Qh4 27. g3 Bf3+ 28. Kg1 Rxg3+ 29. hxg3 Qxg3+ 30. Kf1 Bg2+ 31. Ke2
-Qh2 32. Qd6+ Kg8 33. Rb8+ Kg7 34. Qe5+ f6 35. Rb7+ Kg6 36. Qxf5# 1-0`,
+Qh2 32. Qd6+ Kg8 33. Rb8+ Kg7 34. Qe5+ f6 35. Rb7+ Kg6 36. Qxf5# 1-0
 
-`[Event "2024 London Ch A2"]
+`,`[Event "2024 London Ch A2"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -2971,9 +2971,9 @@ a5 21. Nd5 Nxd5 22. cxd5 Bxd5 23. Ba6+ Bb7 24. Bxb7+ Kxb7 25. O-O h5 26.
 Rfd1 h4 27. Rab1 g4 28. f4 Nc4 29. Qd3 g3 30. Be1 Qxe3+ 31. Qxe3 Nxe3 32.
 Rd3 Re8 33. Bd2 Nc4 34. Rd4 Nxd2 35. Rxd2 Re4 36. Rd4 Rhe8 37. Kf1 Rxd4 38.
 cxd4 Re4 39. Rb5 Rxf4+ 40. Kg1 Rxd4 41. Kf1 Rf4+ 42. Kg1 Rxa4 43. Kf1 Rf4+
-0-1`,
+0-1
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -2987,9 +2987,9 @@ cxd4 Re4 39. Rb5 Rxf4+ 40. Kg1 Rxd4 41. Kf1 Rf4+ 42. Kg1 Rxa4 43. Kf1 Rf4+
 [PlyCount "26"]
 
 1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Nf6 5. Ng3 Qc7 6. h3 e6 7. Bd3 b6 8.
-N1e2 Bb7 9. O-O h6 10. c4 Bd6 11. Qc2 Nbd7 12. Be3 c5 13. Nh1 Bh2# 0-1`,
+N1e2 Bb7 9. O-O h6 10. c4 Bd6 11. Qc2 Nbd7 12. Be3 c5 13. Nh1 Bh2# 0-1
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -3006,9 +3006,9 @@ N1e2 Bb7 9. O-O h6 10. c4 Bd6 11. Qc2 Nbd7 12. Be3 c5 13. Nh1 Bh2# 0-1`,
 Ba4 O-O 9. Ne2 Be6 10. O-O Nd7 11. Be3 Qa5 12. Nxe4 fxe4 13. Qg3 Rxf1+ 14.
 Rxf1 Qxa4 15. Nf4 Re8 16. Nxe6 Rxe6 17. Qg4 Re7 18. Bg5 Nb6 19. Bxe7 Bxe7
 20. Qe6+ Kh8 21. Qxe7 Qxd4+ 22. Kh1 h6 23. Qf8+ Kh7 24. Qf5+ Kg8 25. Qf7+
-Kh7 26. e6 Nc4 27. Qf5+ Kh8 28. e7 Nd6 29. Qg6 1-0`,
+Kh7 26. e6 Nc4 27. Qf5+ Kh8 28. e7 Nd6 29. Qg6 1-0
 
-`[Event "2024 London Ch B1"]
+`,`[Event "2024 London Ch B1"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -3027,9 +3027,9 @@ Bc8 9. O-O Na6 10. a3 Nc7 11. Qd2 h6 12. Ne4 Nh5 13. Bh2 f5 14. Ng3 Nxg3
 21. d5 cxd5 22. cxd5 Bd7 23. Bxb5 Bxb5 24. Qxb5 Qa5 25. Qb7 Rxa3 26. Qxe7
 Qxd5 27. Red1 Rd3 28. Rxd3 Qxd3 29. Rc8 Qd1+ 30. Kh2 Qa4 31. Nd4 Bxd4 32.
 exd4 Qxd4 33. Rxe8 Rxe8 34. Qxe8+ Kg7 35. Qe7+ Kg8 36. Bxd6 f4 37. Qe8+ Kh7
-38. Qf7+ 1-0`,
+38. Qf7+ 1-0
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.10.16"]
 [Round "6"]
@@ -3052,9 +3052,9 @@ Rg8 Kf7 39. Rc8 Nb6 40. Rc7+ Rd7 41. Rxd7+ Nxd7 42. h4 g5 43. Nh2 f5 44. f4
 Kg6 45. fxg5 hxg5 46. h5+ Kh6 47. Nf3 fxg4 48. Kxg4 Nf6+ 49. Kg3 Nxh5+ 50.
 Kg4 Nf6+ 51. Kg3 Ne4+ 52. Kg4 Kg6 53. Ne5+ Kf6 54. Nf3 Nf2+ 55. Kh5 g4 56.
 Ng1 Kf5 57. Ne2 Ke4 58. Kh4 Kxe3 59. Ng1 Kxd4 60. Kg3 Ne4+ 61. Kxg4 Kd3 62.
-Kf4 d4 0-1`,
+Kf4 d4 0-1
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -3074,9 +3074,9 @@ Bxe5 Nxe5 15. Nd2 dxc3 16. bxc3 Nxf3+ 17. Nxf3 Bd6 18. Rfd1 O-O 19. c4 Ra3
 Rxd4 26. Rxd4 Bxd4 27. Rd1 Bf6 28. Rxd8+ Bxd8 29. Kf3 g5 30. Ke4 f6 31. f4
 h6 32. f5 Kf7 33. g4 Ke7 34. a4 Kd6 35. Kd4 exf5 36. gxf5 h5 37. Ke4 Kc5
 38. h4 g4 39. Kd3 b5 40. axb5 Kxb5 41. Ke4 Kc5 42. Kd3 b5 43. Ke3 Kc4 44.
-Kd2 b4 45. Ke2 Kc3 46. Ke3 b3 47. Ke2 Kc2 48. Ke3 b2 49. Kd4 b1=Q 0-1`,
+Kd2 b4 45. Ke2 Kc3 46. Ke3 b3 47. Ke2 Kc2 48. Ke3 b2 49. Kd4 b1=Q 0-1
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -3094,9 +3094,9 @@ e5 Nd5 15. Nf3 Qb6 16. Rhf1 h6 17. e6 f6 18. Nh4 h5 19. Ng6 Rh7 20. Nxf8
 Kxf8 21. Qe4 Kg8 22. Bxd5 cxd5 23. Qxd5 Nc6 24. Rf3 Rd8 25. Qe4 Rd4 26. Qg6
 Qd8 27. Rh3 Ne5 28. Qf5 Nc4 29. Rd3 Rxd3 30. cxd3 Nxd2 31. Rxd2 Qe8 32.
 Qxa5 Qc8+ 33. Rc2 Qxe6 34. Qxb4 h4 35. a5 Rh5 36. Rc7 Re5 37. Qc4 Re1+ 38.
-Kc2 Qxc4+ 39. Rxc4 Re2+ 40. Kc3 h3 41. gxh3 Rxh2 42. a6 1-0`,
+Kc2 Qxc4+ 39. Rxc4 Re2+ 40. Kc3 h3 41. gxh3 Rxh2 42. a6 1-0
 
-`[Event "2024 London Ch B2"]
+`,`[Event "2024 London Ch B2"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -3117,9 +3117,9 @@ Bg4 Bc6 27. Nd4 Nxd4 28. exd4 Qb8 29. Ra1 Rf8 30. g3 Qb6 31. Be2 Bd7 32.
 Ra6 Qb8 33. Qa2 Qb7 34. Ra7 Qc6 35. Bf1 Bg4 36. Ra5 Rd8 37. Rc5 Qf6 38.
 Rxd5 Rxd5 39. Qxd5+ Be6 40. Qxe4 Kf7 41. Qb7+ Kg6 42. d5 Bf7 43. Qc6 Kf5
 44. Bd3+ Ke5 45. f4+ Kd4 46. Qxf6+ gxf6 47. Bxh7 Kxd5 48. Bc2 Bh5 49. Kg2
-Kd4 50. Kh3 Bf7 51. Kh4 Ke3 52. f5 Kf3 53. g4 Kf4 1/2-1/2`,
+Kd4 50. Kh3 Bf7 51. Kh4 Ke3 52. f5 Kf3 53. g4 Kf4 1/2-1/2
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -3139,9 +3139,9 @@ O-O 20. Ke2 c5 21. Ra4 Rc7 22. Bd4 Rfc8 23. Bc3 Rd7 24. Rd1 Rxd1 25. Kxd1
 Rd8+ 26. Ke2 Rd7 27. b4 cxb4 28. Bxb4 Bxb4 29. Rxb4 Kf7 30. Rb2 h5 31. a4
 a6 32. Rb6 Ra7 33. a5 g5 34. h3 f5 35. Rh6 Kg7 36. Rd6 f4 37. e4 g4 38.
 hxg4 hxg4 39. g3 fxg3 40. fxg3 Kf7 41. Ke3 Kf8 42. Rg6 Rg7 43. Rxa6 Rf7 44.
-Ra8+ Kg7 45. Kd4 Rf3 46. Ra7+ Kf8 47. Ra8+ Ke7 48. Ke5 Kd7 1/2-1/2`,
+Ra8+ Kg7 45. Kd4 Rf3 46. Ra7+ Kf8 47. Ra8+ Ke7 48. Ke5 Kd7 1/2-1/2
 
-`[Event "2024 London Ch C1"]
+`,`[Event "2024 London Ch C1"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -3161,9 +3161,9 @@ Qg5 21. h4 Qf6 22. Qh5 Qg6 23. Qf3 Qf6 24. Qh5 Ra7 25. g4 Ra5 26. g5 Qg6
 33. Rg1+ Kf8 34. Kd2 Ra4 35. Bd3 Nxd3 36. Kxd3 e4+ 37. Kc3 Re8 38. f6 e3
 39. f3 Re5 40. b3 Ra6 41. a4 Rf5 42. Kd3 Rxf3 43. Rgf1 Rh3 44. Rh1 Rf3 45.
 Raf1 Rg3 46. Ke2 Ra8 47. Rfg1 Rxg1 48. Rxg1 Re8 49. Rg3 Re4 50. Rxe3 Rxh4
-51. Kf2 Rf4+ 0-1`,
+51. Kf2 Rf4+ 0-1
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -3180,9 +3180,9 @@ Raf1 Rg3 46. Ke2 Ra8 47. Rfg1 Rxg1 48. Rxg1 Re8 49. Rg3 Re4 50. Rxe3 Rxh4
 c4 Nxe4 9. Bxc6+ bxc6 10. b4 Ba7 11. c5 cxd5 12. Ba3 O-O 13. Rc1 Qf6 14. h4
 Qg6 15. g3 Re8 16. cxd6 cxd6 17. Qb3 Nf6 18. Rc6 Bb8 19. Re1 Bg4 20. Kg2
 Qf5 21. d4 e4 22. Nh2 Bh3+ 23. Kg1 Ng4 24. Nxg4 Qxg4 25. Qxd5 Qf3 26. Qxe4
-Rxe4 27. Rc8+ Bxc8 0-1`,
+Rxe4 27. Rc8+ Bxc8 0-1
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -3202,9 +3202,9 @@ exf6 21. Qxd6 Rb7 22. Qxf6 Rh7 23. Qd6 Qb4 24. Bxa6 Qxd6 25. Rxd6 Rb4 26.
 Re1+ Be6 27. g3 Rb6 28. Bf1 Ke7 29. Rd3 Kf6 30. h4 Bc4 31. Rd6+ Be6 32. Bh3
 Ke7 33. Rd3 f5 34. g4 c5 35. gxf5 gxf5 36. Bxf5 Kf6 37. Bxh7 Bf5 38. Bxf5
 Kxf5 39. Rd5+ Kxf4 40. Rxc5 Rg6 41. Rc4+ Kf5 42. Rce4 h5 43. Re5+ Kg4 44.
-Rg1+ 1-0`,
+Rg1+ 1-0
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -3227,9 +3227,9 @@ a6 38. a4 h5 39. Nc6 Kf5 40. b4 Nc3 41. a5 Nd5 42. Kf2 Ke4 43. Ke2 Nc3+ 44.
 Kd2 Nb1+ 45. Ke1 Kd3 46. Ne5+ Ke3 47. Nxg6 Na3 48. Kd1 Nc4 49. f5 Nd6 50.
 f6 Nf7 51. Nf4 h4 52. Nd5+ Ke4 53. Nc7 hxg3 54. hxg3 Kf3 55. Nxa6 Nd6 56.
 Nc5 Kxg3 57. a6 Kf3 58. a7 Ke3 59. a8=Q Nb7 60. Qxb7 Kd4 61. Qd7+ Kc4 62.
-f7 Kxb4 63. f8=Q Kc4 64. Qf4+ Kc3 65. Qd3+ Kb2 66. Qf2+ Ka1 67. Nb3# 1-0`,
+f7 Kxb4 63. f8=Q Kc4 64. Qf4+ Kc3 65. Qd3+ Kb2 66. Qf2+ Ka1 67. Nb3# 1-0
 
-`[Event "2024 London Ch C2"]
+`,`[Event "2024 London Ch C2"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -3253,9 +3253,9 @@ Kg6 44. Kxc4 Kf6 45. Kd5 Ke7 46. g4 a4 47. g5 a3 48. g6 Kf6 49. Kxd6 Kxg6
 50. c4 Kf5 51. c5 Ke4 52. c6 Kd4 53. c7 Kc3 54. c8=Q+ Kb2 55. Qa6 Kxa2 56.
 c3 Kb3 57. c4 Kb2 58. c5 a2 59. c6 a1=Q 60. Qxa1+ Kxa1 61. c7 Kb2 62. c8=Q
 Kb3 63. Qc5 Kb2 64. Qc4 Kb1 65. Qe2 Kc1 66. Kc5 Kb1 67. Kb4 Kc1 68. Kc3 Kb1
-69. Qb2# 1-0`,
+69. Qb2# 1-0
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -3271,9 +3271,9 @@ Kb3 63. Qc5 Kb2 64. Qc4 Kb1 65. Qe2 Kc1 66. Kc5 Kb1 67. Kb4 Kc1 68. Kc3 Kb1
 8. h3 a6 9. Bg5 b5 10. Bd5 Bb7 11. Rb1 Re8 12. c4 Na5 13. cxb5 Bxd5 14.
 exd5 h6 15. Bh4 Rb8 16. a4 Qd7 17. c4 axb5 18. Qb2 bxc4 19. Qxb8 Rxb8 20.
 Rxb8+ Kh7 21. Rb4 cxd3 22. O-O Nxd5 23. Rb5 Nc3 24. Rxa5 d2 25. Nxd2 Nxa4
-26. Ra1 Nc5 27. Nc4 Qf5 28. Ne3 g5 29. Nxf5 1-0`,
+26. Ra1 Nc5 27. Nc4 Qf5 28. Ne3 g5 29. Nxf5 1-0
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -3290,9 +3290,9 @@ Nd7 9. O-O a6 10. Bc6 Rb8 11. Be3 b5 12. dxc5 Qc7 13. Nd4 Bb7 14. Bxd7+
 Qxd7 15. b4 a5 16. Ndxb5 Ba6 17. Nd6+ Kf8 18. Re1 Bd8 19. Na2 Bc4 20. c3 a4
 21. Nc1 Ne7 22. Qf3 Nf5 23. Nxf5 exf5 24. Bd4 Bc7 25. c6 Qe6 26. Nd3 g5 27.
 Nc5 Qg6 28. Nd7+ Kg7 29. e6+ Kg8 30. exf7+ Kxf7 31. Bxh8 Rxh8 32. Qe3 Qd6
-33. Qe5 Qxc6 34. Qxf5+ Kg7 35. Re7+ Kg8 36. Qf8# 1-0`,
+33. Qe5 Qxc6 34. Qxf5+ Kg7 35. Re7+ Kg8 36. Qf8# 1-0
 
-`[Event "2024 London Ch D"]
+`,`[Event "2024 London Ch D"]
 [Site "?"]
 [Date "2024.10.17"]
 [Round "6"]
@@ -3314,5 +3314,6 @@ Qxg6 fxg6 15. Bxg6 Bf5 16. Bxf5 Rxf5 17. Nc3 Rd8 18. Be3 Nb4 19. Rac1 b6
 b4 Kb3 39. Kxa6 Kxa3 40. Kxb5 Kb3 41. Kc5 Kc3 42. b5 Kd3 43. b6 Ke2 44. b7
 Kxf2 45. b8=Q Kxg2 46. Qf4 Kxh3 47. Qxf5+ Kg3 48. Qf4+ Kf2 49. Kd4 Ke2 50.
 Qe3+ Kf1 51. Ng5 Kg2 52. Qf3+ Kh2 53. Qg4 Kh1 54. Ke3 Kh2 55. Kf2 Kh1 56.
-Qg1# 1-0`,
-];
+Qg1# 1-0
+
+`];

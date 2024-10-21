@@ -13,9 +13,9 @@ export const pgns1979 = [
 { [N 6.Na3 Macdonnell-Labourdonais; London (m); 1835. {ECO ] } 6... Qb6 7.
 Na3 a6 8. Bxc6+ Qxc6 9. d4 Bd7 10. O-O cxd4 11. Nxd4 Bc5 12. Be3 Qc7 13. f5
 $1 exf5 14. e6 Bxe6 $2 15. Nxe6 Bxe3+ 16. Kh1 Qe7 { [ 16....Qd7 ] } 17.
-Qxd5 Nh6 18. Nc4 Ng4 $2 { [18....Nf7 ] } 19. Nd6+ 1-0`,
+Qxd5 Nh6 18. Nc4 Ng4 $2 { [18....Nf7 ] } 19. Nd6+ 1-0
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1979.??.??"]
 [Round "?"]
@@ -32,9 +32,9 @@ Bxf4 Nxf4 20. Rxf1 Ng6 21. Rg3 Rf8 22. b3 $2 O-O-O 23. f4 $2 Nxf4 $2 {
 23....Rxf4 __________________________ } 24. Rgf3 Ng6 25. Rxf8 Rxf8 26.
 Rxf8+ Nxf8 27. Ne2 Ng6 28. e6 Kd8 29. Kg2 Ke7 30. Kg3 c5 31. Nf4 Nf8 32.
 Kg4 c6 33. Kf5 b5 34. h4 a5 35. a3 c4 36. b4 axb4 37. axb4 Ng6 38. Nxg6+
-hxg6+ 39. Kxg6 c5 40. h5 cxb4 41. h6 b3 42. h7 1-0`,
+hxg6+ 39. Kxg6 c5 40. h5 cxb4 41. h6 b3 42. h7 1-0
 
-`[Event "Toronto - Ontario Junior"]
+`,`[Event "Toronto - Ontario Junior"]
 [Site "?"]
 [Date "1979.??.??"]
 [Round "?"]
@@ -51,9 +51,9 @@ Nf2 Bxb2 16. Rb1 Bc3+ 17. Bd2 Rc8 18. Bxc3 Rxc3 19. Qd2 Nc2+ 20. Kf1 Ne3+
 21. Kg1 d4 22. Nd1 Qd5 23. Nxe3 Rxe3 24. Bc4 Qe4 25. Rf1 d3 26. Qg2 Qd4 27.
 Qf2 Rd8 28. h3 d2 29. Kh2 Qc3 30. Kg2 Rd4 (30... Rdd3 $5) 31. f5 Rxc4 32.
 bxc4 $2 (32. fxg6 $1 $18) 32... Qd3 33. Qf4 d1=Q 34. fxg6 Re2+ 35. Rf2
-Rxf2+ 36. Qxf2 Qe4+ 37. Kg3 Qdd3+ 0-1`,
+Rxf2+ 36. Qxf2 Qe4+ 37. Kg3 Qdd3+ 0-1
 
-`[Event "Vancouver (Keres Memorial)"]
+`,`[Event "Vancouver (Keres Memorial)"]
 [Site "?"]
 [Date "1979.??.??"]
 [Round "?"]
@@ -73,9 +73,9 @@ Ke7 22. Rc4 Bb6 23. f4 Nd6 24. Rc2 Nf6 25. f3 Nd5 26. Kf2 c4 27. Re1 Nxf4
 28. Kg3 Nd3 29. Ree2 Nf5+ 30. Kh3 Nxe3 31. Rxe3 Bxe3 32. Rxc4 Nxb2 33. Rb4
 Nd3 34. Rb3 Nf2+ 35. Kg2 Bb6 36. a4 Nd1 37. Kf1 Ne3+ 38. Ke2 Nf5 39. Kd3
 Nd4 40. Rxb6 axb6 41. Kxd4 Kd6 42. Kc4 Kc6 43. h3 g5 44. Kd4 f6 45. Kc4 e5
-46. Kb4 f5 47. Kc4 h5 48. Kb4 g4 49. fxg4 fxg4 0-1`,
+46. Kb4 f5 47. Kc4 h5 48. Kb4 g4 49. fxg4 fxg4 0-1
 
-`[Event "Vancouver (Keres Memorial)"]
+`,`[Event "Vancouver (Keres Memorial)"]
 [Site "?"]
 [Date "1979.??.??"]
 [Round "?"]
@@ -93,9 +93,9 @@ Bxf4 Nf6 13. f3 exf3 14. gxf3 Kf7 15. Re5 Nd5 16. Bg3 c6 17. Qe2 Bd7 18.
 Kh1 Qf6 19. Rg1 f4 20. Bf2 Rae8 21. h4 g5 22. h5 Re7 23. Bd3 Be8 24. Bg6+
 Kg7 25. Bxe8 Rhxe8 26. a3 Qf7 27. Bh4 Kh8 28. Rexg5 hxg5 29. Qe5+ Qf6 30.
 Rxg5 Qxe5 31. dxe5 Rh7 32. Kg1 Rg8 33. Rg4 Rxh5 34. Bf6+ Nxf6 35. exf6
-Rxg4+ 36. fxg4 Rg5 37. f7 Kg7 38. Kf2 Rxg4 39. Kf3 Rh4 40. Kg2 Kxf7 0-1`,
+Rxg4+ 36. fxg4 Rg5 37. f7 Kg7 38. Kf2 Rxg4 39. Kf3 Rh4 40. Kg2 Kxf7 0-1
 
-`[Event "Vancouver (Keres Memorial)"]
+`,`[Event "Vancouver (Keres Memorial)"]
 [Site "?"]
 [Date "1979.??.??"]
 [Round "?"]
@@ -109,9 +109,9 @@ Rxg4+ 36. fxg4 Rg5 37. f7 Kg7 38. Kf2 Rxg4 39. Kf3 Rh4 40. Kg2 Kxf7 0-1`,
 (7. O-O { Tarrasch,S-Blackburne,J; Hastings; 1895. }) 7... cxd4 8. cxd4 Nd5
 9. a3 Be7 10. Bd2 O-O 11. O-O N7f6 12. Rc1 b6 13. Ne5 Bb7 14. Nc6 Bxc6 15.
 Rxc6 Qd7 16. Rc1 Rac8 17. Qf3 Nxe4 18. Qxe4 Nf6 19. Qh4 e5 20. Bg5 Qxd4 21.
-Bxh7+ Nxh7 22. Bxe7 Qxh4 23. Bxh4 f6 24. f3 Rf7 $4 25. Rxc8+ 1-0`,
+Bxh7+ Nxh7 22. Bxe7 Qxh4 23. Bxh4 f6 24. f3 Rf7 $4 25. Rxc8+ 1-0
 
-`[Event "Vancouver (Keres Memorial)"]
+`,`[Event "Vancouver (Keres Memorial)"]
 [Site "?"]
 [Date "1979.??.??"]
 [Round "?"]
@@ -132,9 +132,9 @@ cxd4 cxd4 23. Qxf6+ Rxf6 24. Re8+ Kg7 25. Rd8 b6 26. Rxd4 Be6 27. b3 Rc8
 34. Bd4 Ra2 35. Rd3 Bf5 36. Rc3 Ke6 37. Kh2 Kd5 38. Be3 Rc2 39. Rxc2 Bxc2
 40. Kg3 Bf5 41. Kf4 Ke6 42. g4 Bd3 43. Kg5 Be2 44. f4 Kf7 45. f5 Bf3 46.
 Kf4 Be2 47. g5 Bh5 48. Ke5 Ke7 49. f6+ Kd7 50. Bd4 Bf7 51. a4 Bb3 52. a5
-bxa5 53. Bxa7 axb4 54. Bc5 Ke8 55. Kd6 Kf7 56. Bxb4 Bc2 1/2-1/2`,
+bxa5 53. Bxa7 axb4 54. Bc5 Ke8 55. Kd6 Kf7 56. Bxb4 Bc2 1/2-1/2
 
-`[Event "Vancouver (Keres Memorial)"]
+`,`[Event "Vancouver (Keres Memorial)"]
 [Site "?"]
 [Date "1979.??.??"]
 [Round "?"]
@@ -154,9 +154,9 @@ Ne8 28. Bg4 Nd6 29. Be6+ Kh8 30. Bxg7+ Kxg7 31. Rd1 Ra8 32. Qe3 Ra3 33. Rd3
 Rxd3 34. Qxd3 Rb3 35. Qe2 Rb1 36. Rxb1 Qxb1+ 37. Kh2 Qxe4 38. Qxe4 Nxe4 39.
 g4 Kf8 40. Kg2 Nd6 41. Kf3 Nxc4 42. Ke4 Nd6+ 43. Kd3 h6 44. h4 f5 45. gxf5
 gxf5 46. Ke3 Kg7 47. Bd7 Kf6 48. Be6 e4 49. Bd7 Ke5 50. Be6 f4+ 51. Ke2 Kd4
-52. Bg8 c4 0-1`,
+52. Bg8 c4 0-1
 
-`[Event "Vancouver (Keres Memorial)"]
+`,`[Event "Vancouver (Keres Memorial)"]
 [Site "?"]
 [Date "1979.??.??"]
 [Round "?"]
@@ -175,9 +175,9 @@ Rf6 23. Kh1 Rd4 24. h3 Rg6 25. Qe7 Qd6 26. Qxb7 Rf6 27. Qxa7 Rd2 28. Rc3
 Rh6 29. c5 $2 Qc6 $6 (29... Rxh3+) 30. Rff3 Nd5 31. Qb8+ Kf7 32. Be4 Rd1+
 33. Kh2 Qc7+ 34. Qxc7+ Nxc7 35. a4 Ke7 36. Bb7 Rh4 37. c6 Rb4 38. a5 Ra1
 39. Rcd3 Nd5 40. a6 g5 41. Rxd5 exd5 42. c7 Rc1 43. c8=Q Rxc8 44. Bxc8 Rb5
-45. Rxf5 h6 46. b4 Rb8 47. Bb7 1-0`,
+45. Rxf5 h6 46. b4 Rb8 47. Bb7 1-0
 
-`[Event "Vancouver (Keres Memorial)"]
+`,`[Event "Vancouver (Keres Memorial)"]
 [Site "?"]
 [Date "1979.??.??"]
 [Round "?"]
@@ -196,5 +196,6 @@ f3 e3 26. Qc4 Qf7 27. Bg5 Re8 28. Qxf7+ Kxf7 29. Re2 Ke6 30. Kf1 Kf5 31.
 Bh4 h6 32. Be1 g5 33. c4 b6 34. b3 h5 35. h3 g4 36. Rc2 c5 37. d5 g3 38.
 Ke2 Be5 39. b4 Bd4 40. Kd3 Ke5 41. b5 { [White offers a draw.] } 41... Ra8
 42. Bc3 Bxc3 43. Kxc3 a6 44. bxa6 Rxa6 45. Kd3 Ra3+ 46. Ke2 Kd4 47. h4 Ke5
-48. Rb2 Ra6 49. Rc2 Ra7 50. Kd3 Ra3+ 1/2-1/2`,
-];
+48. Rb2 Ra6 49. Rc2 Ra7 50. Kd3 Ra3+ 1/2-1/2
+
+`];

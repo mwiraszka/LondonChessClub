@@ -92,7 +92,7 @@
   --lcc-color--documentsScreen-pdfViewerScrollbarBackground: #{color(grayscale, white-90)};
   --lcc-color--documentsScreen-pdfViewerScrollbar: #{color(grayscale, gray-65)};
 
-  --lcc-color--expansionPanel-contentBackground: #{color(grayscale, black-15)};
+  --lcc-color--expansionPanel-contentBackground: #{color(grayscale, black-20)};
   --lcc-color--expansionPanel-headerForeground: #{color(grayscale, white-85)};
   --lcc-color--expansionPanel-headerBackground: #{color(primary, light, 0.8)};
   --lcc-color--expansionPanel-headerBackgroundOnHover: #{color(primary, light)};
@@ -153,6 +153,7 @@
   --lcc-color--input-text: #{color(grayscale, white-95)};
 
   --lcc-color--link: #{color(primary, lighter)};
+  --lcc-color--linkDisabled: #{color(grayscale, gray-35)};
   --lcc-color--linkOnHover: #{color(primary, lightest)};
 
   --lcc-color--linkList-headerText: #{color(grayscale, gray-75)};

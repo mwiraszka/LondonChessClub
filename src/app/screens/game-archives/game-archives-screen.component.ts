@@ -91,6 +91,8 @@ export class GameArchivesScreenComponent implements OnInit {
     this.cdkVirtualScrollViewport?.checkViewportSize();
   }
 
+  trackByFn = (index: number) => index;
+
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Game Archives');
     this.metaAndTitleService.updateDescription(

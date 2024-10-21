@@ -159,7 +159,8 @@
                     *cdkVirtualFor="
                       let gameDetails of group.value;
                       let index = index;
-                      templateCacheSize: 0
+                      templateCacheSize: 0;
+                      trackBy: trackByFn
                     "
                     [index]="index"
                     [label]="group.key"

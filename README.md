@@ -47,6 +47,7 @@ v4.1.0 - October 20th, 2024
 - 🚀 Add support for null paths and tooltips to be passed in to Link component
 - 🐛 Prevent left-right arrow keys from controlling scrollbar in the expansion panel when a game is focused since they already control previous/next move in the Lichess PGN Viewer
 - 🐛 Add a newline character after the game termination marker, followed by an intentional blank line, to all PGNs in the Game Archives
+- 🐛 Ensure embedded images in articles are responsive and are always displayed at max-width 
 
 </details>
 

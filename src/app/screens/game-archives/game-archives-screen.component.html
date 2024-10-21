@@ -125,7 +125,16 @@
     </form>
 
     <span class="result-summary-text">{{ searchResultSummaryMessage }}</span>
+    <button
+      (click)="onShowStats()"
+      class="lcc-secondary-button search-stats-text">
+      {{ showStats ? 'Hide' : 'Show' }} search stats
+    </button>
   </div>
+
+  @if (showStats) {
+    <div class="search-stats-container"> Search stats go here! </div>
+  }
 
   <div class="panels-container">
     @for (group of filteredGames | keyvalue: originalOrder; track group.key) {

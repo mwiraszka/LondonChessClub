@@ -37,7 +37,10 @@ export function getScore(pgn?: string, color?: 'White' | 'Black'): GameScore | u
     return;
   }
 
-  const [whiteScore, blackScore] = pgn.split('[Result "')[1].split('"]')[0].split('-');
+  const [whiteScore, blackScore] = pgn
+    .split('[Result "')?.[1]
+    ?.split('"]')?.[0]
+    ?.split('-');
 
   if (whiteScore === '*') {
     return '*';
@@ -60,8 +63,23 @@ export function getPlyCount(pgn?: string): number | undefined {
     return;
   }
 
-  const plyCount = pgn.split('[PlyCount "')[1].split('"]')[0];
+  const plyCount = pgn.split('[PlyCount "')[1]?.split('"]')[0];
   return !plyCount || isNaN(+plyCount) ? undefined : +plyCount;
+}
+
+/**
+ * @param pgn The PGN of the chess game
+ *
+ * @returns {number | undefined} The game's ECO opening code
+ */
+export function getEcoOpeningCode(pgn?: string): string | undefined {
+  if (!pgn) {
+    return;
+  }
+
+  const eco = pgn.split('[ECO "')?.[1]?.split('"]')[0];
+  console.log(':: eco', eco);
+  return eco;
 }
 
 /**

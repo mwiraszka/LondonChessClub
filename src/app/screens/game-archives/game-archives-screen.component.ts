@@ -61,6 +61,7 @@ export class GameArchivesScreenComponent implements OnInit {
   allGames: Map<string, GameDetails[]> = new Map();
   filteredGames: Map<string, GameDetails[]> = new Map();
   form!: FormGroup;
+  showStats: boolean = false;
 
   get searchResultSummaryMessage(): string {
     const allGamesCount = Array.from(this.allGames.values()).flat().length;
@@ -110,6 +111,10 @@ export class GameArchivesScreenComponent implements OnInit {
     if (key === 'ArrowLeft' || key === 'ArrowRight') {
       event.preventDefault();
     }
+  }
+
+  onShowStats(): void {
+    this.showStats = !this.showStats;
   }
 
   hasError(control: AbstractControl): boolean {

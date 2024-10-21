@@ -20,7 +20,6 @@ $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
   }
 
   .intro-section {
-    margin: 16px 0;
     max-width: $container-max-width;
     display: flex;
     flex-direction: column;
@@ -31,6 +30,7 @@ $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
 
     .image-container {
       flex: 2;
+      align-self: center;
 
       img {
         max-width: 100%;

@@ -15,6 +15,7 @@ import {
 
 import { LoaderService, MetaAndTitleService } from '@app/services';
 import { GameDetails } from '@app/types';
+import { getChessOpenings } from '@app/utils/file-utils';
 import {
   getOpeningTallies,
   getPlayerName,
@@ -69,6 +70,7 @@ export class GameArchivesScreenComponent implements OnInit {
   filteredGames: Map<string, GameDetails[]> = new Map();
   form!: FormGroup;
   showStats: boolean = false;
+  chessOpenings: Map<string, string> | null = null;
 
   chartOptions: ChartConfiguration<'doughnut'>['options'] = {
     responsive: false,
@@ -109,11 +111,13 @@ export class GameArchivesScreenComponent implements OnInit {
 
   trackByFn = (index: number) => index;
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.metaAndTitleService.updateTitle('Game Archives');
     this.metaAndTitleService.updateDescription(
       'A collection of games played by London Chess Club members, going all the way back to 1974.',
     );
+    this.chessOpenings = await getChessOpenings();
+    console.log(':: chess openings', this.chessOpenings);
 
     this.initForm();
     this.initGames();
@@ -312,7 +316,13 @@ export class GameArchivesScreenComponent implements OnInit {
     }
 
     const openingTallies = getOpeningTallies(pgns);
-    this.openingsChartLabels = Array.from(openingTallies?.keys() ?? []);
+
+    this.openingsChartLabels = Array.from(openingTallies?.keys() ?? []).map(
+      openingTally =>
+        this.chessOpenings?.size
+          ? this.chessOpenings.get(openingTally) ?? 'Unknown'
+          : 'Unknown',
+    );
     this.openingsChartDatasets = [{ data: Array.from(openingTallies?.values() ?? []) }];
 
     const resultTallies = getResultTallies(pgns);

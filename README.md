@@ -13,6 +13,8 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 - `Feather` for icons
 - `SCSS` for style preprocessing with Sass
 - `Lichess PGN Viewer` for rendering chess games
+- `Ng2 Charts` for additional game stats
+- `Ng2 PDF Viewer` for PDF documents
 
 > BACKEND (AWS)
 

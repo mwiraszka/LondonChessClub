@@ -146,9 +146,7 @@ function getEcoOpeningCode(pgn?: string): string | undefined {
     return;
   }
 
-  const eco = pgn.split('[ECO "')?.[1]?.split('"]')[0];
-  console.log(':: eco', eco);
-  return eco;
+  return pgn.split('[ECO "')?.[1]?.split('"]')[0];
 }
 
 /**

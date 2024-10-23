@@ -7,8 +7,6 @@ export const pgns1974 = [
 [Black "Surlan, D."]
 [Result "1-0"]
 [ECO "A22"]
-[Opening "English"]
-[Variation "Carls' Bremen system"]
 [EventDate "1974.??.??"]
 [PlyCount "83"]
 

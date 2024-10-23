@@ -7,8 +7,6 @@ export const pgns1995 = [
 [Black "Lou, M."]
 [Result "1-0"]
 [ECO "B10"]
-[Opening "Caro-Kann"]
-[Variation "two knights variation"]
 [EventDate "1995.??.??"]
 [PlyCount "79"]
 
@@ -28,7 +26,6 @@ Nxg2 30. Rxa7 Re2 $1 31. a4 c5 $1 32. b4 $1 Kd5 33. Kd1 Ra2 34. dxc5 Kc4
 [Black "Leonard, D."]
 [Result "1-0"]
 [ECO "A40"]
-[Opening "Modern defence"]
 [EventDate "1995.??.??"]
 [PlyCount "47"]
 
@@ -45,7 +42,6 @@ Rxf3 21. Qxf3 Bxc3 22. Qxc3 Re8 23. Bh6 e5 24. Rad1 1-0
 [Black "Kovacs, P."]
 [Result "1-0"]
 [ECO "C50"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "33"]
 
@@ -61,8 +57,6 @@ Nxc3 15. Nxc3 Bxb4 16. bxa7+ Ka8 17. Bd5 1-0
 [Black "Zendrowski, J."]
 [Result "0-1"]
 [ECO "B06"]
-[Opening "Robatsch defence"]
-[Variation "two knights, Suttles variation"]
 [EventDate "1995.??.??"]
 [PlyCount "79"]
 
@@ -82,7 +76,6 @@ Qf6 40. h4 0-1
 [Black "Finkenzeller, A."]
 [Result "0-1"]
 [ECO "D00"]
-[Opening "Queen's pawn, Mason variation"]
 [EventDate "1995.??.??"]
 [PlyCount "56"]
 
@@ -100,7 +93,6 @@ exd4 Qb4+ 27. Kc1 Rxd4 28. Bxg6 Qb1# 0-1
 [Black "Khan, Z."]
 [Result "1-0"]
 [ECO "E00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "54"]
 
@@ -118,8 +110,6 @@ Qg5 27. g3 Ne4 1-0
 [Black "Krilic, G."]
 [Result "0-1"]
 [ECO "D37"]
-[Opening "QGD"]
-[Variation "4.Nf3"]
 [EventDate "1995.??.??"]
 [PlyCount "90"]
 
@@ -140,7 +130,6 @@ bxa4 32. Kxa4 h6 33. Ka5 h5 34. Bf4 g5 35. Bd6 f6 36. h4 gxh4 37. Bf4 Rc8
 [Black "Prete, D."]
 [Result "1-0"]
 [ECO "E00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "49"]
 
@@ -157,8 +146,6 @@ Kh8 21. Ra2 Qg5 22. Bxf7 Re7 23. Nf3 Qf6 24. Qd8+ Kh7 25. Qg8# 1-0
 [Black "Cooper, A."]
 [Result "1-0"]
 [ECO "C11"]
-[Opening "French"]
-[Variation "Swiss variation"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -176,7 +163,6 @@ Qe4 Qb8 27. Bb3 Ke7 28. a3 Qc7 29. Nd5+ 1-0
 [Black "Van Weeren, H."]
 [Result "0-1"]
 [ECO "C46"]
-[Opening "Three knights game"]
 [EventDate "1995.??.??"]
 [PlyCount "81"]
 
@@ -196,7 +182,6 @@ Kxd3 Ke8 39. Kd2 Kd8 40. Kd3 Kc7 41. Nc4 0-1
 [Black "Winmill, R."]
 [Result "0-1"]
 [ECO "B50"]
-[Opening "Sicilian"]
 [EventDate "1995.??.??"]
 [PlyCount "106"]
 
@@ -218,8 +203,6 @@ f1=Q 51. Kb3 Qd1+ 52. Ka2 Qc2+ 53. Ka1 Qb2# 0-1
 [Black "Finkenzeller, A."]
 [Result "1-0"]
 [ECO "B00"]
-[Opening "KP"]
-[Variation "Nimzovich defence"]
 [EventDate "1995.??.??"]
 [PlyCount "53"]
 
@@ -237,7 +220,6 @@ Re7+ Kg8 27. Qh6 1-0
 [Black "Krilic, G."]
 [Result "0-1"]
 [ECO "C00"]
-[Opening "French defence"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -256,8 +238,6 @@ Rh4 h6 27. Qg6 Re2 28. Rxh6 Rxg2+ 29. Kh1 Qxg3 30. Qh7+ Kf8 31. Qh8+ Kf7
 [Black "Van Weeren, H."]
 [Result "1-0"]
 [ECO "C62"]
-[Opening "Ruy Lopez"]
-[Variation "old Steinitz defence"]
 [EventDate "1995.??.??"]
 [PlyCount "37"]
 
@@ -274,7 +254,6 @@ Bxg5 1-0
 [Black "Krilic, G."]
 [Result "0-1"]
 [ECO "D43"]
-[Opening "QGD semi-Slav"]
 [EventDate "1995.??.??"]
 [PlyCount "80"]
 
@@ -294,7 +273,6 @@ Kg3 Qe5+ 39. Kg2 b2 40. Qd3 Qe1 0-1
 [Black "Schiff, M."]
 [Result "1/2-1/2"]
 [ECO "A56"]
-[Opening "Benoni defence"]
 [EventDate "1995.??.??"]
 [PlyCount "70"]
 
@@ -313,8 +291,6 @@ Nb4 33. Rd7 Ke8 34. Ra7 a3 35. Nxa3 Nd3 1/2-1/2
 [Black "Winmill, R."]
 [Result "1/2-1/2"]
 [ECO "D90"]
-[Opening "Gruenfeld"]
-[Variation "Three knights variation"]
 [EventDate "1995.??.??"]
 [PlyCount "68"]
 
@@ -333,7 +309,6 @@ dxe6 Rxe6 27. Bb7 Rxe1+ 28. Rxe1 Rd8 29. Bxa6 Rd2 30. a4 Ng5 31. Bb7 Nh3+
 [Black "De Kerpel, S."]
 [Result "1-0"]
 [ECO "A10"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "80"]
 
@@ -353,8 +328,6 @@ Kg8 38. Bf5 h6 39. Kg2 Ra5 40. Be6+ Kh8 1-0
 [Black "Dobrishman, L."]
 [Result "1-0"]
 [ECO "C60"]
-[Opening "Ruy Lopez"]
-[Variation "Cozio defence"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -372,8 +345,6 @@ Qg5 26. Ne3 Rc7 27. Nf5 Rxg7 28. Nxg7+ Kf8 29. Nf5 1-0
 [Black "Southam, T."]
 [Result "1-0"]
 [ECO "A36"]
-[Opening "English"]
-[Variation "ultra-symmetrical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "49"]
 
@@ -390,8 +361,6 @@ Bb7 21. a4 Nf6 22. Re1 Nh5 23. Qe2 Re8 24. Kh2 Ng7 25. Qd2 1-0
 [Black "Cooper, A."]
 [Result "1-0"]
 [ECO "D51"]
-[Opening "QGD"]
-[Variation "4.Bg5 Nbd7"]
 [EventDate "1995.??.??"]
 [PlyCount "63"]
 
@@ -410,8 +379,6 @@ Ng4 26. Re2 Qxe2 27. Nxe2 Nf2+ 28. Kg1 Rd1+ 29. Qxd1 Nxd1+ 30. Ned4 Nxb2
 [Black "Kovacs, P."]
 [Result "1-0"]
 [ECO "E21"]
-[Opening "Nimzo-Indian"]
-[Variation "three knights variation"]
 [EventDate "1995.??.??"]
 [PlyCount "75"]
 
@@ -431,8 +398,6 @@ Nf5+ Kh5 38. g4# 1-0
 [Black "Moser, D."]
 [Result "0-1"]
 [ECO "D06"]
-[Opening "QGD"]
-[Variation "Grau (Sahovic) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "63"]
 
@@ -451,7 +416,6 @@ Rxh6 32. Qxh6 0-1
 [Black "Van Weeren, H."]
 [Result "0-1"]
 [ECO "C50"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -469,7 +433,6 @@ cxb4 27. axb4 Qxc4 28. Rd2 Bxh3 29. gxh3 Bd4 30. Kg2 Be3 31. Rd3 Qxe4+ 0-1
 [Black "De Kerpel, S."]
 [Result "1/2-1/2"]
 [ECO "B01"]
-[Opening "Scandinavian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "95"]
 
@@ -490,7 +453,6 @@ Kh2 Nxd1 46. Qh8+ Kd7 47. Qg7+ Kc6 48. Nxd1 1/2-1/2
 [Black "Jung, H."]
 [Result "0-1"]
 [ECO "A41"]
-[Opening "Old Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -508,8 +470,6 @@ Bf5 15. Qh4 Bf6 16. Qg3 Qe7 17. Bg4 Be6 18. b3 e4 19. Rb1 Nb4 20. a3 Na2
 [Black "Dobrishman, L."]
 [Result "0-1"]
 [ECO "A00"]
-[Opening "Benko's opening"]
-[Variation "reversed Alekhine"]
 [EventDate "1995.??.??"]
 [PlyCount "38"]
 
@@ -526,7 +486,6 @@ Be2+ 0-1
 [Black "Prete, D."]
 [Result "0-1"]
 [ECO "B06"]
-[Opening "Robatsch (modern) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "74"]
 
@@ -545,8 +504,6 @@ Rxc6 33. Qe7 Re6 34. Qd8+ Kh7 35. Bxf6 Bxf6 36. Rd7+ Bg7 37. Qf8 Qa1+ 0-1
 [Black "Zoccano, J."]
 [Result "0-1"]
 [ECO "C00"]
-[Opening "French"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "36"]
 
@@ -562,7 +519,6 @@ Be7 8. Qf3 Be6 9. O-O-O Qd7 10. d4 Bg4 11. Qg3 g6 12. Nb5 Na6 13. Re1 O-O-O
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [ECO "A57"]
-[Opening "Benko gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "74"]
 
@@ -581,8 +537,6 @@ Rd3 Rfe8 33. Kf2 g5 34. Rf3 Kg7 35. Rd3 h6 36. Rd2 Re3 37. Rb2 Rc3 0-1
 [Black "Skinner, M."]
 [Result "1-0"]
 [ECO "E30"]
-[Opening "Nimzo-Indian"]
-[Variation "Leningrad variation"]
 [EventDate "1995.??.??"]
 [PlyCount "25"]
 
@@ -597,8 +551,6 @@ Nf3 a6 9. a4 Qa5 10. Qc2 Bxc3+ 11. bxc3 Nxd5 12. Rc1 b5 13. Qe4+ 1-0
 [Black "Zoccano, J."]
 [Result "1/2-1/2"]
 [ECO "C06"]
-[Opening "French"]
-[Variation "Tarrasch, closed variation, main line"]
 [EventDate "1995.??.??"]
 [PlyCount "56"]
 
@@ -616,7 +568,6 @@ Kd8 27. h4 gxh4 28. Nxh4 Nb5 { Draw in 41. } 1/2-1/2
 [Black "Khan, Z."]
 [Result "1/2-1/2"]
 [ECO "D03"]
-[Opening "Torre attack (Tartakower variation)"]
 [EventDate "1995.??.??"]
 [PlyCount "50"]
 
@@ -634,8 +585,6 @@ Nxd7 Bxd7 15. Bxe7 Kxe7 16. Re1 Bc6 17. Qe2 Qxd4+ 18. Kh1 Rhe8 19. Rbd1 Qc5
 [Black "Matthews, I."]
 [Result "0-1"]
 [ECO "D20"]
-[Opening "QGA"]
-[Variation "3.e4"]
 [EventDate "1995.??.??"]
 [PlyCount "97"]
 
@@ -656,7 +605,6 @@ Nb4 38. g4 Nxd5 39. Ke4 b5 40. h4 a4 41. bxa4 bxa4 42. Kd4 Nxf4 43. Kc4 Ng2
 [Black "Skinner, M."]
 [Result "0-1"]
 [ECO "C00"]
-[Opening "French defence"]
 [EventDate "1995.??.??"]
 [PlyCount "83"]
 
@@ -676,7 +624,6 @@ Nf4 40. Be7 Rf7 41. Bg5 Ng2+ 42. Kd2 0-1
 [Black "Ward, R."]
 [Result "0-1"]
 [ECO "A46"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "82"]
 
@@ -696,8 +643,6 @@ Kc2 a5 38. h4 f5 39. h5 g6 40. hxg6 hxg6 41. Kd3 Kb3 0-1
 [Black "Cooper, A."]
 [Result "1-0"]
 [ECO "A17"]
-[Opening "English"]
-[Variation "Nimzo-English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "73"]
 
@@ -717,8 +662,6 @@ Re8+ Kg7 32. Qe5+ f6 33. Re7+ Kg8 34. Qxf6 Qc1+ 35. Kh2 Qf4+ 36. Qxf4 g5
 [Black "Krilic, G."]
 [Result "0-1"]
 [ECO "D00"]
-[Opening "Queen's pawn"]
-[Variation "Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "68"]
 
@@ -737,7 +680,6 @@ Na6 27. a3 Bc4 28. Nd2 b5 29. Rf1 Qd5 30. f3 Re8 31. Bf2 Nc7 32. Qd1 Ne6
 [Black "Ehrman, C."]
 [Result "0-1"]
 [ECO "A45"]
-[Opening "Canard opening"]
 [EventDate "1995.??.??"]
 [PlyCount "78"]
 
@@ -757,7 +699,6 @@ Bg5 Re8 38. Kd1 Ree2 39. Bf4 Rhf2 0-1
 [Black "Skinner, M."]
 [Result "1-0"]
 [ECO "A45"]
-[Opening "Canard opening"]
 [EventDate "1995.??.??"]
 [PlyCount "78"]
 
@@ -777,8 +718,6 @@ Nf6+ Kf8 21. Bxh6+ Rxh6 22. Qg5 Rh8 23. g4 hxg4 24. Qxg4 Kg7 25. Qg5 Kf8
 [Black "Finkenzeller, A."]
 [Result "0-1"]
 [ECO "C42"]
-[Opening "Petrov"]
-[Variation "Italian variation"]
 [EventDate "1995.??.??"]
 [PlyCount "46"]
 
@@ -795,8 +734,6 @@ Bxg3 20. a4 f5 21. Ne5 Qh4+ 22. Kg1 Ba6 23. Nd7 Qh2# 0-1
 [Black "McRorie, A."]
 [Result "0-1"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "Nimzovich, Klein variation"]
 [EventDate "1995.??.??"]
 [PlyCount "50"]
 
@@ -814,8 +751,6 @@ Nd3+ 0-1
 [Black "Khan, Z."]
 [Result "1-0"]
 [ECO "C36"]
-[Opening "KGA"]
-[Variation "Abbazia defence (classical defence, modern defence[!])"]
 [EventDate "1995.??.??"]
 [PlyCount "71"]
 
@@ -834,8 +769,6 @@ Kc2 Rc6 33. Bf2 d4 34. Bxd4 Bxd4 35. Rxb7 Bxe5 36. h3 1-0
 [Black "Matthews, I."]
 [Result "1/2-1/2"]
 [ECO "C30"]
-[Opening "KGD"]
-[Variation "classical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "26"]
 
@@ -851,7 +784,6 @@ Qxf3 Nd4 9. Qd1 O-O 10. f5 Nd7 11. Ne2 Nxe2 12. Qxe2 Qh4+ 13. Kd1 c6
 [Black "Moser, D."]
 [Result "1-0"]
 [ECO "C30"]
-[Opening "King's gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -869,8 +801,6 @@ Be6 26. Bxh6 Bxh6 1-0
 [Black "Winmill, R."]
 [Result "1/2-1/2"]
 [ECO "B26"]
-[Opening "Sicilian"]
-[Variation "closed, 6.Be3"]
 [EventDate "1995.??.??"]
 [PlyCount "63"]
 
@@ -889,8 +819,6 @@ Qc2 27. Qe4 Qd2 28. Kh3 Qb2 29. Nd4 Qb4 30. Nc6 Qc5 31. Rc7 Bxc6 32. Qxc6
 [Black "Kovacs, P."]
 [Result "1-0"]
 [ECO "E12"]
-[Opening "Queen's Indian"]
-[Variation "Petrosian system"]
 [EventDate "1995.??.??"]
 [PlyCount "51"]
 
@@ -908,8 +836,6 @@ Qxh4 1-0
 [Black "Schiff, M."]
 [Result "1-0"]
 [ECO "C05"]
-[Opening "French"]
-[Variation "Tarrasch, closed variation"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -927,8 +853,6 @@ Qf6+ Kg8 27. h5 gxh5 28. Kh1 Kf8 29. Qxh8+ 1-0
 [Black "Zendrowski, J."]
 [Result "0-1"]
 [ECO "B13"]
-[Opening "Caro-Kann"]
-[Variation "exchange, Rubinstein variation"]
 [EventDate "1995.??.??"]
 [PlyCount "44"]
 
@@ -945,8 +869,6 @@ Be5 21. Bd1 Nd3 22. Bxe5+ Ncxe5 0-1
 [Black "Demmery, S."]
 [Result "1-0"]
 [ECO "D15"]
-[Opening "QGD Slav"]
-[Variation "4.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "42"]
 
@@ -963,8 +885,6 @@ gxh7 Qxe3+ 21. Ne2 Qc1+ 1-0
 [Black "Ehrman, C."]
 [Result "1-0"]
 [ECO "D35"]
-[Opening "QGD"]
-[Variation "exchange, positional line"]
 [EventDate "1995.??.??"]
 [PlyCount "69"]
 
@@ -983,8 +903,6 @@ Qf8+ Kh7 32. Qf5+ Kg8 33. Kh1 Rxe2 34. Qg6+ Kh8 35. Rf8# 1-0
 [Black "Matthews, I."]
 [Result "1-0"]
 [ECO "D39"]
-[Opening "QGD"]
-[Variation "Ragozin, Vienna variation"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -1003,7 +921,6 @@ Rxa2 32. Rxa2 Bxa2 33. Bf3 Be6 1-0
 [Black "Demmery, S."]
 [Result "0-1"]
 [ECO "B01"]
-[Opening "Scandinavian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "50"]
 
@@ -1020,7 +937,6 @@ Qf3 hxg3 21. fxg3 Ke7 22. Bc4 Rh5 23. b3 Qb6 24. Kg2 Rbh8 25. Rfe1 R8h6 0-1
 [Black "McRorie, A."]
 [Result "1/2-1/2"]
 [ECO "C44"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "82"]
 
@@ -1040,7 +956,6 @@ R1f2 c5 40. Re2 Be4 41. Rxe4 dxe4 1/2-1/2
 [Black "Prete, D."]
 [Result "1-0"]
 [ECO "A02"]
-[Opening "Bird's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "73"]
 
@@ -1059,7 +974,6 @@ Rcf1 Rdxe5 33. R6f5 R5e6 34. Rxg5 h4 35. Rg4 Ra6 36. a4 hxg3 37. hxg3 1-0
 [Black "Ehrman, C."]
 [Result "0-1"]
 [ECO "A02"]
-[Opening "Bird's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "80"]
 
@@ -1079,7 +993,6 @@ e5 39. Ra8 Kd6 40. Rf8 Ke6 0-1
 [Black "Moser, D."]
 [Result "1-0"]
 [ECO "C44"]
-[Opening "Scotch gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "71"]
 
@@ -1098,7 +1011,6 @@ Bg1 Nfg3+ 33. hxg3 Nxg3+ 34. Kh2 Nxe2 35. Rd2 Nxf4 36. Be3 1-0
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "C56"]
-[Opening "Two knights defence"]
 [EventDate "1995.??.??"]
 [PlyCount "50"]
 
@@ -1116,8 +1028,6 @@ Qxd5 8. Nc3 Qh5 9. Nxe4 Be6 10. Bg5 h6 11. Bf6 Qg6 12. Nh4 Qh7 13. Qh5 Kd7
 [Black "Cooper, A."]
 [Result "1-0"]
 [ECO "C01"]
-[Opening "French"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "101"]
 
@@ -1139,8 +1049,6 @@ Kc5 45. Kxf5 Kd4 46. Kg6 Kc3 47. b4 a4 48. b5 Kb3 49. b6 Kxa3 50. b7 Ka2
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [ECO "A05"]
-[Opening "Reti"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "94"]
 
@@ -1161,8 +1069,6 @@ Nf6 Rxf4 45. Nxh7 Kf7 46. Nf6 Rxf6 47. gxf6 Kxf6 0-1
 [Black "Jung, H."]
 [Result "0-1"]
 [ECO "B21"]
-[Opening "Sicilian"]
-[Variation "Grand Prix attack"]
 [EventDate "1995.??.??"]
 [PlyCount "34"]
 
@@ -1178,8 +1084,6 @@ Bxf3 cxd4 9. cxd4 Nf6 10. O-O Qb6 11. Nc3 Nxd4 12. Be3 Nxf3+ 13. Rxf3 Bc5
 [Black "Jung, H."]
 [Result "0-1"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "55"]
 
@@ -1197,7 +1101,6 @@ Rxe5 Rcd8 27. Red5 Rxd7 28. Qxd7 0-1
 [Black "Southam, T."]
 [Result "1-0"]
 [ECO "C55"]
-[Opening "Two knights defence (Modern bishop's opening)"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -1215,8 +1118,6 @@ f5 27. Re3 Qg7 28. f4 e4 29. Nd4 Rg8 30. Qd2 Bc8 31. c3 Bh4 1-0
 [Black "Ward, R."]
 [Result "1-0"]
 [ECO "B09"]
-[Opening "Pirc"]
-[Variation "Austrian attack, dragon formation"]
 [EventDate "1995.??.??"]
 [PlyCount "65"]
 
@@ -1235,8 +1136,6 @@ f6 32. Ng6+ Kf7 33. Qxg3 1-0
 [Black "Zoccano, J."]
 [Result "1-0"]
 [ECO "C05"]
-[Opening "French"]
-[Variation "Tarrasch, closed variation"]
 [EventDate "1995.??.??"]
 [PlyCount "51"]
 
@@ -1254,7 +1153,6 @@ cxb6 1-0
 [Black "Dobrishman, L."]
 [Result "1-0"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "113"]
 
@@ -1277,8 +1175,6 @@ Kg6 52. a6 Kf6 53. a7 Kg6 54. a8=Q Kf7 55. Rb6 Ke7 56. Qa7+ Kd8 57. Rb8#
 [Black "Ward, R."]
 [Result "0-1"]
 [ECO "A41"]
-[Opening "Old Indian"]
-[Variation "Tartakower (Wade) variation"]
 [EventDate "1995.??.??"]
 [PlyCount "82"]
 
@@ -1298,7 +1194,6 @@ Ne5 39. Be2 Nd7 40. Bd1 Ne5 41. Ke3 Kg6 0-1
 [Black "Harkes, L."]
 [Result "0-1"]
 [ECO "E20"]
-[Opening "Nimzo-Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "46"]
 
@@ -1315,8 +1210,6 @@ gxf4 Qxh2 21. fxe5 Nxe5 22. Qb3 Qh1+ 23. Ke2 Qxe4 0-1
 [Black "Loh, L."]
 [Result "1-0"]
 [ECO "B70"]
-[Opening "Sicilian"]
-[Variation "dragon variation"]
 [EventDate "1995.??.??"]
 [PlyCount "111"]
 
@@ -1338,7 +1231,6 @@ e5 39. f3 h5 40. g4 hxg4 41. hxg4 f4 42. Kd3 Kc7 43. Ke4 Kd6 44. c5+ Kc7
 [Black "Prete, D."]
 [Result "1-0"]
 [ECO "D02"]
-[Opening "Queen's bishop game"]
 [EventDate "1995.??.??"]
 [PlyCount "63"]
 
@@ -1357,8 +1249,6 @@ Rec1 Qg6 21. Ne5 Qf5+ 22. Bf3 Nxc2 23. Ra2 Nxd4 24. Nxd4 Qxe5 25. Nb3 Rg8
 [Black "Matthews, I."]
 [Result "1/2-1/2"]
 [ECO "B22"]
-[Opening "Sicilian"]
-[Variation "Alapin's variation (2.c3)"]
 [EventDate "1995.??.??"]
 [PlyCount "73"]
 
@@ -1378,8 +1268,6 @@ Kg3 1/2-1/2
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "C68"]
-[Opening "Ruy Lopez"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "46"]
 
@@ -1396,7 +1284,6 @@ Nd3 Ng6 21. Nxc5 Bxc5 22. Bxc5 Nf4+ 23. Ke3 Rd3# 0-1
 [Black "Erickson, J."]
 [Result "1/2-1/2"]
 [ECO "E61"]
-[Opening "King's Indian defence, 3.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "86"]
 
@@ -1417,8 +1304,6 @@ Ke7 43. Rxd4 Bxd4 1/2-1/2
 [Black "Prete, D."]
 [Result "1-0"]
 [ECO "D37"]
-[Opening "QGD"]
-[Variation "4.Nf3"]
 [EventDate "1995.??.??"]
 [PlyCount "99"]
 
@@ -1439,8 +1324,6 @@ Nxd4 15. exd4 b6 16. Nb3 a5 17. Rc1 Ra7 18. Na1 O-O 19. b4 Re8 20. Nb3 e5
 [Black "Sengupta, O."]
 [Result "0-1"]
 [ECO "C02"]
-[Opening "French"]
-[Variation "advance, Paulsen attack"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -1458,7 +1341,6 @@ Qxg2# 0-1
 [Black "Khan, Z."]
 [Result "0-1"]
 [ECO "C44"]
-[Opening "Konstantinopolsky opening"]
 [EventDate "1995.??.??"]
 [PlyCount "50"]
 
@@ -1476,8 +1358,6 @@ Kg3 Bxf3 21. Kxf3 Qh3+ 22. Ke2 Bh4 23. Nd1 Qg2+ 24. Bf2 Nd4+ 25. Ke3 Nxc2+
 [Black "Sengupta, O."]
 [Result "1-0"]
 [ECO "A34"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "129"]
 
@@ -1501,8 +1381,6 @@ Kg3 62. a6 Kf4 63. a7 Ke5 64. a8=Q Kd4 65. Qc8 1-0
 [Black "Demmery, S."]
 [Result "1-0"]
 [ECO "B01"]
-[Opening "Scandinavian"]
-[Variation "Marshall variation"]
 [EventDate "1995.??.??"]
 [PlyCount "67"]
 
@@ -1521,7 +1399,6 @@ Qg8+ Ke7 33. Qf7+ Kd8 34. Qe8# 1-0
 [Black "Loh, L."]
 [Result "1-0"]
 [ECO "A03"]
-[Opening "Bird's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "53"]
 
@@ -1539,7 +1416,6 @@ Qb4+ Rd6 27. Qxd6+ 1-0
 [Black "Sengupta, O."]
 [Result "1-0"]
 [ECO "A02"]
-[Opening "Bird's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -1557,8 +1433,6 @@ a6 26. Rf1 Rg7 27. a4 Be4 28. g3 Bf5 29. b4 Rf7 30. b5 axb5 31. axb5 1-0
 [Black "Demmery, S."]
 [Result "1-0"]
 [ECO "D11"]
-[Opening "QGD Slav"]
-[Variation "3.Nf3"]
 [EventDate "1995.??.??"]
 [PlyCount "65"]
 
@@ -1577,8 +1451,6 @@ Nf6 27. Ndf7+ Kg8 28. Nxh6+ Kh8 29. Nef7+ Rxf7 30. Qxa8+ Qc8 31. Qxc8+ Ne8
 [Black "Matthews, I."]
 [Result "1-0"]
 [ECO "D27"]
-[Opening "QGA"]
-[Variation "classical, Rubinstein variation"]
 [EventDate "1995.??.??"]
 [PlyCount "45"]
 
@@ -1595,7 +1467,6 @@ Rab1 Rd8 15. Ne4 Nd5 16. Bc2 Bxg5 17. Nexg5 h6 18. Nxf7 Nxd4 19. Nxh6+ gxh6
 [Black "Demmery, S."]
 [Result "1-0"]
 [ECO "D05"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "43"]
 
@@ -1612,8 +1483,6 @@ Kg8 21. Nxh8 Kxh8 22. Qh5+ 1-0
 [Black "Hush, J."]
 [Result "1-0"]
 [ECO "A49"]
-[Opening "King's Indian"]
-[Variation "fianchetto without c4"]
 [EventDate "1995.??.??"]
 [PlyCount "49"]
 
@@ -1631,7 +1500,6 @@ Nb5 Qd8 15. Nxd4 Rc8 16. Bxc6 Ba6 17. Nb4 e5 18. Bxd7 Rxc1 19. Bxc1 Qxd7
 [Black "Kaczmarek, B."]
 [Result "1-0"]
 [ECO "D05"]
-[Opening "Colle system"]
 [EventDate "1995.??.??"]
 [PlyCount "83"]
 
@@ -1651,8 +1519,6 @@ Bf5+ Ke7 39. Bg6 Qc6 40. Qxg7+ Kd8 41. Bxe8 Qxe8 42. Rf8 1-0
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "E62"]
-[Opening "King's Indian"]
-[Variation "fianchetto, Simagin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "34"]
 
@@ -1668,7 +1534,6 @@ Qh4 15. dxe5 Qxh3 16. exd6 Ne5 $1 17. fxe5 Qg4+ 0-1
 [Black "Demmery, S."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "72"]
 
@@ -1687,7 +1552,6 @@ Ng5 32. Rf4 Qh5 33. Qd7 Qxe2+ 34. Rf2 Qxe3 35. h4 Qe4+ 36. Kh2 Rh1# 0-1
 [Black "Matthews, I."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "64"]
 
@@ -1706,8 +1570,6 @@ Rc8 Rxa4 32. Rxc6 Be4+ 0-1
 [Black "Winmill, R."]
 [Result "0-1"]
 [ECO "A49"]
-[Opening "King's Indian"]
-[Variation "fianchetto without c4"]
 [EventDate "1995.??.??"]
 [PlyCount "68"]
 
@@ -1726,7 +1588,6 @@ Bc8 b6 32. h4 Ne4 33. Bb7 Rxc2 34. a4 Nxg3 0-1
 [Black "Karkhanis, S."]
 [Result "1-0"]
 [ECO "B56"]
-[Opening "Sicilian"]
 [EventDate "1995.??.??"]
 [PlyCount "29"]
 
@@ -1742,8 +1603,6 @@ Bc8 b6 32. h4 Ne4 33. Bb7 Rxc2 34. a4 Nxg3 0-1
 [Black "Litchfield, G."]
 [Result "1/2-1/2"]
 [ECO "B08"]
-[Opening "Pirc"]
-[Variation "classical, h3 system"]
 [EventDate "1995.??.??"]
 [PlyCount "101"]
 
@@ -1765,8 +1624,6 @@ Qe7+ Kg4 50. Bf3+ Kg3 51. Qxh4+ 1/2-1/2
 [Black "Igboemeka, C."]
 [Result "0-1"]
 [ECO "E71"]
-[Opening "King's Indian"]
-[Variation "Makagonov system (5.h3)"]
 [EventDate "1995.??.??"]
 [PlyCount "50"]
 
@@ -1784,7 +1641,6 @@ Qb1 Bxe2+ 22. Bxe2 Rc8 23. Ne1 Rxc1+ 24. Kxc1 Qa4 25. Bxf6 Bxf6 { ! 0-1
 [Black "Kovacs, P."]
 [Result "1-0"]
 [ECO "E00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "51"]
 
@@ -1802,8 +1658,6 @@ Qb7 15. Nb5 a5 16. Nd6 Qc6 17. Nxe8 Nxe8 18. Rc1 Qd6 19. Bc3 Nc7 20. Qg4 g6
 [Black "Loh, L."]
 [Result "1-0"]
 [ECO "A65"]
-[Opening "Benoni"]
-[Variation "6.e4"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -1821,8 +1675,6 @@ Rab8 26. Nxa7 Rb7 27. Nc6 Rdd7 28. Rhe1 Rb6 29. Re8# 1-0
 [Black "Mitchell, J."]
 [Result "1-0"]
 [ECO "C46"]
-[Opening "Four knights"]
-[Variation "Italian variation"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -1840,7 +1692,6 @@ Bxf6 27. Rc6 Be7 28. Rxb6 f5 29. Bc4+ Kh7 { hereabouts. 1-0(39). } 1-0
 [Black "Robinson, E."]
 [Result "1-0"]
 [ECO "B50"]
-[Opening "Sicilian"]
 [EventDate "1995.??.??"]
 [PlyCount "129"]
 
@@ -1864,7 +1715,6 @@ e5+ Ke7 64. Rxg6 Ng4 65. Rxg4 1-0
 [Black "Van der Velde, W."]
 [Result "1/2-1/2"]
 [ECO "B50"]
-[Opening "Sicilian"]
 [EventDate "1995.??.??"]
 [PlyCount "76"]
 
@@ -1884,7 +1734,6 @@ Kh8 38. Qe5+ Kg8 1/2-1/2
 [Black "Findlay, D."]
 [Result "1-0"]
 [ECO "A45"]
-[Opening "Blackmar-Diemer gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -1903,8 +1752,6 @@ Rxd7 1-0
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "C45"]
-[Opening "Scotch"]
-[Variation "Mieses variation"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -1922,7 +1769,6 @@ Bxb7+ Kxb7 21. Qe4+ Qc6 22. Qd5 Qxd5 23. cxd5 d6 24. e6 Bxb2+ 25. Kxb2 fxe6
 [Black "Dobrishman, L."]
 [Result "1-0"]
 [ECO "B01"]
-[Opening "Scandinavian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "109"]
 
@@ -1944,8 +1790,6 @@ Qxd7 Rxe5 40. Bf4 Rxe1 41. Kxe1 Qf6 42. Qd5+ Kh7 43. Be5 Qf5 44. Bxc7 Qg4
 [Black "Oraha, Z."]
 [Result "1-0"]
 [ECO "C01"]
-[Opening "French"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "27"]
 
@@ -1961,8 +1805,6 @@ Qc4+ 1-0
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [ECO "E97"]
-[Opening "King's Indian"]
-[Variation "orthodox, Aronin-Taimanov variation (Yugoslav attack / Mar del Plata variation)"]
 [EventDate "1995.??.??"]
 [PlyCount "108"]
 
@@ -1984,7 +1826,6 @@ Bd4 52. Nd8 Nxg2 53. Kxg2 Qf2+ 54. Kh3 $138 Be3 0-1
 [Black "Dobrishman, L."]
 [Result "1-0"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "97"]
 
@@ -2005,8 +1846,6 @@ Kf6 44. Ke4 Ke7 45. Ke5 Kd7 46. f6 Ke8 47. Ke6 Kf8 48. f7 Kg7 49. Ke7 1-0
 [Black "Kovacs, P."]
 [Result "1-0"]
 [ECO "B13"]
-[Opening "Caro-Kann"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "97"]
 
@@ -2027,8 +1866,6 @@ Kg6 39. Ra7 Kf5 40. Rxa5 Ke4 41. g6 Ke3 42. g7 Kd2 43. Rc5 Kc1 44. g8=Q Kb2
 [Black "Matthews, I."]
 [Result "0-1"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "closed"]
 [EventDate "1995.??.??"]
 [PlyCount "55"]
 
@@ -2046,8 +1883,6 @@ $4 Be3+ 27. Rxe3 Qxc4 28. axb4 0-1
 [Black "Redhead, G."]
 [Result "1-0"]
 [ECO "C77"]
-[Opening "Ruy Lopez"]
-[Variation "Anderssen variation"]
 [EventDate "1995.??.??"]
 [PlyCount "67"]
 
@@ -2066,8 +1901,6 @@ Bxd6+ Kg8 33. Rd1 d2 34. Nd5 1-0
 [Black "Van der Velde, W."]
 [Result "1/2-1/2"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "closed, 2...Nc6"]
 [EventDate "1995.??.??"]
 [PlyCount "29"]
 
@@ -2086,7 +1919,6 @@ recovered, but settled for a draw. The better to fight another day, Bill! }
 [Black "Hush, J."]
 [Result "0-1"]
 [ECO "A04"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "94"]
 
@@ -2107,7 +1939,6 @@ Qe7 Qa3 39. Qe2 Qxa4 40. Qb2+ Bd4 41. Nxd4 Qaxd4 42. Qxd4+ Qxd4 43. h4 f5
 [Black "Oraha, Z."]
 [Result "1/2-1/2"]
 [ECO "A85"]
-[Opening "Dutch with c4 & Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "99"]
 
@@ -2129,8 +1960,6 @@ Rxe3 45. Rxe3 Kxe3 46. Kg3 Ke4 47. h4 Be5+ 48. Kh3 Kf4 49. g5 Kf5 { ?? - in
 [Black "Zoccano, J."]
 [Result "0-1"]
 [ECO "C18"]
-[Opening "French"]
-[Variation "Winawer, classical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -2149,8 +1978,6 @@ Rxd1+ 20. Kxd1 Bg6 21. h4 Ne7 22. Kc1 h5 23. Rd1 Nd5 24. Bd4 a6 25. c4 Nf4
 [Black "Khan, Z."]
 [Result "1/2-1/2"]
 [ECO "C24"]
-[Opening "Bishop's opening"]
-[Variation "Berlin defence"]
 [EventDate "1995.??.??"]
 [PlyCount "34"]
 
@@ -2166,7 +1993,6 @@ Nh4 Nxe4 15. Nf5 Ng5 16. h4 Ne6 17. Qd2 Qf6 1/2-1/2
 [Black "Zendrowski, J."]
 [Result "0-1"]
 [ECO "B07"]
-[Opening "Pirc defence"]
 [EventDate "1995.??.??"]
 [PlyCount "98"]
 
@@ -2187,8 +2013,6 @@ Nd4 gxf5 33. exf5 Rg4 34. Ra1 Rxh4+ 35. Kg1 Nd7 36. a4 bxa4 37. Rxa4 Nb8
 [Black "Zoccano, J."]
 [Result "1-0"]
 [ECO "C02"]
-[Opening "French"]
-[Variation "advance, Paulsen attack"]
 [EventDate "1995.??.??"]
 [PlyCount "55"]
 
@@ -2206,8 +2030,6 @@ Ra1 b6 27. Rfb1 Qd7 28. Bxb6 1-0
 [Black "Elieff, K."]
 [Result "0-1"]
 [ECO "B28"]
-[Opening "Sicilian"]
-[Variation "O'Kelly variation"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -2225,8 +2047,6 @@ Qf7 0-1
 [Black "Findlay, D."]
 [Result "1-0"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "closed"]
 [EventDate "1995.??.??"]
 [PlyCount "41"]
 
@@ -2243,8 +2063,6 @@ Nxf8 Rxf8 21. Qxh5 1-0
 [Black "Robinson, E."]
 [Result "1-0"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "Grand Prix attack"]
 [EventDate "1995.??.??"]
 [PlyCount "45"]
 
@@ -2261,7 +2079,6 @@ Nf6 21. Nd5 Rc2 22. Bc3 Nxd5 $4 23. Qxg7# 1-0
 [Black "Sengupta, O."]
 [Result "1-0"]
 [ECO "E61"]
-[Opening "King's Indian defence, 3.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -2279,7 +2096,6 @@ Rc1 Ba3 26. Rc8+ Bf8 27. h3 Ra6 28. Bf4 Ra7 29. Bh6 1-0
 [Black "Ward, R."]
 [Result "1/2-1/2"]
 [ECO "A56"]
-[Opening "Benoni defence"]
 [EventDate "1995.??.??"]
 [PlyCount "95"]
 
@@ -2300,7 +2116,6 @@ h5 45. Nd4 Rc5 46. h4 Kc4 47. Rb4+ Kc3 48. Rb3+ 1/2-1/2
 [Black "McRorie, A."]
 [Result "1-0"]
 [ECO "D30"]
-[Opening "QGD"]
 [EventDate "1995.??.??"]
 [PlyCount "73"]
 
@@ -2319,7 +2134,6 @@ Rf7 34. hxg7 Rxg7 35. Kf2 Qc7 36. e5 Rh7 37. Bxh7+ 1-0
 [Black "Sengupta, O."]
 [Result "1-0"]
 [ECO "D20"]
-[Opening "Queen's gambit accepted"]
 [EventDate "1995.??.??"]
 [PlyCount "92"]
 
@@ -2340,8 +2154,6 @@ Qf8+ Kh7 45. Qxf7+ Kh6 46. Qf8+ Kh7 1-0
 [Black "Clipperton, B."]
 [Result "0-1"]
 [ECO "A07"]
-[Opening "Reti"]
-[Variation "King's Indian attack (Barcza system)"]
 [EventDate "1995.??.??"]
 [PlyCount "82"]
 
@@ -2361,7 +2173,6 @@ a5 32. hxg6 hxg6 33. Kg2 Kxg4 34. Kh2 e5 35. Kg2 e4 36. Kf1 Kf4 37. Ke2 g5
 [Black "Mitchell, J."]
 [Result "0-1"]
 [ECO "D30"]
-[Opening "Queen's gambit declined"]
 [EventDate "1995.??.??"]
 [PlyCount "15"]
 
@@ -2376,7 +2187,6 @@ bxc3 { ?? from the outset. 0-1 in 35. } 0-1
 [Black "Van Weeren, H."]
 [Result "0-1"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -2394,8 +2204,6 @@ Re2 fxe4 21. dxe4 Rxf1+ 22. Kxf1 Rf8+ 23. Ke1 Rf3 24. Qxa7 d3 25. Qb8+ Kf7
 [Black "Igboemeka, C."]
 [Result "0-1"]
 [ECO "E97"]
-[Opening "King's Indian"]
-[Variation "orthodox, Aronin-Taimanov variation (Yugoslav attack / Mar del Plata variation)"]
 [EventDate "1995.??.??"]
 [PlyCount "80"]
 
@@ -2415,7 +2223,6 @@ Nc3+ 39. Kf3 Nxe4 40. Kxe4 Qe1+ 0-1
 [Black "Karkhanis, S."]
 [Result "0-1"]
 [ECO "A57"]
-[Opening "Benko gambit half accepted"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -2433,8 +2240,6 @@ Qxh7 Rh8 0-1
 [Black "Robinson, E."]
 [Result "1-0"]
 [ECO "E21"]
-[Opening "Nimzo-Indian"]
-[Variation "three knights variation"]
 [EventDate "1995.??.??"]
 [PlyCount "119"]
 
@@ -2457,8 +2262,6 @@ Ke6 51. Kg5 Ke5 52. f3 Rg7+ 53. Kh6 Ra7 54. Kg6 Ke6 55. Ra5 f4 56. gxf4 Ke7
 [Black "Clipperton, B."]
 [Result "0-1"]
 [ECO "D06"]
-[Opening "QGD"]
-[Variation "Marshall defence"]
 [EventDate "1995.??.??"]
 [PlyCount "76"]
 
@@ -2478,8 +2281,6 @@ Ra4 26. Kd2 Ra2 27. Kc3 c6 28. Bf3 cxb5 29. cxb5 Ba4 30. Kb4 b6 31. h4 h6
 [Black "Mitchell, J."]
 [Result "1/2-1/2"]
 [ECO "B29"]
-[Opening "Sicilian"]
-[Variation "Nimzovich-Rubinstein variation"]
 [EventDate "1995.??.??"]
 [PlyCount "133"]
 
@@ -2504,8 +2305,6 @@ Kg8 Qg6+ 57. Kh8 Qe8+ 58. Kg7 Qd7+ 59. Kg8 Qe6+ 60. Kg7 Qe5+ 61. Kg8 Qe6+
 [Black "Elieff, K."]
 [Result "1-0"]
 [ECO "A51"]
-[Opening "Budapest"]
-[Variation "Fajarowicz variation"]
 [EventDate "1995.??.??"]
 [PlyCount "37"]
 
@@ -2522,8 +2321,6 @@ Bxg5 8. e6 Bf6 9. exf7+ Kxf7 10. Nc3 d6 11. Qb5 a6 12. Qb3 (12. Qa4 { -KE.
 [Black "Southam, T."]
 [Result "1/2-1/2"]
 [ECO "C92"]
-[Opening "Ruy Lopez"]
-[Variation "closed, 9.h3"]
 [EventDate "1995.??.??"]
 [PlyCount "39"]
 
@@ -2540,8 +2337,6 @@ c3 O-O 9. h3 Na5 10. d4 Nxb3 11. axb3 Bb7 12. d5 c6 13. c4 cxd5 14. cxd5 a5
 [Black "Van der Velde, W."]
 [Result "0-1"]
 [ECO "B26"]
-[Opening "Sicilian"]
-[Variation "closed, 6.Be3"]
 [EventDate "1995.??.??"]
 [PlyCount "78"]
 
@@ -2561,8 +2356,6 @@ Qa7 33. Qa4 Qb6 34. Qb3 Qe6 35. Rd1 Qg4+ 36. Kh1 f3 37. Rg1 Qf4 38. Qa4 c4
 [Black "Leonard, D."]
 [Result "1-0"]
 [ECO "A40"]
-[Opening "Queen's pawn"]
-[Variation "Lundin (Kevitz-Mikenas) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "34"]
 
@@ -2578,7 +2371,6 @@ exd4 8. Qxd4 c5 9. Qe3 O-O-O 10. Nc3 Qc6 11. Nd5 Nf6 12. c4 Ng4 13. Qf4 h5
 [Black "Moser, D."]
 [Result "1-0"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "103"]
 
@@ -2600,8 +2392,6 @@ Rf3+ Kg6 51. Kg3 Rd5 52. Nf4+ 1-0
 [Black "Sengupta, O."]
 [Result "1-0"]
 [ECO "B08"]
-[Opening "Pirc"]
-[Variation "classical (two knights) system"]
 [EventDate "1995.??.??"]
 [PlyCount "149"]
 
@@ -2627,7 +2417,6 @@ Ke6 75. Nxg5+ 1-0
 [Black "Zendrowski, J."]
 [Result "0-1"]
 [ECO "E60"]
-[Opening "King's Indian, 3.Nf3"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -2645,7 +2434,6 @@ b3 Re8 27. Rd1 Be6 28. b4 Nd7 29. Qc7 Rc8 30. Qxa7 Rxc2 31. a3 Qc8 0-1
 [Black "Kaczmarek, B."]
 [Result "0-1"]
 [ECO "E00"]
-[Opening "Catalan opening"]
 [EventDate "1995.??.??"]
 [PlyCount "126"]
 
@@ -2669,7 +2457,6 @@ g1=Q 63. h6 Qg3# 0-1
 [Black "Robinson, E."]
 [Result "0-1"]
 [ECO "A46"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -2688,8 +2475,6 @@ Qxg7 Re8+ 26. Kd3 Qd1+ 27. Kc3 Re3+ 28. Kb4 Nc6+ 29. Kb5 Qe2+ 30. Ka4 Qa6#
 [Black "Litchfield, G."]
 [Result "0-1"]
 [ECO "E94"]
-[Opening "King's Indian"]
-[Variation "orthodox, 7...Nbd7"]
 [EventDate "1995.??.??"]
 [PlyCount "83"]
 
@@ -2709,7 +2494,6 @@ Kc4 b6 38. a3 h6 39. Kd5 g5 40. hxg5+ hxg5 41. fxg5+ Kxg5 42. Ke5 0-1
 [Black "Matthews, I."]
 [Result "0-1"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "108"]
 
@@ -2731,7 +2515,6 @@ Ke3 Be4 52. Kd4 d5 53. Bh8 g4 54. Bg7 g3 0-1
 [Black "Gooding, G."]
 [Result "1-0"]
 [ECO "B03"]
-[Opening "Alekhine's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "67"]
 
@@ -2750,8 +2533,6 @@ Qc4 Rc2 33. Qxc2 Qe1+ 34. Kg2 1-0
 [Black "Khan, Z."]
 [Result "0-1"]
 [ECO "A01"]
-[Opening "Nimzovich-Larsen attack"]
-[Variation "modern variation"]
 [EventDate "1995.??.??"]
 [PlyCount "46"]
 
@@ -2768,8 +2549,6 @@ Bxd4 Rxd4 21. Ne6 Rd2+ 22. Ke1 Rxc2 23. Rd1 Qe5+ 0-1
 [Black "McRorie, A."]
 [Result "1-0"]
 [ECO "A01"]
-[Opening "Nimzovich-Larsen attack"]
-[Variation "classical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "116"]
 
@@ -2792,7 +2571,6 @@ Kc6 51. Ke6 Kc7 52. Kd5 Kb6 53. e5 Kc7 54. Kxc5 Kd7 55. Kd5 Ke7 56. c5 Kd7
 [Black "Demmery, S."]
 [Result "1-0"]
 [ECO "A05"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "67"]
 
@@ -2811,7 +2589,6 @@ Ra1 32. Nxe4 Rxa2+ 33. Kf3 Kd7 34. Rh5 1-0
 [Black "Khan, Z."]
 [Result "1-0"]
 [ECO "C25"]
-[Opening "Vienna game"]
 [EventDate "1995.??.??"]
 [PlyCount "145"]
 
@@ -2836,8 +2613,6 @@ Kg7 57. e5 Kh6 58. Nf4 Bd7+ 59. e6 Ba4 60. e7 Be8 61. Kf6 Bc6 62. Kf7 Bb5
 [Black "Kovacs, P."]
 [Result "1-0"]
 [ECO "B12"]
-[Opening "Caro-Kann"]
-[Variation "advance variation"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -2855,8 +2630,6 @@ Qh5 Ne7 9. Nxe6 Qb6 10. Nxg7+ Kd8 11. Qxf7 Kc7 12. Ne6+ Kb8 13. Nxc5 Qxc5
 [Black "Moser, D."]
 [Result "1/2-1/2"]
 [ECO "C62"]
-[Opening "Ruy Lopez"]
-[Variation "old Steinitz defence"]
 [EventDate "1995.??.??"]
 [PlyCount "116"]
 
@@ -2879,8 +2652,6 @@ Kf4 Ne4 57. Kxg4 Nxf2+ 58. Kf3 Nd3 1/2-1/2
 [Black "Gooding, G."]
 [Result "0-1"]
 [ECO "E21"]
-[Opening "Nimzo-Indian"]
-[Variation "three knights variation"]
 [EventDate "1995.??.??"]
 [PlyCount "51"]
 
@@ -2898,8 +2669,6 @@ d5 Ne7 15. Qg5 f5 16. Ng3 f4 17. Ne4 h6 18. Qh4 f3 19. g4 Rf4 20. h3 Bd7
 [Black "Ward, R."]
 [Result "1/2-1/2"]
 [ECO "A57"]
-[Opening "Benko gambit"]
-[Variation "Zaitsev system"]
 [EventDate "1995.??.??"]
 [PlyCount "37"]
 
@@ -2915,7 +2684,6 @@ Nf3 d6 15. Nxa6 Rxa6 16. a4 Nbd7 17. b4 Ne5 18. Bg2 Qe4 19. Nh4 1/2-1/2
 [Black "Clipperton, B."]
 [Result "1-0"]
 [ECO "B00"]
-[Opening "King's pawn opening"]
 [EventDate "1995.??.??"]
 [PlyCount "35"]
 
@@ -2931,7 +2699,6 @@ Rd1 Qe7 15. Bg5 Bf6 16. Re1 Qd6 17. Rxe8+ Kg7 18. Bh6# 1-0
 [Black "Loh, L."]
 [Result "1-0"]
 [ECO "C46"]
-[Opening "Three knights game"]
 [EventDate "1995.??.??"]
 [PlyCount "53"]
 
@@ -2949,8 +2716,6 @@ h6 26. Rxb7 Rxb7 27. Qe8+ 1-0
 [Black "Vincic, V."]
 [Result "0-1"]
 [ECO "B40"]
-[Opening "Sicilian"]
-[Variation "Pin variation (Sicilian counter-attack)"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -2968,8 +2733,6 @@ Kf2 Nd3+ 0-1
 [Black "Van Weeren, H."]
 [Result "1-0"]
 [ECO "D35"]
-[Opening "QGD"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -2987,8 +2750,6 @@ h3 Nf6 21. Bxb8 Rxb8 22. Ne5 Be8 23. Ne2 Nxe4 24. Nxc6 Bxc6 25. Rxc6 Nd6
 [Black "Ward, R."]
 [Result "1-0"]
 [ECO "D07"]
-[Opening "QGD"]
-[Variation "Chigorin defence"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -3006,8 +2767,6 @@ Re8 27. Bc4 Ng8 28. Ba6+ Kb8 29. Rd7 1-0
 [Black "Zendrowski, J."]
 [Result "1-0"]
 [ECO "E67"]
-[Opening "King's Indian"]
-[Variation "fianchetto, classical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "79"]
 
@@ -3027,7 +2786,6 @@ Qf6 39. cxd5 Bxd5 40. Rxd5 1-0
 [Black "Redhead, G."]
 [Result "1/2-1/2"]
 [ECO "C27"]
-[Opening "Vienna game"]
 [EventDate "1995.??.??"]
 [PlyCount "70"]
 
@@ -3046,8 +2804,6 @@ Qb3+ Kh8 33. Nxe3 Rc3 34. Qb2 Rxe3 35. Rxe3 dxe3 1/2-1/2
 [Black "De Kerpel, S."]
 [Result "1/2-1/2"]
 [ECO "A48"]
-[Opening "King's Indian"]
-[Variation "East Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "112"]
 
@@ -3070,8 +2826,6 @@ g4 fxg4 55. hxg4 Kc4 56. Kg2 Kd3 1/2-1/2
 [Black "Litchfield, G."]
 [Result "1-0"]
 [ECO "D07"]
-[Opening "QGD"]
-[Variation "Chigorin defence"]
 [EventDate "1995.??.??"]
 [PlyCount "47"]
 
@@ -3089,8 +2843,6 @@ d5 Bxf3 20. gxf3 Rg6+ 21. Kh1 Nxf2+ 22. Rxf2 Ne5 23. Rxc7+ Re7 24. Rxe7+
 [Black "Zoccano, J."]
 [Result "1-0"]
 [ECO "C05"]
-[Opening "French"]
-[Variation "Tarrasch, closed variation"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -3108,8 +2860,6 @@ Qxc1 Qb6 27. b5 Kf8 28. Qd2 Bxb5 $2 29. Qb4+ 1-0
 [Black "Dobrishman, L."]
 [Result "1-0"]
 [ECO "B01"]
-[Opening "Scandinavian"]
-[Variation "Marshall variation"]
 [EventDate "1995.??.??"]
 [PlyCount "135"]
 
@@ -3133,8 +2883,6 @@ Ka6 64. Ke5 Kxa5 65. b7 Ka6 66. b8=Q Ka5 67. Kd4 Ka4 68. Kc4 1-0
 [Black "Findlay, D."]
 [Result "1-0"]
 [ECO "B22"]
-[Opening "Sicilian"]
-[Variation "Alapin's variation (2.c3)"]
 [EventDate "1995.??.??"]
 [PlyCount "47"]
 
@@ -3151,7 +2899,6 @@ Ka6 64. Ke5 Kxa5 65. b7 Ka6 66. b8=Q Ka5 67. Kd4 Ka4 68. Kc4 1-0
 [Black "Van Weeren, H."]
 [Result "1-0"]
 [ECO "C44"]
-[Opening "Scotch opening"]
 [EventDate "1995.??.??"]
 [PlyCount "125"]
 
@@ -3175,8 +2922,6 @@ Kd6 1-0
 [Black "Boehmer, K."]
 [Result "0-1"]
 [ECO "E32"]
-[Opening "Nimzo-Indian"]
-[Variation "classical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "68"]
 
@@ -3195,8 +2940,6 @@ Rd7 33. a5 bxa5 34. Nxa5 Rb4 0-1
 [Black "Kaczmarek, B."]
 [Result "0-1"]
 [ECO "D52"]
-[Opening "QGD"]
-[Variation "Cambridge Springs defence, Rubinstein variation"]
 [EventDate "1995.??.??"]
 [PlyCount "16"]
 
@@ -3211,8 +2954,6 @@ Bxc4 Qxg5 0-1
 [Black "Mitchell, J."]
 [Result "1-0"]
 [ECO "D53"]
-[Opening "QGD"]
-[Variation "4.Bg5 Be7"]
 [EventDate "1995.??.??"]
 [PlyCount "81"]
 
@@ -3232,8 +2973,6 @@ Rxg2+ 39. Kxg2 a5 40. f7 a4 41. f8=Q 1-0
 [Black "Boehmer, K."]
 [Result "1-0"]
 [ECO "B35"]
-[Opening "Sicilian"]
-[Variation "accelerated fianchetto, modern variation with Bc4"]
 [EventDate "1995.??.??"]
 [PlyCount "85"]
 
@@ -3253,7 +2992,6 @@ Qe7 39. Qxc6 Nd7 40. Qd5 Kg8 41. Bd2 Kg7 42. Bxb4 Qxb4 43. Qxd7 1-0
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [ECO "B01"]
-[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -3271,8 +3009,6 @@ Nxh4 Bxh4 15. Qh5 Be7 16. Ne4 Be8 17. Nf6+ gxf6 18. exf6 Bxf6 19. Bh6 Bg7
 [Black "Vincic, V."]
 [Result "1-0"]
 [ECO "B42"]
-[Opening "Sicilian"]
-[Variation "Kan, 5.Bd3"]
 [EventDate "1995.??.??"]
 [PlyCount "71"]
 
@@ -3291,7 +3027,6 @@ Rxe1 Nd4 27. Rd1 Rxd5 28. cxd5 Kb6 29. Ne6 Nxe6 30. dxe6 Bf6 31. Rd7 Kc6
 [Black "Elieff, K."]
 [Result "1-0"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Krause variation"]
 [EventDate "1995.??.??"]
 [PlyCount "99"]
 
@@ -3313,7 +3048,6 @@ sealed move. Times: W-6:23; B-6:03 } 44. g4 Bh4 45. a5 Nc7 46. Nxc7 Kxc7
 [Black "Leonard, D."]
 [Result "1-0"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "31"]
 
@@ -3329,7 +3063,6 @@ Bxd2+ 14. Qxd2 Qc4 15. b3 Qa6 16. Qe2 1-0
 [Black "Loh, L."]
 [Result "1-0"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "119"]
 
@@ -3352,7 +3085,6 @@ Bxd2+ 14. Qxd2 Qc4 15. b3 Qa6 16. Qe2 1-0
 [Black "Brock, Da"]
 [Result "1-0"]
 [ECO "B30"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -3370,7 +3102,6 @@ f3 Rae8 21. Rae1 Rxe3 22. Rxe3 Qxa2 23. Kh2 Be6 24. Qxf6 Qd5 25. Re5 Qxe5
 [Black "Khan, Z."]
 [Result "0-1"]
 [ECO "C46"]
-[Opening "Four knights game"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -3388,7 +3119,6 @@ Rxc3 Bxe4 21. Re1 Qg4+ 22. Kf1 Bxf3 23. Qxf3 Qxf3 24. Re3 Qh1+ 25. Ke2 Qxh4
 [Black "Loh, L."]
 [Result "1-0"]
 [ECO "A15"]
-[Opening "English, 1...Nf6 (Anglo-Indian defense)"]
 [EventDate "1995.??.??"]
 [PlyCount "22"]
 
@@ -3403,7 +3133,6 @@ Ng5 Nd7 9. Qb3 Nb6 10. Nc3 Ne7 11. e4 dxe4 1-0
 [Black "Rabosa, E."]
 [Result "1-0"]
 [ECO "D20"]
-[Opening "Queen's gambit accepted"]
 [EventDate "1995.??.??"]
 [PlyCount "23"]
 
@@ -3418,7 +3147,6 @@ Ng5 Nd7 9. Qb3 Nb6 10. Nc3 Ne7 11. e4 dxe4 1-0
 [Black "Brock, Da"]
 [Result "0-1"]
 [ECO "B30"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "82"]
 
@@ -3438,7 +3166,6 @@ Kh7 32. Rd8 c3 33. Rc8 c2 34. d6 Rd1+ 35. Kf2 c1=Q 36. d7 Qd2+ 37. Kf3 Qxd7
 [Black "Redden, S."]
 [Result "0-1"]
 [ECO "A80"]
-[Opening "Dutch, 2.Bg5 variation"]
 [EventDate "1995.??.??"]
 [PlyCount "68"]
 
@@ -3457,8 +3184,6 @@ Rb2+ 33. Kf1 e3 34. fxe3 Nxe3# 0-1
 [Black "Van der Velde, W."]
 [Result "0-1"]
 [ECO "D85"]
-[Opening "Gruenfeld"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "74"]
 
@@ -3478,8 +3203,6 @@ Ke6 26. Kc2 Kd5 27. f3 Ba3 28. Bc1 Bxc1 29. Kxc1 Kc5 30. a4 Kb4 31. e4 fxe4
 [Black "Demmery, S."]
 [Result "1-0"]
 [ECO "C02"]
-[Opening "French"]
-[Variation "advance variation"]
 [EventDate "1995.??.??"]
 [PlyCount "19"]
 
@@ -3494,8 +3217,6 @@ Qc7 9. cxb5 Qxc3+ 10. Nxc3 1-0
 [Black "McRorie, A."]
 [Result "1-0"]
 [ECO "D31"]
-[Opening "QGD"]
-[Variation "3.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "75"]
 
@@ -3514,7 +3235,6 @@ Rfd8 21. Qc3 b6 22. d5 Na5 23. d6 Qg7 24. c5 c6 25. cxb6 Nb7 26. Rab1 h6
 [Black "Bootsma, G."]
 [Result "1-0"]
 [ECO "A04"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -3532,7 +3252,6 @@ Bxg7 Qxb4+ 21. Kf1 Rfc8 22. Bh8 Qf8 23. Kg2 f6 24. Bxf6 Nxf6 25. Qa2 Rc7
 [Black "Clipperton, B."]
 [Result "1-0"]
 [ECO "C44"]
-[Opening "Konstantinopolsky opening"]
 [EventDate "1995.??.??"]
 [PlyCount "65"]
 
@@ -3551,8 +3270,6 @@ Ne8 32. Rxh5 Nd6 33. Rxe5 1-0
 [Black "Matthews, I."]
 [Result "1-0"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "closed"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -3570,7 +3287,6 @@ Rxc2 27. Ra7+ Kd8 28. Rfa1 b3 29. Rd7+ Ke8 30. Ra8+ 1-0
 [Black "Sengupta, O."]
 [Result "0-1"]
 [ECO "C00"]
-[Opening "Lengfellner system"]
 [EventDate "1995.??.??"]
 [PlyCount "54"]
 
@@ -3588,7 +3304,6 @@ Qxe6+ Kb8 21. Rb1 Rh6 22. Qe5+ Qc7 23. Qxc7+ Kxc7 24. Bd2 Rd8 25. Rf2 Bg7
 [Black "Rabosa, P."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -3607,8 +3322,6 @@ Qxb2 Qxd1# 0-1
 [Black "Solomon, M."]
 [Result "1-0"]
 [ECO "C64"]
-[Opening "Ruy Lopez"]
-[Variation "classical (Cordel) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "23"]
 
@@ -3623,7 +3336,6 @@ Qxb2 Qxd1# 0-1
 [Black "Loh, L."]
 [Result "0-1"]
 [ECO "A00"]
-[Opening "Van't Kruijs opening"]
 [EventDate "1995.??.??"]
 [PlyCount "30"]
 
@@ -3639,8 +3351,6 @@ Bxd4 Rxd4 15. Nxd4 Qxg2# 0-1
 [Black "Khan, Z."]
 [Result "1-0"]
 [ECO "C62"]
-[Opening "Ruy Lopez"]
-[Variation "old Steinitz defence"]
 [EventDate "1995.??.??"]
 [PlyCount "19"]
 
@@ -3655,7 +3365,6 @@ Nf6 8. Bg5 Be7 9. Bxf6 Bxf6 10. Nc3 1-0
 [Black "Jung, H."]
 [Result "0-1"]
 [ECO "A41"]
-[Opening "Old Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -3674,7 +3383,6 @@ Ngxe3 33. fxe3 Rxe3+ 0-1
 [Black "Van der Velde, W."]
 [Result "1-0"]
 [ECO "D05"]
-[Opening "Colle system"]
 [EventDate "1995.??.??"]
 [PlyCount "43"]
 
@@ -3691,7 +3399,6 @@ Nxd4 Bxd4 15. Qd3 f5 16. exf6 Bxf6 17. Bxh7+ Kf7 18. Bg6+ Ke7 19. bxc3 Be5
 [Black "Cooper, A."]
 [Result "1/2-1/2"]
 [ECO "D30"]
-[Opening "Queen's gambit declined"]
 [EventDate "1995.??.??"]
 [PlyCount "99"]
 
@@ -3713,8 +3420,6 @@ Ke4 Kf6 50. b4 1/2-1/2
 [Black "Loh, P."]
 [Result "1-0"]
 [ECO "D31"]
-[Opening "QGD"]
-[Variation "3.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "81"]
 
@@ -3734,7 +3439,6 @@ Qxa8 Qxa8 15. Rxa8+ Kd7 16. Ne5+ Ke7 17. Nxc6+ bxc6 18. Ne2 f6 19. Nd4 Kd7
 [Black "Kahn, Z."]
 [Result "0-1"]
 [ECO "C46"]
-[Opening "Four knights game"]
 [EventDate "1995.??.??"]
 [PlyCount "22"]
 
@@ -3749,7 +3453,6 @@ Bxg1 8. Nxg1 Nd4+ 9. Ke1 Nxh2 10. Be2 Qh4+ 11. g3 Qxg3# 0-1
 [Black "Jung, H."]
 [Result "0-1"]
 [ECO "A41"]
-[Opening "Queen's Pawn"]
 [EventDate "1995.??.??"]
 [PlyCount "74"]
 
@@ -3769,7 +3472,6 @@ Kg7 31. g4 hxg4 32. Kxg4 Rc5 33. Rf3 Rc4 34. Kf4 Kf6 35. h4 b5 36. Rd3 a5
 [Black "Majstorovic, D."]
 [Result "1-0"]
 [ECO "C00"]
-[Opening "French defence"]
 [EventDate "1995.??.??"]
 [PlyCount "17"]
 
@@ -3784,7 +3486,6 @@ Bf4 Kf7 9. Bc7 1-0
 [Black "Zendrowski, J."]
 [Result "1-0"]
 [ECO "A16"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "53"]
 
@@ -3802,8 +3503,6 @@ Rxg8+ 1-0
 [Black "Majstorovic, D."]
 [Result "1-0"]
 [ECO "C02"]
-[Opening "French"]
-[Variation "advance variation"]
 [EventDate "1995.??.??"]
 [PlyCount "69"]
 
@@ -3822,8 +3521,6 @@ Nd4+ Kc5 31. Be3 b5 32. Rc7+ Kb6 33. Nxe6+ Ka5 34. Nd4 Nc4 35. Nc6+ 1-0
 [Black "Redhead, G."]
 [Result "1-0"]
 [ECO "C68"]
-[Opening "Ruy Lopez"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "139"]
 
@@ -3848,8 +3545,6 @@ Kf5 Rg5+ 69. Kf6 Kh6 70. Qf4 1-0
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "C68"]
-[Opening "Ruy Lopez"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "64"]
 
@@ -3868,8 +3563,6 @@ fxe4 21. dxe4 bxc4 22. Qxc4+ Bf7 23. Qxc5 Bxc5 24. Rxd7 Rd8 25. Rxd8 Rxd8
 [Black "Surlan, D."]
 [Result "0-1"]
 [ECO "C46"]
-[Opening "Three knights"]
-[Variation "Steinitz variation"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -3888,7 +3581,6 @@ Rxc2 Rxd4 27. Rxc7 Rxb4 28. a5 Rb5 29. Re7 Kg8 30. Kf2 b6 { !#*? 0-1 (95).
 [Black "Redhead, G."]
 [Result "0-1"]
 [ECO "A05"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -3906,7 +3598,6 @@ hxg4 Nxe4 $1 21. Bxe7 Nc3 22. Qd2 Qxe7 23. Qh6 Qf8 24. Qg5 Qg7 25. Nh4 Ne2+
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "A05"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "32"]
 
@@ -3922,8 +3613,6 @@ Nxe4 15. dxe5 Na2+ 16. Kb1 Nac3+ 0-1
 [Black "Ehrman, C."]
 [Result "1/2-1/2"]
 [ECO "B30"]
-[Opening "Sicilian"]
-[Variation "Nimzovich-Rossolimo attack (without ...d6)"]
 [EventDate "1995.??.??"]
 [PlyCount "112"]
 
@@ -3946,7 +3635,6 @@ Kxh2 Kxf4 1/2-1/2
 [Black "Ehrman, C."]
 [Result "1-0"]
 [ECO "A56"]
-[Opening "Czech Benoni defence"]
 [EventDate "1995.??.??"]
 [PlyCount "45"]
 
@@ -3963,8 +3651,6 @@ Qc3 Nd7 21. Re7 Qd8 22. Rxg7+ Kxg7 23. Ne6+ 1-0
 [Black "Redhead, G."]
 [Result "1-0"]
 [ECO "E41"]
-[Opening "Nimzo-Indian"]
-[Variation "4.e3 c5"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -3982,7 +3668,6 @@ cxd5 exd5 9. O-O O-O 10. a3 Ba5 11. f3 h6 12. Bc2 a6 13. Kh1 Ne7 14. g4 Kh8
 [Black "Ward, R."]
 [Result "1-0"]
 [ECO "A57"]
-[Opening "Benko gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -4000,8 +3685,6 @@ cxd5 exd5 9. O-O O-O 10. a3 Ba5 11. f3 h6 12. Bc2 a6 13. Kh1 Ne7 14. g4 Kh8
 [Black "Zendrowski, J."]
 [Result "1-0"]
 [ECO "E97"]
-[Opening "King's Indian"]
-[Variation "orthodox, Aronin-Taimanov variation (Yugoslav attack / Mar del Plata variation)"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -4019,8 +3702,6 @@ Qc2 Ba6 22. Nxc7 Nxc7 23. Bxa6 Qd6 24. Bb7 Rab8 25. Qxc5 Ne8 26. Bb4 Rxb7
 [Black "Ehrman, C."]
 [Result "1/2-1/2"]
 [ECO "B22"]
-[Opening "Sicilian"]
-[Variation "Alapin's variation (2.c3)"]
 [EventDate "1995.??.??"]
 [PlyCount "100"]
 
@@ -4042,7 +3723,6 @@ Rd3+ 50. Kc4 Rg3 1/2-1/2
 [Black "Kaczmarek, B."]
 [Result "1/2-1/2"]
 [ECO "C44"]
-[Opening "Scotch gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "42"]
 
@@ -4059,7 +3739,6 @@ Red4 Re7 20. Rd7 Rae8 21. Rxe7 Rxe7 1/2-1/2
 [Black "Redhead, G."]
 [Result "1/2-1/2"]
 [ECO "C44"]
-[Opening "Scotch gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -4078,8 +3757,6 @@ Qg5+ 1/2-1/2
 [Black "Zendrowski, J."]
 [Result "1/2-1/2"]
 [ECO "B03"]
-[Opening "Alekhine's defence"]
-[Variation "four pawns attack"]
 [EventDate "1995.??.??"]
 [PlyCount "97"]
 
@@ -4100,8 +3777,6 @@ Ke6 h4 45. Be3 g5 46. Kf5 Bc3 47. Bf2 Bb2 48. Be3 Bc3 49. Bf2 1/2-1/2
 [Black "Kaczmarek, B."]
 [Result "1-0"]
 [ECO "C51"]
-[Opening "Evans gambit"]
-[Variation "5...Be7"]
 [EventDate "1995.??.??"]
 [PlyCount "69"]
 
@@ -4120,8 +3795,6 @@ Rd6 Bxd6 33. Qxb6 b3 34. exd6 b2 35. Qxb2+ 1-0
 [Black "Majstorovic, D."]
 [Result "1-0"]
 [ECO "C05"]
-[Opening "French"]
-[Variation "Tarrasch, closed variation"]
 [EventDate "1995.??.??"]
 [PlyCount "35"]
 
@@ -4137,7 +3810,6 @@ Ng5 Nxd4 15. Bxh7+ Kh8 16. Nxd4 Nxe5 17. Qh5 Bxc3+ 18. bxc3 1-0
 [Black "Surlan, D."]
 [Result "1-0"]
 [ECO "A04"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "51"]
 
@@ -4155,8 +3827,6 @@ Rxf7 1-0
 [Black "Kaczmarek, B."]
 [Result "1/2-1/2"]
 [ECO "C90"]
-[Opening "Ruy Lopez"]
-[Variation "closed, Pilnik variation"]
 [EventDate "1995.??.??"]
 [PlyCount "169"]
 
@@ -4183,7 +3853,6 @@ Nc4+ 82. Kc2 Nxb6 83. Nd5 Nf4 84. Nxf4 exf4 85. Kd2 1/2-1/2
 [Black "Ward, R."]
 [Result "1-0"]
 [ECO "B00"]
-[Opening "King's pawn opening"]
 [EventDate "1995.??.??"]
 [PlyCount "77"]
 
@@ -4203,7 +3872,6 @@ Rxd8 34. Rd1 Rxd1 35. Qxd1 Bb7 36. e6 Kf8 37. Bc5+ Ke8 38. Qd4 Qc6 39. Qh8#
 [Black "Zendrowski, J."]
 [Result "0-1"]
 [ECO "A04"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "80"]
 
@@ -4223,7 +3891,6 @@ Qe2 39. Qxc3 $2 Ne4 40. Rxc7 Nxc3 0-1
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "A10"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "90"]
 
@@ -4244,7 +3911,6 @@ Re1 45. Qf3 Qxf3 0-1
 [Black "Matthews, I."]
 [Result "1/2-1/2"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "46"]
 
@@ -4261,8 +3927,6 @@ Nd6 21. g4 b5 22. h3 Nc4 23. R3e2 a4 1/2-1/2
 [Black "Moorehouse, D."]
 [Result "1-0"]
 [ECO "B88"]
-[Opening "Sicilian"]
-[Variation "Sozin, Leonhardt variation"]
 [EventDate "1995.??.??"]
 [PlyCount "117"]
 
@@ -4285,8 +3949,6 @@ Qxf5 Qb7+ 50. Qf3 Qe7 51. Rf4 Qg5+ 52. Kf1 Rc8 53. Nd5 Rxc2 54. Rf8+ Kh7
 [Black "Schiff, M."]
 [Result "1-0"]
 [ECO "C02"]
-[Opening "French"]
-[Variation "advance, Euwe variation"]
 [EventDate "1995.??.??"]
 [PlyCount "65"]
 
@@ -4305,7 +3967,6 @@ Nc6+ Nxc6 33. Bxc6) 32. Qxc7 Rc8 33. Qxb6 1-0
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [ECO "B01"]
-[Opening "Scandinavian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "94"]
 
@@ -4326,8 +3987,6 @@ Nd2 Rac8 21. c4 Nf5 22. c5 dxc5 23. dxc5 bxc5 24. bxc5 Rxc5 25. Rac1 Rfc8
 [Black "Matthews, I."]
 [Result "1/2-1/2"]
 [ECO "B40"]
-[Opening "Sicilian"]
-[Variation "Anderssen variation"]
 [EventDate "1995.??.??"]
 [PlyCount "64"]
 
@@ -4346,7 +4005,6 @@ Qc6+ Qd7 21. Qxe4 Qd5 22. Qxd5 Rxd5 23. a3 Be7 24. Be3 O-O 25. Rac1 Rfd8
 [Black "Oates, M."]
 [Result "1/2-1/2"]
 [ECO "B00"]
-[Opening "King's pawn opening"]
 [EventDate "1995.??.??"]
 [PlyCount "96"]
 
@@ -4367,7 +4025,6 @@ Bh4 45. Ng7 Bg3 46. Nxe6 Bh2 47. Ng7 Bxf4 48. Nxf5 Bxe5 1/2-1/2
 [Black "Moorehouse, D."]
 [Result "1-0"]
 [ECO "A00"]
-[Opening "Benko's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "121"]
 
@@ -4390,8 +4047,6 @@ g5 58. hxg5 h4 59. a5 h3 60. a6 h2 61. a7 1-0
 [Black "Oates, M."]
 [Result "1-0"]
 [ECO "E91"]
-[Opening "King's Indian"]
-[Variation "6.Be2"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -4409,7 +4064,6 @@ f5 15. exf5 Bxf5 16. Bd3 Qd7 17. Be2 Qc8 18. g4 Bd7 19. Ne4 Nh6 20. Ng3 Nf7
 [Black "Schiff, M."]
 [Result "1/2-1/2"]
 [ECO "A00"]
-[Opening "Benko's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "39"]
 
@@ -4426,8 +4080,6 @@ e4 1/2-1/2
 [Black "Stephenson, G."]
 [Result "0-1"]
 [ECO "B80"]
-[Opening "Sicilian"]
-[Variation "Scheveningen, fianchetto variation"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -4453,8 +4105,6 @@ Rxe3 Qb6 { Fritz. }) (30... Ne3 31. Rc1 Bh2+ $1 32. Kxh2 Rxg2+ 33. Kh1 Rxc2
 [Black "Oates, M."]
 [Result "0-1"]
 [ECO "A49"]
-[Opening "King's Indian"]
-[Variation "fianchetto without c4"]
 [EventDate "1995.??.??"]
 [PlyCount "116"]
 
@@ -4477,8 +4127,6 @@ Ke7 46. Rd4 Kf6 47. f4 Re8 48. Qc3 Ke7 49. Rd1 Kd8 50. Qb3 e3 51. Re1 Qe7
 [Black "Schiff, M."]
 [Result "1/2-1/2"]
 [ECO "E17"]
-[Opening "Queen's Indian"]
-[Variation "old main line, 6.O-O"]
 [EventDate "1995.??.??"]
 [PlyCount "54"]
 
@@ -4496,7 +4144,6 @@ Ke2 b5 1/2-1/2
 [Black "Stephenson, G."]
 [Result "1/2-1/2"]
 [ECO "D73"]
-[Opening "Neo-Gruenfeld, 5.Nf3"]
 [EventDate "1995.??.??"]
 [PlyCount "125"]
 
@@ -4521,8 +4168,6 @@ $2 Rh1 $18) 59... Kd7 60. Kg2 Kc7 61. Kh2 Kb7 62. Ra3 Kb6 63. Ra8 1/2-1/2
 [Black "Schiff, M."]
 [Result "1/2-1/2"]
 [ECO "D34"]
-[Opening "QGD"]
-[Variation "Tarrasch, Prague variation, Normal position"]
 [EventDate "1995.??.??"]
 [PlyCount "85"]
 
@@ -4542,7 +4187,6 @@ Rxc5 Qxc5 21. dxc5 Rxd1 22. Rxd1 Bxb2 23. Bxc6 g6 24. Bb7 Rxc5 25. Bxa6 b4
 [Black "Kaczmarek, W."]
 [Result "1-0"]
 [ECO "A04"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "124"]
 
@@ -4567,8 +4211,6 @@ Rc8 60. e7 Kg7 61. Rb8 Kf7 62. Rxc8 Kxe7 1-0
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [ECO "A28"]
-[Opening "English"]
-[Variation "four knights system"]
 [EventDate "1995.??.??"]
 [PlyCount "92"]
 
@@ -4589,7 +4231,6 @@ Bxg6 hxg6 39. Qd8 Kf7 40. Bb4 Qe2 41. Bc3 Rxe7 42. Kc5 Qxe4 43. Kxb5 Rb7+
 [Black "Kaczmarek, W."]
 [Result "1-0"]
 [ECO "C44"]
-[Opening "Scotch gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "37"]
 
@@ -4611,8 +4252,6 @@ O-O-O Rg8 15. Rhg1 Bg4 16. f3 Bh5 17. Qxd6 Qxd6 18. Rxd6 Bxf3 $4 19. Rxf6+
 [Black "Oates, M."]
 [Result "1-0"]
 [ECO "E91"]
-[Opening "King's Indian"]
-[Variation "6.Be2"]
 [EventDate "1995.??.??"]
 [PlyCount "43"]
 
@@ -4632,7 +4271,6 @@ Rec8 22. Ne2 Rxc1+ 23. Nxc1 $14) 22. Nxe4 1-0
 [Black "Kaczmarek, W."]
 [Result "1/2-1/2"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -4650,8 +4288,6 @@ Rd8 26. Ne3 g6 27. Ng4 Kg7 28. e3 h5 29. Nxf6 Kxf6 1/2-1/2
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [ECO "A05"]
-[Opening "Reti"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "75"]
 
@@ -4671,7 +4307,6 @@ h4 Ne6 38. Kb5 0-1
 [Black "Stephenson, G."]
 [Result "1-0"]
 [ECO "A05"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "131"]
 
@@ -4699,8 +4334,6 @@ Kf5 58. Kg2 Ke4 59. Kf1 Kd3 60. Ne1+ Kxd4 61. Ke2 Kc4 62. Nc2 a6 63. f4 Kb3
 [Black "Lee, M."]
 [Result "1-0"]
 [ECO "E67"]
-[Opening "King's Indian"]
-[Variation "fianchetto with ...Nd7"]
 [EventDate "1995.??.??"]
 [PlyCount "49"]
 
@@ -4717,7 +4350,6 @@ Nde4 Bd4 21. Nd6 Rb8 22. Ndb5 e5 23. Nxd4 cxd4 24. Rxd4 Bxc4 25. Rxc4 1-0
 [Black "Rivas, E."]
 [Result "0-1"]
 [ECO "A46"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "70"]
 
@@ -4736,7 +4368,6 @@ Be7+ 32. Kg3 Nf4 33. Kh2 Rxh5+ 34. Kg3 Nxg6 35. Kg4 Rg5+ 0-1
 [Black "Findlay, D."]
 [Result "0-1"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "130"]
 
@@ -4760,8 +4391,6 @@ Kd3 63. Ka2 c4 64. Kb1 Kd2 65. Ka2 c3 0-1
 [Black "Litchfield, G."]
 [Result "1-0"]
 [ECO "A40"]
-[Opening "Queen's pawn"]
-[Variation "Charlick (Englund) gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "67"]
 
@@ -4780,8 +4409,6 @@ Rg2 f5 33. Kc2 Rd8 34. Rd1 1-0
 [Black "Rivas, E."]
 [Result "1-0"]
 [ECO "E70"]
-[Opening "King's Indian"]
-[Variation "accelerated Averbakh system"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -4799,7 +4426,6 @@ Ndf6 27. Ng5 Nxg5 28. Qxg5 Bd7 29. Ne2 Qf7 30. Qh6+ Kg8 31. Qh8# 1-0
 [Black "Sandie, K."]
 [Result "1-0"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "47"]
 
@@ -4816,8 +4442,6 @@ Ne4 20. Bxd6 Rxd6 21. Nh4 f5 22. Nf3 Rf7 23. Ne5 Re7 24. Rc8+ 1-0
 [Black "Armstrong, D."]
 [Result "0-1"]
 [ECO "B18"]
-[Opening "Caro-Kann"]
-[Variation "classical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -4836,7 +4460,6 @@ Rf2# 0-1
 [Black "Sandie, K."]
 [Result "1-0"]
 [ECO "C50"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "105"]
 
@@ -4858,7 +4481,6 @@ Kd6 51. h4 Ke7 52. c7 Kd7 53. b6 1-0
 [Black "Demmery, S."]
 [Result "0-1"]
 [ECO "A05"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "44"]
 
@@ -4881,7 +4503,6 @@ White cannot save his knight because of the double mate threat. } 0-1
 [Black "Rivas, E."]
 [Result "0-1"]
 [ECO "B10"]
-[Opening "Caro-Kann defence"]
 [EventDate "1995.??.??"]
 [PlyCount "116"]
 
@@ -4904,7 +4525,6 @@ h5 gxh5+ 57. Kxh5 f3 58. Kg6 Kf4 0-1
 [Black "Sandie, K."]
 [Result "1/2-1/2"]
 [ECO "C44"]
-[Opening "Scotch opening"]
 [EventDate "1995.??.??"]
 [PlyCount "132"]
 
@@ -4928,7 +4548,6 @@ Kc8 64. Ka8 Kc7 65. Ka7 Kc8 66. Kb6 Kb8 1/2-1/2
 [Black "Armstrong, D."]
 [Result "1/2-1/2"]
 [ECO "D05"]
-[Opening "Colle system"]
 [EventDate "1995.??.??"]
 [PlyCount "125"]
 
@@ -4952,8 +4571,6 @@ Kb6 Kd7 63. Kc5 1/2-1/2
 [Black "Findlay, D."]
 [Result "0-1"]
 [ECO "D00"]
-[Opening "Queen's pawn"]
-[Variation "stonewall attack"]
 [EventDate "1995.??.??"]
 [PlyCount "92"]
 
@@ -4974,8 +4591,6 @@ Rxe5 44. Rc8+ Kxb7 45. Re8 a5 46. Kf4 Re1 0-1
 [Black "Lee, M."]
 [Result "1-0"]
 [ECO "A48"]
-[Opening "King's Indian"]
-[Variation "East Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -4993,7 +4608,6 @@ Nh6+ Kg7 27. Qxf6+ Kxf6 28. Ra3 Kg5 29. Nf7+ 1-0
 [Black "Van Weeren, H."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -5012,7 +4626,6 @@ Kf7 0-1
 [Black "Findlay, D."]
 [Result "1-0"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "79"]
 
@@ -5032,7 +4645,6 @@ Kxc6 38. Kc3 Kc5 39. g4 g5 40. f3 1-0
 [Black "Litchfield, G."]
 [Result "1-0"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "13"]
 
@@ -5046,7 +4658,6 @@ Kxc6 38. Kc3 Kc5 39. g4 g5 40. f3 1-0
 [Black "Sandie, K."]
 [Result "0-1"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "54"]
 
@@ -5064,7 +4675,6 @@ Ng3 Qc7 15. Nce2 Nxe2+ 16. Qxe2 Qxg3 17. Bxf6 Rxf6 18. b4 Rg6 19. Be4 fxe4
 [Black "Armstrong, D."]
 [Result "0-1"]
 [ECO "B10"]
-[Opening "Caro-Kann defence"]
 [EventDate "1995.??.??"]
 [PlyCount "135"]
 
@@ -5088,7 +4698,6 @@ e4 51. fxe4+ Kxe4 52. h4 g4 53. Kf2 Kf4 54. Kg2 Ke3 55. Kg3 Ke4 56. Kf2 Kd3
 [Black "Van Weeren, H."]
 [Result "0-1"]
 [ECO "D05"]
-[Opening "Queen's pawn game, Rubinstein (Colle-Zukertort) variation"]
 [EventDate "1995.??.??"]
 [PlyCount "100"]
 
@@ -5110,8 +4719,6 @@ Nxd4 O-O 15. Bb2 Nc5 16. N4f3 Nfe4 17. Rfd1 Qc8 18. Bd4 Rd8 19. Bxc5 Nxc5
 [Black "Armstrong, D."]
 [Result "1-0"]
 [ECO "A18"]
-[Opening "English"]
-[Variation "Mikenas-Carls variation"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -5129,7 +4736,6 @@ Qc7 27. Qb3 d5 28. Bxb6 Qxb6 29. exd5 Bd6 1-0
 [Black "Demmery, S."]
 [Result "0-1"]
 [ECO "D30"]
-[Opening "Queen's gambit declined"]
 [EventDate "1995.??.??"]
 [PlyCount "44"]
 
@@ -5146,8 +4752,6 @@ Bb5+ Bd7 15. Bxd7+ Nxd7 16. Nxd4 O-O 17. O-O Nac5 18. Nc3 Nb6 19. Ndb5 Ra5
 [Black "Demmery, S."]
 [Result "1/2-1/2"]
 [ECO "D12"]
-[Opening "QGD Slav"]
-[Variation "4.e3 Bf5"]
 [EventDate "1995.??.??"]
 [PlyCount "109"]
 
@@ -5169,8 +4773,6 @@ Kd6 45. Nxg7 Kd5 46. f3 e4 47. Nf5 d3+ 48. Kd1 exf3 49. gxf3 h5 50. h3 Kc4
 [Black "Lee, M."]
 [Result "0-1"]
 [ECO "B46"]
-[Opening "Sicilian"]
-[Variation "Taimanov variation"]
 [EventDate "1995.??.??"]
 [PlyCount "64"]
 
@@ -5189,8 +4791,6 @@ Rf4 0-1
 [Black "Van Weeren, H."]
 [Result "1-0"]
 [ECO "D00"]
-[Opening "Queen's pawn"]
-[Variation "Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "97"]
 
@@ -5211,8 +4811,6 @@ Rh6 44. e4 Rh2+ 45. Ke3 Rh1 46. e5 Ra1 47. e6 Rxa2 48. e7 Ra8 49. Nd8 1-0
 [Black "Litchfield, G."]
 [Result "0-1"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "Lopez counter-gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "38"]
 
@@ -5228,7 +4826,6 @@ Bxf6 Rxf6 15. Nf5 Bxf5 16. exf5 Rxf5 17. d4 f3 18. dxe5 Qg4 19. g3 Qh3 0-1
 [Black "Robinson, E."]
 [Result "1/2-1/2"]
 [ECO "B50"]
-[Opening "Sicilian"]
 [EventDate "1995.??.??"]
 [PlyCount "109"]
 
@@ -5250,8 +4847,6 @@ dxe6 Kxe6 51. Kf2 d5 52. Ke2 dxc4 53. bxc4 Kd6 54. Kd3 Ke5 55. Ke2 1/2-1/2
 [Black "Skinner, M."]
 [Result "1/2-1/2"]
 [ECO "C50"]
-[Opening "Giuoco Pianissimo"]
-[Variation "Canal variation"]
 [EventDate "1995.??.??"]
 [PlyCount "116"]
 
@@ -5274,8 +4869,6 @@ Kg7 55. Qd7+ Kg6 56. Qg4+ Kf7 57. Qf3 Bxf2+ 58. Kh2 Bc5 1/2-1/2
 [Black "St.Pierre, P."]
 [Result "1-0"]
 [ECO "C47"]
-[Opening "Four knights"]
-[Variation "Scotch, 4...exd4"]
 [EventDate "1995.??.??"]
 [PlyCount "118"]
 
@@ -5298,7 +4891,6 @@ Nb4+ Kb5 57. Kb3 g5 58. a4+ Ka5 59. Nd3 Kb6 1-0
 [Black "Wienburg, R."]
 [Result "0-1"]
 [ECO "C45"]
-[Opening "Scotch game"]
 [EventDate "1995.??.??"]
 [PlyCount "164"]
 
@@ -5325,8 +4917,6 @@ Kf4 68. b6 Qc8 69. Kd5 Kf5 70. Kd6 Kf6 71. Kd5 Ke7 72. Kd4 Qc6 73. Ke5 Qxb6
 [Black "Dobrishman, L."]
 [Result "1/2-1/2"]
 [ECO "D06"]
-[Opening "QGD"]
-[Variation "Marshall defence"]
 [EventDate "1995.??.??"]
 [PlyCount "86"]
 
@@ -5346,8 +4936,6 @@ Bc5+ 39. Kg2 Bd4 40. Bb5 g6 41. hxg6 fxg6 42. Be8 g5 43. Bf7 e5 1/2-1/2
 [Black "Moser, D."]
 [Result "0-1"]
 [ECO "D45"]
-[Opening "QGD semi-Slav"]
-[Variation "5.e3"]
 [EventDate "1995.??.??"]
 [PlyCount "70"]
 
@@ -5366,7 +4954,6 @@ Ne3 Rf4 34. Qxc4 Rxg4+ 35. Nxg4 Qg2# 0-1
 [Black "Robinson, E."]
 [Result "1-0"]
 [ECO "E20"]
-[Opening "Nimzo-Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -5384,8 +4971,6 @@ Nxd6 h5 21. O-O-O Rg7 22. Rg3 Rfg8 23. Re1 Nf6 24. Nxf7+ Kh7 25. Ng5+ Kh6
 [Black "Moser, D."]
 [Result "0-1"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "106"]
 
@@ -5407,7 +4992,6 @@ Kxf2 Bc5 51. Kg2 Bxd4 52. Kh3 Bf2 53. Kh2 Kd5 0-1
 [Black "St.Pierre, P."]
 [Result "1-0"]
 [ECO "C50"]
-[Opening "Giuoco Piano"]
 [EventDate "1995.??.??"]
 [PlyCount "83"]
 
@@ -5427,8 +5011,6 @@ Nxe5 Qxe5 28. Ng6 Qf6 29. Nxh8 Qxh8 30. Qe2 h4 31. e5 hxg3+ 32. fxg3 Qh6
 [Black "Wienburg, R."]
 [Result "1-0"]
 [ECO "C24"]
-[Opening "Bishop's opening"]
-[Variation "Berlin defence"]
 [EventDate "1995.??.??"]
 [PlyCount "83"]
 
@@ -5448,8 +5030,6 @@ Kf2 Qa2+ 38. Kf3 Qa8+ 39. Kf4 Qa4+ 40. Kf5 Kf8 41. Nd5 Kg8 42. Qe7 1-0
 [Black "Moser, D."]
 [Result "1-0"]
 [ECO "D37"]
-[Opening "QGD"]
-[Variation "4.Nf3"]
 [EventDate "1995.??.??"]
 [PlyCount "81"]
 
@@ -5469,7 +5049,6 @@ Kh2 Qxa2 39. Qf3 a5 40. Rd4 g6 41. Qf8+ 1-0
 [Black "St.Pierre, P."]
 [Result "0-1"]
 [ECO "E60"]
-[Opening "King's Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "34"]
 
@@ -5485,7 +5064,6 @@ Kh2 Qxa2 39. Qf3 a5 40. Rd4 g6 41. Qf8+ 1-0
 [Black "Moser, D."]
 [Result "1-0"]
 [ECO "C50"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "151"]
 
@@ -5511,7 +5089,6 @@ Ke4 b3 70. Bd4 Nc6 71. Bc3 Na5 72. Kd5 Nb7 73. h4 Na5 74. h5 Nb7 75. h6 Nd8
 [Black "Robinson, E."]
 [Result "0-1"]
 [ECO "B54"]
-[Opening "Sicilian"]
 [EventDate "1995.??.??"]
 [PlyCount "86"]
 
@@ -5532,8 +5109,6 @@ Rc1 Qd2 33. Qe7+ Kh6 34. Qf8+ Kg5 35. Rc6 Qe1+ 36. Kh2 Qxf2 37. Rc3 Qf4+
 [Black "Skinner, M."]
 [Result "0-1"]
 [ECO "B90"]
-[Opening "Sicilian"]
-[Variation "Najdorf, Adams attack"]
 [EventDate "1995.??.??"]
 [PlyCount "70"]
 
@@ -5552,8 +5127,6 @@ fxg3 Bg4 33. c4 Rh5+ 34. Kg1 Bf3 35. Kf2 d4 0-1
 [Black "St.Pierre, P."]
 [Result "0-1"]
 [ECO "C68"]
-[Opening "Ruy Lopez"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -5571,8 +5144,6 @@ hxg4 Rh8 27. f3 Rgh6 28. Kf2 Rh2+ 29. Ke3 Nd5+ 30. Ke4 Rf8 31. d4 Rxd2 0-1
 [Black "Wienburg, R."]
 [Result "1-0"]
 [ECO "D31"]
-[Opening "QGD"]
-[Variation "3.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "69"]
 
@@ -5591,7 +5162,6 @@ Qxf6 b5 33. Qf7+ Kh8 34. Rc7 Qb6+ 35. Kg2 1-0
 [Black "Dobrishman, L."]
 [Result "1/2-1/2"]
 [ECO "A22"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "161"]
 
@@ -5618,7 +5188,6 @@ Rc5 Kg7 80. Rd5 Rf8 81. Re5 1/2-1/2
 [Black "Skinner, M."]
 [Result "0-1"]
 [ECO "A47"]
-[Opening "Queen's Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "68"]
 
@@ -5637,8 +5206,6 @@ Qd5 32. Kh3 a5 33. g4 b5 34. Re5 $4 Qxf3+ 0-1
 [Black "Loh, P."]
 [Result "1-0"]
 [ECO "D07"]
-[Opening "QGD"]
-[Variation "Chigorin defence"]
 [EventDate "1995.??.??"]
 [PlyCount "51"]
 
@@ -5656,7 +5223,6 @@ Rbd1+ 1-0
 [Black "Clipperton, B."]
 [Result "1-0"]
 [ECO "A15"]
-[Opening "English, 1...Nf6 (Anglo-Indian defense)"]
 [EventDate "1995.??.??"]
 [PlyCount "81"]
 
@@ -5676,8 +5242,6 @@ Qxd6 Re8 33. Rh3 Qe2 34. dxc6 Qxb2 35. Rc1 bxc6 36. Qxc6 Re7 37. Bh6 Rg6
 [Black "Igboemeka, C."]
 [Result "1-0"]
 [ECO "A30"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "131"]
 
@@ -5701,7 +5265,6 @@ Re8 Kg4 62. Rf8 Kh4 63. e5 Kh5 64. e6 Kh6 65. e7 Kg7 66. e8=Q 1-0
 [Black "Smith, R."]
 [Result "0-1"]
 [ECO "A20"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "124"]
 
@@ -5725,7 +5288,6 @@ Qh2 61. Re2 Qf4+ 62. Kg2 Qf3+ 0-1
 [Black "Kubik, R."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -5743,8 +5305,6 @@ Bg3 27. Bxg5 Qxg5 28. Qxg3 Qh6 29. Kg2 Rg8 30. Qf4 Qh3+ 31. Kg1 Qh1# 0-1
 [Black "Smith, R."]
 [Result "0-1"]
 [ECO "A49"]
-[Opening "King's Indian"]
-[Variation "fianchetto without c4"]
 [EventDate "1995.??.??"]
 [PlyCount "49"]
 
@@ -5763,8 +5323,6 @@ Bxg2 0-1
 [Black "Brock, Da"]
 [Result "1-0"]
 [ECO "D12"]
-[Opening "QGD Slav"]
-[Variation "4.e3 Bf5"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -5782,7 +5340,6 @@ Bd3 21. f4 Qf5 22. g4 Nxg4 23. Rf3 Nf6 24. Kh2 Ne4 25. c6 Rfc8 26. a4 e5
 [Black "Igboemeka, C."]
 [Result "0-1"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -5801,7 +5358,6 @@ Kf2 Qxh2+ 26. Ke3 Qd2+ (26... Qd2+ 27. Kxf3 Rf1+ 28. Kg4 h5+ 29. Kh4 Rh1#)
 [Black "Finkenzeller, A."]
 [Result "0-1"]
 [ECO "D04"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "48"]
 
@@ -5818,7 +5374,6 @@ Ndxc5 15. dxc5 Bxa1 16. Qxc6 Qxa5 17. Qxd5 Rfd8 18. Qc4 Bg7 19. Nh4 Qxe1+
 [Black "Kubik, A."]
 [Result "1-0"]
 [ECO "C44"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "12"]
 
@@ -5833,7 +5388,6 @@ could make any sense out of this score. 1-0 in 37. } 1-0
 [Black "Leonard, D."]
 [Result "1-0"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "89"]
 
@@ -5854,7 +5408,6 @@ Qg7+ Nf7 27. Re3 Be5 28. Rxe5 Rhg8 29. Qh7 Kd8 30. Qxh4+ Kd7 31. Qe7+ Kc8
 [Black "Sengupta, O."]
 [Result "1/2-1/2"]
 [ECO "D10"]
-[Opening "QGD Slav defence"]
 [EventDate "1995.??.??"]
 [PlyCount "138"]
 
@@ -5879,8 +5432,6 @@ Ra5 Rg1 69. Kf4 Kh5 1/2-1/2
 [Black "Taylor, J."]
 [Result "1-0"]
 [ECO "E62"]
-[Opening "King's Indian"]
-[Variation "fianchetto with ...Nc6"]
 [EventDate "1995.??.??"]
 [PlyCount "35"]
 
@@ -5896,8 +5447,6 @@ Bxg7 Nxg7 15. e4 f5 16. Qh6 fxe4 17. Ng5 Rf5 18. Qxh7+ 1-0
 [Black "Clipperton, B."]
 [Result "0-1"]
 [ECO "B09"]
-[Opening "Pirc"]
-[Variation "Austrian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "142"]
 
@@ -5922,8 +5471,6 @@ f5 69. Kf3 Rh2 70. Kf4 g2 71. Kxf5 g1=Q 0-1
 [Black "Kubik, R."]
 [Result "0-1"]
 [ECO "C88"]
-[Opening "Ruy Lopez"]
-[Variation "closed, 8.c3"]
 [EventDate "1995.??.??"]
 [PlyCount "92"]
 
@@ -5944,7 +5491,6 @@ Qxh4 44. Rg7 Ke3 45. Rxc7 Qg3+ 46. Kf1 Qf2# 0-1
 [Black "Cooper, A."]
 [Result "1-0"]
 [ECO "E10"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "121"]
 
@@ -5967,7 +5513,6 @@ Kc5 Qg5+ 57. Qd5 Qc1+ 58. Kb5 f5 59. d8=Q Qb1+ 60. Kc6 Qc1+ 61. Kb7 1-0
 [Black "Huynh, L."]
 [Result "1-0"]
 [ECO "D10"]
-[Opening "QGD Slav defence"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -5985,7 +5530,6 @@ Kd7 27. Ra7+ Nc7 28. Qa4 Qe6 29. Ba5 Rc8 30. d5 Qxd5 31. Rd1 1-0
 [Black "Lovelock, L."]
 [Result "1-0"]
 [ECO "D20"]
-[Opening "Queen's gambit accepted"]
 [EventDate "1995.??.??"]
 [PlyCount "63"]
 
@@ -6004,7 +5548,6 @@ Nxd2 1-0
 [Black "Rabosa, E."]
 [Result "0-1"]
 [ECO "D43"]
-[Opening "QGD semi-Slav"]
 [EventDate "1995.??.??"]
 [PlyCount "54"]
 
@@ -6022,8 +5565,6 @@ e3 Bxf1 27. Rxf1 Qd3+ 0-1
 [Black "Finkenzeller, A."]
 [Result "0-1"]
 [ECO "B00"]
-[Opening "KP"]
-[Variation "Nimzovich defence"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -6041,7 +5582,6 @@ c5 Rxg2+ 27. Kh1 Rbb2 28. cxd6 Rxh2+ 29. Kg1 Rbg2# 0-1
 [Black "Loh, L."]
 [Result "0-1"]
 [ECO "A00"]
-[Opening "Benko's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -6059,8 +5599,6 @@ Qxe4+ 26. Bg2 Qe1+ 0-1
 [Black "Finkenzeller, A."]
 [Result "0-1"]
 [ECO "B00"]
-[Opening "KP"]
-[Variation "Nimzovich defence"]
 [EventDate "1995.??.??"]
 [PlyCount "78"]
 
@@ -6080,7 +5618,6 @@ Rfe1 Qa7 34. Qa2 Re2+ 35. Kh1 Rxa2 36. Ra1 Rxa1 37. Rxa1 Rxf3 38. Kg2 Qf2+
 [Black "Rabosa, P."]
 [Result "0-1"]
 [ECO "C50"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "126"]
 
@@ -6104,7 +5641,6 @@ Kxg4 56. Kc1 Kf3 57. Kd2 g4 58. Kc1 g3 59. Kb2 g2 60. Kc2 g1=Q 61. Kd2 Qg2+
 [Black "Cooper, A."]
 [Result "0-1"]
 [ECO "A46"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "50"]
 
@@ -6122,7 +5658,6 @@ in 52. } 0-1
 [Black "Rabosa, E."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "100"]
 
@@ -6144,7 +5679,6 @@ Rde8 49. Rg3+ Kf7 50. Bb6 R8e5# 0-1
 [Black "Clipperton, B."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "96"]
 
@@ -6165,7 +5699,6 @@ Kxd7 44. Ke5 Ke7 45. Kf5 Rh4 46. Ke5 Rh1 47. Kf5 f6 48. Kg6 g4 0-1
 [Black "Huynh, L."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Krause variation"]
 [EventDate "1995.??.??"]
 [PlyCount "70"]
 
@@ -6184,7 +5717,6 @@ Qe7+ 33. Kf3 Rxf4+ 34. Kg2 Qxg5+ 35. Kh2 Rh4# 0-1
 [Black "Igboemeka, C."]
 [Result "1/2-1/2"]
 [ECO "A46"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "98"]
 
@@ -6206,7 +5738,6 @@ Rxd6 Kxd6 45. Ke4 Ke6 46. f4 exf4 47. Kxf4 Kf6 48. h4 Kf7 49. Kg5 Kg7
 [Black "Leonard, D."]
 [Result "1-0"]
 [ECO "B01"]
-[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "43"]
 
@@ -6223,8 +5754,6 @@ Nd7 20. Qh6 Qd4 21. Qxh7+ Kf8 22. Qf7# 1-0
 [Black "Sengupta, O."]
 [Result "1-0"]
 [ECO "C60"]
-[Opening "Ruy Lopez"]
-[Variation "Cozio defence"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -6242,7 +5771,6 @@ Bf4 27. Bxf6+ gxf6 28. Rxh8 Rxh8 29. Rh1 Rg8 30. Kf2 Rc8 31. Qxc8 1-0
 [Black "Deline, S."]
 [Result "0-1"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -6261,7 +5789,6 @@ Bxd8 Ncxd8 20. Rfd1 Bc5 21. Rd2 Rf8 22. Rbd1 Nc6 23. Ne4 Bb6 24. Rf1 Re8
 [Black "Leonard, D."]
 [Result "1-0"]
 [ECO "B02"]
-[Opening "Alekhine's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "34"]
 
@@ -6278,8 +5805,6 @@ took the R on f8, and the game was 1-0 in 21. } 17. Rfe1 Rg8 1-0
 [Black "Loh, L."]
 [Result "1-0"]
 [ECO "B70"]
-[Opening "Sicilian"]
-[Variation "dragon variation"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -6297,7 +5822,6 @@ Rb8 20. Bc1 f5 21. O-O h5 22. Rb1 Rh8 23. Be3 h4 24. Bxa7 f4 25. Bd4 Bxd4
 [Black "Khan, Z."]
 [Result "1/2-1/2"]
 [ECO "C53"]
-[Opening "Giuoco Piano"]
 [EventDate "1995.??.??"]
 [PlyCount "50"]
 
@@ -6315,7 +5839,6 @@ Rb8 20. Bc1 f5 21. O-O h5 22. Rb1 Rh8 23. Be3 h4 24. Bxa7 f4 25. Bd4 Bxd4
 [Black "Cooper, A."]
 [Result "1-0"]
 [ECO "E10"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -6334,7 +5857,6 @@ Bxc5 Bf6 33. Bxe7+ Bxe7 1-0
 [Black "Kubik, R."]
 [Result "0-1"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "68"]
 
@@ -6353,7 +5875,6 @@ Qxa2+ 33. Nb2 Qxb2+ 34. Kd3 Qc3# 0-1
 [Black "Rabosa, E."]
 [Result "0-1"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "94"]
 
@@ -6374,7 +5895,6 @@ Re7 44. Qg6+ Rg7 45. Qe6+ Kh8 46. Qh6+ Kg8 47. Ne6 Rf5+ 0-1
 [Black "Deline, S."]
 [Result "0-1"]
 [ECO "A04"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "84"]
 
@@ -6394,8 +5914,6 @@ Nh3 Rxd3 39. h5 gxh5 40. gxh5 Rd8 41. Ng1 Rh8 42. Ne2 Rxh5 0-1
 [Black "Sengupta, O."]
 [Result "0-1"]
 [ECO "A05"]
-[Opening "Reti"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -6414,7 +5932,6 @@ dxe4 Rxe4 27. Rxe4 Nxe4 28. Ne1 Qd1 29. Nf3 Qxf3 30. Qa6 Re8 31. Qxa7 Nxc3
 [Black "Kubik, R."]
 [Result "1-0"]
 [ECO "A15"]
-[Opening "English, 1...Nf6 (Anglo-Indian defense)"]
 [EventDate "1995.??.??"]
 [PlyCount "105"]
 
@@ -6436,7 +5953,6 @@ Qxe5+ Kh7 51. Rh8+ Kg6 52. Qe6+ Kg7 53. Qxh6# 1-0
 [Black "Rabosa, E."]
 [Result "1-0"]
 [ECO "D04"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "63"]
 
@@ -6455,8 +5971,6 @@ Rg7+ Kf8 27. Bf5 Rc1+ 28. Kh2 Rd1 29. Rdf7+ Ke8 30. Re7+ Kd8 31. Rd7+ Ke8
 [Black "Huynh, L."]
 [Result "0-1"]
 [ECO "D12"]
-[Opening "QGD Slav"]
-[Variation "4.e3 Bf5"]
 [EventDate "1995.??.??"]
 [PlyCount "84"]
 
@@ -6476,7 +5990,6 @@ Kd5 Qxf4 38. g3 Qf2 39. Ke5 Qxh2 40. Nf5 g6 41. Ne7+ Kf8 42. Kf6 Qf2+ 0-1
 [Black "Cooper, A."]
 [Result "0-1"]
 [ECO "A04"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "126"]
 
@@ -6500,7 +6013,6 @@ Kg6 Kf4 0-1
 [Black "Loh, L."]
 [Result "1-0"]
 [ECO "B50"]
-[Opening "Sicilian"]
 [EventDate "1995.??.??"]
 [PlyCount "35"]
 
@@ -6517,7 +6029,6 @@ Qe7+ 1-0
 [Black "Brock, Da"]
 [Result "0-1"]
 [ECO "B30"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -6536,8 +6047,6 @@ g6 32. a5 f5 33. axb6 Rc3# 0-1
 [Black "Taylor, J."]
 [Result "0-1"]
 [ECO "A05"]
-[Opening "Reti"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "34"]
 
@@ -6553,7 +6062,6 @@ Ne3 c5 15. Bd2 Bxd4 16. c3 Bxe3 17. Re1 Qg2# 0-1
 [Black "Kubik, A."]
 [Result "1-0"]
 [ECO "C42"]
-[Opening "Petrov's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "79"]
 
@@ -6573,7 +6081,6 @@ Rxe8+ Kxe8 38. Bg7 h5 39. gxh5 gxh5 40. Bd4 1-0
 [Black "Deline, S."]
 [Result "0-1"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "104"]
 
@@ -6596,7 +6103,6 @@ Rd8 45. Kf3 c4 46. Kf2 c3 47. Kg3 c2 48. Kg4 c1=Q 49. Kf3 Re8 50. Kg3 Qf1
 [Black "Lovelock, L."]
 [Result "1-0"]
 [ECO "D20"]
-[Opening "Queen's gambit accepted"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -6614,8 +6120,6 @@ exf6 Bxf6 21. Qc4+ Kh8 22. Bxf6 gxf6 23. Qc3 c6 24. Rd6 c5 25. Rxf6 Rxf6
 [Black "Rabosa, P."]
 [Result "0-1"]
 [ECO "A05"]
-[Opening "Reti"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "64"]
 
@@ -6634,8 +6138,6 @@ exf5 Qxc2 27. Qe6 Rd1+ 28. Bf1 Bb4 29. Kg2 Rd2 30. g4 Rxf2+ 31. Kg1 Rxh2
 [Black "Litchfield, G."]
 [Result "1-0"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "Lopez counter-gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "67"]
 
@@ -6654,7 +6156,6 @@ Qf3 33. Bxh6 gxh6 34. Qxh6+ 1-0
 [Black "Loh, L."]
 [Result "0-1"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "84"]
 
@@ -6674,7 +6175,6 @@ Qxd3+ 38. Kxd3 Rd1+ 39. Ke2 Rb1 40. h3 Rxb3 41. f3 Rb2+ 42. Ke3 Rc8 0-1
 [Black "Matthews, D."]
 [Result "0-1"]
 [ECO "B06"]
-[Opening "Robatsch (modern) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "128"]
 
@@ -6698,8 +6198,6 @@ Re3+ 62. Kf2 Qe1+ 63. Kg2 Qd2+ 64. Kh1 Re1# 0-1
 [Black "Erickson, J."]
 [Result "0-1"]
 [ECO "A23"]
-[Opening "English"]
-[Variation "Bremen system, Keres variation"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -6718,7 +6216,6 @@ Rb1 d5 9. cxd5 Nxd5 10. Nxe5 Nxc3 11. bxc3 Bxa2 12. c4 Bxb1 13. Bb2 Bxd3
 [Black "Rabosa, E."]
 [Result "1-0"]
 [ECO "A10"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "49"]
 
@@ -6736,7 +6233,6 @@ Qg5# 1-0
 [Black "Wienburg, R."]
 [Result "1-0"]
 [ECO "C50"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "47"]
 
@@ -6753,7 +6249,6 @@ Qe6+ Rd7 21. Qe8+ Rd8 22. Rc4+ Kb7 23. Qc6+ Kb8 24. Qc7# 1-0
 [Black "Jung, H."]
 [Result "0-1"]
 [ECO "B00"]
-[Opening "King's pawn opening"]
 [EventDate "1995.??.??"]
 [PlyCount "54"]
 
@@ -6771,8 +6266,6 @@ Bxf6 Rg8 27. Bh4 Bg7 0-1
 [Black "Redden, S."]
 [Result "0-1"]
 [ECO "B00"]
-[Opening "KP"]
-[Variation "Nimzovich defence"]
 [EventDate "1995.??.??"]
 [PlyCount "76"]
 
@@ -6792,8 +6285,6 @@ b3 d5 21. Nc3 c6 22. Rde2 Qc5 23. Nd1 e4 24. Ne3 d4 25. Nd1 Bd5 26. Ng4 Qe7
 [Black "Brock, Da"]
 [Result "1-0"]
 [ECO "B43"]
-[Opening "Sicilian"]
-[Variation "Kan, 5.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "43"]
 
@@ -6810,8 +6301,6 @@ b3 d5 21. Nc3 c6 22. Rde2 Qc5 23. Nd1 e4 24. Ne3 d4 25. Nd1 Bd5 26. Ng4 Qe7
 [Black "Eminger, J."]
 [Result "1-0"]
 [ECO "C48"]
-[Opening "Four knights"]
-[Variation "Ranken variation"]
 [EventDate "1995.??.??"]
 [PlyCount "123"]
 
@@ -6834,7 +6323,6 @@ Ke7 57. Ke5 Kd7 58. f5 Ke7 59. d6+ Kd7 60. f6 Ke8 61. Ke6 Kf8 62. d7 1-0
 [Black "Prete, D."]
 [Result "0-1"]
 [ECO "B10"]
-[Opening "Caro-Kann defence"]
 [EventDate "1995.??.??"]
 [PlyCount "100"]
 
@@ -6856,8 +6344,6 @@ Rxf2+ 50. Kb3 Bc1 0-1
 [Black "De Kerpel, S."]
 [Result "1/2-1/2"]
 [ECO "A33"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "44"]
 
@@ -6874,7 +6360,6 @@ Rxf2+ 50. Kb3 Bc1 0-1
 [Black "Van der Velde, W."]
 [Result "1-0"]
 [ECO "B50"]
-[Opening "Sicilian"]
 [EventDate "1995.??.??"]
 [PlyCount "87"]
 
@@ -6894,7 +6379,6 @@ Be3 b4 40. Rg5 Qf7 41. d5 Re5 42. Qxc4 Rxg5 43. Bxg5 Qxf2+ 44. Kh2 1-0
 [Black "Brahm, D."]
 [Result "1/2-1/2"]
 [ECO "A40"]
-[Opening "Queen's pawn"]
 [EventDate "1995.??.??"]
 [PlyCount "83"]
 
@@ -6914,7 +6398,6 @@ hxg4+ 38. Kxg4 Bd3 39. h4 Kb5 40. Bd4 Kc4 41. Kf4 Be4 42. Ke5 1/2-1/2
 [Black "Loh, L."]
 [Result "1/2-1/2"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "73"]
 
@@ -6934,8 +6417,6 @@ Re1 1/2-1/2
 [Black "Rabosa, P."]
 [Result "1-0"]
 [ECO "D00"]
-[Opening "Queen's pawn"]
-[Variation "Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "53"]
 
@@ -6953,7 +6434,6 @@ a5 26. Bxf7+ Kg7 27. Rc7 1-0
 [Black "Nov, S."]
 [Result "1-0"]
 [ECO "A40"]
-[Opening "Queen's pawn"]
 [EventDate "1995.??.??"]
 [PlyCount "53"]
 
@@ -6971,7 +6451,6 @@ c3 Ne2+ 21. Rxe2 Bxe2 22. cxb4 Bb5 23. Rc1+ Bc6 24. Rxc6+ Kxc6 25. a4 b5
 [Black "Matthews, D."]
 [Result "1-0"]
 [ECO "B06"]
-[Opening "Robatsch (modern) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "17"]
 
@@ -6986,8 +6465,6 @@ O-O 8. Bh6 Re8 9. Qg7# 1-0
 [Black "Rabosa, P."]
 [Result "1-0"]
 [ECO "D20"]
-[Opening "QGA"]
-[Variation "3.e4"]
 [EventDate "1995.??.??"]
 [PlyCount "27"]
 
@@ -7003,8 +6480,6 @@ Qxh7# 1-0
 [Black "Sengupta, O."]
 [Result "0-1"]
 [ECO "D20"]
-[Opening "QGA"]
-[Variation "3.e4"]
 [EventDate "1995.??.??"]
 [PlyCount "48"]
 
@@ -7021,7 +6496,6 @@ Bc6 20. g3 Kd7 21. Nxd5 Bxd5 22. f3 Re8+ 23. Be2 Ng4 24. Kd1 Nf2+ 0-1
 [Black "Khan, Z."]
 [Result "0-1"]
 [ECO "C44"]
-[Opening "Konstantinopolsky opening"]
 [EventDate "1995.??.??"]
 [PlyCount "38"]
 
@@ -7037,7 +6511,6 @@ Na5 15. c4 e4 16. dxe4 Bxg3+ 17. Kd1 Bxh2 18. Bxa5 bxa5 19. Bg2 Be5 0-1
 [Black "Sengupta, O."]
 [Result "0-1"]
 [ECO "C44"]
-[Opening "Konstantinopolsky opening"]
 [EventDate "1995.??.??"]
 [PlyCount "38"]
 
@@ -7054,7 +6527,6 @@ Bxd5 O-O 0-1
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [ECO "A00"]
-[Opening "Benko's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "44"]
 
@@ -7071,8 +6543,6 @@ Bxd5 O-O 0-1
 [Black "Griesler, S."]
 [Result "0-1"]
 [ECO "C01"]
-[Opening "French"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "70"]
 
@@ -7091,7 +6561,6 @@ Kh1 Qe6 33. Qd2 Nf3 $1 34. gxf3 Qxh3+ 35. Kg1 Rh4 0-1
 [Black "Arndt, P."]
 [Result "0-1"]
 [ECO "C23"]
-[Opening "Bishop's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "48"]
 
@@ -7108,7 +6577,6 @@ Kxf1 Qxh2 21. Nc3 O-O 22. Nb5 Rae8 23. Bd4 Bxf3 24. Nxa7 Qg2# 0-1
 [Black "Youn, Y."]
 [Result "0-1"]
 [ECO "C42"]
-[Opening "Petrov's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "22"]
 
@@ -7123,7 +6591,6 @@ Kxf1 Qxh2 21. Nc3 O-O 22. Nb5 Rae8 23. Bd4 Bxf3 24. Nxa7 Qg2# 0-1
 [Black "Brock, Da"]
 [Result "1-0"]
 [ECO "B40"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "45"]
 
@@ -7140,7 +6607,6 @@ h5 21. Qf3 Bxd4 22. cxd4 Rxd4 23. Rxc7 1-0
 [Black "Eminger, J."]
 [Result "1-0"]
 [ECO "C50"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "35"]
 
@@ -7156,7 +6622,6 @@ Nf4 15. Bxf4 O-O-O 16. O-O-O Rhe8 17. e6 fxe6 18. Qxc7# 1-0
 [Black "Erickson, J."]
 [Result "0-1"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "42"]
 
@@ -7173,7 +6638,6 @@ Kf2 Bc5+ 21. Be3 Bxe3# 0-1
 [Black "Prete, D."]
 [Result "1-0"]
 [ECO "C42"]
-[Opening "Petrov's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "42"]
 
@@ -7190,8 +6654,6 @@ h3 Rae8 20. Qg4 Re7 21. Qxd4 Re2 1-0
 [Black "Brahm, D."]
 [Result "1-0"]
 [ECO "C20"]
-[Opening "KP"]
-[Variation "Indian opening"]
 [EventDate "1995.??.??"]
 [PlyCount "38"]
 
@@ -7208,8 +6670,6 @@ Rc1 { !?&! } 19... b6 1-0
 [Black "Matthews, D."]
 [Result "1-0"]
 [ECO "C20"]
-[Opening "KP"]
-[Variation "Indian opening"]
 [EventDate "1995.??.??"]
 [PlyCount "41"]
 
@@ -7226,7 +6686,6 @@ Kxf8 21. Qf7# 1-0
 [Black "Jung, H."]
 [Result "0-1"]
 [ECO "A41"]
-[Opening "Queen's Pawn"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -7244,7 +6703,6 @@ c5 21. Nf5 Nc6 22. f4 g6 23. Nh6+ Kh8 24. f5 Qe7 25. Qf3 Rae8 26. Rae1 Qxe4
 [Black "Brahm, D."]
 [Result "1-0"]
 [ECO "C40"]
-[Opening "Damiano's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "26"]
 
@@ -7261,8 +6719,6 @@ game was 1-0. } 11... Kc8 12. Rxd7 Rd8 13. Rxd8+ Kxd8 1-0
 [Black "Khan, Z."]
 [Result "1/2-1/2"]
 [ECO "C02"]
-[Opening "French"]
-[Variation "advance, Nimzovich system"]
 [EventDate "1995.??.??"]
 [PlyCount "67"]
 
@@ -7281,7 +6737,6 @@ Rxb5 32. c4 Rb8 33. c5 Ra8 34. Rc3 1/2-1/2
 [Black "Rabosa, P."]
 [Result "1-0"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -7300,8 +6755,6 @@ Rxa8 Bxh2 26. Rh1 Kg6 27. Rxh2 Nb4 28. Rxa7 Nc6 29. Ra6 Nb4 30. Rxb6+ {
 [Black "Dobrishman, L."]
 [Result "1-0"]
 [ECO "D31"]
-[Opening "QGD"]
-[Variation "3.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "85"]
 
@@ -7321,7 +6774,6 @@ Qd7 39. Rh4 exd4 40. Rff4 Ne6 41. Rh7+ Ng7 42. Qf3 Qe7 43. Qxd5+ 1-0
 [Black "Redden, S."]
 [Result "1/2-1/2"]
 [ECO "A81"]
-[Opening "Dutch defence"]
 [EventDate "1995.??.??"]
 [PlyCount "80"]
 
@@ -7341,7 +6793,6 @@ Kf2 h5 39. Ke3 Ke7 40. Rg6 Kf7 1/2-1/2
 [Black "Griesler, S."]
 [Result "0-1"]
 [ECO "C00"]
-[Opening "French defence"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -7359,7 +6810,6 @@ dxe5 Be4 0-1
 [Black "Matthews, I."]
 [Result "0-1"]
 [ECO "B50"]
-[Opening "Sicilian"]
 [EventDate "1995.??.??"]
 [PlyCount "74"]
 
@@ -7378,7 +6828,6 @@ Kd3 Rxb4 21. d5 Bxc3 22. Rxc3 Kd7 23. Rhc1 Rc8 24. Ng5 Rxc3+ 25. Rxc3 exd5
 [Black "Arndt, P."]
 [Result "1-0"]
 [ECO "C23"]
-[Opening "Bishop's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "53"]
 
@@ -7396,7 +6845,6 @@ Kh1 Rd8 27. Qe7# 1-0
 [Black "Litchfield, G."]
 [Result "0-1"]
 [ECO "B00"]
-[Opening "King's pawn opening"]
 [EventDate "1995.??.??"]
 [PlyCount "40"]
 
@@ -7413,8 +6861,6 @@ Kh1 Rd8 27. Qe7# 1-0
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "E91"]
-[Opening "King's Indian"]
-[Variation "6.Be2"]
 [EventDate "1995.??.??"]
 [PlyCount "86"]
 
@@ -7435,7 +6881,6 @@ Rd2+ 32. Kg1 Rxb2 33. a3 Ra2 34. Bf4 Kf5 35. Bd6 a4 36. Kf1 Kg4 37. Be7 Kf3
 [Black "Prete, D."]
 [Result "0-1"]
 [ECO "E60"]
-[Opening "King's Indian, 3.Nf3"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -7453,8 +6898,6 @@ a3 Re8 9. O-O e5 10. b4 a6 11. Re1 e4 12. Nd2 Nxd4 13. Nf1 Nc6 14. Ne3 d4
 [Black "McRorie, A."]
 [Result "0-1"]
 [ECO "D31"]
-[Opening "QGD"]
-[Variation "3.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "103"]
 
@@ -7476,7 +6919,6 @@ Ke4 51. h5 gxh5 52. Kh4 0-1
 [Black "Sengupta, O."]
 [Result "1-0"]
 [ECO "A56"]
-[Opening "Benoni defence"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -7494,8 +6936,6 @@ axb4 15. axb4 Rxa1 16. Rxa1 bxc5 17. Ra8 $1 Qxa8 18. Nc7+ Kd8 19. Nxa8 cxb4
 [Black "McRorie, A."]
 [Result "1-0"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "121"]
 
@@ -7519,7 +6959,6 @@ Kc5 56. Kf5 Kb4 57. Rd6 Bc5 58. Ke6 Kxa4 59. Rc6 Kb5 60. Rxc5+ Kxc5 61. d6
 [Black "Demmery, S."]
 [Result "1-0"]
 [ECO "B01"]
-[Opening "Scandinavian gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "31"]
 
@@ -7535,7 +6974,6 @@ Ne4 Nce7 15. Nd6+ Kd8 16. Nxf7+ 1-0
 [Black "Erickson, J."]
 [Result "1-0"]
 [ECO "A00"]
-[Opening "Benko's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "65"]
 
@@ -7554,8 +6992,6 @@ exd4 32. Rxd4 h5 33. Rb6 1-0
 [Black "Prete, D."]
 [Result "1-0"]
 [ECO "B90"]
-[Opening "Sicilian"]
-[Variation "Najdorf"]
 [EventDate "1995.??.??"]
 [PlyCount "79"]
 
@@ -7575,8 +7011,6 @@ Ra8 39. Rxg7+ Kf6 40. Rc6# 1-0
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "C95"]
-[Opening "Ruy Lopez"]
-[Variation "closed, Breyer, Borisenko variation"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -7594,7 +7028,6 @@ Nxb2 0-1
 [Black "Moser, D."]
 [Result "1-0"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "69"]
 
@@ -7613,8 +7046,6 @@ b4 33. Qc2 b3 34. Qc3 Qg4 $138 35. Qe3 1-0
 [Black "Sengupta, O."]
 [Result "1-0"]
 [ECO "A48"]
-[Opening "King's Indian"]
-[Variation "Torre attack"]
 [EventDate "1995.??.??"]
 [PlyCount "99"]
 
@@ -7636,8 +7067,6 @@ Qc5+ Kf6 50. Qf5+ 1-0
 [Black "Winmill, R."]
 [Result "0-1"]
 [ECO "B08"]
-[Opening "Pirc"]
-[Variation "classical, h3 system"]
 [EventDate "1995.??.??"]
 [PlyCount "68"]
 
@@ -7656,7 +7085,6 @@ Ra8 g5 33. Ra7 Kg6 34. Rxf7 Kxf7 0-1
 [Black "McRorie, A."]
 [Result "1-0"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "47"]
 
@@ -7673,7 +7101,6 @@ Qe7 20. Nf3 g5 21. Ne5 Bb7 22. Qb5 Rdf8 23. Nc6+ Bxc6 24. Qxc6 1-0
 [Black "Moser, D."]
 [Result "0-1"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "46"]
 
@@ -7690,7 +7117,6 @@ Raf1 Rxf1 21. Kxf1 Na4 22. Be1 Qh3+ 23. Ke2 Qg2+ 0-1
 [Black "Ward, R."]
 [Result "0-1"]
 [ECO "A45"]
-[Opening "Canard opening"]
 [EventDate "1995.??.??"]
 [PlyCount "56"]
 
@@ -7708,7 +7134,6 @@ Qxa1+ 27. Kf2 Ne4+ 28. Kg2 Qxa2+ 0-1
 [Black "Khan, Z."]
 [Result "1/2-1/2"]
 [ECO "C50"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "50"]
 
@@ -7725,7 +7150,6 @@ Nd7 21. exd6 Qxg5+ 22. f4 Qc5 23. b4 Qe3+ 24. Kb1 Qf2 25. Rhe1+ Kf8 1/2-1/2
 [Black "Loh, L."]
 [Result "1-0"]
 [ECO "C57"]
-[Opening "Two knights defence"]
 [EventDate "1995.??.??"]
 [PlyCount "51"]
 
@@ -7743,8 +7167,6 @@ Qxe8+ Qd8 26. Qxd8# 1-0
 [Black "Ward, R."]
 [Result "1-0"]
 [ECO "A57"]
-[Opening "Benko gambit"]
-[Variation "Zaitsev system"]
 [EventDate "1995.??.??"]
 [PlyCount "96"]
 
@@ -7765,8 +7187,6 @@ Ka8 45. Nxd4 gxf4 46. Kb6 Kb8 47. Nb5 f3 48. a7+ Ka8 1-0
 [Black "Demmery, S."]
 [Result "1-0"]
 [ECO "B13"]
-[Opening "Caro-Kann"]
-[Variation "Panov-Botvinnik, Gunderam attack"]
 [EventDate "1995.??.??"]
 [PlyCount "64"]
 
@@ -7785,7 +7205,6 @@ c7 Nf6 1-0
 [Black "Erickson, J."]
 [Result "1-0"]
 [ECO "C44"]
-[Opening "Scotch gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "56"]
 
@@ -7803,8 +7222,6 @@ Qg5+ Kf8 26. h4 Rg6 27. Qe5 Re6 28. Qh8+ Ke7 1-0
 [Black "Matthews, I."]
 [Result "0-1"]
 [ECO "B22"]
-[Opening "Sicilian"]
-[Variation "Alapin's variation (2.c3)"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -7822,8 +7239,6 @@ Rd1 Bb3 27. Rc1 Rac8 28. Re1 Bc2 29. Be4 Bxe4 0-1
 [Black "McRorie, A."]
 [Result "1/2-1/2"]
 [ECO "C66"]
-[Opening "Ruy Lopez"]
-[Variation "Berlin defence, 4.O-O, d6"]
 [EventDate "1995.??.??"]
 [PlyCount "132"]
 
@@ -7847,8 +7262,6 @@ Kf7 51. Nd6+ Ke7 52. Nf5+ Nxf5+ 53. exf5 Nh6 54. Bxf6+ Kxf6 55. Nd3 Nxf5+
 [Black "Prete, D."]
 [Result "0-1"]
 [ECO "D31"]
-[Opening "QGD"]
-[Variation "3.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "38"]
 
@@ -7864,8 +7277,6 @@ Nxe5 15. Nxe5 Bxe5 16. Ra2 d4 17. exd4 Bxd4 18. Ne2 Bb6 19. Rd1 Qd5 0-1
 [Black "Brock, Da"]
 [Result "0-1"]
 [ECO "A05"]
-[Opening "Reti"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "68"]
 
@@ -7885,7 +7296,6 @@ Rxg6 0-1
 [Black "Khan, Z."]
 [Result "0-1"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "38"]
 
@@ -7902,7 +7312,6 @@ Qe2# 0-1
 [Black "Winmill, R."]
 [Result "1-0"]
 [ECO "D80"]
-[Opening "Gruenfeld defence"]
 [EventDate "1995.??.??"]
 [PlyCount "118"]
 
@@ -7925,7 +7334,6 @@ Rb6 a5 57. Ke3 a4 58. Kd2 Ra1 59. Kc3 g5 1-0
 [Black "McRorie, A."]
 [Result "1-0"]
 [ECO "B50"]
-[Opening "Sicilian"]
 [EventDate "1995.??.??"]
 [PlyCount "104"]
 
@@ -7947,8 +7355,6 @@ g5 Kg8 52. Rg7+ Kh8 1-0
 [Black "Demmery, S."]
 [Result "1-0"]
 [ECO "C02"]
-[Opening "French"]
-[Variation "advance, Paulsen attack"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -7966,7 +7372,6 @@ c4 dxc4 15. Nxc4 Nc6 16. Nd6+ Bxd6 17. cxd6 Qb8 18. Bb6 Rdg8 19. Rc1 Rh5
 [Black "Huynh, L."]
 [Result "1-0"]
 [ECO "E00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "100"]
 
@@ -7988,7 +7393,6 @@ Ke2 1-0
 [Black "Matthews, I."]
 [Result "0-1"]
 [ECO "E61"]
-[Opening "King's Indian defence, 3.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -8006,8 +7410,6 @@ Nxf2 27. Rxf2 exf4 28. gxf4 Rfxf4 29. Rxf4 0-1
 [Black "Sengupta, O."]
 [Result "1/2-1/2"]
 [ECO "D35"]
-[Opening "QGD"]
-[Variation "3...Nf6"]
 [EventDate "1995.??.??"]
 [PlyCount "53"]
 
@@ -8025,7 +7427,6 @@ Kh2 Ke7 27. Rb1 1/2-1/2
 [Black "Igboemeka, C."]
 [Result "1-0"]
 [ECO "E60"]
-[Opening "King's Indian, 3.Nf3"]
 [EventDate "1995.??.??"]
 [PlyCount "95"]
 
@@ -8046,8 +7447,6 @@ g4 Kf4 45. Rg3 Kg5 46. Kf3 Kg6 47. Kf4 Kf6 48. g5+ 1-0
 [Black "Ward, R."]
 [Result "1-0"]
 [ECO "D12"]
-[Opening "QGD Slav"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "70"]
 
@@ -8066,8 +7465,6 @@ Rxh2 Qg4+ 27. Ne2 Rf8 28. Qh3 Qxh3 29. Rxh3 Rf1+ 30. Kc2 Rf2 31. Ng1 Nf4
 [Black "McRorie, A."]
 [Result "1-0"]
 [ECO "B80"]
-[Opening "Sicilian"]
-[Variation "Scheveningen variation"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -8085,8 +7482,6 @@ Qc5 21. Kh1 Rd8 22. b4 Qc7 23. Rd1 O-O 24. c5 dxc5 25. Rxd8 Ne8 26. Rd7 Qc6
 [Black "Sengupta, O."]
 [Result "1-0"]
 [ECO "B09"]
-[Opening "Pirc"]
-[Variation "Austrian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "79"]
 
@@ -8106,7 +7501,6 @@ O-O f6 15. gxf6 Qf7 16. Bg5 O-O-O 17. Qg4+ Kb8 18. Qe6 Rd7 19. Qxf7 Rxf7
 [Black "Cooper, A."]
 [Result "1-0"]
 [ECO "E10"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "86"]
 
@@ -8126,8 +7520,6 @@ Kd2 Ke4 39. Ne2 Kf3 40. Ke1 Kg2 41. Nc3 Bf3 42. Kd2 Kxg3 43. Ke3 Bg4 1-0
 [Black "Khan, Z."]
 [Result "1-0"]
 [ECO "E30"]
-[Opening "Nimzo-Indian"]
-[Variation "Leningrad variation"]
 [EventDate "1995.??.??"]
 [PlyCount "67"]
 
@@ -8146,7 +7538,6 @@ Bxd5+ Kh8 21. Bxc6 bxc6 22. Qxc6 Rad8 23. Qc2 Qd6 24. Rfd1 Qh6 25. Nf1 Rxd1
 [Black "Demmery, S."]
 [Result "1-0"]
 [ECO "A40"]
-[Opening "Queen's pawn"]
 [EventDate "1995.??.??"]
 [PlyCount "89"]
 
@@ -8167,7 +7558,6 @@ Rxd7+ Kxd7 45. Qxg5 1-0
 [Black "Jung, H."]
 [Result "1-0"]
 [ECO "A41"]
-[Opening "Old Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "91"]
 
@@ -8188,7 +7578,6 @@ Rd4+ 44. Ke6 Ke8 45. Rxg7 e4 46. Rg8# 1-0
 [Black "McRorie, A."]
 [Result "0-1"]
 [ECO "B50"]
-[Opening "Sicilian"]
 [EventDate "1995.??.??"]
 [PlyCount "70"]
 
@@ -8207,7 +7596,6 @@ Ke2 Rc2+ 33. Kf3 Rxb2 34. Re1 Qf4+ 35. Kg2 Rxf2+ 0-1
 [Black "Tep, P."]
 [Result "1-0"]
 [ECO "B02"]
-[Opening "Alekhine's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "33"]
 
@@ -8223,8 +7611,6 @@ h5 15. Bxg6+ Kd7 16. Qf7+ Kd6 17. Be5# 1-0
 [Black "Jung, H."]
 [Result "0-1"]
 [ECO "A35"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -8242,8 +7628,6 @@ Qa8 27. Bxf5 gxf5 28. Nf2 Nd3 29. Nd4 Nxe1 0-1
 [Black "Redden, S."]
 [Result "0-1"]
 [ECO "A27"]
-[Opening "English"]
-[Variation "three knights system"]
 [EventDate "1995.??.??"]
 [PlyCount "91"]
 
@@ -8264,7 +7648,6 @@ h5 46. Qe5 { ?&*#!! } 0-1
 [Black "Kovacs, P."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Krause variation"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -8283,8 +7666,6 @@ c6 bxc6 21. Bxc6 Rc7 22. Bf3 Bh3 23. Rf2 Re8 24. Nd5 Rxc2 25. Nxf6+ Bxf6
 [Black "Amstrong, D."]
 [Result "1-0"]
 [ECO "B01"]
-[Opening "Scandinavian"]
-[Variation "Marshall variation"]
 [EventDate "1995.??.??"]
 [PlyCount "47"]
 
@@ -8301,8 +7682,6 @@ Rxe7 a6 21. Nxd4 Nfd5 22. Qxh7+ Kf8 23. Rxf7+ Ke8 24. Qh8# 1-0
 [Black "Ward, R."]
 [Result "1-0"]
 [ECO "B08"]
-[Opening "Pirc"]
-[Variation "classical (two knights) system"]
 [EventDate "1995.??.??"]
 [PlyCount "63"]
 
@@ -8321,7 +7700,6 @@ Rd2 1-0
 [Black "Stephenson, G."]
 [Result "1-0"]
 [ECO "E61"]
-[Opening "King's Indian defence, 3.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "55"]
 
@@ -8339,7 +7717,6 @@ Kg7 27. Bxf7 Qxf7 28. Re7 1-0
 [Black "Ward, R."]
 [Result "0-1"]
 [ECO "A46"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "100"]
 
@@ -8361,7 +7738,6 @@ h5 0-1
 [Black "Armstrong, D."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "72"]
 
@@ -8381,8 +7757,6 @@ Rxe1+ 26. Kxe1 Rg2 27. Rd7+ Ke6 28. Rxa7 Rxh2 29. Ng5+ Kf5 30. Rxg7 Bxf2+
 [Black "Ward, R."]
 [Result "0-1"]
 [ECO "B08"]
-[Opening "Pirc"]
-[Variation "classical (two knights) system"]
 [EventDate "1995.??.??"]
 [PlyCount "56"]
 
@@ -8400,8 +7774,6 @@ Bf6 27. Qe2 Qb4 28. Bxd6 Qxd6 0-1
 [Black "Clipperton, B."]
 [Result "1-0"]
 [ECO "C47"]
-[Opening "Four knights"]
-[Variation "Scotch, 4...exd4"]
 [EventDate "1995.??.??"]
 [PlyCount "39"]
 
@@ -8418,8 +7790,6 @@ Qg8 Kd7 20. Qxe6+ 1-0
 [Black "Kovacs, P."]
 [Result "1-0"]
 [ECO "C05"]
-[Opening "French"]
-[Variation "Tarrasch, closed variation"]
 [EventDate "1995.??.??"]
 [PlyCount "43"]
 
@@ -8436,7 +7806,6 @@ cxd4 Qb4+ 21. Kf1 b5 22. Rh3 1-0
 [Black "Stephenson, G."]
 [Result "1-0"]
 [ECO "A03"]
-[Opening "Bird's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "49"]
 
@@ -8453,7 +7822,6 @@ Bxf3 21. Rxf3 Bf6 22. Rg3 cxd4 23. Rf1 Qe7 24. Bc1 Bh4 25. Qxg7# 1-0
 [Black "Sengupta, O."]
 [Result "1-0"]
 [ECO "D04"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "47"]
 
@@ -8470,8 +7838,6 @@ Re1 Qe7 21. e6 Rd8 22. Bxg7+ Kxg7 23. Qc3+ Kf8 24. Qh8# 1-0
 [Black "Kovacs, P."]
 [Result "1-0"]
 [ECO "B12"]
-[Opening "Caro-Kann"]
-[Variation "3.Nd2"]
 [EventDate "1995.??.??"]
 [PlyCount "69"]
 
@@ -8490,8 +7856,6 @@ Qb7 32. Nxc4 dxc4 33. Qh5 Qc6 34. Re3 Bb7 35. f3 1-0
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [ECO "A31"]
-[Opening "English"]
-[Variation "symmetrical, Benoni formation"]
 [EventDate "1995.??.??"]
 [PlyCount "112"]
 
@@ -8514,7 +7878,6 @@ Rxh4 50. Kd2 Rd4+ 51. Ke3 h5 52. Kf3 g5 53. Kg3 h4+ 54. Kh3 Kf4 55. Ra6 f5
 [Black "Kovacs, P."]
 [Result "1-0"]
 [ECO "E60"]
-[Opening "King's Indian, 3.Nf3"]
 [EventDate "1995.??.??"]
 [PlyCount "83"]
 
@@ -8534,8 +7897,6 @@ Kb1 Re6 32. e4 h5 33. b4 Rc6 34. Rc1 Rd6 35. Rc2 Rd3 36. Kb2 Rd1 37. b5 Kg7
 [Black "Boehmer, K."]
 [Result "0-1"]
 [ECO "E21"]
-[Opening "Nimzo-Indian"]
-[Variation "three knights variation"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -8553,7 +7914,6 @@ Bxf6 Bxc3+ 9. bxc3 Qxc3+ 10. Nd2 gxf6 11. Rc1 Qa5 12. Qh5 Kg7 13. Be2 Nc6
 [Black "Sengupta, O."]
 [Result "1-0"]
 [ECO "D25"]
-[Opening "QGA, Smyslov variation"]
 [EventDate "1995.??.??"]
 [PlyCount "37"]
 
@@ -8570,7 +7930,6 @@ Bxf6 Bxc3+ 9. bxc3 Qxc3+ 10. Nd2 gxf6 11. Rc1 Qa5 12. Qh5 Kg7 13. Be2 Nc6
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [ECO "B01"]
-[Opening "Scandinavian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -8588,7 +7947,6 @@ Qxg8 Rxg8 26. Rg1 Qxb2 0-1
 [Black "Khan, Z."]
 [Result "1/2-1/2"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "65"]
 
@@ -8607,8 +7965,6 @@ Rh1 32. Re2+ Kf7 33. Kg3 1/2-1/2
 [Black "Ward, R."]
 [Result "0-1"]
 [ECO "B08"]
-[Opening "Pirc"]
-[Variation "classical (two knights) system"]
 [EventDate "1995.??.??"]
 [PlyCount "45"]
 
@@ -8625,7 +7981,6 @@ Be3 d5 15. exd5 cxd5 16. Bxb6 axb6 17. Nxd5 Qxd5 18. Be4 Qxe4 19. Qxe4 Nxe4
 [Black "Khan, Z."]
 [Result "1-0"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "55"]
 
@@ -8643,8 +7998,6 @@ c6 20. Bb3 g6 21. f4 Bg7 22. e5 Nf5 23. Rae1 Nd4 24. Rd1 Rad8 25. Ne4 c5
 [Black "Kovacs, P."]
 [Result "1-0"]
 [ECO "B13"]
-[Opening "Caro-Kann"]
-[Variation "Panov-Botvinnik attack"]
 [EventDate "1995.??.??"]
 [PlyCount "84"]
 
@@ -8664,8 +8017,6 @@ Rhc1 Rff7 33. Rc7+ Ke6 34. R1c6+ Kf5 35. Rxf7+ Rxf7 36. Nd2 a5 37. Nf1 e3
 [Black "Findlay, D."]
 [Result "1-0"]
 [ECO "E94"]
-[Opening "King's Indian"]
-[Variation "orthodox, 7...Nbd7"]
 [EventDate "1995.??.??"]
 [PlyCount "63"]
 
@@ -8684,8 +8035,6 @@ Nf6+ 1-0
 [Black "Litchfield, G."]
 [Result "1-0"]
 [ECO "D07"]
-[Opening "QGD"]
-[Variation "Chigorin defence, Janowski variation"]
 [EventDate "1995.??.??"]
 [PlyCount "47"]
 
@@ -8702,8 +8051,6 @@ e5 Nxe5 21. Rae1 f6 22. f4 Nf5 23. fxe5 Nd4+ 24. Kd3 1-0
 [Black "Findlay, D."]
 [Result "1-0"]
 [ECO "B78"]
-[Opening "Sicilian"]
-[Variation "dragon, Yugoslav attack, 10.O-O-O"]
 [EventDate "1995.??.??"]
 [PlyCount "33"]
 
@@ -8720,8 +8067,6 @@ h4 e5 15. Nde2 Be6 16. Bxg7 Kxg7 17. h5 { Another garbled score. 1-0 (20).
 [Black "Van Weeren, H."]
 [Result "1-0"]
 [ECO "C62"]
-[Opening "Ruy Lopez"]
-[Variation "old Steinitz defence"]
 [EventDate "1995.??.??"]
 [PlyCount "25"]
 
@@ -8736,7 +8081,6 @@ h4 e5 15. Nde2 Be6 16. Bxg7 Kxg7 17. h5 { Another garbled score. 1-0 (20).
 [Black "Rabosa, E."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "82"]
 
@@ -8756,7 +8100,6 @@ Rxb2 37. Kf4 f6 38. Rc6 g5+ 39. Kf5 Rf2+ 40. Kg4 Rb4+ 41. Kh5 Rxh2# 0-1
 [Black "Armstrong, D."]
 [Result "1-0"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "83"]
 
@@ -8776,8 +8119,6 @@ Qe2 Nd5 33. Qe5+ Kf7 34. Qxg7+ Kxg7 35. Nxg5 Nc3 36. Nxe6+ Kf6 37. Nd4 Rxc5
 [Black "Erickson, J."]
 [Result "0-1"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "100"]
 
@@ -8799,8 +8140,6 @@ a3 Nc6 0-1
 [Black "Rabosa, E."]
 [Result "1-0"]
 [ECO "D37"]
-[Opening "QGD"]
-[Variation "4.Nf3"]
 [EventDate "1995.??.??"]
 [PlyCount "71"]
 
@@ -8819,7 +8158,6 @@ Rxc7 Rd8 33. Re1 Rg8 34. Ree7 Rg7 35. Rxg7 g5 36. Rxh7+ 1-0
 [Black "Gesink, I."]
 [Result "0-1"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "30"]
 
@@ -8835,7 +8173,6 @@ Rxc7 Rd8 33. Re1 Rg8 34. Ree7 Rg7 35. Rxg7 g5 36. Rxh7+ 1-0
 [Black "Cheyne, C."]
 [Result "0-1"]
 [ECO "A40"]
-[Opening "Queen's pawn"]
 [EventDate "1995.??.??"]
 [PlyCount "90"]
 
@@ -8856,8 +8193,6 @@ Qd3 Rhg8 21. dxc5 Bxh2+ 22. Kxh2 Qxd3 23. Re1 Qd5 24. Nf4 Qxc5 25. Kg1 Rbe8
 [Black "Zoccano, J."]
 [Result "0-1"]
 [ECO "A35"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "110"]
 
@@ -8879,8 +8214,6 @@ Rc2 h6 51. Kf3 g5 52. Rc4 Kd6 53. g4 Ne5+ 54. Ke2 Nxc4 55. Kd3 Na5 0-1
 [Black "Rabosa, P."]
 [Result "0-1"]
 [ECO "A49"]
-[Opening "King's Indian"]
-[Variation "fianchetto without c4"]
 [EventDate "1995.??.??"]
 [PlyCount "50"]
 
@@ -8898,7 +8231,6 @@ Rxe8 0-1
 [Black "Clipperton, B."]
 [Result "0-1"]
 [ECO "D04"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "99"]
 
@@ -8919,7 +8251,6 @@ Kf8 45. Kc4 Ke8 46. Kc5 Kd8 47. Kc6 Kc8 48. b4 Kb8 49. b5 Ka8 50. Kc7+ 0-1
 [Black "Kovacs, P."]
 [Result "1-0"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Krause variation"]
 [EventDate "1995.??.??"]
 [PlyCount "39"]
 
@@ -8936,7 +8267,6 @@ Qxf7+ 1-0
 [Black "McRorie, A."]
 [Result "0-1"]
 [ECO "C46"]
-[Opening "Three knights game"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -8954,8 +8284,6 @@ Qxb7 Bxb1 27. Qc6+ Ke7 28. dxe5 Qd7 29. exd6+ Qxd6 0-1
 [Black "Zoccano, J."]
 [Result "0-1"]
 [ECO "C01"]
-[Opening "French"]
-[Variation "exchange, Svenonius variation"]
 [EventDate "1995.??.??"]
 [PlyCount "26"]
 
@@ -8971,7 +8299,6 @@ Qxb7 Bxb1 27. Qc6+ Ke7 28. dxe5 Qd7 29. exd6+ Qxd6 0-1
 [Black "McRorie, A."]
 [Result "1/2-1/2"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "97"]
 
@@ -8992,8 +8319,6 @@ Rxf8 46. Rxf8 Be6 47. Rf6 Qe7 48. Qxg6+ Kh8 49. Rxe6 1/2-1/2
 [Black "Van Weeren, H."]
 [Result "1-0"]
 [ECO "C62"]
-[Opening "Ruy Lopez"]
-[Variation "old Steinitz defence"]
 [EventDate "1995.??.??"]
 [PlyCount "27"]
 
@@ -9009,7 +8334,6 @@ Bxf7+ 1-0
 [Black "Litchfield, G."]
 [Result "0-1"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "36"]
 
@@ -9025,7 +8349,6 @@ Rg1 Qg3 15. Ke2 Qf2+ 16. Kd1 Qxg1+ 17. Kd2 Qxa1 18. Na4 Qe1# 0-1
 [Black "Armstrong, D."]
 [Result "0-1"]
 [ECO "B01"]
-[Opening "Scandinavian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "48"]
 
@@ -9042,8 +8365,6 @@ Nxg3+ 21. hxg3 Rh5+ 22. Bh3 Rxh3+ 23. Kg2 Rxg3+ 24. Kh2 Rg6 0-1
 [Black "Erickson, J."]
 [Result "0-1"]
 [ECO "C46"]
-[Opening "Four knights"]
-[Variation "Italian variation"]
 [EventDate "1995.??.??"]
 [PlyCount "56"]
 
@@ -9062,7 +8383,6 @@ Nc6 cxb4 27. Nxb4 Rb8 28. Rc6 Rc8 { The last intelligible move. 0-1 (48). }
 [Black "Shildrick, R."]
 [Result "1-0"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "67"]
 
@@ -9081,8 +8401,6 @@ Ne6 33. Rd2 { Lost track of this one. 1-0 (43). } 33... Rxa4 34. Ke1 1-0
 [Black "Ehrman, C."]
 [Result "1/2-1/2"]
 [ECO "B07"]
-[Opening "Pirc"]
-[Variation "Ufimtsev-Pytel variation"]
 [EventDate "1995.??.??"]
 [PlyCount "49"]
 
@@ -9110,8 +8428,6 @@ W. offered a draw. } 1/2-1/2
 [Black "Demmery, S."]
 [Result "0-1"]
 [ECO "D32"]
-[Opening "QGD"]
-[Variation "Tarrasch, von Hennig-Schara gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "50"]
 
@@ -9129,8 +8445,6 @@ Kb3 Nd4+ 0-1
 [Black "Gebhardt, D."]
 [Result "1-0"]
 [ECO "C43"]
-[Opening "Petrov"]
-[Variation "modern attack, Symmetrical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "103"]
 
@@ -9152,8 +8466,6 @@ Rg3 45. Nb4 Rxg4 46. Nxd5 h5 47. Rb8 h4 48. c6 h3 49. c7 Rg2+ 50. Kd3 Rg3+
 [Black "J-Milicevic, G."]
 [Result "0-1"]
 [ECO "E14"]
-[Opening "Queen's Indian"]
-[Variation "4.e3"]
 [EventDate "1995.??.??"]
 [PlyCount "110"]
 
@@ -9175,7 +8487,6 @@ Bc5 Kg4 52. Rb4 Rh6 53. Rxc4+ dxc4 54. Kxa2 Ra6+ 55. Kb2 Kxg3 0-1
 [Black "Varley, T."]
 [Result "1-0"]
 [ECO "C44"]
-[Opening "Scotch gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "88"]
 
@@ -9196,8 +8507,6 @@ Ke7 38. h4 Kd7 39. h5 Ke7 40. Nc6+ Kd7 41. b4 axb4 42. Nxb4 Ba5 43. Nc6 Bd2
 [Black "Apostolski, J."]
 [Result "0-1"]
 [ECO "B04"]
-[Opening "Alekhine's defence"]
-[Variation "modern variation"]
 [EventDate "1995.??.??"]
 [PlyCount "118"]
 
@@ -9220,8 +8529,6 @@ b4 h3+ 58. Kf1 g2+ 59. Kf2 Nf3 0-1
 [Black "Findlay, M."]
 [Result "1-0"]
 [ECO "B17"]
-[Opening "Caro-Kann"]
-[Variation "Steinitz variation"]
 [EventDate "1995.??.??"]
 [PlyCount "53"]
 
@@ -9239,7 +8546,6 @@ Rd2 a6 26. Rhd1 Bxf2 27. Rxd7 1-0
 [Black "Knechtel, T."]
 [Result "1-0"]
 [ECO "B06"]
-[Opening "Robatsch defence"]
 [EventDate "1995.??.??"]
 [PlyCount "53"]
 
@@ -9257,8 +8563,6 @@ Rxg7+ Kxg7 21. Bxe5+ Rf6 22. Bxd6 Rxd6 23. Qc3+ Kg8 24. c5 Rc6 25. Bc4+ Be6
 [Black "Cooper, A."]
 [Result "0-1"]
 [ECO "A28"]
-[Opening "English"]
-[Variation "four knights, Capablanca variation"]
 [EventDate "1995.??.??"]
 [PlyCount "80"]
 
@@ -9278,7 +8582,6 @@ Nc1 Rd1 39. Na2 Re1 40. Nc3 a3 { !#&#?!. It was 0-1 in 74(!) moves. } 0-1
 [Black "Abram, J."]
 [Result "0-1"]
 [ECO "A15"]
-[Opening "English, 1...Nf6 (Anglo-Indian defense)"]
 [EventDate "1995.??.??"]
 [PlyCount "76"]
 
@@ -9298,7 +8601,6 @@ a3 a5 9. Qc2 Bg4 10. e3 Qd7 11. Nb5 Bf5 12. e4 Bg4 13. Be3 Nh7 14. d4 Bxf3
 [Black "Ortiz, M."]
 [Result "0-1"]
 [ECO "A20"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "86"]
 
@@ -9319,8 +8621,6 @@ Kd3 Qg3+ 38. Kc2 Qg2+ 39. Kc3 Qg3+ 40. Bd3 Qe5+ 41. Kd2 Qb2+ 42. Bc2 Qd4+
 [Black "Brown, Tr"]
 [Result "1-0"]
 [ECO "D06"]
-[Opening "QGD"]
-[Variation "Marshall defence"]
 [EventDate "1995.??.??"]
 [PlyCount "55"]
 
@@ -9338,7 +8638,6 @@ Rc3 b5 27. Re1 Rcd7 28. Bc6 1-0
 [Black "Demmery, S."]
 [Result "1-0"]
 [ECO "B01"]
-[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -9356,7 +8655,6 @@ Bxc1 27. Rxc1 Rg8+ 28. Ng3 Rg6 29. Re4 Nf5 30. Rf4 Kf6 31. Rxf5+ 1-0
 [Black "Godmaire, M."]
 [Result "1/2-1/2"]
 [ECO "A05"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "43"]
 
@@ -9373,8 +8671,6 @@ Rxd1 Rxd1+ 21. Qxd1 Qd8 22. Qd5 1/2-1/2
 [Black "Abram, J."]
 [Result "0-1"]
 [ECO "B54"]
-[Opening "Sicilian"]
-[Variation "Prins (Moscow) variation"]
 [EventDate "1995.??.??"]
 [PlyCount "72"]
 
@@ -9393,8 +8689,6 @@ Nd5 Qxd2+ 15. Kxd2 Bxd5 16. exd5 Nxd5 17. c4 Nf4 18. Ke3 Nxd3 19. Kxd4 Nb4
 [Black "Warren, A."]
 [Result "0-1"]
 [ECO "E40"]
-[Opening "Nimzo-Indian"]
-[Variation "4.e3"]
 [EventDate "1995.??.??"]
 [PlyCount "90"]
 
@@ -9415,7 +8709,6 @@ Kc3 45. Kc1 d2+ 0-1
 [Black "Bailey, D."]
 [Result "0-1"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "70"]
 
@@ -9434,8 +8727,6 @@ Rxe2 Rxa2 27. Nc4 Ra1 28. Ree1 Bd4 29. Ne3 Bxe3 30. fxe3 Rxb1 31. Rxb1 Rb8
 [Black "Oraha, Z."]
 [Result "1-0"]
 [ECO "C00"]
-[Opening "French"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "75"]
 
@@ -9454,8 +8745,6 @@ Ne6 Rc8 34. Rf2 Qg8 35. Rf5 Rc6 36. Rxe5 Rd6 37. Bxc5+ Nxc5 38. Qxc5+ 1-0
 [Black "Varley, T."]
 [Result "1-0"]
 [ECO "C34"]
-[Opening "KGA"]
-[Variation "Fischer defence"]
 [EventDate "1995.??.??"]
 [PlyCount "69"]
 
@@ -9474,7 +8763,6 @@ Rf7 33. Rxf7 Rxc7 34. Rxf6+ Kh7 35. Rc6 1-0
 [Black "Godmaire, M."]
 [Result "1/2-1/2"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "78"]
 
@@ -9494,7 +8782,6 @@ Rae8+ 26. Kd1 Kb8 27. dxc6 bxc6 28. Ne4 Bxe4 29. fxe4 Rxe4 30. Bxh6 gxh6
 [Black "Prete, J."]
 [Result "1-0"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "97"]
 
@@ -9515,8 +8802,6 @@ Qxe4+ f5 45. Qe8+ Bf7 46. Qc6+ Kh5 47. Qf6 Bg6 48. Qe5 Qf1 49. g4+ 1-0
 [Black "Abram, J."]
 [Result "1/2-1/2"]
 [ECO "B72"]
-[Opening "Sicilian"]
-[Variation "dragon, 6.Be3"]
 [EventDate "1995.??.??"]
 [PlyCount "101"]
 
@@ -9538,8 +8823,6 @@ Ke5 50. Ke2 Ke4 51. Kf1 1/2-1/2
 [Black "Carr, S."]
 [Result "0-1"]
 [ECO "B90"]
-[Opening "Sicilian"]
-[Variation "Najdorf, Adams attack"]
 [EventDate "1995.??.??"]
 [PlyCount "99"]
 
@@ -9561,7 +8844,6 @@ gxh3 Bxd5+ 39. Kh2 Bd6+ 40. Kg1 Rxb1 41. Rxb1 Be4 42. Rf1 Bf4 43. h4 Be3+
 [Black "Vucko, I."]
 [Result "1-0"]
 [ECO "B07"]
-[Opening "Pirc defence"]
 [EventDate "1995.??.??"]
 [PlyCount "40"]
 
@@ -9578,7 +8860,6 @@ Rc3 { #^&$! } 1-0
 [Black "Litchfield, G."]
 [Result "1-0"]
 [ECO "A41"]
-[Opening "Old Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "33"]
 
@@ -9594,8 +8875,6 @@ Kc7 8. Bh4 Be6 9. e3 Nd7 10. f4 Bc5 11. Re1 Nh6 12. fxe5 Nxe5 13. Nf3 Nxc4
 [Black "Moser, D."]
 [Result "1/2-1/2"]
 [ECO "D53"]
-[Opening "QGD"]
-[Variation "4.Bg5 Be7, 5.e3 O-O"]
 [EventDate "1995.??.??"]
 [PlyCount "74"]
 
@@ -9615,7 +8894,6 @@ Kh1 Re2 27. Be4 Rd8 28. a5 Bd3 29. Bxd3 Qxd3 30. axb6 axb6 31. Rcxb6 Rd2
 [Black "Rivas, E."]
 [Result "1-0"]
 [ECO "D10"]
-[Opening "QGD Slav defence"]
 [EventDate "1995.??.??"]
 [PlyCount "111"]
 
@@ -9638,7 +8916,6 @@ Kb1 56. g6 { 1-0(62). } 1-0
 [Black "Stewart, A."]
 [Result "1-0"]
 [ECO "B54"]
-[Opening "Sicilian"]
 [EventDate "1995.??.??"]
 [PlyCount "155"]
 
@@ -9664,8 +8941,6 @@ Rh2 69. Kf5 Rd2 70. Rc6 Kh7 71. Kg5 Rd5+ 72. Kh4 Rd2 73. g4 Re2 74. Kh5 Kg8
 [Black "Warren, A."]
 [Result "0-1"]
 [ECO "B58"]
-[Opening "Sicilian"]
-[Variation "Boleslavsky, Louma variation"]
 [EventDate "1995.??.??"]
 [PlyCount "101"]
 
@@ -9687,7 +8962,6 @@ Kh4 Qf4+ 51. g4 0-1
 [Black "Brock, Da"]
 [Result "0-1"]
 [ECO "A00"]
-[Opening "Benko's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "78"]
 
@@ -9707,8 +8981,6 @@ Kg6 32. Kf3 Rf8+ 33. Ke3 Rxf2 34. Kxf2 Kf5 35. Ke3 g5 36. c5 h6 37. d6 cxd6
 [Black "Erickson, J."]
 [Result "0-1"]
 [ECO "C44"]
-[Opening "Ponziani"]
-[Variation "Jaenisch counter-attack"]
 [EventDate "1995.??.??"]
 [PlyCount "64"]
 
@@ -9727,8 +8999,6 @@ Kd5 Rh6 32. Nc5 Rd6# 0-1
 [Black "Ortiz, H."]
 [Result "1-0"]
 [ECO "E70"]
-[Opening "King's Indian"]
-[Variation "accelerated Averbakh system"]
 [EventDate "1995.??.??"]
 [PlyCount "33"]
 
@@ -9744,7 +9014,6 @@ hxg6 fxg6 16. Bxh6 Qe8 17. Bg5+ 1-0
 [Black "Vucko, I."]
 [Result "0-1"]
 [ECO "A53"]
-[Opening "Old Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "36"]
 
@@ -9761,8 +9030,6 @@ gxf3 Bxc4 15. Nd5 Nc6 16. Bg5 Qd7 17. O-O-O Bxa2 18. Ne4 Qf7 { *!$? 0-1
 [Black "Cooper, A."]
 [Result "1-0"]
 [ECO "E32"]
-[Opening "Nimzo-Indian"]
-[Variation "classical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "79"]
 
@@ -9782,7 +9049,6 @@ Kd7 39. Bg7 Ke8 40. c6 1-0
 [Black "Ortiz, M."]
 [Result "0-1"]
 [ECO "D05"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "100"]
 
@@ -9804,8 +9070,6 @@ Nh5 50. Bb1 a3 0-1
 [Black "Bailey, D."]
 [Result "1-0"]
 [ECO "A48"]
-[Opening "King's Indian"]
-[Variation "East Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "127"]
 
@@ -9829,7 +9093,6 @@ h7 Rb6+ 63. Kh5 Rb7 64. h8=Q+ 1-0
 [Black "Ward, R."]
 [Result "1-0"]
 [ECO "A43"]
-[Opening "Old Benoni defence"]
 [EventDate "1995.??.??"]
 [PlyCount "109"]
 
@@ -9851,8 +9114,6 @@ Rxe5+ dxe5 39. Kxc5 e4 40. fxe4+ Kxe4 41. Kxb4 Ke3 42. c5 Kf2 43. c6 Kxg2
 [Black "Winmill, R."]
 [Result "1-0"]
 [ECO "A48"]
-[Opening "King's Indian"]
-[Variation "East Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "39"]
 
@@ -9869,8 +9130,6 @@ Ne6 1-0
 [Black "Jostman, A."]
 [Result "1-0"]
 [ECO "D35"]
-[Opening "QGD"]
-[Variation "3...Nf6"]
 [EventDate "1995.??.??"]
 [PlyCount "51"]
 
@@ -9889,7 +9148,6 @@ eventually 1-0 (51). } 1-0
 [Black "Litchfield, G."]
 [Result "1-0"]
 [ECO "A10"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "77"]
 
@@ -9909,8 +9167,6 @@ Kg2 Re1 39. Rb8# 1-0
 [Black "Majstorovic, D."]
 [Result "1/2-1/2"]
 [ECO "C00"]
-[Opening "French"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "91"]
 
@@ -9931,7 +9187,6 @@ Kf1 g5 40. Bxe4 Rf8+ 41. Kg1 Nf2 42. Rd4 Rxe4 43. Rd7+ Kg8 44. Rcc7 Nh3+
 [Black "Ward, R."]
 [Result "0-1"]
 [ECO "B00"]
-[Opening "King's pawn opening"]
 [EventDate "1995.??.??"]
 [PlyCount "76"]
 
@@ -9951,7 +9206,6 @@ Ne3 Nxh3 0-1
 [Black "Carr, S."]
 [Result "0-1"]
 [ECO "D94"]
-[Opening "Gruenfeld with e3    Bd3"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -9969,7 +9223,6 @@ Ne3 Nxh3 0-1
 [Black "Igboemeka, C."]
 [Result "1-0"]
 [ECO "C50"]
-[Opening "Giuoco Pianissimo"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -9988,7 +9241,6 @@ Qg3 Na5 21. Qxg6+ fxg6 22. f4 Bc5+ 23. Kh1 Bd4 24. Bxd4 exd4 25. b4 Nxc4
 [Black "Stewart, A."]
 [Result "0-1"]
 [ECO "C44"]
-[Opening "Konstantinopolsky opening"]
 [EventDate "1995.??.??"]
 [PlyCount "46"]
 
@@ -10005,7 +9257,6 @@ Rcd1 Qg5 21. h4 Qg6 22. Bxg4 Qxg4 23. Rd7 Qxd7 0-1
 [Black "Brock, Da"]
 [Result "1-0"]
 [ECO "D04"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "85"]
 
@@ -10025,7 +9276,6 @@ f4 33. gxf4 exf4 34. Rd6+ Kh5 35. Bd4 Be7 36. Rd5 f3 37. Be3 Rb8 38. h3 Rd8
 [Black "Moser, D."]
 [Result "1-0"]
 [ECO "D04"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "94"]
 
@@ -10046,7 +9296,6 @@ c5 45. Qg5+ Kf8 46. h6 Qe7 47. Qxe7+ Kxe7 1-0
 [Black "Demmery, S."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "95"]
 
@@ -10067,8 +9316,6 @@ Re5+ 44. Kd6 h2 45. fxg6 Kxg6 46. Kd7 h1=Q 47. Kd8 Qh8+ 48. Kd7 0-1
 [Black "Erickson, J."]
 [Result "0-1"]
 [ECO "C62"]
-[Opening "Ruy Lopez"]
-[Variation "old Steinitz defence"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -10086,7 +9333,6 @@ Qe2 26. Qd4 Rg6+ 0-1
 [Black "Kim, D."]
 [Result "1-0"]
 [ECO "C40"]
-[Opening "Damiano's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "73"]
 
@@ -10106,8 +9352,6 @@ Bf5+ Kc7 27. Qxc3 Ne7 28. Bc2 Nd5 29. Qc5 Nf4 30. Qe7+ Kb8 31. Qxf6 Rhe8
 [Black "Prete, J."]
 [Result "1-0"]
 [ECO "C42"]
-[Opening "Petrov"]
-[Variation "Damiano variation"]
 [EventDate "1995.??.??"]
 [PlyCount "72"]
 
@@ -10127,8 +9371,6 @@ Nxe5 26. Rd5 Nc4 27. b3 Ne3 28. Re5 Ng4 29. Re4 Nf6 30. Rd4 h6 31. Rad1 Kh7
 [Black "Apostolski, J."]
 [Result "1/2-1/2"]
 [ECO "B21"]
-[Opening "Sicilian"]
-[Variation "Grand Prix attack"]
 [EventDate "1995.??.??"]
 [PlyCount "115"]
 
@@ -10151,7 +9393,6 @@ d4 cxd4 58. Bxe7+ 1/2-1/2
 [Black "De Kerpel, S."]
 [Result "1-0"]
 [ECO "B01"]
-[Opening "Scandinavian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "95"]
 
@@ -10172,8 +9413,6 @@ Raa1 e2 45. c7 Rxg2 46. Rxg2 Rf1+ 47. Rxf1 exf1=Q+ 48. Qxf1 1-0
 [Black "Milicevic, G."]
 [Result "0-1"]
 [ECO "C05"]
-[Opening "French"]
-[Variation "Tarrasch, closed variation"]
 [EventDate "1995.??.??"]
 [PlyCount "70"]
 
@@ -10192,7 +9431,6 @@ Bf5 Bf7 33. Bg4 Kh7 34. Qxd5 Rf1+ 35. Rxf1 exd5 0-1
 [Black "De Kerpel, S."]
 [Result "1/2-1/2"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -10210,7 +9448,6 @@ Bxc5 27. Qxc5 Kg7 28. Rb1 Rb8 29. Rxb8 Qxb8 1/2-1/2
 [Black "Varley, T."]
 [Result "1/2-1/2"]
 [ECO "C44"]
-[Opening "Scotch gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "63"]
 
@@ -10229,8 +9466,6 @@ b3 1/2-1/2
 [Black "Abram, J."]
 [Result "0-1"]
 [ECO "D85"]
-[Opening "Gruenfeld"]
-[Variation "modern exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "82"]
 
@@ -10250,8 +9485,6 @@ Rb8 39. e6 a4 40. Kc4 Bg7 41. Rb1 b2 0-1
 [Black "Erickson, J."]
 [Result "0-1"]
 [ECO "E81"]
-[Opening "King's Indian"]
-[Variation "Saemisch, 5...O-O"]
 [EventDate "1995.??.??"]
 [PlyCount "90"]
 
@@ -10272,7 +9505,6 @@ Rc3+ 44. Kd6 Rxc7 45. Kxc7 h5 0-1
 [Black "Kim, D."]
 [Result "1-0"]
 [ECO "A41"]
-[Opening "Old Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "93"]
 
@@ -10293,8 +9525,6 @@ Qxe6 Bf7 40. Nxf7 Re8 41. Qh6 Kxf7 42. Qxf4+ Kg8 43. Bb3+ Kh8 44. Qh6+ Rh7
 [Black "Findlay, M."]
 [Result "1/2-1/2"]
 [ECO "D55"]
-[Opening "QGD"]
-[Variation "Neo-orthodox variation, 7.Bxf6"]
 [EventDate "1995.??.??"]
 [PlyCount "47"]
 
@@ -10311,8 +9541,6 @@ g5 21. Bxd5 exd5 22. Nf3 Qd7 23. Ne5 Rfe8 24. f4 1/2-1/2
 [Black "Gebhardt, D."]
 [Result "1-0"]
 [ECO "A31"]
-[Opening "English"]
-[Variation "symmetrical, Benoni formation"]
 [EventDate "1995.??.??"]
 [PlyCount "115"]
 
@@ -10335,7 +9563,6 @@ Kxh4 Kf6 45. Kg4 Ke5 46. Kf3 Kf5 47. h4 f6 48. Kg3 Ke4 49. h5 f5 50. h6 Ke3
 [Black "Knechtel, T."]
 [Result "1-0"]
 [ECO "A41"]
-[Opening "Modern defence"]
 [EventDate "1995.??.??"]
 [PlyCount "77"]
 
@@ -10355,7 +9582,6 @@ g4 Qf6 27. Nh2 Qa1+ 28. Kg2 Qb1 29. Nf1 h5 30. gxh5 Bxh3+ 31. Kxh3 Qxf1+
 [Black "De Kerpel, S."]
 [Result "1/2-1/2"]
 [ECO "E61"]
-[Opening "King's Indian defence, 3.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "89"]
 
@@ -10386,7 +9612,6 @@ content to take a draw. } 1/2-1/2
 [Black "Phillips, P."]
 [Result "0-1"]
 [ECO "A84"]
-[Opening "Dutch defence, Rubinstein variation"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -10404,7 +9629,6 @@ Nxf2+ 26. Bxf2 Raf8 0-1
 [Black "Winmill, R."]
 [Result "1-0"]
 [ECO "E60"]
-[Opening "King's Indian, 3.Nf3"]
 [EventDate "1995.??.??"]
 [PlyCount "23"]
 
@@ -10419,7 +9643,6 @@ Nxf2+ 26. Bxf2 Raf8 0-1
 [Black "Demmery, S."]
 [Result "1-0"]
 [ECO "D05"]
-[Opening "Colle system"]
 [EventDate "1995.??.??"]
 [PlyCount "69"]
 
@@ -10438,7 +9661,6 @@ Qxd3 fxe5 27. Qd2 Re7 28. Rxe7 Kxe7 29. Qg5+ Kd7 30. Nxe5+ Kc7 31. Qe7+ Kb8
 [Black "Litchfield, G."]
 [Result "1-0"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "31"]
 
@@ -10454,8 +9676,6 @@ Nxf3+ 14. Qxf3 c6 15. Re1 Qb4 16. Nc2+ 1-0
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "E62"]
-[Opening "King's Indian"]
-[Variation "fianchetto, Uhlmann (Szabo) variation"]
 [EventDate "1995.??.??"]
 [PlyCount "99"]
 
@@ -10477,8 +9697,6 @@ Kh3 Kf3 50. Kh2 0-1
 [Black "Kovacs, P."]
 [Result "1-0"]
 [ECO "A07"]
-[Opening "Reti"]
-[Variation "King's Indian attack (Barcza system)"]
 [EventDate "1995.??.??"]
 [PlyCount "103"]
 
@@ -10500,8 +9718,6 @@ Rf6+ Rf7 51. Rxf7+ Kxf7 52. b4 1-0
 [Black "McRorie, A."]
 [Result "0-1"]
 [ECO "A13"]
-[Opening "English"]
-[Variation "Neo-Catalan accepted"]
 [EventDate "1995.??.??"]
 [PlyCount "64"]
 
@@ -10520,8 +9736,6 @@ Rf3 Qd2 32. a4 Qxe1+ 0-1
 [Black "Harris, M."]
 [Result "1/2-1/2"]
 [ECO "A83"]
-[Opening "Dutch"]
-[Variation "Staunton gambit, Staunton's line"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -10540,8 +9754,6 @@ dxe5 Nxe5 21. Qd1 Rd8 22. Nd3 Nc4 23. Qe2 Re7 24. Qc2 Rde8 25. Rae1 Rxe1
 [Black "Matthews, I."]
 [Result "1/2-1/2"]
 [ECO "B21"]
-[Opening "Sicilian"]
-[Variation "Grand Prix attack"]
 [EventDate "1995.??.??"]
 [PlyCount "54"]
 
@@ -10559,8 +9771,6 @@ Nxf5 Nxf5 21. Bxf7+ Nxf7 22. Nxf7 Kxf7 23. g4 Qc6+ 24. Kg1 Re8 25. Qh4 Re2
 [Black "Erickson, J."]
 [Result "1-0"]
 [ECO "E67"]
-[Opening "King's Indian"]
-[Variation "fianchetto, classical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "93"]
 
@@ -10581,8 +9791,6 @@ Bc3 Bd6 45. g5 Bc7 46. g6 Kf6 47. g7 1-0
 [Black "Peredun, A."]
 [Result "0-1"]
 [ECO "B62"]
-[Opening "Sicilian"]
-[Variation "Richter-Rauzer, 6...e6"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -10600,7 +9808,6 @@ Bxg2 26. R1f2 Bc6 27. h5 Nf5 28. Rxf5 gxf5 29. Rf1 Qxg5 0-1
 [Black "Winmill, R."]
 [Result "1-0"]
 [ECO "D70"]
-[Opening "Neo-Gruenfeld (Kemeri) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "53"]
 
@@ -10618,7 +9825,6 @@ Rxa7 Rab8 27. Qxf7# 1-0
 [Black "Winmill, R."]
 [Result "1/2-1/2"]
 [ECO "D80"]
-[Opening "Gruenfeld defence"]
 [EventDate "1995.??.??"]
 [PlyCount "43"]
 
@@ -10635,7 +9841,6 @@ f3 Nf6 22. Bc3 1/2-1/2
 [Black "Dobrishman, L."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "46"]
 
@@ -10652,7 +9857,6 @@ Nxd5 20. Rcxe4 f6 21. h3 Bxh3 22. g3 Be6 23. Nc5 Bxc5 0-1
 [Black "Moser, D."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "114"]
 
@@ -10675,7 +9879,6 @@ Rc2 Rh1+ 57. Rc1 Rxc1# 0-1
 [Black "Ortiz, H."]
 [Result "1-0"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "55"]
 
@@ -10693,7 +9896,6 @@ g5 28. Qxc8 1-0
 [Black "Whiting, K."]
 [Result "1/2-1/2"]
 [ECO "E00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -10711,7 +9913,6 @@ axb5 27. Bxe4 Rxe4 28. Nc3 Rd4 29. Nxb5 Ba6 1/2-1/2
 [Black "Brown, Tr"]
 [Result "1-0"]
 [ECO "B01"]
-[Opening "Scandinavian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -10729,7 +9930,6 @@ Rb6 26. Re5 Rxe5 27. Rxe5 f6 28. Rc5 b3 29. axb3 1-0
 [Black "Khan, Z."]
 [Result "1/2-1/2"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "103"]
 
@@ -10751,8 +9951,6 @@ Kc8 51. h5 Bg5 52. Bf2 1/2-1/2
 [Black "Moser, D."]
 [Result "1-0"]
 [ECO "C46"]
-[Opening "Four knights"]
-[Variation "Italian variation"]
 [EventDate "1995.??.??"]
 [PlyCount "102"]
 
@@ -10774,7 +9972,6 @@ Rd8+ Bg8 51. Bd3 Rf6 1-0
 [Black "Armstrong, D."]
 [Result "1-0"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "75"]
 
@@ -10794,7 +9991,6 @@ Nxg7 Nxf7 33. Nxh5 Bd8 34. Rc1 Bg5 35. Bb2+ Kh7 36. Nf6+ Bxf6 37. Bxf6 Kg6
 [Black "Oraha, Z."]
 [Result "0-1"]
 [ECO "A84"]
-[Opening "Dutch defence"]
 [EventDate "1995.??.??"]
 [PlyCount "74"]
 
@@ -10814,7 +10010,6 @@ Ra3 0-1
 [Black "Winmill, R."]
 [Result "1/2-1/2"]
 [ECO "D80"]
-[Opening "Gruenfeld defence"]
 [EventDate "1995.??.??"]
 [PlyCount "43"]
 
@@ -10831,8 +10026,6 @@ f3 Nf6 22. Bc3 1/2-1/2
 [Black "Bruziewicz, A."]
 [Result "1/2-1/2"]
 [ECO "B00"]
-[Opening "KP"]
-[Variation "Nimzovich defence"]
 [EventDate "1995.??.??"]
 [PlyCount "97"]
 
@@ -10853,7 +10046,6 @@ Nxe5 c5 32. Nd3 Be3 33. b3 f6 34. g4 Kf7 35. Kg2 Ke7 36. Kf3 Bd4 37. a4 Kd6
 [Black "Phillips, P."]
 [Result "0-1"]
 [ECO "B01"]
-[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "100"]
 
@@ -10875,8 +10067,6 @@ Nc7 45. Kd4 Na6 46. b5 Nc7 47. h4 a6 48. bxa6 bxa6 49. Be2 a5 50. h5 Nxd5
 [Black "Whiting, K."]
 [Result "1-0"]
 [ECO "B03"]
-[Opening "Alekhine's defence"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -10894,7 +10084,6 @@ Bf1 Be6 21. Nb5 Nxb5 22. Bxb5 Bxa2 23. Bxc6 bxc6 24. Rxc6 Rd7 25. Ra1 Bd5
 [Black "Armstrong, D."]
 [Result "1-0"]
 [ECO "B01"]
-[Opening "Scandinavian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "31"]
 
@@ -10910,7 +10099,6 @@ f5 f6 15. Qxe6+ Kd8 16. Nf7+ 1-0
 [Black "Phillips, P."]
 [Result "1/2-1/2"]
 [ECO "B01"]
-[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "90"]
 
@@ -10931,8 +10119,6 @@ Kd4 44. Nc6+ Ke4 45. Ne7 Kd4 1/2-1/2
 [Black "Pitre, R."]
 [Result "0-1"]
 [ECO "B10"]
-[Opening "Caro-Kann"]
-[Variation "two knights variation"]
 [EventDate "1995.??.??"]
 [PlyCount "48"]
 
@@ -10949,7 +10135,6 @@ Bxe3+ 20. fxe3 Be6 21. Kb1 Nb4 22. a3 Bf5+ 23. Kc1 Rc8+ 24. Kd2 Ne4+ 0-1
 [Black "Boehmer, K."]
 [Result "1-0"]
 [ECO "B32"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "53"]
 
@@ -10967,7 +10152,6 @@ b5 27. Rxg6 1-0
 [Black "Carr, S."]
 [Result "*"]
 [ECO "C50"]
-[Opening "Giuoco Piano"]
 [EventDate "1995.??.??"]
 [PlyCount "100"]
 
@@ -10988,8 +10172,6 @@ Rxf5 Rxf5 46. gxf5+ Kxf5 47. Kf2 Kf4 48. Rd5 e3+ 49. Ke2 Ke4 50. Rd3 Kf4 *
 [Black "Matthews, I."]
 [Result "1/2-1/2"]
 [ECO "B96"]
-[Opening "Sicilian"]
-[Variation "Najdorf, Polugayevsky variation"]
 [EventDate "1995.??.??"]
 [PlyCount "32"]
 
@@ -11005,8 +10187,6 @@ a3 Be7 9. Bd3 Bb7 10. f5 e5 11. Bxf6 Bxf6 12. Nf3 Nd7 13. Qd2 Nb6 14. h4 d5
 [Black "McRorie, A."]
 [Result "1-0"]
 [ECO "D38"]
-[Opening "QGD"]
-[Variation "Ragozin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "93"]
 
@@ -11027,8 +10207,6 @@ Kxd4 fxe4 39. Nxe4 Nf5+ 40. Kc5 Nh4 41. Nd6 Nxg2 42. Nxf7 Nh4 43. f4 Ng2
 [Black "Shildrick, R."]
 [Result "1-0"]
 [ECO "D06"]
-[Opening "QGD"]
-[Variation "Grau (Sahovic) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "43"]
 
@@ -11045,7 +10223,6 @@ a5 Re7 19. axb6 cxb6 20. O-O Bc7 21. Rxa6 $1 Rd7 22. Qa8+ $1 1-0
 [Black "McRorie, A."]
 [Result "0-1"]
 [ECO "D30"]
-[Opening "Queen's gambit declined"]
 [EventDate "1995.??.??"]
 [PlyCount "98"]
 
@@ -11067,8 +10244,6 @@ Qxb4 49. Kh5 Qf8 0-1
 [Black "Kovacs, P."]
 [Result "1-0"]
 [ECO "D50"]
-[Opening "QGD"]
-[Variation "Been-Koomen variation"]
 [EventDate "1995.??.??"]
 [PlyCount "47"]
 
@@ -11085,7 +10260,6 @@ c6 Nb8 21. c7+ Nd7 22. Rd1 Qc8 23. Rxd7 Qxd7 24. c8=Q# 1-0
 [Black "Bruziewicz, A."]
 [Result "0-1"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "28"]
 
@@ -11101,8 +10275,6 @@ Nc2 Nxc3 0-1
 [Black "Erickson, J."]
 [Result "1-0"]
 [ECO "E94"]
-[Opening "King's Indian"]
-[Variation "orthodox, 7...Nbd7"]
 [EventDate "1995.??.??"]
 [PlyCount "89"]
 
@@ -11123,8 +10295,6 @@ g3 a6 45. a4 1-0
 [Black "Oraha, Z."]
 [Result "1-0"]
 [ECO "C07"]
-[Opening "French"]
-[Variation "Tarrasch, open variation"]
 [EventDate "1995.??.??"]
 [PlyCount "43"]
 
@@ -11141,8 +10311,6 @@ Qxb4 Bxf3 21. gxf3 a6 22. Nc3 1-0
 [Black "Peredun, R."]
 [Result "1-0"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "closed, 2...Nc6"]
 [EventDate "1995.??.??"]
 [PlyCount "95"]
 
@@ -11163,7 +10331,6 @@ Kxf2 fxg3+ 45. Kxg3 Kf5 46. Be8 Kf6 47. Kf4 Ke7 48. Bxg6 1-0
 [Black "Shildrick, R."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "138"]
 
@@ -11188,7 +10355,6 @@ Kxd4 0-1
 [Black "Khan, Z."]
 [Result "0-1"]
 [ECO "A17"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "50"]
 
@@ -11205,7 +10371,6 @@ fxe4 21. fxe4 d6 22. b3 e5 23. Bd2 Qd7 24. Nc3 Qh3 25. Be1 Rf1# 0-1
 [Black "Kubik, R."]
 [Result "1-0"]
 [ECO "E61"]
-[Opening "King's Indian defence, 3.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "73"]
 
@@ -11224,8 +10389,6 @@ Rd3 Rxd3 27. Qxd3 Qa2 28. Rd1 Rxa3 29. Qxd7 Qb3 30. Qe8+ Bf8 31. Rd8 Qxb4
 [Black "Armstrong, D."]
 [Result "0-1"]
 [ECO "A01"]
-[Opening "Nimzovich-Larsen attack"]
-[Variation "modern variation"]
 [EventDate "1995.??.??"]
 [PlyCount "50"]
 
@@ -11242,8 +10405,6 @@ Rfe8 21. f3 Re2 22. Bc1 Bh2+ 23. Kh1 Qg3 24. Rg1 Bxg1 25. Qxg1 Re1 0-1
 [Black "Findlay, D."]
 [Result "1/2-1/2"]
 [ECO "A01"]
-[Opening "Nimzovich-Larsen attack"]
-[Variation "modern variation"]
 [EventDate "1995.??.??"]
 [PlyCount "128"]
 
@@ -11267,8 +10428,6 @@ Nd6+ Kc6 46. Nxf5 g6 47. Nxd4+ exd4 48. Kc4 Nxf2 49. Kxd4 Kd7 50. h4 Ke6
 [Black "Findlay, D."]
 [Result "1/2-1/2"]
 [ECO "B72"]
-[Opening "Sicilian"]
-[Variation "dragon, classical attack"]
 [EventDate "1995.??.??"]
 [PlyCount "93"]
 
@@ -11289,8 +10448,6 @@ fxg3 45. hxg3 b4 46. Kxe3 b3 47. Rd2 1/2-1/2
 [Black "Pitre, R."]
 [Result "0-1"]
 [ECO "C91"]
-[Opening "Ruy Lopez"]
-[Variation "closed, Bogolyubov variation"]
 [EventDate "1995.??.??"]
 [PlyCount "36"]
 
@@ -11306,7 +10463,6 @@ Qxg5 15. Rg1 Qh4 16. Nd2 Qxf2 17. Rg2 Qxg2+ 18. Kxg2 Nf4+ 0-1
 [Black "Demmery, S."]
 [Result "1-0"]
 [ECO "B01"]
-[Opening "Scandinavian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "117"]
 
@@ -11329,7 +10485,6 @@ b6+ axb6 45. a7 Nxd7 46. a8=Q Nxc5 47. Qa7+ Nb7 48. Kf3 Kc6 49. Qa4+ Kc5
 [Black "Southam, T."]
 [Result "1-0"]
 [ECO "B30"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "85"]
 
@@ -11350,7 +10505,6 @@ bxa4 b4 27. Be4 Rxa4 28. Bxd5 Qxd5 29. Rxe6 Ra8 30. Re7 Qxa2 31. Be5 Ra7
 [Black "Kubik, R."]
 [Result "0-1"]
 [ECO "B50"]
-[Opening "Sicilian"]
 [EventDate "1995.??.??"]
 [PlyCount "98"]
 
@@ -11371,7 +10525,6 @@ Ke3 Rxc6 45. Kf4 Qf6 46. h3 Rc4+ 47. Ke3 Qe5+ 48. Kf2 Rc2+ 49. Kf1 Qa1# 0-1
 [Black "Zoccano, J."]
 [Result "0-1"]
 [ECO "B00"]
-[Opening "King's pawn opening"]
 [EventDate "1995.??.??"]
 [PlyCount "92"]
 
@@ -11392,8 +10545,6 @@ axb4 43. axb4 Rb2 44. Kf5 Rxb4 45. Ke6 Rc4 46. Kd5 Rc1 0-1
 [Black "Cooper, A."]
 [Result "0-1"]
 [ECO "C10"]
-[Opening "French"]
-[Variation "Marshall variation"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -11411,7 +10562,6 @@ Bxh3 27. gxh3 Rad8 28. Bb5 Re7 29. Bd3 h6 30. Nf3 e4 31. Bxe4 Nxe4 0-1
 [Black "Peredun, C."]
 [Result "1-0"]
 [ECO "C45"]
-[Opening "Scotch game"]
 [EventDate "1995.??.??"]
 [PlyCount "56"]
 
@@ -11429,8 +10579,6 @@ dxe3 26. Nxe3 Rfxf2+ 27. Kg3 Qg1+ 28. Kh3 Rxe3# 1-0
 [Black "Peredun, A."]
 [Result "0-1"]
 [ECO "A48"]
-[Opening "King's Indian"]
-[Variation "Torre attack"]
 [EventDate "1995.??.??"]
 [PlyCount "80"]
 
@@ -11450,8 +10598,6 @@ Qb8 Rxe3+ 39. Kh2 Rd2 40. c5 Bf3 0-1
 [Black "Zendrowski, J."]
 [Result "0-1"]
 [ECO "A48"]
-[Opening "King's Indian"]
-[Variation "Torre attack"]
 [EventDate "1995.??.??"]
 [PlyCount "48"]
 
@@ -11468,7 +10614,6 @@ Rxd8+ Rxd8 21. Qxc6 Bxe5 22. Qxc7 Bxc7 23. Ne3 Rd2 24. b3 Ne2+ 0-1
 [Black "Peredun, A."]
 [Result "1-0"]
 [ECO "B33"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "75"]
 
@@ -11488,7 +10633,6 @@ Re1+ Kf5 32. Qh3+ Kf4 33. Qe3+ Kf5 34. Qe6+ Kg5 35. Qd5+ Qxd5 36. cxd5 Bf1
 [Black "Southam, T."]
 [Result "1-0"]
 [ECO "B30"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "81"]
 
@@ -11508,7 +10652,6 @@ Ra7 39. e6+ Kh7 40. Bxb3 Ne3 41. Be5 1-0
 [Black "Cooper, A."]
 [Result "0-1"]
 [ECO "C00"]
-[Opening "French defence"]
 [EventDate "1995.??.??"]
 [PlyCount "108"]
 
@@ -11530,7 +10673,6 @@ Kxg7 b3 51. Kh8 b2 52. g6 b1=Q 53. g7 Qb8+ 54. Kh7 h4 0-1
 [Black "Brown, Tr"]
 [Result "1-0"]
 [ECO "B01"]
-[Opening "Scandinavian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "67"]
 
@@ -11549,8 +10691,6 @@ Nd3 Bxd3 32. Kxd3 Ke6 33. c4 g6 34. Be5 1-0
 [Black "Peredun, R."]
 [Result "1-0"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "closed, 2...Nc6"]
 [EventDate "1995.??.??"]
 [PlyCount "43"]
 
@@ -11567,7 +10707,6 @@ Kxd2 Qxa2+ 21. Rc2 dxc5 22. Qc7# 1-0
 [Black "Matthews, I."]
 [Result "1-0"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -11585,8 +10724,6 @@ Bd5 Nc2 27. Rxe6+ Bxe6 28. Rxe6+ Kd7 29. Rxf6 1-0
 [Black "Zendrowski, J."]
 [Result "1/2-1/2"]
 [ECO "E97"]
-[Opening "King's Indian"]
-[Variation "orthodox, Aronin-Taimanov variation (Yugoslav attack / Mar del Plata variation)"]
 [EventDate "1995.??.??"]
 [PlyCount "86"]
 
@@ -11606,7 +10743,6 @@ Bxd8 39. Bb3 Kg7 40. Rd6 Rb6 41. Rxb6 Bxb6 42. Kf1 Nf7 43. Nb7 Nd8 1/2-1/2
 [Black "Carr, S."]
 [Result "1-0"]
 [ECO "C22"]
-[Opening "Centre game"]
 [EventDate "1995.??.??"]
 [PlyCount "49"]
 
@@ -11624,8 +10760,6 @@ Qg4 20. Rf1 a5 21. Qxb7 Rab8 22. Qd5 Qg7 23. e5 dxe5 24. Nf3 f6 25. Rhg1
 [Black "Harkes, L."]
 [Result "0-1"]
 [ECO "C07"]
-[Opening "French"]
-[Variation "Tarrasch, open variation"]
 [EventDate "1995.??.??"]
 [PlyCount "72"]
 
@@ -11644,8 +10778,6 @@ Rd2 Qxg3+ 33. Kd1 e3 34. Rd4 c5 35. Rd5 Nf6 36. Rxh5 Qd6+ 0-1
 [Black "Ortiz, H."]
 [Result "1/2-1/2"]
 [ECO "B14"]
-[Opening "Caro-Kann"]
-[Variation "Panov-Botvinnik attack, 5...e6"]
 [EventDate "1995.??.??"]
 [PlyCount "37"]
 
@@ -11661,8 +10793,6 @@ Nxb3 15. exf7+ Rxf7 16. Qxb3 Bxf3 17. gxf3 Qf8 18. Rad1 Kh8 19. Rd3 1/2-1/2
 [Black "Matthews, I."]
 [Result "0-1"]
 [ECO "D85"]
-[Opening "Gruenfeld"]
-[Variation "modern exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "54"]
 
@@ -11680,8 +10810,6 @@ Rc8 Rd8 27. Rxd8 Qxd8 0-1
 [Black "Ortiz, H."]
 [Result "0-1"]
 [ECO "A29"]
-[Opening "English"]
-[Variation "four knights, kingside fianchetto"]
 [EventDate "1995.??.??"]
 [PlyCount "82"]
 
@@ -11701,7 +10829,6 @@ Nc8 39. a4 Nd6 40. a5 Nxc4 41. axb6 axb6 0-1
 [Black "Harkes, L."]
 [Result "1-0"]
 [ECO "B01"]
-[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "71"]
 
@@ -11720,8 +10847,6 @@ Nd6+ Bxd6 34. Rxe8+ Rxe8 35. cxd6 Red8 36. Qg5 1-0
 [Black "Harris, M."]
 [Result "1-0"]
 [ECO "B70"]
-[Opening "Sicilian"]
-[Variation "dragon variation"]
 [EventDate "1995.??.??"]
 [PlyCount "45"]
 
@@ -11738,8 +10863,6 @@ Bxd4+ 21. Be3 Bxe3+ 22. Nxe3 Nb6 23. Ng4 1-0
 [Black "Pitre, R."]
 [Result "1/2-1/2"]
 [ECO "B07"]
-[Opening "Pirc"]
-[Variation "Holmov system"]
 [EventDate "1995.??.??"]
 [PlyCount "38"]
 
@@ -11755,7 +10878,6 @@ Ne5 15. Bh6 Ba6 16. Bxg7 Kxg7 17. Bc2 h6 18. Ng3 Nc4 19. Qf4 Na3 1/2-1/2
 [Black "Brown, Tr"]
 [Result "0-1"]
 [ECO "A15"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "27"]
 
@@ -11771,8 +10893,6 @@ O-O Nc6 9. d4 Bf5 10. a3 a5 11. Bc3 Ne4 12. Be1 b5 13. Nc3 b4 14. axb4 {
 [Black "Demmery, S."]
 [Result "0-1"]
 [ECO "D00"]
-[Opening "Blackmar-Diemer"]
-[Variation "Euwe defence"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -11791,8 +10911,6 @@ Rxf8+ Rxf8 21. Rxf8+ Kxf8 22. Qh5 Qf5 23. Qh6+ Kf7 24. Qh5+ Qg6 25. Qg4 Qe6
 [Black "Findlay, D."]
 [Result "1-0"]
 [ECO "E24"]
-[Opening "Nimzo-Indian"]
-[Variation "Saemisch variation"]
 [EventDate "1995.??.??"]
 [PlyCount "37"]
 
@@ -11808,7 +10926,6 @@ Bxe4 Bxe4 15. Qg4 Bg6 16. e4 Qe6 17. Qf3 f5 18. exf5 Rxf5 19. Qxa8+ 1-0
 [Black "Kaczmarek, W."]
 [Result "1-0"]
 [ECO "C00"]
-[Opening "French defence"]
 [EventDate "1995.??.??"]
 [PlyCount "101"]
 
@@ -11830,7 +10947,6 @@ Bxd5 Kxd5 50. Kf4 Ke6 51. Kg3 1-0
 [Black "Litchfield, G."]
 [Result "0-1"]
 [ECO "D00"]
-[Opening "Blackmar gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "86"]
 
@@ -11850,7 +10966,6 @@ Qf5 39. Qe3+ Qg5 40. Qf2 Rhf8 41. Qe1 Rce8 42. Re4 Rxe4 43. Qxe4 Qf4+ 0-1
 [Black "Redhead, G."]
 [Result "1-0"]
 [ECO "A46"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "45"]
 
@@ -11867,7 +10982,6 @@ Bxg6+ hxg6 21. Ng5+ Kg8 22. Qd2 Qd8 23. Qxd5+ 1-0
 [Black "Ward, R."]
 [Result "1/2-1/2"]
 [ECO "A46"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "50"]
 
@@ -11885,8 +10999,6 @@ Nxe3 1/2-1/2
 [Black "Clipperton, B."]
 [Result "0-1"]
 [ECO "A05"]
-[Opening "Reti"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "51"]
 
@@ -11904,7 +11016,6 @@ Nc3 $2 Nxc3+ 21. Kg1 Nxd1 22. Rxd1 b5 23. Qc2 Rfd8 24. Kf1 e5 25. e4 Qd6
 [Black "Phipps, W."]
 [Result "0-1"]
 [ECO "A04"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "42"]
 
@@ -11921,8 +11032,6 @@ Qf3 Nxe5 15. Qxb7+ Kd7 16. Qxa7 Nxd3 17. Qa4+ Ke7 18. Re2 Kf7 19. Qc6 Bd6
 [Black "Sengupta, O."]
 [Result "0-1"]
 [ECO "A05"]
-[Opening "Reti"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "102"]
 
@@ -11944,7 +11053,6 @@ Rc7 39. Ra5 Ra7 40. b4 Rxe3 41. Kf2 d4 42. Rb3 Kc7 43. b5 Kb6 44. Rb4 Kxa5
 [Black "Zoccano, J."]
 [Result "0-1"]
 [ECO "A20"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "24"]
 
@@ -11959,7 +11067,6 @@ Nge2 d5 9. cxd5 Nxd5 10. Nxd5 Bxd5 11. Bxd5 Qxd5 12. Bb2 $4 Qxh1+ 0-1
 [Black "Phipps, W."]
 [Result "1-0"]
 [ECO "A46"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "47"]
 
@@ -11976,7 +11083,6 @@ Rad1 Qh5 21. Nf3 h6 22. Rxd5 exd5 23. Qxd5+ Kh7 24. Bf4 1-0
 [Black "Robinson, E."]
 [Result "0-1"]
 [ECO "A46"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "36"]
 
@@ -11992,7 +11098,6 @@ fxe3 Qb6 15. Nd1 f5 16. Qd4 Qc7 17. h3 Qxg3 18. Nc3 Nxe3 0-1
 [Black "Zoccano, J."]
 [Result "0-1"]
 [ECO "A41"]
-[Opening "Queen's Pawn"]
 [EventDate "1995.??.??"]
 [PlyCount "56"]
 
@@ -12010,7 +11115,6 @@ Nxf4+ 27. gxf4 Rxe2+ 28. Rxe2 Rg8+ 0-1
 [Black "Brown, Tr"]
 [Result "0-1"]
 [ECO "A43"]
-[Opening "Old Benoni defence"]
 [EventDate "1995.??.??"]
 [PlyCount "98"]
 
@@ -12032,7 +11136,6 @@ Rf7 Kb5 45. Rf4 Ka4 46. Rxc4 dxc4 47. Ke3 Re5+ 48. Kd2 Rxe1 49. Kxe1 Kxa3
 [Black "Clipperton, B."]
 [Result "1-0"]
 [ECO "D03"]
-[Opening "Torre attack (Tartakower variation)"]
 [EventDate "1995.??.??"]
 [PlyCount "73"]
 
@@ -12052,8 +11155,6 @@ Qxh6 Qxa7 33. Qxg6+ Qg7 34. Qxg7+ Kxg7 35. e7 Bxe7 36. Rxe7+ Kf6 37. Rde1
 [Black "Finkenzeller, A."]
 [Result "0-1"]
 [ECO "E82"]
-[Opening "King's Indian"]
-[Variation "Saemisch, double fianchetto variation"]
 [EventDate "1995.??.??"]
 [PlyCount "104"]
 
@@ -12075,7 +11176,6 @@ Qc3+ Be5 51. Qxa5 Rb8 52. Qd2 Rh8 0-1
 [Black "Kovacs, P."]
 [Result "1/2-1/2"]
 [ECO "B10"]
-[Opening "Caro-Kann defence"]
 [EventDate "1995.??.??"]
 [PlyCount "108"]
 
@@ -12097,7 +11197,6 @@ Rxh2 44. Rxf6 Kxe3 45. g4 Rh4 46. g5 Rg4 47. g6 Rxb4 48. g7 Rg4 49. Rf7 Ke4
 [Black "Leonard, D."]
 [Result "1-0"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "87"]
 
@@ -12118,7 +11217,6 @@ Qxe3+ 39. Rxe3 h5 40. Re7 Kf8 41. Rxb7 g5 42. Rc7 Ke8 43. b7 Kd8 44. b8=Q#
 [Black "Rabosa, E."]
 [Result "1-0"]
 [ECO "C00"]
-[Opening "Lengfellner system"]
 [EventDate "1995.??.??"]
 [PlyCount "103"]
 
@@ -12140,8 +11238,6 @@ Rg5+ Kh4 51. g3+ Kh3 52. Rh5+ 1-0
 [Black "Rabosa, P."]
 [Result "1-0"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "Nimzovich (Jaenisch) variation"]
 [EventDate "1995.??.??"]
 [PlyCount "85"]
 
@@ -12161,7 +11257,6 @@ Rc3 Nc4 39. Rh3 Kd8 40. Rxh7 Nxa3 41. Rxg7 Nxc2 42. Rd7+ Kc8 43. Nxd6+ 1-0
 [Black "Findlay, D."]
 [Result "1-0"]
 [ECO "E00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "29"]
 
@@ -12177,7 +11272,6 @@ Ne5 Ba6 15. h4 1-0
 [Black "Rivas, E."]
 [Result "1/2-1/2"]
 [ECO "E00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "76"]
 
@@ -12197,8 +11291,6 @@ Qd7+ Kf6 1/2-1/2
 [Black "Brown, Tr"]
 [Result "1-0"]
 [ECO "B01"]
-[Opening "Scandinavian"]
-[Variation "Marshall variation"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -12216,7 +11308,6 @@ Rfe8 26. Be3 Red8 27. Qxb6 Rxb6 28. Rxd8+ Bf8 29. Nxb6 1-0
 [Black "Clipperton, B."]
 [Result "1-0"]
 [ECO "B07"]
-[Opening "Pirc defence"]
 [EventDate "1995.??.??"]
 [PlyCount "74"]
 
@@ -12236,8 +11327,6 @@ score becomes #$!&*? hereabouts. 1-0 (71). } 1-0
 [Black "Finkenzeller, A."]
 [Result "1-0"]
 [ECO "C02"]
-[Opening "French"]
-[Variation "advance, Paulsen attack"]
 [EventDate "1995.??.??"]
 [PlyCount "112"]
 
@@ -12260,7 +11349,6 @@ Kh5 Kf6 1-0
 [Black "Sengupta, O."]
 [Result "1-0"]
 [ECO "C46"]
-[Opening "Three knights game"]
 [EventDate "1995.??.??"]
 [PlyCount "69"]
 
@@ -12279,7 +11367,6 @@ Rd8 33. Rdc1 Qb8 34. Rc7+ Nd7 35. Qxe5+ 1-0
 [Black "Boehmer, K."]
 [Result "1-0"]
 [ECO "B30"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "83"]
 
@@ -12299,8 +11386,6 @@ Ng3 Neg6 34. Nh5 Be7 35. Rh1 Bg5 36. Bc1 Bxc1 37. Rbxc1 Rd6 38. Rh3 Red8
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "C49"]
-[Opening "Four knights"]
-[Variation "symmetrical, Maroczy system"]
 [EventDate "1995.??.??"]
 [PlyCount "156"]
 
@@ -12326,8 +11411,6 @@ Rxg2 Ra2+ 70. Kd3 c4+ 71. Kxd4 Rxg2 72. Kxc4 Ke4 73. Kb4 Kd4 74. Ka4 Kc4
 [Black "Ward, R."]
 [Result "1/2-1/2"]
 [ECO "B07"]
-[Opening "Pirc"]
-[Variation "Sveshnikov system"]
 [EventDate "1995.??.??"]
 [PlyCount "81"]
 
@@ -12347,8 +11430,6 @@ b5 c5 39. h4 Nd4 40. Ke3 Kc7 41. g5 1/2-1/2
 [Black "Boehmer, K."]
 [Result "1-0"]
 [ECO "B31"]
-[Opening "Sicilian"]
-[Variation "Nimzovich-Rossolimo attack (with ...g6, without ...d6)"]
 [EventDate "1995.??.??"]
 [PlyCount "35"]
 
@@ -12364,8 +11445,6 @@ Qxc1 Na5 15. Qh6 f6 16. Nh4 g5 17. Rg3 Be6 18. Re1 1-0
 [Black "Ehrman, C."]
 [Result "0-1"]
 [ECO "B21"]
-[Opening "Sicilian"]
-[Variation "Smith-Morra gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "44"]
 
@@ -12383,7 +11462,6 @@ Nc1 Rc8 20. Nd3 { -KE. }) 18... dxc3 19. Rd3 Ba7 20. Rxd6 Qg5 21. Qg4 Qxg4
 [Black "Redhead, G."]
 [Result "1-0"]
 [ECO "A00"]
-[Opening "Durkin's attack"]
 [EventDate "1995.??.??"]
 [PlyCount "79"]
 
@@ -12403,7 +11481,6 @@ f5 32. Rb3 f4+ 33. Kf2 Rd6 34. Raxa3 Rxa3 35. Rxa3 b6 36. Bd3 h6 37. h4 g5
 [Black "Kaczmarek, W."]
 [Result "1-0"]
 [ECO "C45"]
-[Opening "Scotch game"]
 [EventDate "1995.??.??"]
 [PlyCount "77"]
 
@@ -12423,8 +11500,6 @@ Bxc6+ bxc6 38. Ke4 c5 39. Kd5 1-0
 [Black "Litchfield, G."]
 [Result "1-0"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "Larsen variation"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -12442,8 +11517,6 @@ Re6 27. Qh7+ Kf7 28. Bh5+ Kf8 29. Rf1+ 1-0
 [Black "Brown, Tr"]
 [Result "1-0"]
 [ECO "A35"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "40"]
 
@@ -12460,8 +11533,6 @@ Qxh7+ Kf8 1-0
 [Black "Clipperton, B."]
 [Result "1/2-1/2"]
 [ECO "D11"]
-[Opening "QGD Slav"]
-[Variation "4.e3"]
 [EventDate "1995.??.??"]
 [PlyCount "70"]
 
@@ -12480,8 +11551,6 @@ Rc2 26. g3 f5 27. a3 Rc3 28. Rb8+ Kf7 29. Rb7+ Kf8 30. a4 Rc4 31. Bg5 Rxa4
 [Black "Phipps, W."]
 [Result "1-0"]
 [ECO "D11"]
-[Opening "QGD Slav"]
-[Variation "3.Nf3"]
 [EventDate "1995.??.??"]
 [PlyCount "77"]
 
@@ -12501,7 +11570,6 @@ Bxe7 39. Ne5 1-0
 [Black "Sengupta, O."]
 [Result "1-0"]
 [ECO "C57"]
-[Opening "Two knights defence"]
 [EventDate "1995.??.??"]
 [PlyCount "33"]
 
@@ -12517,8 +11585,6 @@ Qg6 14. Qxe5+ Kd8 15. Qd5+ Bd6 16. Nc3 Re8 17. Qg5+ 1-0
 [Black "Deline, S."]
 [Result "0-1"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -12537,7 +11603,6 @@ f4 Nxc4 { The score becomes $#&?!&* at this point. 0-1 (58). } 0-1
 [Black "Leonard, D."]
 [Result "1-0"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "63"]
 
@@ -12556,7 +11621,6 @@ Qxh6+ 1-0
 [Black "Mitchell, J."]
 [Result "1-0"]
 [ECO "B01"]
-[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "115"]
 
@@ -12579,7 +11643,6 @@ Kxd7 50. g6 Ke7 51. Kf5 Kf8 52. Kf6 Kg8 53. a4 Kf8 54. a5 Kg8 55. axb6 axb6
 [Black "Phipps, J."]
 [Result "1-0"]
 [ECO "C40"]
-[Opening "Latvian counter-gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "77"]
 
@@ -12599,7 +11662,6 @@ Nxf6 35. Rxg8 Kxg8 36. Kd2 Ne8 37. Ke3 Nxg7 38. f4 Kf7 39. Rxg7+ 1-0
 [Black "Armstrong, D."]
 [Result "0-1"]
 [ECO "B01"]
-[Opening "Scandinavian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "114"]
 
@@ -12622,7 +11684,6 @@ Kxb2 Kxg3 57. Kc3 Kf4 0-1
 [Black "Demmery, S."]
 [Result "0-1"]
 [ECO "B01"]
-[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "84"]
 
@@ -12643,8 +11704,6 @@ Kh2 Qxh4+ 34. Kg2 Qxg5+ 35. Kh2 Ke6 36. Rg3 Qh4+ 37. Kg2 Qe4+ 38. Kh3 Ne7
 [Black "Findlay, D."]
 [Result "0-1"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "Grand Prix attack"]
 [EventDate "1995.??.??"]
 [PlyCount "91"]
 
@@ -12665,7 +11724,6 @@ f4 45. Ke2 Ke4 46. Kf2 0-1
 [Black "Kaczmarek, W."]
 [Result "1/2-1/2"]
 [ECO "C50"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "112"]
 
@@ -12688,8 +11746,6 @@ Ke5 55. Ke3 Bg4 56. Nc3 Bf5 1/2-1/2
 [Black "Demmery, S."]
 [Result "0-1"]
 [ECO "B01"]
-[Opening "Scandinavian"]
-[Variation "Marshall variation"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -12707,8 +11763,6 @@ Rf2+ 26. Kd3 Rxa1 27. g3 Bxg3 28. Ke3 Re1+ 29. Kd3 Bxf4 30. Rc2 0-1
 [Black "Khan, Z."]
 [Result "1-0"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "101"]
 
@@ -12730,7 +11784,6 @@ Nxa7 38. Ne5 Kf6 39. f4 Kf5 40. Kg3 Kf6 41. a5 Nb5 42. a6 Na7 43. Ngf7 Ke7
 [Black "Rivas, E."]
 [Result "0-1"]
 [ECO "B10"]
-[Opening "Caro-Kann defence"]
 [EventDate "1995.??.??"]
 [PlyCount "86"]
 
@@ -12750,8 +11803,6 @@ bxc2 39. Rxc2 a3 40. Nd3 Rb3 41. Ne1 d4 42. Ra2 f6 43. Rf2 Re3 0-1
 [Black "Armstrong, D."]
 [Result "1-0"]
 [ECO "D37"]
-[Opening "QGD"]
-[Variation "classical variation (5.Bf4)"]
 [EventDate "1995.??.??"]
 [PlyCount "89"]
 
@@ -12772,8 +11823,6 @@ bxa4 38. Rxa4 f5 39. f4 exf3 40. gxf3 Kg5 41. Rd4 Be2 42. Kf2 Ba6 43. b4 h5
 [Black "Demmery, S."]
 [Result "1-0"]
 [ECO "D27"]
-[Opening "QGA"]
-[Variation "classical, 6...a6"]
 [EventDate "1995.??.??"]
 [PlyCount "113"]
 
@@ -12796,8 +11845,6 @@ e7 1-0
 [Black "Hush, J."]
 [Result "1-0"]
 [ECO "B07"]
-[Opening "Pirc"]
-[Variation "Holmov system"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -12816,7 +11863,6 @@ Bh6 Rfd8 20. Nxe6 fxe6 21. Bxe6+ Kh8 22. Rxd7 Rxd7 23. Bxd7 Rb2 24. Kg2 Bg7
 [Black "Kovacs, P."]
 [Result "0-1"]
 [ECO "C00"]
-[Opening "French defence"]
 [EventDate "1995.??.??"]
 [PlyCount "90"]
 
@@ -12837,8 +11883,6 @@ b1=Q 44. h4 Qe4 45. Kc3 Qxh4 0-1
 [Black "Phipps, J."]
 [Result "0-1"]
 [ECO "C20"]
-[Opening "KP"]
-[Variation "Patzer opening"]
 [EventDate "1995.??.??"]
 [PlyCount "44"]
 
@@ -12855,8 +11899,6 @@ Nf2+ 20. Kg1 Nh3+ 21. Kh1 Qg1+ 22. Rxg1 Nf2# 0-1
 [Black "Rabosa, E."]
 [Result "0-1"]
 [ECO "C20"]
-[Opening "KP"]
-[Variation "Patzer opening"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -12875,7 +11917,6 @@ Nf3# 0-1
 [Black "Hatfield, E."]
 [Result "0-1"]
 [ECO "A53"]
-[Opening "Old Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "122"]
 
@@ -12898,7 +11939,6 @@ Kxa2 57. Nd1 a3 58. Kd2 Kb1 59. Ne3 a2 60. Nc2 a1=Q 61. Kd3 Qc3+ 0-1
 [Black "Mitchell, J."]
 [Result "1/2-1/2"]
 [ECO "E61"]
-[Opening "King's Indian defence, 3.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "110"]
 
@@ -12920,8 +11960,6 @@ Bf4+ 45. g3 Bxe5 46. f4 Bc3 47. a4 Kd4 48. Kh3 Kxe4 49. d6 Ba5 50. Kh4 Kf5
 [Black "Patel, A."]
 [Result "1-0"]
 [ECO "D31"]
-[Opening "QGD"]
-[Variation "3.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "91"]
 
@@ -12942,7 +11980,6 @@ Rc4 44. Rc1 Rxc1+ 45. Bxc1 c5 46. Ra5 1-0
 [Black "Rabosa, P."]
 [Result "0-1"]
 [ECO "E00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -12960,8 +11997,6 @@ Bxg6 hxg6 21. Qxg6+ Kh8 22. Qxf7 Qg8 23. Qxd7 Qg4 24. Rxf6 Qxd7 25. Nf1 Qe7
 [Black "Kovacs, P."]
 [Result "0-1"]
 [ECO "A08"]
-[Opening "Reti"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "70"]
 
@@ -12980,7 +12015,6 @@ c6 Rc4 33. Rxc4 bxc4 34. Kd2 Rxc6 35. Kc3 a5 0-1
 [Black "Mitchell, J."]
 [Result "0-1"]
 [ECO "B02"]
-[Opening "Alekhine's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "48"]
 
@@ -12997,8 +12031,6 @@ Qxg4 Rxe5 21. Qf4 Rbe8 22. d6 Bc6 23. Rd1 Re1+ 24. Rxe1 Rxe1# 0-1
 [Black "Patel, A."]
 [Result "1-0"]
 [ECO "A08"]
-[Opening "Reti"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -13016,7 +12048,6 @@ Rxf6 Rg8 27. Qf7 Qb2 28. c4 Qb4 29. Bf5 Bc6 30. Rd6+ Qxd6 31. exd6 1-0
 [Black "Hush, J."]
 [Result "1-0"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -13034,7 +12065,6 @@ Bxc6 Rxf1+ 21. Qxf1 Rf8 22. Qe2 Qf7 23. Bd5 Qxd5 24. cxd5 Be4 25. Kg1 Bxd5
 [Black "Kaczmarek, W."]
 [Result "1-0"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -13052,7 +12082,6 @@ Be5 Rg8 27. Rf1 Qd3 28. Qg3 Rd8 29. Qxd3 1-0
 [Black "Khan, Z."]
 [Result "0-1"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "132"]
 
@@ -13076,7 +12105,6 @@ g2 63. Rh6 Ra8 64. Rg6 Rh8 65. Rg5 Kh2 66. Kf2 Rf8+ 0-1
 [Black "Rivas, E."]
 [Result "1-0"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "129"]
 
@@ -13100,7 +12128,6 @@ Kf5 62. Nd7 Rf7 63. Kc6 Ke4 64. d6 Kd3 65. Ne5+ 1-0
 [Black "Van Weeren, H."]
 [Result "1-0"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "87"]
 
@@ -13121,8 +12148,6 @@ Bf7+ 1-0
 [Black "Deline, S."]
 [Result "0-1"]
 [ECO "A28"]
-[Opening "English"]
-[Variation "four knights, 4.e3"]
 [EventDate "1995.??.??"]
 [PlyCount "80"]
 
@@ -13142,7 +12167,6 @@ Be5 Bg5 39. Bxc7 b5 40. d6 Bd7 0-1
 [Black "Phipps, J."]
 [Result "0-1"]
 [ECO "A05"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "48"]
 
@@ -13159,8 +12183,6 @@ Bc1 Nb4 21. Bf4 Bxf3 22. gxf3 Re2 23. a3 c2+ 24. Kc1 Na2# 0-1
 [Black "Rabosa, E."]
 [Result "1-0"]
 [ECO "A07"]
-[Opening "Reti"]
-[Variation "King's Indian attack (Barcza system)"]
 [EventDate "1995.??.??"]
 [PlyCount "115"]
 
@@ -13183,7 +12205,6 @@ Rf7+ Kg8 57. Kg6 Kh8 58. Rf8# 1-0
 [Black "Samano, B."]
 [Result "0-1"]
 [ECO "A01"]
-[Opening "Nimzovich-Larsen attack"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -13201,8 +12222,6 @@ Nc4 Qc7 27. Bd3 Bxd3 28. Rxd3 cxd4 29. cxd4 Nb4 30. Rdd1 Rb8 0-1
 [Black "Ehrman, C."]
 [Result "0-1"]
 [ECO "A01"]
-[Opening "Nimzovich-Larsen attack"]
-[Variation "modern variation"]
 [EventDate "1995.??.??"]
 [PlyCount "54"]
 
@@ -13220,7 +12239,6 @@ Qxh3 27. Rg1 Be2 0-1
 [Black "Elieff, K."]
 [Result "0-1"]
 [ECO "B02"]
-[Opening "Alekhine's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "96"]
 
@@ -13241,8 +12259,6 @@ Rxh7 Ne3+ 33. Kh3 Rf2 34. Ba3 Nf1 35. Nf3 Rxf3+ 36. Kg2 Rf7 37. Bxc5 Nd2
 [Black "King, J."]
 [Result "1-0"]
 [ECO "D94"]
-[Opening "Gruenfeld"]
-[Variation "5.e3"]
 [EventDate "1995.??.??"]
 [PlyCount "35"]
 
@@ -13258,7 +12274,6 @@ e4 Bh6 16. e5 Qd8 17. exf6 exf6 18. Qxh7# 1-0
 [Black "Mitchell, J."]
 [Result "1-0"]
 [ECO "E20"]
-[Opening "Nimzo-Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "83"]
 
@@ -13278,8 +12293,6 @@ Kg3 g5 39. Ra7+ Kf6 40. Bxf5 Kxf5 41. Rb5+ Ke4 42. Rxg5 1-0
 [Black "Deline, S."]
 [Result "1/2-1/2"]
 [ECO "D55"]
-[Opening "QGD"]
-[Variation "6.Nf3"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -13298,8 +12311,6 @@ Kg7 33. b5 a5 1/2-1/2
 [Black "Kovacs, P."]
 [Result "1-0"]
 [ECO "E27"]
-[Opening "Nimzo-Indian"]
-[Variation "Saemisch variation"]
 [EventDate "1995.??.??"]
 [PlyCount "39"]
 
@@ -13316,7 +12327,6 @@ O-O-O Nxe5 15. dxe5 Nd7 16. Bf6 Qxc5 17. h5 Qxa3+ 18. Kd2 Nf8 19. hxg6 fxg6
 [Black "Patel, A."]
 [Result "1-0"]
 [ECO "E61"]
-[Opening "King's Indian defence, 3.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "71"]
 
@@ -13335,8 +12345,6 @@ b4 32. Ra6 Kg5 33. Be4 Bd4+ 34. Kg2 h4 35. Rxg6+ Kh5 36. g4# 1-0
 [Black "Rabosa, E."]
 [Result "1-0"]
 [ECO "D06"]
-[Opening "QGD"]
-[Variation "Marshall defence"]
 [EventDate "1995.??.??"]
 [PlyCount "91"]
 
@@ -13357,8 +12365,6 @@ Qe5+ Kg8 45. Be6+ Kf8 46. Qh8+ 1-0
 [Black "Cooper, A."]
 [Result "1/2-1/2"]
 [ECO "C02"]
-[Opening "French"]
-[Variation "advance variation"]
 [EventDate "1995.??.??"]
 [PlyCount "90"]
 
@@ -13379,8 +12385,6 @@ Nf3+ 44. Kf1 Nh2+ 45. Ke1 Nf3+ 1/2-1/2
 [Black "Dobrishman, L."]
 [Result "0-1"]
 [ECO "B01"]
-[Opening "Scandinavian"]
-[Variation "Marshall variation"]
 [EventDate "1995.??.??"]
 [PlyCount "96"]
 
@@ -13401,7 +12405,6 @@ Kxe3 Kf5 45. Kf3 f6 46. a3 b5 47. b4 c4 48. Kf2 Kg4 0-1
 [Black "Robinson, E."]
 [Result "0-1"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "90"]
 
@@ -13422,7 +12425,6 @@ Rxf2 Rxf2+ 45. Kh3 Rf3+ 0-1
 [Black "Hatfield, E."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "82"]
 
@@ -13442,7 +12444,6 @@ b3 27. Rxb3 Ba4 28. Qa2 cxb3 29. Qa1 g6 30. Bd1 Qb4 31. Qb2 Rb8 32. h4 Qe1+
 [Black "Kovacs, P."]
 [Result "0-1"]
 [ECO "A46"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "118"]
 
@@ -13465,7 +12466,6 @@ g6 32. Rd7 Rc2 33. Rxb7 Rxh2 34. Kg1 Rc2 35. a4 Kg7 36. b4 Rc4 37. a5 Kf6
 [Black "Leonard, D."]
 [Result "1-0"]
 [ECO "A46"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "101"]
 
@@ -13487,7 +12487,6 @@ gxh5 Ke7 50. h6 Kf7 51. Kg2 1-0
 [Black "Patel, A."]
 [Result "0-1"]
 [ECO "A40"]
-[Opening "Queen's pawn"]
 [EventDate "1995.??.??"]
 [PlyCount "36"]
 
@@ -13503,8 +12502,6 @@ Qb5 15. Nxc5 Qxc5 16. Nd2 d3 17. c3 Bd7 18. Bxc6 Qxf2+ 0-1
 [Black "Rabosa, P."]
 [Result "0-1"]
 [ECO "A49"]
-[Opening "King's Indian"]
-[Variation "fianchetto without c4"]
 [EventDate "1995.??.??"]
 [PlyCount "55"]
 
@@ -13523,7 +12520,6 @@ replied Qxe6. 0-1 (47). } 28. Qxc6 0-1
 [Black "Hatfield, E."]
 [Result "1-0"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "88"]
 
@@ -13544,7 +12540,6 @@ Nd3 Bxd3+ 33. cxd3 Ne5 34. Ke2 Kf8 35. a4 bxa4 36. Bxa4 Qa5 37. Qxd4 Ke7
 [Black "King, J."]
 [Result "1-0"]
 [ECO "D06"]
-[Opening "Queen's Gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "53"]
 
@@ -13562,8 +12557,6 @@ Bd3 Qb7 27. Qh7# 1-0
 [Black "Leonard, D."]
 [Result "1-0"]
 [ECO "C66"]
-[Opening "Ruy Lopez"]
-[Variation "Berlin defence, hedgehog variation"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -13581,7 +12574,6 @@ Bf6 26. Qc6 Bxb2 27. c3 Kg8 28. Qf6 h5 29. Re7 Rh7 1-0
 [Black "Mitchell, J."]
 [Result "1-0"]
 [ECO "B02"]
-[Opening "Alekhine's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "51"]
 
@@ -13599,7 +12591,6 @@ Rd1 Nd5 21. Rd3 Qa5 22. Qe5 Bd6 23. Qe2 Bf4 24. h4 h6 { ? score. 1-0 (29).
 [Black "Phipps, J."]
 [Result "0-1"]
 [ECO "C45"]
-[Opening "Scotch game"]
 [EventDate "1995.??.??"]
 [PlyCount "55"]
 
@@ -13617,7 +12608,6 @@ Qxh3 27. Nxc7 Qxd3 28. cxd3 { ! hereabouts. 0-1 (38). } 0-1
 [Black "Ehrman, C."]
 [Result "0-1"]
 [ECO "A04"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "70"]
 
@@ -13636,7 +12626,6 @@ Ne5+ Bxe5 28. fxe5 Kg8 29. a4 Bxd3+ 30. Ka2 Qa6 31. Bf3 Rf8 32. Bxd4 Nxd4
 [Black "Oraha, Z."]
 [Result "0-1"]
 [ECO "A04"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -13654,8 +12643,6 @@ Rxh2+ 0-1
 [Black "Samano, B."]
 [Result "1-0"]
 [ECO "C03"]
-[Opening "French"]
-[Variation "Tarrasch"]
 [EventDate "1995.??.??"]
 [PlyCount "85"]
 
@@ -13675,8 +12662,6 @@ Reh5 Ra8 40. Rb7 b4 41. Rhh7 Nxd4+ 42. cxd4 b3 43. Rb6# 1-0
 [Black "Armstrong, D."]
 [Result "1/2-1/2"]
 [ECO "B18"]
-[Opening "Caro-Kann"]
-[Variation "classical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "132"]
 
@@ -13700,7 +12685,6 @@ h2 64. f7 h1=Q 65. f8=Q Qd5+ 66. Kf6 Kf2 1/2-1/2
 [Black "Hush, J."]
 [Result "1-0"]
 [ECO "B00"]
-[Opening "King's pawn opening"]
 [EventDate "1995.??.??"]
 [PlyCount "111"]
 
@@ -13723,8 +12707,6 @@ Rg4+ 50. Kd3 a6 51. h6 Rh4 52. Rh8 Kc7 53. Kc2 c5 54. bxc5 Rc4 55. h7 Rxc5
 [Black "Khan, Z."]
 [Result "1/2-1/2"]
 [ECO "C62"]
-[Opening "Ruy Lopez"]
-[Variation "old Steinitz defence"]
 [EventDate "1995.??.??"]
 [PlyCount "111"]
 
@@ -13747,7 +12729,6 @@ Kc8 51. Kc3 Kb7 52. Kb3 Ka7 53. Ka4 Kb7 54. Kb3 Ka7 55. a6 Kb6 56. Kc3
 [Black "Brown, Tr"]
 [Result "1-0"]
 [ECO "A41"]
-[Opening "Old Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "77"]
 
@@ -13767,7 +12748,6 @@ Re1 O-O 21. Rexe7 Kg7 22. Red7 Rae8 23. Be4 Kf6 24. Rxa7 Rd8 25. f4 Rxd7
 [Black "Cooper, A."]
 [Result "1-0"]
 [ECO "A57"]
-[Opening "Benko gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "95"]
 
@@ -13788,7 +12768,6 @@ h5 39. h4 g4 40. a4 Kg7 41. Rgc3 Rf5 42. Kd2 Rf1 43. Rc6 g3 44. R6c3 Rf2
 [Black "Finkenzeller, A."]
 [Result "1-0"]
 [ECO "A56"]
-[Opening "Benoni defence, Hromodka system"]
 [EventDate "1995.??.??"]
 [PlyCount "72"]
 
@@ -13807,8 +12786,6 @@ Rxc4 Qxc4+ 33. Kf3 dxe5 34. Qe4 Qc5 35. Re1 f5 36. Qe3 Kf6 1-0
 [Black "Boehmer, K."]
 [Result "0-1"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "closed, 2...Nc6"]
 [EventDate "1995.??.??"]
 [PlyCount "98"]
 
@@ -13829,7 +12806,6 @@ Kg3 45. Kb2 Kf2 46. Nd3+ cxd3 47. cxd3 Kg3 48. Kb3 Kxh3 49. a4 Nxa4 0-1
 [Black "Ehrman, C."]
 [Result "0-1"]
 [ECO "B00"]
-[Opening "King's pawn opening"]
 [EventDate "1995.??.??"]
 [PlyCount "80"]
 
@@ -13849,7 +12825,6 @@ Rf1 Qg3 28. Rf3 Qh2+ 29. Kf1 Qh1+ 30. Ke2 Qxg2+ 31. Rf2 Qxf2+ 32. Kd1 Bf3+
 [Black "Elieff, K."]
 [Result "0-1"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "145"]
 
@@ -13875,7 +12850,6 @@ hereabouts. 0-1 (98) } 0-1
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "C20"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "90"]
 
@@ -13896,7 +12870,6 @@ Kh1 Bg4 0-1
 [Black "Clipperton, B."]
 [Result "1/2-1/2"]
 [ECO "B00"]
-[Opening "King's pawn opening"]
 [EventDate "1995.??.??"]
 [PlyCount "41"]
 
@@ -13914,7 +12887,6 @@ Nh5 20. Be3 Rbd8 { The score becomes #$&*!? hereabouts. - (42). } 21. Rbd1
 [Black "Cooper, A."]
 [Result "1-0"]
 [ECO "C00"]
-[Opening "French defence"]
 [EventDate "1995.??.??"]
 [PlyCount "97"]
 
@@ -13936,7 +12908,6 @@ Nxf4 Kc3 44. Nxh5 d4 45. Nxg7 Kc2 46. h5 d3 47. Nf5 Kc1 48. h6 d2 49. Ne3
 [Black "Phipps, W."]
 [Result "1/2-1/2"]
 [ECO "B10"]
-[Opening "Caro-Kann defence"]
 [EventDate "1995.??.??"]
 [PlyCount "97"]
 
@@ -13957,8 +12928,6 @@ b5 45. Bc5 Nc6 46. Ke2 Bf5 47. Ne3 Be6 48. Nc2 f5 49. Ke3 1/2-1/2
 [Black "Robinson, E."]
 [Result "0-1"]
 [ECO "B70"]
-[Opening "Sicilian"]
-[Variation "dragon variation"]
 [EventDate "1995.??.??"]
 [PlyCount "84"]
 
@@ -13978,7 +12947,6 @@ Ne5 38. f4 Nxc4 39. f5 g5 40. g4 Ne3 41. Ra3 Rb2 42. c4 Nf1 0-1
 [Black "Zoccano, J."]
 [Result "1-0"]
 [ECO "B00"]
-[Opening "King's pawn opening"]
 [EventDate "1995.??.??"]
 [PlyCount "45"]
 
@@ -13995,7 +12963,6 @@ Nxe4 Qxe4 21. Qxc7 Qxg2 22. Ke2 Qb7 23. Qxb7 1-0
 [Black "Elieff, K."]
 [Result "1-0"]
 [ECO "A57"]
-[Opening "Benko gambit half accepted"]
 [EventDate "1995.??.??"]
 [PlyCount "91"]
 
@@ -14016,7 +12983,6 @@ Bxe4+ 45. Nxe4 Ke7 46. Kf3 1-0
 [Black "Oraha, Z."]
 [Result "1-0"]
 [ECO "A84"]
-[Opening "Dutch defence"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -14034,8 +13000,6 @@ Rxg4+ 27. Nxg4 Qxd4+ 28. Nf2 Qg7+ 29. Kh1 Qh6 30. Re5 1-0
 [Black "Redhead, G."]
 [Result "1-0"]
 [ECO "E30"]
-[Opening "Nimzo-Indian"]
-[Variation "Leningrad variation"]
 [EventDate "1995.??.??"]
 [PlyCount "41"]
 
@@ -14052,8 +13016,6 @@ Rb8 $2 21. c6 1-0
 [Black "Ward, R."]
 [Result "1/2-1/2"]
 [ECO "A57"]
-[Opening "Benko gambit"]
-[Variation "Zaitsev system"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -14071,8 +13033,6 @@ Qf5 Bc3+ 21. Kf1 Qa4 22. Qd3 Qc2 23. Qxc2 Rxc2 24. Bd3 Rd2 25. Nxc3 bxc3
 [Black "Elieff, K."]
 [Result "0-1"]
 [ECO "B22"]
-[Opening "Sicilian"]
-[Variation "Alapin's variation (2.c3)"]
 [EventDate "1995.??.??"]
 [PlyCount "184"]
 
@@ -14101,8 +13061,6 @@ Rf1 Rxf1+ 0-1
 [Black "Oraha, Z."]
 [Result "1-0"]
 [ECO "C15"]
-[Opening "French"]
-[Variation "Winawer (Nimzovich) variation"]
 [EventDate "1995.??.??"]
 [PlyCount "65"]
 
@@ -14121,8 +13079,6 @@ Rg8 8. Qh6 Nbd7 9. Ne2 c5 10. Ng3 cxd4 11. cxd4 Qc7 12. c4 Rg6 13. Qe3 b6
 [Black "Redhead, G."]
 [Result "1-0"]
 [ECO "C44"]
-[Opening "Scotch"]
-[Variation "Lolli variation"]
 [EventDate "1995.??.??"]
 [PlyCount "35"]
 
@@ -14138,8 +13094,6 @@ Be6 8. Bb5+ c6 9. Be2 Qc7 10. O-O-O Ng6 11. f4 h6 12. f5 hxg5 13. fxe6 fxe6
 [Black "Samano.B"]
 [Result "1/2-1/2"]
 [ECO "C02"]
-[Opening "French"]
-[Variation "advance, Euwe variation"]
 [EventDate "1995.??.??"]
 [PlyCount "94"]
 
@@ -14161,7 +13115,6 @@ Ba6 45. Rh1 Bc8 46. Rh7 Rd8 47. Bg4 Rg8 { Fairly difficult score to follow.
 [Black "Cooper, A."]
 [Result "1-0"]
 [ECO "A46"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "51"]
 
@@ -14179,7 +13132,6 @@ Nxg5 hxg5 26. Rxb7 1-0
 [Black "Dobrishman, L."]
 [Result "1/2-1/2"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -14197,7 +13149,6 @@ Ke8 27. g3 Ke7 28. h4 Kd6 29. Ke2 Ke7 30. g4 Kd6 1/2-1/2
 [Black "Finkenzeller, A."]
 [Result "1/2-1/2"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "88"]
 
@@ -14218,7 +13169,6 @@ Kf8 26. Kf1 Ke7 27. Nb7 Bg7 28. Ke2 Nb6 29. Kd3 Kd7 30. Nc5+ Kc6 31. Ne4 h6
 [Black "Robinson, E."]
 [Result "0-1"]
 [ECO "A46"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "120"]
 
@@ -14241,7 +13191,6 @@ Kd5 a5 56. Kc6 a4 57. d5 a3 58. d6 a2 59. d7 a1=Q 60. d8=Q Qf6+ 0-1
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [ECO "A20"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "46"]
 
@@ -14258,8 +13207,6 @@ Nd4 Bc4 21. Rd1 b4 22. Nce2 Bxe2 23. Nxe2 Qxe2 0-1
 [Black "Rabosa, P."]
 [Result "1-0"]
 [ECO "A30"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "91"]
 
@@ -14280,7 +13227,6 @@ d4 Rab8 27. Rxb5 Rxb5 28. Rd1 Qb7 29. dxe5 dxe5 30. Qc2 Qb6 31. Rd2 Rb2 $4
 [Black "Taylor, J."]
 [Result "1-0"]
 [ECO "A16"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "73"]
 
@@ -14299,7 +13245,6 @@ Qc3 Kf8 33. Qh8+ Ke7 34. Qg7+ Kd6 35. Qxb7 a5 36. Qxd5+ Kxd5 37. e7 1-0
 [Black "Wienburg, R."]
 [Result "0-1"]
 [ECO "C46"]
-[Opening "Four knights game"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -14317,7 +13262,6 @@ Qe7 26. Qc3 Qh4# 0-1
 [Black "Winmill, R."]
 [Result "1-0"]
 [ECO "B50"]
-[Opening "Sicilian"]
 [EventDate "1995.??.??"]
 [PlyCount "35"]
 
@@ -14333,7 +13277,6 @@ Qe7 26. Qc3 Qh4# 0-1
 [Black "Kaczmarek, W."]
 [Result "1-0"]
 [ECO "C30"]
-[Opening "King's gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "93"]
 
@@ -14354,8 +13297,6 @@ Ng5 Be5+ 45. Kc5 Bd6+ 46. Kc6 Ke5 47. Nf7+ 1-0
 [Black "Kubik, R."]
 [Result "1-0"]
 [ECO "C00"]
-[Opening "French"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "67"]
 
@@ -14374,7 +13315,6 @@ Qd2 Nd7 15. a3 b6 16. g4 Qxg4+ 17. Kh1 h5 18. Bg3 h4 19. c3 Qf3+ 20. Kg1 h3
 [Black "St.Pierre, P."]
 [Result "1-0"]
 [ECO "C50"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "55"]
 
@@ -14392,7 +13332,6 @@ Rh7 21. Ba3 Qf4 22. g3 Qf5 23. Nd4 Qg6 24. Rxh7 Bxh7 25. Rd1 g4 26. f4 h4
 [Black "Elieff, K."]
 [Result "0-1"]
 [ECO "A84"]
-[Opening "Dutch defence"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -14410,8 +13349,6 @@ Nxb7 Bb6 27. b4 Bd4 28. Rc1 Rg8 29. g3 Rg4 30. Nd8 e2+ 31. Kh1 0-1
 [Black "Loh, P."]
 [Result "1-0"]
 [ECO "D00"]
-[Opening "Queen's pawn"]
-[Variation "stonewall attack"]
 [EventDate "1995.??.??"]
 [PlyCount "67"]
 
@@ -14430,8 +13367,6 @@ Rc8+ Ka7 33. Bd4+ Ka6 34. Ra8# 1-0
 [Black "Demmery, S."]
 [Result "0-1"]
 [ECO "B01"]
-[Opening "Scandinavian"]
-[Variation "Marshall variation"]
 [EventDate "1995.??.??"]
 [PlyCount "68"]
 
@@ -14450,8 +13385,6 @@ Rc8+ Ka7 33. Bd4+ Ka6 34. Ra8# 1-0
 [Black "Loh, P."]
 [Result "0-1"]
 [ECO "C46"]
-[Opening "Four knights"]
-[Variation "Gunsberg variation"]
 [EventDate "1995.??.??"]
 [PlyCount "128"]
 
@@ -14475,7 +13408,6 @@ Qb5 63. Ka8 Kc6 64. Ka7 Qb7# 0-1
 [Black "McRorie, A."]
 [Result "1/2-1/2"]
 [ECO "B30"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "86"]
 
@@ -14496,7 +13428,6 @@ Rxa6 Qb7 39. Rad6 Qxe4 40. Re1 Qf4 41. Red1 Qe4 42. Re1 Qf4 43. Red1 Qe4
 [Black "De Kerpel, S."]
 [Result "1-0"]
 [ECO "A20"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "123"]
 
@@ -14520,8 +13451,6 @@ Be8 57. Rb6+ Kg7 58. Ke2 Bg6 59. Kd3 Kh6 60. Kd4 Kg5 61. Ke5 Kh6 62. Kf6
 [Black "McRorie, A."]
 [Result "1-0"]
 [ECO "B20"]
-[Opening "Sicilian"]
-[Variation "wing gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "69"]
 
@@ -14540,7 +13469,6 @@ Ng6+ fxg6 33. Rxg6 Rf8 34. Rxh6+ Kg7 35. Qg6# 1-0
 [Black "Moser, D."]
 [Result "1-0"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "25"]
 
@@ -14555,7 +13483,6 @@ Ng6+ fxg6 33. Rxg6 Rf8 34. Rxh6+ Kg7 35. Qg6# 1-0
 [Black "Khan, Z."]
 [Result "1/2-1/2"]
 [ECO "C45"]
-[Opening "Scotch game"]
 [EventDate "1995.??.??"]
 [PlyCount "79"]
 
@@ -14575,8 +13502,6 @@ Nd5 Bxd5 21. exd5 Qf7 22. Rxe8 Rxe8 23. g6 Nxg6 24. h5 Qxd5 25. Rg1 Qxh5
 [Black "McRorie, A."]
 [Result "1/2-1/2"]
 [ECO "B58"]
-[Opening "Sicilian"]
-[Variation "classical"]
 [EventDate "1995.??.??"]
 [PlyCount "70"]
 
@@ -14595,8 +13520,6 @@ Re6 32. a4 Re5 33. axb5 Rxb5 34. b4 a5 35. bxa5 Rxa5 1/2-1/2
 [Black "Van der Velde, W."]
 [Result "0-1"]
 [ECO "B76"]
-[Opening "Sicilian"]
-[Variation "dragon, Yugoslav attack, Rauser variation"]
 [EventDate "1995.??.??"]
 [PlyCount "52"]
 
@@ -14614,8 +13537,6 @@ Bxg7 Nxe2+ 15. Qxe2 Kxg7 16. Qd3 a6 17. Rdf1 d5 18. g4 hxg4 19. fxg4 Bxg4
 [Black "Kaczmarek, W."]
 [Result "0-1"]
 [ECO "C50"]
-[Opening "Giuoco Pianissimo"]
-[Variation "Italian four knights variation"]
 [EventDate "1995.??.??"]
 [PlyCount "79"]
 
@@ -14636,7 +13557,6 @@ incomprehensible. } 0-1
 [Black "Loh, L."]
 [Result "1-0"]
 [ECO "B50"]
-[Opening "Sicilian"]
 [EventDate "1995.??.??"]
 [PlyCount "139"]
 
@@ -14661,8 +13581,6 @@ Qd5+ Kh2 69. Kd6 Kh3 70. Ke5 1-0
 [Black "Patel, A."]
 [Result "1-0"]
 [ECO "C46"]
-[Opening "Four knights"]
-[Variation "Italian variation"]
 [EventDate "1995.??.??"]
 [PlyCount "90"]
 
@@ -14683,7 +13601,6 @@ Rh5 Ng6 44. R8h7 Nf4 45. Rxe7+ Kxe7 1-0
 [Black "Rabosa, P."]
 [Result "0-1"]
 [ECO "C30"]
-[Opening "King's gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "120"]
 
@@ -14706,8 +13623,6 @@ a5 bxa5 56. Kxc5 f3 57. Kb6 f2 58. c4 f1=Q 59. c5 Qb5+ 60. Ka7 Qxc5+ 0-1
 [Black "Elieff, K."]
 [Result "0-1"]
 [ECO "C63"]
-[Opening "Ruy Lopez"]
-[Variation "Schliemann defence"]
 [EventDate "1995.??.??"]
 [PlyCount "84"]
 
@@ -14727,8 +13642,6 @@ Kd2 Bf5 39. Re2 Rd8+ 40. Ke1 Bg3+ 41. Kf1 Be4 42. Rb2 Rf8+ 0-1
 [Black "Van der Velde, W."]
 [Result "1-0"]
 [ECO "B52"]
-[Opening "Sicilian"]
-[Variation "Canal-Sokolsky attack, 3...Bd7"]
 [EventDate "1995.??.??"]
 [PlyCount "89"]
 
@@ -14749,8 +13662,6 @@ c4 44. bxc4 dxc4 45. Kf2 1-0
 [Black "Brock, Do"]
 [Result "1-0"]
 [ECO "E61"]
-[Opening "King's Indian"]
-[Variation "Smyslov system"]
 [EventDate "1995.??.??"]
 [PlyCount "77"]
 
@@ -14770,8 +13681,6 @@ Bf1 Qe3 39. a5 1-0
 [Black "Dobrishman, L."]
 [Result "0-1"]
 [ECO "D07"]
-[Opening "QGD"]
-[Variation "Chigorin defence"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -14790,8 +13699,6 @@ Rg3 33. Qh5 Rh3 0-1
 [Black "Matthews, I."]
 [Result "0-1"]
 [ECO "B90"]
-[Opening "Sicilian"]
-[Variation "Najdorf"]
 [EventDate "1995.??.??"]
 [PlyCount "74"]
 
@@ -14810,7 +13717,6 @@ h4 exd1=Q 34. Rxd1 Qf2 35. Rg1 Rxc2 36. Qxg6+ fxg6 37. h5 Qh4# 0-1
 [Black "Wienburg, R."]
 [Result "0-1"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -14828,8 +13734,6 @@ gxh3 28. Bxf8 hxg2+ 29. Kxg2 Qg5+ 30. Kh1 Qh4+ 31. Kg2 Qh3# 0-1
 [Black "Winmill, R."]
 [Result "1-0"]
 [ECO "D94"]
-[Opening "Gruenfeld"]
-[Variation "5.e3"]
 [EventDate "1995.??.??"]
 [PlyCount "87"]
 
@@ -14850,8 +13754,6 @@ Qc1+ 39. Qf1 Qe3+ 40. Qf2 Qe7 41. Kh2 Qg7 42. Qf4 Kc8 43. Qg4+ Kb8 44. Qe6
 [Black "Findlay, D."]
 [Result "0-1"]
 [ECO "A46"]
-[Opening "Queen's pawn"]
-[Variation "Yusupov-Rubinstein system"]
 [EventDate "1995.??.??"]
 [PlyCount "80"]
 
@@ -14871,7 +13773,6 @@ Kh2 Qd6 33. Qg5 Qxb4 34. Rce3 R4d5 35. Qf4 Rf5 36. Qc7 Rxf2+ 37. Kh3 Qd2
 [Black "Moser, D."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -14890,7 +13791,6 @@ Kg7 26. Qa7 Rd8 27. Rxd8 Qxd8 28. Qxa6 Qd2 29. Qf1 Qxb4 30. Qd3 $4 { time.
 [Black "Trad, S."]
 [Result "1/2-1/2"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "104"]
 
@@ -14912,7 +13812,6 @@ Kb2 Kb4 50. Kb1 Kc3 51. Kc1 Kc4 52. Kb2 Kb4 1/2-1/2
 [Black "Litchfield, G."]
 [Result "0-1"]
 [ECO "D30"]
-[Opening "Queen's gambit declined"]
 [EventDate "1995.??.??"]
 [PlyCount "67"]
 
@@ -14931,8 +13830,6 @@ Bf2 Bxf2+ 27. Kg2 exd1=Q 28. Rxd1 Rxd7 29. Rb1 b6 30. h4 Bc5 31. Kh3 Nf2+
 [Black "Sengupta, O."]
 [Result "0-1"]
 [ECO "D31"]
-[Opening "QGD"]
-[Variation "Alapin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "112"]
 
@@ -14955,7 +13852,6 @@ axb6+ axb6 56. Kg2 Re1 0-1
 [Black "Trad, S."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "76"]
 
@@ -14975,7 +13871,6 @@ a4 32. Nd4 Ne3+ 33. Ke4 Nc2 34. Kd3 Nxd4 35. Kc3 Nc6 36. e6 a3 37. exf7 a2
 [Black "Kaczmarek, W."]
 [Result "1/2-1/2"]
 [ECO "C45"]
-[Opening "Scotch game"]
 [EventDate "1995.??.??"]
 [PlyCount "120"]
 
@@ -14998,7 +13893,6 @@ Re7 45. Kb5 Kg4 46. Kb6 Kxh4 47. a7 Rxa7 48. Kxa7 f3 49. Rf8 Kg3 50. Rf5 h4
 [Black "Samano, B."]
 [Result "0-1"]
 [ECO "C00"]
-[Opening "French defence"]
 [EventDate "1995.??.??"]
 [PlyCount "90"]
 
@@ -15019,8 +13913,6 @@ Kf7 45. Ke4 Kxe7 0-1
 [Black "Findlay, D."]
 [Result "1-0"]
 [ECO "A05"]
-[Opening "Reti"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "93"]
 
@@ -15041,8 +13933,6 @@ Rc6 Ra7 45. Ra6 Rb7 46. Kf1 g5 47. Ke2 1-0
 [Black "Khan, Z."]
 [Result "0-1"]
 [ECO "C37"]
-[Opening "KGA"]
-[Variation "Rosentreter gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "40"]
 
@@ -15059,7 +13949,6 @@ Kh1 Ngf6 0-1
 [Black "Loh, P."]
 [Result "0-1"]
 [ECO "B02"]
-[Opening "Alekhine's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "76"]
 
@@ -15079,8 +13968,6 @@ a6 Re8 0-1
 [Black "Matthews, I."]
 [Result "0-1"]
 [ECO "A31"]
-[Opening "English"]
-[Variation "symmetrical, Benoni formation"]
 [EventDate "1995.??.??"]
 [PlyCount "76"]
 
@@ -15100,7 +13987,6 @@ h3 0-1
 [Black "Patel, A."]
 [Result "1-0"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "105"]
 
@@ -15122,8 +14008,6 @@ Qxa4 Kd3 52. Qd1 Kc3 53. g6 1-0
 [Black "Brock, Da"]
 [Result "1-0"]
 [ECO "A35"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -15141,8 +14025,6 @@ Qxa4 Kd3 52. Qd1 Kc3 53. g6 1-0
 [Black "Sengupta, O."]
 [Result "1-0"]
 [ECO "E94"]
-[Opening "King's Indian"]
-[Variation "orthodox variation"]
 [EventDate "1995.??.??"]
 [PlyCount "63"]
 
@@ -15160,8 +14042,6 @@ Rg3 f5 28. Rxg7 Rxg7 29. exf5 Bc8 30. Bh5+ Ke7 31. Nb5 Bxf5 32. Qxd6# 1-0
 [Black "Demmery, S."]
 [Result "0-1"]
 [ECO "C02"]
-[Opening "French"]
-[Variation "advance, Nimzovich system"]
 [EventDate "1995.??.??"]
 [PlyCount "56"]
 
@@ -15179,8 +14059,6 @@ Qxe2 26. Bf4 Ne1+ 27. Kg3 f5 28. f3 Qxf3+ 0-1
 [Black "Loh, L."]
 [Result "0-1"]
 [ECO "B10"]
-[Opening "Caro-Kann"]
-[Variation "anti-Caro-Kann defence"]
 [EventDate "1995.??.??"]
 [PlyCount "112"]
 
@@ -15203,7 +14081,6 @@ g4 Qxa2+ 0-1
 [Black "Taylor, J."]
 [Result "0-1"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "74"]
 
@@ -15223,7 +14100,6 @@ Rxe1 Qc5+ 27. Kf1 Re7 28. Nf4 Rae8 29. Ne6 Qc3 30. Bxg7 Rxg7 31. Ng5 Rxe1+
 [Black "Demmery, S."]
 [Result "0-1"]
 [ECO "B01"]
-[Opening "Scandinavian gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -15242,7 +14118,6 @@ Rxh2+ 32. Kg1 Rg2+ 33. Kh1 Rg6 0-1
 [Black "Wienburg, R."]
 [Result "1-0"]
 [ECO "C23"]
-[Opening "Bishop's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "91"]
 
@@ -15263,8 +14138,6 @@ Nh1 45. Rxc6+ Rxc6 46. Bxc6 1-0
 [Black "Litchfield, G."]
 [Result "0-1"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "Larsen variation"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -15283,8 +14156,6 @@ b6 21. a4 Red8 22. Bf1 Rxd1 23. Rxd1 a5 24. Kh1 Bf8 25. Kg1 Kg7 26. Be2 Bc5
 [Black "Trad, S."]
 [Result "1-0"]
 [ECO "B02"]
-[Opening "Alekhine's defence"]
-[Variation "Scandinavian variation"]
 [EventDate "1995.??.??"]
 [PlyCount "53"]
 
@@ -15302,7 +14173,6 @@ Rc6 26. Bc5 b6 27. Rc7+ 1-0
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [ECO "B01"]
-[Opening "Scandinavian gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "76"]
 
@@ -15322,7 +14192,6 @@ b4 Qf4+ 0-1
 [Black "Elieff, K."]
 [Result "1-0"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "125"]
 
@@ -15346,7 +14215,6 @@ Rb6+ Ka1 63. Rb7 1-0
 [Black "Dobrishman, L."]
 [Result "0-1"]
 [ECO "C55"]
-[Opening "Two knights defence (Modern bishop's opening)"]
 [EventDate "1995.??.??"]
 [PlyCount "112"]
 
@@ -15369,7 +14237,6 @@ b4 0-1
 [Black "Pretti, J."]
 [Result "1/2-1/2"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "131"]
 
@@ -15393,7 +14260,6 @@ Kg3 Ne3 63. h4 Nf5+ 64. Kg4 Ng7 65. Kg5 Kd7 66. Kg6 1/2-1/2
 [Black "Brock, Da"]
 [Result "1-0"]
 [ECO "D15"]
-[Opening "QGD Slav accepted"]
 [EventDate "1995.??.??"]
 [PlyCount "31"]
 
@@ -15409,8 +14275,6 @@ Bxe5 Nd7 9. Bg2 Nxe5 10. dxe5 Qc7 11. Nxb5 cxb5 12. Bxa8 Bb7 13. Bxb7 Qxb7
 [Black "Khan, Z."]
 [Result "1-0"]
 [ECO "E21"]
-[Opening "Nimzo-Indian"]
-[Variation "three knights variation"]
 [EventDate "1995.??.??"]
 [PlyCount "97"]
 
@@ -15431,7 +14295,6 @@ h7 Nc8 45. Bxc8 a5 46. Bxb7 axb4 47. Bc8 b3 48. Bf5 b2 49. Kg5 1-0
 [Black "Kubik, R."]
 [Result "0-1"]
 [ECO "A17"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "92"]
 
@@ -15452,7 +14315,6 @@ Ke3 Kd5 39. h4 Ra1 40. Bb4 a5 41. Bf8 g6 42. h5 gxh5 43. gxh5 Rh1 44. h6 b4
 [Black "Brock, Do"]
 [Result "0-1"]
 [ECO "A04"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "106"]
 
@@ -15474,8 +14336,6 @@ Qxc7 50. d5 Qxc4+ 51. Kf3 Qxd5+ 52. Ke3 f5 53. Kf4 Kg7 0-1
 [Black "Huynh, L."]
 [Result "1-0"]
 [ECO "A07"]
-[Opening "Reti"]
-[Variation "King's Indian attack (Barcza system)"]
 [EventDate "1995.??.??"]
 [PlyCount "91"]
 
@@ -15496,7 +14356,6 @@ Kh6 45. Qxg5+ Kh7 46. Rxc4 1-0
 [Black "St.Pierre, P."]
 [Result "0-1"]
 [ECO "A04"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "28"]
 
@@ -15512,7 +14371,6 @@ Bg2 Qxg2# 0-1
 [Black "Dobrishman, L."]
 [Result "0-1"]
 [ECO "A04"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -15531,7 +14389,6 @@ Rxd2 Bb4 14. Rxd8+ Rxd8 15. Nb5 a6 16. a3 Bd2+ 17. Kd1 axb5 18. Ke2 Nxe4
 [Black "McRorie, A."]
 [Result "0-1"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "68"]
 
@@ -15550,8 +14407,6 @@ Rxd2 Bb4 14. Rxd8+ Rxd8 15. Nb5 a6 16. a3 Bd2+ 17. Kd1 axb5 18. Ke2 Nxe4
 [Black "Samano, B."]
 [Result "0-1"]
 [ECO "C00"]
-[Opening "French"]
-[Variation "Two knights variation"]
 [EventDate "1995.??.??"]
 [PlyCount "17"]
 
@@ -15566,8 +14421,6 @@ b3 Qd4 9. Bb2 { The rest of the game score was incomprehensible. } 0-1
 [Black "Demmery, S."]
 [Result "0-1"]
 [ECO "D12"]
-[Opening "QGD Slav"]
-[Variation "4.e3 Bf5"]
 [EventDate "1995.??.??"]
 [PlyCount "32"]
 
@@ -15583,7 +14436,6 @@ Bxg4 Qh4 15. h3 Qg3+ 16. Kh1 Bxg4 0-1
 [Black "Matthews, I."]
 [Result "1-0"]
 [ECO "A43"]
-[Opening "Old Benoni defence"]
 [EventDate "1995.??.??"]
 [PlyCount "33"]
 
@@ -15599,7 +14451,6 @@ Rd1 e5 15. Qd3 e4 16. Qxe4 f5 17. Qd5+ 1-0
 [Black "Moser, D."]
 [Result "1-0"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -15617,7 +14468,6 @@ g6 27. Qg5 Rf8 28. Qe7 Rf7 29. Qd8+ Be8 30. Rxe6 Kf8 31. c6 1-0
 [Black "Huynh, L."]
 [Result "1-0"]
 [ECO "C50"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "73"]
 
@@ -15636,7 +14486,6 @@ Rb1 Bc7 34. Ne7+ Kd7 35. Rb7 Ne8 36. Qg4+ Kd8 37. Qc8# 1-0
 [Black "Litchfield, G."]
 [Result "0-1"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "98"]
 
@@ -15657,7 +14506,6 @@ Bxc4 39. Rb2 b6 40. Rb4 Bf1 41. Kf2 Bh3 42. Ke3 Re5 43. f4 Rc5 44. Kd4 Kf7
 [Black "Moser, D."]
 [Result "0-1"]
 [ECO "C50"]
-[Opening "Giuoco Pianissimo"]
 [EventDate "1995.??.??"]
 [PlyCount "134"]
 
@@ -15682,7 +14530,6 @@ Kg2 Rhg3+ 63. Kf1 Rb1+ 64. Ke2 Rb2+ 65. Ke1 Rg1+ 66. Rf1 Rb1+ 67. Ke2 Rgxf1
 [Black "Brock, Da"]
 [Result "1/2-1/2"]
 [ECO "D10"]
-[Opening "QGD Slav defence"]
 [EventDate "1995.??.??"]
 [PlyCount "120"]
 
@@ -15705,8 +14552,6 @@ Re6+ Rxe6 51. dxe6 Kc6 52. e7 Kd7 53. e8=Q+ Kxe8 54. Kd5 Kf7 55. Ke5 Kg7
 [Black "Pretti, J."]
 [Result "1-0"]
 [ECO "D06"]
-[Opening "QGD"]
-[Variation "Grau (Sahovic) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "43"]
 
@@ -15723,8 +14568,6 @@ Na4 a5 21. Rc7 Bc2 22. Rxc2 1-0
 [Black "Sengupta, O."]
 [Result "1-0"]
 [ECO "D53"]
-[Opening "QGD"]
-[Variation "4.Bg5 Be7"]
 [EventDate "1995.??.??"]
 [PlyCount "95"]
 
@@ -15745,8 +14588,6 @@ d5 Bc5 46. Nb3 Kb7 47. a5 bxa5 48. Nxa5+ 1-0
 [Black "Van der Velde, W."]
 [Result "0-1"]
 [ECO "B76"]
-[Opening "Sicilian"]
-[Variation "dragon, Yugoslav attack, 7...O-O"]
 [EventDate "1995.??.??"]
 [PlyCount "64"]
 
@@ -15765,7 +14606,6 @@ Qd8+ Kh7 0-1
 [Black "Erickson, J."]
 [Result "0-1"]
 [ECO "C50"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "76"]
 
@@ -15785,7 +14625,6 @@ Rd1# 0-1
 [Black "Elieff, K."]
 [Result "0-1"]
 [ECO "B00"]
-[Opening "Lemming defence"]
 [EventDate "1995.??.??"]
 [PlyCount "118"]
 
@@ -15808,8 +14647,6 @@ Kh1 Qf3+ 57. Kg1 Bd4+ 58. Kh2 Qf2+ 59. Kh1 Qg1# 0-1
 [Black "Jung, H."]
 [Result "0-1"]
 [ECO "A01"]
-[Opening "Nimzovich-Larsen attack"]
-[Variation "modern variation"]
 [EventDate "1995.??.??"]
 [PlyCount "92"]
 
@@ -15830,8 +14667,6 @@ Qd6 38. Qd4 Qh2 39. Nc5 Ne5 40. Kc3 Ra8 41. Qf2 Ng4 42. Qe1 Qd6 43. Kd4 Ne5
 [Black "Surlan, D."]
 [Result "0-1"]
 [ECO "C60"]
-[Opening "Ruy Lopez"]
-[Variation "fianchetto (Smyslov/Barnes) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "54"]
 
@@ -15849,7 +14684,6 @@ $2 Rxc4 0-1
 [Black "Van der Velde, W."]
 [Result "0-1"]
 [ECO "A00"]
-[Opening "Anderssen's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "116"]
 
@@ -15872,8 +14706,6 @@ Ne2 Ng7 35. Nf4 Bxf4 36. exf4 Rxg1+ 37. Rxg1 Be8 38. Bxe8 Rxe8 39. Ne3 Qf7
 [Black "Zendrowski, J."]
 [Result "0-1"]
 [ECO "A05"]
-[Opening "Reti"]
-[Variation "King's Indian attack, Reti-Smyslov variation"]
 [EventDate "1995.??.??"]
 [PlyCount "74"]
 
@@ -15892,8 +14724,6 @@ Rxb5 Qxa6 28. Qxa6 Rxa6 29. Be7 Ra1+ 30. Kg2 Ra2 31. Nf1 Ng4 32. Rxd5 Nxf2
 [Black "Elieff, K."]
 [Result "1-0"]
 [ECO "A07"]
-[Opening "Reti"]
-[Variation "King's Indian attack (Barcza system)"]
 [EventDate "1995.??.??"]
 [PlyCount "145"]
 
@@ -15919,8 +14749,6 @@ Bxd3 Bxb3 33. Qb8+ Re8 34. Qxa7 Bd5 35. Ng5 Qe1+ 36. Bf1 Ra8 37. Qc5 Ra1
 [Black "Pitre, R."]
 [Result "1-0"]
 [ECO "B10"]
-[Opening "Caro-Kann"]
-[Variation "closed (Breyer) variation"]
 [EventDate "1995.??.??"]
 [PlyCount "91"]
 
@@ -15941,8 +14769,6 @@ f4 exf4+ 39. Kxf4 Bc4 40. Bxc4 Kxc4 41. Ke4 Kxc3 42. Kd5 Kd3 43. Ke6 Ke4
 [Black "Redhead, G."]
 [Result "1/2-1/2"]
 [ECO "C77"]
-[Opening "Ruy Lopez"]
-[Variation "Wormald (Alapin) attack"]
 [EventDate "1995.??.??"]
 [PlyCount "110"]
 
@@ -15965,7 +14791,6 @@ Sealed. } 51. Ne3 Qa4 52. Ke2 Qd4 53. Qc1 Qd6 54. Kf2 Qd4 55. Ke2 Qd6
 [Black "Zendrowski, J."]
 [Result "1-0"]
 [ECO "B30"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "65"]
 
@@ -15984,8 +14809,6 @@ Qc5 32. a4 Kg7 33. Qxf8+ 1-0
 [Black "Redhead, G."]
 [Result "1-0"]
 [ECO "C88"]
-[Opening "Ruy Lopez"]
-[Variation "closed, 7...O-O"]
 [EventDate "1995.??.??"]
 [PlyCount "95"]
 
@@ -16006,8 +14829,6 @@ Re6+ Kd5 40. hxg5 Rg7 41. Re4 Rxg5 42. Ne6 Rf5 43. Nxf4+ Kc5 44. Rd4 Bc8
 [Black "Surlan, D."]
 [Result "1-0"]
 [ECO "C63"]
-[Opening "Ruy Lopez"]
-[Variation "Schliemann defence, Berger variation"]
 [EventDate "1995.??.??"]
 [PlyCount "73"]
 
@@ -16026,7 +14847,6 @@ Bxe5 Rad8 27. Bxg7 Rd7 28. Qe4 Qxe4 29. Rxe4 Rgxg7 30. Rae1 h5 31. f3 Kb6
 [Black "Zendrowski, J."]
 [Result "0-1"]
 [ECO "B30"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "48"]
 
@@ -16043,7 +14863,6 @@ Qxh1 bxc4 21. Ke2 Rb8 22. b5 axb5 23. a5 e5 24. Qd5 Nf6 0-1
 [Black "Ehrman, C."]
 [Result "1/2-1/2"]
 [ECO "B06"]
-[Opening "Robatsch defence"]
 [EventDate "1995.??.??"]
 [PlyCount "99"]
 
@@ -16065,7 +14884,6 @@ Nd3 1/2-1/2
 [Black "Elieff, K."]
 [Result "0-1"]
 [ECO "B00"]
-[Opening "Lemming defence"]
 [EventDate "1995.??.??"]
 [PlyCount "44"]
 
@@ -16082,8 +14900,6 @@ Nd3 1/2-1/2
 [Black "Van der Velde, W."]
 [Result "1/2-1/2"]
 [ECO "B29"]
-[Opening "Sicilian"]
-[Variation "Nimzovich-Rubinstein variation"]
 [EventDate "1995.??.??"]
 [PlyCount "115"]
 
@@ -16106,7 +14922,6 @@ Kf4 57. Bg6 Ke5 58. Be8 1/2-1/2
 [Black "Ehrman, C."]
 [Result "1-0"]
 [ECO "A10"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -16124,8 +14939,6 @@ Rxc7 27. d8=Q+ Nxd8 28. Rxd8+ Rf8 29. Rxf8+ Kxf8 30. fxg7+ Kg8 31. Rf8# 1-0
 [Black "Jung, H."]
 [Result "1/2-1/2"]
 [ECO "A22"]
-[Opening "English"]
-[Variation "Bremen, reverse dragon"]
 [EventDate "1995.??.??"]
 [PlyCount "80"]
 
@@ -16145,8 +14958,6 @@ Bxd2+ 39. Rxd2 Rb3+ 40. Kc2 Rb4 1/2-1/2
 [Black "Redhead, G."]
 [Result "0-1"]
 [ECO "C33"]
-[Opening "KGA"]
-[Variation "Villemson (Steinitz) gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "91"]
 
@@ -16167,7 +14978,6 @@ b5+ axb5 40. axb5+ Kxb5 41. Nxd5 Bxh4 42. Ne3 Be1+ 43. Kb2 Bf2 44. Nc2 h5
 [Black "Van der Velde, W."]
 [Result "1-0"]
 [ECO "A03"]
-[Opening "Bird's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -16185,8 +14995,6 @@ Rd3 Re4 27. Ng5 Re7 28. Qc4+ Kh8 29. Ne6 Qb2 30. Nxf8 1-0
 [Black "Ehrman, C."]
 [Result "1/2-1/2"]
 [ECO "E32"]
-[Opening "Nimzo-Indian"]
-[Variation "classical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "77"]
 
@@ -16206,7 +15014,6 @@ Rxf5 Bd7 33. Rf3 Rg8 34. Bxd3 cxd3 35. Rxd3 Bf5 36. Rg3 Rxg3 37. hxg3 Kg8
 [Black "Jung, H."]
 [Result "0-1"]
 [ECO "A41"]
-[Opening "Old Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "88"]
 
@@ -16227,7 +15034,6 @@ b4 44. g6 b3 0-1
 [Black "Ehrman, C."]
 [Result "1-0"]
 [ECO "B06"]
-[Opening "Robatsch defence"]
 [EventDate "1995.??.??"]
 [PlyCount "49"]
 
@@ -16245,8 +15051,6 @@ fxg6 Rxf1+ 21. Rxf1 Qxd4 22. Qe6+ Kh8 23. Rf7 Qa1+ 24. Bf1 hxg6 25. Qxg6
 [Black "Redhead, G."]
 [Result "1-0"]
 [ECO "C23"]
-[Opening "Bishop's opening"]
-[Variation "Philidor variation"]
 [EventDate "1995.??.??"]
 [PlyCount "75"]
 
@@ -16266,7 +15070,6 @@ Nb4 21. Qc3 Nc5 22. Nb2 Rg6 23. Nd4 Ne6 24. Nf5 Ng5 25. Kh1 Kh8 26. f4 Ne6
 [Black "Surlan, D."]
 [Result "1-0"]
 [ECO "C53"]
-[Opening "Giuoco Piano"]
 [EventDate "1995.??.??"]
 [PlyCount "41"]
 
@@ -16283,8 +15086,6 @@ O-O Nf6 9. d3 O-O 10. Re1 Qe7 11. Bb2 Bg4 12. Nbd2 g6 13. d4 h6 14. Bd5 Nd8
 [Black "Van der Velde, W."]
 [Result "0-1"]
 [ECO "B78"]
-[Opening "Sicilian"]
-[Variation "dragon, Yugoslav attack, 10.O-O-O"]
 [EventDate "1995.??.??"]
 [PlyCount "82"]
 
@@ -16305,7 +15106,6 @@ Kxe7 26. Nd6 Rb8 27. c4 b6 28. Nb5 Rb7 29. Nc3 Kf8 30. Kc2 Ng7 31. g4 f6
 [Black "Kaczmarek, B."]
 [Result "0-1"]
 [ECO "C53"]
-[Opening "Giuoco Piano"]
 [EventDate "1995.??.??"]
 [PlyCount "68"]
 
@@ -16324,8 +15124,6 @@ Kd7 33. Nc4 b6 34. Nxe5+ fxe5 0-1
 [Black "Stephenson, G."]
 [Result "0-1"]
 [ECO "E92"]
-[Opening "King's Indian"]
-[Variation "Petrosian system"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -16343,8 +15141,6 @@ h5 28. Nhf1 Qf4 29. Bxh5 Qh4 0-1
 [Black "Karkhanis, S."]
 [Result "0-1"]
 [ECO "A48"]
-[Opening "King's Indian"]
-[Variation "East Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "64"]
 
@@ -16363,7 +15159,6 @@ Bb5 15. Qb3 Rc8 16. a4 Bd7 17. Bb2 Nh5 18. Nf1 f5 19. Ng3 fxe4 20. Rxe4 Nf4
 [Black "Samano, B."]
 [Result "1-0"]
 [ECO "D05"]
-[Opening "Colle system"]
 [EventDate "1995.??.??"]
 [PlyCount "65"]
 
@@ -16382,8 +15177,6 @@ Kb7 33. Rb1 1-0
 [Black "Schiff, M."]
 [Result "1/2-1/2"]
 [ECO "A46"]
-[Opening "Queen's pawn"]
-[Variation "Yusupov-Rubinstein system"]
 [EventDate "1995.??.??"]
 [PlyCount "47"]
 
@@ -16400,8 +15193,6 @@ Be7 9. Qe2 O-O 10. g4 cxd4 11. cxd4 Nb4 12. a3 Nxd3+ 13. Qxd3 d5 14. e5 Ne4
 [Black "Ward, R."]
 [Result "1-0"]
 [ECO "D13"]
-[Opening "QGD Slav"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -16419,8 +15210,6 @@ Nxb4 Bxb4 27. Na3 Bxa3 28. Bxa3 Qd7 29. Qc5 1-0
 [Black "Stephenson, G."]
 [Result "1-0"]
 [ECO "B14"]
-[Opening "Caro-Kann"]
-[Variation "Panov-Botvinnik attack, 5...e6"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -16438,8 +15227,6 @@ Bc8 26. g4 Rd8 27. h4 g5 28. Nh5 Bxg4 29. Qg7+ 1-0
 [Black "Ward, R."]
 [Result "0-1"]
 [ECO "B09"]
-[Opening "Pirc"]
-[Variation "Austrian attack, dragon formation"]
 [EventDate "1995.??.??"]
 [PlyCount "110"]
 
@@ -16461,7 +15248,6 @@ Rxa5 44. Rd7 Rc5 45. Kg2 Kg5 46. Rd2 h5 47. Kg1 h4 48. Kg2 h3+ 49. Kh2 Kh4
 [Black "Amsinga, H."]
 [Result "1/2-1/2"]
 [ECO "C53"]
-[Opening "Giuoco Piano"]
 [EventDate "1995.??.??"]
 [PlyCount "51"]
 
@@ -16479,8 +15265,6 @@ Rxa5 44. Rd7 Rc5 45. Kg2 Kg5 46. Rd2 h5 47. Kg1 h4 48. Kg2 h3+ 49. Kh2 Kh4
 [Black "Kaczmarek, B."]
 [Result "0-1"]
 [ECO "C53"]
-[Opening "Giuoco Piano"]
-[Variation "centre-holding variation"]
 [EventDate "1995.??.??"]
 [PlyCount "114"]
 
@@ -16503,8 +15287,6 @@ Rd2# 0-1
 [Black "Karkhanis, S."]
 [Result "0-1"]
 [ECO "B90"]
-[Opening "Sicilian"]
-[Variation "Najdorf"]
 [EventDate "1995.??.??"]
 [PlyCount "89"]
 
@@ -16525,8 +15307,6 @@ Qh3 Bc2 45. Rd7 $2 0-1
 [Black "Stephenson, G."]
 [Result "1/2-1/2"]
 [ECO "B86"]
-[Opening "Sicilian"]
-[Variation "Sozin attack"]
 [EventDate "1995.??.??"]
 [PlyCount "118"]
 
@@ -16550,7 +15330,6 @@ Kc3 Be2 59. Bf2 a4 1/2-1/2
 [Black "Karkhanis, S."]
 [Result "0-1"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "82"]
 
@@ -16570,8 +15349,6 @@ Kg2 Rxe4 32. Qh6 Re2+ 33. Kg1 Bh2+ 34. Kh1 Qb7+ 35. Qc6 Qxc6+ 36. bxc6 Rc8
 [Black "Milosevic, A."]
 [Result "0-1"]
 [ECO "C20"]
-[Opening "KP"]
-[Variation "Mengarini's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "146"]
 
@@ -16597,7 +15374,6 @@ Kb2 0-1
 [Black "Schiff, M."]
 [Result "1/2-1/2"]
 [ECO "C00"]
-[Opening "French defence, Steiner variation"]
 [EventDate "1995.??.??"]
 [PlyCount "89"]
 
@@ -16618,7 +15394,6 @@ Kxe4 Kf6 45. g4 1/2-1/2
 [Black "Ward, R."]
 [Result "0-1"]
 [ECO "B00"]
-[Opening "King's pawn opening"]
 [EventDate "1995.??.??"]
 [PlyCount "134"]
 
@@ -16643,8 +15418,6 @@ Rb2 66. Rxd6 Rxb7 67. Rd5 $4 Kg3 0-1
 [Black "Amsinga, H."]
 [Result "1/2-1/2"]
 [ECO "B24"]
-[Opening "Sicilian"]
-[Variation "closed"]
 [EventDate "1995.??.??"]
 [PlyCount "51"]
 
@@ -16661,8 +15434,6 @@ Ng4 Neg8 22. Nf3 Nh5 23. Ne3 h6 24. fxg6 fxg6 25. Nd5 Be6 26. Ne3 1/2-1/2
 [Black "Karkhanis, S."]
 [Result "1-0"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "closed"]
 [EventDate "1995.??.??"]
 [PlyCount "81"]
 
@@ -16682,8 +15453,6 @@ Nf3 Nf6 34. Nd3 Rb5 35. Nfxe5 Nxe5 36. Nxe5 Rxe5 37. Rd1 Nxg4 38. Rxd4 Rg5
 [Black "Milosevic, A."]
 [Result "1/2-1/2"]
 [ECO "C34"]
-[Opening "KGA"]
-[Variation "Fischer defence"]
 [EventDate "1995.??.??"]
 [PlyCount "45"]
 
@@ -16700,8 +15469,6 @@ Bc3 Ne3 21. Rd2 Bg7 22. Rde2 a6 23. Qa4 1/2-1/2
 [Black "Stephenson, G."]
 [Result "1/2-1/2"]
 [ECO "B10"]
-[Opening "Caro-Kann"]
-[Variation "closed (Breyer) variation"]
 [EventDate "1995.??.??"]
 [PlyCount "75"]
 
@@ -16721,7 +15488,6 @@ Nf6 33. Ndc5 g5 34. g4 Bxc5 35. Nxc5 a5 36. Qd3 axb4 37. axb4 Qc6 38. h3
 [Black "Kaczmarek, B."]
 [Result "1-0"]
 [ECO "C55"]
-[Opening "Two knights defence"]
 [EventDate "1995.??.??"]
 [PlyCount "133"]
 
@@ -16749,7 +15515,6 @@ Kb6 67. Kxb4 1-0
 [Black "Samano, B."]
 [Result "1-0"]
 [ECO "C44"]
-[Opening "Scotch gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "43"]
 
@@ -16766,8 +15531,6 @@ c3 Nc6 21. Qh5+ Ke6 22. Nc7+ 1-0
 [Black "Ward, R."]
 [Result "0-1"]
 [ECO "B09"]
-[Opening "Pirc"]
-[Variation "Austrian attack, dragon formation"]
 [EventDate "1995.??.??"]
 [PlyCount "116"]
 
@@ -16790,8 +15553,6 @@ Bxc5 Rd2+ 45. Kh1 Rh3+ 46. Kg1 Rxh6 47. Rf8+ Ke5 48. Bxa7 Rf6 49. Rh8 h6
 [Black "Milosevic, A."]
 [Result "1-0"]
 [ECO "C43"]
-[Opening "Petrov"]
-[Variation "modern attack, Symmetrical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "69"]
 
@@ -16810,7 +15571,6 @@ Bc4 32. a4 Bd5+ 33. Kg4 Ne7 34. Re5 Bd4 $2 35. Rxe7 1-0
 [Black "Schiff, M."]
 [Result "1/2-1/2"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "39"]
 
@@ -16827,7 +15587,6 @@ a3 1/2-1/2
 [Black "Gooding, G."]
 [Result "0-1"]
 [ECO "B02"]
-[Opening "Alekhine's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -16845,8 +15604,6 @@ Rcc8 21. Qe3 Qa4 22. a3 Qd7 23. Qe2 Nc6 24. h4 Qe7 25. Qg4 Bf6 26. h5 Kg7
 [Black "Moorehouse, D."]
 [Result "0-1"]
 [ECO "B90"]
-[Opening "Sicilian"]
-[Variation "Najdorf"]
 [EventDate "1995.??.??"]
 [PlyCount "120"]
 
@@ -16869,8 +15626,6 @@ Rc7+ 39. Kd3 Be7 40. a5 Kg8 41. b5 Kf7 42. b6 Rc8 43. Rb4 Ke8 44. Rc4 Ra8
 [Black "Oraha, Z."]
 [Result "1-0"]
 [ECO "C00"]
-[Opening "French"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -16888,8 +15643,6 @@ Bc8 27. Qb2 Rh6 28. Nc4 h4 29. Ncxb6 f3 30. Nxc8+ Rxc8 31. Qb7# 1-0
 [Black "Winmill, R."]
 [Result "1-0"]
 [ECO "B21"]
-[Opening "Sicilian"]
-[Variation "Grand Prix attack"]
 [EventDate "1995.??.??"]
 [PlyCount "45"]
 
@@ -16906,8 +15659,6 @@ Rd1 Rc8 21. e5 Kc7 22. Qf3 Qe7 23. exd6+ 1-0
 [Black "Litchfield, G."]
 [Result "1-0"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "119"]
 
@@ -16930,8 +15681,6 @@ Ke8 51. Bb6 Bf6 52. Bxc5 Kd7 53. Ke4 Bh4 54. Kf4 Be1 55. Kg4 a5 56. Kf4 Bb4
 [Black "Moorehouse, D."]
 [Result "1-0"]
 [ECO "B07"]
-[Opening "Pirc"]
-[Variation "Holmov system"]
 [EventDate "1995.??.??"]
 [PlyCount "69"]
 
@@ -16950,7 +15699,6 @@ Ng5+ Kg8 33. Qxh6 Rad8 34. Rxe6 Rd4 35. Rxg6+ 1-0
 [Black "Oates, M."]
 [Result "0-1"]
 [ECO "B06"]
-[Opening "Robatsch (modern) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "26"]
 
@@ -16966,8 +15714,6 @@ Qxe4 d5 9. Bxd5 Bf5 10. Bxf7+ Rxf7 11. Qh4 Bxc2 12. Ng5 Bxd4 13. Nxf7 Bxc3+
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [ECO "D12"]
-[Opening "QGD Slav"]
-[Variation "4.e3 Bf5"]
 [EventDate "1995.??.??"]
 [PlyCount "56"]
 
@@ -16985,8 +15731,6 @@ Rab8 15. Ba3 a5 16. Nc3 h6 17. Ne1 e4 18. Qd2 Rfe8 19. Nc2 Nf8 20. Rfb1 Ng4
 [Black "Moorehouse, D."]
 [Result "1/2-1/2"]
 [ECO "A46"]
-[Opening "Queen's pawn"]
-[Variation "Yusupov-Rubinstein system"]
 [EventDate "1995.??.??"]
 [PlyCount "175"]
 
@@ -17014,7 +15758,6 @@ Ba2 82. Bg3 Bb1 83. Bf4 Kc4 84. Kd2 Be4 85. Bg3 Kb3 86. Kc1 Bc2 87. Bf4 Be4
 [Black "Neal, L."]
 [Result "1-0"]
 [ECO "E61"]
-[Opening "King's Indian defence, 3.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "118"]
 
@@ -17037,7 +15780,6 @@ Rc1 Rf8 57. Rc2 Rf3 58. Ke2 Ke4 59. Rxc3 Rh3 1-0
 [Black "Oates, M."]
 [Result "1/2-1/2"]
 [ECO "E60"]
-[Opening "King's Indian, 3.Nf3"]
 [EventDate "1995.??.??"]
 [PlyCount "91"]
 
@@ -17058,7 +15800,6 @@ Rc6 h5 32. e4 Rd7 33. Kb4 a6 34. Kc4 g5 35. e5 Kg7 36. Kd4 Kf8 37. Ke4 Rf7
 [Black "Oraha, Z."]
 [Result "1-0"]
 [ECO "A04"]
-[Opening "Reti v Dutch"]
 [EventDate "1995.??.??"]
 [PlyCount "75"]
 
@@ -17078,7 +15819,6 @@ exf4 33. Bb7 f3 34. Rxc8 Rf4 35. Rh8+ Kg6 36. c6 Rg4+ 37. Kf1 Rg2 38. Rxh4
 [Black "Winmill, R."]
 [Result "1-0"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "53"]
 
@@ -17096,7 +15836,6 @@ Bf5 Bxe3+ 27. Rexe3 1-0
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [ECO "B01"]
-[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "71"]
 
@@ -17115,8 +15854,6 @@ Qg4 Qe6 33. Qxe6 fxe6 34. Bd6 Rc8 35. Nb2 Kf7 36. Kf1 0-1
 [Black "Gooding, G."]
 [Result "1/2-1/2"]
 [ECO "C67"]
-[Opening "Ruy Lopez"]
-[Variation "Berlin defence, open variation"]
 [EventDate "1995.??.??"]
 [PlyCount "111"]
 
@@ -17138,8 +15875,6 @@ Bf2 Ba4 52. Bg3 Bc2 53. Bf2 d4+ 54. Kxd4 Kxf4 55. Bg3+ Kg4 56. Ke3 1/2-1/2
 [Black "Moorehouse, D."]
 [Result "1/2-1/2"]
 [ECO "B08"]
-[Opening "Pirc"]
-[Variation "classical (two knights) system"]
 [EventDate "1995.??.??"]
 [PlyCount "77"]
 
@@ -17159,8 +15894,6 @@ Rxe7+ Rxe7 27. dxc6 Nxc6 28. Rxd6 Nb4 29. Rd4 Nxc2 30. Rxf4 h5 31. Nf2 Re1+
 [Black "Winmill, R."]
 [Result "1-0"]
 [ECO "B70"]
-[Opening "Sicilian"]
-[Variation "dragon variation"]
 [EventDate "1995.??.??"]
 [PlyCount "39"]
 
@@ -17177,7 +15910,6 @@ hxg6 1-0
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [ECO "D03"]
-[Opening "Torre attack (Tartakower variation)"]
 [EventDate "1995.??.??"]
 [PlyCount "96"]
 
@@ -17198,8 +15930,6 @@ Ba8 45. Kg1 Rb3 46. Qc5 Qxc5 47. Rxc5 Bd5 48. Rc2 Rd3 0-1
 [Black "Litchfield, G."]
 [Result "1-0"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -17217,8 +15947,6 @@ Ra8 26. a3 Ne5 27. Bd6 Rc4 28. Bxe5 fxe5 29. Nf5 Ra7 30. Nd6+ 1-0
 [Black "Neal, L."]
 [Result "1-0"]
 [ECO "A05"]
-[Opening "Reti"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "79"]
 
@@ -17238,7 +15966,6 @@ axb5 38. Kxb5 Ke6 39. a4 Kd7 40. a5 1-0
 [Black "Gooding, G."]
 [Result "1/2-1/2"]
 [ECO "B07"]
-[Opening "Pirc defence"]
 [EventDate "1995.??.??"]
 [PlyCount "65"]
 
@@ -17257,7 +15984,6 @@ Qc3+ 33. Kc1 1/2-1/2
 [Black "Litchfield, G."]
 [Result "1-0"]
 [ECO "B00"]
-[Opening "King's pawn opening"]
 [EventDate "1995.??.??"]
 [PlyCount "103"]
 
@@ -17279,8 +16005,6 @@ Rd8 45. Re6 Bc7 46. f6 Bd6 47. f7 Rf8 48. Rf6 Be7 49. Rf5 Kd6 50. h6 Ke6
 [Black "Neal, L."]
 [Result "1-0"]
 [ECO "B84"]
-[Opening "Sicilian"]
-[Variation "Scheveningen (Paulsen), classical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "103"]
 
@@ -17302,8 +16026,6 @@ Bb6 33. Be7 Rh8 34. Bf7 Bd8 35. Bc5 Bf6 36. Re3 Rad8 37. Be8 g6 38. Re6 Kg7
 [Black "Oates, M."]
 [Result "1-0"]
 [ECO "A01"]
-[Opening "Nimzovich-Larsen attack"]
-[Variation "Indian variation"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -17321,8 +16043,6 @@ Nxe7+ Qxe7 21. Qxe4 Bc6 22. Qd3 Qg5 23. g3 Rf8 24. Rxf8+ Kxf8 25. c4 Bb7
 [Black "Gooding, G."]
 [Result "1/2-1/2"]
 [ECO "A29"]
-[Opening "English"]
-[Variation "four knights, kingside fianchetto"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -17340,8 +16060,6 @@ Qg6 27. e4 f4 28. Rf3 Bc2 29. g4 Qe6 30. Qf2 1/2-1/2
 [Black "Litchfield, G."]
 [Result "1/2-1/2"]
 [ECO "D45"]
-[Opening "QGD semi-Slav"]
-[Variation "Stoltz variation"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -17359,8 +16077,6 @@ Bd6 21. f4 Qe8 22. Ne2 Ba6 23. Bxa6 Rxa6 24. b7 Ra7 25. Nd4 Rxb7 26. Qa4 c5
 [Black "Oates, M."]
 [Result "0-1"]
 [ECO "E60"]
-[Opening "King's Indian"]
-[Variation "3.g3"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -17379,7 +16095,6 @@ Rxe8 Qd1+ 33. Bf1 Qg4+ 0-1
 [Black "Oraha, Z."]
 [Result "0-1"]
 [ECO "A84"]
-[Opening "Dutch defence, Rubinstein variation"]
 [EventDate "1995.??.??"]
 [PlyCount "82"]
 
@@ -17399,8 +16114,6 @@ exd5 15. Ne2 Rc8 16. b4 g5 17. Ne5 Bxe5 18. dxe5 c5 19. bxc5 bxc5 20. f4 g4
 [Black "Dobrishman, L."]
 [Result "1-0"]
 [ECO "A28"]
-[Opening "English"]
-[Variation "four knights, Nimzovich variation"]
 [EventDate "1995.??.??"]
 [PlyCount "111"]
 
@@ -17423,8 +16136,6 @@ Qcf1# 1-0
 [Black "Findlay, D."]
 [Result "1-0"]
 [ECO "A35"]
-[Opening "English"]
-[Variation "symmetrical, four knights system"]
 [EventDate "1995.??.??"]
 [PlyCount "55"]
 
@@ -17442,8 +16153,6 @@ Be5 Re8 27. Qd3 Bf8 28. Bh3 1-0
 [Black "Rivas, E."]
 [Result "1-0"]
 [ECO "D11"]
-[Opening "QGD Slav"]
-[Variation "3.Nf3"]
 [EventDate "1995.??.??"]
 [PlyCount "94"]
 
@@ -17464,8 +16173,6 @@ Bf5 15. e4 Bg6 16. Be3 h6 17. Nh3 Qa6 18. Nf2 O-O 19. Nd3 Bd6 20. Bc2 Bc7
 [Black "Zoccano, J."]
 [Result "1-0"]
 [ECO "A33"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "42"]
 
@@ -17482,8 +16189,6 @@ Kg8 20. Rd4 e5 21. Rh4 Rfe8 1-0
 [Black "Abram, J."]
 [Result "1-0"]
 [ECO "E16"]
-[Opening "Queen's Indian"]
-[Variation "Capablanca variation"]
 [EventDate "1995.??.??"]
 [PlyCount "41"]
 
@@ -17500,8 +16205,6 @@ Kh8 20. gxf4 Nb8 21. Rd6 1-0
 [Black "Griesler, S."]
 [Result "1-0"]
 [ECO "D31"]
-[Opening "QGD"]
-[Variation "semi-Slav"]
 [EventDate "1995.??.??"]
 [PlyCount "80"]
 
@@ -17521,7 +16224,6 @@ Nf6 9. h3 h5 10. Qc2 Ne4 11. Bxe4 fxe4 12. Bd2 Na6 13. a3 Bd7 14. O-O-O Qf6
 [Black "Lee, M."]
 [Result "1/2-1/2"]
 [ECO "E20"]
-[Opening "Nimzo-Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "112"]
 
@@ -17544,7 +16246,6 @@ Nf7+ Kxh5 1/2-1/2
 [Black "Armstrong, D."]
 [Result "1/2-1/2"]
 [ECO "B01"]
-[Opening "Scandinavian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "78"]
 
@@ -17564,7 +16265,6 @@ Nf2 Bd8 39. Ne4 Be7 1/2-1/2
 [Black "Findlay, D."]
 [Result "0-1"]
 [ECO "B50"]
-[Opening "Sicilian"]
 [EventDate "1995.??.??"]
 [PlyCount "92"]
 
@@ -17585,7 +16285,6 @@ Bxb2 38. Kf1 Bxa3 39. Ke1 b4 40. Kd1 b3 41. Kd2 c4 42. f4 Bb4+ 43. Kc1 c3
 [Black "Lee, M."]
 [Result "1-0"]
 [ECO "B30"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "157"]
 
@@ -17612,7 +16311,6 @@ e8=Q+ 1-0
 [Black "Armstrong, D."]
 [Result "1-0"]
 [ECO "B01"]
-[Opening "Scandinavian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "31"]
 
@@ -17628,8 +16326,6 @@ Qe4+ 8. Be2 Bxf3 9. gxf3 Qf5 10. Bb2 Bc5 11. Bd3 e4 12. Bxe4 Qe6 13. Qe2 c6
 [Black "Lee, M."]
 [Result "0-1"]
 [ECO "C03"]
-[Opening "French"]
-[Variation "Tarrasch"]
 [EventDate "1995.??.??"]
 [PlyCount "38"]
 
@@ -17645,8 +16341,6 @@ c4 9. Nbd2 Ne3 10. Qe2 Nc2+ 11. Kd1 Nxa1 12. g4 b5 13. h4 b4 14. cxb4 Bxb4
 [Black "Rivas, E."]
 [Result "1-0"]
 [ECO "D10"]
-[Opening "QGD Slav defence"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -17664,8 +16358,6 @@ Qb6 21. Nc5 Ne5 22. Qe4 Ng6 23. d5 e5 24. Bxe5 Bxe5 25. f4 O-O 26. fxe5 Ne7
 [Black "Abram, J."]
 [Result "1-0"]
 [ECO "E98"]
-[Opening "King's Indian"]
-[Variation "orthodox, Aronin-Taimanov, 9.Ne1"]
 [EventDate "1995.??.??"]
 [PlyCount "99"]
 
@@ -17686,8 +16378,6 @@ Kf7 45. Rb5 b6 46. a5 a6 47. Rxb6 d5 48. Rxf6+ Kxf6 49. b5 d4 50. bxa6 1-0
 [Black "Dobrishman, L."]
 [Result "1-0"]
 [ECO "D06"]
-[Opening "QGD"]
-[Variation "Marshall defence"]
 [EventDate "1995.??.??"]
 [PlyCount "33"]
 
@@ -17703,7 +16393,6 @@ Bc4 Qf6 15. Bxf7+ Kd8 16. d5 Nxe5 17. Qe8# 1-0
 [Black "Zoccano, J."]
 [Result "1-0"]
 [ECO "D30"]
-[Opening "Queen's gambit declined"]
 [EventDate "1995.??.??"]
 [PlyCount "81"]
 
@@ -17723,7 +16412,6 @@ Kf7 40. Nxd5 Rxd5 41. Be5 1-0
 [Black "Abram, J."]
 [Result "1-0"]
 [ECO "C45"]
-[Opening "Scotch game"]
 [EventDate "1995.??.??"]
 [PlyCount "71"]
 
@@ -17742,8 +16430,6 @@ Nc5 26. Rd4 Rd8 27. Bc2 a5 28. Ke3 e5 29. Rd5 g5 30. h3 Rf6 31. Rxc5 dxc5
 [Black "Griesler, S."]
 [Result "1/2-1/2"]
 [ECO "A07"]
-[Opening "Reti"]
-[Variation "King's Indian attack (Barcza system)"]
 [EventDate "1995.??.??"]
 [PlyCount "56"]
 
@@ -17761,8 +16447,6 @@ Ng5 Be2 27. Bf1 Bxf1 28. Kxf1 Nf8 1/2-1/2
 [Black "Dobrishman, L."]
 [Result "1/2-1/2"]
 [ECO "C60"]
-[Opening "Ruy Lopez"]
-[Variation "Cozio defence"]
 [EventDate "1995.??.??"]
 [PlyCount "86"]
 
@@ -17782,7 +16466,6 @@ Kf7 39. Kg2 Kg6 40. Kg3 Kf7 41. Bc3 Kg6 42. Kg2 Kf7 43. Be1 Kg6 1/2-1/2
 [Black "Griesler, S."]
 [Result "0-1"]
 [ECO "C00"]
-[Opening "French defence"]
 [EventDate "1995.??.??"]
 [PlyCount "36"]
 
@@ -17798,7 +16481,6 @@ Nxe5 14. fxe5 Ng4 15. Qg3 Nxe5 16. Rxe5 Qf6+ 17. Qf4 Qxe5 18. Nc3 Qe1# 0-1
 [Black "Lee, M."]
 [Result "0-1"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "102"]
 
@@ -17820,7 +16502,6 @@ Ke4 Qf5+ 51. Ke3 Qe1# 0-1
 [Black "Armstrong, D."]
 [Result "1/2-1/2"]
 [ECO "A46"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "100"]
 
@@ -17842,7 +16523,6 @@ Kf7 39. Ke3 Ke7 40. g4 g5 41. fxg5 fxg5 42. Kd4 Kd7 43. Ke5 Ke7 44. Kd4 Nf7
 [Black "Findlay, D."]
 [Result "1/2-1/2"]
 [ECO "A00"]
-[Opening "Benko's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "80"]
 
@@ -17862,7 +16542,6 @@ Rxd8 32. Qxd8+ Kg7 33. Qd3 Qf6 34. a4 Kf8 35. Qd2 Ke7 36. e4 h5 37. h4 Qe5
 [Black "Rivas, E."]
 [Result "0-1"]
 [ECO "A04"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "46"]
 
@@ -17879,7 +16558,6 @@ b5 Bg6 16. Rab1 Rb8 17. Qa4 Bxd3 18. Ba3 Ne4 19. bxc6+ Nxc6 20. Ncxe4 dxe4
 [Black "Douglas, L."]
 [Result "*"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "101"]
 
@@ -17901,7 +16579,6 @@ Ra7+ Bd7 33. Qg3 Bf6 34. Qg4 h5 35. Qe2 Kf8 36. g4 h4 37. f4 Qe7 38. g5 Bg7
 [Black "Matthews, I."]
 [Result "0-1"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "72"]
 
@@ -17920,7 +16597,6 @@ h5 33. Kd1 Kxd3 34. a4 bxa3 35. b4 a2 36. h4 gxh4 0-1
 [Black "Trad, S."]
 [Result "1-0"]
 [ECO "C46"]
-[Opening "Four knights game"]
 [EventDate "1995.??.??"]
 [PlyCount "49"]
 
@@ -17938,7 +16614,6 @@ Rf8# 1-0
 [Black "Black, R."]
 [Result "0-1"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "100"]
 
@@ -17960,7 +16635,6 @@ Ng5 0-1
 [Black "Douglas, L."]
 [Result "1-0"]
 [ECO "A51"]
-[Opening "Budapest defence declined"]
 [EventDate "1995.??.??"]
 [PlyCount "37"]
 
@@ -17977,8 +16651,6 @@ Nc3 cxd4 9. exd4 Qa5 10. Ra2 Nxc3 11. bxc3 Qxc3+ 12. Rd2 Qa5 13. Ke2 Bg4+
 [Black "Robinson, E."]
 [Result "1-0"]
 [ECO "E14"]
-[Opening "Queen's Indian"]
-[Variation "4.e3"]
 [EventDate "1995.??.??"]
 [PlyCount "37"]
 
@@ -17994,7 +16666,6 @@ Bg3 O-O 15. h4 d6 16. hxg5 dxe5 17. Bxe5 Bxc4 18. Bxf6 Qd5 19. Rxh6 1-0
 [Black "Sandie, K."]
 [Result "0-1"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "100"]
 
@@ -18016,8 +16687,6 @@ Nxe6 50. Kxe6 Kf8 0-1
 [Black "Matthews, I."]
 [Result "0-1"]
 [ECO "B96"]
-[Opening "Sicilian"]
-[Variation "Najdorf, Polugayevsky, Simagin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "40"]
 
@@ -18034,8 +16703,6 @@ Nxg4 20. Nd5+ Kf7 0-1
 [Black "McRorie, A."]
 [Result "1-0"]
 [ECO "B35"]
-[Opening "Sicilian"]
-[Variation "accelerated fianchetto, modern variation with Bc4"]
 [EventDate "1995.??.??"]
 [PlyCount "107"]
 
@@ -18057,7 +16724,6 @@ Kd6 51. Kf6 Bf3 52. Bxg6 Bc6 53. Bf7 Be4 54. g6 1-0
 [Black "Trad, S."]
 [Result "1-0"]
 [ECO "C30"]
-[Opening "King's gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "35"]
 
@@ -18073,7 +16739,6 @@ Bd5 14. Qxb8+ Nc8 15. Bxf4 Bb4+ 16. Qxb4 Re8+ 17. Kd2 Bxa8 18. Bg5+ 1-0
 [Black "Demmery, S."]
 [Result "1-0"]
 [ECO "B00"]
-[Opening "King's pawn opening"]
 [EventDate "1995.??.??"]
 [PlyCount "71"]
 
@@ -18092,8 +16757,6 @@ Qb4+ Ke6 34. Rf1 Rd8 35. f5+ gxf5 36. Ra6+ 1-0
 [Black "McRorie, A."]
 [Result "1-0"]
 [ECO "B89"]
-[Opening "Sicilian"]
-[Variation "Sozin, 7.Be3"]
 [EventDate "1995.??.??"]
 [PlyCount "71"]
 
@@ -18112,8 +16775,6 @@ Ke6 33. h7 Bf6 34. Qxf6+ Kxf6 35. h8=Q+ Ke6 36. Qe8+ 1-0
 [Black "Pretti, J."]
 [Result "1-0"]
 [ECO "C34"]
-[Opening "KGA"]
-[Variation "Fischer defence"]
 [EventDate "1995.??.??"]
 [PlyCount "51"]
 
@@ -18131,7 +16792,6 @@ Ka8 26. Ra3+ 1-0
 [Black "Trad, S."]
 [Result "1-0"]
 [ECO "C30"]
-[Opening "King's gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "27"]
 
@@ -18147,7 +16807,6 @@ exd4+ 14. Be4+ 1-0
 [Black "Demmery, S."]
 [Result "0-1"]
 [ECO "A41"]
-[Opening "Queen's Pawn"]
 [EventDate "1995.??.??"]
 [PlyCount "96"]
 
@@ -18168,8 +16827,6 @@ Rf4 44. Bd6 Rxf2 45. Ke3 Rf3+ 46. Kd2 Kb3 47. Bb4 g3 48. Ke2 Rf2+ 0-1
 [Black "Robinson, E."]
 [Result "1-0"]
 [ECO "E12"]
-[Opening "Queen's Indian"]
-[Variation "4.Nc3"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -18187,7 +16844,6 @@ Rf2 Rah8 21. Bb2 Bxf3 22. Qf1 g5 23. Rxf3 Rxh2 24. Rxf6 Rh1+ 25. Kg2 R8h2+
 [Black "Sandie, K."]
 [Result "0-1"]
 [ECO "D02"]
-[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "108"]
 
@@ -18209,8 +16865,6 @@ Bg2 50. Bc7 h4 51. Bf4 h3 52. Bg3 Bf3 53. Be5 h2 54. Bxh2 Rxh2 0-1
 [Black "Demmery, S."]
 [Result "0-1"]
 [ECO "C02"]
-[Opening "French"]
-[Variation "advance variation"]
 [EventDate "1995.??.??"]
 [PlyCount "106"]
 
@@ -18232,7 +16886,6 @@ Qh1+ 52. Ke2 Qxg2+ 53. Ke3 Qf2# 0-1
 [Black "McRorie, A."]
 [Result "0-1"]
 [ECO "C23"]
-[Opening "Bishop's opening"]
 [EventDate "1995.??.??"]
 [PlyCount "102"]
 
@@ -18254,7 +16907,6 @@ a6 Bb6 45. Kf1 Ke8 46. Ke2 Kd8 47. Kd2 Kc7 48. Kc3 Kc6 49. g4 g5 50. f3 h6
 [Black "Robinson, E."]
 [Result "0-1"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "96"]
 
@@ -18275,8 +16927,6 @@ Ke7 45. Kc3 d1=Q 46. Nxd1 Bxd1 47. Kd4 Bg4 48. f6+ Ke6 0-1
 [Black "Sandie, K."]
 [Result "0-1"]
 [ECO "C24"]
-[Opening "Bishop's opening"]
-[Variation "Berlin defence"]
 [EventDate "1995.??.??"]
 [PlyCount "74"]
 
@@ -18296,7 +16946,6 @@ Bxh6 gxh6 33. Nxh6+ Kg7 34. Nxf7 Rxf7 35. g3 Nf6 36. Kg2 Ng4 37. Nf3 Ne3+
 [Black "Douglas, L."]
 [Result "1-0"]
 [ECO "E00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -18315,7 +16964,6 @@ Qf8+ Kh5 26. h3 Bxh3 27. gxf3 Bxf1+ 28. Kg1 Qh3 29. Qc5+ f5 30. Qxf5+ gxf5
 [Black "Matthews, I."]
 [Result "0-1"]
 [ECO "A56"]
-[Opening "Benoni defence"]
 [EventDate "1995.??.??"]
 [PlyCount "48"]
 
@@ -18332,8 +16980,6 @@ Nd3 21. Rc2 f4 22. Bd2 Qd7 23. c6 Qg4 24. g3 f3 0-1
 [Black "Sandie, K."]
 [Result "1-0"]
 [ECO "D06"]
-[Opening "QGD"]
-[Variation "Marshall defence"]
 [EventDate "1995.??.??"]
 [PlyCount "47"]
 
@@ -18350,7 +16996,6 @@ Bxh7+ Kh8 21. Rh3 Bxe3+ 22. Kh1 Bxf4 23. Bg8+ Qh6 24. Rxh6+ 1-0
 [Black "Black, R."]
 [Result "0-1"]
 [ECO "C50"]
-[Opening "Giuoco Pianissimo"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -18369,7 +17014,6 @@ Qxe1+ 32. Nf1 Qf2+ 33. Kh2 Qxg2# 0-1
 [Black "Douglas, L."]
 [Result "0-1"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "64"]
 
@@ -18388,7 +17032,6 @@ Bxe6 dxe6 21. Rxd8+ Nxd8 22. Qe4 Bb7 23. Qd3 Nc6 24. Rxe6 Bd4 25. Qe2 Rxf2
 [Black "Matthews, I."]
 [Result "0-1"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "112"]
 
@@ -18411,8 +17054,6 @@ Kh3 Qh2# 0-1
 [Black "Trad, S."]
 [Result "1-0"]
 [ECO "C24"]
-[Opening "Bishop's opening"]
-[Variation "Berlin defence"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -18431,8 +17072,6 @@ Kg6 31. Rg7+ 1-0
 [Black "Demmery, S."]
 [Result "0-1"]
 [ECO "D00"]
-[Opening "Queen's pawn"]
-[Variation "Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "58"]
 
@@ -18450,7 +17089,6 @@ Rb2 Ng5+ 27. Kg1 Rd1+ 28. Kf2 Rc8 29. Bd2 c3 0-1
 [Black "McRorie, A."]
 [Result "1-0"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "15"]
 
@@ -18465,8 +17103,6 @@ Qf7# 1-0
 [Black "Robinson, E."]
 [Result "1-0"]
 [ECO "B30"]
-[Opening "Sicilian"]
-[Variation "Nimzovich-Rossolimo attack (without ...d6)"]
 [EventDate "1995.??.??"]
 [PlyCount "97"]
 
@@ -18488,8 +17124,6 @@ Kc3 49. f5 1-0
 [Black "Milosevic, V."]
 [Result "0-1"]
 [ECO "D38"]
-[Opening "QGD"]
-[Variation "Ragozin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -18508,7 +17142,6 @@ Kc3 49. f5 1-0
 [Black "Rabosa, P."]
 [Result "1-0"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "149"]
 
@@ -18534,7 +17167,6 @@ Kc4 69. g6 Kd4 70. g7 Kc4 71. g8=Q+ Kd4 72. Qe6 Kc5 73. Ke5 Kb5 74. Kd4 Ka5
 [Black "Bosy, D."]
 [Result "1-0"]
 [ECO "A20"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "85"]
 
@@ -18554,7 +17186,6 @@ b4 38. e4 Re8 39. f4 a5 40. e5+ Kc5 41. d6 Ra3 42. d7 Rd8 43. e6 1-0
 [Black "Kubik, R."]
 [Result "0-1"]
 [ECO "A20"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "70"]
 
@@ -18573,7 +17204,6 @@ Rh4 Qd5 33. Rb5 Qxa2 34. Rf4 c1=Q 35. Rxf7 Qxf7 0-1
 [Black "Milosevic, V."]
 [Result "1/2-1/2"]
 [ECO "A20"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "91"]
 
@@ -18594,7 +17224,6 @@ bxc5 bxc5 45. f4+ gxf4+ 46. gxf4+ 1/2-1/2
 [Black "Reid, C."]
 [Result "1-0"]
 [ECO "A20"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -18612,7 +17241,6 @@ Nd7 15. Nd5 Bd4+ 16. Kh1 b5 17. Qc2 Nb4 18. Nxb4 Rb6 19. Be3 c5 20. Nd5 Rb8
 [Black "Bosy, D."]
 [Result "1-0"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "73"]
 
@@ -18632,7 +17260,6 @@ Qg5+ 1-0
 [Black "Brock, Da"]
 [Result "1/2-1/2"]
 [ECO "D43"]
-[Opening "QGD semi-Slav"]
 [EventDate "1995.??.??"]
 [PlyCount "122"]
 
@@ -18656,7 +17283,6 @@ Ra5+ Kh6 57. Kf4 Rf8+ 58. Kg3 Ra8 59. Kh4 Kg6 60. Ra6+ Kf5 61. Kxh5 Ke5
 [Black "Matthews, D."]
 [Result "1-0"]
 [ECO "C50"]
-[Opening "Giuoco Piano"]
 [EventDate "1995.??.??"]
 [PlyCount "13"]
 
@@ -18671,7 +17297,6 @@ Ra5+ Kh6 57. Kf4 Rf8+ 58. Kg3 Ra8 59. Kh4 Kg6 60. Ra6+ Kf5 61. Kxh5 Ke5
 [Black "Bosy, D."]
 [Result "1-0"]
 [ECO "E20"]
-[Opening "Nimzo-Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "63"]
 
@@ -18690,8 +17315,6 @@ Ke6 32. b7 1-0
 [Black "Finkenzeller, A."]
 [Result "0-1"]
 [ECO "D50"]
-[Opening "QGD"]
-[Variation "4.Bg5"]
 [EventDate "1995.??.??"]
 [PlyCount "90"]
 
@@ -18712,7 +17335,6 @@ Ra3 44. g4 c4 45. h7 Ra8 0-1
 [Black "Rabosa, P."]
 [Result "1-0"]
 [ECO "D20"]
-[Opening "Queen's gambit accepted"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -18730,8 +17352,6 @@ Nb6 21. b3 f5 22. Bb1 Qc6 23. Bb2 Bc8 24. Rxe5 Bb7 25. f3 Rd8 26. Qe1 Nxb3
 [Black "Bosy, D."]
 [Result "0-1"]
 [ECO "A34"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "1995.??.??"]
 [PlyCount "60"]
 
@@ -18749,8 +17369,6 @@ Qh1 Nf5 21. d4 exd4 22. exd4 Bxd4 23. Qf3 Nxg3 24. Qg2 Rxd5 25. Rfd1 Ne2+
 [Black "Brock, Da"]
 [Result "0-1"]
 [ECO "A02"]
-[Opening "Bird"]
-[Variation "From gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "44"]
 
@@ -18767,7 +17385,6 @@ Rxa8 20. Rxf7+ Ne7 21. Bd2 Qf1+ 22. Be1 Qxe1# 0-1
 [Black "Kubik, R."]
 [Result "0-1"]
 [ECO "E00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "50"]
 
@@ -18785,7 +17402,6 @@ Qxf3 Nxe5 21. Qb7 Qf6 22. Qc7 Nd3 23. Rad1 Qf3 24. Qd7 Qxg3+ 25. Kh1 Nxf2+
 [Black "Milosevic, V."]
 [Result "0-1"]
 [ECO "C42"]
-[Opening "Petrov three knights game"]
 [EventDate "1995.??.??"]
 [PlyCount "82"]
 
@@ -18805,8 +17421,6 @@ Qxg2 Rg7 33. Rf1 Qe6 34. Rae1 Qh6+ 35. Qh2 Rd6 36. Rf3 Qxh2+ 37. Kxh2 Rxg4
 [Black "Finkenzeller, A."]
 [Result "1-0"]
 [ECO "C46"]
-[Opening "Four knights"]
-[Variation "Italian variation"]
 [EventDate "1995.??.??"]
 [PlyCount "65"]
 
@@ -18825,7 +17439,6 @@ Rg4 26. Re4 Rg6 27. Ne7+ Kh7 28. Nxg6 fxg6 29. Re7 Rg8 30. d4 h5 31. d5 h4
 [Black "Kubik, R."]
 [Result "0-1"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "72"]
 
@@ -18844,7 +17457,6 @@ Kxd1 a1=Q+ 33. Ke2 Ba6+ 34. Ke3 Qc1+ 35. Nd2 Qxc2 36. d7 Qd3# 0-1
 [Black "Rabosa, P."]
 [Result "1-0"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "95"]
 
@@ -18865,7 +17477,6 @@ Rfe1 Qd7 21. Qc3 Ne4 22. Qxc6 Qxc6 23. Rxc6 Rfc8 24. Nf4 Nf6 25. Re7 Ra7
 [Black "Reid, C."]
 [Result "1-0"]
 [ECO "B02"]
-[Opening "Alekhine's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "67"]
 
@@ -18884,8 +17495,6 @@ Ka6 32. Qc4+ Kb7 33. Bf4 Na5 34. Qxc7+ 1-0
 [Black "Finkenzeller, A."]
 [Result "1-0"]
 [ECO "C20"]
-[Opening "KP"]
-[Variation "Indian opening"]
 [EventDate "1995.??.??"]
 [PlyCount "67"]
 
@@ -18904,7 +17513,6 @@ Qf3 Nd4 32. Qh5 a6 33. Ra1 f5 34. Rxa6# 1-0
 [Black "Matthews, D."]
 [Result "0-1"]
 [ECO "B20"]
-[Opening "Sicilian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "42"]
 
@@ -18921,7 +17529,6 @@ Bxc5 Re8 15. b3 Bc3+ 16. Kd1 Bc6 17. Be2 Bxe4 18. Qf4 Bxd3 19. Bxd3 Qxd3+
 [Black "Finkenzeller, A."]
 [Result "0-1"]
 [ECO "C44"]
-[Opening "Konstantinopolsky opening"]
 [EventDate "1995.??.??"]
 [PlyCount "54"]
 
@@ -18939,7 +17546,6 @@ Bxb7 Nxb7 21. Rd7 Bd6 22. Be3 Rxc2 23. Rf1 Rf8 24. Rg1 Bc5 25. Bxc5 Nxc5
 [Black "Matthews, D."]
 [Result "1-0"]
 [ECO "B06"]
-[Opening "Robatsch (modern) defence"]
 [EventDate "1995.??.??"]
 [PlyCount "77"]
 
@@ -18959,7 +17565,6 @@ Qxh8 Bb7 33. Rc1+ Kb6 34. Bc4 Qd7 35. Qf6+ Kc5 36. Bxd3+ Kb4 37. Qb2+ Ka5
 [Black "Rabosa, P."]
 [Result "1-0"]
 [ECO "C20"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "55"]
 
@@ -18977,7 +17582,6 @@ Qa7 27. Rh4 Qf7 28. Qh7# 1-0
 [Black "Hyatt, M."]
 [Result "1-0"]
 [ECO "A53"]
-[Opening "Old Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "29"]
 
@@ -18993,7 +17597,6 @@ Bg3 f5 15. Qd4 { The rest of the score is incomprehensible. } 1-0
 [Black "Loh, L."]
 [Result "1/2-1/2"]
 [ECO "A15"]
-[Opening "English, 1...Nf6 (Anglo-Indian defense)"]
 [EventDate "1995.??.??"]
 [PlyCount "56"]
 
@@ -19011,7 +17614,6 @@ Bd3 Rxd1 27. Rxd1 Nb2 28. Nf4 Rd6 1/2-1/2
 [Black "Matthews, R."]
 [Result "0-1"]
 [ECO "E00"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -19030,7 +17632,6 @@ bxc6+ Kf6 27. cxd7 Rd8 28. Be4 Qc1+ 29. Rf1 Qe3+ 30. Kh1 Rxd7 31. Bxb7 Qf2
 [Black "Sengupta, O."]
 [Result "0-1"]
 [ECO "D20"]
-[Opening "Queen's gambit accepted"]
 [EventDate "1995.??.??"]
 [PlyCount "114"]
 
@@ -19053,7 +17654,6 @@ Ra5 Rb4+ 57. Ke3 Nc4+ 0-1
 [Black "Sengupta, O."]
 [Result "1-0"]
 [ECO "D03"]
-[Opening "Torre attack (Tartakower variation)"]
 [EventDate "1995.??.??"]
 [PlyCount "63"]
 
@@ -19072,8 +17672,6 @@ Rc1 Qxa2 21. dxc5 bxc5 22. Qd2 Qxd2+ 23. Kxd2 cxb4 24. Ra1 Bb7 25. Ke3 a6
 [Black "Brock, Do"]
 [Result "1-0"]
 [ECO "B08"]
-[Opening "Pirc"]
-[Variation "classical (two knights) system"]
 [EventDate "1995.??.??"]
 [PlyCount "63"]
 
@@ -19092,8 +17690,6 @@ Nxe4 21. Qd5+ e6 22. Qxe4 Qf6 23. Nd3 d5 24. Qb4 e5 25. Rh2 e4 26. Nc5 Qf7
 [Black "Hyatt, M."]
 [Result "1-0"]
 [ECO "D00"]
-[Opening "Queen's pawn"]
-[Variation "Chigorin variation"]
 [EventDate "1995.??.??"]
 [PlyCount "73"]
 
@@ -19112,7 +17708,6 @@ Qxb6 c2 33. Rc1 Re2 34. Qc5 Rd2 35. Qxc2+ Rxc2 36. Rxc2 f5 37. Rc5 1-0
 [Black "Loh, L."]
 [Result "1-0"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "99"]
 
@@ -19134,7 +17729,6 @@ Kc6 44. Rb6+ Kc7 45. Rxh6 g4 46. Rh7+ Kc6 47. a4 Kd5 48. b4 Nd2 49. Be3 Kc4
 [Black "Matthews, R."]
 [Result "1-0"]
 [ECO "A41"]
-[Opening "Queen's Pawn"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -19152,8 +17746,6 @@ Nxg2 26. f5 Nh4 27. f6 Nd4 28. f7 Ne6 29. Re8 1-0
 [Black "Patel, A."]
 [Result "1-0"]
 [ECO "D35"]
-[Opening "QGD"]
-[Variation "3...Nf6"]
 [EventDate "1995.??.??"]
 [PlyCount "85"]
 
@@ -19173,7 +17765,6 @@ Qxf6+ Qxf6 39. Rxf6 Kg7 40. Rxc6 h5 41. d5 Kf7 42. Re6 h4 43. c6 1-0
 [Black "Sengupta, O."]
 [Result "0-1"]
 [ECO "D30"]
-[Opening "Queen's gambit declined"]
 [EventDate "1995.??.??"]
 [PlyCount "100"]
 
@@ -19195,7 +17786,6 @@ Qc2+ f5 45. Nh2 Qxe5+ 46. Kh4 Rh1 47. Kxh5 Rxh2+ 48. Kg5 Qf6+ 49. Kf4 Qd4+
 [Black "Smith, R."]
 [Result "1-0"]
 [ECO "B02"]
-[Opening "Alekhine's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "97"]
 
@@ -19217,8 +17807,6 @@ Ra5+ Kh4 44. Ra4 Kh3 45. Re4 Kh4 46. c4 Kg5 47. c5 Kf5 48. Rxg4 Kxg4 49. c6
 [Black "Loh, L."]
 [Result "1-0"]
 [ECO "A07"]
-[Opening "Reti"]
-[Variation "King's Indian attack (Barcza system)"]
 [EventDate "1995.??.??"]
 [PlyCount "79"]
 
@@ -19238,7 +17826,6 @@ Qd7+ 38. Kg2 Qxd3 39. Qf5+ g6 40. Qf7# 1-0
 [Black "Smith, R."]
 [Result "0-1"]
 [ECO "A17"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "54"]
 
@@ -19256,7 +17843,6 @@ Re2 Qg2+ 27. Ke1 Qg1# 0-1
 [Black "Brock, Da"]
 [Result "1-0"]
 [ECO "C44"]
-[Opening "King's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "55"]
 
@@ -19274,8 +17860,6 @@ b5 26. Qc7 Qd5 27. Rxh7+ Kg5 28. Qf4# 1-0
 [Black "Khan, Z."]
 [Result "0-1"]
 [ECO "C44"]
-[Opening "Ponziani"]
-[Variation "Jaenisch counter-attack"]
 [EventDate "1995.??.??"]
 [PlyCount "78"]
 
@@ -19295,8 +17879,6 @@ Kg2 Rxd1 39. Qxd1 Nc3 0-1
 [Black "Matthews, R."]
 [Result "1-0"]
 [ECO "C42"]
-[Opening "Petrov"]
-[Variation "Italian variation"]
 [EventDate "1995.??.??"]
 [PlyCount "13"]
 
@@ -19311,7 +17893,6 @@ Kg2 Rxd1 39. Qxd1 Nc3 0-1
 [Black "Smith, R."]
 [Result "0-1"]
 [ECO "C00"]
-[Opening "French defence"]
 [EventDate "1995.??.??"]
 [PlyCount "54"]
 
@@ -19329,8 +17910,6 @@ O-O Bb4 15. Qd3 Qe7 16. Nc3 Nxd4 17. Qxd4 Bxb5 18. Bh6 gxh6 19. Nxb5 Bc5
 [Black "Khan, Z."]
 [Result "0-1"]
 [ECO "C62"]
-[Opening "Ruy Lopez"]
-[Variation "old Steinitz defence, semi-Duras variation"]
 [EventDate "1995.??.??"]
 [PlyCount "90"]
 
@@ -19351,7 +17930,6 @@ Rcd2 Nf6 21. Qc3 Nxe4 22. Qxe5 Qxe5 23. Nxe5 Nxd2 24. Rxd2 Bd6 25. Nf3 Rd7
 [Black "Matthews, R."]
 [Result "1-0"]
 [ECO "A05"]
-[Opening "Reti opening"]
 [EventDate "1995.??.??"]
 [PlyCount "111"]
 
@@ -19374,7 +17952,6 @@ Kd3 Kg7 51. Kd4 Kf7 52. Kd5 Kg6 53. e6 Kg7 54. Ke5 Kg6 55. Kd6 Kf6 56. Kd7
 [Black "Patel, A."]
 [Result "0-1"]
 [ECO "C00"]
-[Opening "French defence"]
 [EventDate "1995.??.??"]
 [PlyCount "146"]
 
@@ -19399,7 +17976,6 @@ h5 Kb1 69. h6 a2 70. g7 a1=Q 71. Kg3 Qe5+ 72. Kh4 Qf4+ 73. Kh5 Qg4# 0-1
 [Black "Smith, R."]
 [Result "1-0"]
 [ECO "B02"]
-[Opening "Alekhine's defence"]
 [EventDate "1995.??.??"]
 [PlyCount "39"]
 
@@ -19416,7 +17992,6 @@ h5 Kb1 69. h6 a2 70. g7 a1=Q 71. Kg3 Qe5+ 72. Kh4 Qf4+ 73. Kh5 Qg4# 0-1
 [Black "Brock, Do"]
 [Result "0-1"]
 [ECO "A53"]
-[Opening "Old Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "98"]
 
@@ -19437,7 +18012,6 @@ Rf8 45. Kf2 Rd8 46. Qc2 d1=Q 47. Qxc3 Rd2+ 48. Kg3 Qf4+ 49. Rxf4 gxf4+ 0-1
 [Black "Khan, Z."]
 [Result "0-1"]
 [ECO "D04"]
-[Opening "Queen's pawn game"]
 [EventDate "1995.??.??"]
 [PlyCount "62"]
 
@@ -19456,7 +18030,6 @@ Rd4 Rxd4 0-1
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [ECO "A10"]
-[Opening "English opening"]
 [EventDate "1995.??.??"]
 [PlyCount "96"]
 
@@ -19477,8 +18050,6 @@ Ne6 Qg6+ 33. Kc3 Re8 34. Qe3 Rf7 35. Kb4 Rfe7 36. Rgg1 Bxe6 37. dxe6 Qf6
 [Black "Pope, J."]
 [Result "1-0"]
 [ECO "C00"]
-[Opening "French"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "61"]
 
@@ -19496,8 +18067,6 @@ hxg5 27. Nf6 Bxf6 28. Rxf6 Nd8 29. Bxb7+ Qxb7 30. Raf1 Rxh2 $4 31. Kxh2 1-0
 [Black "De Kerpel, S."]
 [Result "1-0"]
 [ECO "A23"]
-[Opening "English"]
-[Variation "Bremen system, Keres variation"]
 [EventDate "1995.??.??"]
 [PlyCount "87"]
 
@@ -19518,8 +18087,6 @@ Qg7 39. Rg1 Kf7 40. h5 g5 41. h6 Qh8 42. Bf5 Rd8 43. Qg4 Ng6 $2 44. Bxg6+
 [Black "Pope, J."]
 [Result "1/2-1/2"]
 [ECO "C00"]
-[Opening "French"]
-[Variation "King's Indian attack"]
 [EventDate "1995.??.??"]
 [PlyCount "157"]
 
@@ -19545,8 +18112,6 @@ Re4+ 69. Kf5 Re8 70. f7 Rf8 71. Ke6 c5 72. Rg4+ Kc3 73. Rf4 c4 74. Kd5 Kb3
 [Black "Gomez, F."]
 [Result "1-0"]
 [ECO "E97"]
-[Opening "King's Indian"]
-[Variation "orthodox, Aronin-Taimanov variation (Yugoslav attack / Mar del Plata variation)"]
 [EventDate "1995.??.??"]
 [PlyCount "57"]
 
@@ -19564,8 +18129,6 @@ fxe4 Rb8 27. Rad1 Nfd5 28. Nh6+ Bxh6 29. Bxd5+ 1-0
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "C47"]
-[Opening "Four knights"]
-[Variation "Scotch, 4...exd4"]
 [EventDate "1995.??.??"]
 [PlyCount "66"]
 
@@ -19584,8 +18147,6 @@ Rxd1+ 32. Nxd1 Bd5 33. Nc3 Ra1+ 0-1
 [Black "Litchfield, G."]
 [Result "0-1"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "Larsen variation"]
 [EventDate "1995.??.??"]
 [PlyCount "108"]
 
@@ -19612,8 +18173,6 @@ Qxe5 0-1
 [Black "Crisan, I."]
 [Result "1-0"]
 [ECO "D35"]
-[Opening "QGD"]
-[Variation "exchange, positional line"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -19631,8 +18190,6 @@ Rec8 27. Qd4 Rc1+ 28. Kh2 Qc7+ 29. Rd6 Qc3 30. Rd8+ 1-0
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "C46"]
-[Opening "Four knights"]
-[Variation "Gunsberg variation"]
 [EventDate "1995.??.??"]
 [PlyCount "42"]
 
@@ -19649,8 +18206,6 @@ hxg4 Nxg4 15. Rf1 Qh4 16. Qg2 Re6 17. exd5 Rh6 18. Be4 Nxf2 19. Rxf2 Bh3
 [Black "Southam, T."]
 [Result "1-0"]
 [ECO "E91"]
-[Opening "King's Indian"]
-[Variation "6.Be2"]
 [EventDate "1995.??.??"]
 [PlyCount "149"]
 
@@ -19676,8 +18231,6 @@ Ke7 75. Kb8 1-0
 [Black "Milicevic, G."]
 [Result "1-0"]
 [ECO "E30"]
-[Opening "Nimzo-Indian"]
-[Variation "Leningrad, ...b5 gambit"]
 [EventDate "1995.??.??"]
 [PlyCount "77"]
 
@@ -19697,8 +18250,6 @@ Nxe4 Bxe4 38. Ke3 Bc6 39. c5 1-0
 [Black "Southam, T."]
 [Result "1/2-1/2"]
 [ECO "A48"]
-[Opening "King's Indian"]
-[Variation "East Indian defence"]
 [EventDate "1995.??.??"]
 [PlyCount "100"]
 
@@ -19722,8 +18273,6 @@ Qxg5 20. Rd5 Qf6 21. Rfd1 Re6 22. Qd2 b6 23. f3 h5 24. h3 Rae8 25. e4 Re5
 [WhiteElo "2067"]
 [BlackElo "2288"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "exchange variation"]
 [EventDate "1995.??.??"]
 [PlyCount "59"]
 
@@ -19743,8 +18292,6 @@ Qf5+ g5 26. Ne5 Kh6 27. Qf6+ Kh5 28. Qf7+ Kh4 29. Nf3+ Kg4 30. h3# 1-0
 [WhiteElo "2260"]
 [BlackElo "2179"]
 [ECO "C34"]
-[Opening "KGA"]
-[Variation "Fischer defence"]
 [EventDate "1995.??.??"]
 [PlyCount "64"]
 

@@ -7,8 +7,6 @@ export const pgns1977 = [
 [Black "Hallam, J."]
 [Result "1-0"]
 [ECO "A09"]
-[Opening "Reti"]
-[Variation "advance variation"]
 [EventDate "1977.??.??"]
 [PlyCount "21"]
 
@@ -24,8 +22,6 @@ export const pgns1977 = [
 [Black "Jung, H."]
 [Result "0-1"]
 [ECO "A36"]
-[Opening "English"]
-[Variation "symmetrical, Botvinnik system"]
 [EventDate "1977.??.??"]
 [PlyCount "46"]
 
@@ -42,8 +38,6 @@ Nf4 exf5 21. Nh5+ Kf7 22. exf5 Bxf5 23. Bd5+ Kg6 0-1
 [Black "Jung, H."]
 [Result "0-1"]
 [ECO "B96"]
-[Opening "Sicilian"]
-[Variation "Najdorf, Polugayevsky, Simagin variation"]
 [EventDate "1977.??.??"]
 [PlyCount "58"]
 
@@ -63,7 +57,6 @@ Rxf2 Qe5 28. Rf1 Rf8 29. Rd1 Qd5 0-1
 [Black "Fuster, G."]
 [Result "1/2-1/2"]
 [ECO "B30"]
-[Opening "Sicilian defence"]
 [EventDate "1977.??.??"]
 [PlyCount "149"]
 
@@ -91,8 +84,6 @@ f7+ Kf8 75. Kf6 1/2-1/2
 [WhiteElo "2305"]
 [BlackElo "2505"]
 [ECO "D53"]
-[Opening "QGD"]
-[Variation "Lasker variation"]
 [EventDate "1977.??.??"]
 [PlyCount "54"]
 

@@ -9,7 +9,6 @@ export const pgns2022 = [
 [WhiteElo "2087"]
 [BlackElo "2162"]
 [ECO "B40"]
-[Opening "Sicilian defence"]
 [EventDate "2022.??.??"]
 [PlyCount "131"]
 
@@ -35,8 +34,6 @@ Ke2 62. Qc2+ Ke3 63. Qc1+ Ke2 64. Qc2+ Ke3 65. Qxe4+ Kxe4 66. Kxg4 1-0
 [WhiteElo "2162"]
 [BlackElo "2087"]
 [ECO "E24"]
-[Opening "Nimzo-Indian"]
-[Variation "Saemisch variation"]
 [EventDate "2022.??.??"]
 [PlyCount "63"]
 
@@ -57,8 +54,6 @@ Rae1 Qc6 27. Bc5 a6 28. e4 dxe4 29. fxe4 Rxe4 30. Nxh6 Rxe1 31. Nxf7+ Kg8
 [WhiteElo "2087"]
 [BlackElo "2162"]
 [ECO "A48"]
-[Opening "King's Indian"]
-[Variation "Torre attack"]
 [EventDate "2022.??.??"]
 [PlyCount "47"]
 
@@ -77,8 +72,6 @@ Rac1 Bg5 21. Rcd1 b6 22. Ne4 Bh6 23. Ne5 Bf5 24. c4 1/2-1/2
 [WhiteElo "2162"]
 [BlackElo "2087"]
 [ECO "D35"]
-[Opening "QGD"]
-[Variation "exchange, positional line"]
 [EventDate "2022.??.??"]
 [PlyCount "180"]
 
@@ -108,8 +101,6 @@ a8=Q Rxa8 88. Kxa8 Kd6 89. Kb7 Kd5 90. b5 Kd6 1-0
 [WhiteElo "2069"]
 [BlackElo "1785"]
 [ECO "A18"]
-[Opening "English"]
-[Variation "Mikenas-Carls variation"]
 [EventDate "2022.??.??"]
 [PlyCount "71"]
 
@@ -130,8 +121,6 @@ Rxc7 Rxc7 33. Qf3 Rc8 34. Qxc3 Rxc3 35. Rb1 Kh7 36. Rb7 1-0
 [WhiteElo "2162"]
 [BlackElo "1821"]
 [ECO "A52"]
-[Opening "Budapest"]
-[Variation "Alekhine variation, Balogh gambit"]
 [EventDate "2022.??.??"]
 [PlyCount "47"]
 
@@ -150,8 +139,6 @@ Bf2 Bxc3 15. bxc3 Re4 16. Bd3 Re8 17. Rae1 Rxe1 18. Rxe1 Qf6 19. Re8+ Kf7
 [WhiteElo "1968"]
 [BlackElo "1743"]
 [ECO "A40"]
-[Opening "Queen's pawn"]
-[Variation "Charlick (Englund) gambit"]
 [EventDate "2022.??.??"]
 [PlyCount "59"]
 
@@ -171,8 +158,6 @@ Kf8 14. e4 Nc7 15. Qf3 Qe7 16. Bg5 f6 17. exf6 gxf6 18. Bf4 Ne6 19. Nf5 Qf7
 [WhiteElo "1667"]
 [BlackElo "1784"]
 [ECO "B22"]
-[Opening "Sicilian"]
-[Variation "Alapin's variation (2.c3)"]
 [EventDate "2022.??.??"]
 [PlyCount "67"]
 
@@ -193,8 +178,6 @@ Rd6 26. Rd1 Rf6 27. g3 b5 28. Bd5 c4 29. f4 Qa7+ 30. Kg2 exf4 31. Bxf4 Rg6
 [WhiteElo "1667"]
 [BlackElo "1968"]
 [ECO "C02"]
-[Opening "French"]
-[Variation "advance, Paulsen attack"]
 [EventDate "2022.??.??"]
 [PlyCount "91"]
 
@@ -217,7 +200,6 @@ Rc5 39. Red1 b5 40. a3 a5 41. Rd4 Rc3 42. Rb1 Rxa3 43. Rxb5 Ra2 44. Kg3 Ke5
 [WhiteElo "1743"]
 [BlackElo "2162"]
 [ECO "B40"]
-[Opening "Sicilian defence"]
 [EventDate "2022.??.??"]
 [PlyCount "114"]
 
@@ -242,7 +224,6 @@ Rxd5 57. Rxh6 Bc1+ 0-1
 [WhiteElo "1821"]
 [BlackElo "2069"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "2022.??.??"]
 [PlyCount "79"]
 
@@ -264,8 +245,6 @@ Nb5 Be4 33. Nbxd6 exd6 34. Nxd6 Bd5 35. Nxc8 Rc7 36. Rbd1 Be4 37. Rd6 Bg7
 [WhiteElo "1784"]
 [BlackElo "1785"]
 [ECO "E24"]
-[Opening "Nimzo-Indian"]
-[Variation "Saemisch variation"]
 [EventDate "2022.??.??"]
 [PlyCount "107"]
 
@@ -289,8 +268,6 @@ Nxh4 50. a4 Kc7 51. Kd5 Nf5 52. Kc4 Rd7 53. Rxd7+ Kxd7 54. Kd5 0-1
 [WhiteElo "2162"]
 [BlackElo "1667"]
 [ECO "B07"]
-[Opening "Pirc"]
-[Variation "Byrne variation"]
 [EventDate "2022.??.??"]
 [PlyCount "47"]
 
@@ -309,8 +286,6 @@ Nge2 b5 9. h4 b4 10. Nd1 a5 11. Nf2 Qe8 12. h5 Nd7 13. Bh6 e5 14. Bxg7 Kxg7
 [WhiteElo "1785"]
 [BlackElo "1821"]
 [ECO "A52"]
-[Opening "Budapest"]
-[Variation "Alekhine, Abonyi variation"]
 [EventDate "2022.??.??"]
 [PlyCount "109"]
 
@@ -335,8 +310,6 @@ Qf7# 1-0
 [WhiteElo "2069"]
 [BlackElo "1743"]
 [ECO "A10"]
-[Opening "English"]
-[Variation "Anglo-Dutch defense"]
 [EventDate "2022.??.??"]
 [PlyCount "75"]
 
@@ -357,7 +330,6 @@ Nf2 Re5 34. Bxf4 Rxe1 35. Rxe1 Rxf4 36. Re8+ Rf8 37. Rxc8 Rxc8 38. Qe6+ 1-0
 [WhiteElo "1968"]
 [BlackElo "1784"]
 [ECO "A09"]
-[Opening "Reti opening"]
 [EventDate "2022.??.??"]
 [PlyCount "77"]
 
@@ -379,7 +351,6 @@ Rxb2 cxb2 39. Ba2 1-0
 [WhiteElo "1743"]
 [BlackElo "1785"]
 [ECO "C30"]
-[Opening "King's gambit"]
 [EventDate "2022.??.??"]
 [PlyCount "92"]
 
@@ -402,7 +373,6 @@ f6 44. Rf3+ Re3 45. Rf4 Be5 46. Rf1 Re2+ 0-1
 [WhiteElo "1784"]
 [BlackElo "1821"]
 [ECO "A51"]
-[Opening "Budapest defence declined"]
 [EventDate "2022.??.??"]
 [PlyCount "55"]
 
@@ -422,7 +392,6 @@ Rxc1 26. Kxc1 Rb7 27. Kd2 Rb5 28. Nxb5 1-0
 [WhiteElo "1968"]
 [BlackElo "2162"]
 [ECO "A05"]
-[Opening "Reti opening"]
 [EventDate "2022.??.??"]
 [PlyCount "68"]
 
@@ -443,8 +412,6 @@ Rd8+ Rxd8 33. Qxd8+ Kg7 34. Qd4+ Qf6 0-1
 [WhiteElo "1667"]
 [BlackElo "2069"]
 [ECO "B22"]
-[Opening "Sicilian"]
-[Variation "Alapin's variation (2.c3)"]
 [EventDate "2022.??.??"]
 [PlyCount "89"]
 
@@ -467,8 +434,6 @@ Re5+ 45. Kf1 1-0
 [WhiteElo "2162"]
 [BlackElo "1784"]
 [ECO "D11"]
-[Opening "QGD Slav"]
-[Variation "3.Nf3"]
 [EventDate "2022.??.??"]
 [PlyCount "77"]
 
@@ -490,8 +455,6 @@ gxh4 Bxh4 33. b5 Bg5 34. a4 a5 35. bxa6 Bd8 36. Rcxf7+ Rxf7 37. Qxf7+ Qxf7
 [WhiteElo "1821"]
 [BlackElo "1743"]
 [ECO "A40"]
-[Opening "Queen's pawn"]
-[Variation "Charlick (Englund) gambit"]
 [EventDate "2022.??.??"]
 [PlyCount "77"]
 
@@ -513,7 +476,6 @@ Rc4+ Kb7 38. Rxc8 Kxc8 39. a3 1-0
 [WhiteElo "2069"]
 [BlackElo "1968"]
 [ECO "B01"]
-[Opening "Scandinavian defence"]
 [EventDate "2022.??.??"]
 [PlyCount "116"]
 
@@ -538,8 +500,6 @@ Ra8 Rd8 45. Ra1 e5 46. fxe5+ Nxe5 47. Ra4 Rd2+ 48. Kf1 Nbd3 49. Nd5+ Ke6
 [WhiteElo "2162"]
 [BlackElo "2069"]
 [ECO "A42"]
-[Opening "Modern defence"]
-[Variation "Averbakh system"]
 [EventDate "2022.??.??"]
 [PlyCount "112"]
 
@@ -564,8 +524,6 @@ Nc2+ 51. Kb2 Nxe3 52. Rc1 h5 53. Rg1 Rc8 54. Rc1 Rb8 55. Ng1 g5 56. Rc6 g4
 [WhiteElo "1667"]
 [BlackElo "1821"]
 [ECO "C48"]
-[Opening "Four knights"]
-[Variation "Spanish variation"]
 [EventDate "2022.??.??"]
 [PlyCount "90"]
 
@@ -588,8 +546,6 @@ Rd1+ 45. Ke2 Re1+ 0-1
 [WhiteElo "1968"]
 [BlackElo "1785"]
 [ECO "A06"]
-[Opening "Reti"]
-[Variation "Nimzovich-Larsen attack"]
 [EventDate "2022.??.??"]
 [PlyCount "60"]
 
@@ -609,7 +565,6 @@ Nb5 27. a4 Nc7 28. Bxg6 Nd7 29. Nxf7 Rcf8 30. Nxh8 Qg5 1-0
 [WhiteElo "1784"]
 [BlackElo "1743"]
 [ECO "A85"]
-[Opening "Dutch with c4 & Nc3"]
 [EventDate "2022.??.??"]
 [PlyCount "112"]
 
@@ -633,8 +588,6 @@ Kh1 h4 22. Qe1 g5 23. Rg1 Qh6 24. h3 d6 25. a4 Nd7 26. Qb1 a5 27. Qb5 Rf7
 [WhiteElo "1821"]
 [BlackElo "1968"]
 [ECO "C15"]
-[Opening "French"]
-[Variation "Winawer (Nimzovich) variation"]
 [EventDate "2022.??.??"]
 [PlyCount "36"]
 
@@ -652,8 +605,6 @@ Rd8 14. Qxd8+ Nxd8 15. Ke1 Be6 16. Ne2 Nxc3 17. Nxc3 Qxb2 18. Kd2 Rc8 0-1
 [WhiteElo "1785"]
 [BlackElo "2162"]
 [ECO "A48"]
-[Opening "King's Indian"]
-[Variation "London system"]
 [EventDate "2022.??.??"]
 [PlyCount "70"]
 
@@ -674,8 +625,6 @@ Qb2 Bh6 21. Ne3 Nxg3 22. hxg3 Bd3 23. Rc3 Bxf1 24. Kxf1 Rxc3 25. Qxc3 Nxa2
 [WhiteElo "2069"]
 [BlackElo "1784"]
 [ECO "A00"]
-[Opening "Grob"]
-[Variation "Fritz gambit"]
 [EventDate "2022.??.??"]
 [PlyCount "81"]
 
@@ -697,8 +646,6 @@ Ke6 14. Ba3 Nf6 15. Rg1 g6 16. Bxf8 Rhxf8 17. Na3 a6 18. Nc4 Nh5 19. e3 f5
 [WhiteElo "1743"]
 [BlackElo "1667"]
 [ECO "C34"]
-[Opening "KGA"]
-[Variation "Fischer defence"]
 [EventDate "2022.??.??"]
 [PlyCount "72"]
 
@@ -719,8 +666,6 @@ O-O 15. Nb3 Bb6 16. Kh1 Qd7 17. Nf3 c5 18. Qa3 Qc6 19. Nbd2 Nd7 20. b3 Rae8
 [WhiteElo "1657"]
 [BlackElo "1789"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "closed"]
 [EventDate "2022.??.??"]
 [PlyCount "70"]
 
@@ -741,7 +686,6 @@ a3 Rb8 9. Re1 Na5 10. Ba2 b5 11. Ne2 Bb7 12. Ng3 Qc7 13. c3 c4 14. d4 Rfd8
 [WhiteElo "1771"]
 [BlackElo "2087"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "2022.??.??"]
 [PlyCount "108"]
 
@@ -765,8 +709,6 @@ hxg5 51. Ke2 Kd6 52. Kd3 Re5 53. Re4 Rf5 54. Re3 Re5 1/2-1/2
 [WhiteElo "1785"]
 [BlackElo "1731"]
 [ECO "B18"]
-[Opening "Caro-Kann"]
-[Variation "classical variation"]
 [EventDate "2022.??.??"]
 [PlyCount "77"]
 
@@ -788,8 +730,6 @@ gxf5 Kxf5 39. g7 1-0
 [WhiteElo "1972"]
 [BlackElo "1893"]
 [ECO "B21"]
-[Opening "Sicilian"]
-[Variation "Smith-Morra gambit"]
 [EventDate "2022.??.??"]
 [PlyCount "62"]
 
@@ -810,7 +750,6 @@ Rxc2 Rc8 21. Rxc8+ Bxc8 22. Bd4 Ba6 23. Bxg7 Bxe2 24. Bd4 e6 25. Kf2 Bc4
 [WhiteElo "1731"]
 [BlackElo "1657"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "2022.??.??"]
 [PlyCount "60"]
 
@@ -830,7 +769,6 @@ f5 27. Nd5 Rf7 28. g3 Be5 29. Ra2 Nd3 30. Re2 Nc1 0-1
 [WhiteElo "1789"]
 [BlackElo "1771"]
 [ECO "B00"]
-[Opening "King's pawn opening"]
 [EventDate "2022.??.??"]
 [PlyCount "62"]
 
@@ -851,8 +789,6 @@ Rxb3 Rb8 27. Rxb8 Kxb8 28. Nd1 Kc7 29. Nf2 Nh7 30. Nh3 Kd8 31. Kd2 Ke7
 [WhiteElo "1893"]
 [BlackElo "2087"]
 [ECO "B28"]
-[Opening "Sicilian"]
-[Variation "O'Kelly variation"]
 [EventDate "2022.??.??"]
 [PlyCount "64"]
 
@@ -873,8 +809,6 @@ Rxb3 Rb8 27. Rxb8 Kxb8 28. Nd1 Kc7 29. Nf2 Nh7 30. Nh3 Kd8 31. Kd2 Ke7
 [WhiteElo "1972"]
 [BlackElo "1785"]
 [ECO "C70"]
-[Opening "Ruy Lopez"]
-[Variation "Classical defence deferred"]
 [EventDate "2022.??.??"]
 [PlyCount "77"]
 
@@ -896,8 +830,6 @@ Kf3 g5 39. Kg4 1-0
 [WhiteElo "1657"]
 [BlackElo "1972"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "closed"]
 [EventDate "2022.??.??"]
 [PlyCount "58"]
 
@@ -917,8 +849,6 @@ Qb6 21. Kh2 g6 22. Be1 Ra8 23. Rxa8+ Bxa8 24. h4 h5 25. Nh3 Bb7 26. Bf2 Qb4
 [WhiteElo "1785"]
 [BlackElo "1893"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "Grand Prix attack"]
 [EventDate "2022.??.??"]
 [PlyCount "66"]
 
@@ -939,7 +869,6 @@ c4 32. Rxb7 c3 33. Rc7 Qe3+ 0-1
 [WhiteElo "2087"]
 [BlackElo "1789"]
 [ECO "C46"]
-[Opening "Four knights game"]
 [EventDate "2022.??.??"]
 [PlyCount "49"]
 
@@ -958,7 +887,6 @@ Qd7 21. Nxg6+ hxg6 22. f3 Be6 23. Qc2 Ra5 24. d5 Rc5 25. dxe6 1-0
 [WhiteElo "1771"]
 [BlackElo "1731"]
 [ECO "A13"]
-[Opening "English opening"]
 [EventDate "2022.??.??"]
 [PlyCount "174"]
 
@@ -988,8 +916,6 @@ Rxd4+ 86. Kg5 Rf4 87. Kxg6 d4 0-1
 [WhiteElo "1893"]
 [BlackElo "1789"]
 [ECO "B83"]
-[Opening "Sicilian"]
-[Variation "Scheveningen, 6.Be2"]
 [EventDate "2022.??.??"]
 [PlyCount "33"]
 
@@ -1007,7 +933,6 @@ Bxd7 14. Rfd1 a6 15. Rd2 Rd8 16. Rad1 g5 17. Rxd7 1-0
 [WhiteElo "1731"]
 [BlackElo "2087"]
 [ECO "A80"]
-[Opening "Dutch, 2.Bg5 variation"]
 [EventDate "2022.??.??"]
 [PlyCount "60"]
 
@@ -1027,8 +952,6 @@ Kh7 21. Nb5 Rc8 22. Kb1 a6 23. Nc3 Rcf8 24. a3 Na5 25. Rde1 Nc4 26. Ka2 e5
 [WhiteElo "1972"]
 [BlackElo "1771"]
 [ECO "B45"]
-[Opening "Sicilian"]
-[Variation "Taimanov variation"]
 [EventDate "2022.??.??"]
 [PlyCount "101"]
 
@@ -1052,7 +975,6 @@ Ne3 1-0
 [WhiteElo "1785"]
 [BlackElo "1657"]
 [ECO "C50"]
-[Opening "Giuoco Piano"]
 [EventDate "2022.??.??"]
 [PlyCount "126"]
 
@@ -1078,8 +1000,6 @@ Bb7 63. Bf7 Kh2 0-1
 [WhiteElo "2087"]
 [BlackElo "1972"]
 [ECO "A36"]
-[Opening "English"]
-[Variation "symmetrical, Botvinnik system"]
 [EventDate "2022.??.??"]
 [PlyCount "47"]
 
@@ -1098,8 +1018,6 @@ Nc8 21. g4 Nxd6 22. exd6 Rxd6 23. gxf5 g5 24. Rbc1 1-0
 [WhiteElo "1657"]
 [BlackElo "1893"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "Grand Prix attack"]
 [EventDate "2022.??.??"]
 [PlyCount "42"]
 
@@ -1118,8 +1036,6 @@ Nxd4 Qxd4 21. Nc6 Qd3 0-1
 [WhiteElo "1789"]
 [BlackElo "1731"]
 [ECO "D30"]
-[Opening "QGD"]
-[Variation "Capablanca-Duras variation"]
 [EventDate "2022.??.??"]
 [PlyCount "50"]
 
@@ -1139,7 +1055,6 @@ Nxe4 Bxe4 15. Bd3 Bxd3 16. Qxd3 Rfd8 17. Qa3 Qf6 18. Rc2 cxd4 19. Nxd4 Nc5
 [WhiteElo "1771"]
 [BlackElo "1785"]
 [ECO "A04"]
-[Opening "Reti opening"]
 [EventDate "2022.??.??"]
 [PlyCount "76"]
 
@@ -1161,8 +1076,6 @@ Qxg4+ 0-1
 [WhiteElo "1893"]
 [BlackElo "1731"]
 [ECO "B13"]
-[Opening "Caro-Kann"]
-[Variation "Panov-Botvinnik, normal variation"]
 [EventDate "2022.??.??"]
 [PlyCount "41"]
 
@@ -1181,8 +1094,6 @@ Nf6 21. Qg3 1/2-1/2
 [WhiteElo "1785"]
 [BlackElo "2087"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "Grand Prix attack"]
 [EventDate "2022.??.??"]
 [PlyCount "114"]
 
@@ -1207,8 +1118,6 @@ Ra3+ 56. g3 Ra2 57. Rc5+ Kg6 1/2-1/2
 [WhiteElo "1657"]
 [BlackElo "1771"]
 [ECO "C46"]
-[Opening "Four knights"]
-[Variation "Italian variation"]
 [EventDate "2022.??.??"]
 [PlyCount "129"]
 
@@ -1234,8 +1143,6 @@ Bh2 g1=Q 64. Bxg1 Bxc6 65. bxc6 1/2-1/2
 [WhiteElo "2087"]
 [BlackElo "1657"]
 [ECO "C70"]
-[Opening "Ruy Lopez"]
-[Variation "Classical defence deferred"]
 [EventDate "2022.??.??"]
 [PlyCount "65"]
 
@@ -1256,8 +1163,6 @@ Re2 Raf8 33. Qd3+ 1/2-1/2
 [WhiteElo "1771"]
 [BlackElo "1893"]
 [ECO "D85"]
-[Opening "Gruenfeld"]
-[Variation "modern exchange variation"]
 [EventDate "2022.??.??"]
 [PlyCount "77"]
 
@@ -1279,7 +1184,6 @@ Qxb6 Qf3 33. Rf2 Qh5+ 34. Kg2 Qf5 35. Qxb7 Rd5 36. Qc8+ Kg7 37. Qc2 Qxc2
 [WhiteElo "1731"]
 [BlackElo "1972"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "2022.??.??"]
 [PlyCount "86"]
 
@@ -1301,7 +1205,6 @@ Kf6 39. Kd3 Rb2 40. Rc1 Ra2 41. Re1 Nd6 42. g4 Ra8 43. h4 Rh8 0-1
 [WhiteElo "1517"]
 [BlackElo "1505"]
 [ECO "C50"]
-[Opening "Giuoco Piano"]
 [EventDate "2022.??.??"]
 [PlyCount "114"]
 
@@ -1325,8 +1228,6 @@ Kd3 56. h4 e4 57. h5 e3 1/2-1/2
 [Result "0-1"]
 [WhiteElo "1550"]
 [ECO "B12"]
-[Opening "Caro-Kann"]
-[Variation "advance variation"]
 [EventDate "2022.??.??"]
 [PlyCount "92"]
 
@@ -1349,7 +1250,6 @@ Qd4+ f6 45. Qd7 Kf7 46. Re1 Qxc6 0-1
 [WhiteElo "1577"]
 [BlackElo "1399"]
 [ECO "C53"]
-[Opening "Giuoco Piano"]
 [EventDate "2022.??.??"]
 [PlyCount "103"]
 
@@ -1373,7 +1273,6 @@ Nxb7 Rb8 39. Nd6 Rb4 40. f4+ Kf6 41. fxe5+ Kxe5 42. Nf7+ Ke4 43. Nxh6 Rxa4
 [WhiteElo "1447"]
 [BlackElo "1668"]
 [ECO "C50"]
-[Opening "King's pawn game"]
 [EventDate "2022.??.??"]
 [PlyCount "126"]
 
@@ -1399,8 +1298,6 @@ Rxe4 61. Bf3 Rh4 62. Kc1 Rf2 63. Bd1 Rh1 0-1
 [WhiteElo "1668"]
 [BlackElo "1577"]
 [ECO "C50"]
-[Opening "Giuoco Pianissimo"]
-[Variation "Italian four knights variation"]
 [EventDate "2022.??.??"]
 [PlyCount "52"]
 
@@ -1419,7 +1316,6 @@ f5 26. g4 e4# 0-1
 [Result "1-0"]
 [BlackElo "1447"]
 [ECO "C21"]
-[Opening "Centre game"]
 [EventDate "2022.??.??"]
 [PlyCount "89"]
 
@@ -1442,8 +1338,6 @@ Kb6 45. Qb7+ 1-0
 [WhiteElo "1505"]
 [BlackElo "1399"]
 [ECO "C62"]
-[Opening "Ruy Lopez"]
-[Variation "old Steinitz defence"]
 [EventDate "2022.??.??"]
 [PlyCount "99"]
 
@@ -1466,8 +1360,6 @@ Rf7+ 1-0
 [Result "1/2-1/2"]
 [WhiteElo "1399"]
 [ECO "D08"]
-[Opening "QGD"]
-[Variation "Albin counter-gambit"]
 [EventDate "2022.??.??"]
 [PlyCount "59"]
 
@@ -1486,8 +1378,6 @@ Rxe1 axb4 27. axb4 Qxb4 28. Re6 Ne4 29. Nxe4 fxe4 30. Rxe4 1/2-1/2
 [Result "0-1"]
 [WhiteElo "1577"]
 [ECO "B12"]
-[Opening "Caro-Kann"]
-[Variation "advance variation"]
 [EventDate "2022.??.??"]
 [PlyCount "44"]
 
@@ -1506,8 +1396,6 @@ Rxe1 axb4 27. axb4 Qxb4 28. Re6 Ne4 29. Nxe4 fxe4 30. Rxe4 1/2-1/2
 [WhiteElo "1447"]
 [BlackElo "1517"]
 [ECO "C46"]
-[Opening "Four knights"]
-[Variation "Italian variation"]
 [EventDate "2022.??.??"]
 [PlyCount "73"]
 
@@ -1529,7 +1417,6 @@ fxg7 gxf1=Q+ 33. Rxf1 Kh7 34. Qd3 Rg8 35. Ne7+ Kxg7 36. Qg6+ Kh8 37. Qxg8#
 [WhiteElo "1517"]
 [BlackElo "1577"]
 [ECO "C34"]
-[Opening "King's knight's gambit"]
 [EventDate "2022.??.??"]
 [PlyCount "40"]
 
@@ -1548,8 +1435,6 @@ fxg7 gxf1=Q+ 33. Rxf1 Kh7 34. Qd3 Rg8 35. Ne7+ Kxg7 36. Qg6+ Kh8 37. Qxg8#
 [WhiteElo "1505"]
 [BlackElo "1668"]
 [ECO "C65"]
-[Opening "Ruy Lopez"]
-[Variation "Berlin defence, Beverwijk variation"]
 [EventDate "2022.??.??"]
 [PlyCount "85"]
 
@@ -1570,8 +1455,6 @@ Nxb2 39. Be5 Nc4 40. b8=Q Nxa3 41. Qb2 Nc4 42. Qb1+ g6 43. Rh8# 1-0
 [Result "0-1"]
 [BlackElo "1399"]
 [ECO "C47"]
-[Opening "Four knights"]
-[Variation "Scotch, 4...exd4"]
 [EventDate "2022.??.??"]
 [PlyCount "144"]
 
@@ -1598,7 +1481,6 @@ Rh5+ Kg4 69. Re5 Rg2+ 70. Kf1 Ra2 71. Re4+ Kf3 72. Rd4 Ra1+ 0-1
 [WhiteElo "1447"]
 [BlackElo "1505"]
 [ECO "C50"]
-[Opening "Giuoco Pianissimo"]
 [EventDate "2022.??.??"]
 [PlyCount "107"]
 
@@ -1622,8 +1504,6 @@ Kh6 e4 51. h5 e3 52. Kh7 Rh3 53. h6 Rxh6+ 54. Kxh6 0-1
 [WhiteElo "1399"]
 [BlackElo "1517"]
 [ECO "D06"]
-[Opening "QGD"]
-[Variation "Marshall defence"]
 [EventDate "2022.??.??"]
 [PlyCount "36"]
 
@@ -1640,8 +1520,6 @@ h3 Bh5 9. Qb3 dxc4 10. Qxc4 e5 11. dxe5 Nxe5 12. Nxe5 Bxe2 13. Qxe2 Qxe5
 [Result "0-1"]
 [WhiteElo "1668"]
 [ECO "C26"]
-[Opening "Vienna"]
-[Variation "Mengarini variation"]
 [EventDate "2022.??.??"]
 [PlyCount "126"]
 
@@ -1666,7 +1544,6 @@ Ke2 Bg3 51. Ne3 f4 52. Nf1 Kg4 53. Kd3 Kf3 54. Nd2+ Kf2 55. c4 f3 56. c5 b5
 [Result "0-1"]
 [WhiteElo "1505"]
 [ECO "C40"]
-[Opening "QP counter-gambit (elephant gambit)"]
 [EventDate "2022.??.??"]
 [PlyCount "54"]
 
@@ -1686,7 +1563,6 @@ Ke2 Bg3 51. Ne3 f4 52. Nf1 Kg4 53. Kd3 Kf3 54. Nd2+ Kf2 55. c4 f3 56. c5 b5
 [WhiteElo "1447"]
 [BlackElo "1577"]
 [ECO "C53"]
-[Opening "Giuoco Piano"]
 [EventDate "2022.??.??"]
 [PlyCount "47"]
 
@@ -1705,7 +1581,6 @@ Rxf7 20. Qxf7 Rf8 21. Re8 Bxf2+ 22. Rxf2 Qd1+ 23. Rf1 Qd4+ 24. Kh1 1-0
 [WhiteElo "1517"]
 [BlackElo "1668"]
 [ECO "C30"]
-[Opening "King's gambit"]
 [EventDate "2022.??.??"]
 [PlyCount "99"]
 
@@ -1729,7 +1604,6 @@ Kxf5 50. Bxb6 1-0
 [WhiteElo "1399"]
 [BlackElo "1447"]
 [ECO "E61"]
-[Opening "King's Indian defence, 3.Nc3"]
 [EventDate "2022.??.??"]
 [PlyCount "52"]
 
@@ -1749,7 +1623,6 @@ Bxd5+ 0-1
 [WhiteElo "1577"]
 [BlackElo "1505"]
 [ECO "C53"]
-[Opening "Giuoco Piano"]
 [EventDate "2022.??.??"]
 [PlyCount "70"]
 
@@ -1769,7 +1642,6 @@ Rc2 32. Ke3 Rxd2 33. Kxd2 Kf7 34. a4 Ke6 35. b5 Kxe5 0-1
 [Result "1-0"]
 [BlackElo "1517"]
 [ECO "C44"]
-[Opening "King's pawn game"]
 [EventDate "2022.??.??"]
 [PlyCount "4"]
 
@@ -1785,8 +1657,6 @@ Rc2 32. Ke3 Rxd2 33. Kxd2 Kf7 34. a4 Ke6 35. b5 Kxe5 0-1
 [WhiteElo "1565"]
 [BlackElo "1538"]
 [ECO "B84"]
-[Opening "Sicilian"]
-[Variation "Scheveningen, classical, Nd7 system"]
 [EventDate "2022.??.??"]
 [PlyCount "82"]
 
@@ -1808,7 +1678,6 @@ hxg5 38. Nc7 Kc5 39. Ne6+ Kd6 40. f8=Q Rxf8 41. Nxf8 Kxe7 1-0
 [WhiteElo "1644"]
 [BlackElo "1516"]
 [ECO "D00"]
-[Opening "Queen's pawn, Mason variation"]
 [EventDate "2022.??.??"]
 [PlyCount "60"]
 
@@ -1827,7 +1696,6 @@ Qb3 Qc7 27. Ra3 a5 28. f4 Rb8 29. Qa4 Rbb2 30. Rff3 Rxg2+ 0-1
 [Result "0-1"]
 [BlackElo "1343"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "2022.??.??"]
 [PlyCount "82"]
 
@@ -1849,8 +1717,6 @@ Kh3 Rxf6 39. g3 h6 40. Qd2 Rf2 41. Qc3+ Kh7 0-1
 [WhiteElo "1440"]
 [BlackElo "1656"]
 [ECO "B13"]
-[Opening "Caro-Kann"]
-[Variation "exchange variation"]
 [EventDate "2022.??.??"]
 [PlyCount "44"]
 
@@ -1869,7 +1735,6 @@ Rxc2 20. Qg3 Bd6 21. Qf3 Bc5 22. Qg3 Bxf2+ 0-1
 [WhiteElo "1656"]
 [BlackElo "1644"]
 [ECO "D00"]
-[Opening "Queen's pawn, Mason variation"]
 [EventDate "2022.??.??"]
 [PlyCount "79"]
 
@@ -1890,7 +1755,6 @@ Rxg5+ hxg5 39. Qf5 Kh6 40. Qg6# 1-0
 [Result "1-0"]
 [BlackElo "1565"]
 [ECO "A45"]
-[Opening "Trompovsky attack (Ruth, Opovcensky opening)"]
 [EventDate "2022.??.??"]
 [PlyCount "63"]
 
@@ -1911,7 +1775,6 @@ dxc5+ bxc5 26. Bc4 R5a7 27. Rad1+ Kc6 28. Bxf7 Rf8 29. Bd5+ Kc7 30. f3 b5
 [WhiteElo "1538"]
 [BlackElo "1440"]
 [ECO "D10"]
-[Opening "QGD Slav defence"]
 [EventDate "2022.??.??"]
 [PlyCount "68"]
 
@@ -1932,7 +1795,6 @@ Qd1 Nc6 33. Bb5 Qxh1 34. Bf1 Re1 0-1
 [WhiteElo "1343"]
 [BlackElo "1516"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "2022.??.??"]
 [PlyCount "67"]
 
@@ -1953,8 +1815,6 @@ Qxc7 b5 32. Qe7 a4 33. Qf6+ Kh7 34. Bf8 1-0
 [WhiteElo "1644"]
 [BlackElo "1538"]
 [ECO "D06"]
-[Opening "QGD"]
-[Variation "Marshall defence"]
 [EventDate "2022.??.??"]
 [PlyCount "57"]
 
@@ -1974,8 +1834,6 @@ Ne4 27. Bxb5 Rf7 28. Rxf7 Kxf7 29. Ne5+ 1-0
 [WhiteElo "1516"]
 [BlackElo "1656"]
 [ECO "B10"]
-[Opening "Caro-Kann"]
-[Variation "Hillbilly attack"]
 [EventDate "2022.??.??"]
 [PlyCount "63"]
 
@@ -1995,8 +1853,6 @@ Nxd4 0-1
 [Result "0-1"]
 [WhiteElo "1440"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "exchange variation"]
 [EventDate "2022.??.??"]
 [PlyCount "146"]
 
@@ -2023,7 +1879,6 @@ Rg4 h3 69. Rg3+ Ke4 70. Rg1 f5 71. Re1+ Be2 72. Rxe2+ Nxe2 73. Kxh3 Kd3 0-1
 [WhiteElo "1538"]
 [BlackElo "1516"]
 [ECO "D20"]
-[Opening "Queen's gambit accepted"]
 [EventDate "2022.??.??"]
 [PlyCount "35"]
 
@@ -2041,7 +1896,6 @@ a3 O-O 9. b4 b5 10. Bb3 Bb7 11. Bb2 Nbd7 12. Re1 Bd5 13. Bc2 Nh7 14. e4 Bb7
 [WhiteElo "1343"]
 [BlackElo "1656"]
 [ECO "B10"]
-[Opening "Caro-Kann defence"]
 [EventDate "2022.??.??"]
 [PlyCount "72"]
 
@@ -2062,7 +1916,6 @@ cxb5 Rac8 33. Qb1 Qc3+ 34. Kf1 Qc1+ 35. Qxc1 Rxc1+ 36. Kf2 Rc2+ 0-1
 [WhiteElo "1565"]
 [BlackElo "1440"]
 [ECO "A20"]
-[Opening "English opening"]
 [EventDate "2022.??.??"]
 [PlyCount "87"]
 
@@ -2083,7 +1936,6 @@ g4 Rf6 33. h3 Rf7 34. Kf2 Rc7 35. Ke2 a5 36. Nc4 a4 37. Nxd6 b6 38. Nb5 Rb7
 [Result "0-1"]
 [BlackElo "1644"]
 [ECO "A02"]
-[Opening "Bird's opening"]
 [EventDate "2022.??.??"]
 [PlyCount "96"]
 
@@ -2106,8 +1958,6 @@ Bf6 45. Rf7 Bxh4+ 46. Ke2 Rxd4 47. Rf8 Bg5 48. a3 Rd2+ 0-1
 [WhiteElo "1440"]
 [BlackElo "1343"]
 [ECO "C45"]
-[Opening "Scotch"]
-[Variation "Schmidt variation"]
 [EventDate "2022.??.??"]
 [PlyCount "45"]
 
@@ -2126,7 +1976,6 @@ O-O 8. O-O Qe7 9. Re1 Qe5 10. h3 Bd6 11. g3 h5 12. Bf4 Qc5 13. Bxd6 cxd6
 [WhiteElo "1656"]
 [BlackElo "1538"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "2022.??.??"]
 [PlyCount "49"]
 
@@ -2145,8 +1994,6 @@ Qf6 21. Nxf7+ Qxf7 22. Bxe6 Nxe6 23. Rd6 Re8 24. Rad1 Bf8 25. Rd7 1-0
 [WhiteElo "1644"]
 [BlackElo "1565"]
 [ECO "E30"]
-[Opening "Nimzo-Indian"]
-[Variation "Leningrad variation"]
 [EventDate "2022.??.??"]
 [PlyCount "77"]
 
@@ -2167,8 +2014,6 @@ Rf6 33. d6 Qf8 34. Ne4 Rf7 35. Kb1 Qc8 36. Rc1 Qb7 37. Rc7 Qa8 38. Nc5 Rgg7
 [Result "0-1"]
 [WhiteElo "1516"]
 [ECO "C23"]
-[Opening "Bishop's opening"]
-[Variation "Classical variation"]
 [EventDate "2022.??.??"]
 [PlyCount "88"]
 
@@ -2191,8 +2036,6 @@ Kb6 0-1
 [WhiteElo "1343"]
 [BlackElo "1538"]
 [ECO "B90"]
-[Opening "Sicilian"]
-[Variation "Najdorf"]
 [EventDate "2022.??.??"]
 [PlyCount "72"]
 
@@ -2213,7 +2056,6 @@ Re8 21. Nf3 Ng4 22. Bd2 Qc7 23. c3 Rab8 24. Ra4 f5 25. h3 Nf6 26. Rc4 Qd7
 [WhiteElo "1565"]
 [BlackElo "1516"]
 [ECO "A20"]
-[Opening "English opening"]
 [EventDate "2022.??.??"]
 [PlyCount "83"]
 
@@ -2235,7 +2077,6 @@ h4 Rb7 39. h5 gxh5 40. Rh6 Rb8 41. Rxh7+ Ke6 42. f5# 1-0
 [WhiteElo "1440"]
 [BlackElo "1644"]
 [ECO "C55"]
-[Opening "Two knights defence (Modern bishop's opening)"]
 [EventDate "2022.??.??"]
 [PlyCount "86"]
 
@@ -2256,8 +2097,6 @@ Rxa1 21. Bxa1 Qxb5 22. Qd2 Qd7 23. f3 Qe7 24. Kg2 Bh4 25. f4 g5 26. f5 Kh7
 [Result "1-0"]
 [BlackElo "1656"]
 [ECO "B10"]
-[Opening "Caro-Kann"]
-[Variation "Goldman (Spielmann) variation"]
 [EventDate "2022.??.??"]
 [PlyCount "73"]
 
@@ -2278,7 +2117,6 @@ exf5 33. Nxf5+ Nxf5 34. Rxf5 Kd8 35. Rgf1 Rc6 36. Bxd4 Bxd4 37. Rf8 1-0
 [WhiteElo "1656"]
 [BlackElo "1565"]
 [ECO "A80"]
-[Opening "Dutch"]
 [EventDate "2022.??.??"]
 [PlyCount "39"]
 
@@ -2297,8 +2135,6 @@ Qh7# 1-0
 [WhiteElo "1516"]
 [BlackElo "1440"]
 [ECO "C24"]
-[Opening "Bishop's opening"]
-[Variation "Berlin defence"]
 [EventDate "2022.??.??"]
 [PlyCount "84"]
 
@@ -2320,8 +2156,6 @@ Kg5 b1=Q 40. Kh4 Qb6 41. Kg3 Rh1 42. Kf4 f6 0-1
 [WhiteElo "1644"]
 [BlackElo "1343"]
 [ECO "D80"]
-[Opening "Gruenfeld"]
-[Variation "Stockholm variation"]
 [EventDate "2022.??.??"]
 [PlyCount "51"]
 
@@ -2340,8 +2174,6 @@ Kf8 26. Nxd7# 1-0
 [Result "0-1"]
 [WhiteElo "1538"]
 [ECO "E12"]
-[Opening "Queen's Indian"]
-[Variation "4.Nc3"]
 [EventDate "2022.??.??"]
 [PlyCount "54"]
 
@@ -2361,8 +2193,6 @@ Qc3 O-O-O 21. Rac1 Kb7 22. Ra1 Bf8 23. a4 Bh6 24. Rgd1 Rxd1 25. Rxd1 Rd8
 [WhiteElo "1179"]
 [BlackElo "1349"]
 [ECO "C53"]
-[Opening "Giuoco Piano"]
-[Variation "close variation"]
 [EventDate "2022.??.??"]
 [PlyCount "80"]
 
@@ -2384,8 +2214,6 @@ Nd3+ 38. Ke4 Nxb2 39. Nd4 Qe5+ 40. Kf3 Rf1# 0-1
 [WhiteElo "1539"]
 [BlackElo "1301"]
 [ECO "A30"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "2022.??.??"]
 [PlyCount "60"]
 
@@ -2405,8 +2233,6 @@ Nxd4 cxd4 9. d3 exd5 10. f3 dxe4 11. fxe4 Qa5+ 12. Qd2 Qxe5 13. Qf4 Qxf4
 [WhiteElo "1340"]
 [BlackElo "1228"]
 [ECO "C50"]
-[Opening "Giuoco Pianissimo"]
-[Variation "Italian four knights variation"]
 [EventDate "2022.??.??"]
 [PlyCount "131"]
 
@@ -2431,8 +2257,6 @@ Re5 62. Rd5 Re4 63. h5+ Kh6 64. Qg3 g5 65. hxg6 Re7 66. g7 1-0
 [Result "0-1"]
 [WhiteElo "1301"]
 [ECO "C50"]
-[Opening "Giuoco Piano"]
-[Variation "four knights variation"]
 [EventDate "2022.??.??"]
 [PlyCount "92"]
 
@@ -2455,8 +2279,6 @@ e1=Q 44. d7 Rd8 45. Rxb7 Qc3+ 46. Kd6 Qd4+ 0-1
 [WhiteElo "1228"]
 [BlackElo "1179"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "closed"]
 [EventDate "2022.??.??"]
 [PlyCount "84"]
 
@@ -2478,7 +2300,6 @@ Kc4 h1=Q 39. Kb3 Qb6+ 40. Ka2 Qd5+ 41. Kb1 Rh1+ 42. Be1 Rxe1# 0-1
 [WhiteElo "1349"]
 [BlackElo "1539"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "2022.??.??"]
 [PlyCount "131"]
 
@@ -2503,7 +2324,6 @@ Kd3 63. f6 Bxf6 64. Rxf6 c4 65. Rf3+ Kd2 66. Rf2+ 1/2-1/2
 [Result "1-0"]
 [BlackElo "1340"]
 [ECO "A00"]
-[Opening "Polish (Sokolsky) opening"]
 [EventDate "2022.??.??"]
 [PlyCount "101"]
 
@@ -2526,7 +2346,6 @@ Bxa7 hxg3 46. hxg3 Kd8 47. b8=Q+ Ke7 48. Qxe5+ Kf7 49. Bd4 Kf8 50. Bg6 Kg8
 [Result "0-1"]
 [BlackElo "1301"]
 [ECO "C46"]
-[Opening "Four knights game"]
 [EventDate "2022.??.??"]
 [PlyCount "104"]
 
@@ -2549,7 +2368,6 @@ f5 34. h4 Nf7 35. Ne6 Re8 36. Nd4 Ra4 37. Qc3 Ne5 38. Bc2 Rxc4 39. Qb3 Rxd4
 [Result "0-1"]
 [WhiteElo "1179"]
 [ECO "A41"]
-[Opening "Queen's Pawn"]
 [EventDate "2022.??.??"]
 [PlyCount "89"]
 
@@ -2571,8 +2389,6 @@ Kh4 Qf2+ 45. Kg5 0-1
 [Result "1-0"]
 [BlackElo "1349"]
 [ECO "D06"]
-[Opening "QGD"]
-[Variation "Marshall defence"]
 [EventDate "2022.??.??"]
 [PlyCount "91"]
 
@@ -2594,7 +2410,6 @@ Rc6 45. Qe8 Rc7 46. Qxe6 1-0
 [Result "1-0"]
 [BlackElo "1539"]
 [ECO "C46"]
-[Opening "Three knights game"]
 [EventDate "2022.??.??"]
 [PlyCount "69"]
 
@@ -2614,8 +2429,6 @@ Rc6 45. Qe8 Rc7 46. Qxe6 1-0
 [Result "1-0"]
 [WhiteElo "1228"]
 [ECO "C46"]
-[Opening "Four knights"]
-[Variation "Italian variation"]
 [EventDate "2022.??.??"]
 [PlyCount "49"]
 
@@ -2633,8 +2446,6 @@ Nd5 Qd7 21. Nc7+ Kf8 22. Rfd1 Bxf3 23. Rxd6 Qg4 24. Rxd8+ Ke7 25. Qd6# 1-0
 [Result "1-0"]
 [WhiteElo "1349"]
 [ECO "C50"]
-[Opening "Giuoco Piano"]
-[Variation "four knights variation"]
 [EventDate "2022.??.??"]
 [PlyCount "61"]
 
@@ -2654,8 +2465,6 @@ axb7 Rhf8 27. f3 Nf6 28. Bc6 a6 29. Rxa6 d5 30. Ra8+ Nxa8 31. bxa8=Q# 1-0
 [WhiteElo "1340"]
 [BlackElo "1179"]
 [ECO "C48"]
-[Opening "Four knights"]
-[Variation "Rubinstein counter-gambit"]
 [EventDate "2022.??.??"]
 [PlyCount "65"]
 
@@ -2676,8 +2485,6 @@ Qg5+ Bg6 27. Rxh5 Kh8 28. Rh4 Rg8 29. Qf6+ Rg7 30. Qxd8+ Rg8 31. Qf6+ Rg7
 [WhiteElo "1301"]
 [BlackElo "1349"]
 [ECO "C50"]
-[Opening "Giuoco Piano"]
-[Variation "four knights variation"]
 [EventDate "2022.??.??"]
 [PlyCount "55"]
 
@@ -2695,8 +2502,6 @@ Qg5+ 26. Kf2 Qf4+ 27. Kg2 Qg5+ 28. Kf2 1/2-1/2
 [Black "Buczynski, Bogdan"]
 [Result "0-1"]
 [ECO "D08"]
-[Opening "QGD"]
-[Variation "Albin counter-gambit"]
 [EventDate "2022.??.??"]
 [PlyCount "58"]
 
@@ -2715,8 +2520,6 @@ Kg2 Qxe5 26. Qc4 Nd5 27. Kf2 Qxb2+ 28. Kg1 Rad8 29. Rf5 Ne3 0-1
 [Result "0-1"]
 [BlackElo "1228"]
 [ECO "C50"]
-[Opening "Giuoco Pianissimo"]
-[Variation "Italian four knights variation"]
 [EventDate "2022.??.??"]
 [PlyCount "88"]
 
@@ -2739,8 +2542,6 @@ Kh1 Bg3 44. b5 Qh2# 0-1
 [WhiteElo "1539"]
 [BlackElo "1340"]
 [ECO "D00"]
-[Opening "Queen's pawn"]
-[Variation "Chigorin variation"]
 [EventDate "2022.??.??"]
 [PlyCount "87"]
 
@@ -2761,7 +2562,6 @@ Ra8 38. Bc1 h5 39. g4 hxg4 40. Rxg4 Rg8 41. Rxg8 Kxg8 42. h5 Kh7 43. h6 f5
 [Black "Badepally, Krithi"]
 [Result "1-0"]
 [ECO "A00"]
-[Opening "Polish (Sokolsky) opening"]
 [EventDate "2022.??.??"]
 [PlyCount "79"]
 
@@ -2782,8 +2582,6 @@ Ng8 39. Rg6 d4 40. Qxg7# 1-0
 [Result "0-1"]
 [WhiteElo "1340"]
 [ECO "C48"]
-[Opening "Four knights"]
-[Variation "Spanish variation"]
 [EventDate "2022.??.??"]
 [PlyCount "82"]
 
@@ -2805,8 +2603,6 @@ Qxa2 38. Re1 Qc4 39. Rb1 h4 40. b5 h3 41. b6 Qe4 0-1
 [WhiteElo "1179"]
 [BlackElo "1539"]
 [ECO "D53"]
-[Opening "QGD"]
-[Variation "4.Bg5 Be7"]
 [EventDate "2022.??.??"]
 [PlyCount "72"]
 
@@ -2827,7 +2623,6 @@ Rxe6 fxe6 33. Qf6 Rf8 34. Qxh6 Qd5 35. Qg5+ Qxg5 36. h4 Qe5 0-1
 [WhiteElo "1228"]
 [BlackElo "1301"]
 [ECO "B30"]
-[Opening "Sicilian defence"]
 [EventDate "2022.??.??"]
 [PlyCount "66"]
 
@@ -2848,7 +2643,6 @@ Rg3 Qxc2 27. Rxg6 fxg6 28. Qd7+ Kg8 29. Qe6+ Kg7 30. Qe5+ Kg8 31. Qxd4 Bd6
 [WhiteElo "1349"]
 [BlackElo "1228"]
 [ECO "C50"]
-[Opening "Giuoco Piano"]
 [EventDate "2022.??.??"]
 [PlyCount "56"]
 
@@ -2867,7 +2661,6 @@ Qe2 Re8 15. Qxh5 Qf6 16. Qf3 Re7 17. Qxb7 Ree8 18. Qxc7 Rec8 19. Qd7 Rd8
 [Result "0-1"]
 [BlackElo "1340"]
 [ECO "C46"]
-[Opening "Three knights game"]
 [EventDate "2022.??.??"]
 [PlyCount "108"]
 
@@ -2890,8 +2683,6 @@ Qd5 52. g5 d1=Q+ 53. Ke3 Q1d3+ 54. Kf4 Q5e4# 0-1
 [Result "0-1"]
 [BlackElo "1301"]
 [ECO "C50"]
-[Opening "Giuoco Piano"]
-[Variation "four knights variation"]
 [EventDate "2022.??.??"]
 [PlyCount "86"]
 
@@ -2913,7 +2704,6 @@ Nf6 Nd2+ 0-1
 [Result "1-0"]
 [BlackElo "1179"]
 [ECO "D30"]
-[Opening "Queen's gambit declined"]
 [EventDate "2022.??.??"]
 [PlyCount "69"]
 
@@ -2934,8 +2724,6 @@ exd5 33. Qxd5+ Rf7 34. Qxa8+ Rf8 35. Bxf8 1-0
 [WhiteElo "1340"]
 [BlackElo "1301"]
 [ECO "B30"]
-[Opening "Sicilian"]
-[Variation "Nimzovich-Rossolimo attack (without ...d6)"]
 [EventDate "2022.??.??"]
 [PlyCount "49"]
 
@@ -2953,7 +2741,6 @@ dxc5 d5 15. cxd6 c5 16. dxe7 Bxe4 17. exf8=Q+ Rxf8 18. Qa3 Ng4 19. Bxc5 Qc7
 [Result "1-0"]
 [BlackElo "1349"]
 [ECO "A00"]
-[Opening "Polish (Sokolsky) opening"]
 [EventDate "2022.??.??"]
 [PlyCount "59"]
 
@@ -2972,8 +2759,6 @@ Nxd5 Be6 21. Nf4 Bc4 22. d3 Bxf4 23. dxc4 Bd6 24. Qxf7 Bh2+ 25. Kxh2 Qd6+
 [Result "1-0"]
 [WhiteElo "1179"]
 [ECO "C46"]
-[Opening "Four knights"]
-[Variation "Italian variation"]
 [EventDate "2022.??.??"]
 [PlyCount "109"]
 
@@ -2996,7 +2781,6 @@ Qxe5+ Kd7 51. Rf7+ Kc6 52. Rc7+ Kb5 53. Qxc5+ Ka4 54. Qb6 Ka3 55. Ra7# 1-0
 [Result "0-1"]
 [WhiteElo "1539"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "2022.??.??"]
 [PlyCount "112"]
 
@@ -3020,7 +2804,6 @@ Kd6 b3 52. Kc6 b2 53. Kxb5 b1=Q+ 54. Kc5 Qb3 55. Ra8 Qc4+ 56. Kd6 Qb4+ 0-1
 [WhiteElo "1301"]
 [BlackElo "1179"]
 [ECO "C20"]
-[Opening "King's pawn game"]
 [EventDate "2022.??.??"]
 [PlyCount "84"]
 
@@ -3041,7 +2824,6 @@ Ke2 Rxg4 39. Ke3 Rf4 40. Kd3 Kg7 41. Ke3 Kf6 42. Kd3 Kf5 0-1
 [Result "0-1"]
 [WhiteElo "1228"]
 [ECO "B00"]
-[Opening "King's pawn opening"]
 [EventDate "2022.??.??"]
 [PlyCount "94"]
 
@@ -3063,8 +2845,6 @@ Qxc3 Nf3+ 40. Rxf3 Qxc3 41. Bd1 Bxf3 42. Bxf3 Qxd3 43. Bg2 Rb1+ 44. Kh2 Qe2
 [Result "1-0"]
 [BlackElo "1279"]
 [ECO "D07"]
-[Opening "QGD"]
-[Variation "Chigorin defence"]
 [EventDate "2022.??.??"]
 [PlyCount "25"]
 
@@ -3082,7 +2862,6 @@ Qf6 8. e4 Bd7 9. Nd5 Qh4 10. Qf3 O-O-O 11. Nxf7 Bg4 12. Qc3 Be6 13. Qxc7#
 [WhiteElo "1012"]
 [BlackElo "1078"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "2022.??.??"]
 [PlyCount "65"]
 
@@ -3103,8 +2882,6 @@ a4 Nc6 15. Rab1 f4 16. Qc5 b6 17. Qa3 a5 18. Rfe1 Re8 19. c4 d4 20. Qb3 g5
 [WhiteElo "999"]
 [BlackElo "1302"]
 [ECO "B02"]
-[Opening "Alekhine's defence"]
-[Variation "Scandinavian variation"]
 [EventDate "2022.??.??"]
 [PlyCount "120"]
 
@@ -3130,7 +2907,6 @@ Rxe1 g5 1-0
 [WhiteElo "1169"]
 [BlackElo "1315"]
 [ECO "D00"]
-[Opening "Queen's pawn game"]
 [EventDate "2022.??.??"]
 [PlyCount "14"]
 
@@ -3145,7 +2921,6 @@ Rxe1 g5 1-0
 [Result "0-1"]
 [WhiteElo "1302"]
 [ECO "C25"]
-[Opening "Vienna game"]
 [EventDate "2022.??.??"]
 [PlyCount "44"]
 
@@ -3163,8 +2938,6 @@ Rfd1 c5 21. Ne4 Bxe4 22. Rxd6 Qxg2# 0-1
 [Result "0-1"]
 [WhiteElo "1078"]
 [ECO "C64"]
-[Opening "Ruy Lopez"]
-[Variation "classical (Cordel) defence"]
 [EventDate "2022.??.??"]
 [PlyCount "52"]
 
@@ -3183,7 +2956,6 @@ Rfd1 c5 21. Ne4 Bxe4 22. Rxd6 Qxg2# 0-1
 [Result "1-0"]
 [WhiteElo "1279"]
 [ECO "C20"]
-[Opening "King's pawn game"]
 [EventDate "2022.??.??"]
 [PlyCount "37"]
 
@@ -3200,7 +2972,6 @@ Qb1 Be7 15. Rb8+ Bd8 16. Qb5+ Kf8 17. Rxd8+ Ke7 18. Bg5+ f6 19. Qd7+ 1-0
 [Result "1-0"]
 [BlackElo "999"]
 [ECO "C44"]
-[Opening "Scotch opening"]
 [EventDate "2022.??.??"]
 [PlyCount "15"]
 
@@ -3217,7 +2988,6 @@ Qb1 Be7 15. Rb8+ Bd8 16. Qb5+ Kf8 17. Rxd8+ Ke7 18. Bg5+ f6 19. Qd7+ 1-0
 [WhiteElo "1169"]
 [BlackElo "1302"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "2022.??.??"]
 [PlyCount "66"]
 
@@ -3238,8 +3008,6 @@ Kh3 Qh2+ 32. Kxg4 f5+ 33. Kg5 Qh6# 0-1
 [WhiteElo "1012"]
 [BlackElo "1279"]
 [ECO "D00"]
-[Opening "Queen's pawn"]
-[Variation "Chigorin variation"]
 [EventDate "2022.??.??"]
 [PlyCount "66"]
 
@@ -3260,7 +3028,6 @@ f5 26. b5 f4+ 27. Kxf4 Rxg2 28. h4 h6 29. h5 g5+ 30. hxg6 Rxg6 31. b6 Rf6+
 [WhiteElo "1315"]
 [BlackElo "1078"]
 [ECO "C57"]
-[Opening "Two knights defence"]
 [EventDate "2022.??.??"]
 [PlyCount "60"]
 
@@ -3279,7 +3046,6 @@ Rxc1 Qxc1+ 28. Kh2 Rc8 29. Qd5 Qf4+ 30. Kg1 Rc1# 0-1
 [Result "1-0"]
 [WhiteElo "1279"]
 [ECO "C20"]
-[Opening "King's pawn game"]
 [EventDate "2022.??.??"]
 [PlyCount "79"]
 
@@ -3301,8 +3067,6 @@ Nxf5 h4 39. cxd6 hxg3+ 40. fxg3 1-0
 [WhiteElo "1302"]
 [BlackElo "1012"]
 [ECO "D00"]
-[Opening "Queen's pawn"]
-[Variation "Chigorin variation"]
 [EventDate "2022.??.??"]
 [PlyCount "151"]
 
@@ -3329,7 +3093,6 @@ Ke6 57. Ke3 Kf5 58. Bb2 Kg6 59. Ke4 Kf7 60. f5 Ke7 61. Ke5 Kf7 62. f6 Kf8
 [Result "1-0"]
 [BlackElo "1169"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "2022.??.??"]
 [PlyCount "53"]
 
@@ -3349,7 +3112,6 @@ Nxe8+ Kh7 26. Qf7+ Bg7 27. Qxg7# 1-0
 [WhiteElo "1078"]
 [BlackElo "1279"]
 [ECO "B01"]
-[Opening "Scandinavian (centre counter) defence"]
 [EventDate "2022.??.??"]
 [PlyCount "103"]
 
@@ -3373,7 +3135,6 @@ Qf4 Qxh4 50. Qe5+ Qg5 51. Qh2+ Kg4 52. Qh3# 1-0
 [WhiteElo "1012"]
 [BlackElo "999"]
 [ECO "C11"]
-[Opening "French defence"]
 [EventDate "2022.??.??"]
 [PlyCount "87"]
 
@@ -3395,7 +3156,6 @@ Qg7# 1-0
 [Result "1-0"]
 [WhiteElo "999"]
 [ECO "C42"]
-[Opening "Petrov's defence"]
 [EventDate "2022.??.??"]
 [PlyCount "19"]
 
@@ -3412,7 +3172,6 @@ Bxe7 8. d3 b6 9. Bg5 Rb8 10. Qxe7# 1-0
 [WhiteElo "1302"]
 [BlackElo "1078"]
 [ECO "C20"]
-[Opening "King's pawn game"]
 [EventDate "2022.??.??"]
 [PlyCount "44"]
 
@@ -3430,8 +3189,6 @@ Rxf2 Qxg3+ 21. Kf1 Bc5 22. Rf3 Qg1# 0-1
 [Result "1-0"]
 [BlackElo "1012"]
 [ECO "D15"]
-[Opening "QGD Slav"]
-[Variation "4.Nc3"]
 [EventDate "2022.??.??"]
 [PlyCount "65"]
 
@@ -3452,8 +3209,6 @@ Rxf7+ Kg6 26. a4 h6 27. a5 h5 28. a6 h4 29. a7 Kh5 30. a8=Q g4 31. Qd5+ Kg6
 [WhiteElo "1078"]
 [BlackElo "999"]
 [ECO "C68"]
-[Opening "Ruy Lopez"]
-[Variation "exchange variation"]
 [EventDate "2022.??.??"]
 [PlyCount "42"]
 
@@ -3471,7 +3226,6 @@ Bg4 8. Nc3 Qe7 9. Nd4 Bxd1 10. Nxd1 Qc5 11. c3 Qb6 12. Nf5 O-O-O 13. d4 Re8
 [Result "0-1"]
 [BlackElo "1012"]
 [ECO "A00"]
-[Opening "Van't Kruijs opening"]
 [EventDate "2022.??.??"]
 [PlyCount "20"]
 
@@ -3488,7 +3242,6 @@ Nh4 Qxh4 9. O-O exd4 10. Nxd5 Qxh2# 0-1
 [WhiteElo "1279"]
 [BlackElo "999"]
 [ECO "C20"]
-[Opening "King's pawn game"]
 [EventDate "2022.??.??"]
 [PlyCount "115"]
 
@@ -3512,8 +3265,6 @@ Qd7 Kg8 57. Kg6 Kf8 58. Qf7# 1-0
 [Result "0-1"]
 [WhiteElo "999"]
 [ECO "C50"]
-[Opening "Giuoco Piano"]
-[Variation "four knights variation"]
 [EventDate "2022.??.??"]
 [PlyCount "110"]
 
@@ -3537,8 +3288,6 @@ Rd8+ Kh7 46. Kf1 Qh1+ 47. Ke2 Bxd8 48. e5 Rxe5+ 49. Kd2 Qxg2 50. Qd6 Bg5+
 [WhiteElo "1340"]
 [BlackElo "1078"]
 [ECO "C49"]
-[Opening "Four knights"]
-[Variation "double Ruy Lopez"]
 [EventDate "2022.??.??"]
 [PlyCount "71"]
 
@@ -3558,7 +3307,6 @@ Kf5 32. Qe5+ Kg4 33. Ra3 f5 34. f3+ Kh5 35. Qg7 Kh4 36. Qh6# 1-0
 [Result "1-0"]
 [BlackElo "1302"]
 [ECO "C44"]
-[Opening "Scotch opening"]
 [EventDate "2022.??.??"]
 [PlyCount "69"]
 
@@ -3579,7 +3327,6 @@ Re7 Rxf6 26. Rxc7+ Kb8 27. Rxf7+ Kc8 28. Rxf6 Kd7 29. Be5 Ke7 30. h4 Kd7
 [WhiteElo "1179"]
 [BlackElo "1315"]
 [ECO "C41"]
-[Opening "Philidor's defence"]
 [EventDate "2022.??.??"]
 [PlyCount "95"]
 
@@ -3602,8 +3349,6 @@ Qxa4+ Qa5 45. Qxa5+ Kxa5 46. Rf5 Ka4 47. Rxe5 dxe5 48. g5 1-0
 [WhiteElo "1539"]
 [BlackElo "1279"]
 [ECO "D00"]
-[Opening "Queen's pawn"]
-[Variation "Chigorin variation"]
 [EventDate "2022.??.??"]
 [PlyCount "56"]
 
@@ -3623,7 +3368,6 @@ Rxe3+ 26. Nxe3 Qxb2 27. Nc4 Qc1+ 28. Ke2 Qxc4+ 0-1
 [WhiteElo "1012"]
 [BlackElo "1228"]
 [ECO "D00"]
-[Opening "Blackmar gambit"]
 [EventDate "2022.??.??"]
 [PlyCount "50"]
 

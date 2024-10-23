@@ -7,8 +7,6 @@ export const pgns1976 = [
 [Black "Jung, H."]
 [Result "0-1"]
 [ECO "B96"]
-[Opening "Sicilian"]
-[Variation "Najdorf, Polugayevsky, Simagin variation"]
 [EventDate "1976.??.??"]
 [PlyCount "84"]
 

@@ -7,7 +7,6 @@ export const pgns1984 = [
 [Black "Jung, H."]
 [Result "1-0"]
 [ECO "A41"]
-[Opening "Queen's Pawn"]
 [EventDate "1984.??.??"]
 [PlyCount "95"]
 
@@ -30,8 +29,6 @@ h4 47. Kf1 Kh2 $2 48. Rd3 1-0
 [Black "Richardson, R."]
 [Result "1-0"]
 [ECO "E84"]
-[Opening "King's Indian"]
-[Variation "Saemisch, Panno main line"]
 [EventDate "1984.??.??"]
 [PlyCount "55"]
 
@@ -52,8 +49,6 @@ b4 21. h6 $1 bxc3 22. hxg7 cxd2 23. Bxf6 d1=Q+ 24. Raxd1 Bh5 25. Bxh5 Rxb3
 [Black "Jackson, D."]
 [Result "0-1"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "closed"]
 [EventDate "1984.??.??"]
 [PlyCount "90"]
 

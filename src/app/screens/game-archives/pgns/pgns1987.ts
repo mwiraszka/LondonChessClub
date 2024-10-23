@@ -7,7 +7,6 @@ export const pgns1987 = [
 [Black "Girard, R."]
 [Result "0-1"]
 [ECO "A57"]
-[Opening "Benko gambit"]
 [EventDate "1987.??.??"]
 [PlyCount "52"]
 
@@ -25,8 +24,6 @@ Kg8 26. Rxe6 Rf8 0-1
 [Black "Southam, T."]
 [Result "1/2-1/2"]
 [ECO "C57"]
-[Opening "two knights defence"]
-[Variation "Fritz variation"]
 [EventDate "1987.??.??"]
 [PlyCount "27"]
 
@@ -42,8 +39,6 @@ Kg8 26. Rxe6 Rf8 0-1
 [Black "Demers, C."]
 [Result "1-0"]
 [ECO "D34"]
-[Opening "QGD"]
-[Variation "Tarrasch, Prague variation, 9.Bg5"]
 [EventDate "1987.??.??"]
 [PlyCount "79"]
 
@@ -63,8 +58,6 @@ Bf7 39. Rxf8+ Kxf8 40. Bxf7 1-0
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "D34"]
-[Opening "QGD"]
-[Variation "Tarrasch, Prague variation, Normal position"]
 [EventDate "1987.??.??"]
 [PlyCount "74"]
 
@@ -83,7 +76,6 @@ Rxd6 33. gxh5 Rdd2 34. Ra8+ Kh7 35. Ra7+ Kh6 36. f4 g4+ 37. Kg3 Rd3+ 0-1
 [Black "Johnson, T."]
 [Result "1-0"]
 [ECO "A40"]
-[Opening "Modern defence"]
 [EventDate "1987.??.??"]
 [PlyCount "53"]
 
@@ -101,8 +93,6 @@ f6 21. Rd1 Be8 22. Qh6+ Kg8 23. Rdc1 Rf7 24. Qe3 Kg7 25. Qc3 b4 26. Qc2 Rd7
 [Black "Southam, T."]
 [Result "1/2-1/2"]
 [ECO "C68"]
-[Opening "Ruy Lopez"]
-[Variation "exchange, Alekhine variation"]
 [EventDate "1987.??.??"]
 [PlyCount "51"]
 
@@ -120,8 +110,6 @@ Nxd4 1/2-1/2
 [Black "Puri, V."]
 [Result "1/2-1/2"]
 [ECO "E97"]
-[Opening "King's Indian"]
-[Variation "orthodox, Aronin-Taimanov variation (Yugoslav attack / Mar del Plata variation)"]
 [EventDate "1987.??.??"]
 [PlyCount "115"]
 
@@ -144,8 +132,6 @@ Nf4+ 57. Kg3 Ne2+ 58. Kh3 1/2-1/2
 [Black "Southam, T."]
 [Result "1/2-1/2"]
 [ECO "D37"]
-[Opening "QGD"]
-[Variation "4.Nf3"]
 [EventDate "1987.??.??"]
 [PlyCount "130"]
 
@@ -169,7 +155,6 @@ Bc4 21. h4 a5 22. a3 axb4 23. axb4 b5 24. g4 Ra3 25. g5 hxg5 26. hxg5 g6
 [Black "Huda, R."]
 [Result "0-1"]
 [ECO "A57"]
-[Opening "Benko gambit"]
 [EventDate "1987.??.??"]
 [PlyCount "102"]
 
@@ -191,7 +176,6 @@ Rd2 Qe1 0-1
 [Black "Bosenius, B."]
 [Result "1-0"]
 [ECO "A80"]
-[Opening "Dutch"]
 [EventDate "1987.??.??"]
 [PlyCount "79"]
 
@@ -211,8 +195,6 @@ Kg5 39. h4+ Kg6 40. Rxf3 1-0
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "C50"]
-[Opening "Giuoco Pianissimo"]
-[Variation "Italian four knights variation"]
 [EventDate "1987.??.??"]
 [PlyCount "120"]
 
@@ -235,8 +217,6 @@ Qh1+ 57. Kf2 Qf3+ 58. Kg1 Qg3+ 59. Kf1 Bh3+ 60. Ke2 Qxg6 0-1
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "C95"]
-[Opening "Ruy Lopez"]
-[Variation "closed, Breyer, Borisenko variation"]
 [EventDate "1987.??.??"]
 [PlyCount "70"]
 
@@ -255,8 +235,6 @@ gxf5 33. Bd4 Bg2 34. Rxg2 Qxh3+ 35. Kg1 Rd1 0-1
 [Black "Jung, H."]
 [Result "0-1"]
 [ECO "A35"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "1987.??.??"]
 [PlyCount "62"]
 

@@ -9,8 +9,6 @@ export const pgns2005 = [
 [WhiteElo "1930"]
 [BlackElo "1745"]
 [ECO "C41"]
-[Opening "Philidor"]
-[Variation "Nimzovich variation"]
 [EventDate "2005.??.??"]
 [PlyCount "94"]
 
@@ -33,7 +31,6 @@ f2 45. a6 f1=Q 46. a7 Qb5+ 47. Kc8 Qc6+ 0-1
 [WhiteElo "2002"]
 [BlackElo "1745"]
 [ECO "C20"]
-[Opening "King's pawn game"]
 [EventDate "2005.??.??"]
 [PlyCount "102"]
 
@@ -57,7 +54,6 @@ Nd4 Bf8 50. Nb5 Bb4 51. Kd4 Bf8 1/2-1/2
 [WhiteElo "1745"]
 [BlackElo "1929"]
 [ECO "D02"]
-[Opening "Queen's bishop game"]
 [EventDate "2005.??.??"]
 [PlyCount "101"]
 
@@ -81,7 +77,6 @@ Nxb4 Nxb4 45. Rxb4 Rc5 46. Rxb7 Rxa5 47. Rd7 Rb5+ 48. Kc2 Rc5+ 49. Kd3 Rc1
 [WhiteElo "1745"]
 [BlackElo "1817"]
 [ECO "D43"]
-[Opening "QGD semi-Slav"]
 [EventDate "2005.??.??"]
 [PlyCount "57"]
 

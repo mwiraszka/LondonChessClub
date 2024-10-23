@@ -7,7 +7,6 @@ export const pgns1990 = [
 [Black "Klinger, J."]
 [Result "0-1"]
 [ECO "A90"]
-[Opening "Dutch defence"]
 [EventDate "1990.??.??"]
 [PlyCount "57"]
 
@@ -25,8 +24,6 @@ Rg1 Ne5 27. Rxc5 Ng4 28. Rh5 Qxh5 29. h4 0-1
 [Black "Southam, T."]
 [Result "1-0"]
 [ECO "C95"]
-[Opening "Ruy Lopez"]
-[Variation "closed, Breyer, Borisenko variation"]
 [EventDate "1990.??.??"]
 [PlyCount "67"]
 
@@ -45,8 +42,6 @@ g6 15. b3 Bg7 16. d5 Nb6 17. Be3 Nfd7 18. Qd2 Nc5 19. Rad1 Qe7 20. h4 Rad8
 [Black "Surlan, D."]
 [Result "0-1"]
 [ECO "C63"]
-[Opening "Ruy Lopez"]
-[Variation "Schliemann defence, Berger variation"]
 [EventDate "1990.??.??"]
 [PlyCount "108"]
 
@@ -69,7 +64,6 @@ Kc3 Rh4 53. Rf2+ Rf4 54. Rg2 Kf6 { The game went 62 moves. } 0-1
 [Black "Nickoloff, B."]
 [Result "1-0"]
 [ECO "B50"]
-[Opening "Sicilian"]
 [EventDate "1990.??.??"]
 [PlyCount "57"]
 
@@ -88,7 +82,6 @@ Rf8 27. Nxc4 Nc5 28. Bd6 Rc8 29. Nb6 1-0
 [Black "Crowley, G."]
 [Result "1-0"]
 [ECO "B30"]
-[Opening "Sicilian defence"]
 [EventDate "1990.??.??"]
 [PlyCount "45"]
 
@@ -106,8 +99,6 @@ fxg5 21. Rxe7 Kxe7 22. Nf5+ Kf6 23. Qe7# 1-0
 [Black "Nunn, J."]
 [Result "0-1"]
 [ECO "E97"]
-[Opening "King's Indian"]
-[Variation "orthodox, Aronin-Taimanov variation (Yugoslav attack / Mar del Plata variation)"]
 [EventDate "1990.??.??"]
 [PlyCount "76"]
 
@@ -127,8 +118,6 @@ Kg2 Qg4+ 0-1
 [Black "Kearley, J."]
 [Result "0-1"]
 [ECO "A36"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "1990.??.??"]
 [PlyCount "80"]
 
@@ -149,8 +138,6 @@ Ke3 Qxg3+ 39. Ke4 Qe1+ 40. Kd3 Rd8+ 0-1
 [Black "Fortin, J."]
 [Result "1-0"]
 [ECO "C19"]
-[Opening "French"]
-[Variation "Winawer, advance, positional main line"]
 [EventDate "1990.??.??"]
 [PlyCount "89"]
 
@@ -171,7 +158,6 @@ g5 fxg5 42. Ne5+ Kb6 43. Rxe6 Rxc3+ 44. Kg4 Rd8 $2 45. Nf7 1-0
 [Black "Pitre, R."]
 [Result "0-1"]
 [ECO "A15"]
-[Opening "English, 1...Nf6 (Anglo-Indian defense)"]
 [EventDate "1990.??.??"]
 [PlyCount "52"]
 
@@ -192,8 +178,6 @@ Rd1+ 28. Kg2 $14) 28. Rxc2 $14) 0-1
 [Black "Samano, B."]
 [Result "0-1"]
 [ECO "A31"]
-[Opening "English"]
-[Variation "symmetrical, Benoni formation"]
 [EventDate "1990.??.??"]
 [PlyCount "102"]
 
@@ -215,8 +199,6 @@ Bxd5 Bxd5 26. Qxh7 Ke8 27. e6 Bxe6 28. Qh8+ Bf8 29. Qxh4 gxh4 30. Nf4 Bd7
 [Black "?"]
 [Result "0-1"]
 [ECO "B25"]
-[Opening "Sicilian"]
-[Variation "closed, 6.f4"]
 [EventDate "1990.??.??"]
 [PlyCount "80"]
 
@@ -237,8 +219,6 @@ R3xd2 Rxd2 33. Rxd2 Rxf2 34. Rxf2 Bxf2+ 35. Kxf2 Kf6 36. Kf3 Kf5 37. h3 g5
 [Black "Pope, J."]
 [Result "1-0"]
 [ECO "C00"]
-[Opening "French"]
-[Variation "Chigorin variation"]
 [EventDate "1990.??.??"]
 [PlyCount "19"]
 
@@ -253,7 +233,6 @@ Nf3 b6 5. b3 a5 6. Bb2 Ba6 7. d3 Be7 8. g3 Bf6 9. Bg2 Nge7 $4 10. e5 1-0
 [Black "Fortin, J."]
 [Result "1-0"]
 [ECO "A61"]
-[Opening "Benoni defence"]
 [EventDate "1990.??.??"]
 [PlyCount "29"]
 
@@ -270,7 +249,6 @@ Petrosian,A-Karlsson,L; Erevan; 1980. {I30/140 }) 11... Qe7 $2 12. Nb6 Ra7
 [Black "Bertelsen, C."]
 [Result "1-0"]
 [ECO "A22"]
-[Opening "English opening"]
 [EventDate "1990.??.??"]
 [PlyCount "85"]
 
@@ -291,7 +269,6 @@ Rxf8+ Kg7 40. a5 Kg6 41. a6 Rc7 42. a7 Rxc5 43. a8=Q 1-0
 [Black "McTavish, Dale"]
 [Result "0-1"]
 [ECO "D72"]
-[Opening "Neo-Gruenfeld, 5.cd, main line"]
 [EventDate "1990.??.??"]
 [PlyCount "62"]
 
@@ -310,7 +287,6 @@ Qc6 Rb6 24. Qa8 Qd7 25. Rfc1 Bb7 26. Qa7 Ra8 27. Qxb6 Nxb6 28. Ncxb5 Rc8
 [Black "Fortin, J."]
 [Result "0-1"]
 [ECO "A57"]
-[Opening "Benko gambit"]
 [EventDate "1990.??.??"]
 [PlyCount "70"]
 
@@ -331,7 +307,6 @@ bxc3 35. cxd5 Qxd5 0-1
 [Black "McTavish, Dale"]
 [Result "1-0"]
 [ECO "D72"]
-[Opening "Neo-Gruenfeld, 5.cd, main line"]
 [EventDate "1990.??.??"]
 [PlyCount "62"]
 
@@ -350,7 +325,6 @@ Ra8 27. Qxb6 Nxb6 28. Ncxb5 Rc8 29. Na7 Rxc1+ 30. Rxc1 Bxd5 31. Ndb5 Bc4
 [Black "Fortin, J."]
 [Result "*"]
 [ECO "A57"]
-[Opening "Benko gambit"]
 [EventDate "1990.??.??"]
 [PlyCount "58"]
 
@@ -369,7 +343,6 @@ Nb6 26. Rxd8 Qe3+ 27. Rd2 Ne2+ 28. Kb2 Nxc4+ 29. Qxc4 Qa3+ *
 [Black "Elsakka, H."]
 [Result "1/2-1/2"]
 [ECO "A10"]
-[Opening "English opening"]
 [EventDate "1990.??.??"]
 [PlyCount "65"]
 
@@ -389,8 +362,6 @@ Nb2 Nxa3 23. Qxa3 Qb7 24. Nc4 Qxb4 25. Qxb4 Bxb4 26. Nxe5 c5 27. Rb1 Rxa5
 [Black "Fortin, J."]
 [Result "0-1"]
 [ECO "A31"]
-[Opening "English"]
-[Variation "symmetrical, Benoni formation"]
 [EventDate "1990.??.??"]
 [PlyCount "64"]
 
@@ -409,8 +380,6 @@ Kf8 28. a3 a5 29. R3d2 Ke7 30. Rd3 Ke8 31. R1d2 Nxf3 32. Rxd7 Nxd2+ 0-1
 [Black "Fortin, J."]
 [Result "1-0"]
 [ECO "C15"]
-[Opening "French"]
-[Variation "Winawer, fingerslip variation"]
 [EventDate "1990.??.??"]
 [PlyCount "75"]
 
@@ -431,8 +400,6 @@ Qf6+ Ke8 30. Nxe6 Bxe6 31. Qxe6+ Kf8 32. Qxd5 Rxc2 33. e6 R8c7 34. f5 Nc6
 [Black "McTavish, Dale"]
 [Result "1/2-1/2"]
 [ECO "A38"]
-[Opening "English"]
-[Variation "symmetrical, main line with d3"]
 [EventDate "1990.??.??"]
 [PlyCount "79"]
 
@@ -453,8 +420,6 @@ Rxa6 Rc2+ 39. Ke1 e5 40. Rb6 1/2-1/2
 [Black "Fortin, J."]
 [Result "0-1"]
 [ECO "C15"]
-[Opening "French"]
-[Variation "Winawer (Nimzovich) variation"]
 [EventDate "1990.??.??"]
 [PlyCount "54"]
 
@@ -474,7 +439,6 @@ exd4+ 0-1
 [Black "Fortin, J."]
 [Result "0-1"]
 [ECO "C00"]
-[Opening "French defence"]
 [EventDate "1990.??.??"]
 [PlyCount "44"]
 
@@ -492,8 +456,6 @@ f4 Rxe3 21. Rf3 Rae8 22. Rxe3 Rxe3 0-1
 [Black "Armstrong, D."]
 [Result "1-0"]
 [ECO "A29"]
-[Opening "English"]
-[Variation "four knights, kingside fianchetto"]
 [EventDate "1990.??.??"]
 [PlyCount "105"]
 
@@ -515,8 +477,6 @@ Bxd8 42. Kxd8 Kd5 43. Bf8 g6 44. Bg7 f5 45. d4 Kd6 46. a4 a5 47. Be5+ Kd5
 [Black "Kearley, J."]
 [Result "1/2-1/2"]
 [ECO "E09"]
-[Opening "Catalan"]
-[Variation "closed, main line"]
 [EventDate "1990.??.??"]
 [PlyCount "50"]
 
@@ -536,7 +496,6 @@ Rxd3 Bxe4 23. Qxe4 Rd8 24. f4 Rxd3 25. Qxd3 Be7 1/2-1/2
 [Black "Fortin, J."]
 [Result "1-0"]
 [ECO "E20"]
-[Opening "Nimzo-Indian defence"]
 [EventDate "1990.??.??"]
 [PlyCount "51"]
 
@@ -554,8 +513,6 @@ Qxe6 Re8 22. Qg6+ Kf8 23. d5 Re3 24. Bf5 Ne5 $2 25. fxe5 dxe5 26. Be6+ 1-0
 [Black "Becker, P."]
 [Result "0-1"]
 [ECO "E81"]
-[Opening "King's Indian"]
-[Variation "Saemisch, 5...O-O"]
 [EventDate "1990.??.??"]
 [PlyCount "54"]
 
@@ -574,8 +531,6 @@ Nge2 Rb8 $146 (8... c5 { Gligoric,S-Kavalek,L; Tilburg; 1977. }) 9. Qd2 c5
 [Black "Elfers, G."]
 [Result "1-0"]
 [ECO "D08"]
-[Opening "QGD"]
-[Variation "Albin counter-gambit, Alapin variation"]
 [EventDate "1990.??.??"]
 [PlyCount "55"]
 
@@ -594,8 +549,6 @@ Bf4 b5 22. Qd4 Re8 23. Bxd6 Rxe1 24. Bxc5+ Kc8 25. Bf5+ Qxf5 26. Qd8+ Kb7
 [Black "Fattali, S."]
 [Result "0-1"]
 [ECO "A36"]
-[Opening "English"]
-[Variation "ultra-symmetrical variation"]
 [EventDate "1990.??.??"]
 [PlyCount "42"]
 
@@ -612,7 +565,6 @@ d3 { Sapi-Forintos; Hungary; 1967. {ECO }) 7... Bd3 8. Qb3 Rb8 9. Nf4 Ne5
 [Black "Moser, D."]
 [Result "1-0"]
 [ECO "A10"]
-[Opening "English opening"]
 [EventDate "1990.??.??"]
 [PlyCount "107"]
 
@@ -635,8 +587,6 @@ Nxh7 Kc6 51. Ra6+ Kd5 52. Rxg6 Nd6 53. Nf6+ Ke5 54. f4+ 1-0
 [Black "Fortin, J."]
 [Result "0-1"]
 [ECO "C15"]
-[Opening "French"]
-[Variation "Winawer, fingerslip variation"]
 [EventDate "1990.??.??"]
 [PlyCount "38"]
 
@@ -653,8 +603,6 @@ Rad8 15. Qd2 Qd5 16. Rfd1 Ne5 17. Qe3 Nxd3 18. Rd2 Qf5 19. Nd4 Qg6 0-1
 [Black "Fortin, J."]
 [Result "1-0"]
 [ECO "A38"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "1990.??.??"]
 [PlyCount "55"]
 
@@ -672,7 +620,6 @@ Rc7 24. a3 Bd7 25. Bb4 Rxc2 26. Rxc2 Bb5 27. Bf1 Nc4 $2 28. a4 1-0
 [Black "Fortin, J."]
 [Result "0-1"]
 [ECO "A58"]
-[Opening "Benko gambit accepted"]
 [EventDate "1990.??.??"]
 [PlyCount "78"]
 
@@ -694,8 +641,6 @@ Ra8+ Kf7 38. Ra7+ Ke8 39. Rxh7 c1=Q { [The rest of the score was lost.] }
 [Black "Fortin, J."]
 [Result "1-0"]
 [ECO "A31"]
-[Opening "English"]
-[Variation "symmetrical, Benoni formation"]
 [EventDate "1990.??.??"]
 [PlyCount "63"]
 
@@ -715,7 +660,6 @@ Rxb5 27. Nd4 Bxd4 28. Rxd4 Rc2 29. Re3 Ra2 30. Rc4 Kg7 31. g4 h6 32. h4 {
 [Black "Knechtel, T."]
 [Result "1-0"]
 [ECO "A10"]
-[Opening "English opening"]
 [EventDate "1990.??.??"]
 [PlyCount "65"]
 
@@ -735,7 +679,6 @@ Re2 Nc3 29. Re1 Qd2 30. Kf1 Qd4 31. Ng2 Rh8 32. Qb7 c4 33. Ne3 1-0
 [Black "Levesque, M."]
 [Result "1/2-1/2"]
 [ECO "A20"]
-[Opening "English opening"]
 [EventDate "1990.??.??"]
 [PlyCount "87"]
 
@@ -759,7 +702,6 @@ Ne6 43. Rxe6 fxe6 44. Qxg6+ 1/2-1/2
 [WhiteElo "2110"]
 [BlackElo "2175"]
 [ECO "D02"]
-[Opening "Queen's pawn game"]
 [EventDate "1990.??.??"]
 [PlyCount "84"]
 
@@ -786,8 +728,6 @@ d4 39. Ra8+ $2 (39. Rb1 $1) 39... Ne8 40. Bh3 d3 41. Bxe6 d2 42. Rd1 Rc1
 [Black "Kearley, J."]
 [Result "1-0"]
 [ECO "A37"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "1990.??.??"]
 [PlyCount "53"]
 
@@ -805,8 +745,6 @@ Rae1 Qxf1+ 26. Rxf1 Bxb2 27. Qe7 1-0
 [Black "Fortin, J."]
 [Result "1/2-1/2"]
 [ECO "C18"]
-[Opening "French"]
-[Variation "Winawer, classical variation"]
 [EventDate "1990.??.??"]
 [PlyCount "46"]
 
@@ -823,8 +761,6 @@ Ke8 20. Qb6 Rc8 21. Qxb7 Rc7 22. Qb8+ Rc8 23. Qb6 Qc7 1/2-1/2
 [Black "Fortin, J."]
 [Result "0-1"]
 [ECO "C19"]
-[Opening "French"]
-[Variation "Winawer, advance, poisoned pawn variation"]
 [EventDate "1990.??.??"]
 [PlyCount "48"]
 
@@ -841,8 +777,6 @@ Bxc6 20. g3 d4 21. Rg1 Be4 22. Bd3 Bd5 23. Rab1 Rc3 24. Bxa6 Rxc2+ 0-1
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "A05"]
-[Opening "Reti"]
-[Variation "King's Indian attack, Spassky's variation"]
 [EventDate "1990.??.??"]
 [PlyCount "116"]
 
@@ -865,7 +799,6 @@ Kg4 57. Qe6+ Kf3 58. Qb3+ Kf2 0-1
 [Black "Southam, T."]
 [Result "1-0"]
 [ECO "A20"]
-[Opening "English opening"]
 [EventDate "1990.??.??"]
 [PlyCount "73"]
 
@@ -884,7 +817,6 @@ Ne4 Bc6 33. Nd6 Ra1+ 34. Kh2 Nd3 35. Bxc6 bxc6 36. Ne8+ Kf8 37. Nc7+ 1-0
 [Black "Avshalumov, A."]
 [Result "1/2-1/2"]
 [ECO "A80"]
-[Opening "Dutch"]
 [EventDate "1990.??.??"]
 [PlyCount "92"]
 
@@ -907,8 +839,6 @@ Kf6 45. Nd4 Rf2 46. Kxb4 Rxf5 1/2-1/2
 [WhiteElo "2205"]
 [BlackElo "1975"]
 [ECO "B33"]
-[Opening "Sicilian"]
-[Variation "Pelikan, Chelyabinsk variation"]
 [EventDate "1990.??.??"]
 [PlyCount "111"]
 
@@ -932,7 +862,6 @@ Ke7 Rf2 53. Qf8+ Kh7 54. Qxf7+ Rxf7+ 55. Kxf7 Kh6 56. Ke6 1-0
 [Black "Fortin, J."]
 [Result "1/2-1/2"]
 [ECO "A45"]
-[Opening "Queen's pawn game"]
 [EventDate "1990.??.??"]
 [PlyCount "100"]
 
@@ -954,8 +883,6 @@ Kd4 Kf5 1/2-1/2
 [Black "Fortin, J."]
 [Result "0-1"]
 [ECO "C02"]
-[Opening "French"]
-[Variation "advance, Paulsen attack"]
 [EventDate "1990.??.??"]
 [PlyCount "87"]
 
@@ -976,7 +903,6 @@ Nd6 Bxd6 27. exd6 Qe5 28. Rd1 Rfd8 29. Qb6 Rd7 30. Rc7 Rbd8 31. Rxd7 Rxd7
 [Black "DeCastro, D."]
 [Result "1-0"]
 [ECO "A15"]
-[Opening "English, 1...Nf6 (Anglo-Indian defense)"]
 [EventDate "1990.??.??"]
 [PlyCount "87"]
 
@@ -996,8 +922,6 @@ Kg2 Rxh1 33. Kxh1 e5 34. d5 f5 35. d6 Kf7 36. d7 Ke7 37. Kg2 g5 38. Kf3 h5
 [Black "Knox, A."]
 [Result "1-0"]
 [ECO "B23"]
-[Opening "Sicilian"]
-[Variation "closed, 2...Nc6"]
 [EventDate "1990.??.??"]
 [PlyCount "95"]
 
@@ -1018,7 +942,6 @@ Be6 Qg7 39. Qxc5 Kh8 40. Qxa7 Nd8 41. Qxg7+ Kxg7 42. Rxf8 Kxf8 43. Bb3 Ke7
 [Black "Marks, R."]
 [Result "0-1"]
 [ECO "A15"]
-[Opening "English, 1...Nf6 (Anglo-Indian defense)"]
 [EventDate "1990.??.??"]
 [PlyCount "56"]
 
@@ -1036,7 +959,6 @@ Rxd7 Qa1+ 27. Kg2 Nf5 28. g4 Nh4+ 0-1
 [Black "Pitre, R."]
 [Result "0-1"]
 [ECO "A20"]
-[Opening "English opening"]
 [EventDate "1990.??.??"]
 [PlyCount "58"]
 
@@ -1054,8 +976,6 @@ Re5 27. Qg2 f4 28. Rg7 Rxh5 29. Rxc7 Ng5 0-1
 [Black "Fortin, J."]
 [Result "0-1"]
 [ECO "C18"]
-[Opening "French"]
-[Variation "Winawer, classical variation"]
 [EventDate "1990.??.??"]
 [PlyCount "78"]
 
@@ -1075,8 +995,6 @@ Rf3 39. Qe2 Qxf4+ 0-1
 [Black "Fortin, J."]
 [Result "0-1"]
 [ECO "A57"]
-[Opening "Benko gambit"]
-[Variation "Zaitsev system"]
 [EventDate "1990.??.??"]
 [PlyCount "54"]
 
@@ -1094,7 +1012,6 @@ exd6 exd6 27. Rb2 Bxb2 0-1
 [Black "Regu, H."]
 [Result "1-0"]
 [ECO "A15"]
-[Opening "English, 1...Nf6 (Anglo-Indian defense)"]
 [EventDate "1990.??.??"]
 [PlyCount "79"]
 
@@ -1114,8 +1031,6 @@ Rxa6 Ke6 39. Bg2 Ke5 40. Bd5 1-0
 [Black "Young, M."]
 [Result "*"]
 [ECO "A30"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "1990.??.??"]
 [PlyCount "59"]
 
@@ -1134,7 +1049,6 @@ d6 Bc3 25. Qf2 Qxf2+ 26. Rxf2 Rd8 27. Rb1 Bc6 28. e4 Rxd6 29. a4 b4 30. Re2
 [Black "Fortin, J."]
 [Result "1-0"]
 [ECO "A57"]
-[Opening "Benko gambit"]
 [EventDate "1990.??.??"]
 [PlyCount "77"]
 
@@ -1154,8 +1068,6 @@ Qg6 Qf8 37. Ra1 Qg7 38. Qf5 Qd7 $2 39. Qxf6+ 1-0
 [Black "Fortin, J."]
 [Result "1-0"]
 [ECO "C19"]
-[Opening "French"]
-[Variation "Winawer, advance, poisoned pawn, Konstantinopolsky variation"]
 [EventDate "1990.??.??"]
 [PlyCount "39"]
 
@@ -1173,8 +1085,6 @@ Rxg8 Qxg8 20. Qc5 1-0
 [Black "Fortin, J."]
 [Result "1/2-1/2"]
 [ECO "A14"]
-[Opening "English"]
-[Variation "Neo-Catalan declined"]
 [EventDate "1990.??.??"]
 [PlyCount "92"]
 
@@ -1198,7 +1108,6 @@ Rf2 Qe1+ 46. Rf1 Qe3+ 1/2-1/2
 [Black "Fortin, J."]
 [Result "1-0"]
 [ECO "E61"]
-[Opening "King's Indian defence, 3.Nc3"]
 [EventDate "1990.??.??"]
 [PlyCount "99"]
 
@@ -1220,7 +1129,6 @@ Rb1 50. Qd7+ 1-0
 [Black "Towsley, D."]
 [Result "1-0"]
 [ECO "A15"]
-[Opening "English, 1...Nf6 (Anglo-Indian defense)"]
 [EventDate "1990.??.??"]
 [PlyCount "67"]
 
@@ -1240,8 +1148,6 @@ f6 33. c7 Rc8 34. Rb8 1-0
 [Black "Young, M."]
 [Result "1-0"]
 [ECO "A37"]
-[Opening "English"]
-[Variation "symmetrical variation"]
 [EventDate "1990.??.??"]
 [PlyCount "101"]
 
@@ -1264,8 +1170,6 @@ Kf5 Bd2 48. Bd5+ Ke7 49. Kg6 Be1 50. Kxh6 Bxf2 51. h5 1-0
 [Black "Fortin, J."]
 [Result "0-1"]
 [ECO "C01"]
-[Opening "French"]
-[Variation "exchange variation"]
 [EventDate "1990.??.??"]
 [PlyCount "94"]
 
@@ -1287,7 +1191,6 @@ f5 0-1
 [Black "Fortin, J."]
 [Result "1-0"]
 [ECO "A17"]
-[Opening "English opening"]
 [EventDate "1990.??.??"]
 [PlyCount "31"]
 
@@ -1304,7 +1207,6 @@ $146 (7... Nbd7 { Beutum,S-Glass,E; Vienna; 1928. }) 8. O-O c6 9. Qc2 Bd6
 [Black "Fortin, J."]
 [Result "1/2-1/2"]
 [ECO "A60"]
-[Opening "Benoni defence"]
 [EventDate "1990.??.??"]
 [PlyCount "96"]
 
@@ -1326,8 +1228,6 @@ Bxe5 45. h4 Nxd5 46. h5 gxh5+ 47. Kxh5 Nf4+ 48. Nxf4 Bxf4 1/2-1/2
 [Black "Southam, T."]
 [Result "1/2-1/2"]
 [ECO "C95"]
-[Opening "Ruy Lopez"]
-[Variation "closed, Breyer, Borisenko variation"]
 [EventDate "1990.??.??"]
 [PlyCount "66"]
 
@@ -1346,8 +1246,6 @@ Ngf1 Nf6 28. b4 cxb3 29. Nxb3 Nxb3 30. Rxb3 Nh5 31. Qh6 Nf4 32. Rab1 Bd7
 [Black "Kasinski, P."]
 [Result "1-0"]
 [ECO "D35"]
-[Opening "QGD"]
-[Variation "exchange, positional line, 5...c6"]
 [EventDate "1990.??.??"]
 [PlyCount "35"]
 
@@ -1363,8 +1261,6 @@ bxc3 Bxd3 15. Qxd3 Qd7 16. e4 Rad8 17. Ng3 Rfe8 18. e5 1-0
 [Black "Southam, T."]
 [Result "1-0"]
 [ECO "D58"]
-[Opening "QGD"]
-[Variation "Tartakower (Makagonov-Bondarevsky) system"]
 [EventDate "1990.??.??"]
 [PlyCount "111"]
 
@@ -1386,7 +1282,6 @@ Rd8 52. Kxb6 Rd4 53. Kxa5 Rxe4 54. b6 Re2 55. b7 Rb2 56. b8=Q 1-0
 [Black "Polacek, J."]
 [Result "1-0"]
 [ECO "D30"]
-[Opening "Queen's gambit declined"]
 [EventDate "1990.??.??"]
 [PlyCount "53"]
 
@@ -1404,8 +1299,6 @@ Ne6 26. e5 Qe7 27. Qxb6 1-0
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "D32"]
-[Opening "QGD"]
-[Variation "Tarrasch defence"]
 [EventDate "1990.??.??"]
 [PlyCount "72"]
 
@@ -1424,7 +1317,6 @@ Qa3 33. Qe3 Rc3 34. Qxc3 Qxc1+ 35. Re1 Qxe1+ 36. Qxe1 Nd3 0-1
 [Black "Kanani, S."]
 [Result "1-0"]
 [ECO "A80"]
-[Opening "Dutch"]
 [EventDate "1990.??.??"]
 [PlyCount "72"]
 
@@ -1443,7 +1335,6 @@ Nc3 Qxb3 9. axb3 Na6 10. Bf4 Be6 11. Ne5 O-O 12. Nxc6 Rfe8 13. cxd5 Nxd5
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "A00"]
-[Opening "Benko's opening"]
 [EventDate "1990.??.??"]
 [PlyCount "66"]
 
@@ -1462,8 +1353,6 @@ Rxe5 Rxd5 33. Rxe8 Rd1+ 0-1
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "C68"]
-[Opening "Ruy Lopez"]
-[Variation "exchange, Alekhine variation"]
 [EventDate "1990.??.??"]
 [PlyCount "94"]
 
@@ -1484,8 +1373,6 @@ Re7+ Kd6 45. Ra7 Rg1+ 46. Nf1 Bxf1 47. Rxa3 Bd3+ 0-1
 [Black "Findlay, I."]
 [Result "1-0"]
 [ECO "D35"]
-[Opening "QGD"]
-[Variation "exchange, positional line"]
 [EventDate "1990.??.??"]
 [PlyCount "83"]
 
@@ -1505,8 +1392,6 @@ Kg1 Ke6 39. Kf2 Bd5 40. g4 g5 41. Ke3 f6 42. Rd2 1-0
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "A13"]
-[Opening "English opening"]
-[Variation "Agincourt variation"]
 [EventDate "1990.??.??"]
 [PlyCount "82"]
 
@@ -1526,8 +1411,6 @@ Rc8 33. a5 Ra8 34. Qd3 Qa6 35. Qd5 Rb8 36. Qd7 Bf8 37. Qc7 Rc8 38. Qd7 Rb8
 [Black "Vranesic, Z."]
 [Result "1/2-1/2"]
 [ECO "D35"]
-[Opening "QGD"]
-[Variation "exchange, positional line"]
 [EventDate "1990.??.??"]
 [PlyCount "76"]
 

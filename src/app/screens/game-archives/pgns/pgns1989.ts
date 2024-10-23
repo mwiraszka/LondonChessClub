@@ -7,8 +7,6 @@ export const pgns1989 = [
 [Black "Southam, T."]
 [Result "1-0"]
 [ECO "C19"]
-[Opening "French"]
-[Variation "Winawer, advance, positional main line"]
 [EventDate "1989.??.??"]
 [PlyCount "101"]
 
@@ -30,8 +28,6 @@ Qg2 45. Qe3 g5 46. Raa1 d4 47. cxd4 Qc6 48. Ra5 Qc4+ 49. Kd1 g4 50. Rh1 Qc6
 [Black "Southam, T."]
 [Result "0-1"]
 [ECO "C95"]
-[Opening "Ruy Lopez"]
-[Variation "closed, Breyer, Borisenko variation"]
 [EventDate "1989.??.??"]
 [PlyCount "82"]
 
@@ -51,8 +47,6 @@ f6 33. Qf3 Rb8 34. Qe3 Rb7 35. b3 Rh8 36. Bd1 Rh3 37. f3 Kg6 38. Be2 Rh1+
 [Black "Southam, T."]
 [Result "1-0"]
 [ECO "D31"]
-[Opening "QGD"]
-[Variation "Charousek (Petrosian) variation"]
 [EventDate "1989.??.??"]
 [PlyCount "87"]
 
@@ -73,8 +67,6 @@ Qxf7 1-0
 [Black "Findlay, I."]
 [Result "1-0"]
 [ECO "B27"]
-[Opening "Sicilian"]
-[Variation "Hungarian variation"]
 [EventDate "1989.??.??"]
 [PlyCount "61"]
 
@@ -94,8 +86,6 @@ Rd6 26. Qxb7 e6 27. Qb8+ Rd8 28. Qxb6 Ke7 29. h3 Nf6 30. Ne5 Qd4 31. Nc6+
 [Black "Livshits, R."]
 [Result "1-0"]
 [ECO "C77"]
-[Opening "Ruy Lopez"]
-[Variation "Wormald (Alapin) attack"]
 [EventDate "1989.??.??"]
 [PlyCount "41"]
 
@@ -113,7 +103,6 @@ Rxf7 1-0
 [Black "Jung, H."]
 [Result "1/2-1/2"]
 [ECO "A41"]
-[Opening "Old Indian defence"]
 [EventDate "1989.??.??"]
 [PlyCount "21"]
 

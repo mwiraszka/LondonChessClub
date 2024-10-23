@@ -127,10 +127,11 @@
     <span class="result-summary-text">{{ searchResultSummaryMessage }}</span>
     <button
       (click)="onShowStats()"
+      [disabled]="!filteredGameCount"
       class="lcc-secondary-button search-stats-button">
       {{ showStats ? 'Hide' : 'Show' }} search stats
     </button>
-    @if (showStats) {
+    @if (showStats && filteredGameCount) {
       <div class="search-stats-container">
         <div class="opening-chart-container">
           <label for="opening-chart">Openings</label>

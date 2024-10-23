@@ -51,17 +51,21 @@ export class GameArchivesScreenComponent implements OnInit {
 
   get searchResultSummaryMessage(): string {
     const allGamesCount = Array.from(this.allGames.values()).flat().length;
-    const resultCount = Array.from(this.filteredGames.values()).flat().length;
+    const filteredGameCount = this.filteredGameCount;
 
-    if (resultCount === 0) {
+    if (filteredGameCount === 0) {
       return 'No games found 😢';
     }
 
-    if (resultCount === allGamesCount) {
-      return `Displaying all ${resultCount} games`;
+    if (filteredGameCount === allGamesCount) {
+      return `Displaying all ${filteredGameCount} games`;
     }
 
-    return `Displaying ${resultCount} / ${allGamesCount} ${resultCount === 1 ? 'game' : 'games'} 😎`;
+    return `Displaying ${filteredGameCount} / ${allGamesCount} ${filteredGameCount === 1 ? 'game' : 'games'} 😎`;
+  }
+
+  get filteredGameCount(): number {
+    return Array.from(this.filteredGames.values()).flat().length;
   }
 
   @ViewChild(CdkVirtualScrollViewport)

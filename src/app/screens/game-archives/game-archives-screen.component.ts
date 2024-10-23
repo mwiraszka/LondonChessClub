@@ -1,5 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { ChartConfiguration } from 'chart.js';
+import { debounceTime, distinctUntilChanged, take } from 'rxjs/operators';
 
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { KeyValue } from '@angular/common';
@@ -12,11 +14,19 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { LoaderService, MetaAndTitleService } from '@app/services';
+import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';
+import { UserSettingsSelectors } from '@app/store/user-settings';
 import { GameDetails } from '@app/types';
-import { getPlayerName, getPlyCount, getScore } from '@app/utils/pgn-utils';
+import {
+  getOpeningTallies,
+  getPlayerName,
+  getPlyCount,
+  getResultTallies,
+  getScore,
+} from '@app/utils/pgn-utils';
 
 import * as fromPgns from './pgns';
+import { YEARS } from './years';
 
 @UntilDestroy()
 @Component({
@@ -25,71 +35,56 @@ import * as fromPgns from './pgns';
   styleUrls: ['./game-archives-screen.component.scss'],
 })
 export class GameArchivesScreenComponent implements OnInit {
-  readonly YEARS = [
-    '2024',
-    '2023',
-    '2022',
-    '2019',
-    '2018',
-    '2017',
-    '2005',
-    '2000',
-    '1999',
-    '1998',
-    '1997',
-    '1996',
-    '1995',
-    '1994',
-    '1993',
-    '1992',
-    '1991',
-    '1990',
-    '1989',
-    '1988',
-    '1987',
-    '1985',
-    '1984',
-    '1983',
-    '1982',
-    '1980',
-    '1979',
-    '1977',
-    '1976',
-    '1974',
-  ] as const;
-
   allGames: Map<string, GameDetails[]> = new Map();
   filteredGames: Map<string, GameDetails[]> = new Map();
   form!: FormGroup;
+  showStats: boolean = false;
+  chessOpenings: Map<string, string> | null = null;
+
+  openingChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
+  openingChartLabels: string[] = [];
+  openingChartOptions: ChartConfiguration<'doughnut'>['options'] = {};
+
+  resultChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
+  resultChartLabels: string[] = [];
+  resultChartOptions: ChartConfiguration<'doughnut'>['options'] = {};
 
   get searchResultSummaryMessage(): string {
     const allGamesCount = Array.from(this.allGames.values()).flat().length;
-    const resultCount = Array.from(this.filteredGames.values()).flat().length;
+    const filteredGameCount = this.filteredGameCount;
 
-    if (resultCount === 0) {
+    if (filteredGameCount === 0) {
       return 'No games found 😢';
     }
 
-    if (resultCount === allGamesCount) {
-      return `Displaying all ${resultCount} games`;
+    if (filteredGameCount === allGamesCount) {
+      return `Displaying all ${filteredGameCount} games`;
     }
 
-    return `Displaying ${resultCount} / ${allGamesCount} ${resultCount === 1 ? 'game' : 'games'} 😎`;
+    return `Displaying ${filteredGameCount} / ${allGamesCount} ${filteredGameCount === 1 ? 'game' : 'games'} 😎`;
+  }
+
+  get filteredGameCount(): number {
+    return Array.from(this.filteredGames.values()).flat().length;
   }
 
   @ViewChild(CdkVirtualScrollViewport)
   cdkVirtualScrollViewport?: CdkVirtualScrollViewport;
 
   constructor(
+    private chessOpeningsService: ChessOpeningsService,
     private formBuilder: FormBuilder,
     private loaderService: LoaderService,
     private metaAndTitleService: MetaAndTitleService,
+    private readonly store: Store,
   ) {}
 
   @HostListener('window:resize', ['$event'])
   onResize(): void {
     this.cdkVirtualScrollViewport?.checkViewportSize();
   }
+
+  trackByFn = (index: number) => index;
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Game Archives');
@@ -100,7 +95,20 @@ export class GameArchivesScreenComponent implements OnInit {
     this.initForm();
     this.initGames();
     this.initValueChangesListeners();
+    this.setUpDarkModeListeners();
+    this.loadChessOpenings();
     this.filterGames();
+  }
+
+  onKeydown(event: Event): void {
+    const key = (event as KeyboardEvent)?.key;
+    if (key === 'ArrowLeft' || key === 'ArrowRight') {
+      event.preventDefault();
+    }
+  }
+
+  onShowStats(): void {
+    this.showStats = !this.showStats;
   }
 
   hasError(control: AbstractControl): boolean {
@@ -139,7 +147,7 @@ export class GameArchivesScreenComponent implements OnInit {
   }
 
   private initGames(): void {
-    this.YEARS.forEach(year => {
+    YEARS.forEach(year => {
       const pgns = fromPgns[`pgns${year}`];
       this.allGames.set(
         year,
@@ -221,7 +229,34 @@ export class GameArchivesScreenComponent implements OnInit {
     );
   }
 
-  private filterGames(): void {
+  private setUpDarkModeListeners(): void {
+    this.store
+      .select(UserSettingsSelectors.isDarkMode)
+      .pipe(untilDestroyed(this))
+      .subscribe(isDarkMode => {
+        this.openingChartOptions = {
+          responsive: false,
+          color: isDarkMode ? '#bbb' : '#222',
+        };
+
+        this.resultChartOptions = {
+          responsive: false,
+          color: isDarkMode ? '#bbb' : '#222',
+        };
+      });
+  }
+
+  private loadChessOpenings(): void {
+    this.chessOpeningsService
+      .fetchOpenings()
+      .pipe(take(1))
+      .subscribe(openings => {
+        this.chessOpenings = openings;
+        this.updateStats(this.filteredGames);
+      });
+  }
+
+  private async filterGames(): Promise<void> {
     this.loaderService.setIsLoading(true);
 
     const name = this.form.value['name']?.toLowerCase();
@@ -270,6 +305,57 @@ export class GameArchivesScreenComponent implements OnInit {
       this.filteredGames.set(year, filteredGames);
     });
 
+    this.updateStats(this.filteredGames);
+
     this.loaderService.setIsLoading(false);
+  }
+
+  private updateStats(games: Map<string, GameDetails[]>): void {
+    const pgns: string[] = [];
+    for (let [year] of games) {
+      const pgnsForThisYear = games.get(year)?.map(game => game.pgn) ?? [];
+      pgns.push(...pgnsForThisYear);
+    }
+
+    const openingTallies = getOpeningTallies(pgns);
+    if (!openingTallies?.size || !this.chessOpenings?.size) {
+      this.openingChartLabels = [];
+      this.openingChartDatasets = [];
+    } else {
+      this.openingChartLabels = Array.from(openingTallies.keys()).map(openingEco => {
+        const opening = this.chessOpenings!.get(openingEco) ?? 'Unrecognized ECO code';
+        const tally = openingTallies.get(openingEco);
+        return `${opening} (${tally})`;
+      });
+      this.openingChartDatasets = [{ data: Array.from(openingTallies!.values()) }];
+    }
+
+    const resultTallies = getResultTallies(pgns);
+    if (!resultTallies?.size) {
+      this.resultChartLabels = [];
+      this.resultChartDatasets = [];
+    } else {
+      const results = Array.from(resultTallies.keys());
+      this.resultChartLabels = results.map(
+        result => `${result} (${resultTallies.get(result)})`,
+      );
+      this.resultChartDatasets = [{ data: Array.from(resultTallies.values()) }];
+      this.resultChartOptions = {
+        backgroundColor: results.map(result => {
+          switch (result) {
+            case 'White wins':
+              return '#eee';
+            case 'Black wins':
+              return '#111';
+            case 'Draw':
+              return '#555';
+            case 'Inconclusive':
+              return '#358';
+            default:
+              return '#d72';
+          }
+        }),
+      };
+    }
   }
 }

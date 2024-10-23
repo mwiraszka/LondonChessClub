@@ -10,9 +10,9 @@ import { GameScore, isValidGameScore } from '@app/types';
  */
 export function getPlayerName(
   pgn?: string,
-  color?: 'White' | 'Black',
+  color: 'White' | 'Black' = 'White',
 ): string | undefined {
-  if (!pgn || !color) {
+  if (!pgn) {
     return;
   }
 
@@ -37,7 +37,10 @@ export function getScore(pgn?: string, color?: 'White' | 'Black'): GameScore | u
     return;
   }
 
-  const [whiteScore, blackScore] = pgn.split('[Result "')[1].split('"]')[0].split('-');
+  const [whiteScore, blackScore] = pgn
+    .split('[Result "')?.[1]
+    ?.split('"]')?.[0]
+    ?.split('-');
 
   if (whiteScore === '*') {
     return '*';
@@ -60,6 +63,104 @@ export function getPlyCount(pgn?: string): number | undefined {
     return;
   }
 
-  const plyCount = pgn.split('[PlyCount "')[1].split('"]')[0];
+  const plyCount = pgn.split('[PlyCount "')[1]?.split('"]')[0];
   return !plyCount || isNaN(+plyCount) ? undefined : +plyCount;
+}
+
+/**
+ * @param pgns The PGNs of the chess games
+ *
+ * @returns {Map<string, number> | undefined} The Encyclopedia of Chess Openings (ECO)'s
+ * opening codes mapped to the number of occurrences in the given array
+ */
+export function getOpeningTallies(pgns?: string[]): Map<string, number> | undefined {
+  if (!pgns || !pgns.length) {
+    return;
+  }
+
+  const openingTallies: Map<string, number> = new Map([]);
+
+  for (let pgn of pgns) {
+    const ecoOpeningCode = getEcoOpeningCode(pgn);
+    const talliesForThisEco = openingTallies.get(ecoOpeningCode) ?? 0;
+    openingTallies.set(ecoOpeningCode, talliesForThisEco + 1);
+  }
+
+  const sortedOpeningTallies = [...openingTallies.entries()].sort((a, b) => b[1] - a[1]);
+
+  if (sortedOpeningTallies.length <= 5) {
+    return new Map(sortedOpeningTallies);
+  }
+
+  const otherOpeningTally = sortedOpeningTallies
+    .slice(5)
+    .reduce((acc, curr) => acc + curr[1], 0);
+
+  const cappedOpeningsTallies = [
+    ...sortedOpeningTallies.slice(0, 4),
+    ['X99', otherOpeningTally] as [string, number],
+  ];
+
+  return new Map(cappedOpeningsTallies);
+}
+
+/**
+ * @param pgns The PGNs of the chess games
+ *
+ * @returns {Map<string, number> | undefined} The game result mapped to the number
+ * of occurrences of the result in the given array
+ */
+export function getResultTallies(pgns?: string[]): Map<string, number> | undefined {
+  if (!pgns || !pgns.length) {
+    return;
+  }
+
+  const resultTallies: Map<string, number> = new Map([]);
+
+  for (let pgn of pgns) {
+    const score = getScore(pgn, 'White');
+
+    const result =
+      score === '1'
+        ? 'White wins'
+        : score === '0'
+          ? 'Black wins'
+          : score === '1/2'
+            ? 'Draw'
+            : score === '*'
+              ? 'Inconclusive'
+              : 'Unknown';
+
+    const talliesForThisResult = resultTallies.get(result) ?? 0;
+    resultTallies.set(result, talliesForThisResult + 1);
+  }
+
+  const sortedResultTallies = new Map(
+    [...resultTallies.entries()].sort((a, b) => b[1] - a[1]),
+  );
+  return sortedResultTallies;
+}
+
+/**
+ * @param pgn The PGN of the chess game
+ *
+ * @returns {string} The game's ECO opening code or custom 'X98' code if it cannot be found in the PGN
+ */
+function getEcoOpeningCode(pgn: string): string {
+  return pgn.split('[ECO "')?.[1]?.split('"]')[0] ?? 'X98';
+}
+
+/**
+ * @param pgn The full PGN of the chess game
+ *
+ * @returns {string} A URL to Lichess' analysis board, with only the moves and score portion
+ * of the PGN passed in; returns an empty string if pgn is undefined or no moves exist
+ */
+export function getLichessAnalysisUrl(pgn?: string): string | null {
+  if (!pgn) {
+    return '';
+  }
+
+  const moves = pgn.split('"]\n\n')[1].replaceAll('\n', ' ');
+  return moves.startsWith('1. ') ? 'https://lichess.org/analysis/pgn/' + moves : null;
 }

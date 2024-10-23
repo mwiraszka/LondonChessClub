@@ -6,6 +6,7 @@ export const pgns1974 = [
 [White "Vranesic, Z."]
 [Black "Surlan, D."]
 [Result "1-0"]
+[ECO "A22"]
 [EventDate "1974.??.??"]
 [PlyCount "83"]
 
@@ -21,5 +22,6 @@ Kg2 dxe4 34. Nxe4 Bxb4 35. Qc1 f5 $4 (35... Kh7 { -DS }) 36. Qc4+ Kg7 $2 (
 36... Kh7 { -DS }) 37. Nc3 $1 { -DS } 37... Qd6 38. Nb5 $1 Qe5 39. Qxb4
 Qe2+ 40. Kg1 Qe3+ 41. Kg2 Qe2+ 42. Kh3 (42. Kh3 Qh5+ (42... Rxb5 43. Qxb5 {
 And there is no perpetual. -DS [What about Qh5+ and Qd7+ etc.?] }) 43. Qh4
-{ -DS }) 1-0`,
-];
+{ -DS }) 1-0
+
+`];

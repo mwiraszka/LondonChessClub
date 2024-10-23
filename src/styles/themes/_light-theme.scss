@@ -45,7 +45,7 @@
   --lcc-color--button-darkSecondaryButtonForegroundOnHover: #{color(grayscale, black-2)};
   --lcc-color--button-disabledButtonBackground: #{color(grayscale, white-90)};
   --lcc-color--button-disabledButtonBorder: #{color(grayscale, gray-50, 0.1)};
-  --lcc-color--button-disabledButtonForeground: #{color(grayscale, gray-75, 0.4)};
+  --lcc-color--button-disabledButtonForeground: #{color(grayscale, gray-50, 0.6)};
   --lcc-color--button-lightSecondaryButtonBorder: #{color(grayscale, gray-75)};
   --lcc-color--button-lightSecondaryButtonBorderOnHover: #{color(grayscale, white-85)};
   --lcc-color--button-lightSecondaryButtonForeground: #{color(grayscale, gray-75)};
@@ -93,7 +93,7 @@
   --lcc-color--documentsScreen-pdfViewerScrollbarBackground: #{color(grayscale, white-90)};
   --lcc-color--documentsScreen-pdfViewerScrollbar: #{color(grayscale, gray-65)};
 
-  --lcc-color--expansionPanel-contentBackground: #{color(grayscale, gray-25)};
+  --lcc-color--expansionPanel-contentBackground: #{color(grayscale, white-95)};
   --lcc-color--expansionPanel-headerForeground: #{color(grayscale, black-15)};
   --lcc-color--expansionPanel-headerBackground: #{color(primary, lightest, 0.6)};
   --lcc-color--expansionPanel-headerBackgroundOnHover: #{color(primary, lightest)};
@@ -122,9 +122,11 @@
   --lcc-color--imageOverlay-navigationIcons: #{color(grayscale, white-85)};
   --lcc-color--imageOverlay-navigationIconsOnHover: #{color(grayscale, white-95)};
 
+  --lcc-color--gameArchivesScreen-chartLabel: #{color(grayscale, black-10)};
   --lcc-color--gameArchivesScreen-filterContainerBackground: #{color(grayscale, white-90)};
   --lcc-color--gameArchivesScreen-filterSectionBorder: #{color(grayscale, white-80)};
   --lcc-color--gameArchivesScreen-headerText: #{color(grayscale, black-10)};
+  --lcc-color--gameArchivesScreen-labelUnderline: #{color(secondary, light)};
   --lcc-color--gameArchivesScreen-loadingText: #{color(grayscale, white-85)};
   --lcc-color--gameArchivesScreen-text: #{color(grayscale, gray-25)};
 
@@ -154,6 +156,7 @@
   --lcc-color--input-text: #{color(grayscale, black-5)};
 
   --lcc-color--link: #{color(primary, light)};
+  --lcc-color--linkDisabled: #{color(grayscale, gray-50)};
   --lcc-color--linkOnHover: #{color(primary, lighter)};
 
   --lcc-color--linkList-headerText: #{color(grayscale, gray-35)};

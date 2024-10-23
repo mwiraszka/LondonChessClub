@@ -7,6 +7,13 @@
   &:hover {
     color: var(--lcc-color--linkOnHover);
   }
+
+  &[disabled],
+  &[disabled]:hover {
+    pointer-events: none;
+    font-style: italic;
+    color: var(--lcc-color--linkDisabled);
+  }
 }
 
 .lcc-link {

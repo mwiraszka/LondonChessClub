@@ -6,6 +6,7 @@ export const pgns1984 = [
 [White "Bogdan, L."]
 [Black "Jung, H."]
 [Result "1-0"]
+[ECO "A41"]
 [EventDate "1984.??.??"]
 [PlyCount "95"]
 
@@ -18,15 +19,16 @@ Nxd2 Qd3+ 23. Kg1 Qxd2 24. Qb1+ Kg5 25. h3 Qd1+ 26. Qxd1 Bxd1 27. Kh2 Be2
 28. Ra1 a6 29. Nxa6 Bxa6 30. Rxa6 c5 31. Raa8 Kf5 32. Rxg8 Rxg8 33. Rxg8
 Ke4 34. Kg1 Kd3 35. Rc8 c4 36. Kf1 c3 37. Ke1 c2 38. Rc6 f5 39. f4 d5 40.
 g3 d4 41. h4 h6 42. Rc5 Ke3 43. Rxc2 Kf3 44. Rd2 Kxg3 45. h5 gxh5 46. Rxd4
-h4 47. Kf1 Kh2 $2 48. Rd3 1-0`,
+h4 47. Kf1 Kh2 $2 48. Rd3 1-0
 
-`[Event "Toronto (Remembrance Day Open)"]
+`,`[Event "Toronto (Remembrance Day Open)"]
 [Site "?"]
 [Date "1984.??.??"]
 [Round "?"]
 [White "Jung, H."]
 [Black "Richardson, R."]
 [Result "1-0"]
+[ECO "E84"]
 [EventDate "1984.??.??"]
 [PlyCount "55"]
 
@@ -37,15 +39,16 @@ Salov-Khalifman; USSR (ch); 1987 [CB] } (11... e5 { Ionescu,C-Schneider,A;
 Stara Zagora (zt-B); 1990 [CB] })) 11. d5 Na5 12. b3 c5 13. g4 hxg4 14. Ng3
 gxf3 15. Bg5 f2+ 16. Kd1 Bg4+ 17. Be2 Qd7 18. Kc2 b5 19. cxb5 axb5 20. h5
 b4 21. h6 $1 bxc3 22. hxg7 cxd2 23. Bxf6 d1=Q+ 24. Raxd1 Bh5 25. Bxh5 Rxb3
-26. Be2 Rb2+ 27. Kxb2 Rb8+ 28. Kc3 1-0`,
+26. Be2 Rb2+ 27. Kxb2 Rb8+ 28. Kc3 1-0
 
-`[Event "Toronto - Knights of Spring Open"]
+`,`[Event "Toronto - Knights of Spring Open"]
 [Site "?"]
 [Date "1984.??.??"]
 [Round "?"]
 [White "Mathieu, D."]
 [Black "Jackson, D."]
 [Result "0-1"]
+[ECO "B23"]
 [EventDate "1984.??.??"]
 [PlyCount "90"]
 
@@ -57,5 +60,6 @@ Nh4 (23. Qf2) 23... g5 24. Ng6 Rf7 25. Qh5 a4 26. bxa4 Bxa4 27. Rf2 Qb5 28.
 Rbf1 (28. c4) 28... Bxc2 $5 29. Bxg5 Bxd3 30. e5 Bxf1 31. e6 Bxg2+ 32. Kxg2
 Qb7+ 33. Kg1 b3 34. Bh6 Bxh6 35. exf7+ Nxf7 36. Nf5 Rd7 37. Rg2 Bg5 38.
 Ngxe7+ Rxe7 39. Qg6+ Kf8 40. Qg7+ Ke8 41. Qg8+ Kd7 42. Nxe7 Be3+ 43. Kf1
-Qf3+ 44. Ke1 Kxe7 45. Re2 Qh1+ 0-1`,
-];
+Qf3+ 44. Ke1 Kxe7 45. Re2 Qh1+ 0-1
+
+`];

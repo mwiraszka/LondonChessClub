@@ -13,6 +13,8 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 - `Feather` for icons
 - `SCSS` for style preprocessing with Sass
 - `Lichess PGN Viewer` for rendering chess games
+- `Ng2 Charts` for additional game stats
+- `Ng2 PDF Viewer` for PDF documents
 
 > BACKEND (AWS)
 
@@ -39,10 +41,25 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
+v4.1.0 - October 23rd, 2024
+</summary>
+
+- 🚀 Add a 'Analyze in Lichess' button for games in the Game Archives page which redirects you to Lichess' analysis board with the full PGN loaded
+- 🚀 Add 'Analyze this position' text to existing 'Analysis Board' button to help avoid confusion
+- 🚀 Display opening and result stats for filtered games
+- 🚀 Add support for null paths and tooltips to be passed in to Link component
+- 🐛 Prevent left-right arrow keys from controlling scrollbar in the expansion panel when a game is focused since they already control previous/next move in the Lichess PGN Viewer
+- 🐛 Add a newline character after the game termination marker, followed by an intentional blank line, to all PGNs in the Game Archives
+- 🐛 Ensure embedded images in articles are responsive and are always displayed at max-width 
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.0.19 - October 18th, 2024
 </summary>
 
-- 🐛 Add PGNs for round 6 of LCC Championship
+- 🚀 Add PGNs for round 6 of LCC Championship
 
 </details>
 
@@ -51,7 +68,7 @@ v4.0.19 - October 18th, 2024
 v4.0.18 - October 14th, 2024
 </summary>
 
-- 🐛 Add PGNs for round 5 of LCC Championship
+- 🚀 Add PGNs for round 5 of LCC Championship
 
 </details>
 
@@ -69,7 +86,7 @@ v4.0.17 - October 6th, 2024
 v4.0.16 - October 5th, 2024
 </summary>
 
-- 🐛 Add PGNs for round 4 of LCC Championship
+- 🚀 Add PGNs for round 4 of LCC Championship
 
 </details>
 

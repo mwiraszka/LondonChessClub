@@ -2,6 +2,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { MarkdownModule } from 'ngx-markdown';
 
 import {
@@ -78,6 +79,9 @@ import { AppComponent } from './app.component';
     UpcomingEventBannerModule,
     UserSettingsStoreModule,
   ],
-  providers: [provideHttpClient(withInterceptorsFromDi(), withJsonpSupport())],
+  providers: [
+    provideCharts(withDefaultRegisterables()),
+    provideHttpClient(withInterceptorsFromDi(), withJsonpSupport()),
+  ],
 })
 export class AppModule {}

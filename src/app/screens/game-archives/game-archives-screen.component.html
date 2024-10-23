@@ -125,6 +125,40 @@
     </form>
 
     <span class="result-summary-text">{{ searchResultSummaryMessage }}</span>
+    <button
+      (click)="onShowStats()"
+      [disabled]="!filteredGameCount"
+      class="lcc-secondary-button search-stats-button">
+      {{ showStats ? 'Hide' : 'Show' }} search stats
+    </button>
+    @if (showStats && filteredGameCount) {
+      <div class="search-stats-container">
+        <div class="opening-chart-container">
+          <label for="opening-chart">Openings</label>
+          <canvas
+            id="opening-chart"
+            baseChart
+            [datasets]="openingChartDatasets"
+            [labels]="openingChartLabels"
+            [legend]="true"
+            [options]="openingChartOptions"
+            [type]="'doughnut'">
+          </canvas>
+        </div>
+        <div class="result-chart-container">
+          <label for="result-chart">Game Results</label>
+          <canvas
+            id="result-chart"
+            baseChart
+            [datasets]="resultChartDatasets"
+            [labels]="resultChartLabels"
+            [legend]="true"
+            [options]="resultChartOptions"
+            [type]="'doughnut'">
+          </canvas>
+        </div>
+      </div>
+    }
   </div>
 
   <div class="panels-container">
@@ -159,11 +193,13 @@
                     *cdkVirtualFor="
                       let gameDetails of group.value;
                       let index = index;
-                      templateCacheSize: 0
+                      templateCacheSize: 0;
+                      trackBy: trackByFn
                     "
                     [index]="index"
                     [label]="group.key"
-                    [pgn]="gameDetails.pgn">
+                    [pgn]="gameDetails.pgn"
+                    (keydown)="onKeydown($event)">
                   </lcc-pgn-viewer>
                 </cdk-virtual-scroll-viewport>
               } @placeholder {

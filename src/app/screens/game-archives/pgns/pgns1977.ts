@@ -6,35 +6,38 @@ export const pgns1977 = [
 [White "Jung, H."]
 [Black "Hallam, J."]
 [Result "1-0"]
+[ECO "A09"]
 [EventDate "1977.??.??"]
 [PlyCount "21"]
 
 1. Nf3 d5 2. c4 d4 3. e3 c5 4. b4 Nc6 $2 { 4...f6; 4...Bg4; 4...g6;
 4...dxe3 } 5. b5 Nb8 6. exd4 cxd4 7. Bb2 Bg4 8. Bxd4 $1 Bxf3 9. Qxf3 Qxd4
-10. Qxb7 Qxa1 $4 11. Qc8# 1-0`,
+10. Qxb7 Qxa1 $4 11. Qc8# 1-0
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1977.??.??"]
 [Round "?"]
 [White "Wong, A."]
 [Black "Jung, H."]
 [Result "0-1"]
+[ECO "A36"]
 [EventDate "1977.??.??"]
 [PlyCount "46"]
 
 1. e4 c5 2. c4 Nc6 3. Nc3 g6 4. g3 Bg7 5. Bg2 Nh6 { N [ECO] } 6. d3 O-O 7.
 Nge2 a6 8. h4 d6 9. h5 Ng4 10. f3 Nge5 11. Be3 Rb8 12. Qd2 f6 13. hxg6 hxg6
 14. Bh6 Nf7 15. Bxg7 Kxg7 16. f4 Nh6 17. f5 g5 18. Kf2 Rh8 19. Rag1 e6 20.
-Nf4 exf5 21. Nh5+ Kf7 22. exf5 Bxf5 23. Bd5+ Kg6 0-1`,
+Nf4 exf5 21. Nh5+ Kf7 22. exf5 Bxf5 23. Bd5+ Kg6 0-1
 
-`[Event "London, Canada (ch)"]
+`,`[Event "London, Canada (ch)"]
 [Site "?"]
 [Date "1977.??.??"]
 [Round "?"]
 [White "Zendrowski, J."]
 [Black "Jung, H."]
 [Result "0-1"]
+[ECO "B96"]
 [EventDate "1977.??.??"]
 [PlyCount "58"]
 
@@ -44,15 +47,16 @@ e5 dxe5 9. fxe5 Qc7 10. Qe2 Nfd7 11. O-O-O Bb7 12. Nxe6 fxe6 13. Qg4 Qxe5
 Tavadjan-Buturin; USSR; 1978 [ECO] } (17. Be4 $1 Nc6 18. Qg3 $1 {
 -Polugaevsky }) 17... Ne5 $1 18. Qb4+ Ke8 19. Ne4 Bxe4 20. Bxe4 Ra7 21. Qd6
 Kf7 $1 22. Bd3 Nxd3 23. Rf1 Nf2 24. Qb6 Rd7 25. Rxd7+ Nxd7 26. Qa7 Ke7 27.
-Rxf2 Qe5 28. Rf1 Rf8 29. Rd1 Qd5 0-1`,
+Rxf2 Qe5 28. Rf1 Rf8 29. Rd1 Qd5 0-1
 
-`[Event "Toronto (Ontario Op)"]
+`,`[Event "Toronto (Ontario Op)"]
 [Site "?"]
 [Date "1977.??.??"]
 [Round "?"]
 [White "Surlan, D."]
 [Black "Fuster, G."]
 [Result "1/2-1/2"]
+[ECO "B30"]
 [EventDate "1977.??.??"]
 [PlyCount "149"]
 
@@ -68,9 +72,9 @@ gxf4 Nxf4 51. a5 Nxg2 52. Kxg2 Rc7 53. a6 Ra7 54. Kf3 Kf7 55. Ke4 Ke6 56.
 Rf2 h4 57. Rf6+ Ke7 58. Rxg6 Kf7 59. Rb6 h3 60. Kf3 Ra8 61. Kg3 Rh8 62. Kh2
 Rh4 63. Rf6+ Ke7 $2 64. a7 Ra4 65. Rh6 Kf7 66. Kxh3 Kg7 67. Rf6 Rxa7 68.
 Kg4 Rf7 69. Rb6 Rf1 70. Kg5 Kf7 71. Rf6+ Rxf6 72. exf6 Kf8 73. Kg6 Kg8 74.
-f7+ Kf8 75. Kf6 1/2-1/2`,
+f7+ Kf8 75. Kf6 1/2-1/2
 
-`[Event "Windsor, Canada  simul.)"]
+`,`[Event "Windsor, Canada  simul.)"]
 [Site "?"]
 [Date "1977.??.??"]
 [Round "40"]
@@ -79,6 +83,7 @@ f7+ Kf8 75. Kf6 1/2-1/2`,
 [Result "1/2-1/2"]
 [WhiteElo "2305"]
 [BlackElo "2505"]
+[ECO "D53"]
 [EventDate "1977.??.??"]
 [PlyCount "54"]
 
@@ -87,5 +92,6 @@ f7+ Kf8 75. Kf6 1/2-1/2`,
 (unavailable) } 10. c4 dxc4 11. Bxc4 O-O 12. Nf3 Nc6 13. Qc3 Qb4 14. Kd2
 Qxc3+ 15. Kxc3 Na5 16. Bd3 Be6 17. Rhb1 b6 18. e4 c6 19. Nd2 Nb7 20. a4
 Rac8 21. Nc4 Rc7 22. f3 Rd8 23. g4 Rcd7 24. Ne5 Rxd4 25. Ba6 Nc5 26. Nxc6
-Nxa4+ 27. Rxa4 Rxa4 { Draw? -Hans Jung } 1/2-1/2`,
-];
+Nxa4+ 27. Rxa4 Rxa4 { Draw? -Hans Jung } 1/2-1/2
+
+`];

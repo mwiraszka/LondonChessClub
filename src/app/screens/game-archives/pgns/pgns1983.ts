@@ -6,6 +6,9 @@ export const pgns1983 = [
 [White "Elieff, K."]
 [Black "Pope, J."]
 [Result "0-1"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance, Euwe variation"]
 [EventDate "1983.??.??"]
 [PlyCount "70"]
 

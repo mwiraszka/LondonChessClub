@@ -8,6 +8,9 @@ export const pgns1988 = [
 [Result "1-0"]
 [WhiteElo "2625"]
 [BlackElo "2285"]
+[ECO "C94"]
+[Opening "Ruy Lopez"]
+[Variation "closed, Breyer defence"]
 [EventDate "1988.??.??"]
 [PlyCount "71"]
 
@@ -26,6 +29,9 @@ Rc5 33. Rc8 Ra6 34. c7 Rac6 35. Ba3 Rxc7 36. Rxf8+ 1-0
 [Black "Saunders, M."]
 [Result "1/2-1/2"]
 [WhiteElo "2285"]
+[ECO "E94"]
+[Opening "King's Indian"]
+[Variation "orthodox, 7...Nbd7"]
 [EventDate "1988.??.??"]
 [PlyCount "94"]
 
@@ -46,6 +52,8 @@ Rd2 Rch7 40. Rg2+ Kh8 41. Nb2 Be7 42. Nac4 Rh1+ 43. Kf2 Bh4+ 44. Ke2 Bg3
 [Black "Southam, T."]
 [Result "1/2-1/2"]
 [BlackElo "2285"]
+[ECO "C55"]
+[Opening "Two knights defence (Modern bishop's opening)"]
 [EventDate "1988.??.??"]
 [PlyCount "63"]
 
@@ -64,6 +72,9 @@ Kc4 1/2-1/2
 [Black "Davis, C."]
 [Result "1-0"]
 [WhiteElo "2285"]
+[ECO "D85"]
+[Opening "Gruenfeld"]
+[Variation "modern exchange variation"]
 [EventDate "1988.??.??"]
 [PlyCount "73"]
 
@@ -84,6 +95,9 @@ Kc4 1/2-1/2
 [Result "1-0"]
 [WhiteElo "2500"]
 [BlackElo "2285"]
+[ECO "C95"]
+[Opening "Ruy Lopez"]
+[Variation "closed, Breyer, Borisenko variation"]
 [EventDate "1988.??.??"]
 [PlyCount "49"]
 
@@ -100,6 +114,9 @@ Qd7 21. Qxd3 Qxc6 22. axb5 Qxb5 23. c4 Qxb4 24. Bd2 Qb7 25. cxd5 1-0
 [Black "Chakurira, S."]
 [Result "1-0"]
 [WhiteElo "2285"]
+[ECO "A57"]
+[Opening "Benko gambit"]
+[Variation "Zaitsev system"]
 [EventDate "1988.??.??"]
 [PlyCount "85"]
 
@@ -120,6 +137,9 @@ Rc5 38. Rxg4+ Kh5 39. Nxc4 b3 40. Bb2 Rc6 41. Rd4 Nc5 42. Rd5+ Kh4 43. Kh2
 [Black "Claesen, P."]
 [Result "1-0"]
 [WhiteElo "2285"]
+[ECO "D15"]
+[Opening "QGD Slav"]
+[Variation "Tolush-Geller gambit"]
 [EventDate "1988.??.??"]
 [PlyCount "49"]
 
@@ -137,6 +157,8 @@ a5 15. O-O Be7 16. Qe2 Nf4 17. Qd2 g5 18. g3 Ng6 19. f4 gxf4 20. gxf4 Nh4
 [Result "1-0"]
 [WhiteElo "2205"]
 [BlackElo "2285"]
+[ECO "A00"]
+[Opening "Van't Kruijs opening"]
 [EventDate "1988.??.??"]
 [PlyCount "144"]
 
@@ -161,6 +183,9 @@ Bxf3 Ng3+ 70. Kg2 Nf5 71. Bg4 Ne7 72. Kf3 Nd5 1-0
 [Black "Southam, T."]
 [Result "1-0"]
 [BlackElo "2285"]
+[ECO "D31"]
+[Opening "QGD"]
+[Variation "Charousek (Petrosian) variation"]
 [EventDate "1988.??.??"]
 [PlyCount "107"]
 
@@ -182,6 +207,9 @@ Kb6 Ra2 51. a6 c3 52. bxc3 Rxf2 53. a7 Ra2 54. Kb7 1-0
 [Black "Alsulaiti, A."]
 [Result "1-0"]
 [WhiteElo "2285"]
+[ECO "D35"]
+[Opening "QGD"]
+[Variation "exchange, positional line"]
 [EventDate "1988.??.??"]
 [PlyCount "105"]
 
@@ -204,6 +232,9 @@ Rxd5 49. Ke4 Rh5 50. Rf2 Kc7 51. Rf7+ Kb6 52. Rf6+ Kc7 53. a4 1-0
 [Result "1-0"]
 [WhiteElo "2285"]
 [BlackElo "2295"]
+[ECO "E48"]
+[Opening "Nimzo-Indian"]
+[Variation "4.e3 O-O, 5.Bd3 d5"]
 [EventDate "1988.??.??"]
 [PlyCount "85"]
 
@@ -222,6 +253,9 @@ Bh4+ Kf8 40. Bf2 Nd2 41. Qe6 Qa1+ 42. Kg2 Qf1+ 43. Kg3 1-0
 [White "Hansen, LB."]
 [Black "Southam, T."]
 [Result "1-0"]
+[ECO "E04"]
+[Opening "Catalan"]
+[Variation "open, 5.Nf3"]
 [EventDate "1988.??.??"]
 [PlyCount "57"]
 
@@ -238,6 +272,8 @@ f4 Qh3 27. Rf2 Bf6 28. Qxd5 Rh5 29. Ne5 1-0
 [White "Southam, T."]
 [Black "McCann, K."]
 [Result "1-0"]
+[ECO "A80"]
+[Opening "Dutch"]
 [EventDate "1988.??.??"]
 [PlyCount "53"]
 
@@ -254,6 +290,9 @@ Qxe5 27. Rxe5 1-0
 [White "Cooper, G."]
 [Black "Southam, T."]
 [Result "0-1"]
+[ECO "C30"]
+[Opening "KGD"]
+[Variation "classical variation"]
 [EventDate "1988.??.??"]
 [PlyCount "70"]
 
@@ -273,6 +312,9 @@ Rg3 Qxa4 33. Rf2 Ba2+ 34. Ka1 Qa3 35. Nc4 Rb1# 0-1
 [Result "1-0"]
 [WhiteElo "2405"]
 [BlackElo "2295"]
+[ECO "D34"]
+[Opening "QGD"]
+[Variation "Tarrasch, Prague variation, Normal position"]
 [EventDate "1988.??.??"]
 [PlyCount "108"]
 
@@ -295,6 +337,8 @@ Rxe3 51. Qd4+ Ke7 52. Qxe3 Kf6 53. b6 a4 54. Qd4+ Ke7 1-0
 [Result "1-0"]
 [WhiteElo "2220"]
 [BlackElo "2295"]
+[ECO "C56"]
+[Opening "Two knights defence"]
 [EventDate "1988.??.??"]
 [PlyCount "65"]
 
@@ -314,6 +358,9 @@ Qxe1+ 32. Kh2 Qc3 33. Ne7+ 1-0
 [Result "1-0"]
 [WhiteElo "2350"]
 [BlackElo "2295"]
+[ECO "C58"]
+[Opening "two knights defence"]
+[Variation "Yankovich variation"]
 [EventDate "1988.??.??"]
 [PlyCount "63"]
 
@@ -333,6 +380,9 @@ Ke3 1-0
 [Result "1-0"]
 [WhiteElo "2510"]
 [BlackElo "2295"]
+[ECO "D37"]
+[Opening "QGD"]
+[Variation "4.Nf3"]
 [EventDate "1988.??.??"]
 [PlyCount "67"]
 
@@ -352,6 +402,8 @@ hxg5 Rg6 32. Rg2 f6 33. Kd3 Kf7 34. Rc2 1-0
 [Result "1/2-1/2"]
 [WhiteElo "2295"]
 [BlackElo "2475"]
+[ECO "A44"]
+[Opening "Old Benoni defence"]
 [EventDate "1988.??.??"]
 [PlyCount "83"]
 
@@ -372,6 +424,9 @@ Nxe4 Nf6 15. N2g3 Nxe4 16. Nxe4 Bf5 17. Ng5 Kh8 18. Rae1 Qd7 19. Be4 Rf6
 [Result "1/2-1/2"]
 [WhiteElo "2455"]
 [BlackElo "2495"]
+[ECO "E44"]
+[Opening "Nimzo-Indian"]
+[Variation "Fischer variation, 5.Ne2"]
 [EventDate "1988.??.??"]
 [PlyCount "152"]
 
@@ -398,6 +453,9 @@ Ne8 21. Raf1 f6 22. b4 axb4 23. axb4 Na6 24. Rb1 Bc8 25. c5 Kh8 26. Bb5 Nb8
 [Result "1/2-1/2"]
 [WhiteElo "2295"]
 [BlackElo "2320"]
+[ECO "E45"]
+[Opening "Nimzo-Indian"]
+[Variation "4.e3, Bronstein (Byrne) variation"]
 [EventDate "1988.??.??"]
 [PlyCount "68"]
 
@@ -417,6 +475,8 @@ Qh6+ Kg8 32. Qg5+ Kf8 33. Qh6+ Kg8 34. Qg5+ Kf8 1/2-1/2
 [Result "0-1"]
 [WhiteElo "2295"]
 [BlackElo "2485"]
+[ECO "D30"]
+[Opening "Queen's gambit declined"]
 [EventDate "1988.??.??"]
 [PlyCount "80"]
 
@@ -435,6 +495,8 @@ f6 27. Rc2 Nb6 28. Nd1 Nd5 29. Ne3 Kf7 30. Re2 h5 31. Kg2 g6 32. Kf1 Be7
 [White "Murray, P."]
 [Black "Jung, H."]
 [Result "0-1"]
+[ECO "D73"]
+[Opening "Neo-Gruenfeld, 5.Nf3"]
 [EventDate "1988.??.??"]
 [PlyCount "60"]
 

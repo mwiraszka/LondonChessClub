@@ -6,6 +6,9 @@ export const pgns1980 = [
 [White "Jackson, D."]
 [Black "Jung, H."]
 [Result "0-1"]
+[ECO "C00"]
+[Opening "French"]
+[Variation "Chigorin variation"]
 [EventDate "1980.??.??"]
 [PlyCount "38"]
 
@@ -22,6 +25,9 @@ Nc6 6. d3 Nge7 7. f5 Nd4 8. Nxd4 cxd4 9. Nb5 Nc6 10. e5 d6 11. Nxd6+ Bxd6
 [White "Jung, H."]
 [Black "Surlan, D."]
 [Result "1-0"]
+[ECO "C86"]
+[Opening "Ruy Lopez"]
+[Variation "Worrall attack, solid line"]
 [EventDate "1980.??.??"]
 [PlyCount "53"]
 
@@ -38,6 +44,8 @@ Qh5 Qd8 26. Qxh7+ Kxh7 27. Nxf6+ 1-0
 [White "Ehrman, C."]
 [Black "Soltis, A."]
 [Result "0-1"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1980.??.??"]
 [PlyCount "50"]
 

@@ -6,6 +6,8 @@ export const pgns1982 = [
 [White "Pope, J."]
 [Black "Elieff, E."]
 [Result "1-0"]
+[ECO "A00"]
+[Opening "Benko's opening"]
 [EventDate "1982.??.??"]
 [PlyCount "51"]
 
@@ -24,6 +26,9 @@ O-O-O $6 17. Qb3 b6 18. Na6 Bd6 { 18....Ne7____________________________ }
 [White "Jung, H."]
 [Black "Zendrowski, J."]
 [Result "1-0"]
+[ECO "A65"]
+[Opening "Benoni"]
+[Variation "6.e4"]
 [EventDate "1982.??.??"]
 [PlyCount "55"]
 
@@ -41,6 +46,9 @@ Kg2 Rxe1 25. Rxe1 Rd8 26. Ne2 Qf7 27. Nxd4 Bxd5 28. Ne6 1-0
 [White "Zendrowski, J."]
 [Black "Jung, H."]
 [Result "0-1"]
+[ECO "C15"]
+[Opening "French"]
+[Variation "Winawer, fingerslip variation"]
 [EventDate "1982.??.??"]
 [PlyCount "42"]
 
@@ -61,6 +69,9 @@ Rxg1+ 17. Nxg1 Qxg1+ 18. Rf1 Bxd2+ 19. Kxd2 Qxh2+ 20. Kc1 Bd7 21. Rd1 Kc7
 [White "Day, L."]
 [Black "Jung, H."]
 [Result "1/2-1/2"]
+[ECO "B23"]
+[Opening "Sicilian"]
+[Variation "Grand Prix attack"]
 [EventDate "1982.??.??"]
 [PlyCount "41"]
 
@@ -76,6 +87,9 @@ h6 13. Bh4 O-O 14. Nd5 Re8 15. Qd2 Kg7 16. c3 Ne4 17. Qe1 Ng5 18. Qf2 Be6
 [White "Jung, H."]
 [Black "Day, L."]
 [Result "1-0"]
+[ECO "A42"]
+[Opening "Modern defence"]
+[Variation "Averbakh system"]
 [EventDate "1982.??.??"]
 [PlyCount "83"]
 
@@ -94,6 +108,9 @@ Rf5 Rxf5 38. Bxf5 Bc6 39. Nd4 Be8 40. Be4 b4 41. Bd5 c3 42. Nc2 1-0
 [White "Jung, H."]
 [Black "Hergott, D."]
 [Result "1-0"]
+[ECO "E21"]
+[Opening "Nimzo-Indian"]
+[Variation "three knights variation"]
 [EventDate "1982.??.??"]
 [PlyCount "73"]
 

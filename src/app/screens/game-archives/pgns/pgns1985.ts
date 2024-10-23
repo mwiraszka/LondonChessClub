@@ -6,6 +6,9 @@ export const pgns1985 = [
 [White "Jung, H."]
 [Black "Hartman, B."]
 [Result "1/2-1/2"]
+[ECO "B40"]
+[Opening "Sicilian"]
+[Variation "Anderssen variation"]
 [EventDate "1985.??.??"]
 [PlyCount "59"]
 

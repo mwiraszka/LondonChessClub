@@ -6,6 +6,9 @@ export const pgns1998 = [
 [White "Jurjans, Mk"]
 [Black "Patterson, J."]
 [Result "1-0"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
+[Variation "Lundin (Kevitz-Mikenas) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "27"]
 
@@ -20,6 +23,8 @@ Qxh7# 1-0
 [White "Jurjans, D."]
 [Black "Kirshner, J."]
 [Result "0-1"]
+[ECO "C21"]
+[Opening "Danish gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "76"]
 
@@ -38,6 +43,9 @@ Ke1 Qxe3+ 33. Kf1 Qe6 34. Rhh1 Qxa2 35. Ke1 Qb1+ 36. Kf2 Qc2+ 37. Kf1 a2
 [White "Zhao, Y."]
 [Black "Renaud, D."]
 [Result "1-0"]
+[ECO "C64"]
+[Opening "Ruy Lopez"]
+[Variation "classical defence, 4.c3"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -55,6 +63,8 @@ Qg8+ Kd6 33. Nc4# 1-0
 [White "Callaghan, J."]
 [Black "Jurjans, Mn"]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Dunst (Sleipner, Heinrichsen) opening"]
 [EventDate "1998.??.??"]
 [PlyCount "68"]
 
@@ -72,6 +82,8 @@ Bxa4 32. Kh3 Rc8 33. Kh4 Bd7 34. Kxh5 Rh1# 0-1
 [White "Jurjans, Mk"]
 [Black "Zhao, Y."]
 [Result "1/2-1/2"]
+[ECO "D02"]
+[Opening "Queen's bishop game"]
 [EventDate "1998.??.??"]
 [PlyCount "28"]
 
@@ -86,6 +98,8 @@ Rfe1 a6 1/2-1/2
 [White "Jurjans, Mn"]
 [Black "Kirshner, J."]
 [Result "1-0"]
+[ECO "C50"]
+[Opening "Giuoco Piano"]
 [EventDate "1998.??.??"]
 [PlyCount "37"]
 
@@ -100,6 +114,8 @@ Qe1 c6 9. Bxf7+ Nxf7 10. Nxf7 Rxf7 11. b4 Bxf2+ 12. Rxf2 Rxf2 13. Qxf2 Nb3
 [White "Patterson, J."]
 [Black "Jurjans, D."]
 [Result "1-0"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "129"]
 
@@ -122,6 +138,9 @@ Kb2 63. Qcc3+ Ka2 64. Qb3+ Ka1 65. Qdc3# 1-0
 [White "Renaud, D."]
 [Black "Callaghan, J."]
 [Result "0-1"]
+[ECO "B02"]
+[Opening "Alekhine's defence"]
+[Variation "Krejcik variation"]
 [EventDate "1998.??.??"]
 [PlyCount "76"]
 
@@ -140,6 +159,8 @@ Kh2 Rxg2+ 38. Kh1 Qf1# 0-1
 [White "Jurjans, D."]
 [Black "Renaud, D."]
 [Result "0-1"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -156,6 +177,8 @@ Bxg2 21. Rh2 Be4 22. Nc3 Bb7 23. Qd1 f4 24. g6 fxg6 25. Nb1 g5 26. Rh1 Bxh1
 [White "Lau, D."]
 [Black "Patterson, J."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Mieses opening"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -173,6 +196,8 @@ Rc2+ 31. Kf1 b5 32. Kg1 b4 33. f4 b3 34. g4 b2 35. g5 Ra1 36. f5 Rxe1# 0-1
 [White "Zhao, Y."]
 [Black "Jurjans, Mn"]
 [Result "1-0"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "41"]
 
@@ -188,6 +213,8 @@ e6 20. Nc3 Bxc3 21. bxc3 1-0
 [White "Callaghan, J."]
 [Black "Wong, W."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Dunst (Sleipner, Heinrichsen) opening"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -205,6 +232,8 @@ Nxe1 Ne2+ 21. Kf1 Bxe5 22. Rb1 Bxb2 23. Rxb2 Nd4 24. h4 d5 25. cxd5 exd5
 [White "Kirshner, J."]
 [Black "Jurjans, Mk"]
 [Result "0-1"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1998.??.??"]
 [PlyCount "36"]
 
@@ -219,6 +248,9 @@ Ne4 Qxf4 15. Nxf6+ Qxf6 16. Bc4 Bf5 17. c3 Be4 18. cxd4 Qg5+ 0-1
 [White "Patterson, J."]
 [Black "Zhao, Y."]
 [Result "0-1"]
+[ECO "C47"]
+[Opening "Four knights"]
+[Variation "Scotch, 4...exd4"]
 [EventDate "1998.??.??"]
 [PlyCount "40"]
 
@@ -234,6 +266,8 @@ Kb1 Ra1# 0-1
 [White "Jurjans, Mn"]
 [Black "Renaud, D."]
 [Result "1-0"]
+[ECO "C40"]
+[Opening "King's knight opening"]
 [EventDate "1998.??.??"]
 [PlyCount "33"]
 
@@ -248,6 +282,9 @@ Kb1 Ra1# 0-1
 [White "Wong, W."]
 [Black "Jurjans, Mk"]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Benko's opening"]
+[Variation "reversed Alekhine"]
 [EventDate "1998.??.??"]
 [PlyCount "90"]
 
@@ -267,6 +304,9 @@ Rd2+ 45. Ka1 Rf1# 0-1
 [White "Jurjans, D."]
 [Black "Callaghan, J."]
 [Result "0-1"]
+[ECO "B02"]
+[Opening "Alekhine's defence"]
+[Variation "Maroczy variation"]
 [EventDate "1998.??.??"]
 [PlyCount "60"]
 
@@ -283,6 +323,8 @@ Nd5 9. c3 Nc6 10. c4 Nb6 11. d5 Nd4 12. c5 Rf4 13. cxb6 Re4+ 14. Kf2 axb6
 [White "Kirshner, J."]
 [Black "Lau, D."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Blackmar gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "51"]
 
@@ -299,6 +341,8 @@ Kc8 25. Rxg7 Nh2 26. Rg8# 1-0
 [White "Lau, D."]
 [Black "Jurjans, D."]
 [Result "1/2-1/2"]
+[ECO "A41"]
+[Opening "Queen's Pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "82"]
 
@@ -317,6 +361,8 @@ Kd1 g3 39. e5 g2 40. Kd2 g1=Q 41. Kd3 Qxf2 1/2-1/2
 [White "Jurjans, Mk"]
 [Black "Jurjans, Mn"]
 [Result "0-1"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "66"]
 
@@ -334,6 +380,9 @@ Bxb6 axb6 33. Rd5 Qa1+ 0-1
 [White "Zhao, Y."]
 [Black "Kirshner, J."]
 [Result "1-0"]
+[ECO "C78"]
+[Opening "Ruy Lopez"]
+[Variation "Moeller defence"]
 [EventDate "1998.??.??"]
 [PlyCount "48"]
 
@@ -349,6 +398,9 @@ Rab8 21. b3 axb3 22. Rxb3 Ra8 23. Bf4 Ra7 24. e5 dxe5 1-0
 [White "Renaud, D."]
 [Black "Wong, W."]
 [Result "1-0"]
+[ECO "B02"]
+[Opening "Alekhine's defence"]
+[Variation "Krejcik variation"]
 [EventDate "1998.??.??"]
 [PlyCount "93"]
 
@@ -368,6 +420,9 @@ Kf6 43. Bb2+ Ke6 44. Qe8+ Kf5 45. Qe4+ Kg5 46. Qf4+ Kh5 47. Qh4# 1-0
 [White "Callaghan, J."]
 [Black "Patterson, J."]
 [Result "0-1"]
+[ECO "A07"]
+[Opening "Reti"]
+[Variation "King's Indian attack (Barcza system)"]
 [EventDate "1998.??.??"]
 [PlyCount "82"]
 
@@ -386,6 +441,8 @@ Bxg5 Qb1+ 39. Kh2 Qf1 40. h4 Qxf2+ 41. Kh1 Qg2# 0-1
 [White "Jurjans, Mk"]
 [Black "Pavez, M."]
 [Result "0-1"]
+[ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "92"]
 
@@ -405,6 +462,9 @@ Bxf1 Bg3 45. Rb7 Qf2 46. Bg2 Re1+ 0-1
 [White "Pavez, M."]
 [Black "Jurjans, Mk"]
 [Result "0-1"]
+[ECO "C00"]
+[Opening "French"]
+[Variation "King's Indian attack"]
 [EventDate "1998.??.??"]
 [PlyCount "120"]
 
@@ -426,6 +486,8 @@ Nxb3 Qxb3 46. Bxg5 Bxa3 47. Bh6 Rf6 48. Qg5 Qe6 49. Rxa2 Bc1 50. Rd2 Bxd2
 [White "Jurjans, Mk"]
 [Black "Pavez, M."]
 [Result "1-0"]
+[ECO "D02"]
+[Opening "Queen's bishop game"]
 [EventDate "1998.??.??"]
 [PlyCount "79"]
 
@@ -444,6 +506,8 @@ Kh2 Nf4 39. Rg7 Nxh3 40. Qf7# 1-0
 [White "Pavez, M."]
 [Black "Jurjans, Mk"]
 [Result "0-1"]
+[ECO "A03"]
+[Opening "Bird's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -461,6 +525,8 @@ Bxc3 27. Nxc3 Bc8 28. Rh6 Nf8 29. Bxg6 Qe1# 0-1
 [Black "Lordo, C."]
 [Result "1-0"]
 [WhiteElo "1880"]
+[ECO "C44"]
+[Opening "Scotch opening"]
 [EventDate "1998.??.??"]
 [PlyCount "49"]
 
@@ -477,6 +543,8 @@ Rxe4 20. c5 Rc4 21. Na3 Rg4 22. Rac1 f4 23. cxd6 c6 24. Nc4 f3 25. Ne5+ 1-0
 [Black "Oraha, Z."]
 [Result "0-1"]
 [BlackElo "1895"]
+[ECO "A03"]
+[Opening "Bird's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "46"]
 
@@ -494,6 +562,8 @@ Rfe1 Rf3 21. c4 Qh6 22. Nc1 Ref8 23. Ne2 Qh3 0-1
 [Result "0-1"]
 [WhiteElo "1710"]
 [BlackElo "2175"]
+[ECO "C50"]
+[Opening "King's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "92"]
 
@@ -515,6 +585,8 @@ Kf3 Kc5 45. cxd5 exd5 46. Nf2 Kd4 0-1
 [Result "0-1"]
 [WhiteElo "1665"]
 [BlackElo "2030"]
+[ECO "C55"]
+[Opening "Two knights defence, Perreux variation"]
 [EventDate "1998.??.??"]
 [PlyCount "24"]
 
@@ -530,6 +602,9 @@ d5 8. exd5 Qxd5 9. Qxc7 Bb4+ 10. Ke2 Bd6 11. Qc3 Qxg2 12. Qf3 Bg4 0-1
 [Result "1-0"]
 [WhiteElo "2300"]
 [BlackElo "1740"]
+[ECO "C00"]
+[Opening "French"]
+[Variation "Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "73"]
 
@@ -548,6 +623,9 @@ Nd5 21. Bf2 Nce7 22. Nd6 Rb8 23. Rd2 a5 24. a4 b4 25. Nb5 Rxb5 26. axb5 b3
 [Black "Ortiz, H."]
 [Result "1-0"]
 [WhiteElo "2015"]
+[ECO "B12"]
+[Opening "Caro-Kann"]
+[Variation "advance variation"]
 [EventDate "1998.??.??"]
 [PlyCount "77"]
 
@@ -568,6 +646,8 @@ Qe2 Ne7 21. Kg2 Nb6 22. Nd6 Qxe2 23. Nxe2 Nbc8 24. Ne4 Nd5 25. Rad1 Rhh8
 [Result "1-0"]
 [WhiteElo "2040"]
 [BlackElo "1675"]
+[ECO "A53"]
+[Opening "Old Indian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -586,6 +666,8 @@ axb5 axb5 34. cxb5 Bxb5 35. Nf5 1-0
 [Black "Morgan, A."]
 [Result "0-1"]
 [BlackElo "1745"]
+[ECO "C45"]
+[Opening "Scotch game"]
 [EventDate "1998.??.??"]
 [PlyCount "98"]
 
@@ -607,6 +689,9 @@ Qe5+ 45. Kd3 Qd4+ 46. Qxd4 cxd4 47. Bb6 Rd7 48. Kc4 Rxd6 49. Bxd4 Rxd4+ 0-1
 [Result "1-0"]
 [WhiteElo "2175"]
 [BlackElo "1895"]
+[ECO "A22"]
+[Opening "English"]
+[Variation "Bremen, reverse dragon"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -626,6 +711,8 @@ Bxc5 1-0
 [Result "1-0"]
 [WhiteElo "2030"]
 [BlackElo "1745"]
+[ECO "E00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "25"]
 
@@ -640,6 +727,8 @@ dxe5 Nxe5 9. Qxf6 Qd4 10. Qxh8+ Bf8 11. Bf6 Nd3+ 12. Bxd3 Qxd3 13. Rd1 1-0
 [Black "Sengupta, O."]
 [Result "0-1"]
 [BlackElo "1710"]
+[ECO "C45"]
+[Opening "Scotch game"]
 [EventDate "1998.??.??"]
 [PlyCount "86"]
 
@@ -659,6 +748,9 @@ Rd7+ Kg6 39. Rxa7 Rb1+ 40. Kg2 Rb2+ 41. Kf3 Rxa2 42. Ke3 Bc4 43. Rxa2 Bxa2
 [White "Ortiz, H."]
 [Black "Lordo, C."]
 [Result "1-0"]
+[ECO "D06"]
+[Opening "QGD"]
+[Variation "Marshall defence"]
 [EventDate "1998.??.??"]
 [PlyCount "71"]
 
@@ -678,6 +770,9 @@ Bxd7+ Nxd7 15. Nxe5 b5 16. Qe4 Nc5 17. Qe2 Be7 18. Nc6 Qd6 19. Qxe7+ Qxe7+
 [Result "0-1"]
 [WhiteElo "1740"]
 [BlackElo "1825"]
+[ECO "B22"]
+[Opening "Sicilian"]
+[Variation "Alapin's variation (2.c3)"]
 [EventDate "1998.??.??"]
 [PlyCount "96"]
 
@@ -698,6 +793,9 @@ Ke6 39. Ke2 Bb4 40. Kd3 Kd6 41. h4 c5 42. Bd1 c4+ 43. Kc2 Ba3 44. Be1 Rb2+
 [Black "Henao, C."]
 [Result "1-0"]
 [BlackElo "1665"]
+[ECO "A02"]
+[Opening "Bird"]
+[Variation "From gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "119"]
 
@@ -721,6 +819,9 @@ fxe5 44. Kg5 Ke6 45. a3 Kd6 46. Kf5 e4 47. Kf4 Ke6 48. g5 Kf7 49. Ke3 Kg6
 [Result "0-1"]
 [WhiteElo "2015"]
 [BlackElo "2300"]
+[ECO "B09"]
+[Opening "Pirc"]
+[Variation "Austrian attack, dragon formation"]
 [EventDate "1998.??.??"]
 [PlyCount "74"]
 
@@ -740,6 +841,9 @@ Ne3 Rxd2 33. Rdxd2 Nxe3+ 34. Kf3 Nf5 35. Kg4 e4 36. Rfe2 e3 37. Rd3 Bc5 0-1
 [Result "1-0"]
 [WhiteElo "1880"]
 [BlackElo "2040"]
+[ECO "B06"]
+[Opening "Robatsch defence"]
+[Variation "three pawns attack"]
 [EventDate "1998.??.??"]
 [PlyCount "89"]
 
@@ -760,6 +864,8 @@ Qg7 1-0
 [Black "Mitchell, J."]
 [Result "1-0"]
 [WhiteElo "1740"]
+[ECO "C42"]
+[Opening "Petrov's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "54"]
 
@@ -778,6 +884,8 @@ Kxe7 26. Qg5+ Kf7 27. Qf4+ Ke7 1-0
 [Result "1/2-1/2"]
 [WhiteElo "2030"]
 [BlackElo "2175"]
+[ECO "A40"]
+[Opening "Polish defence"]
 [EventDate "1998.??.??"]
 [PlyCount "29"]
 
@@ -794,6 +902,8 @@ Nbd7 9. c3 c5 10. cxb4 cxb4 11. Nb3 Be7 12. Bd2 Rb8 13. O-O O-O 14. Ne1 e5
 [Result "0-1"]
 [WhiteElo "1825"]
 [BlackElo "1880"]
+[ECO "C44"]
+[Opening "Ponziani opening"]
 [EventDate "1998.??.??"]
 [PlyCount "40"]
 
@@ -811,6 +921,9 @@ Ba6 8. b3 Bd3 9. c4 Qg5 10. Ba3 h5 11. Bxf8 hxg4 12. Bb4 g3 13. Nc3 gxh2
 [Result "0-1"]
 [WhiteElo "1745"]
 [BlackElo "2015"]
+[ECO "B13"]
+[Opening "Caro-Kann"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "98"]
 
@@ -831,6 +944,8 @@ Ka4 45. h4 Ka3 46. h5 Ka4 47. Kd2 Kb4 48. Ke2 Kc3 49. Ke3 Kc4 0-1
 [Black "Henao, C."]
 [Result "0-1"]
 [BlackElo "1665"]
+[ECO "B06"]
+[Opening "Norwegian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "88"]
 
@@ -852,6 +967,8 @@ e5 h2 0-1
 [Result "1/2-1/2"]
 [WhiteElo "1895"]
 [BlackElo "2040"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "86"]
 
@@ -872,6 +989,8 @@ Rf2 Qxe4+ 39. Kf1 Qh1+ 40. Ke2 Qe4+ 41. Kf1 Qh1+ 42. Ke2 Qe4+ 43. Kf1 Qh1+
 [Black "Ortiz, H."]
 [Result "0-1"]
 [WhiteElo "1675"]
+[ECO "A47"]
+[Opening "Queen's Indian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "108"]
 
@@ -894,6 +1013,8 @@ a5 Ke6 45. a6 Kd5 46. Nxa7 Bxa7 47. Kf3 Kd4 48. Ke2 e4 49. h4 e3 50. h5 Kc4
 [Result "1-0"]
 [WhiteElo "2300"]
 [BlackElo "1880"]
+[ECO "D24"]
+[Opening "QGA, 4.Nc3"]
 [EventDate "1998.??.??"]
 [PlyCount "25"]
 
@@ -909,6 +1030,8 @@ a5 Ke6 45. a6 Kd5 46. Nxa7 Bxa7 47. Kf3 Kd4 48. Ke2 e4 49. h4 e3 50. h5 Kc4
 [Result "0-1"]
 [WhiteElo "1710"]
 [BlackElo "1895"]
+[ECO "B07"]
+[Opening "Pirc defence"]
 [EventDate "1998.??.??"]
 [PlyCount "52"]
 
@@ -927,6 +1050,8 @@ Rd5 b6 0-1
 [Result "0-1"]
 [WhiteElo "1665"]
 [BlackElo "1740"]
+[ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "54"]
 
@@ -946,6 +1071,8 @@ Bc6 Rad8 21. f3 Rg8 22. Bxe4 Rxg2+ 23. Kxg2 Rd2+ 24. Kf1 Qxh2 25. Bb7+ Kf8
 [WhiteElo "2175"]
 [BlackElo "2015"]
 [ECO "B11"]
+[Opening "Caro-Kann"]
+[Variation "two knights, 3...Bg4"]
 [EventDate "1998.??.??"]
 [PlyCount "94"]
 
@@ -970,7 +1097,9 @@ Rxg2+ 43. Kh1 Rxg3 44. hxg3 Qh3+ 45. Kg1 Qxg3+ 46. Kh1 Qh3+ 47. Kg1 Nf3+
 [Black "Chiroiu, P."]
 [Result "0-1"]
 [WhiteElo "1745"]
-[ECO "C55"]
+[ECO "C46"]
+[Opening "Four knights"]
+[Variation "Italian variation"]
 [EventDate "1998.??.??"]
 [PlyCount "108"]
 
@@ -993,6 +1122,9 @@ Rxb2 38. b4 cxb4 39. cxb4 Rxb4 40. Rb7 b5 41. Kf2 Rb1 42. Ke3 b4 43. Kd3 b3
 [White "Mitchell, J."]
 [Black "Lordo, C."]
 [Result "0-1"]
+[ECO "C42"]
+[Opening "Petrov"]
+[Variation "Damiano variation"]
 [EventDate "1998.??.??"]
 [PlyCount "142"]
 
@@ -1018,6 +1150,8 @@ Kh2 h3 68. Kh1 Kh4 69. Kh2 Bf5 70. Kh1 Kg3 71. Kg1 h2+ 0-1
 [Result "1-0"]
 [WhiteElo "2040"]
 [BlackElo "1825"]
+[ECO "D00"]
+[Opening "Levitsky attack (Queen's bishop attack)"]
 [EventDate "1998.??.??"]
 [PlyCount "99"]
 
@@ -1039,6 +1173,8 @@ Qc6 50. Rc7 1-0
 [Black "Khan, Z."]
 [Result "0-1"]
 [BlackElo "2030"]
+[ECO "C44"]
+[Opening "Konstantinopolsky opening"]
 [EventDate "1998.??.??"]
 [PlyCount "136"]
 
@@ -1063,6 +1199,8 @@ Qxc1 Nxc1 64. Bd1 Kf6 65. Kf1 Ke5 66. Bc2 Kd4 67. Ke1 Kc3 68. Kd1 Nxb3 0-1
 [Result "0-1"]
 [WhiteElo "1825"]
 [BlackElo "1710"]
+[ECO "C46"]
+[Opening "Three knights game"]
 [EventDate "1998.??.??"]
 [PlyCount "44"]
 
@@ -1080,6 +1218,9 @@ Bc5 15. Be3 Nf4 16. Qf2 b6 17. b4 Bxe3 18. Qxe3 f5 19. a4 g4 20. exf5 g3+
 [Result "1/2-1/2"]
 [WhiteElo "2030"]
 [BlackElo "2300"]
+[ECO "E98"]
+[Opening "King's Indian"]
+[Variation "orthodox, Aronin-Taimanov, 9.Ne1"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -1099,6 +1240,8 @@ b6 22. Be1 Rg7 23. Nf2 Nh8 24. Nb5 Nf7 25. Na7 Nh6 26. Nxc8 Qxc8 27. b5 g4
 [Result "1-0"]
 [WhiteElo "2015"]
 [BlackElo "1880"]
+[ECO "C46"]
+[Opening "Three knights game"]
 [EventDate "1998.??.??"]
 [PlyCount "61"]
 
@@ -1116,6 +1259,8 @@ g5 27. Qe5 b6 28. Rbf1 Qd7 29. Qb8+ Kg7 30. Qxb6 Rh6 31. Qxc5 1-0
 [Black "Knechtel, T."]
 [Result "0-1"]
 [BlackElo "2040"]
+[ECO "A02"]
+[Opening "Bird's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "98"]
 
@@ -1136,6 +1281,9 @@ Kh2 Rc3 46. Rd4 Qe3 47. Be1 Qxh3+ 48. Kg1 Rf3 49. Bh4 Qxg4+ 0-1
 [Black "Morgan, A."]
 [Result "0-1"]
 [BlackElo "1745"]
+[ECO "C11"]
+[Opening "French"]
+[Variation "Steinitz variation"]
 [EventDate "1998.??.??"]
 [PlyCount "118"]
 
@@ -1158,6 +1306,9 @@ Rxf2+ gxf2 58. Ke2 Kg3 59. Kf1 Rxb6 0-1
 [Black "Ortiz, H."]
 [Result "1-0"]
 [WhiteElo "1895"]
+[ECO "B13"]
+[Opening "Caro-Kann"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -1176,6 +1327,8 @@ Rb8 21. Qc2 f6 22. Nf3 e5 23. Rg2 Bf7 24. h4 Qe7 25. Rdg1 Kh8 26. g5 fxg5
 [Black "Henao, C."]
 [Result "0-1"]
 [BlackElo "1665"]
+[ECO "B06"]
+[Opening "Norwegian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "100"]
 
@@ -1196,6 +1349,8 @@ fxe6 fxe6 0-1
 [White "Hall, M."]
 [Black "Pavez, S."]
 [Result "1-0"]
+[ECO "A00"]
+[Opening "Grob's attack"]
 [EventDate "1998.??.??"]
 [PlyCount "22"]
 
@@ -1209,6 +1364,8 @@ fxe6 fxe6 0-1
 [White "Wong, W."]
 [Black "Highley Wilson, L."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "28"]
 
@@ -1223,6 +1380,8 @@ Qe8 1-0
 [White "Highley Wilson, L."]
 [Black "Pavez, S."]
 [Result "1-0"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -1240,6 +1399,8 @@ h4 33. Rhg1 a3 34. c3 hxg3 35. Rb2 gxf2 1-0
 [White "Wong, W."]
 [Black "Hall, M."]
 [Result "1-0"]
+[ECO "A40"]
+[Opening "Polish defence"]
 [EventDate "1998.??.??"]
 [PlyCount "31"]
 
@@ -1254,6 +1415,8 @@ Nxh8+ Kd8 15. Qf7 g6 16. Qxf8# 1-0
 [White "Pavez, S."]
 [Black "Wong, W."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Saragossa opening"]
 [EventDate "1998.??.??"]
 [PlyCount "40"]
 
@@ -1269,6 +1432,8 @@ Kh1 Bg2# 0-1
 [White "Hall, M."]
 [Black "Highley Wilson, L."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Anderssen's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "60"]
 
@@ -1286,6 +1451,9 @@ Rg3 27. Kd1 Qg1+ 28. Ke2 d5 29. c5 d4 30. Rab2 f3# 0-1
 [Black "Lim, Y."]
 [Result "1/2-1/2"]
 [WhiteElo "1965"]
+[ECO "B22"]
+[Opening "Sicilian"]
+[Variation "Alapin's variation (2.c3)"]
 [EventDate "1998.??.??"]
 [PlyCount "60"]
 
@@ -1302,6 +1470,8 @@ Nc3 Qg3+ 27. Kh1 Bc6+ 28. d5 Rxg4 29. Qh2 Rh4 30. Qxh4 Qxh4+ 1/2-1/2
 [White "Heseltine Nutch, Ka"]
 [Black "Blatnik, M."]
 [Result "1-0"]
+[ECO "C25"]
+[Opening "Vienna game"]
 [EventDate "1998.??.??"]
 [PlyCount "56"]
 
@@ -1319,6 +1489,8 @@ Kxh6 27. Qxf6+ Qg6 28. Qxg6+ Nxg6 1-0
 [Black "Demmery, S."]
 [Result "0-1"]
 [BlackElo "1935"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "73"]
 
@@ -1337,6 +1509,8 @@ Qg5 Qxg5 21. Rxg5 fxe4 22. Nxe4 Bxh3 23. Kd2 Rbd8 24. a3 Bf5 25. Re1 Bxe4
 [Black "Sehovac, B."]
 [Result "1/2-1/2"]
 [WhiteElo "1920"]
+[ECO "C30"]
+[Opening "King's gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "61"]
 
@@ -1354,6 +1528,8 @@ Bxe1 Qe2 27. Qd8+ Kg7 28. h4 Qxe1+ 29. Kh2 Qg1+ 30. Kh3 Bb6 31. Qe7+
 [White "Roden, R."]
 [Black "Armstrong, D."]
 [Result "0-1"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "80"]
 
@@ -1373,6 +1549,8 @@ Qd4+ 38. Kg3 Rg8+ 39. Kh3 Nxf3 40. a4 Qh4# 0-1
 [Black "Zhou, Q."]
 [Result "1-0"]
 [WhiteElo "1610"]
+[ECO "A43"]
+[Opening "Old Benoni defence"]
 [EventDate "1998.??.??"]
 [PlyCount "59"]
 
@@ -1390,6 +1568,9 @@ d5 26. Rd1 Bd6 27. Qc6+ Ka7 28. Rxd5 Re6 29. Ra5 Bb8 30. Rxa6# 1-0
 [Black "Fragakos, A."]
 [Result "0-1"]
 [BlackElo "1870"]
+[ECO "C20"]
+[Opening "KP"]
+[Variation "Indian opening"]
 [EventDate "1998.??.??"]
 [PlyCount "78"]
 
@@ -1409,6 +1590,8 @@ Ke2 a3 39. Kd2 Rxf3 0-1
 [Black "Stevens, M."]
 [Result "1-0"]
 [WhiteElo "1935"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "89"]
 
@@ -1429,6 +1612,8 @@ Nf6+ Kh8 45. Qg8# 1-0
 [Black "Litchfield, G."]
 [Result "1-0"]
 [BlackElo "1755"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -1445,6 +1630,9 @@ Nxe5 Ncxd4 21. Bb4 Qe8 22. Rxc8 Qxc8 23. Bxf8 Kxf8 24. g4 1-0
 [Black "Kiss, I."]
 [Result "0-1"]
 [BlackElo "1935"]
+[ECO "E20"]
+[Opening "Nimzo-Indian"]
+[Variation "Kmoch variation"]
 [EventDate "1998.??.??"]
 [PlyCount "56"]
 
@@ -1463,6 +1651,9 @@ Rab1 Bxc1 27. Rxc1 Qxf4 28. Rf1 Bc4+ 0-1
 [Result "1-0"]
 [WhiteElo "1935"]
 [BlackElo "1870"]
+[ECO "D08"]
+[Opening "QGD"]
+[Variation "Albin counter-gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "37"]
 
@@ -1478,6 +1669,9 @@ Qe2 Bxg5 15. hxg5 Re8 16. O-O-O d3 17. Qd2 Nxf3 18. Qxd3 Qc6 19. Bxf5+ 1-0
 [Black "De Kerpel, S."]
 [Result "0-1"]
 [BlackElo "1965"]
+[ECO "B18"]
+[Opening "Caro-Kann"]
+[Variation "classical variation"]
 [EventDate "1998.??.??"]
 [PlyCount "110"]
 
@@ -1498,6 +1692,8 @@ Kxe5 44. Kd3 f5 45. Ke3 f4+ 46. Kf3 Kf5 47. a4 e5 48. a5 e4+ 49. Kf2 Kg4
 [White "Zhou, Q."]
 [Black "Sengupta, O."]
 [Result "0-1"]
+[ECO "A03"]
+[Opening "Bird's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "89"]
 
@@ -1519,6 +1715,9 @@ e5 39. f5 Nxf5 40. g4 Rb3+ 41. Kg2 Nxh4+ 42. Kg1 hxg4 43. Kf1 a4 44. Ra2 a3
 [Result "1-0"]
 [WhiteElo "1930"]
 [BlackElo "1610"]
+[ECO "E54"]
+[Opening "Nimzo-Indian"]
+[Variation "4.e3, Gligoric system with 7...dc"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -1537,6 +1736,9 @@ f3 h6 33. Qf2 1-0
 [Black "Van de Ven, A."]
 [Result "1-0"]
 [BlackElo "1920"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical (two knights) system"]
 [EventDate "1998.??.??"]
 [PlyCount "52"]
 
@@ -1553,6 +1755,9 @@ Qd4 Nc6 15. Nd5 Nxd4 16. Nxc7 Nxb3+ 17. axb3 Rac8 18. Nd5 Nxd5 19. exd5 Bf5
 [White "Stevens, M."]
 [Black "Roden, R."]
 [Result "1-0"]
+[ECO "C62"]
+[Opening "Ruy Lopez"]
+[Variation "old Steinitz defence"]
 [EventDate "1998.??.??"]
 [PlyCount "100"]
 
@@ -1574,6 +1779,8 @@ g5 Rxc4 38. Rf6 Rg4 39. g6 Ka6 40. Kf3 Rg5 41. g4 Rd5 42. g7 Rg5 43. Rf7 c6
 [Black "Zhou, Q."]
 [Result "1-0"]
 [WhiteElo "1755"]
+[ECO "A43"]
+[Opening "Old Benoni defence"]
 [EventDate "1998.??.??"]
 [PlyCount "71"]
 
@@ -1592,6 +1799,9 @@ Rb3 R8xb3 33. Rd8+ Kh7 34. Qxe4+ f5 35. Qxf5+ g6 36. Qf7# 1-0
 [Black "Heseltine Nutch, Ka"]
 [Result "1-0"]
 [WhiteElo "1870"]
+[ECO "C01"]
+[Opening "French"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -1609,6 +1819,8 @@ Bg5 g6 15. Nf4 Kg7 16. Nxd5 Re6 17. Nxf6 Rxf6 18. Rae1 h6 19. Bxf6+ Qxf6
 [White "Stevens, M."]
 [Black "Armstrong, D."]
 [Result "0-1"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "60"]
 
@@ -1625,6 +1837,9 @@ Be3 dxe4 21. dxe4 Rad8 22. g4 Qe5 23. Bf4 Qe6 24. c3 Nxf3 25. Qxd8 Qxg4+
 [White "Roden, R."]
 [Black "Blatnik, M."]
 [Result "0-1"]
+[ECO "C60"]
+[Opening "Ruy Lopez"]
+[Variation "Cozio defence"]
 [EventDate "1998.??.??"]
 [PlyCount "82"]
 
@@ -1643,6 +1858,9 @@ Nxg5 39. hxg6 hxg6 40. Qh1 Qxa3+ 41. Kg4 c1=Q 0-1
 [White "Sehovac, B."]
 [Black "Lim, Y."]
 [Result "1-0"]
+[ECO "B21"]
+[Opening "Sicilian"]
+[Variation "Smith-Morra gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -1660,6 +1878,9 @@ Nxd6 Rxb1 27. Rxb1 Rxc2 28. Ra1 Rc3 29. Bd2 Rd3 1-0
 [Black "Sengupta, O."]
 [Result "1/2-1/2"]
 [WhiteElo "1610"]
+[ECO "D37"]
+[Opening "QGD"]
+[Variation "4.Nf3"]
 [EventDate "1998.??.??"]
 [PlyCount "79"]
 
@@ -1680,6 +1901,9 @@ Bd7 39. Ke3 a5 40. Nd2 1/2-1/2
 [Result "0-1"]
 [WhiteElo "1935"]
 [BlackElo "1935"]
+[ECO "E68"]
+[Opening "King's Indian"]
+[Variation "fianchetto, classical variation, 8.e4"]
 [EventDate "1998.??.??"]
 [PlyCount "86"]
 
@@ -1699,6 +1923,9 @@ Nxd4 Bxd4 39. Kg4 Ke6 40. Kf3 b6 41. axb6 axb6 42. g4 b5 43. cxb5 cxb5 0-1
 [Black "Beharic, S."]
 [Result "1-0"]
 [WhiteElo "1920"]
+[ECO "C34"]
+[Opening "KGA"]
+[Variation "Schallop defence"]
 [EventDate "1998.??.??"]
 [PlyCount "50"]
 
@@ -1717,6 +1944,9 @@ Nxd4 Bxd4 39. Kg4 Ke6 40. Kf3 b6 41. axb6 axb6 42. g4 b5 43. cxb5 cxb5 0-1
 [Result "1-0"]
 [WhiteElo "1965"]
 [BlackElo "1930"]
+[ECO "D55"]
+[Opening "QGD"]
+[Variation "Neo-orthodox variation, 7.Bh4"]
 [EventDate "1998.??.??"]
 [PlyCount "100"]
 
@@ -1738,6 +1968,8 @@ Rh7 1-0
 [Black "Litchfield, G."]
 [Result "1-0"]
 [BlackElo "1755"]
+[ECO "C51"]
+[Opening "Evans gambit declined"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -1756,6 +1988,8 @@ g5 33. Rxg5+ fxg5 34. Qxg5+ Kf7 35. Qg7+ Ke8 1-0
 [Black "Sehovac, B."]
 [Result "1-0"]
 [WhiteElo "1935"]
+[ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "41"]
 
@@ -1772,6 +2006,9 @@ Bh4 c6 21. Qd6 1-0
 [Black "Van de Ven, A."]
 [Result "0-1"]
 [BlackElo "1920"]
+[ECO "C01"]
+[Opening "French"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "50"]
 
@@ -1790,6 +2027,9 @@ Kg2 Ne3+ 0-1
 [Result "1-0"]
 [WhiteElo "1935"]
 [BlackElo "1965"]
+[ECO "E18"]
+[Opening "Queen's Indian"]
+[Variation "old main line, 7.Nc3"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -1808,6 +2048,9 @@ Nac7 15. Qd2 h6 16. h4 b5 17. Rad1 Qd7 18. Qe2 c4 19. Nd2 g5 20. hxg5 hxg5
 [Result "0-1"]
 [WhiteElo "1930"]
 [BlackElo "1870"]
+[ECO "D37"]
+[Opening "QGD"]
+[Variation "4.Nf3"]
 [EventDate "1998.??.??"]
 [PlyCount "78"]
 
@@ -1827,6 +2070,8 @@ Kc4 39. Rbb2 Ra1+ 0-1
 [Black "Rafanan, F."]
 [Result "1-0"]
 [BlackElo "1610"]
+[ECO "C50"]
+[Opening "King's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "90"]
 
@@ -1846,6 +2091,9 @@ Rc7+ 45. Kb2 h5 1-0
 [White "Beharic, S."]
 [Black "Heseltine Nutch, Ka"]
 [Result "0-1"]
+[ECO "A46"]
+[Opening "Queen's pawn"]
+[Variation "Yusupov-Rubinstein system"]
 [EventDate "1998.??.??"]
 [PlyCount "116"]
 
@@ -1867,6 +2115,8 @@ Rxf1 exf1=Q+ 58. Kh2 Qg2# 0-1
 [White "Zhou, Q."]
 [Black "Roden, R."]
 [Result "1-0"]
+[ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -1884,6 +2134,9 @@ Rxf1 exf1=Q+ 58. Kh2 Qg2# 0-1
 [White "Blatnik, M."]
 [Black "Stevens, M."]
 [Result "1-0"]
+[ECO "C24"]
+[Opening "Bishop's opening"]
+[Variation "Berlin defence"]
 [EventDate "1998.??.??"]
 [PlyCount "71"]
 
@@ -1902,6 +2155,8 @@ Nb7 27. Qc4 Rd6 28. Ra2 Na5 29. Qc2 Rc8 30. Qe2 Nb3 31. Rb2 Nc1 32. Qf1 Rc3
 [Black "Khan, Z."]
 [Result "0-1"]
 [BlackElo "1930"]
+[ECO "C26"]
+[Opening "Vienna game"]
 [EventDate "1998.??.??"]
 [PlyCount "42"]
 
@@ -1919,6 +2174,8 @@ Bh4 15. Qh2 Bg6 16. g3 Bg5 17. Bf3 Bxd2 18. Ne2 Nxe4 19. c3 Bg5 20. h4 Nd2
 [Result "1-0"]
 [WhiteElo "1755"]
 [BlackElo "1610"]
+[ECO "A46"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -1938,6 +2195,9 @@ Rc7 27. Nf3 Rh7 28. Ne5 Rg7 29. Rf3 d4 30. Rg3 d3 31. Nxc4 Be4 32. Rd1 Rh7
 [Result "1-0"]
 [WhiteElo "1920"]
 [BlackElo "1935"]
+[ECO "B07"]
+[Opening "Pirc"]
+[Variation "Ufimtsev-Pytel variation"]
 [EventDate "1998.??.??"]
 [PlyCount "45"]
 
@@ -1953,6 +2213,9 @@ cxb2+ 21. Kb1 Qxa2+ 22. Kxa2 b1=Q+ 23. Rxb1 1-0
 [White "Lim, Y."]
 [Black "Sengupta, O."]
 [Result "0-1"]
+[ECO "B18"]
+[Opening "Caro-Kann"]
+[Variation "classical variation"]
 [EventDate "1998.??.??"]
 [PlyCount "92"]
 
@@ -1973,6 +2236,8 @@ Ne6 45. Ne3 Nc5 46. Nf5+ Kf6 0-1
 [Black "Sehovac, B."]
 [Result "1-0"]
 [WhiteElo "1965"]
+[ECO "C41"]
+[Opening "Philidor's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "73"]
 
@@ -1991,6 +2256,8 @@ Bxe4 Bxe4 27. Qxe4 Rxf3 28. Rd2 Bc5 29. Qxe5 Bxf2+ 30. Kg2 Re3 31. Qb8+ Kd7
 [White "Blatnik, M."]
 [Black "Armstrong, D."]
 [Result "0-1"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "42"]
 
@@ -2008,6 +2275,8 @@ Rfe1 Qxg5+ 21. Kh1 Bf3# 0-1
 [Result "1/2-1/2"]
 [WhiteElo "1870"]
 [BlackElo "1935"]
+[ECO "B15"]
+[Opening "Caro-Kann defence"]
 [EventDate "1998.??.??"]
 [PlyCount "40"]
 
@@ -2023,6 +2292,9 @@ Bd1 e5 1/2-1/2
 [White "Beharic, S."]
 [Black "Patterson, J."]
 [Result "1-0"]
+[ECO "C20"]
+[Opening "KP"]
+[Variation "Indian opening"]
 [EventDate "1998.??.??"]
 [PlyCount "67"]
 
@@ -2040,6 +2312,8 @@ Rb4 20. Rfe1 a5 21. c3 Rb5 22. c4 Re5 23. Nf6+ Kg7 24. Rxe5 a4 25. Ng4 axb3
 [White "Bertrand, M."]
 [Black "Irias, L."]
 [Result "1-0"]
+[ECO "A00"]
+[Opening "Van't Kruijs opening"]
 [EventDate "1998.??.??"]
 [PlyCount "87"]
 
@@ -2059,6 +2333,9 @@ Rb4 20. Rfe1 a5 21. c3 Rb5 22. c4 Re5 23. Nf6+ Kg7 24. Rxe5 a4 25. Ng4 axb3
 [White "Sehovac, B."]
 [Black "Kovacs, R."]
 [Result "1-0"]
+[ECO "C50"]
+[Opening "Giuoco Pianissimo"]
+[Variation "Italian four knights variation"]
 [EventDate "1998.??.??"]
 [PlyCount "49"]
 
@@ -2075,6 +2352,8 @@ Be6+ 1-0
 [White "Highley Wilson, K."]
 [Black "Jurjans, Mk"]
 [Result "0-1"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "102"]
 
@@ -2095,6 +2374,8 @@ Ka4 Kc3 51. Ka3 Qb3# 0-1
 [White "Pavez, M."]
 [Black "Heseltine Nutch, Ka"]
 [Result "0-1"]
+[ECO "D02"]
+[Opening "Queen's bishop game"]
 [EventDate "1998.??.??"]
 [PlyCount "74"]
 
@@ -2113,6 +2394,8 @@ Rf7 Qg2# 0-1
 [White "Zhao, Y."]
 [Black "Pennett, M."]
 [Result "1-0"]
+[ECO "C40"]
+[Opening "QP counter-gambit (elephant gambit)"]
 [EventDate "1998.??.??"]
 [PlyCount "35"]
 
@@ -2127,6 +2410,9 @@ Kc5 14. b3 Bxb1 15. Ba3+ Kb5 16. Bc4+ Kc6 17. Qd5+ Kb6 18. Qb5+ 1-0
 [White "Nowicki, G."]
 [Black "Wong, W."]
 [Result "1-0"]
+[ECO "A07"]
+[Opening "Reti"]
+[Variation "King's Indian attack (Barcza system)"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -2143,6 +2429,8 @@ Bg4 26. Rd8 Rxd8 27. Rxd8+ Kh7 28. Be5 g6 29. Rh8# 1-0
 [White "Kirshner, J."]
 [Black "Phares, A."]
 [Result "0-1"]
+[ECO "C55"]
+[Opening "Two knights defence"]
 [EventDate "1998.??.??"]
 [PlyCount "22"]
 
@@ -2156,6 +2444,8 @@ Bg4 26. Rd8 Rxd8 27. Rxd8+ Kh7 28. Be5 g6 29. Rh8# 1-0
 [White "Knezevic, A."]
 [Black "Morgan, B."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "61"]
 
@@ -2172,6 +2462,9 @@ Bxd2 Rd5 27. Bb4 c5 28. Bc3 Rd3 29. Rac1 f5 30. b4 cxb4 31. Bxb4 1-0
 [White "Zhou, Q."]
 [Black "Heseltine Nutch, Ke"]
 [Result "1-0"]
+[ECO "D06"]
+[Opening "QGD"]
+[Variation "Marshall defence"]
 [EventDate "1998.??.??"]
 [PlyCount "61"]
 
@@ -2188,6 +2481,8 @@ Bg4 Bxg4 15. Nxg4 Nxg4 16. Qxg4 Ng6 17. f4 Qd7 18. f5 exf5 19. Qxf5 Qxf5
 [White "Ferrari, N."]
 [Black "Renaud, D."]
 [Result "1-0"]
+[ECO "C44"]
+[Opening "Scotch opening"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -2205,6 +2500,8 @@ Bg4 Bxg4 15. Nxg4 Nxg4 16. Qxg4 Ng6 17. f4 Qd7 18. f5 exf5 19. Qxf5 Qxf5
 [White "Wong, W."]
 [Black "Pavez, M."]
 [Result "0-1"]
+[ECO "A41"]
+[Opening "Queen's Pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "102"]
 
@@ -2225,6 +2522,8 @@ Qe4+ 50. Kh3 Qf5+ 51. Kh4 Qh5# 0-1
 [White "Zhou, Q."]
 [Black "Bertrand, M."]
 [Result "0-1"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "104"]
 
@@ -2245,6 +2544,8 @@ Bc3 33. Be2 Qb4 34. Qd8 Ra1 35. Rxa1 Bxa1 36. Qd1 Bc3 37. Kg2 a4 38. Qd7 a3
 [White "Pavez, S."]
 [Black "Hush, B."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Mieses opening"]
 [EventDate "1998.??.??"]
 [PlyCount "44"]
 
@@ -2260,6 +2561,9 @@ f4 Bd7 15. f5 Bxb5 16. b4 Qe7 17. a4 Bc6 18. a5 b5 19. e4 dxe3 20. Qh5 Nxh5
 [White "Heseltine Nutch, Ke"]
 [Black "Irias, L."]
 [Result "1-0"]
+[ECO "D07"]
+[Opening "QGD"]
+[Variation "Chigorin defence"]
 [EventDate "1998.??.??"]
 [PlyCount "73"]
 
@@ -2277,6 +2581,8 @@ Ke7 33. a6 Ke8 34. b6 Re7 35. b7 Rb8 36. Qxb8+ Kf7 37. a7 1-0
 [White "Highley Wilson, L."]
 [Black "Beharic, S."]
 [Result "0-1"]
+[ECO "C23"]
+[Opening "Bishop's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "80"]
 
@@ -2295,6 +2601,8 @@ fxe3 Bxa1 33. Rxa1 Rfd8 34. Kh2 Re2 35. b4 Rxe3 36. Rf1 Rd2 37. Rf3 exf3
 [White "Heseltine Nutch, Ka"]
 [Black "Jurjans, Mk"]
 [Result "1-0"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "45"]
 
@@ -2310,6 +2618,8 @@ Rxe5 Rxe5 21. Bxe5 Be4 22. c3 Rb8 23. Bxb8 1-0
 [White "Kovacs, R."]
 [Black "Patterson, J."]
 [Result "1-0"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "55"]
 
@@ -2326,6 +2636,8 @@ Rc2 26. Ra8+ Rc8 27. Rxc8+ Rd8 28. Rxd8# 1-0
 [White "Zhao, Y."]
 [Black "Knezevic, A."]
 [Result "0-1"]
+[ECO "B30"]
+[Opening "Sicilian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "60"]
 
@@ -2342,6 +2654,9 @@ Bxf6 15. Nxf6+ Kg7 16. Nxc6 Nxc6 17. Ng4 Qxd4 18. Rc1 Qxd1 19. Rexd1 Nb4
 [White "Morgan, B."]
 [Black "Pennett, M."]
 [Result "1-0"]
+[ECO "C23"]
+[Opening "Bishop's opening"]
+[Variation "Classical variation"]
 [EventDate "1998.??.??"]
 [PlyCount "41"]
 
@@ -2357,6 +2672,8 @@ d6 20. Bd5+ Kc8 21. Qe8# 1-0
 [White "Renaud, D."]
 [Black "Kirshner, J."]
 [Result "1-0"]
+[ECO "C50"]
+[Opening "Giuoco Pianissimo"]
 [EventDate "1998.??.??"]
 [PlyCount "17"]
 
@@ -2370,6 +2687,8 @@ Qxh6 Qf6 9. Qxh7# 1-0
 [White "Phares, A."]
 [Black "Ferrari, N."]
 [Result "1-0"]
+[ECO "C60"]
+[Opening "Ruy Lopez (Spanish opening)"]
 [EventDate "1998.??.??"]
 [PlyCount "101"]
 
@@ -2390,6 +2709,8 @@ R8e7+ Kg8 44. c3 Qd3+ 45. Kb2 g1=Q 46. Re8+ Kf7 47. Ne5+ Kg7 48. Nxd3 Qg2+
 [White "Nowicki, G."]
 [Black "Sehovac, B."]
 [Result "0-1"]
+[ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "106"]
 
@@ -2410,6 +2731,8 @@ Nxh3+ 45. Qxh3 Rg8+ 46. Rg2 Rxg2+ 47. Qxg2 Qc1+ 48. Kh2 Qxc3 49. Qg3 Qd2+
 [White "Morgan, B."]
 [Black "Renaud, D."]
 [Result "1-0"]
+[ECO "C50"]
+[Opening "King's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "39"]
 
@@ -2425,6 +2748,8 @@ g3 Qg5 15. Be3 Qd8 16. Re1 Ng4 17. Qf3 Qd7 18. Bg5 h5 19. Bb5 Qxb5 20. Qf7#
 [White "Pavez, M."]
 [Black "Highley Wilson, L."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn, Mason variation"]
 [EventDate "1998.??.??"]
 [PlyCount "21"]
 
@@ -2438,6 +2763,9 @@ g3 Qg5 15. Be3 Qd8 16. Re1 Ng4 17. Qf3 Qd7 18. Bg5 h5 19. Bb5 Qxb5 20. Qf7#
 [White "Patterson, J."]
 [Black "Kirshner, J."]
 [Result "1-0"]
+[ECO "C50"]
+[Opening "Giuoco Pianissimo"]
+[Variation "Italian four knights variation"]
 [EventDate "1998.??.??"]
 [PlyCount "31"]
 
@@ -2452,6 +2780,8 @@ Rxf7 14. Qxf7+ Kh8 15. Rf1 d6 16. Qf8# 1-0
 [White "Highley Wilson, K."]
 [Black "Zhao, Y."]
 [Result "0-1"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "44"]
 
@@ -2467,6 +2797,8 @@ Bxc5 20. Rxa8 Qxa8 21. dxc5 Qa1+ 22. Qe1 Qxe1# 0-1
 [White "Hush, B."]
 [Black "Heseltine Nutch, Ke"]
 [Result "1-0"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1998.??.??"]
 [PlyCount "35"]
 
@@ -2481,6 +2813,8 @@ Rfe1 Qd7 15. e5 Ng4 16. exd6 Rxe1+ 17. Rxe1 Qf5 18. Qxg7# 1-0
 [White "Ferrari, N."]
 [Black "Zhou, Q."]
 [Result "0-1"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "32"]
 
@@ -2495,6 +2829,9 @@ d5 Nf6 15. Bg5 Qe7 16. O-O O-O-O 0-1
 [White "Jurjans, Mk"]
 [Black "Nowicki, G."]
 [Result "1/2-1/2"]
+[ECO "A48"]
+[Opening "King's Indian"]
+[Variation "London system"]
 [EventDate "1998.??.??"]
 [PlyCount "73"]
 
@@ -2513,6 +2850,9 @@ Na5 c5 21. Nxb7 Qb8 22. Nxc5 Qxb2 23. Rfb1 Qxc3 24. Rc1 Qb4 25. Rab1 Qa5
 [White "Phares, A."]
 [Black "Heseltine Nutch, Ka"]
 [Result "0-1"]
+[ECO "C50"]
+[Opening "Giuoco Pianissimo"]
+[Variation "Italian four knights variation"]
 [EventDate "1998.??.??"]
 [PlyCount "90"]
 
@@ -2532,6 +2872,8 @@ Ke2 45. Kc3 f3 0-1
 [White "Irias, L."]
 [Black "Pavez, S."]
 [Result "1-0"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "59"]
 
@@ -2548,6 +2890,9 @@ Qb6+ axb6 27. Rxb6+ Ka7 28. Bg2 e4 29. d5 c3 30. d6 1-0
 [White "Knezevic, A."]
 [Black "Beharic, S."]
 [Result "0-1"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
+[Variation "Lundin (Kevitz-Mikenas) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "66"]
 
@@ -2565,6 +2910,8 @@ Rxa2 33. Ne8+ Kf8 0-1
 [White "Sehovac, B."]
 [Black "Bertrand, M."]
 [Result "1-0"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1998.??.??"]
 [PlyCount "113"]
 
@@ -2586,6 +2933,8 @@ d6 Kxh4 52. d7 Rb2+ 53. Ke3 Rb3+ 54. Kd4 Rb4+ 55. Rc4 Rxb7 56. d8=Q+ Kxh3
 [White "Heseltine Nutch, Ka"]
 [Black "Sehovac, B."]
 [Result "0-1"]
+[ECO "C25"]
+[Opening "Vienna game"]
 [EventDate "1998.??.??"]
 [PlyCount "26"]
 
@@ -2600,6 +2949,9 @@ O-O Nd4 9. Be3 Nxf3+ 10. gxf3 Bh5 11. Kh1 Qf6 12. Nd5 Bxf3+ 13. Kg1 Qg6+
 [White "Beharic, S."]
 [Black "Phares, A."]
 [Result "1-0"]
+[ECO "C20"]
+[Opening "KP"]
+[Variation "Indian opening"]
 [EventDate "1998.??.??"]
 [PlyCount "51"]
 
@@ -2616,6 +2968,8 @@ Qxd6 1-0
 [White "Pavez, M."]
 [Black "Knezevic, A."]
 [Result "0-1"]
+[ECO "A02"]
+[Opening "Bird's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "50"]
 
@@ -2631,6 +2985,8 @@ Rf2 Rf8 21. Rxf8+ Qxf8 22. e4 c6 23. Qe3 Ng4 24. Qh3 Qf2+ 25. Kh1 Qe1+ 0-1
 [White "Bertrand, M."]
 [Black "Morgan, B."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Van't Kruijs opening"]
 [EventDate "1998.??.??"]
 [PlyCount "54"]
 
@@ -2647,6 +3003,8 @@ Qxg1 26. f4 Qg2+ 27. Bf2 Re6+ 0-1
 [White "Nowicki, G."]
 [Black "Kovacs, R."]
 [Result "1-0"]
+[ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "39"]
 
@@ -2662,6 +3020,8 @@ Qh6# 1-0
 [White "Heseltine Nutch, Ke"]
 [Black "Jurjans, Mk"]
 [Result "0-1"]
+[ECO "D30"]
+[Opening "Queen's gambit declined"]
 [EventDate "1998.??.??"]
 [PlyCount "56"]
 
@@ -2678,6 +3038,8 @@ Bb4 Rfd8 27. g4 Bg6 28. Be7 Ra2 0-1
 [White "Renaud, D."]
 [Black "Wong, W."]
 [Result "1-0"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "31"]
 
@@ -2692,6 +3054,8 @@ Bb4 Rfd8 27. g4 Bg6 28. Be7 Ra2 0-1
 [White "Kirshner, J."]
 [Black "Pennett, M."]
 [Result "1-0"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -2708,6 +3072,9 @@ Ke2 Qd8 27. Rf7 Rd2+ 28. Ke3 Nc5 29. Qg7# 1-0
 [White "Beharic, S."]
 [Black "Sehovac, B."]
 [Result "0-1"]
+[ECO "C20"]
+[Opening "KP"]
+[Variation "Indian opening"]
 [EventDate "1998.??.??"]
 [PlyCount "60"]
 
@@ -2724,6 +3091,8 @@ Rad1 Qe7 27. g5 h6 28. h4 R8a6 29. Qd3 Rb6 30. e5 dxe5 0-1
 [White "Knezevic, A."]
 [Black "Heseltine Nutch, Ka"]
 [Result "1-0"]
+[ECO "A15"]
+[Opening "English, 1...Nf6 (Anglo-Indian defense)"]
 [EventDate "1998.??.??"]
 [PlyCount "123"]
 
@@ -2746,6 +3115,8 @@ Ke8 62. Ra7 1-0
 [White "Morgan, B."]
 [Black "Hush, B."]
 [Result "0-1"]
+[ECO "C50"]
+[Opening "King's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "82"]
 
@@ -2764,6 +3135,8 @@ bxc3 g5 27. hxg5 hxg5 28. c4 bxc4 29. dxc4 Nd4 30. Rd2 Nf3+ 31. Kg2 Nxd2
 [White "Zhou, Q."]
 [Black "Nowicki, G."]
 [Result "1-0"]
+[ECO "E60"]
+[Opening "King's Indian, 3.Nf3"]
 [EventDate "1998.??.??"]
 [PlyCount "52"]
 
@@ -2780,6 +3153,8 @@ Rf1+ Kg3 26. Rg5+ Kh2 1-0
 [White "Jurjans, Mk"]
 [Black "Bertrand, M."]
 [Result "0-1"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "56"]
 
@@ -2796,6 +3171,9 @@ Qd2 Bxc2 15. Qxc2 c5 16. Nd2 cxd4 17. exd4 Rac8 18. Rab1 Bxd4 19. c4 dxc4
 [White "Phares, A."]
 [Black "Zhao, Y."]
 [Result "0-1"]
+[ECO "C68"]
+[Opening "Ruy Lopez"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "120"]
 
@@ -2817,6 +3195,8 @@ g4 a4 45. Rd3 axb3 46. Rxb3 Kb6 47. h4 c5 48. g5 f5 49. h5 c4 50. Rb4 c3
 [White "Renaud, D."]
 [Black "Pavez, M."]
 [Result "0-1"]
+[ECO "B20"]
+[Opening "Sicilian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "88"]
 
@@ -2836,6 +3216,8 @@ Ke4 Qxf5+ 44. Ke3 Qf3# 0-1
 [White "Patterson, J."]
 [Black "Irias, L."]
 [Result "1/2-1/2"]
+[ECO "C41"]
+[Opening "Philidor's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "74"]
 
@@ -2853,6 +3235,8 @@ a6 33. Rc4 Kg6 34. Rxc6 bxc6 35. Kd4 a5 36. Kc3 b5 37. Kb2 c5 1/2-1/2
 [White "Kovacs, R."]
 [Black "Heseltine Nutch, Ke"]
 [Result "0-1"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "64"]
 
@@ -2870,6 +3254,8 @@ Kf1 Rg1# 0-1
 [White "Wong, W."]
 [Black "Kirshner, J."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "31"]
 
@@ -2884,6 +3270,8 @@ Qg4+ Kh8 15. Qh5 Rg8 16. Qxh7# 1-0
 [White "Pennett, M."]
 [Black "Pavez, S."]
 [Result "1/2-1/2"]
+[ECO "A00"]
+[Opening "Mieses opening"]
 [EventDate "1998.??.??"]
 [PlyCount "87"]
 
@@ -2903,6 +3291,8 @@ Ke5 39. h6 Ke4 40. h7 Kd5 41. Qd8+ Ke5 42. h8=N Ke6 43. Nc4 a3 44. bxa3
 [White "Hush, B."]
 [Black "Sehovac, B."]
 [Result "0-1"]
+[ECO "C50"]
+[Opening "King's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "116"]
 
@@ -2924,6 +3314,8 @@ Bd2 38. Kg4 Bh6 39. h5 Ke7 40. Kf3 Kd6 41. Ke2 Kc6 42. Kd1 Kb5 43. Kc2 Kb4
 [White "Zhou, Q."]
 [Black "Knezevic, A."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "61"]
 
@@ -2940,6 +3332,8 @@ Nxe4 Nxe4 9. Bxe4 Re8 10. c3 e5 11. Be3 exd4 12. Bxd4 Rxe4+ 13. Be3 Qxd1+
 [White "Heseltine Nutch, Ka"]
 [Black "Beharic, S."]
 [Result "0-1"]
+[ECO "C42"]
+[Opening "Petrov three knights game"]
 [EventDate "1998.??.??"]
 [PlyCount "92"]
 
@@ -2959,6 +3353,8 @@ Bxb7 Rc7 21. Bd5 Rfc8 22. Bb3 Qf4 23. Qxd4 Rc1 24. Qe3 Rxf1+ 25. Rxf1 Qe5
 [White "Bertrand, M."]
 [Black "Pavez, M."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Van't Kruijs opening"]
 [EventDate "1998.??.??"]
 [PlyCount "76"]
 
@@ -2977,6 +3373,8 @@ fxg4 Rh6# 0-1
 [White "Zhao, Y."]
 [Black "Morgan, B."]
 [Result "1/2-1/2"]
+[ECO "C50"]
+[Opening "Giuoco Pianissimo"]
 [EventDate "1998.??.??"]
 [PlyCount "119"]
 
@@ -2998,6 +3396,9 @@ Kh5 Kh8 58. Kg6 Kg8 59. h7+ Kh8 60. Kh6 1/2-1/2
 [White "Patterson, J."]
 [Black "Nowicki, G."]
 [Result "0-1"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical (two knights) system"]
 [EventDate "1998.??.??"]
 [PlyCount "42"]
 
@@ -3013,6 +3414,8 @@ Kxf8 14. Rd2 Qxc3 15. Rad1 Nxe4 16. Rd3 Qxc2 17. Bxc6 Qxf2+ 18. Kh1 bxc6
 [White "Jurjans, Mk"]
 [Black "Phares, A."]
 [Result "1-0"]
+[ECO "D02"]
+[Opening "Queen's bishop game"]
 [EventDate "1998.??.??"]
 [PlyCount "51"]
 
@@ -3029,6 +3432,8 @@ Rdd7 Nf4 26. Rxf7+ 1-0
 [White "Irias, L."]
 [Black "Renaud, D."]
 [Result "0-1"]
+[ECO "C46"]
+[Opening "Three knights game"]
 [EventDate "1998.??.??"]
 [PlyCount "52"]
 
@@ -3045,6 +3450,9 @@ d4# 0-1
 [White "Heseltine Nutch, Ke"]
 [Black "Wong, W."]
 [Result "1-0"]
+[ECO "D20"]
+[Opening "QGA"]
+[Variation "3.e4"]
 [EventDate "1998.??.??"]
 [PlyCount "73"]
 
@@ -3062,6 +3470,8 @@ h3 e5 20. hxg4 exd4 21. f4 h5 22. gxh5 gxh5 23. g3 c5 24. Nc4 b5 25. Nd2 a5
 [White "Kirshner, J."]
 [Black "Pavez, S."]
 [Result "1-0"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -3082,6 +3492,7 @@ Rc7+ Kf6 33. Qc6# 1-0
 [WhiteElo "2015"]
 [BlackElo "2170"]
 [ECO "A90"]
+[Opening "Dutch defence"]
 [EventDate "1998.??.??"]
 [PlyCount "90"]
 
@@ -3104,6 +3515,8 @@ Kd1 Ra1+ 45. Kd2 b2 0-1
 [WhiteElo "2010"]
 [BlackElo "1985"]
 [ECO "E01"]
+[Opening "Catalan"]
+[Variation "closed"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -3122,6 +3535,7 @@ N6d7 21. Ndf3 f6 22. Nxd7 Nxd7 23. Rfa1 Ba6 24. Rxa5 1-0
 [WhiteElo "2015"]
 [BlackElo "2175"]
 [ECO "A80"]
+[Opening "Dutch, 2.Bg5 variation"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -3140,6 +3554,8 @@ Qd5 15. Nb6 Qxd6 16. Nxa8 b5 17. Nb6 Bb7 18. c4 f4 19. c5 Qc7 20. Bxf4 Qxf4
 [WhiteElo "2015"]
 [BlackElo "2295"]
 [ECO "D10"]
+[Opening "QGD Slav defence"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "64"]
 
@@ -3160,6 +3576,8 @@ Qxe5 Rxe5 1/2-1/2
 [WhiteElo "2170"]
 [BlackElo "2025"]
 [ECO "C77"]
+[Opening "Ruy Lopez"]
+[Variation "Morphy defence, Duras variation"]
 [EventDate "1998.??.??"]
 [PlyCount "30"]
 
@@ -3177,6 +3595,7 @@ Bxd1 15. Bxd1 Nd4 1/2-1/2
 [WhiteElo "2170"]
 [BlackElo "2030"]
 [ECO "B20"]
+[Opening "Sicilian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "189"]
 
@@ -3219,6 +3638,8 @@ b3 75. Kxe3 b2 76. Rb7 Bc3 77. Be4 Bb4 78. c7 Rc1 79. Bf5 Ka2 80. Ke2 b1=Q
 [WhiteElo "2025"]
 [BlackElo "2015"]
 [ECO "E94"]
+[Opening "King's Indian"]
+[Variation "orthodox, 7...Nbd7"]
 [EventDate "1998.??.??"]
 [PlyCount "52"]
 
@@ -3238,6 +3659,8 @@ Qc8 21. Ng5 Bd7 22. Ne2 h6 23. Nxd4 exd4 24. Nf3 Bxh3 25. g3 d3 26. e5 d2
 [WhiteElo "2025"]
 [BlackElo "1985"]
 [ECO "D46"]
+[Opening "QGD semi-Slav"]
+[Variation "Chigorin defence"]
 [EventDate "1998.??.??"]
 [PlyCount "77"]
 
@@ -3259,6 +3682,7 @@ Kh2 Qc5 39. Qe1 1-0
 [WhiteElo "2025"]
 [BlackElo "1965"]
 [ECO "D25"]
+[Opening "QGA, Janowsky-Larsen variation"]
 [EventDate "1998.??.??"]
 [PlyCount "36"]
 
@@ -3276,6 +3700,7 @@ Kh2 Qc5 39. Qe1 1-0
 [WhiteElo "2025"]
 [BlackElo "1945"]
 [ECO "D25"]
+[Opening "QGA, 4.e3"]
 [EventDate "1998.??.??"]
 [PlyCount "71"]
 
@@ -3296,6 +3721,8 @@ Rb2 Rxd2 32. Rxd2 Qa5 33. Qd7+ Kb8 34. Rb2+ Qb5 35. Rxb5+ cxb5 36. c6 1-0
 [WhiteElo "2025"]
 [BlackElo "2295"]
 [ECO "E97"]
+[Opening "King's Indian"]
+[Variation "orthodox, Aronin-Taimanov, bayonet attack"]
 [EventDate "1998.??.??"]
 [PlyCount "41"]
 
@@ -3313,7 +3740,8 @@ d5 Ne7 9. b4 Nh5 10. g3 f5 11. c5 Nf6 12. Nd2 Kh8 13. f3 a5 14. bxa5 dxc5
 [Result "0-1"]
 [WhiteElo "1985"]
 [BlackElo "2170"]
-[ECO "A85"]
+[ECO "A84"]
+[Opening "Dutch defence, Rubinstein variation"]
 [EventDate "1998.??.??"]
 [PlyCount "78"]
 
@@ -3335,6 +3763,8 @@ Qa7 Qb8 0-1
 [WhiteElo "1985"]
 [BlackElo "2030"]
 [ECO "B22"]
+[Opening "Sicilian"]
+[Variation "Alapin's variation (2.c3)"]
 [EventDate "1998.??.??"]
 [PlyCount "60"]
 
@@ -3354,6 +3784,8 @@ Bxc5 Qd2+ 21. Kf3 Ng5+ 22. Kg3 Qxc1 23. Be3 Ne4+ 24. Kf4 Qc2 25. Qa5 g5+
 [WhiteElo "1985"]
 [BlackElo "2175"]
 [ECO "A25"]
+[Opening "English"]
+[Variation "closed system"]
 [EventDate "1998.??.??"]
 [PlyCount "136"]
 
@@ -3392,6 +3824,7 @@ Kb2 0-1
 [WhiteElo "2030"]
 [BlackElo "2015"]
 [ECO "A51"]
+[Opening "Budapest defence declined"]
 [EventDate "1998.??.??"]
 [PlyCount "87"]
 
@@ -3414,6 +3847,8 @@ Qg4 Nhf6 39. Qg2 Rga8 40. d6 Qe6 41. Nxb4 R8a4 42. Nd3 Rxe4+ 43. Kd2 Rd4
 [WhiteElo "2035"]
 [BlackElo "2030"]
 [ECO "E12"]
+[Opening "Queen's Indian"]
+[Variation "Petrosian system"]
 [EventDate "1998.??.??"]
 [PlyCount "64"]
 
@@ -3434,6 +3869,8 @@ Rxc4 32. Rd8 Rxc2+ 0-1
 [WhiteElo "2030"]
 [BlackElo "1960"]
 [ECO "E12"]
+[Opening "Queen's Indian"]
+[Variation "Petrosian system"]
 [EventDate "1998.??.??"]
 [PlyCount "73"]
 
@@ -3455,6 +3892,7 @@ Rac1 c5 21. bxc5 bxc5 22. Qc3 Rfc8 23. f5 d4 24. exd4 cxd4 25. Qxd4 Rxc1
 [WhiteElo "2030"]
 [BlackElo "1965"]
 [ECO "D25"]
+[Opening "QGA, Janowsky-Larsen variation"]
 [EventDate "1998.??.??"]
 [PlyCount "81"]
 
@@ -3476,6 +3914,8 @@ Nd5 26. Nd2 Qe5 27. Re1 Nf4 28. Qb5 Nd5 29. f4 Qf5 30. Qb1 Qg4+ 31. Kh1 Rd8
 [WhiteElo "1960"]
 [BlackElo "2010"]
 [ECO "B07"]
+[Opening "Pirc"]
+[Variation "Ufimtsev-Pytel variation"]
 [EventDate "1998.??.??"]
 [PlyCount "127"]
 
@@ -3501,6 +3941,8 @@ Kd3 a5 63. Qd5 Kf4 64. Qe4+ 1-0
 [WhiteElo "1960"]
 [BlackElo "1985"]
 [ECO "C10"]
+[Opening "French"]
+[Variation "Rubinstein variation"]
 [EventDate "1998.??.??"]
 [PlyCount "86"]
 
@@ -3523,6 +3965,8 @@ Kc2 Qxg5 39. Qg7+ Ke8 40. Qg8+ Kd7 41. Qa8 e3 42. Qxa7+ Ke8 43. Qa8+ Kf7
 [WhiteElo "1960"]
 [BlackElo "1965"]
 [ECO "B52"]
+[Opening "Sicilian"]
+[Variation "Canal-Sokolsky attack, Sokolsky variation"]
 [EventDate "1998.??.??"]
 [PlyCount "46"]
 
@@ -3541,6 +3985,8 @@ Nb4 20. Ree2 Rd1+ 21. Re1 Rxe1+ 22. Nxe1 Rd1 23. Ke2 Rxe1+ 0-1
 [WhiteElo "1965"]
 [BlackElo "2015"]
 [ECO "A51"]
+[Opening "Budapest"]
+[Variation "Fajarowicz variation"]
 [EventDate "1998.??.??"]
 [PlyCount "36"]
 
@@ -3558,6 +4004,7 @@ Bxd2+ 8. Qxd2 Qe7 9. g3 b6 10. Bg2 Bb7 11. O-O O-O-O 12. Qc3 g5 13. Rac1 g4
 [WhiteElo "1965"]
 [BlackElo "1985"]
 [ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "74"]
 
@@ -3578,6 +4025,8 @@ Qh7+ 33. Kg1 Re7 34. Nxg6 Re2 35. Rf2 Rxf2 36. Bxf2 Qxg6 37. Bd4 Kf7 0-1
 [WhiteElo "1965"]
 [BlackElo "1945"]
 [ECO "D11"]
+[Opening "QGD Slav"]
+[Variation "3.Nf3"]
 [EventDate "1998.??.??"]
 [PlyCount "39"]
 
@@ -3596,6 +4045,7 @@ Bxc6+ 1-0
 [WhiteElo "1965"]
 [BlackElo "2175"]
 [ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "77"]
 
@@ -3617,6 +4067,8 @@ Qf6 39. Ree7 1-0
 [WhiteElo "1965"]
 [BlackElo "2295"]
 [ECO "E81"]
+[Opening "King's Indian"]
+[Variation "Saemisch, 5...O-O"]
 [EventDate "1998.??.??"]
 [PlyCount "75"]
 
@@ -3638,6 +4090,8 @@ Nxc5 33. Rxd8 Bxd8 34. Rxd8 Ne4 35. Kg2 c5 36. Kf3 Nc3 37. a3 Nd5 38. Rb8
 [WhiteElo "1945"]
 [BlackElo "2015"]
 [ECO "A48"]
+[Opening "King's Indian"]
+[Variation "East Indian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "40"]
 
@@ -3656,6 +4110,8 @@ Ne4 Nxe4 9. Bxe4 d5 10. Bc2 e4 11. Nd2 Qg5 12. f4 Qh4 13. a3 f5 14. c4 Be6
 [WhiteElo "1945"]
 [BlackElo "2170"]
 [ECO "A43"]
+[Opening "Old Benoni"]
+[Variation "Franco-Benoni defence"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -3676,6 +4132,8 @@ Nxd6 Rd8 32. Nxf7 Rxf6 33. Nxd8 Rd6 34. Nxb7 Rxd5 35. Na5 Rg5 0-1
 [WhiteElo "1945"]
 [BlackElo "1985"]
 [ECO "C05"]
+[Opening "French"]
+[Variation "Tarrasch, closed variation"]
 [EventDate "1998.??.??"]
 [PlyCount "68"]
 
@@ -3696,6 +4154,8 @@ dxe5 Nxe5 33. Rc5 Nxg4 34. Rxd5 Ne3+ 0-1
 [WhiteElo "1945"]
 [BlackElo "2030"]
 [ECO "C01"]
+[Opening "French"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "80"]
 
@@ -3717,6 +4177,7 @@ Kf5 38. Kd5 Kf6 39. Kd6 Kf7 40. Kd7 Kf8 1/2-1/2
 [WhiteElo "2175"]
 [BlackElo "2170"]
 [ECO "A13"]
+[Opening "English opening"]
 [EventDate "1998.??.??"]
 [PlyCount "80"]
 
@@ -3738,6 +4199,8 @@ Bxe6 33. Rexe6 bxc5 34. Rxc6 Rac8 35. Rxc7+ Rxc7 36. Re3 Kxf6 37. Kf2 c4
 [WhiteElo "2175"]
 [BlackElo "2025"]
 [ECO "B52"]
+[Opening "Sicilian"]
+[Variation "Canal-Sokolsky attack, 3...Bd7"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -3758,6 +4221,7 @@ Qd8 21. Qe1 Qe8 22. g4 Nb4 23. Qd2 Qc6 24. Ng3 b5 25. g5 Nd7 26. axb5 axb5
 [WhiteElo "2175"]
 [BlackElo "2030"]
 [ECO "A13"]
+[Opening "English opening"]
 [EventDate "1998.??.??"]
 [PlyCount "136"]
 
@@ -3784,6 +4248,8 @@ Nd4 63. Rxg5 f3 64. Ra5 f2 65. Ra2 Kg3 66. Rxf2 Kxf2 67. h5 Ne6 68. h6 Ng5
 [WhiteElo "2175"]
 [BlackElo "1945"]
 [ECO "C33"]
+[Opening "KGA"]
+[Variation "Villemson (Steinitz) gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "53"]
 
@@ -3803,6 +4269,8 @@ Bd7+ 26. Bb5 Bxb5+ 27. Kxb5 0-1
 [WhiteElo "2295"]
 [BlackElo "2170"]
 [ECO "C00"]
+[Opening "French"]
+[Variation "Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "60"]
 
@@ -3822,6 +4290,8 @@ Bxf8 Qxf2+ 27. Kxf2 Ra2+ 28. Kf3 Kxf8 29. Rc8+ Ke7 30. Rb8 Rd2 1/2-1/2
 [WhiteElo "2295"]
 [BlackElo "2030"]
 [ECO "E13"]
+[Opening "Queen's Indian"]
+[Variation "4.Nc3, main line"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -3840,6 +4310,7 @@ Qg6+ Kh8 21. Bd3 Qc7 22. Qxh6+ Kg8 23. Qxe6+ Kg7 24. Rxc5 1-0
 [WhiteElo "2295"]
 [BlackElo "1945"]
 [ECO "C51"]
+[Opening "Evans gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "25"]
 
@@ -3855,7 +4326,9 @@ Ng5 O-O 9. f4 exf4 10. e5 Ne8 11. Qh5 h6 12. Nxf7 Qe7 13. Nxh6+ 1-0
 [Result "1/2-1/2"]
 [WhiteElo "2295"]
 [BlackElo "2175"]
-[ECO "C54"]
+[ECO "C53"]
+[Opening "Giuoco Piano"]
+[Variation "Anderssen variation"]
 [EventDate "1998.??.??"]
 [PlyCount "141"]
 
@@ -3882,6 +4355,8 @@ a5 Bc8 70. a6 Bxa6 71. Kxa6 1/2-1/2
 [WhiteElo "2265"]
 [BlackElo "2100"]
 [ECO "E91"]
+[Opening "King's Indian"]
+[Variation "6.Be2"]
 [EventDate "1998.??.??"]
 [PlyCount "87"]
 
@@ -3903,6 +4378,7 @@ Rg1 hxg5 34. hxg5 Nb6 35. Rxe3 Nxa4 36. bxa4 Rb4 37. Ka3 Rab8 38. Nb5 Rc8
 [WhiteElo "2100"]
 [BlackElo "2265"]
 [ECO "D20"]
+[Opening "Queen's gambit accepted"]
 [EventDate "1998.??.??"]
 [PlyCount "52"]
 
@@ -3922,6 +4398,7 @@ Qd2 Bxf3 0-1
 [WhiteElo "1825"]
 [BlackElo "1800"]
 [ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "86"]
 
@@ -3943,6 +4420,7 @@ Qb6 9. Qc1 Qa6 10. Nf3 Nc6 11. Be2 Bd7 12. a3 Rc8 13. O-O Ne7 14. Kh1 h5
 [WhiteElo "1825"]
 [BlackElo "1880"]
 [ECO "C40"]
+[Opening "QP counter-gambit (elephant gambit)"]
 [EventDate "1998.??.??"]
 [PlyCount "113"]
 
@@ -3967,6 +4445,7 @@ Ra1 51. Kc5 Rc1+ 52. Kb6 a4 53. Bh5+ Kd8 54. Bf7 a3 55. Be6 Ke8 56. c7 Rb1+
 [WhiteElo "1825"]
 [BlackElo "1750"]
 [ECO "C55"]
+[Opening "Two knights defence"]
 [EventDate "1998.??.??"]
 [PlyCount "40"]
 
@@ -3997,6 +4476,7 @@ Kh1 Bxg2# 0-1
 [WhiteElo "1800"]
 [BlackElo "1870"]
 [ECO "E60"]
+[Opening "King's Indian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "79"]
 
@@ -4018,6 +4498,7 @@ Ne4 Ng4 39. Qf4 Qf5 40. Qc7 1-0
 [WhiteElo "1800"]
 [BlackElo "1850"]
 [ECO "D10"]
+[Opening "QGD Slav defence"]
 [EventDate "1998.??.??"]
 [PlyCount "127"]
 
@@ -4043,6 +4524,7 @@ axb4 Rb8 64. e8=Q 1-0
 [WhiteElo "1800"]
 [BlackElo "1785"]
 [ECO "D30"]
+[Opening "Queen's gambit declined"]
 [EventDate "1998.??.??"]
 [PlyCount "111"]
 
@@ -4065,6 +4547,7 @@ a6 Bd5 52. a7 h5 53. Rb8 Ne6 54. Bb3 Nxf4 55. Bxd5 Nxd5 56. a8=Q 1-0
 [Result "1/2-1/2"]
 [WhiteElo "1800"]
 [ECO "A56"]
+[Opening "Benoni defence"]
 [EventDate "1998.??.??"]
 [PlyCount "66"]
 
@@ -4084,7 +4567,8 @@ Bc3 Nxa3 33. Bxa5 Nc4 1/2-1/2
 [Result "0-1"]
 [WhiteElo "1800"]
 [BlackElo "1855"]
-[ECO "A56"]
+[ECO "E60"]
+[Opening "King's Indian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "82"]
 
@@ -4106,6 +4590,8 @@ Qf4 Qf6 33. Rec1 Rg4 34. Qd2 Qxh4 35. Qd5+ Kg7 36. Qb7+ Kh6 37. Rxf3 exf3
 [WhiteElo "1870"]
 [BlackElo "1825"]
 [ECO "B90"]
+[Opening "Sicilian"]
+[Variation "Najdorf, Byrne (English) attack"]
 [EventDate "1998.??.??"]
 [PlyCount "112"]
 
@@ -4130,6 +4616,8 @@ bxa4 Kxc4 1/2-1/2
 [WhiteElo "1870"]
 [BlackElo "1880"]
 [ECO "D08"]
+[Opening "QGD"]
+[Variation "Albin counter-gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -4150,6 +4638,7 @@ Bxe4 27. Re1 Bg6 28. b5 b6 29. Bb4 bxc5 30. dxc5 Nb7 31. Rc1 Be7 32. a5 Rd8
 [WhiteElo "1870"]
 [BlackElo "1750"]
 [ECO "C50"]
+[Opening "King's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "88"]
 
@@ -4172,6 +4661,7 @@ Kf1 Rxd2 44. Re7+ Kb8 1/2-1/2
 [WhiteElo "1870"]
 [BlackElo "1885"]
 [ECO "B00"]
+[Opening "St. George (Baker) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "80"]
 
@@ -4193,6 +4683,7 @@ Qf4 Nf5 39. Kf1 Qxd4 40. Qc7+ Bd7 0-1
 [WhiteElo "1870"]
 [BlackElo "1855"]
 [ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "42"]
 
@@ -4211,6 +4702,7 @@ Qf4 Nf5 39. Kf1 Qxd4 40. Qc7+ Bd7 0-1
 [WhiteElo "1880"]
 [BlackElo "1800"]
 [ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "83"]
 
@@ -4232,6 +4724,8 @@ Be3 Qb5 21. Bxb6 Qxb6 22. Bc4 Qb2 23. Ra2 Qxc3+ 24. Kf2 Qd4+ 25. Qe3 Qh4+
 [WhiteElo "1880"]
 [BlackElo "1850"]
 [ECO "C41"]
+[Opening "Philidor"]
+[Variation "Nimzovich (Jaenisch) variation"]
 [EventDate "1998.??.??"]
 [PlyCount "40"]
 
@@ -4250,6 +4744,8 @@ h4 O-O-O 15. Qe3 Qb6 16. h5 Qxe3 17. fxe3 Bh7 18. Bxf7 Rdf8 19. Nxe5 Nxe5
 [WhiteElo "1880"]
 [BlackElo "1785"]
 [ECO "C01"]
+[Opening "French"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "123"]
 
@@ -4273,7 +4769,9 @@ Kxd5 57. Nc7+ Ke5 58. Ne8 Nc5 59. g4 Kf4 60. Nxg7 Kg3 61. f6 Kxh3 62. Bf5
 [Black "Thomas, D."]
 [Result "0-1"]
 [WhiteElo "1880"]
-[ECO "B84"]
+[ECO "B80"]
+[Opening "Sicilian"]
+[Variation "Scheveningen variation"]
 [EventDate "1998.??.??"]
 [PlyCount "74"]
 
@@ -4295,6 +4793,7 @@ Ra2 0-1
 [WhiteElo "1880"]
 [BlackElo "1855"]
 [ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "85"]
 
@@ -4316,6 +4815,8 @@ d5 Qxe3+ 39. Kxe3 exd5 40. Kd4 Ra1 41. Re7+ Kg6 42. Rxb7 Rxa4 43. Kxd5 1-0
 [WhiteElo "1750"]
 [BlackElo "1800"]
 [ECO "C02"]
+[Opening "French"]
+[Variation "advance, Nimzovich system"]
 [EventDate "1998.??.??"]
 [PlyCount "83"]
 
@@ -4337,6 +4838,8 @@ Kxf7 38. Rxb5 axb5 39. Kh2 Kg6 40. Be5 Kg5 41. Bd6 Kg4 42. Bc5 1/2-1/2
 [WhiteElo "1750"]
 [BlackElo "1880"]
 [ECO "C84"]
+[Opening "Ruy Lopez"]
+[Variation "closed defence"]
 [EventDate "1998.??.??"]
 [PlyCount "79"]
 
@@ -4358,6 +4861,8 @@ Rxf6 Nxf6 39. Qxf4 Qxd5 40. Nf3 1/2-1/2
 [WhiteElo "1750"]
 [BlackElo "1785"]
 [ECO "C61"]
+[Opening "Ruy Lopez"]
+[Variation "Bird's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "126"]
 
@@ -4381,7 +4886,9 @@ Kxe5 63. g4 Kf6 1/2-1/2
 [Black "Thomas, D."]
 [Result "0-1"]
 [WhiteElo "1750"]
-[ECO "B42"]
+[ECO "B40"]
+[Opening "Sicilian"]
+[Variation "Anderssen variation"]
 [EventDate "1998.??.??"]
 [PlyCount "84"]
 
@@ -4403,6 +4910,7 @@ Qh1+ 39. Ke2 Qxg2+ 40. Kd1 Qxf3+ 41. Qe2 Qxh3 42. Kc2 Qe6 0-1
 [WhiteElo "1750"]
 [BlackElo "1860"]
 [ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "135"]
 
@@ -4427,7 +4935,8 @@ Kc6 64. Bd4 Bh8 65. d7 Kxd7 66. Kxb5 Kc7 67. c6 Bg7 68. Kc5 1-0
 [Result "1/2-1/2"]
 [WhiteElo "1850"]
 [BlackElo "1825"]
-[ECO "B54"]
+[ECO "B50"]
+[Opening "Sicilian"]
 [EventDate "1998.??.??"]
 [PlyCount "161"]
 
@@ -4456,6 +4965,8 @@ Kf2 Kh4 76. Bc2 Nh3+ 77. Kg2 Ng5 78. Bd3 Ne6 79. Kf2 g5 80. Be4 Nc5 81. Bc2
 [WhiteElo "1850"]
 [BlackElo "1870"]
 [ECO "B83"]
+[Opening "Sicilian"]
+[Variation "Scheveningen, 6.Be2"]
 [EventDate "1998.??.??"]
 [PlyCount "75"]
 
@@ -4476,7 +4987,8 @@ Nxd5 33. exd5 g5 34. Ne4 Qg6 35. Qxg5 Qxg5 36. Nxg5 Rc8 37. Ne4 f5 38. Nf6+
 [Result "1-0"]
 [WhiteElo "1850"]
 [BlackElo "1750"]
-[ECO "C54"]
+[ECO "C50"]
+[Opening "Giuoco Pianissimo"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -4497,6 +5009,8 @@ Qxe5 Qxf6 33. Qxh5+ 1-0
 [WhiteElo "1850"]
 [BlackElo "1885"]
 [ECO "C02"]
+[Opening "French"]
+[Variation "advance, Euwe variation"]
 [EventDate "1998.??.??"]
 [PlyCount "115"]
 
@@ -4520,7 +5034,9 @@ Kd8 58. Kd6 1-0
 [Result "1-0"]
 [WhiteElo "1850"]
 [BlackElo "1855"]
-[ECO "B72"]
+[ECO "B58"]
+[Opening "Sicilian"]
+[Variation "classical"]
 [EventDate "1998.??.??"]
 [PlyCount "93"]
 
@@ -4543,6 +5059,8 @@ Ke7 39. Ke4 Kd7 40. Kd5 Ke7 41. c4 bxc4 42. bxc4 Kd7 43. h5 Kc7 44. Ke4 Kc6
 [WhiteElo "1885"]
 [BlackElo "1825"]
 [ECO "B92"]
+[Opening "Sicilian"]
+[Variation "Najdorf, Opovcensky variation"]
 [EventDate "1998.??.??"]
 [PlyCount "82"]
 
@@ -4563,7 +5081,8 @@ Rd2 Rfd8 21. Rb1 Ba8 22. Rdd1 f6 23. Rb6 Bc5 24. Rxa6 Bxd5 25. Ra4 Bxe3+
 [Result "0-1"]
 [WhiteElo "1885"]
 [BlackElo "1800"]
-[ECO "D02"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "112"]
 
@@ -4588,6 +5107,8 @@ Rb7 Rxb4 51. Rb6+ Kg5 52. Bxf5 Kxf5 53. Rb8 Rb3+ 54. Kd2 b4 55. Rf8+ Ke4
 [WhiteElo "1885"]
 [BlackElo "1880"]
 [ECO "D08"]
+[Opening "QGD"]
+[Variation "Albin counter-gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "126"]
 
@@ -4613,6 +5134,7 @@ f1=Q+ 63. Kxf1 Kd3 0-1
 [WhiteElo "1885"]
 [BlackElo "1750"]
 [ECO "C34"]
+[Opening "King's knight's gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "120"]
 
@@ -4637,6 +5159,7 @@ h5 57. Kf4 Kf6 58. g4 hxg4 59. Kxg4 Kf7 60. Kg5 Kg7 1/2-1/2
 [WhiteElo "1790"]
 [BlackElo "1870"]
 [ECO "B20"]
+[Opening "Sicilian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "79"]
 
@@ -4658,6 +5181,7 @@ Nxg2 39. Kxg2 Rf8 40. Rg4+ 1-0
 [WhiteElo "1785"]
 [BlackElo "1850"]
 [ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "87"]
 
@@ -4680,6 +5204,7 @@ d5 cxd5 38. Qa7+ Kd6 39. Qb6+ Ke5 40. f4+ Kxf4 41. Bxe6 Ke4 42. Bf5+ Kf4
 [WhiteElo "1785"]
 [BlackElo "1885"]
 [ECO "A80"]
+[Opening "Dutch"]
 [EventDate "1998.??.??"]
 [PlyCount "80"]
 
@@ -4700,6 +5225,7 @@ d6 15. O-O-O Bd7 16. Rdf1 a5 17. h4 h6 18. Ne1 Rfb8 19. Ng2 d5 20. Nf4 Qe8
 [Result "0-1"]
 [WhiteElo "1785"]
 [ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -4719,6 +5245,8 @@ Rc1 Rxg2+ 33. Qxg2 Nxg2 34. Rc8+ Kh7 35. Rxa8 Nf4 36. b4 Qb2 0-1
 [Result "1-0"]
 [BlackElo "1825"]
 [ECO "E90"]
+[Opening "King's Indian"]
+[Variation "Zinnowitz variation"]
 [EventDate "1998.??.??"]
 [PlyCount "87"]
 
@@ -4740,6 +5268,8 @@ Ke5 44. d6 1-0
 [Result "1-0"]
 [BlackElo "1870"]
 [ECO "E73"]
+[Opening "King's Indian"]
+[Variation "Averbakh system"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -4758,7 +5288,8 @@ f5 15. f3 fxe4 16. fxe4 Nf4 17. b4 Qe7 18. Rc1 b6 19. c5 bxc5 20. bxc5 Nxd3
 [Result "1-0"]
 [WhiteElo "1900"]
 [BlackElo "1855"]
-[ECO "D35"]
+[ECO "D43"]
+[Opening "QGD semi-Slav"]
 [EventDate "1998.??.??"]
 [PlyCount "95"]
 
@@ -4780,6 +5311,7 @@ Qc8+ Kg7 39. Qb7+ Kf8 40. Qa8+ Kg7 41. Qxa3 Qxe4+ 42. Qf3 Qb1 43. Qe2 Qb3
 [Result "1-0"]
 [BlackElo "1885"]
 [ECO "A40"]
+[Opening "Polish defence"]
 [EventDate "1998.??.??"]
 [PlyCount "67"]
 
@@ -4800,6 +5332,7 @@ Rc7 33. Qf4 h6 34. Qxc7 1-0
 [WhiteElo "1855"]
 [BlackElo "1825"]
 [ECO "A45"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "55"]
 
@@ -4818,7 +5351,8 @@ e5 Nbd5 15. exf6 Nxf6 16. Ne4 Bd7 17. Nxf6 gxf6 18. Bf5 Kb8 19. Rfe1 Qf8
 [Result "1-0"]
 [WhiteElo "1855"]
 [BlackElo "1885"]
-[ECO "A96"]
+[ECO "A81"]
+[Opening "Dutch defence"]
 [EventDate "1998.??.??"]
 [PlyCount "48"]
 
@@ -4836,7 +5370,8 @@ h5 15. Qe2 g6 16. Bd2 Ng7 17. Rae1 Bh3 18. Rf2 Nf5 19. Bxf5 gxf5 20. f4 e4
 [Result "1-0"]
 [WhiteElo "1855"]
 [BlackElo "1785"]
-[ECO "D02"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "77"]
 
@@ -4856,7 +5391,8 @@ Rh4 Qd6 34. Qd2 Nh7 35. Rxh6 gxh6 36. Qd4+ Nf6 37. Qxf6+ Kh7 38. Qg6+ Kh8
 [Black "Thomas, D."]
 [Result "1-0"]
 [WhiteElo "1855"]
-[ECO "E61"]
+[ECO "A45"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "87"]
 
@@ -4876,6 +5412,8 @@ Rd8 1-0
 [White "Armstrong, D."]
 [Black "Baynes, P."]
 [Result "1/2-1/2"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "116"]
 
@@ -4897,6 +5435,8 @@ Nf6 56. Kd4 Kxb5 57. Ke5 Ng4+ 58. Ke6 Kc5 1/2-1/2
 [White "Armstrong, D."]
 [Black "Hush, J."]
 [Result "1-0"]
+[ECO "A51"]
+[Opening "Budapest defence declined"]
 [EventDate "1998.??.??"]
 [PlyCount "167"]
 
@@ -4922,6 +5462,8 @@ Kf6 81. Kg8 Kg5 82. Kg7 Kxg4 83. Kxh6 Kf5 84. Kg7 1-0
 [White "Armstrong, D."]
 [Black "McRorie, A."]
 [Result "0-1"]
+[ECO "D05"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "64"]
 
@@ -4939,6 +5481,8 @@ Nd5 Bxd5 0-1
 [White "Armstrong, D."]
 [Black "Morgan, A."]
 [Result "0-1"]
+[ECO "D43"]
+[Opening "QGD semi-Slav"]
 [EventDate "1998.??.??"]
 [PlyCount "68"]
 
@@ -4956,6 +5500,8 @@ fxg6 32. Ng3 Bc7 33. Rxh7+ Kxh7 34. Bxg6+ Qxg6 0-1
 [White "Baynes, P."]
 [Black "Deline, S."]
 [Result "0-1"]
+[ECO "A03"]
+[Opening "Bird's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "108"]
 
@@ -4976,6 +5522,9 @@ Bd6 51. Kh3 Rf2 52. Rxf2 exf2 53. Kg2 Bc5 54. Kf1 Kf6 0-1
 [White "Baynes, P."]
 [Black "McRorie, A."]
 [Result "0-1"]
+[ECO "C24"]
+[Opening "Bishop's opening"]
+[Variation "Berlin defence"]
 [EventDate "1998.??.??"]
 [PlyCount "82"]
 
@@ -4994,6 +5543,9 @@ Ba4 39. Rg3 Qb4 40. Nxg7 Bxb3 41. Rxb3 Rxa2+ 0-1
 [White "Baynes, P."]
 [Black "Sengupta, O."]
 [Result "0-1"]
+[ECO "C24"]
+[Opening "Bishop's opening"]
+[Variation "Berlin defence"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -5011,6 +5563,8 @@ b6 32. a3 Rxa3 33. Be7 Rb3 34. Bxc5 bxc5+ 35. Kxc5 a5 0-1
 [White "Baynes, P."]
 [Black "Zoccano, J."]
 [Result "0-1"]
+[ECO "A03"]
+[Opening "Bird's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "132"]
 
@@ -5033,6 +5587,9 @@ Qf5 46. Qxf5 exf5 47. Rh1 a5 48. Ra1 a4 49. Ra2 Rc7 50. Be1 Nc4 51. Kf3 Rc8
 [White "Deline, S."]
 [Black "Armstrong, D."]
 [Result "1-0"]
+[ECO "B01"]
+[Opening "Scandinavian"]
+[Variation "Marshall variation"]
 [EventDate "1998.??.??"]
 [PlyCount "59"]
 
@@ -5049,6 +5606,9 @@ Nd7 27. Nxc8 Rxc8 28. Rxd7 Bg5 29. Qxb7 Qg6 30. Qxc8+ 1-0
 [White "Deline, S."]
 [Black "Hush, J."]
 [Result "1-0"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical system, 5.Be2"]
 [EventDate "1998.??.??"]
 [PlyCount "41"]
 
@@ -5064,6 +5624,9 @@ Nc4 21. Qh6+ 1-0
 [White "Deline, S."]
 [Black "Litchfield, G."]
 [Result "1-0"]
+[ECO "C41"]
+[Opening "Philidor"]
+[Variation "Nimzovich (Jaenisch) variation"]
 [EventDate "1998.??.??"]
 [PlyCount "13"]
 
@@ -5076,6 +5639,9 @@ Nc4 21. Qh6+ 1-0
 [White "Deline, S."]
 [Black "Morgan, A."]
 [Result "1-0"]
+[ECO "C64"]
+[Opening "Ruy Lopez"]
+[Variation "classical defence, 4.c3"]
 [EventDate "1998.??.??"]
 [PlyCount "121"]
 
@@ -5097,6 +5663,9 @@ Kf7 57. h6 Kf8 58. Kg6 Kg8 59. h7+ Kh8 60. Kf7 Kxh7 61. Ke6 1-0
 [White "Hush, J."]
 [Black "Baynes, P."]
 [Result "1-0"]
+[ECO "B52"]
+[Opening "Sicilian"]
+[Variation "Canal-Sokolsky attack, 3...Bd7"]
 [EventDate "1998.??.??"]
 [PlyCount "81"]
 
@@ -5115,6 +5684,8 @@ e6+ Ke8 38. Bg5 Rc5 39. Bf6 Rd5 40. g5 Rf5 41. Rd2 1-0
 [White "Hush, J."]
 [Black "McRorie, A."]
 [Result "0-1"]
+[ECO "C30"]
+[Opening "King's gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -5132,6 +5703,9 @@ Kd1 Nxg5 21. Qxg5 Qxg5 22. Rxg5 Rf7 23. Ne2 Raf8 24. Rhg3 Ne5 25. Nd4 Rf1+
 [White "Hush, J."]
 [Black "Morgan, A."]
 [Result "1-0"]
+[ECO "C54"]
+[Opening "Giuoco Piano"]
+[Variation "Greco's attack"]
 [EventDate "1998.??.??"]
 [PlyCount "35"]
 
@@ -5146,6 +5720,9 @@ Kd1 Nxg5 21. Qxg5 Qxg5 22. Rxg5 Rf7 23. Ne2 Raf8 24. Rhg3 Ne5 25. Nd4 Rf1+
 [White "Hush, J."]
 [Black "Sengupta, O."]
 [Result "0-1"]
+[ECO "C36"]
+[Opening "KGA"]
+[Variation "Abbazia defence (classical defence, modern defence[!])"]
 [EventDate "1998.??.??"]
 [PlyCount "52"]
 
@@ -5162,6 +5739,8 @@ Qxg4 f2 0-1
 [White "Litchfield, G."]
 [Black "Armstrong, D."]
 [Result "1-0"]
+[ECO "A40"]
+[Opening "Modern defence"]
 [EventDate "1998.??.??"]
 [PlyCount "89"]
 
@@ -5181,6 +5760,8 @@ g5 45. Kd6 1-0
 [White "Litchfield, G."]
 [Black "Baynes, P."]
 [Result "1/2-1/2"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "130"]
 
@@ -5203,6 +5784,9 @@ Rh7 63. Kd8 Rxe7 64. Kxe7 Kf4 65. Ke6 Kf3 1/2-1/2
 [White "Litchfield, G."]
 [Black "Hush, J."]
 [Result "0-1"]
+[ECO "A48"]
+[Opening "King's Indian"]
+[Variation "London system"]
 [EventDate "1998.??.??"]
 [PlyCount "87"]
 
@@ -5222,6 +5806,9 @@ Kf4 0-1
 [White "Litchfield, G."]
 [Black "Morgan, A."]
 [Result "1-0"]
+[ECO "A48"]
+[Opening "King's Indian"]
+[Variation "East Indian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "61"]
 
@@ -5238,6 +5825,8 @@ Bxh5 Bxc3 15. Bf3 Bxa1 16. Qxa1 c6 17. Rd1 Qf6 18. Qxf6+ Kxf6 19. Rxd6+ Be6
 [White "McRorie, A."]
 [Black "Deline, S."]
 [Result "0-1"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "144"]
 
@@ -5261,6 +5850,8 @@ Kb3 70. Bh6 a3 71. Bg7 Rg5 72. Bh6 Rg1+ 0-1
 [White "McRorie, A."]
 [Black "Litchfield, G."]
 [Result "1-0"]
+[ECO "D05"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "35"]
 
@@ -5275,6 +5866,8 @@ Rxe4 c5 15. dxc5 Bxc5 16. Re2 b6 17. Rd2 Qe7 18. b4 1-0
 [White "McRorie, A."]
 [Black "Sengupta, O."]
 [Result "1/2-1/2"]
+[ECO "D05"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "82"]
 
@@ -5293,6 +5886,8 @@ Ke5 Bc3+ 39. Kf4 Bd2+ 40. Ke5 Bc3+ 41. Kf4 Bd2+ 1/2-1/2
 [White "McRorie, A."]
 [Black "Zoccano, J."]
 [Result "0-1"]
+[ECO "A51"]
+[Opening "Budapest defence declined"]
 [EventDate "1998.??.??"]
 [PlyCount "60"]
 
@@ -5310,6 +5905,9 @@ Rg1+ 0-1
 [White "Morgan, A."]
 [Black "Baynes, P."]
 [Result "1-0"]
+[ECO "B32"]
+[Opening "Sicilian"]
+[Variation "Labourdonnais-Loewenthal variation"]
 [EventDate "1998.??.??"]
 [PlyCount "111"]
 
@@ -5331,6 +5929,9 @@ Kc3 51. Kf5 g4 52. hxg4 hxg4 53. Ke6 Kd3 54. Kxd6 Ke3 55. Ke5 Kf2 56. Kf4
 [White "Morgan, A."]
 [Black "McRorie, A."]
 [Result "1-0"]
+[ECO "C50"]
+[Opening "Giuoco Piano"]
+[Variation "four knights variation"]
 [EventDate "1998.??.??"]
 [PlyCount "61"]
 
@@ -5347,6 +5948,9 @@ Qxc6 Bxc6 27. Rxe7 Rf8 28. e6 Kg8 29. Rxf7 Rxf7 30. exf7+ Kf8 31. Ne5 1-0
 [White "Morgan, A."]
 [Black "Sengupta, O."]
 [Result "0-1"]
+[ECO "B70"]
+[Opening "Sicilian"]
+[Variation "dragon variation"]
 [EventDate "1998.??.??"]
 [PlyCount "96"]
 
@@ -5366,6 +5970,8 @@ Kf3 R2c3+ 32. Rd3 d5 33. Rxc3 Rxc3+ 34. Ke2 Rc2+ 35. Kd3 Rxf2 36. exd5 Rf3+
 [White "Morgan, A."]
 [Black "Zoccano, J."]
 [Result "0-1"]
+[ECO "B10"]
+[Opening "Caro-Kann defence"]
 [EventDate "1998.??.??"]
 [PlyCount "62"]
 
@@ -5382,6 +5988,8 @@ g3 Ra7 27. f4 g6 28. Kf2 Rc8 29. Bh3 Nc6 30. Rc2 Bd4+ 31. Kf1 Rb7 0-1
 [White "Sengupta, O."]
 [Black "Armstrong, D."]
 [Result "0-1"]
+[ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "46"]
 
@@ -5397,6 +6005,9 @@ g3 Ra7 27. f4 g6 28. Kf2 Rc8 29. Bh3 Nc6 30. Rc2 Bd4+ 31. Kf1 Rb7 0-1
 [White "Sengupta, O."]
 [Black "Deline, S."]
 [Result "0-1"]
+[ECO "C34"]
+[Opening "KGA"]
+[Variation "Fischer defence"]
 [EventDate "1998.??.??"]
 [PlyCount "44"]
 
@@ -5412,6 +6023,8 @@ Qg1 Qxa5 15. Qd4 Nf6 16. Bxb4 Qb6 17. Nc3 Qxd4 18. Nxd4 c5 19. Ndxb5 cxb4
 [White "Sengupta, O."]
 [Black "Litchfield, G."]
 [Result "0-1"]
+[ECO "C41"]
+[Opening "Philidor's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "78"]
 
@@ -5430,6 +6043,9 @@ Qh3 Bf6 21. Bc5 Bg5+ 22. Be3 Bxe3+ 23. fxe3 Bd5 24. Bxd5+ cxd5 25. Rxd5 Rf7
 [White "Sengupta, O."]
 [Black "Zoccano, J."]
 [Result "1-0"]
+[ECO "B18"]
+[Opening "Caro-Kann"]
+[Variation "classical, 6.h4"]
 [EventDate "1998.??.??"]
 [PlyCount "75"]
 
@@ -5448,6 +6064,8 @@ g8=Q 1-0
 [White "Zoccano, J."]
 [Black "Armstrong, D."]
 [Result "1-0"]
+[ECO "A40"]
+[Opening "Modern defence"]
 [EventDate "1998.??.??"]
 [PlyCount "99"]
 
@@ -5468,6 +6086,8 @@ Nxd5 1-0
 [White "Zoccano, J."]
 [Black "Deline, S."]
 [Result "1/2-1/2"]
+[ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -5485,6 +6105,8 @@ g6 21. g4 c4 22. Bc2 b6 23. e4 dxe4 24. Bxe4 Rb8 25. Rf2 Bb7 26. Bc2 Rbf8
 [White "Zoccano, J."]
 [Black "Hush, J."]
 [Result "1-0"]
+[ECO "A45"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "101"]
 
@@ -5505,6 +6127,8 @@ Nxb4 Ke7 51. f6+ 1-0
 [White "Zoccano, J."]
 [Black "Litchfield, G."]
 [Result "0-1"]
+[ECO "D02"]
+[Opening "Queen's bishop game"]
 [EventDate "1998.??.??"]
 [PlyCount "78"]
 
@@ -5523,6 +6147,8 @@ Rxb6 39. axb6 Rb8 0-1
 [White "Cejvan, S."]
 [Black "Knezevic, A."]
 [Result "0-1"]
+[ECO "A20"]
+[Opening "English opening"]
 [EventDate "1998.??.??"]
 [PlyCount "52"]
 
@@ -5539,6 +6165,9 @@ Rf2 exf4 15. d3 Qxd3 16. Rd2 Qxc3 17. Bb2 Qe3+ 18. Kh1 Nxe4 19. Bxg7 Kxg7
 [White "Cejvan, S."]
 [Black "Lordo, C."]
 [Result "0-1"]
+[ECO "C20"]
+[Opening "KP"]
+[Variation "Patzer opening"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -5556,6 +6185,9 @@ Kf4 Rhf8+ 33. Kg5 Re5+ 34. Kg6 Rf6+ 35. Kg7 Re7+ 36. Kg8 Nh6+ 0-1
 [White "Cejvan, S."]
 [Black "Mitchell, J."]
 [Result "1-0"]
+[ECO "C20"]
+[Opening "KP"]
+[Variation "Patzer opening"]
 [EventDate "1998.??.??"]
 [PlyCount "73"]
 
@@ -5573,6 +6205,9 @@ Bf6 33. Re6+ Kc5 34. Rxf6 Rh7 35. Rxg6 Re7 36. Rxf5+ Re5 37. Rxe5# 1-0
 [White "Heseltine Nutch, Ka"]
 [Black "Moser, D."]
 [Result "1-0"]
+[ECO "D53"]
+[Opening "QGD"]
+[Variation "4.Bg5 Be7"]
 [EventDate "1998.??.??"]
 [PlyCount "43"]
 
@@ -5588,6 +6223,8 @@ Qd3 Rfd8 21. Qg3 Kg7 22. Nf5+ 1-0
 [White "Heseltine Nutch, Ka"]
 [Black "Cejvan, S."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Dunst (Sleipner, Heinrichsen) opening"]
 [EventDate "1998.??.??"]
 [PlyCount "136"]
 
@@ -5611,6 +6248,9 @@ Kxd5 exf1=Q 64. Re4 Qf3 65. Kd6 Qxe4 66. Kc5 Qxc2 67. Kb5 Qxb3 68. Kxa5 c2
 [White "Heseltine Nutch, Ka"]
 [Black "Papp, S."]
 [Result "1-0"]
+[ECO "C46"]
+[Opening "Four knights"]
+[Variation "Italian variation"]
 [EventDate "1998.??.??"]
 [PlyCount "91"]
 
@@ -5630,6 +6270,8 @@ Re8 38. Bf3 Re3 39. Kf2 Re7 40. h4 Rc7 41. g4 Rc4 42. Kg3 Rc8 43. g5 Re8
 [White "Knezevic, A."]
 [Black "Heseltine Nutch, Ka"]
 [Result "1/2-1/2"]
+[ECO "E10"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -5647,6 +6289,9 @@ Ng5 Bf5 15. e4 Bg6 16. f4 dxe4 17. Ndxe4 Bxe4 18. Nxe4 Nxe4 19. Rxe4 Bc5
 [White "Knezevic, A."]
 [Black "Moser, D."]
 [Result "1/2-1/2"]
+[ECO "E94"]
+[Opening "King's Indian"]
+[Variation "orthodox variation"]
 [EventDate "1998.??.??"]
 [PlyCount "87"]
 
@@ -5666,6 +6311,9 @@ Nc5 20. Bd6 h6 21. Nxf7 Bxf7 22. Bxc5 b6 23. Bb4 c5 24. Bd2 h5 25. Bf3 Rd8
 [White "Knezevic, A."]
 [Black "Papp, S."]
 [Result "1-0"]
+[ECO "D35"]
+[Opening "QGD"]
+[Variation "3...Nf6"]
 [EventDate "1998.??.??"]
 [PlyCount "89"]
 
@@ -5685,6 +6333,8 @@ Rxa3 32. h3 Kf8 33. Rd2 Ra5 34. Rd4 Kg7 35. g4 f5 36. gxf5 Kf6 37. Rh4 d4
 [White "Knezevic, A."]
 [Black "Pretti, J."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "121"]
 
@@ -5706,6 +6356,9 @@ Kf8 57. Rh7 Rc2 58. Rxh6 Rc7 59. Rh8+ Kf7 60. Rh7+ Kxf6 61. Rxc7 1-0
 [White "Lordo, C."]
 [Black "Heseltine Nutch, Ka"]
 [Result "1/2-1/2"]
+[ECO "C00"]
+[Opening "French"]
+[Variation "Steinitz attack"]
 [EventDate "1998.??.??"]
 [PlyCount "97"]
 
@@ -5726,6 +6379,9 @@ b5 44. e4 Nc4+ 45. Nxc4 bxc4 46. e5 a5 47. e6 Kd8 48. Rd7+ Ke8 49. Rc7
 [White "Lordo, C."]
 [Black "Knezevic, A."]
 [Result "0-1"]
+[ECO "C15"]
+[Opening "French"]
+[Variation "Winawer (Nimzovich) variation"]
 [EventDate "1998.??.??"]
 [PlyCount "44"]
 
@@ -5741,6 +6397,8 @@ Qxf2+ 20. Kh3 Qf5+ 21. Kh4 h5 22. Rac1 Qg4# 0-1
 [White "Lordo, C."]
 [Black "Mitchell, J."]
 [Result "1-0"]
+[ECO "C42"]
+[Opening "Petrov three knights game"]
 [EventDate "1998.??.??"]
 [PlyCount "55"]
 
@@ -5757,6 +6415,9 @@ Bg5+ Kg7 26. Qe7+ Kg8 27. Bc4+ Kh8 28. Qf8+ 1-0
 [White "Mitchell, J."]
 [Black "Heseltine Nutch, Ka"]
 [Result "1/2-1/2"]
+[ECO "C01"]
+[Opening "French"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -5773,6 +6434,9 @@ fxe6 Rxe6 27. Rd2 Rd7 28. Bc2 Rde7 29. Kf2 1/2-1/2
 [White "Mitchell, J."]
 [Black "Knezevic, A."]
 [Result "1-0"]
+[ECO "C01"]
+[Opening "French"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "79"]
 
@@ -5791,6 +6455,9 @@ Nf5 Rf3 39. Qxd4 Nd3 40. Kxf3 1-0
 [White "Mitchell, J."]
 [Black "Moser, D."]
 [Result "1-0"]
+[ECO "C41"]
+[Opening "Philidor"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "71"]
 
@@ -5808,6 +6475,8 @@ Rc7 33. Kf3 Nd7 34. Rb5 Rc8 35. Rxa5 Nb8 36. Ra8 1-0
 [White "Mitchell, J."]
 [Black "Pretti, J."]
 [Result "1-0"]
+[ECO "C41"]
+[Opening "Philidor's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -5824,6 +6493,8 @@ Rxd7+ Kb6 20. Rxh7 Ng8 21. Bxg8 Rxg8 22. Na4+ Kb5 23. b3 Ka6 24. Nc5+ Kb6
 [White "Moser, D."]
 [Black "Cejvan, S."]
 [Result "1-0"]
+[ECO "C44"]
+[Opening "Ponziani opening"]
 [EventDate "1998.??.??"]
 [PlyCount "81"]
 
@@ -5842,6 +6513,9 @@ Bxb5 Qe8 28. Be2 Ba6 29. Bxa6 Rxa6 30. Nh2 Nhg7 31. Ng4 Qb8 32. Nf6+ Kh8
 [White "Moser, D."]
 [Black "Lordo, C."]
 [Result "1-0"]
+[ECO "C24"]
+[Opening "Bishop's opening"]
+[Variation "Berlin defence"]
 [EventDate "1998.??.??"]
 [PlyCount "56"]
 
@@ -5858,6 +6532,8 @@ Bxf4 exf4 9. Re1+ Be7 10. Ng5 Be6 11. Nxe6 fxe6 12. Bxe6 Qd6 13. Na3 Ne5
 [White "Moser, D."]
 [Black "Papp, S."]
 [Result "0-1"]
+[ECO "A45"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "80"]
 
@@ -5876,6 +6552,8 @@ Bxf8 Kxf8 26. Qa8+ Ke7 27. Qe4+ Qe6 28. Qb4+ Ke8 29. Qxb2 Qxe3 30. Qb8+ Kd7
 [White "Moser, D."]
 [Black "Pretti, J."]
 [Result "0-1"]
+[ECO "A20"]
+[Opening "English opening"]
 [EventDate "1998.??.??"]
 [PlyCount "110"]
 
@@ -5896,6 +6574,8 @@ Ra5 51. Rxe5 Nxg5+ 52. Kd4 Rxa4+ 53. Kc3 Ne4+ 54. Kb3 Rd4 55. f4 Nf6 0-1
 [White "Papp, S."]
 [Black "Cejvan, S."]
 [Result "0-1"]
+[ECO "C41"]
+[Opening "Philidor's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "108"]
 
@@ -5928,6 +6608,8 @@ Rh1 Kc3 45. Kg7 Rxh7+ 46. Kxh7 Kb2 47. Rh2 Kb1 48. Rh1+ c1=Q 49. Rxc1+ Kxc1
 [White "Papp, S."]
 [Black "Mitchell, J."]
 [Result "1/2-1/2"]
+[ECO "C42"]
+[Opening "Petrov three knights game"]
 [EventDate "1998.??.??"]
 [PlyCount "83"]
 
@@ -5946,6 +6628,8 @@ Qd1+ 39. Rf1 Qd4+ 40. Be3 Qxe3+ 41. Rf2 Qe1+ 42. Rf1 1/2-1/2
 [White "Papp, S."]
 [Black "Pretti, J."]
 [Result "1-0"]
+[ECO "C41"]
+[Opening "Philidor's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "61"]
 
@@ -5963,6 +6647,8 @@ Nxd6 Nf4 21. Qd1 Qg4 22. Nxe5 Bg2+ 23. Kg1 Qh3 24. Bc4 Rg5 25. Nexf7 Rh5
 [White "Pretti, J."]
 [Black "Cejvan, S."]
 [Result "1-0"]
+[ECO "C40"]
+[Opening "QP counter-gambit (elephant gambit)"]
 [EventDate "1998.??.??"]
 [PlyCount "66"]
 
@@ -5980,6 +6666,9 @@ Qxa5 Nxa5 15. b4 Nb7 16. Kd2 Rc8 17. a3 a5 18. g4 g6 19. h3 a4 20. Bg2 Nd6
 [White "Pretti, J."]
 [Black "Heseltine Nutch, Ka"]
 [Result "1-0"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance variation"]
 [EventDate "1998.??.??"]
 [PlyCount "93"]
 
@@ -5999,6 +6688,9 @@ Ng7+ Kd8 46. f6 Nc8 47. Bg5 1-0
 [White "Pretti, J."]
 [Black "Lordo, C."]
 [Result "1-0"]
+[ECO "B00"]
+[Opening "KP"]
+[Variation "Nimzovich defence"]
 [EventDate "1998.??.??"]
 [PlyCount "51"]
 
@@ -6015,6 +6707,8 @@ Qg5 26. Qxg5# 1-0
 [White "Zhao, Y."]
 [Black "Jurjans, D."]
 [Result "1-0"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "35"]
 
@@ -6029,6 +6723,8 @@ Bh6 15. Qd2 Bxg5 16. Bxg5 c5 17. Qe3 cxd4 18. Qxe7# 1-0
 [White "Highley Wilson, L."]
 [Black "Ferrari, N."]
 [Result "0-1"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "56"]
 
@@ -6045,6 +6741,9 @@ Rxd1 exd1=Q 26. c3 Qad5+ 27. f3 Q1xf3+ 28. Kh3 Qg4# 0-1
 [White "Straughan, S."]
 [Black "Jurjans, Mn"]
 [Result "0-1"]
+[ECO "C26"]
+[Opening "Vienna"]
+[Variation "Paulsen-Mieses variation"]
 [EventDate "1998.??.??"]
 [PlyCount "42"]
 
@@ -6060,6 +6759,8 @@ Qxe4 20. Bd2 Nd4 21. a3 Qxc2# 0-1
 [White "Rachar, S."]
 [Black "Straughan, A."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn, Mason variation"]
 [EventDate "1998.??.??"]
 [PlyCount "151"]
 
@@ -6084,6 +6785,8 @@ Kh8 75. Kg6 Kg8 76. Ra8# 1-0
 [White "Morgan, B."]
 [Black "Nowicki, G."]
 [Result "1-0"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -6100,6 +6803,8 @@ Bd8 26. d4 Kb8 27. Rxd8+ Bc8 28. Bf5 Nc7 29. Rxc8# 1-0
 [White "Wong, W."]
 [Black "Phares, A."]
 [Result "0-1"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "76"]
 
@@ -6118,6 +6823,8 @@ Qxf4+ 33. Kc3 Nf3+ 34. Rxg7+ Kxg7 35. Rg2+ Kf8 36. Rg3 Qc4+ 37. Kb2 R8e2+
 [White "Patterson, J."]
 [Black "Highley Wilson, K."]
 [Result "1-0"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1998.??.??"]
 [PlyCount "49"]
 
@@ -6133,6 +6840,9 @@ h5 15. b4 g4 16. f3 Kh8 17. fxg4 hxg4 18. Rf2 Kg7 19. Qf1 Rf8 20. Rxf6 Qxf6
 [White "Clipperton, B."]
 [Black "Renaud, D."]
 [Result "1-0"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
+[Variation "Charlick (Englund) gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "83"]
 
@@ -6151,6 +6861,8 @@ h5 15. b4 g4 16. f3 Kh8 17. fxg4 hxg4 18. Rf2 Kg7 19. Qf1 Rf8 20. Rxf6 Qxf6
 [White "Bertrand, M."]
 [Black "Pavez, M."]
 [Result "0-1"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "100"]
 
@@ -6171,6 +6883,8 @@ Kf4 Qb4+ 50. Kg3 Rxe3 0-1
 [White "Straughan, A."]
 [Black "Bertrand, M."]
 [Result "0-1"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1998.??.??"]
 [PlyCount "88"]
 
@@ -6190,6 +6904,9 @@ Qxf2+ 33. Kd3 Rad8+ 34. Kc2 Rd6 35. Kc3 Rc6+ 36. Kb4 Rxc1 37. Bxc1 Qxe1+
 [White "Ferrari, N."]
 [Black "Zhao, Y."]
 [Result "1-0"]
+[ECO "C45"]
+[Opening "Scotch"]
+[Variation "Schmidt variation"]
 [EventDate "1998.??.??"]
 [PlyCount "25"]
 
@@ -6203,6 +6920,9 @@ Qxf2+ 33. Kd3 Rad8+ 34. Kc2 Rd6 35. Kc3 Rc6+ 36. Kb4 Rxc1 37. Bxc1 Qxe1+
 [White "Phares, A."]
 [Black "Morgan, B."]
 [Result "1-0"]
+[ECO "C50"]
+[Opening "Giuoco Piano"]
+[Variation "four knights variation"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -6218,6 +6938,9 @@ cxd4 Nxd4 15. Qh5 Nc2+ 16. Kd1 Nxa1 17. Rg1 Qa4+ 18. b3 Qxa2 19. Bd3 Qxb3+
 [White "Highley Wilson, K."]
 [Black "Straughan, S."]
 [Result "1-0"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
+[Variation "English defence"]
 [EventDate "1998.??.??"]
 [PlyCount "19"]
 
@@ -6231,6 +6954,8 @@ Rb8 8. Qxa6 b5 9. Bxb5 Rb6 10. Qc8# 1-0
 [White "Jurjans, D."]
 [Black "Highley Wilson, L."]
 [Result "1-0"]
+[ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -6248,6 +6973,8 @@ Qc6+ Kd8 33. Qa8# 1-0
 [White "Pavez, M."]
 [Black "Rachar, S."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn, Mason variation"]
 [EventDate "1998.??.??"]
 [PlyCount "79"]
 
@@ -6266,6 +6993,9 @@ Qg6+ Kh4 39. Rxf2 Rhg8 40. Rf4# 1-0
 [White "Jurjans, Mn"]
 [Black "Patterson, J."]
 [Result "1-0"]
+[ECO "B02"]
+[Opening "Alekhine's defence"]
+[Variation "Mokele Mbembe (Buecker) variation"]
 [EventDate "1998.??.??"]
 [PlyCount "67"]
 
@@ -6283,6 +7013,8 @@ c5 f5 33. h3 g4 34. fxg4 1-0
 [White "Highley Wilson, L."]
 [Black "Straughan, A."]
 [Result "0-1"]
+[ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "122"]
 
@@ -6305,6 +7037,8 @@ Kg1 Qg3+ 39. Kh1 Kg8 40. Qe7 Qh3+ 41. Kg1 Qg3+ 42. Kh1 Qh3+ 43. Kg1 Qg3+
 [White "Pavez, M."]
 [Black "Phares, A."]
 [Result "0-1"]
+[ECO "C44"]
+[Opening "Scotch opening"]
 [EventDate "1998.??.??"]
 [PlyCount "68"]
 
@@ -6322,6 +7056,9 @@ Bh5+ g6 27. exf6 Qb8 28. f7+ Kd8 29. Bg4 Qxd6 30. Qd4 Bxg2+ 31. Ke1 Nc2+
 [White "Patterson, J."]
 [Black "Nowicki, G."]
 [Result "1/2-1/2"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical (two knights) system"]
 [EventDate "1998.??.??"]
 [PlyCount "124"]
 
@@ -6344,6 +7081,8 @@ Bxa3 Kxf6 1/2-1/2
 [White "Zhao, Y."]
 [Black "Bertrand, M."]
 [Result "0-1"]
+[ECO "C00"]
+[Opening "Lengfellner system"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -6360,6 +7099,8 @@ Qc6 26. c4 Re2 27. Rg1 Qh6 28. Ra1 Rxf2 29. a5 Qxh2# 0-1
 [White "Irias, L."]
 [Black "Clipperton, B."]
 [Result "0-1"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1998.??.??"]
 [PlyCount "52"]
 
@@ -6376,6 +7117,8 @@ Rc1+ 26. Re1 Rxe1# 0-1
 [White "Wong, W."]
 [Black "Jurjans, D."]
 [Result "0-1"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "100"]
 
@@ -6396,6 +7139,8 @@ Qxc4# 0-1
 [White "Morgan, B."]
 [Black "Highley Wilson, K."]
 [Result "1-0"]
+[ECO "B00"]
+[Opening "Barnes defence"]
 [EventDate "1998.??.??"]
 [PlyCount "33"]
 
@@ -6410,6 +7155,8 @@ Nxc5+ Kd6 15. b4 b6 16. Qxf6+ Be6 17. Qxe6# 1-0
 [White "Phares, A."]
 [Black "Jurjans, Mn"]
 [Result "0-1"]
+[ECO "B50"]
+[Opening "Sicilian"]
 [EventDate "1998.??.??"]
 [PlyCount "93"]
 
@@ -6429,6 +7176,8 @@ h5 gxh5 45. Kf3 Rxb6 46. Kf4 Kc7 47. Kg5 0-1
 [White "Clipperton, B."]
 [Black "Pavez, M."]
 [Result "1-0"]
+[ECO "A41"]
+[Opening "Queen's Pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -6446,6 +7195,8 @@ Qxf6 Rd8 33. Rc7 1-0
 [White "Highley Wilson, L."]
 [Black "Wong, W."]
 [Result "0-1"]
+[ECO "A05"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "94"]
 
@@ -6465,6 +7216,9 @@ Bxb8 Qxh3 39. Bg3 Qe6+ 40. Kb4 c2+ 41. Rc3 c1=Q 42. Qxc1 Bxc1 43. Rxc1 Nd5+
 [White "Nowicki, G."]
 [Black "Rachar, S."]
 [Result "1/2-1/2"]
+[ECO "A06"]
+[Opening "Reti"]
+[Variation "old Indian attack"]
 [EventDate "1998.??.??"]
 [PlyCount "154"]
 
@@ -6489,6 +7243,9 @@ Ka4 68. Kb6 a5 69. Bf7 b4 70. Bc4 b3 71. Bxb3+ Kb4 72. Ba2 a4 73. Bb1 Kb3
 [White "Jurjans, D."]
 [Black "Irias, L."]
 [Result "1-0"]
+[ECO "A07"]
+[Opening "Reti"]
+[Variation "King's Indian attack (Barcza system)"]
 [EventDate "1998.??.??"]
 [PlyCount "31"]
 
@@ -6503,6 +7260,8 @@ Qb6 15. Qe2 exf2+ 16. Rxf2 1-0
 [White "Bertrand, M."]
 [Black "Ferrari, N."]
 [Result "1-0"]
+[ECO "A00"]
+[Opening "Van't Kruijs opening"]
 [EventDate "1998.??.??"]
 [PlyCount "75"]
 
@@ -6521,6 +7280,8 @@ f4 32. exf4 gxf4 33. f3 h5 34. h4 Re6 35. Nd6 Re3 36. c6 Rc3 37. Rc8+ Kg7
 [White "Renaud, D."]
 [Black "Morgan, B."]
 [Result "1-0"]
+[ECO "C55"]
+[Opening "Two knights defence"]
 [EventDate "1998.??.??"]
 [PlyCount "33"]
 
@@ -6535,6 +7296,8 @@ f4 32. exf4 gxf4 33. f3 h5 34. h4 Re6 35. Nd6 Re3 36. c6 Rc3 37. Rc8+ Kg7
 [White "Straughan, S."]
 [Black "Zhao, Y."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Benko's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -6552,6 +7315,9 @@ Nxc4 d1=Q+ 33. Qf1 Re1 34. Qxe1 Qxe1+ 35. Kg2 Qexf2+ 36. Kh1 Qxh2# 0-1
 [White "Straughan, A."]
 [Black "Highley Wilson, K."]
 [Result "1/2-1/2"]
+[ECO "C15"]
+[Opening "French"]
+[Variation "Winawer (Nimzovich) variation"]
 [EventDate "1998.??.??"]
 [PlyCount "91"]
 
@@ -6571,6 +7337,8 @@ Kg7 39. h3 h5 40. Bxg5 Kh8 41. h4 Kh7 42. e6 Kg7 43. e7 Kh7 44. e8=Q Kg7
 [White "Rachar, S."]
 [Black "Ferrari, N."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn, Mason variation"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -6588,6 +7356,8 @@ Rc8# 1-0
 [White "Jurjans, D."]
 [Black "Phares, A."]
 [Result "0-1"]
+[ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -6605,6 +7375,8 @@ Bxg2 Qxg2 33. Qxd6 Bg4 34. Qxe5+ Kf7 35. Qxe4 Qf1# 0-1
 [White "Pavez, M."]
 [Black "Nowicki, G."]
 [Result "0-1"]
+[ECO "A41"]
+[Opening "Queen's Pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "62"]
 
@@ -6622,6 +7394,8 @@ Nd3 0-1
 [White "Wong, W."]
 [Black "Straughan, S."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "89"]
 
@@ -6641,6 +7415,8 @@ Qc4+ Kd8 39. Rd1+ Ke7 40. Qxe4+ Kf8 41. Qf5+ Kg8 42. Qe6+ Bf7 43. Rd8+ Kh7
 [White "Jurjans, Mn"]
 [Black "Clipperton, B."]
 [Result "0-1"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "96"]
 
@@ -6660,6 +7436,8 @@ Qd4+ Qf6 21. Qxf6+ Kxf6 22. h5 Kg7 23. hxg6 fxg6 24. Nf4 Rxf4 25. Rh2 Rxf3
 [White "Bertrand, M."]
 [Black "Renaud, D."]
 [Result "1-0"]
+[ECO "A00"]
+[Opening "Van't Kruijs opening"]
 [EventDate "1998.??.??"]
 [PlyCount "37"]
 
@@ -6675,6 +7453,8 @@ c5 14. Qd3 Ne7 15. Be3 Ng4 16. Qxd6 b6 17. Nb5 Rd8 18. Nc7+ Kf8 19. Qxd8#
 [White "Irias, L."]
 [Black "Straughan, A."]
 [Result "1-0"]
+[ECO "C25"]
+[Opening "Vienna game"]
 [EventDate "1998.??.??"]
 [PlyCount "43"]
 
@@ -6690,6 +7470,8 @@ Nxd4 exd4 9. Bxd4 Bf6 10. Bxf6 gxf6 11. Bf3 f5 12. Re1 fxe4 13. Bxe4 Bg4
 [White "Zhao, Y."]
 [Black "Morgan, B."]
 [Result "1-0"]
+[ECO "C54"]
+[Opening "Giuoco Piano"]
 [EventDate "1998.??.??"]
 [PlyCount "91"]
 
@@ -6710,6 +7492,8 @@ Qd5+ Kc2 44. bxa3 Kc1 45. Qc3+ Kb1 46. Qdb3# 1-0
 [Black "Jurjans, Mn"]
 [Result "1-0"]
 [WhiteElo "1850"]
+[ECO "B53"]
+[Opening "Sicilian, Chekhover variation"]
 [EventDate "1998.??.??"]
 [PlyCount "45"]
 
@@ -6726,6 +7510,9 @@ Qxh5 Qd7 21. Rhg1 Nxf5 22. Qg4 Kh8 23. Bxf5 1-0
 [Black "Heseltine Nutch, Ka"]
 [Result "1-0"]
 [WhiteElo "2000"]
+[ECO "C16"]
+[Opening "French"]
+[Variation "Winawer, advance variation"]
 [EventDate "1998.??.??"]
 [PlyCount "37"]
 
@@ -6741,6 +7528,9 @@ Nd7 15. Be3 Kg7 16. Nxe6+ fxe6 17. Qh6+ Kg8 18. Qxg6+ Kh8 19. Qh7# 1-0
 [Black "Van der Velde, W."]
 [Result "1/2-1/2"]
 [BlackElo "1930"]
+[ECO "B76"]
+[Opening "Sicilian"]
+[Variation "dragon, Yugoslav attack, Rauser variation"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -6759,6 +7549,8 @@ Kf8 26. Rc7 Ne8 27. Rc8 Ke7 28. Ke3 Kd7 29. Ra8 a6 30. d4 Kc7 31. d5 Bb5
 [Black "Nowicki, G."]
 [Result "1-0"]
 [WhiteElo "1605"]
+[ECO "A53"]
+[Opening "Old Indian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "61"]
 
@@ -6777,6 +7569,9 @@ Qd3 Qc8 21. Nxe4 Rxc1 22. Rxc1 Qa6 23. Qb3 Rb8 24. a4 Bxb2 25. Qxb2 Qxa4
 [Black "Moser, D."]
 [Result "1-0"]
 [WhiteElo "1925"]
+[ECO "D38"]
+[Opening "QGD"]
+[Variation "Ragozin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "66"]
 
@@ -6795,6 +7590,8 @@ Bxf8 Rxf8 27. Rh7+ Ke8 28. Ke2 a6 29. Rah1 Rgg8 30. Nxe4 e5 31. Nd6+ Kd8
 [Black "Kearley, J."]
 [Result "0-1"]
 [BlackElo "1900"]
+[ECO "B44"]
+[Opening "Sicilian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "74"]
 
@@ -6814,6 +7611,9 @@ Ra4 0-1
 [Black "Patterson, J."]
 [Result "1-0"]
 [WhiteElo "1900"]
+[ECO "B00"]
+[Opening "KP"]
+[Variation "Nimzovich defence"]
 [EventDate "1998.??.??"]
 [PlyCount "21"]
 
@@ -6827,6 +7627,9 @@ Qh5+ g6 9. Nxg6 Bh6 10. Nxh8+ Kf8 11. Qf7# 1-0
 [White "Moser, D."]
 [Black "Nowicki, G."]
 [Result "1-0"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical system, 5.Be2"]
 [EventDate "1998.??.??"]
 [PlyCount "35"]
 
@@ -6842,6 +7645,8 @@ dxe5 15. dxe5 Nd7 16. Ng5 Nf6 17. exf6 exf6 18. Qxh7# 1-0
 [Black "Jurjans, Mk"]
 [Result "1-0"]
 [WhiteElo "1930"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -6858,6 +7663,8 @@ Bxg5 Qe8 27. Bf6 Nxf6 28. exf6 Qc6 29. Qg7# 1-0
 [White "Heseltine Nutch, Ka"]
 [Black "Sengupta, O."]
 [Result "1/2-1/2"]
+[ECO "C26"]
+[Opening "Vienna game"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -6875,6 +7682,8 @@ Bxc6 Re6 27. Bd5 Re2 28. Bxb4 Nxd5 29. Nxd5 Bxc4 30. Ne7+ Rxe7 31. Bxe7 Kh7
 [White "Jurjans, Mn"]
 [Black "Papp, S."]
 [Result "1-0"]
+[ECO "D02"]
+[Opening "Queen's bishop game"]
 [EventDate "1998.??.??"]
 [PlyCount "64"]
 
@@ -6894,6 +7703,9 @@ c5 32. Rd8+ Kh7 1-0
 [Result "0-1"]
 [WhiteElo "1605"]
 [BlackElo "1925"]
+[ECO "E21"]
+[Opening "Nimzo-Indian"]
+[Variation "three knights variation"]
 [EventDate "1998.??.??"]
 [PlyCount "64"]
 
@@ -6913,6 +7725,8 @@ a4 27. Na1 h5 28. Qd1 h4 29. Qf3 hxg3 30. fxg3 Qg5 31. Kf2 Bg4 32. Qf4 Bxf4
 [Result "1-0"]
 [WhiteElo "1850"]
 [BlackElo "2000"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "71"]
 
@@ -6930,6 +7744,9 @@ Rf1 Qxd4+ 27. Kh1 Ne5 28. Qxh6+ Ke7 29. Qf6+ Kd7 30. Qxa6 Qc5 31. Rc3 Qd6
 [White "Patterson, J."]
 [Black "Rafanan, F."]
 [Result "0-1"]
+[ECO "C47"]
+[Opening "Four knights"]
+[Variation "Scotch variation"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -6947,6 +7764,8 @@ a4 Rd2 32. Kb4 Rxb2+ 33. Kc4 Rgd2 34. a5 d5+ 35. Kc5 Be7# 0-1
 [White "Jurjans, Mk"]
 [Black "Heseltine Nutch, Ka"]
 [Result "0-1"]
+[ECO "A46"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "114"]
 
@@ -6970,6 +7789,9 @@ Kf1 h4 56. Rh8 h3 57. Kg1 Rd1# 0-1
 [Result "1/2-1/2"]
 [WhiteElo "1930"]
 [BlackElo "1850"]
+[ECO "D00"]
+[Opening "Queen's pawn"]
+[Variation "stonewall attack"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -6988,6 +7810,9 @@ Ne4 Ne3 27. Re1 f5 28. Nd2 Qf7 29. Nb3 f4 1/2-1/2
 [Result "1/2-1/2"]
 [WhiteElo "1925"]
 [BlackElo "1900"]
+[ECO "D37"]
+[Opening "QGD"]
+[Variation "4.Nf3"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -7004,6 +7829,9 @@ Qh4 Bxd3 27. Rxd3 Ree8 28. Rh3 h6 29. Rg3 Kh7 1/2-1/2
 [White "Nowicki, G."]
 [Black "Papp, S."]
 [Result "1-0"]
+[ECO "A06"]
+[Opening "Reti"]
+[Variation "old Indian attack"]
 [EventDate "1998.??.??"]
 [PlyCount "114"]
 
@@ -7025,6 +7853,9 @@ Kf8 56. Rc8+ Kg7 57. f8=Q+ Kg6 1-0
 [White "Sengupta, O."]
 [Black "Jurjans, Mn"]
 [Result "1/2-1/2"]
+[ECO "B76"]
+[Opening "Sicilian"]
+[Variation "dragon, Yugoslav attack, 7...O-O"]
 [EventDate "1998.??.??"]
 [PlyCount "125"]
 
@@ -7048,6 +7879,9 @@ h1=Q 63. Kb6 1/2-1/2
 [Black "Moser, D."]
 [Result "1-0"]
 [WhiteElo "2000"]
+[ECO "C66"]
+[Opening "Ruy Lopez"]
+[Variation "Berlin defence, 4.O-O, d6"]
 [EventDate "1998.??.??"]
 [PlyCount "92"]
 
@@ -7067,6 +7901,9 @@ Nc7 f6+ 45. Kd4 Kf7 46. Kc5 Be2 1-0
 [White "Nowicki, G."]
 [Black "Patterson, J."]
 [Result "1-0"]
+[ECO "A06"]
+[Opening "Reti"]
+[Variation "old Indian attack"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -7084,6 +7921,8 @@ Qd7 Re6 27. Bd5 Rd6 28. Qxf7+ Kh8 29. Re1 Rd8 30. Re8+ Rxe8 31. Qxe8+ Kh7
 [White "Papp, S."]
 [Black "Jurjans, Mk"]
 [Result "1-0"]
+[ECO "A20"]
+[Opening "English, Nimzovich variation"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -7103,6 +7942,9 @@ Nxd5 Nxd5 15. cxd5 a5 16. Rac1 Rb8 17. Qc7 Qxc7 18. Rxc7 Bg4 19. Ra7 Bxf3
 [Result "0-1"]
 [WhiteElo "1850"]
 [BlackElo "1925"]
+[ECO "C92"]
+[Opening "Ruy Lopez"]
+[Variation "closed, Flohr-Zaitsev system (Lenzerheide variation)"]
 [EventDate "1998.??.??"]
 [PlyCount "84"]
 
@@ -7123,6 +7965,8 @@ Qe4+ 39. Rf3 Qd5 40. Qxf7+ Qxf7 41. Rfxf7 Rc8 42. Rxc8 Rxc8 0-1
 [Result "0-1"]
 [WhiteElo "1605"]
 [BlackElo "1930"]
+[ECO "D94"]
+[Opening "Gruenfeld with e3    Bd3"]
 [EventDate "1998.??.??"]
 [PlyCount "60"]
 
@@ -7141,6 +7985,8 @@ f4 Nxe3 15. Rxe3 Bd4 16. Qf3 Qb6 17. Nd1 Bg4 18. Qxg4 Bxe3+ 19. Kh1 cxd5
 [Result "0-1"]
 [WhiteElo "1900"]
 [BlackElo "2000"]
+[ECO "A80"]
+[Opening "Dutch"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -7158,6 +8004,9 @@ Qg4 33. Bf2 Nh4+ 34. R5xh4 Qxe2 35. Rh6 Qf3+ 36. Kg1 Rxg3+ 0-1
 [White "Heseltine Nutch, Ka"]
 [Black "Jurjans, Mn"]
 [Result "0-1"]
+[ECO "B23"]
+[Opening "Sicilian"]
+[Variation "closed"]
 [EventDate "1998.??.??"]
 [PlyCount "106"]
 
@@ -7178,6 +8027,8 @@ Rb3+ 50. Kg4 h5+ 51. Kg5 Kh7 52. Nc4 Rg3+ 53. Kf6 Rg4 0-1
 [White "Moser, D."]
 [Black "Sengupta, O."]
 [Result "1-0"]
+[ECO "C50"]
+[Opening "Giuoco Pianissimo"]
 [EventDate "1998.??.??"]
 [PlyCount "59"]
 
@@ -7194,6 +8045,8 @@ axb4 Na7 27. Rh5 c6 28. Rf5 Qxf5 29. Qxf5 d5 30. e5 1-0
 [White "Heseltine Nutch, Ka"]
 [Black "Nowicki, G."]
 [Result "1-0"]
+[ECO "A00"]
+[Opening "Dunst (Sleipner, Heinrichsen) opening"]
 [EventDate "1998.??.??"]
 [PlyCount "83"]
 
@@ -7212,6 +8065,8 @@ Qe8+ Bf8 26. Bxe6 fxe6 27. Qxe6+ Kg7 28. Qa2 d5 29. Qxa5 d4 30. Qe5+ Kf7
 [White "Sengupta, O."]
 [Black "Papp, S."]
 [Result "0-1"]
+[ECO "C55"]
+[Opening "Two knights defence"]
 [EventDate "1998.??.??"]
 [PlyCount "52"]
 
@@ -7230,6 +8085,9 @@ Bxb2+ 26. Kb1 Na3# 0-1
 [Result "0-1"]
 [WhiteElo "1930"]
 [BlackElo "1900"]
+[ECO "D00"]
+[Opening "Queen's pawn"]
+[Variation "stonewall attack"]
 [EventDate "1998.??.??"]
 [PlyCount "80"]
 
@@ -7250,6 +8108,9 @@ Qxf4 39. Rxc3 Qxh4+ 40. Kg1 Qe1+ 0-1
 [Result "1-0"]
 [WhiteElo "2000"]
 [BlackElo "1925"]
+[ECO "C69"]
+[Opening "Ruy Lopez"]
+[Variation "exchange variation, 5.O-O"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -7267,6 +8128,8 @@ Rf1 1-0
 [White "Jurjans, Mk"]
 [Black "Patterson, J."]
 [Result "1-0"]
+[ECO "D02"]
+[Opening "Queen's bishop game"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -7284,6 +8147,8 @@ Nd4 Bxh3 21. Bxh5 Be6 22. Rae1 Rd8 23. Re3 Rd7 24. Rg3 1-0
 [Result "1/2-1/2"]
 [WhiteElo "1605"]
 [BlackElo "1850"]
+[ECO "D25"]
+[Opening "QGA, Smyslov variation"]
 [EventDate "1998.??.??"]
 [PlyCount "160"]
 
@@ -7309,6 +8174,8 @@ Bc3 Kf5 77. Kf3 Kxg5 78. Bb2 Kf5 79. Bg7 Ke6 80. Bh6 Kd5 1/2-1/2
 [Black "Majstorovic, A."]
 [Result "1-0"]
 [WhiteElo "1730"]
+[ECO "C51"]
+[Opening "Evans gambit declined"]
 [EventDate "1998.??.??"]
 [PlyCount "35"]
 
@@ -7324,6 +8191,8 @@ Nxf7 Rxf7 9. Bxf7+ Kf8 10. d3 Ng4 11. Bh5 Bxf2+ 12. Ke2 Nh6 13. Bxh6 Bg4+
 [Black "Khan, Z."]
 [Result "0-1"]
 [BlackElo "2100"]
+[ECO "C45"]
+[Opening "Scotch game"]
 [EventDate "1998.??.??"]
 [PlyCount "60"]
 
@@ -7342,6 +8211,8 @@ f3 Nxc3 26. Nac4 Nd5 27. g3 Nxe3 28. Nxe3 Rd3 29. Ng2 Rxe1+ 30. Nxe1 Rd1
 [Black "Oraha, Z."]
 [Result "0-1"]
 [BlackElo "1755"]
+[ECO "A03"]
+[Opening "Bird's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "38"]
 
@@ -7357,6 +8228,8 @@ Nb4 15. Be2 Rc2 16. Ne5 Bb5 17. Bg4 Ne4+ 18. Ke1 Rxd2 19. Qf3 Nc2# 0-1
 [Black "Jurjans, Mn"]
 [Result "1-0"]
 [WhiteElo "1785"]
+[ECO "B20"]
+[Opening "Sicilian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "29"]
 
@@ -7373,6 +8246,9 @@ Bd1 Kh8 15. Nd5 1-0
 [Result "1-0"]
 [WhiteElo "2275"]
 [BlackElo "1665"]
+[ECO "D50"]
+[Opening "QGD"]
+[Variation "4.Bg5"]
 [EventDate "1998.??.??"]
 [PlyCount "111"]
 
@@ -7395,6 +8271,9 @@ Rxh6 1-0
 [Black "Morgan, B."]
 [Result "1-0"]
 [WhiteElo "1755"]
+[ECO "C80"]
+[Opening "Ruy Lopez"]
+[Variation "open (Tarrasch) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "77"]
 
@@ -7414,6 +8293,9 @@ Qxf8 38. Qd4+ Kg8 39. Bc4+ 1-0
 [Black "Moser, D."]
 [Result "1-0"]
 [WhiteElo "2015"]
+[ECO "D37"]
+[Opening "QGD"]
+[Variation "4.Nf3"]
 [EventDate "1998.??.??"]
 [PlyCount "81"]
 
@@ -7433,6 +8315,9 @@ Nd6 Rf8 39. h6+ Kh7 40. Nxf7 Rxf7 41. Rxf7+ 1-0
 [Black "Fragakos, A."]
 [Result "0-1"]
 [BlackElo "1910"]
+[ECO "A05"]
+[Opening "Reti"]
+[Variation "King's Indian attack"]
 [EventDate "1998.??.??"]
 [PlyCount "100"]
 
@@ -7454,6 +8339,9 @@ Kd4+ 0-1
 [Black "Chiroiu, P."]
 [Result "0-1"]
 [BlackElo "1735"]
+[ECO "C50"]
+[Opening "Giuoco Piano"]
+[Variation "four knights variation"]
 [EventDate "1998.??.??"]
 [PlyCount "97"]
 
@@ -7474,6 +8362,8 @@ Ra2 Nxf3+ 21. gxf3 e4 22. fxe4 Nxe4 23. Kg2 Nf6 24. Nc3 Nd5 25. Ne4 Nf4+
 [Black "Ortiz, H."]
 [Result "0-1"]
 [BlackElo "1680"]
+[ECO "A45"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "90"]
 
@@ -7495,6 +8385,8 @@ Qg2+ 45. Ke1 Rh1# 0-1
 [Result "0-1"]
 [WhiteElo "1755"]
 [BlackElo "2275"]
+[ECO "B03"]
+[Opening "Alekhine's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "36"]
 
@@ -7511,6 +8403,9 @@ Qg2+ 45. Ke1 Rh1# 0-1
 [Result "1-0"]
 [WhiteElo "2100"]
 [BlackElo "1755"]
+[ECO "D37"]
+[Opening "QGD"]
+[Variation "4.Nf3"]
 [EventDate "1998.??.??"]
 [PlyCount "93"]
 
@@ -7532,6 +8427,8 @@ Bc8 33. Re1 Bd7 34. b3 a5 35. Qc3+ Qf6 36. Qg3 Rd8 37. Qc7 Kf8 38. d6 Be8
 [Result "0-1"]
 [WhiteElo "1735"]
 [BlackElo "2015"]
+[ECO "D03"]
+[Opening "Torre attack (Tartakower variation)"]
 [EventDate "1998.??.??"]
 [PlyCount "50"]
 
@@ -7549,6 +8446,8 @@ Qh4 21. Qf3 Rd7 22. Kf1 Qd8 23. Qe2 Qc8 24. Qc2 Ba6+ 25. Kg1 c4 0-1
 [Result "1-0"]
 [WhiteElo "1910"]
 [BlackElo "1730"]
+[ECO "B53"]
+[Opening "Sicilian, Chekhover variation"]
 [EventDate "1998.??.??"]
 [PlyCount "39"]
 
@@ -7566,6 +8465,8 @@ Kf8 20. Bxd6+ 1-0
 [Result "0-1"]
 [WhiteElo "1680"]
 [BlackElo "1785"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "96"]
 
@@ -7585,6 +8486,8 @@ g3 h5 33. Qf3 Kf7 34. Qb7 Qd6 35. Qf3 a5 36. Kg2 h4 37. e4 Kg7 38. Qe2 b4
 [White "Lau, D."]
 [Black "Pavez, S."]
 [Result "1/2-1/2"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "105"]
 
@@ -7606,6 +8509,9 @@ Rb3 39. axb3 g5 40. Nd3 a6 41. Qa1 h6 42. Nxf6+ Kh8 43. Ng4+ Kh7 44. Qe1 a5
 [Black "Pavez, M."]
 [Result "1-0"]
 [WhiteElo "1665"]
+[ECO "B07"]
+[Opening "Pirc"]
+[Variation "Byrne variation"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -7623,6 +8529,9 @@ Qh7+ Ke6 33. Qg8# 1-0
 [White "Morgan, B."]
 [Black "Mitchell, J."]
 [Result "1-0"]
+[ECO "C42"]
+[Opening "Petrov"]
+[Variation "Italian variation"]
 [EventDate "1998.??.??"]
 [PlyCount "99"]
 
@@ -7643,6 +8552,8 @@ Rcf7+ Ke8 45. Rb7 Be7 46. Rgxe7+ Kf8 47. Bh6+ Kg8 48. Rh7 h4 49. Rbg7+ Kf8
 [White "Moser, D."]
 [Black "Zhao, Y."]
 [Result "1-0"]
+[ECO "C50"]
+[Opening "Giuoco Pianissimo"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -7659,6 +8570,8 @@ Bxc4 Bb6 16. Bxe6 fxe6 17. Qxc6 Re8 18. Bb2 Qd7 19. Nxe5 Qe7 20. Rac1 Ra7
 [White "Majstorovic, A."]
 [Black "Nowicki, G."]
 [Result "0-1"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "48"]
 
@@ -7674,6 +8587,9 @@ Rxa1 Ne4 21. Rd1 Ng3 22. Rd7+ Bxd7 23. hxg3 fxg3 24. f4 Re1# 0-1
 [White "Jurjans, Mn"]
 [Black "Wong, W."]
 [Result "1-0"]
+[ECO "B01"]
+[Opening "Scandinavian"]
+[Variation "Marshall variation"]
 [EventDate "1998.??.??"]
 [PlyCount "43"]
 
@@ -7691,6 +8607,8 @@ Rxa1 Ne4 21. Rd1 Ng3 22. Rd7+ Bxd7 23. hxg3 fxg3 24. f4 Re1# 0-1
 [Result "1/2-1/2"]
 [WhiteElo "2015"]
 [BlackElo "1785"]
+[ECO "A13"]
+[Opening "English opening"]
 [EventDate "1998.??.??"]
 [PlyCount "165"]
 
@@ -7718,6 +8636,9 @@ Nd4+ 81. Kd5 Nf3 82. Bg3 Kb7 83. Ke4 1/2-1/2
 [Result "0-1"]
 [WhiteElo "1665"]
 [BlackElo "1755"]
+[ECO "B07"]
+[Opening "Pirc"]
+[Variation "Byrne variation"]
 [EventDate "1998.??.??"]
 [PlyCount "159"]
 
@@ -7743,6 +8664,8 @@ Ke4 75. Kg5 Kf3 76. d5 Nxg3 77. Bxg3 Kxg3 78. d6 Be8 79. Kf6 h5 80. Kg5 0-1
 [Black "Moser, D."]
 [Result "1/2-1/2"]
 [WhiteElo "1755"]
+[ECO "C25"]
+[Opening "Vienna game"]
 [EventDate "1998.??.??"]
 [PlyCount "144"]
 
@@ -7767,6 +8690,8 @@ Rf4+ Ke5 69. Rf8 Rd6 70. g4 hxg4+ 71. Kxg4 Rf6 72. Rxf6 Kxf6 1/2-1/2
 [Black "Chiroiu, P."]
 [Result "0-1"]
 [BlackElo "1735"]
+[ECO "A05"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "114"]
 
@@ -7789,6 +8714,9 @@ Kh8 Ke6 56. Kg8 Kf6 57. Kh8 Qg7# 0-1
 [Black "Ortiz, H."]
 [Result "0-1"]
 [BlackElo "1680"]
+[ECO "B18"]
+[Opening "Caro-Kann"]
+[Variation "classical variation"]
 [EventDate "1998.??.??"]
 [PlyCount "52"]
 
@@ -7805,6 +8733,8 @@ Qh8+ Qd8 26. Qxg7 Rd1# 0-1
 [White "Mitchell, J."]
 [Black "Majstorovic, A."]
 [Result "1-0"]
+[ECO "C45"]
+[Opening "Scotch game"]
 [EventDate "1998.??.??"]
 [PlyCount "31"]
 
@@ -7819,6 +8749,8 @@ Bg4 14. f3 Bf5 15. O-O-O Re6 16. Rd8# 1-0
 [White "Zhao, Y."]
 [Black "Wong, W."]
 [Result "1-0"]
+[ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "88"]
 
@@ -7840,6 +8772,8 @@ b7 Kh7 39. Rc8 Rxc8 40. bxc8=Q h3 41. Qxf5+ Kh6 42. Qg5+ Kh7 43. Kg3 Kh8
 [Result "1/2-1/2"]
 [WhiteElo "2275"]
 [BlackElo "2015"]
+[ECO "A15"]
+[Opening "English opening"]
 [EventDate "1998.??.??"]
 [PlyCount "67"]
 
@@ -7859,6 +8793,9 @@ dxc5 Bxc5 28. Qf2 Bxe3 29. Qxe3 Nc4 30. Bxc4 bxc4 31. Rac1 e5 32. Rc3 Red8
 [Result "1/2-1/2"]
 [WhiteElo "1910"]
 [BlackElo "2100"]
+[ECO "C01"]
+[Opening "French"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "61"]
 
@@ -7878,6 +8815,9 @@ Rxe5 20. Bxe5 Re8 21. Bg3 b6 22. h3 Bc5 23. b3 Kf8 24. a4 Be6 25. Bxe6 Rxe6
 [Result "1-0"]
 [WhiteElo "1755"]
 [BlackElo "1735"]
+[ECO "D53"]
+[Opening "QGD"]
+[Variation "4.Bg5 Be7"]
 [EventDate "1998.??.??"]
 [PlyCount "125"]
 
@@ -7902,6 +8842,8 @@ Kd5 51. e6 Nc7 52. e7 Kd6 53. Ke4 Kxe7 54. Kf5 Kf7 55. Nd3 Ke7 56. Kg6 Ne6
 [Result "1/2-1/2"]
 [WhiteElo "1680"]
 [BlackElo "1755"]
+[ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "78"]
 
@@ -7921,6 +8863,8 @@ Qe1 Kh7 39. Qc1 Bf7 1/2-1/2
 [Black "Morgan, B."]
 [Result "1-0"]
 [WhiteElo "1730"]
+[ECO "C56"]
+[Opening "Two knights defence"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -7936,6 +8880,8 @@ Rd5 20. Bh8 Kh7 21. Rxf8 f6 22. Rf7+ Kxh8 23. Qxf6+ Kg8 24. Qg7# 1-0
 [White "Moser, D."]
 [Black "Pavez, S."]
 [Result "1-0"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "33"]
 
@@ -7952,6 +8898,8 @@ Qxg4 Re8 15. Bh6 g6 16. Qd4 c5 17. Qg7# 1-0
 [Result "1-0"]
 [WhiteElo "1825"]
 [BlackElo "1665"]
+[ECO "C46"]
+[Opening "Three knights game"]
 [EventDate "1998.??.??"]
 [PlyCount "71"]
 
@@ -7969,6 +8917,8 @@ axb6 33. Ra6 Rc8 34. Ra8+ Kxa8 35. Qxc8+ Rb8 36. Qa6# 1-0
 [White "Benggawan, Al"]
 [Black "Nowicki, G."]
 [Result "1-0"]
+[ECO "A45"]
+[Opening "Trompovsky attack (Ruth, Opovcensky opening)"]
 [EventDate "1998.??.??"]
 [PlyCount "99"]
 
@@ -7989,6 +8939,9 @@ Rc1# 1-0
 [White "Mitchell, J."]
 [Black "Jurjans, Mn"]
 [Result "1-0"]
+[ECO "B70"]
+[Opening "Sicilian"]
+[Variation "dragon variation"]
 [EventDate "1998.??.??"]
 [PlyCount "79"]
 
@@ -8007,6 +8960,8 @@ Rc1# 1-0
 [White "Pavez, M."]
 [Black "Zhao, Y."]
 [Result "0-1"]
+[ECO "A03"]
+[Opening "Bird's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "98"]
 
@@ -8026,6 +8981,8 @@ Rxg2 fxg2+ 40. Kf2 Ra8 41. Rxh6 Rf8+ 42. Ke2 g1=Q 43. Bh7+ Kg7 44. Rh3 Qg2+
 [White "Wong, W."]
 [Black "Majstorovic, A."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "45"]
 
@@ -8043,6 +9000,9 @@ Rxg6+ 21. Kh1 Rg4 22. Ng5 Be7 23. Qh8# 1-0
 [Result "0-1"]
 [WhiteElo "1785"]
 [BlackElo "2275"]
+[ECO "B02"]
+[Opening "Alekhine's defence"]
+[Variation "Maroczy variation"]
 [EventDate "1998.??.??"]
 [PlyCount "114"]
 
@@ -8066,6 +9026,9 @@ Qf2+ 51. Qxf2+ Kxf2 52. a4 d4 53. b5 d3 54. b6 d2 55. b7 d1=Q 56. b8=Q Qg1+
 [Result "1-0"]
 [WhiteElo "2100"]
 [BlackElo "2015"]
+[ECO "D46"]
+[Opening "QGD semi-Slav"]
+[Variation "Bogolyubov variation"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -8085,6 +9048,9 @@ Qxc6+ Kf5 32. Qxf6+ Kg4 33. Qg5# 1-0
 [Result "0-1"]
 [WhiteElo "1730"]
 [BlackElo "1755"]
+[ECO "B07"]
+[Opening "Pirc"]
+[Variation "Holmov system"]
 [EventDate "1998.??.??"]
 [PlyCount "90"]
 
@@ -8105,6 +9071,9 @@ Rxf2 45. Rb7 Rg2 0-1
 [Black "Ortiz, H."]
 [Result "0-1"]
 [BlackElo "1680"]
+[ECO "B10"]
+[Opening "Caro-Kann"]
+[Variation "Hillbilly attack"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -8122,6 +9091,9 @@ Bxb2 27. Qxb2 dxc4 28. bxc4 Nc5 29. Red1 Nxa4 30. Rxd8+ Rxd8 31. Qb5 Nc5
 [White "Zhao, Y."]
 [Black "Mitchell, J."]
 [Result "0-1"]
+[ECO "C43"]
+[Opening "Petrov"]
+[Variation "modern (Steinitz) attack"]
 [EventDate "1998.??.??"]
 [PlyCount "64"]
 
@@ -8140,6 +9112,8 @@ Rxb4+ 32. Ka1 Rf1+ 0-1
 [Black "Benggawan, Al"]
 [Result "1-0"]
 [WhiteElo "1735"]
+[ECO "D03"]
+[Opening "Torre attack (Tartakower variation)"]
 [EventDate "1998.??.??"]
 [PlyCount "99"]
 
@@ -8162,6 +9136,9 @@ f8=Q 1-0
 [Result "1-0"]
 [WhiteElo "1755"]
 [BlackElo "1825"]
+[ECO "B13"]
+[Opening "Caro-Kann"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -8178,6 +9155,8 @@ Kh8 27. Qh5 Qa7 28. fxe6 fxe6 29. Rfe1 Rb6 1-0
 [White "Morgan, B."]
 [Black "Pavez, S."]
 [Result "1-0"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "23"]
 
@@ -8192,6 +9171,9 @@ Bxe7 Kxe7 9. Qxg4 e5 10. Qxg7 Rd8 11. Nd5+ Ke8 12. Qg8# 1-0
 [Black "Jurjans, Mn"]
 [Result "1-0"]
 [WhiteElo "1665"]
+[ECO "B70"]
+[Opening "Sicilian"]
+[Variation "dragon variation"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -8208,6 +9190,9 @@ Rc3 26. Rb2 Rxa3 27. Rcxc2 d5 28. Ra2 Rxa2 29. Rxa2 1-0
 [White "Nowicki, G."]
 [Black "Wong, W."]
 [Result "1-0"]
+[ECO "A05"]
+[Opening "Reti"]
+[Variation "King's Indian attack"]
 [EventDate "1998.??.??"]
 [PlyCount "121"]
 
@@ -8229,6 +9214,8 @@ Qd6+ Ke8 57. Qc7 Kf8 58. Kd6 Ke8 59. Ke5 Kf8 60. Ke6 Ke8 61. Qb8# 1-0
 [White "Majstorovic, A."]
 [Black "Pavez, M."]
 [Result "0-1"]
+[ECO "A41"]
+[Opening "Queen's Pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "98"]
 
@@ -8249,6 +9236,9 @@ Nxa2 39. Qh6 Re7 40. h3 Qe8 41. Kh2 Nb4 42. Rf3 Nc2 43. Rg3 Rg7 44. b3 Ne3
 [Black "Oraha, Z."]
 [Result "1/2-1/2"]
 [BlackElo "1755"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance, Paulsen attack"]
 [EventDate "1998.??.??"]
 [PlyCount "161"]
 
@@ -8275,6 +9265,9 @@ Kf6 75. Kf4 Kf7 76. Kg5 Kg7 77. f6+ Kf7 78. Kf5 Kf8 79. Kg6 Kg8 80. f7+ Kf8
 [Black "Zoccano, J."]
 [Result "0-1"]
 [BlackElo "1795"]
+[ECO "A52"]
+[Opening "Budapest"]
+[Variation "Adler variation"]
 [EventDate "1998.??.??"]
 [PlyCount "94"]
 
@@ -8296,6 +9289,9 @@ Rh8+ Kb7 44. h4 a4 45. Rf8 Re4 46. Rf2 Rxe3 47. g6 Re8 0-1
 [Result "0-1"]
 [WhiteElo "1665"]
 [BlackElo "1920"]
+[ECO "B70"]
+[Opening "Sicilian"]
+[Variation "dragon variation"]
 [EventDate "1998.??.??"]
 [PlyCount "62"]
 
@@ -8313,6 +9309,8 @@ Re2 e4 27. Qa3 Re8 28. Qa4 Rd8 29. Ref2 Be5 30. g3 Qxh3+ 31. Rh2 Qxf1# 0-1
 [Black "Armstrong, D."]
 [Result "1-0"]
 [WhiteElo "1890"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -8331,6 +9329,8 @@ Rf6 32. Qc7+ Re7 33. Qxc6 Kg6 34. Nd4 Nd2 35. Rxe6 Rfxe6 36. Nxe6 Kf5 1-0
 [Black "Moser, D."]
 [Result "1-0"]
 [WhiteElo "1775"]
+[ECO "C41"]
+[Opening "Philidor's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "95"]
 
@@ -8351,6 +9351,8 @@ Ne4+ Kg6 45. Ncd2 Ra2 46. d4 Ra4 47. d5 Rd4 48. d6 1-0
 [Black "Diaz, L."]
 [Result "1-0"]
 [WhiteElo "1680"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -8368,6 +9370,9 @@ Be5 Bxe5 27. d8=Q Bf6 28. Qxb6 Kh6 29. Qxf6 1-0
 [Black "Morgan, A."]
 [Result "0-1"]
 [BlackElo "1665"]
+[ECO "C50"]
+[Opening "Giuoco Piano"]
+[Variation "four knights variation"]
 [EventDate "1998.??.??"]
 [PlyCount "78"]
 
@@ -8386,6 +9391,9 @@ c4 bxc4 27. dxc4 Rc6 28. Rdg1 g6 29. R1g2 Kg7 30. Rh2 gxh3 31. Rhxh3 Qd1+
 [White "Armstrong, D."]
 [Black "Moser, D."]
 [Result "1-0"]
+[ECO "D11"]
+[Opening "QGD Slav"]
+[Variation "3.Nf3"]
 [EventDate "1998.??.??"]
 [PlyCount "51"]
 
@@ -8403,6 +9411,8 @@ O-O 15. Nd2 Bg6 16. f4 b5 17. Nf3 Rac8 18. Ne5 Be8 19. Bf3 Nb8 20. Ne2 Rxc1
 [Result "0-1"]
 [WhiteElo "1920"]
 [BlackElo "1795"]
+[ECO "D04"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -8421,6 +9431,8 @@ Nxd5 cxd5 21. Qxd7 Nxd7 22. Bxd5 Nf6 23. Bb3 Re2 24. Rf2 Rae8 25. Kf1 Rxf2+
 [Black "Pretti, J."]
 [Result "1-0"]
 [WhiteElo "1755"]
+[ECO "C30"]
+[Opening "King's gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "59"]
 
@@ -8439,6 +9451,8 @@ Nxd5 15. exd5 f5 16. c4 Qd6 17. g4 f4 18. Bf2 b6 19. Ne4 Qg6 20. Rae1 Nb3
 [Result "1-0"]
 [WhiteElo "1755"]
 [BlackElo "1635"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -8458,6 +9472,9 @@ Rd6 32. Nxf6 Kxf6 33. Ra6 1-0
 [Result "1-0"]
 [WhiteElo "1775"]
 [BlackElo "1890"]
+[ECO "C46"]
+[Opening "Four knights"]
+[Variation "Italian variation"]
 [EventDate "1998.??.??"]
 [PlyCount "103"]
 
@@ -8480,6 +9497,8 @@ Ra1 Ra8 40. Qxb6 Qxb6 41. Rxb6 Nxe4 42. Ra6 Rb8 43. c4 Ng3+ 44. Kg1 Nxf5
 [Result "0-1"]
 [WhiteElo "1680"]
 [BlackElo "1920"]
+[ECO "D02"]
+[Opening "Queen's bishop game"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -8498,6 +9517,8 @@ Nxa6 Be3+ 27. Kf1 Bxd4 28. Rd1 Bxe5 29. Ke2 Rxa3 0-1
 [Result "1/2-1/2"]
 [WhiteElo "1795"]
 [BlackElo "1775"]
+[ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "94"]
 
@@ -8518,6 +9539,8 @@ Kg3 Qa8 46. Qc2 Qc8 47. Rh1 Qe8 1/2-1/2
 [Black "Diaz, L."]
 [Result "1-0"]
 [WhiteElo "1890"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -8535,6 +9558,9 @@ a4+ Kc5 32. Rc1+ Kd5 33. Qxc6+ 1-0
 [White "Moser, D."]
 [Black "Papp, S."]
 [Result "1-0"]
+[ECO "C24"]
+[Opening "Bishop's opening"]
+[Variation "Berlin defence"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -8553,6 +9579,9 @@ Ne5 21. Qxf4 Bxf1 22. Nxe5 Rxe5 23. Bxf7+ Kh8 24. Qxe5 Qd3 25. Rfxf1 Rd8
 [Result "1-0"]
 [WhiteElo "1755"]
 [BlackElo "1755"]
+[ECO "B76"]
+[Opening "Sicilian"]
+[Variation "dragon, Yugoslav attack, Rauser variation"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -8571,6 +9600,8 @@ Bxg7+ Qxg7 27. Qd3 Kg8 28. Rh2 Be8 29. Nf5 Bg6 30. Nxe7+ Qxe7 31. Qxg6+ Qg7
 [Black "Armstrong, D."]
 [Result "1/2-1/2"]
 [WhiteElo "1665"]
+[ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "92"]
 
@@ -8592,6 +9623,8 @@ g4 h4 45. Kxe3 Kf6 46. Kd3 Ke7 1/2-1/2
 [Result "1-0"]
 [WhiteElo "1920"]
 [BlackElo "1775"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "59"]
 
@@ -8610,6 +9643,8 @@ Ka7 26. b4 Qg5 27. Ra1 Qd2 28. Qe1 Qd3 29. Qg3 Qe2 30. Qxg7+ 1-0
 [Result "1-0"]
 [WhiteElo "1665"]
 [BlackElo "1890"]
+[ECO "C53"]
+[Opening "Giuoco Piano"]
 [EventDate "1998.??.??"]
 [PlyCount "71"]
 
@@ -8627,6 +9662,9 @@ Rf1 f6 33. g4 Rc6 34. Raa1 b5 35. Rad1 Bc7 36. Rd7+ 1-0
 [White "Diaz, L."]
 [Black "Moser, D."]
 [Result "0-1"]
+[ECO "C41"]
+[Opening "Philidor"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "62"]
 
@@ -8646,6 +9684,8 @@ Qxf2# 0-1
 [Result "1-0"]
 [WhiteElo "1795"]
 [BlackElo "1755"]
+[ECO "A46"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "126"]
 
@@ -8669,6 +9709,8 @@ Kf2 63. Qf7+ Kg1 1-0
 [Black "Armstrong, D."]
 [Result "0-1"]
 [WhiteElo "1755"]
+[ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "88"]
 
@@ -8689,6 +9731,9 @@ e6 Kc6 0-1
 [Black "Zoccano, J."]
 [Result "1/2-1/2"]
 [BlackElo "1795"]
+[ECO "D11"]
+[Opening "QGD Slav"]
+[Variation "4.e3"]
 [EventDate "1998.??.??"]
 [PlyCount "135"]
 
@@ -8713,6 +9758,9 @@ Be5 Kg2 64. Bd6 d4+ 65. Kd3 Kf3 66. Be5 Nxf4+ 67. Kxd4 Ne2+ 68. Kc5 1/2-1/2
 [Result "1-0"]
 [WhiteElo "1635"]
 [BlackElo "1665"]
+[ECO "C30"]
+[Opening "KGD"]
+[Variation "classical variation"]
 [EventDate "1998.??.??"]
 [PlyCount "87"]
 
@@ -8733,6 +9781,8 @@ Ra1 Rg7 40. Rg1 Kg8 41. g6 hxg6 42. Bh6 Rh7 43. Rxg6+ Kh8 44. Qf6+ 1-0
 [Result "0-1"]
 [WhiteElo "1775"]
 [BlackElo "1755"]
+[ECO "B30"]
+[Opening "Sicilian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "80"]
 
@@ -8752,6 +9802,9 @@ Rg2+ 39. Kh1 e3 40. Rf1 Rf2 0-1
 [Black "Kaczmarek, B."]
 [Result "0-1"]
 [BlackElo "1890"]
+[ECO "C24"]
+[Opening "Bishop's opening"]
+[Variation "Berlin defence"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -8770,6 +9823,8 @@ Kh2 Rf2+ 33. Kh3 Qg2+ 34. Kh4 Qh2+ 35. Kg4 0-1
 [Black "Hush, J."]
 [Result "1/2-1/2"]
 [BlackElo "1635"]
+[ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "67"]
 
@@ -8789,6 +9844,9 @@ Rbd1 g5 34. h3 1/2-1/2
 [Result "1-0"]
 [WhiteElo "1890"]
 [BlackElo "1795"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance, Milner-Barry gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "85"]
 
@@ -8808,6 +9866,9 @@ g4 Qxa3 39. Rh3 Kf8 40. Qh8+ Ke7 41. Qxg7 Qb3 42. Rh8 Qb6 43. g5 1-0
 [Black "Morgan, A."]
 [Result "1-0"]
 [BlackElo "1665"]
+[ECO "C24"]
+[Opening "Bishop's opening"]
+[Variation "Berlin defence"]
 [EventDate "1998.??.??"]
 [PlyCount "97"]
 
@@ -8827,6 +9888,8 @@ Qxc7 45. Qxc7+ Kg6 46. Qc6+ Kf7 47. Qxb5 Kf6 48. Qc4 Kf5 49. Kf1 1-0
 [White "Pretti, J."]
 [Black "Papp, S."]
 [Result "1-0"]
+[ECO "C50"]
+[Opening "Giuoco Pianissimo"]
 [EventDate "1998.??.??"]
 [PlyCount "35"]
 
@@ -8843,6 +9906,8 @@ fxe4 15. Bxc4+ d5 16. dxe4 Qh4+ 17. Kg1 Qxe4 18. Bxd5+ 1-0
 [Result "0-1"]
 [WhiteElo "1775"]
 [BlackElo "1755"]
+[ECO "B54"]
+[Opening "Sicilian"]
 [EventDate "1998.??.??"]
 [PlyCount "82"]
 
@@ -8863,6 +9928,9 @@ Qxd7 33. Qxc5 Qd5+ 34. f3 Qxc5 35. bxc5 f5 36. g4 Kf7 37. Kg3 g5 38. a3 f4+
 [Result "0-1"]
 [WhiteElo "1755"]
 [BlackElo "1920"]
+[ECO "B78"]
+[Opening "Sicilian"]
+[Variation "dragon, Yugoslav attack, 10.O-O-O"]
 [EventDate "1998.??.??"]
 [PlyCount "54"]
 
@@ -8880,6 +9948,8 @@ Rxg6 Bxe4 27. Rxg7+ Kxg7 0-1
 [Black "Sengupta, O."]
 [Result "1-0"]
 [BlackElo "1725"]
+[ECO "A00"]
+[Opening "Dunst (Sleipner, Heinrichsen) opening"]
 [EventDate "1998.??.??"]
 [PlyCount "31"]
 
@@ -8895,6 +9965,9 @@ Ng5 Nde5 15. Qe2 Nxc4 16. Qxe8+ 1-0
 [Black "Khan, Z."]
 [Result "0-1"]
 [BlackElo "2100"]
+[ECO "C48"]
+[Opening "Four knights"]
+[Variation "Spanish variation"]
 [EventDate "1998.??.??"]
 [PlyCount "60"]
 
@@ -8913,6 +9986,8 @@ Qd2 26. Rf1 Rd7 27. Ra1 Qxf2+ 28. Kh1 Be3 29. Qb4+ c5 30. Qc3 Qf3# 0-1
 [Result "0-1"]
 [WhiteElo "1725"]
 [BlackElo "1940"]
+[ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "36"]
 
@@ -8928,6 +10003,9 @@ Na3 b5 15. Bd1 b4 16. Nb1 Bxb1 17. Rxb1 bxc3 18. Qe2 c2+ 0-1
 [Black "Heseltine Nutch, Ka"]
 [Result "1-0"]
 [WhiteElo "2100"]
+[ECO "E58"]
+[Opening "Nimzo-Indian"]
+[Variation "4.e3, main line with 8...Bxc3"]
 [EventDate "1998.??.??"]
 [PlyCount "45"]
 
@@ -8943,6 +10021,8 @@ Bxe5 a6 21. Qf4 Rd8 22. Bxg6 hxg6 23. Qh6+ 1-0
 [White "Beharic, S."]
 [Black "Zhao, Y."]
 [Result "1-0"]
+[ECO "C46"]
+[Opening "Three knights game"]
 [EventDate "1998.??.??"]
 [PlyCount "49"]
 
@@ -8958,6 +10038,8 @@ Nxe5 Nxe5 21. c4 N7g6 22. Rd7 Nxd7 23. Qxe4 Rfe8 24. Qd4 bxc4 25. Qxg7# 1-0
 [White "Hush, B."]
 [Black "Knezevic, A."]
 [Result "0-1"]
+[ECO "B30"]
+[Opening "Sicilian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "82"]
 
@@ -8977,6 +10059,8 @@ Rxb3 38. Kf2 a5 39. Kg3 a4 40. Kg4 a3 41. f4 a2 0-1
 [Black "Sengupta, O."]
 [Result "0-1"]
 [BlackElo "1725"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "32"]
 
@@ -8991,6 +10075,9 @@ Ne4 15. Qxd8+ Rxd8 16. Bxg7 Rd2# 0-1
 [White "Heseltine Nutch, Ka"]
 [Black "Zhao, Y."]
 [Result "1-0"]
+[ECO "D06"]
+[Opening "QGD"]
+[Variation "Marshall defence"]
 [EventDate "1998.??.??"]
 [PlyCount "75"]
 
@@ -9011,6 +10098,8 @@ Kf6 38. g4 1-0
 [Result "1/2-1/2"]
 [WhiteElo "1940"]
 [BlackElo "2100"]
+[ECO "E20"]
+[Opening "Nimzo-Indian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "102"]
 
@@ -9031,6 +10120,9 @@ Rc4+ 51. Kb2 Rcc3 1/2-1/2
 [White "Beharic, S."]
 [Black "Hush, B."]
 [Result "1-0"]
+[ECO "C64"]
+[Opening "Ruy Lopez"]
+[Variation "classical (Cordel) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "113"]
 
@@ -9054,6 +10146,9 @@ Qe5+ Kh7 57. Qg7# 1-0
 [Result "0-1"]
 [WhiteElo "1725"]
 [BlackElo "2100"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance, Milner-Barry gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "84"]
 
@@ -9072,6 +10167,8 @@ h4 g6 39. h5 gxh5 40. gxh5 f5 41. h6 Kc5 42. Ke3 Kc4 0-1
 [White "Knezevic, A."]
 [Black "Zhao, Y."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "45"]
 
@@ -9088,6 +10185,8 @@ h4 g6 39. h5 gxh5 40. gxh5 f5 41. h6 Kc5 42. Ke3 Kc4 0-1
 [Black "Beharic, S."]
 [Result "1-0"]
 [WhiteElo "1940"]
+[ECO "A53"]
+[Opening "Old Indian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "118"]
 
@@ -9110,6 +10209,8 @@ d8=Q Rxe7 58. Qxe7+ Kb6 59. Qxc5+ Kb7 1-0
 [Black "Sengupta, O."]
 [Result "0-1"]
 [BlackElo "1725"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1998.??.??"]
 [PlyCount "84"]
 
@@ -9128,6 +10229,8 @@ gxf4 gxf4 39. Ng2 Rc2+ 40. Kf1 Ncd3 41. Kg1 Rc1+ 42. Kh2 Nxf3# 0-1
 [White "Heseltine Nutch, Ka"]
 [Black "Hush, B."]
 [Result "0-1"]
+[ECO "C26"]
+[Opening "Vienna game"]
 [EventDate "1998.??.??"]
 [PlyCount "98"]
 
@@ -9148,6 +10251,9 @@ Kc4 45. Nf6 a4 46. Nxh5 Kc3 47. Ng3 Ng7 48. h5 Nxh5 49. Nxh5 b3 0-1
 [Black "Sengupta, O."]
 [Result "0-1"]
 [BlackElo "1725"]
+[ECO "C17"]
+[Opening "French"]
+[Variation "Winawer, advance variation"]
 [EventDate "1998.??.??"]
 [PlyCount "46"]
 
@@ -9164,6 +10270,9 @@ Rxf2+ 20. Rd2 Rxd2+ 21. Kxd2 Ne4+ 22. Kc2 b5 23. Kd3 Nf2+ 0-1
 [Black "Knezevic, A."]
 [Result "1-0"]
 [WhiteElo "2100"]
+[ECO "D06"]
+[Opening "QGD"]
+[Variation "Marshall defence"]
 [EventDate "1998.??.??"]
 [PlyCount "114"]
 
@@ -9186,6 +10295,8 @@ gxh5 57. gxh5 Kg7 1-0
 [Black "Dobrishman, L."]
 [Result "0-1"]
 [BlackElo "1940"]
+[ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "66"]
 
@@ -9203,6 +10314,8 @@ Bxd6 Qg4+ 27. Bg3 Nf4 28. Re1 Rc8 29. Qb1 Ne2+ 30. Kg2 Nf4+ 31. Kg1 Nbd5
 [White "Beharic, S."]
 [Black "Knezevic, A."]
 [Result "0-1"]
+[ECO "B30"]
+[Opening "Sicilian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "110"]
 
@@ -9224,6 +10337,8 @@ Qf1+ 51. Kg3 Qxd3+ 52. Kg2 Qe2+ 53. Kg1 d3 54. Kh1 d2 55. Kg1 d1=Q# 0-1
 [Black "Khan, Z."]
 [Result "0-1"]
 [BlackElo "2100"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1998.??.??"]
 [PlyCount "30"]
 
@@ -9239,6 +10354,8 @@ Qf1+ 51. Kg3 Qxd3+ 52. Kg2 Qe2+ 53. Kg1 d3 54. Kh1 d2 55. Kg1 d1=Q# 0-1
 [Black "Dobrishman, L."]
 [Result "0-1"]
 [BlackElo "1940"]
+[ECO "A00"]
+[Opening "Dunst (Sleipner, Heinrichsen) opening"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -9257,6 +10374,8 @@ Rb1+ 33. Be1 Bxc4 34. Bxd3 Bxd3+ 35. Kg1 c4 0-1
 [Black "Knezevic, A."]
 [Result "1-0"]
 [WhiteElo "1940"]
+[ECO "E00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "45"]
 
@@ -9272,6 +10391,8 @@ d6 Rc8 21. Na4 Ne8 22. Nb6 Nxc7 23. Nxd7 1-0
 [White "Zhao, Y."]
 [Black "Hush, B."]
 [Result "1/2-1/2"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "141"]
 
@@ -9296,6 +10417,8 @@ Rh6+ Kc5 69. Rxf5+ Rxf5 70. Rxh2 Rf3+ 71. Kb2 1/2-1/2
 [Black "Beharic, S."]
 [Result "1-0"]
 [WhiteElo "1725"]
+[ECO "C41"]
+[Opening "Philidor's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "203"]
 
@@ -9325,6 +10448,9 @@ Kh3 99. Kf5 Kg3 100. Kg5 Kh3 101. Rg4 Kh2 102. Kf4 1-0
 [Black "Zhao, Y."]
 [Result "1-0"]
 [WhiteElo "2100"]
+[ECO "D38"]
+[Opening "QGD"]
+[Variation "Ragozin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "37"]
 
@@ -9340,6 +10466,9 @@ Qa4 Bd7 15. Nxd7 Qxd7 16. d5 exd5 17. exd5 Qxd5 18. Bc4 Qxc4 19. Qxc4+ 1-0
 [Black "Hush, B."]
 [Result "1-0"]
 [WhiteElo "1940"]
+[ECO "D07"]
+[Opening "QGD"]
+[Variation "Chigorin defence"]
 [EventDate "1998.??.??"]
 [PlyCount "105"]
 
@@ -9360,6 +10489,8 @@ g5 Kh7 52. Kf6 Kg8 53. g6 1-0
 [White "Knezevic, A."]
 [Black "Heseltine Nutch, Ka"]
 [Result "1/2-1/2"]
+[ECO "E10"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "90"]
 
@@ -9379,6 +10510,8 @@ Rbf8 1/2-1/2
 [White "Wong, W."]
 [Black "Pavez, S."]
 [Result "1-0"]
+[ECO "A41"]
+[Opening "Queen's Pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "31"]
 
@@ -9393,6 +10526,8 @@ gxh3 Nc6 9. e4 Rc8 10. e5 Ne8 11. f5 a6 12. Nf3 gxf5 13. Bxf5 d5 14. Ng5 a5
 [White "Hall, M."]
 [Black "Highley Wilson, K."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Grob's attack"]
 [EventDate "1998.??.??"]
 [PlyCount "38"]
 
@@ -9408,6 +10543,8 @@ Qd1# 0-1
 [White "Van de Ven, Ki"]
 [Black "Kovacs, R."]
 [Result "0-1"]
+[ECO "C21"]
+[Opening "Centre game"]
 [EventDate "1998.??.??"]
 [PlyCount "44"]
 
@@ -9423,6 +10560,8 @@ Bg4+ 20. Kd2 Nxe5 21. Re3 Qxf2+ 22. Re2 Qxe2# 0-1
 [White "Highley Wilson, K."]
 [Black "Kovacs, R."]
 [Result "0-1"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "46"]
 
@@ -9438,6 +10577,8 @@ Bxc3 20. Nc4 Rfd8 21. Rxd8+ Rxd8 22. Qxc6 Bb4 23. Rxb4 Rd1# 0-1
 [White "Pavez, S."]
 [Black "Van de Ven, Ki"]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Van't Kruijs opening"]
 [EventDate "1998.??.??"]
 [PlyCount "42"]
 
@@ -9453,6 +10594,8 @@ e4 Qxh2+ 21. Kf1 Qh1# 0-1
 [White "Hall, M."]
 [Black "Wong, W."]
 [Result "0-1"]
+[ECO "A05"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "44"]
 
@@ -9468,6 +10611,9 @@ Rb3 Nf5 15. Ng5 Qxg5 16. h4 Nxh4 17. g3 Nxg3 18. fxg3 Qxg3+ 19. Kh1 Qh3+
 [White "Wong, W."]
 [Black "Highley Wilson, K."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn"]
+[Variation "stonewall attack"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -9485,6 +10631,9 @@ Qd3 Rxf1 28. Rxf1 Bxh6 29. d5 a5 30. Qc4 Qg5+ 31. Kh1 Nxe5 32. Qxc7+ Kh8
 [White "Van de Ven, Ki"]
 [Black "Hall, M."]
 [Result "1-0"]
+[ECO "B00"]
+[Opening "KP"]
+[Variation "Nimzovich defence"]
 [EventDate "1998.??.??"]
 [PlyCount "59"]
 
@@ -9501,6 +10650,8 @@ Qd3 Rxf1 28. Rxf1 Bxh6 29. d5 a5 30. Qc4 Qg5+ 31. Kh1 Nxe5 32. Qxc7+ Kh8
 [White "Wong, W."]
 [Black "Van de Ven, Ki"]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "39"]
 
@@ -9516,6 +10667,8 @@ gxf8=Q+ Kxf8 15. Ng5 Ke8 16. Bxh7 f6 17. Qxf6 Rf7 18. Nxf7 Kf8 19. Nd6+ Qf7
 [White "Highley Wilson, K."]
 [Black "Pavez, S."]
 [Result "1-0"]
+[ECO "A41"]
+[Opening "Queen's Pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "19"]
 
@@ -9529,6 +10682,8 @@ gxf8=Q+ Kxf8 15. Ng5 Ke8 16. Bxh7 f6 17. Qxf6 Rf7 18. Nxf7 Kf8 19. Nd6+ Qf7
 [White "Kovacs, R."]
 [Black "Wong, W."]
 [Result "1-0"]
+[ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "89"]
 
@@ -9548,6 +10703,8 @@ Qg4 b6 44. Rf8 Kh7 45. Qg7# 1-0
 [White "Van de Ven, Ki"]
 [Black "Highley Wilson, K."]
 [Result "0-1"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "84"]
 
@@ -9566,6 +10723,9 @@ Nxg3 38. Kg4 b2 39. Kxg3 b1=Q 40. Kh4 Bxf3 41. Kg5 Qf5+ 42. Kh4 Qf4# 0-1
 [White "Phares, A."]
 [Black "Nowicki, G."]
 [Result "0-1"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical, h3 system"]
 [EventDate "1998.??.??"]
 [PlyCount "54"]
 
@@ -9582,6 +10742,9 @@ Qxd6 Bd4+ 27. Kh1 Bxf3# 0-1
 [White "Nowicki, G."]
 [Black "Phares, A."]
 [Result "1-0"]
+[ECO "A07"]
+[Opening "Reti"]
+[Variation "King's Indian attack (with ...c5)"]
 [EventDate "1998.??.??"]
 [PlyCount "85"]
 
@@ -9600,6 +10763,9 @@ Kd4 Rd8+ 39. Ke3 Ke6 40. b4 axb3 41. Qxb3+ Kf6 42. Qb6+ Ke7 43. Nc6+ 1-0
 [White "Phares, A."]
 [Black "Nowicki, G."]
 [Result "1-0"]
+[ECO "E91"]
+[Opening "King's Indian"]
+[Variation "6.Be2"]
 [EventDate "1998.??.??"]
 [PlyCount "75"]
 
@@ -9618,6 +10784,9 @@ Bf8# 1-0
 [White "Nowicki, G."]
 [Black "Phares, A."]
 [Result "0-1"]
+[ECO "A07"]
+[Opening "Reti"]
+[Variation "King's Indian attack, Yugoslav variation"]
 [EventDate "1998.??.??"]
 [PlyCount "118"]
 
@@ -9639,6 +10808,9 @@ Nd7 Bc7 44. Nf6 h4 45. Ne8 Be5 46. a4 a5 47. Kg1 h3 48. Kh1 Kf2 49. c5 bxc5
 [White "Nowicki, G."]
 [Black "Phares, A."]
 [Result "1-0"]
+[ECO "A07"]
+[Opening "Reti"]
+[Variation "King's Indian attack, Yugoslav variation"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -9657,6 +10829,8 @@ Rxd8 Rxd8 21. Rd1 Rxd1+ 22. Qxd1 h6 23. Qa4 a5 24. Bg2 Qxc3 25. Qb5 Nxe4
 [Result "1-0"]
 [WhiteElo "2040"]
 [BlackElo "1820"]
+[ECO "D30"]
+[Opening "Queen's gambit declined"]
 [EventDate "1998.??.??"]
 [PlyCount "81"]
 
@@ -9677,6 +10851,9 @@ Kxe6 39. Ke2 g5 40. g3 h5 41. Kd3 1-0
 [Result "0-1"]
 [WhiteElo "1815"]
 [BlackElo "2005"]
+[ECO "A48"]
+[Opening "King's Indian"]
+[Variation "Torre attack"]
 [EventDate "1998.??.??"]
 [PlyCount "128"]
 
@@ -9701,6 +10878,9 @@ Qc2 64. Kd8 Rc5 0-1
 [Result "1-0"]
 [WhiteElo "1965"]
 [BlackElo "1780"]
+[ECO "C71"]
+[Opening "Ruy Lopez"]
+[Variation "modern Steinitz defence"]
 [EventDate "1998.??.??"]
 [PlyCount "123"]
 
@@ -9725,6 +10905,8 @@ Rdd3 62. Rh8# 1-0
 [Result "0-1"]
 [WhiteElo "1770"]
 [BlackElo "1915"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "136"]
 
@@ -9750,6 +10932,9 @@ Kxg7 63. Nd6 Bc4 64. Nb7 Nd5+ 65. Kd2 a4 66. Nc5 a3 67. Kc1 a2 68. Kb2 d2
 [Result "1-0"]
 [WhiteElo "1905"]
 [BlackElo "1750"]
+[ECO "B78"]
+[Opening "Sicilian"]
+[Variation "dragon, Yugoslav attack, 10.O-O-O"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -9769,6 +10954,8 @@ Kxg7 21. exd5 h6 22. h5 g5 23. Rhe1 e5 24. dxe6 Bxe6 25. Re3 Qb6 26. Rd3 d5
 [Result "1/2-1/2"]
 [WhiteElo "1705"]
 [BlackElo "1865"]
+[ECO "C50"]
+[Opening "King's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "80"]
 
@@ -9789,6 +10976,8 @@ Bg7 39. Bxc3 Qf8 40. Qxf8 Bxf8 1/2-1/2
 [Result "0-1"]
 [WhiteElo "1850"]
 [BlackElo "1700"]
+[ECO "A00"]
+[Opening "Clemenz (Mead's, Basman's or de Klerk's) opening"]
 [EventDate "1998.??.??"]
 [PlyCount "66"]
 
@@ -9808,6 +10997,9 @@ Rxe7 Nxc2 27. Rxb7 b4 28. Nf1 Rd7 29. Rb8+ Bf8 30. cxb4 Nxb4 31. Bc4 Nbd5
 [Result "0-1"]
 [WhiteElo "1915"]
 [BlackElo "2040"]
+[ECO "E74"]
+[Opening "King's Indian"]
+[Variation "Averbakh, 6...c5"]
 [EventDate "1998.??.??"]
 [PlyCount "86"]
 
@@ -9829,6 +11021,9 @@ Be3# 0-1
 [Result "1-0"]
 [WhiteElo "2005"]
 [BlackElo "1905"]
+[ECO "D37"]
+[Opening "QGD"]
+[Variation "4.Nf3"]
 [EventDate "1998.??.??"]
 [PlyCount "73"]
 
@@ -9848,6 +11043,9 @@ Rc2 Rfd8 21. h3 Rac8 22. axb5 axb5 23. Rac1 Ra8 24. Nd4 Qd5 25. Nxb5 Qxb3
 [Result "0-1"]
 [WhiteElo "1700"]
 [BlackElo "1965"]
+[ECO "E91"]
+[Opening "King's Indian"]
+[Variation "6.Be2"]
 [EventDate "1998.??.??"]
 [PlyCount "50"]
 
@@ -9865,6 +11063,8 @@ Rxf4 21. Ne2 Rh4 22. Rxh4 Qxh4+ 23. Kf1 Bg4 24. Bxg6 Nd7 25. Qe4 Bxe2+ 0-1
 [Result "1-0"]
 [WhiteElo "1865"]
 [BlackElo "1850"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "61"]
 
@@ -9883,6 +11083,9 @@ exf6 Nxf6 21. Nd4 Qb4 22. Bxf6 gxf6 23. Qg3+ Kf7 24. Nc6 Qxb2 25. Qc7+ Kf8
 [Result "1-0"]
 [WhiteElo "1820"]
 [BlackElo "1770"]
+[ECO "A46"]
+[Opening "Queen's pawn"]
+[Variation "Torre attack"]
 [EventDate "1998.??.??"]
 [PlyCount "149"]
 
@@ -9909,6 +11112,8 @@ Qd2 Qf6 15. Ne3 Nf4 16. Bc2 O-O-O 17. O-O-O g6 18. Ng4 Ne2+ 19. Qxe2 Qf4+
 [Result "0-1"]
 [WhiteElo "1780"]
 [BlackElo "1815"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "126"]
 
@@ -9933,6 +11138,8 @@ Ke3 Nxf6 63. a6 Ra5 0-1
 [Result "1-0"]
 [WhiteElo "2040"]
 [BlackElo "1965"]
+[ECO "A16"]
+[Opening "English opening"]
 [EventDate "1998.??.??"]
 [PlyCount "100"]
 
@@ -9955,6 +11162,8 @@ Rdc1 Qd2 39. Qf2 Qb4 40. Bf1 Ne5 41. R8c7 d4 42. R1c4 Nxc4 43. Bxc4 Qxc4
 [Result "1/2-1/2"]
 [WhiteElo "1750"]
 [BlackElo "1915"]
+[ECO "B12"]
+[Opening "Caro-Kann defence"]
 [EventDate "1998.??.??"]
 [PlyCount "99"]
 
@@ -9977,6 +11186,8 @@ Qg1+ 50. Kh3 1/2-1/2
 [Result "1-0"]
 [WhiteElo "1905"]
 [BlackElo "1705"]
+[ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -9994,6 +11205,9 @@ Qxd1 21. Rfxd1 Nd5 22. a3 Rfc8 23. Nc4 h6 24. Nd6 1-0
 [Result "1-0"]
 [WhiteElo "1815"]
 [BlackElo "1665"]
+[ECO "A41"]
+[Opening "Old Indian"]
+[Variation "Tartakower (Wade) variation"]
 [EventDate "1998.??.??"]
 [PlyCount "35"]
 
@@ -10010,6 +11224,8 @@ Ng3 g6 15. Bh6 Rfc8 16. Nf5 Bf8 17. Bxf8 Nxf8 18. Nd6 1-0
 [Result "0-1"]
 [WhiteElo "1770"]
 [BlackElo "1700"]
+[ECO "A40"]
+[Opening "Modern defence"]
 [EventDate "1998.??.??"]
 [PlyCount "76"]
 
@@ -10030,6 +11246,8 @@ Qxb2+ 0-1
 [Result "1-0"]
 [WhiteElo "1850"]
 [BlackElo "1780"]
+[ECO "A00"]
+[Opening "Clemenz (Mead's, Basman's or de Klerk's) opening"]
 [EventDate "1998.??.??"]
 [PlyCount "79"]
 
@@ -10050,6 +11268,8 @@ cxd3 Rxb2 38. h6 Rb1+ 39. Kc2 Rh1 40. Qg7 1-0
 [Result "1/2-1/2"]
 [WhiteElo "2005"]
 [BlackElo "2040"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "60"]
 
@@ -10068,6 +11288,9 @@ Qc2 c5 27. Re2 Qd1+ 28. Qxd1 Rxd1+ 29. Re1 Rd3 30. Re2 Kg7 1/2-1/2
 [Result "1-0"]
 [WhiteElo "1965"]
 [BlackElo "1865"]
+[ECO "C78"]
+[Opening "Ruy Lopez"]
+[Variation "5.O-O"]
 [EventDate "1998.??.??"]
 [PlyCount "109"]
 
@@ -10090,6 +11313,8 @@ f6+ Kf8 52. e6 Nf3+ 53. Nxf3 Rxf3 54. f7 Rf1+ 55. Rxf1 1-0
 [Result "1-0"]
 [WhiteElo "1815"]
 [BlackElo "1905"]
+[ECO "D05"]
+[Opening "Colle system"]
 [EventDate "1998.??.??"]
 [PlyCount "100"]
 
@@ -10112,6 +11337,9 @@ Kf6 Kxh6 1-0
 [Result "0-1"]
 [WhiteElo "1700"]
 [BlackElo "1750"]
+[ECO "E18"]
+[Opening "Queen's Indian"]
+[Variation "old main line, 7.Nc3"]
 [EventDate "1998.??.??"]
 [PlyCount "98"]
 
@@ -10133,6 +11361,9 @@ Be6 Kd4 45. Kg3 Ne4+ 46. Kf3 Nc5 47. Bf7 Ne4 48. Ke2 Nd6 49. Bg8 Ke4 0-1
 [Result "1/2-1/2"]
 [WhiteElo "1915"]
 [BlackElo "1820"]
+[ECO "D45"]
+[Opening "QGD semi-Slav"]
+[Variation "5.e3"]
 [EventDate "1998.??.??"]
 [PlyCount "109"]
 
@@ -10155,6 +11386,9 @@ Qa8+ Qb8+ 39. Qxb8+ Nxb8 40. Kg3 Kf8 41. Kf4 Ke7 42. Ke5 Nd7+ 43. Kd4 Kd6
 [Result "1-0"]
 [WhiteElo "1705"]
 [BlackElo "1850"]
+[ECO "B01"]
+[Opening "Scandinavian"]
+[Variation "Marshall variation"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -10174,6 +11408,8 @@ g6 26. Rd2 Rca5 27. Rd3 Kg7 28. g3 e5 29. Nc2 f5 30. Nb4 Ra4 31. Nc6 R7a6
 [Result "1/2-1/2"]
 [WhiteElo "1780"]
 [BlackElo "1770"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "111"]
 
@@ -10197,6 +11433,8 @@ Rf4 33. Rd2 g5 34. h5 Bb7 35. c5 bxc5 36. Rxa5 Rc8 37. Ra7 Rc7 38. dxc5 Rb4
 [Result "1/2-1/2"]
 [WhiteElo "2040"]
 [BlackElo "1815"]
+[ECO "A84"]
+[Opening "Dutch defence"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -10214,6 +11452,9 @@ h4 Nxh4 21. Nd2 Rxf1+ 22. Nxf1 Ng6 23. Qg2 e5 24. Qh3 1/2-1/2
 [Result "1/2-1/2"]
 [WhiteElo "1965"]
 [BlackElo "2005"]
+[ECO "B09"]
+[Opening "Pirc"]
+[Variation "Austrian attack"]
 [EventDate "1998.??.??"]
 [PlyCount "111"]
 
@@ -10237,6 +11478,9 @@ Kd2 Kxa3 51. Kc3 Ka2 52. Kc2 a4 53. Kc1 a3 54. Kc2 Ka1 55. Kc1 a2 56. Kc2
 [Result "1-0"]
 [WhiteElo "1750"]
 [BlackElo "1705"]
+[ECO "C01"]
+[Opening "French"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "125"]
 
@@ -10261,6 +11505,8 @@ Bxh7 57. b7 Bc2 58. b8=Q d3 59. Ke3 f5 60. Qe5 Kg6 61. Kf4 d2 62. Qd6+ Kh5
 [Result "1-0"]
 [WhiteElo "1820"]
 [BlackElo "1905"]
+[ECO "D03"]
+[Opening "Torre attack (Tartakower variation)"]
 [EventDate "1998.??.??"]
 [PlyCount "99"]
 
@@ -10282,6 +11528,8 @@ Ke5 45. Bf7 h4 46. Kg4 Kf6 47. Bb3 b6 48. Ba4 c5 49. f4 gxf4 50. Kxf4 1-0
 [Result "1-0"]
 [WhiteElo "1850"]
 [BlackElo "1770"]
+[ECO "A02"]
+[Opening "Bird's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "139"]
 
@@ -10307,6 +11555,9 @@ Kh4 70. h6 1-0
 [Result "0-1"]
 [WhiteElo "1700"]
 [BlackElo "1780"]
+[ECO "D55"]
+[Opening "QGD"]
+[Variation "Neo-orthodox variation, 7.Bh4"]
 [EventDate "1998.??.??"]
 [PlyCount "55"]
 
@@ -10324,6 +11575,8 @@ Qd8 21. Rfc1 Rxg6 22. Nxg6 Kxg6 23. Rxe6+ Bxe6 24. Qxe6+ Qf6 25. Bxf5+ Kg7
 [Black "Bertrand, M."]
 [Result "1-0"]
 [WhiteElo "1665"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "113"]
 
@@ -10346,6 +11599,9 @@ Kg5 57. Qd2+ 1-0
 [Black "McRorie, A."]
 [Result "1-0"]
 [BlackElo "1655"]
+[ECO "A07"]
+[Opening "Reti"]
+[Variation "King's Indian attack (Barcza system)"]
 [EventDate "1998.??.??"]
 [PlyCount "68"]
 
@@ -10364,6 +11620,8 @@ Ke7 32. Ke2 g6 33. Ra1 a5 34. Rb1 Kd7 1-0
 [Black "Morgan, B."]
 [Result "1-0"]
 [WhiteElo "1650"]
+[ECO "C30"]
+[Opening "King's gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -10382,6 +11640,8 @@ Bg6# 1-0
 [Black "Armstrong, D."]
 [Result "0-1"]
 [BlackElo "1635"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "46"]
 
@@ -10398,6 +11658,8 @@ Kf2 Qg6 21. Rg1 Bh4 22. Kf1 Ba6+ 23. Kf2 Rxg2# 0-1
 [Black "Lau, D."]
 [Result "1-0"]
 [WhiteElo "1630"]
+[ECO "B07"]
+[Opening "Pirc defence"]
 [EventDate "1998.??.??"]
 [PlyCount "45"]
 
@@ -10413,6 +11675,9 @@ Nxd8+ Kxd8 15. Bh4 Re8 16. Bxe8 Kxe8 17. Bxf6 Bxf6 18. Qxg4 e5 19. Qg8+ Ke7
 [White "Van de Ven, Ki"]
 [Black "London, J."]
 [Result "0-1"]
+[ECO "B23"]
+[Opening "Sicilian"]
+[Variation "closed, 2...Nc6"]
 [EventDate "1998.??.??"]
 [PlyCount "40"]
 
@@ -10428,6 +11693,8 @@ Rd2 Qxg2# 0-1
 [White "Baxter, W."]
 [Black "Rieger, F."]
 [Result "1-0"]
+[ECO "C44"]
+[Opening "Scotch opening"]
 [EventDate "1998.??.??"]
 [PlyCount "77"]
 
@@ -10446,6 +11713,9 @@ dxe7 Bxe7 39. Bc3 1-0
 [White "Yuan, T."]
 [Black "Hush, B."]
 [Result "1/2-1/2"]
+[ECO "C48"]
+[Opening "Four knights"]
+[Variation "Spanish variation"]
 [EventDate "1998.??.??"]
 [PlyCount "123"]
 
@@ -10468,6 +11738,8 @@ g8=Q Ka6 62. Qgb8 1/2-1/2
 [White "Mitchell, J."]
 [Black "Wong Rieger, G."]
 [Result "1-0"]
+[ECO "C45"]
+[Opening "Scotch game"]
 [EventDate "1998.??.??"]
 [PlyCount "67"]
 
@@ -10486,6 +11758,8 @@ Kh6 32. Rg8 f5 33. a8=Q f4 34. Be2 1-0
 [Black "Litchfield, G."]
 [Result "1/2-1/2"]
 [BlackElo "1665"]
+[ECO "A41"]
+[Opening "Old Indian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "39"]
 
@@ -10502,6 +11776,9 @@ Ne7 15. Be3 Bxe3 16. Nxe3 g6 17. h4 Rhd8 18. Rd2 Nc5 19. Rxd8 Rxd8 20. Rd1
 [Black "Baxter, W."]
 [Result "0-1"]
 [WhiteElo "1635"]
+[ECO "D06"]
+[Opening "QGD"]
+[Variation "Marshall defence"]
 [EventDate "1998.??.??"]
 [PlyCount "105"]
 
@@ -10523,6 +11800,9 @@ gxf5 c3 52. Re6+ Kf7 53. Rd6 0-1
 [Black "Morgan, A."]
 [Result "0-1"]
 [BlackElo "1630"]
+[ECO "C45"]
+[Opening "Scotch"]
+[Variation "Schmidt variation"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -10540,6 +11820,9 @@ Qg3 Qxc3 32. Qh4+ Kg7 33. fxg4 Qd4+ 34. Kg2 Qxg4+ 35. Qxg4 Bxg4 0-1
 [White "Yuan, T."]
 [Black "Nowicki, G."]
 [Result "1-0"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical (two knights) system"]
 [EventDate "1998.??.??"]
 [PlyCount "73"]
 
@@ -10559,6 +11842,8 @@ Bf4 26. g3 Bg5 27. Ra7 Rxa2 28. c6 Rc8 29. h4 Bd8 30. Rc1 Bb6 31. Rb7 Rb2
 [Black "Lau, D."]
 [Result "1-0"]
 [WhiteElo "1655"]
+[ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "45"]
 
@@ -10574,6 +11859,8 @@ Qe7 Rc8 21. Rxf7 Bc6 22. Rh7+ Bd5 23. Bxd5# 1-0
 [White "Bertrand, M."]
 [Black "Van de Ven, Ki"]
 [Result "1-0"]
+[ECO "A00"]
+[Opening "Van't Kruijs opening"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -10591,6 +11878,8 @@ Rf2 f6 27. Rg2 g5 28. Qxf6 Kh7 29. f5 g4 30. Qe7+ Kg8 31. f6 Rf5 32. Qg7#
 [White "Morgan, B."]
 [Black "Rieger, F."]
 [Result "1-0"]
+[ECO "C50"]
+[Opening "Giuoco Pianissimo"]
 [EventDate "1998.??.??"]
 [PlyCount "49"]
 
@@ -10606,6 +11895,8 @@ Bc4 Rb7 15. Nxe5 Qe8 16. Nd2 c6 17. Bxf6 gxf6 18. Bxe6 fxe5 19. Qg4+ Kh8
 [White "Wong Rieger"]
 [Black "Wong, W."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Anti-Borg (Desprez) opening"]
 [EventDate "1998.??.??"]
 [PlyCount "78"]
 
@@ -10625,6 +11916,9 @@ Rg6+ 39. Kh1 Qg2# 0-1
 [Black "Baxter, W."]
 [Result "1-0"]
 [WhiteElo "1630"]
+[ECO "C53"]
+[Opening "Giuoco Piano"]
+[Variation "LaBourdonnais variation"]
 [EventDate "1998.??.??"]
 [PlyCount "91"]
 
@@ -10645,6 +11939,9 @@ Kxf5 44. Rbb7 Kf4 45. h6 Rf8 46. h7 1-0
 [Black "Hush, J."]
 [Result "1/2-1/2"]
 [BlackElo "1650"]
+[ECO "E91"]
+[Opening "King's Indian"]
+[Variation "6.Be2"]
 [EventDate "1998.??.??"]
 [PlyCount "43"]
 
@@ -10661,6 +11958,8 @@ Rad1 Nc6 21. Bg4 Rf6 22. Rfe1 1/2-1/2
 [Black "Yuan, T."]
 [Result "1-0"]
 [WhiteElo "1655"]
+[ECO "D04"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -10679,6 +11978,8 @@ Qxd5 f6 27. Qg8+ Nf8 28. Qxg7 Rh7 29. Qxf6 Rf7 30. Qe5+ Re7 31. Qxc5 Bd3
 [Black "Armstrong, D."]
 [Result "0-1"]
 [BlackElo "1635"]
+[ECO "A05"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "102"]
 
@@ -10699,6 +12000,9 @@ cxb4 Rf4 51. a5 Rxd4 0-1
 [White "Hush, B."]
 [Black "Mitchell, J."]
 [Result "1-0"]
+[ECO "C42"]
+[Opening "Petrov"]
+[Variation "Cozio (Lasker) attack"]
 [EventDate "1998.??.??"]
 [PlyCount "77"]
 
@@ -10717,6 +12021,8 @@ Qe8+ Kb6 39. Qb5# 1-0
 [White "Rieger, F."]
 [Black "Wong, W."]
 [Result "0-1"]
+[ECO "D00"]
+[Opening "Blackmar gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "44"]
 
@@ -10732,6 +12038,8 @@ Rxe8+ Bf8 20. Re4 Bh6+ 21. Kd1 Nd6 22. Rxd4 f5 0-1
 [White "Lau, D."]
 [Black "Wong Rieger, G."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Van't Kruijs opening"]
 [EventDate "1998.??.??"]
 [PlyCount "52"]
 
@@ -10750,6 +12058,8 @@ Reb2 26. e4 Rb1# 0-1
 [Result "0-1"]
 [WhiteElo "1635"]
 [BlackElo "1630"]
+[ECO "A05"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "56"]
 
@@ -10767,6 +12077,8 @@ b5 21. fxe5 Qxe5 22. Bxd4 Qxd4+ 23. Qf2 Qxd3 24. Qxc5 Nxe4 25. Bxe4 Qxe4
 [Black "McRorie, A."]
 [Result "1-0"]
 [BlackElo "1655"]
+[ECO "C44"]
+[Opening "Scotch gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "123"]
 
@@ -10789,6 +12101,8 @@ g4 Qxa4 62. Qe4+ 1-0
 [White "Wong, W."]
 [Black "London, J."]
 [Result "1-0"]
+[ECO "A45"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "73"]
 
@@ -10806,6 +12120,8 @@ Kd6 34. Bb4+ Kc6 35. Qxc4+ Kd7 36. Rxd3+ Ke8 37. Qe6+ 1-0
 [White "Morgan, B."]
 [Black "Bertrand, M."]
 [Result "0-1"]
+[ECO "C55"]
+[Opening "Two knights defence (Modern bishop's opening)"]
 [EventDate "1998.??.??"]
 [PlyCount "124"]
 
@@ -10829,6 +12145,8 @@ Ke7 Qb7+ 0-1
 [Black "Yuan, T."]
 [Result "1-0"]
 [WhiteElo "1665"]
+[ECO "D02"]
+[Opening "Queen's bishop game"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -10846,6 +12164,8 @@ g5 33. Bxf6+ Rxf6 34. Qxf6+ Qg7 35. Rxh6+ 1-0
 [White "Mitchell, J."]
 [Black "Nowicki, G."]
 [Result "1-0"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "55"]
 
@@ -10862,6 +12182,8 @@ Rad1 Rdf7 21. exf5 gxf5 22. Rd2 Kh8 23. Rfd1 Kh7 24. Nb4 Rf6 25. Rd7 Nc5
 [White "Wong Rieger, G."]
 [Black "Van de Ven, Ki"]
 [Result "1-0"]
+[ECO "D20"]
+[Opening "Queen's gambit accepted"]
 [EventDate "1998.??.??"]
 [PlyCount "123"]
 
@@ -10885,6 +12207,8 @@ Qb6+ Ka2 62. Ra5# 1-0
 [Black "Wong, W."]
 [Result "1-0"]
 [WhiteElo "1630"]
+[ECO "B01"]
+[Opening "Scandinavian gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -10903,6 +12227,8 @@ Qxg4 e3 15. Qxd4 Nxd4 16. dxe3 Nb3 17. Rad1 b6 18. Rd3 Rac8 19. Nd5 Rxc4
 [Black "Baxter, W."]
 [Result "0-1"]
 [WhiteElo "1650"]
+[ECO "C34"]
+[Opening "King's knight's gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -10919,6 +12245,9 @@ Bxf8 26. Rf1 Qh3+ 27. Kg1 Bc5+ 28. Rf2 Re1+ 29. Nf1 Rxf1# 0-1
 [White "Bertrand, M."]
 [Black "Hush, B."]
 [Result "0-1"]
+[ECO "D00"]
+[Opening "Queen's pawn"]
+[Variation "Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "96"]
 
@@ -10939,6 +12268,9 @@ Qxg7+ 44. Kd6 Kd4 45. Kc6 Qg6+ 46. Kxb5 Qb6+ 47. Ka4 Kc3 48. a3 Qa6# 0-1
 [Black "Mitchell, J."]
 [Result "0-1"]
 [WhiteElo "1655"]
+[ECO "D26"]
+[Opening "QGA"]
+[Variation "4...e6"]
 [EventDate "1998.??.??"]
 [PlyCount "54"]
 
@@ -10956,6 +12288,8 @@ Bxe5 Rxd1+ 27. Rxd1 Qxg4 0-1
 [Black "Armstrong, D."]
 [Result "0-1"]
 [BlackElo "1635"]
+[ECO "A57"]
+[Opening "Benko gambit half accepted"]
 [EventDate "1998.??.??"]
 [PlyCount "138"]
 
@@ -10979,6 +12313,9 @@ Ke2 Qe4+ 63. Qe3 Qc2+ 64. Qd2 Qe4+ 65. Kd1 Qb1+ 66. Qc1 Qd3+ 67. Ke1 Qe4+
 [White "Yuan, T."]
 [Black "Morgan, B."]
 [Result "1-0"]
+[ECO "C68"]
+[Opening "Ruy Lopez"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -10995,6 +12332,9 @@ Qxc5+ Ka4 26. Qxe7 Ka5 27. Rb8 Ka4 28. a3 Ka5 29. Qb4# 1-0
 [White "Nowicki, G."]
 [Black "Wong Rieger, G."]
 [Result "1-0"]
+[ECO "A08"]
+[Opening "Reti"]
+[Variation "King's Indian attack"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -11012,6 +12352,9 @@ d4 9. Nb5 Ba6 10. a4 Qd7 11. c3 dxc3 12. bxc3 O-O-O 13. h4 Kb8 14. c4 Bb7
 [White "Van de Ven, Ki"]
 [Black "Lau, D."]
 [Result "0-1"]
+[ECO "C20"]
+[Opening "KP"]
+[Variation "Indian opening"]
 [EventDate "1998.??.??"]
 [PlyCount "96"]
 
@@ -11033,6 +12376,8 @@ Kh1 Ra1+ 45. Kh2 Qa3 46. g4 e2 47. g3 e1=Q 48. Kg2 Qexg3# 0-1
 [Result "0-1"]
 [WhiteElo "1880"]
 [BlackElo "1925"]
+[ECO "E00"]
+[Opening "Catalan opening"]
 [EventDate "1998.??.??"]
 [PlyCount "68"]
 
@@ -11053,6 +12398,8 @@ Rea1 Ke7 33. Rb8 Kd7 34. Raa8 Kc7 0-1
 [WhiteElo "1925"]
 [BlackElo "1880"]
 [ECO "D40"]
+[Opening "QGD"]
+[Variation "Semi-Tarrasch defence"]
 [EventDate "1998.??.??"]
 [PlyCount "89"]
 
@@ -11074,6 +12421,8 @@ Rxg7+ Kh8 44. Rge7 Rxe7 45. Rxe7 1-0
 [Result "0-1"]
 [WhiteElo "1620"]
 [BlackElo "1710"]
+[ECO "E10"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "74"]
 
@@ -11093,6 +12442,8 @@ Kg2 Bh4 22. Qh1 Bxg3 23. Kxg3 g5 24. Raf1 gxf4+ 25. Rxf4 Rxf4 26. Rxf4 Nf6
 [Result "0-1"]
 [WhiteElo "1710"]
 [BlackElo "1620"]
+[ECO "D30"]
+[Opening "QGD"]
 [EventDate "1998.??.??"]
 [PlyCount "64"]
 
@@ -11112,6 +12463,8 @@ Qh4 Bg4+ 27. Rdxg4 hxg4+ 28. Qxg4 Qd6 29. h4 Qe6 30. Qd4 Qf5+ 31. Ke2 Re4
 [Result "0-1"]
 [WhiteElo "1620"]
 [BlackElo "1710"]
+[ECO "A40"]
+[Opening "Modern defence"]
 [EventDate "1998.??.??"]
 [PlyCount "76"]
 
@@ -11132,6 +12485,9 @@ e4 27. Re1 Qg7 28. Be2 b5 29. Rd1 Qf6 30. Qe3 a6 31. Qa7 Rf7 32. Rd7 Rxd7
 [Result "0-1"]
 [WhiteElo "1710"]
 [BlackElo "1620"]
+[ECO "E91"]
+[Opening "King's Indian"]
+[Variation "6.Be2"]
 [EventDate "1998.??.??"]
 [PlyCount "138"]
 
@@ -11157,6 +12513,9 @@ Ke2 Kxh4 69. Kxe3 Kg3 0-1
 [Result "0-1"]
 [WhiteElo "1630"]
 [BlackElo "1825"]
+[ECO "B23"]
+[Opening "Sicilian"]
+[Variation "Grand Prix attack"]
 [EventDate "1998.??.??"]
 [PlyCount "86"]
 
@@ -11177,6 +12536,8 @@ Kb5 27. Rc2 Ka6 28. Rd3 Ba4 29. Rf2 b5 30. Bd2 Bc2 31. Rc3 Be4 32. Kd1 Rb8
 [Result "0-1"]
 [WhiteElo "1670"]
 [BlackElo "1810"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "50"]
 
@@ -11195,6 +12556,9 @@ hxg3 Qc7 21. d5 f5 22. Qe2 Rae8 23. Nc6 exd5 24. Qxe8 Rxe8 25. Rxe8+ Kf7
 [Result "1-0"]
 [WhiteElo "1825"]
 [BlackElo "1810"]
+[ECO "D06"]
+[Opening "QGD"]
+[Variation "Marshall defence"]
 [EventDate "1998.??.??"]
 [PlyCount "81"]
 
@@ -11215,6 +12579,8 @@ Qxf7 Rxf7 27. Bxg6+ Kg8 28. Bxf7+ Kxf7 29. Rxd5 Re8 30. Rd2 g5 31. Nf3 Kg6
 [Result "1/2-1/2"]
 [WhiteElo "1630"]
 [BlackElo "1670"]
+[ECO "C20"]
+[Opening "King's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "60"]
 
@@ -11233,6 +12599,8 @@ h5 27. h4 g5 28. hxg5 fxg5 29. Nc4 Bxc4 30. Bxc4 h4 1/2-1/2
 [Result "0-1"]
 [WhiteElo "1810"]
 [BlackElo "1630"]
+[ECO "A16"]
+[Opening "English opening"]
 [EventDate "1998.??.??"]
 [PlyCount "136"]
 
@@ -11258,6 +12626,8 @@ Kf3 0-1
 [Result "0-1"]
 [WhiteElo "1670"]
 [BlackElo "1825"]
+[ECO "D02"]
+[Opening "Queen's bishop game"]
 [EventDate "1998.??.??"]
 [PlyCount "54"]
 
@@ -11276,6 +12646,8 @@ Rb1 Qxa2 27. Rb7 Qc4+ 0-1
 [Result "1-0"]
 [WhiteElo "1810"]
 [BlackElo "1670"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -11295,6 +12667,8 @@ f4 33. Qg5 Rxh3+ 34. Kg1 f3 35. Qe5+ 1-0
 [Result "1-0"]
 [WhiteElo "1825"]
 [BlackElo "1630"]
+[ECO "D24"]
+[Opening "QGA, 4.Nc3"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -11313,6 +12687,8 @@ Kh7 26. Ne1 Qg4 27. Bc2+ g6 28. Rxf7+ Kh8 29. Rxb7 1-0
 [Result "1/2-1/2"]
 [WhiteElo "1670"]
 [BlackElo "1630"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -11332,6 +12708,8 @@ Rxd5 Qe6 33. Rdc5 1/2-1/2
 [Result "0-1"]
 [WhiteElo "1810"]
 [BlackElo "1825"]
+[ECO "A02"]
+[Opening "Bird's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "134"]
 
@@ -11356,6 +12734,8 @@ Be5 63. Kf1 f5 64. Rh7 Kf3 65. Ke1 Bf4 66. Rd7 Rc1+ 67. Rd1 Rxd1+ 0-1
 [Result "1-0"]
 [WhiteElo "1825"]
 [BlackElo "1670"]
+[ECO "C20"]
+[Opening "King's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "49"]
 
@@ -11373,6 +12753,9 @@ Ne4 Bb4 21. Nxf6 gxf6 22. Qh5+ Kf8 23. Re3 Rc8 24. Bf4 Qf7 25. Qh6+ 1-0
 [Result "0-1"]
 [WhiteElo "1630"]
 [BlackElo "1810"]
+[ECO "C00"]
+[Opening "French"]
+[Variation "King's Indian attack"]
 [EventDate "1998.??.??"]
 [PlyCount "160"]
 
@@ -11398,6 +12781,9 @@ Rfd1 Rc7 22. Bh1 Bh6 23. Rc3 Nxh4 24. gxh4 Qxh4+ 25. Kg2 Bf4 26. Nf1 Qg5
 [White "Brooks, J."]
 [Black "Moser, D."]
 [Result "0-1"]
+[ECO "D37"]
+[Opening "QGD"]
+[Variation "4.Nf3"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -11415,6 +12801,9 @@ Rxa2 33. Rf2 Ra1+ 34. Kh2 b4 35. g3 Qc1 36. g4 Qg1# 0-1
 [White "Moser, D."]
 [Black "Brooks, J."]
 [Result "1-0"]
+[ECO "C24"]
+[Opening "Bishop's opening"]
+[Variation "Berlin defence"]
 [EventDate "1998.??.??"]
 [PlyCount "101"]
 
@@ -11435,6 +12824,8 @@ Rxf6 Rd1 45. Re1 Rxe1 46. Qxe1 Nxh3+ 47. Kf1 Qd3+ 48. Qe2 Ng5 49. Qxd3 exd3
 [White "Hush, B."]
 [Black "Peterson, J."]
 [Result "1/2-1/2"]
+[ECO "C40"]
+[Opening "QP counter-gambit (elephant gambit)"]
 [EventDate "1998.??.??"]
 [PlyCount "104"]
 
@@ -11455,6 +12846,9 @@ Kd4 a1=Q+ 50. Kd3 Qc3+ 51. Ke2 Kc4 52. Kd1 Kd3 1/2-1/2
 [White "Peterson, J."]
 [Black "Hush, B."]
 [Result "0-1"]
+[ECO "C33"]
+[Opening "KGA"]
+[Variation "Villemson (Steinitz) gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "80"]
 
@@ -11475,6 +12869,9 @@ e6 Bxe6 32. h5 d5 33. g6 hxg6 34. hxg6 d4 35. Ka6 d3 36. Kb5 d2 37. Kb4 Rc2
 [Result "1-0"]
 [WhiteElo "1775"]
 [BlackElo "1875"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical system, 5.Be2"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -11494,6 +12891,9 @@ f5 15. f3 fxe4 16. Nxe4 Nf5 17. Bf2 Bh6 18. Qd3 Qd8 19. Ba2 Rf8 20. c4 Qe7
 [Result "1/2-1/2"]
 [WhiteElo "1875"]
 [BlackElo "1775"]
+[ECO "B78"]
+[Opening "Sicilian"]
+[Variation "dragon, Yugoslav attack, 10.O-O-O"]
 [EventDate "1998.??.??"]
 [PlyCount "157"]
 
@@ -11520,6 +12920,9 @@ Rg1 63. Kc5 Rg5+ 64. Kb4 a5+ 65. Ka3 b5 66. Rc6 Rg4 67. Rf6 Rd4 68. Rg6 Kb7
 [Result "0-1"]
 [WhiteElo "1775"]
 [BlackElo "1875"]
+[ECO "B88"]
+[Opening "Sicilian"]
+[Variation "Sozin, Leonhardt variation"]
 [EventDate "1998.??.??"]
 [PlyCount "60"]
 
@@ -11538,6 +12941,9 @@ Bb6 26. Nce2 Qf8 27. Qc3 Qd6 28. Qe1 Ng4 29. h3 Bf2 30. Qf1 g5 0-1
 [Result "1-0"]
 [WhiteElo "1875"]
 [BlackElo "1775"]
+[ECO "E83"]
+[Opening "King's Indian"]
+[Variation "Saemisch, 6...Nc6"]
 [EventDate "1998.??.??"]
 [PlyCount "43"]
 
@@ -11553,6 +12959,8 @@ Qe7+ Kg8 21. Rad1 Qf5+ 22. Ne4 1-0
 [White "Castillo, I."]
 [Black "Lau, D."]
 [Result "1/2-1/2"]
+[ECO "A41"]
+[Opening "Queen's Pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "144"]
 
@@ -11576,6 +12984,8 @@ Bf6+ Kh7 69. Kg3 Kg8 70. Rh4 Kf7 71. Rh6 Kf8 72. Rh8+ Kf7 1/2-1/2
 [White "Van de Ven, Ki"]
 [Black "Pavez, S."]
 [Result "1-0"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -11593,6 +13003,8 @@ Rdf1 d5 32. Qd7# 1-0
 [White "Van de Ven, Ki"]
 [Black "Castillo, I."]
 [Result "0-1"]
+[ECO "C40"]
+[Opening "King's knight opening"]
 [EventDate "1998.??.??"]
 [PlyCount "68"]
 
@@ -11610,6 +13022,8 @@ fxg2+ 32. Ke2 g1=Q 33. Qd6+ Kd8 34. Kf3 Qg4# 0-1
 [White "Pavez, S."]
 [Black "Lau, D."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Mieses opening"]
 [EventDate "1998.??.??"]
 [PlyCount "74"]
 
@@ -11627,6 +13041,9 @@ Rb4 27. Rxb4 cxb4 28. c5 Qe2 29. f4 Rg8 30. f5 Re8 31. fxg6 fxg6 32. d4 Re3
 [White "Lau, D."]
 [Black "Van de Ven, Ki"]
 [Result "1-0"]
+[ECO "C20"]
+[Opening "KP"]
+[Variation "Patzer opening"]
 [EventDate "1998.??.??"]
 [PlyCount "99"]
 
@@ -11647,6 +13064,8 @@ d6 8. d4 Nc4 9. Bxc4 Qe7 10. Nf3 Bg4 11. Nbd2 O-O-O 12. b3 Qe8 13. Qxh7 Be7
 [White "Castillo, I."]
 [Black "Pavez, S."]
 [Result "1-0"]
+[ECO "A41"]
+[Opening "Queen's Pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "81"]
 
@@ -11666,6 +13085,8 @@ Rb5 h4 39. Qg2 f5 40. Rg8+ Kh5 41. Rxf5# 1-0
 [Black "Van de Ven, A."]
 [Result "0-1"]
 [BlackElo "1920"]
+[ECO "C27"]
+[Opening "Vienna game"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -11683,6 +13104,8 @@ Rc8 26. Kd2 Rcc3 27. Re3 d4 28. Rh3 Ra2+ 29. Ke1 Rc1# 0-1
 [Black "Hush, B."]
 [Result "1-0"]
 [WhiteElo "1765"]
+[ECO "A22"]
+[Opening "English opening"]
 [EventDate "1998.??.??"]
 [PlyCount "67"]
 
@@ -11702,6 +13125,9 @@ Kh7 33. Qxg6+ Kh8 34. Rb8# 1-0
 [Result "1-0"]
 [WhiteElo "2205"]
 [BlackElo "1685"]
+[ECO "C31"]
+[Opening "KGD"]
+[Variation "Falkbeer counter-gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "49"]
 
@@ -11719,6 +13145,8 @@ Bf5+ 1-0
 [Black "Van Weeren, H."]
 [Result "1-0"]
 [WhiteElo "1915"]
+[ECO "D30"]
+[Opening "Queen's gambit declined"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -11737,6 +13165,9 @@ Qd7 27. Nxc7 Qxc7 28. Bf3 dxe4 29. Bxe4 Qe7 1-0
 [Result "0-1"]
 [WhiteElo "1670"]
 [BlackElo "2135"]
+[ECO "B22"]
+[Opening "Sicilian"]
+[Variation "Alapin's variation (2.c3)"]
 [EventDate "1998.??.??"]
 [PlyCount "46"]
 
@@ -11753,6 +13184,8 @@ Rfe8 20. Kh2 Bd7 21. Qb3 g5 22. Bxg5 Nxg5 23. Rxf6 Qxf6 0-1
 [Black "Kearley, J."]
 [Result "0-1"]
 [BlackElo "1820"]
+[ECO "B44"]
+[Opening "Sicilian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "64"]
 
@@ -11771,6 +13204,8 @@ Kxg6 0-1
 [Black "Armstrong, D."]
 [Result "1-0"]
 [WhiteElo "1955"]
+[ECO "A58"]
+[Opening "Benko gambit accepted"]
 [EventDate "1998.??.??"]
 [PlyCount "67"]
 
@@ -11789,6 +13224,8 @@ Nxd4 cxd4 27. Rg3 Nf6 28. Rf1 Nbd5 29. Bg5 Re1 30. Rf3 Rxf1+ 31. Rxf1 Nxh7
 [Black "Hush, J."]
 [Result "1-0"]
 [BlackElo "1755"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "37"]
 
@@ -11805,6 +13242,9 @@ Bxf6 Ba6 16. Bxa6 Rxa6 17. Bxg7 Kxg7 18. O-O Ra7 19. Qe3 1-0
 [Result "0-1"]
 [WhiteElo "1620"]
 [BlackElo "1980"]
+[ECO "B07"]
+[Opening "Pirc"]
+[Variation "Ufimtsev-Pytel variation"]
 [EventDate "1998.??.??"]
 [PlyCount "60"]
 
@@ -11823,6 +13263,9 @@ dxe5 dxe5 15. Bxb6 Qxb6 16. g5 Rd8 17. Qc2 Qe3+ 18. Kb1 Nd7 19. Rhf1 O-O
 [Result "1-0"]
 [WhiteElo "2110"]
 [BlackElo "1655"]
+[ECO "D58"]
+[Opening "QGD"]
+[Variation "Tartakower (Makagonov-Bondarevsky) system"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -11842,6 +13285,9 @@ f6 32. Rd7 Be7 33. Bd6 1-0
 [Result "0-1"]
 [WhiteElo "1710"]
 [BlackElo "2210"]
+[ECO "B28"]
+[Opening "Sicilian"]
+[Variation "O'Kelly variation"]
 [EventDate "1998.??.??"]
 [PlyCount "56"]
 
@@ -11859,6 +13305,9 @@ Bxe1 26. Qxe1 Qc5+ 27. Kg2 Qxf5 28. Qf2 Rf4 0-1
 [Black "Khan, Z."]
 [Result "0-1"]
 [BlackElo "1955"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance variation"]
 [EventDate "1998.??.??"]
 [PlyCount "76"]
 
@@ -11879,6 +13328,9 @@ Kg1 Ng4 33. Rd5 Qh2+ 34. Kf1 e2+ 35. Kxe2 Qxg2+ 36. Kd1 Qxd5+ 37. Kc1 Qd3
 [Result "1-0"]
 [WhiteElo "1980"]
 [BlackElo "1725"]
+[ECO "E06"]
+[Opening "Catalan"]
+[Variation "closed, 5.Nf3"]
 [EventDate "1998.??.??"]
 [PlyCount "59"]
 
@@ -11896,6 +13348,9 @@ Rfd1 Red8 21. Rd6 Be8 22. Rad1 Rdc8 23. Bc3 Ne7 24. Be1 Nf5 25. R6d3 Nd4
 [Black "Sengupta, O."]
 [Result "0-1"]
 [BlackElo "1620"]
+[ECO "B01"]
+[Opening "Scandinavian"]
+[Variation "Icelandic gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "66"]
 
@@ -11915,6 +13370,9 @@ Rxd2+ 31. Kc1 Rxh2 32. Kd1 Rg4 33. Ke1 Rg1# 0-1
 [Result "1-0"]
 [WhiteElo "2210"]
 [BlackElo "1915"]
+[ECO "C30"]
+[Opening "KGD"]
+[Variation "classical variation"]
 [EventDate "1998.??.??"]
 [PlyCount "43"]
 
@@ -11931,6 +13389,9 @@ Rxd7 20. Qxf7+ Kh7 21. Rg1 Ng6 22. Qxd7 1-0
 [Black "Heseltine Nutch, Ka"]
 [Result "1-0"]
 [WhiteElo "1685"]
+[ECO "C10"]
+[Opening "French"]
+[Variation "Paulsen variation"]
 [EventDate "1998.??.??"]
 [PlyCount "104"]
 
@@ -11953,6 +13414,9 @@ Kg6 Be6 52. Ra8+ Kd7 1-0
 [Result "0-1"]
 [WhiteElo "1755"]
 [BlackElo "1630"]
+[ECO "B13"]
+[Opening "Caro-Kann"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -11971,6 +13435,8 @@ bxc4 33. bxc4 dxc4 34. Ka1 c3 35. a3 Qh5 0-1
 [Black "Finkenzeller, A."]
 [Result "0-1"]
 [BlackElo "1670"]
+[ECO "B20"]
+[Opening "Sicilian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "68"]
 
@@ -11990,6 +13456,9 @@ Rfa8 21. Rad1 Kg8 22. Nc1 Qd7 23. Rfe1 Ra3 24. Qb2 d5 25. e5 Nf5 26. g4 Nd4
 [Result "1-0"]
 [WhiteElo "2135"]
 [BlackElo "1765"]
+[ECO "C17"]
+[Opening "French"]
+[Variation "Winawer, advance variation"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -12008,6 +13477,8 @@ Rfa8 21. Rad1 Kg8 22. Nc1 Qd7 23. Rfe1 Ra3 24. Qb2 d5 25. e5 Nf5 26. g4 Nd4
 [Black "Wong, W."]
 [Result "1-0"]
 [WhiteElo "1920"]
+[ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "73"]
 
@@ -12027,6 +13498,8 @@ Kxf8 26. Rd8+ Be8 27. f4 Na6 28. c3 Nc7 29. Kf2 Ne6 30. Ra8 Nxf4 31. g3 Nh5
 [Black "Findlay, D."]
 [Result "1-0"]
 [BlackElo "1710"]
+[ECO "A43"]
+[Opening "Old Benoni defence"]
 [EventDate "1998.??.??"]
 [PlyCount "61"]
 
@@ -12045,6 +13518,9 @@ Rad1 O-O 21. Nc4 Qc7 22. Rxd5 Rad8 23. Red1 Rxd5 24. Rxd5 Rd8 25. Qf5 Rxd5
 [Result "0-1"]
 [WhiteElo "1710"]
 [BlackElo "2110"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance, Nimzovich system"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -12064,6 +13540,9 @@ Re8 33. Kf1 Bxf2 34. Kxf2 Re2+ 35. Kf1 Rxh2 0-1
 [Result "0-1"]
 [WhiteElo "1820"]
 [BlackElo "2205"]
+[ECO "E94"]
+[Opening "King's Indian"]
+[Variation "orthodox, 7...Nbd7"]
 [EventDate "1998.??.??"]
 [PlyCount "91"]
 
@@ -12084,6 +13563,8 @@ Qd3+ Kg4 45. Nh2+ Kh5 46. Kf3 0-1
 [Black "Mitchell, J."]
 [Result "1-0"]
 [WhiteElo "1655"]
+[ECO "C42"]
+[Opening "Petrov three knights game"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -12102,6 +13583,8 @@ Qg5+ Kf8 27. Bf6 Ne2+ 28. Kf2 Re8 29. Bxd5 Qh2 1-0
 [Result "1-0"]
 [WhiteElo "2205"]
 [BlackElo "1980"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -12119,6 +13602,8 @@ gxf2+ 27. Kxf2 Rf8+ 28. Kg2 Rg7 29. Rg1 Qh4 1-0
 [Black "Armstrong, D."]
 [Result "0-1"]
 [WhiteElo "1725"]
+[ECO "A41"]
+[Opening "Queen's Pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -12137,6 +13622,9 @@ Nxe5 Bf5 27. Rfe1 Bc2 28. Ndf3 Rf5 29. a5 Kf6 30. Nd7+ Kf7 31. Nfe5+ Kg7
 [Black "Cejvan, S."]
 [Result "1-0"]
 [WhiteElo "1685"]
+[ECO "B00"]
+[Opening "KP"]
+[Variation "Nimzovich defence"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -12154,6 +13642,9 @@ Qd4 b6 21. d6 cxd6 22. Nxd6+ Kb8 23. Nc6+ Bxc6 24. Rxe7 Nf5 25. Qf4 Nxd6
 [Black "Hatfield, E."]
 [Result "0-1"]
 [BlackElo "1710"]
+[ECO "E80"]
+[Opening "King's Indian"]
+[Variation "Saemisch variation"]
 [EventDate "1998.??.??"]
 [PlyCount "90"]
 
@@ -12175,6 +13666,9 @@ Qe7 45. Qxe7+ Rxe7 0-1
 [Result "1-0"]
 [WhiteElo "1630"]
 [BlackElo "1915"]
+[ECO "A48"]
+[Opening "King's Indian"]
+[Variation "London system"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -12194,6 +13688,8 @@ Qh4 27. Qc2 Bg4 28. Qf2 Qxh5 29. Rab1 Ra8 30. Rb6 Bf3 31. Qh2 Qg4+ 32. Kf2
 [Result "0-1"]
 [WhiteElo "1765"]
 [BlackElo "1655"]
+[ECO "A16"]
+[Opening "English opening"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -12213,6 +13709,9 @@ Nh3+ 33. Bxh3 Rxf3 34. Kg2 Qf4 35. Be6 Rg7 0-1
 [Result "1-0"]
 [WhiteElo "2110"]
 [BlackElo "2210"]
+[ECO "E70"]
+[Opening "King's Indian"]
+[Variation "accelerated Averbakh system"]
 [EventDate "1998.??.??"]
 [PlyCount "77"]
 
@@ -12231,6 +13730,8 @@ Qxb2 33. Rxg7+ Qxg7 34. Nxg7 Kxg7 35. Qg4+ Kf8 36. axb5 axb5 37. Qf4 Re5
 [White "Mitchell, J."]
 [Black "Van Weeren, H."]
 [Result "0-1"]
+[ECO "A21"]
+[Opening "English opening"]
 [EventDate "1998.??.??"]
 [PlyCount "54"]
 
@@ -12249,6 +13750,9 @@ fxe4 27. Bg4 Rf8 0-1
 [Result "1-0"]
 [WhiteElo "1955"]
 [BlackElo "2135"]
+[ECO "A90"]
+[Opening "Dutch defence"]
+[Variation "Dutch-Indian (Nimzo-Dutch) variation"]
 [EventDate "1998.??.??"]
 [PlyCount "101"]
 
@@ -12270,6 +13774,9 @@ Qf4+ Kh5 51. Qh4# 1-0
 [Black "Finkenzeller, A."]
 [Result "0-1"]
 [BlackElo "1670"]
+[ECO "D00"]
+[Opening "Queen's pawn"]
+[Variation "stonewall attack"]
 [EventDate "1998.??.??"]
 [PlyCount "81"]
 
@@ -12290,6 +13797,9 @@ Re6 38. Bxh7 Rxe3 39. a4 Re2 40. h4 Ke7 41. Kg1 0-1
 [Result "0-1"]
 [WhiteElo "1620"]
 [BlackElo "1820"]
+[ECO "B45"]
+[Opening "Sicilian"]
+[Variation "Taimanov variation"]
 [EventDate "1998.??.??"]
 [PlyCount "66"]
 
@@ -12308,6 +13818,8 @@ f3 Rxe2 33. Rxe2 g5 0-1
 [Black "Hush, J."]
 [Result "0-1"]
 [BlackElo "1755"]
+[ECO "A00"]
+[Opening "Dunst (Sleipner, Heinrichsen) opening"]
 [EventDate "1998.??.??"]
 [PlyCount "94"]
 
@@ -12328,6 +13840,8 @@ h4 Rc3 45. Qd2 d3+ 46. Kh2 Rxc2 47. Qxc2 dxc2 0-1
 [Black "Hush, B."]
 [Result "1-0"]
 [WhiteElo "1710"]
+[ECO "C55"]
+[Opening "Two knights defence"]
 [EventDate "1998.??.??"]
 [PlyCount "131"]
 
@@ -12351,6 +13865,8 @@ Kxb5 Ka7 51. c4 Kb7 52. c5 Ka7 53. c6 Kb8 54. Ka6 Kc7 55. b5 Kb8 56. b6 Kc8
 [Black "Findlay, D."]
 [Result "0-1"]
 [BlackElo "1710"]
+[ECO "A45"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "38"]
 
@@ -12365,6 +13881,9 @@ fxg6 15. g5 Nh5 16. Nf3 e5 17. dxe5 Qg4+ 18. Kh1 Rxf3 19. Be2 Rxf1# 0-1
 [White "Van de Ven, Ki"]
 [Black "Heseltine Nutch, Ka"]
 [Result "0-1"]
+[ECO "C01"]
+[Opening "French"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "54"]
 
@@ -12381,6 +13900,9 @@ fxg6 15. g5 Nh5 16. Nf3 e5 17. dxe5 Qg4+ 18. Kh1 Rxf3 19. Be2 Rxf1# 0-1
 [White "Hush, B."]
 [Black "Mitchell, J."]
 [Result "1/2-1/2"]
+[ECO "C42"]
+[Opening "Petrov"]
+[Variation "Cozio (Lasker) attack"]
 [EventDate "1998.??.??"]
 [PlyCount "51"]
 
@@ -12398,6 +13920,9 @@ Bxe7 8. dxc3 Bg4 9. Be2 O-O 10. O-O Re8 11. Re1 Nd7 12. Be3 a6 13. h3 Bxf3
 [Black "Litchfield, G."]
 [Result "1-0"]
 [BlackElo "1725"]
+[ECO "C20"]
+[Opening "KP"]
+[Variation "Indian opening"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -12416,6 +13941,9 @@ Nd7 21. Qc2 Bf6 22. Nc4 Be7 23. Qb3 Ne6 24. Bg4 Nd4 25. Qb2 Rd8 26. Rd1 g6
 [Result "1-0"]
 [WhiteElo "2135"]
 [BlackElo "1685"]
+[ECO "E32"]
+[Opening "Nimzo-Indian"]
+[Variation "classical variation"]
 [EventDate "1998.??.??"]
 [PlyCount "55"]
 
@@ -12434,6 +13962,9 @@ b3 Nd2 27. Rc2 Ne4 28. a3 1-0
 [Result "1-0"]
 [WhiteElo "1820"]
 [BlackElo "1655"]
+[ECO "D37"]
+[Opening "QGD"]
+[Variation "classical variation (5.Bf4)"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -12450,6 +13981,9 @@ Ne5 Qf5 21. Nc6 Rxe2 22. Rxe2 h6 23. Be5 Bxe5 24. Ne7+ 1-0
 [Black "Armstrong, D."]
 [Result "1-0"]
 [WhiteElo "1710"]
+[ECO "B01"]
+[Opening "Scandinavian"]
+[Variation "Marshall variation"]
 [EventDate "1998.??.??"]
 [PlyCount "71"]
 
@@ -12468,6 +14002,9 @@ f8=Q+ Qxf8 33. Nxe6+ Kf7 34. Nxf8 Rxf8 35. Re1 Rxc4 36. Qe7+ 1-0
 [Black "Knezevic, A."]
 [Result "1-0"]
 [WhiteElo "1755"]
+[ECO "B23"]
+[Opening "Sicilian"]
+[Variation "closed"]
 [EventDate "1998.??.??"]
 [PlyCount "115"]
 
@@ -12491,6 +14028,9 @@ b8=Q Kd2 57. Qb2+ Ke1 58. Qhb1# 1-0
 [Result "0-1"]
 [WhiteElo "1670"]
 [BlackElo "1980"]
+[ECO "B07"]
+[Opening "Pirc"]
+[Variation "Ufimtsev-Pytel variation"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -12509,6 +14049,9 @@ Qxc2 27. Rxc2 Kg7 28. Re1 Rb6 29. Be4 Rhb8 0-1
 [Result "1/2-1/2"]
 [WhiteElo "2110"]
 [BlackElo "2205"]
+[ECO "E70"]
+[Opening "King's Indian"]
+[Variation "accelerated Averbakh system"]
 [EventDate "1998.??.??"]
 [PlyCount "51"]
 
@@ -12527,6 +14070,8 @@ Rxe4 1/2-1/2
 [Result "1/2-1/2"]
 [WhiteElo "1915"]
 [BlackElo "1850"]
+[ECO "D30"]
+[Opening "Queen's gambit declined"]
 [EventDate "1998.??.??"]
 [PlyCount "55"]
 
@@ -12545,6 +14090,9 @@ Rhd1 O-O 21. Rd6 Rc2+ 22. Kg1 Ra2 23. Rxb6 Rc8 24. Rc1 Rxc1+ 25. Bxc1 Ra1
 [Result "0-1"]
 [WhiteElo "1920"]
 [BlackElo "1955"]
+[ECO "D37"]
+[Opening "QGD"]
+[Variation "4.Nf3"]
 [EventDate "1998.??.??"]
 [PlyCount "53"]
 
@@ -12561,6 +14109,9 @@ Qxb2 Rc8 27. Qc3 0-1
 [White "Heseltine Nutch, Ka"]
 [Black "Wong, W."]
 [Result "1-0"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical (two knights) system"]
 [EventDate "1998.??.??"]
 [PlyCount "51"]
 
@@ -12577,6 +14128,9 @@ Bg5 26. Qf8# 1-0
 [White "Hush, B."]
 [Black "Van de Ven, Ki"]
 [Result "1-0"]
+[ECO "C66"]
+[Opening "Ruy Lopez"]
+[Variation "Berlin defence, 4.O-O, d6"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -12594,6 +14148,9 @@ Qxg6 fxe4 21. Bxh6 Rg8 22. Qf6+ Kh7 23. Be3 Raf8 24. Qh6# 1-0
 [Result "1-0"]
 [WhiteElo "1765"]
 [BlackElo "1915"]
+[ECO "A35"]
+[Opening "English"]
+[Variation "symmetrical variation"]
 [EventDate "1998.??.??"]
 [PlyCount "67"]
 
@@ -12612,6 +14169,9 @@ Kc7 33. Nxc8 Rxc8 34. Qxb7+ 1-0
 [Black "Pope, J."]
 [Result "0-1"]
 [BlackElo "1765"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance, Paulsen attack"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -12629,6 +14189,9 @@ Nxe1 32. Nxa7 Nd3 33. Kg3 Kf8 34. Kf3 Ke8 35. Ke3 Nb4 0-1
 [White "Knezevic, A."]
 [Black "Mitchell, J."]
 [Result "1-0"]
+[ECO "C42"]
+[Opening "Petrov"]
+[Variation "French attack"]
 [EventDate "1998.??.??"]
 [PlyCount "83"]
 
@@ -12649,6 +14212,9 @@ Nb4 Rd2 27. Ke1 Rxd4 28. cxd4 Nxd4 29. Rd1 f5 30. Nxf5 Nb5 31. Nxg7 Kxg7
 [Result "0-1"]
 [WhiteElo "1655"]
 [BlackElo "1755"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical system, 5.Be2"]
 [EventDate "1998.??.??"]
 [PlyCount "50"]
 
@@ -12666,6 +14232,8 @@ Rad1 Qxc3 21. Qxc3 Rxc3 22. e5 dxe5 23. Rxe5 Nd5 24. Be4 e6 25. Bd3 Rxa3
 [Black "Cejvan, S."]
 [Result "1-0"]
 [WhiteElo "1710"]
+[ECO "C41"]
+[Opening "Philidor's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "67"]
 
@@ -12685,6 +14253,8 @@ Nac7 32. Bxc7 Nxc7 33. a4 Kd6 34. c4 1-0
 [Result "1-0"]
 [WhiteElo "1850"]
 [BlackElo "1670"]
+[ECO "A84"]
+[Opening "Dutch defence"]
 [EventDate "1998.??.??"]
 [PlyCount "59"]
 
@@ -12702,6 +14272,8 @@ Qxf5 Re8 27. Rxe8+ Qxe8 28. Qxd5+ Kh8 29. Qe4 Qd7 30. Qa8+ 1-0
 [Black "Van Weeren, H."]
 [Result "1-0"]
 [WhiteElo "1725"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -12721,6 +14293,8 @@ Be8 32. Kd3 c5 33. b4 Kg7 34. bxc5 e5 35. f4 e4+ 36. Kd4 Bc6 1-0
 [Result "1-0"]
 [WhiteElo "2210"]
 [BlackElo "1920"]
+[ECO "A02"]
+[Opening "Bird's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -12740,6 +14314,9 @@ Kg1 1-0
 [Result "1/2-1/2"]
 [WhiteElo "2135"]
 [BlackElo "2110"]
+[ECO "B20"]
+[Opening "Sicilian"]
+[Variation "Steinitz variation"]
 [EventDate "1998.??.??"]
 [PlyCount "49"]
 
@@ -12758,6 +14335,9 @@ cxb4 Rxb4 21. Rac1 Nc5 22. Nd5 Qb7 23. Qxb4 Qxd5 24. Rg1 Qf3 25. Qg4
 [Result "0-1"]
 [WhiteElo "1955"]
 [BlackElo "2205"]
+[ECO "A55"]
+[Opening "Old Indian"]
+[Variation "main line"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -12775,6 +14355,9 @@ Rxd4 Bf6 28. Rdd1 Bxf5 29. Qd2 0-1
 [Black "Morgan, A."]
 [Result "0-1"]
 [BlackElo "1685"]
+[ECO "D38"]
+[Opening "QGD"]
+[Variation "Ragozin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "66"]
 
@@ -12794,6 +14377,9 @@ Rd1 h6 27. Bxa8 Qxf2 28. Re7 Qxb2+ 29. Kd3 Rxa8 30. Qd5 Qa3+ 31. Ke4 Qxe7+
 [Result "0-1"]
 [WhiteElo "1980"]
 [BlackElo "1710"]
+[ECO "E60"]
+[Opening "King's Indian"]
+[Variation "3.g3"]
 [EventDate "1998.??.??"]
 [PlyCount "90"]
 
@@ -12815,6 +14401,8 @@ Bg2 Qxc4 39. Qf6 Rf8 40. Qe6+ Kg7 41. Qxd6 Qe2 42. Qe7+ Kg8 43. Rf1 Qe3+
 [Result "0-1"]
 [WhiteElo "1630"]
 [BlackElo "1820"]
+[ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "76"]
 
@@ -12833,6 +14421,9 @@ Rxg3 38. Re4 Rgg2 0-1
 [White "Wong, W."]
 [Black "Van de Ven, Ki"]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn"]
+[Variation "stonewall attack"]
 [EventDate "1998.??.??"]
 [PlyCount "37"]
 
@@ -12849,6 +14440,8 @@ e4 Qd6 15. exd5 Ne7 16. Bxh6 Qxd5 17. Qh4 gxh6 18. Qxh6 Nc6 19. Qh7# 1-0
 [Result "1/2-1/2"]
 [WhiteElo "2210"]
 [BlackElo "1630"]
+[ECO "A00"]
+[Opening "Durkin's attack"]
 [EventDate "1998.??.??"]
 [PlyCount "55"]
 
@@ -12867,6 +14460,8 @@ Rxe4 Kd7 21. d4 Nc4+ 22. Kc3 d5 23. Bh3+ Nf5 24. Re2 Rbe8 25. Bxf5+ gxf5
 [Result "0-1"]
 [WhiteElo "1725"]
 [BlackElo "1765"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "33"]
 
@@ -12882,6 +14477,8 @@ exd4 fxg4 15. hxg4 Rxf4 16. Bxe4 dxe4 17. Ng5 0-1
 [Black "Heseltine Nutch, Ka"]
 [Result "1-0"]
 [WhiteElo "1670"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -12899,6 +14496,8 @@ Qg4 21. Rg1 Qe6 22. Rxg6 Qc8 23. Rxc6+ Kh8 24. Ng6+ 1-0
 [Result "1-0"]
 [WhiteElo "2205"]
 [BlackElo "1710"]
+[ECO "C50"]
+[Opening "King's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -12916,6 +14515,9 @@ Nd7 21. Qxd7 f5 22. Bf4 Qf6 23. Bxd6 cxd6 24. Qe6+ 1-0
 [Result "1/2-1/2"]
 [WhiteElo "2110"]
 [BlackElo "1955"]
+[ECO "E50"]
+[Opening "Nimzo-Indian"]
+[Variation "4.e3 e8g8, 5.Nf3, without ...d5"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -12933,6 +14535,8 @@ Nf6 15. Qc2 Kf7 16. d5 exd5 17. Bxf5 dxc4 18. e4 Bc8 19. Bc1 Qh5 20. g4 Qh4
 [Result "0-1"]
 [WhiteElo "1685"]
 [BlackElo "1850"]
+[ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "42"]
 
@@ -12950,6 +14554,8 @@ Nf6 15. Qc2 Kf7 16. d5 exd5 17. Bxf5 dxc4 18. e4 Bc8 19. Bc1 Qh5 20. g4 Qh4
 [Result "1/2-1/2"]
 [WhiteElo "1980"]
 [BlackElo "2135"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -12968,6 +14574,8 @@ Kg1 g4 21. Rf4 Rae8 22. Bxe4 fxe4 23. Qb3 Rxf4 24. Rxf4 Bc6 25. Rxg4+ Kh8
 [Black "Sengupta, O."]
 [Result "1-0"]
 [BlackElo "1620"]
+[ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "83"]
 
@@ -12988,6 +14596,9 @@ Bg7 39. Qc6 Qe7 40. Qxd5+ Kh8 41. Rf7 Qe4 42. Re1 1-0
 [Result "1-0"]
 [WhiteElo "1920"]
 [BlackElo "1630"]
+[ECO "B14"]
+[Opening "Caro-Kann"]
+[Variation "Panov-Botvinnik attack, 5...e6"]
 [EventDate "1998.??.??"]
 [PlyCount "67"]
 
@@ -13006,6 +14617,8 @@ Na7 33. c6 Qb8 34. c7 1-0
 [Black "Armstrong, D."]
 [Result "0-1"]
 [WhiteElo "1655"]
+[ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -13025,6 +14638,9 @@ Nxc2 32. Kd2 Nb4 33. a3 Nd5 34. Nc6 a6 35. Nb8 a5 36. Nc6 b4 0-1
 [Result "1-0"]
 [WhiteElo "1755"]
 [BlackElo "1710"]
+[ECO "B23"]
+[Opening "Sicilian"]
+[Variation "closed"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -13041,6 +14657,9 @@ Nxc2 32. Kd2 Nb4 33. a3 Nd5 34. Nc6 a6 35. Nb8 a5 36. Nc6 b4 0-1
 [White "Van Weeren, H."]
 [Black "Hush, B."]
 [Result "1/2-1/2"]
+[ECO "C46"]
+[Opening "Four knights"]
+[Variation "Gunsberg variation"]
 [EventDate "1998.??.??"]
 [PlyCount "85"]
 
@@ -13061,6 +14680,8 @@ Rfe8 40. Kf2 Rxe3 41. Rxe3 Rxe3 42. Qxe3 Qxb4 43. Qa7+ 1/2-1/2
 [Result "0-1"]
 [WhiteElo "1820"]
 [BlackElo "2210"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "22"]
 
@@ -13074,7 +14695,9 @@ Bf4 Nc7 9. O-O Ne6 10. Be3 f5 11. Qd2 f4 0-1
 [White "Kirby, P."]
 [Black "De Kerpel, S."]
 [Result "0-1"]
-[ECO "C19"]
+[ECO "C18"]
+[Opening "French"]
+[Variation "Winawer, classical variation"]
 [EventDate "1998.??.??"]
 [PlyCount "48"]
 
@@ -13102,6 +14725,9 @@ cxd4 $15) (21. Rg4 Nxd4 22. Nxd4 cxd4 $15) 21... cxd4 22. Qb3 Rhd8 $15)
 [Result "1-0"]
 [WhiteElo "2270"]
 [BlackElo "1745"]
+[ECO "D58"]
+[Opening "QGD"]
+[Variation "Tartakower (Makagonov-Bondarevsky) system"]
 [EventDate "1998.??.??"]
 [PlyCount "35"]
 
@@ -13118,6 +14744,9 @@ exd4 Bb4 15. Qa4 Bxc3 16. bxc3 Rc7 17. Nxd7 Nxd7 18. Bxc7 1-0
 [Result "1/2-1/2"]
 [WhiteElo "1685"]
 [BlackElo "2060"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical, h3 system"]
 [EventDate "1998.??.??"]
 [PlyCount "105"]
 
@@ -13140,6 +14769,8 @@ Nd6 Qg8 33. Ne4 R8f5 34. Qg3 R2f4 35. Nd6 Bd4+ 36. Kh2 Qxg3+ 37. Kxg3 h4+
 [Result "1-0"]
 [WhiteElo "2025"]
 [BlackElo "1620"]
+[ECO "A46"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "125"]
 
@@ -13163,6 +14794,8 @@ Kc5 Kd8 63. Kb6 1-0
 [Black "Dobrishman, L."]
 [Result "1-0"]
 [BlackElo "1970"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Krause variation"]
 [EventDate "1998.??.??"]
 [PlyCount "99"]
 
@@ -13184,6 +14817,9 @@ Nxg5 45. N4e5 Nf3+ 46. Ke3 Nxh2 47. Rxh2 Rxc3+ 48. bxc3 Rxc3+ 49. Kf4 Rf3+
 [Black "McRorie, A."]
 [Result "1-0"]
 [WhiteElo "1915"]
+[ECO "C66"]
+[Opening "Ruy Lopez"]
+[Variation "Berlin defence, 4.O-O, d6"]
 [EventDate "1998.??.??"]
 [PlyCount "25"]
 
@@ -13198,6 +14834,9 @@ Nxg5 45. N4e5 Nf3+ 46. Ke3 Nxh2 47. Rxh2 Rxc3+ 48. bxc3 Rxc3+ 49. Kf4 Rf3+
 [Black "Oraha, Z."]
 [Result "0-1"]
 [BlackElo "1905"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical (two knights) system"]
 [EventDate "1998.??.??"]
 [PlyCount "98"]
 
@@ -13218,6 +14857,9 @@ axb5 axb5 45. Nxc7 b4 46. Nb5 Ke5 47. Kf3 Bd4 48. Nc7 b3 49. Nb5 Kxd5 0-1
 [Black "Mitchell, J."]
 [Result "1-0"]
 [WhiteElo "1850"]
+[ECO "C46"]
+[Opening "Four knights"]
+[Variation "Italian variation"]
 [EventDate "1998.??.??"]
 [PlyCount "86"]
 
@@ -13237,6 +14879,9 @@ Ng3 39. Nf3 Ne2+ 40. Kh2 Nxc3 41. Ne5 Bb5 42. Rb8+ Be8 43. f7 Ke7 1-0
 [Black "Zoccano, J."]
 [Result "0-1"]
 [BlackElo "1810"]
+[ECO "B12"]
+[Opening "Caro-Kann"]
+[Variation "advance variation"]
 [EventDate "1998.??.??"]
 [PlyCount "116"]
 
@@ -13259,6 +14904,8 @@ Nf3 b4 53. Be1 c3 54. Bf2 Na4 55. Ne1 b3 56. Nd3 b2 57. Be3 b1=Q 58. Nf2 c2
 [Black "Kovacs, R."]
 [Result "1-0"]
 [WhiteElo "1790"]
+[ECO "D30"]
+[Opening "Queen's gambit declined"]
 [EventDate "1998.??.??"]
 [PlyCount "41"]
 
@@ -13275,6 +14922,8 @@ O-O a6 9. e4 e5 10. d5 Ne7 11. Bg5 Nh5 12. Nxe5 Bxe5 13. Qxh5 g6 14. Qh4 b5
 [Black "Findlay, D."]
 [Result "0-1"]
 [BlackElo "1780"]
+[ECO "A45"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "68"]
 
@@ -13294,6 +14943,8 @@ Rxa1 33. hxg7 Rxa2 34. Bb1 Rxd2+ 0-1
 [Result "0-1"]
 [WhiteElo "1810"]
 [BlackElo "2270"]
+[ECO "A04"]
+[Opening "Reti v Dutch"]
 [EventDate "1998.??.??"]
 [PlyCount "116"]
 
@@ -13317,6 +14968,8 @@ Kd7 58. Na2 Be7 0-1
 [Result "1/2-1/2"]
 [WhiteElo "1790"]
 [BlackElo "2025"]
+[ECO "A56"]
+[Opening "Benoni defence"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -13336,6 +14989,9 @@ Re5 34. Rg3 Nxd5 35. Nxd5 Rxd5 1/2-1/2
 [Result "1/2-1/2"]
 [WhiteElo "1780"]
 [BlackElo "1915"]
+[ECO "B12"]
+[Opening "Caro-Kann"]
+[Variation "advance variation"]
 [EventDate "1998.??.??"]
 [PlyCount "64"]
 
@@ -13354,6 +15010,8 @@ Qc7 15. g4 Ne7 16. Ng3 h6 17. Be3 g6 18. h4 Bg7 19. Rac1 Kd7 20. Kg2 Rhc8
 [Black "Litchfield, G."]
 [Result "1-0"]
 [WhiteElo "1905"]
+[ECO "A03"]
+[Opening "Bird's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "25"]
 
@@ -13369,6 +15027,8 @@ O-O h6 9. Kh1 Qe7 10. a3 O-O 11. d3 dxc4 12. bxc4 Rfd8 13. e4 1-0
 [Result "1/2-1/2"]
 [WhiteElo "2060"]
 [BlackElo "1935"]
+[ECO "A80"]
+[Opening "Dutch, 2.Bg5 variation"]
 [EventDate "1998.??.??"]
 [PlyCount "99"]
 
@@ -13390,6 +15050,8 @@ Rxe7+ 1/2-1/2
 [Black "Pretti, J."]
 [Result "1-0"]
 [WhiteElo "1620"]
+[ECO "D10"]
+[Opening "QGD Slav defence"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -13407,6 +15069,9 @@ Rc5 Ra8 27. Rb5 Nxd3 28. Kxd3 Bf5+ 29. Rxf5 1-0
 [Black "Mitchell, J."]
 [Result "1-0"]
 [WhiteElo "1745"]
+[ECO "C46"]
+[Opening "Four knights"]
+[Variation "Italian variation"]
 [EventDate "1998.??.??"]
 [PlyCount "51"]
 
@@ -13423,6 +15088,8 @@ Kf6 26. Rxb7 1-0
 [White "McRorie, A."]
 [Black "Kovacs, R."]
 [Result "1-0"]
+[ECO "D04"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "59"]
 
@@ -13439,6 +15106,8 @@ Re8 26. Rc6 Rb8 27. Rac1 Nfd7 28. a4 a5 29. Kf2 Ne5 30. R6c3 1-0
 [White "Wong, W."]
 [Black "Huys, T."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -13457,6 +15126,9 @@ a6 9. Nf2 Bd7 10. Re1 Nbc6 11. Nf3 b5 12. Ne5 cxd4 13. exd4 Be8 14. g4 Na5
 [Result "1-0"]
 [WhiteElo "2270"]
 [BlackElo "1905"]
+[ECO "E90"]
+[Opening "King's Indian"]
+[Variation "5.Nf3"]
 [EventDate "1998.??.??"]
 [PlyCount "51"]
 
@@ -13475,6 +15147,9 @@ bxc6 21. Be2 c5 22. Bxc5 Nc6 23. Nb5 d5 24. exd5 Nxd5 25. Bf3 Nce7 26. Bxe7
 [Result "1-0"]
 [WhiteElo "1915"]
 [BlackElo "1790"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance variation"]
 [EventDate "1998.??.??"]
 [PlyCount "105"]
 
@@ -13497,6 +15172,9 @@ Ne4+ 51. Ke5 Nxg5 52. Rc8+ Ke7 53. Bc5# 1-0
 [Result "0-1"]
 [WhiteElo "1620"]
 [BlackElo "2060"]
+[ECO "E81"]
+[Opening "King's Indian"]
+[Variation "Saemisch, 5...O-O"]
 [EventDate "1998.??.??"]
 [PlyCount "50"]
 
@@ -13515,6 +15193,8 @@ Nxc6+ 0-1
 [Result "0-1"]
 [WhiteElo "2025"]
 [BlackElo "1780"]
+[ECO "A46"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "56"]
 
@@ -13533,6 +15213,8 @@ Kc3 Rc8+ 26. Bc4 Qe4 27. Qd7+ Kb8 28. Qd4 Bd2+ 0-1
 [Result "1-0"]
 [WhiteElo "1935"]
 [BlackElo "1685"]
+[ECO "E10"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "81"]
 
@@ -13552,6 +15234,9 @@ Rd3 Nxd5 40. Red1 Qf7 41. Qc5 1-0
 [Black "Zoccano, J."]
 [Result "1/2-1/2"]
 [BlackElo "1810"]
+[ECO "D46"]
+[Opening "QGD semi-Slav"]
+[Variation "Chigorin defence"]
 [EventDate "1998.??.??"]
 [PlyCount "118"]
 
@@ -13574,6 +15259,9 @@ gxh4 51. Kf3 Rh8 52. Kg2 h3+ 53. Kh2 Ke4 54. b5 Kd5 55. b6 Kc6 56. f4 Rh5
 [Black "Bruvelaitis, M."]
 [Result "1-0"]
 [BlackElo "1745"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical, h3 system"]
 [EventDate "1998.??.??"]
 [PlyCount "45"]
 
@@ -13590,6 +15278,8 @@ dxe5 Ne8 9. e6 fxe6 10. Ng5 Rf6 11. Nxe6 Rxe6+ 12. Bxe6+ Kh8 13. O-O Nd6
 [Black "Wong, W."]
 [Result "1-0"]
 [WhiteElo "1970"]
+[ECO "E60"]
+[Opening "King's Indian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "33"]
 
@@ -13604,6 +15294,8 @@ Qd5+ Kf6 15. Nf4 h5 16. Qe6+ Kg5 17. Qxg6# 1-0
 [White "Mitchell, J."]
 [Black "Pretti, J."]
 [Result "1-0"]
+[ECO "C34"]
+[Opening "King's knight's gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "37"]
 
@@ -13618,6 +15310,8 @@ c6 15. Bb3 d5 16. e5 f5 17. Bxg5 Qg7 18. O-O-O h4 19. Bf6 1-0
 [White "Kovacs, R."]
 [Black "Huys, T."]
 [Result "0-1"]
+[ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "96"]
 
@@ -13639,6 +15333,8 @@ Bb2 44. Kd1 Rd8+ 45. Kc2 Rd2+ 46. Kb1 Rd4 47. Kxb2 Rxf4 48. Kc3 Na5 0-1
 [Result "0-1"]
 [WhiteElo "1915"]
 [BlackElo "2270"]
+[ECO "A16"]
+[Opening "English opening"]
 [EventDate "1998.??.??"]
 [PlyCount "52"]
 
@@ -13657,6 +15353,8 @@ d5 Ne8 9. g4 Nc5 10. h3 e4 11. Nd2 Nd3+ 12. Ke2 f5 13. Qg1 Qh4 14. Nd1 Nf6
 [Result "1-0"]
 [WhiteElo "2060"]
 [BlackElo "1780"]
+[ECO "D02"]
+[Opening "Queen's bishop game"]
 [EventDate "1998.??.??"]
 [PlyCount "89"]
 
@@ -13677,6 +15375,8 @@ Rxc6+ Kf5 45. Rc5 1-0
 [Black "Kearley, J."]
 [Result "0-1"]
 [BlackElo "1935"]
+[ECO "D02"]
+[Opening "Queen's bishop game"]
 [EventDate "1998.??.??"]
 [PlyCount "102"]
 
@@ -13699,6 +15399,8 @@ Rg7 Kb6 0-1
 [Result "0-1"]
 [WhiteElo "1685"]
 [BlackElo "2025"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "44"]
 
@@ -13716,6 +15418,8 @@ Rxc3 21. Re3 Rxe3 22. Bxe3 Qa4 0-1
 [Result "0-1"]
 [WhiteElo "1905"]
 [BlackElo "1850"]
+[ECO "A02"]
+[Opening "Bird's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "93"]
 
@@ -13737,6 +15441,8 @@ Rf4+ 45. Kd5 Rxg4 46. Kc5 f5 47. Kb4 0-1
 [Result "0-1"]
 [WhiteElo "1810"]
 [BlackElo "1790"]
+[ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "54"]
 
@@ -13754,6 +15460,9 @@ Rf6 21. Rf3 h5 22. g4 Bd7 23. b4 fxg4 24. hxg4 Be8 25. Qh2 g5 26. fxg5 h4
 [Black "Armstrong, D."]
 [Result "0-1"]
 [BlackElo "1620"]
+[ECO "B01"]
+[Opening "Scandinavian"]
+[Variation "Marshall variation"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -13771,6 +15480,8 @@ Qf2 26. Nh6+ gxh6 27. Rg1+ Kh8 28. Bxe5 Qxf3+ 29. Bg3 Qg4# 0-1
 [Black "Wong, W."]
 [Result "1-0"]
 [WhiteElo "1745"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "95"]
 
@@ -13790,6 +15501,8 @@ Rc4 32. Rb5 Rc8 33. Rb2 Kh6 34. Ne5 Be8 35. Kf4 g5+ 36. Kf5 Rc5 37. Kf6 Rd5
 [White "Pretti, J."]
 [Black "Kovacs, R."]
 [Result "1-0"]
+[ECO "C50"]
+[Opening "Giuoco Piano"]
 [EventDate "1998.??.??"]
 [PlyCount "19"]
 
@@ -13805,6 +15518,9 @@ O-O b5 9. Ba2 b4 10. a4 1-0
 [Result "1/2-1/2"]
 [WhiteElo "2270"]
 [BlackElo "2060"]
+[ECO "A41"]
+[Opening "Old Indian"]
+[Variation "Tartakower (Wade) variation"]
 [EventDate "1998.??.??"]
 [PlyCount "108"]
 
@@ -13827,6 +15543,9 @@ Qe7 Rd1+ 33. Kf2 Rd2+ 34. Kf1 Rxg2 35. Kxg2 Qg8+ 36. Kf2 Qg6 37. Qxc5 Qc2+
 [Result "1/2-1/2"]
 [WhiteElo "1935"]
 [BlackElo "1850"]
+[ECO "D46"]
+[Opening "QGD semi-Slav"]
+[Variation "Chigorin defence"]
 [EventDate "1998.??.??"]
 [PlyCount "84"]
 
@@ -13847,6 +15566,8 @@ Qd5 39. Rc1 Qc6 40. Qe2 Qd5 41. Qc2 Qc6 42. Qb3 Qd5 1/2-1/2
 [Result "1-0"]
 [WhiteElo "2025"]
 [BlackElo "1915"]
+[ECO "D02"]
+[Opening "Queen's bishop game"]
 [EventDate "1998.??.??"]
 [PlyCount "100"]
 
@@ -13869,6 +15590,9 @@ Kxg4 Kxf2 1-0
 [Result "1-0"]
 [WhiteElo "1780"]
 [BlackElo "1790"]
+[ECO "C01"]
+[Opening "French"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "127"]
 
@@ -13892,6 +15616,9 @@ Kf7 56. a3 Rxa3 57. Rf8+ Kg6 58. Rf4 a5 59. Bd4 a4 60. b4 Ra2 61. Kc1 h4
 [Black "Litchfield, G."]
 [Result "1-0"]
 [WhiteElo "1620"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
+[Variation "Charlick (Englund) gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "27"]
 
@@ -13907,6 +15634,9 @@ Kf7 56. a3 Rxa3 57. Rf8+ Kg6 58. Rf4 a5 59. Bd4 a4 60. b4 Ra2 61. Kc1 h4
 [Black "McRorie, A."]
 [Result "0-1"]
 [WhiteElo "1905"]
+[ECO "D06"]
+[Opening "QGD"]
+[Variation "Marshall defence"]
 [EventDate "1998.??.??"]
 [PlyCount "154"]
 
@@ -13933,6 +15663,9 @@ Kg2 h5 76. Kf2 g3+ 77. Kg1 Kg4 0-1
 [Result "0-1"]
 [WhiteElo "1685"]
 [BlackElo "1810"]
+[ECO "B18"]
+[Opening "Caro-Kann"]
+[Variation "classical variation"]
 [EventDate "1998.??.??"]
 [PlyCount "116"]
 
@@ -13954,6 +15687,8 @@ Qg1+ 57. Kh3 Qh1+ 58. Kg4 f5+ 0-1
 [White "Kovacs, R."]
 [Black "Mitchell, J."]
 [Result "0-1"]
+[ECO "C27"]
+[Opening "Vienna game"]
 [EventDate "1998.??.??"]
 [PlyCount "94"]
 
@@ -13975,6 +15710,8 @@ Qxh7+ 44. Kxh7 c5 45. Kg6 c4 46. Kf6 c3 47. Ke6 c2 0-1
 [Result "1/2-1/2"]
 [WhiteElo "2025"]
 [BlackElo "2270"]
+[ECO "A47"]
+[Opening "Queen's Indian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "54"]
 
@@ -13993,6 +15730,9 @@ Rce8 21. f3 Bd8 22. Kh2 b5 23. Rh1 Qc7 24. f4 b4 25. cxb4 cxb4 26. Nf3 Qa5
 [Result "1-0"]
 [WhiteElo "2060"]
 [BlackElo "1850"]
+[ECO "D10"]
+[Opening "QGD Slav defence"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "107"]
 
@@ -14015,6 +15755,9 @@ Rc7+ Kb8 52. Ra7 e5 53. Rxa8+ Kxa8 54. Kc6 1-0
 [Result "1-0"]
 [WhiteElo "1935"]
 [BlackElo "1780"]
+[ECO "D06"]
+[Opening "QGD"]
+[Variation "Marshall defence"]
 [EventDate "1998.??.??"]
 [PlyCount "95"]
 
@@ -14036,6 +15779,8 @@ Kf6 39. Be3 h6 40. Bf2 Re6 41. Bh4+ Kf7 42. f5 Rxe5 43. dxe5 g5 44. e6+ Kf6
 [Result "1-0"]
 [WhiteElo "1745"]
 [BlackElo "1620"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "135"]
 
@@ -14061,6 +15806,8 @@ Rxc5 Kf2 68. Rxg5 1-0
 [Result "1-0"]
 [WhiteElo "1810"]
 [BlackElo "1915"]
+[ECO "D00"]
+[Opening "Queen's pawn, Mason variation"]
 [EventDate "1998.??.??"]
 [PlyCount "85"]
 
@@ -14080,6 +15827,8 @@ Nxh6 Rxh6 34. Qf3 Be6 35. Bf5 g4 36. Qe3 Bxf5 37. Qxh6 Bd3 38. Qxh5+ Kd8
 [Black "McRorie, A."]
 [Result "1-0"]
 [WhiteElo "1790"]
+[ECO "D30"]
+[Opening "Queen's gambit declined"]
 [EventDate "1998.??.??"]
 [PlyCount "119"]
 
@@ -14101,6 +15850,8 @@ Qxe6+ Kd2 50. Qg6 Qf4+ 51. g3 Qf2+ 52. Kh3 Bc8+ 53. g4 Qf3+ 54. Kh4 Qf2+
 [White "Litchfield, G."]
 [Black "Mitchell, J."]
 [Result "1-0"]
+[ECO "D02"]
+[Opening "Queen's bishop game"]
 [EventDate "1998.??.??"]
 [PlyCount "59"]
 
@@ -14118,6 +15869,8 @@ Nxf8+ Kg8 27. Ng6 b6 28. Ne5 c5 29. Qg6 Qxg6 30. Nxg6 1-0
 [Black "Oraha, Z."]
 [Result "0-1"]
 [BlackElo "1905"]
+[ECO "A84"]
+[Opening "Dutch defence, Rubinstein variation"]
 [EventDate "1998.??.??"]
 [PlyCount "96"]
 
@@ -14137,6 +15890,9 @@ Qb2+ Kg8 33. Rf4 Qe1+ 34. Rf1 Qxe3+ 35. Rf2 d4 36. Qb3+ Qxb3 37. axb3 Be6
 [White "Patterson, J."]
 [Black "Rachar, S."]
 [Result "0-1"]
+[ECO "D00"]
+[Opening "Queen's pawn"]
+[Variation "Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "28"]
 
@@ -14151,6 +15907,9 @@ Qb2+ Kg8 33. Rf4 Qe1+ 34. Rf1 Qxe3+ 35. Rf2 d4 36. Qb3+ Qxb3 37. axb3 Be6
 [White "Wong, W."]
 [Black "Knezevic, A."]
 [Result "0-1"]
+[ECO "D00"]
+[Opening "Queen's pawn"]
+[Variation "stonewall attack"]
 [EventDate "1998.??.??"]
 [PlyCount "48"]
 
@@ -14166,6 +15925,9 @@ Kf1 Nxe3+ 9. Ke1 Nxd1 10. Kxd1 Ne4 11. Nxe4 Bxe4 12. Nh3 Bxg2 13. Re1 Bxh3
 [White "Heseltine Nutch, Ka"]
 [Black "Morgan, B."]
 [Result "1-0"]
+[ECO "D50"]
+[Opening "QGD"]
+[Variation "4.Bg5"]
 [EventDate "1998.??.??"]
 [PlyCount "96"]
 
@@ -14185,6 +15947,8 @@ Ke3 h4 45. Ke4 h3 46. Ke3 a5 47. Ke4 b4 48. a4 c3 1-0
 [White "Castillo, I."]
 [Black "Hung, J."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Levitsky attack (Queen's bishop attack)"]
 [EventDate "1998.??.??"]
 [PlyCount "13"]
 
@@ -14197,6 +15961,8 @@ Ke3 h4 45. Ke4 h3 46. Ke3 a5 47. Ke4 b4 48. a4 c3 1-0
 [White "Highley"]
 [Black "Wilson, L-WongW"]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Van't Kruijs opening"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -14213,6 +15979,8 @@ Ra2 Bxa2 27. h4 Bc4 28. f4 Rab8 29. a4 Rb1# 0-1
 [White "Morgan, B."]
 [Black "Highley-Wilson, K."]
 [Result "1-0"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "53"]
 
@@ -14229,6 +15997,8 @@ Qc4 Rxd2 20. Nxd2 Nd5 21. Re8+ Kc7 22. Rae1 b5 23. Qg4 Ne3 24. R1xe3 Kb7
 [White "Rachar, S."]
 [Black "Heseltine Nutch, Ka"]
 [Result "0-1"]
+[ECO "A45"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "76"]
 
@@ -14247,6 +16017,8 @@ Kc3 Qg3+ 38. Bf3 Qgxf3+ 0-1
 [White "Knezevic, A."]
 [Black "Pavez, M."]
 [Result "1-0"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "67"]
 
@@ -14264,6 +16036,9 @@ Nxh7 Nd4 32. c3 Nf3+ 33. Kf2 Nxh2 34. Nf6 1-0
 [White "Phares, A."]
 [Black "Jurjans, Mn"]
 [Result "0-1"]
+[ECO "B20"]
+[Opening "Sicilian"]
+[Variation "Steinitz variation"]
 [EventDate "1998.??.??"]
 [PlyCount "99"]
 
@@ -14284,6 +16059,9 @@ Rd3+ 44. Kc6 Rxd7 45. Kxd7 Ra8 46. Kc7 a5 47. Kb7 Re8 48. Kb6 a4 49. Kb5 a3
 [White "Jurjans, D."]
 [Black "Nowicki, G."]
 [Result "0-1"]
+[ECO "C20"]
+[Opening "KP"]
+[Variation "Indian opening"]
 [EventDate "1998.??.??"]
 [PlyCount "56"]
 
@@ -14300,6 +16078,9 @@ Rd3+ 44. Kc6 Rxd7 45. Kxd7 Ra8 46. Kc7 a5 47. Kb7 Re8 48. Kb6 a4 49. Kb5 a3
 [White "Nowicki, G."]
 [Black "Castillo, I."]
 [Result "1-0"]
+[ECO "C20"]
+[Opening "KP"]
+[Variation "Indian opening"]
 [EventDate "1998.??.??"]
 [PlyCount "49"]
 
@@ -14316,6 +16097,8 @@ Qxb7+ Rc7 20. Qb5+ Kc8 21. Bxh8 Bh6+ 22. Kb1 Rf7 23. Rxd6 Rxf2 24. Qc6+ Kb8
 [White "Heseltine Nutch, Ka"]
 [Black "Knezevic, A."]
 [Result "1/2-1/2"]
+[ECO "D20"]
+[Opening "Queen's gambit accepted"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -14333,6 +16116,8 @@ Kxb2 Ke7 33. Kc3 Kd6 34. Kc4 g5 35. g4 1/2-1/2
 [White "Wong, W."]
 [Black "Jurjans, D."]
 [Result "1-0"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "59"]
 
@@ -14349,6 +16134,8 @@ Rxe6 27. Rxe6 Qd7 28. Qg6 Bb6 29. Re8+ Bd8 30. Bf5 1-0
 [White "Highley"]
 [Black "Wilson, K-HungJ"]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn, Mason variation"]
 [EventDate "1998.??.??"]
 [PlyCount "89"]
 
@@ -14368,6 +16155,8 @@ Qb2 Ka6 45. Ra4# 1-0
 [White "Pavez, M."]
 [Black "Patterson, J."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn, Mason variation"]
 [EventDate "1998.??.??"]
 [PlyCount "75"]
 
@@ -14386,6 +16175,9 @@ Kf7 38. f5 1-0
 [White "Phares, A."]
 [Black "Morgan, B."]
 [Result "1-0"]
+[ECO "C50"]
+[Opening "Giuoco Pianissimo"]
+[Variation "Italian four knights variation"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -14403,6 +16195,8 @@ Kh2 Qf4+ 27. Kg1 axb4 28. axb4 Qc1+ 29. Kh2 Nxb4 30. Qxf7+ Kh7 31. Qg8+ Kg6
 [White "Patterson, J."]
 [Black "Jurjans, D."]
 [Result "1-0"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1998.??.??"]
 [PlyCount "55"]
 
@@ -14419,6 +16213,8 @@ Qf7+ Kd8 21. Rf1 Ne7 22. Qxg7 Re8 23. Rf8 Rxf8 24. Qxf8+ Kd7 25. Qf7 Nd8
 [White "Morgan, B."]
 [Black "Highley-Wilson, L."]
 [Result "1-0"]
+[ECO "C41"]
+[Opening "Philidor's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "23"]
 
@@ -14432,6 +16228,8 @@ Qf7+ Kd8 21. Rf1 Ne7 22. Qxg7 Re8 23. Rf8 Rxf8 24. Qxf8+ Kd7 25. Qf7 Nd8
 [White "Castillo, I."]
 [Black "Highley-Wilson, K."]
 [Result "0-1"]
+[ECO "D04"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "20"]
 
@@ -14445,6 +16243,8 @@ Qf7+ Kd8 21. Rf1 Ne7 22. Qxg7 Re8 23. Rf8 Rxf8 24. Qxf8+ Kd7 25. Qf7 Nd8
 [White "Jurjans, Mn"]
 [Black "Rachar, S."]
 [Result "1-0"]
+[ECO "C50"]
+[Opening "Giuoco Piano"]
 [EventDate "1998.??.??"]
 [PlyCount "41"]
 
@@ -14460,6 +16260,9 @@ Qe7 Nxc2 20. Qf7+ Kh8 21. Qf8+ 1-0
 [White "Pavez, M."]
 [Black "Wong, W."]
 [Result "1-0"]
+[ECO "A48"]
+[Opening "King's Indian"]
+[Variation "London system"]
 [EventDate "1998.??.??"]
 [PlyCount "79"]
 
@@ -14478,6 +16281,8 @@ a4 Nc6 38. Rb6 Kg5 39. Rxc6 Kh6 40. a5 1-0
 [White "Rachar, S."]
 [Black "Phares, A."]
 [Result "1/2-1/2"]
+[ECO "A45"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "134"]
 
@@ -14501,6 +16306,8 @@ Kd6 62. Kd4 Ke6 63. a4 Kd6 64. a5 Kc6 65. e5 Kb5 66. e6 Kxa5 67. e7 Kb4
 [White "Knezevic, A."]
 [Black "Nowicki, G."]
 [Result "1-0"]
+[ECO "C41"]
+[Opening "Philidor's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "79"]
 
@@ -14519,6 +16326,9 @@ Rd8 38. Rf7+ Ke4 39. Re7+ Kf4 40. Rxe3 1-0
 [White "Jurjans, Mn"]
 [Black "Heseltine Nutch, Ka"]
 [Result "0-1"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance, Euwe variation"]
 [EventDate "1998.??.??"]
 [PlyCount "64"]
 
@@ -14536,6 +16346,8 @@ Kb4 Qb2+ 32. Kc5 b6+ 0-1
 [White "Castillo, I."]
 [Black "Teram, E."]
 [Result "0-1"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "40"]
 
@@ -14553,6 +16365,8 @@ Ba5 8. Bd4 Ne4 9. Bxe5 Nxd2 10. Rxd2 Qg5 11. Nf3 Qh6 12. e3 c6 13. b4 Bd8
 [Result "1-0"]
 [WhiteElo "1960"]
 [BlackElo "1735"]
+[ECO "A21"]
+[Opening "English opening"]
 [EventDate "1998.??.??"]
 [PlyCount "41"]
 
@@ -14568,6 +16382,8 @@ Be6 21. Nxe6 1-0
 [White "Mitchell, J."]
 [Black "Majstorovic, A."]
 [Result "0-1"]
+[ECO "C30"]
+[Opening "King's gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "54"]
 
@@ -14584,6 +16400,9 @@ Kd1 Qb3+ 26. Ke2 Qc2+ 27. Ke1 Bc3# 0-1
 [White "Martin, C."]
 [Black "Pavez, S."]
 [Result "1-0"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical (two knights) system"]
 [EventDate "1998.??.??"]
 [PlyCount "51"]
 
@@ -14600,6 +16419,8 @@ Qxg7# 1-0
 [White "Baxter, W."]
 [Black "Morgan, B."]
 [Result "1-0"]
+[ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "75"]
 
@@ -14619,6 +16440,8 @@ Qc7# 1-0
 [Black "Rachar, S."]
 [Result "1-0"]
 [WhiteElo "1715"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "59"]
 
@@ -14636,6 +16459,8 @@ Nd4 Nc4 21. Nc3 Bb4 22. Nxd5 O-O-O 23. Nxb4 axb4 24. Rc1 Nd6 25. Rxb4 Rd7
 [Black "Bruvelaitis, M."]
 [Result "0-1"]
 [BlackElo "1745"]
+[ECO "C45"]
+[Opening "Scotch game"]
 [EventDate "1998.??.??"]
 [PlyCount "50"]
 
@@ -14653,6 +16478,8 @@ Bd4+ 0-1
 [Black "Morgan, A."]
 [Result "0-1"]
 [BlackElo "1685"]
+[ECO "A45"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "94"]
 
@@ -14674,6 +16501,8 @@ Bxg3 33. f4 Bh4 34. Ra6 Bd8 35. Kf2 Bb7 36. Ra7 Rb8 37. e4 dxe4 38. Ke3 b5
 [Result "1/2-1/2"]
 [WhiteElo "2105"]
 [BlackElo "1890"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "61"]
 
@@ -14692,6 +16521,8 @@ Nb3 Bf6 28. c6 Be8 29. Qg4 Qxg4 30. Bxg4 Rd8 31. a4 1/2-1/2
 [Result "1-0"]
 [WhiteElo "2315"]
 [BlackElo "1915"]
+[ECO "D77"]
+[Opening "Neo-Gruenfeld, 6.O-O"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -14711,6 +16542,9 @@ Kh6 32. Rd1 1-0
 [Result "1-0"]
 [WhiteElo "1825"]
 [BlackElo "2085"]
+[ECO "A04"]
+[Opening "Reti"]
+[Variation "Wade defence"]
 [EventDate "1998.??.??"]
 [PlyCount "63"]
 
@@ -14730,6 +16564,8 @@ Be6+ Rxe6 27. Qxh4 Ne5 28. Nd4 Re8 29. Rh2 Nxc4 30. Rf2 Ne3+ 31. Kg1 Nd5
 [Result "0-1"]
 [WhiteElo "1780"]
 [BlackElo "2025"]
+[ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "50"]
 
@@ -14748,6 +16584,8 @@ Qe5 0-1
 [Result "1-0"]
 [WhiteElo "2025"]
 [BlackElo "1790"]
+[ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "103"]
 
@@ -14770,6 +16608,8 @@ Nac6 51. Qg3+ Kh1 52. Kf2 1-0
 [Result "0-1"]
 [WhiteElo "1905"]
 [BlackElo "2215"]
+[ECO "A15"]
+[Opening "English opening"]
 [EventDate "1998.??.??"]
 [PlyCount "56"]
 
@@ -14787,6 +16627,8 @@ Bf8 27. b5 Nxc5 28. Qxc5 Bxd6 0-1
 [Black "Wong, W."]
 [Result "1-0"]
 [WhiteElo "2085"]
+[ECO "A80"]
+[Opening "Dutch, 2.Bg5 variation"]
 [EventDate "1998.??.??"]
 [PlyCount "9"]
 
@@ -14800,6 +16642,8 @@ Bf8 27. b5 Nxc5 28. Qxc5 Bxd6 0-1
 [Black "Ryzycki, B."]
 [Result "0-1"]
 [BlackElo "1905"]
+[ECO "A45"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "62"]
 
@@ -14818,6 +16662,8 @@ Ra2 Rd3 21. a4 Rxc3 22. axb5 Bxb5 23. Rxa7 Rc1+ 24. Kd2 Rxh1 25. Bxc7 Rb1
 [Black "Morgan, B."]
 [Result "1-0"]
 [WhiteElo "1790"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "73"]
 
@@ -14836,6 +16682,8 @@ Qxe6 Kg7 33. Qe5+ Kg6 34. Qe8+ Kf6 35. Qd8+ Kg6 36. Qxg5+ Kxg5 37. gxh3 1-0
 [Black "Jurjans, Mn"]
 [Result "1-0"]
 [WhiteElo "1855"]
+[ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "49"]
 
@@ -14852,6 +16700,9 @@ Bh7 21. a4 Nc8 22. Qg4 Rg8 23. Kh2 Ne7 24. f6 gxf6 25. Qd7# 1-0
 [Black "Hatfield, E."]
 [Result "1/2-1/2"]
 [BlackElo "1825"]
+[ECO "C70"]
+[Opening "Ruy Lopez"]
+[Variation "Caro variation"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -14870,6 +16721,8 @@ Qe7 21. Bd4 Nf8 22. c4 c5 23. Bb2 Nd6 24. cxb5 axb5 25. Nd2 Ra4 26. Qd1 Nf5
 [Black "Findlay, D."]
 [Result "0-1"]
 [BlackElo "1780"]
+[ECO "A43"]
+[Opening "Old Benoni defence"]
 [EventDate "1998.??.??"]
 [PlyCount "54"]
 
@@ -14888,6 +16741,9 @@ Qe7 21. Bd4 Nf8 22. c4 c5 23. Bb2 Nd6 24. cxb5 axb5 25. Nd2 Ra4 26. Qd1 Nf5
 [Result "1-0"]
 [WhiteElo "2215"]
 [BlackElo "1685"]
+[ECO "C68"]
+[Opening "Ruy Lopez"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "45"]
 
@@ -14904,6 +16760,9 @@ Nc6 Qb6 21. Rd1 Re8 22. Qc4 Ra8 23. Rd7 1-0
 [Black "Zybura, A."]
 [Result "0-1"]
 [BlackElo "1960"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical (two knights) system"]
 [EventDate "1998.??.??"]
 [PlyCount "98"]
 
@@ -14925,6 +16784,8 @@ g3 Ba4 46. Ka1 b3 47. g4 b2+ 48. Kb1 Bc2+ 49. Ka2 b1=Q+ 0-1
 [Result "0-1"]
 [WhiteElo "1680"]
 [BlackElo "2105"]
+[ECO "A40"]
+[Opening "Modern defence"]
 [EventDate "1998.??.??"]
 [PlyCount "42"]
 
@@ -14941,6 +16802,8 @@ Nbd7 9. Nf4 Ne5 10. Be2 g5 11. Nh3 f4 12. Bd2 Bxh3 13. gxh3 Qe8 14. Kf2 Qh5
 [Black "Majstorovic, A."]
 [Result "1-0"]
 [WhiteElo "1745"]
+[ECO "C55"]
+[Opening "Two knights defence"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -14957,6 +16820,8 @@ c6 21. Nf6+ Kh8 22. Nxe8 Qxe8 23. Qf6+ Kg8 24. Qg7# 1-0
 [Black "Castillo, I."]
 [Result "1-0"]
 [WhiteElo "1735"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "51"]
 
@@ -14975,6 +16840,8 @@ Rd7 g5 26. Rxd6 1-0
 [Result "1-0"]
 [WhiteElo "1890"]
 [BlackElo "1650"]
+[ECO "A45"]
+[Opening "Trompovsky attack (Ruth, Opovcensky opening)"]
 [EventDate "1998.??.??"]
 [PlyCount "37"]
 
@@ -14989,6 +16856,9 @@ a6 15. O-O b5 16. g4 Rab8 17. g5 hxg5 18. fxg5 Nh7 19. Rxf7 1-0
 [White "Lau, D."]
 [Black "Mitchell, J."]
 [Result "0-1"]
+[ECO "C42"]
+[Opening "Petrov"]
+[Variation "Italian variation"]
 [EventDate "1998.??.??"]
 [PlyCount "52"]
 
@@ -15006,6 +16876,8 @@ Qxe4+ 8. Qxe4+ dxe4 9. O-O f5 10. b3 Nc6 11. g4 f4 12. Re1 e3 13. fxe3 f3
 [Black "Benggawan, Al"]
 [Result "1-0"]
 [WhiteElo "2025"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "133"]
 
@@ -15029,6 +16901,9 @@ Kf7 63. Kf5 h4 64. Nd7 Ke8 65. Ke6 Kd8 66. f7 Kc7 67. f8=Q 1-0
 [Black "Van de Ven, A."]
 [Result "1-0"]
 [BlackElo "2025"]
+[ECO "A48"]
+[Opening "King's Indian"]
+[Variation "East Indian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "103"]
 
@@ -15050,6 +16925,8 @@ Qd8+ Kf7 52. Qe8+ 1-0
 [Black "Mitrovic, B."]
 [Result "0-1"]
 [WhiteElo "1915"]
+[ECO "D03"]
+[Opening "Torre attack (Tartakower variation)"]
 [EventDate "1998.??.??"]
 [PlyCount "80"]
 
@@ -15070,6 +16947,8 @@ Qxe4+ 39. Qc2 Qxc2+ 40. Kxc2 Rh1 0-1
 [Result "0-1"]
 [WhiteElo "1715"]
 [BlackElo "2315"]
+[ECO "A40"]
+[Opening "Modern defence"]
 [EventDate "1998.??.??"]
 [PlyCount "98"]
 
@@ -15089,6 +16968,8 @@ Bf6 46. bxa4 Bxa4 47. Qf5+ Kg7 48. Qg4+ Kh8 49. Qg6 Rg7 0-1
 [White "Lau, D."]
 [Black "Pavez, M."]
 [Result "0-1"]
+[ECO "B07"]
+[Opening "Pirc defence"]
 [EventDate "1998.??.??"]
 [PlyCount "34"]
 
@@ -15104,6 +16985,9 @@ Rac8 14. Bd6 Rfd8 15. Kc1 Rxd6 16. Re7 Bh6+ 17. Kb1 Rd1# 0-1
 [Black "Jurjans, Mn"]
 [Result "1-0"]
 [WhiteElo "1660"]
+[ECO "B78"]
+[Opening "Sicilian"]
+[Variation "dragon, Yugoslav attack, 10.O-O-O"]
 [EventDate "1998.??.??"]
 [PlyCount "37"]
 
@@ -15119,6 +17003,8 @@ Nd4 15. Nbxd4 exd4 16. Bxd4 Bf6 17. hxg6 hxg6 18. Kb1 Bg5 19. Rh8# 1-0
 [Black "Armstrong, D."]
 [Result "0-1"]
 [BlackElo "1680"]
+[ECO "B01"]
+[Opening "Scandinavian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "62"]
 
@@ -15137,6 +17023,9 @@ Kf3 Rxd3+ 0-1
 [Black "Litchfield, G."]
 [Result "0-1"]
 [BlackElo "1735"]
+[ECO "C41"]
+[Opening "Philidor"]
+[Variation "Improved Hanham variation"]
 [EventDate "1998.??.??"]
 [PlyCount "38"]
 
@@ -15152,6 +17041,8 @@ Nxb5 Qb6 15. Bxf6 Nxf6 16. Nxd6 Bxd6 17. e5 Bxe5 18. Rxe5 Qc6 19. Bd5 Nxd5
 [White "Castillo, I."]
 [Black "Pavez, S."]
 [Result "1-0"]
+[ECO "A41"]
+[Opening "Queen's Pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "52"]
 
@@ -15169,6 +17060,9 @@ Rfe1 Rd6 15. exd6 cxd6 16. Bxc6 e5 17. Bxa8 Nf6 18. Rad1 Bc8 19. Rxd6 a5
 [Black "Samano, B."]
 [Result "0-1"]
 [BlackElo "1790"]
+[ECO "C01"]
+[Opening "French"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "56"]
 
@@ -15187,6 +17081,9 @@ Qxd4 Nxd4 27. Rxe6 Nxe6 28. Ne5 Nd4 0-1
 [Result "1-0"]
 [WhiteElo "2315"]
 [BlackElo "1960"]
+[ECO "E69"]
+[Opening "King's Indian"]
+[Variation "fianchetto, classical main line"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -15205,6 +17102,8 @@ Bc3 33. Bb3 a5 34. Bd4 Bb4 35. Ra1 1-0
 [Black "Rivas, E."]
 [Result "0-1"]
 [BlackElo "1915"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "68"]
 
@@ -15223,6 +17122,8 @@ hxg6 32. Kf3 Qe4+ 33. Kg3 Rg2+ 34. Kh3 Qg4# 0-1
 [Black "Martin, C."]
 [Result "1-0"]
 [WhiteElo "1890"]
+[ECO "A45"]
+[Opening "Trompovsky attack (Ruth, Opovcensky opening)"]
 [EventDate "1998.??.??"]
 [PlyCount "75"]
 
@@ -15243,6 +17144,9 @@ Rxf7+ 1-0
 [Result "0-1"]
 [WhiteElo "1745"]
 [BlackElo "2215"]
+[ECO "B00"]
+[Opening "KP"]
+[Variation "Nimzovich defence"]
 [EventDate "1998.??.??"]
 [PlyCount "80"]
 
@@ -15262,6 +17166,8 @@ Qf5 39. Qe2 Bh6 40. Bd6 Qe6 0-1
 [Black "Baxter, W."]
 [Result "1-0"]
 [WhiteElo "2025"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "73"]
 
@@ -15282,6 +17188,9 @@ Qc7 27. Rdf1 Ra7 28. Rxf7+ Qxf7 29. Rxf7+ Rxf7 30. Bf4 Rxf4 31. exf4 Rg8
 [Result "1-0"]
 [WhiteElo "2085"]
 [BlackElo "1715"]
+[ECO "D10"]
+[Opening "QGD Slav defence"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "67"]
 
@@ -15300,6 +17209,8 @@ Qd3 Rhc8 33. Qxb5 Rxc7 34. Rxc7 1-0
 [Black "Teram, E."]
 [Result "1-0"]
 [WhiteElo "1780"]
+[ECO "C45"]
+[Opening "Scotch game"]
 [EventDate "1998.??.??"]
 [PlyCount "77"]
 
@@ -15320,6 +17231,9 @@ Ne4 Qc6 33. Qd4 Kg7 34. Rd6 Qe8 35. Qxf6+ Kg8 36. Rd8 Qxd8 37. Qxd8+ Kg7
 [Result "1-0"]
 [WhiteElo "2105"]
 [BlackElo "1855"]
+[ECO "B35"]
+[Opening "Sicilian"]
+[Variation "accelerated fianchetto, modern variation with Bc4"]
 [EventDate "1998.??.??"]
 [PlyCount "93"]
 
@@ -15341,6 +17255,9 @@ f5 39. b7 Bxb7 40. Bxb7 g4 41. Ke3 Kg5 42. h3 Kh4 43. Bc8 Kg5 44. h4+ Kxh4
 [Result "0-1"]
 [WhiteElo "1685"]
 [BlackElo "1905"]
+[ECO "B17"]
+[Opening "Caro-Kann"]
+[Variation "Steinitz variation"]
 [EventDate "1998.??.??"]
 [PlyCount "90"]
 
@@ -15360,6 +17277,8 @@ Be4 45. Nd7 Rc2 0-1
 [White "Jurjans, Mn"]
 [Black "Wong, W."]
 [Result "1-0"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "79"]
 
@@ -15378,6 +17297,8 @@ gxh4 g3 39. Qxg3+ Kf8 40. Qc7 1-0
 [White "Morgan, B."]
 [Black "Rachar, S."]
 [Result "1-0"]
+[ECO "C50"]
+[Opening "King's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "79"]
 
@@ -15396,6 +17317,8 @@ Kd6 38. Qb4+ Kc7 39. Qa5+ Kb8 40. Qxd8+ 1-0
 [White "Castillo, I."]
 [Black "Mitchell, J."]
 [Result "0-1"]
+[ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "36"]
 
@@ -15410,6 +17333,8 @@ Kd6 38. Qb4+ Kc7 39. Qa5+ Kb8 40. Qxd8+ 1-0
 [White "Pavez, S."]
 [Black "Lau, D."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Mieses opening"]
 [EventDate "1998.??.??"]
 [PlyCount "38"]
 
@@ -15424,6 +17349,9 @@ Rb1 Ba3 15. c4 Bb4 16. a3 Bxe1 17. Qxe1 Qxd3 18. Rc1 Qxf3 19. Qb4 Qg2# 0-1
 [White "Teram, E."]
 [Black "Pavez, M."]
 [Result "1-0"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical (two knights) system"]
 [EventDate "1998.??.??"]
 [PlyCount "51"]
 
@@ -15441,6 +17369,8 @@ Qxf7+ Kh6 21. h4 Kh5 22. Qxh7+ Kg4 23. Be2+ Kf4 24. g3+ Ke5 25. Qe7+ Kd4
 [Black "Morgan, A."]
 [Result "0-1"]
 [BlackElo "1685"]
+[ECO "C50"]
+[Opening "Giuoco Piano"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -15459,6 +17389,9 @@ Nxg3 33. Kxg3 Nc2 34. Nxe5 Qg5+ 35. Ng4 h5 36. h4 Qxg4+ 0-1
 [Black "Mitrovic, B."]
 [Result "1-0"]
 [WhiteElo "1715"]
+[ECO "D00"]
+[Opening "Queen's pawn"]
+[Variation "stonewall attack"]
 [EventDate "1998.??.??"]
 [PlyCount "41"]
 
@@ -15476,6 +17409,9 @@ Kxh8 21. Nxf7+ 1-0
 [Result "1-0"]
 [WhiteElo "1905"]
 [BlackElo "1780"]
+[ECO "A35"]
+[Opening "English"]
+[Variation "symmetrical, four knights system"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -15494,6 +17430,8 @@ Rac1 Qb6 27. Qd2 f6 28. dxe6 dxe6 29. Qe3 1-0
 [Result "1-0"]
 [WhiteElo "2105"]
 [BlackElo "2025"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -15510,6 +17448,9 @@ Nxg6+ Rxg6 21. Qxg6 Qe3+ 22. Kb1 Qxe5 23. Rh7+ Kd8 24. Nxe6+ 1-0
 [Black "Martin, C."]
 [Result "1-0"]
 [WhiteElo "1680"]
+[ECO "D06"]
+[Opening "QGD"]
+[Variation "Marshall defence"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -15526,6 +17467,8 @@ Nc7 Kg7 21. Rac1 Nb4 22. Qb3 Nd5 23. Nxd5 exd5 24. Rc7+ 1-0
 [Black "Baxter, W."]
 [Result "1-0"]
 [WhiteElo "1855"]
+[ECO "D03"]
+[Opening "Torre attack (Tartakower variation)"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -15544,6 +17487,8 @@ Ne5 Bd7 27. Qe7+ Kh8 28. Nf7+ Kg7 29. Ng5+ 1-0
 [Result "1-0"]
 [WhiteElo "1825"]
 [BlackElo "1745"]
+[ECO "B30"]
+[Opening "Sicilian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "61"]
 
@@ -15562,6 +17507,8 @@ Nf3 Nf7 21. c4 Bxe6 22. fxe6 Qxe6 23. Nd2 Rd8 24. Bxc6 Qxc6 25. Rxf7 Rd7
 [Black "Rivas, E."]
 [Result "1/2-1/2"]
 [BlackElo "1915"]
+[ECO "D00"]
+[Opening "Levitsky attack (Queen's bishop attack)"]
 [EventDate "1998.??.??"]
 [PlyCount "105"]
 
@@ -15584,6 +17531,8 @@ Rh2 44. c5 Bg3 45. Rxh2 Bxh2 46. c6 h5 47. Kc5 Bc7 48. Rd7 Bb8 49. Rd8 Bc7
 [Result "1/2-1/2"]
 [WhiteElo "2215"]
 [BlackElo "2315"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "116"]
 
@@ -15607,6 +17556,9 @@ Bd1 57. Kd2 Ba4 58. Kc1 Kd8 1/2-1/2
 [Result "1/2-1/2"]
 [WhiteElo "1890"]
 [BlackElo "2085"]
+[ECO "E70"]
+[Opening "King's Indian"]
+[Variation "accelerated Averbakh system"]
 [EventDate "1998.??.??"]
 [PlyCount "69"]
 
@@ -15626,6 +17578,8 @@ Nxc3 33. Bxa8 Rxa8 34. Bxe7 fxg4 35. Kxg4 1/2-1/2
 [Result "1-0"]
 [WhiteElo "1960"]
 [BlackElo "1790"]
+[ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "157"]
 
@@ -15652,6 +17606,9 @@ Kf5 Bd6 76. e5 Ba3 77. h6 Kg8 78. g6 Kh8 79. e6 1-0
 [Result "0-1"]
 [WhiteElo "2025"]
 [BlackElo "1660"]
+[ECO "B52"]
+[Opening "Sicilian"]
+[Variation "Canal-Sokolsky attack, Sokolsky variation"]
 [EventDate "1998.??.??"]
 [PlyCount "112"]
 
@@ -15673,6 +17630,8 @@ c1=Q 0-1
 [White "Rachar, S."]
 [Black "Castillo, I."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn, Mason variation"]
 [EventDate "1998.??.??"]
 [PlyCount "25"]
 
@@ -15686,6 +17645,9 @@ c4 O-O-O 9. c5 b6 10. b4 bxc5 11. bxc5 h6 12. Rb1 g5 13. Ba6# 1-0
 [White "Martin, C."]
 [Black "Morgan, B."]
 [Result "1-0"]
+[ECO "C75"]
+[Opening "Ruy Lopez"]
+[Variation "modern Steinitz defence"]
 [EventDate "1998.??.??"]
 [PlyCount "35"]
 
@@ -15700,6 +17662,8 @@ Qxh8 Ng6 15. Bxg5+ Ke8 16. Qxh7 Be7 17. Qg8+ Nf8 18. Qf7+ 1-0
 [White "Mitrovic, B."]
 [Black "Majstorovic, A."]
 [Result "1-0"]
+[ECO "C41"]
+[Opening "Philidor's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "89"]
 
@@ -15720,6 +17684,9 @@ Rf1+ Kg6 44. Qf5+ Kh6 45. Qxe6+ 1-0
 [Black "Jurjans, Mn"]
 [Result "1-0"]
 [WhiteElo "1915"]
+[ECO "B72"]
+[Opening "Sicilian"]
+[Variation "dragon, 6.Be3"]
 [EventDate "1998.??.??"]
 [PlyCount "79"]
 
@@ -15740,6 +17707,8 @@ Ke7 38. Bxf5 Kd8 39. Kd2 b5 40. Nc6+ 1-0
 [Result "1-0"]
 [WhiteElo "1790"]
 [BlackElo "1660"]
+[ECO "B20"]
+[Opening "Sicilian defence"]
 [EventDate "1998.??.??"]
 [PlyCount "36"]
 
@@ -15756,6 +17725,8 @@ Bd7 9. O-O a6 10. Rb1 Rb8 11. Bf4 e5 12. Bg5 b5 13. Bxf6 Bxf6 14. Nd5 b4
 [Result "1-0"]
 [WhiteElo "2215"]
 [BlackElo "2025"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "57"]
 
@@ -15773,6 +17744,9 @@ Bd7 9. O-O a6 10. Rb1 Rb8 11. Bf4 e5 12. Bg5 b5 13. Bxf6 Bxf6 14. Nd5 b4
 [Black "Bruvelaitis, M."]
 [Result "0-1"]
 [BlackElo "1745"]
+[ECO "D60"]
+[Opening "QGD"]
+[Variation "Orthodox defence, Botvinnik variation"]
 [EventDate "1998.??.??"]
 [PlyCount "108"]
 
@@ -15795,6 +17769,9 @@ Rxd7 51. Rc4 Rb7 52. Rbxb4 Rxb4 53. Rxb4 c2 54. Rb7+ Kf6 0-1
 [Result "1-0"]
 [WhiteElo "2085"]
 [BlackElo "1735"]
+[ECO "A43"]
+[Opening "Old Benoni"]
+[Variation "Mujannah formation"]
 [EventDate "1998.??.??"]
 [PlyCount "47"]
 
@@ -15810,6 +17787,8 @@ Qe6 21. Qc2 h6 22. Bc1 Nd5 23. Nc6 Nb4 24. Nxd8 1-0
 [White "Wong, W."]
 [Black "Pavez, S."]
 [Result "1-0"]
+[ECO "A41"]
+[Opening "Queen's Pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "39"]
 
@@ -15826,6 +17805,9 @@ Qxb7 Nf5 15. gxf5 Qe7 16. e6 Nf8 17. exf7+ Kh8 18. fxe8=Q Qxe8 19. Qd5 h5
 [Black "Van de Ven, A."]
 [Result "0-1"]
 [BlackElo "2025"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical (two knights) system"]
 [EventDate "1998.??.??"]
 [PlyCount "66"]
 
@@ -15845,6 +17827,9 @@ cxd3 e4 27. dxe4 Bxa1 28. Qxb5 Qd1+ 29. Qf1 Qxf1+ 30. Kxf1 Rf4 31. Nd2 Bc3
 [Result "1-0"]
 [WhiteElo "1680"]
 [BlackElo "1855"]
+[ECO "D51"]
+[Opening "QGD"]
+[Variation "5...c6"]
 [EventDate "1998.??.??"]
 [PlyCount "83"]
 
@@ -15864,6 +17849,8 @@ Qe7 27. Qa4 Kb8 28. b4 a6 29. Be2 Qf7 30. Bc4 Rg6 31. Qb3 Rxh6 32. Rxh6 Rg8
 [Black "Ortiz, H."]
 [Result "1/2-1/2"]
 [BlackElo "1715"]
+[ECO "A45"]
+[Opening "Trompovsky attack (Ruth, Opovcensky opening)"]
 [EventDate "1998.??.??"]
 [PlyCount "119"]
 
@@ -15887,6 +17874,8 @@ h8=Q d1=Q 57. Qe5+ Kf2 58. Qf4+ Qf3+ 59. Qxf3+ Kxf3 60. Kxb3 1/2-1/2
 [Result "1-0"]
 [WhiteElo "1905"]
 [BlackElo "1825"]
+[ECO "A15"]
+[Opening "English opening"]
 [EventDate "1998.??.??"]
 [PlyCount "95"]
 
@@ -15908,6 +17897,8 @@ Bxg5 45. Kxg5 h6+ 46. Kf5 h5 47. Rxd4 h4 48. Kg4 1-0
 [Result "1-0"]
 [WhiteElo "1960"]
 [BlackElo "1890"]
+[ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "119"]
 
@@ -15931,6 +17922,8 @@ Rb1 56. Qa2+ Kf6 57. Qxb1 h5+ 58. Kf3 g5 59. b7 g4+ 60. Kf4 1-0
 [Result "1-0"]
 [WhiteElo "2315"]
 [BlackElo "2105"]
+[ECO "A40"]
+[Opening "Modern defence"]
 [EventDate "1998.??.??"]
 [PlyCount "107"]
 
@@ -15953,6 +17946,9 @@ exf5+ Rxf5 52. Qxe7 Rxf1 53. Qd6+ Rf6 54. Qb8 1-0
 [Result "0-1"]
 [WhiteElo "1685"]
 [BlackElo "1780"]
+[ECO "B73"]
+[Opening "Sicilian"]
+[Variation "dragon, classical, Richter variation"]
 [EventDate "1998.??.??"]
 [PlyCount "134"]
 
@@ -15975,6 +17971,8 @@ Ke7 39. g4 Nc6 40. Re2 a5 41. Kg3 b6 42. h4 Rd3 43. Nf2 Rd2 44. Rxd2 Rxd2
 [White "Heseltine Nutch, Ka"]
 [Black "Wong, W."]
 [Result "0-1"]
+[ECO "A80"]
+[Opening "Dutch"]
 [EventDate "1998.??.??"]
 [PlyCount "58"]
 
@@ -15991,6 +17989,8 @@ Qxd3 Qxa2 27. Qb5 a6 28. Qxb7 Qf2+ 29. Kh1 Qf1# 0-1
 [White "Slack, J."]
 [Black "Pavez, M."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Van't Kruijs opening"]
 [EventDate "1998.??.??"]
 [PlyCount "48"]
 
@@ -16006,6 +18006,8 @@ Rxd8 Rxd8 21. c3 c4 22. e4 cxb3 23. axb3 Qxa1+ 24. Qc1 Qxc1# 0-1
 [White "Nowicki, G."]
 [Black "Highley-Wilson, L."]
 [Result "1-0"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "103"]
 
@@ -16026,6 +18028,8 @@ Qf5+ Ke7 38. g5 Kd8 39. g6 Kc7 40. g7 Kc6 41. Qh3 Kb7 42. f5 Kc6 43. f6 d5
 [White "Jurjans, Mn"]
 [Black "Qadri, H."]
 [Result "1-0"]
+[ECO "C57"]
+[Opening "Two knights defence"]
 [EventDate "1998.??.??"]
 [PlyCount "27"]
 
@@ -16040,6 +18044,8 @@ Ke7 8. Nxh8 Nxe4 9. Qf3 Nd6 10. Bg8 Ne8 11. Qf7+ Kd8 12. c3 Ba5 13. Qf8 g6
 [White "Morgan, B."]
 [Black "Mak, C."]
 [Result "1-0"]
+[ECO "B07"]
+[Opening "Pirc defence"]
 [EventDate "1998.??.??"]
 [PlyCount "75"]
 
@@ -16058,6 +18064,8 @@ Kg8 38. Rc8# 1-0
 [White "Quayle, J."]
 [Black "Rachar, S."]
 [Result "0-1"]
+[ECO "A06"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "40"]
 
@@ -16073,6 +18081,9 @@ Kd4 O-O 20. Nb1 Rac8 0-1
 [White "Majstorovic, A."]
 [Black "Wilton, T."]
 [Result "1-0"]
+[ECO "C20"]
+[Opening "KP"]
+[Variation "Indian opening"]
 [EventDate "1998.??.??"]
 [PlyCount "21"]
 
@@ -16086,6 +18097,9 @@ Kd4 O-O 20. Nb1 Rac8 0-1
 [White "Luzius"]
 [Black "Vanin, M-PharesA"]
 [Result "0-1"]
+[ECO "C20"]
+[Opening "KP"]
+[Variation "Indian opening"]
 [EventDate "1998.??.??"]
 [PlyCount "34"]
 
@@ -16100,6 +18114,8 @@ Bc4+ Kh8 15. Nf5 Qxh2+ 16. Kf1 Nxd4 17. Qxg5 Qh1# 0-1
 [White "Highley"]
 [Black "Wilson, K-Heseltine NutchKe"]
 [Result "1-0"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "71"]
 
@@ -16117,6 +18133,8 @@ Qf3+ Ke5 33. Qe3+ Kd5 34. Qxe7 Ng8 35. Qf7+ Kd6 36. Qxg8 1-0
 [White "Hung, J."]
 [Black "Conrad, R."]
 [Result "1-0"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1998.??.??"]
 [PlyCount "73"]
 
@@ -16134,6 +18152,8 @@ Bxf5 33. a4 e4 34. a5 exd3 35. Rd1 d2 36. Rxd2 Bb1 37. a6 1-0
 [White "Pavez, M."]
 [Black "Nowicki, G."]
 [Result "0-1"]
+[ECO "D00"]
+[Opening "Queen's pawn, Mason variation"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -16151,6 +18171,8 @@ Qc4 33. Qxc4 bxc4 34. Rb1 Rxa2 35. Rb6 Rc8 36. Rxc6 Rxc6 0-1
 [White "Wong, W."]
 [Black "Jurjans, Mn"]
 [Result "1-0"]
+[ECO "A41"]
+[Opening "Queen's Pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "125"]
 
@@ -16173,6 +18195,8 @@ Re7 dxe4 51. Bxe4 Ra6 52. Rxe5 Rxa3 53. Rxb5 Ra7+ 54. Kb8 Rf7 55. Bd5 Kg7
 [White "Phares, A."]
 [Black "Morgan, B."]
 [Result "1-0"]
+[ECO "C50"]
+[Opening "Giuoco Piano"]
 [EventDate "1998.??.??"]
 [PlyCount "41"]
 
@@ -16188,6 +18212,8 @@ Qxg5+ Kh7 21. Qg7# 1-0
 [White "Castillo, I."]
 [Black "Hung, J."]
 [Result "1-0"]
+[ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "105"]
 
@@ -16208,6 +18234,9 @@ Rc2 51. Qe4 Rc1+ 52. Kf2 Rc2+ 53. Qxc2 1-0
 [White "Mak, C."]
 [Black "Heseltine Nutch, Ka"]
 [Result "0-1"]
+[ECO "A07"]
+[Opening "Reti"]
+[Variation "King's Indian attack (Barcza system)"]
 [EventDate "1998.??.??"]
 [PlyCount "74"]
 
@@ -16225,6 +18254,8 @@ c5 33. Kg3 e3 34. a3 c2 35. axb4 c1=Q 36. bxc5 Qg4+ 37. Kh2 Qcg1# 0-1
 [White "Rachar, S."]
 [Black "Majstorovic, A."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn, Mason variation"]
 [EventDate "1998.??.??"]
 [PlyCount "113"]
 
@@ -16246,6 +18277,8 @@ Ke2 56. Re5+ Rxe5 57. Qxe5+ 1-0
 [White "Conrad, R."]
 [Black "Quayle, J."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Dunst (Sleipner, Heinrichsen) opening"]
 [EventDate "1998.??.??"]
 [PlyCount "26"]
 
@@ -16259,6 +18292,8 @@ Be2 d5 9. Nh4 Nh5 10. Bxh5 Bxh4 11. e4 Bg4 12. Be3 Bxd1 13. Kxd1 Qd7 0-1
 [White "Qadri, H."]
 [Black "Slack, J."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Dunst (Sleipner, Heinrichsen) opening"]
 [EventDate "1998.??.??"]
 [PlyCount "144"]
 
@@ -16283,6 +18318,9 @@ Qf1# 0-1
 [White "Nowicki, G."]
 [Black "Rachar, S."]
 [Result "1-0"]
+[ECO "C20"]
+[Opening "KP"]
+[Variation "Indian opening"]
 [EventDate "1998.??.??"]
 [PlyCount "55"]
 
@@ -16299,6 +18337,8 @@ O-O-O c6 15. Bg5+ Be7 16. Bxe7+ Kxe7 17. Nc7 Rb8 18. Ba6 Bxa6 19. Nxa6 Rbd8
 [White "Jurjans, Mn"]
 [Black "Luzius-Vanin, M."]
 [Result "1-0"]
+[ECO "C40"]
+[Opening "Damiano's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "19"]
 
@@ -16312,6 +18352,8 @@ Bxe6 Ke8 9. Qh5+ Nf7 10. Qxf7# 1-0
 [White "Highley"]
 [Black "Wilson, K-CastilloI"]
 [Result "1-0"]
+[ECO "A41"]
+[Opening "Queen's Pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "19"]
 
@@ -16325,6 +18367,8 @@ Bxe6 Ke8 9. Qh5+ Nf7 10. Qxf7# 1-0
 [White "Quayle, J."]
 [Black "Pavez, M."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Dunst (Sleipner, Heinrichsen) opening"]
 [EventDate "1998.??.??"]
 [PlyCount "78"]
 
@@ -16343,6 +18387,9 @@ Rbc8 38. Rd1 Rc2+ 39. Kf1 h1=Q# 0-1
 [White "Heseltine Nutch, Ka"]
 [Black "Majstorovic, A."]
 [Result "1-0"]
+[ECO "C46"]
+[Opening "Four knights"]
+[Variation "Italian variation"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -16360,6 +18407,8 @@ Ra7+ Kf8 32. d7 Rxd7 33. Rxd7 1-0
 [White "Heseltine Nutch, Ke"]
 [Black "Hung, J."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -16377,6 +18426,8 @@ dxc4 33. Qc5# 1-0
 [White "Mak, C."]
 [Black "Conrad, R."]
 [Result "1-0"]
+[ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1998.??.??"]
 [PlyCount "77"]
 
@@ -16395,6 +18446,8 @@ Qxf6 Kh7 39. Re7+ 1-0
 [White "Qadri, H."]
 [Black "Wilton, T."]
 [Result "1/2-1/2"]
+[ECO "C46"]
+[Opening "Four knights game"]
 [EventDate "1998.??.??"]
 [PlyCount "78"]
 
@@ -16413,6 +18466,8 @@ Kg2 Qe3 37. Kf1 Qd2 38. Kg1 Qe2 39. Kh1 Qf2 1/2-1/2
 [White "Highley"]
 [Black "Wilson, L-JurjansD"]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "121"]
 
@@ -16434,6 +18489,8 @@ Be7 57. g6 f6 58. h6 Rh8 59. g7 Bf8 60. gxh8=Q Be7 61. c6+ 1-0
 [White "Nowicki, G."]
 [Black "Wong, W."]
 [Result "1-0"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "93"]
 
@@ -16453,6 +18510,8 @@ Kh3 44. Ke3 g5 45. fxg5 hxg5 46. Qxf5+ g4 47. Qf1+ 1-0
 [White "Castillo, I."]
 [Black "Highley-Wilson, L."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Van't Kruijs opening"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -16470,6 +18529,8 @@ Rc8 33. Rcxe4 Rf8 34. Rxe5 Qxf2+ 35. Kh1 Qf1# 0-1
 [White "Rachar, S."]
 [Black "Phares, A."]
 [Result "0-1"]
+[ECO "A45"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "76"]
 
@@ -16488,6 +18549,9 @@ Kc3 d2 0-1
 [White "Heseltine Nutch, Ka"]
 [Black "Highley-Wilson, K."]
 [Result "1-0"]
+[ECO "D06"]
+[Opening "QGD"]
+[Variation "Marshall defence"]
 [EventDate "1998.??.??"]
 [PlyCount "45"]
 
@@ -16503,6 +18567,8 @@ Rfb8 20. Bc2 Rb6 21. Rxb6 Rxb6 22. Rb1 Ra6 23. Rb8# 1-0
 [White "Pavez, M."]
 [Black "Heseltine Nutch, Ke"]
 [Result "1-0"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "51"]
 
@@ -16519,6 +18585,8 @@ Bb5 26. a4 1-0
 [White "Conrad, R."]
 [Black "Qadri, H."]
 [Result "0-1"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "97"]
 
@@ -16538,6 +18606,8 @@ b2 39. Kh4 b1=N 40. Kh5 c4 41. Kh4 c3 42. Kh5 c2 43. Kh4 c1=Q 44. Kh5 a4
 [White "Majstorovic, A."]
 [Black "Slack, J."]
 [Result "0-1"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1998.??.??"]
 [PlyCount "104"]
 
@@ -16558,6 +18628,9 @@ g3 50. a6 Bxa6 51. Nxa6 g2 52. Nc5 g1=Q 0-1
 [White "Morgan, B."]
 [Black "Jurjans, Mn"]
 [Result "0-1"]
+[ECO "B51"]
+[Opening "Sicilian"]
+[Variation "Canal-Sokolsky (Nimzovich-Rossolimo, Moscow) attack"]
 [EventDate "1998.??.??"]
 [PlyCount "64"]
 
@@ -16575,6 +18648,8 @@ h3 h5 0-1
 [White "Hung, J."]
 [Black "Quayle, J."]
 [Result "1-0"]
+[ECO "C46"]
+[Opening "Four knights game"]
 [EventDate "1998.??.??"]
 [PlyCount "65"]
 
@@ -16592,6 +18667,8 @@ Rfd1 Nb4 21. Rd7 Bg6 22. Bd3 Qxd7 23. Nxa7 Bf5 24. Bb5 Qxb5 25. Nxb5 Bxe4
 [White "Luzius"]
 [Black "Vanin, M-MakC"]
 [Result "0-1"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "102"]
 
@@ -16612,6 +18689,8 @@ Be2 51. Kh4 Qf4# 0-1
 [White "Wilton, T."]
 [Black "Jurjans, D."]
 [Result "0-1"]
+[ECO "C41"]
+[Opening "Philidor's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "44"]
 
@@ -16627,6 +18706,9 @@ Rb1 Ba2 21. Ra1 Bc4 22. d5 Nb8 0-1
 [White "Nowicki, G."]
 [Black "Heseltine Nutch, Ka"]
 [Result "1/2-1/2"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance, Paulsen attack"]
 [EventDate "1998.??.??"]
 [PlyCount "165"]
 
@@ -16652,6 +18734,9 @@ Kb5 83. Bf2 1/2-1/2
 [White "Phares, A."]
 [Black "Jurjans, Mn"]
 [Result "1-0"]
+[ECO "B20"]
+[Opening "Sicilian"]
+[Variation "Steinitz variation"]
 [EventDate "1998.??.??"]
 [PlyCount "67"]
 
@@ -16669,6 +18754,9 @@ Bxg6 Rf6 27. Bxh7+ Kf7 28. Qh5+ Kg7 29. Qg5+ Kf7 30. Bg6+ Kg7 31. Rh7+ Kg8
 [White "Wong, W."]
 [Black "Pavez, M."]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn"]
+[Variation "stonewall attack"]
 [EventDate "1998.??.??"]
 [PlyCount "103"]
 
@@ -16689,6 +18777,9 @@ Ke4 Kg5 51. Kf3 h4 52. Qf4+ 1-0
 [White "Highley"]
 [Black "Wilson, L-Highley-WilsonK"]
 [Result "1-0"]
+[ECO "D00"]
+[Opening "Queen's pawn"]
+[Variation "stonewall attack"]
 [EventDate "1998.??.??"]
 [PlyCount "37"]
 
@@ -16703,6 +18794,9 @@ Bd6 15. Qxh5 Qc8 16. Qg5+ Kh8 17. Qf6+ Kg8 18. Rf3 Be7 19. Rg3# 1-0
 [White "Slack, J."]
 [Black "Rachar, S."]
 [Result "0-1"]
+[ECO "A06"]
+[Opening "Reti"]
+[Variation "old Indian attack"]
 [EventDate "1998.??.??"]
 [PlyCount "68"]
 
@@ -16720,6 +18814,8 @@ a4 e5 26. Bg5 Rxd6 27. h4 Rd3+ 28. Ke2 e4 29. Ke1 e3 30. Kf1 Nd4 31. Kg2 e2
 [White "Hung, J."]
 [Black "Morgan, B."]
 [Result "0-1"]
+[ECO "C44"]
+[Opening "King's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "110"]
 
@@ -16740,6 +18836,8 @@ Kf5 b4 51. Ke6 b3 52. Ke7 b2 53. g4 b1=Q 54. Kf8 Kg6 55. Kg8 Qb8# 0-1
 [White "Heseltine Nutch, Ke"]
 [Black "Mak, C."]
 [Result "1-0"]
+[ECO "E61"]
+[Opening "King's Indian defence, 3.Nc3"]
 [EventDate "1998.??.??"]
 [PlyCount "32"]
 
@@ -16754,6 +18852,8 @@ Nc5 15. Qc2 Nf6 16. b4 Ncd7 1-0
 [White "Quayle, J."]
 [Black "Majstorovic, A."]
 [Result "0-1"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "72"]
 
@@ -16772,6 +18872,8 @@ Nb3+ 26. Kf4 Nxd2 27. Kg5 Nxf3+ 28. Kf4 Nxh4 29. Ne3 Bxe3+ 30. Kxe3 Rd3+
 [White "Jurjans, D."]
 [Black "Luzius-Vanin, M."]
 [Result "0-1"]
+[ECO "C41"]
+[Opening "Philidor's defence"]
 [EventDate "1998.??.??"]
 [PlyCount "38"]
 
@@ -16786,6 +18888,8 @@ gxf4 Bh3 15. Bxh3 Qxh3 16. Kh1 Rad8 17. Rfe1 Rd6 18. b4 Rg6 19. b5 Qg2# 0-1
 [White "Wilton, T."]
 [Black "Conrad, R."]
 [Result "1-0"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "53"]
 
@@ -16804,6 +18908,8 @@ Kg7 26. Ne6+ Kg8 27. Qe8+ 1-0
 [Result "0-1"]
 [WhiteElo "1780"]
 [BlackElo "2025"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "102"]
 
@@ -16826,6 +18932,8 @@ Ke7 45. Nb2 Kd7 46. c4 Bd4 47. Nd3 bxc4 48. bxc4 a4 49. Nc1 Kc7 50. Kd3 c5
 [Result "0-1"]
 [WhiteElo "1935"]
 [BlackElo "1745"]
+[ECO "D43"]
+[Opening "QGD semi-Slav"]
 [EventDate "1998.??.??"]
 [PlyCount "130"]
 
@@ -16850,6 +18958,8 @@ b3 57. Nxc6 Qe8 58. Qd2 Ra1 59. Qe2 Qd7 60. Kg3 Ra2 61. Qf3 b2 62. Rb5 Qd6+
 [Result "0-1"]
 [WhiteElo "1790"]
 [BlackElo "2075"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1998.??.??"]
 [PlyCount "112"]
 
@@ -16873,6 +18983,8 @@ Rb6+ Kg5 52. Rc6 Rf7+ 53. Ke1 d2+ 54. Ke2 Rf2+ 55. Ke3 d1=Q 56. Kxe4 Re2+
 [Result "1-0"]
 [WhiteElo "2075"]
 [BlackElo "1790"]
+[ECO "A13"]
+[Opening "English opening"]
 [EventDate "1998.??.??"]
 [PlyCount "183"]
 
@@ -16901,6 +19013,8 @@ Rb6 Kf7 88. Kd7 Kg7 89. Ke7 Kh7 90. Kf7 Kh6 91. Rxg6+ Kh7 92. Rxg5 1-0
 [Result "0-1"]
 [WhiteElo "1815"]
 [BlackElo "2130"]
+[ECO "D02"]
+[Opening "Queen's bishop game"]
 [EventDate "1998.??.??"]
 [PlyCount "82"]
 
@@ -16921,6 +19035,8 @@ f6 33. Bc2 Qb8 34. Ra1 Bf7 35. Rb1 e5 36. f5 Qc8 37. Ra1 Qd7 38. Ra8+ Kh7
 [Result "1-0"]
 [WhiteElo "2130"]
 [BlackElo "1815"]
+[ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "131"]
 
@@ -16945,6 +19061,9 @@ Qg7+ 62. Kf1 Qa1+ 63. Ke2 Qa2+ 64. Kf3 Qc4 65. Qxf7+ Kg5 66. Qf4+ 1-0
 [Result "1/2-1/2"]
 [WhiteElo "1715"]
 [BlackElo "1850"]
+[ECO "D51"]
+[Opening "QGD"]
+[Variation "5...c6"]
 [EventDate "1998.??.??"]
 [PlyCount "119"]
 
@@ -16968,6 +19087,8 @@ Rb4 56. Re2 a5 57. f6 Rh4+ 58. Kg2 Rg4+ 59. Kh2 Rh4+ 60. Kg2 1/2-1/2
 [Result "1/2-1/2"]
 [WhiteElo "1850"]
 [BlackElo "1715"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1998.??.??"]
 [PlyCount "124"]
 
@@ -16992,6 +19113,9 @@ Qg7+ 1/2-1/2
 [Result "0-1"]
 [WhiteElo "1715"]
 [BlackElo "1850"]
+[ECO "D08"]
+[Opening "QGD"]
+[Variation "Albin counter-gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "54"]
 
@@ -17010,6 +19134,9 @@ Bb4 f6 26. Ra1 a6 27. Bc5 Kf7 0-1
 [Result "0-1"]
 [WhiteElo "1890"]
 [BlackElo "1730"]
+[ECO "B21"]
+[Opening "Sicilian"]
+[Variation "Grand Prix attack"]
 [EventDate "1998.??.??"]
 [PlyCount "106"]
 
@@ -17032,6 +19159,9 @@ b4 Nxf4 45. Kb5 Ne6 46. Kc4 Kf7 47. a4 Ke7 48. b5 Kd7 49. h4 Kc7 50. a5 Kb7
 [Result "0-1"]
 [WhiteElo "1730"]
 [BlackElo "1890"]
+[ECO "A83"]
+[Opening "Dutch"]
+[Variation "Staunton gambit, Alekhine variation"]
 [EventDate "1998.??.??"]
 [PlyCount "80"]
 
@@ -17052,6 +19182,8 @@ g4 38. Rxd5 g3 39. Rd8 g2 40. Rg8+ Bg7 0-1
 [Result "0-1"]
 [WhiteElo "1890"]
 [BlackElo "1730"]
+[ECO "A00"]
+[Opening "Anderssen's opening"]
 [EventDate "1998.??.??"]
 [PlyCount "56"]
 
@@ -17070,6 +19202,8 @@ Kc2 Re2+ 26. Kd3 Rxg2 27. b3 Rd2+ 28. Kc4 Na5+ 0-1
 [Result "1-0"]
 [WhiteElo "2050"]
 [BlackElo "1780"]
+[ECO "D30"]
+[Opening "Queen's gambit declined"]
 [EventDate "1998.??.??"]
 [PlyCount "79"]
 
@@ -17090,6 +19224,9 @@ Ra1+ 39. Be1 Rxe1+ 40. Kf2 1-0
 [Result "0-1"]
 [WhiteElo "1780"]
 [BlackElo "2050"]
+[ECO "B01"]
+[Opening "Scandinavian"]
+[Variation "Marshall variation"]
 [EventDate "1998.??.??"]
 [PlyCount "40"]
 
@@ -17107,6 +19244,8 @@ cxd4 0-1
 [Result "0-1"]
 [WhiteElo "1735"]
 [BlackElo "1990"]
+[ECO "A46"]
+[Opening "Queen's pawn game"]
 [EventDate "1998.??.??"]
 [PlyCount "70"]
 
@@ -17126,6 +19265,8 @@ Kh6 33. f4 Qe3+ 34. Kh2 Qxf4+ 35. Kh1 Rc1+ 0-1
 [Result "1/2-1/2"]
 [WhiteElo "1990"]
 [BlackElo "1735"]
+[ECO "A41"]
+[Opening "Queen's Pawn"]
 [EventDate "1998.??.??"]
 [PlyCount "126"]
 
@@ -17150,6 +19291,8 @@ Kh3 Qd6 63. Kg2 Qd2+ 1/2-1/2
 [Result "1/2-1/2"]
 [WhiteElo "1735"]
 [BlackElo "1990"]
+[ECO "D02"]
+[Opening "Queen's bishop game"]
 [EventDate "1998.??.??"]
 [PlyCount "21"]
 
@@ -17165,6 +19308,9 @@ Bd3 Re8 9. Ne5 Qc7 10. f4 g6 11. Bh4 1/2-1/2
 [Result "1/2-1/2"]
 [WhiteElo "1865"]
 [BlackElo "2180"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance, Milner-Barry gambit"]
 [EventDate "1998.??.??"]
 [PlyCount "91"]
 
@@ -17186,6 +19332,9 @@ Rg6 Kf7 45. Rg7+ Kf8 46. Rg6 1/2-1/2
 [Result "1-0"]
 [WhiteElo "2180"]
 [BlackElo "1865"]
+[ECO "D46"]
+[Opening "QGD semi-Slav"]
+[Variation "Romih variation"]
 [EventDate "1998.??.??"]
 [PlyCount "115"]
 
@@ -17209,6 +19358,9 @@ b4 51. Rd7 Bc4 52. Rxa7 b3 53. Bd4 Kf5 54. Ra8 Ke4 55. Bb2 Kd3 56. a7 Kc2
 [Result "1-0"]
 [WhiteElo "1865"]
 [BlackElo "2180"]
+[ECO "B01"]
+[Opening "Scandinavian"]
+[Variation "Marshall variation"]
 [EventDate "1998.??.??"]
 [PlyCount "43"]
 
@@ -17226,6 +19378,9 @@ Qe2 Qc6 21. f3 Re8 22. Qf2 1-0
 [Result "1/2-1/2"]
 [WhiteElo "2180"]
 [BlackElo "1865"]
+[ECO "A52"]
+[Opening "Budapest"]
+[Variation "Adler variation"]
 [EventDate "1998.??.??"]
 [PlyCount "48"]
 
@@ -17244,6 +19399,8 @@ Qc3 f6 21. Bd5+ Bxd5 22. Rxd5 Rfe8 23. Rad1 Qe4 24. g3 Ne5 1/2-1/2
 [WhiteElo "2070"]
 [BlackElo "2180"]
 [ECO "C01"]
+[Opening "French"]
+[Variation "exchange variation"]
 [EventDate "1998.??.??"]
 [PlyCount "106"]
 
@@ -17267,6 +19424,8 @@ Rxa5 51. Rb3 Kxg6 52. Kc7 Kf7 53. Kxb7 Rb5+ 1/2-1/2
 [WhiteElo "2180"]
 [BlackElo "2350"]
 [ECO "D29"]
+[Opening "QGA"]
+[Variation "classical, 8...Bb7"]
 [EventDate "1998.??.??"]
 [PlyCount "54"]
 
@@ -17285,7 +19444,9 @@ Rac1 Bb3 21. Bc2 Bxc2 22. Qxc2 Rac8 23. Qb3 Nd5 24. Nd3 Nxe3 25. fxe3 Bg5
 [Result "1-0"]
 [WhiteElo "2240"]
 [BlackElo "2180"]
-[ECO "D38"]
+[ECO "E21"]
+[Opening "Nimzo-Indian"]
+[Variation "three knights variation"]
 [EventDate "1998.??.??"]
 [PlyCount "111"]
 
@@ -17310,6 +19471,8 @@ gxf4 51. exf4 Ng7 52. Ke4 Kh6 53. Ra6 Kg6 54. g5 Nh5 55. gxf6 Ng3+ 56. Ke5
 [WhiteElo "2180"]
 [BlackElo "2135"]
 [ECO "D19"]
+[Opening "QGD Slav"]
+[Variation "Dutch variation, main line"]
 [EventDate "1998.??.??"]
 [PlyCount "100"]
 
@@ -17333,6 +19496,8 @@ Nd5 0-1
 [WhiteElo "2060"]
 [BlackElo "2180"]
 [ECO "C00"]
+[Opening "French"]
+[Variation "Chigorin variation"]
 [EventDate "1998.??.??"]
 [PlyCount "12"]
 
@@ -17347,7 +19512,9 @@ Nd5 0-1
 [Result "1/2-1/2"]
 [WhiteElo "2180"]
 [BlackElo "2090"]
-[ECO "D21"]
+[ECO "D22"]
+[Opening "QGA"]
+[Variation "Alekhine defence"]
 [EventDate "1998.??.??"]
 [PlyCount "89"]
 
@@ -17370,6 +19537,8 @@ Nxd5 32. Rxd5+ Ke8 33. Qd4 f6 34. Qd1 Ke7 35. Qd3 Rh8 36. g3 h5 37. Rd4 f5
 [WhiteElo "2355"]
 [BlackElo "2180"]
 [ECO "A18"]
+[Opening "English"]
+[Variation "Mikenas-Carls, Flohr variation"]
 [EventDate "1998.??.??"]
 [PlyCount "97"]
 
@@ -17391,7 +19560,9 @@ Rf1 e4 45. Bxg7 Rf7 46. Bxh6 e3 47. Rxg5+ Kh3 48. Rh5+ Kg4 49. Rh4+ 1-0
 [Result "1/2-1/2"]
 [WhiteElo "2070"]
 [BlackElo "2180"]
-[ECO "C11"]
+[ECO "C05"]
+[Opening "French"]
+[Variation "Tarrasch, closed variation"]
 [EventDate "1998.??.??"]
 [PlyCount "31"]
 
@@ -17409,6 +19580,8 @@ O-O-O 15. h5 h6 16. Be3 1/2-1/2
 [WhiteElo "2180"]
 [BlackElo "2105"]
 [ECO "E97"]
+[Opening "King's Indian"]
+[Variation "orthodox, Aronin-Taimanov, bayonet attack"]
 [EventDate "1998.??.??"]
 [PlyCount "96"]
 

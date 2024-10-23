@@ -6,6 +6,9 @@ export const pgns1979 = [
 [White "Jackson, D."]
 [Black "Pope, J."]
 [Result "1-0"]
+[ECO "C00"]
+[Opening "French"]
+[Variation "Labourdonnais variation"]
 [EventDate "1979.??.??"]
 [PlyCount "37"]
 
@@ -22,6 +25,9 @@ Qxd5 Nh6 18. Nc4 Ng4 $2 { [18....Nf7 ] } 19. Nd6+ 1-0
 [White "Pope, J."]
 [Black "Surlan, D."]
 [Result "1-0"]
+[ECO "C70"]
+[Opening "Ruy Lopez"]
+[Variation "Schliemann defence deferred"]
 [EventDate "1979.??.??"]
 [PlyCount "83"]
 
@@ -41,6 +47,9 @@ hxg6+ 39. Kxg6 c5 40. h5 cxb4 41. h6 b3 42. h7 1-0
 [White "Murray, R."]
 [Black "Ehrman, C."]
 [Result "0-1"]
+[ECO "B72"]
+[Opening "Sicilian"]
+[Variation "dragon, classical, Nottingham variation"]
 [EventDate "1979.??.??"]
 [PlyCount "74"]
 
@@ -60,6 +69,9 @@ Rxf2+ 36. Qxf2 Qe4+ 37. Kg3 Qdd3+ 0-1
 [White "Loughlin, J."]
 [Black "Stephenson, G."]
 [Result "0-1"]
+[ECO "E34"]
+[Opening "Nimzo-Indian"]
+[Variation "classical, Noa variation"]
 [EventDate "1979.??.??"]
 [PlyCount "98"]
 
@@ -82,6 +94,9 @@ Nd4 40. Rxb6 axb6 41. Kxd4 Kd6 42. Kc4 Kc6 43. h3 g5 44. Kd4 f6 45. Kc4 e5
 [White "McGuire, R."]
 [Black "Stephenson, G."]
 [Result "0-1"]
+[ECO "C15"]
+[Opening "French"]
+[Variation "Winawer, fingerslip variation"]
 [EventDate "1979.??.??"]
 [PlyCount "80"]
 
@@ -102,6 +117,9 @@ Rxg4+ 36. fxg4 Rg5 37. f7 Kg7 38. Kf2 Rxg4 39. Kf3 Rh4 40. Kg2 Kxf7 0-1
 [White "Stephenson, G."]
 [Black "Buckberry, R."]
 [Result "1-0"]
+[ECO "C10"]
+[Opening "French"]
+[Variation "Rubinstein variation"]
 [EventDate "1979.??.??"]
 [PlyCount "49"]
 
@@ -118,6 +136,9 @@ Bxh7+ Nxh7 22. Bxe7 Qxh4 23. Bxh4 f6 24. f3 Rf7 $4 25. Rxc8+ 1-0
 [White "Stephenson, G."]
 [Black "Damiano, J."]
 [Result "1/2-1/2"]
+[ECO "C05"]
+[Opening "French"]
+[Variation "Tarrasch, closed variation"]
 [EventDate "1979.??.??"]
 [PlyCount "112"]
 
@@ -141,6 +162,8 @@ bxa5 53. Bxa7 axb4 54. Bc5 Ke8 55. Kd6 Kf7 56. Bxb4 Bc2 1/2-1/2
 [White "Stephenson, G."]
 [Black "Dentith, J."]
 [Result "0-1"]
+[ECO "E61"]
+[Opening "King's Indian defence, 3.Nc3"]
 [EventDate "1979.??.??"]
 [PlyCount "104"]
 
@@ -163,6 +186,9 @@ gxf5 46. Ke3 Kg7 47. Bd7 Kf6 48. Be6 e4 49. Bd7 Ke5 50. Be6 f4+ 51. Ke2 Kd4
 [White "Stephenson, G."]
 [Black "Purdy, W."]
 [Result "1-0"]
+[ECO "B03"]
+[Opening "Alekhine's defence"]
+[Variation "four pawns attack"]
 [EventDate "1979.??.??"]
 [PlyCount "93"]
 
@@ -184,6 +210,9 @@ Rh6 29. c5 $2 Qc6 $6 (29... Rxh3+) 30. Rff3 Nd5 31. Qb8+ Kf7 32. Be4 Rd1+
 [White "Whitman, A."]
 [Black "Stephenson, G."]
 [Result "1/2-1/2"]
+[ECO "C01"]
+[Opening "French"]
+[Variation "exchange variation"]
 [EventDate "1979.??.??"]
 [PlyCount "100"]
 

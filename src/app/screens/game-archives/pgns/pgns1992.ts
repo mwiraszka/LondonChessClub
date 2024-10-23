@@ -6,6 +6,9 @@ export const pgns1992 = [
 [White "Bonham, P."]
 [Black "Gillanders, B."]
 [Result "1-0"]
+[ECO "E91"]
+[Opening "King's Indian"]
+[Variation "6.Be2"]
 [EventDate "1992.??.??"]
 [PlyCount "95"]
 
@@ -25,6 +28,8 @@ Bd4+ 21. Kh1 Qf6 22. Qd2 Qh4 23. Bd1 g5 24. g3 Qh6 25. g4 Rf8 26. Qg2 Qg7
 [White "Bonham, P."]
 [Black "Kaczmarek, B."]
 [Result "1-0"]
+[ECO "E00"]
+[Opening "Catalan opening"]
 [EventDate "1992.??.??"]
 [PlyCount "99"]
 
@@ -45,6 +50,9 @@ Kh7 32. Qxb7 Qb4 33. Qa6 a4 34. b6 a3 35. b7 a2 36. Qxa2 Qxb7 37. Qc2+ g6
 [White "Cheah, E."]
 [Black "Majstorovic, D."]
 [Result "1-0"]
+[ECO "B06"]
+[Opening "Robatsch defence"]
+[Variation "three pawns attack"]
 [EventDate "1992.??.??"]
 [PlyCount "39"]
 
@@ -59,6 +67,9 @@ Qxd3 Qd7 16. f5 dxe5 17. fxg6 hxg6 18. Bxh6 Bxh6 19. Nxe5 Qc8 20. Rxf7 1-0
 [White "Cheah, E."]
 [Black "Zendrowski, J."]
 [Result "0-1"]
+[ECO "B06"]
+[Opening "Robatsch defence"]
+[Variation "three pawns attack"]
 [EventDate "1992.??.??"]
 [PlyCount "100"]
 
@@ -79,6 +90,9 @@ Bxa5 Nf4+ 0-1
 [White "Elieff, K."]
 [Black "Jackson, D."]
 [Result "1-0"]
+[ECO "A95"]
+[Opening "Dutch"]
+[Variation "stonewall with Nc3"]
 [EventDate "1992.??.??"]
 [PlyCount "100"]
 
@@ -99,6 +113,9 @@ d5 Qxd5 1-0
 [White "Floyd, B."]
 [Black "Bonham, P."]
 [Result "1-0"]
+[ECO "A03"]
+[Opening "Bird's opening"]
+[Variation "Lasker variation"]
 [EventDate "1992.??.??"]
 [PlyCount "39"]
 
@@ -114,6 +131,9 @@ Bh6+ 1-0
 [White "Floyd, B."]
 [Black "Zendrowski, J."]
 [Result "0-1"]
+[ECO "B02"]
+[Opening "Alekhine's defence"]
+[Variation "Saemisch attack"]
 [EventDate "1992.??.??"]
 [PlyCount "74"]
 
@@ -132,6 +152,8 @@ Rfd1 Kf7 27. Rb3 Ba4 28. Rxb8 Rxb8 29. Rd2 Rb2 30. Ke2 Bb5+ 31. Kd1 Rxd2+
 [White "Gillanders, B."]
 [Black "Majstorovic, D."]
 [Result "1-0"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1992.??.??"]
 [PlyCount "52"]
 
@@ -148,6 +170,9 @@ Nxf2 1-0
 [White "Hibbard, M."]
 [Black "Bonham, P."]
 [Result "0-1"]
+[ECO "E30"]
+[Opening "Nimzo-Indian"]
+[Variation "Leningrad variation"]
 [EventDate "1992.??.??"]
 [PlyCount "71"]
 
@@ -165,6 +190,9 @@ Nxf2 1-0
 [White "Hibbard, M."]
 [Black "Cheah, E."]
 [Result "0-1"]
+[ECO "A07"]
+[Opening "Reti"]
+[Variation "King's Indian attack (Barcza system)"]
 [EventDate "1992.??.??"]
 [PlyCount "92"]
 
@@ -184,6 +212,8 @@ Kxb4 45. Ke4 Bf6 46. Kf3 Kc3 0-1
 [White "Jackson, D."]
 [Black "Cheah, E."]
 [Result "0-1"]
+[ECO "B50"]
+[Opening "Sicilian"]
 [EventDate "1992.??.??"]
 [PlyCount "94"]
 
@@ -203,6 +233,8 @@ Nxg2 Qe2 45. Kg3 c3 46. Nf4 Qe3+ 47. Kg4 c2 0-1
 [White "Kaczmarek, B."]
 [Black "Hibbard, M."]
 [Result "1-0"]
+[ECO "B54"]
+[Opening "Sicilian"]
 [EventDate "1992.??.??"]
 [PlyCount "109"]
 
@@ -224,6 +256,8 @@ Qc3 Kg7 45. Rh2 exd3 46. Qc7+ Bd7 47. Qxd7+ Qxd7 48. Rh7+ Kg8 49. Rxd7 Re5
 [White "Kaczmarek, B."]
 [Black "Majstorovic, D."]
 [Result "1-0"]
+[ECO "C55"]
+[Opening "Two knights defence (Modern bishop's opening)"]
 [EventDate "1992.??.??"]
 [PlyCount "71"]
 
@@ -241,6 +275,9 @@ fxe6 cxb2 34. exf7+ Kf8 35. Qe6 b1=Q $4 36. Qe7# 1-0
 [White "Majstorovic, D."]
 [Black "Jackson, D."]
 [Result "0-1"]
+[ECO "E81"]
+[Opening "King's Indian"]
+[Variation "Saemisch, 5...O-O"]
 [EventDate "1992.??.??"]
 [PlyCount "50"]
 
@@ -257,6 +294,9 @@ Kc2 fxe2 21. Rxb7 Nxe4 22. Re1 Nc5 23. Rc7 Nxd3 24. Kxd3 Rad8 25. Kc4 Bd2
 [White "Zendrowski, J."]
 [Black "Bonham, P."]
 [Result "1-0"]
+[ECO "B07"]
+[Opening "Pirc"]
+[Variation "Byrne variation"]
 [EventDate "1992.??.??"]
 [PlyCount "55"]
 
@@ -273,6 +313,9 @@ fxe4 Rxe4 27. Nc1 Rxg4 28. Re1 1-0
 [White "Zendrowski, J."]
 [Black "Elieff, K."]
 [Result "1-0"]
+[ECO "B99"]
+[Opening "Sicilian"]
+[Variation "Najdorf, 7...Be7 main line"]
 [EventDate "1992.??.??"]
 [PlyCount "63"]
 
@@ -290,6 +333,8 @@ Qg5 1-0
 [White "Zendrowski, J."]
 [Black "Kaczmarek, B."]
 [Result "1-0"]
+[ECO "C55"]
+[Opening "Two knights defence (Modern bishop's opening)"]
 [EventDate "1992.??.??"]
 [PlyCount "91"]
 
@@ -309,6 +354,9 @@ g3 Qg4 39. Ne7+ Nxe7 40. Qxe5 Qh3+ 41. Kg1 Ng4 42. Qxb8+ Kh7 43. Qf4 Ng8
 [White "Elieff, K."]
 [Black "Fortin, J."]
 [Result "1-0"]
+[ECO "E92"]
+[Opening "King's Indian"]
+[Variation "classical variation"]
 [EventDate "1992.??.??"]
 [PlyCount "33"]
 
@@ -324,6 +372,8 @@ Na6 14. Qa5 Qc8 15. c5 h6 16. Bxf6 Bxf6 17. c6 1-0
 [White "Elieff, K."]
 [Black "Oraha, Z."]
 [Result "1-0"]
+[ECO "C38"]
+[Opening "King's knight's gambit"]
 [EventDate "1992.??.??"]
 [PlyCount "67"]
 
@@ -343,6 +393,9 @@ c5+ bxc5 33. bxc5+ Kxc5 34. e7 1-0
 [White "Fortin, J."]
 [Black "Lypps, B."]
 [Result "1-0"]
+[ECO "A29"]
+[Opening "English"]
+[Variation "four knights, kingside fianchetto"]
 [EventDate "1992.??.??"]
 [PlyCount "63"]
 
@@ -360,6 +413,8 @@ Rd6 30. Bxd6 Qxc4 31. Rxc4 cxd6 32. Rb4 1-0
 [White "Fortin, J."]
 [Black "Pope, J."]
 [Result "1-0"]
+[ECO "A10"]
+[Opening "English opening"]
 [EventDate "1992.??.??"]
 [PlyCount "67"]
 
@@ -377,6 +432,9 @@ Bf3 Qxc4 31. Qh2+ Kg8 32. Qh6 Nf8 33. Bf6 Kf7 34. Qg7+ 1-0
 [White "Hibbard, M."]
 [Black "Oraha, Z."]
 [Result "0-1"]
+[ECO "A28"]
+[Opening "English"]
+[Variation "four knights, Capablanca variation"]
 [EventDate "1992.??.??"]
 [PlyCount "64"]
 
@@ -396,6 +454,8 @@ Ng3 Nb4 20. Rc1 Nxd3+ 21. Bxd3 Rxd3 22. b4 Qxa2+ 23. Qe2 Rd2 24. Rxc7+ Kd6
 [White "Jackson, D."]
 [Black "Hibbard, M."]
 [Result "1-0"]
+[ECO "C21"]
+[Opening "Centre game"]
 [EventDate "1992.??.??"]
 [PlyCount "47"]
 
@@ -412,6 +472,9 @@ Bxf6 Qxf6 24. Ne7+ 1-0
 [White "Kaczmarek, B."]
 [Black "Fortin, J."]
 [Result "1-0"]
+[ECO "C15"]
+[Opening "French"]
+[Variation "Winawer, Alekhine (Maroczy) gambit"]
 [EventDate "1992.??.??"]
 [PlyCount "71"]
 
@@ -432,6 +495,9 @@ d5 Re1 31. Qf3 h6 32. d6 Qxf3 33. Rxf3 Rxe5 34. d7 Rd8 35. Rc3 Rc5 36. Re3
 [White "Kaczmarek, B."]
 [Black "Kaczmarek, W."]
 [Result "1-0"]
+[ECO "C21"]
+[Opening "Danish gambit"]
+[Variation "Soerensen defence"]
 [EventDate "1992.??.??"]
 [PlyCount "60"]
 
@@ -451,6 +517,8 @@ here.] } 1-0
 [White "Lypps, B."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Benko's opening"]
 [EventDate "1992.??.??"]
 [PlyCount "26"]
 
@@ -466,6 +534,8 @@ Rg1 Bd4 0-1
 [White "Lypps, B."]
 [Black "Majstorovic, D."]
 [Result "1-0"]
+[ECO "A00"]
+[Opening "Benko's opening"]
 [EventDate "1992.??.??"]
 [PlyCount "63"]
 
@@ -483,6 +553,9 @@ Rg1 Bd4 0-1
 [White "Lypps, B."]
 [Black "Pope, J."]
 [Result "1-0"]
+[ECO "E12"]
+[Opening "Queen's Indian"]
+[Variation "4.Nc3"]
 [EventDate "1992.??.??"]
 [PlyCount "81"]
 
@@ -503,6 +576,9 @@ Rxb4 axb4 39. Rb3 Kf7 40. Kd3 Kg6 41. g4 1-0
 [White "Neal, L."]
 [Black "Fortin, J."]
 [Result "0-1"]
+[ECO "C18"]
+[Opening "French"]
+[Variation "Winawer, classical variation"]
 [EventDate "1992.??.??"]
 [PlyCount "38"]
 
@@ -518,6 +594,8 @@ Kd1 Rc8 18. g4 Qb1+ 19. Bc1 Qxc2+ 0-1
 [White "Pope, J."]
 [Black "Kaczmarek, B."]
 [Result "1-0"]
+[ECO "C56"]
+[Opening "Two knights defence"]
 [EventDate "1992.??.??"]
 [PlyCount "35"]
 
@@ -535,6 +613,9 @@ Kxe7 $6 (11... Nxe7 12. Neg5 $40) 12. Nxd4 Rhe8 (12... Rad8 13. Nxc6+ bxc6
 [White "Pope, J."]
 [Black "Zendrowski, J."]
 [Result "1-0"]
+[ECO "B09"]
+[Opening "Pirc"]
+[Variation "Austrian attack, 6.Be3"]
 [EventDate "1992.??.??"]
 [PlyCount "37"]
 
@@ -552,6 +633,9 @@ gxf7+ Kh8 (17... Rxf7 $2 18. Bc4 $16) 18. Bd3 Qd4 $4 { # } (18... Rxf7 $132
 [White "Tillotson, K."]
 [Black "Lypps, B."]
 [Result "0-1"]
+[ECO "B90"]
+[Opening "Sicilian"]
+[Variation "Najdorf, Lipnitzky attack"]
 [EventDate "1992.??.??"]
 [PlyCount "94"]
 
@@ -572,6 +656,8 @@ Bxc5+ 41. Kxc5 h5 42. Kb5 h4 43. Kxa5 h3 44. Kb6 h2 45. a5 h1=Q 46. a6 Qa1
 [White "Hassan Gordon, T."]
 [Black "Surlan, D                 A."]
 [Result "0-1"]
+[ECO "A84"]
+[Opening "Dutch defence, Rubinstein variation"]
 [EventDate "1992.??.??"]
 [PlyCount "48"]
 
@@ -588,6 +674,8 @@ Bd3 Rf7 19. dxc5 e5 20. Bxh7+ Rxh7 21. Qg6+ Kh8 22. Qxc6 Rb8 23. Kd2 Nxc5
 [White "Majstorovic, D."]
 [Black "Zendrowski, J               B25."]
 [Result "0-1"]
+[ECO "B02"]
+[Opening "Alekhine's defence"]
 [EventDate "1992.??.??"]
 [PlyCount "60"]
 
@@ -605,6 +693,9 @@ Qe7 Rbe8 25. Qxd6 h4 26. Ne2 Qxe2+ 27. Rf2 Qg4 28. Qf6+ Kg8 29. Rh1 Qxg3+
 [White "Surlan, D."]
 [Black "Tillotson, K."]
 [Result "1-0"]
+[ECO "C33"]
+[Opening "KGA"]
+[Variation "Villemson (Steinitz) gambit"]
 [EventDate "1992.??.??"]
 [PlyCount "29"]
 
@@ -619,6 +710,9 @@ c3 d5 11. Nd2 Bg4 12. gxf3 Be6 13. Qb3 dxe4 14. Qxe6+ Nge7 15. Nxe4 1-0
 [White "Tillotson, K."]
 [Black "Majstorovic, D                B0."]
 [Result "0-1"]
+[ECO "B06"]
+[Opening "Robatsch defence"]
+[Variation "three pawns attack"]
 [EventDate "1992.??.??"]
 [PlyCount "64"]
 
@@ -636,6 +730,9 @@ Nxb4 31. Rxg6+ Bg7 32. Rxa6 Nxa6 0-1
 [White "Zendrowski, J."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "B80"]
+[Opening "Sicilian"]
+[Variation "Scheveningen, fianchetto variation"]
 [EventDate "1992.??.??"]
 [PlyCount "58"]
 
@@ -653,6 +750,8 @@ Rg3 dxe5 28. fxe5 Bf5 29. Qf4 Rbc8 0-1
 [White "Campbell, G."]
 [Black "Knechtel, T."]
 [Result "1-0"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1992.??.??"]
 [PlyCount "135"]
 
@@ -676,6 +775,9 @@ Kb7 63. b6 Kc8 64. Kc6 Kb8 65. Nd7+ Kc8 66. b7+ Kd8 67. Kd6 Ke8 68. Ke6 1-0
 [White "Coulombe, T."]
 [Black "Campbell, G."]
 [Result "0-1"]
+[ECO "C42"]
+[Opening "Petrov"]
+[Variation "Cozio (Lasker) attack"]
 [EventDate "1992.??.??"]
 [PlyCount "66"]
 
@@ -694,6 +796,9 @@ incomprehensible from here on] } 0-1
 [White "Coulombe, T."]
 [Black "Kaczmarek, W."]
 [Result "1-0"]
+[ECO "B40"]
+[Opening "Sicilian"]
+[Variation "Pin variation (Sicilian counter-attack)"]
 [EventDate "1992.??.??"]
 [PlyCount "28"]
 
@@ -709,6 +814,8 @@ $4 1-0
 [White "Coulombe, T."]
 [Black "Majstorovic, D                 C."]
 [Result "1-0"]
+[ECO "C00"]
+[Opening "French defence, Steiner variation"]
 [EventDate "1992.??.??"]
 [PlyCount "117"]
 
@@ -730,6 +837,9 @@ Qxh6+ Kf7 55. Qg6+ Kf8 56. Qh7 Ke8 57. Be6 a4 58. Qf7+ Kd8 59. Qd7# 1-0
 [White "Elieff, K."]
 [Black "Campbell, G."]
 [Result "1-0"]
+[ECO "A13"]
+[Opening "English"]
+[Variation "Kurajica defence"]
 [EventDate "1992.??.??"]
 [PlyCount "45"]
 
@@ -746,6 +856,9 @@ Qf3 fxe4 20. dxe4 dxe4 21. Qe3 b5 22. Nc5 Ba6 23. Rh1 1-0
 [White "Elieff, K."]
 [Black "Coulombe, T."]
 [Result "1-0"]
+[ECO "A14"]
+[Opening "English"]
+[Variation "Neo-Catalan declined"]
 [EventDate "1992.??.??"]
 [PlyCount "131"]
 
@@ -769,6 +882,9 @@ Bd8 49. b5 Bb6 50. Ba7 Bc7 51. b6 Kd8 52. bxc7+ Kxc7 53. Bc5 g6 54. Be7 f5
 [White "Elieff, K."]
 [Black "Surlan, D."]
 [Result "1-0"]
+[ECO "A13"]
+[Opening "English"]
+[Variation "Neo-Catalan"]
 [EventDate "1992.??.??"]
 [PlyCount "101"]
 
@@ -790,6 +906,9 @@ Kg7 46. Qc4 Rb7 47. Qd4+ Kh7 48. c6 Rb1+ 49. Kf2 Re8 50. d7 Ree1 51. d8=Q
 [White "Findlay, D."]
 [Black "Majstorovic, D."]
 [Result "0-1"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
+[Variation "Charlick (Englund) gambit"]
 [EventDate "1992.??.??"]
 [PlyCount "40"]
 
@@ -805,6 +924,9 @@ fxe3 Nxe3 13. Bxe3 Qxe3+ 14. Rf2 Bf5 15. Qa4+ Bd7 16. Qb4 Nc6 17. Qxb7 Rb8
 [White "Findlay, D."]
 [Black "Tillotson, K."]
 [Result "1-0"]
+[ECO "D06"]
+[Opening "QGD"]
+[Variation "Marshall defence"]
 [EventDate "1992.??.??"]
 [PlyCount "55"]
 
@@ -822,6 +944,9 @@ g6 25. Kh1 gxh5 26. gxf5 Rxf5 27. Rg1+ Kh8 28. Qg3 1-0
 [White "Jackson, D."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "B43"]
+[Opening "Sicilian"]
+[Variation "Kan, 5.Nc3"]
 [EventDate "1992.??.??"]
 [PlyCount "104"]
 
@@ -843,6 +968,9 @@ Rxf6 Rxb1 44. Rxc6 a4 45. Re6+ Kf7 46. Ra6 Rb3+ 47. Kd2 Rg3 48. Ra7+ Kf8
 [White "Jackson, D."]
 [Black "Kierstead, M."]
 [Result "1-0"]
+[ECO "C42"]
+[Opening "Petrov"]
+[Variation "Damiano variation"]
 [EventDate "1992.??.??"]
 [PlyCount "99"]
 
@@ -863,6 +991,9 @@ Nc3 Bg7 15. Be3 Ka8 16. Rad1 Rxd1 17. Qxd1 Bxe5 18. Bd4 f6 19. Bxe5 fxe5
 [White "Kaczmarek, W."]
 [Black "Oraha, Z."]
 [Result "0-1"]
+[ECO "C63"]
+[Opening "Ruy Lopez"]
+[Variation "Schliemann defence"]
 [EventDate "1992.??.??"]
 [PlyCount "66"]
 
@@ -880,6 +1011,9 @@ Raf1 Rxf2 31. Qxc7 Rxf1+ 32. Kh2 Rh1+ 33. Kg3 Rf3+ 0-1
 [White "Keirstead, M."]
 [Black "Findlay, D."]
 [Result "1-0"]
+[ECO "C55"]
+[Opening "two knights"]
+[Variation "Max Lange attack, Steinitz variation"]
 [EventDate "1992.??.??"]
 [PlyCount "73"]
 
@@ -898,6 +1032,8 @@ b4 g6 35. b5 Rc5 36. Qd8+ Kg7 37. Qd4+ 1-0
 [White "Keirstead, M."]
 [Black "Moser, D."]
 [Result "0-1"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1992.??.??"]
 [PlyCount "52"]
 
@@ -915,6 +1051,8 @@ Be2 e5 21. Bd1 Nxb4 22. e4 Qxd4 23. axb4 Bxe4 24. Nxe4 fxe4 25. Bg4 Rce8
 [White "Keirstead, M."]
 [Black "Surlan, D."]
 [Result "0-1"]
+[ECO "A90"]
+[Opening "Dutch defence"]
 [EventDate "1992.??.??"]
 [PlyCount "54"]
 
@@ -931,6 +1069,8 @@ h6 19. Nf3 Ba6 20. Bg6 Re7 21. Nd2 b4 22. Bb2 c5 23. Nf3 cxd4 24. Nxd4 Qd6
 [White "Knechtel, T."]
 [Black "Jackson, D."]
 [Result "0-1"]
+[ECO "A56"]
+[Opening "Benoni defence, Hromodka system"]
 [EventDate "1992.??.??"]
 [PlyCount "104"]
 
@@ -952,6 +1092,8 @@ Bb5 44. Kg2 Bc6 45. Kf2 g4 46. f4 Ke4 47. Ke2 Bd7 48. Kf2 Kd3 49. Kf1 Ke3
 [White "Knechtel, T."]
 [Black "Majstorovic, D                 A."]
 [Result "0-1"]
+[ECO "A41"]
+[Opening "Old Indian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "66"]
 
@@ -970,6 +1112,8 @@ Nh1 Rxf2 33. Nxf2 Rc2 0-1
 [White "Majstorovic, D."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "B01"]
+[Opening "Scandinavian (centre counter) defence"]
 [EventDate "1992.??.??"]
 [PlyCount "14"]
 
@@ -983,6 +1127,8 @@ Nc6 7. Ra3 $2 Bxb1 0-1
 [White "Majstorovic, D."]
 [Black "Kaczmarek, W                C2."]
 [Result "1-0"]
+[ECO "C25"]
+[Opening "Vienna game"]
 [EventDate "1992.??.??"]
 [PlyCount "39"]
 
@@ -999,6 +1145,8 @@ gxf5 20. Nf6# 1-0
 [White "Marinelli, P."]
 [Black "Findlay, D."]
 [Result "1-0"]
+[ECO "C44"]
+[Opening "Konstantinopolsky opening"]
 [EventDate "1992.??.??"]
 [PlyCount "53"]
 
@@ -1016,6 +1164,9 @@ Rad1 cxd3 20. cxd3 Qe6 21. a3 Re8 22. Bd2 Nd4 23. Qf2 Ng4+ 24. hxg4 Qxg4
 [White "Marinelli, P."]
 [Black "Jackson, D."]
 [Result "0-1"]
+[ECO "B20"]
+[Opening "Sicilian"]
+[Variation "Steinitz variation"]
 [EventDate "1992.??.??"]
 [PlyCount "110"]
 
@@ -1038,6 +1189,8 @@ remaining score because of time pressure] } 0-1
 [White "Marinelli, P."]
 [Black "Majstorovic, D                B0."]
 [Result "1-0"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1992.??.??"]
 [PlyCount "61"]
 
@@ -1055,6 +1208,9 @@ Rd5 28. Nxd5 cxd5 29. Ng5 Bd6 30. Bxd5+ Kh8 31. Nf7+ 1-0
 [White "Moser, D."]
 [Black "Coulombe, T."]
 [Result "0-1"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance, Paulsen attack"]
 [EventDate "1992.??.??"]
 [PlyCount "86"]
 
@@ -1074,6 +1230,9 @@ Rxb1 Nxb1 40. Nb5 Nd2 41. Kg2 b3 42. Na3 b2 43. f4 Bb4 0-1
 [White "Moser, D."]
 [Black "Oraha, Z."]
 [Result "0-1"]
+[ECO "C23"]
+[Opening "Bishop's opening"]
+[Variation "Calabrese counter-gambit, Jaenisch variation"]
 [EventDate "1992.??.??"]
 [PlyCount "75"]
 
@@ -1093,6 +1252,8 @@ Nf5+ { [the score was incomprehensible from here] } 37... Rxf5+ 38. exf5
 [White "Oraha, Z."]
 [Black "Campbell, G."]
 [Result "0-1"]
+[ECO "C42"]
+[Opening "Petrov three knights game"]
 [EventDate "1992.??.??"]
 [PlyCount "66"]
 
@@ -1111,6 +1272,8 @@ Rhd2 Re7 24. Rd6 Bf7 25. f4 exf4 26. Qxf4 Ne6 27. Qd2 Nec5 28. Qh2 Rxe4+
 [White "Surlan, D."]
 [Black "Marinelli, P."]
 [Result "1-0"]
+[ECO "B00"]
+[Opening "King's pawn opening"]
 [EventDate "1992.??.??"]
 [PlyCount "95"]
 
@@ -1132,6 +1295,9 @@ Qd7+ Kg8 36. Qe8+ Kg7 37. Qe1 Qb7 38. Rg3 Qf7 39. Be5+ Kg8 40. Bxd4 cxd4
 [White "Tillotson, K."]
 [Black "Knechtel, T."]
 [Result "0-1"]
+[ECO "B06"]
+[Opening "Robatsch defence"]
+[Variation "three pawns attack"]
 [EventDate "1992.??.??"]
 [PlyCount "68"]
 
@@ -1150,6 +1316,8 @@ Qb5 Ng3 27. Bxd5 Bxg5 28. Qc6 Bxf4 29. Qa8+ Nb8 30. Bb7+ Kd7 31. d5 Be3+
 [White "Tillotson, K."]
 [Black "Surlan, D."]
 [Result "0-1"]
+[ECO "A84"]
+[Opening "Dutch defence, Rubinstein variation"]
 [EventDate "1992.??.??"]
 [PlyCount "48"]
 
@@ -1166,6 +1334,8 @@ h4 Bd6 21. h5 Qh6 22. Rh4 Nf6 23. f3 Rf8 24. Rdh1 Ng4 0-1
 [White "Elfers, G."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "B56"]
+[Opening "Sicilian"]
 [EventDate "1992.??.??"]
 [PlyCount "83"]
 
@@ -1187,6 +1357,9 @@ Be4 39. Kb6 Qh8 40. a7 Qa8 41. Nc4 Qxa7+ 42. Kb5 { [Black mates on move
 [White "Elfers, G."]
 [Black "Jackson, D."]
 [Result "0-1"]
+[ECO "B27"]
+[Opening "Sicilian"]
+[Variation "Hungarian variation"]
 [EventDate "1992.??.??"]
 [PlyCount "38"]
 
@@ -1202,6 +1375,9 @@ e5 17. Bxe5 Bxe5 18. Qxe5 Rbe8 19. Qg3 Be2 0-1
 [White "Elfers, G."]
 [Black "Neal, L."]
 [Result "1-0"]
+[ECO "B45"]
+[Opening "Sicilian"]
+[Variation "Taimanov variation"]
 [EventDate "1992.??.??"]
 [PlyCount "55"]
 
@@ -1219,6 +1395,9 @@ Qf8+ Kh5 28. Rxh7# 1-0
 [White "Elfers, G."]
 [Black "Pope, J."]
 [Result "0-1"]
+[ECO "C15"]
+[Opening "French"]
+[Variation "Winawer, fingerslip variation"]
 [EventDate "1992.??.??"]
 [PlyCount "62"]
 
@@ -1239,6 +1418,8 @@ Rag8 0-1
 [White "Elfers, G."]
 [Black "Tillotson, K."]
 [Result "0-1"]
+[ECO "C46"]
+[Opening "Three knights game"]
 [EventDate "1992.??.??"]
 [PlyCount "100"]
 
@@ -1260,6 +1441,9 @@ Qg7 50. Kh4 d2 0-1
 [White "Elfers, G."]
 [Black "Van de Ven, A."]
 [Result "0-1"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical (two knights) system"]
 [EventDate "1992.??.??"]
 [PlyCount "40"]
 
@@ -1275,6 +1459,9 @@ Bd4+ 18. Kg2 Raf8 19. Bh6 Rh5 20. Bxf8 Qh3+ 0-1
 [White "Elieff, K."]
 [Black "Jackson, J."]
 [Result "1-0"]
+[ECO "B64"]
+[Opening "Sicilian"]
+[Variation "Richter-Rauzer, Rauzer attack, 7...Be7 defence, 9.f4"]
 [EventDate "1992.??.??"]
 [PlyCount "41"]
 
@@ -1291,6 +1478,8 @@ b6 18. Nd7 Rfd8 19. Ne5 f6 20. Nf3 Rxd4 21. Nbxd4 1-0
 [White "Elieff, K."]
 [Black "Kaczmarek, W."]
 [Result "1-0"]
+[ECO "C30"]
+[Opening "King's gambit"]
 [EventDate "1992.??.??"]
 [PlyCount "71"]
 
@@ -1309,6 +1498,9 @@ Rb8 32. b3 c4 33. b4 Qb5 34. Qd2 Qa4+ 35. Kb2 a5 36. Qd6+ 1-0
 [White "Elieff, K."]
 [Black "Lypps, B."]
 [Result "1-0"]
+[ECO "C62"]
+[Opening "Ruy Lopez"]
+[Variation "old Steinitz defence"]
 [EventDate "1992.??.??"]
 [PlyCount "55"]
 
@@ -1326,6 +1518,9 @@ Kxg7 27. Ne8+ Kh6 28. Qg7+ 1-0
 [White "Elieff, K."]
 [Black "Majstorovic, D."]
 [Result "1-0"]
+[ECO "C61"]
+[Opening "Ruy Lopez"]
+[Variation "Bird's defence"]
 [EventDate "1992.??.??"]
 [PlyCount "67"]
 
@@ -1344,6 +1539,8 @@ Qe6 30. Rd2 R4f5 31. Rd6 Qxa2 32. e6 Rd5 33. e7 Re8 34. Qe6+ 1-0
 [White "Elieff, K."]
 [Black "Oraha, Z."]
 [Result "1-0"]
+[ECO "B40"]
+[Opening "Sicilian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "51"]
 
@@ -1360,6 +1557,9 @@ Ne4 Ng5 17. Bg4 Rf8 18. Bxg5 Bxg5 19. Nxd6 Qe7 20. bxc5 bxc5 21. Nxc8 Raxc8
 [White "Elieff, K."]
 [Black "Zendrowski, J."]
 [Result "1-0"]
+[ECO "B30"]
+[Opening "Sicilian"]
+[Variation "Nimzovich-Rossolimo attack (without ...d6)"]
 [EventDate "1992.??.??"]
 [PlyCount "53"]
 
@@ -1377,6 +1577,9 @@ Kxe5 26. Rxf4 Nxf4 27. Qg7+ 1-0
 [White "Findlay, D."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "B43"]
+[Opening "Sicilian"]
+[Variation "Kan, 5.Nc3"]
 [EventDate "1992.??.??"]
 [PlyCount "90"]
 
@@ -1398,6 +1601,9 @@ e2 44. a7 e1=Q 45. a8=Q Qb1+ 0-1
 [White "Findlay, D."]
 [Black "Jackson, D."]
 [Result "0-1"]
+[ECO "E70"]
+[Opening "King's Indian"]
+[Variation "4.e4"]
 [EventDate "1992.??.??"]
 [PlyCount "48"]
 
@@ -1414,6 +1620,9 @@ Nxe8 20. Nf3 Ba6 21. Bxa6 Qxa6 22. Bc3 Bxc3+ 23. bxc3 Nf6 24. Kf2 Ne4+ 0-1
 [White "Fortin, J."]
 [Black "Elfers, G."]
 [Result "1-0"]
+[ECO "A29"]
+[Opening "English"]
+[Variation "four knights, kingside fianchetto"]
 [EventDate "1992.??.??"]
 [PlyCount "57"]
 
@@ -1432,6 +1641,9 @@ Bh3 Rde8 17. Nxc7 Rd8 18. Rfe1 Rxe1+ 19. Rxe1 Ne5 20. Rd1 Nf3+ 21. Kg2 Ng5
 [White "Fortin, J."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "A29"]
+[Opening "English"]
+[Variation "four knights, kingside fianchetto"]
 [EventDate "1992.??.??"]
 [PlyCount "152"]
 
@@ -1458,6 +1670,9 @@ Kxg7 Rxb2 50. g6 c3 51. Kf8 $2 (51. Rc5 $11 { -KE }) 51... Rf2+ 52. Rf5 Rd2
 [White "Fortin, J."]
 [Black "Findlay, D."]
 [Result "0-1"]
+[ECO "C92"]
+[Opening "Ruy Lopez"]
+[Variation "closed, Flohr-Zaitsev system (Lenzerheide variation)"]
 [EventDate "1992.??.??"]
 [PlyCount "108"]
 
@@ -1481,6 +1696,9 @@ Qe8+ Kg7 49. Qd7+ Kh6 50. Qd1 Qf2+ 51. Kh1 Qxb2 52. Qg4 Qc1+ 53. Kg2 Qg1+
 [White "Fortin, J."]
 [Black "Neal, L."]
 [Result "1-0"]
+[ECO "E67"]
+[Opening "King's Indian"]
+[Variation "fianchetto, classical variation"]
 [EventDate "1992.??.??"]
 [PlyCount "61"]
 
@@ -1499,6 +1717,9 @@ Rxc8 Bxc8 30. Na4 Bf6 31. Nxc5 1-0
 [White "Fortin, J."]
 [Black "Pope, J."]
 [Result "1-0"]
+[ECO "E16"]
+[Opening "Queen's Indian"]
+[Variation "Capablanca variation"]
 [EventDate "1992.??.??"]
 [PlyCount "59"]
 
@@ -1517,6 +1738,9 @@ Nc6 1-0
 [White "Fortin, J."]
 [Black "Tillotson, K."]
 [Result "1/2-1/2"]
+[ECO "A30"]
+[Opening "English"]
+[Variation "symmetrical variation"]
 [EventDate "1992.??.??"]
 [PlyCount "96"]
 
@@ -1537,6 +1761,9 @@ Re3 Qxe1+ 39. Rxe1 Kg7 40. Kf1 Rd2 41. Re7+ Kf6 42. Rxb7 Rxa2 43. g3 Kf5
 [White "Fortin, J."]
 [Black "Van de Ven, A."]
 [Result "1/2-1/2"]
+[ECO "E62"]
+[Opening "King's Indian"]
+[Variation "fianchetto, Uhlmann (Szabo) variation"]
 [EventDate "1992.??.??"]
 [PlyCount "71"]
 
@@ -1555,6 +1782,9 @@ Bf4 34. h3 Be5 35. Bd5 h5 36. Bf7 1/2-1/2
 [White "Jackson, D."]
 [Black "Fortin, J."]
 [Result "1/2-1/2"]
+[ECO "C00"]
+[Opening "French"]
+[Variation "Schlechter variation"]
 [EventDate "1992.??.??"]
 [PlyCount "77"]
 
@@ -1574,6 +1804,8 @@ Kg1 Re8 35. Qf2 Qd1+ 36. Kh2 Qe1 $2 (36... Ne4 $1) 37. Rf8+ Kh7 38. Qf5+ g6
 [White "Jackson, D."]
 [Black "Kaczmarek, W."]
 [Result "1-0"]
+[ECO "C21"]
+[Opening "Centre game"]
 [EventDate "1992.??.??"]
 [PlyCount "83"]
 
@@ -1593,6 +1825,9 @@ Rg6+ Kh7 29. Rxg5 Nb6 30. Re6 Kh8 31. Rh6+ Rh7 32. Rxh7+ Kxh7 33. Nxb5 Nc4
 [White "Jackson, D."]
 [Black "Lypps, B."]
 [Result "1-0"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance, Paulsen attack"]
 [EventDate "1992.??.??"]
 [PlyCount "71"]
 
@@ -1611,6 +1846,8 @@ Nf6 Be7 34. Rg8+ Kh6 35. Rh8+ Kg6 36. Re8 1-0
 [White "Jackson, D."]
 [Black "Majstorovic, D."]
 [Result "1-0"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1992.??.??"]
 [PlyCount "91"]
 
@@ -1631,6 +1868,8 @@ Rf3+ 1-0
 [White "Jackson, D."]
 [Black "Oraha, Z."]
 [Result "1-0"]
+[ECO "B33"]
+[Opening "Sicilian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "59"]
 
@@ -1648,6 +1887,9 @@ Nd6+ Kd8 27. Bxf7 Qg5 28. Qh5 Qe7 29. Rab1 Rxc2 30. Rbc1 1-0
 [White "Jackson, D."]
 [Black "Pope, J."]
 [Result "1-0"]
+[ECO "A46"]
+[Opening "Queen's pawn"]
+[Variation "Torre attack"]
 [EventDate "1992.??.??"]
 [PlyCount "79"]
 
@@ -1668,6 +1910,9 @@ Kf8 40. Be6 1-0
 [White "Jackson, D."]
 [Black "Zendrowski, J."]
 [Result "1-0"]
+[ECO "B12"]
+[Opening "Caro-Kann"]
+[Variation "advance variation"]
 [EventDate "1992.??.??"]
 [PlyCount "77"]
 
@@ -1686,6 +1931,9 @@ Qxf4+ 37. Kg1 Qg3+ 38. Ng2 Nxd2 39. Qe8# 1-0
 [White "Kaczmarek, W."]
 [Black "Fortin, J."]
 [Result "0-1"]
+[ECO "B45"]
+[Opening "Sicilian"]
+[Variation "Taimanov variation"]
 [EventDate "1992.??.??"]
 [PlyCount "46"]
 
@@ -1702,6 +1950,9 @@ g3 e4 22. Bg2 Kc7 23. Ke3 $4 Kxd6 0-1
 [White "Kaczmarek, W."]
 [Black "Majstorovic, D."]
 [Result "0-1"]
+[ECO "A42"]
+[Opening "Modern defence"]
+[Variation "Averbakh system"]
 [EventDate "1992.??.??"]
 [PlyCount "62"]
 
@@ -1720,6 +1971,8 @@ Rxa6 Bb5+ 0-1
 [White "Kaczmarek, W."]
 [Black "Oraha, Z."]
 [Result "1-0"]
+[ECO "B33"]
+[Opening "Sicilian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "105"]
 
@@ -1741,6 +1994,8 @@ Nb4 Kb2 49. Nc2 Kb3 50. Kc1 Kc3 51. Ne3 a3 52. Kb1 Kd3 53. Nxg4 1-0
 [White "Kaczmarek, W."]
 [Black "Pope, J."]
 [Result "0-1"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1992.??.??"]
 [PlyCount "50"]
 
@@ -1758,6 +2013,8 @@ $2 Kh7 24. Kg2 g6 25. Rd3 Re8 0-1
 [White "Lypps, B."]
 [Black "Fortin, J."]
 [Result "0-1"]
+[ECO "E00"]
+[Opening "Neo-Indian (Seirawan) attack"]
 [EventDate "1992.??.??"]
 [PlyCount "112"]
 
@@ -1780,6 +2037,9 @@ Rb3 $2 Kc5 40. Kg3 Kc4 41. Rb8 Ra3 42. Rc8+ Kd3 43. gxh5 gxh5 44. f5 Kxe3
 [White "Lypps, B."]
 [Black "Kaczmarek, W."]
 [Result "1-0"]
+[ECO "A28"]
+[Opening "English"]
+[Variation "four knights, Capablanca variation"]
 [EventDate "1992.??.??"]
 [PlyCount "43"]
 
@@ -1796,6 +2056,8 @@ Bb2 1-0
 [White "Lypps, B."]
 [Black "Tillotson, K."]
 [Result "1/2-1/2"]
+[ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1992.??.??"]
 [PlyCount "70"]
 
@@ -1814,6 +2076,9 @@ Qxf2 33. Qg5 Qd4 34. h7 Qe5+ 35. Kh3 Qh8 1/2-1/2
 [White "Lypps, B."]
 [Black "Zendrowski, J."]
 [Result "0-1"]
+[ECO "B90"]
+[Opening "Sicilian"]
+[Variation "Najdorf"]
 [EventDate "1992.??.??"]
 [PlyCount "90"]
 
@@ -1835,6 +2100,8 @@ Rxb3 45. h3 g5+ 0-1
 [White "Majstorovic, D."]
 [Black "Elfers, G."]
 [Result "1-0"]
+[ECO "C26"]
+[Opening "Vienna game"]
 [EventDate "1992.??.??"]
 [PlyCount "129"]
 
@@ -1858,6 +2125,8 @@ h8=Q Ka2 62. Ba1 Ka3 63. Nc5 b3 64. Qc3 Ka2 65. Qb2# 1-0
 [White "Majstorovic, D."]
 [Black "Fortin, J."]
 [Result "1/2-1/2"]
+[ECO "A00"]
+[Opening "Polish (Sokolsky) opening"]
 [EventDate "1992.??.??"]
 [PlyCount "86"]
 
@@ -1877,6 +2146,8 @@ e6 41. b6+ Kd7 42. g5 Ke7 43. e4 Kd7 1/2-1/2
 [White "Majstorovic, D."]
 [Black "Neal, L."]
 [Result "1-0"]
+[ECO "B50"]
+[Opening "Sicilian"]
 [EventDate "1992.??.??"]
 [PlyCount "46"]
 
@@ -1893,6 +2164,8 @@ Ne4+ Ke7 23. Nxc5 Qxc5 1-0
 [White "Majstorovic, D."]
 [Black "Zendrowski, J."]
 [Result "0-1"]
+[ECO "B00"]
+[Opening "St. George (Baker) defence"]
 [EventDate "1992.??.??"]
 [PlyCount "64"]
 
@@ -1911,6 +2184,9 @@ Rd1 Qf2 32. Rxd2 $4 Qf1# 0-1
 [White "Neal, L."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "B28"]
+[Opening "Sicilian"]
+[Variation "O'Kelly variation"]
 [EventDate "1992.??.??"]
 [PlyCount "50"]
 
@@ -1927,6 +2203,9 @@ Rfd8 22. Re1 b5 23. Nh4 d5 24. exd5 Nxd5 25. Nf3 Nxc3 0-1
 [White "Neal, L."]
 [Black "Findlay, D."]
 [Result "0-1"]
+[ECO "C97"]
+[Opening "Ruy Lopez"]
+[Variation "closed, Chigorin defence"]
 [EventDate "1992.??.??"]
 [PlyCount "53"]
 
@@ -1944,6 +2223,9 @@ b4 Rd6 25. Rab1 Rb6 26. b5 f4 27. bxa6 { [The rest of the score was lost.]
 [White "Neal, L."]
 [Black "Jackson, D."]
 [Result "0-1"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical (two knights) system"]
 [EventDate "1992.??.??"]
 [PlyCount "72"]
 
@@ -1962,6 +2244,8 @@ Bc2 35. Rf1 Bxf2+ 36. Rxf2 Rxd1+ 0-1
 [White "Neal, L."]
 [Black "Kaczmarek, W."]
 [Result "0-1"]
+[ECO "B40"]
+[Opening "Sicilian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "58"]
 
@@ -1979,6 +2263,8 @@ Rd1 Kg8 { [The rest of the score was lost.] } 0-1
 [White "Neal, L."]
 [Black "Oraha, Z."]
 [Result "0-1"]
+[ECO "B33"]
+[Opening "Sicilian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "42"]
 
@@ -1994,6 +2280,9 @@ Ndb5 { ECO }) 6... Bb4 7. Ne2 Nxe4 8. Bxc6 bxc6 9. Qd4 Bxc3+ 10. Nxc3 Nf6
 [White "Neal, L."]
 [Black "Pope, J."]
 [Result "0-1"]
+[ECO "C15"]
+[Opening "French"]
+[Variation "Winawer (Nimzovich) variation"]
 [EventDate "1992.??.??"]
 [PlyCount "84"]
 
@@ -2017,6 +2306,8 @@ Kf3 Rxc4 40. Rxc4+ Kxc4 41. Ke2 Kc3 42. Ke3 c5 0-1
 [White "Oraha, Z."]
 [Black "Elfers, G."]
 [Result "1-0"]
+[ECO "A03"]
+[Opening "Bird's opening"]
 [EventDate "1992.??.??"]
 [PlyCount "51"]
 
@@ -2034,6 +2325,8 @@ Qxe6+ Rf7 25. d5 Kf8 26. Bb4+ 1-0
 [White "Oraha, Z."]
 [Black "Fortin, J."]
 [Result "0-1"]
+[ECO "A03"]
+[Opening "Bird's opening"]
 [EventDate "1992.??.??"]
 [PlyCount "134"]
 
@@ -2060,6 +2353,8 @@ $19 { JF }) 67. Kxe1 Kd3 { [68.c4! draw. -DM and DS] } 0-1
 [White "Oraha, Z."]
 [Black "Lypps, B."]
 [Result "0-1"]
+[ECO "B54"]
+[Opening "Sicilian"]
 [EventDate "1992.??.??"]
 [PlyCount "56"]
 
@@ -2077,6 +2372,8 @@ Rxf3 Qb6+ 22. Be3 Qc6 23. Bd4 Rce8 24. Rh3 f5 25. gxf5 Bf6 26. Bxf6 Rxf6
 [White "Oraha, Z."]
 [Black "Majstorovic, D."]
 [Result "0-1"]
+[ECO "A02"]
+[Opening "Bird's opening"]
 [EventDate "1992.??.??"]
 [PlyCount "48"]
 
@@ -2093,6 +2390,8 @@ Nc4 Nxg2+ 12. Kd2 Nxf4 13. Raf1 Nxe2 14. Kxe2 Bxf3+ 15. Rxf3 e5 16. h4 Nc6
 [White "Oraha, Z."]
 [Black "Pope, J."]
 [Result "1-0"]
+[ECO "A03"]
+[Opening "Bird's opening"]
 [EventDate "1992.??.??"]
 [PlyCount "117"]
 
@@ -2115,6 +2414,9 @@ Rxg8 54. Qg5 Nf6 55. Rh1 Kd7 56. Rh6 Ke7 57. Rh8 Rgb8 58. Rxb8 Rxb8 59. Ke2
 [White "Oraha, Z."]
 [Black "Tillotson, K."]
 [Result "1/2-1/2"]
+[ECO "A03"]
+[Opening "Bird's opening"]
+[Variation "Lasker variation"]
 [EventDate "1992.??.??"]
 [PlyCount "49"]
 
@@ -2131,6 +2433,9 @@ Model,A-Goldberg,G; Leningrad (ch); 1932. }) 6. Bd3 c4 7. Bc2 b5 8. b3 a5
 [White "Oraha, Z."]
 [Black "Zendrowski, J."]
 [Result "0-1"]
+[ECO "B06"]
+[Opening "Robatsch defence"]
+[Variation "three pawns attack"]
 [EventDate "1992.??.??"]
 [PlyCount "30"]
 
@@ -2145,6 +2450,8 @@ ECO }) 5... Nxe4 6. Bd3 Nf6 7. O-O O-O 8. Nh4 Nc6 9. Bc2 Bg4 10. Qd3 Nh5
 [White "Pope, J."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Benko's opening"]
 [EventDate "1992.??.??"]
 [PlyCount "72"]
 
@@ -2163,6 +2470,9 @@ Bf3 Ra4 23. Qd1 Rxc4 24. Ra1 Qb7 25. Qd3 Qb2 26. Rxa7 Rc1 27. Nd1 Qb3 $18
 [White "Pope, J."]
 [Black "Findlay, D."]
 [Result "1-0"]
+[ECO "B23"]
+[Opening "Sicilian"]
+[Variation "closed"]
 [EventDate "1992.??.??"]
 [PlyCount "45"]
 
@@ -2179,6 +2489,9 @@ Be7 13. Bd2 a6 14. Nc3 Rd7 15. a5 Ne8 16. Nd5 Bd8 17. O-O Nc7 18. Nb6 Re7
 [White "Pope, J."]
 [Black "Lypps, B."]
 [Result "0-1"]
+[ECO "B23"]
+[Opening "Sicilian"]
+[Variation "closed"]
 [EventDate "1992.??.??"]
 [PlyCount "34"]
 
@@ -2196,6 +2509,8 @@ Qd4 Qxd4+ 0-1
 [White "Pope, J."]
 [Black "Majstorovic, D."]
 [Result "1-0"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1992.??.??"]
 [PlyCount "69"]
 
@@ -2217,6 +2532,8 @@ Qb4+ Kc8 35. Qg4+ 1-0
 [White "Pope, J."]
 [Black "Van de Ven, A."]
 [Result "1/2-1/2"]
+[ECO "C50"]
+[Opening "Giuoco Piano"]
 [EventDate "1992.??.??"]
 [PlyCount "32"]
 
@@ -2233,6 +2550,9 @@ Rf1 Nh6 9. Bd5 (9. f4 exf4 10. Bxf4 $40 { Zendrowski }) 9... d6 10. h3 Bd7
 [White "Pope, J."]
 [Black "Zendrowski, J."]
 [Result "0-1"]
+[ECO "B24"]
+[Opening "Sicilian"]
+[Variation "closed"]
 [EventDate "1992.??.??"]
 [PlyCount "118"]
 
@@ -2256,6 +2576,9 @@ d1=Q 58. Ra5+ Kb4 59. gxh7 Qc2+ 0-1
 [White "Tillotson, K."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "B28"]
+[Opening "Sicilian"]
+[Variation "O'Kelly variation"]
 [EventDate "1992.??.??"]
 [PlyCount "44"]
 
@@ -2272,6 +2595,9 @@ Rd7 21. Qxd7 Nxd7 22. Nxe4 Nxd2 0-1
 [White "Tillotson, K."]
 [Black "Findlay, D."]
 [Result "1-0"]
+[ECO "E76"]
+[Opening "King's Indian"]
+[Variation "Four pawns attack"]
 [EventDate "1992.??.??"]
 [PlyCount "65"]
 
@@ -2290,6 +2616,9 @@ Ke3 Nxf3 27. Kxf3 Bxb2 28. Nxb7 Bxa3 29. Ke4 Kf7 30. Kd5 Ke7 31. Nxc5 Bxc5
 [White "Tillotson, K."]
 [Black "Jackson, D."]
 [Result "0-1"]
+[ECO "B27"]
+[Opening "Sicilian"]
+[Variation "Hungarian variation"]
 [EventDate "1992.??.??"]
 [PlyCount "64"]
 
@@ -2308,6 +2637,9 @@ Rf3 g4 0-1
 [White "Tillotson, K."]
 [Black "Kaczmarek, W."]
 [Result "1-0"]
+[ECO "B09"]
+[Opening "Pirc"]
+[Variation "Austrian attack"]
 [EventDate "1992.??.??"]
 [PlyCount "91"]
 
@@ -2328,6 +2660,9 @@ Glutman-Varigin; USSR; 1966. }) 6... dxe5 7. fxe5 Nd5 8. Ne4 O-O 9. Bc4 c6
 [White "Tillotson, K."]
 [Black "Pope, J."]
 [Result "1-0"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
+[Variation "Keres defence"]
 [EventDate "1992.??.??"]
 [PlyCount "43"]
 
@@ -2345,6 +2680,9 @@ Qh7# 1-0
 [White "Van de Ven, A."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical system, 5.Be2"]
 [EventDate "1992.??.??"]
 [PlyCount "58"]
 
@@ -2362,6 +2700,8 @@ Bf4 20. Rd4 Bc7 21. g4 Bc8 22. Nf6+ Kg7 23. Nd7 Re8 24. Kf1 Re7 25. Be2 b6
 [White "Van de Ven, A."]
 [Black "Jackson, D."]
 [Result "0-1"]
+[ECO "A56"]
+[Opening "Benoni defence, Hromodka system"]
 [EventDate "1992.??.??"]
 [PlyCount "74"]
 
@@ -2380,6 +2720,9 @@ Ke2 Kg7 34. Ke3 Kf6 35. g3 Ke5 36. Rc2 Rd3+ 37. Ke2 Kxd5 0-1
 [White "Van de Ven, A."]
 [Black "Lypps, B."]
 [Result "1-0"]
+[ECO "B52"]
+[Opening "Sicilian"]
+[Variation "Canal-Sokolsky attack, 3...Bd7"]
 [EventDate "1992.??.??"]
 [PlyCount "53"]
 
@@ -2397,6 +2740,8 @@ Rxf7 26. Rxe7 Qxe4 27. Qxf7+ 1-0
 [White "Van de Ven, A."]
 [Black "Majstorovic, D."]
 [Result "1-0"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1992.??.??"]
 [PlyCount "53"]
 
@@ -2414,6 +2759,8 @@ Nc7 Bxb2 15. O-O Nba6 16. Nxa8 Bxa1 17. Qxa1 Bb7 18. Bh6 f6 19. Bxf8 Kxf8
 [White "Zendrowski, J."]
 [Black "Elfers, G."]
 [Result "1-0"]
+[ECO "C51"]
+[Opening "Evans gambit declined"]
 [EventDate "1992.??.??"]
 [PlyCount "37"]
 
@@ -2430,6 +2777,8 @@ Ne7 15. Bxe6 Qh5 16. Ba3 Nc6 17. Bg4+ Qe5 18. Rxe5+ Kf7 19. Qf4+ 1-0
 [White "Zendrowski, J."]
 [Black "Findlay, D."]
 [Result "1-0"]
+[ECO "C51"]
+[Opening "Evans gambit declined"]
 [EventDate "1992.??.??"]
 [PlyCount "47"]
 
@@ -2446,6 +2795,9 @@ e7 Qc5 23. Qb3+ Kh8 24. Ng5 1-0
 [White "Zendrowski, J."]
 [Black "Fortin, J."]
 [Result "1-0"]
+[ECO "D58"]
+[Opening "QGD"]
+[Variation "Tartakower (Makagonov-Bondarevsky) system"]
 [EventDate "1992.??.??"]
 [PlyCount "101"]
 
@@ -2467,6 +2819,9 @@ Qb7 Rf8 34. Rc8 Nxf2 35. Rxf8+ Kxf8 36. Qc8+ Kg7 37. Qc3+ Kh7 38. Kxf2 Qf5+
 [White "Zendrowski, J."]
 [Black "Neal, L."]
 [Result "1-0"]
+[ECO "B96"]
+[Opening "Sicilian"]
+[Variation "Najdorf, 7.f4"]
 [EventDate "1992.??.??"]
 [PlyCount "55"]
 
@@ -2485,6 +2840,9 @@ Rxc2+ $2 26. Qxc2 Rxc2+ 27. Kxc2 g6 28. f6 1-0
 [White "Zendrowski, J."]
 [Black "Tillotson, K."]
 [Result "1-0"]
+[ECO "B45"]
+[Opening "Sicilian"]
+[Variation "Taimanov variation"]
 [EventDate "1992.??.??"]
 [PlyCount "43"]
 
@@ -2501,6 +2859,9 @@ Nab6+ Kd8 18. O-O-O Be7 19. Nxe7 Kxe7 20. Nxd7 Kxd7 21. Qxe5 Qg5+ 22. f4
 [White "Zendrowski, J."]
 [Black "Van de Ven, A."]
 [Result "0-1"]
+[ECO "C52"]
+[Opening "Evans gambit"]
+[Variation "Tartakower attack"]
 [EventDate "1992.??.??"]
 [PlyCount "36"]
 
@@ -2516,6 +2877,8 @@ dxe5 Nxe5 10. Nxe5 Qxe5 11. Bxf7+ Ke7 12. Re1 Ng4 13. h3 Nxf2 14. Kxf2 Rf8
 [White "Kaczmarek, W."]
 [Black "Elfers, G."]
 [Result "0-1"]
+[ECO "C60"]
+[Opening "Ruy Lopez (Spanish opening)"]
 [EventDate "1992.??.??"]
 [PlyCount "72"]
 
@@ -2536,6 +2899,8 @@ Kxf2 $14) 26... Bxc1 27. Ke2 Rd2+ 28. Ke1 Rxc2 29. Kd1 Rxc4 30. Rxc1 Rxc1+
 [White "Elieff, K."]
 [Black "Jackson, D."]
 [Result "1-0"]
+[ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1992.??.??"]
 [PlyCount "69"]
 
@@ -2554,6 +2919,9 @@ $138 1-0
 [White "Elieff, K."]
 [Black "Mazur, G."]
 [Result "1-0"]
+[ECO "B02"]
+[Opening "Alekhine's defence"]
+[Variation "Scandinavian variation"]
 [EventDate "1992.??.??"]
 [PlyCount "49"]
 
@@ -2570,6 +2938,9 @@ b6 24. Nb3 a5 25. Rxc2 1-0
 [White "Jackson, D."]
 [Black "Jung, H."]
 [Result "0-1"]
+[ECO "B12"]
+[Opening "Caro-Kann"]
+[Variation "advance variation"]
 [EventDate "1992.??.??"]
 [PlyCount "68"]
 
@@ -2589,6 +2960,9 @@ Ventnor City; 1945. }) (6. Bd3 { Fabri,F-Szabolcsi,J; cr Hungary; 1978. })
 [White "Jackson, D."]
 [Black "Mazur, G."]
 [Result "1-0"]
+[ECO "B02"]
+[Opening "Alekhine's defence"]
+[Variation "Saemisch attack"]
 [EventDate "1992.??.??"]
 [PlyCount "79"]
 
@@ -2608,6 +2982,8 @@ Qb6+ 39. Kc2 Qc6 40. Kb3 1-0
 [White "Jackson, D."]
 [Black "Sherman, A."]
 [Result "1-0"]
+[ECO "B02"]
+[Opening "Alekhine's defence"]
 [EventDate "1992.??.??"]
 [PlyCount "41"]
 
@@ -2623,6 +2999,8 @@ Qxc4 O-O-O 13. O-O Qc6 14. d3 g5 15. Be3 Rd6 16. Qxc5 Rxe6 17. Qxa7 Qxc2
 [White "Jung, H."]
 [Black "Mazur, G."]
 [Result "1-0"]
+[ECO "B02"]
+[Opening "Alekhine's defence"]
 [EventDate "1992.??.??"]
 [PlyCount "37"]
 
@@ -2639,6 +3017,8 @@ Rxc3 Qxe5 16. Bf4 Qe4 17. Qxg7 Bf6 18. Qxf6 Rg8 19. Bg5 1-0
 [White "Jung, H."]
 [Black "Surlan, D."]
 [Result "1-0"]
+[ECO "A84"]
+[Opening "Dutch defence, Rubinstein variation"]
 [EventDate "1992.??.??"]
 [PlyCount "102"]
 
@@ -2660,6 +3040,8 @@ Ra2+ 45. Ke1 Re2+ 46. Kf1 Re7 47. Qg5 Re6 48. h6 Rg6 49. Qf4 Kg8 50. Qc7 a5
 [White "Majstorovic, D."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "A51"]
+[Opening "Budapest defence declined"]
 [EventDate "1992.??.??"]
 [PlyCount "20"]
 
@@ -2676,6 +3058,9 @@ Bxf2+ 6. Kxf2 Ng4+ 7. Ke1 Qxg5 8. Nf3 Qe3 9. Qd3 Qf2+ 10. Kd2 Qb6 0-1
 [White "Majstorovic, D."]
 [Black "Elsakka, H."]
 [Result "1-0"]
+[ECO "A42"]
+[Opening "Modern defence"]
+[Variation "Averbakh system, Kotov variation"]
 [EventDate "1992.??.??"]
 [PlyCount "75"]
 
@@ -2695,6 +3080,8 @@ Bg6 34. c6 Nf6 35. Rxb6 Ng8 36. c7 Ne7 37. Rxd6 Nf7 38. Re6 1-0
 [White "Majstorovic, D."]
 [Black "Surlan, D."]
 [Result "0-1"]
+[ECO "A80"]
+[Opening "Dutch"]
 [EventDate "1992.??.??"]
 [PlyCount "104"]
 
@@ -2720,6 +3107,9 @@ Kb6 52. Kh3 Re3+ 0-1
 [White "Mazur, G."]
 [Black "Schleifer, M."]
 [Result "0-1"]
+[ECO "A65"]
+[Opening "Benoni"]
+[Variation "6.e4"]
 [EventDate "1992.??.??"]
 [PlyCount "87"]
 
@@ -2739,6 +3129,8 @@ Ke7 42. Qe3+ Kd7 43. Qc3 Nd5 44. Qc2 $138 0-1
 [White "Mazur, G."]
 [Black "Sherman, A."]
 [Result "1-0"]
+[ECO "D02"]
+[Opening "Queen's pawn game, Chigorin variation"]
 [EventDate "1992.??.??"]
 [PlyCount "25"]
 
@@ -2753,6 +3145,9 @@ Bd3 Na5 12. Bxf5 Nc4 13. Qh5# 1-0
 [White "McTavish, Dave"]
 [Black "Elieff, K."]
 [Result "*"]
+[ECO "B42"]
+[Opening "Sicilian"]
+[Variation "Kan, 5.Bd3"]
 [EventDate "1992.??.??"]
 [PlyCount "35"]
 
@@ -2768,6 +3163,9 @@ O'Donnell,T-Schleifer,M; Canada Championship; 1991. }) 11... b6 12. Nf3 Bb7
 [White "McTavish, Dave"]
 [Black "Majstorovic, D."]
 [Result "1-0"]
+[ECO "B09"]
+[Opening "Pirc"]
+[Variation "Austrian attack, dragon formation"]
 [EventDate "1992.??.??"]
 [PlyCount "85"]
 
@@ -2787,6 +3185,9 @@ Kxf7 42. Qd5+ Qxd5 43. Nxd5 1-0
 [White "Schleifer, M."]
 [Black "Elieff, K."]
 [Result "1/2-1/2"]
+[ECO "D61"]
+[Opening "QGD"]
+[Variation "Orthodox defence, Rubinstein variation"]
 [EventDate "1992.??.??"]
 [PlyCount "69"]
 
@@ -2805,6 +3206,9 @@ Qd1+ 33. Kh2 Qxd2 34. Nd7 Be4 35. Qg3 1/2-1/2
 [White "Schleifer, M."]
 [Black "Jackson, D."]
 [Result "1-0"]
+[ECO "B27"]
+[Opening "Sicilian"]
+[Variation "Hungarian variation"]
 [EventDate "1992.??.??"]
 [PlyCount "68"]
 
@@ -2822,6 +3226,8 @@ h4 Ne7 31. Nd4 Bd7 32. Rbe1 Kf7 33. Nf3 h6 34. Ne5+ Ke8 $138 1-0
 [White "Schleiffer, M."]
 [Black "Jung, H."]
 [Result "1-0"]
+[ECO "A41"]
+[Opening "Queen's Pawn"]
 [EventDate "1992.??.??"]
 [PlyCount "63"]
 
@@ -2840,6 +3246,8 @@ is incomprehensible. } 1-0
 [White "Sherman, A."]
 [Black "Jung, H."]
 [Result "1/2-1/2"]
+[ECO "B20"]
+[Opening "Sicilian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "20"]
 
@@ -2854,6 +3262,8 @@ is incomprehensible. } 1-0
 [White "Sherman, A."]
 [Black "Majstorovic, D."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Mieses opening"]
 [EventDate "1992.??.??"]
 [PlyCount "54"]
 
@@ -2870,6 +3280,9 @@ Nd3+ 24. Bxd3 Rxd3 25. e6 fxe6 26. Ne4 Rd1+ 27. Ke2 Rxh1 0-1
 [White "Surlan, D."]
 [Black "Schleifer, M."]
 [Result "0-1"]
+[ECO "B52"]
+[Opening "Sicilian"]
+[Variation "Canal-Sokolsky attack, 3...Bd7"]
 [EventDate "1992.??.??"]
 [PlyCount "100"]
 
@@ -2891,6 +3304,9 @@ Kxf2 Kg6 50. Ke3 Kf6 0-1
 [White "Bealieu, M."]
 [Black "Redhead, G."]
 [Result "1/2-1/2"]
+[ECO "E30"]
+[Opening "Nimzo-Indian"]
+[Variation "Leningrad variation"]
 [EventDate "1992.??.??"]
 [PlyCount "49"]
 
@@ -2907,6 +3323,8 @@ Raf1 Nf6 21. R1f3 Rce8 22. Rg3 Nh5 23. Rxg6 Nxf4 24. Rxg7+ Kxg7 25. Qg3+
 [White "Beckwith"]
 [Black "Neal, L."]
 [Result "1-0"]
+[ECO "B33"]
+[Opening "Sicilian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "39"]
 
@@ -2922,6 +3340,8 @@ Bc4+ Kf6 14. h4 Nd4 15. Bg5+ Ke5 16. O-O-O f6 17. Rhe1+ Kf5 18. Bd3+ Kg4
 [White "Getson, R."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "A40"]
+[Opening "Modern defence"]
 [EventDate "1992.??.??"]
 [PlyCount "70"]
 
@@ -2939,6 +3359,9 @@ Ne8 Kf7 32. Nxd6+ Ke6 33. Nc8 a5 34. f4 b5 35. fxe5 fxe5 0-1
 [White "Neal, L."]
 [Black "Kaczmarek, W."]
 [Result "0-1"]
+[ECO "C79"]
+[Opening "Ruy Lopez"]
+[Variation "Steinitz defence deferred (Russian defence)"]
 [EventDate "1992.??.??"]
 [PlyCount "52"]
 
@@ -2955,6 +3378,8 @@ Nxd5 Nxd5 15. Qxd5 Bc6 16. Qd3 Bf6 17. Nd4 Bxd4 18. Qxd4 Re8 19. Bf4 Re6
 [White "Redhead, G."]
 [Black "Nagy, J."]
 [Result "0-1"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1992.??.??"]
 [PlyCount "38"]
 
@@ -2969,6 +3394,9 @@ Qd2 Qc7 16. Ne2 Nc4 17. Qb4 Nf5 18. Rd3 Rfb8 19. g4 Bf8 0-1
 [White "Coleman, M."]
 [Black "McTavish, Dale"]
 [Result "0-1"]
+[ECO "B96"]
+[Opening "Sicilian"]
+[Variation "Najdorf, Polugayevsky variation"]
 [EventDate "1992.??.??"]
 [PlyCount "75"]
 
@@ -2987,6 +3415,8 @@ Nc1 Rxc1+ 33. Rxc1 Rxc1+ 34. Rxc1 Bxc1 35. Kxc1 Kc5 36. Ne2 b4 37. Ng1 Kd4
 [White "Coulombe, T."]
 [Black "Jackson, D."]
 [Result "0-1"]
+[ECO "A80"]
+[Opening "Dutch"]
 [EventDate "1992.??.??"]
 [PlyCount "78"]
 
@@ -3005,6 +3435,8 @@ h2 39. Rb1 Rg1# 0-1
 [White "Coulombe, T."]
 [Black "Webb, C."]
 [Result "1/2-1/2"]
+[ECO "D03"]
+[Opening "Torre attack (Tartakower variation)"]
 [EventDate "1992.??.??"]
 [PlyCount "70"]
 
@@ -3022,6 +3454,9 @@ Bh3 Nf6 21. Rag1 Kf8 22. Bf1 Ke7 23. Bd3 Ne4+ 24. Nxe4 dxe4 25. Be2 Raf8
 [White "Elieff, K."]
 [Black "Fortin, J."]
 [Result "1-0"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance, Paulsen attack"]
 [EventDate "1992.??.??"]
 [PlyCount "81"]
 
@@ -3042,6 +3477,8 @@ Be6 Rfh8 35. Bxd7+ Kxd7 36. Rd1 Kc7 37. Kg2 R3h5 38. Nd4 Re8 39. Bf4 Bxf4
 [White "Elieff, K."]
 [Black "Knechtel, T."]
 [Result "1-0"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1992.??.??"]
 [PlyCount "51"]
 
@@ -3058,6 +3495,8 @@ O-O-O Nf6 15. Bxf5 gxf5 16. Nxf5 O-O 17. Rh3 Ne4 18. Bf4 Qa5 19. Qg4 Nfg5
 [White "Fortin, J."]
 [Black "Coulombe, T."]
 [Result "1/2-1/2"]
+[ECO "A09"]
+[Opening "Reti opening"]
 [EventDate "1992.??.??"]
 [PlyCount "103"]
 
@@ -3078,6 +3517,9 @@ h6 50. Ke5 Kc7 51. Kf6 Kd6 52. g5 1/2-1/2
 [White "Fortin, J."]
 [Black "Webb, C."]
 [Result "1-0"]
+[ECO "A14"]
+[Opening "English"]
+[Variation "Neo-Catalan declined"]
 [EventDate "1992.??.??"]
 [PlyCount "57"]
 
@@ -3095,6 +3537,8 @@ h6 22. Qh5 Kg8 23. Be4 Qd7 24. Rcd1 Nd2 25. e6 Qd4+ 26. Kh1 f5 27. Qf7+ Kh8
 [White "Jackson, D."]
 [Black "Knetchtel, T."]
 [Result "1-0"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1992.??.??"]
 [PlyCount "63"]
 
@@ -3112,6 +3556,9 @@ Kxh7 32. Ra8 1-0
 [White "Kaczmarek, B."]
 [Black "Fortin, J."]
 [Result "0-1"]
+[ECO "C15"]
+[Opening "French"]
+[Variation "Winawer, Alekhine gambit"]
 [EventDate "1992.??.??"]
 [PlyCount "90"]
 
@@ -3131,6 +3578,8 @@ h5 43. c6 bxc6 44. Kc5 h4 45. Kb6 h3 0-1
 [White "Knechtel, T."]
 [Black "Fortin, J."]
 [Result "1-0"]
+[ECO "D05"]
+[Opening "Queen's pawn game, Rubinstein (Colle-Zukertort) variation"]
 [EventDate "1992.??.??"]
 [PlyCount "65"]
 
@@ -3148,6 +3597,9 @@ g6 23. Ne5 h5 24. Bc1 Kg7 25. Qc4 Bxe5 26. dxe5 Nfe7 27. Bg5 b5 28. Qe2 Nf5
 [White "Webb, C."]
 [Black "Redhead, G."]
 [Result "1-0"]
+[ECO "E12"]
+[Opening "Queen's Indian"]
+[Variation "4.Nc3"]
 [EventDate "1992.??.??"]
 [PlyCount "67"]
 
@@ -3165,6 +3617,9 @@ Re3 Rc8 27. Rec3 Ng6 28. Ba2 Ne5 29. Rxc8+ Rxc8 30. Rxc8+ Kxc8 31. Qc2+ Kd8
 [White "Zendrowski, J."]
 [Black "Coleman, M."]
 [Result "1-0"]
+[ECO "D34"]
+[Opening "QGD"]
+[Variation "Tarrasch, Prague variation, 9.Bg5"]
 [EventDate "1992.??.??"]
 [PlyCount "77"]
 
@@ -3183,6 +3638,9 @@ Re1+ 39. Kh2 1-0
 [White "Zendrowski, J."]
 [Black "Elieff, K."]
 [Result "1-0"]
+[ECO "B83"]
+[Opening "Sicilian"]
+[Variation "modern Scheveningen, main line"]
 [EventDate "1992.??.??"]
 [PlyCount "57"]
 
@@ -3199,6 +3657,9 @@ Kf1 Rd2 27. Qe3 Rxa2 28. Bxf5 Rxh2 29. Be4 { [time] } 1-0
 [White "Elieff, K."]
 [Black "Stephenson, G."]
 [Result "1-0"]
+[ECO "A23"]
+[Opening "English"]
+[Variation "Bremen system, Keres variation"]
 [EventDate "1992.??.??"]
 [PlyCount "63"]
 
@@ -3216,6 +3677,8 @@ Nf4 Bb4 9. h4 O-O 10. a3 Ba5 11. b4 Bb6 12. e3 Bg4 13. Qb3 Ne7 14. Bd2 Rc8
 [White "Desormeaux, C."]
 [Black "Neal, L."]
 [Result "0-1"]
+[ECO "A45"]
+[Opening "Queen's pawn game"]
 [EventDate "1992.??.??"]
 [PlyCount "64"]
 
@@ -3234,6 +3697,9 @@ Qxf3 0-1
 [White "Elfers, G."]
 [Black "Pope, J."]
 [Result "0-1"]
+[ECO "C15"]
+[Opening "French"]
+[Variation "Winawer, fingerslip variation"]
 [EventDate "1992.??.??"]
 [PlyCount "74"]
 
@@ -3252,6 +3718,9 @@ Kg7 33. Bd1 Kg6 34. h4 Kf6 35. Be2 Ke5 36. Bh5 Kd4 37. Be2 e3+ 0-1
 [White "Elieff, K."]
 [Black "Jackson, D."]
 [Result "1-0"]
+[ECO "B27"]
+[Opening "Sicilian"]
+[Variation "Hungarian variation"]
 [EventDate "1992.??.??"]
 [PlyCount "97"]
 
@@ -3273,6 +3742,9 @@ Be4 Bc4 36. Rd2 b4 37. Nb1 Rf4 38. Rxb2 a5 39. Nd2 Be6 40. f3 g5 41. Kf2 a4
 [White "Elieff, K."]
 [Black "Oraha, Z."]
 [Result "1-0"]
+[ECO "D28"]
+[Opening "QGA"]
+[Variation "classical, 7...b5"]
 [EventDate "1992.??.??"]
 [PlyCount "111"]
 
@@ -3294,6 +3766,9 @@ Kb3 51. f5 Kxa3 52. f6 Kxb4 53. f7 Kc4 54. f8=Q b4 55. Qd6 b3 56. Qxd3+ 1-0
 [White "Jackson, D."]
 [Black "Stephenson, G."]
 [Result "1/2-1/2"]
+[ECO "B12"]
+[Opening "Caro-Kann"]
+[Variation "advance variation"]
 [EventDate "1992.??.??"]
 [PlyCount "81"]
 
@@ -3312,6 +3787,9 @@ a5 b5 40. Rc1 Rc8 41. Bc3 1/2-1/2
 [White "Jackson, D."]
 [Black "Surlan, D."]
 [Result "1-0"]
+[ECO "B00"]
+[Opening "KP"]
+[Variation "Nimzovich defence"]
 [EventDate "1992.??.??"]
 [PlyCount "49"]
 
@@ -3329,6 +3807,9 @@ Nxf8 Qe3+ 24. Kb1 Rxf8 25. Qxg7 1-0
 [White "Majstorovic, D."]
 [Black "Redhead, G."]
 [Result "0-1"]
+[ECO "E12"]
+[Opening "Queen's Indian"]
+[Variation "Petrosian system"]
 [EventDate "1992.??.??"]
 [PlyCount "60"]
 
@@ -3346,6 +3827,8 @@ Kf8 27. Rxd7 Qg2+ 28. Kh4 Qxh2+ 29. Kg5 Qxh6+ 30. Kf5 Qf6# 0-1
 [White "Neal, L."]
 [Black "Kanliga, S."]
 [Result "1-0"]
+[ECO "C41"]
+[Opening "Philidor's defence"]
 [EventDate "1992.??.??"]
 [PlyCount "47"]
 
@@ -3362,6 +3845,9 @@ Nxe7+ Kh8 20. Qd4 Rfe8 21. Qxf6 gxf6 22. Nf5 Kh7 23. Rxe8 Rxe8 24. Nxd6 1-0
 [White "Neal, L."]
 [Black "O'Connor, B."]
 [Result "1-0"]
+[ECO "C60"]
+[Opening "Ruy Lopez"]
+[Variation "Nuernberg variation"]
 [EventDate "1992.??.??"]
 [PlyCount "77"]
 
@@ -3380,6 +3866,9 @@ Rae1 Ke6 27. f4 Rf8 28. fxe5 Rxf1+ 29. Rxf1 Nxe5 30. Nxe5 Kxe5 31. Rf7 Kd4
 [White "Neal, L."]
 [Black "Pope, J."]
 [Result "0-1"]
+[ECO "C18"]
+[Opening "French"]
+[Variation "Winawer, classical variation"]
 [EventDate "1992.??.??"]
 [PlyCount "92"]
 
@@ -3400,6 +3889,8 @@ Ne4 33. g4 Nxc3 34. a5 Ne2+ 35. Kf2 Nd4 36. c3 Nb3 37. g5 Nxa5 38. h4 Kf7
 [White "O'Connor, B."]
 [Black "Elfers, G."]
 [Result "0-1"]
+[ECO "C42"]
+[Opening "Petrov's defence"]
 [EventDate "1992.??.??"]
 [PlyCount "94"]
 
@@ -3419,6 +3910,9 @@ Kf6 45. Rxh7 b4 46. Rc7 b3 47. Rxc5 b2 0-1
 [White "O'Connor, B."]
 [Black "Pope, J."]
 [Result "0-1"]
+[ECO "C00"]
+[Opening "French"]
+[Variation "Steinitz attack"]
 [EventDate "1992.??.??"]
 [PlyCount "50"]
 
@@ -3435,6 +3929,8 @@ Qe2+ 0-1
 [White "Oraha, Z."]
 [Black "Stephenson, G."]
 [Result "1-0"]
+[ECO "A03"]
+[Opening "Bird's opening"]
 [EventDate "1992.??.??"]
 [PlyCount "97"]
 
@@ -3456,6 +3952,8 @@ Kxb5 1-0
 [White "Pope, J."]
 [Black "Desormeaux, C."]
 [Result "1-0"]
+[ECO "B20"]
+[Opening "Sicilian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "43"]
 
@@ -3472,6 +3970,8 @@ $4 22. Qe7# 1-0
 [White "Redhead, G."]
 [Black "Oraha, Z."]
 [Result "1-0"]
+[ECO "C40"]
+[Opening "Latvian counter-gambit"]
 [EventDate "1992.??.??"]
 [PlyCount "129"]
 
@@ -3495,6 +3995,9 @@ Kc7 63. a6 Kc6 64. Kb8 Kxb6 65. a7 1-0
 [White "Redhead, G."]
 [Black "Stephenson, G."]
 [Result "0-1"]
+[ECO "B17"]
+[Opening "Caro-Kann"]
+[Variation "Steinitz variation"]
 [EventDate "1992.??.??"]
 [PlyCount "98"]
 
@@ -3515,6 +4018,9 @@ Ke3 48. Ke1 f2+ 49. Kf1 Kd2 0-1
 [White "Stephenson, G."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "B22"]
+[Opening "Sicilian"]
+[Variation "Alapin's variation (2.c3)"]
 [EventDate "1992.??.??"]
 [PlyCount "74"]
 
@@ -3533,6 +4039,9 @@ Rg3+ 29. Kh2 Rg2+ 30. Kh1 Rxf2+ 31. Rxe4 Rxf1+ 32. Kg2 Rf2+ 33. Kg3 Rxb2
 [White "Stephenson, G."]
 [Black "Jackson, D."]
 [Result "1/2-1/2"]
+[ECO "B12"]
+[Opening "Caro-Kann"]
+[Variation "advance variation"]
 [EventDate "1992.??.??"]
 [PlyCount "81"]
 
@@ -3554,6 +4063,8 @@ Bc3 1/2-1/2
 [White "Stephenson, G."]
 [Black "Majstorovic, D."]
 [Result "0-1"]
+[ECO "A15"]
+[Opening "English opening"]
 [EventDate "1992.??.??"]
 [PlyCount "134"]
 
@@ -3577,6 +4088,8 @@ Ra8+ Kg7 63. a7 Ne4 64. h5 d3 65. h6+ Kh7 66. Rd8 Rxa7 67. Rxd3 Nf2+ 0-1
 [White "Stephenson, G."]
 [Black "Surlan, D."]
 [Result "0-1"]
+[ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1992.??.??"]
 [PlyCount "52"]
 
@@ -3593,6 +4106,8 @@ Nf6 Re6 26. Rf3 $2 Qe7 0-1
 [White "Surlan, D."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Polish (Sokolsky) opening"]
 [EventDate "1992.??.??"]
 [PlyCount "85"]
 
@@ -3612,6 +4127,9 @@ hxg5 c3+ 43. Kc2 0-1
 [White "Elieff, K."]
 [Black "Jung, H."]
 [Result "1-0"]
+[ECO "A37"]
+[Opening "English"]
+[Variation "symmetrical variation"]
 [EventDate "1992.??.??"]
 [PlyCount "61"]
 
@@ -3630,6 +4148,9 @@ Nc8 20. Rb1 Nb6 21. Qa6 Bf8 22. e4 Rdb8 23. Bc1 Rc8 24. Be3 Nd7 25. Rb7 Nb8
 [White "Elieff, K."]
 [Black "Jung, H."]
 [Result "1-0"]
+[ECO "B43"]
+[Opening "Sicilian"]
+[Variation "Kan, 5.Nc3"]
 [EventDate "1992.??.??"]
 [PlyCount "73"]
 
@@ -3649,6 +4170,8 @@ incomprehensible from here] } 1-0
 [White "Jung, H."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "A06"]
+[Opening "Santasiere's folly"]
 [EventDate "1992.??.??"]
 [PlyCount "51"]
 
@@ -3665,6 +4188,9 @@ e4 Bb8 22. Rfe1 Qxh2+ 23. Kf1 Nh5 24. Ke2 Qf4 25. Qxb7 Ng3+ 26. Kd1 0-1
 [White "Elieff, K."]
 [Black "McTavish, Dale"]
 [Result "1-0"]
+[ECO "A25"]
+[Opening "English"]
+[Variation "closed system (without ...d6)"]
 [EventDate "1992.??.??"]
 [PlyCount "73"]
 
@@ -3683,6 +4209,8 @@ Qh3 Kh7 36. Rg1 Qe7 37. Qf5+ 1-0
 [White "Elieff, K."]
 [Black "Riley, K."]
 [Result "1-0"]
+[ECO "B44"]
+[Opening "Sicilian, Szen (`anti-Taimanov') variation"]
 [EventDate "1992.??.??"]
 [PlyCount "45"]
 
@@ -3698,6 +4226,9 @@ Nc3 Be7 9. Be2 O-O 10. O-O { # } 10... e5 { [N 10...b6 {ECO ] } 11. Be3 Be6
 [White "Elieff, K."]
 [Black "Surlan, D."]
 [Result "1-0"]
+[ECO "C60"]
+[Opening "Ruy Lopez"]
+[Variation "Vinogradov variation"]
 [EventDate "1992.??.??"]
 [PlyCount "69"]
 
@@ -3716,6 +4247,9 @@ Kd7 33. Qxc5 Bxd6 34. Rb7+ Kd8 35. Qxd6+ 1-0
 [White "Elieff, K."]
 [Black "Van de Ven, A."]
 [Result "1-0"]
+[ECO "C43"]
+[Opening "Petrov"]
+[Variation "modern attack, main line"]
 [EventDate "1992.??.??"]
 [PlyCount "79"]
 
@@ -3735,6 +4269,9 @@ Kf7 40. Ke4 1-0
 [White "Jackson, D."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "A48"]
+[Opening "King's Indian"]
+[Variation "East Indian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "25"]
 
@@ -3750,6 +4287,9 @@ Nxe4 Bg7 Bc4 } { O-O Bg4 h3 Bxf3 h4 e6 h5 O-O-O d5 b5 b3 Rxd5 g3 Kb7 exf3 }
 [White "Jackson, D."]
 [Black "Jung, H."]
 [Result "1/2-1/2"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance, Wade variation"]
 [EventDate "1992.??.??"]
 [PlyCount "99"]
 
@@ -3770,6 +4310,8 @@ g4 c3 49. Kf2 Rc4 50. Kf3 1/2-1/2
 [White "Jackson, D."]
 [Black "Surlan, D."]
 [Result "1-0"]
+[ECO "C00"]
+[Opening "St. George defence"]
 [EventDate "1992.??.??"]
 [PlyCount "65"]
 
@@ -3788,6 +4330,8 @@ b6 Qd8 32. b7 Rb8 33. a6 1-0
 [White "Jung, H."]
 [Black "Elieff, K."]
 [Result "1-0"]
+[ECO "A06"]
+[Opening "Santasiere's folly"]
 [EventDate "1992.??.??"]
 [PlyCount "85"]
 
@@ -3807,6 +4351,8 @@ Ng3 Rh8 43. Nxf5+ { [The rest of the score was incomprehensible] } 1-0
 [White "Jung, H."]
 [Black "McTavish, Dale"]
 [Result "1/2-1/2"]
+[ECO "B06"]
+[Opening "Robatsch (modern) defence"]
 [EventDate "1992.??.??"]
 [PlyCount "94"]
 
@@ -3827,6 +4373,8 @@ Kd6 47. Qd8+ Kc6 1/2-1/2
 [White "Jung, H."]
 [Black "Riley, K."]
 [Result "1-0"]
+[ECO "B40"]
+[Opening "Sicilian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "77"]
 
@@ -3846,6 +4394,8 @@ Kf6 36. Nxd6 Bxf4 37. Ne4+ Nxe4 38. Rxe4 Be5 39. a5 1-0
 [White "Jung, H."]
 [Black "Surlan, D."]
 [Result "1-0"]
+[ECO "C00"]
+[Opening "French defence, Steiner variation"]
 [EventDate "1992.??.??"]
 [PlyCount "64"]
 
@@ -3864,6 +4414,9 @@ Qxg5 31. Bxg5 b6 32. Ra1 Nf7 { [The score was erroneous from here on.] }
 [White "McTavish, Dale"]
 [Black "Jackson, D."]
 [Result "1-0"]
+[ECO "B56"]
+[Opening "Sicilian"]
+[Variation "Venice attack"]
 [EventDate "1992.??.??"]
 [PlyCount "87"]
 
@@ -3884,6 +4437,9 @@ c4 Re7 43. c5 Nf7 44. c6 1-0
 [White "McTavish, Dale"]
 [Black "Van de Ven, A."]
 [Result "1-0"]
+[ECO "B03"]
+[Opening "Alekhine's defence"]
+[Variation "exchange variation"]
 [EventDate "1992.??.??"]
 [PlyCount "85"]
 
@@ -3903,6 +4459,9 @@ hxg4+ 42. hxg4+ Kf6 43. Ne4+ 1-0
 [White "McTavish, Dale"]
 [Black "Zendrowski, J."]
 [Result "1/2-1/2"]
+[ECO "B03"]
+[Opening "Alekhine's defence"]
+[Variation "four pawns attack"]
 [EventDate "1992.??.??"]
 [PlyCount "49"]
 
@@ -3921,6 +4480,9 @@ Qxb2 { # } 21. Rd2 (21. Nf6+ Kh8 22. Rd2 $1 $16 { [Moura-Rinaldi; cr; 1983
 [White "Riley, K."]
 [Black "Jackson, D."]
 [Result "0-1"]
+[ECO "B23"]
+[Opening "Sicilian"]
+[Variation "Grand Prix attack, Schofman variation"]
 [EventDate "1992.??.??"]
 [PlyCount "70"]
 
@@ -3940,6 +4502,8 @@ Nd1 a6 18. c3 Nc6 19. Bb3 Rfc8 20. Bc2 Bf8 21. Rd2 b5 22. Nf2 f5 23. h4 Be8
 [White "Riley, K."]
 [Black "McTavish, Dale"]
 [Result "0-1"]
+[ECO "A04"]
+[Opening "Reti opening"]
 [EventDate "1992.??.??"]
 [PlyCount "70"]
 
@@ -3957,6 +4521,8 @@ Rg1 Bf5 32. Qb3 fxg3 33. Rxg3 h5 34. Kg1 Rxh2 35. Kxh2 h4 0-1
 [White "Surlan, D."]
 [Black "McTavish, Dale"]
 [Result "1/2-1/2"]
+[ECO "A10"]
+[Opening "English opening"]
 [EventDate "1992.??.??"]
 [PlyCount "113"]
 
@@ -3979,6 +4545,9 @@ Rc8+ Kb3 56. Kd2 Ra1 57. Rb8+ 1/2-1/2
 [White "Surlan, D."]
 [Black "Van de Ven, A."]
 [Result "0-1"]
+[ECO "C37"]
+[Opening "KGA"]
+[Variation "Herzfeld gambit"]
 [EventDate "1992.??.??"]
 [PlyCount "30"]
 
@@ -3994,6 +4563,9 @@ hxg3 Bd4+ 0-1
 [White "Van de Ven, A."]
 [Black "Jackson, D."]
 [Result "0-1"]
+[ECO "A97"]
+[Opening "Dutch"]
+[Variation "Ilyin-Genevsky, Winter variation"]
 [EventDate "1992.??.??"]
 [PlyCount "172"]
 
@@ -4020,6 +4592,8 @@ Ke3 Kb2 85. Kd3 Kxa2 86. Kc4 Ka3 0-1
 [White "Van de Ven, A."]
 [Black "Jung, H."]
 [Result "1-0"]
+[ECO "B40"]
+[Opening "Sicilian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "75"]
 
@@ -4039,6 +4613,9 @@ Rxc7+ 1-0
 [White "Van de Ven, A."]
 [Black "Zendrowski, J."]
 [Result "0-1"]
+[ECO "B08"]
+[Opening "Pirc"]
+[Variation "classical system, 5.Be2"]
 [EventDate "1992.??.??"]
 [PlyCount "70"]
 
@@ -4057,6 +4634,9 @@ Rbf1 Rf6 35. Rf5 Ref8 0-1
 [White "Zendrowski, J."]
 [Black "Elieff, K."]
 [Result "0-1"]
+[ECO "B43"]
+[Opening "Sicilian"]
+[Variation "Kan, 5.Nc3"]
 [EventDate "1992.??.??"]
 [PlyCount "97"]
 
@@ -4077,6 +4657,9 @@ Kf5 45. Qg8 Be6 46. Qxh7+ Kxg5 47. Qg7+ Kf4 48. Qf8 c4 49. Qxd6 0-1
 [White "Zendrowski, J."]
 [Black "Jackson, D."]
 [Result "1-0"]
+[ECO "B27"]
+[Opening "Sicilian"]
+[Variation "Hungarian variation"]
 [EventDate "1992.??.??"]
 [PlyCount "73"]
 
@@ -4096,6 +4679,9 @@ Rd3+ 37. Kg2 1-0
 [White "Zendrowski, J."]
 [Black "Jung, H."]
 [Result "0-1"]
+[ECO "B00"]
+[Opening "KP"]
+[Variation "Nimzovich defence"]
 [EventDate "1992.??.??"]
 [PlyCount "60"]
 
@@ -4113,6 +4699,9 @@ Qxg2 28. h4 Qh3+ 29. f3 Qxh4 30. Qxe6+ Kb8 0-1
 [White "Zendrowski, J."]
 [Black "Riley, K."]
 [Result "1-0"]
+[ECO "B85"]
+[Opening "Sicilian"]
+[Variation "Scheveningen, classical main line"]
 [EventDate "1992.??.??"]
 [PlyCount "57"]
 
@@ -4131,6 +4720,9 @@ Qd1+ 25. Bxd1 Rxd1+ 26. Kf2 Rxc2+ 27. Kg3 Rxg2+ 28. Kxg2 e3+ 29. Rf3 1-0
 [White "Coleman, M."]
 [Black "Fortin, J."]
 [Result "1/2-1/2"]
+[ECO "C07"]
+[Opening "French"]
+[Variation "Tarrasch, open variation"]
 [EventDate "1992.??.??"]
 [PlyCount "128"]
 
@@ -4154,6 +4746,9 @@ Kg5 56. Ke4 Kxh5 57. Kd5 Kg6 58. Kc6 Kf6 59. a4 Ke6 60. a5 a6 61. Kc7 Kd5
 [White "Coleman, M."]
 [Black "Lypps, B."]
 [Result "1/2-1/2"]
+[ECO "B84"]
+[Opening "Sicilian"]
+[Variation "Scheveningen (Paulsen), classical variation"]
 [EventDate "1992.??.??"]
 [PlyCount "50"]
 
@@ -4170,6 +4765,9 @@ b4 24. c3 bxc3 25. Rxb8+ Rxb8 1/2-1/2
 [White "Coleman, M."]
 [Black "Pope, J."]
 [Result "1-0"]
+[ECO "C03"]
+[Opening "French"]
+[Variation "Tarrasch"]
 [EventDate "1992.??.??"]
 [PlyCount "27"]
 
@@ -4185,6 +4783,9 @@ $2 12. d5 exd5 13. Re1+ Be7 $4 14. Nf5 1-0
 [White "Coleman, M."]
 [Black "Tillotson, M."]
 [Result "0-1"]
+[ECO "C88"]
+[Opening "Ruy Lopez"]
+[Variation "closed, 7...d6, 8.d4"]
 [EventDate "1992.??.??"]
 [PlyCount "21"]
 
@@ -4199,6 +4800,9 @@ this.] } 0-1
 [White "Fortin, J."]
 [Black "Hassan Gordon, T."]
 [Result "0-1"]
+[ECO "C68"]
+[Opening "Ruy Lopez"]
+[Variation "exchange variation"]
 [EventDate "1992.??.??"]
 [PlyCount "68"]
 
@@ -4217,6 +4821,9 @@ fxg5+ 34. Kg4 Bh3# 0-1
 [White "Fortin, J."]
 [Black "Lypps, B."]
 [Result "0-1"]
+[ECO "A29"]
+[Opening "English"]
+[Variation "four knights, kingside fianchetto"]
 [EventDate "1992.??.??"]
 [PlyCount "64"]
 
@@ -4234,6 +4841,9 @@ Qe1 Ng6 19. Qg3 $2 Nxh4 20. Qxh4 Be2 21. Re1 Bxd3 22. Rb2 Nxe4 23. Qg4 Nf6
 [White "Fortin, J."]
 [Black "Lypps, B."]
 [Result "0-1"]
+[ECO "A29"]
+[Opening "English"]
+[Variation "four knights, kingside fianchetto"]
 [EventDate "1992.??.??"]
 [PlyCount "62"]
 
@@ -4251,6 +4861,9 @@ Qe1 Re8 30. h3 Qe6 31. Kf2 Ne4+ 0-1
 [White "Fortin, J."]
 [Black "Pope, J."]
 [Result "1-0"]
+[ECO "C03"]
+[Opening "French"]
+[Variation "Tarrasch"]
 [EventDate "1992.??.??"]
 [PlyCount "37"]
 
@@ -4267,6 +4880,9 @@ Bxd6 17. exd6 Qxd4 $2 (17... Qxd6 $13) 18. Bd2 { # } 18... Nf6 $4 19. Bc3
 [White "Fortin, J."]
 [Black "Tillotson, K."]
 [Result "1-0"]
+[ECO "A31"]
+[Opening "English"]
+[Variation "symmetrical, Benoni formation"]
 [EventDate "1992.??.??"]
 [PlyCount "61"]
 
@@ -4284,6 +4900,9 @@ Rxh2+ 29. Kxh2 Qh4+ 30. Qh3 Qf2+ 31. Kh1 1-0
 [White "Hassan Gordon, T."]
 [Black "Lypps, B."]
 [Result "0-1"]
+[ECO "E24"]
+[Opening "Nimzo-Indian"]
+[Variation "Saemisch variation"]
 [EventDate "1992.??.??"]
 [PlyCount "76"]
 
@@ -4302,6 +4921,9 @@ Rxe5 36. dxe5 Rc8 37. Kf2 a3 38. c7 Rxc7 0-1
 [White "Hassan Gordon, T."]
 [Black "Majstorovic, D."]
 [Result "0-1"]
+[ECO "A42"]
+[Opening "Modern defence"]
+[Variation "Averbakh system"]
 [EventDate "1992.??.??"]
 [PlyCount "72"]
 
@@ -4320,6 +4942,9 @@ gxf4 Bh4 28. Qb6 Rxf4 29. Ne4 Qg7 30. Kh1 Bg4 31. Qe3 Nh6 32. fxg4 Rxf1+
 [White "Hassan Gordon, T."]
 [Black "Stephenson, G."]
 [Result "1/2-1/2"]
+[ECO "E76"]
+[Opening "King's Indian"]
+[Variation "Four pawns attack"]
 [EventDate "1992.??.??"]
 [PlyCount "65"]
 
@@ -4338,6 +4963,9 @@ Bc7 Bg4 27. Kf2 Bxf3 28. Kxf3 Kg7 29. Bxd6 Rd8 30. Bxc5 Rxd5 31. Bb4 Rd3+
 [White "Lypps, B."]
 [Black "Pope, J."]
 [Result "1-0"]
+[ECO "A38"]
+[Opening "English"]
+[Variation "symmetrical, main line with b3"]
 [EventDate "1992.??.??"]
 [PlyCount "41"]
 
@@ -4354,6 +4982,9 @@ Nd4 15. Ne2 Nxe2 16. Qxe2 h6 17. Nf3 Nh7 18. h4 Bg4 19. Qe3 f6 20. Bc3 g5
 [White "Lypps, B."]
 [Black "Stephenson, G."]
 [Result "1-0"]
+[ECO "E92"]
+[Opening "King's Indian"]
+[Variation "Petrosian system"]
 [EventDate "1992.??.??"]
 [PlyCount "101"]
 
@@ -4375,6 +5006,9 @@ h5 42. h4 Kf6 43. Nc4 Bb3 44. e5+ Kf7 45. Kf3 Bxc4 46. Bxc4 Bd8 47. d6+ Ke8
 [White "Lypps, B."]
 [Black "Tillotson, B."]
 [Result "1/2-1/2"]
+[ECO "D11"]
+[Opening "QGD Slav"]
+[Variation "3.Nf3"]
 [EventDate "1992.??.??"]
 [PlyCount "43"]
 
@@ -4391,6 +5025,9 @@ Bb2 Bxd3 14. Qxd3 h5 15. Rac1 Ng4 16. hxg4 hxg4 17. g3 gxf3 18. Nxf3 Nf6
 [White "Majstorovic, D."]
 [Black "Coleman, M."]
 [Result "1-0"]
+[ECO "B24"]
+[Opening "Sicilian"]
+[Variation "closed"]
 [EventDate "1992.??.??"]
 [PlyCount "75"]
 
@@ -4409,6 +5046,9 @@ Bxf8 36. Qxg6+ Bg7 37. Nf6+ Kf8 38. Qe8# 1-0
 [White "Majstorovic, D."]
 [Black "Fortin, J."]
 [Result "0-1"]
+[ECO "C07"]
+[Opening "French"]
+[Variation "Tarrasch, open variation"]
 [EventDate "1992.??.??"]
 [PlyCount "44"]
 
@@ -4425,6 +5065,9 @@ Ke2 Bf3+ 22. Kd3 Bxb2+ 0-1
 [White "Majstorovic, D."]
 [Black "Lypps, B."]
 [Result "0-1"]
+[ECO "B23"]
+[Opening "Sicilian"]
+[Variation "closed"]
 [EventDate "1992.??.??"]
 [PlyCount "76"]
 
@@ -4443,6 +5086,9 @@ Bxh6 36. Qe8+ Rf8 37. Qxd7 Bxd2 38. Rh1 Qc6 0-1
 [White "Majstorovic, D."]
 [Black "Stephenson, G."]
 [Result "1-0"]
+[ECO "B24"]
+[Opening "Sicilian"]
+[Variation "closed"]
 [EventDate "1992.??.??"]
 [PlyCount "61"]
 
@@ -4462,6 +5108,9 @@ $4 (30... Kxf7 $4 31. Qxg6+ Kf8 32. Qxg7+ Ke8 33. Nf6+ Bxf6 34. exf6 Rd7
 [White "Pope, J."]
 [Black "Hassan Gordon, T."]
 [Result "0-1"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance, Paulsen attack"]
 [EventDate "1992.??.??"]
 [PlyCount "50"]
 
@@ -4481,6 +5130,8 @@ fxe5 20. Rf6 d4 $1 21. cxd4 Nxd4 22. Qc4 Bd6 $1 23. Bxd4 exd4 24. Qe6+ Kb8
 [White "Pope, J."]
 [Black "Majstorovic, D."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Benko's opening"]
 [EventDate "1992.??.??"]
 [PlyCount "62"]
 
@@ -4499,6 +5150,9 @@ Bxe3+ 29. Kh2 Bxg5 30. Qa8+ Kf7 31. Qh8 Qc3 0-1
 [White "Pope, J."]
 [Black "Stephenson, G."]
 [Result "0-1"]
+[ECO "B24"]
+[Opening "Sicilian"]
+[Variation "closed"]
 [EventDate "1992.??.??"]
 [PlyCount "98"]
 
@@ -4519,6 +5173,9 @@ Be5 f3 49. Rb8 Rc1# 0-1
 [White "Stephenson, G."]
 [Black "Coleman, M."]
 [Result "0-1"]
+[ECO "B73"]
+[Opening "Sicilian"]
+[Variation "dragon, classical, 8.O-O"]
 [EventDate "1992.??.??"]
 [PlyCount "88"]
 
@@ -4540,6 +5197,9 @@ h3 44. Kd2 Rxd3+ 0-1
 [White "Stephenson, G."]
 [Black "Fortin, J."]
 [Result "1-0"]
+[ECO "E18"]
+[Opening "Queen's Indian"]
+[Variation "old main line, 7.Nc3"]
 [EventDate "1992.??.??"]
 [PlyCount "55"]
 
@@ -4558,6 +5218,8 @@ Qa3 26. Kf2 h6 27. Be3 Qc1 $4 28. Rd7+ 1-0
 [White "Stephenson, G."]
 [Black "Tillotson, K."]
 [Result "1-0"]
+[ECO "C44"]
+[Opening "Scotch gambit"]
 [EventDate "1992.??.??"]
 [PlyCount "39"]
 
@@ -4574,6 +5236,9 @@ Bg5 Kg7 15. Bxf6+ Qxf6 16. Rxf6 Kxf6 17. Qf3+ Kg5 18. g4 d5 19. e5 Be6 $4
 [White "Tillotson, K."]
 [Black "Hassan Gordon, T."]
 [Result "1/2-1/2"]
+[ECO "D40"]
+[Opening "QGD"]
+[Variation "Semi-Tarrasch defence"]
 [EventDate "1992.??.??"]
 [PlyCount "92"]
 
@@ -4594,6 +5259,9 @@ Rg5 Kf6 45. Rb5 Rh3+ 46. Kg2 Re3 1/2-1/2
 [White "Tillotson, K."]
 [Black "Pope, J."]
 [Result "0-1"]
+[ECO "C02"]
+[Opening "French"]
+[Variation "advance, Wade variation"]
 [EventDate "1992.??.??"]
 [PlyCount "66"]
 
@@ -4612,6 +5280,9 @@ Be4 32. g3 Qc2 33. Be3 $4 (33. Qh3 Bf5) 33... Qg2# 0-1
 [White "Findlay, D."]
 [Black "Kaczmarek, W."]
 [Result "1-0"]
+[ECO "D07"]
+[Opening "QGD"]
+[Variation "Chigorin defence"]
 [EventDate "1992.??.??"]
 [PlyCount "53"]
 
@@ -4628,6 +5299,9 @@ Bc4+ Kh8 24. Nh4 Qg7 25. Nxg6+ Qxg6 26. Qxf8+ Qg8 27. Qxg8# 1-0
 [White "Findlay, D."]
 [Black "Moorehouse, D."]
 [Result "0-1"]
+[ECO "E22"]
+[Opening "Nimzo-Indian"]
+[Variation "Spielmann variation"]
 [EventDate "1992.??.??"]
 [PlyCount "78"]
 
@@ -4648,6 +5322,9 @@ Rc4 0-1
 [White "Findlay, D."]
 [Black "Neal, L."]
 [Result "1-0"]
+[ECO "D85"]
+[Opening "Gruenfeld"]
+[Variation "exchange variation"]
 [EventDate "1992.??.??"]
 [PlyCount "33"]
 
@@ -4663,6 +5340,9 @@ Rd8+ Bf8 17. Bh6 1-0
 [White "Findlay, D."]
 [Black "Schiff, M."]
 [Result "0-1"]
+[ECO "D06"]
+[Opening "QGD"]
+[Variation "Marshall defence"]
 [EventDate "1992.??.??"]
 [PlyCount "54"]
 
@@ -4680,6 +5360,8 @@ Ne3 27. Qxe5 Nxg2 0-1
 [White "Kaczmarek, W."]
 [Black "Findlay, D."]
 [Result "0-1"]
+[ECO "B32"]
+[Opening "Sicilian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "56"]
 
@@ -4698,6 +5380,9 @@ Qxe1# 0-1
 [White "Kaczmarek, W."]
 [Black "Moorehouse, D."]
 [Result "1-0"]
+[ECO "C68"]
+[Opening "Ruy Lopez"]
+[Variation "exchange variation"]
 [EventDate "1992.??.??"]
 [PlyCount "97"]
 
@@ -4718,6 +5403,8 @@ Bxc2 23. Ke2 Bf5 24. b4 Bc8 25. Ke3 Kf7 26. Kf4 Kf6 27. h4 h5 28. a4 Bb7
 [White "Kaczmarek, W."]
 [Black "Schiff, M."]
 [Result "0-1"]
+[ECO "C00"]
+[Opening "French defence"]
 [EventDate "1992.??.??"]
 [PlyCount "57"]
 
@@ -4735,6 +5422,9 @@ Rfe1 Bb7 15. Bxe7 Qxe7 16. Re2 Bxf3 17. gxf3 Qf6 18. Qd3 Rae8 19. Nc2 e5
 [White "Moorehouse, D."]
 [Black "Kaczmarek, W."]
 [Result "0-1"]
+[ECO "A22"]
+[Opening "English"]
+[Variation "Bremen, reverse dragon"]
 [EventDate "1992.??.??"]
 [PlyCount "65"]
 
@@ -4753,6 +5443,8 @@ g1=Q 32. Rxe8+ Kd7 33. Rg8 0-1
 [White "Moorehouse, D."]
 [Black "Neal, L."]
 [Result "1-0"]
+[ECO "E60"]
+[Opening "King's Indian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "101"]
 
@@ -4774,6 +5466,8 @@ Ra6 Be8 51. Nxe6 1-0
 [White "Moorehouse, D."]
 [Black "Schiff, M."]
 [Result "1/2-1/2"]
+[ECO "B30"]
+[Opening "Sicilian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "104"]
 
@@ -4794,6 +5488,9 @@ Kxd6 42. h4 Kc5 43. Kg3 Kxc4 44. Kf4 Kd5 45. h5 Kd6 46. Ke4 Kc6 47. Kf4 Kd5
 [White "Neal, L."]
 [Black "Findlay, D."]
 [Result "0-1"]
+[ECO "C88"]
+[Opening "Ruy Lopez"]
+[Variation "closed, 8.c3"]
 [EventDate "1992.??.??"]
 [PlyCount "58"]
 
@@ -4811,6 +5508,8 @@ c4 Rdxe5 24. Rxe5 Rxe5 25. cxb5 Bxf3 26. g3 axb5 27. Qxc7 Qg5 28. Ne4 Qe3+
 [White "Neal, L."]
 [Black "Kaczmarek, W."]
 [Result "0-1"]
+[ECO "B40"]
+[Opening "Sicilian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "63"]
 
@@ -4829,6 +5528,8 @@ of the score was incomprehensible.] } 0-1
 [White "Neal, L."]
 [Black "Kaczmarek, W."]
 [Result "0-1"]
+[ECO "B40"]
+[Opening "Sicilian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "58"]
 
@@ -4847,6 +5548,9 @@ Qb8+ Rc8 28. Qd6 Qc2 29. Rf1 $4 (29. Bxg4 $32) 29... Qxh2# 0-1
 [White "Neal, L."]
 [Black "Moorehouse, D."]
 [Result "0-1"]
+[ECO "C78"]
+[Opening "Ruy Lopez"]
+[Variation "5.O-O"]
 [EventDate "1992.??.??"]
 [PlyCount "140"]
 
@@ -4871,6 +5575,8 @@ Re1 Rg2 60. Re3+ Kc4 61. Re4+ Kb5 62. Rxb4+ Kc5 63. Rd4 g4 64. Kc3 Rxc2+
 [White "Neal, L."]
 [Black "Schiff, M."]
 [Result "1-0"]
+[ECO "C41"]
+[Opening "Philidor's defence"]
 [EventDate "1992.??.??"]
 [PlyCount "71"]
 
@@ -4889,6 +5595,9 @@ Kg7 34. Kg4 Kg6 35. Kf4 f5 36. Ke5 1-0
 [White "Schiff, M."]
 [Black "Findlay, D."]
 [Result "1-0"]
+[ECO "C46"]
+[Opening "Four knights"]
+[Variation "Italian variation"]
 [EventDate "1992.??.??"]
 [PlyCount "47"]
 
@@ -4906,6 +5615,8 @@ O-O O-O 14. Re1 Rfe8 15. a4 Rad8 16. Ba3 Qh4 17. Nxc6 Rxe1+ 18. Qxe1 Bb7
 [White "Schiff, M."]
 [Black "Kaczmarek, W."]
 [Result "0-1"]
+[ECO "B40"]
+[Opening "Sicilian defence"]
 [EventDate "1992.??.??"]
 [PlyCount "64"]
 
@@ -4923,6 +5634,8 @@ Ke3 b5 29. b3 cxb3 30. axb3 a5 31. Kd3 Kf4 32. c4 b4 0-1
 [White "Schiff, M."]
 [Black "Moorehouse, D."]
 [Result "0-1"]
+[ECO "B50"]
+[Opening "Sicilian"]
 [EventDate "1992.??.??"]
 [PlyCount "60"]
 
@@ -4940,6 +5653,9 @@ Ne4 Bxb2 21. Qh5 g6 22. Nf6+ Bxf6 23. Qh6 Bg7 24. Qh4 Rfe8 25. Rxe8+ Rxe8
 [White "Schiff, M."]
 [Black "Neal, L."]
 [Result "0-1"]
+[ECO "B23"]
+[Opening "Sicilian"]
+[Variation "closed"]
 [EventDate "1992.??.??"]
 [PlyCount "54"]
 
@@ -4958,6 +5674,8 @@ Rdg1 a4 24. a3 { # } 24... b4 $1 25. axb4 Qxb4 26. Nd1 a3 27. bxa3 Rxa3 0-1
 [Result "1-0"]
 [WhiteElo "2170"]
 [BlackElo "2165"]
+[ECO "A05"]
+[Opening "Reti opening"]
 [EventDate "1992.??.??"]
 [PlyCount "83"]
 
@@ -4976,6 +5694,9 @@ Ke4 Be1 39. g4 Bf2 40. Kf5 Bg3 41. Rd3 Bh2 42. g5 1-0
 [White "Snoek, J."]
 [Black "Southam, T."]
 [Result "0-1"]
+[ECO "C95"]
+[Opening "Ruy Lopez"]
+[Variation "closed, Breyer, Borisenko variation"]
 [EventDate "1992.??.??"]
 [PlyCount "112"]
 
@@ -4997,6 +5718,8 @@ Kxc2 Kc4 0-1
 [White "Southam, T."]
 [Black "Ridout, H."]
 [Result "1-0"]
+[ECO "D02"]
+[Opening "Queen's pawn game"]
 [EventDate "1992.??.??"]
 [PlyCount "72"]
 
@@ -5014,6 +5737,9 @@ gxh4 33. Qc1+ Rg5 34. Qxh4+ Kg6 35. Qcxg5+ Qxg5 36. Qxg5+ Kxg5 1-0
 [White "Hardy, M."]
 [Black "Southam, T."]
 [Result "0-1"]
+[ECO "E91"]
+[Opening "King's Indian"]
+[Variation "Kazakh variation"]
 [EventDate "1992.??.??"]
 [PlyCount "84"]
 
@@ -5032,6 +5758,9 @@ Bd1 Bc5 33. Rexe6 fxe6 34. Rxe6 Rd4 35. Kf1 Kf7 36. Rc6 Re4 37. Rc7+ Kf6
 [White "Southam, T."]
 [Black "Peckford, B."]
 [Result "0-1"]
+[ECO "D11"]
+[Opening "QGD Slav"]
+[Variation "3.Nf3"]
 [EventDate "1992.??.??"]
 [PlyCount "79"]
 
@@ -5050,6 +5779,9 @@ Bxe2 39. Qxa7 Qh3 40. f3 0-1
 [White "Walker, B."]
 [Black "Southam, T."]
 [Result "0-1"]
+[ECO "C93"]
+[Opening "Ruy Lopez"]
+[Variation "closed, Smyslov defence"]
 [EventDate "1992.??.??"]
 [PlyCount "66"]
 
@@ -5067,6 +5799,9 @@ Rxb3 33. Bxb3 Qxa1 0-1
 [White "Southam, T."]
 [Black "Palacios, B."]
 [Result "0-1"]
+[ECO "D21"]
+[Opening "QGA"]
+[Variation "3.Nf3"]
 [EventDate "1992.??.??"]
 [PlyCount "80"]
 
@@ -5085,6 +5820,9 @@ Rxe5+ Kxc4 38. Re7 a5 39. Rxh7 a4 40. Rc7+ Kb3 0-1
 [White "Livshits, R."]
 [Black "Southam, T."]
 [Result "0-1"]
+[ECO "E81"]
+[Opening "King's Indian"]
+[Variation "Saemisch, 5...O-O"]
 [EventDate "1992.??.??"]
 [PlyCount "44"]
 
@@ -5100,6 +5838,8 @@ Nxf4 21. gxf5 Bxg5 22. fxg6 Bh4# 0-1
 [White "Southam, T."]
 [Black "McTavish, Dave"]
 [Result "1-0"]
+[ECO "D76"]
+[Opening "Neo-Gruenfeld, 6.cd Nxd5, 7.O-O Nb6"]
 [EventDate "1992.??.??"]
 [PlyCount "65"]
 
@@ -5117,6 +5857,8 @@ axb3 Ra3 33. Rfc7 1-0
 [White "Lamb, B."]
 [Black "Southam, T."]
 [Result "0-1"]
+[ECO "A00"]
+[Opening "Benko's opening"]
 [EventDate "1992.??.??"]
 [PlyCount "70"]
 
@@ -5134,6 +5876,9 @@ Qc5 33. Nf3 Qxd5 34. Re3 Bc6 35. Kg1 e5 0-1
 [White "Polacek, J."]
 [Black "Southam, T."]
 [Result "1-0"]
+[ECO "C77"]
+[Opening "Ruy Lopez"]
+[Variation "Morphy defence"]
 [EventDate "1992.??.??"]
 [PlyCount "69"]
 
@@ -5151,6 +5896,9 @@ Re8+ Kh7 33. Rxa8 a2 34. d8=Q a1=Q 35. Qd3+ 1-0
 [White "Southam, T."]
 [Black "Rositsan, B."]
 [Result "1/2-1/2"]
+[ECO "D34"]
+[Opening "QGD"]
+[Variation "Tarrasch, Prague variation, 9.Bg5"]
 [EventDate "1992.??.??"]
 [PlyCount "82"]
 
@@ -5169,6 +5917,9 @@ Rd7+ Ke6 33. Rfd1 Ra1 34. Rd6+ Ke7 35. Rd7+ Ke8 36. Rd8+ Ke7 37. Rd7+ Ke8
 [White "Schleifer, M."]
 [Black "Southam, T."]
 [Result "1-0"]
+[ECO "E91"]
+[Opening "King's Indian"]
+[Variation "6.Be2"]
 [EventDate "1992.??.??"]
 [PlyCount "83"]
 
@@ -5189,6 +5940,8 @@ Rxe7 39. b7 Nxb7 40. Rxb7 Rxb7 41. Bxb7 d5 42. Bxd5 1-0
 [Result "0-1"]
 [WhiteElo "2230"]
 [BlackElo "2360"]
+[ECO "C55"]
+[Opening "Two knights defence"]
 [EventDate "1992.??.??"]
 [PlyCount "50"]
 
@@ -5204,6 +5957,9 @@ Qh4 Qf7 21. Ng5 Qxd5+ 22. f3 h6 23. Ne4 Rf4 24. Rad1 Qxd1 25. Rxd1 Rxh4 0-1
 [White "Walker, B."]
 [Black "Southam, T."]
 [Result "1-0"]
+[ECO "C36"]
+[Opening "KGA"]
+[Variation "Abbazia defence, modern variation"]
 [EventDate "1992.??.??"]
 [PlyCount "81"]
 
@@ -5224,6 +5980,9 @@ Rd5 Kg7 39. Bxf5 h6 40. Bd3 Kf6 41. g4 1-0
 [Result "1/2-1/2"]
 [WhiteElo "2255"]
 [BlackElo "2360"]
+[ECO "C91"]
+[Opening "Ruy Lopez"]
+[Variation "closed, Bogolyubov variation"]
 [EventDate "1992.??.??"]
 [PlyCount "25"]
 
@@ -5237,6 +5996,9 @@ c3 O-O 9. d4 Bg4 10. Be3 Bd7 11. Bc1 Bg4 12. Be3 Bd7 13. Bc1 1/2-1/2
 [White "Livshits, R."]
 [Black "Southam, T."]
 [Result "1-0"]
+[ECO "E91"]
+[Opening "King's Indian"]
+[Variation "Kazakh variation"]
 [EventDate "1992.??.??"]
 [PlyCount "101"]
 
@@ -5257,6 +6019,9 @@ Rh2 51. Ne4+ 1-0
 [White "Nickoloff, B."]
 [Black "Southam, T."]
 [Result "1-0"]
+[ECO "E74"]
+[Opening "King's Indian"]
+[Variation "Averbakh, 6...c5"]
 [EventDate "1992.??.??"]
 [PlyCount "59"]
 
@@ -5273,6 +6038,9 @@ Nxc4 27. Qf6 Re6 28. Qh4 Nxe3 29. Rxc7 Nf5 30. Qc4 1-0
 [White "Polacek, J."]
 [Black "Southam, T."]
 [Result "1-0"]
+[ECO "C77"]
+[Opening "Ruy Lopez"]
+[Variation "Morphy defence"]
 [EventDate "1992.??.??"]
 [PlyCount "67"]
 
@@ -5290,6 +6058,9 @@ Bg5 Qxe1+ 27. Rxe1 h6 28. Re8+ Rxe8 29. Qxe8+ Kh7 30. Bf4 Nxa3 31. Bxd6 Nc4
 [White "Schleifer, M."]
 [Black "Southam, T."]
 [Result "1/2-1/2"]
+[ECO "E91"]
+[Opening "King's Indian"]
+[Variation "Kazakh variation"]
 [EventDate "1992.??.??"]
 [PlyCount "84"]
 
@@ -5308,6 +6079,8 @@ Bc2 39. Rc1 Bg6 40. Rcd1 Bc2 41. Rd2 Bg6 42. Rdd1 Bc2 1/2-1/2
 [White "Southam, T."]
 [Black "Bailey, D."]
 [Result "1-0"]
+[ECO "D73"]
+[Opening "Neo-Gruenfeld, 5.Nf3"]
 [EventDate "1992.??.??"]
 [PlyCount "79"]
 
@@ -5326,6 +6099,8 @@ Rbc1 Bb2 27. Rxc2 Rxc2 28. Rd2 Rxd2 29. Nxd2 Bxa3 30. Nc4 Bc5 31. a4 Kf8
 [White "Southam, T."]
 [Black "Kiviaho, B."]
 [Result "1-0"]
+[ECO "D78"]
+[Opening "Neo-Gruenfeld, 6.O-O c6"]
 [EventDate "1992.??.??"]
 [PlyCount "79"]
 
@@ -5344,6 +6119,8 @@ Rc8 Qc2 39. Rxc6+ Qxc6 40. d8=Q 1-0
 [White "Southam, T."]
 [Black "Southam, D."]
 [Result "1-0"]
+[ECO "A40"]
+[Opening "Queen's pawn"]
 [EventDate "1992.??.??"]
 [PlyCount "85"]
 
@@ -5362,6 +6139,9 @@ b4 39. g5 fxg5 40. Kg4 Rg1+ 41. Kh5 Kc6 42. Rxe5 Kd6 43. Re2 1-0
 [White "Southam, T."]
 [Black "Spraggett, G."]
 [Result "1/2-1/2"]
+[ECO "D90"]
+[Opening "Gruenfeld"]
+[Variation "Three knights variation"]
 [EventDate "1992.??.??"]
 [PlyCount "19"]
 
@@ -5375,6 +6155,9 @@ b4 39. g5 fxg5 40. Kg4 Rg1+ 41. Kh5 Kc6 42. Rxe5 Kd6 43. Re2 1-0
 [White "Stone, R."]
 [Black "Southam, T."]
 [Result "0-1"]
+[ECO "E91"]
+[Opening "King's Indian"]
+[Variation "6.Be2"]
 [EventDate "1992.??.??"]
 [PlyCount "90"]
 
@@ -5396,6 +6179,9 @@ Rd8 a4 0-1
 [Result "0-1"]
 [WhiteElo "2295"]
 [BlackElo "2340"]
+[ECO "C85"]
+[Opening "Ruy Lopez"]
+[Variation "Exchange variation doubly deferred (DERLD)"]
 [EventDate "1992.??.??"]
 [PlyCount "104"]
 
@@ -5419,6 +6205,9 @@ not notice. } 0-1
 [Result "1-0"]
 [WhiteElo "2340"]
 [BlackElo "2255"]
+[ECO "E47"]
+[Opening "Nimzo-Indian"]
+[Variation "4.e3 O-O, 5.Bd3"]
 [EventDate "1992.??.??"]
 [PlyCount "51"]
 
@@ -5437,6 +6226,9 @@ Nxd4 Ne5 15. Nf5 Nxd3 16. Qxd3 Bxf5 17. Qxf5 Qc8 18. Qe5 Re8 19. Bd4 Qg4
 [Result "1/2-1/2"]
 [WhiteElo "2340"]
 [BlackElo "2245"]
+[ECO "D63"]
+[Opening "QGD"]
+[Variation "Orthodox defence, 7.Rc1"]
 [EventDate "1992.??.??"]
 [PlyCount "50"]
 
@@ -5455,6 +6247,9 @@ Qxb7 Rab8 21. Qxc6 Qxc6 22. Rxc6 Rxb2 23. Rf2 Rb1+ 24. Rf1 Rb2 25. Rf2 Rb1+
 [Result "0-1"]
 [WhiteElo "2345"]
 [BlackElo "2340"]
+[ECO "E76"]
+[Opening "King's Indian"]
+[Variation "Four pawns attack"]
 [EventDate "1992.??.??"]
 [PlyCount "102"]
 
@@ -5477,6 +6272,9 @@ Nf6 h4 50. Ne4+ Kg2 51. Kxf4 h3 0-1
 [Result "1-0"]
 [WhiteElo "2345"]
 [BlackElo "2350"]
+[ECO "B32"]
+[Opening "Sicilian"]
+[Variation "Labourdonnais-Loewenthal (Kalashnikov) variation"]
 [EventDate "1992.??.??"]
 [PlyCount "47"]
 
@@ -5494,6 +6292,8 @@ Ke8 20. Re3 Qc7 21. Rc3 Nc6 22. Qe6+ Kf8 23. Rf3+ Bf6 24. Qxf6+ 1-0
 [Result "0-1"]
 [WhiteElo "2325"]
 [BlackElo "2350"]
+[ECO "A16"]
+[Opening "English opening"]
 [EventDate "1992.??.??"]
 [PlyCount "94"]
 
@@ -5515,6 +6315,9 @@ Kd1 Kc4 45. Re6 Rxb7 46. Rxd6 d4 47. Kc1 Kd3 0-1
 [Result "1-0"]
 [WhiteElo "2350"]
 [BlackElo "2320"]
+[ECO "D35"]
+[Opening "QGD"]
+[Variation "exchange, positional line, 5...c6"]
 [EventDate "1992.??.??"]
 [PlyCount "93"]
 
@@ -5536,6 +6339,9 @@ Qc8+ Kf6 45. Qf8+ Rf7 46. Qh6+ Ke7 47. Rc1 1-0
 [Result "0-1"]
 [WhiteElo "2350"]
 [BlackElo "2330"]
+[ECO "E97"]
+[Opening "King's Indian"]
+[Variation "orthodox, Aronin-Taimanov variation (Yugoslav attack / Mar del Plata variation)"]
 [EventDate "1992.??.??"]
 [PlyCount "80"]
 
@@ -5556,6 +6362,9 @@ Kxh2 Qg3+ 34. Kh1 Rxd6 35. Bxc4 Rh6 36. d6+ Kh8 37. Qxe5+ Kh7 38. Bg8+ Qxg8
 [Result "1/2-1/2"]
 [WhiteElo "2340"]
 [BlackElo "2425"]
+[ECO "E47"]
+[Opening "Nimzo-Indian"]
+[Variation "4.e3 O-O, 5.Bd3"]
 [EventDate "1992.??.??"]
 [PlyCount "20"]
 
@@ -5571,6 +6380,8 @@ cxd5 Nxd5 9. O-O Nc6 10. Qc2 h6 1/2-1/2
 [Result "0-1"]
 [WhiteElo "2305"]
 [BlackElo "2350"]
+[ECO "A16"]
+[Opening "English opening"]
 [EventDate "1992.??.??"]
 [PlyCount "46"]
 
@@ -5586,6 +6397,9 @@ Rb8 15. a4 b6 16. a5 Ba6 17. axb6 axb6 18. Re1 Nxc4 19. Qa4 Na5 20. Ned5 e6
 [White "McTavish, Dale"]
 [Black "Filipovich, D."]
 [Result "0-1"]
+[ECO "B13"]
+[Opening "Caro-Kann"]
+[Variation "Panov-Botvinnik attack"]
 [EventDate "1992.??.??"]
 [PlyCount "104"]
 
@@ -5606,6 +6420,9 @@ f4 51. Rg1 f3 52. Kc4 Rg5 0-1
 [White "Deiseach, D."]
 [Black "McTavish, Dale"]
 [Result "1-0"]
+[ECO "B07"]
+[Opening "Pirc"]
+[Variation "Holmov system"]
 [EventDate "1992.??.??"]
 [PlyCount "58"]
 
@@ -5622,6 +6439,8 @@ Qxf7 27. Bxf7+ Kh8 28. Bxe5+ Ng7 29. Bxb8 Rxb8 { x-moves 1-0 } 1-0
 [White "Long, R."]
 [Black "McTavish, Dave"]
 [Result "1/2-1/2"]
+[ECO "A45"]
+[Opening "Trompovsky attack (Ruth, Opovcensky opening)"]
 [EventDate "1992.??.??"]
 [PlyCount "108"]
 
@@ -5642,6 +6461,9 @@ Ke3 Nf1+ 51. Kf3 f5 52. Ne2 Nh2+ 53. Ke3 Ng4+ 54. Kf3 Nh2+ 1/2-1/2
 [White "Palacios, B."]
 [Black "McTavish, Dale"]
 [Result "0-1"]
+[ECO "D97"]
+[Opening "Gruenfeld"]
+[Variation "Russian, Alekhine (Hungarian) variation"]
 [EventDate "1992.??.??"]
 [PlyCount "57"]
 
@@ -5660,6 +6482,9 @@ Qh6 Qf5 27. Bd2 Be6 28. Ba5+ Kc8 29. Nh8 { x-moves 0-1 } 0-1
 [Result "1-0"]
 [WhiteElo "2300"]
 [BlackElo "1755"]
+[ECO "C97"]
+[Opening "Ruy Lopez"]
+[Variation "closed, Chigorin defence"]
 [EventDate "1992.??.??"]
 [PlyCount "67"]
 
@@ -5679,6 +6504,8 @@ Rg6 Qe8 34. Qg7# 1-0
 [Result "0-1"]
 [WhiteElo "2230"]
 [BlackElo "2360"]
+[ECO "C55"]
+[Opening "Two knights defence"]
 [EventDate "1992.??.??"]
 [PlyCount "50"]
 
@@ -5696,6 +6523,9 @@ Qh4 Qf7 21. Ng5 Qxd5+ 22. f3 h6 23. Ne4 Rf4 24. Rad1 Qxd1 25. Rxd1 Rxh4 0-1
 [Result "0-1"]
 [WhiteElo "2300"]
 [BlackElo "2435"]
+[ECO "B83"]
+[Opening "Sicilian"]
+[Variation "modern Scheveningen, main line"]
 [EventDate "1992.??.??"]
 [PlyCount "40"]
 
@@ -5713,6 +6543,9 @@ Nxe4 0-1
 [Result "1-0"]
 [WhiteElo "2235"]
 [BlackElo "2300"]
+[ECO "B42"]
+[Opening "Sicilian"]
+[Variation "Kan, 5.Bd3"]
 [EventDate "1992.??.??"]
 [PlyCount "33"]
 
@@ -5729,6 +6562,9 @@ Bh4 15. Ne4 Be7 16. Be3 b6 17. Nf3 1-0
 [Result "1-0"]
 [WhiteElo "2300"]
 [BlackElo "2085"]
+[ECO "B78"]
+[Opening "Sicilian"]
+[Variation "dragon, Yugoslav attack, 10.O-O-O"]
 [EventDate "1992.??.??"]
 [PlyCount "69"]
 

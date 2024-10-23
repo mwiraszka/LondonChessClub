@@ -1,4 +1,5 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Store } from '@ngrx/store';
 import { ChartConfiguration } from 'chart.js';
 import { debounceTime, distinctUntilChanged, take } from 'rxjs/operators';
 
@@ -14,6 +15,7 @@ import {
 } from '@angular/forms';
 
 import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';
+import { UserSettingsSelectors } from '@app/store/user-settings';
 import { GameDetails } from '@app/types';
 import {
   getOpeningTallies,
@@ -39,13 +41,13 @@ export class GameArchivesScreenComponent implements OnInit {
   showStats: boolean = false;
   chessOpenings: Map<string, string> | null = null;
 
-  chartOptions: ChartConfiguration<'doughnut'>['options'] = {
-    responsive: false,
-  };
-  openingsChartLabels: string[] = [];
-  openingsChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
-  resultsChartLabels: string[] = [];
-  resultsChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
+  openingChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
+  openingChartLabels: string[] = [];
+  openingChartOptions: ChartConfiguration<'doughnut'>['options'] = {};
+
+  resultChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
+  resultChartLabels: string[] = [];
+  resultChartOptions: ChartConfiguration<'doughnut'>['options'] = {};
 
   get searchResultSummaryMessage(): string {
     const allGamesCount = Array.from(this.allGames.values()).flat().length;
@@ -70,6 +72,7 @@ export class GameArchivesScreenComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loaderService: LoaderService,
     private metaAndTitleService: MetaAndTitleService,
+    private readonly store: Store,
   ) {}
 
   @HostListener('window:resize', ['$event'])
@@ -88,6 +91,7 @@ export class GameArchivesScreenComponent implements OnInit {
     this.initForm();
     this.initGames();
     this.initValueChangesListeners();
+    this.setUpDarkModeListeners();
     this.loadChessOpenings();
     this.filterGames();
   }
@@ -221,6 +225,23 @@ export class GameArchivesScreenComponent implements OnInit {
     );
   }
 
+  private setUpDarkModeListeners(): void {
+    this.store
+      .select(UserSettingsSelectors.isDarkMode)
+      .pipe(untilDestroyed(this))
+      .subscribe(isDarkMode => {
+        this.openingChartOptions = {
+          responsive: false,
+          color: isDarkMode ? '#bbb' : '#222',
+        };
+
+        this.resultChartOptions = {
+          responsive: false,
+          color: isDarkMode ? '#bbb' : '#222',
+        };
+      });
+  }
+
   private loadChessOpenings(): void {
     this.chessOpeningsService
       .fetchOpenings()
@@ -294,26 +315,43 @@ export class GameArchivesScreenComponent implements OnInit {
 
     const openingTallies = getOpeningTallies(pgns);
     if (!openingTallies?.size || !this.chessOpenings?.size) {
-      this.openingsChartLabels = [];
-      this.openingsChartDatasets = [];
+      this.openingChartLabels = [];
+      this.openingChartDatasets = [];
     } else {
-      this.openingsChartLabels = Array.from(openingTallies.keys()).map(openingEco => {
+      this.openingChartLabels = Array.from(openingTallies.keys()).map(openingEco => {
         const opening = this.chessOpenings!.get(openingEco) ?? 'Unrecognized ECO code';
         const tally = openingTallies.get(openingEco);
         return `${opening} (${tally})`;
       });
-      this.openingsChartDatasets = [{ data: Array.from(openingTallies!.values()) }];
+      this.openingChartDatasets = [{ data: Array.from(openingTallies!.values()) }];
     }
 
     const resultTallies = getResultTallies(pgns);
     if (!resultTallies?.size) {
-      this.resultsChartLabels = [];
-      this.resultsChartDatasets = [];
+      this.resultChartLabels = [];
+      this.resultChartDatasets = [];
     } else {
-      this.resultsChartLabels = Array.from(resultTallies.keys()).map(
+      const results = Array.from(resultTallies.keys());
+      this.resultChartLabels = results.map(
         result => `${result} (${resultTallies.get(result)})`,
       );
-      this.resultsChartDatasets = [{ data: Array.from(resultTallies.values()) }];
+      this.resultChartDatasets = [{ data: Array.from(resultTallies.values()) }];
+      this.resultChartOptions = {
+        backgroundColor: results.map(result => {
+          switch (result) {
+            case 'White wins':
+              return '#eee';
+            case 'Black wins':
+              return '#111';
+            case 'Draw':
+              return '#555';
+            case 'Inconclusive':
+              return '#358';
+            default:
+              return '#d72';
+          }
+        }),
+      };
     }
   }
 }

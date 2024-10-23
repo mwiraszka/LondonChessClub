@@ -137,22 +137,22 @@
           <canvas
             id="opening-chart"
             baseChart
-            [datasets]="openingsChartDatasets"
-            [labels]="openingsChartLabels"
+            [datasets]="openingChartDatasets"
+            [labels]="openingChartLabels"
             [legend]="true"
-            [options]="chartOptions"
+            [options]="openingChartOptions"
             [type]="'doughnut'">
           </canvas>
         </div>
         <div class="result-chart-container">
-          <label for="result-chart">Results</label>
+          <label for="result-chart">Game Results</label>
           <canvas
             id="result-chart"
             baseChart
-            [datasets]="resultsChartDatasets"
-            [labels]="resultsChartLabels"
+            [datasets]="resultChartDatasets"
+            [labels]="resultChartLabels"
             [legend]="true"
-            [options]="chartOptions"
+            [options]="resultChartOptions"
             [type]="'doughnut'">
           </canvas>
         </div>

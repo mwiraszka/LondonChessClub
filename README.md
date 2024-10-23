@@ -41,7 +41,7 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
-v4.1.0 - October 21st, 2024
+v4.1.0 - October 23rd, 2024
 </summary>
 
 - 🚀 Add a 'Analyze in Lichess' button for games in the Game Archives page which redirects you to Lichess' analysis board with the full PGN loaded

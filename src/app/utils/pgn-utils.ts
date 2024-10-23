@@ -81,18 +81,27 @@ export function getOpeningTallies(pgns?: string[]): Map<string, number> | undefi
   const openingTallies: Map<string, number> = new Map([]);
 
   for (let pgn of pgns) {
-    const eco = getEcoOpeningCode(pgn) ?? 'X99';
-
-    const talliesForThisEco = openingTallies.get(eco);
-
-    if (talliesForThisEco) {
-      openingTallies.set(eco, talliesForThisEco + 1);
-    } else {
-      openingTallies.set(eco, 1);
-    }
+    const ecoOpeningCode = getEcoOpeningCode(pgn);
+    const talliesForThisEco = openingTallies.get(ecoOpeningCode) ?? 0;
+    openingTallies.set(ecoOpeningCode, talliesForThisEco + 1);
   }
 
-  return openingTallies;
+  const sortedOpeningTallies = [...openingTallies.entries()].sort((a, b) => b[1] - a[1]);
+
+  if (sortedOpeningTallies.length <= 5) {
+    return new Map(sortedOpeningTallies);
+  }
+
+  const otherOpeningTally = sortedOpeningTallies
+    .slice(5)
+    .reduce((acc, curr) => acc + curr[1], 0);
+
+  const cappedOpeningsTallies = [
+    ...sortedOpeningTallies.slice(0, 4),
+    ['X99', otherOpeningTally] as [string, number],
+  ];
+
+  return new Map(cappedOpeningsTallies);
 }
 
 /**
@@ -111,10 +120,6 @@ export function getResultTallies(pgns?: string[]): Map<string, number> | undefin
   for (let pgn of pgns) {
     const score = getScore(pgn, 'White');
 
-    if (!score) {
-      continue;
-    }
-
     const result =
       score === '1'
         ? 'White wins'
@@ -122,31 +127,27 @@ export function getResultTallies(pgns?: string[]): Map<string, number> | undefin
           ? 'Black wins'
           : score === '1/2'
             ? 'Draw'
-            : 'Inconclusive';
+            : score === '*'
+              ? 'Inconclusive'
+              : 'Unknown';
 
-    const talliesForThisResult = resultTallies.get(result);
-
-    if (talliesForThisResult) {
-      resultTallies.set(result, talliesForThisResult + 1);
-    } else {
-      resultTallies.set(result, 1);
-    }
+    const talliesForThisResult = resultTallies.get(result) ?? 0;
+    resultTallies.set(result, talliesForThisResult + 1);
   }
 
-  return resultTallies;
+  const sortedResultTallies = new Map(
+    [...resultTallies.entries()].sort((a, b) => b[1] - a[1]),
+  );
+  return sortedResultTallies;
 }
 
 /**
  * @param pgn The PGN of the chess game
  *
- * @returns {number | undefined} The game's ECO opening code
+ * @returns {string} The game's ECO opening code or custom 'X98' code if it cannot be found in the PGN
  */
-function getEcoOpeningCode(pgn?: string): string | undefined {
-  if (!pgn) {
-    return;
-  }
-
-  return pgn.split('[ECO "')?.[1]?.split('"]')[0];
+function getEcoOpeningCode(pgn: string): string {
+  return pgn.split('[ECO "')?.[1]?.split('"]')[0] ?? 'X98';
 }
 
 /**

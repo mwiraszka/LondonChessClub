@@ -1,6 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ChartConfiguration } from 'chart.js';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, take } from 'rxjs/operators';
 
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { KeyValue } from '@angular/common';
@@ -13,9 +13,8 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { LoaderService, MetaAndTitleService } from '@app/services';
+import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';
 import { GameDetails } from '@app/types';
-import { getChessOpenings } from '@app/utils/file-utils';
 import {
   getOpeningTallies,
   getPlayerName,
@@ -25,6 +24,7 @@ import {
 } from '@app/utils/pgn-utils';
 
 import * as fromPgns from './pgns';
+import { YEARS } from './years';
 
 @UntilDestroy()
 @Component({
@@ -33,39 +33,6 @@ import * as fromPgns from './pgns';
   styleUrls: ['./game-archives-screen.component.scss'],
 })
 export class GameArchivesScreenComponent implements OnInit {
-  readonly YEARS = [
-    '2024',
-    '2023',
-    '2022',
-    '2019',
-    '2018',
-    '2017',
-    '2005',
-    '2000',
-    '1999',
-    '1998',
-    '1997',
-    '1996',
-    '1995',
-    '1994',
-    '1993',
-    '1992',
-    '1991',
-    '1990',
-    '1989',
-    '1988',
-    '1987',
-    '1985',
-    '1984',
-    '1983',
-    '1982',
-    '1980',
-    '1979',
-    '1977',
-    '1976',
-    '1974',
-  ] as const;
-
   allGames: Map<string, GameDetails[]> = new Map();
   filteredGames: Map<string, GameDetails[]> = new Map();
   form!: FormGroup;
@@ -99,6 +66,7 @@ export class GameArchivesScreenComponent implements OnInit {
   cdkVirtualScrollViewport?: CdkVirtualScrollViewport;
 
   constructor(
+    private chessOpeningsService: ChessOpeningsService,
     private formBuilder: FormBuilder,
     private loaderService: LoaderService,
     private metaAndTitleService: MetaAndTitleService,
@@ -111,17 +79,16 @@ export class GameArchivesScreenComponent implements OnInit {
 
   trackByFn = (index: number) => index;
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Game Archives');
     this.metaAndTitleService.updateDescription(
       'A collection of games played by London Chess Club members, going all the way back to 1974.',
     );
-    this.chessOpenings = await getChessOpenings();
-    console.log(':: chess openings', this.chessOpenings);
 
     this.initForm();
     this.initGames();
     this.initValueChangesListeners();
+    this.loadChessOpenings();
     this.filterGames();
   }
 
@@ -172,7 +139,7 @@ export class GameArchivesScreenComponent implements OnInit {
   }
 
   private initGames(): void {
-    this.YEARS.forEach(year => {
+    YEARS.forEach(year => {
       const pgns = fromPgns[`pgns${year}`];
       this.allGames.set(
         year,
@@ -254,7 +221,17 @@ export class GameArchivesScreenComponent implements OnInit {
     );
   }
 
-  private filterGames(): void {
+  private loadChessOpenings(): void {
+    this.chessOpeningsService
+      .fetchOpenings()
+      .pipe(take(1))
+      .subscribe(openings => {
+        this.chessOpenings = openings;
+        this.updateStats(this.filteredGames);
+      });
+  }
+
+  private async filterGames(): Promise<void> {
     this.loaderService.setIsLoading(true);
 
     const name = this.form.value['name']?.toLowerCase();
@@ -316,17 +293,27 @@ export class GameArchivesScreenComponent implements OnInit {
     }
 
     const openingTallies = getOpeningTallies(pgns);
-
-    this.openingsChartLabels = Array.from(openingTallies?.keys() ?? []).map(
-      openingTally =>
-        this.chessOpenings?.size
-          ? this.chessOpenings.get(openingTally) ?? 'Unknown'
-          : 'Unknown',
-    );
-    this.openingsChartDatasets = [{ data: Array.from(openingTallies?.values() ?? []) }];
+    if (!openingTallies?.size || !this.chessOpenings?.size) {
+      this.openingsChartLabels = [];
+      this.openingsChartDatasets = [];
+    } else {
+      this.openingsChartLabels = Array.from(openingTallies.keys()).map(openingEco => {
+        const opening = this.chessOpenings!.get(openingEco) ?? 'Unrecognized ECO code';
+        const tally = openingTallies.get(openingEco);
+        return `${opening} (${tally})`;
+      });
+      this.openingsChartDatasets = [{ data: Array.from(openingTallies!.values()) }];
+    }
 
     const resultTallies = getResultTallies(pgns);
-    this.resultsChartLabels = Array.from(resultTallies?.keys() ?? []);
-    this.resultsChartDatasets = [{ data: Array.from(resultTallies?.values() ?? []) }];
+    if (!resultTallies?.size) {
+      this.resultsChartLabels = [];
+      this.resultsChartDatasets = [];
+    } else {
+      this.resultsChartLabels = Array.from(resultTallies.keys()).map(
+        result => `${result} (${resultTallies.get(result)})`,
+      );
+      this.resultsChartDatasets = [{ data: Array.from(resultTallies.values()) }];
+    }
   }
 }

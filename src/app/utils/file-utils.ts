@@ -2,7 +2,7 @@
  * @param url Data URL of the file (as base-64 string)
  * @param name Name of the file (optional)
  *
- * @returns {File} A file object
+ * @returns {Promise<File>} A file object wrapped in a promise
  */
 export async function getFileFromDataUrl(url: string, name?: string): Promise<File> {
   const response = await fetch(url);
@@ -14,26 +14,12 @@ export async function getFileFromDataUrl(url: string, name?: string): Promise<Fi
 }
 
 /**
- * @returns {Map<string, string>} A map of chess openings names keyed on their ECO codes;
- * returns null if for whatever reason the chess openings map cannot be retrieved
- */
-export async function getChessOpenings(): Promise<Map<string, string> | null> {
-  const rows = await parseCsv('assets/eco-openings.csv');
-
-  if (!rows?.length) {
-    return null;
-  }
-
-  // Index 0 correspondgs to the ECO code; index 1 corresponds to the opening name
-  return new Map(rows.map(row => [row[0], row[1] ?? 'Unknown opening']));
-}
-
-/**
  * @param filePath The path to the local CSV file
  * @param includeHeader Whether to include data from the first row; defaults to false
  *
- * @returns {Array<string[]> | null} An array of string arrays, where the inner arrays represent
- * the rows in the original CSV file; returns null if for whatever reason the CSV cannot be parsed
+ * @returns {Promise<Array<string[]> | null>} An array of string arrays wrapped in a promise, where
+ * the inner arrays represent the rows in the original CSV file; returns null if for whatever
+ * reason the CSV cannot be parsed
  */
 export async function parseCsv(
   filePath?: string,

@@ -123,9 +123,26 @@ $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
       color: var(--lcc-color--gameArchivesScreen-text);
     }
 
-    .game-stats-container {
+    .search-stats-container {
       display: flex;
       flex-flow: row wrap;
+      justify-content: center;
+      padding: 16px 8px;
+      gap: 16px;
+
+      .opening-chart-container,
+      .result-chart-container {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        label {
+          font-size: var(--lcc-font-size--h2);
+          color: var(--lcc-color--gameArchivesScreen-chartLabel);
+          padding-bottom: 2px;
+          border-bottom: 1px solid var(--lcc-color--gameArchivesScreen-labelUnderline);
+        }
+      }
     }
   }
 

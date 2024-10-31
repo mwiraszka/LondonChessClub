@@ -1,4 +1,4 @@
-export enum AppStoreFeatureTypes {
+export enum StoreFeatures {
   ALERT = 'alert',
   ARTICLES = 'articles',
   AUTH = 'auth',

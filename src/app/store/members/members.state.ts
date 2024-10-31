@@ -1,10 +1,10 @@
-import type { Member } from '@app/types';
+import { ControlModes, type Member } from '@app/types';
 
 export interface MembersState {
   members: Member[];
   selectedMember: Member | null;
-  memberCurrently: Member | null;
-  isEditMode: boolean | null;
+  formMember: Member | null;
+  controlMode: ControlModes;
   sortedBy: string;
   isAscending: boolean;
   pageNum: number;
@@ -15,8 +15,8 @@ export interface MembersState {
 export const initialState: MembersState = {
   members: [],
   selectedMember: null,
-  memberCurrently: null,
-  isEditMode: null,
+  formMember: null,
+  controlMode: ControlModes.VIEW,
   sortedBy: 'rating',
   isAscending: false,
   pageNum: 1,

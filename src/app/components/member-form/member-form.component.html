@@ -193,7 +193,7 @@
           </i-feather>
         }
       </div>
-      @if (facade.isEditMode$ | async) {
+      @if ((facade.controlMode$ | async) === 'edit') {
         <label for="is-active-input">Active:</label>
         <input
           id="is-active-input"
@@ -207,7 +207,7 @@
 
     <hr />
 
-    @if ((facade.memberCurrently$ | async)?.modificationInfo; as modificationInfo) {
+    @if ((facade.formMember$ | async)?.modificationInfo; as modificationInfo) {
       <lcc-modification-info [info]="modificationInfo"></lcc-modification-info>
     }
 
@@ -222,7 +222,7 @@
         class="lcc-primary-button"
         type="submit"
         [disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
-        @if (facade.isEditMode$ | async) {
+        @if ((facade.controlMode$ | async) === 'edit') {
           Update
         } @else {
           Add member

@@ -1,11 +1,11 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { AppStoreFeatureTypes } from '@app/types';
+import { StoreFeatures } from '@app/types';
 
 import { UserSettingsState } from './user-settings.state';
 
 export const userSettingsFeatureSelector = createFeatureSelector<UserSettingsState>(
-  AppStoreFeatureTypes.USER_SETTINGS,
+  StoreFeatures.USER_SETTINGS,
 );
 
 export const isDarkMode = createSelector(

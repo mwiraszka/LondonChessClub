@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import type { Article, Url } from '@app/types';
+import { type Article, ControlModes, type Url } from '@app/types';
 import { customSort } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
@@ -9,11 +9,11 @@ import { ArticlesState, initialState } from './articles.state';
 const articlesReducer = createReducer(
   initialState,
 
-  on(ArticlesActions.setArticle, (state, { article, isEditMode }) => ({
+  on(ArticlesActions.setArticle, (state, { article, controlMode }) => ({
     ...state,
     selectedArticle: article,
-    articleCurrently: article,
-    isEditMode,
+    formArticle: controlMode === ControlModes.VIEW ? null : article,
+    controlMode,
   })),
 
   on(
@@ -24,8 +24,8 @@ const articlesReducer = createReducer(
     state => ({
       ...state,
       selectedArticle: null,
-      articleCurrently: null,
-      isEditMode: null,
+      formArticle: null,
+      controlMode: ControlModes.VIEW,
     }),
   ),
 
@@ -39,8 +39,8 @@ const articlesReducer = createReducer(
         article,
       ]),
       selectedArticle: null,
-      articleCurrently: null,
-      isEditMode: null,
+      formArticle: null,
+      controlMode: ControlModes.VIEW,
     }),
   ),
 
@@ -55,23 +55,19 @@ const articlesReducer = createReducer(
   on(ArticlesActions.getArticleImageUrlSucceeded, (state, { imageUrl }) => ({
     ...state,
     selectedArticle: updateSelectedArticleForImageUrlChange(state, imageUrl),
-    articleCurrently: state.articleCurrently
-      ? { ...state.articleCurrently, imageUrl }
-      : null,
+    formArticle: state.formArticle ? { ...state.formArticle, imageUrl } : null,
   })),
 
   on(ArticlesActions.getArticleImageFileSucceeded, (state, { imageFile }) => ({
     ...state,
     selectedArticle: updateSelectedArticleForImageFileChange(state, imageFile),
-    articleCurrently: state.articleCurrently
-      ? { ...state.articleCurrently, imageFile }
-      : null,
+    formArticle: state.formArticle ? { ...state.formArticle, imageFile } : null,
   })),
 
   on(ArticlesActions.revertArticleImageChange, state => ({
     ...state,
-    articleCurrently: {
-      ...state.articleCurrently!,
+    formArticle: {
+      ...state.formArticle!,
       imageFile: state.selectedArticle?.imageFile ?? null,
       imageUrl: state.selectedArticle?.imageUrl ?? null,
     },
@@ -90,13 +86,13 @@ const articlesReducer = createReducer(
   on(ArticlesActions.deleteArticleSucceeded, (state, { article }) => ({
     ...state,
     articles: state.articles.filter(storedArticle => storedArticle.id !== article.id),
-    articleCurrently: null,
+    formArticle: null,
     selectedArticle: null,
   })),
 
   on(ArticlesActions.formDataChanged, (state, { article }) => ({
     ...state,
-    articleCurrently: article,
+    formArticle: article,
   })),
 );
 

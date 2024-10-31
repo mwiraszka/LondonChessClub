@@ -8,9 +8,9 @@ import type { ClubEvent } from '@app/types';
 
 @Injectable()
 export class EventFormFacade {
-  readonly eventCurrently$ = this.store.select(ScheduleSelectors.eventCurrently);
+  readonly formEvent$ = this.store.select(ScheduleSelectors.formEvent);
+  readonly controlMode$ = this.store.select(ScheduleSelectors.controlMode);
   readonly hasUnsavedChanges$ = this.store.select(ScheduleSelectors.hasUnsavedChanges);
-  readonly isEditMode$ = this.store.select(ScheduleSelectors.isEditMode);
   readonly selectedEvent$ = this.store.select(ScheduleSelectors.selectedEvent);
 
   constructor(private readonly store: Store) {}
@@ -20,10 +20,10 @@ export class EventFormFacade {
   }
 
   onSubmit(event: ClubEvent): void {
-    this.isEditMode$
+    this.controlMode$
       .pipe(
-        map(isEditMode =>
-          isEditMode
+        map(controlMode =>
+          controlMode === 'edit'
             ? this.store.dispatch(
                 ScheduleActions.updateEventSelected({
                   event,

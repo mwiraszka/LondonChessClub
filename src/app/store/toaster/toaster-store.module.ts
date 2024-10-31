@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { AppStoreFeatureTypes } from '@app/types';
+import { StoreFeatures } from '@app/types';
 
 import { ToasterEffects } from './toaster.effects';
 import { reducer } from './toaster.reducer';
@@ -13,7 +13,7 @@ import { reducer } from './toaster.reducer';
   imports: [
     CommonModule,
     EffectsModule.forFeature([ToasterEffects]),
-    StoreModule.forFeature(AppStoreFeatureTypes.TOASTER, reducer),
+    StoreModule.forFeature(StoreFeatures.TOASTER, reducer),
   ],
 })
 export class ToasterStoreModule {}

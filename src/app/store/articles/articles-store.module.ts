@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { AppStoreFeatureTypes } from '@app/types';
+import { StoreFeatures } from '@app/types';
 
 import { ArticlesEffects } from './articles.effects';
 import { reducer } from './articles.reducer';
@@ -13,7 +13,7 @@ import { reducer } from './articles.reducer';
   imports: [
     CommonModule,
     EffectsModule.forFeature([ArticlesEffects]),
-    StoreModule.forFeature(AppStoreFeatureTypes.ARTICLES, reducer),
+    StoreModule.forFeature(StoreFeatures.ARTICLES, reducer),
   ],
 })
 export class ArticlesStoreModule {}

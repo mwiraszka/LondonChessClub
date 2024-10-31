@@ -21,11 +21,11 @@ export class EventEditorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    combineLatest([this.facade.selectedEventTitle$, this.facade.isEditMode$])
+    combineLatest([this.facade.selectedEventTitle$, this.facade.controlMode$])
       .pipe(untilDestroyed(this))
-      .subscribe(([eventTitle, isEditMode]) => {
+      .subscribe(([eventTitle, controlMode]) => {
         const screenTitle =
-          isEditMode && eventTitle ? `Edit ${eventTitle}` : 'Create an event';
+          controlMode === 'edit' && eventTitle ? `Edit ${eventTitle}` : 'Create an event';
         this.metaAndTitleService.updateTitle(screenTitle);
         this.metaAndTitleService.updateDescription(
           `${screenTitle} for the London Chess Club.`,

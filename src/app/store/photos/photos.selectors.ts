@@ -1,11 +1,11 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { AppStoreFeatureTypes } from '@app/types';
+import { StoreFeatures } from '@app/types';
 
 import { PhotosState } from './photos.state';
 
 export const photosFeatureSelector = createFeatureSelector<PhotosState>(
-  AppStoreFeatureTypes.PHOTOS,
+  StoreFeatures.PHOTOS,
 );
 
 export const photos = createSelector(photosFeatureSelector, state => state.photos);

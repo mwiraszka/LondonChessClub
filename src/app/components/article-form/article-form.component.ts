@@ -28,7 +28,7 @@ export class ArticleFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.facade.articleCurrently$.pipe(filter(isDefined), first()).subscribe(article => {
+    this.facade.formArticle$.pipe(filter(isDefined), first()).subscribe(article => {
       this.initForm(article);
       this.initValueChangesListener();
       this.initArticleImageRehydration();
@@ -36,7 +36,7 @@ export class ArticleFormComponent implements OnInit {
   }
 
   hasError(control: AbstractControl): boolean {
-    return control.value !== '' && control.invalid;
+    return control.invalid && control.touched && !control.value;
   }
 
   getErrorMessage(control: AbstractControl): string {
@@ -72,6 +72,7 @@ export class ArticleFormComponent implements OnInit {
 
   onRevert(): void {
     localStorage.removeItem('imageUrl');
+    this.form.controls['imageFile'].markAsTouched();
     this.facade.onRevert();
   }
 

@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { newClubEventFormTemplate } from '@app/types';
+import { ControlModes, newClubEventFormTemplate } from '@app/types';
 import { getUpcomingEvents } from '@app/utils';
 
 import * as ScheduleActions from './schedule.actions';
@@ -9,11 +9,11 @@ import { ScheduleState, initialState } from './schedule.state';
 const scheduleReducer = createReducer(
   initialState,
 
-  on(ScheduleActions.setEvent, (state, { event, isEditMode }) => ({
+  on(ScheduleActions.setEvent, (state, { event, controlMode }) => ({
     ...state,
     selectedEvent: event,
-    eventCurrently: event,
-    isEditMode,
+    formEvent: event,
+    controlMode,
   })),
 
   on(
@@ -25,15 +25,15 @@ const scheduleReducer = createReducer(
     state => ({
       ...state,
       selectedEvent: null,
-      eventCurrently: null,
-      isEditMode: null,
+      formEvent: null,
+      controlMode: ControlModes.VIEW,
     }),
   ),
 
   on(ScheduleActions.addEventSucceeded, state => ({
     ...state,
     selectedEvent: newClubEventFormTemplate,
-    eventCurrently: newClubEventFormTemplate,
+    formEvent: newClubEventFormTemplate,
   })),
 
   on(ScheduleActions.fetchEventsSucceeded, (state, { allEvents }) => {
@@ -49,7 +49,7 @@ const scheduleReducer = createReducer(
 
   on(ScheduleActions.fetchEventRequested, state => ({
     ...state,
-    isEditMode: true,
+    controlMode: ControlModes.EDIT,
   })),
 
   on(ScheduleActions.fetchEventSucceeded, (state, { event }) => ({
@@ -70,7 +70,7 @@ const scheduleReducer = createReducer(
 
   on(ScheduleActions.formDataChanged, (state, { event }) => ({
     ...state,
-    eventCurrently: event,
+    formEvent: event,
   })),
 
   on(ScheduleActions.togglePastEvents, state => ({

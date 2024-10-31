@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { type Article, type Url } from '@app/types';
+import type { Article, ControlModes, Url } from '@app/types';
 
 enum ArticlesActionTypes {
   SET_ARTICLE = '[Articles] Set article',
@@ -52,7 +52,7 @@ enum ArticlesActionTypes {
 
 export const setArticle = createAction(
   ArticlesActionTypes.SET_ARTICLE,
-  props<{ article: Article; isEditMode: boolean | null }>(),
+  props<{ article: Article; controlMode: ControlModes }>(),
 );
 
 export const fetchArticlesRequested = createAction(

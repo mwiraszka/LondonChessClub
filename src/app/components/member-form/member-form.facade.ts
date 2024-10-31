@@ -9,8 +9,8 @@ import type { Member } from '@app/types';
 @Injectable()
 export class MemberFormFacade {
   readonly hasUnsavedChanges$ = this.store.select(MembersSelectors.hasUnsavedChanges);
-  readonly isEditMode$ = this.store.select(MembersSelectors.isEditMode);
-  readonly memberCurrently$ = this.store.select(MembersSelectors.memberCurrently);
+  readonly controlMode$ = this.store.select(MembersSelectors.controlMode);
+  readonly formMember$ = this.store.select(MembersSelectors.formMember);
   readonly selectedMember$ = this.store.select(MembersSelectors.selectedMember);
 
   constructor(private readonly store: Store) {}
@@ -20,10 +20,10 @@ export class MemberFormFacade {
   }
 
   onSubmit(member: Member): void {
-    this.isEditMode$
+    this.controlMode$
       .pipe(
-        map(isEditMode =>
-          isEditMode
+        map(controlMode =>
+          controlMode
             ? this.store.dispatch(
                 MembersActions.updateMemberSelected({
                   member,

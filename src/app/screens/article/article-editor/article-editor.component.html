@@ -1,7 +1,7 @@
 <div class="container">
   <lcc-screen-header
     [title]="
-      (facade.isEditMode$ | async)
+      (facade.controlMode$ | async) === 'edit'
         ? 'Edit ' + (facade.selectedArticleTitle$ | async)
         : 'Create an article'
     ">

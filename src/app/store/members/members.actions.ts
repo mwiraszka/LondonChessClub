@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Member } from '@app/types';
+import type { ControlModes, Member } from '@app/types';
 
 enum MembersActionTypes {
   SET_MEMBER = '[Members] Set member',
@@ -45,7 +45,7 @@ enum MembersActionTypes {
 
 export const setMember = createAction(
   MembersActionTypes.SET_MEMBER,
-  props<{ member: Member; isEditMode: boolean }>(),
+  props<{ member: Member; controlMode: ControlModes }>(),
 );
 
 export const fetchMembersRequested = createAction(

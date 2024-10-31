@@ -61,7 +61,7 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.publishArticleConfirmed),
       concatLatestFrom(() => [
-        this.store.select(ArticlesSelectors.articleCurrently),
+        this.store.select(ArticlesSelectors.formArticle),
         this.store.select(AuthSelectors.user),
       ]),
       tap(() => this.loaderService.setIsLoading(true)),
@@ -93,7 +93,7 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleConfirmed),
       concatLatestFrom(() => [
-        this.store.select(ArticlesSelectors.articleCurrently),
+        this.store.select(ArticlesSelectors.formArticle),
         this.store.select(AuthSelectors.user),
       ]),
       tap(() => this.loaderService.setIsLoading(true)),
@@ -187,9 +187,9 @@ export class ArticlesEffects {
   getImageUrl$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.getArticleImageUrlRequested),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.isEditMode)),
-      switchMap(([{ imageId }, isEditMode]) => {
-        const hydrateFromLocalStorage = isEditMode !== null;
+      concatLatestFrom(() => this.store.select(ArticlesSelectors.controlMode)),
+      switchMap(([{ imageId }, controlMode]) => {
+        const hydrateFromLocalStorage = controlMode !== 'view';
         return this.imagesService.getArticleImageUrl(imageId, hydrateFromLocalStorage);
       }),
       map(response =>
@@ -205,8 +205,8 @@ export class ArticlesEffects {
   requestImageFile$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.getArticleImageUrlSucceeded),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.isEditMode)),
-      filter(([, isEditMode]) => isEditMode !== null),
+      concatLatestFrom(() => this.store.select(ArticlesSelectors.controlMode)),
+      filter(([, controlMode]) => controlMode !== null),
       map(([{ imageUrl }]) => ArticlesActions.getArticleImageFileRequested({ imageUrl })),
     );
   });

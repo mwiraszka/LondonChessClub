@@ -6,7 +6,7 @@ import { MembersSelectors } from '@app/store/members';
 
 @Injectable()
 export class MemberEditorFacade {
-  isEditMode$ = this.store.select(MembersSelectors.isEditMode);
+  controlMode$ = this.store.select(MembersSelectors.controlMode);
   selectedMemberName$ = this.store.select(MembersSelectors.selectedMemberName);
 
   constructor(private readonly store: Store) {}

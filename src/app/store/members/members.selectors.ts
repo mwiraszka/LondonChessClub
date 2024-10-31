@@ -1,12 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { AppStoreFeatureTypes } from '@app/types';
+import { StoreFeatures } from '@app/types';
 import { areSame, customSort } from '@app/utils';
 
 import { MembersState } from './members.state';
 
 export const membersFeatureSelector = createFeatureSelector<MembersState>(
-  AppStoreFeatureTypes.MEMBERS,
+  StoreFeatures.MEMBERS,
 );
 
 export const members = createSelector(membersFeatureSelector, state => state.members);
@@ -30,19 +30,19 @@ export const selectedMemberName = createSelector(
   member => `${member?.firstName} ${member?.lastName}`,
 );
 
-export const memberCurrently = createSelector(
+export const formMember = createSelector(
   membersFeatureSelector,
-  state => state.memberCurrently,
+  state => state.formMember,
 );
 
-export const isEditMode = createSelector(
+export const controlMode = createSelector(
   membersFeatureSelector,
-  state => state.isEditMode,
+  state => state.controlMode,
 );
 
 export const hasUnsavedChanges = createSelector(
   membersFeatureSelector,
-  state => !areSame(state.memberCurrently, state.selectedMember),
+  state => !areSame(state.formMember, state.selectedMember),
 );
 
 export const sortedBy = createSelector(membersFeatureSelector, state => state.sortedBy);

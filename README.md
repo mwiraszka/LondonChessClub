@@ -41,6 +41,16 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
+v4.1.2 - October 30th, 2024
+</summary>
+
+- 🚀 Improve background/text contrast on disabled buttons
+- 🚀 Add support for multi-line event descriptions
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.1.1 - October 28th, 2024
 </summary>
 

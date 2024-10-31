@@ -36,7 +36,7 @@ export class ArticleFormComponent implements OnInit {
   }
 
   hasError(control: AbstractControl): boolean {
-    return control.value !== '' && control.invalid;
+    return control.invalid && control.touched && !control.value;
   }
 
   getErrorMessage(control: AbstractControl): string {
@@ -72,6 +72,7 @@ export class ArticleFormComponent implements OnInit {
 
   onRevert(): void {
     localStorage.removeItem('imageUrl');
+    this.form.controls['imageFile'].markAsTouched();
     this.facade.onRevert();
   }
 

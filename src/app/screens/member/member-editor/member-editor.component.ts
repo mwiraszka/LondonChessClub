@@ -20,11 +20,11 @@ export class MemberEditorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    combineLatest([this.facade.selectedMemberName$, this.facade.isEditMode$])
+    combineLatest([this.facade.selectedMemberName$, this.facade.controlMode$])
       .pipe(untilDestroyed(this))
-      .subscribe(([memberName, isEditMode]) => {
+      .subscribe(([memberName, controlMode]) => {
         const screenTitle =
-          isEditMode && memberName ? `Edit ${memberName}` : 'Add a member';
+          controlMode === 'edit' && memberName ? `Edit ${memberName}` : 'Add a member';
         this.metaAndTitleService.updateTitle(screenTitle);
         this.metaAndTitleService.updateDescription(
           `${screenTitle} for the London Chess Club.`,

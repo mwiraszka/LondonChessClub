@@ -59,7 +59,7 @@ export class ScheduleEffects {
       ofType(ScheduleActions.addEventConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
-        this.store.select(ScheduleSelectors.eventCurrently),
+        this.store.select(ScheduleSelectors.formEvent),
         this.store.select(AuthSelectors.user),
       ]),
       switchMap(([, eventToAdd, user]) => {
@@ -91,7 +91,7 @@ export class ScheduleEffects {
       ofType(ScheduleActions.updateEventConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
-        this.store.select(ScheduleSelectors.eventCurrently),
+        this.store.select(ScheduleSelectors.formEvent),
         this.store.select(AuthSelectors.user),
       ]),
       switchMap(([, eventToUpdate, user]) => {

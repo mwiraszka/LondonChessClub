@@ -28,7 +28,7 @@ export class ArticleFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.facade.articleCurrently$.pipe(filter(isDefined), first()).subscribe(article => {
+    this.facade.formArticle$.pipe(filter(isDefined), first()).subscribe(article => {
       this.initForm(article);
       this.initValueChangesListener();
       this.initArticleImageRehydration();

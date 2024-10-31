@@ -8,13 +8,13 @@ import { type Article } from '@app/types';
 
 @Injectable()
 export class ArticleFormFacade {
-  readonly articleCurrently$ = this.store.select(ArticlesSelectors.articleCurrently);
+  readonly formArticle$ = this.store.select(ArticlesSelectors.formArticle);
   readonly articleImageCurrently$ = this.store.select(
     ArticlesSelectors.articleImageCurrently,
   );
+  readonly controlMode$ = this.store.select(ArticlesSelectors.controlMode);
   readonly hasNewImage$ = this.store.select(ArticlesSelectors.hasNewImage);
   readonly hasUnsavedChanges$ = this.store.select(ArticlesSelectors.hasUnsavedChanges);
-  readonly isEditMode$ = this.store.select(ArticlesSelectors.isEditMode);
   readonly selectedArticle$ = this.store.select(ArticlesSelectors.selectedArticle);
 
   constructor(private readonly store: Store) {}
@@ -28,10 +28,10 @@ export class ArticleFormFacade {
   }
 
   onSubmit(article: Article): void {
-    this.isEditMode$
+    this.controlMode$
       .pipe(
-        map(isEditMode =>
-          isEditMode
+        map(controlMode =>
+          controlMode === 'edit'
             ? this.store.dispatch(
                 ArticlesActions.updateArticleSelected({
                   article,

@@ -1,12 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { AppStoreFeatureTypes } from '@app/types';
+import { StoreFeatures } from '@app/types';
 import { areSame } from '@app/utils';
 
 import { ArticlesState } from './articles.state';
 
 export const articlesFeatureSelector = createFeatureSelector<ArticlesState>(
-  AppStoreFeatureTypes.ARTICLES,
+  StoreFeatures.ARTICLES,
 );
 
 export const articles = createSelector(articlesFeatureSelector, state => state.articles);
@@ -26,35 +26,31 @@ export const selectedArticleTitle = createSelector(
   article => article?.title,
 );
 
-export const articleCurrently = createSelector(
+export const formArticle = createSelector(
   articlesFeatureSelector,
-  state => state.articleCurrently,
+  state => state.formArticle,
 );
 
-export const articleImageCurrently = createSelector(
-  articleCurrently,
-  articleCurrently => {
-    return {
-      imageFile: articleCurrently?.imageFile ?? null,
-      imageUrl: articleCurrently?.imageUrl ?? null,
-    };
-  },
-);
+export const articleImageCurrently = createSelector(formArticle, formArticle => {
+  return {
+    imageFile: formArticle?.imageFile ?? null,
+    imageUrl: formArticle?.imageUrl ?? null,
+  };
+});
 
 export const hasNewImage = createSelector(
-  articleCurrently,
+  formArticle,
   selectedArticle,
-  (articleCurrently, selectedArticle) =>
-    articleCurrently?.imageUrl !== selectedArticle?.imageUrl,
+  (formArticle, selectedArticle) => formArticle?.imageUrl !== selectedArticle?.imageUrl,
 );
 
-export const isEditMode = createSelector(
+export const controlMode = createSelector(
   articlesFeatureSelector,
-  state => state.isEditMode,
+  state => state.controlMode,
 );
 
 export const hasUnsavedChanges = createSelector(
-  articleCurrently,
+  formArticle,
   selectedArticle,
-  (articleCurrently, selectedArticle) => !areSame(articleCurrently, selectedArticle),
+  (formArticle, selectedArticle) => !areSame(formArticle, selectedArticle),
 );

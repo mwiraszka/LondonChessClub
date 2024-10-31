@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { AppStoreFeatureTypes } from '@app/types';
+import { StoreFeatures } from '@app/types';
 
 import { ScheduleEffects } from './schedule.effects';
 import { reducer } from './schedule.reducer';
@@ -13,7 +13,7 @@ import { reducer } from './schedule.reducer';
   imports: [
     CommonModule,
     EffectsModule.forFeature([ScheduleEffects]),
-    StoreModule.forFeature(AppStoreFeatureTypes.SCHEDULE, reducer),
+    StoreModule.forFeature(StoreFeatures.SCHEDULE, reducer),
   ],
 })
 export class ScheduleStoreModule {}

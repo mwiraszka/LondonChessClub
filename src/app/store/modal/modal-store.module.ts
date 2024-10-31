@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { AppStoreFeatureTypes } from '@app/types';
+import { StoreFeatures } from '@app/types';
 
 import { ModalEffects } from './modal.effects';
 import { reducer } from './modal.reducer';
@@ -13,7 +13,7 @@ import { reducer } from './modal.reducer';
   imports: [
     CommonModule,
     EffectsModule.forFeature([ModalEffects]),
-    StoreModule.forFeature(AppStoreFeatureTypes.MODAL, reducer),
+    StoreModule.forFeature(StoreFeatures.MODAL, reducer),
   ],
 })
 export class ModalStoreModule {}

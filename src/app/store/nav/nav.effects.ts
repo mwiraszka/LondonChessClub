@@ -12,6 +12,7 @@ import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { MembersActions, MembersSelectors } from '@app/store/members';
 import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
 import {
+  ControlModes,
   NavPathTypes,
   newArticleFormTemplate,
   newClubEventFormTemplate,
@@ -64,7 +65,7 @@ export class NavEffects {
         return articleInStore
           ? ArticlesActions.setArticle({
               article: articleInStore,
-              isEditMode: null,
+              controlMode: ControlModes.VIEW,
             })
           : ArticlesActions.fetchArticleRequested({ articleId });
       }),
@@ -77,15 +78,15 @@ export class NavEffects {
       filter(({ payload }) => payload.event.url === '/article/add'),
       concatLatestFrom(() => [
         this.store.select(NavSelectors.previousPath),
-        this.store.select(ArticlesSelectors.articleCurrently),
+        this.store.select(ArticlesSelectors.formArticle),
       ]),
-      map(([, previousPath, articleCurrently]) => {
+      map(([, previousPath, formArticle]) => {
         return previousPath === '/article/add' &&
-          (articleCurrently?.imageUrl || localStorage.getItem('imageUrl'))
+          (formArticle?.imageUrl || localStorage.getItem('imageUrl'))
           ? ArticlesActions.getArticleImageUrlRequested({})
           : ArticlesActions.setArticle({
-              article: articleCurrently ?? newArticleFormTemplate,
-              isEditMode: false,
+              article: formArticle ?? newArticleFormTemplate,
+              controlMode: ControlModes.ADD,
             });
       }),
     ),
@@ -111,7 +112,7 @@ export class NavEffects {
         } else if (articleInStore) {
           return ArticlesActions.setArticle({
             article: articleInStore,
-            isEditMode: true,
+            controlMode: ControlModes.EDIT,
           });
         } else if (isValidArticleId(articleId)) {
           return ArticlesActions.fetchArticleRequested({ articleId });
@@ -148,7 +149,7 @@ export class NavEffects {
       map(() =>
         MembersActions.setMember({
           member: newMemberFormTemplate,
-          isEditMode: false,
+          controlMode: ControlModes.ADD,
         }),
       ),
     ),
@@ -168,7 +169,7 @@ export class NavEffects {
         if (memberInStore) {
           return MembersActions.setMember({
             member: memberInStore,
-            isEditMode: true,
+            controlMode: ControlModes.EDIT,
           });
         } else if (isValidMemberId(memberId)) {
           return MembersActions.fetchMemberRequested({ memberId });
@@ -188,7 +189,7 @@ export class NavEffects {
       map(() =>
         ScheduleActions.setEvent({
           event: newClubEventFormTemplate,
-          isEditMode: false,
+          controlMode: ControlModes.ADD,
         }),
       ),
     ),
@@ -208,7 +209,7 @@ export class NavEffects {
         if (eventInStore) {
           return ScheduleActions.setEvent({
             event: eventInStore,
-            isEditMode: true,
+            controlMode: ControlModes.EDIT,
           });
         } else if (isValidEventId(eventId)) {
           return ScheduleActions.fetchEventRequested({ eventId });
@@ -298,11 +299,12 @@ export class NavEffects {
   navigateAfterSuccessfulArticleFetch$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ArticlesActions.fetchArticleSucceeded),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.isEditMode)),
-      map(([{ article }, isEditMode]) => {
-        const path = isEditMode
-          ? NavPathTypes.ARTICLE + '/' + NavPathTypes.EDIT + '/' + article.id
-          : NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + article.id;
+      concatLatestFrom(() => this.store.select(ArticlesSelectors.controlMode)),
+      map(([{ article }, controlMode]) => {
+        const path =
+          controlMode === 'edit'
+            ? NavPathTypes.ARTICLE + '/' + NavPathTypes.EDIT + '/' + article.id
+            : NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + article.id;
         return NavActions.navigationRequested({ path });
       }),
     ),

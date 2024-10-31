@@ -1,3 +1,5 @@
+import { ControlModes } from './control-modes.model';
+
 export enum NavPathTypes {
   HOME = '',
   ABOUT = 'about',
@@ -15,7 +17,7 @@ export enum NavPathTypes {
   LOGOUT = 'logout',
   CHANGE_PASSWORD = 'change-password',
 
-  ADD = 'add',
-  EDIT = 'edit',
-  VIEW = 'view',
+  ADD = ControlModes.ADD,
+  EDIT = ControlModes.EDIT,
+  VIEW = ControlModes.VIEW,
 }

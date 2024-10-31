@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { newMemberFormTemplate } from '@app/types';
+import { ControlModes, newMemberFormTemplate } from '@app/types';
 
 import * as MembersActions from './members.actions';
 import { MembersState, initialState } from './members.state';
@@ -8,11 +8,11 @@ import { MembersState, initialState } from './members.state';
 const membersReducer = createReducer(
   initialState,
 
-  on(MembersActions.setMember, (state, { member, isEditMode }) => ({
+  on(MembersActions.setMember, (state, { member, controlMode }) => ({
     ...state,
     selectedMember: member,
-    memberCurrently: member,
-    isEditMode,
+    formMember: member,
+    controlMode,
   })),
 
   on(
@@ -24,20 +24,20 @@ const membersReducer = createReducer(
     state => ({
       ...state,
       selectedMember: null,
-      memberCurrently: null,
-      isEditMode: null,
+      formMember: null,
+      controlMode: ControlModes.VIEW,
     }),
   ),
 
   on(MembersActions.addMemberSucceeded, state => ({
     ...state,
     selectedMember: newMemberFormTemplate,
-    memberCurrently: newMemberFormTemplate,
+    formMember: newMemberFormTemplate,
   })),
 
   on(MembersActions.fetchMemberRequested, state => ({
     ...state,
-    isEditMode: true,
+    controlMode: ControlModes.EDIT,
   })),
 
   on(MembersActions.fetchMembersSucceeded, (state, { members }) => ({
@@ -66,7 +66,7 @@ const membersReducer = createReducer(
 
   on(MembersActions.formDataChanged, (state, { member }) => ({
     ...state,
-    memberCurrently: member,
+    formMember: member,
   })),
 
   on(MembersActions.pageChanged, (state, { pageNum }) => ({

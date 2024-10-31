@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { ClubEvent } from '@app/types';
+import type { ClubEvent, ControlModes } from '@app/types';
 
 enum ScheduleActionTypes {
   SET_EVENT = '[Schedule] Set event',
@@ -41,7 +41,7 @@ enum ScheduleActionTypes {
 
 export const setEvent = createAction(
   ScheduleActionTypes.SET_EVENT,
-  props<{ event: ClubEvent; isEditMode: boolean }>(),
+  props<{ event: ClubEvent; controlMode: ControlModes }>(),
 );
 
 export const fetchEventsRequested = createAction(

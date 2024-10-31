@@ -1,12 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { AppStoreFeatureTypes } from '@app/types';
+import { StoreFeatures } from '@app/types';
 import { areSame, getUpcomingEvents } from '@app/utils';
 
 import { ScheduleState } from './schedule.state';
 
 export const scheduleFeatureSelector = createFeatureSelector<ScheduleState>(
-  AppStoreFeatureTypes.SCHEDULE,
+  StoreFeatures.SCHEDULE,
 );
 
 export const events = createSelector(scheduleFeatureSelector, state => state.events);
@@ -32,14 +32,14 @@ export const selectedEvent = createSelector(
 
 export const selectedEventTitle = createSelector(selectedEvent, event => event?.title);
 
-export const eventCurrently = createSelector(
+export const formEvent = createSelector(
   scheduleFeatureSelector,
-  state => state.eventCurrently,
+  state => state.formEvent,
 );
 
-export const isEditMode = createSelector(
+export const controlMode = createSelector(
   scheduleFeatureSelector,
-  state => state.isEditMode,
+  state => state.controlMode,
 );
 
 export const nextEventId = createSelector(
@@ -54,5 +54,5 @@ export const showPastEvents = createSelector(
 
 export const hasUnsavedChanges = createSelector(
   scheduleFeatureSelector,
-  state => !areSame(state.eventCurrently, state.selectedEvent),
+  state => !areSame(state.formEvent, state.selectedEvent),
 );

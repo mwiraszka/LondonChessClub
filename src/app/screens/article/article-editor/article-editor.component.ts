@@ -33,11 +33,13 @@ export class ArticleEditorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    combineLatest([this.facade.selectedArticleTitle$, this.facade.isEditMode$])
+    combineLatest([this.facade.selectedArticleTitle$, this.facade.controlMode$])
       .pipe(untilDestroyed(this))
-      .subscribe(([articleTitle, isEditMode]) => {
+      .subscribe(([articleTitle, controlMode]) => {
         const screenTitle =
-          isEditMode && articleTitle ? `Edit ${articleTitle}` : 'Compose an article';
+          controlMode === 'edit' && articleTitle
+            ? `Edit ${articleTitle}`
+            : 'Compose an article';
         this.metaAndTitleService.updateTitle(screenTitle);
         this.metaAndTitleService.updateDescription(
           `${screenTitle} for the London Chess Club.`,

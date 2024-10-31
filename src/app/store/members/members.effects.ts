@@ -61,7 +61,7 @@ export class MembersEffects {
       ofType(MembersActions.addMemberConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
-        this.store.select(MembersSelectors.memberCurrently),
+        this.store.select(MembersSelectors.formMember),
         this.store.select(AuthSelectors.user),
       ]),
       switchMap(([, memberToAdd, user]) => {
@@ -93,7 +93,7 @@ export class MembersEffects {
       ofType(MembersActions.updateMemberConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
-        this.store.select(MembersSelectors.memberCurrently),
+        this.store.select(MembersSelectors.formMember),
         this.store.select(AuthSelectors.user),
       ]),
       switchMap(([, memberToUpdate, user]) => {

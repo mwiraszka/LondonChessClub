@@ -22,7 +22,7 @@ export class ArticleGridComponent implements OnInit {
   articles!: Article[];
   createArticleLink: Link = {
     path: NavPathTypes.ARTICLE + '/' + NavPathTypes.ADD,
-    text: 'Compose new article',
+    text: 'Create new article',
     icon: 'plus-circle',
   };
 

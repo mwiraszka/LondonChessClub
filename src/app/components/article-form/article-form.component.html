@@ -119,7 +119,7 @@
       }
     </div>
 
-    @if ((facade.articleCurrently$ | async)?.modificationInfo; as modificationInfo) {
+    @if ((facade.formArticle$ | async)?.modificationInfo; as modificationInfo) {
       <lcc-modification-info [info]="modificationInfo"></lcc-modification-info>
     }
 
@@ -134,8 +134,8 @@
         class="lcc-primary-button"
         type="submit"
         [disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
-        @if (facade.isEditMode$ | async) {
-          Update article
+        @if ((facade.controlMode$ | async) === 'edit') {
+          Update
         } @else {
           Publish article
         }

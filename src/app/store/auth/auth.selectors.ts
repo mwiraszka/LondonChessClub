@@ -1,12 +1,10 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { AppStoreFeatureTypes } from '@app/types';
+import { StoreFeatures } from '@app/types';
 
 import { AuthState } from './auth.state';
 
-export const authFeatureSelector = createFeatureSelector<AuthState>(
-  AppStoreFeatureTypes.AUTH,
-);
+export const authFeatureSelector = createFeatureSelector<AuthState>(StoreFeatures.AUTH);
 
 export const isAdmin = createSelector(
   authFeatureSelector,

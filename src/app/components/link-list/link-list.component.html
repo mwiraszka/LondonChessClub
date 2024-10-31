@@ -7,7 +7,7 @@
   [ngClass]="(links?.length ?? 0) < 4 ? 'single-column' : ''">
   @for (link of links; track link.path) {
     <li [tooltip]="link.tooltip ?? ''">
-      @if (!link.path) {
+      @if (link.path === null) {
         <a
           disabled
           href="#"

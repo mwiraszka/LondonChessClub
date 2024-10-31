@@ -41,6 +41,15 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
+v4.1.3 - October 31st, 2024
+</summary>
+
+- 🚀 Improve links at the bottom of article pages
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.1.2 - October 31st, 2024
 </summary>
 

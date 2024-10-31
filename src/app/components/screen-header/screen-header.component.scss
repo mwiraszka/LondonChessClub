@@ -10,14 +10,23 @@
   background-color: var(--lcc-color--screenHeader-background);
   border-radius: var(--lcc-borderRadius--small);
 
-  .screen-title {
-    font-size: var(--lcc-fontSize--h3) !important;
-    color: var(--lcc-color--screenHeader-text);
-  }
-
   .icon {
     color: var(--lcc-color--screenHeader-icon);
     height: 24px;
     width: 24px;
+  }
+
+  .screen-title {
+    font-size: var(--lcc-fontSize--h3) !important;
+    color: var(--lcc-color--screenHeader-text);
+
+    &.end-with-asterisk {
+      font-style: italic;
+
+      &:after {
+        content: ' *';
+        color: var(--lcc-color--screenHeaderAsterisk-text);
+      }
+    }
   }
 }

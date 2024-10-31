@@ -18,12 +18,14 @@ import { ArticleEditorFacade } from './article-editor.facade';
 export class ArticleEditorComponent implements OnInit {
   links: Link[] = [
     {
+      icon: 'activity',
       path: NavPathTypes.NEWS,
-      text: 'Return to articles',
+      text: 'More articles',
     },
     {
+      icon: 'home',
       path: NavPathTypes.HOME,
-      text: 'Return to home page',
+      text: 'Return home',
     },
   ];
 

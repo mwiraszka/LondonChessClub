@@ -1,5 +1,6 @@
 <div class="container">
   <lcc-screen-header
+    [hasUnsavedChanges]="(facade.hasUnsavedChanges$ | async) ?? undefined"
     [title]="
       (facade.controlMode$ | async) === 'edit'
         ? 'Edit ' + (facade.selectedArticleTitle$ | async)

@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./screen-header.component.scss'],
 })
 export class ScreenHeaderComponent {
+  @Input() hasUnsavedChanges?: boolean;
   @Input() icon?: string | null;
   @Input() title?: string | null;
 }

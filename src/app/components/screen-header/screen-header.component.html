@@ -5,4 +5,8 @@
   </i-feather>
 }
 
-<h1 class="screen-title">{{ title }}</h1>
+<h1
+  class="screen-title"
+  [class.end-with-asterisk]="hasUnsavedChanges">
+  {{ title }}
+</h1>

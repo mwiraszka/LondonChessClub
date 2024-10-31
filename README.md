@@ -44,7 +44,7 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 v4.1.3 - October 31st, 2024
 </summary>
 
-- 🚀 Improve links at the bottom of article pages
+- 🚀 Improve links at the bottom of article pages and a few more minor improvements to Article Editor
 
 </details>
 

@@ -7,6 +7,7 @@ import { ArticlesSelectors } from '@app/store/articles';
 @Injectable()
 export class ArticleEditorFacade {
   readonly controlMode$ = this.store.select(ArticlesSelectors.controlMode);
+  readonly hasUnsavedChanges$ = this.store.select(ArticlesSelectors.hasUnsavedChanges);
   readonly selectedArticleTitle$ = this.store.select(
     ArticlesSelectors.selectedArticleTitle,
   );

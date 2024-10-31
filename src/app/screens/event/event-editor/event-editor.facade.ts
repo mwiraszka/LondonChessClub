@@ -7,6 +7,7 @@ import { ScheduleSelectors } from '@app/store/schedule';
 @Injectable()
 export class EventEditorFacade {
   readonly controlMode$ = this.store.select(ScheduleSelectors.controlMode);
+  readonly hasUnsavedChanges$ = this.store.select(ScheduleSelectors.hasUnsavedChanges);
   readonly selectedEventTitle$ = this.store.select(ScheduleSelectors.selectedEventTitle);
 
   constructor(private readonly store: Store) {}

@@ -38,7 +38,7 @@ export class MembersTableComponent implements OnInit {
   tableHeaders!: string[];
   addMemberLink: Link = {
     path: NavPathTypes.MEMBER + '/' + NavPathTypes.ADD,
-    text: 'Add new member',
+    text: 'Add a member',
     icon: 'plus-circle',
   };
 

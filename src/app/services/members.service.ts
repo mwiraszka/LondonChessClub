@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { AuthService } from '@app/services';
 import type { FlatMember, Member, ServiceResponse } from '@app/types';
 
 import { environment } from '@environments/environment';
-
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -66,6 +65,7 @@ export class MembersService {
 
   addMember(memberToAdd: Member): Observable<ServiceResponse<Member>> {
     const flattenedMember = this.adaptForBackend([memberToAdd])[0];
+
     return this.authService.token().pipe(
       switchMap(token =>
         this.http.post<null>(this.PRIVATE_API_ENDPOINT, flattenedMember, {

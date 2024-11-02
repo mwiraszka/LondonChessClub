@@ -4,7 +4,7 @@ import { debounceTime, filter, first } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import type { Member } from '@app/types';
+import { ControlModes, type Member } from '@app/types';
 import { isDefined } from '@app/utils';
 import {
   dateValidator,
@@ -24,6 +24,7 @@ import { MemberFormFacade } from './member-form.facade';
   providers: [MemberFormFacade],
 })
 export class MemberFormComponent implements OnInit {
+  readonly ControlModes = ControlModes;
   form!: FormGroup;
 
   constructor(

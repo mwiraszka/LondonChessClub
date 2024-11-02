@@ -302,7 +302,7 @@ export class NavEffects {
       concatLatestFrom(() => this.store.select(ArticlesSelectors.controlMode)),
       map(([{ article }, controlMode]) => {
         const path =
-          controlMode === 'edit'
+          controlMode === ControlModes.EDIT
             ? NavPathTypes.ARTICLE + '/' + NavPathTypes.EDIT + '/' + article.id
             : NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + article.id;
         return NavActions.navigationRequested({ path });

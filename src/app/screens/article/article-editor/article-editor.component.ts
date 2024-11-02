@@ -4,7 +4,7 @@ import { combineLatest } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 import { MetaAndTitleService } from '@app/services';
-import { type Link, NavPathTypes } from '@app/types';
+import { ControlModes, type Link, NavPathTypes } from '@app/types';
 
 import { ArticleEditorFacade } from './article-editor.facade';
 
@@ -28,6 +28,7 @@ export class ArticleEditorComponent implements OnInit {
       text: 'Return home',
     },
   ];
+  readonly ControlModes = ControlModes;
 
   constructor(
     public facade: ArticleEditorFacade,
@@ -39,7 +40,7 @@ export class ArticleEditorComponent implements OnInit {
       .pipe(untilDestroyed(this))
       .subscribe(([articleTitle, controlMode]) => {
         const screenTitle =
-          controlMode === 'edit' && articleTitle
+          controlMode === ControlModes.EDIT && articleTitle
             ? `Edit ${articleTitle}`
             : 'Compose an article';
         this.metaAndTitleService.updateTitle(screenTitle);

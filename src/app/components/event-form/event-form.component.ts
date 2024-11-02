@@ -4,7 +4,7 @@ import { debounceTime, filter, first } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import type { ClubEvent } from '@app/types';
+import { type ClubEvent, ControlModes } from '@app/types';
 import { articleIdRegExp, isDefined } from '@app/utils';
 import { dateValidator } from '@app/validators';
 
@@ -18,6 +18,7 @@ import { EventFormFacade } from './event-form.facade';
   providers: [EventFormFacade],
 })
 export class EventFormComponent implements OnInit {
+  readonly ControlModes = ControlModes;
   form!: FormGroup;
 
   constructor(

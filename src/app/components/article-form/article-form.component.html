@@ -134,7 +134,7 @@
         class="lcc-primary-button"
         type="submit"
         [disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
-        @if ((facade.controlMode$ | async) === 'edit') {
+        @if ((facade.controlMode$ | async) === ControlModes.EDIT) {
           Update
         } @else {
           Publish article

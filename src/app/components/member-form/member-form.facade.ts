@@ -4,7 +4,7 @@ import { first, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { MembersActions, MembersSelectors } from '@app/store/members';
-import type { Member } from '@app/types';
+import { ControlModes, type Member } from '@app/types';
 
 @Injectable()
 export class MemberFormFacade {
@@ -23,7 +23,7 @@ export class MemberFormFacade {
     this.controlMode$
       .pipe(
         map(controlMode =>
-          controlMode
+          controlMode === ControlModes.EDIT
             ? this.store.dispatch(
                 MembersActions.updateMemberSelected({
                   member,

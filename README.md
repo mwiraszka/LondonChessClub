@@ -45,6 +45,7 @@ v4.1.4 - November 2nd, 2024
 </summary>
 
 - 🐛 Fix issue in Member Editor preventing new members from being added
+- 🔧 Upgrade to Angular v18.1.0 and update some third-party packages
 
 </details>
 

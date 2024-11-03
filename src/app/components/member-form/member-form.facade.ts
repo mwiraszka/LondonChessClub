@@ -4,6 +4,7 @@ import { first, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { MembersActions, MembersSelectors } from '@app/store/members';
+import { UserSettingsSelectors } from '@app/store/user-settings';
 import { ControlModes, type Member } from '@app/types';
 
 @Injectable()
@@ -12,6 +13,7 @@ export class MemberFormFacade {
   readonly controlMode$ = this.store.select(MembersSelectors.controlMode);
   readonly formMember$ = this.store.select(MembersSelectors.formMember);
   readonly selectedMember$ = this.store.select(MembersSelectors.selectedMember);
+  readonly isSafeMode$ = this.store.select(UserSettingsSelectors.isSafeMode);
 
   constructor(private readonly store: Store) {}
 

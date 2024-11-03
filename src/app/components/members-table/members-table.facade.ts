@@ -1,9 +1,12 @@
 import { Store } from '@ngrx/store';
+import { combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { AuthSelectors } from '@app/store/auth';
 import { MembersActions, MembersSelectors } from '@app/store/members';
+import { UserSettingsSelectors } from '@app/store/user-settings';
 import type { Member } from '@app/types';
 
 @Injectable()
@@ -19,6 +22,11 @@ export class MembersTableFacade {
   readonly showActiveOnly$ = this.store.select(MembersSelectors.showActiveOnly);
   readonly sortedBy$ = this.store.select(MembersSelectors.sortedBy);
   readonly startIndex$ = this.store.select(MembersSelectors.startIndex);
+
+  readonly showAdminColumns$ = combineLatest([
+    this.isAdmin$,
+    this.store.select(UserSettingsSelectors.isSafeMode),
+  ]).pipe(map(([isAdmin, isSafeMode]) => isAdmin && !isSafeMode));
 
   constructor(private readonly store: Store) {}
 

@@ -106,10 +106,29 @@
 
         <li class="dropdown-item theme-toggle">
           <span>Theme</span>
-          <lcc-theme-toggle></lcc-theme-toggle>
+          <lcc-toggle-switch
+            [condition]="facade.isDarkMode$ | async"
+            [tooltipTextWhenOff]="'Switch to light mode'"
+            [tooltipTextWhenOn]="'Switch to dark mode'"
+            (toggle)="facade.onToggleTheme()">
+          </lcc-toggle-switch>
         </li>
 
-        @if (facade.user$ | async) {
+        @if (facade.user$ | async; as user) {
+          <li class="dropdown-item safe-mode-toggle">
+            <span>Safe mode</span>
+            <lcc-toggle-switch
+              [condition]="facade.isSafeMode$ | async"
+              [tooltipTextWhenOff]="
+                'Show members\' emails, phone numbers and year of birth on screen'
+              "
+              [tooltipTextWhenOn]="
+                'Hide members\' emails, phone numbers and year of birth from screen'
+              "
+              (toggle)="facade.onToggleSafeMode()">
+            </lcc-toggle-switch>
+          </li>
+
           <li class="dropdown-item">
             <a
               aria-label="Change password"

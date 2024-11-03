@@ -47,11 +47,13 @@ export class MembersTableComponent implements OnInit {
   ngOnInit(): void {
     this.facade.fetchMembers();
 
-    this.facade.isAdmin$.pipe(untilDestroyed(this)).subscribe(isAdmin => {
-      this.tableHeaders = isAdmin
-        ? this.ALL_TABLE_HEADERS
-        : this.ALL_TABLE_HEADERS.slice(0, -4);
-    });
+    this.facade.showAdminColumns$
+      .pipe(untilDestroyed(this))
+      .subscribe(showAdminColumns => {
+        this.tableHeaders = showAdminColumns
+          ? this.ALL_TABLE_HEADERS
+          : this.ALL_TABLE_HEADERS.slice(0, -4);
+      });
   }
 
   convertToUtcTimezone(localDate: string): string {

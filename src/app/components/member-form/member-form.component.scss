@@ -14,3 +14,8 @@ hr {
   border-top: 1px solid var(--lcc-color--general-dividerLine);
   margin: 1em 0;
 }
+
+.safe-mode-notice {
+  font-size: var(--lcc-fontSize--h5);
+  color: var(--lcc-color--form-safeModeNoticeText);
+}

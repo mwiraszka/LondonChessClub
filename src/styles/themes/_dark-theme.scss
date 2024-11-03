@@ -110,7 +110,8 @@
   --lcc-color--form-headerText: #{color(grayscale, white-90)};
   --lcc-color--form-labelText: #{color(grayscale, white-85)};
   --lcc-color--form-requiredFieldAsterisk: #{color(warning, light)};
-  --lcc-color--form-requiredFieldText: #{color(grayscale, white-85)};
+  --lcc-color--form-requiredFieldText: #{color(grayscale, gray-75)};
+  --lcc-color--form-safeModeNoticeText: #{color(grayscale, gray-75)};
 
   --lcc-color--gameArchivesScreen-chartLabel: #{color(grayscale, white-90)};
   --lcc-color--gameArchivesScreen-filterContainerBackground: #{color(grayscale, black-15)};
@@ -269,10 +270,6 @@
   --lcc-color--table-rowBackgroundOdd: #{color(grayscale, gray-32)};
   --lcc-color--table-rowForeground: #{color(grayscale, white-90)};
 
-  --lcc-color--themeToggle-sliderBackgroundWhenOn: #{color(grayscale, gray-35)};
-  --lcc-color--themeToggle-sliderBackgroundWhenOff: #{color(grayscale, gray-25)};
-  --lcc-color--themeToggle-slider: #{color(grayscale, white-90)};
-
   --lcc-color--toast-boxShadow: #{color(grayscale, gray-35, 0.7)};
   --lcc-color--toast-icon: #{color(grayscale, black-2)};
   --lcc-color--toast-infoBackground: #{color(info, light)};
@@ -280,6 +277,10 @@
   --lcc-color--toast-secondaryText: #{color(grayscale, black-15)};
   --lcc-color--toast-successBackground: #{color(success, light)};
   --lcc-color--toast-warningBackground: #{color(warning, lightest)};
+
+  --lcc-color--toggleSwitch-sliderBackgroundWhenOn: #{color(grayscale, gray-35)};
+  --lcc-color--toggleSwitch-sliderBackgroundWhenOff: #{color(grayscale, gray-25)};
+  --lcc-color--toggleSwitch-slider: #{color(grayscale, white-90)};
 
   --lcc-color--tooltip-background: #{color(tooltip, light)};
   --lcc-color--tooltip-border: #{color(tooltip)};

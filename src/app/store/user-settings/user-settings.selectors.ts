@@ -13,6 +13,11 @@ export const isDarkMode = createSelector(
   state => state.isDarkMode,
 );
 
+export const isSafeMode = createSelector(
+  userSettingsFeatureSelector,
+  state => state.isSafeMode,
+);
+
 export const showUpcomingEventBanner = createSelector(
   userSettingsFeatureSelector,
   state => state.showUpcomingEventBanner,
@@ -20,5 +25,5 @@ export const showUpcomingEventBanner = createSelector(
 
 export const bannerLastCleared = createSelector(
   userSettingsFeatureSelector,
-  state => state.bannerlastCleared,
+  state => state.bannerLastCleared,
 );

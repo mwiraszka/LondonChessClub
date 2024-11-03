@@ -2,7 +2,7 @@
 
 $border-thickness: 1px;
 $dropdown-tab-width: 60px;
-$dropdown-list-width: 170px;
+$dropdown-list-width: 180px;
 $nav-height: 42px;
 
 :host {
@@ -169,11 +169,18 @@ i-feather {
           margin: 4px 4px 0;
         }
 
-        &.theme-toggle {
+        &.theme-toggle,
+        &.safe-mode-toggle {
+          display: flex;
+          justify-content: space-between;
           margin-top: 2px;
 
           span {
             padding-right: 8px !important;
+          }
+
+          lcc-toggle-switch {
+            padding-right: 16px;
           }
         }
 

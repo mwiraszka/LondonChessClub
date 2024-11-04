@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
@@ -9,7 +8,12 @@ import { Injectable } from '@angular/core';
 
 import { ArticlesService, ImagesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import type { Article, ModificationInfo, ServiceResponse } from '@app/types';
+import {
+  type Article,
+  ControlModes,
+  type ModificationInfo,
+  type ServiceResponse,
+} from '@app/types';
 import { isDefined } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
@@ -175,9 +179,21 @@ export class ArticlesEffects {
     );
   });
 
+  updateArticleInArticleViewer$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.fetchArticleSucceeded),
+      map(({ article }) =>
+        ArticlesActions.setArticle({
+          article,
+          controlMode: ControlModes.VIEW,
+        }),
+      ),
+    );
+  });
+
   requestImageUrl$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.fetchArticleSucceeded, ArticlesActions.setArticle),
+      ofType(ArticlesActions.setArticle),
       map(({ article }) => article.imageId),
       filter(isDefined),
       map(imageId => ArticlesActions.getArticleImageUrlRequested({ imageId })),

@@ -44,7 +44,8 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 v4.1.5 - November 3rd, 2024
 </summary>
 
-- 🚀 Add ability to show/hide sensitive information when logged in as admin wherever personal details may be displayed 
+- 🚀 Add ability to show/hide sensitive information when logged in as admin wherever personal details may be displayed
+- 🐛 Always fetch the latest article whenever the Article Viewer page is refreshed
 
 </details>
 

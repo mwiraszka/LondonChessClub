@@ -52,22 +52,8 @@ export class NavEffects {
       ofType(routerNavigatedAction),
       filter(({ payload }) => payload.event.url.startsWith('/article/view/')),
       map(({ payload }) => {
-        const currentPath = payload.event.url;
-        const articleId = currentPath.split('/article/view/')[1].split('#')[0];
-        return { currentPath, articleId };
-      }),
-      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-      filter(([{ currentPath }, previousPath]) => currentPath !== previousPath),
-      concatLatestFrom(([{ articleId }]) =>
-        this.store.select(ArticlesSelectors.articleById(articleId)),
-      ),
-      map(([[{ articleId }], articleInStore]) => {
-        return articleInStore
-          ? ArticlesActions.setArticle({
-              article: articleInStore,
-              controlMode: ControlModes.VIEW,
-            })
-          : ArticlesActions.fetchArticleRequested({ articleId });
+        const articleId = payload.event.url.split('/article/view/')[1].split('#')[0];
+        return ArticlesActions.fetchArticleRequested({ articleId });
       }),
     ),
   );

@@ -1,7 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { type Article, ControlModes, type Url } from '@app/types';
-import { customSort } from '@app/utils';
+import type { Article, ControlModes, Url } from '@app/types';
 
 import * as ArticlesActions from './articles.actions';
 import { ArticlesState, initialState } from './articles.state';
@@ -9,23 +8,42 @@ import { ArticlesState, initialState } from './articles.state';
 const articlesReducer = createReducer(
   initialState,
 
-  on(ArticlesActions.setArticle, (state, { article, controlMode }) => ({
+  on(ArticlesActions.articleAddRequested, state => ({
     ...state,
-    selectedArticle: article,
-    formArticle: controlMode === ControlModes.VIEW ? null : article,
-    controlMode,
+    controlMode: 'add' as ControlModes,
+  })),
+
+  on(ArticlesActions.articleEditRequested, state => ({
+    ...state,
+    controlMode: 'edit' as ControlModes,
+  })),
+
+  on(ArticlesActions.articleViewRequested, state => ({
+    ...state,
+    controlMode: 'view' as ControlModes,
+  })),
+
+  on(ArticlesActions.articleSet, (state, { article }) => ({
+    ...state,
+    setArticle: article,
+  })),
+
+  on(ArticlesActions.articleUnset, state => ({
+    ...state,
+    setArticle: null,
   })),
 
   on(
     ArticlesActions.cancelSelected,
     ArticlesActions.fetchArticleFailed,
+    ArticlesActions.fetchArticlesFailed,
     ArticlesActions.deleteArticleFailed,
     ArticlesActions.deleteArticleCancelled,
     state => ({
       ...state,
-      selectedArticle: null,
+      setArticle: null,
       formArticle: null,
-      controlMode: ControlModes.VIEW,
+      controlMode: 'view' as ControlModes,
     }),
   ),
 
@@ -34,60 +52,62 @@ const articlesReducer = createReducer(
     ArticlesActions.updateArticleSucceeded,
     (state, { article }) => ({
       ...state,
-      articles: getSortedArticles([
-        ...state.articles.filter(storedArticle => storedArticle.id !== article.id),
-        article,
-      ]),
-      selectedArticle: null,
+      articles: [
+        ...state.articles.map(storedArticle =>
+          storedArticle.id === article.id ? article : storedArticle,
+        ),
+      ],
+      setArticle: null,
       formArticle: null,
-      controlMode: ControlModes.VIEW,
+      controlMode: 'view' as ControlModes,
     }),
   ),
 
   on(ArticlesActions.fetchArticleSucceeded, (state, { article }) => ({
     ...state,
     articles: [
-      ...state.articles.filter(storedArticle => storedArticle.id !== article.id),
-      article,
+      ...state.articles.map(storedArticle =>
+        storedArticle.id === article.id ? article : storedArticle,
+      ),
     ],
   })),
 
   on(ArticlesActions.getArticleImageUrlSucceeded, (state, { imageUrl }) => ({
     ...state,
-    selectedArticle: updateSelectedArticleForImageUrlChange(state, imageUrl),
+    setArticle: updateSetArticleForImageUrlChange(state, imageUrl),
     formArticle: state.formArticle ? { ...state.formArticle, imageUrl } : null,
   })),
 
   on(ArticlesActions.getArticleImageFileSucceeded, (state, { imageFile }) => ({
     ...state,
-    selectedArticle: updateSelectedArticleForImageFileChange(state, imageFile),
+    setArticle: updateSetArticleForImageFileChange(state, imageFile),
     formArticle: state.formArticle ? { ...state.formArticle, imageFile } : null,
   })),
 
-  on(ArticlesActions.revertArticleImageChange, state => ({
+  on(ArticlesActions.articleImageChangeReverted, state => ({
     ...state,
     formArticle: {
       ...state.formArticle!,
-      imageFile: state.selectedArticle?.imageFile ?? null,
-      imageUrl: state.selectedArticle?.imageUrl ?? null,
+      imageFile: state.setArticle?.imageFile ?? null,
+      imageUrl: state.setArticle?.imageUrl ?? null,
     },
   })),
 
   on(ArticlesActions.getArticleThumbnailImageUrlsSucceeded, (state, { articles }) => ({
     ...state,
-    articles: getSortedArticles(articles),
+    articles,
   })),
 
   on(ArticlesActions.deleteArticleSelected, (state, { article }) => ({
     ...state,
-    selectedArticle: article,
+    setArticle: article,
   })),
 
   on(ArticlesActions.deleteArticleSucceeded, (state, { article }) => ({
     ...state,
     articles: state.articles.filter(storedArticle => storedArticle.id !== article.id),
     formArticle: null,
-    selectedArticle: null,
+    setArticle: null,
   })),
 
   on(ArticlesActions.formDataChanged, (state, { article }) => ({
@@ -100,45 +120,34 @@ export function reducer(state: ArticlesState, action: Action): ArticlesState {
   return articlesReducer(state, action);
 }
 
-function getSortedArticles(articles: Article[]): Article[] {
-  const stickyArticles = articles
-    .filter(article => article.isSticky)
-    .sort(customSort('modificationInfo.dateCreated', false));
-  const remainingArticles = articles
-    .filter(article => !article.isSticky)
-    .sort(customSort('modificationInfo.dateCreated', false));
-
-  return [...stickyArticles, ...remainingArticles];
-}
-
 /**
- * If an image URL key exists in local storage, update the 'selectedArticle' value so
+ * If an image URL key exists in local storage, update the 'setArticle' value so
  * that the image change can be recognized as an unsaved change, to enable the unsaved
  * change modal that opens if the user tries to leave the route
  */
-function updateSelectedArticleForImageUrlChange(
+function updateSetArticleForImageUrlChange(
   state: ArticlesState,
   imageUrl: Url,
 ): Article | null {
   // eslint-disable-next-line no-prototype-builtins
   return localStorage.hasOwnProperty('imageUrl')
-    ? state.selectedArticle
-    : state.selectedArticle
-      ? { ...state.selectedArticle, imageUrl }
+    ? state.setArticle
+    : state.setArticle
+      ? { ...state.setArticle, imageUrl }
       : null;
 }
 
 /**
- * Same as for image URLs. See: {@link updateSelectedArticleForImageUrlChange}
+ * Same as for image URLs. See: {@link updateSetArticleForImageUrlChange}
  */
-function updateSelectedArticleForImageFileChange(
+function updateSetArticleForImageFileChange(
   state: ArticlesState,
   imageFile: File,
 ): Article | null {
   // eslint-disable-next-line no-prototype-builtins
   return localStorage.hasOwnProperty('imageUrl')
-    ? state.selectedArticle
-    : state.selectedArticle
-      ? { ...state.selectedArticle, imageFile }
+    ? state.setArticle
+    : state.setArticle
+      ? { ...state.setArticle, imageFile }
       : null;
 }

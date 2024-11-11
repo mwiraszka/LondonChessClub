@@ -8,11 +8,12 @@ import { Injectable } from '@angular/core';
 
 import { ArticlesService, ImagesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
+import { NavSelectors } from '@app/store/nav';
 import {
   type Article,
-  ControlModes,
   type ModificationInfo,
   type ServiceResponse,
+  newArticleFormTemplate,
 } from '@app/types';
 import { isDefined } from '@app/utils';
 
@@ -40,9 +41,25 @@ export class ArticlesEffects {
     );
   });
 
+  setArticleForArticleAdd$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ArticlesActions.articleAddRequested),
+      concatLatestFrom(() => [
+        this.store.select(NavSelectors.previousPath),
+        this.store.select(ArticlesSelectors.formArticle),
+      ]),
+      map(([, previousPath, formArticle]) => {
+        return previousPath === '/article/add' &&
+          (formArticle?.imageUrl || localStorage.getItem('imageUrl'))
+          ? ArticlesActions.getArticleImageUrlRequested({})
+          : ArticlesActions.articleSet({ article: newArticleFormTemplate });
+      }),
+    ),
+  );
+
   fetchArticle$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.fetchArticleRequested),
+      ofType(ArticlesActions.articleViewRequested, ArticlesActions.articleEditRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ articleId }) =>
         this.articlesService.getArticle(articleId).pipe(
@@ -128,7 +145,7 @@ export class ArticlesEffects {
   deleteArticle$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleConfirmed),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.selectedArticle)),
+      concatLatestFrom(() => this.store.select(ArticlesSelectors.setArticle)),
       tap(() => this.loaderService.setIsLoading(true)),
       filter(([, articleToDelete]) => !!articleToDelete),
       switchMap(([, articleToDelete]) =>
@@ -179,21 +196,9 @@ export class ArticlesEffects {
     );
   });
 
-  updateArticleInArticleViewer$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.fetchArticleSucceeded),
-      map(({ article }) =>
-        ArticlesActions.setArticle({
-          article,
-          controlMode: ControlModes.VIEW,
-        }),
-      ),
-    );
-  });
-
   requestImageUrl$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.setArticle),
+      ofType(ArticlesActions.articleSet),
       map(({ article }) => article.imageId),
       filter(isDefined),
       map(imageId => ArticlesActions.getArticleImageUrlRequested({ imageId })),

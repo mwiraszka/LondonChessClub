@@ -24,7 +24,7 @@ export class ArticleFormFacade {
   }
 
   onRevert(): void {
-    this.store.dispatch(ArticlesActions.revertArticleImageChange());
+    this.store.dispatch(ArticlesActions.articleImageChangeReverted());
   }
 
   onSubmit(article: Article): void {

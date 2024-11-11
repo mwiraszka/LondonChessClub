@@ -12,13 +12,11 @@ import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { MembersActions, MembersSelectors } from '@app/store/members';
 import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
 import {
-  ControlModes,
   NavPathTypes,
-  newArticleFormTemplate,
   newClubEventFormTemplate,
   newMemberFormTemplate,
 } from '@app/types';
-import { isValidArticleId, isValidEventId, isValidMemberId } from '@app/utils';
+import { isValidEventId, isValidMemberId } from '@app/utils';
 
 import { NavSelectors } from '.';
 import * as NavActions from './nav.actions';
@@ -47,63 +45,30 @@ export class NavEffects {
     ),
   );
 
-  handleArticleViewRouteNavigation$ = createEffect(() =>
+  handleArticleRouteNavigation$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
-      filter(({ payload }) => payload.event.url.startsWith('/article/view/')),
-      map(({ payload }) => {
-        const articleId = payload.event.url.split('/article/view/')[1].split('#')[0];
-        return ArticlesActions.fetchArticleRequested({ articleId });
-      }),
-    ),
-  );
-
-  handleArticleAddRouteNavigation$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      filter(({ payload }) => payload.event.url === '/article/add'),
-      concatLatestFrom(() => [
-        this.store.select(NavSelectors.previousPath),
-        this.store.select(ArticlesSelectors.formArticle),
-      ]),
-      map(([, previousPath, formArticle]) => {
-        return previousPath === '/article/add' &&
-          (formArticle?.imageUrl || localStorage.getItem('imageUrl'))
-          ? ArticlesActions.getArticleImageUrlRequested({})
-          : ArticlesActions.setArticle({
-              article: newArticleFormTemplate,
-              controlMode: ControlModes.ADD,
-            });
-      }),
-    ),
-  );
-
-  handleArticleEditRouteNavigation$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      filter(({ payload }) => payload.event.url.startsWith('/article/edit/')),
       map(({ payload }) => payload.event.url),
-      concatLatestFrom(currentPath => [
-        this.store.select(
-          ArticlesSelectors.articleById(currentPath.split('/article/edit/')[1]),
-        ),
-        this.store.select(NavSelectors.previousPath),
-      ]),
-      map(([currentPath, articleInStore, previousPath]) => {
-        const articleId = currentPath.split('/article/edit/')[1];
-        if (currentPath === previousPath && articleInStore?.imageId) {
-          return ArticlesActions.getArticleImageUrlRequested({
-            imageId: articleInStore.imageId,
-          });
-        } else if (articleInStore) {
-          return ArticlesActions.setArticle({
-            article: articleInStore,
-            controlMode: ControlModes.EDIT,
-          });
-        } else if (isValidArticleId(articleId)) {
-          return ArticlesActions.fetchArticleRequested({ articleId });
-        } else {
+      filter(currentPath => currentPath.startsWith('/article/')),
+      map(currentPath => {
+        const [controlMode, articleIdWithAnchor] = currentPath
+          .split('/article/')[1]
+          .split('/');
+        const articleId = articleIdWithAnchor.split('#')[0];
+
+        if (controlMode === 'add' && !!articleId) {
           return NavActions.navigationRequested({ path: NavPathTypes.NEWS });
+        }
+
+        switch (controlMode) {
+          case 'add':
+            return ArticlesActions.articleAddRequested();
+          case 'edit':
+            return ArticlesActions.articleEditRequested({ articleId });
+          case 'view':
+            return ArticlesActions.articleViewRequested({ articleId });
+          default:
+            return NavActions.navigationRequested({ path: NavPathTypes.NEWS });
         }
       }),
     ),
@@ -126,6 +91,23 @@ export class NavEffects {
     { dispatch: false },
   );
 
+  clearSetArticle$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
+      map(([{ payload }, previousPath]) => {
+        return { currentPath: payload.event.url, previousPath };
+      }),
+      filter(({ currentPath, previousPath }) => {
+        return (
+          !!previousPath?.startsWith('/article/') &&
+          (!currentPath?.startsWith('/article/edit') || currentPath !== '/article/add')
+        );
+      }),
+      map(() => ArticlesActions.articleUnset()),
+    ),
+  );
+
   handleMemberAddRouteNavigation$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
@@ -135,7 +117,7 @@ export class NavEffects {
       map(() =>
         MembersActions.setMember({
           member: newMemberFormTemplate,
-          controlMode: ControlModes.ADD,
+          controlMode: 'add',
         }),
       ),
     ),
@@ -155,7 +137,7 @@ export class NavEffects {
         if (memberInStore) {
           return MembersActions.setMember({
             member: memberInStore,
-            controlMode: ControlModes.EDIT,
+            controlMode: 'edit',
           });
         } else if (isValidMemberId(memberId)) {
           return MembersActions.fetchMemberRequested({ memberId });
@@ -175,7 +157,7 @@ export class NavEffects {
       map(() =>
         ScheduleActions.setEvent({
           event: newClubEventFormTemplate,
-          controlMode: ControlModes.ADD,
+          controlMode: 'add',
         }),
       ),
     ),
@@ -195,7 +177,7 @@ export class NavEffects {
         if (eventInStore) {
           return ScheduleActions.setEvent({
             event: eventInStore,
-            controlMode: ControlModes.EDIT,
+            controlMode: 'edit',
           });
         } else if (isValidEventId(eventId)) {
           return ScheduleActions.fetchEventRequested({ eventId });
@@ -288,7 +270,7 @@ export class NavEffects {
       concatLatestFrom(() => this.store.select(ArticlesSelectors.controlMode)),
       map(([{ article }, controlMode]) => {
         const path =
-          controlMode === ControlModes.EDIT
+          controlMode === 'edit'
             ? NavPathTypes.ARTICLE + '/' + NavPathTypes.EDIT + '/' + article.id
             : NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + article.id;
         return NavActions.navigationRequested({ path });

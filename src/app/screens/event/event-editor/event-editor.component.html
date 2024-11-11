@@ -2,7 +2,7 @@
   <lcc-screen-header
     [hasUnsavedChanges]="(facade.hasUnsavedChanges$ | async) ?? undefined"
     [title]="
-      (facade.controlMode$ | async) === ControlModes.EDIT
+      (facade.controlMode$ | async) === 'edit'
         ? 'Edit ' + (facade.selectedEventTitle$ | async)
         : 'Create an event'
     ">

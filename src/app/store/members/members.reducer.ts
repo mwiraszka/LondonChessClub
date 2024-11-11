@@ -25,7 +25,7 @@ const membersReducer = createReducer(
       ...state,
       selectedMember: null,
       formMember: null,
-      controlMode: ControlModes.VIEW,
+      controlMode: 'view' as ControlModes,
     }),
   ),
 
@@ -37,7 +37,7 @@ const membersReducer = createReducer(
 
   on(MembersActions.fetchMemberRequested, state => ({
     ...state,
-    controlMode: ControlModes.EDIT,
+    controlMode: 'edit' as ControlModes,
   })),
 
   on(MembersActions.fetchMembersSucceeded, (state, { members }) => ({

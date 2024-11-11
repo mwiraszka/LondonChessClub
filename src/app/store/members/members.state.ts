@@ -16,7 +16,7 @@ export const initialState: MembersState = {
   members: [],
   selectedMember: null,
   formMember: null,
-  controlMode: ControlModes.VIEW,
+  controlMode: 'view',
   sortedBy: 'rating',
   isAscending: false,
   pageNum: 1,

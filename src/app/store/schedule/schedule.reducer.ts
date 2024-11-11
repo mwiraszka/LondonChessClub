@@ -26,7 +26,7 @@ const scheduleReducer = createReducer(
       ...state,
       selectedEvent: null,
       formEvent: null,
-      controlMode: ControlModes.VIEW,
+      controlMode: 'view' as ControlModes,
     }),
   ),
 
@@ -49,7 +49,7 @@ const scheduleReducer = createReducer(
 
   on(ScheduleActions.fetchEventRequested, state => ({
     ...state,
-    controlMode: ControlModes.EDIT,
+    controlMode: 'edit' as ControlModes,
   })),
 
   on(ScheduleActions.fetchEventSucceeded, (state, { event }) => ({

@@ -179,6 +179,16 @@ i-feather {
             padding-right: 8px !important;
           }
 
+          .safe-mode-toggle-container {
+            padding-right: 8px !important;
+            display: flex;
+            align-items: center;
+
+            .safe-mode-off-alert-icon {
+              color: var(--lcc-color--nav-safeModeOffAlertIcon);
+            }
+          }
+
           lcc-toggle-switch {
             padding-right: 16px;
           }

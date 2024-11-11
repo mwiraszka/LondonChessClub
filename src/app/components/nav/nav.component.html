@@ -108,22 +108,31 @@
           <span>Theme</span>
           <lcc-toggle-switch
             [condition]="facade.isDarkMode$ | async"
-            [tooltipTextWhenOff]="'Switch to light mode'"
-            [tooltipTextWhenOn]="'Switch to dark mode'"
+            [tooltipTextWhenOff]="'Switch to dark mode'"
+            [tooltipTextWhenOn]="'Switch to light mode'"
             (toggle)="facade.onToggleTheme()">
           </lcc-toggle-switch>
         </li>
 
         @if (facade.user$ | async; as user) {
           <li class="dropdown-item safe-mode-toggle">
-            <span>Safe mode</span>
+            <div class="safe-mode-toggle-container">
+              <span>Safe mode</span>
+              @if (!(facade.isSafeMode$ | async)) {
+                <i-feather
+                  name="alert-triangle"
+                  class="safe-mode-off-alert-icon"
+                  tooltip="Safe mode is turned off">
+                </i-feather>
+              }
+            </div>
             <lcc-toggle-switch
               [condition]="facade.isSafeMode$ | async"
               [tooltipTextWhenOff]="
-                'Show members\' emails, phone numbers and year of birth on screen'
+                'Hide members\' emails, phone numbers and year of birth on screen'
               "
               [tooltipTextWhenOn]="
-                'Hide members\' emails, phone numbers and year of birth from screen'
+                'Show members\' emails, phone numbers and year of birth from screen'
               "
               (toggle)="facade.onToggleSafeMode()">
             </lcc-toggle-switch>

@@ -13,7 +13,7 @@ export const initialState: ScheduleState = {
   events: [],
   selectedEvent: null,
   formEvent: null,
-  controlMode: ControlModes.VIEW,
+  controlMode: 'view',
   nextEventId: null,
   showPastEvents: false,
 };

@@ -194,7 +194,7 @@ export class ModalEffects {
   openUpdateArticleModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleSelected),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.selectedArticle)),
+      concatLatestFrom(() => this.store.select(ArticlesSelectors.setArticle)),
       map(([, originalArticle]) => {
         const modal: Modal = {
           title: 'Confirm article update',

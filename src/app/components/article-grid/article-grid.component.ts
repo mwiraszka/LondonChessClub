@@ -3,6 +3,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Article, type Link, NavPathTypes } from '@app/types';
+import { customSort } from '@app/utils';
 
 import { ArticleGridFacade } from './article-grid.facade';
 
@@ -32,8 +33,26 @@ export class ArticleGridComponent implements OnInit {
     this.facade.fetchArticles();
 
     this.facade.articles$.pipe(untilDestroyed(this)).subscribe(articles => {
-      this.articles = articles.slice(0, this.maxArticles ?? articles.length);
+      this.articles = this.sortArticles(articles).slice(
+        0,
+        this.maxArticles ?? articles.length,
+      );
     });
+  }
+
+  sortArticles(articles: Article[] | undefined): Article[] {
+    if (!articles?.length) {
+      return [];
+    }
+
+    const stickyArticles = articles
+      .filter(article => article.isSticky)
+      .sort(customSort('modificationInfo.dateCreated', false));
+    const remainingArticles = articles
+      .filter(article => !article.isSticky)
+      .sort(customSort('modificationInfo.dateCreated', false));
+
+    return [...stickyArticles, ...remainingArticles];
   }
 
   wasEdited(article: Article): boolean {

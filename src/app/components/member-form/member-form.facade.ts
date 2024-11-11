@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 
 import { MembersActions, MembersSelectors } from '@app/store/members';
 import { UserSettingsSelectors } from '@app/store/user-settings';
-import { ControlModes, type Member } from '@app/types';
+import type { Member } from '@app/types';
 
 @Injectable()
 export class MemberFormFacade {
@@ -25,7 +25,7 @@ export class MemberFormFacade {
     this.controlMode$
       .pipe(
         map(controlMode =>
-          controlMode === ControlModes.EDIT
+          controlMode === 'edit'
             ? this.store.dispatch(
                 MembersActions.updateMemberSelected({
                   member,

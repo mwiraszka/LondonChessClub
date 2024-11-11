@@ -4,7 +4,6 @@ import { combineLatest } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 import { MetaAndTitleService } from '@app/services';
-import { ControlModes } from '@app/types';
 
 import { MemberEditorFacade } from './member-editor.facade';
 
@@ -16,7 +15,6 @@ import { MemberEditorFacade } from './member-editor.facade';
   providers: [MemberEditorFacade],
 })
 export class MemberEditorComponent implements OnInit {
-  readonly ControlModes = ControlModes;
   constructor(
     public facade: MemberEditorFacade,
     private metaAndTitleService: MetaAndTitleService,
@@ -27,9 +25,7 @@ export class MemberEditorComponent implements OnInit {
       .pipe(untilDestroyed(this))
       .subscribe(([memberName, controlMode]) => {
         const screenTitle =
-          controlMode === ControlModes.EDIT && memberName
-            ? `Edit ${memberName}`
-            : 'Add a member';
+          controlMode === 'edit' && memberName ? `Edit ${memberName}` : 'Add a member';
         this.metaAndTitleService.updateTitle(screenTitle);
         this.metaAndTitleService.updateDescription(
           `${screenTitle} for the London Chess Club.`,

@@ -61,8 +61,6 @@ export class ArticleFormComponent implements OnInit {
       const imageFile = fileInputElement.files[0];
       fileInputElement.value = '';
 
-      this.imagesService.storeImageDataUrlInLocalStorage(imageFile);
-
       this.form.patchValue({
         imageFile,
         imageUrl: URL.createObjectURL(imageFile),
@@ -71,7 +69,6 @@ export class ArticleFormComponent implements OnInit {
   }
 
   onRevert(): void {
-    localStorage.removeItem('imageUrl');
     this.form.controls['imageFile'].markAsTouched();
     this.facade.onRevert();
   }

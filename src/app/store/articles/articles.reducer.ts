@@ -1,11 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import {
-  type Article,
-  type ControlModes,
-  type Url,
-  newArticleFormTemplate,
-} from '@app/types';
+import { type ControlModes, newArticleFormTemplate } from '@app/types';
 
 import * as ArticlesActions from './articles.actions';
 import { ArticlesState, initialState } from './articles.state';
@@ -75,13 +70,13 @@ const articlesReducer = createReducer(
 
   on(ArticlesActions.getArticleImageUrlSucceeded, (state, { imageUrl }) => ({
     ...state,
-    setArticle: updateSetArticleForImageUrlChange(state, imageUrl),
+    setArticle: state.formArticle ? { ...state.formArticle, imageUrl } : null,
     formArticle: state.formArticle ? { ...state.formArticle, imageUrl } : null,
   })),
 
   on(ArticlesActions.getArticleImageFileSucceeded, (state, { imageFile }) => ({
     ...state,
-    setArticle: updateSetArticleForImageFileChange(state, imageFile),
+    setArticle: state.formArticle ? { ...state.formArticle, imageFile } : null,
     formArticle: state.formArticle ? { ...state.formArticle, imageFile } : null,
   })),
 
@@ -119,36 +114,4 @@ const articlesReducer = createReducer(
 
 export function reducer(state: ArticlesState, action: Action): ArticlesState {
   return articlesReducer(state, action);
-}
-
-/**
- * If an image URL key exists in local storage, update the 'setArticle' value so
- * that the image change can be recognized as an unsaved change, to enable the unsaved
- * change modal that opens if the user tries to leave the route
- */
-function updateSetArticleForImageUrlChange(
-  state: ArticlesState,
-  imageUrl: Url,
-): Article | null {
-  // eslint-disable-next-line no-prototype-builtins
-  return localStorage.hasOwnProperty('imageUrl')
-    ? state.setArticle
-    : state.setArticle
-      ? { ...state.setArticle, imageUrl }
-      : null;
-}
-
-/**
- * Same as for image URLs. See: {@link updateSetArticleForImageUrlChange}
- */
-function updateSetArticleForImageFileChange(
-  state: ArticlesState,
-  imageFile: File,
-): Article | null {
-  // eslint-disable-next-line no-prototype-builtins
-  return localStorage.hasOwnProperty('imageUrl')
-    ? state.setArticle
-    : state.setArticle
-      ? { ...state.setArticle, imageFile }
-      : null;
 }

@@ -91,17 +91,7 @@ export class ImagesService {
     });
   }
 
-  getArticleImageUrl(
-    imageId?: string,
-    hydrateFromLocalStorage = false,
-  ): Observable<ServiceResponse<Url>> {
-    if (hydrateFromLocalStorage) {
-      const storedImageUrl = localStorage.getItem('imageUrl');
-      if (storedImageUrl) {
-        return of({ payload: storedImageUrl });
-      }
-    }
-
+  getArticleImageUrl(imageId?: string): Observable<ServiceResponse<Url>> {
     if (!imageId) {
       return of({
         error: new Error('No image ID and could not find image URL in local storage'),
@@ -139,15 +129,6 @@ export class ImagesService {
         }),
       ),
     );
-  }
-
-  storeImageDataUrlInLocalStorage(file: File): void {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload = () => {
-      const imageUrl = fileReader.result as string;
-      localStorage.setItem('imageUrl', imageUrl);
-    };
   }
 
   private async buildImageFileFromUrl(url: Url): Promise<File> {

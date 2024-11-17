@@ -165,23 +165,6 @@ export class NavEffects {
     ),
   );
 
-  clearArticleImageUrlFromLocalStorage$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(routerNavigatedAction),
-        concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-        tap(([{ payload }, previousPath]) => {
-          if (
-            payload.event.url !== previousPath &&
-            (previousPath?.startsWith('/article/edit') || previousPath === '/article/add')
-          ) {
-            localStorage.removeItem('imageUrl');
-          }
-        }),
-      ),
-    { dispatch: false },
-  );
-
   unsetArticle$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),

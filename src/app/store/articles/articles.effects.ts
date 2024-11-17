@@ -186,11 +186,7 @@ export class ArticlesEffects {
   getImageUrl$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.getArticleImageUrlRequested),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.controlMode)),
-      switchMap(([{ imageId }, controlMode]) => {
-        const hydrateFromLocalStorage = controlMode !== 'view';
-        return this.imagesService.getArticleImageUrl(imageId, hydrateFromLocalStorage);
-      }),
+      switchMap(({ imageId }) => this.imagesService.getArticleImageUrl(imageId)),
       map(response =>
         response.error
           ? ArticlesActions.getArticleImageUrlFailed({ error: response.error })

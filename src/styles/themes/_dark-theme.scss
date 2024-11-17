@@ -70,10 +70,10 @@
   --lcc-color--clubSummary-addressAndTimeContainerBorder: #{color(grayscale, gray-25)};
   --lcc-color--clubSummary-addressAndTimeContainerForeground: #{color(grayscale, white-85)};
 
-  --lcc-color--contentPlaceholder-background: #{color(grayscale, white-85)};
-  --lcc-color--contentPlaceholder-foreground1: #{color(grayscale, white-85, 0.05)};
-  --lcc-color--contentPlaceholder-foreground2: #{color(grayscale, white-85, 0.3)};
-  --lcc-color--contentPlaceholder-foreground3: #{color(grayscale, white-85, 0.6)};
+  --lcc-color--contentPlaceholder-background: #{color(grayscale, gray-75)};
+  --lcc-color--contentPlaceholder-foreground1: #{color(grayscale, gray-65, 0.05)};
+  --lcc-color--contentPlaceholder-foreground2: #{color(grayscale, gray-65, 0.3)};
+  --lcc-color--contentPlaceholder-foreground3: #{color(grayscale, gray-65, 0.6)};
 
   --lcc-color--documentsScreen-documentLabelOnHover: #{color(primary, lighter)};
   --lcc-color--documentsScreen-downloadLinkOnHover: #{color(primary, lighter)};

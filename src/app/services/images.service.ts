@@ -77,7 +77,13 @@ export class ImagesService {
     );
   }
 
-  sendPreflightRequest(imageId: string): Observable<string> {
+  getArticleImageUrl(imageId?: string | null): Observable<ServiceResponse<Url>> {
+    if (!imageId) {
+      return of({
+        error: new Error('Article does not contain an image ID'),
+      });
+    }
+
     const headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
@@ -85,35 +91,19 @@ export class ImagesService {
       'Access-Control-Max-Age': '86400',
     });
 
-    return this.http.options(this.API_ENDPOINT + imageId, {
-      headers,
-      responseType: 'text',
-    });
-  }
-
-  getArticleImageUrl(imageId?: string): Observable<ServiceResponse<Url>> {
-    if (!imageId) {
-      return of({
-        error: new Error('No image ID and could not find image URL in local storage'),
-      });
-    }
-
-    return this.sendPreflightRequest(imageId).pipe(
-      switchMap(() => {
-        return this.http
-          .get<ServiceResponse<Url>>(this.API_ENDPOINT + imageId)
-          .pipe(
-            catchError(() =>
-              of({ error: new Error('Failed to get image presigned URL') }),
-            ),
-          );
-      }),
-      catchError(() =>
-        of({
-          error: new Error('Failed while attempting to send preflight request'),
-        }),
-      ),
-    );
+    return this.http
+      .options(this.API_ENDPOINT + imageId, {
+        headers,
+        responseType: 'text',
+      })
+      .pipe(
+        switchMap(() => this.http.get<ServiceResponse<Url>>(this.API_ENDPOINT + imageId)),
+        catchError(() =>
+          of({
+            error: new Error('Failed to get image presigned URL'),
+          }),
+        ),
+      );
   }
 
   getArticleImageFile(imageUrl: Url): Observable<ServiceResponse<File>> {

@@ -17,14 +17,14 @@ $fg3: var(--lcc-color--contentPlaceholder-foreground3);
   z-index: 1000;
   left: -45%;
   height: 100%;
-  width: 45%;
+  width: 75%;
   background-image: linear-gradient(to left, $fg1, $fg2, $fg3, $fg2, $fg1);
-  animation: loadingAnimation 1s infinite;
+  animation: loadingAnimation 1.5s infinite;
 }
 
 @keyframes loadingAnimation {
   0% {
-    left: -45%;
+    left: -100%;
   }
   100% {
     left: 100%;

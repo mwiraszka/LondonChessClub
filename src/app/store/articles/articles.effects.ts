@@ -9,7 +9,6 @@ import { Injectable } from '@angular/core';
 import { ArticlesService, ImagesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { type Article, type ModificationInfo, type ServiceResponse } from '@app/types';
-import { isDefined } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
 import * as ArticlesSelectors from './articles.selectors';
@@ -162,38 +161,46 @@ export class ArticlesEffects {
       switchMap(({ articles }) =>
         this.imagesService.getArticleThumbnailImageUrls(articles),
       ),
-      map((response: ServiceResponse<Article[]>) =>
-        response.error
+      map((response: ServiceResponse<Article[]>) => {
+        return response.error
           ? ArticlesActions.getArticleThumbnailImageUrlsFailed({
               error: response.error,
             })
           : ArticlesActions.getArticleThumbnailImageUrlsSucceeded({
               articles: response.payload!,
-            }),
-      ),
+            });
+      }),
     );
   });
 
   requestImageUrl$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticleSucceeded),
-      map(({ article }) => article.imageId),
-      filter(isDefined),
-      map(imageId => ArticlesActions.getArticleImageUrlRequested({ imageId })),
+      map(({ article }) => ArticlesActions.getArticleImageUrlRequested({ article })),
     );
   });
 
   getImageUrl$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.getArticleImageUrlRequested),
-      switchMap(({ imageId }) => this.imagesService.getArticleImageUrl(imageId)),
-      map(response =>
-        response.error
+      switchMap(({ article }) => {
+        return this.imagesService
+          .getArticleImageUrl(article?.imageId)
+          .pipe(
+            map(response =>
+              response.error
+                ? { error: response.error }
+                : { payload: { ...article, imageUrl: response.payload } as Article },
+            ),
+          );
+      }),
+      map(response => {
+        return response.error
           ? ArticlesActions.getArticleImageUrlFailed({ error: response.error })
           : ArticlesActions.getArticleImageUrlSucceeded({
-              imageUrl: response.payload!,
-            }),
-      ),
+              article: response.payload,
+            });
+      }),
     );
   });
 
@@ -202,7 +209,9 @@ export class ArticlesEffects {
       ofType(ArticlesActions.getArticleImageUrlSucceeded),
       concatLatestFrom(() => this.store.select(ArticlesSelectors.controlMode)),
       filter(([, controlMode]) => controlMode !== null),
-      map(([{ imageUrl }]) => ArticlesActions.getArticleImageFileRequested({ imageUrl })),
+      map(([{ article }]) =>
+        ArticlesActions.getArticleImageFileRequested({ imageUrl: article.imageUrl! }),
+      ),
     );
   });
 

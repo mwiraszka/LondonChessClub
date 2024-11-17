@@ -113,11 +113,11 @@ export const getArticleThumbnailImageUrlsFailed = createAction(
 
 export const getArticleImageUrlRequested = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_REQUESTED,
-  props<{ imageId?: string }>(),
+  props<{ article?: Article }>(),
 );
 export const getArticleImageUrlSucceeded = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_SUCCEEDED,
-  props<{ imageUrl: Url }>(),
+  props<{ article: Article }>(),
 );
 export const getArticleImageUrlFailed = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_FAILED,

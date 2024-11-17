@@ -21,10 +21,3 @@ export function generateArticleImageId(articleId: string): string {
 }
 
 export const articleIdRegExp: RegExp = /^art-[0-9]{8}-[a-fA-F0-9]{8}$/;
-
-/**
- * @returns {boolean} Whether the given value is in the valid format
- */
-export function isValidArticleId(value: string): boolean {
-  return new RegExp(articleIdRegExp).test(value);
-}

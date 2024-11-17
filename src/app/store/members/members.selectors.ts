@@ -20,13 +20,10 @@ export const activeMembers = createSelector(membersFeatureSelector, state =>
   state.members.filter(member => member.isActive),
 );
 
-export const selectedMember = createSelector(
-  membersFeatureSelector,
-  state => state.selectedMember,
-);
+export const setMember = createSelector(membersFeatureSelector, state => state.setMember);
 
-export const selectedMemberName = createSelector(
-  selectedMember,
+export const setMemberName = createSelector(
+  setMember,
   member => `${member?.firstName} ${member?.lastName}`,
 );
 
@@ -42,7 +39,7 @@ export const controlMode = createSelector(
 
 export const hasUnsavedChanges = createSelector(
   membersFeatureSelector,
-  state => !areSame(state.formMember, state.selectedMember),
+  state => !areSame(state.formMember, state.setMember),
 );
 
 export const sortedBy = createSelector(membersFeatureSelector, state => state.sortedBy);

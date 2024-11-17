@@ -3,7 +3,9 @@
     [hasUnsavedChanges]="(facade.hasUnsavedChanges$ | async) ?? undefined"
     [title]="
       (facade.controlMode$ | async) === 'edit'
-        ? 'Edit ' + (facade.setArticleTitle$ | async)
+        ? !!(facade.setArticleTitle$ | async)
+          ? 'Edit ' + (facade.setArticleTitle$ | async)
+          : ''
         : 'Create an article'
     ">
   </lcc-screen-header>

@@ -8,13 +8,7 @@ import { Injectable } from '@angular/core';
 
 import { ArticlesService, ImagesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { NavSelectors } from '@app/store/nav';
-import {
-  type Article,
-  type ModificationInfo,
-  type ServiceResponse,
-  newArticleFormTemplate,
-} from '@app/types';
+import { type Article, type ModificationInfo, type ServiceResponse } from '@app/types';
 import { isDefined } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
@@ -41,25 +35,9 @@ export class ArticlesEffects {
     );
   });
 
-  setArticleForArticleAdd$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ArticlesActions.articleAddRequested),
-      concatLatestFrom(() => [
-        this.store.select(NavSelectors.previousPath),
-        this.store.select(ArticlesSelectors.formArticle),
-      ]),
-      map(([, previousPath, formArticle]) => {
-        return previousPath === '/article/add' &&
-          (formArticle?.imageUrl || localStorage.getItem('imageUrl'))
-          ? ArticlesActions.getArticleImageUrlRequested({})
-          : ArticlesActions.articleSet({ article: newArticleFormTemplate });
-      }),
-    ),
-  );
-
   fetchArticle$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.articleViewRequested, ArticlesActions.articleEditRequested),
+      ofType(ArticlesActions.articleEditRequested, ArticlesActions.articleViewRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ articleId }) =>
         this.articlesService.getArticle(articleId).pipe(
@@ -198,7 +176,7 @@ export class ArticlesEffects {
 
   requestImageUrl$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.articleSet),
+      ofType(ArticlesActions.fetchArticleSucceeded),
       map(({ article }) => article.imageId),
       filter(isDefined),
       map(imageId => ArticlesActions.getArticleImageUrlRequested({ imageId })),

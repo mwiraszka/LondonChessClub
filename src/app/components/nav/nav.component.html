@@ -129,10 +129,10 @@
             <lcc-toggle-switch
               [condition]="facade.isSafeMode$ | async"
               [tooltipTextWhenOff]="
-                'Hide members\' emails, phone numbers and year of birth on screen'
+                'Hide members\' emails, phone numbers and year of birth from screen'
               "
               [tooltipTextWhenOn]="
-                'Show members\' emails, phone numbers and year of birth from screen'
+                'Show members\' emails, phone numbers and year of birth on screen'
               "
               (toggle)="facade.onToggleSafeMode()">
             </lcc-toggle-switch>

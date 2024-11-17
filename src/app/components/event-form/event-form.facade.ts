@@ -8,10 +8,10 @@ import type { ClubEvent } from '@app/types';
 
 @Injectable()
 export class EventFormFacade {
-  readonly formEvent$ = this.store.select(ScheduleSelectors.formEvent);
   readonly controlMode$ = this.store.select(ScheduleSelectors.controlMode);
+  readonly formEvent$ = this.store.select(ScheduleSelectors.formEvent);
   readonly hasUnsavedChanges$ = this.store.select(ScheduleSelectors.hasUnsavedChanges);
-  readonly selectedEvent$ = this.store.select(ScheduleSelectors.selectedEvent);
+  readonly setEvent$ = this.store.select(ScheduleSelectors.setEvent);
 
   constructor(private readonly store: Store) {}
 

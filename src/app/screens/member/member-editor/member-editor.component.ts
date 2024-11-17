@@ -21,7 +21,7 @@ export class MemberEditorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    combineLatest([this.facade.selectedMemberName$, this.facade.controlMode$])
+    combineLatest([this.facade.setMemberName$, this.facade.controlMode$])
       .pipe(untilDestroyed(this))
       .subscribe(([memberName, controlMode]) => {
         const screenTitle =

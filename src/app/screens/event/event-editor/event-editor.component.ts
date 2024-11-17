@@ -21,7 +21,7 @@ export class EventEditorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    combineLatest([this.facade.selectedEventTitle$, this.facade.controlMode$])
+    combineLatest([this.facade.setEventTitle$, this.facade.controlMode$])
       .pipe(untilDestroyed(this))
       .subscribe(([eventTitle, controlMode]) => {
         const screenTitle =

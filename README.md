@@ -41,11 +41,12 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
-v4.1.5 - November 3rd, 2024
+v4.1.5 - November 17th, 2024
 </summary>
 
 - 🚀 Add ability to show/hide sensitive information when logged in as admin wherever personal details may be displayed
-- 🐛 Always fetch the latest article whenever the Article Viewer page is refreshed
+- 🐛 Always fetch the latest article, member or club event whenever the corresponding page is refreshed
+- 🔧 Simplify a lot of the logic around fetching and updating articles, members and club events
 
 </details>
 

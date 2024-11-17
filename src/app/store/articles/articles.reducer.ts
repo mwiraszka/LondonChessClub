@@ -1,6 +1,11 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import type { Article, ControlModes, Url } from '@app/types';
+import {
+  type Article,
+  type ControlModes,
+  type Url,
+  newArticleFormTemplate,
+} from '@app/types';
 
 import * as ArticlesActions from './articles.actions';
 import { ArticlesState, initialState } from './articles.state';
@@ -8,8 +13,15 @@ import { ArticlesState, initialState } from './articles.state';
 const articlesReducer = createReducer(
   initialState,
 
+  on(ArticlesActions.fetchArticlesSucceeded, (state, { articles }) => ({
+    ...state,
+    articles,
+  })),
+
   on(ArticlesActions.articleAddRequested, state => ({
     ...state,
+    setArticle: newArticleFormTemplate,
+    formArticle: newArticleFormTemplate,
     controlMode: 'add' as ControlModes,
   })),
 
@@ -31,21 +43,9 @@ const articlesReducer = createReducer(
   on(ArticlesActions.articleUnset, state => ({
     ...state,
     setArticle: null,
+    formArticle: null,
+    controlMode: null,
   })),
-
-  on(
-    ArticlesActions.cancelSelected,
-    ArticlesActions.fetchArticleFailed,
-    ArticlesActions.fetchArticlesFailed,
-    ArticlesActions.deleteArticleFailed,
-    ArticlesActions.deleteArticleCancelled,
-    state => ({
-      ...state,
-      setArticle: null,
-      formArticle: null,
-      controlMode: 'view' as ControlModes,
-    }),
-  ),
 
   on(
     ArticlesActions.publishArticleSucceeded,
@@ -59,7 +59,6 @@ const articlesReducer = createReducer(
       ],
       setArticle: null,
       formArticle: null,
-      controlMode: 'view' as ControlModes,
     }),
   ),
 
@@ -70,6 +69,8 @@ const articlesReducer = createReducer(
         storedArticle.id === article.id ? article : storedArticle,
       ),
     ],
+    setArticle: article,
+    formArticle: state.controlMode === 'edit' ? article : null,
   })),
 
   on(ArticlesActions.getArticleImageUrlSucceeded, (state, { imageUrl }) => ({
@@ -106,8 +107,8 @@ const articlesReducer = createReducer(
   on(ArticlesActions.deleteArticleSucceeded, (state, { article }) => ({
     ...state,
     articles: state.articles.filter(storedArticle => storedArticle.id !== article.id),
-    formArticle: null,
     setArticle: null,
+    formArticle: null,
   })),
 
   on(ArticlesActions.formDataChanged, (state, { article }) => ({

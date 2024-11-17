@@ -4,12 +4,12 @@ export interface ArticlesState {
   articles: Article[];
   setArticle: Article | null;
   formArticle: Article | null;
-  controlMode: ControlModes;
+  controlMode: ControlModes | null;
 }
 
 export const initialState: ArticlesState = {
   articles: [],
   setArticle: null,
   formArticle: null,
-  controlMode: 'view',
+  controlMode: null,
 };

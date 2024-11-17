@@ -9,11 +9,11 @@ import type { Member } from '@app/types';
 
 @Injectable()
 export class MemberFormFacade {
-  readonly hasUnsavedChanges$ = this.store.select(MembersSelectors.hasUnsavedChanges);
   readonly controlMode$ = this.store.select(MembersSelectors.controlMode);
   readonly formMember$ = this.store.select(MembersSelectors.formMember);
-  readonly selectedMember$ = this.store.select(MembersSelectors.selectedMember);
+  readonly hasUnsavedChanges$ = this.store.select(MembersSelectors.hasUnsavedChanges);
   readonly isSafeMode$ = this.store.select(UserSettingsSelectors.isSafeMode);
+  readonly setMember$ = this.store.select(MembersSelectors.setMember);
 
   constructor(private readonly store: Store) {}
 

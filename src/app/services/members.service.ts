@@ -21,16 +21,21 @@ export class MembersService {
     private http: HttpClient,
   ) {}
 
+  // TODO: Improve response typing & error handling
   getMember(id: string): Observable<ServiceResponse<Member>> {
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.get<FlatMember>(this.PRIVATE_API_ENDPOINT + id, {
+        this.http.get<any>(this.PRIVATE_API_ENDPOINT + id, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
         }),
       ),
-      map(member => ({ payload: this.adaptForFrontend([member])[0] })),
+      map(response => {
+        return response?.id
+          ? { payload: this.adaptForFrontend([response])[0] }
+          : { error: new Error('Unable to load member: invalid URL') };
+      }),
       catchError(error =>
         of({ error: new Error(`Failed to fetch member from database: \n${error}`) }),
       ),

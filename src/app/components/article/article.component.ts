@@ -12,7 +12,7 @@ export class ArticleComponent {
 
   @Input() article?: Article;
 
-  wasEdited(article: Article): boolean {
+  wasEdited(article?: Article): boolean {
     if (!article || !article.modificationInfo) {
       return false;
     }

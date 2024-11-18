@@ -1,4 +1,5 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import * as uuid from 'uuid';
 
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -16,6 +17,18 @@ import { ArticleGridFacade } from './article-grid.facade';
 })
 export class ArticleGridComponent implements OnInit {
   readonly FIVE_MINUTES_MS = 300_000;
+  readonly PLACEHOLDER_ARTICLE: Article = {
+    id: uuid.v4().slice(-8),
+    title: '',
+    body: '',
+    imageFile: null,
+    imageId: null,
+    imageUrl: null,
+    thumbnailImageUrl: null,
+    isSticky: false,
+    modificationInfo: null,
+  };
+
   readonly NavPathTypes = NavPathTypes;
 
   @Input() maxArticles?: number;
@@ -31,6 +44,7 @@ export class ArticleGridComponent implements OnInit {
 
   ngOnInit(): void {
     this.facade.fetchArticles();
+    this.articles = Array(this.maxArticles ?? 20).fill(this.PLACEHOLDER_ARTICLE);
 
     this.facade.articles$.pipe(untilDestroyed(this)).subscribe(articles => {
       this.articles = this.sortArticles(articles).slice(
@@ -55,7 +69,7 @@ export class ArticleGridComponent implements OnInit {
     return [...stickyArticles, ...remainingArticles];
   }
 
-  wasEdited(article: Article): boolean {
+  wasEdited(article?: Article): boolean {
     if (!article || !article.modificationInfo) {
       return false;
     }

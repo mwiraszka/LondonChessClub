@@ -46,6 +46,7 @@ v4.1.5 - November 17th, 2024
 
 - 🚀 Add ability to show/hide sensitive information when logged in as admin wherever personal details may be displayed
 - 🚀 Improve placeholders are handled while article images are loaded
+- 🚀 Only display edit date on articles edited at least the next day after the creation date
 - 🐛 Always fetch the latest article, member or club event whenever the corresponding page is refreshed
 - 🐛 Ensure single quotes appear as expected in article previews on Home and News pages
 - 🔧 Simplify a lot of the logic around fetching and updating articles, members and club events

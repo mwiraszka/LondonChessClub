@@ -4,7 +4,7 @@ import * as uuid from 'uuid';
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Article, type Link, NavPathTypes } from '@app/types';
-import { customSort } from '@app/utils';
+import { customSort, wasEdited } from '@app/utils';
 
 import { ArticleGridFacade } from './article-grid.facade';
 
@@ -16,7 +16,6 @@ import { ArticleGridFacade } from './article-grid.facade';
   providers: [ArticleGridFacade],
 })
 export class ArticleGridComponent implements OnInit {
-  readonly FIVE_MINUTES_MS = 300_000;
   readonly PLACEHOLDER_ARTICLE: Article = {
     id: uuid.v4().slice(-8),
     title: '',
@@ -30,6 +29,7 @@ export class ArticleGridComponent implements OnInit {
   };
 
   readonly NavPathTypes = NavPathTypes;
+  readonly wasEdited = wasEdited;
 
   @Input() maxArticles?: number;
 
@@ -67,17 +67,5 @@ export class ArticleGridComponent implements OnInit {
       .sort(customSort('modificationInfo.dateCreated', false));
 
     return [...stickyArticles, ...remainingArticles];
-  }
-
-  wasEdited(article?: Article): boolean {
-    if (!article || !article.modificationInfo) {
-      return false;
-    }
-
-    return (
-      article.modificationInfo.dateLastEdited.getTime() -
-        article.modificationInfo.dateCreated.getTime() >
-      this.FIVE_MINUTES_MS
-    );
   }
 }

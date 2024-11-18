@@ -41,6 +41,15 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
+v4.1.6 - November 18th, 2024
+</summary>
+
+- 🔧 Upgrade Angular to `v18.2.12` and update all third-party packages & dev dependencies
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.1.5 - November 17th, 2024
 </summary>
 

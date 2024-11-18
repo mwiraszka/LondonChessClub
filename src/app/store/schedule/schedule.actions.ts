@@ -1,17 +1,21 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { ClubEvent, ControlModes } from '@app/types';
+import type { ClubEvent } from '@app/types';
 
 enum ScheduleActionTypes {
-  SET_EVENT = '[Schedule] Set event',
-
   FETCH_EVENTS_REQUESTED = '[Schedule] Fetch events requested',
   FETCH_EVENTS_SUCCEEDED = '[Schedule] Fetch events succeeded',
   FETCH_EVENTS_FAILED = '[Schedule] Fetch events failed',
 
+  EVENT_ADD_REQUESTED = '[Schedule] Event add requested',
+  EVENT_EDIT_REQUESTED = '[Schedule] Event edit requested',
+
   FETCH_EVENT_REQUESTED = '[Schedule] Fetch event requested',
   FETCH_EVENT_SUCCEEDED = '[Schedule] Fetch event succeeded',
   FETCH_EVENT_FAILED = '[Schedule] Fetch event failed',
+
+  EVENT_SET = '[Schedule] Event set',
+  EVENT_UNSET = '[Schedule] Event unset',
 
   ADD_EVENT_SELECTED = '[Schedule] Add event selected',
   ADD_EVENT_CONFIRMED = '[Schedule] Add event confirmed',
@@ -39,11 +43,6 @@ enum ScheduleActionTypes {
   TOGGLE_PAST_EVENTS = '[Schedule] Toggle past events',
 }
 
-export const setEvent = createAction(
-  ScheduleActionTypes.SET_EVENT,
-  props<{ event: ClubEvent; controlMode: ControlModes }>(),
-);
-
 export const fetchEventsRequested = createAction(
   ScheduleActionTypes.FETCH_EVENTS_REQUESTED,
 );
@@ -54,6 +53,12 @@ export const fetchEventsSucceeded = createAction(
 export const fetchEventsFailed = createAction(
   ScheduleActionTypes.FETCH_EVENTS_FAILED,
   props<{ error: Error }>(),
+);
+
+export const eventAddRequested = createAction(ScheduleActionTypes.EVENT_ADD_REQUESTED);
+export const eventEditRequested = createAction(
+  ScheduleActionTypes.EVENT_EDIT_REQUESTED,
+  props<{ eventId: string }>(),
 );
 
 export const fetchEventRequested = createAction(
@@ -68,6 +73,12 @@ export const fetchEventFailed = createAction(
   ScheduleActionTypes.FETCH_EVENT_FAILED,
   props<{ error: Error }>(),
 );
+
+export const eventSet = createAction(
+  ScheduleActionTypes.EVENT_SET,
+  props<{ event: ClubEvent }>(),
+);
+export const eventUnset = createAction(ScheduleActionTypes.EVENT_UNSET);
 
 export const addEventSelected = createAction(
   ScheduleActionTypes.ADD_EVENT_SELECTED,

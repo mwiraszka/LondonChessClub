@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { TooltipModule } from '@app/components/tooltip';
 
-import { ThemeToggleComponent } from './theme-toggle.component';
+import { ToggleSwitchComponent } from './toggle-switch.component';
 
 @NgModule({
-  declarations: [ThemeToggleComponent],
+  declarations: [ToggleSwitchComponent],
   imports: [CommonModule, TooltipModule],
-  exports: [ThemeToggleComponent],
+  exports: [ToggleSwitchComponent],
 })
-export class ThemeToggleModule {}
+export class ToggleSwitchModule {}

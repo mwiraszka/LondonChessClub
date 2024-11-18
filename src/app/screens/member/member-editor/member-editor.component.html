@@ -2,8 +2,10 @@
   <lcc-screen-header
     [hasUnsavedChanges]="(facade.hasUnsavedChanges$ | async) ?? undefined"
     [title]="
-      (facade.controlMode$ | async) === ControlModes.EDIT
-        ? 'Edit ' + (facade.selectedMemberName$ | async)
+      (facade.controlMode$ | async) === 'edit'
+        ? !!(facade.setMemberName$ | async)
+          ? 'Edit ' + (facade.setMemberName$ | async)
+          : ''
         : 'Add a member'
     ">
   </lcc-screen-header>

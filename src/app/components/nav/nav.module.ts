@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { DropdownModule } from '@app/components/dropdown';
-import { ThemeToggleModule } from '@app/components/theme-toggle';
+import { ToggleSwitchModule } from '@app/components/toggle-switch';
 import { TooltipModule } from '@app/components/tooltip';
 import { IconsModule } from '@app/icons';
 
@@ -16,7 +16,7 @@ import { NavComponent } from './nav.component';
     DropdownModule,
     IconsModule,
     RouterModule,
-    ThemeToggleModule,
+    ToggleSwitchModule,
     TooltipModule,
   ],
   exports: [NavComponent],

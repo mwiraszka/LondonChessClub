@@ -8,6 +8,7 @@
 
   img,
   .loading-placeholder-image {
+    height: calc((100vw - 16px) / 1.5);
     // Set based on md-breakpoint value of 700px and 3:2 aspect ratio
     max-height: calc((700px - 16px) / 1.5);
     box-sizing: border-box;

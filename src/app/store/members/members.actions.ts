@@ -1,17 +1,21 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { ControlModes, Member } from '@app/types';
+import type { Member } from '@app/types';
 
 enum MembersActionTypes {
-  SET_MEMBER = '[Members] Set member',
-
   FETCH_MEMBERS_REQUESTED = '[Members] Fetch members requested',
   FETCH_MEMBERS_SUCCEEDED = '[Members] Fetch members succeeded',
   FETCH_MEMBERS_FAILED = '[Members] Fetch members failed',
 
+  MEMBER_ADD_REQUESTED = '[Members] Member add requested',
+  MEMBER_EDIT_REQUESTED = '[Members] Member edit requested',
+
   FETCH_MEMBER_REQUESTED = '[Members] Fetch member requested',
   FETCH_MEMBER_SUCCEEDED = '[Members] Fetch member succeeded',
   FETCH_MEMBER_FAILED = '[Members] Fetch member failed',
+
+  MEMBER_SET = '[Members] Member set',
+  MEMBER_UNSET = '[Members] Member unset',
 
   TABLE_HEADER_SELECTED = '[Members] Table header selected',
   MEMBERS_SORTED = '[Members] Members sorted',
@@ -43,11 +47,6 @@ enum MembersActionTypes {
   FORM_DATA_CHANGED = '[Members] Form data changed',
 }
 
-export const setMember = createAction(
-  MembersActionTypes.SET_MEMBER,
-  props<{ member: Member; controlMode: ControlModes }>(),
-);
-
 export const fetchMembersRequested = createAction(
   MembersActionTypes.FETCH_MEMBERS_REQUESTED,
 );
@@ -58,6 +57,12 @@ export const fetchMembersSucceeded = createAction(
 export const fetchMembersFailed = createAction(
   MembersActionTypes.FETCH_MEMBERS_FAILED,
   props<{ error: Error }>(),
+);
+
+export const memberAddRequested = createAction(MembersActionTypes.MEMBER_ADD_REQUESTED);
+export const memberEditRequested = createAction(
+  MembersActionTypes.MEMBER_EDIT_REQUESTED,
+  props<{ memberId: string }>(),
 );
 
 export const fetchMemberRequested = createAction(
@@ -72,6 +77,12 @@ export const fetchMemberFailed = createAction(
   MembersActionTypes.FETCH_MEMBER_FAILED,
   props<{ error: Error }>(),
 );
+
+export const memberSet = createAction(
+  MembersActionTypes.MEMBER_SET,
+  props<{ member: Member }>(),
+);
+export const memberUnset = createAction(MembersActionTypes.MEMBER_UNSET);
 
 export const tableHeaderSelected = createAction(
   MembersActionTypes.TABLE_HEADER_SELECTED,

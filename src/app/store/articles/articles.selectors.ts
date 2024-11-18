@@ -16,15 +16,12 @@ export const articleById = (id: string) =>
     return allArticles ? allArticles.find(article => article.id === id) : null;
   });
 
-export const selectedArticle = createSelector(
+export const setArticle = createSelector(
   articlesFeatureSelector,
-  state => state.selectedArticle,
+  state => state.setArticle,
 );
 
-export const selectedArticleTitle = createSelector(
-  selectedArticle,
-  article => article?.title,
-);
+export const setArticleTitle = createSelector(setArticle, article => article?.title);
 
 export const formArticle = createSelector(
   articlesFeatureSelector,
@@ -40,8 +37,8 @@ export const articleImageCurrently = createSelector(formArticle, formArticle => 
 
 export const hasNewImage = createSelector(
   formArticle,
-  selectedArticle,
-  (formArticle, selectedArticle) => formArticle?.imageUrl !== selectedArticle?.imageUrl,
+  setArticle,
+  (formArticle, setArticle) => formArticle?.imageUrl !== setArticle?.imageUrl,
 );
 
 export const controlMode = createSelector(
@@ -51,6 +48,6 @@ export const controlMode = createSelector(
 
 export const hasUnsavedChanges = createSelector(
   formArticle,
-  selectedArticle,
-  (formArticle, selectedArticle) => !areSame(formArticle, selectedArticle),
+  setArticle,
+  (formArticle, setArticle) => !areSame(formArticle, setArticle),
 );

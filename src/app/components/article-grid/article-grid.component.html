@@ -7,9 +7,11 @@
     <a
       class="lcc-admin-controls-container article"
       [routerLink]="
-        '/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + article.id
+        article.title
+          ? '/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + article.id
+          : undefined
       ">
-      @if (facade.isAdmin$ | async) {
+      @if ((facade.isAdmin$ | async) && article.title) {
         <lcc-admin-controls
           [editPath]="
             '/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.EDIT + '/' + article.id
@@ -32,7 +34,7 @@
           [src]="article.thumbnailImageUrl"
           default="assets/image-placeholder.png"
           alt="Article banner image" />
-      } @placeholder {
+      } @placeholder (minimum 1s) {
         <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
           <div class="lcc-content-placeholder"></div>
         </div>

@@ -4,14 +4,14 @@ import { first, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
-import { type ClubEvent, ControlModes } from '@app/types';
+import type { ClubEvent } from '@app/types';
 
 @Injectable()
 export class EventFormFacade {
-  readonly formEvent$ = this.store.select(ScheduleSelectors.formEvent);
   readonly controlMode$ = this.store.select(ScheduleSelectors.controlMode);
+  readonly formEvent$ = this.store.select(ScheduleSelectors.formEvent);
   readonly hasUnsavedChanges$ = this.store.select(ScheduleSelectors.hasUnsavedChanges);
-  readonly selectedEvent$ = this.store.select(ScheduleSelectors.selectedEvent);
+  readonly setEvent$ = this.store.select(ScheduleSelectors.setEvent);
 
   constructor(private readonly store: Store) {}
 
@@ -23,7 +23,7 @@ export class EventFormFacade {
     this.controlMode$
       .pipe(
         map(controlMode =>
-          controlMode === ControlModes.EDIT
+          controlMode === 'edit'
             ? this.store.dispatch(
                 ScheduleActions.updateEventSelected({
                   event,

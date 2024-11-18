@@ -1,5 +1,7 @@
 import * as uuid from 'uuid';
 
+import { Article } from '@app/types';
+
 /**
  * @returns {string} An article ID based on the current date and a random string of hex
  * values
@@ -23,8 +25,16 @@ export function generateArticleImageId(articleId: string): string {
 export const articleIdRegExp: RegExp = /^art-[0-9]{8}-[a-fA-F0-9]{8}$/;
 
 /**
- * @returns {boolean} Whether the article id is in a valid (LCC-specific) format
+ * @returns {boolean} Returns true when article was edited on a date different
+ * from the creation date (i.e. the next calendar day onwards)
  */
-export function isValidArticleId(articleId: string): boolean {
-  return new RegExp(articleIdRegExp).test(articleId);
+export function wasEdited(article?: Article): boolean {
+  if (!article || !article.modificationInfo) {
+    return false;
+  }
+
+  return (
+    article.modificationInfo.dateLastEdited.toDateString() !==
+    article.modificationInfo.dateCreated.toDateString()
+  );
 }

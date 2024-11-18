@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
@@ -23,9 +22,14 @@ export class ScheduleService {
     private http: HttpClient,
   ) {}
 
+  // TODO: Improve response typing & error handling
   getEvent(id: string): Observable<ServiceResponse<ClubEvent>> {
-    return this.http.get<FlatClubEvent>(this.API_ENDPOINT + id).pipe(
-      map(event => ({ payload: this.adaptForFrontend([event])[0] })),
+    return this.http.get<any>(this.API_ENDPOINT + id).pipe(
+      map(response => {
+        return response?.id
+          ? { payload: this.adaptForFrontend([response])[0] }
+          : { error: new Error('Unable to load event: invalid URL') };
+      }),
       catchError(() => of({ error: new Error('Failed to fetch event from database') })),
     );
   }

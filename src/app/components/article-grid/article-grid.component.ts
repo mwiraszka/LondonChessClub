@@ -1,8 +1,10 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import * as uuid from 'uuid';
 
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Article, type Link, NavPathTypes } from '@app/types';
+import { customSort, wasEdited } from '@app/utils';
 
 import { ArticleGridFacade } from './article-grid.facade';
 
@@ -14,8 +16,20 @@ import { ArticleGridFacade } from './article-grid.facade';
   providers: [ArticleGridFacade],
 })
 export class ArticleGridComponent implements OnInit {
-  readonly FIVE_MINUTES_MS = 300_000;
+  readonly PLACEHOLDER_ARTICLE: Article = {
+    id: uuid.v4().slice(-8),
+    title: '',
+    body: '',
+    imageFile: null,
+    imageId: null,
+    imageUrl: null,
+    thumbnailImageUrl: null,
+    isSticky: false,
+    modificationInfo: null,
+  };
+
   readonly NavPathTypes = NavPathTypes;
+  readonly wasEdited = wasEdited;
 
   @Input() maxArticles?: number;
 
@@ -30,21 +44,28 @@ export class ArticleGridComponent implements OnInit {
 
   ngOnInit(): void {
     this.facade.fetchArticles();
+    this.articles = Array(this.maxArticles ?? 20).fill(this.PLACEHOLDER_ARTICLE);
 
     this.facade.articles$.pipe(untilDestroyed(this)).subscribe(articles => {
-      this.articles = articles.slice(0, this.maxArticles ?? articles.length);
+      this.articles = this.sortArticles(articles).slice(
+        0,
+        this.maxArticles ?? articles.length,
+      );
     });
   }
 
-  wasEdited(article: Article): boolean {
-    if (!article || !article.modificationInfo) {
-      return false;
+  sortArticles(articles: Article[] | undefined): Article[] {
+    if (!articles?.length) {
+      return [];
     }
 
-    return (
-      article.modificationInfo.dateLastEdited.getTime() -
-        article.modificationInfo.dateCreated.getTime() >
-      this.FIVE_MINUTES_MS
-    );
+    const stickyArticles = articles
+      .filter(article => article.isSticky)
+      .sort(customSort('modificationInfo.dateCreated', false));
+    const remainingArticles = articles
+      .filter(article => !article.isSticky)
+      .sort(customSort('modificationInfo.dateCreated', false));
+
+    return [...stickyArticles, ...remainingArticles];
   }
 }

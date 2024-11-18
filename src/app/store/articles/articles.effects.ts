@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
@@ -9,8 +8,7 @@ import { Injectable } from '@angular/core';
 
 import { ArticlesService, ImagesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import type { Article, ModificationInfo, ServiceResponse } from '@app/types';
-import { isDefined } from '@app/utils';
+import { type Article, type ModificationInfo, type ServiceResponse } from '@app/types';
 
 import * as ArticlesActions from './articles.actions';
 import * as ArticlesSelectors from './articles.selectors';
@@ -38,7 +36,7 @@ export class ArticlesEffects {
 
   fetchArticle$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.fetchArticleRequested),
+      ofType(ArticlesActions.articleEditRequested, ArticlesActions.articleViewRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ articleId }) =>
         this.articlesService.getArticle(articleId).pipe(
@@ -124,7 +122,7 @@ export class ArticlesEffects {
   deleteArticle$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleConfirmed),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.selectedArticle)),
+      concatLatestFrom(() => this.store.select(ArticlesSelectors.setArticle)),
       tap(() => this.loaderService.setIsLoading(true)),
       filter(([, articleToDelete]) => !!articleToDelete),
       switchMap(([, articleToDelete]) =>
@@ -163,42 +161,46 @@ export class ArticlesEffects {
       switchMap(({ articles }) =>
         this.imagesService.getArticleThumbnailImageUrls(articles),
       ),
-      map((response: ServiceResponse<Article[]>) =>
-        response.error
+      map((response: ServiceResponse<Article[]>) => {
+        return response.error
           ? ArticlesActions.getArticleThumbnailImageUrlsFailed({
               error: response.error,
             })
           : ArticlesActions.getArticleThumbnailImageUrlsSucceeded({
               articles: response.payload!,
-            }),
-      ),
+            });
+      }),
     );
   });
 
   requestImageUrl$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.fetchArticleSucceeded, ArticlesActions.setArticle),
-      map(({ article }) => article.imageId),
-      filter(isDefined),
-      map(imageId => ArticlesActions.getArticleImageUrlRequested({ imageId })),
+      ofType(ArticlesActions.fetchArticleSucceeded),
+      map(({ article }) => ArticlesActions.getArticleImageUrlRequested({ article })),
     );
   });
 
   getImageUrl$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.getArticleImageUrlRequested),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.controlMode)),
-      switchMap(([{ imageId }, controlMode]) => {
-        const hydrateFromLocalStorage = controlMode !== 'view';
-        return this.imagesService.getArticleImageUrl(imageId, hydrateFromLocalStorage);
+      switchMap(({ article }) => {
+        return this.imagesService
+          .getArticleImageUrl(article?.imageId)
+          .pipe(
+            map(response =>
+              response.error
+                ? { error: response.error }
+                : { payload: { ...article, imageUrl: response.payload } as Article },
+            ),
+          );
       }),
-      map(response =>
-        response.error
+      map(response => {
+        return response.error
           ? ArticlesActions.getArticleImageUrlFailed({ error: response.error })
           : ArticlesActions.getArticleImageUrlSucceeded({
-              imageUrl: response.payload!,
-            }),
-      ),
+              article: response.payload,
+            });
+      }),
     );
   });
 
@@ -207,7 +209,9 @@ export class ArticlesEffects {
       ofType(ArticlesActions.getArticleImageUrlSucceeded),
       concatLatestFrom(() => this.store.select(ArticlesSelectors.controlMode)),
       filter(([, controlMode]) => controlMode !== null),
-      map(([{ imageUrl }]) => ArticlesActions.getArticleImageFileRequested({ imageUrl })),
+      map(([{ article }]) =>
+        ArticlesActions.getArticleImageFileRequested({ imageUrl: article.imageUrl! }),
+      ),
     );
   });
 

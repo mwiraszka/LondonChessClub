@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
@@ -37,7 +36,7 @@ export class MembersEffects {
 
   fetchMember$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(MembersActions.fetchMemberRequested),
+      ofType(MembersActions.memberEditRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ memberId }) =>
         this.membersService.getMember(memberId).pipe(
@@ -124,7 +123,7 @@ export class MembersEffects {
     return this.actions$.pipe(
       ofType(MembersActions.deleteMemberConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() => this.store.select(MembersSelectors.selectedMember)),
+      concatLatestFrom(() => this.store.select(MembersSelectors.setMember)),
       switchMap(([, memberToDelete]) =>
         this.membersService.deleteMember(memberToDelete!).pipe(
           map((response: ServiceResponse<Member>) =>

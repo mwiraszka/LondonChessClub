@@ -8,42 +8,49 @@ import { MembersState, initialState } from './members.state';
 const membersReducer = createReducer(
   initialState,
 
-  on(MembersActions.setMember, (state, { member, controlMode }) => ({
-    ...state,
-    selectedMember: member,
-    formMember: member,
-    controlMode,
-  })),
-
-  on(
-    MembersActions.cancelSelected,
-    MembersActions.fetchMemberFailed,
-    MembersActions.updateMemberSucceeded,
-    MembersActions.deleteMemberFailed,
-    MembersActions.deleteMemberCancelled,
-    state => ({
-      ...state,
-      selectedMember: null,
-      formMember: null,
-      controlMode: ControlModes.VIEW,
-    }),
-  ),
-
-  on(MembersActions.addMemberSucceeded, state => ({
-    ...state,
-    selectedMember: newMemberFormTemplate,
-    formMember: newMemberFormTemplate,
-  })),
-
-  on(MembersActions.fetchMemberRequested, state => ({
-    ...state,
-    controlMode: ControlModes.EDIT,
-  })),
-
   on(MembersActions.fetchMembersSucceeded, (state, { members }) => ({
     ...state,
     members,
   })),
+
+  on(MembersActions.memberAddRequested, state => ({
+    ...state,
+    setMember: newMemberFormTemplate,
+    formMember: newMemberFormTemplate,
+    controlMode: 'add' as ControlModes,
+  })),
+
+  on(MembersActions.memberEditRequested, state => ({
+    ...state,
+    controlMode: 'edit' as ControlModes,
+  })),
+
+  on(MembersActions.memberSet, (state, { member }) => ({
+    ...state,
+    setMember: member,
+  })),
+
+  on(MembersActions.memberUnset, state => ({
+    ...state,
+    setMember: null,
+    formMember: null,
+    controlMode: null,
+  })),
+
+  on(
+    MembersActions.addMemberSucceeded,
+    MembersActions.updateMemberSucceeded,
+    (state, { member }) => ({
+      ...state,
+      events: [
+        ...state.members.map(storedMember =>
+          storedMember.id === member.id ? member : storedMember,
+        ),
+      ],
+      setMember: null,
+      formMember: null,
+    }),
+  ),
 
   on(MembersActions.fetchMemberSucceeded, (state, { member }) => ({
     ...state,
@@ -51,17 +58,20 @@ const membersReducer = createReducer(
       ...state.members.filter(storedMember => storedMember.id !== member.id),
       member,
     ],
+    setMember: member,
+    formMember: state.controlMode === 'edit' ? member : null,
   })),
 
   on(MembersActions.deleteMemberSelected, (state, { member }) => ({
     ...state,
-    selectedMember: member,
+    setMember: member,
   })),
 
   on(MembersActions.deleteMemberSucceeded, (state, { member }) => ({
     ...state,
     members: state.members.filter(memberInStore => memberInStore.id !== member.id),
-    selectedMember: null,
+    setMember: null,
+    formMember: null,
   })),
 
   on(MembersActions.formDataChanged, (state, { member }) => ({

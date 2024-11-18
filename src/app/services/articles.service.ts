@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
@@ -23,10 +22,13 @@ export class ArticlesService {
     private http: HttpClient,
   ) {}
 
+  // TODO: Improve response typing & error handling
   getArticle(id: string): Observable<ServiceResponse<Article>> {
-    return this.http.get<FlatArticle>(this.API_ENDPOINT + id).pipe(
-      map(article => {
-        return { payload: this.adaptForFrontend([article])[0] };
+    return this.http.get<any>(this.API_ENDPOINT + id).pipe(
+      map(response => {
+        return response?.id
+          ? { payload: this.adaptForFrontend([response])[0] }
+          : { error: new Error('Unable to load article: invalid URL') };
       }),
       catchError(() => of({ error: new Error('Failed to fetch article from database') })),
     );

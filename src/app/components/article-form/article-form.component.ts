@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ImagesService } from '@app/services';
-import { type Article, ControlModes } from '@app/types';
+import type { Article } from '@app/types';
 import { isDefined } from '@app/utils';
 import { imageSizeValidator } from '@app/validators';
 
@@ -19,7 +19,6 @@ import { ArticleFormFacade } from './article-form.facade';
   providers: [ArticleFormFacade],
 })
 export class ArticleFormComponent implements OnInit {
-  readonly ControlModes = ControlModes;
   form!: FormGroup;
 
   constructor(
@@ -62,8 +61,6 @@ export class ArticleFormComponent implements OnInit {
       const imageFile = fileInputElement.files[0];
       fileInputElement.value = '';
 
-      this.imagesService.storeImageDataUrlInLocalStorage(imageFile);
-
       this.form.patchValue({
         imageFile,
         imageUrl: URL.createObjectURL(imageFile),
@@ -72,7 +69,6 @@ export class ArticleFormComponent implements OnInit {
   }
 
   onRevert(): void {
-    localStorage.removeItem('imageUrl');
     this.form.controls['imageFile'].markAsTouched();
     this.facade.onRevert();
   }

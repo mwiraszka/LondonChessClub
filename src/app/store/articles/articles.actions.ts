@@ -1,21 +1,26 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Article, ControlModes, Url } from '@app/types';
+import type { Article, Url } from '@app/types';
 
 enum ArticlesActionTypes {
-  SET_ARTICLE = '[Articles] Set article',
-
   FETCH_ARTICLES_REQUESTED = '[Articles] Fetch articles requested',
   FETCH_ARTICLES_SUCCEEDED = '[Articles] Fetch articles succeeded',
   FETCH_ARTICLES_FAILED = '[Articles] Fetch articles failed',
 
-  GET_ARTICLE_THUMBNAIL_IMAGE_URLS_REQUESTED = '[Articles] Get article thumbnail image URLs requested',
-  GET_ARTICLE_THUMBNAIL_IMAGE_URLS_FAILED = '[Articles] Get article thumbnail image URLs failed',
-  GET_ARTICLE_THUMBNAIL_IMAGE_URLS_SUCCEEDED = '[Articles] Get article thumbnail image URLs succeeded',
+  ARTICLE_VIEW_REQUESTED = '[Articles] Article view requested',
+  ARTICLE_ADD_REQUESTED = '[Articles] Article add requested',
+  ARTICLE_EDIT_REQUESTED = '[Articles] Article edit requested',
 
   FETCH_ARTICLE_REQUESTED = '[Articles] Fetch article requested',
   FETCH_ARTICLE_SUCCEEDED = '[Articles] Fetch article succeeded',
   FETCH_ARTICLE_FAILED = '[Articles] Fetch article failed',
+
+  ARTICLE_SET = '[Articles] Article set',
+  ARTICLE_UNSET = '[Articles] Article unset',
+
+  GET_ARTICLE_THUMBNAIL_IMAGE_URLS_REQUESTED = '[Articles] Get article thumbnail image URLs requested',
+  GET_ARTICLE_THUMBNAIL_IMAGE_URLS_FAILED = '[Articles] Get article thumbnail image URLs failed',
+  GET_ARTICLE_THUMBNAIL_IMAGE_URLS_SUCCEEDED = '[Articles] Get article thumbnail image URLs succeeded',
 
   GET_ARTICLE_IMAGE_URL_REQUESTED = '[Articles] Get article image URL requested',
   GET_ARTICLE_IMAGE_URL_FAILED = '[Articles] Get article image URL failed',
@@ -24,7 +29,7 @@ enum ArticlesActionTypes {
   GET_ARTICLE_IMAGE_FILE_REQUESTED = '[Articles] Get article image file requested',
   GET_ARTICLE_IMAGE_FILE_FAILED = '[Articles] Get article image file failed',
   GET_ARTICLE_IMAGE_FILE_SUCCEEDED = '[Articles] Get article image file succeeded',
-  REVERT_ARTICLE_IMAGE_CHANGE = '[Articles] Revert article image change',
+  ARTICLE_IMAGE_CHANGE_REVERTED = '[Articles] Article image change reverted',
 
   PUBLISH_ARTICLE_SELECTED = '[Articles] Publish article selected',
   PUBLISH_ARTICLE_CONFIRMED = '[Articles] Publish article confirmed',
@@ -50,11 +55,6 @@ enum ArticlesActionTypes {
   FORM_DATA_CHANGED = '[Articles] Form data changed',
 }
 
-export const setArticle = createAction(
-  ArticlesActionTypes.SET_ARTICLE,
-  props<{ article: Article; controlMode: ControlModes }>(),
-);
-
 export const fetchArticlesRequested = createAction(
   ArticlesActionTypes.FETCH_ARTICLES_REQUESTED,
 );
@@ -67,17 +67,16 @@ export const fetchArticlesFailed = createAction(
   props<{ error: Error }>(),
 );
 
-export const getArticleThumbnailImageUrlsRequested = createAction(
-  ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_REQUESTED,
-  props<{ articles: Article[] }>(),
+export const articleViewRequested = createAction(
+  ArticlesActionTypes.ARTICLE_VIEW_REQUESTED,
+  props<{ articleId: string }>(),
 );
-export const getArticleThumbnailImageUrlsSucceeded = createAction(
-  ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_SUCCEEDED,
-  props<{ articles: Article[] }>(),
+export const articleAddRequested = createAction(
+  ArticlesActionTypes.ARTICLE_ADD_REQUESTED,
 );
-export const getArticleThumbnailImageUrlsFailed = createAction(
-  ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_FAILED,
-  props<{ error: Error }>(),
+export const articleEditRequested = createAction(
+  ArticlesActionTypes.ARTICLE_EDIT_REQUESTED,
+  props<{ articleId: string }>(),
 );
 
 export const fetchArticleRequested = createAction(
@@ -93,13 +92,32 @@ export const fetchArticleFailed = createAction(
   props<{ error: Error }>(),
 );
 
+export const articleSet = createAction(
+  ArticlesActionTypes.ARTICLE_SET,
+  props<{ article: Article }>(),
+);
+export const articleUnset = createAction(ArticlesActionTypes.ARTICLE_UNSET);
+
+export const getArticleThumbnailImageUrlsRequested = createAction(
+  ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_REQUESTED,
+  props<{ articles: Article[] }>(),
+);
+export const getArticleThumbnailImageUrlsSucceeded = createAction(
+  ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_SUCCEEDED,
+  props<{ articles: Article[] }>(),
+);
+export const getArticleThumbnailImageUrlsFailed = createAction(
+  ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_FAILED,
+  props<{ error: Error }>(),
+);
+
 export const getArticleImageUrlRequested = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_REQUESTED,
-  props<{ imageId?: string }>(),
+  props<{ article?: Article }>(),
 );
 export const getArticleImageUrlSucceeded = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_SUCCEEDED,
-  props<{ imageUrl: Url }>(),
+  props<{ article: Article }>(),
 );
 export const getArticleImageUrlFailed = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_FAILED,
@@ -118,8 +136,8 @@ export const getArticleImageFileFailed = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_FILE_FAILED,
   props<{ error: Error }>(),
 );
-export const revertArticleImageChange = createAction(
-  ArticlesActionTypes.REVERT_ARTICLE_IMAGE_CHANGE,
+export const articleImageChangeReverted = createAction(
+  ArticlesActionTypes.ARTICLE_IMAGE_CHANGE_REVERTED,
 );
 
 export const publishArticleSelected = createAction(

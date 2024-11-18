@@ -42,11 +42,11 @@ export class ModalEffects {
   openUpdateMemberModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.updateMemberSelected),
-      concatLatestFrom(() => this.store.select(MembersSelectors.selectedMember)),
-      map(([, selectedMember]) => {
+      concatLatestFrom(() => this.store.select(MembersSelectors.setMember)),
+      map(([, setMember]) => {
         const modal: Modal = {
           title: 'Confirm member update',
-          body: `Update ${selectedMember?.firstName} ${selectedMember?.lastName}?`,
+          body: `Update ${setMember?.firstName} ${setMember?.lastName}?`,
           buttons: [
             {
               text: 'Cancel',
@@ -118,11 +118,11 @@ export class ModalEffects {
   openUpdateEventModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.updateEventSelected),
-      concatLatestFrom(() => this.store.select(ScheduleSelectors.selectedEvent)),
-      map(([, selectedEvent]) => {
+      concatLatestFrom(() => this.store.select(ScheduleSelectors.setEvent)),
+      map(([, setEvent]) => {
         const modal: Modal = {
           title: 'Confirm event update',
-          body: `Update ${selectedEvent?.title}?`,
+          body: `Update ${setEvent?.title}?`,
           buttons: [
             {
               text: 'Cancel',
@@ -194,7 +194,7 @@ export class ModalEffects {
   openUpdateArticleModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleSelected),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.selectedArticle)),
+      concatLatestFrom(() => this.store.select(ArticlesSelectors.setArticle)),
       map(([, originalArticle]) => {
         const modal: Modal = {
           title: 'Confirm article update',

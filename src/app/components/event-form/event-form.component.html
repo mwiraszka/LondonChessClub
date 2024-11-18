@@ -191,7 +191,7 @@
         class="lcc-primary-button"
         type="submit"
         [disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
-        @if ((facade.controlMode$ | async) === ControlModes.EDIT) {
+        @if ((facade.controlMode$ | async) === 'edit') {
           Update event
         } @else {
           Add event

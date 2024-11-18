@@ -35,7 +35,7 @@ export class ScheduleEffects {
 
   fetchEvent$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.fetchEventRequested),
+      ofType(ScheduleActions.eventEditRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ eventId }) =>
         this.scheduleService.getEvent(eventId).pipe(
@@ -122,7 +122,7 @@ export class ScheduleEffects {
     return this.actions$.pipe(
       ofType(ScheduleActions.deleteEventConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() => this.store.select(ScheduleSelectors.selectedEvent)),
+      concatLatestFrom(() => this.store.select(ScheduleSelectors.setEvent)),
       switchMap(([, eventToDelete]) =>
         this.scheduleService.deleteEvent(eventToDelete!).pipe(
           map((response: ServiceResponse<ClubEvent>) =>

@@ -1,13 +1,15 @@
 import { isSystemDark } from '@app/utils';
 
 export interface UserSettingsState {
-  bannerlastCleared: number | null;
+  bannerLastCleared: number | null;
   isDarkMode: boolean;
+  isSafeMode: boolean;
   showUpcomingEventBanner: boolean;
 }
 
 export const initialState: UserSettingsState = {
-  bannerlastCleared: null,
+  bannerLastCleared: null,
   isDarkMode: isSystemDark(),
+  isSafeMode: false,
   showUpcomingEventBanner: true,
 };

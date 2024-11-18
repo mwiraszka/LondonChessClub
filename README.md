@@ -41,6 +41,20 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
+v4.1.5 - November 17th, 2024
+</summary>
+
+- 🚀 Add ability to show/hide sensitive information when logged in as admin wherever personal details may be displayed
+- 🚀 Improve how image placeholders are handled and prevent layout shifts from occurring during article loading process
+- 🚀 Only display edit date on articles which were edited on a different date than the creation date
+- 🐛 Always attempt to fetch the latest article, member or club event whenever the page is refreshed
+- 🐛 Ensure single quotes appear as expected in article previews on Home and News pages
+- 🔧 Simplify a lot of the logic around fetching and updating articles, members and club events
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.1.4 - November 2nd, 2024
 </summary>
 

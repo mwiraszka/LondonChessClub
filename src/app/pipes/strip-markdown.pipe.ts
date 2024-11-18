@@ -8,6 +8,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({ name: 'stripMarkdown' })
 export class StripMarkdownPipe implements PipeTransform {
   transform(markdown: string): string {
-    return removeMd(markdown).replace(/\|--/g, '').replace(/\|/g, '');
+    return removeMd(markdown)
+      .replace(/\|--/g, '')
+      .replace(/\|/g, '')
+      .replace(/&#39;/g, "'");
   }
 }

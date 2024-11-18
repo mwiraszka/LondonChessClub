@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 
+import { UserSettingsActions, UserSettingsSelectors } from '@app/store/user-settings';
 import { NavPathTypes } from '@app/types';
 
 import { NavFacade } from './nav.facade';

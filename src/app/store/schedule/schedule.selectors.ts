@@ -25,12 +25,9 @@ export const upcomingEvent = createSelector(scheduleFeatureSelector, state => {
   return upcomingEvents.length ? upcomingEvents[0] : null;
 });
 
-export const selectedEvent = createSelector(
-  scheduleFeatureSelector,
-  state => state.selectedEvent,
-);
+export const setEvent = createSelector(scheduleFeatureSelector, state => state.setEvent);
 
-export const selectedEventTitle = createSelector(selectedEvent, event => event?.title);
+export const setEventTitle = createSelector(setEvent, event => event?.title);
 
 export const formEvent = createSelector(
   scheduleFeatureSelector,
@@ -54,5 +51,5 @@ export const showPastEvents = createSelector(
 
 export const hasUnsavedChanges = createSelector(
   scheduleFeatureSelector,
-  state => !areSame(state.formEvent, state.selectedEvent),
+  state => !areSame(state.formEvent, state.setEvent),
 );

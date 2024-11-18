@@ -9,7 +9,7 @@
         [src]="form.controls['imageUrl'].value"
         default="assets/image-placeholder.png"
         alt="Article banner image" />
-    } @placeholder {
+    } @placeholder (minimum 1s) {
       <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
         <div class="lcc-content-placeholder"></div>
       </div>
@@ -134,7 +134,7 @@
         class="lcc-primary-button"
         type="submit"
         [disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
-        @if ((facade.controlMode$ | async) === ControlModes.EDIT) {
+        @if ((facade.controlMode$ | async) === 'edit') {
           Update
         } @else {
           Publish article

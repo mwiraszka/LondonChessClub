@@ -4,14 +4,16 @@ import { first, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { MembersActions, MembersSelectors } from '@app/store/members';
-import { ControlModes, type Member } from '@app/types';
+import { UserSettingsSelectors } from '@app/store/user-settings';
+import type { Member } from '@app/types';
 
 @Injectable()
 export class MemberFormFacade {
-  readonly hasUnsavedChanges$ = this.store.select(MembersSelectors.hasUnsavedChanges);
   readonly controlMode$ = this.store.select(MembersSelectors.controlMode);
   readonly formMember$ = this.store.select(MembersSelectors.formMember);
-  readonly selectedMember$ = this.store.select(MembersSelectors.selectedMember);
+  readonly hasUnsavedChanges$ = this.store.select(MembersSelectors.hasUnsavedChanges);
+  readonly isSafeMode$ = this.store.select(UserSettingsSelectors.isSafeMode);
+  readonly setMember$ = this.store.select(MembersSelectors.setMember);
 
   constructor(private readonly store: Store) {}
 
@@ -23,7 +25,7 @@ export class MemberFormFacade {
     this.controlMode$
       .pipe(
         map(controlMode =>
-          controlMode === ControlModes.EDIT
+          controlMode === 'edit'
             ? this.store.dispatch(
                 MembersActions.updateMemberSelected({
                   member,

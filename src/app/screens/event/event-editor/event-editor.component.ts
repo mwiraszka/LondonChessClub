@@ -4,7 +4,6 @@ import { combineLatest } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 import { MetaAndTitleService } from '@app/services';
-import { ControlModes } from '@app/types';
 
 import { EventEditorFacade } from './event-editor.facade';
 
@@ -16,20 +15,17 @@ import { EventEditorFacade } from './event-editor.facade';
   providers: [EventEditorFacade],
 })
 export class EventEditorComponent implements OnInit {
-  readonly ControlModes = ControlModes;
   constructor(
     public facade: EventEditorFacade,
     private metaAndTitleService: MetaAndTitleService,
   ) {}
 
   ngOnInit(): void {
-    combineLatest([this.facade.selectedEventTitle$, this.facade.controlMode$])
+    combineLatest([this.facade.setEventTitle$, this.facade.controlMode$])
       .pipe(untilDestroyed(this))
       .subscribe(([eventTitle, controlMode]) => {
         const screenTitle =
-          controlMode === ControlModes.EDIT && eventTitle
-            ? `Edit ${eventTitle}`
-            : 'Create an event';
+          controlMode === 'edit' && eventTitle ? `Edit ${eventTitle}` : 'Create an event';
         this.metaAndTitleService.updateTitle(screenTitle);
         this.metaAndTitleService.updateDescription(
           `${screenTitle} for the London Chess Club.`,

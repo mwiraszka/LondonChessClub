@@ -2,18 +2,18 @@ import { type ClubEvent, ControlModes } from '@app/types';
 
 export interface ScheduleState {
   events: ClubEvent[];
-  selectedEvent: ClubEvent | null;
+  setEvent: ClubEvent | null;
   formEvent: ClubEvent | null;
-  controlMode: ControlModes;
+  controlMode: ControlModes | null;
   nextEventId: string | null;
   showPastEvents: boolean;
 }
 
 export const initialState: ScheduleState = {
   events: [],
-  selectedEvent: null,
+  setEvent: null,
   formEvent: null,
-  controlMode: ControlModes.VIEW,
+  controlMode: null,
   nextEventId: null,
   showPastEvents: false,
 };

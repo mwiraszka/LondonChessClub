@@ -4,7 +4,7 @@ import { first, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import { type Article, ControlModes } from '@app/types';
+import type { Article } from '@app/types';
 
 @Injectable()
 export class ArticleFormFacade {
@@ -15,7 +15,7 @@ export class ArticleFormFacade {
   readonly controlMode$ = this.store.select(ArticlesSelectors.controlMode);
   readonly hasNewImage$ = this.store.select(ArticlesSelectors.hasNewImage);
   readonly hasUnsavedChanges$ = this.store.select(ArticlesSelectors.hasUnsavedChanges);
-  readonly selectedArticle$ = this.store.select(ArticlesSelectors.selectedArticle);
+  readonly setArticle$ = this.store.select(ArticlesSelectors.setArticle);
 
   constructor(private readonly store: Store) {}
 
@@ -24,14 +24,14 @@ export class ArticleFormFacade {
   }
 
   onRevert(): void {
-    this.store.dispatch(ArticlesActions.revertArticleImageChange());
+    this.store.dispatch(ArticlesActions.articleImageChangeReverted());
   }
 
   onSubmit(article: Article): void {
     this.controlMode$
       .pipe(
         map(controlMode =>
-          controlMode === ControlModes.EDIT
+          controlMode === 'edit'
             ? this.store.dispatch(
                 ArticlesActions.updateArticleSelected({
                   article,

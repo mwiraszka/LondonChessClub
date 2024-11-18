@@ -7,24 +7,24 @@ import { filter, map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
+import { ArticlesActions } from '@app/store/articles';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
-import { MembersActions, MembersSelectors } from '@app/store/members';
-import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
-import {
-  ControlModes,
-  NavPathTypes,
-  newArticleFormTemplate,
-  newClubEventFormTemplate,
-  newMemberFormTemplate,
-} from '@app/types';
-import { isValidArticleId, isValidEventId, isValidMemberId } from '@app/utils';
+import { MembersActions } from '@app/store/members';
+import { ScheduleActions } from '@app/store/schedule';
+import { NavPathTypes } from '@app/types';
 
 import { NavSelectors } from '.';
 import * as NavActions from './nav.actions';
 
 @Injectable()
 export class NavEffects {
+  appendPathToHistory$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      map(({ payload }) => NavActions.appendPathToHistory({ path: payload.event.url })),
+    ),
+  );
+
   navigate$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -40,209 +40,6 @@ export class NavEffects {
     { dispatch: false },
   );
 
-  appendPathToHistory$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      map(({ payload }) => NavActions.appendPathToHistory({ path: payload.event.url })),
-    ),
-  );
-
-  handleArticleViewRouteNavigation$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      filter(({ payload }) => payload.event.url.startsWith('/article/view/')),
-      map(({ payload }) => {
-        const currentPath = payload.event.url;
-        const articleId = currentPath.split('/article/view/')[1].split('#')[0];
-        return { currentPath, articleId };
-      }),
-      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-      filter(([{ currentPath }, previousPath]) => currentPath !== previousPath),
-      concatLatestFrom(([{ articleId }]) =>
-        this.store.select(ArticlesSelectors.articleById(articleId)),
-      ),
-      map(([[{ articleId }], articleInStore]) => {
-        return articleInStore
-          ? ArticlesActions.setArticle({
-              article: articleInStore,
-              controlMode: ControlModes.VIEW,
-            })
-          : ArticlesActions.fetchArticleRequested({ articleId });
-      }),
-    ),
-  );
-
-  handleArticleAddRouteNavigation$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      filter(({ payload }) => payload.event.url === '/article/add'),
-      concatLatestFrom(() => [
-        this.store.select(NavSelectors.previousPath),
-        this.store.select(ArticlesSelectors.formArticle),
-      ]),
-      map(([, previousPath, formArticle]) => {
-        return previousPath === '/article/add' &&
-          (formArticle?.imageUrl || localStorage.getItem('imageUrl'))
-          ? ArticlesActions.getArticleImageUrlRequested({})
-          : ArticlesActions.setArticle({
-              article: newArticleFormTemplate,
-              controlMode: ControlModes.ADD,
-            });
-      }),
-    ),
-  );
-
-  handleArticleEditRouteNavigation$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      filter(({ payload }) => payload.event.url.startsWith('/article/edit/')),
-      map(({ payload }) => payload.event.url),
-      concatLatestFrom(currentPath => [
-        this.store.select(
-          ArticlesSelectors.articleById(currentPath.split('/article/edit/')[1]),
-        ),
-        this.store.select(NavSelectors.previousPath),
-      ]),
-      map(([currentPath, articleInStore, previousPath]) => {
-        const articleId = currentPath.split('/article/edit/')[1];
-        if (currentPath === previousPath && articleInStore?.imageId) {
-          return ArticlesActions.getArticleImageUrlRequested({
-            imageId: articleInStore.imageId,
-          });
-        } else if (articleInStore) {
-          return ArticlesActions.setArticle({
-            article: articleInStore,
-            controlMode: ControlModes.EDIT,
-          });
-        } else if (isValidArticleId(articleId)) {
-          return ArticlesActions.fetchArticleRequested({ articleId });
-        } else {
-          return NavActions.navigationRequested({ path: NavPathTypes.NEWS });
-        }
-      }),
-    ),
-  );
-
-  clearArticleImageUrlFromLocalStorage$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(routerNavigatedAction),
-        concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-        tap(([{ payload }, previousPath]) => {
-          if (
-            payload.event.url !== previousPath &&
-            (previousPath?.startsWith('/article/edit') || previousPath === '/article/add')
-          ) {
-            localStorage.removeItem('imageUrl');
-          }
-        }),
-      ),
-    { dispatch: false },
-  );
-
-  handleMemberAddRouteNavigation$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      filter(({ payload }) => payload.event.url === '/member/add'),
-      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-      filter(([{ payload }, previousPath]) => payload.event.url !== previousPath),
-      map(() =>
-        MembersActions.setMember({
-          member: newMemberFormTemplate,
-          controlMode: ControlModes.ADD,
-        }),
-      ),
-    ),
-  );
-
-  handleMemberEditRouteNavigation$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      filter(({ payload }) => payload.event.url.startsWith('/member/edit/')),
-      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-      filter(([{ payload }, previousPath]) => payload.event.url !== previousPath),
-      map(([{ payload }]) => payload.event.url.split('/member/edit/')[1]),
-      concatLatestFrom(memberId =>
-        this.store.select(MembersSelectors.memberById(memberId)),
-      ),
-      map(([memberId, memberInStore]) => {
-        if (memberInStore) {
-          return MembersActions.setMember({
-            member: memberInStore,
-            controlMode: ControlModes.EDIT,
-          });
-        } else if (isValidMemberId(memberId)) {
-          return MembersActions.fetchMemberRequested({ memberId });
-        } else {
-          return NavActions.navigationRequested({ path: NavPathTypes.MEMBERS });
-        }
-      }),
-    ),
-  );
-
-  handleEventAddRouteNavigation$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      filter(({ payload }) => payload.event.url === '/event/add'),
-      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-      filter(([{ payload }, previousPath]) => payload.event.url !== previousPath),
-      map(() =>
-        ScheduleActions.setEvent({
-          event: newClubEventFormTemplate,
-          controlMode: ControlModes.ADD,
-        }),
-      ),
-    ),
-  );
-
-  handleEventEditRouteNavigation$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      filter(({ payload }) => payload.event.url.startsWith('/event/edit/')),
-      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-      filter(([{ payload }, previousPath]) => payload.event.url !== previousPath),
-      map(([{ payload }]) => payload.event.url.split('/event/edit/')[1]),
-      concatLatestFrom(eventId =>
-        this.store.select(ScheduleSelectors.eventById(eventId)),
-      ),
-      map(([eventId, eventInStore]) => {
-        if (eventInStore) {
-          return ScheduleActions.setEvent({
-            event: eventInStore,
-            controlMode: ControlModes.EDIT,
-          });
-        } else if (isValidEventId(eventId)) {
-          return ScheduleActions.fetchEventRequested({ eventId });
-        } else {
-          return NavActions.navigationRequested({
-            path: NavPathTypes.SCHEDULE,
-          });
-        }
-      }),
-    ),
-  );
-
-  handleLogoutRouteNavigation$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      filter(({ payload }) => payload.event.url === '/logout'),
-      concatLatestFrom(() => this.store.select(AuthSelectors.user)),
-      filter(([, user]) => !!user),
-      map(() => AuthActions.logoutRequested()),
-    ),
-  );
-
-  redirectToNewsRouteAfterArticleDeletion$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ArticlesActions.deleteArticleSucceeded),
-      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-      filter(
-        ([{ article }, previousPath]) => previousPath === `/article/view/${article.id}`,
-      ),
-      map(() => NavActions.navigationRequested({ path: NavPathTypes.NEWS })),
-    ),
-  );
-
   navigateHome$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.loginSucceeded, AuthActions.passwordChangeSucceeded),
@@ -252,7 +49,12 @@ export class NavEffects {
 
   navigateToMembers$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MembersActions.cancelSelected, MembersActions.fetchMemberFailed),
+      ofType(
+        MembersActions.cancelSelected,
+        MembersActions.addMemberSucceeded,
+        MembersActions.updateMemberSucceeded,
+        MembersActions.fetchMemberFailed,
+      ),
       map(() => NavActions.navigationRequested({ path: NavPathTypes.MEMBERS })),
     ),
   );
@@ -261,6 +63,7 @@ export class NavEffects {
     this.actions$.pipe(
       ofType(
         ScheduleActions.cancelSelected,
+        ScheduleActions.addEventSucceeded,
         ScheduleActions.updateEventSucceeded,
         ScheduleActions.fetchEventFailed,
       ),
@@ -296,39 +99,98 @@ export class NavEffects {
     ),
   );
 
-  navigateAfterSuccessfulArticleFetch$ = createEffect(() =>
+  handleLogoutRouteNavigation$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticlesActions.fetchArticleSucceeded),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.controlMode)),
-      map(([{ article }, controlMode]) => {
-        const path =
-          controlMode === ControlModes.EDIT
-            ? NavPathTypes.ARTICLE + '/' + NavPathTypes.EDIT + '/' + article.id
-            : NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + article.id;
-        return NavActions.navigationRequested({ path });
+      ofType(routerNavigatedAction),
+      filter(({ payload }) => payload.event.url === '/logout'),
+      concatLatestFrom(() => this.store.select(AuthSelectors.user)),
+      filter(([, user]) => !!user),
+      map(() => AuthActions.logoutRequested()),
+    ),
+  );
+
+  handleEventRouteNavigation$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      map(({ payload }) => payload.event.url),
+      filter(currentPath => currentPath.startsWith('/event/')),
+      map(currentPath => {
+        const [controlMode, eventId] = currentPath.split('/event/')[1].split('/');
+
+        return controlMode === 'add' && !eventId
+          ? ScheduleActions.eventAddRequested()
+          : controlMode === 'edit' && !!eventId
+            ? ScheduleActions.eventEditRequested({ eventId })
+            : NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE });
       }),
     ),
   );
 
-  navigateAfterSuccessfulEventFetch$ = createEffect(() =>
+  handleMemberRouteNavigation$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ScheduleActions.fetchEventSucceeded),
-      map(({ event }) => {
-        return NavActions.navigationRequested({
-          path: NavPathTypes.EVENT + '/' + NavPathTypes.EDIT + '/' + event.id,
-        });
+      ofType(routerNavigatedAction),
+      map(({ payload }) => payload.event.url),
+      filter(currentPath => currentPath.startsWith('/member/')),
+      map(currentPath => {
+        const [controlMode, memberId] = currentPath.split('/member/')[1].split('/');
+
+        return controlMode === 'add' && !memberId
+          ? MembersActions.memberAddRequested()
+          : controlMode === 'edit' && !!memberId
+            ? MembersActions.memberEditRequested({ memberId })
+            : NavActions.navigationRequested({ path: NavPathTypes.MEMBERS });
       }),
     ),
   );
 
-  navigateAfterSuccessfulMemberFetch$ = createEffect(() =>
+  handleArticleRouteNavigation$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MembersActions.fetchMemberSucceeded),
-      map(({ member }) => {
-        return NavActions.navigationRequested({
-          path: NavPathTypes.MEMBER + '/' + NavPathTypes.EDIT + '/' + member.id,
-        });
+      ofType(routerNavigatedAction),
+      map(({ payload }) => payload.event.url),
+      filter(currentPath => currentPath.startsWith('/article/')),
+      map(currentPath => {
+        const [controlMode, articleIdWithAnchor] = currentPath
+          .split('/article/')[1]
+          .split('/');
+        const articleId = articleIdWithAnchor?.split('#')[0];
+
+        return controlMode === 'add' && !articleId
+          ? ArticlesActions.articleAddRequested()
+          : controlMode === 'edit' && !!articleId
+            ? ArticlesActions.articleEditRequested({ articleId })
+            : controlMode === 'view' && !!articleId
+              ? ArticlesActions.articleViewRequested({ articleId })
+              : NavActions.navigationRequested({ path: NavPathTypes.NEWS });
       }),
+    ),
+  );
+
+  unsetArticle$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
+      map(([{ payload }, previousPath]) => {
+        return { currentPath: payload.event.url, previousPath };
+      }),
+      filter(({ currentPath, previousPath }) => {
+        return (
+          !!previousPath?.startsWith('/article/') &&
+          !currentPath?.startsWith('/article/edit') &&
+          currentPath !== '/article/add'
+        );
+      }),
+      map(() => ArticlesActions.articleUnset()),
+    ),
+  );
+
+  redirectToNewsRouteAfterArticleDeletion$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ArticlesActions.deleteArticleSucceeded),
+      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
+      filter(
+        ([{ article }, previousPath]) => previousPath === `/article/view/${article.id}`,
+      ),
+      map(() => NavActions.navigationRequested({ path: NavPathTypes.NEWS })),
     ),
   );
 

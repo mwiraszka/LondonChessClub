@@ -41,6 +41,16 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
+v4.1.7 - November 19th, 2024
+</summary>
+
+- 🚀 Improve safe mode notice text styling
+- 🐛 Reverse logic of safe mode toggle switch in Member Editor form
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.1.6 - November 18th, 2024
 </summary>
 

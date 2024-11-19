@@ -22,9 +22,8 @@ export const activeMembers = createSelector(membersFeatureSelector, state =>
 
 export const setMember = createSelector(membersFeatureSelector, state => state.setMember);
 
-export const setMemberName = createSelector(
-  setMember,
-  member => `${member?.firstName} ${member?.lastName}`,
+export const setMemberName = createSelector(setMember, member =>
+  member?.firstName && member?.lastName ? `${member.firstName} ${member.lastName}` : null,
 );
 
 export const formMember = createSelector(

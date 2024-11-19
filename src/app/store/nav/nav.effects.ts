@@ -126,6 +126,24 @@ export class NavEffects {
     ),
   );
 
+  unsetEvent$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
+      map(([{ payload }, previousPath]) => {
+        return { currentPath: payload.event.url, previousPath };
+      }),
+      filter(({ currentPath, previousPath }) => {
+        return (
+          !!previousPath?.startsWith('/event/') &&
+          !currentPath?.startsWith('/event/edit') &&
+          currentPath !== '/event/add'
+        );
+      }),
+      map(() => ScheduleActions.eventUnset()),
+    ),
+  );
+
   handleMemberRouteNavigation$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
@@ -140,6 +158,24 @@ export class NavEffects {
             ? MembersActions.memberEditRequested({ memberId })
             : NavActions.navigationRequested({ path: NavPathTypes.MEMBERS });
       }),
+    ),
+  );
+
+  unsetMember$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
+      map(([{ payload }, previousPath]) => {
+        return { currentPath: payload.event.url, previousPath };
+      }),
+      filter(({ currentPath, previousPath }) => {
+        return (
+          !!previousPath?.startsWith('/member/') &&
+          !currentPath?.startsWith('/member/edit') &&
+          currentPath !== '/member/add'
+        );
+      }),
+      map(() => MembersActions.memberUnset()),
     ),
   );
 

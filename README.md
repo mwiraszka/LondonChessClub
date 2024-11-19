@@ -46,6 +46,8 @@ v4.1.7 - November 19th, 2024
 
 - 🚀 Improve safe mode notice text styling
 - 🐛 Reverse logic of safe mode toggle switch in Member Editor form
+- 🐛 Fix bug where a valid member ID in the URL was sometimes interpreted as invalid
+- 🐛 Fix bug where sometimes previous event or member would be loaded up when editing
 
 </details>
 

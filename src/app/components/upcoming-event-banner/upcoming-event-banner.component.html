@@ -9,7 +9,7 @@
         (click)="facade.onClearBanner()">
         <span>
           Next event: <b>{{ upcomingEvent.title }}</b> on
-          <b>{{ setLocalTime(upcomingEvent.eventDate) | formatDate: 'short' }}</b>
+          <b>{{ upcomingEvent.eventDate | formatDate: 'short' }}</b>
         </span>
       </a>
       <i-feather

@@ -41,6 +41,16 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
+v4.2.0 - December TBD, 2024
+</summary>
+
+- 🔧 Adapt Schedule service to new backend architecture
+- 🔧 Adapt frontend date utils for the date formats used in the database
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.1.7 - November 19th, 2024
 </summary>
 

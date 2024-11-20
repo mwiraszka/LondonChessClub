@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { NavPathTypes } from '@app/types';
-import { kebabize, setLocalTime } from '@app/utils';
+import { kebabize } from '@app/utils';
 
 import { UpcomingEventBannerFacade } from './upcoming-event-banner.facade';
 
@@ -13,7 +13,6 @@ import { UpcomingEventBannerFacade } from './upcoming-event-banner.facade';
 })
 export class UpcomingEventBannerComponent {
   readonly kebabize = kebabize;
-  readonly setLocalTime = setLocalTime;
   readonly NavPathTypes = NavPathTypes;
 
   constructor(public facade: UpcomingEventBannerFacade) {}

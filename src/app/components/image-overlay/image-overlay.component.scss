@@ -28,7 +28,7 @@ $header-height: 26px;
   }
 
   img {
-    z-index: 101;
+    z-index: 100;
     width: 100%;
     max-width: calc(100vw - 16px);
     max-height: calc(100vh - #{$header-height} - 16px);

@@ -10,10 +10,10 @@ export const environment = {
     articlesEndpoint: ROOT_API_URL + '/dev/articles/',
     membersPublicEndpoint: ROOT_API_URL + '/dev/members/public/',
     membersPrivateEndpoint: ROOT_API_URL + '/dev/members/',
-    scheduleEndpoint: ROOT_API_URL + '/dev/club-events/',
   },
   googleMaps: {
     apiKey: 'AIzaSyAuLCJPCzFJXPWYUPM61Txue8PeJabI6DI',
   },
   imagesEndpoint: 'https://api.londonchess.ca/api/images/',
+  newEventsEndpoint: 'http://localhost:3000/events',
 };

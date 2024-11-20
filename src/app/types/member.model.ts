@@ -9,7 +9,7 @@ export interface Member {
   city: string;
   rating: string;
   peakRating: string;
-  dateJoined: string;
+  dateJoined: Date;
   isActive: boolean | string; // Stored as a string in DynamoDB
   chesscomUsername: string | null;
   lichessUsername: string | null;
@@ -26,7 +26,7 @@ export const newMemberFormTemplate: Member = {
   city: 'London',
   rating: '1000/0',
   peakRating: '1000/0',
-  dateJoined: moment().subtract(5, 'hours').toISOString().split('T')[0],
+  dateJoined: new Date(),
   isActive: true,
   chesscomUsername: null,
   lichessUsername: null,
@@ -44,7 +44,7 @@ export interface FlatMember {
   city: string;
   rating: string;
   peakRating: string;
-  dateJoined: string;
+  dateJoined: Date;
   isActive: boolean | string; // Stored as a string in DynamoDB
   chesscomUsername?: string;
   lichessUsername?: string;

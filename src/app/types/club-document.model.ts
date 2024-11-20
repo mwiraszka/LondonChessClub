@@ -1,6 +1,6 @@
 export interface ClubDocument {
   title: string;
-  datePublished: string;
-  dateLastModified: string;
+  datePublished: Date;
+  dateLastModified: Date;
   fileName: string;
 }

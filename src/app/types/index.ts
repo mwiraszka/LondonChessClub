@@ -3,7 +3,7 @@ export { StoreFeatures } from './app-store-features.model';
 export type { Article, FlatArticle } from './article.model';
 export { newArticleFormTemplate } from './article.model';
 export type { ClubDocument } from './club-document.model';
-export type { ClubEvent, FlatClubEvent } from './club-event.model';
+export type { ClubEvent } from './club-event.model';
 export { ClubEventTypes, newClubEventFormTemplate } from './club-event.model';
 export { ControlModes } from './control-modes.model';
 export type { GameDetails, GameScore } from './game-details.model';

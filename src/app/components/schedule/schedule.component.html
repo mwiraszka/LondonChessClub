@@ -36,7 +36,7 @@
           <td class="date-cell">
             <div class="date-content">
               <span class="date">
-                {{ setLocalTime(event.eventDate) | formatDate: 'long no-time' }}
+                {{ event.eventDate | formatDate: 'long' }}
               </span>
             </div>
           </td>
@@ -59,11 +59,11 @@
 
               @if (includeDetails) {
                 <p class="event-details">
-                  {{ event.details }}
+                  {{ event.details.replaceAll('\\n', ' \n ') }}
                 </p>
               }
 
-              @if (event.associatedArticleId) {
+              @if (event?.articleId) {
                 <a
                   [routerLink]="
                     '/' +
@@ -71,9 +71,9 @@
                     '/' +
                     NavPathTypes.VIEW +
                     '/' +
-                    event?.associatedArticleId
+                    event.articleId
                   "
-                  class="lcc-link event-associated-article">
+                  class="lcc-link event-article">
                   More details
                 </a>
               }

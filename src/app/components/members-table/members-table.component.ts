@@ -56,9 +56,8 @@ export class MembersTableComponent implements OnInit {
       });
   }
 
-  convertToUtcTimezone(localDate: string): string {
-    // Since we are only concerned with the day and since UTC @ 12:00am
-    // is always a day ahead of local time, we can simply add one day
-    return moment(localDate).add(1, 'days').toISOString().split('T')[0];
+  // TODO: update to work with Date objects!
+  convertToUtcTimezone(localDate: Date): Date {
+    return localDate;
   }
 }

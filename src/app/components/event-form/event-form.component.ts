@@ -66,10 +66,7 @@ export class EventFormComponent implements OnInit {
       title: [event.title, [Validators.required, Validators.pattern(/[^\s]/)]],
       details: [event.details, [Validators.required, Validators.pattern(/[^\s]/)]],
       type: [event.type, [Validators.required]],
-      associatedArticleId: [
-        event.associatedArticleId,
-        [Validators.pattern(articleIdRegExp)],
-      ],
+      articleId: [event.articleId, [Validators.pattern(articleIdRegExp)]],
       id: [event.id],
       modificationInfo: [event.modificationInfo],
     });

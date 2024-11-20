@@ -4,7 +4,7 @@ import { combineLatestWith } from 'rxjs/operators';
 import { Component, Input, OnInit } from '@angular/core';
 
 import { ClubEvent, type Link, NavPathTypes } from '@app/types';
-import { kebabize, setLocalTime } from '@app/utils';
+import { kebabize } from '@app/utils';
 
 import { ScheduleFacade } from './schedule.facade';
 
@@ -18,7 +18,6 @@ import { ScheduleFacade } from './schedule.facade';
 export class ScheduleComponent implements OnInit {
   readonly NavPathTypes = NavPathTypes;
   readonly kebabize = kebabize;
-  readonly setLocalTime = setLocalTime;
 
   @Input() includeDetails = true;
   @Input() allowTogglePastEvents = true;

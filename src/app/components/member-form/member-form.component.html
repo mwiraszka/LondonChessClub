@@ -109,7 +109,7 @@
         }
       </div>
 
-      @if (facade.isSafeMode$ | async) {
+      @if (!(facade.isSafeMode$ | async)) {
         <label for="email-input">Email:</label>
         <input
           id="email-input"
@@ -207,11 +207,15 @@
 
     <aside class="lcc-required-fields-legend">Required fields</aside>
 
-    @if (!(facade.isSafeMode$ | async)) {
+    @if (facade.isSafeMode$ | async) {
       <aside class="safe-mode-notice">
-        <div>
-          Personal details hidden from view.<br />
-          You can disable Safe Mode from the user settings menu.
+        <i-feather
+          name="check-circle"
+          class="checkmark-icon">
+        </i-feather>
+        <div class="text-container">
+          Member's personal details have been hidden from view. You can disable Safe Mode
+          from the User Settings menu.
         </div>
       </aside>
     }

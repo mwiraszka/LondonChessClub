@@ -41,6 +41,20 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
+v4.1.7 - November 19th, 2024
+</summary>
+
+- 🚀 Generate favicons and icons for a wider range of devices and themes
+- 🚀 Improve safe mode notice text styling
+- 🚀 Improve disabled button styling
+- 🐛 Reverse logic of safe mode toggle switch in Member Editor form
+- 🐛 Fix bug where a valid member ID in the URL was sometimes interpreted as invalid
+- 🐛 Fix bug where sometimes previous event or member would be loaded up when editing
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.1.6 - November 18th, 2024
 </summary>
 

@@ -28,7 +28,7 @@
             "polyfills": ["zone.js", "window-global-fix.ts"],
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
+            "assets": ["src/favicon.ico", "src/favicon.svg", "src/assets", "src/manifest.webmanifest"],
             "inlineStyleLanguage": "scss",
             "styles": ["src/styles/main.scss"],
             "scripts": [

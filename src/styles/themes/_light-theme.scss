@@ -44,8 +44,8 @@
   --lcc-color--button-darkSecondaryButtonForeground: #{color(grayscale, gray-25)};
   --lcc-color--button-darkSecondaryButtonForegroundOnHover: #{color(grayscale, black-2)};
   --lcc-color--button-disabledButtonBackground: #{color(grayscale, white-90)};
-  --lcc-color--button-disabledButtonBorder: #{color(grayscale, gray-50, 0.1)};
-  --lcc-color--button-disabledButtonForeground: #{color(grayscale, gray-50, 0.6)};
+  --lcc-color--button-disabledButtonBorder: #{color(grayscale, gray-50, 0.3)};
+  --lcc-color--button-disabledButtonForeground: #{color(grayscale, gray-50, 0.4)};
   --lcc-color--button-lightSecondaryButtonBorder: #{color(grayscale, gray-75)};
   --lcc-color--button-lightSecondaryButtonBorderOnHover: #{color(grayscale, white-85)};
   --lcc-color--button-lightSecondaryButtonForeground: #{color(grayscale, gray-75)};
@@ -112,7 +112,6 @@
   --lcc-color--form-labelText: #{color(grayscale, black-15)};
   --lcc-color--form-requiredFieldAsterisk: #{color(warning, light)};
   --lcc-color--form-requiredFieldText: #{color(grayscale, black-15)};
-  --lcc-color--form-safeModeNoticeText: #{color(grayscale, black-15)};
 
   --lcc-color--imageOverlay-closeIcon: #{color(grayscale, white-85)};
   --lcc-color--imageOverlay-closeIconOnHover: #{color(grayscale, white-95)};
@@ -168,6 +167,10 @@
 
   --lcc-color--markdownRenderer-primaryText: #{color(grayscale, black-15)};
   --lcc-color--markdownRenderer-secondaryText: #{color(grayscale, gray-35)};
+
+  --lcc-color--memberForm-safeModeNoticeBorder: #{color(success, base)};
+  --lcc-color--memberForm-safeModeNoticeIcon: #{color(success, base)};
+  --lcc-color--memberForm-safeModeNoticeText: #{color(grayscale, black-15)};
 
   --lcc-color--membersTable-asideBorder: #{color(grayscale, gray-75, 0.2)};
   --lcc-color--membersTable-asideCheckboxLabelTextOnHover: #{color(grayscale, gray-25)};

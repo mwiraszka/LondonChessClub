@@ -42,9 +42,9 @@
   --lcc-color--button-darkSecondaryButtonBorderOnHover: #{color(grayscale, black-15)};
   --lcc-color--button-darkSecondaryButtonForeground: #{color(grayscale, gray-25)};
   --lcc-color--button-darkSecondaryButtonForegroundOnHover: #{color(grayscale, black-2)};
-  --lcc-color--button-disabledButtonBackground: #{color(grayscale, gray-65)};
-  --lcc-color--button-disabledButtonBorder: #{color(grayscale, gray-50, 0.1)};
-  --lcc-color--button-disabledButtonForeground: #{color(grayscale, gray-35, 0.6)};
+  --lcc-color--button-disabledButtonBackground: #{color(grayscale, gray-35)};
+  --lcc-color--button-disabledButtonBorder: #{color(grayscale, gray-75, 0.3)};
+  --lcc-color--button-disabledButtonForeground: #{color(grayscale, gray-75, 0.4)};
   --lcc-color--button-lightSecondaryButtonBorder: #{color(grayscale, gray-75)};
   --lcc-color--button-lightSecondaryButtonBorderOnHover: #{color(grayscale, white-85)};
   --lcc-color--button-lightSecondaryButtonForeground: #{color(grayscale, gray-75)};
@@ -111,7 +111,6 @@
   --lcc-color--form-labelText: #{color(grayscale, white-85)};
   --lcc-color--form-requiredFieldAsterisk: #{color(warning, light)};
   --lcc-color--form-requiredFieldText: #{color(grayscale, gray-75)};
-  --lcc-color--form-safeModeNoticeText: #{color(grayscale, gray-75)};
 
   --lcc-color--gameArchivesScreen-chartLabel: #{color(grayscale, white-90)};
   --lcc-color--gameArchivesScreen-filterContainerBackground: #{color(grayscale, black-15)};
@@ -168,9 +167,13 @@
   --lcc-color--markdownRenderer-primaryText: #{color(grayscale, white-95)};
   --lcc-color--markdownRenderer-secondaryText: #{color(grayscale, gray-75)};
 
+  --lcc-color--memberForm-safeModeNoticeBorder: #{color(success, base)};
+  --lcc-color--memberForm-safeModeNoticeIcon: #{color(success, base)};
+  --lcc-color--memberForm-safeModeNoticeText: #{color(grayscale, gray-75)};
+
   --lcc-color--membersTable-asideBorder: #{color(grayscale, gray-75, 0.2)};
   --lcc-color--membersTable-asideCheckboxLabelTextOnHover: #{color(grayscale, white-95)};
-  --lcc-color--membersTable-asideCheckboxSectionBackground: #{color(primary, base, 0.4)};
+  --lcc-color--membersTable-asideCheckboxSectionBackground: #{color(primary, dark, 0.3)};
   --lcc-color--membersTable-asideText: #{color(grayscale, white-85)};
   --lcc-color--membersTable-headerBackgroundOnHover: #{color(primary, base, 0.7)};
   --lcc-color--membersTable-inactiveMemberAsterisk: #{color(grayscale, gray-75)};
@@ -198,7 +201,7 @@
   --lcc-color--nav-linkForegroundWhenActive: #{color(grayscale, white-98)};
   --lcc-color--nav-safeModeOffAlertIcon: #{color(warning, lighter)};
 
-  --lcc-color--paginator-background: #{color(primary, base, 0.5)};
+  --lcc-color--paginator-background: #{color(primary, dark, 0.3)};
   --lcc-color--paginator-border: #{color(grayscale, gray-75, 0.2)};
   --lcc-color--paginator-buttonBackground: #{color(grayscale, white-95)};
   --lcc-color--paginator-buttonBackgroundOnHover: #{color(grayscale, white-98)};

@@ -1,5 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
+import { HttpErrorResponse } from '@angular/common/http';
+
 import type { ClubEvent } from '@app/types';
 
 enum ScheduleActionTypes {
@@ -52,7 +54,7 @@ export const fetchEventsSucceeded = createAction(
 );
 export const fetchEventsFailed = createAction(
   ScheduleActionTypes.FETCH_EVENTS_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const eventAddRequested = createAction(ScheduleActionTypes.EVENT_ADD_REQUESTED);
@@ -71,7 +73,7 @@ export const fetchEventSucceeded = createAction(
 );
 export const fetchEventFailed = createAction(
   ScheduleActionTypes.FETCH_EVENT_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const eventSet = createAction(
@@ -92,7 +94,7 @@ export const addEventSucceeded = createAction(
 );
 export const addEventFailed = createAction(
   ScheduleActionTypes.ADD_EVENT_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const updateEventSelected = createAction(
@@ -111,7 +113,7 @@ export const updateEventSucceeded = createAction(
 );
 export const updateEventFailed = createAction(
   ScheduleActionTypes.UPDATE_EVENT_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const deleteEventSelected = createAction(
@@ -130,7 +132,7 @@ export const deleteEventSucceeded = createAction(
 );
 export const deleteEventFailed = createAction(
   ScheduleActionTypes.DELETE_EVENT_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const cancelSelected = createAction(ScheduleActionTypes.CANCEL_SELECTED);

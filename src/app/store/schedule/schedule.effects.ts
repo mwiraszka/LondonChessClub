@@ -1,13 +1,15 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { EMPTY, of } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { LoaderService, ScheduleService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import type { ClubEvent, ModificationInfo, ServiceResponse } from '@app/types';
+import type { ModificationInfo } from '@app/types';
 
 import * as ScheduleActions from './schedule.actions';
 import * as ScheduleSelectors from './schedule.selectors';
@@ -20,12 +22,9 @@ export class ScheduleEffects {
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() =>
         this.scheduleService.getEvents().pipe(
-          map((response: ServiceResponse<ClubEvent[]>) =>
-            response.error
-              ? ScheduleActions.fetchEventsFailed({ error: response.error })
-              : ScheduleActions.fetchEventsSucceeded({
-                  allEvents: response.payload!,
-                }),
+          map(allEvents => ScheduleActions.fetchEventsSucceeded({ allEvents })),
+          catchError((errorResponse: HttpErrorResponse) =>
+            of(ScheduleActions.fetchEventsFailed({ errorResponse })),
           ),
         ),
       ),
@@ -39,14 +38,9 @@ export class ScheduleEffects {
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ eventId }) =>
         this.scheduleService.getEvent(eventId).pipe(
-          map((response: ServiceResponse<ClubEvent>) =>
-            response.error
-              ? ScheduleActions.fetchEventFailed({
-                  error: response.error,
-                })
-              : ScheduleActions.fetchEventSucceeded({
-                  event: response.payload!,
-                }),
+          map(event => ScheduleActions.fetchEventSucceeded({ event })),
+          catchError((errorResponse: HttpErrorResponse) =>
+            of(ScheduleActions.fetchEventFailed({ errorResponse })),
           ),
         ),
       ),
@@ -63,22 +57,24 @@ export class ScheduleEffects {
         this.store.select(AuthSelectors.user),
       ]),
       switchMap(([, eventToAdd, user]) => {
-        const dateNow = new Date(Date.now());
+        if (!eventToAdd || !user) {
+          this.loaderService.setIsLoading(false);
+          return EMPTY;
+        }
+
+        const dateNow = new Date();
         const modificationInfo: ModificationInfo = {
-          createdBy: `${user!.firstName} ${user!.lastName}`,
+          createdBy: `${user.firstName} ${user.lastName}`,
           dateCreated: dateNow,
-          lastEditedBy: `${user!.firstName} ${user!.lastName}`,
+          lastEditedBy: `${user.firstName} ${user.lastName}`,
           dateLastEdited: dateNow,
         };
-        const modifiedEvent = { ...eventToAdd!, modificationInfo };
+        const modifiedEvent = { ...eventToAdd, modificationInfo };
 
         return this.scheduleService.addEvent(modifiedEvent).pipe(
-          map((response: ServiceResponse<ClubEvent>) =>
-            response.error
-              ? ScheduleActions.addEventFailed({ error: response.error })
-              : ScheduleActions.addEventSucceeded({
-                  event: response.payload!,
-                }),
+          map(event => ScheduleActions.addEventSucceeded({ event })),
+          catchError((errorResponse: HttpErrorResponse) =>
+            of(ScheduleActions.addEventFailed({ errorResponse })),
           ),
         );
       }),
@@ -105,12 +101,9 @@ export class ScheduleEffects {
         const modifiedEvent = { ...eventToUpdate!, modificationInfo };
 
         return this.scheduleService.updateEvent(modifiedEvent).pipe(
-          map((response: ServiceResponse<ClubEvent>) =>
-            response.error
-              ? ScheduleActions.updateEventFailed({ error: response.error })
-              : ScheduleActions.updateEventSucceeded({
-                  event: response.payload!,
-                }),
+          map(event => ScheduleActions.updateEventSucceeded({ event })),
+          catchError((errorResponse: HttpErrorResponse) =>
+            of(ScheduleActions.updateEventFailed({ errorResponse })),
           ),
         );
       }),
@@ -125,12 +118,9 @@ export class ScheduleEffects {
       concatLatestFrom(() => this.store.select(ScheduleSelectors.setEvent)),
       switchMap(([, eventToDelete]) =>
         this.scheduleService.deleteEvent(eventToDelete!).pipe(
-          map((response: ServiceResponse<ClubEvent>) =>
-            response.error
-              ? ScheduleActions.deleteEventFailed({ error: response.error })
-              : ScheduleActions.deleteEventSucceeded({
-                  event: response.payload!,
-                }),
+          map(event => ScheduleActions.deleteEventSucceeded({ event })),
+          catchError((errorResponse: HttpErrorResponse) =>
+            of(ScheduleActions.deleteEventFailed({ errorResponse })),
           ),
         ),
       ),

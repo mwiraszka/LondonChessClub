@@ -1,10 +1,10 @@
-import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import type { ClubEvent, ServiceResponse } from '@app/types';
+import type { ClubEvent, Id } from '@app/types';
 import { customSort } from '@app/utils';
 
 import { environment } from '@environments/environment';
@@ -15,74 +15,52 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class ScheduleService {
-  readonly API_ENDPOINT = environment.newEventsEndpoint;
+  readonly EVENTS_ENDPOINT = environment.api.eventsEndpoint;
 
   constructor(
     private authService: AuthService,
     private http: HttpClient,
   ) {}
 
-  // TODO: Improve response typing & error handling
-  getEvent(id: string): Observable<ServiceResponse<ClubEvent>> {
-    return this.http.get<ClubEvent>(this.API_ENDPOINT + id).pipe(
-      map(event => ({ payload: event })),
-      catchError(() => of({ error: new Error('Failed to fetch event from database') })),
-    );
+  getEvent(id: string): Observable<ClubEvent> {
+    return this.http.get<ClubEvent>(this.EVENTS_ENDPOINT + id);
   }
 
-  getEvents(): Observable<ServiceResponse<ClubEvent[]>> {
-    return this.http.get<{ events: ClubEvent[] }>(this.API_ENDPOINT).pipe(
-      map(({ events }) => {
-        const sortedEvents = [...events].sort(customSort('eventDate', false));
-        return { payload: sortedEvents };
-      }),
-      catchError(() => of({ error: new Error('Failed to fetch events from database') })),
-    );
+  getEvents(): Observable<ClubEvent[]> {
+    return this.http
+      .get<ClubEvent[]>(this.EVENTS_ENDPOINT)
+      .pipe(map(events => [...events].sort(customSort('eventDate', false))));
   }
 
-  addEvent(event: ClubEvent): Observable<ServiceResponse<ClubEvent>> {
+  addEvent(event: ClubEvent): Observable<ClubEvent> {
+    return this.http
+      .post<Id>(this.EVENTS_ENDPOINT, event)
+      .pipe(map(id => ({ ...event, id })));
+  }
+
+  updateEvent(event: ClubEvent): Observable<ClubEvent> {
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.post<null>(this.API_ENDPOINT, event, {
+        this.http.put<Id>(this.EVENTS_ENDPOINT + event.id, event, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
         }),
       ),
-      map(() => ({ payload: event })),
-      catchError(error =>
-        of({ error: new Error(`Failed to add event to database: \n${error}`) }),
-      ),
+      map(() => event),
     );
   }
 
-  updateEvent(event: ClubEvent): Observable<ServiceResponse<ClubEvent>> {
+  deleteEvent(event: ClubEvent): Observable<ClubEvent> {
     return this.authService.token().pipe(
       switchMap(token =>
-        this.http.put<null>(this.API_ENDPOINT + event.id, event, {
+        this.http.delete<Id>(this.EVENTS_ENDPOINT + event.id, {
           headers: new HttpHeaders({
             Authorization: token,
           }),
         }),
       ),
-      map(() => ({ payload: event })),
-      catchError(error => of({ error: new Error(`Failed to update event: \n${error}`) })),
-    );
-  }
-
-  deleteEvent(event: ClubEvent): Observable<ServiceResponse<ClubEvent>> {
-    return this.authService.token().pipe(
-      switchMap(token =>
-        this.http.delete<null>(this.API_ENDPOINT + event.id, {
-          headers: new HttpHeaders({
-            Authorization: token,
-          }),
-        }),
-      ),
-      map(() => ({ payload: event })),
-      catchError(error =>
-        of({ error: new Error(`Failed to delete event from database: \n${error}`) }),
-      ),
+      map(() => event),
     );
   }
 }

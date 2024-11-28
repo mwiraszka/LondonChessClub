@@ -14,6 +14,8 @@ export const environment = {
   googleMaps: {
     apiKey: 'AIzaSyAuLCJPCzFJXPWYUPM61Txue8PeJabI6DI',
   },
+  api: {
+    eventsEndpoint: 'http://localhost:3000/api/events/',
+  },
   imagesEndpoint: 'https://api.londonchess.ca/api/images/',
-  newEventsEndpoint: 'http://localhost:3000/events',
 };

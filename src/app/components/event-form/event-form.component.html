@@ -33,7 +33,8 @@
         id="title-input"
         type="text"
         name="title"
-        formControlName="title" />
+        formControlName="title"
+        maxlength="100" />
       <div class="lcc-form-error-container">
         @if (hasError(form.controls['title'])) {
           <i-feather

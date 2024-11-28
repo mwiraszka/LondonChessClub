@@ -301,10 +301,10 @@ export class ToasterEffects {
   addAddEventFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.addEventFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'New event',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -329,10 +329,10 @@ export class ToasterEffects {
   addUpdateEventFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.updateEventFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'Event update',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -357,10 +357,10 @@ export class ToasterEffects {
   addDeleteEventFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.deleteEventFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'Event deletion',
-          message: error.message,
+          message: errorResponse.error,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -371,10 +371,10 @@ export class ToasterEffects {
   addFetchEventsFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.fetchEventsFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'Load events',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -385,10 +385,10 @@ export class ToasterEffects {
   addFetchEventFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ScheduleActions.fetchEventFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'Load event',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });

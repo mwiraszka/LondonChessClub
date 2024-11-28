@@ -1,5 +1,3 @@
-import moment from 'moment-timezone';
-
 import type { ModificationInfo } from './modification-info.model';
 
 export interface Member {

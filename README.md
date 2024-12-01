@@ -48,7 +48,25 @@ v4.2.0 - December TBD, 2024
 - 🔧 Adapt Schedule service to new backend architecture
 - 🔧 Adapt frontend date utils for the date formats used in the database
 - 🔧 Convert all components to standalone components
-- 🔧 Create custom `range` pipe for easier iteration over consecutive integers in templates 
+- 🔧 Create custom `range` pipe for easier iteration over consecutive integers in templates
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
+v4.1.9 - November 30th, 2024
+</summary>
+
+- 🚀 Re-sort 2024 PGNs
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
+v4.1.8 - November 30th, 2024
+</summary>
+
+- 🚀 Add PGNs for LCC Championship
 
 </details>
 

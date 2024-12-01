@@ -7,7 +7,6 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import type { Member } from '@app/types';
 import { isDefined } from '@app/utils';
 import {
-  dateValidator,
   emailValidator,
   phoneNumberValidator,
   ratingValidator,
@@ -47,8 +46,6 @@ export class MemberFormComponent implements OnInit {
       return 'This field is required';
     } else if (control.hasError('invalidRating')) {
       return 'Invalid rating';
-    } else if (control.hasError('invalidDateFormat')) {
-      return 'Invalid date format - please input as YYYY-MM-DD';
     } else if (control.hasError('invalidEmailFormat')) {
       return 'Invalid email';
     } else if (control.hasError('invalidPhoneNumberFormat')) {
@@ -88,7 +85,7 @@ export class MemberFormComponent implements OnInit {
         member.rating,
         [Validators.required, ratingValidator, Validators.max(3000)],
       ],
-      dateJoined: [member.dateJoined, [Validators.required, dateValidator]],
+      dateJoined: [member.dateJoined, [Validators.required]],
       email: [member.email, emailValidator],
       phoneNumber: [member.phoneNumber, phoneNumberValidator],
       yearOfBirth: [member.yearOfBirth, yearValidator],

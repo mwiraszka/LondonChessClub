@@ -8,7 +8,7 @@
     <a [routerLink]="NavPathTypes.HOME">London Chess Club</a>
   </section>
   <section class="chess-pieces">
-    @for (num of [1, 2, 3, 4, 5]; track num) {
+    @for (num of 5 | range; track num) {
       <img
         [ngClass]="'pieces-' + num"
         src="assets/chess-pieces.svg"

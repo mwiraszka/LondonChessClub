@@ -16,8 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppRoutingModule } from '@app/app-routing.module';
-import { FooterModule } from '@app/components/footer';
-import { HeaderModule } from '@app/components/header';
+import { FooterComponent } from '@app/components/footer/footer.component';
+import { HeaderComponent } from '@app/components/header/header.component';
 import { ImageOverlayModule } from '@app/components/image-overlay';
 import { ModalModule } from '@app/components/modal';
 import { NavModule } from '@app/components/nav';
@@ -49,8 +49,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     BrowserAnimationsModule,
     EffectsModule.forRoot([]),
-    FooterModule,
-    HeaderModule,
+    FooterComponent,
+    HeaderComponent,
     ImageOverlayModule,
     PhotosStoreModule,
     MarkdownModule.forRoot(),

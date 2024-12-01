@@ -1,16 +1,20 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
+import { TooltipModule } from '@app/components/tooltip';
 import { UpdateService } from '@app/services';
 
 import packageJson from '../../../../package.json';
 
 @UntilDestroy()
 @Component({
+  standalone: true,
   selector: 'lcc-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
+  imports: [CommonModule, TooltipModule],
 })
 export class FooterComponent implements OnInit {
   currentVersion = packageJson.version;

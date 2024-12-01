@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -33,9 +33,12 @@ export class ScheduleService {
   }
 
   addEvent(event: ClubEvent): Observable<ClubEvent> {
-    return this.http
-      .post<Id>(this.EVENTS_ENDPOINT, event)
-      .pipe(map(id => ({ ...event, id })));
+    console.log(':: add event', event);
+    return of(event);
+
+    // return this.http
+    //   .post<Id>(this.EVENTS_ENDPOINT, event)
+    //   .pipe(map(id => ({ ...event, id })));
   }
 
   updateEvent(event: ClubEvent): Observable<ClubEvent> {

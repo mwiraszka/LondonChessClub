@@ -76,6 +76,13 @@
   --lcc-color--contentPlaceholder-foreground2: #{color(grayscale, white-95, 0.3)};
   --lcc-color--contentPlaceholder-foreground3: #{color(grayscale, white-95, 0.6)};
 
+  --lcc-color--datePicker-buttonsBackground: #{color(primary)};
+  --lcc-color--datePicker-buttonsBackgroundOnHover: #{color(primary, light)};
+  --lcc-color--datePicker-cellBorderOnHover: #{color(grayscale, gray-75, 0.3)};
+  --lcc-color--datePicker-cellBorderOnSelect: #{color(primary, base)};
+  --lcc-color--datePicker-headerBackground: #{color(primary, dark)};
+  --lcc-color--datePicker-headerText: #{color(grayscale, white-90)};
+
   --lcc-color--documentsScreen-documentLabelOnHover: #{color(primary, light)};
   --lcc-color--documentsScreen-downloadLinkOnHover: #{color(primary, light)};
   --lcc-color--documentsScreen-pdfViewerCloseIcon: #{color(grayscale, white-85)};

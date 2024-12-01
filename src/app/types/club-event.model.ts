@@ -14,7 +14,7 @@ export enum ClubEventTypes {
 export interface ClubEvent {
   id: string | null;
   type: ClubEventTypes;
-  eventDate: Date | null;
+  eventDate: Date;
   title: string;
   details: string;
   articleId: string | null;
@@ -24,7 +24,7 @@ export interface ClubEvent {
 export const newClubEventFormTemplate: ClubEvent = {
   id: null,
   type: ClubEventTypes.BLITZ_TOURNAMENT,
-  eventDate: null,
+  eventDate: new Date(), // TODO: set to current date (local timezone) at 6:00 PM
   title: '',
   details: '',
   articleId: null,

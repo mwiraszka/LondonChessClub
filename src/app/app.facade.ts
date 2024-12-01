@@ -28,11 +28,11 @@ export class AppFacade {
   upcomingEvent$ = this.store.select(ScheduleSelectors.upcomingEvent);
 
   constructor(
-    @Inject(DOCUMENT) private document: Document,
+    @Inject(DOCUMENT) private _document: Document,
     private readonly store: Store,
   ) {
     this.isDarkMode$.pipe(untilDestroyed(this)).subscribe(isDarkMode => {
-      this.document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+      this._document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
     });
 
     this.bannerLastCleared$

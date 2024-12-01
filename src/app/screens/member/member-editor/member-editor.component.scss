@@ -23,7 +23,7 @@ lcc-member-form {
   border-radius: var(--lcc-borderRadius--small);
 
   @include respond-to('gt-md') {
-    padding: 32px 64px;
+    padding: 8px 64px;
   }
 }
 

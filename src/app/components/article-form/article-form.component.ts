@@ -24,7 +24,6 @@ export class ArticleFormComponent implements OnInit {
   constructor(
     public facade: ArticleFormFacade,
     private formBuilder: FormBuilder,
-    private imagesService: ImagesService,
   ) {}
 
   ngOnInit(): void {
@@ -42,8 +41,6 @@ export class ArticleFormComponent implements OnInit {
   getErrorMessage(control: AbstractControl): string {
     if (control.hasError('required')) {
       return 'This field is required';
-    } else if (control.hasError('invalidDateFormat')) {
-      return 'Invalid date';
     } else if (control.hasError('imageTooLarge')) {
       return 'Banner image file must be smaller than 1MB';
     } else {

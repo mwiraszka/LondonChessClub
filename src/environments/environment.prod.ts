@@ -1,7 +1,7 @@
 const ROOT_API_URL = 'https://lgqi8xer38.execute-api.us-east-2.amazonaws.com';
 
 export const environment = {
-  production: false,
+  production: true,
   aws: {
     cognitoUserPool: {
       userPoolId: 'us-east-2_W9IbTHSe9',

@@ -1,9 +1,19 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { debounceTime, filter, first } from 'rxjs/operators';
 
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
+import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
+import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { IconsModule } from '@app/icons';
 import type { Member } from '@app/types';
 import { isDefined } from '@app/utils';
 import {
@@ -17,10 +27,18 @@ import { MemberFormFacade } from './member-form.facade';
 
 @UntilDestroy()
 @Component({
+  standalone: true,
   selector: 'lcc-member-form',
   templateUrl: './member-form.component.html',
   styleUrls: ['./member-form.component.scss'],
   providers: [MemberFormFacade],
+  imports: [
+    CommonModule,
+    IconsModule,
+    ModificationInfoComponent,
+    ReactiveFormsModule,
+    TooltipDirective,
+  ],
 })
 export class MemberFormComponent implements OnInit {
   form!: FormGroup;

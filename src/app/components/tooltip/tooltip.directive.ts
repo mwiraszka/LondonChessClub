@@ -15,6 +15,7 @@ import { getTextWidth, isTouchScreen } from '@app/utils';
 import { TooltipComponent } from './tooltip.component';
 
 @Directive({
+  standalone: true,
   selector: '[tooltip]',
 })
 export class TooltipDirective implements OnChanges, OnDestroy {

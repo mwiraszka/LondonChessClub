@@ -17,15 +17,17 @@ import { isDefined } from '@app/utils';
 export class AppFacade {
   readonly ONE_DAY_MS = 1000 * 60 * 60 * 24;
 
-  bannerLastCleared$ = this.store.select(UserSettingsSelectors.bannerLastCleared);
-  isDarkMode$ = this.store.select(UserSettingsSelectors.isDarkMode);
-  showImageOverlay$ = this.store.select(PhotosSelectors.isOpen);
-  showModal$ = this.store.select(ModalSelectors.isOpen);
-  showToaster$ = this.store.select(ToasterSelectors.isDisplayingToasts);
-  showUpcomingEventBanner$ = this.store.select(
+  readonly bannerLastCleared$ = this.store.select(
+    UserSettingsSelectors.bannerLastCleared,
+  );
+  readonly isDarkMode$ = this.store.select(UserSettingsSelectors.isDarkMode);
+  readonly showImageOverlay$ = this.store.select(PhotosSelectors.isOpen);
+  readonly showModal$ = this.store.select(ModalSelectors.isOpen);
+  readonly showToaster$ = this.store.select(ToasterSelectors.isDisplayingToasts);
+  readonly showUpcomingEventBanner$ = this.store.select(
     UserSettingsSelectors.showUpcomingEventBanner,
   );
-  upcomingEvent$ = this.store.select(ScheduleSelectors.upcomingEvent);
+  readonly upcomingEvent$ = this.store.select(ScheduleSelectors.upcomingEvent);
 
   constructor(
     @Inject(DOCUMENT) private _document: Document,

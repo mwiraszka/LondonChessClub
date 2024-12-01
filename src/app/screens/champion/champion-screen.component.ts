@@ -1,15 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { MetaAndTitleService } from '@app/services';
 import { type Link, NavPathTypes } from '@app/types';
 
 import { ChampionScreenFacade } from './champion-screen.facade';
 
 @Component({
+  standalone: true,
   selector: 'lcc-champion-screen',
   templateUrl: './champion-screen.component.html',
   styleUrls: ['./champion-screen.component.scss'],
   providers: [ChampionScreenFacade],
+  imports: [CommonModule, LinkListComponent, ScreenHeaderComponent],
 })
 export class ChampionScreenComponent implements OnInit {
   readonly NavPathTypes = NavPathTypes;

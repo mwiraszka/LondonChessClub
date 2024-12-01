@@ -1,19 +1,30 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { ChartConfiguration } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
 import { debounceTime, distinctUntilChanged, take } from 'rxjs/operators';
 
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { KeyValue } from '@angular/common';
+import {
+  CdkFixedSizeVirtualScroll,
+  CdkVirtualForOf,
+  CdkVirtualScrollViewport,
+} from '@angular/cdk/scrolling';
+import { CommonModule, KeyValue, KeyValuePipe } from '@angular/common';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 
+import { ExpansionPanelComponent } from '@app/components/expansion-panel/expansion-panel.component';
+import { PgnViewerComponent } from '@app/components/pgn-viewer/pgn-viewer.component';
+import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
+import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { IconsModule } from '@app/icons';
 import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';
 import { UserSettingsSelectors } from '@app/store/user-settings';
 import { GameDetails } from '@app/types';
@@ -30,9 +41,24 @@ import { YEARS } from './years';
 
 @UntilDestroy()
 @Component({
+  standalone: true,
   selector: 'lcc-game-archives-screen',
   templateUrl: './game-archives-screen.component.html',
   styleUrls: ['./game-archives-screen.component.scss'],
+  imports: [
+    BaseChartDirective,
+    CdkFixedSizeVirtualScroll,
+    CdkVirtualForOf,
+    CdkVirtualScrollViewport,
+    CommonModule,
+    ExpansionPanelComponent,
+    IconsModule,
+    KeyValuePipe,
+    PgnViewerComponent,
+    ReactiveFormsModule,
+    ScreenHeaderComponent,
+    TooltipDirective,
+  ],
 })
 export class GameArchivesScreenComponent implements OnInit {
   allGames: Map<string, GameDetails[]> = new Map();

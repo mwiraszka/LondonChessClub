@@ -1,8 +1,13 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import moment from 'moment-timezone';
 
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
+import { AdminControlsComponent } from '@app/components/admin-controls/admin-controls.component';
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { PaginatorComponent } from '@app/components/paginator/paginator.component';
+import { IconsModule } from '@app/icons';
+import { FormatDatePipe } from '@app/pipes/format-date.pipe';
 import { type Link, NavPathTypes } from '@app/types';
 import { camelize, kebabize } from '@app/utils';
 
@@ -10,10 +15,19 @@ import { MembersTableFacade } from './members-table.facade';
 
 @UntilDestroy()
 @Component({
+  standalone: true,
   selector: 'lcc-members-table',
   templateUrl: './members-table.component.html',
   styleUrls: ['./members-table.component.scss'],
   providers: [MembersTableFacade],
+  imports: [
+    AdminControlsComponent,
+    CommonModule,
+    FormatDatePipe,
+    IconsModule,
+    LinkListComponent,
+    PaginatorComponent,
+  ],
 })
 export class MembersTableComponent implements OnInit {
   readonly NavPathTypes = NavPathTypes;

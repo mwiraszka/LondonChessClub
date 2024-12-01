@@ -1,22 +1,29 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
+import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { IconsModule } from '@app/icons';
 import { NavPathTypes } from '@app/types';
 import { emailValidator } from '@app/validators';
 
 import { LoginFormFacade } from './login-form.facade';
 
 @Component({
+  standalone: true,
   selector: 'lcc-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
   providers: [LoginFormFacade],
+  imports: [CommonModule, IconsModule, ReactiveFormsModule, RouterLink, TooltipDirective],
 })
 export class LoginFormComponent implements OnInit {
   readonly NavPathTypes = NavPathTypes;

@@ -1,18 +1,23 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { combineLatest } from 'rxjs';
 
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
+import { MemberFormComponent } from '@app/components/member-form/member-form.component';
+import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { MetaAndTitleService } from '@app/services';
 
 import { MemberEditorFacade } from './member-editor.facade';
 
 @UntilDestroy()
 @Component({
+  standalone: true,
   selector: 'lcc-member-editor',
   templateUrl: './member-editor.component.html',
   styleUrls: ['./member-editor.component.scss'],
   providers: [MemberEditorFacade],
+  imports: [CommonModule, MemberFormComponent, ScreenHeaderComponent],
 })
 export class MemberEditorComponent implements OnInit {
   constructor(

@@ -6,7 +6,7 @@ import { PhotosActions, PhotosSelectors } from '@app/store/photos';
 
 @Injectable()
 export class ImageOverlayFacade {
-  photo$ = this.store.select(PhotosSelectors.overlayPhoto);
+  readonly photo$ = this.store.select(PhotosSelectors.overlayPhoto);
 
   constructor(private readonly store: Store) {}
 

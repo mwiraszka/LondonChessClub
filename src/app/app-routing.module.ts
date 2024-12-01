@@ -1,86 +1,102 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from '@app/guards';
+import { AuthGuard } from '@app/guards/auth.guard';
 import { NavPathTypes } from '@app/types';
 
 const routes: Routes = [
   {
     path: NavPathTypes.HOME,
     loadChildren: () =>
-      import('./screens/home/home-screen.module').then(m => m.HomeScreenModule),
+      import('./screens/home/home-screen-routing.module').then(
+        m => m.HomeScreenRoutingModule,
+      ),
     pathMatch: 'full',
   },
   {
     path: NavPathTypes.ABOUT,
     loadChildren: () =>
-      import('./screens/about/about-screen.module').then(m => m.AboutScreenModule),
+      import('./screens/about/about-screen-routing.module').then(
+        m => m.AboutScreenRoutingModule,
+      ),
   },
   {
     path: NavPathTypes.MEMBERS,
     loadChildren: () =>
-      import('./screens/members/members-screen.module').then(m => m.MembersScreenModule),
+      import('./screens/members/members-screen-routing.module').then(
+        m => m.MembersScreenRoutingModule,
+      ),
   },
   {
     path: NavPathTypes.MEMBER,
     loadChildren: () =>
-      import('./screens/member/member-screen.module').then(m => m.MemberScreenModule),
+      import('./screens/member/member-screen-routing.module').then(
+        m => m.MemberScreenRoutingModule,
+      ),
   },
   {
     path: NavPathTypes.SCHEDULE,
     loadChildren: () =>
-      import('./screens/schedule/schedule-screen.module').then(
-        m => m.ScheduleScreenModule,
+      import('./screens/schedule/schedule-screen-routing.module').then(
+        m => m.ScheduleScreenRoutingModule,
       ),
   },
   {
     path: NavPathTypes.EVENT,
     loadChildren: () =>
-      import('./screens/event/event-screen.module').then(m => m.EventScreenModule),
+      import('./screens/event/event-screen-routing.module').then(
+        m => m.EventScreenRoutingModule,
+      ),
     canActivate: [AuthGuard],
   },
   {
     path: NavPathTypes.NEWS,
     loadChildren: () =>
-      import('./screens/news/news-screen.module').then(m => m.NewsScreenModule),
+      import('./screens/news/news-screen-routing.module').then(
+        m => m.NewsScreenRoutingModule,
+      ),
   },
   {
     path: NavPathTypes.ARTICLE,
     loadChildren: () =>
-      import('./screens/article/article-screen.module').then(m => m.ArticleScreenModule),
+      import('./screens/article/article-screen-routing.module').then(
+        m => m.ArticleScreenRoutingModule,
+      ),
   },
   {
     path: NavPathTypes.CITY_CHAMPION,
     loadChildren: () =>
-      import('./screens/champion/champion-screen.module').then(
-        m => m.ChampionScreenModule,
+      import('./screens/champion/champion-screen-routing.module').then(
+        m => m.ChampionScreenRoutingModule,
       ),
   },
   {
     path: NavPathTypes.PHOTO_GALLERY,
     loadChildren: () =>
-      import('./screens/photo-gallery/photo-gallery-screen.module').then(
-        m => m.PhotoGalleryScreenModule,
+      import('./screens/photo-gallery/photo-gallery-screen-routing.module').then(
+        m => m.PhotoGalleryScreenRoutingModule,
       ),
   },
   {
     path: NavPathTypes.GAME_ARCHIVES,
     loadChildren: () =>
-      import('./screens/game-archives/game-archives-screen.module').then(
-        m => m.GameArchivesScreenModule,
+      import('./screens/game-archives/game-archives-screen-routing.module').then(
+        m => m.GameArchivesScreenRoutingModule,
       ),
   },
   {
     path: NavPathTypes.DOCUMENTS,
     loadChildren: () =>
-      import('./screens/documents/documents-screen.module').then(
-        m => m.DocumentsScreenModule,
+      import('./screens/documents/documents-screen-routing.module').then(
+        m => m.DocumentsScreenRoutingModule,
       ),
   },
   {
     path: NavPathTypes.LOGIN,
     loadChildren: () =>
-      import('./screens/login/login-screen.module').then(m => m.LoginScreenModule),
+      import('./screens/login/login-screen-routing.module').then(
+        m => m.LoginScreenRoutingModule,
+      ),
   },
   {
     path: NavPathTypes.LOGOUT,
@@ -89,8 +105,8 @@ const routes: Routes = [
   {
     path: NavPathTypes.CHANGE_PASSWORD,
     loadChildren: () =>
-      import('./screens/change-password/change-password-screen.module').then(
-        m => m.ChangePasswordScreenModule,
+      import('./screens/change-password/change-password-screen-routing.module').then(
+        m => m.ChangePasswordScreenRoutingModule,
       ),
   },
   {

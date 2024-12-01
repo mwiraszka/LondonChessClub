@@ -10,9 +10,8 @@ import { DatePickerComponent } from './date-picker.component';
 describe('DatePickerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IconsModule, RouterModule.forRoot([]), TooltipModule],
-      declarations: [DatePickerComponent],
-    }).compileComponents();
+    imports: [IconsModule, RouterModule.forRoot([]), TooltipModule, DatePickerComponent],
+}).compileComponents();
   });
 
   it('should render the correct number of days for each month', () => {

@@ -1,6 +1,6 @@
-import { PDFProgressData } from 'ng2-pdf-viewer';
+import { PDFProgressData, PdfViewerModule } from 'ng2-pdf-viewer';
 
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   Component,
   HostListener,
@@ -13,13 +13,24 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 
+import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
+import { IconsModule } from '@app/icons';
+import { FormatDatePipe } from '@app/pipes/format-date.pipe';
 import { LoaderService, MetaAndTitleService } from '@app/services';
 import { ClubDocument } from '@app/types';
 
 @Component({
+  standalone: true,
   selector: 'lcc-documents-screen',
   templateUrl: './documents-screen.component.html',
   styleUrls: ['./documents-screen.component.scss'],
+  imports: [
+    CommonModule,
+    FormatDatePipe,
+    IconsModule,
+    PdfViewerModule,
+    ScreenHeaderComponent,
+  ],
 })
 export class DocumentsScreenComponent implements OnInit, OnDestroy {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

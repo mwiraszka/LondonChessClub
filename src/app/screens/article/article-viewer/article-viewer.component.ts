@@ -1,7 +1,11 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
+import { AdminControlsComponent } from '@app/components/admin-controls/admin-controls.component';
+import { ArticleComponent } from '@app/components/article/article.component';
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { MetaAndTitleService } from '@app/services';
 import { type Link, NavPathTypes } from '@app/types';
 
@@ -9,10 +13,12 @@ import { ArticleViewerFacade } from './article-viewer.facade';
 
 @UntilDestroy()
 @Component({
+  standalone: true,
   selector: 'lcc-article-viewer',
   templateUrl: './article-viewer.component.html',
   styleUrls: ['./article-viewer.component.scss'],
   providers: [ArticleViewerFacade],
+  imports: [AdminControlsComponent, ArticleComponent, CommonModule, LinkListComponent],
 })
 export class ArticleViewerComponent implements OnInit {
   readonly NavPathTypes = NavPathTypes;

@@ -1,7 +1,8 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { MarkdownComponent } from 'ngx-markdown';
 import { filter } from 'rxjs/operators';
 
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { AfterViewChecked, Component, Inject, Input, OnInit } from '@angular/core';
 import { Router, Scroll } from '@angular/router';
 
@@ -9,17 +10,18 @@ import { kebabize } from '@app/utils';
 
 @UntilDestroy()
 @Component({
+  standalone: true,
   selector: 'lcc-markdown-renderer',
   templateUrl: './markdown-renderer.component.html',
   styleUrls: ['./markdown-renderer.component.scss'],
+  imports: [CommonModule, MarkdownComponent],
 })
 export class MarkdownRendererComponent implements OnInit, AfterViewChecked {
   @Input() data?: string;
 
   constructor(
     private router: Router,
-    @Inject(DOCUMENT)
-    private _document: Document,
+    @Inject(DOCUMENT) private _document: Document,
   ) {}
 
   ngOnInit(): void {

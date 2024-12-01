@@ -12,9 +12,9 @@ import type {
 
 @Injectable()
 export class ChangePasswordFormFacade {
-  tempInitialPassword$ = this.store.select(AuthSelectors.tempInitialPassword);
-  userHasCode$ = this.store.select(AuthSelectors.userHasCode);
-  user$ = this.store.select(AuthSelectors.user);
+  readonly tempInitialPassword$ = this.store.select(AuthSelectors.tempInitialPassword);
+  readonly user$ = this.store.select(AuthSelectors.user);
+  readonly userHasCode$ = this.store.select(AuthSelectors.userHasCode);
 
   constructor(private readonly store: Store) {}
 

@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard, UnsavedArticleGuard } from '@app/guards';
+import { AuthGuard } from '@app/guards/auth.guard';
+import { UnsavedArticleGuard } from '@app/guards/unsaved-article.guard';
 import { NavPathTypes } from '@app/types';
 
-import { ArticleEditorComponent } from './article-editor';
-import { ArticleViewerComponent } from './article-viewer';
+import { ArticleEditorComponent } from './article-editor/article-editor.component';
+import { ArticleViewerComponent } from './article-viewer/article-viewer.component';
 
 const routes: Routes = [
   {

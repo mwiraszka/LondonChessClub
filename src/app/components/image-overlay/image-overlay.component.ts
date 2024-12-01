@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   Component,
   HostListener,
@@ -8,15 +8,19 @@ import {
   Renderer2,
 } from '@angular/core';
 
+import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { IconsModule } from '@app/icons';
 import { LoaderService } from '@app/services';
 
 import { ImageOverlayFacade } from './image-overlay.facade';
 
 @Component({
+  standalone: true,
   selector: 'lcc-image-overlay',
   templateUrl: './image-overlay.component.html',
   styleUrls: ['./image-overlay.component.scss'],
   providers: [ImageOverlayFacade],
+  imports: [CommonModule, IconsModule, TooltipDirective],
 })
 export class ImageOverlayComponent implements OnInit, OnDestroy {
   imageHeight!: number | null;

@@ -7,7 +7,7 @@ import { UserSettingsActions } from '@app/store/user-settings';
 
 @Injectable()
 export class UpcomingEventBannerFacade {
-  upcomingEvent$ = this.store.select(ScheduleSelectors.upcomingEvent);
+  readonly upcomingEvent$ = this.store.select(ScheduleSelectors.upcomingEvent);
 
   constructor(private readonly store: Store) {}
 

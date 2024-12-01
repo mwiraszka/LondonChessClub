@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
-import { TooltipModule } from '@app/components/tooltip';
+import { TooltipComponent } from '@app/components/tooltip/tooltip.component';
 import { IconsModule } from '@app/icons';
 
 import { AdminControlsComponent } from './admin-controls.component';
@@ -10,8 +10,12 @@ import { AdminControlsComponent } from './admin-controls.component';
 describe('AdminControlsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IconsModule, RouterModule.forRoot([]), TooltipModule],
-      declarations: [AdminControlsComponent],
+      imports: [
+        AdminControlsComponent,
+        IconsModule,
+        RouterModule.forRoot([]),
+        TooltipComponent,
+      ],
     }).compileComponents();
   });
 

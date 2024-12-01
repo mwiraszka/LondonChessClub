@@ -1,16 +1,22 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Subscription } from 'rxjs';
 
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
+  ReactiveFormsModule,
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
+import { ChangePasswordFormFacade } from '@app/components/change-password-form/change-password-form.facade';
+import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { IconsModule } from '@app/icons';
 import { NavPathTypes, PasswordChangeFormData } from '@app/types';
 import {
   emailValidator,
@@ -21,14 +27,14 @@ import {
   matchingPasswordsValidator,
 } from '@app/validators';
 
-import { ChangePasswordFormFacade } from './change-password-form.facade';
-
 @UntilDestroy()
 @Component({
+  standalone: true,
   selector: 'lcc-change-password-form',
   templateUrl: './change-password-form.component.html',
   styleUrls: ['./change-password-form.component.scss'],
   providers: [ChangePasswordFormFacade],
+  imports: [CommonModule, IconsModule, ReactiveFormsModule, RouterLink, TooltipDirective],
 })
 export class ChangePasswordFormComponent implements OnInit {
   readonly NavPathTypes = NavPathTypes;

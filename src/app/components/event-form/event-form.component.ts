@@ -12,8 +12,8 @@ import {
 } from '@angular/forms';
 
 import { DatePickerComponent } from '@app/components/date-picker/date-picker.component';
-import { ModificationInfoModule } from '@app/components/modification-info';
-import { TooltipModule } from '@app/components/tooltip/tooltip.module';
+import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
+import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
 import type { ClubEvent } from '@app/types';
 import { articleIdRegExp, isDefined } from '@app/utils';
@@ -32,9 +32,9 @@ import { EventFormFacade } from './event-form.facade';
     CommonModule,
     DatePickerComponent,
     IconsModule,
-    ModificationInfoModule,
+    ModificationInfoComponent,
     ReactiveFormsModule,
-    TooltipModule,
+    TooltipDirective,
   ],
 })
 export class EventFormComponent implements OnInit {

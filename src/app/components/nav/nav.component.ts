@@ -1,15 +1,30 @@
+import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
-import { UserSettingsActions, UserSettingsSelectors } from '@app/store/user-settings';
+import { DropdownDirective } from '@app/components/dropdown/dropdown.directive';
+import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
+import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { IconsModule } from '@app/icons';
 import { NavPathTypes } from '@app/types';
 
 import { NavFacade } from './nav.facade';
 
 @Component({
+  standalone: true,
   selector: 'lcc-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
   providers: [NavFacade],
+  imports: [
+    CommonModule,
+    DropdownDirective,
+    IconsModule,
+    RouterLinkActive,
+    RouterLink,
+    ToggleSwitchComponent,
+    TooltipDirective,
+  ],
 })
 export class NavComponent {
   readonly ICON_TEXT_BREAKPOINT = 699; // Match lt-md breakpoint value

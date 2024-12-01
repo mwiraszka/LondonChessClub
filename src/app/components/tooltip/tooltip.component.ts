@@ -1,9 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
+import { TruncateByCharsPipe } from '@app/pipes/truncate-by-chars.pipe';
+
 @Component({
+  standalone: true,
   selector: 'lcc-tooltip',
   templateUrl: './tooltip.component.html',
   styleUrls: ['./tooltip.component.scss'],
+  imports: [CommonModule, TruncateByCharsPipe],
 })
 export class TooltipComponent {
   // Set in via setTooltipPlacement() in tooltip directive

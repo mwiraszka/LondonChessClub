@@ -6,7 +6,7 @@ import { ToasterSelectors } from '@app/store/toaster';
 
 @Injectable()
 export class ToasterFacade {
-  toasts$ = this.store.select(ToasterSelectors.toasts);
+  readonly toasts$ = this.store.select(ToasterSelectors.toasts);
 
   constructor(private readonly store: Store) {}
 }

@@ -1,23 +1,27 @@
 import LichessPgnViewer from 'lichess-pgn-viewer';
 
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, Inject, Input, OnInit } from '@angular/core';
 
 import { Link } from '@app/types';
 import { getLichessAnalysisUrl, getPlayerName, getScore } from '@app/utils/pgn-utils';
 
+import { LinkListComponent } from '../link-list/link-list.component';
+
 @Component({
+  standalone: true,
   selector: 'lcc-pgn-viewer',
   styleUrls: ['./pgn-viewer.component.scss'],
   templateUrl: './pgn-viewer.component.html',
+  imports: [CommonModule, LinkListComponent],
 })
 export class PgnViewerComponent implements OnInit, AfterViewInit {
-  viewerId!: string;
-  lichessAnalysisBoardLink!: Link;
-
   @Input() index!: number;
   @Input() label!: string;
   @Input() pgn!: string;
+
+  viewerId!: string;
+  lichessAnalysisBoardLink!: Link;
 
   constructor(@Inject(DOCUMENT) private _document: Document) {}
 

@@ -16,7 +16,8 @@ import {
 } from '@angular/forms';
 
 import { IconsModule } from '@app/icons';
-import { PipesModule } from '@app/pipes';
+
+import { RangePipe } from '../../pipes/range.pipe';
 
 @Component({
   standalone: true,
@@ -30,7 +31,7 @@ import { PipesModule } from '@app/pipes';
       multi: true,
     },
   ],
-  imports: [CommonModule, IconsModule, PipesModule, ReactiveFormsModule],
+  imports: [CommonModule, IconsModule, RangePipe, ReactiveFormsModule],
 })
 export class DatePickerComponent implements AfterViewInit, ControlValueAccessor {
   // Always render 6 weeks in calendar (the most that will ever be needed for any month)

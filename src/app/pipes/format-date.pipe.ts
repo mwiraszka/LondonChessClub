@@ -6,7 +6,10 @@ import { formatDate } from '@app/utils';
  * Accepts a date as a Date or string and converts to a user-friendly format
  * @see {@link formatDate} for formatting details
  */
-@Pipe({ name: 'formatDate' })
+@Pipe({
+    name: 'formatDate',
+    standalone: true
+})
 export class FormatDatePipe implements PipeTransform {
   transform(
     date?: Date | null,

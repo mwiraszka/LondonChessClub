@@ -1,11 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
+import { IconsModule } from '@app/icons';
 import { type Toast, ToastTypes } from '@app/types';
 
 @Component({
+  standalone: true,
   selector: 'lcc-toast',
   styleUrls: ['./toast.component.scss'],
   templateUrl: './toast.component.html',
+  imports: [CommonModule, IconsModule],
 })
 export class ToastComponent implements OnInit {
   @Input() toast?: Toast;

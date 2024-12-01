@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -7,10 +8,15 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
+import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { IconsModule } from '@app/icons';
+
 @Component({
+  standalone: true,
   selector: 'lcc-paginator',
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss'],
+  imports: [CommonModule, IconsModule, TooltipDirective],
 })
 export class PaginatorComponent implements OnChanges {
   readonly PAGE_SIZES = [10, 20, 50, 100];

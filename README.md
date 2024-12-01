@@ -49,6 +49,7 @@ v4.2.0 - December TBD, 2024
 - 🔧 Adapt frontend date utils for the date formats used in the database
 - 🔧 Convert all components to standalone components
 - 🔧 Create custom `range` pipe for easier iteration over consecutive integers in templates
+- 🔧 Clean up redundant code in Nav component
 
 </details>
 

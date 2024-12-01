@@ -6,7 +6,7 @@ import { DropdownDirective } from '@app/components/dropdown/dropdown.directive';
 import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
-import { NavPathTypes } from '@app/types';
+import { Link, NavPathTypes } from '@app/types';
 
 import { NavFacade } from './nav.facade';
 
@@ -20,23 +20,65 @@ import { NavFacade } from './nav.facade';
     CommonModule,
     DropdownDirective,
     IconsModule,
-    RouterLinkActive,
     RouterLink,
+    RouterLinkActive,
     ToggleSwitchComponent,
     TooltipDirective,
   ],
 })
 export class NavComponent {
-  readonly ICON_TEXT_BREAKPOINT = 699; // Match lt-md breakpoint value
   readonly NavPathTypes = NavPathTypes;
+
+  readonly links: Link[] = [
+    {
+      path: NavPathTypes.HOME,
+      text: 'Home',
+      icon: 'home',
+    },
+    {
+      path: NavPathTypes.ABOUT,
+      text: 'About',
+      icon: 'info',
+    },
+    {
+      path: NavPathTypes.MEMBERS,
+      text: 'Members',
+      icon: 'users',
+    },
+    {
+      path: NavPathTypes.SCHEDULE,
+      text: 'Schedule',
+      icon: 'calendar',
+    },
+    {
+      path: NavPathTypes.NEWS,
+      text: 'News',
+      icon: 'activity',
+    },
+    {
+      path: NavPathTypes.CITY_CHAMPION,
+      text: 'City Champion',
+      icon: 'award',
+    },
+    {
+      path: NavPathTypes.PHOTO_GALLERY,
+      text: 'Photo Gallery',
+      icon: 'camera',
+    },
+    {
+      path: NavPathTypes.GAME_ARCHIVES,
+      text: 'Game Archives',
+      icon: 'grid',
+    },
+  ];
 
   isDropdownOpen = false;
   screenWidth = window.innerWidth;
+
+  constructor(public facade: NavFacade) {}
 
   @HostListener('window:resize', ['$event'])
   onResize(): void {
     this.screenWidth = window.innerWidth;
   }
-
-  constructor(public facade: NavFacade) {}
 }

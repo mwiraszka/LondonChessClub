@@ -1,25 +1,27 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
+import { ArticleGridComponent } from '@app/components/article-grid/article-grid.component';
+import { ClubSummaryComponent } from '@app/components/club-summary/club-summary.component';
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
+import { ScheduleComponent } from '@app/components/schedule/schedule.component';
 import { MetaAndTitleService } from '@app/services';
 import { type Link, NavPathTypes } from '@app/types';
-import { ClubSummaryComponent } from '../../components/club-summary/club-summary.component';
-import { ScheduleComponent } from '../../components/schedule/schedule.component';
-import { LinkListComponent } from '../../components/link-list/link-list.component';
-import { ArticleGridComponent } from '../../components/article-grid/article-grid.component';
-import { PhotoGridComponent } from '../../components/photo-grid/photo-grid.component';
 
 @Component({
-    selector: 'lcc-home-screen',
-    templateUrl: './home-screen.component.html',
-    styleUrls: ['./home-screen.component.scss'],
-    standalone: true,
-    imports: [
-        ClubSummaryComponent,
-        ScheduleComponent,
-        LinkListComponent,
-        ArticleGridComponent,
-        PhotoGridComponent,
-    ],
+  standalone: true,
+  selector: 'lcc-home-screen',
+  templateUrl: './home-screen.component.html',
+  styleUrls: ['./home-screen.component.scss'],
+  imports: [
+    ArticleGridComponent,
+    ClubSummaryComponent,
+    CommonModule,
+    LinkListComponent,
+    PhotoGridComponent,
+    ScheduleComponent,
+  ],
 })
 export class HomeScreenComponent implements OnInit {
   scheduleLink: Link = {

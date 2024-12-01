@@ -16,8 +16,7 @@ import {
 } from '@angular/forms';
 
 import { IconsModule } from '@app/icons';
-
-import { RangePipe } from '../../pipes/range.pipe';
+import { RangePipe } from '@app/pipes/range.pipe';
 
 @Component({
   standalone: true,
@@ -95,6 +94,7 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
       .add(dayNumber, 'days');
 
     console.log(':: selected day', selectedDay.toDate());
+    this.formControl = selectedDay.toDate();
   }
 
   private removePreviouslySelectedDay(): void {

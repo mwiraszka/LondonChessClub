@@ -79,9 +79,9 @@
   --lcc-color--datePicker-buttonsBackground: #{color(primary)};
   --lcc-color--datePicker-buttonsBackgroundOnHover: #{color(primary, light)};
   --lcc-color--datePicker-cellBorderOnHover: #{color(grayscale, gray-75, 0.3)};
-  --lcc-color--datePicker-cellBorderOnSelect: #{color(primary, base)};
-  --lcc-color--datePicker-headerBackground: #{color(primary, dark)};
-  --lcc-color--datePicker-headerText: #{color(grayscale, white-90)};
+  --lcc-color--datePicker-cellBorderOnSelect: #{color(primary, lighter)};
+  --lcc-color--datePicker-headerBackground: #{color(primary, dark, 0.3)};
+  --lcc-color--datePicker-headerText: #{color(grayscale, black-10)};
 
   --lcc-color--documentsScreen-documentLabelOnHover: #{color(primary, light)};
   --lcc-color--documentsScreen-downloadLinkOnHover: #{color(primary, light)};

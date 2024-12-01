@@ -24,11 +24,11 @@ import { ArticleFormFacade } from './article-form.facade';
 
 @UntilDestroy()
 @Component({
+  standalone: true,
   selector: 'lcc-article-form',
   templateUrl: './article-form.component.html',
   styleUrls: ['./article-form.component.scss'],
   providers: [ArticleFormFacade],
-  standalone: true,
   imports: [
     CommonModule,
     IconsModule,

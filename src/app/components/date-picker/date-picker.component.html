@@ -1,14 +1,16 @@
 <header>
   <button
     class="previous-month-button lcc-primary-button"
+    type="button"
     (click)="onPreviousMonth()">
     <i-feather name="chevron-left"></i-feather>
   </button>
   <h3 class="title">
-    {{ currentDate.format(screenWidth < 400 ? 'MMM YYYY' : 'MMMM YYYY') }}
+    {{ currentMonth.format(screenWidth < 400 ? 'MMM YYYY' : 'MMMM YYYY') }}
   </h3>
   <button
     class="next-month-button lcc-primary-button"
+    type="button"
     (click)="onNextMonth()">
     <i-feather name="chevron-right"></i-feather>
   </button>
@@ -21,15 +23,21 @@
     }
   </thead>
   <tbody>
-    @for (week of WEEKS_IN_CALENDAR | range; track week) {
+    @for (row of WEEKS_IN_CALENDAR | range; track row) {
       <tr>
-        @for (day of DAYS_OF_WEEK.length | range; track day) {
-          <td
-            type="button"
-            (click)="onSelectDay(week, day)">
-          </td>
+        @for (column of DAYS_OF_WEEK.length | range; track column) {
+          <td (click)="onSelectCell(row, column)"> </td>
         }
       </tr>
     }
   </tbody>
+  <tfoot>
+    <tr>
+      <td
+        colspan="7"
+        class="selected-date">
+        {{ selectedDate.format('dddd, MMMM Do YYYY') }}
+      </td>
+    </tr>
+  </tfoot>
 </table>

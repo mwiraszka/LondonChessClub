@@ -80,8 +80,10 @@
   --lcc-color--datePicker-buttonsBackgroundOnHover: #{color(primary, light)};
   --lcc-color--datePicker-cellBorderOnHover: #{color(grayscale, gray-75, 0.3)};
   --lcc-color--datePicker-cellBorderOnSelect: #{color(primary, lighter)};
+  --lcc-color--datePicker-disabledCell: #{color(grayscale, gray-50, 0.5)};
   --lcc-color--datePicker-headerBackground: #{color(primary, dark, 0.3)};
   --lcc-color--datePicker-headerText: #{color(grayscale, black-10)};
+  --lcc-color--datePicker-selectedDateText: #{color(grayscale, black-20)};
 
   --lcc-color--documentsScreen-documentLabelOnHover: #{color(primary, light)};
   --lcc-color--documentsScreen-downloadLinkOnHover: #{color(primary, light)};

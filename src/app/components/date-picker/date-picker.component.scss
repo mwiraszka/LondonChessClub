@@ -37,35 +37,48 @@
   .calendar-table {
     table-layout: fixed;
 
-    th {
-      padding: 8px 1px !important;
+    thead {
+      th {
+        padding: 8px 1px !important;
 
-      @include respond-to('lt-sm') {
-        font-size: 12px;
+        @include respond-to('lt-sm') {
+          font-size: 12px;
+        }
       }
     }
 
-    td {
-      padding: 8px 4px;
-      border: 2px solid transparent;
-      border-radius: none;
+    tbody {
+      td {
+        padding: 8px 4px;
+        border: 2px solid transparent;
+        border-radius: none;
 
-      &:not([disabled]) {
-        cursor: pointer;
+        &:not([disabled]) {
+          cursor: pointer;
 
-        &:hover {
-          border-radius: var(--lcc-borderRadius--large);
-          border-color: var(--lcc-color--datePicker-cellBorderOnHover);
+          &:hover {
+            border-radius: var(--lcc-borderRadius--large);
+            border-color: var(--lcc-color--datePicker-cellBorderOnHover);
+          }
+
+          &.lcc-selected-day {
+            border-radius: var(--lcc-borderRadius--large);
+            border-color: var(--lcc-color--datePicker-cellBorderOnSelect);
+          }
         }
 
-        &.lcc-selected-day {
-          border-radius: var(--lcc-borderRadius--large);
-          border-color: var(--lcc-color--datePicker-cellBorderOnSelect);
+        &[disabled] {
+          color: var(--lcc-color--datePicker-disabledCell);
+          pointer-events: none;
         }
       }
+    }
 
-      &[disabled] {
-        color: gray;
+    tfoot {
+      .selected-date {
+        text-align: center;
+        padding: 8px;
+        color: var(--lcc-color--datePicker-selectedDateText);
       }
     }
   }

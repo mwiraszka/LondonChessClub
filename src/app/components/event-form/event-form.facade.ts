@@ -37,7 +37,7 @@ export class EventFormFacade {
   }
 
   onValueChange(event: ClubEvent): void {
-    console.log(':: value change', event);
+    console.log(':: value change in event form!', event);
     this.store.dispatch(ScheduleActions.formDataChanged({ event }));
   }
 }

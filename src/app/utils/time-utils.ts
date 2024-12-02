@@ -30,3 +30,11 @@ export function formatDate(
       return moment(date).format('ddd, MMM D, YYYY');
   }
 }
+
+/**
+ * Check is the value provided is a string and in the format
+ * [hh:mm A] (e.g. 5:45 PM, 6:00 am, 12:00 PM)
+ */
+export function isValidTime(value: string): boolean {
+  return !!value.match(/^([1-9]|0[1-9]|1[0-2]):[0-5][0-9] ([AP][Mm]|[ap]m)$/);
+}

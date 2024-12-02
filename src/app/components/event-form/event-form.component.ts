@@ -1,4 +1,5 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import moment from 'moment-timezone';
 import { debounceTime, filter, first } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
@@ -16,7 +17,7 @@ import { ModificationInfoComponent } from '@app/components/modification-info/mod
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
 import type { ClubEvent } from '@app/types';
-import { articleIdRegExp, isDefined } from '@app/utils';
+import { articleIdRegExp, isDefined, isValidTime } from '@app/utils';
 import { timeValidator } from '@app/validators';
 
 import { EventFormFacade } from './event-form.facade';
@@ -60,7 +61,7 @@ export class EventFormComponent implements OnInit {
     if (control.hasError('required')) {
       return 'This field is required';
     } else if (control.hasError('invalidTimeFormat')) {
-      return 'Invalid time format - please input as HH:MM AM or HH:MM PM';
+      return 'Invalid time - please input in hh:mm AM/PM format';
     } else if (control.hasError('pattern')) {
       return 'Invalid input (incorrect format)';
     } else {
@@ -81,8 +82,8 @@ export class EventFormComponent implements OnInit {
   }
 
   private initForm(event: ClubEvent): void {
-    const eventTime = event.eventDate.toLocaleTimeString();
-    console.log(':: eventTime', eventTime);
+    const eventTime: string = moment(event.eventDate).format('h:mm A');
+
     this.form = this.formBuilder.group({
       eventDate: [event.eventDate, [Validators.required]],
       eventTime: [eventTime, [Validators.required, timeValidator]],
@@ -98,6 +99,20 @@ export class EventFormComponent implements OnInit {
   private initValueChangesListener(): void {
     this.form.valueChanges
       .pipe(debounceTime(500), untilDestroyed(this))
-      .subscribe((event: ClubEvent) => this.facade.onValueChange(event));
+      .subscribe((formData: ClubEvent & { eventTime: string }) => {
+        const { eventTime, ...event } = formData;
+
+        if (isValidTime(eventTime)) {
+          let hours = Number(eventTime.split(':')[0]);
+          if (eventTime.slice(-2).toUpperCase() === 'PM') {
+            hours += 12;
+          }
+          const minutes = Number(eventTime.split(':')[1].slice(0, 2));
+
+          event.eventDate = new Date(event.eventDate.setHours(hours, minutes, 0, 0));
+        }
+
+        return this.facade.onValueChange(event);
+      });
   }
 }

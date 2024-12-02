@@ -1,14 +1,7 @@
-import moment from 'moment-timezone';
+import moment, { Moment } from 'moment-timezone';
 
 import { CommonModule, DOCUMENT } from '@angular/common';
-import {
-  AfterViewInit,
-  Component,
-  HostListener,
-  Inject,
-  Renderer2,
-  forwardRef,
-} from '@angular/core';
+import { AfterViewInit, Component, HostListener, Inject } from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -26,7 +19,7 @@ import { RangePipe } from '@app/pipes/range.pipe';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DatePickerComponent),
+      useExisting: DatePickerComponent,
       multi: true,
     },
   ],
@@ -38,17 +31,14 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
   readonly WEEKS_IN_CALENDAR = 6;
   readonly DAYS_OF_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-  currentDate = moment().subtract(5, 'hours');
+  selectedDate!: Moment;
+  currentMonth!: Moment;
   screenWidth = window.innerWidth;
 
-  constructor(
-    @Inject(DOCUMENT) private _document: Document,
-    private renderer: Renderer2,
-  ) {}
+  constructor(@Inject(DOCUMENT) private _document: Document) {}
 
   ngAfterViewInit(): void {
-    this.renderCalendar();
-    console.log(':: currentDate', this.currentDate);
+    this.renderCalendar(this.selectedDate);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -56,76 +46,74 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
     this.screenWidth = window.innerWidth;
   }
 
-  writeValue(obj: any): void {
-    console.log(':: writeValue()', obj);
+  writeValue(date: Date): void {
+    if (!date) {
+      console.error(
+        "[LCC] No date provided to Date Picker - using today's date as fallback",
+      );
+      date = new Date();
+    }
+
+    this.selectedDate = this.currentMonth = moment(date);
   }
 
-  registerOnChange(fn: any): void {
-    console.log(':: registerOnChange()', fn);
+  registerOnChange(fn: (_: any) => any): void {
+    this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
-    console.log(':: registerOnChange()', fn);
+  // Not implemented for this component since it is always
+  // initiated with a value, and therefore touched upon creation
+  registerOnTouched(fn: (_: any) => any): void {}
+
+  private onChange(date: Date): Date {
+    return date;
   }
 
   onPreviousMonth(): void {
-    this.currentDate.subtract(1, 'month');
-    this.renderCalendar();
+    this.currentMonth.subtract(1, 'month');
+    this.renderCalendar(this.selectedDate);
   }
 
   onNextMonth(): void {
-    this.currentDate.add(1, 'month');
-    this.renderCalendar();
+    this.currentMonth.add(1, 'month');
+    this.renderCalendar(this.selectedDate);
   }
 
-  onSelectDay(weekNumber: number, dayNumber: number): void {
-    this.removePreviouslySelectedDay();
-
-    const weekRowElements = this.getWeekRowElements();
-    const day = Array.from(weekRowElements[weekNumber].querySelectorAll('td'))[dayNumber];
-
-    this.renderer.addClass(day, 'lcc-selected-day');
-
-    const selectedDay = this.currentDate
-      .clone()
-      .startOf('month')
-      .startOf('week')
-      .add(weekNumber, 'weeks')
-      .add(dayNumber, 'days');
-
-    console.log(':: selected day', selectedDay.toDate());
-    this.formControl = selectedDay.toDate();
+  onSelectCell(row: number, column: number): void {
+    this.selectedDate = this.getCalendarStart(this.currentMonth)
+      .add(row, 'weeks')
+      .add(column, 'days');
+    this.renderCalendar(this.selectedDate);
+    this.onChange(this.selectedDate.toDate());
   }
 
-  private removePreviouslySelectedDay(): void {
-    const dayCellElements = this.getDayCellElements();
-    const previouslySelectedDay = dayCellElements.find(element =>
-      element.classList.contains('lcc-selected-day'),
+  private renderCalendar(selectedDate: Moment): void {
+    let day = this.getCalendarStart(selectedDate);
+
+    const weekRows = Array.from(
+      this._document.querySelectorAll('lcc-date-picker .calendar-table tbody tr'),
     );
 
-    if (previouslySelectedDay) {
-      this.renderer.removeClass(previouslySelectedDay, 'lcc-selected-day');
-    }
-  }
-
-  private renderCalendar(): void {
-    this.removePreviouslySelectedDay();
-
-    const weekRows = this.getWeekRowElements();
-    let day = this.currentDate.clone().startOf('month').startOf('week');
-
     for (let i = 0; i < this.WEEKS_IN_CALENDAR; i++) {
+      const dayCells = Array.from(weekRows[i].querySelectorAll('td'));
+
       for (let j = 0; j < this.DAYS_OF_WEEK.length; j++) {
-        const dayCells = Array.from(weekRows[i].querySelectorAll('td'));
+        const dayCell = dayCells[j];
 
-        dayCells[j].textContent = day.format('D');
+        dayCell.textContent = day.format('D');
 
-        const isCurrentMonth = day.isSame(this.currentDate, 'month');
+        const dayInCurrentMonth = day.isSame(selectedDate, 'month');
 
-        if (!isCurrentMonth) {
-          dayCells[j].setAttribute('disabled', 'disabled');
+        if (!dayInCurrentMonth) {
+          dayCell.setAttribute('disabled', 'disabled');
         } else {
-          dayCells[j].removeAttribute('disabled');
+          dayCell.removeAttribute('disabled');
+        }
+
+        if (day.isSame(this.currentMonth, 'month') && day.isSame(selectedDate, 'day')) {
+          dayCell.classList.add('lcc-selected-day');
+        } else {
+          dayCell.classList.remove('lcc-selected-day');
         }
 
         day.add(1, 'day');
@@ -133,15 +121,7 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
     }
   }
 
-  private getWeekRowElements(): HTMLTableRowElement[] {
-    return Array.from(
-      this._document.querySelectorAll('lcc-date-picker .calendar-table tbody tr'),
-    );
-  }
-
-  private getDayCellElements(): HTMLTableCellElement[] {
-    return Array.from(
-      this._document.querySelectorAll('lcc-date-picker .calendar-table tbody tr td'),
-    );
+  private getCalendarStart(date: Moment): Moment {
+    return date.clone().startOf('month').startOf('week');
   }
 }

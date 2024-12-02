@@ -1,3 +1,5 @@
+import moment from 'moment-timezone';
+
 import type { ModificationInfo } from './modification-info.model';
 
 export enum ClubEventTypes {
@@ -24,7 +26,11 @@ export interface ClubEvent {
 export const newClubEventFormTemplate: ClubEvent = {
   id: null,
   type: ClubEventTypes.BLITZ_TOURNAMENT,
-  eventDate: new Date(), // TODO: set to current date (local timezone) at 6:00 PM
+  eventDate: moment()
+    .tz('America/Toronto', false)
+    .set('hours', 18)
+    .set('minutes', 0)
+    .toDate(),
   title: '',
   details: '',
   articleId: null,

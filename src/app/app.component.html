@@ -9,7 +9,7 @@
 <div
   id="app-container"
   class="app-container">
-  @if ((facade.showUpcomingEventBanner$ | async) && (facade.upcomingEvent$ | async)) {
+  @if ((facade.showUpcomingEventBanner$ | async) && (facade.nextEvent$ | async)) {
     <lcc-upcoming-event-banner></lcc-upcoming-event-banner>
   }
 

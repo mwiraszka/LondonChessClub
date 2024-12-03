@@ -21,13 +21,13 @@ export class AppFacade {
     UserSettingsSelectors.bannerLastCleared,
   );
   readonly isDarkMode$ = this.store.select(UserSettingsSelectors.isDarkMode);
+  readonly nextEvent$ = this.store.select(ScheduleSelectors.nextEvent);
   readonly showImageOverlay$ = this.store.select(PhotosSelectors.isOpen);
   readonly showModal$ = this.store.select(ModalSelectors.isOpen);
   readonly showToaster$ = this.store.select(ToasterSelectors.isDisplayingToasts);
   readonly showUpcomingEventBanner$ = this.store.select(
     UserSettingsSelectors.showUpcomingEventBanner,
   );
-  readonly upcomingEvent$ = this.store.select(ScheduleSelectors.upcomingEvent);
 
   constructor(
     @Inject(DOCUMENT) private _document: Document,

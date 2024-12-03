@@ -1,7 +1,8 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import moment from 'moment-timezone';
 
 import { StoreFeatures } from '@app/types';
-import { areSame, getUpcomingEvents } from '@app/utils';
+import { areSame, customSort } from '@app/utils';
 
 import { ScheduleState } from './schedule.state';
 
@@ -9,20 +10,23 @@ export const scheduleFeatureSelector = createFeatureSelector<ScheduleState>(
   StoreFeatures.SCHEDULE,
 );
 
-export const events = createSelector(scheduleFeatureSelector, state => state.events);
+export const events = createSelector(scheduleFeatureSelector, state => {
+  return [...state.events].sort(customSort('eventDate', false));
+});
 
 export const eventById = (id: string) =>
   createSelector(events, allEvents => {
     return allEvents ? allEvents.find(event => event.id === id) : null;
   });
 
-export const upcomingEvents = createSelector(scheduleFeatureSelector, state => {
-  return getUpcomingEvents(state?.events);
+export const upcomingEvents = createSelector(events, allEvents => {
+  return allEvents.filter(event =>
+    moment(event.eventDate).add(3, 'hours').isAfter(moment()),
+  );
 });
 
-export const upcomingEvent = createSelector(scheduleFeatureSelector, state => {
-  const upcomingEvents = getUpcomingEvents(state?.events, 1);
-  return upcomingEvents.length ? upcomingEvents[0] : null;
+export const nextEvent = createSelector(upcomingEvents, allUpcomingEvents => {
+  return allUpcomingEvents.length > 0 ? allUpcomingEvents[0] : null;
 });
 
 export const setEvent = createSelector(scheduleFeatureSelector, state => state.setEvent);
@@ -37,11 +41,6 @@ export const formEvent = createSelector(
 export const controlMode = createSelector(
   scheduleFeatureSelector,
   state => state.controlMode,
-);
-
-export const nextEventId = createSelector(
-  scheduleFeatureSelector,
-  state => state.nextEventId,
 );
 
 export const showPastEvents = createSelector(

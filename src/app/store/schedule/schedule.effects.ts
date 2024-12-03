@@ -22,7 +22,7 @@ export class ScheduleEffects {
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() =>
         this.scheduleService.getEvents().pipe(
-          map(allEvents => ScheduleActions.fetchEventsSucceeded({ allEvents })),
+          map(events => ScheduleActions.fetchEventsSucceeded({ events })),
           catchError((errorResponse: HttpErrorResponse) =>
             of(ScheduleActions.fetchEventsFailed({ errorResponse })),
           ),

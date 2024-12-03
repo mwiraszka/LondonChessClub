@@ -82,6 +82,7 @@ export class EventFormComponent implements OnInit {
   }
 
   private initForm(event: ClubEvent): void {
+    // Displayed in local time since America/Toronto set as default timezone in app.component
     const eventTime: string = moment(event.eventDate).format('h:mm A');
 
     this.form = this.formBuilder.group({
@@ -103,13 +104,15 @@ export class EventFormComponent implements OnInit {
         const { eventTime, ...event } = formData;
 
         if (isValidTime(eventTime)) {
-          let hours = Number(eventTime.split(':')[0]);
+          let hours = Number(eventTime.split(':')[0]) % 12;
           if (eventTime.slice(-2).toUpperCase() === 'PM') {
             hours += 12;
           }
           const minutes = Number(eventTime.split(':')[1].slice(0, 2));
-
-          event.eventDate = new Date(event.eventDate.setHours(hours, minutes, 0, 0));
+          event.eventDate = moment(event.eventDate)
+            .hours(hours)
+            .minutes(minutes)
+            .toDate();
         }
 
         return this.facade.onValueChange(event);

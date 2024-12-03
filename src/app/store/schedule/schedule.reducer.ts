@@ -1,7 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
 import { type ControlModes, newClubEventFormTemplate } from '@app/types';
-import { getUpcomingEvents } from '@app/utils';
 
 import * as ScheduleActions from './schedule.actions';
 import { ScheduleState, initialState } from './schedule.state';
@@ -9,16 +8,10 @@ import { ScheduleState, initialState } from './schedule.state';
 const scheduleReducer = createReducer(
   initialState,
 
-  on(ScheduleActions.fetchEventsSucceeded, (state, { allEvents }) => {
-    const upcomingEvents = getUpcomingEvents(allEvents, 1);
-    const nextEvent = upcomingEvents.length ? upcomingEvents[0] : null;
-
-    return {
-      ...state,
-      events: allEvents,
-      nextEventId: nextEvent?.id ?? null,
-    };
-  }),
+  on(ScheduleActions.fetchEventsSucceeded, (state, { events }) => ({
+    ...state,
+    events,
+  })),
 
   on(ScheduleActions.eventAddRequested, state => ({
     ...state,

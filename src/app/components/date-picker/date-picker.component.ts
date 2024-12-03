@@ -32,13 +32,16 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
   readonly DAYS_OF_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   selectedDate!: Moment;
+
+  // Used to keep track of the month & year currently in calendar
   currentMonth!: Moment;
+
   screenWidth = window.innerWidth;
 
   constructor(@Inject(DOCUMENT) private _document: Document) {}
 
   ngAfterViewInit(): void {
-    this.renderCalendar(this.selectedDate);
+    this.renderCalendar();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -49,12 +52,13 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
   writeValue(date: Date): void {
     if (!date) {
       console.error(
-        "[LCC] No date provided to Date Picker - using today's date as fallback",
+        "[LCC] No date provided to Date Picker - using today's date as fallback.",
       );
       date = new Date();
     }
 
-    this.selectedDate = this.currentMonth = moment(date);
+    this.selectedDate = moment(date);
+    this.currentMonth = moment(date);
   }
 
   registerOnChange(fn: (_: any) => any): void {
@@ -71,24 +75,22 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
 
   onPreviousMonth(): void {
     this.currentMonth.subtract(1, 'month');
-    this.renderCalendar(this.selectedDate);
+    this.renderCalendar();
   }
 
   onNextMonth(): void {
     this.currentMonth.add(1, 'month');
-    this.renderCalendar(this.selectedDate);
+    this.renderCalendar();
   }
 
   onSelectCell(row: number, column: number): void {
-    this.selectedDate = this.getCalendarStart(this.currentMonth)
-      .add(row, 'weeks')
-      .add(column, 'days');
-    this.renderCalendar(this.selectedDate);
+    this.selectedDate = this.getCalendarFirstDay().add(row, 'weeks').add(column, 'days');
+    this.renderCalendar();
     this.onChange(this.selectedDate.toDate());
   }
 
-  private renderCalendar(selectedDate: Moment): void {
-    let day = this.getCalendarStart(selectedDate);
+  private renderCalendar(): void {
+    let day = this.getCalendarFirstDay();
 
     const weekRows = Array.from(
       this._document.querySelectorAll('lcc-date-picker .calendar-table tbody tr'),
@@ -102,7 +104,7 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
 
         dayCell.textContent = day.format('D');
 
-        const dayInCurrentMonth = day.isSame(selectedDate, 'month');
+        const dayInCurrentMonth = day.isSame(this.currentMonth, 'month');
 
         if (!dayInCurrentMonth) {
           dayCell.setAttribute('disabled', 'disabled');
@@ -110,7 +112,7 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
           dayCell.removeAttribute('disabled');
         }
 
-        if (day.isSame(this.currentMonth, 'month') && day.isSame(selectedDate, 'day')) {
+        if (day.isSame(this.selectedDate, 'day')) {
           dayCell.classList.add('lcc-selected-day');
         } else {
           dayCell.classList.remove('lcc-selected-day');
@@ -121,7 +123,7 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
     }
   }
 
-  private getCalendarStart(date: Moment): Moment {
-    return date.clone().startOf('month').startOf('week');
+  private getCalendarFirstDay(): Moment {
+    return this.currentMonth.clone().startOf('month').startOf('week');
   }
 }

@@ -5,7 +5,6 @@ export interface ScheduleState {
   setEvent: ClubEvent | null;
   formEvent: ClubEvent | null;
   controlMode: ControlModes | null;
-  nextEventId: string | null;
   showPastEvents: boolean;
 }
 
@@ -14,6 +13,5 @@ export const initialState: ScheduleState = {
   setEvent: null,
   formEvent: null,
   controlMode: null,
-  nextEventId: null,
   showPastEvents: false,
 };

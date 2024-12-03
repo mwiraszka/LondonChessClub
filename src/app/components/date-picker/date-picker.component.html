@@ -36,7 +36,11 @@
       <td
         colspan="7"
         class="selected-date">
-        {{ selectedDate.format('dddd, MMMM Do YYYY') }}
+        {{
+          selectedDate.format(
+            screenWidth < 400 ? 'ddd, MMM Do YYYY' : 'dddd, MMMM Do YYYY'
+          )
+        }}
       </td>
     </tr>
   </tfoot>

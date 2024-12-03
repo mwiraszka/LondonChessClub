@@ -36,7 +36,7 @@ export class ScheduleComponent implements OnInit {
 
   @Input() includeDetails = true;
   @Input() allowTogglePastEvents = true;
-  @Input() limitToUpcoming?: number;
+  @Input() upcomingEventLimit?: number;
 
   shownEvents?: ClubEvent[];
   addEventLink: Link = {
@@ -55,11 +55,11 @@ export class ScheduleComponent implements OnInit {
         untilDestroyed(this),
         combineLatestWith(this.facade.upcomingEvents$, this.facade.showPastEvents$),
       )
-      .subscribe(([allEvents, upcomingEvents, showPastEvents]) => {
+      .subscribe(([events, upcomingEvents, showPastEvents]) => {
         this.shownEvents =
           showPastEvents && this.allowTogglePastEvents
-            ? allEvents
-            : upcomingEvents.slice(0, this.limitToUpcoming);
+            ? events
+            : upcomingEvents.slice(0, this.upcomingEventLimit);
       });
   }
 }

@@ -17,7 +17,7 @@
         <tr
           class="lcc-admin-controls-container"
           [id]="event.id"
-          [class.next-event]="event.id === (facade.nextEventId$ | async)"
+          [class.next-event]="event.id === (facade.nextEvent$ | async)?.id"
           [ngClass]="
             !!(facade.showPastEvents$ | async) && allowTogglePastEvents
               ? 'showing-past-events'

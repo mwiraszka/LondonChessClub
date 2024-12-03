@@ -50,7 +50,7 @@ export const fetchEventsRequested = createAction(
 );
 export const fetchEventsSucceeded = createAction(
   ScheduleActionTypes.FETCH_EVENTS_SUCCEEDED,
-  props<{ allEvents: ClubEvent[] }>(),
+  props<{ events: ClubEvent[] }>(),
 );
 export const fetchEventsFailed = createAction(
   ScheduleActionTypes.FETCH_EVENTS_FAILED,

@@ -10,7 +10,7 @@ import type { ClubEvent } from '@app/types';
 export class ScheduleFacade {
   readonly events$ = this.store.select(ScheduleSelectors.events);
   readonly isAdmin$ = this.store.select(AuthSelectors.isAdmin);
-  readonly nextEventId$ = this.store.select(ScheduleSelectors.nextEventId);
+  readonly nextEvent$ = this.store.select(ScheduleSelectors.nextEvent);
   readonly showPastEvents$ = this.store.select(ScheduleSelectors.showPastEvents);
   readonly upcomingEvents$ = this.store.select(ScheduleSelectors.upcomingEvents);
 

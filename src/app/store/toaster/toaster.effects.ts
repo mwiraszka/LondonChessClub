@@ -31,10 +31,10 @@ export class ToasterEffects {
   addPublishArticleFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.publishArticleFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'New article',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -59,10 +59,10 @@ export class ToasterEffects {
   addUpdateArticleFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'Article update',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -73,10 +73,10 @@ export class ToasterEffects {
   addGetArticleImageUrlFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.getArticleImageUrlFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'Article image URL',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -87,10 +87,10 @@ export class ToasterEffects {
   addGetArticleThumbnailImageUrlsFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.getArticleThumbnailImageUrlsFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'Article thumbnail image URLs',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -101,10 +101,10 @@ export class ToasterEffects {
   addGetArticleImageFileFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.getArticleImageFileFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'Article image file',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -129,10 +129,10 @@ export class ToasterEffects {
   addDeleteArticleFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'Article deletion',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -143,10 +143,10 @@ export class ToasterEffects {
   addFetchArticlesFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticlesFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'Load articles',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -157,10 +157,10 @@ export class ToasterEffects {
   addFetchArticleFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticleFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'Load article',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -187,10 +187,10 @@ export class ToasterEffects {
   addAddMemberFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.addMemberFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'New member',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -215,10 +215,10 @@ export class ToasterEffects {
   addUpdateMemberFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.updateMemberFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'Member update',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -243,10 +243,10 @@ export class ToasterEffects {
   addDeleteMemberFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.deleteMemberFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'Member deletion',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -257,10 +257,10 @@ export class ToasterEffects {
   addFetchMembersFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.fetchMembersFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'Load members',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -271,10 +271,10 @@ export class ToasterEffects {
   addFetchMemberFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.fetchMemberFailed),
-      map(({ error }) => {
+      map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'Load member',
-          message: error.message,
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });

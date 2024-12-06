@@ -9,7 +9,7 @@ import { AdminControlsComponent } from '@app/components/admin-controls/admin-con
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { IconsModule } from '@app/icons';
 import { FormatDatePipe } from '@app/pipes/format-date.pipe';
-import { ClubEvent, type Link, NavPathTypes } from '@app/types';
+import { type Event, type Link, NavPathTypes } from '@app/types';
 import { kebabize } from '@app/utils';
 
 import { ScheduleFacade } from './schedule.facade';
@@ -38,7 +38,7 @@ export class ScheduleComponent implements OnInit {
   @Input() allowTogglePastEvents = true;
   @Input() upcomingEventLimit?: number;
 
-  shownEvents?: ClubEvent[];
+  shownEvents?: Event[];
   addEventLink: Link = {
     path: NavPathTypes.EVENT + '/' + NavPathTypes.ADD,
     text: 'Add an event',

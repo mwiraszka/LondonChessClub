@@ -4,7 +4,7 @@ import { first, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
-import type { ClubEvent } from '@app/types';
+import type { Event } from '@app/types';
 
 @Injectable()
 export class EventFormFacade {
@@ -19,7 +19,7 @@ export class EventFormFacade {
     this.store.dispatch(ScheduleActions.cancelSelected());
   }
 
-  onSubmit(event: ClubEvent): void {
+  onSubmit(event: Event): void {
     this.controlMode$
       .pipe(
         map(controlMode =>
@@ -36,7 +36,7 @@ export class EventFormFacade {
       .subscribe();
   }
 
-  onValueChange(event: ClubEvent): void {
+  onValueChange(event: Event): void {
     this.store.dispatch(ScheduleActions.formDataChanged({ event }));
   }
 }

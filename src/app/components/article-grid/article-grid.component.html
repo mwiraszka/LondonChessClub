@@ -50,7 +50,7 @@
           <span class="date-created">
             {{ article?.modificationInfo?.dateCreated | formatDate: 'short no-time' }}
           </span>
-          @if (wasEdited(article)) {
+          @if (wasEdited(article?.modificationInfo)) {
             <div>
               <span class="vertical-spacer">|</span>
               <span class="edited">edited&nbsp;</span>

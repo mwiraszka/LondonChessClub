@@ -119,8 +119,8 @@
       }
     </div>
 
-    @if ((facade.formArticle$ | async)?.modificationInfo; as modificationInfo) {
-      <lcc-modification-info [info]="modificationInfo"></lcc-modification-info>
+    @if ((facade.formArticle$ | async)?.modificationInfo; as info) {
+      <lcc-modification-info [info]="info"></lcc-modification-info>
     }
 
     <div class="lcc-form-buttons-container">

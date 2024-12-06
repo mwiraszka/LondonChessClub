@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 import { AuthSelectors } from '@app/store/auth';
 import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
-import type { ClubEvent } from '@app/types';
+import type { Event } from '@app/types';
 
 @Injectable()
 export class ScheduleFacade {
@@ -20,7 +20,7 @@ export class ScheduleFacade {
     this.store.dispatch(ScheduleActions.fetchEventsRequested());
   }
 
-  onDeleteEvent(event: ClubEvent): void {
+  onDeleteEvent(event: Event): void {
     this.store.dispatch(ScheduleActions.deleteEventSelected({ event }));
   }
 

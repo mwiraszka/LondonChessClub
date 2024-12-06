@@ -8,6 +8,11 @@ import { ArticlesState, initialState } from './articles.state';
 const articlesReducer = createReducer(
   initialState,
 
+  on(ArticlesActions.fetchArticlesSucceeded, (state, { articles }) => ({
+    ...state,
+    articles,
+  })),
+
   on(ArticlesActions.articleAddRequested, state => ({
     ...state,
     setArticle: newArticleFormTemplate,
@@ -59,12 +64,8 @@ const articlesReducer = createReducer(
         storedArticle.id === article.id ? article : storedArticle,
       ),
     ],
-  })),
-
-  on(ArticlesActions.getArticleImageUrlSucceeded, (state, { article }) => ({
-    ...state,
     setArticle: article,
-    formArticle: article,
+    formArticle: state.controlMode === 'edit' ? article : null,
   })),
 
   on(ArticlesActions.getArticleImageFileSucceeded, (state, { imageFile }) => ({
@@ -80,11 +81,6 @@ const articlesReducer = createReducer(
       imageFile: state.setArticle?.imageFile ?? null,
       imageUrl: state.setArticle?.imageUrl ?? null,
     },
-  })),
-
-  on(ArticlesActions.getArticleThumbnailImageUrlsSucceeded, (state, { articles }) => ({
-    ...state,
-    articles,
   })),
 
   on(ArticlesActions.deleteArticleSelected, (state, { article }) => ({

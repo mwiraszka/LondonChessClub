@@ -1,11 +1,10 @@
-import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { AuthService } from '@app/services';
-import type { FlatMember, Member, ServiceResponse } from '@app/types';
+import type { ApiScope, DbCollection, Id, Member } from '@app/types';
 
 import { environment } from '@environments/environment';
 
@@ -13,181 +12,37 @@ import { environment } from '@environments/environment';
   providedIn: 'root',
 })
 export class MembersService {
-  readonly PUBLIC_API_ENDPOINT = environment.aws.membersPublicEndpoint;
-  readonly PRIVATE_API_ENDPOINT = environment.aws.membersPrivateEndpoint;
+  readonly API_URL = environment.lccApiUrl;
+  readonly COLLECTION: DbCollection = 'members';
 
-  constructor(
-    private authService: AuthService,
-    private http: HttpClient,
-  ) {}
+  constructor(private http: HttpClient) {}
 
-  // TODO: Improve response typing & error handling
-  getMember(id: string): Observable<ServiceResponse<Member>> {
-    return this.authService.token().pipe(
-      switchMap(token =>
-        this.http.get<any>(this.PRIVATE_API_ENDPOINT + id, {
-          headers: new HttpHeaders({
-            Authorization: token,
-          }),
-        }),
-      ),
-      map(response => {
-        return response?.id
-          ? { payload: this.adaptForFrontend([response])[0] }
-          : { error: new Error('Unable to load member: invalid URL') };
-      }),
-      catchError(error =>
-        of({ error: new Error(`Failed to fetch member from database: \n${error}`) }),
-      ),
-    );
+  getMember(scope: ApiScope, id: Id): Observable<Member> {
+    return this.http.get<Member>(`${this.API_URL}/${scope}/${this.COLLECTION}/${id}`);
   }
 
-  getMembers(isAdmin: boolean): Observable<ServiceResponse<Member[]>> {
-    if (isAdmin) {
-      return this.authService.token().pipe(
-        switchMap(token =>
-          this.http.get<FlatMember[]>(this.PRIVATE_API_ENDPOINT, {
-            headers: new HttpHeaders({
-              Authorization: token,
-            }),
-          }),
-        ),
-        map(members => ({ payload: this.adaptForFrontend(members) })),
-        catchError(error =>
-          of({ error: new Error(`Failed to fetch members from database: \n${error}`) }),
-        ),
-      );
-    } else {
-      return this.http.get<FlatMember[]>(this.PUBLIC_API_ENDPOINT).pipe(
-        map(members => ({ payload: this.adaptForFrontend(members) })),
-        catchError(() =>
-          of({ error: new Error('Failed to fetch members from database') }),
-        ),
-      );
-    }
+  getMembers(scope: ApiScope): Observable<Member[]> {
+    return this.http.get<Member[]>(`${this.API_URL}/${scope}/${this.COLLECTION}`);
   }
 
-  addMember(memberToAdd: Member): Observable<ServiceResponse<Member>> {
-    const flattenedMember = this.adaptForBackend([memberToAdd])[0];
-
-    return this.authService.token().pipe(
-      switchMap(token =>
-        this.http.post<null>(this.PRIVATE_API_ENDPOINT, flattenedMember, {
-          headers: new HttpHeaders({
-            Authorization: token,
-          }),
-        }),
-      ),
-      map(() => ({ payload: memberToAdd })),
-      catchError(error =>
-        of({ error: new Error(`Failed to add member to database: \n${error}`) }),
-      ),
-    );
+  addMember(member: Member): Observable<Member> {
+    const scope: ApiScope = 'admin';
+    return this.http
+      .post<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}`, member)
+      .pipe(map(id => ({ ...member, id })));
   }
 
-  updateMember(memberToUpdate: Member): Observable<ServiceResponse<Member>> {
-    const flattenedMember = this.adaptForBackend([memberToUpdate])[0];
-
-    return this.authService.token().pipe(
-      switchMap(token =>
-        this.http.put<null>(
-          this.PRIVATE_API_ENDPOINT + flattenedMember.id,
-          flattenedMember,
-          {
-            headers: new HttpHeaders({
-              Authorization: token,
-            }),
-          },
-        ),
-      ),
-      map(() => ({ payload: memberToUpdate })),
-      catchError(error =>
-        of({ error: new Error(`Failed to update member: \n${error}`) }),
-      ),
-    );
+  updateMember(member: Member): Observable<Member> {
+    const scope: ApiScope = 'admin';
+    return this.http
+      .put<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}/${member.id}`, member)
+      .pipe(map(() => member));
   }
 
-  deleteMember(memberToDelete: Member): Observable<ServiceResponse<Member>> {
-    return this.authService.token().pipe(
-      switchMap(token =>
-        this.http.delete<null>(this.PRIVATE_API_ENDPOINT + memberToDelete.id, {
-          headers: new HttpHeaders({
-            Authorization: token,
-          }),
-        }),
-      ),
-      map(() => ({ payload: memberToDelete })),
-      catchError(error =>
-        of({ error: new Error(`Failed to delete member from database: \n${error}`) }),
-      ),
-    );
-  }
-
-  private adaptForFrontend(members: FlatMember[]): Member[] {
-    return members.map(member => {
-      return {
-        id: member.id,
-        firstName: member.firstName!,
-        lastName: member.lastName!,
-        city: member.city,
-        rating: member.rating,
-        peakRating: member.peakRating,
-        dateJoined: member.dateJoined,
-        isActive: member.isActive!,
-        email: member.email ?? null,
-        phoneNumber: member.phoneNumber ?? null,
-        yearOfBirth: member.yearOfBirth ?? null,
-        chesscomUsername: member.chesscomUsername ?? null,
-        lichessUsername: member.lichessUsername ?? null,
-        modificationInfo: {
-          dateCreated: new Date(
-            member.dateCreated === '2023-01-01T00:00:00.000Z'
-              ? '2023-01-01T05:00:00.000Z'
-              : member.dateCreated,
-          ),
-          createdBy: member.createdBy,
-          dateLastEdited: new Date(
-            member.dateLastEdited === '2023-01-01T00:00:00.000Z'
-              ? '2023-01-01T05:00:00.000Z'
-              : member.dateLastEdited,
-          ),
-          lastEditedBy: member.lastEditedBy,
-        },
-      };
-    });
-  }
-
-  private adaptForBackend(members: Member[]): FlatMember[] {
-    return members.map(member => {
-      return {
-        id: member.id,
-        firstName: member.firstName!,
-        lastName: member.lastName!,
-        city: member.city,
-        rating: member.rating,
-        peakRating: this.getNewPeakRating(member.rating, member.peakRating),
-        dateJoined: member.dateJoined,
-        isActive: member.isActive,
-        email: member.email ?? '',
-        phoneNumber: member.phoneNumber ?? '',
-        yearOfBirth: member.yearOfBirth ?? '',
-        chesscomUsername: member.chesscomUsername ?? '',
-        lichessUsername: member.lichessUsername ?? '',
-        dateCreated: member.modificationInfo!.dateCreated.toISOString(),
-        createdBy: member.modificationInfo!.createdBy,
-        dateLastEdited: member.modificationInfo!.dateLastEdited.toISOString(),
-        lastEditedBy: member.modificationInfo!.lastEditedBy,
-      };
-    });
-  }
-
-  private getNewPeakRating(rating: string, peakRating: string): string {
-    const ratingNum = +rating.split('/')[0];
-    const peakRatingNum = +peakRating.split('/')[0];
-
-    const surpassedCurrentPeakRating = ratingNum > peakRatingNum;
-    const firstNonProvisionalRating = !rating.includes('/') && peakRating.includes('/');
-
-    return surpassedCurrentPeakRating || firstNonProvisionalRating ? rating : peakRating;
+  deleteMember(member: Member): Observable<Member> {
+    const scope: ApiScope = 'admin';
+    return this.http
+      .delete<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}/${member.id}`)
+      .pipe(map(() => member));
   }
 }

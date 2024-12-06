@@ -45,6 +45,7 @@ i-feather {
     border-top-left-radius: var(--lcc-borderRadius--large);
     border-top-right-radius: var(--lcc-borderRadius--large);
     color: var(--lcc-color--nav-linkForeground);
+    white-space: nowrap;
   }
 
   .nav-link {

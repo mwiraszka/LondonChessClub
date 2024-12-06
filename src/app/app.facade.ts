@@ -1,5 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import moment from 'moment-timezone';
 import { filter, first } from 'rxjs/operators';
 
 import { DOCUMENT } from '@angular/common';
@@ -15,8 +16,6 @@ import { isDefined } from '@app/utils';
 @UntilDestroy()
 @Injectable()
 export class AppFacade {
-  readonly ONE_DAY_MS = 1000 * 60 * 60 * 24;
-
   readonly bannerLastCleared$ = this.store.select(
     UserSettingsSelectors.bannerLastCleared,
   );
@@ -39,9 +38,8 @@ export class AppFacade {
 
     this.bannerLastCleared$
       .pipe(first(), filter(isDefined))
-      .subscribe(lastClearedTime => {
-        const currentTime = new Date().getTime();
-        if (currentTime - lastClearedTime > this.ONE_DAY_MS) {
+      .subscribe(bannerLastCleared => {
+        if (moment().diff(bannerLastCleared, 'days') > 0) {
           this.store.dispatch(UserSettingsActions.reinstateUpcomingEventBanner());
         }
       });

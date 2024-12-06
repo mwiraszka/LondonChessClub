@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import moment from 'moment-timezone';
 
-import { StoreFeatures } from '@app/types';
+import { Id, StoreFeatures } from '@app/types';
 import { areSame, customSort } from '@app/utils';
 
 import { ScheduleState } from './schedule.state';
@@ -14,7 +14,7 @@ export const events = createSelector(scheduleFeatureSelector, state => {
   return [...state.events].sort(customSort('eventDate', false));
 });
 
-export const eventById = (id: string) =>
+export const eventById = (id: Id) =>
   createSelector(events, allEvents => {
     return allEvents ? allEvents.find(event => event.id === id) : null;
   });

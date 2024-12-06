@@ -1,6 +1,8 @@
+import { IsoDate } from './core.model';
+
 export interface ClubDocument {
   title: string;
-  datePublished: Date;
-  dateLastModified: Date;
+  datePublished: IsoDate;
+  dateLastModified: IsoDate;
   fileName: string;
 }

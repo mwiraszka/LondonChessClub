@@ -1,3 +1,5 @@
+import moment from 'moment-timezone';
+
 import type { Member } from '@app/types';
 
 export const MOCK_MEMBERS: Member[] = [
@@ -8,7 +10,7 @@ export const MOCK_MEMBERS: Member[] = [
     city: 'Testville',
     rating: '1234',
     peakRating: '1235',
-    dateJoined: new Date('2020-01-01'),
+    dateJoined: moment('2020-01-01').toISOString(),
     isActive: true,
     chesscomUsername: 'testyMcTesterton',
     lichessUsername: 'testertonTheGreat',
@@ -16,9 +18,9 @@ export const MOCK_MEMBERS: Member[] = [
     email: 'testy123@gmail.com',
     phoneNumber: '123-1234-1234',
     modificationInfo: {
-      dateCreated: new Date('2023-01-01'),
+      dateCreated: moment('2023-01-01').toISOString(),
       createdBy: 'Michal Wiraszka',
-      dateLastEdited: new Date('2023-02-02'),
+      dateLastEdited: moment('2023-02-02').toISOString(),
       lastEditedBy: 'Michal Wiraszka',
     },
   },
@@ -29,7 +31,7 @@ export const MOCK_MEMBERS: Member[] = [
     city: 'London',
     rating: '1234',
     peakRating: '1235',
-    dateJoined: new Date('2020-01-01'),
+    dateJoined: moment('2020-01-01').toISOString(),
     isActive: true,
     chesscomUsername: 'iAmMiranda',
     lichessUsername: 'mirandaIsMe',
@@ -37,9 +39,9 @@ export const MOCK_MEMBERS: Member[] = [
     email: 'miranda0174892@gmail.com',
     phoneNumber: '123-1234-1234',
     modificationInfo: {
-      dateCreated: new Date('2023-03-03'),
+      dateCreated: moment('2023-03-03').toISOString(),
       createdBy: 'Michal Wiraszka',
-      dateLastEdited: new Date('2023-04-04'),
+      dateLastEdited: moment('2023-04-04').toISOString(),
       lastEditedBy: 'Michal Wiraszka',
     },
   },
@@ -50,7 +52,7 @@ export const MOCK_MEMBERS: Member[] = [
     city: 'London',
     rating: '1234',
     peakRating: '1235',
-    dateJoined: new Date('2020-01-01'),
+    dateJoined: moment('2020-01-01').toISOString(),
     isActive: false,
     chesscomUsername: 'mockertonJJ',
     lichessUsername: 'MockertonJJ',
@@ -58,9 +60,9 @@ export const MOCK_MEMBERS: Member[] = [
     email: null,
     phoneNumber: null,
     modificationInfo: {
-      dateCreated: new Date('2023-05-05'),
+      dateCreated: moment('2023-05-05').toISOString(),
       createdBy: 'Hardik Shrestha',
-      dateLastEdited: new Date('2023-06-06'),
+      dateLastEdited: moment('2023-06-06').toISOString(),
       lastEditedBy: 'Gerry Litchfield',
     },
   },
@@ -71,7 +73,7 @@ export const MOCK_MEMBERS: Member[] = [
     city: 'Sault Saint Marie',
     rating: '800/5',
     peakRating: '1000',
-    dateJoined: new Date('2022-02-02'),
+    dateJoined: moment('2022-02-02').toISOString(),
     isActive: true,
     chesscomUsername: 'anotherReallyStupidlyLongName',
     lichessUsername: 'yetAnotherStupidlyLongName',
@@ -79,9 +81,9 @@ export const MOCK_MEMBERS: Member[] = [
     email: 'i-think-its-funny-to-have-long-emails@hotmail.com',
     phoneNumber: '555-5252-2525',
     modificationInfo: {
-      dateCreated: new Date('2023-05-05'),
+      dateCreated: moment('2023-05-05').toISOString(),
       createdBy: 'Michal Wiraszka',
-      dateLastEdited: new Date('2023-06-06'),
+      dateLastEdited: moment('2023-06-06').toISOString(),
       lastEditedBy: 'Gerry Litchfield',
     },
   },

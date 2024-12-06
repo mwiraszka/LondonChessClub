@@ -39,30 +39,31 @@ export class DocumentsScreenComponent implements OnInit, OnDestroy {
   documentSrc?: string;
   loadedPercentage = 100;
 
+  // Dates represent midnight EST converted to UTC
   readonly documents: ClubDocument[] = [
     {
       title: 'Club Bylaws',
       fileName: 'lcc-bylaws.pdf',
-      datePublished: new Date(2024 - 4 - 24),
-      dateLastModified: new Date(2024 - 4 - 24),
+      datePublished: '2024-04-24T04:00:00:000',
+      dateLastModified: '2024-04-24T04:00:00:000',
     },
     {
       title: 'Board Meeting - DEC 12, 2023 - Minutes',
       fileName: 'lcc-board-meeting-2023-12-12-minutes.pdf',
-      datePublished: new Date(2024 - 4 - 24),
-      dateLastModified: new Date(2024 - 4 - 24),
+      datePublished: '2024-04-24T04:00:00:000',
+      dateLastModified: '2024-04-24T04:00:00:000',
     },
     {
       title: 'Board Meeting - JAN 9, 2024 - Minutes',
       fileName: 'lcc-board-meeting-2024-01-09-minutes.pdf',
-      datePublished: new Date(2024 - 4 - 24),
-      dateLastModified: new Date(2024 - 4 - 24),
+      datePublished: '2024-04-24T04:00:00:000',
+      dateLastModified: '2024-04-24T04:00:00:000',
     },
     {
       title: 'Board Meeting - APR 2, 2024 - Minutes',
       fileName: 'lcc-board-meeting-2024-04-02-minutes.pdf',
-      datePublished: new Date(2024 - 4 - 24),
-      dateLastModified: new Date(2024 - 4 - 24),
+      datePublished: '2024-04-24T04:00:00:000',
+      dateLastModified: '2024-04-24T04:00:00:000',
     },
   ];
 

@@ -1,6 +1,8 @@
+import { IsoDate } from './core.model';
+
 export interface ModificationInfo {
-  dateCreated: Date;
+  dateCreated: IsoDate;
   createdBy: string;
-  dateLastEdited: Date;
+  dateLastEdited: IsoDate;
   lastEditedBy: string;
 }

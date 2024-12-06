@@ -1,9 +1,9 @@
-import { type ClubEvent, ControlModes } from '@app/types';
+import { ControlModes, type Event } from '@app/types';
 
 export interface ScheduleState {
-  events: ClubEvent[];
-  setEvent: ClubEvent | null;
-  formEvent: ClubEvent | null;
+  events: Event[];
+  setEvent: Event | null;
+  formEvent: Event | null;
   controlMode: ControlModes | null;
   showPastEvents: boolean;
 }

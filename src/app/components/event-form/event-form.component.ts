@@ -16,8 +16,8 @@ import { DatePickerComponent } from '@app/components/date-picker/date-picker.com
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
-import type { ClubEvent } from '@app/types';
-import { articleIdRegExp, isDefined, isValidTime } from '@app/utils';
+import type { Event } from '@app/types';
+import { isDefined, isTime } from '@app/utils';
 import { timeValidator } from '@app/validators';
 
 import { EventFormFacade } from './event-form.facade';
@@ -81,7 +81,7 @@ export class EventFormComponent implements OnInit {
     this.facade.onSubmit(this.form.value);
   }
 
-  private initForm(event: ClubEvent): void {
+  private initForm(event: Event): void {
     // Displayed in local time since America/Toronto set as default timezone in app.component
     const eventTime: string = moment(event.eventDate).format('h:mm A');
 
@@ -91,7 +91,7 @@ export class EventFormComponent implements OnInit {
       title: [event.title, [Validators.required, Validators.pattern(/[^\s]/)]],
       details: [event.details, [Validators.required, Validators.pattern(/[^\s]/)]],
       type: [event.type, [Validators.required]],
-      articleId: [event.articleId, [Validators.pattern(articleIdRegExp)]],
+      articleId: [event.articleId, [Validators.pattern(/^[a-fA-F0-9]{24}$/)]],
       id: [event.id],
       modificationInfo: [event.modificationInfo],
     });
@@ -100,10 +100,10 @@ export class EventFormComponent implements OnInit {
   private initValueChangesListener(): void {
     this.form.valueChanges
       .pipe(debounceTime(500), untilDestroyed(this))
-      .subscribe((formData: ClubEvent & { eventTime: string }) => {
+      .subscribe((formData: Event & { eventTime: string }) => {
         const { eventTime, ...event } = formData;
 
-        if (isValidTime(eventTime)) {
+        if (isTime(eventTime)) {
           let hours = Number(eventTime.split(':')[0]) % 12;
           if (eventTime.slice(-2).toUpperCase() === 'PM') {
             hours += 12;
@@ -112,7 +112,7 @@ export class EventFormComponent implements OnInit {
           event.eventDate = moment(event.eventDate)
             .hours(hours)
             .minutes(minutes)
-            .toDate();
+            .toISOString();
         }
 
         return this.facade.onValueChange(event);

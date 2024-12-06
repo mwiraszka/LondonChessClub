@@ -8,4 +8,4 @@ export { matchingPasswordsValidator } from './matching-passwords.validator';
 export { phoneNumberValidator } from './phone-number.validator';
 export { ratingValidator } from './rating.validator';
 export { timeValidator } from './time.validator';
-export { yearValidator } from './year.validator';
+export { yearOfBirthValidator } from './year-of-birth.validator';

@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 
 import { HttpErrorResponse } from '@angular/common/http';
 
-import type { ClubEvent } from '@app/types';
+import type { Event, Id } from '@app/types';
 
 enum ScheduleActionTypes {
   FETCH_EVENTS_REQUESTED = '[Schedule] Fetch events requested',
@@ -50,7 +50,7 @@ export const fetchEventsRequested = createAction(
 );
 export const fetchEventsSucceeded = createAction(
   ScheduleActionTypes.FETCH_EVENTS_SUCCEEDED,
-  props<{ events: ClubEvent[] }>(),
+  props<{ events: Event[] }>(),
 );
 export const fetchEventsFailed = createAction(
   ScheduleActionTypes.FETCH_EVENTS_FAILED,
@@ -60,16 +60,16 @@ export const fetchEventsFailed = createAction(
 export const eventAddRequested = createAction(ScheduleActionTypes.EVENT_ADD_REQUESTED);
 export const eventEditRequested = createAction(
   ScheduleActionTypes.EVENT_EDIT_REQUESTED,
-  props<{ eventId: string }>(),
+  props<{ eventId: Id }>(),
 );
 
 export const fetchEventRequested = createAction(
   ScheduleActionTypes.FETCH_EVENT_REQUESTED,
-  props<{ eventId: string }>(),
+  props<{ eventId: Id }>(),
 );
 export const fetchEventSucceeded = createAction(
   ScheduleActionTypes.FETCH_EVENT_SUCCEEDED,
-  props<{ event: ClubEvent }>(),
+  props<{ event: Event }>(),
 );
 export const fetchEventFailed = createAction(
   ScheduleActionTypes.FETCH_EVENT_FAILED,
@@ -78,19 +78,19 @@ export const fetchEventFailed = createAction(
 
 export const eventSet = createAction(
   ScheduleActionTypes.EVENT_SET,
-  props<{ event: ClubEvent }>(),
+  props<{ event: Event }>(),
 );
 export const eventUnset = createAction(ScheduleActionTypes.EVENT_UNSET);
 
 export const addEventSelected = createAction(
   ScheduleActionTypes.ADD_EVENT_SELECTED,
-  props<{ event: ClubEvent }>(),
+  props<{ event: Event }>(),
 );
 export const addEventConfirmed = createAction(ScheduleActionTypes.ADD_EVENT_CONFIRMED);
 export const addEventCancelled = createAction(ScheduleActionTypes.ADD_EVENT_CANCELLED);
 export const addEventSucceeded = createAction(
   ScheduleActionTypes.ADD_EVENT_SUCCEEDED,
-  props<{ event: ClubEvent }>(),
+  props<{ event: Event }>(),
 );
 export const addEventFailed = createAction(
   ScheduleActionTypes.ADD_EVENT_FAILED,
@@ -99,7 +99,7 @@ export const addEventFailed = createAction(
 
 export const updateEventSelected = createAction(
   ScheduleActionTypes.UPDATE_EVENT_SELECTED,
-  props<{ event: ClubEvent }>(),
+  props<{ event: Event }>(),
 );
 export const updateEventConfirmed = createAction(
   ScheduleActionTypes.UPDATE_EVENT_CONFIRMED,
@@ -109,7 +109,7 @@ export const updateEventCancelled = createAction(
 );
 export const updateEventSucceeded = createAction(
   ScheduleActionTypes.UPDATE_EVENT_SUCCEEDED,
-  props<{ event: ClubEvent }>(),
+  props<{ event: Event }>(),
 );
 export const updateEventFailed = createAction(
   ScheduleActionTypes.UPDATE_EVENT_FAILED,
@@ -118,7 +118,7 @@ export const updateEventFailed = createAction(
 
 export const deleteEventSelected = createAction(
   ScheduleActionTypes.DELETE_EVENT_SELECTED,
-  props<{ event: ClubEvent }>(),
+  props<{ event: Event }>(),
 );
 export const deleteEventConfirmed = createAction(
   ScheduleActionTypes.DELETE_EVENT_CONFIRMED,
@@ -128,7 +128,7 @@ export const deleteEventCancelled = createAction(
 );
 export const deleteEventSucceeded = createAction(
   ScheduleActionTypes.DELETE_EVENT_SUCCEEDED,
-  props<{ event: ClubEvent }>(),
+  props<{ event: Event }>(),
 );
 export const deleteEventFailed = createAction(
   ScheduleActionTypes.DELETE_EVENT_FAILED,
@@ -139,7 +139,7 @@ export const cancelSelected = createAction(ScheduleActionTypes.CANCEL_SELECTED);
 
 export const formDataChanged = createAction(
   ScheduleActionTypes.FORM_DATA_CHANGED,
-  props<{ event: ClubEvent }>(),
+  props<{ event: Event }>(),
 );
 
 export const togglePastEvents = createAction(ScheduleActionTypes.TOGGLE_PAST_EVENTS);

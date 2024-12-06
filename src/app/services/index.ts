@@ -1,9 +1,9 @@
 export { ArticlesService } from './articles.service';
 export { AuthService } from './auth.service';
 export { ChessOpeningsService } from './chess-openings.service';
+export { EventsService } from './events.service';
 export { ImagesService } from './images.service';
 export { LoaderService } from './loader.service';
 export { MembersService } from './members.service';
 export { MetaAndTitleService } from './meta-and-title.service';
-export { ScheduleService } from './schedule.service';
 export { UpdateService } from './update.service';

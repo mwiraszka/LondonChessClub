@@ -1,3 +1,4 @@
+// TODO: Convert remaining enum types
 export enum AppScreenTypes {
   HOME = 'home',
   MEMBERS = 'members',

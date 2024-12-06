@@ -1,6 +1,6 @@
 import { isNaN } from 'lodash';
 
-import { GameScore, isValidGameScore } from '@app/types';
+import { GameScore, isGameScore } from '@app/types';
 
 /**
  * @param pgn The PGN of the chess game
@@ -46,7 +46,7 @@ export function getScore(pgn?: string, color?: 'White' | 'Black'): GameScore | u
     return '*';
   }
 
-  if (!isValidGameScore(whiteScore) || !isValidGameScore(blackScore)) {
+  if (!isGameScore(whiteScore) || !isGameScore(blackScore)) {
     return;
   }
 

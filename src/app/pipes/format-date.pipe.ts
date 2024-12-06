@@ -1,18 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+import { IsoDate } from '@app/types';
 import { formatDate } from '@app/utils';
 
 /**
- * Accepts a date as a Date or string and converts to a user-friendly format
+ * Accepts a date in ISO 8601 date string in UTC and converts to a user-friendly format in EST/EDT
  * @see {@link formatDate} for formatting details
  */
 @Pipe({
-    name: 'formatDate',
-    standalone: true
+  name: 'formatDate',
+  standalone: true,
 })
 export class FormatDatePipe implements PipeTransform {
   transform(
-    date?: Date | null,
+    date?: IsoDate | null,
     format?: 'long' | 'long no-time' | 'short' | 'short no-time',
   ): string {
     return date ? formatDate(date, format) : '';

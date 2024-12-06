@@ -20,9 +20,10 @@ import {
   emailValidator,
   phoneNumberValidator,
   ratingValidator,
-  yearValidator,
+  yearOfBirthValidator,
 } from '@app/validators';
 
+import { DatePickerComponent } from '../date-picker/date-picker.component';
 import { MemberFormFacade } from './member-form.facade';
 
 @UntilDestroy()
@@ -34,6 +35,7 @@ import { MemberFormFacade } from './member-form.facade';
   providers: [MemberFormFacade],
   imports: [
     CommonModule,
+    DatePickerComponent,
     IconsModule,
     ModificationInfoComponent,
     ReactiveFormsModule,
@@ -106,7 +108,7 @@ export class MemberFormComponent implements OnInit {
       dateJoined: [member.dateJoined, [Validators.required]],
       email: [member.email, emailValidator],
       phoneNumber: [member.phoneNumber, phoneNumberValidator],
-      yearOfBirth: [member.yearOfBirth, yearValidator],
+      yearOfBirth: [member.yearOfBirth, yearOfBirthValidator],
       chesscomUsername: [member.chesscomUsername, Validators.pattern(/[^\s]/)],
       lichessUsername: [member.lichessUsername, Validators.pattern(/[^\s]/)],
       isActive: [member.isActive],

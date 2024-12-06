@@ -36,7 +36,7 @@ import { ArticleGridFacade } from './article-grid.facade';
 })
 export class ArticleGridComponent implements OnInit {
   readonly PLACEHOLDER_ARTICLE: Article = {
-    id: uuid.v4().slice(-8),
+    id: uuid.v4(),
     title: '',
     body: '',
     imageFile: null,

@@ -4,7 +4,7 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import type { Article, ServiceResponse, Url } from '@app/types';
+import type { Article, Url } from '@app/types';
 
 import { environment } from '@environments/environment';
 
@@ -16,12 +16,12 @@ export class ImagesService {
 
   constructor(private http: HttpClient) {}
 
-  uploadArticleImage(article: Article): Observable<ServiceResponse<Article>> {
+  uploadArticleImage(article: Article): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('imageFile', article.imageFile!);
     formData.append('imageId', article.imageId!);
 
-    return this.http.post<ServiceResponse<void>>(this.API_ENDPOINT, formData).pipe(
+    return this.http.post<any>(this.API_ENDPOINT, formData).pipe(
       map(() => {
         return { payload: article };
       }),
@@ -29,22 +29,16 @@ export class ImagesService {
     );
   }
 
-  deleteArticleImage(article: Article): Observable<ServiceResponse<Article>> {
-    return this.http
-      .delete<ServiceResponse<void>>(this.API_ENDPOINT + article.imageId)
-      .pipe(
-        map(() => {
-          return { payload: article };
-        }),
-        catchError(() =>
-          of({ error: new Error('Failed to delete image from database') }),
-        ),
-      );
+  deleteArticleImage(article: Article): Observable<any> {
+    return this.http.delete<any>(this.API_ENDPOINT + article.imageId).pipe(
+      map(() => {
+        return { payload: article };
+      }),
+      catchError(() => of({ error: new Error('Failed to delete image from database') })),
+    );
   }
 
-  getArticleThumbnailImageUrls(
-    articles: Article[],
-  ): Observable<ServiceResponse<Article[]>> {
+  getArticleThumbnailImageUrls(articles: Article[]): Observable<any> {
     // TODO: Implement an article image endpoint for fetching multiple image urls in a single call
     return of(articles).pipe(
       switchMap(articles => {
@@ -77,7 +71,7 @@ export class ImagesService {
     );
   }
 
-  getArticleImageUrl(imageId?: string | null): Observable<ServiceResponse<Url>> {
+  getArticleImageUrl(imageId?: string | null): Observable<any> {
     if (!imageId) {
       return of({
         error: new Error('Article does not contain an image ID'),
@@ -97,7 +91,7 @@ export class ImagesService {
         responseType: 'text',
       })
       .pipe(
-        switchMap(() => this.http.get<ServiceResponse<Url>>(this.API_ENDPOINT + imageId)),
+        switchMap(() => this.http.get<any>(this.API_ENDPOINT + imageId)),
         catchError(() =>
           of({
             error: new Error('Failed to get image presigned URL'),
@@ -106,7 +100,7 @@ export class ImagesService {
       );
   }
 
-  getArticleImageFile(imageUrl: Url): Observable<ServiceResponse<File>> {
+  getArticleImageFile(imageUrl: Url): Observable<any> {
     return from(this.buildImageFileFromUrl(imageUrl)).pipe(
       map(imageFile => {
         return { payload: imageFile };

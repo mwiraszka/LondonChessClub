@@ -1,14 +1,17 @@
+import moment from 'moment-timezone';
+
+import { Id, IsoDate } from './core.model';
 import type { ModificationInfo } from './modification-info.model';
 
 export interface Member {
-  id: string | null;
+  id: Id | null;
   firstName: string | null;
   lastName: string | null;
   city: string;
   rating: string;
   peakRating: string;
-  dateJoined: Date;
-  isActive: boolean | string; // Stored as a string in DynamoDB
+  dateJoined: IsoDate;
+  isActive: boolean;
   chesscomUsername: string | null;
   lichessUsername: string | null;
   yearOfBirth: string | null;
@@ -24,7 +27,7 @@ export const newMemberFormTemplate: Member = {
   city: 'London',
   rating: '1000/0',
   peakRating: '1000/0',
-  dateJoined: new Date(),
+  dateJoined: moment().toISOString(),
   isActive: true,
   chesscomUsername: null,
   lichessUsername: null,
@@ -33,24 +36,3 @@ export const newMemberFormTemplate: Member = {
   phoneNumber: null,
   modificationInfo: null,
 };
-
-// Backend representation of the type
-export interface FlatMember {
-  id: string | null;
-  firstName?: string;
-  lastName?: string;
-  city: string;
-  rating: string;
-  peakRating: string;
-  dateJoined: Date;
-  isActive: boolean | string; // Stored as a string in DynamoDB
-  chesscomUsername?: string;
-  lichessUsername?: string;
-  yearOfBirth?: string;
-  email?: string;
-  phoneNumber?: string;
-  dateCreated: string;
-  createdBy: string;
-  dateLastEdited: string;
-  lastEditedBy: string;
-}

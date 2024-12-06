@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { type ControlModes, newClubEventFormTemplate } from '@app/types';
+import { type ControlModes, newEventFormTemplate } from '@app/types';
 
 import * as ScheduleActions from './schedule.actions';
 import { ScheduleState, initialState } from './schedule.state';
@@ -15,8 +15,8 @@ const scheduleReducer = createReducer(
 
   on(ScheduleActions.eventAddRequested, state => ({
     ...state,
-    setEvent: newClubEventFormTemplate,
-    formEvent: newClubEventFormTemplate,
+    setEvent: newEventFormTemplate,
+    formEvent: newEventFormTemplate,
     controlMode: 'add' as ControlModes,
   })),
 

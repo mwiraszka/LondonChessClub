@@ -3,6 +3,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { isEqual } from 'lodash';
 
+import { isIsoDate } from './datetime-utils';
+
 /**
  * @returns A type predicate to eliminate `null` and `undefined` types
  */
@@ -71,7 +73,7 @@ export function isEmpty(value: any): boolean {
  * `[11,2,22,1].sort((a, b) => a - b)`
  */
 export function customSort(key: string, isAscending: boolean) {
-  return function innerSort(a: Object, b: Object, _key = key): number {
+  return function innerSort(a: any, b: any, _key = key): number {
     if (
       _key.includes('.') &&
       a.hasOwnProperty(_key.split('.')[0]) &&
@@ -83,17 +85,22 @@ export function customSort(key: string, isAscending: boolean) {
       return innerSort(aInnerObject, bInnerObject, _key.split('.')[1]);
     }
 
-    if (!a.hasOwnProperty(_key) || !b.hasOwnProperty(_key)) {
-      return 0; // Property doesn't exist on either object
+    if (!a.hasOwnProperty(_key)) {
+      return 1;
+    } else if (!b.hasOwnProperty(_key)) {
+      return 0;
     }
 
     let aVal = (a as any)[_key];
     let bVal = (b as any)[_key];
 
-    if (aVal instanceof Date && bVal instanceof Date) {
-      aVal = aVal.getTime();
-      bVal = bVal.getTime();
-    } else if (!isNaN(aVal?.split('/')[0]) && !isNaN(bVal?.split('/')[0])) {
+    if (aVal instanceof Date || bVal instanceof Date) {
+      console.error('[LCC] Detected Date object while sorting');
+      aVal = aVal?.toISOString() ?? '';
+      aVal = bVal?.toISOString() ?? '';
+    }
+
+    if (!isNaN(aVal?.split('/')[0]) && !isNaN(bVal?.split('/')[0])) {
       // If both objects (before a potential slash) are valid numbers, convert
       // to number type (used specifically for provisional ratings in the format 1234/5)
       aVal = +aVal.split('/')[0];

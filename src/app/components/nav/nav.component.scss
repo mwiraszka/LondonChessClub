@@ -1,4 +1,4 @@
-@import '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins';
 
 $border-thickness: 1px;
 $dropdown-tab-width: 60px;
@@ -81,11 +81,11 @@ i-feather {
       visibility: hidden;
     }
 
-    @include respond-to('gt-sm') {
+    @include mixins.respond-to('gt-sm') {
       padding: 6px 8px;
     }
 
-    @include respond-to('gt-md') {
+    @include mixins.respond-to('gt-md') {
       // Set padding so that height is kept constant on breakpoint transitions
       padding: 10px 8px;
 

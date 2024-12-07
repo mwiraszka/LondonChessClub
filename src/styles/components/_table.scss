@@ -1,4 +1,4 @@
-@import '../abstracts/mixins';
+@use '../abstracts/mixins';
 
 .lcc-table-wrapper {
   width: 100%;
@@ -32,7 +32,7 @@
       &:not(.lcc-table-admin-controls-filler) {
         padding: 8px;
 
-        @include respond-to('gt-sm') {
+        @include mixins.respond-to('gt-sm') {
           padding: 8px 16px;
         }
       }
@@ -51,7 +51,7 @@
       td {
         padding: 8px;
 
-        @include respond-to('gt-sm') {
+        @include mixins.respond-to('gt-sm') {
           padding: 8px 16px;
         }
       }

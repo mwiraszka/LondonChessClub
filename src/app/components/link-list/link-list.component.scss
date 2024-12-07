@@ -1,4 +1,4 @@
-@import '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins';
 
 :host {
   display: flex;
@@ -16,7 +16,7 @@
     -webkit-columns: 1;
     -moz-columns: 1;
 
-    @include respond-to('gt-md') {
+    @include mixins.respond-to('gt-md') {
       &:not(.single-column) {
         columns: 2;
         -webkit-columns: 2;
@@ -27,7 +27,7 @@
     li {
       line-height: 0.75em;
 
-      @include respond-to('gt-xs') {
+      @include mixins.respond-to('gt-xs') {
         line-height: unset;
       }
 
@@ -39,11 +39,11 @@
         white-space: nowrap;
         font-size: var(--lcc-fontSize--h6);
 
-        @include respond-to('gt-xs') {
+        @include mixins.respond-to('gt-xs') {
           font-size: var(--lcc-fontSize--h5);
         }
 
-        @include respond-to('gt-sm') {
+        @include mixins.respond-to('gt-sm') {
           font-size: var(--lcc-fontSize--h4);
         }
 

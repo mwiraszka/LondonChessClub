@@ -1,4 +1,4 @@
-@import '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins';
 
 :host {
   display: flex;
@@ -30,7 +30,7 @@
     'past-winners';
   gap: 4px;
 
-  @include respond-to('gt-sm') {
+  @include mixins.respond-to('gt-sm') {
     grid-template-columns: 3fr 2fr 2fr;
     grid-template-areas:
       'history history history'
@@ -39,7 +39,7 @@
       'past-winners past-winners past-winners';
   }
 
-  @include respond-to('gt-lg') {
+  @include mixins.respond-to('gt-lg') {
     grid-template-columns: 3fr 2fr 2fr 2fr;
     grid-template-areas:
       'history history history past-winners'
@@ -58,7 +58,7 @@
     border: 1px solid var(--lcc-color--championScreen-cellBorder);
     background-color: var(--lcc-color--championScreen-cellBackground);
 
-    @include respond-to('gt-sm') {
+    @include mixins.respond-to('gt-sm') {
       border-radius: var(--lcc-borderRadius--small);
 
       img {
@@ -84,7 +84,7 @@
     &.cup {
       grid-area: cup;
 
-      @include respond-to('lt-sm') {
+      @include mixins.respond-to('lt-sm') {
         margin: 0 4px;
         border-radius: var(--lcc-borderRadius--large);
       }
@@ -115,7 +115,7 @@
     &.champion-2023 {
       grid-area: champ-2023;
 
-      @include respond-to('lt-sm') {
+      @include mixins.respond-to('lt-sm') {
         margin: 0 4px;
         border-radius: var(--lcc-borderRadius--large);
       }
@@ -124,7 +124,7 @@
     &.trophies-2023 {
       grid-area: trophies-2023;
 
-      @include respond-to('lt-sm') {
+      @include mixins.respond-to('lt-sm') {
         margin: 0 4px;
         border-radius: var(--lcc-borderRadius--large);
       }
@@ -133,7 +133,7 @@
     &.champion-2019 {
       grid-area: champ-2019;
 
-      @include respond-to('lt-sm') {
+      @include mixins.respond-to('lt-sm') {
         margin: 0 4px;
         border-radius: var(--lcc-borderRadius--large);
       }
@@ -142,7 +142,7 @@
     &.championship-match-2022 {
       grid-area: champ-2022;
 
-      @include respond-to('lt-sm') {
+      @include mixins.respond-to('lt-sm') {
         margin: 0 4px;
         border-radius: var(--lcc-borderRadius--large);
       }

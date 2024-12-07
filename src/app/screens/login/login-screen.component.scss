@@ -1,4 +1,4 @@
-@import '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins';
 
 :host {
   display: flex;
@@ -23,7 +23,7 @@ lcc-login-form {
   border-radius: var(--lcc-borderRadius--small);
   padding: 32px 16px;
 
-  @include respond-to('gt-sm') {
+  @include mixins.respond-to('gt-sm') {
     padding: 32px;
   }
 }

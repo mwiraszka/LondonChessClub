@@ -95,7 +95,7 @@ export function customSort(key: string, isAscending: boolean) {
     let bVal = (b as any)[_key];
 
     if (aVal instanceof Date || bVal instanceof Date) {
-      console.error('[LCC] Detected Date object while sorting');
+      console.error(`[LCC] Detected JS date object while sorting '${_key}'`);
       aVal = aVal?.toISOString() ?? '';
       aVal = bVal?.toISOString() ?? '';
     }

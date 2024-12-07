@@ -1,4 +1,4 @@
-@import '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins';
 
 :host {
   display: flex;
@@ -8,7 +8,7 @@
 }
 
 table {
-  @include respond-to('lt-sm') {
+  @include mixins.respond-to('lt-sm') {
     font-size: var(--lcc-fontSize--h5);
   }
 
@@ -63,7 +63,7 @@ table {
           max-width: 180px;
 
           // More room with smaller font size
-          @include respond-to('lt-sm') {
+          @include mixins.respond-to('lt-sm') {
             min-width: 120px;
             max-width: 140px;
           }
@@ -79,7 +79,7 @@ table {
           max-width: 180px;
 
           // More room with smaller font size
-          @include respond-to('lt-sm') {
+          @include mixins.respond-to('lt-sm') {
             min-width: 120px;
             max-width: 140px;
           }
@@ -131,7 +131,7 @@ table {
   .date-joined {
     display: none;
 
-    @include respond-to('gt-sm') {
+    @include mixins.respond-to('gt-sm') {
       display: table-cell;
 
       // Override truncation strategy for table
@@ -148,7 +148,7 @@ lcc-paginator {
   justify-content: center;
   align-items: center;
 
-  @include respond-to('gt-xs') {
+  @include mixins.respond-to('gt-xs') {
     width: 340px;
   }
 }
@@ -160,7 +160,7 @@ aside {
   border: 1px solid var(--lcc-color--membersTable-asideBorder);
   border-radius: var(--lcc-borderRadius--large);
 
-  @include respond-to('gt-xs') {
+  @include mixins.respond-to('gt-xs') {
     width: 340px;
   }
 

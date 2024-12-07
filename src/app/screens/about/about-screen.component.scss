@@ -1,4 +1,4 @@
-@import '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins';
 
 :host {
   display: flex;
@@ -27,7 +27,7 @@
     'leadership';
   gap: 4px;
 
-  @include respond-to('gt-md') {
+  @include mixins.respond-to('gt-md') {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       'membership supplies'
@@ -36,7 +36,7 @@
       'leadership leadership';
   }
 
-  @include respond-to('gt-lg') {
+  @include mixins.respond-to('gt-lg') {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
       'membership supplies ratings'
@@ -88,7 +88,7 @@ article {
     grid-area: leadership;
     background-color: var(--lcc-color--aboutScreen-lightCellBackground);
 
-    @include respond-to('lt-md') {
+    @include mixins.respond-to('lt-md') {
       background-color: var(--lcc-color--aboutScreen-darkCellBackground);
     }
 

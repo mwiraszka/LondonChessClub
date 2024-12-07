@@ -6,17 +6,11 @@ import { AppState } from './app.state';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function actionLogMetaReducer(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
   return (state, action) => {
-    const timestamp = new Date().toLocaleTimeString();
     console.info(
-      `%c [${timestamp}] ${action.type} `,
+      `%c [${new Date().toLocaleTimeString()}] ${action.type} `,
       'background-color: #ddd; color: #222',
     );
-    console.info('[LCC] State:', state);
-    console.info('[LCC] Action:', action);
-
-    const nextState = reducer(state, action);
-
-    return nextState;
+    return reducer(state, action);
   };
 }
 

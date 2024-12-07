@@ -1,4 +1,4 @@
-@import '../styles/abstracts/mixins';
+@use '../styles/abstracts/mixins';
 
 .app-container {
   min-height: 100vh;
@@ -12,7 +12,7 @@ main {
   padding: 8px 0;
   background-color: var(--lcc-color--app-mainBackground);
 
-  @include respond-to('gt-sm') {
+  @include mixins.respond-to('gt-sm') {
     padding: 8px;
   }
 }

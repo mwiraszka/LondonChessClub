@@ -1,4 +1,4 @@
-@import '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins';
 
 :host {
   display: flex;
@@ -28,7 +28,7 @@
       color: var(--lcc-color--datePicker-headerText);
       font-size: 14px !important;
 
-      @include respond-to('gt-sm') {
+      @include mixins.respond-to('gt-sm') {
         font-size: 16px !important;
       }
     }
@@ -41,7 +41,7 @@
       th {
         padding: 8px 1px !important;
 
-        @include respond-to('lt-sm') {
+        @include mixins.respond-to('lt-sm') {
           font-size: 12px;
         }
       }

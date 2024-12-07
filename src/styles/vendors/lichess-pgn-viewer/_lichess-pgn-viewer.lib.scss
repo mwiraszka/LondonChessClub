@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $lpv-site-hue: 37 !default;
 $lpv-accent: hsl(88, 62%, 37%) !default;
 $lpv-accent-over: white !default;
@@ -6,10 +8,10 @@ $lpv-bg-player: $lpv-bg !default;
 $lpv-bg-controls: $lpv-bg !default;
 $lpv-bg-movelist: $lpv-bg !default;
 $lpv-bg-variation: hsl($lpv-site-hue, 5%, 15%) !default;
-$lpv-bg-pane: mix($lpv-accent, $lpv-bg, 15%) !default;
+$lpv-bg-pane: color.mix($lpv-accent, $lpv-bg, 15%) !default;
 $lpv-font: #aaa !default;
-$lpv-font-shy: mix($lpv-font, $lpv-bg, 50%) !default;
-$lpv-font-accent: mix($lpv-accent, #fff, 50%) !default;
+$lpv-font-shy: color.mix($lpv-font, $lpv-bg, 50%) !default;
+$lpv-font-accent: color.mix($lpv-accent, #fff, 50%) !default;
 $lpv-border: hsl(0, 0%, 25%) !default;
 /* move highlights */
 $lpv-inaccuracy: hsl(202, 78%, 62%) !default;
@@ -19,6 +21,8 @@ $lpv-good-move: hsl(130, 67%, 62%) !default;
 $lpv-brilliant: hsl(129, 71%, 45%) !default;
 $lpv-interesting: hsl(307, 80%, 70%) !default;
 
+// TODO: Migrate remaining @import to @use (marked as deprecated in Dart Sass),
+// re-organizing partials architecture where necessary to avoid circular dependencies
 @import './fbt';
 @import './util';
 @import './layout';

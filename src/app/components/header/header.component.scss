@@ -1,4 +1,4 @@
-@import '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins';
 
 $app-header-font-size: 42px;
 
@@ -32,15 +32,14 @@ $app-header-font-size: 42px;
     img {
       height: 40px;
       width: 40px;
-
-      @include respond-to('gt-sm') {
-        height: 60px;
-        width: 60px;
-      }
-
       background-color: var(--lcc-color--header-brandingBackground);
       border-radius: 50%;
       padding: 3px;
+
+      @include mixins.respond-to('gt-sm') {
+        height: 60px;
+        width: 60px;
+      }
 
       &:hover {
         cursor: pointer;
@@ -57,7 +56,7 @@ $app-header-font-size: 42px;
       font-family: 'Caveat', sans-serif;
       font-size: calc(#{$app-header-font-size} - 6px);
 
-      @include respond-to('gt-sm') {
+      @include mixins.respond-to('gt-sm') {
         font-size: $app-header-font-size;
       }
 
@@ -74,7 +73,7 @@ $app-header-font-size: 42px;
     justify-content: center;
     margin-right: 8px;
 
-    @include respond-to('gt-md') {
+    @include mixins.respond-to('gt-md') {
       display: flex;
     }
 
@@ -122,7 +121,7 @@ $app-header-font-size: 42px;
         -moz-filter: opacity(0.3);
       }
 
-      @include respond-to('gt-xl') {
+      @include mixins.respond-to('gt-xl') {
         display: flex;
       }
     }

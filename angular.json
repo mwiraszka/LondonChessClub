@@ -31,6 +31,11 @@
             "assets": ["src/favicon.ico", "src/favicon.svg", "src/assets", "src/manifest.webmanifest"],
             "inlineStyleLanguage": "scss",
             "styles": ["src/styles/main.scss"],
+            "stylePreprocessorOptions": {
+              "sass": {
+                "silenceDeprecations": ["import"]
+              }
+            },
             "scripts": [
               "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
               "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"

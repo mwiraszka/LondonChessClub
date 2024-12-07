@@ -22,7 +22,8 @@ $lpv-brilliant: hsl(129, 71%, 45%) !default;
 $lpv-interesting: hsl(307, 80%, 70%) !default;
 
 // TODO: Migrate remaining @import to @use (marked as deprecated in Dart Sass),
-// re-organizing partials architecture where necessary to avoid circular dependencies
+// re-organizing partials architecture where necessary to avoid circular dependencies;
+// can then remove 'silenceDeprecations' settings in angular.json
 @import './fbt';
 @import './util';
 @import './layout';

@@ -27,13 +27,16 @@ function hydrationMetaReducer(reducer: ActionReducer<AppState>): ActionReducer<A
   const keysOfStoresToSync = [
     'articles',
     'auth',
+    'events',
     'members',
     'nav',
-    'schedule',
     'user-settings',
   ];
   return localStorageSync({ keys: keysOfStoresToSync, rehydrate: true })(reducer);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const metaReducers: Array<MetaReducer<any, any>> = [hydrationMetaReducer];
+export const metaReducers: Array<MetaReducer<any, any>> = [
+  actionLogMetaReducer,
+  hydrationMetaReducer,
+];

@@ -78,7 +78,8 @@ export const sortedMembers = createSelector(
         : sortedBy === 'lastUpdated'
           ? 'modificationInfo.dateLastEdited'
           : sortedBy;
-    return [...members].sort(customSort(sortKey, isAscending));
+    const sortedMembers = [...members].sort(customSort(sortKey));
+    return isAscending ? sortedMembers : sortedMembers.reverse();
   },
 );
 

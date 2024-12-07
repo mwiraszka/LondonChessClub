@@ -11,7 +11,7 @@ export const eventsFeatureSelector = createFeatureSelector<EventsState>(
 );
 
 export const events = createSelector(eventsFeatureSelector, state => {
-  return [...state.events].sort(customSort('eventDate', false));
+  return [...state.events].sort(customSort('eventDate'));
 });
 
 export const eventById = (id: Id) =>

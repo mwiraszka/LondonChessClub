@@ -30,14 +30,14 @@ export class ArticlesService {
   addArticle(article: Article): Observable<Article> {
     const scope: ApiScope = 'admin';
     return this.http
-      .post<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}`, event)
+      .post<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}`, article)
       .pipe(map(id => ({ ...article, id })));
   }
 
   updateArticle(article: Article): Observable<Article> {
     const scope: ApiScope = 'admin';
     return this.http
-      .put<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}/${article.id}`, event)
+      .put<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}/${article.id}`, article)
       .pipe(map(() => article));
   }
 

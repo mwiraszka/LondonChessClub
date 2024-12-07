@@ -79,10 +79,10 @@ export class ArticleGridComponent implements OnInit {
 
     const stickyArticles = articles
       .filter(article => article.isSticky)
-      .sort(customSort('modificationInfo.dateCreated', false));
+      .sort(customSort('modificationInfo.dateCreated'));
     const remainingArticles = articles
       .filter(article => !article.isSticky)
-      .sort(customSort('modificationInfo.dateCreated', false));
+      .sort(customSort('modificationInfo.dateCreated'));
 
     return [...stickyArticles, ...remainingArticles];
   }

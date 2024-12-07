@@ -9,7 +9,6 @@ import { type Link, NavPathTypes } from '@app/types';
 import { ChampionScreenFacade } from './champion-screen.facade';
 
 @Component({
-  standalone: true,
   selector: 'lcc-champion-screen',
   templateUrl: './champion-screen.component.html',
   styleUrls: ['./champion-screen.component.scss'],

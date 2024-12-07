@@ -10,7 +10,6 @@ import { MetaAndTitleService } from '@app/services';
 import { type Link, NavPathTypes } from '@app/types';
 
 @Component({
-  standalone: true,
   selector: 'lcc-home-screen',
   templateUrl: './home-screen.component.html',
   styleUrls: ['./home-screen.component.scss'],

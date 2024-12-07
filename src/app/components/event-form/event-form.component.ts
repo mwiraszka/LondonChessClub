@@ -24,7 +24,6 @@ import { EventFormFacade } from './event-form.facade';
 
 @UntilDestroy()
 @Component({
-  standalone: true,
   selector: 'lcc-event-form',
   templateUrl: './event-form.component.html',
   styleUrls: ['./event-form.component.scss'],

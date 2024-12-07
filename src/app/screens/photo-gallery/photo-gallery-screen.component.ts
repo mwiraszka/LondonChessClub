@@ -10,7 +10,6 @@ import type { Link } from '@app/types';
 import { PhotoGalleryScreenFacade } from './photo-gallery-screen.facade';
 
 @Component({
-  standalone: true,
   selector: 'lcc-photo-gallery-screen',
   templateUrl: './photo-gallery-screen.component.html',
   styleUrls: ['./photo-gallery-screen.component.scss'],

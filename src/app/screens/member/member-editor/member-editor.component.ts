@@ -12,7 +12,6 @@ import { MemberEditorFacade } from './member-editor.facade';
 
 @UntilDestroy()
 @Component({
-  standalone: true,
   selector: 'lcc-member-editor',
   templateUrl: './member-editor.component.html',
   styleUrls: ['./member-editor.component.scss'],

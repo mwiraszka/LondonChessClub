@@ -6,7 +6,6 @@ import { ScreenHeaderComponent } from '@app/components/screen-header/screen-head
 import { MetaAndTitleService } from '@app/services';
 
 @Component({
-  standalone: true,
   selector: 'lcc-news-screen',
   templateUrl: './news-screen.component.html',
   styleUrls: ['./news-screen.component.scss'],

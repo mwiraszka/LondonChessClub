@@ -7,7 +7,6 @@ import { MetaAndTitleService } from '@app/services';
 import { NavPathTypes } from '@app/types';
 
 @Component({
-  standalone: true,
   selector: 'lcc-about-screen',
   templateUrl: './about-screen.component.html',
   styleUrls: ['./about-screen.component.scss'],

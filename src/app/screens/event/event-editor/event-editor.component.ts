@@ -12,7 +12,6 @@ import { EventEditorFacade } from './event-editor.facade';
 
 @UntilDestroy()
 @Component({
-  standalone: true,
   selector: 'lcc-event-editor',
   templateUrl: './event-editor.component.html',
   styleUrls: ['./event-editor.component.scss'],

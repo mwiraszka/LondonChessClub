@@ -6,7 +6,6 @@ import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
 
 @Component({
-  standalone: true,
   selector: 'lcc-admin-controls',
   templateUrl: './admin-controls.component.html',
   styleUrls: ['./admin-controls.component.scss'],

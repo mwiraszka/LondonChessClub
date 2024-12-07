@@ -12,7 +12,6 @@ import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
 
 @Component({
-  standalone: true,
   selector: 'lcc-paginator',
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss'],

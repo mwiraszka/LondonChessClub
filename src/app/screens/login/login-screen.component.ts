@@ -6,7 +6,6 @@ import { ScreenHeaderComponent } from '@app/components/screen-header/screen-head
 import { MetaAndTitleService } from '@app/services';
 
 @Component({
-  standalone: true,
   selector: 'lcc-login-screen',
   templateUrl: './login-screen.component.html',
   styleUrls: ['./login-screen.component.scss'],

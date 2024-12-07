@@ -16,7 +16,6 @@ import { ScheduleFacade } from './schedule.facade';
 
 @UntilDestroy()
 @Component({
-  standalone: true,
   selector: 'lcc-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss'],

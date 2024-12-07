@@ -12,7 +12,6 @@ import { IconsModule } from '@app/icons';
 import { RangePipe } from '@app/pipes/range.pipe';
 
 @Component({
-  standalone: true,
   selector: 'lcc-date-picker',
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.scss'],

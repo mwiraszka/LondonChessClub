@@ -29,7 +29,6 @@ import {
 
 @UntilDestroy()
 @Component({
-  standalone: true,
   selector: 'lcc-change-password-form',
   templateUrl: './change-password-form.component.html',
   styleUrls: ['./change-password-form.component.scss'],

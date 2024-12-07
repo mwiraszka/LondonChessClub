@@ -41,7 +41,6 @@ import { YEARS } from './years';
 
 @UntilDestroy()
 @Component({
-  standalone: true,
   selector: 'lcc-game-archives-screen',
   templateUrl: './game-archives-screen.component.html',
   styleUrls: ['./game-archives-screen.component.scss'],

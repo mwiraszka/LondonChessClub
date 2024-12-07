@@ -5,8 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  * With ellipsis added (default), text will truncate by an additional 3 characters.
  */
 @Pipe({
-    name: 'truncateByChars',
-    standalone: true
+  name: 'truncateByChars',
 })
 export class TruncateByCharsPipe implements PipeTransform {
   transform(

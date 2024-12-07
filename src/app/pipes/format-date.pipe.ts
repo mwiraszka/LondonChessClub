@@ -9,7 +9,6 @@ import { formatDate } from '@app/utils';
  */
 @Pipe({
   name: 'formatDate',
-  standalone: true,
 })
 export class FormatDatePipe implements PipeTransform {
   transform(

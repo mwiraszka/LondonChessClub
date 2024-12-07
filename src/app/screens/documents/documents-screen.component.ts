@@ -20,7 +20,6 @@ import { LoaderService, MetaAndTitleService } from '@app/services';
 import { ClubDocument } from '@app/types';
 
 @Component({
-  standalone: true,
   selector: 'lcc-documents-screen',
   templateUrl: './documents-screen.component.html',
   styleUrls: ['./documents-screen.component.scss'],

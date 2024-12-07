@@ -7,7 +7,6 @@ import { IconsModule } from '@app/icons';
 import { NavPathTypes } from '@app/types';
 
 @Component({
-  standalone: true,
   selector: 'lcc-club-summary',
   templateUrl: './club-summary.component.html',
   styleUrls: ['./club-summary.component.scss'],

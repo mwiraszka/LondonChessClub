@@ -4,7 +4,6 @@ import { Component, Input } from '@angular/core';
 import { IconsModule } from '@app/icons';
 
 @Component({
-  standalone: true,
   selector: 'lcc-screen-header',
   templateUrl: './screen-header.component.html',
   styleUrls: ['./screen-header.component.scss'],

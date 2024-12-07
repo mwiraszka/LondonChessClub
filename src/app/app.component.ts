@@ -16,7 +16,6 @@ import { LoaderService } from '@app/services';
 import { AppFacade } from './app.facade';
 
 @Component({
-  standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],

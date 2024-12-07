@@ -6,7 +6,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { environment } from '@environments/environment';
 
 @Component({
-  standalone: true,
   selector: 'lcc-club-map',
   templateUrl: './club-map.component.html',
   styleUrls: ['./club-map.component.scss'],

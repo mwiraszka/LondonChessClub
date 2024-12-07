@@ -9,7 +9,6 @@ import type { Article } from '@app/types';
 import { wasEdited } from '@app/utils';
 
 @Component({
-  standalone: true,
   selector: 'lcc-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],

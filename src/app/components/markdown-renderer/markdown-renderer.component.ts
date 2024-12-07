@@ -10,7 +10,6 @@ import { kebabize } from '@app/utils';
 
 @UntilDestroy()
 @Component({
-  standalone: true,
   selector: 'lcc-markdown-renderer',
   templateUrl: './markdown-renderer.component.html',
   styleUrls: ['./markdown-renderer.component.scss'],

@@ -5,7 +5,6 @@ import { Directive, HostBinding, Input } from '@angular/core';
  * https://medium.com/@sub.metu/angular-fallback-for-broken-images-5cd05c470f08
  */
 @Directive({
-  standalone: true,
   selector: 'img[default]',
   host: {
     '(error)': 'updateUrl()',

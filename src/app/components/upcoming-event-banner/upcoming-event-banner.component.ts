@@ -10,7 +10,6 @@ import { kebabize } from '@app/utils';
 import { UpcomingEventBannerFacade } from './upcoming-event-banner.facade';
 
 @Component({
-  standalone: true,
   selector: 'lcc-upcoming-event-banner',
   templateUrl: './upcoming-event-banner.component.html',
   styleUrls: ['./upcoming-event-banner.component.scss'],

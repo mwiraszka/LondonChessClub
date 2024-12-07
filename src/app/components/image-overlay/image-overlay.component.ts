@@ -15,7 +15,6 @@ import { LoaderService } from '@app/services';
 import { ImageOverlayFacade } from './image-overlay.facade';
 
 @Component({
-  standalone: true,
   selector: 'lcc-image-overlay',
   templateUrl: './image-overlay.component.html',
   styleUrls: ['./image-overlay.component.scss'],

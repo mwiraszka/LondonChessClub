@@ -8,7 +8,6 @@ import { MetaAndTitleService } from '@app/services';
 import { ScheduleScreenFacade } from './schedule-screen.facade';
 
 @Component({
-  standalone: true,
   selector: 'schedule-screen',
   templateUrl: './schedule-screen.component.html',
   styleUrls: ['./schedule-screen.component.scss'],

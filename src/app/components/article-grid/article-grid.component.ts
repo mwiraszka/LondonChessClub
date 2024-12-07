@@ -18,7 +18,6 @@ import { ArticleGridFacade } from './article-grid.facade';
 
 @UntilDestroy()
 @Component({
-  standalone: true,
   selector: 'lcc-article-grid',
   templateUrl: './article-grid.component.html',
   styleUrls: ['./article-grid.component.scss'],

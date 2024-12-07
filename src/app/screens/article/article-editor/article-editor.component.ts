@@ -14,7 +14,6 @@ import { ArticleEditorFacade } from './article-editor.facade';
 
 @UntilDestroy()
 @Component({
-  standalone: true,
   selector: 'lcc-article-editor',
   templateUrl: './article-editor.component.html',
   styleUrls: ['./article-editor.component.scss'],

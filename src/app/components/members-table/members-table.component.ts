@@ -15,7 +15,6 @@ import { MembersTableFacade } from './members-table.facade';
 
 @UntilDestroy()
 @Component({
-  standalone: true,
   selector: 'lcc-members-table',
   templateUrl: './members-table.component.html',
   styleUrls: ['./members-table.component.scss'],

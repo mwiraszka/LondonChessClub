@@ -9,7 +9,6 @@ import { getLichessAnalysisUrl, getPlayerName, getScore } from '@app/utils/pgn-u
 import { LinkListComponent } from '../link-list/link-list.component';
 
 @Component({
-  standalone: true,
   selector: 'lcc-pgn-viewer',
   styleUrls: ['./pgn-viewer.component.scss'],
   templateUrl: './pgn-viewer.component.html',

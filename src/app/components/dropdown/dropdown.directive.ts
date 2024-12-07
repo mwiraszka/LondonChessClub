@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 
 @Directive({
-  standalone: true,
   selector: '[dropdown]',
 })
 export class DropdownDirective {

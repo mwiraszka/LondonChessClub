@@ -5,7 +5,6 @@ import { ToastComponent } from '../toast/toast.component';
 import { ToasterFacade } from './toaster.facade';
 
 @Component({
-  standalone: true,
   selector: 'lcc-toaster',
   template: `
     @for (toast of facade.toasts$ | async; track toast.title) {

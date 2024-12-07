@@ -6,7 +6,6 @@ import { IconsModule } from '@app/icons';
 import { ModalFacade } from './modal.facade';
 
 @Component({
-  standalone: true,
   selector: 'lcc-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],

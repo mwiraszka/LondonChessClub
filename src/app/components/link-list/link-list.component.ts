@@ -7,7 +7,6 @@ import { IconsModule } from '@app/icons';
 import type { Link } from '@app/types';
 
 @Component({
-  standalone: true,
   selector: 'lcc-link-list',
   templateUrl: './link-list.component.html',
   styleUrls: ['./link-list.component.scss'],

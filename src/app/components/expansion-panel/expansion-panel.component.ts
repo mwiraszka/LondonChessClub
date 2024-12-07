@@ -5,7 +5,6 @@ import { Component, Input, TemplateRef } from '@angular/core';
 import { IconsModule } from '@app/icons';
 
 @Component({
-  standalone: true,
   selector: 'lcc-expansion-panel',
   templateUrl: './expansion-panel.component.html',
   styleUrls: ['./expansion-panel.component.scss'],

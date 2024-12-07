@@ -18,7 +18,6 @@ import { emailValidator } from '@app/validators';
 import { LoginFormFacade } from './login-form.facade';
 
 @Component({
-  standalone: true,
   selector: 'lcc-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],

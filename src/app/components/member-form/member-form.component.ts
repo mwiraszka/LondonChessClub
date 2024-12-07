@@ -28,7 +28,6 @@ import { MemberFormFacade } from './member-form.facade';
 
 @UntilDestroy()
 @Component({
-  standalone: true,
   selector: 'lcc-member-form',
   templateUrl: './member-form.component.html',
   styleUrls: ['./member-form.component.scss'],

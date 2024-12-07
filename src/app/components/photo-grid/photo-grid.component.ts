@@ -9,7 +9,6 @@ import { PhotoGridFacade } from './photo-grid.facade';
 
 @UntilDestroy()
 @Component({
-  standalone: true,
   selector: 'lcc-photo-grid',
   templateUrl: './photo-grid.component.html',
   styleUrls: ['./photo-grid.component.scss'],

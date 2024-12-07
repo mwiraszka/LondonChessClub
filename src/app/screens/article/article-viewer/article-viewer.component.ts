@@ -13,7 +13,6 @@ import { ArticleViewerFacade } from './article-viewer.facade';
 
 @UntilDestroy()
 @Component({
-  standalone: true,
   selector: 'lcc-article-viewer',
   templateUrl: './article-viewer.component.html',
   styleUrls: ['./article-viewer.component.scss'],

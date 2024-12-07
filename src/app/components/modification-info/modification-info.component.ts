@@ -6,7 +6,6 @@ import { FormatDatePipe } from '@app/pipes/format-date.pipe';
 import type { ModificationInfo } from '@app/types';
 
 @Component({
-  standalone: true,
   selector: 'lcc-modification-info',
   templateUrl: './modification-info.component.html',
   styleUrls: ['./modification-info.component.scss'],

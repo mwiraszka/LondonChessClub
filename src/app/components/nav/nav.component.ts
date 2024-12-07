@@ -11,7 +11,6 @@ import { Link, NavPathTypes } from '@app/types';
 import { NavFacade } from './nav.facade';
 
 @Component({
-  standalone: true,
   selector: 'lcc-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],

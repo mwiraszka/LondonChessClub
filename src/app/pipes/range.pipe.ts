@@ -4,8 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  * Produces an array of numbers, useful for basic loops in template
  */
 @Pipe({
-    name: 'range',
-    standalone: true
+  name: 'range',
 })
 export class RangePipe implements PipeTransform {
   transform(length: number, offset = 0): number[] {

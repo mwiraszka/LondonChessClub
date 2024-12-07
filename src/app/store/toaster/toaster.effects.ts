@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 
 import { ArticlesActions } from '@app/store/articles';
 import { AuthActions } from '@app/store/auth';
+import { EventsActions } from '@app/store/events';
 import { MembersActions } from '@app/store/members';
-import { ScheduleActions } from '@app/store/schedule';
 import { type Toast, ToastTypes } from '@app/types';
 
 import * as ToasterActions from './toaster.actions';
@@ -169,6 +169,120 @@ export class ToasterEffects {
   });
   //#endregion
 
+  //#region Events
+  addAddEventSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EventsActions.addEventSucceeded),
+      map(({ event }) => {
+        const toast: Toast = {
+          title: 'New event',
+          message: `Successfully added ${event.title} to the database`,
+          type: ToastTypes.SUCCESS,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addAddEventFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EventsActions.addEventFailed),
+      map(({ errorResponse }) => {
+        const toast: Toast = {
+          title: 'New event',
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
+          type: ToastTypes.WARNING,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addUpdateEventSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EventsActions.updateEventSucceeded),
+      map(({ event }) => {
+        const toast: Toast = {
+          title: 'Event update',
+          message: `Successfully updated ${event.title} in the database`,
+          type: ToastTypes.SUCCESS,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addUpdateEventFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EventsActions.updateEventFailed),
+      map(({ errorResponse }) => {
+        const toast: Toast = {
+          title: 'Event update',
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
+          type: ToastTypes.WARNING,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addDeleteEventSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EventsActions.deleteEventSucceeded),
+      map(({ event }) => {
+        const toast: Toast = {
+          title: 'Event deletion',
+          message: `Successfully deleted ${event.title} from the database`,
+          type: ToastTypes.SUCCESS,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addDeleteEventFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EventsActions.deleteEventFailed),
+      map(({ errorResponse }) => {
+        const toast: Toast = {
+          title: 'Event deletion',
+          message: errorResponse.error,
+          type: ToastTypes.WARNING,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addFetchEventsFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EventsActions.fetchEventsFailed),
+      map(({ errorResponse }) => {
+        const toast: Toast = {
+          title: 'Load events',
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
+          type: ToastTypes.WARNING,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addFetchEventFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EventsActions.fetchEventFailed),
+      map(({ errorResponse }) => {
+        const toast: Toast = {
+          title: 'Load event',
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
+          type: ToastTypes.WARNING,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
+  //#endregion
+
   //#region Members
   addAddMemberSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
@@ -274,120 +388,6 @@ export class ToasterEffects {
       map(({ errorResponse }) => {
         const toast: Toast = {
           title: 'Load member',
-          message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
-        };
-        return ToasterActions.toastAdded({ toast });
-      }),
-    );
-  });
-  //#endregion
-
-  //#region Schedule
-  addAddEventSucceededToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ScheduleActions.addEventSucceeded),
-      map(({ event }) => {
-        const toast: Toast = {
-          title: 'New event',
-          message: `Successfully added ${event.title} to the database`,
-          type: ToastTypes.SUCCESS,
-        };
-        return ToasterActions.toastAdded({ toast });
-      }),
-    );
-  });
-
-  addAddEventFailedToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ScheduleActions.addEventFailed),
-      map(({ errorResponse }) => {
-        const toast: Toast = {
-          title: 'New event',
-          message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
-        };
-        return ToasterActions.toastAdded({ toast });
-      }),
-    );
-  });
-
-  addUpdateEventSucceededToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ScheduleActions.updateEventSucceeded),
-      map(({ event }) => {
-        const toast: Toast = {
-          title: 'Event update',
-          message: `Successfully updated ${event.title} in the database`,
-          type: ToastTypes.SUCCESS,
-        };
-        return ToasterActions.toastAdded({ toast });
-      }),
-    );
-  });
-
-  addUpdateEventFailedToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ScheduleActions.updateEventFailed),
-      map(({ errorResponse }) => {
-        const toast: Toast = {
-          title: 'Event update',
-          message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
-        };
-        return ToasterActions.toastAdded({ toast });
-      }),
-    );
-  });
-
-  addDeleteEventSucceededToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ScheduleActions.deleteEventSucceeded),
-      map(({ event }) => {
-        const toast: Toast = {
-          title: 'Event deletion',
-          message: `Successfully deleted ${event.title} from the database`,
-          type: ToastTypes.SUCCESS,
-        };
-        return ToasterActions.toastAdded({ toast });
-      }),
-    );
-  });
-
-  addDeleteEventFailedToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ScheduleActions.deleteEventFailed),
-      map(({ errorResponse }) => {
-        const toast: Toast = {
-          title: 'Event deletion',
-          message: errorResponse.error,
-          type: ToastTypes.WARNING,
-        };
-        return ToasterActions.toastAdded({ toast });
-      }),
-    );
-  });
-
-  addFetchEventsFailedToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ScheduleActions.fetchEventsFailed),
-      map(({ errorResponse }) => {
-        const toast: Toast = {
-          title: 'Load events',
-          message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
-        };
-        return ToasterActions.toastAdded({ toast });
-      }),
-    );
-  });
-
-  addFetchEventFailedToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ScheduleActions.fetchEventFailed),
-      map(({ errorResponse }) => {
-        const toast: Toast = {
-          title: 'Load event',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
@@ -531,16 +531,16 @@ export class ToasterEffects {
           ArticlesActions.deleteArticleFailed,
           ArticlesActions.fetchArticlesFailed,
           ArticlesActions.fetchArticleFailed,
+          EventsActions.addEventFailed,
+          EventsActions.updateEventFailed,
+          EventsActions.deleteEventFailed,
+          EventsActions.fetchEventsFailed,
+          EventsActions.fetchEventFailed,
           MembersActions.addMemberFailed,
           MembersActions.updateMemberFailed,
           MembersActions.deleteMemberFailed,
           MembersActions.fetchMembersFailed,
           MembersActions.fetchMemberFailed,
-          ScheduleActions.addEventFailed,
-          ScheduleActions.updateEventFailed,
-          ScheduleActions.deleteEventFailed,
-          ScheduleActions.fetchEventsFailed,
-          ScheduleActions.fetchEventFailed,
           AuthActions.loginFailed,
           AuthActions.codeForPasswordChangeFailed,
           AuthActions.passwordChangeFailed,

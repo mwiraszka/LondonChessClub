@@ -4,13 +4,13 @@ import moment from 'moment-timezone';
 import { Id, StoreFeatures } from '@app/types';
 import { areSame, customSort } from '@app/utils';
 
-import { ScheduleState } from './schedule.state';
+import { EventsState } from './events.state';
 
-export const scheduleFeatureSelector = createFeatureSelector<ScheduleState>(
-  StoreFeatures.SCHEDULE,
+export const eventsFeatureSelector = createFeatureSelector<EventsState>(
+  StoreFeatures.EVENTS,
 );
 
-export const events = createSelector(scheduleFeatureSelector, state => {
+export const events = createSelector(eventsFeatureSelector, state => {
   return [...state.events].sort(customSort('eventDate', false));
 });
 
@@ -29,26 +29,23 @@ export const nextEvent = createSelector(upcomingEvents, allUpcomingEvents => {
   return allUpcomingEvents.length > 0 ? allUpcomingEvents[0] : null;
 });
 
-export const setEvent = createSelector(scheduleFeatureSelector, state => state.setEvent);
+export const setEvent = createSelector(eventsFeatureSelector, state => state.setEvent);
 
 export const setEventTitle = createSelector(setEvent, event => event?.title);
 
-export const formEvent = createSelector(
-  scheduleFeatureSelector,
-  state => state.formEvent,
-);
+export const formEvent = createSelector(eventsFeatureSelector, state => state.formEvent);
 
 export const controlMode = createSelector(
-  scheduleFeatureSelector,
+  eventsFeatureSelector,
   state => state.controlMode,
 );
 
 export const showPastEvents = createSelector(
-  scheduleFeatureSelector,
+  eventsFeatureSelector,
   state => state.showPastEvents,
 );
 
 export const hasUnsavedChanges = createSelector(
-  scheduleFeatureSelector,
+  eventsFeatureSelector,
   state => !areSame(state.formEvent, state.setEvent),
 );

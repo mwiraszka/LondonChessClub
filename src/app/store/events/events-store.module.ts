@@ -6,14 +6,14 @@ import { NgModule } from '@angular/core';
 
 import { StoreFeatures } from '@app/types';
 
-import { ScheduleEffects } from './schedule.effects';
-import { reducer } from './schedule.reducer';
+import { EventsEffects } from './events.effects';
+import { reducer } from './events.reducer';
 
 @NgModule({
   imports: [
     CommonModule,
-    EffectsModule.forFeature([ScheduleEffects]),
-    StoreModule.forFeature(StoreFeatures.SCHEDULE, reducer),
+    EffectsModule.forFeature([EventsEffects]),
+    StoreModule.forFeature(StoreFeatures.EVENTS, reducer),
   ],
 })
-export class ScheduleStoreModule {}
+export class EventsStoreModule {}

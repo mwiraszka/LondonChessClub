@@ -6,9 +6,9 @@ import { filter, first } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 
+import { EventsSelectors } from '@app/store/events';
 import { ModalSelectors } from '@app/store/modal';
 import { PhotosSelectors } from '@app/store/photos';
-import { ScheduleSelectors } from '@app/store/schedule';
 import { ToasterSelectors } from '@app/store/toaster';
 import { UserSettingsActions, UserSettingsSelectors } from '@app/store/user-settings';
 import { isDefined } from '@app/utils';
@@ -20,7 +20,7 @@ export class AppFacade {
     UserSettingsSelectors.bannerLastCleared,
   );
   readonly isDarkMode$ = this.store.select(UserSettingsSelectors.isDarkMode);
-  readonly nextEvent$ = this.store.select(ScheduleSelectors.nextEvent);
+  readonly nextEvent$ = this.store.select(EventsSelectors.nextEvent);
   readonly showImageOverlay$ = this.store.select(PhotosSelectors.isOpen);
   readonly showModal$ = this.store.select(ModalSelectors.isOpen);
   readonly showToaster$ = this.store.select(ToasterSelectors.isDisplayingToasts);

@@ -13,20 +13,20 @@ import { AuthSelectors } from '@app/store/auth';
 import type { ModificationInfo } from '@app/types';
 import { isDefined } from '@app/utils';
 
-import * as ScheduleActions from './schedule.actions';
-import * as ScheduleSelectors from './schedule.selectors';
+import * as EventsActions from './events.actions';
+import * as EventsSelectors from './events.selectors';
 
 @Injectable()
-export class ScheduleEffects {
+export class EventsEffects {
   fetchEvents$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.fetchEventsRequested),
+      ofType(EventsActions.fetchEventsRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() =>
         this.eventsService.getEvents().pipe(
-          map(events => ScheduleActions.fetchEventsSucceeded({ events })),
+          map(events => EventsActions.fetchEventsSucceeded({ events })),
           catchError((errorResponse: HttpErrorResponse) =>
-            of(ScheduleActions.fetchEventsFailed({ errorResponse })),
+            of(EventsActions.fetchEventsFailed({ errorResponse })),
           ),
         ),
       ),
@@ -36,13 +36,13 @@ export class ScheduleEffects {
 
   fetchEvent$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.eventEditRequested),
+      ofType(EventsActions.eventEditRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ eventId }) =>
         this.eventsService.getEvent(eventId).pipe(
-          map(event => ScheduleActions.fetchEventSucceeded({ event })),
+          map(event => EventsActions.fetchEventSucceeded({ event })),
           catchError((errorResponse: HttpErrorResponse) =>
-            of(ScheduleActions.fetchEventFailed({ errorResponse })),
+            of(EventsActions.fetchEventFailed({ errorResponse })),
           ),
         ),
       ),
@@ -52,10 +52,10 @@ export class ScheduleEffects {
 
   addEvent$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.addEventConfirmed),
+      ofType(EventsActions.addEventConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
-        this.store.select(ScheduleSelectors.formEvent).pipe(filter(isDefined)),
+        this.store.select(EventsSelectors.formEvent).pipe(filter(isDefined)),
         this.store.select(AuthSelectors.user).pipe(filter(isDefined)),
       ]),
       switchMap(([, eventToAdd, user]) => {
@@ -69,9 +69,9 @@ export class ScheduleEffects {
         const modifiedEvent = { ...eventToAdd, modificationInfo };
 
         return this.eventsService.addEvent(modifiedEvent).pipe(
-          map(event => ScheduleActions.addEventSucceeded({ event })),
+          map(event => EventsActions.addEventSucceeded({ event })),
           catchError((errorResponse: HttpErrorResponse) =>
-            of(ScheduleActions.addEventFailed({ errorResponse })),
+            of(EventsActions.addEventFailed({ errorResponse })),
           ),
         );
       }),
@@ -81,10 +81,10 @@ export class ScheduleEffects {
 
   updateEvent$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.updateEventConfirmed),
+      ofType(EventsActions.updateEventConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
-        this.store.select(ScheduleSelectors.formEvent).pipe(filter(isDefined)),
+        this.store.select(EventsSelectors.formEvent).pipe(filter(isDefined)),
         this.store.select(AuthSelectors.user).pipe(filter(isDefined)),
       ]),
       switchMap(([, eventToUpdate, user]) => {
@@ -97,9 +97,9 @@ export class ScheduleEffects {
         const modifiedEvent = { ...eventToUpdate, modificationInfo };
 
         return this.eventsService.updateEvent(modifiedEvent).pipe(
-          map(event => ScheduleActions.updateEventSucceeded({ event })),
+          map(event => EventsActions.updateEventSucceeded({ event })),
           catchError((errorResponse: HttpErrorResponse) =>
-            of(ScheduleActions.updateEventFailed({ errorResponse })),
+            of(EventsActions.updateEventFailed({ errorResponse })),
           ),
         );
       }),
@@ -109,16 +109,16 @@ export class ScheduleEffects {
 
   deleteEvent$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.deleteEventConfirmed),
+      ofType(EventsActions.deleteEventConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() =>
-        this.store.select(ScheduleSelectors.setEvent).pipe(filter(isDefined)),
+        this.store.select(EventsSelectors.setEvent).pipe(filter(isDefined)),
       ),
       switchMap(([, eventToDelete]) =>
         this.eventsService.deleteEvent(eventToDelete).pipe(
-          map(event => ScheduleActions.deleteEventSucceeded({ event })),
+          map(event => EventsActions.deleteEventSucceeded({ event })),
           catchError((errorResponse: HttpErrorResponse) =>
-            of(ScheduleActions.deleteEventFailed({ errorResponse })),
+            of(EventsActions.deleteEventFailed({ errorResponse })),
           ),
         ),
       ),

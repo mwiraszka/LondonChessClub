@@ -3,29 +3,29 @@ import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 
 import { AuthSelectors } from '@app/store/auth';
-import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
+import { EventsActions, EventsSelectors } from '@app/store/events';
 import type { Event } from '@app/types';
 
 @Injectable()
 export class ScheduleFacade {
-  readonly events$ = this.store.select(ScheduleSelectors.events);
+  readonly events$ = this.store.select(EventsSelectors.events);
   readonly isAdmin$ = this.store.select(AuthSelectors.isAdmin);
-  readonly nextEvent$ = this.store.select(ScheduleSelectors.nextEvent);
-  readonly showPastEvents$ = this.store.select(ScheduleSelectors.showPastEvents);
-  readonly upcomingEvents$ = this.store.select(ScheduleSelectors.upcomingEvents);
+  readonly nextEvent$ = this.store.select(EventsSelectors.nextEvent);
+  readonly showPastEvents$ = this.store.select(EventsSelectors.showPastEvents);
+  readonly upcomingEvents$ = this.store.select(EventsSelectors.upcomingEvents);
 
   constructor(private readonly store: Store) {}
 
   fetchEvents(): void {
-    this.store.dispatch(ScheduleActions.fetchEventsRequested());
+    this.store.dispatch(EventsActions.fetchEventsRequested());
   }
 
   onDeleteEvent(event: Event): void {
-    this.store.dispatch(ScheduleActions.deleteEventSelected({ event }));
+    this.store.dispatch(EventsActions.deleteEventSelected({ event }));
   }
 
   onTogglePastEvents(): void {
-    this.store.dispatch(ScheduleActions.togglePastEvents());
+    this.store.dispatch(EventsActions.togglePastEvents());
 
     window.scroll({
       top: 0,

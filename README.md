@@ -45,11 +45,13 @@ v4.2.0 - December TBD, 2024
 </summary>
 
 - 🚀 Create a custom Date Picker component and implement in Event and Member Form component for date-related inputs
-- 🔧 Adapt Schedule service to new backend architecture
-- 🔧 Adapt frontend date utils for the date formats used in the database
-- 🔧 Convert all components to standalone components
+- 🔧 Adapt Schedule, Members and Articles services to new backend architecture
+- Convert all frontend date types to either ISO 8601 date strings (standard dates in the format YYYY-MM-DDTHH:MM:SS) or Moment types in date-heavy contexts where lots of calculations may be needed
+- 🔧 Consolidate all components, directives and pipes into more streamlined standalone components
 - 🔧 Create custom `range` pipe for easier iteration over consecutive integers in templates
 - 🔧 Clean up redundant code in Nav component
+- 🔧 Improve error handling and provide more comprehensive error messages to notification toasts for easier debugging when needed
+- 🔧 Rename Schedule and Club Event features and components to simply 'Event' wherever appropriate 
 
 </details>
 

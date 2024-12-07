@@ -2,35 +2,35 @@ import { Action, createReducer, on } from '@ngrx/store';
 
 import { type ControlModes, newEventFormTemplate } from '@app/types';
 
-import * as ScheduleActions from './schedule.actions';
-import { ScheduleState, initialState } from './schedule.state';
+import * as EventsActions from './events.actions';
+import { EventsState, initialState } from './events.state';
 
 const scheduleReducer = createReducer(
   initialState,
 
-  on(ScheduleActions.fetchEventsSucceeded, (state, { events }) => ({
+  on(EventsActions.fetchEventsSucceeded, (state, { events }) => ({
     ...state,
     events,
   })),
 
-  on(ScheduleActions.eventAddRequested, state => ({
+  on(EventsActions.eventAddRequested, state => ({
     ...state,
     setEvent: newEventFormTemplate,
     formEvent: newEventFormTemplate,
     controlMode: 'add' as ControlModes,
   })),
 
-  on(ScheduleActions.eventEditRequested, state => ({
+  on(EventsActions.eventEditRequested, state => ({
     ...state,
     controlMode: 'edit' as ControlModes,
   })),
 
-  on(ScheduleActions.eventSet, (state, { event }) => ({
+  on(EventsActions.eventSet, (state, { event }) => ({
     ...state,
     setEvent: event,
   })),
 
-  on(ScheduleActions.eventUnset, state => ({
+  on(EventsActions.eventUnset, state => ({
     ...state,
     setEvent: null,
     formEvent: null,
@@ -38,8 +38,8 @@ const scheduleReducer = createReducer(
   })),
 
   on(
-    ScheduleActions.addEventSucceeded,
-    ScheduleActions.updateEventSucceeded,
+    EventsActions.addEventSucceeded,
+    EventsActions.updateEventSucceeded,
     (state, { event }) => ({
       ...state,
       events: [
@@ -52,36 +52,36 @@ const scheduleReducer = createReducer(
     }),
   ),
 
-  on(ScheduleActions.fetchEventSucceeded, (state, { event }) => ({
+  on(EventsActions.fetchEventSucceeded, (state, { event }) => ({
     ...state,
     events: [...state.events.filter(storedEvent => storedEvent.id !== event.id), event],
     setEvent: event,
     formEvent: state.controlMode === 'edit' ? event : null,
   })),
 
-  on(ScheduleActions.deleteEventSelected, (state, { event }) => ({
+  on(EventsActions.deleteEventSelected, (state, { event }) => ({
     ...state,
     setEvent: event,
   })),
 
-  on(ScheduleActions.deleteEventSucceeded, (state, { event }) => ({
+  on(EventsActions.deleteEventSucceeded, (state, { event }) => ({
     ...state,
     events: state.events.filter(storedEvent => storedEvent.id !== event.id),
     setEvent: null,
     formEvent: null,
   })),
 
-  on(ScheduleActions.formDataChanged, (state, { event }) => ({
+  on(EventsActions.formDataChanged, (state, { event }) => ({
     ...state,
     formEvent: event,
   })),
 
-  on(ScheduleActions.togglePastEvents, state => ({
+  on(EventsActions.togglePastEvents, state => ({
     ...state,
     showPastEvents: !state.showPastEvents,
   })),
 );
 
-export function reducer(state: ScheduleState, action: Action): ScheduleState {
+export function reducer(state: EventsState, action: Action): EventsState {
   return scheduleReducer(state, action);
 }

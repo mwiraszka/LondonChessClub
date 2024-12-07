@@ -1,6 +1,6 @@
 import { ControlModes, type Event } from '@app/types';
 
-export interface ScheduleState {
+export interface EventsState {
   events: Event[];
   setEvent: Event | null;
   formEvent: Event | null;
@@ -8,7 +8,7 @@ export interface ScheduleState {
   showPastEvents: boolean;
 }
 
-export const initialState: ScheduleState = {
+export const initialState: EventsState = {
   events: [],
   setEvent: null,
   formEvent: null,

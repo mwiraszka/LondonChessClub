@@ -3,20 +3,20 @@ import { first, map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
+import { EventsActions, EventsSelectors } from '@app/store/events';
 import type { Event } from '@app/types';
 
 @Injectable()
 export class EventFormFacade {
-  readonly controlMode$ = this.store.select(ScheduleSelectors.controlMode);
-  readonly formEvent$ = this.store.select(ScheduleSelectors.formEvent);
-  readonly hasUnsavedChanges$ = this.store.select(ScheduleSelectors.hasUnsavedChanges);
-  readonly setEvent$ = this.store.select(ScheduleSelectors.setEvent);
+  readonly controlMode$ = this.store.select(EventsSelectors.controlMode);
+  readonly formEvent$ = this.store.select(EventsSelectors.formEvent);
+  readonly hasUnsavedChanges$ = this.store.select(EventsSelectors.hasUnsavedChanges);
+  readonly setEvent$ = this.store.select(EventsSelectors.setEvent);
 
   constructor(private readonly store: Store) {}
 
   onCancel(): void {
-    this.store.dispatch(ScheduleActions.cancelSelected());
+    this.store.dispatch(EventsActions.cancelSelected());
   }
 
   onSubmit(event: Event): void {
@@ -25,11 +25,11 @@ export class EventFormFacade {
         map(controlMode =>
           controlMode === 'edit'
             ? this.store.dispatch(
-                ScheduleActions.updateEventSelected({
+                EventsActions.updateEventSelected({
                   event,
                 }),
               )
-            : this.store.dispatch(ScheduleActions.addEventSelected({ event })),
+            : this.store.dispatch(EventsActions.addEventSelected({ event })),
         ),
         first(),
       )
@@ -37,6 +37,6 @@ export class EventFormFacade {
   }
 
   onValueChange(event: Event): void {
-    this.store.dispatch(ScheduleActions.formDataChanged({ event }));
+    this.store.dispatch(EventsActions.formDataChanged({ event }));
   }
 }

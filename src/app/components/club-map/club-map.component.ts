@@ -1,14 +1,15 @@
 import { Loader } from '@googlemaps/js-api-loader';
 
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 
-import { environment } from '@environments/environment';
+import { environment } from '@env';
 
 @Component({
   selector: 'lcc-club-map',
   templateUrl: './club-map.component.html',
   styleUrls: ['./club-map.component.scss'],
+  imports: [CommonModule],
 })
 export class ClubMapComponent implements OnInit {
   clubLocation: google.maps.LatLngLiteral = { lat: 42.982546, lng: -81.261387 };

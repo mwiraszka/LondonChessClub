@@ -7,7 +7,7 @@ import { ModalButtonActionTypes } from '@app/types';
 
 @Injectable()
 export class ModalFacade {
-  modal$ = this.store.select(ModalSelectors.modal);
+  readonly modal$ = this.store.select(ModalSelectors.modal);
 
   constructor(private readonly store: Store) {}
 

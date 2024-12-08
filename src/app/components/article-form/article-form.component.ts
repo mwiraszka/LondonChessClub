@@ -1,10 +1,21 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { debounceTime, filter, first } from 'rxjs/operators';
 
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
-import { ImagesService } from '@app/services';
+import { ImagePreloadDirective } from '@app/components/image-preload/image-preload.directive';
+import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
+import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
+import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { IconsModule } from '@app/icons';
 import type { Article } from '@app/types';
 import { isDefined } from '@app/utils';
 import { imageSizeValidator } from '@app/validators';
@@ -17,6 +28,15 @@ import { ArticleFormFacade } from './article-form.facade';
   templateUrl: './article-form.component.html',
   styleUrls: ['./article-form.component.scss'],
   providers: [ArticleFormFacade],
+  imports: [
+    CommonModule,
+    IconsModule,
+    ImagePreloadDirective,
+    MarkdownRendererComponent,
+    ModificationInfoComponent,
+    ReactiveFormsModule,
+    TooltipDirective,
+  ],
 })
 export class ArticleFormComponent implements OnInit {
   form!: FormGroup;
@@ -24,7 +44,6 @@ export class ArticleFormComponent implements OnInit {
   constructor(
     public facade: ArticleFormFacade,
     private formBuilder: FormBuilder,
-    private imagesService: ImagesService,
   ) {}
 
   ngOnInit(): void {
@@ -42,8 +61,6 @@ export class ArticleFormComponent implements OnInit {
   getErrorMessage(control: AbstractControl): string {
     if (control.hasError('required')) {
       return 'This field is required';
-    } else if (control.hasError('invalidDateFormat')) {
-      return 'Invalid date';
     } else if (control.hasError('imageTooLarge')) {
       return 'Banner image file must be smaller than 1MB';
     } else {

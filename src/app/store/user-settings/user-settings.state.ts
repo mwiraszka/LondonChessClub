@@ -1,7 +1,8 @@
+import { IsoDate } from '@app/types';
 import { isSystemDark } from '@app/utils';
 
 export interface UserSettingsState {
-  bannerLastCleared: number | null;
+  bannerLastCleared: IsoDate | null;
   isDarkMode: boolean;
   isSafeMode: boolean;
   showUpcomingEventBanner: boolean;

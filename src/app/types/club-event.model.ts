@@ -1,6 +1,9 @@
+import moment from 'moment-timezone';
+
+import { Id, IsoDate } from './core.model';
 import type { ModificationInfo } from './modification-info.model';
 
-export enum ClubEventTypes {
+export enum EventTypes {
   BLITZ_TOURNAMENT = 'blitz tournament',
   RAPID_TOURNAMENT = 'rapid tournament',
   ACTIVE_TOURNAMENT = 'active tournament',
@@ -11,36 +14,26 @@ export enum ClubEventTypes {
   OTHER = 'other',
 }
 
-export interface ClubEvent {
-  id: string | null;
-  type: ClubEventTypes;
-  eventDate: string;
+export interface Event {
+  id: Id | null;
+  type: EventTypes;
+  eventDate: IsoDate;
   title: string;
   details: string;
-  associatedArticleId: string;
+  articleId: Id | null;
   modificationInfo: ModificationInfo | null;
 }
 
-export const newClubEventFormTemplate: ClubEvent = {
+export const newEventFormTemplate: Event = {
   id: null,
-  type: ClubEventTypes.BLITZ_TOURNAMENT,
-  eventDate: '',
+  type: EventTypes.BLITZ_TOURNAMENT,
+  eventDate: moment()
+    .tz('America/Toronto', false)
+    .set('hours', 18)
+    .set('minutes', 0)
+    .toISOString(),
   title: '',
   details: '',
-  associatedArticleId: '',
+  articleId: null,
   modificationInfo: null,
 };
-
-// Backend representation of the type
-export interface FlatClubEvent {
-  id: string | null;
-  type: ClubEventTypes;
-  eventDate: string;
-  title: string;
-  details: string;
-  associatedArticleId: string;
-  dateCreated: string;
-  createdBy: string;
-  dateLastEdited: string;
-  lastEditedBy: string;
-}

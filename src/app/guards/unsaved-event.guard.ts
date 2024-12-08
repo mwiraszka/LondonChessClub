@@ -4,8 +4,8 @@ import { filter, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
+import { EventsSelectors } from '@app/store/events';
 import { ModalActions, ModalSelectors } from '@app/store/modal';
-import { ScheduleSelectors } from '@app/store/schedule';
 import { ModalButtonActionTypes } from '@app/types';
 
 @Injectable({ providedIn: 'root' })
@@ -13,7 +13,7 @@ export class UnsavedEventGuard {
   constructor(private readonly store: Store) {}
 
   canDeactivate(): Observable<boolean> {
-    return this.store.select(ScheduleSelectors.hasUnsavedChanges).pipe(
+    return this.store.select(EventsSelectors.hasUnsavedChanges).pipe(
       switchMap(hasUnsavedChanges => {
         if (!hasUnsavedChanges) {
           return of(true);

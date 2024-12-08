@@ -1,4 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import moment from 'moment-timezone';
 
 import * as UserSettingsActions from './user-settings.actions';
 import { UserSettingsState, initialState } from './user-settings.state';
@@ -19,7 +20,7 @@ const userSettingsReducer = createReducer(
   on(UserSettingsActions.clearUpcomingEventBanner, state => ({
     ...state,
     showUpcomingEventBanner: false,
-    bannerLastCleared: new Date().getTime(),
+    bannerLastCleared: moment().toISOString(),
   })),
 
   on(UserSettingsActions.reinstateUpcomingEventBanner, state => ({

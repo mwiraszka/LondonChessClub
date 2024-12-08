@@ -2,11 +2,11 @@ import { Store } from '@ngrx/store';
 
 import { Injectable } from '@angular/core';
 
-import { ScheduleSelectors } from '@app/store/schedule';
+import { EventsSelectors } from '@app/store/events';
 
 @Injectable()
 export class ScheduleScreenFacade {
-  readonly nextEventId$ = this.store.select(ScheduleSelectors.nextEventId);
+  readonly upcomingEvents$ = this.store.select(EventsSelectors.upcomingEvents);
 
   constructor(private readonly store: Store) {}
 }

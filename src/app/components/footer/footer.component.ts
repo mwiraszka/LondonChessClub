@@ -1,5 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 import { UpdateService } from '@app/services';
@@ -11,6 +12,7 @@ import packageJson from '../../../../package.json';
   selector: 'lcc-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
+  imports: [CommonModule],
 })
 export class FooterComponent implements OnInit {
   currentVersion = packageJson.version;

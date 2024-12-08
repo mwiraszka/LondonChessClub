@@ -1,4 +1,4 @@
-@import '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins';
 
 $card-min-width: 310px; // Enough to keep dates on one line
 $grid-gap: 8px;
@@ -26,8 +26,6 @@ lcc-link-list,
   gap: $grid-gap;
 
   .article {
-    @include flex-wrap-fix-width($card-min-width, $grid-gap, $app-content-width);
-
     display: flex;
     flex-flow: column nowrap;
     gap: 4px;
@@ -44,7 +42,9 @@ lcc-link-list,
       50% / 2px 2px;
     border-radius: var(--lcc-borderRadius--large);
 
-    @include respond-to('gt-sm') {
+    @include mixins.flex-wrap-fix-width($card-min-width, $grid-gap, $app-content-width);
+
+    @include mixins.respond-to('gt-sm') {
       margin: 0;
     }
 

@@ -1,5 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
+import { ToastComponent } from '../toast/toast.component';
 import { ToasterFacade } from './toaster.facade';
 
 @Component({
@@ -11,6 +13,7 @@ import { ToasterFacade } from './toaster.facade';
   `,
   styleUrls: ['./toaster.component.scss'],
   providers: [ToasterFacade],
+  imports: [CommonModule, ToastComponent],
 })
 export class ToasterComponent {
   constructor(public facade: ToasterFacade) {}

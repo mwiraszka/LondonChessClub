@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard, UnsavedEventGuard } from '@app/guards';
+import { AuthGuard } from '@app/guards/auth.guard';
+import { UnsavedEventGuard } from '@app/guards/unsaved-event.guard';
 import { NavPathTypes } from '@app/types';
 
-import { EventEditorComponent } from './event-editor';
+import { EventEditorComponent } from './event-editor/event-editor.component';
 
 const routes: Routes = [
   {

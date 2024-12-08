@@ -13,6 +13,8 @@ export class NavFacade {
   readonly isOverlayOpen$ = this.store.select(PhotosSelectors.isOpen);
   readonly user$ = this.store.select(AuthSelectors.user);
 
+  constructor(private readonly store: Store) {}
+
   onToggleTheme(): void {
     this.store.dispatch(UserSettingsActions.toggleTheme());
   }
@@ -20,6 +22,4 @@ export class NavFacade {
   onToggleSafeMode(): void {
     this.store.dispatch(UserSettingsActions.toggleSafeMode());
   }
-
-  constructor(private readonly store: Store) {}
 }

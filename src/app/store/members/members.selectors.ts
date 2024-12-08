@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { StoreFeatures } from '@app/types';
+import { Id, StoreFeatures } from '@app/types';
 import { areSame, customSort } from '@app/utils';
 
 import { MembersState } from './members.state';
@@ -11,7 +11,7 @@ export const membersFeatureSelector = createFeatureSelector<MembersState>(
 
 export const members = createSelector(membersFeatureSelector, state => state.members);
 
-export const memberById = (id: string) =>
+export const memberById = (id: Id) =>
   createSelector(members, allMembers => {
     return allMembers ? allMembers.find(member => member.id === id) : null;
   });
@@ -78,7 +78,8 @@ export const sortedMembers = createSelector(
         : sortedBy === 'lastUpdated'
           ? 'modificationInfo.dateLastEdited'
           : sortedBy;
-    return [...members].sort(customSort(sortKey, isAscending));
+    const sortedMembers = [...members].sort(customSort(sortKey));
+    return isAscending ? sortedMembers : sortedMembers.reverse();
   },
 );
 

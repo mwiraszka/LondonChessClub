@@ -1,8 +1,16 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import * as uuid from 'uuid';
 
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
+import { AdminControlsComponent } from '@app/components/admin-controls/admin-controls.component';
+import { ImagePreloadDirective } from '@app/components/image-preload/image-preload.directive';
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { IconsModule } from '@app/icons';
+import { FormatDatePipe } from '@app/pipes/format-date.pipe';
+import { StripMarkdownPipe } from '@app/pipes/strip-markdown.pipe';
 import { Article, type Link, NavPathTypes } from '@app/types';
 import { customSort, wasEdited } from '@app/utils';
 
@@ -14,10 +22,20 @@ import { ArticleGridFacade } from './article-grid.facade';
   templateUrl: './article-grid.component.html',
   styleUrls: ['./article-grid.component.scss'],
   providers: [ArticleGridFacade],
+  imports: [
+    AdminControlsComponent,
+    CommonModule,
+    FormatDatePipe,
+    IconsModule,
+    ImagePreloadDirective,
+    LinkListComponent,
+    RouterLink,
+    StripMarkdownPipe,
+  ],
 })
 export class ArticleGridComponent implements OnInit {
   readonly PLACEHOLDER_ARTICLE: Article = {
-    id: uuid.v4().slice(-8),
+    id: uuid.v4(),
     title: '',
     body: '',
     imageFile: null,
@@ -61,10 +79,10 @@ export class ArticleGridComponent implements OnInit {
 
     const stickyArticles = articles
       .filter(article => article.isSticky)
-      .sort(customSort('modificationInfo.dateCreated', false));
+      .sort(customSort('modificationInfo.dateCreated'));
     const remainingArticles = articles
       .filter(article => !article.isSticky)
-      .sort(customSort('modificationInfo.dateCreated', false));
+      .sort(customSort('modificationInfo.dateCreated'));
 
     return [...stickyArticles, ...remainingArticles];
   }

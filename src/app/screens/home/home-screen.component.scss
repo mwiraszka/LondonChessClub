@@ -1,4 +1,4 @@
-@import '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins';
 
 .container {
   max-width: var(--lcc-width--appContent);
@@ -8,7 +8,7 @@
   margin: auto;
   gap: 8px;
 
-  @include respond-to('gt-lg') {
+  @include mixins.respond-to('gt-lg') {
     grid-template-columns: 3fr 2fr;
     grid-template-areas:
       'welcome schedule'
@@ -23,7 +23,7 @@
     flex-direction: column;
     gap: 16px;
 
-    @include respond-to('gt-lg') {
+    @include mixins.respond-to('gt-lg') {
       border-radius: var(--lcc-borderRadius--small);
     }
 
@@ -35,11 +35,11 @@
       border-radius: var(--lcc-borderRadius--small);
       color: var(--lcc-color--homeScreen-welcomeSectionText);
 
-      @include respond-to('gt-sm') {
+      @include mixins.respond-to('gt-sm') {
         padding: 32px;
       }
 
-      @include respond-to('gt-md') {
+      @include mixins.respond-to('gt-md') {
         min-width: 650px;
       }
 
@@ -49,11 +49,11 @@
         font-size: 23px !important;
         text-align: center;
 
-        @include respond-to('gt-sm') {
+        @include mixins.respond-to('gt-sm') {
           text-align: left;
         }
 
-        @include respond-to('gt-md') {
+        @include mixins.respond-to('gt-md') {
           font-size: 28px !important;
         }
       }

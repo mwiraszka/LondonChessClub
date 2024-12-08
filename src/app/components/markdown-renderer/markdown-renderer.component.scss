@@ -1,8 +1,8 @@
-@import '../../../styles/components/link';
+@use '../../../styles/components/link';
 
 :host ::ng-deep {
   a {
-    @include lcc-link;
+    @include link.lcc-link;
   }
 
   li {

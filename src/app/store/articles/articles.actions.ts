@@ -1,6 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Article, Url } from '@app/types';
+import { HttpErrorResponse } from '@angular/common/http';
+
+import type { Article, Id, Url } from '@app/types';
 
 enum ArticlesActionTypes {
   FETCH_ARTICLES_REQUESTED = '[Articles] Fetch articles requested',
@@ -64,24 +66,24 @@ export const fetchArticlesSucceeded = createAction(
 );
 export const fetchArticlesFailed = createAction(
   ArticlesActionTypes.FETCH_ARTICLES_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const articleViewRequested = createAction(
   ArticlesActionTypes.ARTICLE_VIEW_REQUESTED,
-  props<{ articleId: string }>(),
+  props<{ articleId: Id }>(),
 );
 export const articleAddRequested = createAction(
   ArticlesActionTypes.ARTICLE_ADD_REQUESTED,
 );
 export const articleEditRequested = createAction(
   ArticlesActionTypes.ARTICLE_EDIT_REQUESTED,
-  props<{ articleId: string }>(),
+  props<{ articleId: Id }>(),
 );
 
 export const fetchArticleRequested = createAction(
   ArticlesActionTypes.FETCH_ARTICLE_REQUESTED,
-  props<{ articleId: string }>(),
+  props<{ articleId: Id }>(),
 );
 export const fetchArticleSucceeded = createAction(
   ArticlesActionTypes.FETCH_ARTICLE_SUCCEEDED,
@@ -89,7 +91,7 @@ export const fetchArticleSucceeded = createAction(
 );
 export const fetchArticleFailed = createAction(
   ArticlesActionTypes.FETCH_ARTICLE_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const articleSet = createAction(
@@ -108,7 +110,7 @@ export const getArticleThumbnailImageUrlsSucceeded = createAction(
 );
 export const getArticleThumbnailImageUrlsFailed = createAction(
   ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const getArticleImageUrlRequested = createAction(
@@ -121,7 +123,7 @@ export const getArticleImageUrlSucceeded = createAction(
 );
 export const getArticleImageUrlFailed = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const getArticleImageFileRequested = createAction(
@@ -134,7 +136,7 @@ export const getArticleImageFileSucceeded = createAction(
 );
 export const getArticleImageFileFailed = createAction(
   ArticlesActionTypes.GET_ARTICLE_IMAGE_FILE_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 export const articleImageChangeReverted = createAction(
   ArticlesActionTypes.ARTICLE_IMAGE_CHANGE_REVERTED,
@@ -156,7 +158,7 @@ export const publishArticleSucceeded = createAction(
 );
 export const publishArticleFailed = createAction(
   ArticlesActionTypes.PUBLISH_ARTICLE_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const updateArticleSelected = createAction(
@@ -175,7 +177,7 @@ export const updateArticleSucceeded = createAction(
 );
 export const updateArticleFailed = createAction(
   ArticlesActionTypes.UPDATE_ARTICLE_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const deleteArticleSelected = createAction(
@@ -194,7 +196,7 @@ export const deleteArticleSucceeded = createAction(
 );
 export const deleteArticleFailed = createAction(
   ArticlesActionTypes.DELETE_ARTICLE_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const cancelSelected = createAction(ArticlesActionTypes.CANCEL_SELECTED);

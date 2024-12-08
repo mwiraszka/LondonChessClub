@@ -1,6 +1,8 @@
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 
+import { ScheduleComponent } from '@app/components/schedule/schedule.component';
+import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { MetaAndTitleService } from '@app/services';
 
 import { ScheduleScreenFacade } from './schedule-screen.facade';
@@ -10,6 +12,7 @@ import { ScheduleScreenFacade } from './schedule-screen.facade';
   templateUrl: './schedule-screen.component.html',
   styleUrls: ['./schedule-screen.component.scss'],
   providers: [ScheduleScreenFacade],
+  imports: [CommonModule, ScheduleComponent, ScreenHeaderComponent],
 })
 export class ScheduleScreenComponent implements OnInit {
   constructor(
@@ -21,24 +24,24 @@ export class ScheduleScreenComponent implements OnInit {
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Schedule');
     this.metaAndTitleService.updateDescription(
-      "What's in store at the London Chess Club",
+      'Scheduled events at the London Chess Club',
     );
 
-    this.facade.nextEventId$.subscribe(eventId => {
-      if (eventId) {
-        setTimeout(() => this.scrollToNextEvent(eventId), 150);
+    this.facade.upcomingEvents$.subscribe(upcomingEvents => {
+      if (!upcomingEvents?.length || !upcomingEvents[0]?.id) {
+        return;
       }
-    });
-  }
 
-  scrollToNextEvent(eventId: string): void {
-    const nextEvent = this._document.getElementById(eventId);
-    if (nextEvent) {
-      nextEvent.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'nearest',
-      });
-    }
+      setTimeout(() => {
+        const nextEvent = this._document.getElementById(upcomingEvents[0].id!);
+        if (nextEvent) {
+          nextEvent.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest',
+          });
+        }
+      }, 150);
+    });
   }
 }

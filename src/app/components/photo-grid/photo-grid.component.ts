@@ -1,5 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Photo } from '@app/types';
@@ -12,6 +13,7 @@ import { PhotoGridFacade } from './photo-grid.facade';
   templateUrl: './photo-grid.component.html',
   styleUrls: ['./photo-grid.component.scss'],
   providers: [PhotoGridFacade],
+  imports: [CommonModule],
 })
 export class PhotoGridComponent implements OnInit {
   @Input() maxPhotos?: number;

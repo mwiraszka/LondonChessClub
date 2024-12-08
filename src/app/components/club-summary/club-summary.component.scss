@@ -1,4 +1,4 @@
-@import '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins';
 
 :host {
   height: 100%;
@@ -30,7 +30,7 @@
     padding: 8px 16px;
     color: var(--lcc-color--clubSummary-addressAndTimeContainerForeground);
 
-    @include respond-to('gt-lg') {
+    @include mixins.respond-to('gt-lg') {
       gap: 32px;
       flex-direction: row;
     }

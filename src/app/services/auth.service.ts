@@ -17,7 +17,7 @@ import type {
   UnverifiedUser,
 } from '@app/types';
 
-import { environment } from '@environments/environment';
+import { environment } from '@env';
 
 @Injectable({
   providedIn: 'root',

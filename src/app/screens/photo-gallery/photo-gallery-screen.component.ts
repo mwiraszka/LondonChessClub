@@ -1,5 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
+import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { MetaAndTitleService } from '@app/services';
 import type { Link } from '@app/types';
 
@@ -10,6 +14,7 @@ import { PhotoGalleryScreenFacade } from './photo-gallery-screen.facade';
   templateUrl: './photo-gallery-screen.component.html',
   styleUrls: ['./photo-gallery-screen.component.scss'],
   providers: [PhotoGalleryScreenFacade],
+  imports: [CommonModule, LinkListComponent, PhotoGridComponent, ScreenHeaderComponent],
 })
 export class PhotoGalleryScreenComponent implements OnInit {
   links: Link[] = [

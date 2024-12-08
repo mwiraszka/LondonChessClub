@@ -3,7 +3,7 @@ import { Loader } from '@googlemaps/js-api-loader';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 
-import { environment } from '@environments/environment';
+import { environment } from '@env';
 
 @Component({
   selector: 'lcc-club-map',

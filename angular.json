@@ -164,18 +164,6 @@
           "options": {
             "buildTarget": "lcc-angular:build"
           }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": ["zone.js", "window-global-fix.ts"],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
-            "scripts": [
-              "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
-              "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"
-            ]
-          }
         }
       }
     }

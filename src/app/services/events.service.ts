@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 
 import type { ApiScope, DbCollection, Event, Id } from '@app/types';
 
-import { environment } from '@environments/environment';
+import { environment } from '@env';
 
 @Injectable({
   providedIn: 'root',

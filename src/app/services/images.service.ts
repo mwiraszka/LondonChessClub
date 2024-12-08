@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 
 import type { Article, Url } from '@app/types';
 
-import { environment } from '@environments/environment';
+import { environment } from '@env';
 
 @Injectable({
   providedIn: 'root',

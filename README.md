@@ -45,6 +45,7 @@ v4.2.0 - December TBD, 2024
 </summary>
 
 - 🚀 Create a custom Date Picker component and implement in Event and Member Form component for date-related inputs
+- 🚀 Improve efficiency of custom sorting algorithm (used for sorting members, club events and articles) and handle certain edge cases more appropriately 
 - 🔧 Upgrade to Angular v19
 - 🔧 Adapt Schedule, Members and Articles services to new backend architecture
 - Convert all frontend date types to either ISO 8601 date strings (standard dates in the format YYYY-MM-DDTHH:MM:SS) or Moment types in date-heavy contexts where lots of calculations may be needed
@@ -53,8 +54,10 @@ v4.2.0 - December TBD, 2024
 - 🔧 Clean up redundant code in Nav component
 - 🔧 Improve error handling and provide more comprehensive error messages to notification toasts for easier debugging when needed
 - 🔧 Rename Schedule and Club Event features and components to simply 'Event' wherever appropriate 
-- 🔧 Migrate deprecated `@import` rule to `@use`/`@forward` in prepararation for future release of Dart Sass 3.0.0, where `@import` will not longer be available
+- 🔧 Migrate deprecated `@import` rule to `@use`/`@forward` in prepararation for future release of Dart Sass 3.0.0, where `@import` will no longer be available
 - 🔧 Migrate deprecated global built-in functions to use explicit `sass:` prefix
+- 🔧 Migrate from Jasmine to Jest for unit tests
+- 🔧 Update path aliases and remove redundant `.eslintrc` file
 
 
 </details>

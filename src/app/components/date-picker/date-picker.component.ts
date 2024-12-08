@@ -10,6 +10,7 @@ import {
 
 import { IconsModule } from '@app/icons';
 import { RangePipe } from '@app/pipes/range.pipe';
+import { IsoDate } from '@app/types';
 
 @Component({
   selector: 'lcc-date-picker',
@@ -48,12 +49,13 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
     this.screenWidth = window.innerWidth;
   }
 
-  writeValue(date: Date): void {
+  writeValue(date: IsoDate): void {
     if (!date) {
       console.error(
         "[LCC] No date provided to Date Picker - using today's date as fallback.",
       );
-      date = new Date();
+      this.selectedDate = moment();
+      this.currentMonth = moment();
     }
 
     this.selectedDate = moment(date);
@@ -88,7 +90,7 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
     this.onChange(this.selectedDate.toDate());
   }
 
-  private renderCalendar(): void {
+  public renderCalendar(): void {
     let day = this.getCalendarFirstDay();
 
     const weekRows = Array.from(

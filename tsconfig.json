@@ -23,8 +23,7 @@
     "outDir": "./dist/out-tsc",
     "paths": {
       "@app/*": ["app/*"],
-      "@assets/*": ["assets/*"],
-      "@environments/*": ["environments/*"]
+      "@env": ["environments/environment"]
     },
     "resolveJsonModule": true,
     "sourceMap": true,

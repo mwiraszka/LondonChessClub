@@ -1,7 +1,7 @@
 import { ActionReducer, MetaReducer } from '@ngrx/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
 
-import { environment } from '@environments/environment';
+import { environment } from '@env';
 
 import { AppState } from './app.state';
 

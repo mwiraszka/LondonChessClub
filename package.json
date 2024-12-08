@@ -1,5 +1,5 @@
 {
-  "name": "lcc-angular",
+  "name": "lcc-frontend",
   "version": "4.2.0",
   "description": "Frontend for the London Chess Club website, built with Angular",
   "author": "Michal Wiraszka (https://wiraszka.com)",
@@ -16,8 +16,8 @@
     "build:prod": "ng build --configuration production && http-server ./dist",
     "build:stats": "ng build --stats-json && webpack-bundle-analyzer dist/stats.json",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "test:headless": "ng test --browsers=ChromeHeadless --watch=false"
+    "test": "jest --watch",
+    "test:coverage": "jest --watch --coverage"
   },
   "dependencies": {
     "@angular/animations": "19.0.2",
@@ -64,7 +64,7 @@
     "@angular/compiler-cli": "19.0.2",
     "@trivago/prettier-plugin-sort-imports": "4.3.0",
     "@types/google.maps": "3.58.1",
-    "@types/jasmine": "5.1.4",
+    "@types/jest": "29.5.14",
     "@types/node": "22.9.0",
     "@types/remove-markdown": "0.3.4",
     "@types/uuid": "10.0.0",
@@ -73,14 +73,11 @@
     "eslint": "9.15.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.2.1",
-    "jasmine-core": "~5.1.2",
-    "karma": "~6.4.4",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.1",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
+    "jest": "29.7.0",
+    "jest-preset-angular": "14.4.2",
     "prettier": "3.3.3",
     "prettier-eslint": "16.3.0",
+    "ts-node": "^10.9.2",
     "typescript": "5.5.2",
     "yargs": "17.7.2"
   }

@@ -41,7 +41,7 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
-v4.2.0 - December TBD, 2024
+v5.0.0 - December TBD, 2024
 </summary>
 
 - 🚀 Create a custom Date Picker component and implement in Event and Member Form component for date-related inputs

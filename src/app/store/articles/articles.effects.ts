@@ -115,7 +115,7 @@ export class ArticlesEffects {
         this.store.select(ArticlesSelectors.setArticle).pipe(filter(isDefined)),
       ),
       switchMap(([, articleToDelete]) =>
-        this.articlesService.deleteEvent(articleToDelete).pipe(
+        this.articlesService.deleteArticle(articleToDelete).pipe(
           map(article => ArticlesActions.deleteArticleSucceeded({ article })),
           catchError((errorResponse: HttpErrorResponse) =>
             of(ArticlesActions.deleteArticleFailed({ errorResponse })),

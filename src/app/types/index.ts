@@ -9,7 +9,7 @@ export type { Id, IsoDate, Url } from './core.model';
 export type { DbCollection } from './db-collection.model';
 export type { GameDetails, GameScore } from './game-details.model';
 export { isGameScore } from './game-details.model';
-export type { ImageId } from './image-id.model';
+export type { Image } from './image.model';
 export type { Link } from './link.model';
 export type { LoginRequest, LoginResponse } from './login.model';
 export type { ModificationInfo } from './modification-info.model';

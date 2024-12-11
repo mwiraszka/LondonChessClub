@@ -10,11 +10,11 @@ export class MetaAndTitleService {
     private title: Title,
   ) {}
 
-  updateTitle(title: string): void {
+  public updateTitle(title: string): void {
     this.title.setTitle(title);
   }
 
-  updateDescription(desc: string): void {
+  public updateDescription(desc: string): void {
     this.meta.updateTag({ property: 'og:description', content: desc });
     this.meta.updateTag({ name: 'description', content: desc });
   }

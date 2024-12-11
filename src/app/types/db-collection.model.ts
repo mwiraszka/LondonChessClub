@@ -1,4 +1,4 @@
-const dbCollections = ['articles', 'events', 'members'] as const;
+const dbCollections = ['articles', 'events', 'images', 'members'] as const;
 export type DbCollection = (typeof dbCollections)[number];
 
 export function isDbCollection(value: string): value is DbCollection {

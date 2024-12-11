@@ -17,31 +17,31 @@ export class ArticlesService {
 
   constructor(private http: HttpClient) {}
 
-  getArticle(id: Id): Observable<Article> {
-    const scope: ApiScope = 'public';
-    return this.http.get<Article>(`${this.API_URL}/${scope}/${this.COLLECTION}/${id}`);
-  }
-
-  getArticles(): Observable<Article[]> {
+  public getArticles(): Observable<Article[]> {
     const scope: ApiScope = 'public';
     return this.http.get<Article[]>(`${this.API_URL}/${scope}/${this.COLLECTION}`);
   }
 
-  addArticle(article: Article): Observable<Article> {
+  public getArticle(id: Id): Observable<Article> {
+    const scope: ApiScope = 'public';
+    return this.http.get<Article>(`${this.API_URL}/${scope}/${this.COLLECTION}/${id}`);
+  }
+
+  public addArticle(article: Article): Observable<Article> {
     const scope: ApiScope = 'admin';
     return this.http
       .post<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}`, article)
       .pipe(map(id => ({ ...article, id })));
   }
 
-  updateArticle(article: Article): Observable<Article> {
+  public updateArticle(article: Article): Observable<Article> {
     const scope: ApiScope = 'admin';
     return this.http
       .put<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}/${article.id}`, article)
       .pipe(map(() => article));
   }
 
-  deleteEvent(article: Article): Observable<Article> {
+  public deleteArticle(article: Article): Observable<Article> {
     const scope: ApiScope = 'admin';
     return this.http
       .delete<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}/${article.id}`)

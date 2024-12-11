@@ -3,7 +3,7 @@ import { isEqual } from 'lodash';
 /**
  * @returns A type predicate to eliminate `null` and `undefined` types
  */
-export function isDefined<T extends {}>(x: T | null | undefined): x is T {
+export function isDefined<T extends unknown>(x: T | null | undefined): x is T {
   return x !== null && x !== undefined;
 }
 

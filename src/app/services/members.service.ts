@@ -17,29 +17,29 @@ export class MembersService {
 
   constructor(private http: HttpClient) {}
 
-  getMember(scope: ApiScope, id: Id): Observable<Member> {
-    return this.http.get<Member>(`${this.API_URL}/${scope}/${this.COLLECTION}/${id}`);
-  }
-
-  getMembers(scope: ApiScope): Observable<Member[]> {
+  public getMembers(scope: ApiScope): Observable<Member[]> {
     return this.http.get<Member[]>(`${this.API_URL}/${scope}/${this.COLLECTION}`);
   }
 
-  addMember(member: Member): Observable<Member> {
+  public getMember(scope: ApiScope, id: Id): Observable<Member> {
+    return this.http.get<Member>(`${this.API_URL}/${scope}/${this.COLLECTION}/${id}`);
+  }
+
+  public addMember(member: Member): Observable<Member> {
     const scope: ApiScope = 'admin';
     return this.http
       .post<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}`, member)
       .pipe(map(id => ({ ...member, id })));
   }
 
-  updateMember(member: Member): Observable<Member> {
+  public updateMember(member: Member): Observable<Member> {
     const scope: ApiScope = 'admin';
     return this.http
       .put<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}/${member.id}`, member)
       .pipe(map(() => member));
   }
 
-  deleteMember(member: Member): Observable<Member> {
+  public deleteMember(member: Member): Observable<Member> {
     const scope: ApiScope = 'admin';
     return this.http
       .delete<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}/${member.id}`)

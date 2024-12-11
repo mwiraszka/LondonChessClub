@@ -21,8 +21,7 @@ export class TooltipDirective implements OnChanges, OnDestroy {
   private readonly TOOLTIP_MAX_WIDTH_PX = 120;
   private readonly SIDE_SCREEN_PADDING_PX = 1;
 
-  // Must match the sum of the left and right
-  // padding values set in the tooltip component
+  // Must match the sum of the left and right padding values set in the tooltip component
   private readonly TOOLTIP_SIDE_PADDING_PX = 16;
 
   @Input() tooltip: string | null = null;
@@ -50,10 +49,8 @@ export class TooltipDirective implements OnChanges, OnDestroy {
     this.screenWidth = window.innerWidth;
   }
 
-  // Manually re-draw tooltip if text already existed and it changed
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['tooltip'].previousValue) {
-      this.destroy();
       this.init();
     }
   }
@@ -63,6 +60,7 @@ export class TooltipDirective implements OnChanges, OnDestroy {
   }
 
   init(): void {
+    this.destroy();
     if (!this.componentRef && !isTouchScreen()) {
       this.componentRef = this.viewContainerRef.createComponent(TooltipComponent);
       this.setTooltipPlacement();
@@ -103,10 +101,15 @@ export class TooltipDirective implements OnChanges, OnDestroy {
         this.SIDE_SCREEN_PADDING_PX;
       const leftOffset = leftOverflow > 0 ? 0 : leftOverflow;
 
-      this.componentRef.instance.tooltip = this.tooltip;
       this.componentRef.instance.width = tooltipTextWidth + this.TOOLTIP_SIDE_PADDING_PX;
       this.componentRef.instance.left = elementCenter + rightOffset - leftOffset;
       this.componentRef.instance.top = bottom;
+
+      // Only render text after a brief timeout to prevent issue where tooltip is initially
+      // placed incorrectly, shifting content underneath it for a short period of time
+      setTimeout(() => {
+        this.componentRef!.instance.tooltip = this.tooltip;
+      }, 50);
     }
   }
 }

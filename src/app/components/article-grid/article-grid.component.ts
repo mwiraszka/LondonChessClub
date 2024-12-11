@@ -12,7 +12,7 @@ import { IconsModule } from '@app/icons';
 import { FormatDatePipe } from '@app/pipes/format-date.pipe';
 import { StripMarkdownPipe } from '@app/pipes/strip-markdown.pipe';
 import { Article, type Link, NavPathTypes } from '@app/types';
-import { customSort, wasEdited } from '@app/utils';
+import { wasEdited } from '@app/utils';
 
 import { ArticleGridFacade } from './article-grid.facade';
 
@@ -65,25 +65,7 @@ export class ArticleGridComponent implements OnInit {
     this.articles = Array(this.maxArticles ?? 20).fill(this.PLACEHOLDER_ARTICLE);
 
     this.facade.articles$.pipe(untilDestroyed(this)).subscribe(articles => {
-      this.articles = this.sortArticles(articles).slice(
-        0,
-        this.maxArticles ?? articles.length,
-      );
+      this.articles = articles.slice(0, this.maxArticles ?? articles.length);
     });
-  }
-
-  sortArticles(articles: Article[] | undefined): Article[] {
-    if (!articles?.length) {
-      return [];
-    }
-
-    const stickyArticles = articles
-      .filter(article => article.isSticky)
-      .sort(customSort('modificationInfo.dateCreated'));
-    const remainingArticles = articles
-      .filter(article => !article.isSticky)
-      .sort(customSort('modificationInfo.dateCreated'));
-
-    return [...stickyArticles, ...remainingArticles];
   }
 }

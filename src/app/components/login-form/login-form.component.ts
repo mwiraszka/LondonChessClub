@@ -62,7 +62,6 @@ export class LoginFormComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
-
     this.facade.onLogin(this.form.value);
   }
 }

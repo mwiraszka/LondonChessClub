@@ -1,6 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
 import { type ControlModes, newArticleFormTemplate } from '@app/types';
+import { sortArticles } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
 import { ArticlesState, initialState } from './articles.state';
@@ -47,11 +48,11 @@ const articlesReducer = createReducer(
     ArticlesActions.updateArticleSucceeded,
     (state, { article }) => ({
       ...state,
-      articles: [
+      articles: sortArticles([
         ...state.articles.map(storedArticle =>
           storedArticle.id === article.id ? article : storedArticle,
         ),
-      ],
+      ]),
       setArticle: null,
       formArticle: null,
     }),
@@ -59,11 +60,11 @@ const articlesReducer = createReducer(
 
   on(ArticlesActions.fetchArticleSucceeded, (state, { article }) => ({
     ...state,
-    articles: [
+    articles: sortArticles([
       ...state.articles.map(storedArticle =>
         storedArticle.id === article.id ? article : storedArticle,
       ),
-    ],
+    ]),
     setArticle: article,
     formArticle: state.controlMode === 'edit' ? article : null,
   })),

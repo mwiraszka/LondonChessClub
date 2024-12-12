@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import type { ApiScope, Article, DbCollection, Id } from '@app/types';
-import { customSort } from '@app/utils';
+import { sortArticles } from '@app/utils';
 
 import { environment } from '@env';
 
@@ -20,20 +20,9 @@ export class ArticlesService {
 
   public getArticles(): Observable<Article[]> {
     const scope: ApiScope = 'public';
-    return this.http.get<Article[]>(`${this.API_URL}/${scope}/${this.COLLECTION}`).pipe(
-      map(articles => {
-        const stickyArticles = articles
-          .filter(article => article.isSticky)
-          .sort(customSort('modificationInfo.dateCreated'))
-          .reverse();
-        const remainingArticles = articles
-          .filter(article => !article.isSticky)
-          .sort(customSort('modificationInfo.dateCreated'))
-          .reverse();
-
-        return [...stickyArticles, ...remainingArticles];
-      }),
-    );
+    return this.http
+      .get<Article[]>(`${this.API_URL}/${scope}/${this.COLLECTION}`)
+      .pipe(map(articles => sortArticles(articles)));
   }
 
   public getArticle(id: Id): Observable<Article> {

@@ -91,7 +91,6 @@ export class MemberFormComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
-
     this.facade.onSubmit(this.form.value);
   }
 

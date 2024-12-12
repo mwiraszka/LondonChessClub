@@ -16,6 +16,12 @@
     border-radius: var(--lcc-borderRadius--large);
     background-color: var(--lcc-color--adminControls-buttonBackground);
 
+    &:focus,
+    &:hover {
+      cursor: pointer;
+      background-color: var(--lcc-color--adminControls-buttonBackgroundOnHover);
+    }
+
     &.edit-button {
       color: var(--lcc-color--adminControls-editIcon);
       margin-right: 2px;
@@ -33,12 +39,6 @@
       &:hover {
         color: var(--lcc-color--adminControls-deleteIconOnHover);
       }
-    }
-
-    &:focus,
-    &:hover {
-      cursor: pointer;
-      background-color: var(--lcc-color--adminControls-buttonBackgroundOnHover);
     }
   }
 }

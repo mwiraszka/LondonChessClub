@@ -18,6 +18,11 @@ export class AdminControlsComponent {
 
   @Output() delete = new EventEmitter<void>();
 
+  onEdit(event: MouseEvent): void {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
   onDelete(event: MouseEvent): void {
     event.stopPropagation();
     event.preventDefault();

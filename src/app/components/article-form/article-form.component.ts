@@ -11,12 +11,14 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { ImageExplorer } from '@app/components/image-explorer/image-explorer.component';
 import { ImagePreloadDirective } from '@app/components/image-preload/image-preload.directive';
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
-import type { Article } from '@app/types';
+import { OverlayService } from '@app/services';
+import type { Article, Url } from '@app/types';
 import { isDefined } from '@app/utils';
 import { imageSizeValidator } from '@app/validators';
 
@@ -39,18 +41,21 @@ import { ArticleFormFacade } from './article-form.facade';
   ],
 })
 export class ArticleFormComponent implements OnInit {
+  bannerImageUrl: Url | null = null;
   form!: FormGroup;
 
   constructor(
     public facade: ArticleFormFacade,
     private formBuilder: FormBuilder,
+    private overlayService: OverlayService,
   ) {}
 
   ngOnInit(): void {
     this.facade.formArticle$.pipe(filter(isDefined), first()).subscribe(article => {
+      this.bannerImageUrl = article.imageUrl;
       this.initForm(article);
       this.initValueChangesListener();
-      this.initArticleImageRehydration();
+      // this.initArticleImageRehydration();
     });
   }
 
@@ -72,7 +77,7 @@ export class ArticleFormComponent implements OnInit {
     this.facade.onCancel();
   }
 
-  onChooseImage(event: Event): void {
+  onUploadNewImage(event: Event): void {
     const fileInputElement = event.target as HTMLInputElement;
     if (fileInputElement.files?.length) {
       const imageFile = fileInputElement.files[0];
@@ -80,9 +85,14 @@ export class ArticleFormComponent implements OnInit {
 
       this.form.patchValue({
         imageFile,
-        imageUrl: URL.createObjectURL(imageFile),
       });
+
+      this.bannerImageUrl = URL.createObjectURL(imageFile);
     }
+  }
+
+  onImageExplorer(): void {
+    this.overlayService.open(ImageExplorer);
   }
 
   onRevert(): void {
@@ -95,7 +105,6 @@ export class ArticleFormComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
-
     this.facade.onSubmit(this.form.value);
   }
 
@@ -103,11 +112,7 @@ export class ArticleFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       title: [article.title, [Validators.required, Validators.pattern(/[^\s]/)]],
       body: [article.body, [Validators.required, Validators.pattern(/[^\s]/)]],
-      imageFile: [article.imageFile ?? null, [Validators.required, imageSizeValidator]],
-      id: [article.id],
-      imageId: [article.imageId],
-      imageUrl: [article.imageUrl],
-      thumbnailImageUrl: [article.thumbnailImageUrl],
+      imageFile: [article.imageFile, [imageSizeValidator]],
       isSticky: [article.isSticky],
       modificationInfo: [article.modificationInfo],
     });
@@ -119,15 +124,24 @@ export class ArticleFormComponent implements OnInit {
       .subscribe((formData: Article) => this.facade.onValueChange(formData));
   }
 
-  private initArticleImageRehydration(): void {
-    this.facade.articleImageCurrently$.pipe(untilDestroyed(this)).subscribe(article => {
-      this.form.patchValue(
-        {
-          imageFile: article.imageFile,
-          imageUrl: article.imageUrl,
-        },
-        { emitEvent: false },
-      );
+  public async getImageFile(imageUrl: Url): Promise<File> {
+    const response = await fetch(imageUrl);
+    const data = await response.blob();
+    return new File([data], 'lcc-file', {
+      type: data.type ?? 'image/jpeg',
     });
   }
+
+  // private initArticleImageRehydration(): void {
+  //   console.log(':: init article image rehydration');
+  //   this.facade.articleImageCurrently$.pipe(untilDestroyed(this)).subscribe(article => {
+  //     this.form.patchValue(
+  //       {
+  //         imageFile: article.imageFile,
+  //         imageUrl: article.imageUrl,
+  //       },
+  //       { emitEvent: false },
+  //     );
+  //   });
+  // }
 }

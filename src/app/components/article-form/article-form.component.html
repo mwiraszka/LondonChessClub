@@ -1,48 +1,50 @@
+@defer {
+  <img
+    class="banner-image"
+    [src]="bannerImageUrl"
+    default="assets/image-placeholder.png"
+    alt="Article banner image" />
+} @placeholder (minimum 0.5s) {
+  <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
+    <div class="lcc-content-placeholder"></div>
+  </div>
+}
+
 @if (form) {
   <form
     class="lcc-form"
     [formGroup]="form"
     (ngSubmit)="onSubmit()">
-    @defer {
-      <img
-        class="banner-image"
-        [src]="form.controls['imageUrl'].value"
-        default="assets/image-placeholder.png"
-        alt="Article banner image" />
-    } @placeholder (minimum 0.5s) {
-      <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
-        <div class="lcc-content-placeholder"></div>
-      </div>
-    }
-
     <div class="lcc-form-fields">
-      <label
-        for="image-file-input"
-        class="lcc-required-field">
-        Banner Image:
-      </label>
+      <label class="lcc-required-field"> Banner Image: </label>
 
       <div class="image-controls-container">
-        <label
-          for="image-file-input"
-          class="lcc-secondary-button file-button">
-          Choose file
-        </label>
-        <input
-          id="image-file-input"
-          type="file"
-          name="imageFile"
-          accept="image/*"
-          (change)="onChooseImage($event)" />
         <button
-          class="lcc-secondary-button image-revert-button"
+          class="image-explorer-button lcc-secondary-button"
+          type="button"
+          tooltip="Open Image Explorer"
+          (click)="onImageExplorer()">
+          <i-feather name="image"></i-feather>
+        </button>
+
+        <label
+          class="upload-new-image-button lcc-secondary-button"
+          type="button"
+          tooltip="Upload new image">
+          <input
+            type="file"
+            accept="image/*"
+            (change)="onUploadNewImage($event)" />
+          <i-feather name="upload"></i-feather>
+        </label>
+
+        <button
+          class="revert-button lcc-secondary-button"
+          type="button"
           tooltip="Revert to original image"
           [disabled]="!(facade.hasNewImage$ | async)"
           (click)="onRevert()">
-          <i-feather
-            class="revert-icon"
-            name="rotate-ccw">
-          </i-feather>
+          <i-feather name="rotate-ccw"></i-feather>
         </button>
       </div>
 

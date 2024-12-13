@@ -30,8 +30,8 @@ export const formArticle = createSelector(
 
 export const articleImageCurrently = createSelector(formArticle, formArticle => {
   return {
-    imageFile: formArticle?.imageFile ?? null,
-    imageUrl: formArticle?.imageUrl ?? null,
+    imageFile: formArticle?.imageFile,
+    imageUrl: formArticle?.imageUrl,
   };
 });
 

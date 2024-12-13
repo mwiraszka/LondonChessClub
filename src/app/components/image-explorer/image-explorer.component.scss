@@ -1,0 +1,45 @@
+:host {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  padding: 8px;
+  border: 2px solid var(--lcc-color--imageExplorerBorder);
+  border-radius: var(--lcc-borderRadius--small);
+  background-color: var(--lcc-color--imageExplorerBackground);
+}
+
+.grid-container {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 8px;
+  overflow: auto;
+
+  .image-wrapper {
+    padding: 4px;
+    border-radius: var(--lcc-borderRadius--small);
+    border: 2px solid transparent;
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--lcc-color--imageExplorerImageBackgroundOnHover);
+      border-color: var(--lcc-color--imageExplorerImageBorderOnHover);
+    }
+
+    img {
+      width: 100%;
+      border-radius: var(--lcc-borderRadius--small);
+    }
+
+    .size,
+    .upload-date {
+      font-size: 12px;
+      color: var(--lcc-color--imageExplorerText);
+
+      label {
+        font-weight: bold;
+        margin-right: 0.5em;
+      }
+    }
+  }
+}

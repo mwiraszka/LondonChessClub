@@ -1,0 +1,15 @@
+<div class="grid-container">
+  @for (image of images$ | async; track image.id) {
+    <div class="image-wrapper">
+      <img [src]="image.presignedUrl" />
+      <div class="size">
+        <label>Size:</label>
+        <span>{{ image.size | formatBytes }}</span>
+      </div>
+      <div class="upload-date">
+        <label>Upload date:</label>
+        <span>{{ image.dateUploaded | formatDate: 'short' }}</span>
+      </div>
+    </div>
+  }
+</div>

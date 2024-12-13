@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import type { ApiScope, DbCollection, Id, Image, Url } from '@app/types';
+import type { ApiScope, DbCollection, Id, Image } from '@app/types';
 
 import { environment } from '@env';
 
@@ -17,7 +17,7 @@ export class ImagesService {
 
   constructor(private http: HttpClient) {}
 
-  public getImages(): Observable<Image[]> {
+  public getThumbnailImages(): Observable<Image[]> {
     const scope: ApiScope = 'public';
     return this.http.get<Image[]>(`${this.API_URL}/${scope}/${this.COLLECTION}`);
   }
@@ -37,13 +37,5 @@ export class ImagesService {
   public deleteImage(id: Id): Observable<Id> {
     const scope: ApiScope = 'admin';
     return this.http.delete<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}/${id}`);
-  }
-
-  public async getImageFile(imageUrl: Url): Promise<File> {
-    const response = await fetch(imageUrl);
-    const data = await response.blob();
-    return new File([data], 'lcc-file', {
-      type: data.type ?? 'image/jpeg',
-    });
   }
 }

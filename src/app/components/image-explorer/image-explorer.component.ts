@@ -1,13 +1,13 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import * as uuid from 'uuid';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { FormatBytesPipe } from '@app/pipes/format-bytes.pipe';
 import { FormatDatePipe } from '@app/pipes/format-date.pipe';
 import { ImagesService } from '@app/services';
 import { Id, Image } from '@app/types';
+import { generatePlaceholderImages } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -16,16 +16,10 @@ import { Id, Image } from '@app/types';
   styleUrls: ['./image-explorer.component.scss'],
   imports: [CommonModule, FormatBytesPipe, FormatDatePipe],
 })
-export class ImageExplorer implements OnInit {
-  readonly PLACEHOLDER_IMAGE: Image = {
-    articleAppearances: 0,
-    dateUploaded: new Date().toISOString(),
-    id: uuid.v4(),
-    presignedUrl: '',
-    size: 0,
-  };
+export class ImageExplorerComponent implements OnInit {
+  images: Image[] = generatePlaceholderImages(25);
 
-  images: Image[] = Array(25).fill(this.PLACEHOLDER_IMAGE);
+  @Output() selectImage = new EventEmitter<Id>();
 
   constructor(private imagesService: ImagesService) {}
 
@@ -38,7 +32,10 @@ export class ImageExplorer implements OnInit {
       });
   }
 
-  onSelectImage(id: Id): void {
-    // TODO: set up callback/emitter mechanism in overlay service
+  onSelectImage(id?: Id): void {
+    if (!id) {
+      return;
+    }
+    this.selectImage.emit(id);
   }
 }

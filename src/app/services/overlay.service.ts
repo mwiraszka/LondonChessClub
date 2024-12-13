@@ -2,16 +2,16 @@ import { GlobalPositionStrategy, Overlay, OverlayRef } from '@angular/cdk/overla
 import { ComponentPortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
+  ComponentRef,
   Inject,
   Injectable,
-  Injector,
   Renderer2,
   RendererFactory2,
   Type,
 } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
-export class OverlayService {
+export class OverlayService<T> {
   private overlayRef: OverlayRef | null = null;
   private renderer!: Renderer2;
 
@@ -23,7 +23,7 @@ export class OverlayService {
     this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 
-  public open<T>(component: Type<T>, data?: any): void {
+  public open(component: Type<T>): ComponentRef<T> {
     if (this.overlayRef) {
       this.close();
     }
@@ -37,17 +37,15 @@ export class OverlayService {
       width: '90vw',
     });
 
-    const injector = Injector.create({
-      providers: [{ provide: 'overlayData', useValue: data }],
-    });
-    const componentPortal = new ComponentPortal(component, null, injector);
-    this.overlayRef.attach(componentPortal);
-
     this.overlayRef.overlayElement.addEventListener('click', (event: MouseEvent) => {
       event.stopPropagation();
     });
     setTimeout(() => this._document.addEventListener('click', this.onDocumentClick));
     this.renderer.setStyle(this._document.body, 'overflow', 'hidden');
+
+    const componentPortal = new ComponentPortal<T>(component);
+
+    return this.overlayRef.attach(componentPortal);
   }
 
   public close(): void {

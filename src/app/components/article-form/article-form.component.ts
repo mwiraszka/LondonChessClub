@@ -1,8 +1,8 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { debounceTime, filter, first } from 'rxjs/operators';
+import { debounceTime, filter, first, take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentRef, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -11,13 +11,13 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { ImageExplorer } from '@app/components/image-explorer/image-explorer.component';
+import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
 import { ImagePreloadDirective } from '@app/components/image-preload/image-preload.directive';
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
-import { OverlayService } from '@app/services';
+import { ImagesService, OverlayService } from '@app/services';
 import type { Article, Url } from '@app/types';
 import { isDefined } from '@app/utils';
 import { imageSizeValidator } from '@app/validators';
@@ -43,11 +43,13 @@ import { ArticleFormFacade } from './article-form.facade';
 export class ArticleFormComponent implements OnInit {
   bannerImageUrl: Url | null = null;
   form!: FormGroup;
+  imageExplorerRef: ComponentRef<ImageExplorerComponent> | null = null;
 
   constructor(
     public facade: ArticleFormFacade,
     private formBuilder: FormBuilder,
-    private overlayService: OverlayService,
+    private imagesService: ImagesService,
+    private overlayService: OverlayService<ImageExplorerComponent>,
   ) {}
 
   ngOnInit(): void {
@@ -91,8 +93,19 @@ export class ArticleFormComponent implements OnInit {
     }
   }
 
-  onImageExplorer(): void {
-    this.overlayService.open(ImageExplorer);
+  onOpenImageExplorer(): void {
+    this.overlayService
+      .open(ImageExplorerComponent)
+      .instance.selectImage.pipe(take(1))
+      .subscribe(id => {
+        this.overlayService.close();
+        this.imagesService
+          .getImage(id.slice(0, -8))
+          .pipe(take(1))
+          .subscribe(image => {
+            this.bannerImageUrl = image.presignedUrl;
+          });
+      });
   }
 
   onRevert(): void {

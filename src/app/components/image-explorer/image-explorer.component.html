@@ -1,6 +1,8 @@
 <div class="grid-container">
   @for (image of images; track image.id) {
-    <div class="image-wrapper">
+    <div
+      class="image-wrapper"
+      (click)="onSelectImage(image?.id)">
       @defer {
         <img [src]="image.presignedUrl" />
 

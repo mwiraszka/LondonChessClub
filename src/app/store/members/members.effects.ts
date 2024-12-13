@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 import { LoaderService, MembersService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import type { ApiScope, ModificationInfo } from '@app/types';
-import { getNewPeakRating, isDefined } from '@app/utils';
+import { getNewPeakRating, isDefined, parseHttpErrorResponse } from '@app/utils';
 
 import * as MembersActions from './members.actions';
 import * as MembersSelectors from './members.selectors';
@@ -27,9 +27,10 @@ export class MembersEffects {
         const scope: ApiScope = isAdmin ? 'admin' : 'public';
         return this.membersService.getMembers(scope).pipe(
           map(members => MembersActions.fetchMembersSucceeded({ members })),
-          catchError((errorResponse: HttpErrorResponse) =>
-            of(MembersActions.fetchMembersFailed({ errorResponse })),
-          ),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(MembersActions.fetchMembersFailed({ errorResponse }));
+          }),
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -45,9 +46,10 @@ export class MembersEffects {
         const scope: ApiScope = isAdmin ? 'admin' : 'public';
         return this.membersService.getMember(scope, memberId).pipe(
           map(member => MembersActions.fetchMemberSucceeded({ member })),
-          catchError((errorResponse: HttpErrorResponse) =>
-            of(MembersActions.fetchMemberFailed({ errorResponse })),
-          ),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(MembersActions.fetchMemberFailed({ errorResponse }));
+          }),
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -74,9 +76,10 @@ export class MembersEffects {
 
         return this.membersService.addMember(modifiedMember).pipe(
           map(member => MembersActions.addMemberSucceeded({ member })),
-          catchError((errorResponse: HttpErrorResponse) =>
-            of(MembersActions.addMemberFailed({ errorResponse })),
-          ),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(MembersActions.addMemberFailed({ errorResponse }));
+          }),
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -106,9 +109,10 @@ export class MembersEffects {
 
         return this.membersService.updateMember(modifiedMember).pipe(
           map(member => MembersActions.updateMemberSucceeded({ member })),
-          catchError((errorResponse: HttpErrorResponse) =>
-            of(MembersActions.updateMemberFailed({ errorResponse })),
-          ),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(MembersActions.updateMemberFailed({ errorResponse }));
+          }),
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -125,9 +129,10 @@ export class MembersEffects {
       switchMap(([, memberToDelete]) =>
         this.membersService.deleteMember(memberToDelete).pipe(
           map(member => MembersActions.deleteMemberSucceeded({ member })),
-          catchError((errorResponse: HttpErrorResponse) =>
-            of(MembersActions.deleteMemberFailed({ errorResponse })),
-          ),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(MembersActions.deleteMemberFailed({ errorResponse }));
+          }),
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),

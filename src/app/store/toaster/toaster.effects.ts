@@ -1,13 +1,17 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { delay, map, tap } from 'rxjs/operators';
+import { concatLatestFrom } from '@ngrx/operators';
+import { Store } from '@ngrx/store';
+import { delay, filter, map, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { ArticlesActions } from '@app/store/articles';
-import { AuthActions } from '@app/store/auth';
+import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { MembersActions } from '@app/store/members';
 import { type Toast, ToastTypes } from '@app/types';
+
+import { environment } from '@env';
 
 import * as ToasterActions from './toaster.actions';
 
@@ -70,48 +74,6 @@ export class ToasterEffects {
     );
   });
 
-  addGetArticleImageUrlFailedToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.getArticleImageUrlFailed),
-      map(({ errorResponse }) => {
-        const toast: Toast = {
-          title: 'Article image URL',
-          message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
-        };
-        return ToasterActions.toastAdded({ toast });
-      }),
-    );
-  });
-
-  addGetArticleThumbnailImageUrlsFailedToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.getArticleThumbnailImageUrlsFailed),
-      map(({ errorResponse }) => {
-        const toast: Toast = {
-          title: 'Article thumbnail image URLs',
-          message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
-        };
-        return ToasterActions.toastAdded({ toast });
-      }),
-    );
-  });
-
-  addGetArticleImageFileFailedToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.getArticleImageFileFailed),
-      map(({ errorResponse }) => {
-        const toast: Toast = {
-          title: 'Article image file',
-          message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
-        };
-        return ToasterActions.toastAdded({ toast });
-      }),
-    );
-  });
-
   addDeleteArticleSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleSucceeded),
@@ -143,7 +105,9 @@ export class ToasterEffects {
   addFetchArticlesFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticlesFailed),
-      map(({ errorResponse }) => {
+      concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
+      filter(([, isAdmin]) => isAdmin || !environment.production),
+      map(([{ errorResponse }]) => {
         const toast: Toast = {
           title: 'Load articles',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
@@ -157,7 +121,9 @@ export class ToasterEffects {
   addFetchArticleFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticleFailed),
-      map(({ errorResponse }) => {
+      concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
+      filter(([, isAdmin]) => isAdmin || !environment.production),
+      map(([{ errorResponse }]) => {
         const toast: Toast = {
           title: 'Load article',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
@@ -257,7 +223,9 @@ export class ToasterEffects {
   addFetchEventsFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventsActions.fetchEventsFailed),
-      map(({ errorResponse }) => {
+      concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
+      filter(([, isAdmin]) => isAdmin || !environment.production),
+      map(([{ errorResponse }]) => {
         const toast: Toast = {
           title: 'Load events',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
@@ -271,7 +239,9 @@ export class ToasterEffects {
   addFetchEventFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventsActions.fetchEventFailed),
-      map(({ errorResponse }) => {
+      concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
+      filter(([, isAdmin]) => isAdmin || !environment.production),
+      map(([{ errorResponse }]) => {
         const toast: Toast = {
           title: 'Load event',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
@@ -371,7 +341,9 @@ export class ToasterEffects {
   addFetchMembersFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.fetchMembersFailed),
-      map(({ errorResponse }) => {
+      concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
+      filter(([, isAdmin]) => isAdmin || !environment.production),
+      map(([{ errorResponse }]) => {
         const toast: Toast = {
           title: 'Load members',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
@@ -385,7 +357,9 @@ export class ToasterEffects {
   addFetchMemberFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.fetchMemberFailed),
-      map(({ errorResponse }) => {
+      concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
+      filter(([, isAdmin]) => isAdmin || !environment.production),
+      map(([{ errorResponse }]) => {
         const toast: Toast = {
           title: 'Load member',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
@@ -551,5 +525,8 @@ export class ToasterEffects {
     { dispatch: false },
   );
 
-  constructor(private readonly actions$: Actions) {}
+  constructor(
+    private readonly actions$: Actions,
+    private readonly store: Store,
+  ) {}
 }

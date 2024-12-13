@@ -1,5 +1,7 @@
 import { isEqual } from 'lodash';
 
+import { HttpErrorResponse } from '@angular/common/http';
+
 /**
  * @returns A type predicate to eliminate `null` and `undefined` types
  */
@@ -155,4 +157,22 @@ export function customSort(key: string) {
  */
 export function takeRandomly<T>(array: T[], n?: number): T[] {
   return array.sort(() => 0.5 - Math.random()).slice(0, n ?? array?.length ?? 0);
+}
+
+/**
+ *
+ * @param {HttpErrorResponse} response
+ * @returns Converts 0-status errors to more understandable 500-status server errors;
+ * otherwise returns the response unchanged
+ */
+export function parseHttpErrorResponse(response: HttpErrorResponse): HttpErrorResponse {
+  if (response.status !== 0) {
+    return response;
+  }
+
+  return {
+    ...response,
+    status: 500,
+    error: 'Unknown server error.',
+  };
 }

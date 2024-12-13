@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 import { EventsService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import type { ModificationInfo } from '@app/types';
-import { isDefined } from '@app/utils';
+import { isDefined, parseHttpErrorResponse } from '@app/utils';
 
 import * as EventsActions from './events.actions';
 import * as EventsSelectors from './events.selectors';
@@ -25,9 +25,10 @@ export class EventsEffects {
       switchMap(() =>
         this.eventsService.getEvents().pipe(
           map(events => EventsActions.fetchEventsSucceeded({ events })),
-          catchError((errorResponse: HttpErrorResponse) =>
-            of(EventsActions.fetchEventsFailed({ errorResponse })),
-          ),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(EventsActions.fetchEventsFailed({ errorResponse }));
+          }),
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -41,9 +42,10 @@ export class EventsEffects {
       switchMap(({ eventId }) =>
         this.eventsService.getEvent(eventId).pipe(
           map(event => EventsActions.fetchEventSucceeded({ event })),
-          catchError((errorResponse: HttpErrorResponse) =>
-            of(EventsActions.fetchEventFailed({ errorResponse })),
-          ),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(EventsActions.fetchEventFailed({ errorResponse }));
+          }),
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -70,9 +72,10 @@ export class EventsEffects {
 
         return this.eventsService.addEvent(modifiedEvent).pipe(
           map(event => EventsActions.addEventSucceeded({ event })),
-          catchError((errorResponse: HttpErrorResponse) =>
-            of(EventsActions.addEventFailed({ errorResponse })),
-          ),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(EventsActions.addEventFailed({ errorResponse }));
+          }),
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -98,9 +101,10 @@ export class EventsEffects {
 
         return this.eventsService.updateEvent(modifiedEvent).pipe(
           map(event => EventsActions.updateEventSucceeded({ event })),
-          catchError((errorResponse: HttpErrorResponse) =>
-            of(EventsActions.updateEventFailed({ errorResponse })),
-          ),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(EventsActions.updateEventFailed({ errorResponse }));
+          }),
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -117,9 +121,10 @@ export class EventsEffects {
       switchMap(([, eventToDelete]) =>
         this.eventsService.deleteEvent(eventToDelete).pipe(
           map(event => EventsActions.deleteEventSucceeded({ event })),
-          catchError((errorResponse: HttpErrorResponse) =>
-            of(EventsActions.deleteEventFailed({ errorResponse })),
-          ),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(EventsActions.deleteEventFailed({ errorResponse }));
+          }),
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),

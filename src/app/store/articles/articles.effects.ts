@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 import { ArticlesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import type { ModificationInfo } from '@app/types';
-import { isDefined } from '@app/utils';
+import { isDefined, parseHttpErrorResponse } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
 import * as ArticlesSelectors from './articles.selectors';
@@ -25,9 +25,10 @@ export class ArticlesEffects {
       switchMap(() =>
         this.articlesService.getArticles().pipe(
           map(articles => ArticlesActions.fetchArticlesSucceeded({ articles })),
-          catchError((errorResponse: HttpErrorResponse) =>
-            of(ArticlesActions.fetchArticlesFailed({ errorResponse })),
-          ),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(ArticlesActions.fetchArticlesFailed({ errorResponse }));
+          }),
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -41,9 +42,10 @@ export class ArticlesEffects {
       switchMap(({ articleId }) =>
         this.articlesService.getArticle(articleId).pipe(
           map(article => ArticlesActions.fetchArticleSucceeded({ article })),
-          catchError((errorResponse: HttpErrorResponse) =>
-            of(ArticlesActions.fetchArticleFailed({ errorResponse })),
-          ),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(ArticlesActions.fetchArticleFailed({ errorResponse }));
+          }),
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -70,9 +72,10 @@ export class ArticlesEffects {
 
         return this.articlesService.addArticle(modifiedArticle).pipe(
           map(article => ArticlesActions.publishArticleSucceeded({ article })),
-          catchError((errorResponse: HttpErrorResponse) =>
-            of(ArticlesActions.publishArticleFailed({ errorResponse })),
-          ),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(ArticlesActions.publishArticleFailed({ errorResponse }));
+          }),
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -98,9 +101,10 @@ export class ArticlesEffects {
 
         return this.articlesService.updateArticle(modifiedArticle).pipe(
           map(article => ArticlesActions.updateArticleSucceeded({ article })),
-          catchError((errorResponse: HttpErrorResponse) =>
-            of(ArticlesActions.updateArticleFailed({ errorResponse })),
-          ),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(ArticlesActions.updateArticleFailed({ errorResponse }));
+          }),
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -117,9 +121,10 @@ export class ArticlesEffects {
       switchMap(([, articleToDelete]) =>
         this.articlesService.deleteArticle(articleToDelete).pipe(
           map(article => ArticlesActions.deleteArticleSucceeded({ article })),
-          catchError((errorResponse: HttpErrorResponse) =>
-            of(ArticlesActions.deleteArticleFailed({ errorResponse })),
-          ),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(ArticlesActions.deleteArticleFailed({ errorResponse }));
+          }),
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),

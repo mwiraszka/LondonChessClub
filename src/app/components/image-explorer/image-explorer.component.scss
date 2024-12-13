@@ -17,7 +17,7 @@
 
   .image-wrapper {
     padding: 4px;
-    border-radius: var(--lcc-borderRadius--small);
+    border-radius: var(--lcc-borderRadius--large);
     border: 2px solid transparent;
 
     &:hover {
@@ -26,19 +26,26 @@
       border-color: var(--lcc-color--imageExplorerImageBorderOnHover);
     }
 
-    img {
+    img,
+    .loading-placeholder-image {
+      aspect-ratio: 3 / 2;
+      border-radius: var(--lcc-borderRadius--large);
       width: 100%;
-      border-radius: var(--lcc-borderRadius--small);
     }
 
     .size,
-    .upload-date {
-      font-size: 12px;
+    .upload-date,
+    .article-appearances {
+      font-size: 13px;
       color: var(--lcc-color--imageExplorerText);
 
       label {
         font-weight: bold;
         margin-right: 0.5em;
+      }
+
+      b {
+        margin: 0.3em;
       }
     }
   }

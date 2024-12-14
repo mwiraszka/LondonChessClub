@@ -28,19 +28,6 @@ export const formArticle = createSelector(
   state => state.formArticle,
 );
 
-export const articleImageCurrently = createSelector(formArticle, formArticle => {
-  return {
-    imageFile: formArticle?.imageFile,
-    imageUrl: formArticle?.imageUrl,
-  };
-});
-
-export const hasNewImage = createSelector(
-  formArticle,
-  setArticle,
-  (formArticle, setArticle) => formArticle?.imageUrl !== setArticle?.imageUrl,
-);
-
 export const controlMode = createSelector(
   articlesFeatureSelector,
   state => state.controlMode,
@@ -49,5 +36,9 @@ export const controlMode = createSelector(
 export const hasUnsavedChanges = createSelector(
   formArticle,
   setArticle,
-  (formArticle, setArticle) => !areSame(formArticle, setArticle),
+  (formArticle, setArticle) => {
+    const { imageUrl: _1, thumbnailImageUrl: _2, ..._formArticle } = formArticle || {};
+    const { imageUrl: _3, thumbnailImageUrl: _4, ..._setArticle } = setArticle || {};
+    return !areSame(_formArticle, _setArticle);
+  },
 );

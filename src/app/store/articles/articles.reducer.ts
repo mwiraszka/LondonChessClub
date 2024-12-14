@@ -69,21 +69,6 @@ const articlesReducer = createReducer(
     formArticle: state.controlMode === 'edit' ? article : null,
   })),
 
-  on(ArticlesActions.getArticleImageFileSucceeded, (state, { imageFile }) => ({
-    ...state,
-    setArticle: state.setArticle ? { ...state.setArticle, imageFile } : null,
-    formArticle: state.formArticle ? { ...state.formArticle, imageFile } : null,
-  })),
-
-  on(ArticlesActions.articleImageChangeReverted, state => ({
-    ...state,
-    formArticle: {
-      ...state.formArticle!,
-      imageFile: state.setArticle?.imageFile ?? null,
-      imageUrl: state.setArticle?.imageUrl ?? null,
-    },
-  })),
-
   on(ArticlesActions.deleteArticleSelected, (state, { article }) => ({
     ...state,
     setArticle: article,

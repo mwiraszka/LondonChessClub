@@ -62,7 +62,7 @@ export class ChangePasswordFormComponent implements OnInit {
   }
 
   hasError(control: AbstractControl): boolean {
-    return control.value !== '' && control.invalid;
+    return control.dirty && control.invalid;
   }
 
   getErrorMessage(control: AbstractControl): string {

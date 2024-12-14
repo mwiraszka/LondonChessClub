@@ -103,7 +103,9 @@ export function customSort(key: string) {
 
     if (typeof aVal !== typeof bVal) {
       console.error(
-        `[LCC] Sort error: cannot compare ${typeof aVal} with ${typeof bVal}.`,
+        `[LCC] Sort error: cannot compare ${aVal} (${typeof aVal}) with ${bVal} (${typeof bVal}).`,
+        a,
+        b,
       );
       return 0;
     }

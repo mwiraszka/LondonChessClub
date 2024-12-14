@@ -8,12 +8,8 @@ import type { Article } from '@app/types';
 
 @Injectable()
 export class ArticleFormFacade {
-  readonly articleImageCurrently$ = this.store.select(
-    ArticlesSelectors.articleImageCurrently,
-  );
   readonly controlMode$ = this.store.select(ArticlesSelectors.controlMode);
   readonly formArticle$ = this.store.select(ArticlesSelectors.formArticle);
-  readonly hasNewImage$ = this.store.select(ArticlesSelectors.hasNewImage);
   readonly hasUnsavedChanges$ = this.store.select(ArticlesSelectors.hasUnsavedChanges);
   readonly setArticle$ = this.store.select(ArticlesSelectors.setArticle);
 
@@ -23,11 +19,7 @@ export class ArticleFormFacade {
     this.store.dispatch(ArticlesActions.cancelSelected());
   }
 
-  onRevert(): void {
-    this.store.dispatch(ArticlesActions.articleImageChangeReverted());
-  }
-
-  onSubmit(article: Article): void {
+  onSubmit(article: Article, imageFile: File): void {
     this.controlMode$
       .pipe(
         map(controlMode =>

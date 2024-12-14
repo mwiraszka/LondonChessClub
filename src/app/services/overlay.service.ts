@@ -14,6 +14,7 @@ import {
 export class OverlayService<T> {
   private overlayRef: OverlayRef | null = null;
   private renderer!: Renderer2;
+  private documentClickListener?: () => void;
 
   constructor(
     @Inject(DOCUMENT) private _document: Document,
@@ -37,27 +38,34 @@ export class OverlayService<T> {
       width: '90vw',
     });
 
-    this.overlayRef.overlayElement.addEventListener('click', (event: MouseEvent) => {
+    this.renderer.setStyle(this._document.body, 'overflow', 'hidden');
+    this.renderer.listen(this.overlayRef.overlayElement, 'click', (event: MouseEvent) => {
       event.stopPropagation();
     });
-    setTimeout(() => this._document.addEventListener('click', this.onDocumentClick));
-    this.renderer.setStyle(this._document.body, 'overflow', 'hidden');
+
+    setTimeout(() => {
+      this.documentClickListener = this.renderer.listen(
+        'document',
+        'click',
+        (event: MouseEvent) => {
+          if (!this.overlayRef?.overlayElement?.contains(event.target as Node)) {
+            this.close();
+          }
+        },
+      );
+    });
 
     const componentPortal = new ComponentPortal<T>(component);
-
     return this.overlayRef.attach(componentPortal);
   }
 
   public close(): void {
     this.overlayRef?.dispose();
     this.overlayRef = null;
-    this._document.removeEventListener('click', this.onDocumentClick);
     this.renderer.removeStyle(this._document.body, 'overflow');
-  }
 
-  private onDocumentClick = (event: MouseEvent): void => {
-    if (!this.overlayRef?.overlayElement?.contains(event.target as Node)) {
-      this.close();
+    if (this.documentClickListener) {
+      this.documentClickListener();
     }
-  };
+  }
 }

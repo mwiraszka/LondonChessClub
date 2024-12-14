@@ -27,7 +27,11 @@ function hydrationMetaReducer(reducer: ActionReducer<AppState>): ActionReducer<A
     'nav',
     'user-settings',
   ];
-  return localStorageSync({ keys: keysOfStoresToSync, rehydrate: true })(reducer);
+  return localStorageSync({
+    keys: keysOfStoresToSync,
+    rehydrate: true,
+    restoreDates: false,
+  })(reducer);
 }
 
 export const metaReducers: Array<MetaReducer<any, any>> = environment.production

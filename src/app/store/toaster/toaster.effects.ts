@@ -499,9 +499,6 @@ export class ToasterEffects {
         ofType(
           ArticlesActions.publishArticleFailed,
           ArticlesActions.updateArticleFailed,
-          ArticlesActions.getArticleImageUrlFailed,
-          ArticlesActions.getArticleThumbnailImageUrlsFailed,
-          ArticlesActions.getArticleImageFileFailed,
           ArticlesActions.deleteArticleFailed,
           ArticlesActions.fetchArticlesFailed,
           ArticlesActions.fetchArticleFailed,

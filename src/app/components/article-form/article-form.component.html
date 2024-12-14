@@ -1,7 +1,7 @@
 @defer {
   <img
     class="banner-image"
-    [src]="bannerImageUrl"
+    [src]="imageUrl"
     default="assets/image-placeholder.png"
     alt="Article banner image" />
 } @placeholder (minimum 0.5s) {
@@ -32,7 +32,9 @@
           type="button"
           tooltip="Upload new image">
           <input
+            id="image-file-input"
             type="file"
+            name="imageFile"
             accept="image/*"
             (change)="onUploadNewImage($event)" />
           <i-feather name="upload"></i-feather>
@@ -42,8 +44,11 @@
           class="revert-button lcc-secondary-button"
           type="button"
           tooltip="Revert to original image"
-          [disabled]="!(facade.hasNewImage$ | async)"
-          (click)="onRevert()">
+          [disabled]="
+            (facade.setArticle$ | async)?.imageId ===
+            (facade.formArticle$ | async)?.imageId
+          "
+          (click)="onRevertImage()">
           <i-feather name="rotate-ccw"></i-feather>
         </button>
       </div>

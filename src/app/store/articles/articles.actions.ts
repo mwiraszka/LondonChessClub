@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 
 import { HttpErrorResponse } from '@angular/common/http';
 
-import type { Article, Id, Url } from '@app/types';
+import type { Article, Id } from '@app/types';
 
 enum ArticlesActionTypes {
   FETCH_ARTICLES_REQUESTED = '[Articles] Fetch articles requested',
@@ -99,48 +99,6 @@ export const articleSet = createAction(
   props<{ article: Article }>(),
 );
 export const articleUnset = createAction(ArticlesActionTypes.ARTICLE_UNSET);
-
-export const getArticleThumbnailImageUrlsRequested = createAction(
-  ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_REQUESTED,
-  props<{ articles: Article[] }>(),
-);
-export const getArticleThumbnailImageUrlsSucceeded = createAction(
-  ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_SUCCEEDED,
-  props<{ articles: Article[] }>(),
-);
-export const getArticleThumbnailImageUrlsFailed = createAction(
-  ArticlesActionTypes.GET_ARTICLE_THUMBNAIL_IMAGE_URLS_FAILED,
-  props<{ errorResponse: HttpErrorResponse }>(),
-);
-
-export const getArticleImageUrlRequested = createAction(
-  ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_REQUESTED,
-  props<{ article?: Article }>(),
-);
-export const getArticleImageUrlSucceeded = createAction(
-  ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_SUCCEEDED,
-  props<{ article: Article }>(),
-);
-export const getArticleImageUrlFailed = createAction(
-  ArticlesActionTypes.GET_ARTICLE_IMAGE_URL_FAILED,
-  props<{ errorResponse: HttpErrorResponse }>(),
-);
-
-export const getArticleImageFileRequested = createAction(
-  ArticlesActionTypes.GET_ARTICLE_IMAGE_FILE_REQUESTED,
-  props<{ imageUrl: Url }>(),
-);
-export const getArticleImageFileSucceeded = createAction(
-  ArticlesActionTypes.GET_ARTICLE_IMAGE_FILE_SUCCEEDED,
-  props<{ imageFile: File }>(),
-);
-export const getArticleImageFileFailed = createAction(
-  ArticlesActionTypes.GET_ARTICLE_IMAGE_FILE_FAILED,
-  props<{ errorResponse: HttpErrorResponse }>(),
-);
-export const articleImageChangeReverted = createAction(
-  ArticlesActionTypes.ARTICLE_IMAGE_CHANGE_REVERTED,
-);
 
 export const publishArticleSelected = createAction(
   ArticlesActionTypes.PUBLISH_ARTICLE_SELECTED,

@@ -38,7 +38,6 @@ export class ArticleGridComponent implements OnInit {
     id: uuid.v4(),
     title: '',
     body: '',
-    imageFile: null,
     imageId: null,
     imageUrl: null,
     thumbnailImageUrl: null,

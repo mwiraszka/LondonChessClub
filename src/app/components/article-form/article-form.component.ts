@@ -18,7 +18,7 @@ import { ModificationInfoComponent } from '@app/components/modification-info/mod
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
 import { ImagesService, OverlayService } from '@app/services';
-import type { Article, Url } from '@app/types';
+import type { Article, Id, Url } from '@app/types';
 import { isDefined } from '@app/utils';
 import { imageSizeValidator } from '@app/validators';
 
@@ -41,9 +41,11 @@ import { ArticleFormFacade } from './article-form.facade';
   ],
 })
 export class ArticleFormComponent implements OnInit {
-  bannerImageUrl: Url | null = null;
-  form!: FormGroup;
+  form: FormGroup | null = null;
   imageExplorerRef: ComponentRef<ImageExplorerComponent> | null = null;
+  imageUrl: Url | null = null;
+  originalImageId: Id | null = null;
+  originalImageUrl: Url | null = null;
 
   constructor(
     public facade: ArticleFormFacade,
@@ -54,22 +56,22 @@ export class ArticleFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.facade.formArticle$.pipe(filter(isDefined), first()).subscribe(article => {
-      this.bannerImageUrl = article.imageUrl;
+      this.originalImageId = article.imageId;
+      this.originalImageUrl = article.imageUrl ?? null;
+      this.imageUrl = article.imageUrl ?? null;
       this.initForm(article);
-      this.initValueChangesListener();
-      // this.initArticleImageRehydration();
     });
   }
 
   hasError(control: AbstractControl): boolean {
-    return control.invalid && control.touched && !control.value;
+    return control.dirty && control.invalid;
   }
 
   getErrorMessage(control: AbstractControl): string {
     if (control.hasError('required')) {
       return 'This field is required';
     } else if (control.hasError('imageTooLarge')) {
-      return 'Banner image file must be smaller than 1MB';
+      return 'Image size must be under 1 MB';
     } else {
       return 'Unknown error';
     }
@@ -81,80 +83,80 @@ export class ArticleFormComponent implements OnInit {
 
   onUploadNewImage(event: Event): void {
     const fileInputElement = event.target as HTMLInputElement;
+
     if (fileInputElement.files?.length) {
       const imageFile = fileInputElement.files[0];
-      fileInputElement.value = '';
 
-      this.form.patchValue({
+      this.imageUrl = URL.createObjectURL(imageFile);
+      this.form?.patchValue({
+        imageId: null,
         imageFile,
       });
-
-      this.bannerImageUrl = URL.createObjectURL(imageFile);
+      fileInputElement.value = '';
     }
   }
 
   onOpenImageExplorer(): void {
-    this.overlayService
-      .open(ImageExplorerComponent)
-      .instance.selectImage.pipe(take(1))
-      .subscribe(id => {
+    this.imageExplorerRef = this.overlayService.open(ImageExplorerComponent);
+
+    this.imageExplorerRef.instance.selectImage
+      .pipe(take(1))
+      .subscribe((thumbnailImageId: Id) => {
         this.overlayService.close();
-        this.imagesService
-          .getImage(id.slice(0, -8))
-          .pipe(take(1))
-          .subscribe(image => {
-            this.bannerImageUrl = image.presignedUrl;
-          });
+
+        const imageId = thumbnailImageId.slice(0, -8);
+        this.form?.patchValue({
+          imageId,
+          imageFile: null,
+        });
+        this.setImageUrl(imageId);
       });
   }
 
-  onRevert(): void {
-    this.form.controls['imageFile'].markAsTouched();
-    this.facade.onRevert();
+  onRevertImage(): void {
+    this.imageUrl = this.originalImageUrl;
+    this.form?.patchValue({
+      imageId: this.originalImageId,
+      imageFile: null,
+    });
   }
 
   onSubmit(): void {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
+    if (!this.form || this.form?.invalid) {
+      this.form?.markAllAsTouched();
       return;
     }
-    this.facade.onSubmit(this.form.value);
+
+    const formData: Article & { imageFile: File } = this.form.value;
+    const { imageFile, ...article } = formData;
+    this.facade.onSubmit(article, imageFile);
   }
 
   private initForm(article: Article): void {
     this.form = this.formBuilder.group({
       title: [article.title, [Validators.required, Validators.pattern(/[^\s]/)]],
       body: [article.body, [Validators.required, Validators.pattern(/[^\s]/)]],
-      imageFile: [article.imageFile, [imageSizeValidator]],
+      imageId: [article.imageId],
+      imageFile: [null, [imageSizeValidator]],
       isSticky: [article.isSticky],
       modificationInfo: [article.modificationInfo],
+      id: [article.id],
     });
-  }
 
-  private initValueChangesListener(): void {
+    this.form.controls['imageFile'].markAsDirty();
+
     this.form.valueChanges
-      .pipe(debounceTime(500), untilDestroyed(this))
-      .subscribe((formData: Article) => this.facade.onValueChange(formData));
+      .pipe(debounceTime(250), untilDestroyed(this))
+      .subscribe((formData: Article & { imageFile: File }) => {
+        const { imageFile, ...article } = formData;
+        this.facade.onValueChange(article);
+      });
   }
 
-  public async getImageFile(imageUrl: Url): Promise<File> {
-    const response = await fetch(imageUrl);
-    const data = await response.blob();
-    return new File([data], 'lcc-file', {
-      type: data.type ?? 'image/jpeg',
-    });
+  private setImageUrl(id: Id): void {
+    this.imagesService
+      .getImage(id)
+      .pipe(take(1))
+      .subscribe(image => (this.imageUrl = image.presignedUrl));
   }
-
-  // private initArticleImageRehydration(): void {
-  //   console.log(':: init article image rehydration');
-  //   this.facade.articleImageCurrently$.pipe(untilDestroyed(this)).subscribe(article => {
-  //     this.form.patchValue(
-  //       {
-  //         imageFile: article.imageFile,
-  //         imageUrl: article.imageUrl,
-  //       },
-  //       { emitEvent: false },
-  //     );
-  //   });
-  // }
 }

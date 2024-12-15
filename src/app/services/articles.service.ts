@@ -13,7 +13,7 @@ import { environment } from '@env';
   providedIn: 'root',
 })
 export class ArticlesService {
-  readonly API_URL = environment.lccApiUrl;
+  readonly API_BASE_URL = environment.lccApiBaseUrl;
   readonly COLLECTION: DbCollection = 'articles';
 
   constructor(private http: HttpClient) {}
@@ -21,33 +21,35 @@ export class ArticlesService {
   public getArticles(): Observable<Article[]> {
     const scope: ApiScope = 'public';
     return this.http
-      .get<Article[]>(`${this.API_URL}/${scope}/${this.COLLECTION}`)
+      .get<Article[]>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`)
       .pipe(map(articles => sortArticles(articles)));
   }
 
   public getArticle(id: Id): Observable<Article> {
     const scope: ApiScope = 'public';
-    return this.http.get<Article>(`${this.API_URL}/${scope}/${this.COLLECTION}/${id}`);
+    return this.http.get<Article>(
+      `${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${id}`,
+    );
   }
 
   public addArticle(article: Article): Observable<Article> {
     const scope: ApiScope = 'admin';
     return this.http
-      .post<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}`, article)
+      .post<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`, article)
       .pipe(map(id => ({ ...article, id })));
   }
 
   public updateArticle(article: Article): Observable<Article> {
     const scope: ApiScope = 'admin';
     return this.http
-      .put<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}/${article.id}`, article)
+      .put<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${article.id}`, article)
       .pipe(map(() => article));
   }
 
   public deleteArticle(article: Article): Observable<Article> {
     const scope: ApiScope = 'admin';
     return this.http
-      .delete<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}/${article.id}`)
+      .delete<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${article.id}`)
       .pipe(map(() => article));
   }
 }

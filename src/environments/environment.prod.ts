@@ -3,5 +3,5 @@ export const environment = {
   cognitoUserPoolId: 'us-east-2_W9IbTHSe9',
   cognitoUserPoolClientId: '646fep86clslssd31shun84u',
   googleMapsApiKey: 'AIzaSyAuLCJPCzFJXPWYUPM61Txue8PeJabI6DI',
-  lccApiUrl: 'https://api.londonchess.ca/v1/',
+  lccApiBaseUrl: 'https://api.londonchess.ca/v1/',
 };

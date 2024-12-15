@@ -1,11 +1,10 @@
 import { Store } from '@ngrx/store';
-import { first, map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { ToasterActions } from '@app/store/toaster';
-import type { Article } from '@app/types';
+import type { Article, ControlModes } from '@app/types';
 
 @Injectable()
 export class ArticleFormFacade {
@@ -20,25 +19,20 @@ export class ArticleFormFacade {
     this.store.dispatch(ArticlesActions.cancelSelected());
   }
 
-  onSubmit(article: Article, imageFile: File): void {
-    this.controlMode$
-      .pipe(
-        map(controlMode =>
-          controlMode === 'edit'
-            ? this.store.dispatch(
-                ArticlesActions.updateArticleSelected({
-                  article,
-                }),
-              )
-            : this.store.dispatch(
-                ArticlesActions.publishArticleSelected({
-                  article,
-                }),
-              ),
-        ),
-        first(),
-      )
-      .subscribe();
+  onSubmit(controlMode: ControlModes, article: Article): void {
+    if (controlMode === 'edit') {
+      this.store.dispatch(
+        ArticlesActions.updateArticleSelected({
+          article,
+        }),
+      );
+    } else {
+      this.store.dispatch(
+        ArticlesActions.publishArticleSelected({
+          article,
+        }),
+      );
+    }
   }
 
   onValueChange(article: Article): void {

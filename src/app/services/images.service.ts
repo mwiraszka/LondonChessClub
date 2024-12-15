@@ -12,30 +12,30 @@ import { environment } from '@env';
   providedIn: 'root',
 })
 export class ImagesService {
-  readonly API_URL = environment.lccApiUrl;
+  readonly API_BASE_URL = environment.lccApiBaseUrl;
   readonly COLLECTION: DbCollection = 'images';
 
   constructor(private http: HttpClient) {}
 
   public getThumbnailImages(): Observable<Image[]> {
     const scope: ApiScope = 'public';
-    return this.http.get<Image[]>(`${this.API_URL}/${scope}/${this.COLLECTION}`);
+    return this.http.get<Image[]>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`);
   }
 
   public getImage(id: Id): Observable<Image> {
     const scope: ApiScope = 'public';
-    return this.http.get<Image>(`${this.API_URL}/${scope}/${this.COLLECTION}/${id}`);
+    return this.http.get<Image>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${id}`);
   }
 
   public addImage(image: Image): Observable<Image> {
     const scope: ApiScope = 'admin';
     return this.http
-      .post<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}`, image)
+      .post<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`, image)
       .pipe(map(id => ({ ...image, id })));
   }
 
   public deleteImage(id: Id): Observable<Id> {
     const scope: ApiScope = 'admin';
-    return this.http.delete<Id>(`${this.API_URL}/${scope}/${this.COLLECTION}/${id}`);
+    return this.http.delete<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${id}`);
   }
 }

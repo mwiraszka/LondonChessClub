@@ -55,7 +55,16 @@ bootstrapApplication(AppComponent, {
         // or after 30 seconds (whichever comes first)
         registrationStrategy: 'registerWhenStable:30000',
       }),
-      StoreModule.forRoot({ router: routerReducer }, { metaReducers }),
+      StoreModule.forRoot(
+        { router: routerReducer },
+        {
+          metaReducers,
+          runtimeChecks: {
+            strictStateSerializability: true,
+            strictActionSerializability: true,
+          },
+        },
+      ),
       StoreRouterConnectingModule.forRoot(),
       StoreDevtoolsModule.instrument({
         name: 'London Chess Club - NgRx Store DevTools',

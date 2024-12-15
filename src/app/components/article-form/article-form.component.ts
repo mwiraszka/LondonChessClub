@@ -18,7 +18,7 @@ import { ModificationInfoComponent } from '@app/components/modification-info/mod
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
 import { ImagesService, OverlayService } from '@app/services';
-import type { Article, Id, Url } from '@app/types';
+import type { Article, ControlModes, Id, Url } from '@app/types';
 import { dataUrlToFile, isDefined, isStorageSupported } from '@app/utils';
 import { imageSizeValidator } from '@app/validators';
 
@@ -44,6 +44,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   private readonly LOCAL_STORAGE_IMAGE_KEY = 'lcc-article-image';
 
   public form: FormGroup | null = null;
+  public controlMode: ControlModes | null = null;
 
   private imageExplorerRef: ComponentRef<ImageExplorerComponent> | null = null;
   private originalImageId: Id | null = null;
@@ -71,12 +72,14 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
         first(),
       )
       .subscribe(([controlMode, formArticle, setArticle]) => {
-        if (!formArticle) {
-          formArticle = setArticle;
-        }
+        this.controlMode = controlMode;
 
         this.originalImageId = setArticle.imageId;
         this.originalImageUrl = setArticle.imageUrl;
+
+        if (!formArticle) {
+          formArticle = setArticle;
+        }
         this.initForm(formArticle);
 
         if (controlMode === 'edit' && !formArticle.imageId) {
@@ -162,14 +165,20 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    if (!this.form || this.form?.invalid) {
+    if (
+      !this.form ||
+      this.form.invalid ||
+      !this.controlMode ||
+      !this.form.value['imageFile']
+    ) {
       this.form?.markAllAsTouched();
       return;
     }
 
     const formData: Article & { imageFile: File } = this.form.value;
     const { imageFile, ...article } = formData;
-    this.facade.onSubmit(article, imageFile);
+
+    this.facade.onSubmit(this.controlMode, article);
   }
 
   private initForm(article: Article): void {
@@ -178,7 +187,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
       body: [article.body, [Validators.required, Validators.pattern(/[^\s]/)]],
       imageId: [article.imageId],
       imageUrl: [article.imageUrl],
-      imageFile: [null, [imageSizeValidator]],
+      imageFile: [null, [Validators.required, imageSizeValidator]],
       isSticky: [article.isSticky],
       modificationInfo: [article.modificationInfo],
       id: [article.id],

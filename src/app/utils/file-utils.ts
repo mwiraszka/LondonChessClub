@@ -1,16 +1,35 @@
+import { Url } from '@app/types';
+
 /**
- * @param url Data URL of the file (as base-64 string)
+ * @param url Data URL of the file (as a base-64 string)
  * @param name Name of the file (optional)
  *
- * @returns {Promise<File>} A file object wrapped in a promise
+ * @returns {Promise<File>} A file object representing the same data
  */
-export async function getFileFromDataUrl(url: string, name?: string): Promise<File> {
+export async function dataUrlToFile(url: Url, name?: string): Promise<File> {
   const response = await fetch(url);
   const data = await response.blob();
 
   return new File([data], name ?? 'lcc-file', {
     type: data.type ?? 'image/jpeg',
   });
+}
+
+/**
+ * @param dataUrl Data URL of the file (as a base-64 string)
+ *
+ * @returns {Blob} A blob representing the same data
+ */
+export function dataUrlToBlob(dataUrl: Url): Blob {
+  const byteString = atob(dataUrl.split(',')[1]);
+  const arrayBuffer = new ArrayBuffer(byteString.length);
+  const int8Array = new Uint8Array(arrayBuffer);
+
+  for (let i = 0; i < byteString.length; i++) {
+    int8Array[i] = byteString.charCodeAt(i);
+  }
+
+  return new Blob([int8Array], { type: 'image/jpeg' });
 }
 
 /**

@@ -1,7 +1,7 @@
 @defer {
   <img
     class="banner-image"
-    [src]="imageUrl"
+    [src]="form?.value['imageUrl']"
     default="assets/image-placeholder.png"
     alt="Article banner image" />
 } @placeholder (minimum 0.5s) {
@@ -16,7 +16,7 @@
     [formGroup]="form"
     (ngSubmit)="onSubmit()">
     <div class="lcc-form-fields">
-      <label class="lcc-required-field"> Banner Image: </label>
+      <label class="lcc-required-field">Banner Image:</label>
 
       <div class="image-controls-container">
         <button
@@ -134,7 +134,7 @@
       <button
         class="lcc-secondary-button"
         type="button"
-        (click)="onCancel()">
+        (click)="facade.onCancel()">
         Cancel
       </button>
       <button

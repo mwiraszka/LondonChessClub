@@ -54,6 +54,7 @@ enum ArticlesActionTypes {
   CANCEL_SELECTED = '[Articles] Cancel selected',
   CANCEL_CONFIRMED = '[Articles] Cancel confirmed',
 
+  ARTICLE_IMAGE_URL_CREATED = '[Articles] Article image URL created',
   FORM_DATA_CHANGED = '[Articles] Form data changed',
 }
 

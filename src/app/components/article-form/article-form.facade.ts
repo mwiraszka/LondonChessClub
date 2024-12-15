@@ -4,7 +4,7 @@ import { first, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import type { Article } from '@app/types';
+import type { Article, Url } from '@app/types';
 
 @Injectable()
 export class ArticleFormFacade {

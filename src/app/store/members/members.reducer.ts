@@ -59,7 +59,6 @@ const membersReducer = createReducer(
       member,
     ],
     setMember: member,
-    formMember: state.controlMode === 'edit' ? member : null,
   })),
 
   on(MembersActions.deleteMemberSelected, (state, { member }) => ({

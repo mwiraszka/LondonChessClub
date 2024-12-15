@@ -6,8 +6,8 @@ export interface Article {
   title: string;
   body: string;
   imageId: Id | null;
-  imageUrl?: Url | null;
-  thumbnailImageUrl?: Url | null;
+  imageUrl: Url | null;
+  thumbnailImageUrl: Url | null;
   isSticky: boolean;
   modificationInfo: ModificationInfo | null;
 }

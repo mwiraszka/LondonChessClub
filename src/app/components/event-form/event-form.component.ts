@@ -1,6 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import moment from 'moment-timezone';
-import { debounceTime, filter, first } from 'rxjs/operators';
+import { combineLatestWith, debounceTime, filter, first } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -46,10 +46,16 @@ export class EventFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.facade.formEvent$.pipe(filter(isDefined), first()).subscribe(event => {
-      this.initForm(event);
-      this.initValueChangesListener();
-    });
+    this.facade.setEvent$
+      .pipe(filter(isDefined), combineLatestWith(this.facade.formEvent$), first())
+      .subscribe(([setEvent, formEvent]) => {
+        if (!formEvent) {
+          formEvent = setEvent;
+        }
+
+        this.initForm(formEvent);
+        this.initValueChangesListener();
+      });
   }
 
   hasError(control: AbstractControl): boolean {

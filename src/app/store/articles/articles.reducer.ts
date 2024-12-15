@@ -66,7 +66,6 @@ const articlesReducer = createReducer(
       ),
     ]),
     setArticle: article,
-    formArticle: state.controlMode === 'edit' ? article : null,
   })),
 
   on(ArticlesActions.deleteArticleSelected, (state, { article }) => ({

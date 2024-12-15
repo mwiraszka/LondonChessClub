@@ -56,7 +56,6 @@ const scheduleReducer = createReducer(
     ...state,
     events: [...state.events.filter(storedEvent => storedEvent.id !== event.id), event],
     setEvent: event,
-    formEvent: state.controlMode === 'edit' ? event : null,
   })),
 
   on(EventsActions.deleteEventSelected, (state, { event }) => ({

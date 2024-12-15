@@ -1,5 +1,5 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { debounceTime, filter, first } from 'rxjs/operators';
+import { combineLatestWith, debounceTime, filter, first } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -50,10 +50,16 @@ export class MemberFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.facade.formMember$.pipe(filter(isDefined), first()).subscribe(member => {
-      this.initForm(member);
-      this.initValueChangesListener();
-    });
+    this.facade.setMember$
+      .pipe(filter(isDefined), combineLatestWith(this.facade.formMember$), first())
+      .subscribe(([setMember, formMember]) => {
+        if (!formMember) {
+          formMember = setMember;
+        }
+
+        this.initForm(formMember);
+        this.initValueChangesListener();
+      });
   }
 
   hasError(control: AbstractControl): boolean {

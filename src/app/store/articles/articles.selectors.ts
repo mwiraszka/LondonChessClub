@@ -12,9 +12,9 @@ export const articlesFeatureSelector = createFeatureSelector<ArticlesState>(
 export const articles = createSelector(articlesFeatureSelector, state => state.articles);
 
 export const articleById = (id: Id) =>
-  createSelector(articles, allArticles => {
-    return allArticles ? allArticles.find(article => article.id === id) : null;
-  });
+  createSelector(articles, allArticles =>
+    allArticles ? allArticles.find(article => article.id === id) : null,
+  );
 
 export const setArticle = createSelector(
   articlesFeatureSelector,
@@ -37,8 +37,8 @@ export const hasUnsavedChanges = createSelector(
   formArticle,
   setArticle,
   (formArticle, setArticle) => {
-    const { imageUrl: _1, thumbnailImageUrl: _2, ..._formArticle } = formArticle || {};
-    const { imageUrl: _3, thumbnailImageUrl: _4, ..._setArticle } = setArticle || {};
-    return !areSame(_formArticle, _setArticle);
+    const { thumbnailImageUrl, ...formArticleWithoutThumbnail } = formArticle || {};
+    const { thumbnailImageUrl: _, ...setArticleWithoutThumbnail } = setArticle || {};
+    return !areSame(formArticleWithoutThumbnail, setArticleWithoutThumbnail);
   },
 );

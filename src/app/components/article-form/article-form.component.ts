@@ -19,7 +19,7 @@ import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
 import { ImagesService, OverlayService } from '@app/services';
 import type { Article, Id, Url } from '@app/types';
-import { dataUrlToFile, isDefined } from '@app/utils';
+import { dataUrlToFile, isDefined, isStorageSupported } from '@app/utils';
 import { imageSizeValidator } from '@app/validators';
 
 import { ArticleFormFacade } from './article-form.facade';
@@ -57,6 +57,10 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    if (!isStorageSupported) {
+      this.facade.onUnsupportedLocalStorage();
+    }
+
     this.facade.controlMode$
       .pipe(
         filter(isDefined),
@@ -122,7 +126,11 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
       reader.onload = () => {
         const dataUrl = reader.result;
         if (typeof dataUrl === 'string') {
-          localStorage.setItem(this.LOCAL_STORAGE_IMAGE_KEY, dataUrl);
+          try {
+            localStorage.setItem(this.LOCAL_STORAGE_IMAGE_KEY, dataUrl);
+          } catch (error) {
+            this.facade.onLocalStorageQuotaExceededError();
+          }
         }
       };
     }

@@ -2,6 +2,7 @@ export * from './article-utils';
 export * from './file-utils';
 export * from './general-utils';
 export * from './image-utils';
+export * from './local-storage-utils';
 export * from './member-utils';
 export * from './ngrx-utils';
 export * from './pgn-utils';

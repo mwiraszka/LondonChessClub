@@ -4,7 +4,8 @@ import { first, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import type { Article, Url } from '@app/types';
+import { ToasterActions } from '@app/store/toaster';
+import type { Article } from '@app/types';
 
 @Injectable()
 export class ArticleFormFacade {
@@ -42,5 +43,13 @@ export class ArticleFormFacade {
 
   onValueChange(article: Article): void {
     this.store.dispatch(ArticlesActions.formDataChanged({ article }));
+  }
+
+  onUnsupportedLocalStorage(): void {
+    this.store.dispatch(ToasterActions.localStorageDetectedUnsupported());
+  }
+
+  onLocalStorageQuotaExceededError(): void {
+    this.store.dispatch(ToasterActions.localStorageDetectedFull());
   }
 }

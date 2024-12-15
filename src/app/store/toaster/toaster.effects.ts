@@ -485,6 +485,41 @@ export class ToasterEffects {
   });
   //#endregion
 
+  //#region Local storage
+  addLocalStorageDetectedUnsupportedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ToasterActions.localStorageDetectedUnsupported),
+      map(() => {
+        const toast: Toast = {
+          title: 'Unsupported local storage',
+          message: `
+            Local storage is not supported on this browser,
+            which just means some fancy features may not work as expected.
+          `,
+          type: ToastTypes.INFO,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addLocalStorageDetectedFullToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ToasterActions.localStorageDetectedFull),
+      map(() => {
+        const toast: Toast = {
+          title: 'Local storage quota exceeded',
+          message: `
+            Oops! Item does not fit in your browser's local storage
+          `,
+          type: ToastTypes.WARNING,
+        };
+        return ToasterActions.toastAdded({ toast });
+      }),
+    );
+  });
+  //#endregion
+
   expireToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ToasterActions.toastAdded),

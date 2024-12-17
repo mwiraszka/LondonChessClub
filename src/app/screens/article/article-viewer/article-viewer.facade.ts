@@ -8,7 +8,7 @@ import type { Article } from '@app/types';
 
 @Injectable()
 export class ArticleViewerFacade {
-  readonly article$ = this.store.select(ArticlesSelectors.setArticle);
+  readonly article$ = this.store.select(ArticlesSelectors.selectArticle);
   readonly isAdmin$ = this.store.select(AuthSelectors.isAdmin);
 
   constructor(private readonly store: Store) {}

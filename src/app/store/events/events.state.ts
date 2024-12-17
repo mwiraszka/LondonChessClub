@@ -1,10 +1,10 @@
-import { ControlModes, type Event } from '@app/types';
+import type { ControlMode, Event } from '@app/types';
 
 export interface EventsState {
   events: Event[];
   setEvent: Event | null;
   formEvent: Event | null;
-  controlMode: ControlModes | null;
+  controlMode: ControlMode | null;
   showPastEvents: boolean;
 }
 

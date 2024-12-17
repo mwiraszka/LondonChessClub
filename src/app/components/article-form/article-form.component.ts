@@ -1,5 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { combineLatestWith, debounceTime, filter, first } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { debounceTime, first } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, ComponentRef, OnDestroy, OnInit } from '@angular/core';
@@ -18,18 +19,20 @@ import { ModificationInfoComponent } from '@app/components/modification-info/mod
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
 import { ImagesService, OverlayService } from '@app/services';
-import type { Article, ControlModes, Id, Url } from '@app/types';
-import { dataUrlToFile, isDefined, isStorageSupported } from '@app/utils';
-import { imageSizeValidator } from '@app/validators';
-
-import { ArticleFormFacade } from './article-form.facade';
+import {
+  ArticlesActions,
+  ArticlesSelectors,
+  LOCAL_STORAGE_IMAGE_KEY,
+} from '@app/store/articles';
+import { ToasterActions } from '@app/store/toaster';
+import { ArticleFormData, ControlMode, Id, Url } from '@app/types';
+import { dataUrlToBlob, formatBytes, isDefined, isStorageSupported } from '@app/utils';
 
 @UntilDestroy()
 @Component({
   selector: 'lcc-article-form',
   templateUrl: './article-form.component.html',
   styleUrls: ['./article-form.component.scss'],
-  providers: [ArticleFormFacade],
   imports: [
     CommonModule,
     IconsModule,
@@ -41,181 +44,185 @@ import { ArticleFormFacade } from './article-form.facade';
   ],
 })
 export class ArticleFormComponent implements OnInit, OnDestroy {
-  private readonly LOCAL_STORAGE_IMAGE_KEY = 'lcc-article-image';
+  public readonly articleFormViewModel$ = this.store.select(
+    ArticlesSelectors.selectArticleFormViewModel,
+  );
 
   public form: FormGroup | null = null;
-  public controlMode: ControlModes | null = null;
+  public imageFile: Blob | null = null;
+  public imageValidationEnabled: boolean = false;
+  public newImageUrl: Url | null = null;
 
   private imageExplorerRef: ComponentRef<ImageExplorerComponent> | null = null;
-  private originalImageId: Id | null = null;
-  private originalImageUrl: Url | null = null;
+  private controlMode: ControlMode | null = null;
+
+  private readonly articleFormData$ = this.store.select(
+    ArticlesSelectors.selectArticleFormData,
+  );
+  private readonly controlMode$ = this.store.select(ArticlesSelectors.selectControlMode);
 
   constructor(
-    public facade: ArticleFormFacade,
-    private formBuilder: FormBuilder,
+    private readonly store: Store,
+    private readonly formBuilder: FormBuilder,
     private imagesService: ImagesService,
     private overlayService: OverlayService<ImageExplorerComponent>,
   ) {}
 
   ngOnInit(): void {
     if (!isStorageSupported) {
-      this.facade.onUnsupportedLocalStorage();
+      this.store.dispatch(ToasterActions.localStorageDetectedUnsupported());
     }
 
-    this.facade.controlMode$
-      .pipe(
-        filter(isDefined),
-        combineLatestWith(
-          this.facade.formArticle$,
-          this.facade.setArticle$.pipe(filter(isDefined)),
-        ),
-        first(),
-      )
-      .subscribe(([controlMode, formArticle, setArticle]) => {
-        this.controlMode = controlMode;
+    this.controlMode$.pipe(first(isDefined)).subscribe(controlMode => {
+      this.controlMode = controlMode;
+    });
 
-        this.originalImageId = setArticle.imageId;
-        this.originalImageUrl = setArticle.imageUrl;
+    this.articleFormData$.pipe(first(isDefined)).subscribe(articleFormData => {
+      this.initForm(articleFormData);
 
-        if (!formArticle) {
-          formArticle = setArticle;
-        }
-        this.initForm(formArticle);
-
-        if (controlMode === 'edit' && !formArticle.imageId) {
-          const dataUrl = localStorage.getItem(this.LOCAL_STORAGE_IMAGE_KEY);
-
-          if (dataUrl) {
-            (async () => {
-              const imageFile = await dataUrlToFile(dataUrl);
-              this.patchFormWithImageFile(imageFile);
-            })();
-          }
-        }
-      });
+      const imageDataUrl = localStorage.getItem(LOCAL_STORAGE_IMAGE_KEY);
+      if (imageDataUrl) {
+        this.setImageByFile(dataUrlToBlob(imageDataUrl));
+      } else if (articleFormData.imageId) {
+        this.setImageById(articleFormData.imageId);
+      }
+    });
   }
 
   ngOnDestroy(): void {
-    localStorage.removeItem(this.LOCAL_STORAGE_IMAGE_KEY);
+    this.updateStoredFile(null);
   }
 
-  hasError(control: AbstractControl): boolean {
+  public hasError(control: AbstractControl): boolean {
     return control.dirty && control.invalid;
   }
 
-  getErrorMessage(control: AbstractControl): string {
-    if (control.hasError('required')) {
-      return 'This field is required';
-    } else if (control.hasError('imageTooLarge')) {
-      return 'Image size must be under 1 MB';
-    } else {
-      return 'Unknown error';
-    }
+  public getErrorMessage(control: AbstractControl): string {
+    return control.hasError('required') ? 'This field is required' : 'Unknown error';
+    // Note: image file validation handled separately since it's not a form control
   }
 
-  async onUploadNewImage(event: Event): Promise<void> {
+  public get imageError(): string | null {
+    if (!this.imageValidationEnabled) {
+      return null;
+    } else if (this.imageFile && this.imageFile.size > 1_048_576) {
+      return `Image cannot exceed 1 MB (current image after conversion is
+        ${formatBytes(this.imageFile.size)})`;
+    } else if (
+      this.controlMode === 'add' &&
+      !(this.imageFile || this.form?.value['imageId'])
+    ) {
+      return 'This field is required';
+    }
+    return null;
+  }
+
+  public onUploadNewImage(event: Event): void {
     const fileInputElement = event.target as HTMLInputElement;
 
     if (fileInputElement.files?.length) {
-      const imageFile = fileInputElement.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(fileInputElement.files[0]);
       fileInputElement.value = '';
 
-      this.patchFormWithImageFile(imageFile);
-
-      // Serialize file object by converting to a base-64 string
-      // so that a new URL can be generated on page reload
-      const reader = new FileReader();
-      reader.readAsDataURL(imageFile);
       reader.onload = () => {
-        const dataUrl = reader.result;
-        if (typeof dataUrl === 'string') {
-          try {
-            localStorage.setItem(this.LOCAL_STORAGE_IMAGE_KEY, dataUrl);
-          } catch (error) {
-            this.facade.onLocalStorageQuotaExceededError();
-          }
+        const dataUrl = reader.result as Url;
+        const imageFile = dataUrlToBlob(dataUrl);
+        try {
+          this.updateStoredFile(dataUrl);
+          this.setImageByFile(imageFile);
+        } catch (error) {
+          const fileSize = formatBytes(imageFile.size);
+          this.store.dispatch(ToasterActions.localStorageDetectedFull({ fileSize }));
         }
       };
     }
   }
 
-  onOpenImageExplorer(): void {
+  public onOpenImageExplorer(): void {
     this.imageExplorerRef = this.overlayService.open(ImageExplorerComponent);
-
     this.imageExplorerRef.instance.selectImage
       .pipe(first())
       .subscribe((thumbnailImageId: Id) => {
         this.overlayService.close();
-
         const imageId = thumbnailImageId.slice(0, -8);
-        this.form?.patchValue({
-          imageId,
-          imageFile: null,
-        });
-        this.setImageUrl(imageId);
+        this.setImageById(imageId);
       });
   }
 
-  onRevertImage(): void {
-    this.form?.patchValue({
-      imageId: this.originalImageId,
-      imageUrl: this.originalImageUrl,
-      imageFile: null,
-    });
+  public onRevertImage(originalImageId?: Id | null): void {
+    this.form?.patchValue({ imageId: originalImageId });
+    this.imageFile = null;
+    this.newImageUrl = null;
+    this.updateStoredFile(null);
   }
 
-  onSubmit(): void {
-    if (
-      !this.form ||
-      this.form.invalid ||
-      !this.controlMode ||
-      !this.form.value['imageFile']
-    ) {
-      this.form?.markAllAsTouched();
+  public onCancel(): void {
+    this.store.dispatch(ArticlesActions.cancelSelected());
+  }
+
+  public onSubmit(articleTitle?: string): void {
+    if (this.form?.invalid || this.imageError || !articleTitle) {
+      this.imageValidationEnabled = true;
       return;
     }
 
-    const formData: Article & { imageFile: File } = this.form.value;
-    const { imageFile, ...article } = formData;
-
-    this.facade.onSubmit(this.controlMode, article);
+    // TODO: Simplify the modal/guard flow & have a single submission request action
+    if (this.controlMode === 'edit') {
+      this.store.dispatch(
+        ArticlesActions.updateArticleSelected({
+          articleTitle,
+        }),
+      );
+    } else {
+      this.store.dispatch(
+        ArticlesActions.publishArticleSelected({
+          articleTitle,
+        }),
+      );
+    }
   }
 
-  private initForm(article: Article): void {
+  private initForm(articleFormData: ArticleFormData): void {
     this.form = this.formBuilder.group({
-      title: [article.title, [Validators.required, Validators.pattern(/[^\s]/)]],
-      body: [article.body, [Validators.required, Validators.pattern(/[^\s]/)]],
-      imageId: [article.imageId],
-      imageUrl: [article.imageUrl],
-      imageFile: [null, [Validators.required, imageSizeValidator]],
-      isSticky: [article.isSticky],
-      modificationInfo: [article.modificationInfo],
-      id: [article.id],
+      imageId: [articleFormData.imageId],
+      title: [articleFormData.title, [Validators.required, Validators.pattern(/[^\s]/)]],
+      body: [articleFormData.body, [Validators.required, Validators.pattern(/[^\s]/)]],
+      isSticky: [articleFormData.isSticky],
     });
-
-    // Keep control dirty to enable validation on the hidden input
-    this.form.controls['imageFile'].markAsDirty();
 
     this.form.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
-      .subscribe((formData: Article & { imageFile: File }) => {
-        const { imageFile, ...article } = formData;
-        this.facade.onValueChange(article);
+      .subscribe((articleFormData: ArticleFormData) => {
+        this.store.dispatch(ArticlesActions.formDataChanged({ articleFormData }));
       });
   }
 
-  private setImageUrl(id: Id): void {
-    this.imagesService
-      .getImage(id)
-      .pipe(first())
-      .subscribe(image => this.form?.patchValue({ imageUrl: image.presignedUrl }));
+  private setImageByFile(imageFile: Blob): void {
+    this.imageValidationEnabled = true;
+    this.form?.patchValue({ imageId: null });
+    this.imageFile = imageFile;
+    this.newImageUrl = URL.createObjectURL(imageFile);
   }
 
-  private patchFormWithImageFile(imageFile: File): void {
-    this.form?.patchValue({
-      imageId: null,
-      imageUrl: URL.createObjectURL(imageFile),
-      imageFile,
-    });
+  private setImageById(imageId: Id): void {
+    this.imageValidationEnabled = true;
+    this.form?.patchValue({ imageId });
+    this.imageFile = null;
+    this.imagesService
+      .getImage(imageId)
+      .pipe(first())
+      .subscribe(image => (this.newImageUrl = image.presignedUrl));
+    this.updateStoredFile(null);
+  }
+
+  private updateStoredFile(dataUrl: Url | null): void {
+    if (dataUrl) {
+      localStorage.setItem(LOCAL_STORAGE_IMAGE_KEY, dataUrl);
+      this.store.dispatch(ArticlesActions.newImageStored());
+    } else {
+      localStorage.removeItem(LOCAL_STORAGE_IMAGE_KEY);
+      this.store.dispatch(ArticlesActions.storedImageRemoved());
+    }
   }
 }

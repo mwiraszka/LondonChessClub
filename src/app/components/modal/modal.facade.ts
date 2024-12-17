@@ -15,8 +15,6 @@ export class ModalFacade {
     this.store.dispatch(ModalActions.selectionMade({ action }));
   }
 
-  // TODO: Hook up for all other 'cancel' action types/
-  // implement a single, generic cancel type
   onClose(): void {
     this.store.dispatch(
       ModalActions.selectionMade({

@@ -13,7 +13,7 @@ export class UnsavedArticleGuard {
   constructor(private readonly store: Store) {}
 
   canDeactivate(): Observable<boolean> {
-    return this.store.select(ArticlesSelectors.hasUnsavedChanges).pipe(
+    return this.store.select(ArticlesSelectors.selectHasUnsavedChanges).pipe(
       switchMap(hasUnsavedChanges => {
         if (!hasUnsavedChanges) {
           return of(true);

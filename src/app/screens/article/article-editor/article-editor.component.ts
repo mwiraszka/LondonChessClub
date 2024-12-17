@@ -40,7 +40,7 @@ export class ArticleEditorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    combineLatest([this.facade.setArticleTitle$, this.facade.controlMode$])
+    combineLatest([this.facade.articleTitle$, this.facade.controlMode$])
       .pipe(untilDestroyed(this))
       .subscribe(([articleTitle, controlMode]) => {
         const screenTitle =

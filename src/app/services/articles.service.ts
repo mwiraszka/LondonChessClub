@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import type { ApiScope, Article, DbCollection, Id } from '@app/types';
+import type { ApiScope, Article, DbCollection, Id, Url } from '@app/types';
 import { sortArticles } from '@app/utils';
 
 import { environment } from '@env';
@@ -32,17 +32,23 @@ export class ArticlesService {
     );
   }
 
-  public addArticle(article: Article): Observable<Article> {
+  public addArticle(article: Article, imageDataUrl: Url | null): Observable<Article> {
     const scope: ApiScope = 'admin';
     return this.http
-      .post<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`, article)
+      .post<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`, {
+        article,
+        imageDataUrl,
+      })
       .pipe(map(id => ({ ...article, id })));
   }
 
-  public updateArticle(article: Article): Observable<Article> {
+  public updateArticle(article: Article, imageDataUrl: Url | null): Observable<Article> {
     const scope: ApiScope = 'admin';
     return this.http
-      .put<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${article.id}`, article)
+      .put<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${article.id}`, {
+        article,
+        imageDataUrl,
+      })
       .pipe(map(() => article));
   }
 

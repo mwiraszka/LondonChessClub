@@ -28,4 +28,5 @@ export const localStorageDetectedUnsupported = createAction(
 
 export const localStorageDetectedFull = createAction(
   ToasterActionTypes.LOCAL_STORAGE_DETECTED_FULL,
+  props<{ fileSize: string }>(),
 );

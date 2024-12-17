@@ -61,7 +61,8 @@ bootstrapApplication(AppComponent, {
           metaReducers,
           runtimeChecks: {
             strictStateSerializability: true,
-            strictActionSerializability: true,
+            // TODO: Re-enable after modal refactor
+            strictActionSerializability: false,
           },
         },
       ),

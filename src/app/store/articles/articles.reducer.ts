@@ -1,6 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { type ControlModes, newArticleFormTemplate } from '@app/types';
+import { ArticleFormData } from '@app/types';
+import { newArticleFormTemplate } from '@app/types';
 import { sortArticles } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
@@ -9,81 +10,114 @@ import { ArticlesState, initialState } from './articles.state';
 const articlesReducer = createReducer(
   initialState,
 
-  on(ArticlesActions.fetchArticlesSucceeded, (state, { articles }) => ({
-    ...state,
-    articles,
-  })),
-
-  on(ArticlesActions.articleAddRequested, state => ({
-    ...state,
-    setArticle: newArticleFormTemplate,
-    formArticle: newArticleFormTemplate,
-    controlMode: 'add' as ControlModes,
-  })),
-
-  on(ArticlesActions.articleEditRequested, state => ({
-    ...state,
-    controlMode: 'edit' as ControlModes,
-  })),
-
-  on(ArticlesActions.articleViewRequested, state => ({
-    ...state,
-    controlMode: 'view' as ControlModes,
-  })),
-
-  on(ArticlesActions.articleSet, (state, { article }) => ({
-    ...state,
-    setArticle: article,
-  })),
-
-  on(ArticlesActions.articleUnset, state => ({
-    ...state,
-    setArticle: null,
-    formArticle: null,
-    controlMode: null,
-  })),
+  on(
+    ArticlesActions.fetchArticlesSucceeded,
+    (state, { articles }): ArticlesState => ({
+      ...state,
+      articles,
+    }),
+  ),
 
   on(
-    ArticlesActions.publishArticleSucceeded,
-    ArticlesActions.updateArticleSucceeded,
-    (state, { article }) => ({
+    ArticlesActions.fetchArticleRequested,
+    (state, { controlMode }): ArticlesState => ({
+      ...state,
+      controlMode,
+    }),
+  ),
+
+  on(
+    ArticlesActions.newArticleFormTemplateLoaded,
+    (state): ArticlesState => ({
+      ...state,
+      articleFormData: newArticleFormTemplate,
+    }),
+  ),
+
+  on(ArticlesActions.fetchArticleSucceeded, (state, { article }): ArticlesState => {
+    return {
       ...state,
       articles: sortArticles([
         ...state.articles.map(storedArticle =>
           storedArticle.id === article.id ? article : storedArticle,
         ),
       ]),
-      setArticle: null,
-      formArticle: null,
+      article,
+      articleFormData: {
+        imageId: article.imageId,
+        title: article.title,
+        body: article.body,
+        isSticky: article.isSticky,
+      } as ArticleFormData,
+    };
+  }),
+
+  on(
+    ArticlesActions.publishArticleSucceeded,
+    ArticlesActions.updateArticleSucceeded,
+    (state, { article }): ArticlesState => ({
+      ...state,
+      articles: sortArticles([
+        ...state.articles.map(storedArticle =>
+          storedArticle.id === article.id ? article : storedArticle,
+        ),
+      ]),
+      article: null,
+      articleFormData: null,
     }),
   ),
 
-  on(ArticlesActions.fetchArticleSucceeded, (state, { article }) => ({
-    ...state,
-    articles: sortArticles([
-      ...state.articles.map(storedArticle =>
-        storedArticle.id === article.id ? article : storedArticle,
-      ),
-    ]),
-    setArticle: article,
-  })),
+  on(
+    ArticlesActions.deleteArticleSelected,
+    (state, { article }): ArticlesState => ({
+      ...state,
+      article,
+    }),
+  ),
 
-  on(ArticlesActions.deleteArticleSelected, (state, { article }) => ({
-    ...state,
-    setArticle: article,
-  })),
+  on(
+    ArticlesActions.deleteArticleSucceeded,
+    (state, { article }): ArticlesState => ({
+      ...state,
+      articles: state.articles.filter(storedArticle => storedArticle.id !== article.id),
+      article: null,
+      articleFormData: null,
+    }),
+  ),
 
-  on(ArticlesActions.deleteArticleSucceeded, (state, { article }) => ({
-    ...state,
-    articles: state.articles.filter(storedArticle => storedArticle.id !== article.id),
-    setArticle: null,
-    formArticle: null,
-  })),
+  on(
+    ArticlesActions.formDataChanged,
+    (state, { articleFormData }): ArticlesState => ({
+      ...state,
+      articleFormData,
+    }),
+  ),
 
-  on(ArticlesActions.formDataChanged, (state, { article }) => ({
-    ...state,
-    formArticle: article,
-  })),
+  on(
+    ArticlesActions.newImageStored,
+    (state): ArticlesState => ({
+      ...state,
+      isNewImageStored: true,
+    }),
+  ),
+
+  on(
+    ArticlesActions.storedImageRemoved,
+    (state): ArticlesState => ({
+      ...state,
+      isNewImageStored: false,
+    }),
+  ),
+
+  on(
+    ArticlesActions.articleUnset,
+    (state): ArticlesState => ({
+      ...state,
+      article: null,
+      articleFormData: null,
+      controlMode: null,
+    }),
+  ),
 );
 
 export function reducer(state: ArticlesState, action: Action): ArticlesState {

@@ -10,9 +10,10 @@ import { Injectable } from '@angular/core';
 
 import { ArticlesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import type { ModificationInfo } from '@app/types';
+import type { Article, ModificationInfo } from '@app/types';
 import { isDefined, parseHttpErrorResponse } from '@app/utils';
 
+import { LOCAL_STORAGE_IMAGE_KEY } from '.';
 import * as ArticlesActions from './articles.actions';
 import * as ArticlesSelectors from './articles.selectors';
 
@@ -37,17 +38,21 @@ export class ArticlesEffects {
 
   fetchArticle$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.articleEditRequested, ArticlesActions.articleViewRequested),
+      ofType(ArticlesActions.fetchArticleRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ articleId }) =>
-        this.articlesService.getArticle(articleId).pipe(
+      switchMap(({ articleId }) => {
+        if (!articleId) {
+          return of(ArticlesActions.newArticleFormTemplateLoaded());
+        }
+
+        return this.articlesService.getArticle(articleId).pipe(
           map(article => ArticlesActions.fetchArticleSucceeded({ article })),
           catchError((errorResponse: HttpErrorResponse) => {
             errorResponse = parseHttpErrorResponse(errorResponse);
             return of(ArticlesActions.fetchArticleFailed({ errorResponse }));
           }),
-        ),
-      ),
+        );
+      }),
       tap(() => this.loaderService.setIsLoading(false)),
     );
   });
@@ -57,24 +62,41 @@ export class ArticlesEffects {
       ofType(ArticlesActions.publishArticleConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
-        this.store.select(ArticlesSelectors.formArticle).pipe(filter(isDefined)),
+        this.store
+          .select(ArticlesSelectors.selectArticleFormData)
+          .pipe(filter(isDefined)),
+        this.store.select(ArticlesSelectors.selectIsNewImageStored),
         this.store.select(AuthSelectors.user).pipe(filter(isDefined)),
       ]),
-      switchMap(([, articleToPublish, user]) => {
-        const dateNow = moment().toISOString();
+      switchMap(([, articleFormData, isNewImageStored, user]) => {
         const modificationInfo: ModificationInfo = {
           createdBy: `${user.firstName} ${user.lastName}`,
-          dateCreated: dateNow,
+          dateCreated: moment().toISOString(),
           lastEditedBy: `${user.firstName} ${user.lastName}`,
-          dateLastEdited: dateNow,
+          dateLastEdited: moment().toISOString(),
         };
-        const modifiedArticle = { ...articleToPublish, modificationInfo };
+        const modifiedArticle: Article = {
+          ...articleFormData,
+          modificationInfo,
+          id: null,
+          imageUrl: null,
+          thumbnailImageUrl: null,
+        };
 
-        return this.articlesService.addArticle(modifiedArticle).pipe(
+        const imageDataUrl = localStorage.getItem(LOCAL_STORAGE_IMAGE_KEY);
+        if (isNewImageStored && !imageDataUrl) {
+          const error = new Error(
+            'Unable to retrieve image data URL from local storage.',
+          );
+          return of(ArticlesActions.publishArticleFailed({ error }));
+        }
+
+        return this.articlesService.addArticle(modifiedArticle, imageDataUrl).pipe(
           map(article => ArticlesActions.publishArticleSucceeded({ article })),
           catchError((errorResponse: HttpErrorResponse) => {
             errorResponse = parseHttpErrorResponse(errorResponse);
-            return of(ArticlesActions.publishArticleFailed({ errorResponse }));
+            const error = new Error(`[${errorResponse.status}] ${errorResponse.error}`);
+            return of(ArticlesActions.publishArticleFailed({ error }));
           }),
         );
       }),
@@ -87,23 +109,39 @@ export class ArticlesEffects {
       ofType(ArticlesActions.updateArticleConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
-        this.store.select(ArticlesSelectors.formArticle).pipe(filter(isDefined)),
+        this.store.select(ArticlesSelectors.selectArticle).pipe(filter(isDefined)),
+        this.store
+          .select(ArticlesSelectors.selectArticleFormData)
+          .pipe(filter(isDefined)),
+        this.store.select(ArticlesSelectors.selectIsNewImageStored),
         this.store.select(AuthSelectors.user).pipe(filter(isDefined)),
       ]),
-      switchMap(([, articleToUpdate, user]) => {
+      switchMap(([, article, articleFormData, isNewImageStored, user]) => {
         const modificationInfo: ModificationInfo = {
-          createdBy: articleToUpdate.modificationInfo!.createdBy,
-          dateCreated: articleToUpdate.modificationInfo!.dateCreated,
+          ...article.modificationInfo!,
           lastEditedBy: `${user.firstName} ${user.lastName}`,
           dateLastEdited: moment().toISOString(),
         };
-        const modifiedArticle = { ...articleToUpdate, modificationInfo };
+        const modifiedArticle = {
+          ...article,
+          ...articleFormData,
+          modificationInfo,
+        };
 
-        return this.articlesService.updateArticle(modifiedArticle).pipe(
+        const imageDataUrl = localStorage.getItem(LOCAL_STORAGE_IMAGE_KEY);
+        if (isNewImageStored && !imageDataUrl) {
+          const error = new Error(
+            'Unable to retrieve image data URL from local storage.',
+          );
+          return of(ArticlesActions.publishArticleFailed({ error }));
+        }
+
+        return this.articlesService.updateArticle(modifiedArticle, imageDataUrl).pipe(
           map(article => ArticlesActions.updateArticleSucceeded({ article })),
           catchError((errorResponse: HttpErrorResponse) => {
             errorResponse = parseHttpErrorResponse(errorResponse);
-            return of(ArticlesActions.updateArticleFailed({ errorResponse }));
+            const error = new Error(`[${errorResponse.status}] ${errorResponse.error}`);
+            return of(ArticlesActions.updateArticleFailed({ error }));
           }),
         );
       }),
@@ -116,10 +154,10 @@ export class ArticlesEffects {
       ofType(ArticlesActions.deleteArticleConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() =>
-        this.store.select(ArticlesSelectors.setArticle).pipe(filter(isDefined)),
+        this.store.select(ArticlesSelectors.selectArticle).pipe(filter(isDefined)),
       ),
-      switchMap(([, articleToDelete]) =>
-        this.articlesService.deleteArticle(articleToDelete).pipe(
+      switchMap(([, article]) =>
+        this.articlesService.deleteArticle(article).pipe(
           map(article => ArticlesActions.deleteArticleSucceeded({ article })),
           catchError((errorResponse: HttpErrorResponse) => {
             errorResponse = parseHttpErrorResponse(errorResponse);

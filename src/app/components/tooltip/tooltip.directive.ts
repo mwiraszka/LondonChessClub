@@ -18,6 +18,9 @@ import { TooltipComponent } from './tooltip.component';
   selector: '[tooltip]',
 })
 export class TooltipDirective implements OnChanges, OnDestroy {
+  // TODO: Automatically destroy when scrolling detected; also build in manual change detection
+  // so that components that use directive can use manual push change detection strategy
+
   private readonly TOOLTIP_MAX_WIDTH_PX = 120;
   private readonly SIDE_SCREEN_PADDING_PX = 1;
 

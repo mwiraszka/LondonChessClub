@@ -1,10 +1,10 @@
 export { ApiScope, isApiScope } from './api-scope.model';
 export { AppScreenTypes } from './app-screens.model';
 export { StoreFeatures } from './app-store-features.model';
-export { type Article, newArticleFormTemplate } from './article.model';
+export { type Article, ArticleFormData, newArticleFormTemplate } from './article.model';
 export type { ClubDocument } from './club-document.model';
 export { type Event, EventTypes, newEventFormTemplate } from './club-event.model';
-export { ControlModes } from './control-modes.model';
+export { ControlMode } from './control-mode.model';
 export type { Id, IsoDate, Url } from './core.model';
 export type { DbCollection } from './db-collection.model';
 export type { GameDetails, GameScore } from './game-details.model';

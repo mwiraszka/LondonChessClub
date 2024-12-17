@@ -169,10 +169,10 @@ export class ModalEffects {
   openPublishArticleModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.publishArticleSelected),
-      map(({ article }) => {
+      map(({ articleTitle }) => {
         const modal: Modal = {
           title: 'Confirm new article',
-          body: `Publish ${article.title}`,
+          body: `Publish ${articleTitle}`,
           buttons: [
             {
               text: 'Cancel',
@@ -194,11 +194,10 @@ export class ModalEffects {
   openUpdateArticleModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleSelected),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.setArticle)),
-      map(([, originalArticle]) => {
+      map(({ articleTitle }) => {
         const modal: Modal = {
           title: 'Confirm article update',
-          body: `Update ${originalArticle?.title}?`,
+          body: `Update ${articleTitle}?`,
           buttons: [
             {
               text: 'Cancel',

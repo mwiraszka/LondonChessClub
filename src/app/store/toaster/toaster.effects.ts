@@ -35,10 +35,10 @@ export class ToasterEffects {
   addPublishArticleFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.publishArticleFailed),
-      map(({ errorResponse }) => {
+      map(({ error }) => {
         const toast: Toast = {
           title: 'New article',
-          message: `[${errorResponse.status}] ${errorResponse.error}`,
+          message: error.message,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -63,10 +63,10 @@ export class ToasterEffects {
   addUpdateArticleFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleFailed),
-      map(({ errorResponse }) => {
+      map(({ error }) => {
         const toast: Toast = {
           title: 'Article update',
-          message: `[${errorResponse.status}] ${errorResponse.error}`,
+          message: error.message,
           type: ToastTypes.WARNING,
         };
         return ToasterActions.toastAdded({ toast });
@@ -506,11 +506,11 @@ export class ToasterEffects {
   addLocalStorageDetectedFullToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ToasterActions.localStorageDetectedFull),
-      map(() => {
+      map(({ fileSize }) => {
         const toast: Toast = {
           title: 'Local storage quota exceeded',
           message: `
-            Oops! Item does not fit in your browser's local storage
+            Oops! File (${fileSize}) does not fit in your browser's local storage - try a smaller file.
           `,
           type: ToastTypes.WARNING,
         };

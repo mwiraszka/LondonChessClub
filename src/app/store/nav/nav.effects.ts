@@ -190,13 +190,14 @@ export class NavEffects {
           .split('/');
         const articleId = articleIdWithAnchor?.split('#')[0];
 
-        return controlMode === 'add' && !articleId
-          ? ArticlesActions.articleAddRequested()
-          : controlMode === 'edit' && !!articleId
-            ? ArticlesActions.articleEditRequested({ articleId })
-            : controlMode === 'view' && !!articleId
-              ? ArticlesActions.articleViewRequested({ articleId })
-              : NavActions.navigationRequested({ path: NavPathTypes.NEWS });
+        if (
+          (controlMode === 'add' && !articleId) ||
+          (controlMode === 'edit' && !!articleId) ||
+          (controlMode === 'view' && !!articleId)
+        ) {
+          return ArticlesActions.fetchArticleRequested({ controlMode, articleId });
+        }
+        return NavActions.navigationRequested({ path: NavPathTypes.NEWS });
       }),
     ),
   );

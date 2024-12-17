@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { ControlModes, newMemberFormTemplate } from '@app/types';
+import { ControlMode, newMemberFormTemplate } from '@app/types';
 
 import * as MembersActions from './members.actions';
 import { MembersState, initialState } from './members.state';
@@ -17,12 +17,12 @@ const membersReducer = createReducer(
     ...state,
     setMember: newMemberFormTemplate,
     formMember: newMemberFormTemplate,
-    controlMode: 'add' as ControlModes,
+    controlMode: 'add' as ControlMode,
   })),
 
   on(MembersActions.memberEditRequested, state => ({
     ...state,
-    controlMode: 'edit' as ControlModes,
+    controlMode: 'edit' as ControlMode,
   })),
 
   on(MembersActions.memberSet, (state, { member }) => ({

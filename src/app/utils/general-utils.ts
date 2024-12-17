@@ -5,8 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 /**
  * @returns A type predicate to eliminate `null` and `undefined` types
  */
-export function isDefined<T extends unknown>(x: T | null | undefined): x is T {
-  return x !== null && x !== undefined;
+export function isDefined<T>(value: T): value is NonNullable<T> {
+  return value !== null && value !== undefined;
 }
 
 /**

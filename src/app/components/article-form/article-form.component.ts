@@ -148,6 +148,9 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
         const imageId = thumbnailImageId.slice(0, -8);
         this.setImageById(imageId);
       });
+    this.imageExplorerRef.instance.close
+      .pipe(first())
+      .subscribe(() => this.overlayService.close());
   }
 
   public onRevertImage(originalImageId?: Id | null): void {

@@ -4,7 +4,7 @@ $spinner-color2: var(--lcc-color--loadingSpinner2);
 /* Absolute center spinner */
 .lcc-loading-spinner {
   position: fixed;
-  z-index: 1000;
+  z-index: 2000;
   height: 2em;
   width: 2em;
   overflow: show;

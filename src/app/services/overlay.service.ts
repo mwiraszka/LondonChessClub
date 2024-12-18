@@ -1,4 +1,4 @@
-import { GlobalPositionStrategy, Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
@@ -29,14 +29,18 @@ export class OverlayService<T> {
       this.close();
     }
 
-    this.overlayRef = this.overlay.create({
-      positionStrategy: new GlobalPositionStrategy()
+    const overlayConfig: OverlayConfig = {
+      positionStrategy: this.overlay
+        .position()
+        .global()
         .centerHorizontally()
         .centerVertically(),
       hasBackdrop: true,
       height: '90vh',
       width: '90vw',
-    });
+    };
+
+    this.overlayRef = this.overlay.create(overlayConfig);
 
     this.renderer.setStyle(this._document.body, 'overflow', 'hidden');
     this.renderer.listen(this.overlayRef.overlayElement, 'click', (event: MouseEvent) => {
@@ -56,6 +60,7 @@ export class OverlayService<T> {
     });
 
     const componentPortal = new ComponentPortal<T>(component);
+
     return this.overlayRef.attach(componentPortal);
   }
 

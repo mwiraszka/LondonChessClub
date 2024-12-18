@@ -1,3 +1,11 @@
+<header>
+  <i-feather
+    name="x"
+    class="close-icon"
+    (click)="close.emit()">
+  </i-feather>
+</header>
+
 <div class="grid-container">
   @for (image of images; track image.id) {
     <div

@@ -1,11 +1,33 @@
 :host {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   height: 100%;
   width: 100%;
-  display: flex;
-  padding: 8px;
-  border: 2px solid var(--lcc-color--imageExplorerBorder);
+  border: 2px solid var(--lcc-color--imageExplorer-border);
   border-radius: var(--lcc-borderRadius--small);
-  background-color: var(--lcc-color--imageExplorerBackground);
+  background-color: var(--lcc-color--imageExplorer-background);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  background-color: var(--lcc-color--imageExplorer-headerBackground);
+  border-bottom: 2px solid var(--lcc-color--imageExplorer-headerBorderBottom);
+
+  .close-icon {
+    margin: 0 4px 0 auto;
+    background-color: inherit;
+    height: 24px;
+    width: 24px;
+    color: var(--lcc-color--imageExplorer-closeIcon);
+
+    &:hover {
+      cursor: pointer;
+      color: var(--lcc-color--imageExplorer-closeIconOnHover);
+    }
+  }
 }
 
 .grid-container {
@@ -14,6 +36,7 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 8px;
   overflow: auto;
+  padding: 8px;
 
   .image-wrapper {
     padding: 4px;
@@ -22,8 +45,8 @@
 
     &:hover {
       cursor: pointer;
-      background-color: var(--lcc-color--imageExplorerImageBackgroundOnHover);
-      border-color: var(--lcc-color--imageExplorerImageBorderOnHover);
+      background-color: var(--lcc-color--imageExplorer-imageBackgroundOnHover);
+      border-color: var(--lcc-color--imageExplorer-imageBorderOnHover);
     }
 
     img,
@@ -37,7 +60,7 @@
     .upload-date,
     .article-appearances {
       font-size: 13px;
-      color: var(--lcc-color--imageExplorerText);
+      color: var(--lcc-color--imageExplorer-text);
 
       label {
         font-weight: bold;

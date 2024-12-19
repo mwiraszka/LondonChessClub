@@ -1,4 +1,5 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { filter, startWith } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
@@ -8,7 +9,7 @@ import { FormatBytesPipe } from '@app/pipes/format-bytes.pipe';
 import { FormatDatePipe } from '@app/pipes/format-date.pipe';
 import { ImagesService, LoaderService } from '@app/services';
 import { Id, Image } from '@app/types';
-import { generatePlaceholderImages } from '@app/utils';
+import { generatePlaceholderImages, isDefined } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -18,7 +19,7 @@ import { generatePlaceholderImages } from '@app/utils';
   imports: [CommonModule, FormatBytesPipe, FormatDatePipe, IconsModule],
 })
 export class ImageExplorerComponent implements OnInit {
-  images: Image[] = generatePlaceholderImages(25);
+  public images: Image[] = [];
 
   @Output() close = new EventEmitter<void>();
   @Output() selectImage = new EventEmitter<Id>();
@@ -32,17 +33,14 @@ export class ImageExplorerComponent implements OnInit {
     this.loaderService.setIsLoading(true);
     this.imagesService
       .getThumbnailImages()
-      .pipe(untilDestroyed(this))
+      .pipe(
+        startWith(generatePlaceholderImages(25)),
+        filter(isDefined),
+        untilDestroyed(this),
+      )
       .subscribe(images => {
         this.images = images;
         this.loaderService.setIsLoading(false);
       });
-  }
-
-  onSelectImage(id?: Id): void {
-    if (!id) {
-      return;
-    }
-    this.selectImage.emit(id);
   }
 }

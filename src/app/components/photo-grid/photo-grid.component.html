@@ -1,6 +1,8 @@
-@for (photo of photos; track photo.filename) {
-  <img
-    [src]="'assets/photos/' + photo.filename + '-320.jpg'"
-    [alt]="photo.description"
-    (click)="facade.onClickPhoto(photo)" />
+@if (photos$ | async; as photos) {
+  @for (photo of photos.slice(0, maxPhotos ?? photos.length); track photo.filename) {
+    <img
+      [src]="'assets/photos/' + photo.filename + '-320.jpg'"
+      [alt]="photo.description"
+      (click)="onClickPhoto(photo)" />
+  }
 }

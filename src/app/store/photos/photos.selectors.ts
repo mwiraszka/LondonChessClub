@@ -10,12 +10,6 @@ export const photosFeatureSelector = createFeatureSelector<PhotosState>(
 
 export const photos = createSelector(photosFeatureSelector, state => state.photos);
 
-export const overlayPhoto = createSelector(
-  photosFeatureSelector,
-  state => state.overlayPhoto,
-);
+export const photo = createSelector(photosFeatureSelector, state => state.photo);
 
-export const isOpen = createSelector(
-  photosFeatureSelector,
-  state => !!state.overlayPhoto,
-);
+export const isOpen = createSelector(photosFeatureSelector, state => !!state.photo);

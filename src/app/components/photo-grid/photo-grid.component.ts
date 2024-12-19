@@ -1,30 +1,37 @@
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Store } from '@ngrx/store';
+import { first } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ComponentRef, Input } from '@angular/core';
 
+import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
+import { OverlayService } from '@app/services';
+import { PhotosActions, PhotosSelectors } from '@app/store/photos';
 import { Photo } from '@app/types';
 
-import { PhotoGridFacade } from './photo-grid.facade';
-
-@UntilDestroy()
 @Component({
   selector: 'lcc-photo-grid',
   templateUrl: './photo-grid.component.html',
   styleUrls: ['./photo-grid.component.scss'],
-  providers: [PhotoGridFacade],
   imports: [CommonModule],
 })
-export class PhotoGridComponent implements OnInit {
-  @Input() maxPhotos?: number;
+export class PhotoGridComponent {
+  @Input() public maxPhotos?: number;
 
-  photos!: Photo[];
+  public readonly photos$ = this.store.select(PhotosSelectors.photos);
 
-  constructor(public facade: PhotoGridFacade) {}
+  private imageViewerRef: ComponentRef<ImageViewerComponent> | null = null;
 
-  ngOnInit(): void {
-    this.facade.photos$.pipe(untilDestroyed(this)).subscribe(photos => {
-      this.photos = photos?.slice(0, this.maxPhotos ?? photos.length);
-    });
+  constructor(
+    private readonly store: Store,
+    private overlayService: OverlayService<ImageViewerComponent>,
+  ) {}
+
+  public onClickPhoto(photo: Photo): void {
+    this.store.dispatch(PhotosActions.photoSelected({ photo }));
+    this.imageViewerRef = this.overlayService.open(ImageViewerComponent);
+    this.imageViewerRef.instance.close
+      .pipe(first())
+      .subscribe(() => this.overlayService.close());
   }
 }

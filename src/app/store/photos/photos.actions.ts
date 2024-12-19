@@ -1,23 +1,10 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Photo } from '@app/types';
+import { Photo } from '@app/types';
 
-enum PhotosActionTypes {
-  IMAGE_OVERLAY_OPENED = '[Photos] Image overlay opened',
-  IMAGE_OVERLAY_CLOSED = '[Photos] Image overlay closed',
-  PREVIOUS_PHOTO_REQUESTED = '[Photos] Previous photo requested',
-  NEXT_PHOTO_REQUESTED = '[Photos] Next photo requested',
-}
-
-export const previousPhotoRequested = createAction(
-  PhotosActionTypes.PREVIOUS_PHOTO_REQUESTED,
-);
-
-export const nextPhotoRequested = createAction(PhotosActionTypes.NEXT_PHOTO_REQUESTED);
-
-export const imageOverlayOpened = createAction(
-  PhotosActionTypes.IMAGE_OVERLAY_OPENED,
+export const photoSelected = createAction(
+  '[Photos] Photo selected',
   props<{ photo: Photo }>(),
 );
-
-export const imageOverlayClosed = createAction(PhotosActionTypes.IMAGE_OVERLAY_CLOSED);
+export const previousPhotoRequested = createAction('[Photos] Previous photo requested');
+export const nextPhotoRequested = createAction('[Photos] Next photo requested');

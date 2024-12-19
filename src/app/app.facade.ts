@@ -8,7 +8,6 @@ import { Inject, Injectable } from '@angular/core';
 
 import { EventsSelectors } from '@app/store/events';
 import { ModalSelectors } from '@app/store/modal';
-import { PhotosSelectors } from '@app/store/photos';
 import { ToasterSelectors } from '@app/store/toaster';
 import { UserSettingsActions, UserSettingsSelectors } from '@app/store/user-settings';
 import { isDefined } from '@app/utils';
@@ -21,7 +20,6 @@ export class AppFacade {
   );
   readonly isDarkMode$ = this.store.select(UserSettingsSelectors.isDarkMode);
   readonly nextEvent$ = this.store.select(EventsSelectors.nextEvent);
-  readonly showImageOverlay$ = this.store.select(PhotosSelectors.isOpen);
   readonly showModal$ = this.store.select(ModalSelectors.isOpen);
   readonly showToaster$ = this.store.select(ToasterSelectors.isDisplayingToasts);
   readonly showUpcomingEventBanner$ = this.store.select(

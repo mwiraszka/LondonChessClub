@@ -5,10 +5,10 @@ import { takeRandomly } from '@app/utils';
 
 export interface PhotosState {
   photos: Photo[];
-  overlayPhoto: Photo | null;
+  photo: Photo | null;
 }
 
 export const initialState: PhotosState = {
   photos: takeRandomly(allPhotos),
-  overlayPhoto: null,
+  photo: null,
 };

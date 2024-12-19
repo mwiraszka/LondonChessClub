@@ -15,6 +15,7 @@ export class OverlayService<T> {
   private overlayRef: OverlayRef | null = null;
   private renderer!: Renderer2;
   private documentClickListener?: () => void;
+  private escapeListener?: () => void;
 
   constructor(
     @Inject(DOCUMENT) private _document: Document,
@@ -46,18 +47,7 @@ export class OverlayService<T> {
     this.renderer.listen(this.overlayRef.overlayElement, 'click', (event: MouseEvent) => {
       event.stopPropagation();
     });
-
-    setTimeout(() => {
-      this.documentClickListener = this.renderer.listen(
-        'document',
-        'click',
-        (event: MouseEvent) => {
-          if (!this.overlayRef?.overlayElement?.contains(event.target as Node)) {
-            this.close();
-          }
-        },
-      );
-    });
+    setTimeout(() => this.setUpCloseEventListeners());
 
     const componentPortal = new ComponentPortal<T>(component);
 
@@ -69,8 +59,29 @@ export class OverlayService<T> {
     this.overlayRef = null;
     this.renderer.removeStyle(this._document.body, 'overflow');
 
-    if (this.documentClickListener) {
-      this.documentClickListener();
-    }
+    // 'Unlisten' to all closing events by calling the listeners' functions
+    this.documentClickListener?.();
+    this.escapeListener?.();
+  }
+
+  private setUpCloseEventListeners(): void {
+    this.documentClickListener = this.renderer.listen(
+      'document',
+      'click',
+      (event: MouseEvent) => {
+        if (!this.overlayRef?.overlayElement?.contains(event.target as Node)) {
+          this.close();
+        }
+      },
+    );
+    this.escapeListener = this.renderer.listen(
+      'document',
+      'keyup',
+      (event: KeyboardEvent) => {
+        if (event.key === 'Escape') {
+          this.close();
+        }
+      },
+    );
   }
 }

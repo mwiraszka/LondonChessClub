@@ -6,7 +6,6 @@ import { RouterOutlet } from '@angular/router';
 
 import { FooterComponent } from '@app/components/footer/footer.component';
 import { HeaderComponent } from '@app/components/header/header.component';
-import { ImageOverlayComponent } from '@app/components/image-overlay/image-overlay.component';
 import { ModalComponent } from '@app/components/modal/modal.component';
 import { NavComponent } from '@app/components/nav/nav.component';
 import { ToasterComponent } from '@app/components/toaster/toaster.component';
@@ -24,7 +23,6 @@ import { AppFacade } from './app.facade';
     CommonModule,
     FooterComponent,
     HeaderComponent,
-    ImageOverlayComponent,
     ModalComponent,
     NavComponent,
     RouterOutlet,
@@ -33,7 +31,7 @@ import { AppFacade } from './app.facade';
   ],
 })
 export class AppComponent implements OnInit {
-  isLoading!: boolean;
+  public isLoading = false;
 
   constructor(
     private changeDetectionRef: ChangeDetectorRef,

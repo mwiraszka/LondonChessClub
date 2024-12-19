@@ -7,17 +7,14 @@ import { ScreenHeaderComponent } from '@app/components/screen-header/screen-head
 import { MetaAndTitleService } from '@app/services';
 import type { Link } from '@app/types';
 
-import { PhotoGalleryScreenFacade } from './photo-gallery-screen.facade';
-
 @Component({
   selector: 'lcc-photo-gallery-screen',
   templateUrl: './photo-gallery-screen.component.html',
   styleUrls: ['./photo-gallery-screen.component.scss'],
-  providers: [PhotoGalleryScreenFacade],
   imports: [CommonModule, LinkListComponent, PhotoGridComponent, ScreenHeaderComponent],
 })
 export class PhotoGalleryScreenComponent implements OnInit {
-  links: Link[] = [
+  public links: Link[] = [
     {
       path: 'https://drive.google.com/drive/folders/13J4PN7VCSs7XXnQi6VCmvShLwJmoPopv',
       text: '2023 Gladiators of the Chessboard Event',
@@ -82,14 +79,9 @@ export class PhotoGalleryScreenComponent implements OnInit {
       path: 'https://londonchessclub.ca/?page_id=916',
       text: '2007 and older',
     },
-  ].map(link => {
-    return { ...link, icon: 'camera' };
-  });
+  ].map(link => ({ ...link, icon: 'camera' }));
 
-  constructor(
-    public facade: PhotoGalleryScreenFacade,
-    private metaAndTitleService: MetaAndTitleService,
-  ) {}
+  constructor(private metaAndTitleService: MetaAndTitleService) {}
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Photo Gallery');

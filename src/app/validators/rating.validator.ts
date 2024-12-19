@@ -5,6 +5,5 @@ export function ratingValidator(control: AbstractControl): ValidationErrors | nu
     return null;
   }
 
-  const regExp = new RegExp(/^[1-9]\d{0,3}(?:\/\d)?$/);
-  return regExp.test(control.value) ? null : { invalidRating: true };
+  return /^[1-9]\d{0,3}(?:\/\d)?$/.test(control.value) ? null : { invalidRating: true };
 }

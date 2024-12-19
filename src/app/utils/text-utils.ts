@@ -7,6 +7,10 @@
  * @returns {string} The same text in kebab-case
  */
 export function kebabize(anyString: string): string {
+  if (!anyString) {
+    return '';
+  }
+
   const wordArray = anyString
     .replace('.', '')
     .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g);

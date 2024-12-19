@@ -1,41 +1,27 @@
+import { Id, Url } from './core.model';
 import type { ModificationInfo } from './modification-info.model';
 
 export interface Article {
-  id: string | null;
+  id: Id | null;
   title: string;
   body: string;
-  imageFile: File | null;
-  imageId: string | null;
-  imageUrl: string | null;
-  thumbnailImageUrl: string | null;
-  isSticky: boolean | string; // Stored as a string in DynamoDB
+  imageId: Id | null;
+  imageUrl: Url | null;
+  thumbnailImageUrl: Url | null;
+  isSticky: boolean;
   modificationInfo: ModificationInfo | null;
 }
 
-export const newArticleFormTemplate: Article = {
-  id: null,
-  title: '',
-  body: '',
-  imageFile: null,
-  imageId: null,
-  imageUrl: null,
-  thumbnailImageUrl: null,
-  isSticky: false,
-  modificationInfo: null,
-};
-
-// Backend representation of the type
-export interface FlatArticle {
-  id: string | null;
+export interface ArticleFormData {
   title: string;
   body: string;
-  imageFile: File | null;
-  imageId: string | null;
-  imageUrl: string | null;
-  thumbnailImageUrl: string | null;
-  isSticky: boolean | string; // Stored as a string in DynamoDB
-  dateCreated: string;
-  createdBy: string;
-  dateLastEdited: string;
-  lastEditedBy: string;
+  imageId: Id | null;
+  isSticky: boolean;
 }
+
+export const newArticleFormTemplate: ArticleFormData = {
+  title: '',
+  body: '',
+  imageId: null,
+  isSticky: false,
+};

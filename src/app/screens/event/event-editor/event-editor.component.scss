@@ -1,4 +1,4 @@
-@import '../../../../styles/abstracts/mixins';
+@use '../../../../styles/abstracts/mixins';
 
 :host {
   display: flex;
@@ -22,8 +22,8 @@ lcc-event-form {
   background-color: var(--lcc-color--form-background);
   border-radius: var(--lcc-borderRadius--small);
 
-  @include respond-to('gt-md') {
-    padding: 32px 64px;
+  @include mixins.respond-to('gt-md') {
+    padding: 8px 64px;
   }
 }
 

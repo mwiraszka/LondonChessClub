@@ -6,8 +6,8 @@ import { filter, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
+import { EventsActions, EventsSelectors } from '@app/store/events';
 import { MembersActions, MembersSelectors } from '@app/store/members';
-import { ScheduleActions, ScheduleSelectors } from '@app/store/schedule';
 import { type Modal, ModalButtonActionTypes, ModalButtonStyleTypes } from '@app/types';
 
 import * as ModalActions from './modal.actions';
@@ -92,7 +92,7 @@ export class ModalEffects {
 
   openAddEventModal$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.addEventSelected),
+      ofType(EventsActions.addEventSelected),
       map(({ event }) => {
         const modal: Modal = {
           title: 'Confirm new event',
@@ -117,8 +117,8 @@ export class ModalEffects {
 
   openUpdateEventModal$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.updateEventSelected),
-      concatLatestFrom(() => this.store.select(ScheduleSelectors.setEvent)),
+      ofType(EventsActions.updateEventSelected),
+      concatLatestFrom(() => this.store.select(EventsSelectors.setEvent)),
       map(([, setEvent]) => {
         const modal: Modal = {
           title: 'Confirm event update',
@@ -143,7 +143,7 @@ export class ModalEffects {
 
   openDeleteEventModal$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.deleteEventSelected),
+      ofType(EventsActions.deleteEventSelected),
       map(({ event }) => {
         const modal: Modal = {
           title: 'Confirm event deletion',
@@ -169,10 +169,10 @@ export class ModalEffects {
   openPublishArticleModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.publishArticleSelected),
-      map(({ article }) => {
+      map(({ articleTitle }) => {
         const modal: Modal = {
           title: 'Confirm new article',
-          body: `Publish ${article.title}`,
+          body: `Publish ${articleTitle}`,
           buttons: [
             {
               text: 'Cancel',
@@ -194,11 +194,10 @@ export class ModalEffects {
   openUpdateArticleModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleSelected),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.setArticle)),
-      map(([, originalArticle]) => {
+      map(({ articleTitle }) => {
         const modal: Modal = {
           title: 'Confirm article update',
-          body: `Update ${originalArticle?.title}?`,
+          body: `Update ${articleTitle}?`,
           buttons: [
             {
               text: 'Cancel',
@@ -314,17 +313,17 @@ export class ModalEffects {
             return MembersActions.deleteMemberCancelled();
 
           case ModalButtonActionTypes.ADD_EVENT_OK:
-            return ScheduleActions.addEventConfirmed();
+            return EventsActions.addEventConfirmed();
           case ModalButtonActionTypes.ADD_EVENT_CANCEL:
-            return ScheduleActions.addEventCancelled();
+            return EventsActions.addEventCancelled();
           case ModalButtonActionTypes.UPDATE_EVENT_OK:
-            return ScheduleActions.updateEventConfirmed();
+            return EventsActions.updateEventConfirmed();
           case ModalButtonActionTypes.UPDATE_EVENT_CANCEL:
-            return ScheduleActions.updateEventCancelled();
+            return EventsActions.updateEventCancelled();
           case ModalButtonActionTypes.DELETE_EVENT_OK:
-            return ScheduleActions.deleteEventConfirmed();
+            return EventsActions.deleteEventConfirmed();
           case ModalButtonActionTypes.DELETE_EVENT_CANCEL:
-            return ScheduleActions.deleteEventCancelled();
+            return EventsActions.deleteEventCancelled();
 
           case ModalButtonActionTypes.PUBLISH_ARTICLE_OK:
             return ArticlesActions.publishArticleConfirmed();

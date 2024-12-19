@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard, UnsavedMemberGuard } from '@app/guards';
+import { AuthGuard } from '@app/guards/auth.guard';
+import { UnsavedMemberGuard } from '@app/guards/unsaved-member.guard';
 import { NavPathTypes } from '@app/types';
 
-import { MemberEditorComponent } from './member-editor';
+import { MemberEditorComponent } from './member-editor/member-editor.component';
 
 const routes: Routes = [
   {

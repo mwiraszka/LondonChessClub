@@ -14,3 +14,16 @@
 .lcc-disable-scrolling {
   overflow: hidden;
 }
+
+// Ensure overlay component in Overlay Service is rendered already centred
+.cdk-global-overlay-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .cdk-overlay-pane {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

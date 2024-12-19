@@ -1,13 +1,17 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
-import { map, switchMap, tap } from 'rxjs/operators';
+import moment from 'moment-timezone';
+import { of } from 'rxjs';
+import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { LoaderService, MembersService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import type { Member, ModificationInfo, ServiceResponse } from '@app/types';
+import type { ApiScope, ModificationInfo } from '@app/types';
+import { getNewPeakRating, isDefined, parseHttpErrorResponse } from '@app/utils';
 
 import * as MembersActions from './members.actions';
 import * as MembersSelectors from './members.selectors';
@@ -19,17 +23,16 @@ export class MembersEffects {
       ofType(MembersActions.fetchMembersRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
-      switchMap(([, isAdmin]) =>
-        this.membersService.getMembers(isAdmin).pipe(
-          map((response: ServiceResponse<Member[]>) => {
-            return response.error
-              ? MembersActions.fetchMembersFailed({ error: response.error })
-              : MembersActions.fetchMembersSucceeded({
-                  members: response.payload!,
-                });
+      switchMap(([, isAdmin]) => {
+        const scope: ApiScope = isAdmin ? 'admin' : 'public';
+        return this.membersService.getMembers(scope).pipe(
+          map(members => MembersActions.fetchMembersSucceeded({ members })),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(MembersActions.fetchMembersFailed({ errorResponse }));
           }),
-        ),
-      ),
+        );
+      }),
       tap(() => this.loaderService.setIsLoading(false)),
     );
   });
@@ -38,19 +41,17 @@ export class MembersEffects {
     return this.actions$.pipe(
       ofType(MembersActions.memberEditRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ memberId }) =>
-        this.membersService.getMember(memberId).pipe(
-          map((response: ServiceResponse<Member>) =>
-            response.error
-              ? MembersActions.fetchMemberFailed({
-                  error: response.error,
-                })
-              : MembersActions.fetchMemberSucceeded({
-                  member: response.payload!,
-                }),
-          ),
-        ),
-      ),
+      concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
+      switchMap(([{ memberId }, isAdmin]) => {
+        const scope: ApiScope = isAdmin ? 'admin' : 'public';
+        return this.membersService.getMember(scope, memberId).pipe(
+          map(member => MembersActions.fetchMemberSucceeded({ member })),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(MembersActions.fetchMemberFailed({ errorResponse }));
+          }),
+        );
+      }),
       tap(() => this.loaderService.setIsLoading(false)),
     );
   });
@@ -60,27 +61,25 @@ export class MembersEffects {
       ofType(MembersActions.addMemberConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
-        this.store.select(MembersSelectors.formMember),
-        this.store.select(AuthSelectors.user),
+        this.store.select(MembersSelectors.formMember).pipe(filter(isDefined)),
+        this.store.select(AuthSelectors.user).pipe(filter(isDefined)),
       ]),
       switchMap(([, memberToAdd, user]) => {
-        const dateNow = new Date(Date.now());
+        const dateNow = moment().toISOString();
         const modificationInfo: ModificationInfo = {
-          createdBy: `${user!.firstName} ${user!.lastName}`,
+          createdBy: `${user.firstName} ${user.lastName}`,
           dateCreated: dateNow,
-          lastEditedBy: `${user!.firstName} ${user!.lastName}`,
+          lastEditedBy: `${user.firstName} ${user.lastName}`,
           dateLastEdited: dateNow,
         };
-        const modifiedMember = { ...memberToAdd!, modificationInfo };
+        const modifiedMember = { ...memberToAdd, modificationInfo };
 
         return this.membersService.addMember(modifiedMember).pipe(
-          map((response: ServiceResponse<Member>) =>
-            response.error
-              ? MembersActions.addMemberFailed({ error: response.error })
-              : MembersActions.addMemberSucceeded({
-                  member: response.payload!,
-                }),
-          ),
+          map(member => MembersActions.addMemberSucceeded({ member })),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(MembersActions.addMemberFailed({ errorResponse }));
+          }),
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -92,27 +91,28 @@ export class MembersEffects {
       ofType(MembersActions.updateMemberConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
-        this.store.select(MembersSelectors.formMember),
-        this.store.select(AuthSelectors.user),
+        this.store.select(MembersSelectors.formMember).pipe(filter(isDefined)),
+        this.store.select(AuthSelectors.user).pipe(filter(isDefined)),
       ]),
       switchMap(([, memberToUpdate, user]) => {
-        const dateNow = new Date(Date.now());
+        const peakRating = getNewPeakRating(
+          memberToUpdate.rating,
+          memberToUpdate.peakRating,
+        );
         const modificationInfo: ModificationInfo = {
-          createdBy: memberToUpdate!.modificationInfo!.createdBy,
-          dateCreated: memberToUpdate!.modificationInfo!.dateCreated,
-          lastEditedBy: `${user!.firstName} ${user!.lastName}`,
-          dateLastEdited: dateNow,
+          createdBy: memberToUpdate.modificationInfo!.createdBy,
+          dateCreated: memberToUpdate.modificationInfo!.dateCreated,
+          lastEditedBy: `${user.firstName} ${user.lastName}`,
+          dateLastEdited: moment().toISOString(),
         };
-        const modifiedMember = { ...memberToUpdate!, modificationInfo };
+        const modifiedMember = { ...memberToUpdate, peakRating, modificationInfo };
 
-        return this.membersService.updateMember(modifiedMember!).pipe(
-          map((response: ServiceResponse<Member>) =>
-            response.error
-              ? MembersActions.updateMemberFailed({ error: response.error })
-              : MembersActions.updateMemberSucceeded({
-                  member: response.payload!,
-                }),
-          ),
+        return this.membersService.updateMember(modifiedMember).pipe(
+          map(member => MembersActions.updateMemberSucceeded({ member })),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(MembersActions.updateMemberFailed({ errorResponse }));
+          }),
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -123,16 +123,16 @@ export class MembersEffects {
     return this.actions$.pipe(
       ofType(MembersActions.deleteMemberConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() => this.store.select(MembersSelectors.setMember)),
+      concatLatestFrom(() =>
+        this.store.select(MembersSelectors.setMember).pipe(filter(isDefined)),
+      ),
       switchMap(([, memberToDelete]) =>
-        this.membersService.deleteMember(memberToDelete!).pipe(
-          map((response: ServiceResponse<Member>) =>
-            response.error
-              ? MembersActions.deleteMemberFailed({ error: response.error })
-              : MembersActions.deleteMemberSucceeded({
-                  member: response.payload!,
-                }),
-          ),
+        this.membersService.deleteMember(memberToDelete).pipe(
+          map(member => MembersActions.deleteMemberSucceeded({ member })),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(MembersActions.deleteMemberFailed({ errorResponse }));
+          }),
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -140,8 +140,8 @@ export class MembersEffects {
   });
 
   constructor(
-    private readonly store: Store,
     private readonly actions$: Actions,
+    private readonly store: Store,
     private loaderService: LoaderService,
     private membersService: MembersService,
   ) {}

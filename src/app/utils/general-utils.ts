@@ -1,13 +1,12 @@
-/* eslint-disable no-prototype-builtins */
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { isEqual } from 'lodash';
+
+import { HttpErrorResponse } from '@angular/common/http';
 
 /**
  * @returns A type predicate to eliminate `null` and `undefined` types
  */
-export function isDefined<T extends {}>(x: T | null | undefined): x is T {
-  return x !== null && x !== undefined;
+export function isDefined<T>(value: T): value is NonNullable<T> {
+  return value !== null && value !== undefined;
 }
 
 /**
@@ -62,53 +61,90 @@ export function isEmpty(value: any): boolean {
  * `sortedItems = items.sort(customSort(key, order))`
  *
  * @param {string} key The object property to sort by
- * @param {boolean} isAscending Whether sort is in ascending order (i.e. 1..10, a..z)
+ * @param {boolean} isAscending Whether sort is in ascending order (i.e. 1 -> 9, a -> z)
  *
- * @returns The sorting function used to determine the order of the elements.
- * It is expected to return a negative value if the first argument is less than the
- * second argument, zero if they're equal, and a positive value otherwise. If omitted,
- * the elements are sorted in ascending, ASCII character order:
- * `[11,2,22,1].sort((a, b) => a - b)`
+ * @returns a custom sort function, set to sort the given keys based on their types
+ * returning -1 if the first value is less; 0 if equal; 1 if the first value is greater
  */
-export function customSort(key: string, isAscending: boolean) {
-  return function innerSort(a: Object, b: Object, _key = key): number {
+export function customSort(key: string) {
+  return function _sort(a: any, b: any, _key = key): -1 | 0 | 1 {
     if (
       _key.includes('.') &&
       a.hasOwnProperty(_key.split('.')[0]) &&
       b.hasOwnProperty(_key.split('.')[0])
     ) {
-      // Call innerSort recursively until lowest-level property reached
+      // Call _sort() recursively until lowest-level property reached
       const aInnerObject = (a as any)[_key.split('.')[0]];
       const bInnerObject = (b as any)[_key.split('.')[0]];
-      return innerSort(aInnerObject, bInnerObject, _key.split('.')[1]);
+      return _sort(aInnerObject, bInnerObject, _key.split('.')[1]);
     }
 
     if (!a.hasOwnProperty(_key) || !b.hasOwnProperty(_key)) {
-      return 0; // Property doesn't exist on either object
+      console.error(
+        `[LCC] Sort error: property '${_key}' does not exist on both objects.`,
+      );
+      return 0;
     }
 
-    let aVal = (a as any)[_key];
-    let bVal = (b as any)[_key];
+    let aVal = a[_key];
+    let bVal = b[_key];
 
-    if (aVal instanceof Date && bVal instanceof Date) {
-      aVal = aVal.getTime();
-      bVal = bVal.getTime();
-    } else if (!isNaN(aVal?.split('/')[0]) && !isNaN(bVal?.split('/')[0])) {
-      // If both objects (before a potential slash) are valid numbers, convert
-      // to number type (used specifically for provisional ratings in the format 1234/5)
-      aVal = +aVal.split('/')[0];
-      bVal = +bVal.split('/')[0];
-    } else if (typeof aVal === 'string' && typeof bVal === 'string') {
-      aVal = aVal.toUpperCase();
-      bVal = bVal.toUpperCase();
+    if (!isDefined(aVal) && !isDefined(bVal)) {
+      return 0;
     }
 
-    let ascendingOrder = aVal > bVal ? 1 : aVal < bVal ? -1 : 0;
-    if (typeof aVal === 'string' && typeof bVal === 'string') {
-      ascendingOrder *= -1;
+    if (!isDefined(aVal)) {
+      return 1;
     }
 
-    return isAscending ? ascendingOrder : ascendingOrder * -1;
+    if (!isDefined(bVal)) {
+      return -1;
+    }
+
+    if (typeof aVal !== typeof bVal) {
+      console.error(
+        `[LCC] Sort error: cannot compare ${aVal} (${typeof aVal}) with ${bVal} (${typeof bVal}).`,
+        a,
+        b,
+      );
+      return 0;
+    }
+
+    if (aVal instanceof Date || bVal instanceof Date) {
+      console.error(`[LCC] Sort error: JS date object detected while sorting '${_key}'`);
+      return 0;
+    }
+
+    if (typeof aVal === 'number') {
+      return aVal < bVal ? -1 : aVal === bVal ? 0 : 1;
+    }
+
+    if (typeof aVal !== 'string') {
+      console.error(
+        `[LCC] Sort error: unknown property type detected while sorting '${_key}': '${typeof aVal}'`,
+      );
+      return 0;
+    }
+
+    if (typeof bVal !== 'string') {
+      console.error(
+        `[LCC] Sort error: unknown property type detected while sorting '${_key}': '${typeof bVal}'`,
+      );
+      return 0;
+    }
+
+    let aCompare;
+    let bCompare;
+
+    if (['rating', 'peakRating'].includes(key)) {
+      aCompare = Number(aVal.split('/')[0]);
+      bCompare = Number(bVal.split('/')[0]);
+      return aCompare < bCompare ? -1 : aCompare === bCompare ? 0 : 1;
+    } else {
+      aCompare = aVal.toUpperCase();
+      bCompare = bVal.toUpperCase();
+      return aCompare < bCompare ? -1 : aCompare === bCompare ? 0 : 1;
+    }
   };
 }
 
@@ -123,4 +159,22 @@ export function customSort(key: string, isAscending: boolean) {
  */
 export function takeRandomly<T>(array: T[], n?: number): T[] {
   return array.sort(() => 0.5 - Math.random()).slice(0, n ?? array?.length ?? 0);
+}
+
+/**
+ *
+ * @param {HttpErrorResponse} response
+ * @returns Converts 0-status errors to more understandable 500-status server errors;
+ * otherwise returns the response unchanged
+ */
+export function parseHttpErrorResponse(response: HttpErrorResponse): HttpErrorResponse {
+  if (response.status !== 0) {
+    return response;
+  }
+
+  return {
+    ...response,
+    status: 500,
+    error: 'Unknown server error.',
+  };
 }

@@ -1,6 +1,6 @@
-import { PDFProgressData } from 'ng2-pdf-viewer';
+import { PDFProgressData, PdfViewerModule } from 'ng2-pdf-viewer';
 
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   Component,
   HostListener,
@@ -13,6 +13,9 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 
+import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
+import { IconsModule } from '@app/icons';
+import { FormatDatePipe } from '@app/pipes/format-date.pipe';
 import { LoaderService, MetaAndTitleService } from '@app/services';
 import { ClubDocument } from '@app/types';
 
@@ -20,6 +23,13 @@ import { ClubDocument } from '@app/types';
   selector: 'lcc-documents-screen',
   templateUrl: './documents-screen.component.html',
   styleUrls: ['./documents-screen.component.scss'],
+  imports: [
+    CommonModule,
+    FormatDatePipe,
+    IconsModule,
+    PdfViewerModule,
+    ScreenHeaderComponent,
+  ],
 })
 export class DocumentsScreenComponent implements OnInit, OnDestroy {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -28,30 +38,31 @@ export class DocumentsScreenComponent implements OnInit, OnDestroy {
   documentSrc?: string;
   loadedPercentage = 100;
 
+  // Dates represent midnight EST converted to UTC
   readonly documents: ClubDocument[] = [
     {
       title: 'Club Bylaws',
       fileName: 'lcc-bylaws.pdf',
-      datePublished: '2024-04-24',
-      dateLastModified: '2024-04-24',
+      datePublished: '2024-04-24T04:00:00:000',
+      dateLastModified: '2024-04-24T04:00:00:000',
     },
     {
       title: 'Board Meeting - DEC 12, 2023 - Minutes',
       fileName: 'lcc-board-meeting-2023-12-12-minutes.pdf',
-      datePublished: '2024-04-24',
-      dateLastModified: '2024-04-24',
+      datePublished: '2024-04-24T04:00:00:000',
+      dateLastModified: '2024-04-24T04:00:00:000',
     },
     {
       title: 'Board Meeting - JAN 9, 2024 - Minutes',
       fileName: 'lcc-board-meeting-2024-01-09-minutes.pdf',
-      datePublished: '2024-04-24',
-      dateLastModified: '2024-04-24',
+      datePublished: '2024-04-24T04:00:00:000',
+      dateLastModified: '2024-04-24T04:00:00:000',
     },
     {
       title: 'Board Meeting - APR 2, 2024 - Minutes',
       fileName: 'lcc-board-meeting-2024-04-02-minutes.pdf',
-      datePublished: '2024-04-24',
-      dateLastModified: '2024-04-24',
+      datePublished: '2024-04-24T04:00:00:000',
+      dateLastModified: '2024-04-24T04:00:00:000',
     },
   ];
 

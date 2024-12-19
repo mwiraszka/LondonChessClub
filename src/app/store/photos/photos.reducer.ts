@@ -8,22 +8,29 @@ import { PhotosState, initialState } from './photos.state';
 const photosReducer = createReducer(
   initialState,
 
-  on(PhotosActions.imageOverlayOpened, (state, action) => ({
-    ...state,
-    overlayPhoto: action.photo,
-  })),
+  on(
+    PhotosActions.photoSelected,
+    (state, { photo }): PhotosState => ({
+      ...state,
+      photo: photo,
+    }),
+  ),
 
-  on(PhotosActions.imageOverlayClosed, () => initialState),
+  on(
+    PhotosActions.previousPhotoRequested,
+    (state): PhotosState => ({
+      ...state,
+      photo: getPreviousPhoto(state.photos, state.photo),
+    }),
+  ),
 
-  on(PhotosActions.previousPhotoRequested, state => ({
-    ...state,
-    overlayPhoto: getPreviousPhoto(state.photos, state.overlayPhoto),
-  })),
-
-  on(PhotosActions.nextPhotoRequested, state => ({
-    ...state,
-    overlayPhoto: getNextPhoto(state.photos, state.overlayPhoto),
-  })),
+  on(
+    PhotosActions.nextPhotoRequested,
+    (state): PhotosState => ({
+      ...state,
+      photo: getNextPhoto(state.photos, state.photo),
+    }),
+  ),
 );
 
 export function reducer(state: PhotosState, action: Action) {

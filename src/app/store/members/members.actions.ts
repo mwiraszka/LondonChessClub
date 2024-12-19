@@ -1,6 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Member } from '@app/types';
+import { HttpErrorResponse } from '@angular/common/http';
+
+import type { Id, Member } from '@app/types';
 
 enum MembersActionTypes {
   FETCH_MEMBERS_REQUESTED = '[Members] Fetch members requested',
@@ -56,18 +58,18 @@ export const fetchMembersSucceeded = createAction(
 );
 export const fetchMembersFailed = createAction(
   MembersActionTypes.FETCH_MEMBERS_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const memberAddRequested = createAction(MembersActionTypes.MEMBER_ADD_REQUESTED);
 export const memberEditRequested = createAction(
   MembersActionTypes.MEMBER_EDIT_REQUESTED,
-  props<{ memberId: string }>(),
+  props<{ memberId: Id }>(),
 );
 
 export const fetchMemberRequested = createAction(
   MembersActionTypes.FETCH_MEMBER_REQUESTED,
-  props<{ memberId: string }>(),
+  props<{ memberId: Id }>(),
 );
 export const fetchMemberSucceeded = createAction(
   MembersActionTypes.FETCH_MEMBER_SUCCEEDED,
@@ -75,7 +77,7 @@ export const fetchMemberSucceeded = createAction(
 );
 export const fetchMemberFailed = createAction(
   MembersActionTypes.FETCH_MEMBER_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const memberSet = createAction(
@@ -116,7 +118,7 @@ export const addMemberSucceeded = createAction(
 );
 export const addMemberFailed = createAction(
   MembersActionTypes.ADD_MEMBER_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const updateMemberSelected = createAction(
@@ -135,7 +137,7 @@ export const updateMemberSucceeded = createAction(
 );
 export const updateMemberFailed = createAction(
   MembersActionTypes.UPDATE_MEMBER_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const deleteMemberSelected = createAction(
@@ -154,7 +156,7 @@ export const deleteMemberSucceeded = createAction(
 );
 export const deleteMemberFailed = createAction(
   MembersActionTypes.DELETE_MEMBER_FAILED,
-  props<{ error: Error }>(),
+  props<{ errorResponse: HttpErrorResponse }>(),
 );
 
 export const cancelSelected = createAction(MembersActionTypes.CANCEL_SELECTED);

@@ -5,7 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 /**
  * Strips all markdown characters from the text.
  */
-@Pipe({ name: 'stripMarkdown' })
+@Pipe({
+  name: 'stripMarkdown',
+})
 export class StripMarkdownPipe implements PipeTransform {
   transform(markdown: string): string {
     return removeMd(markdown)

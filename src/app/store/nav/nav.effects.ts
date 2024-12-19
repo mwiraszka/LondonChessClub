@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 
 import { ArticlesActions } from '@app/store/articles';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
+import { EventsActions } from '@app/store/events';
 import { MembersActions } from '@app/store/members';
-import { ScheduleActions } from '@app/store/schedule';
 import { NavPathTypes } from '@app/types';
 
 import { NavSelectors } from '.';
@@ -62,10 +62,10 @@ export class NavEffects {
   navigateToSchedule$ = createEffect(() =>
     this.actions$.pipe(
       ofType(
-        ScheduleActions.cancelSelected,
-        ScheduleActions.addEventSucceeded,
-        ScheduleActions.updateEventSucceeded,
-        ScheduleActions.fetchEventFailed,
+        EventsActions.cancelSelected,
+        EventsActions.addEventSucceeded,
+        EventsActions.updateEventSucceeded,
+        EventsActions.fetchEventFailed,
       ),
       map(() => NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE })),
     ),
@@ -118,9 +118,9 @@ export class NavEffects {
         const [controlMode, eventId] = currentPath.split('/event/')[1].split('/');
 
         return controlMode === 'add' && !eventId
-          ? ScheduleActions.eventAddRequested()
+          ? EventsActions.eventAddRequested()
           : controlMode === 'edit' && !!eventId
-            ? ScheduleActions.eventEditRequested({ eventId })
+            ? EventsActions.eventEditRequested({ eventId })
             : NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE });
       }),
     ),
@@ -140,7 +140,7 @@ export class NavEffects {
           currentPath !== '/event/add'
         );
       }),
-      map(() => ScheduleActions.eventUnset()),
+      map(() => EventsActions.eventUnset()),
     ),
   );
 
@@ -190,13 +190,14 @@ export class NavEffects {
           .split('/');
         const articleId = articleIdWithAnchor?.split('#')[0];
 
-        return controlMode === 'add' && !articleId
-          ? ArticlesActions.articleAddRequested()
-          : controlMode === 'edit' && !!articleId
-            ? ArticlesActions.articleEditRequested({ articleId })
-            : controlMode === 'view' && !!articleId
-              ? ArticlesActions.articleViewRequested({ articleId })
-              : NavActions.navigationRequested({ path: NavPathTypes.NEWS });
+        if (
+          (controlMode === 'add' && !articleId) ||
+          (controlMode === 'edit' && !!articleId) ||
+          (controlMode === 'view' && !!articleId)
+        ) {
+          return ArticlesActions.fetchArticleRequested({ controlMode, articleId });
+        }
+        return NavActions.navigationRequested({ path: NavPathTypes.NEWS });
       }),
     ),
   );

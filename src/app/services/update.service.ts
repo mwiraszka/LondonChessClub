@@ -7,7 +7,7 @@ import { SwUpdate } from '@angular/service-worker';
   providedIn: 'root',
 })
 export class UpdateService {
-  isNewVersionAvailable$ = this.swUpdate.versionUpdates.pipe(
+  public isNewVersionAvailable$ = this.swUpdate.versionUpdates.pipe(
     map(versionEvent => versionEvent.type !== 'NO_NEW_VERSION_DETECTED'),
   );
 

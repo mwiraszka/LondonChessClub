@@ -8,7 +8,7 @@ import { Article } from '@app/types';
 
 @Injectable()
 export class ArticleGridFacade {
-  readonly articles$ = this.store.select(ArticlesSelectors.articles);
+  readonly articles$ = this.store.select(ArticlesSelectors.selectArticles);
   readonly isAdmin$ = this.store.select(AuthSelectors.isAdmin);
 
   constructor(private readonly store: Store) {}

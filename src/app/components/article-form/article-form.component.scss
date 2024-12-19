@@ -1,4 +1,4 @@
-@import '../../../styles/components/table';
+@use '../../../styles/components/table';
 
 :host {
   display: flex;
@@ -13,7 +13,7 @@
 
   .banner-image,
   .loading-placeholder-image {
-    aspect-ratio: 3/2;
+    aspect-ratio: 3 / 2;
     object-fit: cover;
     width: 100%;
     border-radius: var(--lcc-borderRadius--large);
@@ -25,19 +25,22 @@
     justify-content: flex-start;
     gap: 8px;
 
-    .image-revert-button {
-      width: 34px; // Match button height
-      padding: 2px;
+    label[type='button'] {
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      .revert-icon {
-        width: 18px;
-        height: 18px;
+      input[type='file'] {
+        display: none;
       }
     }
-  }
 
-  input[type='file'] {
-    display: none;
+    button,
+    label[type='button'] {
+      padding: 0;
+      height: 40px;
+      width: 40px;
+    }
   }
 
   .preview-section-container {

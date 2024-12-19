@@ -7,7 +7,7 @@ import { ModalButtonActionTypes } from '@app/types';
 
 @Injectable()
 export class ModalFacade {
-  modal$ = this.store.select(ModalSelectors.modal);
+  readonly modal$ = this.store.select(ModalSelectors.modal);
 
   constructor(private readonly store: Store) {}
 
@@ -15,8 +15,6 @@ export class ModalFacade {
     this.store.dispatch(ModalActions.selectionMade({ action }));
   }
 
-  // TODO: Hook up for all other 'cancel' action types/
-  // implement a single, generic cancel type
   onClose(): void {
     this.store.dispatch(
       ModalActions.selectionMade({

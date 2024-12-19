@@ -1,8 +1,12 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { combineLatest } from 'rxjs';
 
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
+import { ArticleFormComponent } from '@app/components/article-form/article-form.component';
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { MetaAndTitleService } from '@app/services';
 import { type Link, NavPathTypes } from '@app/types';
 
@@ -14,6 +18,7 @@ import { ArticleEditorFacade } from './article-editor.facade';
   templateUrl: './article-editor.component.html',
   styleUrls: ['./article-editor.component.scss'],
   providers: [ArticleEditorFacade],
+  imports: [ArticleFormComponent, CommonModule, LinkListComponent, ScreenHeaderComponent],
 })
 export class ArticleEditorComponent implements OnInit {
   links: Link[] = [
@@ -35,7 +40,7 @@ export class ArticleEditorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    combineLatest([this.facade.setArticleTitle$, this.facade.controlMode$])
+    combineLatest([this.facade.articleTitle$, this.facade.controlMode$])
       .pipe(untilDestroyed(this))
       .subscribe(([articleTitle, controlMode]) => {
         const screenTitle =

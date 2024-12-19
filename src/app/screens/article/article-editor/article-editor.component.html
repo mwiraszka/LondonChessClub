@@ -3,8 +3,8 @@
     [hasUnsavedChanges]="(facade.hasUnsavedChanges$ | async) ?? undefined"
     [title]="
       (facade.controlMode$ | async) === 'edit'
-        ? !!(facade.setArticleTitle$ | async)
-          ? 'Edit ' + (facade.setArticleTitle$ | async)
+        ? !!(facade.articleTitle$ | async)
+          ? 'Edit ' + (facade.articleTitle$ | async)
           : ''
         : 'Create an article'
     ">

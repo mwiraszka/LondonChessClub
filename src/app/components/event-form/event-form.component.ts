@@ -1,12 +1,24 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { debounceTime, filter, first } from 'rxjs/operators';
+import moment from 'moment-timezone';
+import { combineLatestWith, debounceTime, filter, first } from 'rxjs/operators';
 
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
-import type { ClubEvent } from '@app/types';
-import { articleIdRegExp, isDefined } from '@app/utils';
-import { dateValidator } from '@app/validators';
+import { DatePickerComponent } from '@app/components/date-picker/date-picker.component';
+import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
+import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { IconsModule } from '@app/icons';
+import type { Event } from '@app/types';
+import { isDefined, isTime } from '@app/utils';
+import { timeValidator } from '@app/validators';
 
 import { EventFormFacade } from './event-form.facade';
 
@@ -16,6 +28,14 @@ import { EventFormFacade } from './event-form.facade';
   templateUrl: './event-form.component.html',
   styleUrls: ['./event-form.component.scss'],
   providers: [EventFormFacade],
+  imports: [
+    CommonModule,
+    DatePickerComponent,
+    IconsModule,
+    ModificationInfoComponent,
+    ReactiveFormsModule,
+    TooltipDirective,
+  ],
 })
 export class EventFormComponent implements OnInit {
   form!: FormGroup;
@@ -26,10 +46,16 @@ export class EventFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.facade.formEvent$.pipe(filter(isDefined), first()).subscribe(event => {
-      this.initForm(event);
-      this.initValueChangesListener();
-    });
+    this.facade.setEvent$
+      .pipe(filter(isDefined), combineLatestWith(this.facade.formEvent$), first())
+      .subscribe(([setEvent, formEvent]) => {
+        if (!formEvent) {
+          formEvent = setEvent;
+        }
+
+        this.initForm(formEvent);
+        this.initValueChangesListener();
+      });
   }
 
   hasError(control: AbstractControl): boolean {
@@ -39,8 +65,8 @@ export class EventFormComponent implements OnInit {
   getErrorMessage(control: AbstractControl): string {
     if (control.hasError('required')) {
       return 'This field is required';
-    } else if (control.hasError('invalidDateFormat')) {
-      return 'Invalid date format - please input as YYYY-MM-DD';
+    } else if (control.hasError('invalidTimeFormat')) {
+      return 'Invalid time - please input in hh:mm AM/PM format';
     } else if (control.hasError('pattern')) {
       return 'Invalid input (incorrect format)';
     } else {
@@ -60,16 +86,17 @@ export class EventFormComponent implements OnInit {
     this.facade.onSubmit(this.form.value);
   }
 
-  private initForm(event: ClubEvent): void {
+  private initForm(event: Event): void {
+    // Displayed in local time since America/Toronto set as default timezone in app.component
+    const eventTime: string = moment(event.eventDate).format('h:mm A');
+
     this.form = this.formBuilder.group({
-      eventDate: [event.eventDate, [Validators.required, dateValidator]],
+      eventDate: [event.eventDate, [Validators.required]],
+      eventTime: [eventTime, [Validators.required, timeValidator]],
       title: [event.title, [Validators.required, Validators.pattern(/[^\s]/)]],
       details: [event.details, [Validators.required, Validators.pattern(/[^\s]/)]],
       type: [event.type, [Validators.required]],
-      associatedArticleId: [
-        event.associatedArticleId,
-        [Validators.pattern(articleIdRegExp)],
-      ],
+      articleId: [event.articleId, [Validators.pattern(/^[a-fA-F0-9]{24}$/)]],
       id: [event.id],
       modificationInfo: [event.modificationInfo],
     });
@@ -78,6 +105,22 @@ export class EventFormComponent implements OnInit {
   private initValueChangesListener(): void {
     this.form.valueChanges
       .pipe(debounceTime(500), untilDestroyed(this))
-      .subscribe((event: ClubEvent) => this.facade.onValueChange(event));
+      .subscribe((formData: Event & { eventTime: string }) => {
+        const { eventTime, ...event } = formData;
+
+        if (isTime(eventTime)) {
+          let hours = Number(eventTime.split(':')[0]) % 12;
+          if (eventTime.slice(-2).toUpperCase() === 'PM') {
+            hours += 12;
+          }
+          const minutes = Number(eventTime.split(':')[1].slice(0, 2));
+          event.eventDate = moment(event.eventDate)
+            .hours(hours)
+            .minutes(minutes)
+            .toISOString();
+        }
+
+        return this.facade.onValueChange(event);
+      });
   }
 }

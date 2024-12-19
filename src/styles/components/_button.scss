@@ -21,6 +21,18 @@
   }
 }
 
+.lcc-primary-button {
+  @include lcc-button;
+
+  box-shadow: 1px 1px 4px -2px var(--lcc-color--button-raisedButtonBoxShadow);
+  background-color: var(--lcc-color--button-primaryButtonBackground);
+  color: var(--lcc-color--button-primaryButtonForeground);
+
+  &:hover {
+    background-color: var(--lcc-color--button-primaryButtonBackgroundOnHover);
+  }
+}
+
 .lcc-secondary-button {
   @include lcc-button;
 
@@ -53,18 +65,6 @@
       border-color: var(--lcc-color--button-darkSecondaryButtonBorderOnHover);
       color: var(--lcc-color--button-darkSecondaryButtonForegroundOnHover);
     }
-  }
-}
-
-.lcc-primary-button {
-  @include lcc-button;
-
-  box-shadow: 1px 1px 4px -2px var(--lcc-color--button-raisedButtonBoxShadow);
-  background-color: var(--lcc-color--button-primaryButtonBackground);
-  color: var(--lcc-color--button-primaryButtonForeground);
-
-  &:hover {
-    background-color: var(--lcc-color--button-primaryButtonBackgroundOnHover);
   }
 }
 

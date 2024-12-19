@@ -97,7 +97,7 @@ $lcc-color-palette: (
   ),
 );
 
-@function color($color, $tone: base, $opacity: 1) {
+@function clr($color, $tone: base, $opacity: 1) {
   @if map.has-key($lcc-color-palette, $color) {
     $colorKey: map.get($lcc-color-palette, $color);
 

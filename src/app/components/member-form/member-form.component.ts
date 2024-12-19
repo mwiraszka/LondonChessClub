@@ -1,19 +1,29 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { debounceTime, filter, first } from 'rxjs/operators';
+import { combineLatestWith, debounceTime, filter, first } from 'rxjs/operators';
 
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
+import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
+import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { IconsModule } from '@app/icons';
 import type { Member } from '@app/types';
 import { isDefined } from '@app/utils';
 import {
-  dateValidator,
   emailValidator,
   phoneNumberValidator,
   ratingValidator,
-  yearValidator,
+  yearOfBirthValidator,
 } from '@app/validators';
 
+import { DatePickerComponent } from '../date-picker/date-picker.component';
 import { MemberFormFacade } from './member-form.facade';
 
 @UntilDestroy()
@@ -22,6 +32,14 @@ import { MemberFormFacade } from './member-form.facade';
   templateUrl: './member-form.component.html',
   styleUrls: ['./member-form.component.scss'],
   providers: [MemberFormFacade],
+  imports: [
+    CommonModule,
+    DatePickerComponent,
+    IconsModule,
+    ModificationInfoComponent,
+    ReactiveFormsModule,
+    TooltipDirective,
+  ],
 })
 export class MemberFormComponent implements OnInit {
   form!: FormGroup;
@@ -32,10 +50,16 @@ export class MemberFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.facade.formMember$.pipe(filter(isDefined), first()).subscribe(member => {
-      this.initForm(member);
-      this.initValueChangesListener();
-    });
+    this.facade.setMember$
+      .pipe(filter(isDefined), combineLatestWith(this.facade.formMember$), first())
+      .subscribe(([setMember, formMember]) => {
+        if (!formMember) {
+          formMember = setMember;
+        }
+
+        this.initForm(formMember);
+        this.initValueChangesListener();
+      });
   }
 
   hasError(control: AbstractControl): boolean {
@@ -47,8 +71,6 @@ export class MemberFormComponent implements OnInit {
       return 'This field is required';
     } else if (control.hasError('invalidRating')) {
       return 'Invalid rating';
-    } else if (control.hasError('invalidDateFormat')) {
-      return 'Invalid date format - please input as YYYY-MM-DD';
     } else if (control.hasError('invalidEmailFormat')) {
       return 'Invalid email';
     } else if (control.hasError('invalidPhoneNumberFormat')) {
@@ -75,7 +97,6 @@ export class MemberFormComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
-
     this.facade.onSubmit(this.form.value);
   }
 
@@ -88,10 +109,10 @@ export class MemberFormComponent implements OnInit {
         member.rating,
         [Validators.required, ratingValidator, Validators.max(3000)],
       ],
-      dateJoined: [member.dateJoined, [Validators.required, dateValidator]],
+      dateJoined: [member.dateJoined, [Validators.required]],
       email: [member.email, emailValidator],
       phoneNumber: [member.phoneNumber, phoneNumberValidator],
-      yearOfBirth: [member.yearOfBirth, yearValidator],
+      yearOfBirth: [member.yearOfBirth, yearOfBirthValidator],
       chesscomUsername: [member.chesscomUsername, Validators.pattern(/[^\s]/)],
       lichessUsername: [member.lichessUsername, Validators.pattern(/[^\s]/)],
       isActive: [member.isActive],

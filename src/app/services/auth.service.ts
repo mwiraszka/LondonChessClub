@@ -17,7 +17,7 @@ import type {
   UnverifiedUser,
 } from '@app/types';
 
-import { environment } from '@environments/environment';
+import { environment } from '@env';
 
 @Injectable({
   providedIn: 'root',
@@ -29,8 +29,8 @@ export class AuthService {
 
   constructor() {
     this.userPool = new CognitoUserPool({
-      UserPoolId: environment.aws.cognitoUserPool.userPoolId,
-      ClientId: environment.aws.cognitoUserPool.clientId,
+      UserPoolId: environment.cognitoUserPoolId,
+      ClientId: environment.cognitoUserPoolClientId,
     });
   }
 

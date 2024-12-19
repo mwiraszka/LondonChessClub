@@ -1,0 +1,75 @@
+$header-height: 30px;
+$label-height: 24px;
+$label-margin: 8px;
+
+:host {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  height: $header-height;
+  background-color: var(--lcc-color--imageOverlay-headerBackground);
+  border-top-left-radius: var(--lcc-borderRadius--large);
+  border-top-right-radius: var(--lcc-borderRadius--large);
+  border-bottom: 2px solid var(--lcc-color--imageOverlay-headerBorderBottom);
+
+  .close-icon {
+    margin: 0 4px 0 auto;
+    background-color: inherit;
+    height: 24px;
+    width: 24px;
+    color: var(--lcc-color--imageOverlay-closeIcon);
+
+    &:hover {
+      cursor: pointer;
+      color: var(--lcc-color--imageOverlay-closeIconOnHover);
+    }
+  }
+}
+
+img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-bottom-left-radius: var(--lcc-borderRadius--large);
+  border-bottom-right-radius: var(--lcc-borderRadius--large);
+}
+
+.label {
+  position: relative;
+  z-index: 200;
+  left: $label-margin;
+  right: -$label-margin;
+  bottom: calc(#{$label-height} + #{$label-margin});
+  width: calc(100% - #{$label-margin * 2});
+  padding: 4px 8px;
+  border-radius: var(--lcc-borderRadius--small);
+  background-color: var(--lcc-color--imageOverlay-labelBackground);
+  color: var(--lcc-color--imageOverlay-labelText);
+}
+
+.image-navigation-icons-container {
+  position: absolute;
+  z-index: 200;
+  top: $header-height;
+  bottom: $label-height;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  .previous-image-icon,
+  .next-image-icon {
+    color: var(--lcc-color--imageOverlay-navigationIcons);
+    width: 50px;
+    height: 50px;
+
+    &:hover {
+      cursor: pointer;
+      color: var(--lcc-color--imageOverlay-navigationIconsOnHover);
+    }
+  }
+}

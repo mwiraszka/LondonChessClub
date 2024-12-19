@@ -1,10 +1,10 @@
-import { ControlModes, type Member } from '@app/types';
+import type { ControlMode, Member } from '@app/types';
 
 export interface MembersState {
   members: Member[];
   setMember: Member | null;
   formMember: Member | null;
-  controlMode: ControlModes | null;
+  controlMode: ControlMode | null;
   sortedBy: string;
   isAscending: boolean;
   pageNum: number;

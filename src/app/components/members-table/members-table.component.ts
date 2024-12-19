@@ -1,8 +1,13 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import moment from 'moment-timezone';
 
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
+import { AdminControlsComponent } from '@app/components/admin-controls/admin-controls.component';
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { PaginatorComponent } from '@app/components/paginator/paginator.component';
+import { IconsModule } from '@app/icons';
+import { FormatDatePipe } from '@app/pipes/format-date.pipe';
 import { type Link, NavPathTypes } from '@app/types';
 import { camelize, kebabize } from '@app/utils';
 
@@ -14,6 +19,14 @@ import { MembersTableFacade } from './members-table.facade';
   templateUrl: './members-table.component.html',
   styleUrls: ['./members-table.component.scss'],
   providers: [MembersTableFacade],
+  imports: [
+    AdminControlsComponent,
+    CommonModule,
+    FormatDatePipe,
+    IconsModule,
+    LinkListComponent,
+    PaginatorComponent,
+  ],
 })
 export class MembersTableComponent implements OnInit {
   readonly NavPathTypes = NavPathTypes;
@@ -56,9 +69,8 @@ export class MembersTableComponent implements OnInit {
       });
   }
 
-  convertToUtcTimezone(localDate: string): string {
-    // Since we are only concerned with the day and since UTC @ 12:00am
-    // is always a day ahead of local time, we can simply add one day
-    return moment(localDate).add(1, 'days').toISOString().split('T')[0];
+  // TODO: update to work with Date objects!
+  convertToUtcTimezone(localDate: Date): Date {
+    return localDate;
   }
 }

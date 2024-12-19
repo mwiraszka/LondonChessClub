@@ -1,10 +1,16 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { combineLatestWith } from 'rxjs/operators';
 
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
-import { ClubEvent, type Link, NavPathTypes } from '@app/types';
-import { kebabize, setLocalTime } from '@app/utils';
+import { AdminControlsComponent } from '@app/components/admin-controls/admin-controls.component';
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { IconsModule } from '@app/icons';
+import { FormatDatePipe } from '@app/pipes/format-date.pipe';
+import { type Event, type Link, NavPathTypes } from '@app/types';
+import { kebabize } from '@app/utils';
 
 import { ScheduleFacade } from './schedule.facade';
 
@@ -14,17 +20,24 @@ import { ScheduleFacade } from './schedule.facade';
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss'],
   providers: [ScheduleFacade],
+  imports: [
+    AdminControlsComponent,
+    CommonModule,
+    FormatDatePipe,
+    IconsModule,
+    LinkListComponent,
+    RouterLink,
+  ],
 })
 export class ScheduleComponent implements OnInit {
   readonly NavPathTypes = NavPathTypes;
   readonly kebabize = kebabize;
-  readonly setLocalTime = setLocalTime;
 
   @Input() includeDetails = true;
   @Input() allowTogglePastEvents = true;
-  @Input() limitToUpcoming?: number;
+  @Input() upcomingEventLimit?: number;
 
-  shownEvents?: ClubEvent[];
+  shownEvents?: Event[];
   addEventLink: Link = {
     path: NavPathTypes.EVENT + '/' + NavPathTypes.ADD,
     text: 'Add an event',
@@ -41,11 +54,11 @@ export class ScheduleComponent implements OnInit {
         untilDestroyed(this),
         combineLatestWith(this.facade.upcomingEvents$, this.facade.showPastEvents$),
       )
-      .subscribe(([allEvents, upcomingEvents, showPastEvents]) => {
+      .subscribe(([events, upcomingEvents, showPastEvents]) => {
         this.shownEvents =
           showPastEvents && this.allowTogglePastEvents
-            ? allEvents
-            : upcomingEvents.slice(0, this.limitToUpcoming);
+            ? events
+            : upcomingEvents.slice(0, this.upcomingEventLimit);
       });
   }
 }

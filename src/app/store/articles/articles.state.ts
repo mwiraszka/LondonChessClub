@@ -1,15 +1,17 @@
-import { type Article, ControlModes } from '@app/types';
+import { type Article, ArticleFormData, ControlMode } from '@app/types';
 
 export interface ArticlesState {
   articles: Article[];
-  setArticle: Article | null;
-  formArticle: Article | null;
-  controlMode: ControlModes | null;
+  article: Article | null;
+  articleFormData: ArticleFormData | null;
+  isNewImageStored: boolean;
+  controlMode: ControlMode | null;
 }
 
 export const initialState: ArticlesState = {
   articles: [],
-  setArticle: null,
-  formArticle: null,
+  article: null,
+  articleFormData: null,
+  isNewImageStored: false,
   controlMode: null,
 };

@@ -9,7 +9,7 @@ export class LoaderService {
   private _isLoading$ = new BehaviorSubject<boolean>(false);
   public isLoading$ = this._isLoading$.asObservable();
 
-  setIsLoading(value: boolean): void {
+  public setIsLoading(value: boolean): void {
     this._isLoading$.next(value);
   }
 }

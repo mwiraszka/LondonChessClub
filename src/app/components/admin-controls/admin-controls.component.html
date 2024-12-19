@@ -1,7 +1,8 @@
 <a
   class="admin-control-button edit-button"
   [tooltip]="'Edit ' + itemName"
-  [routerLink]="editPath">
+  [routerLink]="editPath"
+  (click)="onEdit($event)">
   <i-feather
     name="edit"
     class="edit-icon"

@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $lpv-bg-inaccuracy-hover: c-dimmer($lpv-inaccuracy, 70%) !default;
 $lpv-bg-mistake-hover: c-dimmer($lpv-mistake, 70%) !default;
 $lpv-bg-blunder-hover: c-dimmer($lpv-blunder, 70%) !default;
@@ -40,10 +42,10 @@ $lpv-border: hsl(37deg, 5%, 13%) !default;
       font-weight: bold;
       white-space: nowrap;
       &.empty {
-        color: mix($lpv-font, $lpv-bg, 50%);
+        color: color.mix($lpv-font, $lpv-bg, 50%);
       }
       &:not(.empty):hover {
-        background: mix($lpv-accent, $lpv-bg, 30%);
+        background: color.mix($lpv-accent, $lpv-bg, 30%);
         color: $lpv-accent-over;
         cursor: pointer;
       }
@@ -51,7 +53,7 @@ $lpv-border: hsl(37deg, 5%, 13%) !default;
         color: $lpv-font-accent;
       }
       &.current {
-        background: mix($lpv-accent, $lpv-bg, 70%) !important;
+        background: color.mix($lpv-accent, $lpv-bg, 70%) !important;
         color: $lpv-accent-over;
       }
       &.inaccuracy {

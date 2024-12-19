@@ -1,16 +1,20 @@
-/**
- * @param url Data URL of the file (as base-64 string)
- * @param name Name of the file (optional)
- *
- * @returns {Promise<File>} A file object wrapped in a promise
- */
-export async function getFileFromDataUrl(url: string, name?: string): Promise<File> {
-  const response = await fetch(url);
-  const data = await response.blob();
+import { Url } from '@app/types';
 
-  return new File([data], name ?? 'lcc-file', {
-    type: data.type ?? 'image/jpeg',
-  });
+/**
+ * @param dataUrl Data URL of the file (as a base-64 string)
+ *
+ * @returns {Blob} A blob representing the same data
+ */
+export function dataUrlToBlob(dataUrl: Url): Blob {
+  const byteString = atob(dataUrl.split(',')[1]);
+  const arrayBuffer = new ArrayBuffer(byteString.length);
+  const int8Array = new Uint8Array(arrayBuffer);
+
+  for (let i = 0; i < byteString.length; i++) {
+    int8Array[i] = byteString.charCodeAt(i);
+  }
+
+  return new Blob([int8Array], { type: 'image/jpeg' });
 }
 
 /**
@@ -47,4 +51,23 @@ export async function parseCsv(
   let rowsOfData: Array<string[]> = [[]];
   rowsOfData = arrayBuffer.split('\n')?.map(row => row.split(','));
   return !includeHeader && rowsOfData.length > 0 ? rowsOfData.slice(1) : rowsOfData;
+}
+
+/**
+ * Converts a raw number of Bytes to a more user-friendly size in KB/MB units
+ */
+export function formatBytes(input?: string | number | null, decimals = 2): string {
+  const bytes = Number(input);
+
+  if (isNaN(bytes)) {
+    return '0 B';
+  }
+
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ['B', 'kB', 'MB', 'GB'];
+
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 }

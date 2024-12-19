@@ -1,86 +1,18 @@
 <div class="nav-left"></div>
 
 <div class="nav-items-container">
-  <a
-    aria-label="Home"
-    class="nav-link"
-    routerLinkActive="link-active"
-    [routerLink]="NavPathTypes.HOME"
-    [routerLinkActiveOptions]="{ exact: true }"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Home' : null">
-    <span class="text">Home</span>
-    <i-feather name="home"></i-feather>
-  </a>
-
-  <a
-    aria-label="About"
-    class="nav-link"
-    routerLinkActive="link-active"
-    [routerLink]="NavPathTypes.ABOUT"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'About' : null">
-    <span class="text">About</span>
-    <i-feather name="info"></i-feather>
-  </a>
-
-  <a
-    aria-label="Members"
-    class="nav-link"
-    routerLinkActive="link-active"
-    [routerLink]="NavPathTypes.MEMBERS"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Members' : null">
-    <span class="text">Members</span>
-    <i-feather name="users"></i-feather>
-  </a>
-
-  <a
-    aria-label="Schedule"
-    class="nav-link"
-    routerLinkActive="link-active"
-    [routerLink]="NavPathTypes.SCHEDULE"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Schedule' : null">
-    <span class="text">Schedule</span>
-    <i-feather name="calendar"></i-feather>
-  </a>
-
-  <a
-    aria-label="News"
-    class="nav-link"
-    routerLinkActive="link-active"
-    [routerLink]="NavPathTypes.NEWS"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'News' : null">
-    <span class="text">News</span>
-    <i-feather name="activity"></i-feather>
-  </a>
-
-  <a
-    aria-label="City Champion"
-    class="nav-link"
-    routerLinkActive="link-active"
-    [routerLink]="NavPathTypes.CITY_CHAMPION"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'City Champion' : null">
-    <span class="text">City&nbsp;Champion</span>
-    <i-feather name="award"></i-feather>
-  </a>
-
-  <a
-    aria-label="Photo Gallery"
-    class="nav-link"
-    routerLinkActive="link-active"
-    [routerLink]="NavPathTypes.PHOTO_GALLERY"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Photo Gallery' : null">
-    <span class="text">Photo&nbsp;Gallery</span>
-    <i-feather name="camera"></i-feather>
-  </a>
-
-  <a
-    aria-label="Game Archives"
-    class="nav-link"
-    routerLinkActive="link-active"
-    [routerLink]="NavPathTypes.GAME_ARCHIVES"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Game Archives' : null">
-    <span class="text">Game&nbsp;Archives</span>
-    <i-feather name="grid"></i-feather>
-  </a>
+  @for (link of links; track link.path) {
+    <a
+      [attr.aria-label]="link.text"
+      class="nav-link"
+      routerLinkActive="link-active"
+      [routerLink]="link.path"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [tooltip]="screenWidth > 700 ? null : link.text">
+      <span class="text">{{ link.text }}</span>
+      <i-feather [name]="link.icon!"></i-feather>
+    </a>
+  }
 
   <div class="nav-login-spacer"></div>
 

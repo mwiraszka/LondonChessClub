@@ -1,5 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { combineLatestWith, debounceTime, filter, first } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { debounceTime, first } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,8 @@ import {
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
-import type { Member } from '@app/types';
+import { MembersActions, MembersSelectors } from '@app/store/members';
+import type { ControlMode, MemberFormData } from '@app/types';
 import { isDefined } from '@app/utils';
 import {
   emailValidator,
@@ -24,14 +26,12 @@ import {
 } from '@app/validators';
 
 import { DatePickerComponent } from '../date-picker/date-picker.component';
-import { MemberFormFacade } from './member-form.facade';
 
 @UntilDestroy()
 @Component({
   selector: 'lcc-member-form',
   templateUrl: './member-form.component.html',
   styleUrls: ['./member-form.component.scss'],
-  providers: [MemberFormFacade],
   imports: [
     CommonModule,
     DatePickerComponent,
@@ -42,31 +42,38 @@ import { MemberFormFacade } from './member-form.facade';
   ],
 })
 export class MemberFormComponent implements OnInit {
-  form!: FormGroup;
+  public readonly memberFormViewModel$ = this.store.select(
+    MembersSelectors.selectMemberFormViewModel,
+  );
+  public form: FormGroup | null = null;
+
+  private readonly memberFormData$ = this.store.select(
+    MembersSelectors.selectMemberFormData,
+  );
+  private readonly controlMode$ = this.store.select(MembersSelectors.selectControlMode);
+  private controlMode: ControlMode | null = null;
 
   constructor(
-    public facade: MemberFormFacade,
-    private formBuilder: FormBuilder,
+    private readonly store: Store,
+    private readonly formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
-    this.facade.setMember$
-      .pipe(filter(isDefined), combineLatestWith(this.facade.formMember$), first())
-      .subscribe(([setMember, formMember]) => {
-        if (!formMember) {
-          formMember = setMember;
-        }
+    this.controlMode$.pipe(first(isDefined)).subscribe(controlMode => {
+      this.controlMode = controlMode;
+    });
 
-        this.initForm(formMember);
-        this.initValueChangesListener();
-      });
+    this.memberFormData$.pipe(first(isDefined)).subscribe(memberFormData => {
+      this.initForm(memberFormData);
+      this.initFormValueChangeListener();
+    });
   }
 
-  hasError(control: AbstractControl): boolean {
+  public hasError(control: AbstractControl): boolean {
     return control.dirty && control.invalid;
   }
 
-  getErrorMessage(control: AbstractControl): string {
+  public getErrorMessage(control: AbstractControl): string {
     if (control.hasError('required')) {
       return 'This field is required';
     } else if (control.hasError('invalidRating')) {
@@ -88,43 +95,62 @@ export class MemberFormComponent implements OnInit {
     }
   }
 
-  onCancel(): void {
-    this.facade.onCancel();
+  public onCancel(): void {
+    this.store.dispatch(MembersActions.cancelSelected());
   }
 
-  onSubmit(): void {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
+  public onSubmit(memberName: string | null): void {
+    if (this.form?.invalid || !memberName) {
+      this.form?.markAllAsTouched();
       return;
     }
-    this.facade.onSubmit(this.form.value);
+
+    if (this.controlMode === 'edit') {
+      this.store.dispatch(
+        MembersActions.updateMemberSelected({
+          memberName,
+        }),
+      );
+    } else {
+      this.store.dispatch(
+        MembersActions.addMemberSelected({
+          memberName,
+        }),
+      );
+    }
   }
 
-  private initForm(member: Member): void {
+  private initForm(memberFormData: MemberFormData): void {
     this.form = this.formBuilder.group({
-      firstName: [member.firstName, [Validators.required, Validators.pattern(/[^\s]/)]],
-      lastName: [member.lastName, [Validators.required, Validators.pattern(/[^\s]/)]],
-      city: [member.city, [Validators.required, Validators.pattern(/[^\s]/)]],
+      firstName: [
+        memberFormData.firstName,
+        [Validators.required, Validators.pattern(/[^\s]/)],
+      ],
+      lastName: [
+        memberFormData.lastName,
+        [Validators.required, Validators.pattern(/[^\s]/)],
+      ],
+      city: [memberFormData.city, [Validators.required, Validators.pattern(/[^\s]/)]],
       rating: [
-        member.rating,
+        memberFormData.rating,
         [Validators.required, ratingValidator, Validators.max(3000)],
       ],
-      dateJoined: [member.dateJoined, [Validators.required]],
-      email: [member.email, emailValidator],
-      phoneNumber: [member.phoneNumber, phoneNumberValidator],
-      yearOfBirth: [member.yearOfBirth, yearOfBirthValidator],
-      chesscomUsername: [member.chesscomUsername, Validators.pattern(/[^\s]/)],
-      lichessUsername: [member.lichessUsername, Validators.pattern(/[^\s]/)],
-      isActive: [member.isActive],
-      id: [member.id],
-      modificationInfo: [member.modificationInfo],
-      peakRating: [member.peakRating],
+      dateJoined: [memberFormData.dateJoined, [Validators.required]],
+      email: [memberFormData.email, emailValidator],
+      phoneNumber: [memberFormData.phoneNumber, phoneNumberValidator],
+      yearOfBirth: [memberFormData.yearOfBirth, yearOfBirthValidator],
+      chesscomUsername: [memberFormData.chesscomUsername, Validators.pattern(/[^\s]/)],
+      lichessUsername: [memberFormData.lichessUsername, Validators.pattern(/[^\s]/)],
+      isActive: [memberFormData.isActive],
+      peakRating: [memberFormData.peakRating],
     });
   }
 
-  private initValueChangesListener(): void {
-    this.form.valueChanges
-      .pipe(debounceTime(500), untilDestroyed(this))
-      .subscribe((formData: Member) => this.facade.onValueChange(formData));
+  private initFormValueChangeListener(): void {
+    this.form?.valueChanges
+      .pipe(debounceTime(250), untilDestroyed(this))
+      .subscribe((memberFormData: MemberFormData) =>
+        this.store.dispatch(MembersActions.formDataChanged({ memberFormData })),
+      );
   }
 }

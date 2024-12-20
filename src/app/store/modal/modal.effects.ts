@@ -1,13 +1,11 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { concatLatestFrom } from '@ngrx/operators';
-import { Store } from '@ngrx/store';
 import { filter, map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import { EventsActions, EventsSelectors } from '@app/store/events';
-import { MembersActions, MembersSelectors } from '@app/store/members';
+import { ArticlesActions } from '@app/store/articles';
+import { EventsActions } from '@app/store/events';
+import { MembersActions } from '@app/store/members';
 import { type Modal, ModalButtonActionTypes, ModalButtonStyleTypes } from '@app/types';
 
 import * as ModalActions from './modal.actions';
@@ -17,10 +15,10 @@ export class ModalEffects {
   openAddMemberModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.addMemberSelected),
-      map(({ member }) => {
+      map(({ memberName }) => {
         const modal: Modal = {
           title: 'Confirm new member',
-          body: `Add ${member.firstName} ${member.lastName} to database?`,
+          body: `Add ${memberName} to database?`,
           buttons: [
             {
               text: 'Cancel',
@@ -42,11 +40,10 @@ export class ModalEffects {
   openUpdateMemberModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.updateMemberSelected),
-      concatLatestFrom(() => this.store.select(MembersSelectors.setMember)),
-      map(([, setMember]) => {
+      map(({ memberName }) => {
         const modal: Modal = {
           title: 'Confirm member update',
-          body: `Update ${setMember?.firstName} ${setMember?.lastName}?`,
+          body: `Update ${memberName}?`,
           buttons: [
             {
               text: 'Cancel',
@@ -93,10 +90,10 @@ export class ModalEffects {
   openAddEventModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventsActions.addEventSelected),
-      map(({ event }) => {
+      map(({ eventTitle }) => {
         const modal: Modal = {
           title: 'Confirm new event',
-          body: `Add ${event.title} to database?`,
+          body: `Add ${eventTitle} to database?`,
           buttons: [
             {
               text: 'Cancel',
@@ -118,11 +115,10 @@ export class ModalEffects {
   openUpdateEventModal$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventsActions.updateEventSelected),
-      concatLatestFrom(() => this.store.select(EventsSelectors.setEvent)),
-      map(([, setEvent]) => {
+      map(eventTitle => {
         const modal: Modal = {
           title: 'Confirm event update',
-          body: `Update ${setEvent?.title}?`,
+          body: `Update ${eventTitle}?`,
           buttons: [
             {
               text: 'Cancel',
@@ -342,8 +338,5 @@ export class ModalEffects {
     );
   });
 
-  constructor(
-    private readonly actions$: Actions,
-    private readonly store: Store,
-  ) {}
+  constructor(private readonly actions$: Actions) {}
 }

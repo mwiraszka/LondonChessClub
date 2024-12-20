@@ -4,13 +4,9 @@ import { StoreFeatures } from '@app/types';
 
 import { ToasterState } from './toaster.state';
 
-export const toasterFeatureSelector = createFeatureSelector<ToasterState>(
+export const selectToasterState = createFeatureSelector<ToasterState>(
   StoreFeatures.TOASTER,
 );
 
-export const toasts = createSelector(toasterFeatureSelector, state => state.toasts);
-
-export const isDisplayingToasts = createSelector(
-  toasterFeatureSelector,
-  state => !!state.toasts,
-);
+export const selectToasts = createSelector(selectToasterState, state => state.toasts);
+export const selectIsDisplayingToasts = createSelector(selectToasts, toasts => !!toasts);

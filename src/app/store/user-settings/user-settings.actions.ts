@@ -1,20 +1,13 @@
 import { createAction } from '@ngrx/store';
 
-enum UserSettingsActionTypes {
-  REINSTATE_UPCOMING_EVENT_BANNER = '[User Settings] Reinstate upcoming event banner',
-  CLEAR_UPCOMING_EVENT_BANNER = '[User Settings] Clear upcoming event banner',
-  TOGGLE_THEME = '[User Settings] Toggle theme',
-  TOGGLE_SAFE_MODE = '[User Settings] Toggle safe mode',
-}
-
-export const clearUpcomingEventBanner = createAction(
-  UserSettingsActionTypes.CLEAR_UPCOMING_EVENT_BANNER,
+export const upcomingEventBannerCleared = createAction(
+  '[User Settings] Upcoming event banner cleared',
 );
 
-export const reinstateUpcomingEventBanner = createAction(
-  UserSettingsActionTypes.REINSTATE_UPCOMING_EVENT_BANNER,
+export const upcomingEventBannerReinstated = createAction(
+  '[User Settings] Reinstate upcoming event banner reinstated',
 );
 
-export const toggleTheme = createAction(UserSettingsActionTypes.TOGGLE_THEME);
+export const themeToggled = createAction('[User Settings] Theme toggled');
 
-export const toggleSafeMode = createAction(UserSettingsActionTypes.TOGGLE_SAFE_MODE);
+export const safeModeToggled = createAction('[User Settings] Safe mode toggled');

@@ -1,5 +1,4 @@
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { combineLatestWith } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
@@ -9,17 +8,14 @@ import { AdminControlsComponent } from '@app/components/admin-controls/admin-con
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { IconsModule } from '@app/icons';
 import { FormatDatePipe } from '@app/pipes/format-date.pipe';
+import { EventsActions, EventsSelectors } from '@app/store/events';
 import { type Event, type Link, NavPathTypes } from '@app/types';
 import { kebabize } from '@app/utils';
 
-import { ScheduleFacade } from './schedule.facade';
-
-@UntilDestroy()
 @Component({
   selector: 'lcc-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss'],
-  providers: [ScheduleFacade],
   imports: [
     AdminControlsComponent,
     CommonModule,
@@ -30,35 +26,43 @@ import { ScheduleFacade } from './schedule.facade';
   ],
 })
 export class ScheduleComponent implements OnInit {
-  readonly NavPathTypes = NavPathTypes;
-  readonly kebabize = kebabize;
+  public readonly NavPathTypes = NavPathTypes;
+  public readonly kebabize = kebabize;
 
-  @Input() includeDetails = true;
-  @Input() allowTogglePastEvents = true;
-  @Input() upcomingEventLimit?: number;
+  @Input() public allowTogglePastEvents = true;
+  @Input() public includeDetails = true;
+  @Input() public upcomingEventLimit?: number;
 
-  shownEvents?: Event[];
-  addEventLink: Link = {
+  public readonly addEventLink: Link = {
     path: NavPathTypes.EVENT + '/' + NavPathTypes.ADD,
     text: 'Add an event',
     icon: 'plus-circle',
   };
+  public readonly scheduleViewModel$ = this.store.select(
+    EventsSelectors.selectScheduleViewModel,
+  );
 
-  constructor(public facade: ScheduleFacade) {}
+  constructor(private readonly store: Store) {}
 
   ngOnInit(): void {
-    this.facade.fetchEvents();
+    this.fetchEvents();
+  }
 
-    this.facade.events$
-      .pipe(
-        untilDestroyed(this),
-        combineLatestWith(this.facade.upcomingEvents$, this.facade.showPastEvents$),
-      )
-      .subscribe(([events, upcomingEvents, showPastEvents]) => {
-        this.shownEvents =
-          showPastEvents && this.allowTogglePastEvents
-            ? events
-            : upcomingEvents.slice(0, this.upcomingEventLimit);
-      });
+  public fetchEvents(): void {
+    this.store.dispatch(EventsActions.fetchEventsRequested());
+  }
+
+  public onDeleteEvent(event: Event): void {
+    this.store.dispatch(EventsActions.deleteEventSelected({ event }));
+  }
+
+  public onTogglePastEvents(): void {
+    this.store.dispatch(EventsActions.pastEventsToggled());
+
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   }
 }

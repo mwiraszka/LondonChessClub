@@ -137,11 +137,7 @@
           class="lcc-primary-button"
           type="submit"
           [disabled]="form.invalid || imageError || !vm.hasUnsavedChanges">
-          @if (vm.controlMode === 'edit') {
-            Update
-          } @else {
-            Publish article
-          }
+          {{ vm.controlMode === 'edit' ? 'Update' : 'Publish article' }}
         </button>
       </div>
     </form>

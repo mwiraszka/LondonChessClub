@@ -23,17 +23,17 @@ import { type Link, NavPathTypes } from '@app/types';
   ],
 })
 export class HomeScreenComponent implements OnInit {
-  scheduleLink: Link = {
+  public scheduleLink: Link = {
     path: NavPathTypes.SCHEDULE,
     text: 'All scheduled events',
   };
 
-  photoGalleryLink: Link = {
+  public photoGalleryLink: Link = {
     path: NavPathTypes.PHOTO_GALLERY,
     text: 'More photos',
   };
 
-  newsLink: Link = {
+  public newsLink: Link = {
     path: NavPathTypes.NEWS,
     text: 'More news',
   };

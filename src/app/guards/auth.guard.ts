@@ -17,7 +17,7 @@ export class AuthGuard {
   ) {}
 
   canActivate(): Observable<boolean> {
-    return this.store.select(AuthSelectors.isAdmin).pipe(
+    return this.store.select(AuthSelectors.selectIsAdmin).pipe(
       combineLatestWith(this.store.select(selectCurrentRoute)),
       map(([isAdmin, currentRoute]) => {
         if (isAdmin) {

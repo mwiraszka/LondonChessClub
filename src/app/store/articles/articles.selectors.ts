@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
+import { AuthSelectors } from '@app/store/auth';
 import { ArticleFormData, Id, StoreFeatures, newArticleFormTemplate } from '@app/types';
 import { areSame } from '@app/utils';
 
@@ -15,8 +16,8 @@ export const selectArticles = createSelector(
 );
 
 export const selectArticleById = (id: Id) =>
-  createSelector(selectArticles, allArticles =>
-    allArticles ? allArticles.find(article => article.id === id) : null,
+  createSelector(selectArticles, articles =>
+    articles ? articles.find(article => article.id === id) : null,
   );
 
 export const selectArticle = createSelector(selectArticlesState, state => state.article);
@@ -59,26 +60,38 @@ export const selectHasUnsavedChanges = createSelector(
       return null;
     }
 
-    const relevantFieldsOfArticle: ArticleFormData = {
+    const relevantPropertiesOfArticle: ArticleFormData = {
       title: article.title,
       body: article.body,
       imageId: article.imageId,
       isSticky: article.isSticky,
     };
 
-    return !areSame(relevantFieldsOfArticle, articleFormData);
+    return !areSame(relevantPropertiesOfArticle, articleFormData);
   },
 );
 
-export const selectArticleFormViewModel = createSelector(
-  selectArticle,
-  selectArticleFormData,
-  selectControlMode,
-  selectHasUnsavedChanges,
-  (article, articleFormData, controlMode, hasUnsavedChanges) => ({
-    article,
-    articleFormData,
-    controlMode,
-    hasUnsavedChanges,
-  }),
-);
+export const selectArticleGridViewModel = createSelector({
+  articles: selectArticles,
+  isAdmin: AuthSelectors.selectIsAdmin,
+});
+
+export const selectArticleViewerViewModel = createSelector({
+  article: selectArticle,
+  controlMode: selectControlMode,
+  hasUnsavedChanges: selectHasUnsavedChanges,
+  isAdmin: AuthSelectors.selectIsAdmin,
+});
+
+export const selectArticleEditorViewModel = createSelector({
+  articleTitle: selectArticleTitle,
+  controlMode: selectControlMode,
+  hasUnsavedChanges: selectHasUnsavedChanges,
+});
+
+export const selectArticleFormViewModel = createSelector({
+  article: selectArticle,
+  articleFormData: selectArticleFormData,
+  controlMode: selectControlMode,
+  hasUnsavedChanges: selectHasUnsavedChanges,
+});

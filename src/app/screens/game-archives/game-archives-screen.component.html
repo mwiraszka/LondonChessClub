@@ -70,7 +70,7 @@
             <i-feather
               name="alert-triangle"
               class="lcc-form-error-icon validation-alert-icon"
-              [tooltip]="getErrorMessage()">
+              [tooltip]="'Invalid input'">
             </i-feather>
           }
         </div>
@@ -87,7 +87,7 @@
             <i-feather
               name="alert-triangle"
               class="lcc-form-error-icon validation-alert-icon"
-              [tooltip]="getErrorMessage()">
+              [tooltip]="'Invalid input'">
             </i-feather>
           }
         </div>
@@ -126,7 +126,7 @@
 
     <span class="result-summary-text">{{ searchResultSummaryMessage }}</span>
     <button
-      (click)="onShowStats()"
+      (click)="this.showStats = !this.showStats"
       [disabled]="!filteredGameCount"
       class="lcc-secondary-button search-stats-button">
       {{ showStats ? 'Hide' : 'Show' }} search stats

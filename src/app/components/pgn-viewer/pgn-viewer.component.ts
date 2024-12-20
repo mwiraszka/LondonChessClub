@@ -15,9 +15,9 @@ import { LinkListComponent } from '../link-list/link-list.component';
   imports: [CommonModule, LinkListComponent],
 })
 export class PgnViewerComponent implements OnInit, AfterViewInit {
-  @Input() index!: number;
-  @Input() label!: string;
-  @Input() pgn!: string;
+  @Input({ required: true }) public index!: number;
+  @Input({ required: true }) public label!: string;
+  @Input({ required: true }) public pgn!: string;
 
   viewerId!: string;
   lichessAnalysisBoardLink!: Link;

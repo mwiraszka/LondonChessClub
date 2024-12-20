@@ -1,5 +1,5 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -14,10 +14,10 @@ import {
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
-import { ChangePasswordFormFacade } from '@app/components/change-password-form/change-password-form.facade';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
-import { NavPathTypes, PasswordChangeFormData } from '@app/types';
+import { AuthActions, AuthSelectors } from '@app/store/auth';
+import { LoginRequest, NavPathTypes, PasswordChangeRequest, User } from '@app/types';
 import {
   emailValidator,
   hasLowercaseLetterValidator,
@@ -32,12 +32,17 @@ import {
   selector: 'lcc-change-password-form',
   templateUrl: './change-password-form.component.html',
   styleUrls: ['./change-password-form.component.scss'],
-  providers: [ChangePasswordFormFacade],
   imports: [CommonModule, IconsModule, ReactiveFormsModule, RouterLink, TooltipDirective],
 })
 export class ChangePasswordFormComponent implements OnInit {
-  readonly NavPathTypes = NavPathTypes;
-  readonly PASSWORD_VALIDATORS: ValidatorFn[] = [
+  public readonly NavPathTypes = NavPathTypes;
+
+  public readonly changePasswordFormViewModel$ = this.store.select(
+    AuthSelectors.selectChangePasswordFormViewModel,
+  );
+  public form!: FormGroup;
+
+  private readonly passwordValidators: ValidatorFn[] = [
     Validators.required,
     Validators.minLength(8),
     hasLowercaseLetterValidator,
@@ -46,19 +51,14 @@ export class ChangePasswordFormComponent implements OnInit {
     hasNumberValidator,
   ];
 
-  form!: FormGroup;
-  passwordValueChangeSubscription!: Subscription;
-  userHasCode!: boolean;
-  tempInitialPassword!: string | null;
-
   constructor(
-    public facade: ChangePasswordFormFacade,
-    private formBuilder: FormBuilder,
+    private readonly formBuilder: FormBuilder,
+    private readonly store: Store,
   ) {}
 
   ngOnInit(): void {
     this.initForm();
-    this.setUpListeners();
+    this.initPasswordMatchListener();
   }
 
   hasError(control: AbstractControl): boolean {
@@ -89,55 +89,63 @@ export class ChangePasswordFormComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
+  onSubmit(
+    user: User | null,
+    userHasCode: boolean,
+    temporaryPassword: string | null,
+  ): void {
     if (
-      ((!this.userHasCode || this.tempInitialPassword) &&
-        this.form.controls['email'].invalid) ||
-      (this.userHasCode && this.form.invalid)
+      ((!userHasCode || temporaryPassword) && this.form.controls['email'].invalid) ||
+      (userHasCode && this.form.invalid)
     ) {
       this.form.markAllAsTouched();
       return;
     }
 
-    const formData: PasswordChangeFormData = {
-      email: this.form.value['email'],
-      newPassword: this.form.value['newPassword'],
-      code: this.form.value['code'].toString(),
-    };
-    this.facade.onSubmit(formData);
+    const email = this.form.value['email'];
+    const newPassword = this.form.value['newPassword'];
+    const code = this.form.value['code'].toString();
+
+    if (user && !user?.isVerified && temporaryPassword) {
+      const request: LoginRequest = {
+        email,
+        password: newPassword,
+        temporaryPassword,
+      };
+      this.store.dispatch(AuthActions.loginRequested({ request }));
+    } else if (userHasCode) {
+      const request: PasswordChangeRequest = {
+        email,
+        newPassword,
+        code: code!,
+      };
+      this.store.dispatch(AuthActions.passwordChangeRequested({ request }));
+    } else {
+      this.store.dispatch(AuthActions.codeForPasswordChangeRequested({ email }));
+    }
+  }
+
+  public onRequestNewCode(): void {
+    this.store.dispatch(AuthActions.requestNewCodeSelected());
   }
 
   private initForm(): void {
     this.form = this.formBuilder.group({
       email: new FormControl('', [Validators.required, emailValidator]),
       code: new FormControl('', [Validators.pattern(/\d{6}/)]),
-      newPassword: new FormControl('', this.PASSWORD_VALIDATORS),
+      newPassword: new FormControl('', this.passwordValidators),
       confirmPassword: new FormControl('', [
-        ...this.PASSWORD_VALIDATORS,
+        ...this.passwordValidators,
         matchingPasswordsValidator,
       ]),
     });
+  }
 
-    this.passwordValueChangeSubscription = this.form.controls['newPassword'].valueChanges
+  private initPasswordMatchListener(): void {
+    this.form.controls['newPassword'].valueChanges
       .pipe(untilDestroyed(this))
       .subscribe(() => {
         this.form.controls['confirmPassword'].updateValueAndValidity();
       });
-  }
-
-  private setUpListeners(): void {
-    this.facade.tempInitialPassword$
-      .pipe(untilDestroyed(this))
-      .subscribe(tempInitialPassword => (this.tempInitialPassword = tempInitialPassword));
-
-    this.facade.user$.pipe(untilDestroyed(this)).subscribe(user => {
-      if (user?.email) {
-        this.form.controls['email'].setValue(user.email);
-      }
-    });
-
-    this.facade.userHasCode$
-      .pipe(untilDestroyed(this))
-      .subscribe(hasCode => (this.userHasCode = hasCode));
   }
 }

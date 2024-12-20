@@ -1,5 +1,4 @@
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import * as uuid from 'uuid';
+import { Store } from '@ngrx/store';
 
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
@@ -11,17 +10,14 @@ import { LinkListComponent } from '@app/components/link-list/link-list.component
 import { IconsModule } from '@app/icons';
 import { FormatDatePipe } from '@app/pipes/format-date.pipe';
 import { StripMarkdownPipe } from '@app/pipes/strip-markdown.pipe';
+import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { Article, type Link, NavPathTypes } from '@app/types';
 import { wasEdited } from '@app/utils';
 
-import { ArticleGridFacade } from './article-grid.facade';
-
-@UntilDestroy()
 @Component({
   selector: 'lcc-article-grid',
   templateUrl: './article-grid.component.html',
   styleUrls: ['./article-grid.component.scss'],
-  providers: [ArticleGridFacade],
   imports: [
     AdminControlsComponent,
     CommonModule,
@@ -34,37 +30,31 @@ import { ArticleGridFacade } from './article-grid.facade';
   ],
 })
 export class ArticleGridComponent implements OnInit {
-  readonly PLACEHOLDER_ARTICLE: Article = {
-    id: uuid.v4(),
-    title: '',
-    body: '',
-    imageId: null,
-    imageUrl: null,
-    thumbnailImageUrl: null,
-    isSticky: false,
-    modificationInfo: null,
-  };
+  @Input() public maxArticles?: number;
 
-  readonly NavPathTypes = NavPathTypes;
-  readonly wasEdited = wasEdited;
+  public readonly NavPathTypes = NavPathTypes;
+  public readonly wasEdited = wasEdited;
 
-  @Input() maxArticles?: number;
-
-  articles!: Article[];
-  createArticleLink: Link = {
+  public readonly articleGridViewModel$ = this.store.select(
+    ArticlesSelectors.selectArticleGridViewModel,
+  );
+  public readonly createArticleLink: Link = {
     path: NavPathTypes.ARTICLE + '/' + NavPathTypes.ADD,
     text: 'Create an article',
     icon: 'plus-circle',
   };
 
-  constructor(public facade: ArticleGridFacade) {}
+  constructor(private readonly store: Store) {}
 
   ngOnInit(): void {
-    this.facade.fetchArticles();
-    this.articles = Array(this.maxArticles ?? 20).fill(this.PLACEHOLDER_ARTICLE);
+    this.fetchArticles();
+  }
 
-    this.facade.articles$.pipe(untilDestroyed(this)).subscribe(articles => {
-      this.articles = articles.slice(0, this.maxArticles ?? articles.length);
-    });
+  public fetchArticles(): void {
+    this.store.dispatch(ArticlesActions.fetchArticlesRequested());
+  }
+
+  public onDeleteArticle(article: Article): void {
+    this.store.dispatch(ArticlesActions.deleteArticleSelected({ article }));
   }
 }

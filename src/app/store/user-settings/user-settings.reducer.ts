@@ -7,23 +7,23 @@ import { UserSettingsState, initialState } from './user-settings.state';
 const userSettingsReducer = createReducer(
   initialState,
 
-  on(UserSettingsActions.toggleTheme, state => ({
+  on(UserSettingsActions.themeToggled, state => ({
     ...state,
     isDarkMode: !state.isDarkMode,
   })),
 
-  on(UserSettingsActions.toggleSafeMode, state => ({
+  on(UserSettingsActions.safeModeToggled, state => ({
     ...state,
     isSafeMode: !state.isSafeMode,
   })),
 
-  on(UserSettingsActions.clearUpcomingEventBanner, state => ({
+  on(UserSettingsActions.upcomingEventBannerCleared, state => ({
     ...state,
     showUpcomingEventBanner: false,
     bannerLastCleared: moment().toISOString(),
   })),
 
-  on(UserSettingsActions.reinstateUpcomingEventBanner, state => ({
+  on(UserSettingsActions.upcomingEventBannerReinstated, state => ({
     ...state,
     showUpcomingEventBanner: true,
     bannerLastCleared: null,

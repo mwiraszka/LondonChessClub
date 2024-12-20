@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 
 import { EventsService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import type { ModificationInfo } from '@app/types';
+import type { Event, ModificationInfo } from '@app/types';
 import { isDefined, parseHttpErrorResponse } from '@app/utils';
 
 import * as EventsActions from './events.actions';
@@ -37,17 +37,21 @@ export class EventsEffects {
 
   fetchEvent$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(EventsActions.eventEditRequested),
+      ofType(EventsActions.fetchEventRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ eventId }) =>
-        this.eventsService.getEvent(eventId).pipe(
+      switchMap(({ eventId }) => {
+        if (!eventId) {
+          return of(EventsActions.newEventFormTemplateLoaded());
+        }
+
+        return this.eventsService.getEvent(eventId).pipe(
           map(event => EventsActions.fetchEventSucceeded({ event })),
           catchError((errorResponse: HttpErrorResponse) => {
             errorResponse = parseHttpErrorResponse(errorResponse);
             return of(EventsActions.fetchEventFailed({ errorResponse }));
           }),
-        ),
-      ),
+        );
+      }),
       tap(() => this.loaderService.setIsLoading(false)),
     );
   });
@@ -57,18 +61,17 @@ export class EventsEffects {
       ofType(EventsActions.addEventConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
-        this.store.select(EventsSelectors.formEvent).pipe(filter(isDefined)),
-        this.store.select(AuthSelectors.user).pipe(filter(isDefined)),
+        this.store.select(EventsSelectors.selectEventFormData).pipe(filter(isDefined)),
+        this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
-      switchMap(([, eventToAdd, user]) => {
-        const dateNow = moment().toISOString();
+      switchMap(([, eventFormData, user]) => {
         const modificationInfo: ModificationInfo = {
           createdBy: `${user.firstName} ${user.lastName}`,
-          dateCreated: dateNow,
+          dateCreated: moment().toISOString(),
           lastEditedBy: `${user.firstName} ${user.lastName}`,
-          dateLastEdited: dateNow,
+          dateLastEdited: moment().toISOString(),
         };
-        const modifiedEvent = { ...eventToAdd, modificationInfo };
+        const modifiedEvent: Event = { ...eventFormData, modificationInfo, id: null };
 
         return this.eventsService.addEvent(modifiedEvent).pipe(
           map(event => EventsActions.addEventSucceeded({ event })),
@@ -87,17 +90,17 @@ export class EventsEffects {
       ofType(EventsActions.updateEventConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
-        this.store.select(EventsSelectors.formEvent).pipe(filter(isDefined)),
-        this.store.select(AuthSelectors.user).pipe(filter(isDefined)),
+        this.store.select(EventsSelectors.selectEvent).pipe(filter(isDefined)),
+        this.store.select(EventsSelectors.selectEventFormData).pipe(filter(isDefined)),
+        this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
-      switchMap(([, eventToUpdate, user]) => {
+      switchMap(([, event, eventFormData, user]) => {
         const modificationInfo: ModificationInfo = {
-          createdBy: eventToUpdate.modificationInfo!.createdBy,
-          dateCreated: eventToUpdate.modificationInfo!.dateCreated,
+          ...event.modificationInfo!,
           lastEditedBy: `${user.firstName} ${user.lastName}`,
           dateLastEdited: moment().toISOString(),
         };
-        const modifiedEvent = { ...eventToUpdate, modificationInfo };
+        const modifiedEvent = { ...event, ...eventFormData, modificationInfo };
 
         return this.eventsService.updateEvent(modifiedEvent).pipe(
           map(event => EventsActions.updateEventSucceeded({ event })),
@@ -116,10 +119,10 @@ export class EventsEffects {
       ofType(EventsActions.deleteEventConfirmed),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() =>
-        this.store.select(EventsSelectors.setEvent).pipe(filter(isDefined)),
+        this.store.select(EventsSelectors.selectEvent).pipe(filter(isDefined)),
       ),
-      switchMap(([, eventToDelete]) =>
-        this.eventsService.deleteEvent(eventToDelete).pipe(
+      switchMap(([, event]) =>
+        this.eventsService.deleteEvent(event).pipe(
           map(event => EventsActions.deleteEventSucceeded({ event })),
           catchError((errorResponse: HttpErrorResponse) => {
             errorResponse = parseHttpErrorResponse(errorResponse);

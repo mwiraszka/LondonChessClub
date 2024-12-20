@@ -66,7 +66,7 @@ export class ArticlesEffects {
           .select(ArticlesSelectors.selectArticleFormData)
           .pipe(filter(isDefined)),
         this.store.select(ArticlesSelectors.selectIsNewImageStored),
-        this.store.select(AuthSelectors.user).pipe(filter(isDefined)),
+        this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
       switchMap(([, articleFormData, isNewImageStored, user]) => {
         const modificationInfo: ModificationInfo = {
@@ -114,7 +114,7 @@ export class ArticlesEffects {
           .select(ArticlesSelectors.selectArticleFormData)
           .pipe(filter(isDefined)),
         this.store.select(ArticlesSelectors.selectIsNewImageStored),
-        this.store.select(AuthSelectors.user).pipe(filter(isDefined)),
+        this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
       switchMap(([, article, articleFormData, isNewImageStored, user]) => {
         const modificationInfo: ModificationInfo = {

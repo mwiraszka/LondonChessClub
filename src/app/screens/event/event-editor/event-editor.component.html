@@ -1,13 +1,16 @@
-<div class="container">
-  <lcc-screen-header
-    [hasUnsavedChanges]="(facade.hasUnsavedChanges$ | async) ?? undefined"
-    [title]="
-      (facade.controlMode$ | async) === 'edit'
-        ? !!(facade.setEventTitle$ | async)
-          ? 'Edit ' + (facade.setEventTitle$ | async)
-          : ''
-        : 'Create an event'
-    ">
-  </lcc-screen-header>
-  <lcc-event-form></lcc-event-form>
-</div>
+@if (selectEventEditorViewModel$ | async; as vm) {
+  <div class="container">
+    <lcc-screen-header
+      [hasUnsavedChanges]="vm.hasUnsavedChanges"
+      [title]="
+        vm.controlMode === 'add'
+          ? 'Create an event'
+          : vm.eventTitle
+            ? 'Edit ' + vm.eventTitle
+            : ''
+      ">
+    </lcc-screen-header>
+    <lcc-event-form></lcc-event-form>
+    <lcc-link-list [links]="links"></lcc-link-list>
+  </div>
+}

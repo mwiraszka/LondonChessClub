@@ -1,9 +1,9 @@
-@if (facade.showModal$ | async) {
+@if (showModal$ | async) {
   <lcc-modal></lcc-modal>
 }
 
 <div class="app-container">
-  @if ((facade.showUpcomingEventBanner$ | async) && (facade.nextEvent$ | async)) {
+  @if ((showUpcomingEventBanner$ | async) && (nextEvent$ | async)) {
     <lcc-upcoming-event-banner></lcc-upcoming-event-banner>
   }
 
@@ -12,10 +12,10 @@
 
   <main id="main">
     <router-outlet>
-      @if (isLoading) {
+      @if (loaderService.isLoading$ | async) {
         <span class="lcc-loading-spinner"></span>
       }
-      @if (facade.showToaster$ | async) {
+      @if (showToaster$ | async) {
         <lcc-toaster></lcc-toaster>
       }
     </router-outlet>

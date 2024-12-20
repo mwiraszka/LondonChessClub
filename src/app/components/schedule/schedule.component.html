@@ -1,11 +1,11 @@
-@if (facade.isAdmin$ | async) {
-  <lcc-link-list [links]="[addEventLink]"></lcc-link-list>
-}
+@if (scheduleViewModel$ | async; as vm) {
+  @if (vm.isAdmin) {
+    <lcc-link-list [links]="[addEventLink]"></lcc-link-list>
+  }
 
-@if (shownEvents) {
   <table class="lcc-table">
     <thead>
-      @if (facade.isAdmin$ | async) {
+      @if (vm.isAdmin) {
         <th class="lcc-table-admin-controls-filler"></th>
       }
       <th class="date">Date</th>
@@ -13,23 +13,28 @@
     </thead>
 
     <tbody>
-      @for (event of shownEvents; track event.id) {
+      @for (
+        event of vm.showPastEvents && allowTogglePastEvents
+          ? vm.events
+          : vm.upcomingEvents.slice(0, upcomingEventLimit ?? vm.upcomingEvents.length);
+        track event.id
+      ) {
         <tr
           class="lcc-admin-controls-container"
           [id]="event.id"
-          [class.next-event]="event.id === (facade.nextEvent$ | async)?.id"
+          [class.next-event]="event.id === vm.nextEvent?.id"
           [ngClass]="
-            !!(facade.showPastEvents$ | async) && allowTogglePastEvents
+            !!(vm.showPastEvents && allowTogglePastEvents)
               ? 'showing-past-events'
               : undefined
           ">
-          @if (facade.isAdmin$ | async) {
+          @if (vm.isAdmin) {
             <lcc-admin-controls
               [editPath]="
                 '/' + NavPathTypes.EVENT + '/' + NavPathTypes.EDIT + '/' + event.id
               "
               [itemName]="event.title"
-              (delete)="facade.onDeleteEvent(event)">
+              (delete)="onDeleteEvent(event)">
             </lcc-admin-controls>
           }
 
@@ -79,7 +84,7 @@
               }
             </div>
 
-            @if (includeDetails && (facade.isAdmin$ | async)) {
+            @if (includeDetails && vm.isAdmin) {
               <aside class="created-and-edited">
                 <div>
                   Event created
@@ -98,12 +103,12 @@
       }
     </tbody>
   </table>
-}
 
-@if (allowTogglePastEvents) {
-  <button
-    class="lcc-secondary-button toggle-past-events-button"
-    (click)="facade.onTogglePastEvents()">
-    {{ (facade.showPastEvents$ | async) ? 'Hide' : 'Show' }} past events
-  </button>
+  @if (allowTogglePastEvents) {
+    <button
+      class="lcc-secondary-button toggle-past-events-button"
+      (click)="onTogglePastEvents()">
+      {{ vm.showPastEvents ? 'Hide' : 'Show' }} past events
+    </button>
+  }
 }

@@ -1,33 +1,50 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { combineLatest } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 import { EventFormComponent } from '@app/components/event-form/event-form.component';
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { MetaAndTitleService } from '@app/services';
-
-import { EventEditorFacade } from './event-editor.facade';
+import { EventsSelectors } from '@app/store/events';
+import { Link, NavPathTypes } from '@app/types';
 
 @UntilDestroy()
 @Component({
   selector: 'lcc-event-editor',
   templateUrl: './event-editor.component.html',
   styleUrls: ['./event-editor.component.scss'],
-  providers: [EventEditorFacade],
-  imports: [CommonModule, EventFormComponent, ScreenHeaderComponent],
+  imports: [CommonModule, EventFormComponent, LinkListComponent, ScreenHeaderComponent],
 })
 export class EventEditorComponent implements OnInit {
+  public readonly selectEventEditorViewModel$ = this.store.select(
+    EventsSelectors.selectEventEditorViewModel,
+  );
+
+  public links: Link[] = [
+    {
+      icon: 'calendar',
+      path: NavPathTypes.NEWS,
+      text: 'See all events',
+    },
+    {
+      icon: 'home',
+      path: NavPathTypes.HOME,
+      text: 'Return home',
+    },
+  ];
+
   constructor(
-    public facade: EventEditorFacade,
+    private readonly store: Store,
     private metaAndTitleService: MetaAndTitleService,
   ) {}
 
   ngOnInit(): void {
-    combineLatest([this.facade.setEventTitle$, this.facade.controlMode$])
+    this.selectEventEditorViewModel$
       .pipe(untilDestroyed(this))
-      .subscribe(([eventTitle, controlMode]) => {
+      .subscribe(({ eventTitle, controlMode }) => {
         const screenTitle =
           controlMode === 'edit' && eventTitle ? `Edit ${eventTitle}` : 'Create an event';
         this.metaAndTitleService.updateTitle(screenTitle);

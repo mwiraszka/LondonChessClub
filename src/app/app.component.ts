@@ -1,7 +1,10 @@
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
+import { filter, first } from 'rxjs/operators';
 
-import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { FooterComponent } from '@app/components/footer/footer.component';
@@ -11,14 +14,17 @@ import { NavComponent } from '@app/components/nav/nav.component';
 import { ToasterComponent } from '@app/components/toaster/toaster.component';
 import { UpcomingEventBannerComponent } from '@app/components/upcoming-event-banner/upcoming-event-banner.component';
 import { LoaderService } from '@app/services';
+import { EventsSelectors } from '@app/store/events';
+import { ModalSelectors } from '@app/store/modal';
+import { ToasterSelectors } from '@app/store/toaster';
+import { UserSettingsActions, UserSettingsSelectors } from '@app/store/user-settings';
+import { isDefined } from '@app/utils';
 
-import { AppFacade } from './app.facade';
-
+@UntilDestroy()
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [AppFacade],
   imports: [
     CommonModule,
     FooterComponent,
@@ -31,22 +37,39 @@ import { AppFacade } from './app.facade';
   ],
 })
 export class AppComponent implements OnInit {
-  public isLoading = false;
+  public readonly nextEvent$ = this.store.select(EventsSelectors.selectNextEvent);
+  public readonly showModal$ = this.store.select(ModalSelectors.selectIsOpen);
+  public readonly showToaster$ = this.store.select(
+    ToasterSelectors.selectIsDisplayingToasts,
+  );
+  public readonly showUpcomingEventBanner$ = this.store.select(
+    UserSettingsSelectors.selectShowUpcomingEventBanner,
+  );
+
+  private readonly bannerLastCleared$ = this.store.select(
+    UserSettingsSelectors.selectBannerLastCleared,
+  );
+  public readonly isDarkMode$ = this.store.select(UserSettingsSelectors.selectIsDarkMode);
 
   constructor(
-    private changeDetectionRef: ChangeDetectorRef,
-    private loaderService: LoaderService,
-    public facade: AppFacade,
+    public readonly loaderService: LoaderService,
+    @Inject(DOCUMENT) private _document: Document,
+    private readonly store: Store,
   ) {
     moment.tz.setDefault('America/Toronto');
   }
 
   ngOnInit(): void {
-    this.loaderService.isLoading$.subscribe((isLoading: boolean) => {
-      this.isLoading = isLoading;
-
-      // Manually detect changes to prevent Angular's ExpressionChangedAfterItHasBeenCheckedError
-      this.changeDetectionRef.detectChanges();
+    this.isDarkMode$.pipe(untilDestroyed(this)).subscribe(isDarkMode => {
+      this._document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
     });
+
+    this.bannerLastCleared$
+      .pipe(first(), filter(isDefined))
+      .subscribe(bannerLastCleared => {
+        if (moment().diff(bannerLastCleared, 'days') > 0) {
+          this.store.dispatch(UserSettingsActions.upcomingEventBannerReinstated());
+        }
+      });
   }
 }

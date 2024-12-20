@@ -1,4 +1,4 @@
-@if (facade.nextEvent$ | async; as nextEvent) {
+@if (nextEvent$ | async; as nextEvent) {
   <div
     class="container"
     [ngClass]="kebabize(nextEvent.type)">
@@ -6,7 +6,7 @@
       <a
         class="banner-message"
         [routerLink]="NavPathTypes.SCHEDULE"
-        (click)="facade.onClearBanner()">
+        (click)="onClearBanner()">
         <span>
           Next event: <b>{{ nextEvent.title }}</b> on
           <b>{{ nextEvent.eventDate | formatDate: 'short' }}</b>
@@ -15,7 +15,7 @@
       <i-feather
         name="x"
         class="close-icon"
-        (click)="facade.onClearBanner()">
+        (click)="onClearBanner()">
       </i-feather>
     </div>
   </div>

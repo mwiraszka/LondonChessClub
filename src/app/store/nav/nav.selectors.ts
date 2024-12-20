@@ -3,16 +3,21 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { StoreFeatures } from '@app/types';
 
+import { AuthSelectors } from '../auth';
+import { UserSettingsSelectors } from '../user-settings';
 import { NavState } from './nav.state';
 
-export const navFeatureSelector = createFeatureSelector<NavState>(StoreFeatures.NAV);
+export const selectNavState = createFeatureSelector<NavState>(StoreFeatures.NAV);
 
-export const pathHistory = createSelector(
-  navFeatureSelector,
+export const selectPathHistory = createSelector(
+  selectNavState,
   state => state?.pathHistory,
 );
-export const previousPath = createSelector(pathHistory, pathHistory =>
-  pathHistory ? pathHistory[pathHistory.length - 1] : null,
+
+export const selectPreviousPath = createSelector(selectPathHistory, pathHistory =>
+  pathHistory?.length && pathHistory.length > 0
+    ? pathHistory[pathHistory.length - 1]
+    : null,
 );
 
 export const {
@@ -27,3 +32,9 @@ export const {
   selectUrl, // select the current url
   selectTitle, // select the title if available
 } = getRouterSelectors();
+
+export const selectNavViewModel = createSelector({
+  user: AuthSelectors.selectUser,
+  isDarkMode: UserSettingsSelectors.selectIsDarkMode,
+  isSafeMode: UserSettingsSelectors.selectIsSafeMode,
+});

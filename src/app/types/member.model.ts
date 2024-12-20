@@ -20,8 +20,9 @@ export interface Member {
   modificationInfo: ModificationInfo | null;
 }
 
-export const newMemberFormTemplate: Member = {
-  id: null,
+export type MemberFormData = Omit<Member, 'id' | 'modificationInfo'>;
+
+export const newMemberFormTemplate: MemberFormData = {
   firstName: null,
   lastName: null,
   city: 'London',
@@ -34,5 +35,4 @@ export const newMemberFormTemplate: Member = {
   yearOfBirth: null,
   email: null,
   phoneNumber: null,
-  modificationInfo: null,
 };

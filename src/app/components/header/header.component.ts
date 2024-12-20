@@ -12,5 +12,5 @@ import { NavPathTypes } from '@app/types';
   imports: [CommonModule, RangePipe, RouterModule],
 })
 export class HeaderComponent {
-  readonly NavPathTypes = NavPathTypes;
+  public readonly NavPathTypes = NavPathTypes;
 }

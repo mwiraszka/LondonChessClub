@@ -47,19 +47,17 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   public readonly articleFormViewModel$ = this.store.select(
     ArticlesSelectors.selectArticleFormViewModel,
   );
-
   public form: FormGroup | null = null;
   public imageFile: Blob | null = null;
   public imageValidationEnabled: boolean = false;
   public newImageUrl: Url | null = null;
 
-  private imageExplorerRef: ComponentRef<ImageExplorerComponent> | null = null;
-  private controlMode: ControlMode | null = null;
-
   private readonly articleFormData$ = this.store.select(
     ArticlesSelectors.selectArticleFormData,
   );
   private readonly controlMode$ = this.store.select(ArticlesSelectors.selectControlMode);
+  private controlMode: ControlMode | null = null;
+  private imageExplorerRef: ComponentRef<ImageExplorerComponent> | null = null;
 
   constructor(
     private readonly store: Store,
@@ -79,6 +77,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
 
     this.articleFormData$.pipe(first(isDefined)).subscribe(articleFormData => {
       this.initForm(articleFormData);
+      this.initFormValueChangeListener();
 
       const imageDataUrl = localStorage.getItem(LOCAL_STORAGE_IMAGE_KEY);
       if (imageDataUrl) {
@@ -167,6 +166,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   public onSubmit(articleTitle?: string): void {
     if (this.form?.invalid || this.imageError || !articleTitle) {
       this.imageValidationEnabled = true;
+      this.form?.markAllAsTouched();
       return;
     }
 
@@ -193,8 +193,10 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
       body: [articleFormData.body, [Validators.required, Validators.pattern(/[^\s]/)]],
       isSticky: [articleFormData.isSticky],
     });
+  }
 
-    this.form.valueChanges
+  private initFormValueChangeListener() {
+    this.form?.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((articleFormData: ArticleFormData) => {
         this.store.dispatch(ArticlesActions.formDataChanged({ articleFormData }));

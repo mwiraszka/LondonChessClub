@@ -6,19 +6,16 @@ import { ScreenHeaderComponent } from '@app/components/screen-header/screen-head
 import { MetaAndTitleService } from '@app/services';
 import { type Link, NavPathTypes } from '@app/types';
 
-import { ChampionScreenFacade } from './champion-screen.facade';
-
 @Component({
   selector: 'lcc-champion-screen',
   templateUrl: './champion-screen.component.html',
   styleUrls: ['./champion-screen.component.scss'],
-  providers: [ChampionScreenFacade],
   imports: [CommonModule, LinkListComponent, ScreenHeaderComponent],
 })
 export class ChampionScreenComponent implements OnInit {
-  readonly NavPathTypes = NavPathTypes;
+  public readonly NavPathTypes = NavPathTypes;
 
-  links: Link[] = [
+  public readonly links: Link[] = [
     {
       path: 'http://londonchessclub.ca/?p=78',
       text: 'Past London Chess Champions (1967-2019)',
@@ -37,7 +34,11 @@ export class ChampionScreenComponent implements OnInit {
     },
   ];
 
-  pastChampionships: Array<{ year: number; winner: string; style?: string }> = [
+  public readonly pastChampionships: Array<{
+    year: number;
+    winner: string;
+    style?: string;
+  }> = [
     {
       year: 2023,
       winner: 'Serhii Ivanchuk',
@@ -271,10 +272,7 @@ export class ChampionScreenComponent implements OnInit {
     },
   ];
 
-  constructor(
-    public facade: ChampionScreenFacade,
-    private metaAndTitleService: MetaAndTitleService,
-  ) {}
+  constructor(private metaAndTitleService: MetaAndTitleService) {}
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('City Champion');

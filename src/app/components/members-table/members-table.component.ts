@@ -1,4 +1,4 @@
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Store } from '@ngrx/store';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -8,17 +8,14 @@ import { LinkListComponent } from '@app/components/link-list/link-list.component
 import { PaginatorComponent } from '@app/components/paginator/paginator.component';
 import { IconsModule } from '@app/icons';
 import { FormatDatePipe } from '@app/pipes/format-date.pipe';
-import { type Link, NavPathTypes } from '@app/types';
+import { MembersActions, MembersSelectors } from '@app/store/members';
+import { type Link, Member, NavPathTypes } from '@app/types';
 import { camelize, kebabize } from '@app/utils';
 
-import { MembersTableFacade } from './members-table.facade';
-
-@UntilDestroy()
 @Component({
   selector: 'lcc-members-table',
   templateUrl: './members-table.component.html',
   styleUrls: ['./members-table.component.scss'],
-  providers: [MembersTableFacade],
   imports: [
     AdminControlsComponent,
     CommonModule,
@@ -29,11 +26,19 @@ import { MembersTableFacade } from './members-table.facade';
   ],
 })
 export class MembersTableComponent implements OnInit {
-  readonly NavPathTypes = NavPathTypes;
-  readonly camelize = camelize;
-  readonly kebabize = kebabize;
+  public readonly NavPathTypes = NavPathTypes;
+  public readonly camelize = camelize;
+  public readonly kebabize = kebabize;
 
-  readonly ALL_TABLE_HEADERS = [
+  public readonly addMemberLink: Link = {
+    path: NavPathTypes.MEMBER + '/' + NavPathTypes.ADD,
+    text: 'Add a member',
+    icon: 'plus-circle',
+  };
+  public readonly membersTableViewModel$ = this.store.select(
+    MembersSelectors.selectMembersTableViewModel,
+  );
+  public readonly tableHeaders = [
     'First Name',
     'Last Name',
     'Rating',
@@ -48,29 +53,33 @@ export class MembersTableComponent implements OnInit {
     'Date Joined',
   ];
 
-  tableHeaders!: string[];
-  addMemberLink: Link = {
-    path: NavPathTypes.MEMBER + '/' + NavPathTypes.ADD,
-    text: 'Add a member',
-    icon: 'plus-circle',
-  };
-
-  constructor(public facade: MembersTableFacade) {}
+  constructor(private readonly store: Store) {}
 
   ngOnInit(): void {
-    this.facade.fetchMembers();
-
-    this.facade.showAdminColumns$
-      .pipe(untilDestroyed(this))
-      .subscribe(showAdminColumns => {
-        this.tableHeaders = showAdminColumns
-          ? this.ALL_TABLE_HEADERS
-          : this.ALL_TABLE_HEADERS.slice(0, -4);
-      });
+    this.fetchMembers();
   }
 
-  // TODO: update to work with Date objects!
-  convertToUtcTimezone(localDate: Date): Date {
-    return localDate;
+  public fetchMembers(): void {
+    this.store.dispatch(MembersActions.fetchMembersRequested());
+  }
+
+  public onDeleteMember(member: Member): void {
+    this.store.dispatch(MembersActions.deleteMemberSelected({ member }));
+  }
+
+  public onSelectTableHeader(header: string): void {
+    this.store.dispatch(MembersActions.tableHeaderSelected({ header }));
+  }
+
+  public onToggleInactiveMembers(): void {
+    this.store.dispatch(MembersActions.inactiveMembersToggled());
+  }
+
+  public onChangePage(pageNum: number): void {
+    this.store.dispatch(MembersActions.pageChanged({ pageNum }));
+  }
+
+  public onChangePageSize(pageSize: number): void {
+    this.store.dispatch(MembersActions.pageSizeChanged({ pageSize }));
   }
 }

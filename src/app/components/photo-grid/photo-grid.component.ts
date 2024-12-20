@@ -18,7 +18,7 @@ import { Photo } from '@app/types';
 export class PhotoGridComponent {
   @Input() public maxPhotos?: number;
 
-  public readonly photos$ = this.store.select(PhotosSelectors.photos);
+  public readonly photos$ = this.store.select(PhotosSelectors.selectPhotos);
 
   private imageViewerRef: ComponentRef<ImageViewerComponent> | null = null;
 

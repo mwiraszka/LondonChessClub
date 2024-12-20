@@ -1,22 +1,28 @@
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Store } from '@ngrx/store';
+
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 
 import { ScheduleComponent } from '@app/components/schedule/schedule.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { MetaAndTitleService } from '@app/services';
+import { EventsSelectors } from '@app/store/events';
 
-import { ScheduleScreenFacade } from './schedule-screen.facade';
-
+@UntilDestroy()
 @Component({
   selector: 'schedule-screen',
   templateUrl: './schedule-screen.component.html',
   styleUrls: ['./schedule-screen.component.scss'],
-  providers: [ScheduleScreenFacade],
   imports: [CommonModule, ScheduleComponent, ScreenHeaderComponent],
 })
 export class ScheduleScreenComponent implements OnInit {
+  public readonly upcomingEvents$ = this.store.select(
+    EventsSelectors.selectUpcomingEvents,
+  );
+
   constructor(
-    public facade: ScheduleScreenFacade,
+    private readonly store: Store,
     private metaAndTitleService: MetaAndTitleService,
     @Inject(DOCUMENT) private _document: Document,
   ) {}
@@ -27,7 +33,7 @@ export class ScheduleScreenComponent implements OnInit {
       'Scheduled events at the London Chess Club',
     );
 
-    this.facade.upcomingEvents$.subscribe(upcomingEvents => {
+    this.upcomingEvents$.pipe(untilDestroyed(this)).subscribe(upcomingEvents => {
       if (!upcomingEvents?.length || !upcomingEvents[0]?.id) {
         return;
       }

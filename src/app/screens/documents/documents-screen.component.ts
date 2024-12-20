@@ -32,7 +32,6 @@ import { ClubDocument } from '@app/types';
   ],
 })
 export class DocumentsScreenComponent implements OnInit, OnDestroy {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @ViewChild('pdfViewer') pdfViewer!: TemplateRef<any>;
 
   documentSrc?: string;
@@ -92,27 +91,27 @@ export class DocumentsScreenComponent implements OnInit, OnDestroy {
     this.onCloseViewer();
   }
 
-  onSelectDocument(fileName: string): void {
+  public onSelectDocument(fileName: string): void {
     this.loaderService.setIsLoading(true);
     this.documentSrc = `assets/documents/${fileName}`;
     this.viewContainerRef?.createEmbeddedView(this.pdfViewer);
   }
 
-  onProgress(progressData: PDFProgressData): void {
+  public onProgress(progressData: PDFProgressData): void {
     this.loadedPercentage = Math.floor((progressData.loaded / progressData.total) * 100);
   }
 
-  onDocumentLoaded(): void {
+  public onDocumentLoaded(): void {
     this.renderer.addClass(this._document.body, 'lcc-disable-scrolling');
     this.loaderService.setIsLoading(false);
   }
 
-  onClickViewer(event: MouseEvent): void {
+  public onClickViewer(event: MouseEvent): void {
     event.stopPropagation();
     event.preventDefault();
   }
 
-  onCloseViewer(): void {
+  public onCloseViewer(): void {
     this.renderer.removeClass(this._document.body, 'lcc-disable-scrolling');
     this.viewContainerRef.clear();
   }

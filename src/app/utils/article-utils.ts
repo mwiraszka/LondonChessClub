@@ -5,7 +5,7 @@ import { customSort } from './general-utils';
 /**
  * Sort articles based on date created, with sticky articles first
  */
-export function sortArticles(articles: Article[]) {
+export function sortArticles(articles: Article[]): Article[] {
   const stickyArticles = articles
     .filter(article => article.isSticky)
     .sort(customSort('modificationInfo.dateCreated'))

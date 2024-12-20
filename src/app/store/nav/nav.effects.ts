@@ -12,6 +12,7 @@ import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { MembersActions } from '@app/store/members';
 import { NavPathTypes } from '@app/types';
+import { isDefined } from '@app/utils';
 
 import { NavSelectors } from '.';
 import * as NavActions from './nav.actions';
@@ -103,8 +104,8 @@ export class NavEffects {
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       filter(({ payload }) => payload.event.url === '/logout'),
-      concatLatestFrom(() => this.store.select(AuthSelectors.user)),
-      filter(([, user]) => !!user),
+      concatLatestFrom(() => this.store.select(AuthSelectors.selectUser)),
+      filter(isDefined),
       map(() => AuthActions.logoutRequested()),
     ),
   );
@@ -117,11 +118,10 @@ export class NavEffects {
       map(currentPath => {
         const [controlMode, eventId] = currentPath.split('/event/')[1].split('/');
 
-        return controlMode === 'add' && !eventId
-          ? EventsActions.eventAddRequested()
-          : controlMode === 'edit' && !!eventId
-            ? EventsActions.eventEditRequested({ eventId })
-            : NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE });
+        return (controlMode === 'add' && !eventId) ||
+          (controlMode === 'edit' && !!eventId)
+          ? EventsActions.fetchEventRequested({ controlMode, eventId })
+          : NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE });
       }),
     ),
   );
@@ -129,11 +129,9 @@ export class NavEffects {
   unsetEvent$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
-      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-      map(([{ payload }, previousPath]) => {
-        return { currentPath: payload.event.url, previousPath };
-      }),
-      filter(({ currentPath, previousPath }) => {
+      concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
+      filter(([{ payload }, previousPath]) => {
+        const currentPath = payload.event.url;
         return (
           !!previousPath?.startsWith('/event/') &&
           !currentPath?.startsWith('/event/edit') &&
@@ -152,11 +150,10 @@ export class NavEffects {
       map(currentPath => {
         const [controlMode, memberId] = currentPath.split('/member/')[1].split('/');
 
-        return controlMode === 'add' && !memberId
-          ? MembersActions.memberAddRequested()
-          : controlMode === 'edit' && !!memberId
-            ? MembersActions.memberEditRequested({ memberId })
-            : NavActions.navigationRequested({ path: NavPathTypes.MEMBERS });
+        return (controlMode === 'add' && !memberId) ||
+          (controlMode === 'edit' && !!memberId)
+          ? MembersActions.fetchMemberRequested({ controlMode, memberId })
+          : NavActions.navigationRequested({ path: NavPathTypes.MEMBERS });
       }),
     ),
   );
@@ -164,11 +161,9 @@ export class NavEffects {
   unsetMember$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
-      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-      map(([{ payload }, previousPath]) => {
-        return { currentPath: payload.event.url, previousPath };
-      }),
-      filter(({ currentPath, previousPath }) => {
+      concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
+      filter(([{ payload }, previousPath]) => {
+        const currentPath = payload.event.url;
         return (
           !!previousPath?.startsWith('/member/') &&
           !currentPath?.startsWith('/member/edit') &&
@@ -205,11 +200,9 @@ export class NavEffects {
   unsetArticle$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
-      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
-      map(([{ payload }, previousPath]) => {
-        return { currentPath: payload.event.url, previousPath };
-      }),
-      filter(({ currentPath, previousPath }) => {
+      concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
+      filter(([{ payload }, previousPath]) => {
+        const currentPath = payload.event.url;
         return (
           !!previousPath?.startsWith('/article/') &&
           !currentPath?.startsWith('/article/edit') &&
@@ -223,7 +216,7 @@ export class NavEffects {
   redirectToNewsRouteAfterArticleDeletion$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleSucceeded),
-      concatLatestFrom(() => this.store.select(NavSelectors.previousPath)),
+      concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
       filter(
         ([{ article }, previousPath]) => previousPath === `/article/view/${article.id}`,
       ),

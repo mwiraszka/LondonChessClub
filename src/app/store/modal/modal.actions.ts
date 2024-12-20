@@ -2,25 +2,18 @@ import { createAction, props } from '@ngrx/store';
 
 import type { Modal, ModalButtonActionTypes } from '@app/types';
 
-enum ModalActionTypes {
-  MODAL_OPENED = '[Modal] Modal opened',
-  MODAL_CLOSED = '[Modal] Modal closed',
-  SELECTION_MADE = '[Modal] Selection made',
-  LEAVE_WITH_UNSAVED_CHANGES_REQUESTED = '[Modal] Leave with unsaved changes requested',
-}
-
 export const modalOpened = createAction(
-  ModalActionTypes.MODAL_OPENED,
+  '[Modal] Modal opened',
   props<{ modal: Modal }>(),
 );
 
-export const modalClosed = createAction(ModalActionTypes.MODAL_CLOSED);
+export const modalClosed = createAction('[Modal] Modal closed');
 
 export const selectionMade = createAction(
-  ModalActionTypes.SELECTION_MADE,
+  '[Modal] Selection made',
   props<{ action: ModalButtonActionTypes }>(),
 );
 
 export const leaveWithUnsavedChangesRequested = createAction(
-  ModalActionTypes.LEAVE_WITH_UNSAVED_CHANGES_REQUESTED,
+  '[Modal] Leave with unsaved changes requested',
 );

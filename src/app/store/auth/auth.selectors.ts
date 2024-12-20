@@ -4,18 +4,24 @@ import { StoreFeatures } from '@app/types';
 
 import { AuthState } from './auth.state';
 
-export const authFeatureSelector = createFeatureSelector<AuthState>(StoreFeatures.AUTH);
+export const selectAuthState = createFeatureSelector<AuthState>(StoreFeatures.AUTH);
 
-export const isAdmin = createSelector(
-  authFeatureSelector,
+export const selectIsAdmin = createSelector(
+  selectAuthState,
   state => state.user?.isVerified ?? false,
 );
 
-export const tempInitialPassword = createSelector(
-  authFeatureSelector,
-  state => state.tempInitialPassword,
+export const selectTemporaryPassword = createSelector(
+  selectAuthState,
+  state => state.temporaryPassword,
 );
 
-export const user = createSelector(authFeatureSelector, state => state.user);
+export const selectUser = createSelector(selectAuthState, state => state.user);
 
-export const userHasCode = createSelector(authFeatureSelector, state => state.hasCode);
+export const selectUserHasCode = createSelector(selectAuthState, state => state.hasCode);
+
+export const selectChangePasswordFormViewModel = createSelector({
+  user: selectUser,
+  userHasCode: selectUserHasCode,
+  temporaryPassword: selectTemporaryPassword,
+});

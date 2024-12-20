@@ -1,5 +1,5 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { combineLatest } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -8,24 +8,26 @@ import { ArticleFormComponent } from '@app/components/article-form/article-form.
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { MetaAndTitleService } from '@app/services';
+import { ArticlesSelectors } from '@app/store/articles';
 import { type Link, NavPathTypes } from '@app/types';
-
-import { ArticleEditorFacade } from './article-editor.facade';
 
 @UntilDestroy()
 @Component({
   selector: 'lcc-article-editor',
   templateUrl: './article-editor.component.html',
   styleUrls: ['./article-editor.component.scss'],
-  providers: [ArticleEditorFacade],
   imports: [ArticleFormComponent, CommonModule, LinkListComponent, ScreenHeaderComponent],
 })
 export class ArticleEditorComponent implements OnInit {
-  links: Link[] = [
+  public readonly articleEditorViewModel$ = this.store.select(
+    ArticlesSelectors.selectArticleEditorViewModel,
+  );
+
+  public links: Link[] = [
     {
       icon: 'activity',
       path: NavPathTypes.NEWS,
-      text: 'More articles',
+      text: 'See all articles',
     },
     {
       icon: 'home',
@@ -35,14 +37,14 @@ export class ArticleEditorComponent implements OnInit {
   ];
 
   constructor(
-    public facade: ArticleEditorFacade,
+    private readonly store: Store,
     private metaAndTitleService: MetaAndTitleService,
   ) {}
 
   ngOnInit(): void {
-    combineLatest([this.facade.articleTitle$, this.facade.controlMode$])
+    this.articleEditorViewModel$
       .pipe(untilDestroyed(this))
-      .subscribe(([articleTitle, controlMode]) => {
+      .subscribe(({ articleTitle, controlMode }) => {
         const screenTitle =
           controlMode === 'edit' && articleTitle
             ? `Edit ${articleTitle}`

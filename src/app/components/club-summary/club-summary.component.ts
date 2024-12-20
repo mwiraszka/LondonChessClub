@@ -13,5 +13,5 @@ import { NavPathTypes } from '@app/types';
   imports: [ClubMapComponent, CommonModule, IconsModule, RouterLink],
 })
 export class ClubSummaryComponent {
-  readonly NavPathTypes = NavPathTypes;
+  public readonly NavPathTypes = NavPathTypes;
 }

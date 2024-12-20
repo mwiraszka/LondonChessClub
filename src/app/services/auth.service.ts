@@ -62,7 +62,7 @@ export class AuthService {
   public logIn(request: LoginRequest): Observable<LoginResponse> {
     const authenticationDetails = new AuthenticationDetails({
       Username: request.email,
-      Password: request.tempInitialPassword ?? request.password,
+      Password: request.temporaryPassword ?? request.password,
     });
 
     return new Observable<LoginResponse>(observer => {
@@ -91,7 +91,7 @@ export class AuthService {
             observer.complete();
           }
 
-          if (request.tempInitialPassword) {
+          if (request.temporaryPassword) {
             delete userAttributes.email;
             delete userAttributes.email_verified;
             delete userAttributes.phone_number_verified;
@@ -124,7 +124,7 @@ export class AuthService {
             };
             observer.next({
               unverifiedUser,
-              tempInitialPassword: request.password,
+              temporaryPassword: request.password,
             });
             observer.complete();
           }

@@ -4,26 +4,26 @@ import { StoreFeatures } from '@app/types';
 
 import { UserSettingsState } from './user-settings.state';
 
-export const userSettingsFeatureSelector = createFeatureSelector<UserSettingsState>(
+export const selectUserSettingsState = createFeatureSelector<UserSettingsState>(
   StoreFeatures.USER_SETTINGS,
 );
 
-export const isDarkMode = createSelector(
-  userSettingsFeatureSelector,
+export const selectIsDarkMode = createSelector(
+  selectUserSettingsState,
   state => state.isDarkMode,
 );
 
-export const isSafeMode = createSelector(
-  userSettingsFeatureSelector,
+export const selectIsSafeMode = createSelector(
+  selectUserSettingsState,
   state => state.isSafeMode,
 );
 
-export const showUpcomingEventBanner = createSelector(
-  userSettingsFeatureSelector,
+export const selectShowUpcomingEventBanner = createSelector(
+  selectUserSettingsState,
   state => state.showUpcomingEventBanner,
 );
 
-export const bannerLastCleared = createSelector(
-  userSettingsFeatureSelector,
+export const selectBannerLastCleared = createSelector(
+  selectUserSettingsState,
   state => state.bannerLastCleared,
 );

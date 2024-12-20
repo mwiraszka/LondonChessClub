@@ -10,25 +10,25 @@ const photosReducer = createReducer(
 
   on(
     PhotosActions.photoSelected,
-    (state, { photo }): PhotosState => ({
-      ...state,
-      photo: photo,
+    ({ photos }, { photo }): PhotosState => ({
+      photos,
+      photo,
     }),
   ),
 
   on(
     PhotosActions.previousPhotoRequested,
-    (state): PhotosState => ({
-      ...state,
-      photo: getPreviousPhoto(state.photos, state.photo),
+    ({ photos, photo }): PhotosState => ({
+      photos,
+      photo: getPreviousPhoto(photos, photo),
     }),
   ),
 
   on(
     PhotosActions.nextPhotoRequested,
-    (state): PhotosState => ({
-      ...state,
-      photo: getNextPhoto(state.photos, state.photo),
+    ({ photos, photo }): PhotosState => ({
+      photos,
+      photo: getNextPhoto(photos, photo),
     }),
   ),
 );
@@ -41,26 +41,14 @@ function getPreviousPhoto(photos: Photo[], currentPhoto: Photo | null): Photo | 
   if (!currentPhoto || !photos.length) {
     return null;
   }
-
-  const currentPhotoIndex = photos
-    .map(photo => photo.filename)
-    .indexOf(currentPhoto.filename);
-
-  return currentPhotoIndex > 0
-    ? photos[currentPhotoIndex - 1]
-    : photos[photos.length - 1];
+  const currentIndex = photos.map(photo => photo.filename).indexOf(currentPhoto.filename);
+  return currentIndex > 0 ? photos[currentIndex - 1] : photos[photos.length - 1];
 }
 
 function getNextPhoto(photos: Photo[], currentPhoto: Photo | null): Photo | null {
   if (!currentPhoto || !photos.length) {
     return null;
   }
-
-  const currentPhotoIndex = photos
-    .map(photo => photo.filename)
-    .indexOf(currentPhoto.filename);
-
-  return currentPhotoIndex < photos.length - 1
-    ? photos[currentPhotoIndex + 1]
-    : photos[0];
+  const currentIndex = photos.map(photo => photo.filename).indexOf(currentPhoto.filename);
+  return currentIndex < photos.length - 1 ? photos[currentIndex + 1] : photos[0];
 }

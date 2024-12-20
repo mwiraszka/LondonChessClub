@@ -10,7 +10,7 @@ import { IconsModule } from '@app/icons';
   imports: [CommonModule, IconsModule],
 })
 export class ScreenHeaderComponent {
-  @Input() hasUnsavedChanges?: boolean;
-  @Input() icon?: string | null;
-  @Input() title?: string | null;
+  @Input() public hasUnsavedChanges: boolean | null = null;
+  @Input() public icon: string | null = null;
+  @Input() public title: string | null = null;
 }

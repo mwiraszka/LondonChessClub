@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { type ControlMode, newEventFormTemplate } from '@app/types';
+import { newEventFormTemplate } from '@app/types';
 
 import * as EventsActions from './events.actions';
 import { EventsState, initialState } from './events.state';
@@ -8,77 +8,102 @@ import { EventsState, initialState } from './events.state';
 const scheduleReducer = createReducer(
   initialState,
 
-  on(EventsActions.fetchEventsSucceeded, (state, { events }) => ({
-    ...state,
-    events,
-  })),
-
-  on(EventsActions.eventAddRequested, state => ({
-    ...state,
-    setEvent: newEventFormTemplate,
-    formEvent: newEventFormTemplate,
-    controlMode: 'add' as ControlMode,
-  })),
-
-  on(EventsActions.eventEditRequested, state => ({
-    ...state,
-    controlMode: 'edit' as ControlMode,
-  })),
-
-  on(EventsActions.eventSet, (state, { event }) => ({
-    ...state,
-    setEvent: event,
-  })),
-
-  on(EventsActions.eventUnset, state => ({
-    ...state,
-    setEvent: null,
-    formEvent: null,
-    controlMode: null,
-  })),
+  on(
+    EventsActions.fetchEventsSucceeded,
+    (state, { events }): EventsState => ({
+      ...state,
+      events,
+    }),
+  ),
 
   on(
-    EventsActions.addEventSucceeded,
-    EventsActions.updateEventSucceeded,
-    (state, { event }) => ({
+    EventsActions.fetchEventRequested,
+    (state, { controlMode }): EventsState => ({
+      ...state,
+      controlMode,
+    }),
+  ),
+
+  on(
+    EventsActions.newEventFormTemplateLoaded,
+    (state): EventsState => ({
+      ...state,
+      eventFormData: newEventFormTemplate,
+    }),
+  ),
+
+  on(EventsActions.fetchEventSucceeded, (state, { event }): EventsState => {
+    const { id, modificationInfo, ...eventFormData } = event;
+    return {
       ...state,
       events: [
         ...state.events.map(storedEvent =>
           storedEvent.id === event.id ? event : storedEvent,
         ),
       ],
-      setEvent: null,
-      formEvent: null,
+      event,
+      eventFormData,
+    };
+  }),
+
+  on(
+    EventsActions.addEventSucceeded,
+    EventsActions.updateEventSucceeded,
+    (state, { event }): EventsState => ({
+      ...state,
+      events: [
+        ...state.events.map(storedEvent =>
+          storedEvent.id === event.id ? event : storedEvent,
+        ),
+      ],
+      event: null,
+      eventFormData: null,
     }),
   ),
 
-  on(EventsActions.fetchEventSucceeded, (state, { event }) => ({
-    ...state,
-    events: [...state.events.filter(storedEvent => storedEvent.id !== event.id), event],
-    setEvent: event,
-  })),
+  on(
+    EventsActions.deleteEventSelected,
+    (state, { event }): EventsState => ({
+      ...state,
+      event,
+    }),
+  ),
 
-  on(EventsActions.deleteEventSelected, (state, { event }) => ({
-    ...state,
-    setEvent: event,
-  })),
+  on(
+    EventsActions.deleteEventSucceeded,
+    (state, { event }): EventsState => ({
+      ...state,
+      events: state.events.filter(storedEvent => storedEvent.id !== event.id),
+      event: null,
+      eventFormData: null,
+    }),
+  ),
 
-  on(EventsActions.deleteEventSucceeded, (state, { event }) => ({
-    ...state,
-    events: state.events.filter(storedEvent => storedEvent.id !== event.id),
-    setEvent: null,
-    formEvent: null,
-  })),
+  on(
+    EventsActions.formDataChanged,
+    (state, { eventFormData }): EventsState => ({
+      ...state,
+      eventFormData,
+    }),
+  ),
 
-  on(EventsActions.formDataChanged, (state, { event }) => ({
-    ...state,
-    formEvent: event,
-  })),
+  on(
+    EventsActions.eventUnset,
+    (state): EventsState => ({
+      ...state,
+      event: null,
+      eventFormData: null,
+      controlMode: null,
+    }),
+  ),
 
-  on(EventsActions.togglePastEvents, state => ({
-    ...state,
-    showPastEvents: !state.showPastEvents,
-  })),
+  on(
+    EventsActions.pastEventsToggled,
+    (state): EventsState => ({
+      ...state,
+      showPastEvents: !state.showPastEvents,
+    }),
+  ),
 );
 
 export function reducer(state: EventsState, action: Action): EventsState {

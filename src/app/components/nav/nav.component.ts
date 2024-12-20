@@ -1,3 +1,5 @@
+import { Store } from '@ngrx/store';
+
 import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -6,15 +8,14 @@ import { DropdownDirective } from '@app/components/dropdown/dropdown.directive';
 import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
+import { NavSelectors } from '@app/store/nav';
+import { UserSettingsActions } from '@app/store/user-settings';
 import { Link, NavPathTypes } from '@app/types';
-
-import { NavFacade } from './nav.facade';
 
 @Component({
   selector: 'lcc-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
-  providers: [NavFacade],
   imports: [
     CommonModule,
     DropdownDirective,
@@ -26,9 +27,9 @@ import { NavFacade } from './nav.facade';
   ],
 })
 export class NavComponent {
-  readonly NavPathTypes = NavPathTypes;
+  public readonly NavPathTypes = NavPathTypes;
 
-  readonly links: Link[] = [
+  public readonly links: Link[] = [
     {
       path: NavPathTypes.HOME,
       text: 'Home',
@@ -70,14 +71,23 @@ export class NavComponent {
       icon: 'grid',
     },
   ];
+  public readonly navViewModel$ = this.store.select(NavSelectors.selectNavViewModel);
 
-  isDropdownOpen = false;
-  screenWidth = window.innerWidth;
+  public isDropdownOpen = false;
+  public screenWidth = window.innerWidth;
 
-  constructor(public facade: NavFacade) {}
+  constructor(private readonly store: Store) {}
 
   @HostListener('window:resize', ['$event'])
-  onResize(): void {
+  private onResize(): void {
     this.screenWidth = window.innerWidth;
+  }
+
+  public onToggleTheme(): void {
+    this.store.dispatch(UserSettingsActions.themeToggled());
+  }
+
+  public onToggleSafeMode(): void {
+    this.store.dispatch(UserSettingsActions.safeModeToggled());
   }
 }

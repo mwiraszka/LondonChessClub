@@ -12,12 +12,10 @@ export interface Article {
   modificationInfo: ModificationInfo | null;
 }
 
-export interface ArticleFormData {
-  title: string;
-  body: string;
-  imageId: Id | null;
-  isSticky: boolean;
-}
+export type ArticleFormData = Omit<
+  Article,
+  'id' | 'imageUrl' | 'thumbnailImageUrl' | 'modificationInfo'
+>;
 
 export const newArticleFormTemplate: ArticleFormData = {
   title: '',

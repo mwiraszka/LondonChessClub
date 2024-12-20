@@ -15,7 +15,7 @@ import { PhotosActions, PhotosSelectors } from '@app/store/photos';
   imports: [CommonModule, IconsModule, TooltipDirective],
 })
 export class ImageViewerComponent {
-  public readonly photo$ = this.store.select(PhotosSelectors.photo);
+  public readonly photo$ = this.store.select(PhotosSelectors.selectPhoto);
 
   @Output() public close = new EventEmitter<void>();
 

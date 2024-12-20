@@ -1,105 +1,107 @@
-<div class="nav-left"></div>
+@if (navViewModel$ | async; as vm) {
+  <div class="nav-left"></div>
 
-<div class="nav-items-container">
-  @for (link of links; track link.path) {
-    <a
-      [attr.aria-label]="link.text"
-      class="nav-link"
-      routerLinkActive="link-active"
-      [routerLink]="link.path"
-      [routerLinkActiveOptions]="{ exact: true }"
-      [tooltip]="screenWidth > 700 ? null : link.text">
-      <span class="text">{{ link.text }}</span>
-      <i-feather [name]="link.icon!"></i-feather>
-    </a>
-  }
+  <div class="nav-items-container">
+    @for (link of links; track link.path) {
+      <a
+        [attr.aria-label]="link.text"
+        class="nav-link"
+        routerLinkActive="link-active"
+        [routerLink]="link.path"
+        [routerLinkActiveOptions]="{ exact: true }"
+        [tooltip]="screenWidth > 700 ? null : link.text">
+        <span class="text">{{ link.text }}</span>
+        <i-feather [name]="link.icon!"></i-feather>
+      </a>
+    }
 
-  <div class="nav-login-spacer"></div>
+    <div class="nav-login-spacer"></div>
 
-  <div class="lcc-dropdown-tab settings-dropdown-tab">
-    <i-feather name="settings"></i-feather>
-    <i-feather
-      [name]="isDropdownOpen ? 'chevron-down' : 'chevron-up'"
-      class="chevron-icon">
-    </i-feather>
+    <div class="lcc-dropdown-tab settings-dropdown-tab">
+      <i-feather name="settings"></i-feather>
+      <i-feather
+        [name]="isDropdownOpen ? 'chevron-down' : 'chevron-up'"
+        class="chevron-icon">
+      </i-feather>
 
-    <div
-      class="lcc-dropdown user-dropdown"
-      dropdown
-      (opened)="isDropdownOpen = $event">
-      <ul class="dropdown-items">
-        @if (facade.user$ | async; as user) {
-          <li class="dropdown-item user-name">
-            <i-feather name="user"></i-feather>
-            <span>{{ user.firstName }} {{ user.lastName }}</span>
-          </li>
-          <hr />
-        }
+      <div
+        class="lcc-dropdown user-dropdown"
+        dropdown
+        (opened)="isDropdownOpen = $event">
+        <ul class="dropdown-items">
+          @if (vm.user) {
+            <li class="dropdown-item user-name">
+              <i-feather name="user"></i-feather>
+              <span>{{ vm.user.firstName }} {{ vm.user.lastName }}</span>
+            </li>
+            <hr />
+          }
 
-        <li class="dropdown-item theme-toggle">
-          <span>Theme</span>
-          <lcc-toggle-switch
-            [condition]="facade.isDarkMode$ | async"
-            [tooltipTextWhenOff]="'Switch to dark mode'"
-            [tooltipTextWhenOn]="'Switch to light mode'"
-            (toggle)="facade.onToggleTheme()">
-          </lcc-toggle-switch>
-        </li>
-
-        @if (facade.user$ | async; as user) {
-          <li class="dropdown-item safe-mode-toggle">
-            <div class="safe-mode-toggle-container">
-              <span>Safe mode</span>
-              @if (!(facade.isSafeMode$ | async)) {
-                <i-feather
-                  name="alert-triangle"
-                  class="safe-mode-off-alert-icon"
-                  tooltip="Safe mode is turned off">
-                </i-feather>
-              }
-            </div>
+          <li class="dropdown-item theme-toggle">
+            <span>Theme</span>
             <lcc-toggle-switch
-              [condition]="facade.isSafeMode$ | async"
-              [tooltipTextWhenOff]="
-                'Hide members\' emails, phone numbers and year of birth from screen'
-              "
-              [tooltipTextWhenOn]="
-                'Show members\' emails, phone numbers and year of birth on screen'
-              "
-              (toggle)="facade.onToggleSafeMode()">
+              [condition]="vm.isDarkMode"
+              [tooltipTextWhenOff]="'Switch to dark mode'"
+              [tooltipTextWhenOn]="'Switch to light mode'"
+              (toggle)="onToggleTheme()">
             </lcc-toggle-switch>
           </li>
 
-          <li class="dropdown-item">
-            <a
-              aria-label="Change password"
-              class="lcc-dropdown-link"
-              [routerLink]="NavPathTypes.CHANGE_PASSWORD">
-              <span>Change password</span>
-            </a>
-          </li>
+          @if (vm.user) {
+            <li class="dropdown-item safe-mode-toggle">
+              <div class="safe-mode-toggle-container">
+                <span>Safe mode</span>
+                @if (!vm.isSafeMode) {
+                  <i-feather
+                    name="alert-triangle"
+                    class="safe-mode-off-alert-icon"
+                    tooltip="Safe mode is turned off">
+                  </i-feather>
+                }
+              </div>
+              <lcc-toggle-switch
+                [condition]="vm.isSafeMode"
+                [tooltipTextWhenOff]="
+                  'Hide members\' emails, phone numbers and year of birth from screen'
+                "
+                [tooltipTextWhenOn]="
+                  'Show members\' emails, phone numbers and year of birth on screen'
+                "
+                (toggle)="onToggleSafeMode()">
+              </lcc-toggle-switch>
+            </li>
 
-          <li class="dropdown-item">
-            <a
-              aria-label="Log out"
-              class="lcc-dropdown-link"
-              [routerLink]="NavPathTypes.LOGOUT">
-              <span>Log out</span>
-            </a>
-          </li>
-        } @else {
-          <li class="dropdown-item">
-            <a
-              aria-label="Admin login"
-              class="lcc-dropdown-link"
-              [routerLink]="NavPathTypes.LOGIN">
-              <span>Admin login</span>
-            </a>
-          </li>
-        }
-      </ul>
+            <li class="dropdown-item">
+              <a
+                aria-label="Change password"
+                class="lcc-dropdown-link"
+                [routerLink]="NavPathTypes.CHANGE_PASSWORD">
+                <span>Change password</span>
+              </a>
+            </li>
+
+            <li class="dropdown-item">
+              <a
+                aria-label="Log out"
+                class="lcc-dropdown-link"
+                [routerLink]="NavPathTypes.LOGOUT">
+                <span>Log out</span>
+              </a>
+            </li>
+          } @else {
+            <li class="dropdown-item">
+              <a
+                aria-label="Admin login"
+                class="lcc-dropdown-link"
+                [routerLink]="NavPathTypes.LOGIN">
+                <span>Admin login</span>
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="nav-right"></div>
+  <div class="nav-right"></div>
+}

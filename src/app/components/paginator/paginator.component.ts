@@ -18,15 +18,15 @@ import { IconsModule } from '@app/icons';
   imports: [CommonModule, IconsModule, TooltipDirective],
 })
 export class PaginatorComponent implements OnChanges {
-  readonly PAGE_SIZES = [10, 20, 50, 100];
+  public readonly PAGE_SIZES = [10, 20, 50, 100];
 
-  @Input() pageNum = 1;
-  @Input() totalItems = 0;
-  @Input() typeOfItems = 'items';
-  @Input() pageSize = this.PAGE_SIZES[1];
+  @Input() public pageNum = 1;
+  @Input() public totalItems = 0;
+  @Input() public typeOfItems = 'items';
+  @Input() public pageSize = this.PAGE_SIZES[1];
 
-  @Output() pageChange = new EventEmitter<number>();
-  @Output() pageSizeChange = new EventEmitter<number>();
+  @Output() public pageChange = new EventEmitter<number>();
+  @Output() public pageSizeChange = new EventEmitter<number>();
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['totalItems']) {
@@ -42,31 +42,31 @@ export class PaginatorComponent implements OnChanges {
     }
   }
 
-  onFirst(): void {
+  public onFirst(): void {
     this.onPageChange(1);
   }
 
-  onPrevious(): void {
+  public onPrevious(): void {
     this.onPageChange(this.pageNum - 1);
   }
 
-  onNext(): void {
+  public onNext(): void {
     this.onPageChange(this.pageNum + 1);
   }
 
-  onLast(): void {
+  public onLast(): void {
     this.onPageChange(this.lastPage());
   }
 
-  lastPage(): number {
+  public lastPage(): number {
     return Math.ceil(this.totalItems / this.pageSize);
   }
 
-  onPageChange(pageNum: number): void {
+  public onPageChange(pageNum: number): void {
     this.pageChange.emit(pageNum);
   }
 
-  onPageSizeChange(pageSize: number): void {
+  public onPageSizeChange(pageSize: number): void {
     this.pageSizeChange.emit(pageSize);
   }
 }

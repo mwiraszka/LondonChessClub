@@ -11,9 +11,8 @@ import { type Toast, ToastTypes } from '@app/types';
   imports: [CommonModule, IconsModule],
 })
 export class ToastComponent implements OnInit {
-  @Input() toast?: Toast;
-
-  icon!: 'check-circle' | 'alert-triangle' | 'info';
+  @Input() public toast?: Toast;
+  public icon!: 'check-circle' | 'alert-triangle' | 'info';
 
   ngOnInit(): void {
     switch (this.toast?.type) {

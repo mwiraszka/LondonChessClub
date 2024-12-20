@@ -105,7 +105,7 @@ export class ToasterEffects {
   addFetchArticlesFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticlesFailed),
-      concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
+      concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
       filter(([, isAdmin]) => isAdmin || !environment.production),
       map(([{ errorResponse }]) => {
         const toast: Toast = {
@@ -121,7 +121,7 @@ export class ToasterEffects {
   addFetchArticleFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticleFailed),
-      concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
+      concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
       filter(([, isAdmin]) => isAdmin || !environment.production),
       map(([{ errorResponse }]) => {
         const toast: Toast = {
@@ -223,7 +223,7 @@ export class ToasterEffects {
   addFetchEventsFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventsActions.fetchEventsFailed),
-      concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
+      concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
       filter(([, isAdmin]) => isAdmin || !environment.production),
       map(([{ errorResponse }]) => {
         const toast: Toast = {
@@ -239,7 +239,7 @@ export class ToasterEffects {
   addFetchEventFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventsActions.fetchEventFailed),
-      concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
+      concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
       filter(([, isAdmin]) => isAdmin || !environment.production),
       map(([{ errorResponse }]) => {
         const toast: Toast = {
@@ -341,7 +341,7 @@ export class ToasterEffects {
   addFetchMembersFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.fetchMembersFailed),
-      concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
+      concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
       filter(([, isAdmin]) => isAdmin || !environment.production),
       map(([{ errorResponse }]) => {
         const toast: Toast = {
@@ -357,7 +357,7 @@ export class ToasterEffects {
   addFetchMemberFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.fetchMemberFailed),
-      concatLatestFrom(() => this.store.select(AuthSelectors.isAdmin)),
+      concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
       filter(([, isAdmin]) => isAdmin || !environment.production),
       map(([{ errorResponse }]) => {
         const toast: Toast = {

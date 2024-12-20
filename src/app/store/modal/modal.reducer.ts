@@ -6,18 +6,24 @@ import { ModalState, initialState } from './modal.state';
 const modalReducer = createReducer(
   initialState,
 
-  on(ModalActions.modalOpened, (state, action) => ({
-    ...state,
-    modal: action.modal,
-  })),
+  on(
+    ModalActions.modalOpened,
+    (state, { modal }): ModalState => ({
+      ...state,
+      modal,
+    }),
+  ),
 
-  on(ModalActions.modalClosed, () => initialState),
+  on(ModalActions.modalClosed, (): ModalState => initialState),
 
-  on(ModalActions.selectionMade, (state, action) => ({
-    ...state,
-    modal: null,
-    selection: action.action,
-  })),
+  on(
+    ModalActions.selectionMade,
+    (state, { action }): ModalState => ({
+      ...state,
+      modal: null,
+      selection: action,
+    }),
+  ),
 );
 
 export function reducer(state: ModalState, action: Action): ModalState {

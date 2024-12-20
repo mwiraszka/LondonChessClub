@@ -60,21 +60,19 @@ import { YEARS } from './years';
   ],
 })
 export class GameArchivesScreenComponent implements OnInit {
-  allGames: Map<string, GameDetails[]> = new Map();
-  filteredGames: Map<string, GameDetails[]> = new Map();
-  form!: FormGroup;
-  showStats: boolean = false;
-  chessOpenings: Map<string, string> | null = null;
+  public allGames: Map<string, GameDetails[]> = new Map();
+  public chessOpenings: Map<string, string> | null = null;
+  public filteredGames: Map<string, GameDetails[]> = new Map();
+  public form!: FormGroup;
+  public openingChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
+  public openingChartLabels: string[] = [];
+  public openingChartOptions: ChartConfiguration<'doughnut'>['options'] = {};
+  public resultChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
+  public resultChartLabels: string[] = [];
+  public resultChartOptions: ChartConfiguration<'doughnut'>['options'] = {};
+  public showStats = false;
 
-  openingChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
-  openingChartLabels: string[] = [];
-  openingChartOptions: ChartConfiguration<'doughnut'>['options'] = {};
-
-  resultChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
-  resultChartLabels: string[] = [];
-  resultChartOptions: ChartConfiguration<'doughnut'>['options'] = {};
-
-  get searchResultSummaryMessage(): string {
+  public get searchResultSummaryMessage(): string {
     const allGamesCount = Array.from(this.allGames.values()).flat().length;
     const filteredGameCount = this.filteredGameCount;
 
@@ -89,27 +87,25 @@ export class GameArchivesScreenComponent implements OnInit {
     return `Displaying ${filteredGameCount} / ${allGamesCount} ${filteredGameCount === 1 ? 'game' : 'games'} 😎`;
   }
 
-  get filteredGameCount(): number {
+  public get filteredGameCount(): number {
     return Array.from(this.filteredGames.values()).flat().length;
   }
 
   @ViewChild(CdkVirtualScrollViewport)
-  cdkVirtualScrollViewport?: CdkVirtualScrollViewport;
+  public cdkVirtualScrollViewport?: CdkVirtualScrollViewport;
 
   constructor(
+    private readonly formBuilder: FormBuilder,
+    private readonly store: Store,
     private chessOpeningsService: ChessOpeningsService,
-    private formBuilder: FormBuilder,
     private loaderService: LoaderService,
     private metaAndTitleService: MetaAndTitleService,
-    private readonly store: Store,
   ) {}
 
   @HostListener('window:resize', ['$event'])
   onResize(): void {
     this.cdkVirtualScrollViewport?.checkViewportSize();
   }
-
-  trackByFn = (index: number) => index;
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Game Archives');
@@ -119,32 +115,26 @@ export class GameArchivesScreenComponent implements OnInit {
 
     this.initForm();
     this.initGames();
-    this.initValueChangesListeners();
-    this.setUpDarkModeListeners();
+    this.initFormValueChangeListeners();
+    this.initDarkModeListener();
     this.loadChessOpenings();
     this.filterGames();
   }
 
-  onKeydown(event: Event): void {
+  public trackByFn = (index: number) => index;
+
+  public onKeydown(event: Event): void {
     const key = (event as KeyboardEvent)?.key;
     if (key === 'ArrowLeft' || key === 'ArrowRight') {
       event.preventDefault();
     }
   }
 
-  onShowStats(): void {
-    this.showStats = !this.showStats;
-  }
-
-  hasError(control: AbstractControl): boolean {
+  public hasError(control: AbstractControl): boolean {
     return control.dirty && control.invalid;
   }
 
-  getErrorMessage(): string {
-    return 'Invalid input';
-  }
-
-  originalOrder = (
+  public originalOrder = (
     a: KeyValue<string, GameDetails[]>,
     b: KeyValue<string, GameDetails[]>,
   ): number => {
@@ -190,7 +180,7 @@ export class GameArchivesScreenComponent implements OnInit {
     });
   }
 
-  private initValueChangesListeners(): void {
+  private initFormValueChangeListeners(): void {
     this.form.valueChanges
       .pipe(distinctUntilChanged(), debounceTime(100), untilDestroyed(this))
       .subscribe(() => this.filterGames());
@@ -254,9 +244,9 @@ export class GameArchivesScreenComponent implements OnInit {
     );
   }
 
-  private setUpDarkModeListeners(): void {
+  private initDarkModeListener(): void {
     this.store
-      .select(UserSettingsSelectors.isDarkMode)
+      .select(UserSettingsSelectors.selectIsDarkMode)
       .pipe(untilDestroyed(this))
       .subscribe(isDarkMode => {
         this.openingChartOptions = {

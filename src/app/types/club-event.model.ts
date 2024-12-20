@@ -24,8 +24,9 @@ export interface Event {
   modificationInfo: ModificationInfo | null;
 }
 
-export const newEventFormTemplate: Event = {
-  id: null,
+export type EventFormData = Omit<Event, 'id' | 'modificationInfo'>;
+
+export const newEventFormTemplate: EventFormData = {
   type: EventTypes.BLITZ_TOURNAMENT,
   eventDate: moment()
     .tz('America/Toronto', false)
@@ -35,5 +36,4 @@ export const newEventFormTemplate: Event = {
   title: '',
   details: '',
   articleId: null,
-  modificationInfo: null,
 };

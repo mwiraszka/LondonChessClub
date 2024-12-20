@@ -9,9 +9,3 @@ export interface PasswordChangeResponse {
   newPassword?: string;
   error?: Error;
 }
-
-export interface PasswordChangeFormData {
-  email: string;
-  newPassword: string;
-  code?: string;
-}

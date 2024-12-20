@@ -1,68 +1,73 @@
-@if (facade.isAdmin$ | async) {
-  <lcc-link-list [links]="[createArticleLink]"></lcc-link-list>
-}
-
-<div class="articles-container">
-  @for (article of articles; track article.id) {
-    <a
-      class="lcc-admin-controls-container article"
-      [routerLink]="
-        article.title
-          ? '/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + article.id
-          : undefined
-      ">
-      @if ((facade.isAdmin$ | async) && article.title) {
-        <lcc-admin-controls
-          [editPath]="
-            '/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.EDIT + '/' + article.id
-          "
-          [itemName]="article.title"
-          (delete)="facade.onDeleteArticle(article)">
-        </lcc-admin-controls>
-      }
-
-      @if (article.isSticky) {
-        <i-feather
-          class="sticky-icon"
-          name="bookmark">
-        </i-feather>
-      }
-
-      @defer {
-        <img
-          class="article-thumbnail-image"
-          [src]="article.thumbnailImageUrl"
-          default="assets/image-placeholder.png"
-          alt="Article banner image" />
-      } @placeholder (minimum 0.5s) {
-        <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
-          <div class="lcc-content-placeholder"></div>
-        </div>
-      }
-
-      <div class="article-summary-container">
-        <h3 class="lcc-truncate-max-2-lines">{{ article.title }}</h3>
-        <hr />
-        <p class="lcc-truncate-max-5-lines">
-          {{ article.body | stripMarkdown }}
-        </p>
-        <div class="article-dates-container">
-          <span class="date-created">
-            {{ article?.modificationInfo?.dateCreated | formatDate: 'short no-time' }}
-          </span>
-          @if (wasEdited(article?.modificationInfo)) {
-            <div>
-              <span class="vertical-spacer">|</span>
-              <span class="edited">edited&nbsp;</span>
-              <span class="date-last-edited">
-                {{
-                  article?.modificationInfo?.dateLastEdited | formatDate: 'short no-time'
-                }}
-              </span>
-            </div>
-          }
-        </div>
-      </div>
-    </a>
+@if (articleGridViewModel$ | async; as vm) {
+  @if (vm.isAdmin) {
+    <lcc-link-list [links]="[createArticleLink]"></lcc-link-list>
   }
-</div>
+
+  <div class="articles-container">
+    @for (
+      article of vm.articles.slice(0, maxArticles ?? vm.articles.length);
+      track article.id
+    ) {
+      <a
+        class="lcc-admin-controls-container article"
+        [routerLink]="
+          article.title
+            ? '/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + article.id
+            : undefined
+        ">
+        @if (vm.isAdmin && article.title) {
+          <lcc-admin-controls
+            [editPath]="
+              '/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.EDIT + '/' + article.id
+            "
+            [itemName]="article.title"
+            (delete)="onDeleteArticle(article)">
+          </lcc-admin-controls>
+        }
+
+        @if (article.isSticky) {
+          <i-feather
+            class="sticky-icon"
+            name="bookmark">
+          </i-feather>
+        }
+
+        @defer {
+          <img
+            class="article-thumbnail-image"
+            [src]="article.thumbnailImageUrl"
+            default="assets/image-placeholder.png"
+            alt="Article banner image" />
+        } @placeholder (minimum 0.5s) {
+          <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
+            <div class="lcc-content-placeholder"></div>
+          </div>
+        }
+
+        <div class="article-summary-container">
+          <h3 class="lcc-truncate-max-2-lines">{{ article.title }}</h3>
+          <hr />
+          <p class="lcc-truncate-max-5-lines">
+            {{ article.body | stripMarkdown }}
+          </p>
+          <div class="article-dates-container">
+            <span class="date-created">
+              {{ article.modificationInfo?.dateCreated | formatDate: 'short no-time' }}
+            </span>
+            @if (wasEdited(article.modificationInfo)) {
+              <div>
+                <span class="vertical-spacer">|</span>
+                <span class="edited">edited&nbsp;</span>
+                <span class="date-last-edited">
+                  {{
+                    article.modificationInfo?.dateLastEdited | formatDate: 'short no-time'
+                  }}
+                </span>
+              </div>
+            }
+          </div>
+        </div>
+      </a>
+    }
+  </div>
+}

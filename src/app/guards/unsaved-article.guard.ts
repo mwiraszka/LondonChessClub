@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { ArticlesSelectors } from '@app/store/articles';
 import { ModalActions, ModalSelectors } from '@app/store/modal';
 import { ModalButtonActionTypes } from '@app/types';
+import { isDefined } from '@app/utils';
 
 @Injectable({ providedIn: 'root' })
 export class UnsavedArticleGuard {
@@ -20,8 +21,8 @@ export class UnsavedArticleGuard {
         }
 
         this.store.dispatch(ModalActions.leaveWithUnsavedChangesRequested());
-        return this.store.select(ModalSelectors.selection).pipe(
-          filter(selection => !!selection),
+        return this.store.select(ModalSelectors.selectSelection).pipe(
+          filter(isDefined),
           map(selection => selection === ModalButtonActionTypes.LEAVE_OK),
         );
       }),

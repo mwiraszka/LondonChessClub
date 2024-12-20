@@ -1,13 +1,16 @@
-<div class="container">
-  <lcc-screen-header
-    [hasUnsavedChanges]="(facade.hasUnsavedChanges$ | async) ?? undefined"
-    [title]="
-      (facade.controlMode$ | async) === 'edit'
-        ? !!(facade.setMemberName$ | async)
-          ? 'Edit ' + (facade.setMemberName$ | async)
-          : ''
-        : 'Add a member'
-    ">
-  </lcc-screen-header>
-  <lcc-member-form></lcc-member-form>
-</div>
+@if (selectMemberEditorViewModel$ | async; as vm) {
+  <div class="container">
+    <lcc-screen-header
+      [hasUnsavedChanges]="vm.hasUnsavedChanges"
+      [title]="
+        vm.controlMode === 'add'
+          ? 'Add a member'
+          : vm.memberName
+            ? 'Edit ' + vm.memberName
+            : ''
+      ">
+    </lcc-screen-header>
+    <lcc-member-form></lcc-member-form>
+    <lcc-link-list [links]="links"></lcc-link-list>
+  </div>
+}

@@ -10,6 +10,8 @@ export class LoaderService {
   public isLoading$ = this._isLoading$.asObservable();
 
   public setIsLoading(value: boolean): void {
-    this._isLoading$.next(value);
+    // Delayed by one tick to prevent Angular's ExpressionChangedAfterItHasBeenCheckedError
+    // since spinner is rendered in the App Component after initial change detection
+    setTimeout(() => this._isLoading$.next(value));
   }
 }

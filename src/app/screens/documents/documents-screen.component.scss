@@ -3,22 +3,6 @@ $header-height: 40px;
 $close-icon-height: $header-height - (2 * 8px);
 $document-icon-height: 18px;
 
-:host {
-  display: flex;
-  justify-content: center;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  max-width: var(--lcc-width--appContent);
-  padding: 0 8px;
-}
-
 .documents-table {
   td {
     white-space: nowrap;

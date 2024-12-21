@@ -272,7 +272,7 @@ export class ChampionScreenComponent implements OnInit {
     },
   ];
 
-  constructor(private metaAndTitleService: MetaAndTitleService) {}
+  constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('City Champion');

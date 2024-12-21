@@ -1,12 +1,10 @@
 @use '../../../styles/abstracts/mixins';
 
-.container {
-  max-width: var(--lcc-width--appContent);
-  display: grid;
+:host {
+  display: grid !important;
+  align-items: unset !important;
   grid-template-areas: 'welcome' 'schedule' 'articles' 'photos';
   grid-template-columns: minmax(0, 1fr);
-  margin: auto;
-  gap: 8px;
 
   @include mixins.respond-to('gt-lg') {
     grid-template-columns: 3fr 2fr;
@@ -48,6 +46,7 @@
         font-weight: 300;
         font-size: 23px !important;
         text-align: center;
+        word-break: nowrap;
 
         @include mixins.respond-to('gt-sm') {
           text-align: left;

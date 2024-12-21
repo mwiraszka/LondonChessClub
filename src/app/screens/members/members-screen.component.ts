@@ -7,12 +7,17 @@ import { MetaAndTitleService } from '@app/services';
 
 @Component({
   selector: 'lcc-members-screen',
-  templateUrl: './members-screen.component.html',
-  styleUrls: ['./members-screen.component.scss'],
+  template: `
+    <lcc-screen-header
+      title="Members"
+      icon="users">
+    </lcc-screen-header>
+    <lcc-members-table></lcc-members-table>
+  `,
   imports: [CommonModule, MembersTableComponent, ScreenHeaderComponent],
 })
 export class MembersScreenComponent implements OnInit {
-  constructor(private metaAndTitleService: MetaAndTitleService) {}
+  constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Members');

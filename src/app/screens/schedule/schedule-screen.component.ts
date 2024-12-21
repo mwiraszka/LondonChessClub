@@ -12,8 +12,13 @@ import { EventsSelectors } from '@app/store/events';
 @UntilDestroy()
 @Component({
   selector: 'schedule-screen',
-  templateUrl: './schedule-screen.component.html',
-  styleUrls: ['./schedule-screen.component.scss'],
+  template: `
+    <lcc-screen-header
+      title="Schedule"
+      icon="calendar">
+    </lcc-screen-header>
+    <lcc-schedule></lcc-schedule>
+  `,
   imports: [CommonModule, ScheduleComponent, ScreenHeaderComponent],
 })
 export class ScheduleScreenComponent implements OnInit {
@@ -23,7 +28,7 @@ export class ScheduleScreenComponent implements OnInit {
 
   constructor(
     private readonly store: Store,
-    private metaAndTitleService: MetaAndTitleService,
+    private readonly metaAndTitleService: MetaAndTitleService,
     @Inject(DOCUMENT) private _document: Document,
   ) {}
 

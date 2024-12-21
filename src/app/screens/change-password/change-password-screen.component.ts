@@ -7,12 +7,14 @@ import { MetaAndTitleService } from '@app/services';
 
 @Component({
   selector: 'lcc-change-password-screen',
-  templateUrl: './change-password-screen.component.html',
-  styleUrls: ['./change-password-screen.component.scss'],
-  imports: [CommonModule, ChangePasswordFormComponent, ScreenHeaderComponent],
+  template: `
+    <lcc-screen-header title="Change Password"></lcc-screen-header>
+    <lcc-change-password-form></lcc-change-password-form>
+  `,
+  imports: [ChangePasswordFormComponent, CommonModule, ScreenHeaderComponent],
 })
 export class ChangePasswordScreenComponent implements OnInit {
-  constructor(private metaAndTitleService: MetaAndTitleService) {}
+  constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Change Password');

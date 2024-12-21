@@ -5,191 +5,176 @@ $pgn-viewer-height: 336px;
 $lichess-analysis-board-link-height: 28px;
 $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
 
-:host {
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    max-width: var(--lcc-width--appContent);
-    margin: 0 8px;
+.intro-section {
+  max-width: $container-max-width;
+  display: flex;
+  flex-direction: column;
 
-    @include mixins.respond-to('gt-sm') {
-      margin: auto;
+  @include mixins.respond-to('gt-lg') {
+    flex-direction: row;
+  }
+
+  .image-container {
+    flex: 2;
+    align-self: center;
+
+    img {
+      max-width: 100%;
+      max-height: 534px;
+      border-radius: var(--lcc-borderRadius--large);
     }
   }
 
-  .intro-section {
-    max-width: $container-max-width;
-    display: flex;
-    flex-direction: column;
-
-    @include mixins.respond-to('gt-lg') {
-      flex-direction: row;
-    }
-
-    .image-container {
-      flex: 2;
-      align-self: center;
-
-      img {
-        max-width: 100%;
-        max-height: 534px;
-        border-radius: var(--lcc-borderRadius--large);
-      }
-    }
-
-    .text-container {
-      flex: 1;
-      padding: 8px;
-
-      @include mixins.respond-to('gt-lg') {
-        padding: 0 32px;
-      }
-
-      h3 {
-        margin: 8px 0 16px;
-        font-style: italic;
-        color: var(--lcc-color--gameArchivesScreen-headerText);
-      }
-
-      p {
-        margin-bottom: 16px;
-        color: var(--lcc-color--gameArchivesScreen-text);
-      }
-    }
-  }
-
-  .game-filter-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: $container-max-width;
-    background-color: var(--lcc-color--gameArchivesScreen-filterContainerBackground);
-    border-radius: var(--lcc-borderRadius--large);
+  .text-container {
+    flex: 1;
     padding: 8px;
 
-    .filter-games-text {
-      align-self: start;
-      padding: 8px;
+    @include mixins.respond-to('gt-lg') {
+      padding: 0 32px;
+    }
+
+    h3 {
+      margin: 8px 0 16px;
+      font-style: italic;
       color: var(--lcc-color--gameArchivesScreen-headerText);
     }
 
-    .game-filter-form {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      grid-template-areas:
-        'player player'
-        'moves result';
-      gap: 2px;
-      align-items: stretch;
-
-      @include mixins.respond-to('gt-xs') {
-        gap: 8px;
-      }
-
-      @include mixins.respond-to('gt-md') {
-        grid-template-columns: 4fr 1fr 1fr;
-        grid-template-areas: 'player moves result';
-      }
-
-      .filter-section {
-        border: 1px solid var(--lcc-color--gameArchivesScreen-filterSectionBorder);
-        border-radius: var(--lcc-borderRadius--large);
-        padding: 8px;
-        gap: 4px 8px;
-
-        &.player-filter-section {
-          grid-area: player;
-        }
-
-        &.moves-filter-section {
-          grid-area: moves;
-
-          input {
-            max-width: 50px;
-          }
-        }
-
-        &.result-filter-section {
-          grid-area: result;
-        }
-      }
-    }
-
-    .result-summary-text {
-      padding: 8px;
+    p {
+      margin-bottom: 16px;
       color: var(--lcc-color--gameArchivesScreen-text);
     }
+  }
+}
 
-    .search-stats-container {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-      padding: 16px 8px;
-      gap: 16px;
+.game-filter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: $container-max-width;
+  background-color: var(--lcc-color--gameArchivesScreen-filterContainerBackground);
+  border-radius: var(--lcc-borderRadius--large);
+  padding: 8px;
 
-      .opening-chart-container,
-      .result-chart-container {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
+  .filter-games-text {
+    align-self: start;
+    padding: 8px;
+    color: var(--lcc-color--gameArchivesScreen-headerText);
+  }
 
-        label {
-          font-size: var(--lcc-font-size--h2);
-          color: var(--lcc-color--gameArchivesScreen-chartLabel);
-          padding-bottom: 2px;
-          border-bottom: 1px solid var(--lcc-color--gameArchivesScreen-labelUnderline);
+  .game-filter-form {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      'player player'
+      'moves result';
+    gap: 2px;
+    align-items: stretch;
+
+    @include mixins.respond-to('gt-xs') {
+      gap: 8px;
+    }
+
+    @include mixins.respond-to('gt-md') {
+      grid-template-columns: 4fr 1fr 1fr;
+      grid-template-areas: 'player moves result';
+    }
+
+    .filter-section {
+      border: 1px solid var(--lcc-color--gameArchivesScreen-filterSectionBorder);
+      border-radius: var(--lcc-borderRadius--large);
+      padding: 8px;
+      gap: 4px 8px;
+
+      &.player-filter-section {
+        grid-area: player;
+      }
+
+      &.moves-filter-section {
+        grid-area: moves;
+
+        input {
+          max-width: 50px;
         }
+      }
+
+      &.result-filter-section {
+        grid-area: result;
       }
     }
   }
 
-  .panels-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+  .result-summary-text {
+    padding: 8px;
+    color: var(--lcc-color--gameArchivesScreen-text);
   }
 
-  .panel-content {
-    width: 100%;
-    max-width: $container-max-width;
-    padding-bottom: 2px;
-  }
-
-  ::ng-deep lcc-expansion-panel .header-container {
-    padding-right: 16px !important;
-  }
-
-  .header-content {
+  .search-stats-container {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
-    flex: 1;
-    padding: 0 16px;
-  }
+    justify-content: center;
+    padding: 16px 8px;
+    gap: 16px;
 
-  .games-container {
-    text-align: center;
-    width: 100%;
+    .opening-chart-container,
+    .result-chart-container {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
 
-    cdk-virtual-scroll-viewport {
-      height: $pgn-viewer-height + $lichess-analysis-board-link-height + 2 * 4px;
-
-      ::ng-deep .cdk-virtual-scroll-content-wrapper {
-        display: flex;
-
-        lcc-pgn-viewer {
-          margin: 4px;
-          max-width: $pgn-viewer-width;
-        }
+      label {
+        font-size: var(--lcc-font-size--h2);
+        color: var(--lcc-color--gameArchivesScreen-chartLabel);
+        padding-bottom: 2px;
+        border-bottom: 1px solid var(--lcc-color--gameArchivesScreen-labelUnderline);
       }
     }
+  }
+}
 
-    .loading-text {
-      color: var(--lcc-color--gameArchivesScreen-loadingText);
+.panels-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.panel-content {
+  width: 100%;
+  max-width: $container-max-width;
+  padding-bottom: 2px;
+}
+
+::ng-deep lcc-expansion-panel .header-container {
+  padding-right: 16px !important;
+}
+
+.header-content {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  flex: 1;
+  padding: 0 16px;
+}
+
+.games-container {
+  text-align: center;
+  width: 100%;
+
+  cdk-virtual-scroll-viewport {
+    height: $pgn-viewer-height + $lichess-analysis-board-link-height + 2 * 4px;
+
+    ::ng-deep .cdk-virtual-scroll-content-wrapper {
+      display: flex;
+
+      lcc-pgn-viewer {
+        margin: 4px;
+        max-width: $pgn-viewer-width;
+      }
     }
+  }
+
+  .loading-text {
+    color: var(--lcc-color--gameArchivesScreen-loadingText);
   }
 }

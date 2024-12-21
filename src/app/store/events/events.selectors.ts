@@ -63,18 +63,18 @@ export const selectHasUnsavedChanges = createSelector(
   },
 );
 
+export const selectEventEditorScreenViewModel = createSelector({
+  eventTitle: selectEventTitle,
+  controlMode: selectControlMode,
+  hasUnsavedChanges: selectHasUnsavedChanges,
+});
+
 export const selectScheduleViewModel = createSelector({
   events: selectEvents,
   upcomingEvents: selectUpcomingEvents,
   nextEvent: selectNextEvent,
   showPastEvents: selectShowPastEvents,
   isAdmin: AuthSelectors.selectIsAdmin,
-});
-
-export const selectEventEditorViewModel = createSelector({
-  eventTitle: selectEventTitle,
-  controlMode: selectControlMode,
-  hasUnsavedChanges: selectHasUnsavedChanges,
 });
 
 export const selectEventFormViewModel = createSelector({

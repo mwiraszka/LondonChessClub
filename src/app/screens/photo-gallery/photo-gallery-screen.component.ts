@@ -9,8 +9,18 @@ import type { Link } from '@app/types';
 
 @Component({
   selector: 'lcc-photo-gallery-screen',
-  templateUrl: './photo-gallery-screen.component.html',
-  styleUrls: ['./photo-gallery-screen.component.scss'],
+  template: `
+    <lcc-screen-header
+      title="Photo Gallery"
+      icon="camera">
+    </lcc-screen-header>
+    <lcc-photo-grid></lcc-photo-grid>
+    <lcc-link-list
+      header="Archives"
+      [links]="links"
+      style="margin-top: 32px;">
+    </lcc-link-list>
+  `,
   imports: [CommonModule, LinkListComponent, PhotoGridComponent, ScreenHeaderComponent],
 })
 export class PhotoGalleryScreenComponent implements OnInit {
@@ -81,7 +91,7 @@ export class PhotoGalleryScreenComponent implements OnInit {
     },
   ].map(link => ({ ...link, icon: 'camera' }));
 
-  constructor(private metaAndTitleService: MetaAndTitleService) {}
+  constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Photo Gallery');

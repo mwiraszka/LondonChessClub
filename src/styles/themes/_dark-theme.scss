@@ -33,9 +33,9 @@
   --lcc-color--articleGrid-articleDatesSecondaryText: #{clr(grayscale, gray-65)};
   --lcc-color--articleGrid-articleHeaderText: #{clr(grayscale, white-90)};
   --lcc-color--articleGrid-articleSummaryText: #{clr(grayscale, white-85)};
-  --lcc-color--articleGrid-cardBackground1: #{clr(primary, dark)};
+  --lcc-color--articleGrid-cardBackground1: #{clr(primary, dark, 0.6)};
   --lcc-color--articleGrid-cardBackground2: #{clr(primary, dark, 0.8)};
-  --lcc-color--articleGrid-cardBackgroundOnHover: #{clr(primary, dark)};
+  --lcc-color--articleGrid-cardBackgroundOnHover: #{clr(primary, dark, 0.9)};
   --lcc-color--articleGrid-cardDividerLine: #{clr(grayscale, gray-50, 0.5)};
   --lcc-color--articleGrid-stickyIcon: #{clr(grayscale, white-90, 0.6)};
 
@@ -132,8 +132,8 @@
   --lcc-color--general-dividerLineLight: #{clr(grayscale, gray-35, 0.5)};
   --lcc-color--general-scrollbar: #{clr(grayscale, gray-50, 0.5)};
 
-  --lcc-color--header-background1: #{clr(primary)};
-  --lcc-color--header-background2: #{clr(primary, base, 0.5)};
+  --lcc-color--header-background1: #{clr(primary, dark, 0.8)};
+  --lcc-color--header-background2: #{clr(primary, dark, 0.6)};
   --lcc-color--header-brandingBackground: #{clr(grayscale, white-85)};
   --lcc-color--header-brandingBackgroundOnHover: #{clr(grayscale, white-95)};
   --lcc-color--header-text: #{clr(grayscale, white-85)};

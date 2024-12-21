@@ -50,6 +50,7 @@ export class AppComponent implements OnInit {
     UserSettingsSelectors.selectBannerLastCleared,
   );
   public readonly isDarkMode$ = this.store.select(UserSettingsSelectors.selectIsDarkMode);
+  public isLoading = true;
 
   constructor(
     public readonly loaderService: LoaderService,

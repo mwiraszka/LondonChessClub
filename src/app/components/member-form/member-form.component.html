@@ -109,7 +109,7 @@
           }
         </div>
 
-        @if (vm.isSafeMode) {
+        @if (!vm.isSafeMode) {
           <label for="email-input">Email:</label>
           <input
             id="email-input"

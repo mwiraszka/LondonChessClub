@@ -4,30 +4,28 @@ import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
-import { ArticleFormComponent } from '@app/components/article-form/article-form.component';
+import { EventFormComponent } from '@app/components/event-form/event-form.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { MetaAndTitleService } from '@app/services';
-import { ArticlesSelectors } from '@app/store/articles';
-import { type Link, NavPathTypes } from '@app/types';
+import { EventsSelectors } from '@app/store/events';
+import { Link, NavPathTypes } from '@app/types';
 
 @UntilDestroy()
 @Component({
-  selector: 'lcc-article-editor',
-  templateUrl: './article-editor.component.html',
-  styleUrls: ['./article-editor.component.scss'],
-  imports: [ArticleFormComponent, CommonModule, LinkListComponent, ScreenHeaderComponent],
+  selector: 'lcc-event-editor-screen',
+  templateUrl: './event-editor-screen.component.html',
+  imports: [CommonModule, EventFormComponent, LinkListComponent, ScreenHeaderComponent],
 })
-export class ArticleEditorComponent implements OnInit {
-  public readonly articleEditorViewModel$ = this.store.select(
-    ArticlesSelectors.selectArticleEditorViewModel,
+export class EventEditorScreenComponent implements OnInit {
+  public readonly eventEditorScreenViewModel$ = this.store.select(
+    EventsSelectors.selectEventEditorScreenViewModel,
   );
-
-  public links: Link[] = [
+  public readonly links: Link[] = [
     {
-      icon: 'activity',
+      icon: 'calendar',
       path: NavPathTypes.NEWS,
-      text: 'See all articles',
+      text: 'See all events',
     },
     {
       icon: 'home',
@@ -38,17 +36,15 @@ export class ArticleEditorComponent implements OnInit {
 
   constructor(
     private readonly store: Store,
-    private metaAndTitleService: MetaAndTitleService,
+    private readonly metaAndTitleService: MetaAndTitleService,
   ) {}
 
   ngOnInit(): void {
-    this.articleEditorViewModel$
+    this.eventEditorScreenViewModel$
       .pipe(untilDestroyed(this))
-      .subscribe(({ articleTitle, controlMode }) => {
+      .subscribe(({ eventTitle, controlMode }) => {
         const screenTitle =
-          controlMode === 'edit' && articleTitle
-            ? `Edit ${articleTitle}`
-            : 'Compose an article';
+          controlMode === 'edit' && eventTitle ? `Edit ${eventTitle}` : 'Create an event';
         this.metaAndTitleService.updateTitle(screenTitle);
         this.metaAndTitleService.updateDescription(
           `${screenTitle} for the London Chess Club.`,

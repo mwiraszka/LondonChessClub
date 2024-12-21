@@ -1,52 +1,50 @@
-﻿<div class="container">
-  <lcc-screen-header
-    title="Documents"
-    icon="file-text">
-  </lcc-screen-header>
+﻿<lcc-screen-header
+  title="Documents"
+  icon="file-text">
+</lcc-screen-header>
 
-  <div class="lcc-table-wrapper">
-    <table class="lcc-table documents-table">
-      <thead>
-        <th class="document">Document</th>
-        <th class="published">Published</th>
-        <th class="last-modified">Last Modified</th>
-      </thead>
-      <tbody>
-        @for (document of documents; track document.title) {
-          <tr>
-            <td class="document">
-              <div
-                class="document-label-container"
-                (click)="onSelectDocument(document.fileName)">
-                <i-feather
-                  name="file-text"
-                  class="file-icon">
-                </i-feather>
-                <span class="document-title">{{ document.title }}</span>
-              </div>
-              <a
-                [href]="'assets/documents/' + document.fileName"
-                class="download-link"
-                [download]="document.title">
-                <i-feather
-                  name="download"
-                  class="download-icon">
-                </i-feather>
-              </a>
-            </td>
+<div class="lcc-table-wrapper">
+  <table class="lcc-table documents-table">
+    <thead>
+      <th class="document">Document</th>
+      <th class="published">Published</th>
+      <th class="last-modified">Last Modified</th>
+    </thead>
+    <tbody>
+      @for (document of documents; track document.title) {
+        <tr>
+          <td class="document">
+            <div
+              class="document-label-container"
+              (click)="onSelectDocument(document.fileName)">
+              <i-feather
+                name="file-text"
+                class="file-icon">
+              </i-feather>
+              <span class="document-title">{{ document.title }}</span>
+            </div>
+            <a
+              [href]="'assets/documents/' + document.fileName"
+              class="download-link"
+              [download]="document.title">
+              <i-feather
+                name="download"
+                class="download-icon">
+              </i-feather>
+            </a>
+          </td>
 
-            <td class="published">
-              {{ document.datePublished | formatDate: 'short no-time' }}
-            </td>
+          <td class="published">
+            {{ document.datePublished | formatDate: 'short no-time' }}
+          </td>
 
-            <td class="last-modified">
-              {{ document.dateLastModified | formatDate: 'short no-time' }}
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </div>
+          <td class="last-modified">
+            {{ document.dateLastModified | formatDate: 'short no-time' }}
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
 </div>
 
 <ng-template #pdfViewer>

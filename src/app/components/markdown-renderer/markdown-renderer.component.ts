@@ -24,7 +24,7 @@ export class MarkdownRendererComponent implements OnInit, AfterViewChecked {
   ) {}
 
   ngOnInit(): void {
-    this.setUpRouterListener();
+    // this.setUpRouterListener();
   }
 
   ngAfterViewChecked(): void {
@@ -62,30 +62,6 @@ export class MarkdownRendererComponent implements OnInit, AfterViewChecked {
         const kebabizedAnchorName = kebabize(headerTextContent);
         headerElement.setAttribute('id', kebabizedAnchorName);
       });
-    }
-  }
-
-  private setUpRouterListener(): void {
-    this.router.events
-      .pipe(
-        filter(event => event instanceof Scroll),
-        untilDestroyed(this),
-      )
-      .subscribe(event => this.scrollToAnchor((event as Scroll).anchor!));
-  }
-
-  private scrollToAnchor(anchorToScrollTo?: string): void {
-    // TODO: Verify that this still works
-    const elementToScrollTo = this._document.getElementById(anchorToScrollTo ?? 'main');
-
-    if (elementToScrollTo) {
-      setTimeout(() => {
-        elementToScrollTo.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-          inline: 'nearest',
-        });
-      }, 200);
     }
   }
 }

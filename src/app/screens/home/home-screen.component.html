@@ -1,31 +1,29 @@
-<div class="container">
-  <article class="welcome">
-    <h1>Welcome&nbsp;to&nbsp;the&nbsp;home of&nbsp;London&nbsp;chess!</h1>
-    <lcc-club-summary></lcc-club-summary>
-  </article>
+<article class="welcome">
+  <h1>Welcome to the home of London&nbsp;chess!</h1>
+  <lcc-club-summary></lcc-club-summary>
+</article>
 
-  <article class="schedule">
-    <section>
-      <h4>Upcoming events</h4>
-      <lcc-schedule
-        [allowTogglePastEvents]="false"
-        [includeDetails]="false"
-        [upcomingEventLimit]="5">
-      </lcc-schedule>
-    </section>
-    <lcc-link-list [links]="[scheduleLink]"></lcc-link-list>
-  </article>
+<article class="schedule">
+  <section>
+    <h4>Upcoming events</h4>
+    <lcc-schedule
+      [allowTogglePastEvents]="false"
+      [includeDetails]="false"
+      [upcomingEventLimit]="5">
+    </lcc-schedule>
+  </section>
+  <lcc-link-list [links]="[scheduleLink]"></lcc-link-list>
+</article>
 
-  <article class="articles">
-    <section>
-      <h4>Latest news</h4>
-      <lcc-article-grid [maxArticles]="5"></lcc-article-grid>
-    </section>
-    <lcc-link-list [links]="[newsLink]"></lcc-link-list>
-  </article>
+<article class="articles">
+  <section>
+    <h4>Latest news</h4>
+    <lcc-article-grid [maxArticles]="5"></lcc-article-grid>
+  </section>
+  <lcc-link-list [links]="[newsLink]"></lcc-link-list>
+</article>
 
-  <article class="photos">
-    <lcc-photo-grid [maxPhotos]="15"></lcc-photo-grid>
-    <lcc-link-list [links]="[photoGalleryLink]"></lcc-link-list>
-  </article>
-</div>
+<article class="photos">
+  <lcc-photo-grid [maxPhotos]="15"></lcc-photo-grid>
+  <lcc-link-list [links]="[photoGalleryLink]"></lcc-link-list>
+</article>

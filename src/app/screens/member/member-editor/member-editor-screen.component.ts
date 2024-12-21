@@ -4,30 +4,29 @@ import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
-import { EventFormComponent } from '@app/components/event-form/event-form.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { MemberFormComponent } from '@app/components/member-form/member-form.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { MetaAndTitleService } from '@app/services';
-import { EventsSelectors } from '@app/store/events';
+import { MembersSelectors } from '@app/store/members';
 import { Link, NavPathTypes } from '@app/types';
 
 @UntilDestroy()
 @Component({
-  selector: 'lcc-event-editor',
-  templateUrl: './event-editor.component.html',
-  styleUrls: ['./event-editor.component.scss'],
-  imports: [CommonModule, EventFormComponent, LinkListComponent, ScreenHeaderComponent],
+  selector: 'lcc-member-editor-screen',
+  templateUrl: './member-editor-screen.component.html',
+  imports: [CommonModule, LinkListComponent, MemberFormComponent, ScreenHeaderComponent],
 })
-export class EventEditorComponent implements OnInit {
-  public readonly selectEventEditorViewModel$ = this.store.select(
-    EventsSelectors.selectEventEditorViewModel,
+export class MemberEditorScreenComponent implements OnInit {
+  public readonly selectMemberEditorViewModel$ = this.store.select(
+    MembersSelectors.selectMemberEditorViewModel,
   );
 
   public links: Link[] = [
     {
-      icon: 'calendar',
-      path: NavPathTypes.NEWS,
-      text: 'See all events',
+      icon: 'users',
+      path: NavPathTypes.MEMBERS,
+      text: 'See all members',
     },
     {
       icon: 'home',
@@ -38,15 +37,15 @@ export class EventEditorComponent implements OnInit {
 
   constructor(
     private readonly store: Store,
-    private metaAndTitleService: MetaAndTitleService,
+    private readonly metaAndTitleService: MetaAndTitleService,
   ) {}
 
   ngOnInit(): void {
-    this.selectEventEditorViewModel$
+    this.selectMemberEditorViewModel$
       .pipe(untilDestroyed(this))
-      .subscribe(({ eventTitle, controlMode }) => {
+      .subscribe(({ memberName, controlMode }) => {
         const screenTitle =
-          controlMode === 'edit' && eventTitle ? `Edit ${eventTitle}` : 'Create an event';
+          controlMode === 'edit' && memberName ? `Edit ${memberName}` : 'Add a member';
         this.metaAndTitleService.updateTitle(screenTitle);
         this.metaAndTitleService.updateDescription(
           `${screenTitle} for the London Chess Club.`,

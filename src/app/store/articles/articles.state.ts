@@ -1,4 +1,5 @@
 import { type Article, ArticleFormData, ControlMode } from '@app/types';
+import { generatePlaceholderArticles } from '@app/utils';
 
 export interface ArticlesState {
   articles: Article[];
@@ -9,7 +10,7 @@ export interface ArticlesState {
 }
 
 export const initialState: ArticlesState = {
-  articles: [],
+  articles: generatePlaceholderArticles(20),
   article: null,
   articleFormData: null,
   isNewImageStored: false,

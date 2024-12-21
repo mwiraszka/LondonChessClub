@@ -183,14 +183,24 @@ export class NavEffects {
         const [controlMode, articleIdWithAnchor] = currentPath
           .split('/article/')[1]
           .split('/');
-        const articleId = articleIdWithAnchor?.split('#')[0];
-
+        const [articleId, anchor] = articleIdWithAnchor?.split('#');
+        return { currentPath, controlMode, articleId, anchor };
+      }),
+      filter(({ currentPath, controlMode, articleId, anchor }) => {
+        console.log(':: current path & anchor', currentPath, anchor);
+        return !(currentPath.startsWith('/article/view') && isDefined(anchor));
+      }),
+      map(({ currentPath, controlMode, articleId }) => {
+        console.log(':: ...passed');
         if (
-          (controlMode === 'add' && !articleId) ||
-          (controlMode === 'edit' && !!articleId) ||
-          (controlMode === 'view' && !!articleId)
+          (controlMode === 'add' && !isDefined(articleId)) ||
+          (controlMode === 'edit' && isDefined(articleId)) ||
+          (controlMode === 'view' && isDefined(articleId))
         ) {
-          return ArticlesActions.fetchArticleRequested({ controlMode, articleId });
+          return ArticlesActions.fetchArticleRequested({
+            controlMode,
+            articleId,
+          });
         }
         return NavActions.navigationRequested({ path: NavPathTypes.NEWS });
       }),

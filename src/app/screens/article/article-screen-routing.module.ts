@@ -5,23 +5,23 @@ import { AuthGuard } from '@app/guards/auth.guard';
 import { UnsavedArticleGuard } from '@app/guards/unsaved-article.guard';
 import { NavPathTypes } from '@app/types';
 
-import { ArticleEditorComponent } from './article-editor/article-editor.component';
-import { ArticleViewerComponent } from './article-viewer/article-viewer.component';
+import { ArticleEditorScreenComponent } from './article-editor/article-editor-screen.component';
+import { ArticleViewerScreenComponent } from './article-viewer/article-viewer-screen.component';
 
 const routes: Routes = [
   {
     path: `${NavPathTypes.VIEW}/:article_id`,
-    component: ArticleViewerComponent,
+    component: ArticleViewerScreenComponent,
   },
   {
     path: NavPathTypes.ADD,
-    component: ArticleEditorComponent,
+    component: ArticleEditorScreenComponent,
     canActivate: [AuthGuard],
     canDeactivate: [UnsavedArticleGuard],
   },
   {
     path: `${NavPathTypes.EDIT}/:article_id`,
-    component: ArticleEditorComponent,
+    component: ArticleEditorScreenComponent,
     canActivate: [AuthGuard],
     canDeactivate: [UnsavedArticleGuard],
   },

@@ -23,22 +23,22 @@ import { type Link, NavPathTypes } from '@app/types';
   ],
 })
 export class HomeScreenComponent implements OnInit {
-  public scheduleLink: Link = {
+  public readonly scheduleLink: Link = {
     path: NavPathTypes.SCHEDULE,
     text: 'All scheduled events',
   };
 
-  public photoGalleryLink: Link = {
+  public readonly photoGalleryLink: Link = {
     path: NavPathTypes.PHOTO_GALLERY,
     text: 'More photos',
   };
 
-  public newsLink: Link = {
+  public readonly newsLink: Link = {
     path: NavPathTypes.NEWS,
     text: 'More news',
   };
 
-  constructor(private metaAndTitleService: MetaAndTitleService) {}
+  constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('London Chess Club');

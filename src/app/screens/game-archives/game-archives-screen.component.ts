@@ -99,7 +99,7 @@ export class GameArchivesScreenComponent implements OnInit {
     private readonly store: Store,
     private chessOpeningsService: ChessOpeningsService,
     private loaderService: LoaderService,
-    private metaAndTitleService: MetaAndTitleService,
+    private readonly metaAndTitleService: MetaAndTitleService,
   ) {}
 
   @HostListener('window:resize', ['$event'])

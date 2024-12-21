@@ -1,19 +1,5 @@
 @use '../../../styles/abstracts/mixins';
 
-:host {
-  display: flex;
-  justify-content: center;
-}
-
-.container {
-  max-width: var(--lcc-width--appContent);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
 .grid-container {
   display: grid;
   grid-template-columns: minmax(0, 1fr);

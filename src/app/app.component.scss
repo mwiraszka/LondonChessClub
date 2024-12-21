@@ -1,25 +1,46 @@
-@use '../styles/abstracts/mixins';
-
-app-container {
-  min-height: 100vh;
+:host {
+  height: 100vh;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
-}
-
-main {
-  flex-grow: 1;
-  padding: 8px 0;
+  align-items: stretch;
+  overflow: hidden;
   background-color: var(--lcc-color--app-mainBackground);
 
-  @include mixins.respond-to('gt-sm') {
-    padding: 8px;
-  }
-}
+  main {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    scrollbar-gutter: stable both-edges;
+    background-color: var(--lcc-color--app-mainBackground);
 
-lcc-upcoming-event-banner,
-lcc-header,
-lcc-nav,
-lcc-footer {
-  flex-shrink: 0;
+    &::ng-deep > *:not(router-outlet):not(lcc-footer) {
+      flex: 1;
+      max-width: var(--lcc-width--appContent);
+      width: 100%;
+
+      // Margin needed to prevent scrollbar-gutter style
+      // from cutting off screen content
+      margin: 0 4px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+
+      // 6px top + 2px at bottom of Nav component = 8px;
+      padding: 6px 4px 8px;
+
+      // Needed for Schedule Screen for some reason
+      position: relative;
+    }
+
+    &::ng-deep lcc-footer {
+      // Manually push footer background to edge of screen
+      width: calc(100% + 16px);
+    }
+  }
 }

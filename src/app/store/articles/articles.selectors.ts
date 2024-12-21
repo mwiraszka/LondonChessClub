@@ -71,22 +71,20 @@ export const selectHasUnsavedChanges = createSelector(
   },
 );
 
-export const selectArticleGridViewModel = createSelector({
-  articles: selectArticles,
-  isAdmin: AuthSelectors.selectIsAdmin,
-});
-
-export const selectArticleViewerViewModel = createSelector({
+export const selectArticleViewerScreenViewModel = createSelector({
   article: selectArticle,
-  controlMode: selectControlMode,
-  hasUnsavedChanges: selectHasUnsavedChanges,
   isAdmin: AuthSelectors.selectIsAdmin,
 });
 
-export const selectArticleEditorViewModel = createSelector({
+export const selectArticleEditorScreenViewModel = createSelector({
   articleTitle: selectArticleTitle,
   controlMode: selectControlMode,
   hasUnsavedChanges: selectHasUnsavedChanges,
+});
+
+export const selectArticleGridViewModel = createSelector({
+  articles: selectArticles,
+  isAdmin: AuthSelectors.selectIsAdmin,
 });
 
 export const selectArticleFormViewModel = createSelector({

@@ -5,18 +5,18 @@ import { AuthGuard } from '@app/guards/auth.guard';
 import { UnsavedEventGuard } from '@app/guards/unsaved-event.guard';
 import { NavPathTypes } from '@app/types';
 
-import { EventEditorComponent } from './event-editor/event-editor.component';
+import { EventEditorScreenComponent } from './event-editor/event-editor-screen.component';
 
 const routes: Routes = [
   {
     path: NavPathTypes.ADD,
-    component: EventEditorComponent,
+    component: EventEditorScreenComponent,
     canActivate: [AuthGuard],
     canDeactivate: [UnsavedEventGuard],
   },
   {
     path: `${NavPathTypes.EDIT}/:event_id`,
-    component: EventEditorComponent,
+    component: EventEditorScreenComponent,
     canActivate: [AuthGuard],
     canDeactivate: [UnsavedEventGuard],
   },

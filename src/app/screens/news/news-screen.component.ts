@@ -7,12 +7,17 @@ import { MetaAndTitleService } from '@app/services';
 
 @Component({
   selector: 'lcc-news-screen',
-  templateUrl: './news-screen.component.html',
-  styleUrls: ['./news-screen.component.scss'],
+  template: `
+    <lcc-screen-header
+      title="News"
+      icon="activity">
+    </lcc-screen-header>
+    <lcc-article-grid></lcc-article-grid>
+  `,
   imports: [ArticleGridComponent, CommonModule, ScreenHeaderComponent],
 })
 export class NewsScreenComponent implements OnInit {
-  constructor(private metaAndTitleService: MetaAndTitleService) {}
+  constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('News');

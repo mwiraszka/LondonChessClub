@@ -5,18 +5,18 @@ import { AuthGuard } from '@app/guards/auth.guard';
 import { UnsavedMemberGuard } from '@app/guards/unsaved-member.guard';
 import { NavPathTypes } from '@app/types';
 
-import { MemberEditorComponent } from './member-editor/member-editor.component';
+import { MemberEditorScreenComponent } from './member-editor/member-editor-screen.component';
 
 const routes: Routes = [
   {
     path: NavPathTypes.ADD,
-    component: MemberEditorComponent,
+    component: MemberEditorScreenComponent,
     canActivate: [AuthGuard],
     canDeactivate: [UnsavedMemberGuard],
   },
   {
     path: `${NavPathTypes.EDIT}/:member_id`,
-    component: MemberEditorComponent,
+    component: MemberEditorScreenComponent,
     canActivate: [AuthGuard],
     canDeactivate: [UnsavedMemberGuard],
   },

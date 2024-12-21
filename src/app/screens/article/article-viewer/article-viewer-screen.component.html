@@ -1,0 +1,18 @@
+@if (articleViewerScreenViewModel$ | async; as vm) {
+  @if (vm.article) {
+    <div class="lcc-admin-controls-container">
+      @if (vm.isAdmin) {
+        <lcc-admin-controls
+          [editPath]="
+            '/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.EDIT + '/' + vm.article.id
+          "
+          [itemName]="vm.article.title"
+          (delete)="onDelete(vm.article)">
+        </lcc-admin-controls>
+      }
+      <lcc-article [article]="vm.article"></lcc-article>
+    </div>
+
+    <lcc-link-list [links]="links"></lcc-link-list>
+  }
+}

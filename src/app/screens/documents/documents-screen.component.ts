@@ -1,3 +1,4 @@
+import moment from 'moment-timezone';
 import { PDFProgressData, PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { CommonModule, DOCUMENT } from '@angular/common';
@@ -32,38 +33,36 @@ import { ClubDocument } from '@app/types';
   ],
 })
 export class DocumentsScreenComponent implements OnInit, OnDestroy {
-  @ViewChild('pdfViewer') pdfViewer!: TemplateRef<any>;
+  @ViewChild('pdfViewer') public readonly pdfViewer!: TemplateRef<any>;
 
-  documentSrc?: string;
-  loadedPercentage = 100;
-
-  // Dates represent midnight EST converted to UTC
-  readonly documents: ClubDocument[] = [
+  public documentSrc?: string;
+  public readonly documents: ClubDocument[] = [
     {
       title: 'Club Bylaws',
       fileName: 'lcc-bylaws.pdf',
-      datePublished: '2024-04-24T04:00:00:000',
-      dateLastModified: '2024-04-24T04:00:00:000',
+      datePublished: moment('2024-04-24T04:00:00').toISOString(),
+      dateLastModified: moment('2024-04-24T04:00:00').toISOString(),
     },
     {
       title: 'Board Meeting - DEC 12, 2023 - Minutes',
       fileName: 'lcc-board-meeting-2023-12-12-minutes.pdf',
-      datePublished: '2024-04-24T04:00:00:000',
-      dateLastModified: '2024-04-24T04:00:00:000',
+      datePublished: moment('2024-04-24T04:00:00').toISOString(),
+      dateLastModified: moment('2024-04-24T04:00:00').toISOString(),
     },
     {
       title: 'Board Meeting - JAN 9, 2024 - Minutes',
       fileName: 'lcc-board-meeting-2024-01-09-minutes.pdf',
-      datePublished: '2024-04-24T04:00:00:000',
-      dateLastModified: '2024-04-24T04:00:00:000',
+      datePublished: moment('2024-04-24T04:00:00').toISOString(),
+      dateLastModified: moment('2024-04-24T04:00:00').toISOString(),
     },
     {
       title: 'Board Meeting - APR 2, 2024 - Minutes',
       fileName: 'lcc-board-meeting-2024-04-02-minutes.pdf',
-      datePublished: '2024-04-24T04:00:00:000',
-      dateLastModified: '2024-04-24T04:00:00:000',
+      datePublished: moment('2024-04-24T04:00:00').toISOString(),
+      dateLastModified: moment('2024-04-24T04:00:00').toISOString(),
     },
   ];
+  public loadedPercentage = 100;
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
@@ -74,9 +73,9 @@ export class DocumentsScreenComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly viewContainerRef: ViewContainerRef,
-    private loaderService: LoaderService,
-    private metaAndTitleService: MetaAndTitleService,
-    private renderer: Renderer2,
+    private readonly loaderService: LoaderService,
+    private readonly metaAndTitleService: MetaAndTitleService,
+    private readonly renderer: Renderer2,
     @Inject(DOCUMENT) private _document: Document,
   ) {}
 

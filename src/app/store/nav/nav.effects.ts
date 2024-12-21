@@ -12,7 +12,7 @@ import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { MembersActions } from '@app/store/members';
 import { NavPathTypes } from '@app/types';
-import { isDefined } from '@app/utils';
+import { isDefined, isValidCollectionIdFormat } from '@app/utils';
 
 import { NavSelectors } from '.';
 import * as NavActions from './nav.actions';
@@ -118,8 +118,8 @@ export class NavEffects {
       map(currentPath => {
         const [controlMode, eventId] = currentPath.split('/event/')[1].split('/');
 
-        return (controlMode === 'add' && !eventId) ||
-          (controlMode === 'edit' && !!eventId)
+        return (controlMode === 'add' && !isDefined(eventId)) ||
+          (controlMode === 'edit' && isValidCollectionIdFormat(eventId))
           ? EventsActions.fetchEventRequested({ controlMode, eventId })
           : NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE });
       }),
@@ -150,8 +150,8 @@ export class NavEffects {
       map(currentPath => {
         const [controlMode, memberId] = currentPath.split('/member/')[1].split('/');
 
-        return (controlMode === 'add' && !memberId) ||
-          (controlMode === 'edit' && !!memberId)
+        return (controlMode === 'add' && !isDefined(memberId)) ||
+          (controlMode === 'edit' && isValidCollectionIdFormat(memberId))
           ? MembersActions.fetchMemberRequested({ controlMode, memberId })
           : NavActions.navigationRequested({ path: NavPathTypes.MEMBERS });
       }),
@@ -184,18 +184,11 @@ export class NavEffects {
           .split('/article/')[1]
           .split('/');
         const [articleId, anchor] = articleIdWithAnchor?.split('#');
-        return { currentPath, controlMode, articleId, anchor };
-      }),
-      filter(({ currentPath, controlMode, articleId, anchor }) => {
-        console.log(':: current path & anchor', currentPath, anchor);
-        return !(currentPath.startsWith('/article/view') && isDefined(anchor));
-      }),
-      map(({ currentPath, controlMode, articleId }) => {
-        console.log(':: ...passed');
+
         if (
           (controlMode === 'add' && !isDefined(articleId)) ||
-          (controlMode === 'edit' && isDefined(articleId)) ||
-          (controlMode === 'view' && isDefined(articleId))
+          (controlMode === 'edit' && isValidCollectionIdFormat(articleId)) ||
+          (controlMode === 'view' && isValidCollectionIdFormat(articleId))
         ) {
           return ArticlesActions.fetchArticleRequested({
             controlMode,

@@ -18,6 +18,7 @@
     background-color: var(--lcc-color--app-mainBackground);
 
     &::ng-deep > *:not(router-outlet):not(lcc-footer) {
+      position: relative;
       flex: 1;
       max-width: var(--lcc-width--appContent);
       width: 100%;
@@ -33,9 +34,6 @@
 
       // 6px top + 2px at bottom of Nav component = 8px;
       padding: 6px 4px 8px;
-
-      // Needed for Schedule Screen for some reason
-      position: relative;
     }
 
     &::ng-deep lcc-footer {

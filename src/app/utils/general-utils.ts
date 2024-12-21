@@ -178,3 +178,10 @@ export function parseHttpErrorResponse(response: HttpErrorResponse): HttpErrorRe
     error: 'Unknown server error.',
   };
 }
+
+/**
+ * Checks if value passed in is a valid MongoDB ID for identifying articles, events and members
+ */
+export function isValidCollectionIdFormat(value: unknown): boolean {
+  return typeof value === 'string' && /^[a-f\d]{24}$/.test(value);
+}

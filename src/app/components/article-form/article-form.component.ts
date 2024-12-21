@@ -62,8 +62,8 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   constructor(
     private readonly store: Store,
     private readonly formBuilder: FormBuilder,
-    private imagesService: ImagesService,
-    private overlayService: OverlayService<ImageExplorerComponent>,
+    private readonly imagesService: ImagesService,
+    private readonly overlayService: OverlayService<ImageExplorerComponent>,
   ) {}
 
   ngOnInit(): void {

@@ -23,8 +23,8 @@ export class PhotoGridComponent {
   private imageViewerRef: ComponentRef<ImageViewerComponent> | null = null;
 
   constructor(
+    private readonly overlayService: OverlayService<ImageViewerComponent>,
     private readonly store: Store,
-    private overlayService: OverlayService<ImageViewerComponent>,
   ) {}
 
   public onClickPhoto(photo: Photo): void {

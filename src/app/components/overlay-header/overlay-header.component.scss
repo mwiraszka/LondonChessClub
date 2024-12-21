@@ -1,0 +1,23 @@
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  background-color: var(--lcc-color--overlayHeader-background);
+  border-top-left-radius: var(--lcc-borderRadius--large);
+  border-top-right-radius: var(--lcc-borderRadius--large);
+  border-bottom: 2px solid var(--lcc-color--overlayHeader-borderBottom);
+
+  .close-icon {
+    margin: 0 4px 0 auto;
+    background-color: inherit;
+    height: 24px;
+    width: 24px;
+    color: var(--lcc-color--overlayHeader-closeIcon);
+
+    &:hover {
+      cursor: pointer;
+      color: var(--lcc-color--overlayHeader-closeIconOnHover);
+    }
+  }
+}

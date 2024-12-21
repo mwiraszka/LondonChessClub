@@ -1,41 +1,31 @@
-<header>
-  <i-feather
-    name="x"
-    class="close-icon"
-    (click)="close.emit()">
-  </i-feather>
-</header>
+@for (image of images; track image.id) {
+  <div
+    class="image-wrapper"
+    (click)="selectImage.emit(image.id)">
+    @defer {
+      <img [src]="image.presignedUrl" />
 
-<div class="grid-container">
-  @for (image of images; track image.id) {
-    <div
-      class="image-wrapper"
-      (click)="selectImage.emit(image.id)">
-      @defer {
-        <img [src]="image.presignedUrl" />
+      <div class="thumbnail-file-size">
+        <label>Thumbnail file size:</label>
+        <span>{{ image.size | formatBytes }}</span>
+      </div>
 
-        <div class="thumbnail-file-size">
-          <label>Thumbnail file size:</label>
-          <span>{{ image.size | formatBytes }}</span>
-        </div>
+      <div class="upload-date">
+        <label>Upload date:</label>
+        <span>{{ image.dateUploaded | formatDate: 'short' }}</span>
+      </div>
 
-        <div class="upload-date">
-          <label>Upload date:</label>
-          <span>{{ image.dateUploaded | formatDate: 'short' }}</span>
-        </div>
-
-        @if (image.articleAppearances > 0) {
-          <div class="article-appearances">
-            <span>(Used in</span>
-            <b>{{ image.articleAppearances }}</b>
-            <span>{{ image.articleAppearances > 1 ? 'articles' : 'article' }})</span>
-          </div>
-        }
-      } @placeholder (minimum 0.5s) {
-        <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
-          <div class="lcc-content-placeholder"></div>
+      @if (image.articleAppearances > 0) {
+        <div class="article-appearances">
+          <span>(Used in</span>
+          <b>{{ image.articleAppearances }}</b>
+          <span>{{ image.articleAppearances > 1 ? 'articles' : 'article' }})</span>
         </div>
       }
-    </div>
-  }
-</div>
+    } @placeholder (minimum 0.5s) {
+      <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
+        <div class="lcc-content-placeholder"></div>
+      </div>
+    }
+  </div>
+}

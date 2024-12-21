@@ -46,35 +46,3 @@
     </tbody>
   </table>
 </div>
-
-<ng-template #pdfViewer>
-  <div
-    class="pdf-viewer-container"
-    (click)="onCloseViewer()">
-    <header
-      class="pdf-viewer-header"
-      (click)="onClickViewer($event)">
-      <i-feather
-        name="x"
-        class="close-icon"
-        (click)="onCloseViewer()">
-      </i-feather>
-    </header>
-
-    @if (loadedPercentage < 100) {
-      <div
-        class="loading-progress-indicator"
-        [style.width.%]="loadedPercentage"></div>
-    }
-
-    <pdf-viewer
-      [src]="documentSrc"
-      [render-text]="true"
-      [render-text-mode]="2"
-      [original-size]="false"
-      (after-load-complete)="onDocumentLoaded()"
-      (click)="onClickViewer($event)"
-      (on-progress)="onProgress($event)">
-    </pdf-viewer>
-  </div>
-</ng-template>

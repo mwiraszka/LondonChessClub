@@ -1,11 +1,3 @@
-<header>
-  <i-feather
-    name="x"
-    class="close-icon"
-    (click)="close.emit()">
-  </i-feather>
-</header>
-
 <img
   id="overlay-image"
   [src]="'assets/photos/' + (photo$ | async)?.filename + '.jpg'"

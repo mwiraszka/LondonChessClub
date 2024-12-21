@@ -1,4 +1,6 @@
+// From Overlay Header component
 $header-height: 30px;
+
 $label-height: 24px;
 $label-margin: 8px;
 
@@ -6,29 +8,6 @@ $label-margin: 8px;
   position: absolute;
   display: flex;
   flex-direction: column;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  height: $header-height;
-  background-color: var(--lcc-color--imageOverlay-headerBackground);
-  border-top-left-radius: var(--lcc-borderRadius--large);
-  border-top-right-radius: var(--lcc-borderRadius--large);
-  border-bottom: 2px solid var(--lcc-color--imageOverlay-headerBorderBottom);
-
-  .close-icon {
-    margin: 0 4px 0 auto;
-    background-color: inherit;
-    height: 24px;
-    width: 24px;
-    color: var(--lcc-color--imageOverlay-closeIcon);
-
-    &:hover {
-      cursor: pointer;
-      color: var(--lcc-color--imageOverlay-closeIconOnHover);
-    }
-  }
 }
 
 img {

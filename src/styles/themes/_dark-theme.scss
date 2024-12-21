@@ -88,16 +88,13 @@
 
   --lcc-color--documentsScreen-documentLabelOnHover: #{clr(primary, lighter)};
   --lcc-color--documentsScreen-downloadLinkOnHover: #{clr(primary, lighter)};
-  --lcc-color--documentsScreen-pdfViewerCloseIcon: #{clr(grayscale, white-85)};
-  --lcc-color--documentsScreen-pdfViewerCloseIconOnHover: #{clr(grayscale, white-95)};
-  --lcc-color--documentsScreen-pdfViewerHeaderBackground: #{clr(primary, darker)};
-  --lcc-color--documentsScreen-pdfViewerLoaderBackground: #{clr(grayscale, white-98)};
-  --lcc-color--documentsScreen-pdfViewerLoaderBorderBottom: #{clr(primary, darker)};
-  --lcc-color--documentsScreen-pdfViewerLoaderBoxShadow: #{clr(grayscale, white-85, 0.7)};
-  --lcc-color--documentsScreen-pdfViewerOverlayBackground: #{clr(grayscale, black-10, 0.8)};
-  --lcc-color--documentsScreen-pdfViewerPageBackground: #{clr(grayscale, gray-75)};
-  --lcc-color--documentsScreen-pdfViewerScrollbarBackground: #{clr(grayscale, white-90)};
-  --lcc-color--documentsScreen-pdfViewerScrollbar: #{clr(grayscale, gray-65)};
+
+  --lcc-color--documentViewer-loaderBackground: #{clr(primary, dark, 0.5)};
+  --lcc-color--documentViewer-loaderBoxShadow: #{clr(grayscale, white-85, 0.7)};
+  --lcc-color--documentViewer-pageBackground: #{clr(grayscale, white-85)};
+  --lcc-color--documentViewer-pageGaps: #{clr(grayscale, white-98)};
+  --lcc-color--documentViewer-scrollbarBackground: #{clr(grayscale, white-90)};
+  --lcc-color--documentViewer-scrollbar: #{clr(grayscale, gray-65)};
 
   --lcc-color--expansionPanel-contentBackground: #{clr(grayscale, black-20)};
   --lcc-color--expansionPanel-headerForeground: #{clr(grayscale, white-85)};
@@ -145,19 +142,10 @@
   --lcc-color--homeScreen-welcomeSectionText: #{clr(grayscale, gray-65)};
 
   --lcc-color--imageExplorer-background: #{clr(grayscale, black-20)};
-  --lcc-color--imageExplorer-border: #{clr(grayscale, black-5)};
-  --lcc-color--imageExplorer-closeIcon: #{clr(grayscale, white-85)};
-  --lcc-color--imageExplorer-closeIconOnHover: #{clr(grayscale, white-95)};
-  --lcc-color--imageExplorer-headerBackground: #{clr(grayscale, black-10)};
-  --lcc-color--imageExplorer-headerBorderBottom: #{clr(grayscale, black-5)};
   --lcc-color--imageExplorer-imageBackgroundOnHover: #{clr(grayscale, gray-35, 0.5)};
   --lcc-color--imageExplorer-imageBorderOnHover: #{clr(primary, base)};
   --lcc-color--imageExplorer-text: #{clr(grayscale, white-90)};
 
-  --lcc-color--imageOverlay-closeIcon: #{clr(grayscale, white-85)};
-  --lcc-color--imageOverlay-closeIconOnHover: #{clr(grayscale, white-95)};
-  --lcc-color--imageOverlay-headerBackground: #{clr(grayscale, black-10)};
-  --lcc-color--imageOverlay-headerBorderBottom: #{clr(grayscale, black-5)};
   --lcc-color--imageOverlay-labelBackground: #{clr(grayscale, white-98, 0.8)};
   --lcc-color--imageOverlay-labelText: #{clr(grayscale, black-10)};
   --lcc-color--imageOverlay-navigationIcons: #{clr(grayscale, white-85)};
@@ -217,6 +205,11 @@
   --lcc-color--nav-linkForegroundOnHover: #{clr(primary, lighter)};
   --lcc-color--nav-linkForegroundWhenActive: #{clr(grayscale, white-98)};
   --lcc-color--nav-safeModeOffAlertIcon: #{clr(warning, lighter)};
+
+  --lcc-color--overlayHeader-background: #{clr(grayscale, black-10)};
+  --lcc-color--overlayHeader-borderBottom: #{clr(grayscale, black-5)};
+  --lcc-color--overlayHeader-closeIcon: #{clr(grayscale, white-85)};
+  --lcc-color--overlayHeader-closeIconOnHover: #{clr(grayscale, white-95)};
 
   --lcc-color--paginator-background: #{clr(primary, dark, 0.3)};
   --lcc-color--paginator-border: #{clr(grayscale, gray-75, 0.2)};

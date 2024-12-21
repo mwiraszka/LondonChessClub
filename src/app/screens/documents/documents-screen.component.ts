@@ -1,41 +1,24 @@
 import moment from 'moment-timezone';
-import { PDFProgressData, PdfViewerModule } from 'ng2-pdf-viewer';
+import { first } from 'rxjs/operators';
 
-import { CommonModule, DOCUMENT } from '@angular/common';
-import {
-  Component,
-  HostListener,
-  Inject,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-  TemplateRef,
-  ViewChild,
-  ViewContainerRef,
-} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, ComponentRef, OnInit } from '@angular/core';
 
+import { DocumentViewerComponent } from '@app/components/document-viewer/document-viewer.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { IconsModule } from '@app/icons';
 import { FormatDatePipe } from '@app/pipes/format-date.pipe';
-import { LoaderService, MetaAndTitleService } from '@app/services';
+import { MetaAndTitleService, OverlayService } from '@app/services';
 import { ClubDocument } from '@app/types';
 
 @Component({
   selector: 'lcc-documents-screen',
   templateUrl: './documents-screen.component.html',
   styleUrls: ['./documents-screen.component.scss'],
-  imports: [
-    CommonModule,
-    FormatDatePipe,
-    IconsModule,
-    PdfViewerModule,
-    ScreenHeaderComponent,
-  ],
+  imports: [CommonModule, FormatDatePipe, IconsModule, ScreenHeaderComponent],
 })
-export class DocumentsScreenComponent implements OnInit, OnDestroy {
-  @ViewChild('pdfViewer') public readonly pdfViewer!: TemplateRef<any>;
-
-  public documentSrc?: string;
+export class DocumentsScreenComponent implements OnInit {
+  private imageViewerRef: ComponentRef<DocumentViewerComponent> | null = null;
   public readonly documents: ClubDocument[] = [
     {
       title: 'Club Bylaws',
@@ -62,21 +45,10 @@ export class DocumentsScreenComponent implements OnInit, OnDestroy {
       dateLastModified: moment('2024-04-24T04:00:00').toISOString(),
     },
   ];
-  public loadedPercentage = 100;
-
-  @HostListener('window:keyup', ['$event'])
-  keyEvent(event: KeyboardEvent) {
-    if (event.key === 'Escape') {
-      this.onCloseViewer();
-    }
-  }
 
   constructor(
-    private readonly viewContainerRef: ViewContainerRef,
-    private readonly loaderService: LoaderService,
+    private readonly overlayService: OverlayService<DocumentViewerComponent>,
     private readonly metaAndTitleService: MetaAndTitleService,
-    private readonly renderer: Renderer2,
-    @Inject(DOCUMENT) private _document: Document,
   ) {}
 
   ngOnInit(): void {
@@ -86,32 +58,11 @@ export class DocumentsScreenComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {
-    this.onCloseViewer();
-  }
-
   public onSelectDocument(fileName: string): void {
-    this.loaderService.setIsLoading(true);
-    this.documentSrc = `assets/documents/${fileName}`;
-    this.viewContainerRef?.createEmbeddedView(this.pdfViewer);
-  }
-
-  public onProgress(progressData: PDFProgressData): void {
-    this.loadedPercentage = Math.floor((progressData.loaded / progressData.total) * 100);
-  }
-
-  public onDocumentLoaded(): void {
-    this.renderer.addClass(this._document.body, 'lcc-disable-scrolling');
-    this.loaderService.setIsLoading(false);
-  }
-
-  public onClickViewer(event: MouseEvent): void {
-    event.stopPropagation();
-    event.preventDefault();
-  }
-
-  public onCloseViewer(): void {
-    this.renderer.removeClass(this._document.body, 'lcc-disable-scrolling');
-    this.viewContainerRef.clear();
+    const documentSrc = `assets/documents/${fileName}`;
+    this.imageViewerRef = this.overlayService.open(DocumentViewerComponent, documentSrc);
+    this.imageViewerRef.instance.close
+      .pipe(first())
+      .subscribe(() => this.overlayService.close());
   }
 }

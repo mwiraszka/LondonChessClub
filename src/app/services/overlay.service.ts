@@ -1,34 +1,44 @@
 import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { DOCUMENT } from '@angular/common';
 import {
   ComponentRef,
-  Inject,
   Injectable,
+  InjectionToken,
+  Injector,
   Renderer2,
   RendererFactory2,
   Type,
 } from '@angular/core';
 
+import { OverlayHeaderComponent } from '@app/components/overlay-header/overlay-header.component';
+
+export const OVERLAY_DATA_TOKEN = new InjectionToken<any>('overlay-data');
+
 @Injectable({ providedIn: 'root' })
 export class OverlayService<T> {
   private overlayRef: OverlayRef | null = null;
   private renderer!: Renderer2;
+
   private documentClickListener?: () => void;
   private escapeListener?: () => void;
 
   constructor(
-    @Inject(DOCUMENT) private _document: Document,
     private overlay: Overlay,
     private rendererFactory: RendererFactory2,
   ) {
     this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 
-  public open(component: Type<T>): ComponentRef<T> {
+  public open(component: Type<T>, data?: any): ComponentRef<T> {
     if (this.overlayRef) {
       this.close();
     }
+
+    const injector = Injector.create({
+      providers: [{ provide: OVERLAY_DATA_TOKEN, useValue: data }],
+    });
+
+    // TODO: automatically add header to rendered component!
 
     const overlayConfig: OverlayConfig = {
       positionStrategy: this.overlay
@@ -37,34 +47,32 @@ export class OverlayService<T> {
         .centerHorizontally()
         .centerVertically(),
       hasBackdrop: true,
-      height: '90vh',
-      width: '90vw',
     };
 
     this.overlayRef = this.overlay.create(overlayConfig);
 
-    this.renderer.setStyle(this._document.body, 'overflow', 'hidden');
     this.renderer.listen(this.overlayRef.overlayElement, 'click', (event: MouseEvent) => {
       event.stopPropagation();
     });
-    setTimeout(() => this.setUpCloseEventListeners());
+    setTimeout(() => this.initCloseEventListeners());
 
-    const componentPortal = new ComponentPortal<T>(component);
+    const overlayHeaderPortal = new ComponentPortal(OverlayHeaderComponent);
+    const componentPortal = new ComponentPortal<T>(component, null, injector);
 
+    this.overlayRef.attach(overlayHeaderPortal);
     return this.overlayRef.attach(componentPortal);
   }
 
   public close(): void {
     this.overlayRef?.dispose();
     this.overlayRef = null;
-    this.renderer.removeStyle(this._document.body, 'overflow');
 
     // 'Unlisten' to all closing events by calling the listeners' functions
     this.documentClickListener?.();
     this.escapeListener?.();
   }
 
-  private setUpCloseEventListeners(): void {
+  private initCloseEventListeners(): void {
     this.documentClickListener = this.renderer.listen(
       'document',
       'click',

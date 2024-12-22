@@ -12,10 +12,10 @@ import { environment } from '@env';
   providedIn: 'root',
 })
 export class EventsService {
-  readonly API_BASE_URL = environment.lccApiBaseUrl;
-  readonly COLLECTION: DbCollection = 'events';
+  private readonly API_BASE_URL = environment.lccApiBaseUrl;
+  private readonly COLLECTION: DbCollection = 'events';
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   public getEvents(): Observable<Event[]> {
     const scope: ApiScope = 'public';

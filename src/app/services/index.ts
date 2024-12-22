@@ -1,9 +1,10 @@
 export { ArticlesService } from './articles.service';
 export { AuthService } from './auth.service';
 export { ChessOpeningsService } from './chess-openings.service';
+export { DIALOG_DATA_TOKEN, DialogData, DialogService } from './dialog.service';
 export { EventsService } from './events.service';
 export { ImagesService } from './images.service';
+export { LocalStorageService } from './local-storage.service';
 export { LoaderService } from './loader.service';
 export { MembersService } from './members.service';
 export { MetaAndTitleService } from './meta-and-title.service';
-export { OverlayService } from './overlay.service';

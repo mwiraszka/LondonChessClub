@@ -1,0 +1,25 @@
+<div class="image-container">
+  <img
+    #photo
+    [src]="'assets/photos/' + photos[index].fileName + '.jpg'"
+    (load)="onPhotoLoad()"
+    default="assets/image-placeholder.png" />
+</div>
+
+<div class="details-container">
+  <button
+    class="previous-photo-button lcc-primary-button"
+    [tooltip]="'Previous photo'"
+    (click)="onPreviousPhoto()">
+    <i-feather name="chevron-left"></i-feather>
+  </button>
+
+  <figcaption class="lcc-truncate">{{ photos[index].description }}</figcaption>
+
+  <button
+    class="next-photo-button lcc-primary-button"
+    [tooltip]="'Next photo'"
+    (click)="onNextPhoto()">
+    <i-feather name="chevron-right"></i-feather>
+  </button>
+</div>

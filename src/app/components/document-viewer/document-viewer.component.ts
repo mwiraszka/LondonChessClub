@@ -1,11 +1,10 @@
 import { PDFProgressData, PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { IconsModule } from '@app/icons';
-import { LoaderService } from '@app/services';
-import { OVERLAY_DATA_TOKEN } from '@app/services/overlay.service';
+import { DialogControls } from '@app/types';
 
 @Component({
   selector: 'lcc-document-viewer',
@@ -13,26 +12,16 @@ import { OVERLAY_DATA_TOKEN } from '@app/services/overlay.service';
   styleUrls: ['./document-viewer.component.scss'],
   imports: [CommonModule, IconsModule, PdfViewerModule],
 })
-export class DocumentViewerComponent implements OnInit {
-  public documentSrc!: string;
-  public loadedPercentage = 0;
+export class DocumentViewerComponent implements DialogControls {
+  @Input() public documentPath?: string;
 
+  public percentLoaded = 0;
+
+  // Dialog controls
   @Output() public close = new EventEmitter<void>();
-
-  constructor(
-    private readonly loaderService: LoaderService,
-    @Inject(OVERLAY_DATA_TOKEN) private data: string,
-  ) {}
-
-  ngOnInit(): void {
-    this.documentSrc = this.data;
-  }
-
-  public onDocumentLoad(): void {
-    this.loaderService.setIsLoading(false);
-  }
+  @Output() public confirm = new EventEmitter<string>();
 
   public onProgress(progressData: PDFProgressData): void {
-    this.loadedPercentage = Math.floor((progressData.loaded / progressData.total) * 100);
+    this.percentLoaded = Math.floor((progressData.loaded / progressData.total) * 100);
   }
 }

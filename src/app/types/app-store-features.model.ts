@@ -6,7 +6,6 @@ export enum StoreFeatures {
   MEMBERS = 'members',
   MODAL = 'modal',
   NAV = 'nav',
-  PHOTOS = 'photos',
   TOASTER = 'toaster',
   USER_SETTINGS = 'user-settings',
 }

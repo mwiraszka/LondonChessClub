@@ -23,7 +23,6 @@ import { EventsStoreModule } from '@app/store/events';
 import { MembersStoreModule } from '@app/store/members';
 import { ModalStoreModule } from '@app/store/modal';
 import { NavStoreModule } from '@app/store/nav';
-import { PhotosStoreModule } from '@app/store/photos';
 import { ToasterStoreModule } from '@app/store/toaster';
 import { UserSettingsStoreModule } from '@app/store/user-settings';
 import { actionSanitizer } from '@app/utils';
@@ -48,7 +47,6 @@ bootstrapApplication(AppComponent, {
       MembersStoreModule,
       ModalStoreModule,
       NavStoreModule,
-      PhotosStoreModule,
       ServiceWorkerModule.register('ngsw-worker.js', {
         enabled: environment.production,
         // Register the ServiceWorker as soon as the app is stable

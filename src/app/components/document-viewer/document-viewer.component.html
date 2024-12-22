@@ -1,13 +1,12 @@
 <div
   class="loading-progress-indicator"
-  [style.width.%]="loadedPercentage">
+  [style.width.%]="percentLoaded">
 </div>
 
 <pdf-viewer
-  [src]="'assets/documents/test.pdf'"
+  [src]="documentPath"
   [render-text]="true"
   [render-text-mode]="2"
   [original-size]="false"
-  (after-load-complete)="onDocumentLoad()"
   (on-progress)="onProgress($event)">
 </pdf-viewer>

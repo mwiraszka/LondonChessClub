@@ -1,8 +1,10 @@
-@if (photos$ | async; as photos) {
-  @for (photo of photos.slice(0, maxPhotos ?? photos.length); track photo.filename) {
-    <img
-      [src]="'assets/photos/' + photo.filename + '-320.jpg'"
-      [alt]="photo.description"
-      (click)="onClickPhoto(photo)" />
-  }
+@for (
+  photo of photos.slice(0, maxPhotos ?? photos.length);
+  let index = $index;
+  track photo.fileName
+) {
+  <img
+    [src]="'assets/photos/' + photo.fileName + '-320.jpg'"
+    [alt]="photo.description"
+    (click)="onClickPhoto(index)" />
 }

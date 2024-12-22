@@ -50,11 +50,11 @@ export class AppComponent implements OnInit {
     UserSettingsSelectors.selectBannerLastCleared,
   );
   public readonly isDarkMode$ = this.store.select(UserSettingsSelectors.selectIsDarkMode);
-  public isLoading = true;
+  public readonly isLoading = true;
 
   constructor(
     public readonly loaderService: LoaderService,
-    @Inject(DOCUMENT) private _document: Document,
+    @Inject(DOCUMENT) private readonly _document: Document,
     private readonly store: Store,
   ) {
     moment.tz.setDefault('America/Toronto');

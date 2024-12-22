@@ -23,22 +23,13 @@ import { environment } from '@env';
   providedIn: 'root',
 })
 export class AuthService {
-  userPool: CognitoUserPool;
+  private readonly userPool: CognitoUserPool;
 
-  protected tempInitialPassword = '';
-
-  constructor() {
-    this.userPool = new CognitoUserPool({
-      UserPoolId: environment.cognitoUserPoolId,
-      ClientId: environment.cognitoUserPoolClientId,
-    });
-  }
-
-  get currentUser(): CognitoUser | null {
+  private get currentUser(): CognitoUser | null {
     return this.userPool.getCurrentUser();
   }
 
-  public token(): Observable<string> {
+  private get token(): Observable<string> {
     return new Observable<string>(observer => {
       if (!this.currentUser) {
         observer.error('Unable to get data for current Cognito user.');
@@ -59,6 +50,13 @@ export class AuthService {
     });
   }
 
+  constructor() {
+    this.userPool = new CognitoUserPool({
+      UserPoolId: environment.cognitoUserPoolId,
+      ClientId: environment.cognitoUserPoolClientId,
+    });
+  }
+
   public logIn(request: LoginRequest): Observable<LoginResponse> {
     const authenticationDetails = new AuthenticationDetails({
       Username: request.email,
@@ -66,7 +64,7 @@ export class AuthService {
     });
 
     return new Observable<LoginResponse>(observer => {
-      const user = this.userByEmail(request.email);
+      const user = this.getUserByEmail(request.email);
 
       user.authenticateUser(authenticationDetails, {
         onSuccess(session: CognitoUserSession) {
@@ -159,7 +157,7 @@ export class AuthService {
 
   public sendChangePasswordCode(email: string): Observable<PasswordChangeResponse> {
     return new Observable<PasswordChangeResponse>(observer => {
-      this.userByEmail(email).forgotPassword({
+      this.getUserByEmail(email).forgotPassword({
         onSuccess() {
           observer.next();
           observer.complete();
@@ -185,37 +183,41 @@ export class AuthService {
     request: PasswordChangeRequest,
   ): Observable<PasswordChangeResponse | null> {
     return new Observable<PasswordChangeResponse | null>(observer => {
-      this.userByEmail(request.email).confirmPassword(request.code, request.newPassword, {
-        onSuccess() {
-          observer.next({
-            email: request.email,
-            newPassword: request.newPassword,
-          });
-          observer.complete();
-        },
+      this.getUserByEmail(request.email).confirmPassword(
+        request.code,
+        request.newPassword,
+        {
+          onSuccess() {
+            observer.next({
+              email: request.email,
+              newPassword: request.newPassword,
+            });
+            observer.complete();
+          },
 
-        onFailure(error: Error) {
-          let errorMessage: string;
-          switch (error.message) {
-            case 'Invalid verification code provided, please try again.':
-            case 'Invalid code provided, please request a code again.':
-              errorMessage = 'Invalid verification code.';
-              break;
-            case 'Attempt limit exceeded, please try after some time.':
-              errorMessage =
-                'Password change attempt limit reached; please try again later.';
-              break;
-            default:
-              errorMessage = `Unknown error: ${error.message}`;
-          }
-          observer.next({ error: new Error(errorMessage) });
-          observer.complete();
+          onFailure(error: Error) {
+            let errorMessage: string;
+            switch (error.message) {
+              case 'Invalid verification code provided, please try again.':
+              case 'Invalid code provided, please request a code again.':
+                errorMessage = 'Invalid verification code.';
+                break;
+              case 'Attempt limit exceeded, please try after some time.':
+                errorMessage =
+                  'Password change attempt limit reached; please try again later.';
+                break;
+              default:
+                errorMessage = `Unknown error: ${error.message}`;
+            }
+            observer.next({ error: new Error(errorMessage) });
+            observer.complete();
+          },
         },
-      });
+      );
     });
   }
 
-  private userByEmail(email: string): CognitoUser {
+  private getUserByEmail(email: string): CognitoUser {
     return new CognitoUser({
       Username: email,
       Pool: this.userPool,

@@ -12,10 +12,10 @@ import { environment } from '@env';
   providedIn: 'root',
 })
 export class MembersService {
-  readonly API_BASE_URL = environment.lccApiBaseUrl;
-  readonly COLLECTION: DbCollection = 'members';
+  private readonly API_BASE_URL = environment.lccApiBaseUrl;
+  private readonly COLLECTION: DbCollection = 'members';
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   public getMembers(scope: ApiScope): Observable<Member[]> {
     return this.http.get<Member[]>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`);

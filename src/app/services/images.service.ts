@@ -12,10 +12,10 @@ import { environment } from '@env';
   providedIn: 'root',
 })
 export class ImagesService {
-  readonly API_BASE_URL = environment.lccApiBaseUrl;
-  readonly COLLECTION: DbCollection = 'images';
+  private readonly API_BASE_URL = environment.lccApiBaseUrl;
+  private readonly COLLECTION: DbCollection = 'images';
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   public getThumbnailImages(): Observable<Image[]> {
     const scope: ApiScope = 'public';

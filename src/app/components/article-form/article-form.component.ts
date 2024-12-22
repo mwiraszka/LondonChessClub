@@ -18,7 +18,7 @@ import { MarkdownRendererComponent } from '@app/components/markdown-renderer/mar
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
-import { ImagesService, OverlayService } from '@app/services';
+import { DialogService, ImagesService, LocalStorageService } from '@app/services';
 import {
   ArticlesActions,
   ArticlesSelectors,
@@ -27,6 +27,8 @@ import {
 import { ToasterActions } from '@app/store/toaster';
 import { ArticleFormData, ControlMode, Id, Url } from '@app/types';
 import { dataUrlToBlob, formatBytes, isDefined, isStorageSupported } from '@app/utils';
+
+import { DialogComponent } from '../dialog/dialog.component';
 
 @UntilDestroy()
 @Component({
@@ -57,13 +59,14 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   );
   private readonly controlMode$ = this.store.select(ArticlesSelectors.selectControlMode);
   private controlMode: ControlMode | null = null;
-  private imageExplorerRef: ComponentRef<ImageExplorerComponent> | null = null;
+  private dialogRef?: ComponentRef<DialogComponent<ImageExplorerComponent>>;
 
   constructor(
-    private readonly store: Store,
     private readonly formBuilder: FormBuilder,
     private readonly imagesService: ImagesService,
-    private readonly overlayService: OverlayService<ImageExplorerComponent>,
+    private readonly localStorageService: LocalStorageService,
+    private readonly dialogService: DialogService<ImageExplorerComponent>,
+    private readonly store: Store,
   ) {}
 
   ngOnInit(): void {
@@ -79,7 +82,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
       this.initForm(articleFormData);
       this.initFormValueChangeListener();
 
-      const imageDataUrl = localStorage.getItem(LOCAL_STORAGE_IMAGE_KEY);
+      const imageDataUrl = this.localStorageService.get<string>(LOCAL_STORAGE_IMAGE_KEY);
       if (imageDataUrl) {
         this.setImageByFile(dataUrlToBlob(imageDataUrl));
       } else if (articleFormData.imageId) {
@@ -139,17 +142,12 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   }
 
   public onOpenImageExplorer(): void {
-    this.imageExplorerRef = this.overlayService.open(ImageExplorerComponent);
-    this.imageExplorerRef.instance.selectImage
-      .pipe(first())
-      .subscribe((thumbnailImageId: Id) => {
-        this.overlayService.close();
-        const imageId = thumbnailImageId.slice(0, -8);
-        this.setImageById(imageId);
-      });
-    this.imageExplorerRef.instance.close
-      .pipe(first())
-      .subscribe(() => this.overlayService.close());
+    this.dialogRef = this.dialogService.open({ component: ImageExplorerComponent });
+    this.dialogRef.instance.confirm.pipe(first()).subscribe((thumbnailImageId: Id) => {
+      this.dialogService.close();
+      const imageId = thumbnailImageId.slice(0, -8);
+      this.setImageById(imageId);
+    });
   }
 
   public onRevertImage(originalImageId?: Id | null): void {
@@ -223,10 +221,10 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
 
   private updateStoredFile(dataUrl: Url | null): void {
     if (dataUrl) {
-      localStorage.setItem(LOCAL_STORAGE_IMAGE_KEY, dataUrl);
+      this.localStorageService.set(LOCAL_STORAGE_IMAGE_KEY, dataUrl);
       this.store.dispatch(ArticlesActions.newImageStored());
     } else {
-      localStorage.removeItem(LOCAL_STORAGE_IMAGE_KEY);
+      this.localStorageService.remove(LOCAL_STORAGE_IMAGE_KEY);
       this.store.dispatch(ArticlesActions.storedImageRemoved());
     }
   }

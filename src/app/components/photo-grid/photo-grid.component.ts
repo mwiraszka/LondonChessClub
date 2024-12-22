@@ -1,13 +1,10 @@
-import { Store } from '@ngrx/store';
-import { first } from 'rxjs/operators';
+import { photos } from 'assets/photos';
 
 import { CommonModule } from '@angular/common';
-import { Component, ComponentRef, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
-import { OverlayService } from '@app/services';
-import { PhotosActions, PhotosSelectors } from '@app/store/photos';
-import { Photo } from '@app/types';
+import { PhotoViewerComponent } from '@app/components/photo-viewer/photo-viewer.component';
+import { DialogService } from '@app/services';
 
 @Component({
   selector: 'lcc-photo-grid',
@@ -18,20 +15,14 @@ import { Photo } from '@app/types';
 export class PhotoGridComponent {
   @Input() public maxPhotos?: number;
 
-  public readonly photos$ = this.store.select(PhotosSelectors.selectPhotos);
+  public readonly photos = photos;
 
-  private imageViewerRef: ComponentRef<ImageViewerComponent> | null = null;
+  constructor(private readonly dialogService: DialogService<PhotoViewerComponent>) {}
 
-  constructor(
-    private readonly overlayService: OverlayService<ImageViewerComponent>,
-    private readonly store: Store,
-  ) {}
-
-  public onClickPhoto(photo: Photo): void {
-    this.store.dispatch(PhotosActions.photoSelected({ photo }));
-    this.imageViewerRef = this.overlayService.open(ImageViewerComponent);
-    this.imageViewerRef.instance.close
-      .pipe(first())
-      .subscribe(() => this.overlayService.close());
+  public onClickPhoto(index: number): void {
+    this.dialogService.open({
+      component: PhotoViewerComponent,
+      inputs: { photos, index },
+    });
   }
 }

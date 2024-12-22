@@ -13,10 +13,10 @@ import { environment } from '@env';
   providedIn: 'root',
 })
 export class ArticlesService {
-  readonly API_BASE_URL = environment.lccApiBaseUrl;
-  readonly COLLECTION: DbCollection = 'articles';
+  private readonly API_BASE_URL = environment.lccApiBaseUrl;
+  private readonly COLLECTION: DbCollection = 'articles';
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   public getArticles(): Observable<Article[]> {
     const scope: ApiScope = 'public';

@@ -1,0 +1,62 @@
+:host {
+  display: block;
+  width: 90vw;
+  // TODO: Figure out how to keep centered without needing to specify dialog height
+  // (same applies to Document Viewer and Image Explorer components)
+  height: calc(90vh - 30px);
+  background-color: var(--lcc-color--photoViewer-background);
+}
+
+.image-container {
+  width: 100%;
+  // Account for height of details container below
+  height: calc(100% - 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    max-height: calc(90vh - 80px);
+
+    &:not(.portrait-mode) {
+      height: auto;
+      max-width: 90vw;
+    }
+
+    &.portrait-mode {
+      width: auto;
+    }
+  }
+}
+
+.details-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 8px;
+  background-color: var(--lcc-color--photoViewer-detailsContainerBackground);
+
+  figcaption {
+    flex: 1;
+    padding: 4px 8px;
+    border-radius: var(--lcc-borderRadius--small);
+    background-color: var(--lcc-color--photoViewer-captionBackground);
+    color: var(--lcc-color--photoViewer-captionText);
+
+    // Ensure top of second line is hidden from view on truncation
+    line-height: 21px;
+  }
+
+  .previous-photo-button,
+  .next-photo-button {
+    display: flex;
+    padding: 4px;
+    background-color: var(--lcc-color--photoViewer-buttons);
+
+    &:hover {
+      background-color: var(--lcc-color--photoViewer-buttonsOnHover);
+    }
+  }
+}

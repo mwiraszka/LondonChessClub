@@ -1,14 +1,13 @@
 import moment from 'moment-timezone';
-import { first } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, ComponentRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { DocumentViewerComponent } from '@app/components/document-viewer/document-viewer.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { IconsModule } from '@app/icons';
 import { FormatDatePipe } from '@app/pipes/format-date.pipe';
-import { MetaAndTitleService, OverlayService } from '@app/services';
+import { DialogService, MetaAndTitleService } from '@app/services';
 import { ClubDocument } from '@app/types';
 
 @Component({
@@ -18,7 +17,6 @@ import { ClubDocument } from '@app/types';
   imports: [CommonModule, FormatDatePipe, IconsModule, ScreenHeaderComponent],
 })
 export class DocumentsScreenComponent implements OnInit {
-  private imageViewerRef: ComponentRef<DocumentViewerComponent> | null = null;
   public readonly documents: ClubDocument[] = [
     {
       title: 'Club Bylaws',
@@ -47,7 +45,7 @@ export class DocumentsScreenComponent implements OnInit {
   ];
 
   constructor(
-    private readonly overlayService: OverlayService<DocumentViewerComponent>,
+    private readonly dialogService: DialogService<DocumentViewerComponent>,
     private readonly metaAndTitleService: MetaAndTitleService,
   ) {}
 
@@ -59,10 +57,9 @@ export class DocumentsScreenComponent implements OnInit {
   }
 
   public onSelectDocument(fileName: string): void {
-    const documentSrc = `assets/documents/${fileName}`;
-    this.imageViewerRef = this.overlayService.open(DocumentViewerComponent, documentSrc);
-    this.imageViewerRef.instance.close
-      .pipe(first())
-      .subscribe(() => this.overlayService.close());
+    this.dialogService.open({
+      component: DocumentViewerComponent,
+      inputs: { documentPath: `assets/documents/${fileName}` },
+    });
   }
 }

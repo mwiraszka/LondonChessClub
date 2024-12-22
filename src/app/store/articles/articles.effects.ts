@@ -8,7 +8,7 @@ import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { ArticlesService, LoaderService } from '@app/services';
+import { ArticlesService, LoaderService, LocalStorageService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import type { Article, ModificationInfo } from '@app/types';
 import { isDefined, parseHttpErrorResponse } from '@app/utils';
@@ -83,7 +83,9 @@ export class ArticlesEffects {
           thumbnailImageUrl: null,
         };
 
-        const imageDataUrl = localStorage.getItem(LOCAL_STORAGE_IMAGE_KEY);
+        const imageDataUrl = this.localStorageService.get<string>(
+          LOCAL_STORAGE_IMAGE_KEY,
+        );
         if (isNewImageStored && !imageDataUrl) {
           const error = new Error(
             'Unable to retrieve image data URL from local storage.',
@@ -128,7 +130,9 @@ export class ArticlesEffects {
           modificationInfo,
         };
 
-        const imageDataUrl = localStorage.getItem(LOCAL_STORAGE_IMAGE_KEY);
+        const imageDataUrl = this.localStorageService.get<string>(
+          LOCAL_STORAGE_IMAGE_KEY,
+        );
         if (isNewImageStored && !imageDataUrl) {
           const error = new Error(
             'Unable to retrieve image data URL from local storage.',
@@ -171,8 +175,9 @@ export class ArticlesEffects {
 
   constructor(
     private readonly actions$: Actions,
+    private readonly articlesService: ArticlesService,
+    private readonly localStorageService: LocalStorageService,
+    private readonly loaderService: LoaderService,
     private readonly store: Store,
-    private articlesService: ArticlesService,
-    private loaderService: LoaderService,
   ) {}
 }

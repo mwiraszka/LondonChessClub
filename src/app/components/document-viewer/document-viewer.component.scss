@@ -1,10 +1,8 @@
-// From Overlay Header component
-$header-height: 30px;
-
 :host {
-  width: 1000px;
-  height: 90vh;
-  margin: 8px;
+  width: 90vw;
+  height: calc(90vh - 30px);
+  display: flex;
+  flex-direction: column;
   background-color: var(--lcc-color--documentViewer-pageGaps);
 }
 
@@ -16,8 +14,7 @@ $header-height: 30px;
 }
 
 pdf-viewer {
-  // Account for header height to keep centred in overlay
-  height: calc(100% - $header-height);
+  flex: 1;
 
   ::ng-deep .ng2-pdf-viewer-container {
     overflow-x: hidden;

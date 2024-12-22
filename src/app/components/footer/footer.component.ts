@@ -6,7 +6,7 @@ import packageJson from '../../../../package.json';
 @Component({
   selector: 'lcc-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss'],
+  styleUrl: './footer.component.scss',
   imports: [CommonModule],
 })
 export class FooterComponent {

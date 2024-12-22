@@ -6,7 +6,7 @@ import { TruncateByCharsPipe } from '@app/pipes/truncate-by-chars.pipe';
 @Component({
   selector: 'lcc-tooltip',
   templateUrl: './tooltip.component.html',
-  styleUrls: ['./tooltip.component.scss'],
+  styleUrl: './tooltip.component.scss',
   imports: [CommonModule, TruncateByCharsPipe],
 })
 export class TooltipComponent {

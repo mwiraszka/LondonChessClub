@@ -12,7 +12,7 @@ import { type Link, NavPathTypes } from '@app/types';
 @Component({
   selector: 'lcc-home-screen',
   templateUrl: './home-screen.component.html',
-  styleUrls: ['./home-screen.component.scss'],
+  styleUrl: './home-screen.component.scss',
   imports: [
     ArticleGridComponent,
     ClubSummaryComponent,

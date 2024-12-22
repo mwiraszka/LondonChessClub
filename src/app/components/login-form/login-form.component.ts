@@ -21,7 +21,7 @@ import { emailValidator } from '@app/validators';
 @Component({
   selector: 'lcc-login-form',
   templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss'],
+  styleUrl: './login-form.component.scss',
   imports: [CommonModule, IconsModule, ReactiveFormsModule, RouterLink, TooltipDirective],
 })
 export class LoginFormComponent implements OnInit {

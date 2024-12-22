@@ -9,7 +9,7 @@ import type { Link } from '@app/types';
 @Component({
   selector: 'lcc-link-list',
   templateUrl: './link-list.component.html',
-  styleUrls: ['./link-list.component.scss'],
+  styleUrl: './link-list.component.scss',
   imports: [CommonModule, IconsModule, RouterLink, TooltipDirective],
 })
 export class LinkListComponent {

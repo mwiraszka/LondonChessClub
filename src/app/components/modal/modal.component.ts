@@ -10,7 +10,7 @@ import { ModalButtonActionTypes } from '@app/types';
 @Component({
   selector: 'lcc-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss'],
+  styleUrl: './modal.component.scss',
   imports: [CommonModule, IconsModule],
 })
 export class ModalComponent {

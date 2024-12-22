@@ -15,7 +15,7 @@ import { kebabize } from '@app/utils';
 @Component({
   selector: 'lcc-schedule',
   templateUrl: './schedule.component.html',
-  styleUrls: ['./schedule.component.scss'],
+  styleUrl: './schedule.component.scss',
   imports: [
     AdminControlsComponent,
     CommonModule,

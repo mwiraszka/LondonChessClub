@@ -15,7 +15,7 @@ import { camelize, kebabize } from '@app/utils';
 @Component({
   selector: 'lcc-members-table',
   templateUrl: './members-table.component.html',
-  styleUrls: ['./members-table.component.scss'],
+  styleUrl: './members-table.component.scss',
   imports: [
     AdminControlsComponent,
     CommonModule,

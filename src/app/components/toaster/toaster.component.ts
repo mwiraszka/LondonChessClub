@@ -14,7 +14,7 @@ import { ToastComponent } from '../toast/toast.component';
       <lcc-toast [toast]="toast"></lcc-toast>
     }
   `,
-  styleUrls: ['./toaster.component.scss'],
+  styleUrl: './toaster.component.scss',
   imports: [CommonModule, ToastComponent],
 })
 export class ToasterComponent {

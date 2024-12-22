@@ -9,7 +9,7 @@ import { NavPathTypes } from '@app/types';
 @Component({
   selector: 'lcc-club-summary',
   templateUrl: './club-summary.component.html',
-  styleUrls: ['./club-summary.component.scss'],
+  styleUrl: './club-summary.component.scss',
   imports: [ClubMapComponent, CommonModule, IconsModule, RouterLink],
 })
 export class ClubSummaryComponent {

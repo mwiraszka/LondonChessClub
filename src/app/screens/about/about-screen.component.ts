@@ -9,7 +9,7 @@ import { NavPathTypes } from '@app/types';
 @Component({
   selector: 'lcc-about-screen',
   templateUrl: './about-screen.component.html',
-  styleUrls: ['./about-screen.component.scss'],
+  styleUrl: './about-screen.component.scss',
   imports: [CommonModule, RouterLink, ScreenHeaderComponent],
 })
 export class AboutScreenComponent implements OnInit {

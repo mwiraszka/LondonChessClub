@@ -26,7 +26,7 @@ import { timeValidator } from '@app/validators';
 @Component({
   selector: 'lcc-event-form',
   templateUrl: './event-form.component.html',
-  styleUrls: ['./event-form.component.scss'],
+  styleUrl: './event-form.component.scss',
   imports: [
     CommonModule,
     DatePickerComponent,

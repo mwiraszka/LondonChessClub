@@ -13,7 +13,7 @@ import { generatePlaceholderImages } from '@app/utils';
 @Component({
   selector: 'lcc-image-explorer',
   templateUrl: './image-explorer.component.html',
-  styleUrls: ['./image-explorer.component.scss'],
+  styleUrl: './image-explorer.component.scss',
   imports: [CommonModule, FormatBytesPipe, FormatDatePipe, IconsModule],
 })
 export class ImageExplorerComponent implements OnInit, DialogControls {

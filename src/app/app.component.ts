@@ -24,7 +24,7 @@ import { isDefined } from '@app/utils';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrl: './app.component.scss',
   imports: [
     CommonModule,
     FooterComponent,

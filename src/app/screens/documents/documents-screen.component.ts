@@ -13,7 +13,7 @@ import { ClubDocument } from '@app/types';
 @Component({
   selector: 'lcc-documents-screen',
   templateUrl: './documents-screen.component.html',
-  styleUrls: ['./documents-screen.component.scss'],
+  styleUrl: './documents-screen.component.scss',
   imports: [CommonModule, FormatDatePipe, IconsModule, ScreenHeaderComponent],
 })
 export class DocumentsScreenComponent implements OnInit {

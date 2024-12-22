@@ -15,7 +15,7 @@ import { IsoDate } from '@app/types';
 @Component({
   selector: 'lcc-date-picker',
   templateUrl: './date-picker.component.html',
-  styleUrls: ['./date-picker.component.scss'],
+  styleUrl: './date-picker.component.scss',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

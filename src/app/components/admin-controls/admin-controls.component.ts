@@ -8,7 +8,7 @@ import { IconsModule } from '@app/icons';
 @Component({
   selector: 'lcc-admin-controls',
   templateUrl: './admin-controls.component.html',
-  styleUrls: ['./admin-controls.component.scss'],
+  styleUrl: './admin-controls.component.scss',
   imports: [CommonModule, IconsModule, RouterLink, TooltipDirective],
 })
 export class AdminControlsComponent {

@@ -15,7 +15,7 @@ import { Link, NavPathTypes } from '@app/types';
 @Component({
   selector: 'lcc-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss'],
+  styleUrl: './nav.component.scss',
   imports: [
     CommonModule,
     DropdownDirective,

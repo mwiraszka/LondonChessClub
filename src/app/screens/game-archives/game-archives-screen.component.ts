@@ -43,7 +43,7 @@ import { YEARS } from './years';
 @Component({
   selector: 'lcc-game-archives-screen',
   templateUrl: './game-archives-screen.component.html',
-  styleUrls: ['./game-archives-screen.component.scss'],
+  styleUrl: './game-archives-screen.component.scss',
   imports: [
     BaseChartDirective,
     CdkFixedSizeVirtualScroll,

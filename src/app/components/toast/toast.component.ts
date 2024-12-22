@@ -6,7 +6,7 @@ import { type Toast, ToastTypes } from '@app/types';
 
 @Component({
   selector: 'lcc-toast',
-  styleUrls: ['./toast.component.scss'],
+  styleUrl: './toast.component.scss',
   templateUrl: './toast.component.html',
   imports: [CommonModule, IconsModule],
 })

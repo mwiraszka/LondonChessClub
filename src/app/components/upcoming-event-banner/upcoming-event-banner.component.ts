@@ -14,7 +14,7 @@ import { kebabize } from '@app/utils';
 @Component({
   selector: 'lcc-upcoming-event-banner',
   templateUrl: './upcoming-event-banner.component.html',
-  styleUrls: ['./upcoming-event-banner.component.scss'],
+  styleUrl: './upcoming-event-banner.component.scss',
   imports: [CommonModule, FormatDatePipe, IconsModule, RouterLink],
 })
 export class UpcomingEventBannerComponent {

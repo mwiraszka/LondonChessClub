@@ -8,7 +8,7 @@ import { environment } from '@env';
 @Component({
   selector: 'lcc-club-map',
   templateUrl: './club-map.component.html',
-  styleUrls: ['./club-map.component.scss'],
+  styleUrl: './club-map.component.scss',
   imports: [CommonModule],
 })
 export class ClubMapComponent implements OnInit {

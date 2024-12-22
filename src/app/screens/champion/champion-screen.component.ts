@@ -9,7 +9,7 @@ import { type Link, NavPathTypes } from '@app/types';
 @Component({
   selector: 'lcc-champion-screen',
   templateUrl: './champion-screen.component.html',
-  styleUrls: ['./champion-screen.component.scss'],
+  styleUrl: './champion-screen.component.scss',
   imports: [CommonModule, LinkListComponent, ScreenHeaderComponent],
 })
 export class ChampionScreenComponent implements OnInit {

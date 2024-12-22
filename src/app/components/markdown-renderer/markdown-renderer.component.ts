@@ -12,7 +12,7 @@ import { kebabize } from '@app/utils';
 @Component({
   selector: 'lcc-markdown-renderer',
   templateUrl: './markdown-renderer.component.html',
-  styleUrls: ['./markdown-renderer.component.scss'],
+  styleUrl: './markdown-renderer.component.scss',
   imports: [CommonModule, MarkdownComponent],
 })
 export class MarkdownRendererComponent implements OnInit, AfterViewChecked {

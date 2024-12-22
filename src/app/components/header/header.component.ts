@@ -8,7 +8,7 @@ import { NavPathTypes } from '@app/types';
 @Component({
   selector: 'lcc-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  styleUrl: './header.component.scss',
   imports: [CommonModule, RangePipe, RouterModule],
 })
 export class HeaderComponent {

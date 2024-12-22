@@ -11,7 +11,7 @@ import { wasEdited } from '@app/utils';
 @Component({
   selector: 'lcc-article',
   templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss'],
+  styleUrl: './article.component.scss',
   imports: [
     CommonModule,
     FormatDatePipe,

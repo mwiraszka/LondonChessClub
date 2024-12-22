@@ -9,7 +9,7 @@ import { DialogService } from '@app/services';
 @Component({
   selector: 'lcc-photo-grid',
   templateUrl: './photo-grid.component.html',
-  styleUrls: ['./photo-grid.component.scss'],
+  styleUrl: './photo-grid.component.scss',
   imports: [CommonModule],
 })
 export class PhotoGridComponent {

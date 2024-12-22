@@ -17,7 +17,7 @@ import { wasEdited } from '@app/utils';
 @Component({
   selector: 'lcc-article-grid',
   templateUrl: './article-grid.component.html',
-  styleUrls: ['./article-grid.component.scss'],
+  styleUrl: './article-grid.component.scss',
   imports: [
     AdminControlsComponent,
     CommonModule,

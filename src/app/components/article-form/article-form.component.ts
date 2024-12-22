@@ -34,7 +34,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 @Component({
   selector: 'lcc-article-form',
   templateUrl: './article-form.component.html',
-  styleUrls: ['./article-form.component.scss'],
+  styleUrl: './article-form.component.scss',
   imports: [
     CommonModule,
     IconsModule,

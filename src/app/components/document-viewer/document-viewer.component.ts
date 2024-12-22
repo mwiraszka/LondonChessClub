@@ -9,7 +9,7 @@ import { DialogControls } from '@app/types';
 @Component({
   selector: 'lcc-document-viewer',
   templateUrl: './document-viewer.component.html',
-  styleUrls: ['./document-viewer.component.scss'],
+  styleUrl: './document-viewer.component.scss',
   imports: [CommonModule, IconsModule, PdfViewerModule],
 })
 export class DocumentViewerComponent implements DialogControls {

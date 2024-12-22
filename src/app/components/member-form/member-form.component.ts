@@ -31,7 +31,7 @@ import { DatePickerComponent } from '../date-picker/date-picker.component';
 @Component({
   selector: 'lcc-member-form',
   templateUrl: './member-form.component.html',
-  styleUrls: ['./member-form.component.scss'],
+  styleUrl: './member-form.component.scss',
   imports: [
     CommonModule,
     DatePickerComponent,

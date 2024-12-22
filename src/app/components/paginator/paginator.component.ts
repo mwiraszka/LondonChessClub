@@ -14,7 +14,7 @@ import { IconsModule } from '@app/icons';
 @Component({
   selector: 'lcc-paginator',
   templateUrl: './paginator.component.html',
-  styleUrls: ['./paginator.component.scss'],
+  styleUrl: './paginator.component.scss',
   imports: [CommonModule, IconsModule, TooltipDirective],
 })
 export class PaginatorComponent implements OnChanges {

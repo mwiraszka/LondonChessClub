@@ -19,7 +19,7 @@ import { ImagePreloadDirective } from '../image-preload/image-preload.directive'
 @Component({
   selector: 'lcc-photo-viewer',
   templateUrl: './photo-viewer.component.html',
-  styleUrls: ['./photo-viewer.component.scss'],
+  styleUrl: './photo-viewer.component.scss',
   imports: [CommonModule, IconsModule, ImagePreloadDirective, TooltipDirective],
 })
 export class PhotoViewerComponent implements OnInit, DialogControls {

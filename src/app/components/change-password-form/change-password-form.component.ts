@@ -31,7 +31,7 @@ import {
 @Component({
   selector: 'lcc-change-password-form',
   templateUrl: './change-password-form.component.html',
-  styleUrls: ['./change-password-form.component.scss'],
+  styleUrl: './change-password-form.component.scss',
   imports: [CommonModule, IconsModule, ReactiveFormsModule, RouterLink, TooltipDirective],
 })
 export class ChangePasswordFormComponent implements OnInit {

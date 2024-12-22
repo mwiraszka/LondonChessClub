@@ -31,7 +31,7 @@ import { DialogControls } from '@app/types';
 
     <ng-template #contentContainer></ng-template>
   `,
-  styleUrls: ['./dialog.component.scss'],
+  styleUrl: './dialog.component.scss',
   imports: [IconsModule, TooltipDirective],
 })
 export class DialogComponent<T extends DialogControls> implements AfterViewInit {

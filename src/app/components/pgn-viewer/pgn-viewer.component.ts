@@ -10,7 +10,7 @@ import { LinkListComponent } from '../link-list/link-list.component';
 
 @Component({
   selector: 'lcc-pgn-viewer',
-  styleUrls: ['./pgn-viewer.component.scss'],
+  styleUrl: './pgn-viewer.component.scss',
   templateUrl: './pgn-viewer.component.html',
   imports: [CommonModule, LinkListComponent],
 })

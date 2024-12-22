@@ -7,7 +7,7 @@ import { IconsModule } from '@app/icons';
 @Component({
   selector: 'lcc-expansion-panel',
   templateUrl: './expansion-panel.component.html',
-  styleUrls: ['./expansion-panel.component.scss'],
+  styleUrl: './expansion-panel.component.scss',
   imports: [CommonModule, IconsModule, NgTemplateOutlet],
 })
 export class ExpansionPanelComponent {

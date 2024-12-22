@@ -27,7 +27,7 @@ import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
 import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';
 import { UserSettingsSelectors } from '@app/store/user-settings';
-import { GameDetails } from '@app/types';
+import { FilterForm, GameDetails } from '@app/types';
 import {
   getOpeningTallies,
   getPlayerName,
@@ -63,7 +63,7 @@ export class GameArchivesScreenComponent implements OnInit {
   public allGames: Map<string, GameDetails[]> = new Map();
   public chessOpenings: Map<string, string> | null = null;
   public filteredGames: Map<string, GameDetails[]> = new Map();
-  public form!: FormGroup;
+  public form!: FormGroup<FilterForm>;
   public openingChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
   public openingChartLabels: string[] = [];
   public openingChartOptions: ChartConfiguration<'doughnut'>['options'] = {};
@@ -143,21 +143,22 @@ export class GameArchivesScreenComponent implements OnInit {
 
   private initForm(): void {
     this.form = this.formBuilder.group({
-      name: new FormControl(''),
-      asWhite: new FormControl(true),
-      asBlack: new FormControl(true),
-      movesMin: new FormControl('', [
-        Validators.max(999),
-        Validators.pattern(/^[0-9]*$/),
-      ]),
-      movesMax: new FormControl('', [
-        Validators.max(999),
-        Validators.pattern(/^[0-9]*$/),
-      ]),
-      resultWhiteWon: new FormControl(true),
-      resultDraw: new FormControl(true),
-      resultBlackWon: new FormControl(true),
-      resultInconclusive: new FormControl(true),
+      firstName: new FormControl('', { nonNullable: true }),
+      lastName: new FormControl('', { nonNullable: true }),
+      asWhite: new FormControl(true, { nonNullable: true }),
+      asBlack: new FormControl(true, { nonNullable: true }),
+      movesMin: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.max(999), Validators.pattern(/^[0-9]*$/)],
+      }),
+      movesMax: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.max(999), Validators.pattern(/^[0-9]*$/)],
+      }),
+      resultWhiteWon: new FormControl(true, { nonNullable: true }),
+      resultDraw: new FormControl(true, { nonNullable: true }),
+      resultBlackWon: new FormControl(true, { nonNullable: true }),
+      resultInconclusive: new FormControl(true, { nonNullable: true }),
     });
   }
 
@@ -169,9 +170,11 @@ export class GameArchivesScreenComponent implements OnInit {
         pgns.map(pgn => {
           return {
             pgn,
-            whiteName: getPlayerName(pgn, 'White'),
+            whiteFirstName: getPlayerName(pgn, 'first', 'White'),
+            whiteLastName: getPlayerName(pgn, 'last', 'White'),
             whiteScore: getScore(pgn, 'White'),
-            blackName: getPlayerName(pgn, 'Black'),
+            blackFirstName: getPlayerName(pgn, 'first', 'Black'),
+            blackLastName: getPlayerName(pgn, 'last', 'Black'),
             blackScore: getScore(pgn, 'Black'),
             plyCount: getPlyCount(pgn),
           };
@@ -274,9 +277,10 @@ export class GameArchivesScreenComponent implements OnInit {
   private async filterGames(): Promise<void> {
     this.loaderService.setIsLoading(true);
 
-    const name = this.form.value['name']?.toLowerCase();
-    const pliesMin = this.form.value['movesMin'] * 2;
-    const pliesMax = this.form.value['movesMax'] * 2;
+    const firstName = this.form.value['firstName']?.toLowerCase();
+    const lastName = this.form.value['lastName']?.toLowerCase();
+    const pliesMin = Number(this.form.value['movesMin']) * 2;
+    const pliesMax = Number(this.form.value['movesMax']) * 2;
     const asWhite = this.form.value['asWhite'];
     const asBlack = this.form.value['asBlack'];
     const resultWhiteWon = this.form.value['resultWhiteWon'];
@@ -288,13 +292,17 @@ export class GameArchivesScreenComponent implements OnInit {
     this.allGames.forEach((games, year) => {
       const filteredGames = games
         .filter(game => {
-          if (!name) {
-            return true;
-          }
           return (
-            name !== '' &&
-            ((asWhite && game.whiteName?.toLowerCase().includes(name)) ||
-              (asBlack && game.blackName?.toLowerCase().includes(name)))
+            !firstName ||
+            (asWhite && game.whiteFirstName?.toLowerCase().includes(firstName)) ||
+            (asBlack && game.blackFirstName?.toLowerCase().includes(firstName))
+          );
+        })
+        .filter(game => {
+          return (
+            !lastName ||
+            (asWhite && game.whiteLastName?.toLowerCase().includes(lastName)) ||
+            (asBlack && game.blackLastName?.toLowerCase().includes(lastName))
           );
         })
         .filter(game => {

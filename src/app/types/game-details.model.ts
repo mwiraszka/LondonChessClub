@@ -15,9 +15,11 @@ export function isGameScore(value: string): value is GameScore {
 
 export interface GameDetails {
   pgn: string;
-  whiteName?: string;
+  whiteFirstName?: string;
+  whiteLastName?: string;
   whiteScore?: GameScore;
-  blackName?: string;
+  blackFirstName?: string;
+  blackLastName?: string;
   blackScore?: GameScore;
   plyCount?: number;
 }

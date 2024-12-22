@@ -46,7 +46,7 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
         showClocks: false,
       });
 
-      const whiteName = getPlayerName(this.pgn, 'White');
+      const whiteName = getPlayerName(this.pgn, 'full', 'White');
       if (!whiteName) {
         console.error(
           '[LCC] A game with no defined White player was found: \n',
@@ -55,7 +55,7 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
         return;
       }
 
-      const blackName = getPlayerName(this.pgn, 'Black');
+      const blackName = getPlayerName(this.pgn, 'full', 'Black');
       if (!blackName) {
         console.error(
           '[LCC] A game with no defined Black player was found: \n',

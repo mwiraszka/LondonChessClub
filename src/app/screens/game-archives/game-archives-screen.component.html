@@ -33,12 +33,20 @@
     class="lcc-form game-filter-form"
     [formGroup]="form">
     <section class="lcc-form-fields filter-section player-filter-section">
-      <label for="name-input">Player name</label>
+      <label for="first-name-input">First name</label>
       <input
-        id="name-input"
+        id="first-name-input"
         type="text"
-        name="name"
-        formControlName="name"
+        name="first-name"
+        formControlName="firstName"
+        maxlength="50" />
+
+      <label for="last-name-input">Last name</label>
+      <input
+        id="last-name-input"
+        type="text"
+        name="last-name"
+        formControlName="lastName"
         maxlength="50" />
 
       <label for="as-white-input">as White</label>

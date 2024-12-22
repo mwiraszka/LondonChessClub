@@ -4,25 +4,27 @@ import { GameScore, isGameScore } from '@app/types';
 
 /**
  * @param pgn The PGN of the chess game
+ * @param name First name only, last name only, or space-separated full name
  * @param color Which player's name to get
  *
- * @returns {string | undefined} The player's full name, if included in the PGN
+ * @returns {string | undefined} A player's name, if included in the PGN
  */
 export function getPlayerName(
   pgn?: string,
-  color: 'White' | 'Black' = 'White',
+  name?: 'first' | 'last' | 'full',
+  color?: 'White' | 'Black',
 ): string | undefined {
-  if (!pgn) {
+  if (!pgn || !name || !color) {
     return;
   }
 
-  const name = pgn.split(`[${color} "`)[1].split('"]')[0];
-  const [lastName, firstName] = name.split(', ');
+  const [lastName, firstName] = pgn.split(`[${color} "`)[1].split('"]')[0].split(', ');
 
-  if (!firstName && !lastName) {
-    return;
-  }
-  return `${firstName} ${lastName}`;
+  return name === 'first'
+    ? firstName
+    : name === 'last'
+      ? lastName
+      : `${firstName} ${lastName}`;
 }
 
 /**

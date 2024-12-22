@@ -16,6 +16,7 @@ export {
 export { ControlMode } from './control-mode.model';
 export type { Id, IsoDate, Url } from './core.model';
 export type { DbCollection } from './db-collection.model';
+export type { FilterForm } from './filter-form.model';
 export { type GameDetails, type GameScore, isGameScore } from './game-details.model';
 export type { Image } from './image.model';
 export type { Link } from './link.model';

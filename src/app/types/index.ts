@@ -4,24 +4,32 @@ export { StoreFeatures } from './app-store-features.model';
 export {
   type Article,
   type ArticleFormData,
+  type ArticleFormGroup,
   newArticleFormTemplate,
 } from './article.model';
 export type { ClubDocument } from './club-document.model';
+export { ControlMode } from './control-mode.model';
+export type { Id, IsoDate, Url } from './core.model';
+export type { DialogControls } from './dialog-controls.model';
+export type { DbCollection } from './db-collection.model';
 export {
   type Event,
   type EventFormData,
+  type EventFormGroup,
   EventTypes,
   newEventFormTemplate,
-} from './club-event.model';
-export { ControlMode } from './control-mode.model';
-export type { Id, IsoDate, Url } from './core.model';
-export type { DbCollection } from './db-collection.model';
-export type { FilterForm } from './filter-form.model';
+} from './event.model';
+export type { FilterFormGroup } from './filter-form-group.model';
 export { type GameDetails, type GameScore, isGameScore } from './game-details.model';
 export type { Image } from './image.model';
 export type { Link } from './link.model';
 export type { LoginRequest, LoginResponse } from './login.model';
-export { type Member, type MemberFormData, newMemberFormTemplate } from './member.model';
+export {
+  type Member,
+  type MemberFormData,
+  type MemberFormGroup,
+  newMemberFormTemplate,
+} from './member.model';
 export type { Modal } from './modal.model';
 export {
   type ModalButton,
@@ -29,7 +37,6 @@ export {
   ModalButtonActionTypes,
   ModalButtonStyleTypes,
 } from './modal-button.model';
-export type { DialogControls } from './dialog-controls.model';
 export type { ModificationInfo } from './modification-info.model';
 export { NavPathTypes } from './nav-paths.model';
 export type {

@@ -7,6 +7,7 @@ import { Component, ComponentRef, OnDestroy, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
+  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
@@ -25,7 +26,7 @@ import {
   LOCAL_STORAGE_IMAGE_KEY,
 } from '@app/store/articles';
 import { ToasterActions } from '@app/store/toaster';
-import { ArticleFormData, ControlMode, Id, Url } from '@app/types';
+import { ArticleFormData, ArticleFormGroup, ControlMode, Id, Url } from '@app/types';
 import { dataUrlToBlob, formatBytes, isDefined, isStorageSupported } from '@app/utils';
 
 import { DialogComponent } from '../dialog/dialog.component';
@@ -49,7 +50,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   public readonly articleFormViewModel$ = this.store.select(
     ArticlesSelectors.selectArticleFormViewModel,
   );
-  public form: FormGroup | null = null;
+  public form: FormGroup<ArticleFormGroup<ArticleFormData>> | null = null;
   public imageFile: Blob | null = null;
   public imageValidationEnabled: boolean = false;
   public newImageUrl: Url | null = null;
@@ -185,19 +186,25 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   }
 
   private initForm(articleFormData: ArticleFormData): void {
-    this.form = this.formBuilder.group({
-      imageId: [articleFormData.imageId],
-      title: [articleFormData.title, [Validators.required, Validators.pattern(/[^\s]/)]],
-      body: [articleFormData.body, [Validators.required, Validators.pattern(/[^\s]/)]],
-      isSticky: [articleFormData.isSticky],
+    this.form = this.formBuilder.group<ArticleFormGroup<ArticleFormData>>({
+      imageId: new FormControl(articleFormData.imageId),
+      title: new FormControl(articleFormData.title, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.pattern(/[^\s]/)],
+      }),
+      body: new FormControl(articleFormData.body, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.pattern(/[^\s]/)],
+      }),
+      isSticky: new FormControl(articleFormData.isSticky, { nonNullable: true }),
     });
   }
 
   private initFormValueChangeListener() {
     this.form?.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
-      .subscribe((articleFormData: ArticleFormData) => {
-        this.store.dispatch(ArticlesActions.formDataChanged({ articleFormData }));
+      .subscribe((value: Partial<ArticleFormData>) => {
+        this.store.dispatch(ArticlesActions.formValueChanged({ value }));
       });
   }
 

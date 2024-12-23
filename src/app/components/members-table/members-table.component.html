@@ -55,7 +55,7 @@
                   '/' + NavPathTypes.MEMBER + '/' + NavPathTypes.EDIT + '/' + member.id
                 "
                 [height]="31"
-                [itemName]="member.firstName ?? ''"
+                [itemName]="member.firstName"
                 (delete)="onDeleteMember(member)">
               </lcc-admin-controls>
             }

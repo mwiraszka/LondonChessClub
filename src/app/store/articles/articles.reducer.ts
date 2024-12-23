@@ -86,10 +86,10 @@ const articlesReducer = createReducer(
   ),
 
   on(
-    ArticlesActions.formDataChanged,
-    (state, { articleFormData }): ArticlesState => ({
+    ArticlesActions.formValueChanged,
+    (state, { value }): ArticlesState => ({
       ...state,
-      articleFormData,
+      articleFormData: value as Required<ArticleFormData>,
     }),
   ),
 

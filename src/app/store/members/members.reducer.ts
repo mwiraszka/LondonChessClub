@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { newMemberFormTemplate } from '@app/types';
+import { MemberFormData, newMemberFormTemplate } from '@app/types';
 
 import * as MembersActions from './members.actions';
 import { MembersState, initialState } from './members.state';
@@ -79,13 +79,13 @@ const membersReducer = createReducer(
     }),
   ),
 
-  on(
-    MembersActions.formDataChanged,
-    (state, { memberFormData }): MembersState => ({
+  on(MembersActions.formValueChanged, (state, { value }): MembersState => {
+    console.log(':: value', value);
+    return {
       ...state,
-      memberFormData,
-    }),
-  ),
+      memberFormData: value as Required<MemberFormData>,
+    };
+  }),
 
   on(
     MembersActions.pageChanged,

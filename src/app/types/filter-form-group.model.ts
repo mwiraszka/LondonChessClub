@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 
-export interface FilterForm {
+export interface FilterFormGroup {
   firstName: FormControl<string>;
   lastName: FormControl<string>;
   asWhite: FormControl<boolean>;

@@ -95,9 +95,9 @@ export const deleteMemberFailed = createAction(
 
 export const cancelSelected = createAction('[Members] Cancel selected');
 
-export const formDataChanged = createAction(
-  '[Members] Form data changed',
-  props<{ memberFormData: MemberFormData }>(),
+export const formValueChanged = createAction(
+  '[Members] Form value changed',
+  props<{ value: Partial<MemberFormData> }>(),
 );
 
 export const memberUnset = createAction('[Members] Member unset');

@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
+  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
@@ -16,7 +17,7 @@ import { ModificationInfoComponent } from '@app/components/modification-info/mod
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
 import { MembersActions, MembersSelectors } from '@app/store/members';
-import type { ControlMode, MemberFormData } from '@app/types';
+import type { ControlMode, MemberFormData, MemberFormGroup } from '@app/types';
 import { isDefined } from '@app/utils';
 import {
   emailValidator,
@@ -45,7 +46,7 @@ export class MemberFormComponent implements OnInit {
   public readonly memberFormViewModel$ = this.store.select(
     MembersSelectors.selectMemberFormViewModel,
   );
-  public form: FormGroup | null = null;
+  public form: FormGroup<MemberFormGroup<MemberFormData>> | null = null;
 
   private readonly memberFormData$ = this.store.select(
     MembersSelectors.selectMemberFormData,
@@ -121,36 +122,48 @@ export class MemberFormComponent implements OnInit {
   }
 
   private initForm(memberFormData: MemberFormData): void {
-    this.form = this.formBuilder.group({
-      firstName: [
-        memberFormData.firstName,
-        [Validators.required, Validators.pattern(/[^\s]/)],
-      ],
-      lastName: [
-        memberFormData.lastName,
-        [Validators.required, Validators.pattern(/[^\s]/)],
-      ],
-      city: [memberFormData.city, [Validators.required, Validators.pattern(/[^\s]/)]],
-      rating: [
-        memberFormData.rating,
-        [Validators.required, ratingValidator, Validators.max(3000)],
-      ],
-      dateJoined: [memberFormData.dateJoined, [Validators.required]],
-      email: [memberFormData.email, emailValidator],
-      phoneNumber: [memberFormData.phoneNumber, phoneNumberValidator],
-      yearOfBirth: [memberFormData.yearOfBirth, yearOfBirthValidator],
-      chesscomUsername: [memberFormData.chesscomUsername, Validators.pattern(/[^\s]/)],
-      lichessUsername: [memberFormData.lichessUsername, Validators.pattern(/[^\s]/)],
-      isActive: [memberFormData.isActive],
-      peakRating: [memberFormData.peakRating],
+    this.form = this.formBuilder.group<MemberFormGroup<MemberFormData>>({
+      firstName: new FormControl(memberFormData.firstName, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.pattern(/[^\s]/)],
+      }),
+      lastName: new FormControl(memberFormData.lastName, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.pattern(/[^\s]/)],
+      }),
+      city: new FormControl(memberFormData.city, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.pattern(/[^\s]/)],
+      }),
+      rating: new FormControl(memberFormData.rating, {
+        nonNullable: true,
+        validators: [Validators.required, ratingValidator, Validators.max(3000)],
+      }),
+      dateJoined: new FormControl(memberFormData.dateJoined, {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+      email: new FormControl(memberFormData.email, emailValidator),
+      phoneNumber: new FormControl(memberFormData.phoneNumber, phoneNumberValidator),
+      yearOfBirth: new FormControl(memberFormData.yearOfBirth, yearOfBirthValidator),
+      chesscomUsername: new FormControl(
+        memberFormData.chesscomUsername,
+        Validators.pattern(/[^\s]/),
+      ),
+      lichessUsername: new FormControl(
+        memberFormData.lichessUsername,
+        Validators.pattern(/[^\s]/),
+      ),
+      isActive: new FormControl(memberFormData.isActive, { nonNullable: true }),
+      peakRating: new FormControl(memberFormData.peakRating, { nonNullable: true }),
     });
-  }
 
-  private initFormValueChangeListener(): void {
-    this.form?.valueChanges
+    this.form.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
-      .subscribe((memberFormData: MemberFormData) =>
-        this.store.dispatch(MembersActions.formDataChanged({ memberFormData })),
+      .subscribe((value: Partial<MemberFormData>) =>
+        this.store.dispatch(MembersActions.formValueChanged({ value })),
       );
   }
+
+  private initFormValueChangeListener(): void {}
 }

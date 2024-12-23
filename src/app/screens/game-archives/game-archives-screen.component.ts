@@ -27,7 +27,7 @@ import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
 import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';
 import { UserSettingsSelectors } from '@app/store/user-settings';
-import { FilterForm, GameDetails } from '@app/types';
+import { FilterFormGroup, GameDetails } from '@app/types';
 import {
   getOpeningTallies,
   getPlayerName,
@@ -63,7 +63,7 @@ export class GameArchivesScreenComponent implements OnInit {
   public allGames: Map<string, GameDetails[]> = new Map();
   public chessOpenings: Map<string, string> | null = null;
   public filteredGames: Map<string, GameDetails[]> = new Map();
-  public form!: FormGroup<FilterForm>;
+  public form!: FormGroup<FilterFormGroup>;
   public openingChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
   public openingChartLabels: string[] = [];
   public openingChartOptions: ChartConfiguration<'doughnut'>['options'] = {};

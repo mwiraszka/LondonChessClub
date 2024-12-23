@@ -1,3 +1,5 @@
+import { FormControl } from '@angular/forms';
+
 import { Id, Url } from './core.model';
 import type { ModificationInfo } from './modification-info.model';
 
@@ -16,6 +18,10 @@ export type ArticleFormData = Omit<
   Article,
   'id' | 'imageUrl' | 'thumbnailImageUrl' | 'modificationInfo'
 >;
+
+export type ArticleFormGroup<ArticleFormData> = {
+  [Property in keyof ArticleFormData]: FormControl<ArticleFormData[Property]>;
+};
 
 export const newArticleFormTemplate: ArticleFormData = {
   title: '',

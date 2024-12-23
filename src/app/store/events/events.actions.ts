@@ -77,9 +77,9 @@ export const deleteEventFailed = createAction(
 
 export const cancelSelected = createAction('[Events] Cancel selected');
 
-export const formDataChanged = createAction(
-  '[Events] Form data changed',
-  props<{ eventFormData: EventFormData }>(),
+export const formValueChanged = createAction(
+  '[Events] Form value changed',
+  props<{ value: Partial<EventFormData> }>(),
 );
 
 export const eventUnset = createAction('[Events] Event unset');

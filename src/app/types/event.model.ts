@@ -1,5 +1,7 @@
 import moment from 'moment-timezone';
 
+import { FormControl } from '@angular/forms';
+
 import { Id, IsoDate } from './core.model';
 import type { ModificationInfo } from './modification-info.model';
 
@@ -25,6 +27,10 @@ export interface Event {
 }
 
 export type EventFormData = Omit<Event, 'id' | 'modificationInfo'>;
+
+export type EventFormGroup<EventFormData> = {
+  [Property in keyof EventFormData]: FormControl<EventFormData[Property]>;
+} & { eventTime: FormControl<string> };
 
 export const newEventFormTemplate: EventFormData = {
   type: EventTypes.BLITZ_TOURNAMENT,

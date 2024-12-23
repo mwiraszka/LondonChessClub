@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { newEventFormTemplate } from '@app/types';
+import { EventFormData, newEventFormTemplate } from '@app/types';
 
 import * as EventsActions from './events.actions';
 import { EventsState, initialState } from './events.state';
@@ -80,10 +80,10 @@ const scheduleReducer = createReducer(
   ),
 
   on(
-    EventsActions.formDataChanged,
-    (state, { eventFormData }): EventsState => ({
+    EventsActions.formValueChanged,
+    (state, { value }): EventsState => ({
       ...state,
-      eventFormData,
+      eventFormData: value as Required<EventFormData>,
     }),
   ),
 

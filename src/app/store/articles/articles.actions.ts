@@ -81,9 +81,9 @@ export const deleteArticleFailed = createAction(
 
 export const cancelSelected = createAction('[Articles] Cancel selected');
 
-export const formDataChanged = createAction(
-  '[Articles] Form data changed',
-  props<{ articleFormData: ArticleFormData }>(),
+export const formValueChanged = createAction(
+  '[Articles] Form value changed',
+  props<{ value: Partial<ArticleFormData> }>(),
 );
 export const newImageStored = createAction('[Articles] New image stored');
 export const storedImageRemoved = createAction('[Articles] Stored image removed');

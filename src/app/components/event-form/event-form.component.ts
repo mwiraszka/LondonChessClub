@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
+  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
@@ -18,7 +19,7 @@ import { ModificationInfoComponent } from '@app/components/modification-info/mod
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
 import { EventsActions, EventsSelectors } from '@app/store/events';
-import type { ControlMode, EventFormData } from '@app/types';
+import type { ControlMode, EventFormData, EventFormGroup } from '@app/types';
 import { isDefined, isTime } from '@app/utils';
 import { timeValidator } from '@app/validators';
 
@@ -40,7 +41,7 @@ export class EventFormComponent implements OnInit {
   public readonly eventFormViewModel$ = this.store.select(
     EventsSelectors.selectEventFormViewModel,
   );
-  public form: FormGroup | null = null;
+  public form: FormGroup<EventFormGroup<EventFormData>> | null = null;
 
   private readonly controlMode$ = this.store.select(EventsSelectors.selectControlMode);
   private controlMode: ControlMode | null = null;
@@ -110,25 +111,39 @@ export class EventFormComponent implements OnInit {
     const eventTime: string = moment(eventFormData.eventDate).format('h:mm A');
 
     this.form = this.formBuilder.group({
-      eventDate: [eventFormData.eventDate, [Validators.required]],
-      eventTime: [eventTime, [Validators.required, timeValidator]],
-      title: [eventFormData.title, [Validators.required, Validators.pattern(/[^\s]/)]],
-      details: [
-        eventFormData.details,
-        [Validators.required, Validators.pattern(/[^\s]/)],
-      ],
-      type: [eventFormData.type, [Validators.required]],
-      articleId: [eventFormData.articleId, [Validators.pattern(/^[a-fA-F0-9]{24}$/)]],
+      eventDate: new FormControl(eventFormData.eventDate, {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+      eventTime: new FormControl(eventTime, {
+        nonNullable: true,
+        validators: [Validators.required, timeValidator],
+      }),
+      title: new FormControl(eventFormData.title, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.pattern(/[^\s]/)],
+      }),
+      details: new FormControl(eventFormData.details, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.pattern(/[^\s]/)],
+      }),
+      type: new FormControl(eventFormData.type, {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+      articleId: new FormControl(eventFormData.articleId, [
+        Validators.pattern(/^[a-fA-F0-9]{24}$/),
+      ]),
     });
   }
 
   private initFormValueChangeListener(): void {
     this.form?.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
-      .subscribe((eventFormDataAndEventTime: EventFormData & { eventTime: string }) => {
-        const { eventTime, ...eventFormData } = eventFormDataAndEventTime;
+      .subscribe((value: Partial<EventFormData & { eventTime: string }>) => {
+        const { eventTime, ...eventFormData } = value;
 
-        if (isTime(eventTime)) {
+        if (!!eventTime && isTime(eventTime)) {
           let hours = Number(eventTime.split(':')[0]) % 12;
           if (eventTime.slice(-2).toUpperCase() === 'PM') {
             hours += 12;
@@ -141,7 +156,7 @@ export class EventFormComponent implements OnInit {
             .toISOString();
         }
 
-        return this.store.dispatch(EventsActions.formDataChanged({ eventFormData }));
+        return this.store.dispatch(EventsActions.formValueChanged({ value }));
       });
   }
 }

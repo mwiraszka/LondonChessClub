@@ -40,10 +40,6 @@ export class EventsEffects {
       ofType(EventsActions.fetchEventRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ eventId }) => {
-        if (!eventId) {
-          return of(EventsActions.newEventFormTemplateLoaded());
-        }
-
         return this.eventsService.getEvent(eventId).pipe(
           map(event => EventsActions.fetchEventSucceeded({ event })),
           catchError((errorResponse: HttpErrorResponse) => {
@@ -58,7 +54,7 @@ export class EventsEffects {
 
   addEvent$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(EventsActions.addEventConfirmed),
+      ofType(EventsActions.addEventRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store.select(EventsSelectors.selectEventFormData).pipe(filter(isDefined)),
@@ -87,7 +83,7 @@ export class EventsEffects {
 
   updateEvent$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(EventsActions.updateEventConfirmed),
+      ofType(EventsActions.updateEventRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store.select(EventsSelectors.selectEvent).pipe(filter(isDefined)),
@@ -116,12 +112,9 @@ export class EventsEffects {
 
   deleteEvent$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(EventsActions.deleteEventConfirmed),
+      ofType(EventsActions.deleteEventRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() =>
-        this.store.select(EventsSelectors.selectEvent).pipe(filter(isDefined)),
-      ),
-      switchMap(([, event]) =>
+      switchMap(({ event }) =>
         this.eventsService.deleteEvent(event).pipe(
           map(event => EventsActions.deleteEventSucceeded({ event })),
           catchError((errorResponse: HttpErrorResponse) => {

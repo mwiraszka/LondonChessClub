@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { MemberFormData, newMemberFormTemplate } from '@app/types';
+import { MemberFormData } from '@app/types';
 
 import * as MembersActions from './members.actions';
 import { MembersState, initialState } from './members.state';
@@ -17,6 +17,14 @@ const membersReducer = createReducer(
   ),
 
   on(
+    MembersActions.newMemberRequested,
+    (state): MembersState => ({
+      ...state,
+      controlMode: 'add',
+    }),
+  ),
+
+  on(
     MembersActions.fetchMemberRequested,
     (state, { controlMode }): MembersState => ({
       ...state,
@@ -25,16 +33,8 @@ const membersReducer = createReducer(
   ),
 
   on(
-    MembersActions.newMemberFormTemplateLoaded,
-    (state): MembersState => ({
-      ...state,
-      memberFormData: newMemberFormTemplate,
-    }),
-  ),
-
-  on(MembersActions.fetchMemberSucceeded, (state, { member }): MembersState => {
-    const { id, modificationInfo, ...memberFormData } = member;
-    return {
+    MembersActions.fetchMemberSucceeded,
+    (state, { member }): MembersState => ({
       ...state,
       members: [
         ...state.members.map(storedMember =>
@@ -42,9 +42,8 @@ const membersReducer = createReducer(
         ),
       ],
       member,
-      memberFormData,
-    };
-  }),
+    }),
+  ),
 
   on(
     MembersActions.addMemberSucceeded,
@@ -62,14 +61,6 @@ const membersReducer = createReducer(
   ),
 
   on(
-    MembersActions.deleteMemberSelected,
-    (state, { member }): MembersState => ({
-      ...state,
-      member,
-    }),
-  ),
-
-  on(
     MembersActions.deleteMemberSucceeded,
     (state, { member }): MembersState => ({
       ...state,
@@ -80,7 +71,6 @@ const membersReducer = createReducer(
   ),
 
   on(MembersActions.formValueChanged, (state, { value }): MembersState => {
-    console.log(':: value', value);
     return {
       ...state,
       memberFormData: value as Required<MemberFormData>,

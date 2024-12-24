@@ -1,9 +1,8 @@
 :host {
-  width: 90vw;
+  width: min(90vw, var(--lcc-width--appContent));
   height: calc(90vh - 30px);
   display: flex;
   flex-direction: column;
-  background-color: var(--lcc-color--documentViewer-pageGaps);
 }
 
 .loading-progress-indicator {

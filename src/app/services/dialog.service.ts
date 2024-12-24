@@ -1,4 +1,4 @@
-import { first } from 'rxjs/operators';
+import { firstValueFrom, tap } from 'rxjs';
 
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
@@ -9,22 +9,17 @@ import {
   Injector,
   Renderer2,
   RendererFactory2,
-  Type,
 } from '@angular/core';
 
 import { DialogComponent } from '@app/components/dialog/dialog.component';
-import { DialogControls } from '@app/types';
+import { DialogConfig, DialogOutput } from '@app/types';
 
-export interface DialogData<T> {
-  component: Type<T>;
-  inputs?: { [key: string]: unknown };
-}
-
-export const DIALOG_DATA_TOKEN = new InjectionToken('Dialog Data');
+export const DIALOG_CONFIG_TOKEN = new InjectionToken('Dialog Config');
 
 @Injectable({ providedIn: 'root' })
-export class DialogService<T extends DialogControls> {
-  private dialogComponentRef: ComponentRef<DialogComponent<T>> | null = null;
+export class DialogService<TComponent extends DialogOutput<TResult>, TResult> {
+  private dialogComponentRef: ComponentRef<DialogComponent<TComponent, TResult>> | null =
+    null;
   private overlayRef: OverlayRef | null = null;
   private renderer!: Renderer2;
 
@@ -39,7 +34,7 @@ export class DialogService<T extends DialogControls> {
     this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 
-  public open(dialogData: DialogData<T>): ComponentRef<DialogComponent<T>> {
+  public open(dialogConfig: DialogConfig<TComponent>): Promise<TResult | 'close'> {
     if (this.overlayRef) {
       this.close();
     }
@@ -51,25 +46,25 @@ export class DialogService<T extends DialogControls> {
         .centerHorizontally()
         .centerVertically(),
       hasBackdrop: true,
-      maxWidth: 'max(90vw, 1500px)',
-      maxHeight: '90vh',
       backdropClass: 'lcc-backdrop',
     });
 
     setTimeout(() => this.initEventListeners(this.overlayRef?.overlayElement));
 
-    const dataInjector = Injector.create({
-      providers: [{ provide: DIALOG_DATA_TOKEN, useValue: dialogData }],
+    const injector = Injector.create({
+      providers: [{ provide: DIALOG_CONFIG_TOKEN, useValue: dialogConfig }],
     });
 
-    const dialogComponentPortal: ComponentPortal<DialogComponent<T>> =
-      new ComponentPortal(DialogComponent<T>, null, dataInjector);
+    const dialogComponentPortal = new ComponentPortal(
+      DialogComponent<TComponent, TResult>,
+      null,
+      injector,
+    );
     this.dialogComponentRef = this.overlayRef.attach(dialogComponentPortal);
 
-    this.dialogComponentRef.instance.close.pipe(first()).subscribe(() => this.close());
-    this.dialogComponentRef.instance.confirm.pipe(first()).subscribe(() => this.close());
-
-    return this.dialogComponentRef;
+    return firstValueFrom(
+      this.dialogComponentRef.instance.result.pipe(tap(() => this.close())),
+    );
   }
 
   public close(): void {

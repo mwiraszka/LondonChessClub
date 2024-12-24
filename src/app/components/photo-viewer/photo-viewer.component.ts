@@ -12,7 +12,7 @@ import {
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
-import { DialogControls, Photo } from '@app/types';
+import { DialogOutput, Photo } from '@app/types';
 
 import { ImagePreloadDirective } from '../image-preload/image-preload.directive';
 
@@ -22,7 +22,7 @@ import { ImagePreloadDirective } from '../image-preload/image-preload.directive'
   styleUrl: './photo-viewer.component.scss',
   imports: [CommonModule, IconsModule, ImagePreloadDirective, TooltipDirective],
 })
-export class PhotoViewerComponent implements OnInit, DialogControls {
+export class PhotoViewerComponent implements OnInit, DialogOutput<null> {
   @ViewChild('photo') imageElementRef?: ElementRef;
 
   private keyListener?: () => void;
@@ -30,9 +30,7 @@ export class PhotoViewerComponent implements OnInit, DialogControls {
   @Input() index = 0;
   @Input() photos: Photo[] = [];
 
-  // Dialog controls
-  @Output() public close = new EventEmitter<void>();
-  @Output() public confirm = new EventEmitter<string>();
+  @Output() public dialogResult = new EventEmitter<null | 'close'>();
 
   constructor(private readonly renderer: Renderer2) {}
 

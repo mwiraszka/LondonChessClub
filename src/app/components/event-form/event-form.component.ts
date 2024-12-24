@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
-import { debounceTime, first } from 'rxjs/operators';
+import { debounceTime, filter, first } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -15,11 +15,20 @@ import {
 } from '@angular/forms';
 
 import { DatePickerComponent } from '@app/components/date-picker/date-picker.component';
+import { ModalComponent } from '@app/components/modal/modal.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
+import { DialogService } from '@app/services';
 import { EventsActions, EventsSelectors } from '@app/store/events';
-import type { ControlMode, EventFormData, EventFormGroup } from '@app/types';
+import {
+  type ControlMode,
+  type EventFormData,
+  type EventFormGroup,
+  type Modal,
+  type ModalResult,
+  newEventFormTemplate,
+} from '@app/types';
 import { isDefined, isTime } from '@app/utils';
 import { timeValidator } from '@app/validators';
 
@@ -43,26 +52,30 @@ export class EventFormComponent implements OnInit {
   );
   public form: FormGroup<EventFormGroup<EventFormData>> | null = null;
 
-  private readonly controlMode$ = this.store.select(EventsSelectors.selectControlMode);
   private controlMode: ControlMode | null = null;
-  private readonly eventFormData$ = this.store.select(
-    EventsSelectors.selectEventFormData,
-  );
 
   constructor(
+    private readonly dialogService: DialogService<ModalComponent, ModalResult>,
     private readonly store: Store,
     private readonly formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
-    this.controlMode$.pipe(first(isDefined)).subscribe(controlMode => {
-      this.controlMode = controlMode;
-    });
-
-    this.eventFormData$.pipe(first(isDefined)).subscribe(eventFormData => {
-      this.initForm(eventFormData);
-      this.initFormValueChangeListener();
-    });
+    this.eventFormViewModel$
+      .pipe(
+        filter(({ controlMode }) => isDefined(controlMode)),
+        first(({ event, controlMode }) =>
+          controlMode === 'add' ? true : isDefined(event),
+        ),
+      )
+      .subscribe(({ eventFormData, controlMode }) => {
+        if (controlMode === 'add' && !eventFormData) {
+          eventFormData = newEventFormTemplate;
+        }
+        this.controlMode = controlMode;
+        this.initForm(eventFormData!);
+        this.initFormValueChangeListener();
+      });
   }
 
   public hasError(control: AbstractControl): boolean {
@@ -85,24 +98,31 @@ export class EventFormComponent implements OnInit {
     this.store.dispatch(EventsActions.cancelSelected());
   }
 
-  public onSubmit(eventTitle?: string): void {
+  public async onSubmit(eventTitle?: string): Promise<void> {
     if (this.form?.invalid || !eventTitle) {
       this.form?.markAllAsTouched();
       return;
     }
 
+    const modal: Modal = {
+      title: this.controlMode === 'edit' ? 'Confirm event update' : 'Confirm new event',
+      body: this.controlMode === 'edit' ? `Update ${eventTitle}?` : `Add ${eventTitle}?`,
+      confirmButtonText: this.controlMode === 'edit' ? 'Update' : 'Add',
+    };
+
+    const result = await this.dialogService.open({
+      componentType: ModalComponent,
+      inputs: { modal },
+    });
+
+    if (result !== 'confirm') {
+      return;
+    }
+
     if (this.controlMode === 'edit') {
-      this.store.dispatch(
-        EventsActions.updateEventSelected({
-          eventTitle,
-        }),
-      );
+      this.store.dispatch(EventsActions.updateEventRequested());
     } else {
-      this.store.dispatch(
-        EventsActions.addEventSelected({
-          eventTitle,
-        }),
-      );
+      this.store.dispatch(EventsActions.addEventRequested());
     }
   }
 
@@ -113,7 +133,7 @@ export class EventFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       eventDate: new FormControl(eventFormData.eventDate, {
         nonNullable: true,
-        validators: [Validators.required],
+        validators: Validators.required,
       }),
       eventTime: new FormControl(eventTime, {
         nonNullable: true,
@@ -129,11 +149,12 @@ export class EventFormComponent implements OnInit {
       }),
       type: new FormControl(eventFormData.type, {
         nonNullable: true,
-        validators: [Validators.required],
+        validators: Validators.required,
       }),
-      articleId: new FormControl(eventFormData.articleId, [
-        Validators.pattern(/^[a-fA-F0-9]{24}$/),
-      ]),
+      articleId: new FormControl(eventFormData.articleId, {
+        nonNullable: true,
+        validators: Validators.pattern(/^[a-fA-F0-9]{24}$/),
+      }),
     });
   }
 
@@ -158,5 +179,8 @@ export class EventFormComponent implements OnInit {
 
         return this.store.dispatch(EventsActions.formValueChanged({ value }));
       });
+
+    // Manually trigger form value change to pass initial form data to store
+    this.form?.updateValueAndValidity();
   }
 }

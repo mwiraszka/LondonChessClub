@@ -9,13 +9,11 @@ import { RouterOutlet } from '@angular/router';
 
 import { FooterComponent } from '@app/components/footer/footer.component';
 import { HeaderComponent } from '@app/components/header/header.component';
-import { ModalComponent } from '@app/components/modal/modal.component';
 import { NavComponent } from '@app/components/nav/nav.component';
 import { ToasterComponent } from '@app/components/toaster/toaster.component';
 import { UpcomingEventBannerComponent } from '@app/components/upcoming-event-banner/upcoming-event-banner.component';
 import { LoaderService } from '@app/services';
 import { EventsSelectors } from '@app/store/events';
-import { ModalSelectors } from '@app/store/modal';
 import { ToasterSelectors } from '@app/store/toaster';
 import { UserSettingsActions, UserSettingsSelectors } from '@app/store/user-settings';
 import { isDefined } from '@app/utils';
@@ -29,7 +27,6 @@ import { isDefined } from '@app/utils';
     CommonModule,
     FooterComponent,
     HeaderComponent,
-    ModalComponent,
     NavComponent,
     RouterOutlet,
     ToasterComponent,
@@ -38,7 +35,6 @@ import { isDefined } from '@app/utils';
 })
 export class AppComponent implements OnInit {
   public readonly nextEvent$ = this.store.select(EventsSelectors.selectNextEvent);
-  public readonly showModal$ = this.store.select(ModalSelectors.selectIsOpen);
   public readonly showToaster$ = this.store.select(
     ToasterSelectors.selectIsDisplayingToasts,
   );

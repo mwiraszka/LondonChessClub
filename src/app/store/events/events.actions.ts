@@ -14,12 +14,10 @@ export const fetchEventsFailed = createAction(
   props<{ errorResponse: HttpErrorResponse }>(),
 );
 
+export const newEventRequested = createAction('[Events] New event requested');
 export const fetchEventRequested = createAction(
   '[Events] Fetch event requested',
-  props<{ controlMode: ControlMode; eventId?: Id }>(),
-);
-export const newEventFormTemplateLoaded = createAction(
-  '[Events] New event form template loaded',
+  props<{ controlMode: ControlMode; eventId: Id }>(),
 );
 export const fetchEventSucceeded = createAction(
   '[Events] Fetch event succeeded',
@@ -30,12 +28,7 @@ export const fetchEventFailed = createAction(
   props<{ errorResponse: HttpErrorResponse }>(),
 );
 
-export const addEventSelected = createAction(
-  '[Events] Add event selected',
-  props<{ eventTitle: string }>(),
-);
-export const addEventConfirmed = createAction('[Events] Add event confirmed');
-export const addEventCancelled = createAction('[Events] Add event cancelled');
+export const addEventRequested = createAction('[Events] Add event requested');
 export const addEventSucceeded = createAction(
   '[Events] Add event succeeded',
   props<{ event: Event }>(),
@@ -45,12 +38,7 @@ export const addEventFailed = createAction(
   props<{ errorResponse: HttpErrorResponse }>(),
 );
 
-export const updateEventSelected = createAction(
-  '[Events] Update event selected',
-  props<{ eventTitle: string }>(),
-);
-export const updateEventConfirmed = createAction('[Events] Update event confirmed');
-export const updateEventCancelled = createAction('[Events] Update event cancelled');
+export const updateEventRequested = createAction('[Events] Update event requested');
 export const updateEventSucceeded = createAction(
   '[Events] Update event succeeded',
   props<{ event: Event }>(),
@@ -60,12 +48,10 @@ export const updateEventFailed = createAction(
   props<{ errorResponse: HttpErrorResponse }>(),
 );
 
-export const deleteEventSelected = createAction(
-  '[Events] Delete event selected',
+export const deleteEventRequested = createAction(
+  '[Events] Delete event requested',
   props<{ event: Event }>(),
 );
-export const deleteEventConfirmed = createAction('[Events] Delete event confirmed');
-export const deleteEventCancelled = createAction('[Events] Delete event cancelled');
 export const deleteEventSucceeded = createAction(
   '[Events] Delete event succeeded',
   props<{ event: Event }>(),

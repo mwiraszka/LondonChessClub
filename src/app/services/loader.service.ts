@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, debounceTime } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 
@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class LoaderService {
   private _isLoading$ = new BehaviorSubject<boolean>(false);
-  public isLoading$ = this._isLoading$.asObservable();
+  public isLoading$ = this._isLoading$.asObservable().pipe(debounceTime(150));
 
   public setIsLoading(value: boolean): void {
     // Delayed by one tick to prevent Angular's ExpressionChangedAfterItHasBeenCheckedError

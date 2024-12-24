@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { EventFormData, newEventFormTemplate } from '@app/types';
+import { EventFormData } from '@app/types';
 
 import * as EventsActions from './events.actions';
 import { EventsState, initialState } from './events.state';
@@ -17,6 +17,14 @@ const scheduleReducer = createReducer(
   ),
 
   on(
+    EventsActions.newEventRequested,
+    (state): EventsState => ({
+      ...state,
+      controlMode: 'add',
+    }),
+  ),
+
+  on(
     EventsActions.fetchEventRequested,
     (state, { controlMode }): EventsState => ({
       ...state,
@@ -25,16 +33,8 @@ const scheduleReducer = createReducer(
   ),
 
   on(
-    EventsActions.newEventFormTemplateLoaded,
-    (state): EventsState => ({
-      ...state,
-      eventFormData: newEventFormTemplate,
-    }),
-  ),
-
-  on(EventsActions.fetchEventSucceeded, (state, { event }): EventsState => {
-    const { id, modificationInfo, ...eventFormData } = event;
-    return {
+    EventsActions.fetchEventSucceeded,
+    (state, { event }): EventsState => ({
       ...state,
       events: [
         ...state.events.map(storedEvent =>
@@ -42,9 +42,8 @@ const scheduleReducer = createReducer(
         ),
       ],
       event,
-      eventFormData,
-    };
-  }),
+    }),
+  ),
 
   on(
     EventsActions.addEventSucceeded,
@@ -58,14 +57,6 @@ const scheduleReducer = createReducer(
       ],
       event: null,
       eventFormData: null,
-    }),
-  ),
-
-  on(
-    EventsActions.deleteEventSelected,
-    (state, { event }): EventsState => ({
-      ...state,
-      event,
     }),
   ),
 

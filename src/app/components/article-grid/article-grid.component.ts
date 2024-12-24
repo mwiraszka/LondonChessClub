@@ -7,11 +7,19 @@ import { RouterLink } from '@angular/router';
 import { AdminControlsComponent } from '@app/components/admin-controls/admin-controls.component';
 import { ImagePreloadDirective } from '@app/components/image-preload/image-preload.directive';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { ModalComponent } from '@app/components/modal/modal.component';
 import { IconsModule } from '@app/icons';
 import { FormatDatePipe } from '@app/pipes/format-date.pipe';
 import { StripMarkdownPipe } from '@app/pipes/strip-markdown.pipe';
+import { DialogService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import { Article, type Link, NavPathTypes } from '@app/types';
+import {
+  type Article,
+  type Link,
+  type Modal,
+  type ModalResult,
+  NavPathTypes,
+} from '@app/types';
 import { wasEdited } from '@app/utils';
 
 @Component({
@@ -44,7 +52,10 @@ export class ArticleGridComponent implements OnInit {
     icon: 'plus-circle',
   };
 
-  constructor(private readonly store: Store) {}
+  constructor(
+    private readonly dialogService: DialogService<ModalComponent, ModalResult>,
+    private readonly store: Store,
+  ) {}
 
   ngOnInit(): void {
     this.fetchArticles();
@@ -54,7 +65,21 @@ export class ArticleGridComponent implements OnInit {
     this.store.dispatch(ArticlesActions.fetchArticlesRequested());
   }
 
-  public onDeleteArticle(article: Article): void {
-    this.store.dispatch(ArticlesActions.deleteArticleSelected({ article }));
+  public async onDeleteArticle(article: Article): Promise<void> {
+    const modal: Modal = {
+      title: 'Confirm article deletion',
+      body: `Update ${article.title}?`,
+      confirmButtonText: 'Delete',
+      confirmButtonType: 'warning',
+    };
+
+    const result = await this.dialogService.open({
+      componentType: ModalComponent,
+      inputs: { modal },
+    });
+
+    if (result === 'confirm') {
+      this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
+    }
   }
 }

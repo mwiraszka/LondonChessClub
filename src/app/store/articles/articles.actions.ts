@@ -14,12 +14,10 @@ export const fetchArticlesFailed = createAction(
   props<{ errorResponse: HttpErrorResponse }>(),
 );
 
+export const newArticleRequested = createAction('[Articles] New article requested');
 export const fetchArticleRequested = createAction(
   '[Articles] Fetch article requested',
-  props<{ controlMode: ControlMode; articleId?: Id }>(),
-);
-export const newArticleFormTemplateLoaded = createAction(
-  '[Articles] New article form template loaded',
+  props<{ controlMode: ControlMode; articleId: Id }>(),
 );
 export const fetchArticleSucceeded = createAction(
   '[Articles] Fetch article succeeded',
@@ -30,15 +28,8 @@ export const fetchArticleFailed = createAction(
   props<{ errorResponse: HttpErrorResponse }>(),
 );
 
-export const publishArticleSelected = createAction(
-  '[Articles] Publish article selected',
-  props<{ articleTitle: string }>(),
-);
-export const publishArticleConfirmed = createAction(
-  '[Articles] Publish article confirmed',
-);
-export const publishArticleCancelled = createAction(
-  '[Articles] Publish article cancelled',
+export const publishArticleRequested = createAction(
+  '[Articles] Publish article requested',
 );
 export const publishArticleSucceeded = createAction(
   '[Articles] Publish article succeeded',
@@ -49,12 +40,7 @@ export const publishArticleFailed = createAction(
   props<{ error: Error }>(),
 );
 
-export const updateArticleSelected = createAction(
-  '[Articles] Update article selected',
-  props<{ articleTitle: string }>(),
-);
-export const updateArticleConfirmed = createAction('[Articles] Update article confirmed');
-export const updateArticleCancelled = createAction('[Articles] Update article cancelled');
+export const updateArticleRequested = createAction('[Articles] Update article requested');
 export const updateArticleSucceeded = createAction(
   '[Articles] Update article succeeded',
   props<{ article: Article }>(),
@@ -64,12 +50,10 @@ export const updateArticleFailed = createAction(
   props<{ error: Error }>(),
 );
 
-export const deleteArticleSelected = createAction(
-  '[Articles] Delete article selected',
+export const deleteArticleRequested = createAction(
+  '[Articles] Delete article requested',
   props<{ article: Article }>(),
 );
-export const deleteArticleConfirmed = createAction('[Articles] Delete article confirmed');
-export const deleteArticleCancelled = createAction('[Articles] Delete article cancelled');
 export const deleteArticleSucceeded = createAction(
   '[Articles] Delete article succeeded',
   props<{ article: Article }>(),

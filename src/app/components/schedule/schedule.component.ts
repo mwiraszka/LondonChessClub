@@ -6,10 +6,18 @@ import { RouterLink } from '@angular/router';
 
 import { AdminControlsComponent } from '@app/components/admin-controls/admin-controls.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { ModalComponent } from '@app/components/modal/modal.component';
 import { IconsModule } from '@app/icons';
 import { FormatDatePipe } from '@app/pipes/format-date.pipe';
+import { DialogService } from '@app/services';
 import { EventsActions, EventsSelectors } from '@app/store/events';
-import { type Event, type Link, NavPathTypes } from '@app/types';
+import {
+  type Event,
+  type Link,
+  type Modal,
+  type ModalResult,
+  NavPathTypes,
+} from '@app/types';
 import { kebabize } from '@app/utils';
 
 @Component({
@@ -42,7 +50,10 @@ export class ScheduleComponent implements OnInit {
     EventsSelectors.selectScheduleViewModel,
   );
 
-  constructor(private readonly store: Store) {}
+  constructor(
+    private readonly dialogService: DialogService<ModalComponent, ModalResult>,
+    private readonly store: Store,
+  ) {}
 
   ngOnInit(): void {
     this.fetchEvents();
@@ -52,8 +63,22 @@ export class ScheduleComponent implements OnInit {
     this.store.dispatch(EventsActions.fetchEventsRequested());
   }
 
-  public onDeleteEvent(event: Event): void {
-    this.store.dispatch(EventsActions.deleteEventSelected({ event }));
+  public async onDeleteEvent(event: Event): Promise<void> {
+    const modal: Modal = {
+      title: 'Confirm event deletion',
+      body: `Update ${event.title}?`,
+      confirmButtonText: 'Delete',
+      confirmButtonType: 'warning',
+    };
+
+    const result = await this.dialogService.open({
+      componentType: ModalComponent,
+      inputs: { modal },
+    });
+
+    if (result !== 'confirm') {
+      this.store.dispatch(EventsActions.deleteEventRequested({ event }));
+    }
   }
 
   public onTogglePastEvents(): void {

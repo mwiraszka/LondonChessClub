@@ -1,45 +1,17 @@
-@use '../../../styles/abstracts/mixins';
-
-.overlay-content {
+:host {
+  width: 100%;
+  max-width: 450px;
   display: flex;
   flex-direction: column;
-  width: 95%;
-  background-color: var(--lcc-color--modal-background);
-  border-radius: var(--lcc-borderRadius--small);
-  box-shadow: 1px 1px 5px 0 var(--lcc-color--modal-boxShadow);
-
-  @include mixins.respond-to('gt-sm') {
-    width: 450px;
-  }
-
-  .close-button {
-    height: 18px;
-    width: 18px;
-    align-self: flex-end;
-    margin: 8px;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
+  gap: 8px;
+  text-align: start;
+  padding: 16px;
 }
 
-.modal-content {
+.buttons-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 16px;
-  padding: 0 32px 32px;
-
-  .text-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .action-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 8px;
-  }
 }

@@ -1,5 +1,5 @@
 :host {
-  width: 90vw;
+  width: min(90vw, var(--lcc-width--appContent));
   height: calc(90vh - 30px);
   flex: 1;
   display: grid;

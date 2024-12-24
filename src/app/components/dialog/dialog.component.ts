@@ -1,5 +1,3 @@
-import { UntilDestroy } from '@ngneat/until-destroy';
-
 import {
   AfterViewInit,
   Component,
@@ -13,10 +11,9 @@ import {
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
-import { DIALOG_DATA_TOKEN, DialogData } from '@app/services';
-import { DialogControls } from '@app/types';
+import { DIALOG_CONFIG_TOKEN } from '@app/services';
+import { DialogConfig, DialogOutput } from '@app/types';
 
-@UntilDestroy()
 @Component({
   selector: 'lcc-dialog',
   template: `
@@ -25,7 +22,7 @@ import { DialogControls } from '@app/types';
         name="x"
         class="close-icon"
         [tooltip]="'Close'"
-        (click)="close.emit()">
+        (click)="result.emit('close')">
       </i-feather>
     </header>
 
@@ -34,28 +31,32 @@ import { DialogControls } from '@app/types';
   styleUrl: './dialog.component.scss',
   imports: [IconsModule, TooltipDirective],
 })
-export class DialogComponent<T extends DialogControls> implements AfterViewInit {
+export class DialogComponent<TComponent extends DialogOutput<TResult>, TResult>
+  implements AfterViewInit
+{
   @ViewChild('contentContainer', { read: ViewContainerRef })
   private containerRef?: ViewContainerRef;
-  private contentComponentRef?: ComponentRef<T>;
+  private contentComponentRef?: ComponentRef<TComponent>;
 
-  @Output() public close = new EventEmitter<void>();
-  @Output() public confirm = new EventEmitter<string>();
+  @Output() public result = new EventEmitter<TResult | 'close'>();
 
-  constructor(@Inject(DIALOG_DATA_TOKEN) private dialogData: DialogData<T>) {}
+  constructor(
+    @Inject(DIALOG_CONFIG_TOKEN) private dialogConfig: DialogConfig<TComponent>,
+  ) {}
 
   ngAfterViewInit(): void {
-    this.contentComponentRef = this.containerRef?.createComponent<T>(
-      this.dialogData.component,
+    this.contentComponentRef = this.containerRef?.createComponent<TComponent>(
+      this.dialogConfig.componentType,
     );
 
-    for (let key in this.dialogData.inputs) {
-      this.contentComponentRef?.setInput(key, this.dialogData.inputs[key]);
+    if (this.contentComponentRef) {
+      for (let key in this.dialogConfig.inputs) {
+        this.contentComponentRef.setInput(key, this.dialogConfig.inputs[key]);
+      }
+
+      this.contentComponentRef.instance.dialogResult.pipe().subscribe(result => {
+        this.result.emit(result);
+      });
     }
-
-    this.contentComponentRef?.instance.close.subscribe(() => this.close.emit());
-    this.contentComponentRef?.instance.confirm.subscribe((confirm: string) =>
-      this.confirm.emit(confirm),
-    );
   }
 }

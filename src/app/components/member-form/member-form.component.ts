@@ -1,6 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { debounceTime, first } from 'rxjs/operators';
+import { debounceTime, filter, first } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -13,11 +13,22 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { DatePickerComponent } from '@app/components/date-picker/date-picker.component';
+import { ModalComponent } from '@app/components/modal/modal.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
+import { DialogService } from '@app/services';
 import { MembersActions, MembersSelectors } from '@app/store/members';
-import type { ControlMode, MemberFormData, MemberFormGroup } from '@app/types';
+import {
+  type ControlMode,
+  type MemberFormData,
+  type MemberFormGroup,
+  type Modal,
+  type ModalResult,
+  type newArticleFormTemplate,
+  newMemberFormTemplate,
+} from '@app/types';
 import { isDefined } from '@app/utils';
 import {
   emailValidator,
@@ -25,8 +36,6 @@ import {
   ratingValidator,
   yearOfBirthValidator,
 } from '@app/validators';
-
-import { DatePickerComponent } from '../date-picker/date-picker.component';
 
 @UntilDestroy()
 @Component({
@@ -48,26 +57,31 @@ export class MemberFormComponent implements OnInit {
   );
   public form: FormGroup<MemberFormGroup<MemberFormData>> | null = null;
 
-  private readonly memberFormData$ = this.store.select(
-    MembersSelectors.selectMemberFormData,
-  );
-  private readonly controlMode$ = this.store.select(MembersSelectors.selectControlMode);
   private controlMode: ControlMode | null = null;
 
   constructor(
+    private readonly dialogService: DialogService<ModalComponent, ModalResult>,
     private readonly store: Store,
     private readonly formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
-    this.controlMode$.pipe(first(isDefined)).subscribe(controlMode => {
-      this.controlMode = controlMode;
-    });
+    this.memberFormViewModel$
+      .pipe(
+        filter(({ controlMode }) => isDefined(controlMode)),
+        first(({ member, controlMode }) =>
+          controlMode === 'add' ? true : isDefined(member),
+        ),
+      )
+      .subscribe(({ memberFormData, controlMode }) => {
+        if (controlMode === 'add' && !memberFormData) {
+          memberFormData = newMemberFormTemplate;
+        }
 
-    this.memberFormData$.pipe(first(isDefined)).subscribe(memberFormData => {
-      this.initForm(memberFormData);
-      this.initFormValueChangeListener();
-    });
+        this.controlMode = controlMode;
+        this.initForm(memberFormData!);
+        this.initFormValueChangeListener();
+      });
   }
 
   public hasError(control: AbstractControl): boolean {
@@ -100,24 +114,34 @@ export class MemberFormComponent implements OnInit {
     this.store.dispatch(MembersActions.cancelSelected());
   }
 
-  public onSubmit(memberName: string | null): void {
+  public async onSubmit(memberName: string | null): Promise<void> {
     if (this.form?.invalid || !memberName) {
       this.form?.markAllAsTouched();
       return;
     }
 
+    const modal: Modal = {
+      title: this.controlMode === 'edit' ? 'Confirm member update' : 'Confirm new member',
+      body:
+        this.controlMode === 'edit'
+          ? `Update ${memberName}?`
+          : `Add ${memberName} to database?`,
+      confirmButtonText: this.controlMode === 'edit' ? 'Update' : 'Add',
+    };
+
+    const result = await this.dialogService.open({
+      componentType: ModalComponent,
+      inputs: { modal },
+    });
+
+    if (result !== 'confirm') {
+      return;
+    }
+
     if (this.controlMode === 'edit') {
-      this.store.dispatch(
-        MembersActions.updateMemberSelected({
-          memberName,
-        }),
-      );
+      this.store.dispatch(MembersActions.updateMemberRequested());
     } else {
-      this.store.dispatch(
-        MembersActions.addMemberSelected({
-          memberName,
-        }),
-      );
+      this.store.dispatch(MembersActions.addMemberRequested());
     }
   }
 
@@ -143,27 +167,39 @@ export class MemberFormComponent implements OnInit {
         nonNullable: true,
         validators: [Validators.required],
       }),
-      email: new FormControl(memberFormData.email, emailValidator),
-      phoneNumber: new FormControl(memberFormData.phoneNumber, phoneNumberValidator),
-      yearOfBirth: new FormControl(memberFormData.yearOfBirth, yearOfBirthValidator),
-      chesscomUsername: new FormControl(
-        memberFormData.chesscomUsername,
-        Validators.pattern(/[^\s]/),
-      ),
-      lichessUsername: new FormControl(
-        memberFormData.lichessUsername,
-        Validators.pattern(/[^\s]/),
-      ),
+      email: new FormControl(memberFormData.email, {
+        nonNullable: true,
+        validators: emailValidator,
+      }),
+      phoneNumber: new FormControl(memberFormData.phoneNumber, {
+        nonNullable: true,
+        validators: phoneNumberValidator,
+      }),
+      yearOfBirth: new FormControl(memberFormData.yearOfBirth, {
+        nonNullable: true,
+        validators: yearOfBirthValidator,
+      }),
+      chesscomUsername: new FormControl(memberFormData.chesscomUsername, {
+        nonNullable: true,
+        validators: Validators.pattern(/[^\s]/),
+      }),
+      lichessUsername: new FormControl(memberFormData.lichessUsername, {
+        nonNullable: true,
+        validators: Validators.pattern(/[^\s]/),
+      }),
       isActive: new FormControl(memberFormData.isActive, { nonNullable: true }),
       peakRating: new FormControl(memberFormData.peakRating, { nonNullable: true }),
     });
+  }
 
-    this.form.valueChanges
+  private initFormValueChangeListener(): void {
+    this.form?.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((value: Partial<MemberFormData>) =>
         this.store.dispatch(MembersActions.formValueChanged({ value })),
       );
-  }
 
-  private initFormValueChangeListener(): void {}
+    // Manually trigger form value change to pass initial form data to store
+    this.form?.updateValueAndValidity();
+  }
 }

@@ -10,8 +10,8 @@
 @forward 'themes/dark-theme';
 @forward 'themes/light-theme';
 
-@forward 'layout/display';
-@forward 'layout/text';
+@forward 'layout/truncate';
+@forward 'layout/overlay';
 
 @forward 'components/admin-controls-container';
 @forward 'components/button';

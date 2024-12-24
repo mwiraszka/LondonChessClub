@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { IconsModule } from '@app/icons';
-import { DialogControls } from '@app/types';
+import { DialogOutput } from '@app/types';
 
 @Component({
   selector: 'lcc-document-viewer',
@@ -12,14 +12,12 @@ import { DialogControls } from '@app/types';
   styleUrl: './document-viewer.component.scss',
   imports: [CommonModule, IconsModule, PdfViewerModule],
 })
-export class DocumentViewerComponent implements DialogControls {
+export class DocumentViewerComponent implements DialogOutput<null> {
   @Input() public documentPath?: string;
 
   public percentLoaded = 0;
 
-  // Dialog controls
-  @Output() public close = new EventEmitter<void>();
-  @Output() public confirm = new EventEmitter<string>();
+  @Output() public dialogResult = new EventEmitter<null | 'close'>();
 
   public onProgress(progressData: PDFProgressData): void {
     this.percentLoaded = Math.floor((progressData.loaded / progressData.total) * 100);

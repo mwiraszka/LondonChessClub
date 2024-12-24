@@ -14,12 +14,10 @@ export const fetchMembersFailed = createAction(
   props<{ errorResponse: HttpErrorResponse }>(),
 );
 
+export const newMemberRequested = createAction('[Members] New member requested');
 export const fetchMemberRequested = createAction(
   '[Members] Fetch member requested',
-  props<{ controlMode: ControlMode; memberId?: Id }>(),
-);
-export const newMemberFormTemplateLoaded = createAction(
-  '[Members] New member form template loaded',
+  props<{ controlMode: ControlMode; memberId: Id }>(),
 );
 export const fetchMemberSucceeded = createAction(
   '[Members] Fetch member succeeded',
@@ -48,12 +46,7 @@ export const pageSizeChanged = createAction(
 );
 export const inactiveMembersToggled = createAction('[Members] Inactive members toggled');
 
-export const addMemberSelected = createAction(
-  '[Members] Add member selected',
-  props<{ memberName: string }>(),
-);
-export const addMemberConfirmed = createAction('[Members] Add member confirmed');
-export const addMemberCancelled = createAction('[Members] Add member cancelled');
+export const addMemberRequested = createAction('[Members] Add member requested');
 export const addMemberSucceeded = createAction(
   '[Members] Add member succeeded',
   props<{ member: Member }>(),
@@ -63,12 +56,7 @@ export const addMemberFailed = createAction(
   props<{ errorResponse: HttpErrorResponse }>(),
 );
 
-export const updateMemberSelected = createAction(
-  '[Members] Update member selected',
-  props<{ memberName: string }>(),
-);
-export const updateMemberConfirmed = createAction('[Members] Update member confirmed');
-export const updateMemberCancelled = createAction('[Members] Update member cancelled');
+export const updateMemberRequested = createAction('[Members] Update member requested');
 export const updateMemberSucceeded = createAction(
   '[Members] Update member succeeded',
   props<{ member: Member }>(),
@@ -78,12 +66,10 @@ export const updateMemberFailed = createAction(
   props<{ errorResponse: HttpErrorResponse }>(),
 );
 
-export const deleteMemberSelected = createAction(
-  '[Members] Delete member selected',
+export const deleteMemberRequested = createAction(
+  '[Members] Delete member requested',
   props<{ member: Member }>(),
 );
-export const deleteMemberConfirmed = createAction('[Members] Delete member confirmed');
-export const deleteMemberCancelled = createAction('[Members] Delete member cancelled');
 export const deleteMemberSucceeded = createAction(
   '[Members] Delete member succeeded',
   props<{ member: Member }>(),

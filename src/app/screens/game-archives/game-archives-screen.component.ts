@@ -185,7 +185,7 @@ export class GameArchivesScreenComponent implements OnInit {
 
   private initFormValueChangeListeners(): void {
     this.form.valueChanges
-      .pipe(distinctUntilChanged(), debounceTime(100), untilDestroyed(this))
+      .pipe(distinctUntilChanged(), debounceTime(250), untilDestroyed(this))
       .subscribe(() => this.filterGames());
 
     this.form.controls['asBlack'].valueChanges.subscribe(asBlack => {

@@ -85,13 +85,19 @@
   --lcc-color--datePicker-headerText: #{clr(grayscale, white-80)};
   --lcc-color--datePicker-selectedDateText: #{clr(grayscale, white-80)};
 
+  --lcc-color--dialog-background: #{clr(grayscale, white-85)};
+  --lcc-color--dialog-boxShadow: #{clr(grayscale, white-80, 0.3)};
+  --lcc-color--dialog-closeIcon: #{clr(grayscale, gray-25)};
+  --lcc-color--dialog-closeIconOnHover: #{clr(grayscale, black-5)};
+  --lcc-color--dialog-headerBackground: #{clr(grayscale, white-85)};
+  --lcc-color--dialog-headerBorderBottom: #{clr(grayscale, gray-75)};
+
   --lcc-color--documentsScreen-documentLabelOnHover: #{clr(primary, lighter)};
   --lcc-color--documentsScreen-downloadLinkOnHover: #{clr(primary, lighter)};
 
   --lcc-color--documentViewer-loaderBackground: #{clr(primary, dark, 0.5)};
   --lcc-color--documentViewer-loaderBoxShadow: #{clr(grayscale, white-85, 0.7)};
   --lcc-color--documentViewer-pageBackground: #{clr(grayscale, white-85)};
-  --lcc-color--documentViewer-pageGaps: #{clr(grayscale, white-98)};
   --lcc-color--documentViewer-scrollbarBackground: #{clr(grayscale, white-90)};
   --lcc-color--documentViewer-scrollbar: #{clr(grayscale, gray-65)};
 
@@ -126,8 +132,8 @@
   --lcc-color--general-dividerLine: #{clr(grayscale, gray-25, 0.5)};
   --lcc-color--general-dividerLineLight: #{clr(grayscale, gray-35, 0.5)};
   --lcc-color--general-editorTextSpacer: #{clr(grayscale, gray-50)};
-  --lcc-color--general-overlayBackdrop: #{clr(grayscale, black-10, 0.8)};
-  --lcc-color--general-scrollbar: #{clr(grayscale, gray-50, 0.5)};
+  --lcc-color--general-overlayBackdrop: #{clr(grayscale, black-10, 0.7)};
+  --lcc-color--general-scrollbar: #{clr(grayscale, gray-50, 0.7)};
 
   --lcc-color--header-background1: #{clr(primary, dark, 0.8)};
   --lcc-color--header-background2: #{clr(primary, dark, 0.6)};
@@ -146,12 +152,11 @@
   --lcc-color--imageExplorer-imageBorderOnHover: #{clr(primary, base)};
   --lcc-color--imageExplorer-text: #{clr(grayscale, white-90)};
 
-  --lcc-color--photoViewer-background: #{clr(grayscale, black-15)};
   --lcc-color--photoViewer-buttons: #{clr(grayscale, gray-35, 0.8)};
   --lcc-color--photoViewer-buttonsOnHover: #{clr(grayscale, gray-35, 0.9)};
   --lcc-color--photoViewer-captionBackground: #{clr(grayscale, white-98, 0.8)};
   --lcc-color--photoViewer-captionText: #{clr(grayscale, black-10)};
-  --lcc-color--photoViewer-detailsContainerBackground: #{clr(primary, lighter, 0.3)};
+  --lcc-color--photoViewer-detailsContainerBackground: #{clr(secondary, lighter, 0.1)};
 
   --lcc-color--input-background: #{clr(grayscale, gray-25)};
   --lcc-color--input-border: #{clr(grayscale, gray-35)};
@@ -186,9 +191,6 @@
   --lcc-color--membersTable-inactiveMemberAsterisk: #{clr(grayscale, gray-75)};
   --lcc-color--membersTable-inactiveMemberText: #{clr(grayscale, gray-65, 0.8)};
 
-  --lcc-color--modal-background: #{clr(grayscale, white-85)};
-  --lcc-color--modal-boxShadow: #{clr(grayscale, white-85, 0.7)};
-
   --lcc-color--modificationInfo-background: #{clr(primary, base, 0.5)};
   --lcc-color--modificationInfo-border: #{clr(grayscale, gray-75, 0.2)};
   --lcc-color--modificationInfo-icons: #{clr(grayscale, white-85)};
@@ -207,11 +209,6 @@
   --lcc-color--nav-linkForegroundOnHover: #{clr(primary, lighter)};
   --lcc-color--nav-linkForegroundWhenActive: #{clr(grayscale, white-98)};
   --lcc-color--nav-safeModeOffAlertIcon: #{clr(warning, lighter)};
-
-  --lcc-color--dialog-closeIcon: #{clr(grayscale, gray-25)};
-  --lcc-color--dialog-closeIconOnHover: #{clr(grayscale, black-5)};
-  --lcc-color--dialog-headerBackground: #{clr(grayscale, white-85)};
-  --lcc-color--dialog-headerBorderBottom: #{clr(grayscale, gray-75)};
 
   --lcc-color--paginator-background: #{clr(primary, dark, 0.3)};
   --lcc-color--paginator-border: #{clr(grayscale, gray-75, 0.2)};

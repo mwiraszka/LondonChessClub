@@ -26,12 +26,11 @@ export function isSystemDark(): boolean {
 /**
  * A wrapper for lodash's `isEqual()`
  *
- * @param {Object | null} a The first object to compare
- * @param {Object | null} b The second object to compare
- *
+ * @param {object | null} a The first object to compare
+ * @param {object | null} b The second object to compare
  * @returns {boolean} Whether the two objects are (deeply) equal
  */
-export function areSame(a: Object | null, b: Object | null): boolean {
+export function areSame(a: object | null, b: object | null): boolean {
   if (a === null && b === null) {
     return true;
   }
@@ -49,11 +48,7 @@ export function areSame(a: Object | null, b: Object | null): boolean {
  * @returns {boolean} Whether the given value is `null`, `undefined`, or an empty object
  */
 export function isEmpty(value: any): boolean {
-  if (value === null || value === undefined) {
-    return true;
-  }
-
-  return value && Object.keys(value).length === 0 && value.constructor === Object;
+  return !!value && Object.keys(value).length === 0 && value.constructor === Object;
 }
 
 /**

@@ -116,12 +116,14 @@ export class NavEffects {
       map(({ payload }) => payload.event.url),
       filter(currentPath => currentPath.startsWith('/event/')),
       map(currentPath => {
-        const [controlMode, eventId] = currentPath.split('/event/')[1].split('/');
+        const [controlMode, eventId] = currentPath.split('/event/')[1]?.split('/');
 
-        return (controlMode === 'add' && !isDefined(eventId)) ||
-          (controlMode === 'edit' && isValidCollectionIdFormat(eventId))
-          ? EventsActions.fetchEventRequested({ controlMode, eventId })
-          : NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE });
+        if (controlMode === 'add' && !isDefined(eventId)) {
+          return EventsActions.newEventRequested();
+        } else if (controlMode === 'edit' && isValidCollectionIdFormat(eventId)) {
+          return EventsActions.fetchEventRequested({ controlMode, eventId });
+        }
+        return NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE });
       }),
     ),
   );
@@ -148,12 +150,14 @@ export class NavEffects {
       map(({ payload }) => payload.event.url),
       filter(currentPath => currentPath.startsWith('/member/')),
       map(currentPath => {
-        const [controlMode, memberId] = currentPath.split('/member/')[1].split('/');
+        const [controlMode, memberId] = currentPath.split('/member/')[1]?.split('/');
 
-        return (controlMode === 'add' && !isDefined(memberId)) ||
-          (controlMode === 'edit' && isValidCollectionIdFormat(memberId))
-          ? MembersActions.fetchMemberRequested({ controlMode, memberId })
-          : NavActions.navigationRequested({ path: NavPathTypes.MEMBERS });
+        if (controlMode === 'add' && !isDefined(memberId)) {
+          return MembersActions.newMemberRequested();
+        } else if (controlMode === 'edit' && isValidCollectionIdFormat(memberId)) {
+          return MembersActions.fetchMemberRequested({ controlMode, memberId });
+        }
+        return NavActions.navigationRequested({ path: NavPathTypes.MEMBERS });
       }),
     ),
   );
@@ -183,10 +187,14 @@ export class NavEffects {
         const [controlMode, articleIdWithAnchor] = currentPath
           .split('/article/')[1]
           .split('/');
-        const [articleId, anchor] = articleIdWithAnchor?.split('#');
+
+        if (controlMode === 'add' && !isDefined(articleIdWithAnchor)) {
+          return ArticlesActions.newArticleRequested();
+        }
+
+        const articleId = articleIdWithAnchor?.split('#')[0];
 
         if (
-          (controlMode === 'add' && !isDefined(articleId)) ||
           (controlMode === 'edit' && isValidCollectionIdFormat(articleId)) ||
           (controlMode === 'view' && isValidCollectionIdFormat(articleId))
         ) {
@@ -195,6 +203,7 @@ export class NavEffects {
             articleId,
           });
         }
+
         return NavActions.navigationRequested({ path: NavPathTypes.NEWS });
       }),
     ),

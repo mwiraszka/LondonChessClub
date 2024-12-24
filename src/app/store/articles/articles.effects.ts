@@ -40,26 +40,22 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticleRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ articleId }) => {
-        if (!articleId) {
-          return of(ArticlesActions.newArticleFormTemplateLoaded());
-        }
-
-        return this.articlesService.getArticle(articleId).pipe(
+      switchMap(({ articleId }) =>
+        this.articlesService.getArticle(articleId).pipe(
           map(article => ArticlesActions.fetchArticleSucceeded({ article })),
           catchError((errorResponse: HttpErrorResponse) => {
             errorResponse = parseHttpErrorResponse(errorResponse);
             return of(ArticlesActions.fetchArticleFailed({ errorResponse }));
           }),
-        );
-      }),
+        ),
+      ),
       tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   publishArticle$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.publishArticleConfirmed),
+      ofType(ArticlesActions.publishArticleRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store
@@ -108,7 +104,7 @@ export class ArticlesEffects {
 
   updateArticle$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.updateArticleConfirmed),
+      ofType(ArticlesActions.updateArticleRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store.select(ArticlesSelectors.selectArticle).pipe(filter(isDefined)),
@@ -155,12 +151,9 @@ export class ArticlesEffects {
 
   deleteArticle$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.deleteArticleConfirmed),
+      ofType(ArticlesActions.deleteArticleRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() =>
-        this.store.select(ArticlesSelectors.selectArticle).pipe(filter(isDefined)),
-      ),
-      switchMap(([, article]) =>
+      switchMap(({ article }) =>
         this.articlesService.deleteArticle(article).pipe(
           map(article => ArticlesActions.deleteArticleSucceeded({ article })),
           catchError((errorResponse: HttpErrorResponse) => {

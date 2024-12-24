@@ -21,7 +21,6 @@ import { ArticlesStoreModule } from '@app/store/articles';
 import { AuthStoreModule } from '@app/store/auth';
 import { EventsStoreModule } from '@app/store/events';
 import { MembersStoreModule } from '@app/store/members';
-import { ModalStoreModule } from '@app/store/modal';
 import { NavStoreModule } from '@app/store/nav';
 import { ToasterStoreModule } from '@app/store/toaster';
 import { UserSettingsStoreModule } from '@app/store/user-settings';
@@ -45,7 +44,6 @@ bootstrapApplication(AppComponent, {
       EventsStoreModule,
       MarkdownModule.forRoot(),
       MembersStoreModule,
-      ModalStoreModule,
       NavStoreModule,
       ServiceWorkerModule.register('ngsw-worker.js', {
         enabled: environment.production,

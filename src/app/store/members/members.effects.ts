@@ -43,10 +43,6 @@ export class MembersEffects {
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
       switchMap(([{ memberId }, isAdmin]) => {
-        if (!memberId) {
-          return of(MembersActions.newMemberFormTemplateLoaded());
-        }
-
         const scope: ApiScope = isAdmin ? 'admin' : 'public';
         return this.membersService.getMember(scope, memberId).pipe(
           map(member => MembersActions.fetchMemberSucceeded({ member })),
@@ -62,7 +58,7 @@ export class MembersEffects {
 
   addMember$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(MembersActions.addMemberConfirmed),
+      ofType(MembersActions.addMemberRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store.select(MembersSelectors.selectMemberFormData).pipe(filter(isDefined)),
@@ -91,7 +87,7 @@ export class MembersEffects {
 
   updateMember$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(MembersActions.updateMemberConfirmed),
+      ofType(MembersActions.updateMemberRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store.select(MembersSelectors.selectMember).pipe(filter(isDefined)),
@@ -129,12 +125,9 @@ export class MembersEffects {
 
   deleteMember$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(MembersActions.deleteMemberConfirmed),
+      ofType(MembersActions.deleteMemberRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() =>
-        this.store.select(MembersSelectors.selectMember).pipe(filter(isDefined)),
-      ),
-      switchMap(([, member]) =>
+      switchMap(({ member }) =>
         this.membersService.deleteMember(member).pipe(
           map(member => MembersActions.deleteMemberSucceeded({ member })),
           catchError((errorResponse: HttpErrorResponse) => {

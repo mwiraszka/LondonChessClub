@@ -5,11 +5,19 @@ import { Component, OnInit } from '@angular/core';
 
 import { AdminControlsComponent } from '@app/components/admin-controls/admin-controls.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { ModalComponent } from '@app/components/modal/modal.component';
 import { PaginatorComponent } from '@app/components/paginator/paginator.component';
 import { IconsModule } from '@app/icons';
 import { FormatDatePipe } from '@app/pipes/format-date.pipe';
+import { DialogService } from '@app/services';
 import { MembersActions, MembersSelectors } from '@app/store/members';
-import { type Link, Member, NavPathTypes } from '@app/types';
+import {
+  type Link,
+  type Member,
+  type Modal,
+  type ModalResult,
+  NavPathTypes,
+} from '@app/types';
 import { camelize, kebabize } from '@app/utils';
 
 @Component({
@@ -53,7 +61,10 @@ export class MembersTableComponent implements OnInit {
     'Date Joined',
   ];
 
-  constructor(private readonly store: Store) {}
+  constructor(
+    private readonly dialogService: DialogService<ModalComponent, ModalResult>,
+    private readonly store: Store,
+  ) {}
 
   ngOnInit(): void {
     this.fetchMembers();
@@ -63,8 +74,22 @@ export class MembersTableComponent implements OnInit {
     this.store.dispatch(MembersActions.fetchMembersRequested());
   }
 
-  public onDeleteMember(member: Member): void {
-    this.store.dispatch(MembersActions.deleteMemberSelected({ member }));
+  public async onDeleteMember(member: Member): Promise<void> {
+    const modal: Modal = {
+      title: 'Confirm member deletion',
+      body: `Delete ${member.firstName} ${member.lastName}?`,
+      confirmButtonText: 'Delete',
+      confirmButtonType: 'warning',
+    };
+
+    const result = await this.dialogService.open({
+      componentType: ModalComponent,
+      inputs: { modal },
+    });
+
+    if (result === 'confirm') {
+      this.store.dispatch(MembersActions.deleteMemberRequested({ member }));
+    }
   }
 
   public onSelectTableHeader(header: string): void {

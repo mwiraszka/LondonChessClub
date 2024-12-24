@@ -1,12 +1,3 @@
-:host {
-  display: block;
-  width: 90vw;
-  // TODO: Figure out how to keep centered without needing to specify dialog height
-  // (same applies to Document Viewer and Image Explorer components)
-  height: calc(90vh - 30px);
-  background-color: var(--lcc-color--photoViewer-background);
-}
-
 .image-container {
   width: 100%;
   // Account for height of details container below
@@ -16,11 +7,13 @@
   justify-content: center;
 
   img {
+    // TODO: Figure out how to keep centered without needing to specify dialog height
+    // (same applies to Document Viewer and Image Explorer components)
     max-height: calc(90vh - 80px);
+    max-width: min(90vw, var(--lcc-width--appContent));
 
     &:not(.portrait-mode) {
       height: auto;
-      max-width: 90vw;
     }
 
     &.portrait-mode {

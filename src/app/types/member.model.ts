@@ -14,11 +14,11 @@ export interface Member {
   peakRating: string;
   dateJoined: IsoDate;
   isActive: boolean;
-  chesscomUsername: string | null;
-  lichessUsername: string | null;
-  yearOfBirth: string | null;
-  email: string | null;
-  phoneNumber: string | null;
+  chesscomUsername: string;
+  lichessUsername: string;
+  yearOfBirth: string;
+  email: string;
+  phoneNumber: string;
   modificationInfo: ModificationInfo | null;
 }
 
@@ -36,9 +36,9 @@ export const newMemberFormTemplate: MemberFormData = {
   peakRating: '1000/0',
   dateJoined: moment().toISOString(),
   isActive: true,
-  chesscomUsername: null,
-  lichessUsername: null,
-  yearOfBirth: null,
-  email: null,
-  phoneNumber: null,
+  chesscomUsername: '',
+  lichessUsername: '',
+  yearOfBirth: '',
+  email: '',
+  phoneNumber: '',
 };

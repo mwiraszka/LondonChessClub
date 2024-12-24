@@ -1,7 +1,9 @@
-import { ModalButton } from './modal-button.model';
-
 export interface Modal {
   title: string;
   body: string;
-  buttons: ModalButton[];
+  confirmButtonText: string;
+  confirmButtonType?: 'primary' | 'warning';
+  cancelButtonText?: string;
 }
+
+export type ModalResult = 'confirm' | 'cancel';

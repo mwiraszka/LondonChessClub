@@ -1,7 +1,7 @@
 @for (image of images; track image.id) {
   <div
     class="image-wrapper"
-    (click)="confirm.emit(image.id)">
+    (click)="dialogResult.emit(image.id)">
     @defer {
       <img [src]="image.presignedUrl" />
 

@@ -22,7 +22,7 @@ export interface Event {
   eventDate: IsoDate;
   title: string;
   details: string;
-  articleId: Id | null;
+  articleId: Id;
   modificationInfo: ModificationInfo | null;
 }
 
@@ -41,5 +41,5 @@ export const newEventFormTemplate: EventFormData = {
     .toISOString(),
   title: '',
   details: '',
-  articleId: null,
+  articleId: '',
 };

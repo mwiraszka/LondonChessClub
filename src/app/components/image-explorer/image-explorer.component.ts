@@ -7,7 +7,7 @@ import { IconsModule } from '@app/icons';
 import { FormatBytesPipe } from '@app/pipes/format-bytes.pipe';
 import { FormatDatePipe } from '@app/pipes/format-date.pipe';
 import { ImagesService, LoaderService } from '@app/services';
-import { DialogControls, Id, Image } from '@app/types';
+import { DialogOutput, Id, Image } from '@app/types';
 import { generatePlaceholderImages } from '@app/utils';
 
 @Component({
@@ -16,12 +16,10 @@ import { generatePlaceholderImages } from '@app/utils';
   styleUrl: './image-explorer.component.scss',
   imports: [CommonModule, FormatBytesPipe, FormatDatePipe, IconsModule],
 })
-export class ImageExplorerComponent implements OnInit, DialogControls {
+export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
   public images: Image[] = generatePlaceholderImages(25);
 
-  // Dialog controls
-  @Output() public close = new EventEmitter<void>();
-  @Output() public confirm = new EventEmitter<Id>();
+  @Output() public dialogResult = new EventEmitter<Id | 'close'>();
 
   constructor(
     private readonly imagesService: ImagesService,

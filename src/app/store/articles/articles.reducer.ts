@@ -1,7 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
 import { ArticleFormData } from '@app/types';
-import { newArticleFormTemplate } from '@app/types';
 import { sortArticles } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
@@ -19,18 +18,18 @@ const articlesReducer = createReducer(
   ),
 
   on(
-    ArticlesActions.fetchArticleRequested,
-    (state, { controlMode }): ArticlesState => ({
+    ArticlesActions.newArticleRequested,
+    (state): ArticlesState => ({
       ...state,
-      controlMode,
+      controlMode: 'add',
     }),
   ),
 
   on(
-    ArticlesActions.newArticleFormTemplateLoaded,
-    (state): ArticlesState => ({
+    ArticlesActions.fetchArticleRequested,
+    (state, { controlMode }): ArticlesState => ({
       ...state,
-      articleFormData: newArticleFormTemplate,
+      controlMode,
     }),
   ),
 
@@ -43,12 +42,6 @@ const articlesReducer = createReducer(
         ),
       ]),
       article,
-      articleFormData: {
-        imageId: article.imageId,
-        title: article.title,
-        body: article.body,
-        isSticky: article.isSticky,
-      } as ArticleFormData,
     };
   }),
 
@@ -64,14 +57,6 @@ const articlesReducer = createReducer(
       ]),
       article: null,
       articleFormData: null,
-    }),
-  ),
-
-  on(
-    ArticlesActions.deleteArticleSelected,
-    (state, { article }): ArticlesState => ({
-      ...state,
-      article,
     }),
   ),
 

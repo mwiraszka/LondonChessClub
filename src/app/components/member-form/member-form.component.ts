@@ -14,20 +14,19 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { DatePickerComponent } from '@app/components/date-picker/date-picker.component';
-import { ModalComponent } from '@app/components/modal/modal.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
 import { DialogService } from '@app/services';
 import { MembersActions, MembersSelectors } from '@app/store/members';
 import {
+  type BasicDialogResult,
   type ControlMode,
+  type Dialog,
   type MemberFormData,
   type MemberFormGroup,
-  type Modal,
-  type ModalResult,
-  type newArticleFormTemplate,
   newMemberFormTemplate,
 } from '@app/types';
 import { isDefined } from '@app/utils';
@@ -61,7 +60,10 @@ export class MemberFormComponent implements OnInit {
   private controlMode: ControlMode | null = null;
 
   constructor(
-    private readonly dialogService: DialogService<ModalComponent, ModalResult>,
+    private readonly dialogService: DialogService<
+      BasicDialogComponent,
+      BasicDialogResult
+    >,
     private readonly store: Store,
     private readonly formBuilder: FormBuilder,
   ) {}
@@ -129,7 +131,7 @@ export class MemberFormComponent implements OnInit {
       return;
     }
 
-    const modal: Modal = {
+    const dialog: Dialog = {
       title: this.controlMode === 'edit' ? 'Confirm member update' : 'Confirm new member',
       body:
         this.controlMode === 'edit'
@@ -139,8 +141,8 @@ export class MemberFormComponent implements OnInit {
     };
 
     const result = await this.dialogService.open({
-      componentType: ModalComponent,
-      inputs: { modal },
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
     });
 
     if (result !== 'confirm') {

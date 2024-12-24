@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   Renderer2,
   ViewChild,
@@ -22,9 +22,13 @@ import { ImagePreloadDirective } from '../image-preload/image-preload.directive'
   styleUrl: './photo-viewer.component.scss',
   imports: [CommonModule, IconsModule, ImagePreloadDirective, TooltipDirective],
 })
-export class PhotoViewerComponent implements OnInit, DialogOutput<null> {
-  @ViewChild('photo') imageElementRef?: ElementRef;
+export class PhotoViewerComponent implements AfterViewInit, DialogOutput<null> {
+  @ViewChild('navigationButtonsContainer')
+  navigationButtonsContainer?: ElementRef<HTMLDivElement>;
+  @ViewChild('previousPhotoButton') previousPhotoButton?: ElementRef<HTMLButtonElement>;
+  @ViewChild('nextPhotoButton') nextPhotoButton?: ElementRef<HTMLButtonElement>;
 
+  private clickListener?: () => void;
   private keyListener?: () => void;
 
   @Input() index = 0;
@@ -34,11 +38,12 @@ export class PhotoViewerComponent implements OnInit, DialogOutput<null> {
 
   constructor(private readonly renderer: Renderer2) {}
 
-  ngOnInit(): void {
-    this.initKeyListener();
+  ngAfterViewInit(): void {
+    setTimeout(() => this.initEventListeners());
   }
 
   ngOnDestroy(): void {
+    this.clickListener?.();
     this.keyListener?.();
   }
 
@@ -50,17 +55,25 @@ export class PhotoViewerComponent implements OnInit, DialogOutput<null> {
     this.index = this.index < this.photos.length - 1 ? this.index + 1 : 0;
   }
 
-  public onPhotoLoad(): void {
-    const imageElement = this.imageElementRef?.nativeElement;
+  private initEventListeners(): void {
+    this.clickListener = this.renderer.listen(
+      this.navigationButtonsContainer?.nativeElement,
+      'click',
+      (event: MouseEvent) => {
+        if (
+          event.target instanceof Node &&
+          !this.previousPhotoButton?.nativeElement.contains(event.target) &&
+          !this.nextPhotoButton?.nativeElement.contains(event.target)
+        ) {
+          // Due to absolute positioning on navigation buttons, default backdrop event listener in
+          // dialog service is overridden, and unable to easily gain access to DOM elements behind
+          // the buttons overlay to set up new click listeners. So instead, this is set up to close
+          // when anything but the previous and next buttons (and for reason the label) are clicked
+          this.dialogResult.emit('close');
+        }
+      },
+    );
 
-    if (imageElement.clientHeight > imageElement.clientWidth) {
-      this.renderer.addClass(imageElement, 'portrait-mode');
-    } else {
-      this.renderer.removeClass(imageElement, 'portrait-mode');
-    }
-  }
-
-  private initKeyListener(): void {
     this.keyListener = this.renderer.listen(
       'document',
       'keydown',

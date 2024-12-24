@@ -8,15 +8,15 @@ import { Router, Scroll } from '@angular/router';
 
 import { AdminControlsComponent } from '@app/components/admin-controls/admin-controls.component';
 import { ArticleComponent } from '@app/components/article/article.component';
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
-import { ModalComponent } from '@app/components/modal/modal.component';
 import { DialogService, MetaAndTitleService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import {
   type Article,
+  type BasicDialogResult,
+  type Dialog,
   type Link,
-  type Modal,
-  type ModalResult,
   NavPathTypes,
 } from '@app/types';
 
@@ -46,7 +46,10 @@ export class ArticleViewerScreenComponent implements OnInit {
   );
 
   constructor(
-    private readonly dialogService: DialogService<ModalComponent, ModalResult>,
+    private readonly dialogService: DialogService<
+      BasicDialogComponent,
+      BasicDialogResult
+    >,
     @Inject(DOCUMENT) private _document: Document,
     private readonly metaAndTitleService: MetaAndTitleService,
     private readonly router: Router,
@@ -71,7 +74,7 @@ export class ArticleViewerScreenComponent implements OnInit {
   }
 
   public async onDelete(article: Article): Promise<void> {
-    const modal: Modal = {
+    const dialog: Dialog = {
       title: 'Confirm article deletion',
       body: `Update ${article.title}?`,
       confirmButtonText: 'Delete',
@@ -79,8 +82,8 @@ export class ArticleViewerScreenComponent implements OnInit {
     };
 
     const result = await this.dialogService.open({
-      componentType: ModalComponent,
-      inputs: { modal },
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
     });
 
     if (result === 'confirm') {

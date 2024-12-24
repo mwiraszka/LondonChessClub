@@ -12,6 +12,10 @@
 }
 
 // Custom overlay backdrop colour
-.lcc-backdrop {
-  background-color: var(--lcc-color--general-overlayBackdrop);
+.lcc-dialog-backdrop {
+  background-color: var(--lcc-color--general-overlayDialogBackdrop);
+}
+
+.lcc-modal-backdrop {
+  background-color: var(--lcc-color--general-overlayModalBackdrop);
 }

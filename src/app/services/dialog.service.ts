@@ -1,6 +1,6 @@
 import { firstValueFrom, tap } from 'rxjs';
 
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
   ComponentRef,
@@ -39,15 +39,20 @@ export class DialogService<TComponent extends DialogOutput<TResult>, TResult> {
       this.close();
     }
 
-    this.overlayRef = this.overlay.create({
+    const overlayConfig: OverlayConfig = {
       positionStrategy: this.overlay
         .position()
         .global()
         .centerHorizontally()
         .centerVertically(),
+      scrollStrategy: dialogConfig.isModal
+        ? this.overlay.scrollStrategies.block()
+        : this.overlay.scrollStrategies.block(),
       hasBackdrop: true,
-      backdropClass: 'lcc-backdrop',
-    });
+      backdropClass: dialogConfig.isModal ? 'lcc-modal-backdrop' : 'lcc-dialog-backdrop',
+    };
+
+    this.overlayRef = this.overlay.create(overlayConfig);
 
     setTimeout(() => this.initEventListeners(this.overlayRef?.overlayElement));
 
@@ -90,7 +95,7 @@ export class DialogService<TComponent extends DialogOutput<TResult>, TResult> {
       'document',
       'click',
       (event: MouseEvent) => {
-        if (!this.overlayRef?.overlayElement?.contains(event.target as Node)) {
+        if (!overlayElement?.contains(event.target as Node)) {
           this.close();
         }
       },

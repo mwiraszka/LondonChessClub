@@ -86,11 +86,11 @@
   --lcc-color--datePicker-headerText: #{clr(grayscale, black-10)};
   --lcc-color--datePicker-selectedDateText: #{clr(grayscale, black-20)};
 
-  --lcc-color--dialog-background: #{clr(grayscale, white-85)};
-  --lcc-color--dialog-boxShadow: #{clr(grayscale, white-80, 0.3)};
+  --lcc-color--dialog-background: #{clr(grayscale, white-90)};
+  --lcc-color--dialog-boxShadow: #{clr(grayscale, white-85, 0.3)};
   --lcc-color--dialog-closeIcon: #{clr(grayscale, gray-25)};
   --lcc-color--dialog-closeIconOnHover: #{clr(grayscale, black-5)};
-  --lcc-color--dialog-headerBackground: #{clr(grayscale, white-85)};
+  --lcc-color--dialog-headerBackground: #{clr(grayscale, white-85, 0.9)};
   --lcc-color--dialog-headerBorderBottom: #{clr(grayscale, gray-75)};
 
   --lcc-color--documentsScreen-documentLabelOnHover: #{clr(primary, light)};
@@ -133,7 +133,8 @@
   --lcc-color--general-dividerLine: #{clr(grayscale, gray-75, 0.5)};
   --lcc-color--general-dividerLineLight: #{clr(grayscale, white-85, 0.5)};
   --lcc-color--general-editorTextSpacer: #{clr(grayscale, gray-75)};
-  --lcc-color--general-overlayBackdrop: #{clr(grayscale, black-10, 0.7)};
+  --lcc-color--general-overlayDialogBackdrop: #{clr(grayscale, black-20, 0.4)};
+  --lcc-color--general-overlayModalBackdrop: #{clr(grayscale, black-10, 0.7)};
   --lcc-color--general-scrollbar: #{clr(grayscale, gray-50, 0.7)};
 
   --lcc-color--header-background1: #{clr(primary)};
@@ -152,12 +153,6 @@
   --lcc-color--imageExplorer-imageBackgroundOnHover: #{clr(grayscale, gray-75, 0.5)};
   --lcc-color--imageExplorer-imageBorderOnHover: #{clr(primary, base)};
   --lcc-color--imageExplorer-text: #{clr(grayscale, black-20)};
-
-  --lcc-color--photoViewer-buttons: #{clr(grayscale, gray-35, 0.8)};
-  --lcc-color--photoViewer-buttonsOnHover: #{clr(grayscale, gray-35, 0.9)};
-  --lcc-color--photoViewer-captionBackground: #{clr(grayscale, white-98, 0.8)};
-  --lcc-color--photoViewer-captionText: #{clr(grayscale, black-10)};
-  --lcc-color--photoViewer-detailsContainerBackground: #{clr(secondary, lighter, 0.1)};
 
   --lcc-color--input-background: #{clr(grayscale, white-98)};
   --lcc-color--input-border: #{clr(grayscale, gray-65)};

@@ -1,25 +1,30 @@
-<div class="image-container">
+<div
+  #navigationButtonsContainer
+  class="navigation-buttons-container">
+  <div class="button-wrapper">
+    <button
+      #previousPhotoButton
+      class="lcc-secondary-button lcc-light-button"
+      [tooltip]="'Previous photo'"
+      (click)="onPreviousPhoto()">
+      <i-feather name="chevron-left"></i-feather>
+    </button>
+  </div>
+
+  <div class="button-wrapper">
+    <button
+      #nextPhotoButton
+      class="lcc-secondary-button lcc-light-button"
+      [tooltip]="'Next photo'"
+      (click)="onNextPhoto()">
+      <i-feather name="chevron-right"></i-feather>
+    </button>
+  </div>
+</div>
+
+<figure>
   <img
-    #photo
     [src]="'assets/photos/' + photos[index].fileName + '.jpg'"
-    (load)="onPhotoLoad()"
     default="assets/image-placeholder.png" />
-</div>
-
-<div class="details-container">
-  <button
-    class="previous-photo-button lcc-primary-button"
-    [tooltip]="'Previous photo'"
-    (click)="onPreviousPhoto()">
-    <i-feather name="chevron-left"></i-feather>
-  </button>
-
-  <figcaption class="lcc-truncate">{{ photos[index].description }}</figcaption>
-
-  <button
-    class="next-photo-button lcc-primary-button"
-    [tooltip]="'Next photo'"
-    (click)="onNextPhoto()">
-    <i-feather name="chevron-right"></i-feather>
-  </button>
-</div>
+  <figcaption class="lcc-truncate">{{ photos[index].caption }}</figcaption>
+</figure>

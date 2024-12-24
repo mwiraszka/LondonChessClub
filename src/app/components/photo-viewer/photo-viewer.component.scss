@@ -1,55 +1,45 @@
-.image-container {
+figure {
   width: 100%;
-  // Account for height of details container below
-  height: calc(100% - 50px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: inherit;
+  border-radius: inherit;
+  background-color: var(--lcc-color--dialog-background);
 
   img {
-    // TODO: Figure out how to keep centered without needing to specify dialog height
-    // (same applies to Document Viewer and Image Explorer components)
-    max-height: calc(90vh - 80px);
-    max-width: min(90vw, var(--lcc-width--appContent));
-
-    &:not(.portrait-mode) {
-      height: auto;
-    }
-
-    &.portrait-mode {
-      width: auto;
-    }
+    width: 100%;
+    // TODO: Should not need to be hard-coded like this to be centred vertically
+    max-height: calc(90vh - 30px - 30px);
   }
 }
 
-.details-container {
-  width: 100%;
+figcaption {
+  width: calc(100% - 8px);
+  margin: 4px;
+  padding: 4px;
+  border-radius: var(--lcc-borderRadius--small);
+  line-height: 20px;
+  text-align: center;
+
+  // TODO: No idea why this is needed
+  translate: 0 -2px;
+}
+
+.navigation-buttons-container {
+  justify-self: center;
+  width: calc(100% - 16px);
+  max-width: calc(var(--lcc-width--appContent) + 100px);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
-  text-align: center;
-  gap: 8px;
-  padding: 8px;
-  background-color: var(--lcc-color--photoViewer-detailsContainerBackground);
-
-  figcaption {
-    flex: 1;
-    padding: 4px 8px;
-    border-radius: var(--lcc-borderRadius--small);
-    background-color: var(--lcc-color--photoViewer-captionBackground);
-    color: var(--lcc-color--photoViewer-captionText);
-
-    // Ensure top of second line is hidden from view on truncation
-    line-height: 21px;
-  }
+  justify-content: space-between;
+  margin: 8px;
 
   .previous-photo-button,
   .next-photo-button {
     display: flex;
-    padding: 4px;
-    background-color: var(--lcc-color--photoViewer-buttons);
-
-    &:hover {
-      background-color: var(--lcc-color--photoViewer-buttonsOnHover);
-    }
+    padding: 8px;
   }
 }

@@ -3,15 +3,18 @@ import { firstValueFrom } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 
-import { ModalComponent } from '@app/components/modal/modal.component';
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { DialogService } from '@app/services';
 import { ArticlesSelectors } from '@app/store/articles';
-import { Modal, ModalResult } from '@app/types';
+import { BasicDialogResult, Dialog } from '@app/types';
 
 @Injectable({ providedIn: 'root' })
 export class UnsavedArticleGuard {
   constructor(
-    private readonly dialogService: DialogService<ModalComponent, ModalResult>,
+    private readonly dialogService: DialogService<
+      BasicDialogComponent,
+      BasicDialogResult
+    >,
     private readonly store: Store,
   ) {}
 
@@ -24,15 +27,15 @@ export class UnsavedArticleGuard {
       return true;
     }
 
-    const modal: Modal = {
+    const dialog: Dialog = {
       title: 'Unsaved changes',
       body: 'Are you sure you want to leave? Any unsaved changes to this article will be lost.',
       confirmButtonText: 'Leave',
     };
 
     const result = await this.dialogService.open({
-      componentType: ModalComponent,
-      inputs: { modal },
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
     });
 
     return result === 'confirm';

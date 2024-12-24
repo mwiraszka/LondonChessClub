@@ -4,18 +4,18 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 import { AdminControlsComponent } from '@app/components/admin-controls/admin-controls.component';
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
-import { ModalComponent } from '@app/components/modal/modal.component';
 import { PaginatorComponent } from '@app/components/paginator/paginator.component';
 import { IconsModule } from '@app/icons';
 import { FormatDatePipe } from '@app/pipes/format-date.pipe';
 import { DialogService } from '@app/services';
 import { MembersActions, MembersSelectors } from '@app/store/members';
 import {
+  type BasicDialogResult,
+  type Dialog,
   type Link,
   type Member,
-  type Modal,
-  type ModalResult,
   NavPathTypes,
 } from '@app/types';
 import { camelize, kebabize } from '@app/utils';
@@ -62,7 +62,10 @@ export class MembersTableComponent implements OnInit {
   ];
 
   constructor(
-    private readonly dialogService: DialogService<ModalComponent, ModalResult>,
+    private readonly dialogService: DialogService<
+      BasicDialogComponent,
+      BasicDialogResult
+    >,
     private readonly store: Store,
   ) {}
 
@@ -75,7 +78,7 @@ export class MembersTableComponent implements OnInit {
   }
 
   public async onDeleteMember(member: Member): Promise<void> {
-    const modal: Modal = {
+    const dialog: Dialog = {
       title: 'Confirm member deletion',
       body: `Delete ${member.firstName} ${member.lastName}?`,
       confirmButtonText: 'Delete',
@@ -83,8 +86,8 @@ export class MembersTableComponent implements OnInit {
     };
 
     const result = await this.dialogService.open({
-      componentType: ModalComponent,
-      inputs: { modal },
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
     });
 
     if (result === 'confirm') {

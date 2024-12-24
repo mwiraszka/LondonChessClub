@@ -1,6 +1,4 @@
 :host {
-  width: min(90vw, var(--lcc-width--appContent));
-  height: calc(90vh - 30px);
   display: flex;
   flex-direction: column;
 }
@@ -13,7 +11,9 @@
 }
 
 pdf-viewer {
-  flex: 1;
+  width: var(--lcc-width--appContent);
+  max-width: inherit;
+  height: 90vh;
 
   ::ng-deep .ng2-pdf-viewer-container {
     overflow-x: hidden;

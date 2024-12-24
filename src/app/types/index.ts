@@ -10,7 +10,12 @@ export {
 export type { ClubDocument } from './club-document.model';
 export { ControlMode } from './control-mode.model';
 export type { Id, IsoDate, Url } from './core.model';
-export type { DialogConfig, DialogOutput } from './dialog.model';
+export type {
+  BasicDialogResult,
+  Dialog,
+  DialogConfig,
+  DialogOutput,
+} from './dialog.model';
 export type { DbCollection } from './db-collection.model';
 export {
   type Event,
@@ -30,13 +35,6 @@ export {
   type MemberFormGroup,
   newMemberFormTemplate,
 } from './member.model';
-export type { Modal, ModalResult } from './modal.model';
-export {
-  type ModalButton,
-  type ModalButtonActionTypesType,
-  ModalButtonActionTypes,
-  ModalButtonStyleTypes,
-} from './modal-button.model';
 export type { ModificationInfo } from './modification-info.model';
 export { NavPathTypes } from './nav-paths.model';
 export type {

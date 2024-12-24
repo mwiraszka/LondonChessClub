@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
 import { filter, first } from 'rxjs/operators';
 
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
@@ -29,6 +30,7 @@ import { isDefined } from '@app/utils';
     HeaderComponent,
     NavComponent,
     RouterOutlet,
+    ScrollingModule,
     ToasterComponent,
     UpcomingEventBannerComponent,
   ],

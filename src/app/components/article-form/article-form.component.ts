@@ -14,10 +14,10 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
 import { ImagePreloadDirective } from '@app/components/image-preload/image-preload.directive';
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
-import { ModalComponent } from '@app/components/modal/modal.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
@@ -32,8 +32,8 @@ import {
   ArticleFormData,
   ArticleFormGroup,
   ControlMode,
+  Dialog,
   Id,
-  Modal,
   Url,
   newArticleFormTemplate,
 } from '@app/types';
@@ -196,7 +196,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const modal: Modal = {
+    const dialog: Dialog = {
       title:
         this.controlMode === 'edit' ? 'Confirm article update' : 'Confirm new article',
       body:
@@ -207,8 +207,8 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     };
 
     const result = await this.dialogService.open({
-      componentType: ModalComponent,
-      inputs: { modal },
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
     });
 
     if (result !== 'confirm') {

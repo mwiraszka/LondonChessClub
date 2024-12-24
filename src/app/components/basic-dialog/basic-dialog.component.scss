@@ -1,6 +1,5 @@
 :host {
-  width: 100%;
-  max-width: 450px;
+  max-width: 450px !important;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -14,4 +13,5 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
+  margin-top: 8px;
 }

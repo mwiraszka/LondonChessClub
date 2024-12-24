@@ -15,19 +15,19 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { DatePickerComponent } from '@app/components/date-picker/date-picker.component';
-import { ModalComponent } from '@app/components/modal/modal.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
 import { DialogService } from '@app/services';
 import { EventsActions, EventsSelectors } from '@app/store/events';
 import {
+  type BasicDialogResult,
   type ControlMode,
+  type Dialog,
   type EventFormData,
   type EventFormGroup,
-  type Modal,
-  type ModalResult,
   newEventFormTemplate,
 } from '@app/types';
 import { isDefined, isTime } from '@app/utils';
@@ -56,7 +56,10 @@ export class EventFormComponent implements OnInit {
   private controlMode: ControlMode | null = null;
 
   constructor(
-    private readonly dialogService: DialogService<ModalComponent, ModalResult>,
+    private readonly dialogService: DialogService<
+      BasicDialogComponent,
+      BasicDialogResult
+    >,
     private readonly store: Store,
     private readonly formBuilder: FormBuilder,
   ) {}
@@ -113,15 +116,15 @@ export class EventFormComponent implements OnInit {
       return;
     }
 
-    const modal: Modal = {
+    const dialog: Dialog = {
       title: this.controlMode === 'edit' ? 'Confirm event update' : 'Confirm new event',
       body: this.controlMode === 'edit' ? `Update ${eventTitle}?` : `Add ${eventTitle}?`,
       confirmButtonText: this.controlMode === 'edit' ? 'Update' : 'Add',
     };
 
     const result = await this.dialogService.open({
-      componentType: ModalComponent,
-      inputs: { modal },
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
     });
 
     if (result !== 'confirm') {

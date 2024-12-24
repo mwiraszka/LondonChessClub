@@ -1,5 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import { pick } from 'lodash';
 import { debounceTime, filter, first } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
@@ -87,13 +88,18 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
         ),
       )
       .subscribe(({ article, articleFormData, controlMode }) => {
-        // temp
-        console.log(':: article', article);
-        console.log(':: articleFormData', articleFormData);
-        console.log(':: controlMode', controlMode);
-
-        if (controlMode === 'add' && !articleFormData) {
+        if (!articleFormData) {
           articleFormData = newArticleFormTemplate;
+
+          // TODO: Generalize this and create a util function
+
+          // Copy over form-relevant properties from selected article
+          if (controlMode === 'edit' && article) {
+            articleFormData = pick(
+              article,
+              Object.getOwnPropertyNames(articleFormData),
+            ) as typeof articleFormData;
+          }
         }
 
         this.controlMode = controlMode;

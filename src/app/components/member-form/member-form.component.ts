@@ -1,5 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import { pick } from 'lodash';
 import { debounceTime, filter, first } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
@@ -73,9 +74,17 @@ export class MemberFormComponent implements OnInit {
           controlMode === 'add' ? true : isDefined(member),
         ),
       )
-      .subscribe(({ memberFormData, controlMode }) => {
-        if (controlMode === 'add' && !memberFormData) {
+      .subscribe(({ member, memberFormData, controlMode }) => {
+        if (!memberFormData) {
           memberFormData = newMemberFormTemplate;
+
+          // Copy over form-relevant properties from selected member
+          if (controlMode === 'edit' && member) {
+            memberFormData = pick(
+              member,
+              Object.getOwnPropertyNames(memberFormData),
+            ) as typeof memberFormData;
+          }
         }
 
         this.controlMode = controlMode;

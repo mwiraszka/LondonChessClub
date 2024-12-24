@@ -1,5 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import { pick } from 'lodash';
 import moment from 'moment-timezone';
 import { debounceTime, filter, first } from 'rxjs/operators';
 
@@ -68,11 +69,19 @@ export class EventFormComponent implements OnInit {
           controlMode === 'add' ? true : isDefined(event),
         ),
       )
-      .subscribe(({ eventFormData, controlMode }) => {
-        if (controlMode === 'add' && !eventFormData) {
-          eventFormData = newEventFormTemplate;
+      .subscribe(({ event, eventFormData, controlMode }) => {
+        eventFormData = newEventFormTemplate;
+
+        // Copy over form-relevant properties from selected event
+        if (controlMode === 'edit' && event) {
+          eventFormData = pick(
+            event,
+            Object.getOwnPropertyNames(eventFormData),
+          ) as typeof eventFormData;
         }
+
         this.controlMode = controlMode;
+
         this.initForm(eventFormData!);
         this.initFormValueChangeListener();
       });

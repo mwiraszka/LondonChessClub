@@ -70,7 +70,7 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
   // initiated with a value, and therefore touched upon creation
   registerOnTouched(fn: (_: any) => any): void {}
 
-  private onChange(date: Date): Date {
+  private onChange(date: IsoDate): IsoDate {
     return date;
   }
 
@@ -87,7 +87,7 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
   onSelectCell(row: number, column: number): void {
     this.selectedDate = this.getCalendarFirstDay().add(row, 'weeks').add(column, 'days');
     this.renderCalendar();
-    this.onChange(this.selectedDate.toDate());
+    this.onChange(this.selectedDate.toISOString());
   }
 
   public renderCalendar(): void {

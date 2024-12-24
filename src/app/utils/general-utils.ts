@@ -1,4 +1,4 @@
-import { isEqual } from 'lodash';
+import { isEqual, mapValues } from 'lodash';
 
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -24,19 +24,25 @@ export function isSystemDark(): boolean {
 }
 
 /**
- * A wrapper for lodash's `isEqual()`
+ * An extension of lodash's `isEqual()`
  *
  * @param {object | null} a The first object to compare
  * @param {object | null} b The second object to compare
+ * @param {boolean} strict Treat null, undefined and empty string values as unique
  * @returns {boolean} Whether the two objects are (deeply) equal
  */
-export function areSame(a: object | null, b: object | null): boolean {
+export function areSame(a: object | null, b: object | null, strict = false): boolean {
   if (a === null && b === null) {
     return true;
   }
 
   if (a === null || b === null) {
     return false;
+  }
+
+  if (!strict) {
+    a = mapValues(a, value => (value === undefined || value === '' ? null : value));
+    b = mapValues(b, value => (value === undefined || value === '' ? null : value));
   }
 
   return isEqual(a, b);

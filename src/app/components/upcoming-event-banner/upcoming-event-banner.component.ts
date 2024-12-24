@@ -6,8 +6,8 @@ import { RouterLink } from '@angular/router';
 
 import { IconsModule } from '@app/icons';
 import { FormatDatePipe } from '@app/pipes/format-date.pipe';
+import { AppActions } from '@app/store/app';
 import { EventsSelectors } from '@app/store/events';
-import { UserSettingsActions } from '@app/store/user-settings';
 import { NavPathTypes } from '@app/types';
 import { kebabize } from '@app/utils';
 
@@ -26,6 +26,6 @@ export class UpcomingEventBannerComponent {
   constructor(private readonly store: Store) {}
 
   public onClearBanner(): void {
-    this.store.dispatch(UserSettingsActions.upcomingEventBannerCleared());
+    this.store.dispatch(AppActions.upcomingEventBannerCleared());
   }
 }

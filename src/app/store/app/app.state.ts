@@ -1,17 +1,18 @@
-import { ArticlesState } from '@app/store/articles/articles.state';
-import { AuthState } from '@app/store/auth/auth.state';
-import { EventsState } from '@app/store/events/events.state';
-import { MembersState } from '@app/store/members/members.state';
-import { NavState } from '@app/store/nav/nav.state';
-import { ToasterState } from '@app/store/toaster/toaster.state';
-import { UserSettingsState } from '@app/store/user-settings/user-settings.state';
+import { IsoDate, Toast } from '@app/types';
+import { isSystemDark } from '@app/utils';
 
 export interface AppState {
-  articlesState: ArticlesState;
-  authState: AuthState;
-  eventsState: EventsState;
-  membersState: MembersState;
-  navState: NavState;
-  toasterState: ToasterState;
-  userSettingsState: UserSettingsState;
+  isDarkMode: boolean;
+  isSafeMode: boolean;
+  bannerLastCleared: IsoDate | null;
+  showUpcomingEventBanner: boolean;
+  toasts: Toast[];
 }
+
+export const initialState: AppState = {
+  isDarkMode: isSystemDark(),
+  isSafeMode: false,
+  bannerLastCleared: null,
+  showUpcomingEventBanner: true,
+  toasts: [],
+};

@@ -1,7 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
-import { filter, first } from 'rxjs/operators';
 
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule, DOCUMENT } from '@angular/common';
@@ -14,9 +13,7 @@ import { NavComponent } from '@app/components/nav/nav.component';
 import { ToasterComponent } from '@app/components/toaster/toaster.component';
 import { UpcomingEventBannerComponent } from '@app/components/upcoming-event-banner/upcoming-event-banner.component';
 import { LoaderService } from '@app/services';
-import { EventsSelectors } from '@app/store/events';
-import { ToasterSelectors } from '@app/store/toaster';
-import { UserSettingsActions, UserSettingsSelectors } from '@app/store/user-settings';
+import { AppActions, AppSelectors } from '@app/store/app';
 import { isDefined } from '@app/utils';
 
 @UntilDestroy()
@@ -36,19 +33,7 @@ import { isDefined } from '@app/utils';
   ],
 })
 export class AppComponent implements OnInit {
-  public readonly nextEvent$ = this.store.select(EventsSelectors.selectNextEvent);
-  public readonly showToaster$ = this.store.select(
-    ToasterSelectors.selectIsDisplayingToasts,
-  );
-  public readonly showUpcomingEventBanner$ = this.store.select(
-    UserSettingsSelectors.selectShowUpcomingEventBanner,
-  );
-
-  private readonly bannerLastCleared$ = this.store.select(
-    UserSettingsSelectors.selectBannerLastCleared,
-  );
-  public readonly isDarkMode$ = this.store.select(UserSettingsSelectors.selectIsDarkMode);
-  public readonly isLoading = true;
+  public readonly appViewModel$ = this.store.select(AppSelectors.selectAppViewModel);
 
   constructor(
     public readonly loaderService: LoaderService,
@@ -59,15 +44,16 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isDarkMode$.pipe(untilDestroyed(this)).subscribe(isDarkMode => {
-      this._document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-    });
+    this.appViewModel$
+      .pipe(untilDestroyed(this))
+      .subscribe(({ isDarkMode, bannerLastCleared }) => {
+        this._document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
 
-    this.bannerLastCleared$
-      .pipe(first(), filter(isDefined))
-      .subscribe(bannerLastCleared => {
-        if (moment().diff(bannerLastCleared, 'days') > 0) {
-          this.store.dispatch(UserSettingsActions.upcomingEventBannerReinstated());
+        if (
+          isDefined(bannerLastCleared) &&
+          moment().diff(bannerLastCleared, 'days') > 0
+        ) {
+          this.store.dispatch(AppActions.upcomingEventBannerReinstated());
         }
       });
   }

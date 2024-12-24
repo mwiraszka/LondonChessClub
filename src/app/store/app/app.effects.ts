@@ -13,10 +13,13 @@ import { type Toast, ToastTypes } from '@app/types';
 
 import { environment } from '@env';
 
-import * as ToasterActions from './toaster.actions';
+import * as AppActions from './app.actions';
 
 @Injectable()
-export class ToasterEffects {
+export class AppEffects {
+  // TODO: Streamline toast flow and remove from store by implementing
+  // a generalized Notification Service instead
+
   //#region Articles
   addPublishArticleSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
@@ -27,7 +30,7 @@ export class ToasterEffects {
           message: `Successfully published ${article.title} and updated database`,
           type: ToastTypes.SUCCESS,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -41,7 +44,7 @@ export class ToasterEffects {
           message: error.message,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -55,7 +58,7 @@ export class ToasterEffects {
           message: `Successfully updated ${article.title} in the database`,
           type: ToastTypes.SUCCESS,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -69,7 +72,7 @@ export class ToasterEffects {
           message: error.message,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -83,7 +86,7 @@ export class ToasterEffects {
           message: `Successfully deleted ${article.title} from the database`,
           type: ToastTypes.SUCCESS,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -97,7 +100,7 @@ export class ToasterEffects {
           message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -113,7 +116,7 @@ export class ToasterEffects {
           message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -129,7 +132,7 @@ export class ToasterEffects {
           message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -145,7 +148,7 @@ export class ToasterEffects {
           message: `Successfully added ${event.title} to the database`,
           type: ToastTypes.SUCCESS,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -159,7 +162,7 @@ export class ToasterEffects {
           message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -173,7 +176,7 @@ export class ToasterEffects {
           message: `Successfully updated ${event.title} in the database`,
           type: ToastTypes.SUCCESS,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -187,7 +190,7 @@ export class ToasterEffects {
           message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -201,7 +204,7 @@ export class ToasterEffects {
           message: `Successfully deleted ${event.title} from the database`,
           type: ToastTypes.SUCCESS,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -215,7 +218,7 @@ export class ToasterEffects {
           message: errorResponse.error,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -231,7 +234,7 @@ export class ToasterEffects {
           message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -247,7 +250,7 @@ export class ToasterEffects {
           message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -263,7 +266,7 @@ export class ToasterEffects {
           message: `Successfully added ${member.firstName} ${member.lastName} to the database`,
           type: ToastTypes.SUCCESS,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -277,7 +280,7 @@ export class ToasterEffects {
           message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -291,7 +294,7 @@ export class ToasterEffects {
           message: `Successfully updated ${member.firstName} ${member.lastName} in the database`,
           type: ToastTypes.SUCCESS,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -305,7 +308,7 @@ export class ToasterEffects {
           message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -319,7 +322,7 @@ export class ToasterEffects {
           message: `Successfully deleted ${member.firstName} ${member.lastName} from the database`,
           type: ToastTypes.SUCCESS,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -333,7 +336,7 @@ export class ToasterEffects {
           message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -349,7 +352,7 @@ export class ToasterEffects {
           message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -365,7 +368,7 @@ export class ToasterEffects {
           message: `[${errorResponse.status}] ${errorResponse.error}`,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -381,7 +384,7 @@ export class ToasterEffects {
           message: 'Successfully logged in',
           type: ToastTypes.SUCCESS,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -395,7 +398,7 @@ export class ToasterEffects {
           message: "Just need to create a new password and you're all set!",
           type: ToastTypes.INFO,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -409,7 +412,7 @@ export class ToasterEffects {
           message: error.message,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -423,7 +426,7 @@ export class ToasterEffects {
           message: 'Successfully logged out',
           type: ToastTypes.SUCCESS,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -437,7 +440,7 @@ export class ToasterEffects {
           message: 'A 6-digit code has been sent to your email',
           type: ToastTypes.INFO,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -451,7 +454,7 @@ export class ToasterEffects {
           message: error.message,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -465,7 +468,7 @@ export class ToasterEffects {
           message: 'Successfully changed password',
           type: ToastTypes.SUCCESS,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -479,7 +482,7 @@ export class ToasterEffects {
           message: error.message,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -488,7 +491,7 @@ export class ToasterEffects {
   //#region Local storage
   addLocalStorageDetectedUnsupportedToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ToasterActions.localStorageDetectedUnsupported),
+      ofType(AppActions.localStorageDetectedUnsupported),
       map(() => {
         const toast: Toast = {
           title: 'Unsupported local storage',
@@ -498,14 +501,14 @@ export class ToasterEffects {
           `,
           type: ToastTypes.INFO,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
 
   addLocalStorageDetectedFullToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ToasterActions.localStorageDetectedFull),
+      ofType(AppActions.localStorageDetectedFull),
       map(({ fileSize }) => {
         const toast: Toast = {
           title: 'Local storage quota exceeded',
@@ -514,7 +517,7 @@ export class ToasterEffects {
           `,
           type: ToastTypes.WARNING,
         };
-        return ToasterActions.toastAdded({ toast });
+        return AppActions.toastAdded({ toast });
       }),
     );
   });
@@ -522,9 +525,9 @@ export class ToasterEffects {
 
   expireToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ToasterActions.toastAdded),
+      ofType(AppActions.toastAdded),
       delay(4900),
-      map(({ toast }) => ToasterActions.toastExpired({ toast })),
+      map(({ toast }) => AppActions.toastExpired({ toast })),
     );
   });
 

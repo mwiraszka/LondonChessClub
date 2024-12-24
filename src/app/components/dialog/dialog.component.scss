@@ -35,7 +35,7 @@ $header-border-bottom-thickness: 2px;
 
   ::ng-deep > *:not(header) {
     max-height: calc(90vh - $header-height - $header-border-bottom-thickness);
-    max-width: inherit;
+    max-width: inherit !important;
     width: 100%;
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;

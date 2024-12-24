@@ -1,11 +1,11 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
 import { MemberFormData } from '@app/types';
 
 import * as MembersActions from './members.actions';
 import { MembersState, initialState } from './members.state';
 
-const membersReducer = createReducer(
+export const membersReducer = createReducer(
   initialState,
 
   on(
@@ -123,7 +123,3 @@ const membersReducer = createReducer(
     }),
   ),
 );
-
-export function reducer(state: MembersState, action: Action): MembersState {
-  return membersReducer(state, action);
-}

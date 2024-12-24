@@ -1,13 +1,12 @@
 import { getRouterSelectors } from '@ngrx/router-store';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { StoreFeatures } from '@app/types';
+import { AppSelectors } from '@app/store/app';
+import { AuthSelectors } from '@app/store/auth';
 
-import { AuthSelectors } from '../auth';
-import { UserSettingsSelectors } from '../user-settings';
 import { NavState } from './nav.state';
 
-export const selectNavState = createFeatureSelector<NavState>(StoreFeatures.NAV);
+export const selectNavState = createFeatureSelector<NavState>('nav');
 
 export const selectPathHistory = createSelector(
   selectNavState,
@@ -35,6 +34,6 @@ export const {
 
 export const selectNavViewModel = createSelector({
   user: AuthSelectors.selectUser,
-  isDarkMode: UserSettingsSelectors.selectIsDarkMode,
-  isSafeMode: UserSettingsSelectors.selectIsSafeMode,
+  isDarkMode: AppSelectors.selectIsDarkMode,
+  isSafeMode: AppSelectors.selectIsSafeMode,
 });

@@ -1,9 +1,9 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
 import * as navActions from './nav.actions';
 import { NavState, initialState } from './nav.state';
 
-const navReducer = createReducer(
+export const navReducer = createReducer(
   initialState,
 
   on(navActions.appendPathToHistory, (state, { path }): NavState => {
@@ -17,7 +17,3 @@ const navReducer = createReducer(
     };
   }),
 );
-
-export function reducer(state: NavState, action: Action): NavState {
-  return navReducer(state, action);
-}

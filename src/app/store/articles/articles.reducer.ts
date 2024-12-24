@@ -1,4 +1,4 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
 import { ArticleFormData } from '@app/types';
 import { sortArticles } from '@app/utils';
@@ -6,7 +6,7 @@ import { sortArticles } from '@app/utils';
 import * as ArticlesActions from './articles.actions';
 import { ArticlesState, initialState } from './articles.state';
 
-const articlesReducer = createReducer(
+export const articlesReducer = createReducer(
   initialState,
 
   on(
@@ -104,7 +104,3 @@ const articlesReducer = createReducer(
     }),
   ),
 );
-
-export function reducer(state: ArticlesState, action: Action): ArticlesState {
-  return articlesReducer(state, action);
-}

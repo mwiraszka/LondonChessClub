@@ -2,22 +2,24 @@
   <span class="lcc-loading-spinner"></span>
 }
 
-@if (showToaster$ | async) {
-  <lcc-toaster></lcc-toaster>
+@if (appViewModel$ | async; as vm) {
+  @if (vm.showToaster) {
+    <lcc-toaster></lcc-toaster>
+  }
+
+  @if (vm.showUpcomingEventBanner && vm.nextEvent) {
+    <lcc-upcoming-event-banner></lcc-upcoming-event-banner>
+  }
+
+  <lcc-header></lcc-header>
+
+  <lcc-nav></lcc-nav>
+
+  <!-- TODO: Setup cdkScrollable for modal/non-modal scrolling flag on Dialog Service -->
+  <main
+    cdkScrollable
+    cdk-scrollable>
+    <router-outlet></router-outlet>
+    <lcc-footer></lcc-footer>
+  </main>
 }
-
-@if ((showUpcomingEventBanner$ | async) && (nextEvent$ | async)) {
-  <lcc-upcoming-event-banner></lcc-upcoming-event-banner>
-}
-
-<lcc-header></lcc-header>
-
-<lcc-nav></lcc-nav>
-
-<!-- TODO: Setup cdkScrollable for modal/non-modal scrolling flag on Dialog Service -->
-<main
-  cdkScrollable
-  cdk-scrollable>
-  <router-outlet></router-outlet>
-  <lcc-footer></lcc-footer>
-</main>

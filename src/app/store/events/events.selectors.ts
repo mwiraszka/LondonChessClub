@@ -2,12 +2,12 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import moment from 'moment-timezone';
 
 import { AuthSelectors } from '@app/store/auth';
-import { Id, StoreFeatures, newEventFormTemplate } from '@app/types';
+import { Id, newEventFormTemplate } from '@app/types';
 import { areSame, customSort } from '@app/utils';
 
 import { EventsState } from './events.state';
 
-export const selectEventsState = createFeatureSelector<EventsState>(StoreFeatures.EVENTS);
+export const selectEventsState = createFeatureSelector<EventsState>('events');
 
 export const selectEvents = createSelector(selectEventsState, state =>
   [...state.events].sort(customSort('eventDate')),

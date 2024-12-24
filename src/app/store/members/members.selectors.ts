@@ -1,16 +1,13 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { create } from 'lodash';
 
+import { AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
-import { UserSettingsSelectors } from '@app/store/user-settings';
-import { Id, StoreFeatures, newMemberFormTemplate } from '@app/types';
+import { Id, newMemberFormTemplate } from '@app/types';
 import { areSame, customSort } from '@app/utils';
 
 import { MembersState } from './members.state';
 
-export const selectMembersState = createFeatureSelector<MembersState>(
-  StoreFeatures.MEMBERS,
-);
+export const selectMembersState = createFeatureSelector<MembersState>('members');
 
 export const selectMembers = createSelector(selectMembersState, state => state.members);
 
@@ -137,7 +134,7 @@ export const selectMembersTableViewModel = createSelector({
   pagination: _selectMembersTableViewModelPagination,
   isAdmin: AuthSelectors.selectIsAdmin,
   isAscending: selectIsAscending,
-  isSafeMode: UserSettingsSelectors.selectIsSafeMode,
+  isSafeMode: AppSelectors.selectIsSafeMode,
   showActiveOnly: selectShowActiveOnly,
   sortedBy: selectSortedBy,
   startIndex: selectStartIndex,
@@ -150,7 +147,7 @@ export const selectMemberFormViewModel = createSelector({
   memberNameInForm: selectMemberNameInForm,
   controlMode: selectControlMode,
   hasUnsavedChanges: selectHasUnsavedChanges,
-  isSafeMode: UserSettingsSelectors.selectIsSafeMode,
+  isSafeMode: AppSelectors.selectIsSafeMode,
 });
 
 export const selectMemberEditorViewModel = createSelector({

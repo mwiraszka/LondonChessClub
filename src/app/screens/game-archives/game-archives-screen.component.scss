@@ -76,7 +76,7 @@ $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
     }
 
     @include mixins.respond-to('gt-md') {
-      grid-template-columns: 4fr 1fr 1fr;
+      grid-template-columns: 1fr auto auto;
       grid-template-areas: 'player moves result';
     }
 

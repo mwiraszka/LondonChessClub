@@ -26,7 +26,7 @@ import { ScreenHeaderComponent } from '@app/components/screen-header/screen-head
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
 import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';
-import { UserSettingsSelectors } from '@app/store/user-settings';
+import { AppSelectors } from '@app/store/app';
 import { FilterFormGroup, GameDetails } from '@app/types';
 import {
   getOpeningTallies,
@@ -249,7 +249,7 @@ export class GameArchivesScreenComponent implements OnInit {
 
   private initDarkModeListener(): void {
     this.store
-      .select(UserSettingsSelectors.selectIsDarkMode)
+      .select(AppSelectors.selectIsDarkMode)
       .pipe(untilDestroyed(this))
       .subscribe(isDarkMode => {
         this.openingChartOptions = {

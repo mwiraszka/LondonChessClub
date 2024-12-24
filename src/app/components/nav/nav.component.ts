@@ -8,8 +8,8 @@ import { DropdownDirective } from '@app/components/dropdown/dropdown.directive';
 import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
+import { AppActions } from '@app/store/app';
 import { NavSelectors } from '@app/store/nav';
-import { UserSettingsActions } from '@app/store/user-settings';
 import { Link, NavPathTypes } from '@app/types';
 
 @Component({
@@ -84,10 +84,10 @@ export class NavComponent {
   }
 
   public onToggleTheme(): void {
-    this.store.dispatch(UserSettingsActions.themeToggled());
+    this.store.dispatch(AppActions.themeToggled());
   }
 
   public onToggleSafeMode(): void {
-    this.store.dispatch(UserSettingsActions.safeModeToggled());
+    this.store.dispatch(AppActions.safeModeToggled());
   }
 }

@@ -22,12 +22,12 @@ import { ModificationInfoComponent } from '@app/components/modification-info/mod
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import { IconsModule } from '@app/icons';
 import { DialogService, ImagesService, LocalStorageService } from '@app/services';
+import { AppActions } from '@app/store/app';
 import {
   ArticlesActions,
   ArticlesSelectors,
   LOCAL_STORAGE_IMAGE_KEY,
 } from '@app/store/articles';
-import { ToasterActions } from '@app/store/toaster';
 import {
   ArticleFormData,
   ArticleFormGroup,
@@ -77,7 +77,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (!isStorageSupported) {
-      this.store.dispatch(ToasterActions.localStorageDetectedUnsupported());
+      this.store.dispatch(AppActions.localStorageDetectedUnsupported());
     }
 
     this.articleFormViewModel$
@@ -162,7 +162,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
           this.setImageByFile(imageFile);
         } catch (error) {
           const fileSize = formatBytes(imageFile.size);
-          this.store.dispatch(ToasterActions.localStorageDetectedFull({ fileSize }));
+          this.store.dispatch(AppActions.localStorageDetectedFull({ fileSize }));
         }
       };
     }

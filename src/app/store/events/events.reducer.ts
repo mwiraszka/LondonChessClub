@@ -1,11 +1,11 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
 import { EventFormData } from '@app/types';
 
 import * as EventsActions from './events.actions';
 import { EventsState, initialState } from './events.state';
 
-const scheduleReducer = createReducer(
+export const eventsReducer = createReducer(
   initialState,
 
   on(
@@ -96,7 +96,3 @@ const scheduleReducer = createReducer(
     }),
   ),
 );
-
-export function reducer(state: EventsState, action: Action): EventsState {
-  return scheduleReducer(state, action);
-}

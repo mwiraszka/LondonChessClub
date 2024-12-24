@@ -1,6 +1,4 @@
 export { ApiScope, isApiScope } from './api-scope.model';
-export { AppScreenTypes } from './app-screens.model';
-export { StoreFeatures } from './app-store-features.model';
 export {
   type Article,
   type ArticleFormData,
@@ -35,6 +33,7 @@ export {
   type MemberFormGroup,
   newMemberFormTemplate,
 } from './member.model';
+export type { MetaState } from './meta-state.model';
 export type { ModificationInfo } from './modification-info.model';
 export { NavPathTypes } from './nav-paths.model';
 export type {
@@ -42,5 +41,6 @@ export type {
   PasswordChangeResponse,
 } from './password-change.model';
 export type { Photo } from './photo.model';
+export { type StoreFeature, isStoreFeature } from './store-features.model';
 export { type Toast, ToastTypes } from './toast.model';
 export type { AdminUser, UnverifiedUser, User } from './user.model';

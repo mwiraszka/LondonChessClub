@@ -1,14 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { AuthSelectors } from '@app/store/auth';
-import { ArticleFormData, Id, StoreFeatures, newArticleFormTemplate } from '@app/types';
+import { ArticleFormData, Id, newArticleFormTemplate } from '@app/types';
 import { areSame } from '@app/utils';
 
 import { ArticlesState } from './articles.state';
 
-export const selectArticlesState = createFeatureSelector<ArticlesState>(
-  StoreFeatures.ARTICLES,
-);
+export const selectArticlesState = createFeatureSelector<ArticlesState>('articles');
 
 export const selectArticles = createSelector(
   selectArticlesState,

@@ -16,7 +16,7 @@ export class LocalStorageService {
     return storedValue ? (JSON.parse(storedValue) as T) : null;
   }
 
-  public set(key: string, value: any): void {
+  public set(key: string, value: unknown): void {
     this.storage.setItem(key, JSON.stringify(value));
   }
 

@@ -18,13 +18,18 @@ export function getPlayerName(
     return;
   }
 
-  const [lastName, firstName] = pgn.split(`[${color} "`)[1].split('"]')[0].split(', ');
+  try {
+    const [lastName, firstName] = pgn.split(`[${color} "`)[1].split('"]')[0].split(', ');
 
-  return name === 'first'
-    ? firstName
-    : name === 'last'
-      ? lastName
-      : `${firstName} ${lastName}`;
+    return name === 'first'
+      ? firstName
+      : name === 'last'
+        ? lastName
+        : `${firstName} ${lastName}`;
+  } catch (error) {
+    console.error('[LCC] Unable to parse player name:', error);
+    return;
+  }
 }
 
 /**
@@ -39,20 +44,21 @@ export function getScore(pgn?: string, color?: 'White' | 'Black'): GameScore | u
     return;
   }
 
-  const [whiteScore, blackScore] = pgn
-    .split('[Result "')?.[1]
-    ?.split('"]')?.[0]
-    ?.split('-');
+  try {
+    const [whiteScore, blackScore] = pgn.split('[Result "')[1].split('"]')[0].split('-');
+    if (whiteScore === '*') {
+      return '*';
+    }
 
-  if (whiteScore === '*') {
-    return '*';
-  }
+    if (!isGameScore(whiteScore) || !isGameScore(blackScore)) {
+      return;
+    }
 
-  if (!isGameScore(whiteScore) || !isGameScore(blackScore)) {
+    return color === 'White' ? whiteScore : blackScore;
+  } catch (error) {
+    console.error('[LCC] Unable to parse game score:', error);
     return;
   }
-
-  return color === 'White' ? whiteScore : blackScore;
 }
 
 /**
@@ -82,7 +88,7 @@ export function getOpeningTallies(pgns?: string[]): Map<string, number> | undefi
 
   const openingTallies: Map<string, number> = new Map([]);
 
-  for (let pgn of pgns) {
+  for (const pgn of pgns) {
     const ecoOpeningCode = getEcoOpeningCode(pgn);
     const talliesForThisEco = openingTallies.get(ecoOpeningCode) ?? 0;
     openingTallies.set(ecoOpeningCode, talliesForThisEco + 1);
@@ -119,7 +125,7 @@ export function getResultTallies(pgns?: string[]): Map<string, number> | undefin
 
   const resultTallies: Map<string, number> = new Map([]);
 
-  for (let pgn of pgns) {
+  for (const pgn of pgns) {
     const score = getScore(pgn, 'White');
 
     const result =

@@ -116,7 +116,7 @@ export class NavEffects {
       map(({ payload }) => payload.event.url),
       filter(currentPath => currentPath.startsWith('/event/')),
       map(currentPath => {
-        const [controlMode, eventId] = currentPath.split('/event/')[1]?.split('/');
+        const [controlMode, eventId] = currentPath.split('/event/')[1].split('/');
 
         if (controlMode === 'add' && !isDefined(eventId)) {
           return EventsActions.newEventRequested();
@@ -150,7 +150,7 @@ export class NavEffects {
       map(({ payload }) => payload.event.url),
       filter(currentPath => currentPath.startsWith('/member/')),
       map(currentPath => {
-        const [controlMode, memberId] = currentPath.split('/member/')[1]?.split('/');
+        const [controlMode, memberId] = currentPath.split('/member/')[1].split('/');
 
         if (controlMode === 'add' && !isDefined(memberId)) {
           return MembersActions.newMemberRequested();

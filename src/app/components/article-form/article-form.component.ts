@@ -31,6 +31,7 @@ import {
 import {
   ArticleFormData,
   ArticleFormGroup,
+  BasicDialogResult,
   ControlMode,
   Dialog,
   Id,
@@ -66,12 +67,16 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   private controlMode: ControlMode | null = null;
 
   constructor(
+    // TODO: Find a way to remove generics from the service to allow for multiple component types
+    // to be opened from a single host component but still maintaining type safety
+    private readonly dialogService1: DialogService<
+      BasicDialogComponent,
+      BasicDialogResult
+    >,
+    private readonly dialogService2: DialogService<ImageExplorerComponent, Id>,
     private readonly formBuilder: FormBuilder,
     private readonly imagesService: ImagesService,
     private readonly localStorageService: LocalStorageService,
-    // TODO: Find a way to remove generics from the service to allow for multiple component types
-    // to be opened from a single host component but still maintaining type safety
-    private readonly dialogService: DialogService<any, any>,
     private readonly store: Store,
   ) {}
 
@@ -91,9 +96,8 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
         if (!articleFormData) {
           articleFormData = newArticleFormTemplate;
 
-          // TODO: Generalize this and create a util function
-
           // Copy over form-relevant properties from selected article
+          // TODO: Generalize this and create a util function
           if (controlMode === 'edit' && article) {
             articleFormData = pick(
               article,
@@ -157,10 +161,11 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
       reader.onload = () => {
         const dataUrl = reader.result as Url;
         const imageFile = dataUrlToBlob(dataUrl);
+
         try {
           this.updateStoredFile(dataUrl);
           this.setImageByFile(imageFile);
-        } catch (error) {
+        } catch {
           const fileSize = formatBytes(imageFile.size);
           this.store.dispatch(AppActions.localStorageDetectedFull({ fileSize }));
         }
@@ -169,7 +174,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   }
 
   public async onOpenImageExplorer(): Promise<void> {
-    const thumbnailImageId = await this.dialogService.open({
+    const thumbnailImageId = await this.dialogService2.open({
       componentType: ImageExplorerComponent,
     });
 
@@ -206,7 +211,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
       confirmButtonText: this.controlMode === 'edit' ? 'Update' : 'Add',
     };
 
-    const result = await this.dialogService.open({
+    const result = await this.dialogService1.open({
       componentType: BasicDialogComponent,
       inputs: { dialog },
     });

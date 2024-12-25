@@ -9,7 +9,7 @@
 const gameScores = ['1', '1/2', '0', '*'] as const;
 export type GameScore = (typeof gameScores)[number];
 
-export function isGameScore(value: string): value is GameScore {
+export function isGameScore(value: unknown): value is GameScore {
   return gameScores.indexOf(value as GameScore) !== -1;
 }
 

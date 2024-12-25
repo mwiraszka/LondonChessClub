@@ -1,4 +1,4 @@
-import { isEqual, mapValues } from 'lodash';
+import { has, isEqual, mapValues } from 'lodash';
 
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -31,7 +31,11 @@ export function isSystemDark(): boolean {
  * @param {boolean} strict Treat null, undefined and empty string values as unique
  * @returns {boolean} Whether the two objects are (deeply) equal
  */
-export function areSame(a: object | null, b: object | null, strict = false): boolean {
+export function areSame(
+  a: object | null,
+  b: object | null,
+  strict: boolean = false,
+): boolean {
   if (a === null && b === null) {
     return true;
   }
@@ -49,46 +53,31 @@ export function areSame(a: object | null, b: object | null, strict = false): boo
 }
 
 /**
- * @param {any} value
- *
- * @returns {boolean} Whether the given value is `null`, `undefined`, or an empty object
- */
-export function isEmpty(value: any): boolean {
-  return !!value && Object.keys(value).length === 0 && value.constructor === Object;
-}
-
-/**
  * A custom sorting algorithm, to be used within an array sort method, for example
  * `sortedItems = items.sort(customSort(key, order))`
  *
  * @param {string} key The object property to sort by
- * @param {boolean} isAscending Whether sort is in ascending order (i.e. 1 -> 9, a -> z)
  *
  * @returns a custom sort function, set to sort the given keys based on their types
  * returning -1 if the first value is less; 0 if equal; 1 if the first value is greater
  */
 export function customSort(key: string) {
-  return function _sort(a: any, b: any, _key = key): -1 | 0 | 1 {
-    if (
-      _key.includes('.') &&
-      a.hasOwnProperty(_key.split('.')[0]) &&
-      b.hasOwnProperty(_key.split('.')[0])
-    ) {
-      // Call _sort() recursively until lowest-level property reached
-      const aInnerObject = (a as any)[_key.split('.')[0]];
-      const bInnerObject = (b as any)[_key.split('.')[0]];
-      return _sort(aInnerObject, bInnerObject, _key.split('.')[1]);
+  return function _sort(a: unknown, b: unknown, _key = key): -1 | 0 | 1 {
+    const [nestedObject, nestedKey] = _key.split('.');
+    if (has(a, nestedObject) && has(b, nestedObject)) {
+      // Call _sort() recursively until lowest-level property is reached
+      return _sort(a[nestedObject], b[nestedObject], nestedKey);
     }
 
-    if (!a.hasOwnProperty(_key) || !b.hasOwnProperty(_key)) {
+    if (!has(a, _key) || !has(b, _key)) {
       console.error(
         `[LCC] Sort error: property '${_key}' does not exist on both objects.`,
       );
       return 0;
     }
 
-    let aVal = a[_key];
-    let bVal = b[_key];
+    const aVal = a[_key as keyof typeof a];
+    const bVal = b[_key as keyof typeof b];
 
     if (!isDefined(aVal) && !isDefined(bVal)) {
       return 0;
@@ -116,7 +105,7 @@ export function customSort(key: string) {
       return 0;
     }
 
-    if (typeof aVal === 'number') {
+    if (typeof aVal === 'number' && typeof bVal === 'number') {
       return aVal < bVal ? -1 : aVal === bVal ? 0 : 1;
     }
 

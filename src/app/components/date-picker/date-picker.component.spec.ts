@@ -25,6 +25,7 @@ describe('DatePickerComponent', () => {
 
   it('should render previous month button', () => {
     expect(fixture.debugElement.query(By.css('.previous-month-button'))).not.toBeNull();
+    console.log('temp:', component, renderCalendarMock);
   });
 
   it('should render next month button', () => {

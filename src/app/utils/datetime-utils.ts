@@ -35,15 +35,18 @@ export function formatDate(
 /**
  * Check is the value provided is in the format [hh:mm A] (e.g. 5:45 PM, 6:00 am, 12:00 PM)
  */
-export function isTime(value: string): boolean {
-  return !!value.match(/^([1-9]|0[1-9]|1[0-2]):[0-5][0-9] ([AP][Mm]|[ap]m)$/);
+export function isTime(value: unknown): boolean {
+  return (
+    typeof value === 'string' &&
+    !!value.match(/^([1-9]|0[1-9]|1[0-2]):[0-5][0-9] ([AP][Mm]|[ap]m)$/)
+  );
 }
 
 /**
  * Check is the value provided is a valid ISO 8601 date string (i.e. YYYY-MM-DDTHH:mm:ss)
  */
-export function isIsoDate(value: string): boolean {
-  return moment(value, moment.ISO_8601, true).isValid();
+export function isIsoDate(value: unknown): boolean {
+  return typeof value === 'string' && moment(value, moment.ISO_8601, true).isValid();
 }
 
 /**

@@ -6,16 +6,11 @@
   text-align: start;
   padding: 16px 32px;
 
-  h3 {
-    font-weight: bold;
-  }
-
   .buttons-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 16px;
-    margin-top: 16px;
   }
 }

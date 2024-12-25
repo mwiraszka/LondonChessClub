@@ -28,6 +28,9 @@ jobs:
       - name: Build Angular project
         run: pnpm run build
 
+      - name: Run linter
+        run: pnpm run lint
+
       - name: Run unit tests
         run: pnpm run test
 

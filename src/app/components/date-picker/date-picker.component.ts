@@ -62,13 +62,13 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
     this.currentMonth = moment(date);
   }
 
-  registerOnChange(fn: (_: any) => any): void {
+  registerOnChange(fn: (date: IsoDate) => IsoDate): void {
     this.onChange = fn;
   }
 
   // Not implemented for this component since it is always
   // initiated with a value, and therefore touched upon creation
-  registerOnTouched(fn: (_: any) => any): void {}
+  registerOnTouched(): void {}
 
   private onChange(date: IsoDate): IsoDate {
     return date;
@@ -91,7 +91,7 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
   }
 
   public renderCalendar(): void {
-    let day = this.getCalendarFirstDay();
+    const day = this.getCalendarFirstDay();
 
     const weekRows = Array.from(
       this._document.querySelectorAll('lcc-date-picker .calendar-table tbody tr'),

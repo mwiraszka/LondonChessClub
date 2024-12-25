@@ -50,7 +50,7 @@ export class DialogComponent<TComponent extends DialogOutput<TResult>, TResult>
     );
 
     if (this.contentComponentRef) {
-      for (let key in this.dialogConfig.inputs) {
+      for (const key in this.dialogConfig.inputs) {
         this.contentComponentRef.setInput(key, this.dialogConfig.inputs[key]);
       }
 

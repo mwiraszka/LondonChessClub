@@ -1,3 +1,4 @@
+import { RouterState } from '@ngrx/router-store';
 import { Action, ActionReducer, MetaReducer } from '@ngrx/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
 
@@ -10,7 +11,7 @@ import { NavState } from '@app/store/nav/nav.state';
 
 import { environment } from '@env';
 
-class MetaState {
+class MetaStateClass {
   constructor(
     readonly app?: AppState,
     readonly articles?: ArticlesState,
@@ -18,8 +19,11 @@ class MetaState {
     readonly events?: EventsState,
     readonly members?: MembersState,
     readonly nav?: NavState,
+    readonly router?: RouterState,
   ) {}
 }
+
+export type MetaState = MetaStateClass;
 
 function actionLogMetaReducer(
   reducer: ActionReducer<MetaState>,
@@ -33,17 +37,21 @@ function actionLogMetaReducer(
   };
 }
 
+const hydratedStates = Object.keys(new MetaStateClass()).filter(
+  key => key !== 'router',
+) as Array<keyof Exclude<MetaState, RouterState>>;
+
 function hydrationMetaReducer(
   reducer: ActionReducer<MetaState>,
 ): ActionReducer<MetaState> {
   return localStorageSync({
-    keys: Object.keys(new MetaState()) as Array<keyof MetaState>,
+    keys: hydratedStates,
     rehydrate: true,
     restoreDates: false,
   })(reducer);
 }
 
-export const metaReducers: Array<MetaReducer<any, Action<string>>> =
+export const metaReducers: Array<MetaReducer<MetaState, Action<string>>> =
   environment.production
     ? [hydrationMetaReducer]
     : [actionLogMetaReducer, hydrationMetaReducer];

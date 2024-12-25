@@ -38,7 +38,7 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
     const container = this._document.getElementById(this.viewerId);
 
     if (container) {
-      const _ = LichessPgnViewer(container, {
+      LichessPgnViewer(container, {
         classes: this.viewerId, // Required for query selectors below
         initialPly: 'last',
         orientation: 'white',

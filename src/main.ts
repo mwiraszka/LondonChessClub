@@ -21,7 +21,7 @@ import { ArticlesStoreModule } from '@app/store/articles';
 import { AuthStoreModule } from '@app/store/auth';
 import { EventsStoreModule } from '@app/store/events';
 import { MembersStoreModule } from '@app/store/members';
-import { metaReducers } from '@app/store/meta-reducers';
+import { MetaState, metaReducers } from '@app/store/meta-reducers';
 import { NavStoreModule } from '@app/store/nav';
 import { actionSanitizer } from '@app/utils';
 
@@ -51,7 +51,7 @@ bootstrapApplication(AppComponent, {
         // or after 30 seconds (whichever comes first)
         registrationStrategy: 'registerWhenStable:30000',
       }),
-      StoreModule.forRoot<any, Action<string>>(
+      StoreModule.forRoot<MetaState, Action<string>>(
         { router: routerReducer },
         {
           metaReducers,

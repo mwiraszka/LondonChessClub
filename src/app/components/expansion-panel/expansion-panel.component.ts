@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { Component, Input, TemplateRef } from '@angular/core';
 
@@ -11,7 +10,7 @@ import { IconsModule } from '@app/icons';
   imports: [CommonModule, IconsModule, NgTemplateOutlet],
 })
 export class ExpansionPanelComponent {
-  @Input() headerTemplate!: TemplateRef<any>;
-  @Input() contentTemplate!: TemplateRef<any>;
+  @Input({ required: true }) headerTemplate!: TemplateRef<unknown>;
+  @Input({ required: true }) contentTemplate!: TemplateRef<unknown>;
   @Input() isOpen = false;
 }

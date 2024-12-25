@@ -9,7 +9,7 @@ import {
   CdkVirtualForOf,
   CdkVirtualScrollViewport,
 } from '@angular/cdk/scrolling';
-import { CommonModule, KeyValue, KeyValuePipe } from '@angular/common';
+import { CommonModule, KeyValuePipe } from '@angular/common';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
@@ -134,10 +134,7 @@ export class GameArchivesScreenComponent implements OnInit {
     return control.dirty && control.invalid;
   }
 
-  public originalOrder = (
-    a: KeyValue<string, GameDetails[]>,
-    b: KeyValue<string, GameDetails[]>,
-  ): number => {
+  public originalOrder = (): number => {
     return 0;
   };
 
@@ -335,7 +332,7 @@ export class GameArchivesScreenComponent implements OnInit {
 
   private updateStats(games: Map<string, GameDetails[]>): void {
     const pgns: string[] = [];
-    for (let [year] of games) {
+    for (const [year] of games) {
       const pgnsForThisYear = games.get(year)?.map(game => game.pgn) ?? [];
       pgns.push(...pgnsForThisYear);
     }

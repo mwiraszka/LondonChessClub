@@ -33,7 +33,6 @@ export {
   type MemberFormGroup,
   newMemberFormTemplate,
 } from './member.model';
-export type { MetaState } from './meta-state.model';
 export type { ModificationInfo } from './modification-info.model';
 export { NavPathTypes } from './nav-paths.model';
 export type {

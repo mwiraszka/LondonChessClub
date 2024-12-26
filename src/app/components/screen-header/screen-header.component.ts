@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
-import { IconsModule } from '@app/icons';
+import IconsModule from '@app/icons';
 
 @Component({
   selector: 'lcc-screen-header',

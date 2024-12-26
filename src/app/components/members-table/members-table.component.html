@@ -21,11 +21,11 @@
               track header
             ) {
               <th
-                [ngClass]="kebabize(header)"
-                (click)="onSelectTableHeader(camelize(kebabize(header)))">
+                [ngClass]="header | kebabCase"
+                (click)="onSelectTableHeader(header)">
                 <span>{{ header }}</span>
                 <div class="sort-icon-container">
-                  @if (vm.sortedBy === camelize(kebabize(header))) {
+                  @if (vm.sortedBy === header | camelCase) {
                     <i-feather
                       class="sort-icon"
                       [name]="vm.isAscending ? 'chevron-up' : 'chevron-down'">

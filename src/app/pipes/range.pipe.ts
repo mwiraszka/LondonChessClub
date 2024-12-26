@@ -1,14 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 /**
- * Produces an array of numbers, useful for basic loops in template
+ * Produce an array of sequential integers – useful for setting up basic loops in templates.
  */
 @Pipe({
   name: 'range',
 })
 export class RangePipe implements PipeTransform {
   transform(length: number, offset = 0): number[] {
-    if (!length) {
+    if (length < 1) {
       return [];
     }
 

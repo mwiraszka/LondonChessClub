@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { ClubMapComponent } from '@app/components/club-map/club-map.component';
-import { IconsModule } from '@app/icons';
+import IconsModule from '@app/icons';
 import { NavPathTypes } from '@app/types';
 
 @Component({

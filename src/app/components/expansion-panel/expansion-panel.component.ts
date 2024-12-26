@@ -1,7 +1,7 @@
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { Component, Input, TemplateRef } from '@angular/core';
 
-import { IconsModule } from '@app/icons';
+import IconsModule from '@app/icons';
 
 @Component({
   selector: 'lcc-expansion-panel',

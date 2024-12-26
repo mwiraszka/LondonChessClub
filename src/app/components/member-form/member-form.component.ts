@@ -18,7 +18,7 @@ import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.
 import { DatePickerComponent } from '@app/components/date-picker/date-picker.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
-import { IconsModule } from '@app/icons';
+import IconsModule from '@app/icons';
 import { DialogService } from '@app/services';
 import { MembersActions, MembersSelectors } from '@app/store/members';
 import {

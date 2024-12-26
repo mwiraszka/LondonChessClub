@@ -3,7 +3,7 @@ import { PDFProgressData, PdfViewerModule } from 'ng2-pdf-viewer';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { IconsModule } from '@app/icons';
+import IconsModule from '@app/icons';
 import { DialogOutput } from '@app/types';
 
 @Component({

@@ -1,19 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 /**
- * Truncates text down to the number of characters provided.
+ * Truncate text down to the number of characters provided.
+ *
  * With ellipsis added (default), text will truncate by an additional 3 characters.
  */
 @Pipe({
   name: 'truncateByChars',
 })
 export class TruncateByCharsPipe implements PipeTransform {
-  transform(
-    text: string | undefined,
-    characterLimit: number,
-    addEllipsis = true,
-  ): string {
-    if (!text) {
+  transform(text?: string, characterLimit?: number, addEllipsis = true): string {
+    if (!text || !characterLimit) {
       return '';
     }
 

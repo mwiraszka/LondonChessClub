@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
-import { IconsModule } from '@app/icons';
-import { FormatDatePipe } from '@app/pipes/format-date.pipe';
+import IconsModule from '@app/icons';
+import { FormatDatePipe } from '@app/pipes';
 import type { ModificationInfo } from '@app/types';
 
 @Component({

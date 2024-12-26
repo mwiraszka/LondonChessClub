@@ -24,7 +24,7 @@ import { ExpansionPanelComponent } from '@app/components/expansion-panel/expansi
 import { PgnViewerComponent } from '@app/components/pgn-viewer/pgn-viewer.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
-import { IconsModule } from '@app/icons';
+import IconsModule from '@app/icons';
 import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import { FilterFormGroup, GameDetails } from '@app/types';
@@ -34,7 +34,7 @@ import {
   getPlyCount,
   getResultTallies,
   getScore,
-} from '@app/utils/pgn-utils';
+} from '@app/utils';
 
 import * as fromPgns from './pgns';
 import { YEARS } from './years';

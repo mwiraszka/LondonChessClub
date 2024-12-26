@@ -5,20 +5,25 @@ import { FormControl } from '@angular/forms';
 import { Id, IsoDate } from './core.model';
 import type { ModificationInfo } from './modification-info.model';
 
-export enum EventTypes {
-  BLITZ_TOURNAMENT = 'blitz tournament',
-  RAPID_TOURNAMENT = 'rapid tournament',
-  ACTIVE_TOURNAMENT = 'active tournament',
-  LECTURE = 'lecture',
-  SIMUL = 'simul',
-  CHAMPIONSHIP = 'championship',
-  CLOSED = 'closed',
-  OTHER = 'other',
+const eventTypes = [
+  'blitz tournament',
+  'rapid tournament',
+  'active tournament',
+  'lecture',
+  'simul',
+  'championship',
+  'closed',
+  'other',
+] as const;
+export type EventType = (typeof eventTypes)[number];
+
+export function isEventType(value: unknown): value is EventType {
+  return eventTypes.indexOf(value as EventType) !== -1;
 }
 
 export interface Event {
   id: Id | null;
-  type: EventTypes;
+  type: EventType;
   eventDate: IsoDate;
   title: string;
   details: string;
@@ -33,7 +38,7 @@ export type EventFormGroup<EventFormData> = {
 } & { eventTime: FormControl<string> };
 
 export const newEventFormTemplate: EventFormData = {
-  type: EventTypes.BLITZ_TOURNAMENT,
+  type: 'blitz tournament',
   eventDate: moment()
     .tz('America/Toronto', false)
     .set('hours', 18)

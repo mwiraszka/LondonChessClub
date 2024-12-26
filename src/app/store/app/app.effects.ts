@@ -9,7 +9,7 @@ import { ArticlesActions } from '@app/store/articles';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { MembersActions } from '@app/store/members';
-import { type Toast, ToastTypes } from '@app/types';
+import type { Toast } from '@app/types';
 
 import { environment } from '@env';
 
@@ -28,7 +28,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'New article',
           message: `Successfully published ${article.title} and updated database`,
-          type: ToastTypes.SUCCESS,
+          type: 'success',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -42,7 +42,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'New article',
           message: error.message,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -56,7 +56,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Article update',
           message: `Successfully updated ${article.title} in the database`,
-          type: ToastTypes.SUCCESS,
+          type: 'success',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -70,7 +70,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Article update',
           message: error.message,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -84,7 +84,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Article deletion',
           message: `Successfully deleted ${article.title} from the database`,
-          type: ToastTypes.SUCCESS,
+          type: 'success',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -98,7 +98,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Article deletion',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -114,7 +114,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Load articles',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -130,7 +130,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Load article',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -146,7 +146,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'New event',
           message: `Successfully added ${event.title} to the database`,
-          type: ToastTypes.SUCCESS,
+          type: 'success',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -160,7 +160,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'New event',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -174,7 +174,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Event update',
           message: `Successfully updated ${event.title} in the database`,
-          type: ToastTypes.SUCCESS,
+          type: 'success',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -188,7 +188,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Event update',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -202,7 +202,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Event deletion',
           message: `Successfully deleted ${event.title} from the database`,
-          type: ToastTypes.SUCCESS,
+          type: 'success',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -216,7 +216,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Event deletion',
           message: errorResponse.error,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -232,7 +232,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Load events',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -248,7 +248,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Load event',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -264,7 +264,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'New member',
           message: `Successfully added ${member.firstName} ${member.lastName} to the database`,
-          type: ToastTypes.SUCCESS,
+          type: 'success',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -278,7 +278,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'New member',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -292,7 +292,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Member update',
           message: `Successfully updated ${member.firstName} ${member.lastName} in the database`,
-          type: ToastTypes.SUCCESS,
+          type: 'success',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -306,7 +306,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Member update',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -320,7 +320,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Member deletion',
           message: `Successfully deleted ${member.firstName} ${member.lastName} from the database`,
-          type: ToastTypes.SUCCESS,
+          type: 'success',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -334,7 +334,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Member deletion',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -350,7 +350,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Load members',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -366,7 +366,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Load member',
           message: `[${errorResponse.status}] ${errorResponse.error}`,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -382,7 +382,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Admin login',
           message: 'Successfully logged in',
-          type: ToastTypes.SUCCESS,
+          type: 'success',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -396,7 +396,7 @@ export class AppEffects {
         const toast: Toast = {
           title: `Welcome, ${user.firstName}`,
           message: "Just need to create a new password and you're all set!",
-          type: ToastTypes.INFO,
+          type: 'info',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -410,7 +410,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Admin login',
           message: error.message,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -424,7 +424,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Admin logout',
           message: 'Successfully logged out',
-          type: ToastTypes.SUCCESS,
+          type: 'success',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -438,7 +438,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Password change',
           message: 'A 6-digit code has been sent to your email',
-          type: ToastTypes.INFO,
+          type: 'info',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -452,7 +452,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Password change',
           message: error.message,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -466,7 +466,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Password change',
           message: 'Successfully changed password',
-          type: ToastTypes.SUCCESS,
+          type: 'success',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -480,7 +480,7 @@ export class AppEffects {
         const toast: Toast = {
           title: 'Password change',
           message: error.message,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -499,7 +499,7 @@ export class AppEffects {
             Local storage is not supported on this browser,
             which just means some fancy features may not work as expected.
           `,
-          type: ToastTypes.INFO,
+          type: 'info',
         };
         return AppActions.toastAdded({ toast });
       }),
@@ -515,7 +515,7 @@ export class AppEffects {
           message: `
             Oops! File (${fileSize}) does not fit in your browser's local storage - try a smaller file.
           `,
-          type: ToastTypes.WARNING,
+          type: 'warning',
         };
         return AppActions.toastAdded({ toast });
       }),

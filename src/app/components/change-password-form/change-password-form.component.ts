@@ -15,7 +15,7 @@ import {
 import { RouterLink } from '@angular/router';
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
-import { IconsModule } from '@app/icons';
+import IconsModule from '@app/icons';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { LoginRequest, NavPathTypes, PasswordChangeRequest, User } from '@app/types';
 import {

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
-import { TruncateByCharsPipe } from '@app/pipes/truncate-by-chars.pipe';
+import { TruncateByCharsPipe } from '@app/pipes';
 
 @Component({
   selector: 'lcc-tooltip',

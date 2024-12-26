@@ -1,7 +1,7 @@
 @if (nextEvent$ | async; as nextEvent) {
   <div
     class="container"
-    [ngClass]="kebabize(nextEvent.type)">
+    [ngClass]="nextEvent.type | kebabCase">
     <div class="banner-message-container">
       <a
         class="banner-message"

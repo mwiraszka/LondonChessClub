@@ -20,7 +20,7 @@ import { ImagePreloadDirective } from '@app/components/image-preload/image-prelo
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
-import { IconsModule } from '@app/icons';
+import IconsModule from '@app/icons';
 import { DialogService, ImagesService, LocalStorageService } from '@app/services';
 import { AppActions } from '@app/store/app';
 import {

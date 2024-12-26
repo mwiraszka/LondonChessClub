@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
-import { IconsModule } from '@app/icons';
+import IconsModule from '@app/icons';
 import { DIALOG_CONFIG_TOKEN } from '@app/services';
 import { DialogConfig, DialogOutput } from '@app/types';
 

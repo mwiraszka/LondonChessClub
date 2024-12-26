@@ -8,9 +8,8 @@ import { AdminControlsComponent } from '@app/components/admin-controls/admin-con
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { ImagePreloadDirective } from '@app/components/image-preload/image-preload.directive';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
-import { IconsModule } from '@app/icons';
-import { FormatDatePipe } from '@app/pipes/format-date.pipe';
-import { StripMarkdownPipe } from '@app/pipes/strip-markdown.pipe';
+import IconsModule from '@app/icons';
+import { FormatDatePipe, StripMarkdownPipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import {

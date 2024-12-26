@@ -3,7 +3,7 @@ import removeMd from 'remove-markdown';
 import { Pipe, PipeTransform } from '@angular/core';
 
 /**
- * Strips all markdown characters from the text.
+ * Strip all markdown characters from the text.
  */
 @Pipe({
   name: 'stripMarkdown',

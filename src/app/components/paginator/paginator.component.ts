@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
-import { IconsModule } from '@app/icons';
+import IconsModule from '@app/icons';
 
 @Component({
   selector: 'lcc-paginator',

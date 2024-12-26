@@ -10,7 +10,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 
-import { getTextWidth, isTouchScreen } from '@app/utils';
+import { getTextWidth } from '@app/utils';
 
 import { TooltipComponent } from './tooltip.component';
 
@@ -64,7 +64,7 @@ export class TooltipDirective implements OnChanges, OnDestroy {
 
   init(): void {
     this.destroy();
-    if (!this.componentRef && !isTouchScreen()) {
+    if (!this.componentRef && !window.matchMedia('(pointer: coarse)').matches) {
       this.componentRef = this.viewContainerRef.createComponent(TooltipComponent);
       this.setTooltipPlacement();
 

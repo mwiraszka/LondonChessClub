@@ -19,7 +19,8 @@ export {
   type Event,
   type EventFormData,
   type EventFormGroup,
-  EventTypes,
+  type EventType,
+  isEventType,
   newEventFormTemplate,
 } from './event.model';
 export type { FilterFormGroup } from './filter-form-group.model';
@@ -41,5 +42,5 @@ export type {
 } from './password-change.model';
 export type { Photo } from './photo.model';
 export { type StoreFeature, isStoreFeature } from './store-features.model';
-export { type Toast, ToastTypes } from './toast.model';
+export type { Toast } from './toast.model';
 export type { AdminUser, UnverifiedUser, User } from './user.model';

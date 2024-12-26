@@ -19,7 +19,7 @@ import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.
 import { DatePickerComponent } from '@app/components/date-picker/date-picker.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
-import { IconsModule } from '@app/icons';
+import IconsModule from '@app/icons';
 import { DialogService } from '@app/services';
 import { EventsActions, EventsSelectors } from '@app/store/events';
 import {
@@ -30,7 +30,7 @@ import {
   type EventFormGroup,
   newEventFormTemplate,
 } from '@app/types';
-import { isDefined, isTime } from '@app/utils';
+import { isDefined, isValidTime } from '@app/utils';
 import { timeValidator } from '@app/validators';
 
 @UntilDestroy()
@@ -176,7 +176,7 @@ export class EventFormComponent implements OnInit {
       .subscribe((value: Partial<EventFormData & { eventTime: string }>) => {
         const { eventTime, ...eventFormData } = value;
 
-        if (!!eventTime && isTime(eventTime)) {
+        if (!!eventTime && isValidTime(eventTime)) {
           let hours = Number(eventTime.split(':')[0]) % 12;
           if (eventTime.slice(-2).toUpperCase() === 'PM') {
             hours += 12;

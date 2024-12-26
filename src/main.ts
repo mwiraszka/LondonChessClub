@@ -25,8 +25,9 @@ import { MetaState, metaReducers } from '@app/store/meta-reducers';
 import { NavStoreModule } from '@app/store/nav';
 import { actionSanitizer } from '@app/utils';
 
+import { environment } from '@env';
+
 import { AppComponent } from './app/app.component';
-import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();

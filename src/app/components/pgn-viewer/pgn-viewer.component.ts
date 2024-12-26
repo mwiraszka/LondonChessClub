@@ -3,10 +3,9 @@ import LichessPgnViewer from 'lichess-pgn-viewer';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, Inject, Input, OnInit } from '@angular/core';
 
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { Link } from '@app/types';
-import { getLichessAnalysisUrl, getPlayerName, getScore } from '@app/utils/pgn-utils';
-
-import { LinkListComponent } from '../link-list/link-list.component';
+import { getLichessAnalysisUrl, getPlayerName, getScore } from '@app/utils';
 
 @Component({
   selector: 'lcc-pgn-viewer',

@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
-import { IconsModule } from '@app/icons';
+import IconsModule from '@app/icons';
 import { DialogOutput, Photo } from '@app/types';
 
 import { ImagePreloadDirective } from '../image-preload/image-preload.directive';

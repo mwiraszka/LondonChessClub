@@ -1,14 +1,13 @@
 import { take } from 'rxjs/operators';
+import * as uuid from 'uuid';
 
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
-import { IconsModule } from '@app/icons';
-import { FormatBytesPipe } from '@app/pipes/format-bytes.pipe';
-import { FormatDatePipe } from '@app/pipes/format-date.pipe';
+import IconsModule from '@app/icons';
+import { FormatBytesPipe, FormatDatePipe } from '@app/pipes';
 import { ImagesService, LoaderService } from '@app/services';
 import { DialogOutput, Id, Image } from '@app/types';
-import { generatePlaceholderImages } from '@app/utils';
 
 @Component({
   selector: 'lcc-image-explorer',
@@ -17,7 +16,7 @@ import { generatePlaceholderImages } from '@app/utils';
   imports: [CommonModule, FormatBytesPipe, FormatDatePipe, IconsModule],
 })
 export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
-  public images: Image[] = generatePlaceholderImages(25);
+  public images: Image[] = this.generatePlaceholderImages(25);
 
   @Output() public dialogResult = new EventEmitter<Id | 'close'>();
 
@@ -35,5 +34,15 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
         this.images = images;
         this.loaderService.setIsLoading(false);
       });
+  }
+
+  private generatePlaceholderImages(count: number): Image[] {
+    return Array(count).map(() => ({
+      articleAppearances: 0,
+      dateUploaded: new Date().toISOString(),
+      id: uuid.v4(),
+      presignedUrl: '',
+      size: 0,
+    }));
   }
 }

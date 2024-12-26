@@ -1,10 +1,9 @@
 import { UntilDestroy } from '@ngneat/until-destroy';
+import { kebabCase } from 'lodash';
 import { MarkdownComponent } from 'ngx-markdown';
 
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { AfterViewChecked, Component, Inject, Input } from '@angular/core';
-
-import { kebabize } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -50,8 +49,7 @@ export class MarkdownRendererComponent implements AfterViewChecked {
         const headerTextContent = (
           headerElement.textContent || headerElement.innerHTML
         ).replace(/(<([^>]+)>)/gi, '');
-        const kebabizedAnchorName = kebabize(headerTextContent);
-        headerElement.setAttribute('id', kebabizedAnchorName);
+        headerElement.setAttribute('id', kebabCase(headerTextContent));
       });
     }
   }

@@ -1,4 +1,5 @@
 import { Store } from '@ngrx/store';
+import { camelCase } from 'lodash';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -7,8 +8,8 @@ import { AdminControlsComponent } from '@app/components/admin-controls/admin-con
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PaginatorComponent } from '@app/components/paginator/paginator.component';
-import { IconsModule } from '@app/icons';
-import { FormatDatePipe } from '@app/pipes/format-date.pipe';
+import IconsModule from '@app/icons';
+import { CamelCasePipe, FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 import { MembersActions, MembersSelectors } from '@app/store/members';
 import {
@@ -18,7 +19,6 @@ import {
   type Member,
   NavPathTypes,
 } from '@app/types';
-import { camelize, kebabize } from '@app/utils';
 
 @Component({
   selector: 'lcc-members-table',
@@ -26,17 +26,17 @@ import { camelize, kebabize } from '@app/utils';
   styleUrl: './members-table.component.scss',
   imports: [
     AdminControlsComponent,
+    CamelCasePipe,
     CommonModule,
     FormatDatePipe,
     IconsModule,
+    KebabCasePipe,
     LinkListComponent,
     PaginatorComponent,
   ],
 })
 export class MembersTableComponent implements OnInit {
   public readonly NavPathTypes = NavPathTypes;
-  public readonly camelize = camelize;
-  public readonly kebabize = kebabize;
 
   public readonly addMemberLink: Link = {
     path: NavPathTypes.MEMBER + '/' + NavPathTypes.ADD,
@@ -96,6 +96,7 @@ export class MembersTableComponent implements OnInit {
   }
 
   public onSelectTableHeader(header: string): void {
+    header = camelCase(header);
     this.store.dispatch(MembersActions.tableHeaderSelected({ header }));
   }
 

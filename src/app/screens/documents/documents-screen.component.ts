@@ -5,8 +5,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { DocumentViewerComponent } from '@app/components/document-viewer/document-viewer.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
-import { IconsModule } from '@app/icons';
-import { FormatDatePipe } from '@app/pipes/format-date.pipe';
+import IconsModule from '@app/icons';
+import { FormatDatePipe } from '@app/pipes';
 import { DialogService, MetaAndTitleService } from '@app/services';
 import { ClubDocument } from '@app/types';
 

@@ -13,7 +13,7 @@ import {
 import { RouterLink } from '@angular/router';
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
-import { IconsModule } from '@app/icons';
+import IconsModule from '@app/icons';
 import { AuthActions } from '@app/store/auth';
 import { NavPathTypes } from '@app/types';
 import { emailValidator } from '@app/validators';

@@ -8,8 +8,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { IconsModule } from '@app/icons';
-import { RangePipe } from '@app/pipes/range.pipe';
+import IconsModule from '@app/icons';
+import { RangePipe } from '@app/pipes';
 import { IsoDate } from '@app/types';
 
 @Component({

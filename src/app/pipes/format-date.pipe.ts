@@ -4,17 +4,16 @@ import { IsoDate } from '@app/types';
 import { formatDate } from '@app/utils';
 
 /**
- * Accepts a date in ISO 8601 date string in UTC and converts to a user-friendly format in EST/EDT
- * @see {@link formatDate} for formatting details
+ * {@link formatDate()} as a pipe.
  */
 @Pipe({
   name: 'formatDate',
 })
 export class FormatDatePipe implements PipeTransform {
   transform(
-    date?: IsoDate | null,
+    date?: IsoDate,
     format?: 'long' | 'long no-time' | 'short' | 'short no-time',
   ): string {
-    return date ? formatDate(date, format) : '';
+    return formatDate(date, format);
   }
 }

@@ -12,7 +12,7 @@ import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { MembersActions } from '@app/store/members';
 import { NavPathTypes } from '@app/types';
-import { isDefined, isValidCollectionIdFormat } from '@app/utils';
+import { isDefined, isValidCollectionId } from '@app/utils';
 
 import { NavSelectors } from '.';
 import * as NavActions from './nav.actions';
@@ -120,7 +120,7 @@ export class NavEffects {
 
         if (controlMode === 'add' && !isDefined(eventId)) {
           return EventsActions.newEventRequested();
-        } else if (controlMode === 'edit' && isValidCollectionIdFormat(eventId)) {
+        } else if (controlMode === 'edit' && isValidCollectionId(eventId)) {
           return EventsActions.fetchEventRequested({ controlMode, eventId });
         }
         return NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE });
@@ -154,7 +154,7 @@ export class NavEffects {
 
         if (controlMode === 'add' && !isDefined(memberId)) {
           return MembersActions.newMemberRequested();
-        } else if (controlMode === 'edit' && isValidCollectionIdFormat(memberId)) {
+        } else if (controlMode === 'edit' && isValidCollectionId(memberId)) {
           return MembersActions.fetchMemberRequested({ controlMode, memberId });
         }
         return NavActions.navigationRequested({ path: NavPathTypes.MEMBERS });
@@ -195,8 +195,8 @@ export class NavEffects {
         const articleId = articleIdWithAnchor?.split('#')[0];
 
         if (
-          (controlMode === 'edit' && isValidCollectionIdFormat(articleId)) ||
-          (controlMode === 'view' && isValidCollectionIdFormat(articleId))
+          (controlMode === 'edit' && isValidCollectionId(articleId)) ||
+          (controlMode === 'view' && isValidCollectionId(articleId))
         ) {
           return ArticlesActions.fetchArticleRequested({
             controlMode,

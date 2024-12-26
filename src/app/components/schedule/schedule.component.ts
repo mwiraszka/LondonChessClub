@@ -7,8 +7,8 @@ import { RouterLink } from '@angular/router';
 import { AdminControlsComponent } from '@app/components/admin-controls/admin-controls.component';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
-import { IconsModule } from '@app/icons';
-import { FormatDatePipe } from '@app/pipes/format-date.pipe';
+import IconsModule from '@app/icons';
+import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 import { EventsActions, EventsSelectors } from '@app/store/events';
 import {
@@ -18,7 +18,6 @@ import {
   type Link,
   NavPathTypes,
 } from '@app/types';
-import { kebabize } from '@app/utils';
 
 @Component({
   selector: 'lcc-schedule',
@@ -29,13 +28,13 @@ import { kebabize } from '@app/utils';
     CommonModule,
     FormatDatePipe,
     IconsModule,
+    KebabCasePipe,
     LinkListComponent,
     RouterLink,
   ],
 })
 export class ScheduleComponent implements OnInit {
   public readonly NavPathTypes = NavPathTypes;
-  public readonly kebabize = kebabize;
 
   @Input() public allowTogglePastEvents = true;
   @Input() public includeDetails = true;

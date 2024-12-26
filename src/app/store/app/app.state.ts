@@ -1,5 +1,4 @@
 import { IsoDate, Toast } from '@app/types';
-import { isSystemDark } from '@app/utils';
 
 export interface AppState {
   isDarkMode: boolean;
@@ -10,7 +9,7 @@ export interface AppState {
 }
 
 export const initialState: AppState = {
-  isDarkMode: isSystemDark(),
+  isDarkMode: window.matchMedia('(prefers-color-scheme: dark)').matches,
   isSafeMode: false,
   bannerLastCleared: null,
   showUpcomingEventBanner: true,

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { RangePipe } from '@app/pipes/range.pipe';
+import { RangePipe } from '@app/pipes';
 import { NavPathTypes } from '@app/types';
 
 @Component({

@@ -3,7 +3,7 @@ import { map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { parseCsv } from '@app/utils/file-utils';
+import { parseCsv } from '@app/utils';
 
 @Injectable({
   providedIn: 'root',

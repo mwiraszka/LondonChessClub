@@ -11,15 +11,11 @@
       <a
         class="lcc-admin-controls-container article"
         [routerLink]="
-          article.title
-            ? '/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + article.id
-            : undefined
+          article.title ? (['article', 'view', article.id!] | routerLink) : undefined
         ">
         @if (vm.isAdmin && article.title) {
           <lcc-admin-controls
-            [editPath]="
-              '/' + NavPathTypes.ARTICLE + '/' + NavPathTypes.EDIT + '/' + article.id
-            "
+            [editPath]="['article', 'edit', article.id!]"
             [itemName]="article.title"
             (delete)="onDeleteArticle(article)">
           </lcc-admin-controls>
@@ -54,7 +50,7 @@
             <span class="date-created">
               {{ article.modificationInfo?.dateCreated | formatDate: 'short no-time' }}
             </span>
-            @if (wasEdited(article.modificationInfo)) {
+            @if (article.modificationInfo | wasEdited) {
               <div>
                 <span class="vertical-spacer">|</span>
                 <span class="edited">edited&nbsp;</span>

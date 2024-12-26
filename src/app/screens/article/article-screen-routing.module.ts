@@ -3,31 +3,30 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from '@app/guards/auth.guard';
 import { UnsavedArticleGuard } from '@app/guards/unsaved-article.guard';
-import { NavPathTypes } from '@app/types';
 
 import { ArticleEditorScreenComponent } from './article-editor/article-editor-screen.component';
 import { ArticleViewerScreenComponent } from './article-viewer/article-viewer-screen.component';
 
 const routes: Routes = [
   {
-    path: `${NavPathTypes.VIEW}/:article_id`,
+    path: 'view/:article_id',
     component: ArticleViewerScreenComponent,
   },
   {
-    path: NavPathTypes.ADD,
+    path: 'add',
     component: ArticleEditorScreenComponent,
     canActivate: [AuthGuard],
     canDeactivate: [UnsavedArticleGuard],
   },
   {
-    path: `${NavPathTypes.EDIT}/:article_id`,
+    path: 'edit/:article_id',
     component: ArticleEditorScreenComponent,
     canActivate: [AuthGuard],
     canDeactivate: [UnsavedArticleGuard],
   },
   {
     path: '**',
-    redirectTo: NavPathTypes.VIEW,
+    redirectTo: 'view',
   },
 ];
 

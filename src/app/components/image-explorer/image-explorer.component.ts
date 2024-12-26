@@ -7,7 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import IconsModule from '@app/icons';
 import { FormatBytesPipe, FormatDatePipe } from '@app/pipes';
 import { ImagesService, LoaderService } from '@app/services';
-import { DialogOutput, Id, Image } from '@app/types';
+import type { DialogOutput, Id, Image } from '@app/types';
 
 @Component({
   selector: 'lcc-image-explorer',

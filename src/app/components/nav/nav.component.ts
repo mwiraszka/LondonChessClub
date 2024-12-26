@@ -8,9 +8,10 @@ import { DropdownDirective } from '@app/components/dropdown/dropdown.directive';
 import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
+import { RouterLinkPipe } from '@app/pipes';
 import { AppActions } from '@app/store/app';
 import { NavSelectors } from '@app/store/nav';
-import { Link, NavPathTypes } from '@app/types';
+import type { InternalLink } from '@app/types';
 
 @Component({
   selector: 'lcc-nav',
@@ -22,52 +23,51 @@ import { Link, NavPathTypes } from '@app/types';
     IconsModule,
     RouterLink,
     RouterLinkActive,
+    RouterLinkPipe,
     ToggleSwitchComponent,
     TooltipDirective,
   ],
 })
 export class NavComponent {
-  public readonly NavPathTypes = NavPathTypes;
-
-  public readonly links: Link[] = [
+  public readonly links: InternalLink[] = [
     {
-      path: NavPathTypes.HOME,
       text: 'Home',
+      internalPath: '',
       icon: 'home',
     },
     {
-      path: NavPathTypes.ABOUT,
       text: 'About',
+      internalPath: 'about',
       icon: 'info',
     },
     {
-      path: NavPathTypes.MEMBERS,
       text: 'Members',
+      internalPath: 'members',
       icon: 'users',
     },
     {
-      path: NavPathTypes.SCHEDULE,
       text: 'Schedule',
+      internalPath: 'schedule',
       icon: 'calendar',
     },
     {
-      path: NavPathTypes.NEWS,
       text: 'News',
+      internalPath: 'news',
       icon: 'activity',
     },
     {
-      path: NavPathTypes.CITY_CHAMPION,
       text: 'City Champion',
+      internalPath: 'city-champion',
       icon: 'award',
     },
     {
-      path: NavPathTypes.PHOTO_GALLERY,
       text: 'Photo Gallery',
+      internalPath: 'photo-gallery',
       icon: 'camera',
     },
     {
-      path: NavPathTypes.GAME_ARCHIVES,
       text: 'Game Archives',
+      internalPath: 'game-archives',
       icon: 'grid',
     },
   ];

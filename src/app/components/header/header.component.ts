@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { RangePipe } from '@app/pipes';
-import { NavPathTypes } from '@app/types';
 
 @Component({
   selector: 'lcc-header',
@@ -11,6 +10,4 @@ import { NavPathTypes } from '@app/types';
   styleUrl: './header.component.scss',
   imports: [CommonModule, RangePipe, RouterModule],
 })
-export class HeaderComponent {
-  public readonly NavPathTypes = NavPathTypes;
-}
+export class HeaderComponent {}

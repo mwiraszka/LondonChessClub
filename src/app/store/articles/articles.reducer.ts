@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { ArticleFormData } from '@app/types';
+import type { ArticleFormData } from '@app/types';
 import { sortArticles } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';

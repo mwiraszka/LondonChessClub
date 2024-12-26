@@ -8,7 +8,7 @@ import { ScreenHeaderComponent } from '@app/components/screen-header/screen-head
 import IconsModule from '@app/icons';
 import { FormatDatePipe } from '@app/pipes';
 import { DialogService, MetaAndTitleService } from '@app/services';
-import { ClubDocument } from '@app/types';
+import type { ClubDocument } from '@app/types';
 
 @Component({
   selector: 'lcc-documents-screen',

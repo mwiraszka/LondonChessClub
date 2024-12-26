@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { DialogService } from '@app/services';
 import { EventsSelectors } from '@app/store/events';
-import { BasicDialogResult, Dialog } from '@app/types';
+import type { BasicDialogResult, Dialog } from '@app/types';
 
 @Injectable({ providedIn: 'root' })
 export class UnsavedEventGuard {

@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { EventFormData } from '@app/types';
+import type { EventFormData } from '@app/types';
 
 import * as EventsActions from './events.actions';
 import { EventsState, initialState } from './events.state';

@@ -4,7 +4,6 @@ import { RouterLink } from '@angular/router';
 
 import { ClubMapComponent } from '@app/components/club-map/club-map.component';
 import IconsModule from '@app/icons';
-import { NavPathTypes } from '@app/types';
 
 @Component({
   selector: 'lcc-club-summary',
@@ -12,6 +11,4 @@ import { NavPathTypes } from '@app/types';
   styleUrl: './club-summary.component.scss',
   imports: [ClubMapComponent, CommonModule, IconsModule, RouterLink],
 })
-export class ClubSummaryComponent {
-  public readonly NavPathTypes = NavPathTypes;
-}
+export class ClubSummaryComponent {}

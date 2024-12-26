@@ -21,13 +21,12 @@ import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
 import { DialogService } from '@app/services';
 import { MembersActions, MembersSelectors } from '@app/store/members';
-import {
-  type BasicDialogResult,
-  type ControlMode,
-  type Dialog,
-  type MemberFormData,
-  type MemberFormGroup,
-  newMemberFormTemplate,
+import type {
+  BasicDialogResult,
+  ControlMode,
+  Dialog,
+  MemberFormData,
+  MemberFormGroup,
 } from '@app/types';
 import { isDefined } from '@app/utils';
 import {
@@ -36,6 +35,8 @@ import {
   ratingValidator,
   yearOfBirthValidator,
 } from '@app/validators';
+
+import { newMemberFormTemplate } from './new-member-form-template';
 
 @UntilDestroy()
 @Component({

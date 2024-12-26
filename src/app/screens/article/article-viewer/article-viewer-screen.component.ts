@@ -12,13 +12,7 @@ import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { DialogService, MetaAndTitleService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import {
-  type Article,
-  type BasicDialogResult,
-  type Dialog,
-  type Link,
-  NavPathTypes,
-} from '@app/types';
+import type { Article, BasicDialogResult, Dialog, InternalLink } from '@app/types';
 
 @UntilDestroy()
 @Component({
@@ -27,18 +21,16 @@ import {
   imports: [AdminControlsComponent, ArticleComponent, CommonModule, LinkListComponent],
 })
 export class ArticleViewerScreenComponent implements OnInit {
-  public readonly NavPathTypes = NavPathTypes;
-
-  public readonly links: Link[] = [
+  public readonly links: InternalLink[] = [
     {
-      icon: 'activity',
-      path: NavPathTypes.NEWS,
       text: 'More articles',
+      internalPath: 'news',
+      icon: 'activity',
     },
     {
-      icon: 'home',
-      path: NavPathTypes.HOME,
       text: 'Return home',
+      internalPath: '',
+      icon: 'home',
     },
   ];
   public readonly articleViewerScreenViewModel$ = this.store.select(

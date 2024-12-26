@@ -9,7 +9,7 @@ import { LinkListComponent } from '@app/components/link-list/link-list.component
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { MetaAndTitleService } from '@app/services';
 import { ArticlesSelectors } from '@app/store/articles';
-import { type Link, NavPathTypes } from '@app/types';
+import type { InternalLink } from '@app/types';
 
 @UntilDestroy()
 @Component({
@@ -21,22 +21,22 @@ export class ArticleEditorScreenComponent implements OnInit {
   public readonly articleEditorScreenViewModel$ = this.store.select(
     ArticlesSelectors.selectArticleEditorScreenViewModel,
   );
-  public readonly links: Link[] = [
+  public readonly links: InternalLink[] = [
     {
-      icon: 'activity',
-      path: NavPathTypes.NEWS,
       text: 'See all articles',
+      internalPath: 'news',
+      icon: 'activity',
     },
     {
-      icon: 'home',
-      path: NavPathTypes.HOME,
       text: 'Return home',
+      internalPath: '',
+      icon: 'home',
     },
   ];
 
   constructor(
-    private readonly store: Store,
     private readonly metaAndTitleService: MetaAndTitleService,
+    private readonly store: Store,
   ) {}
 
   ngOnInit(): void {

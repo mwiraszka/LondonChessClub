@@ -11,7 +11,6 @@ import { ArticlesActions } from '@app/store/articles';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { MembersActions } from '@app/store/members';
-import { NavPathTypes } from '@app/types';
 import { isDefined, isValidCollectionId } from '@app/utils';
 
 import { NavSelectors } from '.';
@@ -44,7 +43,7 @@ export class NavEffects {
   navigateHome$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.loginSucceeded, AuthActions.passwordChangeSucceeded),
-      map(() => NavActions.navigationRequested({ path: NavPathTypes.HOME })),
+      map(() => NavActions.navigationRequested({ path: '' })),
     ),
   );
 
@@ -56,7 +55,7 @@ export class NavEffects {
         MembersActions.updateMemberSucceeded,
         MembersActions.fetchMemberFailed,
       ),
-      map(() => NavActions.navigationRequested({ path: NavPathTypes.MEMBERS })),
+      map(() => NavActions.navigationRequested({ path: 'members' })),
     ),
   );
 
@@ -68,14 +67,14 @@ export class NavEffects {
         EventsActions.updateEventSucceeded,
         EventsActions.fetchEventFailed,
       ),
-      map(() => NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE })),
+      map(() => NavActions.navigationRequested({ path: 'schedule' })),
     ),
   );
 
   navigateToNews$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ArticlesActions.cancelSelected, ArticlesActions.fetchArticleFailed),
-      map(() => NavActions.navigationRequested({ path: NavPathTypes.NEWS })),
+      map(() => NavActions.navigationRequested({ path: 'news' })),
     ),
   );
 
@@ -87,7 +86,7 @@ export class NavEffects {
       ),
       map(({ article }) =>
         NavActions.navigationRequested({
-          path: NavPathTypes.ARTICLE + '/' + NavPathTypes.VIEW + '/' + article.id,
+          path: 'article/view/' + article.id,
         }),
       ),
     ),
@@ -96,7 +95,7 @@ export class NavEffects {
   navigateToChangePassword$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.newPasswordChallengeRequested),
-      map(() => NavActions.navigationRequested({ path: NavPathTypes.CHANGE_PASSWORD })),
+      map(() => NavActions.navigationRequested({ path: 'change-password' })),
     ),
   );
 
@@ -123,7 +122,7 @@ export class NavEffects {
         } else if (controlMode === 'edit' && isValidCollectionId(eventId)) {
           return EventsActions.fetchEventRequested({ controlMode, eventId });
         }
-        return NavActions.navigationRequested({ path: NavPathTypes.SCHEDULE });
+        return NavActions.navigationRequested({ path: 'schedule' });
       }),
     ),
   );
@@ -157,7 +156,7 @@ export class NavEffects {
         } else if (controlMode === 'edit' && isValidCollectionId(memberId)) {
           return MembersActions.fetchMemberRequested({ controlMode, memberId });
         }
-        return NavActions.navigationRequested({ path: NavPathTypes.MEMBERS });
+        return NavActions.navigationRequested({ path: 'members' });
       }),
     ),
   );
@@ -204,7 +203,7 @@ export class NavEffects {
           });
         }
 
-        return NavActions.navigationRequested({ path: NavPathTypes.NEWS });
+        return NavActions.navigationRequested({ path: 'news' });
       }),
     ),
   );
@@ -232,7 +231,7 @@ export class NavEffects {
       filter(
         ([{ article }, previousPath]) => previousPath === `/article/view/${article.id}`,
       ),
-      map(() => NavActions.navigationRequested({ path: NavPathTypes.NEWS })),
+      map(() => NavActions.navigationRequested({ path: 'news' })),
     ),
   );
 

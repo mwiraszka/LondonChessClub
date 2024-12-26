@@ -1,15 +1,17 @@
-<a
-  class="admin-control-button edit-button"
-  [tooltip]="'Edit ' + itemName"
-  [routerLink]="editPath"
-  (click)="onEdit($event)">
-  <i-feather
-    name="edit"
-    class="edit-icon"
-    [style.height.px]="height - 10"
-    [style.width.px]="height - 10">
-  </i-feather>
-</a>
+@if (editPath) {
+  <a
+    class="admin-control-button edit-button"
+    [tooltip]="'Edit ' + itemName"
+    [routerLink]="editPath | routerLink"
+    (click)="onEdit($event)">
+    <i-feather
+      name="edit"
+      class="edit-icon"
+      [style.height.px]="height - 10"
+      [style.width.px]="height - 10">
+    </i-feather>
+  </a>
+}
 
 <button
   class="admin-control-button delete-button"

@@ -30,9 +30,7 @@
           ">
           @if (vm.isAdmin) {
             <lcc-admin-controls
-              [editPath]="
-                '/' + NavPathTypes.EVENT + '/' + NavPathTypes.EDIT + '/' + event.id
-              "
+              [editPath]="['event', 'edit', event.id!]"
               [itemName]="event.title"
               (delete)="onDeleteEvent(event)">
             </lcc-admin-controls>
@@ -70,14 +68,7 @@
 
               @if (event?.articleId) {
                 <a
-                  [routerLink]="
-                    '/' +
-                    NavPathTypes.ARTICLE +
-                    '/' +
-                    NavPathTypes.VIEW +
-                    '/' +
-                    event.articleId
-                  "
+                  [routerLink]="'/article/view/' + event.articleId"
                   class="lcc-link event-article">
                   More details
                 </a>

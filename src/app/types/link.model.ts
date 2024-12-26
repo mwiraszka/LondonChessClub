@@ -1,8 +1,21 @@
-import { NavPathTypes } from './nav-paths.model';
+import { ControlMode } from './control-mode.model';
+import { Id } from './core.model';
+import { NavPath } from './nav-path.model';
 
-export interface Link {
-  path: string | NavPathTypes | null;
+interface BaseLink {
   text: string;
   icon?: string;
   tooltip?: string;
+}
+
+export type InternalPath = NavPath | [NavPath, ControlMode] | [NavPath, ControlMode, Id];
+
+export interface InternalLink extends BaseLink {
+  internalPath: InternalPath;
+  externalPath?: never;
+}
+
+export interface ExternalLink extends BaseLink {
+  externalPath: string | null;
+  internalPath?: never;
 }

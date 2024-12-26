@@ -12,5 +12,5 @@ import type { ModificationInfo } from '@app/types';
   imports: [CommonModule, FormatDatePipe, IconsModule],
 })
 export class ModificationInfoComponent {
-  @Input() info!: ModificationInfo;
+  @Input({ required: true }) info!: ModificationInfo;
 }

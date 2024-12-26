@@ -1,8 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
+import { newMemberFormTemplate } from '@app/components/member-form/new-member-form-template';
 import { AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
-import { Id, newMemberFormTemplate } from '@app/types';
+import type { Id } from '@app/types';
 import { areSame, customSort } from '@app/utils';
 
 import { MembersState } from './members.state';

@@ -1,7 +1,7 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
-export function yearOfBirthValidator(control: AbstractControl): ValidationErrors | null {
-  if (!control.value) {
+export function yearOfBirthValidator(control?: AbstractControl): ValidationErrors | null {
+  if (!control?.value) {
     return null;
   }
 

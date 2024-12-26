@@ -1,8 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import moment from 'moment-timezone';
 
+import { newEventFormTemplate } from '@app/components/event-form/new-event-form-template';
 import { AuthSelectors } from '@app/store/auth';
-import { Id, newEventFormTemplate } from '@app/types';
+import type { Id } from '@app/types';
 import { areSame, customSort } from '@app/utils';
 
 import { EventsState } from './events.state';

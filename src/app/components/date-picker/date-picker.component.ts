@@ -10,7 +10,7 @@ import {
 
 import IconsModule from '@app/icons';
 import { RangePipe } from '@app/pipes';
-import { IsoDate } from '@app/types';
+import type { IsoDate } from '@app/types';
 
 @Component({
   selector: 'lcc-date-picker',

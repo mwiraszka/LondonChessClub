@@ -1,4 +1,4 @@
-import { IsoDate, Toast } from '@app/types';
+import type { IsoDate, Toast } from '@app/types';
 
 export interface AppState {
   isDarkMode: boolean;

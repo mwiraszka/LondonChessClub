@@ -22,16 +22,17 @@ import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
 import { DialogService } from '@app/services';
 import { EventsActions, EventsSelectors } from '@app/store/events';
-import {
-  type BasicDialogResult,
-  type ControlMode,
-  type Dialog,
-  type EventFormData,
-  type EventFormGroup,
-  newEventFormTemplate,
+import type {
+  BasicDialogResult,
+  ControlMode,
+  Dialog,
+  EventFormData,
+  EventFormGroup,
 } from '@app/types';
 import { isDefined, isValidTime } from '@app/utils';
 import { timeValidator } from '@app/validators';
+
+import { newEventFormTemplate } from './new-event-form-template';
 
 @UntilDestroy()
 @Component({

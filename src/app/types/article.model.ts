@@ -22,10 +22,3 @@ export type ArticleFormData = Omit<
 export type ArticleFormGroup<ArticleFormData> = {
   [Property in keyof ArticleFormData]: FormControl<ArticleFormData[Property]>;
 };
-
-export const newArticleFormTemplate: ArticleFormData = {
-  title: '',
-  body: '',
-  imageId: null,
-  isSticky: false,
-};

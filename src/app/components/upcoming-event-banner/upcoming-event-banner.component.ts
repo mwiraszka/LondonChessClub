@@ -8,7 +8,6 @@ import IconsModule from '@app/icons';
 import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { AppActions } from '@app/store/app';
 import { EventsSelectors } from '@app/store/events';
-import { NavPathTypes } from '@app/types';
 
 @Component({
   selector: 'lcc-upcoming-event-banner',
@@ -17,8 +16,6 @@ import { NavPathTypes } from '@app/types';
   imports: [CommonModule, FormatDatePipe, IconsModule, KebabCasePipe, RouterLink],
 })
 export class UpcomingEventBannerComponent {
-  public readonly NavPathTypes = NavPathTypes;
-
   public readonly nextEvent$ = this.store.select(EventsSelectors.selectNextEvent);
 
   constructor(private readonly store: Store) {}

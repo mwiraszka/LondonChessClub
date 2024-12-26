@@ -4,15 +4,16 @@ import { RouterLink } from '@angular/router';
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
-import type { Link } from '@app/types';
+import { RouterLinkPipe } from '@app/pipes';
+import type { ExternalLink, InternalLink } from '@app/types';
 
 @Component({
   selector: 'lcc-link-list',
   templateUrl: './link-list.component.html',
   styleUrl: './link-list.component.scss',
-  imports: [CommonModule, IconsModule, RouterLink, TooltipDirective],
+  imports: [CommonModule, IconsModule, RouterLink, RouterLinkPipe, TooltipDirective],
 })
 export class LinkListComponent {
   @Input() header?: string;
-  @Input() links?: Link[];
+  @Input() links?: Array<InternalLink | ExternalLink>;
 }

@@ -11,13 +11,7 @@ import IconsModule from '@app/icons';
 import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 import { EventsActions, EventsSelectors } from '@app/store/events';
-import {
-  type BasicDialogResult,
-  type Dialog,
-  type Event,
-  type Link,
-  NavPathTypes,
-} from '@app/types';
+import type { BasicDialogResult, Dialog, Event, InternalLink } from '@app/types';
 
 @Component({
   selector: 'lcc-schedule',
@@ -34,15 +28,13 @@ import {
   ],
 })
 export class ScheduleComponent implements OnInit {
-  public readonly NavPathTypes = NavPathTypes;
-
   @Input() public allowTogglePastEvents = true;
   @Input() public includeDetails = true;
   @Input() public upcomingEventLimit?: number;
 
-  public readonly addEventLink: Link = {
-    path: NavPathTypes.EVENT + '/' + NavPathTypes.ADD,
+  public readonly addEventLink: InternalLink = {
     text: 'Add an event',
+    internalPath: ['event', 'add'],
     icon: 'plus-circle',
   };
   public readonly scheduleViewModel$ = this.store.select(

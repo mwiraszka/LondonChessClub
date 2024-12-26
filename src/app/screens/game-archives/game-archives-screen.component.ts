@@ -27,7 +27,7 @@ import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
 import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
-import { FilterFormGroup, GameDetails } from '@app/types';
+import type { FilterFormGroup, GameDetails } from '@app/types';
 import {
   getOpeningTallies,
   getPlayerName,

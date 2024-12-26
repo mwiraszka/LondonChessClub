@@ -12,7 +12,7 @@ import {
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
 import { DIALOG_CONFIG_TOKEN } from '@app/services';
-import { DialogConfig, DialogOutput } from '@app/types';
+import type { DialogConfig, DialogOutput } from '@app/types';
 
 @Component({
   selector: 'lcc-dialog',

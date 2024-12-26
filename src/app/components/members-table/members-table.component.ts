@@ -12,13 +12,7 @@ import IconsModule from '@app/icons';
 import { CamelCasePipe, FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 import { MembersActions, MembersSelectors } from '@app/store/members';
-import {
-  type BasicDialogResult,
-  type Dialog,
-  type Link,
-  type Member,
-  NavPathTypes,
-} from '@app/types';
+import type { BasicDialogResult, Dialog, InternalLink, Member } from '@app/types';
 
 @Component({
   selector: 'lcc-members-table',
@@ -36,10 +30,8 @@ import {
   ],
 })
 export class MembersTableComponent implements OnInit {
-  public readonly NavPathTypes = NavPathTypes;
-
-  public readonly addMemberLink: Link = {
-    path: NavPathTypes.MEMBER + '/' + NavPathTypes.ADD,
+  public readonly addMemberLink: InternalLink = {
+    internalPath: ['member', 'add'],
     text: 'Add a member',
     icon: 'plus-circle',
   };

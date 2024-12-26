@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { MetaAndTitleService } from '@app/services';
-import { type Link, NavPathTypes } from '@app/types';
+import type { ExternalLink } from '@app/types';
 
 @Component({
   selector: 'lcc-champion-screen',
@@ -13,24 +13,22 @@ import { type Link, NavPathTypes } from '@app/types';
   imports: [CommonModule, LinkListComponent, ScreenHeaderComponent],
 })
 export class ChampionScreenComponent implements OnInit {
-  public readonly NavPathTypes = NavPathTypes;
-
-  public readonly links: Link[] = [
+  public readonly links: ExternalLink[] = [
     {
-      path: 'http://londonchessclub.ca/?p=78',
       text: 'Past London Chess Champions (1967-2019)',
+      externalPath: 'http://londonchessclub.ca/?p=78',
     },
     {
-      path: 'http://londonchessclub.ca/?p=79',
       text: 'Past London Junior Chess Champions (1996-2011)',
+      externalPath: 'http://londonchessclub.ca/?p=79',
     },
     {
-      path: 'http://londonchessclub.ca/?p=75',
       text: 'Past London Active Chess Champions (1994-2019)',
+      externalPath: 'http://londonchessclub.ca/?p=75',
     },
     {
-      path: 'http://londonchessclub.ca/?p=72',
       text: 'Past London Speed Chess Champions (1993-2019)',
+      externalPath: 'http://londonchessclub.ca/?p=72',
     },
   ];
 

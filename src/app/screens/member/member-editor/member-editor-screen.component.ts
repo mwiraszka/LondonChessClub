@@ -9,7 +9,7 @@ import { MemberFormComponent } from '@app/components/member-form/member-form.com
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { MetaAndTitleService } from '@app/services';
 import { MembersSelectors } from '@app/store/members';
-import { Link, NavPathTypes } from '@app/types';
+import type { InternalLink } from '@app/types';
 
 @UntilDestroy()
 @Component({
@@ -22,16 +22,16 @@ export class MemberEditorScreenComponent implements OnInit {
     MembersSelectors.selectMemberEditorViewModel,
   );
 
-  public links: Link[] = [
+  public links: InternalLink[] = [
     {
-      icon: 'users',
-      path: NavPathTypes.MEMBERS,
       text: 'See all members',
+      internalPath: 'members',
+      icon: 'users',
     },
     {
-      icon: 'home',
-      path: NavPathTypes.HOME,
       text: 'Return home',
+      internalPath: '',
+      icon: 'home',
     },
   ];
 

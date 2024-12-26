@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { IsoDate } from '@app/types';
+import type { IsoDate } from '@app/types';
 import { formatDate } from '@app/utils';
 
 /**

@@ -51,9 +51,7 @@
             [class.inactive]="!member.isActive">
             @if (vm.isAdmin) {
               <lcc-admin-controls
-                [editPath]="
-                  '/' + NavPathTypes.MEMBER + '/' + NavPathTypes.EDIT + '/' + member.id
-                "
+                [editPath]="['member', 'edit', member.id!]"
                 [height]="31"
                 [itemName]="member.firstName"
                 (delete)="onDeleteMember(member)">

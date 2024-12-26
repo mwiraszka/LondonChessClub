@@ -24,7 +24,7 @@
     </span>
   </div>
 
-  @if (wasEdited(article?.modificationInfo)) {
+  @if (article?.modificationInfo | wasEdited) {
     <div class="editor-container">
       <span class="updated">last updated</span>
       <span class="editor-name">

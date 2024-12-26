@@ -1,7 +1,8 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
+import { newArticleFormTemplate } from '@app/components/article-form/new-article-form-template';
 import { AuthSelectors } from '@app/store/auth';
-import { ArticleFormData, Id, newArticleFormTemplate } from '@app/types';
+import type { ArticleFormData, Id } from '@app/types';
 import { areSame } from '@app/utils';
 
 import { ArticlesState } from './articles.state';

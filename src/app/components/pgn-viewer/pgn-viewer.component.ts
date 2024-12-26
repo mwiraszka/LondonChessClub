@@ -4,7 +4,7 @@ import { CommonModule, DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, Inject, Input, OnInit } from '@angular/core';
 
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
-import { Link } from '@app/types';
+import type { ExternalLink } from '@app/types';
 import { getLichessAnalysisUrl, getPlayerName, getScore } from '@app/utils';
 
 @Component({
@@ -19,7 +19,7 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
   @Input({ required: true }) public pgn!: string;
 
   viewerId!: string;
-  lichessAnalysisBoardLink!: Link;
+  lichessAnalysisBoardLink!: ExternalLink;
 
   constructor(@Inject(DOCUMENT) private _document: Document) {}
 
@@ -28,7 +28,7 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
 
     this.lichessAnalysisBoardLink = {
       text: 'Analyze game on Lichess',
-      path: getLichessAnalysisUrl(this.pgn),
+      externalPath: getLichessAnalysisUrl(this.pgn),
       icon: 'book-open',
     };
   }

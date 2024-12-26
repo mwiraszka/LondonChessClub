@@ -28,7 +28,7 @@ import {
   ArticlesSelectors,
   LOCAL_STORAGE_IMAGE_KEY,
 } from '@app/store/articles';
-import {
+import type {
   ArticleFormData,
   ArticleFormGroup,
   BasicDialogResult,
@@ -36,9 +36,10 @@ import {
   Dialog,
   Id,
   Url,
-  newArticleFormTemplate,
 } from '@app/types';
 import { dataUrlToBlob, formatBytes, isDefined, isStorageSupported } from '@app/utils';
+
+import { newArticleFormTemplate } from './new-article-form-template';
 
 @UntilDestroy()
 @Component({

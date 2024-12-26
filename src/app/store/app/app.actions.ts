@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Toast } from '@app/types';
+import type { Toast } from '@app/types';
 
 export const upcomingEventBannerCleared = createAction(
   '[App] Upcoming event banner cleared',

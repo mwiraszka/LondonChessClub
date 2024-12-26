@@ -3,7 +3,6 @@ export { isStorageSupported } from './browser/is-storage-supported.util';
 export { areSame } from './common/are-same.util';
 export { isDefined } from './common/is-defined.util';
 export { takeRandomly } from './common/take-randomly.util';
-export { wasEdited } from './common/was-edited.util';
 
 export { isValidCollectionId } from './database/is-valid-collection-id.util';
 export { formatDate } from './datetime/format-date.util';

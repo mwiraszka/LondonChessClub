@@ -4,7 +4,6 @@ import { RouterLink } from '@angular/router';
 
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { MetaAndTitleService } from '@app/services';
-import { NavPathTypes } from '@app/types';
 
 @Component({
   selector: 'lcc-about-screen',
@@ -13,8 +12,6 @@ import { NavPathTypes } from '@app/types';
   imports: [CommonModule, RouterLink, ScreenHeaderComponent],
 })
 export class AboutScreenComponent implements OnInit {
-  public readonly NavPathTypes = NavPathTypes;
-
   constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
 
   ngOnInit(): void {

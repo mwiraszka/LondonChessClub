@@ -7,7 +7,7 @@ import { LinkListComponent } from '@app/components/link-list/link-list.component
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
 import { ScheduleComponent } from '@app/components/schedule/schedule.component';
 import { MetaAndTitleService } from '@app/services';
-import { type Link, NavPathTypes } from '@app/types';
+import type { InternalLink } from '@app/types';
 
 @Component({
   selector: 'lcc-home-screen',
@@ -23,19 +23,19 @@ import { type Link, NavPathTypes } from '@app/types';
   ],
 })
 export class HomeScreenComponent implements OnInit {
-  public readonly scheduleLink: Link = {
-    path: NavPathTypes.SCHEDULE,
+  public readonly scheduleLink: InternalLink = {
     text: 'All scheduled events',
+    internalPath: 'schedule',
   };
 
-  public readonly photoGalleryLink: Link = {
-    path: NavPathTypes.PHOTO_GALLERY,
+  public readonly photoGalleryLink: InternalLink = {
     text: 'More photos',
+    internalPath: 'photo-gallery',
   };
 
-  public readonly newsLink: Link = {
-    path: NavPathTypes.NEWS,
+  public readonly newsLink: InternalLink = {
     text: 'More news',
+    internalPath: 'news',
   };
 
   constructor(private readonly metaAndTitleService: MetaAndTitleService) {}

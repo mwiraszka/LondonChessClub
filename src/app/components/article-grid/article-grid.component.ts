@@ -9,17 +9,15 @@ import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.
 import { ImagePreloadDirective } from '@app/components/image-preload/image-preload.directive';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import IconsModule from '@app/icons';
-import { FormatDatePipe, StripMarkdownPipe } from '@app/pipes';
+import {
+  FormatDatePipe,
+  RouterLinkPipe,
+  StripMarkdownPipe,
+  WasEditedPipe,
+} from '@app/pipes';
 import { DialogService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import {
-  type Article,
-  type BasicDialogResult,
-  type Dialog,
-  type Link,
-  NavPathTypes,
-} from '@app/types';
-import { wasEdited } from '@app/utils';
+import type { Article, BasicDialogResult, Dialog, InternalLink } from '@app/types';
 
 @Component({
   selector: 'lcc-article-grid',
@@ -33,20 +31,19 @@ import { wasEdited } from '@app/utils';
     ImagePreloadDirective,
     LinkListComponent,
     RouterLink,
+    RouterLinkPipe,
     StripMarkdownPipe,
+    WasEditedPipe,
   ],
 })
 export class ArticleGridComponent implements OnInit {
   @Input() public maxArticles?: number;
 
-  public readonly NavPathTypes = NavPathTypes;
-  public readonly wasEdited = wasEdited;
-
   public readonly articleGridViewModel$ = this.store.select(
     ArticlesSelectors.selectArticleGridViewModel,
   );
-  public readonly createArticleLink: Link = {
-    path: NavPathTypes.ARTICLE + '/' + NavPathTypes.ADD,
+  public readonly createArticleLink: InternalLink = {
+    internalPath: ['article', 'add'],
     text: 'Create an article',
     icon: 'plus-circle',
   };

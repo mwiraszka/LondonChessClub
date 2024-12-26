@@ -16,8 +16,9 @@ import { RouterLink } from '@angular/router';
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
+import { RouterLinkPipe } from '@app/pipes';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
-import { LoginRequest, NavPathTypes, PasswordChangeRequest, User } from '@app/types';
+import type { LoginRequest, PasswordChangeRequest, User } from '@app/types';
 import {
   emailValidator,
   hasLowercaseLetterValidator,
@@ -32,11 +33,16 @@ import {
   selector: 'lcc-change-password-form',
   templateUrl: './change-password-form.component.html',
   styleUrl: './change-password-form.component.scss',
-  imports: [CommonModule, IconsModule, ReactiveFormsModule, RouterLink, TooltipDirective],
+  imports: [
+    CommonModule,
+    IconsModule,
+    ReactiveFormsModule,
+    RouterLink,
+    RouterLinkPipe,
+    TooltipDirective,
+  ],
 })
 export class ChangePasswordFormComponent implements OnInit {
-  public readonly NavPathTypes = NavPathTypes;
-
   public readonly changePasswordFormViewModel$ = this.store.select(
     AuthSelectors.selectChangePasswordFormViewModel,
   );

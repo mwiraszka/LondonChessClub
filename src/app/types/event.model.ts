@@ -1,5 +1,3 @@
-import moment from 'moment-timezone';
-
 import { FormControl } from '@angular/forms';
 
 import { Id, IsoDate } from './core.model';
@@ -36,15 +34,3 @@ export type EventFormData = Omit<Event, 'id' | 'modificationInfo'>;
 export type EventFormGroup<EventFormData> = {
   [Property in keyof EventFormData]: FormControl<EventFormData[Property]>;
 } & { eventTime: FormControl<string> };
-
-export const newEventFormTemplate: EventFormData = {
-  type: 'blitz tournament',
-  eventDate: moment()
-    .tz('America/Toronto', false)
-    .set('hours', 18)
-    .set('minutes', 0)
-    .toISOString(),
-  title: '',
-  details: '',
-  articleId: '',
-};

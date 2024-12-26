@@ -2,12 +2,12 @@
   <div class="nav-left"></div>
 
   <div class="nav-items-container">
-    @for (link of links; track link.path) {
+    @for (link of links; track link.internalPath) {
       <a
         [attr.aria-label]="link.text"
         class="nav-link"
         routerLinkActive="link-active"
-        [routerLink]="link.path"
+        [routerLink]="link.internalPath | routerLink"
         [routerLinkActiveOptions]="{ exact: true }"
         [tooltip]="screenWidth > 700 ? null : link.text">
         <span class="text">{{ link.text }}</span>
@@ -75,7 +75,7 @@
               <a
                 aria-label="Change password"
                 class="lcc-dropdown-link"
-                [routerLink]="NavPathTypes.CHANGE_PASSWORD">
+                routerLink="change-password">
                 <span>Change password</span>
               </a>
             </li>
@@ -84,7 +84,7 @@
               <a
                 aria-label="Log out"
                 class="lcc-dropdown-link"
-                [routerLink]="NavPathTypes.LOGOUT">
+                routerLink="logout">
                 <span>Log out</span>
               </a>
             </li>
@@ -93,7 +93,7 @@
               <a
                 aria-label="Admin login"
                 class="lcc-dropdown-link"
-                [routerLink]="NavPathTypes.LOGIN">
+                routerLink="login">
                 <span>Admin login</span>
               </a>
             </li>

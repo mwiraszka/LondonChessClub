@@ -8,6 +8,8 @@ export const newEventFormTemplate: EventFormData = {
     .tz('America/Toronto', false)
     .set('hours', 18)
     .set('minutes', 0)
+    .set('seconds', 0)
+    .set('milliseconds', 0)
     .toISOString(),
   title: '',
   details: '',

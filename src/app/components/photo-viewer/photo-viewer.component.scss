@@ -41,5 +41,6 @@ figcaption {
   .next-photo-button {
     display: flex;
     padding: 8px;
+    background-color: var(--lcc-color--photoViewer-buttonBackground) !important;
   }
 }

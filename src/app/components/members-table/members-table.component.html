@@ -25,7 +25,7 @@
                 (click)="onSelectTableHeader(header)">
                 <span>{{ header }}</span>
                 <div class="sort-icon-container">
-                  @if (vm.sortedBy === header | camelCase) {
+                  @if (vm.sortedBy === (header | camelCase)) {
                     <i-feather
                       class="sort-icon"
                       [name]="vm.isAscending ? 'chevron-up' : 'chevron-down'">

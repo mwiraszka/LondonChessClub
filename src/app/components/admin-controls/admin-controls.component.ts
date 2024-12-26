@@ -16,7 +16,7 @@ import type { InternalPath } from '@app/types';
 export class AdminControlsComponent {
   @Input() height = 28;
   @Input() itemName = '';
-  @Input() editPath?: InternalPath | string;
+  @Input() editPath?: InternalPath;
 
   @Output() delete = new EventEmitter<void>();
 

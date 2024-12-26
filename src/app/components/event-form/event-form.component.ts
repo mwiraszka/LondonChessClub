@@ -74,14 +74,16 @@ export class EventFormComponent implements OnInit {
         ),
       )
       .subscribe(({ event, eventFormData, controlMode }) => {
-        eventFormData = newEventFormTemplate;
+        if (!eventFormData) {
+          eventFormData = newEventFormTemplate;
 
-        // Copy over form-relevant properties from selected event
-        if (controlMode === 'edit' && event) {
-          eventFormData = pick(
-            event,
-            Object.getOwnPropertyNames(eventFormData),
-          ) as typeof eventFormData;
+          // Copy over form-relevant properties from selected event
+          if (controlMode === 'edit' && event) {
+            eventFormData = pick(
+              event,
+              Object.getOwnPropertyNames(eventFormData),
+            ) as typeof eventFormData;
+          }
         }
 
         this.controlMode = controlMode;
@@ -190,7 +192,9 @@ export class EventFormComponent implements OnInit {
             .toISOString();
         }
 
-        return this.store.dispatch(EventsActions.formValueChanged({ value }));
+        return this.store.dispatch(
+          EventsActions.formValueChanged({ value: eventFormData }),
+        );
       });
 
     // Manually trigger form value change to pass initial form data to store

@@ -112,7 +112,7 @@ export class TooltipDirective implements OnChanges, OnDestroy {
       // placed incorrectly, shifting content underneath it for a short period of time
 
       setTimeout(() => {
-        if (this.componentRef) {
+        if (this.componentRef?.instance) {
           this.componentRef.instance.tooltip = this.tooltip;
         }
       }, 50);

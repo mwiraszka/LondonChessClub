@@ -9,7 +9,11 @@ import type { InternalPath } from '@app/types';
   name: 'routerLink',
 })
 export class RouterLinkPipe implements PipeTransform {
-  transform(path: InternalPath | string): string {
+  transform(path?: InternalPath): string | undefined {
+    if (!path) {
+      return;
+    }
+
     const fullPath = Array.isArray(path) ? path.join('/') : path;
     return '/' + fullPath;
   }

@@ -2,26 +2,42 @@
   <h4>{{ header }}</h4>
 }
 
-<ul
-  class="links"
-  [ngClass]="(links?.length ?? 0) < 4 ? 'single-column' : ''">
+<ul [class.single-column]="links.length < 4">
   @for (link of links; track link) {
-    <li [tooltip]="link.tooltip ?? ''">
-      <a
-        [attr.disabled]="link.externalPath === null"
-        [href]="link.externalPath ? link.externalPath : undefined"
-        [rel]="link.externalPath ? 'noopener noreferrer' : undefined"
-        [routerLink]="link.internalPath ? (link.internalPath | routerLink) : undefined"
-        [target]="link.externalPath ? '_blank' : undefined"
-        class="lcc-link">
-        @if (link.icon) {
+    <li>
+      @if (link.externalPath) {
+        <a
+          class="lcc-link"
+          [href]="link.externalPath"
+          ref="noopener noreferrer"
+          target="_blank"
+          [tooltip]="link.tooltip ?? ''">
+          @if (link.icon) {
+            <i-feather
+              [name]="link.icon"
+              class="icon">
+            </i-feather>
+          }
+          <span>{{ link.text }}</span>
           <i-feather
-            [name]="link.icon"
+            name="external-link"
             class="icon">
           </i-feather>
-        }
-        <span>{{ link.text }}</span>
-      </a>
+        </a>
+      } @else {
+        <a
+          class="lcc-link"
+          [routerLink]="link.internalPath | routerLink"
+          [tooltip]="link.tooltip ?? ''">
+          @if (link.icon) {
+            <i-feather
+              [name]="link.icon"
+              class="icon">
+            </i-feather>
+          }
+          <span>{{ link.text }}</span>
+        </a>
+      }
     </li>
   }
 </ul>

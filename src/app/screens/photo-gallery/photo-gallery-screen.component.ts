@@ -18,7 +18,7 @@ import type { ExternalLink } from '@app/types';
     <lcc-photo-grid></lcc-photo-grid>
 
     <lcc-link-list
-      header="Archives"
+      header="More photos"
       [links]="links"
       style="margin-top: 32px;">
     </lcc-link-list>
@@ -68,35 +68,35 @@ export class PhotoGalleryScreenComponent implements OnInit {
         'https://drive.google.com/drive/folders/1N_DqzV1IPNKyvKAYc9C5mFR0aoZNeScr',
     },
     {
-      text: '2017 - 2022',
+      text: 'Photo archives (2017 - 2022)',
       externalPath: 'https://www.flickr.com/photos/184509003@N07',
     },
     {
-      text: 'June 2016',
+      text: 'Photo archives (June 2016)',
       externalPath: 'http://londonchessclub.ca/?page_id=4918',
     },
     {
-      text: 'April 2016',
+      text: 'Photo archives (April 2016)',
       externalPath: 'http://londonchessclub.ca/?page_id=4535',
     },
     {
-      text: '2015',
+      text: 'Photo archives (2015)',
       externalPath: 'http://londonchessclub.ca/?page_id=3644',
     },
     {
-      text: '2011 - 2014',
+      text: 'Photo archives (2011 - 2014)',
       externalPath: 'http://londonchessclub.ca/?page_id=1343',
     },
     {
-      text: '2009 - 2010',
+      text: 'Photo archives (2009 - 2010)',
       externalPath: 'http://londonchessclub.ca/?page_id=926',
     },
     {
-      text: '2008',
+      text: 'Photo archives (2008)',
       externalPath: 'http://londonchessclub.ca/?page_id=924',
     },
     {
-      text: '2007 and older',
+      text: 'Photo archives (2007 and older)',
       externalPath: 'https://londonchessclub.ca/?page_id=916',
     },
   ].map(link => ({ ...link, icon: 'camera' }));

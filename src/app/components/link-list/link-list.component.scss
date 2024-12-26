@@ -25,14 +25,8 @@
     }
 
     li {
-      line-height: 0.75em;
-
-      @include mixins.respond-to('gt-xs') {
-        line-height: unset;
-      }
-
       a {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         gap: 4px;
         padding: 4px;

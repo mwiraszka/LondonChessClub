@@ -15,5 +15,5 @@ import type { ExternalLink, InternalLink } from '@app/types';
 })
 export class LinkListComponent {
   @Input() header?: string;
-  @Input() links?: Array<InternalLink | ExternalLink>;
+  @Input() links: Array<InternalLink | ExternalLink> = [];
 }

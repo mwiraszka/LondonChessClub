@@ -14,7 +14,7 @@ import { isDefined } from '@app/utils';
 export function customSort(key: string) {
   return function _sort(a: unknown, b: unknown, _key = key): -1 | 0 | 1 {
     const [nestedObject, nestedKey] = _key.split('.');
-    if (has(a, nestedObject) && has(b, nestedObject)) {
+    if (_key.includes('.') && has(a, nestedObject) && has(b, nestedObject)) {
       // Call _sort() recursively until lowest-level property is reached
       return _sort(a[nestedObject], b[nestedObject], nestedKey);
     }

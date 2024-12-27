@@ -27,9 +27,9 @@ export class ScheduleScreenComponent implements OnInit {
   );
 
   constructor(
-    private readonly store: Store,
-    private readonly metaAndTitleService: MetaAndTitleService,
     @Inject(DOCUMENT) private _document: Document,
+    private readonly metaAndTitleService: MetaAndTitleService,
+    private readonly store: Store,
   ) {}
 
   ngOnInit(): void {

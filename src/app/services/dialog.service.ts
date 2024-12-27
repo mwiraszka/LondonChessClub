@@ -60,21 +60,16 @@ export class DialogService<TComponent extends DialogOutput<TResult>, TResult> {
       providers: [{ provide: DIALOG_CONFIG_TOKEN, useValue: dialogConfig }],
     });
 
-    // const dialogComponentPortal = new ComponentPortal(
-    //   DialogComponent<TComponent, TResult>,
-    //   null,
-    //   injector,
-    // );
-    // this.dialogComponentRef = this.overlayRef.attach(dialogComponentPortal);
+    const dialogComponentPortal = new ComponentPortal(
+      DialogComponent<TComponent, TResult>,
+      null,
+      injector,
+    );
+    this.dialogComponentRef = this.overlayRef.attach(dialogComponentPortal);
 
-    // return firstValueFrom(
-    //   this.dialogComponentRef.instance.result.pipe(tap(() => this.close())),
-    // );
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve('close');
-      }, 300);
-    });
+    return firstValueFrom(
+      this.dialogComponentRef.instance.result.pipe(tap(() => this.close())),
+    );
   }
 
   public close(): void {

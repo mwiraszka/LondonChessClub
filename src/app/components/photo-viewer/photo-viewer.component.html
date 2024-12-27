@@ -1,25 +1,19 @@
-<div
-  #navigationButtonsContainer
-  class="navigation-buttons-container">
-  <div class="button-wrapper">
-    <button
-      #previousPhotoButton
-      class="previous-photo-button lcc-secondary-button lcc-light-button"
-      [tooltip]="'Previous photo'"
-      (click)="onPreviousPhoto()">
-      <i-feather name="chevron-left"></i-feather>
-    </button>
-  </div>
+<div class="previous-photo-button-wrapper">
+  <button
+    class="lcc-secondary-button lcc-light-button"
+    tooltip="Previous photo"
+    (click)="onPreviousPhoto()">
+    <i-feather name="chevron-left"></i-feather>
+  </button>
+</div>
 
-  <div class="button-wrapper">
-    <button
-      #nextPhotoButton
-      class="next-photo-button lcc-secondary-button lcc-light-button"
-      [tooltip]="'Next photo'"
-      (click)="onNextPhoto()">
-      <i-feather name="chevron-right"></i-feather>
-    </button>
-  </div>
+<div class="next-photo-button-wrapper">
+  <button
+    class="lcc-secondary-button lcc-light-button"
+    tooltip="Next photo"
+    (click)="onNextPhoto()">
+    <i-feather name="chevron-right"></i-feather>
+  </button>
 </div>
 
 <figure>

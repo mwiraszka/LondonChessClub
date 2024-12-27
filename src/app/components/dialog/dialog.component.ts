@@ -9,7 +9,6 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 
-import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
 import { DIALOG_CONFIG_TOKEN } from '@app/services';
 import type { DialogConfig, DialogOutput } from '@app/types';
@@ -18,18 +17,19 @@ import type { DialogConfig, DialogOutput } from '@app/types';
   selector: 'lcc-dialog',
   template: `
     <header>
-      <i-feather
-        name="x"
-        class="close-icon"
-        [tooltip]="'Close'"
-        (click)="result.emit('close')">
-      </i-feather>
+      <button class="close-button lcc-icon-button">
+        <i-feather
+          name="x"
+          class="close-icon"
+          (click)="result.emit('close')">
+        </i-feather>
+      </button>
     </header>
 
     <ng-template #contentContainer></ng-template>
   `,
   styleUrl: './dialog.component.scss',
-  imports: [IconsModule, TooltipDirective],
+  imports: [IconsModule],
 })
 export class DialogComponent<TComponent extends DialogOutput<TResult>, TResult>
   implements AfterViewInit

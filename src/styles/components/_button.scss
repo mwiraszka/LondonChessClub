@@ -79,3 +79,20 @@
     background-color: var(--lcc-color--button-warningButtonBackgroundOnHover);
   }
 }
+
+.lcc-icon-button {
+  background-color: unset;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  i-feather {
+    height: 18px;
+    width: 18px;
+  }
+}

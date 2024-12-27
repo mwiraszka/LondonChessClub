@@ -64,6 +64,7 @@ export class TooltipDirective implements OnDestroy {
       ],
     });
 
+    // TODO: Prevent unstyled tooltip text from displaying briefly on rapid mousemove events
     const componentPortal = new ComponentPortal(
       TooltipComponent,
       this.viewContainerRef,

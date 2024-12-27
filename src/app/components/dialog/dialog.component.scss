@@ -19,15 +19,11 @@ $header-border-bottom-thickness: 2px;
     border-bottom: $header-border-bottom-thickness solid
       var(--lcc-color--dialog-headerBorderBottom);
 
-    .close-icon {
+    .close-button {
       margin: 0 4px 0 auto;
-      background-color: unset;
-      height: calc($header-height - 4px);
-      width: calc($header-height - 4px);
       color: var(--lcc-color--dialog-closeIcon);
 
       &:hover {
-        cursor: pointer;
         color: var(--lcc-color--dialog-closeIconOnHover);
       }
     }

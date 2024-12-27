@@ -9,8 +9,15 @@ import { getLichessAnalysisUrl, getPlayerName, getScore } from '@app/utils';
 
 @Component({
   selector: 'lcc-pgn-viewer',
-  styleUrl: './pgn-viewer.component.scss',
-  templateUrl: './pgn-viewer.component.html',
+  template: `
+    <div [id]="viewerId"></div>
+    <lcc-link-list [links]="[lichessAnalysisBoardLink]"></lcc-link-list>
+  `,
+  styles: `
+    lcc-link-list {
+      margin-top: 4px;
+    }
+  `,
   imports: [CommonModule, LinkListComponent],
 })
 export class PgnViewerComponent implements OnInit, AfterViewInit {

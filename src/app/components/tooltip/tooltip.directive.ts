@@ -1,121 +1,163 @@
 import {
-  ComponentRef,
+  ConnectedPosition,
+  Overlay,
+  OverlayRef,
+  PositionStrategy,
+  ScrollStrategy,
+} from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import {
   Directive,
   ElementRef,
   HostListener,
+  InjectionToken,
+  Injector,
   Input,
-  OnChanges,
   OnDestroy,
-  SimpleChanges,
+  TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
 
-import { getTextWidth } from '@app/utils';
+import { Pixels } from '@app/types';
+import { isDefined } from '@app/utils';
 
 import { TooltipComponent } from './tooltip.component';
+
+export const TOOLTIP_DATA_TOKEN = new InjectionToken('Tooltip Data');
 
 @Directive({
   selector: '[tooltip]',
 })
-export class TooltipDirective implements OnChanges, OnDestroy {
-  // TODO: Automatically destroy when scrolling detected; also build in manual change detection
-  // so that components that use directive can use manual push change detection strategy
+export class TooltipDirective implements OnDestroy {
+  @Input() tooltip: string | TemplateRef<unknown> | null = null;
 
-  private readonly TOOLTIP_MAX_WIDTH_PX = 120;
-  private readonly SIDE_SCREEN_PADDING_PX = 1;
-
-  // Must match the sum of the left and right padding values set in the tooltip component
-  private readonly TOOLTIP_SIDE_PADDING_PX = 16;
-
-  @Input() tooltip: string | null = null;
-
-  private componentRef: ComponentRef<TooltipComponent> | null = null;
-  private screenWidth = window.innerWidth;
+  private overlayRef: OverlayRef | null = null;
 
   constructor(
-    private elementRef: ElementRef,
+    private element: ElementRef<HTMLElement>,
+    private overlay: Overlay,
     private viewContainerRef: ViewContainerRef,
   ) {}
 
-  @HostListener('mouseenter')
-  onMouseEnter(): void {
-    this.init();
+  @HostListener('mouseenter', ['$event'])
+  @HostListener('focus', ['$event'])
+  public attach(event: MouseEvent | FocusEvent): void {
+    this.detach();
+
+    if (!isDefined(this.tooltip) || this.isTouchScreen()) {
+      return;
+    }
+
+    if (this.overlayRef === null) {
+      const clientY = event instanceof MouseEvent ? event.clientY : undefined;
+      const positionStrategy = this.getPositionStrategy(clientY);
+      const scrollStrategy = this.getScrollStrategy();
+      this.overlayRef = this.overlay.create({ positionStrategy, scrollStrategy });
+    }
+
+    const injector = Injector.create({
+      providers: [
+        {
+          provide: TOOLTIP_DATA_TOKEN,
+          useValue: this.tooltip,
+        },
+      ],
+    });
+
+    const componentPortal = new ComponentPortal(
+      TooltipComponent,
+      this.viewContainerRef,
+      injector,
+    );
+    this.overlayRef.attach(componentPortal);
   }
 
   @HostListener('mouseleave')
-  onMouseLeave(): void {
-    this.destroy();
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(): void {
-    this.screenWidth = window.innerWidth;
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['tooltip'].previousValue) {
-      this.init();
+  @HostListener('blur')
+  public detach(): void {
+    if (this.overlayRef?.hasAttached()) {
+      this.overlayRef?.detach();
     }
   }
 
   ngOnDestroy(): void {
-    this.destroy();
+    this.overlayRef?.dispose();
   }
 
-  init(): void {
-    this.destroy();
-    if (!this.componentRef && !window.matchMedia('(pointer: coarse)').matches) {
-      this.componentRef = this.viewContainerRef.createComponent(TooltipComponent);
-      this.setTooltipPlacement();
+  private getPositionStrategy(clientY?: Pixels): PositionStrategy {
+    const positionsBelow: ConnectedPosition[] = [
+      {
+        originX: 'center',
+        originY: 'bottom',
+        overlayX: 'center',
+        overlayY: 'top',
+        panelClass: 'bottom',
+        offsetY: 4,
+      },
+      {
+        originX: 'start',
+        originY: 'bottom',
+        overlayX: 'start',
+        overlayY: 'top',
+        panelClass: 'bottom',
+        offsetY: 4,
+      },
+      {
+        originX: 'end',
+        originY: 'bottom',
+        overlayX: 'end',
+        overlayY: 'top',
+        panelClass: 'bottom',
+        offsetY: 4,
+      },
+    ];
 
-      const host = this.elementRef.nativeElement;
-      host.insertBefore(this.componentRef.location.nativeElement, host.firstChild);
-    }
+    const positionsAbove: ConnectedPosition[] = [
+      {
+        originX: 'center',
+        originY: 'top',
+        overlayX: 'center',
+        overlayY: 'bottom',
+        panelClass: 'top',
+        offsetY: -4,
+      },
+      {
+        originX: 'start',
+        originY: 'top',
+        overlayX: 'start',
+        overlayY: 'bottom',
+        panelClass: 'top',
+        offsetY: -4,
+      },
+      {
+        originX: 'end',
+        originY: 'top',
+        overlayX: 'end',
+        overlayY: 'bottom',
+        panelClass: 'top',
+        offsetY: -4,
+      },
+    ];
+
+    // Due to word wrapping in the Tooltip Component itself, the height of the tooltip container is
+    // not known at this stage, so assume there's enough space above if the client is at least
+    // 200px down from the top of the screen
+    const preferredPositions =
+      clientY && clientY > 200
+        ? [...positionsAbove, ...positionsBelow]
+        : [...positionsBelow, ...positionsAbove];
+
+    return this.overlay
+      .position()
+      .flexibleConnectedTo(this.element)
+      .withPositions(preferredPositions);
   }
 
-  destroy(): void {
-    if (this.componentRef) {
-      this.componentRef.destroy();
-      this.componentRef = null;
-    }
+  private getScrollStrategy(): ScrollStrategy {
+    return this.overlay.scrollStrategies.close();
   }
 
-  private setTooltipPlacement(): void {
-    if (this.componentRef) {
-      const { left, right, bottom } =
-        this.elementRef.nativeElement.getBoundingClientRect();
-      const elementCenter = (right - left) / 2 + left;
-
-      const tooltipTextWidth = getTextWidth(
-        this.tooltip,
-        this.TOOLTIP_MAX_WIDTH_PX - this.TOOLTIP_SIDE_PADDING_PX,
-      );
-
-      const rightOverflow =
-        this.screenWidth -
-        elementCenter -
-        (tooltipTextWidth + this.TOOLTIP_SIDE_PADDING_PX) / 2 -
-        this.SIDE_SCREEN_PADDING_PX;
-      const rightOffset = rightOverflow > 0 ? 0 : rightOverflow;
-
-      const leftOverflow =
-        elementCenter -
-        (tooltipTextWidth + this.TOOLTIP_SIDE_PADDING_PX) / 2 -
-        this.SIDE_SCREEN_PADDING_PX;
-      const leftOffset = leftOverflow > 0 ? 0 : leftOverflow;
-
-      this.componentRef.instance.width = tooltipTextWidth + this.TOOLTIP_SIDE_PADDING_PX;
-      this.componentRef.instance.left = elementCenter + rightOffset - leftOffset;
-      this.componentRef.instance.top = bottom;
-
-      // Only render text after a brief timeout to prevent issue where tooltip is initially
-      // placed incorrectly, shifting content underneath it for a short period of time
-
-      setTimeout(() => {
-        if (this.componentRef?.instance) {
-          this.componentRef.instance.tooltip = this.tooltip;
-        }
-      }, 50);
-    }
+  private isTouchScreen(): boolean {
+    return window.matchMedia('(pointer: coarse)').matches;
   }
 }

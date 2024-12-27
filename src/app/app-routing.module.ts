@@ -5,7 +5,7 @@ import { AuthGuard } from '@app/guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     loadChildren: () =>
       import('./screens/home/home-screen-routing.module').then(
         m => m.HomeScreenRoutingModule,

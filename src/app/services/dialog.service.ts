@@ -28,8 +28,8 @@ export class DialogService<TComponent extends DialogOutput<TResult>, TResult> {
   private overlayElementClickListener?: () => void;
 
   constructor(
-    private readonly overlay: Overlay,
     private readonly rendererFactory: RendererFactory2,
+    private readonly overlay: Overlay,
   ) {
     this.renderer = this.rendererFactory.createRenderer(null, null);
   }
@@ -60,16 +60,21 @@ export class DialogService<TComponent extends DialogOutput<TResult>, TResult> {
       providers: [{ provide: DIALOG_CONFIG_TOKEN, useValue: dialogConfig }],
     });
 
-    const dialogComponentPortal = new ComponentPortal(
-      DialogComponent<TComponent, TResult>,
-      null,
-      injector,
-    );
-    this.dialogComponentRef = this.overlayRef.attach(dialogComponentPortal);
+    // const dialogComponentPortal = new ComponentPortal(
+    //   DialogComponent<TComponent, TResult>,
+    //   null,
+    //   injector,
+    // );
+    // this.dialogComponentRef = this.overlayRef.attach(dialogComponentPortal);
 
-    return firstValueFrom(
-      this.dialogComponentRef.instance.result.pipe(tap(() => this.close())),
-    );
+    // return firstValueFrom(
+    //   this.dialogComponentRef.instance.result.pipe(tap(() => this.close())),
+    // );
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve('close');
+      }, 300);
+    });
   }
 
   public close(): void {

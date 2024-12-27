@@ -2,7 +2,7 @@ export type { ApiScope } from './api-scope.model';
 export type { Article, ArticleFormData, ArticleFormGroup } from './article.model';
 export type { ClubDocument } from './club-document.model';
 export type { ControlMode } from './control-mode.model';
-export type { Id, IsoDate, Url } from './core.model';
+export type { Id, IsoDate, Pixels, Url } from './core.model';
 export type {
   BasicDialogResult,
   Dialog,

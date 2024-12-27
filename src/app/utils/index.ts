@@ -2,6 +2,7 @@ export { isStorageSupported } from './browser/is-storage-supported.util';
 
 export { areSame } from './common/are-same.util';
 export { isDefined } from './common/is-defined.util';
+export { isString } from './common/is-string.util';
 export { takeRandomly } from './common/take-randomly.util';
 
 export { isValidCollectionId } from './database/is-valid-collection-id.util';
@@ -29,5 +30,3 @@ export { customSort } from './sort/custom-sort.util';
 export { sortArticles } from './sort/sort-articles.util';
 
 export { actionSanitizer } from './store/action-sanitizer.util';
-
-export { getTextWidth } from './text/get-text-width.util';

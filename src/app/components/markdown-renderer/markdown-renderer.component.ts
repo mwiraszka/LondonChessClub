@@ -8,12 +8,12 @@ import { AfterViewChecked, Component, Inject, Input } from '@angular/core';
 @UntilDestroy()
 @Component({
   selector: 'lcc-markdown-renderer',
-  templateUrl: './markdown-renderer.component.html',
+  template: '<markdown [data]="data"></markdown>',
   styleUrl: './markdown-renderer.component.scss',
   imports: [CommonModule, MarkdownComponent],
 })
 export class MarkdownRendererComponent implements AfterViewChecked {
-  @Input() data?: string;
+  @Input() public data?: string;
 
   constructor(@Inject(DOCUMENT) private _document: Document) {}
 

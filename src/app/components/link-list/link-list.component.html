@@ -11,7 +11,7 @@
           [href]="link.externalPath"
           ref="noopener noreferrer"
           target="_blank"
-          [tooltip]="link.tooltip ?? ''">
+          [tooltip]="link.tooltip ?? null">
           @if (link.icon) {
             <i-feather
               [name]="link.icon"
@@ -28,7 +28,7 @@
         <a
           class="lcc-link"
           [routerLink]="link.internalPath | routerLink"
-          [tooltip]="link.tooltip ?? ''">
+          [tooltip]="link.tooltip ?? null">
           @if (link.icon) {
             <i-feather
               [name]="link.icon"

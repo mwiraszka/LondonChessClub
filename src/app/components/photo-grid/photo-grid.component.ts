@@ -8,7 +8,18 @@ import { DialogService } from '@app/services';
 
 @Component({
   selector: 'lcc-photo-grid',
-  templateUrl: './photo-grid.component.html',
+  template: `
+    @for (
+      photo of photos.slice(0, maxPhotos ?? photos.length);
+      let index = $index;
+      track photo.fileName
+    ) {
+      <img
+        [src]="'assets/photos/' + photo.fileName + '-320.jpg'"
+        [alt]="photo.caption"
+        (click)="onClickPhoto(index)" />
+    }
+  `,
   styleUrl: './photo-grid.component.scss',
   imports: [CommonModule],
 })

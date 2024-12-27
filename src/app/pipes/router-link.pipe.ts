@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 import type { InternalPath } from '@app/types';
+import { isDefined } from '@app/utils';
 
 /**
  * Parse potential InternalPath tuple and add '/' prefix for Angular's routerLink.
@@ -10,7 +11,7 @@ import type { InternalPath } from '@app/types';
 })
 export class RouterLinkPipe implements PipeTransform {
   transform(path?: InternalPath): string | undefined {
-    if (!path) {
+    if (!isDefined(path)) {
       return;
     }
 

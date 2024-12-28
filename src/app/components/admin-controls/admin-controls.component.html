@@ -3,7 +3,7 @@
     class="admin-control-button bookmark-button"
     [ngStyle]="{ 'width.px': config.buttonSize, 'height.px': config.buttonSize }"
     [tooltip]="bookmarkTooltipContent"
-    (click)="config.bookmarkCb?.()">
+    (click)="config.bookmarkCb()">
     <i-feather
       name="bookmark"
       class="bookmark-icon">
@@ -28,7 +28,7 @@
   class="admin-control-button delete-button"
   [ngStyle]="{ 'width.px': config.buttonSize, 'height.px': config.buttonSize }"
   [tooltip]="deleteTooltipContent"
-  (click)="config.deleteCb?.()">
+  (click)="config.deleteCb()">
   <i-feather
     name="trash-2"
     class="delete-icon">

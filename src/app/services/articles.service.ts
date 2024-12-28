@@ -43,7 +43,6 @@ export class ArticlesService {
   }
 
   public updateArticle(article: Article, imageDataUrl: Url | null): Observable<Article> {
-    console.log(':: UPDATE ARTICLE', article);
     const scope: ApiScope = 'admin';
     return this.http
       .put<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${article.id}`, {

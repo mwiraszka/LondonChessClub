@@ -107,7 +107,7 @@ export class ArticleGridComponent implements OnInit {
     const dialog: Dialog = {
       title: hasBookmark ? 'Remove bookmark' : 'Add bookmark',
       body: hasBookmark
-        ? `Remove bookmark from ${article.title} article?`
+        ? `Remove bookmark from article ${article.title}?`
         : `Bookmark ${article.title}? This will make the article show up first in the list of articles.`,
       confirmButtonText: 'Bookmark',
       confirmButtonType: 'primary',

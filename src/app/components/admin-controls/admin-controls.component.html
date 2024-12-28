@@ -36,22 +36,16 @@
 </button>
 
 <ng-template #bookmarkTooltipContent>
-  <div class="tooltip-content">
-    <span>{{ config.bookmarked ? 'Remove bookmark from' : 'Bookmark' }} </span>
-    <i class="tooltip-item-name">{{ config.itemName }}</i>
-  </div>
+  <span>{{ config.bookmarked ? 'Remove bookmark from' : 'Bookmark' }}</span>
+  <i class="tooltip-item-name">{{ config.itemName }}</i>
 </ng-template>
 
 <ng-template #editTooltipContent>
-  <div class="tooltip-content">
-    <span>Edit</span>
-    <i class="tooltip-item-name">{{ config.itemName }}</i>
-  </div>
+  <span>Edit</span>
+  <i class="tooltip-item-name">{{ config.itemName }}</i>
 </ng-template>
 
 <ng-template #deleteTooltipContent>
-  <div class="tooltip-content">
-    <span>Delete</span>
-    <i class="tooltip-item-name">{{ config.itemName }}</i>
-  </div>
+  <span>Delete</span>
+  <i class="tooltip-item-name">{{ config.itemName }}</i>
 </ng-template>

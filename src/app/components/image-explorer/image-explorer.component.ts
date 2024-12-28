@@ -64,7 +64,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
     return {
       buttonSize: 40,
       deleteCb: () => this.onDeleteImage(image),
-      itemName: image.id,
+      itemName: image.id?.slice(0, -8),
     };
   }
 

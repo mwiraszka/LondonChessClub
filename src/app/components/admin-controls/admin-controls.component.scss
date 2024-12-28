@@ -48,11 +48,7 @@
   }
 }
 
-.tooltip-content {
-  max-width: 150px;
-
-  .tooltip-item-name {
-    display: block;
-    color: var(--lcc-color--tooltip-highlightedText) !important;
-  }
+.tooltip-item-name {
+  display: block;
+  color: var(--lcc-color--tooltip-highlightedText) !important;
 }

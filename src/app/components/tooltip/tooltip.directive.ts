@@ -41,9 +41,7 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('mouseenter', ['$event'])
   @HostListener('focus', ['$event'])
-  public attach(event: MouseEvent | FocusEvent): void {
-    this.detach();
-
+  private attach(event: MouseEvent | FocusEvent): void {
     if (!isDefined(this.tooltip) || this.isTouchScreen()) {
       return;
     }
@@ -64,7 +62,6 @@ export class TooltipDirective implements OnDestroy {
       ],
     });
 
-    // TODO: Prevent unstyled tooltip text from displaying briefly on rapid mousemove events
     const componentPortal = new ComponentPortal(
       TooltipComponent,
       this.viewContainerRef,
@@ -75,7 +72,7 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('mouseleave')
   @HostListener('blur')
-  public detach(): void {
+  private detach(): void {
     if (this.overlayRef?.hasAttached()) {
       this.overlayRef?.detach();
     }

@@ -73,22 +73,13 @@ export class NavEffects {
 
   navigateToNews$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticlesActions.cancelSelected, ArticlesActions.fetchArticleFailed),
-      map(() => NavActions.navigationRequested({ path: 'news' })),
-    ),
-  );
-
-  navigateToArticleView$ = createEffect(() =>
-    this.actions$.pipe(
       ofType(
+        ArticlesActions.cancelSelected,
+        ArticlesActions.fetchArticleFailed,
         ArticlesActions.publishArticleSucceeded,
         ArticlesActions.updateArticleSucceeded,
       ),
-      map(({ article }) =>
-        NavActions.navigationRequested({
-          path: 'article/view/' + article.id,
-        }),
-      ),
+      map(() => NavActions.navigationRequested({ path: 'news' })),
     ),
   );
 

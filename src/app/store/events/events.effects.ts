@@ -91,6 +91,7 @@ export class EventsEffects {
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
       switchMap(([, event, eventFormData, user]) => {
+        const originalEventTitle = event.title;
         const modificationInfo: ModificationInfo = {
           ...event.modificationInfo!,
           lastEditedBy: `${user.firstName} ${user.lastName}`,
@@ -99,7 +100,7 @@ export class EventsEffects {
         const modifiedEvent = { ...event, ...eventFormData, modificationInfo };
 
         return this.eventsService.updateEvent(modifiedEvent).pipe(
-          map(event => EventsActions.updateEventSucceeded({ event })),
+          map(event => EventsActions.updateEventSucceeded({ event, originalEventTitle })),
           catchError((errorResponse: HttpErrorResponse) => {
             errorResponse = parseHttpErrorResponse(errorResponse);
             return of(EventsActions.updateEventFailed({ errorResponse }));

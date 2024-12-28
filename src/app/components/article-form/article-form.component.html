@@ -100,20 +100,13 @@
             </i-feather>
           }
         </div>
-
-        <label for="is-sticky-input">Sticky:</label>
-        <input
-          id="is-sticky-input"
-          type="checkbox"
-          name="is-sticky"
-          formControlName="isSticky" />
       </div>
 
       <aside class="lcc-required-fields-legend">Required fields</aside>
 
       <div class="preview-section-container">
         @if (!!form.controls['body'].value) {
-          <h4>Preview</h4>
+          <h3>Article preview:</h3>
           <hr />
           <div class="markdown-container">
             <lcc-markdown-renderer [data]="form.controls['body'].value">

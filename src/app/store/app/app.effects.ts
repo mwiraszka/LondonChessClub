@@ -102,10 +102,10 @@ export class AppEffects {
   addUpdateArticleSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleSucceeded),
-      map(({ article }) => {
+      map(({ originalArticleTitle }) => {
         const toast: Toast = {
           title: 'Article update',
-          message: `Successfully updated ${article.title} in the database`,
+          message: `Successfully updated ${originalArticleTitle} in the database`,
           type: 'success',
         };
         return AppActions.toastAdded({ toast });
@@ -220,10 +220,10 @@ export class AppEffects {
   addUpdateEventSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventsActions.updateEventSucceeded),
-      map(({ event }) => {
+      map(({ originalEventTitle }) => {
         const toast: Toast = {
           title: 'Event update',
-          message: `Successfully updated ${event.title} in the database`,
+          message: `Successfully updated ${originalEventTitle} in the database`,
           type: 'success',
         };
         return AppActions.toastAdded({ toast });
@@ -338,10 +338,10 @@ export class AppEffects {
   addUpdateMemberSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.updateMemberSucceeded),
-      map(({ member }) => {
+      map(({ originalMemberName }) => {
         const toast: Toast = {
           title: 'Member update',
-          message: `Successfully updated ${member.firstName} ${member.lastName} in the database`,
+          message: `Successfully updated ${originalMemberName} in the database`,
           type: 'success',
         };
         return AppActions.toastAdded({ toast });

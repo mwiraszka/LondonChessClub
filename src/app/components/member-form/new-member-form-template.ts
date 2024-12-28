@@ -10,7 +10,7 @@ export const newMemberFormTemplate: MemberFormData = {
   peakRating: '1000/0',
   dateJoined: moment().toISOString(),
   isActive: true,
-  chesscomUsername: '',
+  chessComUsername: '',
   lichessUsername: '',
   yearOfBirth: '',
   email: '',

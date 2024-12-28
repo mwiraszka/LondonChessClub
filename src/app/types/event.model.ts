@@ -25,7 +25,7 @@ export interface Event {
   eventDate: IsoDate;
   title: string;
   details: string;
-  articleId: Id;
+  articleId: Id | null;
   modificationInfo: ModificationInfo | null;
 }
 

@@ -1,18 +1,16 @@
 import { Article } from '@app/types';
-import { customSort } from '@app/utils';
+import { customSort, isDefined } from '@app/utils';
 
+// TODO: Modify customSort() to accept an optional secondary key so that this can be done in one go
 /**
- * Sort articles based on date created, with sticky articles first
+ * Sort articles by date created, then by bookmark date
  */
 export function sortArticles(articles: Article[]): Article[] {
-  const stickyArticles = articles
-    .filter(article => article.isSticky)
-    .sort(customSort('modificationInfo.dateCreated'))
-    .reverse();
-  const remainingArticles = articles
-    .filter(article => !article.isSticky)
-    .sort(customSort('modificationInfo.dateCreated'))
-    .reverse();
+  const bookmarkedArticles = articles.filter(article => isDefined(article.bookmarkDate));
+  const remainingArticles = articles.filter(article => !isDefined(article.bookmarkDate));
 
-  return [...stickyArticles, ...remainingArticles];
+  return [
+    ...bookmarkedArticles.sort(customSort('bookmarkDate')).reverse(),
+    ...remainingArticles.sort(customSort('modificationInfo.dateCreated')).reverse(),
+  ];
 }

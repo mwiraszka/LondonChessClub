@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 
-import { Id, Url } from './core.model';
+import { Id, IsoDate, Url } from './core.model';
 import type { ModificationInfo } from './modification-info.model';
 
 export interface Article {
@@ -10,13 +10,13 @@ export interface Article {
   imageId: Id | null;
   imageUrl: Url | null;
   thumbnailImageUrl: Url | null;
-  isSticky: boolean;
+  bookmarkDate: IsoDate | null;
   modificationInfo: ModificationInfo | null;
 }
 
 export type ArticleFormData = Omit<
   Article,
-  'id' | 'imageUrl' | 'thumbnailImageUrl' | 'modificationInfo'
+  'id' | 'imageUrl' | 'thumbnailImageUrl' | 'modificationInfo' | 'bookmarkDate'
 >;
 
 export type ArticleFormGroup<ArticleFormData> = {

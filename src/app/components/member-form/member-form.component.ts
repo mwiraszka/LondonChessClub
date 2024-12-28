@@ -191,7 +191,7 @@ export class MemberFormComponent implements OnInit {
         nonNullable: true,
         validators: yearOfBirthValidator,
       }),
-      chesscomUsername: new FormControl(memberFormData.chesscomUsername, {
+      chessComUsername: new FormControl(memberFormData.chessComUsername, {
         nonNullable: true,
         validators: Validators.pattern(/[^\s]/),
       }),

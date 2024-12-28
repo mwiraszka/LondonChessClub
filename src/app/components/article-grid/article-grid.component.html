@@ -14,9 +14,9 @@
         [routerLink]="
           article.title ? (['article', 'view', article.id!] | routerLink) : undefined
         ">
-        @if (article.isSticky) {
+        @if (article.bookmarkDate | isDefined) {
           <i-feather
-            class="sticky-icon"
+            class="bookmark-icon"
             name="bookmark">
           </i-feather>
         }

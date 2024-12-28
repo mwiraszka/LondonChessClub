@@ -1,6 +1,4 @@
 :host {
-  min-width: 80px;
-  max-width: 120px;
   background-color: var(--lcc-color--tooltip-background);
   color: var(--lcc-color--tooltip-text);
   outline: 1px solid var(--lcc-color--tooltip-border);
@@ -9,7 +7,6 @@
   pointer-events: none;
   font-size: var(--lcc-fontSize--h4);
   text-align: center;
-  word-wrap: break-word;
   text-transform: none;
   white-space: wrap;
   animation: slideUpAnimation 0.5s;

@@ -96,7 +96,7 @@ export class MembersTableComponent implements OnInit {
     return {
       editPath: ['member', 'edit', member.id!],
       buttonSize: 31,
-      itemName: member.firstName,
+      itemName: `${member.firstName} ${member.lastName}`,
       deleteCb: () => this.onDeleteMember(member),
     };
   }

@@ -59,7 +59,7 @@ export const addMemberFailed = createAction(
 export const updateMemberRequested = createAction('[Members] Update member requested');
 export const updateMemberSucceeded = createAction(
   '[Members] Update member succeeded',
-  props<{ member: Member }>(),
+  props<{ member: Member; originalMemberName: string }>(),
 );
 export const updateMemberFailed = createAction(
   '[Members] Update member failed',

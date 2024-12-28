@@ -8,6 +8,8 @@
   --lcc-color--aboutScreen-sectionHeaderText: #{clr(grayscale, white-98)};
   --lcc-color--aboutScreen-text: #{clr(grayscale, gray-65)};
 
+  --lcc-color--adminControls-bookmarkIcon: #{clr(secondary)};
+  --lcc-color--adminControls-bookmarkIconOnHover: #{clr(secondary, light)};
   --lcc-color--adminControls-buttonBackground: #{clr(grayscale, gray-75)};
   --lcc-color--adminControls-buttonBackgroundOnHover: #{clr(grayscale, white-85)};
   --lcc-color--adminControls-buttonBorder: #{clr(grayscale, gray-65)};
@@ -36,7 +38,7 @@
   --lcc-color--articleGrid-cardBackground2: #{clr(primary, dark, 0.8)};
   --lcc-color--articleGrid-cardBackgroundOnHover: #{clr(primary, dark, 0.9)};
   --lcc-color--articleGrid-cardDividerLine: #{clr(grayscale, gray-50, 0.5)};
-  --lcc-color--articleGrid-stickyIcon: #{clr(grayscale, white-90, 0.6)};
+  --lcc-color--articleGrid-bookmarkIcon: #{clr(grayscale, white-90, 0.6)};
 
   --lcc-color--button-border: #{clr(grayscale, white-95, 0.2)};
   --lcc-color--button-darkSecondaryButtonBorder: #{clr(grayscale, gray-25)};
@@ -290,6 +292,7 @@
 
   --lcc-color--tooltip-background: #{clr(tooltip, light)};
   --lcc-color--tooltip-border: #{clr(tooltip)};
+  --lcc-color--tooltip-highlightedText: #{clr(tooltip, highlighted)};
   --lcc-color--tooltip-text: #{clr(grayscale, white-90)};
 
   --lcc-color--upcomingEventBanner-background-activeTournament: #{clr(

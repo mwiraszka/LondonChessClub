@@ -40,10 +40,14 @@ export const publishArticleFailed = createAction(
   props<{ error: Error }>(),
 );
 
+export const updateActicleBookmarkRequested = createAction(
+  '[Articles] Update article bookmark requested',
+  props<{ articleId: Id; bookmark: boolean }>(),
+);
 export const updateArticleRequested = createAction('[Articles] Update article requested');
 export const updateArticleSucceeded = createAction(
   '[Articles] Update article succeeded',
-  props<{ article: Article }>(),
+  props<{ article: Article; originalArticleTitle?: string }>(),
 );
 export const updateArticleFailed = createAction(
   '[Articles] Update article failed',

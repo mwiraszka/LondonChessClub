@@ -41,7 +41,7 @@ export const addEventFailed = createAction(
 export const updateEventRequested = createAction('[Events] Update event requested');
 export const updateEventSucceeded = createAction(
   '[Events] Update event succeeded',
-  props<{ event: Event }>(),
+  props<{ event: Event; originalEventTitle: string }>(),
 );
 export const updateEventFailed = createAction(
   '[Events] Update event failed',

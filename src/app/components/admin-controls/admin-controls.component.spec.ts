@@ -34,6 +34,44 @@ describe('AdminControlsComponent', () => {
       });
   });
 
+  describe('bookmark button', () => {
+    it('should not render if only bookmark callback provided', () => {
+      component.config.bookmarkCb = () => 'mock bookmark callback';
+      component.config.bookmarked = undefined;
+      fixture.detectChanges();
+
+      expect(getDebugElement('.bookmark-button')).toBeNull();
+    });
+
+    it('should not render if only bookmarked flag provided', () => {
+      component.config.bookmarkCb = undefined;
+      component.config.bookmarked = false;
+      fixture.detectChanges();
+
+      expect(getDebugElement('.bookmark-button')).toBeNull();
+    });
+
+    it('should only render if both bookmark callback and bookmarked flag are provided', () => {
+      component.config.bookmarkCb = () => 'mock bookmark callback';
+      component.config.bookmarked = false;
+      fixture.detectChanges();
+
+      expect(getDebugElement('.bookmark-button')).not.toBeNull();
+    });
+
+    it('should invoke bookmark callback function when clicked', () => {
+      component.config.bookmarkCb = () => 'mock bookmark callback';
+      fixture.detectChanges();
+      const bookmarkCbSpy = jest.spyOn(component.config, 'bookmarkCb');
+      const bookmarkButton = getDebugElement('.bookmark-button');
+
+      bookmarkButton?.triggerEventHandler('click');
+
+      expect(bookmarkCbSpy).toHaveBeenCalledTimes(1);
+      expect(bookmarkCbSpy).toHaveBeenCalledWith();
+    });
+  });
+
   describe('edit button', () => {
     it('should not be rendered if no edit path provided', () => {
       expect(getDebugElement('.edit-button')).toBeNull();
@@ -55,27 +93,11 @@ describe('AdminControlsComponent', () => {
     it('should invoke delete callback function when clicked', () => {
       const deleteCbSpy = jest.spyOn(component.config, 'deleteCb');
       const deleteButton = getDebugElement('.delete-button');
+
       deleteButton?.triggerEventHandler('click');
 
       expect(deleteCbSpy).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('`controlsHovered` emitter', () => {
-    it('should emit `true` when component is hovered over', () => {
-      const controlsHoveredSpy = jest.spyOn(component.controlsHovered, 'emit');
-      fixture.debugElement.triggerEventHandler('mouseenter');
-
-      expect(controlsHoveredSpy).toHaveBeenCalledTimes(1);
-      expect(controlsHoveredSpy).toHaveBeenCalledWith(true);
-    });
-
-    it('should emit `false` when component is no longer hovered over', () => {
-      const controlsHoveredSpy = jest.spyOn(component.controlsHovered, 'emit');
-      fixture.debugElement.triggerEventHandler('mouseleave');
-
-      expect(controlsHoveredSpy).toHaveBeenCalledTimes(1);
-      expect(controlsHoveredSpy).toHaveBeenCalledWith(false);
+      expect(deleteCbSpy).toHaveBeenCalledWith();
     });
   });
 

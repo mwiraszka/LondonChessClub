@@ -12,7 +12,7 @@ export interface Member {
   peakRating: string;
   dateJoined: IsoDate;
   isActive: boolean;
-  chesscomUsername: string;
+  chessComUsername: string;
   lichessUsername: string;
   yearOfBirth: string;
   email: string;

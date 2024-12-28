@@ -196,7 +196,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   }
 
   public async onSubmit(articleTitle?: string | null): Promise<void> {
-    if (this.form?.invalid || this.imageError || !articleTitle) {
+    if (this.form?.invalid || this.imageError || !isDefined(articleTitle)) {
       this.imageValidationEnabled = true;
       this.form?.markAllAsTouched();
       return;
@@ -239,7 +239,6 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
-      isSticky: new FormControl(articleFormData.isSticky, { nonNullable: true }),
     });
   }
 

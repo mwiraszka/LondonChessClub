@@ -76,6 +76,7 @@ export class ArticlesEffects {
           modificationInfo,
           id: null,
           imageUrl: null,
+          bookmarkDate: null,
           thumbnailImageUrl: null,
         };
 
@@ -115,6 +116,7 @@ export class ArticlesEffects {
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
       switchMap(([, article, articleFormData, isNewImageStored, user]) => {
+        const originalArticleTitle = article.title;
         const modificationInfo: ModificationInfo = {
           ...article.modificationInfo!,
           lastEditedBy: `${user.firstName} ${user.lastName}`,
@@ -137,6 +139,35 @@ export class ArticlesEffects {
         }
 
         return this.articlesService.updateArticle(modifiedArticle, imageDataUrl).pipe(
+          map(article =>
+            ArticlesActions.updateArticleSucceeded({ article, originalArticleTitle }),
+          ),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            const error = new Error(`[${errorResponse.status}] ${errorResponse.error}`);
+            return of(ArticlesActions.updateArticleFailed({ error }));
+          }),
+        );
+      }),
+      tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
+  updateActicleBookmarkRequested$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.updateActicleBookmarkRequested),
+      tap(() => this.loaderService.setIsLoading(true)),
+      concatLatestFrom(({ articleId }) =>
+        this.store
+          .select(ArticlesSelectors.selectArticleById(articleId))
+          .pipe(filter(isDefined)),
+      ),
+      switchMap(([{ bookmark }, article]) => {
+        const modifiedArticle: Article = {
+          ...article,
+          bookmarkDate: bookmark ? moment().toISOString() : null,
+        };
+        return this.articlesService.updateArticle(modifiedArticle, null).pipe(
           map(article => ArticlesActions.updateArticleSucceeded({ article })),
           catchError((errorResponse: HttpErrorResponse) => {
             errorResponse = parseHttpErrorResponse(errorResponse);

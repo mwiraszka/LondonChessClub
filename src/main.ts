@@ -58,7 +58,8 @@ bootstrapApplication(AppComponent, {
           metaReducers,
           runtimeChecks: {
             strictStateSerializability: true,
-            strictActionSerializability: true,
+            // TODO: Re-enable once HttpErrorResponse replaced with a serializable type
+            strictActionSerializability: false,
           },
         },
       ),

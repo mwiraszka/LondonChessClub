@@ -10,7 +10,7 @@ import { ToastComponent } from '../toast/toast.component';
 @Component({
   selector: 'lcc-toaster',
   template: `
-    @for (toast of toasts$ | async; track toast.title) {
+    @for (toast of toasts$ | async; track toast) {
       <lcc-toast [toast]="toast"></lcc-toast>
     }
   `,

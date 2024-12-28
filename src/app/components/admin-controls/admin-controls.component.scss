@@ -17,6 +17,16 @@
       background-color: var(--lcc-color--adminControls-buttonBackgroundOnHover);
     }
 
+    &.bookmark-button {
+      color: var(--lcc-color--adminControls-bookmarkIcon);
+      margin-right: 2px;
+
+      &:focus,
+      &:hover {
+        color: var(--lcc-color--adminControls-bookmarkIconOnHover);
+      }
+    }
+
     &.edit-button {
       color: var(--lcc-color--adminControls-editIcon);
       margin-right: 2px;
@@ -35,5 +45,14 @@
         color: var(--lcc-color--adminControls-deleteIconOnHover);
       }
     }
+  }
+}
+
+.tooltip-content {
+  max-width: 150px;
+
+  .tooltip-item-name {
+    display: block;
+    color: var(--lcc-color--tooltip-highlightedText) !important;
   }
 }

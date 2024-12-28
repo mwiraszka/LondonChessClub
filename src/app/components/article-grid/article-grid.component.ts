@@ -11,6 +11,7 @@ import { LinkListComponent } from '@app/components/link-list/link-list.component
 import IconsModule from '@app/icons';
 import {
   FormatDatePipe,
+  IsDefinedPipe,
   RouterLinkPipe,
   StripMarkdownPipe,
   WasEditedPipe,
@@ -24,6 +25,7 @@ import type {
   Dialog,
   InternalLink,
 } from '@app/types';
+import { isDefined } from '@app/utils';
 
 @Component({
   selector: 'lcc-article-grid',
@@ -35,6 +37,7 @@ import type {
     FormatDatePipe,
     IconsModule,
     ImagePreloadDirective,
+    IsDefinedPipe,
     LinkListComponent,
     RouterLink,
     RouterLinkPipe,
@@ -72,7 +75,9 @@ export class ArticleGridComponent implements OnInit {
 
   public getAdminControlsConfig(article: Article): AdminControlsConfig {
     return {
-      buttonSize: 28,
+      bookmarkCb: () => this.onBookmarkArticle(article),
+      bookmarked: isDefined(article.bookmarkDate),
+      buttonSize: 40,
       deleteCb: () => this.onDeleteArticle(article),
       editPath: ['article', 'edit', article.id!],
       itemName: article.title,
@@ -94,6 +99,32 @@ export class ArticleGridComponent implements OnInit {
 
     if (result === 'confirm') {
       this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
+    }
+  }
+
+  public async onBookmarkArticle(article: Article): Promise<void> {
+    const hasBookmark = isDefined(article.bookmarkDate);
+    const dialog: Dialog = {
+      title: hasBookmark ? 'Remove bookmark' : 'Add bookmark',
+      body: hasBookmark
+        ? `Remove bookmark from ${article.title} article?`
+        : `Bookmark ${article.title}? This will make the article show up first in the list of articles.`,
+      confirmButtonText: 'Bookmark',
+      confirmButtonType: 'primary',
+    };
+
+    const result = await this.dialogService.open({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+    });
+
+    if (result === 'confirm') {
+      this.store.dispatch(
+        ArticlesActions.updateActicleBookmarkRequested({
+          articleId: article.id!,
+          bookmark: !hasBookmark,
+        }),
+      );
     }
   }
 }

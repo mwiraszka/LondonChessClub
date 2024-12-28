@@ -1,6 +1,3 @@
-import { UntilDestroy } from '@ngneat/until-destroy';
-import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
-
 import {
   ConnectedPosition,
   Overlay,
@@ -17,54 +14,49 @@ import {
   Injector,
   Input,
   OnDestroy,
-  OnInit,
+  Renderer2,
   ViewContainerRef,
 } from '@angular/core';
 
 import { AdminControlsConfig } from '@app/types';
-import { isDefined } from '@app/utils';
 
 import { AdminControlsComponent } from './admin-controls.component';
 
 export const ADMIN_CONTROLS_CONFIG = new InjectionToken('Admin Controls Config');
 
-@UntilDestroy()
 @Directive({
   selector: '[adminControls]',
 })
-export class AdminControlsDirective implements OnInit, OnDestroy {
+export class AdminControlsDirective implements OnDestroy {
   @Input() public adminControls: AdminControlsConfig | null = null;
 
-  private controlsHovered$ = new BehaviorSubject<boolean>(true);
-  private hostHovered$ = new Subject<boolean>();
   private overlayRef: OverlayRef | null = null;
+  private documentClickListener?: () => void;
+  private documentContextMenuListener?: () => void;
+  private escapeKeyListener?: () => void;
 
   constructor(
     private readonly element: ElementRef<HTMLElement>,
     private readonly overlay: Overlay,
+    private readonly renderer: Renderer2,
     private readonly viewContainerRef: ViewContainerRef,
   ) {}
 
-  ngOnInit(): void {
-    combineLatest([this.controlsHovered$, this.hostHovered$]).subscribe(
-      ([controlsHovered, hostHovered]) => {
-        // TODO: Needs fixing... obviously
-        if (!controlsHovered && !hostHovered) {
-          // this.detach();
-        }
-      },
-    );
-  }
-
   ngOnDestroy(): void {
+    this.detach();
     this.overlayRef?.dispose();
   }
 
-  private attach(): void {
-    if (!isDefined(this.adminControls)) {
-      return;
-    }
+  @HostListener('contextmenu', ['$event'])
+  public onContextMenu(event: MouseEvent): void {
+    event.preventDefault();
 
+    if (this.adminControls && !this.overlayRef?.hasAttached()) {
+      this.attach();
+    }
+  }
+
+  private attach(): void {
     if (this.overlayRef === null) {
       const positionStrategy = this.getPositionStrategy();
       const scrollStrategy = this.getScrollStrategy();
@@ -85,29 +77,17 @@ export class AdminControlsDirective implements OnInit, OnDestroy {
       this.viewContainerRef,
       injector,
     );
+    this.overlayRef.attach(componentPortal);
 
-    const controlsRef = this.overlayRef.attach(componentPortal);
-    controlsRef.instance.controlsHovered.subscribe(value =>
-      this.controlsHovered$.next(value),
-    );
-  }
-
-  @HostListener('mouseenter')
-  public onMouseEnter(): void {
-    if (this.adminControls) {
-      this.attach();
-      this.hostHovered$.next(true);
-    }
-  }
-
-  @HostListener('mouseleave')
-  public onMouseLeave(): void {
-    this.hostHovered$.next(false);
+    this.initDocumentEventListeners();
   }
 
   private detach(): void {
     if (this.overlayRef?.hasAttached()) {
       this.overlayRef?.detach();
+      this.documentClickListener?.();
+      this.documentContextMenuListener?.();
+      this.escapeKeyListener?.();
     }
   }
 
@@ -128,5 +108,23 @@ export class AdminControlsDirective implements OnInit, OnDestroy {
 
   private getScrollStrategy(): ScrollStrategy {
     return this.overlay.scrollStrategies.close();
+  }
+
+  private initDocumentEventListeners(): void {
+    this.documentClickListener = this.renderer.listen('document', 'click', () =>
+      this.detach(),
+    );
+
+    this.escapeKeyListener = this.renderer.listen('document', 'keydown.escape', () =>
+      this.detach(),
+    );
+
+    setTimeout(() => {
+      this.documentContextMenuListener = this.renderer.listen(
+        'document',
+        'contextmenu',
+        () => this.detach(),
+      );
+    });
   }
 }

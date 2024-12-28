@@ -95,6 +95,7 @@ export class MembersEffects {
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
       switchMap(([, member, memberFormData, user]) => {
+        const originalMemberName = `${member.firstName} ${member.lastName}`;
         const peakRating = getNewPeakRating(
           memberFormData.rating,
           memberFormData.peakRating,
@@ -112,7 +113,9 @@ export class MembersEffects {
         };
 
         return this.membersService.updateMember(modifiedMember).pipe(
-          map(member => MembersActions.updateMemberSucceeded({ member })),
+          map(member =>
+            MembersActions.updateMemberSucceeded({ member, originalMemberName }),
+          ),
           catchError((errorResponse: HttpErrorResponse) => {
             errorResponse = parseHttpErrorResponse(errorResponse);
             return of(MembersActions.updateMemberFailed({ errorResponse }));

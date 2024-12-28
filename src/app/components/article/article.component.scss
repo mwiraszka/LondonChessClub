@@ -1,5 +1,9 @@
 @use '../../../styles/abstracts/mixins';
 
+:host {
+  width: 100%;
+}
+
 .banner-image-container {
   position: relative;
   display: flex;

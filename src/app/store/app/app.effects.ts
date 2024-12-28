@@ -1,15 +1,19 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
-import { delay, filter, map, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, delay, filter, map, switchMap, tap } from 'rxjs/operators';
 
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { ImagesService } from '@app/services';
 import { ArticlesActions } from '@app/store/articles';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { MembersActions } from '@app/store/members';
 import type { Toast } from '@app/types';
+import { parseHttpErrorResponse } from '@app/utils';
 
 import { environment } from '@env';
 
@@ -19,6 +23,52 @@ import * as AppActions from './app.actions';
 export class AppEffects {
   // TODO: Streamline toast flow and remove from store by implementing
   // a generalized Notification Service instead
+
+  //#region Images
+  requestImageDeletion$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AppActions.deleteImageRequested),
+      switchMap(({ imageId }) => {
+        // TODO: Investigate issue with toasts
+        return this.imagesService.deleteImage(imageId).pipe(
+          map(imageId => AppActions.deleteImageSucceeded({ imageId })),
+          catchError((errorResponse: HttpErrorResponse) => {
+            errorResponse = parseHttpErrorResponse(errorResponse);
+            return of(AppActions.deleteImageFailed({ errorResponse }));
+          }),
+        );
+      }),
+    );
+  });
+
+  addDeleteImageSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AppActions.deleteImageSucceeded),
+      map(({ imageId }) => {
+        const toast: Toast = {
+          title: 'Image deletion',
+          message: `Successfully deleted image [${imageId}]`,
+          type: 'success',
+        };
+        return AppActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addDeleteImageFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AppActions.deleteImageFailed),
+      map(({ errorResponse }) => {
+        const toast: Toast = {
+          title: 'Image deletion',
+          message: `[${errorResponse.status}] ${errorResponse.error}`,
+          type: 'warning',
+        };
+        return AppActions.toastAdded({ toast });
+      }),
+    );
+  });
+  //#endregion
 
   //#region Articles
   addPublishArticleSucceededToast$ = createEffect(() => {
@@ -535,6 +585,7 @@ export class AppEffects {
     () => {
       return this.actions$.pipe(
         ofType(
+          AppActions.deleteImageFailed,
           ArticlesActions.publishArticleFailed,
           ArticlesActions.updateArticleFailed,
           ArticlesActions.deleteArticleFailed,
@@ -562,6 +613,7 @@ export class AppEffects {
 
   constructor(
     private readonly actions$: Actions,
+    private readonly imagesService: ImagesService,
     private readonly store: Store,
   ) {}
 }

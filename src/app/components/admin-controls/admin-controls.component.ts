@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Inject, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
 import { RouterLinkPipe } from '@app/pipes';
-import type { InternalPath } from '@app/types';
+import { AdminControlsConfig } from '@app/types/admin-controls-config.model';
+
+import { ADMIN_CONTROLS_CONFIG } from './admin-controls.directive';
 
 @Component({
   selector: 'lcc-admin-controls',
@@ -14,20 +16,13 @@ import type { InternalPath } from '@app/types';
   imports: [CommonModule, IconsModule, RouterLink, RouterLinkPipe, TooltipDirective],
 })
 export class AdminControlsComponent {
-  @Input() height = 28;
-  @Input() itemName = '';
-  @Input() editPath?: InternalPath;
+  @Output() public controlsHovered = new EventEmitter<boolean>();
 
-  @Output() delete = new EventEmitter<void>();
+  constructor(@Inject(ADMIN_CONTROLS_CONFIG) public config: AdminControlsConfig) {}
 
-  public onEdit(event: MouseEvent): void {
-    event.stopPropagation();
-    event.preventDefault();
-  }
+  @HostListener('mouseenter')
+  private onMouseEnter = () => this.controlsHovered.emit(true);
 
-  public onDelete(event: MouseEvent): void {
-    event.stopPropagation();
-    event.preventDefault();
-    this.delete.emit();
-  }
+  @HostListener('mouseleave')
+  private onMouseLeave = () => this.controlsHovered.emit(false);
 }

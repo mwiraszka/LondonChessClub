@@ -10,9 +10,6 @@
       @if (vm.members.displayed.length) {
         <thead>
           <tr>
-            @if (vm.isAdmin) {
-              <th class="lcc-table-admin-controls-filler"></th>
-            }
             <th class="row-number"></th>
             @for (
               header of vm.isAdmin && !vm.isSafeMode
@@ -46,17 +43,9 @@
           let last = $last
         ) {
           <tr
-            class="lcc-admin-controls-container"
+            [adminControls]="vm.isAdmin ? getAdminControlsConfig(member) : null"
             [ngClass]="{ 'last-row': last }"
             [class.inactive]="!member.isActive">
-            @if (vm.isAdmin) {
-              <lcc-admin-controls
-                [editPath]="['member', 'edit', member.id!]"
-                [height]="31"
-                [itemName]="member.firstName"
-                (delete)="onDeleteMember(member)">
-              </lcc-admin-controls>
-            }
             <td class="row-number">
               {{ i + vm.startIndex + 1 }}
             </td>

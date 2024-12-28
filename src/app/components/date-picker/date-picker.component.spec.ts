@@ -1,3 +1,7 @@
+import moment from 'moment-timezone';
+
+import { DOCUMENT } from '@angular/common';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -6,13 +10,8 @@ import { DatePickerComponent } from './date-picker.component';
 describe('DatePickerComponent', () => {
   let component: DatePickerComponent;
   let fixture: ComponentFixture<DatePickerComponent>;
-  let renderCalendarMock: ReturnType<jest.Mock>;
 
   beforeEach(() => {
-    renderCalendarMock = {
-      renderCalendar: jest.fn(() => {}),
-    };
-
     TestBed.configureTestingModule({
       imports: [DatePickerComponent],
     })
@@ -20,15 +19,79 @@ describe('DatePickerComponent', () => {
       .then(() => {
         fixture = TestBed.createComponent(DatePickerComponent);
         component = fixture.componentInstance;
+
+        component.currentMonth = moment('2050-01-01');
+        component.screenWidth = 1000;
+        component.selectedDate = moment('2050-01-01');
+
+        TestBed.inject(DOCUMENT);
+
+        fixture.detectChanges();
       });
   });
 
-  it('should render previous month button', () => {
-    expect(fixture.debugElement.query(By.css('.previous-month-button'))).not.toBeNull();
-    console.log('temp:', component, renderCalendarMock);
+  describe('header', () => {
+    it('should render previous month button', () => {
+      expect(getDebugElement('.previous-month-button')).not.toBeNull();
+    });
+
+    it('should render next month button', () => {
+      expect(getDebugElement('.next-month-button')).not.toBeNull();
+    });
+
+    it('should render the currently selected month and year as the title', () => {
+      expect(getDebugElement('.title')?.nativeElement.textContent.trim()).toBe(
+        'January 2050',
+      );
+    });
+
+    it('should shorten the month text on small screens', () => {
+      component.screenWidth = 300;
+      fixture.detectChanges();
+
+      expect(getDebugElement('.title')?.nativeElement.textContent.trim()).toBe(
+        'Jan 2050',
+      );
+    });
+
+    it('should subtract one month when previous month button is clicked', () => {
+      const onPreviousMonthSpy = jest.spyOn(component, 'onPreviousMonth');
+      const previousMonthButton = getDebugElement('.previous-month-button');
+      const renderCalendarSpy = jest
+        .spyOn(component, 'renderCalendar')
+        .mockImplementation(() => '');
+
+      previousMonthButton?.triggerEventHandler('click');
+
+      expect(onPreviousMonthSpy).toHaveBeenCalledTimes(1);
+      expect(renderCalendarSpy).toHaveBeenCalledTimes(1);
+      expect(moment(component.currentMonth).format('MMMM YYYY')).toBe('December 2049');
+    });
+
+    it('should add one month when next month button is clicked', () => {
+      const onNextMonthSpy = jest.spyOn(component, 'onNextMonth');
+      const renderCalendarSpy = jest
+        .spyOn(component, 'renderCalendar')
+        .mockImplementation(() => '');
+      const nextMonthButton = getDebugElement('.next-month-button');
+
+      nextMonthButton?.triggerEventHandler('click');
+
+      expect(onNextMonthSpy).toHaveBeenCalledTimes(1);
+      expect(renderCalendarSpy).toHaveBeenCalledTimes(1);
+      expect(moment(component.currentMonth).format('MMMM YYYY')).toBe('February 2050');
+    });
   });
 
-  it('should render next month button', () => {
-    expect(fixture.debugElement.query(By.css('.next-month-button'))).not.toBeNull();
+  describe('calendar table', () => {
+    it('should render a 7 x 6 table for every month, regardless of number of days', () => {
+      expect(getDebugElement('.calendar-table')).not.toBeNull();
+
+      // TODO: more details about calendar table & test day selection
+    });
   });
+
+  function getDebugElement(selector: string): DebugElement | null {
+    return fixture.debugElement.query(By.css(selector));
+  }
 });

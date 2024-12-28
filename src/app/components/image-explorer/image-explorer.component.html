@@ -3,7 +3,9 @@
     class="image-wrapper"
     (click)="dialogResult.emit(image.id)">
     @defer {
-      <img [src]="image.presignedUrl" />
+      <img
+        [src]="image.presignedUrl"
+        [adminControls]="getAdminControlsConfig(image)" />
 
       <div class="thumbnail-file-size">
         <label>Thumbnail file size:</label>

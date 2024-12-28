@@ -29,13 +29,10 @@
       background-color: var(--lcc-color--table-headerBackground);
       white-space: nowrap;
       font-weight: 200;
+      padding: 8px;
 
-      &:not(.lcc-table-admin-controls-filler) {
-        padding: 8px;
-
-        @include mixins.respond-to('gt-sm') {
-          padding: 8px 16px;
-        }
+      @include mixins.respond-to('gt-sm') {
+        padding: 8px 16px;
       }
     }
   }

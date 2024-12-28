@@ -5,9 +5,6 @@
 
   <table class="lcc-table">
     <thead>
-      @if (vm.isAdmin) {
-        <th class="lcc-table-admin-controls-filler"></th>
-      }
       <th class="date">Date</th>
       <th class="event">Event</th>
     </thead>
@@ -20,7 +17,7 @@
         track event.id
       ) {
         <tr
-          class="lcc-admin-controls-container"
+          [adminControls]="vm.isAdmin ? getAdminControlsConfig(event) : null"
           [id]="event.id"
           [class.next-event]="event.id === vm.nextEvent?.id"
           [ngClass]="
@@ -28,14 +25,6 @@
               ? 'showing-past-events'
               : undefined
           ">
-          @if (vm.isAdmin) {
-            <lcc-admin-controls
-              [editPath]="['event', 'edit', event.id!]"
-              [itemName]="event.title"
-              (delete)="onDeleteEvent(event)">
-            </lcc-admin-controls>
-          }
-
           <td class="date-cell">
             <div class="date-content">
               <span class="date">

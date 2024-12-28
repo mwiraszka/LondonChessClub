@@ -9,18 +9,11 @@
       track article.id
     ) {
       <a
-        class="lcc-admin-controls-container article"
+        class="article"
+        [adminControls]="vm.isAdmin ? getAdminControlsConfig(article) : null"
         [routerLink]="
           article.title ? (['article', 'view', article.id!] | routerLink) : undefined
         ">
-        @if (vm.isAdmin && article.title) {
-          <lcc-admin-controls
-            [editPath]="['article', 'edit', article.id!]"
-            [itemName]="article.title"
-            (delete)="onDeleteArticle(article)">
-          </lcc-admin-controls>
-        }
-
         @if (article.isSticky) {
           <i-feather
             class="sticky-icon"

@@ -34,9 +34,9 @@ export class TooltipDirective implements OnDestroy {
   private overlayRef: OverlayRef | null = null;
 
   constructor(
-    private element: ElementRef<HTMLElement>,
-    private overlay: Overlay,
-    private viewContainerRef: ViewContainerRef,
+    private readonly element: ElementRef<HTMLElement>,
+    private readonly overlay: Overlay,
+    private readonly viewContainerRef: ViewContainerRef,
   ) {}
 
   @HostListener('mouseenter', ['$event'])

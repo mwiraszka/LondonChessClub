@@ -6,19 +6,35 @@ import { CommonModule, DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router, Scroll } from '@angular/router';
 
-import { AdminControlsComponent } from '@app/components/admin-controls/admin-controls.component';
+import { AdminControlsDirective } from '@app/components/admin-controls/admin-controls.directive';
 import { ArticleComponent } from '@app/components/article/article.component';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { DialogService, MetaAndTitleService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import type { Article, BasicDialogResult, Dialog, InternalLink } from '@app/types';
+import type {
+  AdminControlsConfig,
+  Article,
+  BasicDialogResult,
+  Dialog,
+  InternalLink,
+} from '@app/types';
 
 @UntilDestroy()
 @Component({
   selector: 'lcc-article-viewer-screen',
-  templateUrl: './article-viewer-screen.component.html',
-  imports: [AdminControlsComponent, ArticleComponent, CommonModule, LinkListComponent],
+  template: `
+    @if (articleViewerScreenViewModel$ | async; as vm) {
+      @if (vm.article) {
+        <lcc-article
+          [article]="vm.article"
+          [adminControls]="vm.isAdmin ? getAdminControlsConfig(vm.article) : null">
+        </lcc-article>
+        <lcc-link-list [links]="links"></lcc-link-list>
+      }
+    }
+  `,
+  imports: [AdminControlsDirective, ArticleComponent, CommonModule, LinkListComponent],
 })
 export class ArticleViewerScreenComponent implements OnInit {
   public readonly links: InternalLink[] = [
@@ -65,24 +81,6 @@ export class ArticleViewerScreenComponent implements OnInit {
     this.setUpRouterListener();
   }
 
-  public async onDelete(article: Article): Promise<void> {
-    const dialog: Dialog = {
-      title: 'Confirm article deletion',
-      body: `Update ${article.title}?`,
-      confirmButtonText: 'Delete',
-      confirmButtonType: 'warning',
-    };
-
-    const result = await this.dialogService.open({
-      componentType: BasicDialogComponent,
-      inputs: { dialog },
-    });
-
-    if (result === 'confirm') {
-      this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
-    }
-  }
-
   private setUpRouterListener(): void {
     this.router.events
       .pipe(
@@ -106,6 +104,33 @@ export class ArticleViewerScreenComponent implements OnInit {
           inline: 'nearest',
         });
       }, 200);
+    }
+  }
+
+  public getAdminControlsConfig(article: Article): AdminControlsConfig {
+    return {
+      buttonSize: 28,
+      deleteCb: () => this.onDelete(article),
+      editPath: ['article', 'edit', article.id!],
+      itemName: article.title,
+    };
+  }
+
+  public async onDelete(article: Article): Promise<void> {
+    const dialog: Dialog = {
+      title: 'Confirm article deletion',
+      body: `Update ${article.title}?`,
+      confirmButtonText: 'Delete',
+      confirmButtonType: 'warning',
+    };
+
+    const result = await this.dialogService.open({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+    });
+
+    if (result === 'confirm') {
+      this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
     }
   }
 }

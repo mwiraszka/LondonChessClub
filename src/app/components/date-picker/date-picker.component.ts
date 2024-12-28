@@ -28,15 +28,13 @@ import type { IsoDate } from '@app/types';
 export class DatePickerComponent implements AfterViewInit, ControlValueAccessor {
   // Always render 6 weeks in calendar (the most that will ever be needed for any month)
   // to prevent layout shifts when switching between months
-  readonly WEEKS_IN_CALENDAR = 6;
-  readonly DAYS_OF_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-  selectedDate!: Moment;
+  public readonly WEEKS_IN_CALENDAR = 6;
+  public readonly DAYS_OF_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   // Used to keep track of the month & year currently in calendar
-  currentMonth!: Moment;
-
-  screenWidth = window.innerWidth;
+  public currentMonth!: Moment;
+  public screenWidth = window.innerWidth;
+  public selectedDate!: Moment;
 
   constructor(@Inject(DOCUMENT) private _document: Document) {}
 
@@ -45,11 +43,9 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(): void {
-    this.screenWidth = window.innerWidth;
-  }
+  private onResize = () => (this.screenWidth = window.innerWidth);
 
-  writeValue(date: IsoDate): void {
+  public writeValue(date: IsoDate): void {
     if (!date) {
       console.error(
         "[LCC] No date provided to Date Picker - using today's date as fallback.",
@@ -62,29 +58,29 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
     this.currentMonth = moment(date);
   }
 
-  registerOnChange(fn: (date: IsoDate) => IsoDate): void {
+  public registerOnChange(fn: (date: IsoDate) => IsoDate): void {
     this.onChange = fn;
   }
 
-  // Not implemented for this component since it is always
-  // initiated with a value, and therefore touched upon creation
-  registerOnTouched(): void {}
+  // Not implemented for this component since it is always initiated with a value,
+  // and therefore touched upon creation
+  public registerOnTouched(): void {}
 
   private onChange(date: IsoDate): IsoDate {
     return date;
   }
 
-  onPreviousMonth(): void {
+  public onPreviousMonth(): void {
     this.currentMonth.subtract(1, 'month');
     this.renderCalendar();
   }
 
-  onNextMonth(): void {
+  public onNextMonth(): void {
     this.currentMonth.add(1, 'month');
     this.renderCalendar();
   }
 
-  onSelectCell(row: number, column: number): void {
+  public onSelectCell(row: number, column: number): void {
     this.selectedDate = this.getCalendarFirstDay().add(row, 'weeks').add(column, 'days');
     this.renderCalendar();
     this.onChange(this.selectedDate.toISOString());
@@ -92,7 +88,6 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
 
   public renderCalendar(): void {
     const day = this.getCalendarFirstDay();
-
     const weekRows = Array.from(
       this._document.querySelectorAll('lcc-date-picker .calendar-table tbody tr'),
     );

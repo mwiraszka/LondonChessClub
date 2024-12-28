@@ -4,21 +4,27 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { AdminControlsComponent } from '@app/components/admin-controls/admin-controls.component';
+import { AdminControlsDirective } from '@app/components/admin-controls/admin-controls.directive';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import IconsModule from '@app/icons';
 import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 import { EventsActions, EventsSelectors } from '@app/store/events';
-import type { BasicDialogResult, Dialog, Event, InternalLink } from '@app/types';
+import type {
+  AdminControlsConfig,
+  BasicDialogResult,
+  Dialog,
+  Event,
+  InternalLink,
+} from '@app/types';
 
 @Component({
   selector: 'lcc-schedule',
   templateUrl: './schedule.component.html',
   styleUrl: './schedule.component.scss',
   imports: [
-    AdminControlsComponent,
+    AdminControlsDirective,
     CommonModule,
     FormatDatePipe,
     IconsModule,
@@ -57,10 +63,19 @@ export class ScheduleComponent implements OnInit {
     this.store.dispatch(EventsActions.fetchEventsRequested());
   }
 
+  public getAdminControlsConfig(event: Event): AdminControlsConfig {
+    return {
+      buttonSize: 28,
+      deleteCb: () => this.onDeleteEvent(event),
+      editPath: ['event', 'edit', event.id!],
+      itemName: event.title,
+    };
+  }
+
   public async onDeleteEvent(event: Event): Promise<void> {
     const dialog: Dialog = {
       title: 'Confirm event deletion',
-      body: `Update ${event.title}?`,
+      body: `Delete ${event.title}?`,
       confirmButtonText: 'Delete',
       confirmButtonType: 'warning',
     };
@@ -70,7 +85,7 @@ export class ScheduleComponent implements OnInit {
       inputs: { dialog },
     });
 
-    if (result !== 'confirm') {
+    if (result === 'confirm') {
       this.store.dispatch(EventsActions.deleteEventRequested({ event }));
     }
   }

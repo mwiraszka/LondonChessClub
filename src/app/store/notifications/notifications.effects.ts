@@ -555,7 +555,7 @@ export class NotificationsEffects {
           AuthActions.codeForPasswordChangeFailed,
           AuthActions.passwordChangeFailed,
         ),
-        tap(error => console.info('[LCC Error]', error)),
+        tap(error => console.error('[LCC]', error)),
       );
     },
     { dispatch: false },

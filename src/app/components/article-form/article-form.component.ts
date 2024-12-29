@@ -116,7 +116,10 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
           LOCAL_STORAGE_IMAGE_KEY,
         );
         if (imageDataUrl) {
-          this.setImageByFile(dataUrlToBlob(imageDataUrl));
+          const imageFile: Blob | null = dataUrlToBlob(imageDataUrl);
+          if (imageFile) {
+            this.setImageByFile(imageFile);
+          }
         } else if (articleFormData!.imageId) {
           this.setImageById(articleFormData!.imageId);
         }
@@ -164,10 +167,12 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
         const imageFile = dataUrlToBlob(dataUrl);
 
         try {
-          this.updateStoredFile(dataUrl);
-          this.setImageByFile(imageFile);
+          if (imageFile) {
+            this.updateStoredFile(dataUrl);
+            this.setImageByFile(imageFile);
+          }
         } catch {
-          const fileSize = formatBytes(imageFile.size);
+          const fileSize = formatBytes(imageFile!.size);
           this.store.dispatch(AppActions.localStorageDetectedFull({ fileSize }));
         }
       };

@@ -59,6 +59,10 @@ export function customSort(key: string) {
       return aVal < bVal ? -1 : aVal === bVal ? 0 : 1;
     }
 
+    if (typeof aVal === 'boolean' && typeof bVal === 'boolean') {
+      return aVal && !bVal ? -1 : !aVal && bVal ? 1 : 0;
+    }
+
     if (typeof aVal !== 'string') {
       console.error(
         `[LCC] Sort error: unknown property type detected while sorting '${_key}': '${typeof aVal}'`,

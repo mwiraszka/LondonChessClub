@@ -3,7 +3,7 @@ import { kebabCase } from 'lodash';
 import { Pipe, PipeTransform } from '@angular/core';
 
 /**
- * Convert string to kebab-case; return `''` if invalid string provided.
+ * Transform string to kebab-case; return `''` if invalid string provided.
  */
 @Pipe({
   name: 'kebabCase',

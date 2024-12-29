@@ -1,18 +1,16 @@
 /**
- * Convert a raw number of Bytes to a more user-friendly size in `B` / `kB` / `MB` / `GB` units.
+ * Transform a raw number of Bytes to a more user-friendly size in `B` / `kB` / `MB` / `GB` units.
  */
-export function formatBytes(value: unknown, decimals = 2): string {
+export function formatBytes(value: unknown, decimalDigits = 2): string {
   const bytes = Number(value);
 
-  if (isNaN(bytes)) {
+  if (!['number', 'string'].includes(typeof value) || isNaN(bytes) || bytes === 0) {
     return '0 B';
   }
 
-  const k = 1024;
-  const dm = decimals < 0 ? 0 : decimals;
+  decimalDigits = decimalDigits < 0 ? 0 : decimalDigits;
   const sizes = ['B', 'kB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(1024));
 
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+  return `${parseFloat((bytes / Math.pow(1024, i)).toFixed(decimalDigits))} ${sizes[i]}`;
 }

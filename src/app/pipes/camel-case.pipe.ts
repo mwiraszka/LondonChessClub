@@ -3,7 +3,7 @@ import { camelCase } from 'lodash';
 import { Pipe, PipeTransform } from '@angular/core';
 
 /**
- * Convert string to camel-case; return `''` if invalid string provided.
+ * Transform string to camel-case; return `''` if invalid string provided.
  */
 @Pipe({
   name: 'camelCase',

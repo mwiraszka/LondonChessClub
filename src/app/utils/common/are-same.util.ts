@@ -1,24 +1,32 @@
-import { isEqual, mapValues } from 'lodash';
+import { isEqual } from 'lodash';
+
+import { isDefined } from './is-defined.util';
 
 /**
- * Check whether two objects are (deeply) equal.
- *
- * @param a The first object to compare
- * @param b The second object to compare
- * @param strict Treat null, undefined and empty string property values as unique
+ * Check whether two values are (deeply) equal.
  */
-export function areSame(a: unknown, b: unknown, strict: boolean = false): boolean {
+export function areSame(a: unknown, b: unknown): boolean {
   if (a === null && b === null) {
     return true;
   }
 
-  if (a === null || b === null) {
+  if (
+    (typeof a === 'object' && typeof b !== 'object') ||
+    (typeof a !== 'object' && typeof b === 'object')
+  ) {
     return false;
   }
 
-  if (!strict) {
-    a = mapValues(a, value => (value === undefined || value === '' ? null : value));
-    b = mapValues(b, value => (value === undefined || value === '' ? null : value));
+  if ((a === null && b !== null) || (a !== null && b === null)) {
+    return false;
+  }
+
+  if (typeof a !== 'object' && typeof b !== 'object') {
+    return a === b;
+  }
+
+  if (!isDefined(a) || !isDefined(b)) {
+    return false;
   }
 
   return isEqual(a, b);

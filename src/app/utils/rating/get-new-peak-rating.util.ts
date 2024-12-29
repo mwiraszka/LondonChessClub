@@ -6,8 +6,21 @@ export function getNewPeakRating(rating?: string, peakRating?: string): string {
     return '';
   }
 
-  const ratingNum = Number(rating.split('/')[0]);
-  const peakRatingNum = Number(peakRating.split('/')[0]);
+  const [_rating, provisionalRatingCount] = rating.split('/');
+  const [_peakRating, provisionalPeakRatingCount] = peakRating.split('/');
+
+  const ratingNum = Number(_rating);
+  const peakRatingNum = Number(_peakRating);
+
+  if (
+    isNaN(ratingNum) ||
+    isNaN(peakRatingNum) ||
+    (provisionalRatingCount !== undefined && isNaN(Number(provisionalRatingCount))) ||
+    (provisionalPeakRatingCount !== undefined &&
+      isNaN(Number(provisionalPeakRatingCount)))
+  ) {
+    return '';
+  }
 
   const surpassedCurrentPeakRating = ratingNum > peakRatingNum;
   const firstNonProvisionalRating = !rating.includes('/') && peakRating.includes('/');

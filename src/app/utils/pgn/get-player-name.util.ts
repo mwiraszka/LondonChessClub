@@ -1,3 +1,5 @@
+import { isDefined } from '../common/is-defined.util';
+
 /**
  * Parse PGN for one of the two players' names.
  *
@@ -14,16 +16,24 @@ export function getPlayerName(
     return;
   }
 
-  try {
-    const [lastName, firstName] = pgn.split(`[${color} "`)[1].split('"]')[0].split(', ');
-
-    return name === 'first'
-      ? firstName
-      : name === 'last'
-        ? lastName
-        : `${firstName} ${lastName}`;
-  } catch (error) {
-    console.error('[LCC] Unable to parse player name:', error);
+  const _firstSplit = pgn.split(`[${color} "`);
+  if (!_firstSplit?.length || _firstSplit.length < 2) {
     return;
   }
+
+  const _secondSplit = _firstSplit[1].split('"]')[0];
+  if (!isDefined(_secondSplit)) {
+    return;
+  }
+
+  const [lastName, firstName] = _secondSplit.split(', ');
+  if ((name === 'full' && !isDefined(firstName)) || !isDefined(lastName)) {
+    return;
+  }
+
+  return name === 'first'
+    ? firstName
+    : name === 'last'
+      ? lastName
+      : `${firstName} ${lastName}`;
 }

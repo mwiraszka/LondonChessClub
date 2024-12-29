@@ -2,8 +2,6 @@ import { getScore } from '@app/utils';
 
 /**
  * Return a map of game results mapped to the number of occurrences in the given PGN array.
- *
- * @param pgns
  */
 export function getResultTallies(pgns?: string[]): Map<string, number> | undefined {
   if (!pgns || !pgns.length) {

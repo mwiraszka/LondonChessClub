@@ -2,8 +2,6 @@ import { getEcoOpeningCode } from '@app/utils';
 
 /**
  * Return a map of ECO codes mapped to the number of occurrences in the given array.
- *
- * @param pgns
  */
 export function getOpeningTallies(pgns?: string[]): Map<string, number> | undefined {
   if (!pgns || !pgns.length) {

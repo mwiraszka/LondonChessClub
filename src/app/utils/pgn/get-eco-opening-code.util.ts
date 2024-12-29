@@ -2,8 +2,6 @@
  * Parse PGN for the game's Encyclopedia of Chess Openings (ECO) code.
  *
  * Return a custom `'X98'` code if it cannot be found.
- *
- * @param pgn
  */
 export function getEcoOpeningCode(pgn?: string): string | undefined {
   if (!pgn) {

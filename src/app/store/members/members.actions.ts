@@ -1,8 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { HttpErrorResponse } from '@angular/common/http';
-
-import type { ControlMode, Id, Member, MemberFormData } from '@app/types';
+import type { ControlMode, Id, LccError, Member, MemberFormData } from '@app/types';
 
 export const fetchMembersRequested = createAction('[Members] Fetch members requested');
 export const fetchMembersSucceeded = createAction(
@@ -11,7 +9,7 @@ export const fetchMembersSucceeded = createAction(
 );
 export const fetchMembersFailed = createAction(
   '[Members] Fetch members failed',
-  props<{ errorResponse: HttpErrorResponse }>(),
+  props<{ error: LccError }>(),
 );
 
 export const newMemberRequested = createAction('[Members] New member requested');
@@ -25,7 +23,7 @@ export const fetchMemberSucceeded = createAction(
 );
 export const fetchMemberFailed = createAction(
   '[Members] Fetch member failed',
-  props<{ errorResponse: HttpErrorResponse }>(),
+  props<{ error: LccError }>(),
 );
 
 export const tableHeaderSelected = createAction(
@@ -53,7 +51,7 @@ export const addMemberSucceeded = createAction(
 );
 export const addMemberFailed = createAction(
   '[Members] Add member failed',
-  props<{ errorResponse: HttpErrorResponse }>(),
+  props<{ error: LccError }>(),
 );
 
 export const updateMemberRequested = createAction('[Members] Update member requested');
@@ -63,7 +61,7 @@ export const updateMemberSucceeded = createAction(
 );
 export const updateMemberFailed = createAction(
   '[Members] Update member failed',
-  props<{ errorResponse: HttpErrorResponse }>(),
+  props<{ error: LccError }>(),
 );
 
 export const deleteMemberRequested = createAction(
@@ -76,7 +74,7 @@ export const deleteMemberSucceeded = createAction(
 );
 export const deleteMemberFailed = createAction(
   '[Members] Delete member failed',
-  props<{ errorResponse: HttpErrorResponse }>(),
+  props<{ error: LccError }>(),
 );
 
 export const cancelSelected = createAction('[Members] Cancel selected');

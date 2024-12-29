@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { EventsSelectors } from '@app/store/events';
+import { NotificationsSelectors } from '@app/store/notifications';
 
 import { AppState } from './app.state';
 
@@ -20,13 +21,9 @@ export const selectBannerLastCleared = createSelector(
   state => state.bannerLastCleared,
 );
 
-export const selectToasts = createSelector(selectAppState, state => state.toasts);
-
-export const selectShowToaster = createSelector(selectAppState, state => !!state.toasts);
-
 export const selectAppViewModel = createSelector({
   isDarkMode: selectIsDarkMode,
-  showToaster: selectShowToaster,
+  showToaster: NotificationsSelectors.selectShowToaster,
   showUpcomingEventBanner: selectShowUpcomingEventBanner,
   bannerLastCleared: selectBannerLastCleared,
   nextEvent: EventsSelectors.selectNextEvent,

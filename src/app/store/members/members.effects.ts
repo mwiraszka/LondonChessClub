@@ -28,8 +28,8 @@ export class MembersEffects {
         return this.membersService.getMembers(scope).pipe(
           map(members => MembersActions.fetchMembersSucceeded({ members })),
           catchError((errorResponse: HttpErrorResponse) => {
-            errorResponse = parseHttpErrorResponse(errorResponse);
-            return of(MembersActions.fetchMembersFailed({ errorResponse }));
+            const error = parseHttpErrorResponse(errorResponse);
+            return of(MembersActions.fetchMembersFailed({ error }));
           }),
         );
       }),
@@ -47,8 +47,8 @@ export class MembersEffects {
         return this.membersService.getMember(scope, memberId).pipe(
           map(member => MembersActions.fetchMemberSucceeded({ member })),
           catchError((errorResponse: HttpErrorResponse) => {
-            errorResponse = parseHttpErrorResponse(errorResponse);
-            return of(MembersActions.fetchMemberFailed({ errorResponse }));
+            const error = parseHttpErrorResponse(errorResponse);
+            return of(MembersActions.fetchMemberFailed({ error }));
           }),
         );
       }),
@@ -76,8 +76,8 @@ export class MembersEffects {
         return this.membersService.addMember(modifiedMember).pipe(
           map(member => MembersActions.addMemberSucceeded({ member })),
           catchError((errorResponse: HttpErrorResponse) => {
-            errorResponse = parseHttpErrorResponse(errorResponse);
-            return of(MembersActions.addMemberFailed({ errorResponse }));
+            const error = parseHttpErrorResponse(errorResponse);
+            return of(MembersActions.addMemberFailed({ error }));
           }),
         );
       }),
@@ -117,8 +117,8 @@ export class MembersEffects {
             MembersActions.updateMemberSucceeded({ member, originalMemberName }),
           ),
           catchError((errorResponse: HttpErrorResponse) => {
-            errorResponse = parseHttpErrorResponse(errorResponse);
-            return of(MembersActions.updateMemberFailed({ errorResponse }));
+            const error = parseHttpErrorResponse(errorResponse);
+            return of(MembersActions.updateMemberFailed({ error }));
           }),
         );
       }),
@@ -134,8 +134,8 @@ export class MembersEffects {
         this.membersService.deleteMember(member).pipe(
           map(member => MembersActions.deleteMemberSucceeded({ member })),
           catchError((errorResponse: HttpErrorResponse) => {
-            errorResponse = parseHttpErrorResponse(errorResponse);
-            return of(MembersActions.deleteMemberFailed({ errorResponse }));
+            const error = parseHttpErrorResponse(errorResponse);
+            return of(MembersActions.deleteMemberFailed({ error }));
           }),
         ),
       ),

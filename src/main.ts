@@ -23,6 +23,7 @@ import { EventsStoreModule } from '@app/store/events';
 import { MembersStoreModule } from '@app/store/members';
 import { MetaState, metaReducers } from '@app/store/meta-reducers';
 import { NavStoreModule } from '@app/store/nav';
+import { NotificationsStoreModule } from '@app/store/notifications';
 import { actionSanitizer } from '@app/utils';
 
 import { environment } from '@env';
@@ -46,6 +47,7 @@ bootstrapApplication(AppComponent, {
       MarkdownModule.forRoot(),
       MembersStoreModule,
       NavStoreModule,
+      NotificationsStoreModule,
       ServiceWorkerModule.register('ngsw-worker.js', {
         enabled: environment.production,
         // Register the ServiceWorker as soon as the app is stable
@@ -58,8 +60,7 @@ bootstrapApplication(AppComponent, {
           metaReducers,
           runtimeChecks: {
             strictStateSerializability: true,
-            // TODO: Re-enable once HttpErrorResponse replaced with a serializable type
-            strictActionSerializability: false,
+            strictActionSerializability: true,
           },
         },
       ),

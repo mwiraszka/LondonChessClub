@@ -8,6 +8,7 @@ import { AuthState } from '@app/store/auth/auth.state';
 import { EventsState } from '@app/store/events/events.state';
 import { MembersState } from '@app/store/members/members.state';
 import { NavState } from '@app/store/nav/nav.state';
+import { NotificationsState } from '@app/store/notifications/notifications.state';
 
 import { environment } from '@env';
 
@@ -19,6 +20,7 @@ class MetaStateClass {
     readonly events?: EventsState,
     readonly members?: MembersState,
     readonly nav?: NavState,
+    readonly notifications?: NotificationsState,
     readonly router?: RouterState,
   ) {}
 }
@@ -38,7 +40,7 @@ function actionLogMetaReducer(
 }
 
 const hydratedStates = Object.keys(new MetaStateClass()).filter(
-  key => key !== 'router',
+  key => !['notifications', 'router'].includes(key),
 ) as Array<keyof Exclude<MetaState, RouterState>>;
 
 function hydrationMetaReducer(

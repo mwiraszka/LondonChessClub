@@ -1,8 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { HttpErrorResponse } from '@angular/common/http';
-
-import type { ControlMode, Event, EventFormData, Id } from '@app/types';
+import type { ControlMode, Event, EventFormData, Id, LccError } from '@app/types';
 
 export const fetchEventsRequested = createAction('[Events] Fetch events requested');
 export const fetchEventsSucceeded = createAction(
@@ -11,7 +9,7 @@ export const fetchEventsSucceeded = createAction(
 );
 export const fetchEventsFailed = createAction(
   '[Events] Fetch events failed',
-  props<{ errorResponse: HttpErrorResponse }>(),
+  props<{ error: LccError }>(),
 );
 
 export const newEventRequested = createAction('[Events] New event requested');
@@ -25,7 +23,7 @@ export const fetchEventSucceeded = createAction(
 );
 export const fetchEventFailed = createAction(
   '[Events] Fetch event failed',
-  props<{ errorResponse: HttpErrorResponse }>(),
+  props<{ error: LccError }>(),
 );
 
 export const addEventRequested = createAction('[Events] Add event requested');
@@ -35,7 +33,7 @@ export const addEventSucceeded = createAction(
 );
 export const addEventFailed = createAction(
   '[Events] Add event failed',
-  props<{ errorResponse: HttpErrorResponse }>(),
+  props<{ error: LccError }>(),
 );
 
 export const updateEventRequested = createAction('[Events] Update event requested');
@@ -45,7 +43,7 @@ export const updateEventSucceeded = createAction(
 );
 export const updateEventFailed = createAction(
   '[Events] Update event failed',
-  props<{ errorResponse: HttpErrorResponse }>(),
+  props<{ error: LccError }>(),
 );
 
 export const deleteEventRequested = createAction(
@@ -58,7 +56,7 @@ export const deleteEventSucceeded = createAction(
 );
 export const deleteEventFailed = createAction(
   '[Events] Delete event failed',
-  props<{ errorResponse: HttpErrorResponse }>(),
+  props<{ error: LccError }>(),
 );
 
 export const cancelSelected = createAction('[Events] Cancel selected');

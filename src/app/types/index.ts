@@ -11,6 +11,7 @@ export type {
   DialogOutput,
 } from './dialog.model';
 export type { DbCollection } from './db-collection.model';
+export type { LccError } from './error.model';
 export type { Event, EventFormData, EventFormGroup, EventType } from './event.model';
 export type { FilterFormGroup } from './filter-form-group.model';
 export type { GameDetails, GameScore } from './game-details.model';

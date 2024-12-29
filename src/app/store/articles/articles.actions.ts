@@ -1,8 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { HttpErrorResponse } from '@angular/common/http';
-
-import type { Article, ArticleFormData, ControlMode, Id } from '@app/types';
+import type { Article, ArticleFormData, ControlMode, Id, LccError } from '@app/types';
 
 export const fetchArticlesRequested = createAction('[Articles] Fetch articles requested');
 export const fetchArticlesSucceeded = createAction(
@@ -11,7 +9,7 @@ export const fetchArticlesSucceeded = createAction(
 );
 export const fetchArticlesFailed = createAction(
   '[Articles] Fetch articles failed',
-  props<{ errorResponse: HttpErrorResponse }>(),
+  props<{ error: LccError }>(),
 );
 
 export const newArticleRequested = createAction('[Articles] New article requested');
@@ -25,7 +23,7 @@ export const fetchArticleSucceeded = createAction(
 );
 export const fetchArticleFailed = createAction(
   '[Articles] Fetch article failed',
-  props<{ errorResponse: HttpErrorResponse }>(),
+  props<{ error: LccError }>(),
 );
 
 export const publishArticleRequested = createAction(
@@ -37,7 +35,7 @@ export const publishArticleSucceeded = createAction(
 );
 export const publishArticleFailed = createAction(
   '[Articles] Publish article failed',
-  props<{ error: Error }>(),
+  props<{ error: LccError }>(),
 );
 
 export const updateActicleBookmarkRequested = createAction(
@@ -51,7 +49,7 @@ export const updateArticleSucceeded = createAction(
 );
 export const updateArticleFailed = createAction(
   '[Articles] Update article failed',
-  props<{ error: Error }>(),
+  props<{ error: LccError }>(),
 );
 
 export const deleteArticleRequested = createAction(
@@ -64,7 +62,7 @@ export const deleteArticleSucceeded = createAction(
 );
 export const deleteArticleFailed = createAction(
   '[Articles] Delete article failed',
-  props<{ errorResponse: HttpErrorResponse }>(),
+  props<{ error: LccError }>(),
 );
 
 export const cancelSelected = createAction('[Articles] Cancel selected');

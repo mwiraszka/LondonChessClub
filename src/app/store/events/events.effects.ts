@@ -26,8 +26,8 @@ export class EventsEffects {
         this.eventsService.getEvents().pipe(
           map(events => EventsActions.fetchEventsSucceeded({ events })),
           catchError((errorResponse: HttpErrorResponse) => {
-            errorResponse = parseHttpErrorResponse(errorResponse);
-            return of(EventsActions.fetchEventsFailed({ errorResponse }));
+            const error = parseHttpErrorResponse(errorResponse);
+            return of(EventsActions.fetchEventsFailed({ error }));
           }),
         ),
       ),
@@ -43,8 +43,8 @@ export class EventsEffects {
         return this.eventsService.getEvent(eventId).pipe(
           map(event => EventsActions.fetchEventSucceeded({ event })),
           catchError((errorResponse: HttpErrorResponse) => {
-            errorResponse = parseHttpErrorResponse(errorResponse);
-            return of(EventsActions.fetchEventFailed({ errorResponse }));
+            const error = parseHttpErrorResponse(errorResponse);
+            return of(EventsActions.fetchEventFailed({ error }));
           }),
         );
       }),
@@ -72,8 +72,8 @@ export class EventsEffects {
         return this.eventsService.addEvent(modifiedEvent).pipe(
           map(event => EventsActions.addEventSucceeded({ event })),
           catchError((errorResponse: HttpErrorResponse) => {
-            errorResponse = parseHttpErrorResponse(errorResponse);
-            return of(EventsActions.addEventFailed({ errorResponse }));
+            const error = parseHttpErrorResponse(errorResponse);
+            return of(EventsActions.addEventFailed({ error }));
           }),
         );
       }),
@@ -102,8 +102,8 @@ export class EventsEffects {
         return this.eventsService.updateEvent(modifiedEvent).pipe(
           map(event => EventsActions.updateEventSucceeded({ event, originalEventTitle })),
           catchError((errorResponse: HttpErrorResponse) => {
-            errorResponse = parseHttpErrorResponse(errorResponse);
-            return of(EventsActions.updateEventFailed({ errorResponse }));
+            const error = parseHttpErrorResponse(errorResponse);
+            return of(EventsActions.updateEventFailed({ error }));
           }),
         );
       }),
@@ -119,8 +119,8 @@ export class EventsEffects {
         this.eventsService.deleteEvent(event).pipe(
           map(event => EventsActions.deleteEventSucceeded({ event })),
           catchError((errorResponse: HttpErrorResponse) => {
-            errorResponse = parseHttpErrorResponse(errorResponse);
-            return of(EventsActions.deleteEventFailed({ errorResponse }));
+            const error = parseHttpErrorResponse(errorResponse);
+            return of(EventsActions.deleteEventFailed({ error }));
           }),
         ),
       ),

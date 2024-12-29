@@ -1,18 +1,20 @@
 import { HttpErrorResponse } from '@angular/common/http';
 
+import { LccError } from '@app/types';
+
 /**
- * Convert 0-status errors to standard 500-status server errors; otherwise return unchanged.
- *
- * @param {HttpErrorResponse} response
+ * Simplify HttpErrorResponse types and convert 0-status errors to standard 500-status errors.
  */
-export function parseHttpErrorResponse(response: HttpErrorResponse): HttpErrorResponse {
-  if (response.status !== 0) {
-    return response;
+export function parseHttpErrorResponse(response: HttpErrorResponse): LccError {
+  if (response.status === 0) {
+    return {
+      status: 500,
+      message: 'Unknown server error.',
+    };
   }
 
   return {
-    ...response,
-    status: 500,
-    error: 'Unknown server error.',
+    status: response.status,
+    message: response.error,
   };
 }

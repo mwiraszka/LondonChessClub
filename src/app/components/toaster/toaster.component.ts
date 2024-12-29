@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
-import { AppSelectors } from '@app/store/app';
+import { NotificationsSelectors } from '@app/store/notifications';
 
 import { ToastComponent } from '../toast/toast.component';
 
@@ -18,7 +18,7 @@ import { ToastComponent } from '../toast/toast.component';
   imports: [CommonModule, ToastComponent],
 })
 export class ToasterComponent {
-  public readonly toasts$ = this.store.select(AppSelectors.selectToasts);
+  public readonly toasts$ = this.store.select(NotificationsSelectors.selectToasts);
 
   constructor(private readonly store: Store) {}
 }

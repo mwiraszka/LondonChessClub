@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 
 import { ArticlesService, LoaderService, LocalStorageService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import type { Article, ModificationInfo } from '@app/types';
+import type { Article, LccError, ModificationInfo } from '@app/types';
 import { isDefined, parseHttpErrorResponse } from '@app/utils';
 
 import { LOCAL_STORAGE_IMAGE_KEY } from '.';
@@ -27,8 +27,8 @@ export class ArticlesEffects {
         this.articlesService.getArticles().pipe(
           map(articles => ArticlesActions.fetchArticlesSucceeded({ articles })),
           catchError((errorResponse: HttpErrorResponse) => {
-            errorResponse = parseHttpErrorResponse(errorResponse);
-            return of(ArticlesActions.fetchArticlesFailed({ errorResponse }));
+            const error = parseHttpErrorResponse(errorResponse);
+            return of(ArticlesActions.fetchArticlesFailed({ error }));
           }),
         ),
       ),
@@ -44,8 +44,8 @@ export class ArticlesEffects {
         this.articlesService.getArticle(articleId).pipe(
           map(article => ArticlesActions.fetchArticleSucceeded({ article })),
           catchError((errorResponse: HttpErrorResponse) => {
-            errorResponse = parseHttpErrorResponse(errorResponse);
-            return of(ArticlesActions.fetchArticleFailed({ errorResponse }));
+            const error = parseHttpErrorResponse(errorResponse);
+            return of(ArticlesActions.fetchArticleFailed({ error }));
           }),
         ),
       ),
@@ -93,8 +93,7 @@ export class ArticlesEffects {
         return this.articlesService.addArticle(modifiedArticle, imageDataUrl).pipe(
           map(article => ArticlesActions.publishArticleSucceeded({ article })),
           catchError((errorResponse: HttpErrorResponse) => {
-            errorResponse = parseHttpErrorResponse(errorResponse);
-            const error = new Error(`[${errorResponse.status}] ${errorResponse.error}`);
+            const error = parseHttpErrorResponse(errorResponse);
             return of(ArticlesActions.publishArticleFailed({ error }));
           }),
         );
@@ -132,9 +131,9 @@ export class ArticlesEffects {
           LOCAL_STORAGE_IMAGE_KEY,
         );
         if (isNewImageStored && !imageDataUrl) {
-          const error = new Error(
-            'Unable to retrieve image data URL from local storage.',
-          );
+          const error: LccError = {
+            message: 'Unable to retrieve image data URL from local storage.',
+          };
           return of(ArticlesActions.publishArticleFailed({ error }));
         }
 
@@ -143,8 +142,7 @@ export class ArticlesEffects {
             ArticlesActions.updateArticleSucceeded({ article, originalArticleTitle }),
           ),
           catchError((errorResponse: HttpErrorResponse) => {
-            errorResponse = parseHttpErrorResponse(errorResponse);
-            const error = new Error(`[${errorResponse.status}] ${errorResponse.error}`);
+            const error = parseHttpErrorResponse(errorResponse);
             return of(ArticlesActions.updateArticleFailed({ error }));
           }),
         );
@@ -170,8 +168,7 @@ export class ArticlesEffects {
         return this.articlesService.updateArticle(modifiedArticle, null).pipe(
           map(article => ArticlesActions.updateArticleSucceeded({ article })),
           catchError((errorResponse: HttpErrorResponse) => {
-            errorResponse = parseHttpErrorResponse(errorResponse);
-            const error = new Error(`[${errorResponse.status}] ${errorResponse.error}`);
+            const error = parseHttpErrorResponse(errorResponse);
             return of(ArticlesActions.updateArticleFailed({ error }));
           }),
         );
@@ -188,8 +185,8 @@ export class ArticlesEffects {
         this.articlesService.deleteArticle(article).pipe(
           map(article => ArticlesActions.deleteArticleSucceeded({ article })),
           catchError((errorResponse: HttpErrorResponse) => {
-            errorResponse = parseHttpErrorResponse(errorResponse);
-            return of(ArticlesActions.deleteArticleFailed({ errorResponse }));
+            const error = parseHttpErrorResponse(errorResponse);
+            return of(ArticlesActions.deleteArticleFailed({ error }));
           }),
         ),
       ),

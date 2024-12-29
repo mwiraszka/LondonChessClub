@@ -1,8 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { HttpErrorResponse } from '@angular/common/http';
-
-import type { Id, Toast } from '@app/types';
+import type { Id, LccError } from '@app/types';
 
 export const upcomingEventBannerCleared = createAction(
   '[App] Upcoming event banner cleared',
@@ -24,19 +22,12 @@ export const deleteImageSucceeded = createAction(
 
 export const deleteImageFailed = createAction(
   '[App] Delete image failed',
-  props<{ errorResponse: HttpErrorResponse }>(),
+  props<{ error: LccError }>(),
 );
 
 export const themeToggled = createAction('[App] Theme toggled');
 
 export const safeModeToggled = createAction('[App] Safe mode toggled');
-
-export const toastAdded = createAction('[App] Toast added', props<{ toast: Toast }>());
-
-export const toastExpired = createAction(
-  '[App] Toast expired',
-  props<{ toast: Toast }>(),
-);
 
 export const localStorageDetectedUnsupported = createAction(
   '[App] Local storage detected unsupported',

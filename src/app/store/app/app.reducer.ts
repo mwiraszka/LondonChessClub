@@ -40,20 +40,4 @@ export const appReducer = createReducer(
       bannerLastCleared: null,
     }),
   ),
-
-  on(
-    AppActions.toastAdded,
-    (state, action): AppState => ({
-      ...state,
-      toasts: [...state.toasts.slice(-2), action.toast],
-    }),
-  ),
-
-  on(
-    AppActions.toastExpired,
-    (state, action): AppState => ({
-      ...state,
-      toasts: state.toasts.filter(toast => toast !== action.toast),
-    }),
-  ),
 );

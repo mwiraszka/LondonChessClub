@@ -1,11 +1,10 @@
-import type { IsoDate, Toast } from '@app/types';
+import type { IsoDate } from '@app/types';
 
 export interface AppState {
   isDarkMode: boolean;
   isSafeMode: boolean;
   bannerLastCleared: IsoDate | null;
   showUpcomingEventBanner: boolean;
-  toasts: Toast[];
 }
 
 export const initialState: AppState = {
@@ -13,5 +12,4 @@ export const initialState: AppState = {
   isSafeMode: false,
   bannerLastCleared: null,
   showUpcomingEventBanner: true,
-  toasts: [],
 };

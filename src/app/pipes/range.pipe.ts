@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 /**
- * Produce an array of sequential integers – useful for setting up basic loops in templates.
+ * Generate an array of sequential integers – useful for setting up basic loops in templates.
  */
 @Pipe({
   name: 'range',

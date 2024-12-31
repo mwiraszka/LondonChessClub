@@ -3,8 +3,12 @@ import { Url } from '@app/types';
 /**
  * Convert a data URL (base-64 string) of a File to a Blob representing the same data.
  */
-export function dataUrlToBlob(dataUrl: Url): Blob | null {
+export function dataUrlToBlob(dataUrl?: Url | null): Blob | null {
   try {
+    if (!dataUrl) {
+      return null;
+    }
+
     const byteString = atob(dataUrl.split(',')[1]);
     const arrayBuffer = new ArrayBuffer(byteString.length);
     const int8Array = new Uint8Array(arrayBuffer);

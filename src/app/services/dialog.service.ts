@@ -1,6 +1,12 @@
 import { firstValueFrom, tap } from 'rxjs';
 
-import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
+import {
+  Overlay,
+  OverlayConfig,
+  OverlayRef,
+  PositionStrategy,
+  ScrollStrategy,
+} from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
   ComponentRef,
@@ -14,7 +20,9 @@ import {
 import { DialogComponent } from '@app/components/dialog/dialog.component';
 import type { DialogConfig, DialogOutput } from '@app/types';
 
-export const DIALOG_CONFIG_TOKEN = new InjectionToken('Dialog Config');
+export const DIALOG_CONFIG_TOKEN = new InjectionToken<DialogConfig<unknown>>(
+  'Dialog Config',
+);
 
 @Injectable({ providedIn: 'root' })
 export class DialogService<TComponent extends DialogOutput<TResult>, TResult> {
@@ -40,15 +48,9 @@ export class DialogService<TComponent extends DialogOutput<TResult>, TResult> {
     }
 
     const overlayConfig: OverlayConfig = {
-      positionStrategy: this.overlay
-        .position()
-        .global()
-        .centerHorizontally()
-        .centerVertically(),
-      scrollStrategy: dialogConfig.isModal
-        ? this.overlay.scrollStrategies.block()
-        : this.overlay.scrollStrategies.block(),
-      hasBackdrop: true,
+      positionStrategy: this.getPositionStrategy(),
+      scrollStrategy: this.getScrollStrategy(dialogConfig.isModal),
+      hasBackdrop: false,
       backdropClass: dialogConfig.isModal ? 'lcc-modal-backdrop' : 'lcc-dialog-backdrop',
     };
 
@@ -116,5 +118,15 @@ export class DialogService<TComponent extends DialogOutput<TResult>, TResult> {
         }
       },
     );
+  }
+
+  private getPositionStrategy(): PositionStrategy {
+    return this.overlay.position().global().centerHorizontally().centerVertically();
+  }
+
+  private getScrollStrategy(isModal?: boolean): ScrollStrategy {
+    return isModal
+      ? this.overlay.scrollStrategies.reposition()
+      : this.overlay.scrollStrategies.block();
   }
 }

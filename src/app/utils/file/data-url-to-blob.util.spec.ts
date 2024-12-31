@@ -1,7 +1,9 @@
 import { dataUrlToBlob } from './data-url-to-blob.util';
 
 describe('dataUrlToBlob', () => {
-  it('returns `null` if invalid data URL provided', () => {
+  it('returns `null` if `undefined`, `null` or invalid data URL provided', () => {
+    expect(dataUrlToBlob(undefined)).toBe(null);
+    expect(dataUrlToBlob(null)).toBe(null);
     expect(dataUrlToBlob('')).toBe(null);
     expect(dataUrlToBlob('$')).toBe(null);
     expect(dataUrlToBlob('invalid')).toBe(null);

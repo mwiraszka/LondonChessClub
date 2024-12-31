@@ -2,6 +2,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
 
+import { CdkScrollable } from '@angular/cdk/scrolling';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
@@ -30,18 +31,35 @@ import { isDefined } from '@app/utils';
     UpcomingEventBannerComponent,
   ],
 })
-export class AppComponent implements OnInit {
+export class AppComponent extends CdkScrollable implements OnInit {
   public readonly appViewModel$ = this.store.select(AppSelectors.selectAppViewModel);
 
   constructor(
-    public readonly loaderService: LoaderService,
     @Inject(DOCUMENT) private readonly _document: Document,
+    public readonly loaderService: LoaderService,
     private readonly store: Store,
   ) {
+    super();
+
     moment.tz.setDefault('America/Toronto');
+
+    // TODO
+    this.scrollDispatcher.scrolled().subscribe(event => {
+      console.log(':: app - scroll event', event);
+    });
+    this.scrollDispatcher.ancestorScrolled(this.elementRef).subscribe(event => {
+      console.log(':: app - ancestor scroll event', event);
+    });
+    console.log(':: app - containers', this.scrollDispatcher.scrollContainers);
+    console.log(
+      ':: app - ancestory containers',
+      this.scrollDispatcher.getAncestorScrollContainers(this.elementRef),
+    );
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
+    super.ngOnInit();
+
     this.appViewModel$
       .pipe(untilDestroyed(this))
       .subscribe(({ isDarkMode, bannerLastCleared }) => {

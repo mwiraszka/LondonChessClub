@@ -23,7 +23,9 @@ import { isDefined } from '@app/utils';
 
 import { TooltipComponent } from './tooltip.component';
 
-export const TOOLTIP_DATA_TOKEN = new InjectionToken('Tooltip Data');
+export const TOOLTIP_DATA_TOKEN = new InjectionToken<string | TemplateRef<unknown>>(
+  'Tooltip Data',
+);
 
 @Directive({
   selector: '[tooltip]',

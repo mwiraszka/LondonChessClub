@@ -5,6 +5,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { MarkdownModule } from 'ngx-markdown';
 
+import { OverlayModule } from '@angular/cdk/overlay';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import {
   provideHttpClient,
   withInterceptorsFromDi,
@@ -37,6 +39,8 @@ if (environment.production) {
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(
+      OverlayModule, // TODO: Might not be necessary
+      ScrollingModule, // TODO: Might not be necessary
       AppRoutingModule,
       AppStoreModule,
       ArticlesStoreModule,

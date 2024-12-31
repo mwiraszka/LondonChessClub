@@ -1,3 +1,6 @@
+// TODO: Check if actually needed or if certain styles can simply be cherry-picked and added below
+@use '@angular/cdk/overlay-prebuilt.css';
+
 // Ensure overlay component in Overlay Service is rendered already centred
 .cdk-global-overlay-wrapper {
   display: flex;

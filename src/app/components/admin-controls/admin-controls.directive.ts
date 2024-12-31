@@ -22,7 +22,9 @@ import { AdminControlsConfig } from '@app/types';
 
 import { AdminControlsComponent } from './admin-controls.component';
 
-export const ADMIN_CONTROLS_CONFIG = new InjectionToken('Admin Controls Config');
+export const ADMIN_CONTROLS_CONFIG = new InjectionToken<AdminControlsConfig>(
+  'Admin Controls Config',
+);
 
 @Directive({
   selector: '[adminControls]',

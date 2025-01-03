@@ -2,49 +2,40 @@
   <h4>{{ header }}</h4>
 }
 
-<ul
-  class="links"
-  [ngClass]="(links?.length ?? 0) < 4 ? 'single-column' : ''">
-  @for (link of links; track link.path) {
-    <li [tooltip]="link.tooltip ?? ''">
-      @if (link.path === null) {
+<ul [class.single-column]="links.length < 4">
+  @for (link of links; track link) {
+    <li>
+      @if (link.externalPath) {
         <a
-          disabled
-          href="#"
-          class="lcc-link">
-          @if (link.icon) {
-            <i-feather
-              [name]="link.icon"
-              class="icon">
-            </i-feather>
-          }
-          {{ link.text }}
-        </a>
-      } @else if (link.path.startsWith('http')) {
-        <a
-          [href]="link.path"
           class="lcc-link"
+          [href]="link.externalPath"
+          ref="noopener noreferrer"
           target="_blank"
-          rel="noopener noreferrer">
+          [tooltip]="link.tooltip ?? null">
           @if (link.icon) {
             <i-feather
               [name]="link.icon"
               class="icon">
             </i-feather>
           }
-          {{ link.text }}
+          <span>{{ link.text }}</span>
+          <i-feather
+            name="external-link"
+            class="icon">
+          </i-feather>
         </a>
       } @else {
         <a
           class="lcc-link"
-          [routerLink]="'/' + link.path">
+          [routerLink]="link.internalPath | routerLink"
+          [tooltip]="link.tooltip ?? null">
           @if (link.icon) {
             <i-feather
               [name]="link.icon"
               class="icon">
             </i-feather>
           }
-          {{ link.text }}
+          <span>{{ link.text }}</span>
         </a>
       }
     </li>

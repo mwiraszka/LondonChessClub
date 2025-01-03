@@ -1,53 +1,93 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { StoreFeatures } from '@app/types';
+import { newArticleFormTemplate } from '@app/components/article-form/new-article-form-template';
+import { AuthSelectors } from '@app/store/auth';
+import type { ArticleFormData, Id } from '@app/types';
 import { areSame } from '@app/utils';
 
 import { ArticlesState } from './articles.state';
 
-export const articlesFeatureSelector = createFeatureSelector<ArticlesState>(
-  StoreFeatures.ARTICLES,
+export const selectArticlesState = createFeatureSelector<ArticlesState>('articles');
+
+export const selectArticles = createSelector(
+  selectArticlesState,
+  state => state.articles,
 );
 
-export const articles = createSelector(articlesFeatureSelector, state => state.articles);
+export const selectArticleById = (id: Id) =>
+  createSelector(selectArticles, articles =>
+    articles ? articles.find(article => article.id === id) : null,
+  );
 
-export const articleById = (id: string) =>
-  createSelector(articles, allArticles => {
-    return allArticles ? allArticles.find(article => article.id === id) : null;
-  });
+export const selectArticle = createSelector(selectArticlesState, state => state.article);
 
-export const setArticle = createSelector(
-  articlesFeatureSelector,
-  state => state.setArticle,
+export const selectArticleTitle = createSelector(
+  selectArticle,
+  article => article?.title,
 );
 
-export const setArticleTitle = createSelector(setArticle, article => article?.title);
-
-export const formArticle = createSelector(
-  articlesFeatureSelector,
-  state => state.formArticle,
+export const selectArticleFormData = createSelector(
+  selectArticlesState,
+  state => state.articleFormData,
 );
 
-export const articleImageCurrently = createSelector(formArticle, formArticle => {
-  return {
-    imageFile: formArticle?.imageFile ?? null,
-    imageUrl: formArticle?.imageUrl ?? null,
-  };
-});
-
-export const hasNewImage = createSelector(
-  formArticle,
-  setArticle,
-  (formArticle, setArticle) => formArticle?.imageUrl !== setArticle?.imageUrl,
+export const selectIsNewImageStored = createSelector(
+  selectArticlesState,
+  state => state.isNewImageStored,
 );
 
-export const controlMode = createSelector(
-  articlesFeatureSelector,
+export const selectControlMode = createSelector(
+  selectArticlesState,
   state => state.controlMode,
 );
 
-export const hasUnsavedChanges = createSelector(
-  formArticle,
-  setArticle,
-  (formArticle, setArticle) => !areSame(formArticle, setArticle),
+export const selectHasUnsavedChanges = createSelector(
+  selectControlMode,
+  selectArticle,
+  selectArticleFormData,
+  selectIsNewImageStored,
+  (controlMode, article, articleFormData, isNewImageStored) => {
+    if (isNewImageStored) {
+      return true;
+    }
+
+    if (controlMode === 'add') {
+      return !areSame(articleFormData, newArticleFormTemplate);
+    }
+
+    if (!article || !articleFormData) {
+      return null;
+    }
+
+    const relevantPropertiesOfArticle: ArticleFormData = {
+      title: article.title,
+      body: article.body,
+      imageId: article.imageId,
+    };
+
+    return !areSame(relevantPropertiesOfArticle, articleFormData);
+  },
 );
+
+export const selectArticleViewerScreenViewModel = createSelector({
+  article: selectArticle,
+  isAdmin: AuthSelectors.selectIsAdmin,
+});
+
+export const selectArticleEditorScreenViewModel = createSelector({
+  articleTitle: selectArticleTitle,
+  controlMode: selectControlMode,
+  hasUnsavedChanges: selectHasUnsavedChanges,
+});
+
+export const selectArticleGridViewModel = createSelector({
+  articles: selectArticles,
+  isAdmin: AuthSelectors.selectIsAdmin,
+});
+
+export const selectArticleFormViewModel = createSelector({
+  article: selectArticle,
+  articleFormData: selectArticleFormData,
+  controlMode: selectControlMode,
+  hasUnsavedChanges: selectHasUnsavedChanges,
+});

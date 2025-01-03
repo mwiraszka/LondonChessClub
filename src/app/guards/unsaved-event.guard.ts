@@ -1,30 +1,43 @@
 import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 
-import { ModalActions, ModalSelectors } from '@app/store/modal';
-import { ScheduleSelectors } from '@app/store/schedule';
-import { ModalButtonActionTypes } from '@app/types';
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
+import { DialogService } from '@app/services';
+import { EventsSelectors } from '@app/store/events';
+import type { BasicDialogResult, Dialog } from '@app/types';
 
 @Injectable({ providedIn: 'root' })
 export class UnsavedEventGuard {
-  constructor(private readonly store: Store) {}
+  constructor(
+    private readonly dialogService: DialogService<
+      BasicDialogComponent,
+      BasicDialogResult
+    >,
+    private readonly store: Store,
+  ) {}
 
-  canDeactivate(): Observable<boolean> {
-    return this.store.select(ScheduleSelectors.hasUnsavedChanges).pipe(
-      switchMap(hasUnsavedChanges => {
-        if (!hasUnsavedChanges) {
-          return of(true);
-        }
-
-        this.store.dispatch(ModalActions.leaveWithUnsavedChangesRequested());
-        return this.store.select(ModalSelectors.selection).pipe(
-          filter(selection => !!selection),
-          map(selection => selection === ModalButtonActionTypes.LEAVE_OK),
-        );
-      }),
+  async canDeactivate(): Promise<boolean> {
+    const hasUnsavedChanges = await firstValueFrom(
+      this.store.select(EventsSelectors.selectHasUnsavedChanges),
     );
+
+    if (!hasUnsavedChanges) {
+      return true;
+    }
+
+    const dialog: Dialog = {
+      title: 'Unsaved changes',
+      body: 'Are you sure you want to leave? Any unsaved changes to this event will be lost.',
+      confirmButtonText: 'Leave',
+    };
+
+    const result = await this.dialogService.open({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+    });
+
+    return result === 'confirm';
   }
 }

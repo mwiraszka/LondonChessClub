@@ -1,214 +1,220 @@
-<div class="container">
-  <lcc-screen-header
-    title="Game Archives"
-    icon="grid">
-  </lcc-screen-header>
+<lcc-screen-header
+  title="Game Archives"
+  icon="grid">
+</lcc-screen-header>
 
-  <section class="intro-section">
-    <div class="image-container">
-      <img src="assets/photos/game-archives.png" />
+<section class="intro-section">
+  <div class="image-container">
+    <img src="assets/photos/game-archives.png" />
+  </div>
+  <div class="text-container">
+    <h3>A little piece of history...</h3>
+    <p>
+      Here you will find a collection of games played by London Chess Club members from a
+      variety of events dating as far back as 1974. All game PGNs meticulously transcribed
+      and compiled over the years by Gerry Litchfield.
+    </p>
+    <p>
+      Want to submit a game or make a correction? Email us at
+      <a
+        href="mailto:welcome@londonchess.ca?subject=LCC%20Website%20-%20Game%20Archives"
+        class="lcc-link"
+        rel="noopener noreferrer"
+        target="_blank">
+        welcome&#64;londonchess.ca</a
+      >.
+    </p>
+  </div>
+</section>
+
+<div class="game-filter-container">
+  <span class="filter-games-text">Filter games:</span>
+  <form
+    class="lcc-form game-filter-form"
+    [formGroup]="form">
+    <section class="lcc-form-fields filter-section player-filter-section">
+      <label for="first-name-input">First name</label>
+      <input
+        id="first-name-input"
+        type="text"
+        name="first-name"
+        formControlName="firstName"
+        maxlength="50" />
+
+      <label for="last-name-input">Last name</label>
+      <input
+        id="last-name-input"
+        type="text"
+        name="last-name"
+        formControlName="lastName"
+        maxlength="50" />
+
+      <label for="as-white-input">as White</label>
+      <input
+        id="as-white-input"
+        type="checkbox"
+        name="as-white"
+        formControlName="asWhite" />
+
+      <label for="as-black-input">as Black</label>
+      <input
+        id="as-black-input"
+        type="checkbox"
+        name="as-black"
+        formControlName="asBlack" />
+    </section>
+
+    <section class="lcc-form-fields filter-section moves-filter-section">
+      <label for="name-input">Moves (min)</label>
+      <input
+        id="moves-min-input"
+        type="text"
+        name="moves-min"
+        formControlName="movesMin"
+        maxlength="3" />
+      <div class="lcc-form-error-container">
+        @if (hasError(form.controls['movesMin'])) {
+          <i-feather
+            name="alert-triangle"
+            class="lcc-form-error-icon validation-alert-icon"
+            tooltip="Invalid input">
+          </i-feather>
+        }
+      </div>
+
+      <label for="name-input">Moves (max)</label>
+      <input
+        id="moves-max-input"
+        type="text"
+        name="moves-max"
+        formControlName="movesMax"
+        maxlength="3" />
+      <div class="lcc-form-error-container">
+        @if (hasError(form.controls['movesMax'])) {
+          <i-feather
+            name="alert-triangle"
+            class="lcc-form-error-icon validation-alert-icon"
+            tooltip="Invalid input">
+          </i-feather>
+        }
+      </div>
+    </section>
+
+    <section class="lcc-form-fields filter-section result-filter-section">
+      <label for="result-white-won-input">White won</label>
+      <input
+        id="result-white-won-input"
+        type="checkbox"
+        name="result-white-won"
+        formControlName="resultWhiteWon" />
+
+      <label for="result-draw-input">Draw</label>
+      <input
+        id="result-draw-input"
+        type="checkbox"
+        name="result-draw"
+        formControlName="resultDraw" />
+
+      <label for="result-black-won-input">Black won</label>
+      <input
+        id="result-black-won-input"
+        type="checkbox"
+        name="result-black-won-input"
+        formControlName="resultBlackWon" />
+
+      <label for="result-inconclusive-input">Inconclusive</label>
+      <input
+        id="result-inconclusive-input"
+        type="checkbox"
+        name="result-inconclusive-input"
+        formControlName="resultInconclusive" />
+    </section>
+  </form>
+
+  <span class="result-summary-text">{{ searchResultSummaryMessage }}</span>
+  <button
+    (click)="this.showStats = !this.showStats"
+    [disabled]="!filteredGameCount"
+    class="lcc-secondary-button search-stats-button">
+    {{ showStats ? 'Hide' : 'Show' }} search stats
+  </button>
+  @if (showStats && filteredGameCount) {
+    <div class="search-stats-container">
+      <div class="opening-chart-container">
+        <label for="opening-chart">Openings</label>
+        <canvas
+          id="opening-chart"
+          baseChart
+          [datasets]="openingChartDatasets"
+          [labels]="openingChartLabels"
+          [legend]="true"
+          [options]="openingChartOptions"
+          [type]="'doughnut'">
+        </canvas>
+      </div>
+      <div class="result-chart-container">
+        <label for="result-chart">Game Results</label>
+        <canvas
+          id="result-chart"
+          baseChart
+          [datasets]="resultChartDatasets"
+          [labels]="resultChartLabels"
+          [legend]="true"
+          [options]="resultChartOptions"
+          [type]="'doughnut'">
+        </canvas>
+      </div>
     </div>
-    <div class="text-container">
-      <h3>A little piece of history...</h3>
-      <p>
-        Here you will find a collection of games played by London Chess Club members from
-        a variety of events dating as far back as 1974. All game PGNs meticulously
-        transcribed and compiled over the years by Gerry Litchfield.
-      </p>
-      <p>
-        Want to submit a game or make a correction? Email us at
-        <a
-          href="mailto:welcome@londonchess.ca?subject=LCC%20Website%20-%20Game%20Archives"
-          class="lcc-link"
-          rel="noopener noreferrer"
-          target="_blank">
-          welcome&#64;londonchess.ca</a
-        >.
-      </p>
-    </div>
-  </section>
+  }
+</div>
 
-  <div class="game-filter-container">
-    <span class="filter-games-text">Filter games:</span>
-    <form
-      class="lcc-form game-filter-form"
-      [formGroup]="form">
-      <section class="lcc-form-fields filter-section player-filter-section">
-        <label for="name-input">Player name</label>
-        <input
-          id="name-input"
-          type="text"
-          name="name"
-          formControlName="name"
-          maxlength="50" />
+<div class="panels-container">
+  @for (group of filteredGames | keyvalue: originalOrder; track group.key) {
+    @if (group.value.length) {
+      <div class="panel-content">
+        <lcc-expansion-panel
+          [headerTemplate]="headerTemplateRef"
+          [contentTemplate]="contentTemplateRef"
+          [isOpen]="group.key === '2024'">
+        </lcc-expansion-panel>
 
-        <label for="as-white-input">as White</label>
-        <input
-          id="as-white-input"
-          type="checkbox"
-          name="as-white"
-          formControlName="asWhite" />
+        <ng-template #headerTemplateRef>
+          <div class="header-content">
+            <span>{{ group.key }}</span>
+            <span>
+              {{ group.value.length }}
+              {{ group.value.length > 1 ? 'games' : 'game' }}
+            </span>
+          </div>
+        </ng-template>
 
-        <label for="as-black-input">as Black</label>
-        <input
-          id="as-black-input"
-          type="checkbox"
-          name="as-black"
-          formControlName="asBlack" />
-      </section>
-
-      <section class="lcc-form-fields filter-section moves-filter-section">
-        <label for="name-input">Moves (min)</label>
-        <input
-          id="moves-min-input"
-          type="text"
-          name="moves-min"
-          formControlName="movesMin"
-          maxlength="3" />
-        <div class="lcc-form-error-container">
-          @if (hasError(form.controls['movesMin'])) {
-            <i-feather
-              name="alert-triangle"
-              class="lcc-form-error-icon validation-alert-icon"
-              [tooltip]="getErrorMessage()">
-            </i-feather>
-          }
-        </div>
-
-        <label for="name-input">Moves (max)</label>
-        <input
-          id="moves-max-input"
-          type="text"
-          name="moves-max"
-          formControlName="movesMax"
-          maxlength="3" />
-        <div class="lcc-form-error-container">
-          @if (hasError(form.controls['movesMax'])) {
-            <i-feather
-              name="alert-triangle"
-              class="lcc-form-error-icon validation-alert-icon"
-              [tooltip]="getErrorMessage()">
-            </i-feather>
-          }
-        </div>
-      </section>
-
-      <section class="lcc-form-fields filter-section result-filter-section">
-        <label for="result-white-won-input">White won</label>
-        <input
-          id="result-white-won-input"
-          type="checkbox"
-          name="result-white-won"
-          formControlName="resultWhiteWon" />
-
-        <label for="result-draw-input">Draw</label>
-        <input
-          id="result-draw-input"
-          type="checkbox"
-          name="result-draw"
-          formControlName="resultDraw" />
-
-        <label for="result-black-won-input">Black won</label>
-        <input
-          id="result-black-won-input"
-          type="checkbox"
-          name="result-black-won-input"
-          formControlName="resultBlackWon" />
-
-        <label for="result-inconclusive-input">Inconclusive</label>
-        <input
-          id="result-inconclusive-input"
-          type="checkbox"
-          name="result-inconclusive-input"
-          formControlName="resultInconclusive" />
-      </section>
-    </form>
-
-    <span class="result-summary-text">{{ searchResultSummaryMessage }}</span>
-    <button
-      (click)="onShowStats()"
-      [disabled]="!filteredGameCount"
-      class="lcc-secondary-button search-stats-button">
-      {{ showStats ? 'Hide' : 'Show' }} search stats
-    </button>
-    @if (showStats && filteredGameCount) {
-      <div class="search-stats-container">
-        <div class="opening-chart-container">
-          <label for="opening-chart">Openings</label>
-          <canvas
-            id="opening-chart"
-            baseChart
-            [datasets]="openingChartDatasets"
-            [labels]="openingChartLabels"
-            [legend]="true"
-            [options]="openingChartOptions"
-            [type]="'doughnut'">
-          </canvas>
-        </div>
-        <div class="result-chart-container">
-          <label for="result-chart">Game Results</label>
-          <canvas
-            id="result-chart"
-            baseChart
-            [datasets]="resultChartDatasets"
-            [labels]="resultChartLabels"
-            [legend]="true"
-            [options]="resultChartOptions"
-            [type]="'doughnut'">
-          </canvas>
-        </div>
+        <ng-template #contentTemplateRef>
+          <div class="games-container">
+            @defer {
+              <cdk-virtual-scroll-viewport
+                [itemSize]="436"
+                [minBufferPx]="1000"
+                [maxBufferPx]="2000"
+                orientation="horizontal">
+                <lcc-pgn-viewer
+                  *cdkVirtualFor="
+                    let gameDetails of group.value;
+                    let index = index;
+                    templateCacheSize: 0;
+                    trackBy: trackByFn
+                  "
+                  [index]="index"
+                  [label]="group.key"
+                  [pgn]="gameDetails.pgn"
+                  (keydown)="onKeydown($event)">
+                </lcc-pgn-viewer>
+              </cdk-virtual-scroll-viewport>
+            } @placeholder {
+              <span class="loading-text">Loading...</span>
+            }
+          </div>
+        </ng-template>
       </div>
     }
-  </div>
-
-  <div class="panels-container">
-    @for (group of filteredGames | keyvalue: originalOrder; track group.key) {
-      @if (group.value.length) {
-        <div class="panel-content">
-          <lcc-expansion-panel
-            [headerTemplate]="headerTemplateRef"
-            [contentTemplate]="contentTemplateRef"
-            [isOpen]="group.key === '2024'">
-          </lcc-expansion-panel>
-
-          <ng-template #headerTemplateRef>
-            <div class="header-content">
-              <span>{{ group.key }}</span>
-              <span>
-                {{ group.value.length }}
-                {{ group.value.length > 1 ? 'games' : 'game' }}
-              </span>
-            </div>
-          </ng-template>
-
-          <ng-template #contentTemplateRef>
-            <div class="games-container">
-              @defer {
-                <cdk-virtual-scroll-viewport
-                  [itemSize]="436"
-                  [minBufferPx]="1000"
-                  [maxBufferPx]="2000"
-                  orientation="horizontal">
-                  <lcc-pgn-viewer
-                    *cdkVirtualFor="
-                      let gameDetails of group.value;
-                      let index = index;
-                      templateCacheSize: 0;
-                      trackBy: trackByFn
-                    "
-                    [index]="index"
-                    [label]="group.key"
-                    [pgn]="gameDetails.pgn"
-                    (keydown)="onKeydown($event)">
-                  </lcc-pgn-viewer>
-                </cdk-virtual-scroll-viewport>
-              } @placeholder {
-                <span class="loading-text">Loading...</span>
-              }
-            </div>
-          </ng-template>
-        </div>
-      }
-    }
-  </div>
+  }
 </div>

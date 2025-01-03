@@ -1,21 +1,15 @@
-import { ArticlesState } from '@app/store/articles/articles.state';
-import { AuthState } from '@app/store/auth/auth.state';
-import { MembersState } from '@app/store/members/members.state';
-import { ModalState } from '@app/store/modal/modal.state';
-import { NavState } from '@app/store/nav/nav.state';
-import { PhotosState } from '@app/store/photos/photos.state';
-import { ScheduleState } from '@app/store/schedule/schedule.state';
-import { ToasterState } from '@app/store/toaster/toaster.state';
-import { UserSettingsState } from '@app/store/user-settings/user-settings.state';
+import type { IsoDate } from '@app/types';
 
 export interface AppState {
-  articlesState: ArticlesState;
-  authState: AuthState;
-  photosState: PhotosState;
-  membersState: MembersState;
-  modalState: ModalState;
-  navState: NavState;
-  scheduleState: ScheduleState;
-  toasterState: ToasterState;
-  userSettingsState: UserSettingsState;
+  isDarkMode: boolean;
+  isSafeMode: boolean;
+  bannerLastCleared: IsoDate | null;
+  showUpcomingEventBanner: boolean;
 }
+
+export const initialState: AppState = {
+  isDarkMode: window.matchMedia('(prefers-color-scheme: dark)').matches,
+  isSafeMode: false,
+  bannerLastCleared: null,
+  showUpcomingEventBanner: true,
+};

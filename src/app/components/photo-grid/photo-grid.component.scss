@@ -1,28 +1,10 @@
-@import '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins';
 
 :host {
   // 'Masonry' layout effect:
   -webkit-column-count: 2;
   -moz-column-count: 2;
   column-count: 2;
-
-  @include respond-to('gt-sm') {
-    -webkit-column-count: 3;
-    -moz-column-count: 3;
-    column-count: 3;
-  }
-
-  @include respond-to('gt-md') {
-    -webkit-column-count: 4;
-    -moz-column-count: 4;
-    column-count: 4;
-  }
-
-  @include respond-to('gt-lg') {
-    -webkit-column-count: 6;
-    -moz-column-count: 6;
-    column-count: 6;
-  }
 
   -webkit-column-gap: 2px;
   -moz-column-gap: 2px;
@@ -42,5 +24,23 @@
       border: 1px solid var(--lcc-color--photoGrid-imageBorderOnHover);
       opacity: 1;
     }
+  }
+
+  @include mixins.respond-to('gt-sm') {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+  }
+
+  @include mixins.respond-to('gt-md') {
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+  }
+
+  @include mixins.respond-to('gt-lg') {
+    -webkit-column-count: 6;
+    -moz-column-count: 6;
+    column-count: 6;
   }
 }

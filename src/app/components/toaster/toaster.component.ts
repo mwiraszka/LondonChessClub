@@ -1,17 +1,24 @@
+import { Store } from '@ngrx/store';
+
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
-import { ToasterFacade } from './toaster.facade';
+import { NotificationsSelectors } from '@app/store/notifications';
+
+import { ToastComponent } from '../toast/toast.component';
 
 @Component({
   selector: 'lcc-toaster',
   template: `
-    @for (toast of facade.toasts$ | async; track toast.title) {
+    @for (toast of toasts$ | async; track toast) {
       <lcc-toast [toast]="toast"></lcc-toast>
     }
   `,
-  styleUrls: ['./toaster.component.scss'],
-  providers: [ToasterFacade],
+  styleUrl: './toaster.component.scss',
+  imports: [CommonModule, ToastComponent],
 })
 export class ToasterComponent {
-  constructor(public facade: ToasterFacade) {}
+  public readonly toasts$ = this.store.select(NotificationsSelectors.selectToasts);
+
+  constructor(private readonly store: Store) {}
 }

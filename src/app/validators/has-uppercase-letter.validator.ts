@@ -1,8 +1,11 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
+import { isDefined } from '@app/utils';
+
 export function hasUppercaseLetterValidator(
-  control: AbstractControl,
+  control?: AbstractControl,
 ): ValidationErrors | null {
-  const regExp = new RegExp(/[A-Z]/);
-  return regExp.test(control.value) ? null : { noUppercaseLetter: true };
+  return isDefined(control?.value) && /[A-Z]/.test(control!.value)
+    ? null
+    : { noUppercaseLetter: true };
 }

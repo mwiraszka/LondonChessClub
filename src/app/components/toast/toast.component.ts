@@ -1,23 +1,25 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
-import { type Toast, ToastTypes } from '@app/types';
+import IconsModule from '@app/icons';
+import type { Toast } from '@app/types';
 
 @Component({
   selector: 'lcc-toast',
-  styleUrls: ['./toast.component.scss'],
+  styleUrl: './toast.component.scss',
   templateUrl: './toast.component.html',
+  imports: [CommonModule, IconsModule],
 })
 export class ToastComponent implements OnInit {
-  @Input() toast?: Toast;
-
-  icon!: 'check-circle' | 'alert-triangle' | 'info';
+  @Input() public toast?: Toast;
+  public icon!: 'check-circle' | 'alert-triangle' | 'info';
 
   ngOnInit(): void {
     switch (this.toast?.type) {
-      case ToastTypes.SUCCESS:
+      case 'success':
         this.icon = 'check-circle';
         break;
-      case ToastTypes.WARNING:
+      case 'warning':
         this.icon = 'alert-triangle';
         break;
       default:

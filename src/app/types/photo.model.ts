@@ -1,4 +1,4 @@
 export interface Photo {
-  filename: string;
-  description: string;
+  fileName: string;
+  caption: string;
 }

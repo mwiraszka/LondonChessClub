@@ -1,22 +1,25 @@
-@if (facade.upcomingEvent$ | async; as upcomingEvent) {
+@if (nextEvent$ | async; as nextEvent) {
   <div
     class="container"
-    [ngClass]="kebabize(upcomingEvent.type)">
+    [ngClass]="nextEvent.type | kebabCase">
     <div class="banner-message-container">
       <a
         class="banner-message"
-        [routerLink]="NavPathTypes.SCHEDULE"
-        (click)="facade.onClearBanner()">
+        routerLink="schedule"
+        (click)="onClearBanner()">
         <span>
-          Next event: <b>{{ upcomingEvent.title }}</b> on
-          <b>{{ setLocalTime(upcomingEvent.eventDate) | formatDate: 'short' }}</b>
+          Next event: <b>{{ nextEvent.title }}</b> on
+          <b>{{ nextEvent.eventDate | formatDate: 'short' }}</b>
         </span>
       </a>
-      <i-feather
-        name="x"
-        class="close-icon"
-        (click)="facade.onClearBanner()">
-      </i-feather>
+
+      <button class="lcc-icon-button">
+        <i-feather
+          name="x"
+          class="close-icon"
+          (click)="onClearBanner()">
+        </i-feather>
+      </button>
     </div>
   </div>
 }

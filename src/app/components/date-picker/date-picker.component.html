@@ -1,0 +1,47 @@
+<header>
+  <button
+    class="previous-month-button lcc-primary-button"
+    type="button"
+    (click)="onPreviousMonth()">
+    <i-feather name="chevron-left"></i-feather>
+  </button>
+  <h3 class="title">
+    {{ currentMonth.format(screenWidth < 400 ? 'MMM YYYY' : 'MMMM YYYY') }}
+  </h3>
+  <button
+    class="next-month-button lcc-primary-button"
+    type="button"
+    (click)="onNextMonth()">
+    <i-feather name="chevron-right"></i-feather>
+  </button>
+</header>
+
+<table class="calendar-table lcc-table">
+  <thead>
+    @for (dayOfWeek of DAYS_OF_WEEK; track dayOfWeek) {
+      <th>{{ dayOfWeek }}</th>
+    }
+  </thead>
+  <tbody>
+    @for (row of WEEKS_IN_CALENDAR | range; track row) {
+      <tr>
+        @for (column of DAYS_OF_WEEK.length | range; track column) {
+          <td (click)="onSelectCell(row, column)"> </td>
+        }
+      </tr>
+    }
+  </tbody>
+  <tfoot>
+    <tr>
+      <td
+        colspan="7"
+        class="selected-date">
+        {{
+          selectedDate.format(
+            screenWidth < 400 ? 'ddd, MMM Do YYYY' : 'dddd, MMMM Do YYYY'
+          )
+        }}
+      </td>
+    </tr>
+  </tfoot>
+</table>

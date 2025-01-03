@@ -1,31 +1,34 @@
+import { Store } from '@ngrx/store';
+
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
-import { NavPathTypes } from '@app/types';
+import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import IconsModule from '@app/icons';
+import { AuthActions } from '@app/store/auth';
 import { emailValidator } from '@app/validators';
-
-import { LoginFormFacade } from './login-form.facade';
 
 @Component({
   selector: 'lcc-login-form',
   templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss'],
-  providers: [LoginFormFacade],
+  styleUrl: './login-form.component.scss',
+  imports: [CommonModule, IconsModule, ReactiveFormsModule, RouterLink, TooltipDirective],
 })
 export class LoginFormComponent implements OnInit {
-  readonly NavPathTypes = NavPathTypes;
-
-  form!: FormGroup;
+  public form!: FormGroup;
 
   constructor(
-    public facade: LoginFormFacade,
-    private formBuilder: FormBuilder,
+    private readonly formBuilder: FormBuilder,
+    private readonly store: Store,
   ) {}
 
   ngOnInit(): void {
@@ -38,11 +41,11 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
-  hasError(control: AbstractControl): boolean {
-    return control.value !== '' && control.invalid;
+  public hasError(control: AbstractControl): boolean {
+    return control.dirty && control.invalid;
   }
 
-  getErrorMessage(control: AbstractControl): string {
+  public getErrorMessage(control: AbstractControl): string {
     if (control.hasError('required')) {
       return 'This field is required';
     } else if (control.hasError('invalidEmailFormat')) {
@@ -51,12 +54,11 @@ export class LoginFormComponent implements OnInit {
     return 'Unknown error';
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
-
-    this.facade.onLogin(this.form.value);
+    this.store.dispatch(AuthActions.loginRequested({ request: this.form.value }));
   }
 }

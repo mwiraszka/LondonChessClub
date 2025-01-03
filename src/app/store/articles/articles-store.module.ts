@@ -4,16 +4,15 @@ import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { StoreFeatures } from '@app/types';
-
 import { ArticlesEffects } from './articles.effects';
-import { reducer } from './articles.reducer';
+import { articlesReducer } from './articles.reducer';
+import { ArticlesState } from './articles.state';
 
 @NgModule({
   imports: [
     CommonModule,
     EffectsModule.forFeature([ArticlesEffects]),
-    StoreModule.forFeature(StoreFeatures.ARTICLES, reducer),
+    StoreModule.forFeature<ArticlesState>('articles', articlesReducer),
   ],
 })
 export class ArticlesStoreModule {}

@@ -1,49 +1,46 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
 import * as AuthActions from './auth.actions';
 import { AuthState, initialState } from './auth.state';
 
-const authReducer = createReducer(
+export const authReducer = createReducer(
   initialState,
 
-  on(AuthActions.loginSucceeded, (state, { user }) => ({
-    ...state,
-    user,
-    tempInitialPassword: null,
-  })),
-
-  on(AuthActions.logoutSucceeded, () => initialState),
-
-  on(AuthActions.codeForPasswordChangeSucceeded, state => ({
-    ...state,
-    hasCode: true,
-  })),
-
-  on(AuthActions.codeForPasswordChangeFailed, state => ({
-    ...state,
-    hasCode: false,
-  })),
-
-  on(AuthActions.requestNewCodeSelected, state => ({
-    ...state,
-    hasCode: false,
-  })),
-
   on(
-    AuthActions.newPasswordChallengeRequested,
-    (state, { tempInitialPassword, user }) => ({
+    AuthActions.loginSucceeded,
+    (state, { user }): AuthState => ({
       ...state,
       user,
-      tempInitialPassword,
+      temporaryPassword: null,
     }),
   ),
 
-  on(AuthActions.passwordChangeSucceeded, state => ({
-    ...state,
-    hasCode: false,
-  })),
-);
+  on(AuthActions.logoutSucceeded, (): AuthState => initialState),
 
-export function reducer(state: AuthState, action: Action): AuthState {
-  return authReducer(state, action);
-}
+  on(
+    AuthActions.codeForPasswordChangeSucceeded,
+    (state): AuthState => ({
+      ...state,
+      hasCode: true,
+    }),
+  ),
+
+  on(
+    AuthActions.codeForPasswordChangeFailed,
+    AuthActions.requestNewCodeSelected,
+    AuthActions.passwordChangeSucceeded,
+    (state): AuthState => ({
+      ...state,
+      hasCode: false,
+    }),
+  ),
+
+  on(
+    AuthActions.newPasswordChallengeRequested,
+    (state, { temporaryPassword, user }): AuthState => ({
+      ...state,
+      user,
+      temporaryPassword,
+    }),
+  ),
+);

@@ -1,4 +1,8 @@
-@import '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins';
+
+:host {
+  width: 100%;
+}
 
 .banner-image-container {
   position: relative;
@@ -13,12 +17,12 @@
     max-height: calc((700px - 16px) / 1.5);
     box-sizing: border-box;
 
-    @include respond-to('lt-md') {
+    @include mixins.respond-to('lt-md') {
       width: 100%;
     }
   }
 
-  h2 {
+  .title {
     position: absolute;
     bottom: 8px;
     left: 16px;
@@ -77,6 +81,6 @@ hr {
 }
 
 .markdown-container {
-  padding: 16px;
+  padding: 4px;
   overflow-x: hidden;
 }

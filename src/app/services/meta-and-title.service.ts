@@ -6,16 +6,16 @@ import { Meta, Title } from '@angular/platform-browser';
 })
 export class MetaAndTitleService {
   constructor(
-    private title: Title,
-    private meta: Meta,
+    private readonly meta: Meta,
+    private readonly title: Title,
   ) {}
 
-  updateTitle(title: string): void {
+  public updateTitle(title: string): void {
     this.title.setTitle(title);
   }
 
-  updateDescription(desc: string): void {
-    this.meta.updateTag({ property: 'og:description', content: desc });
-    this.meta.updateTag({ name: 'description', content: desc });
+  public updateDescription(content: string): void {
+    this.meta.updateTag({ property: 'og:description', content });
+    this.meta.updateTag({ name: 'description', content });
   }
 }

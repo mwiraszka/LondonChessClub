@@ -4,7 +4,6 @@ $fg3: var(--lcc-color--contentPlaceholder-foreground3);
 
 .lcc-content-placeholder-wrapper {
   position: relative;
-  z-index: 900;
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -14,7 +13,6 @@ $fg3: var(--lcc-color--contentPlaceholder-foreground3);
 
 .lcc-content-placeholder {
   position: absolute;
-  z-index: 1000;
   left: -45%;
   height: 100%;
   width: 75%;

@@ -1,20 +1,26 @@
+import { Store } from '@ngrx/store';
+
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
-import { NavPathTypes } from '@app/types';
-import { kebabize, setLocalTime } from '@app/utils';
-
-import { UpcomingEventBannerFacade } from './upcoming-event-banner.facade';
+import IconsModule from '@app/icons';
+import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
+import { AppActions } from '@app/store/app';
+import { EventsSelectors } from '@app/store/events';
 
 @Component({
   selector: 'lcc-upcoming-event-banner',
   templateUrl: './upcoming-event-banner.component.html',
-  styleUrls: ['./upcoming-event-banner.component.scss'],
-  providers: [UpcomingEventBannerFacade],
+  styleUrl: './upcoming-event-banner.component.scss',
+  imports: [CommonModule, FormatDatePipe, IconsModule, KebabCasePipe, RouterLink],
 })
 export class UpcomingEventBannerComponent {
-  readonly kebabize = kebabize;
-  readonly setLocalTime = setLocalTime;
-  readonly NavPathTypes = NavPathTypes;
+  public readonly nextEvent$ = this.store.select(EventsSelectors.selectNextEvent);
 
-  constructor(public facade: UpcomingEventBannerFacade) {}
+  constructor(private readonly store: Store) {}
+
+  public onClearBanner(): void {
+    this.store.dispatch(AppActions.upcomingEventBannerCleared());
+  }
 }

@@ -8,7 +8,7 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 > FRONTEND
 
-- `Angular v18` for frontend framework
+- `Angular v19` for frontend framework
 - `NgRx` for reactive state management
 - `Feather` for icons
 - `SCSS` for style preprocessing with Sass
@@ -38,6 +38,28 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 | 🚀  | New features & improvements       |
 | 🐛  | Bug fixes                         |
 | 🔧  | Behind-the-scenes changes         |
+
+<details>
+<summary style="cursor: pointer">
+v5.0.0 - December TBD, 2024
+</summary>
+
+- 🚀 Create a custom Date Picker component and implement in Event and Member Form component for date-related inputs
+- 🚀 Improve efficiency of custom sorting algorithm (used for sorting members, club events and articles) and handle certain edge cases more appropriately 
+- 🔧 Upgrade to Angular v19
+- 🔧 Adapt Schedule, Members and Articles services to new backend architecture
+- Convert all frontend date types to either ISO 8601 date strings (standard dates in the format YYYY-MM-DDTHH:MM:SS) or Moment types in date-heavy contexts where lots of calculations may be needed
+- 🔧 Consolidate all components, directives and pipes into more streamlined standalone components
+- 🔧 Create custom `range` pipe for easier iteration over consecutive integers in templates
+- 🔧 Clean up redundant code in Nav component
+- 🔧 Improve error handling and provide more comprehensive error messages to notification toasts for easier debugging when needed
+- 🔧 Rename Schedule and Club Event features and components to simply 'Event' wherever appropriate 
+- 🔧 Migrate deprecated `@import` rule to `@use`/`@forward` in prepararation for future release of Dart Sass 3.0.0, where `@import` will no longer be available
+- 🔧 Migrate deprecated global built-in functions to use explicit `sass:` prefix
+- 🔧 Migrate from Jasmine to Jest for unit tests
+- 🔧 Update path aliases and remove redundant `.eslintrc` file
+
+</details>
 
 <details>
 <summary style="cursor: pointer">

@@ -21,13 +21,10 @@ export class AuthEffects {
           map(loginResponse => {
             if (loginResponse.error) {
               return AuthActions.loginFailed({ error: loginResponse.error });
-            } else if (
-              loginResponse.unverifiedUser &&
-              loginResponse.tempInitialPassword
-            ) {
+            } else if (loginResponse.unverifiedUser && loginResponse.temporaryPassword) {
               return AuthActions.newPasswordChallengeRequested({
                 user: loginResponse.unverifiedUser,
-                tempInitialPassword: loginResponse.tempInitialPassword,
+                temporaryPassword: loginResponse.temporaryPassword,
               });
             } else {
               return AuthActions.loginSucceeded({
@@ -111,13 +108,13 @@ export class AuthEffects {
   loginAfterSuccessfulPasswordChange$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.passwordChangeSucceeded),
-      concatLatestFrom(() => this.store.select(AuthSelectors.user)),
+      concatLatestFrom(() => this.store.select(AuthSelectors.selectUser)),
       filter(([, user]) => !user),
-      map(([response]) =>
+      map(([{ email, newPassword }]) =>
         AuthActions.loginRequested({
           request: {
-            email: response.email,
-            password: response.newPassword,
+            email,
+            password: newPassword,
           },
         }),
       ),

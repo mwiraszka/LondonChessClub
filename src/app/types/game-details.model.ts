@@ -9,15 +9,17 @@
 const gameScores = ['1', '1/2', '0', '*'] as const;
 export type GameScore = (typeof gameScores)[number];
 
-export function isValidGameScore(value: string): value is GameScore {
+export function isGameScore(value: unknown): value is GameScore {
   return gameScores.indexOf(value as GameScore) !== -1;
 }
 
 export interface GameDetails {
   pgn: string;
-  whiteName?: string;
+  whiteFirstName?: string;
+  whiteLastName?: string;
   whiteScore?: GameScore;
-  blackName?: string;
+  blackFirstName?: string;
+  blackLastName?: string;
   blackScore?: GameScore;
   plyCount?: number;
 }

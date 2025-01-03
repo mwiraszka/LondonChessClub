@@ -59,6 +59,14 @@ v5.0.0 - December TBD, 2024
 - 🔧 Migrate from Jasmine to Jest for unit tests
 - 🔧 Update path aliases and remove redundant `.eslintrc` file
 
+</details>
+
+<details>
+<summary style="cursor: pointer">
+v4.1.10 - January 3rd, 2025
+</summary>
+
+- 🚀 Add PGNs for LCC Championship Playoffs
 
 </details>
 

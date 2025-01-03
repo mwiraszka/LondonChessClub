@@ -11,7 +11,7 @@ export interface Article {
   imageUrl: Url | null;
   thumbnailImageUrl: Url | null;
   bookmarkDate: IsoDate | null;
-  modificationInfo: ModificationInfo | null;
+  modificationInfo: ModificationInfo;
 }
 
 export type ArticleFormData = Omit<

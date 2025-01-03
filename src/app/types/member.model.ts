@@ -17,7 +17,7 @@ export interface Member {
   yearOfBirth: string;
   email: string;
   phoneNumber: string;
-  modificationInfo: ModificationInfo | null;
+  modificationInfo: ModificationInfo;
 }
 
 export type MemberFormData = Omit<Member, 'id' | 'modificationInfo'>;

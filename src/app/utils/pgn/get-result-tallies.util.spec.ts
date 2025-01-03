@@ -1,4 +1,4 @@
-import { mockPgns } from '@app/mocks/pgns';
+import { MOCK_PGNS } from '@app/mocks/pgns.mock';
 
 import { getResultTallies } from './get-result-tallies.util';
 
@@ -17,6 +17,6 @@ describe('getResultTallies', () => {
       ['Unknown', 1],
     ]);
 
-    expect(getResultTallies(mockPgns)).toStrictEqual(resultMap);
+    expect(getResultTallies(MOCK_PGNS)).toStrictEqual(resultMap);
   });
 });

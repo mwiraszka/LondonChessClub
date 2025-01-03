@@ -61,7 +61,7 @@
               {{ member?.lichessUsername }}
             </td>
             <td class="last-updated">
-              {{ member.modificationInfo!.dateLastEdited | formatDate: 'short no-time' }}
+              {{ member.modificationInfo.dateLastEdited | formatDate: 'short no-time' }}
             </td>
             @if (vm.isAdmin) {
               <td class="born">{{ member?.yearOfBirth }}</td>

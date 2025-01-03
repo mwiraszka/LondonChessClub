@@ -39,7 +39,7 @@ describe('WasEditedPipe', () => {
         lastEditedBy: 'name',
         dateLastEdited: moment('2025-01-01T00:00:00.001').toISOString(),
       };
-      expect(pipe.transform(modificationInfo, 'millisecond')).toBe(false);
+      expect(pipe.transform(modificationInfo, 'millisecond')).toBe(true);
     });
 
     it('identifies same `dateCreated` and `dateLastEdited` dates correctly', () => {
@@ -49,7 +49,7 @@ describe('WasEditedPipe', () => {
         lastEditedBy: 'name',
         dateLastEdited: moment('2025-01-01T00:00:00.000').toISOString(),
       };
-      expect(pipe.transform(modificationInfo, 'millisecond')).toBe(true);
+      expect(pipe.transform(modificationInfo, 'millisecond')).toBe(false);
     });
   });
 
@@ -61,7 +61,7 @@ describe('WasEditedPipe', () => {
         lastEditedBy: 'name',
         dateLastEdited: moment('2025-01-01T00:00:01.000').toISOString(),
       };
-      expect(pipe.transform(modificationInfo, 'second')).toBe(false);
+      expect(pipe.transform(modificationInfo, 'second')).toBe(true);
     });
 
     it('identifies same `dateCreated` and `dateLastEdited` dates correctly', () => {
@@ -71,7 +71,7 @@ describe('WasEditedPipe', () => {
         lastEditedBy: 'name',
         dateLastEdited: moment('2025-01-01T00:00:00.999').toISOString(),
       };
-      expect(pipe.transform(modificationInfo, 'second')).toBe(true);
+      expect(pipe.transform(modificationInfo, 'second')).toBe(false);
     });
   });
 
@@ -83,7 +83,7 @@ describe('WasEditedPipe', () => {
         lastEditedBy: 'name',
         dateLastEdited: moment('2025-01-01T00:01:00').toISOString(),
       };
-      expect(pipe.transform(modificationInfo, 'minute')).toBe(false);
+      expect(pipe.transform(modificationInfo, 'minute')).toBe(true);
     });
 
     it('identifies same `dateCreated` and `dateLastEdited` dates correctly', () => {
@@ -93,7 +93,7 @@ describe('WasEditedPipe', () => {
         lastEditedBy: 'name',
         dateLastEdited: moment('2025-01-01T00:00:59').toISOString(),
       };
-      expect(pipe.transform(modificationInfo, 'minute')).toBe(true);
+      expect(pipe.transform(modificationInfo, 'minute')).toBe(false);
     });
   });
 
@@ -105,7 +105,7 @@ describe('WasEditedPipe', () => {
         lastEditedBy: 'name',
         dateLastEdited: moment('2025-01-01T01:00:00').toISOString(),
       };
-      expect(pipe.transform(modificationInfo, 'hour')).toBe(false);
+      expect(pipe.transform(modificationInfo, 'hour')).toBe(true);
     });
 
     it('identifies same `dateCreated` and `dateLastEdited` dates correctly', () => {
@@ -115,7 +115,7 @@ describe('WasEditedPipe', () => {
         lastEditedBy: 'name',
         dateLastEdited: moment('2025-01-01T00:59:00').toISOString(),
       };
-      expect(pipe.transform(modificationInfo, 'hour')).toBe(true);
+      expect(pipe.transform(modificationInfo, 'hour')).toBe(false);
     });
   });
 
@@ -127,7 +127,7 @@ describe('WasEditedPipe', () => {
         lastEditedBy: 'name',
         dateLastEdited: moment('2025-01-02T00:00:00').toISOString(),
       };
-      expect(pipe.transform(modificationInfo)).toBe(false);
+      expect(pipe.transform(modificationInfo)).toBe(true);
     });
 
     it('identifies same `dateCreated` and `dateLastEdited` dates correctly', () => {
@@ -137,7 +137,7 @@ describe('WasEditedPipe', () => {
         lastEditedBy: 'name',
         dateLastEdited: moment('2025-01-01T23:59:00').toISOString(),
       };
-      expect(pipe.transform(modificationInfo)).toBe(true);
+      expect(pipe.transform(modificationInfo)).toBe(false);
     });
   });
 
@@ -149,7 +149,7 @@ describe('WasEditedPipe', () => {
         lastEditedBy: 'name',
         dateLastEdited: moment('2025-01-12T00:00:00').toISOString(),
       };
-      expect(pipe.transform(modificationInfo, 'week')).toBe(false);
+      expect(pipe.transform(modificationInfo, 'week')).toBe(true);
     });
 
     it('identifies same `dateCreated` and `dateLastEdited` dates correctly', () => {
@@ -159,7 +159,7 @@ describe('WasEditedPipe', () => {
         lastEditedBy: 'name',
         dateLastEdited: moment('2025-01-11T23:59:00').toISOString(),
       };
-      expect(pipe.transform(modificationInfo, 'week')).toBe(true);
+      expect(pipe.transform(modificationInfo, 'week')).toBe(false);
     });
   });
 
@@ -171,7 +171,7 @@ describe('WasEditedPipe', () => {
         lastEditedBy: 'name',
         dateLastEdited: moment('2025-02-01T00:00:00').toISOString(),
       };
-      expect(pipe.transform(modificationInfo, 'month')).toBe(false);
+      expect(pipe.transform(modificationInfo, 'month')).toBe(true);
     });
 
     it('identifies same `dateCreated` and `dateLastEdited` dates correctly', () => {
@@ -181,7 +181,7 @@ describe('WasEditedPipe', () => {
         lastEditedBy: 'name',
         dateLastEdited: moment('2025-01-31T23:59:00').toISOString(),
       };
-      expect(pipe.transform(modificationInfo, 'month')).toBe(true);
+      expect(pipe.transform(modificationInfo, 'month')).toBe(false);
     });
   });
 
@@ -193,7 +193,7 @@ describe('WasEditedPipe', () => {
         lastEditedBy: 'name',
         dateLastEdited: moment('2026-01-01T00:00:00').toISOString(),
       };
-      expect(pipe.transform(modificationInfo, 'year')).toBe(false);
+      expect(pipe.transform(modificationInfo, 'year')).toBe(true);
     });
 
     it('identifies same `dateCreated` and `dateLastEdited` dates correctly', () => {
@@ -203,7 +203,7 @@ describe('WasEditedPipe', () => {
         lastEditedBy: 'name',
         dateLastEdited: moment('2025-12-31T23:59:00').toISOString(),
       };
-      expect(pipe.transform(modificationInfo, 'year')).toBe(true);
+      expect(pipe.transform(modificationInfo, 'year')).toBe(false);
     });
   });
 });

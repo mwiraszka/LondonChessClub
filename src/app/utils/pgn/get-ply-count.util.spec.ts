@@ -1,4 +1,4 @@
-import { mockPgns } from '@app/mocks/pgns';
+import { MOCK_PGNS } from '@app/mocks/pgns.mock';
 
 import { getPlyCount } from './get-ply-count.util';
 
@@ -8,13 +8,13 @@ describe('getPlyCount', () => {
   });
 
   it("returns the player's name if it can be found in the PGN", () => {
-    expect(getPlyCount(mockPgns[0])).toBe(57);
-    expect(getPlyCount(mockPgns[1])).toBe(67);
-    expect(getPlyCount(mockPgns[2])).toBe(108);
-    expect(getPlyCount(mockPgns[3])).toBe(67);
+    expect(getPlyCount(MOCK_PGNS[0])).toBe(57);
+    expect(getPlyCount(MOCK_PGNS[1])).toBe(67);
+    expect(getPlyCount(MOCK_PGNS[2])).toBe(108);
+    expect(getPlyCount(MOCK_PGNS[3])).toBe(67);
   });
 
   it('returns `undefined` if unable to parse the ply count', () => {
-    expect(getPlyCount(mockPgns[4])).toBe(undefined);
+    expect(getPlyCount(MOCK_PGNS[4])).toBe(undefined);
   });
 });

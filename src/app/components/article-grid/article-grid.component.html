@@ -41,7 +41,7 @@
           </p>
           <div class="article-dates-container">
             <span class="date-created">
-              {{ article.modificationInfo?.dateCreated | formatDate: 'short no-time' }}
+              {{ article.modificationInfo.dateCreated | formatDate: 'short no-time' }}
             </span>
             @if (article.modificationInfo | wasEdited) {
               <div>
@@ -49,7 +49,7 @@
                 <span class="edited">edited&nbsp;</span>
                 <span class="date-last-edited">
                   {{
-                    article.modificationInfo?.dateLastEdited | formatDate: 'short no-time'
+                    article.modificationInfo.dateLastEdited | formatDate: 'short no-time'
                   }}
                 </span>
               </div>

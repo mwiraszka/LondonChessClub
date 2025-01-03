@@ -26,7 +26,7 @@ export interface Event {
   title: string;
   details: string;
   articleId: Id | null;
-  modificationInfo: ModificationInfo | null;
+  modificationInfo: ModificationInfo;
 }
 
 export type EventFormData = Omit<Event, 'id' | 'modificationInfo'>;

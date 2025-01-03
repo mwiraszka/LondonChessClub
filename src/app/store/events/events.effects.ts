@@ -93,7 +93,7 @@ export class EventsEffects {
       switchMap(([, event, eventFormData, user]) => {
         const originalEventTitle = event.title;
         const modificationInfo: ModificationInfo = {
-          ...event.modificationInfo!,
+          ...event.modificationInfo,
           lastEditedBy: `${user.firstName} ${user.lastName}`,
           dateLastEdited: moment().toISOString(),
         };

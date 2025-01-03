@@ -117,7 +117,7 @@ export class ArticlesEffects {
       switchMap(([, article, articleFormData, isNewImageStored, user]) => {
         const originalArticleTitle = article.title;
         const modificationInfo: ModificationInfo = {
-          ...article.modificationInfo!,
+          ...article.modificationInfo,
           lastEditedBy: `${user.firstName} ${user.lastName}`,
           dateLastEdited: moment().toISOString(),
         };

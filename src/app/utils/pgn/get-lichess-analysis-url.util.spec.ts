@@ -1,4 +1,4 @@
-import { mockPgns } from '@app/mocks/pgns';
+import { MOCK_PGNS } from '@app/mocks/pgns.mock';
 
 import { getLichessAnalysisUrl } from './get-lichess-analysis-url.util';
 
@@ -15,12 +15,12 @@ describe('getLichessAnalysisUrl', () => {
       Qa5 Bd4 22. Rc2 f4 23. Qd2 f3 24. e3 Qf5 25. Kh1 Qh3 26. Rg1 Ne5 27. Rxc5 Ng4 28. Rh5 Qxh5
       29. h4 1-0
     `;
-    expect(getLichessAnalysisUrl(mockPgns[0])).toBe(
+    expect(getLichessAnalysisUrl(MOCK_PGNS[0])).toBe(
       urlWithMoves.replaceAll('\n', ' ').replace(/\s+/g, ' ').trim(),
     );
   });
 
   it('returns `null` if the PGN does not contain any moves`', () => {
-    expect(getLichessAnalysisUrl(mockPgns[4])).toBe(null);
+    expect(getLichessAnalysisUrl(MOCK_PGNS[4])).toBe(null);
   });
 });

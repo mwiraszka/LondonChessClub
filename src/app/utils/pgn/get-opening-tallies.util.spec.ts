@@ -1,4 +1,4 @@
-import { mockPgns } from '@app/mocks/pgns';
+import { MOCK_PGNS } from '@app/mocks/pgns.mock';
 
 import { getOpeningTallies } from './get-opening-tallies.util';
 
@@ -16,6 +16,6 @@ describe('getOpeningTallies', () => {
       ['X98', 1],
     ]);
 
-    expect(getOpeningTallies(mockPgns)).toStrictEqual(openingMap);
+    expect(getOpeningTallies(MOCK_PGNS)).toStrictEqual(openingMap);
   });
 });

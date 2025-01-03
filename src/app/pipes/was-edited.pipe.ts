@@ -28,7 +28,7 @@ export class WasEditedPipe implements PipeTransform {
       return null;
     }
 
-    return moment(modificationInfo.dateLastEdited).isSame(
+    return !moment(modificationInfo.dateLastEdited).isSame(
       modificationInfo.dateCreated,
       granularity,
     );

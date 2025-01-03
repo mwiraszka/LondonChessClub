@@ -1,4 +1,4 @@
-export const mockPgns = [
+export const MOCK_PGNS = [
   `[Event "Mock Event 1 (White wins)"]
 [Site "?"]
 [Date "2000.01.01"]

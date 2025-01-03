@@ -68,12 +68,12 @@
               <aside class="created-and-edited">
                 <div>
                   Event created
-                  {{ event.modificationInfo?.dateCreated | formatDate: 'short no-time' }}
+                  {{ event.modificationInfo.dateCreated | formatDate: 'short no-time' }}
                 </div>
                 <div>
                   Last edited
                   {{
-                    event.modificationInfo?.dateLastEdited | formatDate: 'short no-time'
+                    event.modificationInfo.dateLastEdited | formatDate: 'short no-time'
                   }}
                 </div>
               </aside>

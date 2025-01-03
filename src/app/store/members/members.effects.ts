@@ -101,7 +101,7 @@ export class MembersEffects {
           memberFormData.peakRating,
         );
         const modificationInfo: ModificationInfo = {
-          ...member.modificationInfo!,
+          ...member.modificationInfo,
           lastEditedBy: `${user.firstName} ${user.lastName}`,
           dateLastEdited: moment().toISOString(),
         };

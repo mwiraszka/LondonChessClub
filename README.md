@@ -41,6 +41,16 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
+v4.1.11 - January 4th, 2025
+</summary>
+
+- 🚀 Update About page with 2025 executive committee, directors and coordinators
+- 🚀 Update City Champion page with result from 2025 Championship 
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.1.10 - January 3rd, 2025
 </summary>
 

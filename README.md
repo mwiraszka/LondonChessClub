@@ -41,7 +41,7 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
-v5.0.0 - December TBD, 2024
+v5.0.0 - January TBD, 2025
 </summary>
 
 - 🚀 Create a custom Date Picker component and implement in Event and Member Form component for date-related inputs
@@ -58,6 +58,16 @@ v5.0.0 - December TBD, 2024
 - 🔧 Migrate deprecated global built-in functions to use explicit `sass:` prefix
 - 🔧 Migrate from Jasmine to Jest for unit tests
 - 🔧 Update path aliases and remove redundant `.eslintrc` file
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
+v4.1.11 - January 4th, 2025
+</summary>
+
+- 🚀 Update About page with 2025 executive committee, directors and coordinators
+- 🚀 Update City Champion page with result from 2025 Championship 
 
 </details>
 

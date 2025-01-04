@@ -38,9 +38,13 @@ export class ChampionScreenComponent implements OnInit {
     style?: string;
   }> = [
     {
-      year: 2023,
+      year: 2024,
       winner: 'Serhii Ivanchuk',
       style: 'font-weight: bold;',
+    },
+    {
+      year: 2023,
+      winner: 'Serhii Ivanchuk',
     },
     {
       year: 2022,

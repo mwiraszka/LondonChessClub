@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { ControlMode, Id, LccError, Member, MemberFormData } from '@app/types';
+import type { ControlMode, Id, LccError, Member, MemberFormData } from '@app/models';
 
 export const fetchMembersRequested = createAction('[Members] Fetch members requested');
 export const fetchMembersSucceeded = createAction(

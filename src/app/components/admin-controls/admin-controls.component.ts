@@ -4,8 +4,8 @@ import { RouterLink } from '@angular/router';
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
+import { AdminControlsConfig } from '@app/models/admin-controls-config.model';
 import { IsDefinedPipe, RouterLinkPipe } from '@app/pipes';
-import { AdminControlsConfig } from '@app/types/admin-controls-config.model';
 
 import { ADMIN_CONTROLS_CONFIG } from './admin-controls.directive';
 

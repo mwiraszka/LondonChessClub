@@ -2,8 +2,8 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import moment from 'moment-timezone';
 
 import { newEventFormTemplate } from '@app/components/event-form/new-event-form-template';
+import type { Id } from '@app/models';
 import { AuthSelectors } from '@app/store/auth';
-import type { Id } from '@app/types';
 import { areSame, customSort } from '@app/utils';
 
 import { EventsState } from './events.state';
@@ -11,7 +11,7 @@ import { EventsState } from './events.state';
 export const selectEventsState = createFeatureSelector<EventsState>('events');
 
 export const selectEvents = createSelector(selectEventsState, state =>
-  [...state.events].sort(customSort('eventDate')),
+  state.events?.length ? [...state.events].sort(customSort('eventDate')) : [],
 );
 
 export const selectEventById = (id: Id) =>
@@ -51,11 +51,15 @@ export const selectHasUnsavedChanges = createSelector(
   selectEvent,
   selectEventFormData,
   (controlMode, event, eventFormData) => {
+    if (!eventFormData) {
+      return null;
+    }
+
     if (controlMode === 'add') {
       return !areSame(eventFormData, newEventFormTemplate);
     }
 
-    if (!event || !eventFormData) {
+    if (!event) {
       return null;
     }
 

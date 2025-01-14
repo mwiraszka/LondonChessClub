@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import IconsModule from '@app/icons';
-import type { BasicDialogResult, Dialog, DialogOutput } from '@app/types';
+import type { BasicDialogResult, Dialog, DialogOutput } from '@app/models';
 
 @Component({
   selector: 'lcc-basic-dialog',

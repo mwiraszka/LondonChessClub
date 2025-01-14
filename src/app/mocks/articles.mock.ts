@@ -1,6 +1,6 @@
 import moment from 'moment-timezone';
 
-import { Article } from '@app/types';
+import { Article } from '@app/models';
 import { generateId } from '@app/utils/common/generate-id.util';
 
 export const MOCK_ARTICLES: Article[] = [

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import type { InternalPath } from '@app/types';
+import type { InternalPath } from '@app/models';
 import { isDefined } from '@app/utils';
 
 /**

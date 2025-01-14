@@ -1,6 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
+import { unionWith } from 'lodash';
 
-import type { ArticleFormData } from '@app/types';
+import type { ArticleFormData } from '@app/models';
+import { ImagesActions } from '@app/store/images';
 import { sortArticles } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
@@ -13,7 +15,38 @@ export const articlesReducer = createReducer(
     ArticlesActions.fetchArticlesSucceeded,
     (state, { articles }): ArticlesState => ({
       ...state,
-      articles,
+      articles: sortArticles(articles),
+    }),
+  ),
+
+  on(
+    ImagesActions.fetchArticleBannerImageSucceeded,
+    (state, { image }): ArticlesState => ({
+      ...state,
+      articles: state.articles.map(article =>
+        article.imageId === image.id
+          ? { ...article, imageUrl: image.presignedUrl }
+          : article,
+      ),
+      article:
+        state.article?.imageId === image.id
+          ? { ...state.article, imageUrl: image.presignedUrl }
+          : state.article,
+    }),
+  ),
+
+  on(
+    ImagesActions.fetchArticleBannerImageThumbnailsSucceeded,
+    (state, { images }): ArticlesState => ({
+      ...state,
+      articles: state.articles.map(article => {
+        const articleBannerImage = images.find(
+          image => image.id === `${article.imageId}-600x400`,
+        );
+        return articleBannerImage
+          ? { ...article, thumbnailImageUrl: articleBannerImage.presignedUrl }
+          : article;
+      }),
     }),
   ),
 
@@ -36,11 +69,9 @@ export const articlesReducer = createReducer(
   on(ArticlesActions.fetchArticleSucceeded, (state, { article }): ArticlesState => {
     return {
       ...state,
-      articles: sortArticles([
-        ...state.articles.map(storedArticle =>
-          storedArticle.id === article.id ? article : storedArticle,
-        ),
-      ]),
+      articles: sortArticles(
+        unionWith(state.articles, [article], (a, b) => a.id === b.id),
+      ),
       article,
     };
   }),
@@ -50,11 +81,9 @@ export const articlesReducer = createReducer(
     ArticlesActions.updateArticleSucceeded,
     (state, { article }): ArticlesState => ({
       ...state,
-      articles: sortArticles([
-        ...state.articles.map(storedArticle =>
-          storedArticle.id === article.id ? article : storedArticle,
-        ),
-      ]),
+      articles: sortArticles(
+        unionWith(state.articles, [article], (a, b) => a.id === b.id),
+      ),
       article: null,
       articleFormData: null,
     }),
@@ -75,22 +104,6 @@ export const articlesReducer = createReducer(
     (state, { value }): ArticlesState => ({
       ...state,
       articleFormData: value as Required<ArticleFormData>,
-    }),
-  ),
-
-  on(
-    ArticlesActions.newImageStored,
-    (state): ArticlesState => ({
-      ...state,
-      isNewImageStored: true,
-    }),
-  ),
-
-  on(
-    ArticlesActions.storedImageRemoved,
-    (state): ArticlesState => ({
-      ...state,
-      isNewImageStored: false,
     }),
   ),
 

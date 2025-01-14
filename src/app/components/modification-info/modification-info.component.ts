@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 import IconsModule from '@app/icons';
+import type { ModificationInfo } from '@app/models';
 import { FormatDatePipe } from '@app/pipes';
-import type { ModificationInfo } from '@app/types';
 
 @Component({
   selector: 'lcc-modification-info',

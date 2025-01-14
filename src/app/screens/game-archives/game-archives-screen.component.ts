@@ -25,9 +25,9 @@ import { PgnViewerComponent } from '@app/components/pgn-viewer/pgn-viewer.compon
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
+import type { FilterFormGroup, GameDetails } from '@app/models';
 import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
-import type { FilterFormGroup, GameDetails } from '@app/types';
 import {
   getOpeningTallies,
   getPlayerName,

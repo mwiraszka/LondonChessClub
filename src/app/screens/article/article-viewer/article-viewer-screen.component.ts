@@ -10,15 +10,17 @@ import { AdminControlsDirective } from '@app/components/admin-controls/admin-con
 import { ArticleComponent } from '@app/components/article/article.component';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
-import { DialogService, MetaAndTitleService } from '@app/services';
-import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import type {
   AdminControlsConfig,
   Article,
   BasicDialogResult,
   Dialog,
   InternalLink,
-} from '@app/types';
+} from '@app/models';
+import { DialogService, MetaAndTitleService } from '@app/services';
+import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
+import { ImagesActions } from '@app/store/images';
+import { isDefined } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -68,11 +70,15 @@ export class ArticleViewerScreenComponent implements OnInit {
     this.articleViewerScreenViewModel$
       .pipe(untilDestroyed(this))
       .subscribe(({ article }) => {
+        if (!isDefined(article?.imageUrl) && isDefined(article?.imageId)) {
+          this.store.dispatch(
+            ImagesActions.fetchArticleBannerImageRequested({ imageId: article.imageId }),
+          );
+        }
+
         if (article?.title && article?.body) {
-          // Limit to 200 characters
           const articlePreview =
             article.body.length > 197 ? article.body.slice(0, 197) + '...' : article.body;
-
           this.metaAndTitleService.updateTitle(article.title);
           this.metaAndTitleService.updateDescription(articlePreview);
         }

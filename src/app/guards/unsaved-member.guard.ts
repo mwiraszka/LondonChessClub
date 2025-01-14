@@ -2,14 +2,15 @@ import { Store } from '@ngrx/store';
 import { firstValueFrom } from 'rxjs';
 
 import { Injectable } from '@angular/core';
+import { CanDeactivate } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
+import type { BasicDialogResult, Dialog } from '@app/models';
 import { DialogService } from '@app/services';
 import { MembersSelectors } from '@app/store/members';
-import type { BasicDialogResult, Dialog } from '@app/types';
 
 @Injectable({ providedIn: 'root' })
-export class UnsavedMemberGuard {
+export class UnsavedMemberGuard implements CanDeactivate<unknown> {
   constructor(
     private readonly dialogService: DialogService<
       BasicDialogComponent,

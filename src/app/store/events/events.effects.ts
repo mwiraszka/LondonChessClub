@@ -5,13 +5,13 @@ import moment from 'moment-timezone';
 import { of } from 'rxjs';
 import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
-import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import type { Event, ModificationInfo } from '@app/models';
 import { EventsService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import type { Event, ModificationInfo } from '@app/types';
-import { isDefined, parseHttpErrorResponse } from '@app/utils';
+import { isDefined } from '@app/utils';
+import { parseError } from '@app/utils/error/parse-error.util';
 
 import * as EventsActions from './events.actions';
 import * as EventsSelectors from './events.selectors';
@@ -24,11 +24,10 @@ export class EventsEffects {
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() =>
         this.eventsService.getEvents().pipe(
-          map(events => EventsActions.fetchEventsSucceeded({ events })),
-          catchError((errorResponse: HttpErrorResponse) => {
-            const error = parseHttpErrorResponse(errorResponse);
-            return of(EventsActions.fetchEventsFailed({ error }));
-          }),
+          map(response => EventsActions.fetchEventsSucceeded({ events: response.data })),
+          catchError(error =>
+            of(EventsActions.fetchEventsFailed({ error: parseError(error) })),
+          ),
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -41,11 +40,10 @@ export class EventsEffects {
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ eventId }) => {
         return this.eventsService.getEvent(eventId).pipe(
-          map(event => EventsActions.fetchEventSucceeded({ event })),
-          catchError((errorResponse: HttpErrorResponse) => {
-            const error = parseHttpErrorResponse(errorResponse);
-            return of(EventsActions.fetchEventFailed({ error }));
-          }),
+          map(response => EventsActions.fetchEventSucceeded({ event: response.data })),
+          catchError(error =>
+            of(EventsActions.fetchEventFailed({ error: parseError(error) })),
+          ),
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -70,11 +68,14 @@ export class EventsEffects {
         const modifiedEvent: Event = { ...eventFormData, modificationInfo, id: null };
 
         return this.eventsService.addEvent(modifiedEvent).pipe(
-          map(event => EventsActions.addEventSucceeded({ event })),
-          catchError((errorResponse: HttpErrorResponse) => {
-            const error = parseHttpErrorResponse(errorResponse);
-            return of(EventsActions.addEventFailed({ error }));
-          }),
+          map(response =>
+            EventsActions.addEventSucceeded({
+              event: { ...modifiedEvent, id: response.data },
+            }),
+          ),
+          catchError(error =>
+            of(EventsActions.addEventFailed({ error: parseError(error) })),
+          ),
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -100,11 +101,15 @@ export class EventsEffects {
         const modifiedEvent = { ...event, ...eventFormData, modificationInfo };
 
         return this.eventsService.updateEvent(modifiedEvent).pipe(
-          map(event => EventsActions.updateEventSucceeded({ event, originalEventTitle })),
-          catchError((errorResponse: HttpErrorResponse) => {
-            const error = parseHttpErrorResponse(errorResponse);
-            return of(EventsActions.updateEventFailed({ error }));
-          }),
+          map(() =>
+            EventsActions.updateEventSucceeded({
+              event: modifiedEvent,
+              originalEventTitle,
+            }),
+          ),
+          catchError(error =>
+            of(EventsActions.updateEventFailed({ error: parseError(error) })),
+          ),
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -117,11 +122,10 @@ export class EventsEffects {
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ event }) =>
         this.eventsService.deleteEvent(event).pipe(
-          map(event => EventsActions.deleteEventSucceeded({ event })),
-          catchError((errorResponse: HttpErrorResponse) => {
-            const error = parseHttpErrorResponse(errorResponse);
-            return of(EventsActions.deleteEventFailed({ error }));
-          }),
+          map(() => EventsActions.deleteEventSucceeded({ event })),
+          catchError(error =>
+            of(EventsActions.deleteEventFailed({ error: parseError(error) })),
+          ),
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),

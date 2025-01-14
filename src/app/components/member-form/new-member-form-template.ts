@@ -1,6 +1,6 @@
 import moment from 'moment-timezone';
 
-import type { MemberFormData } from '@app/types';
+import type { MemberFormData } from '@app/models';
 
 export const newMemberFormTemplate: MemberFormData = {
   firstName: '',

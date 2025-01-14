@@ -1,4 +1,4 @@
-import { Url } from '@app/types';
+import { Url } from '@app/models';
 
 /**
  * Convert a data URL (base-64 string) of a File to a Blob representing the same data.

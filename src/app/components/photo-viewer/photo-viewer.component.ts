@@ -10,7 +10,7 @@ import {
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
-import type { DialogOutput, Photo } from '@app/types';
+import type { DialogOutput, Photo } from '@app/models';
 
 import { ImagePreloadDirective } from '../image-preload/image-preload.directive';
 

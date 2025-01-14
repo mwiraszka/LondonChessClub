@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Toast } from '@app/types';
+import type { Toast } from '@app/models';
 
 export const toastAdded = createAction(
   '[Notifications] Toast added',

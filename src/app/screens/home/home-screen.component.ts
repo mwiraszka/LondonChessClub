@@ -6,8 +6,8 @@ import { ClubSummaryComponent } from '@app/components/club-summary/club-summary.
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
 import { ScheduleComponent } from '@app/components/schedule/schedule.component';
+import type { InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
-import type { InternalLink } from '@app/types';
 
 @Component({
   selector: 'lcc-home-screen',

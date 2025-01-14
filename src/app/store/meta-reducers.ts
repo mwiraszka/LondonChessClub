@@ -6,6 +6,7 @@ import { AppState } from '@app/store/app/app.state';
 import { ArticlesState } from '@app/store/articles/articles.state';
 import { AuthState } from '@app/store/auth/auth.state';
 import { EventsState } from '@app/store/events/events.state';
+import { ImagesState } from '@app/store/images/images.state';
 import { MembersState } from '@app/store/members/members.state';
 import { NavState } from '@app/store/nav/nav.state';
 import { NotificationsState } from '@app/store/notifications/notifications.state';
@@ -18,6 +19,7 @@ class MetaStateClass {
     readonly articles?: ArticlesState,
     readonly auth?: AuthState,
     readonly events?: EventsState,
+    readonly images?: ImagesState,
     readonly members?: MembersState,
     readonly nav?: NavState,
     readonly notifications?: NotificationsState,

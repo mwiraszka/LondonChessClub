@@ -16,10 +16,10 @@
     "lib": ["dom", "es2020", "ES2021.String"],
     "module": "es2020",
     "moduleResolution": "node",
+    "noPropertyAccessFromIndexSignature": true,
     "noImplicitAny": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
     "outDir": "./dist/out-tsc",
     "paths": {
       "@app/*": ["app/*"],

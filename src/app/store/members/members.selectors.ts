@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { newMemberFormTemplate } from '@app/components/member-form/new-member-form-template';
+import type { Id } from '@app/models';
 import { AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
-import type { Id } from '@app/types';
 import { areSame, customSort } from '@app/utils';
 
 import { MembersState } from './members.state';
@@ -46,11 +46,15 @@ export const selectHasUnsavedChanges = createSelector(
   selectMember,
   selectMemberFormData,
   (controlMode, member, memberFormData) => {
+    if (!memberFormData) {
+      return null;
+    }
+
     if (controlMode === 'add') {
       return !areSame(memberFormData, newMemberFormTemplate);
     }
 
-    if (!member || !memberFormData) {
+    if (!member) {
       return null;
     }
 

@@ -8,16 +8,16 @@ import { AdminControlsDirective } from '@app/components/admin-controls/admin-con
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import IconsModule from '@app/icons';
-import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
-import { DialogService } from '@app/services';
-import { EventsActions, EventsSelectors } from '@app/store/events';
 import type {
   AdminControlsConfig,
   BasicDialogResult,
   Dialog,
   Event,
   InternalLink,
-} from '@app/types';
+} from '@app/models';
+import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
+import { DialogService } from '@app/services';
+import { EventsActions, EventsSelectors } from '@app/store/events';
 
 @Component({
   selector: 'lcc-schedule',

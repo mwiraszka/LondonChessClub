@@ -21,13 +21,6 @@ import { MarkdownRendererComponent } from '@app/components/markdown-renderer/mar
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
-import { DialogService, ImagesService, LocalStorageService } from '@app/services';
-import { AppActions } from '@app/store/app';
-import {
-  ArticlesActions,
-  ArticlesSelectors,
-  LOCAL_STORAGE_IMAGE_KEY,
-} from '@app/store/articles';
 import type {
   ArticleFormData,
   ArticleFormGroup,
@@ -36,7 +29,11 @@ import type {
   Dialog,
   Id,
   Url,
-} from '@app/types';
+} from '@app/models';
+import { DialogService, LocalStorageService } from '@app/services';
+import { AppActions } from '@app/store/app';
+import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
+import { IMAGE_KEY, ImagesActions, ImagesSelectors } from '@app/store/images';
 import { dataUrlToBlob, formatBytes, isDefined, isStorageSupported } from '@app/utils';
 
 import { newArticleFormTemplate } from './new-article-form-template';
@@ -76,7 +73,6 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     >,
     private readonly dialogService2: DialogService<ImageExplorerComponent, Id>,
     private readonly formBuilder: FormBuilder,
-    private readonly imagesService: ImagesService,
     private readonly localStorageService: LocalStorageService,
     private readonly store: Store,
   ) {}
@@ -112,9 +108,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
         this.initForm(articleFormData!);
         this.initFormValueChangeListener();
 
-        const imageDataUrl = this.localStorageService.get<string>(
-          LOCAL_STORAGE_IMAGE_KEY,
-        );
+        const imageDataUrl = this.localStorageService.get<string>(IMAGE_KEY);
         if (imageDataUrl) {
           const imageFile: Blob | null = dataUrlToBlob(imageDataUrl);
           if (imageFile) {
@@ -231,6 +225,11 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     } else {
       this.store.dispatch(ArticlesActions.publishArticleRequested());
     }
+
+    const imageDataUrl = this.localStorageService.get<string>(IMAGE_KEY);
+    if (imageDataUrl) {
+      this.store.dispatch(ImagesActions.addImageRequested());
+    }
   }
 
   private initForm(articleFormData: ArticleFormData): void {
@@ -269,20 +268,20 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     this.imageValidationEnabled = true;
     this.form?.patchValue({ imageId });
     this.imageFile = null;
-    this.imagesService
-      .getImage(imageId)
-      .pipe(first())
+    this.store
+      .select(ImagesSelectors.selectImageById(imageId))
+      .pipe(first(isDefined))
       .subscribe(image => (this.newImageUrl = image.presignedUrl));
     this.updateStoredFile(null);
   }
 
   private updateStoredFile(dataUrl: Url | null): void {
     if (dataUrl) {
-      this.localStorageService.set(LOCAL_STORAGE_IMAGE_KEY, dataUrl);
-      this.store.dispatch(ArticlesActions.newImageStored());
+      this.localStorageService.set(IMAGE_KEY, dataUrl);
+      this.store.dispatch(ImagesActions.newImageStored());
     } else {
-      this.localStorageService.remove(LOCAL_STORAGE_IMAGE_KEY);
-      this.store.dispatch(ArticlesActions.storedImageRemoved());
+      this.localStorageService.remove(IMAGE_KEY);
+      this.store.dispatch(ImagesActions.storedImageRemoved());
     }
   }
 }

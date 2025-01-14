@@ -1,4 +1,4 @@
-import type { ControlMode, Event, EventFormData } from '@app/types';
+import type { ControlMode, Event, EventFormData } from '@app/models';
 
 export interface EventsState {
   events: Event[];

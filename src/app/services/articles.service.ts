@@ -1,11 +1,9 @@
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import type { ApiScope, Article, DbCollection, Id, Url } from '@app/types';
-import { sortArticles } from '@app/utils';
+import type { ApiResponse, Article, DbCollection, Id } from '@app/models';
 
 import { environment } from '@env';
 
@@ -18,44 +16,35 @@ export class ArticlesService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getArticles(): Observable<Article[]> {
-    const scope: ApiScope = 'public';
-    return this.http
-      .get<Article[]>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`)
-      .pipe(map(articles => sortArticles(articles)));
-  }
-
-  public getArticle(id: Id): Observable<Article> {
-    const scope: ApiScope = 'public';
-    return this.http.get<Article>(
-      `${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${id}`,
+  public getArticles(): Observable<ApiResponse<Article[]>> {
+    return this.http.get<ApiResponse<Article[]>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}`,
     );
   }
 
-  public addArticle(article: Article, imageDataUrl: Url | null): Observable<Article> {
-    const scope: ApiScope = 'admin';
-    return this.http
-      .post<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`, {
-        article,
-        imageDataUrl,
-      })
-      .pipe(map(id => ({ ...article, id })));
+  public getArticle(id: Id): Observable<ApiResponse<Article>> {
+    return this.http.get<ApiResponse<Article>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
+    );
   }
 
-  public updateArticle(article: Article, imageDataUrl: Url | null): Observable<Article> {
-    const scope: ApiScope = 'admin';
-    return this.http
-      .put<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${article.id}`, {
-        article,
-        imageDataUrl,
-      })
-      .pipe(map(() => article));
+  public addArticle(article: Article): Observable<ApiResponse<Id>> {
+    return this.http.post<ApiResponse<Id>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}`,
+      article,
+    );
   }
 
-  public deleteArticle(article: Article): Observable<Article> {
-    const scope: ApiScope = 'admin';
-    return this.http
-      .delete<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${article.id}`)
-      .pipe(map(() => article));
+  public updateArticle(article: Article): Observable<ApiResponse<Id>> {
+    return this.http.put<ApiResponse<Id>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/${article.id}`,
+      article,
+    );
+  }
+
+  public deleteArticle(article: Article): Observable<ApiResponse<Id>> {
+    return this.http.delete<ApiResponse<Id>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/${article.id}`,
+    );
   }
 }

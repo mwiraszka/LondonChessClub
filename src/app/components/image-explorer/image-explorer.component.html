@@ -1,4 +1,4 @@
-@for (image of images; track image.id) {
+@for (image of images$ | async; track image.id) {
   <div
     class="image-wrapper"
     (click)="dialogResult.emit(image.id)">
@@ -9,7 +9,7 @@
 
       <div class="thumbnail-file-size">
         <label>Thumbnail file size:</label>
-        <span>{{ image.size | formatBytes }}</span>
+        <span>{{ image.fileSize | formatBytes }}</span>
       </div>
 
       <div class="upload-date">

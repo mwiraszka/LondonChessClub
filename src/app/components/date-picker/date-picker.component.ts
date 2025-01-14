@@ -9,8 +9,8 @@ import {
 } from '@angular/forms';
 
 import IconsModule from '@app/icons';
+import type { IsoDate } from '@app/models';
 import { RangePipe } from '@app/pipes';
-import type { IsoDate } from '@app/types';
 
 @Component({
   selector: 'lcc-date-picker',

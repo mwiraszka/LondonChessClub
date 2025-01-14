@@ -10,8 +10,8 @@ import {
 } from '@angular/core';
 
 import IconsModule from '@app/icons';
+import type { DialogConfig, DialogOutput } from '@app/models';
 import { DIALOG_CONFIG_TOKEN } from '@app/services';
-import type { DialogConfig, DialogOutput } from '@app/types';
 
 @Component({
   selector: 'lcc-dialog',

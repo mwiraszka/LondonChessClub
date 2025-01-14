@@ -1,4 +1,4 @@
-import type { ControlMode, Member, MemberFormData } from '@app/types';
+import type { ControlMode, Member, MemberFormData } from '@app/models';
 
 export interface MembersState {
   members: Member[];

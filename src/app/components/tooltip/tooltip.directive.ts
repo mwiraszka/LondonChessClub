@@ -18,7 +18,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 
-import { Pixels } from '@app/types';
+import { Pixels } from '@app/models';
 import { isDefined } from '@app/utils';
 
 import { TooltipComponent } from './tooltip.component';

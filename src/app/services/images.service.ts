@@ -1,10 +1,9 @@
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import type { ApiScope, DbCollection, Id, Image } from '@app/types';
+import type { ApiResponse, DbCollection, Id, Image } from '@app/models';
 
 import { environment } from '@env';
 
@@ -17,25 +16,26 @@ export class ImagesService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getThumbnailImages(): Observable<Image[]> {
-    const scope: ApiScope = 'public';
-    return this.http.get<Image[]>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`);
+  public getThumbnailImages(): Observable<ApiResponse<Image[]>> {
+    return this.http.get<ApiResponse<Image[]>>(`${this.API_BASE_URL}/${this.COLLECTION}`);
   }
 
-  public getImage(id: Id): Observable<Image> {
-    const scope: ApiScope = 'public';
-    return this.http.get<Image>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${id}`);
+  public getImage(id: Id): Observable<ApiResponse<Image>> {
+    return this.http.get<ApiResponse<Image>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
+    );
   }
 
-  public addImage(image: Image): Observable<Image> {
-    const scope: ApiScope = 'admin';
-    return this.http
-      .post<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`, image)
-      .pipe(map(id => ({ ...image, id })));
+  public addImage(imageFormData: FormData): Observable<ApiResponse<Image>> {
+    return this.http.post<ApiResponse<Image>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}`,
+      imageFormData,
+    );
   }
 
-  public deleteImage(id: Id): Observable<Id> {
-    const scope: ApiScope = 'admin';
-    return this.http.delete<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${id}`);
+  public deleteImage(id: Id): Observable<ApiResponse<Id>> {
+    return this.http.delete<ApiResponse<Id>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
+    );
   }
 }

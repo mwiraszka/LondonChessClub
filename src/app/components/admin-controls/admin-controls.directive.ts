@@ -18,7 +18,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 
-import { AdminControlsConfig } from '@app/types';
+import { AdminControlsConfig } from '@app/models';
 
 import { AdminControlsComponent } from './admin-controls.component';
 

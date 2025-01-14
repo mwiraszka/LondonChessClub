@@ -6,9 +6,9 @@ import { Component, OnInit } from '@angular/core';
 import { DocumentViewerComponent } from '@app/components/document-viewer/document-viewer.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import IconsModule from '@app/icons';
+import type { ClubDocument } from '@app/models';
 import { FormatDatePipe } from '@app/pipes';
 import { DialogService, MetaAndTitleService } from '@app/services';
-import type { ClubDocument } from '@app/types';
 
 @Component({
   selector: 'lcc-documents-screen',

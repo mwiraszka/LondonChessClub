@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Article, ArticleFormData, ControlMode, Id, LccError } from '@app/types';
+import type { Article, ArticleFormData, ControlMode, Id, LccError } from '@app/models';
 
 export const fetchArticlesRequested = createAction('[Articles] Fetch articles requested');
 export const fetchArticlesSucceeded = createAction(
@@ -71,7 +71,5 @@ export const formValueChanged = createAction(
   '[Articles] Form value changed',
   props<{ value: Partial<ArticleFormData> }>(),
 );
-export const newImageStored = createAction('[Articles] New image stored');
-export const storedImageRemoved = createAction('[Articles] Stored image removed');
 
 export const articleUnset = createAction('[Articles] Article unset');

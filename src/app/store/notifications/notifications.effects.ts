@@ -5,12 +5,13 @@ import { delay, filter, map, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
+import type { Toast } from '@app/models';
 import { AppActions } from '@app/store/app';
 import { ArticlesActions } from '@app/store/articles';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
+import { ImagesActions } from '@app/store/images';
 import { MembersActions } from '@app/store/members';
-import type { Toast } from '@app/types';
 
 import { environment } from '@env';
 
@@ -52,10 +53,10 @@ export class NotificationsEffects {
   addUpdateArticleSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleSucceeded),
-      map(({ originalArticleTitle }) => {
+      map(({ article, originalArticleTitle }) => {
         const toast: Toast = {
           title: 'Article update',
-          message: `Successfully updated ${originalArticleTitle} in the database`,
+          message: `Successfully updated ${originalArticleTitle ?? article.title} in the database`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -247,6 +248,96 @@ export class NotificationsEffects {
       map(([{ error }]) => {
         const toast: Toast = {
           title: 'Load event',
+          message: `[${error.status}] ${error.message}`,
+          type: 'warning',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+  //#endregion
+
+  //#region Images
+  addAddImageSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.addImageSucceeded),
+      map(({ image }) => {
+        const toast: Toast = {
+          title: 'Add image',
+          message: `Successfully added image [${image.id}] to storage`,
+          type: 'success',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addAddImageFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.addImageFailed),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Add image',
+          message: `[${error.status}] ${error.message}`,
+          type: 'warning',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addDeleteImageSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.deleteImageSucceeded),
+      map(({ image }) => {
+        const toast: Toast = {
+          title: 'Image deletion',
+          message: `Successfully deleted image [${image.id}] from storage`,
+          type: 'success',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addDeleteImageFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.deleteImageFailed),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Image deletion',
+          message: `[${error.status}] ${error.message}`,
+          type: 'warning',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addFetchArticleBannerImageThumbnailsFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.fetchArticleBannerImageThumbnailsFailed),
+      concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
+      filter(([, isAdmin]) => isAdmin || !environment.production),
+      map(([{ error }]) => {
+        const toast: Toast = {
+          title: 'Load article banner image thumbnails',
+          message: `[${error.status}] ${error.message}`,
+          type: 'warning',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addFetchArticleBannerImageFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.fetchArticleBannerImageFailed),
+      concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
+      filter(([, isAdmin]) => isAdmin || !environment.production),
+      map(([{ error }]) => {
+        const toast: Toast = {
+          title: 'Load article banner image',
           message: `[${error.status}] ${error.message}`,
           type: 'warning',
         };
@@ -535,25 +626,28 @@ export class NotificationsEffects {
     () => {
       return this.actions$.pipe(
         ofType(
-          AppActions.deleteImageFailed,
           ArticlesActions.publishArticleFailed,
           ArticlesActions.updateArticleFailed,
           ArticlesActions.deleteArticleFailed,
           ArticlesActions.fetchArticlesFailed,
           ArticlesActions.fetchArticleFailed,
+          AuthActions.loginFailed,
+          AuthActions.codeForPasswordChangeFailed,
+          AuthActions.passwordChangeFailed,
           EventsActions.addEventFailed,
           EventsActions.updateEventFailed,
           EventsActions.deleteEventFailed,
           EventsActions.fetchEventsFailed,
           EventsActions.fetchEventFailed,
+          ImagesActions.addImageFailed,
+          ImagesActions.deleteImageFailed,
+          ImagesActions.fetchArticleBannerImageFailed,
+          ImagesActions.fetchArticleBannerImageThumbnailsFailed,
           MembersActions.addMemberFailed,
           MembersActions.updateMemberFailed,
           MembersActions.deleteMemberFailed,
           MembersActions.fetchMembersFailed,
           MembersActions.fetchMemberFailed,
-          AuthActions.loginFailed,
-          AuthActions.codeForPasswordChangeFailed,
-          AuthActions.passwordChangeFailed,
         ),
         tap(error => console.error('[LCC]', error)),
       );

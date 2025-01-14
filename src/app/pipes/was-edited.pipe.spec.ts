@@ -1,6 +1,6 @@
 import moment from 'moment-timezone';
 
-import { ModificationInfo } from '@app/types';
+import { ModificationInfo } from '@app/models';
 
 import { WasEditedPipe } from './was-edited.pipe';
 

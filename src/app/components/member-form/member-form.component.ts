@@ -19,15 +19,15 @@ import { DatePickerComponent } from '@app/components/date-picker/date-picker.com
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
-import { DialogService } from '@app/services';
-import { MembersActions, MembersSelectors } from '@app/store/members';
 import type {
   BasicDialogResult,
   ControlMode,
   Dialog,
   MemberFormData,
   MemberFormGroup,
-} from '@app/types';
+} from '@app/models';
+import { DialogService } from '@app/services';
+import { MembersActions, MembersSelectors } from '@app/store/members';
 import { isDefined } from '@app/utils';
 import {
   emailValidator,

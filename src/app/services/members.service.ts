@@ -1,10 +1,9 @@
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import type { ApiScope, DbCollection, Id, Member } from '@app/types';
+import type { ApiResponse, ApiScope, DbCollection, Id, Member } from '@app/models';
 
 import { environment } from '@env';
 
@@ -17,34 +16,41 @@ export class MembersService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getMembers(scope: ApiScope): Observable<Member[]> {
-    return this.http.get<Member[]>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`);
-  }
-
-  public getMember(scope: ApiScope, id: Id): Observable<Member> {
-    return this.http.get<Member>(
-      `${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${id}`,
+  public getMembers(scope: ApiScope): Observable<ApiResponse<Member[]>> {
+    return this.http.get<ApiResponse<Member[]>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}`,
+      {
+        params: {
+          scope,
+        },
+      },
     );
   }
 
-  public addMember(member: Member): Observable<Member> {
-    const scope: ApiScope = 'admin';
-    return this.http
-      .post<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`, member)
-      .pipe(map(id => ({ ...member, id })));
+  public getMember(scope: ApiScope, id: Id): Observable<ApiResponse<Member>> {
+    return this.http.get<ApiResponse<Member>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
+      { params: { scope } },
+    );
   }
 
-  public updateMember(member: Member): Observable<Member> {
-    const scope: ApiScope = 'admin';
-    return this.http
-      .put<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${member.id}`, member)
-      .pipe(map(() => member));
+  public addMember(member: Member): Observable<ApiResponse<Id>> {
+    return this.http.post<ApiResponse<Id>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}`,
+      member,
+    );
   }
 
-  public deleteMember(member: Member): Observable<Member> {
-    const scope: ApiScope = 'admin';
-    return this.http
-      .delete<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${member.id}`)
-      .pipe(map(() => member));
+  public updateMember(member: Member): Observable<ApiResponse<Id>> {
+    return this.http.put<ApiResponse<Id>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/${member.id}`,
+      member,
+    );
+  }
+
+  public deleteMember(member: Member): Observable<ApiResponse<Id>> {
+    return this.http.delete<ApiResponse<Id>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/${member.id}`,
+    );
   }
 }

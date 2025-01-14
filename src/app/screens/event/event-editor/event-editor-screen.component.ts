@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 import { EventFormComponent } from '@app/components/event-form/event-form.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
+import type { InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { EventsSelectors } from '@app/store/events';
-import type { InternalLink } from '@app/types';
 
 @UntilDestroy()
 @Component({

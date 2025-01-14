@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleFormComponent } from '@app/components/article-form/article-form.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
+import type { InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ArticlesSelectors } from '@app/store/articles';
-import type { InternalLink } from '@app/types';
+import { ImagesActions } from '@app/store/images';
+import { isDefined } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -42,7 +44,13 @@ export class ArticleEditorScreenComponent implements OnInit {
   ngOnInit(): void {
     this.articleEditorScreenViewModel$
       .pipe(untilDestroyed(this))
-      .subscribe(({ articleTitle, controlMode }) => {
+      .subscribe(({ article, articleTitle, controlMode }) => {
+        if (!isDefined(article?.imageUrl) && isDefined(article?.imageId)) {
+          this.store.dispatch(
+            ImagesActions.fetchArticleBannerImageRequested({ imageId: article.imageId }),
+          );
+        }
+
         const screenTitle =
           controlMode === 'edit' && articleTitle
             ? `Edit ${articleTitle}`

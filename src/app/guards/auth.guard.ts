@@ -5,9 +5,9 @@ import { combineLatestWith, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+import type { NavPath } from '@app/models';
 import { AuthSelectors } from '@app/store/auth';
 import { selectCurrentRoute } from '@app/store/nav/nav.selectors';
-import type { NavPath } from '@app/types';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard {

@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
+import type { ExternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
-import type { ExternalLink } from '@app/types';
 
 @Component({
   selector: 'lcc-champion-screen',

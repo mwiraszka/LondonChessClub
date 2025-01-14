@@ -9,6 +9,13 @@ import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.
 import { ImagePreloadDirective } from '@app/components/image-preload/image-preload.directive';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import IconsModule from '@app/icons';
+import type {
+  AdminControlsConfig,
+  Article,
+  BasicDialogResult,
+  Dialog,
+  InternalLink,
+} from '@app/models';
 import {
   FormatDatePipe,
   IsDefinedPipe,
@@ -18,13 +25,7 @@ import {
 } from '@app/pipes';
 import { DialogService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import type {
-  AdminControlsConfig,
-  Article,
-  BasicDialogResult,
-  Dialog,
-  InternalLink,
-} from '@app/types';
+import { ImagesActions } from '@app/store/images';
 import { isDefined } from '@app/utils';
 
 @Component({
@@ -66,11 +67,12 @@ export class ArticleGridComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.fetchArticles();
+    this.fetchArticleData();
   }
 
-  public fetchArticles(): void {
+  public fetchArticleData(): void {
     this.store.dispatch(ArticlesActions.fetchArticlesRequested());
+    this.store.dispatch(ImagesActions.fetchArticleBannerImageThumbnailsRequested());
   }
 
   public getAdminControlsConfig(article: Article): AdminControlsConfig {

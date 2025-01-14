@@ -1,6 +1,6 @@
 import moment from 'moment-timezone';
 
-import type { EventFormData } from '@app/types';
+import type { EventFormData } from '@app/models';
 
 export const newEventFormTemplate: EventFormData = {
   type: 'blitz tournament',

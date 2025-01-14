@@ -5,7 +5,7 @@ import type {
   LoginRequest,
   PasswordChangeRequest,
   UnverifiedUser,
-} from '@app/types';
+} from '@app/models';
 
 export const loginRequested = createAction(
   '[Auth] Login requested',

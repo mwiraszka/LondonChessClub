@@ -1,8 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { newArticleFormTemplate } from '@app/components/article-form/new-article-form-template';
+import type { ArticleFormData, Id } from '@app/models';
 import { AuthSelectors } from '@app/store/auth';
-import type { ArticleFormData, Id } from '@app/types';
+import { ImagesSelectors } from '@app/store/images';
 import { areSame } from '@app/utils';
 
 import { ArticlesState } from './articles.state';
@@ -31,11 +32,6 @@ export const selectArticleFormData = createSelector(
   state => state.articleFormData,
 );
 
-export const selectIsNewImageStored = createSelector(
-  selectArticlesState,
-  state => state.isNewImageStored,
-);
-
 export const selectControlMode = createSelector(
   selectArticlesState,
   state => state.controlMode,
@@ -45,17 +41,21 @@ export const selectHasUnsavedChanges = createSelector(
   selectControlMode,
   selectArticle,
   selectArticleFormData,
-  selectIsNewImageStored,
+  ImagesSelectors.selectIsNewImageStored,
   (controlMode, article, articleFormData, isNewImageStored) => {
     if (isNewImageStored) {
       return true;
+    }
+
+    if (!articleFormData) {
+      return null;
     }
 
     if (controlMode === 'add') {
       return !areSame(articleFormData, newArticleFormTemplate);
     }
 
-    if (!article || !articleFormData) {
+    if (!article) {
       return null;
     }
 
@@ -75,6 +75,7 @@ export const selectArticleViewerScreenViewModel = createSelector({
 });
 
 export const selectArticleEditorScreenViewModel = createSelector({
+  article: selectArticle,
   articleTitle: selectArticleTitle,
   controlMode: selectControlMode,
   hasUnsavedChanges: selectHasUnsavedChanges,

@@ -16,9 +16,9 @@ import { RouterLink } from '@angular/router';
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
+import type { LoginRequest, PasswordChangeRequest, User } from '@app/models';
 import { RouterLinkPipe } from '@app/pipes';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
-import type { LoginRequest, PasswordChangeRequest, User } from '@app/types';
 import {
   emailValidator,
   hasLowercaseLetterValidator,

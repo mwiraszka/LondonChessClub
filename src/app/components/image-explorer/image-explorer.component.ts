@@ -1,5 +1,6 @@
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { take } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 import * as uuid from 'uuid';
 
 import { CommonModule } from '@angular/common';
@@ -8,9 +9,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AdminControlsDirective } from '@app/components/admin-controls/admin-controls.directive';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import IconsModule from '@app/icons';
-import { FormatBytesPipe, FormatDatePipe } from '@app/pipes';
-import { DialogService, ImagesService, LoaderService } from '@app/services';
-import { AppActions } from '@app/store/app';
 import type {
   AdminControlsConfig,
   BasicDialogResult,
@@ -18,8 +16,13 @@ import type {
   DialogOutput,
   Id,
   Image,
-} from '@app/types';
+} from '@app/models';
+import { FormatBytesPipe, FormatDatePipe } from '@app/pipes';
+import { DialogService } from '@app/services';
+import * as ImagesActions from '@app/store/images/images.actions';
+import * as ImagesSelectors from '@app/store/images/images.selectors';
 
+@UntilDestroy()
 @Component({
   selector: 'lcc-image-explorer',
   templateUrl: './image-explorer.component.html',
@@ -33,7 +36,7 @@ import type {
   ],
 })
 export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
-  public images: Image[] = this.generatePlaceholderImages(25);
+  public images$: Observable<Image[]> = of(this.generatePlaceholderImages(25));
 
   @Output() public dialogResult = new EventEmitter<Id | 'close'>();
 
@@ -42,22 +45,14 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
       BasicDialogComponent,
       BasicDialogResult
     >,
-    private readonly imagesService: ImagesService,
-    private readonly loaderService: LoaderService,
     private readonly store: Store,
   ) {}
 
   ngOnInit(): void {
-    // TODO: Remove imagesService dependency and handle all image-related API communication
-    // through a dedicated Images store slice
-    this.loaderService.setIsLoading(true);
-    this.imagesService
-      .getThumbnailImages()
-      .pipe(take(1))
-      .subscribe(images => {
-        this.images = images;
-        this.loaderService.setIsLoading(false);
-      });
+    this.store.dispatch(ImagesActions.fetchArticleBannerImageThumbnailsRequested());
+    this.images$ = this.store
+      .select(ImagesSelectors.selectThumbnailImages)
+      .pipe(untilDestroyed(this));
   }
 
   public getAdminControlsConfig(image: Image): AdminControlsConfig {
@@ -87,7 +82,9 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
     });
 
     if (result === 'confirm') {
-      this.store.dispatch(AppActions.deleteImageRequested({ imageId: mainImageId }));
+      this.store.dispatch(
+        ImagesActions.deleteImageRequested({ image: { ...image, id: mainImageId } }),
+      );
     }
   }
 
@@ -97,7 +94,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
       dateUploaded: new Date().toISOString(),
       id: uuid.v4(),
       presignedUrl: '',
-      size: 0,
+      fileSize: 0,
     }));
   }
 }

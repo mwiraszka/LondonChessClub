@@ -1,5 +1,5 @@
-import type { GameScore } from '@app/types';
-import { isGameScore } from '@app/types/game-details.model';
+import type { GameScore } from '@app/models';
+import { isGameScore } from '@app/models/game-details.model';
 
 import { isDefined } from '../common/is-defined.util';
 

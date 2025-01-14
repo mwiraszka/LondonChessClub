@@ -3,13 +3,13 @@ import { Component, Input } from '@angular/core';
 
 import { ImagePreloadDirective } from '@app/components/image-preload/image-preload.directive';
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
+import type { Article } from '@app/models';
 import {
   FormatDatePipe,
   IsDefinedPipe,
   TruncateByCharsPipe,
   WasEditedPipe,
 } from '@app/pipes';
-import type { Article } from '@app/types';
 
 @Component({
   selector: 'lcc-article',

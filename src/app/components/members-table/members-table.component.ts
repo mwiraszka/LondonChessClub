@@ -9,16 +9,16 @@ import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PaginatorComponent } from '@app/components/paginator/paginator.component';
 import IconsModule from '@app/icons';
-import { CamelCasePipe, FormatDatePipe, KebabCasePipe } from '@app/pipes';
-import { DialogService } from '@app/services';
-import { MembersActions, MembersSelectors } from '@app/store/members';
 import type {
   AdminControlsConfig,
   BasicDialogResult,
   Dialog,
   InternalLink,
   Member,
-} from '@app/types';
+} from '@app/models';
+import { CamelCasePipe, FormatDatePipe, KebabCasePipe } from '@app/pipes';
+import { DialogService } from '@app/services';
+import { MembersActions, MembersSelectors } from '@app/store/members';
 
 @Component({
   selector: 'lcc-members-table',

@@ -1,4 +1,4 @@
-import { Article } from '@app/types';
+import { Article } from '@app/models';
 import { customSort, isDefined } from '@app/utils';
 
 // TODO: Modify customSort() to accept an optional secondary key so that this can be done in one go

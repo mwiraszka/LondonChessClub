@@ -1,10 +1,9 @@
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import type { ApiScope, DbCollection, Event, Id } from '@app/types';
+import type { ApiResponse, DbCollection, Event, Id } from '@app/models';
 
 import { environment } from '@env';
 
@@ -17,34 +16,33 @@ export class EventsService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getEvents(): Observable<Event[]> {
-    const scope: ApiScope = 'public';
-    return this.http.get<Event[]>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`);
+  public getEvents(): Observable<ApiResponse<Event[]>> {
+    return this.http.get<ApiResponse<Event[]>>(`${this.API_BASE_URL}/${this.COLLECTION}`);
   }
 
-  public getEvent(id: Id): Observable<Event> {
-    const scope: ApiScope = 'public';
-    return this.http.get<Event>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${id}`);
+  public getEvent(id: Id): Observable<ApiResponse<Event>> {
+    return this.http.get<ApiResponse<Event>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
+    );
   }
 
-  public addEvent(event: Event): Observable<Event> {
-    const scope: ApiScope = 'admin';
-    return this.http
-      .post<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`, event)
-      .pipe(map(id => ({ ...event, id })));
+  public addEvent(event: Event): Observable<ApiResponse<Id>> {
+    return this.http.post<ApiResponse<Id>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}`,
+      event,
+    );
   }
 
-  public updateEvent(event: Event): Observable<Event> {
-    const scope: ApiScope = 'admin';
-    return this.http
-      .put<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${event.id}`, event)
-      .pipe(map(() => event));
+  public updateEvent(event: Event): Observable<ApiResponse<Id>> {
+    return this.http.put<ApiResponse<Id>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/${event.id}`,
+      event,
+    );
   }
 
-  public deleteEvent(event: Event): Observable<Event> {
-    const scope: ApiScope = 'admin';
-    return this.http
-      .delete<Id>(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}/${event.id}`)
-      .pipe(map(() => event));
+  public deleteEvent(event: Event): Observable<ApiResponse<Id>> {
+    return this.http.delete<ApiResponse<Id>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/${event.id}`,
+    );
   }
 }

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
-import type { AdminControlsConfig } from '@app/types';
+import type { AdminControlsConfig } from '@app/models';
 
 import { AdminControlsComponent } from './admin-controls.component';
 import { ADMIN_CONTROLS_CONFIG } from './admin-controls.directive';

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
 import IconsModule from '@app/icons';
-import type { Toast } from '@app/types';
+import type { Toast } from '@app/models';
 
 @Component({
   selector: 'lcc-toast',

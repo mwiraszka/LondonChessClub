@@ -1,4 +1,4 @@
-import type { ArticleFormData } from '@app/types';
+import type { ArticleFormData } from '@app/models';
 
 export const newArticleFormTemplate: ArticleFormData = {
   title: '',

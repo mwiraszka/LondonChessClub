@@ -5,15 +5,14 @@ import moment from 'moment-timezone';
 import { of } from 'rxjs';
 import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
-import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { ArticlesService, LoaderService, LocalStorageService } from '@app/services';
+import type { Article, ModificationInfo } from '@app/models';
+import { ArticlesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import type { Article, LccError, ModificationInfo } from '@app/types';
-import { isDefined, parseHttpErrorResponse } from '@app/utils';
+import { isDefined } from '@app/utils';
+import { parseError } from '@app/utils/error/parse-error.util';
 
-import { LOCAL_STORAGE_IMAGE_KEY } from '.';
 import * as ArticlesActions from './articles.actions';
 import * as ArticlesSelectors from './articles.selectors';
 
@@ -25,11 +24,12 @@ export class ArticlesEffects {
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() =>
         this.articlesService.getArticles().pipe(
-          map(articles => ArticlesActions.fetchArticlesSucceeded({ articles })),
-          catchError((errorResponse: HttpErrorResponse) => {
-            const error = parseHttpErrorResponse(errorResponse);
-            return of(ArticlesActions.fetchArticlesFailed({ error }));
-          }),
+          map(response =>
+            ArticlesActions.fetchArticlesSucceeded({ articles: response.data }),
+          ),
+          catchError(error =>
+            of(ArticlesActions.fetchArticlesFailed({ error: parseError(error) })),
+          ),
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -42,11 +42,12 @@ export class ArticlesEffects {
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ articleId }) =>
         this.articlesService.getArticle(articleId).pipe(
-          map(article => ArticlesActions.fetchArticleSucceeded({ article })),
-          catchError((errorResponse: HttpErrorResponse) => {
-            const error = parseHttpErrorResponse(errorResponse);
-            return of(ArticlesActions.fetchArticleFailed({ error }));
-          }),
+          map(response =>
+            ArticlesActions.fetchArticleSucceeded({ article: response.data }),
+          ),
+          catchError(error =>
+            of(ArticlesActions.fetchArticleFailed({ error: parseError(error) })),
+          ),
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -61,10 +62,9 @@ export class ArticlesEffects {
         this.store
           .select(ArticlesSelectors.selectArticleFormData)
           .pipe(filter(isDefined)),
-        this.store.select(ArticlesSelectors.selectIsNewImageStored),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
-      switchMap(([, articleFormData, isNewImageStored, user]) => {
+      switchMap(([, articleFormData, user]) => {
         const modificationInfo: ModificationInfo = {
           createdBy: `${user.firstName} ${user.lastName}`,
           dateCreated: moment().toISOString(),
@@ -80,22 +80,15 @@ export class ArticlesEffects {
           thumbnailImageUrl: null,
         };
 
-        const imageDataUrl = this.localStorageService.get<string>(
-          LOCAL_STORAGE_IMAGE_KEY,
-        );
-        if (isNewImageStored && !imageDataUrl) {
-          const error = new Error(
-            'Unable to retrieve image data URL from local storage.',
-          );
-          return of(ArticlesActions.publishArticleFailed({ error }));
-        }
-
-        return this.articlesService.addArticle(modifiedArticle, imageDataUrl).pipe(
-          map(article => ArticlesActions.publishArticleSucceeded({ article })),
-          catchError((errorResponse: HttpErrorResponse) => {
-            const error = parseHttpErrorResponse(errorResponse);
-            return of(ArticlesActions.publishArticleFailed({ error }));
-          }),
+        return this.articlesService.addArticle(modifiedArticle).pipe(
+          map(response =>
+            ArticlesActions.publishArticleSucceeded({
+              article: { ...modifiedArticle, id: response.data },
+            }),
+          ),
+          catchError(error =>
+            of(ArticlesActions.publishArticleFailed({ error: parseError(error) })),
+          ),
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -111,10 +104,9 @@ export class ArticlesEffects {
         this.store
           .select(ArticlesSelectors.selectArticleFormData)
           .pipe(filter(isDefined)),
-        this.store.select(ArticlesSelectors.selectIsNewImageStored),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
-      switchMap(([, article, articleFormData, isNewImageStored, user]) => {
+      switchMap(([, article, articleFormData, user]) => {
         const originalArticleTitle = article.title;
         const modificationInfo: ModificationInfo = {
           ...article.modificationInfo,
@@ -127,24 +119,16 @@ export class ArticlesEffects {
           modificationInfo,
         };
 
-        const imageDataUrl = this.localStorageService.get<string>(
-          LOCAL_STORAGE_IMAGE_KEY,
-        );
-        if (isNewImageStored && !imageDataUrl) {
-          const error: LccError = {
-            message: 'Unable to retrieve image data URL from local storage.',
-          };
-          return of(ArticlesActions.publishArticleFailed({ error }));
-        }
-
-        return this.articlesService.updateArticle(modifiedArticle, imageDataUrl).pipe(
-          map(article =>
-            ArticlesActions.updateArticleSucceeded({ article, originalArticleTitle }),
+        return this.articlesService.updateArticle(modifiedArticle).pipe(
+          map(() =>
+            ArticlesActions.updateArticleSucceeded({
+              article: modifiedArticle,
+              originalArticleTitle,
+            }),
           ),
-          catchError((errorResponse: HttpErrorResponse) => {
-            const error = parseHttpErrorResponse(errorResponse);
-            return of(ArticlesActions.updateArticleFailed({ error }));
-          }),
+          catchError(error =>
+            of(ArticlesActions.updateArticleFailed({ error: parseError(error) })),
+          ),
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -165,12 +149,11 @@ export class ArticlesEffects {
           ...article,
           bookmarkDate: bookmark ? moment().toISOString() : null,
         };
-        return this.articlesService.updateArticle(modifiedArticle, null).pipe(
-          map(article => ArticlesActions.updateArticleSucceeded({ article })),
-          catchError((errorResponse: HttpErrorResponse) => {
-            const error = parseHttpErrorResponse(errorResponse);
-            return of(ArticlesActions.updateArticleFailed({ error }));
-          }),
+        return this.articlesService.updateArticle(modifiedArticle).pipe(
+          map(() => ArticlesActions.updateArticleSucceeded({ article: modifiedArticle })),
+          catchError(error =>
+            of(ArticlesActions.updateArticleFailed({ error: parseError(error) })),
+          ),
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -183,11 +166,14 @@ export class ArticlesEffects {
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ article }) =>
         this.articlesService.deleteArticle(article).pipe(
-          map(article => ArticlesActions.deleteArticleSucceeded({ article })),
-          catchError((errorResponse: HttpErrorResponse) => {
-            const error = parseHttpErrorResponse(errorResponse);
-            return of(ArticlesActions.deleteArticleFailed({ error }));
-          }),
+          map(response =>
+            ArticlesActions.deleteArticleSucceeded({
+              article: { ...article, id: response.data },
+            }),
+          ),
+          catchError(error =>
+            of(ArticlesActions.deleteArticleFailed({ error: parseError(error) })),
+          ),
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),
@@ -197,7 +183,6 @@ export class ArticlesEffects {
   constructor(
     private readonly actions$: Actions,
     private readonly articlesService: ArticlesService,
-    private readonly localStorageService: LocalStorageService,
     private readonly loaderService: LoaderService,
     private readonly store: Store,
   ) {}

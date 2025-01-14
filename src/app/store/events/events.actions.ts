@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { ControlMode, Event, EventFormData, Id, LccError } from '@app/types';
+import type { ControlMode, Event, EventFormData, Id, LccError } from '@app/models';
 
 export const fetchEventsRequested = createAction('[Events] Fetch events requested');
 export const fetchEventsSucceeded = createAction(

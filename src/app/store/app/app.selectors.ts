@@ -11,6 +11,11 @@ export const selectIsDarkMode = createSelector(selectAppState, state => state.is
 
 export const selectIsSafeMode = createSelector(selectAppState, state => state.isSafeMode);
 
+export const selectIsSubmitting = createSelector(
+  selectAppState,
+  state => state.isSubmitting,
+);
+
 export const selectShowUpcomingEventBanner = createSelector(
   selectAppState,
   state => state.showUpcomingEventBanner,

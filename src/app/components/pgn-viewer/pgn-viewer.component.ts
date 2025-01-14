@@ -4,7 +4,7 @@ import { CommonModule, DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, Inject, Input, OnInit } from '@angular/core';
 
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
-import type { ExternalLink } from '@app/types';
+import type { ExternalLink } from '@app/models';
 import { getLichessAnalysisUrl, getPlayerName, getScore } from '@app/utils';
 
 @Component({

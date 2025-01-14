@@ -15,7 +15,7 @@ import type {
   PasswordChangeRequest,
   PasswordChangeResponse,
   UnverifiedUser,
-} from '@app/types';
+} from '@app/models';
 
 import { environment } from '@env';
 

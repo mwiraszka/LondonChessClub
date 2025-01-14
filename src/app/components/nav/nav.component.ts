@@ -8,10 +8,10 @@ import { DropdownDirective } from '@app/components/dropdown/dropdown.directive';
 import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
+import type { InternalLink } from '@app/models';
 import { RouterLinkPipe } from '@app/pipes';
 import { AppActions } from '@app/store/app';
 import { NavSelectors } from '@app/store/nav';
-import type { InternalLink } from '@app/types';
 
 @Component({
   selector: 'lcc-nav',

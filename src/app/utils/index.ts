@@ -10,7 +10,7 @@ export { formatDate } from './datetime/format-date.util';
 export { isValidIsoDate } from './datetime/is-valid-iso-date.util';
 export { isValidTime } from './datetime/is-valid-time.util';
 
-export { parseHttpErrorResponse } from './error/parse-http-error-response.util';
+export { parseError } from './error/parse-error.util';
 
 export { dataUrlToBlob } from './file/data-url-to-blob.util';
 export { formatBytes } from './file/format-bytes.util';

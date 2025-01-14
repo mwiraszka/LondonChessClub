@@ -22,6 +22,7 @@ import { AppStoreModule } from '@app/store/app';
 import { ArticlesStoreModule } from '@app/store/articles';
 import { AuthStoreModule } from '@app/store/auth';
 import { EventsStoreModule } from '@app/store/events';
+import { ImagesStoreModule } from '@app/store/images';
 import { MembersStoreModule } from '@app/store/members';
 import { MetaState, metaReducers } from '@app/store/meta-reducers';
 import { NavStoreModule } from '@app/store/nav';
@@ -48,6 +49,7 @@ bootstrapApplication(AppComponent, {
       BrowserModule,
       EffectsModule.forRoot([]),
       EventsStoreModule,
+      ImagesStoreModule,
       MarkdownModule.forRoot(),
       MembersStoreModule,
       NavStoreModule,

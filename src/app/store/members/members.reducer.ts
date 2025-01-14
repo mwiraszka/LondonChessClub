@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
+import { unionWith } from 'lodash';
 
-import { MemberFormData } from '@app/types';
+import { MemberFormData } from '@app/models';
 
 import * as MembersActions from './members.actions';
 import { MembersState, initialState } from './members.state';
@@ -36,11 +37,7 @@ export const membersReducer = createReducer(
     MembersActions.fetchMemberSucceeded,
     (state, { member }): MembersState => ({
       ...state,
-      members: [
-        ...state.members.map(storedMember =>
-          storedMember.id === member.id ? member : storedMember,
-        ),
-      ],
+      members: unionWith(state.members, [member], (a, b) => a.id === b.id),
       member,
     }),
   ),
@@ -50,11 +47,7 @@ export const membersReducer = createReducer(
     MembersActions.updateMemberSucceeded,
     (state, { member }): MembersState => ({
       ...state,
-      members: [
-        ...state.members.map(storedMember =>
-          storedMember.id === member.id ? member : storedMember,
-        ),
-      ],
+      members: unionWith(state.members, [member], (a, b) => a.id === b.id),
       member: null,
       memberFormData: null,
     }),

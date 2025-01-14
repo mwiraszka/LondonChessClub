@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import IconsModule from '@app/icons';
-import type { DialogOutput } from '@app/types';
+import type { DialogOutput } from '@app/models';
 
 @Component({
   selector: 'lcc-document-viewer',

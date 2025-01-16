@@ -1,5 +1,4 @@
 import { createReducer, on } from '@ngrx/store';
-import { unionWith } from 'lodash';
 
 import type { EventFormData } from '@app/models';
 
@@ -37,7 +36,13 @@ export const eventsReducer = createReducer(
     EventsActions.fetchEventSucceeded,
     (state, { event }): EventsState => ({
       ...state,
-      events: unionWith(state.events, [event], (a, b) => a.id === b.id),
+      events: state.events.length
+        ? [
+            ...state.events.map(storedEvent =>
+              storedEvent.id === event.id ? event : storedEvent,
+            ),
+          ]
+        : [event],
       event,
     }),
   ),
@@ -47,7 +52,13 @@ export const eventsReducer = createReducer(
     EventsActions.updateEventSucceeded,
     (state, { event }): EventsState => ({
       ...state,
-      events: unionWith(state.events, [event], (a, b) => a.id === b.id),
+      events: state.events.length
+        ? [
+            ...state.events.map(storedEvent =>
+              storedEvent.id === event.id ? event : storedEvent,
+            ),
+          ]
+        : [event],
       event: null,
       eventFormData: null,
     }),

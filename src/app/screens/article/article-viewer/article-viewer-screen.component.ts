@@ -115,7 +115,7 @@ export class ArticleViewerScreenComponent implements OnInit {
 
   public getAdminControlsConfig(article: Article): AdminControlsConfig {
     return {
-      buttonSize: 28,
+      buttonSize: 34,
       deleteCb: () => this.onDelete(article),
       editPath: ['article', 'edit', article.id!],
       itemName: article.title,

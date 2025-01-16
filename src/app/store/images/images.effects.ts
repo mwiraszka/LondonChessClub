@@ -1,6 +1,6 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
@@ -8,6 +8,7 @@ import { ImagesService, LoaderService, LocalStorageService } from '@app/services
 import { parseError } from '@app/utils/error/parse-error.util';
 
 import { IMAGE_KEY } from '.';
+import { AppActions } from '../app';
 import * as ImagesActions from './images.actions';
 
 @Injectable()
@@ -62,7 +63,7 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.addImageRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(() => {
+      switchMap(({ forArticle }) => {
         const imageDataUrl = this.localStorageService.get<string>(IMAGE_KEY);
 
         if (!imageDataUrl) {
@@ -85,7 +86,9 @@ export class ImagesEffects {
         imageFormData.append('imageFile', imageFile);
 
         return this.imagesService.addImage(imageFormData).pipe(
-          map(response => ImagesActions.addImageSucceeded({ image: response.data })),
+          map(response =>
+            ImagesActions.addImageSucceeded({ image: response.data, forArticle }),
+          ),
           catchError(error =>
             of(ImagesActions.addImageFailed({ error: parseError(error) })),
           ),
@@ -106,6 +109,14 @@ export class ImagesEffects {
           ),
         ),
       ),
+    );
+  });
+
+  removeStoredArticleImageFromLocalStorage$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.addImageSucceeded),
+      filter(({ forArticle }) => !!forArticle),
+      map(() => AppActions.itemRemovedFromLocalStorage({ key: IMAGE_KEY })),
     );
   });
 

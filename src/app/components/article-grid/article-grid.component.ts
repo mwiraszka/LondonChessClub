@@ -79,7 +79,7 @@ export class ArticleGridComponent implements OnInit {
     return {
       bookmarkCb: () => this.onBookmarkArticle(article),
       bookmarked: isDefined(article.bookmarkDate),
-      buttonSize: 40,
+      buttonSize: 34,
       deleteCb: () => this.onDeleteArticle(article),
       editPath: ['article', 'edit', article.id!],
       itemName: article.title,
@@ -113,7 +113,7 @@ export class ArticleGridComponent implements OnInit {
       body: hasBookmark
         ? `Remove bookmark from article ${article.title}?`
         : `Bookmark ${article.title}? This will make the article show up first in the list of articles.`,
-      confirmButtonText: 'Bookmark',
+      confirmButtonText: hasBookmark ? 'Remove' : 'Bookmark',
       confirmButtonType: 'primary',
     };
 

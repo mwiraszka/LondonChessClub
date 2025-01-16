@@ -27,10 +27,13 @@ export const fetchArticleBannerImageFailed = createAction(
   props<{ error: LccError }>(),
 );
 
-export const addImageRequested = createAction('[Images] Add image requested');
+export const addImageRequested = createAction(
+  '[Images] Add image requested',
+  props<{ forArticle?: boolean }>(),
+);
 export const addImageSucceeded = createAction(
   '[Images] Add image succeeded',
-  props<{ image: Image }>(),
+  props<{ image: Image; forArticle?: boolean }>(),
 );
 export const addImageFailed = createAction(
   '[Images] Add image failed',
@@ -49,6 +52,3 @@ export const deleteImageFailed = createAction(
   '[Images] Delete image failed',
   props<{ error: LccError }>(),
 );
-
-export const newImageStored = createAction('[Images] New image stored');
-export const storedImageRemoved = createAction('[Images] Stored image removed');

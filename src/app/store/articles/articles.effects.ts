@@ -10,6 +10,7 @@ import { Injectable } from '@angular/core';
 import type { Article, ModificationInfo } from '@app/models';
 import { ArticlesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
+import { ImagesActions } from '@app/store/images';
 import { isDefined } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
 
@@ -54,6 +55,19 @@ export class ArticlesEffects {
     );
   });
 
+  submitArticleAfterSuccessfulImageUpload$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.addImageSucceeded),
+      filter(({ forArticle }) => !!forArticle),
+      concatLatestFrom(() => this.store.select(ArticlesSelectors.selectControlMode)),
+      map(([{ image }, controlMode]) => {
+        return controlMode === 'edit'
+          ? ArticlesActions.updateArticleRequested({ imageId: image.id })
+          : ArticlesActions.publishArticleRequested({ imageId: image.id });
+      }),
+    );
+  });
+
   publishArticle$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.publishArticleRequested),
@@ -64,7 +78,7 @@ export class ArticlesEffects {
           .pipe(filter(isDefined)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
-      switchMap(([, articleFormData, user]) => {
+      switchMap(([{ imageId }, articleFormData, user]) => {
         const modificationInfo: ModificationInfo = {
           createdBy: `${user.firstName} ${user.lastName}`,
           dateCreated: moment().toISOString(),
@@ -73,10 +87,11 @@ export class ArticlesEffects {
         };
         const modifiedArticle: Article = {
           ...articleFormData,
+          imageId: imageId ?? articleFormData.imageId,
           modificationInfo,
           id: null,
-          imageUrl: null,
           bookmarkDate: null,
+          imageUrl: null,
           thumbnailImageUrl: null,
         };
 
@@ -106,7 +121,7 @@ export class ArticlesEffects {
           .pipe(filter(isDefined)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
-      switchMap(([, article, articleFormData, user]) => {
+      switchMap(([{ imageId }, article, articleFormData, user]) => {
         const originalArticleTitle = article.title;
         const modificationInfo: ModificationInfo = {
           ...article.modificationInfo,
@@ -116,6 +131,7 @@ export class ArticlesEffects {
         const modifiedArticle = {
           ...article,
           ...articleFormData,
+          imageId: imageId ?? articleFormData.imageId,
           modificationInfo,
         };
 

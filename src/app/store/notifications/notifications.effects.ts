@@ -257,7 +257,7 @@ export class NotificationsEffects {
   });
   //#endregion
 
-  //#region Images
+  // #region Images
   addAddImageSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.addImageSucceeded),

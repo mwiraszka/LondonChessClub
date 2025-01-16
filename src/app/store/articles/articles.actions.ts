@@ -28,6 +28,7 @@ export const fetchArticleFailed = createAction(
 
 export const publishArticleRequested = createAction(
   '[Articles] Publish article requested',
+  props<{ imageId?: Id }>(),
 );
 export const publishArticleSucceeded = createAction(
   '[Articles] Publish article succeeded',
@@ -42,7 +43,10 @@ export const updateActicleBookmarkRequested = createAction(
   '[Articles] Update article bookmark requested',
   props<{ articleId: Id; bookmark: boolean }>(),
 );
-export const updateArticleRequested = createAction('[Articles] Update article requested');
+export const updateArticleRequested = createAction(
+  '[Articles] Update article requested',
+  props<{ imageId?: Id }>(),
+);
 export const updateArticleSucceeded = createAction(
   '[Articles] Update article succeeded',
   props<{ article: Article; originalArticleTitle?: string }>(),

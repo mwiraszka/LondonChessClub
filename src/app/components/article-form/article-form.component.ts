@@ -220,15 +220,12 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (this.controlMode === 'edit') {
-      this.store.dispatch(ArticlesActions.updateArticleRequested());
+    if (this.localStorageService.get(IMAGE_KEY)) {
+      this.store.dispatch(ImagesActions.addImageRequested({ forArticle: true }));
+    } else if (this.controlMode === 'edit') {
+      this.store.dispatch(ArticlesActions.updateArticleRequested({}));
     } else {
-      this.store.dispatch(ArticlesActions.publishArticleRequested());
-    }
-
-    const imageDataUrl = this.localStorageService.get<string>(IMAGE_KEY);
-    if (imageDataUrl) {
-      this.store.dispatch(ImagesActions.addImageRequested());
+      this.store.dispatch(ArticlesActions.publishArticleRequested({}));
     }
   }
 
@@ -277,11 +274,11 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
 
   private updateStoredFile(dataUrl: Url | null): void {
     if (dataUrl) {
-      this.localStorageService.set(IMAGE_KEY, dataUrl);
-      this.store.dispatch(ImagesActions.newImageStored());
+      this.store.dispatch(
+        AppActions.itemSetInLocalStorage({ key: IMAGE_KEY, item: dataUrl }),
+      );
     } else {
-      this.localStorageService.remove(IMAGE_KEY);
-      this.store.dispatch(ImagesActions.storedImageRemoved());
+      this.store.dispatch(AppActions.itemRemovedFromLocalStorage({ key: IMAGE_KEY }));
     }
   }
 }

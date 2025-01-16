@@ -65,7 +65,7 @@ export class ScheduleComponent implements OnInit {
 
   public getAdminControlsConfig(event: Event): AdminControlsConfig {
     return {
-      buttonSize: 28,
+      buttonSize: 34,
       deleteCb: () => this.onDeleteEvent(event),
       editPath: ['event', 'edit', event.id!],
       itemName: event.title,

@@ -1,5 +1,4 @@
 import { createReducer, on } from '@ngrx/store';
-import { unionWith } from 'lodash';
 
 import type { ArticleFormData } from '@app/models';
 import { ImagesActions } from '@app/store/images';
@@ -23,11 +22,13 @@ export const articlesReducer = createReducer(
     ImagesActions.fetchArticleBannerImageSucceeded,
     (state, { image }): ArticlesState => ({
       ...state,
-      articles: state.articles.map(article =>
-        article.imageId === image.id
-          ? { ...article, imageUrl: image.presignedUrl }
-          : article,
-      ),
+      articles: state.articles.length
+        ? state.articles.map(article =>
+            article.imageId === image.id
+              ? { ...article, imageUrl: image.presignedUrl }
+              : article,
+          )
+        : state.articles,
       article:
         state.article?.imageId === image.id
           ? { ...state.article, imageUrl: image.presignedUrl }
@@ -39,14 +40,16 @@ export const articlesReducer = createReducer(
     ImagesActions.fetchArticleBannerImageThumbnailsSucceeded,
     (state, { images }): ArticlesState => ({
       ...state,
-      articles: state.articles.map(article => {
-        const articleBannerImage = images.find(
-          image => image.id === `${article.imageId}-600x400`,
-        );
-        return articleBannerImage
-          ? { ...article, thumbnailImageUrl: articleBannerImage.presignedUrl }
-          : article;
-      }),
+      articles: state.articles.length
+        ? state.articles.map(article => {
+            const articleBannerImage = images.find(
+              image => image.id === `${article.imageId}-600x400`,
+            );
+            return articleBannerImage
+              ? { ...article, thumbnailImageUrl: articleBannerImage.presignedUrl }
+              : article;
+          })
+        : state.articles,
     }),
   ),
 
@@ -69,9 +72,13 @@ export const articlesReducer = createReducer(
   on(ArticlesActions.fetchArticleSucceeded, (state, { article }): ArticlesState => {
     return {
       ...state,
-      articles: sortArticles(
-        unionWith(state.articles, [article], (a, b) => a.id === b.id),
-      ),
+      articles: state.articles.length
+        ? sortArticles([
+            ...state.articles.map(storedArticle =>
+              storedArticle.id === article.id ? article : storedArticle,
+            ),
+          ])
+        : [article],
       article,
     };
   }),
@@ -81,9 +88,11 @@ export const articlesReducer = createReducer(
     ArticlesActions.updateArticleSucceeded,
     (state, { article }): ArticlesState => ({
       ...state,
-      articles: sortArticles(
-        unionWith(state.articles, [article], (a, b) => a.id === b.id),
-      ),
+      articles: sortArticles([
+        ...state.articles.map(storedArticle =>
+          storedArticle.id === article.id ? article : storedArticle,
+        ),
+      ]),
       article: null,
       articleFormData: null,
     }),

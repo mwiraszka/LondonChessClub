@@ -57,7 +57,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
 
   public getAdminControlsConfig(image: Image): AdminControlsConfig {
     return {
-      buttonSize: 40,
+      buttonSize: 34,
       deleteCb: () => this.onDeleteImage(image),
       itemName: image.id?.slice(0, -8),
     };

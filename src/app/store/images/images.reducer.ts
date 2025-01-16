@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
-import { unionWith } from 'lodash';
 
+import { IMAGE_KEY } from '.';
+import { AppActions } from '../app';
 import * as ImagesActions from './images.actions';
 import { ImagesState, initialState } from './images.state';
 
@@ -11,7 +12,12 @@ export const imagesReducer = createReducer(
     ImagesActions.fetchArticleBannerImageThumbnailsSucceeded,
     (state, { images }): ImagesState => ({
       ...state,
-      images: unionWith(state.images, images, (a, b) => a.id === b.id),
+      images: state.images.length
+        ? state.images.map(storedImage => {
+            const updatedImage = images.find(image => image.id === storedImage.id);
+            return updatedImage ?? storedImage;
+          })
+        : state.images,
     }),
   ),
 
@@ -19,7 +25,13 @@ export const imagesReducer = createReducer(
     ImagesActions.fetchArticleBannerImageSucceeded,
     (state, { image }): ImagesState => ({
       ...state,
-      images: unionWith(state.images, [image], (a, b) => a.id === b.id),
+      images: state.images.length
+        ? [
+            ...state.images.map(storedImage =>
+              storedImage.id === image.id ? image : storedImage,
+            ),
+          ]
+        : state.images,
     }),
   ),
 
@@ -43,18 +55,18 @@ export const imagesReducer = createReducer(
   ),
 
   on(
-    ImagesActions.newImageStored,
-    (state): ImagesState => ({
+    AppActions.itemSetInLocalStorage,
+    (state, { key }): ImagesState => ({
       ...state,
-      isNewImageStored: true,
+      isNewImageStored: key === IMAGE_KEY ? true : state.isNewImageStored,
     }),
   ),
 
   on(
-    ImagesActions.storedImageRemoved,
-    (state): ImagesState => ({
+    AppActions.itemRemovedFromLocalStorage,
+    (state, { key }): ImagesState => ({
       ...state,
-      isNewImageStored: false,
+      isNewImageStored: key === IMAGE_KEY ? false : state.isNewImageStored,
     }),
   ),
 );

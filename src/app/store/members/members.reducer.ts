@@ -1,19 +1,40 @@
+import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 
-import { MemberFormData } from '@app/models';
+import { ControlMode, Id, Member, MemberFormData } from '@app/models';
 
 import * as MembersActions from './members.actions';
-import { MembersState, initialState } from './members.state';
+
+export interface MembersState extends EntityState<Member> {
+  memberId: Id | null;
+  memberFormData: MemberFormData | null;
+  controlMode: ControlMode | null;
+  sortedBy: string;
+  isAscending: boolean;
+  pageNum: number;
+  pageSize: number;
+  showActiveOnly: boolean;
+}
+
+export const membersAdapter = createEntityAdapter<Member>();
+
+export const membersInitialState: MembersState = membersAdapter.getInitialState({
+  memberId: null,
+  memberFormData: null,
+  controlMode: null,
+  sortedBy: 'rating',
+  isAscending: false,
+  pageNum: 1,
+  pageSize: 20,
+  showActiveOnly: true,
+});
 
 export const membersReducer = createReducer(
-  initialState,
+  membersInitialState,
 
   on(
     MembersActions.fetchMembersSucceeded,
-    (state, { members }): MembersState => ({
-      ...state,
-      members,
-    }),
+    (state, { members }): MembersState => membersAdapter.addMany(members, state),
   ),
 
   on(
@@ -34,42 +55,29 @@ export const membersReducer = createReducer(
 
   on(
     MembersActions.fetchMemberSucceeded,
-    (state, { member }): MembersState => ({
-      ...state,
-      members: [
-        ...state.members.map(storedMember =>
-          storedMember.id === member.id ? member : storedMember,
-        ),
-      ],
-      member,
-    }),
+    (state, { member }): MembersState =>
+      membersAdapter.upsertOne(member, { ...state, memberId: member.id }),
   ),
 
   on(
     MembersActions.addMemberSucceeded,
     MembersActions.updateMemberSucceeded,
-    (state, { member }): MembersState => ({
-      ...state,
-      members: state.members.length
-        ? [
-            ...state.members.map(storedMember =>
-              storedMember.id === member.id ? member : storedMember,
-            ),
-          ]
-        : state.members,
-      member: null,
-      memberFormData: null,
-    }),
+    (state, { member }): MembersState =>
+      membersAdapter.upsertOne(member, {
+        ...state,
+        memberId: null,
+        memberFormData: null,
+      }),
   ),
 
   on(
     MembersActions.deleteMemberSucceeded,
-    (state, { member }): MembersState => ({
-      ...state,
-      members: state.members.filter(storedMember => storedMember.id !== member.id),
-      member: null,
-      memberFormData: null,
-    }),
+    (state, { member }): MembersState =>
+      membersAdapter.removeOne(member.id!, {
+        ...state,
+        memberId: null,
+        memberFormData: null,
+      }),
   ),
 
   on(MembersActions.formValueChanged, (state, { value }): MembersState => {
@@ -119,7 +127,7 @@ export const membersReducer = createReducer(
     MembersActions.memberUnset,
     (state): MembersState => ({
       ...state,
-      member: null,
+      memberId: null,
       memberFormData: null,
       controlMode: null,
     }),

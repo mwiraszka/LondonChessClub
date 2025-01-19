@@ -27,6 +27,5 @@ export type {
   PasswordChangeResponse,
 } from './password-change.model';
 export type { Photo } from './photo.model';
-export type { StoreFeature } from './store-features.model';
 export type { Toast } from './toast.model';
 export type { AdminUser, UnverifiedUser, User } from './user.model';

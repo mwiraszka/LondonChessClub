@@ -1,11 +1,26 @@
 import { createReducer, on } from '@ngrx/store';
 import moment from 'moment-timezone';
 
+import { IsoDate } from '@app/models';
+
 import * as AppActions from './app.actions';
-import { AppState, initialState } from './app.state';
+
+export interface AppState {
+  isDarkMode: boolean;
+  isSafeMode: boolean;
+  bannerLastCleared: IsoDate | null;
+  showUpcomingEventBanner: boolean;
+}
+
+export const appInitialState: AppState = {
+  isDarkMode: window.matchMedia('(prefers-color-scheme: dark)').matches,
+  isSafeMode: false,
+  bannerLastCleared: null,
+  showUpcomingEventBanner: true,
+};
 
 export const appReducer = createReducer(
-  initialState,
+  appInitialState,
 
   on(
     AppActions.themeToggled,

@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { NotificationsState } from './notifications.state';
+import { NotificationsState } from './notifications.reducer';
 
 export const selectNotificationsState =
-  createFeatureSelector<NotificationsState>('notifications');
+  createFeatureSelector<NotificationsState>('notificationsState');
 
 export const selectToasts = createSelector(
   selectNotificationsState,

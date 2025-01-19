@@ -1,11 +1,7 @@
 /**
  * Return new peak Elo rating based on current rating and current peak rating.
  */
-export function getNewPeakRating(rating?: string, peakRating?: string): string {
-  if (!rating || !peakRating) {
-    return '';
-  }
-
+export function getNewPeakRating(rating: string, peakRating: string): string {
   const [_rating, provisionalRatingCount] = rating.split('/');
   const [_peakRating, provisionalPeakRatingCount] = peakRating.split('/');
 
@@ -19,7 +15,8 @@ export function getNewPeakRating(rating?: string, peakRating?: string): string {
     (provisionalPeakRatingCount !== undefined &&
       isNaN(Number(provisionalPeakRatingCount)))
   ) {
-    return '';
+    console.error('[LCC] Unable to parse ratings to determine new peak rating.');
+    return '0';
   }
 
   const surpassedCurrentPeakRating = ratingNum > peakRatingNum;

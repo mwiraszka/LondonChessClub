@@ -1,10 +1,23 @@
 import { createReducer, on } from '@ngrx/store';
 
+import { User } from '@app/models';
+
 import * as AuthActions from './auth.actions';
-import { AuthState, initialState } from './auth.state';
+
+export interface AuthState {
+  user: User | null;
+  hasCode: boolean;
+  temporaryPassword: string | null;
+}
+
+export const authInitialState: AuthState = {
+  user: null,
+  hasCode: false,
+  temporaryPassword: null,
+};
 
 export const authReducer = createReducer(
-  initialState,
+  authInitialState,
 
   on(
     AuthActions.loginSucceeded,
@@ -15,7 +28,7 @@ export const authReducer = createReducer(
     }),
   ),
 
-  on(AuthActions.logoutSucceeded, (): AuthState => initialState),
+  on(AuthActions.logoutSucceeded, (): AuthState => authInitialState),
 
   on(
     AuthActions.codeForPasswordChangeSucceeded,

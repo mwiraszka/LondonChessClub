@@ -5,14 +5,13 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { NavEffects } from './nav.effects';
-import { navReducer } from './nav.reducer';
-import { NavState } from './nav.state';
+import { NavState, navReducer } from './nav.reducer';
 
 @NgModule({
   imports: [
     CommonModule,
     EffectsModule.forFeature([NavEffects]),
-    StoreModule.forFeature<NavState>('nav', navReducer),
+    StoreModule.forFeature<NavState>('navState', navReducer),
   ],
 })
 export class NavStoreModule {}

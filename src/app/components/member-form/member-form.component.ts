@@ -27,6 +27,7 @@ import type {
   MemberFormGroup,
 } from '@app/models';
 import { DialogService } from '@app/services';
+import { AppSelectors } from '@app/store/app';
 import { MembersActions, MembersSelectors } from '@app/store/members';
 import { isDefined } from '@app/utils';
 import {
@@ -53,9 +54,12 @@ import { newMemberFormTemplate } from './new-member-form-template';
   ],
 })
 export class MemberFormComponent implements OnInit {
+  // TODO: Figure out why this doesn't work when a part of the config$ view model selector
+  public readonly isSafeMode$ = this.store.select(AppSelectors.selectIsSafeMode);
   public readonly memberFormViewModel$ = this.store.select(
     MembersSelectors.selectMemberFormViewModel,
   );
+
   public form: FormGroup<MemberFormGroup<MemberFormData>> | null = null;
 
   private controlMode: ControlMode | null = null;
@@ -173,7 +177,7 @@ export class MemberFormComponent implements OnInit {
       }),
       rating: new FormControl(memberFormData.rating, {
         nonNullable: true,
-        validators: [Validators.required, ratingValidator, Validators.max(3000)],
+        validators: [Validators.required, ratingValidator],
       }),
       dateJoined: new FormControl(memberFormData.dateJoined, {
         nonNullable: true,

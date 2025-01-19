@@ -1,10 +1,19 @@
 import { createReducer, on } from '@ngrx/store';
 
-import * as AppActions from './notifications.actions';
-import { NotificationsState, initialState } from './notifications.state';
+import { Toast } from '@app/models';
 
-export const appReducer = createReducer(
-  initialState,
+import * as AppActions from './notifications.actions';
+
+export interface NotificationsState {
+  toasts: Toast[];
+}
+
+export const notificationsInitialState: NotificationsState = {
+  toasts: [],
+};
+
+export const notificationsReducer = createReducer(
+  notificationsInitialState,
 
   on(
     AppActions.toastAdded,

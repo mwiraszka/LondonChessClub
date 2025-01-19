@@ -109,7 +109,7 @@
           }
         </div>
 
-        @if (!vm.isSafeMode) {
+        @if (!(isSafeMode$ | async)) {
           <label for="email-input">Email:</label>
           <input
             id="email-input"
@@ -207,7 +207,7 @@
 
       <aside class="lcc-required-fields-legend">Required fields</aside>
 
-      @if (vm.isSafeMode) {
+      @if (isSafeMode$ | async) {
         <aside class="safe-mode-notice">
           <i-feather
             name="check-circle"

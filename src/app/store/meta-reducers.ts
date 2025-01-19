@@ -2,32 +2,28 @@ import { RouterState } from '@ngrx/router-store';
 import { Action, ActionReducer, MetaReducer } from '@ngrx/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
 
-import { AppState } from '@app/store/app/app.state';
-import { ArticlesState } from '@app/store/articles/articles.state';
-import { AuthState } from '@app/store/auth/auth.state';
-import { EventsState } from '@app/store/events/events.state';
-import { ImagesState } from '@app/store/images/images.state';
-import { MembersState } from '@app/store/members/members.state';
-import { NavState } from '@app/store/nav/nav.state';
-import { NotificationsState } from '@app/store/notifications/notifications.state';
-
 import { environment } from '@env';
 
-class MetaStateClass {
-  constructor(
-    readonly app?: AppState,
-    readonly articles?: ArticlesState,
-    readonly auth?: AuthState,
-    readonly events?: EventsState,
-    readonly images?: ImagesState,
-    readonly members?: MembersState,
-    readonly nav?: NavState,
-    readonly notifications?: NotificationsState,
-    readonly router?: RouterState,
-  ) {}
-}
+import { AppState } from './app';
+import { ArticlesState } from './articles';
+import { AuthState } from './auth';
+import { EventsState } from './events';
+import { ImagesState } from './images';
+import { MembersState } from './members';
+import { NavState } from './nav';
+import { NotificationsState } from './notifications';
 
-export type MetaState = MetaStateClass;
+export interface MetaState {
+  appState?: AppState;
+  articlesState?: ArticlesState;
+  authState?: AuthState;
+  eventsState?: EventsState;
+  imagesState?: ImagesState;
+  membersState?: MembersState;
+  navState?: NavState;
+  notificationsState?: NotificationsState;
+  routerState?: RouterState;
+}
 
 function actionLogMetaReducer(
   reducer: ActionReducer<MetaState>,
@@ -41,9 +37,15 @@ function actionLogMetaReducer(
   };
 }
 
-const hydratedStates = Object.keys(new MetaStateClass()).filter(
-  key => !['notifications', 'router'].includes(key),
-) as Array<keyof Exclude<MetaState, RouterState>>;
+const hydratedStates = [
+  'appState',
+  'articlesState',
+  'authState',
+  'eventsState',
+  'imagesState',
+  'membersState',
+  'navState',
+] as Array<keyof Exclude<MetaState, NotificationsState | RouterState>>;
 
 function hydrationMetaReducer(
   reducer: ActionReducer<MetaState>,

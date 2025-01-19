@@ -22,7 +22,7 @@ export const itemSetInLocalStorage = createAction(
 );
 
 export const itemRemovedFromLocalStorage = createAction(
-  '[Images] Item removed from local storage',
+  '[App] Item removed from local storage',
   props<{ key: string }>(),
 );
 

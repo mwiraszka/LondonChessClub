@@ -1,5 +1,4 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
 import { tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
@@ -33,6 +32,5 @@ export class AppEffects {
   constructor(
     private readonly actions$: Actions,
     private readonly localStorageService: LocalStorageService,
-    private readonly store: Store,
   ) {}
 }

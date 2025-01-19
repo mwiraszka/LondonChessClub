@@ -71,7 +71,12 @@ export class MembersEffects {
           lastEditedBy: `${user.firstName} ${user.lastName}`,
           dateLastEdited: moment().toISOString(),
         };
-        const modifiedMember = { ...memberFormData, modificationInfo, id: null };
+        const modifiedMember = {
+          ...memberFormData,
+          modificationInfo,
+          id: null,
+          peakRating: memberFormData.rating,
+        };
 
         return this.membersService.addMember(modifiedMember).pipe(
           map(response =>

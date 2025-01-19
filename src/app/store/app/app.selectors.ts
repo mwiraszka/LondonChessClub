@@ -3,9 +3,9 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { EventsSelectors } from '@app/store/events';
 import { NotificationsSelectors } from '@app/store/notifications';
 
-import { AppState } from './app.state';
+import { AppState } from './app.reducer';
 
-export const selectAppState = createFeatureSelector<AppState>('app');
+export const selectAppState = createFeatureSelector<AppState>('appState');
 
 export const selectIsDarkMode = createSelector(selectAppState, state => state.isDarkMode);
 

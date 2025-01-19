@@ -2,9 +2,9 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { Id } from '@app/models';
 
-import { ImagesState } from './images.state';
+import { ImagesState } from './images.reducer';
 
-export const selectImagesState = createFeatureSelector<ImagesState>('images');
+export const selectImagesState = createFeatureSelector<ImagesState>('imagesState');
 
 export const selectImages = createSelector(selectImagesState, state => state.images);
 

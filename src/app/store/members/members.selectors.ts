@@ -2,26 +2,28 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { newMemberFormTemplate } from '@app/components/member-form/new-member-form-template';
 import type { Id } from '@app/models';
-import { AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
 import { areSame, customSort } from '@app/utils';
 
-import { MembersState } from './members.state';
+import { MembersState, membersAdapter } from './members.reducer';
 
-export const selectMembersState = createFeatureSelector<MembersState>('members');
+const selectMembersState = createFeatureSelector<MembersState>('membersState');
 
-export const selectMembers = createSelector(selectMembersState, state => state.members);
+const { selectAll: selectAllMembers } = membersAdapter.getSelectors(selectMembersState);
 
 export const selectMemberById = (id: Id) =>
-  createSelector(selectMembers, members => {
-    return members ? members.find(member => member.id === id) : null;
-  });
+  createSelector(selectAllMembers, allMembers =>
+    allMembers ? allMembers.find(member => member.id === id) : null,
+  );
 
-export const selectActiveMembers = createSelector(selectMembersState, state =>
-  state.members.filter(member => member.isActive),
+export const selectMemberId = createSelector(selectMembersState, state => state.memberId);
+
+export const selectMember = createSelector(
+  selectAllMembers,
+  selectMemberId,
+  (allMembers, memberId) =>
+    memberId ? allMembers.find(member => member.id === memberId) : null,
 );
-
-export const selectMember = createSelector(selectMembersState, state => state.member);
 
 export const selectMemberName = createSelector(selectMember, member =>
   member?.firstName && member?.lastName ? `${member.firstName} ${member.lastName}` : null,
@@ -91,19 +93,24 @@ export const selectShowActiveOnly = createSelector(
   state => state.showActiveOnly,
 );
 
+export const selectActiveMembers = createSelector(selectAllMembers, allMembers =>
+  allMembers.filter(member => member.isActive),
+);
+
 export const selectSortedMembers = createSelector(
-  selectMembers,
+  selectAllMembers,
   selectSortedBy,
   selectIsAscending,
-  (members, sortedBy, isAscending) => {
+  (allMembers, sortedBy, isAscending) => {
     const sortKey =
       sortedBy === 'born'
         ? 'yearOfBirth'
         : sortedBy === 'lastUpdated'
           ? 'modificationInfo.dateLastEdited'
           : sortedBy;
-    const sortedMembers = [...members].sort(customSort(sortKey));
-    return isAscending ? sortedMembers : sortedMembers.reverse();
+    return [...allMembers].sort((a, b) =>
+      customSort(a, b, sortKey, isAscending, 'lastName'),
+    );
   },
 );
 
@@ -122,27 +129,21 @@ export const selectDisplayedMembers = createSelector(
     filteredMembers.slice(startIndex ?? 0, endIndex ?? undefined),
 );
 
-const _selectMembersTableViewModelMembers = createSelector({
-  all: selectMembers,
+export const selectMembersTableMembersViewModel = createSelector({
+  all: selectAllMembers,
   active: selectActiveMembers,
   displayed: selectDisplayedMembers,
   filtered: selectFilteredMembers,
 });
 
-const _selectMembersTableViewModelPagination = createSelector({
+export const selectMembersTableConfigViewModel = createSelector({
   pageNum: selectPageNum,
   pageSize: selectPageSize,
-});
-
-export const selectMembersTableViewModel = createSelector({
-  members: _selectMembersTableViewModelMembers,
-  pagination: _selectMembersTableViewModelPagination,
-  isAdmin: AuthSelectors.selectIsAdmin,
   isAscending: selectIsAscending,
-  isSafeMode: AppSelectors.selectIsSafeMode,
   showActiveOnly: selectShowActiveOnly,
   sortedBy: selectSortedBy,
   startIndex: selectStartIndex,
+  isAdmin: AuthSelectors.selectIsAdmin,
 });
 
 export const selectMemberFormViewModel = createSelector({
@@ -152,7 +153,6 @@ export const selectMemberFormViewModel = createSelector({
   memberNameInForm: selectMemberNameInForm,
   controlMode: selectControlMode,
   hasUnsavedChanges: selectHasUnsavedChanges,
-  isSafeMode: AppSelectors.selectIsSafeMode,
 });
 
 export const selectMemberEditorViewModel = createSelector({

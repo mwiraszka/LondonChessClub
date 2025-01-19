@@ -12,7 +12,7 @@
     <tbody>
       @for (
         event of vm.showPastEvents && allowTogglePastEvents
-          ? vm.events
+          ? vm.allEvents
           : vm.upcomingEvents.slice(0, upcomingEventLimit ?? vm.upcomingEvents.length);
         track event.id
       ) {

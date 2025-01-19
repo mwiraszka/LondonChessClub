@@ -1,10 +1,17 @@
 import { createReducer, on } from '@ngrx/store';
 
 import * as navActions from './nav.actions';
-import { NavState, initialState } from './nav.state';
+
+export interface NavState {
+  pathHistory: string[] | null;
+}
+
+export const navInitialState: NavState = {
+  pathHistory: null,
+};
 
 export const navReducer = createReducer(
-  initialState,
+  navInitialState,
 
   on(navActions.appendPathToHistory, (state, { path }): NavState => {
     const currentPathHistory = state.pathHistory;

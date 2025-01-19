@@ -4,9 +4,9 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
 
-import { NavState } from './nav.state';
+import { NavState } from './nav.reducer';
 
-export const selectNavState = createFeatureSelector<NavState>('nav');
+export const selectNavState = createFeatureSelector<NavState>('navState');
 
 export const selectPathHistory = createSelector(
   selectNavState,

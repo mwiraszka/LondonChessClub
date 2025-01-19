@@ -27,6 +27,5 @@ export { getScore } from './pgn/get-score.util';
 export { getNewPeakRating } from './rating/get-new-peak-rating.util';
 
 export { customSort } from './sort/custom-sort.util';
-export { sortArticles } from './sort/sort-articles.util';
 
 export { actionSanitizer } from './store/action-sanitizer.util';

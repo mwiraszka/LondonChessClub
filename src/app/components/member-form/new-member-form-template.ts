@@ -7,7 +7,7 @@ export const newMemberFormTemplate: MemberFormData = {
   lastName: '',
   city: 'London',
   rating: '1000/0',
-  peakRating: '1000/0',
+  peakRating: '',
   dateJoined: moment().toISOString(),
   isActive: true,
   chessComUsername: '',

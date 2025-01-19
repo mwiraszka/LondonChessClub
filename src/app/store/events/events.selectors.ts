@@ -4,22 +4,27 @@ import moment from 'moment-timezone';
 import { newEventFormTemplate } from '@app/components/event-form/new-event-form-template';
 import type { Id } from '@app/models';
 import { AuthSelectors } from '@app/store/auth';
-import { areSame, customSort } from '@app/utils';
+import { areSame } from '@app/utils';
 
-import { EventsState } from './events.state';
+import { EventsState, eventsAdapter } from './events.reducer';
 
-export const selectEventsState = createFeatureSelector<EventsState>('events');
+const selectEventsState = createFeatureSelector<EventsState>('eventsState');
 
-export const selectEvents = createSelector(selectEventsState, state =>
-  state.events?.length ? [...state.events].sort(customSort('eventDate')) : [],
-);
+const { selectAll: selectAllEvents } = eventsAdapter.getSelectors(selectEventsState);
 
 export const selectEventById = (id: Id) =>
-  createSelector(selectEvents, allEvents =>
+  createSelector(selectAllEvents, allEvents =>
     allEvents ? allEvents.find(event => event.id === id) : null,
   );
 
-export const selectEvent = createSelector(selectEventsState, state => state.event);
+export const selectEventId = createSelector(selectEventsState, state => state.eventId);
+
+export const selectEvent = createSelector(
+  selectAllEvents,
+  selectEventId,
+  (allEvents, eventId) =>
+    eventId ? allEvents.find(event => event.id === eventId) : null,
+);
 
 export const selectEventTitle = createSelector(selectEvent, event => event?.title);
 
@@ -28,8 +33,8 @@ export const selectEventFormData = createSelector(
   state => state.eventFormData,
 );
 
-export const selectUpcomingEvents = createSelector(selectEvents, events =>
-  events.filter(event => moment(event.eventDate).add(3, 'hours').isAfter(moment())),
+export const selectUpcomingEvents = createSelector(selectAllEvents, allEvents =>
+  allEvents.filter(event => moment(event.eventDate).add(3, 'hours').isAfter(moment())),
 );
 
 export const selectNextEvent = createSelector(selectUpcomingEvents, upcomingEvents =>
@@ -75,7 +80,7 @@ export const selectEventEditorScreenViewModel = createSelector({
 });
 
 export const selectScheduleViewModel = createSelector({
-  events: selectEvents,
+  allEvents: selectAllEvents,
   upcomingEvents: selectUpcomingEvents,
   nextEvent: selectNextEvent,
   showPastEvents: selectShowPastEvents,

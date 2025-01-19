@@ -18,6 +18,7 @@ import type {
 } from '@app/models';
 import { CamelCasePipe, FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
+import { AppSelectors } from '@app/store/app';
 import { MembersActions, MembersSelectors } from '@app/store/members';
 
 @Component({
@@ -41,8 +42,13 @@ export class MembersTableComponent implements OnInit {
     text: 'Add a member',
     icon: 'plus-circle',
   };
-  public readonly membersTableViewModel$ = this.store.select(
-    MembersSelectors.selectMembersTableViewModel,
+  public readonly config$ = this.store.select(
+    MembersSelectors.selectMembersTableConfigViewModel,
+  );
+  // TODO: Figure out why this doesn't work when a part of the config$ view model selector
+  public readonly isSafeMode$ = this.store.select(AppSelectors.selectIsSafeMode);
+  public readonly members$ = this.store.select(
+    MembersSelectors.selectMembersTableMembersViewModel,
   );
   public readonly tableHeaders = [
     'First Name',

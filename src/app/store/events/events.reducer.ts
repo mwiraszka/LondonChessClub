@@ -1,19 +1,35 @@
+import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 
-import type { EventFormData } from '@app/models';
+import type { ControlMode, Event, EventFormData, Id } from '@app/models';
+import { customSort } from '@app/utils';
 
 import * as EventsActions from './events.actions';
-import { EventsState, initialState } from './events.state';
+
+export interface EventsState extends EntityState<Event> {
+  eventId: Id | null;
+  eventFormData: EventFormData | null;
+  controlMode: ControlMode | null;
+  showPastEvents: boolean;
+}
+
+export const eventsAdapter = createEntityAdapter<Event>({
+  sortComparer: (a, b) => customSort(a, b, 'eventDate'),
+});
+
+export const eventsInitialState: EventsState = eventsAdapter.getInitialState({
+  eventId: null,
+  eventFormData: null,
+  controlMode: null,
+  showPastEvents: false,
+});
 
 export const eventsReducer = createReducer(
-  initialState,
+  eventsInitialState,
 
   on(
     EventsActions.fetchEventsSucceeded,
-    (state, { events }): EventsState => ({
-      ...state,
-      events,
-    }),
+    (state, { events }): EventsState => eventsAdapter.addMany(events, state),
   ),
 
   on(
@@ -34,44 +50,25 @@ export const eventsReducer = createReducer(
 
   on(
     EventsActions.fetchEventSucceeded,
-    (state, { event }): EventsState => ({
-      ...state,
-      events: state.events.length
-        ? [
-            ...state.events.map(storedEvent =>
-              storedEvent.id === event.id ? event : storedEvent,
-            ),
-          ]
-        : [event],
-      event,
-    }),
+    (state, { event }): EventsState =>
+      eventsAdapter.upsertOne(event, { ...state, eventId: event.id }),
   ),
 
   on(
     EventsActions.addEventSucceeded,
     EventsActions.updateEventSucceeded,
-    (state, { event }): EventsState => ({
-      ...state,
-      events: state.events.length
-        ? [
-            ...state.events.map(storedEvent =>
-              storedEvent.id === event.id ? event : storedEvent,
-            ),
-          ]
-        : [event],
-      event: null,
-      eventFormData: null,
-    }),
+    (state, { event }): EventsState =>
+      eventsAdapter.upsertOne(event, { ...state, eventId: null, eventFormData: null }),
   ),
 
   on(
     EventsActions.deleteEventSucceeded,
-    (state, { event }): EventsState => ({
-      ...state,
-      events: state.events.filter(storedEvent => storedEvent.id !== event.id),
-      event: null,
-      eventFormData: null,
-    }),
+    (state, { event }): EventsState =>
+      eventsAdapter.removeOne(event.id!, {
+        ...state,
+        eventId: null,
+        eventFormData: null,
+      }),
   ),
 
   on(
@@ -86,7 +83,7 @@ export const eventsReducer = createReducer(
     EventsActions.eventUnset,
     (state): EventsState => ({
       ...state,
-      event: null,
+      eventId: null,
       eventFormData: null,
       controlMode: null,
     }),

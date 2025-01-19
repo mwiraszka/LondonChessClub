@@ -6,21 +6,29 @@ import { AuthSelectors } from '@app/store/auth';
 import { ImagesSelectors } from '@app/store/images';
 import { areSame } from '@app/utils';
 
-import { ArticlesState } from './articles.state';
+import { ArticlesState, articlesAdapter } from './articles.reducer';
 
-export const selectArticlesState = createFeatureSelector<ArticlesState>('articles');
+const selectArticlesState = createFeatureSelector<ArticlesState>('articlesState');
 
-export const selectArticles = createSelector(
-  selectArticlesState,
-  state => state.articles,
-);
+const { selectAll: selectAllArticles } =
+  articlesAdapter.getSelectors(selectArticlesState);
 
 export const selectArticleById = (id: Id) =>
-  createSelector(selectArticles, articles =>
-    articles ? articles.find(article => article.id === id) : null,
+  createSelector(selectAllArticles, allArticles =>
+    allArticles ? allArticles.find(article => article.id === id) : null,
   );
 
-export const selectArticle = createSelector(selectArticlesState, state => state.article);
+export const selectArticleId = createSelector(
+  selectArticlesState,
+  state => state.articleId,
+);
+
+export const selectArticle = createSelector(
+  selectAllArticles,
+  selectArticleId,
+  (allArticles, articleId) =>
+    articleId ? allArticles.find(article => article.id === articleId) : null,
+);
 
 export const selectArticleTitle = createSelector(
   selectArticle,
@@ -82,7 +90,7 @@ export const selectArticleEditorScreenViewModel = createSelector({
 });
 
 export const selectArticleGridViewModel = createSelector({
-  articles: selectArticles,
+  articles: selectAllArticles,
   isAdmin: AuthSelectors.selectIsAdmin,
 });
 

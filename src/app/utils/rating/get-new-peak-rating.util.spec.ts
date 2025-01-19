@@ -1,14 +1,10 @@
 import { getNewPeakRating } from './get-new-peak-rating.util';
 
 describe('getNewPeakRating', () => {
-  it('returns an empty string if either rating is `undefined` or a non-numeric value', () => {
-    expect(getNewPeakRating(undefined, '1000')).toBe('');
-    expect(getNewPeakRating('1000', undefined)).toBe('');
-    expect(getNewPeakRating(undefined, undefined)).toBe('');
-    expect(getNewPeakRating('', '')).toBe('');
-    expect(getNewPeakRating('abc', 'abc')).toBe('');
-    expect(getNewPeakRating('1000/5', 'd/5')).toBe('');
-    expect(getNewPeakRating('1000/a', '1000')).toBe('');
+  it('returns 0 if either rating is a non-numeric value', () => {
+    expect(getNewPeakRating('1000/5', 'd/5')).toBe('0');
+    expect(getNewPeakRating('1000/a', '1000')).toBe('0');
+    expect(getNewPeakRating('abc', 'abc')).toBe('0');
   });
 
   it('returns correct new peak rating', () => {

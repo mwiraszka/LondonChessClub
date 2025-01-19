@@ -61,7 +61,7 @@ bootstrapApplication(AppComponent, {
         registrationStrategy: 'registerWhenStable:30000',
       }),
       StoreModule.forRoot<MetaState, Action<string>>(
-        { router: routerReducer },
+        { routerState: routerReducer },
         {
           metaReducers,
           runtimeChecks: {

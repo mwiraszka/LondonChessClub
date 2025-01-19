@@ -1,12 +1,23 @@
 import { createReducer, on } from '@ngrx/store';
 
+import { Image } from '@app/models';
+import { AppActions } from '@app/store/app';
+
 import { IMAGE_KEY } from '.';
-import { AppActions } from '../app';
 import * as ImagesActions from './images.actions';
-import { ImagesState, initialState } from './images.state';
+
+export interface ImagesState {
+  images: Image[];
+  isNewImageStored: boolean;
+}
+
+export const imagesInitialState: ImagesState = {
+  images: [],
+  isNewImageStored: false,
+};
 
 export const imagesReducer = createReducer(
-  initialState,
+  imagesInitialState,
 
   on(
     ImagesActions.fetchArticleBannerImageThumbnailsSucceeded,
@@ -17,7 +28,7 @@ export const imagesReducer = createReducer(
             const updatedImage = images.find(image => image.id === storedImage.id);
             return updatedImage ?? storedImage;
           })
-        : state.images,
+        : images,
     }),
   ),
 

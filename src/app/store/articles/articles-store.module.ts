@@ -5,14 +5,13 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { ArticlesEffects } from './articles.effects';
-import { articlesReducer } from './articles.reducer';
-import { ArticlesState } from './articles.state';
+import { ArticlesState, articlesReducer } from './articles.reducer';
 
 @NgModule({
   imports: [
     CommonModule,
     EffectsModule.forFeature([ArticlesEffects]),
-    StoreModule.forFeature<ArticlesState>('articles', articlesReducer),
+    StoreModule.forFeature<ArticlesState>('articlesState', articlesReducer),
   ],
 })
 export class ArticlesStoreModule {}

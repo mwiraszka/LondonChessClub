@@ -4,7 +4,7 @@ import { pick } from 'lodash';
 import { debounceTime, filter, first } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -22,19 +22,20 @@ import { ModificationInfoComponent } from '@app/components/modification-info/mod
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
 import type {
+  Article,
   ArticleFormData,
   ArticleFormGroup,
   BasicDialogResult,
   ControlMode,
   Dialog,
   Id,
+  LccError,
   Url,
 } from '@app/models';
-import { DialogService, LocalStorageService } from '@app/services';
-import { AppActions } from '@app/store/app';
+import { DialogService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import { IMAGE_KEY, ImagesActions, ImagesSelectors } from '@app/store/images';
-import { dataUrlToBlob, formatBytes, isDefined, isStorageSupported } from '@app/utils';
+import { ImagesActions } from '@app/store/images';
+import { dataUrlToBlob, formatBytes, isDefined } from '@app/utils';
 
 import { newArticleFormTemplate } from './new-article-form-template';
 
@@ -53,14 +54,14 @@ import { newArticleFormTemplate } from './new-article-form-template';
     TooltipDirective,
   ],
 })
-export class ArticleFormComponent implements OnInit, OnDestroy {
+export class ArticleFormComponent implements OnInit {
   public readonly articleFormViewModel$ = this.store.select(
     ArticlesSelectors.selectArticleFormViewModel,
   );
   public form: FormGroup<ArticleFormGroup<ArticleFormData>> | null = null;
   public imageFile: Blob | null = null;
   public imageValidationEnabled: boolean = false;
-  public newImageUrl: Url | null = null;
+  public originalBannerImageUrl: Url | null = null;
 
   private controlMode: ControlMode | null = null;
 
@@ -73,15 +74,10 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     >,
     private readonly dialogService2: DialogService<ImageExplorerComponent, Id>,
     private readonly formBuilder: FormBuilder,
-    private readonly localStorageService: LocalStorageService,
     private readonly store: Store,
   ) {}
 
   ngOnInit(): void {
-    if (!isStorageSupported) {
-      this.store.dispatch(AppActions.localStorageDetectedUnsupported());
-    }
-
     this.articleFormViewModel$
       .pipe(
         filter(({ controlMode }) => isDefined(controlMode)),
@@ -89,39 +85,36 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
           controlMode === 'add' ? true : isDefined(article),
         ),
       )
-      .subscribe(({ article, articleFormData, controlMode }) => {
-        if (!articleFormData) {
-          articleFormData = newArticleFormTemplate;
+      .subscribe(
+        ({
+          article,
+          articleFormData,
+          bannerImageUrl,
+          originalBannerImageUrl,
+          controlMode,
+        }) => {
+          this.handleBannerImage(bannerImageUrl, article);
 
-          // Copy over form-relevant properties from selected article
-          // TODO: Generalize this and create a util function
-          if (controlMode === 'edit' && article) {
-            articleFormData = pick(
-              article,
-              Object.getOwnPropertyNames(articleFormData),
-            ) as typeof articleFormData;
+          if (!articleFormData) {
+            articleFormData = newArticleFormTemplate;
+
+            // Copy over form-relevant properties from selected article
+            // TODO: Generalize this and create a util function
+            if (controlMode === 'edit' && article) {
+              articleFormData = pick(
+                article,
+                Object.getOwnPropertyNames(articleFormData),
+              ) as typeof articleFormData;
+            }
           }
-        }
 
-        this.controlMode = controlMode;
+          this.controlMode = controlMode;
+          this.originalBannerImageUrl = originalBannerImageUrl;
 
-        this.initForm(articleFormData!);
-        this.initFormValueChangeListener();
-
-        const imageDataUrl = this.localStorageService.get<string>(IMAGE_KEY);
-        if (imageDataUrl) {
-          const imageFile: Blob | null = dataUrlToBlob(imageDataUrl);
-          if (imageFile) {
-            this.setImageByFile(imageFile);
-          }
-        } else if (articleFormData!.imageId) {
-          this.setImageById(articleFormData!.imageId);
-        }
-      });
-  }
-
-  ngOnDestroy(): void {
-    this.updateStoredFile(null);
+          this.initForm(articleFormData!);
+          this.initFormValueChangeListener();
+        },
+      );
   }
 
   public hasError(control: AbstractControl): boolean {
@@ -134,14 +127,10 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   }
 
   public get imageError(): string | null {
-    if (!this.imageValidationEnabled) {
-      return null;
-    } else if (this.imageFile && this.imageFile.size > 1_048_576) {
-      return `Image cannot exceed 1 MB (current image after conversion is
-        ${formatBytes(this.imageFile.size)})`;
-    } else if (
+    if (
+      this.imageValidationEnabled &&
       this.controlMode === 'add' &&
-      !(this.imageFile || this.form?.value['imageId'])
+      (!this.imageFile || !this.form?.value['imageId'])
     ) {
       return 'This field is required';
     }
@@ -158,16 +147,19 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
 
       reader.onload = () => {
         const dataUrl = reader.result as Url;
-        const imageFile = dataUrlToBlob(dataUrl);
+        this.imageFile = dataUrlToBlob(dataUrl);
 
-        try {
-          if (imageFile) {
-            this.updateStoredFile(dataUrl);
-            this.setImageByFile(imageFile);
-          }
-        } catch {
-          const fileSize = formatBytes(imageFile!.size);
-          this.store.dispatch(AppActions.localStorageDetectedFull({ fileSize }));
+        if (!this.imageFile) {
+          const error: LccError = { message: 'Unable to load image file.' };
+          this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));
+        } else if (this.imageFile.size > 1_048_576) {
+          const fileSize = formatBytes(this.imageFile.size);
+          const error: LccError = {
+            message: `Image file must be under 1 MB. Selected image was ${fileSize} after conversion.`,
+          };
+          this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));
+        } else {
+          this.store.dispatch(ArticlesActions.bannerImageSet({ url: dataUrl }));
         }
       };
     }
@@ -179,22 +171,26 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     });
 
     if (thumbnailImageId) {
-      this.setImageById(thumbnailImageId.slice(0, -8));
+      const imageId = thumbnailImageId.slice(0, -8);
+      this.store.dispatch(ImagesActions.fetchArticleBannerImageRequested({ imageId }));
+      this.form?.patchValue({ imageId });
     }
   }
 
   public onRevertImage(originalImageId?: Id | null): void {
     this.form?.patchValue({ imageId: originalImageId });
     this.imageFile = null;
-    this.newImageUrl = null;
-    this.updateStoredFile(null);
+    this.store.dispatch(ArticlesActions.bannerImageSet({ url: null }));
   }
 
   public onCancel(): void {
     this.store.dispatch(ArticlesActions.cancelSelected());
   }
 
-  public async onSubmit(articleTitle?: string | null): Promise<void> {
+  public async onSubmit(
+    bannerImageUrl: Url | null,
+    articleTitle?: string | null,
+  ): Promise<void> {
     if (this.form?.invalid || this.imageError || !isDefined(articleTitle)) {
       this.imageValidationEnabled = true;
       this.form?.markAllAsTouched();
@@ -220,8 +216,13 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (this.localStorageService.get(IMAGE_KEY)) {
-      this.store.dispatch(ImagesActions.addImageRequested({ forArticle: true }));
+    if (this.imageFile) {
+      this.store.dispatch(
+        ImagesActions.addImageRequested({
+          dataUrl: bannerImageUrl!,
+          forArticle: true,
+        }),
+      );
     } else if (this.controlMode === 'edit') {
       this.store.dispatch(ArticlesActions.updateArticleRequested({}));
     } else {
@@ -243,7 +244,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  private initFormValueChangeListener() {
+  private initFormValueChangeListener(): void {
     this.form?.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((value: Partial<ArticleFormData>) => {
@@ -254,31 +255,14 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     this.form?.updateValueAndValidity();
   }
 
-  private setImageByFile(imageFile: Blob): void {
-    this.imageValidationEnabled = true;
-    this.form?.patchValue({ imageId: null });
-    this.imageFile = imageFile;
-    this.newImageUrl = URL.createObjectURL(imageFile);
-  }
-
-  private setImageById(imageId: Id): void {
-    this.imageValidationEnabled = true;
-    this.form?.patchValue({ imageId });
-    this.imageFile = null;
-    this.store
-      .select(ImagesSelectors.selectImageById(imageId))
-      .pipe(first(isDefined))
-      .subscribe(image => (this.newImageUrl = image.presignedUrl));
-    this.updateStoredFile(null);
-  }
-
-  private updateStoredFile(dataUrl: Url | null): void {
-    if (dataUrl) {
+  private handleBannerImage(bannerImageUrl: Url | null, article?: Article | null): void {
+    if (!isDefined(bannerImageUrl) && isDefined(article?.imageId)) {
       this.store.dispatch(
-        AppActions.itemSetInLocalStorage({ key: IMAGE_KEY, item: dataUrl }),
+        ImagesActions.fetchArticleBannerImageRequested({
+          imageId: article.imageId,
+          setAsOriginal: true,
+        }),
       );
-    } else {
-      this.store.dispatch(AppActions.itemRemovedFromLocalStorage({ key: IMAGE_KEY }));
     }
   }
 }

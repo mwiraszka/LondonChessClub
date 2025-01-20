@@ -34,7 +34,8 @@ export const membersReducer = createReducer(
 
   on(
     MembersActions.fetchMembersSucceeded,
-    (state, { members }): MembersState => membersAdapter.addMany(members, state),
+    (state, { members }): MembersState =>
+      membersAdapter.setAll<MembersState>(members, state),
   ),
 
   on(
@@ -56,14 +57,14 @@ export const membersReducer = createReducer(
   on(
     MembersActions.fetchMemberSucceeded,
     (state, { member }): MembersState =>
-      membersAdapter.upsertOne(member, { ...state, memberId: member.id }),
+      membersAdapter.upsertOne<MembersState>(member, { ...state, memberId: member.id }),
   ),
 
   on(
     MembersActions.addMemberSucceeded,
     MembersActions.updateMemberSucceeded,
     (state, { member }): MembersState =>
-      membersAdapter.upsertOne(member, {
+      membersAdapter.upsertOne<MembersState>(member, {
         ...state,
         memberId: null,
         memberFormData: null,
@@ -73,7 +74,7 @@ export const membersReducer = createReducer(
   on(
     MembersActions.deleteMemberSucceeded,
     (state, { member }): MembersState =>
-      membersAdapter.removeOne(member.id!, {
+      membersAdapter.removeOne<MembersState>(member.id!, {
         ...state,
         memberId: null,
         memberFormData: null,

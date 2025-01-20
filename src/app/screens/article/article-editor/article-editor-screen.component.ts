@@ -10,8 +10,6 @@ import { ScreenHeaderComponent } from '@app/components/screen-header/screen-head
 import type { InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ArticlesSelectors } from '@app/store/articles';
-import { ImagesActions } from '@app/store/images';
-import { isDefined } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -44,13 +42,7 @@ export class ArticleEditorScreenComponent implements OnInit {
   ngOnInit(): void {
     this.articleEditorScreenViewModel$
       .pipe(untilDestroyed(this))
-      .subscribe(({ article, articleTitle, controlMode }) => {
-        if (!isDefined(article?.imageUrl) && isDefined(article?.imageId)) {
-          this.store.dispatch(
-            ImagesActions.fetchArticleBannerImageRequested({ imageId: article.imageId }),
-          );
-        }
-
+      .subscribe(({ articleTitle, controlMode }) => {
         const screenTitle =
           controlMode === 'edit' && articleTitle
             ? `Edit ${articleTitle}`

@@ -5,6 +5,9 @@ const LOCAL_STORAGE_TOKEN = new InjectionToken<Storage>('Local Storage', {
   factory: () => localStorage,
 });
 
+/**
+ * Currently not implemented anywhere.
+ */
 @Injectable({
   providedIn: 'root',
 })

@@ -1,7 +1,7 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 
-import type { Article, ArticleFormData, ControlMode, Id } from '@app/models';
+import type { Article, ArticleFormData, ControlMode, Id, Url } from '@app/models';
 import { ImagesActions } from '@app/store/images';
 import { customSort } from '@app/utils';
 
@@ -10,6 +10,8 @@ import * as ArticlesActions from './articles.actions';
 export interface ArticlesState extends EntityState<Article> {
   articleId: Id | null;
   articleFormData: ArticleFormData | null;
+  bannerImageUrl: Url | null;
+  originalBannerImageUrl: Url | null;
   controlMode: ControlMode | null;
 }
 
@@ -21,6 +23,8 @@ export const articlesAdapter = createEntityAdapter<Article>({
 export const articlesInitialState: ArticlesState = articlesAdapter.getInitialState({
   articleId: null,
   articleFormData: null,
+  bannerImageUrl: null,
+  originalBannerImageUrl: null,
   controlMode: null,
 });
 
@@ -29,49 +33,7 @@ export const articlesReducer = createReducer(
 
   on(
     ArticlesActions.fetchArticlesSucceeded,
-    (state, { articles }): ArticlesState => articlesAdapter.addMany(articles, state),
-  ),
-
-  on(
-    ImagesActions.fetchArticleBannerImageSucceeded,
-    (state, { image }): ArticlesState => {
-      const entityEntry = Object.entries(state.entities).find(
-        entity => entity[1]!.imageId === image.id,
-      );
-      if (!entityEntry) {
-        return state;
-      }
-      const articleId = entityEntry[0];
-
-      return articlesAdapter.mapOne(
-        {
-          id: articleId,
-          map: article => ({ ...article, imageUrl: image.presignedUrl }),
-        },
-        state,
-      );
-    },
-  ),
-
-  on(
-    ImagesActions.fetchArticleBannerImageThumbnailsSucceeded,
-    (state, { images }): ArticlesState =>
-      articlesAdapter.map(article => {
-        const articleBannerImage = images.find(
-          image => image.id === `${article.imageId}-600x400`,
-        );
-        return articleBannerImage
-          ? { ...article, thumbnailImageUrl: articleBannerImage.presignedUrl }
-          : article;
-      }, state),
-  ),
-
-  on(
-    ArticlesActions.newArticleRequested,
-    (state): ArticlesState => ({
-      ...state,
-      controlMode: 'add',
-    }),
+    (state, { articles }): ArticlesState => articlesAdapter.setAll(articles, state),
   ),
 
   on(
@@ -83,26 +45,56 @@ export const articlesReducer = createReducer(
   ),
 
   on(
+    ArticlesActions.newArticleRequested,
+    (state): ArticlesState => ({
+      ...state,
+      controlMode: 'add',
+    }),
+  ),
+
+  on(
     ArticlesActions.fetchArticleSucceeded,
     (state, { article }): ArticlesState =>
-      articlesAdapter.upsertOne(article, { ...state, articleId: article.id }),
+      articlesAdapter.upsertOne<ArticlesState>(article, {
+        ...state,
+        articleId: article.id,
+      }),
+  ),
+
+  on(
+    ImagesActions.fetchArticleBannerImageSucceeded,
+    (state, { image, setAsOriginal }): ArticlesState => ({
+      ...state,
+      bannerImageUrl: image.presignedUrl,
+      originalBannerImageUrl: setAsOriginal
+        ? image.presignedUrl
+        : state.originalBannerImageUrl,
+    }),
+  ),
+
+  on(
+    ArticlesActions.bannerImageSet,
+    (state, { url }): ArticlesState => ({
+      ...state,
+      bannerImageUrl: url,
+    }),
   ),
 
   on(
     ArticlesActions.publishArticleSucceeded,
     ArticlesActions.updateArticleSucceeded,
     (state, { article }): ArticlesState =>
-      articlesAdapter.upsertOne(article, {
+      articlesAdapter.upsertOne<ArticlesState>(article, {
         ...state,
-        articleId: null,
         articleFormData: null,
+        bannerImageUrl: null,
       }),
   ),
 
   on(
     ArticlesActions.deleteArticleSucceeded,
     (state, { article }): ArticlesState =>
-      articlesAdapter.removeOne(article.id!, {
+      articlesAdapter.removeOne<ArticlesState>(article.id!, {
         ...state,
         articleId: null,
         articleFormData: null,
@@ -123,6 +115,8 @@ export const articlesReducer = createReducer(
       ...state,
       articleId: null,
       articleFormData: null,
+      bannerImageUrl: null,
+      originalBannerImageUrl: null,
       controlMode: null,
     }),
   ),

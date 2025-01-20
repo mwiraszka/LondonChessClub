@@ -1,6 +1,13 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Article, ArticleFormData, ControlMode, Id, LccError } from '@app/models';
+import type {
+  Article,
+  ArticleFormData,
+  ControlMode,
+  Id,
+  LccError,
+  Url,
+} from '@app/models';
 
 export const fetchArticlesRequested = createAction('[Articles] Fetch articles requested');
 export const fetchArticlesSucceeded = createAction(
@@ -23,6 +30,15 @@ export const fetchArticleSucceeded = createAction(
 );
 export const fetchArticleFailed = createAction(
   '[Articles] Fetch article failed',
+  props<{ error: LccError }>(),
+);
+
+export const bannerImageSet = createAction(
+  '[Articles] Banner image set',
+  props<{ url: Url | null }>(),
+);
+export const bannerImageFileLoadFailed = createAction(
+  '[Articles] Banner image file load failed',
   props<{ error: LccError }>(),
 );
 

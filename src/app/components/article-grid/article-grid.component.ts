@@ -14,7 +14,10 @@ import type {
   Article,
   BasicDialogResult,
   Dialog,
+  Id,
+  Image,
   InternalLink,
+  Url,
 } from '@app/models';
 import {
   FormatDatePipe,
@@ -73,6 +76,16 @@ export class ArticleGridComponent implements OnInit {
   public fetchArticleData(): void {
     this.store.dispatch(ArticlesActions.fetchArticlesRequested());
     this.store.dispatch(ImagesActions.fetchArticleBannerImageThumbnailsRequested());
+  }
+
+  public getArticleThumbnailImageUrl(
+    imageId: Id | null,
+    thumbnailImages: Image[],
+  ): Url | null {
+    return (
+      thumbnailImages.find(image => image.id === `${imageId}-600x400`)?.presignedUrl ??
+      null
+    );
   }
 
   public getAdminControlsConfig(article: Article): AdminControlsConfig {

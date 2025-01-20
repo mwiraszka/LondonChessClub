@@ -1,14 +1,14 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { ImagesService, LoaderService, LocalStorageService } from '@app/services';
+import { LccError } from '@app/models';
+import { ImagesService, LoaderService } from '@app/services';
+import { dataUrlToBlob } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
 
-import { IMAGE_KEY } from '.';
-import { AppActions } from '../app';
 import * as ImagesActions from './images.actions';
 
 @Injectable()
@@ -41,10 +41,13 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchArticleBannerImageRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ imageId }) =>
+      switchMap(({ imageId, setAsOriginal }) =>
         this.imagesService.getImage(imageId).pipe(
           map(response =>
-            ImagesActions.fetchArticleBannerImageSucceeded({ image: response.data }),
+            ImagesActions.fetchArticleBannerImageSucceeded({
+              image: response.data,
+              setAsOriginal,
+            }),
           ),
           catchError(error =>
             of(
@@ -63,25 +66,16 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.addImageRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ forArticle }) => {
-        const imageDataUrl = this.localStorageService.get<string>(IMAGE_KEY);
+      switchMap(({ dataUrl, forArticle }) => {
+        const imageFile = dataUrlToBlob(dataUrl);
 
-        if (!imageDataUrl) {
-          return of(
-            ImagesActions.addImageFailed({
-              error: { message: 'Unable to retrieve image data URL from local storage.' },
-            }),
-          );
+        if (!imageFile) {
+          const error: LccError = {
+            message: 'Unable to construct file object from image data URL.',
+          };
+          return of(ImagesActions.addImageFailed({ error }));
         }
 
-        const byteString = atob(imageDataUrl.split(',')[1]);
-        const arrayBuffer = new ArrayBuffer(byteString.length);
-        const int8Array = new Uint8Array(arrayBuffer);
-
-        for (let i = 0; i < byteString.length; i++) {
-          int8Array[i] = byteString.charCodeAt(i);
-        }
-        const imageFile: Blob = new Blob([int8Array], { type: 'image/jpeg' });
         const imageFormData = new FormData();
         imageFormData.append('imageFile', imageFile);
 
@@ -112,18 +106,9 @@ export class ImagesEffects {
     );
   });
 
-  removeStoredArticleImageFromLocalStorage$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ImagesActions.addImageSucceeded),
-      filter(({ forArticle }) => !!forArticle),
-      map(() => AppActions.itemRemovedFromLocalStorage({ key: IMAGE_KEY })),
-    );
-  });
-
   constructor(
     private readonly actions$: Actions,
     private readonly imagesService: ImagesService,
     private readonly loaderService: LoaderService,
-    private readonly localStorageService: LocalStorageService,
   ) {}
 }

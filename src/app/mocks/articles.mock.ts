@@ -43,8 +43,6 @@ export const MOCK_ARTICLES: Article[] = [
       |L23 (b)	|L26 (b)	|0.0|
     `,
     imageId: generateId(8),
-    imageUrl: null,
-    thumbnailImageUrl: null,
     bookmarkDate: moment('2025-02-02').toISOString(),
     modificationInfo: {
       createdBy: 'John Doe',
@@ -129,8 +127,6 @@ export const MOCK_ARTICLES: Article[] = [
       ## Photos\n<br>\n\nComing soon...
     `,
     imageId: generateId(8),
-    imageUrl: null,
-    thumbnailImageUrl: null,
     bookmarkDate: moment('2025-01-10').toISOString(),
     modificationInfo: {
       createdBy: 'El Presidente',
@@ -147,8 +143,6 @@ export const MOCK_ARTICLES: Article[] = [
       # An article header\n\n<br><br>\n\nAnd not much text underneath it.
     `,
     imageId: generateId(8),
-    imageUrl: 'mock-image-url',
-    thumbnailImageUrl: null,
     bookmarkDate: null,
     modificationInfo: {
       createdBy: 'El Presidente',
@@ -162,8 +156,6 @@ export const MOCK_ARTICLES: Article[] = [
     title: 'An even shorter one',
     body: `Got nothing to say!`,
     imageId: generateId(8),
-    imageUrl: null,
-    thumbnailImageUrl: null,
     bookmarkDate: null,
     modificationInfo: {
       createdBy: 'Jack Sparrow',
@@ -177,8 +169,6 @@ export const MOCK_ARTICLES: Article[] = [
     title: 'An article currently being modified',
     body: `Some article body text here...`,
     imageId: null,
-    imageUrl: 'mock-image-url',
-    thumbnailImageUrl: 'mock-thumbnail-image-url',
     bookmarkDate: moment('2025-01-20T14:00:05').toISOString(),
     modificationInfo: {
       createdBy: 'John Doe',

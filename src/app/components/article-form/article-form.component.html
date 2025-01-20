@@ -2,7 +2,7 @@
   @defer {
     <img
       class="banner-image"
-      [src]="newImageUrl ?? vm.article?.imageUrl"
+      [src]="vm.bannerImageUrl ?? originalBannerImageUrl"
       default="assets/image-placeholder.png"
       alt="Article banner image" />
   } @placeholder (minimum 0.5s) {
@@ -15,7 +15,9 @@
     <form
       class="lcc-form"
       [formGroup]="form"
-      (ngSubmit)="onSubmit(vm.article?.title ?? vm.articleFormData?.title)">
+      (ngSubmit)="
+        onSubmit(vm.bannerImageUrl, vm.article?.title ?? vm.articleFormData?.title)
+      ">
       <div class="lcc-form-fields">
         <label class="lcc-required-field">Banner Image:</label>
 

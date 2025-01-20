@@ -30,38 +30,6 @@ describe('ArticleComponent', () => {
       });
   });
 
-  describe('without article', () => {
-    beforeEach(async () => {
-      component.article = undefined;
-      fixture.detectChanges();
-    });
-
-    it('should render all containers', () => {
-      expect(getDebugElement('.banner-image-container')).not.toBeNull();
-      expect(getDebugElement('.article-details-container')).not.toBeNull();
-      expect(getDebugElement('.editor-container')).not.toBeNull();
-      expect(getDebugElement('.markdown-container')).not.toBeNull();
-    });
-
-    it('should render loading placeholder image', () => {
-      expect(getDebugElement('.loading-placeholder-image')).not.toBeNull();
-    });
-
-    it('should render Markdown Renderer component', () => {
-      expect(getDebugElement('lcc-markdown-renderer')).not.toBeNull();
-    });
-
-    it('should not render any article content elements', () => {
-      expect(getDebugElement('.banner-image')).toBeNull();
-      expect(getDebugElement('.title')).toBeNull();
-      expect(getDebugElement('.author-name')).toBeNull();
-      expect(getDebugElement('.date-created')).toBeNull();
-      expect(getDebugElement('.updated')).toBeNull();
-      expect(getDebugElement('.editor-name')).toBeNull();
-      expect(getDebugElement('.date-last-edited')).toBeNull();
-    });
-  });
-
   describe('with article', () => {
     beforeEach(() => {
       component.article = MOCK_ARTICLES[2];

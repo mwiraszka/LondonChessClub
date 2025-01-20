@@ -29,7 +29,7 @@ export const eventsReducer = createReducer(
 
   on(
     EventsActions.fetchEventsSucceeded,
-    (state, { events }): EventsState => eventsAdapter.addMany(events, state),
+    (state, { events }): EventsState => eventsAdapter.setAll<EventsState>(events, state),
   ),
 
   on(
@@ -51,20 +51,24 @@ export const eventsReducer = createReducer(
   on(
     EventsActions.fetchEventSucceeded,
     (state, { event }): EventsState =>
-      eventsAdapter.upsertOne(event, { ...state, eventId: event.id }),
+      eventsAdapter.upsertOne<EventsState>(event, { ...state, eventId: event.id }),
   ),
 
   on(
     EventsActions.addEventSucceeded,
     EventsActions.updateEventSucceeded,
     (state, { event }): EventsState =>
-      eventsAdapter.upsertOne(event, { ...state, eventId: null, eventFormData: null }),
+      eventsAdapter.upsertOne<EventsState>(event, {
+        ...state,
+        eventId: null,
+        eventFormData: null,
+      }),
   ),
 
   on(
     EventsActions.deleteEventSucceeded,
     (state, { event }): EventsState =>
-      eventsAdapter.removeOne(event.id!, {
+      eventsAdapter.removeOne<EventsState>(event.id!, {
         ...state,
         eventId: null,
         eventFormData: null,

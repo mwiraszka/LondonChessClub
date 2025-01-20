@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 
-import { Id, IsoDate, Url } from './core.model';
+import { Id, IsoDate } from './core.model';
 import type { ModificationInfo } from './modification-info.model';
 
 export interface Article {
@@ -8,16 +8,11 @@ export interface Article {
   title: string;
   body: string;
   imageId: Id | null;
-  imageUrl: Url | null;
-  thumbnailImageUrl: Url | null;
   bookmarkDate: IsoDate | null;
   modificationInfo: ModificationInfo;
 }
 
-export type ArticleFormData = Omit<
-  Article,
-  'id' | 'imageUrl' | 'thumbnailImageUrl' | 'modificationInfo' | 'bookmarkDate'
->;
+export type ArticleFormData = Omit<Article, 'id' | 'modificationInfo' | 'bookmarkDate'>;
 
 export type ArticleFormGroup<ArticleFormData> = {
   [Property in keyof ArticleFormData]: FormControl<ArticleFormData[Property]>;

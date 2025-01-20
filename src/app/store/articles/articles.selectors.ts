@@ -3,9 +3,9 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { newArticleFormTemplate } from '@app/components/article-form/new-article-form-template';
 import type { ArticleFormData, Id } from '@app/models';
 import { AuthSelectors } from '@app/store/auth';
-import { ImagesSelectors } from '@app/store/images';
 import { areSame } from '@app/utils';
 
+import { ImagesSelectors } from '../images';
 import { ArticlesState, articlesAdapter } from './articles.reducer';
 
 const selectArticlesState = createFeatureSelector<ArticlesState>('articlesState');
@@ -40,6 +40,16 @@ export const selectArticleFormData = createSelector(
   state => state.articleFormData,
 );
 
+export const selectBannerImageUrl = createSelector(
+  selectArticlesState,
+  state => state.bannerImageUrl,
+);
+
+export const selectOriginalBannerImageUrl = createSelector(
+  selectArticlesState,
+  state => state.originalBannerImageUrl,
+);
+
 export const selectControlMode = createSelector(
   selectArticlesState,
   state => state.controlMode,
@@ -49,9 +59,11 @@ export const selectHasUnsavedChanges = createSelector(
   selectControlMode,
   selectArticle,
   selectArticleFormData,
-  ImagesSelectors.selectIsNewImageStored,
-  (controlMode, article, articleFormData, isNewImageStored) => {
-    if (isNewImageStored) {
+  selectBannerImageUrl,
+  (controlMode, article, articleFormData, bannerImageUrl) => {
+    const includesNewImageFile = bannerImageUrl?.startsWith('data:image');
+
+    if (includesNewImageFile) {
       return true;
     }
 
@@ -79,11 +91,11 @@ export const selectHasUnsavedChanges = createSelector(
 
 export const selectArticleViewerScreenViewModel = createSelector({
   article: selectArticle,
+  bannerImageUrl: selectBannerImageUrl,
   isAdmin: AuthSelectors.selectIsAdmin,
 });
 
 export const selectArticleEditorScreenViewModel = createSelector({
-  article: selectArticle,
   articleTitle: selectArticleTitle,
   controlMode: selectControlMode,
   hasUnsavedChanges: selectHasUnsavedChanges,
@@ -91,12 +103,15 @@ export const selectArticleEditorScreenViewModel = createSelector({
 
 export const selectArticleGridViewModel = createSelector({
   articles: selectAllArticles,
+  thumbnailImages: ImagesSelectors.selectThumbnailImages,
   isAdmin: AuthSelectors.selectIsAdmin,
 });
 
 export const selectArticleFormViewModel = createSelector({
   article: selectArticle,
   articleFormData: selectArticleFormData,
+  bannerImageUrl: selectBannerImageUrl,
+  originalBannerImageUrl: selectOriginalBannerImageUrl,
   controlMode: selectControlMode,
   hasUnsavedChanges: selectHasUnsavedChanges,
 });

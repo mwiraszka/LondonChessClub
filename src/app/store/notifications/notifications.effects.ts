@@ -6,7 +6,6 @@ import { delay, filter, map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import type { Toast } from '@app/models';
-import { AppActions } from '@app/store/app';
 import { ArticlesActions } from '@app/store/articles';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
@@ -131,6 +130,20 @@ export class NotificationsEffects {
         const toast: Toast = {
           title: 'Load article',
           message: `[${error.status}] ${error.message}`,
+          type: 'warning',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addBannerImageFileLoadFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.bannerImageFileLoadFailed),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Load banner image file',
+          message: error.message,
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -579,41 +592,6 @@ export class NotificationsEffects {
   });
   //#endregion
 
-  //#region Local storage
-  addLocalStorageDetectedUnsupportedToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(AppActions.localStorageDetectedUnsupported),
-      map(() => {
-        const toast: Toast = {
-          title: 'Unsupported local storage',
-          message: `
-            Local storage is not supported on this browser,
-            which just means some fancy features may not work as expected.
-          `,
-          type: 'info',
-        };
-        return NotificationsActions.toastAdded({ toast });
-      }),
-    );
-  });
-
-  addLocalStorageDetectedFullToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(AppActions.localStorageDetectedFull),
-      map(({ fileSize }) => {
-        const toast: Toast = {
-          title: 'Local storage quota exceeded',
-          message: `
-            Oops! File (${fileSize}) does not fit in your browser's local storage - try a smaller file.
-          `,
-          type: 'warning',
-        };
-        return NotificationsActions.toastAdded({ toast });
-      }),
-    );
-  });
-  //#endregion
-
   expireToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(NotificationsActions.toastAdded),
@@ -631,6 +609,7 @@ export class NotificationsEffects {
           ArticlesActions.deleteArticleFailed,
           ArticlesActions.fetchArticlesFailed,
           ArticlesActions.fetchArticleFailed,
+          ArticlesActions.bannerImageFileLoadFailed,
           AuthActions.loginFailed,
           AuthActions.codeForPasswordChangeFailed,
           AuthActions.passwordChangeFailed,
@@ -649,7 +628,7 @@ export class NotificationsEffects {
           MembersActions.fetchMembersFailed,
           MembersActions.fetchMemberFailed,
         ),
-        tap(error => console.error('[LCC]', error)),
+        tap(({ error }) => console.error('[LCC]', error)),
       );
     },
     { dispatch: false },

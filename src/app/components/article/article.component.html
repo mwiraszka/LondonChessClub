@@ -2,7 +2,7 @@
   @defer {
     <img
       class="banner-image"
-      [src]="article?.imageUrl"
+      [src]="bannerImageUrl"
       default="assets/image-placeholder.png"
       alt="Article image banner" />
   } @placeholder (minimum 0.5s) {
@@ -47,5 +47,5 @@
 <hr />
 
 <div class="markdown-container">
-  <lcc-markdown-renderer [data]="article?.body"></lcc-markdown-renderer>
+  <lcc-markdown-renderer [data]="article.body"></lcc-markdown-renderer>
 </div>

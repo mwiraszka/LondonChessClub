@@ -91,8 +91,6 @@ export class ArticlesEffects {
           modificationInfo,
           id: null,
           bookmarkDate: null,
-          imageUrl: null,
-          thumbnailImageUrl: null,
         };
 
         return this.articlesService.addArticle(modifiedArticle).pipe(

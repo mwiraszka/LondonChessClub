@@ -49,14 +49,23 @@
             (click)="onRevertImage(vm.article?.imageId)">
             <i-feather name="rotate-ccw"></i-feather>
           </button>
+
+          @if (imageFile) {
+            <input
+              id="image-name-input"
+              name="image-name"
+              formControlName="imageName"
+              maxlength="50"
+              type="text" />
+          }
         </div>
 
         <div class="lcc-form-error-container">
-          @if (imageError) {
+          @if (hasError(form.controls.imageName) || imageFileError) {
             <i-feather
               name="alert-triangle"
               class="lcc-form-error-icon validation-alert-icon"
-              [tooltip]="imageError">
+              [tooltip]="imageFileError ?? getErrorMessage(form.controls.imageName)">
             </i-feather>
           }
         </div>
@@ -73,11 +82,11 @@
           formControlName="title"
           maxlength="120" />
         <div class="lcc-form-error-container">
-          @if (hasError(form.controls['title'])) {
+          @if (hasError(form.controls.title)) {
             <i-feather
               name="alert-triangle"
               class="lcc-form-error-icon validation-alert-icon"
-              [tooltip]="getErrorMessage(form.controls['title'])">
+              [tooltip]="getErrorMessage(form.controls.title)">
             </i-feather>
           }
         </div>
@@ -94,11 +103,11 @@
           maxlength="50000">
         </textarea>
         <div class="lcc-form-error-container">
-          @if (hasError(form.controls['body'])) {
+          @if (hasError(form.controls.body)) {
             <i-feather
               name="alert-triangle"
               class="lcc-form-error-icon validation-alert-icon"
-              [tooltip]="getErrorMessage(form.controls['body'])">
+              [tooltip]="getErrorMessage(form.controls.body)">
             </i-feather>
           }
         </div>
@@ -107,11 +116,11 @@
       <aside class="lcc-required-fields-legend">Required fields</aside>
 
       <div class="preview-section-container">
-        @if (!!form.controls['body'].value) {
+        @if (!!form.controls.body.value) {
           <h3>Article preview:</h3>
           <hr />
           <div class="markdown-container">
-            <lcc-markdown-renderer [data]="form.controls['body'].value">
+            <lcc-markdown-renderer [data]="form.controls.body.value">
             </lcc-markdown-renderer>
           </div>
         }
@@ -131,7 +140,7 @@
         <button
           class="lcc-primary-button"
           type="submit"
-          [disabled]="form.invalid || imageError || !vm.hasUnsavedChanges">
+          [disabled]="form.invalid || !vm.hasUnsavedChanges">
           {{ vm.controlMode === 'edit' ? 'Update' : 'Publish article' }}
         </button>
       </div>

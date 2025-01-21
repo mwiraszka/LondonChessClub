@@ -16,11 +16,11 @@
           formControlName="eventDate">
         </lcc-date-picker>
         <div class="lcc-form-error-container">
-          @if (hasError(form.controls['eventDate'])) {
+          @if (hasError(form.controls.eventDate)) {
             <i-feather
               name="alert-triangle"
               class="lcc-form-error-icon validation-alert-icon"
-              [tooltip]="getErrorMessage(form.controls['eventDate'])">
+              [tooltip]="getErrorMessage(form.controls.eventDate)">
             </i-feather>
           }
         </div>
@@ -37,11 +37,11 @@
           formControlName="eventTime"
           maxlength="8" />
         <div class="lcc-form-error-container">
-          @if (hasError(form.controls['eventTime'])) {
+          @if (hasError(form.controls.eventTime)) {
             <i-feather
               name="alert-triangle"
               class="lcc-form-error-icon validation-alert-icon"
-              [tooltip]="getErrorMessage(form.controls['eventTime'])">
+              [tooltip]="getErrorMessage(form.controls.eventTime)">
             </i-feather>
           }
         </div>
@@ -58,11 +58,11 @@
           formControlName="title"
           maxlength="100" />
         <div class="lcc-form-error-container">
-          @if (hasError(form.controls['title'])) {
+          @if (hasError(form.controls.title)) {
             <i-feather
               name="alert-triangle"
               class="lcc-form-error-icon validation-alert-icon"
-              [tooltip]="getErrorMessage(form.controls['title'])">
+              [tooltip]="getErrorMessage(form.controls.title)">
             </i-feather>
           }
         </div>
@@ -80,11 +80,11 @@
           maxlength="200">
         </textarea>
         <div class="lcc-form-error-container">
-          @if (hasError(form.controls['details'])) {
+          @if (hasError(form.controls.details)) {
             <i-feather
               name="alert-triangle"
               class="lcc-form-error-icon validation-alert-icon"
-              [tooltip]="getErrorMessage(form.controls['details'])">
+              [tooltip]="getErrorMessage(form.controls.details)">
             </i-feather>
           }
         </div>
@@ -185,11 +185,11 @@
           formControlName="articleId"
           maxlength="24" />
         <div class="lcc-form-error-container">
-          @if (hasError(form.controls['articleId'])) {
+          @if (hasError(form.controls.articleId)) {
             <i-feather
               name="alert-triangle"
               class="lcc-form-error-icon validation-alert-icon"
-              [tooltip]="getErrorMessage(form.controls['articleId'])">
+              [tooltip]="getErrorMessage(form.controls.articleId)">
             </i-feather>
           }
         </div>

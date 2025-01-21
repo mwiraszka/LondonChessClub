@@ -14,6 +14,7 @@ import { RouterLink } from '@angular/router';
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
+import { LoginFormGroup, LoginRequest } from '@app/models';
 import { AuthActions } from '@app/store/auth';
 import { emailValidator } from '@app/validators';
 
@@ -24,7 +25,7 @@ import { emailValidator } from '@app/validators';
   imports: [CommonModule, IconsModule, ReactiveFormsModule, RouterLink, TooltipDirective],
 })
 export class LoginFormComponent implements OnInit {
-  public form!: FormGroup;
+  public form: FormGroup<LoginFormGroup> | null = null;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -34,10 +35,14 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       email: new FormControl('', {
-        validators: [Validators.required, emailValidator],
+        nonNullable: true,
         updateOn: 'blur',
+        validators: [Validators.required, emailValidator],
       }),
-      password: new FormControl('', Validators.required),
+      password: new FormControl('', {
+        nonNullable: true,
+        validators: Validators.required,
+      }),
     });
   }
 
@@ -46,19 +51,20 @@ export class LoginFormComponent implements OnInit {
   }
 
   public getErrorMessage(control: AbstractControl): string {
-    if (control.hasError('required')) {
-      return 'This field is required';
-    } else if (control.hasError('invalidEmailFormat')) {
-      return 'Invalid email';
-    }
-    return 'Unknown error';
+    return control.hasError('required')
+      ? 'This field is required'
+      : control.hasError('invalidEmailFormat')
+        ? 'Invalid email'
+        : 'Unknown error';
   }
 
   public onSubmit(): void {
-    if (this.form.invalid) {
+    if (this.form?.invalid) {
       this.form.markAllAsTouched();
       return;
     }
-    this.store.dispatch(AuthActions.loginRequested({ request: this.form.value }));
+
+    const request = this.form!.value as Required<LoginRequest>;
+    this.store.dispatch(AuthActions.loginRequested({ request }));
   }
 }

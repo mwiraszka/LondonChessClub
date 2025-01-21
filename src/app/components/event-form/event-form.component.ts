@@ -52,7 +52,7 @@ export class EventFormComponent implements OnInit {
   public readonly eventFormViewModel$ = this.store.select(
     EventsSelectors.selectEventFormViewModel,
   );
-  public form: FormGroup<EventFormGroup<EventFormData>> | null = null;
+  public form: FormGroup<EventFormGroup> | null = null;
 
   private controlMode: ControlMode | null = null;
 

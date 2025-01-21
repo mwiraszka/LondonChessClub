@@ -16,4 +16,4 @@ export type ArticleFormData = Omit<Article, 'id' | 'modificationInfo' | 'bookmar
 
 export type ArticleFormGroup<ArticleFormData> = {
   [Property in keyof ArticleFormData]: FormControl<ArticleFormData[Property]>;
-};
+} & { imageName: FormControl<string> };

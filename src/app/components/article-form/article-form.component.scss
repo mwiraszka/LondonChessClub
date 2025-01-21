@@ -25,6 +25,8 @@
   .image-controls-container {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
+    flex-flow: row wrap;
     gap: 8px;
 
     label[type='button'] {
@@ -41,7 +43,12 @@
     label[type='button'] {
       padding: 0;
       height: 40px;
-      width: 40px;
+      min-width: 40px;
+    }
+
+    .image-title-input {
+      min-width: 150px;
+      flex: 1;
     }
   }
 

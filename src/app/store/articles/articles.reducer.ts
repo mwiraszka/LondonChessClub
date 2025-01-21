@@ -81,6 +81,14 @@ export const articlesReducer = createReducer(
   ),
 
   on(
+    ArticlesActions.bannerImageFileLoadFailed,
+    (state): ArticlesState => ({
+      ...state,
+      bannerImageUrl: null,
+    }),
+  ),
+
+  on(
     ArticlesActions.publishArticleSucceeded,
     ArticlesActions.updateArticleSucceeded,
     (state, { article }): ArticlesState =>

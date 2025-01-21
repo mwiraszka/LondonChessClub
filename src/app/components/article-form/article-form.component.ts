@@ -10,6 +10,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -36,6 +37,7 @@ import { DialogService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
 import { dataUrlToBlob, formatBytes, isDefined } from '@app/utils';
+import { fileNameValidator } from '@app/validators';
 
 import { newArticleFormTemplate } from './new-article-form-template';
 
@@ -46,6 +48,7 @@ import { newArticleFormTemplate } from './new-article-form-template';
   styleUrl: './article-form.component.scss',
   imports: [
     CommonModule,
+    FormsModule,
     IconsModule,
     ImagePreloadDirective,
     MarkdownRendererComponent,
@@ -60,7 +63,6 @@ export class ArticleFormComponent implements OnInit {
   );
   public form: FormGroup<ArticleFormGroup<ArticleFormData>> | null = null;
   public imageFile: Blob | null = null;
-  public imageValidationEnabled: boolean = false;
   public originalBannerImageUrl: Url | null = null;
 
   private controlMode: ControlMode | null = null;
@@ -122,28 +124,27 @@ export class ArticleFormComponent implements OnInit {
   }
 
   public getErrorMessage(control: AbstractControl): string {
-    return control.hasError('required') ? 'This field is required' : 'Unknown error';
-    // Note: image file validation handled separately since it's not a form control
+    return control.hasError('required')
+      ? 'This field is required'
+      : control.hasError('invalidFileName')
+        ? 'File name can only contain letters, numbers, underscores and dashes'
+        : 'Unknown error';
   }
 
-  public get imageError(): string | null {
-    if (
-      this.imageValidationEnabled &&
-      this.controlMode === 'add' &&
-      (!this.imageFile || !this.form?.value['imageId'])
-    ) {
-      return 'This field is required';
-    }
-    return null;
+  // Image file validation handled separately since it's not a form control
+  public get imageFileError(): string | null {
+    return this.controlMode === 'add' && !this.imageFile && !this.form?.value.imageId
+      ? 'A banner image is required'
+      : null;
   }
 
   public onUploadNewImage(event: Event): void {
     const fileInputElement = event.target as HTMLInputElement;
+    const file = fileInputElement.files?.length ? fileInputElement.files[0] : null;
 
-    if (fileInputElement.files?.length) {
+    if (file) {
       const reader = new FileReader();
-      reader.readAsDataURL(fileInputElement.files[0]);
-      fileInputElement.value = '';
+      reader.readAsDataURL(file);
 
       reader.onload = () => {
         const dataUrl = reader.result as Url;
@@ -152,17 +153,24 @@ export class ArticleFormComponent implements OnInit {
         if (!this.imageFile) {
           const error: LccError = { message: 'Unable to load image file.' };
           this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));
+          this.imageFile = null;
         } else if (this.imageFile.size > 1_048_576) {
           const fileSize = formatBytes(this.imageFile.size);
           const error: LccError = {
             message: `Image file must be under 1 MB. Selected image was ${fileSize} after conversion.`,
           };
           this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));
+          this.imageFile = null;
         } else {
           this.store.dispatch(ArticlesActions.bannerImageSet({ url: dataUrl }));
+          const imageName =
+            file?.name.replace(/\.[^/./]+$/, '').replaceAll(/[^a-zA-Z0-9-_]/g, '') ?? '';
+          this.form?.patchValue({ imageName });
         }
       };
     }
+
+    fileInputElement.value = '';
   }
 
   public async onOpenImageExplorer(): Promise<void> {
@@ -172,15 +180,16 @@ export class ArticleFormComponent implements OnInit {
 
     if (thumbnailImageId) {
       const imageId = thumbnailImageId.slice(0, -8);
-      this.store.dispatch(ImagesActions.fetchArticleBannerImageRequested({ imageId }));
       this.form?.patchValue({ imageId });
+      this.store.dispatch(ImagesActions.fetchArticleBannerImageRequested({ imageId }));
+      this.imageFile = null;
     }
   }
 
   public onRevertImage(originalImageId?: Id | null): void {
     this.form?.patchValue({ imageId: originalImageId });
-    this.imageFile = null;
     this.store.dispatch(ArticlesActions.bannerImageSet({ url: null }));
+    this.imageFile = null;
   }
 
   public onCancel(): void {
@@ -191,8 +200,7 @@ export class ArticleFormComponent implements OnInit {
     bannerImageUrl: Url | null,
     articleTitle?: string | null,
   ): Promise<void> {
-    if (this.form?.invalid || this.imageError || !isDefined(articleTitle)) {
-      this.imageValidationEnabled = true;
+    if (this.form?.invalid || this.imageFileError || !isDefined(articleTitle)) {
       this.form?.markAllAsTouched();
       return;
     }
@@ -233,6 +241,10 @@ export class ArticleFormComponent implements OnInit {
   private initForm(articleFormData: ArticleFormData): void {
     this.form = this.formBuilder.group<ArticleFormGroup<ArticleFormData>>({
       imageId: new FormControl(articleFormData.imageId),
+      imageName: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, fileNameValidator],
+      }),
       title: new FormControl(articleFormData.title, {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],

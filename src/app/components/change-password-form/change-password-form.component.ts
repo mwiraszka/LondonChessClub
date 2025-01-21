@@ -16,7 +16,12 @@ import { RouterLink } from '@angular/router';
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
-import type { LoginRequest, PasswordChangeRequest, User } from '@app/models';
+import type {
+  ChangePasswordFormGroup,
+  LoginRequest,
+  PasswordChangeRequest,
+  User,
+} from '@app/models';
 import { RouterLinkPipe } from '@app/pipes';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
 import {
@@ -46,7 +51,7 @@ export class ChangePasswordFormComponent implements OnInit {
   public readonly changePasswordFormViewModel$ = this.store.select(
     AuthSelectors.selectChangePasswordFormViewModel,
   );
-  public form!: FormGroup;
+  public form: FormGroup<ChangePasswordFormGroup> | null = null;
 
   private readonly passwordValidators: ValidatorFn[] = [
     Validators.required,
@@ -101,16 +106,16 @@ export class ChangePasswordFormComponent implements OnInit {
     temporaryPassword: string | null,
   ): void {
     if (
-      ((!userHasCode || temporaryPassword) && this.form.controls['email'].invalid) ||
-      (userHasCode && this.form.invalid)
+      ((!userHasCode || temporaryPassword) && this.form?.controls.email.invalid) ||
+      (userHasCode && this.form?.invalid)
     ) {
       this.form.markAllAsTouched();
       return;
     }
 
-    const email = this.form.value['email'];
-    const newPassword = this.form.value['newPassword'];
-    const code = this.form.value['code'].toString();
+    const email = this.form?.value.email ?? '';
+    const newPassword = this.form?.value.newPassword ?? '';
+    const code = this.form?.value.code?.toString();
 
     if (user && !user?.isVerified && temporaryPassword) {
       const request: LoginRequest = {
@@ -137,21 +142,30 @@ export class ChangePasswordFormComponent implements OnInit {
 
   private initForm(): void {
     this.form = this.formBuilder.group({
-      email: new FormControl('', [Validators.required, emailValidator]),
-      code: new FormControl('', [Validators.pattern(/\d{6}/)]),
-      newPassword: new FormControl('', this.passwordValidators),
-      confirmPassword: new FormControl('', [
-        ...this.passwordValidators,
-        matchingPasswordsValidator,
-      ]),
+      email: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, emailValidator],
+      }),
+      code: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.pattern(/\d{6}/)],
+      }),
+      newPassword: new FormControl('', {
+        nonNullable: true,
+        validators: this.passwordValidators,
+      }),
+      confirmPassword: new FormControl('', {
+        nonNullable: true,
+        validators: [...this.passwordValidators, matchingPasswordsValidator],
+      }),
     });
   }
 
   private initPasswordMatchListener(): void {
-    this.form.controls['newPassword'].valueChanges
+    this.form?.controls.newPassword.valueChanges
       .pipe(untilDestroyed(this))
       .subscribe(() => {
-        this.form.controls['confirmPassword'].updateValueAndValidity();
+        this.form?.controls.confirmPassword.updateValueAndValidity();
       });
   }
 }

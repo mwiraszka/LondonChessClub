@@ -31,6 +31,6 @@ export interface Event {
 
 export type EventFormData = Omit<Event, 'id' | 'modificationInfo'>;
 
-export type EventFormGroup<EventFormData> = {
+export type EventFormGroup = {
   [Property in keyof EventFormData]: FormControl<EventFormData[Property]>;
 } & { eventTime: FormControl<string> };

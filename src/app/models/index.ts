@@ -18,7 +18,12 @@ export type { FilterFormGroup } from './filter-form-group.model';
 export type { GameDetails, GameScore } from './game-details.model';
 export type { Image } from './image.model';
 export type { ExternalLink, InternalLink, InternalPath } from './link.model';
-export type { LoginRequest, LoginResponse } from './login.model';
+export type {
+  ChangePasswordFormGroup,
+  LoginFormGroup,
+  LoginRequest,
+  LoginResponse,
+} from './login.model';
 export type { Member, MemberFormData, MemberFormGroup } from './member.model';
 export type { ModificationInfo } from './modification-info.model';
 export type { NavPath } from './nav-path.model';

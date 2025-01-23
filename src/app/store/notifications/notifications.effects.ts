@@ -277,7 +277,7 @@ export class NotificationsEffects {
       map(({ image }) => {
         const toast: Toast = {
           title: 'Add image',
-          message: `Successfully added image [${image.id}] to storage`,
+          message: `Successfully added image ${image.filename} to storage`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -305,7 +305,7 @@ export class NotificationsEffects {
       map(({ image }) => {
         const toast: Toast = {
           title: 'Image deletion',
-          message: `Successfully deleted image [${image.id}] from storage`,
+          message: `Successfully deleted image ${image.filename} from storage`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });

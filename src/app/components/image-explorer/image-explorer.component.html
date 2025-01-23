@@ -7,6 +7,11 @@
         [src]="image.presignedUrl"
         [adminControls]="getAdminControlsConfig(image)" />
 
+      <div class="filename">
+        <label>Filename:</label>
+        <span>{{ image.filename }}</span>
+      </div>
+
       <div class="thumbnail-file-size">
         <label>Thumbnail file size:</label>
         <span>{{ image.fileSize | formatBytes }}</span>

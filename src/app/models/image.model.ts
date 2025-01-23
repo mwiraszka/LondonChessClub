@@ -1,9 +1,10 @@
 import { Id, IsoDate, Url } from './core.model';
 
 export interface Image {
-  articleAppearances: number;
-  dateUploaded: IsoDate;
   id: Id;
-  presignedUrl: Url;
+  filename: string;
   fileSize: number;
+  dateUploaded: IsoDate;
+  presignedUrl: Url;
+  articleAppearances: number;
 }

@@ -60,7 +60,7 @@ export class MemberFormComponent implements OnInit {
     MembersSelectors.selectMemberFormViewModel,
   );
 
-  public form: FormGroup<MemberFormGroup<MemberFormData>> | null = null;
+  public form: FormGroup<MemberFormGroup> | null = null;
 
   private controlMode: ControlMode | null = null;
 
@@ -69,8 +69,8 @@ export class MemberFormComponent implements OnInit {
       BasicDialogComponent,
       BasicDialogResult
     >,
-    private readonly store: Store,
     private readonly formBuilder: FormBuilder,
+    private readonly store: Store,
   ) {}
 
   ngOnInit(): void {
@@ -137,7 +137,7 @@ export class MemberFormComponent implements OnInit {
     }
 
     const dialog: Dialog = {
-      title: this.controlMode === 'edit' ? 'Confirm member update' : 'Confirm new member',
+      title: this.controlMode === 'edit' ? 'Update member' : 'Add new member',
       body:
         this.controlMode === 'edit'
           ? `Update ${memberName}?`
@@ -162,7 +162,7 @@ export class MemberFormComponent implements OnInit {
   }
 
   private initForm(memberFormData: MemberFormData): void {
-    this.form = this.formBuilder.group<MemberFormGroup<MemberFormData>>({
+    this.form = this.formBuilder.group<MemberFormGroup>({
       firstName: new FormControl(memberFormData.firstName, {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],

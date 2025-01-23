@@ -12,7 +12,7 @@ export { isValidTime } from './datetime/is-valid-time.util';
 
 export { parseError } from './error/parse-error.util';
 
-export { dataUrlToBlob } from './file/data-url-to-blob.util';
+export { dataUrlToFile } from './file/data-url-to-file.util';
 export { formatBytes } from './file/format-bytes.util';
 export { parseCsv } from './file/parse-csv.util';
 

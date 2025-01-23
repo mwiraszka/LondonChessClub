@@ -61,8 +61,8 @@ export class EventFormComponent implements OnInit {
       BasicDialogComponent,
       BasicDialogResult
     >,
-    private readonly store: Store,
     private readonly formBuilder: FormBuilder,
+    private readonly store: Store,
   ) {}
 
   ngOnInit(): void {
@@ -120,7 +120,7 @@ export class EventFormComponent implements OnInit {
     }
 
     const dialog: Dialog = {
-      title: this.controlMode === 'edit' ? 'Confirm event update' : 'Confirm new event',
+      title: this.controlMode === 'edit' ? 'Update event' : 'Add new event',
       body: this.controlMode === 'edit' ? `Update ${eventTitle}?` : `Add ${eventTitle}?`,
       confirmButtonText: this.controlMode === 'edit' ? 'Update' : 'Add',
     };

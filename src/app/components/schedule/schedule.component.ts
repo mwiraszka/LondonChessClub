@@ -74,7 +74,7 @@ export class ScheduleComponent implements OnInit {
 
   public async onDeleteEvent(event: Event): Promise<void> {
     const dialog: Dialog = {
-      title: 'Confirm event deletion',
+      title: 'Delete event',
       body: `Delete ${event.title}?`,
       confirmButtonText: 'Delete',
       confirmButtonType: 'warning',

@@ -158,8 +158,8 @@ export class MembersEffects {
 
   constructor(
     private readonly actions$: Actions,
+    private readonly loaderService: LoaderService,
+    private readonly membersService: MembersService,
     private readonly store: Store,
-    private loaderService: LoaderService,
-    private membersService: MembersService,
   ) {}
 }

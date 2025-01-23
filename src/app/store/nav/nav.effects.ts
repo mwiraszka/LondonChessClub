@@ -228,7 +228,7 @@ export class NavEffects {
 
   constructor(
     private readonly actions$: Actions,
-    private readonly store: Store,
     private readonly router: Router,
+    private readonly store: Store,
   ) {}
 }

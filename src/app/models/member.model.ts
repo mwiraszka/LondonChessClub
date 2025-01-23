@@ -22,6 +22,6 @@ export interface Member {
 
 export type MemberFormData = Omit<Member, 'id' | 'modificationInfo'>;
 
-export type MemberFormGroup<MemberFormData> = {
+export type MemberFormGroup = {
   [Property in keyof MemberFormData]: FormControl<MemberFormData[Property]>;
 };

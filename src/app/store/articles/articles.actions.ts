@@ -4,6 +4,7 @@ import type {
   Article,
   ArticleFormData,
   ControlMode,
+  FileData,
   Id,
   LccError,
   Url,
@@ -35,7 +36,7 @@ export const fetchArticleFailed = createAction(
 
 export const bannerImageSet = createAction(
   '[Articles] Banner image set',
-  props<{ url: Url | null }>(),
+  props<{ url: Url | null; fileData: FileData | null }>(),
 );
 export const bannerImageFileLoadFailed = createAction(
   '[Articles] Banner image file load failed',

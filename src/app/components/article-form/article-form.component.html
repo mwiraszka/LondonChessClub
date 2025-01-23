@@ -2,7 +2,7 @@
   @defer {
     <img
       class="banner-image"
-      [src]="vm.bannerImageUrl ?? originalBannerImageUrl"
+      [src]="vm.bannerImageUrl ?? vm.originalBannerImageUrl"
       default="assets/image-placeholder.png"
       alt="Article banner image" />
   } @placeholder (minimum 0.5s) {
@@ -15,9 +15,7 @@
     <form
       class="lcc-form"
       [formGroup]="form"
-      (ngSubmit)="
-        onSubmit(vm.bannerImageUrl, vm.article?.title ?? vm.articleFormData?.title)
-      ">
+      (ngSubmit)="onSubmit(vm.article?.title ?? vm.articleFormData?.title)">
       <div class="lcc-form-fields">
         <label class="lcc-required-field">Banner Image:</label>
 
@@ -45,27 +43,33 @@
             class="revert-button lcc-secondary-button"
             type="button"
             tooltip="Revert to original image"
-            [disabled]="vm.article?.imageId === vm.articleFormData?.imageId && !imageFile"
+            [disabled]="
+              vm.article?.imageId === vm.articleFormData?.imageId && !imageFileData
+            "
             (click)="onRevertImage(vm.article?.imageId)">
             <i-feather name="rotate-ccw"></i-feather>
           </button>
 
-          @if (imageFile) {
+          @if (imageFileData) {
             <input
-              id="image-name-input"
-              name="image-name"
-              formControlName="imageName"
+              id="image-filename-input"
+              name="image-filename"
+              formControlName="imageFilename"
               maxlength="50"
               type="text" />
           }
         </div>
 
         <div class="lcc-form-error-container">
-          @if (hasError(form.controls.imageName) || imageFileError) {
+          @if (
+            ((imageFileData && hasError(form.controls.imageFilename)) ||
+              imageFileError) &&
+            isImageValidationActive
+          ) {
             <i-feather
               name="alert-triangle"
               class="lcc-form-error-icon validation-alert-icon"
-              [tooltip]="imageFileError ?? getErrorMessage(form.controls.imageName)">
+              [tooltip]="imageFileError ?? getErrorMessage(form.controls.imageFilename)">
             </i-feather>
           }
         </div>

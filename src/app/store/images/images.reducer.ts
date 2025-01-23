@@ -2,12 +2,15 @@ import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 
 import { Image } from '@app/models';
+import { customSort } from '@app/utils';
 
 import * as ImagesActions from './images.actions';
 
 export type ImagesState = EntityState<Image>;
 
-export const imagesAdapter = createEntityAdapter<Image>();
+export const imagesAdapter = createEntityAdapter<Image>({
+  sortComparer: (a, b) => customSort(a, b, 'dateUploaded', true),
+});
 
 export const imagesInitialState: ImagesState = imagesAdapter.getInitialState({});
 
@@ -32,6 +35,6 @@ export const imagesReducer = createReducer(
   on(
     ImagesActions.deleteImageSucceeded,
     (state, { image }): ImagesState =>
-      imagesAdapter.removeMany([image.id, `${image.id}-600x400`], state),
+      imagesAdapter.removeMany([image.id, `${image.id}-thumb`], state),
   ),
 );

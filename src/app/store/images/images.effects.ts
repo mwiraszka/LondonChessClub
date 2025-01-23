@@ -1,12 +1,15 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { concatLatestFrom } from '@ngrx/operators';
+import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { LccError } from '@app/models';
 import { ImagesService, LoaderService } from '@app/services';
-import { dataUrlToBlob } from '@app/utils';
+import { ArticlesSelectors } from '@app/store/articles';
+import { dataUrlToFile, isDefined } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
 
 import * as ImagesActions from './images.actions';
@@ -66,8 +69,14 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.addImageRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ dataUrl, forArticle }) => {
-        const imageFile = dataUrlToBlob(dataUrl);
+      concatLatestFrom(() => [
+        this.store.select(ArticlesSelectors.selectBannerImageUrl).pipe(filter(isDefined)),
+        this.store
+          .select(ArticlesSelectors.selectBannerImageFileData)
+          .pipe(filter(isDefined)),
+      ]),
+      switchMap(([{ filename, forArticle }, dataUrl, fileData]) => {
+        const imageFile = dataUrlToFile(dataUrl, filename, fileData);
 
         if (!imageFile) {
           const error: LccError = {
@@ -110,5 +119,6 @@ export class ImagesEffects {
     private readonly actions$: Actions,
     private readonly imagesService: ImagesService,
     private readonly loaderService: LoaderService,
+    private readonly store: Store,
   ) {}
 }

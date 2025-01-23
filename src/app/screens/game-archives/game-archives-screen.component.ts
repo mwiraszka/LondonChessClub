@@ -95,11 +95,11 @@ export class GameArchivesScreenComponent implements OnInit {
   public cdkVirtualScrollViewport?: CdkVirtualScrollViewport;
 
   constructor(
+    private readonly chessOpeningsService: ChessOpeningsService,
     private readonly formBuilder: FormBuilder,
-    private readonly store: Store,
-    private chessOpeningsService: ChessOpeningsService,
-    private loaderService: LoaderService,
+    private readonly loaderService: LoaderService,
     private readonly metaAndTitleService: MetaAndTitleService,
+    private readonly store: Store,
   ) {}
 
   @HostListener('window:resize', ['$event'])

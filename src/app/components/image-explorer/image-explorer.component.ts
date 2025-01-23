@@ -59,7 +59,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
     return {
       buttonSize: 34,
       deleteCb: () => this.onDeleteImage(image),
-      itemName: image.id?.slice(0, -8),
+      itemName: image.filename,
     };
   }
 
@@ -68,10 +68,10 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
       return;
     }
 
-    const mainImageId = image.id?.slice(0, -8);
+    const mainImageId = image.id?.split('-')[0];
     const dialog: Dialog = {
-      title: 'Confirm image deletion',
-      body: `Delete image [${mainImageId}]?`,
+      title: 'Delete image',
+      body: `Delete ${image.filename}?`,
       confirmButtonText: 'Delete',
       confirmButtonType: 'warning',
     };
@@ -90,11 +90,12 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
 
   private generatePlaceholderImages(count: number): Image[] {
     return Array(count).map(() => ({
+      id: uuid.v4(),
+      filename: '',
+      fileSize: 0,
       articleAppearances: 0,
       dateUploaded: new Date().toISOString(),
-      id: uuid.v4(),
       presignedUrl: '',
-      fileSize: 0,
     }));
   }
 }

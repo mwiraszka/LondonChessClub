@@ -12,8 +12,11 @@ export interface Article {
   modificationInfo: ModificationInfo;
 }
 
-export type ArticleFormData = Omit<Article, 'id' | 'modificationInfo' | 'bookmarkDate'>;
+export type ArticleFormData = Omit<
+  Article,
+  'id' | 'modificationInfo' | 'bookmarkDate'
+> & { imageFilename: string };
 
-export type ArticleFormGroup<ArticleFormData> = {
+export type ArticleFormGroup = {
   [Property in keyof ArticleFormData]: FormControl<ArticleFormData[Property]>;
-} & { imageName: FormControl<string> };
+};

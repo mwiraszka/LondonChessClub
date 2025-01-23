@@ -4,4 +4,5 @@ export const newArticleFormTemplate: ArticleFormData = {
   title: '',
   body: '',
   imageId: null,
+  imageFilename: '',
 };

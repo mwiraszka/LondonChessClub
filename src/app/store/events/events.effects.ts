@@ -134,8 +134,8 @@ export class EventsEffects {
 
   constructor(
     private readonly actions$: Actions,
+    private readonly eventsService: EventsService,
+    private readonly loaderService: LoaderService,
     private readonly store: Store,
-    private eventsService: EventsService,
-    private loaderService: LoaderService,
   ) {}
 }

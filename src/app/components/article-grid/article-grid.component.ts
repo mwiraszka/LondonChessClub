@@ -83,8 +83,7 @@ export class ArticleGridComponent implements OnInit {
     thumbnailImages: Image[],
   ): Url | null {
     return (
-      thumbnailImages.find(image => image.id === `${imageId}-600x400`)?.presignedUrl ??
-      null
+      thumbnailImages.find(image => image.id === `${imageId}-thumb`)?.presignedUrl ?? null
     );
   }
 
@@ -101,7 +100,7 @@ export class ArticleGridComponent implements OnInit {
 
   public async onDeleteArticle(article: Article): Promise<void> {
     const dialog: Dialog = {
-      title: 'Confirm article deletion',
+      title: 'Delete article',
       body: `Delete ${article.title}?`,
       confirmButtonText: 'Delete',
       confirmButtonType: 'warning',

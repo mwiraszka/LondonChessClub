@@ -1,7 +1,14 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 
-import type { Article, ArticleFormData, ControlMode, Id, Url } from '@app/models';
+import type {
+  Article,
+  ArticleFormData,
+  ControlMode,
+  FileData,
+  Id,
+  Url,
+} from '@app/models';
 import { ImagesActions } from '@app/store/images';
 import { customSort } from '@app/utils';
 
@@ -11,6 +18,7 @@ export interface ArticlesState extends EntityState<Article> {
   articleId: Id | null;
   articleFormData: ArticleFormData | null;
   bannerImageUrl: Url | null;
+  bannerImageFileData: FileData | null;
   originalBannerImageUrl: Url | null;
   controlMode: ControlMode | null;
 }
@@ -24,6 +32,7 @@ export const articlesInitialState: ArticlesState = articlesAdapter.getInitialSta
   articleId: null,
   articleFormData: null,
   bannerImageUrl: null,
+  bannerImageFileData: null,
   originalBannerImageUrl: null,
   controlMode: null,
 });
@@ -66,6 +75,7 @@ export const articlesReducer = createReducer(
     (state, { image, setAsOriginal }): ArticlesState => ({
       ...state,
       bannerImageUrl: image.presignedUrl,
+      bannerImageFileData: null,
       originalBannerImageUrl: setAsOriginal
         ? image.presignedUrl
         : state.originalBannerImageUrl,
@@ -74,9 +84,10 @@ export const articlesReducer = createReducer(
 
   on(
     ArticlesActions.bannerImageSet,
-    (state, { url }): ArticlesState => ({
+    (state, { url, fileData }): ArticlesState => ({
       ...state,
       bannerImageUrl: url,
+      bannerImageFileData: fileData,
     }),
   ),
 
@@ -85,6 +96,7 @@ export const articlesReducer = createReducer(
     (state): ArticlesState => ({
       ...state,
       bannerImageUrl: null,
+      bannerImageFileData: null,
     }),
   ),
 
@@ -96,6 +108,8 @@ export const articlesReducer = createReducer(
         ...state,
         articleFormData: null,
         bannerImageUrl: null,
+        bannerImageFileData: null,
+        originalBannerImageUrl: null,
       }),
   ),
 
@@ -124,8 +138,9 @@ export const articlesReducer = createReducer(
       articleId: null,
       articleFormData: null,
       bannerImageUrl: null,
-      originalBannerImageUrl: null,
+      bannerImageFileData: null,
       controlMode: null,
+      originalBannerImageUrl: null,
     }),
   ),
 );

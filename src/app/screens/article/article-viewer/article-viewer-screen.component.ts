@@ -125,7 +125,7 @@ export class ArticleViewerScreenComponent implements OnInit {
 
   public async onDelete(article: Article): Promise<void> {
     const dialog: Dialog = {
-      title: 'Confirm article deletion',
+      title: 'Delete article',
       body: `Update ${article.title}?`,
       confirmButtonText: 'Delete',
       confirmButtonType: 'warning',

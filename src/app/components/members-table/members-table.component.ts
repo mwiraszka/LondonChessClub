@@ -109,7 +109,7 @@ export class MembersTableComponent implements OnInit {
 
   private async onDeleteMember(member: Member): Promise<void> {
     const dialog: Dialog = {
-      title: 'Confirm member deletion',
+      title: 'Delete member',
       body: `Delete ${member.firstName} ${member.lastName}?`,
       confirmButtonText: 'Delete',
       confirmButtonType: 'warning',

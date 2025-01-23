@@ -45,6 +45,11 @@ export const selectBannerImageUrl = createSelector(
   state => state.bannerImageUrl,
 );
 
+export const selectBannerImageFileData = createSelector(
+  selectArticlesState,
+  state => state.bannerImageFileData,
+);
+
 export const selectOriginalBannerImageUrl = createSelector(
   selectArticlesState,
   state => state.originalBannerImageUrl,
@@ -59,16 +64,14 @@ export const selectHasUnsavedChanges = createSelector(
   selectControlMode,
   selectArticle,
   selectArticleFormData,
-  selectBannerImageUrl,
-  (controlMode, article, articleFormData, bannerImageUrl) => {
-    const includesNewImageFile = bannerImageUrl?.startsWith('data:image');
-
-    if (includesNewImageFile) {
-      return true;
-    }
-
+  selectBannerImageFileData,
+  (controlMode, article, articleFormData, bannerImageFileData) => {
     if (!articleFormData) {
       return null;
+    }
+
+    if (bannerImageFileData) {
+      return true;
     }
 
     if (controlMode === 'add') {
@@ -83,6 +86,7 @@ export const selectHasUnsavedChanges = createSelector(
       title: article.title,
       body: article.body,
       imageId: article.imageId,
+      imageFilename: '',
     };
 
     return !areSame(relevantPropertiesOfArticle, articleFormData);

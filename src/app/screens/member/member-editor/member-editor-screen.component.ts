@@ -36,8 +36,8 @@ export class MemberEditorScreenComponent implements OnInit {
   ];
 
   constructor(
-    private readonly store: Store,
     private readonly metaAndTitleService: MetaAndTitleService,
+    private readonly store: Store,
   ) {}
 
   ngOnInit(): void {

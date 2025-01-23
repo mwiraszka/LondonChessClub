@@ -1,5 +1,5 @@
 export { emailValidator } from './email.validator';
-export { fileNameValidator } from './file-name.validator';
+export { filenameValidator } from './filename.validator';
 export { hasLowercaseLetterValidator } from './has-lowercase-letter.validator';
 export { hasNumberValidator } from './has-number.validator';
 export { hasSpecialCharValidator } from './has-special-char.validator';

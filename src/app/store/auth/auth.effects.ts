@@ -123,7 +123,7 @@ export class AuthEffects {
 
   constructor(
     private readonly actions$: Actions,
+    private readonly authService: AuthService,
     private readonly store: Store,
-    private authService: AuthService,
   ) {}
 }

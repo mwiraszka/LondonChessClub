@@ -9,7 +9,7 @@ const selectImagesState = createFeatureSelector<ImagesState>('imagesState');
 const { selectAll: selectAllImages } = imagesAdapter.getSelectors(selectImagesState);
 
 export const selectThumbnailImages = createSelector(selectAllImages, allImages =>
-  allImages.filter(image => image.id.endsWith('-600x400')),
+  allImages.filter(image => image?.id.endsWith('-thumb')),
 );
 
 export const selectImageById = (id: Id) =>

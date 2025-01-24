@@ -41,6 +41,16 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 
 <details>
 <summary style="cursor: pointer">
+v4.1.12 - January 24th, 2025
+</summary>
+
+- 🚀 Update About page with new membership fees for 2025–2028
+- 🚀 Add 'Incremental Plan to Break Even' PDF to Documents
+
+</details>
+
+<details>
+<summary style="cursor: pointer">
 v4.1.11 - January 4th, 2025
 </summary>
 

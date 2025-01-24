@@ -53,6 +53,12 @@ export class DocumentsScreenComponent implements OnInit, OnDestroy {
       datePublished: '2024-04-24',
       dateLastModified: '2024-04-24',
     },
+    {
+      title: 'Membership Fees 2025 - 2028 (Incremental Plan to Break Even)',
+      fileName: 'membership-fees-2025-to-2028.pdf',
+      datePublished: '2025-01-24',
+      dateLastModified: '2025-01-24',
+    },
   ];
 
   @HostListener('window:keyup', ['$event'])

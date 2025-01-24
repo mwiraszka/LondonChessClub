@@ -1,7 +1,7 @@
 import { Loader } from '@googlemaps/js-api-loader';
 
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { environment } from '@env';
 
@@ -17,16 +17,16 @@ import { environment } from '@env';
   imports: [CommonModule],
 })
 export class ClubMapComponent implements OnInit {
-  clubLocation: google.maps.LatLngLiteral = { lat: 42.982546, lng: -81.261387 };
-  mapOptions: google.maps.MapOptions = {
+  @ViewChild('mapElement', { read: ElementRef }) mapElement: HTMLDivElement | null = null;
+
+  private clubLocation: google.maps.LatLngLiteral = { lat: 42.982546, lng: -81.261387 };
+  private loader!: Loader;
+  private mapOptions: google.maps.MapOptions = {
     mapId: 'club-map',
     center: this.clubLocation,
     zoom: 15,
     mapTypeControl: false,
   };
-  loader!: Loader;
-
-  constructor(@Inject(DOCUMENT) private _document: Document) {}
 
   ngOnInit(): void {
     this.loader = new Loader({
@@ -34,13 +34,12 @@ export class ClubMapComponent implements OnInit {
       version: 'weekly',
     });
 
-    const mapElement = this._document.getElementById('club-map');
-    if (mapElement) {
-      this.initMap(mapElement);
+    if (this.mapElement) {
+      this.initMap(this.mapElement);
     }
   }
 
-  async initMap(mapElement: HTMLElement): Promise<void> {
+  private async initMap(mapElement: HTMLDivElement): Promise<void> {
     const map = await this.loader
       .importLibrary('maps')
       .then(({ Map }) => new Map(mapElement, this.mapOptions))

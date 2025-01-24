@@ -101,7 +101,7 @@ describe('AdminControlsComponent', () => {
     });
   });
 
-  function getDebugElement(selector: string): DebugElement | null {
+  function getDebugElement(selector: string): DebugElement {
     return fixture.debugElement.query(By.css(selector));
   }
 });

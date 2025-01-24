@@ -5,7 +5,9 @@
     @defer {
       <img
         [src]="image.presignedUrl"
-        [adminControls]="getAdminControlsConfig(image)" />
+        [adminControls]="
+          image.articleAppearances === 0 ? getAdminControlsConfig(image) : null
+        " />
 
       <div class="filename">
         <label>Filename:</label>

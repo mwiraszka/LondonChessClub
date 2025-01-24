@@ -59,6 +59,14 @@ v5.0.0 - January TBD, 2025
 - 🔧 Migrate from Jasmine to Jest for unit tests
 - 🔧 Update path aliases and remove redundant `.eslintrc` file
 
+<details>
+<summary style="cursor: pointer">
+v4.1.12 - January 24th, 2025
+</summary>
+
+- 🚀 Update About page with new membership fees for 2025–2028
+- 🚀 Add 'Incremental Plan to Break Even' PDF to Documents
+
 </details>
 
 <details>

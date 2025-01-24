@@ -42,6 +42,12 @@ export class DocumentsScreenComponent implements OnInit {
       datePublished: moment('2024-04-24T04:00:00').toISOString(),
       dateLastModified: moment('2024-04-24T04:00:00').toISOString(),
     },
+    {
+      title: 'Membership Fees 2025 - 2028 (Incremental Plan to Break Even)',
+      fileName: 'membership-fees-2025-to-2028.pdf',
+      datePublished: '2025-01-24',
+      dateLastModified: '2025-01-24',
+    },
   ];
 
   constructor(

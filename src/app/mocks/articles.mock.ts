@@ -5,7 +5,7 @@ import { generateId } from '@app/utils/common/generate-id.util';
 
 export const MOCK_ARTICLES: Article[] = [
   {
-    id: generateId(24),
+    id: generateId(),
     title: 'Blitz Tournament Results - January 1st, 2025',
     body: `
       ### **Open**\n<br>\n\n| # | Name | Rating | Round 1 | Round 2 | Round 3 | Round 4 | Round 5
@@ -42,7 +42,7 @@ export const MOCK_ARTICLES: Article[] = [
       U---	|U---	|1.0|\n|30	|J, Person	|unr.	|L16 (b)	|L8 (w)	|L25 (b)	|L22 (w)	|L21 (w)
       |L23 (b)	|L26 (b)	|0.0|
     `,
-    imageId: generateId(8),
+    imageId: generateId(),
     bookmarkDate: moment('2025-02-02').toISOString(),
     modificationInfo: {
       createdBy: 'John Doe',
@@ -52,7 +52,7 @@ export const MOCK_ARTICLES: Article[] = [
     },
   },
   {
-    id: generateId(24),
+    id: generateId(),
     title: '2025 London Chess Championship Announcement',
     body: `
       ## **2025 London Chess Championship**\n<br>\n\n[Details]
@@ -126,7 +126,7 @@ export const MOCK_ARTICLES: Article[] = [
       <br>\n\n**Results Crosstables and PGNs provided by LCC Ratings Auditor*\n\n<br><br>\n\n
       ## Photos\n<br>\n\nComing soon...
     `,
-    imageId: generateId(8),
+    imageId: generateId(),
     bookmarkDate: moment('2025-01-10').toISOString(),
     modificationInfo: {
       createdBy: 'El Presidente',
@@ -136,13 +136,13 @@ export const MOCK_ARTICLES: Article[] = [
     },
   },
   {
-    id: generateId(24),
+    id: generateId(),
     title:
       'A Very Short Article But With An Exceptionally Long Title That Goes Beyond the Character Limit for Article Titles and Should Be Truncated',
     body: `
       # An article header\n\n<br><br>\n\nAnd not much text underneath it.
     `,
-    imageId: generateId(8),
+    imageId: generateId(),
     bookmarkDate: null,
     modificationInfo: {
       createdBy: 'El Presidente',
@@ -152,10 +152,10 @@ export const MOCK_ARTICLES: Article[] = [
     },
   },
   {
-    id: generateId(24),
+    id: generateId(),
     title: 'An even shorter one',
     body: `Got nothing to say!`,
-    imageId: generateId(8),
+    imageId: generateId(),
     bookmarkDate: null,
     modificationInfo: {
       createdBy: 'Jack Sparrow',
@@ -165,7 +165,7 @@ export const MOCK_ARTICLES: Article[] = [
     },
   },
   {
-    id: generateId(24),
+    id: generateId(),
     title: 'An article currently being modified',
     body: `Some article body text here...`,
     imageId: null,

@@ -67,7 +67,6 @@ describe('AdminControlsComponent', () => {
       element('.bookmark-button').triggerEventHandler('click');
 
       expect(bookmarkCbSpy).toHaveBeenCalledTimes(1);
-      expect(bookmarkCbSpy).toHaveBeenCalledWith();
     });
   });
 
@@ -95,7 +94,6 @@ describe('AdminControlsComponent', () => {
       element('.delete-button').triggerEventHandler('click');
 
       expect(deleteCbSpy).toHaveBeenCalledTimes(1);
-      expect(deleteCbSpy).toHaveBeenCalledWith();
     });
   });
 

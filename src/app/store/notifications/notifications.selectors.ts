@@ -9,8 +9,3 @@ export const selectToasts = createSelector(
   selectNotificationsState,
   state => state.toasts,
 );
-
-export const selectShowToaster = createSelector(
-  selectNotificationsState,
-  state => !!state.toasts,
-);

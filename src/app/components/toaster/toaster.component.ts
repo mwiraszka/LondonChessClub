@@ -1,24 +1,38 @@
-import { Store } from '@ngrx/store';
-
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { NotificationsSelectors } from '@app/store/notifications';
-
-import { ToastComponent } from '../toast/toast.component';
+import IconsModule from '@app/icons';
+import { Toast } from '@app/models';
 
 @Component({
   selector: 'lcc-toaster',
   template: `
-    @for (toast of toasts$ | async; track toast) {
-      <lcc-toast [toast]="toast"></lcc-toast>
+    @for (toast of toasts; track toast) {
+      <div
+        class="toast"
+        [ngClass]="'toast-' + toast.type">
+        <i-feather
+          [name]="getIcon(toast.type)"
+          class="icon">
+        </i-feather>
+        <div class="text-container">
+          <h4 class="lcc-truncate toast-title">{{ toast.title }}</h4>
+          <p class="lcc-truncate-max-5-lines toast-message">{{ toast.message }}</p>
+        </div>
+      </div>
     }
   `,
   styleUrl: './toaster.component.scss',
-  imports: [CommonModule, ToastComponent],
+  imports: [CommonModule, IconsModule],
 })
 export class ToasterComponent {
-  public readonly toasts$ = this.store.select(NotificationsSelectors.selectToasts);
+  @Input({ required: true }) public toasts!: Toast[];
 
-  constructor(private readonly store: Store) {}
+  public getIcon(toastType: 'success' | 'info' | 'warning'): string {
+    return toastType === 'success'
+      ? 'check-circle'
+      : toastType === 'warning'
+        ? 'alert-triangle'
+        : 'info';
+  }
 }

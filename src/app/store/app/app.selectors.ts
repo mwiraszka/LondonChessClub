@@ -23,8 +23,8 @@ export const selectBannerLastCleared = createSelector(
 
 export const selectAppViewModel = createSelector({
   isDarkMode: selectIsDarkMode,
-  showToaster: NotificationsSelectors.selectShowToaster,
   showUpcomingEventBanner: selectShowUpcomingEventBanner,
   bannerLastCleared: selectBannerLastCleared,
   nextEvent: EventsSelectors.selectNextEvent,
+  toasts: NotificationsSelectors.selectToasts,
 });

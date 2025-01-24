@@ -73,4 +73,8 @@ export class AppComponent extends CdkScrollable implements OnInit {
         }
       });
   }
+
+  public onClearBanner(): void {
+    this.store.dispatch(AppActions.upcomingEventBannerCleared());
+  }
 }

@@ -1,26 +1,44 @@
-import { Store } from '@ngrx/store';
-
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import IconsModule from '@app/icons';
+import { Event } from '@app/models';
 import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
-import { AppActions } from '@app/store/app';
-import { EventsSelectors } from '@app/store/events';
 
 @Component({
   selector: 'lcc-upcoming-event-banner',
-  templateUrl: './upcoming-event-banner.component.html',
+  template: `
+    <div
+      class="container"
+      [ngClass]="nextEvent.type | kebabCase">
+      <div class="banner-message-container">
+        <a
+          class="banner-message"
+          routerLink="/schedule"
+          (click)="clearBanner.emit()">
+          <span>
+            Next event: <b>{{ nextEvent.title }}</b> on
+            <b>{{ nextEvent.eventDate | formatDate: 'short' }}</b>
+          </span>
+        </a>
+
+        <button
+          class="lcc-icon-button close-button"
+          (click)="clearBanner.emit()">
+          <i-feather
+            name="x"
+            class="close-icon">
+          </i-feather>
+        </button>
+      </div>
+    </div>
+  `,
   styleUrl: './upcoming-event-banner.component.scss',
   imports: [CommonModule, FormatDatePipe, IconsModule, KebabCasePipe, RouterLink],
 })
 export class UpcomingEventBannerComponent {
-  public readonly nextEvent$ = this.store.select(EventsSelectors.selectNextEvent);
+  @Input({ required: true }) public nextEvent!: Event;
 
-  constructor(private readonly store: Store) {}
-
-  public onClearBanner(): void {
-    this.store.dispatch(AppActions.upcomingEventBannerCleared());
-  }
+  @Output() public clearBanner = new EventEmitter<void>();
 }

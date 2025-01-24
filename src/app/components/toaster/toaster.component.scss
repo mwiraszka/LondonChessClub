@@ -11,3 +11,70 @@
     transform: translateX(50%);
   }
 }
+
+.toast {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  margin-top: 4px;
+  width: 300px;
+  border-radius: var(--lcc-borderRadius--small);
+  box-shadow: 1px 1px 5px 2px var(--lcc-color--toast-boxShadow);
+
+  -o-animation: fadeAnimation 5s;
+  -moz-animation: fadeAnimation 5s;
+  -ms-animation: fadeAnimation 5s;
+  -webkit-animation: fadeAnimation 5s;
+  animation: fadeAnimation 5s;
+
+  &.toast-success {
+    background-color: var(--lcc-color--toast-successBackground);
+  }
+
+  &.toast-warning {
+    background-color: var(--lcc-color--toast-warningBackground);
+  }
+
+  &.toast-info {
+    background-color: var(--lcc-color--toast-infoBackground);
+  }
+
+  .icon {
+    display: flex;
+    color: var(--lcc-color--toast-icon);
+  }
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    overflow: hidden;
+
+    .toast-title {
+      color: var(--lcc-color--toast-primaryText);
+    }
+
+    .toast-message {
+      font-size: var(--lcc-fontSize--h5);
+      color: var(--lcc-color--toast-secondaryText);
+    }
+  }
+}
+
+@keyframes fadeAnimation {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

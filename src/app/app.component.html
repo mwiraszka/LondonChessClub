@@ -3,12 +3,13 @@
 }
 
 @if (appViewModel$ | async; as vm) {
-  @if (vm.showToaster) {
-    <lcc-toaster></lcc-toaster>
-  }
+  <lcc-toaster [toasts]="vm.toasts"></lcc-toaster>
 
   @if (vm.showUpcomingEventBanner && vm.nextEvent) {
-    <lcc-upcoming-event-banner></lcc-upcoming-event-banner>
+    <lcc-upcoming-event-banner
+      [nextEvent]="vm.nextEvent"
+      (clearBanner)="onClearBanner()">
+    </lcc-upcoming-event-banner>
   }
 
   <lcc-header></lcc-header>

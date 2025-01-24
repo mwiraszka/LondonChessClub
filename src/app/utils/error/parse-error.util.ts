@@ -18,7 +18,7 @@ export function parseError(error: unknown): LccError {
         : isString(error.message)
           ? error.message
           : 'Unknown HTTP error.',
-      status: error.status,
+      status: error.status > 0 ? error.status : undefined,
     };
   }
 

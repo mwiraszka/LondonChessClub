@@ -5,7 +5,7 @@ import { delay, filter, map, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import type { Toast } from '@app/models';
+import type { LccError, Toast } from '@app/models';
 import { ArticlesActions } from '@app/store/articles';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
@@ -97,7 +97,7 @@ export class NotificationsEffects {
       map(({ error }) => {
         const toast: Toast = {
           title: 'Article deletion',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -113,7 +113,7 @@ export class NotificationsEffects {
       map(([{ error }]) => {
         const toast: Toast = {
           title: 'Load articles',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -129,7 +129,7 @@ export class NotificationsEffects {
       map(([{ error }]) => {
         const toast: Toast = {
           title: 'Load article',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -173,7 +173,7 @@ export class NotificationsEffects {
       map(({ error }) => {
         const toast: Toast = {
           title: 'New event',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -201,7 +201,7 @@ export class NotificationsEffects {
       map(({ error }) => {
         const toast: Toast = {
           title: 'Event update',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -229,7 +229,7 @@ export class NotificationsEffects {
       map(({ error }) => {
         const toast: Toast = {
           title: 'Event deletion',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -245,7 +245,7 @@ export class NotificationsEffects {
       map(([{ error }]) => {
         const toast: Toast = {
           title: 'Load events',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -261,7 +261,7 @@ export class NotificationsEffects {
       map(([{ error }]) => {
         const toast: Toast = {
           title: 'Load event',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -291,7 +291,7 @@ export class NotificationsEffects {
       map(({ error }) => {
         const toast: Toast = {
           title: 'Add image',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -319,7 +319,7 @@ export class NotificationsEffects {
       map(({ error }) => {
         const toast: Toast = {
           title: 'Image deletion',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -335,7 +335,7 @@ export class NotificationsEffects {
       map(([{ error }]) => {
         const toast: Toast = {
           title: 'Load article banner image thumbnails',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -351,7 +351,7 @@ export class NotificationsEffects {
       map(([{ error }]) => {
         const toast: Toast = {
           title: 'Load article banner image',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -381,7 +381,7 @@ export class NotificationsEffects {
       map(({ error }) => {
         const toast: Toast = {
           title: 'New member',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -409,7 +409,7 @@ export class NotificationsEffects {
       map(({ error }) => {
         const toast: Toast = {
           title: 'Member update',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -437,7 +437,7 @@ export class NotificationsEffects {
       map(({ error }) => {
         const toast: Toast = {
           title: 'Member deletion',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -453,7 +453,7 @@ export class NotificationsEffects {
       map(([{ error }]) => {
         const toast: Toast = {
           title: 'Load members',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -469,7 +469,7 @@ export class NotificationsEffects {
       map(([{ error }]) => {
         const toast: Toast = {
           title: 'Load member',
-          message: `[${error.status}] ${error.message}`,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -638,4 +638,8 @@ export class NotificationsEffects {
     private readonly actions$: Actions,
     private readonly store: Store,
   ) {}
+
+  private getErrorMessage(error: LccError): string {
+    return error.status ? `[${error.status}] ${error.message}` : error.message;
+  }
 }

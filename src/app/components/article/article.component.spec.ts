@@ -37,25 +37,25 @@ describe('ArticleComponent', () => {
     });
 
     it('should render all containers', () => {
-      expect(getDebugElement('.banner-image-container')).not.toBeNull();
-      expect(getDebugElement('.article-details-container')).not.toBeNull();
-      expect(getDebugElement('.editor-container')).not.toBeNull();
-      expect(getDebugElement('.markdown-container')).not.toBeNull();
+      expect(element('.banner-image-container')).not.toBeNull();
+      expect(element('.article-details-container')).not.toBeNull();
+      expect(element('.editor-container')).not.toBeNull();
+      expect(element('.markdown-container')).not.toBeNull();
     });
 
     it('should render all article content elements and Markdown Renderer component', () => {
-      expect(getDebugElement('.title')).not.toBeNull();
-      expect(getDebugElement('.author-name')).not.toBeNull();
-      expect(getDebugElement('.date-created')).not.toBeNull();
-      expect(getDebugElement('.updated')).not.toBeNull();
-      expect(getDebugElement('.editor-name')).not.toBeNull();
-      expect(getDebugElement('.date-last-edited')).not.toBeNull();
-      expect(getDebugElement('lcc-markdown-renderer')).not.toBeNull();
+      expect(element('.title')).not.toBeNull();
+      expect(element('.author-name')).not.toBeNull();
+      expect(element('.date-created')).not.toBeNull();
+      expect(element('.updated')).not.toBeNull();
+      expect(element('.editor-name')).not.toBeNull();
+      expect(element('.date-last-edited')).not.toBeNull();
+      expect(element('lcc-markdown-renderer')).not.toBeNull();
     });
 
     it('should initially render loading placeholder image', () => {
-      expect(getDebugElement('.loading-placeholder-image')).not.toBeNull();
-      expect(getDebugElement('img')).toBeNull();
+      expect(element('.loading-placeholder-image')).not.toBeNull();
+      expect(element('img')).toBeNull();
     });
 
     // Currently not possible to retrieve deferrable blocks due to ng-mocks bug:
@@ -64,32 +64,30 @@ describe('ArticleComponent', () => {
       const deferBlocks = await fixture.getDeferBlocks();
       deferBlocks[0]?.render(DeferBlockState.Complete);
 
-      expect(getDebugElement('.loading-placeholder-image')).toBeNull();
-      expect(getDebugElement('img')).not.toBeNull();
+      expect(element('.loading-placeholder-image')).toBeNull();
+      expect(element('img')).not.toBeNull();
     });
 
     it('should truncate article title to 120 characters', () => {
-      expect(getDebugElement('.title')?.nativeElement.textContent.trim()).toHaveLength(
-        120,
-      );
+      expect(element('.title').nativeElement.textContent.trim()).toHaveLength(120);
     });
 
     it("should include the article author's and editor's names", () => {
-      expect(getDebugElement('.author-name')?.nativeElement.textContent.trim()).toBe(
+      expect(element('.author-name').nativeElement.textContent.trim()).toBe(
         MOCK_ARTICLES[2].modificationInfo.createdBy,
       );
 
-      expect(getDebugElement('.editor-name')?.nativeElement.textContent.trim()).toBe(
+      expect(element('.editor-name').nativeElement.textContent.trim()).toBe(
         MOCK_ARTICLES[2].modificationInfo.lastEditedBy,
       );
     });
 
     it('should format dates correctly', () => {
-      expect(getDebugElement('.date-created')?.nativeElement.textContent.trim()).toBe(
+      expect(element('.date-created').nativeElement.textContent.trim()).toBe(
         'Wed, Jan 1, 2025, 12:00 PM',
       );
 
-      expect(getDebugElement('.date-last-edited')?.nativeElement.textContent.trim()).toBe(
+      expect(element('.date-last-edited').nativeElement.textContent.trim()).toBe(
         'Thu, Jan 2, 2025, 10:00 AM',
       );
     });
@@ -101,10 +99,10 @@ describe('ArticleComponent', () => {
       });
 
       it('should display article creation info but not last edit info', () => {
-        expect(getDebugElement('.date-created')?.nativeElement.textContent.trim()).toBe(
+        expect(element('.date-created').nativeElement.textContent.trim()).toBe(
           'Mon, Jan 20, 2025, 2:00 PM',
         );
-        expect(getDebugElement('.date-last-edited')).toBeNull();
+        expect(element('.date-last-edited')).toBeNull();
       });
     });
 
@@ -115,19 +113,19 @@ describe('ArticleComponent', () => {
       });
 
       it('should keep displaying loading placeholder image', async () => {
-        expect(getDebugElement('.banner-image')).toBeNull();
-        expect(getDebugElement('.loading-placeholder-image')).not.toBeNull();
+        expect(element('.banner-image')).toBeNull();
+        expect(element('.loading-placeholder-image')).not.toBeNull();
 
         const deferBlocks = await fixture.getDeferBlocks();
         deferBlocks[0]?.render(DeferBlockState.Complete);
 
-        expect(getDebugElement('.banner-image')).toBeNull();
-        expect(getDebugElement('.loading-placeholder-image')).not.toBeNull();
+        expect(element('.banner-image')).toBeNull();
+        expect(element('.loading-placeholder-image')).not.toBeNull();
       });
     });
   });
 
-  function getDebugElement(selector: string): DebugElement {
+  function element(selector: string): DebugElement {
     return fixture.debugElement.query(By.css(selector));
   }
 });

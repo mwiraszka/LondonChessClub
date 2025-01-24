@@ -32,36 +32,31 @@ describe('DatePickerComponent', () => {
 
   describe('header', () => {
     it('should render previous month button', () => {
-      expect(getDebugElement('.previous-month-button')).not.toBeNull();
+      expect(element('.previous-month-button')).not.toBeNull();
     });
 
     it('should render next month button', () => {
-      expect(getDebugElement('.next-month-button')).not.toBeNull();
+      expect(element('.next-month-button')).not.toBeNull();
     });
 
     it('should render the currently selected month and year as the title', () => {
-      expect(getDebugElement('.title')?.nativeElement.textContent.trim()).toBe(
-        'January 2050',
-      );
+      expect(element('.title').nativeElement.textContent.trim()).toBe('January 2050');
     });
 
     it('should shorten the month text on small screens', () => {
       component.screenWidth = 300;
       fixture.detectChanges();
 
-      expect(getDebugElement('.title')?.nativeElement.textContent.trim()).toBe(
-        'Jan 2050',
-      );
+      expect(element('.title').nativeElement.textContent.trim()).toBe('Jan 2050');
     });
 
     it('should subtract one month when previous month button is clicked', () => {
       const onPreviousMonthSpy = jest.spyOn(component, 'onPreviousMonth');
-      const previousMonthButton = getDebugElement('.previous-month-button');
       const renderCalendarSpy = jest
         .spyOn(component, 'renderCalendar')
         .mockImplementation(() => '');
 
-      previousMonthButton?.triggerEventHandler('click');
+      element('.previous-month-button').triggerEventHandler('click');
 
       expect(onPreviousMonthSpy).toHaveBeenCalledTimes(1);
       expect(renderCalendarSpy).toHaveBeenCalledTimes(1);
@@ -73,9 +68,8 @@ describe('DatePickerComponent', () => {
       const renderCalendarSpy = jest
         .spyOn(component, 'renderCalendar')
         .mockImplementation(() => '');
-      const nextMonthButton = getDebugElement('.next-month-button');
 
-      nextMonthButton?.triggerEventHandler('click');
+      element('.next-month-button').triggerEventHandler('click');
 
       expect(onNextMonthSpy).toHaveBeenCalledTimes(1);
       expect(renderCalendarSpy).toHaveBeenCalledTimes(1);
@@ -85,13 +79,13 @@ describe('DatePickerComponent', () => {
 
   describe('calendar table', () => {
     it('should render a 7 x 6 table for every month, regardless of number of days', () => {
-      expect(getDebugElement('.calendar-table')).not.toBeNull();
+      expect(element('.calendar-table')).not.toBeNull();
 
       // TODO: more details about calendar table & test day selection
     });
   });
 
-  function getDebugElement(selector: string): DebugElement {
+  function element(selector: string): DebugElement {
     return fixture.debugElement.query(By.css(selector));
   }
 });

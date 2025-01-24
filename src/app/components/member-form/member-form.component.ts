@@ -113,7 +113,7 @@ export class MemberFormComponent implements OnInit {
       return 'Invalid email';
     } else if (control.hasError('invalidPhoneNumberFormat')) {
       return 'Invalid phone number format - please input as XXX-XXX-XXXX';
-    } else if (control.hasError('invalidYear')) {
+    } else if (control.hasError('invalidYearOfBirth')) {
       return 'Invalid year';
     } else if (control.hasError('pattern')) {
       return 'Invalid input (incorrect format)';

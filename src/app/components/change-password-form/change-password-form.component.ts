@@ -141,24 +141,27 @@ export class ChangePasswordFormComponent implements OnInit {
   }
 
   private initForm(): void {
-    this.form = this.formBuilder.group({
-      email: new FormControl('', {
-        nonNullable: true,
-        validators: [Validators.required, emailValidator],
-      }),
-      code: new FormControl('', {
-        nonNullable: true,
-        validators: [Validators.pattern(/\d{6}/)],
-      }),
-      newPassword: new FormControl('', {
-        nonNullable: true,
-        validators: this.passwordValidators,
-      }),
-      confirmPassword: new FormControl('', {
-        nonNullable: true,
-        validators: [...this.passwordValidators, matchingPasswordsValidator],
-      }),
-    });
+    this.form = this.formBuilder.group(
+      {
+        email: new FormControl('', {
+          nonNullable: true,
+          validators: [Validators.required, emailValidator],
+        }),
+        code: new FormControl('', {
+          nonNullable: true,
+          validators: [Validators.pattern(/\d{6}/)],
+        }),
+        newPassword: new FormControl('', {
+          nonNullable: true,
+          validators: this.passwordValidators,
+        }),
+        confirmPassword: new FormControl('', {
+          nonNullable: true,
+          validators: this.passwordValidators,
+        }),
+      },
+      { validators: matchingPasswordsValidator },
+    );
   }
 
   private initPasswordMatchListener(): void {

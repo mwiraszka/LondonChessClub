@@ -27,6 +27,7 @@ describe('dataUrlToFile', () => {
   it('converts a PNG image data URL to a File type representing the same data', () => {
     const file = dataUrlToFile(MOCK_DATA_URL, MOCK_FILENAME, MOCK_FILE_DATA);
 
-    expect(file?.name).toStrictEqual('image/png');
+    expect(file?.name).toStrictEqual('my-file.png');
+    expect(file?.type).toStrictEqual('image/png');
   });
 });

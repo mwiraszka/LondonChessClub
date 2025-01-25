@@ -106,7 +106,6 @@ export class ArticleGridComponent implements OnInit {
       confirmButtonType: 'warning',
     };
 
-    // TODO: Add `isModal` flag to other places where appropriate
     const result = await this.dialogService.open({
       componentType: BasicDialogComponent,
       inputs: { dialog },
@@ -132,6 +131,7 @@ export class ArticleGridComponent implements OnInit {
     const result = await this.dialogService.open({
       componentType: BasicDialogComponent,
       inputs: { dialog },
+      isModal: true,
     });
 
     if (result === 'confirm') {

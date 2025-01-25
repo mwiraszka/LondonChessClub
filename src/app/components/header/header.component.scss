@@ -3,6 +3,7 @@
 $app-header-font-size: 42px;
 
 :host {
+  z-index: 1100;
   display: flex;
   justify-content: center;
   width: 100%;

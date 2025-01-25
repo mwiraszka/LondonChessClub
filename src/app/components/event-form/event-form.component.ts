@@ -128,6 +128,7 @@ export class EventFormComponent implements OnInit {
     const result = await this.dialogService.open({
       componentType: BasicDialogComponent,
       inputs: { dialog },
+      isModal: false,
     });
 
     if (result !== 'confirm') {

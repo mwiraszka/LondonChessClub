@@ -190,6 +190,7 @@ export class ArticleFormComponent implements OnInit {
   public async onOpenImageExplorer(): Promise<void> {
     const thumbnailImageId = await this.dialogService2.open({
       componentType: ImageExplorerComponent,
+      isModal: true,
     });
 
     if (thumbnailImageId) {
@@ -243,6 +244,7 @@ export class ArticleFormComponent implements OnInit {
     const result = await this.dialogService1.open({
       componentType: BasicDialogComponent,
       inputs: { dialog },
+      isModal: false,
     });
 
     if (result !== 'confirm') {

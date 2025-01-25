@@ -2,7 +2,6 @@ import { firstValueFrom, tap } from 'rxjs';
 
 import {
   Overlay,
-  OverlayConfig,
   OverlayRef,
   PositionStrategy,
   ScrollStrategy,
@@ -47,14 +46,12 @@ export class DialogService<TComponent extends DialogOutput<TResult>, TResult> {
       this.close();
     }
 
-    const overlayConfig: OverlayConfig = {
+    this.overlayRef = this.overlay.create({
       positionStrategy: this.getPositionStrategy(),
       scrollStrategy: this.getScrollStrategy(dialogConfig.isModal),
-      hasBackdrop: false,
-      backdropClass: dialogConfig.isModal ? 'lcc-modal-backdrop' : 'lcc-dialog-backdrop',
-    };
-
-    this.overlayRef = this.overlay.create(overlayConfig);
+      hasBackdrop: dialogConfig.isModal,
+      backdropClass: 'lcc-modal-backdrop',
+    });
 
     setTimeout(() => this.initEventListeners(this.overlayRef?.overlayElement));
 
@@ -126,7 +123,7 @@ export class DialogService<TComponent extends DialogOutput<TResult>, TResult> {
 
   private getScrollStrategy(isModal?: boolean): ScrollStrategy {
     return isModal
-      ? this.overlay.scrollStrategies.reposition()
+      ? this.overlay.scrollStrategies.noop()
       : this.overlay.scrollStrategies.block();
   }
 }

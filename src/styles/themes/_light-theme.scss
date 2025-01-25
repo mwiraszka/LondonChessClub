@@ -9,7 +9,7 @@
   --lcc-color--aboutScreen-sectionHeaderText: #{clr(grayscale, gray-25)};
   --lcc-color--aboutScreen-text: #{clr(grayscale, black-15)};
 
-  --lcc-color--adminControls-bookmarkIcon: #{clr(secondary)};
+  --lcc-color--adminControls-bookmarkIcon: #{clr(secondary, base)};
   --lcc-color--adminControls-bookmarkIconOnHover: #{clr(secondary, light)};
   --lcc-color--adminControls-buttonBackground: #{clr(grayscale, white-92)};
   --lcc-color--adminControls-buttonBackgroundOnHover: #{clr(grayscale, white-98)};
@@ -53,7 +53,7 @@
   --lcc-color--button-lightSecondaryButtonBorderOnHover: #{clr(grayscale, white-85)};
   --lcc-color--button-lightSecondaryButtonForeground: #{clr(grayscale, gray-75)};
   --lcc-color--button-lightSecondaryButtonForegroundOnHover: #{clr(grayscale, white-85)};
-  --lcc-color--button-primaryButtonBackground: #{clr(primary)};
+  --lcc-color--button-primaryButtonBackground: #{clr(primary, base)};
   --lcc-color--button-primaryButtonBackgroundOnHover: #{clr(primary, light)};
   --lcc-color--button-primaryButtonForeground: #{clr(grayscale, white-90)};
   --lcc-color--button-raisedButtonBoxShadow: #{clr(grayscale, gray-65, 0.7)};
@@ -79,7 +79,7 @@
   --lcc-color--contentPlaceholder-foreground2: #{clr(grayscale, white-95, 0.3)};
   --lcc-color--contentPlaceholder-foreground3: #{clr(grayscale, white-95, 0.6)};
 
-  --lcc-color--datePicker-buttonsBackground: #{clr(primary)};
+  --lcc-color--datePicker-buttonsBackground: #{clr(primary, base)};
   --lcc-color--datePicker-buttonsBackgroundOnHover: #{clr(primary, light)};
   --lcc-color--datePicker-cellBorderOnHover: #{clr(grayscale, gray-75, 0.3)};
   --lcc-color--datePicker-cellBorderOnSelect: #{clr(primary, lighter)};
@@ -139,7 +139,7 @@
   --lcc-color--general-overlayModalBackdrop: #{clr(grayscale, black-10, 0.7)};
   --lcc-color--general-scrollbar: #{clr(grayscale, gray-50, 0.7)};
 
-  --lcc-color--header-background1: #{clr(primary)};
+  --lcc-color--header-background1: #{clr(primary, base)};
   --lcc-color--header-background2: #{clr(primary, dark)};
   --lcc-color--header-brandingBackground: #{clr(grayscale, white-85)};
   --lcc-color--header-brandingBackgroundOnHover: #{clr(grayscale, white-95)};
@@ -160,7 +160,7 @@
   --lcc-color--input-border: #{clr(grayscale, gray-65)};
   --lcc-color--input-borderOnHover: #{clr(grayscale, gray-75)};
   --lcc-color--input-boxShadowOnHover: #{clr(primary, lightest, 0.6)};
-  --lcc-color--input-checkboxAndRadio: #{clr(primary)};
+  --lcc-color--input-checkboxAndRadio: #{clr(primary, base)};
   --lcc-color--input-invalidBorder: #{clr(warning, lighter)};
   --lcc-color--input-text: #{clr(grayscale, black-5)};
 
@@ -216,7 +216,7 @@
   --lcc-color--paginator-buttonTextOnHover: #{clr(grayscale, black-2)};
   --lcc-color--paginator-pageNumberText: #{clr(grayscale, black-10)};
   --lcc-color--paginator-selectedButtonBackground: #{clr(grayscale, white-98)};
-  --lcc-color--paginator-selectedButtonBorder: #{clr(secondary)};
+  --lcc-color--paginator-selectedButtonBorder: #{clr(secondary, base)};
   --lcc-color--paginator-selectedButtonColor: #{clr(grayscale, black-2)};
 
   --lcc-color--pgnViewer-board: #{clr(chessboard)};
@@ -267,13 +267,13 @@
 
   --lcc-color--screenHeader-background: #{clr(grayscale, white-95)};
   --lcc-color--screenHeader-boxShadow: #{clr(grayscale, white-85, 0.7)};
-  --lcc-color--screenHeader-icon: #{clr(secondary)};
+  --lcc-color--screenHeader-icon: #{clr, (secondary, base)};
   --lcc-color--screenHeader-text: #{clr(grayscale, black-10)};
   --lcc-color--screenHeaderAsterisk-text: #{clr(grayscale, gray-35)};
 
   --lcc-color--table-border: #{clr(grayscale, gray-75, 0.2)};
   --lcc-color--table-footerForeground: #{clr(grayscale, gray-35)};
-  --lcc-color--table-headerBackground: #{clr(primary)};
+  --lcc-color--table-headerBackground: #{clr(primary, base)};
   --lcc-color--table-headerForeground: #{clr(grayscale, white-95)};
   --lcc-color--table-rowBackgroundEven: #{clr(grayscale, white-92)};
   --lcc-color--table-rowBackgroundOdd: #{clr(grayscale, white-95)};
@@ -309,14 +309,14 @@
       light
     )};
   --lcc-color--upcomingEventBanner-background-closed: #{clr(event-closed, light)};
-  --lcc-color--upcomingEventBanner-background-lecture: #{clr(event-lecture, light, 0.7)};
+  --lcc-color--upcomingEventBanner-background-lecture: #{clr(event-lecture, light)};
   --lcc-color--upcomingEventBanner-background-other: #{clr(event-other, light)};
   --lcc-color--upcomingEventBanner-background-rapidTournament: #{clr(
       event-rapid-tournament,
       light
     )};
   --lcc-color--upcomingEventBanner-background-simul: #{clr(event-simul, light)};
-  --lcc-color--upcomingEventBanner-borderBottom: #{clr(grayscale, gray-50, 0.5)};
+  --lcc-color--upcomingEventBanner-borderBottom: #{clr(grayscale, gray-50)};
   --lcc-color--upcomingEventBanner-closeIcon: #{clr(grayscale, gray-25)};
   --lcc-color--upcomingEventBanner-closeIconOnHover: black;
   --lcc-color--upcomingEventBanner-boldText: #{clr(grayscale, black-20)};

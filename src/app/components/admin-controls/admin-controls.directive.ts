@@ -1,3 +1,5 @@
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+
 import {
   ConnectedPosition,
   Overlay,
@@ -7,6 +9,7 @@ import {
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
+  ComponentRef,
   Directive,
   ElementRef,
   HostListener,
@@ -26,12 +29,14 @@ export const ADMIN_CONTROLS_CONFIG = new InjectionToken<AdminControlsConfig>(
   'Admin Controls Config',
 );
 
+@UntilDestroy()
 @Directive({
   selector: '[adminControls]',
 })
 export class AdminControlsDirective implements OnDestroy {
   @Input() public adminControls: AdminControlsConfig | null = null;
 
+  private adminControlsComponentRef: ComponentRef<AdminControlsComponent> | null = null;
   private overlayRef: OverlayRef | null = null;
   private documentClickListener?: () => void;
   private documentContextMenuListener?: () => void;
@@ -79,18 +84,20 @@ export class AdminControlsDirective implements OnDestroy {
       this.viewContainerRef,
       injector,
     );
-    this.overlayRef.attach(componentPortal);
+    this.adminControlsComponentRef = this.overlayRef.attach(componentPortal);
+
+    this.adminControlsComponentRef.instance.destroyed
+      .pipe(untilDestroyed(this))
+      .subscribe(() => this.detach());
 
     this.initDocumentEventListeners();
   }
 
   private detach(): void {
-    if (this.overlayRef?.hasAttached()) {
-      this.overlayRef?.detach();
-      this.documentClickListener?.();
-      this.documentContextMenuListener?.();
-      this.escapeKeyListener?.();
-    }
+    this.overlayRef?.detach();
+    this.documentClickListener?.();
+    this.documentContextMenuListener?.();
+    this.escapeKeyListener?.();
   }
 
   private getPositionStrategy(): PositionStrategy {

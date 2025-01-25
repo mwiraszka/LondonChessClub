@@ -79,6 +79,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
     const result = await this.dialogService.open({
       componentType: BasicDialogComponent,
       inputs: { dialog },
+      isModal: true,
     });
 
     if (result === 'confirm') {

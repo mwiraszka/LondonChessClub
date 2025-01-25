@@ -118,6 +118,7 @@ export class MembersTableComponent implements OnInit {
     const result = await this.dialogService.open({
       componentType: BasicDialogComponent,
       inputs: { dialog },
+      isModal: true,
     });
 
     if (result === 'confirm') {

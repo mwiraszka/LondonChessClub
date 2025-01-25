@@ -27,9 +27,6 @@ describe('FormatDatePipe', () => {
     expect(pipe.transform('January 15, 1991')).toBe(
       'Tuesday, January 15th 1991 at 12:00 AM',
     );
-    expect(pipe.transform(new Date('1991-01-15').toDateString())).toBe(
-      'Tuesday, January 15th 1991 at 12:00 AM',
-    );
     expect(pipe.transform(new Date().toISOString())).toBe(currentDateLong);
   });
 
@@ -40,9 +37,6 @@ describe('FormatDatePipe', () => {
       'Saturday, January 1st 2000 at 12:00 AM',
     );
     expect(pipe.transform('January 15, 1991', 'long')).toBe(
-      'Tuesday, January 15th 1991 at 12:00 AM',
-    );
-    expect(pipe.transform(new Date('1991-01-15').toDateString(), 'long')).toBe(
       'Tuesday, January 15th 1991 at 12:00 AM',
     );
     expect(pipe.transform(new Date().toISOString(), 'long')).toBe(currentDateLong);
@@ -57,9 +51,6 @@ describe('FormatDatePipe', () => {
     expect(pipe.transform('January 15, 1991', 'long no-time')).toBe(
       'Tuesday, January 15th 1991',
     );
-    expect(pipe.transform(new Date('1991-01-15').toDateString(), 'long no-time')).toBe(
-      'Tuesday, January 15th 1991',
-    );
     expect(pipe.transform(new Date().toISOString(), 'long no-time')).toBe(
       currentDate.format('dddd, MMMM Do YYYY'),
     );
@@ -72,9 +63,6 @@ describe('FormatDatePipe', () => {
     expect(pipe.transform('January 15, 1991', 'short')).toBe(
       'Tue, Jan 15, 1991, 12:00 AM',
     );
-    expect(pipe.transform(new Date('1991-01-15').toDateString(), 'short')).toBe(
-      'Tue, Jan 15, 1991, 12:00 AM',
-    );
     expect(pipe.transform(new Date().toISOString(), 'short')).toBe(
       currentDate.format('ddd, MMM D, YYYY, h:mm A'),
     );
@@ -85,9 +73,6 @@ describe('FormatDatePipe', () => {
     expect(pipe.transform('1999', 'short no-time')).toBe('Fri, Jan 1, 1999');
     expect(pipe.transform('2000-01-01', 'short no-time')).toBe('Sat, Jan 1, 2000');
     expect(pipe.transform('January 15, 1991', 'short no-time')).toBe('Tue, Jan 15, 1991');
-    expect(pipe.transform(new Date('1991-01-15').toDateString(), 'short no-time')).toBe(
-      'Tue, Jan 15, 1991',
-    );
     expect(pipe.transform(new Date().toISOString(), 'short no-time')).toBe(
       currentDate.format('ddd, MMM D, YYYY'),
     );

@@ -13,6 +13,7 @@
 
   @if (form) {
     <form
+      cdkScrollable
       class="lcc-form"
       [formGroup]="form"
       (ngSubmit)="onSubmit(vm.article?.title ?? vm.articleFormData?.title)">

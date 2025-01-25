@@ -133,6 +133,7 @@ export class ArticleViewerScreenComponent implements OnInit {
 
     const result = await this.dialogService.open({
       componentType: BasicDialogComponent,
+      isModal: true,
       inputs: { dialog },
     });
 

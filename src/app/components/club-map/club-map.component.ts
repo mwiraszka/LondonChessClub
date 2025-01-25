@@ -1,7 +1,7 @@
 import { Loader } from '@googlemaps/js-api-loader';
 
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 
 import { environment } from '@env';
 
@@ -17,8 +17,6 @@ import { environment } from '@env';
   imports: [CommonModule],
 })
 export class ClubMapComponent implements OnInit {
-  @ViewChild('mapElement', { read: ElementRef }) mapElement: HTMLDivElement | null = null;
-
   private clubLocation: google.maps.LatLngLiteral = { lat: 42.982546, lng: -81.261387 };
   private loader!: Loader;
   private mapOptions: google.maps.MapOptions = {
@@ -28,15 +26,15 @@ export class ClubMapComponent implements OnInit {
     mapTypeControl: false,
   };
 
+  constructor(private elementRef: ElementRef) {}
+
   ngOnInit(): void {
     this.loader = new Loader({
       apiKey: environment.googleMapsApiKey,
       version: 'weekly',
     });
 
-    if (this.mapElement) {
-      this.initMap(this.mapElement);
-    }
+    this.initMap(this.elementRef.nativeElement.querySelector('#club-map'));
   }
 
   private async initMap(mapElement: HTMLDivElement): Promise<void> {

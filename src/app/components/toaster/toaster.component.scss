@@ -4,7 +4,7 @@
   position: fixed;
   bottom: 1em;
   right: 1em;
-  z-index: 300;
+  z-index: 1500;
 
   @include mixins.respond-to('lt-md') {
     right: 50%;

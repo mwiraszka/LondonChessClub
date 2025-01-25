@@ -91,6 +91,14 @@ export class AdminControlsDirective implements OnDestroy {
       .subscribe(() => this.detach());
 
     this.initDocumentEventListeners();
+
+    // Unlike regular dialogs, this overlay is meant to go *under* the sticky app header,
+    // so override the default z-index to a value lower than the header's z-index of 1000
+    this.renderer.setStyle(
+      document.querySelector('.cdk-overlay-container'),
+      'z-index',
+      '900',
+    );
   }
 
   private detach(): void {
@@ -98,6 +106,11 @@ export class AdminControlsDirective implements OnDestroy {
     this.documentClickListener?.();
     this.documentContextMenuListener?.();
     this.escapeKeyListener?.();
+
+    this.renderer.removeStyle(
+      document.querySelector('.cdk-overlay-container'),
+      'z-index',
+    );
   }
 
   private getPositionStrategy(): PositionStrategy {

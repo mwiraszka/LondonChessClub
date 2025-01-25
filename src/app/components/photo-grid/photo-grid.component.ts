@@ -35,6 +35,7 @@ export class PhotoGridComponent {
   public async onClickPhoto(index: number): Promise<void> {
     await this.dialogService.open({
       componentType: PhotoViewerComponent,
+      isModal: true,
       inputs: { photos, index },
     });
   }

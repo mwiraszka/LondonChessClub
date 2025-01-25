@@ -65,6 +65,7 @@ export class DocumentsScreenComponent implements OnInit {
   public async onSelectDocument(fileName: string): Promise<void> {
     await this.dialogService.open({
       componentType: DocumentViewerComponent,
+      isModal: true,
       inputs: { documentPath: `assets/documents/${fileName}` },
     });
   }

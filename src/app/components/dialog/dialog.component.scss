@@ -2,6 +2,7 @@ $header-height: 30px;
 $header-border-bottom-thickness: 2px;
 
 :host {
+  z-index: 2000;
   max-width: min(90vw, var(--lcc-width--appContent));
   border-radius: var(--lcc-borderRadius--small);
   box-shadow: 1px 1px 8px 3px var(--lcc-color--dialog-boxShadow);

@@ -19,6 +19,6 @@ export interface DialogOutput<TResult> {
 
 export interface DialogConfig<TComponent> {
   componentType: Type<TComponent>;
+  isModal: boolean;
   inputs?: { [key: string]: unknown };
-  isModal?: boolean;
 }

@@ -243,8 +243,8 @@ export class ArticleFormComponent implements OnInit {
 
     const result = await this.dialogService1.open({
       componentType: BasicDialogComponent,
-      inputs: { dialog },
       isModal: false,
+      inputs: { dialog },
     });
 
     if (result !== 'confirm') {

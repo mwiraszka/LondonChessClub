@@ -36,6 +36,7 @@ export class UnsavedEventGuard implements CanDeactivate<unknown> {
 
     const result = await this.dialogService.open({
       componentType: BasicDialogComponent,
+      isModal: false,
       inputs: { dialog },
     });
 

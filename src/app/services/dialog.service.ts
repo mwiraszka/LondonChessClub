@@ -8,7 +8,6 @@ import {
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
-  ComponentRef,
   Injectable,
   InjectionToken,
   Injector,
@@ -24,9 +23,7 @@ export const DIALOG_CONFIG_TOKEN = new InjectionToken<DialogConfig<unknown>>(
 );
 
 @Injectable({ providedIn: 'root' })
-export class DialogService<TComponent extends DialogOutput<TResult>, TResult> {
-  private dialogComponentRef: ComponentRef<DialogComponent<TComponent, TResult>> | null =
-    null;
+export class DialogService {
   private overlayRef: OverlayRef | null = null;
   private renderer!: Renderer2;
 
@@ -41,7 +38,9 @@ export class DialogService<TComponent extends DialogOutput<TResult>, TResult> {
     this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 
-  public open(dialogConfig: DialogConfig<TComponent>): Promise<TResult | 'close'> {
+  public open<TComponent extends DialogOutput<TResult>, TResult>(
+    dialogConfig: DialogConfig<TComponent>,
+  ): Promise<TResult | 'close'> {
     if (this.overlayRef) {
       this.close();
     }
@@ -52,6 +51,13 @@ export class DialogService<TComponent extends DialogOutput<TResult>, TResult> {
       hasBackdrop: dialogConfig.isModal,
       backdropClass: 'lcc-modal-backdrop',
     });
+
+    // This style never gets removed, only overidden by other overlay directives/services
+    this.renderer.setStyle(
+      document.querySelector('.cdk-overlay-container'),
+      'z-index',
+      '1100',
+    );
 
     setTimeout(() => this.initEventListeners(this.overlayRef?.overlayElement));
 
@@ -64,14 +70,14 @@ export class DialogService<TComponent extends DialogOutput<TResult>, TResult> {
       null,
       injector,
     );
-    this.dialogComponentRef = this.overlayRef.attach(dialogComponentPortal);
+    const dialogComponentRef = this.overlayRef.attach(dialogComponentPortal);
 
     return firstValueFrom(
-      this.dialogComponentRef.instance.result.pipe(tap(() => this.close())),
+      dialogComponentRef.instance.result.pipe(tap(() => this.close())),
     );
   }
 
-  public close(): void {
+  private close(): void {
     this.overlayRef?.dispose();
     this.overlayRef = null;
 

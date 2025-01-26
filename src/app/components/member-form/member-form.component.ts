@@ -65,10 +65,7 @@ export class MemberFormComponent implements OnInit {
   private controlMode: ControlMode | null = null;
 
   constructor(
-    private readonly dialogService: DialogService<
-      BasicDialogComponent,
-      BasicDialogResult
-    >,
+    private readonly dialogService: DialogService,
     private readonly formBuilder: FormBuilder,
     private readonly store: Store,
   ) {}
@@ -145,11 +142,13 @@ export class MemberFormComponent implements OnInit {
       confirmButtonText: this.controlMode === 'edit' ? 'Update' : 'Add',
     };
 
-    const result = await this.dialogService.open({
-      componentType: BasicDialogComponent,
-      inputs: { dialog },
-      isModal: false,
-    });
+    const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(
+      {
+        componentType: BasicDialogComponent,
+        inputs: { dialog },
+        isModal: false,
+      },
+    );
 
     if (result !== 'confirm') {
       return;

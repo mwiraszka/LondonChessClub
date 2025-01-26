@@ -12,10 +12,7 @@ import { MembersSelectors } from '@app/store/members';
 @Injectable({ providedIn: 'root' })
 export class UnsavedMemberGuard implements CanDeactivate<unknown> {
   constructor(
-    private readonly dialogService: DialogService<
-      BasicDialogComponent,
-      BasicDialogResult
-    >,
+    private readonly dialogService: DialogService,
     private readonly store: Store,
   ) {}
 
@@ -34,11 +31,13 @@ export class UnsavedMemberGuard implements CanDeactivate<unknown> {
       confirmButtonText: 'Leave',
     };
 
-    const result = await this.dialogService.open({
-      componentType: BasicDialogComponent,
-      isModal: false,
-      inputs: { dialog },
-    });
+    const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(
+      {
+        componentType: BasicDialogComponent,
+        isModal: false,
+        inputs: { dialog },
+      },
+    );
 
     return result === 'confirm';
   }

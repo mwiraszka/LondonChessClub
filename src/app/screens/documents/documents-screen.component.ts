@@ -51,7 +51,7 @@ export class DocumentsScreenComponent implements OnInit {
   ];
 
   constructor(
-    private readonly dialogService: DialogService<DocumentViewerComponent, null>,
+    private readonly dialogService: DialogService,
     private readonly metaAndTitleService: MetaAndTitleService,
   ) {}
 
@@ -63,7 +63,7 @@ export class DocumentsScreenComponent implements OnInit {
   }
 
   public async onSelectDocument(fileName: string): Promise<void> {
-    await this.dialogService.open({
+    await this.dialogService.open<DocumentViewerComponent, null>({
       componentType: DocumentViewerComponent,
       isModal: true,
       inputs: { documentPath: `assets/documents/${fileName}` },

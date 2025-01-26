@@ -50,9 +50,11 @@ export class TooltipDirective implements OnDestroy {
 
     if (this.overlayRef === null) {
       const clientY = event instanceof MouseEvent ? event.clientY : undefined;
-      const positionStrategy = this.getPositionStrategy(clientY);
-      const scrollStrategy = this.getScrollStrategy();
-      this.overlayRef = this.overlay.create({ positionStrategy, scrollStrategy });
+
+      this.overlayRef = this.overlay.create({
+        positionStrategy: this.getPositionStrategy(clientY),
+        scrollStrategy: this.getScrollStrategy(),
+      });
     }
 
     const injector = Injector.create({
@@ -69,7 +71,12 @@ export class TooltipDirective implements OnDestroy {
       this.viewContainerRef,
       injector,
     );
-    this.overlayRef.attach(componentPortal);
+
+    if (!this.overlayRef?.hasAttached()) {
+      this.overlayRef.attach(componentPortal);
+    } else {
+      this.detach();
+    }
   }
 
   @HostListener('mouseleave')

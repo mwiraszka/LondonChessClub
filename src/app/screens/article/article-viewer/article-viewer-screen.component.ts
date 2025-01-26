@@ -57,10 +57,7 @@ export class ArticleViewerScreenComponent implements OnInit {
   );
 
   constructor(
-    private readonly dialogService: DialogService<
-      BasicDialogComponent,
-      BasicDialogResult
-    >,
+    private readonly dialogService: DialogService,
     @Inject(DOCUMENT) private _document: Document,
     private readonly metaAndTitleService: MetaAndTitleService,
     private readonly router: Router,
@@ -131,11 +128,13 @@ export class ArticleViewerScreenComponent implements OnInit {
       confirmButtonType: 'warning',
     };
 
-    const result = await this.dialogService.open({
-      componentType: BasicDialogComponent,
-      isModal: true,
-      inputs: { dialog },
-    });
+    const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(
+      {
+        componentType: BasicDialogComponent,
+        isModal: true,
+        inputs: { dialog },
+      },
+    );
 
     if (result === 'confirm') {
       this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));

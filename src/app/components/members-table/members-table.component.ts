@@ -66,10 +66,7 @@ export class MembersTableComponent implements OnInit {
   ];
 
   constructor(
-    private readonly dialogService: DialogService<
-      BasicDialogComponent,
-      BasicDialogResult
-    >,
+    private readonly dialogService: DialogService,
     private readonly store: Store,
   ) {}
 
@@ -115,11 +112,13 @@ export class MembersTableComponent implements OnInit {
       confirmButtonType: 'warning',
     };
 
-    const result = await this.dialogService.open({
-      componentType: BasicDialogComponent,
-      inputs: { dialog },
-      isModal: true,
-    });
+    const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(
+      {
+        componentType: BasicDialogComponent,
+        inputs: { dialog },
+        isModal: true,
+      },
+    );
 
     if (result === 'confirm') {
       this.store.dispatch(MembersActions.deleteMemberRequested({ member }));

@@ -81,7 +81,7 @@ describe('DatePickerComponent', () => {
     it('should render a 7 x 6 table for every month, regardless of number of days', () => {
       expect(element('.calendar-table')).not.toBeNull();
 
-      // TODO: more details about calendar table & test day selection
+      // TODO: More details about calendar table & test day selection
     });
   });
 

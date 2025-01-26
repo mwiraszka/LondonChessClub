@@ -28,12 +28,10 @@ export class PhotoGridComponent {
 
   public readonly photos = photos;
 
-  constructor(
-    private readonly dialogService: DialogService<PhotoViewerComponent, null>,
-  ) {}
+  constructor(private readonly dialogService: DialogService) {}
 
   public async onClickPhoto(index: number): Promise<void> {
-    await this.dialogService.open({
+    await this.dialogService.open<PhotoViewerComponent, null>({
       componentType: PhotoViewerComponent,
       isModal: true,
       inputs: { photos, index },

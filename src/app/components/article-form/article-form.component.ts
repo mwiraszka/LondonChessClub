@@ -70,13 +70,7 @@ export class ArticleFormComponent implements OnInit {
   private controlMode: ControlMode | null = null;
 
   constructor(
-    // TODO: Find a way to remove generics from the service to allow for multiple component types
-    // to be opened from a single host component but still maintaining type safety
-    private readonly dialogService1: DialogService<
-      BasicDialogComponent,
-      BasicDialogResult
-    >,
-    private readonly dialogService2: DialogService<ImageExplorerComponent, Id>,
+    private readonly dialogService: DialogService,
     private readonly formBuilder: FormBuilder,
     private readonly store: Store,
   ) {}
@@ -188,7 +182,7 @@ export class ArticleFormComponent implements OnInit {
   }
 
   public async onOpenImageExplorer(): Promise<void> {
-    const thumbnailImageId = await this.dialogService2.open({
+    const thumbnailImageId = await this.dialogService.open<ImageExplorerComponent, Id>({
       componentType: ImageExplorerComponent,
       isModal: true,
     });
@@ -241,11 +235,13 @@ export class ArticleFormComponent implements OnInit {
       confirmButtonText: this.controlMode === 'edit' ? 'Update' : 'Add',
     };
 
-    const result = await this.dialogService1.open({
-      componentType: BasicDialogComponent,
-      isModal: false,
-      inputs: { dialog },
-    });
+    const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(
+      {
+        componentType: BasicDialogComponent,
+        isModal: false,
+        inputs: { dialog },
+      },
+    );
 
     if (result !== 'confirm') {
       return;

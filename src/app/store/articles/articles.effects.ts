@@ -85,8 +85,9 @@ export class ArticlesEffects {
           lastEditedBy: `${user.firstName} ${user.lastName}`,
           dateLastEdited: moment().toISOString(),
         };
+        const { imageFilename, ...articleFormDataWithoutImageFilename } = articleFormData;
         const modifiedArticle: Article = {
-          ...articleFormData,
+          ...articleFormDataWithoutImageFilename,
           imageId: imageId ?? articleFormData.imageId,
           modificationInfo,
           id: null,
@@ -126,9 +127,10 @@ export class ArticlesEffects {
           lastEditedBy: `${user.firstName} ${user.lastName}`,
           dateLastEdited: moment().toISOString(),
         };
+        const { imageFilename, ...articleFormDataWithoutImageFilename } = articleFormData;
         const modifiedArticle = {
           ...article,
-          ...articleFormData,
+          ...articleFormDataWithoutImageFilename,
           imageId: imageId ?? articleFormData.imageId,
           modificationInfo,
         };

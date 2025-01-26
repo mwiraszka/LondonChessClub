@@ -7,16 +7,16 @@ export interface Member {
   id: Id | null;
   firstName: string;
   lastName: string;
-  city: string;
   rating: string;
   peakRating: string;
-  dateJoined: IsoDate;
-  isActive: boolean;
-  chessComUsername: string;
-  lichessUsername: string;
-  yearOfBirth: string;
   email: string;
   phoneNumber: string;
+  city: string;
+  yearOfBirth: string;
+  chessComUsername: string;
+  lichessUsername: string;
+  isActive: boolean;
+  dateJoined: IsoDate;
   modificationInfo: ModificationInfo;
 }
 

@@ -24,16 +24,18 @@ export const DIALOG_CONFIG_TOKEN = new InjectionToken<DialogConfig<unknown>>(
 
 @Injectable({ providedIn: 'root' })
 export class DialogService {
-  private overlayRef: OverlayRef | null = null;
-  private renderer!: Renderer2;
-
   private documentClickListener?: () => void;
   private keyDownListener?: () => void;
-  private overlayElementClickListener?: () => void;
+  private renderer!: Renderer2;
+
+  private _overlayRefs: OverlayRef[] = [];
+  public get overlayRefs(): OverlayRef[] {
+    return this._overlayRefs;
+  }
 
   constructor(
-    private readonly rendererFactory: RendererFactory2,
     private readonly overlay: Overlay,
+    private readonly rendererFactory: RendererFactory2,
   ) {
     this.renderer = this.rendererFactory.createRenderer(null, null);
   }
@@ -41,25 +43,12 @@ export class DialogService {
   public open<TComponent extends DialogOutput<TResult>, TResult>(
     dialogConfig: DialogConfig<TComponent>,
   ): Promise<TResult | 'close'> {
-    if (this.overlayRef) {
-      this.close();
-    }
-
-    this.overlayRef = this.overlay.create({
-      positionStrategy: this.getPositionStrategy(),
-      scrollStrategy: this.getScrollStrategy(dialogConfig.isModal),
-      hasBackdrop: dialogConfig.isModal,
-      backdropClass: 'lcc-modal-backdrop',
-    });
-
     // This style never gets removed, only overidden by other overlay directives/services
     this.renderer.setStyle(
       document.querySelector('.cdk-overlay-container'),
       'z-index',
       '1100',
     );
-
-    setTimeout(() => this.initEventListeners(this.overlayRef?.overlayElement));
 
     const injector = Injector.create({
       providers: [{ provide: DIALOG_CONFIG_TOKEN, useValue: dialogConfig }],
@@ -70,7 +59,23 @@ export class DialogService {
       null,
       injector,
     );
-    const dialogComponentRef = this.overlayRef.attach(dialogComponentPortal);
+
+    const overlayRef = this.overlay.create({
+      positionStrategy: this.getPositionStrategy(),
+      scrollStrategy: this.getScrollStrategy(dialogConfig.isModal),
+      hasBackdrop: dialogConfig.isModal,
+      backdropClass: 'lcc-modal-backdrop',
+    });
+
+    const dialogComponentRef = overlayRef.attach(dialogComponentPortal);
+
+    // Only init listeners once, when first overlay is created, and with timeout to prevent
+    // the click event that opened up this dialog from being used
+    if (this._overlayRefs.length === 0) {
+      setTimeout(() => this.initEventListeners());
+    }
+
+    this._overlayRefs?.push(overlayRef);
 
     return firstValueFrom(
       dialogComponentRef.instance.result.pipe(tap(() => this.close())),
@@ -78,29 +83,29 @@ export class DialogService {
   }
 
   private close(): void {
-    this.overlayRef?.dispose();
-    this.overlayRef = null;
+    const overlayRef = this._overlayRefs.pop();
 
-    // 'Unlisten' to all event listeners by calling their returned functions
-    this.overlayElementClickListener?.();
-    this.documentClickListener?.();
-    this.keyDownListener?.();
+    if (overlayRef) {
+      overlayRef.dispose();
+    }
+
+    // Only remove listeners when there are no more overlays
+    if (this._overlayRefs.length === 0) {
+      this.documentClickListener?.();
+      this.keyDownListener?.();
+    }
   }
 
-  private initEventListeners(overlayElement?: HTMLElement): void {
-    this.overlayElementClickListener = this.renderer.listen(
-      overlayElement,
-      'click',
-      (event: MouseEvent) => {
-        event.stopPropagation();
-      },
-    );
-
+  private initEventListeners(): void {
     this.documentClickListener = this.renderer.listen(
       'document',
       'click',
-      (event: MouseEvent) => {
-        if (!overlayElement?.contains(event.target as Node)) {
+      (event: PointerEvent) => {
+        const backdropClicked = (event?.target as HTMLElement).classList.contains(
+          'cdk-overlay-backdrop',
+        );
+        if (backdropClicked) {
+          event.stopImmediatePropagation();
           this.close();
         }
       },
@@ -117,6 +122,7 @@ export class DialogService {
         ) {
           event.preventDefault();
         } else if (event.key === 'Escape') {
+          event.stopImmediatePropagation();
           this.close();
         }
       },

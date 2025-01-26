@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import * as uuid from 'uuid';
 
+import { CdkScrollable, CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
@@ -29,11 +30,13 @@ import * as ImagesSelectors from '@app/store/images/images.selectors';
   styleUrl: './image-explorer.component.scss',
   imports: [
     AdminControlsDirective,
+    CdkScrollableModule,
     CommonModule,
     FormatBytesPipe,
     FormatDatePipe,
     IconsModule,
   ],
+  hostDirectives: [CdkScrollable],
 })
 export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
   public images$: Observable<Image[]> = of(this.generatePlaceholderImages(25));

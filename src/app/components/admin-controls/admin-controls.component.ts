@@ -1,4 +1,3 @@
-import { CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Inject, OnDestroy, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -15,7 +14,6 @@ import { ADMIN_CONTROLS_CONFIG } from './admin-controls.directive';
   templateUrl: './admin-controls.component.html',
   styleUrl: './admin-controls.component.scss',
   imports: [
-    CdkScrollableModule,
     CommonModule,
     IconsModule,
     IsDefinedPipe,

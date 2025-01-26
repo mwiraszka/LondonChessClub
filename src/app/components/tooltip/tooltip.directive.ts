@@ -3,7 +3,6 @@ import {
   Overlay,
   OverlayRef,
   PositionStrategy,
-  ScrollStrategy,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
@@ -43,17 +42,23 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('mouseenter', ['$event'])
   @HostListener('focus', ['$event'])
-  private attach(event: MouseEvent | FocusEvent): void {
-    if (!isDefined(this.tooltip) || this.isTouchScreen()) {
-      return;
+  private onMouseEnterOrFocus(event: MouseEvent | FocusEvent): void {
+    if (
+      isDefined(this.tooltip) &&
+      !this.isTouchScreen() &&
+      !this.overlayRef?.hasAttached()
+    ) {
+      const clientY: Pixels | undefined =
+        event instanceof MouseEvent ? event.clientY : undefined;
+      this.attach(clientY);
     }
+  }
 
+  private attach(clientY?: Pixels): void {
     if (this.overlayRef === null) {
-      const clientY = event instanceof MouseEvent ? event.clientY : undefined;
-
       this.overlayRef = this.overlay.create({
         positionStrategy: this.getPositionStrategy(clientY),
-        scrollStrategy: this.getScrollStrategy(),
+        scrollStrategy: this.overlay.scrollStrategies.close(),
       });
     }
 
@@ -72,11 +77,7 @@ export class TooltipDirective implements OnDestroy {
       injector,
     );
 
-    if (!this.overlayRef?.hasAttached()) {
-      this.overlayRef.attach(componentPortal);
-    } else {
-      this.detach();
-    }
+    this.overlayRef.attach(componentPortal);
   }
 
   @HostListener('mouseleave')
@@ -158,10 +159,6 @@ export class TooltipDirective implements OnDestroy {
       .position()
       .flexibleConnectedTo(this.element)
       .withPositions(preferredPositions);
-  }
-
-  private getScrollStrategy(): ScrollStrategy {
-    return this.overlay.scrollStrategies.close();
   }
 
   private isTouchScreen(): boolean {

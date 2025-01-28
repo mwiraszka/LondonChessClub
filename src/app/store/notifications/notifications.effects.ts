@@ -41,7 +41,7 @@ export class NotificationsEffects {
       map(({ error }) => {
         const toast: Toast = {
           title: 'New article',
-          message: error.message,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -69,7 +69,7 @@ export class NotificationsEffects {
       map(({ error }) => {
         const toast: Toast = {
           title: 'Article update',
-          message: error.message,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -143,7 +143,7 @@ export class NotificationsEffects {
       map(({ error }) => {
         const toast: Toast = {
           title: 'Load banner image file',
-          message: error.message,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -493,27 +493,13 @@ export class NotificationsEffects {
     );
   });
 
-  addNewPasswordChallengeRequestedToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(AuthActions.newPasswordChallengeRequested),
-      map(({ user }) => {
-        const toast: Toast = {
-          title: `Welcome, ${user.firstName}`,
-          message: "Just need to create a new password and you're all set!",
-          type: 'info',
-        };
-        return NotificationsActions.toastAdded({ toast });
-      }),
-    );
-  });
-
   addLoginFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.loginFailed),
       map(({ error }) => {
         const toast: Toast = {
           title: 'Admin login',
-          message: error.message,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -529,6 +515,20 @@ export class NotificationsEffects {
           title: 'Admin logout',
           message: 'Successfully logged out',
           type: 'success',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addLogoutFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.logoutFailed),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Admin logout',
+          message: this.getErrorMessage(error),
+          type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
       }),
@@ -555,7 +555,7 @@ export class NotificationsEffects {
       map(({ error }) => {
         const toast: Toast = {
           title: 'Password change',
-          message: error.message,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -569,7 +569,7 @@ export class NotificationsEffects {
       map(() => {
         const toast: Toast = {
           title: 'Password change',
-          message: 'Successfully changed password',
+          message: 'Successfully changed password and logged in',
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -583,7 +583,7 @@ export class NotificationsEffects {
       map(({ error }) => {
         const toast: Toast = {
           title: 'Password change',
-          message: error.message,
+          message: this.getErrorMessage(error),
           type: 'warning',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -611,6 +611,7 @@ export class NotificationsEffects {
           ArticlesActions.fetchArticleFailed,
           ArticlesActions.bannerImageFileLoadFailed,
           AuthActions.loginFailed,
+          AuthActions.logoutFailed,
           AuthActions.codeForPasswordChangeFailed,
           AuthActions.passwordChangeFailed,
           EventsActions.addEventFailed,

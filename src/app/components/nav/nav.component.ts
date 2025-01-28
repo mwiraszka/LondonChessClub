@@ -11,6 +11,7 @@ import IconsModule from '@app/icons';
 import type { InternalLink } from '@app/models';
 import { RouterLinkPipe } from '@app/pipes';
 import { AppActions } from '@app/store/app';
+import { AuthActions } from '@app/store/auth';
 import { NavSelectors } from '@app/store/nav';
 
 @Component({
@@ -81,6 +82,10 @@ export class NavComponent {
   @HostListener('window:resize', ['$event'])
   private onResize(): void {
     this.screenWidth = window.innerWidth;
+  }
+
+  public onLogout(): void {
+    this.store.dispatch(AuthActions.logoutRequested());
   }
 
   public onToggleTheme(): void {

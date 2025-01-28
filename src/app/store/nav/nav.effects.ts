@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ArticlesActions } from '@app/store/articles';
-import { AuthActions, AuthSelectors } from '@app/store/auth';
+import { AuthActions } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { MembersActions } from '@app/store/members';
 import { isDefined, isValidCollectionId } from '@app/utils';
@@ -83,20 +83,10 @@ export class NavEffects {
     ),
   );
 
-  navigateToChangePassword$ = createEffect(() =>
+  navigateToLogin$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.newPasswordChallengeRequested),
-      map(() => NavActions.navigationRequested({ path: 'change-password' })),
-    ),
-  );
-
-  handleLogoutRouteNavigation$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      filter(({ payload }) => payload.event.url === '/logout'),
-      concatLatestFrom(() => this.store.select(AuthSelectors.selectUser)),
-      filter(isDefined),
-      map(() => AuthActions.logoutRequested()),
+      ofType(AuthActions.logoutSucceeded),
+      map(() => NavActions.navigationRequested({ path: 'login' })),
     ),
   );
 

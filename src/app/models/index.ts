@@ -19,19 +19,10 @@ export type { FilterFormGroup } from './filter-form-group.model';
 export type { GameDetails, GameScore } from './game-details.model';
 export type { Image } from './image.model';
 export type { ExternalLink, InternalLink, InternalPath } from './link.model';
-export type {
-  ChangePasswordFormGroup,
-  LoginFormGroup,
-  LoginRequest,
-  LoginResponse,
-} from './login.model';
+export type { ChangePasswordFormGroup, LoginFormGroup } from './login.model';
 export type { Member, MemberFormData, MemberFormGroup } from './member.model';
 export type { ModificationInfo } from './modification-info.model';
 export type { NavPath } from './nav-path.model';
-export type {
-  PasswordChangeRequest,
-  PasswordChangeResponse,
-} from './password-change.model';
 export type { Photo } from './photo.model';
 export type { Toast } from './toast.model';
-export type { AdminUser, UnverifiedUser, User } from './user.model';
+export type { AdminUser, User } from './user.model';

@@ -16,13 +16,7 @@ import { RouterLink } from '@angular/router';
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
-import type {
-  ChangePasswordFormGroup,
-  LoginRequest,
-  PasswordChangeRequest,
-  User,
-} from '@app/models';
-import { RouterLinkPipe } from '@app/pipes';
+import type { ChangePasswordFormGroup } from '@app/models';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
 import {
   emailValidator,
@@ -38,29 +32,11 @@ import {
   selector: 'lcc-change-password-form',
   templateUrl: './change-password-form.component.html',
   styleUrl: './change-password-form.component.scss',
-  imports: [
-    CommonModule,
-    IconsModule,
-    ReactiveFormsModule,
-    RouterLink,
-    RouterLinkPipe,
-    TooltipDirective,
-  ],
+  imports: [CommonModule, IconsModule, ReactiveFormsModule, RouterLink, TooltipDirective],
 })
 export class ChangePasswordFormComponent implements OnInit {
-  public readonly changePasswordFormViewModel$ = this.store.select(
-    AuthSelectors.selectChangePasswordFormViewModel,
-  );
   public form: FormGroup<ChangePasswordFormGroup> | null = null;
-
-  private readonly passwordValidators: ValidatorFn[] = [
-    Validators.required,
-    Validators.minLength(8),
-    hasLowercaseLetterValidator,
-    hasUppercaseLetterValidator,
-    hasSpecialCharValidator,
-    hasNumberValidator,
-  ];
+  public hasCode: boolean = false;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -69,14 +45,18 @@ export class ChangePasswordFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.initPasswordMatchListener();
+
+    this.store
+      .select(AuthSelectors.selectHasCode)
+      .pipe(untilDestroyed(this))
+      .subscribe(hasCode => (this.hasCode = hasCode));
   }
 
-  hasError(control: AbstractControl): boolean {
+  public hasError(control: AbstractControl): boolean {
     return control.dirty && control.invalid;
   }
 
-  getErrorMessage(control: AbstractControl): string {
+  public getErrorMessage(control: AbstractControl): string {
     if (control.hasError('required')) {
       return 'This field is required';
     } else if (control.hasError('invalidEmailFormat')) {
@@ -93,46 +73,31 @@ export class ChangePasswordFormComponent implements OnInit {
       return 'Password needs to include at least one number';
     } else if (control.hasError('minlength')) {
       return 'Password needs to be at least 8 characters long';
-    } else if (control.hasError('passwordMismatch')) {
-      return "Passwords don't match";
     } else {
       return 'Unknown error';
     }
   }
 
-  onSubmit(
-    user: User | null,
-    userHasCode: boolean,
-    temporaryPassword: string | null,
-  ): void {
+  public onSubmit(hasCode: boolean): void {
     if (
-      ((!userHasCode || temporaryPassword) && this.form?.controls.email.invalid) ||
-      (userHasCode && this.form?.invalid)
+      !this.form ||
+      (!hasCode && this.form.controls.email.invalid) ||
+      (hasCode && this.form.invalid)
     ) {
-      this.form.markAllAsTouched();
+      this.form!.markAllAsTouched();
       return;
     }
 
-    const email = this.form?.value.email ?? '';
-    const newPassword = this.form?.value.newPassword ?? '';
-    const code = this.form?.value.code?.toString();
+    const email = this.form.value.email;
+    const password = this.form.value.newPassword;
+    const code = this.form.value.code;
 
-    if (user && !user?.isVerified && temporaryPassword) {
-      const request: LoginRequest = {
-        email,
-        password: newPassword,
-        temporaryPassword,
-      };
-      this.store.dispatch(AuthActions.loginRequested({ request }));
-    } else if (userHasCode) {
-      const request: PasswordChangeRequest = {
-        email,
-        newPassword,
-        code: code!,
-      };
-      this.store.dispatch(AuthActions.passwordChangeRequested({ request }));
-    } else {
+    if (!hasCode && email) {
       this.store.dispatch(AuthActions.codeForPasswordChangeRequested({ email }));
+    }
+
+    if (hasCode && email && password && code) {
+      this.store.dispatch(AuthActions.passwordChangeRequested({ email, password, code }));
     }
   }
 
@@ -164,11 +129,12 @@ export class ChangePasswordFormComponent implements OnInit {
     );
   }
 
-  private initPasswordMatchListener(): void {
-    this.form?.controls.newPassword.valueChanges
-      .pipe(untilDestroyed(this))
-      .subscribe(() => {
-        this.form?.controls.confirmPassword.updateValueAndValidity();
-      });
-  }
+  private readonly passwordValidators: ValidatorFn[] = [
+    Validators.required,
+    Validators.minLength(8),
+    hasLowercaseLetterValidator,
+    hasUppercaseLetterValidator,
+    hasSpecialCharValidator,
+    hasNumberValidator,
+  ];
 }

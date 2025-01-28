@@ -14,7 +14,7 @@ import { RouterLink } from '@angular/router';
 
 import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
 import IconsModule from '@app/icons';
-import { LoginFormGroup, LoginRequest } from '@app/models';
+import { LoginFormGroup } from '@app/models';
 import { AuthActions } from '@app/store/auth';
 import { emailValidator } from '@app/validators';
 
@@ -36,7 +36,6 @@ export class LoginFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       email: new FormControl('', {
         nonNullable: true,
-        updateOn: 'blur',
         validators: [Validators.required, emailValidator],
       }),
       password: new FormControl('', {
@@ -64,7 +63,11 @@ export class LoginFormComponent implements OnInit {
       return;
     }
 
-    const request = this.form!.value as Required<LoginRequest>;
-    this.store.dispatch(AuthActions.loginRequested({ request }));
+    this.store.dispatch(
+      AuthActions.loginRequested({
+        email: this.form!.value.email!,
+        password: this.form!.value.password!,
+      }),
+    );
   }
 }

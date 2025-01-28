@@ -98,10 +98,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'logout',
-    redirectTo: 'login',
-  },
-  {
     path: 'change-password',
     loadChildren: () =>
       import('./screens/change-password/change-password-screen-routing.module').then(

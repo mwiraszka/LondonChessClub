@@ -13,6 +13,7 @@ import { isDefined } from '../common/is-defined.util';
 export function parseError(error: unknown): LccError {
   if (error instanceof HttpErrorResponse) {
     return {
+      name: 'LCCError',
       message: isString(error.error.message)
         ? error.error.message
         : isString(error.message)
@@ -24,19 +25,27 @@ export function parseError(error: unknown): LccError {
 
   if (error instanceof Error) {
     return {
+      name: 'LCCError',
       message: error.message,
     };
   }
 
   if (!isDefined(error) || error === '' || isEmpty(error)) {
-    return { message: 'Empty error.' };
+    return {
+      name: 'LCCError',
+      message: 'Empty error.',
+    };
   }
 
   if (isString(error)) {
     return {
+      name: 'LCCError',
       message: error,
     };
   }
 
-  return { message: 'Invalid error.' };
+  return {
+    name: 'LCCError',
+    message: 'Invalid error.',
+  };
 }

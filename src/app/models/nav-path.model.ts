@@ -12,7 +12,6 @@ const navPaths = [
   'game-archives',
   'documents',
   'login',
-  'logout',
   'change-password',
 ] as const;
 export type NavPath = (typeof navPaths)[number];

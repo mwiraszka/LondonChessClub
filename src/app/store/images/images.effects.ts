@@ -80,6 +80,7 @@ export class ImagesEffects {
 
         if (!imageFile) {
           const error: LccError = {
+            name: 'LCCError',
             message: 'Unable to construct file object from image data URL.',
           };
           return of(ImagesActions.addImageFailed({ error }));

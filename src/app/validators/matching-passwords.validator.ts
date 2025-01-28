@@ -3,7 +3,10 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 export function matchingPasswordsValidator(
   formGroup: AbstractControl,
 ): ValidationErrors | null {
-  return formGroup.get('newPassword')?.value === formGroup.get('confirmPassword')?.value
+  const newPassword = formGroup.get('newPassword')?.value;
+  const confirmPassword = formGroup.get('confirmPassword')?.value;
+
+  return !newPassword || !confirmPassword || newPassword === confirmPassword
     ? null
     : { passwordMismatch: true };
 }

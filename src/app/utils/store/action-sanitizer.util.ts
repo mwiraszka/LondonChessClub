@@ -10,8 +10,7 @@ export function actionSanitizer(action: Action, id: number): Action {
   const shruggy = `¯\\_(ツ)_/¯ ${id}`;
   if (
     action.type === AuthActions.loginRequested.type ||
-    action.type === AuthActions.passwordChangeRequested.type ||
-    action.type === AuthActions.newPasswordChallengeRequested.type
+    action.type === AuthActions.passwordChangeRequested.type
   ) {
     return {
       ...action,

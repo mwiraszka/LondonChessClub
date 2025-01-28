@@ -44,7 +44,6 @@
     "@types/lodash": "4.17.13",
     "@types/ws": "8.5.13",
     "@webcomponents/webcomponentsjs": "2.8.0",
-    "amazon-cognito-identity-js": "6.3.12",
     "angular-feather": "6.5.1",
     "chart.js": "4.4.6",
     "lichess-pgn-viewer": "2.1.3",

@@ -2,8 +2,7 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
-  isVerified: boolean;
+  isAdmin: boolean;
 }
 
-export type AdminUser = User & { isVerified: true };
-export type UnverifiedUser = User & { isVerified: false };
+export type AdminUser = User & { isAdmin: true };

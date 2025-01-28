@@ -13,6 +13,7 @@ import {
   selector: '[dropdown]',
 })
 export class DropdownDirective {
+  // TODO: Make this directive less stupid
   dropdownElement = this.elementRef.nativeElement;
 
   @HostBinding('class.lcc-dropdown-open')

@@ -8,6 +8,7 @@ describe('parseError', () => {
       const response = new HttpErrorResponse({
         status: 400,
         error: {
+          name: 'LCCError',
           message: 'error!',
           error: 'some other error value',
         },
@@ -16,6 +17,7 @@ describe('parseError', () => {
       });
 
       expect(parseError(response)).toStrictEqual({
+        name: 'LCCError',
         status: 400,
         message: 'error!',
       });
@@ -35,6 +37,7 @@ describe('parseError', () => {
 
       // HttpErrorResponse automatically generates error message under `response.message`
       expect(parseError(response)).toStrictEqual({
+        name: 'LCCError',
         status: 404,
         message: 'Http failure response for (unknown url): 404 undefined',
       });
@@ -46,6 +49,7 @@ describe('parseError', () => {
       const error = new Error('error!');
 
       expect(parseError(error)).toStrictEqual({
+        name: 'LCCError',
         message: 'error!',
       });
     });
@@ -54,6 +58,7 @@ describe('parseError', () => {
       const error = 'error!';
 
       expect(parseError(error)).toStrictEqual({
+        name: 'LCCError',
         message: 'error!',
       });
     });
@@ -64,6 +69,7 @@ describe('parseError', () => {
       };
 
       expect(parseError(error)).toStrictEqual({
+        name: 'LCCError',
         message: 'Invalid error.',
       });
     });
@@ -74,6 +80,7 @@ describe('parseError', () => {
       const error = null;
 
       expect(parseError(error)).toStrictEqual({
+        name: 'LCCError',
         message: 'Empty error.',
       });
     });
@@ -82,6 +89,7 @@ describe('parseError', () => {
       const error = undefined;
 
       expect(parseError(error)).toStrictEqual({
+        name: 'LCCError',
         message: 'Empty error.',
       });
     });
@@ -90,6 +98,7 @@ describe('parseError', () => {
       const error = {};
 
       expect(parseError(error)).toStrictEqual({
+        name: 'LCCError',
         message: 'Empty error.',
       });
     });
@@ -98,6 +107,7 @@ describe('parseError', () => {
       const error = '';
 
       expect(parseError(error)).toStrictEqual({
+        name: 'LCCError',
         message: 'Empty error.',
       });
     });

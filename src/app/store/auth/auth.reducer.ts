@@ -7,13 +7,11 @@ import * as AuthActions from './auth.actions';
 export interface AuthState {
   user: User | null;
   hasCode: boolean;
-  temporaryPassword: string | null;
 }
 
 export const authInitialState: AuthState = {
   user: null,
   hasCode: false,
-  temporaryPassword: null,
 };
 
 export const authReducer = createReducer(
@@ -21,10 +19,10 @@ export const authReducer = createReducer(
 
   on(
     AuthActions.loginSucceeded,
+    AuthActions.passwordChangeSucceeded,
     (state, { user }): AuthState => ({
       ...state,
       user,
-      temporaryPassword: null,
     }),
   ),
 
@@ -45,15 +43,6 @@ export const authReducer = createReducer(
     (state): AuthState => ({
       ...state,
       hasCode: false,
-    }),
-  ),
-
-  on(
-    AuthActions.newPasswordChallengeRequested,
-    (state, { temporaryPassword, user }): AuthState => ({
-      ...state,
-      user,
-      temporaryPassword,
     }),
   ),
 );

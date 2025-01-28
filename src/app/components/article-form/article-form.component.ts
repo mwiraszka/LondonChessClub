@@ -159,13 +159,17 @@ export class ArticleFormComponent implements OnInit {
         const imageFile = dataUrlToFile(dataUrl, imageFilename, fileData);
 
         if (!imageFile) {
-          const error: LccError = { message: 'Unable to load image file.' };
+          const error: LccError = {
+            name: 'LCCError',
+            message: 'Unable to load image file.',
+          };
           this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));
           return;
         }
 
         if (imageFile.size > 1_048_576) {
           const error: LccError = {
+            name: 'LCCError',
             message: `Image file must be under 1 MB. Selected image was ${formatBytes(imageFile.size)} after conversion.`,
           };
           this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));

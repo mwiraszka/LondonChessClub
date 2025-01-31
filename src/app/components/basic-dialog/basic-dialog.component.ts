@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  Renderer2,
+  RendererFactory2,
+} from '@angular/core';
 
 import IconsModule from '@app/icons';
 import type { BasicDialogResult, Dialog, DialogOutput } from '@app/models';
@@ -33,4 +40,21 @@ export class BasicDialogComponent implements DialogOutput<BasicDialogResult> {
   @Input({ required: true }) dialog!: Dialog;
 
   @Output() dialogResult = new EventEmitter<BasicDialogResult | 'close'>();
+
+  private enterKeyListener!: () => void;
+  private readonly renderer!: Renderer2;
+
+  constructor(private readonly rendererFactory: RendererFactory2) {
+    this.renderer = this.rendererFactory.createRenderer(null, null);
+  }
+
+  ngOnInit(): void {
+    this.enterKeyListener = this.renderer.listen('document', 'keydown.enter', () =>
+      this.dialogResult.emit('confirm'),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.enterKeyListener();
+  }
 }

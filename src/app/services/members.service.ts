@@ -19,18 +19,12 @@ export class MembersService {
   public getMembers(scope: ApiScope): Observable<ApiResponse<Member[]>> {
     return this.http.get<ApiResponse<Member[]>>(
       `${this.API_BASE_URL}/${this.COLLECTION}`,
-      {
-        params: {
-          scope,
-        },
-      },
     );
   }
 
   public getMember(scope: ApiScope, id: Id): Observable<ApiResponse<Member>> {
     return this.http.get<ApiResponse<Member>>(
       `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
-      { params: { scope } },
     );
   }
 

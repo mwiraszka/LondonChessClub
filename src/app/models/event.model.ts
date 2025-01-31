@@ -5,8 +5,8 @@ import type { ModificationInfo } from './modification-info.model';
 
 const eventTypes = [
   'blitz tournament',
-  'rapid tournament',
   'active tournament',
+  'rapid tournament',
   'lecture',
   'simul',
   'championship',

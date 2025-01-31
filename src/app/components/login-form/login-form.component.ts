@@ -1,62 +1,73 @@
+import { Store } from '@ngrx/store';
+
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
-import { NavPathTypes } from '@app/types';
+import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import IconsModule from '@app/icons';
+import { LoginFormGroup } from '@app/models';
+import { AuthActions } from '@app/store/auth';
 import { emailValidator } from '@app/validators';
-
-import { LoginFormFacade } from './login-form.facade';
 
 @Component({
   selector: 'lcc-login-form',
   templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss'],
-  providers: [LoginFormFacade],
+  styleUrl: './login-form.component.scss',
+  imports: [CommonModule, IconsModule, ReactiveFormsModule, RouterLink, TooltipDirective],
 })
 export class LoginFormComponent implements OnInit {
-  readonly NavPathTypes = NavPathTypes;
-
-  form!: FormGroup;
+  public form: FormGroup<LoginFormGroup> | null = null;
 
   constructor(
-    public facade: LoginFormFacade,
-    private formBuilder: FormBuilder,
+    private readonly formBuilder: FormBuilder,
+    private readonly store: Store,
   ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       email: new FormControl('', {
+        nonNullable: true,
         validators: [Validators.required, emailValidator],
-        updateOn: 'blur',
       }),
-      password: new FormControl('', Validators.required),
+      password: new FormControl('', {
+        nonNullable: true,
+        validators: Validators.required,
+      }),
     });
   }
 
-  hasError(control: AbstractControl): boolean {
-    return control.value !== '' && control.invalid;
+  public hasError(control: AbstractControl): boolean {
+    return control.dirty && control.invalid;
   }
 
-  getErrorMessage(control: AbstractControl): string {
-    if (control.hasError('required')) {
-      return 'This field is required';
-    } else if (control.hasError('invalidEmailFormat')) {
-      return 'Invalid email';
-    }
-    return 'Unknown error';
+  public getErrorMessage(control: AbstractControl): string {
+    return control.hasError('required')
+      ? 'This field is required'
+      : control.hasError('invalidEmailFormat')
+        ? 'Invalid email'
+        : 'Unknown error';
   }
 
-  onSubmit(): void {
-    if (this.form.invalid) {
+  public onSubmit(): void {
+    if (this.form?.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
-    this.facade.onLogin(this.form.value);
+    this.store.dispatch(
+      AuthActions.loginRequested({
+        email: this.form!.value.email!,
+        password: this.form!.value.password!,
+      }),
+    );
   }
 }

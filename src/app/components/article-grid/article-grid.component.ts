@@ -1,71 +1,147 @@
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import * as uuid from 'uuid';
+import { Store } from '@ngrx/store';
 
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
-import { Article, type Link, NavPathTypes } from '@app/types';
-import { customSort, wasEdited } from '@app/utils';
+import { AdminControlsDirective } from '@app/components/admin-controls/admin-controls.directive';
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
+import { ImagePreloadDirective } from '@app/components/image-preload/image-preload.directive';
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import IconsModule from '@app/icons';
+import type {
+  AdminControlsConfig,
+  Article,
+  BasicDialogResult,
+  Dialog,
+  Id,
+  Image,
+  InternalLink,
+  Url,
+} from '@app/models';
+import {
+  FormatDatePipe,
+  IsDefinedPipe,
+  RouterLinkPipe,
+  StripMarkdownPipe,
+  WasEditedPipe,
+} from '@app/pipes';
+import { DialogService } from '@app/services';
+import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
+import { ImagesActions } from '@app/store/images';
+import { isDefined } from '@app/utils';
 
-import { ArticleGridFacade } from './article-grid.facade';
-
-@UntilDestroy()
 @Component({
   selector: 'lcc-article-grid',
   templateUrl: './article-grid.component.html',
-  styleUrls: ['./article-grid.component.scss'],
-  providers: [ArticleGridFacade],
+  styleUrl: './article-grid.component.scss',
+  imports: [
+    AdminControlsDirective,
+    CommonModule,
+    FormatDatePipe,
+    IconsModule,
+    ImagePreloadDirective,
+    IsDefinedPipe,
+    LinkListComponent,
+    RouterLink,
+    RouterLinkPipe,
+    StripMarkdownPipe,
+    WasEditedPipe,
+  ],
 })
 export class ArticleGridComponent implements OnInit {
-  readonly PLACEHOLDER_ARTICLE: Article = {
-    id: uuid.v4().slice(-8),
-    title: '',
-    body: '',
-    imageFile: null,
-    imageId: null,
-    imageUrl: null,
-    thumbnailImageUrl: null,
-    isSticky: false,
-    modificationInfo: null,
-  };
+  @Input() public maxArticles?: number;
 
-  readonly NavPathTypes = NavPathTypes;
-  readonly wasEdited = wasEdited;
-
-  @Input() maxArticles?: number;
-
-  articles!: Article[];
-  createArticleLink: Link = {
-    path: NavPathTypes.ARTICLE + '/' + NavPathTypes.ADD,
+  public readonly articleGridViewModel$ = this.store.select(
+    ArticlesSelectors.selectArticleGridViewModel,
+  );
+  public readonly createArticleLink: InternalLink = {
+    internalPath: ['article', 'add'],
     text: 'Create an article',
     icon: 'plus-circle',
   };
 
-  constructor(public facade: ArticleGridFacade) {}
+  constructor(
+    private readonly dialogService: DialogService,
+    private readonly store: Store,
+  ) {}
 
   ngOnInit(): void {
-    this.facade.fetchArticles();
-    this.articles = Array(this.maxArticles ?? 20).fill(this.PLACEHOLDER_ARTICLE);
-
-    this.facade.articles$.pipe(untilDestroyed(this)).subscribe(articles => {
-      this.articles = this.sortArticles(articles).slice(
-        0,
-        this.maxArticles ?? articles.length,
-      );
-    });
+    this.fetchArticleData();
   }
 
-  sortArticles(articles: Article[] | undefined): Article[] {
-    if (!articles?.length) {
-      return [];
+  public fetchArticleData(): void {
+    this.store.dispatch(ArticlesActions.fetchArticlesRequested());
+    this.store.dispatch(ImagesActions.fetchArticleBannerImageThumbnailsRequested());
+  }
+
+  public getArticleThumbnailImageUrl(
+    imageId: Id | null,
+    thumbnailImages: Image[],
+  ): Url | null {
+    return (
+      thumbnailImages.find(image => image.id === `${imageId}-thumb`)?.presignedUrl ?? null
+    );
+  }
+
+  public getAdminControlsConfig(article: Article): AdminControlsConfig {
+    return {
+      bookmarkCb: () => this.onBookmarkArticle(article),
+      bookmarked: isDefined(article.bookmarkDate),
+      buttonSize: 34,
+      deleteCb: () => this.onDeleteArticle(article),
+      editPath: ['article', 'edit', article.id!],
+      itemName: article.title,
+    };
+  }
+
+  public async onDeleteArticle(article: Article): Promise<void> {
+    const dialog: Dialog = {
+      title: 'Delete article',
+      body: `Delete ${article.title}?`,
+      confirmButtonText: 'Delete',
+      confirmButtonType: 'warning',
+    };
+
+    const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(
+      {
+        componentType: BasicDialogComponent,
+        inputs: { dialog },
+        isModal: true,
+      },
+    );
+
+    if (result === 'confirm') {
+      this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
     }
+  }
 
-    const stickyArticles = articles
-      .filter(article => article.isSticky)
-      .sort(customSort('modificationInfo.dateCreated', false));
-    const remainingArticles = articles
-      .filter(article => !article.isSticky)
-      .sort(customSort('modificationInfo.dateCreated', false));
+  public async onBookmarkArticle(article: Article): Promise<void> {
+    const hasBookmark = isDefined(article.bookmarkDate);
+    const dialog: Dialog = {
+      title: hasBookmark ? 'Remove bookmark' : 'Add bookmark',
+      body: hasBookmark
+        ? `Remove bookmark from article ${article.title}?`
+        : `Bookmark ${article.title}? This will make the article show up first in the list of articles.`,
+      confirmButtonText: hasBookmark ? 'Remove' : 'Bookmark',
+      confirmButtonType: 'primary',
+    };
 
-    return [...stickyArticles, ...remainingArticles];
+    const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(
+      {
+        componentType: BasicDialogComponent,
+        inputs: { dialog },
+        isModal: true,
+      },
+    );
+
+    if (result === 'confirm') {
+      this.store.dispatch(
+        ArticlesActions.updateActicleBookmarkRequested({
+          articleId: article.id!,
+          bookmark: !hasBookmark,
+        }),
+      );
+    }
   }
 }

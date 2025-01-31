@@ -1,39 +1,42 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
+import type { ExternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
-import { type Link, NavPathTypes } from '@app/types';
-
-import { ChampionScreenFacade } from './champion-screen.facade';
 
 @Component({
   selector: 'lcc-champion-screen',
   templateUrl: './champion-screen.component.html',
-  styleUrls: ['./champion-screen.component.scss'],
-  providers: [ChampionScreenFacade],
+  styleUrl: './champion-screen.component.scss',
+  imports: [CommonModule, LinkListComponent, ScreenHeaderComponent],
 })
 export class ChampionScreenComponent implements OnInit {
-  readonly NavPathTypes = NavPathTypes;
-
-  links: Link[] = [
+  public readonly links: ExternalLink[] = [
     {
-      path: 'http://londonchessclub.ca/?p=78',
       text: 'Past London Chess Champions (1967-2019)',
+      externalPath: 'http://londonchessclub.ca/?p=78',
     },
     {
-      path: 'http://londonchessclub.ca/?p=79',
       text: 'Past London Junior Chess Champions (1996-2011)',
+      externalPath: 'http://londonchessclub.ca/?p=79',
     },
     {
-      path: 'http://londonchessclub.ca/?p=75',
       text: 'Past London Active Chess Champions (1994-2019)',
+      externalPath: 'http://londonchessclub.ca/?p=75',
     },
     {
-      path: 'http://londonchessclub.ca/?p=72',
       text: 'Past London Speed Chess Champions (1993-2019)',
+      externalPath: 'http://londonchessclub.ca/?p=72',
     },
   ];
 
-  pastChampionships: Array<{ year: number; winner: string; style?: string }> = [
+  public readonly pastChampionships: Array<{
+    year: number;
+    winner: string;
+    style?: string;
+  }> = [
     {
       year: 2024,
       winner: 'Serhii Ivanchuk',
@@ -271,10 +274,7 @@ export class ChampionScreenComponent implements OnInit {
     },
   ];
 
-  constructor(
-    public facade: ChampionScreenFacade,
-    private metaAndTitleService: MetaAndTitleService,
-  ) {}
+  constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('City Champion');

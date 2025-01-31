@@ -1,42 +1,34 @@
-@if (facade.isAdmin$ | async) {
-  <lcc-link-list [links]="[addEventLink]"></lcc-link-list>
-}
+@if (scheduleViewModel$ | async; as vm) {
+  @if (vm.isAdmin) {
+    <lcc-link-list [links]="[addEventLink]"></lcc-link-list>
+  }
 
-@if (shownEvents) {
   <table class="lcc-table">
     <thead>
-      @if (facade.isAdmin$ | async) {
-        <th class="lcc-table-admin-controls-filler"></th>
-      }
       <th class="date">Date</th>
       <th class="event">Event</th>
     </thead>
 
     <tbody>
-      @for (event of shownEvents; track event.id) {
+      @for (
+        event of vm.showPastEvents && allowTogglePastEvents
+          ? vm.allEvents
+          : vm.upcomingEvents.slice(0, upcomingEventLimit ?? vm.upcomingEvents.length);
+        track event.id
+      ) {
         <tr
-          class="lcc-admin-controls-container"
+          [adminControls]="vm.isAdmin ? getAdminControlsConfig(event) : null"
           [id]="event.id"
-          [class.next-event]="event.id === (facade.nextEventId$ | async)"
+          [class.next-event]="event.id === vm.nextEvent?.id"
           [ngClass]="
-            !!(facade.showPastEvents$ | async) && allowTogglePastEvents
+            !!(vm.showPastEvents && allowTogglePastEvents)
               ? 'showing-past-events'
               : undefined
           ">
-          @if (facade.isAdmin$ | async) {
-            <lcc-admin-controls
-              [editPath]="
-                '/' + NavPathTypes.EVENT + '/' + NavPathTypes.EDIT + '/' + event.id
-              "
-              [itemName]="event.title"
-              (delete)="facade.onDeleteEvent(event)">
-            </lcc-admin-controls>
-          }
-
           <td class="date-cell">
             <div class="date-content">
               <span class="date">
-                {{ setLocalTime(event.eventDate) | formatDate: 'long no-time' }}
+                {{ event.eventDate | formatDate: 'long no-time' }}
               </span>
             </div>
           </td>
@@ -46,10 +38,10 @@
               <h4 class="title">{{ event.title }}</h4>
               <div
                 class="type-container"
-                [ngClass]="kebabize(event.type)">
+                [ngClass]="event.type | kebabCase">
                 <span class="type">{{ event.type }}</span>
 
-                @if (kebabize(event.type) === 'championship') {
+                @if ((event.type | kebabCase) === 'championship') {
                   <i-feather
                     name="award"
                     class="award-icon">
@@ -59,36 +51,29 @@
 
               @if (includeDetails) {
                 <p class="event-details">
-                  {{ event.details }}
+                  {{ event.details.replaceAll('\\n', ' \n ') }}
                 </p>
               }
 
-              @if (event.associatedArticleId) {
+              @if (event?.articleId) {
                 <a
-                  [routerLink]="
-                    '/' +
-                    NavPathTypes.ARTICLE +
-                    '/' +
-                    NavPathTypes.VIEW +
-                    '/' +
-                    event?.associatedArticleId
-                  "
-                  class="lcc-link event-associated-article">
+                  [routerLink]="'/article/view/' + event.articleId"
+                  class="lcc-link event-article">
                   More details
                 </a>
               }
             </div>
 
-            @if (includeDetails && (facade.isAdmin$ | async)) {
+            @if (includeDetails && vm.isAdmin) {
               <aside class="created-and-edited">
                 <div>
                   Event created
-                  {{ event.modificationInfo?.dateCreated | formatDate: 'short no-time' }}
+                  {{ event.modificationInfo.dateCreated | formatDate: 'short no-time' }}
                 </div>
                 <div>
                   Last edited
                   {{
-                    event.modificationInfo?.dateLastEdited | formatDate: 'short no-time'
+                    event.modificationInfo.dateLastEdited | formatDate: 'short no-time'
                   }}
                 </div>
               </aside>
@@ -98,12 +83,12 @@
       }
     </tbody>
   </table>
-}
 
-@if (allowTogglePastEvents) {
-  <button
-    class="lcc-secondary-button toggle-past-events-button"
-    (click)="facade.onTogglePastEvents()">
-    {{ (facade.showPastEvents$ | async) ? 'Hide' : 'Show' }} past events
-  </button>
+  @if (allowTogglePastEvents) {
+    <button
+      class="lcc-secondary-button toggle-past-events-button"
+      (click)="onTogglePastEvents()">
+      {{ vm.showPastEvents ? 'Hide' : 'Show' }} past events
+    </button>
+  }
 }

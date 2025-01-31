@@ -1,30 +1,21 @@
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { filter } from 'rxjs/operators';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { kebabCase } from 'lodash';
+import { MarkdownComponent } from 'ngx-markdown';
 
-import { DOCUMENT } from '@angular/common';
-import { AfterViewChecked, Component, Inject, Input, OnInit } from '@angular/core';
-import { Router, Scroll } from '@angular/router';
-
-import { kebabize } from '@app/utils';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { AfterViewChecked, Component, Inject, Input } from '@angular/core';
 
 @UntilDestroy()
 @Component({
   selector: 'lcc-markdown-renderer',
-  templateUrl: './markdown-renderer.component.html',
-  styleUrls: ['./markdown-renderer.component.scss'],
+  template: '<markdown [data]="data"></markdown>',
+  styleUrl: './markdown-renderer.component.scss',
+  imports: [CommonModule, MarkdownComponent],
 })
-export class MarkdownRendererComponent implements OnInit, AfterViewChecked {
-  @Input() data?: string;
+export class MarkdownRendererComponent implements AfterViewChecked {
+  @Input() public data?: string;
 
-  constructor(
-    private router: Router,
-    @Inject(DOCUMENT)
-    private _document: Document,
-  ) {}
-
-  ngOnInit(): void {
-    this.setUpRouterListener();
-  }
+  constructor(@Inject(DOCUMENT) private _document: Document) {}
 
   ngAfterViewChecked(): void {
     this.wrapMarkdownTables();
@@ -58,34 +49,8 @@ export class MarkdownRendererComponent implements OnInit, AfterViewChecked {
         const headerTextContent = (
           headerElement.textContent || headerElement.innerHTML
         ).replace(/(<([^>]+)>)/gi, '');
-        const kebabizedAnchorName = kebabize(headerTextContent);
-        headerElement.setAttribute('id', kebabizedAnchorName);
+        headerElement.setAttribute('id', kebabCase(headerTextContent));
       });
-    }
-  }
-
-  private setUpRouterListener(): void {
-    this.router.events
-      .pipe(
-        filter(event => event instanceof Scroll),
-        untilDestroyed(this),
-      )
-      .subscribe(event => this.scrollToAnchor((event as Scroll).anchor!));
-  }
-
-  private scrollToAnchor(anchorToScrollTo?: string): void {
-    const elementToScrollTo = this._document.getElementById(
-      anchorToScrollTo ?? 'app-container',
-    );
-
-    if (elementToScrollTo) {
-      setTimeout(() => {
-        elementToScrollTo.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-          inline: 'nearest',
-        });
-      }, 200);
     }
   }
 }

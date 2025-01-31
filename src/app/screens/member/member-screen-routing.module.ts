@@ -1,27 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard, UnsavedMemberGuard } from '@app/guards';
-import { NavPathTypes } from '@app/types';
+import { AuthGuard } from '@app/guards/auth.guard';
+import { UnsavedMemberGuard } from '@app/guards/unsaved-member.guard';
 
-import { MemberEditorComponent } from './member-editor';
+import { MemberEditorScreenComponent } from './member-editor/member-editor-screen.component';
 
 const routes: Routes = [
   {
-    path: NavPathTypes.ADD,
-    component: MemberEditorComponent,
+    path: 'add',
+    component: MemberEditorScreenComponent,
     canActivate: [AuthGuard],
     canDeactivate: [UnsavedMemberGuard],
   },
   {
-    path: `${NavPathTypes.EDIT}/:member_id`,
-    component: MemberEditorComponent,
+    path: 'edit/:member_id',
+    component: MemberEditorScreenComponent,
     canActivate: [AuthGuard],
     canDeactivate: [UnsavedMemberGuard],
   },
   {
     path: '**',
-    redirectTo: NavPathTypes.ADD,
+    redirectTo: 'add',
   },
 ];
 

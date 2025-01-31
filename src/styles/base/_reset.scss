@@ -70,13 +70,7 @@ video {
 }
 
 body {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-}
-
-html {
-  height: -webkit-fill-available;
-  background-color: hsl(0, 0%, 15%);
+  overflow: hidden;
 }
 
 a {

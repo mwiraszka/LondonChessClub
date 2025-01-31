@@ -1,202 +1,222 @@
-@if (form) {
-  <form
-    class="lcc-form"
-    [formGroup]="form"
-    (ngSubmit)="onSubmit()">
-    <div class="lcc-form-fields">
-      <label
-        for="event-date-input"
-        class="lcc-required-field">
-        Event date:
-      </label>
-      <input
-        id="event-date-input"
-        type="text"
-        name="event-date"
-        formControlName="eventDate" />
-      <div class="lcc-form-error-container">
-        @if (hasError(form.controls['eventDate'])) {
-          <i-feather
-            name="alert-triangle"
-            class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['eventDate'])">
-          </i-feather>
-        }
+@if (eventFormViewModel$ | async; as vm) {
+  @if (form) {
+    <form
+      class="lcc-form"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit(vm.event?.title ?? vm.eventFormData?.title)">
+      <div class="lcc-form-fields">
+        <label
+          for="event-date-input"
+          class="lcc-required-field">
+          Event date:
+        </label>
+        <lcc-date-picker
+          id="event-date-input"
+          name="event-date"
+          formControlName="eventDate">
+        </lcc-date-picker>
+        <div class="lcc-form-error-container">
+          @if (hasError(form.controls.eventDate)) {
+            <i-feather
+              name="alert-triangle"
+              class="lcc-form-error-icon validation-alert-icon"
+              [tooltip]="getErrorMessage(form.controls.eventDate)">
+            </i-feather>
+          }
+        </div>
+
+        <label
+          for="event-time-input"
+          class="lcc-required-field">
+          Event time:
+        </label>
+        <input
+          id="event-time-input"
+          type="text"
+          name="event-time"
+          formControlName="eventTime"
+          maxlength="8" />
+        <div class="lcc-form-error-container">
+          @if (hasError(form.controls.eventTime)) {
+            <i-feather
+              name="alert-triangle"
+              class="lcc-form-error-icon validation-alert-icon"
+              [tooltip]="getErrorMessage(form.controls.eventTime)">
+            </i-feather>
+          }
+        </div>
+
+        <label
+          for="title-input"
+          class="lcc-required-field">
+          Title:
+        </label>
+        <input
+          id="title-input"
+          type="text"
+          name="title"
+          formControlName="title"
+          maxlength="100" />
+        <div class="lcc-form-error-container">
+          @if (hasError(form.controls.title)) {
+            <i-feather
+              name="alert-triangle"
+              class="lcc-form-error-icon validation-alert-icon"
+              [tooltip]="getErrorMessage(form.controls.title)">
+            </i-feather>
+          }
+        </div>
+
+        <label
+          for="details-input"
+          class="lcc-required-field">
+          Details:
+        </label>
+        <textarea
+          id="details-input"
+          class="details-textarea"
+          name="details"
+          formControlName="details"
+          maxlength="200">
+        </textarea>
+        <div class="lcc-form-error-container">
+          @if (hasError(form.controls.details)) {
+            <i-feather
+              name="alert-triangle"
+              class="lcc-form-error-icon validation-alert-icon"
+              [tooltip]="getErrorMessage(form.controls.details)">
+            </i-feather>
+          }
+        </div>
+
+        <label
+          for="type-input"
+          class="lcc-required-field">
+          Event type:
+        </label>
+        <fieldset class="lcc-form-radio-buttons event-type-fieldset">
+          <div>
+            <input
+              type="radio"
+              id="blitz-input"
+              name="type"
+              formControlName="type"
+              value="blitz tournament"
+              [checked]="form.value.type === 'blitz tournament'" />
+            <label for="blitz-input">Blitz tournament</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="active-input"
+              name="type"
+              formControlName="type"
+              value="active tournament"
+              [checked]="form.value.type === 'active tournament'" />
+            <label for="active-input">Active tournament</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="rapid-input"
+              name="type"
+              formControlName="type"
+              value="rapid tournament"
+              [checked]="form.value.type === 'rapid tournament'" />
+            <label for="rapid-input">Rapid tournament</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="lecture-input"
+              name="type"
+              formControlName="type"
+              value="lecture"
+              [checked]="form.value.type === 'lecture'" />
+            <label for="lecture-input">Lecture</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="simul-input"
+              name="type"
+              formControlName="type"
+              value="simul"
+              [checked]="form.value.type === 'simul'" />
+            <label for="simul-input">Simul</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="championship-input"
+              name="type"
+              formControlName="type"
+              value="championship"
+              [checked]="form.value.type === 'championship'" />
+            <label for="championship-input">Championship</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="closed-input"
+              name="type"
+              formControlName="type"
+              value="closed"
+              [checked]="form.value.type === 'closed'" />
+            <label for="casual-input">Closed</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="other-input"
+              name="type"
+              formControlName="type"
+              value="other"
+              [checked]="form.value.type === 'other'" />
+            <label for="casual-input">Other</label>
+          </div>
+        </fieldset>
+
+        <label for="article-id-input">Associated Article ID:</label>
+        <input
+          id="article-id-input"
+          type="text"
+          name="article-id"
+          formControlName="articleId"
+          maxlength="24" />
+        <div class="lcc-form-error-container">
+          @if (hasError(form.controls.articleId)) {
+            <i-feather
+              name="alert-triangle"
+              class="lcc-form-error-icon validation-alert-icon"
+              [tooltip]="getErrorMessage(form.controls.articleId)">
+            </i-feather>
+          }
+        </div>
       </div>
 
-      <label
-        for="title-input"
-        class="lcc-required-field">
-        Title:
-      </label>
-      <input
-        id="title-input"
-        type="text"
-        name="title"
-        formControlName="title" />
-      <div class="lcc-form-error-container">
-        @if (hasError(form.controls['title'])) {
-          <i-feather
-            name="alert-triangle"
-            class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['title'])">
-          </i-feather>
-        }
+      <aside class="lcc-required-fields-legend">Required fields</aside>
+
+      <hr />
+
+      @if (vm.event?.modificationInfo; as info) {
+        <lcc-modification-info [info]="info"></lcc-modification-info>
+      }
+
+      <div class="lcc-form-buttons-container">
+        <button
+          class="lcc-secondary-button"
+          type="button"
+          (click)="onCancel()">
+          Cancel
+        </button>
+        <button
+          class="lcc-primary-button"
+          type="submit"
+          [disabled]="form.invalid || !vm.hasUnsavedChanges">
+          {{ vm.controlMode === 'edit' ? 'Update' : 'Add event' }}
+        </button>
       </div>
-
-      <label
-        for="details-input"
-        class="lcc-required-field">
-        Details:
-      </label>
-      <textarea
-        id="details-input"
-        class="details-textarea"
-        name="details"
-        formControlName="details"
-        maxlength="200">
-      </textarea>
-      <div class="lcc-form-error-container">
-        @if (hasError(form.controls['details'])) {
-          <i-feather
-            name="alert-triangle"
-            class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['details'])">
-          </i-feather>
-        }
-      </div>
-
-      <label
-        for="type-input"
-        class="lcc-required-field">
-        Event type:
-      </label>
-      <fieldset class="lcc-form-radio-buttons event-type-fieldset">
-        <div>
-          <input
-            type="radio"
-            id="blitz-input"
-            name="type"
-            formControlName="type"
-            value="blitz tournament"
-            [checked]="form.value.type === 'blitz tournament'" />
-          <label for="blitz-input">Blitz tournament</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="rapid-input"
-            name="type"
-            formControlName="type"
-            value="rapid tournament"
-            [checked]="form.value.type === 'rapid tournament'" />
-          <label for="rapid-input">Rapid tournament</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="active-input"
-            name="type"
-            formControlName="type"
-            value="active tournament"
-            [checked]="form.value.type === 'active tournament'" />
-          <label for="active-input">Active tournament</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="lecture-input"
-            name="type"
-            formControlName="type"
-            value="lecture"
-            [checked]="form.value.type === 'lecture'" />
-          <label for="lecture-input">Lecture</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="simul-input"
-            name="type"
-            formControlName="type"
-            value="simul"
-            [checked]="form.value.type === 'simul'" />
-          <label for="simul-input">Simul</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="championship-input"
-            name="type"
-            formControlName="type"
-            value="championship"
-            [checked]="form.value.type === 'championship'" />
-          <label for="championship-input">Championship</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="closed-input"
-            name="type"
-            formControlName="type"
-            value="closed"
-            [checked]="form.value.type === 'closed'" />
-          <label for="casual-input">Closed</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="other-input"
-            name="type"
-            formControlName="type"
-            value="other"
-            [checked]="form.value.type === 'other'" />
-          <label for="casual-input">Other</label>
-        </div>
-      </fieldset>
-
-      <label for="associated-article-id-input"> Associated Article ID: </label>
-      <input
-        id="associated-article-id-input"
-        type="text"
-        name="associated-article-id"
-        formControlName="associatedArticleId"
-        maxlength="21" />
-      <div class="lcc-form-error-container">
-        @if (hasError(form.controls['associatedArticleId'])) {
-          <i-feather
-            name="alert-triangle"
-            class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls['associatedArticleId'])">
-          </i-feather>
-        }
-      </div>
-    </div>
-
-    <aside class="lcc-required-fields-legend">Required fields</aside>
-
-    <hr />
-
-    @if ((facade.formEvent$ | async)?.modificationInfo; as modificationInfo) {
-      <lcc-modification-info [info]="modificationInfo"></lcc-modification-info>
-    }
-
-    <div class="lcc-form-buttons-container">
-      <button
-        class="lcc-secondary-button"
-        type="button"
-        (click)="onCancel()">
-        Cancel
-      </button>
-      <button
-        class="lcc-primary-button"
-        type="submit"
-        [disabled]="form.invalid || !(facade.hasUnsavedChanges$ | async)">
-        @if ((facade.controlMode$ | async) === 'edit') {
-          Update event
-        } @else {
-          Add event
-        }
-      </button>
-    </div>
-  </form>
+    </form>
+  }
 }

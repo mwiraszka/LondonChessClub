@@ -1,23 +1,32 @@
 import LichessPgnViewer from 'lichess-pgn-viewer';
 
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, Inject, Input, OnInit } from '@angular/core';
 
-import { Link } from '@app/types';
-import { getLichessAnalysisUrl, getPlayerName, getScore } from '@app/utils/pgn-utils';
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import type { ExternalLink } from '@app/models';
+import { getLichessAnalysisUrl, getPlayerName, getScore } from '@app/utils';
 
 @Component({
   selector: 'lcc-pgn-viewer',
-  styleUrls: ['./pgn-viewer.component.scss'],
-  templateUrl: './pgn-viewer.component.html',
+  template: `
+    <div [id]="viewerId"></div>
+    <lcc-link-list [links]="[lichessAnalysisBoardLink]"></lcc-link-list>
+  `,
+  styles: `
+    lcc-link-list {
+      margin-top: 4px;
+    }
+  `,
+  imports: [CommonModule, LinkListComponent],
 })
 export class PgnViewerComponent implements OnInit, AfterViewInit {
-  viewerId!: string;
-  lichessAnalysisBoardLink!: Link;
+  @Input({ required: true }) public index!: number;
+  @Input({ required: true }) public label!: string;
+  @Input({ required: true }) public pgn!: string;
 
-  @Input() index!: number;
-  @Input() label!: string;
-  @Input() pgn!: string;
+  viewerId!: string;
+  lichessAnalysisBoardLink!: ExternalLink;
 
   constructor(@Inject(DOCUMENT) private _document: Document) {}
 
@@ -26,7 +35,7 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
 
     this.lichessAnalysisBoardLink = {
       text: 'Analyze game on Lichess',
-      path: getLichessAnalysisUrl(this.pgn),
+      externalPath: getLichessAnalysisUrl(this.pgn),
       icon: 'book-open',
     };
   }
@@ -35,7 +44,7 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
     const container = this._document.getElementById(this.viewerId);
 
     if (container) {
-      const _ = LichessPgnViewer(container, {
+      LichessPgnViewer(container, {
         classes: this.viewerId, // Required for query selectors below
         initialPly: 'last',
         orientation: 'white',
@@ -43,7 +52,7 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
         showClocks: false,
       });
 
-      const whiteName = getPlayerName(this.pgn, 'White');
+      const whiteName = getPlayerName(this.pgn, 'full', 'White');
       if (!whiteName) {
         console.error(
           '[LCC] A game with no defined White player was found: \n',
@@ -52,7 +61,7 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
         return;
       }
 
-      const blackName = getPlayerName(this.pgn, 'Black');
+      const blackName = getPlayerName(this.pgn, 'full', 'Black');
       if (!blackName) {
         console.error(
           '[LCC] A game with no defined Black player was found: \n',

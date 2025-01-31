@@ -1,47 +1,51 @@
-<div class="article-container">
-  <div class="banner-image-container">
-    @defer {
-      <img
-        [src]="article?.imageUrl"
-        default="assets/image-placeholder.png"
-        alt="Article image banner" />
-    } @placeholder (minimum 1s) {
-      <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
-        <div class="lcc-content-placeholder"></div>
-      </div>
-    }
-    <h2 class="lcc-truncate-max-2-lines">
-      {{ article?.title | truncateByChars: 120 }}
-    </h2>
-  </div>
+<div class="banner-image-container">
+  @defer {
+    <img
+      class="banner-image"
+      [src]="bannerImageUrl"
+      default="assets/image-placeholder.png"
+      alt="Article image banner" />
+  } @placeholder (minimum 0.5s) {
+    <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
+      <div class="lcc-content-placeholder"></div>
+    </div>
+  }
 
-  <div class="article-details-container h4">
-    <div class="author-container">
+  @if (article | isDefined) {
+    <h2 class="title lcc-truncate-max-2-lines">
+      {{ article.title | truncateByChars: 120 }}
+    </h2>
+  }
+</div>
+
+<div class="article-details-container h4">
+  <div class="author-container">
+    @if (article | isDefined) {
       <span class="author-name">
-        {{ article?.modificationInfo?.createdBy }}
+        {{ article.modificationInfo.createdBy }}
       </span>
       <span class="date-created">
-        {{ article?.modificationInfo?.dateCreated | formatDate: 'short' }}
+        {{ article.modificationInfo.dateCreated | formatDate: 'short' }}
       </span>
-    </div>
-
-    @if (wasEdited(article)) {
-      <div class="editor-container">
-        <span class="updated">last updated</span>
-        <span class="editor-name">
-          {{ article?.modificationInfo?.lastEditedBy }}
-        </span>
-        <span class="vertical-spacer">|</span>
-        <span class="date-last-edited">
-          {{ article?.modificationInfo?.dateLastEdited | formatDate: 'short' }}
-        </span>
-      </div>
     }
   </div>
 
-  <hr />
-
-  <div class="markdown-container">
-    <lcc-markdown-renderer [data]="article?.body"></lcc-markdown-renderer>
+  <div class="editor-container">
+    @if ((article | isDefined) && (article.modificationInfo | wasEdited)) {
+      <span class="updated">last updated</span>
+      <span class="editor-name">
+        {{ article.modificationInfo.lastEditedBy }}
+      </span>
+      <span class="vertical-spacer">|</span>
+      <span class="date-last-edited">
+        {{ article.modificationInfo.dateLastEdited | formatDate: 'short' }}
+      </span>
+    }
   </div>
+</div>
+
+<hr />
+
+<div class="markdown-container">
+  <lcc-markdown-renderer [data]="article.body"></lcc-markdown-renderer>
 </div>

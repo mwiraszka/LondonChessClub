@@ -1,0 +1,36 @@
+.lcc-truncate {
+  overflow: hidden;
+  word-break: normal;
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.lcc-truncate-max-1-line {
+  @extend .lcc-truncate;
+}
+
+.lcc-truncate-max-2-lines {
+  @extend .lcc-truncate;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+}
+
+.lcc-truncate-max-3-lines {
+  @extend .lcc-truncate;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+}
+
+.lcc-truncate-max-4-lines {
+  @extend .lcc-truncate;
+  line-clamp: 4;
+  -webkit-line-clamp: 4;
+}
+
+.lcc-truncate-max-5-lines {
+  @extend .lcc-truncate;
+  line-clamp: 5;
+  -webkit-line-clamp: 5;
+}

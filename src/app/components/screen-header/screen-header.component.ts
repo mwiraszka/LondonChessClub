@@ -1,12 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+
+import IconsModule from '@app/icons';
 
 @Component({
   selector: 'lcc-screen-header',
   templateUrl: './screen-header.component.html',
-  styleUrls: ['./screen-header.component.scss'],
+  styleUrl: './screen-header.component.scss',
+  imports: [CommonModule, IconsModule],
 })
 export class ScreenHeaderComponent {
-  @Input() hasUnsavedChanges?: boolean;
-  @Input() icon?: string | null;
-  @Input() title?: string | null;
+  @Input() public hasUnsavedChanges: boolean | null = null;
+  @Input() public icon: string | null = null;
+  @Input() public title: string | null = null;
 }

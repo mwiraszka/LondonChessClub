@@ -1,0 +1,85 @@
+@use '../../../styles/abstracts/mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--lcc-borderRadius--large);
+  min-width: 190px;
+
+  header {
+    display: flex;
+    align-items: center;
+    background-color: var(--lcc-color--datePicker-headerBackground);
+    border-radius: var(--lcc-borderRadius--large);
+
+    button {
+      padding: 0 8px;
+      margin: 4px;
+      background-color: var(--lcc-color--datePicker-buttonsBackground);
+
+      &:hover {
+        background-color: var(--lcc-color--datePicker-buttonsBackgroundOnHover);
+      }
+    }
+
+    .title {
+      flex: 1 1 100%;
+      padding: 4px 8px;
+      color: var(--lcc-color--datePicker-headerText);
+      font-size: 14px !important;
+
+      @include mixins.respond-to('gt-sm') {
+        font-size: 16px !important;
+      }
+    }
+  }
+
+  .calendar-table {
+    table-layout: fixed;
+
+    thead {
+      th {
+        padding: 8px 1px !important;
+
+        @include mixins.respond-to('lt-sm') {
+          font-size: 12px;
+        }
+      }
+    }
+
+    tbody {
+      td {
+        padding: 8px 4px;
+        border: 2px solid transparent;
+        border-radius: none;
+
+        &:not([disabled]) {
+          cursor: pointer;
+
+          &:hover {
+            border-radius: var(--lcc-borderRadius--large);
+            border-color: var(--lcc-color--datePicker-cellBorderOnHover);
+          }
+
+          &.lcc-selected-day {
+            border-radius: var(--lcc-borderRadius--large);
+            border-color: var(--lcc-color--datePicker-cellBorderOnSelect);
+          }
+        }
+
+        &[disabled] {
+          color: var(--lcc-color--datePicker-disabledCell);
+          pointer-events: none;
+        }
+      }
+    }
+
+    tfoot {
+      .selected-date {
+        text-align: center;
+        padding: 8px;
+        color: var(--lcc-color--datePicker-selectedDateText);
+      }
+    }
+  }
+}

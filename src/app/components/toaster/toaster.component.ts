@@ -1,17 +1,38 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
-import { ToasterFacade } from './toaster.facade';
+import IconsModule from '@app/icons';
+import { Toast } from '@app/models';
 
 @Component({
   selector: 'lcc-toaster',
   template: `
-    @for (toast of facade.toasts$ | async; track toast.title) {
-      <lcc-toast [toast]="toast"></lcc-toast>
+    @for (toast of toasts; track toast) {
+      <div
+        class="toast"
+        [ngClass]="'toast-' + toast.type">
+        <i-feather
+          [name]="getIcon(toast.type)"
+          class="icon">
+        </i-feather>
+        <div class="text-container">
+          <h4 class="lcc-truncate toast-title">{{ toast.title }}</h4>
+          <p class="lcc-truncate-max-5-lines toast-message">{{ toast.message }}</p>
+        </div>
+      </div>
     }
   `,
-  styleUrls: ['./toaster.component.scss'],
-  providers: [ToasterFacade],
+  styleUrl: './toaster.component.scss',
+  imports: [CommonModule, IconsModule],
 })
 export class ToasterComponent {
-  constructor(public facade: ToasterFacade) {}
+  @Input({ required: true }) public toasts!: Toast[];
+
+  public getIcon(toastType: 'success' | 'info' | 'warning'): string {
+    return toastType === 'success'
+      ? 'check-circle'
+      : toastType === 'warning'
+        ? 'alert-triangle'
+        : 'info';
+  }
 }

@@ -1,119 +1,111 @@
-@if (facade.isAdmin$ | async) {
-  <lcc-link-list [links]="[addMemberLink]"></lcc-link-list>
-}
-
-<div class="lcc-table-wrapper">
-  <table
-    class="lcc-table"
-    [class.lcc-show-admin-columns]="facade.showAdminColumns$ | async">
-    @if ((facade.displayedMembers$ | async)?.length) {
-      <thead>
-        <tr>
-          @if (facade.isAdmin$ | async) {
-            <th class="lcc-table-admin-controls-filler"></th>
-          }
-          <th class="row-number"></th>
-          @for (header of tableHeaders; track header) {
-            <th
-              [ngClass]="kebabize(header)"
-              (click)="facade.onSelectTableHeader(camelize(kebabize(header)))">
-              <span>{{ header }}</span>
-              <div class="sort-icon-container">
-                @if ((facade.sortedBy$ | async) === camelize(kebabize(header))) {
-                  <i-feather
-                    class="sort-icon"
-                    [name]="
-                      (facade.isAscending$ | async) ? 'chevron-up' : 'chevron-down'
-                    ">
-                  </i-feather>
-                }
-              </div>
-            </th>
-          }
-        </tr>
-      </thead>
+@if (members$ | async; as members) {
+  @if (config$ | async; as config) {
+    @if (config.isAdmin) {
+      <lcc-link-list [links]="[addMemberLink]"></lcc-link-list>
     }
 
-    <tbody>
-      @for (
-        member of facade.displayedMembers$ | async;
-        track member.id;
-        let i = $index;
-        let last = $last
-      ) {
-        <tr
-          class="lcc-admin-controls-container"
-          [ngClass]="{ 'last-row': last }"
-          [class.inactive]="!member.isActive">
-          @if (facade.isAdmin$ | async) {
-            <lcc-admin-controls
-              [editPath]="
-                '/' + NavPathTypes.MEMBER + '/' + NavPathTypes.EDIT + '/' + member.id
-              "
-              [height]="31"
-              [itemName]="member.firstName ?? ''"
-              (delete)="facade.onDeleteMember(member)">
-            </lcc-admin-controls>
+    <div class="lcc-table-wrapper">
+      <table
+        class="lcc-table"
+        [class.lcc-show-admin-columns]="config.isAdmin && !(isSafeMode$ | async)">
+        @if (members.displayed.length) {
+          <thead>
+            <tr>
+              <th class="row-number"></th>
+              @for (
+                header of config.isAdmin && !(isSafeMode$ | async)
+                  ? tableHeaders
+                  : tableHeaders.slice(0, -4);
+                track header
+              ) {
+                <th
+                  [ngClass]="header | kebabCase"
+                  (click)="onSelectTableHeader(header)">
+                  <span>{{ header }}</span>
+                  <div class="sort-icon-container">
+                    @if (config.sortedBy === (header | camelCase)) {
+                      <i-feather
+                        class="sort-icon"
+                        [name]="config.isAscending ? 'chevron-down' : 'chevron-up'">
+                      </i-feather>
+                    }
+                  </div>
+                </th>
+              }
+            </tr>
+          </thead>
+        }
+
+        <tbody>
+          @for (
+            member of members.displayed;
+            track member.id;
+            let i = $index;
+            let last = $last
+          ) {
+            <tr
+              [adminControls]="config.isAdmin ? getAdminControlsConfig(member) : null"
+              [ngClass]="{ 'last-row': last }"
+              [class.inactive]="!member.isActive">
+              <td class="row-number">
+                {{ i + config.startIndex + 1 }}
+              </td>
+              <td class="first-name lcc-truncate">{{ member.firstName }}</td>
+              <td class="last-name lcc-truncate">{{ member.lastName }}</td>
+              <td class="rating">{{ member.rating }}</td>
+              <td class="peak-rating">{{ member.peakRating }}</td>
+              <td class="city lcc-truncate">{{ member.city }}</td>
+              <td class="chess-com-username lcc-truncate">
+                {{ member?.chessComUsername }}
+              </td>
+              <td class="lichess-username lcc-truncate">
+                {{ member?.lichessUsername }}
+              </td>
+              <td class="last-updated">
+                {{ member.modificationInfo.dateLastEdited | formatDate: 'short no-time' }}
+              </td>
+              @if (config.isAdmin) {
+                <td class="born">{{ member?.yearOfBirth }}</td>
+                <td class="email">{{ member?.email }}</td>
+                <td class="phone-number">{{ member?.phoneNumber }}</td>
+                <td class="date-joined">
+                  {{ member.dateJoined | formatDate: 'short no-time' }}
+                </td>
+              }
+            </tr>
           }
-          <td class="row-number">
-            {{ i + ((facade.startIndex$ | async) ?? 0) + 1 }}
-          </td>
-          <td class="first-name lcc-truncate">{{ member.firstName }}</td>
-          <td class="last-name lcc-truncate">{{ member.lastName }}</td>
-          <td class="rating">{{ member.rating }}</td>
-          <td class="peak-rating">{{ member.peakRating }}</td>
-          <td class="city lcc-truncate">{{ member.city }}</td>
-          <td class="chesscom-username lcc-truncate">
-            {{ member?.chesscomUsername }}
-          </td>
-          <td class="lichess-username lcc-truncate">
-            {{ member?.lichessUsername }}
-          </td>
-          <td class="last-updated">
-            {{ member.modificationInfo!.dateLastEdited | formatDate: 'short no-time' }}
-          </td>
-          @if (facade.isAdmin$ | async) {
-            <td class="born">{{ member?.yearOfBirth }}</td>
-            <td class="email">{{ member?.email }}</td>
-            <td class="phone-number">{{ member?.phoneNumber }}</td>
-            <td class="date-joined">
-              {{ convertToUtcTimezone(member.dateJoined) | formatDate: 'short no-time' }}
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="100%">
+              {{ members.all.length }} members ({{ members.active.length }}
+              active)
             </td>
-          }
-        </tr>
-      }
-    </tbody>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
 
-    <tfoot>
-      <tr>
-        <td colspan="100%">
-          {{ (facade.members$ | async)?.length }} members ({{
-            (facade.activeMembers$ | async)?.length
-          }}
-          active)
-        </td>
-      </tr>
-    </tfoot>
-  </table>
-</div>
+    <lcc-paginator
+      typeOfItems="members"
+      [pageNum]="config.pageNum"
+      [pageSize]="config.pageSize"
+      [totalItems]="members.filtered.length"
+      (pageChange)="onChangePage($event)"
+      (pageSizeChange)="onChangePageSize($event)">
+    </lcc-paginator>
 
-<lcc-paginator
-  typeOfItems="members"
-  [pageNum]="(facade.pageNum$ | async) ?? 0"
-  [pageSize]="(facade.pageSize$ | async) ?? 0"
-  [totalItems]="(facade.filteredMembers$ | async)?.length ?? 0"
-  (pageChange)="facade.onChangePage($event)"
-  (pageSizeChange)="facade.onChangePageSize($event)">
-</lcc-paginator>
-
-<aside>
-  <h5>inactive members *</h5>
-  <div class="checkbox-section">
-    <label for="active-only">Show active members only</label>
-    <input
-      id="active-only"
-      type="checkbox"
-      [checked]="facade.showActiveOnly$ | async"
-      (change)="facade.onToggleInactiveMembers()" />
-  </div>
-</aside>
+    <aside>
+      <h5>inactive members *</h5>
+      <div class="checkbox-section">
+        <label for="active-only">Show active members only</label>
+        <input
+          id="active-only"
+          type="checkbox"
+          [checked]="config.showActiveOnly"
+          (change)="onToggleInactiveMembers()" />
+      </div>
+    </aside>
+  }
+}

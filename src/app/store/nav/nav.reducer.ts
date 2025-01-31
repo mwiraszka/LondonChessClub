@@ -1,27 +1,26 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
 import * as navActions from './nav.actions';
-import { NavState, initialState } from './nav.state';
 
-const navReducer = createReducer(
-  initialState,
+export interface NavState {
+  pathHistory: string[] | null;
+}
 
-  on(navActions.appendPathToHistory, (state, { path }) => ({
-    pathHistory: updatePathHistory(state.pathHistory, path),
-  })),
+export const navInitialState: NavState = {
+  pathHistory: null,
+};
+
+export const navReducer = createReducer(
+  navInitialState,
+
+  on(navActions.appendPathToHistory, (state, { path }): NavState => {
+    const currentPathHistory = state.pathHistory;
+    return {
+      pathHistory: !currentPathHistory
+        ? [path]
+        : currentPathHistory[currentPathHistory.length - 1] === path
+          ? currentPathHistory
+          : [...currentPathHistory, path].slice(-5),
+    };
+  }),
 );
-
-export function reducer(state: NavState, action: Action): NavState {
-  return navReducer(state, action);
-}
-
-function updatePathHistory(
-  currentPathHistory: string[] | null,
-  newPath: string,
-): string[] {
-  return !currentPathHistory
-    ? [newPath]
-    : currentPathHistory[currentPathHistory.length - 1] === newPath
-      ? currentPathHistory
-      : [...currentPathHistory, newPath].slice(-5);
-}

@@ -1,173 +1,107 @@
-<div class="nav-left"></div>
+@if (navViewModel$ | async; as vm) {
+  <div class="nav-left"></div>
 
-<div class="nav-items-container">
-  <a
-    aria-label="Home"
-    class="nav-link"
-    routerLinkActive="link-active"
-    [routerLink]="NavPathTypes.HOME"
-    [routerLinkActiveOptions]="{ exact: true }"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Home' : null">
-    <span class="text">Home</span>
-    <i-feather name="home"></i-feather>
-  </a>
+  <div class="nav-items-container">
+    @for (link of links; track link.internalPath) {
+      <a
+        [attr.aria-label]="link.text"
+        class="nav-link"
+        routerLinkActive="link-active"
+        [routerLink]="link.internalPath | routerLink"
+        [routerLinkActiveOptions]="{ exact: true }"
+        [tooltip]="screenWidth > 700 ? null : link.text">
+        <span class="text">{{ link.text }}</span>
+        <i-feather [name]="link.icon!"></i-feather>
+      </a>
+    }
 
-  <a
-    aria-label="About"
-    class="nav-link"
-    routerLinkActive="link-active"
-    [routerLink]="NavPathTypes.ABOUT"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'About' : null">
-    <span class="text">About</span>
-    <i-feather name="info"></i-feather>
-  </a>
+    <div class="nav-login-spacer"></div>
 
-  <a
-    aria-label="Members"
-    class="nav-link"
-    routerLinkActive="link-active"
-    [routerLink]="NavPathTypes.MEMBERS"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Members' : null">
-    <span class="text">Members</span>
-    <i-feather name="users"></i-feather>
-  </a>
+    <div class="lcc-dropdown-tab settings-dropdown-tab">
+      <i-feather name="settings"></i-feather>
+      <i-feather
+        [name]="isDropdownOpen ? 'chevron-down' : 'chevron-up'"
+        class="chevron-icon">
+      </i-feather>
 
-  <a
-    aria-label="Schedule"
-    class="nav-link"
-    routerLinkActive="link-active"
-    [routerLink]="NavPathTypes.SCHEDULE"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Schedule' : null">
-    <span class="text">Schedule</span>
-    <i-feather name="calendar"></i-feather>
-  </a>
+      <div
+        class="lcc-dropdown user-dropdown"
+        dropdown
+        (opened)="isDropdownOpen = $event">
+        <ul class="dropdown-items">
+          @if (vm.user) {
+            <li class="dropdown-item user-name">
+              <i-feather name="user"></i-feather>
+              <span>{{ vm.user.firstName }} {{ vm.user.lastName }}</span>
+            </li>
+            <hr />
+          }
 
-  <a
-    aria-label="News"
-    class="nav-link"
-    routerLinkActive="link-active"
-    [routerLink]="NavPathTypes.NEWS"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'News' : null">
-    <span class="text">News</span>
-    <i-feather name="activity"></i-feather>
-  </a>
-
-  <a
-    aria-label="City Champion"
-    class="nav-link"
-    routerLinkActive="link-active"
-    [routerLink]="NavPathTypes.CITY_CHAMPION"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'City Champion' : null">
-    <span class="text">City&nbsp;Champion</span>
-    <i-feather name="award"></i-feather>
-  </a>
-
-  <a
-    aria-label="Photo Gallery"
-    class="nav-link"
-    routerLinkActive="link-active"
-    [routerLink]="NavPathTypes.PHOTO_GALLERY"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Photo Gallery' : null">
-    <span class="text">Photo&nbsp;Gallery</span>
-    <i-feather name="camera"></i-feather>
-  </a>
-
-  <a
-    aria-label="Game Archives"
-    class="nav-link"
-    routerLinkActive="link-active"
-    [routerLink]="NavPathTypes.GAME_ARCHIVES"
-    [tooltip]="screenWidth < ICON_TEXT_BREAKPOINT ? 'Game Archives' : null">
-    <span class="text">Game&nbsp;Archives</span>
-    <i-feather name="grid"></i-feather>
-  </a>
-
-  <div class="nav-login-spacer"></div>
-
-  <div class="lcc-dropdown-tab settings-dropdown-tab">
-    <i-feather name="settings"></i-feather>
-    <i-feather
-      [name]="isDropdownOpen ? 'chevron-down' : 'chevron-up'"
-      class="chevron-icon">
-    </i-feather>
-
-    <div
-      class="lcc-dropdown user-dropdown"
-      dropdown
-      (opened)="isDropdownOpen = $event">
-      <ul class="dropdown-items">
-        @if (facade.user$ | async; as user) {
-          <li class="dropdown-item user-name">
-            <i-feather name="user"></i-feather>
-            <span>{{ user.firstName }} {{ user.lastName }}</span>
-          </li>
-          <hr />
-        }
-
-        <li class="dropdown-item theme-toggle">
-          <span>Theme</span>
-          <lcc-toggle-switch
-            [condition]="facade.isDarkMode$ | async"
-            [tooltipTextWhenOff]="'Switch to dark mode'"
-            [tooltipTextWhenOn]="'Switch to light mode'"
-            (toggle)="facade.onToggleTheme()">
-          </lcc-toggle-switch>
-        </li>
-
-        @if (facade.user$ | async; as user) {
-          <li class="dropdown-item safe-mode-toggle">
-            <div class="safe-mode-toggle-container">
-              <span>Safe mode</span>
-              @if (!(facade.isSafeMode$ | async)) {
-                <i-feather
-                  name="alert-triangle"
-                  class="safe-mode-off-alert-icon"
-                  tooltip="Safe mode is turned off">
-                </i-feather>
-              }
-            </div>
+          <li class="dropdown-item theme-toggle">
+            <span>Theme</span>
             <lcc-toggle-switch
-              [condition]="facade.isSafeMode$ | async"
-              [tooltipTextWhenOff]="
-                'Hide members\' emails, phone numbers and year of birth from screen'
-              "
-              [tooltipTextWhenOn]="
-                'Show members\' emails, phone numbers and year of birth on screen'
-              "
-              (toggle)="facade.onToggleSafeMode()">
+              [condition]="vm.isDarkMode"
+              [tooltipTextWhenOff]="'Switch to dark mode'"
+              [tooltipTextWhenOn]="'Switch to light mode'"
+              (toggle)="onToggleTheme()">
             </lcc-toggle-switch>
           </li>
 
-          <li class="dropdown-item">
-            <a
-              aria-label="Change password"
-              class="lcc-dropdown-link"
-              [routerLink]="NavPathTypes.CHANGE_PASSWORD">
-              <span>Change password</span>
-            </a>
-          </li>
+          @if (vm.user) {
+            <li class="dropdown-item safe-mode-toggle">
+              <div class="safe-mode-toggle-container">
+                <span>Safe mode</span>
+                @if (!vm.isSafeMode) {
+                  <i-feather
+                    name="alert-triangle"
+                    class="safe-mode-off-alert-icon"
+                    tooltip="Safe mode is turned off">
+                  </i-feather>
+                }
+              </div>
+              <lcc-toggle-switch
+                [condition]="vm.isSafeMode"
+                [tooltipTextWhenOff]="
+                  'Hide members\' emails, phone numbers and year of birth from screen'
+                "
+                [tooltipTextWhenOn]="
+                  'Show members\' emails, phone numbers and year of birth on screen'
+                "
+                (toggle)="onToggleSafeMode()">
+              </lcc-toggle-switch>
+            </li>
 
-          <li class="dropdown-item">
-            <a
-              aria-label="Log out"
-              class="lcc-dropdown-link"
-              [routerLink]="NavPathTypes.LOGOUT">
-              <span>Log out</span>
-            </a>
-          </li>
-        } @else {
-          <li class="dropdown-item">
-            <a
-              aria-label="Admin login"
-              class="lcc-dropdown-link"
-              [routerLink]="NavPathTypes.LOGIN">
-              <span>Admin login</span>
-            </a>
-          </li>
-        }
-      </ul>
+            <li class="dropdown-item">
+              <a
+                aria-label="Change password"
+                class="lcc-dropdown-link"
+                routerLink="/change-password">
+                <span>Change password</span>
+              </a>
+            </li>
+
+            <li class="dropdown-item">
+              <a
+                aria-label="Log out"
+                class="lcc-dropdown-link"
+                (click)="onLogout()">
+                <span>Log out</span>
+              </a>
+            </li>
+          } @else {
+            <li class="dropdown-item">
+              <a
+                aria-label="Admin login"
+                class="lcc-dropdown-link"
+                routerLink="/login">
+                <span>Admin login</span>
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="nav-right"></div>
+  <div class="nav-right"></div>
+}

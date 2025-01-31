@@ -1,7 +1,11 @@
+:host {
+  z-index: 1000;
+}
+
 .container {
   display: flex;
   justify-content: center;
-  padding: 2px 16px;
+  padding: 2px 8px;
   border-bottom: 1px solid var(--lcc-color--upcomingEventBanner-borderBottom);
 
   &.blitz-tournament {
@@ -71,12 +75,9 @@
 }
 
 .close-icon {
-  height: 18px;
-  width: 18px;
   color: var(--lcc-color--upcomingEventBanner-closeIcon);
 
   &:hover {
-    cursor: pointer;
     color: var(--lcc-color--upcomingEventBanner-closeIconOnHover);
   }
 }

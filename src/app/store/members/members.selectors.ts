@@ -1,98 +1,162 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { StoreFeatures } from '@app/types';
+import { newMemberFormTemplate } from '@app/components/member-form/new-member-form-template';
+import type { Id } from '@app/models';
+import { AuthSelectors } from '@app/store/auth';
 import { areSame, customSort } from '@app/utils';
 
-import { MembersState } from './members.state';
+import { MembersState, membersAdapter } from './members.reducer';
 
-export const membersFeatureSelector = createFeatureSelector<MembersState>(
-  StoreFeatures.MEMBERS,
+const selectMembersState = createFeatureSelector<MembersState>('membersState');
+
+const { selectAll: selectAllMembers } = membersAdapter.getSelectors(selectMembersState);
+
+export const selectMemberById = (id: Id) =>
+  createSelector(selectAllMembers, allMembers =>
+    allMembers ? allMembers.find(member => member.id === id) : null,
+  );
+
+export const selectMemberId = createSelector(selectMembersState, state => state.memberId);
+
+export const selectMember = createSelector(
+  selectAllMembers,
+  selectMemberId,
+  (allMembers, memberId) =>
+    memberId ? allMembers.find(member => member.id === memberId) : null,
 );
 
-export const members = createSelector(membersFeatureSelector, state => state.members);
-
-export const memberById = (id: string) =>
-  createSelector(members, allMembers => {
-    return allMembers ? allMembers.find(member => member.id === id) : null;
-  });
-
-export const activeMembers = createSelector(membersFeatureSelector, state =>
-  state.members.filter(member => member.isActive),
-);
-
-export const setMember = createSelector(membersFeatureSelector, state => state.setMember);
-
-export const setMemberName = createSelector(setMember, member =>
+export const selectMemberName = createSelector(selectMember, member =>
   member?.firstName && member?.lastName ? `${member.firstName} ${member.lastName}` : null,
 );
 
-export const formMember = createSelector(
-  membersFeatureSelector,
-  state => state.formMember,
+export const selectMemberFormData = createSelector(
+  selectMembersState,
+  state => state.memberFormData,
 );
 
-export const controlMode = createSelector(
-  membersFeatureSelector,
+export const selectMemberNameInForm = createSelector(selectMemberFormData, member =>
+  member?.firstName && member?.lastName ? `${member.firstName} ${member.lastName}` : null,
+);
+
+export const selectControlMode = createSelector(
+  selectMembersState,
   state => state.controlMode,
 );
 
-export const hasUnsavedChanges = createSelector(
-  membersFeatureSelector,
-  state => !areSame(state.formMember, state.setMember),
+export const selectHasUnsavedChanges = createSelector(
+  selectControlMode,
+  selectMember,
+  selectMemberFormData,
+  (controlMode, member, memberFormData) => {
+    if (!memberFormData) {
+      return null;
+    }
+
+    if (controlMode === 'add') {
+      return !areSame(memberFormData, newMemberFormTemplate);
+    }
+
+    if (!member) {
+      return null;
+    }
+
+    const { id, modificationInfo, ...relevantPropertiesOfMember } = member;
+    return !areSame(relevantPropertiesOfMember, memberFormData);
+  },
 );
 
-export const sortedBy = createSelector(membersFeatureSelector, state => state.sortedBy);
+export const selectSortedBy = createSelector(selectMembersState, state => state.sortedBy);
 
-export const isAscending = createSelector(
-  membersFeatureSelector,
+export const selectIsAscending = createSelector(
+  selectMembersState,
   state => state.isAscending,
 );
 
-export const pageNum = createSelector(membersFeatureSelector, state => state.pageNum);
+export const selectPageNum = createSelector(selectMembersState, state => state.pageNum);
 
-export const pageSize = createSelector(membersFeatureSelector, state => state.pageSize);
+export const selectPageSize = createSelector(selectMembersState, state => state.pageSize);
 
-export const startIndex = createSelector(
-  membersFeatureSelector,
-  state => state.pageSize * (state.pageNum - 1),
+export const selectStartIndex = createSelector(
+  selectPageSize,
+  selectPageNum,
+  (pageSize, pageNum) => pageSize * (pageNum - 1),
 );
 
-export const endIndex = createSelector(
-  membersFeatureSelector,
-  state => state.pageSize * state.pageNum,
+export const selectEndIndex = createSelector(
+  selectPageSize,
+  selectPageNum,
+  (pageSize, pageNum) => pageSize * pageNum,
 );
 
-export const showActiveOnly = createSelector(
-  membersFeatureSelector,
+export const selectShowActiveOnly = createSelector(
+  selectMembersState,
   state => state.showActiveOnly,
 );
 
-export const sortedMembers = createSelector(
-  members,
-  sortedBy,
-  isAscending,
-  (members, sortedBy, isAscending) => {
+export const selectActiveMembers = createSelector(selectAllMembers, allMembers =>
+  allMembers.filter(member => member.isActive),
+);
+
+export const selectSortedMembers = createSelector(
+  selectAllMembers,
+  selectSortedBy,
+  selectIsAscending,
+  (allMembers, sortedBy, isAscending) => {
     const sortKey =
       sortedBy === 'born'
         ? 'yearOfBirth'
         : sortedBy === 'lastUpdated'
           ? 'modificationInfo.dateLastEdited'
           : sortedBy;
-    return [...members].sort(customSort(sortKey, isAscending));
+    return [...allMembers].sort((a, b) =>
+      customSort(a, b, sortKey, isAscending, 'lastName'),
+    );
   },
 );
 
-export const filteredMembers = createSelector(
-  sortedMembers,
-  showActiveOnly,
+export const selectFilteredMembers = createSelector(
+  selectSortedMembers,
+  selectShowActiveOnly,
   (sortedMembers, showActiveOnly) =>
     showActiveOnly ? sortedMembers.filter(member => member.isActive) : sortedMembers,
 );
 
-export const displayedMembers = createSelector(
-  filteredMembers,
-  startIndex,
-  endIndex,
+export const selectDisplayedMembers = createSelector(
+  selectFilteredMembers,
+  selectStartIndex,
+  selectEndIndex,
   (filteredMembers, startIndex, endIndex) =>
     filteredMembers.slice(startIndex ?? 0, endIndex ?? undefined),
 );
+
+export const selectMembersTableMembersViewModel = createSelector({
+  all: selectAllMembers,
+  active: selectActiveMembers,
+  displayed: selectDisplayedMembers,
+  filtered: selectFilteredMembers,
+});
+
+export const selectMembersTableConfigViewModel = createSelector({
+  pageNum: selectPageNum,
+  pageSize: selectPageSize,
+  isAscending: selectIsAscending,
+  showActiveOnly: selectShowActiveOnly,
+  sortedBy: selectSortedBy,
+  startIndex: selectStartIndex,
+  isAdmin: AuthSelectors.selectIsAdmin,
+});
+
+export const selectMemberFormViewModel = createSelector({
+  member: selectMember,
+  memberFormData: selectMemberFormData,
+  memberName: selectMemberName,
+  memberNameInForm: selectMemberNameInForm,
+  controlMode: selectControlMode,
+  hasUnsavedChanges: selectHasUnsavedChanges,
+});
+
+export const selectMemberEditorViewModel = createSelector({
+  memberName: selectMemberName,
+  controlMode: selectControlMode,
+  hasUnsavedChanges: selectHasUnsavedChanges,
+});

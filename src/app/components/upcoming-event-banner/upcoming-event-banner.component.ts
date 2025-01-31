@@ -1,20 +1,44 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
-import { NavPathTypes } from '@app/types';
-import { kebabize, setLocalTime } from '@app/utils';
-
-import { UpcomingEventBannerFacade } from './upcoming-event-banner.facade';
+import IconsModule from '@app/icons';
+import { Event } from '@app/models';
+import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
 
 @Component({
   selector: 'lcc-upcoming-event-banner',
-  templateUrl: './upcoming-event-banner.component.html',
-  styleUrls: ['./upcoming-event-banner.component.scss'],
-  providers: [UpcomingEventBannerFacade],
+  template: `
+    <div
+      class="container"
+      [ngClass]="nextEvent.type | kebabCase">
+      <div class="banner-message-container">
+        <a
+          class="banner-message"
+          routerLink="/schedule"
+          (click)="clearBanner.emit()">
+          <span>
+            Next event: <b>{{ nextEvent.title }}</b> on
+            <b>{{ nextEvent.eventDate | formatDate: 'short' }}</b>
+          </span>
+        </a>
+
+        <button
+          class="lcc-icon-button close-button"
+          (click)="clearBanner.emit()">
+          <i-feather
+            name="x"
+            class="close-icon">
+          </i-feather>
+        </button>
+      </div>
+    </div>
+  `,
+  styleUrl: './upcoming-event-banner.component.scss',
+  imports: [CommonModule, FormatDatePipe, IconsModule, KebabCasePipe, RouterLink],
 })
 export class UpcomingEventBannerComponent {
-  readonly kebabize = kebabize;
-  readonly setLocalTime = setLocalTime;
-  readonly NavPathTypes = NavPathTypes;
+  @Input({ required: true }) public nextEvent!: Event;
 
-  constructor(public facade: UpcomingEventBannerFacade) {}
+  @Output() public clearBanner = new EventEmitter<void>();
 }

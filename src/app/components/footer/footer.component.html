@@ -1,4 +1,7 @@
-<small> Copyright &copy; {{ currentYear }} <b>London Chess Club</b> </small>
+<small class="copyright-notice">
+  Copyright &copy; {{ currentYear }}
+  <b>London Chess Club</b>
+</small>
 
 <address class="website-details">
   <span class="current-version">v{{ currentVersion }}</span>
@@ -19,9 +22,3 @@
     <span>Report a bug</span>
   </a>
 </address>
-
-@if (isNewVersionAvailable) {
-  <aside class="new-version-notice">
-    [ New website version available! Refresh page to update. ]
-  </aside>
-}

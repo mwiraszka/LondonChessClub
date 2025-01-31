@@ -1,20 +1,37 @@
 :host {
-  position: absolute;
-  z-index: 10;
   display: flex;
   flex-direction: row;
-
-  // Visible on parent hover (see _admin-controls-container.scss)
-  visibility: hidden;
 
   .admin-control-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2px;
+    padding: 3px;
     border: 3px solid var(--lcc-color--adminControls-buttonBorder);
     border-radius: var(--lcc-borderRadius--large);
     background-color: var(--lcc-color--adminControls-buttonBackground);
+
+    i-feather {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+
+    &:focus,
+    &:hover {
+      cursor: pointer;
+      background-color: var(--lcc-color--adminControls-buttonBackgroundOnHover);
+    }
+
+    &.bookmark-button {
+      color: var(--lcc-color--adminControls-bookmarkIcon);
+      margin-right: 2px;
+
+      &:focus,
+      &:hover {
+        color: var(--lcc-color--adminControls-bookmarkIconOnHover);
+      }
+    }
 
     &.edit-button {
       color: var(--lcc-color--adminControls-editIcon);
@@ -34,11 +51,10 @@
         color: var(--lcc-color--adminControls-deleteIconOnHover);
       }
     }
-
-    &:focus,
-    &:hover {
-      cursor: pointer;
-      background-color: var(--lcc-color--adminControls-buttonBackgroundOnHover);
-    }
   }
+}
+
+.tooltip-item-name {
+  display: block;
+  color: var(--lcc-color--tooltip-highlightedText) !important;
 }

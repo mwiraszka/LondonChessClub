@@ -1,0 +1,16 @@
+:host {
+  width: 400px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: start;
+  padding: 16px 32px;
+
+  .buttons-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+}

@@ -1,0 +1,46 @@
+:host {
+  min-width: min(90vw, var(--lcc-width--appContent));
+  height: 90vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 8px;
+  overflow: auto;
+  padding: 8px;
+  background-color: var(--lcc-color--imageExplorer-background);
+
+  .image-wrapper {
+    padding: 4px;
+    border-radius: var(--lcc-borderRadius--large);
+    border: 2px solid transparent;
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--lcc-color--imageExplorer-imageBackgroundOnHover);
+      border-color: var(--lcc-color--imageExplorer-imageBorderOnHover);
+    }
+
+    img,
+    .loading-placeholder-image {
+      aspect-ratio: 3 / 2;
+      border-radius: var(--lcc-borderRadius--large);
+      width: 100%;
+    }
+
+    .filename,
+    .thumbnail-file-size,
+    .upload-date,
+    .article-appearances {
+      font-size: 13px;
+      color: var(--lcc-color--imageExplorer-text);
+
+      label {
+        font-weight: bold;
+        margin-right: 0.5em;
+      }
+
+      b {
+        margin: 0.3em;
+      }
+    }
+  }
+}

@@ -1,11 +1,12 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
+import { filter } from 'rxjs/operators';
 
 import { CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
 import { FooterComponent } from '@app/components/footer/footer.component';
 import { HeaderComponent } from '@app/components/header/header.component';
@@ -38,6 +39,7 @@ export class AppComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private readonly _document: Document,
     public readonly loaderService: LoaderService,
+    private readonly router: Router,
     private readonly store: Store,
   ) {
     moment.tz.setDefault('America/Toronto');
@@ -56,6 +58,13 @@ export class AppComponent implements OnInit {
           this.store.dispatch(AppActions.upcomingEventBannerReinstated());
         }
       });
+
+    this.router.events
+      .pipe(
+        untilDestroyed(this),
+        filter(event => event instanceof NavigationEnd && !event.url.split('#')[1]),
+      )
+      .subscribe(() => this._document.querySelector('main')!.scrollTo({ top: 0 }));
   }
 
   public onClearBanner(): void {

@@ -44,23 +44,23 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchArticleBannerImageRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ imageId, setAsOriginal }) =>
-        this.imagesService.getImage(imageId).pipe(
-          map(response =>
-            ImagesActions.fetchArticleBannerImageSucceeded({
+      switchMap(({ imageId, setAsOriginal }) => {
+        return this.imagesService.getImage(imageId).pipe(
+          map(response => {
+            return ImagesActions.fetchArticleBannerImageSucceeded({
               image: response.data,
               setAsOriginal,
-            }),
-          ),
-          catchError(error =>
-            of(
+            });
+          }),
+          catchError(error => {
+            return of(
               ImagesActions.fetchArticleBannerImageFailed({
                 error: parseError(error),
               }),
-            ),
-          ),
-        ),
-      ),
+            );
+          }),
+        );
+      }),
       tap(() => this.loaderService.setIsLoading(false)),
     );
   });

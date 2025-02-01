@@ -120,7 +120,7 @@
       <aside class="lcc-required-fields-legend">Required fields</aside>
 
       <div class="preview-section-container">
-        @if (!!form.controls.body.value) {
+        @if (!!form.controls.body.value && vm.controlMode) {
           <h3>Article preview:</h3>
           <hr />
           <div class="markdown-container">

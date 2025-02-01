@@ -3,23 +3,36 @@ import { kebabCase } from 'lodash';
 import { MarkdownComponent } from 'ngx-markdown';
 
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { AfterViewChecked, Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+
+import { TableOfContentsComponent } from '@app/components/table-of-contents/table-of-contents.component';
 
 @UntilDestroy()
 @Component({
   selector: 'lcc-markdown-renderer',
-  template: '<markdown [data]="data"></markdown>',
+  template: `
+    @if (subheadings.length) {
+      <lcc-table-of-contents [subheadings]="subheadings"></lcc-table-of-contents>
+    }
+    <markdown [data]="data"></markdown>
+  `,
   styleUrl: './markdown-renderer.component.scss',
-  imports: [CommonModule, MarkdownComponent],
+  imports: [CommonModule, MarkdownComponent, TableOfContentsComponent],
 })
-export class MarkdownRendererComponent implements AfterViewChecked {
+export class MarkdownRendererComponent implements OnChanges {
   @Input() public data?: string;
+
+  public subheadings: string[] = [];
 
   constructor(@Inject(DOCUMENT) private _document: Document) {}
 
-  ngAfterViewChecked(): void {
-    this.wrapMarkdownTables();
-    this.addArticleAnchorIds();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['data']) {
+      setTimeout(() => {
+        this.wrapMarkdownTables();
+        this.addAnchorIdsToSubheadings();
+      });
+    }
   }
 
   private wrapMarkdownTables(): void {
@@ -39,18 +52,23 @@ export class MarkdownRendererComponent implements AfterViewChecked {
     }
   }
 
-  private addArticleAnchorIds(): void {
-    const headerElements = this._document.querySelectorAll(
-      'markdown h1, markdown h2, markdown h3, markdown h4, markdown h5, markdown h6',
-    );
+  private addAnchorIdsToSubheadings(): void {
+    const subheadingElements = this._document.querySelectorAll('markdown h2');
 
-    if (headerElements) {
-      headerElements.forEach(headerElement => {
-        const headerTextContent = (
-          headerElement.textContent || headerElement.innerHTML
-        ).replace(/(<([^>]+)>)/gi, '');
-        headerElement.setAttribute('id', kebabCase(headerTextContent));
+    const newSubheadings: string[] = [];
+
+    if (subheadingElements) {
+      subheadingElements.forEach(element => {
+        const subheading = (element.textContent || element.innerHTML).replace(
+          /(<([^>]+)>)/gi,
+          '',
+        );
+
+        element.setAttribute('id', kebabCase(subheading));
+        newSubheadings.push(subheading);
       });
     }
+
+    this.subheadings = newSubheadings;
   }
 }

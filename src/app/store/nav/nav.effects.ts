@@ -115,9 +115,7 @@ export class NavEffects {
       filter(([{ payload }, previousPath]) => {
         const currentPath = payload.event.url;
         return (
-          !!previousPath?.startsWith('/event/') &&
-          !currentPath?.startsWith('/event/edit') &&
-          currentPath !== '/event/add'
+          !!previousPath?.startsWith('/event/') && !currentPath?.startsWith('/event/')
         );
       }),
       map(() => EventsActions.eventUnset()),
@@ -149,9 +147,7 @@ export class NavEffects {
       filter(([{ payload }, previousPath]) => {
         const currentPath = payload.event.url;
         return (
-          !!previousPath?.startsWith('/member/') &&
-          !currentPath?.startsWith('/member/edit') &&
-          currentPath !== '/member/add'
+          !!previousPath?.startsWith('/member/') && !currentPath?.startsWith('/member/')
         );
       }),
       map(() => MembersActions.memberUnset()),
@@ -163,16 +159,21 @@ export class NavEffects {
       ofType(routerNavigatedAction),
       map(({ payload }) => payload.event.url),
       filter(currentPath => currentPath.startsWith('/article/')),
-      map(currentPath => {
-        const [controlMode, articleIdWithAnchor] = currentPath
+      concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
+      filter(
+        ([currentPath, previousPath]) =>
+          previousPath?.split('#')[0] !== currentPath?.split('#')[0],
+      ),
+      map(([currentPath]) => {
+        const [controlMode, articleIdWithFragment] = currentPath
           .split('/article/')[1]
           .split('/');
 
-        if (controlMode === 'add' && !isDefined(articleIdWithAnchor)) {
+        if (controlMode === 'add' && !isDefined(articleIdWithFragment)) {
           return ArticlesActions.newArticleRequested();
         }
 
-        const articleId = articleIdWithAnchor?.split('#')[0];
+        const articleId = articleIdWithFragment?.split('#')[0];
 
         if (
           (controlMode === 'edit' && isValidCollectionId(articleId)) ||
@@ -196,9 +197,7 @@ export class NavEffects {
       filter(([{ payload }, previousPath]) => {
         const currentPath = payload.event.url;
         return (
-          !!previousPath?.startsWith('/article/') &&
-          !currentPath?.startsWith('/article/edit') &&
-          currentPath !== '/article/add'
+          !!previousPath?.startsWith('/article/') && !currentPath?.startsWith('/article/')
         );
       }),
       map(() => ArticlesActions.articleUnset()),

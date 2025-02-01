@@ -1,10 +1,8 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { filter } from 'rxjs/operators';
 
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
-import { Router, Scroll } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 
 import { AdminControlsDirective } from '@app/components/admin-controls/admin-controls.directive';
 import { ArticleComponent } from '@app/components/article/article.component';
@@ -58,9 +56,7 @@ export class ArticleViewerScreenComponent implements OnInit {
 
   constructor(
     private readonly dialogService: DialogService,
-    @Inject(DOCUMENT) private _document: Document,
     private readonly metaAndTitleService: MetaAndTitleService,
-    private readonly router: Router,
     private readonly store: Store,
   ) {}
 
@@ -81,34 +77,6 @@ export class ArticleViewerScreenComponent implements OnInit {
           this.metaAndTitleService.updateDescription(articlePreview);
         }
       });
-
-    this.setUpRouterListener();
-  }
-
-  private setUpRouterListener(): void {
-    this.router.events
-      .pipe(
-        filter(event => event instanceof Scroll),
-        untilDestroyed(this),
-      )
-      .subscribe(event =>
-        // TODO: needs fixing
-        setTimeout(() => this.scrollToAnchor((event as Scroll).anchor!), 1000),
-      );
-  }
-
-  private scrollToAnchor(anchorToScrollTo?: string): void {
-    const elementToScrollTo = this._document.getElementById(anchorToScrollTo ?? 'main');
-
-    if (elementToScrollTo) {
-      setTimeout(() => {
-        elementToScrollTo.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-          inline: 'nearest',
-        });
-      }, 200);
-    }
   }
 
   public getAdminControlsConfig(article: Article): AdminControlsConfig {
@@ -120,7 +88,7 @@ export class ArticleViewerScreenComponent implements OnInit {
     };
   }
 
-  public async onDelete(article: Article): Promise<void> {
+  private async onDelete(article: Article): Promise<void> {
     const dialog: Dialog = {
       title: 'Delete article',
       body: `Update ${article.title}?`,

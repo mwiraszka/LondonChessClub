@@ -43,12 +43,11 @@ export class DialogService {
   public open<TComponent extends DialogOutput<TResult>, TResult>(
     dialogConfig: DialogConfig<TComponent>,
   ): Promise<TResult | 'close'> {
-    // This style never gets removed, only overidden by other overlay directives/services
-    this.renderer.setStyle(
-      document.querySelector('.cdk-overlay-container'),
-      'z-index',
-      '1100',
-    );
+    const overlayContainerElement = document.querySelector('.cdk-overlay-container');
+    if (overlayContainerElement) {
+      // This style never gets removed, only overidden by other overlay directives/services
+      this.renderer.setStyle(overlayContainerElement, 'z-index', '1100');
+    }
 
     const injector = Injector.create({
       providers: [{ provide: DIALOG_CONFIG_TOKEN, useValue: dialogConfig }],

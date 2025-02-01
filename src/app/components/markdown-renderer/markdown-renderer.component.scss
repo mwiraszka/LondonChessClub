@@ -1,36 +1,43 @@
 @use '../../../styles/components/link';
 
-:host ::ng-deep {
-  a {
-    @include link.lcc-link;
-  }
+:host {
+  ::ng-deep {
+    a {
+      @include link.lcc-link;
+    }
 
-  li {
-    list-style-type: disc;
-    margin-left: 1em;
-    line-height: 1.5em;
-    color: var(--lcc-color--markdownRenderer-secondaryText);
-  }
+    li {
+      list-style-type: disc;
+      margin-left: 1em;
+      line-height: 1.5em;
+      color: var(--lcc-color--markdownRenderer-secondaryText);
+    }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: var(--lcc-color--markdownRenderer-primaryText);
-  }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: var(--lcc-color--markdownRenderer-primaryText);
+    }
 
-  p {
-    color: var(--lcc-color--markdownRenderer-secondaryText);
-  }
+    // These function as the article's scrollable page anchor subheadings
+    h2 {
+      padding-top: 1em;
+    }
 
-  b,
-  strong {
-    color: var(--lcc-color--markdownRenderer-primaryText);
-  }
+    p {
+      color: var(--lcc-color--markdownRenderer-secondaryText);
+    }
 
-  img {
-    width: 100%;
+    b,
+    strong {
+      color: var(--lcc-color--markdownRenderer-primaryText);
+    }
+
+    img {
+      width: 100%;
+    }
   }
 }

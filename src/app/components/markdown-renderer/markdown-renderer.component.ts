@@ -21,12 +21,12 @@ import { KebabCasePipe } from '@app/pipes';
   selector: 'lcc-markdown-renderer',
   template: `
     <div class="table-of-contents">
-      @for (subheading of subheadings; track subheading) {
+      @for (heading of headings; track heading) {
         <a
-          class="subheading-link lcc-link"
+          class="heading-link lcc-link"
           [routerLink]="currentPath"
-          [fragment]="subheading | kebabCase">
-          {{ subheading }}
+          [fragment]="heading | kebabCase">
+          {{ heading }}
         </a>
       }
     </div>
@@ -40,7 +40,7 @@ export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
 
   public currentFragment: string | null = null;
   public currentPath: string;
-  public subheadings: string[] = [];
+  public headings: string[] = [];
 
   constructor(
     @Inject(DOCUMENT) private _document: Document,
@@ -54,26 +54,26 @@ export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
     if (changes['data']) {
       setTimeout(() => {
         this.wrapMarkdownTables();
-        this.addAnchorIdsToSubheadings();
+        this.addAnchorIdsToHeadings();
       });
     }
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      // Scroll on initial load
+      // Scroll to anchor on initial load
       this.activatedRoute.fragment
         .pipe(first())
-        .subscribe(fragment => this.scrollToSubheading(fragment));
+        .subscribe(fragment => this.scrollToAnchor(fragment));
     });
 
-    // Scroll when subheading link is clicked (will still scroll even if fragment hasn't changed)
+    // Scroll to anchor when heading link is clicked (will still scroll even if fragment hasn't changed)
     this.router.events
       .pipe(
         untilDestroyed(this),
         filter(event => event instanceof NavigationEnd),
       )
-      .subscribe(event => this.scrollToSubheading(event.url.split('#')[1]));
+      .subscribe(event => this.scrollToAnchor(event.url.split('#')[1]));
   }
 
   private wrapMarkdownTables(): void {
@@ -93,35 +93,35 @@ export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  private addAnchorIdsToSubheadings(): void {
-    const subheadingElements = this._document.querySelectorAll('markdown h2');
+  private addAnchorIdsToHeadings(): void {
+    const headingElements = this._document.querySelectorAll('markdown h2');
 
-    const newSubheadings: string[] = [];
+    const newHeadings: string[] = [];
 
-    if (subheadingElements) {
-      subheadingElements.forEach(element => {
-        const subheading = (element.textContent || element.innerHTML).replace(
+    if (headingElements) {
+      headingElements.forEach(element => {
+        const heading = (element.textContent || element.innerHTML).replace(
           /(<([^>]+)>)/gi,
           '',
         );
 
-        element.setAttribute('id', kebabCase(subheading));
-        newSubheadings.push(subheading);
+        element.setAttribute('id', kebabCase(heading));
+        newHeadings.push(heading);
       });
     }
 
-    this.subheadings = newSubheadings;
+    this.headings = newHeadings;
   }
 
-  private scrollToSubheading(fragment?: string | null): void {
-    if (!fragment) {
+  private scrollToAnchor(anchorId?: string | null): void {
+    if (!anchorId) {
       return;
     }
 
-    const subheadingElement = this._document.getElementById(fragment);
+    const headingElement = this._document.getElementById(anchorId);
 
-    if (subheadingElement) {
-      subheadingElement.scrollIntoView({
+    if (headingElement) {
+      headingElement.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
         inline: 'nearest',

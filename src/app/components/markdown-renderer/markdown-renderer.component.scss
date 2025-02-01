@@ -4,7 +4,7 @@
   .table-of-contents {
     text-align: center;
 
-    .subheading-link {
+    .heading-link {
       display: inline-block;
       font-size: 18px;
       padding: 4px 16px;
@@ -12,6 +12,16 @@
   }
 
   markdown ::ng-deep {
+    table {
+      [align='right'] {
+        text-align: right;
+      }
+
+      [align='left'] {
+        text-align: left;
+      }
+    }
+
     a {
       @include link.lcc-link;
     }
@@ -32,7 +42,7 @@
       color: var(--lcc-color--markdownRenderer-primaryText);
     }
 
-    // These function as the article's scrollable page anchor subheadings
+    // h2 headings function as the article's scrollable anchors
     h2 {
       padding-top: 1em;
     }

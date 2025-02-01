@@ -1,30 +1,54 @@
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { kebabCase } from 'lodash';
 import { MarkdownComponent } from 'ngx-markdown';
+import { filter, first } from 'rxjs/operators';
 
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Inject,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 
-import { TableOfContentsComponent } from '@app/components/table-of-contents/table-of-contents.component';
+import { KebabCasePipe } from '@app/pipes';
 
 @UntilDestroy()
 @Component({
   selector: 'lcc-markdown-renderer',
   template: `
-    @if (subheadings.length) {
-      <lcc-table-of-contents [subheadings]="subheadings"></lcc-table-of-contents>
-    }
+    <div class="table-of-contents">
+      @for (subheading of subheadings; track subheading) {
+        <a
+          class="subheading-link lcc-link"
+          [routerLink]="currentPath"
+          [fragment]="subheading | kebabCase">
+          {{ subheading }}
+        </a>
+      }
+    </div>
     <markdown [data]="data"></markdown>
   `,
   styleUrl: './markdown-renderer.component.scss',
-  imports: [CommonModule, MarkdownComponent, TableOfContentsComponent],
+  imports: [CommonModule, KebabCasePipe, MarkdownComponent, RouterLink],
 })
-export class MarkdownRendererComponent implements OnChanges {
+export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
   @Input() public data?: string;
 
+  public currentFragment: string | null = null;
+  public currentPath: string;
   public subheadings: string[] = [];
 
-  constructor(@Inject(DOCUMENT) private _document: Document) {}
+  constructor(
+    @Inject(DOCUMENT) private _document: Document,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly router: Router,
+  ) {
+    this.currentPath = this._document.location.pathname;
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data']) {
@@ -33,6 +57,23 @@ export class MarkdownRendererComponent implements OnChanges {
         this.addAnchorIdsToSubheadings();
       });
     }
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      // Scroll on initial load
+      this.activatedRoute.fragment
+        .pipe(first())
+        .subscribe(fragment => this.scrollToSubheading(fragment));
+    });
+
+    // Scroll when subheading link is clicked (will still scroll even if fragment hasn't changed)
+    this.router.events
+      .pipe(
+        untilDestroyed(this),
+        filter(event => event instanceof NavigationEnd),
+      )
+      .subscribe(event => this.scrollToSubheading(event.url.split('#')[1]));
   }
 
   private wrapMarkdownTables(): void {
@@ -70,5 +111,21 @@ export class MarkdownRendererComponent implements OnChanges {
     }
 
     this.subheadings = newSubheadings;
+  }
+
+  private scrollToSubheading(fragment?: string | null): void {
+    if (!fragment) {
+      return;
+    }
+
+    const subheadingElement = this._document.getElementById(fragment);
+
+    if (subheadingElement) {
+      subheadingElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest',
+      });
+    }
   }
 }

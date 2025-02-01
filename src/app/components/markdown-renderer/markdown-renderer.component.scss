@@ -1,7 +1,17 @@
 @use '../../../styles/components/link';
 
 :host {
-  ::ng-deep {
+  .table-of-contents {
+    text-align: center;
+
+    .subheading-link {
+      display: inline-block;
+      font-size: 18px;
+      padding: 4px 16px;
+    }
+  }
+
+  markdown ::ng-deep {
     a {
       @include link.lcc-link;
     }

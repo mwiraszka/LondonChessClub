@@ -18,33 +18,33 @@ export class MembersService {
 
   public getMembers(scope: ApiScope): Observable<ApiResponse<Member[]>> {
     return this.http.get<ApiResponse<Member[]>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}`,
+      `${this.API_BASE_URL}/${scope}/${this.COLLECTION}`,
     );
   }
 
-  public getMember(scope: ApiScope, id: Id): Observable<ApiResponse<Member>> {
+  public getMember(id: Id): Observable<ApiResponse<Member>> {
     return this.http.get<ApiResponse<Member>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
+      `${this.API_BASE_URL}/admin/${this.COLLECTION}/${id}`,
     );
   }
 
   public addMember(member: Member): Observable<ApiResponse<Id>> {
     return this.http.post<ApiResponse<Id>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}`,
+      `${this.API_BASE_URL}/admin/${this.COLLECTION}`,
       member,
     );
   }
 
   public updateMember(member: Member): Observable<ApiResponse<Id>> {
     return this.http.put<ApiResponse<Id>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}/${member.id}`,
+      `${this.API_BASE_URL}/admin/${this.COLLECTION}/${member.id}`,
       member,
     );
   }
 
   public deleteMember(member: Member): Observable<ApiResponse<Id>> {
     return this.http.delete<ApiResponse<Id>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}/${member.id}`,
+      `${this.API_BASE_URL}/admin/${this.COLLECTION}/${member.id}`,
     );
   }
 }

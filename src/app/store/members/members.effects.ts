@@ -42,10 +42,8 @@ export class MembersEffects {
     return this.actions$.pipe(
       ofType(MembersActions.fetchMemberRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
-      switchMap(([{ memberId }, isAdmin]) => {
-        const scope: ApiScope = isAdmin ? 'admin' : 'public';
-        return this.membersService.getMember(scope, memberId).pipe(
+      switchMap(({ memberId }) => {
+        return this.membersService.getMember(memberId).pipe(
           map(response => MembersActions.fetchMemberSucceeded({ member: response.data })),
           catchError(error =>
             of(MembersActions.fetchMemberFailed({ error: parseError(error) })),

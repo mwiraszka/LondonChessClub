@@ -26,7 +26,11 @@
   thead {
     th {
       color: var(--lcc-color--table-headerForeground);
-      background-color: var(--lcc-color--table-headerBackground);
+      background: repeating-conic-gradient(
+          var(--lcc-color--table-headerBackground1) 0% 25%,
+          var(--lcc-color--table-headerBackground2) 0% 50%
+        )
+        50% / 2px 2px;
       white-space: nowrap;
       font-weight: 200;
       padding: 8px;

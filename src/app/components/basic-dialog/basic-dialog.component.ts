@@ -49,8 +49,13 @@ export class BasicDialogComponent implements DialogOutput<BasicDialogResult> {
   }
 
   ngOnInit(): void {
-    this.enterKeyListener = this.renderer.listen('document', 'keydown.enter', () =>
-      this.dialogResult.emit('confirm'),
+    this.enterKeyListener = this.renderer.listen(
+      'document',
+      'keydown.enter',
+      (event: KeyboardEvent) => {
+        event.preventDefault();
+        this.dialogResult.emit('confirm');
+      },
     );
   }
 

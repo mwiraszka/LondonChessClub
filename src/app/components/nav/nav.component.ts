@@ -85,7 +85,7 @@ export class NavComponent {
   }
 
   public onLogout(): void {
-    this.store.dispatch(AuthActions.logoutRequested());
+    this.store.dispatch(AuthActions.logoutRequested({}));
   }
 
   public onToggleTheme(): void {

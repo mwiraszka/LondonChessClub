@@ -15,8 +15,14 @@ export const loginFailed = createAction(
   props<{ error: LccError }>(),
 );
 
-export const logoutRequested = createAction('[Auth] Logout requested');
-export const logoutSucceeded = createAction('[Auth] Logout succeeded');
+export const logoutRequested = createAction(
+  '[Auth] Logout requested',
+  props<{ sessionExpired?: boolean }>(),
+);
+export const logoutSucceeded = createAction(
+  '[Auth] Logout succeeded',
+  props<{ sessionExpired?: boolean }>(),
+);
 export const logoutFailed = createAction(
   '[Auth] Logout failed',
   props<{ error: LccError }>(),

@@ -1,2 +1,2 @@
-export { addHeaderInterceptor } from './add-header.interceptor';
-export { loggingInterceptor } from './logging.interceptor';
+export { AuthInterceptorProvider } from './auth.interceptor';
+export { LoggingInterceptorProvider } from './logging.interceptor';

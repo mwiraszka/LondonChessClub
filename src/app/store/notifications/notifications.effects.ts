@@ -510,11 +510,13 @@ export class NotificationsEffects {
   addLogoutSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.logoutSucceeded),
-      map(() => {
+      map(({ sessionExpired }) => {
         const toast: Toast = {
           title: 'Admin logout',
-          message: 'Successfully logged out',
-          type: 'success',
+          message: sessionExpired
+            ? 'Session expired - please log back in'
+            : 'Successfully logged out',
+          type: sessionExpired ? 'info' : 'success',
         };
         return NotificationsActions.toastAdded({ toast });
       }),

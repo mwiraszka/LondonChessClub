@@ -33,7 +33,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.0.0 - February 2nd, 2025</summary>
+<summary>v5.0.0 - February 5th, 2025</summary>
 
 - 🚀 Implement a 'sticky' app header to keep app banners and navigation buttons visible when scrolling down a page
 - 🚀 Adjust layout and colour scheme in various places throughout app to remove any inconsistencies and generally improve the user experience (UX) 

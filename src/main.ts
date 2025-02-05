@@ -7,7 +7,7 @@ import { MarkdownModule } from 'ngx-markdown';
 
 import {
   provideHttpClient,
-  withInterceptors,
+  withInterceptorsFromDi,
   withJsonpSupport,
 } from '@angular/common/http';
 import { enableProdMode, importProvidersFrom } from '@angular/core';
@@ -16,7 +16,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppRoutingModule } from '@app/app-routing.module';
-import { addHeaderInterceptor, loggingInterceptor } from '@app/interceptors';
+import { AuthInterceptorProvider, LoggingInterceptorProvider } from '@app/interceptors';
 import { AppStoreModule } from '@app/store/app';
 import { ArticlesStoreModule } from '@app/store/articles';
 import { AuthStoreModule } from '@app/store/auth';
@@ -75,11 +75,10 @@ bootstrapApplication(AppComponent, {
         actionSanitizer,
       }),
     ),
-    provideCharts(withDefaultRegisterables()),
-    provideHttpClient(
-      withInterceptors([addHeaderInterceptor, loggingInterceptor]),
-      withJsonpSupport(),
-    ),
     provideAnimations(),
+    provideCharts(withDefaultRegisterables()),
+    provideHttpClient(withInterceptorsFromDi(), withJsonpSupport()),
+    AuthInterceptorProvider,
+    LoggingInterceptorProvider,
   ],
 }).catch(error => console.error(`[LCC] Bootstrap error: ${error}`));

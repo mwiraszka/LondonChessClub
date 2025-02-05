@@ -42,7 +42,6 @@ class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<unknown>,
     handler: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    console.log(':: ERROR RESPONSE', error, req, handler);
     if (error.status === 401) {
       return this.sessionRefresh().pipe(
         switchMap(() => handler.handle(req)),

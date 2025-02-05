@@ -12,6 +12,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
+    "start:prod": "ng serve -o --configuration production",
     "build": "ng build --configuration production",
     "build:http": "ng build --configuration production && http-server ./dist",
     "build:stats": "ng build --stats-json && webpack-bundle-analyzer dist/stats.json",

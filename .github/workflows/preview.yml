@@ -26,7 +26,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build Angular project
-        run: pnpm run build
+        run: pnpm run build:preview
 
       - name: Run linter
         run: pnpm run lint
@@ -54,7 +54,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build Angular project
-        run: pnpm run build
+        run: pnpm run build:preview
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1-node16

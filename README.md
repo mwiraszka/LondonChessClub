@@ -6,7 +6,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 
 ## Tools and technologies
 
-| | | <div style="width:50px"></div> |
+| | | <div style="width: 50px"></div> |
 | -- | -- | -- |
 | `Angular` | frontend framework | [![Frontend](readme-icons/angular.png)](https://angular.dev) |
 | `AWS CloudFront` | content delivery network service | [![AWS Route 53](readme-icons/aws-route-53.png)](https://aws.amazon.com/route53) |

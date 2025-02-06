@@ -13,7 +13,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     scrollbar-gutter: stable both-edges;
     background-color: var(--lcc-color--app-mainBackground);
 

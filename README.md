@@ -33,6 +33,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.0.1 - February 6th, 2025</summary>
+
+- 🐛 Minor bug fixes and clean up from previous version
+
+</details>
+
+<details>
 <summary>v5.0.0 - February 5th, 2025</summary>
 
 - 🚀 Implement a 'sticky' app header to keep app banners and navigation buttons visible when scrolling down a page

@@ -1,27 +1,98 @@
+import { Store } from '@ngrx/store';
+
+import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
-import { UserSettingsActions, UserSettingsSelectors } from '@app/store/user-settings';
-import { NavPathTypes } from '@app/types';
-
-import { NavFacade } from './nav.facade';
+import { DropdownDirective } from '@app/components/dropdown/dropdown.directive';
+import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
+import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import IconsModule from '@app/icons';
+import type { InternalLink } from '@app/models';
+import { RouterLinkPipe } from '@app/pipes';
+import { AppActions } from '@app/store/app';
+import { AuthActions } from '@app/store/auth';
+import { NavSelectors } from '@app/store/nav';
 
 @Component({
   selector: 'lcc-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss'],
-  providers: [NavFacade],
+  styleUrl: './nav.component.scss',
+  imports: [
+    CommonModule,
+    DropdownDirective,
+    IconsModule,
+    RouterLink,
+    RouterLinkActive,
+    RouterLinkPipe,
+    ToggleSwitchComponent,
+    TooltipDirective,
+  ],
 })
 export class NavComponent {
-  readonly ICON_TEXT_BREAKPOINT = 699; // Match lt-md breakpoint value
-  readonly NavPathTypes = NavPathTypes;
+  public readonly links: InternalLink[] = [
+    {
+      text: 'Home',
+      internalPath: '',
+      icon: 'home',
+    },
+    {
+      text: 'About',
+      internalPath: 'about',
+      icon: 'info',
+    },
+    {
+      text: 'Members',
+      internalPath: 'members',
+      icon: 'users',
+    },
+    {
+      text: 'Schedule',
+      internalPath: 'schedule',
+      icon: 'calendar',
+    },
+    {
+      text: 'News',
+      internalPath: 'news',
+      icon: 'activity',
+    },
+    {
+      text: 'City Champion',
+      internalPath: 'city-champion',
+      icon: 'award',
+    },
+    {
+      text: 'Photo Gallery',
+      internalPath: 'photo-gallery',
+      icon: 'camera',
+    },
+    {
+      text: 'Game Archives',
+      internalPath: 'game-archives',
+      icon: 'grid',
+    },
+  ];
+  public readonly navViewModel$ = this.store.select(NavSelectors.selectNavViewModel);
 
-  isDropdownOpen = false;
-  screenWidth = window.innerWidth;
+  public isDropdownOpen = false;
+  public screenWidth = window.innerWidth;
+
+  constructor(private readonly store: Store) {}
 
   @HostListener('window:resize', ['$event'])
-  onResize(): void {
+  private onResize(): void {
     this.screenWidth = window.innerWidth;
   }
 
-  constructor(public facade: NavFacade) {}
+  public onLogout(): void {
+    this.store.dispatch(AuthActions.logoutRequested({}));
+  }
+
+  public onToggleTheme(): void {
+    this.store.dispatch(AppActions.themeToggled());
+  }
+
+  public onToggleSafeMode(): void {
+    this.store.dispatch(AppActions.safeModeToggled());
+  }
 }

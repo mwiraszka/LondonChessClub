@@ -1,109 +1,136 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { EntityState, createEntityAdapter } from '@ngrx/entity';
+import { createReducer, on } from '@ngrx/store';
 
-import { ControlModes, newMemberFormTemplate } from '@app/types';
+import { ControlMode, Id, Member, MemberFormData } from '@app/models';
 
 import * as MembersActions from './members.actions';
-import { MembersState, initialState } from './members.state';
 
-const membersReducer = createReducer(
-  initialState,
+export interface MembersState extends EntityState<Member> {
+  memberId: Id | null;
+  memberFormData: MemberFormData | null;
+  controlMode: ControlMode | null;
+  sortedBy: string;
+  isAscending: boolean;
+  pageNum: number;
+  pageSize: number;
+  showActiveOnly: boolean;
+}
 
-  on(MembersActions.fetchMembersSucceeded, (state, { members }) => ({
-    ...state,
-    members,
-  })),
+export const membersAdapter = createEntityAdapter<Member>();
 
-  on(MembersActions.memberAddRequested, state => ({
-    ...state,
-    setMember: newMemberFormTemplate,
-    formMember: newMemberFormTemplate,
-    controlMode: 'add' as ControlModes,
-  })),
+export const membersInitialState: MembersState = membersAdapter.getInitialState({
+  memberId: null,
+  memberFormData: null,
+  controlMode: null,
+  sortedBy: 'rating',
+  isAscending: false,
+  pageNum: 1,
+  pageSize: 20,
+  showActiveOnly: true,
+});
 
-  on(MembersActions.memberEditRequested, state => ({
-    ...state,
-    controlMode: 'edit' as ControlModes,
-  })),
+export const membersReducer = createReducer(
+  membersInitialState,
 
-  on(MembersActions.memberSet, (state, { member }) => ({
-    ...state,
-    setMember: member,
-  })),
+  on(
+    MembersActions.fetchMembersSucceeded,
+    (state, { members }): MembersState =>
+      membersAdapter.setAll<MembersState>(members, state),
+  ),
 
-  on(MembersActions.memberUnset, state => ({
-    ...state,
-    setMember: null,
-    formMember: null,
-    controlMode: null,
-  })),
+  on(
+    MembersActions.newMemberRequested,
+    (state): MembersState => ({
+      ...state,
+      controlMode: 'add',
+    }),
+  ),
+
+  on(
+    MembersActions.fetchMemberRequested,
+    (state, { controlMode }): MembersState => ({
+      ...state,
+      controlMode,
+    }),
+  ),
+
+  on(
+    MembersActions.fetchMemberSucceeded,
+    (state, { member }): MembersState =>
+      membersAdapter.upsertOne<MembersState>(member, { ...state, memberId: member.id }),
+  ),
 
   on(
     MembersActions.addMemberSucceeded,
     MembersActions.updateMemberSucceeded,
-    (state, { member }) => ({
+    (state, { member }): MembersState =>
+      membersAdapter.upsertOne<MembersState>(member, {
+        ...state,
+        memberId: null,
+        memberFormData: null,
+      }),
+  ),
+
+  on(
+    MembersActions.deleteMemberSucceeded,
+    (state, { member }): MembersState =>
+      membersAdapter.removeOne<MembersState>(member.id!, {
+        ...state,
+        memberId: null,
+        memberFormData: null,
+      }),
+  ),
+
+  on(MembersActions.formValueChanged, (state, { value }): MembersState => {
+    return {
       ...state,
-      events: [
-        ...state.members.map(storedMember =>
-          storedMember.id === member.id ? member : storedMember,
-        ),
-      ],
-      setMember: null,
-      formMember: null,
+      memberFormData: value as Required<MemberFormData>,
+    };
+  }),
+
+  on(
+    MembersActions.pageChanged,
+    (state, { pageNum }): MembersState => ({
+      ...state,
+      pageNum,
     }),
   ),
 
-  on(MembersActions.fetchMemberSucceeded, (state, { member }) => ({
-    ...state,
-    members: [
-      ...state.members.filter(storedMember => storedMember.id !== member.id),
-      member,
-    ],
-    setMember: member,
-    formMember: state.controlMode === 'edit' ? member : null,
-  })),
+  on(
+    MembersActions.pageSizeChanged,
+    (state, { pageSize }): MembersState => ({
+      ...state,
+      pageSize,
+      pageNum: 1,
+    }),
+  ),
 
-  on(MembersActions.deleteMemberSelected, (state, { member }) => ({
-    ...state,
-    setMember: member,
-  })),
+  on(
+    MembersActions.tableHeaderSelected,
+    (state, { header }): MembersState => ({
+      ...state,
+      sortedBy: header,
+      isAscending: header === state.sortedBy ? !state.isAscending : false,
+      pageNum: 1,
+    }),
+  ),
 
-  on(MembersActions.deleteMemberSucceeded, (state, { member }) => ({
-    ...state,
-    members: state.members.filter(memberInStore => memberInStore.id !== member.id),
-    setMember: null,
-    formMember: null,
-  })),
+  on(
+    MembersActions.inactiveMembersToggled,
+    (state): MembersState => ({
+      ...state,
+      showActiveOnly: !state.showActiveOnly,
+      pageNum: 1,
+    }),
+  ),
 
-  on(MembersActions.formDataChanged, (state, { member }) => ({
-    ...state,
-    formMember: member,
-  })),
-
-  on(MembersActions.pageChanged, (state, { pageNum }) => ({
-    ...state,
-    pageNum,
-  })),
-
-  on(MembersActions.pageSizeChanged, (state, { pageSize }) => ({
-    ...state,
-    pageSize,
-    pageNum: 1,
-  })),
-
-  on(MembersActions.tableHeaderSelected, (state, { header }) => ({
-    ...state,
-    sortedBy: header,
-    isAscending: header === state.sortedBy ? !state.isAscending : false,
-    pageNum: 1,
-  })),
-
-  on(MembersActions.inactiveMembersToggled, state => ({
-    ...state,
-    showActiveOnly: !state.showActiveOnly,
-    pageNum: 1,
-  })),
+  on(
+    MembersActions.memberUnset,
+    (state): MembersState => ({
+      ...state,
+      memberId: null,
+      memberFormData: null,
+      controlMode: null,
+    }),
+  ),
 );
-
-export function reducer(state: MembersState, action: Action): MembersState {
-  return membersReducer(state, action);
-}

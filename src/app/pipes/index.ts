@@ -1,5 +1,11 @@
-export { PipesModule } from './pipes.module';
+export { CamelCasePipe } from './camel-case.pipe';
+export { FormatBytesPipe } from './format-bytes.pipe';
 export { FormatDatePipe } from './format-date.pipe';
-export { SanitizeUrlPipe } from './sanitize-url.pipe';
+export { IsDefinedPipe } from './is-defined.pipe';
+export { IsStringPipe } from './is-string.pipe';
+export { KebabCasePipe } from './kebab-case.pipe';
+export { RangePipe } from './range.pipe';
+export { RouterLinkPipe } from './router-link.pipe';
 export { StripMarkdownPipe } from './strip-markdown.pipe';
 export { TruncateByCharsPipe } from './truncate-by-chars.pipe';
+export { WasEditedPipe } from './was-edited.pipe';

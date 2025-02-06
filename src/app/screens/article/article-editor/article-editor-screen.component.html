@@ -1,0 +1,14 @@
+@if (articleEditorScreenViewModel$ | async; as vm) {
+  <lcc-screen-header
+    [hasUnsavedChanges]="vm.hasUnsavedChanges"
+    [title]="
+      vm.controlMode === 'add'
+        ? 'Compose an article'
+        : vm.articleTitle
+          ? 'Edit ' + vm.articleTitle
+          : ''
+    ">
+  </lcc-screen-header>
+  <lcc-article-form></lcc-article-form>
+  <lcc-link-list [links]="links"></lcc-link-list>
+}

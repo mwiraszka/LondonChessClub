@@ -1,51 +1,102 @@
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { combineLatestWith } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
-import { ClubEvent, type Link, NavPathTypes } from '@app/types';
-import { kebabize, setLocalTime } from '@app/utils';
+import { AdminControlsDirective } from '@app/components/admin-controls/admin-controls.directive';
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import IconsModule from '@app/icons';
+import type {
+  AdminControlsConfig,
+  BasicDialogResult,
+  Dialog,
+  Event,
+  InternalLink,
+} from '@app/models';
+import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
+import { DialogService } from '@app/services';
+import { EventsActions, EventsSelectors } from '@app/store/events';
 
-import { ScheduleFacade } from './schedule.facade';
-
-@UntilDestroy()
 @Component({
   selector: 'lcc-schedule',
   templateUrl: './schedule.component.html',
-  styleUrls: ['./schedule.component.scss'],
-  providers: [ScheduleFacade],
+  styleUrl: './schedule.component.scss',
+  imports: [
+    AdminControlsDirective,
+    CommonModule,
+    FormatDatePipe,
+    IconsModule,
+    KebabCasePipe,
+    LinkListComponent,
+    RouterLink,
+  ],
 })
 export class ScheduleComponent implements OnInit {
-  readonly NavPathTypes = NavPathTypes;
-  readonly kebabize = kebabize;
-  readonly setLocalTime = setLocalTime;
+  @Input() public allowTogglePastEvents = true;
+  @Input() public includeDetails = true;
+  @Input() public upcomingEventLimit?: number;
 
-  @Input() includeDetails = true;
-  @Input() allowTogglePastEvents = true;
-  @Input() limitToUpcoming?: number;
-
-  shownEvents?: ClubEvent[];
-  addEventLink: Link = {
-    path: NavPathTypes.EVENT + '/' + NavPathTypes.ADD,
+  public readonly addEventLink: InternalLink = {
     text: 'Add an event',
+    internalPath: ['event', 'add'],
     icon: 'plus-circle',
   };
+  public readonly scheduleViewModel$ = this.store.select(
+    EventsSelectors.selectScheduleViewModel,
+  );
 
-  constructor(public facade: ScheduleFacade) {}
+  constructor(
+    private readonly dialogService: DialogService,
+    private readonly store: Store,
+  ) {}
 
   ngOnInit(): void {
-    this.facade.fetchEvents();
+    this.fetchEvents();
+  }
 
-    this.facade.events$
-      .pipe(
-        untilDestroyed(this),
-        combineLatestWith(this.facade.upcomingEvents$, this.facade.showPastEvents$),
-      )
-      .subscribe(([allEvents, upcomingEvents, showPastEvents]) => {
-        this.shownEvents =
-          showPastEvents && this.allowTogglePastEvents
-            ? allEvents
-            : upcomingEvents.slice(0, this.limitToUpcoming);
-      });
+  public fetchEvents(): void {
+    this.store.dispatch(EventsActions.fetchEventsRequested());
+  }
+
+  public getAdminControlsConfig(event: Event): AdminControlsConfig {
+    return {
+      buttonSize: 34,
+      deleteCb: () => this.onDeleteEvent(event),
+      editPath: ['event', 'edit', event.id!],
+      itemName: event.title,
+    };
+  }
+
+  public async onDeleteEvent(event: Event): Promise<void> {
+    const dialog: Dialog = {
+      title: 'Delete event',
+      body: `Delete ${event.title}?`,
+      confirmButtonText: 'Delete',
+      confirmButtonType: 'warning',
+    };
+
+    const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(
+      {
+        componentType: BasicDialogComponent,
+        inputs: { dialog },
+        isModal: true,
+      },
+    );
+
+    if (result === 'confirm') {
+      this.store.dispatch(EventsActions.deleteEventRequested({ event }));
+    }
+  }
+
+  public onTogglePastEvents(): void {
+    this.store.dispatch(EventsActions.pastEventsToggled());
+
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   }
 }

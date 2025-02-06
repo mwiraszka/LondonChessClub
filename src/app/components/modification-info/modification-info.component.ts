@@ -1,12 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
-import type { ModificationInfo } from '@app/types';
+import IconsModule from '@app/icons';
+import type { ModificationInfo } from '@app/models';
+import { FormatDatePipe } from '@app/pipes';
 
 @Component({
   selector: 'lcc-modification-info',
   templateUrl: './modification-info.component.html',
-  styleUrls: ['./modification-info.component.scss'],
+  styleUrl: './modification-info.component.scss',
+  imports: [CommonModule, FormatDatePipe, IconsModule],
 })
 export class ModificationInfoComponent {
-  @Input() info!: ModificationInfo;
+  @Input({ required: true }) info!: ModificationInfo;
 }

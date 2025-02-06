@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, debounceTime } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 
@@ -7,9 +7,11 @@ import { Injectable } from '@angular/core';
 })
 export class LoaderService {
   private _isLoading$ = new BehaviorSubject<boolean>(false);
-  public isLoading$ = this._isLoading$.asObservable();
+  public isLoading$ = this._isLoading$.asObservable().pipe(debounceTime(150));
 
-  setIsLoading(value: boolean): void {
-    this._isLoading$.next(value);
+  public setIsLoading(value: boolean): void {
+    // Delayed by one tick to prevent Angular's ExpressionChangedAfterItHasBeenCheckedError
+    // since spinner is rendered in the App Component after initial change detection
+    setTimeout(() => this._isLoading$.next(value));
   }
 }

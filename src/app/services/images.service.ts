@@ -1,140 +1,41 @@
-import { Observable, forkJoin, from, of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import type { Article, ServiceResponse, Url } from '@app/types';
+import type { ApiResponse, DbCollection, Id, Image } from '@app/models';
 
-import { environment } from '@environments/environment';
+import { environment } from '@env';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ImagesService {
-  readonly API_ENDPOINT = environment.imagesEndpoint;
+  private readonly API_BASE_URL = environment.lccApiBaseUrl;
+  private readonly COLLECTION: DbCollection = 'images';
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
-  uploadArticleImage(article: Article): Observable<ServiceResponse<Article>> {
-    const formData: FormData = new FormData();
-    formData.append('imageFile', article.imageFile!);
-    formData.append('imageId', article.imageId!);
+  public getThumbnailImages(): Observable<ApiResponse<Image[]>> {
+    return this.http.get<ApiResponse<Image[]>>(`${this.API_BASE_URL}/${this.COLLECTION}`);
+  }
 
-    return this.http.post<ServiceResponse<void>>(this.API_ENDPOINT, formData).pipe(
-      map(() => {
-        return { payload: article };
-      }),
-      catchError(() => of({ error: new Error('Failed to store image in database') })),
+  public getImage(id: Id): Observable<ApiResponse<Image>> {
+    return this.http.get<ApiResponse<Image>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
     );
   }
 
-  deleteArticleImage(article: Article): Observable<ServiceResponse<Article>> {
-    return this.http
-      .delete<ServiceResponse<void>>(this.API_ENDPOINT + article.imageId)
-      .pipe(
-        map(() => {
-          return { payload: article };
-        }),
-        catchError(() =>
-          of({ error: new Error('Failed to delete image from database') }),
-        ),
-      );
-  }
-
-  getArticleThumbnailImageUrls(
-    articles: Article[],
-  ): Observable<ServiceResponse<Article[]>> {
-    // TODO: Implement an article image endpoint for fetching multiple image urls in a single call
-    return of(articles).pipe(
-      switchMap(articles => {
-        const articlesWithThumbnailImageUrl$: Observable<Article>[] = [];
-
-        articles.forEach(article => {
-          if (!article.imageId) {
-            throw new Error('Article has no banner image ID');
-          }
-
-          const thumbnailImageId = `${article.imageId}-600x400`;
-          const updatedArticle$ = this.getArticleImageUrl(thumbnailImageId).pipe(
-            map(response => {
-              if (!response.payload) {
-                throw new Error(
-                  'Unable to get a presigned URL for all article thumbnails',
-                );
-              }
-              return { ...article, thumbnailImageUrl: response.payload };
-            }),
-          );
-          articlesWithThumbnailImageUrl$.push(updatedArticle$);
-        });
-
-        return forkJoin(articlesWithThumbnailImageUrl$);
-      }),
-      map(articles => {
-        return { payload: articles };
-      }),
+  public addImage(imageFormData: FormData): Observable<ApiResponse<Image>> {
+    return this.http.post<ApiResponse<Image>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}`,
+      imageFormData,
     );
   }
 
-  getArticleImageUrl(imageId?: string | null): Observable<ServiceResponse<Url>> {
-    if (!imageId) {
-      return of({
-        error: new Error('Article does not contain an image ID'),
-      });
-    }
-
-    const headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'ContentType: text',
-      'Access-Control-Max-Age': '86400',
-    });
-
-    return this.http
-      .options(this.API_ENDPOINT + imageId, {
-        headers,
-        responseType: 'text',
-      })
-      .pipe(
-        switchMap(() => this.http.get<ServiceResponse<Url>>(this.API_ENDPOINT + imageId)),
-        catchError(() =>
-          of({
-            error: new Error('Failed to get image presigned URL'),
-          }),
-        ),
-      );
-  }
-
-  getArticleImageFile(imageUrl: Url): Observable<ServiceResponse<File>> {
-    return from(this.buildImageFileFromUrl(imageUrl)).pipe(
-      map(imageFile => {
-        return { payload: imageFile };
-      }),
-      catchError(() =>
-        of({
-          error: new Error(
-            'Failed to build file from URL. If running locally, ensure browser CORS extention is enabled.',
-          ),
-        }),
-      ),
+  public deleteImage(id: Id): Observable<ApiResponse<Id>> {
+    return this.http.delete<ApiResponse<Id>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
     );
-  }
-
-  private async buildImageFileFromUrl(url: Url): Promise<File> {
-    const response = await fetch(url);
-    const data = await response.blob();
-    const imageFile = new File([data], 'lcc-file', {
-      type: data.type ?? 'image/jpeg',
-    });
-
-    if (!response || !data || !imageFile) {
-      console.error('[LCC Error] Unable to build the image file from the given URL');
-      console.error('[LCC Error] URL response:', response);
-      console.error('[LCC Error] Data as blob:', data);
-      console.error('[LCC Error] Image file:', imageFile);
-    }
-
-    return imageFile;
   }
 }

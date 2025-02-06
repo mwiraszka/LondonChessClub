@@ -1,44 +1,58 @@
-import { DOCUMENT } from '@angular/common';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Store } from '@ngrx/store';
+
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 
+import { ScheduleComponent } from '@app/components/schedule/schedule.component';
+import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { MetaAndTitleService } from '@app/services';
+import { EventsSelectors } from '@app/store/events';
 
-import { ScheduleScreenFacade } from './schedule-screen.facade';
-
+@UntilDestroy()
 @Component({
   selector: 'schedule-screen',
-  templateUrl: './schedule-screen.component.html',
-  styleUrls: ['./schedule-screen.component.scss'],
-  providers: [ScheduleScreenFacade],
+  template: `
+    <lcc-screen-header
+      title="Schedule"
+      icon="calendar">
+    </lcc-screen-header>
+    <lcc-schedule></lcc-schedule>
+  `,
+  imports: [CommonModule, ScheduleComponent, ScreenHeaderComponent],
 })
 export class ScheduleScreenComponent implements OnInit {
+  public readonly upcomingEvents$ = this.store.select(
+    EventsSelectors.selectUpcomingEvents,
+  );
+
   constructor(
-    public facade: ScheduleScreenFacade,
-    private metaAndTitleService: MetaAndTitleService,
     @Inject(DOCUMENT) private _document: Document,
+    private readonly metaAndTitleService: MetaAndTitleService,
+    private readonly store: Store,
   ) {}
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Schedule');
     this.metaAndTitleService.updateDescription(
-      "What's in store at the London Chess Club",
+      'Scheduled events at the London Chess Club',
     );
 
-    this.facade.nextEventId$.subscribe(eventId => {
-      if (eventId) {
-        setTimeout(() => this.scrollToNextEvent(eventId), 150);
+    this.upcomingEvents$.pipe(untilDestroyed(this)).subscribe(upcomingEvents => {
+      if (!upcomingEvents?.length || !upcomingEvents[0]?.id) {
+        return;
       }
-    });
-  }
 
-  scrollToNextEvent(eventId: string): void {
-    const nextEvent = this._document.getElementById(eventId);
-    if (nextEvent) {
-      nextEvent.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'nearest',
-      });
-    }
+      setTimeout(() => {
+        const nextEvent = this._document.getElementById(upcomingEvents[0].id!);
+        if (nextEvent) {
+          nextEvent.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest',
+          });
+        }
+      }, 150);
+    });
   }
 }

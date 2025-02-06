@@ -1,18 +1,23 @@
-@import '../abstracts/mixins';
+@use '../abstracts/mixins';
 
 .lcc-table-wrapper {
   width: 100%;
   overflow-x: scroll;
+  padding-bottom: 4px;
 }
 
 .lcc-table {
   display: table;
+  overflow: hidden;
+  width: 100%;
   font-size: var(--lcc-fontSize--h4);
   border: 1px solid var(--lcc-color--table-border);
   border-radius: var(--lcc-borderRadius--small);
   border-spacing: 0;
-  overflow: hidden;
-  width: 100%;
+
+  // When table cell border radius added, sometimes the table background bleeds through from
+  // behind when resizing, so set to the same colour as the row to make this less noticeable
+  background-color: var(--lcc-color--table-rowBackgroundOdd);
 
   &:hover {
     cursor: default;
@@ -21,16 +26,17 @@
   thead {
     th {
       color: var(--lcc-color--table-headerForeground);
-      background-color: var(--lcc-color--table-headerBackground);
+      background: repeating-conic-gradient(
+          var(--lcc-color--table-headerBackground1) 0% 25%,
+          var(--lcc-color--table-headerBackground2) 0% 50%
+        )
+        50% / 2px 2px;
       white-space: nowrap;
       font-weight: 200;
+      padding: 8px;
 
-      &:not(.lcc-table-admin-controls-filler) {
-        padding: 8px;
-
-        @include respond-to('gt-sm') {
-          padding: 8px 16px;
-        }
+      @include mixins.respond-to('gt-sm') {
+        padding: 8px 16px;
       }
     }
   }
@@ -47,7 +53,7 @@
       td {
         padding: 8px;
 
-        @include respond-to('gt-sm') {
+        @include mixins.respond-to('gt-sm') {
           padding: 8px 16px;
         }
       }

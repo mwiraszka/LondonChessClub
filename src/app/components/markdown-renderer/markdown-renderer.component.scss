@@ -1,36 +1,63 @@
-@import '../../../styles/components/link';
+@use '../../../styles/components/link';
 
-:host ::ng-deep {
-  a {
-    @include lcc-link;
+:host {
+  .table-of-contents {
+    text-align: center;
+
+    .heading-link {
+      display: inline-block;
+      font-size: 18px;
+      padding: 4px 16px;
+    }
   }
 
-  li {
-    list-style-type: disc;
-    margin-left: 1em;
-    line-height: 1.5em;
-    color: var(--lcc-color--markdownRenderer-secondaryText);
-  }
+  markdown ::ng-deep {
+    table {
+      [align='right'] {
+        text-align: right;
+      }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: var(--lcc-color--markdownRenderer-primaryText);
-  }
+      [align='left'] {
+        text-align: left;
+      }
+    }
 
-  p {
-    color: var(--lcc-color--markdownRenderer-secondaryText);
-  }
+    a {
+      @include link.lcc-link;
+    }
 
-  b,
-  strong {
-    color: var(--lcc-color--markdownRenderer-primaryText);
-  }
+    li {
+      list-style-type: disc;
+      margin-left: 1em;
+      line-height: 1.5em;
+      color: var(--lcc-color--markdownRenderer-secondaryText);
+    }
 
-  img {
-    width: 100%;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: var(--lcc-color--markdownRenderer-primaryText);
+    }
+
+    // h2 headings function as the article's scrollable anchors
+    h2 {
+      padding-top: 1em;
+    }
+
+    p {
+      color: var(--lcc-color--markdownRenderer-secondaryText);
+    }
+
+    b,
+    strong {
+      color: var(--lcc-color--markdownRenderer-primaryText);
+    }
+
+    img {
+      width: 100%;
+    }
   }
 }

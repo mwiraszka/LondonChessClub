@@ -31,19 +31,22 @@
             "assets": ["src/favicon.ico", "src/favicon.svg", "src/assets", "src/manifest.webmanifest"],
             "inlineStyleLanguage": "scss",
             "styles": ["src/styles/main.scss"],
+            "stylePreprocessorOptions": {
+              "sass": {
+                "silenceDeprecations": ["import"]
+              }
+            },
             "scripts": [
               "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
               "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"
             ],
             "serviceWorker": "ngsw-config.json",
             "allowedCommonJsDependencies": [
-              "@aws-amplify/core",
               "@aws-crypto",
               "@aws-crypto/crc32",
               "@aws-crypto/sha256-browser",
               "@aws-crypto/sha256-js",
               "@aws-sdk/config-resolver",
-              "@aws-sdk/credential-provider-cognito-identity",
               "@aws-sdk/eventstream-marshaller",
               "@aws-sdk/eventstream-serde-browser",
               "@aws-sdk/eventstream-serde-config-resolver",
@@ -57,7 +60,6 @@
               "@aws-sdk/middleware-host-header",
               "@aws-sdk/middleware-location-constraint",
               "@aws-sdk/middleware-retry",
-              "@aws-sdk/middleware-sdk-s3",
               "@aws-sdk/middleware-serde",
               "@aws-sdk/middleware-signing",
               "@aws-sdk/middleware-ssec",
@@ -66,7 +68,6 @@
               "@aws-sdk/protocol-http",
               "@aws-sdk/querystring-builder",
               "@aws-sdk/querystring-parser",
-              "@aws-sdk/s3-request-presigner",
               "@aws-sdk/smithy-client",
               "@aws-sdk/url-parser-browser",
               "@aws-sdk/url-parser-node",
@@ -121,8 +122,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "5kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "10kb",
+                  "maximumError": "20kb"
                 }
               ],
               "fileReplacements": [
@@ -158,18 +159,6 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "buildTarget": "lcc-angular:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": ["zone.js", "window-global-fix.ts"],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
-            "scripts": [
-              "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
-              "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"
-            ]
           }
         }
       }

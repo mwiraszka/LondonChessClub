@@ -1,79 +1,56 @@
 import { createAction, props } from '@ngrx/store';
 
-import type {
-  AdminUser,
-  LoginRequest,
-  PasswordChangeRequest,
-  UnverifiedUser,
-} from '@app/types';
-
-enum AuthActionTypes {
-  LOGIN_REQUESTED = '[Auth] Login requested',
-  LOGIN_SUCCEEDED = '[Auth] Login succeeded',
-  LOGIN_FAILED = '[Auth] Login failed',
-
-  LOGOUT_REQUESTED = '[Auth] Logout requested',
-  LOGOUT_SUCCEEDED = '[Auth] Logout succeeded',
-
-  NEW_PASSWORD_CHALLENGE_REQUESTED = '[Auth] New password challenge requested',
-
-  REQUEST_NEW_CODE_SELECTED = '[Auth] Request new code selected',
-
-  CODE_FOR_PASSWORD_CHANGE_REQUESTED = '[Auth] Code for password change requested',
-  CODE_FOR_PASSWORD_CHANGE_SUCCEEDED = '[Auth] Code for password change succeeded',
-  CODE_FOR_PASSWORD_CHANGE_FAILED = '[Auth] Code for password change failed',
-
-  PASSWORD_CHANGE_REQUESTED = '[Auth] Password change requested',
-  PASSWORD_CHANGE_SUCCEEDED = '[Auth] Password change succeeded',
-  PASSWORD_CHANGE_FAILED = '[Auth] Password change failed',
-}
+import type { LccError, User } from '@app/models';
 
 export const loginRequested = createAction(
-  AuthActionTypes.LOGIN_REQUESTED,
-  props<{ request: LoginRequest }>(),
+  '[Auth] Login requested',
+  props<{ email: string; password: string }>(),
 );
 export const loginSucceeded = createAction(
-  AuthActionTypes.LOGIN_SUCCEEDED,
-  props<{ user: AdminUser }>(),
+  '[Auth] Login succeeded',
+  props<{ user: User }>(),
 );
 export const loginFailed = createAction(
-  AuthActionTypes.LOGIN_FAILED,
-  props<{ error: Error }>(),
+  '[Auth] Login failed',
+  props<{ error: LccError }>(),
 );
 
-export const logoutRequested = createAction(AuthActionTypes.LOGOUT_REQUESTED);
-export const logoutSucceeded = createAction(AuthActionTypes.LOGOUT_SUCCEEDED);
-
-export const newPasswordChallengeRequested = createAction(
-  AuthActionTypes.NEW_PASSWORD_CHALLENGE_REQUESTED,
-  props<{ user: UnverifiedUser; tempInitialPassword: string }>(),
+export const logoutRequested = createAction(
+  '[Auth] Logout requested',
+  props<{ sessionExpired?: boolean }>(),
+);
+export const logoutSucceeded = createAction(
+  '[Auth] Logout succeeded',
+  props<{ sessionExpired?: boolean }>(),
+);
+export const logoutFailed = createAction(
+  '[Auth] Logout failed',
+  props<{ error: LccError }>(),
 );
 
-export const requestNewCodeSelected = createAction(
-  AuthActionTypes.REQUEST_NEW_CODE_SELECTED,
-);
+export const requestNewCodeSelected = createAction('[Auth] Request new code selected');
 
 export const codeForPasswordChangeRequested = createAction(
-  AuthActionTypes.CODE_FOR_PASSWORD_CHANGE_REQUESTED,
+  '[Auth] Code for password change requested',
   props<{ email: string }>(),
 );
 export const codeForPasswordChangeSucceeded = createAction(
-  AuthActionTypes.CODE_FOR_PASSWORD_CHANGE_SUCCEEDED,
+  '[Auth] Code for password change succeeded',
 );
 export const codeForPasswordChangeFailed = createAction(
-  AuthActionTypes.CODE_FOR_PASSWORD_CHANGE_FAILED,
-  props<{ error: Error }>(),
+  '[Auth] Code for password change failed',
+  props<{ error: LccError }>(),
 );
 
 export const passwordChangeRequested = createAction(
-  AuthActionTypes.PASSWORD_CHANGE_REQUESTED,
-  props<{ request: PasswordChangeRequest }>(),
+  '[Auth] Password change requested',
+  props<{ email: string; password: string; code: string }>(),
 );
 export const passwordChangeSucceeded = createAction(
-  AuthActionTypes.PASSWORD_CHANGE_SUCCEEDED,
-  props<{ email: string; newPassword: string }>(),
+  '[Auth] Password change succeeded',
+  props<{ user: User }>(),
 );
 export const passwordChangeFailed = createAction(
-  AuthActionTypes.PASSWORD_CHANGE_FAILED,
-  props<{ error: Error }>(),
+  '[Auth] Password change failed',
+  props<{ error: LccError }>(),
 );

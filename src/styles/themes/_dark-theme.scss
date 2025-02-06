@@ -1,320 +1,326 @@
+@use 'colour-palette' as *;
+
 [data-theme='dark'] {
-  --lcc-color--aboutScreen-boardChairText: #{color(grayscale, gray-65)};
-  --lcc-color--aboutScreen-cellBorder: #{color(grayscale, black-20, 0.2)};
-  --lcc-color--aboutScreen-darkCellBackground: #{color(grayscale, black-15)};
-  --lcc-color--aboutScreen-lightCellBackground: #{color(grayscale, black-20)};
-  --lcc-color--aboutScreen-sectionHeaderText: #{color(grayscale, white-98)};
-  --lcc-color--aboutScreen-text: #{color(grayscale, gray-65)};
+  --lcc-color--aboutScreen-boardChairText: #{clr(grayscale, gray-65)};
+  --lcc-color--aboutScreen-cellBorder: #{clr(grayscale, black-20, 0.2)};
+  --lcc-color--aboutScreen-darkCellBackground: #{clr(grayscale, black-15)};
+  --lcc-color--aboutScreen-lightCellBackground: #{clr(grayscale, black-20)};
+  --lcc-color--aboutScreen-sectionHeaderText: #{clr(grayscale, white-98)};
+  --lcc-color--aboutScreen-text: #{clr(grayscale, gray-65)};
 
-  --lcc-color--adminControls-buttonBackground: #{color(grayscale, gray-75)};
-  --lcc-color--adminControls-buttonBackgroundOnHover: #{color(grayscale, white-85)};
-  --lcc-color--adminControls-buttonBorder: #{color(grayscale, gray-65)};
-  --lcc-color--adminControls-deleteIcon: #{color(warning)};
-  --lcc-color--adminControls-deleteIconOnHover: #{color(warning, light)};
-  --lcc-color--adminControls-editIcon: #{color(grayscale, black-15)};
-  --lcc-color--adminControls-editIconOnHover: #{color(grayscale, black-2)};
+  --lcc-color--adminControls-bookmarkIcon: #{clr(secondary, base)};
+  --lcc-color--adminControls-bookmarkIconOnHover: #{clr(secondary, light)};
+  --lcc-color--adminControls-buttonBackground: #{clr(grayscale, gray-75)};
+  --lcc-color--adminControls-buttonBackgroundOnHover: #{clr(grayscale, white-85)};
+  --lcc-color--adminControls-buttonBorder: #{clr(grayscale, gray-65)};
+  --lcc-color--adminControls-deleteIcon: #{clr(warning)};
+  --lcc-color--adminControls-deleteIconOnHover: #{clr(warning, light)};
+  --lcc-color--adminControls-editIcon: #{clr(grayscale, black-15)};
+  --lcc-color--adminControls-editIconOnHover: #{clr(grayscale, black-2)};
 
-  --lcc-color--app-mainBackground: #{color(grayscale, gray-25)};
+  --lcc-color--app-mainBackground: #{clr(grayscale, gray-25)};
 
-  --lcc-color--article-authorText: #{color(grayscale, white-95)};
-  --lcc-color--article-bannerImageBackground: #{color(grayscale, black-15)};
-  --lcc-color--article-bannerImageHeaderBackground: #{color(grayscale, white-98, 0.8)};
-  --lcc-color--article-bannerImageHeaderText: #{color(grayscale, black-2)};
-  --lcc-color--article-dateCreatedText: #{color(grayscale, gray-65)};
-  --lcc-color--article-editorText: #{color(grayscale, gray-65)};
-  --lcc-color--general-editorTextSpacer: #{color(grayscale, gray-50)};
+  --lcc-color--article-authorText: #{clr(grayscale, white-95)};
+  --lcc-color--article-bannerImageBackground: #{clr(grayscale, black-15)};
+  --lcc-color--article-bannerImageHeaderBackground: #{clr(grayscale, white-98, 0.8)};
+  --lcc-color--article-bannerImageHeaderText: #{clr(grayscale, black-2)};
+  --lcc-color--article-dateCreatedText: #{clr(grayscale, gray-65)};
+  --lcc-color--article-editorText: #{clr(grayscale, gray-65)};
 
-  --lcc-color--articleForm-markdownPreviewBoxShadow: #{color(grayscale, gray-25, 0.5)};
-  --lcc-color--articleForm-previewHeaderText: #{color(grayscale, gray-65)};
+  --lcc-color--articleForm-markdownPreviewBoxShadow: #{clr(grayscale, gray-25, 0.5)};
+  --lcc-color--articleForm-previewHeaderText: #{clr(grayscale, gray-65)};
 
-  --lcc-color--articleGrid-articleDatesPrimaryText: #{color(grayscale, white-85)};
-  --lcc-color--articleGrid-articleDatesSecondaryText: #{color(grayscale, gray-65)};
-  --lcc-color--articleGrid-articleHeaderText: #{color(grayscale, white-90)};
-  --lcc-color--articleGrid-articleSummaryText: #{color(grayscale, white-85)};
-  --lcc-color--articleGrid-cardBackground1: #{color(primary, dark)};
-  --lcc-color--articleGrid-cardBackground2: #{color(primary, dark, 0.8)};
-  --lcc-color--articleGrid-cardBackgroundOnHover: #{color(primary, dark)};
-  --lcc-color--articleGrid-cardDividerLine: #{color(grayscale, gray-50, 0.5)};
-  --lcc-color--articleGrid-stickyIcon: #{color(grayscale, white-90, 0.6)};
+  --lcc-color--articleGrid-articleDatesPrimaryText: #{clr(grayscale, white-85)};
+  --lcc-color--articleGrid-articleDatesSecondaryText: #{clr(grayscale, gray-65)};
+  --lcc-color--articleGrid-articleHeaderText: #{clr(grayscale, white-90)};
+  --lcc-color--articleGrid-articleSummaryText: #{clr(grayscale, white-85)};
+  --lcc-color--articleGrid-cardBackground1: #{clr(primary, dark, 0.6)};
+  --lcc-color--articleGrid-cardBackground2: #{clr(primary, dark, 0.8)};
+  --lcc-color--articleGrid-cardBackgroundOnHover: #{clr(primary, dark, 0.9)};
+  --lcc-color--articleGrid-cardDividerLine: #{clr(grayscale, gray-50, 0.5)};
+  --lcc-color--articleGrid-bookmarkIcon: #{clr(grayscale, white-90, 0.6)};
 
-  --lcc-color--button-border: #{color(grayscale, white-95, 0.2)};
-  --lcc-color--button-darkSecondaryButtonBorder: #{color(grayscale, gray-25)};
-  --lcc-color--button-darkSecondaryButtonBorderOnHover: #{color(grayscale, black-15)};
-  --lcc-color--button-darkSecondaryButtonForeground: #{color(grayscale, gray-25)};
-  --lcc-color--button-darkSecondaryButtonForegroundOnHover: #{color(grayscale, black-2)};
-  --lcc-color--button-disabledButtonBackground: #{color(grayscale, gray-35)};
-  --lcc-color--button-disabledButtonBorder: #{color(grayscale, gray-75, 0.3)};
-  --lcc-color--button-disabledButtonForeground: #{color(grayscale, gray-75, 0.4)};
-  --lcc-color--button-lightSecondaryButtonBorder: #{color(grayscale, gray-75)};
-  --lcc-color--button-lightSecondaryButtonBorderOnHover: #{color(grayscale, white-85)};
-  --lcc-color--button-lightSecondaryButtonForeground: #{color(grayscale, gray-75)};
-  --lcc-color--button-lightSecondaryButtonForegroundOnHover: #{color(grayscale, white-85)};
-  --lcc-color--button-primaryButtonBackground: #{color(primary)};
-  --lcc-color--button-primaryButtonBackgroundOnHover: #{color(primary, light)};
-  --lcc-color--button-primaryButtonForeground: #{color(grayscale, white-90)};
-  --lcc-color--button-raisedButtonBoxShadow: #{color(grayscale, gray-65, 0.7)};
-  --lcc-color--button-secondaryButtonBorder: #{color(grayscale, gray-75)};
-  --lcc-color--button-secondaryButtonBorderOnHover: #{color(grayscale, white-85)};
-  --lcc-color--button-secondaryButtonForeground: #{color(grayscale, gray-75)};
-  --lcc-color--button-secondaryButtonForegroundOnHover: #{color(grayscale, white-85)};
-  --lcc-color--button-warningButtonBackground: #{color(warning)};
-  --lcc-color--button-warningButtonBackgroundOnHover: #{color(warning, light)};
-  --lcc-color--button-warningButtonForeground: #{color(grayscale, white-90)};
+  --lcc-color--button-border: #{clr(grayscale, white-95, 0.2)};
+  --lcc-color--button-darkSecondaryButtonBorder: #{clr(grayscale, gray-25)};
+  --lcc-color--button-darkSecondaryButtonBorderOnHover: #{clr(grayscale, black-15)};
+  --lcc-color--button-darkSecondaryButtonForeground: #{clr(grayscale, gray-25)};
+  --lcc-color--button-darkSecondaryButtonForegroundOnHover: #{clr(grayscale, black-2)};
+  --lcc-color--button-disabledButtonBackground: #{clr(grayscale, gray-35)};
+  --lcc-color--button-disabledButtonBorder: #{clr(grayscale, gray-75, 0.3)};
+  --lcc-color--button-disabledButtonForeground: #{clr(grayscale, gray-75, 0.4)};
+  --lcc-color--button-lightSecondaryButtonBorder: #{clr(grayscale, gray-75)};
+  --lcc-color--button-lightSecondaryButtonBorderOnHover: #{clr(grayscale, white-85)};
+  --lcc-color--button-lightSecondaryButtonForeground: #{clr(grayscale, gray-75)};
+  --lcc-color--button-lightSecondaryButtonForegroundOnHover: #{clr(grayscale, white-85)};
+  --lcc-color--button-primaryButtonBackground: #{clr(primary, base)};
+  --lcc-color--button-primaryButtonBackgroundOnHover: #{clr(primary, light)};
+  --lcc-color--button-primaryButtonForeground: #{clr(grayscale, white-90)};
+  --lcc-color--button-raisedButtonBoxShadow: #{clr(grayscale, gray-65, 0.7)};
+  --lcc-color--button-secondaryButtonBorder: #{clr(grayscale, gray-75)};
+  --lcc-color--button-secondaryButtonBorderOnHover: #{clr(grayscale, white-85)};
+  --lcc-color--button-secondaryButtonForeground: #{clr(grayscale, gray-75)};
+  --lcc-color--button-secondaryButtonForegroundOnHover: #{clr(grayscale, white-85)};
+  --lcc-color--button-warningButtonBackground: #{clr(warning)};
+  --lcc-color--button-warningButtonBackgroundOnHover: #{clr(warning, light)};
+  --lcc-color--button-warningButtonForeground: #{clr(grayscale, white-90)};
 
-  --lcc-color--championScreen-cellBackground: #{color(grayscale, black-15)};
-  --lcc-color--championScreen-cellBorder: #{color(grayscale, gray-50, 0.4)};
-  --lcc-color--championScreen-historyText: #{color(grayscale, gray-75)};
-  --lcc-color--championScreen-historyTextBold: #{color(grayscale, white-98)};
-  --lcc-color--championScreen-pastWinnersHeaderText: #{color(grayscale, gray-75)};
+  --lcc-color--championScreen-cellBackground: #{clr(grayscale, black-15)};
+  --lcc-color--championScreen-cellBorder: #{clr(grayscale, gray-50, 0.4)};
+  --lcc-color--championScreen-historyText: #{clr(grayscale, gray-75)};
+  --lcc-color--championScreen-historyTextBold: #{clr(grayscale, white-98)};
+  --lcc-color--championScreen-pastWinnersHeaderText: #{clr(grayscale, gray-75)};
 
-  --lcc-color--clubSummary-addressAndTimeContainerBorder: #{color(grayscale, gray-25)};
-  --lcc-color--clubSummary-addressAndTimeContainerForeground: #{color(grayscale, white-85)};
+  --lcc-color--clubSummary-addressAndTimeContainerBorder: #{clr(grayscale, gray-25)};
+  --lcc-color--clubSummary-addressAndTimeContainerForeground: #{clr(grayscale, white-85)};
 
-  --lcc-color--contentPlaceholder-background: #{color(grayscale, gray-75)};
-  --lcc-color--contentPlaceholder-foreground1: #{color(grayscale, gray-65, 0.05)};
-  --lcc-color--contentPlaceholder-foreground2: #{color(grayscale, gray-65, 0.3)};
-  --lcc-color--contentPlaceholder-foreground3: #{color(grayscale, gray-65, 0.6)};
+  --lcc-color--contentPlaceholder-background: #{clr(grayscale, gray-75)};
+  --lcc-color--contentPlaceholder-foreground1: #{clr(grayscale, gray-65, 0.05)};
+  --lcc-color--contentPlaceholder-foreground2: #{clr(grayscale, gray-65, 0.3)};
+  --lcc-color--contentPlaceholder-foreground3: #{clr(grayscale, gray-65, 0.6)};
 
-  --lcc-color--documentsScreen-documentLabelOnHover: #{color(primary, lighter)};
-  --lcc-color--documentsScreen-downloadLinkOnHover: #{color(primary, lighter)};
-  --lcc-color--documentsScreen-pdfViewerCloseIcon: #{color(grayscale, white-85)};
-  --lcc-color--documentsScreen-pdfViewerCloseIconOnHover: #{color(grayscale, white-95)};
-  --lcc-color--documentsScreen-pdfViewerHeaderBackground: #{color(primary, darker)};
-  --lcc-color--documentsScreen-pdfViewerLoaderBackground: #{color(grayscale, white-98)};
-  --lcc-color--documentsScreen-pdfViewerLoaderBorderBottom: #{color(primary, darker)};
-  --lcc-color--documentsScreen-pdfViewerLoaderBoxShadow: #{color(grayscale, white-85, 0.7)};
-  --lcc-color--documentsScreen-pdfViewerOverlayBackground: #{color(
-      grayscale,
-      black-10,
-      0.8
-    )};
-  --lcc-color--documentsScreen-pdfViewerPageBackground: #{color(grayscale, gray-75)};
-  --lcc-color--documentsScreen-pdfViewerScrollbarBackground: #{color(grayscale, white-90)};
-  --lcc-color--documentsScreen-pdfViewerScrollbar: #{color(grayscale, gray-65)};
+  --lcc-color--datePicker-buttonsBackground: #{clr(primary, base, 0.4)};
+  --lcc-color--datePicker-buttonsBackgroundOnHover: #{clr(primary, light, 0.4)};
+  --lcc-color--datePicker-cellBorderOnHover: #{clr(grayscale, gray-75, 0.5)};
+  --lcc-color--datePicker-cellBorderOnSelect: #{clr(primary, base)};
+  --lcc-color--datePicker-disabledCell: #{clr(grayscale, gray-50, 0.5)};
+  --lcc-color--datePicker-headerBackground: #{clr(primary, dark, 0.3)};
+  --lcc-color--datePicker-headerText: #{clr(grayscale, white-80)};
+  --lcc-color--datePicker-selectedDateText: #{clr(grayscale, white-80)};
 
-  --lcc-color--expansionPanel-contentBackground: #{color(grayscale, black-20)};
-  --lcc-color--expansionPanel-headerForeground: #{color(grayscale, white-85)};
-  --lcc-color--expansionPanel-headerBackground: #{color(primary, light, 0.8)};
-  --lcc-color--expansionPanel-headerBackgroundOnHover: #{color(primary, light)};
+  --lcc-color--dialog-background: #{clr(grayscale, white-90)};
+  --lcc-color--dialog-boxShadow: #{clr(grayscale, white-85, 0.3)};
+  --lcc-color--dialog-closeIcon: #{clr(grayscale, gray-25)};
+  --lcc-color--dialog-closeIconOnHover: #{clr(grayscale, black-5)};
+  --lcc-color--dialog-headerBackground: #{clr(grayscale, white-85, 0.95)};
+  --lcc-color--dialog-headerBorderBottom: #{clr(grayscale, gray-75)};
 
-  --lcc-color--figure-captionBackground: #{color(primary, base, 0.5)};
-  --lcc-color--figure-captionText: #{color(grayscale, white-90)};
+  --lcc-color--documentsScreen-documentLabelOnHover: #{clr(primary, lighter)};
+  --lcc-color--documentsScreen-downloadLinkOnHover: #{clr(primary, lighter)};
 
-  --lcc-color--footer-background: #{color(grayscale, black-15)};
-  --lcc-color--footer-text: #{color(grayscale, white-85)};
-  --lcc-color--footer-verticalSpacer: #{color(grayscale, gray-35)};
+  --lcc-color--documentViewer-loaderBackground: #{clr(primary, dark, 0.5)};
+  --lcc-color--documentViewer-loaderBoxShadow: #{clr(grayscale, white-85, 0.7)};
+  --lcc-color--documentViewer-pageBackground: #{clr(grayscale, white-85)};
+  --lcc-color--documentViewer-scrollbarBackground: #{clr(grayscale, white-90)};
+  --lcc-color--documentViewer-scrollbar: #{clr(grayscale, gray-65)};
 
-  --lcc-color--form-background: #{color(grayscale, black-15)};
-  --lcc-color--form-boxShadow: #{color(grayscale, black-15, 0.7)};
-  --lcc-color--form-errorIcon: #{color(warning, light)};
-  --lcc-color--form-headerText: #{color(grayscale, white-90)};
-  --lcc-color--form-labelText: #{color(grayscale, white-85)};
-  --lcc-color--form-requiredFieldAsterisk: #{color(warning, light)};
-  --lcc-color--form-requiredFieldText: #{color(grayscale, gray-75)};
+  --lcc-color--expansionPanel-contentBackground: #{clr(grayscale, black-20)};
+  --lcc-color--expansionPanel-headerForeground: #{clr(grayscale, white-85)};
+  --lcc-color--expansionPanel-headerBackground: #{clr(primary, light, 0.8)};
+  --lcc-color--expansionPanel-headerBackgroundOnHover: #{clr(primary, light)};
 
-  --lcc-color--gameArchivesScreen-chartLabel: #{color(grayscale, white-90)};
-  --lcc-color--gameArchivesScreen-filterContainerBackground: #{color(grayscale, black-15)};
-  --lcc-color--gameArchivesScreen-filterSectionBorder: #{color(grayscale, gray-25)};
-  --lcc-color--gameArchivesScreen-headerText: #{color(grayscale, white-95)};
-  --lcc-color--gameArchivesScreen-labelUnderline: #{color(secondary, darker)};
-  --lcc-color--gameArchivesScreen-loadingText: #{color(grayscale, gray-65)};
-  --lcc-color--gameArchivesScreen-text: #{color(grayscale, gray-65)};
+  --lcc-color--figure-captionBackground: #{clr(primary, base, 0.5)};
+  --lcc-color--figure-captionText: #{clr(grayscale, white-90)};
 
-  --lcc-color--general-backgroundOverlay: #{color(grayscale, black-10, 0.8)};
-  --lcc-color--general-dividerLine: #{color(grayscale, gray-25, 0.5)};
-  --lcc-color--general-dividerLineLight: #{color(grayscale, gray-35, 0.5)};
-  --lcc-color--general-scrollbar: #{color(grayscale, gray-50, 0.5)};
+  --lcc-color--footer-background: #{clr(grayscale, black-15)};
+  --lcc-color--footer-text: #{clr(grayscale, white-85)};
+  --lcc-color--footer-verticalSpacer: #{clr(grayscale, gray-35)};
 
-  --lcc-color--header-background1: #{color(primary)};
-  --lcc-color--header-background2: #{color(primary, base, 0.5)};
-  --lcc-color--header-brandingBackground: #{color(grayscale, white-85)};
-  --lcc-color--header-brandingBackgroundOnHover: #{color(grayscale, white-95)};
-  --lcc-color--header-text: #{color(grayscale, white-85)};
-  --lcc-color--header-textOnHover: #{color(grayscale, white-95)};
+  --lcc-color--form-background: #{clr(grayscale, black-15)};
+  --lcc-color--form-boxShadow: #{clr(grayscale, black-15, 0.7)};
+  --lcc-color--form-errorIcon: #{clr(warning, light)};
+  --lcc-color--form-headerText: #{clr(grayscale, white-90)};
+  --lcc-color--form-labelText: #{clr(grayscale, white-85)};
+  --lcc-color--form-requiredFieldAsterisk: #{clr(warning, light)};
+  --lcc-color--form-requiredFieldText: #{clr(grayscale, gray-75)};
 
-  --lcc-color--homeScreen-articleBackground: #{color(grayscale, black-15)};
-  --lcc-color--homeScreen-sectionHeaderText: #{color(grayscale, gray-75)};
-  --lcc-color--homeScreen-welcomeHeaderText: #{color(grayscale, white-95)};
-  --lcc-color--homeScreen-welcomeSectionText: #{color(grayscale, gray-65)};
+  --lcc-color--gameArchivesScreen-chartLabel: #{clr(grayscale, white-90)};
+  --lcc-color--gameArchivesScreen-filterContainerBackground: #{clr(grayscale, black-15)};
+  --lcc-color--gameArchivesScreen-filterSectionBorder: #{clr(grayscale, gray-25)};
+  --lcc-color--gameArchivesScreen-headerText: #{clr(grayscale, white-95)};
+  --lcc-color--gameArchivesScreen-labelUnderline: #{clr(secondary, darker)};
+  --lcc-color--gameArchivesScreen-loadingText: #{clr(grayscale, gray-65)};
+  --lcc-color--gameArchivesScreen-text: #{clr(grayscale, gray-65)};
 
-  --lcc-color--imageOverlay-closeIcon: #{color(grayscale, white-85)};
-  --lcc-color--imageOverlay-closeIconOnHover: #{color(grayscale, white-95)};
-  --lcc-color--imageOverlay-descriptionBackground: #{color(grayscale, white-98, 0.8)};
-  --lcc-color--imageOverlay-descriptionText: #{color(grayscale, black-10)};
-  --lcc-color--imageOverlay-headerBackground: #{color(primary, darker)};
-  --lcc-color--imageOverlay-headerBorderBottom: #{color(grayscale, black-15)};
-  --lcc-color--imageOverlay-navigationIcons: #{color(grayscale, white-85)};
-  --lcc-color--imageOverlay-navigationIconsOnHover: #{color(grayscale, white-95)};
+  --lcc-color--general-dividerLine: #{clr(grayscale, gray-25, 0.5)};
+  --lcc-color--general-dividerLineLight: #{clr(grayscale, gray-35, 0.5)};
+  --lcc-color--general-editorTextSpacer: #{clr(grayscale, gray-50)};
+  --lcc-color--general-overlayDialogBackdrop: #{clr(grayscale, black-20, 0.4)};
+  --lcc-color--general-overlayModalBackdrop: #{clr(grayscale, black-10, 0.7)};
+  --lcc-color--general-scrollbar: #{clr(grayscale, gray-50, 0.7)};
 
-  --lcc-color--input-background: #{color(grayscale, gray-25)};
-  --lcc-color--input-border: #{color(grayscale, gray-35)};
-  --lcc-color--input-borderOnHover: #{color(grayscale, gray-50, 0.5)};
-  --lcc-color--input-boxShadowOnHover: #{color(primary, lighter, 0.6)};
-  --lcc-color--input-checkboxAndRadio: #{color(primary, lightest)};
-  --lcc-color--input-invalidBorder: #{color(warning, lighter)};
-  --lcc-color--input-text: #{color(grayscale, white-95)};
+  --lcc-color--header-background1: #{clr(grayscale, gray-35)};
+  --lcc-color--header-background2: #{clr(primary, base)};
+  --lcc-color--header-brandingBackground: #{clr(grayscale, white-85)};
+  --lcc-color--header-brandingBackgroundOnHover: #{clr(grayscale, white-95)};
+  --lcc-color--header-text: #{clr(grayscale, white-85)};
+  --lcc-color--header-textOnHover: #{clr(grayscale, white-95)};
 
-  --lcc-color--link: #{color(primary, lighter)};
-  --lcc-color--linkDisabled: #{color(grayscale, gray-35)};
-  --lcc-color--linkOnHover: #{color(primary, lightest)};
+  --lcc-color--homeScreen-articleBackground: #{clr(grayscale, black-15)};
+  --lcc-color--homeScreen-sectionHeaderText: #{clr(grayscale, gray-75)};
+  --lcc-color--homeScreen-welcomeHeaderText: #{clr(grayscale, white-95)};
+  --lcc-color--homeScreen-welcomeSectionText: #{clr(grayscale, gray-65)};
 
-  --lcc-color--linkList-headerText: #{color(grayscale, gray-75)};
+  --lcc-color--imageExplorer-background: #{clr(grayscale, white-95)};
+  --lcc-color--imageExplorer-imageBackgroundOnHover: #{clr(grayscale, gray-75, 0.5)};
+  --lcc-color--imageExplorer-imageBorderOnHover: #{clr(primary, base)};
+  --lcc-color--imageExplorer-text: #{clr(grayscale, black-20)};
 
-  --lcc-color--loadingSpinner1: #{color(grayscale, black-2, 0.7)};
-  --lcc-color--loadingSpinner2: #{color(grayscale, black-2, 0.9)};
-  --lcc-color--loadingSpinner-screenOverlay: #{color(grayscale, black-10, 0.5)};
+  --lcc-color--input-background: #{clr(grayscale, gray-25)};
+  --lcc-color--input-border: #{clr(grayscale, gray-35)};
+  --lcc-color--input-borderOnHover: #{clr(grayscale, gray-50, 0.5)};
+  --lcc-color--input-boxShadowOnHover: #{clr(primary, lighter, 0.6)};
+  --lcc-color--input-checkboxAndRadio: #{clr(primary, lightest)};
+  --lcc-color--input-invalidBorder: #{clr(warning, lighter)};
+  --lcc-color--input-text: #{clr(grayscale, white-95)};
 
-  --lcc-color--markdownRenderer-primaryText: #{color(grayscale, white-95)};
-  --lcc-color--markdownRenderer-secondaryText: #{color(grayscale, gray-75)};
+  --lcc-color--link: #{clr(primary, lighter)};
+  --lcc-color--linkDisabled: #{clr(grayscale, gray-35)};
+  --lcc-color--linkOnHover: #{clr(primary, lightest)};
 
-  --lcc-color--memberForm-safeModeNoticeBorder: #{color(success, base)};
-  --lcc-color--memberForm-safeModeNoticeIcon: #{color(success, base)};
-  --lcc-color--memberForm-safeModeNoticeText: #{color(grayscale, gray-75)};
+  --lcc-color--linkList-headerText: #{clr(grayscale, gray-75)};
 
-  --lcc-color--membersTable-asideBorder: #{color(grayscale, gray-75, 0.2)};
-  --lcc-color--membersTable-asideCheckboxLabelTextOnHover: #{color(grayscale, white-95)};
-  --lcc-color--membersTable-asideCheckboxSectionBackground: #{color(primary, dark, 0.3)};
-  --lcc-color--membersTable-asideText: #{color(grayscale, white-85)};
-  --lcc-color--membersTable-headerBackgroundOnHover: #{color(primary, base, 0.7)};
-  --lcc-color--membersTable-inactiveMemberAsterisk: #{color(grayscale, gray-75)};
-  --lcc-color--membersTable-inactiveMemberText: #{color(grayscale, gray-65, 0.8)};
+  --lcc-color--loadingSpinner1: #{clr(grayscale, black-2, 0.7)};
+  --lcc-color--loadingSpinner2: #{clr(grayscale, black-2, 0.9)};
+  --lcc-color--loadingSpinner-screenOverlay: #{clr(grayscale, black-10, 0.5)};
 
-  --lcc-color--modal-background: #{color(grayscale, white-85)};
-  --lcc-color--modal-boxShadow: #{color(grayscale, white-85, 0.7)};
+  --lcc-color--markdownRenderer-primaryText: #{clr(grayscale, white-95)};
+  --lcc-color--markdownRenderer-secondaryText: #{clr(grayscale, gray-75)};
 
-  --lcc-color--modificationInfo-background: #{color(primary, base, 0.5)};
-  --lcc-color--modificationInfo-border: #{color(grayscale, gray-75, 0.2)};
-  --lcc-color--modificationInfo-icons: #{color(grayscale, white-85)};
-  --lcc-color--modificationInfo-primaryText: #{color(grayscale, white-85)};
-  --lcc-color--modificationInfo-secondaryText: #{color(grayscale, gray-65)};
-  --lcc-color--modificationInfo-verticalSpacer: #{color(grayscale, gray-50, 0.5)};
+  --lcc-color--memberForm-safeModeNoticeBorder: #{clr(success, base)};
+  --lcc-color--memberForm-safeModeNoticeIcon: #{clr(success, base)};
+  --lcc-color--memberForm-safeModeNoticeText: #{clr(grayscale, gray-75)};
 
-  --lcc-color--nav-background: #{color(grayscale, black-15)};
-  --lcc-color--nav-border: #{color(grayscale, gray-50, 0.5)};
-  --lcc-color--nav-dropdownBackground: #{color(grayscale, black-15)};
-  --lcc-color--nav-dropdownBoxShadow: #{color(grayscale, gray-25, 0.7)};
-  --lcc-color--nav-dropdownItemBackgroundOnHover: #{color(grayscale, gray-50)};
-  --lcc-color--nav-dropdownItemForeground: #{color(grayscale, white-98)};
-  --lcc-color--nav-dropdownItemTextOnHover: #{color(grayscale, white-98)};
-  --lcc-color--nav-linkForeground: #{color(grayscale, white-85)};
-  --lcc-color--nav-linkForegroundOnHover: #{color(primary, lighter)};
-  --lcc-color--nav-linkForegroundWhenActive: #{color(grayscale, white-98)};
-  --lcc-color--nav-safeModeOffAlertIcon: #{color(warning, lighter)};
+  --lcc-color--membersTable-asideBorder: #{clr(grayscale, gray-75, 0.2)};
+  --lcc-color--membersTable-asideCheckboxLabelTextOnHover: #{clr(grayscale, white-95)};
+  --lcc-color--membersTable-asideCheckboxSectionBackground: #{clr(primary, dark, 0.3)};
+  --lcc-color--membersTable-asideText: #{clr(grayscale, white-85)};
+  --lcc-color--membersTable-headerBackgroundOnHover: #{clr(primary, base, 0.7)};
+  --lcc-color--membersTable-inactiveMemberAsterisk: #{clr(grayscale, gray-75)};
+  --lcc-color--membersTable-inactiveMemberText: #{clr(grayscale, gray-65, 0.8)};
 
-  --lcc-color--paginator-background: #{color(primary, dark, 0.3)};
-  --lcc-color--paginator-border: #{color(grayscale, gray-75, 0.2)};
-  --lcc-color--paginator-buttonBackground: #{color(grayscale, white-95)};
-  --lcc-color--paginator-buttonBackgroundOnHover: #{color(grayscale, white-98)};
-  --lcc-color--paginator-buttonText: #{color(grayscale, black-15)};
-  --lcc-color--paginator-buttonTextOnHover: #{color(grayscale, black-2)};
-  --lcc-color--paginator-pageNumberText: #{color(grayscale, white-90)};
-  --lcc-color--paginator-selectedButtonBackground: #{color(grayscale, white-98)};
-  --lcc-color--paginator-selectedButtonBorder: #{color(secondary)};
-  --lcc-color--paginator-selectedButtonColor: #{color(grayscale, black-2)};
+  --lcc-color--modificationInfo-background: #{clr(primary, base, 0.5)};
+  --lcc-color--modificationInfo-border: #{clr(grayscale, gray-75, 0.2)};
+  --lcc-color--modificationInfo-icons: #{clr(grayscale, white-85)};
+  --lcc-color--modificationInfo-primaryText: #{clr(grayscale, white-85)};
+  --lcc-color--modificationInfo-secondaryText: #{clr(grayscale, gray-65)};
+  --lcc-color--modificationInfo-verticalSpacer: #{clr(grayscale, gray-50, 0.5)};
 
-  --lcc-color--pgnViewer-board: #{color(chessboard)};
-  --lcc-color--pgnViewer-playerNameText: #{color(grayscale, white-85)};
+  --lcc-color--nav-background: #{clr(grayscale, black-15)};
+  --lcc-color--nav-border: #{clr(grayscale, gray-50, 0.5)};
+  --lcc-color--nav-dropdownBackground: #{clr(grayscale, black-15)};
+  --lcc-color--nav-dropdownBoxShadow: #{clr(grayscale, gray-25, 0.7)};
+  --lcc-color--nav-dropdownItemBackgroundOnHover: #{clr(grayscale, gray-50)};
+  --lcc-color--nav-dropdownItemForeground: #{clr(grayscale, white-98)};
+  --lcc-color--nav-dropdownItemTextOnHover: #{clr(grayscale, white-98)};
+  --lcc-color--nav-linkForeground: #{clr(grayscale, white-85)};
+  --lcc-color--nav-linkForegroundOnHover: #{clr(primary, lighter)};
+  --lcc-color--nav-linkForegroundWhenActive: #{clr(grayscale, white-98)};
+  --lcc-color--nav-safeModeOffAlertIcon: #{clr(warning, lighter)};
 
-  --lcc-color--photoGrid-imageBorder: #{color(grayscale, white-85, 0.7)};
-  --lcc-color--photoGrid-imageBorderOnHover: #{color(grayscale, gray-75)};
-  --lcc-color--photoGrid-imageBoxShadowOnHover: #{color(grayscale, gray-65, 0.7)};
+  --lcc-color--paginator-background: #{clr(primary, dark, 0.3)};
+  --lcc-color--paginator-border: #{clr(grayscale, gray-75, 0.2)};
+  --lcc-color--paginator-buttonBackground: #{clr(grayscale, white-95)};
+  --lcc-color--paginator-buttonBackgroundOnHover: #{clr(grayscale, white-98)};
+  --lcc-color--paginator-buttonText: #{clr(grayscale, black-15)};
+  --lcc-color--paginator-buttonTextOnHover: #{clr(grayscale, black-2)};
+  --lcc-color--paginator-pageNumberText: #{clr(grayscale, white-90)};
+  --lcc-color--paginator-selectedButtonBackground: #{clr(grayscale, white-98)};
+  --lcc-color--paginator-selectedButtonBorder: #{clr(secondary, base)};
+  --lcc-color--paginator-selectedButtonColor: #{clr(grayscale, black-2)};
 
-  --lcc-color--schedule-activeTournamentBackground: #{color(
+  --lcc-color--pgnViewer-board: #{clr(chessboard)};
+  --lcc-color--pgnViewer-playerNameText: #{clr(grayscale, white-85)};
+
+  --lcc-color--photoGrid-imageBorder: #{clr(grayscale, white-85, 0.7)};
+  --lcc-color--photoGrid-imageBorderOnHover: #{clr(grayscale, gray-75)};
+  --lcc-color--photoGrid-imageBoxShadowOnHover: #{clr(grayscale, gray-65, 0.7)};
+
+  --lcc-color--photoViewer-buttonBackground: #{clr(grayscale, gray-35, 0.6)};
+
+  --lcc-color--schedule-activeTournamentBackground: #{clr(
       event-active-tournament,
       light,
       0.5
     )};
-  --lcc-color--schedule-activeTournamentBorder: #{color(
-      event-active-tournament,
-      base,
-      0.5
-    )};
-  --lcc-color--schedule-blitzTournamentBackground: #{color(
+  --lcc-color--schedule-activeTournamentBorder: #{clr(event-active-tournament, base, 0.5)};
+  --lcc-color--schedule-blitzTournamentBackground: #{clr(
       event-blitz-tournament,
       light,
       0.5
     )};
-  --lcc-color--schedule-blitzTournamentBorder: #{color(event-blitz-tournament, base, 0.5)};
-  --lcc-color--schedule-championshipBackground: #{color(event-championship, light, 0.5)};
-  --lcc-color--schedule-championshipBorder: #{color(event-championship, base, 0.5)};
-  --lcc-color--schedule-championshipMedalIcon: #{color(event-championship)};
-  --lcc-color--schedule-closedBackground: #{color(event-closed, light, 0.5)};
-  --lcc-color--schedule-closedBorder: #{color(event-closed, base, 0.5)};
-  --lcc-color--schedule-createdAndEditedText: #{color(grayscale, gray-75)};
-  --lcc-color--schedule-eventDetailsText: #{color(grayscale, gray-75)};
-  --lcc-color--schedule-eventType: #{color(grayscale, white-98)};
-  --lcc-color--schedule-lectureBackground: #{color(event-lecture, light, 0.5)};
-  --lcc-color--schedule-lectureBorder: #{color(event-lecture, base, 0.5)};
-  --lcc-color--schedule-nextEventText: #{color(grayscale, white-98)};
-  --lcc-color--schedule-nextEventBackgroundHighlight: #{color(highlight, base, 0.4)};
-  --lcc-color--schedule-nowLine: #{color(schedule-now-line, base, 0.5)};
-  --lcc-color--schedule-otherBackground: #{color(event-other, light, 0.5)};
-  --lcc-color--schedule-otherBorder: #{color(event-other, base, 0.5)};
-  --lcc-color--schedule-rapidTournamentBackground: #{color(
+  --lcc-color--schedule-blitzTournamentBorder: #{clr(event-blitz-tournament, base, 0.5)};
+  --lcc-color--schedule-championshipBackground: #{clr(event-championship, light, 0.5)};
+  --lcc-color--schedule-championshipBorder: #{clr(event-championship, base, 0.5)};
+  --lcc-color--schedule-championshipMedalIcon: #{clr(event-championship)};
+  --lcc-color--schedule-closedBackground: #{clr(event-closed, light, 0.5)};
+  --lcc-color--schedule-closedBorder: #{clr(event-closed, base, 0.5)};
+  --lcc-color--schedule-createdAndEditedText: #{clr(grayscale, gray-75)};
+  --lcc-color--schedule-eventDetailsText: #{clr(grayscale, gray-75)};
+  --lcc-color--schedule-eventType: #{clr(grayscale, white-98)};
+  --lcc-color--schedule-lectureBackground: #{clr(event-lecture, light, 0.5)};
+  --lcc-color--schedule-lectureBorder: #{clr(event-lecture, base, 0.5)};
+  --lcc-color--schedule-nextEventText: #{clr(grayscale, white-98)};
+  --lcc-color--schedule-nextEventBackgroundHighlight: #{clr(highlight, base, 0.4)};
+  --lcc-color--schedule-nowLine: #{clr(schedule-now-line, base, 0.5)};
+  --lcc-color--schedule-otherBackground: #{clr(event-other, light, 0.5)};
+  --lcc-color--schedule-otherBorder: #{clr(event-other, base, 0.5)};
+  --lcc-color--schedule-rapidTournamentBackground: #{clr(
       event-rapid-tournament,
       light,
       0.5
     )};
-  --lcc-color--schedule-rapidTournamentBorder: #{color(event-rapid-tournament, base, 0.5)};
-  --lcc-color--schedule-simulBackground: #{color(event-simul, light, 0.5)};
-  --lcc-color--schedule-simulBorder: #{color(event-simul, base, 0.5)};
-  --lcc-color--schedule-titleText: #{color(grayscale, white-95)};
+  --lcc-color--schedule-rapidTournamentBorder: #{clr(event-rapid-tournament, base, 0.5)};
+  --lcc-color--schedule-simulBackground: #{clr(event-simul, light, 0.5)};
+  --lcc-color--schedule-simulBorder: #{clr(event-simul, base, 0.5)};
+  --lcc-color--schedule-titleText: #{clr(grayscale, white-95)};
 
-  --lcc-color--screenHeader-background: #{color(grayscale, black-15)};
-  --lcc-color--screenHeader-boxShadow: #{color(grayscale, gray-25, 0.7)};
-  --lcc-color--screenHeader-icon: #{color(secondary)};
-  --lcc-color--screenHeader-text: #{color(grayscale, white-85)};
-  --lcc-color--screenHeaderAsterisk-text: #{color(grayscale, gray-50)};
+  --lcc-color--screenHeader-background: #{clr(grayscale, black-15)};
+  --lcc-color--screenHeader-boxShadow: #{clr(grayscale, gray-25, 0.7)};
+  --lcc-color--screenHeader-icon: #{clr(secondary, base)};
+  --lcc-color--screenHeader-text: #{clr(grayscale, white-85)};
+  --lcc-color--screenHeaderAsterisk-text: #{clr(grayscale, gray-50)};
 
-  --lcc-color--table-border: #{color(grayscale, gray-50, 0.2)};
-  --lcc-color--table-footerForeground: #{color(grayscale, gray-65)};
-  --lcc-color--table-headerBackground: #{color(primary, base, 0.5)};
-  --lcc-color--table-headerForeground: #{color(grayscale, white-95)};
-  --lcc-color--table-rowBackgroundEven: #{color(grayscale, gray-30)};
-  --lcc-color--table-rowBackgroundOdd: #{color(grayscale, gray-32)};
-  --lcc-color--table-rowForeground: #{color(grayscale, white-90)};
+  --lcc-color--table-border: #{clr(grayscale, gray-50, 0.2)};
+  --lcc-color--table-footerForeground: #{clr(grayscale, gray-65)};
+  --lcc-color--table-headerBackground1: #{clr(grayscale, gray-35)};
+  --lcc-color--table-headerBackground2: #{clr(primary, base)};
+  --lcc-color--table-headerForeground: #{clr(grayscale, white-95)};
+  --lcc-color--table-rowBackgroundEven: #{clr(grayscale, gray-30)};
+  --lcc-color--table-rowBackgroundOdd: #{clr(grayscale, gray-32)};
+  --lcc-color--table-rowForeground: #{clr(grayscale, white-90)};
 
-  --lcc-color--toast-boxShadow: #{color(grayscale, gray-35, 0.7)};
-  --lcc-color--toast-icon: #{color(grayscale, black-2)};
-  --lcc-color--toast-infoBackground: #{color(info, light)};
-  --lcc-color--toast-primaryText: #{color(grayscale, black-2)};
-  --lcc-color--toast-secondaryText: #{color(grayscale, black-15)};
-  --lcc-color--toast-successBackground: #{color(success, light)};
-  --lcc-color--toast-warningBackground: #{color(warning, lightest)};
+  --lcc-color--toast-boxShadow: #{clr(grayscale, gray-35, 0.7)};
+  --lcc-color--toast-icon: #{clr(grayscale, black-2)};
+  --lcc-color--toast-infoBackground: #{clr(info, light)};
+  --lcc-color--toast-primaryText: #{clr(grayscale, black-2)};
+  --lcc-color--toast-secondaryText: #{clr(grayscale, black-15)};
+  --lcc-color--toast-successBackground: #{clr(success, light)};
+  --lcc-color--toast-warningBackground: #{clr(warning, lightest)};
 
-  --lcc-color--toggleSwitch-sliderBackgroundWhenOn: #{color(grayscale, gray-35)};
-  --lcc-color--toggleSwitch-sliderBackgroundWhenOff: #{color(grayscale, gray-25)};
-  --lcc-color--toggleSwitch-slider: #{color(grayscale, white-90)};
+  --lcc-color--toggleSwitch-sliderBackgroundWhenOn: #{clr(grayscale, gray-35)};
+  --lcc-color--toggleSwitch-sliderBackgroundWhenOff: #{clr(grayscale, gray-25)};
+  --lcc-color--toggleSwitch-slider: #{clr(grayscale, white-90)};
 
-  --lcc-color--tooltip-background: #{color(tooltip, light)};
-  --lcc-color--tooltip-border: #{color(tooltip)};
-  --lcc-color--tooltip-text: #{color(grayscale, white-90)};
+  --lcc-color--tooltip-background: #{clr(tooltip, light)};
+  --lcc-color--tooltip-border: #{clr(tooltip)};
+  --lcc-color--tooltip-highlightedText: #{clr(tooltip, highlighted)};
+  --lcc-color--tooltip-text: #{clr(grayscale, white-90)};
 
-  --lcc-color--upcomingEventBanner-background-activeTournament: #{color(
+  --lcc-color--upcomingEventBanner-background-activeTournament: #{clr(
       event-active-tournament,
       light
     )};
-  --lcc-color--upcomingEventBanner-background-blitzTournament: #{color(
+  --lcc-color--upcomingEventBanner-background-blitzTournament: #{clr(
       event-blitz-tournament,
       light
     )};
-  --lcc-color--upcomingEventBanner-background-championship: #{color(
+  --lcc-color--upcomingEventBanner-background-championship: #{clr(
       event-championship,
       light
     )};
-  --lcc-color--upcomingEventBanner-background-closed: #{color(event-closed, light)};
-  --lcc-color--upcomingEventBanner-background-lecture: #{color(event-lecture, light, 0.7)};
-  --lcc-color--upcomingEventBanner-background-other: #{color(event-other, light)};
-  --lcc-color--upcomingEventBanner-background-rapidTournament: #{color(
+  --lcc-color--upcomingEventBanner-background-closed: #{clr(event-closed, light)};
+  --lcc-color--upcomingEventBanner-background-lecture: #{clr(event-lecture, light)};
+  --lcc-color--upcomingEventBanner-background-other: #{clr(event-other, light)};
+  --lcc-color--upcomingEventBanner-background-rapidTournament: #{clr(
       event-rapid-tournament,
       light
     )};
-  --lcc-color--upcomingEventBanner-background-simul: #{color(event-simul, light)};
-  --lcc-color--upcomingEventBanner-borderBottom: #{color(grayscale, gray-50, 0.5)};
-  --lcc-color--upcomingEventBanner-closeIcon: #{color(grayscale, black-20)};
-  --lcc-color--upcomingEventBanner-closeIconOnHover: #{color(grayscale, black-2)};
-  --lcc-color--upcomingEventBanner-boldText: #{color(grayscale, black-10)};
-  --lcc-color--upcomingEventBanner-boldTextOnHover: #{color(grayscale, black-2)};
-  --lcc-color--upcomingEventBanner-text: #{color(grayscale, black-20)};
-  --lcc-color--upcomingEventBanner-textOnHover: #{color(grayscale, black-2)};
+  --lcc-color--upcomingEventBanner-background-simul: #{clr(event-simul, light)};
+  --lcc-color--upcomingEventBanner-borderBottom: #{clr(grayscale, gray-50)};
+  --lcc-color--upcomingEventBanner-closeIcon: #{clr(grayscale, black-20)};
+  --lcc-color--upcomingEventBanner-closeIconOnHover: #{clr(grayscale, black-2)};
+  --lcc-color--upcomingEventBanner-boldText: #{clr(grayscale, black-10)};
+  --lcc-color--upcomingEventBanner-boldTextOnHover: #{clr(grayscale, black-2)};
+  --lcc-color--upcomingEventBanner-text: #{clr(grayscale, black-20)};
+  --lcc-color--upcomingEventBanner-textOnHover: #{clr(grayscale, black-2)};
 }

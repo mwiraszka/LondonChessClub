@@ -1,30 +1,44 @@
 import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs';
 
 import { Injectable } from '@angular/core';
+import { CanDeactivate } from '@angular/router';
 
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
+import type { BasicDialogResult, Dialog } from '@app/models';
+import { DialogService } from '@app/services';
 import { MembersSelectors } from '@app/store/members';
-import { ModalActions, ModalSelectors } from '@app/store/modal';
-import { ModalButtonActionTypes } from '@app/types';
 
 @Injectable({ providedIn: 'root' })
-export class UnsavedMemberGuard {
-  constructor(private readonly store: Store) {}
+export class UnsavedMemberGuard implements CanDeactivate<unknown> {
+  constructor(
+    private readonly dialogService: DialogService,
+    private readonly store: Store,
+  ) {}
 
-  canDeactivate(): Observable<boolean> {
-    return this.store.select(MembersSelectors.hasUnsavedChanges).pipe(
-      switchMap(hasUnsavedChanges => {
-        if (!hasUnsavedChanges) {
-          return of(true);
-        }
-
-        this.store.dispatch(ModalActions.leaveWithUnsavedChangesRequested());
-        return this.store.select(ModalSelectors.selection).pipe(
-          filter(selection => !!selection),
-          map(selection => selection === ModalButtonActionTypes.LEAVE_OK),
-        );
-      }),
+  async canDeactivate(): Promise<boolean> {
+    const hasUnsavedChanges = await firstValueFrom(
+      this.store.select(MembersSelectors.selectHasUnsavedChanges),
     );
+
+    if (!hasUnsavedChanges) {
+      return true;
+    }
+
+    const dialog: Dialog = {
+      title: 'Unsaved changes',
+      body: 'Are you sure you want to leave? Any unsaved changes to this member will be lost.',
+      confirmButtonText: 'Leave',
+    };
+
+    const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(
+      {
+        componentType: BasicDialogComponent,
+        isModal: false,
+        inputs: { dialog },
+      },
+    );
+
+    return result === 'confirm';
   }
 }

@@ -1,29 +1,28 @@
 @charset 'utf-8';
 
-@import './abstracts/mixins';
-@import './abstracts/variables';
+@forward 'abstracts/mixins';
+@forward 'abstracts/variables';
 
-@import './base/reset';
-@import './base/typography';
+@forward 'base/reset';
+@forward 'base/typography';
 
-@import './themes/colour-palette';
-@import './themes/dark-theme';
-@import './themes/light-theme';
+@forward 'themes/colour-palette';
+@forward 'themes/dark-theme';
+@forward 'themes/light-theme';
 
-@import './layout/display';
-@import './layout/text';
+@forward 'layout/truncate';
+@forward 'layout/overlay';
 
-@import './components/admin-controls-container';
-@import './components/button';
-@import './components/content-placeholder';
-@import './components/figure';
-@import './components/form';
-@import './components/input';
-@import './components/link';
-@import './components/loading-spinner';
-@import './components/scrollbar';
-@import './components/table';
+@forward 'components/button';
+@forward 'components/content-placeholder';
+@forward 'components/figure';
+@forward 'components/form';
+@forward 'components/input';
+@forward 'components/link';
+@forward 'components/loading-spinner';
+@forward 'components/scrollbar';
+@forward 'components/table';
 
-@import './vendors/lichess-pgn-viewer/lichess-pgn-viewer';
+@forward 'vendors/lichess-pgn-viewer/lichess-pgn-viewer';
 
-@import './vendor-overrides/lichess-pgn-viewer';
+@forward 'vendor-overrides/lichess-pgn-viewer';

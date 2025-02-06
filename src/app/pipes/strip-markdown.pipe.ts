@@ -2,12 +2,20 @@ import removeMd from 'remove-markdown';
 
 import { Pipe, PipeTransform } from '@angular/core';
 
+import { isDefined } from '@app/utils';
+
 /**
- * Strips all markdown characters from the text.
+ * Strip all markdown characters from the text.
  */
-@Pipe({ name: 'stripMarkdown' })
+@Pipe({
+  name: 'stripMarkdown',
+})
 export class StripMarkdownPipe implements PipeTransform {
-  transform(markdown: string): string {
+  transform(markdown?: string): string {
+    if (!isDefined(markdown)) {
+      return '';
+    }
+
     return removeMd(markdown)
       .replace(/\|--/g, '')
       .replace(/\|/g, '')

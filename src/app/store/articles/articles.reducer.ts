@@ -1,110 +1,146 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { EntityState, createEntityAdapter } from '@ngrx/entity';
+import { createReducer, on } from '@ngrx/store';
 
-import { type ControlModes, newArticleFormTemplate } from '@app/types';
+import type {
+  Article,
+  ArticleFormData,
+  ControlMode,
+  FileData,
+  Id,
+  Url,
+} from '@app/models';
+import { ImagesActions } from '@app/store/images';
+import { customSort } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
-import { ArticlesState, initialState } from './articles.state';
 
-const articlesReducer = createReducer(
-  initialState,
+export interface ArticlesState extends EntityState<Article> {
+  articleId: Id | null;
+  articleFormData: ArticleFormData | null;
+  bannerImageUrl: Url | null;
+  bannerImageFileData: FileData | null;
+  originalBannerImageUrl: Url | null;
+  controlMode: ControlMode | null;
+}
 
-  on(ArticlesActions.articleAddRequested, state => ({
-    ...state,
-    setArticle: newArticleFormTemplate,
-    formArticle: newArticleFormTemplate,
-    controlMode: 'add' as ControlModes,
-  })),
+export const articlesAdapter = createEntityAdapter<Article>({
+  sortComparer: (a, b) =>
+    customSort(a, b, 'bookmarkDate', true, 'modificationInfo.dateCreated', true),
+});
 
-  on(ArticlesActions.articleEditRequested, state => ({
-    ...state,
-    controlMode: 'edit' as ControlModes,
-  })),
+export const articlesInitialState: ArticlesState = articlesAdapter.getInitialState({
+  articleId: null,
+  articleFormData: null,
+  bannerImageUrl: null,
+  bannerImageFileData: null,
+  originalBannerImageUrl: null,
+  controlMode: null,
+});
 
-  on(ArticlesActions.articleViewRequested, state => ({
-    ...state,
-    controlMode: 'view' as ControlModes,
-  })),
+export const articlesReducer = createReducer(
+  articlesInitialState,
 
-  on(ArticlesActions.articleSet, (state, { article }) => ({
-    ...state,
-    setArticle: article,
-  })),
+  on(
+    ArticlesActions.fetchArticlesSucceeded,
+    (state, { articles }): ArticlesState => articlesAdapter.setAll(articles, state),
+  ),
 
-  on(ArticlesActions.articleUnset, state => ({
-    ...state,
-    setArticle: null,
-    formArticle: null,
-    controlMode: null,
-  })),
+  on(
+    ArticlesActions.fetchArticleRequested,
+    (state, { controlMode }): ArticlesState => ({
+      ...state,
+      controlMode,
+    }),
+  ),
+
+  on(
+    ArticlesActions.newArticleRequested,
+    (state): ArticlesState => ({
+      ...state,
+      controlMode: 'add',
+    }),
+  ),
+
+  on(
+    ArticlesActions.fetchArticleSucceeded,
+    (state, { article }): ArticlesState =>
+      articlesAdapter.upsertOne<ArticlesState>(article, {
+        ...state,
+        articleId: article.id,
+      }),
+  ),
+
+  on(
+    ImagesActions.fetchArticleBannerImageSucceeded,
+    (state, { image, setAsOriginal }): ArticlesState => ({
+      ...state,
+      bannerImageUrl: image.presignedUrl,
+      bannerImageFileData: null,
+      originalBannerImageUrl: setAsOriginal
+        ? image.presignedUrl
+        : state.originalBannerImageUrl,
+    }),
+  ),
+
+  on(
+    ArticlesActions.bannerImageSet,
+    (state, { url, fileData }): ArticlesState => ({
+      ...state,
+      bannerImageUrl: url,
+      bannerImageFileData: fileData,
+    }),
+  ),
+
+  on(
+    ArticlesActions.bannerImageFileLoadFailed,
+    (state): ArticlesState => ({
+      ...state,
+      bannerImageUrl: null,
+      bannerImageFileData: null,
+    }),
+  ),
 
   on(
     ArticlesActions.publishArticleSucceeded,
     ArticlesActions.updateArticleSucceeded,
-    (state, { article }) => ({
+    (state, { article }): ArticlesState =>
+      articlesAdapter.upsertOne<ArticlesState>(article, {
+        ...state,
+        articleFormData: null,
+        bannerImageUrl: null,
+        bannerImageFileData: null,
+        originalBannerImageUrl: null,
+      }),
+  ),
+
+  on(
+    ArticlesActions.deleteArticleSucceeded,
+    (state, { article }): ArticlesState =>
+      articlesAdapter.removeOne<ArticlesState>(article.id!, {
+        ...state,
+        articleId: null,
+        articleFormData: null,
+      }),
+  ),
+
+  on(
+    ArticlesActions.formValueChanged,
+    (state, { value }): ArticlesState => ({
       ...state,
-      articles: [
-        ...state.articles.map(storedArticle =>
-          storedArticle.id === article.id ? article : storedArticle,
-        ),
-      ],
-      setArticle: null,
-      formArticle: null,
+      articleFormData: value as Required<ArticleFormData>,
     }),
   ),
 
-  on(ArticlesActions.fetchArticleSucceeded, (state, { article }) => ({
-    ...state,
-    articles: [
-      ...state.articles.map(storedArticle =>
-        storedArticle.id === article.id ? article : storedArticle,
-      ),
-    ],
-  })),
-
-  on(ArticlesActions.getArticleImageUrlSucceeded, (state, { article }) => ({
-    ...state,
-    setArticle: article,
-    formArticle: article,
-  })),
-
-  on(ArticlesActions.getArticleImageFileSucceeded, (state, { imageFile }) => ({
-    ...state,
-    setArticle: state.setArticle ? { ...state.setArticle, imageFile } : null,
-    formArticle: state.formArticle ? { ...state.formArticle, imageFile } : null,
-  })),
-
-  on(ArticlesActions.articleImageChangeReverted, state => ({
-    ...state,
-    formArticle: {
-      ...state.formArticle!,
-      imageFile: state.setArticle?.imageFile ?? null,
-      imageUrl: state.setArticle?.imageUrl ?? null,
-    },
-  })),
-
-  on(ArticlesActions.getArticleThumbnailImageUrlsSucceeded, (state, { articles }) => ({
-    ...state,
-    articles,
-  })),
-
-  on(ArticlesActions.deleteArticleSelected, (state, { article }) => ({
-    ...state,
-    setArticle: article,
-  })),
-
-  on(ArticlesActions.deleteArticleSucceeded, (state, { article }) => ({
-    ...state,
-    articles: state.articles.filter(storedArticle => storedArticle.id !== article.id),
-    setArticle: null,
-    formArticle: null,
-  })),
-
-  on(ArticlesActions.formDataChanged, (state, { article }) => ({
-    ...state,
-    formArticle: article,
-  })),
+  on(
+    ArticlesActions.articleUnset,
+    (state): ArticlesState => ({
+      ...state,
+      articleId: null,
+      articleFormData: null,
+      bannerImageUrl: null,
+      bannerImageFileData: null,
+      controlMode: null,
+      originalBannerImageUrl: null,
+    }),
+  ),
 );
-
-export function reducer(state: ArticlesState, action: Action): ArticlesState {
-  return articlesReducer(state, action);
-}

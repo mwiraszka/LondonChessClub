@@ -1,96 +1,107 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from '@app/guards';
-import { NavPathTypes } from '@app/types';
+import { AuthGuard } from '@app/guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: NavPathTypes.HOME,
+    path: '',
     loadChildren: () =>
-      import('./screens/home/home-screen.module').then(m => m.HomeScreenModule),
+      import('./screens/home/home-screen-routing.module').then(
+        m => m.HomeScreenRoutingModule,
+      ),
     pathMatch: 'full',
   },
   {
-    path: NavPathTypes.ABOUT,
+    path: 'about',
     loadChildren: () =>
-      import('./screens/about/about-screen.module').then(m => m.AboutScreenModule),
-  },
-  {
-    path: NavPathTypes.MEMBERS,
-    loadChildren: () =>
-      import('./screens/members/members-screen.module').then(m => m.MembersScreenModule),
-  },
-  {
-    path: NavPathTypes.MEMBER,
-    loadChildren: () =>
-      import('./screens/member/member-screen.module').then(m => m.MemberScreenModule),
-  },
-  {
-    path: NavPathTypes.SCHEDULE,
-    loadChildren: () =>
-      import('./screens/schedule/schedule-screen.module').then(
-        m => m.ScheduleScreenModule,
+      import('./screens/about/about-screen-routing.module').then(
+        m => m.AboutScreenRoutingModule,
       ),
   },
   {
-    path: NavPathTypes.EVENT,
+    path: 'members',
     loadChildren: () =>
-      import('./screens/event/event-screen.module').then(m => m.EventScreenModule),
+      import('./screens/members/members-screen-routing.module').then(
+        m => m.MembersScreenRoutingModule,
+      ),
+  },
+  {
+    path: 'member',
+    loadChildren: () =>
+      import('./screens/member/member-screen-routing.module').then(
+        m => m.MemberScreenRoutingModule,
+      ),
+  },
+  {
+    path: 'schedule',
+    loadChildren: () =>
+      import('./screens/schedule/schedule-screen-routing.module').then(
+        m => m.ScheduleScreenRoutingModule,
+      ),
+  },
+  {
+    path: 'event',
+    loadChildren: () =>
+      import('./screens/event/event-screen-routing.module').then(
+        m => m.EventScreenRoutingModule,
+      ),
     canActivate: [AuthGuard],
   },
   {
-    path: NavPathTypes.NEWS,
+    path: 'news',
     loadChildren: () =>
-      import('./screens/news/news-screen.module').then(m => m.NewsScreenModule),
-  },
-  {
-    path: NavPathTypes.ARTICLE,
-    loadChildren: () =>
-      import('./screens/article/article-screen.module').then(m => m.ArticleScreenModule),
-  },
-  {
-    path: NavPathTypes.CITY_CHAMPION,
-    loadChildren: () =>
-      import('./screens/champion/champion-screen.module').then(
-        m => m.ChampionScreenModule,
+      import('./screens/news/news-screen-routing.module').then(
+        m => m.NewsScreenRoutingModule,
       ),
   },
   {
-    path: NavPathTypes.PHOTO_GALLERY,
+    path: 'article',
     loadChildren: () =>
-      import('./screens/photo-gallery/photo-gallery-screen.module').then(
-        m => m.PhotoGalleryScreenModule,
+      import('./screens/article/article-screen-routing.module').then(
+        m => m.ArticleScreenRoutingModule,
       ),
   },
   {
-    path: NavPathTypes.GAME_ARCHIVES,
+    path: 'city-champion',
     loadChildren: () =>
-      import('./screens/game-archives/game-archives-screen.module').then(
-        m => m.GameArchivesScreenModule,
+      import('./screens/champion/champion-screen-routing.module').then(
+        m => m.ChampionScreenRoutingModule,
       ),
   },
   {
-    path: NavPathTypes.DOCUMENTS,
+    path: 'photo-gallery',
     loadChildren: () =>
-      import('./screens/documents/documents-screen.module').then(
-        m => m.DocumentsScreenModule,
+      import('./screens/photo-gallery/photo-gallery-screen-routing.module').then(
+        m => m.PhotoGalleryScreenRoutingModule,
       ),
   },
   {
-    path: NavPathTypes.LOGIN,
+    path: 'game-archives',
     loadChildren: () =>
-      import('./screens/login/login-screen.module').then(m => m.LoginScreenModule),
+      import('./screens/game-archives/game-archives-screen-routing.module').then(
+        m => m.GameArchivesScreenRoutingModule,
+      ),
   },
   {
-    path: NavPathTypes.LOGOUT,
-    redirectTo: NavPathTypes.LOGIN,
+    path: 'documents',
+    loadChildren: () =>
+      import('./screens/documents/documents-screen-routing.module').then(
+        m => m.DocumentsScreenRoutingModule,
+      ),
   },
   {
-    path: NavPathTypes.CHANGE_PASSWORD,
+    path: 'login',
     loadChildren: () =>
-      import('./screens/change-password/change-password-screen.module').then(
-        m => m.ChangePasswordScreenModule,
+      import('./screens/login/login-screen-routing.module').then(
+        m => m.LoginScreenRoutingModule,
+      ),
+  },
+  {
+    path: 'change-password',
+    loadChildren: () =>
+      import('./screens/change-password/change-password-screen-routing.module').then(
+        m => m.ChangePasswordScreenRoutingModule,
       ),
   },
   {
@@ -100,7 +111,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      onSameUrlNavigation: 'reload',
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

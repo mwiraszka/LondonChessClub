@@ -1,13 +1,12 @@
 :host {
   width: 100%;
-  min-height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  box-shadow: 1px 1px 8px 1px var(--lcc-color--screenHeader-boxShadow);
   gap: 8px;
   padding: 8px;
+  box-shadow: 1px 1px 8px 1px var(--lcc-color--screenHeader-boxShadow);
   background-color: var(--lcc-color--screenHeader-background);
   border-radius: var(--lcc-borderRadius--small);
 

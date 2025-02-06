@@ -1,21 +1,16 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { StoreFeatures } from '@app/types';
+import { AuthState } from './auth.reducer';
 
-import { AuthState } from './auth.state';
+export const selectAuthState = createFeatureSelector<AuthState>('authState');
 
-export const authFeatureSelector = createFeatureSelector<AuthState>(StoreFeatures.AUTH);
-
-export const isAdmin = createSelector(
-  authFeatureSelector,
-  state => state.user?.isVerified ?? false,
+export const selectIsAdmin = createSelector(
+  selectAuthState,
+  state => !!state.user?.isAdmin,
 );
 
-export const tempInitialPassword = createSelector(
-  authFeatureSelector,
-  state => state.tempInitialPassword,
-);
+export const selectUser = createSelector(selectAuthState, state => state.user);
 
-export const user = createSelector(authFeatureSelector, state => state.user);
+export const selectUserId = createSelector(selectUser, user => user?.id);
 
-export const userHasCode = createSelector(authFeatureSelector, state => state.hasCode);
+export const selectHasCode = createSelector(selectAuthState, state => state.hasCode);

@@ -1,4 +1,6 @@
-@use 'sass:math' as math;
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
 
 /* Viewport breakpoint map */
 $breakpoints: (
@@ -39,10 +41,14 @@ $breakpoints: (
 /// @param {String} $breakpoint - Breakpoint
 /// @requires $breakpoints
 @mixin respond-to($breakpoint) {
-  $raw-query: map-get($breakpoints, $breakpoint);
+  $raw-query: map.get($breakpoints, $breakpoint);
 
   @if $raw-query {
-    $query: if(type-of($raw-query) == 'string', unquote($raw-query), inspect($raw-query));
+    $query: if(
+      meta.type-of($raw-query) == 'string',
+      meta.unquote($raw-query),
+      meta.inspect($raw-query)
+    );
 
     @media #{$query} {
       @content;
@@ -69,7 +75,7 @@ $breakpoints: (
     $multiplier: $multiplier + 1;
 
     @media (min-width: ($item-min-width * $multiplier)) {
-      max-width: calc(percentage(math.div(1, $multiplier)) - $grid-gap);
+      max-width: calc(math.percentage(math.div(1, $multiplier)) - $grid-gap);
     }
   }
 }

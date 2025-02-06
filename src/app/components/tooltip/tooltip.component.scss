@@ -1,30 +1,26 @@
-.tooltip {
-  position: fixed;
-  z-index: 100;
+:host {
+  max-width: 150px;
   background-color: var(--lcc-color--tooltip-background);
   color: var(--lcc-color--tooltip-text);
   outline: 1px solid var(--lcc-color--tooltip-border);
   border-radius: var(--lcc-borderRadius--large);
-  padding: 4px 8px;
-  margin-top: 8px;
-  transform: translateX(-50%);
-  animation: slideUpAnimation 0.5s;
+  padding: 8px;
   pointer-events: none;
-  font-size: var(--lcc-fontSize--h5);
-  line-height: 1.2em;
+  font-size: var(--lcc-fontSize--h4);
   text-align: center;
-  word-wrap: break-word;
   text-transform: none;
   white-space: wrap;
+  word-wrap: break-word;
+  animation: slideUpAnimation 0.5s;
 }
 
 @keyframes slideUpAnimation {
   0% {
     opacity: 0;
-    transform: translate(-50%, 10px);
+    transform: translate(0, 8px);
   }
   100% {
     opacity: 1;
-    transform: translate(-50%, 0);
+    transform: translate(0, 0);
   }
 }

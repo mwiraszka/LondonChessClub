@@ -1,4 +1,7 @@
-<small> Copyright &copy; {{ currentYear }} <b>London Chess Club</b> </small>
+<small class="copyright-notice">
+  Copyright &copy; {{ currentYear }}
+  <b>London Chess Club</b>
+</small>
 
 <address class="website-details">
   <span class="current-version">v{{ currentVersion }}</span>
@@ -12,16 +15,10 @@
   </a>
   <span class="divider">|</span>
   <a
-    href="mailto:welcome@londonchess.ca?subject=LCC%20Website%20-%20Bug%20Report"
+    href="mailto:michal@londonchess.ca?subject=LCC%20Website%20-%20Bug%20Report"
     class="lcc-link"
     rel="noopener noreferrer"
     target="_blank">
     <span>Report a bug</span>
   </a>
 </address>
-
-@if (isNewVersionAvailable) {
-  <aside class="new-version-notice">
-    [ New website version available! Refresh page to update. ]
-  </aside>
-}

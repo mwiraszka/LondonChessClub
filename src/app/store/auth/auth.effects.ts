@@ -2,46 +2,25 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { catchError, filter, map, switchMap } from 'rxjs/operators';
+import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { AuthService } from '@app/services';
+import { AuthService, LoaderService } from '@app/services';
+import { parseError } from '@app/utils';
 
+import { AuthSelectors } from '.';
 import * as AuthActions from './auth.actions';
-import * as AuthSelectors from './auth.selectors';
 
 @Injectable()
 export class AuthEffects {
   logIn$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.loginRequested),
-      switchMap(({ request }) => {
-        return this.authService.logIn(request).pipe(
-          map(loginResponse => {
-            if (loginResponse.error) {
-              return AuthActions.loginFailed({ error: loginResponse.error });
-            } else if (
-              loginResponse.unverifiedUser &&
-              loginResponse.tempInitialPassword
-            ) {
-              return AuthActions.newPasswordChallengeRequested({
-                user: loginResponse.unverifiedUser,
-                tempInitialPassword: loginResponse.tempInitialPassword,
-              });
-            } else {
-              return AuthActions.loginSucceeded({
-                user: loginResponse.adminUser!,
-              });
-            }
-          }),
-          catchError(() =>
-            of(
-              AuthActions.loginFailed({
-                error: new Error('Unknown login error'),
-              }),
-            ),
-          ),
+      switchMap(({ email, password }) => {
+        return this.authService.logIn(email, password).pipe(
+          map(response => AuthActions.loginSucceeded({ user: response.data })),
+          catchError(error => of(AuthActions.loginFailed({ error: parseError(error) }))),
         );
       }),
     );
@@ -50,33 +29,26 @@ export class AuthEffects {
   logOut$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.logoutRequested),
-      map(() => {
-        this.authService.logOut();
-        return AuthActions.logoutSucceeded();
+      concatLatestFrom(() => this.store.select(AuthSelectors.selectUser)),
+      filter(([, user]) => !!user),
+      switchMap(([{ sessionExpired }]) => {
+        return this.authService.logOut().pipe(
+          map(() => AuthActions.logoutSucceeded({ sessionExpired })),
+          catchError(error => of(AuthActions.logoutFailed({ error: parseError(error) }))),
+        );
       }),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
-  requestPasswordChangeCode$ = createEffect(() => {
+  sendCodeForPasswordChange$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.codeForPasswordChangeRequested),
       switchMap(({ email }) => {
-        return this.authService.sendChangePasswordCode(email).pipe(
-          map(response => {
-            return response?.error
-              ? AuthActions.codeForPasswordChangeFailed({
-                  error: response.error,
-                })
-              : AuthActions.codeForPasswordChangeSucceeded();
-          }),
-          catchError(() =>
-            of(
-              AuthActions.codeForPasswordChangeFailed({
-                error: new Error(
-                  'Unknown error attempting to send password change request',
-                ),
-              }),
-            ),
+        return this.authService.sendCodeForPasswordChange(email).pipe(
+          map(() => AuthActions.codeForPasswordChangeSucceeded()),
+          catchError(error =>
+            of(AuthActions.codeForPasswordChangeFailed({ error: parseError(error) })),
           ),
         );
       }),
@@ -86,47 +58,21 @@ export class AuthEffects {
   changePassword$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.passwordChangeRequested),
-      switchMap(({ request }) => {
-        return this.authService.changePassword(request).pipe(
-          map(response => {
-            return response?.error
-              ? AuthActions.passwordChangeFailed({ error: response.error })
-              : AuthActions.passwordChangeSucceeded({
-                  email: response!.email!,
-                  newPassword: response!.newPassword!,
-                });
-          }),
-          catchError(() =>
-            of(
-              AuthActions.passwordChangeFailed({
-                error: new Error('Unknown password change error'),
-              }),
-            ),
+      switchMap(({ email, password, code }) => {
+        return this.authService.changePassword(email, password, code).pipe(
+          map(response => AuthActions.passwordChangeSucceeded({ user: response.data })),
+          catchError(error =>
+            of(AuthActions.passwordChangeFailed({ error: parseError(error) })),
           ),
         );
       }),
     );
   });
 
-  loginAfterSuccessfulPasswordChange$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(AuthActions.passwordChangeSucceeded),
-      concatLatestFrom(() => this.store.select(AuthSelectors.user)),
-      filter(([, user]) => !user),
-      map(([response]) =>
-        AuthActions.loginRequested({
-          request: {
-            email: response.email,
-            password: response.newPassword,
-          },
-        }),
-      ),
-    );
-  });
-
   constructor(
     private readonly actions$: Actions,
+    private readonly authService: AuthService,
+    private readonly loaderService: LoaderService,
     private readonly store: Store,
-    private authService: AuthService,
   ) {}
 }

@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 body ::-webkit-scrollbar,
 body ::-webkit-scrollbar-corner {
   width: 0.5rem;
@@ -5,7 +7,7 @@ body ::-webkit-scrollbar-corner {
 }
 
 body ::-webkit-scrollbar-thumb {
-  background: mix($lpv-font, $lpv-bg, 20%);
+  background: color.mix($lpv-font, $lpv-bg, 20%);
 }
 
 body ::-webkit-scrollbar-thumb:hover,

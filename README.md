@@ -1,35 +1,28 @@
 # The London Chess Club (LCC) Web App
 
-Welcome to the source code repository for the LCC web app! Here you'll find an overview of the application's architecture, a summary of what's changed with each release, and instructions on how to report a bug or request a change.
+Welcome to the source code repository for the LCC web app! <https://londonchess.ca>
 
-<https://londonchess.ca>
+Below you'll find an overview of the tools and technologies that power the app, as well as what's changed with each release.
 
-## Architecture
+## Tools and technologies
 
-> FRONTEND
-
-- `Angular v18` for frontend framework
-- `NgRx` for reactive state management
-- `Feather` for icons
-- `SCSS` for style preprocessing with Sass
-- `Lichess PGN Viewer` for rendering chess games
-- `Ng2 Charts` for additional game stats
-- `Ng2 PDF Viewer` for PDF documents
-
-> BACKEND (AWS)
-
-- `S3` for static web hosting and image storage
-- `Route 53` for DNS and traffic management
-- `DynamoDB` for a NoSQL database system
-- `API Gateway` for API management and routing
-- `Cognito & IAM` for user authentication
-- `Lambda` for serverless backend functions
-- `CloudFront` for content delivery
-- `EC2` for running an Express.js server, responsible for article image CRUD operations
-
-> DEV OPS
-
-- `GitHub Actions` for automated workflows to build project, run unit tests, and deploy preview & production versions of the website
+| | | |
+| -- | -- | -- |
+| `Angular` | frontend framework | [![Frontend](readme-icons/angular.png)](https://angular.dev) |
+| `AWS CloudFront` | content delivery network service | [![AWS Route 53](readme-icons/aws-route-53.png)](https://aws.amazon.com/route53) |
+| `AWS Cognito` | user management and authentication | [![AWS Cognito](readme-icons/aws-cognito.png)](https://aws.amazon.com/cognito) |
+| `AWS EC2` | compute platform | [![AWS EC2](readme-icons/aws-ec2.png)](https://aws.amazon.com/ec2) |
+| `AWS Route 53` | DNS and traffic management | [![AWS Route 53](readme-icons/aws-cloudfront.png)](https://aws.amazon.com/cloudfront) |
+| `AWS S3` | static web hosting and cloud storage for images | [![AWS S3](readme-icons/aws-s3.png)](https://aws.amazon.com/s3) |
+| `Express.js` | API and routing framework built on Node.js | [![Express.js](readme-icons/expressjs.png)](https://expressjs.com) |
+| `Feather` | icons | [![Feather](readme-icons/feather.png)](https://feathericons.com) |
+| `GitHub Actions` | automated workflows | [![GitHub Actions](readme-icons/github.png)](https://github.com/features/actions) |
+| `Lichess PGN Viewer` | chess game rendering | [![Lichess PGN Viewer](readme-icons/lichess.png)](https://github.com/lichess-org/pgn-viewer) |
+| `MongoDB` | non-relational database management system  | [![MongoDB](readme-icons/mongodb.png)](https://www.mongodb.com) |
+| `Ng2 Charts` | game and player stats | [![Ng2 Charts](readme-icons/ng2-charts.png)](https://valor-software.com/ng2-charts) |
+| `NGINX` | HTTP web server and reverse proxy | [![NGINX](readme-icons/nginx.png)](https://nginx.org/en) |
+| `NgRx` | reactive state management | [![NgRx](readme-icons/ngrx.png)](https://ngrx.io) |
+| `Ngx Markdown` | markdown parsing | [![Ngx Markdown](readme-icons/ngx-markdown.png)](https://github.com/jfcere/ngx-markdown) |
 
 ## Release notes
 
@@ -40,9 +33,44 @@ Welcome to the source code repository for the LCC web app! Here you'll find an o
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.0.0 - February 5th, 2025</summary>
+
+- 🚀 Implement a 'sticky' app header to keep app banners and navigation buttons visible when scrolling down a page
+- 🚀 Adjust layout and colour scheme in various places throughout app to remove any inconsistencies and generally improve the user experience (UX) 
+- 🚀 Create a custom Date Picker component and implement in Event and Member Form component for date-related inputs
+- 🚀 Redesign admin controls and make them accessible via a custom context menu (right-click); add a new bookmark control for a simpler way of adding and removing article bookmarks
+- 🚀 Redesign article 'table of contents' section and have it auto-generate anchor links based on subheadings found in the article markdown data
+- 🚀 Create a new Image Explorer component to allow admin users to reuse existing articles images and to delete any unused ones from the database
+- 🚀 Create a new reusable Overlay service, with built-in mouse & key event listeners
+- 🚀 Create a new reusable Dialog component, with a built-in header and further mouse & key event listeners
+- 🚀 Redesign tooltips and dialogs, and support layered dialogs for contexts where a confirmation dialog needs to be displayed over another dialog
+- 🐛 Prevent page reloads and smoothen scrolling behaviour when accessing anchor links (e.g. the `details` part of an article via `londonchess.ca/article123#details`)
+- 🐛 Prevent various bugs that occurred occassionally when working with article banner images
+- 🐛 Ensure clicking on admin controls and dialogs does not interact with any components below the overlay
+- 🔧 Upgrade to Angular v19
+- 🔧 Adapt Schedule, Members and Articles services for the new backend architecture
+- 🔧 Move entire authentication flow to the new backend
+- 🔧 Convert all frontend date types to either ISO 8601 date strings (standard dates in the format `YYYY-MM-DDTHH:MM:SS`) or `Moment` types in date-heavy contexts where lots of calculations may be needed
+- 🔧 Consolidate all components, directives and pipes into more streamlined standalone components
+- 🔧 Create custom `range` pipe for easier iteration over consecutive integers in templates
+- 🔧 Clean up redundant code in Nav component
+- 🔧 Improve error handling and provide more comprehensive error messages to notification toasts for easier debugging when needed
+- 🔧 Rename 'Schedule' and 'Club Event' features and components to 'Event' wherever appropriate
+- 🔧 Migrate deprecated `@import` rule to `@use`/`@forward` in prepararation for future release of Dart Sass 3.0.0, where `@import` will no longer be available
+- 🔧 Migrate deprecated global built-in functions to use explicit `sass:` prefix
+- 🔧 Migrate from Jasmine to Jest, and add unit tests for various components, pipes, validators, and utility functions
+- 🔧 Update path aliases and remove redundant `.eslintrc` file
+- 🔧 Improve efficiency of custom sorting algorithm (used for sorting members, club events and articles), add support for sorting by an additional secondary key, and handle certain edge cases more appropriately
+
+</details>
+
+<details>
 <summary style="cursor: pointer">
-v4.1.12 - January 24th, 2025
+Archived (September 8th, 2022 – January 24th, 2025)
 </summary>
+
+<details>
+<summary>v4.1.12 - January 24th, 2025</summary>
 
 - 🚀 Update About page with new membership fees for 2025–2028
 - 🚀 Add 'Incremental Plan to Break Even' PDF to Documents
@@ -747,8 +775,6 @@ v2.0.0 - December 20th, 2023
 
 </details>
 
-### Beta version release notes
-
 <details>
 <summary style="cursor: pointer">
 v1.6.8-beta - December 19th, 2023
@@ -1050,8 +1076,6 @@ v1.0.0-beta - September 26th, 2022
 
 </details>
 
-### Alpha version release notes
-
 <details>
 <summary style="cursor: pointer">
 v0.8.2-alpha - September 22nd, 2022
@@ -1095,10 +1119,8 @@ v0.8.0-alpha - September 8th, 2022
 - 🚀 Create a responsive grid layout to showcase only the most pertinent information from other screens (such as only the next 4 events from the schedule, and a more limited amount of photos from the photo gallery)
 
 </details>
+</details>
 
-## Report a bug / Request a change
+## Found a bug? Have a feature request?
 
-Have an idea how we can improve the website? Find a bug?
-
-1. Submit a new issue [here](https://github.com/mwiraszka/LondonChessClub/issues); or
-2. Contact a club committee member
+Submit a new [issue](https://github.com/mwiraszka/LondonChessClub/issues) on GitHub, or [email](mailto:michal@londonchess.ca?subject=LCC%20Website) me directly.

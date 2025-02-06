@@ -1,28 +1,40 @@
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { photos } from 'assets/photos';
 
-import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
-import { Photo } from '@app/types';
+import { PhotoViewerComponent } from '@app/components/photo-viewer/photo-viewer.component';
+import { DialogService } from '@app/services';
 
-import { PhotoGridFacade } from './photo-grid.facade';
-
-@UntilDestroy()
 @Component({
   selector: 'lcc-photo-grid',
-  templateUrl: './photo-grid.component.html',
-  styleUrls: ['./photo-grid.component.scss'],
-  providers: [PhotoGridFacade],
+  template: `
+    @for (
+      photo of photos.slice(0, maxPhotos ?? photos.length);
+      let index = $index;
+      track photo.fileName
+    ) {
+      <img
+        [src]="'assets/photos/' + photo.fileName + '-320.jpg'"
+        [alt]="photo.caption"
+        (click)="onClickPhoto(index)" />
+    }
+  `,
+  styleUrl: './photo-grid.component.scss',
+  imports: [CommonModule],
 })
-export class PhotoGridComponent implements OnInit {
-  @Input() maxPhotos?: number;
+export class PhotoGridComponent {
+  @Input() public maxPhotos?: number;
 
-  photos!: Photo[];
+  public readonly photos = photos;
 
-  constructor(public facade: PhotoGridFacade) {}
+  constructor(private readonly dialogService: DialogService) {}
 
-  ngOnInit(): void {
-    this.facade.photos$.pipe(untilDestroyed(this)).subscribe(photos => {
-      this.photos = photos?.slice(0, this.maxPhotos ?? photos.length);
+  public async onClickPhoto(index: number): Promise<void> {
+    await this.dialogService.open<PhotoViewerComponent, null>({
+      componentType: PhotoViewerComponent,
+      isModal: true,
+      inputs: { photos, index },
     });
   }
 }

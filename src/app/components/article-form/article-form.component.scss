@@ -1,11 +1,13 @@
-@import '../../../styles/components/table';
-
 :host {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   gap: 16px;
+  padding: 8px 16px;
+  box-shadow: 1px 1px 5px 2px var(--lcc-color--form-boxShadow);
+  background-color: var(--lcc-color--form-background);
+  border-radius: var(--lcc-borderRadius--small);
 
   textarea {
     height: 320px;
@@ -13,7 +15,7 @@
 
   .banner-image,
   .loading-placeholder-image {
-    aspect-ratio: 3/2;
+    aspect-ratio: 3 / 2;
     object-fit: cover;
     width: 100%;
     border-radius: var(--lcc-borderRadius--large);
@@ -23,21 +25,31 @@
   .image-controls-container {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
+    flex-flow: row wrap;
     gap: 8px;
 
-    .image-revert-button {
-      width: 34px; // Match button height
-      padding: 2px;
+    label[type='button'] {
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      .revert-icon {
-        width: 18px;
-        height: 18px;
+      input[type='file'] {
+        display: none;
       }
     }
-  }
 
-  input[type='file'] {
-    display: none;
+    button,
+    label[type='button'] {
+      padding: 0;
+      height: 40px;
+      min-width: 40px;
+    }
+
+    .image-title-input {
+      min-width: 150px;
+      flex: 1;
+    }
   }
 
   .preview-section-container {
@@ -48,7 +60,7 @@
     gap: 4px;
     width: 100%;
 
-    h4 {
+    h3 {
       align-self: flex-start;
       font-weight: 400;
       color: var(--lcc-color--articleForm-previewHeaderText);

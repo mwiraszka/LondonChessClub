@@ -21,6 +21,18 @@
   }
 }
 
+.lcc-primary-button {
+  @include lcc-button;
+
+  box-shadow: 1px 1px 4px -2px var(--lcc-color--button-raisedButtonBoxShadow);
+  background-color: var(--lcc-color--button-primaryButtonBackground);
+  color: var(--lcc-color--button-primaryButtonForeground);
+
+  &:hover {
+    background-color: var(--lcc-color--button-primaryButtonBackgroundOnHover);
+  }
+}
+
 .lcc-secondary-button {
   @include lcc-button;
 
@@ -56,18 +68,6 @@
   }
 }
 
-.lcc-primary-button {
-  @include lcc-button;
-
-  box-shadow: 1px 1px 4px -2px var(--lcc-color--button-raisedButtonBoxShadow);
-  background-color: var(--lcc-color--button-primaryButtonBackground);
-  color: var(--lcc-color--button-primaryButtonForeground);
-
-  &:hover {
-    background-color: var(--lcc-color--button-primaryButtonBackgroundOnHover);
-  }
-}
-
 .lcc-warning-button {
   @include lcc-button;
 
@@ -77,5 +77,22 @@
 
   &:hover {
     background-color: var(--lcc-color--button-warningButtonBackgroundOnHover);
+  }
+}
+
+.lcc-icon-button {
+  background-color: unset;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  i-feather {
+    height: 18px;
+    width: 18px;
   }
 }

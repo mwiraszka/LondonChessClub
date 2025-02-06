@@ -1,49 +1,51 @@
-﻿<form
-  class="lcc-form"
-  [formGroup]="form"
-  (ngSubmit)="onSubmit()">
-  <div class="lcc-form-fields">
-    <label for="email-input">Email:</label>
-    <input
-      id="email-input"
-      type="text"
-      name="email"
-      formControlName="email"
-      autocomplete="email"
-      maxlength="50" />
-    <div class="lcc-form-error-container">
-      @if (hasError(form.controls['email'])) {
-        <i-feather
-          name="alert-triangle"
-          class="lcc-form-error-icon validation-alert-icon"
-          [tooltip]="getErrorMessage(form.controls['email'])">
-        </i-feather>
-      }
+﻿@if (form) {
+  <form
+    class="lcc-form"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()">
+    <div class="lcc-form-fields">
+      <label for="email-input">Email:</label>
+      <input
+        id="email-input"
+        type="text"
+        name="email"
+        formControlName="email"
+        autocomplete="email"
+        maxlength="50" />
+      <div class="lcc-form-error-container">
+        @if (hasError(form.controls.email)) {
+          <i-feather
+            name="alert-triangle"
+            class="lcc-form-error-icon validation-alert-icon"
+            [tooltip]="getErrorMessage(form.controls.email)">
+          </i-feather>
+        }
+      </div>
+
+      <label for="password-input">Password:</label>
+      <input
+        id="password-input"
+        type="password"
+        name="password"
+        formControlName="password"
+        maxlength="50" />
     </div>
 
-    <label for="password-input">Password:</label>
-    <input
-      id="password-input"
-      type="password"
-      name="password"
-      formControlName="password"
-      maxlength="50" />
-  </div>
+    <div class="lcc-form-buttons-container">
+      <button
+        class="lcc-primary-button"
+        type="submit"
+        [disabled]="form.invalid">
+        Log in
+      </button>
+    </div>
 
-  <div class="lcc-form-buttons-container">
-    <button
-      class="lcc-primary-button"
-      type="submit"
-      [disabled]="form.invalid">
-      Log in
-    </button>
-  </div>
-
-  <div class="lcc-form-links-container">
-    <a
-      class="lcc-form-link"
-      [routerLink]="'/' + NavPathTypes.CHANGE_PASSWORD">
-      Forgot password?
-    </a>
-  </div>
-</form>
+    <div class="lcc-form-links-container">
+      <a
+        class="lcc-form-link"
+        routerLink="/change-password">
+        Forgot password?
+      </a>
+    </div>
+  </form>
+}

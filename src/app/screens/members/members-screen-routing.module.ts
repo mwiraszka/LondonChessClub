@@ -8,6 +8,10 @@ const routes: Routes = [
     path: '',
     component: MembersScreenComponent,
   },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];
 
 @NgModule({

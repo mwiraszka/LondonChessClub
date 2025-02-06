@@ -1,23 +1,51 @@
-<a
-  class="admin-control-button edit-button"
-  [tooltip]="'Edit ' + itemName"
-  [routerLink]="editPath">
-  <i-feather
-    name="edit"
-    class="edit-icon"
-    [style.height.px]="height - 10"
-    [style.width.px]="height - 10">
-  </i-feather>
-</a>
+@if ((config.bookmarkCb | isDefined) && (config.bookmarked | isDefined)) {
+  <button
+    class="admin-control-button bookmark-button"
+    [ngStyle]="{ 'width.px': config.buttonSize, 'height.px': config.buttonSize }"
+    [tooltip]="bookmarkTooltipContent"
+    (click)="config.bookmarkCb()">
+    <i-feather
+      name="bookmark"
+      class="bookmark-icon">
+    </i-feather>
+  </button>
+}
+
+@if (config.editPath) {
+  <a
+    class="admin-control-button edit-button"
+    [ngStyle]="{ 'width.px': config.buttonSize, 'height.px': config.buttonSize }"
+    [tooltip]="editTooltipContent"
+    [routerLink]="config.editPath | routerLink">
+    <i-feather
+      name="edit"
+      class="edit-icon">
+    </i-feather>
+  </a>
+}
 
 <button
   class="admin-control-button delete-button"
-  [tooltip]="'Delete ' + itemName"
-  (click)="onDelete($event)">
+  [ngStyle]="{ 'width.px': config.buttonSize, 'height.px': config.buttonSize }"
+  [tooltip]="deleteTooltipContent"
+  (click)="config.deleteCb()">
   <i-feather
     name="trash-2"
-    class="delete-icon"
-    [style.height.px]="height - 10"
-    [style.width.px]="height - 10">
+    class="delete-icon">
   </i-feather>
 </button>
+
+<ng-template #bookmarkTooltipContent>
+  <span>{{ config.bookmarked ? 'Remove bookmark from' : 'Bookmark' }}</span>
+  <i class="tooltip-item-name">{{ config.itemName }}</i>
+</ng-template>
+
+<ng-template #editTooltipContent>
+  <span>Edit</span>
+  <i class="tooltip-item-name">{{ config.itemName }}</i>
+</ng-template>
+
+<ng-template #deleteTooltipContent>
+  <span>Delete</span>
+  <i class="tooltip-item-name">{{ config.itemName }}</i>
+</ng-template>

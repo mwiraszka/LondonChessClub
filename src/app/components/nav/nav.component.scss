@@ -1,4 +1,4 @@
-@import '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins';
 
 $border-thickness: 1px;
 $dropdown-tab-width: 60px;
@@ -6,10 +6,12 @@ $dropdown-list-width: 180px;
 $nav-height: 42px;
 
 :host {
+  z-index: 1000;
   display: flex;
   flex-direction: row;
   justify-content: center;
   padding-top: 2px;
+  margin-bottom: 2px;
   background-color: var(--lcc-color--nav-background);
   height: $nav-height;
 }
@@ -28,7 +30,7 @@ i-feather {
 
 .nav-left,
 .nav-right {
-  min-width: 16px;
+  min-width: 8px;
 }
 
 .nav-items-container {
@@ -45,6 +47,7 @@ i-feather {
     border-top-left-radius: var(--lcc-borderRadius--large);
     border-top-right-radius: var(--lcc-borderRadius--large);
     color: var(--lcc-color--nav-linkForeground);
+    white-space: nowrap;
   }
 
   .nav-link {
@@ -80,11 +83,11 @@ i-feather {
       visibility: hidden;
     }
 
-    @include respond-to('gt-sm') {
+    @include mixins.respond-to('gt-sm') {
       padding: 6px 8px;
     }
 
-    @include respond-to('gt-md') {
+    @include mixins.respond-to('gt-md') {
       // Set padding so that height is kept constant on breakpoint transitions
       padding: 10px 8px;
 
@@ -131,7 +134,7 @@ i-feather {
     position: absolute;
     top: $nav-height - 3px;
     left: $dropdown-tab-width - $dropdown-list-width;
-    z-index: 100;
+    z-index: 20;
     box-shadow: 2px 2px 4px 0 var(--lcc-color--nav-dropdownBoxShadow);
     border-bottom-left-radius: var(--lcc-borderRadius--small);
     border-bottom-right-radius: var(--lcc-borderRadius--small);

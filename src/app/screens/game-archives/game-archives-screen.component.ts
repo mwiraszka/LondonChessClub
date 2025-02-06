@@ -1,29 +1,40 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { ChartConfiguration } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
 import { debounceTime, distinctUntilChanged, take } from 'rxjs/operators';
 
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { KeyValue } from '@angular/common';
+import {
+  CdkFixedSizeVirtualScroll,
+  CdkVirtualForOf,
+  CdkVirtualScrollViewport,
+} from '@angular/cdk/scrolling';
+import { CommonModule, KeyValuePipe } from '@angular/common';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 
+import { ExpansionPanelComponent } from '@app/components/expansion-panel/expansion-panel.component';
+import { PgnViewerComponent } from '@app/components/pgn-viewer/pgn-viewer.component';
+import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
+import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import IconsModule from '@app/icons';
+import type { FilterFormGroup, GameDetails } from '@app/models';
 import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';
-import { UserSettingsSelectors } from '@app/store/user-settings';
-import { GameDetails } from '@app/types';
+import { AppSelectors } from '@app/store/app';
 import {
   getOpeningTallies,
   getPlayerName,
   getPlyCount,
   getResultTallies,
   getScore,
-} from '@app/utils/pgn-utils';
+} from '@app/utils';
 
 import * as fromPgns from './pgns';
 import { YEARS } from './years';
@@ -32,24 +43,36 @@ import { YEARS } from './years';
 @Component({
   selector: 'lcc-game-archives-screen',
   templateUrl: './game-archives-screen.component.html',
-  styleUrls: ['./game-archives-screen.component.scss'],
+  styleUrl: './game-archives-screen.component.scss',
+  imports: [
+    BaseChartDirective,
+    CdkFixedSizeVirtualScroll,
+    CdkVirtualForOf,
+    CdkVirtualScrollViewport,
+    CommonModule,
+    ExpansionPanelComponent,
+    IconsModule,
+    KeyValuePipe,
+    PgnViewerComponent,
+    ReactiveFormsModule,
+    ScreenHeaderComponent,
+    TooltipDirective,
+  ],
 })
 export class GameArchivesScreenComponent implements OnInit {
-  allGames: Map<string, GameDetails[]> = new Map();
-  filteredGames: Map<string, GameDetails[]> = new Map();
-  form!: FormGroup;
-  showStats: boolean = false;
-  chessOpenings: Map<string, string> | null = null;
+  public allGames: Map<string, GameDetails[]> = new Map();
+  public chessOpenings: Map<string, string> | null = null;
+  public filteredGames: Map<string, GameDetails[]> = new Map();
+  public form!: FormGroup<FilterFormGroup>;
+  public openingChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
+  public openingChartLabels: string[] = [];
+  public openingChartOptions: ChartConfiguration<'doughnut'>['options'] = {};
+  public resultChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
+  public resultChartLabels: string[] = [];
+  public resultChartOptions: ChartConfiguration<'doughnut'>['options'] = {};
+  public showStats = false;
 
-  openingChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
-  openingChartLabels: string[] = [];
-  openingChartOptions: ChartConfiguration<'doughnut'>['options'] = {};
-
-  resultChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [];
-  resultChartLabels: string[] = [];
-  resultChartOptions: ChartConfiguration<'doughnut'>['options'] = {};
-
-  get searchResultSummaryMessage(): string {
+  public get searchResultSummaryMessage(): string {
     const allGamesCount = Array.from(this.allGames.values()).flat().length;
     const filteredGameCount = this.filteredGameCount;
 
@@ -64,18 +87,18 @@ export class GameArchivesScreenComponent implements OnInit {
     return `Displaying ${filteredGameCount} / ${allGamesCount} ${filteredGameCount === 1 ? 'game' : 'games'} 😎`;
   }
 
-  get filteredGameCount(): number {
+  public get filteredGameCount(): number {
     return Array.from(this.filteredGames.values()).flat().length;
   }
 
   @ViewChild(CdkVirtualScrollViewport)
-  cdkVirtualScrollViewport?: CdkVirtualScrollViewport;
+  public cdkVirtualScrollViewport?: CdkVirtualScrollViewport;
 
   constructor(
-    private chessOpeningsService: ChessOpeningsService,
-    private formBuilder: FormBuilder,
-    private loaderService: LoaderService,
-    private metaAndTitleService: MetaAndTitleService,
+    private readonly chessOpeningsService: ChessOpeningsService,
+    private readonly formBuilder: FormBuilder,
+    private readonly loaderService: LoaderService,
+    private readonly metaAndTitleService: MetaAndTitleService,
     private readonly store: Store,
   ) {}
 
@@ -83,8 +106,6 @@ export class GameArchivesScreenComponent implements OnInit {
   onResize(): void {
     this.cdkVirtualScrollViewport?.checkViewportSize();
   }
-
-  trackByFn = (index: number) => index;
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Game Archives');
@@ -94,55 +115,47 @@ export class GameArchivesScreenComponent implements OnInit {
 
     this.initForm();
     this.initGames();
-    this.initValueChangesListeners();
-    this.setUpDarkModeListeners();
+    this.initFormValueChangeListeners();
+    this.initDarkModeListener();
     this.loadChessOpenings();
     this.filterGames();
   }
 
-  onKeydown(event: Event): void {
+  public trackByFn = (index: number) => index;
+
+  public onKeydown(event: Event): void {
     const key = (event as KeyboardEvent)?.key;
     if (key === 'ArrowLeft' || key === 'ArrowRight') {
       event.preventDefault();
     }
   }
 
-  onShowStats(): void {
-    this.showStats = !this.showStats;
-  }
-
-  hasError(control: AbstractControl): boolean {
+  public hasError(control: AbstractControl): boolean {
     return control.dirty && control.invalid;
   }
 
-  getErrorMessage(): string {
-    return 'Invalid input';
-  }
-
-  originalOrder = (
-    a: KeyValue<string, GameDetails[]>,
-    b: KeyValue<string, GameDetails[]>,
-  ): number => {
+  public originalOrder = (): number => {
     return 0;
   };
 
   private initForm(): void {
     this.form = this.formBuilder.group({
-      name: new FormControl(''),
-      asWhite: new FormControl(true),
-      asBlack: new FormControl(true),
-      movesMin: new FormControl('', [
-        Validators.max(999),
-        Validators.pattern(/^[0-9]*$/),
-      ]),
-      movesMax: new FormControl('', [
-        Validators.max(999),
-        Validators.pattern(/^[0-9]*$/),
-      ]),
-      resultWhiteWon: new FormControl(true),
-      resultDraw: new FormControl(true),
-      resultBlackWon: new FormControl(true),
-      resultInconclusive: new FormControl(true),
+      firstName: new FormControl('', { nonNullable: true }),
+      lastName: new FormControl('', { nonNullable: true }),
+      asWhite: new FormControl(true, { nonNullable: true }),
+      asBlack: new FormControl(true, { nonNullable: true }),
+      movesMin: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.max(999), Validators.pattern(/^[0-9]*$/)],
+      }),
+      movesMax: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.max(999), Validators.pattern(/^[0-9]*$/)],
+      }),
+      resultWhiteWon: new FormControl(true, { nonNullable: true }),
+      resultDraw: new FormControl(true, { nonNullable: true }),
+      resultBlackWon: new FormControl(true, { nonNullable: true }),
+      resultInconclusive: new FormControl(true, { nonNullable: true }),
     });
   }
 
@@ -154,9 +167,11 @@ export class GameArchivesScreenComponent implements OnInit {
         pgns.map(pgn => {
           return {
             pgn,
-            whiteName: getPlayerName(pgn, 'White'),
+            whiteFirstName: getPlayerName(pgn, 'first', 'White'),
+            whiteLastName: getPlayerName(pgn, 'last', 'White'),
             whiteScore: getScore(pgn, 'White'),
-            blackName: getPlayerName(pgn, 'Black'),
+            blackFirstName: getPlayerName(pgn, 'first', 'Black'),
+            blackLastName: getPlayerName(pgn, 'last', 'Black'),
             blackScore: getScore(pgn, 'Black'),
             plyCount: getPlyCount(pgn),
           };
@@ -165,9 +180,9 @@ export class GameArchivesScreenComponent implements OnInit {
     });
   }
 
-  private initValueChangesListeners(): void {
+  private initFormValueChangeListeners(): void {
     this.form.valueChanges
-      .pipe(distinctUntilChanged(), debounceTime(100), untilDestroyed(this))
+      .pipe(distinctUntilChanged(), debounceTime(250), untilDestroyed(this))
       .subscribe(() => this.filterGames());
 
     this.form.controls['asBlack'].valueChanges.subscribe(asBlack => {
@@ -229,9 +244,9 @@ export class GameArchivesScreenComponent implements OnInit {
     );
   }
 
-  private setUpDarkModeListeners(): void {
+  private initDarkModeListener(): void {
     this.store
-      .select(UserSettingsSelectors.isDarkMode)
+      .select(AppSelectors.selectIsDarkMode)
       .pipe(untilDestroyed(this))
       .subscribe(isDarkMode => {
         this.openingChartOptions = {
@@ -259,9 +274,10 @@ export class GameArchivesScreenComponent implements OnInit {
   private async filterGames(): Promise<void> {
     this.loaderService.setIsLoading(true);
 
-    const name = this.form.value['name']?.toLowerCase();
-    const pliesMin = this.form.value['movesMin'] * 2;
-    const pliesMax = this.form.value['movesMax'] * 2;
+    const firstName = this.form.value['firstName']?.toLowerCase();
+    const lastName = this.form.value['lastName']?.toLowerCase();
+    const pliesMin = Number(this.form.value['movesMin']) * 2;
+    const pliesMax = Number(this.form.value['movesMax']) * 2;
     const asWhite = this.form.value['asWhite'];
     const asBlack = this.form.value['asBlack'];
     const resultWhiteWon = this.form.value['resultWhiteWon'];
@@ -273,13 +289,17 @@ export class GameArchivesScreenComponent implements OnInit {
     this.allGames.forEach((games, year) => {
       const filteredGames = games
         .filter(game => {
-          if (!name) {
-            return true;
-          }
           return (
-            name !== '' &&
-            ((asWhite && game.whiteName?.toLowerCase().includes(name)) ||
-              (asBlack && game.blackName?.toLowerCase().includes(name)))
+            !firstName ||
+            (asWhite && game.whiteFirstName?.toLowerCase().includes(firstName)) ||
+            (asBlack && game.blackFirstName?.toLowerCase().includes(firstName))
+          );
+        })
+        .filter(game => {
+          return (
+            !lastName ||
+            (asWhite && game.whiteLastName?.toLowerCase().includes(lastName)) ||
+            (asBlack && game.blackLastName?.toLowerCase().includes(lastName))
           );
         })
         .filter(game => {
@@ -312,7 +332,7 @@ export class GameArchivesScreenComponent implements OnInit {
 
   private updateStats(games: Map<string, GameDetails[]>): void {
     const pgns: string[] = [];
-    for (let [year] of games) {
+    for (const [year] of games) {
       const pgnsForThisYear = games.get(year)?.map(game => game.pgn) ?? [];
       pgns.push(...pgnsForThisYear);
     }

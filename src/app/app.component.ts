@@ -65,9 +65,16 @@ export class AppComponent implements OnInit {
         filter(event => event instanceof NavigationEnd && !event.url.split('#')[1]),
       )
       .subscribe(() => this._document.querySelector('main')!.scrollTo({ top: 0 }));
+
+    this.clearOldLocalStorageKeys();
   }
 
   public onClearBanner(): void {
     this.store.dispatch(AppActions.upcomingEventBannerCleared());
+  }
+
+  private clearOldLocalStorageKeys(): void {
+    const oldKeys = ['articles', 'auth', 'members', 'nav', 'schedule', 'user-settings'];
+    oldKeys.forEach(key => localStorage.removeItem(key));
   }
 }

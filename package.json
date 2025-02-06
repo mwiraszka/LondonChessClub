@@ -1,6 +1,6 @@
 {
   "name": "lcc-frontend",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Frontend for the London Chess Club website, built with Angular",
   "author": "Michal Wiraszka (https://wiraszka.com)",
   "repository": {
@@ -13,8 +13,9 @@
     "ng": "ng",
     "start": "ng serve -o",
     "start:prod": "ng serve -o --configuration production",
-    "build": "ng build --configuration production",
-    "build:http": "ng build --configuration production && http-server ./dist",
+    "build:dev": "ng build",
+    "build:preview": "ng build --configuration preview",
+    "build:prod": "ng build --configuration production",
     "build:stats": "ng build --stats-json && webpack-bundle-analyzer dist/stats.json",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
@@ -47,7 +48,6 @@
     "@webcomponents/webcomponentsjs": "2.8.0",
     "angular-feather": "6.5.1",
     "chart.js": "4.4.6",
-    "http-server": "14.1.1",
     "lichess-pgn-viewer": "2.1.3",
     "lodash": "4.17.21",
     "marked": "15.0.3",

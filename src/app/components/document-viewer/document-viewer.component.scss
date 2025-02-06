@@ -13,7 +13,7 @@
 pdf-viewer {
   width: var(--lcc-width--appContent);
   max-width: inherit;
-  height: 90vh;
+  height: 90dvh;
 
   ::ng-deep .ng2-pdf-viewer-container {
     overflow-x: hidden;

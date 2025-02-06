@@ -109,7 +109,7 @@ export const selectSortedMembers = createSelector(
           ? 'modificationInfo.dateLastEdited'
           : sortedBy;
     return [...allMembers].sort((a, b) =>
-      customSort(a, b, sortKey, isAscending, 'lastName'),
+      customSort(a, b, sortKey, !isAscending, 'lastName'),
     );
   },
 );

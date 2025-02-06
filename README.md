@@ -6,7 +6,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 
 ## Tools and technologies
 
-| | | |
+| | | <div style="width: 50px"></div> |
 | -- | -- | -- |
 | `Angular` | frontend framework | [![Frontend](readme-icons/angular.png)](https://angular.dev) |
 | `AWS CloudFront` | content delivery network service | [![AWS Route 53](readme-icons/aws-route-53.png)](https://aws.amazon.com/route53) |
@@ -31,6 +31,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🚀  | New features & improvements       |
 | 🐛  | Bug fixes                         |
 | 🔧  | Behind-the-scenes changes         |
+
+<details>
+<summary>v5.0.1 - February 6th, 2025</summary>
+
+- 🐛 Minor bug fixes related to Members table sorting, app layout on mobile, and some funny business with icons in this README file
+
+</details>
 
 <details>
 <summary>v5.0.0 - February 5th, 2025</summary>

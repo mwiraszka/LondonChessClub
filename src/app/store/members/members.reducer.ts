@@ -110,7 +110,7 @@ export const membersReducer = createReducer(
     (state, { header }): MembersState => ({
       ...state,
       sortedBy: header,
-      isAscending: header === state.sortedBy ? !state.isAscending : false,
+      isAscending: header === state.sortedBy ? !state.isAscending : state.isAscending,
       pageNum: 1,
     }),
   ),

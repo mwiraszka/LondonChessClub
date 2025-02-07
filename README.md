@@ -4,25 +4,25 @@ Welcome to the source code repository for the LCC web app! <https://londonchess.
 
 Below you'll find an overview of the tools and technologies that power the app, as well as what's changed with each release.
 
-## Tools and technologies
+## Tools & technologies
 
-| | | <div style="width: 50px"></div> |
+| | | |
 | -- | -- | -- |
-| `Angular` | frontend framework | [![Frontend](readme-icons/angular.png)](https://angular.dev) |
-| `AWS CloudFront` | content delivery network service | [![AWS Route 53](readme-icons/aws-route-53.png)](https://aws.amazon.com/route53) |
-| `AWS Cognito` | user management and authentication | [![AWS Cognito](readme-icons/aws-cognito.png)](https://aws.amazon.com/cognito) |
-| `AWS EC2` | compute platform | [![AWS EC2](readme-icons/aws-ec2.png)](https://aws.amazon.com/ec2) |
-| `AWS Route 53` | DNS and traffic management | [![AWS Route 53](readme-icons/aws-cloudfront.png)](https://aws.amazon.com/cloudfront) |
-| `AWS S3` | static web hosting and cloud storage for images | [![AWS S3](readme-icons/aws-s3.png)](https://aws.amazon.com/s3) |
-| `Express.js` | API and routing framework built on Node.js | [![Express.js](readme-icons/expressjs.png)](https://expressjs.com) |
-| `Feather` | icons | [![Feather](readme-icons/feather.png)](https://feathericons.com) |
-| `GitHub Actions` | automated workflows | [![GitHub Actions](readme-icons/github.png)](https://github.com/features/actions) |
-| `Lichess PGN Viewer` | chess game rendering | [![Lichess PGN Viewer](readme-icons/lichess.png)](https://github.com/lichess-org/pgn-viewer) |
-| `MongoDB` | non-relational database management system  | [![MongoDB](readme-icons/mongodb.png)](https://www.mongodb.com) |
-| `Ng2 Charts` | game and player stats | [![Ng2 Charts](readme-icons/ng2-charts.png)](https://valor-software.com/ng2-charts) |
-| `NGINX` | HTTP web server and reverse proxy | [![NGINX](readme-icons/nginx.png)](https://nginx.org/en) |
-| `NgRx` | reactive state management | [![NgRx](readme-icons/ngrx.png)](https://ngrx.io) |
-| `Ngx Markdown` | markdown parsing | [![Ngx Markdown](readme-icons/ngx-markdown.png)](https://github.com/jfcere/ngx-markdown) |
+| <div style="min-width: 50px"><a href="https://angular.dev" alt="Angular"><img src="readme-icons/angular.png" /></div> | `Angular` | frontend framework |
+| [![AWS Route 53](readme-icons/aws-route-53.png)](https://aws.amazon.com/route53) | `AWS CloudFront` | content delivery network service |
+| [![AWS Cognito](readme-icons/aws-cognito.png)](https://aws.amazon.com/cognito) | `AWS Cognito` | user management and authentication |
+| [![AWS EC2](readme-icons/aws-ec2.png)](https://aws.amazon.com/ec2) | `AWS EC2` | compute platform |
+| [![AWS Route 53](readme-icons/aws-cloudfront.png)](https://aws.amazon.com/cloudfront) | `AWS Route 53` | DNS and traffic management |
+| [![AWS S3](readme-icons/aws-s3.png)](https://aws.amazon.com/s3) | `AWS S3` | static web hosting and cloud storage for images |
+| [![Express.js](readme-icons/expressjs.png)](https://expressjs.com) | `Express.js` | API and routing framework built on Node.js |
+| [![Feather](readme-icons/feather.png)](https://feathericons.com) | `Feather` | icons |
+| [![GitHub Actions](readme-icons/github.png)](https://github.com/features/actions) | `GitHub Actions` | automated workflows |
+| [![Lichess PGN Viewer](readme-icons/lichess.png)](https://github.com/lichess-org/pgn-viewer) | `Lichess PGN Viewer` | chess game rendering |
+| [![MongoDB](readme-icons/mongodb.png)](https://www.mongodb.com) | `MongoDB` | non-relational database management system  |
+| [![Ng2 Charts](readme-icons/ng2-charts.png)](https://valor-software.com/ng2-charts) | `Ng2 Charts` | game and player stats |
+| [![NGINX](readme-icons/nginx.png)](https://nginx.org/en) | `NGINX` | HTTP web server and reverse proxy |
+| [![NgRx](readme-icons/ngrx.png)](https://ngrx.io) | `NgRx` | reactive state management |
+| [![Ngx Markdown](readme-icons/ngx-markdown.png)](https://github.com/jfcere/ngx-markdown) | `Ngx Markdown` | markdown parsing |
 
 ## Release notes
 

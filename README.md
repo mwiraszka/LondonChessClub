@@ -33,6 +33,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.0.2 - February 9th, 2025</summary>
+
+- 🚀 Add support for ordered lists and width settings on article images in markdown editor
+
+</details>
+
+<details>
 <summary>v5.0.1 - February 6th, 2025</summary>
 
 - 🐛 Minor bug fixes related to Members table sorting, app layout on mobile, and some funny business with icons in this README file

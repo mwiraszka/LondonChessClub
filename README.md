@@ -33,6 +33,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.0.4 - February 12th, 2025</summary>
+
+- 🔧 Integrate Plausible for outbound links, file downloads, hashed page paths and login button click events
+
+</details>
+
+<details>
 <summary>v5.0.3 - February 11th, 2025</summary>
 
 - 🔧 Fix README icons & begin prep work for new Photo Gallery 

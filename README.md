@@ -6,9 +6,9 @@ Below you'll find an overview of the tools and technologies that power the app, 
 
 ## Tools & technologies
 
-| | | <div style="width: 50px"></div> |
-| -- | -- | -- |
-| <div style="min-width: 50px"><a href="https://angular.dev" alt="Angular"><img src="readme-icons/angular.png" /></div> | `Angular` | frontend framework |
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | |
+|-|-|-|
+| [![Angular](readme-icons/angular.png)](https://angular.dev) | `Angular` | frontend framework |
 | [![AWS Route 53](readme-icons/aws-route-53.png)](https://aws.amazon.com/route53) | `AWS CloudFront` | content delivery network service |
 | [![AWS Cognito](readme-icons/aws-cognito.png)](https://aws.amazon.com/cognito) | `AWS Cognito` | user management and authentication |
 | [![AWS EC2](readme-icons/aws-ec2.png)](https://aws.amazon.com/ec2) | `AWS EC2` | compute platform |
@@ -18,7 +18,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | [![Feather](readme-icons/feather.png)](https://feathericons.com) | `Feather` | icons |
 | [![GitHub Actions](readme-icons/github.png)](https://github.com/features/actions) | `GitHub Actions` | automated workflows |
 | [![Lichess PGN Viewer](readme-icons/lichess.png)](https://github.com/lichess-org/pgn-viewer) | `Lichess PGN Viewer` | chess game rendering |
-| [![MongoDB](readme-icons/mongodb.png)](https://www.mongodb.com) | `MongoDB` | non-relational database management system  |
+| [![MongoDB](readme-icons/mongodb.png)](https://www.mongodb.com) | `MongoDB` | database management system  |
 | [![Ng2 Charts](readme-icons/ng2-charts.png)](https://valor-software.com/ng2-charts) | `Ng2 Charts` | game and player stats |
 | [![NGINX](readme-icons/nginx.png)](https://nginx.org/en) | `NGINX` | HTTP web server and reverse proxy |
 | [![NgRx](readme-icons/ngrx.png)](https://ngrx.io) | `NgRx` | reactive state management |
@@ -31,6 +31,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🚀  | New features & improvements       |
 | 🐛  | Bug fixes                         |
 | 🔧  | Behind-the-scenes changes         |
+
+<details>
+<summary>v5.0.3 - February 11th, 2025</summary>
+
+- 🔧 Fix README icons & begin prep work for new Photo Gallery 
+
+</details>
 
 <details>
 <summary>v5.0.2 - February 9th, 2025</summary>

@@ -1,23 +1,17 @@
-import { Store } from '@ngrx/store';
-
 import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
-import { DropdownDirective } from '@app/components/dropdown/dropdown.directive';
-import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
-import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { DropdownDirective } from '@app/directives/dropdown.directive';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import IconsModule from '@app/icons';
 import type { InternalLink } from '@app/models';
 import { RouterLinkPipe } from '@app/pipes';
-import { AppActions } from '@app/store/app';
-import { AuthActions } from '@app/store/auth';
-import { NavSelectors } from '@app/store/nav';
 
 @Component({
-  selector: 'lcc-nav',
-  templateUrl: './nav.component.html',
-  styleUrl: './nav.component.scss',
+  selector: 'lcc-navigation-bar',
+  templateUrl: './navigation-bar.component.html',
+  styleUrl: './navigation-bar.component.scss',
   imports: [
     CommonModule,
     DropdownDirective,
@@ -25,11 +19,10 @@ import { NavSelectors } from '@app/store/nav';
     RouterLink,
     RouterLinkActive,
     RouterLinkPipe,
-    ToggleSwitchComponent,
     TooltipDirective,
   ],
 })
-export class NavComponent {
+export class NavigationBarComponent {
   public readonly links: InternalLink[] = [
     {
       text: 'Home',
@@ -72,27 +65,12 @@ export class NavComponent {
       icon: 'grid',
     },
   ];
-  public readonly navViewModel$ = this.store.select(NavSelectors.selectNavViewModel);
 
   public isDropdownOpen = false;
   public screenWidth = window.innerWidth;
 
-  constructor(private readonly store: Store) {}
-
   @HostListener('window:resize', ['$event'])
   private onResize(): void {
     this.screenWidth = window.innerWidth;
-  }
-
-  public onLogout(): void {
-    this.store.dispatch(AuthActions.logoutRequested({}));
-  }
-
-  public onToggleTheme(): void {
-    this.store.dispatch(AppActions.themeToggled());
-  }
-
-  public onToggleSafeMode(): void {
-    this.store.dispatch(AppActions.safeModeToggled());
   }
 }

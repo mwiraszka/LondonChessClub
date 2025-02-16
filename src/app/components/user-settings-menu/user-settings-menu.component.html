@@ -1,0 +1,69 @@
+@if (userSettingsMenuViewModel$ | async; as vm) {
+  <ul class="menu-items">
+    @if (vm.user) {
+      <li class="menu-item user-name">
+        <i-feather name="user"></i-feather>
+        <span>{{ vm.user.firstName }} {{ vm.user.lastName }}</span>
+      </li>
+      <hr />
+    }
+
+    <li class="menu-item theme-toggle">
+      <span>Theme</span>
+      <lcc-toggle-switch
+        [condition]="vm.isDarkMode"
+        tooltipTextWhenOff="Switch to dark mode"
+        tooltipTextWhenOn="Switch to light mode"
+        (toggle)="onToggleTheme()">
+      </lcc-toggle-switch>
+    </li>
+
+    @if (vm.user) {
+      <li class="menu-item safe-mode-toggle">
+        <div class="safe-mode-toggle-container">
+          <span>Safe mode</span>
+          @if (!vm.isSafeMode) {
+            <i-feather
+              name="alert-triangle"
+              class="safe-mode-off-alert-icon"
+              tooltip="Safe mode is turned off">
+            </i-feather>
+          }
+        </div>
+        <lcc-toggle-switch
+          [condition]="vm.isSafeMode"
+          tooltipTextWhenOff="Hide members' emails, phone numbers and year of birth from screen"
+          tooltipTextWhenOn="Show members' emails, phone numbers and year of birth on screen"
+          (toggle)="onToggleSafeMode()">
+        </lcc-toggle-switch>
+      </li>
+
+      <li class="menu-item">
+        <a
+          aria-label="Change password"
+          class="lcc-dropdown-link"
+          (click)="onChangePassword()">
+          <span>Change password</span>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a
+          aria-label="Log out"
+          class="lcc-dropdown-link"
+          (click)="onLogout()">
+          <span>Log out</span>
+        </a>
+      </li>
+    } @else {
+      <li class="menu-item">
+        <a
+          aria-label="Admin login"
+          class="lcc-dropdown-link"
+          (click)="onLogin()">
+          <span>Admin login</span>
+        </a>
+      </li>
+    }
+  </ul>
+}

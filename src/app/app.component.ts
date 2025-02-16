@@ -10,7 +10,7 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
 import { FooterComponent } from '@app/components/footer/footer.component';
 import { HeaderComponent } from '@app/components/header/header.component';
-import { NavComponent } from '@app/components/nav/nav.component';
+import { NavigationBarComponent } from '@app/components/navigation-bar/navigation-bar.component';
 import { ToasterComponent } from '@app/components/toaster/toaster.component';
 import { UpcomingEventBannerComponent } from '@app/components/upcoming-event-banner/upcoming-event-banner.component';
 import { LoaderService } from '@app/services';
@@ -27,7 +27,7 @@ import { isDefined } from '@app/utils';
     CommonModule,
     FooterComponent,
     HeaderComponent,
-    NavComponent,
+    NavigationBarComponent,
     RouterOutlet,
     ToasterComponent,
     UpcomingEventBannerComponent,
@@ -46,6 +46,16 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initAppViewModel();
+    this.initNavigationListenerForScrollingBackToTop();
+    this.clearOldLocalStorageKeys();
+  }
+
+  public onClearBanner(): void {
+    this.store.dispatch(AppActions.upcomingEventBannerCleared());
+  }
+
+  private initAppViewModel(): void {
     this.appViewModel$
       .pipe(untilDestroyed(this))
       .subscribe(({ isDarkMode, bannerLastCleared }) => {
@@ -58,19 +68,15 @@ export class AppComponent implements OnInit {
           this.store.dispatch(AppActions.upcomingEventBannerReinstated());
         }
       });
+  }
 
+  private initNavigationListenerForScrollingBackToTop(): void {
     this.router.events
       .pipe(
         untilDestroyed(this),
         filter(event => event instanceof NavigationEnd && !event.url.split('#')[1]),
       )
       .subscribe(() => this._document.querySelector('main')!.scrollTo({ top: 0 }));
-
-    this.clearOldLocalStorageKeys();
-  }
-
-  public onClearBanner(): void {
-    this.store.dispatch(AppActions.upcomingEventBannerCleared());
   }
 
   private clearOldLocalStorageKeys(): void {

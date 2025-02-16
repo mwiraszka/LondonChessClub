@@ -18,11 +18,11 @@ export class ImagePreloadDirective {
 
   @HostBinding('class') className?: string;
 
-  updateUrl(): void {
+  public updateUrl(): void {
     this.src = this.default;
   }
 
-  load(): void {
+  public load(): void {
     this.className = 'lcc-image-loaded';
   }
 }

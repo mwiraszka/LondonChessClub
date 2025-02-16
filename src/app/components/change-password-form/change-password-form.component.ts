@@ -14,7 +14,7 @@ import {
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
-import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import IconsModule from '@app/icons';
 import type { ChangePasswordFormGroup } from '@app/models';
 import { AuthActions, AuthSelectors } from '@app/store/auth';

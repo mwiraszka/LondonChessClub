@@ -23,7 +23,7 @@ import {
 import { ExpansionPanelComponent } from '@app/components/expansion-panel/expansion-panel.component';
 import { PgnViewerComponent } from '@app/components/pgn-viewer/pgn-viewer.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
-import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import IconsModule from '@app/icons';
 import type { FilterFormGroup, GameDetails } from '@app/models';
 import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';

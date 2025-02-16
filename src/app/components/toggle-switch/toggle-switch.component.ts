@@ -3,7 +3,7 @@ import * as uuid from 'uuid';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 
 @Component({
   selector: 'lcc-toggle-switch',

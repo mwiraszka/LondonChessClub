@@ -4,10 +4,10 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { AdminControlsDirective } from '@app/components/admin-controls/admin-controls.directive';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
-import { ImagePreloadDirective } from '@app/components/image-preload/image-preload.directive';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
+import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import IconsModule from '@app/icons';
 import type {
   AdminControlsConfig,

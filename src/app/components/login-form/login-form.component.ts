@@ -12,7 +12,7 @@ import {
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
-import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import IconsModule from '@app/icons';
 import { LoginFormGroup } from '@app/models';
 import { AuthActions } from '@app/store/auth';

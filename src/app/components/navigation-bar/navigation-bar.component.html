@@ -1,0 +1,39 @@
+<div class="nav-left"></div>
+
+<div class="content-container">
+  <div class="nav-links">
+    @for (link of links; track link.internalPath) {
+      <a
+        [attr.aria-label]="link.text"
+        class="nav-link"
+        routerLinkActive="link-active"
+        [routerLink]="link.internalPath | routerLink"
+        [routerLinkActiveOptions]="{ exact: true }"
+        [tooltip]="screenWidth > 700 ? null : link.text">
+        <span class="link-text">{{ link.text }}</span>
+        <i-feather
+          class="link-icon"
+          [name]="link.icon!">
+        </i-feather>
+      </a>
+    }
+  </div>
+
+  <div class="nav-mid"></div>
+
+  <button
+    class="user-settings-button lcc-icon-button"
+    dropdown
+    (isOpen)="isDropdownOpen = $event">
+    <i-feather
+      name="settings"
+      class="settings-icon">
+    </i-feather>
+    <i-feather
+      [name]="isDropdownOpen ? 'chevron-down' : 'chevron-up'"
+      class="dropdown-icon">
+    </i-feather>
+  </button>
+</div>
+
+<div class="nav-right"></div>

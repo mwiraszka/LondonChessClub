@@ -4,10 +4,10 @@ import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
-import { AdminControlsDirective } from '@app/components/admin-controls/admin-controls.directive';
 import { ArticleComponent } from '@app/components/article/article.component';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import type {
   AdminControlsConfig,
   Article,

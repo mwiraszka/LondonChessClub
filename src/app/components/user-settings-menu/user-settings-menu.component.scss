@@ -1,0 +1,77 @@
+:host {
+  box-shadow: 2px 2px 4px 0 var(--lcc-color--userSettingsMenu-boxShadow);
+
+  .menu-items {
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    background-color: var(--lcc-color--userSettingsMenu-background);
+    border-bottom-left-radius: var(--lcc-borderRadius--small);
+    border-bottom-right-radius: var(--lcc-borderRadius--small);
+
+    hr {
+      border-top: 1px solid var(--lcc-color--general-dividerLine);
+      margin: 4px;
+    }
+
+    .menu-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: var(--lcc-color--userSettingsMenu-itemForeground);
+
+      &.user-name {
+        flex: 1;
+        justify-content: center;
+        margin: 4px;
+      }
+
+      &.theme-toggle,
+      &.safe-mode-toggle {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2px;
+
+        span {
+          padding-right: 8px !important;
+        }
+
+        .safe-mode-toggle-container {
+          padding-right: 8px !important;
+          display: flex;
+          align-items: center;
+
+          .safe-mode-off-alert-icon {
+            height: 20px;
+            width: 20px;
+            color: var(--lcc-color--userSettingsMenu-safeModeOffAlertIcon);
+          }
+        }
+
+        lcc-toggle-switch {
+          padding-right: 16px;
+        }
+      }
+
+      span {
+        font-size: var(--lcc-fontSize--h4);
+        padding: 8px 16px;
+      }
+
+      a {
+        flex: 1;
+
+        &:hover > * {
+          cursor: pointer;
+          background-color: var(--lcc-color--userSettingsMenu-itemBackgroundOnHover);
+          color: var(--lcc-color--userSettingsMenu-itemTextOnHover);
+        }
+
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+}

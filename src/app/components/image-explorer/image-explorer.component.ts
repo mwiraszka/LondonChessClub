@@ -7,8 +7,8 @@ import { CdkScrollable, CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
-import { AdminControlsDirective } from '@app/components/admin-controls/admin-controls.directive';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
+import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import IconsModule from '@app/icons';
 import type {
   AdminControlsConfig,

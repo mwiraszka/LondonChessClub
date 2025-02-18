@@ -33,6 +33,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.0.5 - February 18th, 2025</summary>
+
+- 🔧 Split Nav component into separate Navigation Bar and User Settings Menu components, and all dropdown-related logic into a dedicated Dropdown directive
+
+</details>
+
+<details>
 <summary>v5.0.4 - February 12th, 2025</summary>
 
 - 🔧 Integrate Plausible for outbound links, file downloads, hashed page paths and login button click events

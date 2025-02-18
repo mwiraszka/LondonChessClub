@@ -24,7 +24,7 @@ import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
         </a>
 
         <button
-          class="lcc-icon-button close-button"
+          class="close-button lcc-icon-button"
           (click)="clearBanner.emit()">
           <i-feather
             name="x"

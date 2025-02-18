@@ -1,9 +1,6 @@
 import { getRouterSelectors } from '@ngrx/router-store';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { AppSelectors } from '@app/store/app';
-import { AuthSelectors } from '@app/store/auth';
-
 import { NavState } from './nav.reducer';
 
 export const selectNavState = createFeatureSelector<NavState>('navState');
@@ -31,9 +28,3 @@ export const {
   selectUrl, // select the current url
   selectTitle, // select the title if available
 } = getRouterSelectors();
-
-export const selectNavViewModel = createSelector({
-  user: AuthSelectors.selectUser,
-  isDarkMode: AppSelectors.selectIsDarkMode,
-  isSafeMode: AppSelectors.selectIsSafeMode,
-});

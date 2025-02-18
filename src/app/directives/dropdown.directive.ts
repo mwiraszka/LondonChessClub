@@ -12,40 +12,32 @@ import {
   ComponentRef,
   Directive,
   ElementRef,
+  EventEmitter,
   HostListener,
-  InjectionToken,
-  Injector,
-  Input,
-  OnDestroy,
+  Output,
   Renderer2,
   ViewContainerRef,
 } from '@angular/core';
 
-import { AdminControlsConfig } from '@app/models';
-import { DialogService } from '@app/services';
-
-import { AdminControlsComponent } from './admin-controls.component';
-
-export const ADMIN_CONTROLS_CONFIG = new InjectionToken<AdminControlsConfig>(
-  'Admin Controls Config',
-);
+import { UserSettingsMenuComponent } from '@app/components/user-settings-menu/user-settings-menu.component';
 
 @UntilDestroy()
 @Directive({
-  selector: '[adminControls]',
+  selector: '[dropdown]',
 })
-export class AdminControlsDirective implements OnDestroy {
-  @Input() public adminControls: AdminControlsConfig | null = null;
-
-  private adminControlsComponentRef: ComponentRef<AdminControlsComponent> | null = null;
+export class DropdownDirective {
+  // Hardcoded for UserSettingsMenuComponent since it's the only component currently using
+  // this directive
+  private componentRef: ComponentRef<UserSettingsMenuComponent> | null = null;
   private documentClickListener?: () => void;
   private documentContextMenuListener?: () => void;
   private escapeKeyListener?: () => void;
   private overlayRef: OverlayRef | null = null;
 
+  @Output() public readonly isOpen = new EventEmitter<boolean>();
+
   constructor(
-    private readonly dialogService: DialogService,
-    private readonly element: ElementRef<HTMLElement>,
+    private readonly elementRef: ElementRef<HTMLElement>,
     private readonly overlay: Overlay,
     private readonly renderer: Renderer2,
     private readonly viewContainerRef: ViewContainerRef,
@@ -55,11 +47,11 @@ export class AdminControlsDirective implements OnDestroy {
     this.overlayRef?.dispose();
   }
 
-  @HostListener('contextmenu', ['$event'])
-  public onContextMenu(event: MouseEvent): void {
-    event.preventDefault();
-
-    if (this.adminControls && !this.overlayRef?.hasAttached()) {
+  @HostListener('click', ['$event'])
+  public onClick(): void {
+    if (this.overlayRef?.hasAttached()) {
+      this.detach();
+    } else {
       this.attach();
     }
   }
@@ -71,41 +63,24 @@ export class AdminControlsDirective implements OnDestroy {
       this.overlayRef = this.overlay.create({ positionStrategy, scrollStrategy });
     }
 
-    const injector = Injector.create({
-      providers: [
-        {
-          provide: ADMIN_CONTROLS_CONFIG,
-          useValue: this.adminControls,
-        },
-      ],
-    });
-
     const componentPortal = new ComponentPortal(
-      AdminControlsComponent,
+      UserSettingsMenuComponent,
       this.viewContainerRef,
-      injector,
     );
-    this.adminControlsComponentRef = this.overlayRef.attach(componentPortal);
 
-    this.adminControlsComponentRef.instance.destroyed
+    this.componentRef = this.overlayRef.attach(componentPortal);
+
+    this.componentRef.instance.close
       .pipe(untilDestroyed(this))
       .subscribe(() => this.detach());
 
     setTimeout(() => {
-      this.initDocumentEventListeners();
+      this.initEventListeners();
     });
 
-    const overlayContainerElement = document.querySelector('.cdk-overlay-container');
-    if (overlayContainerElement && this.dialogService.overlayRefs.length === 0) {
-      // When triggered via a component that is not rendered in a dialog (i.e. no dialogs currently
-      // open), reduce z-index of this overlay so that the admin controls hide behind the app header;
-      // this style never gets removed, only overidden by other overlay directives/services
-      this.renderer.setStyle(
-        document.querySelector('.cdk-overlay-container'),
-        'z-index',
-        '900',
-      );
-    }
+    this.renderer.setStyle(this.elementRef.nativeElement, 'outline', 'none');
+
+    this.isOpen.emit(true);
   }
 
   private detach(): void {
@@ -113,34 +88,42 @@ export class AdminControlsDirective implements OnDestroy {
     this.documentClickListener?.();
     this.documentContextMenuListener?.();
     this.escapeKeyListener?.();
+
+    this.renderer.removeStyle(this.elementRef.nativeElement, 'outline');
+
+    this.isOpen.emit(false);
   }
 
   private getPositionStrategy(): PositionStrategy {
     const position: ConnectedPosition = {
-      originX: 'start',
-      originY: 'top',
-      overlayX: 'start',
+      originX: 'end',
+      originY: 'bottom',
+      overlayX: 'end',
       overlayY: 'top',
       panelClass: 'bottom',
     };
 
     return this.overlay
       .position()
-      .flexibleConnectedTo(this.element)
+      .flexibleConnectedTo(this.elementRef)
       .withPositions([position]);
   }
 
   private getScrollStrategy(): ScrollStrategy {
-    return this.overlay.scrollStrategies.close();
+    return this.overlay.scrollStrategies.reposition();
   }
 
-  private initDocumentEventListeners(): void {
+  private initEventListeners(): void {
     this.documentClickListener = this.renderer.listen(
       'document',
       'click',
       (event: PointerEvent) => {
-        event.stopPropagation();
-        this.detach();
+        if (
+          event.target instanceof HTMLElement &&
+          !this.componentRef?.location.nativeElement.contains(event.target)
+        ) {
+          this.detach();
+        }
       },
     );
 

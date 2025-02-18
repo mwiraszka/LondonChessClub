@@ -8,11 +8,10 @@ import {
   Renderer2,
 } from '@angular/core';
 
-import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import IconsModule from '@app/icons';
 import type { DialogOutput, Photo } from '@app/models';
-
-import { ImagePreloadDirective } from '../image-preload/image-preload.directive';
 
 @Component({
   selector: 'lcc-photo-viewer',

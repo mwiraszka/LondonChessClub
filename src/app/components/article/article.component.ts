@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
-import { ImagePreloadDirective } from '@app/components/image-preload/image-preload.directive';
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
+import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import type { Article, Url } from '@app/models';
 import {
   FormatDatePipe,

@@ -17,10 +17,10 @@ import {
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
-import { ImagePreloadDirective } from '@app/components/image-preload/image-preload.directive';
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
-import { TooltipDirective } from '@app/components/tooltip/tooltip.directive';
+import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import IconsModule from '@app/icons';
 import type {
   Article,
@@ -90,7 +90,6 @@ export class ArticleFormComponent implements OnInit {
           articleFormData = newArticleFormTemplate;
 
           // Copy over form-relevant properties from selected article
-          // TODO: Generalize this and create a util function
           if (controlMode === 'edit' && article) {
             articleFormData = pick(
               article,

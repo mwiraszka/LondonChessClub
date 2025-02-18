@@ -3,10 +3,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
+import { ADMIN_CONTROLS_CONFIG } from '@app/directives/admin-controls.directive';
 import type { AdminControlsConfig } from '@app/models';
 
 import { AdminControlsComponent } from './admin-controls.component';
-import { ADMIN_CONTROLS_CONFIG } from './admin-controls.directive';
 
 describe('AdminControlsComponent', () => {
   let fixture: ComponentFixture<AdminControlsComponent>;

@@ -100,10 +100,10 @@ export class DialogService {
       'document',
       'click',
       (event: PointerEvent) => {
-        const backdropClicked = (event?.target as HTMLElement).classList.contains(
-          'cdk-overlay-backdrop',
-        );
-        if (backdropClicked) {
+        if (
+          event.target instanceof HTMLElement &&
+          event.target.classList.contains('cdk-overlay-backdrop')
+        ) {
           event.stopImmediatePropagation();
           this.close();
         }

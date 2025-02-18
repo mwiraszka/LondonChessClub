@@ -8,10 +8,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
+import { TOOLTIP_DATA_TOKEN } from '@app/directives/tooltip.directive';
 import { TruncateByCharsPipe } from '@app/pipes';
 import { IsStringPipe } from '@app/pipes';
-
-import { TOOLTIP_DATA_TOKEN } from './tooltip.directive';
 
 @Component({
   selector: 'lcc-tooltip',

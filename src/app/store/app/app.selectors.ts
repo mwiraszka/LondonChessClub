@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
+import { AuthSelectors } from '@app/store/auth';
 import { EventsSelectors } from '@app/store/events';
 import { NotificationsSelectors } from '@app/store/notifications';
 
@@ -27,4 +28,10 @@ export const selectAppViewModel = createSelector({
   bannerLastCleared: selectBannerLastCleared,
   nextEvent: EventsSelectors.selectNextEvent,
   toasts: NotificationsSelectors.selectToasts,
+});
+
+export const selectUserSettingsMenuViewModel = createSelector({
+  user: AuthSelectors.selectUser,
+  isDarkMode: selectIsDarkMode,
+  isSafeMode: selectIsSafeMode,
 });

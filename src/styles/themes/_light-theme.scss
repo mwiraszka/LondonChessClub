@@ -198,15 +198,9 @@
 
   --lcc-color--nav-background: #{clr(grayscale, white-98)};
   --lcc-color--nav-border: #{clr(grayscale, gray-75, 0.7)};
-  --lcc-color--nav-dropdownBackground: #{clr(grayscale, white-98)};
-  --lcc-color--nav-dropdownBoxShadow: #{clr(grayscale, white-90, 0.7)};
-  --lcc-color--nav-dropdownItemBackgroundOnHover: #{clr(grayscale, white-95)};
-  --lcc-color--nav-dropdownItemForeground: #{clr(grayscale, black-15)};
-  --lcc-color--nav-dropdownItemTextOnHover: #{clr(grayscale, black-2)};
   --lcc-color--nav-linkForeground: #{clr(grayscale, black-15)};
   --lcc-color--nav-linkForegroundOnHover: #{clr(primary, light)};
   --lcc-color--nav-linkForegroundWhenActive: #{clr(grayscale, black-2)};
-  --lcc-color--nav-safeModeOffAlertIcon: #{clr(warning, light)};
 
   --lcc-color--paginator-background: #{clr(primary, base, 0.1)};
   --lcc-color--paginator-border: #{clr(grayscale, gray-75, 0.2)};
@@ -324,4 +318,11 @@
   --lcc-color--upcomingEventBanner-boldTextOnHover: black;
   --lcc-color--upcomingEventBanner-text: #{clr(grayscale, gray-25)};
   --lcc-color--upcomingEventBanner-textOnHover: #{clr(grayscale, black-2)};
+
+  --lcc-color--userSettingsMenu-background: #{clr(grayscale, white-98)};
+  --lcc-color--userSettingsMenu-boxShadow: #{clr(grayscale, white-90, 0.7)};
+  --lcc-color--userSettingsMenu-itemBackgroundOnHover: #{clr(grayscale, white-95)};
+  --lcc-color--userSettingsMenu-itemForeground: #{clr(grayscale, black-15)};
+  --lcc-color--userSettingsMenu-itemTextOnHover: #{clr(grayscale, black-2)};
+  --lcc-color--userSettingsMenu-safeModeOffAlertIcon: #{clr(warning, light)};
 }

@@ -20,7 +20,7 @@ import {
 import { Pixels } from '@app/models';
 import { isDefined } from '@app/utils';
 
-import { TooltipComponent } from './tooltip.component';
+import { TooltipComponent } from '../components/tooltip/tooltip.component';
 
 export const TOOLTIP_DATA_TOKEN = new InjectionToken<string | TemplateRef<unknown>>(
   'Tooltip Data',
@@ -35,7 +35,7 @@ export class TooltipDirective implements OnDestroy {
   private overlayRef: OverlayRef | null = null;
 
   constructor(
-    private readonly element: ElementRef<HTMLElement>,
+    private readonly elementRef: ElementRef<HTMLElement>,
     private readonly overlay: Overlay,
     private readonly viewContainerRef: ViewContainerRef,
   ) {}
@@ -157,7 +157,7 @@ export class TooltipDirective implements OnDestroy {
 
     return this.overlay
       .position()
-      .flexibleConnectedTo(this.element)
+      .flexibleConnectedTo(this.elementRef)
       .withPositions(preferredPositions);
   }
 

@@ -28,7 +28,7 @@ describe('FooterComponent', () => {
       component.icon = 'home';
       fixture.detectChanges();
 
-      expect(element('.icon').attributes['ng-reflect-name']).toEqual('home');
+      expect(element('.icon').attributes['ng-reflect-name']).toBe('home');
     });
 
     it('should not render if not provided', () => {

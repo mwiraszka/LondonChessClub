@@ -33,6 +33,14 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.0.6 - February TBD, 2025</summary>
+
+- 🔧 Upgrade to Angular v19.1.4
+- 🔧 Security upgrades
+
+</details>
+
+<details>
 <summary>v5.0.5 - February 18th, 2025</summary>
 
 - 🔧 Split Nav component into separate Navigation Bar and User Settings Menu components, and all dropdown-related logic into a dedicated Dropdown directive

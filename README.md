@@ -35,7 +35,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <details>
 <summary>v5.0.6 - February TBD, 2025</summary>
 
-- 🔧 Upgrade to Angular v19.1.4
+- 🔧 Upgrade to Angular v19.1.7
 - 🔧 Security upgrades
 
 </details>

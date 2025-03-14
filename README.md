@@ -33,6 +33,16 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.1.0 - March 13th, 2025</summary>
+
+- 🚀 Rename coordinators to volunteers and add new volunteer
+- 🚀 Improve table layout in About screen leadership section
+- 🔧 Upgrade to Angular v19.2.2
+- 🔧 Upgrade third-party dependencies
+
+</details>
+
+<details>
 <summary>v5.0.6 - February 18th, 2025</summary>
 
 - 🔧 Upgrade to Angular v19.1.7

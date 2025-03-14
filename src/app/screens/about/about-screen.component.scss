@@ -79,13 +79,41 @@ article {
     }
 
     .tables-container {
-      display: flex;
-      flex-flow: row wrap;
+      display: grid;
+      grid-template-columns: repeat(auto);
+      grid-template-areas:
+        'executive-committee'
+        'volunteers'
+        'board-of-directors';
       gap: 16px;
       margin: 16px 0;
 
+      .executive-committee {
+        grid-area: executive-committee;
+      }
+
+      .volunteers {
+        grid-area: volunteers;
+      }
+
+      .board-of-directors {
+        grid-area: board-of-directors;
+      }
+
+      @include mixins.respond-to('gt-md') {
+        grid-template-columns: 4fr 3fr;
+        grid-template-areas:
+          'executive-committee .'
+          'volunteers board-of-directors';
+      }
+
+      @include mixins.respond-to('gt-lg') {
+        grid-template-columns: 4fr 5fr 4fr;
+        grid-template-areas: 'executive-committee volunteers board-of-directors';
+      }
+
       table {
-        min-width: 300px;
+        min-width: 200px;
         flex: 1 1 0;
 
         td {

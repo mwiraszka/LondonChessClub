@@ -28,11 +28,11 @@
       list-style: none;
 
       a {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         text-align: center;
         gap: 8px;
-        padding: 4px;
+        margin: 4px;
         white-space: nowrap;
 
         .icon {

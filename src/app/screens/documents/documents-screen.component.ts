@@ -1,10 +1,12 @@
 import moment from 'moment-timezone';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { DocumentViewerComponent } from '@app/components/document-viewer/document-viewer.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import IconsModule from '@app/icons';
 import type { ClubDocument } from '@app/models';
 import { FormatDatePipe } from '@app/pipes';
@@ -14,9 +16,15 @@ import { DialogService, MetaAndTitleService } from '@app/services';
   selector: 'lcc-documents-screen',
   templateUrl: './documents-screen.component.html',
   styleUrl: './documents-screen.component.scss',
-  imports: [CommonModule, FormatDatePipe, IconsModule, ScreenHeaderComponent],
+  imports: [
+    CommonModule,
+    FormatDatePipe,
+    IconsModule,
+    ScreenHeaderComponent,
+    TooltipDirective,
+  ],
 })
-export class DocumentsScreenComponent implements OnInit {
+export class DocumentsScreenComponent implements OnInit, AfterViewInit {
   public readonly documents: ClubDocument[] = [
     {
       title: 'Club Bylaws',
@@ -51,8 +59,10 @@ export class DocumentsScreenComponent implements OnInit {
   ];
 
   constructor(
+    private readonly activatedRoute: ActivatedRoute,
     private readonly dialogService: DialogService,
     private readonly metaAndTitleService: MetaAndTitleService,
+    private readonly router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -62,7 +72,22 @@ export class DocumentsScreenComponent implements OnInit {
     );
   }
 
+  ngAfterViewInit(): void {
+    this.documents.forEach(document => {
+      if (this.activatedRoute.snapshot.fragment === document.fileName) {
+        this.onSelectDocument(document.fileName);
+      }
+    });
+  }
+
   public async onSelectDocument(fileName: string): Promise<void> {
+    // Update the URL fragment with the filename before opening the dialog
+    await this.router.navigate([], {
+      fragment: fileName,
+      replaceUrl: false, // Preserve the history
+    });
+
+    // Open the dialog and wait for it to close
     await this.dialogService.open<DocumentViewerComponent, null>({
       componentType: DocumentViewerComponent,
       isModal: true,

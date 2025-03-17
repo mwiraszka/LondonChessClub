@@ -14,6 +14,7 @@ import {
   Renderer2,
   RendererFactory2,
 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { DialogComponent } from '@app/components/dialog/dialog.component';
 import type { DialogConfig, DialogOutput } from '@app/models';
@@ -34,8 +35,10 @@ export class DialogService {
   }
 
   constructor(
+    private readonly activatedRoute: ActivatedRoute,
     private readonly overlay: Overlay,
     private readonly rendererFactory: RendererFactory2,
+    private readonly router: Router,
   ) {
     this.renderer = this.rendererFactory.createRenderer(null, null);
   }
@@ -92,6 +95,15 @@ export class DialogService {
     if (this._overlayRefs.length === 0) {
       this.documentClickListener?.();
       this.keyDownListener?.();
+    }
+
+    // Check if there's a fragment in the URL and remove it if present
+    const fragment = this.activatedRoute.snapshot.fragment;
+    if (fragment) {
+      this.router.navigate([], {
+        relativeTo: this.activatedRoute,
+        replaceUrl: true,
+      });
     }
   }
 

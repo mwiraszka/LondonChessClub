@@ -23,15 +23,23 @@
               </i-feather>
               <span class="document-title">{{ document.title }}</span>
             </div>
+
             <a
               [href]="'assets/documents/' + document.fileName"
               class="download-link"
-              [download]="document.title">
+              [download]="document.title"
+              [tooltip]="tooltipContent"
+              (click)="$event.stopPropagation()">
               <i-feather
                 name="download"
                 class="download-icon">
               </i-feather>
             </a>
+
+            <ng-template #tooltipContent>
+              <span>Download</span>
+              <i class="tooltip-item-name">{{ document.title }}</i>
+            </ng-template>
           </td>
 
           <td class="published">

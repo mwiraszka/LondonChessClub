@@ -34,9 +34,12 @@ Below you'll find an overview of the tools and technologies that power the app, 
 
 <details>
 <summary>v5.1.0 - March TBD, 2025</summary>
+
 - 🚀 Increase size of link text and display underline animation when hovering over links
 - 🚀 Reorganize club information by incorporating a new FAQ section on the About page and raised cards on the Home page
-- 🚀 Improve table layout in About screen leadership section; rename coordinators to volunteers and add new volunteer 
+- 🚀 Improve table layout in About screen leadership section; rename coordinators to volunteers and add new volunteer
+- 🚀 Add support for linking to any particular document on Documents page with # URL fragment (e.g. [londonchess.ca/documents#lcc-bylaws.pdf](https://londonchess.ca/documents#lcc-bylaws.pdf))
+- 🚀 Add tooltip to document download icons and prevent document reader from opening when clicked
 - 🔧 Upgrade to Angular v19.2.2
 - 🔧 Upgrade third-party dependencies
 

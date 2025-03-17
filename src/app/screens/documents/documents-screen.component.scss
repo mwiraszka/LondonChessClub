@@ -59,3 +59,8 @@ $icon-height: 18px;
     }
   }
 }
+
+.tooltip-item-name {
+  display: block;
+  color: var(--lcc-color--tooltip-highlightedText) !important;
+}

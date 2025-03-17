@@ -1,7 +1,7 @@
 import type { Photo } from '@app/models';
 
-// This file lists all the photos used in the Photo Gallery screen
-// (some of which are also used on the Home screen)
+// This file lists all the photos used in the Photo Gallery page
+// (some of which are also used on the Home page)
 export const photos: Photo[] = [
   { fileName: 'the-old-guard', caption: 'The old guard' },
   { fileName: 'steve-lecture', caption: 'Steve Demmery Lecture' },

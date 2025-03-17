@@ -7,101 +7,101 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./screens/home/home-screen-routing.module').then(
-        m => m.HomeScreenRoutingModule,
+      import('./pages/home/home-page-routing.module').then(
+        m => m.HomePageRoutingModule,
       ),
     pathMatch: 'full',
   },
   {
     path: 'about',
     loadChildren: () =>
-      import('./screens/about/about-screen-routing.module').then(
-        m => m.AboutScreenRoutingModule,
+      import('./pages/about/about-page-routing.module').then(
+        m => m.AboutPageRoutingModule,
       ),
   },
   {
     path: 'members',
     loadChildren: () =>
-      import('./screens/members/members-screen-routing.module').then(
-        m => m.MembersScreenRoutingModule,
+      import('./pages/members/members-page-routing.module').then(
+        m => m.MembersPageRoutingModule,
       ),
   },
   {
     path: 'member',
     loadChildren: () =>
-      import('./screens/member/member-screen-routing.module').then(
-        m => m.MemberScreenRoutingModule,
+      import('./pages/member/member-page-routing.module').then(
+        m => m.MemberPageRoutingModule,
       ),
   },
   {
     path: 'schedule',
     loadChildren: () =>
-      import('./screens/schedule/schedule-screen-routing.module').then(
-        m => m.ScheduleScreenRoutingModule,
+      import('./pages/schedule/schedule-page-routing.module').then(
+        m => m.SchedulePageRoutingModule,
       ),
   },
   {
     path: 'event',
     loadChildren: () =>
-      import('./screens/event/event-screen-routing.module').then(
-        m => m.EventScreenRoutingModule,
+      import('./pages/event/event-page-routing.module').then(
+        m => m.EventPageRoutingModule,
       ),
     canActivate: [AuthGuard],
   },
   {
     path: 'news',
     loadChildren: () =>
-      import('./screens/news/news-screen-routing.module').then(
-        m => m.NewsScreenRoutingModule,
+      import('./pages/news/news-page-routing.module').then(
+        m => m.NewsPageRoutingModule,
       ),
   },
   {
     path: 'article',
     loadChildren: () =>
-      import('./screens/article/article-screen-routing.module').then(
-        m => m.ArticleScreenRoutingModule,
+      import('./pages/article/article-page-routing.module').then(
+        m => m.ArticlePageRoutingModule,
       ),
   },
   {
     path: 'city-champion',
     loadChildren: () =>
-      import('./screens/champion/champion-screen-routing.module').then(
-        m => m.ChampionScreenRoutingModule,
+      import('./pages/champion/champion-page-routing.module').then(
+        m => m.ChampionPageRoutingModule,
       ),
   },
   {
     path: 'photo-gallery',
     loadChildren: () =>
-      import('./screens/photo-gallery/photo-gallery-screen-routing.module').then(
-        m => m.PhotoGalleryScreenRoutingModule,
+      import('./pages/photo-gallery/photo-gallery-page-routing.module').then(
+        m => m.PhotoGalleryPageRoutingModule,
       ),
   },
   {
     path: 'game-archives',
     loadChildren: () =>
-      import('./screens/game-archives/game-archives-screen-routing.module').then(
-        m => m.GameArchivesScreenRoutingModule,
+      import('./pages/game-archives/game-archives-page-routing.module').then(
+        m => m.GameArchivesPageRoutingModule,
       ),
   },
   {
     path: 'documents',
     loadChildren: () =>
-      import('./screens/documents/documents-screen-routing.module').then(
-        m => m.DocumentsScreenRoutingModule,
+      import('./pages/documents/documents-page-routing.module').then(
+        m => m.DocumentsPageRoutingModule,
       ),
   },
   {
     path: 'login',
     loadChildren: () =>
-      import('./screens/login/login-screen-routing.module').then(
-        m => m.LoginScreenRoutingModule,
+      import('./pages/login/login-page-routing.module').then(
+        m => m.LoginPageRoutingModule,
       ),
   },
   {
     path: 'change-password',
     loadChildren: () =>
-      import('./screens/change-password/change-password-screen-routing.module').then(
-        m => m.ChangePasswordScreenRoutingModule,
+      import('./pages/change-password/change-password-page-routing.module').then(
+        m => m.ChangePasswordPageRoutingModule,
       ),
   },
   {

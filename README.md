@@ -42,6 +42,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 - 🚀 Add tooltip to document download icons and prevent document reader from opening when clicked
 - 🔧 Upgrade to Angular v19.2.2
 - 🔧 Upgrade third-party dependencies
+- 🔧 Replace 'screen' with 'page' throughout codebase for better consistency
 
 </details>
 

@@ -73,7 +73,7 @@ export const selectHasUnsavedChanges = createSelector(
   },
 );
 
-export const selectEventEditorScreenViewModel = createSelector({
+export const selectEventEditorPageViewModel = createSelector({
   eventTitle: selectEventTitle,
   controlMode: selectControlMode,
   hasUnsavedChanges: selectHasUnsavedChanges,

@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { ArticleGridComponent } from '@app/components/article-grid/article-grid.component';
-import { ClubSummaryComponent } from '@app/components/club-summary/club-summary.component';
+import { ClubLinksComponent } from '@app/components/club-links/club-links.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
 import { ScheduleComponent } from '@app/components/schedule/schedule.component';
@@ -15,14 +16,20 @@ import { MetaAndTitleService } from '@app/services';
   styleUrl: './home-screen.component.scss',
   imports: [
     ArticleGridComponent,
-    ClubSummaryComponent,
+    ClubLinksComponent,
     CommonModule,
     LinkListComponent,
     PhotoGridComponent,
+    RouterLink,
     ScheduleComponent,
   ],
 })
 export class HomeScreenComponent implements OnInit {
+  public readonly aboutLink: InternalLink = {
+    text: 'More about the London Chess Club',
+    internalPath: 'about',
+  };
+
   public readonly scheduleLink: InternalLink = {
     text: 'All scheduled events',
     internalPath: 'schedule',

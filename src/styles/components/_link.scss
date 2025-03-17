@@ -6,6 +6,7 @@
 
   &:hover {
     color: var(--lcc-color--linkOnHover);
+    text-decoration: underline;
   }
 
   &[disabled],

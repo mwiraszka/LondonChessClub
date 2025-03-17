@@ -1,0 +1,28 @@
+<lcc-expansion-panel
+  [headerTemplate]="faq1QuestionRef"
+  [contentTemplate]="faq1AnswerRef"
+  [isOpen]="false">
+</lcc-expansion-panel>
+
+<ng-template #faq1QuestionRef>
+  <span>Where and when does the club meet?</span>
+</ng-template>
+
+<ng-template #faq1AnswerRef>
+  <div class="faq-location">
+    <div class="address">
+      <i-feather
+        name="map-pin"
+        class="icon">
+      </i-feather>
+      <div>
+        Kiwanis Seniors' Community Centre<br />
+        78 Riverside Drive, London ON
+      </div>
+    </div>
+    <div class="time">
+      <span>Thursdays, 6:00pm &ndash; 9:00pm</span>
+    </div>
+    <lcc-club-map></lcc-club-map>
+  </div>
+</ng-template>

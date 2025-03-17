@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { ClubFaqComponent } from '@app/components/club-faq/club-faq.component';
 import { ScreenHeaderComponent } from '@app/components/screen-header/screen-header.component';
 import { MetaAndTitleService } from '@app/services';
 
@@ -9,7 +10,7 @@ import { MetaAndTitleService } from '@app/services';
   selector: 'lcc-about-screen',
   templateUrl: './about-screen.component.html',
   styleUrl: './about-screen.component.scss',
-  imports: [CommonModule, RouterLink, ScreenHeaderComponent],
+  imports: [ClubFaqComponent, CommonModule, RouterLink, ScreenHeaderComponent],
 })
 export class AboutScreenComponent implements OnInit {
   constructor(private readonly metaAndTitleService: MetaAndTitleService) {}

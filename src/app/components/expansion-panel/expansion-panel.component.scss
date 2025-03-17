@@ -1,11 +1,11 @@
 :host {
   width: 100%;
 
-  .header-container {
+  .panel-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 4px;
+    padding: 4px 4px 4px 8px; // Compensate for padding on right of caret icon
     background-color: var(--lcc-color--expansionPanel-headerBackground);
     border-top-left-radius: var(--lcc-borderRadius--large);
     border-top-right-radius: var(--lcc-borderRadius--large);
@@ -26,7 +26,7 @@
     }
   }
 
-  .content-container {
+  .panel-content {
     background-color: var(--lcc-color--expansionPanel-contentBackground);
     border-bottom-left-radius: var(--lcc-borderRadius--large);
     border-bottom-right-radius: var(--lcc-borderRadius--large);

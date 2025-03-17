@@ -1,6 +1,20 @@
 <article class="welcome">
   <h1>Welcome to the home of London&nbsp;chess!</h1>
-  <lcc-club-summary></lcc-club-summary>
+  <p>
+    <span>
+      The London Chess Club is open to players of all ages and abilities. We host regular
+      blitz and rapid chess tournaments, as well as a variety of lectures, simuls and team
+      competitions. Every fall we also host the London Chess Championship, a multi-section
+      round-robin tournament to crown the next
+    </span>
+    <a
+      routerLink="/city-champion"
+      class="lcc-link">
+      city champion</a
+    >.
+  </p>
+  <lcc-link-list [links]="[aboutLink]"></lcc-link-list>
+  <lcc-club-links></lcc-club-links>
 </article>
 
 <article class="schedule">
@@ -9,7 +23,7 @@
     <lcc-schedule
       [allowTogglePastEvents]="false"
       [includeDetails]="false"
-      [upcomingEventLimit]="5">
+      [upcomingEventLimit]="3">
     </lcc-schedule>
   </section>
   <lcc-link-list [links]="[scheduleLink]"></lcc-link-list>

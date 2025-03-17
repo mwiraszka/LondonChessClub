@@ -71,8 +71,11 @@
   --lcc-color--championScreen-historyTextBold: #{clr(grayscale, black-5)};
   --lcc-color--championScreen-pastWinnersHeaderText: #{clr(grayscale, black-15)};
 
-  --lcc-color--clubSummary-addressAndTimeContainerBorder: #{clr(grayscale, white-95)};
-  --lcc-color--clubSummary-addressAndTimeContainerForeground: #{clr(grayscale, black-15)};
+  --lcc-color--clubFaq-addressAndTimeContainerBorder: #{clr(grayscale, white-95)};
+  --lcc-color--clubFaq-addressAndTimeContainerForeground: #{clr(grayscale, black-15)};
+
+  --lcc-color--clubLinks-cardBackground: #{clr(grayscale, white-95)};
+  --lcc-color--clubLinks-cardBoxShadow: #{clr(grayscale, white-85, 0.7)};
 
   --lcc-color--contentPlaceholder-background: #{clr(grayscale, white-90)};
   --lcc-color--contentPlaceholder-foreground1: #{clr(grayscale, white-95, 0.05)};

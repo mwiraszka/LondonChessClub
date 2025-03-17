@@ -1,5 +1,5 @@
 <div
-  class="header-container"
+  class="panel-header"
   [class.isOpen]="isOpen"
   (click)="isOpen = !isOpen">
   <ng-container [ngTemplateOutlet]="headerTemplate"></ng-container>
@@ -10,7 +10,7 @@
 </div>
 
 @if (isOpen) {
-  <div class="content-container">
+  <div class="panel-content">
     <ng-container [ngTemplateOutlet]="contentTemplate"></ng-container>
   </div>
 }

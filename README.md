@@ -33,10 +33,10 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.1.0 - March 13th, 2025</summary>
-
-- 🚀 Rename coordinators to volunteers and add new volunteer
-- 🚀 Improve table layout in About screen leadership section
+<summary>v5.1.0 - March TBD, 2025</summary>
+- 🚀 Increase size of link text and display underline animation when hovering over links
+- 🚀 Reorganize club information by incorporating a new FAQ section on the About page and raised cards on the Home page
+- 🚀 Improve table layout in About screen leadership section; rename coordinators to volunteers and add new volunteer 
 - 🔧 Upgrade to Angular v19.2.2
 - 🔧 Upgrade third-party dependencies
 

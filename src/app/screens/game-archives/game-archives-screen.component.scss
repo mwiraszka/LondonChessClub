@@ -137,27 +137,22 @@ $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
   flex-direction: column;
   align-items: center;
   width: 100%;
+
+  lcc-expansion-panel {
+    width: 100%;
+    max-width: $container-max-width;
+    padding-bottom: 2px;
+  }
 }
 
-.panel-content {
-  width: 100%;
-  max-width: $container-max-width;
-  padding-bottom: 2px;
-}
-
-::ng-deep lcc-expansion-panel .header-container {
-  padding-right: 16px !important;
-}
-
-.header-content {
+.games-header {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: space-between;
   flex: 1;
-  padding: 0 16px;
 }
 
-.games-container {
+.games-content {
   text-align: center;
   width: 100%;
 

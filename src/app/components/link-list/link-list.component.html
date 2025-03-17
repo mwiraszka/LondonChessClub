@@ -1,5 +1,5 @@
 @if (header) {
-  <h4>{{ header }}</h4>
+  <h3>{{ header }}</h3>
 }
 
 <ul [class.single-column]="links.length < 4">
@@ -18,7 +18,7 @@
               class="icon">
             </i-feather>
           }
-          <span>{{ link.text }}</span>
+          <div>{{ link.text }}</div>
           <i-feather
             name="external-link"
             class="icon">
@@ -35,7 +35,7 @@
               class="icon">
             </i-feather>
           }
-          <span>{{ link.text }}</span>
+          <div>{{ link.text }}</div>
         </a>
       }
     </li>

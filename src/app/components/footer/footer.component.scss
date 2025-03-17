@@ -19,6 +19,13 @@
   text-decoration: none;
   font-style: normal;
 
+  .external-link-icon {
+    height: 16px;
+    width: 16px;
+    margin-left: 4px;
+    vertical-align: sub;
+  }
+
   .divider {
     margin: 0 8px;
     color: var(--lcc-color--footer-verticalSpacer);

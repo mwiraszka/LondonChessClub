@@ -36,25 +36,31 @@ export class DocumentsPageComponent implements OnInit, AfterViewInit {
       title: 'Board Meeting - DEC 12, 2023 - Minutes',
       fileName: 'lcc-board-meeting-2023-12-12-minutes.pdf',
       datePublished: moment('2024-04-24T04:00:00').toISOString(),
-      dateLastModified: moment('2024-04-24T04:00:00').toISOString(),
+      dateLastModified: moment('2025-03-20T00:00:00').toISOString(),
     },
     {
       title: 'Board Meeting - JAN 9, 2024 - Minutes',
       fileName: 'lcc-board-meeting-2024-01-09-minutes.pdf',
       datePublished: moment('2024-04-24T04:00:00').toISOString(),
-      dateLastModified: moment('2024-04-24T04:00:00').toISOString(),
+      dateLastModified: moment('2025-03-20T00:00:00').toISOString(),
     },
     {
       title: 'Board Meeting - APR 2, 2024 - Minutes',
       fileName: 'lcc-board-meeting-2024-04-02-minutes.pdf',
       datePublished: moment('2024-04-24T04:00:00').toISOString(),
-      dateLastModified: moment('2024-04-24T04:00:00').toISOString(),
+      dateLastModified: moment('2025-03-20T00:00:00').toISOString(),
     },
     {
       title: 'Membership Fees 2025 - 2028 (Incremental Plan to Break Even)',
-      fileName: 'membership-fees-2025-to-2028.pdf',
+      fileName: 'lcc-membership-fees-2025-to-2028.pdf',
       datePublished: '2025-01-24',
       dateLastModified: '2025-01-24',
+    },
+    {
+      title: 'Code of Conduct',
+      fileName: 'lcc-code-of-conduct.pdf',
+      datePublished: '2025-03-20',
+      dateLastModified: '2025-03-20',
     },
   ];
 

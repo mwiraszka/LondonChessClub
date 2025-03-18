@@ -3,10 +3,67 @@
   icon="info">
 </lcc-page-header>
 
-<lcc-club-faq></lcc-club-faq>
-
 <section class="grid-container">
-  <article class="membership">
+  <article class="first-visit">
+    <h3>First Visit</h3>
+    <p>
+      Drop-ins welcome! No membership needed for your first visit. If you're new to the
+      club, we recommend arriving 15 minutes early to meet the club's executive committee
+      and volunteers. They will help you get settled in, introduce you to other members,
+      and answer any questions you may have.
+    </p>
+    <p>
+      If you're interested in playing in a tournament, please let the tournament director
+      know. They will help you get registered and answer any questions you may have about
+      the event.
+    </p>
+  </article>
+
+  <article class="where-and-when">
+    <div class="address-and-time-container">
+      <div class="address">
+        <i-feather
+          name="map-pin"
+          class="icon">
+        </i-feather>
+        <div>
+          Kiwanis Seniors' Community Centre<br />
+          78 Riverside Drive, London ON
+        </div>
+      </div>
+      <div class="time">
+        <span>Thursdays, 6:00pm &ndash; 9:00pm</span>
+      </div>
+    </div>
+    <lcc-club-map></lcc-club-map>
+  </article>
+
+  <article class="code-of-conduct">
+    <h3>Code of Conduct</h3>
+    <p>
+      The London Chess Club is committed to providing a safe and welcoming environment for
+      all members. We expect all members to treat each other with respect and kindness.
+    </p>
+    <p>
+      Any form of harassment, discrimination, or bullying will not be tolerated and may
+      result in expulsion from the club.
+    </p>
+
+    <p>
+      See the club's
+      <a
+        class="lcc-link"
+        rel="noopener noreferrer"
+        target="_blank"
+        routerLink="/documents"
+        fragment="lcc-code-of-conduct.pdf">
+        Code of Conduct</a
+      >
+      document for more information.
+    </p>
+  </article>
+
+  <article class="membership-fee">
     <h3>Membership Fee</h3>
     <p>
       <b>2025 &mdash; $45</b> <br />
@@ -19,7 +76,9 @@
       memberships starting in October through December. See the
       <a
         class="lcc-link"
+        rel="noopener noreferrer"
         routerLink="/documents"
+        target="_blank"
         fragment="membership-fees-2025-to-2028.pdf">
         Incremental Plan to Break Even</a
       >
@@ -29,9 +88,9 @@
 
   <article class="supplies">
     <h3>Chess Supplies</h3>
-    <p>
-      Please bring your own chess sets and clocks. New to chess? No problem! We have
-      supplies available for sale at the club. Contact
+    <p> Please bring your own chess sets and clocks! </p>
+    <p
+      >Don't have any? We have supplies available for sale at the club. Contact
       <a
         href="mailto:chesslessons@mail.com"
         class="lcc-link"
@@ -210,7 +269,9 @@
       read minutes from the meetings, as well as the LCC bylaws
       <a
         class="lcc-link"
-        routerLink="/documents">
+        routerLink="/documents"
+        rel="noopener noreferrer"
+        target="_blank">
         here</a
       >.
     </p>

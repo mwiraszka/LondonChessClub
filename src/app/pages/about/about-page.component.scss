@@ -4,7 +4,10 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
-    'membership'
+    'first-visit'
+    'where-and-when'
+    'code-of-conduct'
+    'membership-fee'
     'supplies'
     'ratings'
     'parking'
@@ -16,7 +19,9 @@
   @include mixins.respond-to('gt-md') {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      'membership supplies'
+      'where-and-when where-and-when'
+      'first-visit code-of-conduct'
+      'membership-fee supplies'
       'parking ratings'
       'rules tournaments'
       'leadership leadership';
@@ -25,7 +30,8 @@
   @include mixins.respond-to('gt-lg') {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
-      'membership supplies ratings'
+      'first-visit where-and-when code-of-conduct'
+      'membership-fee supplies ratings'
       'parking rules tournaments'
       'leadership leadership leadership';
   }
@@ -38,44 +44,105 @@ article {
   gap: 16px;
   border-radius: var(--lcc-borderRadius--small);
   border: 2px solid var(--lcc-color--aboutPage-cellBorder);
-  padding: 16px 32px;
+  padding: 16px;
 
-  &.membership {
-    grid-area: membership;
-    background-color: var(--lcc-color--aboutPage-darkCellBackground);
+  &.first-visit {
+    grid-area: first-visit;
+    background-color: var(--lcc-color--aboutPage-cellBackground2);
+  }
+
+  &.where-and-when {
+    grid-area: where-and-when;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background-color: var(--lcc-color--aboutPage-cellBackground1);
+
+    .address-and-time-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 16px;
+      color: var(--lcc-color--aboutPage-addressAndTimeText);
+      background-color: var(--lcc-color--aboutPage-cardBackground);
+      border-radius: var(--lcc-borderRadius--large);
+      box-shadow: 3px 3px 5px var(--lcc-color--aboutPage-cardBoxShadow);
+
+      .address {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        gap: 16px;
+      }
+
+      .time {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    lcc-club-map {
+      width: 100%;
+      padding: 8px;
+    }
+  }
+
+  &.code-of-conduct {
+    grid-area: code-of-conduct;
+    background-color: var(--lcc-color--aboutPage-cellBackground2);
+
+    @include mixins.respond-to('gt-md') {
+      background-color: var(--lcc-color--aboutPage-cellBackground1);
+    }
+
+    @include mixins.respond-to('gt-lg') {
+      background-color: var(--lcc-color--aboutPage-cellBackground2);
+    }
+  }
+
+  &.membership-fee {
+    grid-area: membership-fee;
+    background-color: var(--lcc-color--aboutPage-cellBackground1);
   }
 
   &.supplies {
     grid-area: supplies;
-    background-color: var(--lcc-color--aboutPage-lightCellBackground);
+    background-color: var(--lcc-color--aboutPage-cellBackground2);
   }
 
   &.parking {
     grid-area: parking;
-    background-color: var(--lcc-color--aboutPage-lightCellBackground);
+    background-color: var(--lcc-color--aboutPage-cellBackground2);
   }
 
   &.ratings {
     grid-area: ratings;
-    background-color: var(--lcc-color--aboutPage-darkCellBackground);
+    background-color: var(--lcc-color--aboutPage-cellBackground1);
   }
 
   &.rules {
     grid-area: rules;
-    background-color: var(--lcc-color--aboutPage-darkCellBackground);
+    background-color: var(--lcc-color--aboutPage-cellBackground1);
   }
 
   &.tournaments {
     grid-area: tournaments;
-    background-color: var(--lcc-color--aboutPage-lightCellBackground);
+    background-color: var(--lcc-color--aboutPage-cellBackground2);
   }
 
   &.leadership {
     grid-area: leadership;
-    background-color: var(--lcc-color--aboutPage-lightCellBackground);
+    background-color: var(--lcc-color--aboutPage-cellBackground2);
 
     @include mixins.respond-to('lt-md') {
-      background-color: var(--lcc-color--aboutPage-darkCellBackground);
+      background-color: var(--lcc-color--aboutPage-cellBackground1);
     }
 
     .tables-container {

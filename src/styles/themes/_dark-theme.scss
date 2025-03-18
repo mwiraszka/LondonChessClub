@@ -1,10 +1,13 @@
 @use 'colour-palette' as *;
 
 [data-theme='dark'] {
+  --lcc-color--aboutPage-addressAndTimeText: #{clr(grayscale, white-90)};
   --lcc-color--aboutPage-boardChairText: #{clr(grayscale, gray-65)};
+  --lcc-color--aboutPage-cardBackground: #{clr(grayscale, black-20)};
+  --lcc-color--aboutPage-cardBoxShadow: #{clr(grayscale, black-10, 0.7)};
   --lcc-color--aboutPage-cellBorder: #{clr(grayscale, black-20, 0.2)};
-  --lcc-color--aboutPage-darkCellBackground: #{clr(grayscale, black-15)};
-  --lcc-color--aboutPage-lightCellBackground: #{clr(grayscale, black-20)};
+  --lcc-color--aboutPage-cellBackground1: #{clr(grayscale, black-15)};
+  --lcc-color--aboutPage-cellBackground2: #{clr(grayscale, black-20)};
   --lcc-color--aboutPage-sectionHeaderText: #{clr(grayscale, white-98)};
   --lcc-color--aboutPage-text: #{clr(grayscale, gray-65)};
 
@@ -69,9 +72,6 @@
   --lcc-color--championPage-historyText: #{clr(grayscale, gray-75)};
   --lcc-color--championPage-historyTextBold: #{clr(grayscale, white-98)};
   --lcc-color--championPage-pastWinnersHeaderText: #{clr(grayscale, gray-75)};
-
-  --lcc-color--clubFaq-addressAndTimeContainerBorder: #{clr(grayscale, gray-25)};
-  --lcc-color--clubFaq-addressAndTimeContainerForeground: #{clr(grayscale, white-85)};
 
   --lcc-color--clubLinks-cardBackground: #{clr(grayscale, black-20)};
   --lcc-color--clubLinks-cardBoxShadow: #{clr(grayscale, black-10, 0.7)};

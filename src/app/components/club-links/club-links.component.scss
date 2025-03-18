@@ -13,8 +13,8 @@
 
 section {
   padding: 16px;
-  border-radius: 4px;
   background-color: var(--lcc-color--clubLinks-cardBackground);
+  border-radius: var(--lcc-borderRadius--large);
   box-shadow: 3px 3px 5px var(--lcc-color--clubLinks-cardBoxShadow);
 
   &:hover {

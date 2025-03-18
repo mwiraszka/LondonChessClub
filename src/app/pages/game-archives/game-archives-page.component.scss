@@ -1,12 +1,14 @@
 @use '../../../styles/abstracts/mixins';
 
+$app-content-width: 1500px; // Re-declare since CSS var cannot be passed to mixin
+$grid-button-min-width: 115px;
+$grid-button-flex-basis: 150px;
+$grid-gap: 8px;
+$lichess-analysis-board-link-height: 28px;
 $pgn-viewer-width: 432px;
 $pgn-viewer-height: 336px;
-$lichess-analysis-board-link-height: 28px;
-$container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
 
-.intro-section {
-  max-width: $container-max-width;
+.intro {
   display: flex;
   flex-direction: column;
 
@@ -46,12 +48,11 @@ $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
   }
 }
 
-.game-filter-container {
+.filters {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: $container-max-width;
   background-color: var(--lcc-color--gameArchivesPage-filterContainerBackground);
   border-radius: var(--lcc-borderRadius--large);
   padding: 8px;
@@ -132,29 +133,42 @@ $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
   }
 }
 
-.panels-container {
+.year-grid {
   display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
   align-items: center;
-  width: 100%;
+  justify-content: center;
+  gap: $grid-gap;
+  margin: 32px 0;
+  border-radius: var(--lcc-borderRadius--large);
 
-  lcc-expansion-panel {
-    width: 100%;
-    max-width: $container-max-width;
-    padding-bottom: 2px;
+  button {
+    min-width: $grid-button-min-width;
+    padding: 8px 16px;
+    text-transform: none;
+
+    @include mixins.flex-wrap-fix-width(
+      $grid-button-flex-basis,
+      $grid-gap,
+      $app-content-width
+    );
+
+    &.active {
+      background-color: var(--lcc-color--gameArchivesPage-activeButtonBackground);
+      color: var(--lcc-color--gameArchivesPage-activeButtonText);
+      animation: shadowPulse 2s infinite;
+      position: relative;
+      overflow: visible;
+    }
   }
 }
 
-.games-header {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  flex: 1;
-}
-
-.games-content {
-  text-align: center;
+.active-games {
   width: 100%;
+  background-color: var(--lcc-color--gameArchivesPage-activeGamesBackground);
+  border-radius: var(--lcc-borderRadius--large);
+  padding: 8px;
+  text-align: center;
 
   cdk-virtual-scroll-viewport {
     height: $pgn-viewer-height + $lichess-analysis-board-link-height + 2 * 4px;
@@ -171,5 +185,17 @@ $container-max-width: calc($pgn-viewer-width * 3 + 4px * 6);
 
   .loading-text {
     color: var(--lcc-color--gameArchivesPage-loadingText);
+  }
+}
+
+@keyframes shadowPulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--lcc-color--gameArchivesPage-activeButtonBoxShadow);
+  }
+  60% {
+    box-shadow: 0 0 0 1px var(--lcc-color--gameArchivesPage-activeButtonBoxShadow);
+  }
+  100% {
+    box-shadow: 0 0 0 0 var(--lcc-color--gameArchivesPage-activeButtonBoxShadow);
   }
 }

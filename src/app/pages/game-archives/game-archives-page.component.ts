@@ -20,7 +20,6 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { ExpansionPanelComponent } from '@app/components/expansion-panel/expansion-panel.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { PgnViewerComponent } from '@app/components/pgn-viewer/pgn-viewer.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
@@ -50,7 +49,6 @@ import { YEARS } from './years';
     CdkVirtualForOf,
     CdkVirtualScrollViewport,
     CommonModule,
-    ExpansionPanelComponent,
     IconsModule,
     KeyValuePipe,
     PgnViewerComponent,
@@ -60,6 +58,7 @@ import { YEARS } from './years';
   ],
 })
 export class GameArchivesPageComponent implements OnInit {
+  public activeYear!: string | null;
   public allGames: Map<string, GameDetails[]> = new Map();
   public chessOpenings: Map<string, string> | null = null;
   public filteredGames: Map<string, GameDetails[]> = new Map();
@@ -121,7 +120,7 @@ export class GameArchivesPageComponent implements OnInit {
     this.filterGames();
   }
 
-  public trackByFn = (index: number) => index;
+  public trackByFn = (index: number) => `${this.activeYear}-${index}`;
 
   public onKeydown(event: Event): void {
     const key = (event as KeyboardEvent)?.key;
@@ -326,6 +325,10 @@ export class GameArchivesPageComponent implements OnInit {
     });
 
     this.updateStats(this.filteredGames);
+
+    this.activeYear = this.filteredGames.size
+      ? (this.filteredGames.keys().next().value ?? null)
+      : null;
 
     this.loaderService.setIsLoading(false);
   }

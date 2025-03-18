@@ -106,11 +106,6 @@
   --lcc-color--documentViewer-scrollbarBackground: #{clr(grayscale, white-90)};
   --lcc-color--documentViewer-scrollbar: #{clr(grayscale, gray-65)};
 
-  --lcc-color--expansionPanel-contentBackground: #{clr(grayscale, black-20)};
-  --lcc-color--expansionPanel-headerForeground: #{clr(grayscale, white-85)};
-  --lcc-color--expansionPanel-headerBackground: #{clr(primary, light, 0.8)};
-  --lcc-color--expansionPanel-headerBackgroundOnHover: #{clr(primary, light)};
-
   --lcc-color--figure-captionBackground: #{clr(primary, base, 0.5)};
   --lcc-color--figure-captionText: #{clr(grayscale, white-90)};
 
@@ -126,6 +121,10 @@
   --lcc-color--form-requiredFieldAsterisk: #{clr(warning, light)};
   --lcc-color--form-requiredFieldText: #{clr(grayscale, gray-75)};
 
+  --lcc-color--gameArchivesPage-activeButtonBackground: #{clr(primary, lighter)};
+  --lcc-color--gameArchivesPage-activeButtonBoxShadow: #{clr(grayscale, white-85, 0.7)};
+  --lcc-color--gameArchivesPage-activeButtonText: #{clr(grayscale, white-98)};
+  --lcc-color--gameArchivesPage-activeGamesBackground: #{clr(grayscale, black-15)};
   --lcc-color--gameArchivesPage-chartLabel: #{clr(grayscale, white-90)};
   --lcc-color--gameArchivesPage-filterContainerBackground: #{clr(grayscale, black-15)};
   --lcc-color--gameArchivesPage-filterSectionBorder: #{clr(grayscale, gray-25)};

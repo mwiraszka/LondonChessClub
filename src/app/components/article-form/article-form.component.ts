@@ -166,10 +166,10 @@ export class ArticleFormComponent implements OnInit {
           return;
         }
 
-        if (imageFile.size > 1_048_576) {
+        if (imageFile.size > 4_194_304) {
           const error: LccError = {
             name: 'LCCError',
-            message: `Image file must be under 1 MB. Selected image was ${formatBytes(imageFile.size)} after conversion.`,
+            message: `Image file must be under 4 MB. Selected image was ${formatBytes(imageFile.size)} after conversion.`,
           };
           this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));
           return;

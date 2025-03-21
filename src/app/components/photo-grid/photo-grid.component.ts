@@ -1,4 +1,4 @@
-import { photos } from 'assets/photos';
+import { featuredPhotos } from 'assets/photos';
 
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
@@ -10,13 +10,13 @@ import { DialogService } from '@app/services';
   selector: 'lcc-photo-grid',
   template: `
     @for (
-      photo of photos.slice(0, maxPhotos ?? photos.length);
+      photo of featuredPhotos.slice(0, maxPhotos ?? featuredPhotos.length);
       let index = $index;
-      track photo.fileName
+      track photo.filename
     ) {
       <img
-        [src]="'assets/photos/' + photo.fileName + '-320.jpg'"
-        [alt]="photo.caption"
+        [src]="getThumbnailPath(photo.filename)"
+        [alt]="photo.name"
         (click)="onClickPhoto(index)" />
     }
   `,
@@ -26,7 +26,7 @@ import { DialogService } from '@app/services';
 export class PhotoGridComponent {
   @Input() public maxPhotos?: number;
 
-  public readonly photos = photos;
+  public readonly featuredPhotos = featuredPhotos;
 
   constructor(private readonly dialogService: DialogService) {}
 
@@ -34,7 +34,12 @@ export class PhotoGridComponent {
     await this.dialogService.open<PhotoViewerComponent, null>({
       componentType: PhotoViewerComponent,
       isModal: true,
-      inputs: { photos, index },
+      inputs: { photos: featuredPhotos, index },
     });
+  }
+
+  public getThumbnailPath(filename: string): string {
+    const [name, extension] = filename.split('.');
+    return `assets/photos/${name}-320.${extension}`;
   }
 }

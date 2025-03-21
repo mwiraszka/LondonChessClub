@@ -18,7 +18,7 @@
 
 <figure>
   <img
-    [src]="'assets/photos/' + photos[index].fileName + '.jpg'"
+    [src]="'assets/photos/' + photos[index].filename"
     default="assets/image-placeholder.png" />
-  <figcaption class="lcc-truncate">{{ photos[index].caption }}</figcaption>
+  <figcaption class="lcc-truncate">{{ photos[index].name }}</figcaption>
 </figure>

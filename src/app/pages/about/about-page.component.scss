@@ -150,7 +150,7 @@ article {
       grid-template-columns: repeat(auto);
       grid-template-areas:
         'executive-committee'
-        'volunteers'
+        'coordinators'
         'board-of-directors';
       gap: 16px;
       margin: 16px 0;
@@ -159,8 +159,8 @@ article {
         grid-area: executive-committee;
       }
 
-      .volunteers {
-        grid-area: volunteers;
+      .coordinators {
+        grid-area: coordinators;
       }
 
       .board-of-directors {
@@ -171,12 +171,12 @@ article {
         grid-template-columns: 4fr 3fr;
         grid-template-areas:
           'executive-committee .'
-          'volunteers board-of-directors';
+          'coordinators board-of-directors';
       }
 
       @include mixins.respond-to('gt-lg') {
         grid-template-columns: 4fr 5fr 4fr;
-        grid-template-areas: 'executive-committee volunteers board-of-directors';
+        grid-template-areas: 'executive-committee coordinators board-of-directors';
       }
 
       table {

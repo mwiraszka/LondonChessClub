@@ -4,9 +4,7 @@ $app-content-width: 1500px; // Re-declare since CSS var cannot be passed to mixi
 $grid-button-min-width: 115px;
 $grid-button-flex-basis: 150px;
 $grid-gap: 8px;
-$lichess-analysis-board-link-height: 28px;
 $pgn-viewer-width: 432px;
-$pgn-viewer-height: 336px;
 
 .intro {
   display: flex;
@@ -171,13 +169,13 @@ $pgn-viewer-height: 336px;
   text-align: center;
 
   cdk-virtual-scroll-viewport {
-    height: $pgn-viewer-height + $lichess-analysis-board-link-height + 2 * 4px;
+    height: 410px; // tall enough to avoid vertical scrollbar
 
     ::ng-deep .cdk-virtual-scroll-content-wrapper {
       display: flex;
 
       lcc-pgn-viewer {
-        margin: 4px;
+        margin: 8px;
         max-width: $pgn-viewer-width;
       }
     }

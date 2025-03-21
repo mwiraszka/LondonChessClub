@@ -6,7 +6,7 @@
   grid-template-areas:
     'first-visit'
     'where-and-when'
-    'code-of-conduct'
+    'club-regulations'
     'membership-fee'
     'supplies'
     'ratings'
@@ -20,7 +20,7 @@
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       'where-and-when where-and-when'
-      'first-visit code-of-conduct'
+      'first-visit club-regulations'
       'membership-fee supplies'
       'parking ratings'
       'rules tournaments'
@@ -30,7 +30,7 @@
   @include mixins.respond-to('gt-lg') {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
-      'first-visit where-and-when code-of-conduct'
+      'first-visit where-and-when club-regulations'
       'membership-fee supplies ratings'
       'parking rules tournaments'
       'leadership leadership leadership';
@@ -94,8 +94,8 @@ article {
     }
   }
 
-  &.code-of-conduct {
-    grid-area: code-of-conduct;
+  &.club-regulations {
+    grid-area: club-regulations;
     background-color: var(--lcc-color--aboutPage-cellBackground2);
 
     @include mixins.respond-to('gt-md') {

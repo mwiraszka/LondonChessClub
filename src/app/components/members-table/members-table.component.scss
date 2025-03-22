@@ -10,7 +10,7 @@
 
 table {
   @include mixins.respond-to('lt-sm') {
-    font-size: var(--lcc-fontSize--h5);
+    font-size: 13px;
   }
 
   &:not(.lcc-show-admin-columns) {
@@ -179,7 +179,7 @@ aside {
     gap: 8px;
 
     label {
-      font-size: var(--lcc-fontSize--h5);
+      font-size: 13px;
       font-weight: bold;
 
       &:hover {

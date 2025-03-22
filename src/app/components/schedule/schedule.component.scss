@@ -130,7 +130,7 @@ table {
           width: 100%;
           color: var(--lcc-color--schedule-eventDetailsText);
           padding-top: 16px;
-          font-size: var(--lcc-fontSize--h4);
+          font-size: 14px;
           font-weight: 200;
           white-space: pre-line;
         }
@@ -140,7 +140,7 @@ table {
         min-width: 200px;
         align-self: flex-end;
         text-align: right;
-        font-size: var(--lcc-fontSize--h6) !important;
+        font-size: 11px !important;
         font-weight: 100;
         color: var(--lcc-color--schedule-createdAndEditedText);
       }

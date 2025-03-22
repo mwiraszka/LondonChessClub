@@ -46,17 +46,17 @@
   .author-container {
     display: flex;
     flex-direction: column;
-    font-size: var(--lcc-fontSize--h3);
+    font-size: 18px;
     color: var(--lcc-color--article-authorText);
 
     .date-created {
-      font-size: var(--lcc-fontSize--h4);
+      font-size: 14px;
       color: var(--lcc-color--article-dateCreatedText);
     }
   }
 
   .editor-container {
-    font-size: var(--lcc-fontSize--h4);
+    font-size: 14px;
     color: var(--lcc-color--article-editorText);
 
     .updated {

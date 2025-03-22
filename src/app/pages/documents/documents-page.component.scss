@@ -1,0 +1,75 @@
+$icon-height: 18px;
+
+.documents-table {
+  th {
+    &.published,
+    &.last-modified {
+      width: 180px;
+      text-align: center;
+    }
+  }
+
+  td {
+    white-space: nowrap;
+
+    &.document {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+
+      .document-label-container {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        .file-icon {
+          width: $icon-height;
+          height: $icon-height;
+          min-width: $icon-height;
+        }
+
+        &:hover {
+          .file-icon,
+          .document-title {
+            cursor: pointer;
+            color: var(--lcc-color--documentsPage-documentLabelOnHover);
+          }
+        }
+      }
+
+      .download-link {
+        &:hover {
+          cursor: pointer;
+          color: var(--lcc-color--documentsPage-downloadLinkOnHover);
+        }
+
+        .download-icon {
+          width: $icon-height;
+          height: $icon-height;
+          min-width: $icon-height;
+        }
+      }
+
+      .document-date-published-container,
+      .document-date-last-modified-container {
+        display: flex;
+        align-items: center;
+        justify-self: center;
+        text-align: center;
+        height: 100%;
+      }
+    }
+
+    &.published,
+    &.last-modified {
+      width: 180px;
+      vertical-align: middle;
+      text-align: end;
+    }
+  }
+}
+
+.tooltip-item-name {
+  display: block;
+  color: var(--lcc-color--tooltip-highlightedText) !important;
+}

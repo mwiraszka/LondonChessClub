@@ -7,4 +7,7 @@ export interface Image {
   dateUploaded: IsoDate;
   presignedUrl: Url;
   articleAppearances: number;
+  albums?: string[];
+  albumCoverFor?: string | null;
+  name?: string;
 }

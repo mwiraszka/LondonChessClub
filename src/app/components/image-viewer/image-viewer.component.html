@@ -1,0 +1,26 @@
+<div class="previous-image-button-wrapper">
+  <button
+    class="lcc-secondary-button lcc-light-button"
+    [disabled]="images.length === 1"
+    tooltip="Previous image"
+    (click)="onPreviousImage()">
+    <i-feather name="chevron-left"></i-feather>
+  </button>
+</div>
+
+<div class="next-image-button-wrapper">
+  <button
+    class="lcc-secondary-button lcc-light-button"
+    [disabled]="images.length === 1"
+    tooltip="Next image"
+    (click)="onNextImage()">
+    <i-feather name="chevron-right"></i-feather>
+  </button>
+</div>
+
+<figure>
+  <img
+    [src]="'assets/images/' + images[index].filename"
+    default="assets/image-placeholder.png" />
+  <figcaption class="lcc-truncate">{{ images[index].name }}</figcaption>
+</figure>

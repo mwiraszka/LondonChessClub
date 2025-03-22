@@ -1,0 +1,53 @@
+@use '../../../styles/abstracts/mixins';
+
+:host {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+
+  @include mixins.respond-to('gt-md') {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+
+section {
+  padding: 16px;
+  background-color: var(--lcc-color--general-cardBackground);
+  border-radius: var(--lcc-borderRadius--large);
+  box-shadow: 3px 3px 5px var(--lcc-color--general-cardBoxShadow);
+
+  &:hover {
+    animation: raise 0.2s ease forwards;
+    box-shadow: 4px 4px 8px var(--lcc-color--general-cardBoxShadow);
+  }
+}
+
+a {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: sub;
+  gap: 4px;
+
+  .brand-icon {
+    height: 18px;
+
+    &:not(.chesscom-icon) {
+      width: 18px;
+    }
+  }
+
+  .external-link-icon {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+@keyframes raise {
+  0% {
+    scale: 1;
+  }
+  100% {
+    scale: 1.02;
+  }
+}

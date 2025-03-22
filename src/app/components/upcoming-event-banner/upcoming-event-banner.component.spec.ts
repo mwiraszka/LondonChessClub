@@ -48,7 +48,7 @@ describe('UpcomingEventBannerComponent', () => {
       expect(clearBannerSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should link to the Schedule screen', () => {
+    it('should link to the Schedule page', () => {
       expect(element('.banner-message').attributes['routerLink']).toBe('/schedule');
     });
   });

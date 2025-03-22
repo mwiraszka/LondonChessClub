@@ -5,9 +5,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
+  padding: 8px;
 
-  h4 {
+  h3 {
     color: var(--lcc-color--linkList-headerText);
   }
 
@@ -30,22 +31,14 @@
       a {
         display: inline-flex;
         align-items: center;
-        gap: 4px;
-        padding: 4px;
+        text-align: center;
+        gap: 8px;
+        margin: 4px;
         white-space: nowrap;
-        font-size: var(--lcc-fontSize--h6);
-
-        @include mixins.respond-to('gt-xs') {
-          font-size: var(--lcc-fontSize--h5);
-        }
-
-        @include mixins.respond-to('gt-sm') {
-          font-size: var(--lcc-fontSize--h4);
-        }
 
         .icon {
-          height: 14px;
-          width: 14px;
+          height: 16px;
+          width: 16px;
         }
       }
     }

@@ -32,7 +32,7 @@ $alert-icon-width: 18px;
     max-width: 100px;
     align-self: center;
     text-align: right;
-    font-size: var(--lcc-fontSize--h4);
+    font-size: 14px;
     color: var(--lcc-color--form-labelText);
     cursor: pointer;
   }
@@ -90,13 +90,13 @@ $alert-icon-width: 18px;
   .lcc-form-link {
     @extend .lcc-link;
     padding: 3px;
-    font-size: var(--lcc-fontSize--h5) !important;
+    font-size: 13px !important;
   }
 }
 
 .lcc-required-fields-legend {
   font-style: italic;
-  font-size: var(--lcc-fontSize--h4);
+  font-size: 14px;
   color: var(--lcc-color--form-requiredFieldText);
 
   &::after {

@@ -33,6 +33,26 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.1.0 - March 21, 2025</summary>
+
+- 🚀 Reorganize club information by incorporating a couple new sections on the About page, and adding raised cards with links on the Home page
+- 🚀 Redesign Photo Grid and add support for albums
+- 🚀 Improve table layout in About screen leadership section; list new assistant tournament director position under Coordinators
+- 🚀 Add new [Code of Conduct](https://londonchess.ca/documents#lcc-code-of-conduct.pdf) document and redact personal information from board meeting documents
+- 🚀 Add support for linking to any particular document on Documents page with # URL fragment (e.g. [londonchess.ca/documents#lcc-bylaws.pdf](https://londonchess.ca/documents#lcc-bylaws.pdf))
+- 🚀 Add tooltip to document download icons and prevent default browser document reader from opening when clicked
+- 🚀 Add a couple new photos from 2025 Rook's Revenge tournament
+- 🚀 Increase size of link text and display underline animation when hovering over links
+- 🚀 Increase allowable image upload file size to 4MB
+- 🚀 Decrease load times by reducing the size of some excessively large static assets downloaded on initial load 
+- 🚀 Replace full-width expansion panels on Games Archives page with buttons to make better use of the space
+- 🔧 Upgrade to Angular v19.2.2
+- 🔧 Upgrade third-party dependencies
+- 🔧 Replace 'screen' with 'page' throughout codebase for more consistent naming
+
+</details>
+
+<details>
 <summary>v5.0.6 - February 18th, 2025</summary>
 
 - 🔧 Upgrade to Angular v19.1.7

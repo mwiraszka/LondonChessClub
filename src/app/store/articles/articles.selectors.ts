@@ -93,13 +93,13 @@ export const selectHasUnsavedChanges = createSelector(
   },
 );
 
-export const selectArticleViewerScreenViewModel = createSelector({
+export const selectArticleViewerPageViewModel = createSelector({
   article: selectArticle,
   bannerImageUrl: selectBannerImageUrl,
   isAdmin: AuthSelectors.selectIsAdmin,
 });
 
-export const selectArticleEditorScreenViewModel = createSelector({
+export const selectArticleEditorPageViewModel = createSelector({
   articleTitle: selectArticleTitle,
   controlMode: selectControlMode,
   hasUnsavedChanges: selectHasUnsavedChanges,

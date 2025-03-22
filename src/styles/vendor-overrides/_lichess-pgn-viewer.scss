@@ -8,7 +8,7 @@ lcc-pgn-viewer {
     .lpv__player__person {
       &::before {
         content: attr(data-score);
-        font-size: var(--lcc-fontSize--h3);
+        font-size: 18px;
       }
 
       .lpv__player__name {

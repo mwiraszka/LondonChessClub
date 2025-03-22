@@ -23,11 +23,11 @@
   border-radius: var(--lcc-borderRadius--small);
   box-shadow: 1px 1px 5px 2px var(--lcc-color--toast-boxShadow);
 
-  -o-animation: fadeAnimation 5s;
-  -moz-animation: fadeAnimation 5s;
-  -ms-animation: fadeAnimation 5s;
-  -webkit-animation: fadeAnimation 5s;
-  animation: fadeAnimation 5s;
+  -o-animation: fade 5s;
+  -moz-animation: fade 5s;
+  -ms-animation: fade 5s;
+  -webkit-animation: fade 5s;
+  animation: fade 5s;
 
   &.toast-success {
     background-color: var(--lcc-color--toast-successBackground);
@@ -58,13 +58,13 @@
     }
 
     .toast-message {
-      font-size: var(--lcc-fontSize--h5);
+      font-size: 13px;
       color: var(--lcc-color--toast-secondaryText);
     }
   }
 }
 
-@keyframes fadeAnimation {
+@keyframes fade {
   0% {
     opacity: 0;
   }

@@ -1,0 +1,32 @@
+:host {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  box-shadow: 1px 1px 8px 1px var(--lcc-color--pageHeader-boxShadow);
+  background-color: var(--lcc-color--pageHeader-background);
+  border-radius: var(--lcc-borderRadius--small);
+
+  .icon {
+    color: var(--lcc-color--pageHeader-icon);
+    height: 24px;
+    width: 24px;
+  }
+
+  .page-title {
+    font-size: 18px !important;
+    color: var(--lcc-color--pageHeader-text);
+
+    &.end-with-asterisk {
+      font-style: italic;
+
+      &:after {
+        content: ' *';
+        color: var(--lcc-color--pageHeader-asteriskText);
+      }
+    }
+  }
+}

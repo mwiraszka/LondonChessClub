@@ -25,7 +25,7 @@
       width: 100%;
 
       // Margin needed to prevent scrollbar-gutter style
-      // from cutting off screen content
+      // from cutting off page content
       margin: 0 4px;
 
       display: flex;
@@ -38,7 +38,7 @@
     }
 
     &::ng-deep lcc-footer {
-      // Manually push footer background to edge of screen
+      // Manually push footer background to edge of page
       width: calc(100% + 16px);
 
       // Add padding when on Safari on mobile to keep footer visible

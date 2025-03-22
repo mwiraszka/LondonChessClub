@@ -1,11 +1,30 @@
 @mixin lcc-link {
   font-size: inherit;
   font-weight: 200;
-
   color: var(--lcc-color--link);
+  position: relative;
+  white-space: nowrap;
+  padding-bottom: 2px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--lcc-color--link);
+    transform: scale(0);
+    transform-origin: center;
+    transition: transform 300ms;
+  }
 
   &:hover {
     color: var(--lcc-color--linkOnHover);
+
+    &::after {
+      transform: scale(1);
+    }
   }
 
   &[disabled],

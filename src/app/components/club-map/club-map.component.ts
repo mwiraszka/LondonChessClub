@@ -20,10 +20,11 @@ export class ClubMapComponent implements OnInit {
   private clubLocation: google.maps.LatLngLiteral = { lat: 42.982546, lng: -81.261387 };
   private loader!: Loader;
   private mapOptions: google.maps.MapOptions = {
-    mapId: 'club-map',
     center: this.clubLocation,
-    zoom: 15,
+    draggable: false,
+    mapId: 'club-map',
     mapTypeControl: false,
+    zoom: 15,
   };
 
   constructor(private elementRef: ElementRef) {}

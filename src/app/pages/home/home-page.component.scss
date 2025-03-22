@@ -1,0 +1,97 @@
+@use '../../../styles/abstracts/mixins';
+
+:host {
+  display: grid !important;
+  align-items: unset !important;
+  grid-template-areas: 'welcome' 'schedule' 'articles' 'photos';
+  grid-template-columns: minmax(0, 1fr);
+
+  @include mixins.respond-to('gt-lg') {
+    grid-template-columns: 3fr 2fr;
+    grid-template-areas:
+      'welcome schedule'
+      'articles articles'
+      'photos photos';
+  }
+
+  article {
+    background-color: var(--lcc-color--homePage-articleBackground);
+    padding: 8px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include mixins.respond-to('gt-lg') {
+      border-radius: var(--lcc-borderRadius--small);
+    }
+
+    &.welcome {
+      grid-area: welcome;
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      border-radius: var(--lcc-borderRadius--small);
+      color: var(--lcc-color--homePage-welcomeSectionText);
+
+      @include mixins.respond-to('gt-sm') {
+        padding: 32px;
+      }
+
+      @include mixins.respond-to('gt-md') {
+        min-width: 650px;
+      }
+
+      h1 {
+        color: var(--lcc-color--homePage-welcomeHeaderText);
+        font-weight: 300;
+        font-size: 23px !important;
+        text-align: center;
+        word-break: nowrap;
+
+        @include mixins.respond-to('gt-sm') {
+          text-align: left;
+        }
+
+        @include mixins.respond-to('gt-md') {
+          font-size: 28px !important;
+        }
+      }
+    }
+
+    &.schedule {
+      grid-area: schedule;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &.articles {
+      grid-area: articles;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &.photos {
+      grid-area: photos;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      h4 {
+        width: 100%;
+        text-align: left;
+        padding: 2px 2px 4px;
+        color: var(--lcc-color--homePage-sectionHeaderText);
+        border-bottom: 1px solid var(--lcc-color--general-dividerLine);
+      }
+    }
+  }
+}
+

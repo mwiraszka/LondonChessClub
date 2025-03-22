@@ -1,6 +1,9 @@
 @use '../../../styles/abstracts/mixins';
 
-$card-min-width: 310px; // Enough to keep dates on one line
+// Minimum width to keep dates on one line, while still being narrow enough to fit two cards
+// side-by-side at gt-md breakpoint (700px)
+$card-min-width: 282px;
+$flex-basis: 310px;
 $grid-gap: 8px;
 $app-content-width: 1500px; // Re-declare since CSS var cannot be passed to mixin
 
@@ -31,9 +34,7 @@ lcc-link-list,
     gap: 4px;
     height: auto;
     margin: 0 4px;
-    // Minimum width to keep dates on one line, while still being narrow enough to
-    // to fit two cards side-by-side at gt-md breakpoint (700px)
-    min-width: 282px;
+    min-width: $card-min-width;
     padding: 8px;
     background: repeating-conic-gradient(
         var(--lcc-color--articleGrid-cardBackground1) 0% 25%,
@@ -42,7 +43,7 @@ lcc-link-list,
       50% / 2px 2px;
     border-radius: var(--lcc-borderRadius--large);
 
-    @include mixins.flex-wrap-fix-width($card-min-width, $grid-gap, $app-content-width);
+    @include mixins.flex-wrap-fix-width($flex-basis, $grid-gap, $app-content-width);
 
     @include mixins.respond-to('gt-sm') {
       margin: 0;
@@ -94,7 +95,7 @@ lcc-link-list,
       p {
         // Hardcode to keep alignment in case there are fewer than 5 lines of text
         height: 91px;
-        font-size: var(--lcc-fontSize--h4);
+        font-size: 14px;
         color: var(--lcc-color--articleGrid-articleSummaryText);
         line-height: 1.3em !important;
       }
@@ -103,7 +104,7 @@ lcc-link-list,
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: var(--lcc-fontSize--h6);
+        font-size: 11px;
         text-align: center;
         margin-top: 8px;
 

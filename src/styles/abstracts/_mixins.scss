@@ -62,19 +62,19 @@ $breakpoints: (
 /// A mixin to be applied to flex items to keep item widths the same
 /// when row wrapping and stretching to fit flex container
 /// Courtesy of: https://stackoverflow.com/questions/23274338
-@mixin flex-wrap-fix-width($item-min-width, $grid-gap, $max-viewport-width) {
+@mixin flex-wrap-fix-width($flex-basis, $grid-gap, $max-viewport-width) {
   flex-grow: 1;
-  flex-basis: $item-min-width;
+  flex-basis: $flex-basis;
   max-width: 100%;
 
   $multiplier: 1;
-  $current-width: 0px;
+  $current-width: 0;
 
   @while ($current-width < $max-viewport-width) {
-    $current-width: $current-width + $item-min-width;
+    $current-width: $current-width + $flex-basis;
     $multiplier: $multiplier + 1;
 
-    @media (min-width: ($item-min-width * $multiplier)) {
+    @media (min-width: ($flex-basis* $multiplier)) {
       max-width: calc(math.percentage(math.div(1, $multiplier)) - $grid-gap);
     }
   }

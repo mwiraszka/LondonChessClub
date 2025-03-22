@@ -18,7 +18,7 @@ import { MetaAndTitleService } from '@app/services';
     <lcc-photo-grid></lcc-photo-grid>
 
     <lcc-link-list
-      header="More photos"
+      header="More photos (soon to be migrated here)"
       [links]="links"
       style="margin-top: 32px;">
     </lcc-link-list>

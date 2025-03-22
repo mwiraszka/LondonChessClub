@@ -1,45 +1,75 @@
-import { featuredPhotos } from 'assets/photos';
+import { images } from 'assets/images';
 
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
-import { PhotoViewerComponent } from '@app/components/photo-viewer/photo-viewer.component';
+import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
+import { Image } from '@app/models';
 import { DialogService } from '@app/services';
 
 @Component({
   selector: 'lcc-photo-grid',
   template: `
     @for (
-      photo of featuredPhotos.slice(0, maxPhotos ?? featuredPhotos.length);
+      image of albumCoverImages.slice(0, maxAlbums ?? images.length);
       let index = $index;
-      track photo.filename
+      track image.filename
     ) {
-      <img
-        [src]="getThumbnailPath(photo.filename)"
-        [alt]="photo.name"
-        (click)="onClickPhoto(index)" />
+      <button
+        class="album-card"
+        (click)="onClickAlbumCover(image.albumCoverFor!)">
+        <figure>
+          <img
+            [alt]="image.name"
+            [src]="getThumbnailPath(image.filename)"
+            default="assets/image-placeholder.png" />
+          <figcaption>
+            <div class="album-name lcc-truncate-max-2-lines">{{
+              image.albumCoverFor
+            }}</div>
+            <div class="photo-count">{{ getPhotoCount(image.albumCoverFor!) }}</div>
+          </figcaption>
+        </figure>
+      </button>
     }
   `,
   styleUrl: './photo-grid.component.scss',
   imports: [CommonModule],
 })
-export class PhotoGridComponent {
-  @Input() public maxPhotos?: number;
+export class PhotoGridComponent implements OnInit {
+  @Input() public maxAlbums?: number;
 
-  public readonly featuredPhotos = featuredPhotos;
+  public readonly images = images;
+  public albumCoverImages: Image[] = [];
 
   constructor(private readonly dialogService: DialogService) {}
 
-  public async onClickPhoto(index: number): Promise<void> {
-    await this.dialogService.open<PhotoViewerComponent, null>({
-      componentType: PhotoViewerComponent,
+  ngOnInit(): void {
+    this.albumCoverImages = this.images.filter(image => !!image.albumCoverFor);
+  }
+
+  public async onClickAlbumCover(album: string): Promise<void> {
+    await this.dialogService.open<ImageViewerComponent, null>({
+      componentType: ImageViewerComponent,
       isModal: true,
-      inputs: { photos: featuredPhotos, index },
+      inputs: {
+        images: images.filter(
+          image =>
+            image.albums &&
+            image.albums.includes(album) &&
+            !image.filename.includes('-320'),
+        ),
+      },
     });
   }
 
   public getThumbnailPath(filename: string): string {
     const [name, extension] = filename.split('.');
-    return `assets/photos/${name}-320.${extension}`;
+    return `assets/images/${name}-320.${extension}`;
+  }
+
+  public getPhotoCount(album: string): string {
+    const photoCount = this.images.filter(image => image.albums?.includes(album)).length;
+    return `${photoCount} PHOTO${photoCount === 1 ? '' : 'S'}`;
   }
 }

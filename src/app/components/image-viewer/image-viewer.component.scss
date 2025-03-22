@@ -22,22 +22,28 @@ figcaption {
   translate: 0 -2px;
 }
 
-.previous-photo-button-wrapper,
-.next-photo-button-wrapper {
+.previous-image-button-wrapper,
+.next-image-button-wrapper {
   position: absolute;
   top: 50%;
 
   button {
     display: flex;
     padding: 8px;
-    background-color: var(--lcc-color--photoViewer-buttonBackground) !important;
+    background-color: var(--lcc-color--imageViewer-buttonBackground) !important;
+
+    &:disabled {
+      border-color: var(--lcc-color--imageViewer-buttonDisabledBorder) !important;
+      color: var(--lcc-color--imageViewer-buttonDisabledIcon) !important;
+      background-color: var(--lcc-color--imageViewer-buttonDisabledBackground) !important;
+    }
   }
 }
 
-.previous-photo-button-wrapper {
+.previous-image-button-wrapper {
   left: 40px;
 }
 
-.next-photo-button-wrapper {
+.next-image-button-wrapper {
   right: 40px;
 }

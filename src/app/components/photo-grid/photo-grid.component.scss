@@ -6,41 +6,109 @@
   -moz-column-count: 2;
   column-count: 2;
 
-  -webkit-column-gap: 2px;
-  -moz-column-gap: 2px;
-  column-gap: 2px;
+  -webkit-column-gap: 8px;
+  -moz-column-gap: 8px;
+  column-gap: 8px;
 
-  img {
-    display: block;
-    width: 100%;
-    margin-bottom: 2px;
+  @include mixins.respond-to('gt-sm') {
+    -webkit-column-gap: 16px;
+    -moz-column-gap: 16px;
+    column-gap: 16px;
+  }
+
+  .album-card {
+    background-color: var(--lcc-color--general-cardBackground);
+    border: none;
     border-radius: var(--lcc-borderRadius--large);
-    border: 1px solid var(--lcc-color--photoGrid-imageBorder);
-    opacity: 0.85;
+    box-shadow: 3px 3px 5px var(--lcc-color--general-cardBoxShadow);
+    padding: 8px;
+    margin: 4px 0;
+
+    @include mixins.respond-to('gt-sm') {
+      padding: 16px;
+      margin: 8px 0;
+    }
 
     &:hover {
-      cursor: pointer;
-      box-shadow: 1px 1px 4px 1px var(--lcc-color--photoGrid-imageBoxShadowOnHover);
-      border: 1px solid var(--lcc-color--photoGrid-imageBorderOnHover);
-      opacity: 1;
+      animation: raise 0.2s ease forwards;
+      box-shadow: 4px 4px 8px var(--lcc-color--general-cardBoxShadow);
+
+      img {
+        opacity: 1 !important;
+      }
+
+      figcaption {
+        .album-name {
+          color: var(--lcc-color--photoGrid-albumNameTextHover);
+        }
+      }
+    }
+
+    figure {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      img {
+        width: 100%;
+        display: block;
+        margin-bottom: 2px;
+        border-radius: var(--lcc-borderRadius--large);
+        opacity: 0.85;
+      }
+
+      figcaption {
+        text-align: left;
+
+        .album-name {
+          font-size: 13px;
+          color: var(--lcc-color--photoGrid-albumNameText);
+          margin-bottom: 8px;
+          line-height: 16px;
+
+          @include mixins.respond-to('gt-sm') {
+            font-size: 15px;
+            line-height: 18px;
+          }
+        }
+
+        .photo-count {
+          font-size: 11px;
+          color: var(--lcc-color--photoGrid-photoCountText);
+
+          @include mixins.respond-to('gt-sm') {
+            font-size: 13px;
+            line-height: 18px;
+          }
+        }
+      }
     }
   }
 
   @include mixins.respond-to('gt-sm') {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+  }
+
+  @include mixins.respond-to('gt-md') {
     -webkit-column-count: 3;
     -moz-column-count: 3;
     column-count: 3;
   }
 
-  @include mixins.respond-to('gt-md') {
-    -webkit-column-count: 4;
-    -moz-column-count: 4;
-    column-count: 4;
-  }
-
   @include mixins.respond-to('gt-lg') {
-    -webkit-column-count: 6;
-    -moz-column-count: 6;
-    column-count: 6;
+    -webkit-column-count: 5;
+    -moz-column-count: 5;
+    column-count: 5;
+  }
+}
+
+@keyframes raise {
+  0% {
+    scale: 1;
+  }
+  100% {
+    scale: 1.02;
   }
 }

@@ -73,9 +73,6 @@
   --lcc-color--championPage-historyTextBold: #{clr(grayscale, white-98)};
   --lcc-color--championPage-pastWinnersHeaderText: #{clr(grayscale, gray-75)};
 
-  --lcc-color--clubLinks-cardBackground: #{clr(grayscale, black-20)};
-  --lcc-color--clubLinks-cardBoxShadow: #{clr(grayscale, black-10, 0.7)};
-
   --lcc-color--contentPlaceholder-background: #{clr(grayscale, gray-75)};
   --lcc-color--contentPlaceholder-foreground1: #{clr(grayscale, gray-65, 0.05)};
   --lcc-color--contentPlaceholder-foreground2: #{clr(grayscale, gray-65, 0.3)};
@@ -91,7 +88,6 @@
   --lcc-color--datePicker-selectedDateText: #{clr(grayscale, white-80)};
 
   --lcc-color--dialog-background: #{clr(grayscale, white-90)};
-  --lcc-color--dialog-boxShadow: #{clr(grayscale, white-85, 0.3)};
   --lcc-color--dialog-closeIcon: #{clr(grayscale, gray-25)};
   --lcc-color--dialog-closeIconOnHover: #{clr(grayscale, black-5)};
   --lcc-color--dialog-headerBackground: #{clr(grayscale, white-85, 0.95)};
@@ -133,6 +129,8 @@
   --lcc-color--gameArchivesPage-loadingText: #{clr(grayscale, gray-65)};
   --lcc-color--gameArchivesPage-text: #{clr(grayscale, gray-65)};
 
+  --lcc-color--general-cardBackground: #{clr(grayscale, black-20, 0.5)};
+  --lcc-color--general-cardBoxShadow: #{clr(grayscale, black-10, 0.7)};
   --lcc-color--general-dividerLine: #{clr(grayscale, gray-25, 0.5)};
   --lcc-color--general-dividerLineLight: #{clr(grayscale, gray-35, 0.5)};
   --lcc-color--general-editorTextSpacer: #{clr(grayscale, gray-50)};
@@ -156,6 +154,11 @@
   --lcc-color--imageExplorer-imageBackgroundOnHover: #{clr(grayscale, gray-75, 0.5)};
   --lcc-color--imageExplorer-imageBorderOnHover: #{clr(primary, base)};
   --lcc-color--imageExplorer-text: #{clr(grayscale, black-20)};
+
+  --lcc-color--imageViewer-buttonBackground: #{clr(grayscale, gray-35, 0.6)};
+  --lcc-color--imageViewer-buttonDisabledBackground: #{clr(grayscale, gray-50, 0.1)};
+  --lcc-color--imageViewer-buttonDisabledBorder: #{clr(grayscale, gray-65, 0.2)};
+  --lcc-color--imageViewer-buttonDisabledIcon: #{clr(grayscale, gray-65, 0.2)};
 
   --lcc-color--input-background: #{clr(grayscale, gray-25)};
   --lcc-color--input-border: #{clr(grayscale, gray-35)};
@@ -217,11 +220,9 @@
   --lcc-color--pgnViewer-board: #{clr(chessboard)};
   --lcc-color--pgnViewer-playerNameText: #{clr(grayscale, white-85)};
 
-  --lcc-color--photoGrid-imageBorder: #{clr(grayscale, white-85, 0.7)};
-  --lcc-color--photoGrid-imageBorderOnHover: #{clr(grayscale, gray-75)};
-  --lcc-color--photoGrid-imageBoxShadowOnHover: #{clr(grayscale, gray-65, 0.7)};
-
-  --lcc-color--photoViewer-buttonBackground: #{clr(grayscale, gray-35, 0.6)};
+  --lcc-color--photoGrid-albumNameText: #{clr(grayscale, white-80)};
+  --lcc-color--photoGrid-albumNameTextHover: #{clr(grayscale, white-98)};
+  --lcc-color--photoGrid-photoCountText: #{clr(grayscale, gray-65)};
 
   --lcc-color--schedule-activeTournamentBackground: #{clr(
       event-active-tournament,

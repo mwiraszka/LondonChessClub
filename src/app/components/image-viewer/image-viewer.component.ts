@@ -11,19 +11,19 @@ import {
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import IconsModule from '@app/icons';
-import type { DialogOutput, Photo } from '@app/models';
+import type { DialogOutput, Image } from '@app/models';
 
 @Component({
-  selector: 'lcc-photo-viewer',
-  templateUrl: './photo-viewer.component.html',
-  styleUrl: './photo-viewer.component.scss',
+  selector: 'lcc-image-viewer',
+  templateUrl: './image-viewer.component.html',
+  styleUrl: './image-viewer.component.scss',
   imports: [CommonModule, IconsModule, ImagePreloadDirective, TooltipDirective],
 })
-export class PhotoViewerComponent implements AfterViewInit, DialogOutput<null> {
+export class ImageViewerComponent implements AfterViewInit, DialogOutput<null> {
   private keyListener?: () => void;
 
   @Input() index = 0;
-  @Input() photos: Photo[] = [];
+  @Input() images: Image[] = [];
 
   @Output() public dialogResult = new EventEmitter<null | 'close'>();
 
@@ -37,12 +37,12 @@ export class PhotoViewerComponent implements AfterViewInit, DialogOutput<null> {
     this.keyListener?.();
   }
 
-  public onPreviousPhoto(): void {
-    this.index = this.index > 0 ? this.index - 1 : this.photos.length - 1;
+  public onPreviousImage(): void {
+    this.index = this.index > 0 ? this.index - 1 : this.images.length - 1;
   }
 
-  public onNextPhoto(): void {
-    this.index = this.index < this.photos.length - 1 ? this.index + 1 : 0;
+  public onNextImage(): void {
+    this.index = this.index < this.images.length - 1 ? this.index + 1 : 0;
   }
 
   private initKeyListener(): void {
@@ -51,9 +51,9 @@ export class PhotoViewerComponent implements AfterViewInit, DialogOutput<null> {
       'keydown',
       (event: KeyboardEvent) => {
         if (event.key === 'ArrowLeft') {
-          this.onPreviousPhoto();
+          this.onPreviousImage();
         } else if (event.key === 'ArrowRight' || event.key === ' ') {
-          this.onNextPhoto();
+          this.onNextImage();
         }
       },
     );

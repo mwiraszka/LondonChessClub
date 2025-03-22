@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { ArticleGridComponent } from '@app/components/article-grid/article-grid.component';
@@ -45,9 +45,14 @@ export class HomePageComponent implements OnInit {
     internalPath: 'news',
   };
 
+  public maxArticles: number = 3;
+
   constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
 
   ngOnInit(): void {
+    // Set number of articles to display based on screen width
+    this.onResize();
+
     this.metaAndTitleService.updateTitle('London Chess Club');
     this.metaAndTitleService.updateDescription(
       `The London Chess Club is open to players of all ages and abilities. We host
@@ -55,5 +60,18 @@ export class HomePageComponent implements OnInit {
       and team competitions.`,
     );
   }
-}
 
+  @HostListener('window:resize', ['$event'])
+  private onResize = () => {
+    this.maxArticles =
+      window.innerWidth < 550
+        ? 3
+        : window.innerWidth < 930
+          ? 4
+          : window.innerWidth < 1240
+            ? 6
+            : window.innerWidth < 1550
+              ? 8
+              : 10;
+  };
+}

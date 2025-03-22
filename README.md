@@ -36,6 +36,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.1.0 - March 21, 2025</summary>
 
 - 🚀 Reorganize club information by incorporating a couple new sections on the About page, and adding raised cards with links on the Home page
+- 🚀 Redesign Photo Grid and add support for albums
 - 🚀 Improve table layout in About screen leadership section; list new assistant tournament director position under Coordinators
 - 🚀 Add new [Code of Conduct](https://londonchess.ca/documents#lcc-code-of-conduct.pdf) document and redact personal information from board meeting documents
 - 🚀 Add support for linking to any particular document on Documents page with # URL fragment (e.g. [londonchess.ca/documents#lcc-bylaws.pdf](https://londonchess.ca/documents#lcc-bylaws.pdf))

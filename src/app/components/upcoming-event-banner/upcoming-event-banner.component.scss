@@ -8,16 +8,16 @@
   padding: 2px 8px;
   border-bottom: 1px solid var(--lcc-color--upcomingEventBanner-borderBottom);
 
-  &.blitz-tournament {
-    background-color: var(--lcc-color--upcomingEventBanner-background-blitzTournament);
+  &.blitz-tournament-10-mins {
+    background-color: var(--lcc-color--upcomingEventBanner-background-blitz10Tournament);
   }
 
-  &.rapid-tournament {
-    background-color: var(--lcc-color--upcomingEventBanner-background-rapidTournament);
+  &.rapid-tournament-25-mins {
+    background-color: var(--lcc-color--upcomingEventBanner-background-rapid25Tournament);
   }
 
-  &.active-tournament {
-    background-color: var(--lcc-color--upcomingEventBanner-background-activeTournament);
+  &.rapid-tournament-40-mins {
+    background-color: var(--lcc-color--upcomingEventBanner-background-rapid40Tournament);
   }
 
   &.lecture {

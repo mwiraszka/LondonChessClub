@@ -224,18 +224,16 @@
   --lcc-color--photoGrid-albumNameTextHover: #{clr(grayscale, white-98)};
   --lcc-color--photoGrid-photoCountText: #{clr(grayscale, gray-65)};
 
-  --lcc-color--schedule-activeTournamentBackground: #{clr(
-      event-active-tournament,
+  --lcc-color--schedule-blitz10TournamentBackground: #{clr(
+      event-blitz-10-tournament,
       light,
       0.5
     )};
-  --lcc-color--schedule-activeTournamentBorder: #{clr(event-active-tournament, base, 0.5)};
-  --lcc-color--schedule-blitzTournamentBackground: #{clr(
-      event-blitz-tournament,
-      light,
+  --lcc-color--schedule-blitz10TournamentBorder: #{clr(
+      event-blitz-10-tournament,
+      base,
       0.5
     )};
-  --lcc-color--schedule-blitzTournamentBorder: #{clr(event-blitz-tournament, base, 0.5)};
   --lcc-color--schedule-championshipBackground: #{clr(event-championship, light, 0.5)};
   --lcc-color--schedule-championshipBorder: #{clr(event-championship, base, 0.5)};
   --lcc-color--schedule-championshipMedalIcon: #{clr(event-championship)};
@@ -251,12 +249,26 @@
   --lcc-color--schedule-nowLine: #{clr(schedule-now-line, base, 0.5)};
   --lcc-color--schedule-otherBackground: #{clr(event-other, light, 0.5)};
   --lcc-color--schedule-otherBorder: #{clr(event-other, base, 0.5)};
-  --lcc-color--schedule-rapidTournamentBackground: #{clr(
-      event-rapid-tournament,
+  --lcc-color--schedule-rapid25TournamentBackground: #{clr(
+      event-rapid-25-tournament,
       light,
       0.5
     )};
-  --lcc-color--schedule-rapidTournamentBorder: #{clr(event-rapid-tournament, base, 0.5)};
+  --lcc-color--schedule-rapid25TournamentBorder: #{clr(
+      event-rapid-25-tournament,
+      base,
+      0.5
+    )};
+  --lcc-color--schedule-rapid40TournamentBackground: #{clr(
+      event-rapid-40-tournament,
+      light,
+      0.5
+    )};
+  --lcc-color--schedule-rapid40TournamentBorder: #{clr(
+      event-rapid-40-tournament,
+      base,
+      0.5
+    )};
   --lcc-color--schedule-simulBackground: #{clr(event-simul, light, 0.5)};
   --lcc-color--schedule-simulBorder: #{clr(event-simul, base, 0.5)};
   --lcc-color--schedule-titleText: #{clr(grayscale, white-95)};
@@ -293,12 +305,8 @@
   --lcc-color--tooltip-highlightedText: #{clr(tooltip, highlighted)};
   --lcc-color--tooltip-text: #{clr(grayscale, white-90)};
 
-  --lcc-color--upcomingEventBanner-background-activeTournament: #{clr(
-      event-active-tournament,
-      light
-    )};
-  --lcc-color--upcomingEventBanner-background-blitzTournament: #{clr(
-      event-blitz-tournament,
+  --lcc-color--upcomingEventBanner-background-blitz10Tournament: #{clr(
+      event-blitz-10-tournament,
       light
     )};
   --lcc-color--upcomingEventBanner-background-championship: #{clr(
@@ -308,16 +316,20 @@
   --lcc-color--upcomingEventBanner-background-closed: #{clr(event-closed, light)};
   --lcc-color--upcomingEventBanner-background-lecture: #{clr(event-lecture, light)};
   --lcc-color--upcomingEventBanner-background-other: #{clr(event-other, light)};
-  --lcc-color--upcomingEventBanner-background-rapidTournament: #{clr(
-      event-rapid-tournament,
+  --lcc-color--upcomingEventBanner-background-rapid25Tournament: #{clr(
+      event-rapid-25-tournament,
+      light
+    )};
+  --lcc-color--upcomingEventBanner-background-rapid40Tournament: #{clr(
+      event-rapid-40-tournament,
       light
     )};
   --lcc-color--upcomingEventBanner-background-simul: #{clr(event-simul, light)};
+  --lcc-color--upcomingEventBanner-boldText: #{clr(grayscale, black-10)};
+  --lcc-color--upcomingEventBanner-boldTextOnHover: #{clr(grayscale, black-2)};
   --lcc-color--upcomingEventBanner-borderBottom: #{clr(grayscale, gray-50)};
   --lcc-color--upcomingEventBanner-closeIcon: #{clr(grayscale, black-20)};
   --lcc-color--upcomingEventBanner-closeIconOnHover: #{clr(grayscale, black-2)};
-  --lcc-color--upcomingEventBanner-boldText: #{clr(grayscale, black-10)};
-  --lcc-color--upcomingEventBanner-boldTextOnHover: #{clr(grayscale, black-2)};
   --lcc-color--upcomingEventBanner-text: #{clr(grayscale, black-20)};
   --lcc-color--upcomingEventBanner-textOnHover: #{clr(grayscale, black-2)};
 

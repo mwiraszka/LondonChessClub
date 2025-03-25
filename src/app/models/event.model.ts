@@ -4,9 +4,9 @@ import { Id, IsoDate } from './core.model';
 import type { ModificationInfo } from './modification-info.model';
 
 const eventTypes = [
-  'blitz tournament',
-  'active tournament',
-  'rapid tournament',
+  'blitz tournament (10 mins)',
+  'rapid tournament (25 mins)',
+  'rapid tournament (40 mins)',
   'lecture',
   'simul',
   'championship',

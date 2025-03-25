@@ -33,7 +33,15 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.1.0 - March 21, 2025</summary>
+<summary>v5.1.1 - March 25th, 2025</summary>
+
+- 🚀 Remove 'Active Tournament' and 'Rapid Tournament' event categories with 'Rapid Tournament (25 mins)' and 'Rapid Tournament (40 mins)'; add time control to 'Blitz Tournament' event category for consistency
+- 🐛 Fix disabled button colour
+
+</details>
+
+<details>
+<summary>v5.1.0 - March 22nd, 2025</summary>
 
 - 🚀 Reorganize club information by incorporating a couple new sections on the About page, and adding raised cards with links on the Home page
 - 🚀 Redesign Photo Grid and add support for albums

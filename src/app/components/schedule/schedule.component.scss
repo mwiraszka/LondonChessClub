@@ -79,19 +79,19 @@ table {
           padding: 2px 8px;
           color: var(--lcc-color--schedule-eventType);
 
-          &.blitz-tournament {
-            background-color: var(--lcc-color--schedule-blitzTournamentBackground);
-            border: 1px solid var(--lcc-color--schedule-blitzTournamentBorder);
+          &.blitz-tournament-10-mins {
+            background-color: var(--lcc-color--schedule-blitz10TournamentBackground);
+            border: 1px solid var(--lcc-color--schedule-blitz10TournamentBorder);
           }
 
-          &.rapid-tournament {
-            background-color: var(--lcc-color--schedule-rapidTournamentBackground);
-            border: 1px solid var(--lcc-color--schedule-rapidTournamentBorder);
+          &.rapid-tournament-25-mins {
+            background-color: var(--lcc-color--schedule-rapid25TournamentBackground);
+            border: 1px solid var(--lcc-color--schedule-rapid25TournamentBorder);
           }
 
-          &.active-tournament {
-            background-color: var(--lcc-color--schedule-activeTournamentBackground);
-            border: 1px solid var(--lcc-color--schedule-activeTournamentBorder);
+          &.rapid-tournament-40-mins {
+            background-color: var(--lcc-color--schedule-rapid40TournamentBackground);
+            border: 1px solid var(--lcc-color--schedule-rapid40TournamentBorder);
           }
 
           &.lecture {

@@ -13,7 +13,7 @@
     pointer-events: none;
     border-color: var(--lcc-color--button-disabledButtonBorder);
     background-color: var(--lcc-color--button-disabledButtonBackground);
-    color: red;
+    color: var(--lcc-color--button-disabledButtonForeground);
   }
 
   &:focus {

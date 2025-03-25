@@ -6,7 +6,7 @@ import { generateId } from '@app/utils/common/generate-id.util';
 export const MOCK_EVENTS: Event[] = [
   {
     id: generateId(),
-    type: 'blitz tournament',
+    type: 'blitz tournament (10 mins)',
     title: 'Blitz Tournament on January 1st, 2050',
     eventDate: moment('2050-01-01').toISOString(),
     details: "Come join us for some 10 | 0 blitz on New Year's Day!",

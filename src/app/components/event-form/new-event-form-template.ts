@@ -3,7 +3,7 @@ import moment from 'moment-timezone';
 import type { EventFormData } from '@app/models';
 
 export const newEventFormTemplate: EventFormData = {
-  type: 'blitz tournament',
+  type: 'blitz tournament (10 mins)',
   eventDate: moment()
     .tz('America/Toronto', false)
     .set('hours', 18)

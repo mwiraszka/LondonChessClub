@@ -33,6 +33,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.1.2 - March 25th, 2025</summary>
+
+- 🚀 Update link to FIDE handbook
+
+</details>
+
+<details>
 <summary>v5.1.1 - March 25th, 2025</summary>
 
 - 🚀 Remove 'Active Tournament' and 'Rapid Tournament' event categories with 'Rapid Tournament (25 mins)' and 'Rapid Tournament (40 mins)'; add time control to 'Blitz Tournament' event category for consistency

@@ -35,7 +35,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <details>
 <summary>v5.1.3 - April 1st, 2025</summary>
 
-- 🚀 New and improved colour scheme
+- 🚀 ~~New and improved colour scheme~~ - never mind! :)
 
 </details>
 

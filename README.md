@@ -33,7 +33,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.1.3 - April 12th, 2025</summary>
+<summary>v5.1.3 - April 17th, 2025</summary>
 
 - 🚀 Limit loading spinner to 5 seconds to keep application interactive in the event an API request hangs
 

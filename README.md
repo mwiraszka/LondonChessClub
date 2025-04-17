@@ -33,9 +33,9 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.1.3 - April 1st, 2025</summary>
+<summary>v5.1.3 - April 17th, 2025</summary>
 
-- 🚀 ~~New and improved colour scheme~~ - never mind! :)
+- 🚀 Limit loading spinner to 5 seconds to keep application interactive in the event an API request hangs
 
 </details>
 

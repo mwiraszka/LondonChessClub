@@ -33,6 +33,14 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.1.4 - April 25th, 2025</summary>
+
+- 🔧 Reduce loading spinner limit to 2 seconds
+- 🔧 Update some Angular packages
+
+</details>
+
+<details>
 <summary>v5.1.3 - April 17th, 2025</summary>
 
 - 🚀 Limit loading spinner to 5 seconds to keep application interactive in the event an API request hangs

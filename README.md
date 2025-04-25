@@ -36,6 +36,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.1.4 - April 25th, 2025</summary>
 
 - 🔧 Reduce loading spinner limit to 2 seconds
+- 🔧 Update some Angular packages
 
 </details>
 

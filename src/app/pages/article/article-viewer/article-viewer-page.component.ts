@@ -28,8 +28,7 @@ import { isDefined } from '@app/utils';
       @if (vm.article) {
         <lcc-article
           [adminControls]="vm.isAdmin ? getAdminControlsConfig(vm.article) : null"
-          [article]="vm.article"
-          [bannerImageUrl]="vm.bannerImageUrl">
+          [article]="vm.article">
         </lcc-article>
         <lcc-link-list [links]="links"></lcc-link-list>
       }
@@ -63,10 +62,10 @@ export class ArticleViewerPageComponent implements OnInit {
   ngOnInit(): void {
     this.articleViewerPageViewModel$
       .pipe(untilDestroyed(this))
-      .subscribe(({ article, bannerImageUrl }) => {
-        if (!isDefined(bannerImageUrl) && isDefined(article?.imageId)) {
+      .subscribe(({ article }) => {
+        if (isDefined(article?.image?.id)) {
           this.store.dispatch(
-            ImagesActions.fetchArticleBannerImageRequested({ imageId: article.imageId }),
+            ImagesActions.fetchArticleBannerImageRequested({ imageId: article.image.id }),
           );
         }
 

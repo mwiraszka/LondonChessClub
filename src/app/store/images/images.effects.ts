@@ -65,42 +65,42 @@ export class ImagesEffects {
     );
   });
 
-  addImage$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ImagesActions.addImageRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() => [
-        this.store.select(ArticlesSelectors.selectBannerImageUrl).pipe(filter(isDefined)),
-        this.store
-          .select(ArticlesSelectors.selectBannerImageFileData)
-          .pipe(filter(isDefined)),
-      ]),
-      switchMap(([{ filename, forArticle }, dataUrl, fileData]) => {
-        const imageFile = dataUrlToFile(dataUrl, filename, fileData);
+  // addImage$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(ImagesActions.addImageRequested),
+  //     tap(() => this.loaderService.setIsLoading(true)),
+  //     concatLatestFrom(() => [
+  //       this.store.select(ArticlesSelectors.selectBannerImageUrl).pipe(filter(isDefined)),
+  //       this.store
+  //         .select(ArticlesSelectors.selectBannerImageFileData)
+  //         .pipe(filter(isDefined)),
+  //     ]),
+  //     switchMap(([{ image, forArticle }, dataUrl, fileData]) => {
+  //       const imageFile = dataUrlToFile(dataUrl, filename, fileData);
 
-        if (!imageFile) {
-          const error: LccError = {
-            name: 'LCCError',
-            message: 'Unable to construct file object from image data URL.',
-          };
-          return of(ImagesActions.addImageFailed({ error }));
-        }
+  //       if (!imageFile) {
+  //         const error: LccError = {
+  //           name: 'LCCError',
+  //           message: 'Unable to construct file object from image data URL.',
+  //         };
+  //         return of(ImagesActions.addImageFailed({ error }));
+  //       }
 
-        const imageFormData = new FormData();
-        imageFormData.append('imageFile', imageFile);
+  //       const imageFormData = new FormData();
+  //       imageFormData.append('imageFile', imageFile);
 
-        return this.imagesService.addImage(imageFormData).pipe(
-          map(response =>
-            ImagesActions.addImageSucceeded({ image: response.data, forArticle }),
-          ),
-          catchError(error =>
-            of(ImagesActions.addImageFailed({ error: parseError(error) })),
-          ),
-        );
-      }),
-      tap(() => this.loaderService.setIsLoading(false)),
-    );
-  });
+  //       return this.imagesService.addImage(imageFormData).pipe(
+  //         map(response =>
+  //           ImagesActions.addImageSucceeded({ image: response.data, forArticle }),
+  //         ),
+  //         catchError(error =>
+  //           of(ImagesActions.addImageFailed({ error: parseError(error) })),
+  //         ),
+  //       );
+  //     }),
+  //     tap(() => this.loaderService.setIsLoading(false)),
+  //   );
+  // });
 
   deleteImage$ = createEffect(() => {
     return this.actions$.pipe(

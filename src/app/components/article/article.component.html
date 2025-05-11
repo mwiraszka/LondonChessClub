@@ -2,7 +2,7 @@
   @defer {
     <img
       class="banner-image"
-      [src]="bannerImageUrl"
+      [src]="article.image?.presignedUrl"
       default="assets/image-placeholder.png"
       alt="Article image banner" />
   } @placeholder (minimum 0.5s) {

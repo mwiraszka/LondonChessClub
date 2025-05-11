@@ -60,17 +60,12 @@
               type="text" />
           }
         </div>
-
         <div class="lcc-form-error-container">
-          @if (
-            ((imageFileData && hasError(form.controls.imageFilename)) ||
-              imageFileError) &&
-            isImageValidationActive
-          ) {
+          @if (imageFileData && hasError(form.controls.image)) {
             <i-feather
               name="alert-triangle"
               class="lcc-form-error-icon validation-alert-icon"
-              [tooltip]="imageFileError ?? getErrorMessage(form.controls.imageFilename)">
+              [tooltip]="getErrorMessage(form.controls.image)">
             </i-feather>
           }
         </div>

@@ -3,6 +3,9 @@ import moment from 'moment-timezone';
 import { Article } from '@app/models';
 import { generateId } from '@app/utils/common/generate-id.util';
 
+import { MOCK_IMAGES } from './images.mock';
+import { MOCK_MODIFICATION_INFOS } from './modification-info.mock';
+
 export const MOCK_ARTICLES: Article[] = [
   {
     id: generateId(),
@@ -42,14 +45,10 @@ export const MOCK_ARTICLES: Article[] = [
       U---	|U---	|1.0|\n|30	|J, Person	|unr.	|L16 (b)	|L8 (w)	|L25 (b)	|L22 (w)	|L21 (w)
       |L23 (b)	|L26 (b)	|0.0|
     `,
-    imageId: generateId(),
+    image: MOCK_IMAGES[0],
     bookmarkDate: moment('2025-02-02').toISOString(),
-    modificationInfo: {
-      createdBy: 'John Doe',
-      dateCreated: moment('2025-01-01').toISOString(),
-      lastEditedBy: 'John Doe',
-      dateLastEdited: moment('2025-01-15').toISOString(),
-    },
+    formData: null,
+    modificationInfo: MOCK_MODIFICATION_INFOS[0],
   },
   {
     id: generateId(),
@@ -126,14 +125,10 @@ export const MOCK_ARTICLES: Article[] = [
       <br>\n\n**Results Crosstables and PGNs provided by LCC Ratings Auditor*\n\n<br><br>\n\n
       ## Photos\n<br>\n\nComing soon...
     `,
-    imageId: generateId(),
+    image: MOCK_IMAGES[1],
     bookmarkDate: moment('2025-01-10').toISOString(),
-    modificationInfo: {
-      createdBy: 'El Presidente',
-      dateCreated: moment('2025-01-01').toISOString(),
-      lastEditedBy: 'El Vice-Presidente',
-      dateLastEdited: moment('2025-01-03').toISOString(),
-    },
+    formData: null,
+    modificationInfo: MOCK_MODIFICATION_INFOS[1],
   },
   {
     id: generateId(),
@@ -142,39 +137,27 @@ export const MOCK_ARTICLES: Article[] = [
     body: `
       # An article header\n\n<br><br>\n\nAnd not much text underneath it.
     `,
-    imageId: generateId(),
+    image: MOCK_IMAGES[1],
     bookmarkDate: null,
-    modificationInfo: {
-      createdBy: 'El Presidente',
-      dateCreated: moment('2025-01-01T12:00:00').toISOString(),
-      lastEditedBy: 'El Presidente',
-      dateLastEdited: moment('2025-01-02T10:00:00').toISOString(),
-    },
+    formData: null,
+    modificationInfo: MOCK_MODIFICATION_INFOS[2],
   },
   {
     id: generateId(),
     title: 'An even shorter one',
     body: `Got nothing to say!`,
-    imageId: generateId(),
+    image: null,
     bookmarkDate: null,
-    modificationInfo: {
-      createdBy: 'Jack Sparrow',
-      dateCreated: moment('2025-01-02T12:00:00').toISOString(),
-      lastEditedBy: 'Jack Sparrow',
-      dateLastEdited: moment('2025-01-02T12:00:00').toISOString(),
-    },
+    formData: null,
+    modificationInfo: MOCK_MODIFICATION_INFOS[3],
   },
   {
     id: generateId(),
     title: 'An article currently being modified',
     body: `Some article body text here...`,
-    imageId: null,
+    image: null,
     bookmarkDate: moment('2025-01-20T14:00:05').toISOString(),
-    modificationInfo: {
-      createdBy: 'John Doe',
-      dateCreated: moment('2025-01-20T14:00:00').toISOString(),
-      lastEditedBy: 'Jack Sparrow',
-      dateLastEdited: moment('2025-01-20T16:00:00').toISOString(),
-    },
+    formData: null,
+    modificationInfo: MOCK_MODIFICATION_INFOS[4],
   },
 ];

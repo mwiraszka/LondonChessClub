@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
-import type { Article, Url } from '@app/models';
+import type { Article } from '@app/models';
 import {
   FormatDatePipe,
   IsDefinedPipe,
@@ -27,5 +27,4 @@ import {
 })
 export class ArticleComponent {
   @Input({ required: true }) article!: Article;
-  @Input() bannerImageUrl?: Url | null;
 }

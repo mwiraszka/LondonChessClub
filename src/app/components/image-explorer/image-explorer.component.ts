@@ -10,6 +10,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import IconsModule from '@app/icons';
+import { MOCK_MODIFICATION_INFOS } from '@app/mocks/modification-info.mock';
 import type {
   AdminControlsConfig,
   BasicDialogResult,
@@ -96,8 +97,11 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
       id: uuid.v4(),
       filename: '',
       fileSize: 0,
+      title: '',
       articleAppearances: 0,
-      dateUploaded: new Date().toISOString(),
+      albums: [],
+      albumCoverFor: null,
+      modificationInfo: MOCK_MODIFICATION_INFOS[1],
       presignedUrl: '',
     }));
   }

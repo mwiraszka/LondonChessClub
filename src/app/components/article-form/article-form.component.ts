@@ -29,14 +29,12 @@ import type {
   Dialog,
   FileData,
   Id,
-  Image,
-  LccError,
   Url,
 } from '@app/models';
 import { DialogService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
-import { dataUrlToFile, formatBytes, isDefined } from '@app/utils';
+import { isDefined } from '@app/utils';
 import { filenameValidator } from '@app/validators';
 
 @UntilDestroy()
@@ -61,7 +59,6 @@ export class ArticleFormComponent implements OnInit {
   );
   public form: FormGroup<ArticleFormGroup> | null = null;
   public imageFileData: FileData | null = null;
-  public isImageValidationActive: boolean = false;
   public originalBannerImageUrl: Url | null = null;
 
   private controlMode: ControlMode | null = null;
@@ -92,7 +89,7 @@ export class ArticleFormComponent implements OnInit {
 
         this.controlMode = controlMode;
 
-        this.initForm(article!.formData);
+        this.initForm(article?.formData);
         this.initFormValueChangeListener();
       });
 
@@ -109,24 +106,9 @@ export class ArticleFormComponent implements OnInit {
   public getErrorMessage(control: AbstractControl): string {
     return control.hasError('required')
       ? 'This field is required'
-      : control.hasError('invalidFilename')
-        ? 'Filename can only contain letters, numbers, underscores and dashes'
+      : control.hasError('invalidImageFilename')
+        ? 'Image filename can only contain letters, numbers, underscores and dashes'
         : 'Unknown error';
-  }
-
-  // Image file validation handled separately since it's not a form control;
-  // and image filename validation handled separately since it should only validate
-  // when a new image file is selected
-  public get imageFileError(): string | null {
-    if (this.controlMode === 'add' && !this.imageFileData && !this.form?.value.imageId) {
-      return 'A banner image is required';
-    }
-
-    if (this.imageFileData && !this.form?.controls.imageFilename.value) {
-      return 'A filename for the new image is required';
-    }
-
-    return null;
   }
 
   public onUploadNewImage(event: Event): void {
@@ -139,49 +121,52 @@ export class ArticleFormComponent implements OnInit {
 
       reader.onload = () => {
         const dataUrl = reader.result as Url;
-        const dotIndex = file.name.lastIndexOf('.');
-        const imageFilename =
-          file.name.substring(0, dotIndex).replaceAll(/[^a-zA-Z0-9-_]/g, '') ?? '';
-        const fileData: FileData = {
-          extension: file.name.substring(dotIndex),
-          type: file.type,
-        };
 
-        const imageFile = dataUrlToFile(dataUrl, imageFilename, fileData);
+        console.log(':: dataUrl', dataUrl);
+        console.log(':: file', file);
 
-        if (!imageFile) {
-          const error: LccError = {
-            name: 'LCCError',
-            message: 'Unable to load image file.',
-          };
-          this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));
-          return;
-        }
+        // const dotIndex = file.name.lastIndexOf('.');
+        // const imageFilename =
+        //   file.name.substring(0, dotIndex).replaceAll(/[^a-zA-Z0-9-_]/g, '') ?? '';
+        // const fileData: FileData = {
+        //   extension: file.name.substring(dotIndex),
+        //   type: file.type,
+        // };
 
-        if (imageFile.size > 4_194_304) {
-          const error: LccError = {
-            name: 'LCCError',
-            message: `Image file must be under 4 MB. Selected image was ${formatBytes(imageFile.size)} after conversion.`,
-          };
-          this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));
-          return;
-        }
+        // const imageFile = dataUrlToFile(dataUrl, file.name, fileData);
 
-        const image: Image = {
-          id: '',
-          filename: imageFilename,
-          presignedUrl: dataUrl,
-          fileSize: imageFile.size,
-          type: file.type,
-        };
+        // if (!imageFile) {
+        //   const error: LccError = {
+        //     name: 'LCCError',
+        //     message: 'Unable to load image file.',
+        //   };
+        //   this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));
+        //   return;
+        // }
 
-        this.store.dispatch(ArticlesActions.bannerImageSet({ fileData }));
-        this.form?.patchValue({ image, imageFilename });
+        // if (imageFile.size > 4_194_304) {
+        //   const error: LccError = {
+        //     name: 'LCCError',
+        //     message: `Image file must be under 4 MB. Selected image was ${formatBytes(imageFile.size)} after conversion.`,
+        //   };
+        //   this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));
+        //   return;
+        // }
+
+        // const image: Image = {
+        //   id: '',
+        //   articleAppearances: 1,
+        //   filename: imageFilename,
+        //   presignedUrl: dataUrl,
+        //   fileSize: imageFile.size,
+        // };
+
+        // this.store.dispatch(ArticlesActions.bannerImageSet({ fileData }));
+        // this.form?.patchValue({ image });
       };
     }
 
     fileInputElement.value = '';
-    this.isImageValidationActive = true;
   }
 
   public async onOpenImageExplorer(): Promise<void> {
@@ -192,9 +177,8 @@ export class ArticleFormComponent implements OnInit {
 
     if (thumbnailImageId) {
       const imageId = thumbnailImageId.split('-')[0];
-      this.form?.patchValue({ imageFilename: '' });
+      // this.form?.patchValue({ imageFilename: '' });
       this.store.dispatch(ImagesActions.fetchArticleBannerImageRequested({ imageId }));
-      this.isImageValidationActive = true;
     }
   }
 
@@ -208,18 +192,13 @@ export class ArticleFormComponent implements OnInit {
   }
 
   public async onSubmit(articleTitle?: string | null): Promise<void> {
-    if (
-      !this.form ||
-      this.form.invalid ||
-      this.imageFileError ||
-      !isDefined(articleTitle)
-    ) {
+    if (!this.form || this.form.invalid || !isDefined(articleTitle)) {
       this.form?.markAllAsTouched();
-      this.isImageValidationActive = true;
       return;
     }
 
-    const filename = this.form.controls.imageFilename.value;
+    // const filename = this.form.controls.imageFilename.value;
+    const filename = 'temp';
 
     const verb = this.controlMode === 'edit' ? 'Update' : 'Publish';
     const dialog: Dialog = {
@@ -244,9 +223,12 @@ export class ArticleFormComponent implements OnInit {
       return;
     }
 
-    if (this.imageFileData) {
+    if (this.imageFileData && this.form.value.image) {
       this.store.dispatch(
-        ImagesActions.addImageRequested({ filename, forArticle: true }),
+        ImagesActions.addImageRequested({
+          image: this.form.value.image,
+          forArticle: true,
+        }),
       );
     } else if (this.controlMode === 'edit') {
       this.store.dispatch(ArticlesActions.updateArticleRequested({}));
@@ -255,18 +237,17 @@ export class ArticleFormComponent implements OnInit {
     }
   }
 
-  private initForm(articleFormData: ArticleFormData | null): void {
+  private initForm(formData?: ArticleFormData | null): void {
     this.form = this.formBuilder.group<ArticleFormGroup>({
-      image: new FormControl(articleFormData?.image ?? null),
-      imageFilename: new FormControl(articleFormData?.image?.filename ?? '', {
+      image: new FormControl(formData?.image ?? null, {
         nonNullable: true,
         validators: [filenameValidator],
       }),
-      title: new FormControl(articleFormData.title, {
+      title: new FormControl(formData?.title ?? '', {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
-      body: new FormControl(articleFormData.body, {
+      body: new FormControl(formData?.body ?? '', {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),

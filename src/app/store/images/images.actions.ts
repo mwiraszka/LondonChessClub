@@ -29,7 +29,7 @@ export const fetchArticleBannerImageFailed = createAction(
 
 export const addImageRequested = createAction(
   '[Images] Add image requested',
-  props<{ filename: string; forArticle?: boolean }>(),
+  props<{ image: Image; forArticle?: boolean }>(),
 );
 export const addImageSucceeded = createAction(
   '[Images] Add image succeeded',

@@ -68,88 +68,88 @@ export class ArticlesEffects {
     );
   });
 
-  publishArticle$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.publishArticleRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() => [
-        this.store
-          .select(ArticlesSelectors.selectArticleFormData)
-          .pipe(filter(isDefined)),
-        this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
-      ]),
-      switchMap(([{ imageId }, articleFormData, user]) => {
-        const modificationInfo: ModificationInfo = {
-          createdBy: `${user.firstName} ${user.lastName}`,
-          dateCreated: moment().toISOString(),
-          lastEditedBy: `${user.firstName} ${user.lastName}`,
-          dateLastEdited: moment().toISOString(),
-        };
-        const { imageFilename, ...articleFormDataWithoutImageFilename } = articleFormData;
-        const modifiedArticle: Article = {
-          ...articleFormDataWithoutImageFilename,
-          imageId: imageId ?? articleFormData.imageId,
-          modificationInfo,
-          id: null,
-          bookmarkDate: null,
-        };
+  // publishArticle$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(ArticlesActions.publishArticleRequested),
+  //     tap(() => this.loaderService.setIsLoading(true)),
+  //     concatLatestFrom(() => [
+  //       this.store
+  //         .select(ArticlesSelectors.selectArticleFormData)
+  //         .pipe(filter(isDefined)),
+  //       this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
+  //     ]),
+  //     switchMap(([{ imageId }, articleFormData, user]) => {
+  //       const modificationInfo: ModificationInfo = {
+  //         createdBy: `${user.firstName} ${user.lastName}`,
+  //         dateCreated: moment().toISOString(),
+  //         lastEditedBy: `${user.firstName} ${user.lastName}`,
+  //         dateLastEdited: moment().toISOString(),
+  //       };
+  //       const { imageFilename, ...articleFormDataWithoutImageFilename } = articleFormData;
+  //       const modifiedArticle: Article = {
+  //         ...articleFormDataWithoutImageFilename,
+  //         imageId: imageId ?? articleFormData.imageId,
+  //         modificationInfo,
+  //         id: null,
+  //         bookmarkDate: null,
+  //       };
 
-        return this.articlesService.addArticle(modifiedArticle).pipe(
-          map(response =>
-            ArticlesActions.publishArticleSucceeded({
-              article: { ...modifiedArticle, id: response.data },
-            }),
-          ),
-          catchError(error =>
-            of(ArticlesActions.publishArticleFailed({ error: parseError(error) })),
-          ),
-        );
-      }),
-      tap(() => this.loaderService.setIsLoading(false)),
-    );
-  });
+  //       return this.articlesService.addArticle(modifiedArticle).pipe(
+  //         map(response =>
+  //           ArticlesActions.publishArticleSucceeded({
+  //             article: { ...modifiedArticle, id: response.data },
+  //           }),
+  //         ),
+  //         catchError(error =>
+  //           of(ArticlesActions.publishArticleFailed({ error: parseError(error) })),
+  //         ),
+  //       );
+  //     }),
+  //     tap(() => this.loaderService.setIsLoading(false)),
+  //   );
+  // });
 
-  updateArticle$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.updateArticleRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() => [
-        this.store.select(ArticlesSelectors.selectArticle).pipe(filter(isDefined)),
-        this.store
-          .select(ArticlesSelectors.selectArticleFormData)
-          .pipe(filter(isDefined)),
-        this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
-      ]),
-      switchMap(([{ imageId }, article, articleFormData, user]) => {
-        const originalArticleTitle = article.title;
-        const modificationInfo: ModificationInfo = {
-          ...article.modificationInfo,
-          lastEditedBy: `${user.firstName} ${user.lastName}`,
-          dateLastEdited: moment().toISOString(),
-        };
-        const { imageFilename, ...articleFormDataWithoutImageFilename } = articleFormData;
-        const modifiedArticle = {
-          ...article,
-          ...articleFormDataWithoutImageFilename,
-          imageId: imageId ?? articleFormData.imageId,
-          modificationInfo,
-        };
+  // updateArticle$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(ArticlesActions.updateArticleRequested),
+  //     tap(() => this.loaderService.setIsLoading(true)),
+  //     concatLatestFrom(() => [
+  //       this.store.select(ArticlesSelectors.selectArticle).pipe(filter(isDefined)),
+  //       this.store
+  //         .select(ArticlesSelectors.selectArticleFormData)
+  //         .pipe(filter(isDefined)),
+  //       this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
+  //     ]),
+  //     switchMap(([{ imageId }, article, articleFormData, user]) => {
+  //       const originalArticleTitle = article.title;
+  //       const modificationInfo: ModificationInfo = {
+  //         ...article.modificationInfo,
+  //         lastEditedBy: `${user.firstName} ${user.lastName}`,
+  //         dateLastEdited: moment().toISOString(),
+  //       };
+  //       const { imageFilename, ...articleFormDataWithoutImageFilename } = articleFormData;
+  //       const modifiedArticle = {
+  //         ...article,
+  //         ...articleFormDataWithoutImageFilename,
+  //         imageId: imageId ?? articleFormData.imageId,
+  //         modificationInfo,
+  //       };
 
-        return this.articlesService.updateArticle(modifiedArticle).pipe(
-          map(() =>
-            ArticlesActions.updateArticleSucceeded({
-              article: modifiedArticle,
-              originalArticleTitle,
-            }),
-          ),
-          catchError(error =>
-            of(ArticlesActions.updateArticleFailed({ error: parseError(error) })),
-          ),
-        );
-      }),
-      tap(() => this.loaderService.setIsLoading(false)),
-    );
-  });
+  //       return this.articlesService.updateArticle(modifiedArticle).pipe(
+  //         map(() =>
+  //           ArticlesActions.updateArticleSucceeded({
+  //             article: modifiedArticle,
+  //             originalArticleTitle,
+  //           }),
+  //         ),
+  //         catchError(error =>
+  //           of(ArticlesActions.updateArticleFailed({ error: parseError(error) })),
+  //         ),
+  //       );
+  //     }),
+  //     tap(() => this.loaderService.setIsLoading(false)),
+  //   );
+  // });
 
   updateActicleBookmarkRequested$ = createEffect(() => {
     return this.actions$.pipe(

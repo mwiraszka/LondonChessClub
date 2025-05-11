@@ -21,7 +21,7 @@
 
       <div class="upload-date">
         <label>Upload date:</label>
-        <span>{{ image.dateUploaded | formatDate: 'short' }}</span>
+        <span>{{ image.modificationInfo.dateCreated | formatDate: 'short' }}</span>
       </div>
 
       @if (image.articleAppearances > 0) {

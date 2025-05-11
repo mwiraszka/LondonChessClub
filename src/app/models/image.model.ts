@@ -1,13 +1,14 @@
-import { Id, IsoDate, Url } from './core.model';
+import { Id, Url } from './core.model';
+import { ModificationInfo } from './modification-info.model';
 
 export interface Image {
   id: Id;
   filename: string;
   fileSize: number;
-  dateUploaded: IsoDate;
+  title: string;
   presignedUrl: Url;
   articleAppearances: number;
-  albums?: string[];
-  albumCoverFor?: string | null;
-  name?: string;
+  albums: string[];
+  albumCoverFor: string | null;
+  modificationInfo: ModificationInfo;
 }

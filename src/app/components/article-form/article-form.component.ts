@@ -1,6 +1,5 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { pick } from 'lodash';
 import { debounceTime, filter, first } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
@@ -23,7 +22,6 @@ import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import IconsModule from '@app/icons';
 import type {
-  Article,
   ArticleFormData,
   ArticleFormGroup,
   BasicDialogResult,
@@ -31,6 +29,7 @@ import type {
   Dialog,
   FileData,
   Id,
+  Image,
   LccError,
   Url,
 } from '@app/models';
@@ -39,8 +38,6 @@ import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
 import { dataUrlToFile, formatBytes, isDefined } from '@app/utils';
 import { filenameValidator } from '@app/validators';
-
-import { newArticleFormTemplate } from './new-article-form-template';
 
 @UntilDestroy()
 @Component({
@@ -83,24 +80,19 @@ export class ArticleFormComponent implements OnInit {
           controlMode === 'add' ? true : isDefined(article),
         ),
       )
-      .subscribe(({ article, articleFormData, bannerImageUrl, controlMode }) => {
-        this.handleBannerImage(bannerImageUrl, article);
-
-        if (!articleFormData) {
-          articleFormData = newArticleFormTemplate;
-
-          // Copy over form-relevant properties from selected article
-          if (controlMode === 'edit' && article) {
-            articleFormData = pick(
-              article,
-              Object.getOwnPropertyNames(articleFormData),
-            ) as typeof articleFormData;
-          }
+      .subscribe(({ article, controlMode }) => {
+        if (!article?.formData?.image?.presignedUrl && article?.image?.id) {
+          this.store.dispatch(
+            ImagesActions.fetchArticleBannerImageRequested({
+              imageId: article.image.id,
+              setAsOriginal: true,
+            }),
+          );
         }
 
         this.controlMode = controlMode;
 
-        this.initForm(articleFormData!);
+        this.initForm(article!.formData);
         this.initFormValueChangeListener();
       });
 
@@ -175,8 +167,16 @@ export class ArticleFormComponent implements OnInit {
           return;
         }
 
-        this.store.dispatch(ArticlesActions.bannerImageSet({ url: dataUrl, fileData }));
-        this.form?.patchValue({ imageFilename });
+        const image: Image = {
+          id: '',
+          filename: imageFilename,
+          presignedUrl: dataUrl,
+          fileSize: imageFile.size,
+          type: file.type,
+        };
+
+        this.store.dispatch(ArticlesActions.bannerImageSet({ fileData }));
+        this.form?.patchValue({ image, imageFilename });
       };
     }
 
@@ -192,21 +192,15 @@ export class ArticleFormComponent implements OnInit {
 
     if (thumbnailImageId) {
       const imageId = thumbnailImageId.split('-')[0];
-      this.form?.patchValue({
-        imageId,
-        imageFilename: '',
-      });
+      this.form?.patchValue({ imageFilename: '' });
       this.store.dispatch(ImagesActions.fetchArticleBannerImageRequested({ imageId }));
       this.isImageValidationActive = true;
     }
   }
 
-  public onRevertImage(originalImageId?: Id | null): void {
-    this.form?.patchValue({
-      imageId: originalImageId,
-      imageFilename: '',
-    });
-    this.store.dispatch(ArticlesActions.bannerImageSet({ url: null, fileData: null }));
+  public onRevertImage(): void {
+    this.form?.patchValue({ image: null });
+    this.store.dispatch(ArticlesActions.bannerImageSet({ fileData: null }));
   }
 
   public onCancel(): void {
@@ -261,10 +255,10 @@ export class ArticleFormComponent implements OnInit {
     }
   }
 
-  private initForm(articleFormData: ArticleFormData): void {
+  private initForm(articleFormData: ArticleFormData | null): void {
     this.form = this.formBuilder.group<ArticleFormGroup>({
-      imageId: new FormControl(articleFormData.imageId),
-      imageFilename: new FormControl(articleFormData.imageFilename ?? '', {
+      image: new FormControl(articleFormData?.image ?? null),
+      imageFilename: new FormControl(articleFormData?.image?.filename ?? '', {
         nonNullable: true,
         validators: [filenameValidator],
       }),
@@ -288,16 +282,5 @@ export class ArticleFormComponent implements OnInit {
 
     // Manually trigger form value change to pass initial form data to store
     this.form?.updateValueAndValidity();
-  }
-
-  private handleBannerImage(bannerImageUrl: Url | null, article?: Article | null): void {
-    if (!isDefined(bannerImageUrl) && isDefined(article?.imageId)) {
-      this.store.dispatch(
-        ImagesActions.fetchArticleBannerImageRequested({
-          imageId: article.imageId,
-          setAsOriginal: true,
-        }),
-      );
-    }
   }
 }

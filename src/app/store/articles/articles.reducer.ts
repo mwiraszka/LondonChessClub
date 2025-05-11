@@ -1,14 +1,7 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 
-import type {
-  Article,
-  ArticleFormData,
-  ControlMode,
-  FileData,
-  Id,
-  Url,
-} from '@app/models';
+import type { Article, ArticleFormData, ControlMode, FileData, Id } from '@app/models';
 import { ImagesActions } from '@app/store/images';
 import { customSort } from '@app/utils';
 
@@ -16,10 +9,7 @@ import * as ArticlesActions from './articles.actions';
 
 export interface ArticlesState extends EntityState<Article> {
   articleId: Id | null;
-  articleFormData: ArticleFormData | null;
-  bannerImageUrl: Url | null;
   bannerImageFileData: FileData | null;
-  originalBannerImageUrl: Url | null;
   controlMode: ControlMode | null;
 }
 
@@ -30,10 +20,7 @@ export const articlesAdapter = createEntityAdapter<Article>({
 
 export const articlesInitialState: ArticlesState = articlesAdapter.getInitialState({
   articleId: null,
-  articleFormData: null,
-  bannerImageUrl: null,
   bannerImageFileData: null,
-  originalBannerImageUrl: null,
   controlMode: null,
 });
 
@@ -72,21 +59,30 @@ export const articlesReducer = createReducer(
 
   on(
     ImagesActions.fetchArticleBannerImageSucceeded,
-    (state, { image, setAsOriginal }): ArticlesState => ({
-      ...state,
-      bannerImageUrl: image.presignedUrl,
-      bannerImageFileData: null,
-      originalBannerImageUrl: setAsOriginal
-        ? image.presignedUrl
-        : state.originalBannerImageUrl,
-    }),
+    (state, { image, setAsOriginal }): ArticlesState => {
+      const originalArticle = state.entities[state.articleId!]!;
+
+      return articlesAdapter.upsertOne<ArticlesState>(
+        {
+          ...originalArticle,
+          image: setAsOriginal ? image : originalArticle.image,
+          formData: {
+            ...originalArticle.formData,
+            image,
+          },
+        },
+        {
+          ...state,
+          bannerImageFileData: null,
+        },
+      );
+    },
   ),
 
   on(
     ArticlesActions.bannerImageSet,
-    (state, { url, fileData }): ArticlesState => ({
+    (state, { fileData }): ArticlesState => ({
       ...state,
-      bannerImageUrl: url,
       bannerImageFileData: fileData,
     }),
   ),
@@ -95,7 +91,6 @@ export const articlesReducer = createReducer(
     ArticlesActions.bannerImageFileLoadFailed,
     (state): ArticlesState => ({
       ...state,
-      bannerImageUrl: null,
       bannerImageFileData: null,
     }),
   ),
@@ -107,9 +102,7 @@ export const articlesReducer = createReducer(
       articlesAdapter.upsertOne<ArticlesState>(article, {
         ...state,
         articleFormData: null,
-        bannerImageUrl: null,
         bannerImageFileData: null,
-        originalBannerImageUrl: null,
       }),
   ),
 
@@ -137,10 +130,8 @@ export const articlesReducer = createReducer(
       ...state,
       articleId: null,
       articleFormData: null,
-      bannerImageUrl: null,
       bannerImageFileData: null,
       controlMode: null,
-      originalBannerImageUrl: null,
     }),
   ),
 );

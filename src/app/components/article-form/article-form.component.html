@@ -2,7 +2,7 @@
   @defer {
     <img
       class="banner-image"
-      [src]="vm.bannerImageUrl ?? vm.originalBannerImageUrl"
+      [src]="vm.article?.formData?.image?.presignedUrl"
       default="assets/image-placeholder.png"
       alt="Article banner image" />
   } @placeholder (minimum 0.5s) {
@@ -15,7 +15,7 @@
     <form
       class="lcc-form"
       [formGroup]="form"
-      (ngSubmit)="onSubmit(vm.article?.title ?? vm.articleFormData?.title)">
+      (ngSubmit)="onSubmit(vm.article?.title ?? vm.article?.formData?.title)">
       <div class="lcc-form-fields">
         <label class="lcc-required-field">Banner Image:</label>
 
@@ -44,9 +44,10 @@
             type="button"
             tooltip="Revert to original image"
             [disabled]="
-              vm.article?.imageId === vm.articleFormData?.imageId && !imageFileData
+              vm.article?.image?.presignedUrl ===
+              vm.article?.formData?.image?.presignedUrl
             "
-            (click)="onRevertImage(vm.article?.imageId)">
+            (click)="onRevertImage()">
             <i-feather name="rotate-ccw"></i-feather>
           </button>
 

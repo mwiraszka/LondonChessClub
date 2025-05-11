@@ -7,7 +7,6 @@ import type {
   FileData,
   Id,
   LccError,
-  Url,
 } from '@app/models';
 
 export const fetchArticlesRequested = createAction('[Articles] Fetch articles requested');
@@ -36,7 +35,7 @@ export const fetchArticleFailed = createAction(
 
 export const bannerImageSet = createAction(
   '[Articles] Banner image set',
-  props<{ url: Url | null; fileData: FileData | null }>(),
+  props<{ fileData: FileData | null }>(),
 );
 export const bannerImageFileLoadFailed = createAction(
   '[Articles] Banner image file load failed',

@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { pick } from 'lodash';
 
-import { newArticleFormTemplate } from '@app/components/article-form/new-article-form-template';
 import type { ArticleFormData, Id } from '@app/models';
 import { AuthSelectors } from '@app/store/auth';
 import { areSame } from '@app/utils';
@@ -35,24 +35,9 @@ export const selectArticleTitle = createSelector(
   article => article?.title,
 );
 
-export const selectArticleFormData = createSelector(
-  selectArticlesState,
-  state => state.articleFormData,
-);
-
-export const selectBannerImageUrl = createSelector(
-  selectArticlesState,
-  state => state.bannerImageUrl,
-);
-
 export const selectBannerImageFileData = createSelector(
   selectArticlesState,
   state => state.bannerImageFileData,
-);
-
-export const selectOriginalBannerImageUrl = createSelector(
-  selectArticlesState,
-  state => state.originalBannerImageUrl,
 );
 
 export const selectControlMode = createSelector(
@@ -60,42 +45,21 @@ export const selectControlMode = createSelector(
   state => state.controlMode,
 );
 
-export const selectHasUnsavedChanges = createSelector(
-  selectControlMode,
-  selectArticle,
-  selectArticleFormData,
-  selectBannerImageFileData,
-  (controlMode, article, articleFormData, bannerImageFileData) => {
-    if (!articleFormData) {
-      return null;
-    }
+export const selectHasUnsavedChanges = createSelector(selectArticle, article => {
+  if (!article) {
+    return null;
+  }
 
-    if (bannerImageFileData) {
-      return true;
-    }
+  const formPropertiesOfOriginalArticle = pick(
+    article,
+    Object.getOwnPropertyNames(article.formData),
+  ) as ArticleFormData;
 
-    if (controlMode === 'add') {
-      return !areSame(articleFormData, newArticleFormTemplate);
-    }
-
-    if (!article) {
-      return null;
-    }
-
-    const relevantPropertiesOfArticle: ArticleFormData = {
-      title: article.title,
-      body: article.body,
-      imageId: article.imageId,
-      imageFilename: '',
-    };
-
-    return !areSame(relevantPropertiesOfArticle, articleFormData);
-  },
-);
+  return !areSame(formPropertiesOfOriginalArticle, article.formData);
+});
 
 export const selectArticleViewerPageViewModel = createSelector({
   article: selectArticle,
-  bannerImageUrl: selectBannerImageUrl,
   isAdmin: AuthSelectors.selectIsAdmin,
 });
 
@@ -113,9 +77,6 @@ export const selectArticleGridViewModel = createSelector({
 
 export const selectArticleFormViewModel = createSelector({
   article: selectArticle,
-  articleFormData: selectArticleFormData,
-  bannerImageUrl: selectBannerImageUrl,
-  originalBannerImageUrl: selectOriginalBannerImageUrl,
   controlMode: selectControlMode,
   hasUnsavedChanges: selectHasUnsavedChanges,
 });

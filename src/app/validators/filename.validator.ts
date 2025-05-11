@@ -1,6 +1,10 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 export function filenameValidator(control: AbstractControl): ValidationErrors | null {
+  if (control.value === null) {
+    return null;
+  }
+
   if (typeof control.value !== 'string' && typeof control.value?.filename !== 'string') {
     console.error(
       '[LCC] Filename Validator: control value must either be a string or an object with a filename property.',

@@ -10,5 +10,5 @@ export interface Image {
   articleAppearances: number;
   albums: string[];
   albumCoverFor: string | null;
-  modificationInfo: ModificationInfo;
+  modificationInfo?: ModificationInfo;
 }

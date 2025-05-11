@@ -35,18 +35,13 @@ export const selectArticleTitle = createSelector(
   article => article?.title,
 );
 
-export const selectBannerImageFileData = createSelector(
-  selectArticlesState,
-  state => state.bannerImageFileData,
-);
-
 export const selectControlMode = createSelector(
   selectArticlesState,
   state => state.controlMode,
 );
 
 export const selectHasUnsavedChanges = createSelector(selectArticle, article => {
-  if (!article) {
+  if (!article || !article.formData) {
     return null;
   }
 

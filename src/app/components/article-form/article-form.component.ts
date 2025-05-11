@@ -27,14 +27,15 @@ import type {
   BasicDialogResult,
   ControlMode,
   Dialog,
-  FileData,
   Id,
+  Image,
+  LccError,
   Url,
 } from '@app/models';
 import { DialogService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
-import { isDefined } from '@app/utils';
+import { dataUrlToFile, formatBytes, isDefined } from '@app/utils';
 import { filenameValidator } from '@app/validators';
 
 @UntilDestroy()
@@ -58,7 +59,6 @@ export class ArticleFormComponent implements OnInit {
     ArticlesSelectors.selectArticleFormViewModel,
   );
   public form: FormGroup<ArticleFormGroup> | null = null;
-  public imageFileData: FileData | null = null;
   public originalBannerImageUrl: Url | null = null;
 
   private controlMode: ControlMode | null = null;
@@ -92,11 +92,6 @@ export class ArticleFormComponent implements OnInit {
         this.initForm(article?.formData);
         this.initFormValueChangeListener();
       });
-
-    this.store
-      .select(ArticlesSelectors.selectBannerImageFileData)
-      .pipe(untilDestroyed(this))
-      .subscribe(imageFileData => (this.imageFileData = imageFileData));
   }
 
   public hasError(control: AbstractControl): boolean {
@@ -121,48 +116,44 @@ export class ArticleFormComponent implements OnInit {
 
       reader.onload = () => {
         const dataUrl = reader.result as Url;
+        const sanitizedFilename =
+          file.name
+            .substring(0, file.name.lastIndexOf('.'))
+            .replaceAll(/[^a-zA-Z0-9-_]/g, '') +
+          file.name.substring(file.name.lastIndexOf('.'));
 
-        console.log(':: dataUrl', dataUrl);
-        console.log(':: file', file);
+        const imageFile = dataUrlToFile(dataUrl, sanitizedFilename);
 
-        // const dotIndex = file.name.lastIndexOf('.');
-        // const imageFilename =
-        //   file.name.substring(0, dotIndex).replaceAll(/[^a-zA-Z0-9-_]/g, '') ?? '';
-        // const fileData: FileData = {
-        //   extension: file.name.substring(dotIndex),
-        //   type: file.type,
-        // };
+        if (!imageFile) {
+          const error: LccError = {
+            name: 'LCCError',
+            message: 'Unable to load image file.',
+          };
+          this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));
+          return;
+        }
 
-        // const imageFile = dataUrlToFile(dataUrl, file.name, fileData);
+        if (imageFile.size > 4_194_304) {
+          const error: LccError = {
+            name: 'LCCError',
+            message: `Image file must be under 4 MB. Selected image was ${formatBytes(imageFile.size)} after conversion.`,
+          };
+          this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));
+          return;
+        }
 
-        // if (!imageFile) {
-        //   const error: LccError = {
-        //     name: 'LCCError',
-        //     message: 'Unable to load image file.',
-        //   };
-        //   this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));
-        //   return;
-        // }
+        const image: Image = {
+          id: '',
+          filename: imageFile.name,
+          fileSize: imageFile.size,
+          title: imageFile.name.substring(0, imageFile.name.lastIndexOf('.')),
+          presignedUrl: dataUrl,
+          articleAppearances: 1,
+          albums: [],
+          albumCoverFor: null,
+        };
 
-        // if (imageFile.size > 4_194_304) {
-        //   const error: LccError = {
-        //     name: 'LCCError',
-        //     message: `Image file must be under 4 MB. Selected image was ${formatBytes(imageFile.size)} after conversion.`,
-        //   };
-        //   this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));
-        //   return;
-        // }
-
-        // const image: Image = {
-        //   id: '',
-        //   articleAppearances: 1,
-        //   filename: imageFilename,
-        //   presignedUrl: dataUrl,
-        //   fileSize: imageFile.size,
-        // };
-
-        // this.store.dispatch(ArticlesActions.bannerImageSet({ fileData }));
-        // this.form?.patchValue({ image });
+        this.form?.patchValue({ image });
       };
     }
 
@@ -184,7 +175,6 @@ export class ArticleFormComponent implements OnInit {
 
   public onRevertImage(): void {
     this.form?.patchValue({ image: null });
-    this.store.dispatch(ArticlesActions.bannerImageSet({ fileData: null }));
   }
 
   public onCancel(): void {
@@ -197,16 +187,14 @@ export class ArticleFormComponent implements OnInit {
       return;
     }
 
-    // const filename = this.form.controls.imageFilename.value;
-    const filename = 'temp';
+    const filename = this.form.controls.image.value!.filename;
+    const uploadingNewImage = !!this.form.controls.image.value?.id;
 
     const verb = this.controlMode === 'edit' ? 'Update' : 'Publish';
     const dialog: Dialog = {
-      title: `${verb} article ${this.imageFileData ? ' & upload image' : ''}?`,
+      title: `${verb} article ${uploadingNewImage ? ' & upload image' : ''}?`,
       body: `${verb} ${articleTitle}${
-        this.imageFileData
-          ? ` and upload new image ${filename}${this.imageFileData.extension}`
-          : ''
+        uploadingNewImage ? ` and upload new image ${filename}` : ''
       }?`,
       confirmButtonText: this.controlMode === 'edit' ? 'Update' : 'Add',
     };
@@ -223,10 +211,10 @@ export class ArticleFormComponent implements OnInit {
       return;
     }
 
-    if (this.imageFileData && this.form.value.image) {
+    if (!this.form.value.image?.id) {
       this.store.dispatch(
         ImagesActions.addImageRequested({
-          image: this.form.value.image,
+          image: this.form.value.image!,
           forArticle: true,
         }),
       );
@@ -241,7 +229,11 @@ export class ArticleFormComponent implements OnInit {
     this.form = this.formBuilder.group<ArticleFormGroup>({
       image: new FormControl(formData?.image ?? null, {
         nonNullable: true,
-        validators: [filenameValidator],
+        validators: [Validators.required, filenameValidator],
+      }),
+      imageTitle: new FormControl(formData?.image?.title ?? '', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
       title: new FormControl(formData?.title ?? '', {
         nonNullable: true,
@@ -258,6 +250,17 @@ export class ArticleFormComponent implements OnInit {
     this.form?.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((value: Partial<ArticleFormData>) => {
+        const { imageTitle, ...rest } = value;
+        value = {
+          ...rest,
+          image: value.image
+            ? {
+                ...value.image,
+                title: imageTitle ?? '',
+              }
+            : null,
+        };
+
         this.store.dispatch(ArticlesActions.formValueChanged({ value }));
       });
 

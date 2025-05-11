@@ -14,7 +14,9 @@ export interface Article {
   formData: ArticleFormData | null;
 }
 
-export type ArticleFormData = Pick<Article, 'title' | 'body' | 'image'>;
+export type ArticleFormData = Pick<Article, 'title' | 'body' | 'image'> & {
+  imageTitle: string;
+};
 
 export type ArticleFormGroup = {
   [Property in keyof ArticleFormData]: FormControl<ArticleFormData[Property]>;

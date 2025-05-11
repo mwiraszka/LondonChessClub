@@ -51,21 +51,27 @@
             <i-feather name="rotate-ccw"></i-feather>
           </button>
 
-          @if (imageFileData) {
+          @if (form.controls.image.value) {
             <input
-              id="image-filename-input"
-              name="image-filename"
-              formControlName="imageFilename"
+              id="image-title-input"
+              name="image-title"
+              formControlName="imageTitle"
               maxlength="50"
               type="text" />
           }
         </div>
         <div class="lcc-form-error-container">
-          @if (imageFileData && hasError(form.controls.image)) {
+          @if (hasError(form.controls.image)) {
             <i-feather
               name="alert-triangle"
               class="lcc-form-error-icon validation-alert-icon"
               [tooltip]="getErrorMessage(form.controls.image)">
+            </i-feather>
+          } @else if (hasError(form.controls.imageTitle)) {
+            <i-feather
+              name="alert-triangle"
+              class="lcc-form-error-icon validation-alert-icon"
+              [tooltip]="getErrorMessage(form.controls.imageTitle)">
             </i-feather>
           }
         </div>

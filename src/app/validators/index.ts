@@ -1,9 +1,9 @@
 export { emailValidator } from './email.validator';
-export { filenameValidator } from './filename.validator';
 export { hasLowercaseLetterValidator } from './has-lowercase-letter.validator';
 export { hasNumberValidator } from './has-number.validator';
 export { hasSpecialCharValidator } from './has-special-char.validator';
 export { hasUppercaseLetterValidator } from './has-uppercase-letter.validator';
+export { imageCaptionValidator } from './image-caption.validator';
 export { matchingPasswordsValidator } from './matching-passwords.validator';
 export { phoneNumberValidator } from './phone-number.validator';
 export { ratingValidator } from './rating.validator';

@@ -13,7 +13,7 @@ const modificationInfo: ModificationInfo = {
 export const images: Image[] = [
   {
     filename: '2019-active-championship-winner-kevin.jpg',
-    title: '2019 Active Championship Winner - Kevin',
+    caption: '2019 Active Championship Winner - Kevin',
     albums: ['Archives'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -24,7 +24,7 @@ export const images: Image[] = [
   },
   {
     filename: '2019-speed-championship-winner-tony.jpg',
-    title: '2019 Speed Championship Winner - Tony',
+    caption: '2019 Speed Championship Winner - Tony',
     albums: ['Archives'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -35,7 +35,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-1.jpg',
-    title: '2022 Post-Pandemic Chess Boom 1',
+    caption: '2022 Post-Pandemic Chess Boom 1',
     albums: ['2022 Post-Pandemic Chess Boom'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -46,7 +46,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-2.jpg',
-    title: '2022 Post-Pandemic Chess Boom 2',
+    caption: '2022 Post-Pandemic Chess Boom 2',
     albums: ['2022 Post-Pandemic Chess Boom'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -57,7 +57,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-3.jpg',
-    title: '2022 Post-Pandemic Chess Boom 3',
+    caption: '2022 Post-Pandemic Chess Boom 3',
     albums: ['2022 Post-Pandemic Chess Boom'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -68,7 +68,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-4.jpg',
-    title: '2022 Post-Pandemic Chess Boom 4',
+    caption: '2022 Post-Pandemic Chess Boom 4',
     albums: ['2022 Post-Pandemic Chess Boom'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -79,7 +79,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-5.jpg',
-    title: '2022 Post-Pandemic Chess Boom 5',
+    caption: '2022 Post-Pandemic Chess Boom 5',
     albums: ['2022 Post-Pandemic Chess Boom'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -90,7 +90,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-6.jpg',
-    title: '2022 Post-Pandemic Chess Boom 6',
+    caption: '2022 Post-Pandemic Chess Boom 6',
     albums: ['2022 Post-Pandemic Chess Boom'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -101,7 +101,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-7.jpg',
-    title: '2022 Post-Pandemic Chess Boom 7',
+    caption: '2022 Post-Pandemic Chess Boom 7',
     albums: ['2022 Post-Pandemic Chess Boom'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -112,7 +112,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-city-championship-1.jpg',
-    title: '2022 City Championship 1',
+    caption: '2022 City Championship 1',
     albums: ['2022 City Championship'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -123,7 +123,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-city-championship-2.jpg',
-    title: '2022 City Championship 2',
+    caption: '2022 City Championship 2',
     albums: ['2022 City Championship'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -134,7 +134,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-city-championship-3.jpg',
-    title: '2022 City Championship 3',
+    caption: '2022 City Championship 3',
     albums: ['2022 City Championship'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -145,7 +145,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-city-championship-4.jpg',
-    title: '2022 City Championship 4',
+    caption: '2022 City Championship 4',
     albums: ['2022 City Championship'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -156,7 +156,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-city-championship-5.jpg',
-    title: '2022 City Championship 5',
+    caption: '2022 City Championship 5',
     albums: ['2022 City Championship'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -167,7 +167,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-city-championship-6.jpg',
-    title: '2022 City Championship 6',
+    caption: '2022 City Championship 6',
     albums: ['2022 City Championship'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -178,7 +178,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-city-championship-7.jpg',
-    title: '2022 City Championship 7',
+    caption: '2022 City Championship 7',
     albums: ['2022 City Championship'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -189,7 +189,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-city-championship-8.jpg',
-    title: '2022 City Championship 8',
+    caption: '2022 City Championship 8',
     albums: ['2022 City Championship'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -200,7 +200,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-city-championship-9.jpg',
-    title: '2022 City Championship 9',
+    caption: '2022 City Championship 9',
     albums: ['2022 City Championship'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -211,7 +211,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-city-championship-10.jpg',
-    title: '2022 City Championship 10',
+    caption: '2022 City Championship 10',
     albums: ['2022 City Championship'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -222,7 +222,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-city-championship-11.jpg',
-    title: '2022 City Championship 11',
+    caption: '2022 City Championship 11',
     albums: ['2022 City Championship'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -233,7 +233,7 @@ export const images: Image[] = [
   },
   {
     filename: '2022-dave-jackson-memorial-winners.jpg',
-    title: '2022 Dave Jackson Memorial Tournament - Winners',
+    caption: '2022 Dave Jackson Memorial Tournament - Winners',
     albums: ['2022 Dave Jackson Memorial Tournament'],
     albumCoverFor: '2022 Dave Jackson Memorial Tournament',
     articleAppearances: 0,
@@ -244,7 +244,7 @@ export const images: Image[] = [
   },
   {
     filename: '2023-active-championship-winner.jpg',
-    title: '2023 Active Championship - Winner',
+    caption: '2023 Active Championship - Winner',
     albums: ['2023 Active Championship'],
     albumCoverFor: '2023 Active Championship',
     articleAppearances: 0,
@@ -255,7 +255,7 @@ export const images: Image[] = [
   },
   {
     filename: '2023-canadian-open.jpg',
-    title: '2023 Canadian Open in Calgary',
+    caption: '2023 Canadian Open in Calgary',
     albums: ['2023 Canadian Open in Calgary'],
     albumCoverFor: '2023 Canadian Open in Calgary',
     articleAppearances: 0,
@@ -266,7 +266,7 @@ export const images: Image[] = [
   },
   {
     filename: '2023-dave-jackson-memorial-tournament-adam.jpg',
-    title: '2023 Dave Jackson Memorial Tournament - Adam',
+    caption: '2023 Dave Jackson Memorial Tournament - Adam',
     albums: ['2023 Dave Jackson Memorial Tournament'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -277,7 +277,7 @@ export const images: Image[] = [
   },
   {
     filename: '2023-dave-jackson-memorial-tournament-steve.jpg',
-    title: '2023 Dave Jackson Memorial Tournament - Steve',
+    caption: '2023 Dave Jackson Memorial Tournament - Steve',
     albums: ['2023 Dave Jackson Memorial Tournament'],
     albumCoverFor: '2023 Dave Jackson Memorial Tournament',
     articleAppearances: 0,
@@ -288,7 +288,7 @@ export const images: Image[] = [
   },
   {
     filename: '2023-gladiators-of-the-chessboard-event.jpg',
-    title: '2023 Gladiators of the Chessboard Event',
+    caption: '2023 Gladiators of the Chessboard Event',
     albums: ['2023 Gladiators of the Chessboard'],
     albumCoverFor: '2023 Gladiators of the Chessboard',
     articleAppearances: 0,
@@ -299,7 +299,7 @@ export const images: Image[] = [
   },
   {
     filename: '2023-lifetime-achievement-award-gerry.jpg',
-    title: '2023 Lifetime Achievement Award - Gerry',
+    caption: '2023 Lifetime Achievement Award - Gerry',
     albums: ['2023 Lifetime Achievement Awards'],
     albumCoverFor: '2023 Lifetime Achievement Awards',
     articleAppearances: 0,
@@ -310,7 +310,7 @@ export const images: Image[] = [
   },
   {
     filename: '2023-lifetime-achievement-award-jim.jpg',
-    title: '2023 Lifetime Achievement Award - Jim',
+    caption: '2023 Lifetime Achievement Award - Jim',
     albums: ['2023 Lifetime Achievement Awards'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -321,7 +321,7 @@ export const images: Image[] = [
   },
   {
     filename: '2023-lifetime-achievement-award-steve.jpg',
-    title: '2023 Lifetime Achievement Award - Steve',
+    caption: '2023 Lifetime Achievement Award - Steve',
     albums: ['2023 Lifetime Achievement Awards'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -332,7 +332,7 @@ export const images: Image[] = [
   },
   {
     filename: '2023-london-vs-western-olympiad-1.jpg',
-    title: '2023 London vs. Western Olympiad',
+    caption: '2023 London vs. Western Olympiad',
     albums: ['2023 London vs. Western Olympiad'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -343,7 +343,7 @@ export const images: Image[] = [
   },
   {
     filename: '2023-london-vs-western-olympiad-2.jpg',
-    title: '2023 London vs. Western Olympiad',
+    caption: '2023 London vs. Western Olympiad',
     albums: ['2023 London vs. Western Olympiad'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -354,7 +354,7 @@ export const images: Image[] = [
   },
   {
     filename: '2023-london-vs-western-olympiad-3.jpg',
-    title: '2023 London vs. Western Olympiad',
+    caption: '2023 London vs. Western Olympiad',
     albums: ['2023 London vs. Western Olympiad'],
     albumCoverFor: '2023 London vs. Western Olympiad',
     articleAppearances: 0,
@@ -365,7 +365,7 @@ export const images: Image[] = [
   },
   {
     filename: '2023-summer-solstice-showdown-tournament.jpg',
-    title: '2023 Summer Solstice Showdown Tournament',
+    caption: '2023 Summer Solstice Showdown Tournament',
     albums: ['2023 Summer Solstice Showdown Tournament'],
     albumCoverFor: '2023 Summer Solstice Showdown Tournament',
     articleAppearances: 0,
@@ -376,7 +376,7 @@ export const images: Image[] = [
   },
   {
     filename: '2023-tandem-simul-1.jpg',
-    title: '2023 Tandem Simul 1',
+    caption: '2023 Tandem Simul 1',
     albums: ['2023 Tandem Simul'],
     albumCoverFor: '2023 Tandem Simul',
     articleAppearances: 0,
@@ -387,7 +387,7 @@ export const images: Image[] = [
   },
   {
     filename: '2023-tandem-simul-2.jpg',
-    title: '2023 Tandem Simul [2 of 2]',
+    caption: '2023 Tandem Simul [2 of 2]',
     albums: ['2023 Tandem Simul'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -398,7 +398,7 @@ export const images: Image[] = [
   },
   {
     filename: '2025-rooks-revenge-round-1-hugo-shailesh.png',
-    title: 'Round 1 - Hugo vs Shailesh',
+    caption: 'Round 1 - Hugo vs Shailesh',
     albums: ["2025 Rook's Revenge Rapid Tournament"],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -409,7 +409,7 @@ export const images: Image[] = [
   },
   {
     filename: '2025-rooks-revenge-round-1-tyler-nirmal.jpeg',
-    title: 'Round 1 - Tyler vs Nirmal',
+    caption: 'Round 1 - Tyler vs Nirmal',
     albums: ["2025 Rook's Revenge Rapid Tournament"],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -420,7 +420,7 @@ export const images: Image[] = [
   },
   {
     filename: '2025-rooks-revenge-round-2-mark-wyntie.png',
-    title: 'Round 2 - Mark vs Wyntie',
+    caption: 'Round 2 - Mark vs Wyntie',
     albums: ["2025 Rook's Revenge Rapid Tournament"],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -431,7 +431,7 @@ export const images: Image[] = [
   },
   {
     filename: '2025-rooks-revenge-round-2-shailesh-george.png',
-    title: 'Round 2 - Shailesh vs George',
+    caption: 'Round 2 - Shailesh vs George',
     albums: ["2025 Rook's Revenge Rapid Tournament"],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -442,7 +442,7 @@ export const images: Image[] = [
   },
   {
     filename: '2025-rooks-revenge-round-2-william-adam.png',
-    title: 'Round 2 - William vs Adam',
+    caption: 'Round 2 - William vs Adam',
     albums: ["2025 Rook's Revenge Rapid Tournament"],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -453,7 +453,7 @@ export const images: Image[] = [
   },
   {
     filename: '2025-rooks-revenge-round-3-carl-william.jpeg',
-    title: 'Round 3 - Carl vs William',
+    caption: 'Round 3 - Carl vs William',
     albums: ["2025 Rook's Revenge Rapid Tournament"],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -464,7 +464,7 @@ export const images: Image[] = [
   },
   {
     filename: '2025-rooks-revenge-round-4-annabelle-adam.png',
-    title: 'Round 4 - Annabelle vs Adam',
+    caption: 'Round 4 - Annabelle vs Adam',
     albums: ["2025 Rook's Revenge Rapid Tournament"],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -475,7 +475,7 @@ export const images: Image[] = [
   },
   {
     filename: '2025-rooks-revenge-round-4-william-tyler.jpeg',
-    title: 'Round 4 - Carl vs William',
+    caption: 'Round 4 - Carl vs William',
     albums: ["2025 Rook's Revenge Rapid Tournament"],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -486,7 +486,7 @@ export const images: Image[] = [
   },
   {
     filename: '2025-rooks-revenge-round-5-mike-arun.png',
-    title: 'Round 5 - Mike vs Arun',
+    caption: 'Round 5 - Mike vs Arun',
     albums: ["2025 Rook's Revenge Rapid Tournament"],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -497,7 +497,7 @@ export const images: Image[] = [
   },
   {
     filename: '2025-rooks-revenge-round-5-steve-madeline.jpeg',
-    title: 'Round 5 - Steve vs Madeline',
+    caption: 'Round 5 - Steve vs Madeline',
     albums: ["2025 Rook's Revenge Rapid Tournament"],
     albumCoverFor: "2025 Rook's Revenge Rapid Tournament",
     articleAppearances: 0,
@@ -508,7 +508,7 @@ export const images: Image[] = [
   },
   {
     filename: '2025-rooks-revenge-round-6-bryan-madeline.jpeg',
-    title: 'Round 6 - Bryan vs Madeline',
+    caption: 'Round 6 - Bryan vs Madeline',
     albums: ["2025 Rook's Revenge Rapid Tournament"],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -519,7 +519,7 @@ export const images: Image[] = [
   },
   {
     filename: '2025-rooks-revenge-round-6-william-mark.jpeg',
-    title: 'Round 6 - William vs Mark',
+    caption: 'Round 6 - William vs Mark',
     albums: ["2025 Rook's Revenge Rapid Tournament"],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -530,7 +530,7 @@ export const images: Image[] = [
   },
   {
     filename: 'championship-final.jpg',
-    title: 'Championship Final',
+    caption: 'Championship Final',
     albums: ['Archives'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -541,7 +541,7 @@ export const images: Image[] = [
   },
   {
     filename: 'outdoor-chess.jpg',
-    title: 'Chess in the park!',
+    caption: 'Chess in the park!',
     albums: ['Archives'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -552,7 +552,7 @@ export const images: Image[] = [
   },
   {
     filename: 'steve-lecture.jpg',
-    title: 'Steve Demmery giving a lecture',
+    caption: 'Steve Demmery giving a lecture',
     albums: ['Archives'],
     albumCoverFor: null,
     articleAppearances: 0,
@@ -563,7 +563,7 @@ export const images: Image[] = [
   },
   {
     filename: 'tandem-simul-steve-geoffrey.jpg',
-    title: 'Tandem Simul with Steve Demmery and Geoffrey Ruelland',
+    caption: 'Tandem Simul with Steve Demmery and Geoffrey Ruelland',
     albums: ['Tandem Simul with Steve Demmery and Geoffrey Ruelland'],
     albumCoverFor: 'Tandem Simul with Steve Demmery and Geoffrey Ruelland',
     articleAppearances: 0,
@@ -574,7 +574,7 @@ export const images: Image[] = [
   },
   {
     filename: 'the-old-guard.jpg',
-    title: 'The old guard',
+    caption: 'The old guard',
     albums: ['Archives'],
     albumCoverFor: 'Archives',
     articleAppearances: 0,

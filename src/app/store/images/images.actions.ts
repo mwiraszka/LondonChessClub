@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Id, Image, LccError } from '@app/models';
+import type { Id, Image, LccError, Url } from '@app/models';
 
 export const fetchArticleBannerImageThumbnailsRequested = createAction(
   '[Images] Fetch article banner image thumbnails requested',
@@ -29,11 +29,11 @@ export const fetchArticleBannerImageFailed = createAction(
 
 export const addImageRequested = createAction(
   '[Images] Add image requested',
-  props<{ image: Image; forArticle?: boolean }>(),
+  props<{ dataUrl: Url; filename: string; caption: string; forArticle: boolean }>(),
 );
 export const addImageSucceeded = createAction(
   '[Images] Add image succeeded',
-  props<{ image: Image; forArticle?: boolean }>(),
+  props<{ image: Image; forArticle: boolean }>(),
 );
 export const addImageFailed = createAction(
   '[Images] Add image failed',

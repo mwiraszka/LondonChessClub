@@ -1,21 +1,21 @@
 @if (articleFormViewModel$ | async; as vm) {
-  @defer {
-    <img
-      class="banner-image"
-      [src]="vm.article?.formData?.image?.presignedUrl"
-      default="assets/image-placeholder.png"
-      alt="Article banner image" />
-  } @placeholder (minimum 0.5s) {
-    <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
-      <div class="lcc-content-placeholder"></div>
-    </div>
-  }
-
   @if (form) {
+    @defer {
+      <img
+        class="banner-image"
+        [src]="form.controls.presignedUrl.value"
+        default="assets/image-placeholder.png"
+        alt="Article banner image" />
+    } @placeholder (minimum 0.5s) {
+      <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
+        <div class="lcc-content-placeholder"></div>
+      </div>
+    }
+
     <form
       class="lcc-form"
       [formGroup]="form"
-      (ngSubmit)="onSubmit(vm.article?.title ?? vm.article?.formData?.title)">
+      (ngSubmit)="onSubmit(vm.article)">
       <div class="lcc-form-fields">
         <label class="lcc-required-field">Banner Image:</label>
 
@@ -43,35 +43,26 @@
             class="revert-button lcc-secondary-button"
             type="button"
             tooltip="Revert to original image"
-            [disabled]="
-              vm.article?.image?.presignedUrl ===
-              vm.article?.formData?.image?.presignedUrl
-            "
+            [disabled]="vm.article?.bannerImage?.id === form.controls.id.value"
             (click)="onRevertImage()">
             <i-feather name="rotate-ccw"></i-feather>
           </button>
 
-          @if (form.controls.image.value) {
+          @if (form.controls.caption.value) {
             <input
-              id="image-title-input"
-              name="image-title"
-              formControlName="imageTitle"
+              id="caption-input"
+              name="caption"
+              formControlName="caption"
               maxlength="50"
               type="text" />
           }
         </div>
         <div class="lcc-form-error-container">
-          @if (hasError(form.controls.image)) {
+          @if (hasError(form.controls.caption)) {
             <i-feather
               name="alert-triangle"
               class="lcc-form-error-icon validation-alert-icon"
-              [tooltip]="getErrorMessage(form.controls.image)">
-            </i-feather>
-          } @else if (hasError(form.controls.imageTitle)) {
-            <i-feather
-              name="alert-triangle"
-              class="lcc-form-error-icon validation-alert-icon"
-              [tooltip]="getErrorMessage(form.controls.imageTitle)">
+              [tooltip]="getErrorMessage(form.controls.caption)">
             </i-feather>
           }
         </div>
@@ -122,7 +113,7 @@
       <aside class="lcc-required-fields-legend">Required fields</aside>
 
       <div class="preview-section-container">
-        @if (!!form.controls.body.value && vm.controlMode) {
+        @if (!!form.controls.body.value) {
           <h3>Article preview:</h3>
           <hr />
           <div class="markdown-container">

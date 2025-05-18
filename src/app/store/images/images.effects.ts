@@ -1,15 +1,12 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { concatLatestFrom } from '@ngrx/operators';
-import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { LccError } from '@app/models';
 import { ImagesService, LoaderService } from '@app/services';
-import { ArticlesSelectors } from '@app/store/articles';
-import { dataUrlToFile, isDefined } from '@app/utils';
+import { dataUrlToFile } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
 
 import * as ImagesActions from './images.actions';
@@ -65,48 +62,42 @@ export class ImagesEffects {
     );
   });
 
-  // addImage$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(ImagesActions.addImageRequested),
-  //     tap(() => this.loaderService.setIsLoading(true)),
-  //     concatLatestFrom(() => [
-  //       this.store.select(ArticlesSelectors.selectBannerImageUrl).pipe(filter(isDefined)),
-  //       this.store
-  //         .select(ArticlesSelectors.selectBannerImageFileData)
-  //         .pipe(filter(isDefined)),
-  //     ]),
-  //     switchMap(([{ image, forArticle }, dataUrl, fileData]) => {
-  //       const imageFile = dataUrlToFile(dataUrl, filename, fileData);
+  addImage$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.addImageRequested),
+      tap(() => this.loaderService.setIsLoading(true)),
+      switchMap(({ dataUrl, filename, caption, forArticle }) => {
+        const imageFile = dataUrlToFile(dataUrl, filename);
 
-  //       if (!imageFile) {
-  //         const error: LccError = {
-  //           name: 'LCCError',
-  //           message: 'Unable to construct file object from image data URL.',
-  //         };
-  //         return of(ImagesActions.addImageFailed({ error }));
-  //       }
+        if (!imageFile) {
+          const error: LccError = {
+            name: 'LCCError',
+            message: 'Unable to construct file object from image data URL.',
+          };
+          return of(ImagesActions.addImageFailed({ error }));
+        }
 
-  //       const imageFormData = new FormData();
-  //       imageFormData.append('imageFile', imageFile);
+        const imageFormData = new FormData();
+        imageFormData.append('imageFile', imageFile);
 
-  //       return this.imagesService.addImage(imageFormData).pipe(
-  //         map(response =>
-  //           ImagesActions.addImageSucceeded({ image: response.data, forArticle }),
-  //         ),
-  //         catchError(error =>
-  //           of(ImagesActions.addImageFailed({ error: parseError(error) })),
-  //         ),
-  //       );
-  //     }),
-  //     tap(() => this.loaderService.setIsLoading(false)),
-  //   );
-  // });
+        return this.imagesService.addImage(imageFormData, caption).pipe(
+          map(response =>
+            ImagesActions.addImageSucceeded({ image: response.data, forArticle }),
+          ),
+          catchError(error =>
+            of(ImagesActions.addImageFailed({ error: parseError(error) })),
+          ),
+        );
+      }),
+      tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
 
   deleteImage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.deleteImageRequested),
       switchMap(({ image }) =>
-        this.imagesService.deleteImage(image.id).pipe(
+        this.imagesService.deleteImage(image.id!).pipe(
           map(() => ImagesActions.deleteImageSucceeded({ image })),
           catchError(error =>
             of(ImagesActions.deleteImageFailed({ error: parseError(error) })),
@@ -120,6 +111,5 @@ export class ImagesEffects {
     private readonly actions$: Actions,
     private readonly imagesService: ImagesService,
     private readonly loaderService: LoaderService,
-    private readonly store: Store,
   ) {}
 }

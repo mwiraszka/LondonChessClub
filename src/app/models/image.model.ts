@@ -5,10 +5,10 @@ export interface Image {
   id: Id;
   filename: string;
   fileSize: number;
-  title: string;
+  caption: string;
   presignedUrl: Url;
-  articleAppearances: number;
   albums: string[];
   albumCoverFor: string | null;
-  modificationInfo?: ModificationInfo;
+  modificationInfo: ModificationInfo;
+  articleAppearances?: number;
 }

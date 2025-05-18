@@ -1,6 +1,13 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Article, ArticleFormData, ControlMode, Id, LccError } from '@app/models';
+import type {
+  Article,
+  ArticleFormData,
+  ControlMode,
+  EditableArticle,
+  Id,
+  LccError,
+} from '@app/models';
 
 export const fetchArticlesRequested = createAction('[Articles] Fetch articles requested');
 export const fetchArticlesSucceeded = createAction(
@@ -33,7 +40,6 @@ export const bannerImageFileLoadFailed = createAction(
 
 export const publishArticleRequested = createAction(
   '[Articles] Publish article requested',
-  props<{ imageId?: Id }>(),
 );
 export const publishArticleSucceeded = createAction(
   '[Articles] Publish article succeeded',
@@ -50,7 +56,7 @@ export const updateActicleBookmarkRequested = createAction(
 );
 export const updateArticleRequested = createAction(
   '[Articles] Update article requested',
-  props<{ imageId?: Id }>(),
+  props<{ article: EditableArticle }>(),
 );
 export const updateArticleSucceeded = createAction(
   '[Articles] Update article succeeded',

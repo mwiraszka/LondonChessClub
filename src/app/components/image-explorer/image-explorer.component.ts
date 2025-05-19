@@ -97,7 +97,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
       id: uuid.v4(),
       filename: '',
       fileSize: 0,
-      title: '',
+      caption: '',
       articleAppearances: 0,
       albums: [],
       albumCoverFor: null,

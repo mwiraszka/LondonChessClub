@@ -1,25 +1,36 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 
-import type { ArticleFormData, EditableArticle } from '@app/models';
-import { ImagesActions } from '@app/store/images';
+import type { Article, ArticleFormData } from '@app/models';
+// import { ImagesActions } from '@app/store/images';
 import { customSort } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
 
-const INITIAL_ARTICLE_FORM_DATA: ArticleFormData = {
+export const INITIAL_ARTICLE_FORM_DATA: ArticleFormData = {
   title: '',
   body: '',
   bannerImageId: null,
 };
 
-export interface ArticlesState extends EntityState<EditableArticle> {
+export interface ArticlesState
+  extends EntityState<{ article: Article; formData: ArticleFormData }> {
   newArticleFormData: ArticleFormData;
 }
 
-export const articlesAdapter = createEntityAdapter<EditableArticle>({
+export const articlesAdapter = createEntityAdapter<{
+  article: Article;
+  formData: ArticleFormData;
+}>({
   sortComparer: (a, b) =>
-    customSort(a, b, 'bookmarkDate', true, 'modificationInfo.dateCreated', true),
+    customSort(
+      a,
+      b,
+      'article.bookmarkDate',
+      true,
+      'article.modificationInfo.dateCreated',
+      true,
+    ),
 });
 
 export const initialState: ArticlesState = articlesAdapter.getInitialState({
@@ -34,7 +45,7 @@ export const articlesReducer = createReducer(
     (state, { articles }): ArticlesState =>
       articlesAdapter.setAll(
         articles.map(article => ({
-          ...article,
+          article,
           formData: {
             title: article.title,
             body: article.body,
@@ -48,7 +59,7 @@ export const articlesReducer = createReducer(
   on(ArticlesActions.fetchArticleSucceeded, (state, { article }): ArticlesState => {
     return articlesAdapter.upsertOne<ArticlesState>(
       {
-        ...article,
+        article,
         formData: {
           title: article.title,
           body: article.body,
@@ -59,28 +70,28 @@ export const articlesReducer = createReducer(
     );
   }),
 
-  on(
-    ImagesActions.fetchArticleBannerImageSucceeded,
-    (state, { articleId, image, setAsOriginal }): ArticlesState => {
-      const originalArticle = state.entities[articleId];
+  // on(
+  //   ImagesActions.fetchArticleBannerImageSucceeded,
+  //   (state, { image, setAsOriginal }): ArticlesState => {
+  //     const originalArticle = state.entities[articleId];
 
-      if (!originalArticle) {
-        return state;
-      }
+  //     if (!originalArticle) {
+  //       return state;
+  //     }
 
-      return articlesAdapter.upsertOne<ArticlesState>(
-        {
-          ...originalArticle,
-          bannerImageId: setAsOriginal ? image.id : originalArticle.bannerImageId,
-          formData: {
-            ...(originalArticle.formData ?? INITIAL_ARTICLE_FORM_DATA),
-            bannerImageId: image.id,
-          },
-        },
-        state,
-      );
-    },
-  ),
+  //     return articlesAdapter.upsertOne<ArticlesState>(
+  //       {
+  //         ...originalArticle,
+  //         bannerImageId: setAsOriginal ? image.id : originalArticle.bannerImageId,
+  //         formData: {
+  //           ...(originalArticle.formData ?? INITIAL_ARTICLE_FORM_DATA),
+  //           bannerImageId: image.id,
+  //         },
+  //       },
+  //       state,
+  //     );
+  //   },
+  // ),
 
   on(
     ArticlesActions.publishArticleSucceeded,
@@ -88,7 +99,7 @@ export const articlesReducer = createReducer(
     (state, { article }): ArticlesState =>
       articlesAdapter.upsertOne<ArticlesState>(
         {
-          ...article,
+          article,
           formData: {
             title: article.title,
             body: article.body,

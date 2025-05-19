@@ -1,8 +1,10 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import { filter, map, switchMap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { ArticleComponent } from '@app/components/article/article.component';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
@@ -24,19 +26,20 @@ import { isDefined } from '@app/utils';
 @Component({
   selector: 'lcc-article-viewer-page',
   template: `
-    @if (articleViewerPageViewModel$ | async; as vm) {
-      @if (vm.article) {
-        <lcc-article
-          [adminControls]="vm.isAdmin ? getAdminControlsConfig(vm.article) : null"
-          [article]="vm.article">
-        </lcc-article>
-        <lcc-link-list [links]="links"></lcc-link-list>
-      }
+    @if (article && isAdmin !== undefined) {
+      <lcc-article
+        [adminControls]="isAdmin ? getAdminControlsConfig(article) : null"
+        [article]="article"
+        [bannerImage]="null">
+      </lcc-article>
+      <lcc-link-list [links]="links"></lcc-link-list>
     }
   `,
   imports: [AdminControlsDirective, ArticleComponent, CommonModule, LinkListComponent],
 })
 export class ArticleViewerPageComponent implements OnInit {
+  public article?: Article;
+  public isAdmin?: boolean;
   public readonly links: InternalLink[] = [
     {
       text: 'More articles',
@@ -49,32 +52,42 @@ export class ArticleViewerPageComponent implements OnInit {
       icon: 'home',
     },
   ];
-  public readonly articleViewerPageViewModel$ = this.store.select(
-    ArticlesSelectors.selectArticleViewerPageViewModel,
-  );
 
   constructor(
+    private readonly activatedRoute: ActivatedRoute,
     private readonly dialogService: DialogService,
     private readonly metaAndTitleService: MetaAndTitleService,
     private readonly store: Store,
   ) {}
 
   ngOnInit(): void {
-    this.articleViewerPageViewModel$
-      .pipe(untilDestroyed(this))
-      .subscribe(({ article }) => {
-        if (isDefined(article?.image?.id)) {
+    this.activatedRoute.params
+      .pipe(
+        untilDestroyed(this),
+        map(params => params['article_id'] as string | undefined),
+        filter(articleId => isDefined(articleId)),
+        switchMap(articleId =>
+          this.store.select(
+            ArticlesSelectors.selectArticleViewerPageViewModel(articleId),
+          ),
+        ),
+        filter(vm => isDefined(vm.article)),
+      )
+      .subscribe(vm => {
+        if (isDefined(vm.article!.bannerImageId)) {
           this.store.dispatch(
-            ImagesActions.fetchArticleBannerImageRequested({ imageId: article.image.id }),
+            ImagesActions.fetchArticleBannerImageRequested({
+              imageId: vm.article!.bannerImageId,
+            }),
           );
         }
 
-        if (article?.title && article?.body) {
-          const articlePreview =
-            article.body.length > 197 ? article.body.slice(0, 197) + '...' : article.body;
-          this.metaAndTitleService.updateTitle(article.title);
-          this.metaAndTitleService.updateDescription(articlePreview);
-        }
+        const articlePreview =
+          vm.article!.body.length > 197
+            ? vm.article!.body.slice(0, 197) + '...'
+            : vm.article!.body;
+        this.metaAndTitleService.updateTitle(vm.article!.title);
+        this.metaAndTitleService.updateDescription(articlePreview);
       });
   }
 
@@ -104,7 +117,9 @@ export class ArticleViewerPageComponent implements OnInit {
     );
 
     if (result === 'confirm') {
-      this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
+      this.store.dispatch(
+        ArticlesActions.deleteArticleRequested({ articleId: article.id }),
+      );
     }
   }
 }

@@ -50,6 +50,7 @@ import { isDefined } from '@app/utils';
   ],
 })
 export class ArticleGridComponent implements OnInit {
+  @Input() public bannerImage?: Image | null;
   @Input() public maxArticles?: number;
 
   public readonly articleGridViewModel$ = this.store.select(

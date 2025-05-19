@@ -60,7 +60,7 @@ export class ArticlesEffects {
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store
-          .select(ArticlesSelectors.selectNewArticleFormData)
+          .select(ArticlesSelectors.selectArticleFormDataById(null))
           .pipe(filter(isDefined)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
@@ -101,11 +101,15 @@ export class ArticlesEffects {
         this.store
           .select(ArticlesSelectors.selectArticleById(articleId))
           .pipe(filter(isDefined)),
+        this.store
+          .select(ArticlesSelectors.selectArticleFormDataById(articleId))
+          .pipe(filter(isDefined)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
-      switchMap(([, article, user]) => {
+      switchMap(([, article, formData, user]) => {
         const updatedArticle: Article = {
-          title: article.formData.title,
+          id: article.id,
+          title: formData.title,
           body: formData.body,
           bannerImageId: formData.bannerImageId,
           bookmarkDate: null,
@@ -117,25 +121,11 @@ export class ArticlesEffects {
           },
         };
 
-        const originalArticleTitle = article.title;
-        const modificationInfo: ModificationInfo = {
-          ...article.modificationInfo,
-          lastEditedBy: `${user.firstName} ${user.lastName}`,
-          dateLastEdited: moment().toISOString(),
-        };
-        const { imageFilename, ...articleFormDataWithoutImageFilename } = articleFormData;
-        const modifiedArticle = {
-          ...article,
-          ...articleFormDataWithoutImageFilename,
-          imageId: imageId ?? articleFormData.imageId,
-          modificationInfo,
-        };
-
-        return this.articlesService.updateArticle(modifiedArticle).pipe(
+        return this.articlesService.updateArticle(updatedArticle).pipe(
           map(() =>
             ArticlesActions.updateArticleSucceeded({
-              article: modifiedArticle,
-              originalArticleTitle,
+              article: updatedArticle,
+              originalArticleTitle: article.title,
             }),
           ),
           catchError(error =>

@@ -12,8 +12,6 @@ export interface Article {
   modificationInfo: ModificationInfo;
 }
 
-export type EditableArticle = Article & { formData: ArticleFormData };
-
 export type ArticleFormData = Pick<Article, 'title' | 'body' | 'bannerImageId'>;
 
 export type ArticleFormGroup = {

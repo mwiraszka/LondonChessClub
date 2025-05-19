@@ -18,7 +18,8 @@ export class UnsavedArticleGuard implements CanDeactivate<unknown> {
 
   async canDeactivate(): Promise<boolean> {
     const hasUnsavedChanges = await firstValueFrom(
-      this.store.select(ArticlesSelectors.selectHasUnsavedChanges),
+      // id set to null temporarily - fixme!
+      this.store.select(ArticlesSelectors.selectHasUnsavedChanges(null)),
     );
 
     if (!hasUnsavedChanges) {

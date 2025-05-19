@@ -20,7 +20,7 @@ import { DialogService } from '@app/services';
         (click)="onClickAlbumCover(image.albumCoverFor!)">
         <figure>
           <img
-            [alt]="image.title"
+            [alt]="image.caption"
             [src]="getThumbnailPath(image.filename)"
             default="assets/image-placeholder.png" />
           <figcaption>

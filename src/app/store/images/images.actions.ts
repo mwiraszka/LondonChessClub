@@ -20,7 +20,7 @@ export const fetchArticleBannerImageRequested = createAction(
 );
 export const fetchArticleBannerImageSucceeded = createAction(
   '[Images] Fetch article banner image succeeded',
-  props<{ articleId: Id; image: Image; setAsOriginal?: boolean }>(),
+  props<{ image: Image; setAsOriginal?: boolean }>(),
 );
 export const fetchArticleBannerImageFailed = createAction(
   '[Images] Fetch article banner image failed',

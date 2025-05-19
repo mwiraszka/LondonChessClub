@@ -190,7 +190,7 @@ export class NavEffects {
     ),
   );
 
-  unsetArticle$ = createEffect(() =>
+  clearArticleFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -200,7 +200,10 @@ export class NavEffects {
           !!previousPath?.startsWith('/article/') && !currentPath?.startsWith('/article/')
         );
       }),
-      map(() => ArticlesActions.articleUnset()),
+      map(([, previousPath]) => {
+        const articleId = previousPath!.split('/article/')[1]?.split('/')[1] ?? null;
+        return ArticlesActions.articleFormDataCleared({ articleId });
+      }),
     ),
   );
 
@@ -209,7 +212,7 @@ export class NavEffects {
       ofType(ArticlesActions.deleteArticleSucceeded),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
       filter(
-        ([{ article }, previousPath]) => previousPath === `/article/view/${article.id}`,
+        ([{ articleId }, previousPath]) => previousPath === `/article/view/${articleId}`,
       ),
       map(() => NavActions.navigationRequested({ path: 'news' })),
     ),

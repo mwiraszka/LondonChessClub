@@ -28,11 +28,10 @@ export class ArticlesService {
     );
   }
 
-  public addArticle(article: Article): Observable<ApiResponse<Id>> {
-    return this.http.post<ApiResponse<Id>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}`,
+  public addArticle(article: Omit<Article, 'id'>): Observable<ApiResponse<Id>> {
+    return this.http.post<ApiResponse<Id>>(`${this.API_BASE_URL}/${this.COLLECTION}`, {
       article,
-    );
+    });
   }
 
   public updateArticle(article: Article): Observable<ApiResponse<Id>> {
@@ -42,9 +41,9 @@ export class ArticlesService {
     );
   }
 
-  public deleteArticle(article: Article): Observable<ApiResponse<Id>> {
+  public deleteArticle(id: Id): Observable<ApiResponse<Id>> {
     return this.http.delete<ApiResponse<Id>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}/${article.id}`,
+      `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
     );
   }
 }

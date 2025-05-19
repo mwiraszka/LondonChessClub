@@ -1,7 +1,6 @@
 import { FormControl } from '@angular/forms';
 
-import { Id, IsoDate, Url } from './core.model';
-import { Image } from './image.model';
+import type { Id, IsoDate } from './core.model';
 import type { ModificationInfo } from './modification-info.model';
 
 export interface Article {
@@ -13,10 +12,9 @@ export interface Article {
   modificationInfo: ModificationInfo;
 }
 
-export type EditableArticle = Article & { formData: ArticleFormData | null };
+export type EditableArticle = Article & { formData: ArticleFormData };
 
-export type ArticleFormData = Pick<Article, 'title' | 'body' | 'bannerImageId'> &
-  Pick<Image, 'caption' & { newBannerImageDataUrl: Url | null }>;
+export type ArticleFormData = Pick<Article, 'title' | 'body' | 'bannerImageId'>;
 
 export type ArticleFormGroup = {
   [Property in keyof ArticleFormData]: FormControl<ArticleFormData[Property]>;

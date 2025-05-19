@@ -80,10 +80,10 @@ export class NotificationsEffects {
   addDeleteArticleSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleSucceeded),
-      map(({ article }) => {
+      map(({ articleTitle }) => {
         const toast: Toast = {
           title: 'Article deletion',
-          message: `Successfully deleted ${article.title} from the database`,
+          message: `Successfully deleted ${articleTitle} from the database`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });

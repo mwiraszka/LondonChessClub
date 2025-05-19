@@ -42,7 +42,7 @@ export class ArticleEditorPageComponent implements OnInit {
   ngOnInit(): void {
     this.articleEditorPageViewModel$
       .pipe(untilDestroyed(this))
-      .subscribe(({ articleTitle, controlMode }) => {
+      .subscribe(({ article, controlMode }) => {
         const pageTitle =
           controlMode === 'edit' && articleTitle
             ? `Edit ${articleTitle}`

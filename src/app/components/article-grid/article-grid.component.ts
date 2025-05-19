@@ -90,7 +90,7 @@ export class ArticleGridComponent implements OnInit {
       bookmarked: isDefined(article.bookmarkDate),
       buttonSize: 34,
       deleteCb: () => this.onDeleteArticle(article),
-      editPath: ['article', 'edit', article.id!],
+      editPath: ['article', 'edit', article.id],
       itemName: article.title,
     };
   }
@@ -112,7 +112,9 @@ export class ArticleGridComponent implements OnInit {
     );
 
     if (result === 'confirm') {
-      this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
+      this.store.dispatch(
+        ArticlesActions.deleteArticleRequested({ articleId: article.id }),
+      );
     }
   }
 

@@ -1,13 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type {
-  Article,
-  ArticleFormData,
-  ControlMode,
-  EditableArticle,
-  Id,
-  LccError,
-} from '@app/models';
+import type { Article, ArticleFormData, ControlMode, Id, LccError } from '@app/models';
 
 export const fetchArticlesRequested = createAction('[Articles] Fetch articles requested');
 export const fetchArticlesSucceeded = createAction(
@@ -56,7 +49,7 @@ export const updateActicleBookmarkRequested = createAction(
 );
 export const updateArticleRequested = createAction(
   '[Articles] Update article requested',
-  props<{ article: EditableArticle }>(),
+  props<{ articleId: Id }>(),
 );
 export const updateArticleSucceeded = createAction(
   '[Articles] Update article succeeded',
@@ -69,11 +62,11 @@ export const updateArticleFailed = createAction(
 
 export const deleteArticleRequested = createAction(
   '[Articles] Delete article requested',
-  props<{ article: Article }>(),
+  props<{ articleId: Id }>(),
 );
 export const deleteArticleSucceeded = createAction(
   '[Articles] Delete article succeeded',
-  props<{ article: Article }>(),
+  props<{ articleId: Id; articleTitle: string }>(),
 );
 export const deleteArticleFailed = createAction(
   '[Articles] Delete article failed',
@@ -84,7 +77,10 @@ export const cancelSelected = createAction('[Articles] Cancel selected');
 
 export const formValueChanged = createAction(
   '[Articles] Form value changed',
-  props<{ value: Partial<ArticleFormData> }>(),
+  props<{ articleId: Id | null; value: Partial<ArticleFormData> }>(),
 );
 
-export const articleUnset = createAction('[Articles] Article unset');
+export const articleFormDataCleared = createAction(
+  '[Articles] Article form data cleared',
+  props<{ articleId: Id | null }>(),
+);

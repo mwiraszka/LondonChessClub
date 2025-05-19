@@ -18,51 +18,36 @@ export const selectArticleById = (id: Id) =>
     allArticles ? allArticles.find(article => article.id === id) : null,
   );
 
-export const selectArticleId = createSelector(
+export const selectNewArticleFormData = createSelector(
   selectArticlesState,
-  state => state.articleId,
+  state => state.newArticleFormData,
 );
 
-export const selectArticle = createSelector(
-  selectAllArticles,
-  selectArticleId,
-  (allArticles, articleId) =>
-    articleId ? allArticles.find(article => article.id === articleId) : null,
-);
+export const selectHasUnsavedChanges = (id: Id) =>
+  createSelector(selectArticleById(id), article => {
+    if (!article || !article.formData) {
+      return null;
+    }
 
-export const selectArticleTitle = createSelector(
-  selectArticle,
-  article => article?.title,
-);
+    const formPropertiesOfOriginalArticle = pick(
+      article,
+      Object.getOwnPropertyNames(article.formData),
+    ) as ArticleFormData;
 
-export const selectControlMode = createSelector(
-  selectArticlesState,
-  state => state.controlMode,
-);
+    return !areSame(formPropertiesOfOriginalArticle, article.formData);
+  });
 
-export const selectHasUnsavedChanges = createSelector(selectArticle, article => {
-  if (!article || !article.formData) {
-    return null;
-  }
+export const selectArticleViewerPageViewModel = (id: Id) =>
+  createSelector({
+    article: selectArticleById(id),
+    isAdmin: AuthSelectors.selectIsAdmin,
+  });
 
-  const formPropertiesOfOriginalArticle = pick(
-    article,
-    Object.getOwnPropertyNames(article.formData),
-  ) as ArticleFormData;
-
-  return !areSame(formPropertiesOfOriginalArticle, article.formData);
-});
-
-export const selectArticleViewerPageViewModel = createSelector({
-  article: selectArticle,
-  isAdmin: AuthSelectors.selectIsAdmin,
-});
-
-export const selectArticleEditorPageViewModel = createSelector({
-  articleTitle: selectArticleTitle,
-  controlMode: selectControlMode,
-  hasUnsavedChanges: selectHasUnsavedChanges,
-});
+export const selectArticleEditorPageViewModel = (id: Id) =>
+  createSelector({
+    article: selectArticleById(id),
+    hasUnsavedChanges: selectHasUnsavedChanges,
+  });
 
 export const selectArticleGridViewModel = createSelector({
   articles: selectAllArticles,
@@ -70,8 +55,8 @@ export const selectArticleGridViewModel = createSelector({
   isAdmin: AuthSelectors.selectIsAdmin,
 });
 
-export const selectArticleFormViewModel = createSelector({
-  article: selectArticle,
-  controlMode: selectControlMode,
-  hasUnsavedChanges: selectHasUnsavedChanges,
-});
+export const selectArticleFormViewModel = (id: Id) =>
+  createSelector({
+    article: selectArticleById(id),
+    hasUnsavedChanges: selectHasUnsavedChanges,
+  });

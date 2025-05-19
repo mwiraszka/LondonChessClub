@@ -10,7 +10,6 @@ import { Injectable } from '@angular/core';
 import type { Article, ModificationInfo } from '@app/models';
 import { ArticlesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { ImagesActions } from '@app/store/images';
 import { isDefined } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
 
@@ -59,21 +58,17 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.publishArticleRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() =>
+      concatLatestFrom(() => [
+        this.store
+          .select(ArticlesSelectors.selectNewArticleFormData)
+          .pipe(filter(isDefined)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
-      ),
-      switchMap(([{ formData }, user]) => {
-        const article: Article = {
-          id: null,
+      ]),
+      switchMap(([, formData, user]) => {
+        const article: Omit<Article, 'id'> = {
           title: formData.title,
           body: formData.body,
-          bannerImage: {
-            id: formData.id,
-            filename: formData.filename,
-            fileSize: formData.fileSize,
-            caption: formData.caption,
-            presignedUrl: formData.presignedUrl,
-          },
+          bannerImageId: formData.bannerImageId,
           bookmarkDate: null,
           modificationInfo: {
             createdBy: `${user.firstName} ${user.lastName}`,
@@ -102,14 +97,26 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() => [
-        this.store.select(ArticlesSelectors.selectArticle).pipe(filter(isDefined)),
+      concatLatestFrom(({ articleId }) => [
         this.store
-          .select(ArticlesSelectors.selectArticleFormData)
+          .select(ArticlesSelectors.selectArticleById(articleId))
           .pipe(filter(isDefined)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
-      switchMap(([{ imageId }, article, articleFormData, user]) => {
+      switchMap(([, article, user]) => {
+        const updatedArticle: Article = {
+          title: article.formData.title,
+          body: formData.body,
+          bannerImageId: formData.bannerImageId,
+          bookmarkDate: null,
+          modificationInfo: {
+            createdBy: `${user.firstName} ${user.lastName}`,
+            dateCreated: moment().toISOString(),
+            lastEditedBy: `${user.firstName} ${user.lastName}`,
+            dateLastEdited: moment().toISOString(),
+          },
+        };
+
         const originalArticleTitle = article.title;
         const modificationInfo: ModificationInfo = {
           ...article.modificationInfo,
@@ -140,7 +147,7 @@ export class ArticlesEffects {
     );
   });
 
-  updateActicleBookmarkRequested$ = createEffect(() => {
+  updateArticleBookmarkRequested$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateActicleBookmarkRequested),
       tap(() => this.loaderService.setIsLoading(true)),
@@ -169,11 +176,16 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ article }) =>
-        this.articlesService.deleteArticle(article).pipe(
-          map(response =>
+      switchMap(({ articleId }) =>
+        this.articlesService.deleteArticle(articleId).pipe(
+          switchMap(response =>
+            this.store.select(ArticlesSelectors.selectArticleById(response.data)),
+          ),
+          filter(isDefined),
+          map(article =>
             ArticlesActions.deleteArticleSucceeded({
-              article: { ...article, id: response.data },
+              articleId: article.id,
+              articleTitle: article.title,
             }),
           ),
           catchError(error =>

@@ -222,7 +222,9 @@ export class ArticleFormComponent implements OnInit {
         }),
       );
     } else if (this.controlMode === 'edit') {
-      this.store.dispatch(ArticlesActions.updateArticleRequested({ article }));
+      this.store.dispatch(
+        ArticlesActions.updateArticleRequested({ articleId: article.id }),
+      );
     } else {
       this.store.dispatch(ArticlesActions.publishArticleRequested());
     }
@@ -259,10 +261,12 @@ export class ArticleFormComponent implements OnInit {
   }
 
   private initFormValueChangeListener(): void {
+    const articleId = this.articleId; // temp
+
     this.form?.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((value: Partial<ArticleFormData>) => {
-        this.store.dispatch(ArticlesActions.formValueChanged({ value }));
+        this.store.dispatch(ArticlesActions.formValueChanged({ articleId, value }));
       });
 
     // Manually trigger form value change to pass initial form data to store

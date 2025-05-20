@@ -19,7 +19,7 @@ const { selectAll: selectAllArticleEntities } =
 
 export const selectAllArticles = createSelector(
   selectAllArticleEntities,
-  allArticleEntities => allArticleEntities.map(entity => entity.article),
+  allArticleEntities => allArticleEntities.map(entity => entity?.article),
 );
 
 export const selectArticleById = (id: Id | null) =>

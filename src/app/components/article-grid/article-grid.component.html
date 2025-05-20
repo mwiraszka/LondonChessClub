@@ -24,9 +24,7 @@
         @defer {
           <img
             class="article-thumbnail-image"
-            [src]="
-              getArticleThumbnailImageUrl(bannerImage?.id ?? null, vm.thumbnailImages)
-            "
+            [src]="getArticleThumbnailImageUrl(article.bannerImageId, vm.thumbnailImages)"
             default="assets/image-placeholder.png"
             alt="Article banner image" />
         } @placeholder (minimum 0.5s) {

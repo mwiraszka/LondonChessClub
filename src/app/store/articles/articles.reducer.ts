@@ -22,6 +22,7 @@ export const articlesAdapter = createEntityAdapter<{
   article: Article;
   formData: ArticleFormData;
 }>({
+  selectId: ({ article }) => article.id,
   sortComparer: (a, b) =>
     customSort(
       a,

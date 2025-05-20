@@ -68,10 +68,6 @@ export class ArticleGridComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.fetchArticleData();
-  }
-
-  public fetchArticleData(): void {
     this.store.dispatch(ArticlesActions.fetchArticlesRequested());
     this.store.dispatch(ImagesActions.fetchArticleBannerImageThumbnailsRequested());
   }

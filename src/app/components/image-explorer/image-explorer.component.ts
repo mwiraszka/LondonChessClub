@@ -60,6 +60,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
     return {
       buttonSize: 34,
       deleteCb: () => this.onDeleteImage(image),
+      isDeleteDisabled: !!image?.articleAppearances,
       itemName: image.filename,
     };
   }

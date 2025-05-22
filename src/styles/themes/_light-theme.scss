@@ -19,6 +19,9 @@
   --lcc-color--adminControls-buttonBorder: #{clr(grayscale, white-85)};
   --lcc-color--adminControls-deleteIcon: #{clr(warning)};
   --lcc-color--adminControls-deleteIconOnHover: #{clr(warning, light)};
+  --lcc-color--adminControls-disabledButtonBackground: #{clr(grayscale, gray-75, 0.7)};
+  --lcc-color--adminControls-disabledButtonBorder: #{clr(grayscale, gray-65, 0.6)};
+  --lcc-color--adminControls-disabledButtonIcon: #{clr(grayscale, gray-35, 0.6)};
   --lcc-color--adminControls-editIcon: #{clr(grayscale, gray-25)};
   --lcc-color--adminControls-editIconOnHover: #{clr(grayscale, black-10)};
 

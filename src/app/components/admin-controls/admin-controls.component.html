@@ -26,6 +26,7 @@
 
 <button
   class="admin-control-button delete-button"
+  [disabled]="config.isDeleteDisabled"
   [ngStyle]="{ 'width.px': config.buttonSize, 'height.px': config.buttonSize }"
   [tooltip]="deleteTooltipContent"
   (click)="config.deleteCb()">
@@ -46,6 +47,10 @@
 </ng-template>
 
 <ng-template #deleteTooltipContent>
-  <span>Delete</span>
-  <i class="tooltip-item-name">{{ config.itemName }}</i>
+  @if (config.isDeleteDisabled) {
+    <i>Must replace image in all articles before deleting</i>
+  } @else {
+    <span>Delete</span>
+    <i class="tooltip-item-name">{{ config.itemName }}</i>
+  }
 </ng-template>

@@ -17,6 +17,15 @@
       height: 100%;
     }
 
+    &:disabled {
+      cursor: default !important;
+      border-color: var(--lcc-color--adminControls-disabledButtonBorder) !important;
+      background-color: var(
+        --lcc-color--adminControls-disabledButtonBackground
+      ) !important;
+      color: var(--lcc-color--adminControls-disabledButtonIcon) !important;
+    }
+
     &:focus,
     &:hover {
       cursor: pointer;

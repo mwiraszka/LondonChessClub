@@ -29,7 +29,6 @@ import type {
   Dialog,
   Id,
   Image,
-  Url,
 } from '@app/models';
 import { DialogService } from '@app/services';
 import { ArticlesActions } from '@app/store/articles';
@@ -58,7 +57,6 @@ export class ArticleFormComponent implements OnInit {
   @Input({ required: true }) originalArticle!: Article | null;
 
   public form: FormGroup<ArticleFormGroup> | null = null;
-  public originalBannerImageUrl: Url | null = null;
 
   constructor(
     private readonly dialogService: DialogService,
@@ -70,7 +68,7 @@ export class ArticleFormComponent implements OnInit {
     if (!this.bannerImage && this.formData.bannerImageId) {
       this.store.dispatch(
         ImagesActions.fetchArticleBannerImageRequested({
-          imageId: this.formData.bannerImageId,
+          bannerImageId: this.formData.bannerImageId,
           setAsOriginal: true,
         }),
       );
@@ -152,8 +150,11 @@ export class ArticleFormComponent implements OnInit {
     });
 
     if (thumbnailImageId) {
-      const imageId = thumbnailImageId.split('-')[0];
-      this.store.dispatch(ImagesActions.fetchArticleBannerImageRequested({ imageId }));
+      const bannerImageId = thumbnailImageId.split('-')[0];
+      this.form?.patchValue({ bannerImageId });
+      this.store.dispatch(
+        ImagesActions.fetchArticleBannerImageRequested({ bannerImageId }),
+      );
     }
   }
 

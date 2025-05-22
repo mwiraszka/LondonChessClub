@@ -1,6 +1,8 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { isEqual } from 'lodash';
+import { Observable, combineLatest } from 'rxjs';
+import { distinctUntilChanged, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -15,22 +17,25 @@ import type {
   Article,
   BasicDialogResult,
   Dialog,
+  Id,
+  Image,
   InternalLink,
 } from '@app/models';
 import { DialogService, MetaAndTitleService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import { ImagesActions } from '@app/store/images';
+import { AuthSelectors } from '@app/store/auth';
+import { ImagesActions, ImagesSelectors } from '@app/store/images';
 import { isDefined } from '@app/utils';
 
 @UntilDestroy()
 @Component({
   selector: 'lcc-article-viewer-page',
   template: `
-    @if (article && isAdmin !== undefined) {
+    @if (viewModel$ | async; as vm) {
       <lcc-article
-        [adminControls]="isAdmin ? getAdminControlsConfig(article) : null"
-        [article]="article"
-        [bannerImage]="null">
+        [adminControls]="vm.isAdmin ? getAdminControlsConfig(vm.article) : null"
+        [article]="vm.article"
+        [bannerImage]="vm.bannerImage">
       </lcc-article>
       <lcc-link-list [links]="links"></lcc-link-list>
     }
@@ -38,8 +43,12 @@ import { isDefined } from '@app/utils';
   imports: [AdminControlsDirective, ArticleComponent, CommonModule, LinkListComponent],
 })
 export class ArticleViewerPageComponent implements OnInit {
-  public article?: Article;
-  public isAdmin?: boolean;
+  public viewModel$?: Observable<{
+    article: Article;
+    bannerImage: Image | null;
+    isAdmin: boolean;
+  }>;
+
   public readonly links: InternalLink[] = [
     {
       text: 'More articles',
@@ -61,34 +70,39 @@ export class ArticleViewerPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params
-      .pipe(
-        untilDestroyed(this),
-        map(params => params['article_id'] as string | undefined),
-        filter(articleId => isDefined(articleId)),
-        switchMap(articleId =>
-          this.store.select(
-            ArticlesSelectors.selectArticleViewerPageViewModel(articleId),
-          ),
-        ),
-        filter(vm => isDefined(vm.article)),
-      )
-      .subscribe(vm => {
-        if (isDefined(vm.article!.bannerImageId)) {
+    this.viewModel$ = this.activatedRoute.params.pipe(
+      untilDestroyed(this),
+      map(params => params['article_id'] as Id),
+      switchMap(articleId =>
+        combineLatest([
+          this.store
+            .select(ArticlesSelectors.selectArticleById(articleId))
+            .pipe(filter(isDefined)),
+          this.store.select(ImagesSelectors.selectImageByArticleId(articleId)),
+          this.store.select(AuthSelectors.selectIsAdmin),
+        ]),
+      ),
+      distinctUntilChanged(isEqual),
+      tap(([article]) => {
+        if (isDefined(article.bannerImageId)) {
           this.store.dispatch(
             ImagesActions.fetchArticleBannerImageRequested({
-              imageId: vm.article!.bannerImageId,
+              bannerImageId: article.bannerImageId,
             }),
           );
         }
 
         const articlePreview =
-          vm.article!.body.length > 197
-            ? vm.article!.body.slice(0, 197) + '...'
-            : vm.article!.body;
-        this.metaAndTitleService.updateTitle(vm.article!.title);
+          article.body.length > 197 ? article.body.slice(0, 197) + '...' : article.body;
+        this.metaAndTitleService.updateTitle(article.title);
         this.metaAndTitleService.updateDescription(articlePreview);
-      });
+      }),
+      map(([article, bannerImage, isAdmin]) => ({
+        article,
+        bannerImage,
+        isAdmin,
+      })),
+    );
   }
 
   public getAdminControlsConfig(article: Article): AdminControlsConfig {

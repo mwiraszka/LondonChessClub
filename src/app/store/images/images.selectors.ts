@@ -2,6 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import type { Id } from '@app/models';
 
+import { ArticlesSelectors } from '../articles';
 import { ImagesState, imagesAdapter } from './images.reducer';
 
 const selectImagesState = createFeatureSelector<ImagesState>('imagesState');
@@ -15,4 +16,14 @@ export const selectThumbnailImages = createSelector(selectAllImages, allImages =
 export const selectImageById = (id: Id) =>
   createSelector(selectAllImages, allImages =>
     allImages ? allImages.find(image => image.id === id) : null,
+  );
+
+export const selectImageByArticleId = (articleId: Id | null) =>
+  createSelector(
+    selectAllImages,
+    ArticlesSelectors.selectArticleById(articleId),
+    (allImages, article) =>
+      allImages && article
+        ? (allImages.find(image => image.id === article.bannerImageId) ?? null)
+        : null,
   );

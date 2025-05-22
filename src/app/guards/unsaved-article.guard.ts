@@ -1,28 +1,17 @@
-import { Store } from '@ngrx/store';
-import { firstValueFrom } from 'rxjs';
-
 import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import type { BasicDialogResult, Dialog } from '@app/models';
+import { ArticleEditorPageComponent } from '@app/pages/article/article-editor/article-editor-page.component';
 import { DialogService } from '@app/services';
-import { ArticlesSelectors } from '@app/store/articles';
 
 @Injectable({ providedIn: 'root' })
-export class UnsavedArticleGuard implements CanDeactivate<unknown> {
-  constructor(
-    private readonly dialogService: DialogService,
-    private readonly store: Store,
-  ) {}
+export class UnsavedArticleGuard implements CanDeactivate<ArticleEditorPageComponent> {
+  constructor(private readonly dialogService: DialogService) {}
 
-  async canDeactivate(): Promise<boolean> {
-    const hasUnsavedChanges = await firstValueFrom(
-      // id set to null temporarily - fixme!
-      this.store.select(ArticlesSelectors.selectHasUnsavedChanges(null)),
-    );
-
-    if (!hasUnsavedChanges) {
+  async canDeactivate(component: ArticleEditorPageComponent): Promise<boolean> {
+    if (!component.hasUnsavedChanges) {
       return true;
     }
 

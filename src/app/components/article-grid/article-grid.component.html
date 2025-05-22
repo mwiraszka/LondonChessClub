@@ -1,4 +1,4 @@
-@if (articleGridViewModel$ | async; as vm) {
+@if (viewModel$ | async; as vm) {
   @if (vm.isAdmin) {
     <lcc-link-list [links]="[createArticleLink]"></lcc-link-list>
   }
@@ -12,7 +12,7 @@
         class="article"
         [adminControls]="vm.isAdmin ? getAdminControlsConfig(article) : null"
         [routerLink]="
-          article.title ? (['article', 'view', article.id!] | routerLink) : undefined
+          article.title ? (['article', 'view', article.id] | routerLink) : undefined
         ">
         @if (article.bookmarkDate | isDefined) {
           <i-feather

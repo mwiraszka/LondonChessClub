@@ -16,7 +16,7 @@ export const fetchArticleBannerImageThumbnailsFailed = createAction(
 
 export const fetchArticleBannerImageRequested = createAction(
   '[Images] Fetch article banner image requested',
-  props<{ imageId: Id; setAsOriginal?: boolean }>(),
+  props<{ bannerImageId: Id; setAsOriginal?: boolean }>(),
 );
 export const fetchArticleBannerImageSucceeded = createAction(
   '[Images] Fetch article banner image succeeded',

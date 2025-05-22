@@ -56,7 +56,7 @@ export class ArticleFormComponent implements OnInit {
   @Input({ required: true }) hasUnsavedChanges!: boolean;
   @Input({ required: true }) originalArticle!: Article | null;
 
-  public form: FormGroup<ArticleFormGroup> | null = null;
+  public form!: FormGroup<ArticleFormGroup>;
 
   constructor(
     private readonly dialogService: DialogService,
@@ -65,11 +65,14 @@ export class ArticleFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (!this.bannerImage && this.formData.bannerImageId) {
+    if (
+      !this.bannerImage &&
+      (this.formData.bannerImageId || this.originalArticle?.bannerImageId)
+    ) {
       this.store.dispatch(
         ImagesActions.fetchArticleBannerImageRequested({
-          bannerImageId: this.formData.bannerImageId,
-          setAsOriginal: true,
+          bannerImageId:
+            this.formData.bannerImageId ?? this.originalArticle!.bannerImageId!,
         }),
       );
     }
@@ -131,7 +134,7 @@ export class ArticleFormComponent implements OnInit {
   //       return;
   //     }
 
-  //     this.form?.patchValue({
+  //     this.form.patchValue({
   //       id: null,
   //       filename: imageFile.name,
   //       fileSize: imageFile.size,
@@ -151,7 +154,7 @@ export class ArticleFormComponent implements OnInit {
 
     if (thumbnailImageId) {
       const bannerImageId = thumbnailImageId.split('-')[0];
-      this.form?.patchValue({ bannerImageId });
+      this.form.patchValue({ bannerImageId });
       this.store.dispatch(
         ImagesActions.fetchArticleBannerImageRequested({ bannerImageId }),
       );
@@ -159,7 +162,7 @@ export class ArticleFormComponent implements OnInit {
   }
 
   public onRevertImage(): void {
-    this.form?.patchValue({ bannerImageId: null });
+    this.form.patchValue({ bannerImageId: this.originalArticle?.bannerImageId });
   }
 
   public onCancel(): void {
@@ -167,8 +170,8 @@ export class ArticleFormComponent implements OnInit {
   }
 
   public async onSubmit(): Promise<void> {
-    if (!this.form || this.form.invalid) {
-      this.form?.markAllAsTouched();
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
       return;
     }
 
@@ -216,7 +219,7 @@ export class ArticleFormComponent implements OnInit {
   }
 
   private initFormValueChangeListener(): void {
-    this.form?.valueChanges
+    this.form.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((value: Partial<ArticleFormData>) => {
         this.store.dispatch(
@@ -228,6 +231,6 @@ export class ArticleFormComponent implements OnInit {
       });
 
     // Manually trigger form value change to pass initial form data to store
-    this.form?.updateValueAndValidity();
+    this.form.updateValueAndValidity();
   }
 }

@@ -35,6 +35,6 @@ export const imagesReducer = createReducer(
   on(
     ImagesActions.deleteImageSucceeded,
     (state, { image }): ImagesState =>
-      imagesAdapter.removeMany([image.id!, `${image.id}-thumb`], state),
+      imagesAdapter.removeMany([image.id, `${image.id}-thumb`], state),
   ),
 );

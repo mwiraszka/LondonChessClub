@@ -16,11 +16,11 @@ export const fetchArticleBannerImageThumbnailsFailed = createAction(
 
 export const fetchArticleBannerImageRequested = createAction(
   '[Images] Fetch article banner image requested',
-  props<{ bannerImageId: Id; setAsOriginal?: boolean }>(),
+  props<{ bannerImageId: Id }>(),
 );
 export const fetchArticleBannerImageSucceeded = createAction(
   '[Images] Fetch article banner image succeeded',
-  props<{ image: Image; setAsOriginal?: boolean }>(),
+  props<{ image: Image }>(),
 );
 export const fetchArticleBannerImageFailed = createAction(
   '[Images] Fetch article banner image failed',

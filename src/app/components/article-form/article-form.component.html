@@ -1,33 +1,32 @@
-@if (form) {
-  @defer {
-    <img
-      class="banner-image"
-      [src]="bannerImage?.presignedUrl"
-      default="assets/image-placeholder.png"
-      alt="Article banner image" />
-  } @placeholder (minimum 0.5s) {
-    <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
-      <div class="lcc-content-placeholder"></div>
-    </div>
-  }
+@defer {
+  <img
+    class="banner-image"
+    [src]="bannerImage?.presignedUrl"
+    default="assets/image-placeholder.png"
+    alt="Article banner image" />
+} @placeholder (minimum 0.5s) {
+  <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
+    <div class="lcc-content-placeholder"></div>
+  </div>
+}
 
-  <form
-    class="lcc-form"
-    [formGroup]="form"
-    (ngSubmit)="onSubmit()">
-    <div class="lcc-form-fields">
-      <label class="lcc-required-field">Banner Image:</label>
+<form
+  class="lcc-form"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()">
+  <div class="lcc-form-fields">
+    <label class="lcc-required-field">Banner Image:</label>
 
-      <div class="image-controls-container">
-        <button
-          class="image-explorer-button lcc-secondary-button"
-          type="button"
-          tooltip="Open Image Explorer"
-          (click)="onOpenImageExplorer()">
-          <i-feather name="image"></i-feather>
-        </button>
+    <div class="image-controls-container">
+      <button
+        class="image-explorer-button lcc-secondary-button"
+        type="button"
+        tooltip="Open Image Explorer"
+        (click)="onOpenImageExplorer()">
+        <i-feather name="image"></i-feather>
+      </button>
 
-        <!-- <label
+      <!-- <label
             class="upload-new-image-button lcc-secondary-button"
             type="button"
             tooltip="Upload new image">
@@ -38,91 +37,87 @@
             <i-feather name="upload"></i-feather>
           </label> -->
 
-        <button
-          class="revert-button lcc-secondary-button"
-          type="button"
-          tooltip="Revert to original image"
-          [disabled]="
-            originalArticle?.bannerImageId === form.controls.bannerImageId.value
-          "
-          (click)="onRevertImage()">
-          <i-feather name="rotate-ccw"></i-feather>
-        </button>
-      </div>
-
-      <label
-        for="title-input"
-        class="lcc-required-field">
-        Title:
-      </label>
-      <input
-        id="title-input"
-        type="text"
-        name="title"
-        formControlName="title"
-        maxlength="120" />
-      <div class="lcc-form-error-container">
-        @if (hasError(form.controls.title)) {
-          <i-feather
-            name="alert-triangle"
-            class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls.title)">
-          </i-feather>
-        }
-      </div>
-
-      <label
-        for="body-input"
-        class="lcc-required-field">
-        Content:
-      </label>
-      <textarea
-        id="body-input"
-        name="body"
-        formControlName="body"
-        maxlength="50000">
-      </textarea>
-      <div class="lcc-form-error-container">
-        @if (hasError(form.controls.body)) {
-          <i-feather
-            name="alert-triangle"
-            class="lcc-form-error-icon validation-alert-icon"
-            [tooltip]="getErrorMessage(form.controls.body)">
-          </i-feather>
-        }
-      </div>
+      <button
+        class="revert-button lcc-secondary-button"
+        type="button"
+        tooltip="Revert to original image"
+        [disabled]="originalArticle?.bannerImageId === form.controls.bannerImageId.value"
+        (click)="onRevertImage()">
+        <i-feather name="rotate-ccw"></i-feather>
+      </button>
     </div>
 
-    <aside class="lcc-required-fields-legend">Required fields</aside>
-
-    <div class="preview-section-container">
-      @if (!!form.controls.body.value) {
-        <h3>Article preview:</h3>
-        <hr />
-        <div class="markdown-container">
-          <lcc-markdown-renderer [data]="form.controls.body.value">
-          </lcc-markdown-renderer>
-        </div>
+    <label
+      for="title-input"
+      class="lcc-required-field">
+      Title:
+    </label>
+    <input
+      id="title-input"
+      type="text"
+      name="title"
+      formControlName="title"
+      maxlength="120" />
+    <div class="lcc-form-error-container">
+      @if (hasError(form.controls.title)) {
+        <i-feather
+          name="alert-triangle"
+          class="lcc-form-error-icon validation-alert-icon"
+          [tooltip]="getErrorMessage(form.controls.title)">
+        </i-feather>
       }
     </div>
 
-    @if (originalArticle?.modificationInfo; as info) {
-      <lcc-modification-info [info]="info"></lcc-modification-info>
-    }
-
-    <div class="lcc-form-buttons-container">
-      <button
-        class="lcc-secondary-button"
-        type="button"
-        (click)="onCancel()">
-        Cancel
-      </button>
-      <button
-        class="lcc-primary-button"
-        type="submit"
-        [disabled]="form.invalid || !hasUnsavedChanges">
-        {{ originalArticle ? 'Update' : 'Publish article' }}
-      </button>
+    <label
+      for="body-input"
+      class="lcc-required-field">
+      Content:
+    </label>
+    <textarea
+      id="body-input"
+      name="body"
+      formControlName="body"
+      maxlength="50000">
+    </textarea>
+    <div class="lcc-form-error-container">
+      @if (hasError(form.controls.body)) {
+        <i-feather
+          name="alert-triangle"
+          class="lcc-form-error-icon validation-alert-icon"
+          [tooltip]="getErrorMessage(form.controls.body)">
+        </i-feather>
+      }
     </div>
-  </form>
-}
+  </div>
+
+  <aside class="lcc-required-fields-legend">Required fields</aside>
+
+  <div class="preview-section-container">
+    @if (!!form.controls.body.value) {
+      <h3>Article preview:</h3>
+      <hr />
+      <div class="markdown-container">
+        <lcc-markdown-renderer [data]="form.controls.body.value"> </lcc-markdown-renderer>
+      </div>
+    }
+  </div>
+
+  @if (originalArticle?.modificationInfo; as info) {
+    <lcc-modification-info [info]="info"></lcc-modification-info>
+  }
+
+  <div class="lcc-form-buttons-container">
+    <button
+      class="lcc-secondary-button"
+      type="button"
+      (click)="onCancel()">
+      Cancel
+    </button>
+    <button
+      class="lcc-primary-button"
+      type="submit"
+      [disabled]="form.invalid || !hasUnsavedChanges">
+      {{ originalArticle ? 'Update' : 'Publish article' }}
+    </button>
+  </div>
+</form>

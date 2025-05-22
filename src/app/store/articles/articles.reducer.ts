@@ -71,29 +71,6 @@ export const articlesReducer = createReducer(
     );
   }),
 
-  // on(
-  //   ImagesActions.fetchArticleBannerImageSucceeded,
-  //   (state, { image, setAsOriginal }): ArticlesState => {
-  //     const originalArticle = state.entities[articleId];
-
-  //     if (!originalArticle) {
-  //       return state;
-  //     }
-
-  //     return articlesAdapter.upsertOne<ArticlesState>(
-  //       {
-  //         ...originalArticle,
-  //         bannerImageId: setAsOriginal ? image.id : originalArticle.bannerImageId,
-  //         formData: {
-  //           ...(originalArticle.formData ?? INITIAL_ARTICLE_FORM_DATA),
-  //           bannerImageId: image.id,
-  //         },
-  //       },
-  //       state,
-  //     );
-  //   },
-  // ),
-
   on(
     ArticlesActions.publishArticleSucceeded,
     ArticlesActions.updateArticleSucceeded,

@@ -22,8 +22,11 @@ export const selectImageByArticleId = (articleId: Id | null) =>
   createSelector(
     selectAllImages,
     ArticlesSelectors.selectArticleById(articleId),
-    (allImages, article) =>
-      allImages && article
-        ? (allImages.find(image => image.id === article.bannerImageId) ?? null)
-        : null,
+    ArticlesSelectors.selectArticleFormDataById(articleId),
+    (allImages, article, articleFormData) => {
+      const imageId = articleFormData
+        ? articleFormData.bannerImageId
+        : article?.bannerImageId;
+      return allImages.find(image => image.id === imageId) ?? null;
+    },
   );

@@ -41,14 +41,13 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchArticleBannerImageRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ bannerImageId, setAsOriginal }) => {
+      switchMap(({ bannerImageId }) => {
         return this.imagesService.getImage(bannerImageId).pipe(
-          map(response => {
-            return ImagesActions.fetchArticleBannerImageSucceeded({
+          map(response =>
+            ImagesActions.fetchArticleBannerImageSucceeded({
               image: response.data,
-              setAsOriginal,
-            });
-          }),
+            }),
+          ),
           catchError(error => {
             return of(
               ImagesActions.fetchArticleBannerImageFailed({

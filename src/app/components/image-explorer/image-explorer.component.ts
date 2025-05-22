@@ -100,7 +100,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
       caption: '',
       articleAppearances: 0,
       albums: [],
-      albumCoverFor: null,
+      coverForAlbum: null,
       modificationInfo: MOCK_MODIFICATION_INFOS[1],
       presignedUrl: '',
     }));

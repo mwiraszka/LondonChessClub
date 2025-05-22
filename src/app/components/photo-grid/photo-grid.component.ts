@@ -17,7 +17,7 @@ import { DialogService } from '@app/services';
     ) {
       <button
         class="album-card"
-        (click)="onClickAlbumCover(image.albumCoverFor!)">
+        (click)="onClickAlbumCover(image.coverForAlbum!)">
         <figure>
           <img
             [alt]="image.caption"
@@ -25,9 +25,9 @@ import { DialogService } from '@app/services';
             default="assets/image-placeholder.png" />
           <figcaption>
             <div class="album-name lcc-truncate-max-2-lines">{{
-              image.albumCoverFor
+              image.coverForAlbum
             }}</div>
-            <div class="photo-count">{{ getPhotoCount(image.albumCoverFor!) }}</div>
+            <div class="photo-count">{{ getPhotoCount(image.coverForAlbum!) }}</div>
           </figcaption>
         </figure>
       </button>
@@ -45,7 +45,7 @@ export class PhotoGridComponent implements OnInit {
   constructor(private readonly dialogService: DialogService) {}
 
   ngOnInit(): void {
-    this.albumCoverImages = this.images.filter(image => !!image.albumCoverFor);
+    this.albumCoverImages = this.images.filter(image => !!image.coverForAlbum);
   }
 
   public async onClickAlbumCover(album: string): Promise<void> {

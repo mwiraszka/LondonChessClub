@@ -8,7 +8,7 @@ export interface Image {
   caption: string;
   presignedUrl: Url;
   albums: string[];
-  albumCoverFor: string | null;
+  coverForAlbum: string | null;
   modificationInfo: ModificationInfo;
   articleAppearances?: number;
 }

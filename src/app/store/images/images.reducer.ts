@@ -9,7 +9,7 @@ import * as ImagesActions from './images.actions';
 export type ImagesState = EntityState<Image>;
 
 export const imagesAdapter = createEntityAdapter<Image>({
-  sortComparer: (a, b) => customSort(a, b, 'dateUploaded', true),
+  sortComparer: (a, b) => customSort(a, b, 'modificationInfo.dateCreated', true),
 });
 
 export const imagesInitialState: ImagesState = imagesAdapter.getInitialState({});

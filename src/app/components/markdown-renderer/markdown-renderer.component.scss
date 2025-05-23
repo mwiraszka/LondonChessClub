@@ -60,5 +60,32 @@
       min-width: 300px;
       max-width: 100%;
     }
+
+    blockquote {
+      position: relative;
+      margin: 0 16px;
+      padding: 16px 24px;
+      background: var(--lcc-color--markdownRenderer-blockquoteBackground);
+      border: 1px solid var(--lcc-color--markdownRenderer-blockquoteBorder);
+      border-radius: var(--lcc-borderRadius--large);
+
+      & > p {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', Geneva, Verdana, sans-serif;
+        font-size: 16px;
+      }
+
+      .lcc-quote-icon {
+        position: absolute;
+        top: -15px;
+        left: -10px;
+        width: 40px;
+        height: 40px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0.2;
+        filter: invert(50%);
+      }
+    }
   }
 }

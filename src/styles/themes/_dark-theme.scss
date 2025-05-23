@@ -181,6 +181,8 @@
   --lcc-color--loadingSpinner2: #{clr(grayscale, black-2, 0.9)};
   --lcc-color--loadingSpinner-screenOverlay: #{clr(grayscale, black-10, 0.5)};
 
+  --lcc-color--markdownRenderer-blockquoteBackground: #{clr(grayscale, gray-35, 0.4)};
+  --lcc-color--markdownRenderer-blockquoteBorder: #{clr(grayscale, gray-25, 0.5)};
   --lcc-color--markdownRenderer-primaryText: #{clr(grayscale, white-95)};
   --lcc-color--markdownRenderer-secondaryText: #{clr(grayscale, gray-75)};
 

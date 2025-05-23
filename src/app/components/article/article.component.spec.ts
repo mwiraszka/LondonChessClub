@@ -6,6 +6,7 @@ import { By } from '@angular/platform-browser';
 
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
 import { MOCK_ARTICLES } from '@app/mocks/articles.mock';
+import { MOCK_IMAGES } from '@app/mocks/images.mock';
 
 import { ArticleComponent } from './article.component';
 
@@ -33,6 +34,7 @@ describe('ArticleComponent', () => {
   describe('with article', () => {
     beforeEach(() => {
       component.article = MOCK_ARTICLES[2];
+      component.bannerImage = MOCK_IMAGES[0];
       fixture.detectChanges();
     });
 
@@ -100,7 +102,7 @@ describe('ArticleComponent', () => {
 
       it('should display article creation info but not last edit info', () => {
         expect(element('.date-created').nativeElement.textContent.trim()).toBe(
-          'Mon, Jan 20, 2025, 2:00 PM',
+          'Thu, Jan 2, 2025, 12:00 PM',
         );
         expect(element('.date-last-edited')).toBeNull();
       });

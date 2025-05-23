@@ -25,6 +25,6 @@ export const MOCK_MODIFICATION_INFOS: ModificationInfo[] = [
     createdBy: 'Jack Sparrow',
     dateCreated: moment('2025-01-02T12:00:00').toISOString(),
     lastEditedBy: 'Jack Sparrow',
-    dateLastEdited: moment('2025-01-02T12:00:00').toISOString(),
+    dateLastEdited: moment('2025-01-02T14:00:00').toISOString(),
   },
 ];

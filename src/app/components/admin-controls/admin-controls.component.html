@@ -29,7 +29,7 @@
   [disabled]="config.isDeleteDisabled"
   [ngStyle]="{ 'width.px': config.buttonSize, 'height.px': config.buttonSize }"
   [tooltip]="deleteTooltipContent"
-  (click)="config.deleteCb()">
+  (click)="config.isDeleteDisabled ? undefined : config.deleteCb()">
   <i-feather
     name="trash-2"
     class="delete-icon">

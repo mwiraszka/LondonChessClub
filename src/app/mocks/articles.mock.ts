@@ -45,9 +45,8 @@ export const MOCK_ARTICLES: Article[] = [
       U---	|U---	|1.0|\n|30	|J, Person	|unr.	|L16 (b)	|L8 (w)	|L25 (b)	|L22 (w)	|L21 (w)
       |L23 (b)	|L26 (b)	|0.0|
     `,
-    image: MOCK_IMAGES[0],
+    bannerImageId: MOCK_IMAGES[0].id,
     bookmarkDate: moment('2025-02-02').toISOString(),
-    formData: null,
     modificationInfo: MOCK_MODIFICATION_INFOS[0],
   },
   {
@@ -125,9 +124,8 @@ export const MOCK_ARTICLES: Article[] = [
       <br>\n\n**Results Crosstables and PGNs provided by LCC Ratings Auditor*\n\n<br><br>\n\n
       ## Photos\n<br>\n\nComing soon...
     `,
-    image: MOCK_IMAGES[1],
+    bannerImageId: MOCK_IMAGES[1].id,
     bookmarkDate: moment('2025-01-10').toISOString(),
-    formData: null,
     modificationInfo: MOCK_MODIFICATION_INFOS[1],
   },
   {
@@ -137,27 +135,24 @@ export const MOCK_ARTICLES: Article[] = [
     body: `
       # An article header\n\n<br><br>\n\nAnd not much text underneath it.
     `,
-    image: MOCK_IMAGES[1],
+    bannerImageId: MOCK_IMAGES[1].id,
     bookmarkDate: null,
-    formData: null,
     modificationInfo: MOCK_MODIFICATION_INFOS[2],
   },
   {
     id: generateId(),
     title: 'An even shorter one',
     body: `Got nothing to say!`,
-    image: null,
+    bannerImageId: null,
     bookmarkDate: null,
-    formData: null,
     modificationInfo: MOCK_MODIFICATION_INFOS[3],
   },
   {
     id: generateId(),
     title: 'An article currently being modified',
     body: `Some article body text here...`,
-    image: null,
+    bannerImageId: null,
     bookmarkDate: moment('2025-01-20T14:00:05').toISOString(),
-    formData: null,
-    modificationInfo: MOCK_MODIFICATION_INFOS[4],
+    modificationInfo: MOCK_MODIFICATION_INFOS[3],
   },
 ];

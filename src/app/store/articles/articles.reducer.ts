@@ -2,7 +2,6 @@ import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 
 import type { Article, ArticleFormData } from '@app/models';
-// import { ImagesActions } from '@app/store/images';
 import { customSort } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
@@ -73,6 +72,21 @@ export const articlesReducer = createReducer(
 
   on(
     ArticlesActions.publishArticleSucceeded,
+    (state, { article }): ArticlesState =>
+      articlesAdapter.upsertOne<ArticlesState>(
+        {
+          article,
+          formData: {
+            title: article.title,
+            body: article.body,
+            bannerImageId: article.bannerImageId,
+          },
+        },
+        { ...state, newArticleFormData: INITIAL_ARTICLE_FORM_DATA },
+      ),
+  ),
+
+  on(
     ArticlesActions.updateArticleSucceeded,
     (state, { article }): ArticlesState =>
       articlesAdapter.upsertOne<ArticlesState>(

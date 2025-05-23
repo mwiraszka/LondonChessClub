@@ -48,7 +48,7 @@
 
 <ng-template #deleteTooltipContent>
   @if (config.isDeleteDisabled) {
-    <i>Must replace image in all articles before deleting</i>
+    <i>Image cannot be deleted while it is used in an article</i>
   } @else {
     <span>Delete</span>
     <i class="tooltip-item-name">{{ config.itemName }}</i>

@@ -1,3 +1,6 @@
+import { firstValueFrom } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
 
@@ -10,8 +13,12 @@ import { DialogService } from '@app/services';
 export class UnsavedArticleGuard implements CanDeactivate<ArticleEditorPageComponent> {
   constructor(private readonly dialogService: DialogService) {}
 
-  async canDeactivate(component: ArticleEditorPageComponent): Promise<boolean> {
-    if (!component.hasUnsavedChanges) {
+  public async canDeactivate(component: ArticleEditorPageComponent): Promise<boolean> {
+    const hasUnsavedChanges =
+      component.viewModel$ &&
+      (await firstValueFrom(component.viewModel$?.pipe(map(vm => vm.hasUnsavedChanges))));
+
+    if (!hasUnsavedChanges) {
       return true;
     }
 

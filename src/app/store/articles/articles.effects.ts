@@ -65,7 +65,8 @@ export class ArticlesEffects {
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
       switchMap(([, formData, user]) => {
-        const article: Omit<Article, 'id'> = {
+        const article: Omit<Article, 'id'> & { id: null } = {
+          id: null,
           title: formData.title,
           body: formData.body,
           bannerImageId: formData.bannerImageId,

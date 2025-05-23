@@ -44,7 +44,6 @@ export class ArticleEditorPageComponent implements OnInit {
     pageTitle: string;
   }>;
 
-  public hasUnsavedChanges?: boolean; // Used for unsaved changes guard
   public readonly links: InternalLink[] = [
     {
       text: 'See all articles',
@@ -88,7 +87,6 @@ export class ArticleEditorPageComponent implements OnInit {
         this.metaAndTitleService.updateDescription(
           `${viewModel.pageTitle} for the London Chess Club.`,
         );
-        this.hasUnsavedChanges = viewModel.hasUnsavedChanges;
       }),
     );
   }

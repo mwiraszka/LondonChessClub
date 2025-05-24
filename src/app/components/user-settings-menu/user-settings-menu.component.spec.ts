@@ -37,7 +37,7 @@ describe('UserSettingsMenuComponent', () => {
     beforeEach(() => {
       ngMocks.stubMember(
         component,
-        'userSettingsMenuViewModel$',
+        'viewModel$',
         of({
           user: null,
           isDarkMode: true,
@@ -105,7 +105,7 @@ describe('UserSettingsMenuComponent', () => {
     beforeEach(() => {
       ngMocks.stubMember(
         component,
-        'userSettingsMenuViewModel$',
+        'viewModel$',
         of({
           user: {
             id: '123',

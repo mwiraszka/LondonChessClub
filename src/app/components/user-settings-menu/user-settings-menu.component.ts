@@ -1,4 +1,7 @@
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import { Observable, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, HostBinding, OnInit, Output } from '@angular/core';
@@ -7,9 +10,11 @@ import { Router } from '@angular/router';
 import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import IconsModule from '@app/icons';
+import { User } from '@app/models';
 import { AppActions, AppSelectors } from '@app/store/app';
-import { AuthActions } from '@app/store/auth';
+import { AuthActions, AuthSelectors } from '@app/store/auth';
 
+@UntilDestroy()
 @Component({
   selector: 'lcc-user-settings-menu',
   templateUrl: './user-settings-menu.component.html',
@@ -17,9 +22,11 @@ import { AuthActions } from '@app/store/auth';
   imports: [CommonModule, IconsModule, ToggleSwitchComponent, TooltipDirective],
 })
 export class UserSettingsMenuComponent implements OnInit {
-  public readonly userSettingsMenuViewModel$ = this.store.select(
-    AppSelectors.selectUserSettingsMenuViewModel,
-  );
+  public viewModel$?: Observable<{
+    user: User | null;
+    isDarkMode: boolean;
+    isSafeMode: boolean;
+  }>;
 
   @Output() public readonly close = new EventEmitter<void>();
 
@@ -32,6 +39,19 @@ export class UserSettingsMenuComponent implements OnInit {
   @HostBinding('style.visibility') private visibility = 'hidden';
 
   ngOnInit(): void {
+    this.viewModel$ = combineLatest([
+      this.store.select(AuthSelectors.selectUser),
+      this.store.select(AppSelectors.selectIsDarkMode),
+      this.store.select(AppSelectors.selectIsSafeMode),
+    ]).pipe(
+      untilDestroyed(this),
+      map(([user, isDarkMode, isSafeMode]) => ({
+        user,
+        isDarkMode,
+        isSafeMode,
+      })),
+    );
+
     setTimeout(() => (this.visibility = 'visible'), 30);
   }
 

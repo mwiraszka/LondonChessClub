@@ -52,10 +52,10 @@ export class NotificationsEffects {
   addUpdateArticleSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleSucceeded),
-      map(({ article, originalArticleTitle }) => {
+      map(({ originalArticleTitle }) => {
         const toast: Toast = {
           title: 'Article update',
-          message: `Successfully updated ${originalArticleTitle ?? article.title} in the database`,
+          message: `Successfully updated ${originalArticleTitle} in the database`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -212,10 +212,10 @@ export class NotificationsEffects {
   addDeleteEventSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventsActions.deleteEventSucceeded),
-      map(({ event }) => {
+      map(({ eventTitle }) => {
         const toast: Toast = {
           title: 'Event deletion',
-          message: `Successfully deleted ${event.title} from the database`,
+          message: `Successfully deleted ${eventTitle} from the database`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -420,10 +420,10 @@ export class NotificationsEffects {
   addDeleteMemberSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.deleteMemberSucceeded),
-      map(({ member }) => {
+      map(({ memberName }) => {
         const toast: Toast = {
           title: 'Member deletion',
-          message: `Successfully deleted ${member.firstName} ${member.lastName} from the database`,
+          message: `Successfully deleted ${memberName} from the database`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });

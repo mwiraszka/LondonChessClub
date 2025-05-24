@@ -2,7 +2,7 @@
   <span class="lcc-loading-spinner"></span>
 }
 
-@if (appViewModel$ | async; as vm) {
+@if (viewModel$ | async; as vm) {
   <lcc-toaster [toasts]="vm.toasts"></lcc-toaster>
 
   @if (vm.showUpcomingEventBanner && vm.nextEvent) {

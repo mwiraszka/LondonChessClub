@@ -1,111 +1,104 @@
-@if (members$ | async; as members) {
-  @if (config$ | async; as config) {
-    @if (config.isAdmin) {
-      <lcc-link-list [links]="[addMemberLink]"></lcc-link-list>
+@if (isAdmin) {
+  <lcc-link-list [links]="[addMemberLink]"></lcc-link-list>
+}
+
+<div class="lcc-table-wrapper">
+  <table
+    class="lcc-table"
+    [class.lcc-show-admin-columns]="isAdmin && isSafeMode">
+    @if (displayedMembers.length) {
+      <thead>
+        <tr>
+          <th class="row-number"></th>
+          @for (
+            header of isAdmin && !isSafeMode ? tableHeaders : tableHeaders.slice(0, -4);
+            track header
+          ) {
+            <th
+              [ngClass]="header | kebabCase"
+              (click)="onSelectTableHeader(header)">
+              <span>{{ header }}</span>
+              <div class="sort-icon-container">
+                @if (sortedBy === (header | camelCase)) {
+                  <i-feather
+                    class="sort-icon"
+                    [name]="isAscending ? 'chevron-down' : 'chevron-up'">
+                  </i-feather>
+                }
+              </div>
+            </th>
+          }
+        </tr>
+      </thead>
     }
 
-    <div class="lcc-table-wrapper">
-      <table
-        class="lcc-table"
-        [class.lcc-show-admin-columns]="config.isAdmin && !(isSafeMode$ | async)">
-        @if (members.displayed.length) {
-          <thead>
-            <tr>
-              <th class="row-number"></th>
-              @for (
-                header of config.isAdmin && !(isSafeMode$ | async)
-                  ? tableHeaders
-                  : tableHeaders.slice(0, -4);
-                track header
-              ) {
-                <th
-                  [ngClass]="header | kebabCase"
-                  (click)="onSelectTableHeader(header)">
-                  <span>{{ header }}</span>
-                  <div class="sort-icon-container">
-                    @if (config.sortedBy === (header | camelCase)) {
-                      <i-feather
-                        class="sort-icon"
-                        [name]="config.isAscending ? 'chevron-down' : 'chevron-up'">
-                      </i-feather>
-                    }
-                  </div>
-                </th>
-              }
-            </tr>
-          </thead>
-        }
+    <tbody>
+      @for (
+        member of displayedMembers;
+        track member.id;
+        let i = $index;
+        let last = $last
+      ) {
+        <tr
+          [adminControls]="isAdmin ? getAdminControlsConfig(member) : null"
+          [ngClass]="{ 'last-row': last }"
+          [class.inactive]="!member.isActive">
+          <td class="row-number">{{ i + startIndex + 1 }}</td>
+          <td class="first-name lcc-truncate">{{ member.firstName }}</td>
+          <td class="last-name lcc-truncate">{{ member.lastName }}</td>
+          <td class="rating">{{ member.rating }}</td>
+          <td class="peak-rating">{{ member.peakRating }}</td>
+          <td class="city lcc-truncate">{{ member.city }}</td>
+          <td class="chess-com-username lcc-truncate">
+            {{ member?.chessComUsername }}
+          </td>
+          <td class="lichess-username lcc-truncate">
+            {{ member?.lichessUsername }}
+          </td>
+          <td class="last-updated">
+            {{ member.modificationInfo.dateLastEdited | formatDate: 'short no-time' }}
+          </td>
 
-        <tbody>
-          @for (
-            member of members.displayed;
-            track member.id;
-            let i = $index;
-            let last = $last
-          ) {
-            <tr
-              [adminControls]="config.isAdmin ? getAdminControlsConfig(member) : null"
-              [ngClass]="{ 'last-row': last }"
-              [class.inactive]="!member.isActive">
-              <td class="row-number">
-                {{ i + config.startIndex + 1 }}
-              </td>
-              <td class="first-name lcc-truncate">{{ member.firstName }}</td>
-              <td class="last-name lcc-truncate">{{ member.lastName }}</td>
-              <td class="rating">{{ member.rating }}</td>
-              <td class="peak-rating">{{ member.peakRating }}</td>
-              <td class="city lcc-truncate">{{ member.city }}</td>
-              <td class="chess-com-username lcc-truncate">
-                {{ member?.chessComUsername }}
-              </td>
-              <td class="lichess-username lcc-truncate">
-                {{ member?.lichessUsername }}
-              </td>
-              <td class="last-updated">
-                {{ member.modificationInfo.dateLastEdited | formatDate: 'short no-time' }}
-              </td>
-              @if (config.isAdmin) {
-                <td class="born">{{ member?.yearOfBirth }}</td>
-                <td class="email">{{ member?.email }}</td>
-                <td class="phone-number">{{ member?.phoneNumber }}</td>
-                <td class="date-joined">
-                  {{ member.dateJoined | formatDate: 'short no-time' }}
-                </td>
-              }
-            </tr>
-          }
-        </tbody>
-
-        <tfoot>
-          <tr>
-            <td colspan="100%">
-              {{ members.all.length }} members ({{ members.active.length }}
-              active)
+          @if (isAdmin) {
+            <td class="born">{{ member.yearOfBirth }}</td>
+            <td class="email">{{ member.email }}</td>
+            <td class="phone-number">{{ member.phoneNumber }}</td>
+            <td class="date-joined">
+              {{ member.dateJoined | formatDate: 'short no-time' }}
             </td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+          }
+        </tr>
+      }
+    </tbody>
 
-    <lcc-paginator
-      typeOfItems="members"
-      [pageNum]="config.pageNum"
-      [pageSize]="config.pageSize"
-      [totalItems]="members.filtered.length"
-      (pageChange)="onChangePage($event)"
-      (pageSizeChange)="onChangePageSize($event)">
-    </lcc-paginator>
+    <tfoot>
+      <tr>
+        <td colspan="100%">
+          {{ allMembers.length }} members ({{ activeMembers.length }}
+          active)
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
 
-    <aside>
-      <h5>inactive members *</h5>
-      <div class="checkbox-section">
-        <label for="active-only">Show active members only</label>
-        <input
-          id="active-only"
-          type="checkbox"
-          [checked]="config.showActiveOnly"
-          (change)="onToggleInactiveMembers()" />
-      </div>
-    </aside>
-  }
-}
+<lcc-paginator
+  typeOfItems="members"
+  [pageNum]="pageNum"
+  [pageSize]="pageSize"
+  [totalItems]="filteredMembers.length"
+  (pageChange)="onChangePage($event)"
+  (pageSizeChange)="onChangePageSize($event)">
+</lcc-paginator>
+
+<aside>
+  <h5>inactive members *</h5>
+  <div class="checkbox-section">
+    <label for="active-only">Show active members only</label>
+    <input
+      id="active-only"
+      type="checkbox"
+      [checked]="showActiveOnly"
+      (change)="onToggleInactiveMembers()" />
+  </div>
+</aside>

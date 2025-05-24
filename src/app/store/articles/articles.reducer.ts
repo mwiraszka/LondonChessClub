@@ -1,7 +1,12 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
+import { pick } from 'lodash';
 
-import type { Article, ArticleFormData } from '@app/models';
+import {
+  ARTICLE_FORM_DATA_PROPERTIES,
+  type Article,
+  type ArticleFormData,
+} from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
@@ -46,11 +51,7 @@ export const articlesReducer = createReducer(
       articlesAdapter.setAll(
         articles.map(article => ({
           article,
-          formData: {
-            title: article.title,
-            body: article.body,
-            bannerImageId: article.bannerImageId,
-          },
+          formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
         })),
         state,
       ),
@@ -60,11 +61,7 @@ export const articlesReducer = createReducer(
     return articlesAdapter.upsertOne<ArticlesState>(
       {
         article,
-        formData: {
-          title: article.title,
-          body: article.body,
-          bannerImageId: article.bannerImageId,
-        },
+        formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
       },
       state,
     );
@@ -76,11 +73,7 @@ export const articlesReducer = createReducer(
       articlesAdapter.upsertOne<ArticlesState>(
         {
           article,
-          formData: {
-            title: article.title,
-            body: article.body,
-            bannerImageId: article.bannerImageId,
-          },
+          formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
         },
         { ...state, newArticleFormData: INITIAL_ARTICLE_FORM_DATA },
       ),
@@ -92,11 +85,7 @@ export const articlesReducer = createReducer(
       articlesAdapter.upsertOne<ArticlesState>(
         {
           article,
-          formData: {
-            title: article.title,
-            body: article.body,
-            bannerImageId: article.bannerImageId,
-          },
+          formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
         },
         state,
       ),

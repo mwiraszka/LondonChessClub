@@ -12,7 +12,12 @@ export interface Article {
   modificationInfo: ModificationInfo;
 }
 
-export type ArticleFormData = Pick<Article, 'title' | 'body' | 'bannerImageId'>;
+export const ARTICLE_FORM_DATA_PROPERTIES = ['title', 'body', 'bannerImageId'] as const;
+
+export type ArticleFormData = Pick<
+  Article,
+  (typeof ARTICLE_FORM_DATA_PROPERTIES)[number]
+>;
 
 export type ArticleFormGroup = {
   [Property in keyof ArticleFormData]: FormControl<ArticleFormData[Property]>;

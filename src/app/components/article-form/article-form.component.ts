@@ -9,7 +9,6 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -41,7 +40,6 @@ import { ImagesActions } from '@app/store/images';
   styleUrl: './article-form.component.scss',
   imports: [
     CommonModule,
-    FormsModule,
     IconsModule,
     ImagePreloadDirective,
     MarkdownRendererComponent,

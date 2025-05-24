@@ -11,7 +11,7 @@ import { ArticlesActions } from '@app/store/articles';
 import { AuthActions } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { MembersActions } from '@app/store/members';
-import { isDefined, isValidCollectionId } from '@app/utils';
+import { isValidCollectionId } from '@app/utils';
 
 import { NavSelectors } from '.';
 import * as NavActions from './nav.actions';
@@ -98,12 +98,9 @@ export class NavEffects {
       map(currentPath => {
         const [controlMode, eventId] = currentPath.split('/event/')[1].split('/');
 
-        if (controlMode === 'add' && !isDefined(eventId)) {
-          return EventsActions.newEventRequested();
-        } else if (controlMode === 'edit' && isValidCollectionId(eventId)) {
-          return EventsActions.fetchEventRequested({ controlMode, eventId });
-        }
-        return NavActions.navigationRequested({ path: 'schedule' });
+        return controlMode === 'edit' && isValidCollectionId(eventId)
+          ? EventsActions.fetchEventRequested({ eventId })
+          : NavActions.navigationRequested({ path: 'schedule' });
       }),
     ),
   );
@@ -118,7 +115,10 @@ export class NavEffects {
           !!previousPath?.startsWith('/event/') && !currentPath?.startsWith('/event/')
         );
       }),
-      map(() => EventsActions.eventUnset()),
+      map(([, previousPath]) => {
+        const eventId = previousPath!.split('/event/')[1]?.split('/')[1] ?? null;
+        return EventsActions.eventFormDataCleared({ eventId });
+      }),
     ),
   );
 
@@ -130,12 +130,9 @@ export class NavEffects {
       map(currentPath => {
         const [controlMode, memberId] = currentPath.split('/member/')[1].split('/');
 
-        if (controlMode === 'add' && !isDefined(memberId)) {
-          return MembersActions.newMemberRequested();
-        } else if (controlMode === 'edit' && isValidCollectionId(memberId)) {
-          return MembersActions.fetchMemberRequested({ controlMode, memberId });
-        }
-        return NavActions.navigationRequested({ path: 'members' });
+        return controlMode === 'edit' && isValidCollectionId(memberId)
+          ? MembersActions.fetchMemberRequested({ memberId })
+          : NavActions.navigationRequested({ path: 'members' });
       }),
     ),
   );
@@ -150,7 +147,10 @@ export class NavEffects {
           !!previousPath?.startsWith('/member/') && !currentPath?.startsWith('/member/')
         );
       }),
-      map(() => MembersActions.memberUnset()),
+      map(([, previousPath]) => {
+        const memberId = previousPath!.split('/member/')[1]?.split('/')[1] ?? null;
+        return MembersActions.memberFormDataCleared({ memberId });
+      }),
     ),
   );
 
@@ -168,24 +168,13 @@ export class NavEffects {
         const [controlMode, articleIdWithFragment] = currentPath
           .split('/article/')[1]
           .split('/');
-
-        if (controlMode === 'add' && !isDefined(articleIdWithFragment)) {
-          return ArticlesActions.newArticleRequested();
-        }
-
         const articleId = articleIdWithFragment?.split('#')[0];
 
-        if (
-          (controlMode === 'edit' && isValidCollectionId(articleId)) ||
-          (controlMode === 'view' && isValidCollectionId(articleId))
-        ) {
-          return ArticlesActions.fetchArticleRequested({
-            controlMode,
-            articleId,
-          });
-        }
-
-        return NavActions.navigationRequested({ path: 'news' });
+        return ['edit', 'view'].includes(controlMode) && isValidCollectionId(articleId)
+          ? ArticlesActions.fetchArticleRequested({
+              articleId,
+            })
+          : NavActions.navigationRequested({ path: 'news' });
       }),
     ),
   );

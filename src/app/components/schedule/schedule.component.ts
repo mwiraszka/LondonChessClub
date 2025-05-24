@@ -17,7 +17,7 @@ import type {
 } from '@app/models';
 import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { EventsActions, EventsSelectors } from '@app/store/events';
+import { EventsActions } from '@app/store/events';
 
 @Component({
   selector: 'lcc-schedule',
@@ -34,6 +34,12 @@ import { EventsActions, EventsSelectors } from '@app/store/events';
   ],
 })
 export class ScheduleComponent implements OnInit {
+  @Input({ required: true }) public allEvents!: Event[];
+  @Input({ required: true }) public isAdmin!: boolean;
+  @Input({ required: true }) public nextEvent!: Event | null;
+  @Input({ required: true }) public showPastEvents!: boolean;
+  @Input({ required: true }) public upcomingEvents!: Event[];
+
   @Input() public allowTogglePastEvents = true;
   @Input() public includeDetails = true;
   @Input() public upcomingEventLimit?: number;
@@ -43,9 +49,6 @@ export class ScheduleComponent implements OnInit {
     internalPath: ['event', 'add'],
     icon: 'plus-circle',
   };
-  public readonly scheduleViewModel$ = this.store.select(
-    EventsSelectors.selectScheduleViewModel,
-  );
 
   constructor(
     private readonly dialogService: DialogService,
@@ -86,7 +89,7 @@ export class ScheduleComponent implements OnInit {
     );
 
     if (result === 'confirm') {
-      this.store.dispatch(EventsActions.deleteEventRequested({ event }));
+      this.store.dispatch(EventsActions.deleteEventRequested({ eventId: event.id }));
     }
   }
 

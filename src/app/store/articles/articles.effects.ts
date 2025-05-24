@@ -10,8 +10,7 @@ import { Injectable } from '@angular/core';
 import type { Article } from '@app/models';
 import { ArticlesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { isDefined } from '@app/utils';
-import { parseError } from '@app/utils/error/parse-error.util';
+import { isDefined, parseError } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
 import * as ArticlesSelectors from './articles.selectors';
@@ -59,17 +58,13 @@ export class ArticlesEffects {
       ofType(ArticlesActions.publishArticleRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
-        this.store
-          .select(ArticlesSelectors.selectArticleFormDataById(null))
-          .pipe(filter(isDefined)),
+        this.store.select(ArticlesSelectors.selectArticleFormDataById(null)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
       switchMap(([, formData, user]) => {
         const article: Omit<Article, 'id'> & { id: null } = {
           id: null,
-          title: formData.title,
-          body: formData.body,
-          bannerImageId: formData.bannerImageId,
+          ...formData,
           bookmarkDate: null,
           modificationInfo: {
             createdBy: `${user.firstName} ${user.lastName}`,
@@ -102,21 +97,15 @@ export class ArticlesEffects {
         this.store
           .select(ArticlesSelectors.selectArticleById(articleId))
           .pipe(filter(isDefined)),
-        this.store
-          .select(ArticlesSelectors.selectArticleFormDataById(articleId))
-          .pipe(filter(isDefined)),
+        this.store.select(ArticlesSelectors.selectArticleFormDataById(articleId)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
       switchMap(([, article, formData, user]) => {
         const updatedArticle: Article = {
-          id: article.id,
-          title: formData.title,
-          body: formData.body,
-          bannerImageId: formData.bannerImageId,
-          bookmarkDate: null,
+          ...article,
+          ...formData,
           modificationInfo: {
-            createdBy: `${user.firstName} ${user.lastName}`,
-            dateCreated: moment().toISOString(),
+            ...article.modificationInfo,
             lastEditedBy: `${user.firstName} ${user.lastName}`,
             dateLastEdited: moment().toISOString(),
           },
@@ -148,12 +137,17 @@ export class ArticlesEffects {
           .pipe(filter(isDefined)),
       ),
       switchMap(([{ bookmark }, article]) => {
-        const modifiedArticle: Article = {
+        const updatedArticle: Article = {
           ...article,
           bookmarkDate: bookmark ? moment().toISOString() : null,
         };
-        return this.articlesService.updateArticle(modifiedArticle).pipe(
-          map(() => ArticlesActions.updateArticleSucceeded({ article: modifiedArticle })),
+        return this.articlesService.updateArticle(updatedArticle).pipe(
+          map(() =>
+            ArticlesActions.updateArticleSucceeded({
+              article: updatedArticle,
+              originalArticleTitle: article.title,
+            }),
+          ),
           catchError(error =>
             of(ArticlesActions.updateArticleFailed({ error: parseError(error) })),
           ),

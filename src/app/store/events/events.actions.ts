@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { ControlMode, Event, EventFormData, Id, LccError } from '@app/models';
+import type { Event, EventFormData, Id, LccError } from '@app/models';
 
 export const fetchEventsRequested = createAction('[Events] Fetch events requested');
 export const fetchEventsSucceeded = createAction(
@@ -12,10 +12,9 @@ export const fetchEventsFailed = createAction(
   props<{ error: LccError }>(),
 );
 
-export const newEventRequested = createAction('[Events] New event requested');
 export const fetchEventRequested = createAction(
   '[Events] Fetch event requested',
-  props<{ controlMode: ControlMode; eventId: Id }>(),
+  props<{ eventId: Id }>(),
 );
 export const fetchEventSucceeded = createAction(
   '[Events] Fetch event succeeded',
@@ -36,7 +35,10 @@ export const addEventFailed = createAction(
   props<{ error: LccError }>(),
 );
 
-export const updateEventRequested = createAction('[Events] Update event requested');
+export const updateEventRequested = createAction(
+  '[Events] Update event requested',
+  props<{ eventId: Id }>(),
+);
 export const updateEventSucceeded = createAction(
   '[Events] Update event succeeded',
   props<{ event: Event; originalEventTitle: string }>(),
@@ -48,11 +50,11 @@ export const updateEventFailed = createAction(
 
 export const deleteEventRequested = createAction(
   '[Events] Delete event requested',
-  props<{ event: Event }>(),
+  props<{ eventId: Id }>(),
 );
 export const deleteEventSucceeded = createAction(
   '[Events] Delete event succeeded',
-  props<{ event: Event }>(),
+  props<{ eventId: Id; eventTitle: string }>(),
 );
 export const deleteEventFailed = createAction(
   '[Events] Delete event failed',
@@ -63,9 +65,11 @@ export const cancelSelected = createAction('[Events] Cancel selected');
 
 export const formValueChanged = createAction(
   '[Events] Form value changed',
-  props<{ value: Partial<EventFormData> }>(),
+  props<{ eventId: Id | null; value: Partial<EventFormData> }>(),
 );
 
-export const eventUnset = createAction('[Events] Event unset');
-
+export const eventFormDataCleared = createAction(
+  '[Events] Event form data cleared',
+  props<{ eventId: Id | null }>(),
+);
 export const pastEventsToggled = createAction('[Events] Past events toggled');

@@ -7,7 +7,7 @@ import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import type { ApiScope, ModificationInfo } from '@app/models';
+import type { ApiScope, Member } from '@app/models';
 import { LoaderService, MembersService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { getNewPeakRating, isDefined } from '@app/utils';
@@ -59,27 +59,25 @@ export class MembersEffects {
       ofType(MembersActions.addMemberRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
-        this.store.select(MembersSelectors.selectMemberFormData).pipe(filter(isDefined)),
+        this.store.select(MembersSelectors.selectMemberFormDataById(null)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
-      switchMap(([, memberFormData, user]) => {
-        const modificationInfo: ModificationInfo = {
-          createdBy: `${user.firstName} ${user.lastName}`,
-          dateCreated: moment().toISOString(),
-          lastEditedBy: `${user.firstName} ${user.lastName}`,
-          dateLastEdited: moment().toISOString(),
-        };
-        const modifiedMember = {
-          ...memberFormData,
-          modificationInfo,
+      switchMap(([, formData, user]) => {
+        const member: Omit<Member, 'id'> & { id: null } = {
           id: null,
-          peakRating: memberFormData.rating,
+          ...formData,
+          modificationInfo: {
+            createdBy: `${user.firstName} ${user.lastName}`,
+            dateCreated: moment().toISOString(),
+            lastEditedBy: `${user.firstName} ${user.lastName}`,
+            dateLastEdited: moment().toISOString(),
+          },
         };
 
-        return this.membersService.addMember(modifiedMember).pipe(
+        return this.membersService.addMember(member).pipe(
           map(response =>
             MembersActions.addMemberSucceeded({
-              member: { ...modifiedMember, id: response.data },
+              member: { ...member, id: response.data },
             }),
           ),
           catchError(error =>
@@ -95,34 +93,30 @@ export class MembersEffects {
     return this.actions$.pipe(
       ofType(MembersActions.updateMemberRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() => [
-        this.store.select(MembersSelectors.selectMember).pipe(filter(isDefined)),
-        this.store.select(MembersSelectors.selectMemberFormData).pipe(filter(isDefined)),
+      concatLatestFrom(({ memberId }) => [
+        this.store
+          .select(MembersSelectors.selectMemberById(memberId))
+          .pipe(filter(isDefined)),
+        this.store.select(MembersSelectors.selectMemberFormDataById(memberId)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
-      switchMap(([, member, memberFormData, user]) => {
-        const originalMemberName = `${member.firstName} ${member.lastName}`;
-        const peakRating = getNewPeakRating(
-          memberFormData.rating,
-          memberFormData.peakRating,
-        );
-        const modificationInfo: ModificationInfo = {
-          ...member.modificationInfo,
-          lastEditedBy: `${user.firstName} ${user.lastName}`,
-          dateLastEdited: moment().toISOString(),
-        };
-        const modifiedMember = {
+      switchMap(([, member, formData, user]) => {
+        const updatedMember: Member = {
           ...member,
-          ...memberFormData,
-          peakRating,
-          modificationInfo,
+          ...formData,
+          peakRating: getNewPeakRating(formData.rating, formData.peakRating),
+          modificationInfo: {
+            ...member.modificationInfo,
+            lastEditedBy: `${user.firstName} ${user.lastName}`,
+            dateLastEdited: moment().toISOString(),
+          },
         };
 
-        return this.membersService.updateMember(modifiedMember).pipe(
+        return this.membersService.updateMember(updatedMember).pipe(
           map(() =>
             MembersActions.updateMemberSucceeded({
               member,
-              originalMemberName,
+              originalMemberName: `${member.firstName} ${member.lastName}`,
             }),
           ),
           catchError(error =>
@@ -138,11 +132,16 @@ export class MembersEffects {
     return this.actions$.pipe(
       ofType(MembersActions.deleteMemberRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ member }) =>
-        this.membersService.deleteMember(member).pipe(
-          map(() =>
+      switchMap(({ memberId }) =>
+        this.membersService.deleteMember(memberId).pipe(
+          switchMap(response =>
+            this.store.select(MembersSelectors.selectMemberById(response.data)),
+          ),
+          filter(isDefined),
+          map(member =>
             MembersActions.deleteMemberSucceeded({
-              member,
+              memberId: member.id,
+              memberName: `${member.firstName} ${member.lastName}`,
             }),
           ),
           catchError(error =>

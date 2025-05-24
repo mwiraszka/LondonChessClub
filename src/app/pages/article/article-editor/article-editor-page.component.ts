@@ -27,8 +27,8 @@ import { ImagesSelectors } from '@app/store/images';
       <lcc-article-form
         [bannerImage]="vm.bannerImage"
         [formData]="vm.formData"
-        [originalArticle]="vm.article"
-        [hasUnsavedChanges]="vm.hasUnsavedChanges">
+        [hasUnsavedChanges]="vm.hasUnsavedChanges"
+        [originalArticle]="vm.article">
       </lcc-article-form>
       <lcc-link-list [links]="links"></lcc-link-list>
     }
@@ -80,7 +80,7 @@ export class ArticleEditorPageComponent implements OnInit {
         formData,
         hasUnsavedChanges,
         bannerImage,
-        pageTitle: article?.title ? `Edit ${article.title}` : 'Compose an article',
+        pageTitle: article ? `Edit ${article.title}` : 'Compose an article',
       })),
       tap(viewModel => {
         this.metaAndTitleService.updateTitle(viewModel.pageTitle);

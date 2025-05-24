@@ -25,6 +25,10 @@ export const fetchArticleFailed = createAction(
   props<{ error: LccError }>(),
 );
 
+export const createAnArticleSelected = createAction(
+  '[Articles] Create an article selected',
+);
+
 // TODO: Move to images actions
 export const bannerImageFileLoadFailed = createAction(
   '[Articles] Banner image file load failed',

@@ -10,7 +10,14 @@ import { ActivatedRoute } from '@angular/router';
 import { ArticleFormComponent } from '@app/components/article-form/article-form.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import type { Article, ArticleFormData, Image, InternalLink } from '@app/models';
+import type {
+  Article,
+  ArticleFormData,
+  EditorPage,
+  EntityName,
+  Image,
+  InternalLink,
+} from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ArticlesSelectors } from '@app/store/articles';
 import { ImagesSelectors } from '@app/store/images';
@@ -35,15 +42,8 @@ import { ImagesSelectors } from '@app/store/images';
   `,
   imports: [ArticleFormComponent, CommonModule, LinkListComponent, PageHeaderComponent],
 })
-export class ArticleEditorPageComponent implements OnInit {
-  public viewModel$?: Observable<{
-    article: Article | null;
-    formData: ArticleFormData;
-    hasUnsavedChanges: boolean;
-    bannerImage: Image | null;
-    pageTitle: string;
-  }>;
-
+export class ArticleEditorPageComponent implements OnInit, EditorPage {
+  public readonly entityName: EntityName = 'article';
   public readonly links: InternalLink[] = [
     {
       text: 'See all articles',
@@ -56,6 +56,13 @@ export class ArticleEditorPageComponent implements OnInit {
       icon: 'home',
     },
   ];
+  public viewModel$?: Observable<{
+    article: Article | null;
+    formData: ArticleFormData;
+    hasUnsavedChanges: boolean;
+    bannerImage: Image | null;
+    pageTitle: string;
+  }>;
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,

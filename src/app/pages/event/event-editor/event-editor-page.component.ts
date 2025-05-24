@@ -10,7 +10,13 @@ import { ActivatedRoute } from '@angular/router';
 import { EventFormComponent } from '@app/components/event-form/event-form.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import type { Event, EventFormData, InternalLink } from '@app/models';
+import type {
+  EditorPage,
+  EntityName,
+  Event,
+  EventFormData,
+  InternalLink,
+} from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { EventsSelectors } from '@app/store/events';
 
@@ -33,14 +39,8 @@ import { EventsSelectors } from '@app/store/events';
   `,
   imports: [CommonModule, EventFormComponent, LinkListComponent, PageHeaderComponent],
 })
-export class EventEditorPageComponent implements OnInit {
-  public viewModel$?: Observable<{
-    event: Event | null;
-    formData: EventFormData;
-    hasUnsavedChanges: boolean;
-    pageTitle: string;
-  }>;
-
+export class EventEditorPageComponent implements OnInit, EditorPage {
+  public readonly entityName: EntityName = 'event';
   public readonly links: InternalLink[] = [
     {
       text: 'See all events',
@@ -53,6 +53,12 @@ export class EventEditorPageComponent implements OnInit {
       icon: 'home',
     },
   ];
+  public viewModel$?: Observable<{
+    event: Event | null;
+    formData: EventFormData;
+    hasUnsavedChanges: boolean;
+    pageTitle: string;
+  }>;
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,

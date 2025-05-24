@@ -5,15 +5,14 @@ import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
-import type { BasicDialogResult, Dialog } from '@app/models';
-import { EventEditorPageComponent } from '@app/pages/event/event-editor/event-editor-page.component';
+import type { BasicDialogResult, Dialog, EditorPage } from '@app/models';
 import { DialogService } from '@app/services';
 
 @Injectable({ providedIn: 'root' })
-export class UnsavedEventGuard implements CanDeactivate<unknown> {
+export class UnsavedChangesGuard implements CanDeactivate<EditorPage> {
   constructor(private readonly dialogService: DialogService) {}
 
-  async canDeactivate(component: EventEditorPageComponent): Promise<boolean> {
+  public async canDeactivate(component: EditorPage): Promise<boolean> {
     const hasUnsavedChanges =
       component.viewModel$ &&
       (await firstValueFrom(component.viewModel$?.pipe(map(vm => vm.hasUnsavedChanges))));
@@ -24,7 +23,7 @@ export class UnsavedEventGuard implements CanDeactivate<unknown> {
 
     const dialog: Dialog = {
       title: 'Unsaved changes',
-      body: 'Are you sure you want to leave? Any unsaved changes to this event will be lost.',
+      body: `Are you sure you want to leave? Any unsaved changes to the ${component.entityName} will be lost.`,
       confirmButtonText: 'Leave',
     };
 

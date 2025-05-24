@@ -10,7 +10,13 @@ import { ActivatedRoute } from '@angular/router';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { MemberFormComponent } from '@app/components/member-form/member-form.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import type { InternalLink, Member, MemberFormData } from '@app/models';
+import type {
+  EditorPage,
+  EntityName,
+  InternalLink,
+  Member,
+  MemberFormData,
+} from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import { MembersSelectors } from '@app/store/members';
@@ -35,16 +41,9 @@ import { MembersSelectors } from '@app/store/members';
   `,
   imports: [CommonModule, LinkListComponent, MemberFormComponent, PageHeaderComponent],
 })
-export class MemberEditorPageComponent implements OnInit {
-  public viewModel$?: Observable<{
-    member: Member | null;
-    formData: MemberFormData;
-    hasUnsavedChanges: boolean;
-    isSafeMode: boolean;
-    pageTitle: string;
-  }>;
-
-  public links: InternalLink[] = [
+export class MemberEditorPageComponent implements OnInit, EditorPage {
+  public readonly entityName: EntityName = 'member';
+  public readonly links: InternalLink[] = [
     {
       text: 'See all members',
       internalPath: 'members',
@@ -56,6 +55,13 @@ export class MemberEditorPageComponent implements OnInit {
       icon: 'home',
     },
   ];
+  public viewModel$?: Observable<{
+    formData: MemberFormData;
+    hasUnsavedChanges: boolean;
+    isSafeMode: boolean;
+    member: Member | null;
+    pageTitle: string;
+  }>;
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,

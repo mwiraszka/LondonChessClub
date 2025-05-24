@@ -16,6 +16,7 @@ export type {
   DialogOutput,
 } from './dialog.model';
 export type { DbCollection } from './db-collection.model';
+export type { EditorPage, EntityName } from './editor-page.model';
 export type { LccError } from './error.model';
 export {
   EVENT_FORM_DATA_PROPERTIES,

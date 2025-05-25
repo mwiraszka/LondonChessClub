@@ -68,9 +68,8 @@ export class ArticleFormComponent implements OnInit {
       (this.formData.bannerImageId || this.originalArticle?.bannerImageId)
     ) {
       this.store.dispatch(
-        ImagesActions.fetchArticleBannerImageRequested({
-          bannerImageId:
-            this.formData.bannerImageId ?? this.originalArticle!.bannerImageId!,
+        ImagesActions.fetchImageRequested({
+          imageId: this.formData.bannerImageId ?? this.originalArticle!.bannerImageId!,
         }),
       );
     }
@@ -151,11 +150,9 @@ export class ArticleFormComponent implements OnInit {
     });
 
     if (thumbnailImageId) {
-      const bannerImageId = thumbnailImageId.split('-')[0];
-      this.form.patchValue({ bannerImageId });
-      this.store.dispatch(
-        ImagesActions.fetchArticleBannerImageRequested({ bannerImageId }),
-      );
+      const imageId = thumbnailImageId.split('-')[0];
+      this.form.patchValue({ bannerImageId: imageId });
+      this.store.dispatch(ImagesActions.fetchImageRequested({ imageId }));
     }
   }
 

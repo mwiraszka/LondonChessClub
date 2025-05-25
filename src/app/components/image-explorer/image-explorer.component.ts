@@ -50,7 +50,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(ImagesActions.fetchArticleBannerImageThumbnailsRequested());
+    this.store.dispatch(ImagesActions.fetchImageThumbnailsRequested());
     this.images$ = this.store
       .select(ImagesSelectors.selectThumbnailImages)
       .pipe(untilDestroyed(this));

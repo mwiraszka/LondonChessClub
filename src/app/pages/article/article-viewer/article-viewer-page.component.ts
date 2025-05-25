@@ -86,9 +86,7 @@ export class ArticleViewerPageComponent implements OnInit {
       tap(([article]) => {
         if (isDefined(article.bannerImageId)) {
           this.store.dispatch(
-            ImagesActions.fetchArticleBannerImageRequested({
-              bannerImageId: article.bannerImageId,
-            }),
+            ImagesActions.fetchImageRequested({ imageId: article.bannerImageId }),
           );
         }
 

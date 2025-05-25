@@ -136,20 +136,6 @@ export class NotificationsEffects {
       }),
     );
   });
-
-  addBannerImageFileLoadFailedToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.bannerImageFileLoadFailed),
-      map(({ error }) => {
-        const toast: Toast = {
-          title: 'Load banner image file',
-          message: this.getErrorMessage(error),
-          type: 'warning',
-        };
-        return NotificationsActions.toastAdded({ toast });
-      }),
-    );
-  });
   //#endregion
 
   //#region Events
@@ -327,14 +313,14 @@ export class NotificationsEffects {
     );
   });
 
-  addFetchArticleBannerImageThumbnailsFailedToast$ = createEffect(() => {
+  addImageThumbnailsFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchArticleBannerImageThumbnailsFailed),
+      ofType(ImagesActions.fetchImageThumbnailsFailed),
       concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
       filter(([, isAdmin]) => isAdmin || !environment.production),
       map(([{ error }]) => {
         const toast: Toast = {
-          title: 'Load article banner image thumbnails',
+          title: 'Load image thumbnails',
           message: this.getErrorMessage(error),
           type: 'warning',
         };
@@ -343,14 +329,42 @@ export class NotificationsEffects {
     );
   });
 
-  addFetchArticleBannerImageFailedToast$ = createEffect(() => {
+  addFetchImageFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchArticleBannerImageFailed),
+      ofType(ImagesActions.fetchImageFailed),
       concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
       filter(([, isAdmin]) => isAdmin || !environment.production),
       map(([{ error }]) => {
         const toast: Toast = {
-          title: 'Load article banner image',
+          title: 'Load image',
+          message: this.getErrorMessage(error),
+          type: 'warning',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addImageFileLoadSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.imageFileLoadSucceeded),
+      map(({ numFiles }) => {
+        const toast: Toast = {
+          title: 'Load image file',
+          message: `Successfully loaded ${numFiles} files into Image Explorer`,
+          type: 'success',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addImageFileLoadFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.imageFileLoadFailed),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Load image file',
           message: this.getErrorMessage(error),
           type: 'warning',
         };
@@ -611,7 +625,6 @@ export class NotificationsEffects {
           ArticlesActions.deleteArticleFailed,
           ArticlesActions.fetchArticlesFailed,
           ArticlesActions.fetchArticleFailed,
-          ArticlesActions.bannerImageFileLoadFailed,
           AuthActions.loginFailed,
           AuthActions.logoutFailed,
           AuthActions.codeForPasswordChangeFailed,
@@ -623,8 +636,9 @@ export class NotificationsEffects {
           EventsActions.fetchEventFailed,
           ImagesActions.addImageFailed,
           ImagesActions.deleteImageFailed,
-          ImagesActions.fetchArticleBannerImageFailed,
-          ImagesActions.fetchArticleBannerImageThumbnailsFailed,
+          ImagesActions.fetchImageFailed,
+          ImagesActions.fetchImageThumbnailsFailed,
+          ImagesActions.imageFileLoadFailed,
           MembersActions.addMemberFailed,
           MembersActions.updateMemberFailed,
           MembersActions.deleteMemberFailed,

@@ -73,7 +73,7 @@ export class ArticleGridComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(ArticlesActions.fetchArticlesRequested());
-    this.store.dispatch(ImagesActions.fetchArticleBannerImageThumbnailsRequested());
+    this.store.dispatch(ImagesActions.fetchImageThumbnailsRequested());
 
     this.viewModel$ = combineLatest([
       this.store.select(ArticlesSelectors.selectAllArticles),

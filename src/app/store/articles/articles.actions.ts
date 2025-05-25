@@ -29,12 +29,6 @@ export const createAnArticleSelected = createAction(
   '[Articles] Create an article selected',
 );
 
-// TODO: Move to images actions
-export const bannerImageFileLoadFailed = createAction(
-  '[Articles] Banner image file load failed',
-  props<{ error: LccError }>(),
-);
-
 export const publishArticleRequested = createAction(
   '[Articles] Publish article requested',
 );

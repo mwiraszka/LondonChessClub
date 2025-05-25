@@ -18,12 +18,12 @@ export const imagesReducer = createReducer(
   imagesInitialState,
 
   on(
-    ImagesActions.fetchArticleBannerImageThumbnailsSucceeded,
+    ImagesActions.fetchImageThumbnailsSucceeded,
     (state, { images }): ImagesState => imagesAdapter.upsertMany(images, state),
   ),
 
   on(
-    ImagesActions.fetchArticleBannerImageSucceeded,
+    ImagesActions.fetchImageSucceeded,
     (state, { image }): ImagesState => imagesAdapter.upsertOne(image, state),
   ),
 

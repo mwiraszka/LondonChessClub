@@ -13,20 +13,20 @@ import * as ImagesActions from './images.actions';
 
 @Injectable()
 export class ImagesEffects {
-  fetchArticleBannerImageThumbnails$ = createEffect(() => {
+  fetchImageThumbnails$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchArticleBannerImageThumbnailsRequested),
+      ofType(ImagesActions.fetchImageThumbnailsRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() =>
         this.imagesService.getThumbnailImages().pipe(
           map(response =>
-            ImagesActions.fetchArticleBannerImageThumbnailsSucceeded({
+            ImagesActions.fetchImageThumbnailsSucceeded({
               images: response.data,
             }),
           ),
           catchError(error =>
             of(
-              ImagesActions.fetchArticleBannerImageThumbnailsFailed({
+              ImagesActions.fetchImageThumbnailsFailed({
                 error: parseError(error),
               }),
             ),
@@ -37,20 +37,16 @@ export class ImagesEffects {
     );
   });
 
-  fetchArticleBannerImage$ = createEffect(() => {
+  fetchImage$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchArticleBannerImageRequested),
+      ofType(ImagesActions.fetchImageRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ bannerImageId }) => {
-        return this.imagesService.getImage(bannerImageId).pipe(
-          map(response =>
-            ImagesActions.fetchArticleBannerImageSucceeded({
-              image: response.data,
-            }),
-          ),
+      switchMap(({ imageId }) => {
+        return this.imagesService.getImage(imageId).pipe(
+          map(response => ImagesActions.fetchImageSucceeded({ image: response.data })),
           catchError(error => {
             return of(
-              ImagesActions.fetchArticleBannerImageFailed({
+              ImagesActions.fetchImageFailed({
                 error: parseError(error),
               }),
             );

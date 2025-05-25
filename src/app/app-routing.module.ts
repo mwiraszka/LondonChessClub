@@ -80,7 +80,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'lifetime',
+    path: 'lifetime-achievement-awards',
     loadChildren: () =>
       import('./pages/lifetime/lifetime-page-routing.module').then(
         m => m.LifetimePageRoutingModule,

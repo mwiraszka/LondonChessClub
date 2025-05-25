@@ -65,8 +65,8 @@ export class NavigationBarComponent {
       icon: 'grid',
     },
     {
-      text: 'Lifetime',
-      internalPath: 'lifetime',
+      text: 'Lifetime Achievement Awards',
+      internalPath: 'lifetime-achievement-awards',
       icon: 'award',
     },
   ];

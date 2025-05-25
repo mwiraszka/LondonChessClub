@@ -10,7 +10,7 @@ const navPaths = [
   'city-champion',
   'photo-gallery',
   'game-archives',
-  'lifetime',
+  'lifetime-achievement-awards',
   'documents',
   'login',
   'change-password',

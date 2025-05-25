@@ -12,6 +12,8 @@ import { MetaAndTitleService } from '@app/services';
   imports: [CommonModule, IconsModule, PageHeaderComponent],
 })
 export class LifetimePageComponent implements OnInit {
+  public portraitPath = 'assets/lifetime-achievement-award-recipients/';
+
   constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
 
   ngOnInit(): void {

@@ -1,3 +1,5 @@
+@use '../../../styles/abstracts/mixins';
+
 section {
   width: 100%;
   padding: 32px 0;
@@ -17,6 +19,7 @@ section {
     border-top: 1px solid var(--lcc-color--lifetimePage-sectionHeaderDivider);
   }
 
+  .intro,
   .recipient-block {
     padding: 16px;
     color: var(--lcc-color--lifetimePage-blockText);
@@ -30,6 +33,26 @@ section {
 
     &.coming-soon {
       text-align: center;
+    }
+  }
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    figure {
+      width: 600px;
+      min-width: 350px;
+      flex: 1;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    @include mixins.respond-to('gt-md') {
+      flex-direction: row;
     }
   }
 }

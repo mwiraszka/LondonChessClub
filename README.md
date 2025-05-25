@@ -39,6 +39,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 - 🚀 Create new Lifetime page to list all past Lifetime Achievement Award recipients
 - 🚀 Support markdown blockquotes in articles
 - 🚀 Choose more appropriate icons for some pages
+- 🚀 Append `| LCC` to the end of browser tab page titles for all pages except the homepage
 
 </details>
 

@@ -1,8 +1,12 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import { isEqual } from 'lodash';
+import { Observable, combineLatest } from 'rxjs';
+import { distinctUntilChanged, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { ArticleComponent } from '@app/components/article/article.component';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
@@ -13,36 +17,43 @@ import type {
   Article,
   BasicDialogResult,
   Dialog,
+  Id,
+  Image,
   InternalLink,
 } from '@app/models';
 import { DialogService, MetaAndTitleService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import { ImagesActions } from '@app/store/images';
+import { AuthSelectors } from '@app/store/auth';
+import { ImagesActions, ImagesSelectors } from '@app/store/images';
 import { isDefined } from '@app/utils';
 
 @UntilDestroy()
 @Component({
   selector: 'lcc-article-viewer-page',
   template: `
-    @if (articleViewerPageViewModel$ | async; as vm) {
-      @if (vm.article) {
-        <lcc-article
-          [adminControls]="vm.isAdmin ? getAdminControlsConfig(vm.article) : null"
-          [article]="vm.article"
-          [bannerImageUrl]="vm.bannerImageUrl">
-        </lcc-article>
-        <lcc-link-list [links]="links"></lcc-link-list>
-      }
+    @if (viewModel$ | async; as vm) {
+      <lcc-article
+        [adminControls]="vm.isAdmin ? getAdminControlsConfig(vm.article) : null"
+        [article]="vm.article"
+        [bannerImage]="vm.bannerImage">
+      </lcc-article>
+      <lcc-link-list [links]="links"></lcc-link-list>
     }
   `,
   imports: [AdminControlsDirective, ArticleComponent, CommonModule, LinkListComponent],
 })
 export class ArticleViewerPageComponent implements OnInit {
+  public viewModel$?: Observable<{
+    article: Article;
+    bannerImage: Image | null;
+    isAdmin: boolean;
+  }>;
+
   public readonly links: InternalLink[] = [
     {
       text: 'More articles',
       internalPath: 'news',
-      icon: 'activity',
+      icon: 'map',
     },
     {
       text: 'Return home',
@@ -50,33 +61,46 @@ export class ArticleViewerPageComponent implements OnInit {
       icon: 'home',
     },
   ];
-  public readonly articleViewerPageViewModel$ = this.store.select(
-    ArticlesSelectors.selectArticleViewerPageViewModel,
-  );
 
   constructor(
+    private readonly activatedRoute: ActivatedRoute,
     private readonly dialogService: DialogService,
     private readonly metaAndTitleService: MetaAndTitleService,
     private readonly store: Store,
   ) {}
 
   ngOnInit(): void {
-    this.articleViewerPageViewModel$
-      .pipe(untilDestroyed(this))
-      .subscribe(({ article, bannerImageUrl }) => {
-        if (!isDefined(bannerImageUrl) && isDefined(article?.imageId)) {
+    this.viewModel$ = this.activatedRoute.params.pipe(
+      untilDestroyed(this),
+      map(params => params['article_id'] as Id),
+      switchMap(articleId =>
+        combineLatest([
+          this.store
+            .select(ArticlesSelectors.selectArticleById(articleId))
+            .pipe(filter(isDefined)),
+          this.store.select(ImagesSelectors.selectImageByArticleId(articleId)),
+          this.store.select(AuthSelectors.selectIsAdmin),
+        ]),
+      ),
+      distinctUntilChanged(isEqual),
+      tap(([article]) => {
+        if (isDefined(article.bannerImageId)) {
           this.store.dispatch(
-            ImagesActions.fetchArticleBannerImageRequested({ imageId: article.imageId }),
+            ImagesActions.fetchImageRequested({ imageId: article.bannerImageId }),
           );
         }
 
-        if (article?.title && article?.body) {
-          const articlePreview =
-            article.body.length > 197 ? article.body.slice(0, 197) + '...' : article.body;
-          this.metaAndTitleService.updateTitle(article.title);
-          this.metaAndTitleService.updateDescription(articlePreview);
-        }
-      });
+        const articlePreview =
+          article.body.length > 197 ? article.body.slice(0, 197) + '...' : article.body;
+        this.metaAndTitleService.updateTitle(article.title);
+        this.metaAndTitleService.updateDescription(articlePreview);
+      }),
+      map(([article, bannerImage, isAdmin]) => ({
+        article,
+        bannerImage,
+        isAdmin,
+      })),
+    );
   }
 
   public getAdminControlsConfig(article: Article): AdminControlsConfig {
@@ -105,7 +129,9 @@ export class ArticleViewerPageComponent implements OnInit {
     );
 
     if (result === 'confirm') {
-      this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
+      this.store.dispatch(
+        ArticlesActions.deleteArticleRequested({ articleId: article.id }),
+      );
     }
   }
 }

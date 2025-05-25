@@ -1,9 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { AuthSelectors } from '@app/store/auth';
-import { EventsSelectors } from '@app/store/events';
-import { NotificationsSelectors } from '@app/store/notifications';
-
 import { AppState } from './app.reducer';
 
 export const selectAppState = createFeatureSelector<AppState>('appState');
@@ -21,17 +17,3 @@ export const selectBannerLastCleared = createSelector(
   selectAppState,
   state => state.bannerLastCleared,
 );
-
-export const selectAppViewModel = createSelector({
-  isDarkMode: selectIsDarkMode,
-  showUpcomingEventBanner: selectShowUpcomingEventBanner,
-  bannerLastCleared: selectBannerLastCleared,
-  nextEvent: EventsSelectors.selectNextEvent,
-  toasts: NotificationsSelectors.selectToasts,
-});
-
-export const selectUserSettingsMenuViewModel = createSelector({
-  user: AuthSelectors.selectUser,
-  isDarkMode: selectIsDarkMode,
-  isSafeMode: selectIsSafeMode,
-});

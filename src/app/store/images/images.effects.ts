@@ -1,35 +1,32 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { concatLatestFrom } from '@ngrx/operators';
-import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { LccError } from '@app/models';
 import { ImagesService, LoaderService } from '@app/services';
-import { ArticlesSelectors } from '@app/store/articles';
-import { dataUrlToFile, isDefined } from '@app/utils';
+import { dataUrlToFile } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
 
 import * as ImagesActions from './images.actions';
 
 @Injectable()
 export class ImagesEffects {
-  fetchArticleBannerImageThumbnails$ = createEffect(() => {
+  fetchImageThumbnails$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchArticleBannerImageThumbnailsRequested),
+      ofType(ImagesActions.fetchImageThumbnailsRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() =>
         this.imagesService.getThumbnailImages().pipe(
           map(response =>
-            ImagesActions.fetchArticleBannerImageThumbnailsSucceeded({
+            ImagesActions.fetchImageThumbnailsSucceeded({
               images: response.data,
             }),
           ),
           catchError(error =>
             of(
-              ImagesActions.fetchArticleBannerImageThumbnailsFailed({
+              ImagesActions.fetchImageThumbnailsFailed({
                 error: parseError(error),
               }),
             ),
@@ -40,21 +37,16 @@ export class ImagesEffects {
     );
   });
 
-  fetchArticleBannerImage$ = createEffect(() => {
+  fetchImage$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchArticleBannerImageRequested),
+      ofType(ImagesActions.fetchImageRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ imageId, setAsOriginal }) => {
+      switchMap(({ imageId }) => {
         return this.imagesService.getImage(imageId).pipe(
-          map(response => {
-            return ImagesActions.fetchArticleBannerImageSucceeded({
-              image: response.data,
-              setAsOriginal,
-            });
-          }),
+          map(response => ImagesActions.fetchImageSucceeded({ image: response.data })),
           catchError(error => {
             return of(
-              ImagesActions.fetchArticleBannerImageFailed({
+              ImagesActions.fetchImageFailed({
                 error: parseError(error),
               }),
             );
@@ -69,14 +61,8 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.addImageRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() => [
-        this.store.select(ArticlesSelectors.selectBannerImageUrl).pipe(filter(isDefined)),
-        this.store
-          .select(ArticlesSelectors.selectBannerImageFileData)
-          .pipe(filter(isDefined)),
-      ]),
-      switchMap(([{ filename, forArticle }, dataUrl, fileData]) => {
-        const imageFile = dataUrlToFile(dataUrl, filename, fileData);
+      switchMap(({ dataUrl, filename, caption, forArticle }) => {
+        const imageFile = dataUrlToFile(dataUrl, filename);
 
         if (!imageFile) {
           const error: LccError = {
@@ -89,7 +75,7 @@ export class ImagesEffects {
         const imageFormData = new FormData();
         imageFormData.append('imageFile', imageFile);
 
-        return this.imagesService.addImage(imageFormData).pipe(
+        return this.imagesService.addImage(imageFormData, caption).pipe(
           map(response =>
             ImagesActions.addImageSucceeded({ image: response.data, forArticle }),
           ),
@@ -106,7 +92,7 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.deleteImageRequested),
       switchMap(({ image }) =>
-        this.imagesService.deleteImage(image.id).pipe(
+        this.imagesService.deleteImage(image.id!).pipe(
           map(() => ImagesActions.deleteImageSucceeded({ image })),
           catchError(error =>
             of(ImagesActions.deleteImageFailed({ error: parseError(error) })),
@@ -120,6 +106,5 @@ export class ImagesEffects {
     private readonly actions$: Actions,
     private readonly imagesService: ImagesService,
     private readonly loaderService: LoaderService,
-    private readonly store: Store,
   ) {}
 }

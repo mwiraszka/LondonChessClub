@@ -1,97 +1,144 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
+import { pick } from 'lodash';
+import moment from 'moment-timezone';
 
-import type { ControlMode, Event, EventFormData, Id } from '@app/models';
+import { EVENT_FORM_DATA_PROPERTIES, type Event, type EventFormData } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as EventsActions from './events.actions';
 
-export interface EventsState extends EntityState<Event> {
-  eventId: Id | null;
-  eventFormData: EventFormData | null;
-  controlMode: ControlMode | null;
+export const INITIAL_EVENT_FORM_DATA: EventFormData = {
+  type: 'blitz tournament (10 mins)',
+  eventDate: moment()
+    .tz('America/Toronto', false)
+    .set('hours', 18)
+    .set('minutes', 0)
+    .set('seconds', 0)
+    .set('milliseconds', 0)
+    .toISOString(),
+  title: '',
+  details: '',
+  articleId: '',
+};
+
+export interface EventsState
+  extends EntityState<{ event: Event; formData: EventFormData }> {
+  newEventFormData: EventFormData;
   showPastEvents: boolean;
 }
 
-export const eventsAdapter = createEntityAdapter<Event>({
-  sortComparer: (a, b) => customSort(a, b, 'eventDate'),
+export const eventsAdapter = createEntityAdapter<{
+  event: Event;
+  formData: EventFormData;
+}>({
+  selectId: ({ event }) => event.id,
+  sortComparer: (a, b) => customSort(a, b, 'event.eventDate'),
 });
 
-export const eventsInitialState: EventsState = eventsAdapter.getInitialState({
-  eventId: null,
-  eventFormData: null,
-  controlMode: null,
+export const initialState: EventsState = eventsAdapter.getInitialState({
+  newEventFormData: INITIAL_EVENT_FORM_DATA,
   showPastEvents: false,
 });
 
 export const eventsReducer = createReducer(
-  eventsInitialState,
+  initialState,
 
   on(
     EventsActions.fetchEventsSucceeded,
-    (state, { events }): EventsState => eventsAdapter.setAll<EventsState>(events, state),
+    (state, { events }): EventsState =>
+      eventsAdapter.setAll(
+        events.map(event => ({
+          event,
+          formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
+        })),
+        state,
+      ),
   ),
 
-  on(
-    EventsActions.newEventRequested,
-    (state): EventsState => ({
-      ...state,
-      controlMode: 'add',
-    }),
-  ),
-
-  on(
-    EventsActions.fetchEventRequested,
-    (state, { controlMode }): EventsState => ({
-      ...state,
-      controlMode,
-    }),
-  ),
-
-  on(
-    EventsActions.fetchEventSucceeded,
-    (state, { event }): EventsState =>
-      eventsAdapter.upsertOne<EventsState>(event, { ...state, eventId: event.id }),
-  ),
+  on(EventsActions.fetchEventSucceeded, (state, { event }): EventsState => {
+    return eventsAdapter.upsertOne<EventsState>(
+      {
+        event,
+        formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
+      },
+      state,
+    );
+  }),
 
   on(
     EventsActions.addEventSucceeded,
+    (state, { event }): EventsState =>
+      eventsAdapter.upsertOne<EventsState>(
+        {
+          event,
+          formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
+        },
+        { ...state, newEventFormData: INITIAL_EVENT_FORM_DATA },
+      ),
+  ),
+
+  on(
     EventsActions.updateEventSucceeded,
     (state, { event }): EventsState =>
-      eventsAdapter.upsertOne<EventsState>(event, {
-        ...state,
-        eventId: null,
-        eventFormData: null,
-      }),
+      eventsAdapter.upsertOne<EventsState>(
+        {
+          event,
+          formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
+        },
+        state,
+      ),
   ),
 
   on(
     EventsActions.deleteEventSucceeded,
-    (state, { event }): EventsState =>
-      eventsAdapter.removeOne<EventsState>(event.id!, {
+    (state, { eventId }): EventsState =>
+      eventsAdapter.removeOne<EventsState>(eventId, state),
+  ),
+
+  on(EventsActions.formValueChanged, (state, { eventId, value }): EventsState => {
+    const originalEvent = eventId ? state.entities[eventId] : null;
+
+    if (!originalEvent) {
+      return {
         ...state,
-        eventId: null,
-        eventFormData: null,
-      }),
-  ),
+        newEventFormData: {
+          ...state.newEventFormData,
+          ...value,
+        },
+      };
+    }
 
-  on(
-    EventsActions.formValueChanged,
-    (state, { value }): EventsState => ({
-      ...state,
-      eventFormData: value as Required<EventFormData>,
-    }),
-  ),
+    return eventsAdapter.upsertOne(
+      {
+        ...originalEvent,
+        formData: {
+          ...(originalEvent?.formData ?? INITIAL_EVENT_FORM_DATA),
+          ...value,
+        },
+      },
+      state,
+    );
+  }),
 
-  on(
-    EventsActions.eventUnset,
-    (state): EventsState => ({
-      ...state,
-      eventId: null,
-      eventFormData: null,
-      controlMode: null,
-    }),
-  ),
+  on(EventsActions.eventFormDataCleared, (state, { eventId }): EventsState => {
+    const originalEvent = eventId ? state.entities[eventId] : null;
+
+    if (!originalEvent) {
+      return {
+        ...state,
+        newEventFormData: INITIAL_EVENT_FORM_DATA,
+      };
+    }
+
+    return eventsAdapter.upsertOne(
+      {
+        ...originalEvent,
+        formData: INITIAL_EVENT_FORM_DATA,
+      },
+      state,
+    );
+  }),
 
   on(
     EventsActions.pastEventsToggled,

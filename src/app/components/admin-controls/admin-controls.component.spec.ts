@@ -35,7 +35,7 @@ describe('AdminControlsComponent', () => {
   });
 
   describe('bookmark button', () => {
-    it('should not render if only bookmark callback provided', () => {
+    it('should NOT render if only bookmark callback provided', () => {
       component.config.bookmarkCb = () => 'mock bookmark callback';
       component.config.bookmarked = undefined;
       fixture.detectChanges();
@@ -43,7 +43,7 @@ describe('AdminControlsComponent', () => {
       expect(element('.bookmark-button')).toBeNull();
     });
 
-    it('should not render if only bookmarked flag provided', () => {
+    it('should NOT render if only bookmarked flag provided', () => {
       component.config.bookmarkCb = undefined;
       component.config.bookmarked = false;
       fixture.detectChanges();
@@ -71,7 +71,7 @@ describe('AdminControlsComponent', () => {
   });
 
   describe('edit button', () => {
-    it('should not be rendered if no edit path provided', () => {
+    it('should NOT be rendered if no edit path provided', () => {
       expect(element('.edit-button')).toBeNull();
     });
 
@@ -84,16 +84,44 @@ describe('AdminControlsComponent', () => {
   });
 
   describe('delete button', () => {
-    it('should render', () => {
-      expect(element('.delete-button')).not.toBeNull();
+    describe('enabled', () => {
+      it('should render', () => {
+        component.config.isDeleteDisabled = false;
+        fixture.detectChanges();
+
+        expect(element('.delete-button')).not.toBeNull();
+      });
+
+      it('should invoke delete callback function when clicked', () => {
+        component.config.isDeleteDisabled = false;
+        fixture.detectChanges();
+
+        const deleteCbSpy = jest.spyOn(component.config, 'deleteCb');
+
+        element('.delete-button').triggerEventHandler('click');
+
+        expect(deleteCbSpy).toHaveBeenCalledTimes(1);
+      });
     });
 
-    it('should invoke delete callback function when clicked', () => {
-      const deleteCbSpy = jest.spyOn(component.config, 'deleteCb');
+    describe('disabled', () => {
+      it('should render', () => {
+        component.config.isDeleteDisabled = true;
+        fixture.detectChanges();
 
-      element('.delete-button').triggerEventHandler('click');
+        expect(element('.delete-button')).not.toBeNull();
+      });
 
-      expect(deleteCbSpy).toHaveBeenCalledTimes(1);
+      it('should NOT invoke delete callback function when clicked', () => {
+        component.config.isDeleteDisabled = true;
+        fixture.detectChanges();
+
+        const deleteCbSpy = jest.spyOn(component.config, 'deleteCb');
+
+        element('.delete-button').triggerEventHandler('click');
+
+        expect(deleteCbSpy).not.toHaveBeenCalled();
+      });
     });
   });
 

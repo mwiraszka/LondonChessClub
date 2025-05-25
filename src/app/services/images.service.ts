@@ -26,11 +26,14 @@ export class ImagesService {
     );
   }
 
-  public addImage(imageFormData: FormData): Observable<ApiResponse<Image>> {
-    return this.http.post<ApiResponse<Image>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}`,
+  public addImage(
+    imageFormData: FormData,
+    caption: string,
+  ): Observable<ApiResponse<Image>> {
+    return this.http.post<ApiResponse<Image>>(`${this.API_BASE_URL}/${this.COLLECTION}`, {
       imageFormData,
-    );
+      caption,
+    });
   }
 
   public deleteImage(id: Id): Observable<ApiResponse<Id>> {

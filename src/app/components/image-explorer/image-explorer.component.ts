@@ -10,6 +10,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import IconsModule from '@app/icons';
+import { MOCK_MODIFICATION_INFOS } from '@app/mocks/modification-info.mock';
 import type {
   AdminControlsConfig,
   BasicDialogResult,
@@ -49,7 +50,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(ImagesActions.fetchArticleBannerImageThumbnailsRequested());
+    this.store.dispatch(ImagesActions.fetchImageThumbnailsRequested());
     this.images$ = this.store
       .select(ImagesSelectors.selectThumbnailImages)
       .pipe(untilDestroyed(this));
@@ -59,6 +60,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
     return {
       buttonSize: 34,
       deleteCb: () => this.onDeleteImage(image),
+      isDeleteDisabled: !!image?.articleAppearances,
       itemName: image.filename,
     };
   }
@@ -96,8 +98,11 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
       id: uuid.v4(),
       filename: '',
       fileSize: 0,
+      caption: '',
       articleAppearances: 0,
-      dateUploaded: new Date().toISOString(),
+      albums: [],
+      coverForAlbum: null,
+      modificationInfo: MOCK_MODIFICATION_INFOS[1],
       presignedUrl: '',
     }));
   }

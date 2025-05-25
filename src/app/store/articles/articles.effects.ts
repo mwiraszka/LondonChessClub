@@ -7,12 +7,10 @@ import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import type { Article, ModificationInfo } from '@app/models';
+import type { Article } from '@app/models';
 import { ArticlesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { ImagesActions } from '@app/store/images';
-import { isDefined } from '@app/utils';
-import { parseError } from '@app/utils/error/parse-error.util';
+import { isDefined, parseError } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
 import * as ArticlesSelectors from './articles.selectors';
@@ -55,49 +53,31 @@ export class ArticlesEffects {
     );
   });
 
-  submitArticleAfterSuccessfulImageUpload$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ImagesActions.addImageSucceeded),
-      filter(({ forArticle }) => !!forArticle),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.selectControlMode)),
-      map(([{ image }, controlMode]) => {
-        return controlMode === 'edit'
-          ? ArticlesActions.updateArticleRequested({ imageId: image.id })
-          : ArticlesActions.publishArticleRequested({ imageId: image.id });
-      }),
-    );
-  });
-
   publishArticle$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.publishArticleRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
-        this.store
-          .select(ArticlesSelectors.selectArticleFormData)
-          .pipe(filter(isDefined)),
+        this.store.select(ArticlesSelectors.selectArticleFormDataById(null)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
-      switchMap(([{ imageId }, articleFormData, user]) => {
-        const modificationInfo: ModificationInfo = {
-          createdBy: `${user.firstName} ${user.lastName}`,
-          dateCreated: moment().toISOString(),
-          lastEditedBy: `${user.firstName} ${user.lastName}`,
-          dateLastEdited: moment().toISOString(),
-        };
-        const { imageFilename, ...articleFormDataWithoutImageFilename } = articleFormData;
-        const modifiedArticle: Article = {
-          ...articleFormDataWithoutImageFilename,
-          imageId: imageId ?? articleFormData.imageId,
-          modificationInfo,
+      switchMap(([, formData, user]) => {
+        const article: Omit<Article, 'id'> & { id: null } = {
           id: null,
+          ...formData,
           bookmarkDate: null,
+          modificationInfo: {
+            createdBy: `${user.firstName} ${user.lastName}`,
+            dateCreated: moment().toISOString(),
+            lastEditedBy: `${user.firstName} ${user.lastName}`,
+            dateLastEdited: moment().toISOString(),
+          },
         };
 
-        return this.articlesService.addArticle(modifiedArticle).pipe(
+        return this.articlesService.addArticle(article).pipe(
           map(response =>
             ArticlesActions.publishArticleSucceeded({
-              article: { ...modifiedArticle, id: response.data },
+              article: { ...article, id: response.data },
             }),
           ),
           catchError(error =>
@@ -113,33 +93,29 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() => [
-        this.store.select(ArticlesSelectors.selectArticle).pipe(filter(isDefined)),
+      concatLatestFrom(({ articleId }) => [
         this.store
-          .select(ArticlesSelectors.selectArticleFormData)
+          .select(ArticlesSelectors.selectArticleById(articleId))
           .pipe(filter(isDefined)),
+        this.store.select(ArticlesSelectors.selectArticleFormDataById(articleId)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
-      switchMap(([{ imageId }, article, articleFormData, user]) => {
-        const originalArticleTitle = article.title;
-        const modificationInfo: ModificationInfo = {
-          ...article.modificationInfo,
-          lastEditedBy: `${user.firstName} ${user.lastName}`,
-          dateLastEdited: moment().toISOString(),
-        };
-        const { imageFilename, ...articleFormDataWithoutImageFilename } = articleFormData;
-        const modifiedArticle = {
+      switchMap(([, article, formData, user]) => {
+        const updatedArticle: Article = {
           ...article,
-          ...articleFormDataWithoutImageFilename,
-          imageId: imageId ?? articleFormData.imageId,
-          modificationInfo,
+          ...formData,
+          modificationInfo: {
+            ...article.modificationInfo,
+            lastEditedBy: `${user.firstName} ${user.lastName}`,
+            dateLastEdited: moment().toISOString(),
+          },
         };
 
-        return this.articlesService.updateArticle(modifiedArticle).pipe(
+        return this.articlesService.updateArticle(updatedArticle).pipe(
           map(() =>
             ArticlesActions.updateArticleSucceeded({
-              article: modifiedArticle,
-              originalArticleTitle,
+              article: updatedArticle,
+              originalArticleTitle: article.title,
             }),
           ),
           catchError(error =>
@@ -151,7 +127,7 @@ export class ArticlesEffects {
     );
   });
 
-  updateActicleBookmarkRequested$ = createEffect(() => {
+  updateArticleBookmarkRequested$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateActicleBookmarkRequested),
       tap(() => this.loaderService.setIsLoading(true)),
@@ -161,12 +137,17 @@ export class ArticlesEffects {
           .pipe(filter(isDefined)),
       ),
       switchMap(([{ bookmark }, article]) => {
-        const modifiedArticle: Article = {
+        const updatedArticle: Article = {
           ...article,
           bookmarkDate: bookmark ? moment().toISOString() : null,
         };
-        return this.articlesService.updateArticle(modifiedArticle).pipe(
-          map(() => ArticlesActions.updateArticleSucceeded({ article: modifiedArticle })),
+        return this.articlesService.updateArticle(updatedArticle).pipe(
+          map(() =>
+            ArticlesActions.updateArticleSucceeded({
+              article: updatedArticle,
+              originalArticleTitle: article.title,
+            }),
+          ),
           catchError(error =>
             of(ArticlesActions.updateArticleFailed({ error: parseError(error) })),
           ),
@@ -180,11 +161,16 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ article }) =>
-        this.articlesService.deleteArticle(article).pipe(
-          map(response =>
+      switchMap(({ articleId }) =>
+        this.articlesService.deleteArticle(articleId).pipe(
+          switchMap(response =>
+            this.store.select(ArticlesSelectors.selectArticleById(response.data)),
+          ),
+          filter(isDefined),
+          map(article =>
             ArticlesActions.deleteArticleSucceeded({
-              article: { ...article, id: response.data },
+              articleId: article.id,
+              articleTitle: article.title,
             }),
           ),
           catchError(error =>

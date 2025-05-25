@@ -1,4 +1,4 @@
-@if (userSettingsMenuViewModel$ | async; as vm) {
+@if (viewModel$ | async; as vm) {
   <ul class="menu-items">
     @if (vm.user) {
       <li class="menu-item user-name">

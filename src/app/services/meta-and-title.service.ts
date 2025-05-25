@@ -11,6 +11,10 @@ export class MetaAndTitleService {
   ) {}
 
   public updateTitle(title: string): void {
+    if (title !== 'London Chess Club') {
+      title = title.concat(' | LCC');
+    }
+
     this.title.setTitle(title);
   }
 

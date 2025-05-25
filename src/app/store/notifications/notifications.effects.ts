@@ -52,10 +52,10 @@ export class NotificationsEffects {
   addUpdateArticleSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleSucceeded),
-      map(({ article, originalArticleTitle }) => {
+      map(({ originalArticleTitle }) => {
         const toast: Toast = {
           title: 'Article update',
-          message: `Successfully updated ${originalArticleTitle ?? article.title} in the database`,
+          message: `Successfully updated ${originalArticleTitle} in the database`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -80,10 +80,10 @@ export class NotificationsEffects {
   addDeleteArticleSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleSucceeded),
-      map(({ article }) => {
+      map(({ articleTitle }) => {
         const toast: Toast = {
           title: 'Article deletion',
-          message: `Successfully deleted ${article.title} from the database`,
+          message: `Successfully deleted ${articleTitle} from the database`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -129,20 +129,6 @@ export class NotificationsEffects {
       map(([{ error }]) => {
         const toast: Toast = {
           title: 'Load article',
-          message: this.getErrorMessage(error),
-          type: 'warning',
-        };
-        return NotificationsActions.toastAdded({ toast });
-      }),
-    );
-  });
-
-  addBannerImageFileLoadFailedToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.bannerImageFileLoadFailed),
-      map(({ error }) => {
-        const toast: Toast = {
-          title: 'Load banner image file',
           message: this.getErrorMessage(error),
           type: 'warning',
         };
@@ -212,10 +198,10 @@ export class NotificationsEffects {
   addDeleteEventSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventsActions.deleteEventSucceeded),
-      map(({ event }) => {
+      map(({ eventTitle }) => {
         const toast: Toast = {
           title: 'Event deletion',
-          message: `Successfully deleted ${event.title} from the database`,
+          message: `Successfully deleted ${eventTitle} from the database`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -327,14 +313,14 @@ export class NotificationsEffects {
     );
   });
 
-  addFetchArticleBannerImageThumbnailsFailedToast$ = createEffect(() => {
+  addImageThumbnailsFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchArticleBannerImageThumbnailsFailed),
+      ofType(ImagesActions.fetchImageThumbnailsFailed),
       concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
       filter(([, isAdmin]) => isAdmin || !environment.production),
       map(([{ error }]) => {
         const toast: Toast = {
-          title: 'Load article banner image thumbnails',
+          title: 'Load image thumbnails',
           message: this.getErrorMessage(error),
           type: 'warning',
         };
@@ -343,14 +329,42 @@ export class NotificationsEffects {
     );
   });
 
-  addFetchArticleBannerImageFailedToast$ = createEffect(() => {
+  addFetchImageFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchArticleBannerImageFailed),
+      ofType(ImagesActions.fetchImageFailed),
       concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
       filter(([, isAdmin]) => isAdmin || !environment.production),
       map(([{ error }]) => {
         const toast: Toast = {
-          title: 'Load article banner image',
+          title: 'Load image',
+          message: this.getErrorMessage(error),
+          type: 'warning',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addImageFileLoadSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.imageFileLoadSucceeded),
+      map(({ numFiles }) => {
+        const toast: Toast = {
+          title: 'Load image file',
+          message: `Successfully loaded ${numFiles} files into Image Explorer`,
+          type: 'success',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addImageFileLoadFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.imageFileLoadFailed),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Load image file',
           message: this.getErrorMessage(error),
           type: 'warning',
         };
@@ -420,10 +434,10 @@ export class NotificationsEffects {
   addDeleteMemberSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.deleteMemberSucceeded),
-      map(({ member }) => {
+      map(({ memberName }) => {
         const toast: Toast = {
           title: 'Member deletion',
-          message: `Successfully deleted ${member.firstName} ${member.lastName} from the database`,
+          message: `Successfully deleted ${memberName} from the database`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -611,7 +625,6 @@ export class NotificationsEffects {
           ArticlesActions.deleteArticleFailed,
           ArticlesActions.fetchArticlesFailed,
           ArticlesActions.fetchArticleFailed,
-          ArticlesActions.bannerImageFileLoadFailed,
           AuthActions.loginFailed,
           AuthActions.logoutFailed,
           AuthActions.codeForPasswordChangeFailed,
@@ -623,8 +636,9 @@ export class NotificationsEffects {
           EventsActions.fetchEventFailed,
           ImagesActions.addImageFailed,
           ImagesActions.deleteImageFailed,
-          ImagesActions.fetchArticleBannerImageFailed,
-          ImagesActions.fetchArticleBannerImageThumbnailsFailed,
+          ImagesActions.fetchImageFailed,
+          ImagesActions.fetchImageThumbnailsFailed,
+          ImagesActions.imageFileLoadFailed,
           MembersActions.addMemberFailed,
           MembersActions.updateMemberFailed,
           MembersActions.deleteMemberFailed,

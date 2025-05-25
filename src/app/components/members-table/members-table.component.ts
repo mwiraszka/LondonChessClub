@@ -2,7 +2,7 @@ import { Store } from '@ngrx/store';
 import { camelCase } from 'lodash';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
@@ -18,8 +18,7 @@ import type {
 } from '@app/models';
 import { CamelCasePipe, FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { AppSelectors } from '@app/store/app';
-import { MembersActions, MembersSelectors } from '@app/store/members';
+import { MembersActions } from '@app/store/members';
 
 @Component({
   selector: 'lcc-members-table',
@@ -37,19 +36,25 @@ import { MembersActions, MembersSelectors } from '@app/store/members';
   ],
 })
 export class MembersTableComponent implements OnInit {
+  @Input({ required: true }) activeMembers!: Member[];
+  @Input({ required: true }) allMembers!: Member[];
+  @Input({ required: true }) displayedMembers!: Member[];
+  @Input({ required: true }) filteredMembers!: Member[];
+  @Input({ required: true }) isAdmin!: boolean;
+  @Input({ required: true }) isAscending!: boolean;
+  @Input({ required: true }) isSafeMode!: boolean;
+  @Input({ required: true }) pageNum!: number;
+  @Input({ required: true }) pageSize!: number;
+  @Input({ required: true }) showActiveOnly!: boolean;
+  @Input({ required: true }) sortedBy!: string;
+  @Input({ required: true }) startIndex!: number;
+
   public readonly addMemberLink: InternalLink = {
     internalPath: ['member', 'add'],
     text: 'Add a member',
     icon: 'plus-circle',
   };
-  public readonly config$ = this.store.select(
-    MembersSelectors.selectMembersTableConfigViewModel,
-  );
-  // TODO: Figure out why this doesn't work when a part of the config$ view model selector
-  public readonly isSafeMode$ = this.store.select(AppSelectors.selectIsSafeMode);
-  public readonly members$ = this.store.select(
-    MembersSelectors.selectMembersTableMembersViewModel,
-  );
+
   public readonly tableHeaders = [
     'First Name',
     'Last Name',
@@ -71,10 +76,6 @@ export class MembersTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.fetchMembers();
-  }
-
-  public fetchMembers(): void {
     this.store.dispatch(MembersActions.fetchMembersRequested());
   }
 
@@ -121,7 +122,7 @@ export class MembersTableComponent implements OnInit {
     );
 
     if (result === 'confirm') {
-      this.store.dispatch(MembersActions.deleteMemberRequested({ member }));
+      this.store.dispatch(MembersActions.deleteMemberRequested({ memberId: member.id }));
     }
   }
 }

@@ -1,4 +1,5 @@
 import { Store } from '@ngrx/store';
+import { Observable, combineLatest, map } from 'rxjs';
 
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
@@ -28,7 +29,8 @@ import {
 } from '@app/pipes';
 import { DialogService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import { ImagesActions } from '@app/store/images';
+import { AuthSelectors } from '@app/store/auth';
+import { ImagesActions, ImagesSelectors } from '@app/store/images';
 import { isDefined } from '@app/utils';
 
 @Component({
@@ -52,9 +54,12 @@ import { isDefined } from '@app/utils';
 export class ArticleGridComponent implements OnInit {
   @Input() public maxArticles?: number;
 
-  public readonly articleGridViewModel$ = this.store.select(
-    ArticlesSelectors.selectArticleGridViewModel,
-  );
+  public viewModel$?: Observable<{
+    articles: Article[];
+    thumbnailImages: Image[];
+    isAdmin: boolean;
+  }>;
+
   public readonly createArticleLink: InternalLink = {
     internalPath: ['article', 'add'],
     text: 'Create an article',
@@ -67,12 +72,20 @@ export class ArticleGridComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.fetchArticleData();
-  }
-
-  public fetchArticleData(): void {
     this.store.dispatch(ArticlesActions.fetchArticlesRequested());
-    this.store.dispatch(ImagesActions.fetchArticleBannerImageThumbnailsRequested());
+    this.store.dispatch(ImagesActions.fetchImageThumbnailsRequested());
+
+    this.viewModel$ = combineLatest([
+      this.store.select(ArticlesSelectors.selectAllArticles),
+      this.store.select(ImagesSelectors.selectThumbnailImages),
+      this.store.select(AuthSelectors.selectIsAdmin),
+    ]).pipe(
+      map(([articles, thumbnailImages, isAdmin]) => ({
+        articles,
+        thumbnailImages,
+        isAdmin,
+      })),
+    );
   }
 
   public getArticleThumbnailImageUrl(
@@ -90,7 +103,7 @@ export class ArticleGridComponent implements OnInit {
       bookmarked: isDefined(article.bookmarkDate),
       buttonSize: 34,
       deleteCb: () => this.onDeleteArticle(article),
-      editPath: ['article', 'edit', article.id!],
+      editPath: ['article', 'edit', article.id],
       itemName: article.title,
     };
   }
@@ -112,7 +125,9 @@ export class ArticleGridComponent implements OnInit {
     );
 
     if (result === 'confirm') {
-      this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
+      this.store.dispatch(
+        ArticlesActions.deleteArticleRequested({ articleId: article.id }),
+      );
     }
   }
 

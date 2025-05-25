@@ -1,6 +1,5 @@
 import { FeatherModule } from 'angular-feather';
 import {
-  Activity,
   AlertTriangle,
   Award,
   BookOpen,
@@ -27,11 +26,13 @@ import {
   Info,
   Instagram,
   Mail,
+  Map,
   MapPin,
   PlusCircle,
   Radio,
   RotateCcw,
   Settings,
+  Shield,
   Trash2,
   Upload,
   User,
@@ -42,7 +43,6 @@ import {
 import { NgModule } from '@angular/core';
 
 const icons = {
-  Activity,
   AlertTriangle,
   Award,
   BookOpen,
@@ -69,11 +69,13 @@ const icons = {
   Info,
   Instagram,
   Mail,
+  Map,
   MapPin,
   PlusCircle,
   Radio,
   RotateCcw,
   Settings,
+  Shield,
   Trash2,
   Upload,
   User,

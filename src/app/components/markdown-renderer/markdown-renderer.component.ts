@@ -54,6 +54,7 @@ export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
     if (changes['data']) {
       setTimeout(() => {
         this.wrapMarkdownTables();
+        this.addBlockquoteIcons();
         this.addAnchorIdsToHeadings();
       });
     }
@@ -88,6 +89,33 @@ export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
           wrapperElement.classList.add('lcc-table-wrapper');
           tableElement?.parentNode?.insertBefore(wrapperElement, tableElement);
           wrapperElement.appendChild(tableElement);
+        }
+      });
+    }
+  }
+
+  private addBlockquoteIcons(): void {
+    const blockquoteElements = this._document.querySelectorAll('blockquote');
+
+    if (blockquoteElements) {
+      blockquoteElements.forEach(blockquoteElement => {
+        if (!blockquoteElement.classList.contains('lcc-blockquote')) {
+          blockquoteElement.classList.add('lcc-blockquote');
+
+          const quoteIconElement = this._document.createElement('div');
+          quoteIconElement.classList.add('lcc-quote-icon');
+          quoteIconElement.style.backgroundImage = 'url("/assets/open-quote-icon.svg")';
+
+          if (blockquoteElement.firstChild) {
+            blockquoteElement.insertBefore(
+              quoteIconElement,
+              blockquoteElement.firstChild,
+            );
+          } else {
+            blockquoteElement.appendChild(quoteIconElement);
+          }
+
+          blockquoteElement.style.position = 'relative';
         }
       });
     }

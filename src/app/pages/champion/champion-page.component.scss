@@ -92,6 +92,14 @@
         tfoot tr td {
           text-align: center;
         }
+
+        .championship-icon {
+          margin-right: 4px;
+          width: 16px;
+          height: 16px;
+          vertical-align: text-top;
+          color: var(--lcc-color--championPage-championshipIcon);
+        }
       }
     }
 

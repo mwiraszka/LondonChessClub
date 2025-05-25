@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from '@app/guards/auth.guard';
-import { UnsavedArticleGuard } from '@app/guards/unsaved-article.guard';
+import { UnsavedChangesGuard } from '@app/guards/unsaved-changes.guard';
 
 import { ArticleEditorPageComponent } from './article-editor/article-editor-page.component';
 import { ArticleViewerPageComponent } from './article-viewer/article-viewer-page.component';
@@ -16,13 +16,13 @@ const routes: Routes = [
     path: 'add',
     component: ArticleEditorPageComponent,
     canActivate: [AuthGuard],
-    canDeactivate: [UnsavedArticleGuard],
+    canDeactivate: [UnsavedChangesGuard],
   },
   {
     path: 'edit/:article_id',
     component: ArticleEditorPageComponent,
     canActivate: [AuthGuard],
-    canDeactivate: [UnsavedArticleGuard],
+    canDeactivate: [UnsavedChangesGuard],
   },
   {
     path: '**',

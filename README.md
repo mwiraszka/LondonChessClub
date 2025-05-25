@@ -33,6 +33,17 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.2.0 - May TBD, 2025</summary>
+
+- 🚀 Allow multiple articles, events, and members to be viewed & edited simultaneously in multiple tabs
+- 🚀 Create new Lifetime page to list all past Lifetime Achievement Award recipients
+- 🚀 Support markdown blockquotes in articles
+- 🚀 Choose more appropriate icons for some pages
+- 🚀 Append `| LCC` to the end of browser tab page titles for all pages except the homepage
+
+</details>
+
+<details>
 <summary>v5.1.4 - April 25th, 2025</summary>
 
 - 🔧 Reduce loading spinner limit to 2 seconds

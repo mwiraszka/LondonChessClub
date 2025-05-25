@@ -9,7 +9,7 @@ import * as ImagesActions from './images.actions';
 export type ImagesState = EntityState<Image>;
 
 export const imagesAdapter = createEntityAdapter<Image>({
-  sortComparer: (a, b) => customSort(a, b, 'dateUploaded', true),
+  sortComparer: (a, b) => customSort(a, b, 'modificationInfo.dateCreated', true),
 });
 
 export const imagesInitialState: ImagesState = imagesAdapter.getInitialState({});
@@ -18,12 +18,12 @@ export const imagesReducer = createReducer(
   imagesInitialState,
 
   on(
-    ImagesActions.fetchArticleBannerImageThumbnailsSucceeded,
+    ImagesActions.fetchImageThumbnailsSucceeded,
     (state, { images }): ImagesState => imagesAdapter.upsertMany(images, state),
   ),
 
   on(
-    ImagesActions.fetchArticleBannerImageSucceeded,
+    ImagesActions.fetchImageSucceeded,
     (state, { image }): ImagesState => imagesAdapter.upsertOne(image, state),
   ),
 

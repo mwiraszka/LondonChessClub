@@ -99,16 +99,20 @@ export class NavEffects {
         const [controlMode, eventId] = currentPath.split('/event/')[1].split('/');
 
         if (controlMode === 'add' && !isDefined(eventId)) {
-          return EventsActions.newEventRequested();
-        } else if (controlMode === 'edit' && isValidCollectionId(eventId)) {
-          return EventsActions.fetchEventRequested({ controlMode, eventId });
+          return ArticlesActions.createAnArticleSelected();
+        } else if (
+          ['edit', 'view'].includes(controlMode) &&
+          isValidCollectionId(eventId)
+        ) {
+          return EventsActions.fetchEventRequested({ eventId });
+        } else {
+          return NavActions.navigationRequested({ path: 'schedule' });
         }
-        return NavActions.navigationRequested({ path: 'schedule' });
       }),
     ),
   );
 
-  unsetEvent$ = createEffect(() =>
+  clearEventFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -118,7 +122,10 @@ export class NavEffects {
           !!previousPath?.startsWith('/event/') && !currentPath?.startsWith('/event/')
         );
       }),
-      map(() => EventsActions.eventUnset()),
+      map(([, previousPath]) => {
+        const eventId = previousPath!.split('/event/')[1]?.split('/')[1] ?? null;
+        return EventsActions.eventFormDataCleared({ eventId });
+      }),
     ),
   );
 
@@ -131,16 +138,20 @@ export class NavEffects {
         const [controlMode, memberId] = currentPath.split('/member/')[1].split('/');
 
         if (controlMode === 'add' && !isDefined(memberId)) {
-          return MembersActions.newMemberRequested();
-        } else if (controlMode === 'edit' && isValidCollectionId(memberId)) {
-          return MembersActions.fetchMemberRequested({ controlMode, memberId });
+          return MembersActions.createAMemberSelected();
+        } else if (
+          ['edit', 'view'].includes(controlMode) &&
+          isValidCollectionId(memberId)
+        ) {
+          return MembersActions.fetchMemberRequested({ memberId });
+        } else {
+          return NavActions.navigationRequested({ path: 'members' });
         }
-        return NavActions.navigationRequested({ path: 'members' });
       }),
     ),
   );
 
-  unsetMember$ = createEffect(() =>
+  clearMemberFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -150,7 +161,10 @@ export class NavEffects {
           !!previousPath?.startsWith('/member/') && !currentPath?.startsWith('/member/')
         );
       }),
-      map(() => MembersActions.memberUnset()),
+      map(([, previousPath]) => {
+        const memberId = previousPath!.split('/member/')[1]?.split('/')[1] ?? null;
+        return MembersActions.memberFormDataCleared({ memberId });
+      }),
     ),
   );
 
@@ -168,29 +182,23 @@ export class NavEffects {
         const [controlMode, articleIdWithFragment] = currentPath
           .split('/article/')[1]
           .split('/');
-
-        if (controlMode === 'add' && !isDefined(articleIdWithFragment)) {
-          return ArticlesActions.newArticleRequested();
-        }
-
         const articleId = articleIdWithFragment?.split('#')[0];
 
-        if (
-          (controlMode === 'edit' && isValidCollectionId(articleId)) ||
-          (controlMode === 'view' && isValidCollectionId(articleId))
+        if (controlMode === 'add' && !isDefined(articleId)) {
+          return ArticlesActions.createAnArticleSelected();
+        } else if (
+          ['edit', 'view'].includes(controlMode) &&
+          isValidCollectionId(articleId)
         ) {
-          return ArticlesActions.fetchArticleRequested({
-            controlMode,
-            articleId,
-          });
+          return ArticlesActions.fetchArticleRequested({ articleId });
+        } else {
+          return NavActions.navigationRequested({ path: 'news' });
         }
-
-        return NavActions.navigationRequested({ path: 'news' });
       }),
     ),
   );
 
-  unsetArticle$ = createEffect(() =>
+  clearArticleFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -200,7 +208,10 @@ export class NavEffects {
           !!previousPath?.startsWith('/article/') && !currentPath?.startsWith('/article/')
         );
       }),
-      map(() => ArticlesActions.articleUnset()),
+      map(([, previousPath]) => {
+        const articleId = previousPath!.split('/article/')[1]?.split('/')[1] ?? null;
+        return ArticlesActions.articleFormDataCleared({ articleId });
+      }),
     ),
   );
 
@@ -209,7 +220,7 @@ export class NavEffects {
       ofType(ArticlesActions.deleteArticleSucceeded),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
       filter(
-        ([{ article }, previousPath]) => previousPath === `/article/view/${article.id}`,
+        ([{ articleId }, previousPath]) => previousPath === `/article/view/${articleId}`,
       ),
       map(() => NavActions.navigationRequested({ path: 'news' })),
     ),

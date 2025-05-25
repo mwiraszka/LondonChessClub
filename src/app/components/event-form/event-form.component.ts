@@ -1,11 +1,10 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { pick } from 'lodash';
 import moment from 'moment-timezone';
-import { debounceTime, filter, first } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -22,17 +21,15 @@ import { TooltipDirective } from '@app/directives/tooltip.directive';
 import IconsModule from '@app/icons';
 import type {
   BasicDialogResult,
-  ControlMode,
   Dialog,
+  Event,
   EventFormData,
   EventFormGroup,
 } from '@app/models';
 import { DialogService } from '@app/services';
-import { EventsActions, EventsSelectors } from '@app/store/events';
-import { isDefined, isValidTime } from '@app/utils';
+import { EventsActions } from '@app/store/events';
+import { isValidTime } from '@app/utils';
 import { timeValidator } from '@app/validators';
-
-import { newEventFormTemplate } from './new-event-form-template';
 
 @UntilDestroy()
 @Component({
@@ -49,12 +46,11 @@ import { newEventFormTemplate } from './new-event-form-template';
   ],
 })
 export class EventFormComponent implements OnInit {
-  public readonly eventFormViewModel$ = this.store.select(
-    EventsSelectors.selectEventFormViewModel,
-  );
-  public form: FormGroup<EventFormGroup> | null = null;
+  @Input({ required: true }) formData!: EventFormData;
+  @Input({ required: true }) hasUnsavedChanges!: boolean;
+  @Input({ required: true }) originalEvent!: Event | null;
 
-  private controlMode: ControlMode | null = null;
+  public form!: FormGroup<EventFormGroup>;
 
   constructor(
     private readonly dialogService: DialogService,
@@ -63,31 +59,8 @@ export class EventFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.eventFormViewModel$
-      .pipe(
-        filter(({ controlMode }) => isDefined(controlMode)),
-        first(({ event, controlMode }) =>
-          controlMode === 'add' ? true : isDefined(event),
-        ),
-      )
-      .subscribe(({ event, eventFormData, controlMode }) => {
-        if (!eventFormData) {
-          eventFormData = newEventFormTemplate;
-
-          // Copy over form-relevant properties from selected event
-          if (controlMode === 'edit' && event) {
-            eventFormData = pick(
-              event,
-              Object.getOwnPropertyNames(eventFormData),
-            ) as typeof eventFormData;
-          }
-        }
-
-        this.controlMode = controlMode;
-
-        this.initForm(eventFormData!);
-        this.initFormValueChangeListener();
-      });
+    this.initForm(this.formData);
+    this.initFormValueChangeListener();
   }
 
   public hasError(control: AbstractControl): boolean {
@@ -110,16 +83,18 @@ export class EventFormComponent implements OnInit {
     this.store.dispatch(EventsActions.cancelSelected());
   }
 
-  public async onSubmit(eventTitle?: string): Promise<void> {
-    if (this.form?.invalid || !eventTitle) {
-      this.form?.markAllAsTouched();
+  public async onSubmit(): Promise<void> {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
       return;
     }
 
     const dialog: Dialog = {
-      title: this.controlMode === 'edit' ? 'Update event' : 'Add new event',
-      body: this.controlMode === 'edit' ? `Update ${eventTitle}?` : `Add ${eventTitle}?`,
-      confirmButtonText: this.controlMode === 'edit' ? 'Update' : 'Add',
+      title: this.originalEvent ? 'Update event' : 'Add new event',
+      body: this.originalEvent
+        ? `Update ${this.originalEvent.title}?`
+        : `Add ${this.formData.title}?`,
+      confirmButtonText: this.originalEvent ? 'Update' : 'Add',
     };
 
     const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(
@@ -134,19 +109,21 @@ export class EventFormComponent implements OnInit {
       return;
     }
 
-    if (this.controlMode === 'edit') {
-      this.store.dispatch(EventsActions.updateEventRequested());
+    if (this.originalEvent) {
+      this.store.dispatch(
+        EventsActions.updateEventRequested({ eventId: this.originalEvent.id }),
+      );
     } else {
       this.store.dispatch(EventsActions.addEventRequested());
     }
   }
 
-  private initForm(eventFormData: EventFormData): void {
+  private initForm(formData: EventFormData): void {
     // Displayed in local time since America/Toronto set as default timezone in app.component
-    const eventTime: string = moment(eventFormData.eventDate).format('h:mm A');
+    const eventTime: string = moment(formData.eventDate).format('h:mm A');
 
     this.form = this.formBuilder.group({
-      eventDate: new FormControl(eventFormData.eventDate, {
+      eventDate: new FormControl(formData.eventDate, {
         nonNullable: true,
         validators: Validators.required,
       }),
@@ -154,20 +131,20 @@ export class EventFormComponent implements OnInit {
         nonNullable: true,
         validators: [Validators.required, timeValidator],
       }),
-      title: new FormControl(eventFormData.title, {
+      title: new FormControl(formData.title, {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
-      details: new FormControl(eventFormData.details, {
+      details: new FormControl(formData.details, {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
-      type: new FormControl(eventFormData.type, {
+      type: new FormControl(formData.type, {
         nonNullable: true,
         validators: Validators.required,
       }),
       articleId: new FormControl(
-        eventFormData.articleId,
+        formData.articleId,
         Validators.pattern(/^[a-fA-F0-9]{24}$/),
       ),
     });
@@ -177,23 +154,26 @@ export class EventFormComponent implements OnInit {
     this.form?.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((value: Partial<EventFormData & { eventTime: string }>) => {
-        const { eventTime, ...eventFormData } = value;
+        const { eventTime, ...formData } = value;
 
-        if (!!eventTime && isValidTime(eventTime)) {
+        if (isValidTime(eventTime)) {
           let hours = Number(eventTime.split(':')[0]) % 12;
           if (eventTime.slice(-2).toUpperCase() === 'PM') {
             hours += 12;
           }
           const minutes = Number(eventTime.split(':')[1].slice(0, 2));
 
-          eventFormData.eventDate = moment(eventFormData.eventDate)
+          formData.eventDate = moment(formData.eventDate)
             .hours(hours)
             .minutes(minutes)
             .toISOString();
         }
 
         return this.store.dispatch(
-          EventsActions.formValueChanged({ value: eventFormData }),
+          EventsActions.formValueChanged({
+            eventId: this.originalEvent?.id ?? null,
+            value: formData,
+          }),
         );
       });
 

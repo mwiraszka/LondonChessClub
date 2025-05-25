@@ -72,6 +72,7 @@
 
   --lcc-color--championPage-cellBackground: #{clr(grayscale, black-15)};
   --lcc-color--championPage-cellBorder: #{clr(grayscale, gray-50, 0.4)};
+  --lcc-color--championPage-championshipIcon: #{clr(secondary, base)};
   --lcc-color--championPage-historyText: #{clr(grayscale, gray-75)};
   --lcc-color--championPage-historyTextBold: #{clr(grayscale, white-98)};
   --lcc-color--championPage-pastWinnersHeaderText: #{clr(grayscale, gray-75)};
@@ -170,6 +171,13 @@
   --lcc-color--input-checkboxAndRadio: #{clr(primary, lightest)};
   --lcc-color--input-invalidBorder: #{clr(warning, lighter)};
   --lcc-color--input-text: #{clr(grayscale, white-95)};
+
+  --lcc-color--lifetimePage-blockBackground: #{clr(grayscale, black-20)};
+  --lcc-color--lifetimePage-blockBoldText: #{clr(grayscale, white-98)};
+  --lcc-color--lifetimePage-blockBorder: #{clr(grayscale, gray-50, 0.4)};
+  --lcc-color--lifetimePage-blockText: #{clr(grayscale, gray-75)};
+  --lcc-color--lifetimePage-sectionHeaderDivider: #{clr(primary, base)};
+  --lcc-color--lifetimePage-sectionHeaderText: #{clr(grayscale, white-98)};
 
   --lcc-color--link: #{clr(primary, lighter)};
   --lcc-color--linkDisabled: #{clr(grayscale, gray-35)};

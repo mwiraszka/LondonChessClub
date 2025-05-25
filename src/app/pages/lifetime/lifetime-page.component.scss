@@ -1,0 +1,35 @@
+section {
+  width: 100%;
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  gap: 16px;
+
+  h2 {
+    color: var(--lcc-color--lifetimePage-sectionHeaderText);
+  }
+
+  hr {
+    margin-bottom: 8px;
+    width: 100%;
+    border-top: 1px solid var(--lcc-color--lifetimePage-sectionHeaderDivider);
+  }
+
+  .recipient-block {
+    padding: 16px;
+    color: var(--lcc-color--lifetimePage-blockText);
+    background-color: var(--lcc-color--lifetimePage-blockBackground);
+    border: 1px solid var(--lcc-color--lifetimePage-blockBorder);
+    border-radius: var(--lcc-borderRadius--large);
+
+    b {
+      color: var(--lcc-color--lifetimePage-blockBoldText);
+    }
+
+    &.coming-soon {
+      text-align: center;
+    }
+  }
+}

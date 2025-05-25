@@ -7,9 +7,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./pages/home/home-page-routing.module').then(
-        m => m.HomePageRoutingModule,
-      ),
+      import('./pages/home/home-page-routing.module').then(m => m.HomePageRoutingModule),
     pathMatch: 'full',
   },
   {
@@ -51,9 +49,7 @@ const routes: Routes = [
   {
     path: 'news',
     loadChildren: () =>
-      import('./pages/news/news-page-routing.module').then(
-        m => m.NewsPageRoutingModule,
-      ),
+      import('./pages/news/news-page-routing.module').then(m => m.NewsPageRoutingModule),
   },
   {
     path: 'article',
@@ -81,6 +77,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/game-archives/game-archives-page-routing.module').then(
         m => m.GameArchivesPageRoutingModule,
+      ),
+  },
+  {
+    path: 'lifetime',
+    loadChildren: () =>
+      import('./pages/lifetime/lifetime-page-routing.module').then(
+        m => m.LifetimePageRoutingModule,
       ),
   },
   {

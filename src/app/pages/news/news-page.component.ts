@@ -10,7 +10,7 @@ import { MetaAndTitleService } from '@app/services';
   template: `
     <lcc-page-header
       title="News"
-      icon="activity">
+      icon="map">
     </lcc-page-header>
     <lcc-article-grid></lcc-article-grid>
   `,

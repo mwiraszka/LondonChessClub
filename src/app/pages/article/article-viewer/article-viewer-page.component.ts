@@ -53,7 +53,7 @@ export class ArticleViewerPageComponent implements OnInit {
     {
       text: 'More articles',
       internalPath: 'news',
-      icon: 'activity',
+      icon: 'map',
     },
     {
       text: 'Return home',

@@ -48,7 +48,7 @@ export class ArticleEditorPageComponent implements OnInit, EditorPage {
     {
       text: 'See all articles',
       internalPath: 'news',
-      icon: 'activity',
+      icon: 'map',
     },
     {
       text: 'Return home',

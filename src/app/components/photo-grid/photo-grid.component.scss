@@ -1,6 +1,6 @@
 @use '../../../styles/abstracts/mixins';
 
-:host {
+.photos {
   // 'Masonry' layout effect:
   -webkit-column-count: 2;
   -moz-column-count: 2;

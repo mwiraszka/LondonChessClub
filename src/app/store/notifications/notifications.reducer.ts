@@ -8,12 +8,12 @@ export interface NotificationsState {
   toasts: Toast[];
 }
 
-export const notificationsInitialState: NotificationsState = {
+export const initialState: NotificationsState = {
   toasts: [],
 };
 
 export const notificationsReducer = createReducer(
-  notificationsInitialState,
+  initialState,
 
   on(
     AppActions.toastAdded,

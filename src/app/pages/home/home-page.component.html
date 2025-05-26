@@ -44,7 +44,10 @@
   </article>
 
   <article class="photos">
-    <lcc-photo-grid [maxAlbums]="10"></lcc-photo-grid>
+    <lcc-photo-grid
+      [isAdmin]="vm.isAdmin"
+      [maxAlbums]="10">
+    </lcc-photo-grid>
     <lcc-link-list [links]="[photoGalleryLink]"></lcc-link-list>
   </article>
 }

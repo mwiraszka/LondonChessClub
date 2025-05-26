@@ -58,7 +58,7 @@ export const articlesReducer = createReducer(
   ),
 
   on(ArticlesActions.fetchArticleSucceeded, (state, { article }): ArticlesState => {
-    return articlesAdapter.upsertOne<ArticlesState>(
+    return articlesAdapter.upsertOne(
       {
         article,
         formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
@@ -70,7 +70,7 @@ export const articlesReducer = createReducer(
   on(
     ArticlesActions.publishArticleSucceeded,
     (state, { article }): ArticlesState =>
-      articlesAdapter.upsertOne<ArticlesState>(
+      articlesAdapter.upsertOne(
         {
           article,
           formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
@@ -79,22 +79,19 @@ export const articlesReducer = createReducer(
       ),
   ),
 
-  on(
-    ArticlesActions.updateArticleSucceeded,
-    (state, { article }): ArticlesState =>
-      articlesAdapter.upsertOne<ArticlesState>(
-        {
-          article,
-          formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
-        },
-        state,
-      ),
+  on(ArticlesActions.updateArticleSucceeded, (state, { article }) =>
+    articlesAdapter.upsertOne(
+      {
+        article,
+        formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+      },
+      state,
+    ),
   ),
 
   on(
     ArticlesActions.deleteArticleSucceeded,
-    (state, { articleId }): ArticlesState =>
-      articlesAdapter.removeOne<ArticlesState>(articleId, state),
+    (state, { articleId }): ArticlesState => articlesAdapter.removeOne(articleId, state),
   ),
 
   on(ArticlesActions.formValueChanged, (state, { articleId, value }): ArticlesState => {

@@ -68,7 +68,7 @@ export const membersReducer = createReducer(
   ),
 
   on(MembersActions.fetchMemberSucceeded, (state, { member }): MembersState => {
-    return membersAdapter.upsertOne<MembersState>(
+    return membersAdapter.upsertOne(
       {
         member,
         formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
@@ -80,7 +80,7 @@ export const membersReducer = createReducer(
   on(
     MembersActions.addMemberSucceeded,
     (state, { member }): MembersState =>
-      membersAdapter.upsertOne<MembersState>(
+      membersAdapter.upsertOne(
         {
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
@@ -92,7 +92,7 @@ export const membersReducer = createReducer(
   on(
     MembersActions.updateMemberSucceeded,
     (state, { member }): MembersState =>
-      membersAdapter.upsertOne<MembersState>(
+      membersAdapter.upsertOne(
         {
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
@@ -103,8 +103,7 @@ export const membersReducer = createReducer(
 
   on(
     MembersActions.deleteMemberSucceeded,
-    (state, { memberId }): MembersState =>
-      membersAdapter.removeOne<MembersState>(memberId, state),
+    (state, { memberId }): MembersState => membersAdapter.removeOne(memberId, state),
   ),
 
   on(MembersActions.formValueChanged, (state, { memberId, value }): MembersState => {

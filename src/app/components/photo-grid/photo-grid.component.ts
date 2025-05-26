@@ -4,43 +4,28 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
 import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
-import { Image } from '@app/models';
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { Image, InternalLink } from '@app/models';
 import { DialogService } from '@app/services';
 
 @Component({
   selector: 'lcc-photo-grid',
-  template: `
-    @for (
-      image of albumCoverImages.slice(0, maxAlbums ?? images.length);
-      let index = $index;
-      track image.filename
-    ) {
-      <button
-        class="album-card"
-        (click)="onClickAlbumCover(image.coverForAlbum!)">
-        <figure>
-          <img
-            [alt]="image.caption"
-            [src]="getThumbnailPath(image.filename)"
-            default="assets/image-placeholder.png" />
-          <figcaption>
-            <div class="album-name lcc-truncate-max-2-lines">{{
-              image.coverForAlbum
-            }}</div>
-            <div class="photo-count">{{ getPhotoCount(image.coverForAlbum!) }}</div>
-          </figcaption>
-        </figure>
-      </button>
-    }
-  `,
+  templateUrl: './photo-grid.component.html',
   styleUrl: './photo-grid.component.scss',
-  imports: [CommonModule],
+  imports: [CommonModule, LinkListComponent],
 })
 export class PhotoGridComponent implements OnInit {
+  @Input({ required: true }) public isAdmin!: boolean;
   @Input() public maxAlbums?: number;
 
   public readonly images = images;
   public albumCoverImages: Image[] = [];
+
+  public readonly addImagesLink: InternalLink = {
+    internalPath: ['image', 'add'],
+    text: 'Add images',
+    icon: 'plus-circle',
+  };
 
   constructor(private readonly dialogService: DialogService) {}
 

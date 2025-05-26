@@ -1,35 +1,58 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
+import { pick } from 'lodash';
 
-import { Image } from '@app/models';
+import { IMAGE_FORM_DATA_PROPERTIES, Image, ImageFormData } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as ImagesActions from './images.actions';
 
-export type ImagesState = EntityState<Image>;
+export const INITIAL_IMAGE_FORM_DATA: ImageFormData = {
+  filename: '',
+  caption: '',
+  albums: [],
+  coverForAlbum: null,
+};
 
-export const imagesAdapter = createEntityAdapter<Image>({
+export type ImagesState = EntityState<{ image: Image; formData: ImageFormData }>;
+
+export const imagesAdapter = createEntityAdapter<{
+  image: Image;
+  formData: ImageFormData;
+}>({
+  selectId: ({ image }) => image.id,
   sortComparer: (a, b) => customSort(a, b, 'modificationInfo.dateCreated', true),
 });
 
-export const imagesInitialState: ImagesState = imagesAdapter.getInitialState({});
+export const initialState: ImagesState = imagesAdapter.getInitialState({});
 
 export const imagesReducer = createReducer(
-  imagesInitialState,
+  initialState,
 
   on(
     ImagesActions.fetchImageThumbnailsSucceeded,
-    (state, { images }): ImagesState => imagesAdapter.upsertMany(images, state),
+    ImagesActions.addImagesSucceeded,
+    (state, { images }): ImagesState =>
+      imagesAdapter.upsertMany(
+        images.map(image => ({
+          image,
+          formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
+        })),
+        state,
+      ),
   ),
 
   on(
     ImagesActions.fetchImageSucceeded,
-    (state, { image }): ImagesState => imagesAdapter.upsertOne(image, state),
-  ),
-
-  on(
-    ImagesActions.addImageSucceeded,
-    (state, { image }): ImagesState => imagesAdapter.addOne(image, state),
+    ImagesActions.updateImageSucceeded,
+    (state, { image }): ImagesState =>
+      imagesAdapter.upsertOne(
+        {
+          image,
+          formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
+        },
+        state,
+      ),
   ),
 
   on(
@@ -37,4 +60,20 @@ export const imagesReducer = createReducer(
     (state, { image }): ImagesState =>
       imagesAdapter.removeMany([image.id, `${image.id}-thumb`], state),
   ),
+
+  on(ImagesActions.formValueChanged, (state, { imageId, value }): ImagesState => {
+    const originalImage = imageId ? state.entities[imageId] : null;
+
+    return originalImage
+      ? imagesAdapter.updateOne(
+          {
+            id: imageId,
+            changes: {
+              formData: { ...originalImage.formData, ...value },
+            },
+          },
+          state,
+        )
+      : state;
+  }),
 );

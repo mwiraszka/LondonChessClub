@@ -259,11 +259,11 @@ export class NotificationsEffects {
   // #region Images
   addAddImageSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.addImageSucceeded),
-      map(({ image }) => {
+      ofType(ImagesActions.addImagesSucceeded),
+      map(({ images }) => {
         const toast: Toast = {
-          title: 'Add image',
-          message: `Successfully added image ${image.filename} to storage`,
+          title: 'Add images',
+          message: `Successfully added ${images.length} images to storage`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -271,12 +271,12 @@ export class NotificationsEffects {
     );
   });
 
-  addAddImageFailedToast$ = createEffect(() => {
+  addAddImagesFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.addImageFailed),
+      ofType(ImagesActions.addImagesFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Add image',
+          title: 'Add images',
           message: this.getErrorMessage(error),
           type: 'warning',
         };
@@ -634,7 +634,7 @@ export class NotificationsEffects {
           EventsActions.deleteEventFailed,
           EventsActions.fetchEventsFailed,
           EventsActions.fetchEventFailed,
-          ImagesActions.addImageFailed,
+          ImagesActions.addImagesFailed,
           ImagesActions.deleteImageFailed,
           ImagesActions.fetchImageFailed,
           ImagesActions.fetchImageThumbnailsFailed,

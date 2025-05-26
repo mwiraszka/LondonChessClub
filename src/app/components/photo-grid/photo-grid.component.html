@@ -1,0 +1,26 @@
+@if (isAdmin) {
+  <lcc-link-list [links]="[addImagesLink]"></lcc-link-list>
+}
+
+<section class="photos">
+  @for (
+    image of albumCoverImages.slice(0, maxAlbums ?? images.length);
+    let index = $index;
+    track image.filename
+  ) {
+    <button
+      class="album-card"
+      (click)="onClickAlbumCover(image.coverForAlbum!)">
+      <figure>
+        <img
+          [alt]="image.caption"
+          [src]="getThumbnailPath(image.filename)"
+          default="assets/image-placeholder.png" />
+        <figcaption>
+          <div class="album-name lcc-truncate-max-2-lines">{{ image.coverForAlbum }}</div>
+          <div class="photo-count">{{ getPhotoCount(image.coverForAlbum!) }}</div>
+        </figcaption>
+      </figure>
+    </button>
+  }
+</section>

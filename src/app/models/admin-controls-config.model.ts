@@ -5,6 +5,7 @@ export interface AdminControlsConfig {
   buttonSize: Pixels;
   bookmarkCb?: () => void;
   editPath?: InternalPath;
+  editInNewTab?: boolean;
   deleteCb: () => void;
   isDeleteDisabled?: boolean;
   itemName?: string;

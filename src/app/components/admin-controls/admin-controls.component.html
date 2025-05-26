@@ -16,6 +16,8 @@
     class="admin-control-button edit-button"
     [ngStyle]="{ 'width.px': config.buttonSize, 'height.px': config.buttonSize }"
     [tooltip]="editTooltipContent"
+    [rel]="config.editInNewTab ? 'noopener noreferrer' : undefined"
+    [target]="config.editInNewTab ? '_blank' : undefined"
     [routerLink]="config.editPath | routerLink">
     <i-feather
       name="edit"

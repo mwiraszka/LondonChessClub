@@ -57,7 +57,7 @@ export const eventsReducer = createReducer(
   ),
 
   on(EventsActions.fetchEventSucceeded, (state, { event }): EventsState => {
-    return eventsAdapter.upsertOne<EventsState>(
+    return eventsAdapter.upsertOne(
       {
         event,
         formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
@@ -69,7 +69,7 @@ export const eventsReducer = createReducer(
   on(
     EventsActions.addEventSucceeded,
     (state, { event }): EventsState =>
-      eventsAdapter.upsertOne<EventsState>(
+      eventsAdapter.upsertOne(
         {
           event,
           formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
@@ -81,7 +81,7 @@ export const eventsReducer = createReducer(
   on(
     EventsActions.updateEventSucceeded,
     (state, { event }): EventsState =>
-      eventsAdapter.upsertOne<EventsState>(
+      eventsAdapter.upsertOne(
         {
           event,
           formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
@@ -92,8 +92,7 @@ export const eventsReducer = createReducer(
 
   on(
     EventsActions.deleteEventSucceeded,
-    (state, { eventId }): EventsState =>
-      eventsAdapter.removeOne<EventsState>(eventId, state),
+    (state, { eventId }): EventsState => eventsAdapter.removeOne(eventId, state),
   ),
 
   on(EventsActions.formValueChanged, (state, { eventId, value }): EventsState => {

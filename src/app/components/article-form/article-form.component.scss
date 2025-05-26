@@ -29,26 +29,10 @@
     flex-flow: row wrap;
     gap: 8px;
 
-    label[type='button'] {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      input[type='file'] {
-        display: none;
-      }
-    }
-
-    button,
-    label[type='button'] {
+    button {
       padding: 0;
       height: 40px;
       min-width: 40px;
-    }
-
-    .image-title-input {
-      min-width: 150px;
-      flex: 1;
     }
   }
 

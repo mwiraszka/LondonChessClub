@@ -6,12 +6,12 @@ export interface NavState {
   pathHistory: string[] | null;
 }
 
-export const navInitialState: NavState = {
+export const initialState: NavState = {
   pathHistory: null,
 };
 
 export const navReducer = createReducer(
-  navInitialState,
+  initialState,
 
   on(navActions.appendPathToHistory, (state, { path }): NavState => {
     const currentPathHistory = state.pathHistory;

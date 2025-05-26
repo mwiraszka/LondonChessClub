@@ -59,6 +59,14 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'image',
+    loadChildren: () =>
+      import('./pages/image/image-page-routing.module').then(
+        m => m.ImagePageRoutingModule,
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'city-champion',
     loadChildren: () =>
       import('./pages/champion/champion-page-routing.module').then(

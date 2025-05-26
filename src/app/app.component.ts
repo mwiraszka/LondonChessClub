@@ -117,10 +117,13 @@ export class AppComponent implements OnInit {
     const oldKeys = ['articles', 'auth', 'members', 'nav', 'schedule', 'user-settings'];
     oldKeys.forEach(key => localStorage.removeItem(key));
 
-    const entityKeys = ['articlesState', 'eventsState', 'membersState'];
+    const entityKeys = ['articlesState', 'eventsState', 'imagesState', 'membersState'];
     entityKeys.forEach(key => {
       const storedValue = localStorage.getItem(key);
-      if (storedValue && JSON.parse(storedValue).controlMode) {
+      if (
+        storedValue &&
+        (JSON.parse(storedValue).controlMode || JSON.parse(storedValue).id)
+      ) {
         localStorage.removeItem(key);
       }
     });

@@ -57,30 +57,29 @@ export class ImagesEffects {
     );
   });
 
-  addImage$ = createEffect(() => {
+  addImages$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.addImageRequested),
+      ofType(ImagesActions.addImagesRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ dataUrl, filename, caption, forArticle }) => {
-        const imageFile = dataUrlToFile(dataUrl, filename);
+      switchMap(({ images }) => {
+        // TODO: update for multiple image upload
+        const imageFile = dataUrlToFile(images[0].presignedUrl, images[0].filename);
 
         if (!imageFile) {
           const error: LccError = {
             name: 'LCCError',
             message: 'Unable to construct file object from image data URL.',
           };
-          return of(ImagesActions.addImageFailed({ error }));
+          return of(ImagesActions.addImagesFailed({ error }));
         }
 
         const imageFormData = new FormData();
         imageFormData.append('imageFile', imageFile);
 
-        return this.imagesService.addImage(imageFormData, caption).pipe(
-          map(response =>
-            ImagesActions.addImageSucceeded({ image: response.data, forArticle }),
-          ),
+        return this.imagesService.addImage(imageFormData, images[0].caption).pipe(
+          map(response => ImagesActions.addImagesSucceeded({ images: [response.data] })),
           catchError(error =>
-            of(ImagesActions.addImageFailed({ error: parseError(error) })),
+            of(ImagesActions.addImagesFailed({ error: parseError(error) })),
           ),
         );
       }),

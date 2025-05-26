@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Id, Image, LccError, Url } from '@app/models';
+import type { Id, Image, ImageFormData, LccError } from '@app/models';
 
 export const fetchImageThumbnailsRequested = createAction(
   '[Images] Fetch image thumbnails requested',
@@ -36,16 +36,29 @@ export const imageFileLoadFailed = createAction(
   props<{ error: LccError }>(),
 );
 
-export const addImageRequested = createAction(
-  '[Images] Add image requested',
-  props<{ dataUrl: Url; filename: string; caption: string; forArticle: boolean }>(),
+export const addImagesRequested = createAction(
+  '[Images] Add images requested',
+  props<{ images: Image[] }>(),
 );
-export const addImageSucceeded = createAction(
-  '[Images] Add image succeeded',
-  props<{ image: Image; forArticle: boolean }>(),
+export const addImagesSucceeded = createAction(
+  '[Images] Add images succeeded',
+  props<{ images: Image[] }>(),
 );
-export const addImageFailed = createAction(
-  '[Images] Add image failed',
+export const addImagesFailed = createAction(
+  '[Images] Add images failed',
+  props<{ error: LccError }>(),
+);
+
+export const updateImageRequested = createAction(
+  '[Images] Update image requested',
+  props<{ imageId: Id }>(),
+);
+export const updateImageSucceeded = createAction(
+  '[Images] Update image succeeded',
+  props<{ image: Image }>(),
+);
+export const updateImageFailed = createAction(
+  '[Images] Update image failed',
   props<{ error: LccError }>(),
 );
 
@@ -60,4 +73,11 @@ export const deleteImageSucceeded = createAction(
 export const deleteImageFailed = createAction(
   '[Images] Delete image failed',
   props<{ error: LccError }>(),
+);
+
+export const cancelSelected = createAction('[Images] Cancel selected');
+
+export const formValueChanged = createAction(
+  '[Images] Form value changed',
+  props<{ imageId: Id; value: Partial<ImageFormData> }>(),
 );

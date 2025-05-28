@@ -122,7 +122,7 @@ export class MembersTableComponent implements OnInit {
     );
 
     if (result === 'confirm') {
-      this.store.dispatch(MembersActions.deleteMemberRequested({ memberId: member.id }));
+      this.store.dispatch(MembersActions.deleteMemberRequested({ member }));
     }
   }
 }

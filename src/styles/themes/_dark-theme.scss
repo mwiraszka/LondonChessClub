@@ -15,14 +15,14 @@
   --lcc-color--adminControls-bookmarkIconOnHover: #{clr(secondary, light)};
   --lcc-color--adminControls-buttonBackground: #{clr(grayscale, gray-75)};
   --lcc-color--adminControls-buttonBackgroundOnHover: #{clr(grayscale, white-85)};
-  --lcc-color--adminControls-buttonBorder: #{clr(grayscale, gray-65)};
+  --lcc-color--adminControls-buttonBorder: #{clr(grayscale, gray-35, 0.6)};
   --lcc-color--adminControls-deleteIcon: #{clr(warning)};
   --lcc-color--adminControls-deleteIconOnHover: #{clr(warning, light)};
-  --lcc-color--adminControls-disabledButtonBackground: #{clr(grayscale, gray-75, 0.7)};
+  --lcc-color--adminControls-disabledButtonBackground: #{clr(grayscale, gray-75)};
   --lcc-color--adminControls-disabledButtonBorder: #{clr(grayscale, gray-65, 0.6)};
-  --lcc-color--adminControls-disabledButtonIcon: #{clr(grayscale, gray-35, 0.6)};
-  --lcc-color--adminControls-editIcon: #{clr(grayscale, black-15)};
-  --lcc-color--adminControls-editIconOnHover: #{clr(grayscale, black-2)};
+  --lcc-color--adminControls-disabledButtonIcon: #{clr(grayscale, gray-65)};
+  --lcc-color--adminControls-editIcon: #{clr(primary, base)};
+  --lcc-color--adminControls-editIconOnHover: #{clr(primary, light)};
 
   --lcc-color--app-mainBackground: #{clr(grayscale, gray-25)};
 

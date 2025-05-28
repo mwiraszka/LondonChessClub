@@ -36,6 +36,13 @@ export class ImagesService {
     });
   }
 
+  public updateImage(image: Omit<Image, 'presignedUrl'>): Observable<ApiResponse<Id>> {
+    return this.http.put<ApiResponse<Id>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/${image.id}`,
+      image,
+    );
+  }
+
   public deleteImage(id: Id): Observable<ApiResponse<Id>> {
     return this.http.delete<ApiResponse<Id>>(
       `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,

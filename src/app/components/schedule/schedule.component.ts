@@ -89,7 +89,7 @@ export class ScheduleComponent implements OnInit {
     );
 
     if (result === 'confirm') {
-      this.store.dispatch(EventsActions.deleteEventRequested({ eventId: event.id }));
+      this.store.dispatch(EventsActions.deleteEventRequested({ event }));
     }
   }
 

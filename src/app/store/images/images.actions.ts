@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Id, Image, ImageFormData, LccError } from '@app/models';
+import type { Id, Image, ImageEditFormData, LccError } from '@app/models';
 
 export const fetchImageThumbnailsRequested = createAction(
   '[Images] Fetch image thumbnails requested',
@@ -68,7 +68,7 @@ export const deleteImageRequested = createAction(
 );
 export const deleteImageSucceeded = createAction(
   '[Images] Delete image succeeded',
-  props<{ image: Image }>(),
+  props<{ imageId: Id; imageFilename: string }>(),
 );
 export const deleteImageFailed = createAction(
   '[Images] Delete image failed',
@@ -79,5 +79,5 @@ export const cancelSelected = createAction('[Images] Cancel selected');
 
 export const formValueChanged = createAction(
   '[Images] Form value changed',
-  props<{ imageId: Id; value: Partial<ImageFormData> }>(),
+  props<{ imageId: Id; value: Partial<ImageEditFormData> }>(),
 );

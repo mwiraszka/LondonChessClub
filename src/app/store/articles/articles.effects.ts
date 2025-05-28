@@ -12,8 +12,7 @@ import { ArticlesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { isDefined, parseError } from '@app/utils';
 
-import * as ArticlesActions from './articles.actions';
-import * as ArticlesSelectors from './articles.selectors';
+import { ArticlesActions, ArticlesSelectors } from '.';
 
 @Injectable()
 export class ArticlesEffects {
@@ -161,13 +160,10 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ articleId }) =>
-        this.articlesService.deleteArticle(articleId).pipe(
-          switchMap(response =>
-            this.store.select(ArticlesSelectors.selectArticleById(response.data)),
-          ),
-          filter(isDefined),
-          map(article =>
+      switchMap(({ article }) =>
+        this.articlesService.deleteArticle(article.id).pipe(
+          filter(response => response.data === article.id),
+          map(() =>
             ArticlesActions.deleteArticleSucceeded({
               articleId: article.id,
               articleTitle: article.title,

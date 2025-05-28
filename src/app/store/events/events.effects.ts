@@ -12,8 +12,7 @@ import { EventsService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { isDefined, parseError } from '@app/utils';
 
-import * as EventsActions from './events.actions';
-import * as EventsSelectors from './events.selectors';
+import { EventsActions, EventsSelectors } from '.';
 
 @Injectable()
 export class EventsEffects {
@@ -126,13 +125,10 @@ export class EventsEffects {
     return this.actions$.pipe(
       ofType(EventsActions.deleteEventRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ eventId }) =>
-        this.eventsService.deleteEvent(eventId).pipe(
-          switchMap(response =>
-            this.store.select(EventsSelectors.selectEventById(response.data)),
-          ),
-          filter(isDefined),
-          map(event =>
+      switchMap(({ event }) =>
+        this.eventsService.deleteEvent(event.id).pipe(
+          filter(response => response.data === event.id),
+          map(() =>
             EventsActions.deleteEventSucceeded({
               eventId: event.id,
               eventTitle: event.title,

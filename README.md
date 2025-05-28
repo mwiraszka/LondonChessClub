@@ -36,7 +36,8 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.2.0 - May TBD, 2025</summary>
 
 - 🚀 Allow multiple articles, events, and members to be viewed & edited simultaneously in multiple tabs
-- 🚀 Create new Lifetime page to list all past Lifetime Achievement Award recipients
+- 🚀 Add the ability for admins to edit image captions and album titles, as well as to delete photos directly from the Photo Viewer
+- 🚀 Create new Lifetime Achievement Awards page to list all past recipients of the award
 - 🚀 Support markdown blockquotes in articles
 - 🚀 Choose more appropriate icons for some pages
 - 🚀 Append `| LCC` to the end of browser tab page titles for all pages except the homepage

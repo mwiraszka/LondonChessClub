@@ -8,16 +8,10 @@ import { ImageEditorPageComponent } from './image-editor/image-editor-page.compo
 
 const routes: Routes = [
   {
-    path: 'add',
-    component: ImageEditorPageComponent,
-    canActivate: [AuthGuard],
-    // canDeactivate: [UnsavedChangesGuard],
-  },
-  {
     path: 'edit/:image_id',
     component: ImageEditorPageComponent,
     canActivate: [AuthGuard],
-    // canDeactivate: [UnsavedChangesGuard],
+    canDeactivate: [UnsavedChangesGuard],
   },
   {
     path: '**',

@@ -60,7 +60,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
     return {
       buttonSize: 34,
       deleteCb: () => this.onDeleteImage(image),
-      editPath: ['image', 'edit', image.id],
+      editPath: ['image', 'edit', image.id.split('-')[0]],
       editInNewTab: true,
       isDeleteDisabled: !!image?.articleAppearances,
       itemName: image.filename,
@@ -72,7 +72,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
       return;
     }
 
-    const mainImageId = image.id?.split('-')[0];
+    const mainImageId = image.id.split('-')[0];
     const dialog: Dialog = {
       title: 'Delete image',
       body: `Delete ${image.filename}?`,
@@ -89,9 +89,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
     );
 
     if (result === 'confirm') {
-      this.store.dispatch(
-        ImagesActions.deleteImageRequested({ image: { ...image, id: mainImageId } }),
-      );
+      this.store.dispatch(ImagesActions.deleteImageRequested({ image }));
     }
   }
 

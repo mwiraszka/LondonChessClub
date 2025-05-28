@@ -70,7 +70,7 @@ export const updateMemberFailed = createAction(
 
 export const deleteMemberRequested = createAction(
   '[Members] Delete member requested',
-  props<{ memberId: Id }>(),
+  props<{ member: Member }>(),
 );
 export const deleteMemberSucceeded = createAction(
   '[Members] Delete member succeeded',

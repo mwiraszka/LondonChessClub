@@ -52,7 +52,7 @@ export const updateEventFailed = createAction(
 
 export const deleteEventRequested = createAction(
   '[Events] Delete event requested',
-  props<{ eventId: Id }>(),
+  props<{ event: Event }>(),
 );
 export const deleteEventSucceeded = createAction(
   '[Events] Delete event succeeded',

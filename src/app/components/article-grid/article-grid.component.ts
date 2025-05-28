@@ -125,9 +125,7 @@ export class ArticleGridComponent implements OnInit {
     );
 
     if (result === 'confirm') {
-      this.store.dispatch(
-        ArticlesActions.deleteArticleRequested({ articleId: article.id }),
-      );
+      this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
     }
   }
 

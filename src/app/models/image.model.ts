@@ -15,15 +15,13 @@ export interface Image {
   articleAppearances?: number;
 }
 
-export const IMAGE_FORM_DATA_PROPERTIES = [
-  'filename',
-  'caption',
-  'albums',
-  'coverForAlbum',
-] as const;
+export const IMAGE_EDIT_FORM_DATA_PROPERTIES = ['caption', 'albums'] as const;
 
-export type ImageFormData = Pick<Image, (typeof IMAGE_FORM_DATA_PROPERTIES)[number]>;
+export type ImageEditFormData = Pick<
+  Image,
+  (typeof IMAGE_EDIT_FORM_DATA_PROPERTIES)[number]
+> & { newAlbum: string };
 
-export type ImageFormGroup = {
-  [Property in keyof ImageFormData]: FormControl<ImageFormData[Property]>;
+export type ImageEditFormGroup = {
+  [Property in keyof ImageEditFormData]: FormControl<ImageEditFormData[Property]>;
 };

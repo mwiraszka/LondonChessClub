@@ -7,14 +7,15 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ImageFormComponent } from '@app/components/image-form/image-form.component';
+import { ImageEditFormComponent } from '@app/components/image-edit-form/image-edit-form.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import type {
   EditorPage,
   EntityName,
+  Id,
   Image,
-  ImageFormData,
+  ImageEditFormData,
   InternalLink,
 } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
@@ -30,15 +31,16 @@ import { isDefined } from '@app/utils';
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
         [title]="vm.pageTitle">
       </lcc-page-header>
-      <lcc-image-form
+      <lcc-image-edit-form
+        [existingAlbums]="vm.existingAlbums"
         [formData]="vm.formData"
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
         [originalImage]="vm.image">
-      </lcc-image-form>
+      </lcc-image-edit-form>
       <lcc-link-list [links]="links"></lcc-link-list>
     }
   `,
-  imports: [CommonModule, ImageFormComponent, LinkListComponent, PageHeaderComponent],
+  imports: [CommonModule, ImageEditFormComponent, LinkListComponent, PageHeaderComponent],
 })
 export class ImageEditorPageComponent implements OnInit, EditorPage {
   public readonly entityName: EntityName = 'image';
@@ -55,9 +57,10 @@ export class ImageEditorPageComponent implements OnInit, EditorPage {
     },
   ];
   public viewModel$?: Observable<{
-    image: Image | null;
-    formData: ImageFormData;
+    existingAlbums: string[];
+    formData: ImageEditFormData;
     hasUnsavedChanges: boolean;
+    image: Image;
     pageTitle: string;
   }>;
 
@@ -70,21 +73,25 @@ export class ImageEditorPageComponent implements OnInit, EditorPage {
   ngOnInit(): void {
     this.viewModel$ = this.activatedRoute.params.pipe(
       untilDestroyed(this),
-      map(params => (params['image_id'] ?? null) as string),
+      map(params => params['image_id'] as Id),
       switchMap(imageId =>
         combineLatest([
-          this.store.select(ImagesSelectors.selectImageById(imageId)),
+          this.store
+            .select(ImagesSelectors.selectImageById(imageId))
+            .pipe(filter(isDefined)),
           this.store
             .select(ImagesSelectors.selectImageFormDataById(imageId))
             .pipe(filter(isDefined)),
+          this.store.select(ImagesSelectors.selectAllExistingAlbums),
           this.store.select(ImagesSelectors.selectHasUnsavedChanges(imageId)),
         ]),
       ),
-      map(([image, formData, hasUnsavedChanges]) => ({
+      map(([image, formData, existingAlbums, hasUnsavedChanges]) => ({
         image,
         formData,
+        existingAlbums,
         hasUnsavedChanges,
-        pageTitle: image ? `Edit ${image.filename}` : 'Add images',
+        pageTitle: `Edit ${image.filename}`,
       })),
       tap(viewModel => {
         this.metaAndTitleService.updateTitle(viewModel.pageTitle);

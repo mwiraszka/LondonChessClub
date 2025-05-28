@@ -60,7 +60,7 @@ export const updateArticleFailed = createAction(
 
 export const deleteArticleRequested = createAction(
   '[Articles] Delete article requested',
-  props<{ articleId: Id }>(),
+  props<{ article: Article }>(),
 );
 export const deleteArticleSucceeded = createAction(
   '[Articles] Delete article succeeded',

@@ -288,10 +288,10 @@ export class NotificationsEffects {
   addDeleteImageSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.deleteImageSucceeded),
-      map(({ image }) => {
+      map(({ imageFilename }) => {
         const toast: Toast = {
           title: 'Image deletion',
-          message: `Successfully deleted image ${image.filename} from storage`,
+          message: `Successfully deleted image ${imageFilename} from storage`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });

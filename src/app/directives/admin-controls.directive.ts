@@ -108,7 +108,7 @@ export class AdminControlsDirective implements OnDestroy {
     }
   }
 
-  private detach(): void {
+  public detach(): void {
     this.overlayRef?.detach();
     this.documentClickListener?.();
     this.documentContextMenuListener?.();

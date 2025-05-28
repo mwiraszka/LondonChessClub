@@ -14,6 +14,7 @@ import { MembersActions } from '@app/store/members';
 import { isDefined, isValidCollectionId } from '@app/utils';
 
 import { NavSelectors } from '.';
+import { ImagesActions } from '../images';
 import * as NavActions from './nav.actions';
 
 @Injectable()
@@ -80,6 +81,13 @@ export class NavEffects {
         ArticlesActions.updateArticleSucceeded,
       ),
       map(() => NavActions.navigationRequested({ path: 'news' })),
+    ),
+  );
+
+  navigateToPhotoGallery$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ImagesActions.updateImageSucceeded),
+      map(() => NavActions.navigationRequested({ path: 'photo-gallery' })),
     ),
   );
 
@@ -223,6 +231,28 @@ export class NavEffects {
         ([{ articleId }, previousPath]) => previousPath === `/article/view/${articleId}`,
       ),
       map(() => NavActions.navigationRequested({ path: 'news' })),
+    ),
+  );
+
+  handleImageRouteNavigation$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      map(({ payload }) => payload.event.url),
+      filter(currentPath => currentPath.startsWith('/image/')),
+      map(currentPath => {
+        const [controlMode, imageId] = currentPath.split('/image/')[1].split('/');
+
+        return controlMode === 'edit' && isValidCollectionId(imageId)
+          ? ImagesActions.fetchImageRequested({ imageId })
+          : NavActions.navigationRequested({ path: 'photo-gallery' });
+      }),
+    ),
+  );
+
+  redirectToPhotoGalleryRouteOnImageFetchFail$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ImagesActions.fetchImageFailed),
+      map(() => NavActions.navigationRequested({ path: '' })),
     ),
   );
 

@@ -42,8 +42,9 @@ export class PhotoGridComponent implements OnInit {
           image =>
             image.albums &&
             image.albums.includes(album) &&
-            !image.filename.includes('-320'),
+            !image.filename.includes('-thumb'),
         ),
+        isAdmin: this.isAdmin,
       },
     });
   }

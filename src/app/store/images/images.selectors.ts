@@ -37,14 +37,26 @@ export const selectHasUnsavedChanges = (id: Id) =>
     selectImageById(id),
     selectImageFormDataById(id),
     (image, imageFormData) => {
+      if (!image || !imageFormData) {
+        return false;
+      }
+
       const formPropertiesOfOriginalArticle = pick(
         image,
         Object.getOwnPropertyNames(imageFormData),
       );
 
-      return !areSame(formPropertiesOfOriginalArticle, imageFormData);
+      return !areSame(
+        { ...formPropertiesOfOriginalArticle, newAlbum: '' },
+        imageFormData,
+      );
     },
   );
+
+export const selectAllExistingAlbums = createSelector(selectAllImages, allImages => {
+  const allAlbums = allImages.flatMap(image => image.albums || []);
+  return [...new Set(allAlbums)].sort();
+});
 
 export const selectImageByArticleId = (articleId: Id | null) =>
   createSelector(

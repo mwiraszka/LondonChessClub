@@ -13,8 +13,7 @@ import { AuthSelectors } from '@app/store/auth';
 import { getNewPeakRating, isDefined } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
 
-import * as MembersActions from './members.actions';
-import * as MembersSelectors from './members.selectors';
+import { MembersActions, MembersSelectors } from '.';
 
 @Injectable()
 export class MembersEffects {
@@ -132,13 +131,10 @@ export class MembersEffects {
     return this.actions$.pipe(
       ofType(MembersActions.deleteMemberRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ memberId }) =>
-        this.membersService.deleteMember(memberId).pipe(
-          switchMap(response =>
-            this.store.select(MembersSelectors.selectMemberById(response.data)),
-          ),
-          filter(isDefined),
-          map(member =>
+      switchMap(({ member }) =>
+        this.membersService.deleteMember(member.id).pipe(
+          filter(response => response.data === member.id),
+          map(() =>
             MembersActions.deleteMemberSucceeded({
               memberId: member.id,
               memberName: `${member.firstName} ${member.lastName}`,

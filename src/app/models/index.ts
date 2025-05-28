@@ -28,10 +28,10 @@ export {
 export type { FilterFormGroup } from './filter-form-group.model';
 export type { GameDetails, GameScore } from './game-details.model';
 export {
-  IMAGE_FORM_DATA_PROPERTIES,
+  IMAGE_EDIT_FORM_DATA_PROPERTIES,
   type Image,
-  type ImageFormData,
-  type ImageFormGroup,
+  type ImageEditFormData,
+  type ImageEditFormGroup,
 } from './image.model';
 export type { ExternalLink, InternalLink, InternalPath } from './link.model';
 export type { ChangePasswordFormGroup, LoginFormGroup } from './login.model';

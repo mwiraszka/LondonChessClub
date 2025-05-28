@@ -2,26 +2,19 @@ import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
-import { IMAGE_FORM_DATA_PROPERTIES, Image, ImageFormData } from '@app/models';
+import { IMAGE_EDIT_FORM_DATA_PROPERTIES, Image, ImageEditFormData } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as ImagesActions from './images.actions';
 
-export const INITIAL_IMAGE_FORM_DATA: ImageFormData = {
-  filename: '',
-  caption: '',
-  albums: [],
-  coverForAlbum: null,
-};
-
-export type ImagesState = EntityState<{ image: Image; formData: ImageFormData }>;
+export type ImagesState = EntityState<{ image: Image; formData: ImageEditFormData }>;
 
 export const imagesAdapter = createEntityAdapter<{
   image: Image;
-  formData: ImageFormData;
+  formData: ImageEditFormData;
 }>({
   selectId: ({ image }) => image.id,
-  sortComparer: (a, b) => customSort(a, b, 'modificationInfo.dateCreated', true),
+  sortComparer: (a, b) => customSort(a, b, 'image.modificationInfo.dateCreated', true),
 });
 
 export const initialState: ImagesState = imagesAdapter.getInitialState({});
@@ -36,7 +29,7 @@ export const imagesReducer = createReducer(
       imagesAdapter.upsertMany(
         images.map(image => ({
           image,
-          formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
+          formData: { caption: image.caption, albums: image.albums, newAlbum: '' },
         })),
         state,
       ),
@@ -49,7 +42,7 @@ export const imagesReducer = createReducer(
       imagesAdapter.upsertOne(
         {
           image,
-          formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
+          formData: { ...pick(image, IMAGE_EDIT_FORM_DATA_PROPERTIES), newAlbum: '' },
         },
         state,
       ),
@@ -57,8 +50,8 @@ export const imagesReducer = createReducer(
 
   on(
     ImagesActions.deleteImageSucceeded,
-    (state, { image }): ImagesState =>
-      imagesAdapter.removeMany([image.id, `${image.id}-thumb`], state),
+    (state, { imageId }): ImagesState =>
+      imagesAdapter.removeMany([imageId, `${imageId}-thumb`], state),
   ),
 
   on(ImagesActions.formValueChanged, (state, { imageId, value }): ImagesState => {

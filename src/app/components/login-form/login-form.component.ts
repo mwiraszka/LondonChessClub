@@ -46,7 +46,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   public hasError(control: AbstractControl): boolean {
-    return control.dirty && control.invalid;
+    return control.touched && control.invalid;
   }
 
   public getErrorMessage(control: AbstractControl): string {

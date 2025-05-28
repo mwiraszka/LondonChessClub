@@ -46,7 +46,15 @@ export const selectHasUnsavedChanges = (id: Id | null) =>
         Object.getOwnPropertyNames(memberFormData),
       );
 
-      return !areSame(formPropertiesOfOriginalMember, memberFormData);
+      // Only concerned with the day portion of these dates when checking for unsaved changes
+      const { dateJoined: originalDateJoined, ...originalRemainder } =
+        formPropertiesOfOriginalMember;
+      const { dateJoined: formDataDateJoined, ...formDataRemainder } = memberFormData;
+
+      return (
+        originalDateJoined?.slice(0, 10) !== formDataDateJoined?.slice(0, 10) ||
+        !areSame(formDataRemainder, originalRemainder)
+      );
     },
   );
 

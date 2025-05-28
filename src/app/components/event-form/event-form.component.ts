@@ -61,10 +61,14 @@ export class EventFormComponent implements OnInit {
   ngOnInit(): void {
     this.initForm(this.formData);
     this.initFormValueChangeListener();
+
+    if (this.hasUnsavedChanges) {
+      this.form.markAllAsTouched();
+    }
   }
 
   public hasError(control: AbstractControl): boolean {
-    return control.dirty && control.invalid;
+    return control.touched && control.invalid;
   }
 
   public getErrorMessage(control: AbstractControl): string {

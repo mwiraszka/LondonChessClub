@@ -65,10 +65,14 @@ export class ImageEditFormComponent implements OnInit {
   ngOnInit(): void {
     this.initForm(this.formData);
     this.initFormValueChangeListener();
+
+    if (this.hasUnsavedChanges) {
+      this.form.markAllAsTouched();
+    }
   }
 
   public hasError(control: AbstractControl): boolean {
-    return control.dirty && control.invalid;
+    return control.touched && control.invalid;
   }
 
   public getErrorMessage(control: AbstractControl): string {
@@ -94,6 +98,7 @@ export class ImageEditFormComponent implements OnInit {
       : [...selectedAlbums, album].sort();
 
     this.form.patchValue({ albums });
+    this.form.controls.albums.markAsDirty();
   }
 
   // public onUploadNewImages(event: Event): void {
@@ -203,12 +208,10 @@ export class ImageEditFormComponent implements OnInit {
     this.form.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((value: Partial<ImageEditFormData>) => {
-        // Since validator is on the form group, manually transfer error and mark inner control
-        // as dirty to be able to use same error message handler as other controls
+        // Manually transfer error to inner control to benefit from common error message handling
         this.form.controls.albums.setErrors(
           this.form.hasError('albumRequired') ? { albumRequired: true } : null,
         );
-        this.form.controls.albums.markAsDirty();
 
         this.store.dispatch(
           ImagesActions.formValueChanged({ imageId: this.originalImage.id, value }),

@@ -42,7 +42,7 @@
     <div class="albums-container">
       <fieldset
         class="existing-album-fieldset"
-        [class.invalid]="hasError(form.controls.albums)">
+        [class.invalid]="hasError(form.controls.albums) && form.controls.albums.dirty">
         @for (album of existingAlbums; track album) {
           <div class="existing-album">
             <input
@@ -85,9 +85,11 @@
     </div>
   </div>
 
-  @if (originalImage.modificationInfo; as info) {
-    <lcc-modification-info [info]="info"></lcc-modification-info>
-  }
+  <aside class="lcc-required-fields-legend">Required fields</aside>
+
+  <hr />
+
+  <lcc-modification-info [info]="originalImage.modificationInfo"></lcc-modification-info>
 
   <div class="lcc-form-buttons-container">
     <button

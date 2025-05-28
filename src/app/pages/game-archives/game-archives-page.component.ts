@@ -130,7 +130,7 @@ export class GameArchivesPageComponent implements OnInit {
   }
 
   public hasError(control: AbstractControl): boolean {
-    return control.dirty && control.invalid;
+    return control.touched && control.invalid;
   }
 
   public originalOrder = (): number => {

@@ -43,4 +43,10 @@
       }
     }
   }
+
+  hr {
+    width: 100%;
+    border-top: 1px solid var(--lcc-color--general-dividerLine);
+    margin: 1em 0;
+  }
 }

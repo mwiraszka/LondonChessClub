@@ -37,12 +37,12 @@ export const selectHasUnsavedChanges = (id: Id | null) =>
     selectEventById(id),
     selectEventFormDataById(id),
     (event, eventFormData) => {
-      const formPropertiesOfOriginalArticle = pick(
+      const formPropertiesOfOriginalEvent = pick(
         event ?? INITIAL_EVENT_FORM_DATA,
         Object.getOwnPropertyNames(eventFormData),
       );
 
-      return !areSame(formPropertiesOfOriginalArticle, eventFormData);
+      return !areSame(formPropertiesOfOriginalEvent, eventFormData);
     },
   );
 

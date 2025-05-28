@@ -40,7 +40,9 @@
   <div class="lcc-form-fields">
     <label class="lcc-required-field">Albums:</label>
     <div class="albums-container">
-      <fieldset class="existing-album-fieldset">
+      <fieldset
+        class="existing-album-fieldset"
+        [class.invalid]="hasError(form.controls.albums)">
         @for (album of existingAlbums; track album) {
           <div class="existing-album">
             <input

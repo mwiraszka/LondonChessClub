@@ -28,7 +28,11 @@ import type {
 import { DialogService } from '@app/services';
 import { ArticlesActions } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
-import { imageCaptionValidator, uniqueAlbumValidator } from '@app/validators';
+import {
+  imageCaptionValidator,
+  oneAlbumMinimumValidator,
+  uniqueAlbumValidator,
+} from '@app/validators';
 
 @UntilDestroy()
 @Component({
@@ -76,6 +80,8 @@ export class ImageEditFormComponent implements OnInit {
       return 'Image caption can only contain letters, numbers, and readable symbols';
     } else if (control.hasError('albumAlreadyExists')) {
       return 'Album name already exists';
+    } else if (control.hasError('albumRequired')) {
+      return 'Image must be added to at least one album';
     } else {
       return 'Unknown error';
     }
@@ -181,10 +187,15 @@ export class ImageEditFormComponent implements OnInit {
         }),
         newAlbum: new FormControl(formData.newAlbum, {
           nonNullable: true,
-          validators: Validators.pattern(/[^\s]/),
+          validators: [
+            Validators.pattern(/[^\s]/),
+            uniqueAlbumValidator(this.existingAlbums),
+          ],
         }),
       },
-      { validators: uniqueAlbumValidator(this.existingAlbums) },
+      {
+        validators: oneAlbumMinimumValidator,
+      },
     );
   }
 
@@ -192,11 +203,12 @@ export class ImageEditFormComponent implements OnInit {
     this.form.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((value: Partial<ImageEditFormData>) => {
-        if (this.form.hasError('albumAlreadyExists')) {
-          this.form.controls.newAlbum.setErrors({ albumAlreadyExists: true });
-        } else {
-          this.form.controls.newAlbum.setErrors(null);
-        }
+        // Since validator is on the form group, manually transfer error and mark inner control
+        // as dirty to be able to use same error message handler as other controls
+        this.form.controls.albums.setErrors(
+          this.form.hasError('albumRequired') ? { albumRequired: true } : null,
+        );
+        this.form.controls.albums.markAsDirty();
 
         this.store.dispatch(
           ImagesActions.formValueChanged({ imageId: this.originalImage.id, value }),

@@ -28,6 +28,10 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 
+    &.invalid {
+      border-color: var(--lcc-color--input-invalidBorder);
+    }
+
     .existing-album {
       display: flex;
       flex-direction: row;

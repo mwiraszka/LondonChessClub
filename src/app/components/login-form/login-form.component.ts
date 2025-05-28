@@ -25,7 +25,7 @@ import { emailValidator } from '@app/validators';
   imports: [CommonModule, IconsModule, ReactiveFormsModule, RouterLink, TooltipDirective],
 })
 export class LoginFormComponent implements OnInit {
-  public form: FormGroup<LoginFormGroup> | null = null;
+  public form!: FormGroup<LoginFormGroup>;
 
   constructor(
     private readonly formBuilder: FormBuilder,

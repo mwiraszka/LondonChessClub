@@ -12,7 +12,6 @@ import {
 import { CommonModule, KeyValuePipe } from '@angular/common';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -20,9 +19,9 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { PgnViewerComponent } from '@app/components/pgn-viewer/pgn-viewer.component';
-import { TooltipDirective } from '@app/directives/tooltip.directive';
 import IconsModule from '@app/icons';
 import type { FilterFormGroup, GameDetails } from '@app/models';
 import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';
@@ -49,12 +48,12 @@ import { YEARS } from './years';
     CdkVirtualForOf,
     CdkVirtualScrollViewport,
     CommonModule,
+    FormErrorIconComponent,
     IconsModule,
     KeyValuePipe,
     PgnViewerComponent,
     ReactiveFormsModule,
     PageHeaderComponent,
-    TooltipDirective,
   ],
 })
 export class GameArchivesPageComponent implements OnInit {
@@ -127,10 +126,6 @@ export class GameArchivesPageComponent implements OnInit {
     if (key === 'ArrowLeft' || key === 'ArrowRight') {
       event.preventDefault();
     }
-  }
-
-  public hasError(control: AbstractControl): boolean {
-    return control.touched && control.invalid;
   }
 
   public originalOrder = (): number => {

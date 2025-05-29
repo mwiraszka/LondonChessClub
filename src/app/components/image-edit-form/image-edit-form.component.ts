@@ -5,7 +5,6 @@ import { debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -14,9 +13,9 @@ import {
 } from '@angular/forms';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
+import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
-import { TooltipDirective } from '@app/directives/tooltip.directive';
 import IconsModule from '@app/icons';
 import type {
   BasicDialogResult,
@@ -41,11 +40,11 @@ import {
   styleUrl: './image-edit-form.component.scss',
   imports: [
     CommonModule,
+    FormErrorIconComponent,
     IconsModule,
     ImagePreloadDirective,
     ModificationInfoComponent,
     ReactiveFormsModule,
-    TooltipDirective,
   ],
 })
 export class ImageEditFormComponent implements OnInit {
@@ -68,26 +67,6 @@ export class ImageEditFormComponent implements OnInit {
 
     if (this.hasUnsavedChanges) {
       this.form.markAllAsTouched();
-    }
-  }
-
-  public hasError(control: AbstractControl): boolean {
-    return control.touched && control.invalid;
-  }
-
-  public getErrorMessage(control: AbstractControl): string {
-    if (control.hasError('required')) {
-      return 'This field is required';
-    } else if (control.hasError('pattern')) {
-      return 'Invalid input (incorrect format)';
-    } else if (control.hasError('invalidImageCaption')) {
-      return 'Image caption can only contain letters, numbers, and readable symbols';
-    } else if (control.hasError('albumAlreadyExists')) {
-      return 'Album name already exists';
-    } else if (control.hasError('albumRequired')) {
-      return 'Image must be added to at least one album';
-    } else {
-      return 'Unknown error';
     }
   }
 

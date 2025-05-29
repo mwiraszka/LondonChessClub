@@ -5,7 +5,6 @@ import { debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -15,7 +14,7 @@ import {
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
-import { TooltipDirective } from '@app/directives/tooltip.directive';
+import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import IconsModule from '@app/icons';
 import type { ChangePasswordFormGroup } from '@app/models';
 import { AuthActions } from '@app/store/auth';
@@ -33,7 +32,13 @@ import {
   selector: 'lcc-change-password-form',
   templateUrl: './change-password-form.component.html',
   styleUrl: './change-password-form.component.scss',
-  imports: [CommonModule, IconsModule, ReactiveFormsModule, RouterLink, TooltipDirective],
+  imports: [
+    CommonModule,
+    FormErrorIconComponent,
+    IconsModule,
+    ReactiveFormsModule,
+    RouterLink,
+  ],
 })
 export class ChangePasswordFormComponent implements OnInit {
   @Input({ required: true }) hasCode!: boolean;
@@ -48,34 +53,6 @@ export class ChangePasswordFormComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.initFormValueChangeListener();
-  }
-
-  public hasError(control: AbstractControl): boolean {
-    return control.touched && control.invalid;
-  }
-
-  public getErrorMessage(control: AbstractControl): string {
-    if (control.hasError('required')) {
-      return 'This field is required';
-    } else if (control.hasError('invalidEmailFormat')) {
-      return 'Invalid email';
-    } else if (control.hasError('pattern')) {
-      return 'Invalid input (incorrect format)';
-    } else if (control.hasError('noLowercaseLetter')) {
-      return 'Password needs to include at least one lowercase letter';
-    } else if (control.hasError('noUppercaseLetter')) {
-      return 'Password needs to include at least one uppercase letter';
-    } else if (control.hasError('noSpecialChar')) {
-      return 'Password needs to include at least one special character';
-    } else if (control.hasError('noNumber')) {
-      return 'Password needs to include at least one number';
-    } else if (control.hasError('minlength')) {
-      return 'Password needs to be at least 8 characters long';
-    } else if (control.hasError('passwordMismatch')) {
-      return 'Passwords must match';
-    } else {
-      return 'Unknown error';
-    }
   }
 
   public onSubmit(hasCode: boolean): void {
@@ -130,11 +107,9 @@ export class ChangePasswordFormComponent implements OnInit {
 
   private initFormValueChangeListener(): void {
     this.form.valueChanges.pipe(debounceTime(250), untilDestroyed(this)).subscribe(() => {
-      if (this.form.hasError('passwordMismatch')) {
-        this.form.controls.confirmPassword.setErrors({ passwordMismatch: true });
-      } else {
-        this.form.controls.confirmPassword.setErrors(null);
-      }
+      this.form.controls.confirmPassword.setErrors(
+        this.form.hasError('passwordMismatch') ? { passwordMismatch: true } : null,
+      );
     });
   }
 

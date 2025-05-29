@@ -6,7 +6,6 @@ import { debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -16,8 +15,8 @@ import {
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { DatePickerComponent } from '@app/components/date-picker/date-picker.component';
+import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
-import { TooltipDirective } from '@app/directives/tooltip.directive';
 import IconsModule from '@app/icons';
 import type {
   BasicDialogResult,
@@ -39,10 +38,10 @@ import { timeValidator } from '@app/validators';
   imports: [
     CommonModule,
     DatePickerComponent,
+    FormErrorIconComponent,
     IconsModule,
     ModificationInfoComponent,
     ReactiveFormsModule,
-    TooltipDirective,
   ],
 })
 export class EventFormComponent implements OnInit {
@@ -64,22 +63,6 @@ export class EventFormComponent implements OnInit {
 
     if (this.hasUnsavedChanges) {
       this.form.markAllAsTouched();
-    }
-  }
-
-  public hasError(control: AbstractControl): boolean {
-    return control.touched && control.invalid;
-  }
-
-  public getErrorMessage(control: AbstractControl): string {
-    if (control.hasError('required')) {
-      return 'This field is required';
-    } else if (control.hasError('invalidTimeFormat')) {
-      return 'Invalid time - please input in hh:mm AM/PM format';
-    } else if (control.hasError('pattern')) {
-      return 'Invalid input (incorrect format)';
-    } else {
-      return 'Unknown error';
     }
   }
 

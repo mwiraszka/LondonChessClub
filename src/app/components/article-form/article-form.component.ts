@@ -5,7 +5,6 @@ import { debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -14,6 +13,7 @@ import {
 } from '@angular/forms';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
+import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
@@ -40,6 +40,7 @@ import { ImagesActions } from '@app/store/images';
   styleUrl: './article-form.component.scss',
   imports: [
     CommonModule,
+    FormErrorIconComponent,
     IconsModule,
     ImagePreloadDirective,
     MarkdownRendererComponent,
@@ -80,20 +81,6 @@ export class ArticleFormComponent implements OnInit {
     if (this.hasUnsavedChanges) {
       this.form.markAllAsTouched();
     }
-  }
-
-  public hasError(control: AbstractControl): boolean {
-    return control.touched && control.invalid;
-  }
-
-  public getErrorMessage(control: AbstractControl): string {
-    return control.hasError('required')
-      ? 'This field is required'
-      : control.hasError('invalidImageCaption')
-        ? 'Image caption can only contain letters, numbers, and readable symbols'
-        : control.hasError('pattern')
-          ? 'Invalid text'
-          : 'Unknown error';
   }
 
   // public onUploadNewImage(event: Event): void {

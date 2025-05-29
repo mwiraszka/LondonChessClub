@@ -1,7 +1,5 @@
 @use './link';
 
-$alert-icon-width: 18px;
-
 .lcc-form {
   display: flex;
   flex-direction: column;
@@ -56,18 +54,8 @@ $alert-icon-width: 18px;
     }
   }
 
-  .lcc-form-error-container {
+  lcc-form-error-icon {
     grid-column: 3 / 4;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: $alert-icon-width;
-
-    .lcc-form-error-icon {
-      color: var(--lcc-color--form-errorIcon);
-      height: $alert-icon-width;
-      width: $alert-icon-width;
-    }
   }
 }
 

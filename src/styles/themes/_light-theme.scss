@@ -116,11 +116,12 @@
 
   --lcc-color--form-background: #{clr(grayscale, white-98)};
   --lcc-color--form-boxShadow: #{clr(grayscale, white-95, 0.7)};
-  --lcc-color--form-errorIcon: #{clr(warning, lighter)};
   --lcc-color--form-headerText: #{clr(grayscale, black-10)};
   --lcc-color--form-labelText: #{clr(grayscale, black-15)};
   --lcc-color--form-requiredFieldAsterisk: #{clr(warning, light)};
   --lcc-color--form-requiredFieldText: #{clr(grayscale, black-15)};
+
+  --lcc-color--formErrorIcon: #{clr(warning, lighter)};
 
   --lcc-color--gameArchivesPage-activeButtonBackground: #{clr(primary, lighter)};
   --lcc-color--gameArchivesPage-activeButtonBoxShadow: #{clr(grayscale, white-85, 0.7)};

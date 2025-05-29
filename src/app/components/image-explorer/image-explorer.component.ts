@@ -52,7 +52,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
   ngOnInit(): void {
     this.store.dispatch(ImagesActions.fetchImageThumbnailsRequested());
     this.images$ = this.store
-      .select(ImagesSelectors.selectThumbnailImages)
+      .select(ImagesSelectors.selectAllImages)
       .pipe(untilDestroyed(this));
   }
 
@@ -98,11 +98,9 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
       filename: '',
       fileSize: 0,
       caption: '',
-      articleAppearances: 0,
       albums: [],
       coverForAlbum: null,
       modificationInfo: MOCK_MODIFICATION_INFOS[1],
-      presignedUrl: '',
     }));
   }
 }

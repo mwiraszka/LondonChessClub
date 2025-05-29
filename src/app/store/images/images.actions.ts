@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 import type { Id, Image, ImageEditFormData, LccError } from '@app/models';
+import { BaseImage } from '@app/models/image.model';
 
 export const fetchImageThumbnailsRequested = createAction(
   '[Images] Fetch image thumbnails requested',
@@ -55,7 +56,7 @@ export const updateImageRequested = createAction(
 );
 export const updateImageSucceeded = createAction(
   '[Images] Update image succeeded',
-  props<{ image: Image }>(),
+  props<{ baseImage: BaseImage }>(),
 );
 export const updateImageFailed = createAction(
   '[Images] Update image failed',

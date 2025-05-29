@@ -24,7 +24,6 @@ export const imagesReducer = createReducer(
 
   on(
     ImagesActions.fetchImageThumbnailsSucceeded,
-    ImagesActions.addImagesSucceeded,
     (state, { images }): ImagesState =>
       imagesAdapter.upsertMany(
         images.map(image => ({
@@ -37,12 +36,23 @@ export const imagesReducer = createReducer(
 
   on(
     ImagesActions.fetchImageSucceeded,
-    ImagesActions.updateImageSucceeded,
     (state, { image }): ImagesState =>
       imagesAdapter.upsertOne(
         {
           image,
           formData: { ...pick(image, IMAGE_EDIT_FORM_DATA_PROPERTIES), newAlbum: '' },
+        },
+        state,
+      ),
+  ),
+
+  on(
+    ImagesActions.updateImageSucceeded,
+    (state, { baseImage }): ImagesState =>
+      imagesAdapter.upsertOne(
+        {
+          image: baseImage,
+          formData: { ...pick(baseImage, IMAGE_EDIT_FORM_DATA_PROPERTIES), newAlbum: '' },
         },
         state,
       ),

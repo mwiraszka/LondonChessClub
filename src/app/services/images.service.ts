@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import type { ApiResponse, DbCollection, Id, Image } from '@app/models';
+import { BaseImage } from '@app/models/image.model';
 
 import { environment } from '@env';
 
@@ -28,18 +29,18 @@ export class ImagesService {
 
   public addImage(
     imageFormData: FormData,
-    caption: string,
+    baseImage: BaseImage,
   ): Observable<ApiResponse<Image>> {
     return this.http.post<ApiResponse<Image>>(`${this.API_BASE_URL}/${this.COLLECTION}`, {
       imageFormData,
-      caption,
+      baseImage,
     });
   }
 
-  public updateImage(image: Omit<Image, 'presignedUrl'>): Observable<ApiResponse<Id>> {
+  public updateImage(baseImage: BaseImage): Observable<ApiResponse<Id>> {
     return this.http.put<ApiResponse<Id>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}/${image.id}`,
-      image,
+      `${this.API_BASE_URL}/${this.COLLECTION}/${baseImage.id}`,
+      baseImage,
     );
   }
 

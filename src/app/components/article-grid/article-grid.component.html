@@ -23,10 +23,10 @@
 
         @defer {
           <img
-            class="article-thumbnail-image"
-            [src]="getArticleThumbnailImageUrl(article.bannerImageId, vm.thumbnailImages)"
-            default="assets/image-placeholder.png"
-            alt="Article banner image" />
+            class="article-banner-image"
+            [alt]="'Article banner image'"
+            [src]="getArticleBannerImagePresignedUrl(article.bannerImageId, vm.images)"
+            default="assets/image-placeholder.png" />
         } @placeholder (minimum 0.5s) {
           <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
             <div class="lcc-content-placeholder"></div>

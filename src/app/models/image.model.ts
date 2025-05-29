@@ -3,22 +3,26 @@ import { FormControl } from '@angular/forms';
 import { Id, Url } from './core.model';
 import { ModificationInfo } from './modification-info.model';
 
-export interface Image {
+export interface BaseImage {
   id: Id;
   filename: string;
   fileSize: number;
   caption: string;
-  presignedUrl: Url;
   albums: string[];
   coverForAlbum: string | null;
   modificationInfo: ModificationInfo;
+}
+
+export interface Image extends BaseImage {
+  originalPresignedUrl?: Url;
+  thumbnailPresignedUrl?: Url;
   articleAppearances?: number;
 }
 
 export const IMAGE_EDIT_FORM_DATA_PROPERTIES = ['caption', 'albums'] as const;
 
 export type ImageEditFormData = Pick<
-  Image,
+  BaseImage,
   (typeof IMAGE_EDIT_FORM_DATA_PROPERTIES)[number]
 > & { newAlbum: string };
 

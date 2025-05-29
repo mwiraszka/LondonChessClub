@@ -56,7 +56,7 @@ export class ArticleGridComponent implements OnInit {
 
   public viewModel$?: Observable<{
     articles: Article[];
-    thumbnailImages: Image[];
+    images: Image[];
     isAdmin: boolean;
   }>;
 
@@ -77,24 +77,23 @@ export class ArticleGridComponent implements OnInit {
 
     this.viewModel$ = combineLatest([
       this.store.select(ArticlesSelectors.selectAllArticles),
-      this.store.select(ImagesSelectors.selectThumbnailImages),
+      this.store.select(ImagesSelectors.selectAllImages),
       this.store.select(AuthSelectors.selectIsAdmin),
     ]).pipe(
-      map(([articles, thumbnailImages, isAdmin]) => ({
+      map(([articles, images, isAdmin]) => ({
         articles,
-        thumbnailImages,
+        images,
         isAdmin,
       })),
     );
   }
 
-  public getArticleThumbnailImageUrl(
+  public getArticleBannerImagePresignedUrl(
     imageId: Id | null,
     thumbnailImages: Image[],
   ): Url | null {
-    return (
-      thumbnailImages.find(image => image.id === `${imageId}-thumb`)?.presignedUrl ?? null
-    );
+    const image = thumbnailImages.find(image => image.id === imageId);
+    return image?.thumbnailPresignedUrl ?? image?.originalPresignedUrl ?? null;
   }
 
   public getAdminControlsConfig(article: Article): AdminControlsConfig {

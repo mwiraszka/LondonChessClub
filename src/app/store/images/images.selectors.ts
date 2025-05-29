@@ -16,10 +16,6 @@ export const selectAllImages = createSelector(selectAllImageEntities, allImageEn
   allImageEntities.map(entity => entity?.image),
 );
 
-export const selectThumbnailImages = createSelector(selectAllImages, allImages =>
-  allImages.filter(image => image?.id.endsWith('-thumb')),
-);
-
 export const selectImageById = (id: Id) =>
   createSelector(selectAllImages, allImages =>
     allImages ? (allImages.find(image => image.id === id) ?? null) : null,

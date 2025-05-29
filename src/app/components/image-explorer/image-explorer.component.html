@@ -5,8 +5,9 @@
     (click)="dialogResult.emit(image.id)">
     @defer {
       <img
-        [src]="image.presignedUrl"
-        [alt]="image.caption" />
+        [alt]="image.caption"
+        [src]="image.thumbnailPresignedUrl ?? image.originalPresignedUrl"
+        default="assets/image-placeholder.png" />
 
       <div class="caption">
         <label>Caption:</label>

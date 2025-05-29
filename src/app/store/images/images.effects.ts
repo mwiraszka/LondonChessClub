@@ -8,6 +8,7 @@ import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { Image, LccError } from '@app/models';
+import { BaseImage } from '@app/models/image.model';
 import { ImagesService, LoaderService } from '@app/services';
 import { dataUrlToFile, isDefined } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
@@ -61,35 +62,35 @@ export class ImagesEffects {
     );
   });
 
-  addImages$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ImagesActions.addImagesRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ images }) => {
-        // TODO: update for multiple image upload
-        const imageFile = dataUrlToFile(images[0].presignedUrl, images[0].filename);
+  // addImages$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(ImagesActions.addImagesRequested),
+  //     tap(() => this.loaderService.setIsLoading(true)),
+  //     switchMap(({ images }) => {
+  //       // TODO: update for multiple image upload
+  //       const imageFile = dataUrlToFile(images[0].presignedUrl, images[0].filename);
 
-        if (!imageFile) {
-          const error: LccError = {
-            name: 'LCCError',
-            message: 'Unable to construct file object from image data URL.',
-          };
-          return of(ImagesActions.addImagesFailed({ error }));
-        }
+  //       if (!imageFile) {
+  //         const error: LccError = {
+  //           name: 'LCCError',
+  //           message: 'Unable to construct file object from image data URL.',
+  //         };
+  //         return of(ImagesActions.addImagesFailed({ error }));
+  //       }
 
-        const imageFormData = new FormData();
-        imageFormData.append('imageFile', imageFile);
+  //       const imageFormData = new FormData();
+  //       imageFormData.append('imageFile', imageFile);
 
-        return this.imagesService.addImage(imageFormData, images[0].caption).pipe(
-          map(response => ImagesActions.addImagesSucceeded({ images: [response.data] })),
-          catchError(error =>
-            of(ImagesActions.addImagesFailed({ error: parseError(error) })),
-          ),
-        );
-      }),
-      tap(() => this.loaderService.setIsLoading(false)),
-    );
-  });
+  //       return this.imagesService.addImage(imageFormData, images[0].caption).pipe(
+  //         map(response => ImagesActions.addImagesSucceeded({ images: [response.data] })),
+  //         catchError(error =>
+  //           of(ImagesActions.addImagesFailed({ error: parseError(error) })),
+  //         ),
+  //       );
+  //     }),
+  //     tap(() => this.loaderService.setIsLoading(false)),
+  //   );
+  // });
 
   updateImage$ = createEffect(() => {
     return this.actions$.pipe(
@@ -105,7 +106,7 @@ export class ImagesEffects {
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
       switchMap(([, image, formData, user]) => {
-        const updatedImage: Omit<Image, 'presignedUrl'> = {
+        const updatedImage: BaseImage = {
           id: image.id,
           filename: image.filename,
           fileSize: image.fileSize,
@@ -123,11 +124,7 @@ export class ImagesEffects {
 
         return this.imagesService.updateImage(updatedImage).pipe(
           filter(response => response.data === image.id),
-          map(() =>
-            ImagesActions.updateImageSucceeded({
-              image: { ...updatedImage, presignedUrl: image.presignedUrl },
-            }),
-          ),
+          map(() => ImagesActions.updateImageSucceeded({ baseImage: updatedImage })),
           catchError(error =>
             of(
               ImagesActions.updateImageFailed({

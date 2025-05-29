@@ -8,6 +8,7 @@ const navPaths = [
   'news',
   'article',
   'image',
+  'album',
   'city-champion',
   'photo-gallery',
   'game-archives',

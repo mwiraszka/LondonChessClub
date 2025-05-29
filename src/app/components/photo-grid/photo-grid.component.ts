@@ -5,14 +5,15 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
-import { Image, InternalLink } from '@app/models';
+import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
+import { AdminControlsConfig, Image, InternalLink } from '@app/models';
 import { DialogService } from '@app/services';
 
 @Component({
   selector: 'lcc-photo-grid',
   templateUrl: './photo-grid.component.html',
   styleUrl: './photo-grid.component.scss',
-  imports: [CommonModule, LinkListComponent],
+  imports: [AdminControlsDirective, CommonModule, LinkListComponent],
 })
 export class PhotoGridComponent implements OnInit {
   @Input({ required: true }) public isAdmin!: boolean;
@@ -47,6 +48,17 @@ export class PhotoGridComponent implements OnInit {
         isAdmin: this.isAdmin,
       },
     });
+  }
+
+  public getAdminControlsConfig(album: string): AdminControlsConfig {
+    return {
+      buttonSize: 26,
+      deleteCb: () => {},
+      editPath: ['album', 'edit', album],
+      editInNewTab: true,
+      isDeleteDisabled: true,
+      itemName: album,
+    };
   }
 
   public getThumbnailPath(filename: string): string {

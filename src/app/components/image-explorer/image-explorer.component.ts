@@ -72,7 +72,6 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
       return;
     }
 
-    const mainImageId = image.id.split('-')[0];
     const dialog: Dialog = {
       title: 'Delete image',
       body: `Delete ${image.filename}?`,

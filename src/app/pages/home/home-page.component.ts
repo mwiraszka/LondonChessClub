@@ -12,10 +12,12 @@ import { ClubLinksComponent } from '@app/components/club-links/club-links.compon
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
 import { ScheduleComponent } from '@app/components/schedule/schedule.component';
-import type { Event, InternalLink } from '@app/models';
+import type { Article, Event, Image, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
+import { ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
 import { EventsSelectors } from '@app/store/events';
+import { ImagesSelectors } from '@app/store/images';
 
 @UntilDestroy()
 @Component({
@@ -34,6 +36,8 @@ import { EventsSelectors } from '@app/store/events';
 })
 export class HomePageComponent implements OnInit {
   public viewModel$?: Observable<{
+    allArticles: Article[];
+    articleImages: Image[];
     allEvents: Event[];
     isAdmin: boolean;
     nextEvent: Event | null;
@@ -74,6 +78,8 @@ export class HomePageComponent implements OnInit {
     this.setArticleCountBasedOnScreenWidth();
 
     this.viewModel$ = combineLatest([
+      this.store.select(ArticlesSelectors.selectAllArticles),
+      this.store.select(ImagesSelectors.selectArticleImages),
       this.store.select(EventsSelectors.selectAllEvents),
       this.store.select(AuthSelectors.selectIsAdmin),
       this.store.select(EventsSelectors.selectNextEvent),
@@ -81,13 +87,25 @@ export class HomePageComponent implements OnInit {
       this.store.select(EventsSelectors.selectUpcomingEvents),
     ]).pipe(
       untilDestroyed(this),
-      map(([allEvents, isAdmin, nextEvent, showPastEvents, upcomingEvents]) => ({
-        allEvents,
-        isAdmin,
-        nextEvent,
-        showPastEvents,
-        upcomingEvents,
-      })),
+      map(
+        ([
+          allArticles,
+          articleImages,
+          allEvents,
+          isAdmin,
+          nextEvent,
+          showPastEvents,
+          upcomingEvents,
+        ]) => ({
+          allArticles,
+          articleImages,
+          allEvents,
+          isAdmin,
+          nextEvent,
+          showPastEvents,
+          upcomingEvents,
+        }),
+      ),
     );
   }
 

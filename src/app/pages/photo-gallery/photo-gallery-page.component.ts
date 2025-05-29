@@ -22,9 +22,7 @@ import { AuthSelectors } from '@app/store/auth';
         title="Photo Gallery"
         icon="camera">
       </lcc-page-header>
-
       <lcc-photo-grid [isAdmin]="vm.isAdmin"></lcc-photo-grid>
-
       <lcc-link-list
         header="More photos (soon to be migrated here)"
         [links]="links"

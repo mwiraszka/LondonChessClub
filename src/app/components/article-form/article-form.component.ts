@@ -148,7 +148,7 @@ export class ArticleFormComponent implements OnInit {
   }
 
   public onRevertImage(): void {
-    this.form.patchValue({ bannerImageId: this.originalArticle?.bannerImageId });
+    this.form.patchValue({ bannerImageId: this.originalArticle?.bannerImageId ?? '' });
   }
 
   public onCancel(): void {
@@ -200,7 +200,7 @@ export class ArticleFormComponent implements OnInit {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
-      bannerImageId: new FormControl(formData.bannerImageId),
+      bannerImageId: new FormControl(formData.bannerImageId, { nonNullable: true }),
     });
   }
 

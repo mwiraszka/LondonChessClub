@@ -7,7 +7,7 @@ export interface Article {
   id: Id;
   title: string;
   body: string;
-  bannerImageId: Id | null;
+  bannerImageId: Id;
   bookmarkDate: IsoDate | null;
   modificationInfo: ModificationInfo;
 }

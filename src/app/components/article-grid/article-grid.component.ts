@@ -1,5 +1,4 @@
 import { Store } from '@ngrx/store';
-import { Observable, combineLatest, map } from 'rxjs';
 
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
@@ -18,7 +17,6 @@ import type {
   Id,
   Image,
   InternalLink,
-  Url,
 } from '@app/models';
 import {
   FormatDatePipe,
@@ -28,9 +26,8 @@ import {
   WasEditedPipe,
 } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import { AuthSelectors } from '@app/store/auth';
-import { ImagesActions, ImagesSelectors } from '@app/store/images';
+import { ArticlesActions } from '@app/store/articles';
+import { ImagesActions } from '@app/store/images';
 import { isDefined } from '@app/utils';
 
 @Component({
@@ -52,13 +49,11 @@ import { isDefined } from '@app/utils';
   ],
 })
 export class ArticleGridComponent implements OnInit {
-  @Input() public maxArticles?: number;
+  @Input({ required: true }) articles!: Article[];
+  @Input({ required: true }) articleImages!: Image[];
+  @Input({ required: true }) isAdmin!: boolean;
 
-  public viewModel$?: Observable<{
-    articles: Article[];
-    images: Image[];
-    isAdmin: boolean;
-  }>;
+  @Input() public maxArticles?: number;
 
   public readonly createArticleLink: InternalLink = {
     internalPath: ['article', 'add'],
@@ -74,26 +69,10 @@ export class ArticleGridComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(ArticlesActions.fetchArticlesRequested());
     this.store.dispatch(ImagesActions.fetchImageThumbnailsRequested());
-
-    this.viewModel$ = combineLatest([
-      this.store.select(ArticlesSelectors.selectAllArticles),
-      this.store.select(ImagesSelectors.selectAllImages),
-      this.store.select(AuthSelectors.selectIsAdmin),
-    ]).pipe(
-      map(([articles, images, isAdmin]) => ({
-        articles,
-        images,
-        isAdmin,
-      })),
-    );
   }
 
-  public getArticleBannerImagePresignedUrl(
-    imageId: Id | null,
-    thumbnailImages: Image[],
-  ): Url | null {
-    const image = thumbnailImages.find(image => image.id === imageId);
-    return image?.thumbnailPresignedUrl ?? image?.originalPresignedUrl ?? null;
+  public getBannerImage(imageId: Id): Image | null {
+    return this.articleImages.find(image => image.id === imageId) ?? null;
   }
 
   public getAdminControlsConfig(article: Article): AdminControlsConfig {

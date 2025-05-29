@@ -54,6 +54,10 @@ export const selectAllExistingAlbums = createSelector(selectAllImages, allImages
   return [...new Set(allAlbums)].sort();
 });
 
+export const selectArticleImages = createSelector(selectAllImages, allImages => {
+  return allImages.filter(image => (image?.articleAppearances ?? 0) > 0);
+});
+
 export const selectImageByArticleId = (articleId: Id | null) =>
   createSelector(
     selectAllImages,

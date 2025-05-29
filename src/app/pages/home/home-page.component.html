@@ -38,7 +38,12 @@
   <article class="articles">
     <section>
       <h4>Latest news</h4>
-      <lcc-article-grid [maxArticles]="maxArticles"></lcc-article-grid>
+      <lcc-article-grid
+        [articles]="vm.allArticles"
+        [articleImages]="vm.articleImages"
+        [isAdmin]="vm.isAdmin"
+        [maxArticles]="maxArticles">
+      </lcc-article-grid>
     </section>
     <lcc-link-list [links]="[newsLink]"></lcc-link-list>
   </article>

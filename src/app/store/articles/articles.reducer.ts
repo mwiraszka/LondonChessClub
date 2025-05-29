@@ -14,7 +14,7 @@ import * as ArticlesActions from './articles.actions';
 export const INITIAL_ARTICLE_FORM_DATA: ArticleFormData = {
   title: '',
   body: '',
-  bannerImageId: null,
+  bannerImageId: '',
 };
 
 export interface ArticlesState

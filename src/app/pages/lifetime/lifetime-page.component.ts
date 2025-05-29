@@ -12,7 +12,7 @@ import { MetaAndTitleService } from '@app/services';
   imports: [CommonModule, IconsModule, PageHeaderComponent],
 })
 export class LifetimePageComponent implements OnInit {
-  public portraitPath = 'assets/lifetime-achievement-award-recipients/';
+  public imagePath = 'assets/lifetime-achievement-awards/';
 
   constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
 

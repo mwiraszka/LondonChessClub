@@ -1,17 +1,6 @@
 @if (isAdmin) {
-  <lcc-link-list [links]="[addImagesLink]"></lcc-link-list>
-  <span class="temp">...coming soon 😊</span>
+  <lcc-link-list [links]="[addImageLink]"></lcc-link-list>
 }
-<!-- <label
-      class="upload-new-image-button lcc-secondary-button"
-      type="button"
-      tooltip="Upload new image">
-      <input
-        type="file"
-        accept="image/*"
-        (change)="onUploadNewImages($event)" />
-      <i-feather name="upload"></i-feather>
-    </label> -->
 
 <section class="photos">
   @for (

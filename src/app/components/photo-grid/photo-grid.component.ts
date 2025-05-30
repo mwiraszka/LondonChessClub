@@ -22,9 +22,9 @@ export class PhotoGridComponent implements OnInit {
   public readonly images = images;
   public albumCoverImages: Image[] = [];
 
-  public readonly addImagesLink: InternalLink = {
-    internalPath: 'photo-gallery',
-    text: 'Add images',
+  public readonly addImageLink: InternalLink = {
+    internalPath: ['image', 'add'],
+    text: 'Add an image',
     icon: 'plus-circle',
   };
 

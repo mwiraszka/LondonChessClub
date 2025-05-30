@@ -11,14 +11,30 @@ import { AuthActions, AuthSelectors } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { ImagesActions } from '@app/store/images';
 import { MembersActions } from '@app/store/members';
+import { NavActions } from '@app/store/nav';
 
 import { environment } from '@env';
 
-import * as NotificationsActions from './notifications.actions';
+import { NotificationsActions } from '.';
 
 @Injectable()
 export class NotificationsEffects {
   // TODO: Streamline toast flow with a generalized Notification Service
+
+  //#region Navigation
+  addPageAccessDeniedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(NavActions.pageAccessDenied),
+      map(({ pageTitle }) => {
+        const toast: Toast = {
+          title: 'Access denied',
+          message: `Please log in as admin to access ${pageTitle} page`,
+          type: 'info',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
 
   //#region Articles
   addPublishArticleSucceededToast$ = createEffect(() => {
@@ -28,7 +44,7 @@ export class NotificationsEffects {
         const toast: Toast = {
           title: 'New article',
           message: `Successfully published ${article.title} and updated database`,
-          type: 'success',
+          type: 'info',
         };
         return NotificationsActions.toastAdded({ toast });
       }),

@@ -23,7 +23,7 @@ export class UnsavedChangesGuard implements CanDeactivate<EditorPage> {
 
     const dialog: Dialog = {
       title: 'Unsaved changes',
-      body: `Are you sure you want to leave? Any unsaved changes to the ${component.entityName} will be lost.`,
+      body: `Are you sure you want to leave? Any unsaved changes to the ${component.entity} will be lost.`,
       confirmButtonText: 'Leave',
     };
 

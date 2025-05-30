@@ -83,57 +83,6 @@ export class ArticleFormComponent implements OnInit {
     }
   }
 
-  // public onUploadNewImage(event: Event): void {
-  //   const fileInputElement = event.target as HTMLInputElement;
-  //   const file = fileInputElement.files?.length ? fileInputElement.files[0] : null;
-
-  //   if (!file) {
-  //     return;
-  //   }
-
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(file);
-
-  //   reader.onload = () => {
-  //     const dataUrl = reader.result as Url;
-  //     const sanitizedFilename =
-  //       file.name
-  //         .substring(0, file.name.lastIndexOf('.'))
-  //         .replaceAll(/[^a-zA-Z0-9-_]/g, '') +
-  //       file.name.substring(file.name.lastIndexOf('.'));
-
-  //     const imageFile = dataUrlToFile(dataUrl, sanitizedFilename);
-
-  //     if (!imageFile) {
-  //       const error: LccError = {
-  //         name: 'LCCError',
-  //         message: 'Unable to load image file.',
-  //       };
-  //       this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));
-  //       return;
-  //     }
-
-  //     if (imageFile.size > 4_194_304) {
-  //       const error: LccError = {
-  //         name: 'LCCError',
-  //         message: `Image file must be under 4 MB. Selected image was ${formatBytes(imageFile.size)} after conversion.`,
-  //       };
-  //       this.store.dispatch(ArticlesActions.bannerImageFileLoadFailed({ error }));
-  //       return;
-  //     }
-
-  //     this.form.patchValue({
-  //       id: null,
-  //       filename: imageFile.name,
-  //       fileSize: imageFile.size,
-  //       presignedUrl: dataUrl,
-  //       caption: imageFile.name.substring(0, imageFile.name.lastIndexOf('.')),
-  //     });
-  //   };
-
-  //   fileInputElement.value = '';
-  // }
-
   public async onOpenImageExplorer(): Promise<void> {
     const thumbnailImageId = await this.dialogService.open<ImageExplorerComponent, Id>({
       componentType: ImageExplorerComponent,

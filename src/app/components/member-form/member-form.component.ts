@@ -81,7 +81,7 @@ export class MemberFormComponent implements OnInit {
     }
 
     const dialog: Dialog = {
-      title: this.originalMember ? 'Update member' : 'Add member',
+      title: 'Confirm',
       body: this.originalMember
         ? `Update ${this.originalMember.firstName} ${this.originalMember.lastName}?`
         : `Add ${this.formData.firstName} ${this.formData.lastName}?`,

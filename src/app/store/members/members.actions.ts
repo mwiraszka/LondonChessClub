@@ -25,7 +25,7 @@ export const fetchMemberFailed = createAction(
   props<{ error: LccError }>(),
 );
 
-export const createAMemberSelected = createAction('[Members] Create a member selected');
+export const addAMemberSelected = createAction('[Members] Add a member selected');
 
 export const tableHeaderSelected = createAction(
   '[Members] Table header selected',

@@ -10,13 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { MemberFormComponent } from '@app/components/member-form/member-form.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import type {
-  EditorPage,
-  EntityName,
-  InternalLink,
-  Member,
-  MemberFormData,
-} from '@app/models';
+import type { EditorPage, InternalLink, Member, MemberFormData } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import { MembersSelectors } from '@app/store/members';
@@ -34,15 +28,15 @@ import { MembersSelectors } from '@app/store/members';
         [formData]="vm.formData"
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
         [isSafeMode]="vm.isSafeMode"
-        [originalMember]="vm.member">
+        [originalMember]="vm.originalMember">
       </lcc-member-form>
       <lcc-link-list [links]="links"></lcc-link-list>
     }
   `,
   imports: [CommonModule, LinkListComponent, MemberFormComponent, PageHeaderComponent],
 })
-export class MemberEditorPageComponent implements OnInit, EditorPage {
-  public readonly entityName: EntityName = 'member';
+export class MemberEditorPageComponent implements EditorPage, OnInit {
+  public readonly entity = 'member';
   public readonly links: InternalLink[] = [
     {
       text: 'See all members',
@@ -59,7 +53,7 @@ export class MemberEditorPageComponent implements OnInit, EditorPage {
     formData: MemberFormData;
     hasUnsavedChanges: boolean;
     isSafeMode: boolean;
-    member: Member | null;
+    originalMember: Member | null;
     pageTitle: string;
   }>;
 
@@ -81,13 +75,13 @@ export class MemberEditorPageComponent implements OnInit, EditorPage {
           this.store.select(AppSelectors.selectIsSafeMode),
         ]),
       ),
-      map(([member, formData, hasUnsavedChanges, isSafeMode]) => ({
-        member,
+      map(([originalMember, formData, hasUnsavedChanges, isSafeMode]) => ({
+        originalMember,
         formData,
         hasUnsavedChanges,
         isSafeMode,
-        pageTitle: member
-          ? `Edit ${member.firstName} ${member.lastName}`
+        pageTitle: originalMember
+          ? `Edit ${originalMember.firstName} ${originalMember.lastName}`
           : 'Add a member',
       })),
       tap(viewModel => {

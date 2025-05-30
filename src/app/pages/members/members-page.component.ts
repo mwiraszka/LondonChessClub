@@ -65,7 +65,7 @@ export class MembersPageComponent implements OnInit {
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Members');
     this.metaAndTitleService.updateDescription(
-      'Discover where you among other members of the London Chess Club!',
+      'Club ratings and other members information',
     );
 
     this.viewModel$ = combineLatest([

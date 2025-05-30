@@ -1,13 +1,26 @@
 @defer {
   <img
     class="image-preview"
-    [alt]="originalImage.caption"
-    [src]="originalImage.thumbnailPresignedUrl ?? originalImage.originalPresignedUrl"
+    [alt]="originalImage?.caption"
+    [src]="originalImage?.thumbnailPresignedUrl ?? originalImage?.originalPresignedUrl"
     default="assets/image-placeholder.png" />
 } @placeholder (minimum 0.5s) {
   <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
     <div class="lcc-content-placeholder"></div>
   </div>
+}
+
+@if (!originalImage) {
+  <label
+    class="upload-new-image-button lcc-secondary-button"
+    type="button"
+    tooltip="Upload new image">
+    <input
+      type="file"
+      accept="image/*"
+      (change)="onUploadNewImage($event)" />
+    <i-feather name="upload"></i-feather>
+  </label>
 }
 
 <form
@@ -71,7 +84,9 @@
 
   <hr />
 
-  <lcc-modification-info [info]="originalImage.modificationInfo"></lcc-modification-info>
+  @if (originalImage?.modificationInfo; as info) {
+    <lcc-modification-info [info]="info"></lcc-modification-info>
+  }
 
   <div class="lcc-form-buttons-container">
     <button

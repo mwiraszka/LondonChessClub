@@ -7,16 +7,10 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ImageEditFormComponent } from '@app/components/image-edit-form/image-edit-form.component';
+import { ImageFormComponent } from '@app/components/image-form/image-form.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import type {
-  EditorPage,
-  EntityName,
-  Image,
-  ImageFormData,
-  InternalLink,
-} from '@app/models';
+import type { EditorPage, Image, ImageFormData, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ImagesSelectors } from '@app/store/images';
 import { isDefined } from '@app/utils';
@@ -25,10 +19,10 @@ import { isDefined } from '@app/utils';
 @Component({
   selector: 'lcc-images-editor-page',
   templateUrl: './images-editor-page.component.html',
-  imports: [CommonModule, ImageEditFormComponent, LinkListComponent, PageHeaderComponent],
+  imports: [CommonModule, ImageFormComponent, LinkListComponent, PageHeaderComponent],
 })
-export class ImagesEditorPageComponent implements OnInit, EditorPage {
-  public readonly entityName: EntityName = 'images';
+export class ImagesEditorPageComponent implements EditorPage, OnInit {
+  public readonly entity = 'images';
   public readonly links: InternalLink[] = [
     {
       text: 'Go to Photo Gallery',

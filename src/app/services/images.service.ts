@@ -29,7 +29,7 @@ export class ImagesService {
 
   public addImage(
     imageFormData: FormData,
-    baseImage: BaseImage,
+    baseImage: Omit<BaseImage, 'id'> & { id: null },
   ): Observable<ApiResponse<Image>> {
     return this.http.post<ApiResponse<Image>>(`${this.API_BASE_URL}/${this.COLLECTION}`, {
       imageFormData,

@@ -2,10 +2,10 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import type { Id } from '@app/models';
+import { ArticlesSelectors } from '@app/store/articles';
 import { areSame } from '@app/utils';
 
-import { ArticlesSelectors } from '../articles';
-import { ImagesState, imagesAdapter } from './images.reducer';
+import { INITIAL_IMAGE_FORM_DATA, ImagesState, imagesAdapter } from './images.reducer';
 
 const selectImagesState = createFeatureSelector<ImagesState>('imagesState');
 
@@ -23,29 +23,28 @@ export const selectAllImages = createSelector(selectAllImageEntities, allImageEn
   allImageEntities.map(entity => entity?.image),
 );
 
-export const selectImageById = (id: Id) =>
-  createSelector(selectAllImages, allImages =>
-    allImages ? (allImages.find(image => image.id === id) ?? null) : null,
-  );
-
-export const selectImageFormDataById = (id: Id) =>
+export const selectImageById = (id: Id | null) =>
   createSelector(
-    selectAllImageEntities,
-    allImageEntities =>
-      allImageEntities.find(entity => entity.image.id === id)?.formData ?? null,
+    selectAllImages,
+    allImages => allImages.find(image => image.id === id) ?? null,
   );
 
-export const selectHasUnsavedChanges = (id: Id) =>
+export const selectImageFormDataById = (id: Id | null) =>
+  createSelector(
+    selectImagesState,
+    selectAllImageEntities,
+    (state, allImageEntities) =>
+      allImageEntities.find(entity => entity.image.id === id)?.formData ??
+      state.newImageFormData,
+  );
+
+export const selectHasUnsavedChanges = (id: Id | null) =>
   createSelector(
     selectImageById(id),
     selectImageFormDataById(id),
     (image, imageFormData) => {
-      if (!image || !imageFormData) {
-        return false;
-      }
-
       const formPropertiesOfOriginalImage = pick(
-        image,
+        image ?? INITIAL_IMAGE_FORM_DATA,
         Object.getOwnPropertyNames(imageFormData),
       );
 

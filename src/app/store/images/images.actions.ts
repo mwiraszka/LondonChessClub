@@ -28,6 +28,8 @@ export const fetchImageFailed = createAction(
   props<{ error: LccError }>(),
 );
 
+export const addAnImageSelected = createAction('[Images] Add an image selected');
+
 export const imageFileLoadSucceeded = createAction(
   '[Images] Image file load succeeded',
   props<{ numFiles: number }>(),
@@ -37,10 +39,7 @@ export const imageFileLoadFailed = createAction(
   props<{ error: LccError }>(),
 );
 
-export const addImageRequested = createAction(
-  '[Images] Add image requested',
-  props<{ baseImage: BaseImage; dataUrl: string }>(),
-);
+export const addImageRequested = createAction('[Images] Add image requested');
 export const addImageSucceeded = createAction(
   '[Images] Add image succeeded',
   props<{ image: Image }>(),
@@ -80,5 +79,10 @@ export const cancelSelected = createAction('[Images] Cancel selected');
 
 export const formValueChanged = createAction(
   '[Images] Form value changed',
-  props<{ imageId: Id; value: Partial<ImageFormData> }>(),
+  props<{ imageId: Id | null; value: Partial<ImageFormData> }>(),
+);
+
+export const imageFormDataCleared = createAction(
+  '[Images] Image form data cleared',
+  props<{ imageId: Id | null }>(),
 );

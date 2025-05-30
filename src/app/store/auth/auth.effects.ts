@@ -9,8 +9,7 @@ import { Injectable } from '@angular/core';
 import { AuthService, LoaderService } from '@app/services';
 import { parseError } from '@app/utils';
 
-import { AuthSelectors } from '.';
-import * as AuthActions from './auth.actions';
+import { AuthActions, AuthSelectors } from '.';
 
 @Injectable()
 export class AuthEffects {

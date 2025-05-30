@@ -14,7 +14,6 @@ import type {
   Article,
   ArticleFormData,
   EditorPage,
-  EntityName,
   Image,
   InternalLink,
 } from '@app/models';
@@ -35,15 +34,15 @@ import { ImagesSelectors } from '@app/store/images';
         [bannerImage]="vm.bannerImage"
         [formData]="vm.formData"
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
-        [originalArticle]="vm.article">
+        [originalArticle]="vm.originalArticle">
       </lcc-article-form>
       <lcc-link-list [links]="links"></lcc-link-list>
     }
   `,
   imports: [ArticleFormComponent, CommonModule, LinkListComponent, PageHeaderComponent],
 })
-export class ArticleEditorPageComponent implements OnInit, EditorPage {
-  public readonly entityName: EntityName = 'article';
+export class ArticleEditorPageComponent implements EditorPage, OnInit {
+  public readonly entity = 'article';
   public readonly links: InternalLink[] = [
     {
       text: 'See all articles',
@@ -57,10 +56,10 @@ export class ArticleEditorPageComponent implements OnInit, EditorPage {
     },
   ];
   public viewModel$?: Observable<{
-    article: Article | null;
+    bannerImage: Image | null;
     formData: ArticleFormData;
     hasUnsavedChanges: boolean;
-    bannerImage: Image | null;
+    originalArticle: Article | null;
     pageTitle: string;
   }>;
 
@@ -82,12 +81,14 @@ export class ArticleEditorPageComponent implements OnInit, EditorPage {
           this.store.select(ImagesSelectors.selectImageByArticleId(articleId)),
         ]),
       ),
-      map(([article, formData, hasUnsavedChanges, bannerImage]) => ({
-        article,
+      map(([originalArticle, formData, hasUnsavedChanges, bannerImage]) => ({
+        originalArticle,
         formData,
         hasUnsavedChanges,
         bannerImage,
-        pageTitle: article ? `Edit ${article.title}` : 'Compose an article',
+        pageTitle: originalArticle
+          ? `Edit ${originalArticle.title}`
+          : 'Compose an article',
       })),
       tap(viewModel => {
         this.metaAndTitleService.updateTitle(viewModel.pageTitle);

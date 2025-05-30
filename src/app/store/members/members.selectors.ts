@@ -22,9 +22,8 @@ export const selectAllMembers = createSelector(
 
 export const selectMemberById = (id: Id | null) =>
   createSelector(
-    selectAllMemberEntities,
-    allMemberEntities =>
-      allMemberEntities.find(entity => entity.member.id === id)?.member ?? null,
+    selectAllMembers,
+    allMembers => allMembers.find(member => member.id === id) ?? null,
   );
 
 export const selectMemberFormDataById = (id: Id | null) =>

@@ -19,12 +19,17 @@ export interface Image extends BaseImage {
   articleAppearances?: number;
 }
 
-export const IMAGE_FORM_DATA_PROPERTIES = ['caption', 'albums'] as const;
+export const IMAGE_FORM_DATA_PROPERTIES = [
+  'filename',
+  'fileSize',
+  'caption',
+  'albums',
+] as const;
 
 export type ImageFormData = Pick<
   BaseImage,
   (typeof IMAGE_FORM_DATA_PROPERTIES)[number]
-> & { newAlbum: string };
+> & { newAlbum: string; dataUrl: Url };
 
 export type ImageFormGroup = {
   [Property in keyof ImageFormData]: FormControl<ImageFormData[Property]>;

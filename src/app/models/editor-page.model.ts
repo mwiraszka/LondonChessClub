@@ -1,9 +1,7 @@
 import { Observable } from 'rxjs';
 
-export type EntityName = 'article' | 'event' | 'image' | 'images' | 'member';
-
 export interface EditorPage {
-  entityName: EntityName;
+  entity: 'article' | 'event' | 'image' | 'images' | 'member' | 'members';
   viewModel$?: Observable<{
     hasUnsavedChanges: boolean;
   }>;

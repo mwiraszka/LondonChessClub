@@ -29,12 +29,12 @@
   </form> -->
 
   @for (entity of vm.albumImageEntities; track entity.image.id) {
-    <lcc-image-edit-form
+    <lcc-image-form
       [existingAlbums]="vm.existingAlbums"
       [formData]="entity.formData"
       [hasUnsavedChanges]="false"
       [originalImage]="entity.image">
-    </lcc-image-edit-form>
+    </lcc-image-form>
   }
 
   <lcc-link-list [links]="links"></lcc-link-list>

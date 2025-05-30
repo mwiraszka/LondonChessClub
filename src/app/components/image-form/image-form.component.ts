@@ -23,10 +23,13 @@ import type {
   Image,
   ImageFormData,
   ImageFormGroup,
+  LccError,
+  Url,
 } from '@app/models';
 import { DialogService } from '@app/services';
 import { ArticlesActions } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
+import { dataUrlToFile, formatBytes } from '@app/utils';
 import {
   imageCaptionValidator,
   oneAlbumMinimumValidator,
@@ -35,9 +38,9 @@ import {
 
 @UntilDestroy()
 @Component({
-  selector: 'lcc-image-edit-form',
-  templateUrl: './image-edit-form.component.html',
-  styleUrl: './image-edit-form.component.scss',
+  selector: 'lcc-image-form',
+  templateUrl: './image-form.component.html',
+  styleUrl: './image-form.component.scss',
   imports: [
     CommonModule,
     FormErrorIconComponent,
@@ -47,11 +50,11 @@ import {
     ReactiveFormsModule,
   ],
 })
-export class ImageEditFormComponent implements OnInit {
+export class ImageFormComponent implements OnInit {
   @Input({ required: true }) existingAlbums!: string[];
   @Input({ required: true }) formData!: ImageFormData;
   @Input({ required: true }) hasUnsavedChanges!: boolean;
-  @Input({ required: true }) originalImage!: Image;
+  @Input({ required: true }) originalImage!: Image | null;
 
   public form!: FormGroup<ImageFormGroup>;
 
@@ -80,53 +83,50 @@ export class ImageEditFormComponent implements OnInit {
     this.form.controls.albums.markAsDirty();
   }
 
-  // public onUploadNewImages(event: Event): void {
-  //   const fileInputElement = event.target as HTMLInputElement;
-  //   const file = fileInputElement.files?.length ? fileInputElement.files[0] : null;
+  public onUploadNewImage(event: Event): void {
+    const fileInputElement = event.target as HTMLInputElement;
+    const file = fileInputElement.files?.length ? fileInputElement.files[0] : null;
 
-  //   if (!file) {
-  //     return;
-  //   }
+    if (!file) {
+      return;
+    }
 
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(file);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
 
-  //   reader.onload = () => {
-  //     const dataUrl = reader.result as Url;
-  //     const sanitizedFilename =
-  //       file.name
-  //         .substring(0, file.name.lastIndexOf('.'))
-  //         .replaceAll(/[^a-zA-Z0-9-_]/g, '') +
-  //       file.name.substring(file.name.lastIndexOf('.'));
+    reader.onload = () => {
+      const dataUrl = reader.result as Url;
+      const sanitizedFilename =
+        file.name
+          .substring(0, file.name.lastIndexOf('.'))
+          .replaceAll(/[^a-zA-Z0-9-_]/g, '') +
+        file.name.substring(file.name.lastIndexOf('.'));
 
-  //     const imageFile = dataUrlToFile(dataUrl, sanitizedFilename);
+      const imageFile = dataUrlToFile(dataUrl, sanitizedFilename);
 
-  //     if (!imageFile) {
-  //       const error: LccError = {
-  //         name: 'LCCError',
-  //         message: 'Unable to load image file.',
-  //       };
-  //       this.store.dispatch(ImagesActions.imageFileLoadFailed({ error }));
-  //       return;
-  //     }
+      if (!imageFile) {
+        const error: LccError = {
+          name: 'LCCError',
+          message: 'Unable to load image file.',
+        };
+        this.store.dispatch(ImagesActions.imageFileLoadFailed({ error }));
+        return;
+      }
 
-  //     if (imageFile.size > 4_194_304) {
-  //       const error: LccError = {
-  //         name: 'LCCError',
-  //         message: `Image file must be under 4 MB. Selected image was ${formatBytes(imageFile.size)} after conversion.`,
-  //       };
-  //       this.store.dispatch(ImagesActions.imageFileLoadFailed({ error }));
-  //       return;
-  //     }
+      if (imageFile.size > 4_194_304) {
+        const error: LccError = {
+          name: 'LCCError',
+          message: `Image file must be under 4 MB. Selected image was ${formatBytes(imageFile.size)} after conversion.`,
+        };
+        this.store.dispatch(ImagesActions.imageFileLoadFailed({ error }));
+        return;
+      }
 
-  //     this.form.patchValue({
-  //       filename: imageFile.name,
-  //       caption: imageFile.name.substring(0, imageFile.name.lastIndexOf('.')),
-  //     });
-  //   };
+      console.log(':: imageFile', imageFile);
+    };
 
-  //   fileInputElement.value = '';
-  // }
+    fileInputElement.value = '';
+  }
 
   public onCancel(): void {
     this.store.dispatch(ArticlesActions.cancelSelected());
@@ -139,29 +139,43 @@ export class ImageEditFormComponent implements OnInit {
     }
 
     const dialog: Dialog = {
-      title: 'Confirm update',
-      body: `Update ${this.originalImage.filename}?`,
-      confirmButtonText: 'Update',
+      title: 'Confirm',
+      body: this.originalImage
+        ? `Update ${this.originalImage.filename}?`
+        : `Add ${this.formData.filename}`,
+      confirmButtonText: this.originalImage ? 'Update' : 'Add',
     };
 
     const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(
       {
         componentType: BasicDialogComponent,
-        isModal: false,
         inputs: { dialog },
+        isModal: false,
       },
     );
 
-    if (result === 'confirm') {
+    if (result !== 'confirm') {
+      return;
+    }
+
+    if (this.originalImage) {
       this.store.dispatch(
         ImagesActions.updateImageRequested({ imageId: this.originalImage.id }),
       );
+    } else {
+      this.store.dispatch(ImagesActions.addImageRequested());
     }
   }
 
   private initForm(formData: ImageFormData): void {
     this.form = this.formBuilder.group<ImageFormGroup>(
       {
+        filename: new FormControl(formData.filename, {
+          nonNullable: true,
+        }),
+        fileSize: new FormControl(formData.fileSize, {
+          nonNullable: true,
+        }),
         caption: new FormControl(formData.caption, {
           nonNullable: true,
           validators: [Validators.required, imageCaptionValidator],
@@ -175,6 +189,9 @@ export class ImageEditFormComponent implements OnInit {
             Validators.pattern(/[^\s]/),
             uniqueAlbumValidator(this.existingAlbums),
           ],
+        }),
+        dataUrl: new FormControl(formData.dataUrl, {
+          nonNullable: true,
         }),
       },
       {
@@ -193,7 +210,10 @@ export class ImageEditFormComponent implements OnInit {
         );
 
         this.store.dispatch(
-          ImagesActions.formValueChanged({ imageId: this.originalImage.id, value }),
+          ImagesActions.formValueChanged({
+            imageId: this.originalImage?.id ?? null,
+            value,
+          }),
         );
       });
 

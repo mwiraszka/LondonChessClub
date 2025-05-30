@@ -65,8 +65,12 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.addImageRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ baseImage, dataUrl }) => {
-        const imageFile = dataUrlToFile(dataUrl, baseImage.filename);
+      concatLatestFrom(() => [
+        this.store.select(ImagesSelectors.selectImageFormDataById(null)),
+        this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
+      ]),
+      switchMap(([, formData, user]) => {
+        const imageFile = dataUrlToFile(formData.dataUrl, formData.filename);
 
         if (!imageFile) {
           const error: LccError = {
@@ -78,6 +82,18 @@ export class ImagesEffects {
 
         const imageFormData = new FormData();
         imageFormData.append('imageFile', imageFile);
+
+        const baseImage: Omit<BaseImage, 'id'> & { id: null } = {
+          id: null,
+          coverForAlbum: null,
+          ...formData,
+          modificationInfo: {
+            createdBy: `${user.firstName} ${user.lastName}`,
+            dateCreated: moment().toISOString(),
+            lastEditedBy: `${user.firstName} ${user.lastName}`,
+            dateLastEdited: moment().toISOString(),
+          },
+        };
 
         return this.imagesService.addImage(imageFormData, baseImage).pipe(
           map(response => ImagesActions.addImageSucceeded({ image: response.data })),

@@ -25,7 +25,7 @@ export const fetchEventFailed = createAction(
   props<{ error: LccError }>(),
 );
 
-export const createAnEventSelected = createAction('[Events] Create an event selected');
+export const addAnEventSelected = createAction('[Events] Add an event selected');
 
 export const addEventRequested = createAction('[Events] Add event requested');
 export const addEventSucceeded = createAction(

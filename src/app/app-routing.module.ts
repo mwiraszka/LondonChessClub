@@ -67,6 +67,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'images',
+    loadChildren: () =>
+      import('./pages/images/images-page-routing.module').then(
+        m => m.ImagesPageRoutingModule,
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'city-champion',
     loadChildren: () =>
       import('./pages/champion/champion-page-routing.module').then(

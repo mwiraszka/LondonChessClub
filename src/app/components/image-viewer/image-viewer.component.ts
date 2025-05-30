@@ -80,6 +80,7 @@ export class ImageViewerComponent implements AfterViewInit, DialogOutput<null> {
       editPath: ['image', 'edit', image.id],
       editInNewTab: true,
       isDeleteDisabled: !!image?.articleAppearances,
+      deleteDisabledReason: 'Image cannot be deleted while it is used in an article',
       itemName: image.filename,
     };
   }

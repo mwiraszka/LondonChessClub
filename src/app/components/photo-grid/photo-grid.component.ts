@@ -52,11 +52,11 @@ export class PhotoGridComponent implements OnInit {
 
   public getAdminControlsConfig(album: string): AdminControlsConfig {
     return {
-      buttonSize: 26,
+      buttonSize: 34,
       deleteCb: () => {},
-      editPath: ['album', 'edit', album],
-      editInNewTab: true,
+      editPath: ['images', 'edit', album],
       isDeleteDisabled: true,
+      deleteDisabledReason: 'Album deletion currently unavailable',
       itemName: album,
     };
   }

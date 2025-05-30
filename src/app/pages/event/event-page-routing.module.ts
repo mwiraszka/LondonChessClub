@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@app/guards/auth.guard';
 import { UnsavedChangesGuard } from '@app/guards/unsaved-changes.guard';
 
-import { EventEditorPageComponent } from './event-editor/event-editor-page.component';
+import { EventEditorPageComponent } from './event-editor-page.component';
 
 const routes: Routes = [
   {

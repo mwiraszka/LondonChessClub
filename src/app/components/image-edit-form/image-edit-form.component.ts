@@ -21,8 +21,8 @@ import type {
   BasicDialogResult,
   Dialog,
   Image,
-  ImageEditFormData,
-  ImageEditFormGroup,
+  ImageFormData,
+  ImageFormGroup,
 } from '@app/models';
 import { DialogService } from '@app/services';
 import { ArticlesActions } from '@app/store/articles';
@@ -49,11 +49,11 @@ import {
 })
 export class ImageEditFormComponent implements OnInit {
   @Input({ required: true }) existingAlbums!: string[];
-  @Input({ required: true }) formData!: ImageEditFormData;
+  @Input({ required: true }) formData!: ImageFormData;
   @Input({ required: true }) hasUnsavedChanges!: boolean;
   @Input({ required: true }) originalImage!: Image;
 
-  public form!: FormGroup<ImageEditFormGroup>;
+  public form!: FormGroup<ImageFormGroup>;
 
   constructor(
     private readonly dialogService: DialogService,
@@ -159,8 +159,8 @@ export class ImageEditFormComponent implements OnInit {
     }
   }
 
-  private initForm(formData: ImageEditFormData): void {
-    this.form = this.formBuilder.group<ImageEditFormGroup>(
+  private initForm(formData: ImageFormData): void {
+    this.form = this.formBuilder.group<ImageFormGroup>(
       {
         caption: new FormControl(formData.caption, {
           nonNullable: true,
@@ -186,7 +186,7 @@ export class ImageEditFormComponent implements OnInit {
   private initFormValueChangeListener(): void {
     this.form.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
-      .subscribe((value: Partial<ImageEditFormData>) => {
+      .subscribe((value: Partial<ImageFormData>) => {
         // Manually transfer error to inner control to benefit from common error message handling
         this.form.controls.albums.setErrors(
           this.form.hasError('albumRequired') ? { albumRequired: true } : null,

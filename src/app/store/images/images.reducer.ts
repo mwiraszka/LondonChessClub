@@ -2,22 +2,30 @@ import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
-import { IMAGE_EDIT_FORM_DATA_PROPERTIES, Image, ImageEditFormData } from '@app/models';
+import { IMAGE_FORM_DATA_PROPERTIES, Image, ImageFormData } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as ImagesActions from './images.actions';
 
-export type ImagesState = EntityState<{ image: Image; formData: ImageEditFormData }>;
+export const INITIAL_IMAGE_FORM_DATA: ImageFormData = {
+  caption: '',
+  albums: [],
+  newAlbum: '',
+};
+
+export type ImagesState = EntityState<{ image: Image; formData: ImageFormData }>;
 
 export const imagesAdapter = createEntityAdapter<{
   image: Image;
-  formData: ImageEditFormData;
+  formData: ImageFormData;
 }>({
   selectId: ({ image }) => image.id,
   sortComparer: (a, b) => customSort(a, b, 'image.modificationInfo.dateCreated', true),
 });
 
-export const initialState: ImagesState = imagesAdapter.getInitialState({});
+export const initialState: ImagesState = imagesAdapter.getInitialState({
+  newImageFormData: INITIAL_IMAGE_FORM_DATA,
+});
 
 export const imagesReducer = createReducer(
   initialState,
@@ -28,7 +36,7 @@ export const imagesReducer = createReducer(
       imagesAdapter.upsertMany(
         images.map(image => ({
           image,
-          formData: { caption: image.caption, albums: image.albums, newAlbum: '' },
+          formData: { ...pick(image, IMAGE_FORM_DATA_PROPERTIES), newAlbum: '' },
         })),
         state,
       ),
@@ -40,9 +48,21 @@ export const imagesReducer = createReducer(
       imagesAdapter.upsertOne(
         {
           image,
-          formData: { ...pick(image, IMAGE_EDIT_FORM_DATA_PROPERTIES), newAlbum: '' },
+          formData: { ...pick(image, IMAGE_FORM_DATA_PROPERTIES), newAlbum: '' },
         },
         state,
+      ),
+  ),
+
+  on(
+    ImagesActions.addImageSucceeded,
+    (state, { image }): ImagesState =>
+      imagesAdapter.upsertOne(
+        {
+          image,
+          formData: { ...pick(image, IMAGE_FORM_DATA_PROPERTIES), newAlbum: '' },
+        },
+        { ...state, newImageFormData: INITIAL_IMAGE_FORM_DATA },
       ),
   ),
 
@@ -52,7 +72,7 @@ export const imagesReducer = createReducer(
       imagesAdapter.upsertOne(
         {
           image: baseImage,
-          formData: { ...pick(baseImage, IMAGE_EDIT_FORM_DATA_PROPERTIES), newAlbum: '' },
+          formData: { ...pick(baseImage, IMAGE_FORM_DATA_PROPERTIES), newAlbum: '' },
         },
         state,
       ),

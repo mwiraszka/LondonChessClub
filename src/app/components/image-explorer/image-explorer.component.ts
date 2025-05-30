@@ -63,6 +63,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
       editPath: ['image', 'edit', image.id.split('-')[0]],
       editInNewTab: true,
       isDeleteDisabled: !!image?.articleAppearances,
+      deleteDisabledReason: 'Image cannot be delete while it is used in an article',
       itemName: image.filename,
     };
   }

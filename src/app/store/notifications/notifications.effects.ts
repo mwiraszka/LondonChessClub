@@ -259,11 +259,11 @@ export class NotificationsEffects {
   // #region Images
   addAddImageSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.addImagesSucceeded),
-      map(({ images }) => {
+      ofType(ImagesActions.addImageSucceeded),
+      map(({ image }) => {
         const toast: Toast = {
-          title: 'Add images',
-          message: `Successfully added ${images.length} images to storage`,
+          title: 'Add image',
+          message: `Successfully uploaded ${image.filename}`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -271,12 +271,12 @@ export class NotificationsEffects {
     );
   });
 
-  addAddImagesFailedToast$ = createEffect(() => {
+  addAddImageFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.addImagesFailed),
+      ofType(ImagesActions.addImageFailed),
       map(({ error }) => {
         const toast: Toast = {
-          title: 'Add images',
+          title: 'Add image',
           message: this.getErrorMessage(error),
           type: 'warning',
         };
@@ -291,7 +291,7 @@ export class NotificationsEffects {
       map(({ imageFilename }) => {
         const toast: Toast = {
           title: 'Image deletion',
-          message: `Successfully deleted image ${imageFilename} from storage`,
+          message: `Successfully deleted image ${imageFilename}`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -634,7 +634,7 @@ export class NotificationsEffects {
           EventsActions.deleteEventFailed,
           EventsActions.fetchEventsFailed,
           EventsActions.fetchEventFailed,
-          ImagesActions.addImagesFailed,
+          ImagesActions.addImageFailed,
           ImagesActions.deleteImageFailed,
           ImagesActions.fetchImageFailed,
           ImagesActions.fetchImageThumbnailsFailed,

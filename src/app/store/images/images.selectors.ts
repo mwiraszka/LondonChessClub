@@ -12,6 +12,13 @@ const selectImagesState = createFeatureSelector<ImagesState>('imagesState');
 const { selectAll: selectAllImageEntities } =
   imagesAdapter.getSelectors(selectImagesState);
 
+export const selectImageEntitiesByAlbum = (album: string | null) =>
+  createSelector(selectAllImageEntities, allImageEntities => {
+    return album
+      ? allImageEntities.filter(entity => entity.image.albums.includes(album))
+      : null;
+  });
+
 export const selectAllImages = createSelector(selectAllImageEntities, allImageEntities =>
   allImageEntities.map(entity => entity?.image),
 );
@@ -37,15 +44,12 @@ export const selectHasUnsavedChanges = (id: Id) =>
         return false;
       }
 
-      const formPropertiesOfOriginalArticle = pick(
+      const formPropertiesOfOriginalImage = pick(
         image,
         Object.getOwnPropertyNames(imageFormData),
       );
 
-      return !areSame(
-        { ...formPropertiesOfOriginalArticle, newAlbum: '' },
-        imageFormData,
-      );
+      return !areSame({ ...formPropertiesOfOriginalImage, newAlbum: '' }, imageFormData);
     },
   );
 
@@ -53,6 +57,15 @@ export const selectAllExistingAlbums = createSelector(selectAllImages, allImages
   const allAlbums = allImages.flatMap(image => image.albums || []);
   return [...new Set(allAlbums)].sort();
 });
+
+export const selectImagesByAlbum = (album: string | null) =>
+  createSelector(selectAllImages, allImages => {
+    if (!album) {
+      return null;
+    }
+
+    return allImages.filter(image => image.albums.includes(album)) ?? [];
+  });
 
 export const selectArticleImages = createSelector(selectAllImages, allImages => {
   return allImages.filter(image => (image?.articleAppearances ?? 0) > 0);

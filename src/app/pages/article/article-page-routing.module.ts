@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@app/guards/auth.guard';
 import { UnsavedChangesGuard } from '@app/guards/unsaved-changes.guard';
 
-import { ArticleEditorPageComponent } from './article-editor/article-editor-page.component';
-import { ArticleViewerPageComponent } from './article-viewer/article-viewer-page.component';
+import { ArticleEditorPageComponent } from './article-editor-page.component';
+import { ArticleViewerPageComponent } from './article-viewer-page.component';
 
 const routes: Routes = [
   {

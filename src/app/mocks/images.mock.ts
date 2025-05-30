@@ -7,7 +7,7 @@ export const MOCK_IMAGES: Image[] = [
     fileSize: 123456,
     caption: 'Image 1',
     articleAppearances: 1,
-    presignedUrl: 'https://example.com/image1.jpg',
+    thumbnailPresignedUrl: 'https://example.com/image1-thumb.jpg',
     albums: [],
     coverForAlbum: null,
     modificationInfo: {
@@ -23,7 +23,8 @@ export const MOCK_IMAGES: Image[] = [
     fileSize: 234567,
     caption: 'Image 2',
     articleAppearances: 2,
-    presignedUrl: 'https://example.com/image2.jpg',
+    originalPresignedUrl: 'https://example.com/image2.jpg',
+    thumbnailPresignedUrl: 'https://example.com/image2-thumb.jpg',
     albums: [],
     coverForAlbum: null,
     modificationInfo: {

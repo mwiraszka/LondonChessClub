@@ -1,0 +1,41 @@
+@if (viewModel$ | async; as vm) {
+  <lcc-page-header
+    [hasUnsavedChanges]="vm.hasUnsavedChanges"
+    [title]="vm.pageTitle">
+  </lcc-page-header>
+
+  <div class="temp">
+    {{ vm.album }}
+  </div>
+
+  <!-- <form
+    class="lcc-form"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()">
+    <div class="lcc-form-fields">
+      <label
+        for="caption-input"
+        class="lcc-required-field">
+        Album name:
+      </label>
+      <input
+        id="album-name-input"
+        type="text"
+        name="album-name"
+        formControlName="albumName"
+        maxlength="120" />
+      <lcc-form-error-icon [control]="form.controls.caption"></lcc-form-error-icon>
+    </div>
+  </form> -->
+
+  @for (entity of vm.albumImageEntities; track entity.image.id) {
+    <lcc-image-edit-form
+      [existingAlbums]="vm.existingAlbums"
+      [formData]="entity.formData"
+      [hasUnsavedChanges]="false"
+      [originalImage]="entity.image">
+    </lcc-image-edit-form>
+  }
+
+  <lcc-link-list [links]="links"></lcc-link-list>
+}

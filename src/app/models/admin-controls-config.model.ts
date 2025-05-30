@@ -8,6 +8,7 @@ export interface AdminControlsConfig {
   editInNewTab?: boolean;
   deleteCb: () => void;
   isDeleteDisabled?: boolean;
+  deleteDisabledReason?: string;
   itemName?: string;
   bookmarked?: boolean;
 }

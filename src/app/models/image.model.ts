@@ -19,13 +19,13 @@ export interface Image extends BaseImage {
   articleAppearances?: number;
 }
 
-export const IMAGE_EDIT_FORM_DATA_PROPERTIES = ['caption', 'albums'] as const;
+export const IMAGE_FORM_DATA_PROPERTIES = ['caption', 'albums'] as const;
 
-export type ImageEditFormData = Pick<
+export type ImageFormData = Pick<
   BaseImage,
-  (typeof IMAGE_EDIT_FORM_DATA_PROPERTIES)[number]
+  (typeof IMAGE_FORM_DATA_PROPERTIES)[number]
 > & { newAlbum: string };
 
-export type ImageEditFormGroup = {
-  [Property in keyof ImageEditFormData]: FormControl<ImageEditFormData[Property]>;
+export type ImageFormGroup = {
+  [Property in keyof ImageFormData]: FormControl<ImageFormData[Property]>;
 };

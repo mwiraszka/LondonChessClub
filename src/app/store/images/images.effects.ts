@@ -70,7 +70,7 @@ export class ImagesEffects {
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
       switchMap(([, formData, user]) => {
-        const file = dataUrlToFile(formData.url, formData.filename);
+        const file = dataUrlToFile(formData.dataUrl, formData.filename);
 
         if (!file) {
           const error: LccError = {

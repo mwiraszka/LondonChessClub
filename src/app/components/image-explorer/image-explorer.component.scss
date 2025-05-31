@@ -22,13 +22,14 @@
     img,
     .loading-placeholder-image {
       aspect-ratio: 3 / 2;
-      border-radius: var(--lcc-borderRadius--large);
+      object-fit: contain;
       width: 100%;
+      border-radius: var(--lcc-borderRadius--large);
     }
 
     .caption,
     .filename,
-    .thumbnail-file-size,
+    .file-size,
     .upload-date,
     .article-appearances {
       font-size: 12px;

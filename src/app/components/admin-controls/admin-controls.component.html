@@ -14,11 +14,12 @@
 @if (config.editPath) {
   <a
     class="admin-control-button edit-button"
+    [class.disabled]="config.isEditDisabled"
     [ngStyle]="{ 'width.px': config.buttonSize, 'height.px': config.buttonSize }"
     [tooltip]="editTooltipContent"
     [rel]="config.editInNewTab ? 'noopener noreferrer' : undefined"
     [target]="config.editInNewTab ? '_blank' : undefined"
-    [routerLink]="config.editPath | routerLink">
+    [routerLink]="config.isEditDisabled ? undefined : (config.editPath | routerLink)">
     <i-feather
       name="edit"
       class="edit-icon">
@@ -44,8 +45,12 @@
 </ng-template>
 
 <ng-template #editTooltipContent>
-  <span>Edit</span>
-  <i class="tooltip-item-name">{{ config.itemName }}</i>
+  @if (config.isEditDisabled) {
+    <i>{{ config.editDisabledReason }}</i>
+  } @else {
+    <span>Edit</span>
+    <i class="tooltip-item-name">{{ config.itemName }}</i>
+  }
 </ng-template>
 
 <ng-template #deleteTooltipContent>

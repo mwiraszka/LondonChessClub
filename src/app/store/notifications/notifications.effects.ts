@@ -44,8 +44,8 @@ export class NotificationsEffects {
       map(({ article }) => {
         const toast: Toast = {
           title: 'New article',
-          message: `Successfully published ${article.title} and updated database`,
-          type: 'info',
+          message: `Successfully published ${article.title}`,
+          type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
       }),
@@ -162,7 +162,7 @@ export class NotificationsEffects {
       map(({ event }) => {
         const toast: Toast = {
           title: 'New event',
-          message: `Successfully added ${event.title} to the database`,
+          message: `Successfully added ${event.title}`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -336,7 +336,7 @@ export class NotificationsEffects {
       map(({ imageFilename }) => {
         const toast: Toast = {
           title: 'Image deletion',
-          message: `Successfully deleted image ${imageFilename}`,
+          message: `Successfully deleted ${imageFilename}`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -440,7 +440,7 @@ export class NotificationsEffects {
       map(({ member }) => {
         const toast: Toast = {
           title: 'New member',
-          message: `Successfully added ${member.firstName} ${member.lastName} to the database`,
+          message: `Successfully added ${member.firstName} ${member.lastName}`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });

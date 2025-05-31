@@ -9,31 +9,37 @@
   background-color: var(--lcc-color--form-background);
   border-radius: var(--lcc-borderRadius--small);
 
-  textarea {
-    height: 320px;
-  }
-
-  .banner-image,
-  .loading-placeholder-image {
-    aspect-ratio: 3 / 2;
-    object-fit: cover;
-    width: 100%;
-    border-radius: var(--lcc-borderRadius--large);
-    max-width: 800px;
-  }
-
-  .image-controls-container {
+  .image-section-container {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-flow: row wrap;
+    flex-direction: row;
     gap: 8px;
 
-    button {
-      padding: 0;
-      height: 40px;
-      min-width: 40px;
+    .banner-image,
+    .loading-placeholder-image {
+      background-color: black;
+      aspect-ratio: 3 / 2;
+      object-fit: contain;
+      width: 100%;
+      border-radius: var(--lcc-borderRadius--large);
+      max-width: 320px;
     }
+
+    .image-controls-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-self: flex-end;
+
+      button {
+        padding: 0;
+        height: 40px;
+        min-width: 40px;
+      }
+    }
+  }
+
+  textarea {
+    height: 320px;
   }
 
   .preview-section-container {

@@ -54,11 +54,11 @@ lcc-link-list,
       background: var(--lcc-color--articleGrid-cardBackgroundOnHover);
     }
 
-    .article-thumbnail-image,
+    .article-banner-image,
     .loading-placeholder-image {
       aspect-ratio: 3 / 2;
+      object-fit: contain;
       width: 100%;
-      object-fit: cover;
       border-radius: var(--lcc-borderRadius--large);
     }
 

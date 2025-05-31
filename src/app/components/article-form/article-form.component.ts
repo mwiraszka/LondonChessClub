@@ -141,6 +141,10 @@ export class ArticleFormComponent implements OnInit {
 
   private initForm(formData: ArticleFormData): void {
     this.form = this.formBuilder.group<ArticleFormGroup>({
+      bannerImageId: new FormControl(formData.bannerImageId, {
+        nonNullable: true,
+        validators: Validators.required,
+      }),
       title: new FormControl(formData.title, {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
@@ -149,7 +153,6 @@ export class ArticleFormComponent implements OnInit {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
-      bannerImageId: new FormControl(formData.bannerImageId, { nonNullable: true }),
     });
   }
 

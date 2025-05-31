@@ -17,7 +17,8 @@
       height: 100%;
     }
 
-    &:disabled {
+    &:disabled,
+    &.disabled {
       cursor: default !important;
       border-color: var(--lcc-color--adminControls-disabledButtonBorder) !important;
       background-color: var(

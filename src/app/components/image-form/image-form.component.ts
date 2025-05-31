@@ -123,10 +123,8 @@ export class ImageFormComponent implements OnInit {
         );
       }
 
-      console.log(':: imageFile', imageFile);
-
       this.form.patchValue({
-        url: dataUrl,
+        dataUrl,
         filename: imageFile.name,
         caption: imageFile.name.substring(0, file.name.lastIndexOf('.')),
       });
@@ -179,6 +177,11 @@ export class ImageFormComponent implements OnInit {
       {
         filename: new FormControl(formData.filename, {
           nonNullable: true,
+          validators: Validators.required,
+        }),
+        dataUrl: new FormControl(formData.dataUrl, {
+          nonNullable: true,
+          validators: Validators.required,
         }),
         caption: new FormControl(formData.caption, {
           nonNullable: true,
@@ -193,9 +196,6 @@ export class ImageFormComponent implements OnInit {
             Validators.pattern(/[^\s]/),
             uniqueAlbumValidator(this.existingAlbums),
           ],
-        }),
-        url: new FormControl(formData.url, {
-          nonNullable: true,
         }),
       },
       {

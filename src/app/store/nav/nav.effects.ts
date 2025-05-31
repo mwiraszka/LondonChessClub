@@ -95,7 +95,11 @@ export class NavEffects {
 
   navigateToPhotoGallery$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ImagesActions.updateImageSucceeded),
+      ofType(
+        ImagesActions.cancelSelected,
+        ImagesActions.addImageSucceeded,
+        ImagesActions.updateImageSucceeded,
+      ),
       map(() => NavActions.navigationRequested({ path: 'photo-gallery' })),
     ),
   );

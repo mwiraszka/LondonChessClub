@@ -55,8 +55,10 @@ export class PhotoGridComponent implements OnInit {
       buttonSize: 34,
       deleteCb: () => {},
       editPath: ['images', 'edit', album],
+      isEditDisabled: true,
       isDeleteDisabled: true,
-      deleteDisabledReason: 'Album deletion currently unavailable',
+      editDisabledReason: 'Album controls currently unavailable... coming soon 😊',
+      deleteDisabledReason: 'Album controls currently unavailable... coming soon 😊',
       itemName: album,
     };
   }

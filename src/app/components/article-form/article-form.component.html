@@ -1,39 +1,42 @@
-@defer {
-  <img
-    class="banner-image"
-    [alt]="bannerImage?.caption ?? 'Article banner image'"
-    [src]="bannerImage?.originalPresignedUrl ?? bannerImage?.thumbnailPresignedUrl"
-    default="assets/image-placeholder.png" />
-} @placeholder (minimum 0.5s) {
-  <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
-    <div class="lcc-content-placeholder"></div>
-  </div>
-}
-
 <form
   class="lcc-form"
   [formGroup]="form"
   (ngSubmit)="onSubmit()">
   <div class="lcc-form-fields">
     <label class="lcc-required-field">Banner Image:</label>
-
-    <div class="image-controls-container">
-      <button
-        class="image-explorer-button lcc-secondary-button"
-        type="button"
-        tooltip="Open Image Explorer"
-        (click)="onOpenImageExplorer()">
-        <i-feather name="image"></i-feather>
-      </button>
-      <button
-        class="revert-button lcc-secondary-button"
-        type="button"
-        tooltip="Revert to original image"
-        [disabled]="originalArticle?.bannerImageId === form.controls.bannerImageId.value"
-        (click)="onRevertImage()">
-        <i-feather name="rotate-ccw"></i-feather>
-      </button>
+    <div class="image-section-container">
+      @defer {
+        <img
+          class="banner-image"
+          [alt]="bannerImage?.caption ?? 'Article banner image'"
+          [src]="bannerImage?.originalPresignedUrl ?? bannerImage?.thumbnailPresignedUrl"
+          default="assets/image-placeholder.png" />
+      } @placeholder (minimum 0.5s) {
+        <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
+          <div class="lcc-content-placeholder"></div>
+        </div>
+      }
+      <div class="image-controls-container">
+        <button
+          class="image-explorer-button lcc-secondary-button"
+          type="button"
+          tooltip="Open Image Explorer"
+          (click)="onOpenImageExplorer()">
+          <i-feather name="image"></i-feather>
+        </button>
+        <button
+          class="revert-button lcc-secondary-button"
+          type="button"
+          tooltip="Revert to original image"
+          [disabled]="
+            originalArticle?.bannerImageId === form.controls.bannerImageId.value
+          "
+          (click)="onRevertImage()">
+          <i-feather name="rotate-ccw"></i-feather>
+        </button>
+      </div>
     </div>
+    <lcc-form-error-icon [control]="form.controls.bannerImageId"></lcc-form-error-icon>
 
     <label
       for="title-input"

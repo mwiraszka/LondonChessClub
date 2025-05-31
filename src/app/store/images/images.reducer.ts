@@ -12,7 +12,7 @@ export const INITIAL_IMAGE_FORM_DATA: ImageFormData = {
   caption: '',
   albums: [],
   newAlbum: '',
-  url: '',
+  dataUrl: '',
 };
 
 export interface ImagesState
@@ -44,7 +44,7 @@ export const imagesReducer = createReducer(
           formData: {
             ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
             newAlbum: '',
-            url: '',
+            dataUrl: '',
           },
         })),
         state,
@@ -60,7 +60,7 @@ export const imagesReducer = createReducer(
           formData: {
             ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
             newAlbum: '',
-            url: '',
+            dataUrl: '',
           },
         },
         state,
@@ -76,7 +76,7 @@ export const imagesReducer = createReducer(
           formData: {
             ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
             newAlbum: '',
-            url: '',
+            dataUrl: '',
           },
         },
         { ...state, newImageFormData: INITIAL_IMAGE_FORM_DATA },
@@ -92,7 +92,7 @@ export const imagesReducer = createReducer(
           formData: {
             ...pick(baseImage, IMAGE_FORM_DATA_PROPERTIES),
             newAlbum: '',
-            url: '',
+            dataUrl: '',
           },
         },
         state,

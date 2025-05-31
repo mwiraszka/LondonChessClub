@@ -20,7 +20,7 @@ export const selectEventById = (id: Id | null) =>
   createSelector(
     selectAllEventEntities,
     allEventEntities =>
-      allEventEntities.find(entity => entity.event.id === id)?.event ?? null,
+      allEventEntities?.find(entity => entity.event.id === id)?.event ?? null,
   );
 
 export const selectEventFormDataById = (id: Id | null) =>
@@ -47,7 +47,7 @@ export const selectHasUnsavedChanges = (id: Id | null) =>
   );
 
 export const selectUpcomingEvents = createSelector(selectAllEvents, allEvents =>
-  allEvents.filter(event => moment(event.eventDate).add(3, 'hours').isAfter(moment())),
+  allEvents?.filter(event => moment(event.eventDate).add(3, 'hours').isAfter(moment())),
 );
 
 export const selectNextEvent = createSelector(selectUpcomingEvents, upcomingEvents =>

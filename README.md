@@ -33,6 +33,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.2.1 - May 31st, 2025</summary>
+
+- 🐛 Bug fixes
+
+</details>
+
+<details>
 <summary>v5.2.0 - May 31st, 2025</summary>
 
 - 🚀 Allow multiple articles, events, members, and images to be viewed & edited simultaneously in multiple tabs

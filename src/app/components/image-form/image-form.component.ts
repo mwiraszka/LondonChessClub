@@ -126,7 +126,9 @@ export class ImageFormComponent implements OnInit {
       this.form.patchValue({
         dataUrl,
         filename: imageFile.name,
-        caption: imageFile.name.substring(0, file.name.lastIndexOf('.')),
+        caption:
+          this.form.value.caption ||
+          imageFile.name.substring(0, file.name.lastIndexOf('.')),
       });
     };
 

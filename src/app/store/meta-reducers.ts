@@ -25,30 +25,6 @@ export interface MetaState {
   routerState?: RouterState;
 }
 
-function cleanLocalStorage(): void {
-  const oldKeys = ['articles', 'auth', 'members', 'nav', 'schedule', 'user-settings'];
-  oldKeys.forEach(key => localStorage.removeItem(key));
-
-  const entityKeys = ['articlesState', 'eventsState', 'imagesState', 'membersState'];
-  entityKeys.forEach(key => {
-    const item = localStorage.getItem(key);
-    if (item !== null) {
-      const parsedItem = JSON.parse(item);
-      if (parsedItem.entities && Object.keys(parsedItem.entities).length === 0) {
-        localStorage.removeItem(key);
-      } else if (parsedItem.entities) {
-        const updatedItem = { ...parsedItem };
-        for (const entityKey of Object.keys(updatedItem.entities)) {
-          if (Object.keys(updatedItem.entities[entityKey]).length === 0) {
-            delete updatedItem.entities[entityKey];
-          }
-        }
-        localStorage.setItem(key, JSON.stringify(updatedItem));
-      }
-    }
-  });
-}
-
 function clearStaleLocalStorageMetaReducer(
   reducer: ActionReducer<MetaState>,
 ): ActionReducer<MetaState> {
@@ -56,9 +32,21 @@ function clearStaleLocalStorageMetaReducer(
 
   return (state, action) => {
     if (!hasRun) {
-      cleanLocalStorage();
+      const oldKeys = ['articles', 'auth', 'members', 'nav', 'schedule', 'user-settings'];
+      oldKeys.forEach(key => localStorage.removeItem(key));
+
+      const entityKeys = ['articlesState', 'eventsState', 'imagesState', 'membersState'];
+      entityKeys.forEach(key => {
+        const storedValue = localStorage.getItem(key);
+        if (
+          storedValue &&
+          (JSON.parse(storedValue).controlMode || JSON.parse(storedValue).id)
+        ) {
+          localStorage.removeItem(key);
+        }
+      });
       hasRun = true;
-      console.info('[LCC] Cleaned stale data from local storage.');
+      console.info('[LCC] Cleared stale data from local storage.');
     }
 
     return reducer(state, action);

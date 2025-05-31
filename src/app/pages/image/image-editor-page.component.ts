@@ -30,25 +30,18 @@ import { isDefined } from '@app/utils';
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
         [originalImage]="vm.originalImage">
       </lcc-image-form>
-      <lcc-link-list [links]="links"></lcc-link-list>
+      <lcc-link-list [links]="[photoGalleryPageLink]"></lcc-link-list>
     }
   `,
   imports: [CommonModule, ImageFormComponent, LinkListComponent, PageHeaderComponent],
 })
 export class ImageEditorPageComponent implements EditorPage, OnInit {
   public readonly entity = 'image';
-  public readonly links: InternalLink[] = [
-    {
-      text: 'Go to Photo Gallery',
-      internalPath: 'photo-gallery',
-      icon: 'camera',
-    },
-    {
-      text: 'Return home',
-      internalPath: '',
-      icon: 'home',
-    },
-  ];
+  public readonly photoGalleryPageLink: InternalLink = {
+    text: 'Go to Photo Gallery',
+    internalPath: 'photo-gallery',
+    icon: 'camera',
+  };
   public viewModel$?: Observable<{
     existingAlbums: string[];
     formData: ImageFormData;

@@ -36,25 +36,18 @@ import { ImagesSelectors } from '@app/store/images';
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
         [originalArticle]="vm.originalArticle">
       </lcc-article-form>
-      <lcc-link-list [links]="links"></lcc-link-list>
+      <lcc-link-list [links]="[newsPageLink]"></lcc-link-list>
     }
   `,
   imports: [ArticleFormComponent, CommonModule, LinkListComponent, PageHeaderComponent],
 })
 export class ArticleEditorPageComponent implements EditorPage, OnInit {
   public readonly entity = 'article';
-  public readonly links: InternalLink[] = [
-    {
-      text: 'See all articles',
-      internalPath: 'news',
-      icon: 'map',
-    },
-    {
-      text: 'Return home',
-      internalPath: '',
-      icon: 'home',
-    },
-  ];
+  public readonly newsPageLink: InternalLink = {
+    text: 'See all articles',
+    internalPath: 'news',
+    icon: 'map',
+  };
   public viewModel$?: Observable<{
     bannerImage: Image | null;
     formData: ArticleFormData;

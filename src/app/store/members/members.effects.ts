@@ -63,8 +63,9 @@ export class MembersEffects {
       ]),
       switchMap(([, formData, user]) => {
         const member: Omit<Member, 'id'> & { id: null } = {
-          id: null,
           ...formData,
+          id: null,
+          peakRating: formData.rating,
           modificationInfo: {
             createdBy: `${user.firstName} ${user.lastName}`,
             dateCreated: moment().toISOString(),

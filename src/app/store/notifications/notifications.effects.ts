@@ -72,7 +72,7 @@ export class NotificationsEffects {
       map(({ originalArticleTitle }) => {
         const toast: Toast = {
           title: 'Article update',
-          message: `Successfully updated ${originalArticleTitle} in the database`,
+          message: `Successfully updated ${originalArticleTitle}`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -190,7 +190,7 @@ export class NotificationsEffects {
       map(({ originalEventTitle }) => {
         const toast: Toast = {
           title: 'Event update',
-          message: `Successfully updated ${originalEventTitle} in the database`,
+          message: `Successfully updated ${originalEventTitle}`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -294,6 +294,34 @@ export class NotificationsEffects {
       map(({ error }) => {
         const toast: Toast = {
           title: 'Add image',
+          message: this.getErrorMessage(error),
+          type: 'warning',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addUpdateImageSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.updateImageSucceeded),
+      map(({ baseImage }) => {
+        const toast: Toast = {
+          title: 'Image update',
+          message: `Successfully updated ${baseImage.filename}`,
+          type: 'success',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addUpdateImageFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.updateImageFailed),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Image update',
           message: this.getErrorMessage(error),
           type: 'warning',
         };
@@ -440,7 +468,7 @@ export class NotificationsEffects {
       map(({ originalMemberName }) => {
         const toast: Toast = {
           title: 'Member update',
-          message: `Successfully updated ${originalMemberName} in the database`,
+          message: `Successfully updated ${originalMemberName}`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -666,6 +694,7 @@ export class NotificationsEffects {
           EventsActions.fetchEventsFailed,
           EventsActions.fetchEventFailed,
           ImagesActions.addImageFailed,
+          ImagesActions.updateImageFailed,
           ImagesActions.deleteImageFailed,
           ImagesActions.fetchImageFailed,
           ImagesActions.fetchImageThumbnailsFailed,

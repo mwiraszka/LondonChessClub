@@ -62,8 +62,8 @@ export class ArticlesEffects {
       ]),
       switchMap(([, formData, user]) => {
         const article: Omit<Article, 'id'> & { id: null } = {
-          id: null,
           ...formData,
+          id: null,
           bookmarkDate: null,
           modificationInfo: {
             createdBy: `${user.firstName} ${user.lastName}`,

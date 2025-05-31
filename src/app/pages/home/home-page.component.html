@@ -14,7 +14,7 @@
         city champion</a
       >.
     </p>
-    <lcc-link-list [links]="[aboutLink]"></lcc-link-list>
+    <lcc-link-list [links]="[aboutPageLink]"></lcc-link-list>
     <lcc-club-links></lcc-club-links>
   </article>
 
@@ -32,7 +32,7 @@
         [upcomingEvents]="vm.upcomingEvents">
       </lcc-schedule>
     </section>
-    <lcc-link-list [links]="[scheduleLink]"></lcc-link-list>
+    <lcc-link-list [links]="[schedulePageLink]"></lcc-link-list>
   </article>
 
   <article class="articles">
@@ -45,7 +45,7 @@
         [maxArticles]="maxArticles">
       </lcc-article-grid>
     </section>
-    <lcc-link-list [links]="[newsLink]"></lcc-link-list>
+    <lcc-link-list [links]="[newsPageLink]"></lcc-link-list>
   </article>
 
   <article class="photos">
@@ -53,6 +53,6 @@
       [isAdmin]="vm.isAdmin"
       [maxAlbums]="10">
     </lcc-photo-grid>
-    <lcc-link-list [links]="[photoGalleryLink]"></lcc-link-list>
+    <lcc-link-list [links]="[photoGalleryPageLink]"></lcc-link-list>
   </article>
 }

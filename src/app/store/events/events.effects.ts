@@ -58,8 +58,8 @@ export class EventsEffects {
       ]),
       switchMap(([, formData, user]) => {
         const event: Omit<Event, 'id'> & { id: null } = {
-          id: null,
           ...formData,
+          id: null,
           modificationInfo: {
             createdBy: `${user.firstName} ${user.lastName}`,
             dateCreated: moment().toISOString(),

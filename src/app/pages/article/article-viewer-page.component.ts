@@ -37,30 +37,22 @@ import { isDefined } from '@app/utils';
         [article]="vm.article"
         [bannerImage]="vm.bannerImage">
       </lcc-article>
-      <lcc-link-list [links]="links"></lcc-link-list>
+      <lcc-link-list [links]="[newsPageLink]"></lcc-link-list>
     }
   `,
   imports: [AdminControlsDirective, ArticleComponent, CommonModule, LinkListComponent],
 })
 export class ArticleViewerPageComponent implements OnInit {
+  public readonly newsPageLink: InternalLink = {
+    text: 'More articles',
+    internalPath: 'news',
+    icon: 'map',
+  };
   public viewModel$?: Observable<{
     article: Article;
     bannerImage: Image | null;
     isAdmin: boolean;
   }>;
-
-  public readonly links: InternalLink[] = [
-    {
-      text: 'More articles',
-      internalPath: 'news',
-      icon: 'map',
-    },
-    {
-      text: 'Return home',
-      internalPath: '',
-      icon: 'home',
-    },
-  ];
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,

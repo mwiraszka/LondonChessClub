@@ -35,6 +35,23 @@ import { ImagesSelectors } from '@app/store/images';
   ],
 })
 export class HomePageComponent implements OnInit {
+  public readonly aboutPageLink: InternalLink = {
+    text: 'More about the London Chess Club',
+    internalPath: 'about',
+  };
+  public maxArticles!: number;
+  public readonly photoGalleryPageLink: InternalLink = {
+    text: 'More photos',
+    internalPath: 'photo-gallery',
+  };
+  public readonly newsPageLink: InternalLink = {
+    text: 'More news',
+    internalPath: 'news',
+  };
+  public readonly schedulePageLink: InternalLink = {
+    text: 'All scheduled events',
+    internalPath: 'schedule',
+  };
   public viewModel$?: Observable<{
     allArticles: Article[];
     articleImages: Image[];
@@ -44,24 +61,6 @@ export class HomePageComponent implements OnInit {
     showPastEvents: boolean;
     upcomingEvents: Event[];
   }>;
-
-  public readonly aboutLink: InternalLink = {
-    text: 'More about the London Chess Club',
-    internalPath: 'about',
-  };
-  public readonly scheduleLink: InternalLink = {
-    text: 'All scheduled events',
-    internalPath: 'schedule',
-  };
-  public readonly photoGalleryLink: InternalLink = {
-    text: 'More photos',
-    internalPath: 'photo-gallery',
-  };
-  public readonly newsLink: InternalLink = {
-    text: 'More news',
-    internalPath: 'news',
-  };
-  public maxArticles!: number;
 
   constructor(
     private readonly metaAndTitleService: MetaAndTitleService,

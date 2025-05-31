@@ -28,25 +28,18 @@ import { EventsSelectors } from '@app/store/events';
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
         [originalEvent]="vm.originalEvent">
       </lcc-event-form>
-      <lcc-link-list [links]="links"></lcc-link-list>
+      <lcc-link-list [links]="[schedulePageLink]"></lcc-link-list>
     }
   `,
   imports: [CommonModule, EventFormComponent, LinkListComponent, PageHeaderComponent],
 })
 export class EventEditorPageComponent implements EditorPage, OnInit {
   public readonly entity = 'event';
-  public readonly links: InternalLink[] = [
-    {
-      text: 'See all events',
-      internalPath: 'news',
-      icon: 'calendar',
-    },
-    {
-      text: 'Return home',
-      internalPath: '',
-      icon: 'home',
-    },
-  ];
+  public readonly schedulePageLink: InternalLink = {
+    text: 'See all events',
+    internalPath: 'schedule',
+    icon: 'calendar',
+  };
   public viewModel$?: Observable<{
     formData: EventFormData;
     hasUnsavedChanges: boolean;

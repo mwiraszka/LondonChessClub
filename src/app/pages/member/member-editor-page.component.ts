@@ -30,25 +30,18 @@ import { MembersSelectors } from '@app/store/members';
         [isSafeMode]="vm.isSafeMode"
         [originalMember]="vm.originalMember">
       </lcc-member-form>
-      <lcc-link-list [links]="links"></lcc-link-list>
+      <lcc-link-list [links]="[membersPageLink]"></lcc-link-list>
     }
   `,
   imports: [CommonModule, LinkListComponent, MemberFormComponent, PageHeaderComponent],
 })
 export class MemberEditorPageComponent implements EditorPage, OnInit {
   public readonly entity = 'member';
-  public readonly links: InternalLink[] = [
-    {
-      text: 'See all members',
-      internalPath: 'members',
-      icon: 'users',
-    },
-    {
-      text: 'Return home',
-      internalPath: '',
-      icon: 'home',
-    },
-  ];
+  public readonly membersPageLink: InternalLink = {
+    text: 'See all members',
+    internalPath: 'members',
+    icon: 'users',
+  };
   public viewModel$?: Observable<{
     formData: MemberFormData;
     hasUnsavedChanges: boolean;

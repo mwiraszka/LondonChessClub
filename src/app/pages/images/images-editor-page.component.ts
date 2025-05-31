@@ -23,18 +23,11 @@ import { isDefined } from '@app/utils';
 })
 export class ImagesEditorPageComponent implements EditorPage, OnInit {
   public readonly entity = 'images';
-  public readonly links: InternalLink[] = [
-    {
-      text: 'Go to Photo Gallery',
-      internalPath: 'photo-gallery',
-      icon: 'camera',
-    },
-    {
-      text: 'Return home',
-      internalPath: '',
-      icon: 'home',
-    },
-  ];
+  public readonly photoGalleryLink: InternalLink = {
+    text: 'Go to Photo Gallery',
+    internalPath: 'photo-gallery',
+    icon: 'camera',
+  };
   public viewModel$?: Observable<{
     album: string | null;
     existingAlbums: string[];

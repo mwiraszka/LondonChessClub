@@ -96,16 +96,9 @@ export class ImagesEffects {
           },
         };
 
-        console.log(':: file, imageMetadata', file, imageMetadata);
-
         const imageFormData = new FormData();
         imageFormData.append('file', file);
-
-        console.log(':: imageFormData 1', imageFormData);
-
         imageFormData.append('imageMetadata', JSON.stringify(imageMetadata));
-
-        console.log(':: imageFormData 2', imageFormData);
 
         return this.imagesService.addImage(imageFormData).pipe(
           map(response => ImagesActions.addImageSucceeded({ image: response.data })),

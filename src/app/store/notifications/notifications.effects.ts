@@ -100,7 +100,7 @@ export class NotificationsEffects {
       map(({ articleTitle }) => {
         const toast: Toast = {
           title: 'Article deletion',
-          message: `Successfully deleted ${articleTitle} from the database`,
+          message: `Successfully deleted ${articleTitle}`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -218,7 +218,7 @@ export class NotificationsEffects {
       map(({ eventTitle }) => {
         const toast: Toast = {
           title: 'Event deletion',
-          message: `Successfully deleted ${eventTitle} from the database`,
+          message: `Successfully deleted ${eventTitle}`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -374,6 +374,22 @@ export class NotificationsEffects {
     );
   });
 
+  addImagesForAlbumFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.fetchImagesForAlbumFailed),
+      concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
+      filter(([, isAdmin]) => isAdmin || !environment.production),
+      map(([{ error }]) => {
+        const toast: Toast = {
+          title: 'Load album images',
+          message: this.getErrorMessage(error),
+          type: 'warning',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
   addFetchImageFailedToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchImageFailed),
@@ -424,7 +440,7 @@ export class NotificationsEffects {
       map(({ fileSize }) => {
         const toast: Toast = {
           title: 'Load image file',
-          message: `Note: image is very large (${formatBytes(fileSize)}), and so will likely be reduced in storage`,
+          message: `Note: image is very large (${formatBytes(fileSize)}) - its size will likely be reduced in storage`,
           type: 'info',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -496,7 +512,7 @@ export class NotificationsEffects {
       map(({ memberName }) => {
         const toast: Toast = {
           title: 'Member deletion',
-          message: `Successfully deleted ${memberName} from the database`,
+          message: `Successfully deleted ${memberName}`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -698,6 +714,7 @@ export class NotificationsEffects {
           ImagesActions.deleteImageFailed,
           ImagesActions.fetchImageFailed,
           ImagesActions.fetchImageThumbnailsFailed,
+          ImagesActions.fetchImagesForAlbumFailed,
           ImagesActions.imageFileLoadFailed,
           MembersActions.addMemberFailed,
           MembersActions.updateMemberFailed,

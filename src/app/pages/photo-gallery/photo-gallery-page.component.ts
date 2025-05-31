@@ -1,6 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
@@ -9,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
-import type { ExternalLink } from '@app/models';
+import type { ExternalLink, Image } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
+import { ImagesSelectors } from '@app/store/images';
 
 @UntilDestroy()
 @Component({
@@ -22,7 +23,10 @@ import { AuthSelectors } from '@app/store/auth';
         title="Photo Gallery"
         icon="camera">
       </lcc-page-header>
-      <lcc-photo-grid [isAdmin]="vm.isAdmin"></lcc-photo-grid>
+      <lcc-photo-grid
+        [isAdmin]="vm.isAdmin"
+        [photoImages]="vm.photoImages">
+      </lcc-photo-grid>
       <lcc-link-list
         header="More photos (soon to be migrated here)"
         [links]="links"
@@ -107,7 +111,7 @@ export class PhotoGalleryPageComponent implements OnInit {
       externalPath: 'https://londonchessclub.ca/?page_id=916',
     },
   ].map(link => ({ ...link, icon: 'camera' }));
-  public viewModel$?: Observable<{ isAdmin: boolean }>;
+  public viewModel$?: Observable<{ photoImages: Image[]; isAdmin: boolean }>;
 
   constructor(
     private readonly metaAndTitleService: MetaAndTitleService,
@@ -120,9 +124,12 @@ export class PhotoGalleryPageComponent implements OnInit {
       'Browse through photos of our club events over the years.',
     );
 
-    this.viewModel$ = this.store.select(AuthSelectors.selectIsAdmin).pipe(
+    this.viewModel$ = combineLatest([
+      this.store.select(ImagesSelectors.selectPhotoImages),
+      this.store.select(AuthSelectors.selectIsAdmin),
+    ]).pipe(
       untilDestroyed(this),
-      map(isAdmin => ({ isAdmin })),
+      map(([photoImages, isAdmin]) => ({ photoImages, isAdmin })),
     );
   }
 }

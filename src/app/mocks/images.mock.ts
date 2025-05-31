@@ -9,7 +9,7 @@ export const MOCK_IMAGES: Image[] = [
     articleAppearances: 1,
     thumbnailPresignedUrl: 'https://example.com/image1-thumb.jpg',
     albums: [],
-    coverForAlbum: null,
+    coverForAlbum: '',
     modificationInfo: {
       createdBy: 'John Doe',
       dateCreated: '2023-01-01T00:00:00Z',
@@ -26,7 +26,7 @@ export const MOCK_IMAGES: Image[] = [
     originalPresignedUrl: 'https://example.com/image2.jpg',
     thumbnailPresignedUrl: 'https://example.com/image2-thumb.jpg',
     albums: [],
-    coverForAlbum: null,
+    coverForAlbum: '',
     modificationInfo: {
       createdBy: 'Jane Smith',
       dateCreated: '2023-02-01T00:00:00Z',

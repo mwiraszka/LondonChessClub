@@ -23,6 +23,10 @@ export const selectAllImages = createSelector(selectAllImageEntities, allImageEn
   allImageEntities.map(entity => entity?.image),
 );
 
+export const selectPhotoImages = createSelector(selectAllImages, allImages =>
+  allImages.filter(image => !image.albums.some(album => album.startsWith('_'))),
+);
+
 export const selectImageById = (id: Id | null) =>
   createSelector(
     selectAllImages,
@@ -48,7 +52,10 @@ export const selectHasUnsavedChanges = (id: Id | null) =>
         Object.getOwnPropertyNames(imageFormData),
       );
 
-      return !areSame({ ...formPropertiesOfOriginalImage, newAlbum: '' }, imageFormData);
+      return !areSame(
+        { ...formPropertiesOfOriginalImage, newAlbum: '', dataUrl: '' },
+        imageFormData,
+      );
     },
   );
 

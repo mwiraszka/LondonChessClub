@@ -15,6 +15,19 @@ export const fetchImageThumbnailsFailed = createAction(
   props<{ error: LccError }>(),
 );
 
+export const fetchImagesForAlbumRequested = createAction(
+  '[Images] Fetch images for album requested',
+  props<{ album: string }>(),
+);
+export const fetchImagesForAlbumSucceeded = createAction(
+  '[Images] Fetch images for album succeeded',
+  props<{ images: Image[] }>(),
+);
+export const fetchImagesForAlbumFailed = createAction(
+  '[Images] Fetch images for album failed',
+  props<{ error: LccError }>(),
+);
+
 export const fetchImageRequested = createAction(
   '[Images] Fetch image requested',
   props<{ imageId: Id }>(),

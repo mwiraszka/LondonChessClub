@@ -61,9 +61,9 @@ export class ArticlesEffects {
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
       switchMap(([, formData, user]) => {
-        const article: Omit<Article, 'id'> & { id: null } = {
+        const article: Article = {
           ...formData,
-          id: null,
+          id: '',
           bookmarkDate: null,
           modificationInfo: {
             createdBy: `${user.firstName} ${user.lastName}`,

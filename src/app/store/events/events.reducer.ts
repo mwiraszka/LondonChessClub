@@ -44,23 +44,22 @@ export const initialState: EventsState = eventsAdapter.getInitialState({
 export const eventsReducer = createReducer(
   initialState,
 
-  on(
-    EventsActions.fetchEventsSucceeded,
-    (state, { events }): EventsState =>
-      eventsAdapter.setAll(
-        events.map(event => ({
-          event,
-          formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
-        })),
-        state,
-      ),
-  ),
+  on(EventsActions.fetchEventsSucceeded, (state, { events }): EventsState => {
+    return eventsAdapter.setAll(
+      events.map(event => ({
+        event,
+        formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
+      })),
+      state,
+    );
+  }),
 
   on(EventsActions.fetchEventSucceeded, (state, { event }): EventsState => {
+    const previousFormData = state.entities[event.id]?.formData;
     return eventsAdapter.upsertOne(
       {
         event,
-        formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
+        formData: previousFormData ?? pick(event, EVENT_FORM_DATA_PROPERTIES),
       },
       state,
     );

@@ -1,14 +1,6 @@
 @use '../../../styles/abstracts/mixins';
 
-.temp {
-  display: flex;
-  color: grey;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.photos {
+.album-covers {
   // 'Masonry' layout effect:
   -webkit-column-count: 2;
   -moz-column-count: 2;
@@ -24,7 +16,7 @@
     column-gap: 16px;
   }
 
-  .album-card {
+  .album-cover {
     background-color: var(--lcc-color--general-cardBackground);
     border: none;
     border-radius: var(--lcc-borderRadius--large);

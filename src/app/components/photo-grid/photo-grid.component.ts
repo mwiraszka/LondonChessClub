@@ -1,4 +1,5 @@
-import { images } from 'assets/images';
+import { Store } from '@ngrx/store';
+import { isEmpty } from 'lodash';
 
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
@@ -8,6 +9,7 @@ import { LinkListComponent } from '@app/components/link-list/link-list.component
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { AdminControlsConfig, Image, InternalLink } from '@app/models';
 import { DialogService } from '@app/services';
+import { ImagesActions } from '@app/store/images';
 
 @Component({
   selector: 'lcc-photo-grid',
@@ -17,10 +19,8 @@ import { DialogService } from '@app/services';
 })
 export class PhotoGridComponent implements OnInit {
   @Input({ required: true }) public isAdmin!: boolean;
+  @Input({ required: true }) public photoImages!: Image[];
   @Input() public maxAlbums?: number;
-
-  public readonly images = images;
-  public albumCoverImages: Image[] = [];
 
   public readonly addImageLink: InternalLink = {
     internalPath: ['image', 'add'],
@@ -28,10 +28,17 @@ export class PhotoGridComponent implements OnInit {
     icon: 'plus-circle',
   };
 
-  constructor(private readonly dialogService: DialogService) {}
+  get albumCovers(): Image[] {
+    return this.photoImages.filter(image => !isEmpty(image.coverForAlbum));
+  }
+
+  constructor(
+    private readonly dialogService: DialogService,
+    private readonly store: Store,
+  ) {}
 
   ngOnInit(): void {
-    this.albumCoverImages = this.images.filter(image => !!image.coverForAlbum);
+    this.store.dispatch(ImagesActions.fetchImageThumbnailsRequested());
   }
 
   public async onClickAlbumCover(album: string): Promise<void> {
@@ -39,12 +46,7 @@ export class PhotoGridComponent implements OnInit {
       componentType: ImageViewerComponent,
       isModal: true,
       inputs: {
-        images: images.filter(
-          image =>
-            image.albums &&
-            image.albums.includes(album) &&
-            !image.filename.includes('-thumb'),
-        ),
+        images: this.photoImages.filter(image => image.albums.includes(album)),
         isAdmin: this.isAdmin,
       },
     });
@@ -57,19 +59,17 @@ export class PhotoGridComponent implements OnInit {
       editPath: ['images', 'edit', album],
       isEditDisabled: true,
       isDeleteDisabled: true,
-      editDisabledReason: 'Album controls currently unavailable... coming soon 😊',
-      deleteDisabledReason: 'Album controls currently unavailable... coming soon 😊',
+      editDisabledReason: 'Album controls currently unavailable',
+      deleteDisabledReason: 'Album controls currently unavailable',
       itemName: album,
     };
   }
 
-  public getThumbnailPath(filename: string): string {
-    const [name, extension] = filename.split('.');
-    return `assets/images/${name}-320.${extension}`;
-  }
+  public getAlbumPhotoCount(album: string): string {
+    const photoCount = this.photoImages.filter(image =>
+      image.albums.includes(album),
+    ).length;
 
-  public getPhotoCount(album: string): string {
-    const photoCount = this.images.filter(image => image.albums?.includes(album)).length;
     return `${photoCount} PHOTO${photoCount === 1 ? '' : 'S'}`;
   }
 }

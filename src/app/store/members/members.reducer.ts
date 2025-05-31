@@ -68,10 +68,11 @@ export const membersReducer = createReducer(
   ),
 
   on(MembersActions.fetchMemberSucceeded, (state, { member }): MembersState => {
+    const previousFormData = state.entities[member.id]?.formData;
     return membersAdapter.upsertOne(
       {
         member,
-        formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
+        formData: previousFormData ?? pick(member, MEMBER_FORM_DATA_PROPERTIES),
       },
       state,
     );

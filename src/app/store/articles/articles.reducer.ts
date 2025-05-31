@@ -58,10 +58,11 @@ export const articlesReducer = createReducer(
   ),
 
   on(ArticlesActions.fetchArticleSucceeded, (state, { article }): ArticlesState => {
+    const previousFormData = state.entities[article.id]?.formData;
     return articlesAdapter.upsertOne(
       {
         article,
-        formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+        formData: previousFormData ?? pick(article, ARTICLE_FORM_DATA_PROPERTIES),
       },
       state,
     );

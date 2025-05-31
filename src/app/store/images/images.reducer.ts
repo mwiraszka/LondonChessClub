@@ -37,35 +37,53 @@ export const imagesReducer = createReducer(
 
   on(
     ImagesActions.fetchImageThumbnailsSucceeded,
+    ImagesActions.fetchImagesForAlbumSucceeded,
     (state, { images }): ImagesState =>
       imagesAdapter.upsertMany(
-        images.map(image => ({
-          image,
-          formData: {
-            ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-            newAlbum: '',
-            dataUrl: '',
-          },
-        })),
+        images.map(image => {
+          const originalEntity = image ? state.entities[image.id] : null;
+
+          return {
+            image: {
+              ...image,
+              originalPresignedUrl:
+                image.originalPresignedUrl ?? originalEntity?.image.originalPresignedUrl,
+              thumbnailPresignedUrl:
+                image.thumbnailPresignedUrl ??
+                originalEntity?.image.thumbnailPresignedUrl,
+            },
+            formData: {
+              ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
+              newAlbum: '',
+              dataUrl: '',
+            },
+          };
+        }),
         state,
       ),
   ),
 
-  on(
-    ImagesActions.fetchImageSucceeded,
-    (state, { image }): ImagesState =>
-      imagesAdapter.upsertOne(
-        {
-          image,
-          formData: {
-            ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-            newAlbum: '',
-            dataUrl: '',
-          },
+  on(ImagesActions.fetchImageSucceeded, (state, { image }): ImagesState => {
+    const originalEntity = image ? state.entities[image.id] : null;
+
+    return imagesAdapter.upsertOne(
+      {
+        image: {
+          ...image,
+          originalPresignedUrl:
+            image.originalPresignedUrl ?? originalEntity?.image.originalPresignedUrl,
+          thumbnailPresignedUrl:
+            image.thumbnailPresignedUrl ?? originalEntity?.image.thumbnailPresignedUrl,
         },
-        state,
-      ),
-  ),
+        formData: originalEntity?.formData ?? {
+          ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
+          newAlbum: '',
+          dataUrl: '',
+        },
+      },
+      state,
+    );
+  }),
 
   on(
     ImagesActions.addImageSucceeded,

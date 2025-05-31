@@ -57,9 +57,9 @@ export class EventsEffects {
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
       switchMap(([, formData, user]) => {
-        const event: Omit<Event, 'id'> & { id: null } = {
+        const event: Event = {
           ...formData,
-          id: null,
+          id: '',
           modificationInfo: {
             createdBy: `${user.firstName} ${user.lastName}`,
             dateCreated: moment().toISOString(),

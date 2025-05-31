@@ -28,9 +28,7 @@ export class ArticlesService {
     );
   }
 
-  public addArticle(
-    article: Omit<Article, 'id'> & { id: null },
-  ): Observable<ApiResponse<Id>> {
+  public addArticle(article: Article): Observable<ApiResponse<Id>> {
     return this.http.post<ApiResponse<Id>>(
       `${this.API_BASE_URL}/${this.COLLECTION}`,
       article,

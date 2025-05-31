@@ -181,7 +181,6 @@ export class ImageFormComponent implements OnInit {
         }),
         dataUrl: new FormControl(formData.dataUrl, {
           nonNullable: true,
-          validators: Validators.required,
         }),
         caption: new FormControl(formData.caption, {
           nonNullable: true,

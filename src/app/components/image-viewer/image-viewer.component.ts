@@ -1,4 +1,7 @@
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import { isEqual } from 'lodash';
+import { BehaviorSubject, Observable, distinctUntilChanged, switchMap } from 'rxjs';
 
 import { CommonModule } from '@angular/common';
 import {
@@ -6,6 +9,8 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
+  OnInit,
   Output,
   Renderer2,
   ViewChild,
@@ -21,11 +26,13 @@ import type {
   BasicDialogResult,
   Dialog,
   DialogOutput,
+  Id,
   Image,
 } from '@app/models';
 import { DialogService } from '@app/services';
-import { ImagesActions } from '@app/store/images';
+import { ImagesActions, ImagesSelectors } from '@app/store/images';
 
+@UntilDestroy()
 @Component({
   selector: 'lcc-image-viewer',
   templateUrl: './image-viewer.component.html',
@@ -38,14 +45,19 @@ import { ImagesActions } from '@app/store/images';
     TooltipDirective,
   ],
 })
-export class ImageViewerComponent implements AfterViewInit, DialogOutput<null> {
+export class ImageViewerComponent
+  implements OnInit, AfterViewInit, OnDestroy, DialogOutput<null>
+{
   @ViewChild(AdminControlsDirective) adminControlsDirective?: AdminControlsDirective;
 
+  @Input({ required: true }) album!: string;
   @Input({ required: true }) images!: Image[];
   @Input({ required: true }) isAdmin!: boolean;
-  @Input() index = 0;
 
   @Output() public dialogResult = new EventEmitter<null | 'close'>();
+
+  public currentImage$!: Observable<Image | null>;
+  private indexSubject = new BehaviorSubject<number>(0);
 
   constructor(
     private readonly dialogService: DialogService,
@@ -53,7 +65,21 @@ export class ImageViewerComponent implements AfterViewInit, DialogOutput<null> {
     private readonly store: Store,
   ) {}
 
+  get imageId(): Id {
+    return this.images[this.indexSubject.value].id;
+  }
+
   private keyListener?: () => void;
+
+  ngOnInit(): void {
+    this.currentImage$ = this.indexSubject.asObservable().pipe(
+      untilDestroyed(this),
+      switchMap(index =>
+        this.store.select(ImagesSelectors.selectImageById(this.images[index]?.id)),
+      ),
+      distinctUntilChanged(isEqual),
+    );
+  }
 
   ngAfterViewInit(): void {
     setTimeout(() => this.initKeyListener());
@@ -65,12 +91,18 @@ export class ImageViewerComponent implements AfterViewInit, DialogOutput<null> {
 
   public onPreviousImage(): void {
     this.adminControlsDirective?.detach();
-    this.index = this.index > 0 ? this.index - 1 : this.images.length - 1;
+    const newIndex =
+      this.indexSubject.value > 0 ? this.indexSubject.value - 1 : this.images.length - 1;
+    this.indexSubject.next(newIndex);
+    this.store.dispatch(ImagesActions.fetchImageRequested({ imageId: this.imageId }));
   }
 
   public onNextImage(): void {
     this.adminControlsDirective?.detach();
-    this.index = this.index < this.images.length - 1 ? this.index + 1 : 0;
+    const newIndex =
+      this.indexSubject.value < this.images.length - 1 ? this.indexSubject.value + 1 : 0;
+    this.indexSubject.next(newIndex);
+    this.store.dispatch(ImagesActions.fetchImageRequested({ imageId: this.imageId }));
   }
 
   public getAdminControlsConfig(image: Image): AdminControlsConfig {
@@ -107,6 +139,7 @@ export class ImageViewerComponent implements AfterViewInit, DialogOutput<null> {
 
     if (result === 'confirm') {
       this.store.dispatch(ImagesActions.deleteImageRequested({ image }));
+      this.dialogResult.emit(null);
     }
   }
 
@@ -115,9 +148,12 @@ export class ImageViewerComponent implements AfterViewInit, DialogOutput<null> {
       'document',
       'keydown',
       (event: KeyboardEvent) => {
-        if (event.key === 'ArrowLeft') {
+        if (event.key === 'ArrowLeft' && this.images.length > 1) {
           this.onPreviousImage();
-        } else if (event.key === 'ArrowRight' || event.key === ' ') {
+        } else if (
+          (event.key === 'ArrowRight' || event.key === ' ') &&
+          this.images.length > 1
+        ) {
           this.onNextImage();
         }
       },

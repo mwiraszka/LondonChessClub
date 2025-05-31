@@ -62,9 +62,9 @@ export class MembersEffects {
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
       switchMap(([, formData, user]) => {
-        const member: Omit<Member, 'id'> & { id: null } = {
+        const member: Member = {
           ...formData,
-          id: null,
+          id: '',
           peakRating: formData.rating,
           modificationInfo: {
             createdBy: `${user.firstName} ${user.lastName}`,

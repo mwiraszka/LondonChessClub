@@ -26,7 +26,7 @@ export class EventsService {
     );
   }
 
-  public addEvent(event: Omit<Event, 'id'> & { id: null }): Observable<ApiResponse<Id>> {
+  public addEvent(event: Event): Observable<ApiResponse<Id>> {
     return this.http.post<ApiResponse<Id>>(
       `${this.API_BASE_URL}/${this.COLLECTION}`,
       event,

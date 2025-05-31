@@ -10,7 +10,8 @@ const modificationInfo: ModificationInfo = {
   lastEditedBy: 'Michal Wiraszka',
 };
 
-export const images: Image[] = [
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const images: Image[] = [
   {
     filename: '2019-active-championship-winner-kevin.jpg',
     caption: '2019 Active Championship Winner - Kevin',

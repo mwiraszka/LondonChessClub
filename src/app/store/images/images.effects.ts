@@ -41,6 +41,31 @@ export class ImagesEffects {
     );
   });
 
+  // TODO: Figure out a better way to do this; currently not implemented anywhere
+  fetchImagesForAlbum$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.fetchImagesForAlbumRequested),
+      tap(() => this.loaderService.setIsLoading(true)),
+      switchMap(({ album }) =>
+        this.imagesService.getImagesForAlbum(album).pipe(
+          map(response =>
+            ImagesActions.fetchImagesForAlbumSucceeded({
+              images: response.data,
+            }),
+          ),
+          catchError(error =>
+            of(
+              ImagesActions.fetchImagesForAlbumFailed({
+                error: parseError(error),
+              }),
+            ),
+          ),
+        ),
+      ),
+      tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
   fetchImage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchImageRequested),
@@ -64,7 +89,7 @@ export class ImagesEffects {
   addImage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.addImageRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
+      tap(() => this.loaderService.setIsLoading(true, false)),
       concatLatestFrom(() => [
         this.store.select(ImagesSelectors.selectImageFormDataById(null)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
@@ -80,11 +105,11 @@ export class ImagesEffects {
           return of(ImagesActions.addImageFailed({ error }));
         }
 
-        const imageMetadata: Omit<BaseImage, 'id' | 'fileSize'> & { id: null } = {
-          id: null,
+        const imageMetadata: Omit<BaseImage, 'fileSize'> = {
+          id: '',
           filename: formData.filename,
-          coverForAlbum: null,
           caption: formData.caption,
+          coverForAlbum: formData.newAlbum ?? '',
           albums: formData.newAlbum
             ? [...formData.albums, formData.newAlbum].sort()
             : formData.albums,
@@ -114,7 +139,7 @@ export class ImagesEffects {
   updateImage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.updateImageRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
+      tap(() => this.loaderService.setIsLoading(true, false)),
       concatLatestFrom(({ imageId }) => [
         this.store
           .select(ImagesSelectors.selectImageById(imageId))
@@ -126,8 +151,11 @@ export class ImagesEffects {
       ]),
       switchMap(([, image, formData, user]) => {
         const updatedImage: BaseImage = {
-          ...image,
+          id: image.id,
+          filename: image.filename,
+          fileSize: image.fileSize,
           caption: formData.caption,
+          coverForAlbum: image.coverForAlbum,
           albums: formData.newAlbum
             ? [...formData.albums, formData.newAlbum].sort()
             : formData.albums,

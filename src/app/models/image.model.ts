@@ -9,7 +9,7 @@ export interface BaseImage {
   fileSize: number;
   caption: string;
   albums: string[];
-  coverForAlbum: string | null;
+  coverForAlbum: string;
   modificationInfo: ModificationInfo;
 }
 

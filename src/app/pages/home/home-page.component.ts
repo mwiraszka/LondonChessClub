@@ -56,6 +56,7 @@ export class HomePageComponent implements OnInit {
     allArticles: Article[];
     articleImages: Image[];
     allEvents: Event[];
+    photoImages: Image[];
     isAdmin: boolean;
     nextEvent: Event | null;
     showPastEvents: boolean;
@@ -80,6 +81,7 @@ export class HomePageComponent implements OnInit {
       this.store.select(ArticlesSelectors.selectAllArticles),
       this.store.select(ImagesSelectors.selectArticleImages),
       this.store.select(EventsSelectors.selectAllEvents),
+      this.store.select(ImagesSelectors.selectPhotoImages),
       this.store.select(AuthSelectors.selectIsAdmin),
       this.store.select(EventsSelectors.selectNextEvent),
       this.store.select(EventsSelectors.selectShowPastEvents),
@@ -91,6 +93,7 @@ export class HomePageComponent implements OnInit {
           allArticles,
           articleImages,
           allEvents,
+          photoImages,
           isAdmin,
           nextEvent,
           showPastEvents,
@@ -99,6 +102,7 @@ export class HomePageComponent implements OnInit {
           allArticles,
           articleImages,
           allEvents,
+          photoImages,
           isAdmin,
           nextEvent,
           showPastEvents,

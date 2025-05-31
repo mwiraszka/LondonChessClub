@@ -100,7 +100,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
       fileSize: 0,
       caption: '',
       albums: [],
-      coverForAlbum: null,
+      coverForAlbum: '',
       modificationInfo: MOCK_MODIFICATION_INFOS[1],
     }));
   }

@@ -25,6 +25,10 @@
         --lcc-color--adminControls-disabledButtonBackground
       ) !important;
       color: var(--lcc-color--adminControls-disabledButtonIcon) !important;
+
+      & > * {
+        cursor: default !important;
+      }
     }
 
     &:focus,

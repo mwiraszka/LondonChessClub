@@ -28,9 +28,7 @@ export class MembersService {
     );
   }
 
-  public addMember(
-    member: Omit<Member, 'id'> & { id: null },
-  ): Observable<ApiResponse<Id>> {
+  public addMember(member: Member): Observable<ApiResponse<Id>> {
     return this.http.post<ApiResponse<Id>>(
       `${this.API_BASE_URL}/admin/${this.COLLECTION}`,
       member,

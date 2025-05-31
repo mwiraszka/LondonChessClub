@@ -40,9 +40,9 @@ export class EventsService {
     );
   }
 
-  public deleteEvent(event: Event): Observable<ApiResponse<Id>> {
+  public deleteEvent(id: Id): Observable<ApiResponse<Id>> {
     return this.http.delete<ApiResponse<Id>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}/${event.id}`,
+      `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
     );
   }
 }

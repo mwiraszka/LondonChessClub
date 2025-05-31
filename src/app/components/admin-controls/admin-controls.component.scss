@@ -6,8 +6,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 3px;
-    border: 3px solid var(--lcc-color--adminControls-buttonBorder);
+    padding: 5px;
+    border: 2px solid var(--lcc-color--adminControls-buttonBorder);
     border-radius: var(--lcc-borderRadius--large);
     background-color: var(--lcc-color--adminControls-buttonBackground);
 
@@ -15,6 +15,20 @@
       display: flex;
       width: 100%;
       height: 100%;
+    }
+
+    &:disabled,
+    &.disabled {
+      cursor: default !important;
+      border-color: var(--lcc-color--adminControls-disabledButtonBorder) !important;
+      background-color: var(
+        --lcc-color--adminControls-disabledButtonBackground
+      ) !important;
+      color: var(--lcc-color--adminControls-disabledButtonIcon) !important;
+
+      & > * {
+        cursor: default !important;
+      }
     }
 
     &:focus,

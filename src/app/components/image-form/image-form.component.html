@@ -1,0 +1,122 @@
+<form
+  class="lcc-form"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()">
+  <div class="lcc-form-fields">
+    @if (originalImage) {
+      @defer {
+        <img
+          class="image-preview full-span"
+          [alt]="formData.caption"
+          [src]="
+            originalImage.thumbnailPresignedUrl ?? originalImage.originalPresignedUrl
+          " />
+      } @placeholder (minimum 0.5s) {
+        <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
+          <div class="lcc-content-placeholder"></div>
+        </div>
+      }
+    } @else {
+      <label class="lcc-required-field">File:</label>
+      <div class="file-and-preview-container">
+        @defer {
+          <img
+            class="image-preview"
+            [alt]="formData.caption"
+            [src]="formData.dataUrl"
+            default="assets/image-placeholder.png" />
+        } @placeholder (minimum 0.5s) {
+          <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
+            <div class="lcc-content-placeholder"></div>
+          </div>
+        }
+
+        <label
+          class="choose-file-label lcc-secondary-button"
+          type="button"
+          tooltip="Choose file">
+          <i-feather name="upload"></i-feather>
+          <input
+            type="file"
+            accept="image/*"
+            (change)="onUploadNewImage($event)" />
+        </label>
+      </div>
+      <lcc-form-error-icon [control]="form.controls.dataUrl"></lcc-form-error-icon>
+    }
+
+    <label
+      for="caption-input"
+      class="lcc-required-field">
+      Caption:
+    </label>
+    <input
+      id="caption-input"
+      type="text"
+      name="caption"
+      formControlName="caption"
+      maxlength="120" />
+    <lcc-form-error-icon [control]="form.controls.caption"></lcc-form-error-icon>
+  </div>
+
+  <div class="lcc-form-fields">
+    <label class="lcc-required-field">Albums:</label>
+    <div class="albums-container">
+      <fieldset
+        class="existing-album-fieldset"
+        [class.invalid]="form.controls.albums.errors && form.controls.albums.dirty">
+        @for (album of existingAlbums; track album) {
+          <div class="existing-album">
+            <input
+              [id]="'album-' + album"
+              type="checkbox"
+              name="albums"
+              [checked]="form.controls.albums.value.includes(album)"
+              (change)="toggleAlbum(album)" />
+            <label
+              class="lcc-truncate"
+              [for]="'album-' + album">
+              {{ album }}
+            </label>
+          </div>
+        }
+      </fieldset>
+
+      <input
+        id="new-album-input"
+        type="text"
+        name="new-album"
+        formControlName="newAlbum"
+        placeholder="New album"
+        maxlength="120" />
+    </div>
+    <lcc-form-error-icon
+      [control]="
+        form.controls.albums.errors ? form.controls.albums : form.controls.newAlbum
+      ">
+    </lcc-form-error-icon>
+  </div>
+
+  <aside class="lcc-required-fields-legend">Required fields</aside>
+
+  <hr />
+
+  @if (originalImage?.modificationInfo; as info) {
+    <lcc-modification-info [info]="info"></lcc-modification-info>
+  }
+
+  <div class="lcc-form-buttons-container">
+    <button
+      class="lcc-secondary-button"
+      type="button"
+      (click)="onCancel()">
+      Cancel
+    </button>
+    <button
+      class="lcc-primary-button"
+      type="submit"
+      [disabled]="form.invalid || !hasUnsavedChanges">
+      {{ originalImage ? 'Update' : 'Add' }}
+    </button>
+  </div>
+</form>

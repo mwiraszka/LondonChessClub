@@ -8,6 +8,7 @@ const jestConfig: Config = {
     '@env': '<rootDir>/src/environments/environment',
   },
   setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
+  clearMocks: true,
 };
 
 export default jestConfig;

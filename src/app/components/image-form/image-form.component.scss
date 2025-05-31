@@ -1,0 +1,72 @@
+@use '../../../styles/abstracts/mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
+  padding: 8px 16px;
+  box-shadow: 1px 1px 5px 2px var(--lcc-color--form-boxShadow);
+  background-color: var(--lcc-color--form-background);
+  border-radius: var(--lcc-borderRadius--small);
+
+  .file-and-preview-container {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
+    .choose-file-label {
+      align-self: end;
+      padding: 4px 8px;
+
+      & > input {
+        display: none;
+      }
+    }
+  }
+
+  .image-preview,
+  .loading-placeholder-image {
+    object-fit: cover;
+    width: 100%;
+    border-radius: var(--lcc-borderRadius--large);
+    max-width: 320px;
+
+    &.full-span {
+      grid-column: 1 / 4;
+      justify-self: center;
+    }
+  }
+
+  .existing-album-fieldset {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 4px 16px;
+
+    @include mixins.respond-to('gt-md') {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    &.invalid {
+      border-color: var(--lcc-color--input-invalidBorder);
+    }
+
+    .existing-album {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+
+      label {
+        text-align: unset;
+        max-width: unset;
+      }
+    }
+  }
+
+  hr {
+    width: 100%;
+    border-top: 1px solid var(--lcc-color--general-dividerLine);
+    margin: 1em 0;
+  }
+}

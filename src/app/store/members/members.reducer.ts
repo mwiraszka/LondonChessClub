@@ -1,14 +1,34 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
+import { pick } from 'lodash';
+import moment from 'moment-timezone';
 
-import { ControlMode, Id, Member, MemberFormData } from '@app/models';
+import {
+  MEMBER_FORM_DATA_PROPERTIES,
+  type Member,
+  type MemberFormData,
+} from '@app/models';
 
 import * as MembersActions from './members.actions';
 
-export interface MembersState extends EntityState<Member> {
-  memberId: Id | null;
-  memberFormData: MemberFormData | null;
-  controlMode: ControlMode | null;
+export const INITIAL_MEMBER_FORM_DATA: MemberFormData = {
+  firstName: '',
+  lastName: '',
+  city: 'London',
+  rating: '1000/0',
+  peakRating: '',
+  dateJoined: moment().toISOString(),
+  isActive: true,
+  chessComUsername: '',
+  lichessUsername: '',
+  yearOfBirth: '',
+  email: '',
+  phoneNumber: '',
+};
+
+export interface MembersState
+  extends EntityState<{ member: Member; formData: MemberFormData }> {
+  newMemberFormData: MemberFormData;
   sortedBy: string;
   isAscending: boolean;
   pageNum: number;
@@ -16,12 +36,15 @@ export interface MembersState extends EntityState<Member> {
   showActiveOnly: boolean;
 }
 
-export const membersAdapter = createEntityAdapter<Member>();
+export const membersAdapter = createEntityAdapter<{
+  member: Member;
+  formData: MemberFormData;
+}>({
+  selectId: ({ member }) => member.id,
+});
 
-export const membersInitialState: MembersState = membersAdapter.getInitialState({
-  memberId: null,
-  memberFormData: null,
-  controlMode: null,
+export const initialState: MembersState = membersAdapter.getInitialState({
+  newMemberFormData: INITIAL_MEMBER_FORM_DATA,
   sortedBy: 'rating',
   isAscending: false,
   pageNum: 1,
@@ -30,62 +53,102 @@ export const membersInitialState: MembersState = membersAdapter.getInitialState(
 });
 
 export const membersReducer = createReducer(
-  membersInitialState,
+  initialState,
 
   on(
     MembersActions.fetchMembersSucceeded,
     (state, { members }): MembersState =>
-      membersAdapter.setAll<MembersState>(members, state),
+      membersAdapter.setAll(
+        members.map(member => ({
+          member,
+          formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
+        })),
+        state,
+      ),
   ),
 
-  on(
-    MembersActions.newMemberRequested,
-    (state): MembersState => ({
-      ...state,
-      controlMode: 'add',
-    }),
-  ),
-
-  on(
-    MembersActions.fetchMemberRequested,
-    (state, { controlMode }): MembersState => ({
-      ...state,
-      controlMode,
-    }),
-  ),
-
-  on(
-    MembersActions.fetchMemberSucceeded,
-    (state, { member }): MembersState =>
-      membersAdapter.upsertOne<MembersState>(member, { ...state, memberId: member.id }),
-  ),
+  on(MembersActions.fetchMemberSucceeded, (state, { member }): MembersState => {
+    const previousFormData = state.entities[member.id]?.formData;
+    return membersAdapter.upsertOne(
+      {
+        member,
+        formData: previousFormData ?? pick(member, MEMBER_FORM_DATA_PROPERTIES),
+      },
+      state,
+    );
+  }),
 
   on(
     MembersActions.addMemberSucceeded,
+    (state, { member }): MembersState =>
+      membersAdapter.upsertOne(
+        {
+          member,
+          formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
+        },
+        { ...state, newMemberFormData: INITIAL_MEMBER_FORM_DATA },
+      ),
+  ),
+
+  on(
     MembersActions.updateMemberSucceeded,
     (state, { member }): MembersState =>
-      membersAdapter.upsertOne<MembersState>(member, {
-        ...state,
-        memberId: null,
-        memberFormData: null,
-      }),
+      membersAdapter.upsertOne(
+        {
+          member,
+          formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
+        },
+        state,
+      ),
   ),
 
   on(
     MembersActions.deleteMemberSucceeded,
-    (state, { member }): MembersState =>
-      membersAdapter.removeOne<MembersState>(member.id!, {
-        ...state,
-        memberId: null,
-        memberFormData: null,
-      }),
+    (state, { memberId }): MembersState => membersAdapter.removeOne(memberId, state),
   ),
 
-  on(MembersActions.formValueChanged, (state, { value }): MembersState => {
-    return {
-      ...state,
-      memberFormData: value as Required<MemberFormData>,
-    };
+  on(MembersActions.formValueChanged, (state, { memberId, value }): MembersState => {
+    const originalMember = memberId ? state.entities[memberId] : null;
+
+    if (!originalMember) {
+      return {
+        ...state,
+        newMemberFormData: {
+          ...state.newMemberFormData,
+          ...value,
+        },
+      };
+    }
+
+    return membersAdapter.upsertOne(
+      {
+        ...originalMember,
+        formData: {
+          ...(originalMember?.formData ?? INITIAL_MEMBER_FORM_DATA),
+          ...value,
+        },
+      },
+      state,
+    );
+  }),
+
+  on(MembersActions.memberFormDataCleared, (state, { memberId }): MembersState => {
+    const originalMember = memberId ? state.entities[memberId] : null;
+
+    if (!originalMember) {
+      return {
+        ...state,
+        newMemberFormData: INITIAL_MEMBER_FORM_DATA,
+      };
+    }
+
+    return membersAdapter.upsertOne(
+      {
+        ...originalMember,
+        formData: INITIAL_MEMBER_FORM_DATA,
+      },
+      state,
+    );
   }),
 
   on(
@@ -121,16 +184,6 @@ export const membersReducer = createReducer(
       ...state,
       showActiveOnly: !state.showActiveOnly,
       pageNum: 1,
-    }),
-  ),
-
-  on(
-    MembersActions.memberUnset,
-    (state): MembersState => ({
-      ...state,
-      memberId: null,
-      memberFormData: null,
-      controlMode: null,
     }),
   ),
 );

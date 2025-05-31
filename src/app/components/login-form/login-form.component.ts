@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -12,7 +11,7 @@ import {
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
-import { TooltipDirective } from '@app/directives/tooltip.directive';
+import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import IconsModule from '@app/icons';
 import { LoginFormGroup } from '@app/models';
 import { AuthActions } from '@app/store/auth';
@@ -22,10 +21,16 @@ import { emailValidator } from '@app/validators';
   selector: 'lcc-login-form',
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss',
-  imports: [CommonModule, IconsModule, ReactiveFormsModule, RouterLink, TooltipDirective],
+  imports: [
+    CommonModule,
+    FormErrorIconComponent,
+    IconsModule,
+    ReactiveFormsModule,
+    RouterLink,
+  ],
 })
 export class LoginFormComponent implements OnInit {
-  public form: FormGroup<LoginFormGroup> | null = null;
+  public form!: FormGroup<LoginFormGroup>;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -43,18 +48,6 @@ export class LoginFormComponent implements OnInit {
         validators: Validators.required,
       }),
     });
-  }
-
-  public hasError(control: AbstractControl): boolean {
-    return control.dirty && control.invalid;
-  }
-
-  public getErrorMessage(control: AbstractControl): string {
-    return control.hasError('required')
-      ? 'This field is required'
-      : control.hasError('invalidEmailFormat')
-        ? 'Invalid email'
-        : 'Unknown error';
   }
 
   public onSubmit(): void {

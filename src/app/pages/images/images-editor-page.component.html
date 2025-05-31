@@ -1,0 +1,21 @@
+@if (viewModel$ | async; as vm) {
+  <lcc-page-header
+    [hasUnsavedChanges]="vm.hasUnsavedChanges"
+    [title]="vm.pageTitle">
+  </lcc-page-header>
+
+  <div class="temp">
+    {{ vm.album }}
+  </div>
+
+  @for (entity of vm.albumImageEntities; track entity.image.id) {
+    <lcc-image-form
+      [existingAlbums]="vm.existingAlbums"
+      [formData]="entity.formData"
+      [hasUnsavedChanges]="false"
+      [originalImage]="entity.image">
+    </lcc-image-form>
+  }
+
+  <lcc-link-list [links]="[photoGalleryLink]"></lcc-link-list>
+}

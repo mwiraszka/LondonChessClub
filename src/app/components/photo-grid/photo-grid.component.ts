@@ -1,51 +1,44 @@
-import { images } from 'assets/images';
+import { Store } from '@ngrx/store';
+import { isEmpty } from 'lodash';
 
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
 import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
-import { Image } from '@app/models';
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
+import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
+import { AdminControlsConfig, Image, InternalLink } from '@app/models';
 import { DialogService } from '@app/services';
+import { ImagesActions } from '@app/store/images';
 
 @Component({
   selector: 'lcc-photo-grid',
-  template: `
-    @for (
-      image of albumCoverImages.slice(0, maxAlbums ?? images.length);
-      let index = $index;
-      track image.filename
-    ) {
-      <button
-        class="album-card"
-        (click)="onClickAlbumCover(image.albumCoverFor!)">
-        <figure>
-          <img
-            [alt]="image.name"
-            [src]="getThumbnailPath(image.filename)"
-            default="assets/image-placeholder.png" />
-          <figcaption>
-            <div class="album-name lcc-truncate-max-2-lines">{{
-              image.albumCoverFor
-            }}</div>
-            <div class="photo-count">{{ getPhotoCount(image.albumCoverFor!) }}</div>
-          </figcaption>
-        </figure>
-      </button>
-    }
-  `,
+  templateUrl: './photo-grid.component.html',
   styleUrl: './photo-grid.component.scss',
-  imports: [CommonModule],
+  imports: [AdminControlsDirective, CommonModule, LinkListComponent],
 })
 export class PhotoGridComponent implements OnInit {
+  @Input({ required: true }) public isAdmin!: boolean;
+  @Input({ required: true }) public photoImages!: Image[];
   @Input() public maxAlbums?: number;
 
-  public readonly images = images;
-  public albumCoverImages: Image[] = [];
+  public readonly addImageLink: InternalLink = {
+    internalPath: ['image', 'add'],
+    text: 'Add an image',
+    icon: 'plus-circle',
+  };
 
-  constructor(private readonly dialogService: DialogService) {}
+  get albumCovers(): Image[] {
+    return this.photoImages.filter(image => !isEmpty(image.coverForAlbum));
+  }
+
+  constructor(
+    private readonly dialogService: DialogService,
+    private readonly store: Store,
+  ) {}
 
   ngOnInit(): void {
-    this.albumCoverImages = this.images.filter(image => !!image.albumCoverFor);
+    this.store.dispatch(ImagesActions.fetchImageThumbnailsRequested());
   }
 
   public async onClickAlbumCover(album: string): Promise<void> {
@@ -53,23 +46,30 @@ export class PhotoGridComponent implements OnInit {
       componentType: ImageViewerComponent,
       isModal: true,
       inputs: {
-        images: images.filter(
-          image =>
-            image.albums &&
-            image.albums.includes(album) &&
-            !image.filename.includes('-320'),
-        ),
+        images: this.photoImages.filter(image => image.albums.includes(album)),
+        isAdmin: this.isAdmin,
       },
     });
   }
 
-  public getThumbnailPath(filename: string): string {
-    const [name, extension] = filename.split('.');
-    return `assets/images/${name}-320.${extension}`;
+  public getAdminControlsConfig(album: string): AdminControlsConfig {
+    return {
+      buttonSize: 34,
+      deleteCb: () => {},
+      editPath: ['images', 'edit', album],
+      isEditDisabled: true,
+      isDeleteDisabled: true,
+      editDisabledReason: 'Album controls currently unavailable',
+      deleteDisabledReason: 'Album controls currently unavailable',
+      itemName: album,
+    };
   }
 
-  public getPhotoCount(album: string): string {
-    const photoCount = this.images.filter(image => image.albums?.includes(album)).length;
+  public getAlbumPhotoCount(album: string): string {
+    const photoCount = this.photoImages.filter(image =>
+      image.albums.includes(album),
+    ).length;
+
     return `${photoCount} PHOTO${photoCount === 1 ? '' : 'S'}`;
   }
 }

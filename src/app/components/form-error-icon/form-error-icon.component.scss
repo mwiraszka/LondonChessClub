@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 18px;
+
+  .alert-icon {
+    color: var(--lcc-color--formErrorIcon);
+    height: 18px;
+    width: 18px;
+  }
+}

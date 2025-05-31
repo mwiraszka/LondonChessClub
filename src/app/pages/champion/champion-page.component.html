@@ -1,6 +1,6 @@
 <lcc-page-header
   title="City Champion"
-  icon="award">
+  icon="shield">
 </lcc-page-header>
 
 <section class="grid-container">
@@ -107,10 +107,22 @@
         <th>Winner</th>
       </thead>
       <tbody>
-        @for (championship of pastChampionships; track championship.year) {
+        @for (
+          championship of pastChampionships;
+          track championship.year;
+          let first = $first
+        ) {
           <tr>
             <td [style]="championship.style">{{ championship.year }}</td>
-            <td [style]="championship.style">{{ championship.winner }}</td>
+            <td [style]="championship.style">
+              @if (first) {
+                <i-feather
+                  name="shield"
+                  class="championship-icon">
+                </i-feather>
+              }
+              <span>{{ championship.winner }}</span>
+            </td>
           </tr>
         }
       </tbody>

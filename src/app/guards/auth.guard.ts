@@ -1,50 +1,33 @@
 import { Store } from '@ngrx/store';
+import { startCase } from 'lodash';
 import { Observable } from 'rxjs';
-import { combineLatestWith, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 
-import type { NavPath } from '@app/models';
 import { AuthSelectors } from '@app/store/auth';
-import { selectCurrentRoute } from '@app/store/nav/nav.selectors';
+import { NavActions } from '@app/store/nav';
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard {
-  constructor(
-    private readonly router: Router,
-    private readonly store: Store,
-  ) {}
+export class AuthGuard implements CanActivate {
+  constructor(private readonly store: Store) {}
 
-  canActivate(): Observable<boolean> {
+  public canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
     return this.store.select(AuthSelectors.selectIsAdmin).pipe(
-      combineLatestWith(this.store.select(selectCurrentRoute)),
-      map(([isAdmin, currentRoute]) => {
+      map(isAdmin => {
         if (isAdmin) {
           return true;
         }
 
-        let redirectPath: NavPath;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const [, entity, action] = ((route as any)._routerState?.url ?? '').split('/');
 
-        switch (currentRoute.routeConfig.path) {
-          case 'event/edit/:event_id':
-          case 'event/add':
-            redirectPath = 'schedule';
-            break;
-          case 'article/view/:article_id':
-          case 'article/edit/:article_id':
-          case 'article/add':
-            redirectPath = 'news';
-            break;
-          case 'member/edit/:member_id':
-          case 'member/add':
-            redirectPath = 'members';
-            break;
-          default:
-            redirectPath = '';
-        }
+        const pageTitle = ['add', 'edit'].includes(action)
+          ? startCase(`${action} ${entity}`)
+          : '';
 
-        this.router.navigate([redirectPath]);
+        this.store.dispatch(NavActions.pageAccessDenied({ pageTitle }));
         return false;
       }),
     );

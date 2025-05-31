@@ -12,7 +12,7 @@ export interface AppState {
   showUpcomingEventBanner: boolean;
 }
 
-export const appInitialState: AppState = {
+export const initialState: AppState = {
   isDarkMode: window.matchMedia('(prefers-color-scheme: dark)').matches,
   isSafeMode: false,
   bannerLastCleared: null,
@@ -20,7 +20,7 @@ export const appInitialState: AppState = {
 };
 
 export const appReducer = createReducer(
-  appInitialState,
+  initialState,
 
   on(
     AppActions.themeToggled,

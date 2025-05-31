@@ -3,24 +3,24 @@ import { createReducer, on } from '@ngrx/store';
 import * as navActions from './nav.actions';
 
 export interface NavState {
-  pathHistory: string[] | null;
+  pathHistory: string[];
 }
 
-export const navInitialState: NavState = {
-  pathHistory: null,
+export const initialState: NavState = {
+  pathHistory: [],
 };
 
 export const navReducer = createReducer(
-  navInitialState,
+  initialState,
 
-  on(navActions.appendPathToHistory, (state, { path }): NavState => {
-    const currentPathHistory = state.pathHistory;
-    return {
-      pathHistory: !currentPathHistory
-        ? [path]
-        : currentPathHistory[currentPathHistory.length - 1] === path
-          ? currentPathHistory
-          : [...currentPathHistory, path].slice(-5),
-    };
-  }),
+  on(
+    navActions.appendPathToHistory,
+    (state, { path }): NavState => ({
+      pathHistory:
+        state.pathHistory.length > 0 &&
+        state.pathHistory[state.pathHistory.length - 1] === path
+          ? state.pathHistory
+          : [...state.pathHistory, path].slice(-5),
+    }),
+  ),
 );

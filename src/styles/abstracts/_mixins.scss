@@ -34,6 +34,10 @@ $breakpoints: (
   'gt-xl': (
     min-width: 1500px,
   ),
+  'gt-nav-icons': (
+    min-width: 880px,
+    // Custom breakpoint for when icons switch to text in navbar
+  ),
 );
 
 /// Responsive breakpoint manager

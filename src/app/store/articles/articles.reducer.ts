@@ -1,146 +1,141 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
+import { pick } from 'lodash';
 
-import type {
-  Article,
-  ArticleFormData,
-  ControlMode,
-  FileData,
-  Id,
-  Url,
+import {
+  ARTICLE_FORM_DATA_PROPERTIES,
+  type Article,
+  type ArticleFormData,
 } from '@app/models';
-import { ImagesActions } from '@app/store/images';
 import { customSort } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
 
-export interface ArticlesState extends EntityState<Article> {
-  articleId: Id | null;
-  articleFormData: ArticleFormData | null;
-  bannerImageUrl: Url | null;
-  bannerImageFileData: FileData | null;
-  originalBannerImageUrl: Url | null;
-  controlMode: ControlMode | null;
+export const INITIAL_ARTICLE_FORM_DATA: ArticleFormData = {
+  title: '',
+  body: '',
+  bannerImageId: '',
+};
+
+export interface ArticlesState
+  extends EntityState<{ article: Article; formData: ArticleFormData }> {
+  newArticleFormData: ArticleFormData;
 }
 
-export const articlesAdapter = createEntityAdapter<Article>({
+export const articlesAdapter = createEntityAdapter<{
+  article: Article;
+  formData: ArticleFormData;
+}>({
+  selectId: ({ article }) => article.id,
   sortComparer: (a, b) =>
-    customSort(a, b, 'bookmarkDate', true, 'modificationInfo.dateCreated', true),
+    customSort(
+      a,
+      b,
+      'article.bookmarkDate',
+      true,
+      'article.modificationInfo.dateCreated',
+      true,
+    ),
 });
 
-export const articlesInitialState: ArticlesState = articlesAdapter.getInitialState({
-  articleId: null,
-  articleFormData: null,
-  bannerImageUrl: null,
-  bannerImageFileData: null,
-  originalBannerImageUrl: null,
-  controlMode: null,
+export const initialState: ArticlesState = articlesAdapter.getInitialState({
+  newArticleFormData: INITIAL_ARTICLE_FORM_DATA,
 });
 
 export const articlesReducer = createReducer(
-  articlesInitialState,
+  initialState,
 
   on(
     ArticlesActions.fetchArticlesSucceeded,
-    (state, { articles }): ArticlesState => articlesAdapter.setAll(articles, state),
+    (state, { articles }): ArticlesState =>
+      articlesAdapter.setAll(
+        articles.map(article => ({
+          article,
+          formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+        })),
+        state,
+      ),
   ),
 
-  on(
-    ArticlesActions.fetchArticleRequested,
-    (state, { controlMode }): ArticlesState => ({
-      ...state,
-      controlMode,
-    }),
-  ),
-
-  on(
-    ArticlesActions.newArticleRequested,
-    (state): ArticlesState => ({
-      ...state,
-      controlMode: 'add',
-    }),
-  ),
-
-  on(
-    ArticlesActions.fetchArticleSucceeded,
-    (state, { article }): ArticlesState =>
-      articlesAdapter.upsertOne<ArticlesState>(article, {
-        ...state,
-        articleId: article.id,
-      }),
-  ),
-
-  on(
-    ImagesActions.fetchArticleBannerImageSucceeded,
-    (state, { image, setAsOriginal }): ArticlesState => ({
-      ...state,
-      bannerImageUrl: image.presignedUrl,
-      bannerImageFileData: null,
-      originalBannerImageUrl: setAsOriginal
-        ? image.presignedUrl
-        : state.originalBannerImageUrl,
-    }),
-  ),
-
-  on(
-    ArticlesActions.bannerImageSet,
-    (state, { url, fileData }): ArticlesState => ({
-      ...state,
-      bannerImageUrl: url,
-      bannerImageFileData: fileData,
-    }),
-  ),
-
-  on(
-    ArticlesActions.bannerImageFileLoadFailed,
-    (state): ArticlesState => ({
-      ...state,
-      bannerImageUrl: null,
-      bannerImageFileData: null,
-    }),
-  ),
+  on(ArticlesActions.fetchArticleSucceeded, (state, { article }): ArticlesState => {
+    const previousFormData = state.entities[article.id]?.formData;
+    return articlesAdapter.upsertOne(
+      {
+        article,
+        formData: previousFormData ?? pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+      },
+      state,
+    );
+  }),
 
   on(
     ArticlesActions.publishArticleSucceeded,
-    ArticlesActions.updateArticleSucceeded,
     (state, { article }): ArticlesState =>
-      articlesAdapter.upsertOne<ArticlesState>(article, {
-        ...state,
-        articleFormData: null,
-        bannerImageUrl: null,
-        bannerImageFileData: null,
-        originalBannerImageUrl: null,
-      }),
+      articlesAdapter.upsertOne(
+        {
+          article,
+          formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+        },
+        { ...state, newArticleFormData: INITIAL_ARTICLE_FORM_DATA },
+      ),
+  ),
+
+  on(ArticlesActions.updateArticleSucceeded, (state, { article }) =>
+    articlesAdapter.upsertOne(
+      {
+        article,
+        formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+      },
+      state,
+    ),
   ),
 
   on(
     ArticlesActions.deleteArticleSucceeded,
-    (state, { article }): ArticlesState =>
-      articlesAdapter.removeOne<ArticlesState>(article.id!, {
+    (state, { articleId }): ArticlesState => articlesAdapter.removeOne(articleId, state),
+  ),
+
+  on(ArticlesActions.formValueChanged, (state, { articleId, value }): ArticlesState => {
+    const originalArticle = articleId ? state.entities[articleId] : null;
+
+    if (!originalArticle) {
+      return {
         ...state,
-        articleId: null,
-        articleFormData: null,
-      }),
-  ),
+        newArticleFormData: {
+          ...state.newArticleFormData,
+          ...value,
+        },
+      };
+    }
 
-  on(
-    ArticlesActions.formValueChanged,
-    (state, { value }): ArticlesState => ({
-      ...state,
-      articleFormData: value as Required<ArticleFormData>,
-    }),
-  ),
+    return articlesAdapter.upsertOne(
+      {
+        ...originalArticle,
+        formData: {
+          ...(originalArticle?.formData ?? INITIAL_ARTICLE_FORM_DATA),
+          ...value,
+        },
+      },
+      state,
+    );
+  }),
 
-  on(
-    ArticlesActions.articleUnset,
-    (state): ArticlesState => ({
-      ...state,
-      articleId: null,
-      articleFormData: null,
-      bannerImageUrl: null,
-      bannerImageFileData: null,
-      controlMode: null,
-      originalBannerImageUrl: null,
-    }),
-  ),
+  on(ArticlesActions.articleFormDataCleared, (state, { articleId }): ArticlesState => {
+    const originalArticle = articleId ? state.entities[articleId] : null;
+
+    if (!originalArticle) {
+      return {
+        ...state,
+        newArticleFormData: INITIAL_ARTICLE_FORM_DATA,
+      };
+    }
+
+    return articlesAdapter.upsertOne(
+      {
+        ...originalArticle,
+        formData: INITIAL_ARTICLE_FORM_DATA,
+      },
+      state,
+    );
+  }),
 );

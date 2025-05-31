@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { ControlMode, Id, LccError, Member, MemberFormData } from '@app/models';
+import type { Id, LccError, Member, MemberFormData } from '@app/models';
 
 export const fetchMembersRequested = createAction('[Members] Fetch members requested');
 export const fetchMembersSucceeded = createAction(
@@ -12,10 +12,9 @@ export const fetchMembersFailed = createAction(
   props<{ error: LccError }>(),
 );
 
-export const newMemberRequested = createAction('[Members] New member requested');
 export const fetchMemberRequested = createAction(
   '[Members] Fetch member requested',
-  props<{ controlMode: ControlMode; memberId: Id }>(),
+  props<{ memberId: Id }>(),
 );
 export const fetchMemberSucceeded = createAction(
   '[Members] Fetch member succeeded',
@@ -25,6 +24,8 @@ export const fetchMemberFailed = createAction(
   '[Members] Fetch member failed',
   props<{ error: LccError }>(),
 );
+
+export const addAMemberSelected = createAction('[Members] Add a member selected');
 
 export const tableHeaderSelected = createAction(
   '[Members] Table header selected',
@@ -54,7 +55,10 @@ export const addMemberFailed = createAction(
   props<{ error: LccError }>(),
 );
 
-export const updateMemberRequested = createAction('[Members] Update member requested');
+export const updateMemberRequested = createAction(
+  '[Members] Update member requested',
+  props<{ memberId: Id }>(),
+);
 export const updateMemberSucceeded = createAction(
   '[Members] Update member succeeded',
   props<{ member: Member; originalMemberName: string }>(),
@@ -70,7 +74,7 @@ export const deleteMemberRequested = createAction(
 );
 export const deleteMemberSucceeded = createAction(
   '[Members] Delete member succeeded',
-  props<{ member: Member }>(),
+  props<{ memberId: Id; memberName: string }>(),
 );
 export const deleteMemberFailed = createAction(
   '[Members] Delete member failed',
@@ -81,7 +85,10 @@ export const cancelSelected = createAction('[Members] Cancel selected');
 
 export const formValueChanged = createAction(
   '[Members] Form value changed',
-  props<{ value: Partial<MemberFormData> }>(),
+  props<{ memberId: Id | null; value: Partial<MemberFormData> }>(),
 );
 
-export const memberUnset = createAction('[Members] Member unset');
+export const memberFormDataCleared = createAction(
+  '[Members] Member form data cleared',
+  props<{ memberId: Id | null }>(),
+);

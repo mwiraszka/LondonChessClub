@@ -1,4 +1,3 @@
-import { ControlMode } from './control-mode.model';
 import { Id } from './core.model';
 import { NavPath } from './nav-path.model';
 
@@ -7,6 +6,8 @@ interface BaseLink {
   icon?: string;
   tooltip?: string;
 }
+
+type ControlMode = 'add' | 'edit' | 'view';
 
 export type InternalPath = NavPath | [NavPath, ControlMode] | [NavPath, ControlMode, Id];
 

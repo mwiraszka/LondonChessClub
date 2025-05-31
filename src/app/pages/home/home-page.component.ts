@@ -1,3 +1,8 @@
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Store } from '@ngrx/store';
+import { Observable, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -7,9 +12,14 @@ import { ClubLinksComponent } from '@app/components/club-links/club-links.compon
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
 import { ScheduleComponent } from '@app/components/schedule/schedule.component';
-import type { InternalLink } from '@app/models';
+import type { Article, Event, Image, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
+import { ArticlesSelectors } from '@app/store/articles';
+import { AuthSelectors } from '@app/store/auth';
+import { EventsSelectors } from '@app/store/events';
+import { ImagesSelectors } from '@app/store/images';
 
+@UntilDestroy()
 @Component({
   selector: 'lcc-home-page',
   templateUrl: './home-page.component.html',
@@ -25,44 +35,85 @@ import { MetaAndTitleService } from '@app/services';
   ],
 })
 export class HomePageComponent implements OnInit {
-  public readonly aboutLink: InternalLink = {
+  public readonly aboutPageLink: InternalLink = {
     text: 'More about the London Chess Club',
     internalPath: 'about',
   };
-
-  public readonly scheduleLink: InternalLink = {
-    text: 'All scheduled events',
-    internalPath: 'schedule',
-  };
-
-  public readonly photoGalleryLink: InternalLink = {
+  public maxArticles!: number;
+  public readonly photoGalleryPageLink: InternalLink = {
     text: 'More photos',
     internalPath: 'photo-gallery',
   };
-
-  public readonly newsLink: InternalLink = {
+  public readonly newsPageLink: InternalLink = {
     text: 'More news',
     internalPath: 'news',
   };
+  public readonly schedulePageLink: InternalLink = {
+    text: 'All scheduled events',
+    internalPath: 'schedule',
+  };
+  public viewModel$?: Observable<{
+    allArticles: Article[];
+    articleImages: Image[];
+    allEvents: Event[];
+    photoImages: Image[];
+    isAdmin: boolean;
+    nextEvent: Event | null;
+    showPastEvents: boolean;
+    upcomingEvents: Event[];
+  }>;
 
-  public maxArticles: number = 3;
-
-  constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
+  constructor(
+    private readonly metaAndTitleService: MetaAndTitleService,
+    private readonly store: Store,
+  ) {}
 
   ngOnInit(): void {
-    // Set number of articles to display based on screen width
-    this.onResize();
-
     this.metaAndTitleService.updateTitle('London Chess Club');
     this.metaAndTitleService.updateDescription(
       `The London Chess Club is open to players of all ages and abilities. We host
       regular blitz and rapid chess tournaments, as well as a variety of lectures, simuls
       and team competitions.`,
     );
+    this.setArticleCountBasedOnScreenWidth();
+
+    this.viewModel$ = combineLatest([
+      this.store.select(ArticlesSelectors.selectAllArticles),
+      this.store.select(ImagesSelectors.selectArticleImages),
+      this.store.select(EventsSelectors.selectAllEvents),
+      this.store.select(ImagesSelectors.selectPhotoImages),
+      this.store.select(AuthSelectors.selectIsAdmin),
+      this.store.select(EventsSelectors.selectNextEvent),
+      this.store.select(EventsSelectors.selectShowPastEvents),
+      this.store.select(EventsSelectors.selectUpcomingEvents),
+    ]).pipe(
+      untilDestroyed(this),
+      map(
+        ([
+          allArticles,
+          articleImages,
+          allEvents,
+          photoImages,
+          isAdmin,
+          nextEvent,
+          showPastEvents,
+          upcomingEvents,
+        ]) => ({
+          allArticles,
+          articleImages,
+          allEvents,
+          photoImages,
+          isAdmin,
+          nextEvent,
+          showPastEvents,
+          upcomingEvents,
+        }),
+      ),
+    );
   }
 
   @HostListener('window:resize', ['$event'])
-  private onResize = () => {
+  private setArticleCountBasedOnScreenWidth = () => {
     this.maxArticles =
       window.innerWidth < 550
         ? 3

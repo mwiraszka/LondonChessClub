@@ -1,94 +1,88 @@
-@if (scheduleViewModel$ | async; as vm) {
-  @if (vm.isAdmin) {
-    <lcc-link-list [links]="[addEventLink]"></lcc-link-list>
-  }
+@if (isAdmin) {
+  <lcc-link-list [links]="[addEventLink]"></lcc-link-list>
+}
 
-  <table class="lcc-table">
-    <thead>
-      <th class="date">Date</th>
-      <th class="event">Event</th>
-    </thead>
+<table class="lcc-table">
+  <thead>
+    <th class="date">Date</th>
+    <th class="event">Event</th>
+  </thead>
 
-    <tbody>
-      @for (
-        event of vm.showPastEvents && allowTogglePastEvents
-          ? vm.allEvents
-          : vm.upcomingEvents.slice(0, upcomingEventLimit ?? vm.upcomingEvents.length);
-        track event.id
-      ) {
-        <tr
-          [adminControls]="vm.isAdmin ? getAdminControlsConfig(event) : null"
-          [id]="event.id"
-          [class.next-event]="event.id === vm.nextEvent?.id"
-          [ngClass]="
-            !!(vm.showPastEvents && allowTogglePastEvents)
-              ? 'showing-past-events'
-              : undefined
-          ">
-          <td class="date-cell">
-            <div class="date-content">
-              <span class="date">
-                {{ event.eventDate | formatDate: 'long no-time' }}
-              </span>
-            </div>
-          </td>
+  <tbody>
+    @for (
+      event of showPastEvents && allowTogglePastEvents
+        ? allEvents
+        : upcomingEvents.slice(0, upcomingEventLimit ?? upcomingEvents.length);
+      track event.id
+    ) {
+      <tr
+        [adminControls]="isAdmin ? getAdminControlsConfig(event) : null"
+        [id]="event.id"
+        [class.next-event]="event.id === nextEvent?.id"
+        [ngClass]="
+          showPastEvents && allowTogglePastEvents ? 'showing-past-events' : undefined
+        ">
+        <td class="date-cell">
+          <div class="date-content">
+            <span class="date">
+              {{ event.eventDate | formatDate: 'long no-time' }}
+            </span>
+          </div>
+        </td>
 
-          <td class="main-cell">
-            <div class="main-content">
-              <h4 class="title">{{ event.title }}</h4>
-              <div
-                class="type-container"
-                [ngClass]="event.type | kebabCase">
-                <span class="type">{{ event.type }}</span>
+        <td class="main-cell">
+          <div class="main-content">
+            <h4 class="title">{{ event.title }}</h4>
+            <div
+              class="type-container"
+              [ngClass]="event.type | kebabCase">
+              <span class="type">{{ event.type }}</span>
 
-                @if ((event.type | kebabCase) === 'championship') {
-                  <i-feather
-                    name="award"
-                    class="award-icon">
-                  </i-feather>
-                }
-              </div>
-
-              @if (includeDetails) {
-                <p class="event-details">
-                  {{ event.details.replaceAll('\\n', ' \n ') }}
-                </p>
-              }
-
-              @if (event?.articleId) {
-                <a
-                  [routerLink]="'/article/view/' + event.articleId"
-                  class="lcc-link event-article">
-                  More details
-                </a>
+              @if ((event.type | kebabCase) === 'championship') {
+                <i-feather
+                  name="shield"
+                  class="championship-icon">
+                </i-feather>
               }
             </div>
 
-            @if (includeDetails && vm.isAdmin) {
-              <aside class="created-and-edited">
-                <div>
-                  Event created
-                  {{ event.modificationInfo.dateCreated | formatDate: 'short no-time' }}
-                </div>
-                <div>
-                  Last edited
-                  {{
-                    event.modificationInfo.dateLastEdited | formatDate: 'short no-time'
-                  }}
-                </div>
-              </aside>
+            @if (includeDetails) {
+              <p class="event-details">
+                {{ event.details.replaceAll('\\n', ' \n ') }}
+              </p>
             }
-          </td>
-        </tr>
-      }
-    </tbody>
-  </table>
 
-  @if (allowTogglePastEvents) {
-    <button
-      class="lcc-secondary-button toggle-past-events-button"
-      (click)="onTogglePastEvents()">
-      {{ vm.showPastEvents ? 'Hide' : 'Show' }} past events
-    </button>
-  }
+            @if (event?.articleId) {
+              <a
+                [routerLink]="'/article/view/' + event.articleId"
+                class="lcc-link event-article">
+                More details
+              </a>
+            }
+          </div>
+
+          @if (includeDetails && isAdmin) {
+            <aside class="created-and-edited">
+              <div>
+                Event created
+                {{ event.modificationInfo.dateCreated | formatDate: 'short no-time' }}
+              </div>
+              <div>
+                Last edited
+                {{ event.modificationInfo.dateLastEdited | formatDate: 'short no-time' }}
+              </div>
+            </aside>
+          }
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+@if (allowTogglePastEvents) {
+  <button
+    class="lcc-secondary-button toggle-past-events-button"
+    (click)="onTogglePastEvents()">
+    {{ showPastEvents ? 'Hide' : 'Show' }} past events
+  </button>
 }

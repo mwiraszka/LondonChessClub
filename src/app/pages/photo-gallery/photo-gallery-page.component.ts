@@ -1,27 +1,38 @@
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Store } from '@ngrx/store';
+import { Observable, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
-import type { ExternalLink } from '@app/models';
+import type { ExternalLink, Image } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
+import { AuthSelectors } from '@app/store/auth';
+import { ImagesSelectors } from '@app/store/images';
 
+@UntilDestroy()
 @Component({
   selector: 'lcc-photo-gallery-page',
   template: `
-    <lcc-page-header
-      title="Photo Gallery"
-      icon="camera">
-    </lcc-page-header>
-
-    <lcc-photo-grid></lcc-photo-grid>
-
-    <lcc-link-list
-      header="More photos (soon to be migrated here)"
-      [links]="links"
-      style="margin-top: 32px;">
-    </lcc-link-list>
+    @if (viewModel$ | async; as vm) {
+      <lcc-page-header
+        title="Photo Gallery"
+        icon="camera">
+      </lcc-page-header>
+      <lcc-photo-grid
+        [isAdmin]="vm.isAdmin"
+        [photoImages]="vm.photoImages">
+      </lcc-photo-grid>
+      <lcc-link-list
+        header="More photos (soon to be migrated here)"
+        [links]="links"
+        style="margin-top: 32px;">
+      </lcc-link-list>
+    }
   `,
   imports: [CommonModule, LinkListComponent, PhotoGridComponent, PageHeaderComponent],
 })
@@ -100,13 +111,25 @@ export class PhotoGalleryPageComponent implements OnInit {
       externalPath: 'https://londonchessclub.ca/?page_id=916',
     },
   ].map(link => ({ ...link, icon: 'camera' }));
+  public viewModel$?: Observable<{ photoImages: Image[]; isAdmin: boolean }>;
 
-  constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
+  constructor(
+    private readonly metaAndTitleService: MetaAndTitleService,
+    private readonly store: Store,
+  ) {}
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Photo Gallery');
     this.metaAndTitleService.updateDescription(
       'Browse through photos of our club events over the years.',
+    );
+
+    this.viewModel$ = combineLatest([
+      this.store.select(ImagesSelectors.selectPhotoImages),
+      this.store.select(AuthSelectors.selectIsAdmin),
+    ]).pipe(
+      untilDestroyed(this),
+      map(([photoImages, isAdmin]) => ({ photoImages, isAdmin })),
     );
   }
 }

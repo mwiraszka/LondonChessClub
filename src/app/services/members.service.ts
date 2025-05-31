@@ -42,9 +42,9 @@ export class MembersService {
     );
   }
 
-  public deleteMember(member: Member): Observable<ApiResponse<Id>> {
+  public deleteMember(id: Id): Observable<ApiResponse<Id>> {
     return this.http.delete<ApiResponse<Id>>(
-      `${this.API_BASE_URL}/admin/${this.COLLECTION}/${member.id}`,
+      `${this.API_BASE_URL}/admin/${this.COLLECTION}/${id}`,
     );
   }
 }

@@ -1,7 +1,8 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
-import { filter } from 'rxjs/operators';
+import { Observable, combineLatest } from 'rxjs';
+import { filter, map, tap } from 'rxjs/operators';
 
 import { CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule, DOCUMENT } from '@angular/common';
@@ -13,8 +14,11 @@ import { HeaderComponent } from '@app/components/header/header.component';
 import { NavigationBarComponent } from '@app/components/navigation-bar/navigation-bar.component';
 import { ToasterComponent } from '@app/components/toaster/toaster.component';
 import { UpcomingEventBannerComponent } from '@app/components/upcoming-event-banner/upcoming-event-banner.component';
+import { Event, IsoDate, Toast } from '@app/models';
 import { LoaderService } from '@app/services';
 import { AppActions, AppSelectors } from '@app/store/app';
+import { EventsSelectors } from '@app/store/events';
+import { NotificationsSelectors } from '@app/store/notifications';
 import { isDefined } from '@app/utils';
 
 @UntilDestroy()
@@ -34,7 +38,13 @@ import { isDefined } from '@app/utils';
   ],
 })
 export class AppComponent implements OnInit {
-  public readonly appViewModel$ = this.store.select(AppSelectors.selectAppViewModel);
+  public viewModel$?: Observable<{
+    bannerLastCleared: IsoDate | null;
+    isDarkMode: boolean;
+    nextEvent: Event | null;
+    showUpcomingEventBanner: boolean;
+    toasts: Toast[];
+  }>;
 
   constructor(
     @Inject(DOCUMENT) private readonly _document: Document,
@@ -46,19 +56,33 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initAppViewModel();
     this.initNavigationListenerForScrollingBackToTop();
-    this.clearOldLocalStorageKeys();
-  }
+    this.clearStaleLocalStorageData();
 
-  public onClearBanner(): void {
-    this.store.dispatch(AppActions.upcomingEventBannerCleared());
-  }
-
-  private initAppViewModel(): void {
-    this.appViewModel$
-      .pipe(untilDestroyed(this))
-      .subscribe(({ isDarkMode, bannerLastCleared }) => {
+    this.viewModel$ = combineLatest([
+      this.store.select(AppSelectors.selectIsDarkMode),
+      this.store.select(AppSelectors.selectShowUpcomingEventBanner),
+      this.store.select(AppSelectors.selectBannerLastCleared),
+      this.store.select(EventsSelectors.selectNextEvent),
+      this.store.select(NotificationsSelectors.selectToasts),
+    ]).pipe(
+      untilDestroyed(this),
+      map(
+        ([
+          isDarkMode,
+          showUpcomingEventBanner,
+          bannerLastCleared,
+          nextEvent,
+          toasts,
+        ]) => ({
+          isDarkMode,
+          showUpcomingEventBanner,
+          bannerLastCleared,
+          nextEvent,
+          toasts,
+        }),
+      ),
+      tap(({ isDarkMode, bannerLastCleared }) => {
         this._document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
 
         if (
@@ -67,7 +91,12 @@ export class AppComponent implements OnInit {
         ) {
           this.store.dispatch(AppActions.upcomingEventBannerReinstated());
         }
-      });
+      }),
+    );
+  }
+
+  public onClearBanner(): void {
+    this.store.dispatch(AppActions.upcomingEventBannerCleared());
   }
 
   private initNavigationListenerForScrollingBackToTop(): void {
@@ -76,11 +105,27 @@ export class AppComponent implements OnInit {
         untilDestroyed(this),
         filter(event => event instanceof NavigationEnd && !event.url.split('#')[1]),
       )
-      .subscribe(() => this._document.querySelector('main')!.scrollTo({ top: 0 }));
+      .subscribe(() => {
+        const mainElement = this._document.querySelector('main');
+        if (mainElement) {
+          mainElement.scrollTo({ top: 0 });
+        }
+      });
   }
 
-  private clearOldLocalStorageKeys(): void {
+  private clearStaleLocalStorageData(): void {
     const oldKeys = ['articles', 'auth', 'members', 'nav', 'schedule', 'user-settings'];
     oldKeys.forEach(key => localStorage.removeItem(key));
+
+    const entityKeys = ['articlesState', 'eventsState', 'imagesState', 'membersState'];
+    entityKeys.forEach(key => {
+      const storedValue = localStorage.getItem(key);
+      if (
+        storedValue &&
+        (JSON.parse(storedValue).controlMode || JSON.parse(storedValue).id)
+      ) {
+        localStorage.removeItem(key);
+      }
+    });
   }
 }

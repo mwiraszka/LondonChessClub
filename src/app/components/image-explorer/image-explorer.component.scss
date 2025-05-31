@@ -2,7 +2,7 @@
   min-width: min(90vw, var(--lcc-width--appContent));
   height: 90dvh;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 8px;
   overflow: auto;
   padding: 8px;
@@ -22,18 +22,21 @@
     img,
     .loading-placeholder-image {
       aspect-ratio: 3 / 2;
-      border-radius: var(--lcc-borderRadius--large);
+      object-fit: contain;
       width: 100%;
+      border-radius: var(--lcc-borderRadius--large);
     }
 
+    .caption,
     .filename,
-    .thumbnail-file-size,
+    .file-size,
     .upload-date,
     .article-appearances {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--lcc-color--imageExplorer-text);
 
       label {
+        display: inline;
         font-weight: bold;
         margin-right: 0.5em;
       }

@@ -1,10 +1,10 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import { debounceTime } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -14,10 +14,10 @@ import {
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
-import { TooltipDirective } from '@app/directives/tooltip.directive';
+import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import IconsModule from '@app/icons';
 import type { ChangePasswordFormGroup } from '@app/models';
-import { AuthActions, AuthSelectors } from '@app/store/auth';
+import { AuthActions } from '@app/store/auth';
 import {
   emailValidator,
   hasLowercaseLetterValidator,
@@ -32,11 +32,18 @@ import {
   selector: 'lcc-change-password-form',
   templateUrl: './change-password-form.component.html',
   styleUrl: './change-password-form.component.scss',
-  imports: [CommonModule, IconsModule, ReactiveFormsModule, RouterLink, TooltipDirective],
+  imports: [
+    CommonModule,
+    FormErrorIconComponent,
+    IconsModule,
+    ReactiveFormsModule,
+    RouterLink,
+  ],
 })
 export class ChangePasswordFormComponent implements OnInit {
-  public form: FormGroup<ChangePasswordFormGroup> | null = null;
-  public hasCode: boolean = false;
+  @Input({ required: true }) hasCode!: boolean;
+
+  public form!: FormGroup<ChangePasswordFormGroup>;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -45,46 +52,15 @@ export class ChangePasswordFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-
-    this.store
-      .select(AuthSelectors.selectHasCode)
-      .pipe(untilDestroyed(this))
-      .subscribe(hasCode => (this.hasCode = hasCode));
-  }
-
-  public hasError(control: AbstractControl): boolean {
-    return control.dirty && control.invalid;
-  }
-
-  public getErrorMessage(control: AbstractControl): string {
-    if (control.hasError('required')) {
-      return 'This field is required';
-    } else if (control.hasError('invalidEmailFormat')) {
-      return 'Invalid email';
-    } else if (control.hasError('pattern')) {
-      return 'Invalid input (incorrect format)';
-    } else if (control.hasError('noLowercaseLetter')) {
-      return 'Password needs to include at least one lowercase letter';
-    } else if (control.hasError('noUppercaseLetter')) {
-      return 'Password needs to include at least one uppercase letter';
-    } else if (control.hasError('noSpecialChar')) {
-      return 'Password needs to include at least one special character';
-    } else if (control.hasError('noNumber')) {
-      return 'Password needs to include at least one number';
-    } else if (control.hasError('minlength')) {
-      return 'Password needs to be at least 8 characters long';
-    } else {
-      return 'Unknown error';
-    }
+    this.initFormValueChangeListener();
   }
 
   public onSubmit(hasCode: boolean): void {
     if (
-      !this.form ||
       (!hasCode && this.form.controls.email.invalid) ||
       (hasCode && this.form.invalid)
     ) {
-      this.form!.markAllAsTouched();
+      this.form.markAllAsTouched();
       return;
     }
 
@@ -127,6 +103,14 @@ export class ChangePasswordFormComponent implements OnInit {
       },
       { validators: matchingPasswordsValidator },
     );
+  }
+
+  private initFormValueChangeListener(): void {
+    this.form.valueChanges.pipe(debounceTime(250), untilDestroyed(this)).subscribe(() => {
+      this.form.controls.confirmPassword.setErrors(
+        this.form.hasError('passwordMismatch') ? { passwordMismatch: true } : null,
+      );
+    });
   }
 
   private readonly passwordValidators: ValidatorFn[] = [

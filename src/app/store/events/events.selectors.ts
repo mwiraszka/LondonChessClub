@@ -1,37 +1,50 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { pick } from 'lodash';
 import moment from 'moment-timezone';
 
-import { newEventFormTemplate } from '@app/components/event-form/new-event-form-template';
 import type { Id } from '@app/models';
-import { AuthSelectors } from '@app/store/auth';
 import { areSame } from '@app/utils';
 
-import { EventsState, eventsAdapter } from './events.reducer';
+import { EventsState, INITIAL_EVENT_FORM_DATA, eventsAdapter } from './events.reducer';
 
 const selectEventsState = createFeatureSelector<EventsState>('eventsState');
 
-const { selectAll: selectAllEvents } = eventsAdapter.getSelectors(selectEventsState);
+const { selectAll: selectAllEventEntities } =
+  eventsAdapter.getSelectors(selectEventsState);
 
-export const selectEventById = (id: Id) =>
-  createSelector(selectAllEvents, allEvents =>
-    allEvents ? allEvents.find(event => event.id === id) : null,
+export const selectAllEvents = createSelector(selectAllEventEntities, allEventEntities =>
+  allEventEntities.map(entity => entity?.event),
+);
+
+export const selectEventById = (id: Id | null) =>
+  createSelector(
+    selectAllEventEntities,
+    allEventEntities =>
+      allEventEntities.find(entity => entity.event.id === id)?.event ?? null,
   );
 
-export const selectEventId = createSelector(selectEventsState, state => state.eventId);
+export const selectEventFormDataById = (id: Id | null) =>
+  createSelector(
+    selectEventsState,
+    selectAllEventEntities,
+    (state, allEventEntities) =>
+      allEventEntities.find(entity => entity.event.id === id)?.formData ??
+      state.newEventFormData,
+  );
 
-export const selectEvent = createSelector(
-  selectAllEvents,
-  selectEventId,
-  (allEvents, eventId) =>
-    eventId ? allEvents.find(event => event.id === eventId) : null,
-);
+export const selectHasUnsavedChanges = (id: Id | null) =>
+  createSelector(
+    selectEventById(id),
+    selectEventFormDataById(id),
+    (event, eventFormData) => {
+      const formPropertiesOfOriginalEvent = pick(
+        event ?? INITIAL_EVENT_FORM_DATA,
+        Object.getOwnPropertyNames(eventFormData),
+      );
 
-export const selectEventTitle = createSelector(selectEvent, event => event?.title);
-
-export const selectEventFormData = createSelector(
-  selectEventsState,
-  state => state.eventFormData,
-);
+      return !areSame(formPropertiesOfOriginalEvent, eventFormData);
+    },
+  );
 
 export const selectUpcomingEvents = createSelector(selectAllEvents, allEvents =>
   allEvents.filter(event => moment(event.eventDate).add(3, 'hours').isAfter(moment())),
@@ -41,55 +54,7 @@ export const selectNextEvent = createSelector(selectUpcomingEvents, upcomingEven
   upcomingEvents.length > 0 ? upcomingEvents[0] : null,
 );
 
-export const selectControlMode = createSelector(
-  selectEventsState,
-  state => state.controlMode,
-);
-
 export const selectShowPastEvents = createSelector(
   selectEventsState,
   state => state.showPastEvents,
 );
-
-export const selectHasUnsavedChanges = createSelector(
-  selectControlMode,
-  selectEvent,
-  selectEventFormData,
-  (controlMode, event, eventFormData) => {
-    if (!eventFormData) {
-      return null;
-    }
-
-    if (controlMode === 'add') {
-      return !areSame(eventFormData, newEventFormTemplate);
-    }
-
-    if (!event) {
-      return null;
-    }
-
-    const { id, modificationInfo, ...relevantPropertiesOfEvent } = event;
-    return !areSame(relevantPropertiesOfEvent, eventFormData);
-  },
-);
-
-export const selectEventEditorPageViewModel = createSelector({
-  eventTitle: selectEventTitle,
-  controlMode: selectControlMode,
-  hasUnsavedChanges: selectHasUnsavedChanges,
-});
-
-export const selectScheduleViewModel = createSelector({
-  allEvents: selectAllEvents,
-  upcomingEvents: selectUpcomingEvents,
-  nextEvent: selectNextEvent,
-  showPastEvents: selectShowPastEvents,
-  isAdmin: AuthSelectors.selectIsAdmin,
-});
-
-export const selectEventFormViewModel = createSelector({
-  event: selectEvent,
-  eventFormData: selectEventFormData,
-  controlMode: selectControlMode,
-  hasUnsavedChanges: selectHasUnsavedChanges,
-});

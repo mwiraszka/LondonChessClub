@@ -17,7 +17,6 @@ import type {
   Id,
   Image,
   InternalLink,
-  Url,
 } from '@app/models';
 import {
   FormatDatePipe,
@@ -27,7 +26,7 @@ import {
   WasEditedPipe,
 } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
+import { ArticlesActions } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
 import { isDefined } from '@app/utils';
 
@@ -50,11 +49,12 @@ import { isDefined } from '@app/utils';
   ],
 })
 export class ArticleGridComponent implements OnInit {
+  @Input({ required: true }) articles!: Article[];
+  @Input({ required: true }) articleImages!: Image[];
+  @Input({ required: true }) isAdmin!: boolean;
+
   @Input() public maxArticles?: number;
 
-  public readonly articleGridViewModel$ = this.store.select(
-    ArticlesSelectors.selectArticleGridViewModel,
-  );
   public readonly createArticleLink: InternalLink = {
     internalPath: ['article', 'add'],
     text: 'Create an article',
@@ -67,21 +67,12 @@ export class ArticleGridComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.fetchArticleData();
-  }
-
-  public fetchArticleData(): void {
     this.store.dispatch(ArticlesActions.fetchArticlesRequested());
-    this.store.dispatch(ImagesActions.fetchArticleBannerImageThumbnailsRequested());
+    this.store.dispatch(ImagesActions.fetchImageThumbnailsRequested());
   }
 
-  public getArticleThumbnailImageUrl(
-    imageId: Id | null,
-    thumbnailImages: Image[],
-  ): Url | null {
-    return (
-      thumbnailImages.find(image => image.id === `${imageId}-thumb`)?.presignedUrl ?? null
-    );
+  public getBannerImage(imageId: Id): Image | null {
+    return this.articleImages.find(image => image.id === imageId) ?? null;
   }
 
   public getAdminControlsConfig(article: Article): AdminControlsConfig {
@@ -90,7 +81,7 @@ export class ArticleGridComponent implements OnInit {
       bookmarked: isDefined(article.bookmarkDate),
       buttonSize: 34,
       deleteCb: () => this.onDeleteArticle(article),
-      editPath: ['article', 'edit', article.id!],
+      editPath: ['article', 'edit', article.id],
       itemName: article.title,
     };
   }

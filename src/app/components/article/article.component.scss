@@ -10,15 +10,14 @@
   justify-content: center;
   background-color: var(--lcc-color--article-bannerImageBackground);
 
-  img,
+  .banner-image,
   .loading-placeholder-image {
-    height: calc((100vw - 16px) / 1.5);
-    // Set based on md-breakpoint value of 700px and 3:2 aspect ratio
-    max-height: calc((700px - 16px) / 1.5);
+    height: 300px;
     box-sizing: border-box;
 
     @include mixins.respond-to('lt-md') {
       width: 100%;
+      height: auto;
     }
   }
 

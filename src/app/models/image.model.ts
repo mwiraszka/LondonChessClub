@@ -1,13 +1,32 @@
-import { Id, IsoDate, Url } from './core.model';
+import { FormControl } from '@angular/forms';
 
-export interface Image {
+import { Id, Url } from './core.model';
+import { ModificationInfo } from './modification-info.model';
+
+export interface BaseImage {
   id: Id;
   filename: string;
   fileSize: number;
-  dateUploaded: IsoDate;
-  presignedUrl: Url;
-  articleAppearances: number;
-  albums?: string[];
-  albumCoverFor?: string | null;
-  name?: string;
+  caption: string;
+  albums: string[];
+  coverForAlbum: string;
+  modificationInfo: ModificationInfo;
 }
+
+export interface Image extends BaseImage {
+  fileSize: number;
+  originalPresignedUrl?: Url;
+  thumbnailPresignedUrl?: Url;
+  articleAppearances?: number;
+}
+
+export const IMAGE_FORM_DATA_PROPERTIES = ['filename', 'caption', 'albums'] as const;
+
+export type ImageFormData = Pick<
+  BaseImage,
+  (typeof IMAGE_FORM_DATA_PROPERTIES)[number]
+> & { newAlbum: string; dataUrl: Url };
+
+export type ImageFormGroup = {
+  [Property in keyof ImageFormData]: FormControl<ImageFormData[Property]>;
+};

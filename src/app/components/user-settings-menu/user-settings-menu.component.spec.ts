@@ -1,13 +1,12 @@
-import { StoreModule } from '@ngrx/store';
-import { ngMocks } from 'ng-mocks';
-import { of } from 'rxjs';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
 
-import { AppActions } from '@app/store/app';
+import { AppActions, AppSelectors } from '@app/store/app';
+import { AuthSelectors } from '@app/store/auth';
 
 import { UserSettingsMenuComponent } from './user-settings-menu.component';
 
@@ -15,35 +14,32 @@ describe('UserSettingsMenuComponent', () => {
   let component: UserSettingsMenuComponent;
   let fixture: ComponentFixture<UserSettingsMenuComponent>;
   let router: Router;
+  let store: MockStore;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [],
-      imports: [
-        StoreModule.forRoot({}),
-        RouterModule.forRoot([]),
-        UserSettingsMenuComponent,
-      ],
+      imports: [RouterModule.forRoot([]), UserSettingsMenuComponent],
+      providers: [provideMockStore()],
     })
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(UserSettingsMenuComponent);
         component = fixture.componentInstance;
         router = TestBed.inject(Router);
+        store = TestBed.inject(MockStore);
       });
+  });
+
+  afterEach(() => {
+    store.resetSelectors();
   });
 
   describe('when NOT logged in', () => {
     beforeEach(() => {
-      ngMocks.stubMember(
-        component,
-        'userSettingsMenuViewModel$',
-        of({
-          user: null,
-          isDarkMode: true,
-          isSafeMode: true,
-        }),
-      );
+      store.overrideSelector(AppSelectors.selectIsDarkMode, true);
+      store.overrideSelector(AppSelectors.selectIsSafeMode, true);
+      store.overrideSelector(AuthSelectors.selectUser, null);
 
       fixture.detectChanges();
     });
@@ -67,7 +63,7 @@ describe('UserSettingsMenuComponent', () => {
     });
 
     it('should dispatch `themeToggled` action when theme toggle menu item is clicked', () => {
-      const dispatchSpy = jest.spyOn(component['store'], 'dispatch');
+      const dispatchSpy = jest.spyOn(store, 'dispatch');
       component.onToggleTheme();
 
       expect(dispatchSpy).toHaveBeenCalledWith(AppActions.themeToggled());
@@ -103,21 +99,15 @@ describe('UserSettingsMenuComponent', () => {
 
   describe('when logged in', () => {
     beforeEach(() => {
-      ngMocks.stubMember(
-        component,
-        'userSettingsMenuViewModel$',
-        of({
-          user: {
-            id: '123',
-            firstName: 'John',
-            lastName: 'Doe',
-            email: 'john_doe@test.com',
-            isAdmin: true,
-          },
-          isDarkMode: true,
-          isSafeMode: true,
-        }),
-      );
+      store.overrideSelector(AppSelectors.selectIsDarkMode, true);
+      store.overrideSelector(AppSelectors.selectIsSafeMode, true);
+      store.overrideSelector(AuthSelectors.selectUser, {
+        id: '123',
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john_doe@test.com',
+        isAdmin: true,
+      });
 
       fixture.detectChanges();
     });
@@ -141,7 +131,7 @@ describe('UserSettingsMenuComponent', () => {
     });
 
     it('should dispatch `themeToggled` action when theme toggle menu item is clicked', () => {
-      const dispatchSpy = jest.spyOn(component['store'], 'dispatch');
+      const dispatchSpy = jest.spyOn(store, 'dispatch');
       component.onToggleTheme();
 
       expect(dispatchSpy).toHaveBeenCalledWith(AppActions.themeToggled());
@@ -152,7 +142,7 @@ describe('UserSettingsMenuComponent', () => {
     });
 
     it('should dispatch `safeModeToggled` action when safe mode toggle menu item is clicked', () => {
-      const dispatchSpy = jest.spyOn(component['store'], 'dispatch');
+      const dispatchSpy = jest.spyOn(store, 'dispatch');
       component.onToggleSafeMode();
 
       expect(dispatchSpy).toHaveBeenCalledWith(AppActions.safeModeToggled());

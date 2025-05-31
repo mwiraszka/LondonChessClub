@@ -2,9 +2,9 @@
   @defer {
     <img
       class="banner-image"
-      [src]="bannerImageUrl"
-      default="assets/image-placeholder.png"
-      alt="Article image banner" />
+      [alt]="bannerImage?.caption ?? 'Article banner image'"
+      [src]="bannerImage?.originalPresignedUrl ?? bannerImage?.thumbnailPresignedUrl"
+      default="assets/image-placeholder.png" />
   } @placeholder (minimum 0.5s) {
     <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
       <div class="lcc-content-placeholder"></div>

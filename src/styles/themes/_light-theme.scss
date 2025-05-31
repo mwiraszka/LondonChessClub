@@ -16,11 +16,14 @@
   --lcc-color--adminControls-bookmarkIconOnHover: #{clr(secondary, light)};
   --lcc-color--adminControls-buttonBackground: #{clr(grayscale, white-92)};
   --lcc-color--adminControls-buttonBackgroundOnHover: #{clr(grayscale, white-98)};
-  --lcc-color--adminControls-buttonBorder: #{clr(grayscale, white-85)};
+  --lcc-color--adminControls-buttonBorder: #{clr(grayscale, gray-75, 0.6)};
   --lcc-color--adminControls-deleteIcon: #{clr(warning)};
   --lcc-color--adminControls-deleteIconOnHover: #{clr(warning, light)};
-  --lcc-color--adminControls-editIcon: #{clr(grayscale, gray-25)};
-  --lcc-color--adminControls-editIconOnHover: #{clr(grayscale, black-10)};
+  --lcc-color--adminControls-disabledButtonBackground: #{clr(grayscale, gray-75)};
+  --lcc-color--adminControls-disabledButtonBorder: #{clr(grayscale, gray-65, 0.6)};
+  --lcc-color--adminControls-disabledButtonIcon: #{clr(grayscale, gray-65)};
+  --lcc-color--adminControls-editIcon: #{clr(primary, base)};
+  --lcc-color--adminControls-editIconOnHover: #{clr(primary, light)};
 
   --lcc-color--app-mainBackground: #{clr(grayscale, white-95)};
 
@@ -70,6 +73,7 @@
 
   --lcc-color--championPage-cellBackground: #{clr(grayscale, white-90)};
   --lcc-color--championPage-cellBorder: #{clr(grayscale, white-85, 0.5)};
+  --lcc-color--championPage-championshipIcon: #{clr(secondary, base)};
   --lcc-color--championPage-historyText: #{clr(grayscale, gray-25)};
   --lcc-color--championPage-historyTextBold: #{clr(grayscale, black-5)};
   --lcc-color--championPage-pastWinnersHeaderText: #{clr(grayscale, black-15)};
@@ -112,11 +116,12 @@
 
   --lcc-color--form-background: #{clr(grayscale, white-98)};
   --lcc-color--form-boxShadow: #{clr(grayscale, white-95, 0.7)};
-  --lcc-color--form-errorIcon: #{clr(warning, lighter)};
   --lcc-color--form-headerText: #{clr(grayscale, black-10)};
   --lcc-color--form-labelText: #{clr(grayscale, black-15)};
   --lcc-color--form-requiredFieldAsterisk: #{clr(warning, light)};
   --lcc-color--form-requiredFieldText: #{clr(grayscale, black-15)};
+
+  --lcc-color--formErrorIcon: #{clr(warning, lighter)};
 
   --lcc-color--gameArchivesPage-activeButtonBackground: #{clr(primary, lighter)};
   --lcc-color--gameArchivesPage-activeButtonBoxShadow: #{clr(grayscale, white-85, 0.7)};
@@ -169,6 +174,13 @@
   --lcc-color--input-invalidBorder: #{clr(warning, lighter)};
   --lcc-color--input-text: #{clr(grayscale, black-5)};
 
+  --lcc-color--lifetimePage-blockBackground: #{clr(grayscale, white-90)};
+  --lcc-color--lifetimePage-blockBoldText: #{clr(grayscale, black-5)};
+  --lcc-color--lifetimePage-blockText: #{clr(grayscale, black-20)};
+  --lcc-color--lifetimePage-portraitBorder: #{clr(grayscale, gray-75, 0.3)};
+  --lcc-color--lifetimePage-sectionHeaderDivider: #{clr(primary, base)};
+  --lcc-color--lifetimePage-sectionHeaderText: #{clr(grayscale, black-2)};
+
   --lcc-color--link: #{clr(primary, light)};
   --lcc-color--linkDisabled: #{clr(grayscale, gray-50)};
   --lcc-color--linkOnHover: #{clr(primary, lighter)};
@@ -178,6 +190,9 @@
   --lcc-color--loadingSpinner1: #{clr(grayscale, black-2, 0.7)};
   --lcc-color--loadingSpinner2: #{clr(grayscale, black-2, 0.9)};
   --lcc-color--loadingSpinner-screenOverlay: #{clr(grayscale, black-10, 0.5)};
+
+  --lcc-color--markdownRenderer-blockquoteBackground: #{clr(grayscale, white-90)};
+  --lcc-color--markdownRenderer-blockquoteBorder: #{clr(grayscale, white-85, 0.5)};
   --lcc-color--markdownRenderer-primaryText: #{clr(grayscale, black-15)};
   --lcc-color--markdownRenderer-secondaryText: #{clr(grayscale, gray-35)};
 
@@ -276,7 +291,7 @@
   --lcc-color--pageHeader-asteriskText: #{clr(grayscale, gray-35)};
   --lcc-color--pageHeader-background: #{clr(grayscale, white-95)};
   --lcc-color--pageHeader-boxShadow: #{clr(grayscale, white-85, 0.7)};
-  --lcc-color--pageHeader-icon: #{clr, (secondary, base)};
+  --lcc-color--pageHeader-icon: #{clr(secondary, base)};
   --lcc-color--pageHeader-text: #{clr(grayscale, black-10)};
 
   --lcc-color--table-border: #{clr(grayscale, gray-75, 0.2)};

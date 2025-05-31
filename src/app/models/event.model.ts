@@ -20,7 +20,7 @@ export function isEventType(value: unknown): value is EventType {
 }
 
 export interface Event {
-  id: Id | null;
+  id: Id;
   type: EventType;
   eventDate: IsoDate;
   title: string;
@@ -29,7 +29,15 @@ export interface Event {
   modificationInfo: ModificationInfo;
 }
 
-export type EventFormData = Omit<Event, 'id' | 'modificationInfo'>;
+export const EVENT_FORM_DATA_PROPERTIES = [
+  'type',
+  'eventDate',
+  'title',
+  'details',
+  'articleId',
+] as const;
+
+export type EventFormData = Pick<Event, (typeof EVENT_FORM_DATA_PROPERTIES)[number]>;
 
 export type EventFormGroup = {
   [Property in keyof EventFormData]: FormControl<EventFormData[Property]>;

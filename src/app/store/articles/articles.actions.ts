@@ -1,14 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type {
-  Article,
-  ArticleFormData,
-  ControlMode,
-  FileData,
-  Id,
-  LccError,
-  Url,
-} from '@app/models';
+import type { Article, ArticleFormData, Id, LccError } from '@app/models';
 
 export const fetchArticlesRequested = createAction('[Articles] Fetch articles requested');
 export const fetchArticlesSucceeded = createAction(
@@ -20,10 +12,9 @@ export const fetchArticlesFailed = createAction(
   props<{ error: LccError }>(),
 );
 
-export const newArticleRequested = createAction('[Articles] New article requested');
 export const fetchArticleRequested = createAction(
   '[Articles] Fetch article requested',
-  props<{ controlMode: ControlMode; articleId: Id }>(),
+  props<{ articleId: Id }>(),
 );
 export const fetchArticleSucceeded = createAction(
   '[Articles] Fetch article succeeded',
@@ -34,18 +25,12 @@ export const fetchArticleFailed = createAction(
   props<{ error: LccError }>(),
 );
 
-export const bannerImageSet = createAction(
-  '[Articles] Banner image set',
-  props<{ url: Url | null; fileData: FileData | null }>(),
-);
-export const bannerImageFileLoadFailed = createAction(
-  '[Articles] Banner image file load failed',
-  props<{ error: LccError }>(),
+export const createAnArticleSelected = createAction(
+  '[Articles] Create an article selected',
 );
 
 export const publishArticleRequested = createAction(
   '[Articles] Publish article requested',
-  props<{ imageId?: Id }>(),
 );
 export const publishArticleSucceeded = createAction(
   '[Articles] Publish article succeeded',
@@ -62,11 +47,11 @@ export const updateActicleBookmarkRequested = createAction(
 );
 export const updateArticleRequested = createAction(
   '[Articles] Update article requested',
-  props<{ imageId?: Id }>(),
+  props<{ articleId: Id }>(),
 );
 export const updateArticleSucceeded = createAction(
   '[Articles] Update article succeeded',
-  props<{ article: Article; originalArticleTitle?: string }>(),
+  props<{ article: Article; originalArticleTitle: string }>(),
 );
 export const updateArticleFailed = createAction(
   '[Articles] Update article failed',
@@ -79,7 +64,7 @@ export const deleteArticleRequested = createAction(
 );
 export const deleteArticleSucceeded = createAction(
   '[Articles] Delete article succeeded',
-  props<{ article: Article }>(),
+  props<{ articleId: Id; articleTitle: string }>(),
 );
 export const deleteArticleFailed = createAction(
   '[Articles] Delete article failed',
@@ -90,7 +75,10 @@ export const cancelSelected = createAction('[Articles] Cancel selected');
 
 export const formValueChanged = createAction(
   '[Articles] Form value changed',
-  props<{ value: Partial<ArticleFormData> }>(),
+  props<{ articleId: Id | null; value: Partial<ArticleFormData> }>(),
 );
 
-export const articleUnset = createAction('[Articles] Article unset');
+export const articleFormDataCleared = createAction(
+  '[Articles] Article form data cleared',
+  props<{ articleId: Id | null }>(),
+);

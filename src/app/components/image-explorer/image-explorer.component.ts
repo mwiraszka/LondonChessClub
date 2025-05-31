@@ -10,6 +10,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import IconsModule from '@app/icons';
+import { MOCK_MODIFICATION_INFOS } from '@app/mocks/modification-info.mock';
 import type {
   AdminControlsConfig,
   BasicDialogResult,
@@ -49,9 +50,9 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(ImagesActions.fetchArticleBannerImageThumbnailsRequested());
+    this.store.dispatch(ImagesActions.fetchImageThumbnailsRequested());
     this.images$ = this.store
-      .select(ImagesSelectors.selectThumbnailImages)
+      .select(ImagesSelectors.selectAllImages)
       .pipe(untilDestroyed(this));
   }
 
@@ -59,6 +60,10 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
     return {
       buttonSize: 34,
       deleteCb: () => this.onDeleteImage(image),
+      editPath: ['image', 'edit', image.id.split('-')[0]],
+      editInNewTab: true,
+      isDeleteDisabled: !!image?.articleAppearances,
+      deleteDisabledReason: 'Image cannot be delete while it is used in an article',
       itemName: image.filename,
     };
   }
@@ -68,7 +73,6 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
       return;
     }
 
-    const mainImageId = image.id?.split('-')[0];
     const dialog: Dialog = {
       title: 'Delete image',
       body: `Delete ${image.filename}?`,
@@ -85,9 +89,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
     );
 
     if (result === 'confirm') {
-      this.store.dispatch(
-        ImagesActions.deleteImageRequested({ image: { ...image, id: mainImageId } }),
-      );
+      this.store.dispatch(ImagesActions.deleteImageRequested({ image }));
     }
   }
 
@@ -96,9 +98,10 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
       id: uuid.v4(),
       filename: '',
       fileSize: 0,
-      articleAppearances: 0,
-      dateUploaded: new Date().toISOString(),
-      presignedUrl: '',
+      caption: '',
+      albums: [],
+      coverForAlbum: '',
+      modificationInfo: MOCK_MODIFICATION_INFOS[1],
     }));
   }
 }

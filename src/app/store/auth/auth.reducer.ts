@@ -9,13 +9,13 @@ export interface AuthState {
   hasCode: boolean;
 }
 
-export const authInitialState: AuthState = {
+export const initialState: AuthState = {
   user: null,
   hasCode: false,
 };
 
 export const authReducer = createReducer(
-  authInitialState,
+  initialState,
 
   on(
     AuthActions.loginSucceeded,
@@ -26,7 +26,7 @@ export const authReducer = createReducer(
     }),
   ),
 
-  on(AuthActions.logoutSucceeded, (): AuthState => authInitialState),
+  on(AuthActions.logoutSucceeded, (): AuthState => initialState),
 
   on(
     AuthActions.codeForPasswordChangeSucceeded,

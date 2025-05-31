@@ -1,6 +1,6 @@
 @use '../../../styles/abstracts/mixins';
 
-:host {
+.album-covers {
   // 'Masonry' layout effect:
   -webkit-column-count: 2;
   -moz-column-count: 2;
@@ -16,7 +16,7 @@
     column-gap: 16px;
   }
 
-  .album-card {
+  .album-cover {
     background-color: var(--lcc-color--general-cardBackground);
     border: none;
     border-radius: var(--lcc-borderRadius--large);

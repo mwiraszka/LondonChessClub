@@ -47,7 +47,7 @@ export class NavigationBarComponent {
     {
       text: 'News',
       internalPath: 'news',
-      icon: 'activity',
+      icon: 'map',
     },
     {
       text: 'City Champion',
@@ -63,6 +63,11 @@ export class NavigationBarComponent {
       text: 'Game Archives',
       internalPath: 'game-archives',
       icon: 'grid',
+    },
+    {
+      text: 'Lifetime Achievement Awards',
+      internalPath: 'lifetime-achievement-awards',
+      icon: 'award',
     },
   ];
 

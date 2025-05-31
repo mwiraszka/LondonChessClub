@@ -7,14 +7,12 @@ import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import type { Event, ModificationInfo } from '@app/models';
+import type { Event } from '@app/models';
 import { EventsService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { isDefined } from '@app/utils';
-import { parseError } from '@app/utils/error/parse-error.util';
+import { isDefined, parseError } from '@app/utils';
 
-import * as EventsActions from './events.actions';
-import * as EventsSelectors from './events.selectors';
+import { EventsActions, EventsSelectors } from '.';
 
 @Injectable()
 export class EventsEffects {
@@ -55,22 +53,25 @@ export class EventsEffects {
       ofType(EventsActions.addEventRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
-        this.store.select(EventsSelectors.selectEventFormData).pipe(filter(isDefined)),
+        this.store.select(EventsSelectors.selectEventFormDataById(null)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
-      switchMap(([, eventFormData, user]) => {
-        const modificationInfo: ModificationInfo = {
-          createdBy: `${user.firstName} ${user.lastName}`,
-          dateCreated: moment().toISOString(),
-          lastEditedBy: `${user.firstName} ${user.lastName}`,
-          dateLastEdited: moment().toISOString(),
+      switchMap(([, formData, user]) => {
+        const event: Event = {
+          ...formData,
+          id: '',
+          modificationInfo: {
+            createdBy: `${user.firstName} ${user.lastName}`,
+            dateCreated: moment().toISOString(),
+            lastEditedBy: `${user.firstName} ${user.lastName}`,
+            dateLastEdited: moment().toISOString(),
+          },
         };
-        const modifiedEvent: Event = { ...eventFormData, modificationInfo, id: null };
 
-        return this.eventsService.addEvent(modifiedEvent).pipe(
+        return this.eventsService.addEvent(event).pipe(
           map(response =>
             EventsActions.addEventSucceeded({
-              event: { ...modifiedEvent, id: response.data },
+              event: { ...event, id: response.data },
             }),
           ),
           catchError(error =>
@@ -86,25 +87,29 @@ export class EventsEffects {
     return this.actions$.pipe(
       ofType(EventsActions.updateEventRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() => [
-        this.store.select(EventsSelectors.selectEvent).pipe(filter(isDefined)),
-        this.store.select(EventsSelectors.selectEventFormData).pipe(filter(isDefined)),
+      concatLatestFrom(({ eventId }) => [
+        this.store
+          .select(EventsSelectors.selectEventById(eventId))
+          .pipe(filter(isDefined)),
+        this.store.select(EventsSelectors.selectEventFormDataById(eventId)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
-      switchMap(([, event, eventFormData, user]) => {
-        const originalEventTitle = event.title;
-        const modificationInfo: ModificationInfo = {
-          ...event.modificationInfo,
-          lastEditedBy: `${user.firstName} ${user.lastName}`,
-          dateLastEdited: moment().toISOString(),
+      switchMap(([, event, formData, user]) => {
+        const updatedEvent = {
+          ...event,
+          ...formData,
+          modificationInfo: {
+            ...event.modificationInfo,
+            lastEditedBy: `${user.firstName} ${user.lastName}`,
+            dateLastEdited: moment().toISOString(),
+          },
         };
-        const modifiedEvent = { ...event, ...eventFormData, modificationInfo };
 
-        return this.eventsService.updateEvent(modifiedEvent).pipe(
+        return this.eventsService.updateEvent(updatedEvent).pipe(
           map(() =>
             EventsActions.updateEventSucceeded({
-              event: modifiedEvent,
-              originalEventTitle,
+              event: updatedEvent,
+              originalEventTitle: event.title,
             }),
           ),
           catchError(error =>
@@ -121,8 +126,14 @@ export class EventsEffects {
       ofType(EventsActions.deleteEventRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ event }) =>
-        this.eventsService.deleteEvent(event).pipe(
-          map(() => EventsActions.deleteEventSucceeded({ event })),
+        this.eventsService.deleteEvent(event.id).pipe(
+          filter(response => response.data === event.id),
+          map(() =>
+            EventsActions.deleteEventSucceeded({
+              eventId: event.id,
+              eventTitle: event.title,
+            }),
+          ),
           catchError(error =>
             of(EventsActions.deleteEventFailed({ error: parseError(error) })),
           ),

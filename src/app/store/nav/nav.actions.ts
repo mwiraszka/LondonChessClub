@@ -5,6 +5,11 @@ export const navigationRequested = createAction(
   props<{ path: string }>(),
 );
 
+export const pageAccessDenied = createAction(
+  '[Nav] Page access denied',
+  props<{ pageTitle: string }>(),
+);
+
 export const appendPathToHistory = createAction(
   '[Nav] Append path to history',
   props<{ path: string }>(),

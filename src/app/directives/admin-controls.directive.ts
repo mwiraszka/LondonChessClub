@@ -57,9 +57,8 @@ export class AdminControlsDirective implements OnDestroy {
 
   @HostListener('contextmenu', ['$event'])
   public onContextMenu(event: MouseEvent): void {
-    event.preventDefault();
-
     if (this.adminControls && !this.overlayRef?.hasAttached()) {
+      event.preventDefault();
       this.attach();
     }
   }
@@ -108,7 +107,7 @@ export class AdminControlsDirective implements OnDestroy {
     }
   }
 
-  private detach(): void {
+  public detach(): void {
     this.overlayRef?.detach();
     this.documentClickListener?.();
     this.documentContextMenuListener?.();

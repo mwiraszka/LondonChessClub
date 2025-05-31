@@ -7,9 +7,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./pages/home/home-page-routing.module').then(
-        m => m.HomePageRoutingModule,
-      ),
+      import('./pages/home/home-page-routing.module').then(m => m.HomePageRoutingModule),
     pathMatch: 'full',
   },
   {
@@ -51,9 +49,7 @@ const routes: Routes = [
   {
     path: 'news',
     loadChildren: () =>
-      import('./pages/news/news-page-routing.module').then(
-        m => m.NewsPageRoutingModule,
-      ),
+      import('./pages/news/news-page-routing.module').then(m => m.NewsPageRoutingModule),
   },
   {
     path: 'article',
@@ -61,6 +57,22 @@ const routes: Routes = [
       import('./pages/article/article-page-routing.module').then(
         m => m.ArticlePageRoutingModule,
       ),
+  },
+  {
+    path: 'image',
+    loadChildren: () =>
+      import('./pages/image/image-page-routing.module').then(
+        m => m.ImagePageRoutingModule,
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'images',
+    loadChildren: () =>
+      import('./pages/images/images-page-routing.module').then(
+        m => m.ImagesPageRoutingModule,
+      ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'city-champion',
@@ -81,6 +93,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/game-archives/game-archives-page-routing.module').then(
         m => m.GameArchivesPageRoutingModule,
+      ),
+  },
+  {
+    path: 'lifetime-achievement-awards',
+    loadChildren: () =>
+      import('./pages/lifetime/lifetime-page-routing.module').then(
+        m => m.LifetimePageRoutingModule,
       ),
   },
   {

@@ -35,6 +35,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <details>
 <summary>v5.2.3 - May 31st, 2025</summary>
 
+- 🚀 Sort album images in Image Viewer component based on caption text
 - 🐛 Adjust clearing logic to ensure new keys (from v5.0.0 onwards) are cleared as well if they don't adhere to the latest state shape
 
 </details>

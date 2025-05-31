@@ -10,6 +10,7 @@ import { AdminControlsDirective } from '@app/directives/admin-controls.directive
 import { AdminControlsConfig, Image, InternalLink } from '@app/models';
 import { DialogService } from '@app/services';
 import { ImagesActions } from '@app/store/images';
+import { customSort } from '@app/utils';
 
 @Component({
   selector: 'lcc-photo-grid',
@@ -46,7 +47,9 @@ export class PhotoGridComponent implements OnInit {
       componentType: ImageViewerComponent,
       isModal: true,
       inputs: {
-        images: this.photoImages.filter(image => image.albums.includes(album)),
+        images: this.photoImages
+          .filter(image => image.albums.includes(album))
+          .sort((a, b) => customSort(a, b, 'caption')),
         isAdmin: this.isAdmin,
       },
     });

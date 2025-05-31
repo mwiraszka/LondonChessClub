@@ -33,6 +33,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.2.2 - May 31st, 2025</summary>
+
+- 🐛 Ensure stale local storage data is cleared on initial load to prevent the application from expecting certain data objects to exist in their old form
+
+</details>
+
+<details>
 <summary>v5.2.1 - May 31st, 2025</summary>
 
 - 🐛 Bug fixes

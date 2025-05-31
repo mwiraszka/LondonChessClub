@@ -13,7 +13,7 @@ const { selectAll: selectAllEventEntities } =
   eventsAdapter.getSelectors(selectEventsState);
 
 export const selectAllEvents = createSelector(selectAllEventEntities, allEventEntities =>
-  allEventEntities.map(entity => entity?.event),
+  allEventEntities.map(entity => entity.event),
 );
 
 export const selectEventById = (id: Id | null) =>
@@ -47,7 +47,7 @@ export const selectHasUnsavedChanges = (id: Id | null) =>
   );
 
 export const selectUpcomingEvents = createSelector(selectAllEvents, allEvents =>
-  allEvents?.filter(event => moment(event.eventDate).add(3, 'hours').isAfter(moment())),
+  allEvents.filter(event => moment(event.eventDate).add(3, 'hours').isAfter(moment())),
 );
 
 export const selectNextEvent = createSelector(selectUpcomingEvents, upcomingEvents =>

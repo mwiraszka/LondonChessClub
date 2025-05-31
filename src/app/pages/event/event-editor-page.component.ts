@@ -26,7 +26,7 @@ import { EventsSelectors } from '@app/store/events';
       <lcc-event-form
         [formData]="vm.formData"
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
-        [originalEvent]="vm.event">
+        [originalEvent]="vm.originalEvent">
       </lcc-event-form>
       <lcc-link-list [links]="links"></lcc-link-list>
     }
@@ -48,9 +48,9 @@ export class EventEditorPageComponent implements EditorPage, OnInit {
     },
   ];
   public viewModel$?: Observable<{
-    event: Event | null;
     formData: EventFormData;
     hasUnsavedChanges: boolean;
+    originalEvent: Event | null;
     pageTitle: string;
   }>;
 
@@ -71,11 +71,11 @@ export class EventEditorPageComponent implements EditorPage, OnInit {
           this.store.select(EventsSelectors.selectHasUnsavedChanges(eventId)),
         ]),
       ),
-      map(([event, formData, hasUnsavedChanges]) => ({
-        event,
+      map(([originalEvent, formData, hasUnsavedChanges]) => ({
+        originalEvent,
         formData,
         hasUnsavedChanges,
-        pageTitle: event ? `Edit ${event.title}` : 'Add an event',
+        pageTitle: originalEvent ? `Edit ${originalEvent.title}` : 'Add an event',
       })),
       tap(viewModel => {
         this.metaAndTitleService.updateTitle(viewModel.pageTitle);

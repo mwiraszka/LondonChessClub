@@ -1,27 +1,33 @@
-@defer {
-  <img
-    class="image-preview"
-    [alt]="originalImage?.caption"
-    [src]="originalImage?.thumbnailPresignedUrl ?? originalImage?.originalPresignedUrl"
-    default="assets/image-placeholder.png" />
-} @placeholder (minimum 0.5s) {
-  <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
-    <div class="lcc-content-placeholder"></div>
-  </div>
-}
+<div class="file-and-preview-container">
+  @defer {
+    <img
+      class="image-preview"
+      [alt]="formData.caption"
+      [src]="
+        originalImage?.thumbnailPresignedUrl ??
+        originalImage?.originalPresignedUrl ??
+        formData.url
+      "
+      default="assets/image-placeholder.png" />
+  } @placeholder (minimum 0.5s) {
+    <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
+      <div class="lcc-content-placeholder"></div>
+    </div>
+  }
 
-@if (!originalImage) {
-  <label
-    class="upload-new-image-button lcc-secondary-button"
-    type="button"
-    tooltip="Upload new image">
-    <input
-      type="file"
-      accept="image/*"
-      (change)="onUploadNewImage($event)" />
-    <i-feather name="upload"></i-feather>
-  </label>
-}
+  @if (!originalImage) {
+    <label
+      class="choose-file-label lcc-secondary-button"
+      type="button"
+      tooltip="Choose file">
+      <i-feather name="upload"></i-feather>
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onUploadNewImage($event)" />
+    </label>
+  }
+</div>
 
 <form
   class="lcc-form"
@@ -99,7 +105,7 @@
       class="lcc-primary-button"
       type="submit"
       [disabled]="form.invalid || !hasUnsavedChanges">
-      Update
+      {{ originalImage ? 'Update' : 'Add' }}
     </button>
   </div>
 </form>

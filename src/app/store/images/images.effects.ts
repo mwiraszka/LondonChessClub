@@ -70,9 +70,9 @@ export class ImagesEffects {
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
       switchMap(([, formData, user]) => {
-        const imageFile = dataUrlToFile(formData.dataUrl, formData.filename);
+        const file = dataUrlToFile(formData.url, formData.filename);
 
-        if (!imageFile) {
+        if (!file) {
           const error: LccError = {
             name: 'LCCError',
             message: 'Unable to construct file object from image data URL.',
@@ -80,13 +80,14 @@ export class ImagesEffects {
           return of(ImagesActions.addImageFailed({ error }));
         }
 
-        const imageFormData = new FormData();
-        imageFormData.append('imageFile', imageFile);
-
-        const baseImage: Omit<BaseImage, 'id'> & { id: null } = {
+        const imageMetadata: Omit<BaseImage, 'id' | 'fileSize'> & { id: null } = {
           id: null,
+          filename: formData.filename,
           coverForAlbum: null,
-          ...formData,
+          caption: formData.caption,
+          albums: formData.newAlbum
+            ? [...formData.albums, formData.newAlbum].sort()
+            : formData.albums,
           modificationInfo: {
             createdBy: `${user.firstName} ${user.lastName}`,
             dateCreated: moment().toISOString(),
@@ -95,7 +96,18 @@ export class ImagesEffects {
           },
         };
 
-        return this.imagesService.addImage(imageFormData, baseImage).pipe(
+        console.log(':: file, imageMetadata', file, imageMetadata);
+
+        const imageFormData = new FormData();
+        imageFormData.append('file', file);
+
+        console.log(':: imageFormData 1', imageFormData);
+
+        imageFormData.append('imageMetadata', JSON.stringify(imageMetadata));
+
+        console.log(':: imageFormData 2', imageFormData);
+
+        return this.imagesService.addImage(imageFormData).pipe(
           map(response => ImagesActions.addImageSucceeded({ image: response.data })),
           catchError(error =>
             of(ImagesActions.addImageFailed({ error: parseError(error) })),
@@ -121,10 +133,7 @@ export class ImagesEffects {
       ]),
       switchMap(([, image, formData, user]) => {
         const updatedImage: BaseImage = {
-          id: image.id,
-          filename: image.filename,
-          fileSize: image.fileSize,
-          coverForAlbum: image.coverForAlbum,
+          ...image,
           caption: formData.caption,
           albums: formData.newAlbum
             ? [...formData.albums, formData.newAlbum].sort()

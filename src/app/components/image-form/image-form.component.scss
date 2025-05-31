@@ -11,12 +11,27 @@
   background-color: var(--lcc-color--form-background);
   border-radius: var(--lcc-borderRadius--small);
 
-  .image-preview,
-  .loading-placeholder-image {
-    object-fit: cover;
-    width: 100%;
-    border-radius: var(--lcc-borderRadius--large);
-    max-width: 200px;
+  .file-and-preview-container {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
+    .image-preview,
+    .loading-placeholder-image {
+      object-fit: cover;
+      width: 100%;
+      border-radius: var(--lcc-borderRadius--large);
+      max-width: 200px;
+    }
+
+    .choose-file-label {
+      align-self: end;
+      padding: 4px 8px;
+
+      & > input {
+        display: none;
+      }
+    }
   }
 
   .existing-album-fieldset {

@@ -12,6 +12,7 @@ import { EventsActions } from '@app/store/events';
 import { ImagesActions } from '@app/store/images';
 import { MembersActions } from '@app/store/members';
 import { NavActions } from '@app/store/nav';
+import { formatBytes } from '@app/utils';
 
 import { environment } from '@env';
 
@@ -383,6 +384,20 @@ export class NotificationsEffects {
           title: 'Load image file',
           message: this.getErrorMessage(error),
           type: 'warning',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addLargeImageFileDetectedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.largeImageFileDetected),
+      map(({ fileSize }) => {
+        const toast: Toast = {
+          title: 'Load image file',
+          message: `Note: image is very large (${formatBytes(fileSize)}), and so will likely be reduced in storage`,
+          type: 'info',
         };
         return NotificationsActions.toastAdded({ toast });
       }),

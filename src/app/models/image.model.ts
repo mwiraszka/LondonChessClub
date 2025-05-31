@@ -14,22 +14,18 @@ export interface BaseImage {
 }
 
 export interface Image extends BaseImage {
+  fileSize: number;
   originalPresignedUrl?: Url;
   thumbnailPresignedUrl?: Url;
   articleAppearances?: number;
 }
 
-export const IMAGE_FORM_DATA_PROPERTIES = [
-  'filename',
-  'fileSize',
-  'caption',
-  'albums',
-] as const;
+export const IMAGE_FORM_DATA_PROPERTIES = ['filename', 'caption', 'albums'] as const;
 
 export type ImageFormData = Pick<
   BaseImage,
   (typeof IMAGE_FORM_DATA_PROPERTIES)[number]
-> & { newAlbum: string; dataUrl: Url };
+> & { newAlbum: string; url: Url };
 
 export type ImageFormGroup = {
   [Property in keyof ImageFormData]: FormControl<ImageFormData[Property]>;

@@ -9,11 +9,10 @@ import * as ImagesActions from './images.actions';
 
 export const INITIAL_IMAGE_FORM_DATA: ImageFormData = {
   filename: '',
-  fileSize: 0,
   caption: '',
   albums: [],
   newAlbum: '',
-  dataUrl: '',
+  url: '',
 };
 
 export interface ImagesState
@@ -45,7 +44,7 @@ export const imagesReducer = createReducer(
           formData: {
             ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
             newAlbum: '',
-            dataUrl: '',
+            url: '',
           },
         })),
         state,
@@ -61,7 +60,7 @@ export const imagesReducer = createReducer(
           formData: {
             ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
             newAlbum: '',
-            dataUrl: '',
+            url: '',
           },
         },
         state,
@@ -77,7 +76,7 @@ export const imagesReducer = createReducer(
           formData: {
             ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
             newAlbum: '',
-            dataUrl: '',
+            url: '',
           },
         },
         { ...state, newImageFormData: INITIAL_IMAGE_FORM_DATA },
@@ -93,7 +92,7 @@ export const imagesReducer = createReducer(
           formData: {
             ...pick(baseImage, IMAGE_FORM_DATA_PROPERTIES),
             newAlbum: '',
-            dataUrl: '',
+            url: '',
           },
         },
         state,

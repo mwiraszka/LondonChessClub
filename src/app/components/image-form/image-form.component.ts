@@ -16,6 +16,7 @@ import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import IconsModule from '@app/icons';
 import type {
   BasicDialogResult,
@@ -29,7 +30,7 @@ import type {
 import { DialogService } from '@app/services';
 import { ArticlesActions } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
-import { dataUrlToFile, formatBytes } from '@app/utils';
+import { dataUrlToFile } from '@app/utils';
 import {
   imageCaptionValidator,
   oneAlbumMinimumValidator,
@@ -48,6 +49,7 @@ import {
     ImagePreloadDirective,
     ModificationInfoComponent,
     ReactiveFormsModule,
+    TooltipDirective,
   ],
 })
 export class ImageFormComponent implements OnInit {
@@ -96,6 +98,7 @@ export class ImageFormComponent implements OnInit {
 
     reader.onload = () => {
       const dataUrl = reader.result as Url;
+
       const sanitizedFilename =
         file.name
           .substring(0, file.name.lastIndexOf('.'))
@@ -113,16 +116,20 @@ export class ImageFormComponent implements OnInit {
         return;
       }
 
+      // Display notice if file size is over 4 MB
       if (imageFile.size > 4_194_304) {
-        const error: LccError = {
-          name: 'LCCError',
-          message: `Image file must be under 4 MB. Selected image was ${formatBytes(imageFile.size)} after conversion.`,
-        };
-        this.store.dispatch(ImagesActions.imageFileLoadFailed({ error }));
-        return;
+        this.store.dispatch(
+          ImagesActions.largeImageFileDetected({ fileSize: imageFile.size }),
+        );
       }
 
       console.log(':: imageFile', imageFile);
+
+      this.form.patchValue({
+        url: dataUrl,
+        filename: imageFile.name,
+        caption: imageFile.name.substring(0, file.name.lastIndexOf('.')),
+      });
     };
 
     fileInputElement.value = '';
@@ -173,9 +180,6 @@ export class ImageFormComponent implements OnInit {
         filename: new FormControl(formData.filename, {
           nonNullable: true,
         }),
-        fileSize: new FormControl(formData.fileSize, {
-          nonNullable: true,
-        }),
         caption: new FormControl(formData.caption, {
           nonNullable: true,
           validators: [Validators.required, imageCaptionValidator],
@@ -190,7 +194,7 @@ export class ImageFormComponent implements OnInit {
             uniqueAlbumValidator(this.existingAlbums),
           ],
         }),
-        dataUrl: new FormControl(formData.dataUrl, {
+        url: new FormControl(formData.url, {
           nonNullable: true,
         }),
       },

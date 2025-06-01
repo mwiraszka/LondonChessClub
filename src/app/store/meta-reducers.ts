@@ -49,13 +49,13 @@ function clearStaleLocalStorageMetaReducer(
             rawValue.includes('eventFormData') ||
             rawValue.includes('memberFormData')
           ) {
-            console.info(`[LCC (v5.2.6)] Removed key ${key}.`);
+            console.info(`[LCC (v5.2.8)] Removed key ${key}.`);
             localStorage.removeItem(key);
           }
         }
       });
       hasRun = true;
-      console.info('[LCC (v5.2.6)] Completed clearing stale data from local storage.');
+      console.info('[LCC (v5.2.8)] Completed clearing stale data from local storage.');
     }
 
     return reducer(state, action);
@@ -76,11 +76,11 @@ function actionLogMetaReducer(
 
 const hydratedStates = [
   'appState',
-  'articlesState',
+  // 'articlesState',
   'authState',
-  'eventsState',
-  'imagesState',
-  'membersState',
+  // 'eventsState',
+  // 'imagesState',
+  // 'membersState',
   'navState',
 ] as Array<keyof Exclude<MetaState, NotificationsState | RouterState>>;
 

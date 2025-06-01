@@ -33,66 +33,11 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.2.9 - June 1st, 2025</summary>
-
-- 🐛 Update static image path on Game Archives page
-
-</details>
-
-<details>
-<summary>v5.2.8 - June 1st, 2025</summary>
-
-- 🐛 Bug fixes
-
-</details>
-
-<details>
-<summary>v5.2.7 - June 1st, 2025</summary>
-
-- 🐛 Bug fixes
-
-</details>
-
-<details>
-<summary>v5.2.6 - May 31st, 2025</summary>
-
-- 🐛 Bug fixes
-
-</details>
-
-<details>
-<summary>v5.2.5 - May 31st, 2025</summary>
-
-- 🐛 Bug fixes
-
-</details>
-
-<details>
-<summary>v5.2.4 - May 31st, 2025</summary>
-
-- 🐛 Bug fixes
-
-</details>
-
-<details>
-<summary>v5.2.3 - May 31st, 2025</summary>
+<summary>v5.2.1 - v5.2.10 (May 31st, 2025 - June 1st, 2025)</summary>
 
 - 🚀 Sort album images in Image Viewer component based on caption text
-- 🐛 Adjust clearing logic to ensure new keys (from v5.0.0 onwards) are cleared as well if they don't adhere to the latest state shape
-
-</details>
-
-<details>
-<summary>v5.2.2 - May 31st, 2025</summary>
-
-- 🐛 Ensure stale local storage data is cleared on initial load to prevent the application from expecting certain data objects to exist in their old form
-
-</details>
-
-<details>
-<summary>v5.2.1 - May 31st, 2025</summary>
-
-- 🐛 Bug fixes
+- 🐛 Various minor bug fixes
+- 🔧 Test various local storage and CloudFront cache invalidating configurations, requiring repeated deployments and version bumps
 
 </details>
 

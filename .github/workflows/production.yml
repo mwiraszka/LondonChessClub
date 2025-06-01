@@ -90,7 +90,6 @@ jobs:
 
       - name: Deploy non-hashed assets with short-term caching
         run: |
-          # Upload non-hashed files with shorter cache duration
           aws s3 sync dist/ s3://lcc-website-production \
             --exclude "*.js" \
             --exclude "*.css" \
@@ -113,10 +112,9 @@ jobs:
 
       - name: Invalidate CloudFront cache for non-hashed files
         run: |
-          # Only invalidate non-hashed files like index.html, manifest.webmanifest
           aws cloudfront create-invalidation \
             --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} \
-            --paths "/index.html" "/favicon.ico" "/manifest.webmanifest" "/ngsw.json" "/assets/icons/*"
+            --paths "/index.html" "/favicon.ico" "/manifest.webmanifest" "/assets/icons/*"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

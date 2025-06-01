@@ -13,7 +13,6 @@ import {
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AuthInterceptorProvider, LoggingInterceptorProvider } from '@app/interceptors';
@@ -51,12 +50,6 @@ bootstrapApplication(AppComponent, {
       MembersStoreModule,
       NavStoreModule,
       NotificationsStoreModule,
-      ServiceWorkerModule.register('ngsw-worker.js', {
-        enabled: environment.production,
-        // Register the ServiceWorker as soon as the app is stable
-        // or after 30 seconds (whichever comes first)
-        registrationStrategy: 'registerWhenStable:30000',
-      }),
       StoreModule.forRoot<MetaState, Action<string>>(
         { routerState: routerReducer },
         {

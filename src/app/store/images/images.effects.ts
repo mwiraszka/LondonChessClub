@@ -186,17 +186,57 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.deleteImageRequested),
       switchMap(({ image }) => {
-        const imageId = image.id.split('-thumb')[0];
-        return this.imagesService.deleteImage(imageId).pipe(
-          filter(response => response.data === imageId),
-          map(() =>
-            ImagesActions.deleteImageSucceeded({
-              imageId,
-              imageFilename: image.filename,
-            }),
-          ),
+        return this.imagesService.deleteImage(image.id).pipe(
+          filter(response => response.data === image.id),
+          map(() => ImagesActions.deleteImageSucceeded({ image })),
           catchError(error =>
             of(ImagesActions.deleteImageFailed({ error: parseError(error) })),
+          ),
+        );
+      }),
+    );
+  });
+
+  handleDeletedCoverImage$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.deleteImageSucceeded),
+      filter(({ image }) => !!image.coverForAlbum),
+      concatLatestFrom(({ image }) =>
+        this.store.select(ImagesSelectors.selectImagesByAlbum(image.coverForAlbum)),
+      ),
+      filter(([, images]) => !!images?.length),
+      map(([{ image }, images]) =>
+        ImagesActions.updateCoverImageRequested({
+          image: images![0],
+          album: image.coverForAlbum,
+        }),
+      ),
+    );
+  });
+
+  updateCoverImage$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.updateCoverImageRequested),
+      switchMap(({ image, album }) => {
+        const updatedImage: BaseImage = {
+          id: image.id,
+          filename: image.filename,
+          fileSize: image.fileSize,
+          caption: image.caption,
+          albums: image.albums,
+          modificationInfo: image.modificationInfo,
+          coverForAlbum: album,
+        };
+
+        return this.imagesService.updateImage(updatedImage).pipe(
+          filter(response => response.data === image.id),
+          map(() => ImagesActions.updateCoverImageSucceeded({ baseImage: updatedImage })),
+          catchError(error =>
+            of(
+              ImagesActions.updateCoverImageFailed({
+                error: parseError(error),
+              }),
+            ),
           ),
         );
       }),

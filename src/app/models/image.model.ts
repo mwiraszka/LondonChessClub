@@ -14,7 +14,6 @@ export interface BaseImage {
 }
 
 export interface Image extends BaseImage {
-  fileSize: number;
   originalPresignedUrl?: Url;
   thumbnailPresignedUrl?: Url;
   articleAppearances?: number;

@@ -79,13 +79,26 @@ export const updateImageFailed = createAction(
   props<{ error: LccError }>(),
 );
 
+export const updateCoverImageRequested = createAction(
+  '[Images] Update cover image requested',
+  props<{ image: Image; album: string }>(),
+);
+export const updateCoverImageSucceeded = createAction(
+  '[Images] Update cover image succeeded',
+  props<{ baseImage: BaseImage }>(),
+);
+export const updateCoverImageFailed = createAction(
+  '[Images] Update cover image failed',
+  props<{ error: LccError }>(),
+);
+
 export const deleteImageRequested = createAction(
   '[Images] Delete image requested',
   props<{ image: Image }>(),
 );
 export const deleteImageSucceeded = createAction(
   '[Images] Delete image succeeded',
-  props<{ imageId: Id; imageFilename: string }>(),
+  props<{ image: Image }>(),
 );
 export const deleteImageFailed = createAction(
   '[Images] Delete image failed',

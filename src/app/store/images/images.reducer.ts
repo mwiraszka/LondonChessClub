@@ -103,6 +103,7 @@ export const imagesReducer = createReducer(
 
   on(
     ImagesActions.updateImageSucceeded,
+    ImagesActions.updateCoverImageSucceeded,
     (state, { baseImage }): ImagesState =>
       imagesAdapter.upsertOne(
         {
@@ -119,8 +120,8 @@ export const imagesReducer = createReducer(
 
   on(
     ImagesActions.deleteImageSucceeded,
-    (state, { imageId }): ImagesState =>
-      imagesAdapter.removeMany([imageId, `${imageId}-thumb`], state),
+    (state, { image }): ImagesState =>
+      imagesAdapter.removeMany([image.id, `${image.id}-thumb`], state),
   ),
 
   on(ImagesActions.formValueChanged, (state, { imageId, value }): ImagesState => {

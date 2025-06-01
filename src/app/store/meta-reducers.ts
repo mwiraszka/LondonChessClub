@@ -40,7 +40,8 @@ function clearStaleLocalStorageMetaReducer(
         const storedValue = localStorage.getItem(key);
         if (
           storedValue &&
-          (JSON.parse(storedValue).controlMode || JSON.parse(storedValue).id)
+          (JSON.parse(storedValue).controlMode !== undefined ||
+            JSON.parse(storedValue).id !== undefined)
         ) {
           localStorage.removeItem(key);
         }

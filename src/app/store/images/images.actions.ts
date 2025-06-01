@@ -51,10 +51,6 @@ export const imageFileLoadFailed = createAction(
   '[Images] Image file load failed',
   props<{ error: LccError }>(),
 );
-export const largeImageFileDetected = createAction(
-  '[Images] Large image file detected',
-  props<{ fileSize: number }>(),
-);
 
 export const addImageRequested = createAction('[Images] Add image requested');
 export const addImageSucceeded = createAction(

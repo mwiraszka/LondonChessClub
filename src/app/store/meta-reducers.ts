@@ -47,7 +47,7 @@ function clearStaleLocalStorageMetaReducer(
         }
       });
       hasRun = true;
-      console.info('[LCC] Cleared stale data from local storage.');
+      console.info('[LCC (v5.2.4)] Cleared stale data from local storage.');
     }
 
     return reducer(state, action);

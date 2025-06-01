@@ -40,13 +40,14 @@ function clearStaleLocalStorageMetaReducer(
         const storedValue = localStorage.getItem(key);
         if (
           storedValue &&
-          (JSON.parse(storedValue).controlMode || JSON.parse(storedValue).id)
+          (JSON.parse(storedValue).controlMode !== undefined ||
+            JSON.parse(storedValue).id !== undefined)
         ) {
           localStorage.removeItem(key);
         }
       });
       hasRun = true;
-      console.info('[LCC] Cleared stale data from local storage.');
+      console.info('[LCC (v5.2.4)] Cleared stale data from local storage.');
     }
 
     return reducer(state, action);

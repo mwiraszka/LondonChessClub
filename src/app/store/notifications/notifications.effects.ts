@@ -12,7 +12,6 @@ import { EventsActions } from '@app/store/events';
 import { ImagesActions } from '@app/store/images';
 import { MembersActions } from '@app/store/members';
 import { NavActions } from '@app/store/nav';
-import { formatBytes } from '@app/utils';
 
 import { environment } from '@env';
 
@@ -330,13 +329,41 @@ export class NotificationsEffects {
     );
   });
 
+  addUpdateCoverImageSucceededToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.updateCoverImageSucceeded),
+      map(({ baseImage }) => {
+        const toast: Toast = {
+          title: 'Image album cover update',
+          message: `Successfully switched ${baseImage.coverForAlbum} album cover to ${baseImage.filename}`,
+          type: 'success',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
+  addUpdateCoverImageFailedToast$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.updateCoverImageFailed),
+      map(({ error }) => {
+        const toast: Toast = {
+          title: 'Image album cover update',
+          message: this.getErrorMessage(error),
+          type: 'warning',
+        };
+        return NotificationsActions.toastAdded({ toast });
+      }),
+    );
+  });
+
   addDeleteImageSucceededToast$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.deleteImageSucceeded),
-      map(({ imageFilename }) => {
+      map(({ image }) => {
         const toast: Toast = {
           title: 'Image deletion',
-          message: `Successfully deleted ${imageFilename}`,
+          message: `Successfully deleted ${image.filename}`,
           type: 'success',
         };
         return NotificationsActions.toastAdded({ toast });
@@ -428,20 +455,6 @@ export class NotificationsEffects {
           title: 'Load image file',
           message: this.getErrorMessage(error),
           type: 'warning',
-        };
-        return NotificationsActions.toastAdded({ toast });
-      }),
-    );
-  });
-
-  addLargeImageFileDetectedToast$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ImagesActions.largeImageFileDetected),
-      map(({ fileSize }) => {
-        const toast: Toast = {
-          title: 'Load image file',
-          message: `Note: image is very large (${formatBytes(fileSize)}) - its size will likely be reduced in storage`,
-          type: 'info',
         };
         return NotificationsActions.toastAdded({ toast });
       }),
@@ -711,6 +724,7 @@ export class NotificationsEffects {
           EventsActions.fetchEventFailed,
           ImagesActions.addImageFailed,
           ImagesActions.updateImageFailed,
+          ImagesActions.updateCoverImageFailed,
           ImagesActions.deleteImageFailed,
           ImagesActions.fetchImageFailed,
           ImagesActions.fetchImageThumbnailsFailed,

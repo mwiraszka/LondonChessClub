@@ -30,7 +30,7 @@ import type {
 import { DialogService } from '@app/services';
 import { ArticlesActions } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
-import { dataUrlToFile } from '@app/utils';
+import { dataUrlToFile, formatBytes } from '@app/utils';
 import {
   imageCaptionValidator,
   oneAlbumMinimumValidator,
@@ -116,11 +116,13 @@ export class ImageFormComponent implements OnInit {
         return;
       }
 
-      // Display notice if file size is over 4 MB
-      if (imageFile.size > 4_194_304) {
-        this.store.dispatch(
-          ImagesActions.largeImageFileDetected({ fileSize: imageFile.size }),
-        );
+      if (imageFile.size > 1_258_291) {
+        const error: LccError = {
+          name: 'LCCError',
+          message: `Image is too large (${formatBytes(imageFile.size)}) - please reduce to below 1.2 MB`,
+        };
+        this.store.dispatch(ImagesActions.imageFileLoadFailed({ error }));
+        return;
       }
 
       this.form.patchValue({

@@ -41,13 +41,15 @@ function clearStaleLocalStorageMetaReducer(
         if (
           storedValue &&
           (JSON.parse(storedValue).controlMode !== undefined ||
-            JSON.parse(storedValue).id !== undefined)
+            JSON.parse(storedValue).id !== undefined ||
+            JSON.stringify(JSON.parse(storedValue).ids).includes('thumb') ||
+            JSON.stringify(JSON.parse(storedValue).ids).includes('controlMode'))
         ) {
           localStorage.removeItem(key);
         }
       });
       hasRun = true;
-      console.info('[LCC (v5.2.4)] Cleared stale data from local storage.');
+      console.info('[LCC (v5.2.5)] Cleared stale data from local storage.');
     }
 
     return reducer(state, action);

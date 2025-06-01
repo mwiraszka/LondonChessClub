@@ -33,6 +33,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.2.6 - May 31st, 2025</summary>
+
+- 🐛 Bug fixes
+
+</details>
+
+<details>
 <summary>v5.2.5 - May 31st, 2025</summary>
 
 - 🐛 Bug fixes

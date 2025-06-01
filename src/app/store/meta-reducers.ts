@@ -49,13 +49,13 @@ function clearStaleLocalStorageMetaReducer(
             rawValue.includes('eventFormData') ||
             rawValue.includes('memberFormData')
           ) {
-            console.info(`[LCC (v5.2.8)] Removed key ${key}.`);
+            console.info(`[LCC] Removed key ${key}.`);
             localStorage.removeItem(key);
           }
         }
       });
       hasRun = true;
-      console.info('[LCC (v5.2.8)] Completed clearing stale data from local storage.');
+      console.info('[LCC] Completed clearing stale data from local storage.');
     }
 
     return reducer(state, action);

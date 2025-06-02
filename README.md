@@ -38,6 +38,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 - 🚀 Sort album images in Image Viewer component based on caption text
 - 🐛 Various minor bug fixes
 - 🔧 Test various local storage & CloudFront cache configurations, requiring repeated deployments and version bumps
+- 🔧 Implement versioning on local storage keys to prevent the possibility of old state objects from being used
 - 🔧 Remove unnecessary Angular Service Worker to prevent any undesired caching of stale data
 
 </details>

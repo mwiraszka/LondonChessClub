@@ -33,6 +33,12 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.3.0 - June 5th, 2025</summary>
+
+- 🚀 Various minor improvements and optimizations to images and the Image Viewer component
+</details>
+
+<details>
 <summary>v5.2.1 - v5.2.12 (May 31st, 2025 - June 1st, 2025)</summary>
 
 - 🚀 Sort album images in Image Viewer component based on caption text

@@ -3,23 +3,42 @@ figure {
   height: inherit;
   border-radius: inherit;
   background-color: var(--lcc-color--dialog-background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   img {
-    width: 100%;
-    // TODO: Should not need to be hard-coded like this to be centred vertically
-    max-height: calc(90vh - 30px - 30px);
+    max-width: 100%;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
   }
 }
 
 figcaption {
-  width: calc(100% - 8px);
-  margin: 4px;
-  padding: 4px;
+  max-width: 100%;
+  width: fit-content;
+  padding: 8px;
   border-radius: var(--lcc-borderRadius--small);
-  line-height: 20px;
-  text-align: center;
-  // TODO: No idea why this is needed
-  translate: 0 -2px;
+
+  .album-name {
+    font-size: 14px;
+    text-align: left;
+    color: var(--lcc-color--imageViewer-albumText);
+  }
+
+  hr {
+    width: 100%;
+    border-top: 1px solid var(--lcc-color--imageViewer-dividerLine);
+    margin: 4px 0;
+  }
+
+  .image-caption {
+    text-align: left;
+    font-size: 16px;
+  }
 }
 
 .previous-image-button-wrapper,
@@ -29,7 +48,7 @@ figcaption {
 
   button {
     display: flex;
-    padding: 8px;
+    padding: 4px;
     background-color: var(--lcc-color--imageViewer-buttonBackground) !important;
 
     &:disabled {
@@ -41,9 +60,9 @@ figcaption {
 }
 
 .previous-image-button-wrapper {
-  left: 40px;
+  left: 8px;
 }
 
 .next-image-button-wrapper {
-  right: 40px;
+  right: 8px;
 }

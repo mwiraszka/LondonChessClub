@@ -161,10 +161,12 @@
   --lcc-color--imageExplorer-imageBorderOnHover: #{clr(primary, base)};
   --lcc-color--imageExplorer-text: #{clr(grayscale, black-20)};
 
+  --lcc-color--imageViewer-albumText: #{clr(grayscale, gray-50)};
   --lcc-color--imageViewer-buttonBackground: #{clr(grayscale, gray-35, 0.6)};
   --lcc-color--imageViewer-buttonDisabledBackground: #{clr(grayscale, gray-50, 0.1)};
   --lcc-color--imageViewer-buttonDisabledBorder: #{clr(grayscale, gray-65, 0.2)};
   --lcc-color--imageViewer-buttonDisabledIcon: #{clr(grayscale, gray-65, 0.2)};
+  --lcc-color--imageViewer-dividerLine: #{clr(grayscale, gray-75, 0.4)};
 
   --lcc-color--input-background: #{clr(grayscale, white-98)};
   --lcc-color--input-border: #{clr(grayscale, gray-65)};

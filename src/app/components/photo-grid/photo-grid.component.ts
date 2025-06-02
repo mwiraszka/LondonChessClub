@@ -47,6 +47,7 @@ export class PhotoGridComponent implements OnInit {
       componentType: ImageViewerComponent,
       isModal: true,
       inputs: {
+        album,
         images: this.photoImages
           .filter(image => image.albums.includes(album))
           .sort((a, b) => customSort(a, b, 'caption')),

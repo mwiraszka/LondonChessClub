@@ -36,24 +36,12 @@ const hydratedStates = [
   'navState',
 ] as Array<keyof Exclude<MetaState, NotificationsState | RouterState>>;
 
-// Define a version for local storage based on the app version
-const STATE_VERSION = version;
-
-/**
- * Returns a versioned key for localStorage
- * @param key The original key
- * @returns The versioned key
- */
-function getVersionedKey(key: string): string {
-  return `${key}_v${STATE_VERSION}`;
-}
-
 function clearStaleLocalStorageDataMetaReducer(
   reducer: ActionReducer<MetaState>,
 ): ActionReducer<MetaState> {
   let hasRun = false;
 
-  const nonVersionedKeys = [
+  const oldKeys = [
     'articles',
     'auth',
     'members',
@@ -61,14 +49,15 @@ function clearStaleLocalStorageDataMetaReducer(
     'schedule',
     'user-settings',
     ...hydratedStates,
+    ...hydratedStates.map(key => `${key}_v5.2.12`),
   ];
 
   return (state, action) => {
-    const keysToRemove = nonVersionedKeys.filter(key => !!localStorage.getItem(key));
+    const keysToRemove = oldKeys.filter(key => !!localStorage.getItem(key));
 
     if (!hasRun && keysToRemove.length) {
       console.info(
-        `[LCC] Clearing stale data from local storage for version ${STATE_VERSION}.`,
+        `[LCC] Clearing stale data from local storage for version ${version}.`,
       );
 
       keysToRemove.forEach(key => {
@@ -100,28 +89,25 @@ function actionLogMetaReducer(
  */
 const versionedStorage = {
   getItem: (key: string) => {
-    const versionedKey = getVersionedKey(key);
-    return localStorage.getItem(versionedKey);
+    return localStorage.getItem(`${key}_v${version}`);
   },
   setItem: (key: string, value: string) => {
-    const versionedKey = getVersionedKey(key);
-    localStorage.setItem(versionedKey, value);
+    localStorage.setItem(`${key}_v${version}`, value);
   },
   removeItem: (key: string) => {
-    const versionedKey = getVersionedKey(key);
-    localStorage.removeItem(versionedKey);
+    localStorage.removeItem(`${key}_v${version}`);
   },
   clear: () => {
     Object.keys(localStorage)
-      .filter(k => k.endsWith(`_v${STATE_VERSION}`))
+      .filter(k => k.endsWith(`_v${version}`))
       .forEach(k => localStorage.removeItem(k));
   },
   key: (index: number) => {
-    const keys = Object.keys(localStorage).filter(k => k.endsWith(`_v${STATE_VERSION}`));
+    const keys = Object.keys(localStorage).filter(k => k.endsWith(`_v${version}`));
     return keys[index] || null;
   },
   get length() {
-    return Object.keys(localStorage).filter(k => k.endsWith(`_v${STATE_VERSION}`)).length;
+    return Object.keys(localStorage).filter(k => k.endsWith(`_v${version}`)).length;
   },
 };
 

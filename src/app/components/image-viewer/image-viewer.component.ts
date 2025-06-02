@@ -160,4 +160,14 @@ export class ImageViewerComponent
       },
     );
   }
+
+  public onImageLoad(imgElement: HTMLImageElement): void {
+    if (imgElement) {
+      this.renderer.setStyle(
+        imgElement.parentElement,
+        '--image-width',
+        `${imgElement.offsetWidth}px`,
+      );
+    }
+  }
 }

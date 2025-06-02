@@ -33,11 +33,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.2.1 - v5.2.11 (May 31st, 2025 - June 1st, 2025)</summary>
+<summary>v5.2.1 - v5.2.12 (May 31st, 2025 - June 1st, 2025)</summary>
 
 - 🚀 Sort album images in Image Viewer component based on caption text
 - 🐛 Various minor bug fixes
-- 🔧 Test various local storage & CloudFront cache and ngsw configurations, requiring repeated deployments and version bumps
+- 🔧 Test various local storage & CloudFront cache configurations, requiring repeated deployments and version bumps
+- 🔧 Implement versioning on local storage keys to prevent the possibility of old state objects from being used
+- 🔧 Remove unnecessary Angular Service Worker to prevent any undesired caching of stale data
 
 </details>
 

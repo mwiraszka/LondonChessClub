@@ -72,6 +72,7 @@ export class ImageViewerComponent
   private keyListener?: () => void;
 
   ngOnInit(): void {
+    this.store.dispatch(ImagesActions.fetchImageRequested({ imageId: this.imageId }));
     this.currentImage$ = this.indexSubject.asObservable().pipe(
       untilDestroyed(this),
       switchMap(index =>

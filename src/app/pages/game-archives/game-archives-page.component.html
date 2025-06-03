@@ -129,27 +129,11 @@
     <div class="search-stats-container">
       <div class="opening-chart-container">
         <label for="opening-chart">Openings</label>
-        <canvas
-          id="opening-chart"
-          baseChart
-          [datasets]="openingChartDatasets"
-          [labels]="openingChartLabels"
-          [legend]="true"
-          [options]="openingChartOptions"
-          [type]="'doughnut'">
-        </canvas>
+        <canvas #openingChart></canvas>
       </div>
       <div class="result-chart-container">
         <label for="result-chart">Game Results</label>
-        <canvas
-          id="result-chart"
-          baseChart
-          [datasets]="resultChartDatasets"
-          [labels]="resultChartLabels"
-          [legend]="true"
-          [options]="resultChartOptions"
-          [type]="'doughnut'">
-        </canvas>
+        <canvas #resultChart></canvas>
       </div>
     </div>
   }

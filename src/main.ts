@@ -2,7 +2,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { Action, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { MarkdownModule } from 'ngx-markdown';
 
 import {
@@ -67,7 +66,6 @@ bootstrapApplication(AppComponent, {
       }),
     ),
     provideAnimations(),
-    provideCharts(withDefaultRegisterables()),
     provideHttpClient(withInterceptorsFromDi(), withJsonpSupport()),
     AuthInterceptorProvider,
     LoggingInterceptorProvider,

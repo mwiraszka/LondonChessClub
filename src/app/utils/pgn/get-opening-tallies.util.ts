@@ -21,16 +21,16 @@ export function getOpeningTallies(pgns?: string[]): Map<string, number> | undefi
 
   const sortedOpeningTallies = [...openingTallies.entries()].sort((a, b) => b[1] - a[1]);
 
-  if (sortedOpeningTallies.length <= 5) {
+  if (sortedOpeningTallies.length <= 10) {
     return new Map(sortedOpeningTallies);
   }
 
   const otherOpeningTally = sortedOpeningTallies
-    .slice(5)
+    .slice(10)
     .reduce((acc, curr) => acc + curr[1], 0);
 
   const cappedOpeningsTallies = [
-    ...sortedOpeningTallies.slice(0, 4),
+    ...sortedOpeningTallies.slice(0, 9),
     ['X99', otherOpeningTally] as [string, number],
   ];
 

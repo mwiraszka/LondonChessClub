@@ -1,6 +1,5 @@
 import { Store } from '@ngrx/store';
 
-import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -36,7 +35,6 @@ import { isDefined } from '@app/utils';
   styleUrl: './article-grid.component.scss',
   imports: [
     AdminControlsDirective,
-    CommonModule,
     FormatDatePipe,
     IconsModule,
     ImagePreloadDirective,

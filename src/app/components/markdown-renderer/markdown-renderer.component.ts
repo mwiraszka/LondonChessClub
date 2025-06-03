@@ -3,10 +3,10 @@ import { kebabCase } from 'lodash';
 import { MarkdownComponent } from 'ngx-markdown';
 import { filter, first } from 'rxjs/operators';
 
-import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
   Component,
+  DOCUMENT,
   Inject,
   Input,
   OnChanges,
@@ -33,7 +33,7 @@ import { KebabCasePipe } from '@app/pipes';
     <markdown [data]="data"></markdown>
   `,
   styleUrl: './markdown-renderer.component.scss',
-  imports: [CommonModule, KebabCasePipe, MarkdownComponent, RouterLink],
+  imports: [KebabCasePipe, MarkdownComponent, RouterLink],
 })
 export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
   @Input() public data?: string;

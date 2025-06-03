@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 import { LoginFormComponent } from '@app/components/login-form/login-form.component';
@@ -11,7 +10,7 @@ import { MetaAndTitleService } from '@app/services';
     <lcc-page-header title="Admin Login"></lcc-page-header>
     <lcc-login-form></lcc-login-form>
   `,
-  imports: [CommonModule, LoginFormComponent, PageHeaderComponent],
+  imports: [LoginFormComponent, PageHeaderComponent],
 })
 export class LoginPageComponent implements OnInit {
   constructor(private readonly metaAndTitleService: MetaAndTitleService) {}

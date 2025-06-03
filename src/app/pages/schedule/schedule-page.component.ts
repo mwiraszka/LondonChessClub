@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, DOCUMENT, Inject, OnInit } from '@angular/core';
 
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { ScheduleComponent } from '@app/components/schedule/schedule.component';

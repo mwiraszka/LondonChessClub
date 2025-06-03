@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -13,7 +12,6 @@ import { RouterLinkPipe } from '@app/pipes';
   templateUrl: './navigation-bar.component.html',
   styleUrl: './navigation-bar.component.scss',
   imports: [
-    CommonModule,
     DropdownDirective,
     IconsModule,
     RouterLink,

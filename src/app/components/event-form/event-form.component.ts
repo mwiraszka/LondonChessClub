@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
 import { debounceTime } from 'rxjs/operators';
 
-import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -36,7 +35,6 @@ import { timeValidator } from '@app/validators';
   templateUrl: './event-form.component.html',
   styleUrl: './event-form.component.scss',
   imports: [
-    CommonModule,
     DatePickerComponent,
     FormErrorIconComponent,
     IconsModule,

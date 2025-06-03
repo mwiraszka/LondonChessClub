@@ -2,7 +2,6 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
 
-import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -43,7 +42,6 @@ import {
   templateUrl: './image-form.component.html',
   styleUrl: './image-form.component.scss',
   imports: [
-    CommonModule,
     FormErrorIconComponent,
     IconsModule,
     ImagePreloadDirective,

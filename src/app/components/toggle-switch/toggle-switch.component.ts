@@ -1,6 +1,5 @@
 import * as uuid from 'uuid';
 
-import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
@@ -9,7 +8,7 @@ import { TooltipDirective } from '@app/directives/tooltip.directive';
   selector: 'lcc-toggle-switch',
   templateUrl: './toggle-switch.component.html',
   styleUrl: './toggle-switch.component.scss',
-  imports: [CommonModule, TooltipDirective],
+  imports: [TooltipDirective],
 })
 export class ToggleSwitchComponent {
   @Input() public condition?: boolean | null;

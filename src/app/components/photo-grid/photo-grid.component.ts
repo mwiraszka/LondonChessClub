@@ -1,7 +1,6 @@
 import { Store } from '@ngrx/store';
 import { isEmpty } from 'lodash';
 
-import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
 import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
@@ -16,7 +15,7 @@ import { customSort } from '@app/utils';
   selector: 'lcc-photo-grid',
   templateUrl: './photo-grid.component.html',
   styleUrl: './photo-grid.component.scss',
-  imports: [AdminControlsDirective, CommonModule, LinkListComponent],
+  imports: [AdminControlsDirective, LinkListComponent],
 })
 export class PhotoGridComponent implements OnInit {
   @Input({ required: true }) public isAdmin!: boolean;

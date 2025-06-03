@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -15,7 +14,7 @@ import IconsModule from '@app/icons';
   selector: 'lcc-paginator',
   templateUrl: './paginator.component.html',
   styleUrl: './paginator.component.scss',
-  imports: [CommonModule, IconsModule, TooltipDirective],
+  imports: [IconsModule, TooltipDirective],
 })
 export class PaginatorComponent implements OnChanges {
   public readonly PAGE_SIZES = [10, 20, 50, 100];

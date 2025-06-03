@@ -5,8 +5,8 @@ import { Observable, combineLatest } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
 
 import { CdkScrollableModule } from '@angular/cdk/scrolling';
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, DOCUMENT, Inject, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
 import { FooterComponent } from '@app/components/footer/footer.component';

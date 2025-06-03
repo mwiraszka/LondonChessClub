@@ -1,6 +1,5 @@
 import { Store } from '@ngrx/store';
 
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -21,13 +20,7 @@ import { emailValidator } from '@app/validators';
   selector: 'lcc-login-form',
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss',
-  imports: [
-    CommonModule,
-    FormErrorIconComponent,
-    IconsModule,
-    ReactiveFormsModule,
-    RouterLink,
-  ],
+  imports: [FormErrorIconComponent, IconsModule, ReactiveFormsModule, RouterLink],
 })
 export class LoginFormComponent implements OnInit {
   public form!: FormGroup<LoginFormGroup>;

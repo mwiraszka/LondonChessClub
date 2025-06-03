@@ -19,14 +19,14 @@
     </button>
   </div>
 
-  <figure>
-    <img
-      #imageElement
-      [src]="image.originalPresignedUrl ?? image.thumbnailPresignedUrl"
-      [alt]="image.caption"
-      default="assets/image-placeholder.png"
-      (load)="onImageLoad(imageElement)" />
-    <figcaption [adminControls]="isAdmin ? getAdminControlsConfig(image) : null">
+  <figure [adminControls]="isAdmin ? getAdminControlsConfig(image) : null">
+    <div class="image-container">
+      <img
+        [src]="image.originalPresignedUrl ?? image.thumbnailPresignedUrl"
+        [alt]="image.caption"
+        default="assets/image-placeholder.png" />
+    </div>
+    <figcaption>
       <div class="album-name lcc-truncate">{{ album }}</div>
       <hr />
       <div class="image-caption lcc-truncate">{{ image.caption }}</div>

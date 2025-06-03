@@ -23,10 +23,9 @@ export const selectAllImages = createSelector(selectAllImageEntities, allImageEn
   allImageEntities.map(entity => entity?.image),
 );
 
+// TODO temp!
 export const selectPhotoImages = createSelector(selectAllImages, allImages =>
-  allImages?.length
-    ? allImages.filter(image => !image?.albums?.some(album => album?.startsWith('_')))
-    : [],
+  allImages?.length ? allImages : [],
 );
 
 export const selectImageById = (id: Id | null) =>

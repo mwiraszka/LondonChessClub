@@ -108,7 +108,7 @@ export class ImageViewerComponent
 
   public getAdminControlsConfig(image: Image): AdminControlsConfig {
     return {
-      buttonSize: 26,
+      buttonSize: 34,
       deleteCb: () => this.onDeleteImage(image),
       editPath: ['image', 'edit', image.id],
       editInNewTab: true,
@@ -159,15 +159,5 @@ export class ImageViewerComponent
         }
       },
     );
-  }
-
-  public onImageLoad(imgElement: HTMLImageElement): void {
-    if (imgElement) {
-      this.renderer.setStyle(
-        imgElement.parentElement,
-        '--image-width',
-        `${imgElement.offsetWidth}px`,
-      );
-    }
   }
 }

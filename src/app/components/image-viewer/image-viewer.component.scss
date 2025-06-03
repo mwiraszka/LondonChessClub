@@ -1,27 +1,43 @@
+:host {
+  display: block;
+  width: min(100vw, var(--lcc-width--appContent)) !important;
+  height: 80vh;
+  overflow: hidden;
+}
+
 figure {
   width: 100%;
-  height: inherit;
-  border-radius: inherit;
-  background-color: var(--lcc-color--dialog-background);
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: var(--lcc-color--dialog-background);
+  border-radius: inherit;
+}
+
+.image-container {
+  flex: 1;
+  width: 100%;
+  min-height: 0; // Ensure proper flex shrinking
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--lcc-color--imageViewer-background);
 
   img {
+    min-width: 100%;
+    min-height: 100%;
     max-width: 100%;
-    max-height: 85vh;
-    width: auto;
-    height: auto;
-    object-fit: contain;
+    max-height: 100%;
+    object-fit: contain; // Add back object-fit to handle stretching
   }
 }
 
 figcaption {
-  max-width: 100%;
-  width: fit-content;
-  padding: 8px;
-  border-radius: var(--lcc-borderRadius--small);
+  width: calc(100% - 8px);
+  margin: 4px;
+  padding: 4px 8px;
 
   .album-name {
     font-size: 14px;
@@ -36,7 +52,7 @@ figcaption {
   }
 
   .image-caption {
-    text-align: left;
+    text-align: center;
     font-size: 16px;
   }
 }

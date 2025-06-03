@@ -3,8 +3,9 @@ import { of } from 'rxjs';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
+import { DropdownDirective } from '@app/directives/dropdown.directive';
 import IconsModule from '@app/icons';
 
 import { NavigationBarComponent } from './navigation-bar.component';
@@ -15,7 +16,12 @@ describe('NavigationBarComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [IconsModule, NavigationBarComponent],
+      imports: [
+        DropdownDirective,
+        IconsModule,
+        NavigationBarComponent,
+        RouterModule.forRoot([]),
+      ],
       providers: [
         {
           provide: ActivatedRoute,
@@ -36,6 +42,7 @@ describe('NavigationBarComponent', () => {
       .then(() => {
         fixture = TestBed.createComponent(NavigationBarComponent);
         component = fixture.componentInstance;
+        fixture.detectChanges();
       });
   });
 
@@ -58,20 +65,28 @@ describe('NavigationBarComponent', () => {
   });
 
   describe('user settings button', () => {
-    it('should display correct icon when `isDropdownOpen` is true', () => {
+    it('should always display the settings icon', () => {
+      component.isDropdownOpen = true;
+      fixture.detectChanges();
+      expect(element('.user-settings-button')).toBeTruthy();
+
+      component.isDropdownOpen = false;
+      fixture.detectChanges();
+      expect(element('.user-settings-button')).toBeTruthy();
+    });
+
+    it('should display correct dropdown icon when `isDropdownOpen` is true', () => {
       component.isDropdownOpen = true;
       fixture.detectChanges();
 
-      expect(element('.dropdown-icon').attributes['ng-reflect-name']).toBe(
-        'chevron-down',
-      );
+      expect(element('.dropdown-icon').componentInstance.name).toBe('chevron-down');
     });
 
-    it('should display correct icon when `isDropdownOpen` is false', () => {
+    it('should display correct dropdown icon when `isDropdownOpen` is false', () => {
       component.isDropdownOpen = false;
       fixture.detectChanges();
 
-      expect(element('.dropdown-icon').attributes['ng-reflect-name']).toBe('chevron-up');
+      expect(element('.dropdown-icon').componentInstance.name).toBe('chevron-up');
     });
   });
 

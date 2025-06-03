@@ -1,12 +1,19 @@
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { provideRouter } from '@angular/router';
 
+import IconsModule from '@app/icons';
 import { MOCK_EVENTS } from '@app/mocks/events.mock';
 import { formatDate } from '@app/utils';
 
 import { UpcomingEventBannerComponent } from './upcoming-event-banner.component';
+
+@Component({
+  standalone: true,
+  template: '',
+})
+class ScheduleStubComponent {}
 
 describe('UpcomingEventBannerComponent', () => {
   let fixture: ComponentFixture<UpcomingEventBannerComponent>;
@@ -14,7 +21,10 @@ describe('UpcomingEventBannerComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [UpcomingEventBannerComponent, RouterModule.forRoot([])],
+      imports: [IconsModule, UpcomingEventBannerComponent],
+      providers: [
+        provideRouter([{ path: 'schedule', component: ScheduleStubComponent }]),
+      ],
     })
       .compileComponents()
       .then(() => {
@@ -26,38 +36,39 @@ describe('UpcomingEventBannerComponent', () => {
   });
 
   describe('banner message', () => {
-    it('should contain the title of the next event', () => {
-      expect(element('.banner-message').nativeElement.textContent.trim()).toContain(
-        MOCK_EVENTS[0].title,
-      );
+    it('should contain the title and date of the next event', () => {
+      const bannerText = element('.banner-message').nativeElement.textContent.trim();
+
+      expect(bannerText).toContain(MOCK_EVENTS[0].title);
+      expect(bannerText).toContain(formatDate(MOCK_EVENTS[0].eventDate, 'short'));
     });
 
-    it('should contain the date of the next event', () => {
-      const formattedEventDate = formatDate(MOCK_EVENTS[0].eventDate, 'short');
-      expect(element('.banner-message').nativeElement.textContent.trim()).toContain(
-        formattedEventDate,
-      );
-    });
-
-    it('should emit `clearButton` event when clicked', () => {
+    it('should emit clearBanner when clicked', () => {
       const clearBannerSpy = jest.spyOn(component.clearBanner, 'emit');
 
-      // TODO: triggerEventHandler works but results in an error - simulate click event another way
-      element('.banner-message').triggerEventHandler('click');
+      const bannerMessage = element('.banner-message').nativeElement;
+      bannerMessage.dispatchEvent(new MouseEvent('click'));
+      fixture.detectChanges();
 
       expect(clearBannerSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should link to the Schedule page', () => {
+    it('should have router link set to the schedule page', () => {
       expect(element('.banner-message').attributes['routerLink']).toBe('/schedule');
     });
   });
 
   describe('close button', () => {
-    it('should emit `clearButton` event when clicked', () => {
+    it('should display a close icon', () => {
+      expect(element('.close-icon')).toBeTruthy();
+    });
+
+    it('should emit a clear banner event when clicked', () => {
       const clearBannerSpy = jest.spyOn(component.clearBanner, 'emit');
 
-      element('.close-button').triggerEventHandler('click');
+      const closeButton = element('.close-button').nativeElement;
+      closeButton.dispatchEvent(new MouseEvent('click'));
+      fixture.detectChanges();
 
       expect(clearBannerSpy).toHaveBeenCalledTimes(1);
     });

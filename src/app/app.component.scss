@@ -40,6 +40,7 @@
     &::ng-deep lcc-footer {
       // Manually push footer background to edge of page
       width: calc(100% + 16px);
+      margin-top: auto;
 
       // Add padding when on Safari on mobile to keep footer visible
       @media screen and (max-width: 767px) {

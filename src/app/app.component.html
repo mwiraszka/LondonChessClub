@@ -3,8 +3,6 @@
 }
 
 @if (viewModel$ | async; as vm) {
-  <lcc-toaster [toasts]="vm.toasts"></lcc-toaster>
-
   @if (vm.showUpcomingEventBanner && vm.nextEvent) {
     <lcc-upcoming-event-banner
       [nextEvent]="vm.nextEvent"

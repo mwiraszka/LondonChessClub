@@ -12,7 +12,6 @@ import { EventsState } from './events';
 import { ImagesState } from './images';
 import { MembersState } from './members';
 import { NavState } from './nav';
-import { NotificationsState } from './notifications';
 
 export interface MetaState {
   appState?: AppState;
@@ -22,7 +21,6 @@ export interface MetaState {
   imagesState?: ImagesState;
   membersState?: MembersState;
   navState?: NavState;
-  notificationsState?: NotificationsState;
   routerState?: RouterState;
 }
 
@@ -34,7 +32,7 @@ const hydratedStates = [
   'imagesState',
   'membersState',
   'navState',
-] as Array<keyof Exclude<MetaState, NotificationsState | RouterState>>;
+] as Array<keyof Exclude<MetaState, RouterState>>;
 
 function clearStaleLocalStorageDataMetaReducer(
   reducer: ActionReducer<MetaState>,

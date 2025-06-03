@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 
 import IconsModule from '@app/icons';
 import { Toast } from '@app/models';
+import { ToastService } from '@app/services';
 
 @Component({
   selector: 'lcc-toaster',
@@ -10,7 +11,14 @@ import { Toast } from '@app/models';
     @for (toast of toasts; track toast) {
       <div
         class="toast"
-        [ngClass]="'toast-' + toast.type">
+        [ngClass]="'toast-' + toast.type"
+        [class.dismissing]="dismissingToasts.has(toast)"
+        [style]="{
+          '--animation-duration':
+            ToastService.TOAST_DURATION + ToastService.ANIMATION_DURATION + 'ms',
+          '--dismissal-duration': ToastService.ANIMATION_DURATION + 'ms',
+        }"
+        (click)="onToastClick(toast)">
         <i-feather
           [name]="getIcon(toast.type)"
           class="icon">
@@ -26,7 +34,13 @@ import { Toast } from '@app/models';
   imports: [CommonModule, IconsModule],
 })
 export class ToasterComponent {
+  readonly ToastService = ToastService;
+
   @Input({ required: true }) public toasts!: Toast[];
+
+  public dismissingToasts = new Set<Toast>();
+
+  constructor(private readonly toastService: ToastService) {}
 
   public getIcon(toastType: 'success' | 'info' | 'warning'): string {
     return toastType === 'success'
@@ -34,5 +48,13 @@ export class ToasterComponent {
       : toastType === 'warning'
         ? 'alert-triangle'
         : 'info';
+  }
+
+  public onToastClick(toast: Toast): void {
+    this.toastService.dismissToast(toast);
+  }
+
+  public markToastForDismissal(toast: Toast): void {
+    this.dismissingToasts.add(toast);
   }
 }

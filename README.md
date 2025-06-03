@@ -36,6 +36,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.3.0 - June 5th, 2025</summary>
 
 - 🚀 Various minor improvements and optimizations to images and the Image Viewer component
+- 🔧 Simplify notification flow and display toasts on a separate overlay layer for a cleaner architecture and greater customizability
 </details>
 
 <details>

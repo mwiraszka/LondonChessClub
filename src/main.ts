@@ -24,7 +24,6 @@ import { ImagesStoreModule } from '@app/store/images';
 import { MembersStoreModule } from '@app/store/members';
 import { MetaState, metaReducers } from '@app/store/meta-reducers';
 import { NavStoreModule } from '@app/store/nav';
-import { NotificationsStoreModule } from '@app/store/notifications';
 import { actionSanitizer } from '@app/utils';
 
 import { environment } from '@env';
@@ -49,7 +48,6 @@ bootstrapApplication(AppComponent, {
       MarkdownModule.forRoot(),
       MembersStoreModule,
       NavStoreModule,
-      NotificationsStoreModule,
       StoreModule.forRoot<MetaState, Action<string>>(
         { routerState: routerReducer },
         {

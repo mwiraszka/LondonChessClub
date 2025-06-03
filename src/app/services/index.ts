@@ -8,3 +8,4 @@ export { LocalStorageService } from './local-storage.service';
 export { LoaderService } from './loader.service';
 export { MembersService } from './members.service';
 export { MetaAndTitleService } from './meta-and-title.service';
+export { ToastService } from './toast.service';

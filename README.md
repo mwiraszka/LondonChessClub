@@ -14,12 +14,12 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | [![AWS EC2](readme-icons/aws-ec2.png)](https://aws.amazon.com/ec2) | `AWS EC2` | compute platform |
 | [![AWS Route 53](readme-icons/aws-cloudfront.png)](https://aws.amazon.com/cloudfront) | `AWS Route 53` | DNS and traffic management |
 | [![AWS S3](readme-icons/aws-s3.png)](https://aws.amazon.com/s3) | `AWS S3` | static web hosting and cloud storage for images |
+| [![Chart.js](readme-icons/chartjs.png)](https://www.chartjs.org/) | `Chart.js` | game and player stats |
 | [![Express.js](readme-icons/expressjs.png)](https://expressjs.com) | `Express.js` | API and routing framework built on Node.js |
 | [![Feather](readme-icons/feather.png)](https://feathericons.com) | `Feather` | icons |
 | [![GitHub Actions](readme-icons/github.png)](https://github.com/features/actions) | `GitHub Actions` | automated workflows |
 | [![Lichess PGN Viewer](readme-icons/lichess.png)](https://github.com/lichess-org/pgn-viewer) | `Lichess PGN Viewer` | chess game rendering |
 | [![MongoDB](readme-icons/mongodb.png)](https://www.mongodb.com) | `MongoDB` | database management system  |
-| [![Ng2 Charts](readme-icons/ng2-charts.png)](https://valor-software.com/ng2-charts) | `Ng2 Charts` | game and player stats |
 | [![NGINX](readme-icons/nginx.png)](https://nginx.org/en) | `NGINX` | HTTP web server and reverse proxy |
 | [![NgRx](readme-icons/ngrx.png)](https://ngrx.io) | `NgRx` | reactive state management |
 | [![Ngx Markdown](readme-icons/ngx-markdown.png)](https://github.com/jfcere/ngx-markdown) | `Ngx Markdown` | markdown parsing |

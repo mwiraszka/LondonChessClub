@@ -58,8 +58,12 @@ export class AdminControlsDirective implements OnDestroy {
   @HostListener('contextmenu', ['$event'])
   public onContextMenu(event: MouseEvent): void {
     if (this.adminControls && !this.overlayRef?.hasAttached()) {
-      event.preventDefault();
-      this.attach();
+      // Only prevent context menu if no text is selected
+      const selection = window.getSelection();
+      if (!selection || selection.toString().trim() === '') {
+        event.preventDefault();
+        this.attach();
+      }
     }
   }
 

@@ -31,7 +31,7 @@ import { EventsSelectors } from '@app/store/events';
       </lcc-schedule>
     }
   `,
-  imports: [CommonModule, ScheduleComponent, PageHeaderComponent],
+  imports: [CommonModule, PageHeaderComponent, ScheduleComponent],
 })
 export class SchedulePageComponent implements OnInit {
   public viewModel$?: Observable<{

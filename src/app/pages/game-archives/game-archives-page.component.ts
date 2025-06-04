@@ -56,9 +56,9 @@ import { YEARS } from './years';
     FormErrorIconComponent,
     IconsModule,
     KeyValuePipe,
+    PageHeaderComponent,
     PgnViewerComponent,
     ReactiveFormsModule,
-    PageHeaderComponent,
   ],
 })
 export class GameArchivesPageComponent implements OnInit, OnDestroy {

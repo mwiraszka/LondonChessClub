@@ -7,8 +7,6 @@ export interface BaseImage {
   id: Id;
   filename: string;
   fileSize: number;
-  width: number;
-  height: number;
   caption: string;
   albums: string[];
   coverForAlbum: string;
@@ -16,6 +14,8 @@ export interface BaseImage {
 }
 
 export interface Image extends BaseImage {
+  width?: number;
+  height?: number;
   originalPresignedUrl?: Url;
   thumbnailPresignedUrl?: Url;
   articleAppearances?: number;

@@ -3,11 +3,14 @@ import { isEmpty } from 'lodash';
 
 import { Component, Input, OnInit } from '@angular/core';
 
+import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
 import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
-import { AdminControlsConfig, Image, InternalLink } from '@app/models';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
+import IconsModule from '@app/icons';
+import { AdminControlsConfig, Id, Image, InternalLink } from '@app/models';
 import { DialogService } from '@app/services';
 import { ImagesActions } from '@app/store/images';
 import { customSort } from '@app/utils';
@@ -16,7 +19,13 @@ import { customSort } from '@app/utils';
   selector: 'lcc-photo-grid',
   templateUrl: './photo-grid.component.html',
   styleUrl: './photo-grid.component.scss',
-  imports: [AdminControlsDirective, ImagePreloadDirective, LinkListComponent],
+  imports: [
+    AdminControlsDirective,
+    IconsModule,
+    ImagePreloadDirective,
+    LinkListComponent,
+    TooltipDirective,
+  ],
 })
 export class PhotoGridComponent implements OnInit {
   @Input({ required: true }) public isAdmin!: boolean;
@@ -53,6 +62,13 @@ export class PhotoGridComponent implements OnInit {
           .sort((a, b) => customSort(a, b, 'caption')),
         isAdmin: this.isAdmin,
       },
+    });
+  }
+
+  public async onOpenImageExplorer(): Promise<void> {
+    await this.dialogService.open<ImageExplorerComponent, Id>({
+      componentType: ImageExplorerComponent,
+      isModal: true,
     });
   }
 

@@ -1,5 +1,25 @@
 @use '../../../styles/abstracts/mixins';
 
+.admin-controls-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  position: relative;
+
+  lcc-link-list {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .image-explorer-button {
+    position: absolute;
+    right: 0;
+    padding: 4px;
+  }
+}
+
 .album-covers {
   // 'Masonry' layout effect:
   -webkit-column-count: 2;

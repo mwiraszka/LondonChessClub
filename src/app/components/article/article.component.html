@@ -4,6 +4,8 @@
       class="banner-image"
       [alt]="bannerImage?.caption ?? 'Article banner image'"
       [src]="bannerImage?.originalPresignedUrl ?? bannerImage?.thumbnailPresignedUrl"
+      [width]="bannerImage?.width"
+      [height]="bannerImage?.height"
       default="assets/image-placeholder.png" />
   } @placeholder (minimum 0.5s) {
     <div class="lcc-content-placeholder-wrapper loading-placeholder-image">

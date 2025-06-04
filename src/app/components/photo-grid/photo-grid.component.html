@@ -12,6 +12,9 @@
         <img
           [alt]="image.caption"
           [src]="image.thumbnailPresignedUrl ?? image.originalPresignedUrl"
+          [width]="image.width"
+          [height]="image.height"
+          [preserveNaturalRatio]="true"
           default="assets/image-placeholder.png" />
         <figcaption>
           <div class="album-name lcc-truncate-max-2-lines">{{ image.coverForAlbum }}</div>

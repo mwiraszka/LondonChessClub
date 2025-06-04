@@ -16,6 +16,8 @@ export { dataUrlToFile } from './file/data-url-to-file.util';
 export { formatBytes } from './file/format-bytes.util';
 export { parseCsv } from './file/parse-csv.util';
 
+export { calculateAspectRatio, calculateDecimalAspectRatio } from './image/calculate-aspect-ratio.util';
+
 export { getEcoOpeningCode } from './pgn/get-eco-opening-code.util';
 export { getLichessAnalysisUrl } from './pgn/get-lichess-analysis-url.util';
 export { getOpeningTallies } from './pgn/get-opening-tallies.util';

@@ -108,6 +108,8 @@ export class ImagesEffects {
         const imageMetadata: Omit<BaseImage, 'fileSize'> = {
           id: '',
           filename: formData.filename,
+          width: 0, // TODO: Extract from image file during upload
+          height: 0, // TODO: Extract from image file during upload
           caption: formData.caption,
           coverForAlbum: formData.newAlbum ?? '',
           albums: formData.newAlbum
@@ -154,6 +156,8 @@ export class ImagesEffects {
           id: image.id,
           filename: image.filename,
           fileSize: image.fileSize,
+          width: image.width,
+          height: image.height,
           caption: formData.caption,
           coverForAlbum: image.coverForAlbum,
           albums: formData.newAlbum
@@ -222,6 +226,8 @@ export class ImagesEffects {
           id: image.id,
           filename: image.filename,
           fileSize: image.fileSize,
+          width: image.width,
+          height: image.height,
           caption: image.caption,
           albums: image.albums,
           modificationInfo: image.modificationInfo,

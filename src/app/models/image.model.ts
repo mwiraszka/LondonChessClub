@@ -7,6 +7,8 @@ export interface BaseImage {
   id: Id;
   filename: string;
   fileSize: number;
+  width: number;
+  height: number;
   caption: string;
   albums: string[];
   coverForAlbum: string;

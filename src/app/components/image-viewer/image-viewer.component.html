@@ -21,10 +21,7 @@
 
   <figure [adminControls]="isAdmin ? getAdminControlsConfig(image) : null">
     <div class="image-container">
-      <img
-        [src]="image.originalPresignedUrl ?? image.thumbnailPresignedUrl"
-        [alt]="image.caption"
-        default="assets/image-placeholder.png" />
+      <img [image]="image" />
     </div>
     <figcaption>
       <div class="album-name lcc-truncate">{{ album }}</div>

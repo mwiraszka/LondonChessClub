@@ -68,6 +68,7 @@ export class PhotoGridComponent implements OnInit {
   public async onOpenImageExplorer(): Promise<void> {
     await this.dialogService.open<ImageExplorerComponent, Id>({
       componentType: ImageExplorerComponent,
+      inputs: { selectable: false },
       isModal: true,
     });
   }

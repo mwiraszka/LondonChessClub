@@ -73,6 +73,13 @@ export class ImageFormComponent implements OnInit {
     }
   }
 
+  public buildImageFromFormData(formData: ImageFormData): Image {
+    return {
+      caption: formData.caption,
+      originalPresignedUrl: formData.dataUrl,
+    } as Image;
+  }
+
   public toggleAlbum(album: string): void {
     const selectedAlbums = this.form.controls.albums.value;
     const albums = selectedAlbums.includes(album)
@@ -210,9 +217,9 @@ export class ImageFormComponent implements OnInit {
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((value: Partial<ImageFormData>) => {
         // Manually transfer error to inner control to benefit from common error message handling
-        this.form.controls.albums.setErrors(
-          this.form.hasError('albumRequired') ? { albumRequired: true } : null,
-        );
+        if (this.form.hasError('albumRequired')) {
+          this.form.controls.albums.setErrors({ albumRequired: true });
+        }
 
         this.store.dispatch(
           ImagesActions.formValueChanged({

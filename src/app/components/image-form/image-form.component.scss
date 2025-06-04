@@ -26,18 +26,24 @@
     }
   }
 
-  .image-preview,
-  .loading-placeholder-image {
-    max-width: 320px;
-    max-height: 320px;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  .image-container {
     border-radius: var(--lcc-borderRadius--large);
+    background: var(--lcc-color--contentPlaceholder-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 
     &.full-span {
-      grid-column: 1 / 4;
-      justify-self: center;
+      grid-column: 1 / -1;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 300px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
     }
   }
 

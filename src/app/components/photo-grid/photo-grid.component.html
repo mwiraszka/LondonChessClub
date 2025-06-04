@@ -18,13 +18,7 @@
       [adminControls]="isAdmin ? getAdminControlsConfig(image.coverForAlbum) : null"
       (click)="onClickAlbumCover(image.coverForAlbum)">
       <figure>
-        <img
-          [alt]="image.caption"
-          [src]="image.thumbnailPresignedUrl ?? image.originalPresignedUrl"
-          [width]="image.width"
-          [height]="image.height"
-          [preserveNaturalRatio]="true"
-          default="assets/image-placeholder.png" />
+        <img [image]="image" />
         <figcaption>
           <div class="album-name lcc-truncate-max-2-lines">{{ image.coverForAlbum }}</div>
           <div class="photo-count">{{ getAlbumPhotoCount(image.coverForAlbum) }}</div>

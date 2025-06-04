@@ -15,7 +15,7 @@ const { selectAll: selectAllImageEntities } =
 export const selectImageEntitiesByAlbum = (album: string | null) =>
   createSelector(selectAllImageEntities, allImageEntities => {
     return album
-      ? allImageEntities.filter(entity => entity.image.albums.includes(album))
+      ? allImageEntities.filter(entity => entity?.image?.albums?.includes(album))
       : null;
   });
 
@@ -32,7 +32,7 @@ export const selectPhotoImages = createSelector(selectAllImages, allImages =>
 export const selectImageById = (id: Id | null) =>
   createSelector(
     selectAllImages,
-    allImages => allImages?.find(image => image.id === id) ?? null,
+    allImages => allImages?.find(image => image?.id === id) ?? null,
   );
 
 export const selectImageFormDataById = (id: Id | null) =>
@@ -40,7 +40,7 @@ export const selectImageFormDataById = (id: Id | null) =>
     selectImagesState,
     selectAllImageEntities,
     (state, allImageEntities) =>
-      allImageEntities.find(entity => entity.image.id === id)?.formData ??
+      allImageEntities.find(entity => entity?.image?.id === id)?.formData ??
       state.newImageFormData,
   );
 
@@ -62,7 +62,7 @@ export const selectHasUnsavedChanges = (id: Id | null) =>
   );
 
 export const selectAllExistingAlbums = createSelector(selectAllImages, allImages => {
-  const allAlbums = allImages.flatMap(image => image.albums || []);
+  const allAlbums = allImages.flatMap(image => image?.albums || []);
   return [...new Set(allAlbums)].sort();
 });
 
@@ -72,7 +72,7 @@ export const selectImagesByAlbum = (album: string | null) =>
       return null;
     }
 
-    return allImages.filter(image => image.albums.includes(album)) ?? [];
+    return allImages.filter(image => image?.albums?.includes(album)) ?? [];
   });
 
 export const selectArticleImages = createSelector(selectAllImages, allImages => {
@@ -88,6 +88,6 @@ export const selectImageByArticleId = (articleId: Id | null) =>
       const imageId = articleFormData
         ? articleFormData.bannerImageId
         : article?.bannerImageId;
-      return allImages?.find(image => image.id === imageId) ?? null;
+      return allImages?.find(image => image?.id === imageId) ?? null;
     },
   );

@@ -9,27 +9,38 @@
   background-color: var(--lcc-color--imageExplorer-background);
 
   .image-wrapper {
-    padding: 4px;
+    background-color: var(--lcc-color--general-cardBackground);
+    border: none;
     border-radius: var(--lcc-borderRadius--large);
-    border: 2px solid transparent;
+    box-shadow: 3px 3px 5px var(--lcc-color--general-cardBoxShadow);
+    padding: 8px;
+    transition: all 0.2s ease;
 
     &:hover {
       cursor: pointer;
-      background-color: var(--lcc-color--imageExplorer-imageBackgroundOnHover);
-      border-color: var(--lcc-color--imageExplorer-imageBorderOnHover);
+      animation: raise 0.2s ease forwards;
+      box-shadow: 4px 4px 8px var(--lcc-color--general-cardBoxShadow);
+    }
+    
+    &.non-selectable {
+      &:hover {
+        cursor: default;
+        animation: none;
+      }
     }
 
-    img,
-    .loading-placeholder-image {
+    img {
       aspect-ratio: 3 / 2;
       object-fit: contain;
       width: 100%;
       border-radius: var(--lcc-borderRadius--large);
+      background: var(--lcc-color--contentPlaceholder-background);
     }
 
     .caption,
     .filename,
     .file-size,
+    .dimensions,
     .upload-date,
     .albums,
     .article-appearances {
@@ -46,5 +57,18 @@
         margin: 0.3em;
       }
     }
+
+    .article-appearances {
+      color: var(--lcc-color--imageExplorer-articleAppearancesText);
+    }
+  }
+}
+
+@keyframes raise {
+  0% {
+    scale: 1;
+  }
+  100% {
+    scale: 1.02;
   }
 }

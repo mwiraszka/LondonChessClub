@@ -5,17 +5,10 @@
   <div class="lcc-form-fields">
     <label class="lcc-required-field">Banner Image:</label>
     <div class="image-section-container">
-      @defer {
-        <img
-          class="banner-image"
-          [alt]="bannerImage?.caption ?? 'Article banner image'"
-          [src]="bannerImage?.originalPresignedUrl ?? bannerImage?.thumbnailPresignedUrl"
-          default="assets/image-placeholder.png" />
-      } @placeholder (minimum 0.5s) {
-        <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
-          <div class="lcc-content-placeholder"></div>
-        </div>
-      }
+      <div class="image-container">
+        <img [image]="bannerImage" />
+      </div>
+
       <div class="image-controls-container">
         <button
           class="image-explorer-button lcc-secondary-button"

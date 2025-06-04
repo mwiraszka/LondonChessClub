@@ -10,15 +10,9 @@
   justify-content: center;
   background-color: var(--lcc-color--article-bannerImageBackground);
 
-  .banner-image,
-  .loading-placeholder-image {
-    height: 300px;
-    box-sizing: border-box;
-
-    @include mixins.respond-to('lt-md') {
-      width: 100%;
-      height: auto;
-    }
+  img {
+    width: 100%;
+    object-fit: contain;
   }
 
   .title {

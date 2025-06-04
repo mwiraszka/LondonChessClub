@@ -13,15 +13,24 @@
     display: flex;
     flex-direction: row;
     gap: 8px;
+    height: 300px;
+    width: 100%;
+    max-width: 450px;
 
-    .banner-image,
-    .loading-placeholder-image {
-      background-color: black;
-      aspect-ratio: 3 / 2;
-      object-fit: contain;
-      width: 100%;
+    .image-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--lcc-color--contentPlaceholder-background);
       border-radius: var(--lcc-borderRadius--large);
-      max-width: 320px;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: var(--lcc-borderRadius--large);
+      }
     }
 
     .image-controls-container {

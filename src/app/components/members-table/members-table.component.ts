@@ -3,11 +3,13 @@ import { camelCase } from 'lodash';
 
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PaginatorComponent } from '@app/components/paginator/paginator.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import IconsModule from '@app/icons';
 import type {
   AdminControlsConfig,
@@ -33,6 +35,8 @@ import { MembersActions } from '@app/store/members';
     KebabCasePipe,
     LinkListComponent,
     PaginatorComponent,
+    RouterLink,
+    TooltipDirective,
   ],
 })
 export class MembersTableComponent implements OnInit {
@@ -103,6 +107,10 @@ export class MembersTableComponent implements OnInit {
       itemName: `${member.firstName} ${member.lastName}`,
       deleteCb: () => this.onDeleteMember(member),
     };
+  }
+
+  public isCityChampion(member: Member): boolean {
+    return member.firstName === 'Serhii' && member.lastName === 'Ivanchuk';
   }
 
   private async onDeleteMember(member: Member): Promise<void> {

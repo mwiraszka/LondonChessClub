@@ -73,6 +73,28 @@ table {
             display: table-cell;
             text-overflow: ellipsis;
           }
+
+          .city-champion-link {
+            display: inline-block;
+            margin-right: 2px;
+            text-decoration: none;
+
+            .city-champion-icon {
+              color: var(--lcc-color--membersTable-cityChampionIcon);
+              width: 14px;
+              height: 14px;
+              vertical-align: middle;
+              display: inline-block;
+              transform: translateY(-1px); // Fine-tune vertical alignment
+              transition: color 1s ease;
+            }
+
+            &:hover {
+              .city-champion-icon {
+                color: var(--lcc-color--membersTable-cityChampionIconHover);
+              }
+            }
+          }
         }
 
         &.last-name {

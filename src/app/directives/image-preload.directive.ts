@@ -30,7 +30,7 @@ import { calculateAspectRatio } from '@app/utils';
 export class ImagePreloadDirective implements OnInit, OnChanges {
   readonly FALLBACK_SRC = 'assets/fallback-image.png';
 
-  @Input({ required: true }) image?: Image | null;
+  @Input({ required: true }) image?: Partial<Image> | null;
 
   @HostBinding('style.aspect-ratio') aspectRatio?: string;
   @HostBinding('style.transition') transition = 'filter 0.3s ease, opacity 0.3s ease';
@@ -170,12 +170,8 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
   }
 
   private setAspectRatio(width: number, height: number): void {
-    const computedStyle = getComputedStyle(this.elementRef.nativeElement);
-    const hasFixedAspectRatio = computedStyle.aspectRatio !== 'auto';
-
-    if (!hasFixedAspectRatio) {
-      this.aspectRatio = calculateAspectRatio(width, height);
-    }
+    // Always set aspect-ratio when explicit dimensions are provided to prevent layout shift
+    this.aspectRatio = calculateAspectRatio(width, height);
 
     // Set width and height attributes for better SEO and accessibility
     this.elementRef.nativeElement.setAttribute('width', width.toString());

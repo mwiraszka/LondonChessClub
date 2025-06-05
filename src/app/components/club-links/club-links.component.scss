@@ -29,6 +29,13 @@ a {
   vertical-align: sub;
   gap: 4px;
 
+  .image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
   .brand-icon {
     height: 18px;
 

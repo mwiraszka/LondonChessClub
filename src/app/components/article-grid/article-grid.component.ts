@@ -53,7 +53,7 @@ export class ArticleGridComponent implements OnInit, OnChanges {
 
   @Input() public maxArticles?: number;
 
-  private bannerImageCache = new Map<Id, Image | null>();
+  private bannerImageCache = new Map<Id, Partial<Image> | null>();
 
   public readonly createArticleLink: InternalLink = {
     internalPath: ['article', 'add'],
@@ -78,7 +78,7 @@ export class ArticleGridComponent implements OnInit, OnChanges {
     }
   }
 
-  public getBannerImage(imageId: Id): Image | null {
+  public getBannerImage(imageId: Id): Partial<Image> | null {
     return this.bannerImageCache.get(imageId) ?? null;
   }
 
@@ -94,14 +94,12 @@ export class ArticleGridComponent implements OnInit, OnChanges {
     bannerImageIds.forEach(imageId => {
       const foundImage = this.articleImages.find(image => image.id === imageId);
 
-      if (foundImage) {
-        this.bannerImageCache.set(imageId, foundImage);
-      } else {
-        // Create stub for missing images to trigger shimmer
-        this.bannerImageCache.set(imageId, {
+      this.bannerImageCache.set(
+        imageId,
+        foundImage ?? {
           caption: 'Loading...',
-        } as Image);
-      }
+        },
+      );
     });
   }
 

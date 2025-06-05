@@ -28,6 +28,7 @@ import {
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { PgnViewerComponent } from '@app/components/pgn-viewer/pgn-viewer.component';
+import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import IconsModule from '@app/icons';
 import type { FilterFormGroup, GameDetails } from '@app/models';
 import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';
@@ -55,6 +56,7 @@ import { YEARS } from './years';
     CommonModule,
     FormErrorIconComponent,
     IconsModule,
+    ImagePreloadDirective,
     KeyValuePipe,
     PageHeaderComponent,
     PgnViewerComponent,

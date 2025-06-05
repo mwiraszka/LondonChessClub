@@ -11,7 +11,11 @@
       <label class="lcc-required-field">File:</label>
       <div class="file-and-preview-container">
         <div class="image-container">
-          <img [image]="buildImageFromFormData(formData)" />
+          <img
+            [image]="{
+              caption: formData.caption,
+              originalPresignedUrl: formData.dataUrl,
+            }" />
         </div>
 
         <label

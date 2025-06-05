@@ -45,8 +45,18 @@ hr {
   }
 
   figure {
+    .image-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
     img {
-      width: 100%;
+      max-width: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
     }
   }
 }
@@ -63,11 +73,20 @@ hr {
     border-radius: 50%;
     overflow: hidden;
 
+    .image-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+    }
+
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 50%;
     }
   }
 

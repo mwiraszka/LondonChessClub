@@ -73,13 +73,6 @@ export class ImageFormComponent implements OnInit {
     }
   }
 
-  public buildImageFromFormData(formData: ImageFormData): Image {
-    return {
-      caption: formData.caption,
-      originalPresignedUrl: formData.dataUrl,
-    } as Image;
-  }
-
   public toggleAlbum(album: string): void {
     const selectedAlbums = this.form.controls.albums.value;
     const albums = selectedAlbums.includes(album)

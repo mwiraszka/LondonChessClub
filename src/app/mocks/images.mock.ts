@@ -9,7 +9,7 @@ export const MOCK_IMAGES: Image[] = [
     height: 1080,
     caption: 'Image 1',
     articleAppearances: 1,
-    thumbnailPresignedUrl: 'https://example.com/image1-thumb.jpg',
+    thumbnailUrl: 'https://example.com/image1-thumb.jpg',
     albums: [],
     coverForAlbum: '',
     modificationInfo: {
@@ -27,8 +27,8 @@ export const MOCK_IMAGES: Image[] = [
     height: 600,
     caption: 'Image 2',
     articleAppearances: 2,
-    originalPresignedUrl: 'https://example.com/image2.jpg',
-    thumbnailPresignedUrl: 'https://example.com/image2-thumb.jpg',
+    originalUrl: 'https://example.com/image2.jpg',
+    thumbnailUrl: 'https://example.com/image2-thumb.jpg',
     albums: [],
     coverForAlbum: '',
     modificationInfo: {

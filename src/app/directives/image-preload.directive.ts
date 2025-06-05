@@ -62,14 +62,11 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
     this.opacity = '1';
     this.removeShimmerEffect();
 
-    if (
-      this.currentSrc === this.image?.thumbnailPresignedUrl &&
-      this.image?.originalPresignedUrl
-    ) {
+    if (this.currentSrc === this.image?.thumbnailUrl && this.image?.originalUrl) {
       const fullImage = new Image();
 
       fullImage.onload = () => {
-        this.currentSrc = this.image!.originalPresignedUrl;
+        this.currentSrc = this.image!.originalUrl;
         this.filter = 'none';
         this.opacity = '1';
       };
@@ -79,7 +76,7 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
         this.opacity = '1';
       };
 
-      fullImage.src = this.image.originalPresignedUrl;
+      fullImage.src = this.image.originalUrl;
     } else {
       this.filter = 'none';
       this.opacity = '1';
@@ -93,7 +90,7 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
     }
 
     this.removeShimmerEffect();
-    this.currentSrc = this.image?.originalPresignedUrl ?? this.FALLBACK_SRC;
+    this.currentSrc = this.image?.originalUrl ?? this.FALLBACK_SRC;
     this.filter = 'none';
     this.opacity = '1';
   }
@@ -110,14 +107,14 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
       this.setAspectRatio(this.image.width, this.image.height);
     }
 
-    const { originalPresignedUrl, thumbnailPresignedUrl } = this.image;
+    const { originalUrl, thumbnailUrl } = this.image;
 
-    if (originalPresignedUrl) {
+    if (originalUrl) {
       this.removeShimmerEffect();
-      this.currentSrc = originalPresignedUrl;
-    } else if (thumbnailPresignedUrl) {
+      this.currentSrc = originalUrl;
+    } else if (thumbnailUrl) {
       this.removeShimmerEffect();
-      this.currentSrc = thumbnailPresignedUrl;
+      this.currentSrc = thumbnailUrl;
       this.filter = 'blur(3px)';
     } else {
       // No URLs available - show shimmer effect while waiting for presigned URLs

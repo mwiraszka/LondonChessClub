@@ -46,11 +46,8 @@ export const imagesReducer = createReducer(
           return {
             image: {
               ...image,
-              originalPresignedUrl:
-                image.originalPresignedUrl ?? originalEntity?.image.originalPresignedUrl,
-              thumbnailPresignedUrl:
-                image.thumbnailPresignedUrl ??
-                originalEntity?.image.thumbnailPresignedUrl,
+              originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
+              thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
             },
             formData: {
               ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
@@ -70,10 +67,8 @@ export const imagesReducer = createReducer(
       {
         image: {
           ...image,
-          originalPresignedUrl:
-            image.originalPresignedUrl ?? originalEntity?.image.originalPresignedUrl,
-          thumbnailPresignedUrl:
-            image.thumbnailPresignedUrl ?? originalEntity?.image.thumbnailPresignedUrl,
+          originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
+          thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
         },
         formData: originalEntity?.formData ?? {
           ...pick(image, IMAGE_FORM_DATA_PROPERTIES),

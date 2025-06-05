@@ -8,33 +8,37 @@
   padding: 8px;
   background-color: var(--lcc-color--imageExplorer-background);
 
-  .image-wrapper {
-    background-color: var(--lcc-color--general-cardBackground);
+  .image-card-container {
+    background-color: var(--lcc-color--imageExplorer-background);
     border: none;
     border-radius: var(--lcc-borderRadius--large);
-    box-shadow: 3px 3px 5px var(--lcc-color--general-cardBoxShadow);
+    box-shadow: 1px 2px 4px var(--lcc-color--general-cardBoxShadow);
     padding: 8px;
     transition: all 0.2s ease;
 
-    &:hover {
+    &.selectable:hover {
       cursor: pointer;
       animation: raise 0.2s ease forwards;
       box-shadow: 4px 4px 8px var(--lcc-color--general-cardBoxShadow);
     }
-    
-    &.non-selectable {
-      &:hover {
-        cursor: default;
-        animation: none;
-      }
+
+    .image-container {
+      border-radius: var(--lcc-borderRadius--large);
+      background: var(--lcc-color--contentPlaceholder-background);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      aspect-ratio: 3 / 2;
+      margin-bottom: 8px;
     }
 
     img {
-      aspect-ratio: 3 / 2;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
       object-fit: contain;
-      width: 100%;
-      border-radius: var(--lcc-borderRadius--large);
-      background: var(--lcc-color--contentPlaceholder-background);
     }
 
     .caption,

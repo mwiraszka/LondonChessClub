@@ -1,10 +1,12 @@
 @for (image of images$ | async; track image.id) {
   <div
-    class="image-wrapper"
-    [class.non-selectable]="!selectable"
+    class="image-card-container"
+    [class.selectable]="selectable"
     [adminControls]="getAdminControlsConfig(image)"
     (click)="selectable ? dialogResult.emit(image.id) : null">
-    <img [image]="image" />
+    <div class="image-container">
+      <img [image]="image" />
+    </div>
 
     <div class="caption">
       <label>Caption:</label>

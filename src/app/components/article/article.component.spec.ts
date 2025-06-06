@@ -1,7 +1,7 @@
 import { MockComponent } from 'ng-mocks';
 
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, DeferBlockState, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
@@ -58,7 +58,6 @@ describe('ArticleComponent', () => {
     it('should render an image element with the banner image', () => {
       expect(element('img')).not.toBeNull();
     });
-
 
     it('should truncate article title to 120 characters', () => {
       expect(element('.title').nativeElement.textContent.trim()).toHaveLength(120);

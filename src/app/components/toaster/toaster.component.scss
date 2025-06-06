@@ -1,18 +1,14 @@
-@use '../../../styles/abstracts/mixins';
+// Override CDK overlay container to allow interactions underneath
+::ng-deep .cdk-overlay-container {
+  pointer-events: none;
+}
 
 :host {
-  position: fixed;
-  bottom: 1em;
-  right: 1em;
-  z-index: 1500;
-
-  @include mixins.respond-to('lt-md') {
-    right: 50%;
-    transform: translateX(50%);
-  }
+  pointer-events: auto;
 }
 
 .toast {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -22,12 +18,7 @@
   width: 320px;
   border-radius: var(--lcc-borderRadius--small);
   box-shadow: 1px 1px 5px 2px var(--lcc-color--toast-boxShadow);
-
-  -o-animation: fade 5s;
-  -moz-animation: fade 5s;
-  -ms-animation: fade 5s;
-  -webkit-animation: fade 5s;
-  animation: fade 5s;
+  animation: fade-in-and-out var(--animation-duration) linear;
 
   &.toast-success {
     background-color: var(--lcc-color--toast-successBackground);
@@ -64,14 +55,14 @@
   }
 }
 
-@keyframes fade {
+@keyframes fade-in-and-out {
   0% {
     opacity: 0;
   }
-  5% {
+  10% {
     opacity: 1;
   }
-  80% {
+  90% {
     opacity: 1;
   }
   100% {

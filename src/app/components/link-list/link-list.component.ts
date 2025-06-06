@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -11,7 +10,7 @@ import { RouterLinkPipe } from '@app/pipes';
   selector: 'lcc-link-list',
   templateUrl: './link-list.component.html',
   styleUrl: './link-list.component.scss',
-  imports: [CommonModule, IconsModule, RouterLink, RouterLinkPipe, TooltipDirective],
+  imports: [IconsModule, RouterLink, RouterLinkPipe, TooltipDirective],
 })
 export class LinkListComponent {
   @Input() header?: string;

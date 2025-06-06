@@ -4,32 +4,23 @@
   (ngSubmit)="onSubmit()">
   <div class="lcc-form-fields">
     @if (originalImage) {
-      @defer {
-        <img
-          class="image-preview full-span"
-          [alt]="formData.caption"
-          [src]="
-            originalImage.thumbnailPresignedUrl ?? originalImage.originalPresignedUrl
-          " />
-      } @placeholder (minimum 0.5s) {
-        <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
-          <div class="lcc-content-placeholder"></div>
-        </div>
-      }
+      <div class="image-container full-span">
+        <img [image]="originalImage" />
+      </div>
     } @else {
-      <label class="lcc-required-field">File:</label>
+      <label
+        for="file-input"
+        class="lcc-required-field">
+        File:
+      </label>
       <div class="file-and-preview-container">
-        @defer {
+        <div class="image-container">
           <img
-            class="image-preview"
-            [alt]="formData.caption"
-            [src]="formData.dataUrl"
-            default="assets/image-placeholder.png" />
-        } @placeholder (minimum 0.5s) {
-          <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
-            <div class="lcc-content-placeholder"></div>
-          </div>
-        }
+            [image]="{
+              caption: formData.caption || 'Image preview',
+              originalUrl: formData.dataUrl || 'assets/fallback-image.png',
+            }" />
+        </div>
 
         <label
           class="choose-file-label lcc-secondary-button"
@@ -37,6 +28,7 @@
           tooltip="Choose file">
           <i-feather name="upload"></i-feather>
           <input
+            id="file-input"
             type="file"
             accept="image/*"
             (change)="onUploadNewImage($event)" />
@@ -61,10 +53,13 @@
 
   <div class="lcc-form-fields">
     <label class="lcc-required-field">Albums:</label>
-    <div class="albums-container">
+    <div
+      class="albums-container"
+      (click)="this.form.controls.albums.markAsTouched()">
       <fieldset
         class="existing-album-fieldset"
-        [class.invalid]="form.controls.albums.errors && form.controls.albums.dirty">
+        [class.invalid]="form.controls.albums.errors && form.controls.albums.touched"
+        (click)="this.form.controls.albums.markAsTouched()">
         @for (album of existingAlbums; track album) {
           <div class="existing-album">
             <input
@@ -88,7 +83,8 @@
         name="new-album"
         formControlName="newAlbum"
         placeholder="New album"
-        maxlength="120" />
+        maxlength="120"
+        (click)="this.form.controls.albums.markAsTouched()" />
     </div>
     <lcc-form-error-icon
       [control]="

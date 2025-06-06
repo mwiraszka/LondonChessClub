@@ -2,7 +2,6 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
 
-import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -43,7 +42,6 @@ import {
   templateUrl: './image-form.component.html',
   styleUrl: './image-form.component.scss',
   imports: [
-    CommonModule,
     FormErrorIconComponent,
     IconsModule,
     ImagePreloadDirective,
@@ -93,6 +91,16 @@ export class ImageFormComponent implements OnInit {
       return;
     }
 
+    if (!['image/png', 'image/jpeg', 'image/jpg'].includes(file.type.toLowerCase())) {
+      const error: LccError = {
+        name: 'LCCError',
+        message: 'Sorry Ryan, currently only PNG or JPEG image formats are supported',
+      };
+      this.store.dispatch(ImagesActions.imageFileLoadFailed({ error }));
+      fileInputElement.value = '';
+      return;
+    }
+
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
@@ -110,7 +118,7 @@ export class ImageFormComponent implements OnInit {
       if (!imageFile) {
         const error: LccError = {
           name: 'LCCError',
-          message: 'Unable to load image file.',
+          message: 'Unable to load image file',
         };
         this.store.dispatch(ImagesActions.imageFileLoadFailed({ error }));
         return;
@@ -212,9 +220,9 @@ export class ImageFormComponent implements OnInit {
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((value: Partial<ImageFormData>) => {
         // Manually transfer error to inner control to benefit from common error message handling
-        this.form.controls.albums.setErrors(
-          this.form.hasError('albumRequired') ? { albumRequired: true } : null,
-        );
+        if (this.form.hasError('albumRequired')) {
+          this.form.controls.albums.setErrors({ albumRequired: true });
+        }
 
         this.store.dispatch(
           ImagesActions.formValueChanged({

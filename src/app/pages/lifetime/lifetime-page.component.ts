@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
+import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import IconsModule from '@app/icons';
 import { MetaAndTitleService } from '@app/services';
 
@@ -9,7 +9,7 @@ import { MetaAndTitleService } from '@app/services';
   selector: 'lcc-lifetime-page',
   templateUrl: './lifetime-page.component.html',
   styleUrl: './lifetime-page.component.scss',
-  imports: [CommonModule, IconsModule, PageHeaderComponent],
+  imports: [IconsModule, ImagePreloadDirective, PageHeaderComponent],
 })
 export class LifetimePageComponent implements OnInit {
   public imagePath = 'assets/lifetime-achievement-awards/';

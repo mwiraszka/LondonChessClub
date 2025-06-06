@@ -3,9 +3,15 @@
     <a
       class="branding-link"
       routerLink="">
-      <img
-        src="assets/lcc-branding.svg"
-        alt="LCC branding" />
+      <div class="image-container">
+        <img
+          [image]="{
+            originalUrl: 'assets/lcc-branding.svg',
+            width: 60,
+            height: 60,
+            caption: 'LCC branding',
+          }" />
+      </div>
     </a>
     <a
       class="club-name-link"

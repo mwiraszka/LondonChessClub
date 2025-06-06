@@ -1,5 +1,14 @@
 @if (isAdmin) {
-  <lcc-link-list [links]="[addImageLink]"></lcc-link-list>
+  <div class="admin-controls-header">
+    <lcc-link-list [links]="[addImageLink]"></lcc-link-list>
+    <button
+      class="image-explorer-button lcc-secondary-button"
+      type="button"
+      tooltip="Open Image Explorer"
+      (click)="onOpenImageExplorer()">
+      <i-feather name="image"></i-feather>
+    </button>
+  </div>
 }
 
 <section class="album-covers">
@@ -9,10 +18,7 @@
       [adminControls]="isAdmin ? getAdminControlsConfig(image.coverForAlbum) : null"
       (click)="onClickAlbumCover(image.coverForAlbum)">
       <figure>
-        <img
-          [alt]="image.caption"
-          [src]="image.thumbnailPresignedUrl ?? image.originalPresignedUrl"
-          default="assets/image-placeholder.png" />
+        <img [image]="image" />
         <figcaption>
           <div class="album-name lcc-truncate-max-2-lines">{{ image.coverForAlbum }}</div>
           <div class="photo-count">{{ getAlbumPhotoCount(image.coverForAlbum) }}</div>

@@ -2,7 +2,6 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
 
-import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -39,7 +38,6 @@ import {
   templateUrl: './member-form.component.html',
   styleUrl: './member-form.component.scss',
   imports: [
-    CommonModule,
     DatePickerComponent,
     FormErrorIconComponent,
     IconsModule,

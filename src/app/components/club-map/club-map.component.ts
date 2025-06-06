@@ -1,6 +1,5 @@
 import { Loader } from '@googlemaps/js-api-loader';
 
-import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit } from '@angular/core';
 
 import { environment } from '@env';
@@ -14,7 +13,7 @@ import { environment } from '@env';
       height: 230px;
     }
   `,
-  imports: [CommonModule],
+  imports: [],
 })
 export class ClubMapComponent implements OnInit {
   private clubLocation: google.maps.LatLngLiteral = { lat: 42.982546, lng: -81.261387 };

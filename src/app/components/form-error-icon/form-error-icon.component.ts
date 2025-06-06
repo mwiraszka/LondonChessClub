@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
@@ -18,7 +17,7 @@ import IconsModule from '@app/icons';
   `,
   styleUrl: './form-error-icon.component.scss',
   standalone: true,
-  imports: [CommonModule, IconsModule, TooltipDirective],
+  imports: [IconsModule, TooltipDirective],
 })
 export class FormErrorIconComponent {
   @Input({ required: true }) control!: AbstractControl;

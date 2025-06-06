@@ -69,19 +69,6 @@
   }
 }
 
-.lcc-form-links-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-
-  .lcc-form-link {
-    @extend .lcc-link;
-    padding: 3px;
-    font-size: 13px !important;
-  }
-}
-
 .lcc-required-fields-legend {
   font-style: italic;
   font-size: 14px;

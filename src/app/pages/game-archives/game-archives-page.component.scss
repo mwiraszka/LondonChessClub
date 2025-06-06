@@ -17,11 +17,17 @@ $pgn-viewer-width: 432px;
   .image-container {
     flex: 2;
     align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     img {
       max-width: 100%;
       max-height: 534px;
+      width: auto;
+      height: auto;
       border-radius: var(--lcc-borderRadius--large);
+      object-fit: contain;
     }
   }
 
@@ -113,19 +119,28 @@ $pgn-viewer-width: 432px;
     flex-flow: row wrap;
     justify-content: center;
     padding: 16px 8px;
-    gap: 16px;
+    gap: 32px;
+    margin-top: 16px;
 
     .opening-chart-container,
     .result-chart-container {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      min-height: 400px;
+      max-width: 500px;
+
+      canvas {
+        width: 300px !important;
+        height: 450px !important;
+      }
 
       label {
         font-size: var(--lcc-font-size--h2);
         color: var(--lcc-color--gameArchivesPage-chartLabel);
         padding-bottom: 2px;
         border-bottom: 1px solid var(--lcc-color--gameArchivesPage-labelUnderline);
+        margin-bottom: 8px;
+        text-align: center;
       }
     }
   }

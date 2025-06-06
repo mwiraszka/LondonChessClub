@@ -1,6 +1,5 @@
 import { PDFProgressData, PdfViewerModule } from 'ng2-pdf-viewer';
 
-import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import IconsModule from '@app/icons';
@@ -10,7 +9,7 @@ import type { DialogOutput } from '@app/models';
   selector: 'lcc-document-viewer',
   templateUrl: './document-viewer.component.html',
   styleUrl: './document-viewer.component.scss',
-  imports: [CommonModule, IconsModule, PdfViewerModule],
+  imports: [IconsModule, PdfViewerModule],
 })
 export class DocumentViewerComponent implements DialogOutput<null> {
   @Input() public documentPath?: string;

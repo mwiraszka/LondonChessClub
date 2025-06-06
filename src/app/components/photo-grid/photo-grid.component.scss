@@ -1,5 +1,28 @@
 @use '../../../styles/abstracts/mixins';
 
+.admin-controls-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  position: relative;
+
+  lcc-link-list {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .image-explorer-button {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    padding: 4px;
+  }
+}
+
 .album-covers {
   // 'Masonry' layout effect:
   -webkit-column-count: 2;
@@ -51,6 +74,7 @@
 
       img {
         width: 100%;
+        height: auto;
         display: block;
         margin-bottom: 2px;
         border-radius: var(--lcc-borderRadius--large);

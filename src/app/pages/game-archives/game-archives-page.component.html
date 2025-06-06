@@ -6,8 +6,12 @@
 <section class="intro">
   <div class="image-container">
     <img
-      src="assets/game-archives.png"
-      alt="A little piece of history" />
+      [image]="{
+        originalUrl: 'assets/game-archives.png',
+        width: 1000,
+        height: 323,
+        caption: 'A little piece of history',
+      }" />
   </div>
   <div class="text-container">
     <h3>A little piece of history...</h3>
@@ -129,27 +133,11 @@
     <div class="search-stats-container">
       <div class="opening-chart-container">
         <label for="opening-chart">Openings</label>
-        <canvas
-          id="opening-chart"
-          baseChart
-          [datasets]="openingChartDatasets"
-          [labels]="openingChartLabels"
-          [legend]="true"
-          [options]="openingChartOptions"
-          [type]="'doughnut'">
-        </canvas>
+        <canvas #openingChart></canvas>
       </div>
       <div class="result-chart-container">
         <label for="result-chart">Game Results</label>
-        <canvas
-          id="result-chart"
-          baseChart
-          [datasets]="resultChartDatasets"
-          [labels]="resultChartLabels"
-          [legend]="true"
-          [options]="resultChartOptions"
-          [type]="'doughnut'">
-        </canvas>
+        <canvas #resultChart></canvas>
       </div>
     </div>
   }

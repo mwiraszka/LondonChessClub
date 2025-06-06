@@ -108,7 +108,7 @@ export class ImageViewerComponent
 
   public getAdminControlsConfig(image: Image): AdminControlsConfig {
     return {
-      buttonSize: 26,
+      buttonSize: 34,
       deleteCb: () => this.onDeleteImage(image),
       editPath: ['image', 'edit', image.id],
       editInNewTab: true,

@@ -5,20 +5,18 @@ import { Observable, combineLatest } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
 
 import { CdkScrollableModule } from '@angular/cdk/scrolling';
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, DOCUMENT, Inject, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
 import { FooterComponent } from '@app/components/footer/footer.component';
 import { HeaderComponent } from '@app/components/header/header.component';
 import { NavigationBarComponent } from '@app/components/navigation-bar/navigation-bar.component';
-import { ToasterComponent } from '@app/components/toaster/toaster.component';
 import { UpcomingEventBannerComponent } from '@app/components/upcoming-event-banner/upcoming-event-banner.component';
-import { Event, IsoDate, Toast } from '@app/models';
+import { Event, IsoDate } from '@app/models';
 import { LoaderService } from '@app/services';
 import { AppActions, AppSelectors } from '@app/store/app';
 import { EventsSelectors } from '@app/store/events';
-import { NotificationsSelectors } from '@app/store/notifications';
 import { isDefined } from '@app/utils';
 
 @UntilDestroy()
@@ -33,7 +31,6 @@ import { isDefined } from '@app/utils';
     HeaderComponent,
     NavigationBarComponent,
     RouterOutlet,
-    ToasterComponent,
     UpcomingEventBannerComponent,
   ],
 })
@@ -43,7 +40,6 @@ export class AppComponent implements OnInit {
     isDarkMode: boolean;
     nextEvent: Event | null;
     showUpcomingEventBanner: boolean;
-    toasts: Toast[];
   }>;
 
   constructor(
@@ -63,24 +59,14 @@ export class AppComponent implements OnInit {
       this.store.select(AppSelectors.selectShowUpcomingEventBanner),
       this.store.select(AppSelectors.selectBannerLastCleared),
       this.store.select(EventsSelectors.selectNextEvent),
-      this.store.select(NotificationsSelectors.selectToasts),
     ]).pipe(
       untilDestroyed(this),
-      map(
-        ([
-          isDarkMode,
-          showUpcomingEventBanner,
-          bannerLastCleared,
-          nextEvent,
-          toasts,
-        ]) => ({
-          isDarkMode,
-          showUpcomingEventBanner,
-          bannerLastCleared,
-          nextEvent,
-          toasts,
-        }),
-      ),
+      map(([isDarkMode, showUpcomingEventBanner, bannerLastCleared, nextEvent]) => ({
+        isDarkMode,
+        showUpcomingEventBanner,
+        bannerLastCleared,
+        nextEvent,
+      })),
       tap(({ isDarkMode, bannerLastCleared }) => {
         this._document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
 

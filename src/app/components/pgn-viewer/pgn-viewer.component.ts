@@ -1,7 +1,6 @@
 import LichessPgnViewer from 'lichess-pgn-viewer';
 
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { AfterViewInit, Component, Inject, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, DOCUMENT, Inject, Input, OnInit } from '@angular/core';
 
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import type { ExternalLink } from '@app/models';
@@ -18,7 +17,7 @@ import { getLichessAnalysisUrl, getPlayerName, getScore } from '@app/utils';
       margin-top: 4px;
     }
   `,
-  imports: [CommonModule, LinkListComponent],
+  imports: [LinkListComponent],
 })
 export class PgnViewerComponent implements OnInit, AfterViewInit {
   @Input({ required: true }) public index!: number;

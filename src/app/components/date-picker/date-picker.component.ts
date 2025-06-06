@@ -1,7 +1,6 @@
 import moment, { Moment } from 'moment-timezone';
 
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { AfterViewInit, Component, HostListener, Inject } from '@angular/core';
+import { AfterViewInit, Component, DOCUMENT, HostListener, Inject } from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -23,7 +22,7 @@ import { RangePipe } from '@app/pipes';
       multi: true,
     },
   ],
-  imports: [CommonModule, IconsModule, RangePipe, ReactiveFormsModule],
+  imports: [IconsModule, RangePipe, ReactiveFormsModule],
 })
 export class DatePickerComponent implements AfterViewInit, ControlValueAccessor {
   // Always render 6 weeks in calendar (the most that will ever be needed for any month)

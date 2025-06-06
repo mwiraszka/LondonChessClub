@@ -1,46 +1,56 @@
 @for (image of images$ | async; track image.id) {
   <div
-    class="image-wrapper"
+    class="image-card-container"
+    [class.selectable]="selectable"
     [adminControls]="getAdminControlsConfig(image)"
-    (click)="dialogResult.emit(image.id)">
-    @defer {
-      <img
-        [alt]="image.caption"
-        [src]="image.thumbnailPresignedUrl ?? image.originalPresignedUrl"
-        default="assets/image-placeholder.png" />
+    (click)="selectable ? dialogResult.emit(image.id) : null">
+    <div class="image-container">
+      <img [image]="image" />
+    </div>
 
-      <div class="caption">
-        <label>Caption:</label>
-        <span class="lcc-truncate">{{ image.caption }}</span>
-      </div>
+    <div class="caption">
+      <label>Caption:</label>
+      <span class="lcc-truncate">{{ image.caption }}</span>
+    </div>
 
-      <div class="filename">
-        <label>Filename:</label>
-        <span class="lcc-truncate">{{ image.filename }}</span>
-      </div>
+    <div class="filename">
+      <label>Filename:</label>
+      <span class="lcc-truncate">{{ image.filename }}</span>
+    </div>
 
+    @if (image.fileSize) {
       <div class="file-size">
         <label>File size:</label>
         <span class="lcc-truncate">{{ image.fileSize | formatBytes }}</span>
       </div>
+    }
 
-      <div class="upload-date">
-        <label>Upload date:</label>
-        <span class="lcc-truncate">{{
-          image.modificationInfo.dateCreated | formatDate: 'short'
-        }}</span>
+    @if (image.width && image.height) {
+      <div class="dimensions">
+        <label>Dimensions:</label>
+        <span class="lcc-truncate">{{ image.width }} x {{ image.height }} px</span>
       </div>
+    }
 
-      @if (image?.articleAppearances) {
-        <div class="article-appearances">
-          <span>(Used in</span>
-          <b>{{ image.articleAppearances }}</b>
-          <span>{{ image.articleAppearances! > 1 ? 'articles' : 'article' }})</span>
-        </div>
-      }
-    } @placeholder (minimum 0.5s) {
-      <div class="lcc-content-placeholder-wrapper loading-placeholder-image">
-        <div class="lcc-content-placeholder"></div>
+    <div class="upload-date">
+      <label>Upload date:</label>
+      <span class="lcc-truncate">
+        {{ image.modificationInfo.dateCreated | formatDate: 'short' }}
+      </span>
+    </div>
+
+    <div class="albums">
+      <label>Album(s):</label>
+      <span class="lcc-truncate-max-2-lines">
+        {{ image.albums.join(', ') }}
+      </span>
+    </div>
+
+    @if (image?.articleAppearances; as num) {
+      <div class="article-appearances">
+        <span>(Used in</span>
+        <b>{{ num }}</b>
+        <span>{{ num! > 1 ? 'articles' : 'article' }})</span>
       </div>
     }
   </div>

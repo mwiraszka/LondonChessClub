@@ -44,7 +44,20 @@
           [ngClass]="{ 'last-row': last }"
           [class.inactive]="!member.isActive">
           <td class="row-number">{{ i + startIndex + 1 }}</td>
-          <td class="first-name lcc-truncate">{{ member.firstName }}</td>
+          <td class="first-name lcc-truncate">
+            @if (isCityChampion(member)) {
+              <a
+                class="city-champion-link"
+                routerLink="/city-champion"
+                tooltip="2024 City Champion">
+                <i-feather
+                  name="shield"
+                  class="city-champion-icon">
+                </i-feather>
+              </a>
+            }
+            {{ member.firstName }}
+          </td>
           <td class="last-name lcc-truncate">{{ member.lastName }}</td>
           <td class="rating">{{ member.rating }}</td>
           <td class="peak-rating">{{ member.peakRating }}</td>

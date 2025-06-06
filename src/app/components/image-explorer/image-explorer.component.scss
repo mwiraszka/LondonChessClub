@@ -1,36 +1,52 @@
 :host {
-  min-width: min(90vw, var(--lcc-width--appContent));
-  height: 90dvh;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 8px;
+  height: 90dvh;
+  min-width: min(90vw, var(--lcc-width--appContent));
   overflow: auto;
-  padding: 8px;
   background-color: var(--lcc-color--imageExplorer-background);
+  padding: 8px;
 
-  .image-wrapper {
-    padding: 4px;
+  .image-card-container {
+    padding: 8px;
+    background-color: var(--lcc-color--imageExplorer-background);
+    border: none;
     border-radius: var(--lcc-borderRadius--large);
-    border: 2px solid transparent;
+    box-shadow: 1px 2px 4px var(--lcc-color--general-cardBoxShadow);
+    transition: all 0.2s ease;
 
-    &:hover {
+    &.selectable:hover {
       cursor: pointer;
-      background-color: var(--lcc-color--imageExplorer-imageBackgroundOnHover);
-      border-color: var(--lcc-color--imageExplorer-imageBorderOnHover);
+      animation: raise 0.2s ease forwards;
+      box-shadow: 4px 4px 8px var(--lcc-color--general-cardBoxShadow);
     }
 
-    img,
-    .loading-placeholder-image {
+    .image-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
       aspect-ratio: 3 / 2;
-      object-fit: contain;
-      width: 100%;
+      background: var(--lcc-color--contentPlaceholder-background);
       border-radius: var(--lcc-borderRadius--large);
+      margin-bottom: 8px;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
     }
 
     .caption,
     .filename,
     .file-size,
+    .dimensions,
     .upload-date,
+    .albums,
     .article-appearances {
       font-size: 12px;
       color: var(--lcc-color--imageExplorer-text);
@@ -45,5 +61,18 @@
         margin: 0.3em;
       }
     }
+
+    .article-appearances {
+      color: var(--lcc-color--imageExplorer-articleAppearancesText);
+    }
+  }
+}
+
+@keyframes raise {
+  0% {
+    scale: 1;
+  }
+  100% {
+    scale: 1.02;
   }
 }

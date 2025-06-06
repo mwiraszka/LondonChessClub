@@ -2,7 +2,6 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
 
-import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -32,13 +31,7 @@ import {
   selector: 'lcc-change-password-form',
   templateUrl: './change-password-form.component.html',
   styleUrl: './change-password-form.component.scss',
-  imports: [
-    CommonModule,
-    FormErrorIconComponent,
-    IconsModule,
-    ReactiveFormsModule,
-    RouterLink,
-  ],
+  imports: [FormErrorIconComponent, IconsModule, ReactiveFormsModule, RouterLink],
 })
 export class ChangePasswordFormComponent implements OnInit {
   @Input({ required: true }) hasCode!: boolean;

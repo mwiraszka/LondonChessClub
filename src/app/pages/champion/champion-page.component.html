@@ -6,18 +6,30 @@
 <section class="grid-container">
   <article class="cup">
     <figure class="lcc-figure cup-figure">
-      <img
-        src="assets/london-chess-champion/championship-cup.jpg"
-        alt="Championship Cup" />
+      <div class="image-container">
+        <img
+          [image]="{
+            originalUrl: 'assets/london-chess-champion/championship-cup.jpg',
+            width: 450,
+            height: 600,
+            caption: 'Championship Cup',
+          }" />
+      </div>
       <figcaption>The Championship Cup</figcaption>
     </figure>
   </article>
 
   <article class="champion-2023">
     <figure class="lcc-figure 2023-champion-figure">
-      <img
-        src="assets/london-chess-champion/2023-champion.png"
-        alt="2023 London Chess Champion" />
+      <div class="image-container">
+        <img
+          [image]="{
+            originalUrl: 'assets/london-chess-champion/2023-champion.png',
+            width: 609,
+            height: 906,
+            caption: '2023 London Chess Champion',
+          }" />
+      </div>
       <figcaption>
         2023&nbsp;London Chess&nbsp;Champion<br />
         <b>Serhii Ivanchuk</b>
@@ -27,18 +39,30 @@
 
   <article class="trophies-2023">
     <figure class="lcc-figure 2023-championship-trophies">
-      <img
-        src="assets/london-chess-champion/2023-championship-trophies.png"
-        alt="2023 Championship Trophies" />
+      <div class="image-container">
+        <img
+          [image]="{
+            originalUrl: 'assets/london-chess-champion/2023-championship-trophies.png',
+            width: 957,
+            height: 637,
+            caption: '2023 Championship Trophies',
+          }" />
+      </div>
       <figcaption>2023 Championship Trophies</figcaption>
     </figure>
   </article>
 
   <article class="champion-2019">
     <figure class="lcc-figure 2019-champion-figure">
-      <img
-        src="assets/london-chess-champion/2019-champion.jpg"
-        alt="2019 London Chess Champion" />
+      <div class="image-container">
+        <img
+          [image]="{
+            originalUrl: 'assets/london-chess-champion/2019-champion.jpg',
+            width: 356,
+            height: 600,
+            caption: '2019 London Chess Champion',
+          }" />
+      </div>
       <figcaption>
         2019&nbsp;London Chess&nbsp;Champion<br />
         <b>Kevin Gibson</b>
@@ -48,9 +72,15 @@
 
   <article class="championship-match-2022">
     <figure class="lcc-figure 2022-championship-match-figure">
-      <img
-        src="assets/london-chess-champion/2022-championship-match.png"
-        alt="2022 Championship Match" />
+      <div class="image-container">
+        <img
+          [image]="{
+            originalUrl: 'assets/london-chess-champion/2022-championship-match.png',
+            width: 600,
+            height: 300,
+            caption: '2022 Championship Match',
+          }" />
+      </div>
       <figcaption>
         2022&nbsp;Championship&nbsp;Match<br />
         <b>Carl Ehrman</b> vs. <b>Geoffrey Ruelland</b>

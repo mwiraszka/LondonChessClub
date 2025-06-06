@@ -60,7 +60,7 @@ class AuthInterceptor implements HttpInterceptor {
     if (this.sessionRefreshInProgress) {
       return new Observable(observer => {
         this.tokenRefreshed$.subscribe(() => {
-          observer.next();
+          observer.next(null);
           observer.complete();
         });
       });

@@ -34,7 +34,7 @@ import { ImagesSelectors } from '@app/store/images';
       </lcc-link-list>
     }
   `,
-  imports: [CommonModule, LinkListComponent, PhotoGridComponent, PageHeaderComponent],
+  imports: [CommonModule, LinkListComponent, PageHeaderComponent, PhotoGridComponent],
 })
 export class PhotoGalleryPageComponent implements OnInit {
   public links: ExternalLink[] = [

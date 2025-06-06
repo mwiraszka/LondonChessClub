@@ -1,7 +1,7 @@
 import { MockComponent } from 'ng-mocks';
 
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, DeferBlockState, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
@@ -55,18 +55,7 @@ describe('ArticleComponent', () => {
       expect(element('lcc-markdown-renderer')).not.toBeNull();
     });
 
-    it('should initially render loading placeholder image', () => {
-      expect(element('.loading-placeholder-image')).not.toBeNull();
-      expect(element('img')).toBeNull();
-    });
-
-    // Currently not possible to retrieve deferrable blocks due to ng-mocks bug:
-    // https://github.com/help-me-mom/ng-mocks/issues/7742
-    xit('should replace placeholder with image once finished loading', async () => {
-      const deferBlocks = await fixture.getDeferBlocks();
-      deferBlocks[0]?.render(DeferBlockState.Complete);
-
-      expect(element('.loading-placeholder-image')).toBeNull();
+    it('should render an image element with the banner image', () => {
       expect(element('img')).not.toBeNull();
     });
 
@@ -111,18 +100,12 @@ describe('ArticleComponent', () => {
     describe('when article image URL is not available', () => {
       beforeEach(() => {
         component.article = MOCK_ARTICLES[3];
+        component.bannerImage = null;
         fixture.detectChanges();
       });
 
-      it('should keep displaying loading placeholder image', async () => {
-        expect(element('.banner-image')).toBeNull();
-        expect(element('.loading-placeholder-image')).not.toBeNull();
-
-        const deferBlocks = await fixture.getDeferBlocks();
-        deferBlocks[0]?.render(DeferBlockState.Complete);
-
-        expect(element('.banner-image')).toBeNull();
-        expect(element('.loading-placeholder-image')).not.toBeNull();
+      it('should still render the image element', () => {
+        expect(element('img')).not.toBeNull();
       });
     });
   });

@@ -5,10 +5,11 @@ import * as uuid from 'uuid';
 
 import { CdkScrollable, CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
+import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import IconsModule from '@app/icons';
 import { MOCK_MODIFICATION_INFOS } from '@app/mocks/modification-info.mock';
 import type {
@@ -36,11 +37,14 @@ import * as ImagesSelectors from '@app/store/images/images.selectors';
     FormatBytesPipe,
     FormatDatePipe,
     IconsModule,
+    ImagePreloadDirective,
   ],
   hostDirectives: [CdkScrollable],
 })
 export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
   public images$: Observable<Image[]> = of(this.generatePlaceholderImages(25));
+  
+  @Input() public selectable: boolean = true;
 
   @Output() public dialogResult = new EventEmitter<Id | 'close'>();
 

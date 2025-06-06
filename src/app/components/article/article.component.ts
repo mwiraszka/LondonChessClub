@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
@@ -16,7 +15,6 @@ import {
   templateUrl: './article.component.html',
   styleUrl: './article.component.scss',
   imports: [
-    CommonModule,
     FormatDatePipe,
     ImagePreloadDirective,
     IsDefinedPipe,

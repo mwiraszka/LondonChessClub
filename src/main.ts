@@ -2,7 +2,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { Action, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { MarkdownModule } from 'ngx-markdown';
 
 import {
@@ -24,7 +23,6 @@ import { ImagesStoreModule } from '@app/store/images';
 import { MembersStoreModule } from '@app/store/members';
 import { MetaState, metaReducers } from '@app/store/meta-reducers';
 import { NavStoreModule } from '@app/store/nav';
-import { NotificationsStoreModule } from '@app/store/notifications';
 import { actionSanitizer } from '@app/utils';
 
 import { environment } from '@env';
@@ -49,7 +47,6 @@ bootstrapApplication(AppComponent, {
       MarkdownModule.forRoot(),
       MembersStoreModule,
       NavStoreModule,
-      NotificationsStoreModule,
       StoreModule.forRoot<MetaState, Action<string>>(
         { routerState: routerReducer },
         {
@@ -69,7 +66,6 @@ bootstrapApplication(AppComponent, {
       }),
     ),
     provideAnimations(),
-    provideCharts(withDefaultRegisterables()),
     provideHttpClient(withInterceptorsFromDi(), withJsonpSupport()),
     AuthInterceptorProvider,
     LoggingInterceptorProvider,

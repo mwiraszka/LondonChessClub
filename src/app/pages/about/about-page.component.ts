@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -11,7 +10,7 @@ import { MetaAndTitleService } from '@app/services';
   selector: 'lcc-about-page',
   templateUrl: './about-page.component.html',
   styleUrl: './about-page.component.scss',
-  imports: [ClubMapComponent, CommonModule, IconsModule, PageHeaderComponent, RouterLink],
+  imports: [ClubMapComponent, IconsModule, PageHeaderComponent, RouterLink],
 })
 export class AboutPageComponent implements OnInit {
   constructor(private readonly metaAndTitleService: MetaAndTitleService) {}

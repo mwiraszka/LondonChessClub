@@ -3,7 +3,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
+import IconsModule from '@app/icons';
 import { MOCK_TOASTS } from '@app/mocks/toasts.mock';
+import { ToastService } from '@app/services';
 
 import { ToasterComponent } from './toaster.component';
 
@@ -13,7 +15,8 @@ describe('ToasterComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ToasterComponent, RouterModule.forRoot([])],
+      imports: [IconsModule, RouterModule.forRoot([]), ToasterComponent],
+      providers: [ToastService],
     })
       .compileComponents()
       .then(() => {
@@ -24,7 +27,7 @@ describe('ToasterComponent', () => {
       });
   });
 
-  it('should render all toasts and the ', () => {
+  it('should render all toasts', () => {
     expect(elements('.toast').length).toBe(MOCK_TOASTS.length);
   });
 
@@ -32,16 +35,15 @@ describe('ToasterComponent', () => {
     elements('.toast').forEach((element, i) => {
       expect(element.attributes['class']).toContain(`toast-${MOCK_TOASTS[i].type}`);
 
-      expect(element.query(By.css('.toast-title')).nativeElement.textContent).toBe(
-        MOCK_TOASTS[i].title,
-      );
+      const toastTitle = element.query(By.css('.toast-title')).nativeElement.textContent;
+      expect(toastTitle).toBe(MOCK_TOASTS[i].title);
 
-      expect(element.query(By.css('.toast-message')).nativeElement.textContent).toBe(
-        MOCK_TOASTS[i].message,
-      );
+      const toastMessage = element.query(By.css('.toast-message')).nativeElement
+        .textContent;
+      expect(toastMessage).toBe(MOCK_TOASTS[i].message);
 
-      const iconName = component.getIcon(MOCK_TOASTS[i].type);
-      expect(element.query(By.css('.icon')).attributes['ng-reflect-name']).toBe(iconName);
+      const iconName = element.query(By.css('.icon')).componentInstance.name;
+      expect(iconName).toBe(component.getIcon(MOCK_TOASTS[i].type));
     });
   });
 

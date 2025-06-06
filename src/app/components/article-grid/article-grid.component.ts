@@ -1,7 +1,6 @@
 import { Store } from '@ngrx/store';
 
-import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
@@ -36,7 +35,6 @@ import { isDefined } from '@app/utils';
   styleUrl: './article-grid.component.scss',
   imports: [
     AdminControlsDirective,
-    CommonModule,
     FormatDatePipe,
     IconsModule,
     ImagePreloadDirective,
@@ -48,12 +46,14 @@ import { isDefined } from '@app/utils';
     WasEditedPipe,
   ],
 })
-export class ArticleGridComponent implements OnInit {
+export class ArticleGridComponent implements OnInit, OnChanges {
   @Input({ required: true }) articles!: Article[];
   @Input({ required: true }) articleImages!: Image[];
   @Input({ required: true }) isAdmin!: boolean;
 
   @Input() public maxArticles?: number;
+
+  private bannerImageCache = new Map<Id, Partial<Image> | null>();
 
   public readonly createArticleLink: InternalLink = {
     internalPath: ['article', 'add'],
@@ -69,10 +69,38 @@ export class ArticleGridComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(ArticlesActions.fetchArticlesRequested());
     this.store.dispatch(ImagesActions.fetchImageThumbnailsRequested());
+    this.updateBannerImageCache();
   }
 
-  public getBannerImage(imageId: Id): Image | null {
-    return this.articleImages.find(image => image.id === imageId) ?? null;
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['articleImages'] || changes['articles']) {
+      this.updateBannerImageCache();
+    }
+  }
+
+  public getBannerImage(imageId: Id): Partial<Image> | null {
+    return this.bannerImageCache.get(imageId) ?? null;
+  }
+
+  private updateBannerImageCache(): void {
+    this.bannerImageCache.clear();
+
+    // Get all unique banner image IDs from articles
+    const bannerImageIds = new Set(
+      this.articles.map(article => article.bannerImageId).filter(isDefined),
+    );
+
+    // Cache results for each banner image ID
+    bannerImageIds.forEach(imageId => {
+      const foundImage = this.articleImages.find(image => image.id === imageId);
+
+      this.bannerImageCache.set(
+        imageId,
+        foundImage ?? {
+          caption: 'Loading...',
+        },
+      );
+    });
   }
 
   public getAdminControlsConfig(article: Article): AdminControlsConfig {

@@ -38,7 +38,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 - 🚀 Various minor improvements and optimizations to images and the Image Viewer component
 - 🚀 Display a shield icon next to the city champion in the Members Table
 - 🚀 Add ability to copy article text with all the stylings intact
-- 🔧 Upgrade to Angular v20 and update dependencies with security vulnerability fixes
+- 🔧 Upgrade to Angular v20 and update any dependencies with security vulnerabilities
 - 🔧 Simplify notification flow and display toasts on a separate overlay layer for a cleaner architecture and better flexibility
 </details>
 

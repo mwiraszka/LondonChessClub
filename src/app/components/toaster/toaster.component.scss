@@ -18,11 +18,7 @@
   width: 320px;
   border-radius: var(--lcc-borderRadius--small);
   box-shadow: 1px 1px 5px 2px var(--lcc-color--toast-boxShadow);
-  animation: fade var(--animation-duration) linear;
-
-  &.dismissing {
-    animation: dismiss var(--dismissal-duration) ease-out forwards;
-  }
+  animation: fade-in-and-out var(--animation-duration) linear;
 
   &.toast-success {
     background-color: var(--lcc-color--toast-successBackground);
@@ -59,7 +55,7 @@
   }
 }
 
-@keyframes fade {
+@keyframes fade-in-and-out {
   0% {
     opacity: 0;
   }
@@ -70,15 +66,6 @@
     opacity: 1;
   }
   100% {
-    opacity: 0;
-  }
-}
-
-@keyframes dismiss {
-  from {
-    opacity: 1;
-  }
-  to {
     opacity: 0;
   }
 }

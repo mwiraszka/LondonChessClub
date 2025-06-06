@@ -84,13 +84,12 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
   }
 
   protected onImageError(): void {
-    // Don't override skeleton element if we're intentionally showing the shimmer
     if (this.skeletonElement) {
       return;
     }
 
     this.removeShimmerEffect();
-    this.currentSrc = this.image?.originalUrl ?? this.FALLBACK_SRC;
+    this.currentSrc = this.image?.originalUrl || this.FALLBACK_SRC;
     this.filter = 'none';
     this.opacity = '1';
   }
@@ -117,7 +116,6 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
       this.currentSrc = thumbnailUrl;
       this.filter = 'blur(3px)';
     } else {
-      // No URLs available - show shimmer effect while waiting for presigned URLs
       this.displayShimmerEffect();
     }
   }
@@ -155,22 +153,19 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
     }
 
     const parentElement = this.elementRef.nativeElement.parentElement;
+
     if (parentElement && parentElement.contains(this.skeletonElement)) {
       this.renderer.removeChild(parentElement, this.skeletonElement);
     }
 
-    // Restore image element visibility
     this.renderer.removeStyle(this.elementRef.nativeElement, 'display');
-
     this.skeletonElement = undefined;
     this.background = '';
   }
 
   private setAspectRatio(width: number, height: number): void {
-    // Always set aspect-ratio when explicit dimensions are provided to prevent layout shift
     this.aspectRatio = calculateAspectRatio(width, height);
 
-    // Set width and height attributes for better SEO and accessibility
     this.elementRef.nativeElement.setAttribute('width', width.toString());
     this.elementRef.nativeElement.setAttribute('height', height.toString());
   }

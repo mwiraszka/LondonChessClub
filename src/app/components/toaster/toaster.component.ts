@@ -12,11 +12,8 @@ import { ToastService } from '@app/services';
       <div
         class="toast"
         [ngClass]="'toast-' + toast.type"
-        [class.dismissing]="dismissingToasts.has(toast)"
         [style]="{
-          '--animation-duration':
-            ToastService.TOAST_DURATION + ToastService.ANIMATION_DURATION + 'ms',
-          '--dismissal-duration': ToastService.ANIMATION_DURATION + 'ms',
+          '--animation-duration': ToastService.TOAST_DURATION + 'ms',
         }"
         (click)="onToastClick(toast)">
         <i-feather
@@ -38,8 +35,6 @@ export class ToasterComponent {
 
   @Input({ required: true }) public toasts!: Toast[];
 
-  public dismissingToasts = new Set<Toast>();
-
   constructor(private readonly toastService: ToastService) {}
 
   public getIcon(toastType: 'success' | 'info' | 'warning'): string {
@@ -51,10 +46,6 @@ export class ToasterComponent {
   }
 
   public onToastClick(toast: Toast): void {
-    this.toastService.dismissToast(toast);
-  }
-
-  public markToastForDismissal(toast: Toast): void {
-    this.dismissingToasts.add(toast);
+    this.toastService.removeToast(toast);
   }
 }

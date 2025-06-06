@@ -11,7 +11,6 @@ type TimeoutId = ReturnType<typeof setTimeout>;
 @Injectable({ providedIn: 'root' })
 export class ToastService {
   public static readonly TOAST_DURATION = 5000;
-  public static readonly ANIMATION_DURATION = 300;
 
   private overlayRef: OverlayRef | null = null;
   private toasterComponentRef: ComponentRef<ToasterComponent> | null = null;
@@ -26,26 +25,13 @@ export class ToastService {
     this.createOrUpdateOverlay();
 
     const timerId = this.createTimeout(() => {
-      this.dismissToast(toast);
+      this.removeToast(toast);
     }, ToastService.TOAST_DURATION);
 
     this.toastTimers.set(toast, timerId);
   }
 
-  public dismissToast(toast: Toast): void {
-    // Add dismissing class and wait for animation
-    if (this.toasterComponentRef?.instance) {
-      this.toasterComponentRef.instance.markToastForDismissal(toast);
-
-      setTimeout(() => {
-        this.removeToast(toast);
-      }, ToastService.ANIMATION_DURATION);
-    } else {
-      this.removeToast(toast);
-    }
-  }
-
-  private removeToast(toast: Toast): void {
+  public removeToast(toast: Toast): void {
     this.activeToasts = this.activeToasts.filter(t => t !== toast);
 
     if (this.toastTimers.has(toast)) {

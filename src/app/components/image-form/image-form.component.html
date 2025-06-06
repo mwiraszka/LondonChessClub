@@ -8,13 +8,17 @@
         <img [image]="originalImage" />
       </div>
     } @else {
-      <label class="lcc-required-field">File:</label>
+      <label
+        for="file-input"
+        class="lcc-required-field">
+        File:
+      </label>
       <div class="file-and-preview-container">
         <div class="image-container">
           <img
             [image]="{
-              caption: formData.caption,
-              originalUrl: formData.dataUrl,
+              caption: formData.caption || 'Image preview',
+              originalUrl: formData.dataUrl || 'assets/fallback-image.png',
             }" />
         </div>
 
@@ -24,6 +28,7 @@
           tooltip="Choose file">
           <i-feather name="upload"></i-feather>
           <input
+            id="file-input"
             type="file"
             accept="image/*"
             (change)="onUploadNewImage($event)" />

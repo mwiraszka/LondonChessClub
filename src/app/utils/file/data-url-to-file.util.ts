@@ -12,6 +12,9 @@ export function dataUrlToFile(
       return null;
     }
 
+    const mimeMatch = dataUrl.match(/^data:([\w/+]+);base64,/);
+    const mime = mimeMatch ? mimeMatch[1] : 'application/octet-stream';
+
     const byteString = atob(dataUrl.split(',')[1]);
     const arrayBuffer = new ArrayBuffer(byteString.length);
     const int8Array = new Uint8Array(arrayBuffer);
@@ -20,9 +23,9 @@ export function dataUrlToFile(
       int8Array[i] = byteString.charCodeAt(i);
     }
 
-    return new File([int8Array], filename);
-  } catch {
-    console.error('[LCC] Unable to convert data URL and filename to File.');
+    return new File([int8Array], filename, { type: mime });
+  } catch (error) {
+    console.error('[LCC] Unable to convert data URL and filename to File:', error);
     return null;
   }
 }

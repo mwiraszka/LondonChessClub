@@ -91,6 +91,16 @@ export class ImageFormComponent implements OnInit {
       return;
     }
 
+    if (!['image/png', 'image/jpeg', 'image/jpg'].includes(file.type.toLowerCase())) {
+      const error: LccError = {
+        name: 'LCCError',
+        message: 'Sorry Ryan, currently only PNG or JPEG image formats are supported',
+      };
+      this.store.dispatch(ImagesActions.imageFileLoadFailed({ error }));
+      fileInputElement.value = '';
+      return;
+    }
+
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
@@ -108,7 +118,7 @@ export class ImageFormComponent implements OnInit {
       if (!imageFile) {
         const error: LccError = {
           name: 'LCCError',
-          message: 'Unable to load image file.',
+          message: 'Unable to load image file',
         };
         this.store.dispatch(ImagesActions.imageFileLoadFailed({ error }));
         return;

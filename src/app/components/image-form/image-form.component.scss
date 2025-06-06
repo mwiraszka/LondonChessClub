@@ -27,13 +27,13 @@
   }
 
   .image-container {
-    border-radius: var(--lcc-borderRadius--large);
-    background: var(--lcc-color--contentPlaceholder-background);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     max-height: 300px;
+    background: var(--lcc-color--contentPlaceholder-background);
+    border-radius: var(--lcc-borderRadius--large);
 
     &.full-span {
       grid-column: 1 / -1;

@@ -1,19 +1,19 @@
 :host {
-  min-width: min(90vw, var(--lcc-width--appContent));
-  height: 90dvh;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 8px;
+  height: 90dvh;
+  min-width: min(90vw, var(--lcc-width--appContent));
   overflow: auto;
-  padding: 8px;
   background-color: var(--lcc-color--imageExplorer-background);
+  padding: 8px;
 
   .image-card-container {
+    padding: 8px;
     background-color: var(--lcc-color--imageExplorer-background);
     border: none;
     border-radius: var(--lcc-borderRadius--large);
     box-shadow: 1px 2px 4px var(--lcc-color--general-cardBoxShadow);
-    padding: 8px;
     transition: all 0.2s ease;
 
     &.selectable:hover {
@@ -23,13 +23,13 @@
     }
 
     .image-container {
-      border-radius: var(--lcc-borderRadius--large);
-      background: var(--lcc-color--contentPlaceholder-background);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       aspect-ratio: 3 / 2;
+      background: var(--lcc-color--contentPlaceholder-background);
+      border-radius: var(--lcc-borderRadius--large);
       margin-bottom: 8px;
     }
 

@@ -33,6 +33,12 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.3.1 - June 7th, 2025</summary>
+
+- 🐛 Various minor fixes to prevent layout shifts when a page loads
+</details>
+
+<details>
 <summary>v5.3.0 - June 5th, 2025</summary>
 
 - 🚀 Various minor improvements and optimizations to images and the Image Viewer component

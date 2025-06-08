@@ -2,11 +2,31 @@
   <lcc-link-list [links]="[addMemberLink]"></lcc-link-list>
 }
 
+<div class="table-controls">
+  <lcc-paginator
+    typeOfItems="members"
+    [pageNum]="pageNum"
+    [pageSize]="pageSize"
+    [totalItems]="filteredMembers.length"
+    (pageChange)="onChangePage($event)"
+    (pageSizeChange)="onChangePageSize($event)">
+  </lcc-paginator>
+
+  <div class="inactive-checkbox-container">
+    <label for="active-only">Show active members only</label>
+    <input
+      id="active-only"
+      type="checkbox"
+      [checked]="showActiveOnly"
+      (change)="onToggleInactiveMembers()" />
+  </div>
+</div>
+
 <div class="lcc-table-wrapper">
-  <table
-    class="lcc-table"
-    [class.lcc-show-admin-columns]="isAdmin && isSafeMode">
-    @if (displayedMembers.length) {
+  @if (displayedMembers.length) {
+    <table
+      class="lcc-table"
+      [class.lcc-show-admin-columns]="isAdmin && isSafeMode">
       <thead>
         <tr>
           <th class="row-number"></th>
@@ -30,88 +50,69 @@
           }
         </tr>
       </thead>
-    }
 
-    <tbody>
-      @for (
-        member of displayedMembers;
-        track member.id;
-        let i = $index;
-        let last = $last
-      ) {
-        <tr
-          [adminControls]="isAdmin ? getAdminControlsConfig(member) : null"
-          [ngClass]="{ 'last-row': last }"
-          [class.inactive]="!member.isActive">
-          <td class="row-number">{{ i + startIndex + 1 }}</td>
-          <td class="first-name lcc-truncate">
-            @if (isCityChampion(member)) {
-              <a
-                class="city-champion-link"
-                routerLink="/city-champion"
-                tooltip="2024 City Champion">
-                <i-feather
-                  name="shield"
-                  class="city-champion-icon">
-                </i-feather>
-              </a>
-            }
-            {{ member.firstName }}
-          </td>
-          <td class="last-name lcc-truncate">{{ member.lastName }}</td>
-          <td class="rating">{{ member.rating }}</td>
-          <td class="peak-rating">{{ member.peakRating }}</td>
-          <td class="city lcc-truncate">{{ member.city }}</td>
-          <td class="chess-com-username lcc-truncate">
-            {{ member?.chessComUsername }}
-          </td>
-          <td class="lichess-username lcc-truncate">
-            {{ member?.lichessUsername }}
-          </td>
-          <td class="last-updated">
-            {{ member.modificationInfo.dateLastEdited | formatDate: 'short no-time' }}
-          </td>
-
-          @if (isAdmin) {
-            <td class="born">{{ member.yearOfBirth }}</td>
-            <td class="email">{{ member.email }}</td>
-            <td class="phone-number">{{ member.phoneNumber }}</td>
-            <td class="date-joined">
-              {{ member.dateJoined | formatDate: 'short no-time' }}
+      <tbody>
+        @for (
+          member of displayedMembers;
+          track member.id;
+          let i = $index;
+          let last = $last
+        ) {
+          <tr
+            [adminControls]="isAdmin ? getAdminControlsConfig(member) : null"
+            [ngClass]="{ 'last-row': last }"
+            [class.inactive]="!member.isActive">
+            <td class="row-number">{{ i + startIndex + 1 }}</td>
+            <td
+              class="first-name lcc-truncate"
+              [tooltip]="member.isActive ? null : 'Inactive member'">
+              @if (isCityChampion(member)) {
+                <a
+                  class="city-champion-link"
+                  routerLink="/city-champion"
+                  tooltip="2024 City Champion">
+                  <i-feather
+                    name="shield"
+                    class="city-champion-icon">
+                  </i-feather>
+                </a>
+              }
+              {{ member.firstName }}
             </td>
-          }
+            <td class="last-name lcc-truncate">{{ member.lastName }}</td>
+            <td class="rating">{{ member.rating }}</td>
+            <td class="peak-rating">{{ member.peakRating }}</td>
+            <td class="city lcc-truncate">{{ member.city }}</td>
+            <td class="chess-com-username lcc-truncate">
+              {{ member?.chessComUsername }}
+            </td>
+            <td class="lichess-username lcc-truncate">
+              {{ member?.lichessUsername }}
+            </td>
+            <td class="last-updated">
+              {{ member.modificationInfo.dateLastEdited | formatDate: 'short no-time' }}
+            </td>
+
+            @if (isAdmin) {
+              <td class="born">{{ member.yearOfBirth }}</td>
+              <td class="email">{{ member.email }}</td>
+              <td class="phone-number">{{ member.phoneNumber }}</td>
+              <td class="date-joined">
+                {{ member.dateJoined | formatDate: 'short no-time' }}
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <td colspan="100%">
+            {{ allMembers.length }} members ({{ activeMembers.length }}
+            active)
+          </td>
         </tr>
-      }
-    </tbody>
-
-    <tfoot>
-      <tr>
-        <td colspan="100%">
-          {{ allMembers.length }} members ({{ activeMembers.length }}
-          active)
-        </td>
-      </tr>
-    </tfoot>
-  </table>
+      </tfoot>
+    </table>
+  }
 </div>
-
-<lcc-paginator
-  typeOfItems="members"
-  [pageNum]="pageNum"
-  [pageSize]="pageSize"
-  [totalItems]="filteredMembers.length"
-  (pageChange)="onChangePage($event)"
-  (pageSizeChange)="onChangePageSize($event)">
-</lcc-paginator>
-
-<aside>
-  <h5>inactive members *</h5>
-  <div class="checkbox-section">
-    <label for="active-only">Show active members only</label>
-    <input
-      id="active-only"
-      type="checkbox"
-      [checked]="showActiveOnly"
-      (change)="onToggleInactiveMembers()" />
-  </div>
-</aside>

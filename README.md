@@ -33,9 +33,11 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.3.1 - June 7th, 2025</summary>
+<summary>v5.3.1 - June 8th, 2025</summary>
 
-- 🐛 Various minor fixes to prevent layout shifts when a page loads
+- 🐛 Minor improvements to Navigation Bar and Members Table
+- 🔧 Simplify and future-proof local storage clean up logic
+- 🔧 Increase unit test coverage for image-related components
 </details>
 
 <details>

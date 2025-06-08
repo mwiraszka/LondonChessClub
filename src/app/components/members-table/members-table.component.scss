@@ -166,48 +166,31 @@ table {
   }
 }
 
-lcc-paginator {
-  width: 300px;
-  justify-content: center;
+.table-controls {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
   align-items: center;
-
-  @include mixins.respond-to('gt-xs') {
-    width: 340px;
-  }
-}
-
-aside {
-  width: 300px;
-  text-align: center;
-  color: var(--lcc-color--membersTable-asideText);
-  border: 1px solid var(--lcc-color--membersTable-asideBorder);
+  justify-content: center;
+  gap: 16px;
+  background-color: var(--lcc-color--paginator-background);
   border-radius: var(--lcc-borderRadius--large);
+  padding: 8px 16px;
 
-  @include mixins.respond-to('gt-xs') {
-    width: 340px;
+  lcc-paginator {
+    justify-content: center;
+    align-items: center;
   }
 
-  h5 {
-    padding: 4px;
-    font-style: italic;
-  }
-
-  .checkbox-section {
-    padding: 8px 16px;
-    background-color: var(--lcc-color--membersTable-asideCheckboxSectionBackground);
+  .inactive-checkbox-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
+    font-size: 14px;
 
-    label {
-      font-size: 13px;
-      font-weight: bold;
-
-      &:hover {
-        cursor: pointer;
-        color: var(--lcc-color--membersTable-asideCheckboxLabelTextOnHover);
-      }
+    label:hover {
+      cursor: pointer;
     }
   }
 }

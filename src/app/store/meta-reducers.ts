@@ -37,33 +37,20 @@ const hydratedStates = [
 function clearStaleLocalStorageDataMetaReducer(
   reducer: ActionReducer<MetaState>,
 ): ActionReducer<MetaState> {
-  let hasRun = false;
-
-  const oldKeys = [
-    'articles',
-    'auth',
-    'members',
-    'nav',
-    'schedule',
-    'user-settings',
-    ...hydratedStates,
-    ...hydratedStates.map(key => `${key}_v5.2.12`),
-  ];
+  const keysToRemove = Object.keys(localStorage).filter(
+    key => !key.endsWith(`_v${version}`),
+  );
 
   return (state, action) => {
-    const keysToRemove = oldKeys.filter(key => !!localStorage.getItem(key));
-
-    if (!hasRun && keysToRemove.length) {
+    if (keysToRemove.length) {
       console.info(
         `[LCC] Clearing stale data from local storage for version ${version}.`,
       );
 
       keysToRemove.forEach(key => {
         localStorage.removeItem(key);
-        console.info(`[LCC] Removed non-versioned key: ${key}`);
+        console.info(`[LCC] Removed stale key: ${key}`);
       });
-
-      hasRun = true;
     }
 
     return reducer(state, action);

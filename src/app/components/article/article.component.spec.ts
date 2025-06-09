@@ -60,27 +60,22 @@ describe('ArticleComponent', () => {
     });
 
     it('should truncate article title to 120 characters', () => {
-      expect(element('.title').nativeElement.textContent.trim()).toHaveLength(120);
+      expect(elementTextContent('.title')).toHaveLength(120);
     });
 
     it("should include the article author's and editor's names", () => {
-      expect(element('.author-name').nativeElement.textContent.trim()).toBe(
+      expect(elementTextContent('.author-name')).toBe(
         MOCK_ARTICLES[2].modificationInfo.createdBy,
       );
 
-      expect(element('.editor-name').nativeElement.textContent.trim()).toBe(
+      expect(elementTextContent('.editor-name')).toBe(
         MOCK_ARTICLES[2].modificationInfo.lastEditedBy,
       );
     });
 
     it('should format dates correctly', () => {
-      expect(element('.date-created').nativeElement.textContent.trim()).toBe(
-        'Wed, Jan 1, 2025, 12:00 PM',
-      );
-
-      expect(element('.date-last-edited').nativeElement.textContent.trim()).toBe(
-        'Thu, Jan 2, 2025, 10:00 AM',
-      );
+      expect(elementTextContent('.date-created')).toBe('Wed, Jan 1, 2025, 12:00 PM');
+      expect(elementTextContent('.date-last-edited')).toBe('Thu, Jan 2, 2025, 10:00 AM');
     });
 
     describe('when article creation and last edited date are on the same day', () => {
@@ -90,9 +85,7 @@ describe('ArticleComponent', () => {
       });
 
       it('should display article creation info but not last edit info', () => {
-        expect(element('.date-created').nativeElement.textContent.trim()).toBe(
-          'Thu, Jan 2, 2025, 12:00 PM',
-        );
+        expect(elementTextContent('.date-created')).toBe('Thu, Jan 2, 2025, 12:00 PM');
         expect(element('.date-last-edited')).toBeNull();
       });
     });
@@ -112,5 +105,9 @@ describe('ArticleComponent', () => {
 
   function element(selector: string): DebugElement {
     return fixture.debugElement.query(By.css(selector));
+  }
+
+  function elementTextContent(selector: string): string {
+    return element(selector).nativeElement.textContent.trim();
   }
 });

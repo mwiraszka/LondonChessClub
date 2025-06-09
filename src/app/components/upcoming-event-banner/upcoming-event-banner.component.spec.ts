@@ -37,7 +37,7 @@ describe('UpcomingEventBannerComponent', () => {
 
   describe('banner message', () => {
     it('should contain the title and date of the next event', () => {
-      const bannerText = element('.banner-message').nativeElement.textContent.trim();
+      const bannerText = elementTextContent('.banner-message');
 
       expect(bannerText).toContain(MOCK_EVENTS[0].title);
       expect(bannerText).toContain(formatDate(MOCK_EVENTS[0].eventDate, 'short'));
@@ -76,5 +76,9 @@ describe('UpcomingEventBannerComponent', () => {
 
   function element(selector: string): DebugElement {
     return fixture.debugElement.query(By.css(selector));
+  }
+
+  function elementTextContent(selector: string): string {
+    return element(selector).nativeElement.textContent.trim();
   }
 });

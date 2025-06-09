@@ -29,9 +29,7 @@ describe('HeaderComponent', () => {
     });
 
     it('should include the club name', () => {
-      expect(element('.club-name-link').nativeElement.textContent.trim()).toBe(
-        'London Chess Club',
-      );
+      expect(elementTextContent('.club-name-link')).toBe('London Chess Club');
     });
 
     it('should link to the homepage via the club name text', () => {
@@ -53,5 +51,9 @@ describe('HeaderComponent', () => {
 
   function element(selector: string): DebugElement {
     return fixture.debugElement.query(By.css(selector));
+  }
+
+  function elementTextContent(selector: string): string {
+    return element(selector).nativeElement.textContent.trim();
   }
 });

@@ -123,7 +123,7 @@ describe('UserSettingsMenuComponent', () => {
     });
 
     it("should render user's first and last name", () => {
-      expect(element('.user-name').nativeElement.textContent.trim()).toBe('John Doe');
+      expect(elementTextContent('.user-name')).toBe('John Doe');
     });
 
     it('should render theme toggle menu item', () => {
@@ -181,5 +181,9 @@ describe('UserSettingsMenuComponent', () => {
 
   function element(selector: string): DebugElement {
     return fixture.debugElement.query(By.css(selector));
+  }
+
+  function elementTextContent(selector: string): string {
+    return element(selector).nativeElement.textContent.trim();
   }
 });

@@ -33,7 +33,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.3.1 - June 8th, 2025</summary>
+<summary>v5.3.1 - June 9th, 2025</summary>
 
 - 🐛 Minor improvements to Navigation Bar and Members Table
 - 🔧 Simplify and future-proof local storage clean up logic

@@ -40,14 +40,14 @@ describe('DatePickerComponent', () => {
     });
 
     it('should render the currently selected month and year as the title', () => {
-      expect(element('.title').nativeElement.textContent.trim()).toBe('January 2050');
+      expect(elementTextContent('.title')).toBe('January 2050');
     });
 
     it('should shorten the month text on small screens', () => {
       component.screenWidth = 300;
       fixture.detectChanges();
 
-      expect(element('.title').nativeElement.textContent.trim()).toBe('Jan 2050');
+      expect(elementTextContent('.title')).toBe('Jan 2050');
     });
 
     it('should subtract one month when previous month button is clicked', () => {
@@ -87,5 +87,9 @@ describe('DatePickerComponent', () => {
 
   function element(selector: string): DebugElement {
     return fixture.debugElement.query(By.css(selector));
+  }
+
+  function elementTextContent(selector: string): string {
+    return element(selector).nativeElement.textContent.trim();
   }
 });

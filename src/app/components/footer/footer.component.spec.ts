@@ -30,7 +30,7 @@ describe('FooterComponent', () => {
       component.currentYear = 2088;
       fixture.detectChanges();
 
-      expect(element('.copyright-notice').nativeElement.textContent.trim()).toBe(
+      expect(elementTextContent('.copyright-notice')).toBe(
         'Copyright © 2088 London Chess Club',
       );
     });
@@ -46,11 +46,15 @@ describe('FooterComponent', () => {
       component.currentVersion = '1.2.3';
       fixture.detectChanges();
 
-      expect(element('.current-version').nativeElement.textContent.trim()).toBe('v1.2.3');
+      expect(elementTextContent('.current-version')).toBe('v1.2.3');
     });
   });
 
   function element(selector: string): DebugElement {
     return fixture.debugElement.query(By.css(selector));
+  }
+
+  function elementTextContent(selector: string): string {
+    return element(selector).nativeElement.textContent.trim();
   }
 });

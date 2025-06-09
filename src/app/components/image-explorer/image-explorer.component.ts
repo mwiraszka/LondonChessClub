@@ -43,7 +43,7 @@ import * as ImagesSelectors from '@app/store/images/images.selectors';
 })
 export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
   public images$: Observable<Image[]> = of(this.generatePlaceholderImages(25));
-  
+
   @Input() public selectable: boolean = true;
 
   @Output() public dialogResult = new EventEmitter<Id | 'close'>();
@@ -73,10 +73,6 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
   }
 
   public async onDeleteImage(image: Image): Promise<void> {
-    if (!image.id) {
-      return;
-    }
-
     const dialog: Dialog = {
       title: 'Delete image',
       body: `Delete ${image.filename}?`,

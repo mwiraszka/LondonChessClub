@@ -122,7 +122,7 @@ describe('ImageViewerComponent', () => {
 
       expect(component.adminControlsDirective?.detach).toHaveBeenCalled();
       expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchImageRequested({ imageId: mockImages[2].id }),
+        ImagesActions.fetchImageRequested({ imageId: mockImages[3].id }),
       );
     });
 
@@ -175,7 +175,7 @@ describe('ImageViewerComponent', () => {
       keydownHandler({ key: 'ArrowLeft' });
 
       expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchImageRequested({ imageId: mockImages[2].id }),
+        ImagesActions.fetchImageRequested({ imageId: mockImages[3].id }),
       );
     });
 

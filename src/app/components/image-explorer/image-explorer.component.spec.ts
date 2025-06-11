@@ -1,15 +1,14 @@
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
-import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { DialogService } from '@app/services';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
+import { query, queryAll, queryTextContent } from '@app/utils';
 
-import { BasicDialogComponent } from '../basic-dialog/basic-dialog.component';
 import { ImageExplorerComponent } from './image-explorer.component';
 
 describe('ImageExplorerComponent', () => {
@@ -146,21 +145,27 @@ describe('ImageExplorerComponent', () => {
     });
 
     it('should render images from the store', () => {
-      expect(elements('.image-card-container').length).toBe(mockImages.length);
+      expect(queryAll(fixture.debugElement, '.image-card-container').length).toBe(
+        mockImages.length,
+      );
     });
 
     it('should apply selectable class when selectable is true', () => {
       component.selectable = true;
       fixture.detectChanges();
 
-      expect(element('.image-card-container').classes['selectable']).toBe(true);
+      expect(
+        query(fixture.debugElement, '.image-card-container').classes['selectable'],
+      ).toBe(true);
     });
 
     it('should not apply selectable class when selectable is false', () => {
       component.selectable = false;
       fixture.detectChanges();
 
-      expect(element('.image-card-container').classes['selectable']).toBe(undefined);
+      expect(
+        query(fixture.debugElement, '.image-card-container').classes['selectable'],
+      ).toBe(undefined);
     });
 
     it('should emit dialogResult with image id when clicked and selectable is true', () => {
@@ -168,7 +173,7 @@ describe('ImageExplorerComponent', () => {
       component.selectable = true;
       fixture.detectChanges();
 
-      element('.image-card-container').triggerEventHandler('click');
+      query(fixture.debugElement, '.image-card-container').triggerEventHandler('click');
 
       expect(dialogResultSpy).toHaveBeenCalledWith(mockImages[0].id);
     });
@@ -178,29 +183,21 @@ describe('ImageExplorerComponent', () => {
       component.selectable = false;
       fixture.detectChanges();
 
-      element('.image-card-container').triggerEventHandler('click');
+      query(fixture.debugElement, '.image-card-container').triggerEventHandler('click');
 
       expect(dialogResultSpy).not.toHaveBeenCalled();
     });
 
     it('should display image metadata', () => {
-      expect(elementTextContent('.caption span')).toBe(mockImages[0].caption);
-      expect(elementTextContent('.filename span')).toBe(mockImages[0].filename);
+      expect(queryTextContent(fixture.debugElement, '.caption span')).toBe(
+        mockImages[0].caption,
+      );
+      expect(queryTextContent(fixture.debugElement, '.filename span')).toBe(
+        mockImages[0].filename,
+      );
 
       // Actual text will depend on formatDate pipe implementation
-      expect(element('.upload-date span')).not.toBeNull();
+      expect(query(fixture.debugElement, '.upload-date span')).not.toBeNull();
     });
   });
-
-  function elements(selector: string, rootElement?: DebugElement): DebugElement[] {
-    return (rootElement ?? fixture.debugElement).queryAll(By.css(selector));
-  }
-
-  function element(selector: string): DebugElement {
-    return fixture.debugElement.query(By.css(selector));
-  }
-
-  function elementTextContent(selector: string): string {
-    return element(selector).nativeElement.textContent.trim();
-  }
 });

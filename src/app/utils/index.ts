@@ -16,7 +16,10 @@ export { dataUrlToFile } from './file/data-url-to-file.util';
 export { formatBytes } from './file/format-bytes.util';
 export { parseCsv } from './file/parse-csv.util';
 
-export { calculateAspectRatio, calculateDecimalAspectRatio } from './image/calculate-aspect-ratio.util';
+export {
+  calculateAspectRatio,
+  calculateDecimalAspectRatio,
+} from './image/calculate-aspect-ratio.util';
 
 export { getEcoOpeningCode } from './pgn/get-eco-opening-code.util';
 export { getLichessAnalysisUrl } from './pgn/get-lichess-analysis-url.util';
@@ -31,3 +34,5 @@ export { getNewPeakRating } from './rating/get-new-peak-rating.util';
 export { customSort } from './sort/custom-sort.util';
 
 export { actionSanitizer } from './store/action-sanitizer.util';
+
+export { query, queryAll, queryTextContent } from './test/debug-element-queries.util';

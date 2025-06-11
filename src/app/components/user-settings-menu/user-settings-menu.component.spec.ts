@@ -1,12 +1,11 @@
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
-import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
 
 import { AppActions, AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
+import { query, queryTextContent } from '@app/utils';
 
 import { UserSettingsMenuComponent } from './user-settings-menu.component';
 
@@ -55,11 +54,11 @@ describe('UserSettingsMenuComponent', () => {
     });
 
     it("should NOT render user's first and last name", () => {
-      expect(element('.user-name')).toBeNull();
+      expect(query(fixture.debugElement, '.user-name')).toBeNull();
     });
 
     it('should render theme toggle menu item', () => {
-      expect(element('.theme-toggle')).not.toBeNull();
+      expect(query(fixture.debugElement, '.theme-toggle')).not.toBeNull();
     });
 
     it('should dispatch `themeToggled` action when theme toggle menu item is clicked', () => {
@@ -70,19 +69,19 @@ describe('UserSettingsMenuComponent', () => {
     });
 
     it('should NOT render safe mode toggle menu item', () => {
-      expect(element('.safe-mode-toggle')).toBeNull();
+      expect(query(fixture.debugElement, '.safe-mode-toggle')).toBeNull();
     });
 
     it('should NOT render change password menu item', () => {
-      expect(element('.change-password')).toBeNull();
+      expect(query(fixture.debugElement, '.change-password')).toBeNull();
     });
 
     it('should NOT render admin logout menu item', () => {
-      expect(element('.admin-logout')).toBeNull();
+      expect(query(fixture.debugElement, '.admin-logout')).toBeNull();
     });
 
     it('should render admin login menu item', () => {
-      expect(element('.admin-login')).not.toBeNull();
+      expect(query(fixture.debugElement, '.admin-login')).not.toBeNull();
     });
 
     it('should navigate to login route and emit `close` event when admin login menu item is clicked', () => {
@@ -123,11 +122,11 @@ describe('UserSettingsMenuComponent', () => {
     });
 
     it("should render user's first and last name", () => {
-      expect(elementTextContent('.user-name')).toBe('John Doe');
+      expect(queryTextContent(fixture.debugElement, '.user-name')).toBe('John Doe');
     });
 
     it('should render theme toggle menu item', () => {
-      expect(element('.theme-toggle')).not.toBeNull();
+      expect(query(fixture.debugElement, '.theme-toggle')).not.toBeNull();
     });
 
     it('should dispatch `themeToggled` action when theme toggle menu item is clicked', () => {
@@ -138,7 +137,7 @@ describe('UserSettingsMenuComponent', () => {
     });
 
     it('should render safe mode toggle menu item', () => {
-      expect(element('.safe-mode-toggle')).not.toBeNull();
+      expect(query(fixture.debugElement, '.safe-mode-toggle')).not.toBeNull();
     });
 
     it('should dispatch `safeModeToggled` action when safe mode toggle menu item is clicked', () => {
@@ -149,7 +148,7 @@ describe('UserSettingsMenuComponent', () => {
     });
 
     it('should render change password menu item', () => {
-      expect(element('.change-password')).not.toBeNull();
+      expect(query(fixture.debugElement, '.change-password')).not.toBeNull();
     });
 
     it('should navigate to change-password route and emit `close` event when change password menu item is clicked', () => {
@@ -164,7 +163,7 @@ describe('UserSettingsMenuComponent', () => {
     });
 
     it('should render admin logout menu item', () => {
-      expect(element('.admin-logout')).not.toBeNull();
+      expect(query(fixture.debugElement, '.admin-logout')).not.toBeNull();
     });
 
     it('should emit `close` event on logout', () => {
@@ -175,15 +174,7 @@ describe('UserSettingsMenuComponent', () => {
     });
 
     it('should NOT render admin login menu item', () => {
-      expect(element('.admin-login')).toBeNull();
+      expect(query(fixture.debugElement, '.admin-login')).toBeNull();
     });
   });
-
-  function element(selector: string): DebugElement {
-    return fixture.debugElement.query(By.css(selector));
-  }
-
-  function elementTextContent(selector: string): string {
-    return element(selector).nativeElement.textContent.trim();
-  }
 });

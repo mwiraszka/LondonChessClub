@@ -1,15 +1,15 @@
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
-import { DebugElement, Renderer2 } from '@angular/core';
+import { Renderer2 } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { DialogService } from '@app/services';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
+import { query, queryTextContent } from '@app/utils';
 
-import { BasicDialogComponent } from '../basic-dialog/basic-dialog.component';
 import { ImageViewerComponent } from './image-viewer.component';
 
 describe('ImageViewerComponent', () => {
@@ -278,36 +278,39 @@ describe('ImageViewerComponent', () => {
 
   describe('UI elements', () => {
     it('should display image with album name and caption', () => {
-      expect(element('figure .image-container img')).not.toBeNull();
-      expect(elementTextContent('figcaption .album-name')).toBe(mockAlbum);
-      expect(elementTextContent('figcaption .image-caption')).toBe(mockImages[0].caption);
+      expect(query(fixture.debugElement, 'figure .image-container img')).not.toBeNull();
+      expect(queryTextContent(fixture.debugElement, 'figcaption .album-name')).toBe(
+        mockAlbum,
+      );
+      expect(queryTextContent(fixture.debugElement, 'figcaption .image-caption')).toBe(
+        mockImages[0].caption,
+      );
     });
 
     it('should render previous and next buttons', () => {
-      expect(element('.previous-image-button-wrapper button')).not.toBeNull();
-      expect(element('.next-image-button-wrapper button')).not.toBeNull();
+      expect(
+        query(fixture.debugElement, '.previous-image-button-wrapper button'),
+      ).not.toBeNull();
+      expect(
+        query(fixture.debugElement, '.next-image-button-wrapper button'),
+      ).not.toBeNull();
     });
 
     it('should handle click on previous button', () => {
       jest.spyOn(component, 'onPreviousImage');
-      const prevButton = element('.previous-image-button-wrapper button');
+      const prevButton = query(
+        fixture.debugElement,
+        '.previous-image-button-wrapper button',
+      );
       prevButton.triggerEventHandler('click');
       expect(component.onPreviousImage).toHaveBeenCalled();
     });
 
     it('should handle click on next button', () => {
       jest.spyOn(component, 'onNextImage');
-      const nextButton = element('.next-image-button-wrapper button');
+      const nextButton = query(fixture.debugElement, '.next-image-button-wrapper button');
       nextButton.triggerEventHandler('click');
       expect(component.onNextImage).toHaveBeenCalled();
     });
   });
-
-  function element(selector: string): DebugElement {
-    return fixture.debugElement.query(By.css(selector));
-  }
-
-  function elementTextContent(selector: string): string {
-    return element(selector).nativeElement.textContent.trim();
-  }
 });

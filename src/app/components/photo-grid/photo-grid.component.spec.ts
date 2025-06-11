@@ -1,8 +1,7 @@
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
-import { Component, DebugElement } from '@angular/core';
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 
 import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
@@ -12,7 +11,7 @@ import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { DialogService } from '@app/services';
 import { ImagesActions } from '@app/store/images';
-import { customSort } from '@app/utils';
+import { customSort, query, queryAll, queryTextContent } from '@app/utils';
 
 import { PhotoGridComponent } from './photo-grid.component';
 
@@ -87,7 +86,7 @@ describe('PhotoGridComponent', () => {
       component.maxAlbums = 1;
       fixture.detectChanges();
 
-      expect(elements('.album-cover').length).toBe(1);
+      expect(queryAll(fixture.debugElement, '.album-cover').length).toBe(1);
     });
   });
 
@@ -95,7 +94,7 @@ describe('PhotoGridComponent', () => {
     it('should call onClickAlbumCover when an album cover is clicked', () => {
       jest.spyOn(component, 'onClickAlbumCover');
 
-      element('.album-cover').triggerEventHandler('click');
+      query(fixture.debugElement, '.album-cover').triggerEventHandler('click');
 
       expect(component.onClickAlbumCover).toHaveBeenCalledWith("John's Images");
     });
@@ -123,7 +122,7 @@ describe('PhotoGridComponent', () => {
     it('should call onOpenImageExplorer when image explorer button is clicked', () => {
       jest.spyOn(component, 'onOpenImageExplorer');
 
-      element('.image-explorer-button').triggerEventHandler('click');
+      query(fixture.debugElement, '.image-explorer-button').triggerEventHandler('click');
 
       expect(component.onOpenImageExplorer).toHaveBeenCalledTimes(1);
     });
@@ -178,44 +177,32 @@ describe('PhotoGridComponent', () => {
       component.isAdmin = true;
       fixture.detectChanges();
 
-      expect(element('.admin-controls-header')).not.toBeNull();
+      expect(query(fixture.debugElement, '.admin-controls-header')).not.toBeNull();
     });
 
     it('should not display admin controls header when isAdmin is false', () => {
       component.isAdmin = false;
       fixture.detectChanges();
 
-      expect(element('.admin-controls-header')).toBeNull();
+      expect(query(fixture.debugElement, '.admin-controls-header')).toBeNull();
     });
 
     it('should display album covers with correct information', () => {
-      const albumCovers = elements('.album-cover');
+      const albumCovers = queryAll(fixture.debugElement, '.album-cover');
       const expectedAlbumCovers = mockImages.filter(image => !!image.coverForAlbum);
 
       expect(albumCovers.length).toBe(expectedAlbumCovers.length);
 
       albumCovers.forEach((albumCover, i) => {
-        expect(elementTextContent('.album-name', albumCover)).toBe(
+        expect(queryTextContent(albumCover, '.album-name')).toBe(
           expectedAlbumCovers[i].coverForAlbum,
         );
 
         const expectedPhotoCount = component.getAlbumPhotoCount(
           expectedAlbumCovers[i].coverForAlbum,
         );
-        expect(elementTextContent('.photo-count', albumCover)).toBe(expectedPhotoCount);
+        expect(queryTextContent(albumCover, '.photo-count')).toBe(expectedPhotoCount);
       });
     });
   });
-
-  function elements(selector: string, rootElement?: DebugElement): DebugElement[] {
-    return (rootElement ?? fixture.debugElement).queryAll(By.css(selector));
-  }
-
-  function element(selector: string, rootElement?: DebugElement): DebugElement {
-    return (rootElement ?? fixture.debugElement).query(By.css(selector));
-  }
-
-  function elementTextContent(selector: string, rootElement?: DebugElement): string {
-    return element(selector, rootElement).nativeElement.textContent.trim();
-  }
 });

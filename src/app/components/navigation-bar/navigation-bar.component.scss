@@ -31,10 +31,14 @@ $border-thickness: 2px;
     font-size: 14px;
     font-weight: 400;
     height: auto;
-    padding: 6px;
-    border-top: $border-thickness solid var(--lcc-color--nav-background);
+
+    // Add border thickness to side padding for non-active links to prevent layout shifts
+    // when a link becomes active and a border is added
+    padding: 6px calc(6px + #{$border-thickness});
+    border-top: $border-thickness solid transparent;
     border-top-left-radius: var(--lcc-borderRadius--large);
     border-top-right-radius: var(--lcc-borderRadius--large);
+    border-bottom: $border-thickness solid var(--lcc-color--nav-border);
     color: var(--lcc-color--nav-linkForeground);
     white-space: nowrap;
 
@@ -47,14 +51,12 @@ $border-thickness: 2px;
       cursor: default;
       pointer-events: none;
       background-color: var(--lcc-color--app-mainBackground);
-      color: var(--lcc-color--nav-linkForegroundWhenActive);
-      border-top: $border-thickness solid var(--lcc-color--nav-border);
+      padding: 6px;
+      border-top-color: var(--lcc-color--nav-border);
       border-left: $border-thickness solid var(--lcc-color--nav-border);
       border-right: $border-thickness solid var(--lcc-color--nav-border);
-    }
-
-    &:not(.link-active) {
-      border-bottom: $border-thickness solid var(--lcc-color--nav-border);
+      border-bottom-color: transparent;
+      color: var(--lcc-color--nav-linkForegroundWhenActive);
     }
 
     .link-text {
@@ -67,14 +69,15 @@ $border-thickness: 2px;
       width: 20px;
     }
 
-    @include mixins.respond-to('gt-sm') {
-      padding: 6px 8px;
+    @include mixins.respond-to('lt-xs') {
+      padding: 3px calc(3px + #{$border-thickness});
+
+      &.link-active {
+        padding: 3px;
+      }
     }
 
     @include mixins.respond-to('gt-nav-icons') {
-      // Set padding so that height is kept constant on breakpoint transitions
-      padding: 10px 8px;
-
       .link-text {
         display: block;
         visibility: unset;

@@ -1,7 +1,7 @@
-import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+
+import { query, queryTextContent } from '@app/utils';
 
 import { FooterComponent } from './footer.component';
 
@@ -22,7 +22,7 @@ describe('FooterComponent', () => {
 
   describe('copyright notice', () => {
     it('should render the copyright notice section', () => {
-      expect(element('.copyright-notice')).not.toBeNull();
+      expect(query(fixture.debugElement, '.copyright-notice')).not.toBeNull();
     });
 
     it('should include the current year', () => {
@@ -30,7 +30,7 @@ describe('FooterComponent', () => {
       component.currentYear = 2088;
       fixture.detectChanges();
 
-      expect(element('.copyright-notice').nativeElement.textContent.trim()).toBe(
+      expect(queryTextContent(fixture.debugElement, '.copyright-notice')).toBe(
         'Copyright © 2088 London Chess Club',
       );
     });
@@ -38,7 +38,7 @@ describe('FooterComponent', () => {
 
   describe('website details', () => {
     it('should render the website details section', () => {
-      expect(element('.website-details')).not.toBeNull();
+      expect(query(fixture.debugElement, '.website-details')).not.toBeNull();
     });
 
     it('should include the current app version', () => {
@@ -46,11 +46,7 @@ describe('FooterComponent', () => {
       component.currentVersion = '1.2.3';
       fixture.detectChanges();
 
-      expect(element('.current-version').nativeElement.textContent.trim()).toBe('v1.2.3');
+      expect(queryTextContent(fixture.debugElement, '.current-version')).toBe('v1.2.3');
     });
   });
-
-  function element(selector: string): DebugElement {
-    return fixture.debugElement.query(By.css(selector));
-  }
 });

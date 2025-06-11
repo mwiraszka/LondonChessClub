@@ -1,10 +1,9 @@
-import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { ADMIN_CONTROLS_CONFIG } from '@app/directives/admin-controls.directive';
 import type { AdminControlsConfig } from '@app/models';
+import { query } from '@app/utils';
 
 import { AdminControlsComponent } from './admin-controls.component';
 
@@ -40,7 +39,7 @@ describe('AdminControlsComponent', () => {
       component.config.bookmarked = undefined;
       fixture.detectChanges();
 
-      expect(element('.bookmark-button')).toBeNull();
+      expect(query(fixture.debugElement, '.bookmark-button')).toBeNull();
     });
 
     it('should NOT render if only bookmarked flag provided', () => {
@@ -48,7 +47,7 @@ describe('AdminControlsComponent', () => {
       component.config.bookmarked = false;
       fixture.detectChanges();
 
-      expect(element('.bookmark-button')).toBeNull();
+      expect(query(fixture.debugElement, '.bookmark-button')).toBeNull();
     });
 
     it('should only render if both bookmark callback and bookmarked flag are provided', () => {
@@ -56,7 +55,7 @@ describe('AdminControlsComponent', () => {
       component.config.bookmarked = false;
       fixture.detectChanges();
 
-      expect(element('.bookmark-button')).not.toBeNull();
+      expect(query(fixture.debugElement, '.bookmark-button')).not.toBeNull();
     });
 
     it('should invoke bookmark callback function when clicked', () => {
@@ -64,7 +63,7 @@ describe('AdminControlsComponent', () => {
       fixture.detectChanges();
       const bookmarkCbSpy = jest.spyOn(component.config, 'bookmarkCb');
 
-      element('.bookmark-button').triggerEventHandler('click');
+      query(fixture.debugElement, '.bookmark-button').triggerEventHandler('click');
 
       expect(bookmarkCbSpy).toHaveBeenCalledTimes(1);
     });
@@ -72,14 +71,14 @@ describe('AdminControlsComponent', () => {
 
   describe('edit button', () => {
     it('should NOT be rendered if no edit path provided', () => {
-      expect(element('.edit-button')).toBeNull();
+      expect(query(fixture.debugElement, '.edit-button')).toBeNull();
     });
 
     it('should be rendered if edit path provided', () => {
       component.config.editPath = ['event', 'edit'];
       fixture.detectChanges();
 
-      expect(element('.edit-button')).not.toBeNull();
+      expect(query(fixture.debugElement, '.edit-button')).not.toBeNull();
     });
   });
 
@@ -89,7 +88,7 @@ describe('AdminControlsComponent', () => {
         component.config.isDeleteDisabled = false;
         fixture.detectChanges();
 
-        expect(element('.delete-button')).not.toBeNull();
+        expect(query(fixture.debugElement, '.delete-button')).not.toBeNull();
       });
 
       it('should invoke delete callback function when clicked', () => {
@@ -98,7 +97,7 @@ describe('AdminControlsComponent', () => {
 
         const deleteCbSpy = jest.spyOn(component.config, 'deleteCb');
 
-        element('.delete-button').triggerEventHandler('click');
+        query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
 
         expect(deleteCbSpy).toHaveBeenCalledTimes(1);
       });
@@ -109,7 +108,7 @@ describe('AdminControlsComponent', () => {
         component.config.isDeleteDisabled = true;
         fixture.detectChanges();
 
-        expect(element('.delete-button')).not.toBeNull();
+        expect(query(fixture.debugElement, '.delete-button')).not.toBeNull();
       });
 
       it('should NOT invoke delete callback function when clicked', () => {
@@ -118,14 +117,10 @@ describe('AdminControlsComponent', () => {
 
         const deleteCbSpy = jest.spyOn(component.config, 'deleteCb');
 
-        element('.delete-button').triggerEventHandler('click');
+        query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
 
         expect(deleteCbSpy).not.toHaveBeenCalled();
       });
     });
   });
-
-  function element(selector: string): DebugElement {
-    return fixture.debugElement.query(By.css(selector));
-  }
 });

@@ -1,7 +1,8 @@
-import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+
+import { query, queryTextContent } from '@app/utils';
 
 import { HeaderComponent } from './header.component';
 
@@ -21,21 +22,27 @@ describe('HeaderComponent', () => {
 
   describe('branding section', () => {
     it('should include the LCC brand image', () => {
-      expect(element('.branding-link img').nativeElement).not.toBeNull();
+      expect(
+        query(fixture.debugElement, '.branding-link img').nativeElement,
+      ).not.toBeNull();
     });
 
     it('should link to the homepage via the LCC brand image', () => {
-      expect(element('.branding-link').attributes['routerLink']).toBe('');
+      expect(query(fixture.debugElement, '.branding-link').attributes['routerLink']).toBe(
+        '',
+      );
     });
 
     it('should include the club name', () => {
-      expect(element('.club-name-link').nativeElement.textContent.trim()).toBe(
+      expect(queryTextContent(fixture.debugElement, '.club-name-link')).toBe(
         'London Chess Club',
       );
     });
 
     it('should link to the homepage via the club name text', () => {
-      expect(element('.club-name-link').attributes['routerLink']).toBe('');
+      expect(
+        query(fixture.debugElement, '.club-name-link').attributes['routerLink'],
+      ).toBe('');
     });
   });
 
@@ -50,8 +57,4 @@ describe('HeaderComponent', () => {
       });
     });
   });
-
-  function element(selector: string): DebugElement {
-    return fixture.debugElement.query(By.css(selector));
-  }
 });

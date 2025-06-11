@@ -1,12 +1,11 @@
 import { of } from 'rxjs';
 
-import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
 import { DropdownDirective } from '@app/directives/dropdown.directive';
 import IconsModule from '@app/icons';
+import { query } from '@app/utils';
 
 import { NavigationBarComponent } from './navigation-bar.component';
 
@@ -68,29 +67,29 @@ describe('NavigationBarComponent', () => {
     it('should always display the settings icon', () => {
       component.isDropdownOpen = true;
       fixture.detectChanges();
-      expect(element('.user-settings-button')).toBeTruthy();
+      expect(query(fixture.debugElement, '.user-settings-button')).toBeTruthy();
 
       component.isDropdownOpen = false;
       fixture.detectChanges();
-      expect(element('.user-settings-button')).toBeTruthy();
+      expect(query(fixture.debugElement, '.user-settings-button')).toBeTruthy();
     });
 
     it('should display correct dropdown icon when `isDropdownOpen` is true', () => {
       component.isDropdownOpen = true;
       fixture.detectChanges();
 
-      expect(element('.dropdown-icon').componentInstance.name).toBe('chevron-down');
+      expect(query(fixture.debugElement, '.dropdown-icon').componentInstance.name).toBe(
+        'chevron-down',
+      );
     });
 
     it('should display correct dropdown icon when `isDropdownOpen` is false', () => {
       component.isDropdownOpen = false;
       fixture.detectChanges();
 
-      expect(element('.dropdown-icon').componentInstance.name).toBe('chevron-up');
+      expect(query(fixture.debugElement, '.dropdown-icon').componentInstance.name).toBe(
+        'chevron-up',
+      );
     });
   });
-
-  function element(selector: string): DebugElement {
-    return fixture.debugElement.query(By.css(selector));
-  }
 });

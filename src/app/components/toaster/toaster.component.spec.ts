@@ -1,4 +1,3 @@
-import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -6,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import IconsModule from '@app/icons';
 import { MOCK_TOASTS } from '@app/mocks/toasts.mock';
 import { ToastService } from '@app/services';
+import { queryAll } from '@app/utils';
 
 import { ToasterComponent } from './toaster.component';
 
@@ -28,11 +28,11 @@ describe('ToasterComponent', () => {
   });
 
   it('should render all toasts', () => {
-    expect(elements('.toast').length).toBe(MOCK_TOASTS.length);
+    expect(queryAll(fixture.debugElement, '.toast').length).toBe(MOCK_TOASTS.length);
   });
 
   it('should apply correct classes and render correct content within each toast', () => {
-    elements('.toast').forEach((element, i) => {
+    queryAll(fixture.debugElement, '.toast').forEach((element, i) => {
       expect(element.attributes['class']).toContain(`toast-${MOCK_TOASTS[i].type}`);
 
       const toastTitle = element.query(By.css('.toast-title')).nativeElement.textContent;
@@ -46,8 +46,4 @@ describe('ToasterComponent', () => {
       expect(iconName).toBe(component.getIcon(MOCK_TOASTS[i].type));
     });
   });
-
-  function elements(selector: string): DebugElement[] {
-    return fixture.debugElement.queryAll(By.css(selector));
-  }
 });

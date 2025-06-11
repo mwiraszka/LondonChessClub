@@ -5,12 +5,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--lcc-color--paginator-border);
-  border-radius: var(--lcc-borderRadius--large);
-  background-color: var(--lcc-color--paginator-background);
   color: var(--lcc-color--paginator-pageNumberText);
-
-  padding: 4px 32px;
   gap: 8px;
 }
 
@@ -25,7 +20,7 @@
   justify-content: center;
   text-align: center;
   gap: 4px;
-  font-size: 13px;
+  font-size: 14px;
   padding: 0 4px;
 
   .page-size-buttons {

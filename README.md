@@ -36,6 +36,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.3.2 - June TBD, 2025</summary>
 
 - 🐛 Optimize strategy for fetching resources to load up only the ones that are needed, and to prevent unnecessary loading spinners where possible
+- 🐛 Ensure Champion page uses correct icon
 - 🔧 Further increase unit test coverage
 
 </details>

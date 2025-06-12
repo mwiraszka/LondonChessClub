@@ -1,6 +1,6 @@
 import moment, { Moment } from 'moment-timezone';
 
-import { AfterViewInit, Component, DOCUMENT, HostListener, Inject } from '@angular/core';
+import { AfterViewInit, Component, HostListener } from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -9,7 +9,6 @@ import {
 
 import IconsModule from '@app/icons';
 import type { IsoDate } from '@app/models';
-import { RangePipe } from '@app/pipes';
 
 @Component({
   selector: 'lcc-date-picker',
@@ -22,7 +21,7 @@ import { RangePipe } from '@app/pipes';
       multi: true,
     },
   ],
-  imports: [IconsModule, RangePipe, ReactiveFormsModule],
+  imports: [IconsModule, ReactiveFormsModule],
 })
 export class DatePickerComponent implements AfterViewInit, ControlValueAccessor {
   // Always render 6 weeks in calendar (the most that will ever be needed for any month)
@@ -34,8 +33,9 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
   public currentMonth!: Moment;
   public screenWidth = window.innerWidth;
   public selectedDate!: Moment;
+  public calendarDays: { date: Moment; disabled: boolean; selected: boolean }[][] = [];
 
-  constructor(@Inject(DOCUMENT) private _document: Document) {}
+  constructor() {}
 
   ngAfterViewInit(): void {
     this.renderCalendar();
@@ -87,34 +87,26 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
 
   public renderCalendar(): void {
     const day = this.getCalendarFirstDay();
-    const weekRows = Array.from(
-      this._document.querySelectorAll('lcc-date-picker .calendar-table tbody tr'),
-    );
+    this.calendarDays = [];
 
     for (let i = 0; i < this.WEEKS_IN_CALENDAR; i++) {
-      const dayCells = Array.from(weekRows[i].querySelectorAll('td'));
+      const week: { date: Moment; disabled: boolean; selected: boolean }[] = [];
 
       for (let j = 0; j < this.DAYS_OF_WEEK.length; j++) {
-        const dayCell = dayCells[j];
+        const currentDay = day.clone();
+        const dayInCurrentMonth = currentDay.isSame(this.currentMonth, 'month');
+        const isSelected = currentDay.isSame(this.selectedDate, 'day');
 
-        dayCell.textContent = day.format('D');
-
-        const dayInCurrentMonth = day.isSame(this.currentMonth, 'month');
-
-        if (!dayInCurrentMonth) {
-          dayCell.setAttribute('disabled', 'disabled');
-        } else {
-          dayCell.removeAttribute('disabled');
-        }
-
-        if (day.isSame(this.selectedDate, 'day')) {
-          dayCell.classList.add('lcc-selected-day');
-        } else {
-          dayCell.classList.remove('lcc-selected-day');
-        }
+        week.push({
+          date: currentDay,
+          disabled: !dayInCurrentMonth,
+          selected: isSelected,
+        });
 
         day.add(1, 'day');
       }
+
+      this.calendarDays.push(week);
     }
   }
 

@@ -23,10 +23,15 @@
     }
   </thead>
   <tbody>
-    @for (row of WEEKS_IN_CALENDAR | range; track row) {
+    @for (week of calendarDays; track rowIndex; let rowIndex = $index) {
       <tr>
-        @for (column of DAYS_OF_WEEK.length | range; track column) {
-          <td (click)="onSelectCell(row, column)"> </td>
+        @for (day of week; track colIndex; let colIndex = $index) {
+          <td 
+            (click)="onSelectCell(rowIndex, colIndex)" 
+            [attr.disabled]="day.disabled ? 'disabled' : null"
+            [class.lcc-selected-day]="day.selected">
+            {{ day.date.format('D') }}
+          </td>
         }
       </tr>
     }

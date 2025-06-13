@@ -31,16 +31,12 @@ describe('PhotoGridComponent', () => {
   const mockIsAdmin = true;
 
   beforeEach(async () => {
-    const mockDialogService = {
-      open: jest.fn().mockResolvedValue(null),
-    };
-
     await TestBed.configureTestingModule({
       imports: [PhotoGridComponent],
       providers: [
         provideMockStore(),
         provideRouter([{ path: 'photo-gallery', component: PhotoGalleryStubComponent }]),
-        { provide: DialogService, useValue: mockDialogService },
+        { provide: DialogService, useValue: { open: jest.fn() } },
       ],
     })
       .overrideDirective(AdminControlsDirective, {

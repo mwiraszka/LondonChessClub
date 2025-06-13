@@ -20,15 +20,11 @@ describe('ImageExplorerComponent', () => {
   const mockImages = MOCK_IMAGES;
 
   beforeEach(async () => {
-    const mockDialogService = {
-      open: jest.fn().mockResolvedValue('confirm'),
-    };
-
     await TestBed.configureTestingModule({
       imports: [ImageExplorerComponent],
       providers: [
         provideMockStore(),
-        { provide: DialogService, useValue: mockDialogService },
+        { provide: DialogService, useValue: { open: jest.fn() } },
       ],
     })
       .overrideDirective(AdminControlsDirective, {
@@ -89,7 +85,9 @@ describe('ImageExplorerComponent', () => {
 
   describe('image deletion', () => {
     it('should open confirmation dialog and dispatch delete action when confirmed', async () => {
-      const dialogOpenSpy = jest.spyOn(dialogService, 'open');
+      const dialogOpenSpy = jest
+        .spyOn(dialogService, 'open')
+        .mockResolvedValue('confirm');
       const dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
 
       await component.onDeleteImage(mockImages[1]);

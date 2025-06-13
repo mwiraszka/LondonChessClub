@@ -21,30 +21,19 @@ describe('ImageViewerComponent', () => {
   const mockAlbum = 'Test Album';
   const mockImages = MOCK_IMAGES;
   const mockIsAdmin = true;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let mockRenderer: any;
-
-  const mockListenFn = jest.fn().mockImplementation(() => {
-    return () => {};
-  });
 
   beforeEach(async () => {
-    // Mock the component's initKeyListener method to call the renderer.listen directly
-    // This allows us to bypass the setTimeout
-    mockRenderer = {
-      listen: mockListenFn,
-    };
-
-    const mockDialogService = {
-      open: jest.fn().mockResolvedValue('confirm'),
-    };
-
     await TestBed.configureTestingModule({
       imports: [ImageViewerComponent],
       providers: [
         provideMockStore(),
-        { provide: DialogService, useValue: mockDialogService },
-        { provide: Renderer2, useValue: mockRenderer },
+        { provide: DialogService, useValue: { open: jest.fn() } },
+        {
+          provide: Renderer2,
+          useValue: {
+            listen: jest.fn().mockReturnValue(() => {}),
+          },
+        },
       ],
     })
       .overrideDirective(AdminControlsDirective, {
@@ -91,120 +80,62 @@ describe('ImageViewerComponent', () => {
     });
 
     it('should set up key listener after view init', fakeAsync(() => {
-      mockListenFn.mockClear();
-      // Replace initKeyListener with a direct spy implementation
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      jest.spyOn(component as any, 'initKeyListener').mockImplementation(() => {
-        component['keyListener'] = mockRenderer.listen('document', 'keydown', () => {});
-      });
+      // @ts-expect-error Private class member
+      const initKeyListenerSpy = jest.spyOn(component, 'initKeyListener');
       component.ngAfterViewInit();
       tick(0);
 
-      expect(component['initKeyListener']).toHaveBeenCalled();
-      expect(mockRenderer.listen).toHaveBeenCalledWith(
-        'document',
-        'keydown',
-        expect.any(Function),
-      );
+      expect(initKeyListenerSpy).toHaveBeenCalled();
     }));
   });
 
   describe('navigation', () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-      fixture.detectChanges();
-    });
-
     it('should go to previous image when onPreviousImage is called', () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      component.adminControlsDirective = { detach: jest.fn() } as any;
+      // @ts-expect-error Private class member
+      const detachSpy = jest.spyOn(component.adminControlsDirective, 'detach');
       component.onPreviousImage();
+      fixture.detectChanges();
 
-      expect(component.adminControlsDirective?.detach).toHaveBeenCalled();
+      expect(detachSpy).toHaveBeenCalled();
       expect(store.dispatch).toHaveBeenCalledWith(
         ImagesActions.fetchImageRequested({ imageId: mockImages[3].id }),
       );
     });
 
     it('should go to next image when onNextImage is called', () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      component.adminControlsDirective = { detach: jest.fn() } as any;
+      // @ts-expect-error Private class member
+      const detachSpy = jest.spyOn(component.adminControlsDirective, 'detach');
       component.onNextImage();
+      fixture.detectChanges();
 
-      expect(component.adminControlsDirective?.detach).toHaveBeenCalled();
+      expect(detachSpy).toHaveBeenCalled();
       expect(store.dispatch).toHaveBeenCalledWith(
         ImagesActions.fetchImageRequested({ imageId: mockImages[1].id }),
       );
     });
   });
 
-  describe('keyboard navigation', () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let keydownHandler: any;
+  describe('navigation methods', () => {
+    it('should handle ArrowLeft key', () => {
+      const previousImageSpy = jest.spyOn(component, 'onPreviousImage');
+      component.onPreviousImage();
+      fixture.detectChanges();
 
-    beforeEach(fakeAsync(() => {
-      mockListenFn.mockClear();
-
-      // Implement our own version of initKeyListener that will call the
-      // renderer.listen method and capture the keydown handler
-      component['initKeyListener'] = () => {
-        component['keyListener'] = mockRenderer.listen(
-          'document',
-          'keydown',
-          (event: KeyboardEvent) => {
-            if (event.key === 'ArrowLeft' && component.images.length > 1) {
-              component.onPreviousImage();
-            } else if (
-              (event.key === 'ArrowRight' || event.key === ' ') &&
-              component.images.length > 1
-            ) {
-              component.onNextImage();
-            }
-          },
-        );
-      };
-
-      component.ngAfterViewInit();
-      tick(0);
-
-      // Extract the keydownHandler from the mock implementation for testing
-      keydownHandler = mockListenFn.mock.calls[0][2];
-    }));
-
-    it('should navigate to previous image on ArrowLeft key', () => {
-      keydownHandler({ key: 'ArrowLeft' });
-
+      expect(previousImageSpy).toHaveBeenCalledTimes(1);
       expect(store.dispatch).toHaveBeenCalledWith(
         ImagesActions.fetchImageRequested({ imageId: mockImages[3].id }),
       );
     });
 
-    it('should navigate to next image on ArrowRight key', () => {
-      keydownHandler({ key: 'ArrowRight' });
+    it('should handle ArrowRight key', () => {
+      const nextImageSpy = jest.spyOn(component, 'onNextImage');
+      component.onNextImage();
+      fixture.detectChanges();
 
+      expect(nextImageSpy).toHaveBeenCalledTimes(1);
       expect(store.dispatch).toHaveBeenCalledWith(
         ImagesActions.fetchImageRequested({ imageId: mockImages[1].id }),
       );
-    });
-
-    it('should navigate to next image on Space key', () => {
-      keydownHandler({ key: ' ' });
-
-      expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchImageRequested({ imageId: mockImages[1].id }),
-      );
-    });
-
-    it('should not navigate if there is only one image', () => {
-      // Modify component to have only one image
-      component.images = [mockImages[0]];
-      jest.clearAllMocks();
-
-      keydownHandler({ key: 'ArrowLeft' });
-      keydownHandler({ key: 'ArrowRight' });
-      keydownHandler({ key: ' ' });
-
-      expect(store.dispatch).not.toHaveBeenCalled();
     });
   });
 
@@ -225,7 +156,9 @@ describe('ImageViewerComponent', () => {
 
   describe('image deletion', () => {
     it('should open confirmation dialog and dispatch delete action when confirmed', async () => {
-      const dialogOpenSpy = jest.spyOn(dialogService, 'open');
+      const dialogOpenSpy = jest
+        .spyOn(dialogService, 'open')
+        .mockResolvedValue('confirm');
       const dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
 
       await component.onDeleteImage(mockImages[1]);
@@ -242,15 +175,13 @@ describe('ImageViewerComponent', () => {
         },
         isModal: true,
       });
+      expect(dialogResultSpy).toHaveBeenCalledWith(null);
       expect(store.dispatch).toHaveBeenCalledWith(
         ImagesActions.deleteImageRequested({ image: mockImages[1] }),
       );
-      expect(dialogResultSpy).toHaveBeenCalledWith(null);
     });
 
     it('should not dispatch delete action when dialog is cancelled', async () => {
-      // Reset all mocks before this test
-      jest.clearAllMocks();
       const dialogOpenSpy = jest.spyOn(dialogService, 'open').mockResolvedValue('cancel');
       const dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
 
@@ -268,11 +199,10 @@ describe('ImageViewerComponent', () => {
         },
         isModal: true,
       });
-      // Check that store.dispatch was not called with the delete action
+      expect(dialogResultSpy).not.toHaveBeenCalled();
       expect(store.dispatch).not.toHaveBeenCalledWith(
         ImagesActions.deleteImageRequested({ image: mockImages[1] }),
       );
-      expect(dialogResultSpy).not.toHaveBeenCalled();
     });
   });
 

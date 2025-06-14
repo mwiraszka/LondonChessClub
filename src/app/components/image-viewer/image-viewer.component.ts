@@ -57,6 +57,7 @@ export class ImageViewerComponent
   @Output() public dialogResult = new EventEmitter<null | 'close'>();
 
   public currentImage$!: Observable<Image | null>;
+  public displayedCaption: string = '';
   private indexSubject = new BehaviorSubject<number>(0);
 
   constructor(

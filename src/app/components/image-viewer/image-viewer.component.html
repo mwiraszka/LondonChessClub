@@ -21,12 +21,14 @@
 
   <figure [adminControls]="isAdmin ? getAdminControlsConfig(image) : null">
     <div class="image-container">
-      <img [image]="image" />
+      <img
+        [image]="image"
+        (load)="displayedCaption = image.caption" />
     </div>
     <figcaption>
       <div class="album-name lcc-truncate">{{ album }}</div>
       <hr />
-      <div class="image-caption lcc-truncate">{{ image.caption }}</div>
+      <div class="image-caption lcc-truncate">{{ displayedCaption }}</div>
     </figcaption>
   </figure>
 }

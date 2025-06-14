@@ -33,12 +33,12 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.3.2 - June TBD, 2025</summary>
+<summary>v5.3.2 - June 14th, 2025</summary>
 
-- 🐛 Optimize strategy for fetching resources to load up only the ones that are needed, and to prevent unnecessary loading spinners where possible
+- 🚀 Implement a prefetching strategy in Image Viewer for quicker image loading, and prevent unnecessary fetches where possible
 - 🐛 Only update caption in the Image Viewer once the previous/next image has fully loaded
 - 🐛 Ensure Champion page uses correct icon
-- 🔧 Further increase unit test coverage
+- 🔧 Further increase test coverage
 
 </details>
 
@@ -47,7 +47,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 
 - 🐛 Minor improvements to Navigation Bar and Members Table
 - 🔧 Simplify and future-proof local storage clean up logic
-- 🔧 Increase unit test coverage for image-related components
+- 🔧 Increase test coverage for image-related components
 
 </details>
 

@@ -27,9 +27,6 @@ describe('PhotoGridComponent', () => {
   let store: MockStore;
   let dialogService: DialogService;
 
-  const mockImages = MOCK_IMAGES;
-  const mockIsAdmin = true;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PhotoGridComponent],
@@ -52,8 +49,8 @@ describe('PhotoGridComponent', () => {
         store = TestBed.inject(MockStore);
         dialogService = TestBed.inject(DialogService);
 
-        component.isAdmin = mockIsAdmin;
-        component.photoImages = mockImages;
+        component.isAdmin = true;
+        component.photoImages = MOCK_IMAGES;
 
         jest.spyOn(store, 'dispatch');
 
@@ -69,9 +66,14 @@ describe('PhotoGridComponent', () => {
     });
 
     it('should have albumCovers getter that filters images with coverForAlbum', () => {
-      expect(component.albumCovers.length).toBe(2);
-      expect(component.albumCovers[0].coverForAlbum).toBe("John's Images");
-      expect(component.albumCovers[1].coverForAlbum).toBe('Album of Jane');
+      const albumCovers = MOCK_IMAGES.filter(image => !!image.coverForAlbum);
+
+      expect(component.albumCovers.length).toBe(albumCovers.length);
+
+      albumCovers.forEach((cover, index) => {
+        expect(component.albumCovers[index].coverForAlbum).toBe(cover.coverForAlbum);
+        expect(component.albumCovers[index].id).toBe(cover.id);
+      });
     });
 
     it('should honour maxAlbums input property', () => {
@@ -94,9 +96,9 @@ describe('PhotoGridComponent', () => {
     it('should open ImageViewerComponent dialog with filtered images when clicking album cover', async () => {
       const dialogOpenSpy = jest.spyOn(dialogService, 'open');
       const album = 'Album of Jane';
-      const albumPhotos = mockImages
-        .filter(image => image.albums.includes(album))
-        .sort((a, b) => customSort(a, b, 'caption'));
+      const albumPhotos = MOCK_IMAGES.filter(image => image.albums.includes(album)).sort(
+        (a, b) => customSort(a, b, 'caption'),
+      );
 
       await component.onClickAlbumCover(album);
 
@@ -154,7 +156,7 @@ describe('PhotoGridComponent', () => {
 
     it('should return correct plural photo count string', () => {
       const albumName = 'Album of Jane';
-      const expectedPhotoCount = mockImages.filter(image =>
+      const expectedPhotoCount = MOCK_IMAGES.filter(image =>
         image.albums.includes(albumName),
       ).length;
 
@@ -181,7 +183,7 @@ describe('PhotoGridComponent', () => {
 
     it('should display album covers with correct information', () => {
       const albumCovers = queryAll(fixture.debugElement, '.album-cover');
-      const expectedAlbumCovers = mockImages.filter(image => !!image.coverForAlbum);
+      const expectedAlbumCovers = MOCK_IMAGES.filter(image => !!image.coverForAlbum);
 
       expect(albumCovers.length).toBe(expectedAlbumCovers.length);
 

@@ -38,7 +38,7 @@ export class PhotoGridComponent implements OnInit {
     icon: 'plus-circle',
   };
 
-  get albumCovers(): Image[] {
+  public get albumCovers(): Image[] {
     return this.photoImages.filter(image => !isEmpty(image.coverForAlbum));
   }
 

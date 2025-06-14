@@ -66,6 +66,13 @@ describe('ImageViewerComponent', () => {
 
   beforeEach(() => {
     imgElement = query(fixture.debugElement, 'figure .image-container img');
+    
+    // Mock timers for all tests
+    jest.useFakeTimers();
+  });
+  
+  afterEach(() => {
+    jest.useRealTimers();
   });
 
   describe('initialization', () => {
@@ -79,6 +86,104 @@ describe('ImageViewerComponent', () => {
       component.currentImage$.subscribe(image => {
         expect(image).toEqual(mockImages[0]);
       });
+    });
+    
+    describe('prefetching adjacent images', () => {
+      beforeEach(() => {
+        jest.useFakeTimers();
+        jest.clearAllMocks();
+      });
+      
+      afterEach(() => {
+        jest.useRealTimers();
+      });
+      
+      it('should immediately fetch the next image (index 1)', () => {
+        // Reset mocks and re-initialize the component
+        jest.clearAllMocks();
+        component.ngOnInit();
+        
+        // Now verify calls were made - the component will fetch both the current image (0)
+        // and the next image (1) on initialization
+        const dispatchCalls = (store.dispatch as jest.Mock).mock.calls;
+        
+        // Find the call for the next image (index 1)
+        const nextImageCall = dispatchCalls.find(call => 
+          call[0].imageId === mockImages[1].id
+        );
+        
+        expect(nextImageCall).toBeTruthy();
+      });
+      
+      it('should immediately fetch the previous image (last index)', () => {
+        // Reset mocks and component
+        jest.clearAllMocks();
+        component.ngOnInit();
+        
+        // Check all dispatch calls
+        const dispatchCalls = (store.dispatch as jest.Mock).mock.calls;
+        
+        // Find the call for the previous image (last index)
+        const prevImageCall = dispatchCalls.find(call => 
+          call[0].imageId === mockImages[mockImages.length - 1].id
+        );
+        
+        expect(prevImageCall).toBeTruthy();
+      });
+      
+      it('should fetch remaining images after a delay', fakeAsync(() => {
+        // Reset dispatch call tracking
+        jest.clearAllMocks();
+        component.ngOnInit();
+        
+        // Only the immediate next and previous should be fetched immediately
+        expect(store.dispatch).toHaveBeenCalledTimes(3); // Index 0 (current), 1 (next), and last (previous)
+        
+        // Clear mocks to track only the delayed fetches
+        jest.clearAllMocks();
+        
+        // Fast-forward time to trigger the setTimeout
+        jest.advanceTimersByTime(100);
+        tick(0);
+        
+        // Check that middle images are fetched
+        if (mockImages.length > 3) {
+          // If we have more than 3 images, verify that the 3rd image (index 2) was fetched after the delay
+          expect(store.dispatch).toHaveBeenCalledWith(
+            ImagesActions.fetchImageRequested({ imageId: mockImages[2].id }),
+          );
+          
+          // Check if we have enough images to test the second-to-last as well
+          if (mockImages.length > 4) {
+            expect(store.dispatch).toHaveBeenCalledWith(
+              ImagesActions.fetchImageRequested({ imageId: mockImages[mockImages.length - 2].id }),
+            );
+          }
+        }
+      }));
+      
+      it('should handle arrays with few images correctly', fakeAsync(() => {
+        // Create a test component with only 2 images
+        component.images = [mockImages[0], mockImages[1]];
+        jest.clearAllMocks();
+        
+        component.ngOnInit();
+        
+        // Should fetch current and next image only
+        expect(store.dispatch).toHaveBeenCalledTimes(2);
+        expect(store.dispatch).toHaveBeenCalledWith(
+          ImagesActions.fetchImageRequested({ imageId: mockImages[0].id }),
+        );
+        expect(store.dispatch).toHaveBeenCalledWith(
+          ImagesActions.fetchImageRequested({ imageId: mockImages[1].id }),
+        );
+        
+        // No delayed fetches should happen
+        jest.clearAllMocks();
+        jest.advanceTimersByTime(100);
+        tick(0);
+        expect(store.dispatch).not.toHaveBeenCalled();
+      }));
     });
 
     it('should set caption when image loads', () => {

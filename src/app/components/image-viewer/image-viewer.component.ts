@@ -1,7 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { isEqual } from 'lodash';
-import { BehaviorSubject, Observable, distinctUntilChanged, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap, take } from 'rxjs';
 
 import { CommonModule } from '@angular/common';
 import {
@@ -58,6 +57,15 @@ export class ImageViewerComponent
 
   public currentImage$!: Observable<Image | null>;
   public displayedCaption: string = '';
+
+  public get index(): number {
+    return this.indexSubject.getValue();
+  }
+
+  public get imageId(): Id {
+    return this.images[this.index].id;
+  }
+
   private indexSubject = new BehaviorSubject<number>(0);
 
   constructor(
@@ -66,21 +74,18 @@ export class ImageViewerComponent
     private readonly store: Store,
   ) {}
 
-  get imageId(): Id {
-    return this.images[this.indexSubject.value].id;
-  }
-
   private keyListener?: () => void;
 
   ngOnInit(): void {
-    this.store.dispatch(ImagesActions.fetchImageRequested({ imageId: this.imageId }));
     this.currentImage$ = this.indexSubject.asObservable().pipe(
       untilDestroyed(this),
-      switchMap(index =>
-        this.store.select(ImagesSelectors.selectImageById(this.images[index]?.id)),
-      ),
-      distinctUntilChanged(isEqual),
+      switchMap(index => {
+        this.fetchImage(index);
+        return this.store.select(ImagesSelectors.selectImageById(this.imageId));
+      }),
     );
+
+    this.prefetchAdjacentImages();
   }
 
   ngAfterViewInit(): void {
@@ -93,18 +98,14 @@ export class ImageViewerComponent
 
   public onPreviousImage(): void {
     this.adminControlsDirective?.detach();
-    const newIndex =
-      this.indexSubject.value > 0 ? this.indexSubject.value - 1 : this.images.length - 1;
+    const newIndex = this.index > 0 ? this.index - 1 : this.images.length - 1;
     this.indexSubject.next(newIndex);
-    this.store.dispatch(ImagesActions.fetchImageRequested({ imageId: this.imageId }));
   }
 
   public onNextImage(): void {
     this.adminControlsDirective?.detach();
-    const newIndex =
-      this.indexSubject.value < this.images.length - 1 ? this.indexSubject.value + 1 : 0;
+    const newIndex = this.index < this.images.length - 1 ? this.index + 1 : 0;
     this.indexSubject.next(newIndex);
-    this.store.dispatch(ImagesActions.fetchImageRequested({ imageId: this.imageId }));
   }
 
   public getAdminControlsConfig(image: Image): AdminControlsConfig {
@@ -139,6 +140,46 @@ export class ImageViewerComponent
       this.store.dispatch(ImagesActions.deleteImageRequested({ image }));
       this.dialogResult.emit(null);
     }
+  }
+
+  private prefetchAdjacentImages(): void {
+    if (this.images.length > 1) {
+      // Immediate next image
+      this.fetchImage(1);
+    }
+
+    if (this.images.length > 2) {
+      // Immediate previous image (last index)
+      this.fetchImage(this.images.length - 1);
+    }
+
+    if (this.images.length > 3) {
+      // Fetch the rest with a delay to ensure browser prioritizes the first requests
+      setTimeout(() => {
+        for (let i = 2; i <= Math.floor(this.images.length / 2); i++) {
+          this.fetchImage(i);
+          // Avoid duplicate fetches when the middle is reached in odd-length arrays
+          if (i !== this.images.length - i) {
+            this.fetchImage(this.images.length - i);
+          }
+        }
+      }, 100);
+    }
+  }
+
+  private fetchImage(index: number): void {
+    const imageId = this.images[index].id;
+
+    this.store
+      .select(ImagesSelectors.selectImageById(imageId))
+      .pipe(take(1))
+      .subscribe(image => {
+        if (!image?.originalUrl) {
+          this.store.dispatch(
+            ImagesActions.fetchImageRequested({ imageId: this.imageId }),
+          );
+        }
+      });
   }
 
   private initKeyListener(): void {

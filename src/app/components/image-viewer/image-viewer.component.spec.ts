@@ -1,6 +1,6 @@
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
-import { Renderer2 } from '@angular/core';
+import { DebugElement, Renderer2 } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
@@ -21,6 +21,8 @@ describe('ImageViewerComponent', () => {
   const mockAlbum = 'Test Album';
   const mockImages = MOCK_IMAGES;
   const mockIsAdmin = true;
+
+  let imgElement: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -62,6 +64,10 @@ describe('ImageViewerComponent', () => {
       });
   });
 
+  beforeEach(() => {
+    imgElement = query(fixture.debugElement, 'figure .image-container img');
+  });
+
   describe('initialization', () => {
     it('should dispatch fetchImageRequested on init', () => {
       expect(store.dispatch).toHaveBeenCalledWith(
@@ -73,6 +79,15 @@ describe('ImageViewerComponent', () => {
       component.currentImage$.subscribe(image => {
         expect(image).toEqual(mockImages[0]);
       });
+    });
+
+    it('should set caption when image loads', () => {
+      expect(component.displayedCaption).toBe('');
+
+      imgElement.triggerEventHandler('load', null);
+      fixture.detectChanges();
+
+      expect(component.displayedCaption).toBe(mockImages[0].caption);
     });
 
     it('should set up key listener after view init', fakeAsync(() => {
@@ -89,6 +104,11 @@ describe('ImageViewerComponent', () => {
     it('should go to previous image when onPreviousImage is called', () => {
       // @ts-expect-error Private class member
       const detachSpy = jest.spyOn(component.adminControlsDirective, 'detach');
+
+      imgElement.triggerEventHandler('load', null);
+      fixture.detectChanges();
+
+      // Now navigate to previous image
       component.onPreviousImage();
       fixture.detectChanges();
 
@@ -96,11 +116,19 @@ describe('ImageViewerComponent', () => {
       expect(store.dispatch).toHaveBeenCalledWith(
         ImagesActions.fetchImageRequested({ imageId: mockImages[3].id }),
       );
+
+      // Before the new image loads, caption should still be the first image's caption
+      expect(component.displayedCaption).toBe(mockImages[0].caption);
     });
 
     it('should go to next image when onNextImage is called', () => {
       // @ts-expect-error Private class member
       const detachSpy = jest.spyOn(component.adminControlsDirective, 'detach');
+
+      const imgElement = query(fixture.debugElement, 'figure .image-container img');
+      imgElement.triggerEventHandler('load', null);
+      fixture.detectChanges();
+
       component.onNextImage();
       fixture.detectChanges();
 
@@ -108,6 +136,9 @@ describe('ImageViewerComponent', () => {
       expect(store.dispatch).toHaveBeenCalledWith(
         ImagesActions.fetchImageRequested({ imageId: mockImages[1].id }),
       );
+
+      // Before the new image loads, caption should still be the first image's caption
+      expect(component.displayedCaption).toBe(mockImages[0].caption);
     });
   });
 
@@ -203,11 +234,17 @@ describe('ImageViewerComponent', () => {
   });
 
   describe('UI elements', () => {
-    it('should display image with album name and caption', () => {
-      expect(query(fixture.debugElement, 'figure .image-container img')).not.toBeNull();
+    it('should display image with album name and caption after image load', () => {
+      expect(imgElement).not.toBeNull();
+      expect(component.displayedCaption).not.toBe(mockImages[0].caption);
       expect(queryTextContent(fixture.debugElement, 'figcaption .album-name')).toBe(
         mockAlbum,
       );
+
+      imgElement.triggerEventHandler('load', null);
+      fixture.detectChanges();
+
+      expect(component.displayedCaption).toBe(mockImages[0].caption);
       expect(queryTextContent(fixture.debugElement, 'figcaption .image-caption')).toBe(
         mockImages[0].caption,
       );

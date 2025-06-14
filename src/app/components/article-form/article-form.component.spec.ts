@@ -278,8 +278,7 @@ describe('ArticleFormComponent', () => {
   });
 
   describe('form submission', () => {
-    it('should mark all fields as touched if form is invalid on submit', () => {
-      const submitButton = query(fixture.debugElement, '.submit-button');
+    it('should mark all fields as touched if form is invalid on submit', async () => {
       const dialogOpenSpy = jest.spyOn(dialogService, 'open');
       component.form.patchValue({
         bannerImageId: '',
@@ -290,7 +289,7 @@ describe('ArticleFormComponent', () => {
       component.form.markAsUntouched();
       fixture.detectChanges();
 
-      submitButton.triggerEventHandler('click');
+      await component.onSubmit();
       fixture.detectChanges();
 
       expect(component.form.get('bannerImageId')?.touched).toBe(true);

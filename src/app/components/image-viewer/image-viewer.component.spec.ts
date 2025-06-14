@@ -63,10 +63,6 @@ describe('ImageViewerComponent', () => {
   });
 
   describe('initialization', () => {
-    it('should create the component', () => {
-      expect(component).toBeTruthy();
-    });
-
     it('should dispatch fetchImageRequested on init', () => {
       expect(store.dispatch).toHaveBeenCalledWith(
         ImagesActions.fetchImageRequested({ imageId: mockImages[0].id }),

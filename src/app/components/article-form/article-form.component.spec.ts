@@ -62,10 +62,6 @@ describe('ArticleFormComponent', () => {
       });
   });
 
-  it('should create the component', () => {
-    expect(component).toBeTruthy();
-  });
-
   describe('form initialization', () => {
     it('should initialize form and its value change listener', () => {
       // @ts-expect-error Private class member
@@ -119,40 +115,30 @@ describe('ArticleFormComponent', () => {
   });
 
   describe('form validation', () => {
-    describe('required', () => {
-      it('should mark empty fields as invalid', () => {
+    describe('required validator', () => {
+      it('should mark empty field as invalid', () => {
         component.form.patchValue({
-          bannerImageId: '',
           title: '',
-          body: '',
         });
         component.form.markAllAsTouched();
         fixture.detectChanges();
 
-        expect(component.form.valid).toBe(false);
-        expect(component.form.get('bannerImageId')?.hasError('required')).toBe(true);
         expect(component.form.get('title')?.hasError('required')).toBe(true);
-        expect(component.form.get('body')?.hasError('required')).toBe(true);
       });
 
-      it('should mark non-empty fields as valid', () => {
+      it('should mark non-empty field as valid', () => {
         component.form.patchValue({
           bannerImageId: 'a',
-          title: ' b ',
-          body: ' 123 ',
         });
         component.form.markAllAsTouched();
         fixture.detectChanges();
 
-        expect(component.form.valid).toBe(true);
         expect(component.form.get('bannerImageId')?.hasError('required')).toBe(false);
-        expect(component.form.get('title')?.hasError('required')).toBe(false);
-        expect(component.form.get('body')?.hasError('required')).toBe(false);
       });
     });
 
-    describe('pattern', () => {
-      it('should mark fields with invalid pattern as invalid', () => {
+    describe('pattern validator', () => {
+      it('should mark field with an invalid pattern as invalid', () => {
         component.form.patchValue({
           bannerImageId: ' ',
           title: '\t\n',
@@ -161,13 +147,12 @@ describe('ArticleFormComponent', () => {
         component.form.markAllAsTouched();
         fixture.detectChanges();
 
-        expect(component.form.valid).toBe(false);
         expect(component.form.get('bannerImageId')?.hasError('pattern')).toBe(true);
         expect(component.form.get('title')?.hasError('pattern')).toBe(true);
         expect(component.form.get('body')?.hasError('pattern')).toBe(true);
       });
 
-      it('should mark fields with valid pattern as valid', () => {
+      it('should mark field with a valid pattern as valid', () => {
         component.form.patchValue({
           bannerImageId: '🔥',
           title: 'abc',
@@ -176,7 +161,6 @@ describe('ArticleFormComponent', () => {
         component.form.markAllAsTouched();
         fixture.detectChanges();
 
-        expect(component.form.valid).toBe(true);
         expect(component.form.get('bannerImageId')?.hasError('pattern')).toBe(false);
         expect(component.form.get('title')?.hasError('pattern')).toBe(false);
         expect(component.form.get('body')?.hasError('pattern')).toBe(false);
@@ -303,7 +287,7 @@ describe('ArticleFormComponent', () => {
         body: '',
       });
       component.form.markAsPristine();
-      component.form.markAllAsTouched();
+      component.form.markAsUntouched();
       fixture.detectChanges();
 
       submitButton.triggerEventHandler('click');

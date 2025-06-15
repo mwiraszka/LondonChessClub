@@ -1,7 +1,7 @@
 @if (currentImage$ | async; as image) {
-  <div class="previous-image-button-wrapper">
+  <div class="button-wrapper">
     <button
-      class="lcc-secondary-button lcc-light-button"
+      class="previous-image-button lcc-secondary-button lcc-light-button"
       [disabled]="images.length === 1"
       tooltip="Previous image"
       (click)="onPreviousImage()">
@@ -9,9 +9,9 @@
     </button>
   </div>
 
-  <div class="next-image-button-wrapper">
+  <div class="button-wrapper">
     <button
-      class="lcc-secondary-button lcc-light-button"
+      class="next-image-button lcc-secondary-button lcc-light-button"
       [disabled]="images.length === 1"
       tooltip="Next image"
       (click)="onNextImage()">

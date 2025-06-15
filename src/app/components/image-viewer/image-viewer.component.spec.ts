@@ -1,7 +1,7 @@
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
-import { DebugElement, Renderer2 } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { Renderer2 } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
@@ -21,8 +21,6 @@ describe('ImageViewerComponent', () => {
   const mockAlbum = 'Test Album';
   const mockImages = MOCK_IMAGES;
   const mockIsAdmin = true;
-
-  let imgElement: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -64,19 +62,8 @@ describe('ImageViewerComponent', () => {
       });
   });
 
-  beforeEach(() => {
-    imgElement = query(fixture.debugElement, 'figure .image-container img');
-    
-    // Mock timers for all tests
-    jest.useFakeTimers();
-  });
-  
-  afterEach(() => {
-    jest.useRealTimers();
-  });
-
   describe('initialization', () => {
-    it('should dispatch fetchImageRequested on init', () => {
+    it('should dispatch fetchImageRequested for image at index 0', () => {
       expect(store.dispatch).toHaveBeenCalledWith(
         ImagesActions.fetchImageRequested({ imageId: mockImages[0].id }),
       );
@@ -87,187 +74,115 @@ describe('ImageViewerComponent', () => {
         expect(image).toEqual(mockImages[0]);
       });
     });
-    
+
     describe('prefetching adjacent images', () => {
+      let fetchImageSpy: jest.SpyInstance;
+
       beforeEach(() => {
         jest.useFakeTimers();
-        jest.clearAllMocks();
+        // @ts-expect-error Private class member
+        fetchImageSpy = jest.spyOn(component, 'fetchImage');
       });
-      
-      afterEach(() => {
-        jest.useRealTimers();
-      });
-      
-      it('should immediately fetch the next image (index 1)', () => {
-        // Reset mocks and re-initialize the component
-        jest.clearAllMocks();
-        component.ngOnInit();
-        
-        // Now verify calls were made - the component will fetch both the current image (0)
-        // and the next image (1) on initialization
-        const dispatchCalls = (store.dispatch as jest.Mock).mock.calls;
-        
-        // Find the call for the next image (index 1)
-        const nextImageCall = dispatchCalls.find(call => 
-          call[0].imageId === mockImages[1].id
-        );
-        
-        expect(nextImageCall).toBeTruthy();
-      });
-      
-      it('should immediately fetch the previous image (last index)', () => {
-        // Reset mocks and component
-        jest.clearAllMocks();
-        component.ngOnInit();
-        
-        // Check all dispatch calls
-        const dispatchCalls = (store.dispatch as jest.Mock).mock.calls;
-        
-        // Find the call for the previous image (last index)
-        const prevImageCall = dispatchCalls.find(call => 
-          call[0].imageId === mockImages[mockImages.length - 1].id
-        );
-        
-        expect(prevImageCall).toBeTruthy();
-      });
-      
-      it('should fetch remaining images after a delay', fakeAsync(() => {
-        // Reset dispatch call tracking
-        jest.clearAllMocks();
-        component.ngOnInit();
-        
-        // Only the immediate next and previous should be fetched immediately
-        expect(store.dispatch).toHaveBeenCalledTimes(3); // Index 0 (current), 1 (next), and last (previous)
-        
-        // Clear mocks to track only the delayed fetches
-        jest.clearAllMocks();
-        
-        // Fast-forward time to trigger the setTimeout
+
+      it('should correctly handle albums with a single image', () => {
+        component.images = [mockImages[0]];
+
+        // @ts-expect-error Private class member
+        component.prefetchAdjacentImages();
+
         jest.advanceTimersByTime(100);
-        tick(0);
-        
-        // Check that middle images are fetched
-        if (mockImages.length > 3) {
-          // If we have more than 3 images, verify that the 3rd image (index 2) was fetched after the delay
-          expect(store.dispatch).toHaveBeenCalledWith(
-            ImagesActions.fetchImageRequested({ imageId: mockImages[2].id }),
-          );
-          
-          // Check if we have enough images to test the second-to-last as well
-          if (mockImages.length > 4) {
-            expect(store.dispatch).toHaveBeenCalledWith(
-              ImagesActions.fetchImageRequested({ imageId: mockImages[mockImages.length - 2].id }),
-            );
-          }
-        }
-      }));
-      
-      it('should handle arrays with few images correctly', fakeAsync(() => {
-        // Create a test component with only 2 images
+
+        expect(fetchImageSpy).not.toHaveBeenCalled();
+      });
+
+      it('should correctly handle albums with two images', () => {
         component.images = [mockImages[0], mockImages[1]];
-        jest.clearAllMocks();
-        
-        component.ngOnInit();
-        
-        // Should fetch current and next image only
-        expect(store.dispatch).toHaveBeenCalledTimes(2);
-        expect(store.dispatch).toHaveBeenCalledWith(
-          ImagesActions.fetchImageRequested({ imageId: mockImages[0].id }),
-        );
-        expect(store.dispatch).toHaveBeenCalledWith(
-          ImagesActions.fetchImageRequested({ imageId: mockImages[1].id }),
-        );
-        
-        // No delayed fetches should happen
+
+        // @ts-expect-error Private class member
+        component.prefetchAdjacentImages();
+
+        expect(fetchImageSpy).toHaveBeenCalledTimes(1);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(1, 1);
+
         jest.clearAllMocks();
         jest.advanceTimersByTime(100);
-        tick(0);
-        expect(store.dispatch).not.toHaveBeenCalled();
-      }));
+
+        expect(fetchImageSpy).not.toHaveBeenCalled();
+      });
+
+      it('should correctly handle albums with three images', () => {
+        component.images = [mockImages[0], mockImages[1], mockImages[2]];
+
+        // @ts-expect-error Private class member
+        component.prefetchAdjacentImages();
+
+        expect(fetchImageSpy).toHaveBeenCalledTimes(2);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(1, 1);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(2, 2);
+
+        jest.clearAllMocks();
+        jest.advanceTimersByTime(100);
+
+        expect(fetchImageSpy).not.toHaveBeenCalled();
+      });
+
+      it('should correctly handle albums with many images', () => {
+        // @ts-expect-error Private class member
+        component.prefetchAdjacentImages();
+
+        expect(fetchImageSpy).toHaveBeenCalledTimes(2);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(1, 1);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(2, mockImages.length - 1);
+
+        jest.clearAllMocks();
+        jest.advanceTimersByTime(100);
+
+        // Current image, immediate next image and immediate previous image have already been fetched
+        expect(fetchImageSpy).toHaveBeenCalledTimes(mockImages.length - 3);
+
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(1, 2);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(2, mockImages.length - 2);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(3, 3);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(4, mockImages.length - 3);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(5, 4);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(6, mockImages.length - 4);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(7, 5);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(8, mockImages.length - 5);
+      });
     });
-
-    it('should set caption when image loads', () => {
-      expect(component.displayedCaption).toBe('');
-
-      imgElement.triggerEventHandler('load', null);
-      fixture.detectChanges();
-
-      expect(component.displayedCaption).toBe(mockImages[0].caption);
-    });
-
-    it('should set up key listener after view init', fakeAsync(() => {
-      // @ts-expect-error Private class member
-      const initKeyListenerSpy = jest.spyOn(component, 'initKeyListener');
-      component.ngAfterViewInit();
-      tick(0);
-
-      expect(initKeyListenerSpy).toHaveBeenCalled();
-    }));
   });
 
   describe('navigation', () => {
-    it('should go to previous image when onPreviousImage is called', () => {
+    let adminControlsDetachSpy: jest.SpyInstance;
+    let indexSubjectNextSpy: jest.SpyInstance;
+
+    beforeEach(() => {
       // @ts-expect-error Private class member
-      const detachSpy = jest.spyOn(component.adminControlsDirective, 'detach');
+      adminControlsDetachSpy = jest.spyOn(component.adminControlsDirective, 'detach');
+      // @ts-expect-error Private class member
+      indexSubjectNextSpy = jest.spyOn(component.indexSubject, 'next');
 
-      imgElement.triggerEventHandler('load', null);
-      fixture.detectChanges();
+      // @ts-expect-error Private class member
+      component.indexSubject.next(0);
+      jest.clearAllMocks();
+    });
 
-      // Now navigate to previous image
+    it('should go to previous image and detach admin controls when onPreviousImage is called', () => {
       component.onPreviousImage();
       fixture.detectChanges();
 
-      expect(detachSpy).toHaveBeenCalled();
-      expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchImageRequested({ imageId: mockImages[3].id }),
-      );
-
-      // Before the new image loads, caption should still be the first image's caption
-      expect(component.displayedCaption).toBe(mockImages[0].caption);
+      expect(adminControlsDetachSpy).toHaveBeenCalledTimes(1);
+      expect(indexSubjectNextSpy).toHaveBeenCalledTimes(1);
+      expect(indexSubjectNextSpy).toHaveBeenCalledWith(mockImages.length - 1);
     });
 
-    it('should go to next image when onNextImage is called', () => {
-      // @ts-expect-error Private class member
-      const detachSpy = jest.spyOn(component.adminControlsDirective, 'detach');
-
-      const imgElement = query(fixture.debugElement, 'figure .image-container img');
-      imgElement.triggerEventHandler('load', null);
-      fixture.detectChanges();
-
+    it('should go to next image and detach admin controls when onNextImage is called', () => {
       component.onNextImage();
       fixture.detectChanges();
 
-      expect(detachSpy).toHaveBeenCalled();
-      expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchImageRequested({ imageId: mockImages[1].id }),
-      );
-
-      // Before the new image loads, caption should still be the first image's caption
-      expect(component.displayedCaption).toBe(mockImages[0].caption);
-    });
-  });
-
-  describe('navigation methods', () => {
-    it('should handle ArrowLeft key', () => {
-      const previousImageSpy = jest.spyOn(component, 'onPreviousImage');
-      component.onPreviousImage();
-      fixture.detectChanges();
-
-      expect(previousImageSpy).toHaveBeenCalledTimes(1);
-      expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchImageRequested({ imageId: mockImages[3].id }),
-      );
-    });
-
-    it('should handle ArrowRight key', () => {
-      const nextImageSpy = jest.spyOn(component, 'onNextImage');
-      component.onNextImage();
-      fixture.detectChanges();
-
-      expect(nextImageSpy).toHaveBeenCalledTimes(1);
-      expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchImageRequested({ imageId: mockImages[1].id }),
-      );
+      expect(adminControlsDetachSpy).toHaveBeenCalledTimes(1);
+      expect(indexSubjectNextSpy).toHaveBeenCalledTimes(1);
+      expect(indexSubjectNextSpy).toHaveBeenCalledWith(1);
     });
   });
 
@@ -340,45 +255,34 @@ describe('ImageViewerComponent', () => {
 
   describe('UI elements', () => {
     it('should display image with album name and caption after image load', () => {
-      expect(imgElement).not.toBeNull();
-      expect(component.displayedCaption).not.toBe(mockImages[0].caption);
-      expect(queryTextContent(fixture.debugElement, 'figcaption .album-name')).toBe(
-        mockAlbum,
-      );
-
-      imgElement.triggerEventHandler('load', null);
+      query(fixture.debugElement, '.image-container img').triggerEventHandler('load');
       fixture.detectChanges();
 
-      expect(component.displayedCaption).toBe(mockImages[0].caption);
-      expect(queryTextContent(fixture.debugElement, 'figcaption .image-caption')).toBe(
+      expect(queryTextContent(fixture.debugElement, '.album-name')).toBe(mockAlbum);
+      expect(queryTextContent(fixture.debugElement, '.image-caption')).toBe(
         mockImages[0].caption,
       );
     });
 
-    it('should render previous and next buttons', () => {
+    it('should display enabled previous and next buttons if album contains more than one image', () => {
       expect(
-        query(fixture.debugElement, '.previous-image-button-wrapper button'),
-      ).not.toBeNull();
+        query(fixture.debugElement, '.previous-image-button').nativeElement.disabled,
+      ).toBe(false);
       expect(
-        query(fixture.debugElement, '.next-image-button-wrapper button'),
-      ).not.toBeNull();
+        query(fixture.debugElement, '.next-image-button').nativeElement.disabled,
+      ).toBe(false);
     });
 
-    it('should handle click on previous button', () => {
-      jest.spyOn(component, 'onPreviousImage');
-      const prevButton = query(
-        fixture.debugElement,
-        '.previous-image-button-wrapper button',
-      );
-      prevButton.triggerEventHandler('click');
-      expect(component.onPreviousImage).toHaveBeenCalled();
-    });
+    it('should display disabled previous and next buttons if album contains exactly one image', () => {
+      component.images = [mockImages[0]];
+      fixture.detectChanges();
 
-    it('should handle click on next button', () => {
-      jest.spyOn(component, 'onNextImage');
-      const nextButton = query(fixture.debugElement, '.next-image-button-wrapper button');
-      nextButton.triggerEventHandler('click');
-      expect(component.onNextImage).toHaveBeenCalled();
+      expect(
+        query(fixture.debugElement, '.previous-image-button').nativeElement.disabled,
+      ).toBe(true);
+      expect(
+        query(fixture.debugElement, '.next-image-button').nativeElement.disabled,
+      ).toBe(true);
     });
   });
 });

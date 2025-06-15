@@ -11,4 +11,10 @@ window.matchMedia = jest.fn().mockImplementation(query => ({
   dispatchEvent: jest.fn(),
 }));
 
+jest.useFakeTimers({
+  doNotFake: ['nextTick'],
+  timerLimit: 1000,
+  now: 0,
+});
+
 setupZoneTestEnv();

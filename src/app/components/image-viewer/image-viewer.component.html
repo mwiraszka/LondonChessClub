@@ -2,6 +2,7 @@
   <div class="button-wrapper">
     <button
       class="previous-image-button lcc-secondary-button lcc-light-button"
+      [class.active]="isPreviousImageButtonActive"
       [disabled]="images.length === 1"
       tooltip="Previous image"
       (click)="onPreviousImage()">
@@ -12,6 +13,7 @@
   <div class="button-wrapper">
     <button
       class="next-image-button lcc-secondary-button lcc-light-button"
+      [class.active]="isNextImageButtonActive"
       [disabled]="images.length === 1"
       tooltip="Next image"
       (click)="onNextImage()">

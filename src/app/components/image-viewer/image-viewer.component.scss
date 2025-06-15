@@ -74,6 +74,11 @@ figcaption {
     padding: 4px;
     background-color: var(--lcc-color--imageViewer-buttonBackground) !important;
 
+    &:active,
+    &.active {
+      filter: brightness(1.5);
+    }
+
     &:disabled {
       border-color: var(--lcc-color--imageViewer-buttonDisabledBorder) !important;
       color: var(--lcc-color--imageViewer-buttonDisabledIcon) !important;

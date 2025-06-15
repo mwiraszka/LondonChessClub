@@ -57,6 +57,8 @@ export class ImageViewerComponent
 
   public currentImage$!: Observable<Image | null>;
   public displayedCaption: string = '';
+  public isPreviousImageButtonActive = false;
+  public isNextImageButtonActive = false;
 
   public get index(): number {
     return this.indexSubject.getValue();
@@ -74,7 +76,8 @@ export class ImageViewerComponent
     private readonly store: Store,
   ) {}
 
-  private keyListener?: () => void;
+  private keydownListener?: () => void;
+  private keyupListener?: () => void;
 
   ngOnInit(): void {
     this.currentImage$ = this.indexSubject.asObservable().pipe(
@@ -89,11 +92,12 @@ export class ImageViewerComponent
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => this.initKeyListener());
+    setTimeout(() => this.initKeyListeners());
   }
 
   ngOnDestroy(): void {
-    this.keyListener?.();
+    this.keydownListener?.();
+    this.keyupListener?.();
   }
 
   public onPreviousImage(): void {
@@ -182,18 +186,39 @@ export class ImageViewerComponent
       });
   }
 
-  private initKeyListener(): void {
-    this.keyListener = this.renderer.listen(
+  private initKeyListeners(): void {
+    this.keydownListener = this.renderer.listen(
       'document',
       'keydown',
       (event: KeyboardEvent) => {
+        if (this.isPreviousImageButtonActive || this.isNextImageButtonActive) {
+          return;
+        }
+
         if (event.key === 'ArrowLeft' && this.images.length > 1) {
+          this.isPreviousImageButtonActive = true;
           this.onPreviousImage();
         } else if (
           (event.key === 'ArrowRight' || event.key === ' ') &&
           this.images.length > 1
         ) {
+          this.isNextImageButtonActive = true;
           this.onNextImage();
+        }
+      },
+    );
+
+    this.keyupListener = this.renderer.listen(
+      'document',
+      'keyup',
+      (event: KeyboardEvent) => {
+        if (event.key === 'ArrowLeft' && this.images.length > 1) {
+          this.isPreviousImageButtonActive = false;
+        } else if (
+          (event.key === 'ArrowRight' || event.key === ' ') &&
+          this.images.length > 1
+        ) {
+          this.isNextImageButtonActive = false;
         }
       },
     );

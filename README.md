@@ -36,9 +36,10 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.3.2 - June 14th, 2025</summary>
 
 - 🚀 Implement a prefetching strategy in Image Viewer for quicker image loading, and prevent unnecessary fetches where possible
+- 🚀 A few minor aesthetic touch-ups in Image Viewer
 - 🐛 Only update caption in the Image Viewer once the previous/next image has fully loaded
 - 🐛 Ensure Champion page uses correct icon
-- 🔧 Further increase test coverage
+- 🔧 Further increase test coverage for image-related components
 
 </details>
 

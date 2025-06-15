@@ -50,7 +50,7 @@ export class NavigationBarComponent {
     {
       text: 'City Champion',
       internalPath: 'city-champion',
-      icon: 'award',
+      icon: 'shield',
     },
     {
       text: 'Photo Gallery',

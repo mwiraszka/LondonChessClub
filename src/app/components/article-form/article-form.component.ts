@@ -141,7 +141,7 @@ export class ArticleFormComponent implements OnInit {
     this.form = this.formBuilder.group<ArticleFormGroup>({
       bannerImageId: new FormControl(formData.bannerImageId, {
         nonNullable: true,
-        validators: Validators.required,
+        validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
       title: new FormControl(formData.title, {
         nonNullable: true,

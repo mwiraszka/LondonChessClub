@@ -57,15 +57,27 @@ figcaption {
   }
 }
 
-.previous-image-button-wrapper,
-.next-image-button-wrapper {
+.button-wrapper {
   position: absolute;
   top: 50%;
+
+  &:first-of-type {
+    left: 8px;
+  }
+
+  &:last-of-type {
+    right: 8px;
+  }
 
   button {
     display: flex;
     padding: 4px;
     background-color: var(--lcc-color--imageViewer-buttonBackground) !important;
+
+    &:active,
+    &.active {
+      filter: brightness(1.5);
+    }
 
     &:disabled {
       border-color: var(--lcc-color--imageViewer-buttonDisabledBorder) !important;
@@ -73,12 +85,4 @@ figcaption {
       background-color: var(--lcc-color--imageViewer-buttonDisabledBackground) !important;
     }
   }
-}
-
-.previous-image-button-wrapper {
-  left: 8px;
-}
-
-.next-image-button-wrapper {
-  right: 8px;
 }

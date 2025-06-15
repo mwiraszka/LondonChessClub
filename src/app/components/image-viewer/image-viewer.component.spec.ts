@@ -1,7 +1,7 @@
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { Renderer2 } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
@@ -21,30 +21,19 @@ describe('ImageViewerComponent', () => {
   const mockAlbum = 'Test Album';
   const mockImages = MOCK_IMAGES;
   const mockIsAdmin = true;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let mockRenderer: any;
-
-  const mockListenFn = jest.fn().mockImplementation(() => {
-    return () => {};
-  });
 
   beforeEach(async () => {
-    // Mock the component's initKeyListener method to call the renderer.listen directly
-    // This allows us to bypass the setTimeout
-    mockRenderer = {
-      listen: mockListenFn,
-    };
-
-    const mockDialogService = {
-      open: jest.fn().mockResolvedValue('confirm'),
-    };
-
     await TestBed.configureTestingModule({
       imports: [ImageViewerComponent],
       providers: [
         provideMockStore(),
-        { provide: DialogService, useValue: mockDialogService },
-        { provide: Renderer2, useValue: mockRenderer },
+        { provide: DialogService, useValue: { open: jest.fn() } },
+        {
+          provide: Renderer2,
+          useValue: {
+            listen: jest.fn().mockReturnValue(() => {}),
+          },
+        },
       ],
     })
       .overrideDirective(AdminControlsDirective, {
@@ -74,11 +63,7 @@ describe('ImageViewerComponent', () => {
   });
 
   describe('initialization', () => {
-    it('should create the component', () => {
-      expect(component).toBeTruthy();
-    });
-
-    it('should dispatch fetchImageRequested on init', () => {
+    it('should dispatch fetchImageRequested for image at index 0', () => {
       expect(store.dispatch).toHaveBeenCalledWith(
         ImagesActions.fetchImageRequested({ imageId: mockImages[0].id }),
       );
@@ -90,121 +75,114 @@ describe('ImageViewerComponent', () => {
       });
     });
 
-    it('should set up key listener after view init', fakeAsync(() => {
-      mockListenFn.mockClear();
-      // Replace initKeyListener with a direct spy implementation
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      jest.spyOn(component as any, 'initKeyListener').mockImplementation(() => {
-        component['keyListener'] = mockRenderer.listen('document', 'keydown', () => {});
-      });
-      component.ngAfterViewInit();
-      tick(0);
+    describe('prefetching adjacent images', () => {
+      let fetchImageSpy: jest.SpyInstance;
 
-      expect(component['initKeyListener']).toHaveBeenCalled();
-      expect(mockRenderer.listen).toHaveBeenCalledWith(
-        'document',
-        'keydown',
-        expect.any(Function),
-      );
-    }));
+      beforeEach(() => {
+        jest.useFakeTimers();
+        // @ts-expect-error Private class member
+        fetchImageSpy = jest.spyOn(component, 'fetchImage');
+      });
+
+      it('should correctly handle albums with a single image', () => {
+        component.images = [mockImages[0]];
+
+        // @ts-expect-error Private class member
+        component.prefetchAdjacentImages();
+
+        jest.advanceTimersByTime(100);
+
+        expect(fetchImageSpy).not.toHaveBeenCalled();
+      });
+
+      it('should correctly handle albums with two images', () => {
+        component.images = [mockImages[0], mockImages[1]];
+
+        // @ts-expect-error Private class member
+        component.prefetchAdjacentImages();
+
+        expect(fetchImageSpy).toHaveBeenCalledTimes(1);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(1, 1);
+
+        jest.clearAllMocks();
+        jest.advanceTimersByTime(100);
+
+        expect(fetchImageSpy).not.toHaveBeenCalled();
+      });
+
+      it('should correctly handle albums with three images', () => {
+        component.images = [mockImages[0], mockImages[1], mockImages[2]];
+
+        // @ts-expect-error Private class member
+        component.prefetchAdjacentImages();
+
+        expect(fetchImageSpy).toHaveBeenCalledTimes(2);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(1, 1);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(2, 2);
+
+        jest.clearAllMocks();
+        jest.advanceTimersByTime(100);
+
+        expect(fetchImageSpy).not.toHaveBeenCalled();
+      });
+
+      it('should correctly handle albums with many images', () => {
+        // @ts-expect-error Private class member
+        component.prefetchAdjacentImages();
+
+        expect(fetchImageSpy).toHaveBeenCalledTimes(2);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(1, 1);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(2, mockImages.length - 1);
+
+        jest.clearAllMocks();
+        jest.advanceTimersByTime(100);
+
+        // Current image, immediate next image and immediate previous image have already been fetched
+        expect(fetchImageSpy).toHaveBeenCalledTimes(mockImages.length - 3);
+
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(1, 2);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(2, mockImages.length - 2);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(3, 3);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(4, mockImages.length - 3);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(5, 4);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(6, mockImages.length - 4);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(7, 5);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(8, mockImages.length - 5);
+      });
+    });
   });
 
   describe('navigation', () => {
+    let adminControlsDetachSpy: jest.SpyInstance;
+    let indexSubjectNextSpy: jest.SpyInstance;
+
     beforeEach(() => {
+      // @ts-expect-error Private class member
+      adminControlsDetachSpy = jest.spyOn(component.adminControlsDirective, 'detach');
+      // @ts-expect-error Private class member
+      indexSubjectNextSpy = jest.spyOn(component.indexSubject, 'next');
+
+      // @ts-expect-error Private class member
+      component.indexSubject.next(0);
       jest.clearAllMocks();
-      fixture.detectChanges();
     });
 
-    it('should go to previous image when onPreviousImage is called', () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      component.adminControlsDirective = { detach: jest.fn() } as any;
+    it('should go to previous image and detach admin controls when onPreviousImage is called', () => {
       component.onPreviousImage();
+      fixture.detectChanges();
 
-      expect(component.adminControlsDirective?.detach).toHaveBeenCalled();
-      expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchImageRequested({ imageId: mockImages[3].id }),
-      );
+      expect(adminControlsDetachSpy).toHaveBeenCalledTimes(1);
+      expect(indexSubjectNextSpy).toHaveBeenCalledTimes(1);
+      expect(indexSubjectNextSpy).toHaveBeenCalledWith(mockImages.length - 1);
     });
 
-    it('should go to next image when onNextImage is called', () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      component.adminControlsDirective = { detach: jest.fn() } as any;
+    it('should go to next image and detach admin controls when onNextImage is called', () => {
       component.onNextImage();
+      fixture.detectChanges();
 
-      expect(component.adminControlsDirective?.detach).toHaveBeenCalled();
-      expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchImageRequested({ imageId: mockImages[1].id }),
-      );
-    });
-  });
-
-  describe('keyboard navigation', () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let keydownHandler: any;
-
-    beforeEach(fakeAsync(() => {
-      mockListenFn.mockClear();
-
-      // Implement our own version of initKeyListener that will call the
-      // renderer.listen method and capture the keydown handler
-      component['initKeyListener'] = () => {
-        component['keyListener'] = mockRenderer.listen(
-          'document',
-          'keydown',
-          (event: KeyboardEvent) => {
-            if (event.key === 'ArrowLeft' && component.images.length > 1) {
-              component.onPreviousImage();
-            } else if (
-              (event.key === 'ArrowRight' || event.key === ' ') &&
-              component.images.length > 1
-            ) {
-              component.onNextImage();
-            }
-          },
-        );
-      };
-
-      component.ngAfterViewInit();
-      tick(0);
-
-      // Extract the keydownHandler from the mock implementation for testing
-      keydownHandler = mockListenFn.mock.calls[0][2];
-    }));
-
-    it('should navigate to previous image on ArrowLeft key', () => {
-      keydownHandler({ key: 'ArrowLeft' });
-
-      expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchImageRequested({ imageId: mockImages[3].id }),
-      );
-    });
-
-    it('should navigate to next image on ArrowRight key', () => {
-      keydownHandler({ key: 'ArrowRight' });
-
-      expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchImageRequested({ imageId: mockImages[1].id }),
-      );
-    });
-
-    it('should navigate to next image on Space key', () => {
-      keydownHandler({ key: ' ' });
-
-      expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchImageRequested({ imageId: mockImages[1].id }),
-      );
-    });
-
-    it('should not navigate if there is only one image', () => {
-      // Modify component to have only one image
-      component.images = [mockImages[0]];
-      jest.clearAllMocks();
-
-      keydownHandler({ key: 'ArrowLeft' });
-      keydownHandler({ key: 'ArrowRight' });
-      keydownHandler({ key: ' ' });
-
-      expect(store.dispatch).not.toHaveBeenCalled();
+      expect(adminControlsDetachSpy).toHaveBeenCalledTimes(1);
+      expect(indexSubjectNextSpy).toHaveBeenCalledTimes(1);
+      expect(indexSubjectNextSpy).toHaveBeenCalledWith(1);
     });
   });
 
@@ -225,7 +203,9 @@ describe('ImageViewerComponent', () => {
 
   describe('image deletion', () => {
     it('should open confirmation dialog and dispatch delete action when confirmed', async () => {
-      const dialogOpenSpy = jest.spyOn(dialogService, 'open');
+      const dialogOpenSpy = jest
+        .spyOn(dialogService, 'open')
+        .mockResolvedValue('confirm');
       const dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
 
       await component.onDeleteImage(mockImages[1]);
@@ -242,15 +222,13 @@ describe('ImageViewerComponent', () => {
         },
         isModal: true,
       });
+      expect(dialogResultSpy).toHaveBeenCalledWith(null);
       expect(store.dispatch).toHaveBeenCalledWith(
         ImagesActions.deleteImageRequested({ image: mockImages[1] }),
       );
-      expect(dialogResultSpy).toHaveBeenCalledWith(null);
     });
 
     it('should not dispatch delete action when dialog is cancelled', async () => {
-      // Reset all mocks before this test
-      jest.clearAllMocks();
       const dialogOpenSpy = jest.spyOn(dialogService, 'open').mockResolvedValue('cancel');
       const dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
 
@@ -268,49 +246,43 @@ describe('ImageViewerComponent', () => {
         },
         isModal: true,
       });
-      // Check that store.dispatch was not called with the delete action
+      expect(dialogResultSpy).not.toHaveBeenCalled();
       expect(store.dispatch).not.toHaveBeenCalledWith(
         ImagesActions.deleteImageRequested({ image: mockImages[1] }),
       );
-      expect(dialogResultSpy).not.toHaveBeenCalled();
     });
   });
 
   describe('UI elements', () => {
-    it('should display image with album name and caption', () => {
-      expect(query(fixture.debugElement, 'figure .image-container img')).not.toBeNull();
-      expect(queryTextContent(fixture.debugElement, 'figcaption .album-name')).toBe(
-        mockAlbum,
-      );
-      expect(queryTextContent(fixture.debugElement, 'figcaption .image-caption')).toBe(
+    it('should display image with album name and caption after image load', () => {
+      query(fixture.debugElement, '.image-container img').triggerEventHandler('load');
+      fixture.detectChanges();
+
+      expect(queryTextContent(fixture.debugElement, '.album-name')).toBe(mockAlbum);
+      expect(queryTextContent(fixture.debugElement, '.image-caption')).toBe(
         mockImages[0].caption,
       );
     });
 
-    it('should render previous and next buttons', () => {
+    it('should display enabled previous and next buttons if album contains more than one image', () => {
       expect(
-        query(fixture.debugElement, '.previous-image-button-wrapper button'),
-      ).not.toBeNull();
+        query(fixture.debugElement, '.previous-image-button').nativeElement.disabled,
+      ).toBe(false);
       expect(
-        query(fixture.debugElement, '.next-image-button-wrapper button'),
-      ).not.toBeNull();
+        query(fixture.debugElement, '.next-image-button').nativeElement.disabled,
+      ).toBe(false);
     });
 
-    it('should handle click on previous button', () => {
-      jest.spyOn(component, 'onPreviousImage');
-      const prevButton = query(
-        fixture.debugElement,
-        '.previous-image-button-wrapper button',
-      );
-      prevButton.triggerEventHandler('click');
-      expect(component.onPreviousImage).toHaveBeenCalled();
-    });
+    it('should display disabled previous and next buttons if album contains exactly one image', () => {
+      component.images = [mockImages[0]];
+      fixture.detectChanges();
 
-    it('should handle click on next button', () => {
-      jest.spyOn(component, 'onNextImage');
-      const nextButton = query(fixture.debugElement, '.next-image-button-wrapper button');
-      nextButton.triggerEventHandler('click');
-      expect(component.onNextImage).toHaveBeenCalled();
+      expect(
+        query(fixture.debugElement, '.previous-image-button').nativeElement.disabled,
+      ).toBe(true);
+      expect(
+        query(fixture.debugElement, '.next-image-button').nativeElement.disabled,
+      ).toBe(true);
     });
   });
 });

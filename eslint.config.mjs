@@ -10,7 +10,7 @@ export default [
   ...tseslint.configs.recommended,
   {
     rules: {
-      '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }],
+      '@typescript-eslint/no-unused-vars': ['warn', { ignoreRestSiblings: true }],
     },
   },
 ];

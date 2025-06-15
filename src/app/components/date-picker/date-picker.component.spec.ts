@@ -1,15 +1,17 @@
 import moment from 'moment-timezone';
 
-import { DOCUMENT } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { query, queryTextContent } from '@app/utils';
+import { query, queryAll, queryTextContent } from '@app/utils';
 
 import { DatePickerComponent } from './date-picker.component';
 
 describe('DatePickerComponent', () => {
   let component: DatePickerComponent;
   let fixture: ComponentFixture<DatePickerComponent>;
+
+  beforeAll(() => moment.tz.setDefault('UTC'));
+  afterAll(() => moment.tz.setDefault());
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -24,8 +26,8 @@ describe('DatePickerComponent', () => {
         component.screenWidth = 1000;
         component.selectedDate = moment('2050-01-01');
 
-        TestBed.inject(DOCUMENT);
-
+        // Initialize the calendar data
+        component.renderCalendar();
         fixture.detectChanges();
       });
   });
@@ -79,9 +81,91 @@ describe('DatePickerComponent', () => {
 
   describe('calendar table', () => {
     it('should render a 7 x 6 table for every month, regardless of number of days', () => {
-      expect(query(fixture.debugElement, '.calendar-table')).not.toBeNull();
+      const table = query(fixture.debugElement, '.calendar-table');
+      const headerCells = queryAll(table, 'thead th');
+      const bodyRows = queryAll(table, 'tbody tr');
+      const dayCells = queryAll(table, 'tbody tr td');
 
-      // TODO: More details about calendar table & test day selection
+      expect(table).not.toBeNull();
+      expect(headerCells.length).toBe(component.DAYS_OF_WEEK.length);
+      expect(headerCells[0].nativeElement.textContent).toBe('Sun');
+      expect(headerCells[6].nativeElement.textContent).toBe('Sat');
+      expect(bodyRows.length).toBe(component.WEEKS_IN_CALENDAR);
+      // 7 days x 6 weeks = 42 day cells
+      expect(dayCells.length).toBe(42);
+    });
+
+    it('should mark days outside current month as disabled', () => {
+      let disabledCount = 0;
+
+      component.calendarDays.forEach(week => {
+        week.forEach(day => {
+          if (day.disabled) {
+            disabledCount++;
+          }
+        });
+      });
+
+      // January 2050 starts on a Saturday, so first week has 6 days from previous month;
+      // ends on a Monday, so last 5 days are from the following month.
+      expect(disabledCount).toBe(11);
+    });
+
+    it('should highlight the selected date', () => {
+      component.selectedDate = moment('2050-01-15');
+      component.renderCalendar();
+      fixture.detectChanges();
+
+      expect(queryTextContent(fixture.debugElement, '.lcc-selected-day')).toBe('15');
+    });
+
+    it('should call onSelectCell when a day is clicked', () => {
+      const onSelectCellSpy = jest.spyOn(component, 'onSelectCell');
+
+      // Use the first day cell directly
+      const firstCell = query(
+        fixture.debugElement,
+        'tbody tr:first-child td:first-child',
+      );
+      firstCell.triggerEventHandler('click');
+
+      expect(onSelectCellSpy).toHaveBeenCalledWith(0, 0);
+    });
+
+    it('should update selected date when a day is clicked', () => {
+      // @ts-expect-error Private class member
+      const onChangeSpy = jest.spyOn(component, 'onChange');
+
+      component.selectedDate = moment('2049-12-01'); // Different from any day in the calendar
+      component.renderCalendar();
+      fixture.detectChanges();
+
+      expect(query(fixture.debugElement, '.lcc-selected-day')).toBeNull();
+
+      query(
+        fixture.debugElement,
+        'tbody tr:nth-child(2) td:nth-child(1)',
+      ).triggerEventHandler('click');
+      fixture.detectChanges();
+
+      expect(onChangeSpy).toHaveBeenCalledWith('2050-01-02T00:00:00.000Z');
+      expect(query(fixture.debugElement, '.lcc-selected-day')).not.toBeNull();
+    });
+
+    it('should display the selected date in the footer', () => {
+      component.selectedDate = moment('2050-01-15');
+      fixture.detectChanges();
+
+      expect(queryTextContent(fixture.debugElement, '.selected-date')).toBe(
+        'Saturday, January 15th 2050',
+      );
+
+      component.screenWidth = 300;
+      fixture.detectChanges();
+
+      expect(queryTextContent(fixture.debugElement, '.selected-date')).toBe(
+        'Sat, Jan 15th 2050',
+      );
     });
   });
 });

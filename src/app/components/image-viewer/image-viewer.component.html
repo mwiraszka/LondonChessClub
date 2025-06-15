@@ -1,7 +1,8 @@
 @if (currentImage$ | async; as image) {
-  <div class="previous-image-button-wrapper">
+  <div class="button-wrapper">
     <button
-      class="lcc-secondary-button lcc-light-button"
+      class="previous-image-button lcc-secondary-button lcc-light-button"
+      [class.active]="isPreviousImageButtonActive"
       [disabled]="images.length === 1"
       tooltip="Previous image"
       (click)="onPreviousImage()">
@@ -9,9 +10,10 @@
     </button>
   </div>
 
-  <div class="next-image-button-wrapper">
+  <div class="button-wrapper">
     <button
-      class="lcc-secondary-button lcc-light-button"
+      class="next-image-button lcc-secondary-button lcc-light-button"
+      [class.active]="isNextImageButtonActive"
       [disabled]="images.length === 1"
       tooltip="Next image"
       (click)="onNextImage()">
@@ -21,12 +23,14 @@
 
   <figure [adminControls]="isAdmin ? getAdminControlsConfig(image) : null">
     <div class="image-container">
-      <img [image]="image" />
+      <img
+        [image]="image"
+        (load)="displayedCaption = image.caption" />
     </div>
     <figcaption>
       <div class="album-name lcc-truncate">{{ album }}</div>
       <hr />
-      <div class="image-caption lcc-truncate">{{ image.caption }}</div>
+      <div class="image-caption lcc-truncate">{{ displayedCaption }}</div>
     </figcaption>
   </figure>
 }

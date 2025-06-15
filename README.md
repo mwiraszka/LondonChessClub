@@ -33,6 +33,14 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.3.3 - June 14th, 2025</summary>
+
+- 🐛 Ensure correct images are fetched during prefetching stage in Image Viewer
+- 🔧 Enable source maps in preview and production environments
+
+</details>
+
+<details>
 <summary>v5.3.2 - June 14th, 2025</summary>
 
 - 🚀 Implement a prefetching strategy in Image Viewer for quicker image loading, and prevent unnecessary fetches where possible

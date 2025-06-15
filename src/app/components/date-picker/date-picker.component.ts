@@ -6,8 +6,8 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
-import IconsModule from '@app/icons';
 import type { IsoDate } from '@app/models';
 
 @Component({
@@ -21,7 +21,7 @@ import type { IsoDate } from '@app/models';
       multi: true,
     },
   ],
-  imports: [IconsModule, ReactiveFormsModule],
+  imports: [MatIconModule, ReactiveFormsModule],
 })
 export class DatePickerComponent implements AfterViewInit, ControlValueAccessor {
   // Always render 6 weeks in calendar (the most that will ever be needed for any month)

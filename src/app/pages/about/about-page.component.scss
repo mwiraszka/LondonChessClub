@@ -1,4 +1,4 @@
-@use '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins' as *;
 
 .grid-container {
   display: grid;
@@ -16,7 +16,7 @@
     'leadership';
   gap: 4px;
 
-  @include mixins.respond-to('gt-md') {
+  @include respond-to('gt-md') {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       'where-and-when where-and-when'
@@ -27,7 +27,7 @@
       'leadership leadership';
   }
 
-  @include mixins.respond-to('gt-lg') {
+  @include respond-to('gt-lg') {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
       'first-visit where-and-when club-regulations'
@@ -98,11 +98,11 @@ article {
     grid-area: club-regulations;
     background-color: var(--lcc-color--aboutPage-cellBackground2);
 
-    @include mixins.respond-to('gt-md') {
+    @include respond-to('gt-md') {
       background-color: var(--lcc-color--aboutPage-cellBackground1);
     }
 
-    @include mixins.respond-to('gt-lg') {
+    @include respond-to('gt-lg') {
       background-color: var(--lcc-color--aboutPage-cellBackground2);
     }
   }
@@ -141,7 +141,7 @@ article {
     grid-area: leadership;
     background-color: var(--lcc-color--aboutPage-cellBackground2);
 
-    @include mixins.respond-to('lt-md') {
+    @include respond-to('lt-md') {
       background-color: var(--lcc-color--aboutPage-cellBackground1);
     }
 
@@ -167,14 +167,14 @@ article {
         grid-area: board-of-directors;
       }
 
-      @include mixins.respond-to('gt-md') {
+      @include respond-to('gt-md') {
         grid-template-columns: 4fr 3fr;
         grid-template-areas:
           'executive-committee .'
           'coordinators board-of-directors';
       }
 
-      @include mixins.respond-to('gt-lg') {
+      @include respond-to('gt-lg') {
         grid-template-columns: 4fr 5fr 4fr;
         grid-template-areas: 'executive-committee coordinators board-of-directors';
       }

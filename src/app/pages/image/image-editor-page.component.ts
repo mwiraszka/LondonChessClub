@@ -40,7 +40,7 @@ export class ImageEditorPageComponent implements EditorPage, OnInit {
   public readonly photoGalleryPageLink: InternalLink = {
     text: 'Go to Photo Gallery',
     internalPath: 'photo-gallery',
-    icon: 'camera',
+    icon: 'photo_camera',
   };
   public viewModel$?: Observable<{
     existingAlbums: string[];

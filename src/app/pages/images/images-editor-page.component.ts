@@ -26,7 +26,7 @@ export class ImagesEditorPageComponent implements EditorPage, OnInit {
   public readonly photoGalleryLink: InternalLink = {
     text: 'Go to Photo Gallery',
     internalPath: 'photo-gallery',
-    icon: 'camera',
+    icon: 'photo_camera',
   };
   public viewModel$?: Observable<{
     album: string | null;

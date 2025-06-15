@@ -16,7 +16,6 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | [![AWS S3](readme-icons/aws-s3.png)](https://aws.amazon.com/s3) | `AWS S3` | static web hosting and cloud storage for images |
 | [![Chart.js](readme-icons/chartjs.png)](https://www.chartjs.org/) | `Chart.js` | game and player stats |
 | [![Express.js](readme-icons/expressjs.png)](https://expressjs.com) | `Express.js` | API and routing framework built on Node.js |
-| [![Feather](readme-icons/feather.png)](https://feathericons.com) | `Feather` | icons |
 | [![GitHub Actions](readme-icons/github.png)](https://github.com/features/actions) | `GitHub Actions` | automated workflows |
 | [![Lichess PGN Viewer](readme-icons/lichess.png)](https://github.com/lichess-org/pgn-viewer) | `Lichess PGN Viewer` | chess game rendering |
 | [![MongoDB](readme-icons/mongodb.png)](https://www.mongodb.com) | `MongoDB` | database management system  |

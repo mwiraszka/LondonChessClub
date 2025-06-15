@@ -1,3 +1,5 @@
+@use '../../../styles/abstracts/mixins' as *;
+
 :host {
   display: flex;
   flex-direction: column;
@@ -19,11 +21,11 @@
   text-decoration: none;
   font-style: normal;
 
-  .external-link-icon {
-    height: 16px;
-    width: 16px;
+  mat-icon {
+    @include icon-size(14px);
+
     margin-left: 4px;
-    vertical-align: sub;
+    vertical-align: text-bottom;
   }
 
   .divider {

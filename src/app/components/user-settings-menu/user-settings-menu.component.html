@@ -2,7 +2,7 @@
   <ul class="menu-items">
     @if (vm.user) {
       <li class="menu-item user-name">
-        <i-feather name="user"></i-feather>
+        <mat-icon>person_outline</mat-icon>
         <span>{{ vm.user.firstName }} {{ vm.user.lastName }}</span>
       </li>
       <hr />
@@ -11,29 +11,25 @@
     <li class="menu-item theme-toggle">
       <span>Theme</span>
       <lcc-toggle-switch
-        [condition]="vm.isDarkMode"
-        tooltipTextWhenOff="Switch to dark mode"
-        tooltipTextWhenOn="Switch to light mode"
+        iconWhenOff="light_mode"
+        iconWhenOn="dark_mode"
+        [switchedOn]="vm.isDarkMode"
+        tooltipWhenOff="Switch to dark mode"
+        tooltipWhenOn="Switch to light mode"
         (toggle)="onToggleTheme()">
       </lcc-toggle-switch>
     </li>
 
     @if (vm.user) {
       <li class="menu-item safe-mode-toggle">
-        <div class="safe-mode-toggle-container">
-          <span>Safe mode</span>
-          @if (!vm.isSafeMode) {
-            <i-feather
-              name="alert-triangle"
-              class="safe-mode-off-alert-icon"
-              tooltip="Safe mode is turned off">
-            </i-feather>
-          }
-        </div>
+        <span>Safe mode</span>
         <lcc-toggle-switch
-          [condition]="vm.isSafeMode"
-          tooltipTextWhenOff="Hide members' emails, phone numbers and year of birth from screen"
-          tooltipTextWhenOn="Show members' emails, phone numbers and year of birth on screen"
+          iconWhenOff="warning"
+          [iconTooltipWhenOff]="safeModeWarningTooltipContent"
+          [switchedOn]="vm.isSafeMode"
+          tooltipWhenOff="Enable safe mode"
+          tooltipWhenOn="Disable safe mode"
+          [warningWhenOff]="true"
           (toggle)="onToggleSafeMode()">
         </lcc-toggle-switch>
       </li>
@@ -67,3 +63,16 @@
     }
   </ul>
 }
+
+<ng-template #safeModeWarningTooltipContent>
+  <div class="safe-mode-warning-tooltip">
+    <header>
+      <mat-icon>warning</mat-icon>
+      <div>Safe mode is currently disabled</div>
+    </header>
+
+    <div class="warning-message">
+      Users' personal information such as emails and phone numbers are visible on screen
+    </div>
+  </div>
+</ng-template>

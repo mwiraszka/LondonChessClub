@@ -3,6 +3,7 @@ import { camelCase } from 'lodash';
 
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
@@ -10,7 +11,6 @@ import { LinkListComponent } from '@app/components/link-list/link-list.component
 import { PaginatorComponent } from '@app/components/paginator/paginator.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import IconsModule from '@app/icons';
 import type {
   AdminControlsConfig,
   BasicDialogResult,
@@ -31,9 +31,9 @@ import { MembersActions } from '@app/store/members';
     CamelCasePipe,
     CommonModule,
     FormatDatePipe,
-    IconsModule,
     KebabCasePipe,
     LinkListComponent,
+    MatIconModule,
     PaginatorComponent,
     RouterLink,
     TooltipDirective,
@@ -56,7 +56,7 @@ export class MembersTableComponent implements OnInit {
   public readonly addMemberLink: InternalLink = {
     internalPath: ['member', 'add'],
     text: 'Add a member',
-    icon: 'plus-circle',
+    icon: 'add_circle_outline',
   };
 
   public readonly tableHeaders = [

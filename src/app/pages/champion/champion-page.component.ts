@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
-import IconsModule from '@app/icons';
 import type { ExternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 
@@ -11,7 +11,7 @@ import { MetaAndTitleService } from '@app/services';
   selector: 'lcc-champion-page',
   templateUrl: './champion-page.component.html',
   styleUrl: './champion-page.component.scss',
-  imports: [IconsModule, ImagePreloadDirective, LinkListComponent, PageHeaderComponent],
+  imports: [ImagePreloadDirective, LinkListComponent, MatIconModule, PageHeaderComponent],
 })
 export class ChampionPageComponent implements OnInit {
   public readonly links: ExternalLink[] = [

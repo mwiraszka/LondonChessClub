@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
-import IconsModule from '@app/icons';
 import type { ModificationInfo } from '@app/models';
 import { FormatDatePipe } from '@app/pipes';
 
@@ -8,7 +8,7 @@ import { FormatDatePipe } from '@app/pipes';
   selector: 'lcc-modification-info',
   templateUrl: './modification-info.component.html',
   styleUrl: './modification-info.component.scss',
-  imports: [FormatDatePipe, IconsModule],
+  imports: [FormatDatePipe, MatIconModule],
 })
 export class ModificationInfoComponent {
   @Input({ required: true }) info!: ModificationInfo;

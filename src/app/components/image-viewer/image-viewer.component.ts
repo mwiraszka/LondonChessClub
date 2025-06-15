@@ -14,12 +14,12 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import IconsModule from '@app/icons';
 import type {
   AdminControlsConfig,
   BasicDialogResult,
@@ -39,8 +39,8 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
   imports: [
     AdminControlsDirective,
     CommonModule,
-    IconsModule,
     ImagePreloadDirective,
+    MatIconModule,
     TooltipDirective,
   ],
 })

@@ -8,7 +8,6 @@ import {
   RendererFactory2,
 } from '@angular/core';
 
-import IconsModule from '@app/icons';
 import type { BasicDialogResult, Dialog, DialogOutput } from '@app/models';
 
 @Component({
@@ -34,7 +33,7 @@ import type { BasicDialogResult, Dialog, DialogOutput } from '@app/models';
     </div>
   `,
   styleUrl: './basic-dialog.component.scss',
-  imports: [CommonModule, IconsModule],
+  imports: [CommonModule],
 })
 export class BasicDialogComponent implements DialogOutput<BasicDialogResult> {
   @Input({ required: true }) dialog!: Dialog;

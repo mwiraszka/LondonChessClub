@@ -2,9 +2,9 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
-import IconsModule from '@app/icons';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { DialogService } from '@app/services';
 import { ArticlesActions } from '@app/store/articles';
@@ -31,7 +31,7 @@ describe('ImageFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IconsModule, ImageFormComponent, ReactiveFormsModule],
+      imports: [ImageFormComponent, MatIconModule, ReactiveFormsModule],
       providers: [
         FormBuilder,
         provideMockStore(),

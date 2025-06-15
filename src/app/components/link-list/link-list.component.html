@@ -13,16 +13,10 @@
           target="_blank"
           [tooltip]="link.tooltip ?? null">
           @if (link.icon) {
-            <i-feather
-              [name]="link.icon"
-              class="icon">
-            </i-feather>
+            <mat-icon>{{ link.icon }}</mat-icon>
           }
           <div>{{ link.text }}</div>
-          <i-feather
-            name="external-link"
-            class="icon">
-          </i-feather>
+          <mat-icon>open_in_new</mat-icon>
         </a>
       } @else {
         <a
@@ -30,10 +24,7 @@
           [routerLink]="link.internalPath | routerLink"
           [tooltip]="link.tooltip ?? null">
           @if (link.icon) {
-            <i-feather
-              [name]="link.icon"
-              class="icon">
-            </i-feather>
+            <mat-icon>{{ link.icon }}</mat-icon>
           }
           <div>{{ link.text }}</div>
         </a>

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
 import { provideRouter } from '@angular/router';
 
-import IconsModule from '@app/icons';
 import { MOCK_EVENTS } from '@app/mocks/events.mock';
 import { formatDate, query, queryTextContent } from '@app/utils';
 
@@ -20,7 +20,7 @@ describe('UpcomingEventBannerComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [IconsModule, UpcomingEventBannerComponent],
+      imports: [MatIconModule, UpcomingEventBannerComponent],
       providers: [
         provideRouter([{ path: 'schedule', component: ScheduleStubComponent }]),
       ],

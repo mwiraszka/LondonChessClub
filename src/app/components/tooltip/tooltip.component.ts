@@ -7,6 +7,7 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 import { TOOLTIP_DATA_TOKEN } from '@app/directives/tooltip.directive';
 import { TruncateByCharsPipe } from '@app/pipes';
@@ -24,8 +25,7 @@ import { IsStringPipe } from '@app/pipes';
     }
   `,
   styleUrl: './tooltip.component.scss',
-  imports: [CommonModule, IsStringPipe, TruncateByCharsPipe],
-  encapsulation: ViewEncapsulation.ShadowDom,
+  imports: [CommonModule, IsStringPipe, MatIconModule, TruncateByCharsPipe],
 })
 export class TooltipComponent implements OnInit {
   constructor(

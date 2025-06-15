@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
 import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
-import IconsModule from '@app/icons';
 import { MOCK_TOASTS } from '@app/mocks/toasts.mock';
 import { ToastService } from '@app/services';
 import { queryAll } from '@app/utils';
@@ -15,7 +15,7 @@ describe('ToasterComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [IconsModule, RouterModule.forRoot([]), ToasterComponent],
+      imports: [MatIconModule, RouterModule.forRoot([]), ToasterComponent],
       providers: [ToastService],
     })
       .compileComponents()

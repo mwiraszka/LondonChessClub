@@ -1,10 +1,10 @@
 import { of } from 'rxjs';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
 import { DropdownDirective } from '@app/directives/dropdown.directive';
-import IconsModule from '@app/icons';
 import { query } from '@app/utils';
 
 import { NavigationBarComponent } from './navigation-bar.component';
@@ -17,7 +17,7 @@ describe('NavigationBarComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         DropdownDirective,
-        IconsModule,
+        MatIconModule,
         NavigationBarComponent,
         RouterModule.forRoot([]),
       ],

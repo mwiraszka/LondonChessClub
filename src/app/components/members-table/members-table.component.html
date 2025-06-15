@@ -40,10 +40,9 @@
               <span>{{ header }}</span>
               <div class="sort-icon-container">
                 @if (sortedBy === (header | camelCase)) {
-                  <i-feather
-                    class="sort-icon"
-                    [name]="isAscending ? 'chevron-down' : 'chevron-up'">
-                  </i-feather>
+                  <mat-icon class="sort-icon">
+                    {{ isAscending ? 'expand_less' : 'expand_more' }}
+                  </mat-icon>
                 }
               </div>
             </th>
@@ -71,10 +70,7 @@
                   class="city-champion-link"
                   routerLink="/city-champion"
                   tooltip="2024 City Champion">
-                  <i-feather
-                    name="shield"
-                    class="city-champion-icon">
-                  </i-feather>
+                  <mat-icon class="city-champion-icon">emoji_events</mat-icon>
                 </a>
               }
               {{ member.firstName }}

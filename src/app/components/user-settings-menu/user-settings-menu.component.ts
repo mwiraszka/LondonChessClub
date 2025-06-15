@@ -5,11 +5,10 @@ import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, HostBinding, OnInit, Output } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 
 import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
-import { TooltipDirective } from '@app/directives/tooltip.directive';
-import IconsModule from '@app/icons';
 import { User } from '@app/models';
 import { AppActions, AppSelectors } from '@app/store/app';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
@@ -19,7 +18,7 @@ import { AuthActions, AuthSelectors } from '@app/store/auth';
   selector: 'lcc-user-settings-menu',
   templateUrl: './user-settings-menu.component.html',
   styleUrl: './user-settings-menu.component.scss',
-  imports: [CommonModule, IconsModule, ToggleSwitchComponent, TooltipDirective],
+  imports: [CommonModule, MatIconModule, ToggleSwitchComponent],
 })
 export class UserSettingsMenuComponent implements OnInit {
   public viewModel$?: Observable<{

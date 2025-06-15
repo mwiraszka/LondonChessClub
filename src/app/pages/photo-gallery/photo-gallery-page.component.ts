@@ -21,7 +21,7 @@ import { ImagesSelectors } from '@app/store/images';
     @if (viewModel$ | async; as vm) {
       <lcc-page-header
         title="Photo Gallery"
-        icon="camera">
+        icon="photo_camera">
       </lcc-page-header>
       <lcc-photo-grid
         [isAdmin]="vm.isAdmin"
@@ -110,7 +110,7 @@ export class PhotoGalleryPageComponent implements OnInit {
       text: 'Photo archives (2007 and older)',
       externalPath: 'https://londonchessclub.ca/?page_id=916',
     },
-  ].map(link => ({ ...link, icon: 'camera' }));
+  ].map(link => ({ ...link, icon: 'photo_camera' }));
   public viewModel$?: Observable<{ photoImages: Image[]; isAdmin: boolean }>;
 
   constructor(

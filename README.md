@@ -33,6 +33,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.4.0 - June/July TBD, 2025</summary>
+
+- 🔧 Upgrade all third-party packages to their latest versions
+
+</details>
+
+<details>
 <summary>v5.3.3 - June 14th, 2025</summary>
 
 - 🐛 Ensure correct images are fetched during prefetching stage in Image Viewer

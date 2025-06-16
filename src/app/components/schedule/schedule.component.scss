@@ -120,9 +120,9 @@ table {
           }
 
           .championship-icon {
+            @include icon-size(16px);
+
             color: var(--lcc-color--schedule-championshipMedalIcon);
-            height: 16px;
-            width: 16px;
           }
         }
 

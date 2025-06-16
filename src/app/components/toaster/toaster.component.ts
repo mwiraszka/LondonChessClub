@@ -36,9 +36,9 @@ export class ToasterComponent {
 
   public getIcon(toastType: 'success' | 'info' | 'warning'): string {
     return toastType === 'success'
-      ? 'check-circle'
+      ? 'check_circle'
       : toastType === 'warning'
-        ? 'alert-triangle'
+        ? 'warning_amber'
         : 'info';
   }
 

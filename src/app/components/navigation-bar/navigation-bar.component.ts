@@ -1,9 +1,9 @@
 import { Component, HostListener } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { DropdownDirective } from '@app/directives/dropdown.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import IconsModule from '@app/icons';
 import type { InternalLink } from '@app/models';
 import { RouterLinkPipe } from '@app/pipes';
 
@@ -13,7 +13,7 @@ import { RouterLinkPipe } from '@app/pipes';
   styleUrl: './navigation-bar.component.scss',
   imports: [
     DropdownDirective,
-    IconsModule,
+    MatIconModule,
     RouterLink,
     RouterLinkActive,
     RouterLinkPipe,
@@ -35,12 +35,12 @@ export class NavigationBarComponent {
     {
       text: 'Members',
       internalPath: 'members',
-      icon: 'users',
+      icon: 'groups',
     },
     {
       text: 'Schedule',
       internalPath: 'schedule',
-      icon: 'calendar',
+      icon: 'calendar_month',
     },
     {
       text: 'News',
@@ -50,22 +50,22 @@ export class NavigationBarComponent {
     {
       text: 'City Champion',
       internalPath: 'city-champion',
-      icon: 'shield',
+      icon: 'emoji_events',
     },
     {
       text: 'Photo Gallery',
       internalPath: 'photo-gallery',
-      icon: 'camera',
+      icon: 'photo_camera',
     },
     {
       text: 'Game Archives',
       internalPath: 'game-archives',
-      icon: 'grid',
+      icon: 'insert_chart_outlined',
     },
     {
       text: 'Lifetime Achievement Awards',
       internalPath: 'lifetime-achievement-awards',
-      icon: 'award',
+      icon: 'workspace_premium',
     },
   ];
 

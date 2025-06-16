@@ -1,4 +1,5 @@
 @use 'sass:math';
+@use '../../../styles/abstracts/mixins';
 
 $switch-height: 22px;
 $switch-width: 42px;
@@ -6,6 +7,11 @@ $slider-diameter: 16px;
 
 :host {
   height: $switch-height;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 }
 
 .toggle-switch {
@@ -25,15 +31,19 @@ $slider-diameter: 16px;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: var(--lcc-color--toggleSwitch-sliderBackgroundWhenOff);
   cursor: pointer;
   transition: 0.4s;
+  background-color: var(--lcc-color--toggleSwitch-sliderBackgroundDefaultOff);
+
+  &.warning {
+    background-color: var(--lcc-color--toggleSwitch-warning);
+  }
 
   &:before {
     position: absolute;
     bottom: math.div($switch-height - $slider-diameter, 2);
     left: math.div($switch-height - $slider-diameter, 2);
-    background-color: var(--lcc-color--toggleSwitch-slider);
+    background-color: var(--lcc-color--toggleSwitch-sliderThumb);
     height: $slider-diameter;
     width: $slider-diameter;
     content: '';
@@ -42,7 +52,7 @@ $slider-diameter: 16px;
 }
 
 input:checked + .slider {
-  background-color: var(--lcc-color--toggleSwitch-sliderBackgroundWhenOn);
+  background-color: var(--lcc-color--toggleSwitch-sliderBackgroundDefaultOn);
 
   &:before {
     transform: translateX(
@@ -56,5 +66,13 @@ input:checked + .slider {
 
   &:before {
     border-radius: 50%;
+  }
+}
+
+mat-icon {
+  @include mixins.icon-size(20px);
+
+  &.warning {
+    color: var(--lcc-color--toggleSwitch-warning);
   }
 }

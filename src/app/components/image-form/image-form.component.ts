@@ -10,13 +10,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import IconsModule from '@app/icons';
 import type {
   BasicDialogResult,
   Dialog,
@@ -43,8 +43,8 @@ import {
   styleUrl: './image-form.component.scss',
   imports: [
     FormErrorIconComponent,
-    IconsModule,
     ImagePreloadDirective,
+    MatIconModule,
     ModificationInfoComponent,
     ReactiveFormsModule,
     TooltipDirective,

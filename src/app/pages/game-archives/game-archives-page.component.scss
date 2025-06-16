@@ -1,4 +1,4 @@
-@use '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins' as *;
 
 $app-content-width: 1500px; // Re-declare since CSS var cannot be passed to mixin
 $grid-button-min-width: 115px;
@@ -10,7 +10,7 @@ $pgn-viewer-width: 432px;
   display: flex;
   flex-direction: column;
 
-  @include mixins.respond-to('gt-lg') {
+  @include respond-to('gt-lg') {
     flex-direction: row;
   }
 
@@ -35,7 +35,7 @@ $pgn-viewer-width: 432px;
     flex: 1;
     padding: 8px;
 
-    @include mixins.respond-to('gt-lg') {
+    @include respond-to('gt-lg') {
       padding: 0 32px;
     }
 
@@ -76,11 +76,11 @@ $pgn-viewer-width: 432px;
     gap: 2px;
     align-items: stretch;
 
-    @include mixins.respond-to('gt-xs') {
+    @include respond-to('gt-xs') {
       gap: 8px;
     }
 
-    @include mixins.respond-to('gt-md') {
+    @include respond-to('gt-md') {
       grid-template-columns: 1fr auto auto;
       grid-template-areas: 'player moves result';
     }
@@ -160,16 +160,12 @@ $pgn-viewer-width: 432px;
     padding: 8px 16px;
     text-transform: none;
 
-    @include mixins.flex-wrap-fix-width(
-      $grid-button-flex-basis,
-      $grid-gap,
-      $app-content-width
-    );
+    @include flex-wrap-fix-width($grid-button-flex-basis, $grid-gap, $app-content-width);
 
     &.active {
       background-color: var(--lcc-color--gameArchivesPage-activeButtonBackground);
       color: var(--lcc-color--gameArchivesPage-activeButtonText);
-      animation: shadowPulse 2s infinite;
+      animation: shadow-pulse 2s infinite;
       position: relative;
       overflow: visible;
     }
@@ -201,7 +197,7 @@ $pgn-viewer-width: 432px;
   }
 }
 
-@keyframes shadowPulse {
+@keyframes shadow-pulse {
   0% {
     box-shadow: 0 0 0 0 var(--lcc-color--gameArchivesPage-activeButtonBoxShadow);
   }

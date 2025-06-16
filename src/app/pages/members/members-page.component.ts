@@ -21,7 +21,7 @@ import { MembersSelectors } from '@app/store/members';
     @if (viewModel$ | async; as vm) {
       <lcc-page-header
         title="Members"
-        icon="users">
+        icon="groups">
       </lcc-page-header>
       <lcc-members-table
         [activeMembers]="vm.activeMembers"

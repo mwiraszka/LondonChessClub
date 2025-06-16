@@ -15,7 +15,7 @@
           type="button"
           tooltip="Open Image Explorer"
           (click)="onOpenImageExplorer()">
-          <i-feather name="image"></i-feather>
+          <mat-icon>image_search</mat-icon>
         </button>
         <button
           class="revert-button lcc-secondary-button"
@@ -25,7 +25,7 @@
             originalArticle?.bannerImageId === form.controls.bannerImageId.value
           "
           (click)="onRevertImage()">
-          <i-feather name="rotate-ccw"></i-feather>
+          <mat-icon>restore_page</mat-icon>
         </button>
       </div>
     </div>

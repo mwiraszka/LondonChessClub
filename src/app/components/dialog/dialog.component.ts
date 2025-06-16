@@ -8,8 +8,8 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
-import IconsModule from '@app/icons';
 import type { DialogConfig, DialogOutput } from '@app/models';
 import { DIALOG_CONFIG_TOKEN } from '@app/services';
 
@@ -17,19 +17,17 @@ import { DIALOG_CONFIG_TOKEN } from '@app/services';
   selector: 'lcc-dialog',
   template: `
     <header>
-      <button class="close-button lcc-icon-button">
-        <i-feather
-          name="x"
-          class="close-icon"
-          (click)="result.emit('close')">
-        </i-feather>
+      <button
+        class="close-button lcc-icon-button"
+        (click)="result.emit('close')">
+        <mat-icon>close</mat-icon>
       </button>
     </header>
 
     <ng-template #contentContainer></ng-template>
   `,
   styleUrl: './dialog.component.scss',
-  imports: [IconsModule],
+  imports: [MatIconModule],
 })
 export class DialogComponent<TComponent extends DialogOutput<TResult>, TResult>
   implements AfterViewInit

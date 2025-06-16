@@ -11,10 +11,10 @@
   text-transform: none;
   white-space: wrap;
   word-wrap: break-word;
-  animation: slideUpAnimation 0.5s;
+  animation: slide-up 0.5s;
 }
 
-@keyframes slideUpAnimation {
+@keyframes slide-up {
   0% {
     opacity: 0;
     transform: translate(0, 8px);

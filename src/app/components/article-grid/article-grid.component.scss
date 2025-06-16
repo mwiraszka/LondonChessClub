@@ -1,4 +1,4 @@
-@use '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins' as *;
 
 // Minimum width to keep dates on one line, while still being narrow enough to fit two cards
 // side-by-side at gt-md breakpoint (700px)
@@ -43,9 +43,9 @@ lcc-link-list,
       50% / 2px 2px;
     border-radius: var(--lcc-borderRadius--large);
 
-    @include mixins.flex-wrap-fix-width($flex-basis, $grid-gap, $app-content-width);
+    @include flex-wrap-fix-width($flex-basis, $grid-gap, $app-content-width);
 
-    @include mixins.respond-to('gt-sm') {
+    @include respond-to('gt-sm') {
       margin: 0;
     }
 

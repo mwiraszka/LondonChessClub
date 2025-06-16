@@ -1,13 +1,13 @@
 import { Store } from '@ngrx/store';
 
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
-import IconsModule from '@app/icons';
 import type {
   AdminControlsConfig,
   Article,
@@ -36,10 +36,10 @@ import { isDefined } from '@app/utils';
   imports: [
     AdminControlsDirective,
     FormatDatePipe,
-    IconsModule,
     ImagePreloadDirective,
     IsDefinedPipe,
     LinkListComponent,
+    MatIconModule,
     RouterLink,
     RouterLinkPipe,
     StripMarkdownPipe,
@@ -58,7 +58,7 @@ export class ArticleGridComponent implements OnInit, OnChanges {
   public readonly createArticleLink: InternalLink = {
     internalPath: ['article', 'add'],
     text: 'Create an article',
-    icon: 'plus-circle',
+    icon: 'add_circle_outline',
   };
 
   constructor(

@@ -1,20 +1,25 @@
+@use '../../../styles/abstracts/mixins' as *;
+
 :host {
+  --button-size: var(--admin-control-button-size);
+
   display: flex;
   flex-direction: row;
+  gap: 2px;
 
   .admin-control-button {
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 5px;
+    align-items: center;
     border: 2px solid var(--lcc-color--adminControls-buttonBorder);
     border-radius: var(--lcc-borderRadius--large);
     background-color: var(--lcc-color--adminControls-buttonBackground);
+    width: var(--button-size);
+    height: var(--button-size);
+    padding: 0;
 
-    i-feather {
-      display: flex;
-      width: 100%;
-      height: 100%;
+    mat-icon {
+      @include icon-size(calc(var(--button-size) - 8px));
     }
 
     &:disabled,
@@ -39,7 +44,6 @@
 
     &.bookmark-button {
       color: var(--lcc-color--adminControls-bookmarkIcon);
-      margin-right: 2px;
 
       &:focus,
       &:hover {
@@ -49,7 +53,6 @@
 
     &.edit-button {
       color: var(--lcc-color--adminControls-editIcon);
-      margin-right: 2px;
 
       &:focus,
       &:hover {

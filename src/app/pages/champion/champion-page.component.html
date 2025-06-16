@@ -1,6 +1,6 @@
 <lcc-page-header
   title="City Champion"
-  icon="shield">
+  icon="emoji_events">
 </lcc-page-header>
 
 <section class="grid-container">
@@ -146,10 +146,7 @@
             <td [style]="championship.style">{{ championship.year }}</td>
             <td [style]="championship.style">
               @if (first) {
-                <i-feather
-                  name="shield"
-                  class="championship-icon">
-                </i-feather>
+                <mat-icon class="championship-icon">emoji_events</mat-icon>
               }
               <span>{{ championship.winner }}</span>
             </td>

@@ -2,6 +2,7 @@ import { Store } from '@ngrx/store';
 import { isEmpty } from 'lodash';
 
 import { Component, Input, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
 import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
@@ -9,7 +10,6 @@ import { LinkListComponent } from '@app/components/link-list/link-list.component
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import IconsModule from '@app/icons';
 import { AdminControlsConfig, Id, Image, InternalLink } from '@app/models';
 import { DialogService } from '@app/services';
 import { ImagesActions } from '@app/store/images';
@@ -21,21 +21,22 @@ import { customSort } from '@app/utils';
   styleUrl: './photo-grid.component.scss',
   imports: [
     AdminControlsDirective,
-    IconsModule,
     ImagePreloadDirective,
     LinkListComponent,
+    MatIconModule,
     TooltipDirective,
   ],
 })
 export class PhotoGridComponent implements OnInit {
   @Input({ required: true }) public isAdmin!: boolean;
   @Input({ required: true }) public photoImages!: Image[];
+
   @Input() public maxAlbums?: number;
 
   public readonly addImageLink: InternalLink = {
     internalPath: ['image', 'add'],
     text: 'Add an image',
-    icon: 'plus-circle',
+    icon: 'add_circle_outline',
   };
 
   public get albumCovers(): Image[] {

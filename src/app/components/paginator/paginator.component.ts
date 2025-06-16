@@ -6,15 +6,15 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import IconsModule from '@app/icons';
 
 @Component({
   selector: 'lcc-paginator',
   templateUrl: './paginator.component.html',
   styleUrl: './paginator.component.scss',
-  imports: [IconsModule, TooltipDirective],
+  imports: [MatIconModule, TooltipDirective],
 })
 export class PaginatorComponent implements OnChanges {
   public readonly PAGE_SIZES = [10, 20, 50, 100];
@@ -37,7 +37,7 @@ export class PaginatorComponent implements OnChanges {
           this.pageSize = this.totalItems;
           this.onPageSizeChange(this.totalItems);
         }
-      }, 0);
+      });
     }
   }
 

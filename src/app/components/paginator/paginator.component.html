@@ -3,10 +3,7 @@
   [disabled]="pageNum === 1"
   [tooltip]="pageNum === 1 ? null : 'First page'"
   (click)="onFirst()">
-  <i-feather
-    name="chevrons-left"
-    class="first-page-icon">
-  </i-feather>
+  <mat-icon class="first-page-icon">first_page</mat-icon>
 </button>
 
 <button
@@ -14,10 +11,7 @@
   [disabled]="pageNum === 1"
   [tooltip]="pageNum === 1 ? null : 'Previous page'"
   (click)="onPrevious()">
-  <i-feather
-    name="chevron-left"
-    class="previous-page-icon">
-  </i-feather>
+  <mat-icon class="previous-page-icon">chevron_left</mat-icon>
 </button>
 
 <section class="page-control-section">
@@ -40,10 +34,7 @@
   [disabled]="pageNum === lastPage()"
   [tooltip]="pageNum === lastPage() ? null : 'Next page'"
   (click)="onNext()">
-  <i-feather
-    name="chevron-right"
-    class="next-page-icon">
-  </i-feather>
+  <mat-icon class="next-page-icon">chevron_right</mat-icon>
 </button>
 
 <button
@@ -51,8 +42,5 @@
   [disabled]="pageNum === lastPage()"
   [tooltip]="pageNum === lastPage() ? null : 'Last page'"
   (click)="onLast()">
-  <i-feather
-    name="chevrons-right"
-    class="last-page-icon">
-  </i-feather>
+  <mat-icon class="last-page-icon">last_page</mat-icon>
 </button>

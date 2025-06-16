@@ -1,3 +1,5 @@
+@use '../../../styles/abstracts/mixins' as *;
+
 $header-height: 30px;
 $header-border-bottom-thickness: 2px;
 
@@ -23,6 +25,10 @@ $header-border-bottom-thickness: 2px;
     .close-button {
       margin: 0 4px 0 auto;
       color: var(--lcc-color--dialog-closeIcon);
+
+      mat-icon {
+        @include icon-size(18px);
+      }
 
       &:hover {
         color: var(--lcc-color--dialog-closeIconOnHover);

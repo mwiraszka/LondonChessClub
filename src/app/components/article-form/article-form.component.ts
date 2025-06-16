@@ -10,6 +10,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
@@ -18,7 +19,6 @@ import { MarkdownRendererComponent } from '@app/components/markdown-renderer/mar
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import IconsModule from '@app/icons';
 import type {
   Article,
   ArticleFormData,
@@ -39,8 +39,8 @@ import { ImagesActions } from '@app/store/images';
   styleUrl: './article-form.component.scss',
   imports: [
     FormErrorIconComponent,
-    IconsModule,
     ImagePreloadDirective,
+    MatIconModule,
     MarkdownRendererComponent,
     ModificationInfoComponent,
     ReactiveFormsModule,

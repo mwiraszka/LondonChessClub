@@ -63,6 +63,13 @@ $breakpoints: (
   }
 }
 
+@mixin icon-size($size) {
+  width: $size;
+  height: $size;
+  font-size: $size;
+  vertical-align: text-bottom;
+}
+
 /// A mixin to be applied to flex items to keep item widths the same
 /// when row wrapping and stretching to fit flex container
 /// Courtesy of: https://stackoverflow.com/questions/23274338

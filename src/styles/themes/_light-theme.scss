@@ -312,9 +312,10 @@
   --lcc-color--toast-successBackground: #{clr(success, light)};
   --lcc-color--toast-warningBackground: #{clr(warning, lightest)};
 
-  --lcc-color--toggleSwitch-sliderBackgroundWhenOn: #{clr(grayscale, gray-35)};
-  --lcc-color--toggleSwitch-sliderBackgroundWhenOff: #{clr(grayscale, gray-25)};
-  --lcc-color--toggleSwitch-slider: #{clr(grayscale, white-90)};
+  --lcc-color--toggleSwitch-sliderBackgroundDefaultOn: #{clr(grayscale, gray-35)};
+  --lcc-color--toggleSwitch-sliderBackgroundDefaultOff: #{clr(grayscale, gray-25)};
+  --lcc-color--toggleSwitch-warning: #{clr(warning, light)};
+  --lcc-color--toggleSwitch-sliderThumb: #{clr(grayscale, white-90)};
 
   --lcc-color--tooltip-background: #{clr(tooltip, light)};
   --lcc-color--tooltip-border: #{clr(tooltip)};
@@ -354,5 +355,5 @@
   --lcc-color--userSettingsMenu-itemBackgroundOnHover: #{clr(grayscale, white-95)};
   --lcc-color--userSettingsMenu-itemForeground: #{clr(grayscale, black-15)};
   --lcc-color--userSettingsMenu-itemTextOnHover: #{clr(grayscale, black-2)};
-  --lcc-color--userSettingsMenu-safeModeOffAlertIcon: #{clr(warning, light)};
+  --lcc-color--userSettingsMenu-warning: #{clr(warning, lighter)};
 }

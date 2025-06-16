@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
-import IconsModule from '@app/icons';
 import { Event } from '@app/models';
 import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
 
@@ -26,16 +26,13 @@ import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
         <button
           class="close-button lcc-icon-button"
           (click)="clearBanner.emit()">
-          <i-feather
-            name="x"
-            class="close-icon">
-          </i-feather>
+          <mat-icon>close</mat-icon>
         </button>
       </div>
     </div>
   `,
   styleUrl: './upcoming-event-banner.component.scss',
-  imports: [CommonModule, FormatDatePipe, IconsModule, KebabCasePipe, RouterLink],
+  imports: [CommonModule, FormatDatePipe, KebabCasePipe, MatIconModule, RouterLink],
 })
 export class UpcomingEventBannerComponent {
   @Input({ required: true }) public nextEvent!: Event;

@@ -1,4 +1,4 @@
-@use '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins' as *;
 
 $border-thickness: 2px;
 
@@ -34,7 +34,7 @@ $border-thickness: 2px;
 
     // Add border thickness to side padding for non-active links to prevent layout shifts
     // when a link becomes active and a border is added
-    padding: 6px calc(6px + #{$border-thickness});
+    padding: 6px calc(6px + #{$border-thickness}) 8px;
     border-top: $border-thickness solid transparent;
     border-top-left-radius: var(--lcc-borderRadius--large);
     border-top-right-radius: var(--lcc-borderRadius--large);
@@ -51,7 +51,7 @@ $border-thickness: 2px;
       cursor: default;
       pointer-events: none;
       background-color: var(--lcc-color--app-mainBackground);
-      padding: 6px;
+      padding: 6px 6px 8px;
       border-top-color: var(--lcc-color--nav-border);
       border-left: $border-thickness solid var(--lcc-color--nav-border);
       border-right: $border-thickness solid var(--lcc-color--nav-border);
@@ -65,11 +65,10 @@ $border-thickness: 2px;
     }
 
     .link-icon {
-      height: 20px;
-      width: 20px;
+      @include icon-size(24px);
     }
 
-    @include mixins.respond-to('lt-xs') {
+    @include respond-to('lt-xs') {
       padding: 3px calc(3px + #{$border-thickness});
 
       &.link-active {
@@ -77,7 +76,7 @@ $border-thickness: 2px;
       }
     }
 
-    @include mixins.respond-to('gt-nav-icons') {
+    @include respond-to('gt-nav-icons') {
       .link-text {
         display: block;
         visibility: unset;
@@ -92,13 +91,16 @@ $border-thickness: 2px;
 }
 
 .user-settings-button {
-  gap: 4px;
+  gap: 2px;
   color: var(--lcc-color--nav-linkForeground);
   border-bottom: $border-thickness solid var(--lcc-color--nav-border);
 
+  .settings-icon {
+    @include icon-size(24px);
+  }
+
   .dropdown-icon {
-    height: 14px;
-    width: 14px;
+    @include icon-size(16px);
   }
 }
 

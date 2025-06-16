@@ -17,10 +17,9 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 
+import { TooltipComponent } from '@app/components/tooltip/tooltip.component';
 import { Pixels } from '@app/models';
 import { isDefined } from '@app/utils';
-
-import { TooltipComponent } from '../components/tooltip/tooltip.component';
 
 export const TOOLTIP_DATA_TOKEN = new InjectionToken<string | TemplateRef<unknown>>(
   'Tooltip Data',
@@ -42,7 +41,7 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('mouseenter', ['$event'])
   @HostListener('focus', ['$event'])
-  private onMouseEnterOrFocus(event: MouseEvent | FocusEvent): void {
+  public attach(event?: MouseEvent | FocusEvent): void {
     if (
       isDefined(this.tooltip) &&
       !this.isTouchScreen() &&
@@ -50,39 +49,36 @@ export class TooltipDirective implements OnDestroy {
     ) {
       const clientY: Pixels | undefined =
         event instanceof MouseEvent ? event.clientY : undefined;
-      this.attach(clientY);
-    }
-  }
 
-  private attach(clientY?: Pixels): void {
-    if (this.overlayRef === null) {
-      this.overlayRef = this.overlay.create({
-        positionStrategy: this.getPositionStrategy(clientY),
-        scrollStrategy: this.overlay.scrollStrategies.close(),
+      if (this.overlayRef === null) {
+        this.overlayRef = this.overlay.create({
+          positionStrategy: this.getPositionStrategy(clientY),
+          scrollStrategy: this.overlay.scrollStrategies.close(),
+        });
+      }
+
+      const injector = Injector.create({
+        providers: [
+          {
+            provide: TOOLTIP_DATA_TOKEN,
+            useValue: this.tooltip,
+          },
+        ],
       });
+
+      const componentPortal = new ComponentPortal(
+        TooltipComponent,
+        this.viewContainerRef,
+        injector,
+      );
+
+      this.overlayRef.attach(componentPortal);
     }
-
-    const injector = Injector.create({
-      providers: [
-        {
-          provide: TOOLTIP_DATA_TOKEN,
-          useValue: this.tooltip,
-        },
-      ],
-    });
-
-    const componentPortal = new ComponentPortal(
-      TooltipComponent,
-      this.viewContainerRef,
-      injector,
-    );
-
-    this.overlayRef.attach(componentPortal);
   }
 
   @HostListener('mouseleave')
   @HostListener('blur')
-  private detach(): void {
+  public detach(): void {
     if (this.overlayRef?.hasAttached()) {
       this.overlayRef?.detach();
     }

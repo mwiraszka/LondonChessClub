@@ -7,7 +7,6 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
-import IconsModule from '@app/icons';
 import { MOCK_ARTICLES } from '@app/mocks/articles.mock';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { DialogService } from '@app/services';
@@ -33,7 +32,7 @@ describe('ArticleFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ArticleFormComponent, IconsModule, ReactiveFormsModule],
+      imports: [ArticleFormComponent, ReactiveFormsModule],
       providers: [
         FormBuilder,
         provideMockStore(),

@@ -24,8 +24,8 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
   @Input({ required: true }) public label!: string;
   @Input({ required: true }) public pgn!: string;
 
-  viewerId!: string;
-  lichessAnalysisBoardLink!: ExternalLink;
+  public lichessAnalysisBoardLink!: ExternalLink;
+  public viewerId!: string;
 
   constructor(@Inject(DOCUMENT) private _document: Document) {}
 

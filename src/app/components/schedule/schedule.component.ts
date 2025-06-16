@@ -2,12 +2,12 @@ import { Store } from '@ngrx/store';
 
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
-import IconsModule from '@app/icons';
 import type {
   AdminControlsConfig,
   BasicDialogResult,
@@ -27,9 +27,9 @@ import { EventsActions } from '@app/store/events';
     AdminControlsDirective,
     CommonModule,
     FormatDatePipe,
-    IconsModule,
     KebabCasePipe,
     LinkListComponent,
+    MatIconModule,
     RouterLink,
   ],
 })
@@ -47,7 +47,7 @@ export class ScheduleComponent implements OnInit {
   public readonly addEventLink: InternalLink = {
     text: 'Add an event',
     internalPath: ['event', 'add'],
-    icon: 'plus-circle',
+    icon: 'add_circle_outline',
   };
 
   constructor(

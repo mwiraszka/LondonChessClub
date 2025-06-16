@@ -1,23 +1,23 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import IconsModule from '@app/icons';
 
 @Component({
   selector: 'lcc-form-error-icon',
   template: `
     @if (hasError) {
-      <i-feather
-        name="alert-triangle"
+      <mat-icon
+        error_outline
         class="alert-icon"
         [tooltip]="errorMessage">
-      </i-feather>
+      </mat-icon>
     }
   `,
   styleUrl: './form-error-icon.component.scss',
   standalone: true,
-  imports: [IconsModule, TooltipDirective],
+  imports: [MatIconModule, TooltipDirective],
 })
 export class FormErrorIconComponent {
   @Input({ required: true }) control!: AbstractControl;

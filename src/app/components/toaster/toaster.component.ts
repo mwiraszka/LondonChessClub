@@ -18,8 +18,8 @@ import { ToastService } from '@app/services';
         (click)="onToastClick(toast)">
         <mat-icon>{{ getIcon(toast.type) }}</mat-icon>
         <div class="text-container">
-          <h4 class="lcc-truncate toast-title">{{ toast.title }}</h4>
-          <p class="lcc-truncate-max-5-lines toast-message">{{ toast.message }}</p>
+          <h4 class="lcc-truncate title">{{ toast.title }}</h4>
+          <p class="lcc-truncate-max-5-lines message">{{ toast.message }}</p>
         </div>
       </div>
     }

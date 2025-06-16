@@ -3,7 +3,6 @@ import { MockComponent } from 'ng-mocks';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
@@ -33,7 +32,7 @@ describe('ArticleFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ArticleFormComponent, MatIconModule, ReactiveFormsModule],
+      imports: [ArticleFormComponent, ReactiveFormsModule],
       providers: [
         FormBuilder,
         provideMockStore(),

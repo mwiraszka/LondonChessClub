@@ -1,11 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatIconModule } from '@angular/material/icon';
-import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { MOCK_TOASTS } from '@app/mocks/toasts.mock';
 import { ToastService } from '@app/services';
-import { queryAll } from '@app/utils';
+import { queryAll, queryTextContent } from '@app/utils';
 
 import { ToasterComponent } from './toaster.component';
 
@@ -15,7 +13,7 @@ describe('ToasterComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MatIconModule, RouterModule.forRoot([]), ToasterComponent],
+      imports: [RouterModule.forRoot([]), ToasterComponent],
       providers: [ToastService],
     })
       .compileComponents()
@@ -35,15 +33,11 @@ describe('ToasterComponent', () => {
     queryAll(fixture.debugElement, '.toast').forEach((element, i) => {
       expect(element.attributes['class']).toContain(`toast-${MOCK_TOASTS[i].type}`);
 
-      const toastTitle = element.query(By.css('.toast-title')).nativeElement.textContent;
-      expect(toastTitle).toBe(MOCK_TOASTS[i].title);
-
-      const toastMessage = element.query(By.css('.toast-message')).nativeElement
-        .textContent;
-      expect(toastMessage).toBe(MOCK_TOASTS[i].message);
-
-      const iconName = element.query(By.css('.icon')).componentInstance.name;
-      expect(iconName).toBe(component.getIcon(MOCK_TOASTS[i].type));
+      expect(queryTextContent(element, 'mat-icon')).toBe(
+        component.getIcon(MOCK_TOASTS[i].type),
+      );
+      expect(queryTextContent(element, '.title')).toBe(MOCK_TOASTS[i].title);
+      expect(queryTextContent(element, '.message')).toBe(MOCK_TOASTS[i].message);
     });
   });
 });

@@ -37,7 +37,7 @@ export class PaginatorComponent implements OnChanges {
           this.pageSize = this.totalItems;
           this.onPageSizeChange(this.totalItems);
         }
-      }, 0);
+      });
     }
   }
 

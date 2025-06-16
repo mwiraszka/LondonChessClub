@@ -17,7 +17,8 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [MatIconModule],
 })
 export class PageHeaderComponent {
+  @Input({ required: true }) public title!: string;
+
   @Input() public hasUnsavedChanges: boolean | null = null;
   @Input() public icon: string | null = null;
-  @Input() public title: string | null = null;
 }

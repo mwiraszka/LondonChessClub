@@ -61,7 +61,7 @@
             border-color: var(--lcc-color--datePicker-cellBorderOnHover);
           }
 
-          &.lcc-selected-day {
+          &.selected-day {
             border-radius: var(--lcc-borderRadius--large);
             border-color: var(--lcc-color--datePicker-cellBorderOnSelect);
           }

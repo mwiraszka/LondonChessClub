@@ -29,7 +29,7 @@
           <td
             (click)="onSelectCell(rowIndex, colIndex)"
             [attr.disabled]="day.disabled ? 'disabled' : null"
-            [class.lcc-selected-day]="day.selected">
+            [class.selected-day]="day.selected">
             {{ day.date.format('D') }}
           </td>
         }

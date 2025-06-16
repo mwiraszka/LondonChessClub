@@ -1,12 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  HostBinding,
-  Inject,
-  OnInit,
-  TemplateRef,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, Inject, TemplateRef } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { TOOLTIP_DATA_TOKEN } from '@app/directives/tooltip.directive';
@@ -27,16 +20,8 @@ import { IsStringPipe } from '@app/pipes';
   styleUrl: './tooltip.component.scss',
   imports: [CommonModule, IsStringPipe, MatIconModule, TruncateByCharsPipe],
 })
-export class TooltipComponent implements OnInit {
+export class TooltipComponent {
   constructor(
     @Inject(TOOLTIP_DATA_TOKEN) public tooltipData: string | TemplateRef<unknown>,
   ) {}
-
-  // Short delay to allow stylesheet to load prior to rendering text;
-  // otherwise brief flickering of unstyled tooltip text can be seen on rapid mousemove events
-  @HostBinding('style.visibility') private visibility = 'hidden';
-
-  ngOnInit(): void {
-    setTimeout(() => (this.visibility = 'visible'), 30);
-  }
 }

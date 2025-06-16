@@ -116,7 +116,7 @@ describe('DatePickerComponent', () => {
       component.renderCalendar();
       fixture.detectChanges();
 
-      expect(queryTextContent(fixture.debugElement, '.lcc-selected-day')).toBe('15');
+      expect(queryTextContent(fixture.debugElement, '.selected-day')).toBe('15');
     });
 
     it('should call onSelectCell when a day is clicked', () => {
@@ -140,7 +140,7 @@ describe('DatePickerComponent', () => {
       component.renderCalendar();
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, '.lcc-selected-day')).toBeNull();
+      expect(query(fixture.debugElement, '.selected-day')).toBeNull();
 
       query(
         fixture.debugElement,
@@ -149,7 +149,7 @@ describe('DatePickerComponent', () => {
       fixture.detectChanges();
 
       expect(onChangeSpy).toHaveBeenCalledWith('2050-01-02T00:00:00.000Z');
-      expect(query(fixture.debugElement, '.lcc-selected-day')).not.toBeNull();
+      expect(query(fixture.debugElement, '.selected-day')).not.toBeNull();
     });
 
     it('should display the selected date in the footer', () => {

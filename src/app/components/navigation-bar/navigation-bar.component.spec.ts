@@ -1,11 +1,10 @@
 import { of } from 'rxjs';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
 import { DropdownDirective } from '@app/directives/dropdown.directive';
-import { query } from '@app/utils';
+import { query, queryTextContent } from '@app/utils';
 
 import { NavigationBarComponent } from './navigation-bar.component';
 
@@ -15,12 +14,7 @@ describe('NavigationBarComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DropdownDirective,
-        MatIconModule,
-        NavigationBarComponent,
-        RouterModule.forRoot([]),
-      ],
+      imports: [DropdownDirective, NavigationBarComponent, RouterModule.forRoot([])],
       providers: [
         {
           provide: ActivatedRoute,
@@ -67,19 +61,19 @@ describe('NavigationBarComponent', () => {
     it('should always display the settings icon', () => {
       component.isDropdownOpen = true;
       fixture.detectChanges();
-      expect(query(fixture.debugElement, '.user-settings-button')).toBeTruthy();
+      expect(query(fixture.debugElement, '.user-settings-button')).not.toBeNull();
 
       component.isDropdownOpen = false;
       fixture.detectChanges();
-      expect(query(fixture.debugElement, '.user-settings-button')).toBeTruthy();
+      expect(query(fixture.debugElement, '.user-settings-button')).not.toBeNull();
     });
 
     it('should display correct dropdown icon when `isDropdownOpen` is true', () => {
       component.isDropdownOpen = true;
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, '.dropdown-icon').componentInstance.name).toBe(
-        'chevron-down',
+      expect(queryTextContent(fixture.debugElement, '.dropdown-icon')).toBe(
+        'expand_more',
       );
     });
 
@@ -87,8 +81,8 @@ describe('NavigationBarComponent', () => {
       component.isDropdownOpen = false;
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, '.dropdown-icon').componentInstance.name).toBe(
-        'chevron-up',
+      expect(queryTextContent(fixture.debugElement, '.dropdown-icon')).toBe(
+        'expand_less',
       );
     });
   });

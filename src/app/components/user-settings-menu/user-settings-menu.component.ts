@@ -4,7 +4,7 @@ import { Observable, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, HostBinding, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 
@@ -34,9 +34,6 @@ export class UserSettingsMenuComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  // Short delay to allow stylesheet to load; otherwise unstyled component flickers briefly
-  @HostBinding('style.visibility') private visibility = 'hidden';
-
   ngOnInit(): void {
     this.viewModel$ = combineLatest([
       this.store.select(AuthSelectors.selectUser),
@@ -50,8 +47,6 @@ export class UserSettingsMenuComponent implements OnInit {
         isSafeMode,
       })),
     );
-
-    setTimeout(() => (this.visibility = 'visible'), 30);
   }
 
   public onToggleTheme(): void {

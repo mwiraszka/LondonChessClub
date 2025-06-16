@@ -38,7 +38,7 @@ import { TooltipDirective } from '@app/directives/tooltip.directive';
         (change)="onToggleChange()" />
       <div
         class="slider round"
-        [class.warning]="warningWhenOff">
+        [class.warning]="!switchedOn && warningWhenOff">
       </div>
     </label>
   `,

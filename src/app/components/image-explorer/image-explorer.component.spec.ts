@@ -21,15 +21,12 @@ describe('ImageExplorerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ImageExplorerComponent],
+      imports: [AdminControlsDirective, ImageExplorerComponent],
       providers: [
         provideMockStore(),
         { provide: DialogService, useValue: { open: jest.fn() } },
       ],
     })
-      .overrideDirective(AdminControlsDirective, {
-        set: { selector: '[adminControls]' },
-      })
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(ImageExplorerComponent);

@@ -19,12 +19,6 @@ export class ImagesService {
     return this.http.get<ApiResponse<Image[]>>(`${this.API_BASE_URL}/${this.COLLECTION}`);
   }
 
-  public getImagesForAlbum(album: string): Observable<ApiResponse<Image[]>> {
-    return this.http.get<ApiResponse<Image[]>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}/album/${album}`,
-    );
-  }
-
   public getImage(id: Id): Observable<ApiResponse<Image>> {
     return this.http.get<ApiResponse<Image>>(
       `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,

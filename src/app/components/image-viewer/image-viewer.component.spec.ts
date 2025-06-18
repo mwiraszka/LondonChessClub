@@ -24,7 +24,7 @@ describe('ImageViewerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ImageViewerComponent],
+      imports: [AdminControlsDirective, ImageViewerComponent],
       providers: [
         provideMockStore(),
         { provide: DialogService, useValue: { open: jest.fn() } },
@@ -36,9 +36,6 @@ describe('ImageViewerComponent', () => {
         },
       ],
     })
-      .overrideDirective(AdminControlsDirective, {
-        set: { selector: '[adminControls]' },
-      })
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(ImageViewerComponent);

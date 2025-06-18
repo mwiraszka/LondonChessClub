@@ -7,11 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
 import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
-import {
-  AdminControlsDirective,
-  ImagePreloadDirective,
-  TooltipDirective,
-} from '@app/directives';
+import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
+import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { AdminControlsConfig, Id, Image, InternalLink } from '@app/models';
 import { DialogService } from '@app/services';
 import { ImagesActions } from '@app/store/images';

@@ -10,7 +10,8 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
-import { ADMIN_CONTROLS_CONFIG_TOKEN, TooltipDirective } from '@app/directives';
+import { ADMIN_CONTROLS_CONFIG_TOKEN } from '@app/directives/admin-controls.directive';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { AdminControlsConfig } from '@app/models/admin-controls-config.model';
 import { IsDefinedPipe, RouterLinkPipe } from '@app/pipes';
 

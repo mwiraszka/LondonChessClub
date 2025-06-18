@@ -41,7 +41,6 @@ Below you'll find an overview of the tools and technologies that power the app, 
 - 🐛 Automatically refresh presigned URLs for all images prior to their expiry to prevent broken image links
 - 🔧 Upgrade all third-party packages to their latest versions
 - 🔧 Increase test coverage on various reuseable components
-- 🔧 Set up a barrel file for directives
 
 </details>
 

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
-import { ImagePreloadDirective } from '@app/directives';
+import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import type { Article, Image } from '@app/models';
 import {
   FormatDatePipe,

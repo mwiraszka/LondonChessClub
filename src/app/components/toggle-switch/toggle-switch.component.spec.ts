@@ -2,7 +2,7 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { TooltipDirective } from '@app/directives';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { query, queryTextContent } from '@app/utils';
 
 import { ToggleSwitchComponent } from './toggle-switch.component';

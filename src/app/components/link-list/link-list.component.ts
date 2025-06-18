@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
-import { TooltipDirective } from '@app/directives';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import type { ExternalLink, InternalLink } from '@app/models';
 import { RouterLinkPipe } from '@app/pipes';
 

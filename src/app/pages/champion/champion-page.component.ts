@@ -3,7 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import { ImagePreloadDirective } from '@app/directives';
+import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import type { ExternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 

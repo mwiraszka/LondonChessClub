@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
-import { TooltipDirective } from '@app/directives';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 
 @Component({
   selector: 'lcc-paginator',

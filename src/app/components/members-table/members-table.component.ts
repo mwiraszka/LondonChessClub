@@ -9,7 +9,8 @@ import { RouterLink } from '@angular/router';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PaginatorComponent } from '@app/components/paginator/paginator.component';
-import { AdminControlsDirective, TooltipDirective } from '@app/directives';
+import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import type {
   AdminControlsConfig,
   BasicDialogResult,

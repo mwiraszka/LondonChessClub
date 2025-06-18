@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 
-import { ADMIN_CONTROLS_CONFIG_TOKEN } from '@app/directives';
+import { ADMIN_CONTROLS_CONFIG_TOKEN } from '@app/directives/admin-controls.directive';
 import type { AdminControlsConfig } from '@app/models';
 import { query } from '@app/utils';
 

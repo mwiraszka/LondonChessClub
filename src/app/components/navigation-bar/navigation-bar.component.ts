@@ -2,7 +2,8 @@ import { Component, HostListener } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
-import { DropdownDirective, TooltipDirective } from '@app/directives';
+import { DropdownDirective } from '@app/directives/dropdown.directive';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import type { InternalLink } from '@app/models';
 import { RouterLinkPipe } from '@app/pipes';
 

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Inject, TemplateRef } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
-import { TOOLTIP_CONTENT_TOKEN } from '@app/directives';
+import { TOOLTIP_CONTENT_TOKEN } from '@app/directives/tooltip.directive';
 import { TruncateByCharsPipe } from '@app/pipes';
 import { IsStringPipe } from '@app/pipes';
 

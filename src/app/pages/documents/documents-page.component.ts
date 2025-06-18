@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { DocumentViewerComponent } from '@app/components/document-viewer/document-viewer.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import { TooltipDirective } from '@app/directives';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import type { ClubDocument } from '@app/models';
 import { FormatDatePipe } from '@app/pipes';
 import { DialogService, MetaAndTitleService } from '@app/services';

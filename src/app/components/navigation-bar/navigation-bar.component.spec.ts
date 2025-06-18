@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
-import { DropdownDirective } from '@app/directives/dropdown.directive';
+import { DropdownDirective } from '@app/directives';
 import { query, queryTextContent } from '@app/utils';
 
 import { NavigationBarComponent } from './navigation-bar.component';

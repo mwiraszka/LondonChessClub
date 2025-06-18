@@ -21,8 +21,8 @@ import { TooltipComponent } from '@app/components/tooltip/tooltip.component';
 import { Pixels } from '@app/models';
 import { isDefined } from '@app/utils';
 
-export const TOOLTIP_DATA_TOKEN = new InjectionToken<string | TemplateRef<unknown>>(
-  'Tooltip Data',
+export const TOOLTIP_CONTENT_TOKEN = new InjectionToken<string | TemplateRef<unknown>>(
+  'Tooltip Content',
 );
 
 @Directive({
@@ -60,7 +60,7 @@ export class TooltipDirective implements OnDestroy {
       const injector = Injector.create({
         providers: [
           {
-            provide: TOOLTIP_DATA_TOKEN,
+            provide: TOOLTIP_CONTENT_TOKEN,
             useValue: this.tooltip,
           },
         ],

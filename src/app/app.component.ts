@@ -14,7 +14,7 @@ import { HeaderComponent } from '@app/components/header/header.component';
 import { NavigationBarComponent } from '@app/components/navigation-bar/navigation-bar.component';
 import { UpcomingEventBannerComponent } from '@app/components/upcoming-event-banner/upcoming-event-banner.component';
 import { Event, IsoDate } from '@app/models';
-import { LoaderService } from '@app/services';
+import { LoaderService, UrlExpirationService } from '@app/services';
 import { AppActions, AppSelectors } from '@app/store/app';
 import { EventsSelectors } from '@app/store/events';
 import { isDefined } from '@app/utils';
@@ -47,12 +47,14 @@ export class AppComponent implements OnInit {
     public readonly loaderService: LoaderService,
     private readonly router: Router,
     private readonly store: Store,
+    private readonly urlExpirationService: UrlExpirationService,
   ) {
     moment.tz.setDefault('America/Toronto');
   }
 
   ngOnInit(): void {
     this.initNavigationListenerForScrollingBackToTop();
+    this.urlExpirationService.listenToImageChanges();
 
     this.viewModel$ = combineLatest([
       this.store.select(AppSelectors.selectIsDarkMode),

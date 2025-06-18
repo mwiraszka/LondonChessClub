@@ -4,7 +4,7 @@ import { Renderer2 } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
-import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
+import { AdminControlsDirective } from '@app/directives';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { DialogService } from '@app/services';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';

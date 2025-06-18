@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 
-import { Id, Url } from './core.model';
+import { Id, IsoDate, Url } from './core.model';
 import { ModificationInfo } from './modification-info.model';
 
 export interface BaseImage {
@@ -16,6 +16,7 @@ export interface BaseImage {
 export interface Image extends BaseImage {
   width?: number;
   height?: number;
+  urlExpirationDate?: IsoDate;
   originalUrl?: Url;
   thumbnailUrl?: Url;
   articleAppearances?: number;

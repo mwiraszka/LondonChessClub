@@ -17,8 +17,7 @@ import { FormErrorIconComponent } from '@app/components/form-error-icon/form-err
 import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
-import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
-import { TooltipDirective } from '@app/directives/tooltip.directive';
+import { ImagePreloadDirective, TooltipDirective } from '@app/directives';
 import type {
   Article,
   ArticleFormData,

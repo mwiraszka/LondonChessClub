@@ -7,9 +7,7 @@ import type { ApiResponse, ApiScope, DbCollection, Id, Member } from '@app/model
 
 import { environment } from '@env';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class MembersService {
   private readonly API_BASE_URL = environment.lccApiBaseUrl;
   private readonly COLLECTION: DbCollection = 'members';

@@ -5,9 +5,7 @@ import { Injectable } from '@angular/core';
 
 import { parseCsv } from '@app/utils';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ChessOpeningsService {
   /**
    * @returns A map of ECO codes mapped to their corresponding opening names

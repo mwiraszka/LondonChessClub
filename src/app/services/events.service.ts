@@ -7,9 +7,7 @@ import type { ApiResponse, DbCollection, Event, Id } from '@app/models';
 
 import { environment } from '@env';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class EventsService {
   private readonly API_BASE_URL = environment.lccApiBaseUrl;
   private readonly COLLECTION: DbCollection = 'events';

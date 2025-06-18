@@ -15,8 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
-import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
-import { TooltipDirective } from '@app/directives/tooltip.directive';
+import { ImagePreloadDirective, TooltipDirective } from '@app/directives';
 import type {
   BasicDialogResult,
   Dialog,

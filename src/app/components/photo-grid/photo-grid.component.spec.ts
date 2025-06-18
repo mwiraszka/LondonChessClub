@@ -6,8 +6,7 @@ import { provideRouter } from '@angular/router';
 
 import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
 import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
-import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
-import { TooltipDirective } from '@app/directives/tooltip.directive';
+import { AdminControlsDirective, TooltipDirective } from '@app/directives';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { DialogService } from '@app/services';
 import { ImagesActions } from '@app/store/images';

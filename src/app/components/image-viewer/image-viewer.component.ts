@@ -17,9 +17,11 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
-import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
-import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
-import { TooltipDirective } from '@app/directives/tooltip.directive';
+import {
+  AdminControlsDirective,
+  ImagePreloadDirective,
+  TooltipDirective,
+} from '@app/directives';
 import type {
   AdminControlsConfig,
   BasicDialogResult,

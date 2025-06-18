@@ -10,8 +10,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
-import { ADMIN_CONTROLS_CONFIG } from '@app/directives/admin-controls.directive';
-import { TooltipDirective } from '@app/directives/tooltip.directive';
+import { ADMIN_CONTROLS_CONFIG_TOKEN, TooltipDirective } from '@app/directives';
 import { AdminControlsConfig } from '@app/models/admin-controls-config.model';
 import { IsDefinedPipe, RouterLinkPipe } from '@app/pipes';
 
@@ -31,7 +30,7 @@ import { IsDefinedPipe, RouterLinkPipe } from '@app/pipes';
 export class AdminControlsComponent implements OnInit, OnDestroy {
   @Output() destroyed = new EventEmitter<void>();
 
-  constructor(@Inject(ADMIN_CONTROLS_CONFIG) public config: AdminControlsConfig) {}
+  constructor(@Inject(ADMIN_CONTROLS_CONFIG_TOKEN) public config: AdminControlsConfig) {}
 
   ngOnInit(): void {
     document.documentElement.style.setProperty(

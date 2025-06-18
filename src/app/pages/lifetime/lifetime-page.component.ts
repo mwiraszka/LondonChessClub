@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
+import { ImagePreloadDirective } from '@app/directives';
 import { MetaAndTitleService } from '@app/services';
 
 @Component({

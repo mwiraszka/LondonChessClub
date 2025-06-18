@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterLink, provideRouter } from '@angular/router';
 
-import { TooltipDirective } from '@app/directives/tooltip.directive';
+import { TooltipDirective } from '@app/directives';
 import { MOCK_ARTICLES } from '@app/mocks/articles.mock';
 import { ExternalLink, InternalLink } from '@app/models';
 import { RouterLinkPipe } from '@app/pipes';

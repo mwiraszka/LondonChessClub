@@ -6,8 +6,7 @@ import { RouterLink } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
-import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
-import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
+import { AdminControlsDirective, ImagePreloadDirective } from '@app/directives';
 import type {
   AdminControlsConfig,
   Article,

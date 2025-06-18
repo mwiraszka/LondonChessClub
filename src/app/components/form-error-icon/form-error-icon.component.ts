@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 
-import { TooltipDirective } from '@app/directives/tooltip.directive';
+import { TooltipDirective } from '@app/directives';
 
 @Component({
   selector: 'lcc-form-error-icon',

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
-import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
+import { ImagePreloadDirective } from '@app/directives';
 
 @Component({
   selector: 'lcc-club-links',

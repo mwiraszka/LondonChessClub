@@ -26,7 +26,7 @@ import { DialogService } from '@app/services';
 
 import { AdminControlsComponent } from '../components/admin-controls/admin-controls.component';
 
-export const ADMIN_CONTROLS_CONFIG = new InjectionToken<AdminControlsConfig>(
+export const ADMIN_CONTROLS_CONFIG_TOKEN = new InjectionToken<AdminControlsConfig>(
   'Admin Controls Config',
 );
 
@@ -77,7 +77,7 @@ export class AdminControlsDirective implements OnDestroy {
     const injector = Injector.create({
       providers: [
         {
-          provide: ADMIN_CONTROLS_CONFIG,
+          provide: ADMIN_CONTROLS_CONFIG_TOKEN,
           useValue: this.adminControls,
         },
       ],

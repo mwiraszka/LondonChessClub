@@ -147,31 +147,49 @@ export class ImageViewerComponent
   }
 
   private prefetchAdjacentImages(): void {
-    if (this.images.length > 1) {
-      // Immediate next image
-      this.fetchImage(1);
+    if (this.images.length <= 1) {
+      return;
     }
 
+    // Immediate next image with a small delay
+    setTimeout(() => this.fetchImage(1), 1000);
+
     if (this.images.length > 2) {
-      // Immediate previous image (last index)
-      this.fetchImage(this.images.length - 1);
+      // Previous image (last index) with a bigger delay
+      setTimeout(() => this.fetchImage(this.images.length - 1), 2000);
     }
 
     if (this.images.length > 3) {
-      // Fetch the rest with a delay to ensure browser prioritizes the first requests
-      setTimeout(() => {
-        for (let i = 2; i <= Math.floor(this.images.length / 2); i++) {
-          this.fetchImage(i);
-          // Avoid duplicate fetches when the middle is reached in odd-length arrays
-          if (i !== this.images.length - i) {
-            this.fetchImage(this.images.length - i);
-          }
+      // Stagger remaining prefetch requests to avoid overwhelming the browser
+      let index = 0;
+      const imagesToPrefetch: number[] = [];
+
+      // Build a list of indices to prefetch, alternating between next and previous
+      for (let i = 2; i <= Math.floor(this.images.length / 2); i++) {
+        imagesToPrefetch.push(i);
+        if (i !== this.images.length - i) {
+          imagesToPrefetch.push(this.images.length - i);
         }
-      }, 100);
+      }
+
+      const prefetchNext = () => {
+        if (index < imagesToPrefetch.length) {
+          this.fetchImage(imagesToPrefetch[index]);
+          index++;
+          setTimeout(prefetchNext, 1000);
+        }
+      };
+
+      // Begin main prefetching process with a delay after the initial prefetches
+      setTimeout(prefetchNext, 3000);
     }
   }
 
   private fetchImage(index: number): void {
+    if (index < 0 || index >= this.images.length) {
+      return;
+    }
+
     const imageId = this.images[index].id;
 
     this.store

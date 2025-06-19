@@ -29,19 +29,13 @@ describe('PhotoGridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PhotoGridComponent],
+      imports: [AdminControlsDirective, PhotoGridComponent, TooltipDirective],
       providers: [
         provideMockStore(),
         provideRouter([{ path: 'photo-gallery', component: PhotoGalleryStubComponent }]),
         { provide: DialogService, useValue: { open: jest.fn() } },
       ],
     })
-      .overrideDirective(AdminControlsDirective, {
-        set: { selector: '[adminControls]' },
-      })
-      .overrideDirective(TooltipDirective, {
-        set: { selector: '[tooltip]' },
-      })
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(PhotoGridComponent);

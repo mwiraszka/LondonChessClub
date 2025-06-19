@@ -14,7 +14,6 @@ import {
 import { RouterLink } from '@angular/router';
 
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
-import IconsModule from '@app/icons';
 import type { ChangePasswordFormGroup } from '@app/models';
 import { AuthActions } from '@app/store/auth';
 import {
@@ -31,7 +30,7 @@ import {
   selector: 'lcc-change-password-form',
   templateUrl: './change-password-form.component.html',
   styleUrl: './change-password-form.component.scss',
-  imports: [FormErrorIconComponent, IconsModule, ReactiveFormsModule, RouterLink],
+  imports: [FormErrorIconComponent, ReactiveFormsModule, RouterLink],
 })
 export class ChangePasswordFormComponent implements OnInit {
   @Input({ required: true }) hasCode!: boolean;

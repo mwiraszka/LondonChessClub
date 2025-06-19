@@ -32,7 +32,7 @@
     background-color: var(--lcc-color--toast-infoBackground);
   }
 
-  .icon {
+  mat-icon {
     display: flex;
     color: var(--lcc-color--toast-icon);
   }
@@ -44,11 +44,11 @@
     padding: 8px;
     overflow: hidden;
 
-    .toast-title {
+    .title {
       color: var(--lcc-color--toast-primaryText);
     }
 
-    .toast-message {
+    .message {
       font-size: 13px;
       color: var(--lcc-color--toast-secondaryText);
     }

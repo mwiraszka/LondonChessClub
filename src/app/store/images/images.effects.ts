@@ -41,35 +41,9 @@ export class ImagesEffects {
     );
   });
 
-  // TODO: Figure out a better way to do this; currently not implemented anywhere
-  fetchImagesForAlbum$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ImagesActions.fetchImagesForAlbumRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ album }) =>
-        this.imagesService.getImagesForAlbum(album).pipe(
-          map(response =>
-            ImagesActions.fetchImagesForAlbumSucceeded({
-              images: response.data,
-            }),
-          ),
-          catchError(error =>
-            of(
-              ImagesActions.fetchImagesForAlbumFailed({
-                error: parseError(error),
-              }),
-            ),
-          ),
-        ),
-      ),
-      tap(() => this.loaderService.setIsLoading(false)),
-    );
-  });
-
   fetchImage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchImageRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ imageId }) => {
         return this.imagesService.getImage(imageId).pipe(
           map(response => ImagesActions.fetchImageSucceeded({ image: response.data })),
@@ -82,7 +56,6 @@ export class ImagesEffects {
           }),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 

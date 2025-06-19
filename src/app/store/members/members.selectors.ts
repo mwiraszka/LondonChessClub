@@ -94,14 +94,26 @@ export const selectSortedMembers = createSelector(
   selectSortedBy,
   selectIsAscending,
   (allMembers, sortedBy, isAscending) => {
-    const sortKey =
-      sortedBy === 'born'
-        ? 'yearOfBirth'
-        : sortedBy === 'lastUpdated'
-          ? 'modificationInfo.dateLastEdited'
-          : sortedBy;
+    let primarySortKey: string;
+
+    switch (sortedBy) {
+      case 'born':
+        primarySortKey = 'yearOfBirth';
+        break;
+      case 'name':
+        primarySortKey = 'lastName';
+        break;
+      case 'lastUpdated':
+        primarySortKey = 'modificationInfo.dateLastEdited';
+        break;
+      default:
+        primarySortKey = sortedBy;
+    }
+
+    const secondarySortKey = primarySortKey === 'lastName' ? 'firstName' : 'lastName';
+
     return [...allMembers].sort((a, b) =>
-      customSort(a, b, sortKey, !isAscending, 'lastName'),
+      customSort(a, b, primarySortKey, !isAscending, secondarySortKey),
     );
   },
 );

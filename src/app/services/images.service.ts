@@ -8,9 +8,7 @@ import { BaseImage } from '@app/models/image.model';
 
 import { environment } from '@env';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ImagesService {
   private readonly API_BASE_URL = environment.lccApiBaseUrl;
   private readonly COLLECTION: DbCollection = 'images';
@@ -19,12 +17,6 @@ export class ImagesService {
 
   public getThumbnailImages(): Observable<ApiResponse<Image[]>> {
     return this.http.get<ApiResponse<Image[]>>(`${this.API_BASE_URL}/${this.COLLECTION}`);
-  }
-
-  public getImagesForAlbum(album: string): Observable<ApiResponse<Image[]>> {
-    return this.http.get<ApiResponse<Image[]>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}/album/${album}`,
-    );
   }
 
   public getImage(id: Id): Observable<ApiResponse<Image>> {

@@ -2,9 +2,7 @@ import { BehaviorSubject, debounceTime } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class LoaderService {
   private _isLoading$ = new BehaviorSubject<boolean>(false);
   public isLoading$ = this._isLoading$.asObservable().pipe(debounceTime(150));

@@ -16,7 +16,6 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | [![AWS S3](readme-icons/aws-s3.png)](https://aws.amazon.com/s3) | `AWS S3` | static web hosting and cloud storage for images |
 | [![Chart.js](readme-icons/chartjs.png)](https://www.chartjs.org/) | `Chart.js` | game and player stats |
 | [![Express.js](readme-icons/expressjs.png)](https://expressjs.com) | `Express.js` | API and routing framework built on Node.js |
-| [![Feather](readme-icons/feather.png)](https://feathericons.com) | `Feather` | icons |
 | [![GitHub Actions](readme-icons/github.png)](https://github.com/features/actions) | `GitHub Actions` | automated workflows |
 | [![Lichess PGN Viewer](readme-icons/lichess.png)](https://github.com/lichess-org/pgn-viewer) | `Lichess PGN Viewer` | chess game rendering |
 | [![MongoDB](readme-icons/mongodb.png)](https://www.mongodb.com) | `MongoDB` | database management system  |
@@ -31,6 +30,21 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🚀  | New features & improvements       |
 | 🐛  | Bug fixes                         |
 | 🔧  | Behind-the-scenes changes         |
+
+<details>
+<summary>v5.4.0 - June 19th, 2025</summary>
+
+- 🚀 Migrate from Feather icons to Material icons across the entire application
+- 🚀 Implement dynamic sizing for admin control buttons based on `config.buttonSize` property
+- 🚀 Apply icon-size mixin for consistent icon scaling and vertical alignment
+- 🚀 Scale caption text in Image Viewer based on screen size
+- 🚀 Combine first name and last name columns in Members Table
+- 🐛 Fix icon sizing and positioning in various UI components
+- 🐛 Automatically refresh presigned URLs for all images prior to their expiry to prevent broken image links
+- 🔧 Upgrade all third-party packages to their latest versions
+- 🔧 Increase test coverage on various reuseable components
+
+</details>
 
 <details>
 <summary>v5.3.3 - June 14th, 2025</summary>

@@ -1,3 +1,5 @@
+@use '../../../styles/abstracts/mixins' as *;
+
 :host {
   z-index: 1000;
 }
@@ -74,7 +76,9 @@
   }
 }
 
-.close-icon {
+mat-icon {
+  @include icon-size(16px);
+
   color: var(--lcc-color--upcomingEventBanner-closeIcon);
 
   &:hover {

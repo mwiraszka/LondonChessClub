@@ -10,12 +10,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { DatePickerComponent } from '@app/components/date-picker/date-picker.component';
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
-import IconsModule from '@app/icons';
 import type {
   BasicDialogResult,
   Dialog,
@@ -40,7 +40,7 @@ import {
   imports: [
     DatePickerComponent,
     FormErrorIconComponent,
-    IconsModule,
+    MatIconModule,
     ModificationInfoComponent,
     ReactiveFormsModule,
   ],

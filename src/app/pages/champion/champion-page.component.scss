@@ -1,4 +1,4 @@
-@use '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins' as *;
 
 .grid-container {
   display: grid;
@@ -13,7 +13,7 @@
     'past-winners';
   gap: 4px;
 
-  @include mixins.respond-to('gt-sm') {
+  @include respond-to('gt-sm') {
     grid-template-columns: 3fr 2fr 2fr;
     grid-template-areas:
       'history history history'
@@ -22,7 +22,7 @@
       'past-winners past-winners past-winners';
   }
 
-  @include mixins.respond-to('gt-lg') {
+  @include respond-to('gt-lg') {
     grid-template-columns: 3fr 2fr 2fr 2fr;
     grid-template-areas:
       'history history history past-winners'
@@ -56,7 +56,7 @@
       object-fit: contain;
     }
 
-    @include mixins.respond-to('gt-sm') {
+    @include respond-to('gt-sm') {
       border-radius: var(--lcc-borderRadius--small);
 
       img {
@@ -82,7 +82,7 @@
     &.cup {
       grid-area: cup;
 
-      @include mixins.respond-to('lt-sm') {
+      @include respond-to('lt-sm') {
         margin: 0 4px;
         border-radius: var(--lcc-borderRadius--large);
       }
@@ -109,10 +109,9 @@
         }
 
         .championship-icon {
+          @include icon-size(16px);
+
           margin-right: 4px;
-          width: 16px;
-          height: 16px;
-          vertical-align: text-top;
           color: var(--lcc-color--championPage-championshipIcon);
         }
       }
@@ -121,7 +120,7 @@
     &.champion-2023 {
       grid-area: champ-2023;
 
-      @include mixins.respond-to('lt-sm') {
+      @include respond-to('lt-sm') {
         margin: 0 4px;
         border-radius: var(--lcc-borderRadius--large);
       }
@@ -130,7 +129,7 @@
     &.trophies-2023 {
       grid-area: trophies-2023;
 
-      @include mixins.respond-to('lt-sm') {
+      @include respond-to('lt-sm') {
         margin: 0 4px;
         border-radius: var(--lcc-borderRadius--large);
       }
@@ -139,7 +138,7 @@
     &.champion-2019 {
       grid-area: champ-2019;
 
-      @include mixins.respond-to('lt-sm') {
+      @include respond-to('lt-sm') {
         margin: 0 4px;
         border-radius: var(--lcc-borderRadius--large);
       }
@@ -148,7 +147,7 @@
     &.championship-match-2022 {
       grid-area: champ-2022;
 
-      @include mixins.respond-to('lt-sm') {
+      @include respond-to('lt-sm') {
         margin: 0 4px;
         border-radius: var(--lcc-borderRadius--large);
       }

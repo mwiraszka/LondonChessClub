@@ -20,7 +20,7 @@ import { EventsSelectors } from '@app/store/events';
     @if (viewModel$ | async; as vm) {
       <lcc-page-header
         title="Schedule"
-        icon="calendar">
+        icon="calendar_month">
       </lcc-page-header>
       <lcc-schedule
         [allEvents]="vm.allEvents"

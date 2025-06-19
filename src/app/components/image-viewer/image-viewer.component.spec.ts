@@ -24,7 +24,7 @@ describe('ImageViewerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ImageViewerComponent],
+      imports: [AdminControlsDirective, ImageViewerComponent],
       providers: [
         provideMockStore(),
         { provide: DialogService, useValue: { open: jest.fn() } },
@@ -36,9 +36,6 @@ describe('ImageViewerComponent', () => {
         },
       ],
     })
-      .overrideDirective(AdminControlsDirective, {
-        set: { selector: '[adminControls]' },
-      })
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(ImageViewerComponent);
@@ -90,7 +87,7 @@ describe('ImageViewerComponent', () => {
         // @ts-expect-error Private class member
         component.prefetchAdjacentImages();
 
-        jest.advanceTimersByTime(100);
+        jest.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).not.toHaveBeenCalled();
       });
@@ -101,11 +98,13 @@ describe('ImageViewerComponent', () => {
         // @ts-expect-error Private class member
         component.prefetchAdjacentImages();
 
+        jest.advanceTimersByTime(1000);
+
         expect(fetchImageSpy).toHaveBeenCalledTimes(1);
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(1, 1);
+        expect(fetchImageSpy).toHaveBeenCalledWith(1);
 
         jest.clearAllMocks();
-        jest.advanceTimersByTime(100);
+        jest.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).not.toHaveBeenCalled();
       });
@@ -116,12 +115,19 @@ describe('ImageViewerComponent', () => {
         // @ts-expect-error Private class member
         component.prefetchAdjacentImages();
 
-        expect(fetchImageSpy).toHaveBeenCalledTimes(2);
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(1, 1);
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(2, 2);
+        jest.advanceTimersByTime(1000);
+
+        expect(fetchImageSpy).toHaveBeenCalledTimes(1);
+        expect(fetchImageSpy).toHaveBeenCalledWith(1);
 
         jest.clearAllMocks();
-        jest.advanceTimersByTime(100);
+        jest.advanceTimersByTime(1000);
+
+        expect(fetchImageSpy).toHaveBeenCalledTimes(1);
+        expect(fetchImageSpy).toHaveBeenCalledWith(2);
+
+        jest.clearAllMocks();
+        jest.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).not.toHaveBeenCalled();
       });
@@ -130,15 +136,24 @@ describe('ImageViewerComponent', () => {
         // @ts-expect-error Private class member
         component.prefetchAdjacentImages();
 
-        expect(fetchImageSpy).toHaveBeenCalledTimes(2);
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(1, 1);
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(2, mockImages.length - 1);
+        jest.advanceTimersByTime(1000);
+
+        expect(fetchImageSpy).toHaveBeenCalledTimes(1);
+        expect(fetchImageSpy).toHaveBeenCalledWith(1);
 
         jest.clearAllMocks();
-        jest.advanceTimersByTime(100);
+        jest.advanceTimersByTime(1000);
+
+        expect(fetchImageSpy).toHaveBeenCalledTimes(1);
+        expect(fetchImageSpy).toHaveBeenCalledWith(mockImages.length - 1);
 
         // Current image, immediate next image and immediate previous image have already been fetched
-        expect(fetchImageSpy).toHaveBeenCalledTimes(mockImages.length - 3);
+        const remainingImages = mockImages.length - 3;
+
+        jest.clearAllMocks();
+        jest.advanceTimersByTime(remainingImages * 1000);
+
+        expect(fetchImageSpy).toHaveBeenCalledTimes(remainingImages);
 
         expect(fetchImageSpy).toHaveBeenNthCalledWith(1, 2);
         expect(fetchImageSpy).toHaveBeenNthCalledWith(2, mockImages.length - 2);

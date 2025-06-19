@@ -1,12 +1,7 @@
-:host {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 18px;
+@use '../../../styles/abstracts/mixins' as *;
 
-  .alert-icon {
-    color: var(--lcc-color--formErrorIcon);
-    height: 18px;
-    width: 18px;
-  }
+mat-icon {
+  @include icon-size(18px);
+
+  color: var(--lcc-color--formErrorIcon);
 }

@@ -1,23 +1,19 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import IconsModule from '@app/icons';
 
 @Component({
   selector: 'lcc-form-error-icon',
   template: `
     @if (hasError) {
-      <i-feather
-        name="alert-triangle"
-        class="alert-icon"
-        [tooltip]="errorMessage">
-      </i-feather>
+      <mat-icon [tooltip]="errorMessage">warning_amber</mat-icon>
     }
   `,
   styleUrl: './form-error-icon.component.scss',
   standalone: true,
-  imports: [IconsModule, TooltipDirective],
+  imports: [MatIconModule, TooltipDirective],
 })
 export class FormErrorIconComponent {
   @Input({ required: true }) control!: AbstractControl;
@@ -50,13 +46,13 @@ export class FormErrorIconComponent {
     } else if (this.control.hasError('maxlength')) {
       return 'Input is too long';
     } else if (this.control.hasError('noLowercaseLetter')) {
-      return 'Password needs to include at least one lowercase letter';
+      return 'Must include at least one lowercase letter';
     } else if (this.control.hasError('noUppercaseLetter')) {
-      return 'Password needs to include at least one uppercase letter';
+      return 'Must include at least one uppercase letter';
     } else if (this.control.hasError('noSpecialChar')) {
-      return 'Password needs to include at least one special character';
+      return 'Must include at least one special character';
     } else if (this.control.hasError('noNumber')) {
-      return 'Password needs to include at least one number';
+      return 'Must include at least one number';
     } else if (this.control.hasError('passwordMismatch')) {
       return 'Passwords must match';
     } else {

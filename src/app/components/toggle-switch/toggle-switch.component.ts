@@ -1,25 +1,77 @@
 import * as uuid from 'uuid';
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 
 @Component({
   selector: 'lcc-toggle-switch',
-  templateUrl: './toggle-switch.component.html',
-  styleUrl: './toggle-switch.component.scss',
-  imports: [TooltipDirective],
-})
-export class ToggleSwitchComponent {
-  @Input() public condition?: boolean | null;
-  @Input() public tooltipTextWhenOn?: string;
-  @Input() public tooltipTextWhenOff?: string;
+  template: `
+    @if (switchedOn && iconWhenOn) {
+      <mat-icon>{{ iconWhenOn }}</mat-icon>
+    } @else if (!switchedOn && iconWhenOff) {
+      <mat-icon
+        [class.warning]="warningWhenOff"
+        [tooltip]="iconTooltipWhenOff">
+        {{ iconWhenOff }}
+      </mat-icon>
+    }
 
-  public uniqueId!: string;
+    <label
+      #switchTooltip
+      class="toggle-switch"
+      [for]="uniqueId"
+      [tooltip]="switchedOn ? tooltipWhenOn : tooltipWhenOff">
+      <input
+        type="checkbox"
+        [id]="uniqueId"
+        [checked]="switchedOn"
+        (change)="onToggleChange()" />
+      <div
+        class="slider round"
+        [class.warning]="!switchedOn && warningWhenOff">
+      </div>
+    </label>
+  `,
+  styleUrl: './toggle-switch.component.scss',
+  imports: [MatIconModule, TooltipDirective],
+})
+export class ToggleSwitchComponent implements OnInit {
+  @Input({ required: true }) public switchedOn = false;
+
+  @Input() public iconTooltipWhenOff: string | TemplateRef<unknown> | null = null;
+  @Input() public iconWhenOff?: string;
+  @Input() public iconWhenOn?: string;
+  @Input() public tooltipWhenOff: string | TemplateRef<unknown> | null = null;
+  @Input() public tooltipWhenOn: string | TemplateRef<unknown> | null = null;
+  @Input() public warningWhenOff = false;
 
   @Output() public toggle = new EventEmitter<boolean>();
 
-  constructor() {
+  @ViewChild('switchTooltip', { read: TooltipDirective, static: false })
+  private tooltipDirective?: TooltipDirective;
+
+  public uniqueId!: string;
+
+  ngOnInit(): void {
     this.uniqueId = uuid.v4().slice(-8);
+  }
+
+  public onToggleChange(): void {
+    this.toggle.emit();
+
+    if (this.tooltipDirective) {
+      this.tooltipDirective.detach();
+      setTimeout(() => this.tooltipDirective?.attach());
+    }
   }
 }

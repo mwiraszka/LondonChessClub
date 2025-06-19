@@ -6,8 +6,8 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
-import IconsModule from '@app/icons';
 import type { IsoDate } from '@app/models';
 
 @Component({
@@ -21,7 +21,7 @@ import type { IsoDate } from '@app/models';
       multi: true,
     },
   ],
-  imports: [IconsModule, ReactiveFormsModule],
+  imports: [MatIconModule, ReactiveFormsModule],
 })
 export class DatePickerComponent implements AfterViewInit, ControlValueAccessor {
   // Always render 6 weeks in calendar (the most that will ever be needed for any month)
@@ -29,16 +29,17 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
   public readonly WEEKS_IN_CALENDAR = 6;
   public readonly DAYS_OF_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+  public calendarDays: { date: Moment; disabled: boolean; selected: boolean }[][] = [];
   // Used to keep track of the month & year currently in calendar
   public currentMonth!: Moment;
   public screenWidth = window.innerWidth;
   public selectedDate!: Moment;
-  public calendarDays: { date: Moment; disabled: boolean; selected: boolean }[][] = [];
 
   constructor() {}
 
   ngAfterViewInit(): void {
-    this.renderCalendar();
+    // Prevent Angular's ExpressionChangedAfterItHasBeenCheckedError
+    setTimeout(() => this.renderCalendar());
   }
 
   @HostListener('window:resize', ['$event'])
@@ -49,12 +50,12 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
       console.error(
         "[LCC] No date provided to Date Picker - using today's date as fallback.",
       );
-      this.selectedDate = moment();
       this.currentMonth = moment();
+      this.selectedDate = moment();
     }
 
-    this.selectedDate = moment(date);
     this.currentMonth = moment(date);
+    this.selectedDate = moment(date);
   }
 
   public registerOnChange(fn: (date: IsoDate) => IsoDate): void {

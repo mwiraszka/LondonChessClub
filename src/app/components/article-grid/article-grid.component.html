@@ -11,10 +11,7 @@
         article.title ? (['article', 'view', article.id] | routerLink) : undefined
       ">
       @if (article.bookmarkDate | isDefined) {
-        <i-feather
-          class="bookmark-icon"
-          name="bookmark">
-        </i-feather>
+        <mat-icon class="bookmark-icon">bookmark_border</mat-icon>
       }
 
       <div class="image-container">

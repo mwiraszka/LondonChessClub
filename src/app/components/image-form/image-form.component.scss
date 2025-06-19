@@ -1,4 +1,4 @@
-@use '../../../styles/abstracts/mixins';
+@use '../../../styles/abstracts/mixins' as *;
 
 :host {
   display: flex;
@@ -16,7 +16,7 @@
     flex-direction: row;
     gap: 8px;
 
-    .file-upload-button {
+    .upload-file-button {
       align-self: end;
       padding: 4px 8px;
 
@@ -53,7 +53,7 @@
     grid-template-columns: auto;
     gap: 4px 16px;
 
-    @include mixins.respond-to('gt-md') {
+    @include respond-to('gt-md') {
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 

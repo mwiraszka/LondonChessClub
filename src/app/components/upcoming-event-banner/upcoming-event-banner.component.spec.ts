@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
-import IconsModule from '@app/icons';
 import { MOCK_EVENTS } from '@app/mocks/events.mock';
 import { formatDate, query, queryTextContent } from '@app/utils';
 
@@ -20,7 +19,7 @@ describe('UpcomingEventBannerComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [IconsModule, UpcomingEventBannerComponent],
+      imports: [UpcomingEventBannerComponent],
       providers: [
         provideRouter([{ path: 'schedule', component: ScheduleStubComponent }]),
       ],
@@ -61,7 +60,7 @@ describe('UpcomingEventBannerComponent', () => {
 
   describe('close button', () => {
     it('should display a close icon', () => {
-      expect(query(fixture.debugElement, '.close-icon')).toBeTruthy();
+      expect(query(fixture.debugElement, 'mat-icon')).toBeTruthy();
     });
 
     it('should emit a clear banner event when clicked', () => {

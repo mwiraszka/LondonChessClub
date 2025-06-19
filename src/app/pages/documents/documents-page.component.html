@@ -17,10 +17,7 @@
             <div
               class="document-label-container"
               (click)="onSelectDocument(document.fileName)">
-              <i-feather
-                name="file-text"
-                class="file-icon">
-              </i-feather>
+              <mat-icon class="file-icon">description</mat-icon>
               <span class="document-title">{{ document.title }}</span>
             </div>
 
@@ -30,10 +27,7 @@
               [download]="document.title"
               [tooltip]="tooltipContent"
               (click)="$event.stopPropagation()">
-              <i-feather
-                name="download"
-                class="download-icon">
-              </i-feather>
+              <mat-icon class="download-icon">file_download</mat-icon>
             </a>
 
             <ng-template #tooltipContent>

@@ -1,12 +1,12 @@
 import moment from 'moment-timezone';
 
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { DocumentViewerComponent } from '@app/components/document-viewer/document-viewer.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import IconsModule from '@app/icons';
 import type { ClubDocument } from '@app/models';
 import { FormatDatePipe } from '@app/pipes';
 import { DialogService, MetaAndTitleService } from '@app/services';
@@ -15,7 +15,7 @@ import { DialogService, MetaAndTitleService } from '@app/services';
   selector: 'lcc-documents-page',
   templateUrl: './documents-page.component.html',
   styleUrl: './documents-page.component.scss',
-  imports: [FormatDatePipe, IconsModule, PageHeaderComponent, TooltipDirective],
+  imports: [FormatDatePipe, MatIconModule, PageHeaderComponent, TooltipDirective],
 })
 export class DocumentsPageComponent implements OnInit, AfterViewInit {
   public readonly documents: ClubDocument[] = [

@@ -1,10 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Inject, OnDestroy, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
-import { ADMIN_CONTROLS_CONFIG } from '@app/directives/admin-controls.directive';
+import { ADMIN_CONTROLS_CONFIG_TOKEN } from '@app/directives/admin-controls.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import IconsModule from '@app/icons';
 import { AdminControlsConfig } from '@app/models/admin-controls-config.model';
 import { IsDefinedPipe, RouterLinkPipe } from '@app/pipes';
 
@@ -14,17 +21,24 @@ import { IsDefinedPipe, RouterLinkPipe } from '@app/pipes';
   styleUrl: './admin-controls.component.scss',
   imports: [
     CommonModule,
-    IconsModule,
     IsDefinedPipe,
+    MatIconModule,
     RouterLink,
     RouterLinkPipe,
     TooltipDirective,
   ],
 })
-export class AdminControlsComponent implements OnDestroy {
+export class AdminControlsComponent implements OnInit, OnDestroy {
   @Output() destroyed = new EventEmitter<void>();
 
-  constructor(@Inject(ADMIN_CONTROLS_CONFIG) public config: AdminControlsConfig) {}
+  constructor(@Inject(ADMIN_CONTROLS_CONFIG_TOKEN) public config: AdminControlsConfig) {}
+
+  ngOnInit(): void {
+    document.documentElement.style.setProperty(
+      '--admin-control-button-size',
+      `${this.config.buttonSize}px`,
+    );
+  }
 
   ngOnDestroy(): void {
     this.destroyed.emit();

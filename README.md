@@ -32,7 +32,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.4.0 - June/July TBD, 2025</summary>
+<summary>v5.4.0 - June 19th, 2025</summary>
 
 - 🚀 Migrate from Feather icons to Material icons across the entire application
 - 🚀 Implement dynamic sizing for admin control buttons based on `config.buttonSize` property

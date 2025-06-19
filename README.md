@@ -37,6 +37,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 - 🚀 Migrate from Feather icons to Material icons across the entire application
 - 🚀 Implement dynamic sizing for admin control buttons based on `config.buttonSize` property
 - 🚀 Apply icon-size mixin for consistent icon scaling and vertical alignment
+- 🚀 Scale caption text in Image Viewer based on screen size
 - 🐛 Fix icon sizing and positioning in various UI components
 - 🐛 Automatically refresh presigned URLs for all images prior to their expiry to prevent broken image links
 - 🔧 Upgrade all third-party packages to their latest versions

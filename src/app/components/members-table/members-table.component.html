@@ -26,7 +26,7 @@
   @if (displayedMembers.length) {
     <table
       class="lcc-table"
-      [class.lcc-show-admin-columns]="isAdmin && isSafeMode">
+      [class.lcc-show-admin-columns]="isAdmin && !isSafeMode">
       <thead>
         <tr>
           <th class="row-number"></th>
@@ -63,8 +63,9 @@
             [class.inactive]="!member.isActive">
             <td class="row-number">{{ i + startIndex + 1 }}</td>
             <td
-              class="first-name lcc-truncate"
+              class="name lcc-truncate"
               [tooltip]="member.isActive ? null : 'Inactive member'">
+              {{ member.firstName }} {{ member.lastName }}
               @if (isCityChampion(member)) {
                 <a
                   class="city-champion-link"
@@ -73,9 +74,7 @@
                   <mat-icon class="city-champion-icon">emoji_events</mat-icon>
                 </a>
               }
-              {{ member.firstName }}
             </td>
-            <td class="last-name lcc-truncate">{{ member.lastName }}</td>
             <td class="rating">{{ member.rating }}</td>
             <td class="peak-rating">{{ member.peakRating }}</td>
             <td class="city lcc-truncate">{{ member.city }}</td>

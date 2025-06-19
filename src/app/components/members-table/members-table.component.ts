@@ -60,8 +60,7 @@ export class MembersTableComponent implements OnInit {
   };
 
   public readonly tableHeaders = [
-    'First Name',
-    'Last Name',
+    'Name',
     'Rating',
     'Peak Rating',
     'City',

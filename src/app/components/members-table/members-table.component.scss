@@ -50,6 +50,7 @@ table {
           font-style: italic;
         }
 
+        .first-name::after,
         .name::after {
           content: ' *';
           color: var(--lcc-color--membersTable-inactiveMemberAsterisk);
@@ -63,6 +64,7 @@ table {
           text-align: right;
         }
 
+        &.first-name,
         &.name {
           min-width: 200px;
           max-width: 250px;

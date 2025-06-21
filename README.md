@@ -34,6 +34,8 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <details>
 <summary>v5.4.1 - June 21st, 2025</summary>
 
+- 🚀 When logged in as an admin, display headers in Members Table in the old order to allow for easier comparing & syncing
+
 </details>
 
 <details>

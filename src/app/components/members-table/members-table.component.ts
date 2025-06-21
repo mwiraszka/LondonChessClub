@@ -53,14 +53,18 @@ export class MembersTableComponent implements OnInit {
   @Input({ required: true }) sortedBy!: string;
   @Input({ required: true }) startIndex!: number;
 
-  public readonly addMemberLink: InternalLink = {
-    internalPath: ['member', 'add'],
-    text: 'Add a member',
-    icon: 'add_circle_outline',
-  };
-
-  public readonly tableHeaders = [
+  public readonly DEFAULT_TABLE_HEADERS = [
     'Name',
+    'Rating',
+    'Peak Rating',
+    'City',
+    'Chess.com Username',
+    'Lichess Username',
+  ];
+
+  public readonly ADMIN_TABLE_HEADERS = [
+    'First Name',
+    'Last Name',
     'Rating',
     'Peak Rating',
     'City',
@@ -72,6 +76,12 @@ export class MembersTableComponent implements OnInit {
     'Phone Number',
     'Date Joined',
   ];
+
+  public readonly addMemberLink: InternalLink = {
+    internalPath: ['member', 'add'],
+    text: 'Add a member',
+    icon: 'add_circle_outline',
+  };
 
   constructor(
     private readonly dialogService: DialogService,

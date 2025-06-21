@@ -31,7 +31,9 @@
         <tr>
           <th class="row-number"></th>
           @for (
-            header of isAdmin && !isSafeMode ? tableHeaders : tableHeaders.slice(0, -4);
+            header of isAdmin && !isSafeMode
+              ? ADMIN_TABLE_HEADERS
+              : DEFAULT_TABLE_HEADERS;
             track header
           ) {
             <th
@@ -62,19 +64,36 @@
             [ngClass]="{ 'last-row': last }"
             [class.inactive]="!member.isActive">
             <td class="row-number">{{ i + startIndex + 1 }}</td>
-            <td
-              class="name lcc-truncate"
-              [tooltip]="member.isActive ? null : 'Inactive member'">
-              {{ member.firstName }} {{ member.lastName }}
-              @if (isCityChampion(member)) {
-                <a
-                  class="city-champion-link"
-                  routerLink="/city-champion"
-                  tooltip="2024 City Champion">
-                  <mat-icon class="city-champion-icon">emoji_events</mat-icon>
-                </a>
-              }
-            </td>
+            @if (isAdmin && !isSafeMode) {
+              <td
+                class="first-name lcc-truncate"
+                [tooltip]="member.isActive ? null : 'Inactive member'">
+                @if (isCityChampion(member)) {
+                  <a
+                    class="city-champion-link"
+                    routerLink="/city-champion"
+                    tooltip="2024 City Champion">
+                    <mat-icon class="city-champion-icon">emoji_events</mat-icon>
+                  </a>
+                }
+                {{ member.firstName }}
+              </td>
+              <td class="last-name lcc-truncate">{{ member.lastName }}</td>
+            } @else {
+              <td
+                class="name lcc-truncate"
+                [tooltip]="member.isActive ? null : 'Inactive member'">
+                {{ member.firstName }} {{ member.lastName }}
+                @if (isCityChampion(member)) {
+                  <a
+                    class="city-champion-link"
+                    routerLink="/city-champion"
+                    tooltip="2024 City Champion">
+                    <mat-icon class="city-champion-icon">emoji_events</mat-icon>
+                  </a>
+                }
+              </td>
+            }
             <td class="rating">{{ member.rating }}</td>
             <td class="peak-rating">{{ member.peakRating }}</td>
             <td class="city lcc-truncate">{{ member.city }}</td>
@@ -84,11 +103,11 @@
             <td class="lichess-username lcc-truncate">
               {{ member?.lichessUsername }}
             </td>
-            <td class="last-updated">
-              {{ member.modificationInfo.dateLastEdited | formatDate: 'short no-time' }}
-            </td>
 
-            @if (isAdmin) {
+            @if (isAdmin && !isSafeMode) {
+              <td class="last-updated">
+                {{ member.modificationInfo.dateLastEdited | formatDate: 'short no-time' }}
+              </td>
               <td class="born">{{ member.yearOfBirth }}</td>
               <td class="email">{{ member.email }}</td>
               <td class="phone-number">{{ member.phoneNumber }}</td>

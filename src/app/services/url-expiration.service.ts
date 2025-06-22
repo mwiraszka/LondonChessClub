@@ -72,7 +72,7 @@ export class UrlExpirationService implements OnDestroy {
       this.expirationTimers.get(image.id)?.unsubscribe();
     }
 
-    const timerSubscription = timer(2000).subscribe(() => {
+    const timerSubscription = timer(timeUntilRefresh).subscribe(() => {
       this.expirationTimers.delete(image.id);
       this.addToPendingRefreshes(image.id);
     });

@@ -1,35 +1,21 @@
 @use '../../../styles/abstracts/mixins' as *;
 
-section {
+.intro-section,
+.recipients-section {
   width: 100%;
   padding: 32px 0;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: stretch;
-  gap: 16px;
-}
 
-h2 {
-  color: var(--lcc-color--lifetimePage-sectionHeaderText);
-}
-
-hr {
-  margin-bottom: 8px;
-  width: 100%;
-  border-top: 1px solid var(--lcc-color--lifetimePage-sectionHeaderDivider);
-}
-
-.intro,
-.recipient,
-.coming-soon {
   padding: 16px;
   color: var(--lcc-color--lifetimePage-blockText);
   background-color: var(--lcc-color--lifetimePage-blockBackground);
   border-radius: var(--lcc-borderRadius--large);
 }
 
-.intro {
+.intro-section {
   display: grid;
   gap: 16px;
   grid-template-columns: auto;
@@ -50,57 +36,65 @@ hr {
       align-items: center;
       justify-content: center;
       overflow: hidden;
-    }
 
-    img {
-      max-width: 100%;
-      width: auto;
-      height: auto;
-      object-fit: contain;
+      img {
+        max-width: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+      }
     }
   }
 }
 
-.recipient {
+.recipients-section {
   display: flex;
-  flex-direction: row;
-  gap: 16px;
+  flex-direction: column;
 
-  .portrait {
-    min-width: 100px;
-    height: 100px;
-    border: 2px solid var(--lcc-color--lifetimePage-portraitBorder);
-    border-radius: 50%;
-    overflow: hidden;
-
-    .image-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border-radius: 50%;
-      width: 100%;
-      height: 100%;
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+  .year {
+    color: var(--lcc-color--lifetimePage-sectionHeaderText);
   }
 
-  .bio {
+  hr {
+    margin: 4px 0 16px;
+    width: 100%;
+    border-top: 1px solid var(--lcc-color--lifetimePage-sectionHeaderDivider);
+  }
+
+  .recipients {
     display: flex;
-    flex-direction: column;
+    flex-flow: row wrap;
     gap: 16px;
 
-    b {
-      color: var(--lcc-color--lifetimePage-blockBoldText);
+    .recipient {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      width: 120px;
+
+      .image-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        border: 2px solid var(--lcc-color--lifetimePage-portraitBorder);
+        border-radius: 50%;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
   }
-}
 
-.coming-soon {
-  text-align: center;
+  @include respond-to('gt-md') {
+    align-items: center;
+  }
 }

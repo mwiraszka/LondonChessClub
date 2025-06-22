@@ -37,7 +37,6 @@ export const imagesReducer = createReducer(
 
   on(
     ImagesActions.fetchImageThumbnailsSucceeded,
-    ImagesActions.fetchImagesForAlbumSucceeded,
     (state, { images }): ImagesState =>
       imagesAdapter.upsertMany(
         images.map(image => {
@@ -76,6 +75,28 @@ export const imagesReducer = createReducer(
           dataUrl: '',
         },
       },
+      state,
+    );
+  }),
+
+  on(ImagesActions.fetchImagesSucceeded, (state, { images }): ImagesState => {
+    return imagesAdapter.upsertMany(
+      images.map(image => {
+        const originalEntity = image ? state.entities[image.id] : null;
+
+        return {
+          image: {
+            ...image,
+            originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
+            thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
+          },
+          formData: originalEntity?.formData ?? {
+            ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
+            newAlbum: '',
+            dataUrl: '',
+          },
+        };
+      }),
       state,
     );
   }),

@@ -59,6 +59,24 @@ export class ImagesEffects {
     );
   });
 
+  fetchImages$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.fetchImagesRequested),
+      switchMap(({ imageIds }) => {
+        return this.imagesService.getImageBatch(imageIds).pipe(
+          map(response => ImagesActions.fetchImagesSucceeded({ images: response.data })),
+          catchError(error => {
+            return of(
+              ImagesActions.fetchImagesFailed({
+                error: parseError(error),
+              }),
+            );
+          }),
+        );
+      }),
+    );
+  });
+
   addImage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.addImageRequested),

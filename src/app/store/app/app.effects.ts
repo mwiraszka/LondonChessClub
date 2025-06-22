@@ -61,7 +61,6 @@ export class AppEffects {
     ImagesActions.deleteImageSucceeded,
     ImagesActions.fetchImageFailed,
     ImagesActions.fetchImageThumbnailsFailed,
-    ImagesActions.fetchImagesForAlbumFailed,
     ImagesActions.imageFileLoadFailed,
     ImagesActions.imageFileLoadSucceeded,
     ImagesActions.updateCoverImageFailed,
@@ -305,12 +304,6 @@ export class AppEffects {
       case ImagesActions.fetchImageThumbnailsFailed.type:
         return {
           title: 'Load image thumbnails',
-          message: this.getErrorMessage(action.error),
-          type: 'warning',
-        };
-      case ImagesActions.fetchImagesForAlbumFailed.type:
-        return {
-          title: 'Load album images',
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };

@@ -22,7 +22,7 @@
           type="button"
           tooltip="Revert to original image"
           [disabled]="
-            originalArticle?.bannerImageId === form.controls.bannerImageId.value
+            originalArticle?.bannerImageId ?? '' === form.controls.bannerImageId.value
           "
           (click)="onRevertImage()">
           <mat-icon>restore_page</mat-icon>

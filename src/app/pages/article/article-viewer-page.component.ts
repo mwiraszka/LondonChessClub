@@ -24,7 +24,7 @@ import type {
 import { DialogService, MetaAndTitleService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
-import { ImagesActions, ImagesSelectors } from '@app/store/images';
+import { ImagesSelectors } from '@app/store/images';
 import { isDefined } from '@app/utils';
 
 @UntilDestroy()
@@ -76,12 +76,6 @@ export class ArticleViewerPageComponent implements OnInit {
       ),
       distinctUntilChanged(isEqual),
       tap(([article]) => {
-        if (isDefined(article.bannerImageId)) {
-          this.store.dispatch(
-            ImagesActions.fetchImageRequested({ imageId: article.bannerImageId }),
-          );
-        }
-
         const articlePreview =
           article.body.length > 197 ? article.body.slice(0, 197) + '...' : article.body;
         this.metaAndTitleService.updateTitle(article.title);

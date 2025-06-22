@@ -24,6 +24,13 @@ export class ImagesService {
       `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
     );
   }
+  
+  public getImageBatch(ids: Id[]): Observable<ApiResponse<Image[]>> {
+    return this.http.get<ApiResponse<Image[]>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/batch`,
+      { params: { ids: ids.join(',') } }
+    );
+  }
 
   public addImage(imageFormData: FormData): Observable<ApiResponse<Image>> {
     return this.http.post<ApiResponse<Image>>(

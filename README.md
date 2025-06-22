@@ -35,7 +35,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.4.3 - June 22nd, 2025</summary>
 
 - 🚀 Add this year's Lifetime Achievement Award recipients and remove incomplete sections from Lifetime and Champion pages
-- 🐛 Ensure Markdown Renderer delays rendering of article until app-specific styles have been applied to prevent unstyled tables or blockquotes from appearing briefly
+- 🐛 Ensure Markdown Renderer delays rendering of article until app-specific styles have been applied
 - 🐛 Ensure image is only fetched when needed while on Article Viewer page
 - 🐛 Fix a couple minor styling inconsistencies in the Article Form component
 

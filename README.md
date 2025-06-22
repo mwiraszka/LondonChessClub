@@ -32,6 +32,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.4.2 - June 22nd, 2025</summary>
+
+- 🐛 Prevent unnecessary image fetches
+
+</details>
+
+<details>
 <summary>v5.4.1 - June 21st, 2025</summary>
 
 - 🚀 When logged in as an admin, display headers in Members Table in the old order to allow for easier comparing & syncing

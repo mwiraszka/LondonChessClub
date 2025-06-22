@@ -1,3 +1,5 @@
+@use '../../../styles/abstracts/mixins' as *;
+
 // Override CDK overlay container to allow interactions underneath
 ::ng-deep .cdk-overlay-container {
   pointer-events: none;
@@ -33,7 +35,9 @@
   }
 
   mat-icon {
-    display: flex;
+    @include icon-size(16px);
+
+    display: contents;
     color: var(--lcc-color--toast-icon);
   }
 

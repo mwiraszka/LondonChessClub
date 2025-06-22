@@ -7,7 +7,7 @@ import { filter, map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ArticlesActions } from '@app/store/articles';
+import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthActions } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { ImagesActions } from '@app/store/images';
@@ -281,6 +281,23 @@ export class NavEffects {
     this.actions$.pipe(
       ofType(ImagesActions.fetchImageFailed),
       map(() => NavActions.navigationRequested({ path: '' })),
+    ),
+  );
+
+  fetchImageForArticleViewRoute$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      map(({ payload }) => payload.event.url),
+      filter(currentPath => currentPath.startsWith('/article/view/')),
+      map(currentPath => currentPath.split('/article/view/')[1]),
+      filter(isDefined),
+      concatLatestFrom(articleId =>
+        this.store.select(ArticlesSelectors.selectArticleById(articleId)),
+      ),
+      filter(([, article]) => isDefined(article?.bannerImageId)),
+      map(([, article]) =>
+        ImagesActions.fetchImageRequested({ imageId: article!.bannerImageId! }),
+      ),
     ),
   );
 

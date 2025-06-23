@@ -44,6 +44,10 @@ a {
       margin-right: -2px;
     }
   }
+
+  mat-icon {
+    @include icon-size(16px);
+  }
 }
 
 @keyframes raise {

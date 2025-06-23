@@ -66,6 +66,12 @@ $border-thickness: 2px;
 
     .link-icon {
       @include icon-size(24px);
+
+      color: var(--lcc-color--nav-linkForeground);
+
+      &:hover {
+        color: var(--lcc-color--nav-linkForegroundOnHover);
+      }
     }
 
     @include respond-to('lt-xs') {
@@ -94,6 +100,10 @@ $border-thickness: 2px;
   gap: 2px;
   color: var(--lcc-color--nav-linkForeground);
   border-bottom: $border-thickness solid var(--lcc-color--nav-border);
+
+  &:hover {
+    color: var(--lcc-color--nav-linkForegroundOnHover);
+  }
 
   .settings-icon {
     @include icon-size(24px);

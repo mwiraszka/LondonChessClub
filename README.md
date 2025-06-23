@@ -32,6 +32,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.5.0 - July TBD, 2025</summary>
+
+- 🚀 Improve Navigation Bar icon styling
+
+</details>
+
+<details>
 <summary>v5.4.3 - June 22nd, 2025</summary>
 
 - 🚀 Add this year's Lifetime Achievement Award recipients and remove incomplete sections from Lifetime and Champion pages

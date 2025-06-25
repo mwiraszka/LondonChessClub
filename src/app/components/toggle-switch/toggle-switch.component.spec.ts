@@ -36,6 +36,10 @@ describe('ToggleSwitchComponent', () => {
       });
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   it('should generate a unique ID on initialization', () => {
     expect(component.uniqueId).toBeDefined();
     expect(component.uniqueId.length).toBe(8);

@@ -10,6 +10,7 @@ import {
   Inject,
   Input,
   OnChanges,
+  Renderer2,
   SimpleChanges,
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
@@ -45,6 +46,7 @@ export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
   constructor(
     @Inject(DOCUMENT) private _document: Document,
     private readonly activatedRoute: ActivatedRoute,
+    private readonly renderer: Renderer2,
     private readonly router: Router,
   ) {
     this.currentPath = this._document.location.pathname;
@@ -52,10 +54,18 @@ export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data']) {
+      this.renderer.setStyle(
+        this._document.querySelector('markdown'),
+        'visibility',
+        'hidden',
+      );
+
       setTimeout(() => {
         this.wrapMarkdownTables();
         this.addBlockquoteIcons();
         this.addAnchorIdsToHeadings();
+
+        this.renderer.removeStyle(this._document.querySelector('markdown'), 'visibility');
       });
     }
   }

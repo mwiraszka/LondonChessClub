@@ -55,6 +55,10 @@ describe('ImageFormComponent', () => {
       });
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   describe('form initialization', () => {
     it('should initialize form and its value change listener', () => {
       // @ts-expect-error Private class member

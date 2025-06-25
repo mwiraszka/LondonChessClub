@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
+  ElementRef,
   EventEmitter,
   Inject,
   OnDestroy,
@@ -31,10 +32,13 @@ import { IsDefinedPipe, RouterLinkPipe } from '@app/pipes';
 export class AdminControlsComponent implements OnInit, OnDestroy {
   @Output() destroyed = new EventEmitter<void>();
 
-  constructor(@Inject(ADMIN_CONTROLS_CONFIG_TOKEN) public config: AdminControlsConfig) {}
+  constructor(
+    @Inject(ADMIN_CONTROLS_CONFIG_TOKEN) public config: AdminControlsConfig,
+    private elementRef: ElementRef,
+  ) {}
 
   ngOnInit(): void {
-    document.documentElement.style.setProperty(
+    this.elementRef.nativeElement.style.setProperty(
       '--admin-control-button-size',
       `${this.config.buttonSize}px`,
     );

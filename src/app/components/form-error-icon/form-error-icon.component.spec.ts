@@ -22,6 +22,10 @@ describe('FormErrorIconComponent', () => {
       });
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   it('should render icon if control is touched and invalid', () => {
     component.control = new FormControl('', {
       validators: Validators.required,

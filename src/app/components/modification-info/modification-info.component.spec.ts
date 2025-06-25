@@ -22,6 +22,10 @@ describe('ModificationInfoComponent', () => {
       });
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   it('should display creation information correctly', () => {
     component.info = MOCK_MODIFICATION_INFOS[0];
     fixture.detectChanges();

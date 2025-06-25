@@ -53,6 +53,10 @@ describe('UserSettingsMenuComponent', () => {
       });
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   it('should display user name when user is logged in', () => {
     store.overrideSelector(AuthSelectors.selectUser, mockUser);
     store.refreshState();

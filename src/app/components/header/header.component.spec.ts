@@ -8,6 +8,7 @@ import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
   let fixture: ComponentFixture<HeaderComponent>;
+  let component: HeaderComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -16,8 +17,13 @@ describe('HeaderComponent', () => {
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(HeaderComponent);
+        component = fixture.componentInstance;
         fixture.detectChanges();
       });
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   describe('branding section', () => {

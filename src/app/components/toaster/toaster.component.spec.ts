@@ -25,6 +25,10 @@ describe('ToasterComponent', () => {
       });
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   it('should render all toasts', () => {
     expect(queryAll(fixture.debugElement, '.toast').length).toBe(MOCK_TOASTS.length);
   });

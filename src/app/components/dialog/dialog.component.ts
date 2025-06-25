@@ -1,3 +1,5 @@
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+
 import {
   AfterViewInit,
   Component,
@@ -10,9 +12,10 @@ import {
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
-import type { DialogConfig, DialogOutput } from '@app/models';
+import { DialogConfig, DialogOutput } from '@app/models';
 import { DIALOG_CONFIG_TOKEN } from '@app/services';
 
+@UntilDestroy()
 @Component({
   selector: 'lcc-dialog',
   template: `
@@ -23,7 +26,6 @@ import { DIALOG_CONFIG_TOKEN } from '@app/services';
         <mat-icon>close</mat-icon>
       </button>
     </header>
-
     <ng-template #contentContainer></ng-template>
   `,
   styleUrl: './dialog.component.scss',
@@ -52,9 +54,11 @@ export class DialogComponent<TComponent extends DialogOutput<TResult>, TResult>
         this.contentComponentRef.setInput(key, this.dialogConfig.inputs[key]);
       }
 
-      this.contentComponentRef.instance.dialogResult.pipe().subscribe(result => {
-        this.result.emit(result);
-      });
+      this.contentComponentRef.instance.dialogResult
+        .pipe(untilDestroyed(this))
+        .subscribe(result => {
+          this.result.emit(result);
+        });
     }
   }
 }

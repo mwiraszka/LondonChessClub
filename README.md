@@ -32,9 +32,11 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.5.0 - July TBD, 2025</summary>
+<summary>v5.4.4 - June 27th, 2025</summary>
 
 - 🚀 Improve Navigation Bar icon styling
+- 🐛 Ensure article banner image is loaded when navigating through 'More details' link on Schedule page
+- 🔧 Increase test coverage on various reuseable components
 
 </details>
 

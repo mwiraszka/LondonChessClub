@@ -7,8 +7,8 @@ import { query, queryAll, queryTextContent } from '@app/utils';
 import { DatePickerComponent } from './date-picker.component';
 
 describe('DatePickerComponent', () => {
-  let component: DatePickerComponent;
   let fixture: ComponentFixture<DatePickerComponent>;
+  let component: DatePickerComponent;
 
   beforeAll(() => moment.tz.setDefault('UTC'));
   afterAll(() => moment.tz.setDefault());
@@ -30,6 +30,10 @@ describe('DatePickerComponent', () => {
         component.renderCalendar();
         fixture.detectChanges();
       });
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   describe('header', () => {

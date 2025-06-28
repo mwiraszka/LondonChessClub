@@ -20,6 +20,10 @@ describe('FooterComponent', () => {
       });
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   describe('copyright notice', () => {
     it('should render the copyright notice section', () => {
       expect(query(fixture.debugElement, '.copyright-notice')).not.toBeNull();

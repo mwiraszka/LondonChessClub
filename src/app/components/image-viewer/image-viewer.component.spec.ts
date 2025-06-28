@@ -59,6 +59,10 @@ describe('ImageViewerComponent', () => {
       });
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   describe('initialization', () => {
     it('should dispatch fetchImageRequested for image at index 0', () => {
       expect(store.dispatch).toHaveBeenCalledWith(

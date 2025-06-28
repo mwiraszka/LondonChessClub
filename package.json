@@ -1,6 +1,6 @@
 {
   "name": "lcc-frontend",
-  "version": "5.4.3",
+  "version": "5.4.4",
   "description": "Frontend for the London Chess Club website, built with Angular",
   "author": "Michal Wiraszka (https://wiraszka.com)",
   "repository": {
@@ -88,14 +88,14 @@
     "yargs": "18.0.0"
   },
   "resolutions": {
-    "@humanwhocodes/config-array": "0.13.0",
-    "@humanwhocodes/object-schema": "2.0.3",
     "abab": "2.0.6",
     "are-we-there-yet": "2.0.1",
+    "canvas": "3.1.0",
     "domexception": "4.0.0",
     "eslint": "9.29.0",
     "glob": "11.0.1",
     "inflight": "1.0.7",
+    "jest": "30.0.0",
     "jsdom": "26.1.0",
     "prismjs": "1.30.0",
     "rimraf": "6.0.1",
@@ -105,8 +105,8 @@
     "@angular/compiler-cli": "20.0.3",
     "@angular/platform-browser-dynamic": "20.0.3",
     "@angular/router": "20.0.3",
-    "jest": "30.0.0",
-    "canvas": "3.1.0"
+    "@humanwhocodes/config-array": "0.13.0",
+    "@humanwhocodes/object-schema": "2.0.3"
   },
   "packageManager": "pnpm@9.12.3+sha256.24235772cc4ac82a62627cd47f834c72667a2ce87799a846ec4e8e555e2d4b8b"
 }

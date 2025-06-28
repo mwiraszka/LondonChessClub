@@ -85,9 +85,7 @@ export const selectImageByArticleId = (articleId: Id | null) =>
     ArticlesSelectors.selectArticleById(articleId),
     ArticlesSelectors.selectArticleFormDataById(articleId),
     (allImages, article, articleFormData) => {
-      const imageId = articleFormData
-        ? articleFormData.bannerImageId
-        : article?.bannerImageId;
+      const imageId = articleFormData.bannerImageId || article?.bannerImageId;
       return allImages?.find(image => image?.id === imageId) ?? null;
     },
   );

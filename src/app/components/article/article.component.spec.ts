@@ -30,6 +30,10 @@ describe('ArticleComponent', () => {
       });
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   describe('with article', () => {
     beforeEach(() => {
       component.article = MOCK_ARTICLES[2];

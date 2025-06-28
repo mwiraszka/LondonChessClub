@@ -51,24 +51,6 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
         showClocks: false,
       });
 
-      const whiteName = getPlayerName(this.pgn, 'full', 'White');
-      if (!whiteName) {
-        console.error(
-          '[LCC] A game with no defined White player was found: \n',
-          this.pgn,
-        );
-        return;
-      }
-
-      const blackName = getPlayerName(this.pgn, 'full', 'Black');
-      if (!blackName) {
-        console.error(
-          '[LCC] A game with no defined Black player was found: \n',
-          this.pgn,
-        );
-        return;
-      }
-
       const whiteScore = getScore(this.pgn, 'White');
       if (!whiteScore) {
         console.error(
@@ -82,6 +64,24 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
       if (!blackScore) {
         console.error(
           '[LCC] A game with no valid score for Black was found: \n',
+          this.pgn,
+        );
+        return;
+      }
+
+      const whiteName = getPlayerName(this.pgn, 'full', 'White');
+      if (!whiteName) {
+        console.error(
+          '[LCC] A game with no defined White player was found: \n',
+          this.pgn,
+        );
+        return;
+      }
+
+      const blackName = getPlayerName(this.pgn, 'full', 'Black');
+      if (!blackName) {
+        console.error(
+          '[LCC] A game with no defined Black player was found: \n',
           this.pgn,
         );
         return;

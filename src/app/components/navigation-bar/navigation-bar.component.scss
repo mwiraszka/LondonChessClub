@@ -34,7 +34,7 @@ $border-thickness: 2px;
 
     // Add border thickness to side padding for non-active links to prevent layout shifts
     // when a link becomes active and a border is added
-    padding: 6px calc(6px + #{$border-thickness}) 8px;
+    padding: 3px calc(3px + #{$border-thickness});
     border-top: $border-thickness solid transparent;
     border-top-left-radius: var(--lcc-borderRadius--large);
     border-top-right-radius: var(--lcc-borderRadius--large);
@@ -51,7 +51,7 @@ $border-thickness: 2px;
       cursor: default;
       pointer-events: none;
       background-color: var(--lcc-color--app-mainBackground);
-      padding: 6px 6px 8px;
+      padding: 3px;
       border-top-color: var(--lcc-color--nav-border);
       border-left: $border-thickness solid var(--lcc-color--nav-border);
       border-right: $border-thickness solid var(--lcc-color--nav-border);
@@ -66,13 +66,21 @@ $border-thickness: 2px;
 
     .link-icon {
       @include icon-size(24px);
+
+      color: var(--lcc-color--nav-linkForeground);
+
+      &:hover {
+        color: var(--lcc-color--nav-linkForegroundOnHover);
+      }
     }
 
-    @include respond-to('lt-xs') {
-      padding: 3px calc(3px + #{$border-thickness});
+    @include respond-to('gt-xs') {
+      padding-left: calc(5px + #{$border-thickness});
+      padding-right: calc(5px + #{$border-thickness});
 
       &.link-active {
-        padding: 3px;
+        padding-left: 5px;
+        padding-right: 5px;
       }
     }
 
@@ -94,6 +102,10 @@ $border-thickness: 2px;
   gap: 2px;
   color: var(--lcc-color--nav-linkForeground);
   border-bottom: $border-thickness solid var(--lcc-color--nav-border);
+
+  &:hover {
+    color: var(--lcc-color--nav-linkForegroundOnHover);
+  }
 
   .settings-icon {
     @include icon-size(24px);

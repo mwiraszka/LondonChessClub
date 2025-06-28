@@ -10,9 +10,11 @@ import {
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
   ComponentRef,
+  DOCUMENT,
   Directive,
   ElementRef,
   HostListener,
+  Inject,
   InjectionToken,
   Injector,
   Input,
@@ -45,6 +47,7 @@ export class AdminControlsDirective implements OnDestroy {
 
   constructor(
     private readonly dialogService: DialogService,
+    @Inject(DOCUMENT) private _document: Document,
     private readonly elementRef: ElementRef<HTMLElement>,
     private readonly overlay: Overlay,
     private readonly renderer: Renderer2,
@@ -98,16 +101,14 @@ export class AdminControlsDirective implements OnDestroy {
       this.initEventListeners();
     });
 
-    const overlayContainerElement = document.querySelector('.cdk-overlay-container');
+    const overlayContainerElement = this._document.querySelector(
+      '.cdk-overlay-container',
+    );
     if (overlayContainerElement && this.dialogService.overlayRefs.length === 0) {
       // When triggered via a component that is not rendered in a dialog (i.e. no dialogs currently
       // open), reduce z-index of this overlay so that the admin controls hide behind the app header;
       // this style never gets removed, only overidden by other overlay directives/services
-      this.renderer.setStyle(
-        document.querySelector('.cdk-overlay-container'),
-        'z-index',
-        '900',
-      );
+      this.renderer.setStyle(overlayContainerElement, 'z-index', '900');
     }
   }
 

@@ -59,6 +59,10 @@ describe('LinkListComponent', () => {
       });
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   it('should render header when provided', () => {
     component.header = 'Mock Header';
     fixture.detectChanges();

@@ -13,14 +13,12 @@ import { environment } from '@env';
       height: 230px;
     }
   `,
-  imports: [],
 })
 export class ClubMapComponent implements OnInit {
   private clubLocation: google.maps.LatLngLiteral = { lat: 42.982546, lng: -81.261387 };
   private loader!: Loader;
   private mapOptions: google.maps.MapOptions = {
     center: this.clubLocation,
-    draggable: false,
     mapId: 'club-map',
     mapTypeControl: false,
     zoom: 15,
@@ -34,10 +32,12 @@ export class ClubMapComponent implements OnInit {
       version: 'weekly',
     });
 
-    this.initMap(this.elementRef.nativeElement.querySelector('#club-map'));
+    this.initMap();
   }
 
-  private async initMap(mapElement: HTMLDivElement): Promise<void> {
+  private async initMap(): Promise<void> {
+    const mapElement: HTMLDivElement =
+      this.elementRef.nativeElement.querySelector('#club-map');
     const map = await this.loader
       .importLibrary('maps')
       .then(({ Map }) => new Map(mapElement, this.mapOptions))

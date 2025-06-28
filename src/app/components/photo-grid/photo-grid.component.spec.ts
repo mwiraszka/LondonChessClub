@@ -52,6 +52,10 @@ describe('PhotoGridComponent', () => {
       });
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   describe('initialization', () => {
     it('should dispatch fetchImageThumbnailsRequested on init', () => {
       expect(store.dispatch).toHaveBeenCalledWith(

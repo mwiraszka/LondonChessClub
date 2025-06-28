@@ -17,11 +17,12 @@ import type { BasicDialogResult, Dialog, DialogOutput } from '@app/models';
     <p>{{ dialog.body }}</p>
     <div class="buttons-container">
       <button
-        class="lcc-secondary-button lcc-dark-button"
+        class="cancel-button lcc-secondary-button lcc-dark-button"
         (click)="dialogResult.emit('cancel')">
         {{ dialog.cancelButtonText ?? 'Cancel' }}
       </button>
       <button
+        class="confirm-button"
         [ngClass]="
           dialog.confirmButtonType === 'warning'
             ? 'lcc-warning-button'
@@ -32,7 +33,24 @@ import type { BasicDialogResult, Dialog, DialogOutput } from '@app/models';
       </button>
     </div>
   `,
-  styleUrl: './basic-dialog.component.scss',
+  styles: `
+    :host {
+      width: 400px !important;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: start;
+      padding: 16px 32px;
+
+      .buttons-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+      }
+    }
+  `,
   imports: [CommonModule],
 })
 export class BasicDialogComponent implements DialogOutput<BasicDialogResult> {

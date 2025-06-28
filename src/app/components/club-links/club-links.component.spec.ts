@@ -4,8 +4,9 @@ import { query, queryAll, queryTextContent } from '@app/utils';
 
 import { ClubLinksComponent } from './club-links.component';
 
-describe('FooterComponent', () => {
+describe('ClubLinksComponent', () => {
   let fixture: ComponentFixture<ClubLinksComponent>;
+  let component: ClubLinksComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -14,7 +15,13 @@ describe('FooterComponent', () => {
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(ClubLinksComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
       });
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   it('should render links with an image, text and open in new tab icon for each of the four sections', () => {

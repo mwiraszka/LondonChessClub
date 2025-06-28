@@ -33,6 +33,10 @@ describe('AdminControlsComponent', () => {
       });
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   describe('bookmark button', () => {
     it('should NOT render if only bookmark callback provided', () => {
       component.config.bookmarkCb = () => 'mock bookmark callback';

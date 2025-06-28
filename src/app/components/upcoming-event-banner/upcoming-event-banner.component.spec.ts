@@ -33,6 +33,10 @@ describe('UpcomingEventBannerComponent', () => {
       });
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   describe('banner message', () => {
     it('should contain the title and date of the next event', () => {
       const bannerText = queryTextContent(fixture.debugElement, '.banner-message');

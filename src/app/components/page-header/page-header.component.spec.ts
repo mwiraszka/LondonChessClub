@@ -20,6 +20,10 @@ describe('PageHeaderComponent', () => {
       });
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   it('should always display title', () => {
     component.title = 'Mock Title';
     fixture.detectChanges();

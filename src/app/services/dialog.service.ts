@@ -8,6 +8,8 @@ import {
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
+  DOCUMENT,
+  Inject,
   Injectable,
   InjectionToken,
   Injector,
@@ -36,6 +38,7 @@ export class DialogService {
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
+    @Inject(DOCUMENT) private readonly _document: Document,
     private readonly overlay: Overlay,
     private readonly rendererFactory: RendererFactory2,
     private readonly router: Router,
@@ -46,7 +49,9 @@ export class DialogService {
   public open<TComponent extends DialogOutput<TResult>, TResult>(
     dialogConfig: DialogConfig<TComponent>,
   ): Promise<TResult | 'close'> {
-    const overlayContainerElement = document.querySelector('.cdk-overlay-container');
+    const overlayContainerElement = this._document.querySelector(
+      '.cdk-overlay-container',
+    );
     if (overlayContainerElement) {
       // This style never gets removed, only overidden by other overlay directives/services
       this.renderer.setStyle(overlayContainerElement, 'z-index', '1100');

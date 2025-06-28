@@ -6,7 +6,20 @@ import type { DialogOutput } from '@app/models';
 
 @Component({
   selector: 'lcc-document-viewer',
-  templateUrl: './document-viewer.component.html',
+  template: `
+    <div
+      class="loading-progress-indicator"
+      [style.width.%]="percentLoaded">
+    </div>
+
+    <pdf-viewer
+      [src]="documentPath"
+      [original-size]="false"
+      [render-text]="true"
+      [render-text-mode]="0"
+      (on-progress)="onProgress($event)">
+    </pdf-viewer>
+  `,
   styleUrl: './document-viewer.component.scss',
   imports: [PdfViewerModule],
 })
@@ -18,6 +31,11 @@ export class DocumentViewerComponent implements DialogOutput<null> {
   @Output() public dialogResult = new EventEmitter<null | 'close'>();
 
   public onProgress(progressData: PDFProgressData): void {
+    if (progressData.total <= 0 || progressData.loaded > progressData.total) {
+      console.warn('[LCC] Could not parse document load progress data:', progressData);
+      return;
+    }
+
     this.percentLoaded = Math.floor((progressData.loaded / progressData.total) * 100);
   }
 }

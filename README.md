@@ -35,6 +35,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.5.0 - July TBD, 2025</summary>
 
 - 🚀 More image stuff!
+- 🐛 Various minor layout fixes in Navigation Bar and Form Error Icon components
 
 </details>
 

@@ -7,12 +7,13 @@ import { TooltipDirective } from '@app/directives/tooltip.directive';
 @Component({
   selector: 'lcc-form-error-icon',
   template: `
-    @if (hasError) {
-      <mat-icon [tooltip]="errorMessage">warning_amber</mat-icon>
-    }
+    <mat-icon
+      [style.visibility]="hasError ? 'visible' : 'hidden'"
+      [tooltip]="errorMessage">
+      warning_amber
+    </mat-icon>
   `,
   styleUrl: './form-error-icon.component.scss',
-  standalone: true,
   imports: [MatIconModule, TooltipDirective],
 })
 export class FormErrorIconComponent {

@@ -23,7 +23,7 @@
         </div>
 
         <label
-          class="upload-file-button lcc-secondary-button"
+          class="choose-file-button lcc-secondary-button"
           type="button"
           tooltip="Choose file">
           <mat-icon>add_photo_alternate</mat-icon>
@@ -31,7 +31,7 @@
             id="file-input"
             type="file"
             accept="image/*"
-            (change)="onUploadNewImage($event)" />
+            (change)="onChooseFile($event)" />
         </label>
       </div>
       <lcc-form-error-icon [control]="form.controls.dataUrl"></lcc-form-error-icon>
@@ -78,17 +78,19 @@
       </fieldset>
 
       <input
-        id="new-album-input"
+        id="album-input"
+        class="album-input"
+        [class.invalid]="form.controls.albums.errors && form.controls.albums.touched"
         type="text"
-        name="new-album"
-        formControlName="newAlbum"
-        placeholder="New album"
+        name="album"
+        formControlName="album"
         maxlength="120"
+        [placeholder]="originalImage ? 'Album name' : 'New album'"
         (click)="this.form.controls.albums.markAsTouched()" />
     </div>
     <lcc-form-error-icon
       [control]="
-        form.controls.albums.errors ? form.controls.albums : form.controls.newAlbum
+        form.controls.albums.errors ? form.controls.albums : form.controls.album
       ">
     </lcc-form-error-icon>
   </div>

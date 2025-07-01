@@ -24,25 +24,25 @@ export class ImagesService {
       `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
     );
   }
-  
+
   public getImageBatch(ids: Id[]): Observable<ApiResponse<Image[]>> {
     return this.http.get<ApiResponse<Image[]>>(
       `${this.API_BASE_URL}/${this.COLLECTION}/batch`,
-      { params: { ids: ids.join(',') } }
+      { params: { ids: ids.join(',') } },
     );
   }
 
-  public addImage(imageFormData: FormData): Observable<ApiResponse<Image>> {
-    return this.http.post<ApiResponse<Image>>(
+  public addImages(imagesFormData: FormData): Observable<ApiResponse<Image[]>> {
+    return this.http.post<ApiResponse<Image[]>>(
       `${this.API_BASE_URL}/${this.COLLECTION}`,
-      imageFormData,
+      imagesFormData,
     );
   }
 
-  public updateImage(baseImage: BaseImage): Observable<ApiResponse<Id>> {
-    return this.http.put<ApiResponse<Id>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}/${baseImage.id}`,
-      baseImage,
+  public updateImages(baseImages: BaseImage[]): Observable<ApiResponse<Id[]>> {
+    return this.http.put<ApiResponse<Id[]>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}`,
+      baseImages,
     );
   }
 

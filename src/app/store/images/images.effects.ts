@@ -100,9 +100,9 @@ export class ImagesEffects {
           id: '',
           filename: formData.filename,
           caption: formData.caption,
-          coverForAlbum: formData.newAlbum ?? '',
-          albums: formData.newAlbum
-            ? [...formData.albums, formData.newAlbum].sort()
+          coverForAlbum: formData.album ?? '',
+          albums: formData.album
+            ? [...formData.albums, formData.album].sort()
             : formData.albums,
           modificationInfo: {
             createdBy: `${user.firstName} ${user.lastName}`,
@@ -113,11 +113,11 @@ export class ImagesEffects {
         };
 
         const imageFormData = new FormData();
-        imageFormData.append('file', file);
+        imageFormData.append('files', file);
         imageFormData.append('imageMetadata', JSON.stringify(imageMetadata));
 
-        return this.imagesService.addImage(imageFormData).pipe(
-          map(response => ImagesActions.addImageSucceeded({ image: response.data })),
+        return this.imagesService.addImages(imageFormData).pipe(
+          map(response => ImagesActions.addImageSucceeded({ image: response.data[0] })),
           catchError(error =>
             of(ImagesActions.addImageFailed({ error: parseError(error) })),
           ),
@@ -147,8 +147,8 @@ export class ImagesEffects {
           fileSize: image.fileSize,
           caption: formData.caption,
           coverForAlbum: image.coverForAlbum,
-          albums: formData.newAlbum
-            ? [...formData.albums, formData.newAlbum].sort()
+          albums: formData.album
+            ? [...formData.albums, formData.album].sort()
             : formData.albums,
           modificationInfo: {
             ...image.modificationInfo,
@@ -157,8 +157,8 @@ export class ImagesEffects {
           },
         };
 
-        return this.imagesService.updateImage(updatedImage).pipe(
-          filter(response => response.data === image.id),
+        return this.imagesService.updateImages([updatedImage]).pipe(
+          filter(response => response.data[0] === image.id),
           map(() => ImagesActions.updateImageSucceeded({ baseImage: updatedImage })),
           catchError(error =>
             of(
@@ -219,8 +219,8 @@ export class ImagesEffects {
           coverForAlbum: album,
         };
 
-        return this.imagesService.updateImage(updatedImage).pipe(
-          filter(response => response.data === image.id),
+        return this.imagesService.updateImages([updatedImage]).pipe(
+          filter(response => response.data[0] === image.id),
           map(() => ImagesActions.updateCoverImageSucceeded({ baseImage: updatedImage })),
           catchError(error =>
             of(

@@ -10,11 +10,11 @@ import { ArticlesActions } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
 import { query } from '@app/utils';
 
-import { ImageFormComponent } from './image-form.component';
+import { ImagesFormComponent } from './images-form.component';
 
-describe('ImageFormComponent', () => {
-  let fixture: ComponentFixture<ImageFormComponent>;
-  let component: ImageFormComponent;
+describe('ImagesFormComponent', () => {
+  let fixture: ComponentFixture<ImagesFormComponent>;
+  let component: ImagesFormComponent;
   let store: MockStore;
   let dialogService: DialogService;
 
@@ -30,7 +30,7 @@ describe('ImageFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ImageFormComponent, ReactiveFormsModule],
+      imports: [ImagesFormComponent, ReactiveFormsModule],
       providers: [
         FormBuilder,
         provideMockStore(),
@@ -39,7 +39,7 @@ describe('ImageFormComponent', () => {
     })
       .compileComponents()
       .then(() => {
-        fixture = TestBed.createComponent(ImageFormComponent);
+        fixture = TestBed.createComponent(ImagesFormComponent);
         component = fixture.componentInstance;
         store = TestBed.inject(MockStore);
         dialogService = TestBed.inject(DialogService);
@@ -269,7 +269,7 @@ describe('ImageFormComponent', () => {
     });
   });
 
-  describe('onChooseFile', () => {
+  describe('onChooseFiles', () => {
     it('should update form with new image data when valid image is uploaded', () => {
       component.form.patchValue({
         dataUrl: 'data:image/jpeg;base64,new-image-data',
@@ -288,7 +288,7 @@ describe('ImageFormComponent', () => {
       const mockFile = new File([''], 'test-image.gif', { type: 'image/gif' });
       const mockEvent = { target: { files: [mockFile], value: '' } } as unknown as Event;
 
-      component.onChooseFile(mockEvent);
+      component.onChooseFiles(mockEvent);
       fixture.detectChanges();
 
       expect(store.dispatch).toHaveBeenCalledWith(

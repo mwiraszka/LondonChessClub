@@ -16,7 +16,7 @@ export const selectImageEntitiesByAlbum = (album: string | null) =>
   createSelector(selectAllImageEntities, allImageEntities => {
     return album
       ? allImageEntities.filter(entity => entity?.image?.albums?.includes(album))
-      : null;
+      : [];
   });
 
 export const selectAllImages = createSelector(selectAllImageEntities, allImageEntities =>

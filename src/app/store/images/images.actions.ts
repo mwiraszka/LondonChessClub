@@ -62,6 +62,16 @@ export const addImageFailed = createAction(
   props<{ error: LccError }>(),
 );
 
+export const addImagesRequested = createAction('[Images] Add images requested');
+export const addImagesSucceeded = createAction(
+  '[Images] Add images succeeded',
+  props<{ images: Image[] }>(),
+);
+export const addImagesFailed = createAction(
+  '[Images] Add images failed',
+  props<{ error: LccError }>(),
+);
+
 export const updateImageRequested = createAction(
   '[Images] Update image requested',
   props<{ imageId: Id }>(),
@@ -72,6 +82,19 @@ export const updateImageSucceeded = createAction(
 );
 export const updateImageFailed = createAction(
   '[Images] Update image failed',
+  props<{ error: LccError }>(),
+);
+
+export const updateImagesRequested = createAction(
+  '[Images] Update images requested',
+  props<{ imageIds: Id[] }>(),
+);
+export const updateImagesSucceeded = createAction(
+  '[Images] Update album images succeeded',
+  props<{ baseImages: BaseImage[] }>(),
+);
+export const updateImagesFailed = createAction(
+  '[Images] Update images failed',
   props<{ error: LccError }>(),
 );
 

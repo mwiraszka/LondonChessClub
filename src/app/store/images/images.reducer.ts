@@ -11,7 +11,7 @@ export const INITIAL_IMAGE_FORM_DATA: ImageFormData = {
   filename: '',
   caption: '',
   albums: [],
-  newAlbum: '',
+  album: '',
   dataUrl: '',
 };
 
@@ -50,7 +50,7 @@ export const imagesReducer = createReducer(
             },
             formData: {
               ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-              newAlbum: '',
+              album: '',
               dataUrl: '',
             },
           };
@@ -71,7 +71,7 @@ export const imagesReducer = createReducer(
         },
         formData: originalEntity?.formData ?? {
           ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-          newAlbum: '',
+          album: '',
           dataUrl: '',
         },
       },
@@ -92,7 +92,7 @@ export const imagesReducer = createReducer(
           },
           formData: originalEntity?.formData ?? {
             ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-            newAlbum: '',
+            album: '',
             dataUrl: '',
           },
         };
@@ -109,7 +109,7 @@ export const imagesReducer = createReducer(
           image,
           formData: {
             ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-            newAlbum: '',
+            album: '',
             dataUrl: '',
           },
         },
@@ -126,7 +126,7 @@ export const imagesReducer = createReducer(
           image: baseImage,
           formData: {
             ...pick(baseImage, IMAGE_FORM_DATA_PROPERTIES),
-            newAlbum: '',
+            album: '',
             dataUrl: '',
           },
         },

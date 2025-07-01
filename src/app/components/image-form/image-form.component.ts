@@ -83,7 +83,7 @@ export class ImageFormComponent implements OnInit {
     this.form.controls.albums.markAsDirty();
   }
 
-  public onUploadNewImage(event: Event): void {
+  public onChooseFile(event: Event): void {
     const fileInputElement = event.target as HTMLInputElement;
     const file = fileInputElement.files?.length ? fileInputElement.files[0] : null;
 
@@ -201,7 +201,7 @@ export class ImageFormComponent implements OnInit {
         albums: new FormControl(formData.albums, {
           nonNullable: true,
         }),
-        newAlbum: new FormControl(formData.newAlbum, {
+        album: new FormControl(formData.album, {
           nonNullable: true,
           validators: [
             Validators.pattern(/[^\s]/),
@@ -222,6 +222,8 @@ export class ImageFormComponent implements OnInit {
         // Manually transfer error to inner control to benefit from common error message handling
         if (this.form.hasError('albumRequired')) {
           this.form.controls.albums.setErrors({ albumRequired: true });
+        } else {
+          this.form.controls.albums.updateValueAndValidity({ emitEvent: false });
         }
 
         this.store.dispatch(

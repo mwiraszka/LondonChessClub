@@ -1,25 +1,40 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, of } from 'rxjs';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ImageFormComponent } from '@app/components/image-form/image-form.component';
+import { ImagesFormComponent } from '@app/components/images-form/images-form.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import type { EditorPage, Image, ImageFormData, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ImagesSelectors } from '@app/store/images';
-import { isDefined } from '@app/utils';
 
 @UntilDestroy()
 @Component({
   selector: 'lcc-images-editor-page',
-  templateUrl: './images-editor-page.component.html',
-  imports: [CommonModule, ImageFormComponent, LinkListComponent, PageHeaderComponent],
+  template: `
+    @if (viewModel$ | async; as vm) {
+      <lcc-page-header
+        [hasUnsavedChanges]="vm.hasUnsavedChanges"
+        [title]="vm.pageTitle">
+      </lcc-page-header>
+
+      <lcc-images-form
+        [album]="vm.album"
+        [albumImageEntities]="vm.albumImageEntities"
+        [existingAlbums]="vm.existingAlbums"
+        [hasUnsavedChanges]="false">
+      </lcc-images-form>
+
+      <lcc-link-list [links]="[photoGalleryLink]"></lcc-link-list>
+    }
+  `,
+  imports: [CommonModule, ImagesFormComponent, LinkListComponent, PageHeaderComponent],
 })
 export class ImagesEditorPageComponent implements EditorPage, OnInit {
   public readonly entity = 'images';
@@ -30,8 +45,8 @@ export class ImagesEditorPageComponent implements EditorPage, OnInit {
   };
   public viewModel$?: Observable<{
     album: string | null;
+    albumImageEntities: { image: Image; formData: ImageFormData }[];
     existingAlbums: string[];
-    albumImageEntities: { image: Image; formData: ImageFormData }[] | null;
     hasUnsavedChanges: boolean;
     pageTitle: string;
   }>;
@@ -50,15 +65,13 @@ export class ImagesEditorPageComponent implements EditorPage, OnInit {
         combineLatest([
           of(album),
           this.store.select(ImagesSelectors.selectAllExistingAlbums),
-          this.store
-            .select(ImagesSelectors.selectImageEntitiesByAlbum(album))
-            .pipe(filter(isDefined)),
+          this.store.select(ImagesSelectors.selectImageEntitiesByAlbum(album)),
         ]),
       ),
       map(([album, existingAlbums, albumImageEntities]) => ({
         album,
-        existingAlbums,
         albumImageEntities,
+        existingAlbums: existingAlbums.filter(_album => _album !== album),
         hasUnsavedChanges: true,
         pageTitle: album ? `Edit images from ${album}` : 'Add new images',
       })),

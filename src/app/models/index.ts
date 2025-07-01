@@ -33,6 +33,8 @@ export {
   type Image,
   type ImageFormData,
   type ImageFormGroup,
+  type ImageItemFormGroup,
+  type ImagesFormGroup,
 } from './image.model';
 export type { ExternalLink, InternalLink, InternalPath } from './link.model';
 export type { ChangePasswordFormGroup, LoginFormGroup } from './login.model';

@@ -4,7 +4,7 @@ export function oneAlbumMinimumValidator(
   formGroup: AbstractControl,
 ): ValidationErrors | null {
   const albums = formGroup.get('albums')?.value;
-  const newAlbum = formGroup.get('newAlbum')?.value;
+  const album = formGroup.get('album')?.value;
 
-  return albums?.length || newAlbum ? null : { albumRequired: true };
+  return albums?.length || album ? null : { albumRequired: true };
 }

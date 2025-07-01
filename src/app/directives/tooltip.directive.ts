@@ -42,11 +42,7 @@ export class TooltipDirective implements OnDestroy {
   @HostListener('mouseenter', ['$event'])
   @HostListener('focus', ['$event'])
   public attach(event?: MouseEvent | FocusEvent): void {
-    if (
-      isDefined(this.tooltip) &&
-      !this.isTouchScreen() &&
-      !this.overlayRef?.hasAttached()
-    ) {
+    if (isDefined(this.tooltip) && !this.overlayRef?.hasAttached()) {
       const clientY: Pixels | undefined =
         event instanceof MouseEvent ? event.clientY : undefined;
 
@@ -155,9 +151,5 @@ export class TooltipDirective implements OnDestroy {
       .position()
       .flexibleConnectedTo(this.elementRef)
       .withPositions(preferredPositions);
-  }
-
-  private isTouchScreen(): boolean {
-    return window.matchMedia('(pointer: coarse)').matches;
   }
 }

@@ -15,6 +15,7 @@ import { NavigationBarComponent } from '@app/components/navigation-bar/navigatio
 import { UpcomingEventBannerComponent } from '@app/components/upcoming-event-banner/upcoming-event-banner.component';
 import { Event, IsoDate } from '@app/models';
 import { LoaderService, UrlExpirationService } from '@app/services';
+import { TouchEventsService } from '@app/services';
 import { AppActions, AppSelectors } from '@app/store/app';
 import { EventsSelectors } from '@app/store/events';
 import { isDefined } from '@app/utils';
@@ -47,6 +48,7 @@ export class AppComponent implements OnInit {
     public readonly loaderService: LoaderService,
     private readonly router: Router,
     private readonly store: Store,
+    private readonly touchEventsService: TouchEventsService,
     private readonly urlExpirationService: UrlExpirationService,
   ) {
     moment.tz.setDefault('America/Toronto');
@@ -54,7 +56,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.initNavigationListenerForScrollingBackToTop();
-    this.urlExpirationService.listenToImageChanges();
+    this.urlExpirationService.listenForImageChanges();
+    this.touchEventsService.listenForTouchEvents();
 
     this.viewModel$ = combineLatest([
       this.store.select(AppSelectors.selectIsDarkMode),

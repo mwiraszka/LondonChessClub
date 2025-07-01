@@ -26,7 +26,7 @@ export class UrlExpirationService implements OnDestroy {
 
   constructor(private readonly store: Store) {}
 
-  public listenToImageChanges(): void {
+  public listenForImageChanges(): void {
     this.allImagesSubscription = this.store
       .select(ImagesSelectors.selectAllImages)
       .subscribe(images => {

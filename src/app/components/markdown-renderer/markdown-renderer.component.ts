@@ -39,7 +39,6 @@ import { RouteFragmentService } from '@app/services';
 export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
   @Input() public data?: string;
 
-  public currentFragment: string | null = null;
   public currentPath: string;
   public headings: string[] = [];
 

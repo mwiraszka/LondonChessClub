@@ -10,6 +10,7 @@ import {
   convertToParamMap,
 } from '@angular/router';
 
+import { RouteFragmentService } from '@app/services';
 import { query, queryAll } from '@app/utils';
 
 import { MarkdownRendererComponent } from './markdown-renderer.component';
@@ -50,6 +51,10 @@ describe('MarkdownRendererComponent', () => {
             paramMap: of(convertToParamMap({})),
           },
         },
+        {
+          provide: RouteFragmentService,
+          useValue: { fragment$: of('mock-fragment') },
+        },
       ],
     })
       .overrideComponent(MarkdownRendererComponent, {
@@ -63,6 +68,12 @@ describe('MarkdownRendererComponent', () => {
 
         // @ts-expect-error Private class member
         scrollToAnchorSpy = jest.spyOn(component, 'scrollToAnchor');
+        // @ts-expect-error Private class member
+        wrapMarkdownTablesSpy = jest.spyOn(component, 'wrapMarkdownTables');
+        // @ts-expect-error Private class member
+        addBlockquoteIconsSpy = jest.spyOn(component, 'addBlockquoteIcons');
+        // @ts-expect-error Private class member
+        addAnchorIdsToHeadingsSpy = jest.spyOn(component, 'addAnchorIdsToHeadings');
 
         fixture.detectChanges();
       });
@@ -76,20 +87,23 @@ describe('MarkdownRendererComponent', () => {
     expect(component.currentPath).toBe('/');
   });
 
+  it('should scroll to URL fragment after view init', () => {
+    jest.useFakeTimers();
+
+    component.ngAfterViewInit();
+
+    jest.advanceTimersByTime(1);
+
+    expect(scrollToAnchorSpy).toHaveBeenCalledWith('mock-fragment');
+
+    jest.useRealTimers();
+  });
+
   describe('when markdown data changes', () => {
     beforeAll(() => jest.useFakeTimers());
     afterAll(() => jest.useRealTimers());
 
     beforeEach(() => {
-      // @ts-expect-error Private class member
-      wrapMarkdownTablesSpy = jest.spyOn(component, 'wrapMarkdownTables');
-
-      // @ts-expect-error Private class member
-      addBlockquoteIconsSpy = jest.spyOn(component, 'addBlockquoteIcons');
-
-      // @ts-expect-error Private class member
-      addAnchorIdsToHeadingsSpy = jest.spyOn(component, 'addAnchorIdsToHeadings');
-
       component.data = mockMarkdownText;
       fixture.detectChanges();
 
@@ -106,8 +120,6 @@ describe('MarkdownRendererComponent', () => {
     });
 
     it('should pass data to markdown component', () => {
-      // With the updated ng-mocks library, we can directly inspect the inputs
-      // by checking the property on the component instance
       expect(query(fixture.debugElement, 'markdown').componentInstance.data).toBe(
         mockMarkdownText,
       );
@@ -118,11 +130,6 @@ describe('MarkdownRendererComponent', () => {
       expect(wrapMarkdownTablesSpy).toHaveBeenCalledTimes(1);
       expect(addAnchorIdsToHeadingsSpy).toHaveBeenCalledTimes(1);
     });
-  });
-
-  it('should scroll to URL fragment after view init', async () => {
-    await fixture.whenStable();
-    expect(scrollToAnchorSpy).toHaveBeenCalledWith('mock-fragment');
   });
 
   it('should create a table of contents link for each heading', () => {

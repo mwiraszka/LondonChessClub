@@ -10,10 +10,6 @@ export class RouteFragmentService {
   public readonly fragment$: Observable<string | null> =
     this._fragmentSubject.asObservable();
 
-  public get currentFragment(): string | null {
-    return this._fragmentSubject.value;
-  }
-
   constructor(private router: Router) {
     const fragment = this.router.parseUrl(this.router.url).fragment;
     this._fragmentSubject.next(fragment);

@@ -18,11 +18,11 @@ describe('oneAlbumMinimumValidator', () => {
   });
 });
 
-function getErrorForValue(albums: string[], newAlbum: string): ValidationErrors | null {
+function getErrorForValue(albums: string[], album: string): ValidationErrors | null {
   const formGroup = new FormGroup(
     {
       albums: new FormControl(albums),
-      newAlbum: new FormControl(newAlbum),
+      album: new FormControl(album),
     },
     oneAlbumMinimumValidator,
   );

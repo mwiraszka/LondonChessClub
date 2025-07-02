@@ -14,6 +14,6 @@ import packageJson from '../../../../package.json';
   imports: [ImagePreloadDirective, MatIconModule, RouterLink, TooltipDirective],
 })
 export class FooterComponent {
-  public readonly currentVersion = packageJson.version;
-  public readonly currentYear = new Date().getFullYear();
+  public CURRENT_VERSION = packageJson.version;
+  public CURRENT_YEAR = new Date().getFullYear();
 }

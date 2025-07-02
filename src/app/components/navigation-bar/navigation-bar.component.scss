@@ -84,7 +84,7 @@ $border-thickness: 2px;
       }
     }
 
-    @include respond-to('gt-nav-icons') {
+    @include respond-to('gt-md') {
       .link-text {
         display: block;
         visibility: unset;

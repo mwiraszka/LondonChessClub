@@ -62,11 +62,6 @@ export class NavigationBarComponent {
       internalPath: 'game-archives',
       icon: 'insert_chart_outlined',
     },
-    {
-      text: 'Lifetime Achievement Awards',
-      internalPath: 'lifetime-achievement-awards',
-      icon: 'workspace_premium',
-    },
   ];
 
   public isDropdownOpen = false;

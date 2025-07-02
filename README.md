@@ -35,6 +35,8 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.5.0 - July TBD, 2025</summary>
 
 - 🚀 Add support for uploading and editing multiple images at a time
+- 🚀 Expand website footer out to include a proper site map
+- 🚀 Some minor adjustments to the website colour palette and removal of repeating gradients for improved rendering of app header, table headers and article grid cards
 - 🚀 Display tooltip or admin controls menu on touch devices whenever a long-press touch event is detected
 - 🐛 Various minor layout fixes in Navigation Bar and Form Error Icon components
 - 🔧 Create a new Indexed DB service to allow temporarily stored image data to be persisted on page reload

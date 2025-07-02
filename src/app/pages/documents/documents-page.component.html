@@ -16,7 +16,8 @@
           <td class="document">
             <div
               class="document-label-container"
-              (click)="onSelectDocument(document.fileName)">
+              [fragment]="document.fileName"
+              [routerLink]="currentPath">
               <mat-icon class="file-icon">description</mat-icon>
               <span class="document-title">{{ document.title }}</span>
             </div>

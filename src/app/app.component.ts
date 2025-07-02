@@ -7,14 +7,14 @@ import { filter, map, tap } from 'rxjs/operators';
 import { CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, DOCUMENT, Inject, OnInit } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
 import { FooterComponent } from '@app/components/footer/footer.component';
 import { HeaderComponent } from '@app/components/header/header.component';
 import { NavigationBarComponent } from '@app/components/navigation-bar/navigation-bar.component';
 import { UpcomingEventBannerComponent } from '@app/components/upcoming-event-banner/upcoming-event-banner.component';
 import { Event, IsoDate } from '@app/models';
-import { LoaderService, UrlExpirationService } from '@app/services';
+import { LoaderService, RouteFragmentService, UrlExpirationService } from '@app/services';
 import { TouchEventsService } from '@app/services';
 import { AppActions, AppSelectors } from '@app/store/app';
 import { EventsSelectors } from '@app/store/events';
@@ -46,10 +46,10 @@ export class AppComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private readonly _document: Document,
     public readonly loaderService: LoaderService,
-    private readonly router: Router,
     private readonly store: Store,
     private readonly touchEventsService: TouchEventsService,
     private readonly urlExpirationService: UrlExpirationService,
+    private readonly routeFragmentService: RouteFragmentService,
   ) {
     moment.tz.setDefault('America/Toronto');
   }
@@ -90,10 +90,10 @@ export class AppComponent implements OnInit {
   }
 
   private initNavigationListenerForScrollingBackToTop(): void {
-    this.router.events
+    this.routeFragmentService.fragment$
       .pipe(
         untilDestroyed(this),
-        filter(event => event instanceof NavigationEnd && !event.url.split('#')[1]),
+        filter(fragment => !fragment),
       )
       .subscribe(() => {
         const mainElement = this._document.querySelector('main');

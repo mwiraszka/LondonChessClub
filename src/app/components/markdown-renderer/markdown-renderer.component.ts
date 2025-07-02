@@ -1,7 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { kebabCase } from 'lodash';
 import { MarkdownComponent } from 'ngx-markdown';
-import { filter, first } from 'rxjs/operators';
 
 import {
   AfterViewInit,
@@ -13,9 +12,10 @@ import {
   Renderer2,
   SimpleChanges,
 } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 import { KebabCasePipe } from '@app/pipes';
+import { RouteFragmentService } from '@app/services';
 
 @UntilDestroy()
 @Component({
@@ -25,8 +25,8 @@ import { KebabCasePipe } from '@app/pipes';
       @for (heading of headings; track heading) {
         <a
           class="heading-link lcc-link"
-          [routerLink]="currentPath"
-          [fragment]="heading | kebabCase">
+          [fragment]="heading | kebabCase"
+          [routerLink]="currentPath">
           {{ heading }}
         </a>
       }
@@ -45,9 +45,8 @@ export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
 
   constructor(
     @Inject(DOCUMENT) private _document: Document,
-    private readonly activatedRoute: ActivatedRoute,
     private readonly renderer: Renderer2,
-    private readonly router: Router,
+    private readonly routeFragmentService: RouteFragmentService,
   ) {
     this.currentPath = this._document.location.pathname;
   }
@@ -72,19 +71,11 @@ export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      // Scroll to anchor on initial load
-      this.activatedRoute.fragment
-        .pipe(first())
+      // Scroll to anchor when heading link is clicked
+      this.routeFragmentService.fragment$
+        .pipe(untilDestroyed(this))
         .subscribe(fragment => this.scrollToAnchor(fragment));
     });
-
-    // Scroll to anchor when heading link is clicked (will still scroll even if fragment hasn't changed)
-    this.router.events
-      .pipe(
-        untilDestroyed(this),
-        filter(event => event instanceof NavigationEnd),
-      )
-      .subscribe(event => this.scrollToAnchor(event.url.split('#')[1]));
   }
 
   private wrapMarkdownTables(): void {

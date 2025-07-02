@@ -40,7 +40,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 - 🚀 Display tooltip or admin controls menu on touch devices whenever a long-press touch event is detected
 - 🐛 Various minor layout fixes in Navigation Bar and Form Error Icon components
 - 🐛 Ensure member/event/article form data is properly reset when unsaved changes are cancelled
-- 🐛 Prevent multiple of the same dialogs from layering and ensure all dialogs automatically close when the route changes
+- 🐛 Prevent multiple of the same dialogs from layering and ensure Document Viewer dialog automatically closes when the page is exited
 - 🔧 Create a new Indexed DB service to allow temporarily stored image data to be persisted on page reload
 
 </details>

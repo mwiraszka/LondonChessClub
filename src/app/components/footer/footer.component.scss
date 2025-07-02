@@ -47,21 +47,26 @@
       .socials {
         display: grid;
         grid-template-columns: auto auto auto auto;
+        margin-top: 32px;
 
         a {
           display: flex;
           align-items: center;
           justify-content: center;
           width: 28px;
+          filter: grayscale(0.4);
 
-          &.instagram,
           &.chesscom {
-            margin-top: 14px;
+            width: 22px;
           }
         }
 
-        a:hover img {
-          animation: raise 0.3s ease forwards;
+        a:hover {
+          filter: grayscale(0);
+
+          img {
+            animation: raise 0.3s ease forwards;
+          }
         }
       }
     }
@@ -168,6 +173,6 @@
     scale: 1;
   }
   100% {
-    scale: 1.2;
+    scale: 1.1;
   }
 }

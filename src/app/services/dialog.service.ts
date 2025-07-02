@@ -1,4 +1,4 @@
-import { firstValueFrom, tap } from 'rxjs';
+import { Subscription, filter, firstValueFrom, tap } from 'rxjs';
 
 import {
   Overlay,
@@ -13,10 +13,12 @@ import {
   Injectable,
   InjectionToken,
   Injector,
+  OnDestroy,
   Renderer2,
   RendererFactory2,
+  Type,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import { DialogComponent } from '@app/components/dialog/dialog.component';
 import type { DialogConfig, DialogOutput } from '@app/models';
@@ -26,10 +28,12 @@ export const DIALOG_CONFIG_TOKEN = new InjectionToken<DialogConfig<unknown>>(
 );
 
 @Injectable({ providedIn: 'root' })
-export class DialogService {
+export class DialogService implements OnDestroy {
   private documentClickListener?: () => void;
   private keyDownListener?: () => void;
   private renderer!: Renderer2;
+  private routerSubscription: Subscription;
+  private dialogComponentTypes: Array<Type<unknown>> = [];
 
   private _overlayRefs: OverlayRef[] = [];
   public get overlayRefs(): OverlayRef[] {
@@ -44,11 +48,31 @@ export class DialogService {
     private readonly router: Router,
   ) {
     this.renderer = this.rendererFactory.createRenderer(null, null);
+
+    this.routerSubscription = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => this.closeAll());
+  }
+
+  ngOnDestroy(): void {
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
   }
 
   public open<TComponent extends DialogOutput<TResult>, TResult>(
     dialogConfig: DialogConfig<TComponent>,
   ): Promise<TResult | 'close'> {
+    // Keep track of dialog component types to prevent same type of dialog from being layered
+    if (
+      this.dialogComponentTypes[this.dialogComponentTypes.length - 1] ===
+      dialogConfig.componentType
+    ) {
+      return Promise.resolve('close');
+    } else {
+      this.dialogComponentTypes.push(dialogConfig.componentType);
+    }
+
     const overlayContainerElement = this._document.querySelector(
       '.cdk-overlay-container',
     );
@@ -91,6 +115,7 @@ export class DialogService {
 
   private close(): void {
     const overlayRef = this._overlayRefs.pop();
+    this.dialogComponentTypes.pop();
 
     if (overlayRef) {
       overlayRef.dispose();
@@ -109,6 +134,12 @@ export class DialogService {
         relativeTo: this.activatedRoute,
         replaceUrl: true,
       });
+    }
+  }
+
+  private closeAll(): void {
+    while (this._overlayRefs.length > 0) {
+      this.close();
     }
   }
 

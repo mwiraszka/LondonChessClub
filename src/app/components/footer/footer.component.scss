@@ -36,40 +36,27 @@
     }
 
     .branding-and-socials {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      .club-name {
+        margin-top: 4px;
 
-      .website-version {
-        color: var(--lcc-color--footer-secondaryText);
+        .website-version {
+          color: var(--lcc-color--footer-secondaryText);
+        }
       }
 
       .socials {
         display: grid;
         grid-template-columns: auto auto auto auto;
-        gap: 2px;
 
         a {
           display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 28px;
 
-          &.instagram {
-            margin-top: 6px;
-          }
-
+          &.instagram,
           &.chesscom {
-            margin-top: 6px;
-
-            .image-container {
-              width: 28px;
-            }
-          }
-
-          .image-container {
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin-top: 14px;
           }
         }
 

@@ -1,6 +1,6 @@
 <lcc-page-header
   title="Documents"
-  icon="file-text">
+  icon="description">
 </lcc-page-header>
 
 <div class="lcc-table-wrapper">
@@ -27,7 +27,7 @@
               [download]="document.title"
               [tooltip]="tooltipContent"
               (click)="$event.stopPropagation()">
-              <mat-icon class="download-icon">file_download</mat-icon>
+              <mat-icon class="download-icon">save_alt</mat-icon>
             </a>
 
             <ng-template #tooltipContent>

@@ -1,3 +1,5 @@
+@use '../../../styles/abstracts/mixins' as *;
+
 $icon-height: 18px;
 
 .documents-table {
@@ -67,6 +69,10 @@ $icon-height: 18px;
       text-align: end;
     }
   }
+}
+
+mat-icon {
+  @include icon-size(18px);
 }
 
 .tooltip-item-name {

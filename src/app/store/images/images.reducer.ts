@@ -165,10 +165,10 @@ export const imagesReducer = createReducer(
     );
   }),
 
-  on(ImagesActions.imageFormDataCleared, (state, { imageId }): ImagesState => {
-    const originalArticle = imageId ? state.entities[imageId] : null;
+  on(ImagesActions.imageFormDataReset, (state, { imageId }): ImagesState => {
+    const originalImage = imageId ? state.entities[imageId]?.image : null;
 
-    if (!originalArticle) {
+    if (!originalImage) {
       return {
         ...state,
         newImageFormData: INITIAL_IMAGE_FORM_DATA,
@@ -177,8 +177,12 @@ export const imagesReducer = createReducer(
 
     return imagesAdapter.upsertOne(
       {
-        ...originalArticle,
-        formData: INITIAL_IMAGE_FORM_DATA,
+        image: originalImage,
+        formData: {
+          ...pick(originalImage, IMAGE_FORM_DATA_PROPERTIES),
+          album: '',
+          dataUrl: '',
+        },
       },
       state,
     );

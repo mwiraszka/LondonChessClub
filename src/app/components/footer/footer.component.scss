@@ -23,7 +23,7 @@
 
   .main-content {
     width: var(--lcc-width--appContent);
-    margin: 32px 8px;
+    margin: 32px 16px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -79,7 +79,7 @@
         'archives'
         'documents'
         'website';
-      gap: 32px;
+      gap: 16px;
       font-size: 12px;
 
       @include respond-to('gt-md') {

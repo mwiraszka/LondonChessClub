@@ -131,7 +131,12 @@ export const formValueChanged = createAction(
   props<{ imageId: Id | null; value: Partial<ImageFormData> }>(),
 );
 
-export const imageFormDataCleared = createAction(
-  '[Images] Image form data cleared',
+export const imageFormDataReset = createAction(
+  '[Images] Image form data reset',
   props<{ imageId: Id | null }>(),
+);
+
+export const imagesFormDataReset = createAction(
+  '[Images] Images form data reset',
+  props<{ imageIds: Id[] }>(),
 );

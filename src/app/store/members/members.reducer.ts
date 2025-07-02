@@ -132,8 +132,8 @@ export const membersReducer = createReducer(
     );
   }),
 
-  on(MembersActions.memberFormDataCleared, (state, { memberId }): MembersState => {
-    const originalMember = memberId ? state.entities[memberId] : null;
+  on(MembersActions.memberFormDataReset, (state, { memberId }): MembersState => {
+    const originalMember = memberId ? state.entities[memberId]?.member : null;
 
     if (!originalMember) {
       return {
@@ -144,8 +144,8 @@ export const membersReducer = createReducer(
 
     return membersAdapter.upsertOne(
       {
-        ...originalMember,
-        formData: INITIAL_MEMBER_FORM_DATA,
+        member: originalMember,
+        formData: pick(originalMember, MEMBER_FORM_DATA_PROPERTIES),
       },
       state,
     );

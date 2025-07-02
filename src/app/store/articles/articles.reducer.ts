@@ -120,8 +120,8 @@ export const articlesReducer = createReducer(
     );
   }),
 
-  on(ArticlesActions.articleFormDataCleared, (state, { articleId }): ArticlesState => {
-    const originalArticle = articleId ? state.entities[articleId] : null;
+  on(ArticlesActions.articleFormDataReset, (state, { articleId }): ArticlesState => {
+    const originalArticle = articleId ? state.entities[articleId]?.article : null;
 
     if (!originalArticle) {
       return {
@@ -132,8 +132,8 @@ export const articlesReducer = createReducer(
 
     return articlesAdapter.upsertOne(
       {
-        ...originalArticle,
-        formData: INITIAL_ARTICLE_FORM_DATA,
+        article: originalArticle,
+        formData: pick(originalArticle, ARTICLE_FORM_DATA_PROPERTIES),
       },
       state,
     );

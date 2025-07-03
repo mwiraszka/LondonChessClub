@@ -16,6 +16,7 @@ import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.
 import { DatePickerComponent } from '@app/components/date-picker/date-picker.component';
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
+import { SafeModeNoticeComponent } from '@app/components/safe-mode-notice/safe-mode-notice.component';
 import type {
   BasicDialogResult,
   Dialog,
@@ -43,6 +44,7 @@ import {
     MatIconModule,
     ModificationInfoComponent,
     ReactiveFormsModule,
+    SafeModeNoticeComponent,
   ],
 })
 export class MemberFormComponent implements OnInit {

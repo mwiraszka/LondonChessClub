@@ -19,28 +19,3 @@ hr {
   border-top: 1px solid var(--lcc-color--general-dividerLine);
   margin: 1em 0;
 }
-
-.safe-mode-notice {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  align-items: center;
-  text-align: start;
-  width: 100%;
-  padding: 8px;
-  border: 1px solid var(--lcc-color--memberForm-safeModeNoticeBorder);
-  border-radius: var(--lcc-borderRadius--large);
-  font-size: 13px;
-  color: var(--lcc-color--memberForm-safeModeNoticeText);
-
-  .checkmark-icon {
-    width: 18px;
-    min-width: 18px;
-    height: 18px;
-    color: var(--lcc-color--memberForm-safeModeNoticeIcon);
-  }
-
-  .text-container {
-    max-width: 340px;
-  }
-}

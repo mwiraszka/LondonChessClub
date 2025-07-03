@@ -38,6 +38,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 - 🚀 Expand website footer out to include a proper site map
 - 🚀 Some minor adjustments to the website colour palette and removal of repeating gradients for improved rendering of app header, table headers and article grid cards
 - 🚀 Display tooltip or admin controls menu on touch devices whenever a long-press touch event is detected
+- 🚀 Create Safe Mode Notice component to be displayed wherever users' personal information is hidden from view
 - 🐛 Various minor layout fixes in Navigation Bar and Form Error Icon components
 - 🐛 Ensure member/event/article form data is properly reset when unsaved changes are cancelled
 - 🐛 Prevent multiple of the same dialogs from stacking and ensure Document Viewer dialog automatically closes when the page is exited

@@ -175,7 +175,7 @@
   --lcc-color--input-background: #{clr(grayscale, white-98)};
   --lcc-color--input-border: #{clr(grayscale, gray-65)};
   --lcc-color--input-borderOnHover: #{clr(grayscale, gray-75)};
-  --lcc-color--input-boxShadowOnHover: #{clr(primary, lightest, 0.6)};
+  --lcc-color--input-boxShadowOnHover: #{clr(primary, lighter, 0.6)};
   --lcc-color--input-checkboxAndRadio: #{clr(primary, base)};
   --lcc-color--input-invalidBorder: #{clr(warning, lighter)};
   --lcc-color--input-text: #{clr(grayscale, black-5)};
@@ -190,6 +190,7 @@
   --lcc-color--link: #{clr(primary, light)};
   --lcc-color--linkDisabled: #{clr(grayscale, gray-50)};
   --lcc-color--linkOnHover: #{clr(primary, lighter)};
+  --lcc-color--linkUnderline: #{clr(primary, lighter, 0.8)};
 
   --lcc-color--linkList-headerText: #{clr(grayscale, gray-35)};
 
@@ -201,10 +202,6 @@
   --lcc-color--markdownRenderer-blockquoteBorder: #{clr(grayscale, white-85, 0.5)};
   --lcc-color--markdownRenderer-primaryText: #{clr(grayscale, black-15)};
   --lcc-color--markdownRenderer-secondaryText: #{clr(grayscale, gray-35)};
-
-  --lcc-color--memberForm-safeModeNoticeBorder: #{clr(success, base)};
-  --lcc-color--memberForm-safeModeNoticeIcon: #{clr(success, base)};
-  --lcc-color--memberForm-safeModeNoticeText: #{clr(grayscale, black-15)};
 
   --lcc-color--membersTable-cityChampionIcon: #{clr(secondary, base)};
   --lcc-color--membersTable-cityChampionIconHover: #{clr(secondary, lighter)};
@@ -242,6 +239,10 @@
   --lcc-color--photoGrid-albumNameText: #{clr(grayscale, black-15)};
   --lcc-color--photoGrid-albumNameTextHover: #{clr(grayscale, black-2)};
   --lcc-color--photoGrid-photoCountText: #{clr(grayscale, gray-50)};
+
+  --lcc-color--safeModeNotice-border: #{clr(success, base)};
+  --lcc-color--safeModeNotice-icon: #{clr(success, base)};
+  --lcc-color--safeModeNotice-text: #{clr(grayscale, black-15)};
 
   --lcc-color--schedule-blitz10TournamentBackground: #{clr(
       event-blitz-10-tournament,
@@ -298,7 +299,6 @@
   --lcc-color--pageHeader-icon: #{clr(secondary, base)};
   --lcc-color--pageHeader-text: #{clr(grayscale, black-10)};
 
-  --lcc-color--table-border: #{clr(grayscale, gray-75, 0.2)};
   --lcc-color--table-footerForeground: #{clr(grayscale, gray-35)};
   --lcc-color--table-headerBackground: #{clr(primary, base)};
   --lcc-color--table-headerForeground: #{clr(grayscale, white-95)};

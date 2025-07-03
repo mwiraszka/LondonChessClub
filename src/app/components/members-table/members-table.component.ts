@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PaginatorComponent } from '@app/components/paginator/paginator.component';
+import { SafeModeNoticeComponent } from '@app/components/safe-mode-notice/safe-mode-notice.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import type {
@@ -36,6 +37,7 @@ import { MembersActions } from '@app/store/members';
     MatIconModule,
     PaginatorComponent,
     RouterLink,
+    SafeModeNoticeComponent,
     TooltipDirective,
   ],
 })

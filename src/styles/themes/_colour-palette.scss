@@ -22,12 +22,11 @@ $lcc-color-palette: (
     white-98: hsl(0, 0%, 98%),
   ),
   primary: (
-    darker: hsl(192, 32%, 30%),
-    dark: hsl(192, 32%, 36%),
-    base: hsl(192, 32%, 42%),
-    light: hsl(192, 32%, 48%),
-    lighter: hsl(192, 32%, 58%),
-    lightest: hsl(192, 32%, 70%),
+    darker: hsl(202, 25%, 30%),
+    dark: hsl(202, 25%, 36%),
+    base: hsl(202, 25%, 45%),
+    light: hsl(202, 25%, 52%),
+    lighter: hsl(202, 25%, 64%),
   ),
   secondary: (
     darker: hsl(24, 73%, 38%),
@@ -37,8 +36,8 @@ $lcc-color-palette: (
     lighter: hsl(24, 73%, 78%),
   ),
   success: (
-    base: hsl(101, 50%, 55%),
-    light: hsl(100, 50%, 70%),
+    base: hsl(101, 50%, 45%),
+    light: hsl(101, 50%, 70%),
   ),
   warning: (
     base: hsl(0, 60%, 45%),
@@ -85,7 +84,7 @@ $lcc-color-palette: (
   tooltip: (
     base: hsl(260, 11%, 25%),
     light: hsl(260, 11%, 28%),
-    highlighted: hsl(195, 38%, 75%),
+    highlighted: hsl(202, 25%, 60%),
   ),
   chessboard: (
     base: hsl(34, 44%, 69%),

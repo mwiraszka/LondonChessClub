@@ -43,9 +43,7 @@ function clearStaleLocalStorageDataMetaReducer(
 
   return (state, action) => {
     if (keysToRemove.length) {
-      console.info(
-        `[LCC] Clearing stale data from local storage for version ${version}.`,
-      );
+      console.info(`[LCC] Clearing stale data from local storage for version ${version}`);
 
       keysToRemove.forEach(key => {
         localStorage.removeItem(key);

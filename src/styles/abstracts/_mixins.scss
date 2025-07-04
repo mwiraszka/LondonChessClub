@@ -60,8 +60,7 @@ $breakpoints: (
       @content;
     }
   } @else {
-    @error '[LCC] No value found for `#{$breakpoint}`. '
-         + 'Please make sure it is defined in `$breakpoints` map.';
+    @error '[LCC] Value `#{$breakpoint}` is not defined in `$breakpoints` map';
   }
 }
 

@@ -8,7 +8,9 @@ import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.
 import type { BasicDialogResult, Dialog, EditorPage } from '@app/models';
 import { DialogService } from '@app/services';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root',
+})
 export class UnsavedChangesGuard implements CanDeactivate<EditorPage> {
   constructor(private readonly dialogService: DialogService) {}
 

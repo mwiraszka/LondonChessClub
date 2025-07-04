@@ -1,7 +1,7 @@
 <form
   class="lcc-form"
   [formGroup]="form"
-  (ngSubmit)="onSubmit()">
+  (ngSubmit)="onSubmit(album)">
   <div class="lcc-form-fields">
     <label class="lcc-required-field">Albums:</label>
     <div
@@ -28,7 +28,7 @@
               type="checkbox"
               name="albums"
               [checked]="form.controls.albums.value.includes(album)"
-              (change)="toggleAlbum(album)" />
+              (change)="onToggleAlbum(album)" />
             <label
               class="lcc-truncate"
               [for]="'album-' + album">
@@ -48,7 +48,7 @@
   <label
     class="choose-files-button lcc-secondary-button"
     type="button"
-    [tooltip]="albumImageEntities.length ? 'Add more files' : 'Choose files'">
+    [tooltip]="imageEntities.length ? 'Add more files' : 'Choose files'">
     <mat-icon>add_photo_alternate</mat-icon>
     <input
       type="file"
@@ -60,19 +60,21 @@
   <div
     formArrayName="images"
     class="images-grid">
-    @for (imageControl of imagesFormArray.controls; track imageControl; let i = $index) {
+    @for (
+      imageControl of form.controls.images.controls;
+      track imageControl;
+      let i = $index
+    ) {
       <div
         class="lcc-form-fields"
         [formGroupName]="i">
         <div class="image-container full-span">
           <img
             [image]="{
-              caption: imageControl.value.caption || 'Image preview',
-              thumbnailUrl: albumImageEntities[i].image.thumbnailUrl,
+              caption: 'Image preview',
+              thumbnailUrl: imageEntities[i].image.thumbnailUrl,
               originalUrl:
-                albumImageEntities[i].image.originalUrl ||
-                imageControl.value.dataUrl ||
-                'assets/fallback-image.png',
+                imageEntities[i].image.originalUrl || 'assets/fallback-image.png',
             }" />
         </div>
 
@@ -91,13 +93,12 @@
 
         <div class="cover-image-input-container">
           <input
-            [id]="'cover-radio-' + i"
+            [id]="'cover-image-radio-' + i"
             class="cover-image-input"
             type="radio"
             name="coverImage"
-            [value]="imageControl.value.id"
-            [checked]="form.controls.albumCover.value === imageControl.value.id"
-            (change)="form.controls.albumCover.setValue(imageControl.value.id!)" />
+            [checked]="imageControl.controls.coverForAlbum.value === album"
+            (change)="onSetCoverImage(i)" />
           <label
             class="cover-image-label"
             [for]="'cover-radio-' + i">

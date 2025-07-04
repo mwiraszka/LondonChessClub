@@ -17,7 +17,7 @@ export type {
 } from './dialog.model';
 export type { DbCollection } from './db-collection.model';
 export type { EditorPage } from './editor-page.model';
-export type { LccError } from './error.model';
+export { type LccError, isLccError } from './error.model';
 export {
   EVENT_FORM_DATA_PROPERTIES,
   type Event,
@@ -33,8 +33,7 @@ export {
   type Image,
   type ImageFormData,
   type ImageFormGroup,
-  type ImageItemFormGroup,
-  type ImagesFormGroup,
+  type MultiImageFormGroup,
 } from './image.model';
 export type { ExternalLink, InternalLink, InternalPath } from './link.model';
 export type { ChangePasswordFormGroup, LoginFormGroup } from './login.model';

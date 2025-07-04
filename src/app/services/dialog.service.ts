@@ -25,7 +25,9 @@ export const DIALOG_CONFIG_TOKEN = new InjectionToken<DialogConfig<unknown>>(
   'Dialog Config',
 );
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root',
+})
 export class DialogService {
   private documentClickListener?: () => void;
   private keyDownListener?: () => void;

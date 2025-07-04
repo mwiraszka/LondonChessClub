@@ -3,7 +3,9 @@ import { BehaviorSubject, Observable, filter } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root',
+})
 export class RouteFragmentService {
   private _fragmentSubject = new BehaviorSubject<string | null>(null);
 

@@ -26,9 +26,10 @@ import { ImagesSelectors } from '@app/store/images';
 
       <lcc-images-form
         [album]="vm.album"
-        [albumImageEntities]="vm.albumImageEntities"
         [existingAlbums]="vm.existingAlbums"
-        [hasUnsavedChanges]="false">
+        [hasUnsavedChanges]="vm.hasUnsavedChanges"
+        [imageEntities]="vm.imageEntities"
+        [newImagesFormData]="vm.newImagesFormData">
       </lcc-images-form>
 
       <lcc-link-list [links]="[photoGalleryLink]"></lcc-link-list>
@@ -45,9 +46,10 @@ export class ImagesEditorPageComponent implements EditorPage, OnInit {
   };
   public viewModel$?: Observable<{
     album: string | null;
-    albumImageEntities: { image: Image; formData: ImageFormData }[];
     existingAlbums: string[];
-    hasUnsavedChanges: boolean;
+    hasUnsavedChanges: boolean | null;
+    imageEntities: { image: Image; formData: ImageFormData }[];
+    newImagesFormData: Record<string, ImageFormData>;
     pageTitle: string;
   }>;
 
@@ -64,17 +66,28 @@ export class ImagesEditorPageComponent implements EditorPage, OnInit {
       switchMap(album =>
         combineLatest([
           of(album),
-          this.store.select(ImagesSelectors.selectAllExistingAlbums),
           this.store.select(ImagesSelectors.selectImageEntitiesByAlbum(album)),
+          this.store.select(ImagesSelectors.selectNewImagesFormData),
+          this.store.select(ImagesSelectors.selectAllExistingAlbums),
+          this.store.select(ImagesSelectors.selectAlbumHasUnsavedChanges(album)),
         ]),
       ),
-      map(([album, existingAlbums, albumImageEntities]) => ({
-        album,
-        albumImageEntities,
-        existingAlbums: existingAlbums.filter(_album => _album !== album),
-        hasUnsavedChanges: true,
-        pageTitle: album ? `Edit images from ${album}` : 'Add new images',
-      })),
+      map(
+        ([
+          album,
+          imageEntities,
+          newImagesFormData,
+          existingAlbums,
+          hasUnsavedChanges,
+        ]) => ({
+          album,
+          existingAlbums,
+          hasUnsavedChanges,
+          imageEntities,
+          newImagesFormData,
+          pageTitle: album ? `Edit images from ${album}` : 'Add new images',
+        }),
+      ),
       tap(viewModel => {
         this.metaAndTitleService.updateTitle(viewModel.pageTitle);
         this.metaAndTitleService.updateDescription(

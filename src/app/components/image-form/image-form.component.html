@@ -3,9 +3,9 @@
   [formGroup]="form"
   (ngSubmit)="onSubmit()">
   <div class="lcc-form-fields">
-    @if (originalImage) {
+    @if (imageEntity) {
       <div class="image-container full-span">
-        <img [image]="originalImage" />
+        <img [image]="imageEntity.image" />
       </div>
     } @else {
       <label
@@ -17,8 +17,8 @@
         <div class="image-container">
           <img
             [image]="{
-              caption: formData.caption || 'Image preview',
-              originalUrl: formData.dataUrl || 'assets/fallback-image.png',
+              caption: 'Image preview',
+              originalUrl: newImageDataUrl || 'assets/fallback-image.png',
             }" />
         </div>
 
@@ -34,7 +34,7 @@
             (change)="onChooseFile($event)" />
         </label>
       </div>
-      <lcc-form-error-icon [control]="form.controls.dataUrl"></lcc-form-error-icon>
+      <lcc-form-error-icon [control]="form.controls.filename"></lcc-form-error-icon>
     }
 
     <label
@@ -67,7 +67,7 @@
               type="checkbox"
               name="albums"
               [checked]="form.controls.albums.value.includes(album)"
-              (change)="toggleAlbum(album)" />
+              (change)="onToggleAlbum(album)" />
             <label
               class="lcc-truncate"
               [for]="'album-' + album">
@@ -85,7 +85,7 @@
         name="album"
         formControlName="album"
         maxlength="120"
-        [placeholder]="originalImage ? 'Album name' : 'New album'"
+        [placeholder]="imageEntity ? 'Album name' : 'New album'"
         (click)="this.form.controls.albums.markAsTouched()" />
     </div>
     <lcc-form-error-icon
@@ -99,7 +99,7 @@
 
   <hr />
 
-  @if (originalImage?.modificationInfo; as info) {
+  @if (imageEntity?.image?.modificationInfo; as info) {
     <lcc-modification-info [info]="info"></lcc-modification-info>
   }
 
@@ -114,7 +114,7 @@
       class="submit-button lcc-primary-button"
       type="submit"
       [disabled]="form.invalid || !hasUnsavedChanges">
-      {{ originalImage ? 'Update' : 'Add' }}
+      {{ imageEntity ? 'Update' : 'Add' }}
     </button>
   </div>
 </form>

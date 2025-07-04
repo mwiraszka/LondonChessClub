@@ -22,33 +22,25 @@ export interface Image extends BaseImage {
   articleAppearances?: number;
 }
 
-// Single image form
-export const IMAGE_FORM_DATA_PROPERTIES = ['filename', 'caption', 'albums'] as const;
+export const IMAGE_FORM_DATA_PROPERTIES = [
+  'id',
+  'filename',
+  'caption',
+  'albums',
+  'coverForAlbum',
+] as const;
 
 export type ImageFormData = Pick<
   BaseImage,
   (typeof IMAGE_FORM_DATA_PROPERTIES)[number]
-> & { album: string; dataUrl: Url };
+> & { album: string };
 
 export type ImageFormGroup = {
   [Property in keyof ImageFormData]: FormControl<ImageFormData[Property]>;
 };
 
-// Multiple images form
-export const IMAGE_ITEM_FORM_DATA_PROPERTIES = ['id', 'filename', 'caption'] as const;
-
-type ImageItemFormData = Pick<
-  BaseImage,
-  (typeof IMAGE_ITEM_FORM_DATA_PROPERTIES)[number]
-> & { dataUrl: Url };
-
-export type ImageItemFormGroup = {
-  [Property in keyof ImageItemFormData]: FormControl<ImageItemFormData[Property]>;
-};
-
-export interface ImagesFormGroup {
-  album: FormControl<string>;
-  albums: FormControl<string[]>;
-  albumCover: FormControl<string>;
-  images: FormArray<FormGroup<ImageItemFormGroup>>;
+export interface MultiImageFormGroup {
+  album: FormControl<ImageFormData['album']>;
+  albums: FormControl<ImageFormData['albums']>;
+  images: FormArray<FormGroup<Omit<ImageFormGroup, 'albums' | 'album'>>>;
 }

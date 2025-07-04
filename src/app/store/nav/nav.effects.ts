@@ -7,7 +7,7 @@ import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { IndexedDbService } from '@app/services';
+import { ImageFileService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthActions } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
@@ -302,7 +302,7 @@ export class NavEffects {
     ),
   );
 
-  clearIndexedDbOnLeavingImageRoutes$ = createEffect(
+  clearImageFilesOnLeavingImageRoutes$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(routerNavigatedAction),
@@ -312,14 +312,14 @@ export class NavEffects {
             !!previousPath?.startsWith('/image') &&
             !payload.event.url.startsWith('/image'),
         ),
-        switchMap(() => this.indexedDbService.clearAllImages()),
+        switchMap(() => this.imageFileService.clearAllImages()),
       ),
     { dispatch: false },
   );
 
   constructor(
     private readonly actions$: Actions,
-    private readonly indexedDbService: IndexedDbService,
+    private readonly imageFileService: ImageFileService,
     private readonly router: Router,
     private readonly store: Store,
   ) {}

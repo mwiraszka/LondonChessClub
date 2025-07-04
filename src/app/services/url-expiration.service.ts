@@ -7,7 +7,9 @@ import { Id, Image } from '@app/models';
 import { ImagesActions } from '@app/store/images';
 import { ImagesSelectors } from '@app/store/images';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root',
+})
 export class UrlExpirationService implements OnDestroy {
   private readonly BUFFER_MS = 15 * 1000;
   private readonly BATCH_SIZE = 20;

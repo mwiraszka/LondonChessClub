@@ -5,61 +5,97 @@ import type { Id } from '@app/models';
 import { ArticlesSelectors } from '@app/store/articles';
 import { areSame } from '@app/utils';
 
-import { INITIAL_IMAGE_FORM_DATA, ImagesState, imagesAdapter } from './images.reducer';
+import { ImagesState, imagesAdapter } from './images.reducer';
 
 const selectImagesState = createFeatureSelector<ImagesState>('imagesState');
 
 const { selectAll: selectAllImageEntities } =
   imagesAdapter.getSelectors(selectImagesState);
 
+export const selectNewImagesFormData = createSelector(
+  selectImagesState,
+  state => state.newImagesFormData,
+);
+
+export const selectNewImageFormDataByFilename = (filename: string) =>
+  createSelector(
+    selectNewImagesFormData,
+    newImagesFormData => newImagesFormData[filename] ?? null,
+  );
+
 export const selectImageEntitiesByAlbum = (album: string | null) =>
   createSelector(selectAllImageEntities, allImageEntities => {
     return album
-      ? allImageEntities.filter(entity => entity?.image?.albums?.includes(album))
+      ? (allImageEntities.filter(entity => entity.image.albums.includes(album)) ?? [])
       : [];
   });
 
 export const selectAllImages = createSelector(selectAllImageEntities, allImageEntities =>
-  allImageEntities.map(entity => entity?.image),
+  allImageEntities.map(entity => entity.image),
 );
 
 export const selectPhotoImages = createSelector(selectAllImages, allImages =>
   allImages?.length
-    ? allImages.filter(image => !image?.albums?.some(album => album?.startsWith('_')))
+    ? allImages.filter(image => !image.albums.some(album => album?.startsWith('_')))
     : [],
 );
 
-export const selectImageById = (id: Id | null) =>
+export const selectImageEntityById = (id: Id | null) =>
+  createSelector(
+    selectAllImageEntities,
+    allImageEntities => allImageEntities.find(entity => entity.image.id === id) ?? null,
+  );
+
+export const selectImageById = (id: Id) =>
   createSelector(
     selectAllImages,
-    allImages => allImages?.find(image => image?.id === id) ?? null,
+    allImages => allImages.find(image => image.id === id) ?? null,
   );
 
-export const selectImageFormDataById = (id: Id | null) =>
+export const selectImagesByIds = (ids: Id[]) =>
+  createSelector(selectAllImages, allImages =>
+    allImages.filter(image => ids.find(id => id === image.id)),
+  );
+
+export const selectImageFormDataById = (id: Id) =>
   createSelector(
-    selectImagesState,
     selectAllImageEntities,
-    (state, allImageEntities) =>
-      allImageEntities.find(entity => entity?.image?.id === id)?.formData ??
-      state.newImageFormData,
+    allImageEntities =>
+      allImageEntities.find(entity => entity.image.id === id)?.formData ?? null,
   );
 
-export const selectHasUnsavedChanges = (id: Id | null) =>
-  createSelector(
-    selectImageById(id),
-    selectImageFormDataById(id),
-    (image, imageFormData) => {
-      const formPropertiesOfOriginalImage = pick(
-        image ?? INITIAL_IMAGE_FORM_DATA,
-        Object.getOwnPropertyNames(imageFormData),
-      );
+export const selectImageHasUnsavedChanges = (id: Id | null) =>
+  createSelector(selectImageEntityById(id), entity => {
+    if (!entity) {
+      return null;
+    }
 
-      return !areSame(
-        { ...formPropertiesOfOriginalImage, newAlbum: '', dataUrl: '' },
-        imageFormData,
-      );
-    },
-  );
+    return !areSame(
+      {
+        ...pick(entity.image, Object.getOwnPropertyNames(entity.formData)),
+        album: '',
+      },
+      entity.formData,
+    );
+  });
+
+export const selectAlbumHasUnsavedChanges = (album: string | null) =>
+  createSelector(selectImageEntitiesByAlbum(album), entities => {
+    if (!entities.length) {
+      return null;
+    }
+
+    return entities.some(
+      entity =>
+        !areSame(
+          {
+            ...pick(entity.image, Object.getOwnPropertyNames(entity.formData)),
+            album: '',
+          },
+          entity.formData,
+        ),
+    );
+  });
 
 export const selectAllExistingAlbums = createSelector(selectAllImages, allImages => {
   const allAlbums = allImages.flatMap(image => image?.albums || []);

@@ -32,6 +32,22 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.5.0 - July TBD, 2025</summary>
+
+- 🚀 Support uploading, editing, and deleting multiple images at a time
+- 🚀 Build out website footer to include the club logo, social media links, and a proper site map
+- 🚀 Some minor adjustments to the website colour palette and removal of repeating gradients for improved rendering of app header, table headers and article grid cards
+- 🚀 Display tooltip or admin controls menu on touch devices whenever a long-press touch event is detected
+- 🚀 Create Safe Mode Notice component to be displayed wherever users' personal information is hidden from view
+- 🐛 Various minor layout fixes in Navigation Bar and Form Error Icon components
+- 🐛 Ensure member/event/article form data is properly reset when unsaved changes are cancelled
+- 🐛 Prevent multiple of the same dialogs from stacking and ensure Document Viewer dialog automatically closes when the page is exited
+- 🔧 Create new Image File service for processing image file data and performing CRUD operations with browser's built-in indexed DB
+- 🔧 Add tests for all remaining reuseable components used in the app
+
+</details>
+
+<details>
 <summary>v5.4.4 - June 27th, 2025</summary>
 
 - 🚀 Improve Navigation Bar icon styling

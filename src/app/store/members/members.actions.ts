@@ -88,7 +88,7 @@ export const formValueChanged = createAction(
   props<{ memberId: Id | null; value: Partial<MemberFormData> }>(),
 );
 
-export const memberFormDataCleared = createAction(
-  '[Members] Member form data cleared',
+export const memberFormDataReset = createAction(
+  '[Members] Member form data reset',
   props<{ memberId: Id | null }>(),
 );

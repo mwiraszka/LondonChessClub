@@ -40,7 +40,6 @@ export class MemberEditorPageComponent implements EditorPage, OnInit {
   public readonly membersPageLink: InternalLink = {
     text: 'See all members',
     internalPath: 'members',
-    icon: 'users',
   };
   public viewModel$?: Observable<{
     formData: MemberFormData;

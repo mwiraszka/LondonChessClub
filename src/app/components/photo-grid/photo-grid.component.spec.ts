@@ -16,7 +16,6 @@ import { customSort, query, queryAll, queryTextContent } from '@app/utils';
 import { PhotoGridComponent } from './photo-grid.component';
 
 @Component({
-  standalone: true,
   template: '',
 })
 class PhotoGalleryStubComponent {}

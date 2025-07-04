@@ -7,11 +7,7 @@ $app-header-font-size: 42px;
   display: flex;
   justify-content: center;
   width: 100%;
-  background: repeating-conic-gradient(
-      var(--lcc-color--header-background1) 0% 25%,
-      var(--lcc-color--header-background2) 0% 50%
-    )
-    50% / 2px 2px;
+  background: var(--lcc-color--header-background);
 }
 
 .app-header-container {

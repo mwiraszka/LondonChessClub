@@ -26,7 +26,7 @@ describe('FormErrorIconComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render icon if control is touched and invalid', () => {
+  it('should render visible icon if control is touched and invalid', () => {
     component.control = new FormControl('', {
       validators: Validators.required,
     });
@@ -34,25 +34,34 @@ describe('FormErrorIconComponent', () => {
     fixture.detectChanges();
 
     expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('warning_amber');
+    expect(fixture.nativeElement.querySelector('mat-icon').style.visibility).toBe(
+      'visible',
+    );
   });
 
-  it('should not render icon if control is invalid but not touched', () => {
+  it('should render hidden icon if control is invalid but not touched', () => {
     component.control = new FormControl('', {
       validators: Validators.required,
     });
     fixture.detectChanges();
 
-    expect(query(fixture.debugElement, 'mat-icon')).toBeNull();
+    expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('warning_amber');
+    expect(fixture.nativeElement.querySelector('mat-icon').style.visibility).toBe(
+      'hidden',
+    );
   });
 
-  it('should not render icon if control is touched but not invalid', () => {
+  it('should render hidden icon if control is touched but not invalid', () => {
     component.control = new FormControl('hello world', {
       validators: Validators.required,
     });
     component.control.markAsTouched();
     fixture.detectChanges();
 
-    expect(query(fixture.debugElement, 'mat-icon')).toBeNull();
+    expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('warning_amber');
+    expect(fixture.nativeElement.querySelector('mat-icon').style.visibility).toBe(
+      'hidden',
+    );
   });
 
   it('should display first listed error message in tooltip if control has multiple errors', () => {

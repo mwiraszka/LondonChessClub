@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +13,6 @@ import { PageHeaderComponent } from '@app/components/page-header/page-header.com
 import type { EditorPage, Image, ImageFormData, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ImagesSelectors } from '@app/store/images';
-import { isDefined } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -26,9 +25,9 @@ import { isDefined } from '@app/utils';
       </lcc-page-header>
       <lcc-image-form
         [existingAlbums]="vm.existingAlbums"
-        [formData]="vm.formData"
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
-        [originalImage]="vm.originalImage">
+        [imageEntity]="vm.imageEntity"
+        [newImageFormData]="vm.newImageFormData">
       </lcc-image-form>
       <lcc-link-list [links]="[photoGalleryPageLink]"></lcc-link-list>
     }
@@ -44,9 +43,9 @@ export class ImageEditorPageComponent implements EditorPage, OnInit {
   };
   public viewModel$?: Observable<{
     existingAlbums: string[];
-    formData: ImageFormData;
-    hasUnsavedChanges: boolean;
-    originalImage: Image | null;
+    hasUnsavedChanges: boolean | null;
+    imageEntity: { image: Image; formData: ImageFormData } | null;
+    newImageFormData: ImageFormData | null;
     pageTitle: string;
   }>;
 
@@ -62,20 +61,21 @@ export class ImageEditorPageComponent implements EditorPage, OnInit {
       map(params => (params['image_id'] ?? null) as string | null),
       switchMap(imageId =>
         combineLatest([
-          this.store.select(ImagesSelectors.selectImageById(imageId)),
-          this.store
-            .select(ImagesSelectors.selectImageFormDataById(imageId))
-            .pipe(filter(isDefined)),
+          this.store.select(ImagesSelectors.selectImageEntityById(imageId)),
+          this.store.select(ImagesSelectors.selectNewImagesFormData),
           this.store.select(ImagesSelectors.selectAllExistingAlbums),
-          this.store.select(ImagesSelectors.selectHasUnsavedChanges(imageId)),
+          this.store.select(ImagesSelectors.selectImageHasUnsavedChanges(imageId)),
         ]),
       ),
-      map(([originalImage, formData, existingAlbums, hasUnsavedChanges]) => ({
-        originalImage,
-        formData,
+      map(([imageEntity, newImageFormDataRecord, existingAlbums, hasUnsavedChanges]) => ({
         existingAlbums,
+        newImageFormData:
+          Object.keys(newImageFormDataRecord).length === 1
+            ? Object.values(newImageFormDataRecord)[0]
+            : null,
         hasUnsavedChanges,
-        pageTitle: originalImage ? `Edit ${originalImage.filename}` : 'Add an image',
+        imageEntity,
+        pageTitle: imageEntity ? `Edit ${imageEntity.image.filename}` : 'Add an image',
       })),
       tap(viewModel => {
         this.metaAndTitleService.updateTitle(viewModel.pageTitle);

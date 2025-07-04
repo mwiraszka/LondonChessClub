@@ -1,6 +1,6 @@
 <lcc-page-header
   title="Documents"
-  icon="file-text">
+  icon="description">
 </lcc-page-header>
 
 <div class="lcc-table-wrapper">
@@ -16,7 +16,8 @@
           <td class="document">
             <div
               class="document-label-container"
-              (click)="onSelectDocument(document.fileName)">
+              [fragment]="document.fileName"
+              [routerLink]="currentPath">
               <mat-icon class="file-icon">description</mat-icon>
               <span class="document-title">{{ document.title }}</span>
             </div>
@@ -27,7 +28,7 @@
               [download]="document.title"
               [tooltip]="tooltipContent"
               (click)="$event.stopPropagation()">
-              <mat-icon class="download-icon">file_download</mat-icon>
+              <mat-icon class="download-icon">save_alt</mat-icon>
             </a>
 
             <ng-template #tooltipContent>

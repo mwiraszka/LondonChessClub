@@ -15,7 +15,7 @@ export function getNewPeakRating(rating: string, peakRating: string): string {
     (provisionalPeakRatingCount !== undefined &&
       isNaN(Number(provisionalPeakRatingCount)))
   ) {
-    console.error('[LCC] Unable to parse ratings to determine new peak rating.');
+    console.error('[LCC] Unable to parse ratings to determine new peak rating');
     return '0';
   }
 

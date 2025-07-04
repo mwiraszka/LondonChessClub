@@ -9,7 +9,9 @@ import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { AuthSelectors } from '@app/store/auth';
 import { NavActions } from '@app/store/nav';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthGuard implements CanActivate {
   constructor(private readonly store: Store) {}
 

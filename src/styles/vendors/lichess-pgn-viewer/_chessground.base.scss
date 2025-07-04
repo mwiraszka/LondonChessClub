@@ -74,8 +74,8 @@ piece.fading {
 .cg-wrap piece svg {
   overflow: hidden;
   position: relative;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
@@ -88,8 +88,8 @@ piece.fading {
 .cg-wrap .cg-custom-svgs {
   overflow: visible;
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;

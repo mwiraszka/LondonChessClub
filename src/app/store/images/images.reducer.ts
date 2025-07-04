@@ -1,23 +1,15 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
-import { pick } from 'lodash';
+import { compact, pick } from 'lodash';
 
 import { IMAGE_FORM_DATA_PROPERTIES, Image, ImageFormData } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as ImagesActions from './images.actions';
 
-export const INITIAL_IMAGE_FORM_DATA: ImageFormData = {
-  filename: '',
-  caption: '',
-  albums: [],
-  newAlbum: '',
-  dataUrl: '',
-};
-
 export interface ImagesState
   extends EntityState<{ image: Image; formData: ImageFormData }> {
-  newImageFormData: ImageFormData;
+  newImagesFormData: Record<string, ImageFormData>;
 }
 
 export const imagesAdapter = createEntityAdapter<{
@@ -29,7 +21,7 @@ export const imagesAdapter = createEntityAdapter<{
 });
 
 export const initialState: ImagesState = imagesAdapter.getInitialState({
-  newImageFormData: INITIAL_IMAGE_FORM_DATA,
+  newImagesFormData: {},
 });
 
 export const imagesReducer = createReducer(
@@ -50,8 +42,7 @@ export const imagesReducer = createReducer(
             },
             formData: {
               ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-              newAlbum: '',
-              dataUrl: '',
+              album: '',
             },
           };
         }),
@@ -71,8 +62,7 @@ export const imagesReducer = createReducer(
         },
         formData: originalEntity?.formData ?? {
           ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-          newAlbum: '',
-          dataUrl: '',
+          album: '',
         },
       },
       state,
@@ -92,8 +82,7 @@ export const imagesReducer = createReducer(
           },
           formData: originalEntity?.formData ?? {
             ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-            newAlbum: '',
-            dataUrl: '',
+            album: '',
           },
         };
       }),
@@ -109,25 +98,46 @@ export const imagesReducer = createReducer(
           image,
           formData: {
             ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-            newAlbum: '',
-            dataUrl: '',
+            album: '',
           },
         },
-        { ...state, newImageFormData: INITIAL_IMAGE_FORM_DATA },
+        { ...state, newImagesFormData: {} },
+      ),
+  ),
+
+  on(
+    ImagesActions.addImagesSucceeded,
+    (state, { images }): ImagesState =>
+      imagesAdapter.upsertMany(
+        images.map(image => {
+          const originalEntity = image ? state.entities[image.id] : null;
+
+          return {
+            image: {
+              ...image,
+              originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
+              thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
+            },
+            formData: {
+              ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
+              album: '',
+            },
+          };
+        }),
+        { ...state, newImagesFormData: {} },
       ),
   ),
 
   on(
     ImagesActions.updateImageSucceeded,
-    ImagesActions.updateCoverImageSucceeded,
+    ImagesActions.automaticAlbumCoverSwitchSucceeded,
     (state, { baseImage }): ImagesState =>
       imagesAdapter.upsertOne(
         {
           image: baseImage,
           formData: {
             ...pick(baseImage, IMAGE_FORM_DATA_PROPERTIES),
-            newAlbum: '',
-            dataUrl: '',
+            album: '',
           },
         },
         state,
@@ -135,50 +145,94 @@ export const imagesReducer = createReducer(
   ),
 
   on(
-    ImagesActions.deleteImageSucceeded,
-    (state, { image }): ImagesState =>
-      imagesAdapter.removeMany([image.id, `${image.id}-thumb`], state),
+    ImagesActions.updateAlbumSucceeded,
+    (state, { baseImages }): ImagesState =>
+      imagesAdapter.upsertMany(
+        compact(
+          baseImages.map(baseImage => {
+            const originalEntity = baseImage ? state.entities[baseImage.id] : null;
+
+            if (!originalEntity) {
+              return undefined;
+            }
+
+            return {
+              image: {
+                ...originalEntity.image,
+                ...baseImage,
+              },
+              formData: {
+                ...pick(baseImage, IMAGE_FORM_DATA_PROPERTIES),
+                album: '',
+              },
+            };
+          }),
+        ),
+        { ...state, newImagesFormData: {} },
+      ),
   ),
 
-  on(ImagesActions.formValueChanged, (state, { imageId, value }): ImagesState => {
-    const originalImage = imageId ? state.entities[imageId] : null;
+  on(
+    ImagesActions.deleteImageSucceeded,
+    (state, { image }): ImagesState => imagesAdapter.removeOne(image.id, state),
+  ),
+
+  on(
+    ImagesActions.deleteAlbumSucceeded,
+    (state, { imageIds }): ImagesState => imagesAdapter.removeMany(imageIds, state),
+  ),
+
+  on(
+    ImagesActions.formValueChanged,
+    (state, { imageId, filename, value }): ImagesState => {
+      if (imageId) {
+        const originalImage = state.entities[imageId];
+
+        if (!originalImage) {
+          return state;
+        }
+
+        return imagesAdapter.upsertOne(
+          {
+            ...originalImage,
+            formData: {
+              ...originalImage.formData,
+              ...value,
+            },
+          },
+          state,
+        );
+      }
+
+      // If no imageId, this is a new image, so add to or update
+      // newImagesFormData record instead (keyed on the image's filename)
+      return {
+        ...state,
+        newImagesFormData: {
+          ...state.newImagesFormData,
+          [filename]: {
+            ...state.newImagesFormData[filename],
+            ...value,
+          },
+        },
+      };
+    },
+  ),
+
+  on(ImagesActions.imageFormDataReset, (state, { imageId }): ImagesState => {
+    const originalImage = imageId ? state.entities[imageId]?.image : null;
 
     if (!originalImage) {
-      return {
-        ...state,
-        newImageFormData: {
-          ...state.newImageFormData,
-          ...value,
-        },
-      };
+      return state;
     }
 
     return imagesAdapter.upsertOne(
       {
-        ...originalImage,
+        image: originalImage,
         formData: {
-          ...(originalImage?.formData ?? INITIAL_IMAGE_FORM_DATA),
-          ...value,
+          ...pick(originalImage, IMAGE_FORM_DATA_PROPERTIES),
+          album: '',
         },
-      },
-      state,
-    );
-  }),
-
-  on(ImagesActions.imageFormDataCleared, (state, { imageId }): ImagesState => {
-    const originalArticle = imageId ? state.entities[imageId] : null;
-
-    if (!originalArticle) {
-      return {
-        ...state,
-        newImageFormData: INITIAL_IMAGE_FORM_DATA,
-      };
-    }
-
-    return imagesAdapter.upsertOne(
-      {
-        ...originalArticle,
-        formData: INITIAL_IMAGE_FORM_DATA,
       },
       state,
     );

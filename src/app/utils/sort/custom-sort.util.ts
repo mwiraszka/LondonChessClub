@@ -36,9 +36,7 @@ export function customSort(
     }
 
     if (!has(a, key) || !has(b, key)) {
-      console.error(
-        `[LCC] Sort error: property '${key}' does not exist on both objects.`,
-      );
+      console.error(`[LCC] Sort error: property '${key}' does not exist on both objects`);
       return 0;
     }
 

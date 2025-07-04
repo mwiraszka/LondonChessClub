@@ -16,7 +16,7 @@
     flex-direction: row;
     gap: 8px;
 
-    .upload-file-button {
+    .choose-file-button {
       align-self: end;
       padding: 4px 8px;
 
@@ -48,14 +48,14 @@
     }
   }
 
+  .album-input.invalid {
+    border-color: var(--lcc-color--input-invalidBorder);
+  }
+
   .existing-album-fieldset {
     display: grid;
     grid-template-columns: auto;
     gap: 4px 16px;
-
-    @include respond-to('gt-md') {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
 
     &.invalid {
       border-color: var(--lcc-color--input-invalidBorder);
@@ -70,6 +70,10 @@
         text-align: unset;
         max-width: unset;
       }
+    }
+
+    @include respond-to('gt-md') {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
   }
 

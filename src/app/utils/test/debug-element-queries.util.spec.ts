@@ -4,7 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { query, queryAll, queryTextContent } from './debug-element-queries.util';
 
 @Component({
-  standalone: true,
   template: `
     <div class="container">
       <p class="paragraph">First paragraph</p>

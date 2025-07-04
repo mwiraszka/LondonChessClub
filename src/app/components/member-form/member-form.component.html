@@ -126,13 +126,7 @@
   <aside class="lcc-required-fields-legend">Required fields</aside>
 
   @if (isSafeMode) {
-    <aside class="safe-mode-notice">
-      <mat-icon class="checkmark-icon">check_circle_outline</mat-icon>
-      <div class="text-container">
-        Member's personal details have been hidden from view. You can disable Safe Mode
-        from the User Settings menu.
-      </div>
-    </aside>
+    <lcc-safe-mode-notice entity="member's"></lcc-safe-mode-notice>
   }
 
   <hr />

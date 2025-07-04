@@ -8,7 +8,9 @@ const LOCAL_STORAGE_TOKEN = new InjectionToken<Storage>('Local Storage', {
 /**
  * Currently not implemented anywhere.
  */
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root',
+})
 export class LocalStorageService {
   constructor(@Inject(LOCAL_STORAGE_TOKEN) public storage: Storage) {}
 

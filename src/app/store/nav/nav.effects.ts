@@ -2,11 +2,12 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { routerNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
-import { filter, map, tap } from 'rxjs/operators';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { ImageFileService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthActions } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
@@ -130,7 +131,7 @@ export class NavEffects {
     ),
   );
 
-  clearEventFormData$ = createEffect(() =>
+  resetEventFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -142,7 +143,7 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const eventId = previousPath!.split('/event/')[1]?.split('/')[1] ?? null;
-        return EventsActions.eventFormDataCleared({ eventId });
+        return EventsActions.eventFormDataReset({ eventId });
       }),
     ),
   );
@@ -166,7 +167,7 @@ export class NavEffects {
     ),
   );
 
-  clearMemberFormData$ = createEffect(() =>
+  resetMemberFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -178,7 +179,7 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const memberId = previousPath!.split('/member/')[1]?.split('/')[1] ?? null;
-        return MembersActions.memberFormDataCleared({ memberId });
+        return MembersActions.memberFormDataReset({ memberId });
       }),
     ),
   );
@@ -213,7 +214,7 @@ export class NavEffects {
     ),
   );
 
-  clearArticleFormData$ = createEffect(() =>
+  resetArticleFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -225,7 +226,7 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const articleId = previousPath!.split('/article/')[1]?.split('/')[1] ?? null;
-        return ArticlesActions.articleFormDataCleared({ articleId });
+        return ArticlesActions.articleFormDataReset({ articleId });
       }),
     ),
   );
@@ -260,7 +261,7 @@ export class NavEffects {
     ),
   );
 
-  clearImageFormData$ = createEffect(() =>
+  resetImageFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -272,7 +273,7 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const imageId = previousPath!.split('/image/')[1]?.split('/')[1] ?? null;
-        return ImagesActions.imageFormDataCleared({ imageId });
+        return ImagesActions.imageFormDataReset({ imageId });
       }),
     ),
   );
@@ -301,8 +302,24 @@ export class NavEffects {
     ),
   );
 
+  clearImageFilesOnLeavingImageRoutes$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(routerNavigatedAction),
+        concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
+        filter(
+          ([{ payload }, previousPath]) =>
+            !!previousPath?.startsWith('/image') &&
+            !payload.event.url.startsWith('/image'),
+        ),
+        switchMap(() => this.imageFileService.clearAllImages()),
+      ),
+    { dispatch: false },
+  );
+
   constructor(
     private readonly actions$: Actions,
+    private readonly imageFileService: ImageFileService,
     private readonly router: Router,
     private readonly store: Store,
   ) {}

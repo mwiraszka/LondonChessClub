@@ -36,11 +36,7 @@ lcc-link-list,
     margin: 0 4px;
     min-width: $card-min-width;
     padding: 8px;
-    background: repeating-conic-gradient(
-        var(--lcc-color--articleGrid-cardBackground1) 0% 25%,
-        var(--lcc-color--articleGrid-cardBackground2) 0% 50%
-      )
-      50% / 2px 2px;
+    background: var(--lcc-color--articleGrid-cardBackground);
     border-radius: var(--lcc-borderRadius--large);
 
     @include flex-wrap-fix-width($flex-basis, $grid-gap, $app-content-width);
@@ -52,6 +48,7 @@ lcc-link-list,
     &:hover {
       cursor: pointer;
       background: var(--lcc-color--articleGrid-cardBackgroundOnHover);
+      scale: 1.01;
     }
 
     .image-container {

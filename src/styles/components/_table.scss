@@ -11,9 +11,9 @@
   overflow: hidden;
   width: 100%;
   font-size: 14px;
-  border: 1px solid var(--lcc-color--table-border);
   border-radius: var(--lcc-borderRadius--small);
   border-spacing: 0;
+  box-shadow: 0 0 3px 1px var(--lcc-color--general-cardBoxShadow);
 
   // When table cell border radius added, sometimes the table background bleeds through from
   // behind when resizing, so set to the same colour as the row to make this less noticeable
@@ -26,11 +26,7 @@
   thead {
     th {
       color: var(--lcc-color--table-headerForeground);
-      background: repeating-conic-gradient(
-          var(--lcc-color--table-headerBackground1) 0% 25%,
-          var(--lcc-color--table-headerBackground2) 0% 50%
-        )
-        50% / 2px 2px;
+      background: var(--lcc-color--table-headerBackground);
       white-space: nowrap;
       font-weight: 200;
       padding: 8px;

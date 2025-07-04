@@ -53,37 +53,25 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
 
       const whiteScore = getScore(this.pgn, 'White');
       if (!whiteScore) {
-        console.error(
-          '[LCC] A game with no valid score for White was found: \n',
-          this.pgn,
-        );
+        console.warn('[LCC] Found game with an invalid score for White: \n', this.pgn);
         return;
       }
 
       const blackScore = getScore(this.pgn, 'Black');
       if (!blackScore) {
-        console.error(
-          '[LCC] A game with no valid score for Black was found: \n',
-          this.pgn,
-        );
+        console.warn('[LCC] Found game with an invalid score for Black: \n', this.pgn);
         return;
       }
 
       const whiteName = getPlayerName(this.pgn, 'full', 'White');
       if (!whiteName) {
-        console.error(
-          '[LCC] A game with no defined White player was found: \n',
-          this.pgn,
-        );
+        console.warn('[LCC] Found game with an undefined White player: \n', this.pgn);
         return;
       }
 
       const blackName = getPlayerName(this.pgn, 'full', 'Black');
       if (!blackName) {
-        console.error(
-          '[LCC] A game with no defined Black player was found: \n',
-          this.pgn,
-        );
+        console.warn('[LCC] Found game with an undefined Black player: \n', this.pgn);
         return;
       }
 

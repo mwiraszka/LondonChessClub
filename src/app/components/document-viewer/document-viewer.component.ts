@@ -32,7 +32,7 @@ export class DocumentViewerComponent implements DialogOutput<null> {
 
   public onProgress(progressData: PDFProgressData): void {
     if (progressData.total <= 0 || progressData.loaded > progressData.total) {
-      console.warn('[LCC] Could not parse document load progress data:', progressData);
+      console.error('[LCC] Could not parse document load progress data:', progressData);
       return;
     }
 

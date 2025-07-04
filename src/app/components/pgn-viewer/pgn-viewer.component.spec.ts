@@ -78,38 +78,38 @@ describe('PgnViewerComponent', () => {
 
   describe('error handling', () => {
     beforeEach(() => {
-      jest.spyOn(console, 'error').mockImplementation();
+      jest.spyOn(console, 'warn').mockImplementation();
     });
 
-    it('should log an error if White player name is missing', () => {
+    it('should log a warning if White player name is missing', () => {
       jest
         .spyOn(playerUtils, 'getPlayerName')
         // @ts-expect-error Intentional type error
-        .mockImplementation((pgn, _, color) => (color === 'White' ? null : 'Player2'));
+        .mockImplementation((_, __, color) => (color === 'White' ? null : 'Player2'));
 
       component.ngAfterViewInit();
 
-      expect(console.error).toHaveBeenCalledWith(
-        expect.stringContaining('A game with no defined White player was found'),
+      expect(console.warn).toHaveBeenCalledWith(
+        expect.stringContaining('undefined White player'),
         expect.anything(),
       );
     });
 
-    it('should log an error if Black player name is missing', () => {
+    it('should log a warning if Black player name is missing', () => {
       jest
         .spyOn(playerUtils, 'getPlayerName')
         // @ts-expect-error Intentional type error
-        .mockImplementation((pgn, _, color) => (color === 'White' ? 'Player1' : null));
+        .mockImplementation((_, __, color) => (color === 'White' ? 'Player1' : null));
 
       component.ngAfterViewInit();
 
-      expect(console.error).toHaveBeenCalledWith(
-        expect.stringContaining('A game with no defined Black player was found'),
+      expect(console.warn).toHaveBeenCalledWith(
+        expect.stringContaining('undefined Black player'),
         expect.anything(),
       );
     });
 
-    it('should log an error if White score is missing', () => {
+    it('should log a warning if White score is missing', () => {
       jest
         .spyOn(scoreUtils, 'getScore')
         // @ts-expect-error Intentional type error
@@ -117,13 +117,13 @@ describe('PgnViewerComponent', () => {
 
       component.ngAfterViewInit();
 
-      expect(console.error).toHaveBeenCalledWith(
-        expect.stringContaining('A game with no valid score for White was found'),
+      expect(console.warn).toHaveBeenCalledWith(
+        expect.stringContaining('invalid score for White'),
         expect.anything(),
       );
     });
 
-    it('should log an error if Black score is missing', () => {
+    it('should log a warning if Black score is missing', () => {
       jest
         .spyOn(scoreUtils, 'getScore')
         // @ts-expect-error Intentional type error
@@ -131,8 +131,8 @@ describe('PgnViewerComponent', () => {
 
       component.ngAfterViewInit();
 
-      expect(console.error).toHaveBeenCalledWith(
-        expect.stringContaining('A game with no valid score for Black was found'),
+      expect(console.warn).toHaveBeenCalledWith(
+        expect.stringContaining('invalid score for Black'),
         expect.anything(),
       );
     });

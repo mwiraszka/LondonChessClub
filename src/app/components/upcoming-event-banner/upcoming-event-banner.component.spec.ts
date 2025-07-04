@@ -8,7 +8,6 @@ import { formatDate, query, queryTextContent } from '@app/utils';
 import { UpcomingEventBannerComponent } from './upcoming-event-banner.component';
 
 @Component({
-  standalone: true,
   template: '',
 })
 class ScheduleStubComponent {}

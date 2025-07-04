@@ -8,7 +8,9 @@ import { Toast } from '@app/models';
 // Type alias for timeout IDs returned by setTimeout
 type TimeoutId = ReturnType<typeof setTimeout>;
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root',
+})
 export class ToastService {
   public static readonly TOAST_DURATION = 5000;
 

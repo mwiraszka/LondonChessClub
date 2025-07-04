@@ -119,8 +119,8 @@ export const eventsReducer = createReducer(
     );
   }),
 
-  on(EventsActions.eventFormDataCleared, (state, { eventId }): EventsState => {
-    const originalEvent = eventId ? state.entities[eventId] : null;
+  on(EventsActions.eventFormDataReset, (state, { eventId }): EventsState => {
+    const originalEvent = eventId ? state.entities[eventId]?.event : null;
 
     if (!originalEvent) {
       return {
@@ -131,8 +131,8 @@ export const eventsReducer = createReducer(
 
     return eventsAdapter.upsertOne(
       {
-        ...originalEvent,
-        formData: INITIAL_EVENT_FORM_DATA,
+        event: originalEvent,
+        formData: pick(originalEvent, EVENT_FORM_DATA_PROPERTIES),
       },
       state,
     );

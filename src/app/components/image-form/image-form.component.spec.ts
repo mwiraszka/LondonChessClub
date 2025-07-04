@@ -269,7 +269,7 @@ describe('ImageFormComponent', () => {
     });
   });
 
-  describe('onUploadNewImage', () => {
+  describe('onChooseFile', () => {
     it('should update form with new image data when valid image is uploaded', () => {
       component.form.patchValue({
         dataUrl: 'data:image/jpeg;base64,new-image-data',
@@ -288,7 +288,7 @@ describe('ImageFormComponent', () => {
       const mockFile = new File([''], 'test-image.gif', { type: 'image/gif' });
       const mockEvent = { target: { files: [mockFile], value: '' } } as unknown as Event;
 
-      component.onUploadNewImage(mockEvent);
+      component.onChooseFile(mockEvent);
       fixture.detectChanges();
 
       expect(store.dispatch).toHaveBeenCalledWith(

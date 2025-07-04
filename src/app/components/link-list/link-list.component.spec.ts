@@ -11,7 +11,6 @@ import { query, queryAll, queryTextContent } from '@app/utils';
 import { LinkListComponent } from './link-list.component';
 
 @Component({
-  standalone: true,
   template: '',
 })
 class LoginPageStubComponent {}

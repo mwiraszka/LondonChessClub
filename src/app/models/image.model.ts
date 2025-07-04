@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 import { Id, IsoDate, Url } from './core.model';
 import { ModificationInfo } from './modification-info.model';
@@ -22,13 +22,25 @@ export interface Image extends BaseImage {
   articleAppearances?: number;
 }
 
-export const IMAGE_FORM_DATA_PROPERTIES = ['filename', 'caption', 'albums'] as const;
+export const IMAGE_FORM_DATA_PROPERTIES = [
+  'id',
+  'filename',
+  'caption',
+  'albums',
+  'coverForAlbum',
+] as const;
 
 export type ImageFormData = Pick<
   BaseImage,
   (typeof IMAGE_FORM_DATA_PROPERTIES)[number]
-> & { newAlbum: string; dataUrl: Url };
+> & { album: string };
 
 export type ImageFormGroup = {
   [Property in keyof ImageFormData]: FormControl<ImageFormData[Property]>;
 };
+
+export interface MultiImageFormGroup {
+  album: FormControl<ImageFormData['album']>;
+  albums: FormControl<ImageFormData['albums']>;
+  images: FormArray<FormGroup<Omit<ImageFormGroup, 'albums' | 'album'>>>;
+}

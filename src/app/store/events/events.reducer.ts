@@ -1,26 +1,12 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
-import moment from 'moment-timezone';
 
-import { EVENT_FORM_DATA_PROPERTIES, type Event, type EventFormData } from '@app/models';
+import { EVENT_FORM_DATA_PROPERTIES, INITIAL_EVENT_FORM_DATA } from '@app/constants';
+import type { Event, EventFormData } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as EventsActions from './events.actions';
-
-export const INITIAL_EVENT_FORM_DATA: EventFormData = {
-  type: 'blitz tournament (10 mins)',
-  eventDate: moment()
-    .tz('America/Toronto', false)
-    .set('hours', 18)
-    .set('minutes', 0)
-    .set('seconds', 0)
-    .set('milliseconds', 0)
-    .toISOString(),
-  title: '',
-  details: '',
-  articleId: '',
-};
 
 export interface EventsState
   extends EntityState<{ event: Event; formData: EventFormData }> {

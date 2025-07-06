@@ -1,9 +1,11 @@
 import { FormControl } from '@angular/forms';
 
+import { EVENT_FORM_DATA_PROPERTIES } from '@app/constants';
+
 import { Id, IsoDate } from './core.model';
 import type { ModificationInfo } from './modification-info.model';
 
-const eventTypes = [
+const EVENT_TYPES = [
   'blitz tournament (10 mins)',
   'rapid tournament (25 mins)',
   'rapid tournament (40 mins)',
@@ -13,10 +15,10 @@ const eventTypes = [
   'closed',
   'other',
 ] as const;
-export type EventType = (typeof eventTypes)[number];
+export type EventType = (typeof EVENT_TYPES)[number];
 
 export function isEventType(value: unknown): value is EventType {
-  return eventTypes.indexOf(value as EventType) !== -1;
+  return EVENT_TYPES.indexOf(value as EventType) !== -1;
 }
 
 export interface Event {
@@ -28,14 +30,6 @@ export interface Event {
   articleId: Id | null;
   modificationInfo: ModificationInfo;
 }
-
-export const EVENT_FORM_DATA_PROPERTIES = [
-  'type',
-  'eventDate',
-  'title',
-  'details',
-  'articleId',
-] as const;
 
 export type EventFormData = Pick<Event, (typeof EVENT_FORM_DATA_PROPERTIES)[number]>;
 

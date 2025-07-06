@@ -2,20 +2,11 @@ import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
-import {
-  ARTICLE_FORM_DATA_PROPERTIES,
-  type Article,
-  type ArticleFormData,
-} from '@app/models';
+import { ARTICLE_FORM_DATA_PROPERTIES, INITIAL_ARTICLE_FORM_DATA } from '@app/constants';
+import type { Article, ArticleFormData } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
-
-export const INITIAL_ARTICLE_FORM_DATA: ArticleFormData = {
-  title: '',
-  body: '',
-  bannerImageId: '',
-};
 
 export interface ArticlesState
   extends EntityState<{ article: Article; formData: ArticleFormData }> {

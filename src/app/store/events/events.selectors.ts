@@ -2,10 +2,11 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { pick } from 'lodash';
 import moment from 'moment-timezone';
 
+import { INITIAL_EVENT_FORM_DATA } from '@app/constants';
 import type { Id } from '@app/models';
 import { areSame } from '@app/utils';
 
-import { EventsState, INITIAL_EVENT_FORM_DATA, eventsAdapter } from './events.reducer';
+import { EventsState, eventsAdapter } from './events.reducer';
 
 const selectEventsState = createFeatureSelector<EventsState>('eventsState');
 

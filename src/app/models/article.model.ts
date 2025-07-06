@@ -1,5 +1,7 @@
 import { FormControl } from '@angular/forms';
 
+import { ARTICLE_FORM_DATA_PROPERTIES } from '@app/constants';
+
 import type { Id, IsoDate } from './core.model';
 import type { ModificationInfo } from './modification-info.model';
 
@@ -11,8 +13,6 @@ export interface Article {
   bookmarkDate: IsoDate | null;
   modificationInfo: ModificationInfo;
 }
-
-export const ARTICLE_FORM_DATA_PROPERTIES = ['title', 'body', 'bannerImageId'] as const;
 
 export type ArticleFormData = Pick<
   Article,

@@ -1,30 +1,11 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
-import moment from 'moment-timezone';
 
-import {
-  MEMBER_FORM_DATA_PROPERTIES,
-  type Member,
-  type MemberFormData,
-} from '@app/models';
+import { INITIAL_MEMBER_FORM_DATA, MEMBER_FORM_DATA_PROPERTIES } from '@app/constants';
+import type { Member, MemberFormData } from '@app/models';
 
 import * as MembersActions from './members.actions';
-
-export const INITIAL_MEMBER_FORM_DATA: MemberFormData = {
-  firstName: '',
-  lastName: '',
-  city: 'London',
-  rating: '1000/0',
-  peakRating: '',
-  dateJoined: moment().toISOString(),
-  isActive: true,
-  chessComUsername: '',
-  lichessUsername: '',
-  yearOfBirth: '',
-  email: '',
-  phoneNumber: '',
-};
 
 export interface MembersState
   extends EntityState<{ member: Member; formData: MemberFormData }> {

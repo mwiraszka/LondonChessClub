@@ -49,7 +49,7 @@
     class="choose-files-button lcc-secondary-button"
     type="button"
     [tooltip]="imageEntities.length ? 'Add more files' : 'Choose files'">
-    <mat-icon>add_photo_alternate</mat-icon>
+    <mat-icon>imageEntities.length ? add_photo_alternate : insert_photo</mat-icon>
     <input
       type="file"
       accept="image/*"

@@ -45,7 +45,7 @@ export const addAnImageSelected = createAction('[Images] Add an image selected')
 
 export const addImageRequested = createAction(
   '[Images] Add image requested',
-  props<{ filename: string }>(),
+  props<{ imageId: Id }>(),
 );
 export const addImageSucceeded = createAction(
   '[Images] Add image succeeded',
@@ -131,7 +131,7 @@ export const cancelSelected = createAction('[Images] Cancel selected');
 
 export const formValueChanged = createAction(
   '[Images] Form value changed',
-  props<{ imageId: Id; filename: string; value: Partial<ImageFormData> }>(),
+  props<{ imageId: Id; value: Partial<ImageFormData> }>(),
 );
 
 export const imageFormDataReset = createAction(

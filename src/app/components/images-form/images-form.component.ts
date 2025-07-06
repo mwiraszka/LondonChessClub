@@ -1,6 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
+import * as uuid from 'uuid';
 
 import { Component, Input, OnInit } from '@angular/core';
 import {
@@ -17,19 +18,19 @@ import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import {
-  type BasicDialogResult,
-  type Dialog,
-  type Image,
-  type ImageFormData,
+import type {
+  BasicDialogResult,
+  Dialog,
+  Image,
+  ImageFormData,
   ImageFormGroup,
   MultiImageFormGroup,
-  type Url,
-  isLccError,
+  Url,
 } from '@app/models';
 import { DialogService, ImageFileService } from '@app/services';
 import { ArticlesActions } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
+import { isLccError } from '@app/utils';
 import {
   imageCaptionValidator,
   oneAlbumMinimumValidator,
@@ -113,7 +114,8 @@ export class ImagesFormComponent implements OnInit {
     }
 
     const processFiles = Array.from(files).map(async file => {
-      const result = await this.imageFileService.storeImageFile(file);
+      const id = `new-${uuid.v4()}`;
+      const result = await this.imageFileService.storeImageFile(id, file);
 
       if (isLccError(result)) {
         this.store.dispatch(ImagesActions.imageFileActionFailed({ error: result }));

@@ -11,7 +11,7 @@ import { ImageFileService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthActions } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
-import { ImagesActions } from '@app/store/images';
+import { ImagesActions, ImagesSelectors } from '@app/store/images';
 import { MembersActions } from '@app/store/members';
 import { isDefined, isValidCollectionId } from '@app/utils';
 
@@ -278,6 +278,30 @@ export class NavEffects {
     ),
   );
 
+  resetImagesFormData$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
+      filter(([{ payload }, previousPath]) => {
+        const currentPath = payload.event.url;
+        return (
+          !!previousPath?.startsWith('/images/') && !currentPath?.startsWith('/images/')
+        );
+      }),
+      map(
+        ([, previousPath]) => previousPath!.split('/images/')[1]?.split('/')[1] ?? null,
+      ),
+      filter(isDefined),
+      switchMap(album =>
+        this.store.select(ImagesSelectors.selectImageEntitiesByAlbum(album)),
+      ),
+      map(entities => {
+        const imageIds = entities.map(entity => entity.image.id);
+        return ImagesActions.imagesFormDataReset({ imageIds });
+      }),
+    ),
+  );
+
   redirectToPhotoGalleryRouteOnImageFetchFail$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ImagesActions.fetchImageFailed),
@@ -302,17 +326,11 @@ export class NavEffects {
     ),
   );
 
-  clearImageFilesOnLeavingImageRoutes$ = createEffect(
+  clearIndexedDbImageFileData$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(routerNavigatedAction),
-        concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
-        filter(
-          ([{ payload }, previousPath]) =>
-            !!previousPath?.startsWith('/image') &&
-            !payload.event.url.startsWith('/image'),
-        ),
-        switchMap(() => this.imageFileService.clearAllImages()),
+        ofType(ImagesActions.imageFormDataReset, ImagesActions.imagesFormDataReset),
+        tap(() => this.imageFileService.clearAllImages()),
       ),
     { dispatch: false },
   );

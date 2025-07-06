@@ -10,6 +10,7 @@ export { formatDate } from './datetime/format-date.util';
 export { isValidIsoDate } from './datetime/is-valid-iso-date.util';
 export { isValidTime } from './datetime/is-valid-time.util';
 
+export { isLccError } from './error/is-lcc-error.util';
 export { parseError } from './error/parse-error.util';
 
 export { dataUrlToFile } from './file/data-url-to-file.util';

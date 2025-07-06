@@ -1,6 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
+import * as uuid from 'uuid';
 
 import { Component, Input, OnInit } from '@angular/core';
 import {
@@ -15,20 +16,22 @@ import { MatIconModule } from '@angular/material/icon';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
+import { INITIAL_IMAGE_FORM_DATA } from '@app/constants';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import {
-  type BasicDialogResult,
-  type Dialog,
-  type Image,
-  type ImageFormData,
-  type ImageFormGroup,
-  type Url,
-  isLccError,
+import type {
+  BasicDialogResult,
+  Dialog,
+  Id,
+  Image,
+  ImageFormData,
+  ImageFormGroup,
+  Url,
 } from '@app/models';
 import { DialogService, ImageFileService } from '@app/services';
 import { ArticlesActions } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
+import { isLccError } from '@app/utils';
 import {
   imageCaptionValidator,
   oneAlbumMinimumValidator,
@@ -50,15 +53,6 @@ import {
   ],
 })
 export class ImageFormComponent implements OnInit {
-  readonly INITIAL_FORM_DATA: ImageFormData = {
-    id: '',
-    filename: '',
-    caption: '',
-    albums: [],
-    album: '',
-    coverForAlbum: '',
-  };
-
   @Input({ required: true }) existingAlbums!: string[];
   @Input({ required: true }) hasUnsavedChanges!: boolean | null;
   @Input({ required: true }) imageEntity!: {
@@ -86,7 +80,7 @@ export class ImageFormComponent implements OnInit {
     }
 
     if (this.newImageFormData) {
-      this.loadNewImageDataUrl(this.newImageFormData.filename);
+      this.fetchNewImageDataUrl(this.newImageFormData.id);
     }
   }
 
@@ -105,7 +99,8 @@ export class ImageFormComponent implements OnInit {
     const file = fileInputElement.files?.length ? fileInputElement.files[0] : null;
 
     if (file) {
-      const result = await this.imageFileService.storeImageFile(file, true);
+      const id = `new-${uuid.v4()}`;
+      const result = await this.imageFileService.storeImageFile(id, file, true);
 
       if (isLccError(result)) {
         this.store.dispatch(ImagesActions.imageFileActionFailed({ error: result }));
@@ -114,6 +109,7 @@ export class ImageFormComponent implements OnInit {
 
         this.newImageDataUrl = dataUrl;
         this.form.patchValue({
+          id,
           filename,
           caption: filename.substring(0, filename.lastIndexOf('.')),
         });
@@ -153,31 +149,28 @@ export class ImageFormComponent implements OnInit {
       return;
     }
 
+    const imageId = this.form.controls.id.value;
+
     if (this.imageEntity) {
-      this.store.dispatch(
-        ImagesActions.updateImageRequested({ imageId: this.imageEntity.image.id }),
-      );
+      this.store.dispatch(ImagesActions.updateImageRequested({ imageId }));
     } else {
-      this.store.dispatch(
-        ImagesActions.addImageRequested({ filename: this.form.controls.filename.value }),
-      );
+      this.store.dispatch(ImagesActions.addImageRequested({ imageId }));
     }
   }
 
-  private async loadNewImageDataUrl(filename: string): Promise<void> {
-    const result = await this.imageFileService.getImage(filename);
+  private async fetchNewImageDataUrl(id: Id): Promise<void> {
+    const result = await this.imageFileService.getImage(id);
 
     if (isLccError(result)) {
       this.store.dispatch(ImagesActions.imageFileActionFailed({ error: result }));
-    } else {
-      this.form.patchValue({ filename: result.filename });
+    } else if (result) {
       this.newImageDataUrl = result.dataUrl;
     }
   }
 
   private initForm(): void {
-    const formData: ImageFormData =
-      this.imageEntity?.formData ?? this.newImageFormData ?? this.INITIAL_FORM_DATA;
+    const formData: ImageFormData = this.imageEntity?.formData ??
+      this.newImageFormData ?? { ...INITIAL_IMAGE_FORM_DATA, id: `new-${uuid.v4()}` };
 
     this.form = this.formBuilder.group<ImageFormGroup>(
       {
@@ -223,10 +216,9 @@ export class ImageFormComponent implements OnInit {
           this.form.controls.albums.updateValueAndValidity({ emitEvent: false });
         }
 
-        const imageId = this.form.controls.id.value;
-        const filename = this.form.controls.filename.value;
-
-        this.store.dispatch(ImagesActions.formValueChanged({ imageId, filename, value }));
+        this.store.dispatch(
+          ImagesActions.formValueChanged({ imageId: this.form.controls.id.value, value }),
+        );
       });
 
     // Manually trigger form value change to pass initial form data to store

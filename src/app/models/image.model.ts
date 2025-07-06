@@ -1,5 +1,7 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
+import { IMAGE_FORM_DATA_PROPERTIES } from '@app/constants';
+
 import { Id, IsoDate, Url } from './core.model';
 import { ModificationInfo } from './modification-info.model';
 
@@ -22,13 +24,7 @@ export interface Image extends BaseImage {
   articleAppearances?: number;
 }
 
-export const IMAGE_FORM_DATA_PROPERTIES = [
-  'id',
-  'filename',
-  'caption',
-  'albums',
-  'coverForAlbum',
-] as const;
+export type IndexedDbImageData = Pick<BaseImage, 'id' | 'filename'> & { dataUrl: Url };
 
 export type ImageFormData = Pick<
   BaseImage,

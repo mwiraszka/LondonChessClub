@@ -17,7 +17,7 @@ export type {
 } from './dialog.model';
 export type { DbCollection } from './db-collection.model';
 export type { EditorPage } from './editor-page.model';
-export { type LccError, isLccError } from './error.model';
+export type { LccError } from './error.model';
 export {
   EVENT_FORM_DATA_PROPERTIES,
   type Event,
@@ -27,13 +27,13 @@ export {
 } from './event.model';
 export type { FilterFormGroup } from './filter-form-group.model';
 export type { GameDetails, GameScore } from './game-details.model';
-export {
-  type BaseImage,
-  IMAGE_FORM_DATA_PROPERTIES,
-  type Image,
-  type ImageFormData,
-  type ImageFormGroup,
-  type MultiImageFormGroup,
+export type {
+  BaseImage,
+  Image,
+  ImageFormData,
+  ImageFormGroup,
+  IndexedDbImageData,
+  MultiImageFormGroup,
 } from './image.model';
 export type { ExternalLink, InternalLink, InternalPath } from './link.model';
 export type { ChangePasswordFormGroup, LoginFormGroup } from './login.model';

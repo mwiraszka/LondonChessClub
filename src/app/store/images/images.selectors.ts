@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { pick } from 'lodash';
+import { omit, pick } from 'lodash';
 
+import { INITIAL_IMAGE_FORM_DATA } from '@app/constants';
 import type { Id } from '@app/models';
 import { ArticlesSelectors } from '@app/store/articles';
 import { areSame } from '@app/utils';
@@ -12,16 +13,25 @@ const selectImagesState = createFeatureSelector<ImagesState>('imagesState');
 const { selectAll: selectAllImageEntities } =
   imagesAdapter.getSelectors(selectImagesState);
 
-export const selectNewImagesFormData = createSelector(
-  selectImagesState,
-  state => state.newImagesFormData,
-);
+export const selectNewImagesFormData = createSelector(selectImagesState, state => {
+  return state.newImagesFormData;
+});
 
-export const selectNewImageFormDataByFilename = (filename: string) =>
-  createSelector(
-    selectNewImagesFormData,
-    newImagesFormData => newImagesFormData[filename] ?? null,
-  );
+export const selectNewImageFormData = createSelector(
+  selectNewImagesFormData,
+  newImagesFormData => {
+    if (Object.keys(newImagesFormData).length > 1) {
+      console.warn(
+        '[LCC] Image data for multiple images found while selecting new image form data',
+      );
+      return null;
+    }
+
+    return Object.keys(newImagesFormData).length === 1
+      ? Object.values(newImagesFormData)[0]
+      : null;
+  },
+);
 
 export const selectImageEntitiesByAlbum = (album: string | null) =>
   createSelector(selectAllImageEntities, allImageEntities => {
@@ -57,27 +67,30 @@ export const selectImagesByIds = (ids: Id[]) =>
     allImages.filter(image => ids.find(id => id === image.id)),
   );
 
-export const selectImageFormDataById = (id: Id) =>
-  createSelector(
-    selectAllImageEntities,
-    allImageEntities =>
-      allImageEntities.find(entity => entity.image.id === id)?.formData ?? null,
-  );
-
 export const selectImageHasUnsavedChanges = (id: Id | null) =>
-  createSelector(selectImageEntityById(id), entity => {
-    if (!entity) {
-      return null;
-    }
+  createSelector(
+    selectImageEntityById(id),
+    selectNewImageFormData,
+    (entity, newImageFormData) => {
+      if (!id) {
+        return newImageFormData
+          ? !areSame(omit(newImageFormData, 'id'), omit(INITIAL_IMAGE_FORM_DATA, 'id'))
+          : null;
+      }
 
-    return !areSame(
-      {
-        ...pick(entity.image, Object.getOwnPropertyNames(entity.formData)),
-        album: '',
-      },
-      entity.formData,
-    );
-  });
+      if (!entity) {
+        return null;
+      }
+
+      return !areSame(
+        {
+          ...pick(entity.image, Object.getOwnPropertyNames(entity.formData)),
+          album: '',
+        },
+        entity.formData,
+      );
+    },
+  );
 
 export const selectAlbumHasUnsavedChanges = (album: string | null) =>
   createSelector(selectImageEntitiesByAlbum(album), entities => {

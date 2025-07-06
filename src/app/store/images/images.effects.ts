@@ -7,10 +7,10 @@ import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { BaseImage, LccError, isLccError } from '@app/models';
+import type { BaseImage, LccError } from '@app/models';
 import { ImageFileService, ImagesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { dataUrlToFile, isDefined } from '@app/utils';
+import { dataUrlToFile, isDefined, isLccError } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
 
 import { ImagesActions, ImagesSelectors } from '.';
@@ -81,37 +81,29 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.addImageRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(({ filename }) => [
+      concatLatestFrom(({ imageId }) => [
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
-        this.store.select(ImagesSelectors.selectNewImageFormDataByFilename(filename)),
-        from(this.imageFileService.getImage(filename)),
+        this.store.select(ImagesSelectors.selectNewImageFormData).pipe(filter(isDefined)),
+        from(this.imageFileService.getImage(imageId)),
       ]),
-      switchMap(([{ filename }, user, formData, imageFileResult]) => {
+      switchMap(([, user, formData, imageFileResult]) => {
         if (isLccError(imageFileResult)) {
           return of(ImagesActions.addImageFailed({ error: imageFileResult }));
         }
 
-        if (!formData) {
-          const error: LccError = {
-            name: 'LCCError',
-            message: `Unable to retrieve form data for ${filename}`,
-          };
-          return of(ImagesActions.addImageFailed({ error }));
-        }
-
-        const file = dataUrlToFile(imageFileResult.dataUrl, filename);
+        const file = dataUrlToFile(imageFileResult.dataUrl, formData.filename);
 
         if (!file) {
           const error: LccError = {
             name: 'LCCError',
-            message: `Unable to construct file object from image data URL for ${filename}`,
+            message: `Unable to construct file object from image data URL for ${formData.filename}`,
           };
           return of(ImagesActions.addImageFailed({ error }));
         }
 
         const imageMetadata: Omit<BaseImage, 'fileSize'> = {
-          id: '',
-          filename,
+          id: formData.id,
+          filename: formData.filename,
           caption: formData.caption,
           coverForAlbum: formData.coverForAlbum,
           albums: formData.album

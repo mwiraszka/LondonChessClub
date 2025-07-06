@@ -3,9 +3,8 @@ import { isEmpty } from 'lodash';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { LccError } from '@app/models';
+import { isDefined } from '@app/utils/common/is-defined.util';
 import { isString } from '@app/utils/common/is-string.util';
-
-import { isDefined } from '../common/is-defined.util';
 
 /**
  * Convert error to a common LCC Error type.

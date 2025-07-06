@@ -62,17 +62,14 @@ export class ImageEditorPageComponent implements EditorPage, OnInit {
       switchMap(imageId =>
         combineLatest([
           this.store.select(ImagesSelectors.selectImageEntityById(imageId)),
-          this.store.select(ImagesSelectors.selectNewImagesFormData),
+          this.store.select(ImagesSelectors.selectNewImageFormData),
           this.store.select(ImagesSelectors.selectAllExistingAlbums),
           this.store.select(ImagesSelectors.selectImageHasUnsavedChanges(imageId)),
         ]),
       ),
-      map(([imageEntity, newImageFormDataRecord, existingAlbums, hasUnsavedChanges]) => ({
+      map(([imageEntity, newImageFormData, existingAlbums, hasUnsavedChanges]) => ({
         existingAlbums,
-        newImageFormData:
-          Object.keys(newImageFormDataRecord).length === 1
-            ? Object.values(newImageFormDataRecord)[0]
-            : null,
+        newImageFormData,
         hasUnsavedChanges,
         imageEntity,
         pageTitle: imageEntity ? `Edit ${imageEntity.image.filename}` : 'Add an image',

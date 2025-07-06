@@ -21,6 +21,7 @@ import { TooltipDirective } from '@app/directives/tooltip.directive';
 import type {
   BasicDialogResult,
   Dialog,
+  Id,
   Image,
   ImageFormData,
   ImageFormGroup,
@@ -80,7 +81,7 @@ export class ImagesFormComponent implements OnInit {
     }
 
     if (Object.keys(this.newImagesFormData).length) {
-      this.loadNewImageDataUrls();
+      this.fetchNewImageDataUrls();
     }
 
     this.initForm();
@@ -101,8 +102,23 @@ export class ImagesFormComponent implements OnInit {
     this.form.controls.albums.markAsDirty();
   }
 
-  public onSetCoverImage(index: number): void {
-    console.log(':: set cover image to', index);
+  public onSetCoverImage(id: Id): void {
+    this.form.controls.existingImages.controls.forEach(control => {
+      control.controls.coverForAlbum.setValue(
+        control.value.id === id ? this.form.controls.album.value : '',
+        { emitEvent: false },
+      );
+    });
+
+    this.form.controls.newImages.controls.forEach(control => {
+      control.controls.coverForAlbum.setValue(
+        control.value.id === id ? this.form.controls.album.value : '',
+        { emitEvent: false },
+      );
+    });
+
+    // Trigger a single form value change
+    this.form.updateValueAndValidity();
   }
 
   public async onChooseFiles(event: Event): Promise<void> {
@@ -122,21 +138,21 @@ export class ImagesFormComponent implements OnInit {
       } else {
         const { dataUrl, filename } = result;
 
-        this.newImageDataUrls[filename] = dataUrl;
+        this.newImageDataUrls[id] = dataUrl;
 
-        const newImageFormGroup = this.formBuilder.group<
-          Omit<ImageFormGroup, 'albums' | 'album'>
-        >({
-          id: new FormControl('', { nonNullable: true }),
+        const newImageFormGroup = this.formBuilder.group<ImageFormGroup>({
+          id: new FormControl(id, { nonNullable: true }),
           filename: new FormControl(filename, { nonNullable: true }),
           caption: new FormControl(filename.substring(0, filename.lastIndexOf('.')), {
             nonNullable: true,
             validators: [Validators.required, imageCaptionValidator],
           }),
+          albums: new FormControl(this.form.controls.albums.value, { nonNullable: true }),
+          album: new FormControl(this.form.controls.album.value, { nonNullable: true }),
           coverForAlbum: new FormControl('', { nonNullable: true }),
         });
 
-        this.form.controls.images.push(newImageFormGroup);
+        this.form.controls.newImages.push(newImageFormGroup);
       }
     });
 
@@ -180,15 +196,15 @@ export class ImagesFormComponent implements OnInit {
     }
   }
 
-  private async loadNewImageDataUrls(): Promise<void> {
+  private async fetchNewImageDataUrls(): Promise<void> {
     const result = await this.imageFileService.getAllImages();
 
     if (isLccError(result)) {
       this.store.dispatch(ImagesActions.imageFileActionFailed({ error: result }));
     } else {
       this.newImageDataUrls = result.reduce(
-        (acc, { filename, dataUrl }) => {
-          acc[filename] = dataUrl;
+        (acc, { id, dataUrl }) => {
+          acc[id] = dataUrl;
           return acc;
         },
         {} as Record<string, Url>,
@@ -197,15 +213,37 @@ export class ImagesFormComponent implements OnInit {
   }
 
   private async initForm(): Promise<void> {
-    const imagesFormArray = new FormArray(
+    const commonAlbums: string[] = [];
+    if (this.imageEntities.length) {
+      for (const album of this.existingAlbums) {
+        if (this.imageEntities.every(entity => entity.formData.albums.includes(album))) {
+          commonAlbums.push(album);
+        }
+      }
+    }
+
+    const existingImagesFormArray = new FormArray(
       this.imageEntities.map(entity =>
-        this.formBuilder.group<Omit<ImageFormGroup, 'album' | 'albums'>>({
+        this.formBuilder.group<ImageFormGroup>({
           id: new FormControl(entity.image.id, { nonNullable: true }),
           filename: new FormControl(entity.formData.filename, { nonNullable: true }),
           caption: new FormControl(entity.formData.caption, {
             nonNullable: true,
             validators: [Validators.required, imageCaptionValidator],
           }),
+          album: new FormControl(this.album ?? '', {
+            nonNullable: true,
+            validators: [
+              Validators.pattern(/[^\s]/),
+              uniqueAlbumValidator(this.existingAlbums),
+            ],
+          }),
+          albums: new FormControl(
+            commonAlbums.filter(album => album !== this.album),
+            {
+              nonNullable: true,
+            },
+          ),
           coverForAlbum: new FormControl(entity.formData.coverForAlbum, {
             nonNullable: true,
           }),
@@ -213,14 +251,34 @@ export class ImagesFormComponent implements OnInit {
       ),
     );
 
-    const commonAlbums = [];
-    if (this.imageEntities.length) {
-      for (const album of this.existingAlbums) {
-        if (this.imageEntities.every(entity => entity.image.albums.includes(album))) {
-          commonAlbums.push(album);
-        }
-      }
-    }
+    const newImagesFormArray = new FormArray(
+      Object.values(this.newImagesFormData).map(formData =>
+        this.formBuilder.group<ImageFormGroup>({
+          id: new FormControl(formData.id, { nonNullable: true }),
+          filename: new FormControl(formData.filename, { nonNullable: true }),
+          caption: new FormControl(formData.caption, {
+            nonNullable: true,
+            validators: [Validators.required, imageCaptionValidator],
+          }),
+          album: new FormControl(this.album ?? '', {
+            nonNullable: true,
+            validators: [
+              Validators.pattern(/[^\s]/),
+              uniqueAlbumValidator(this.existingAlbums),
+            ],
+          }),
+          albums: new FormControl(
+            commonAlbums.filter(album => album !== this.album),
+            {
+              nonNullable: true,
+            },
+          ),
+          coverForAlbum: new FormControl(formData.coverForAlbum, {
+            nonNullable: true,
+          }),
+        }),
+      ),
+    );
 
     this.form = this.formBuilder.group<MultiImageFormGroup>(
       {
@@ -237,7 +295,8 @@ export class ImagesFormComponent implements OnInit {
             nonNullable: true,
           },
         ),
-        images: imagesFormArray,
+        existingImages: existingImagesFormArray,
+        newImages: newImagesFormArray,
       },
       {
         validators: oneAlbumMinimumValidator,
@@ -246,20 +305,29 @@ export class ImagesFormComponent implements OnInit {
   }
 
   private initFormValueChangeListener(): void {
-    this.form.valueChanges
-      .pipe(debounceTime(250), untilDestroyed(this))
-      .subscribe(value => {
-        // Manually transfer error to inner control to benefit from common error message handling
-        if (this.form.hasError('albumRequired')) {
-          this.form.controls.albums.setErrors({ albumRequired: true });
-        } else {
-          this.form.controls.albums.updateValueAndValidity({ emitEvent: false });
-        }
+    this.form.valueChanges.pipe(debounceTime(250), untilDestroyed(this)).subscribe(() => {
+      // Manually transfer error to inner control to benefit from common error message handling
+      if (this.form.hasError('albumRequired')) {
+        this.form.controls.albums.setErrors({ albumRequired: true });
+      } else {
+        this.form.controls.albums.updateValueAndValidity({ emitEvent: false });
+      }
 
-        // this.store.dispatch(
-        //   ImagesActions.formValueChanged({ }),
-        // );
-      });
+      const values: (Partial<ImageFormData> & { id: Id })[] = [
+        ...Array.from(this.form.controls.existingImages.controls).map(control => ({
+          ...(control as FormGroup<ImageFormGroup>).getRawValue(),
+          album: this.form.controls.album.value,
+          albums: this.form.controls.albums.value,
+        })),
+        ...Array.from(this.form.controls.newImages.controls).map(control => ({
+          ...(control as FormGroup<ImageFormGroup>).getRawValue(),
+          album: this.form.controls.album.value,
+          albums: this.form.controls.albums.value,
+        })),
+      ];
+
+      this.store.dispatch(ImagesActions.formValueChanged({ values }));
+    });
 
     // Manually trigger form value change to pass initial form data to store
     this.form.updateValueAndValidity();

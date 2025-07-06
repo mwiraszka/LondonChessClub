@@ -131,16 +131,11 @@ export const cancelSelected = createAction('[Images] Cancel selected');
 
 export const formValueChanged = createAction(
   '[Images] Form value changed',
-  props<{ imageId: Id; value: Partial<ImageFormData> }>(),
+  props<{ values: (Partial<ImageFormData> & { id: Id })[] }>(),
 );
 
-export const imageFormDataReset = createAction(
-  '[Images] Image form data reset',
-  props<{ imageId: Id }>(),
-);
-
-export const imagesFormDataReset = createAction(
-  '[Images] Images form data reset',
+export const formDataReset = createAction(
+  '[Images] Form data reset',
   props<{ imageIds: Id[] }>(),
 );
 

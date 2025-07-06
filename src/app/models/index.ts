@@ -22,6 +22,7 @@ export type {
   ImageFormData,
   ImageFormGroup,
   IndexedDbImageData,
+  MultiImageFormData,
   MultiImageFormGroup,
 } from './image.model';
 export type { ExternalLink, InternalLink, InternalPath } from './link.model';

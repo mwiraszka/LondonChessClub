@@ -2,7 +2,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { routerNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -273,7 +273,8 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const imageId = previousPath!.split('/image/')[1]?.split('/')[1] ?? null;
-        return ImagesActions.imageFormDataReset({ imageId });
+        const imageIds = imageId ? [imageId] : [];
+        return ImagesActions.formDataReset({ imageIds });
       }),
     ),
   );
@@ -291,13 +292,12 @@ export class NavEffects {
       map(
         ([, previousPath]) => previousPath!.split('/images/')[1]?.split('/')[1] ?? null,
       ),
-      filter(isDefined),
-      switchMap(album =>
+      concatLatestFrom(album =>
         this.store.select(ImagesSelectors.selectImageEntitiesByAlbum(album)),
       ),
-      map(entities => {
+      map(([, entities]) => {
         const imageIds = entities.map(entity => entity.image.id);
-        return ImagesActions.imagesFormDataReset({ imageIds });
+        return ImagesActions.formDataReset({ imageIds });
       }),
     ),
   );
@@ -329,7 +329,7 @@ export class NavEffects {
   clearIndexedDbImageFileData$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(ImagesActions.imageFormDataReset, ImagesActions.imagesFormDataReset),
+        ofType(ImagesActions.formDataReset),
         tap(() => this.imageFileService.clearAllImages()),
       ),
     { dispatch: false },

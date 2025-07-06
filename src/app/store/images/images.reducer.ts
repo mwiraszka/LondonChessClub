@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import { compact, pick } from 'lodash';
 
 import { IMAGE_FORM_DATA_PROPERTIES, INITIAL_IMAGE_FORM_DATA } from '@app/constants';
-import { Image, ImageFormData } from '@app/models';
+import { Id, Image, ImageFormData } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as ImagesActions from './images.actions';
@@ -182,72 +182,67 @@ export const imagesReducer = createReducer(
     (state, { imageIds }): ImagesState => imagesAdapter.removeMany(imageIds, state),
   ),
 
-  on(ImagesActions.formValueChanged, (state, { imageId, value }): ImagesState => {
-    if (imageId.startsWith('new')) {
-      const newImagesFormData =
-        imageId in (state.newImagesFormData || {})
-          ? {
-              ...state.newImagesFormData,
-              [imageId]: {
-                ...state.newImagesFormData[imageId],
-                ...value,
-              },
-            }
-          : {
-              [imageId]: {
-                ...INITIAL_IMAGE_FORM_DATA,
-                ...value,
-              },
-            };
-
-      return { ...state, newImagesFormData };
-    }
-
-    const originalImage = state.entities[imageId];
-
-    if (!originalImage) {
-      console.error(
-        `[LCC] Could not find image ${imageId} to update after form value change`,
-      );
+  on(ImagesActions.formValueChanged, (state, { values }): ImagesState => {
+    if (!values.length) {
       return state;
     }
 
-    return imagesAdapter.upsertOne(
-      {
-        ...originalImage,
-        formData: {
-          ...originalImage.formData,
+    const newImageValues: (Partial<ImageFormData> & { id: Id })[] = [];
+    const existingImageValues: (Partial<ImageFormData> & { id: Id })[] = [];
+
+    values.forEach(value => {
+      if (value.id.toString().startsWith('new')) {
+        newImageValues.push(value);
+      } else {
+        existingImageValues.push(value);
+      }
+    });
+
+    let newImagesFormData = { ...state.newImagesFormData };
+
+    newImageValues.forEach(value => {
+      const { id } = value;
+      const existingFormData = newImagesFormData[id] || INITIAL_IMAGE_FORM_DATA;
+
+      newImagesFormData = {
+        ...newImagesFormData,
+        [id]: {
+          ...existingFormData,
           ...value,
         },
-      },
-      state,
+      };
+    });
+
+    const updatedEntities = compact(
+      existingImageValues.map(value => {
+        const { id } = value;
+        const originalEntity = state.entities[id];
+
+        if (!originalEntity) {
+          console.warn(
+            `[LCC] Could not find image ${id} to update after form value change`,
+          );
+          return undefined;
+        }
+
+        return {
+          ...originalEntity,
+          formData: {
+            ...originalEntity.formData,
+            ...value,
+          },
+        };
+      }),
     );
+
+    const stateWithNewImages = { ...state, newImagesFormData };
+
+    return updatedEntities.length > 0
+      ? imagesAdapter.upsertMany(updatedEntities, stateWithNewImages)
+      : stateWithNewImages;
   }),
 
-  on(ImagesActions.imageFormDataReset, (state, { imageId }): ImagesState => {
-    if (!imageId) {
-      return { ...state, newImagesFormData: {} };
-    }
-
-    const originalImage = state.entities[imageId]?.image;
-    if (!originalImage) {
-      console.warn(`[LCC] Unable to find image ${imageId} for image form data reset`);
-      return state;
-    }
-
-    return imagesAdapter.upsertOne(
-      {
-        image: originalImage,
-        formData: {
-          ...pick(originalImage, IMAGE_FORM_DATA_PROPERTIES),
-          album: '',
-        },
-      },
-      { ...state, newImagesFormData: {} },
-    );
-  }),
-
-  on(ImagesActions.imagesFormDataReset, (state, { imageIds }): ImagesState => {
+  on(ImagesActions.formDataReset, (state, { imageIds }): ImagesState => {
     return imagesAdapter.upsertMany(
       compact(
         imageIds.map(imageId => {

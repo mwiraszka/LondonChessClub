@@ -216,8 +216,9 @@ export class ImageFormComponent implements OnInit {
           this.form.controls.albums.updateValueAndValidity({ emitEvent: false });
         }
 
+        const id = this.form.controls.id.value;
         this.store.dispatch(
-          ImagesActions.formValueChanged({ imageId: this.form.controls.id.value, value }),
+          ImagesActions.formValueChanged({ values: [{ ...value, id }] }),
         );
       });
 

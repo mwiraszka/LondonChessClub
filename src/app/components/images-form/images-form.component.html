@@ -58,10 +58,10 @@
   </label>
 
   <div
-    formArrayName="images"
+    formArrayName="existingImages"
     class="images-grid">
     @for (
-      imageControl of form.controls.images.controls;
+      imageControl of form.controls.existingImages.controls;
       track imageControl;
       let i = $index
     ) {
@@ -71,10 +71,8 @@
         <div class="image-container full-span">
           <img
             [image]="{
-              caption: 'Image preview',
               thumbnailUrl: imageEntities[i].image.thumbnailUrl,
-              originalUrl:
-                imageEntities[i].image.originalUrl || 'assets/fallback-image.png',
+              originalUrl: imageEntities[i].image.originalUrl,
             }" />
         </div>
 
@@ -98,7 +96,58 @@
             type="radio"
             name="coverImage"
             [checked]="imageControl.controls.coverForAlbum.value === album"
-            (change)="onSetCoverImage(i)" />
+            (change)="onSetCoverImage(imageControl.controls.id.value)" />
+          <label
+            class="cover-image-label"
+            [for]="'cover-radio-' + i">
+            Use as album cover
+          </label>
+        </div>
+      </div>
+    }
+  </div>
+
+  <hr />
+
+  <h3>New images</h3>
+
+  <div
+    formArrayName="newImages"
+    class="images-grid">
+    @for (
+      imageControl of form.controls.newImages.controls;
+      track imageControl;
+      let i = $index
+    ) {
+      <div
+        class="lcc-form-fields"
+        [formGroupName]="i">
+        <div class="image-container full-span">
+          <img
+            [image]="{ originalUrl: newImageDataUrls[imageControl.controls.id.value] }" />
+        </div>
+
+        <label
+          [for]="'caption-input-' + i"
+          class="lcc-required-field">
+          Caption:
+        </label>
+        <input
+          [id]="'caption-input-' + i"
+          type="text"
+          formControlName="caption"
+          maxlength="120" />
+        <lcc-form-error-icon [control]="imageControl.controls.caption">
+        </lcc-form-error-icon>
+
+        <div class="cover-image-input-container">
+          <input
+            [id]="'cover-image-radio-' + i"
+            class="cover-image-input"
+            type="radio"
+            name="coverImage"
+            [checked]="imageControl.controls.coverForAlbum.value === album"
+            (change)="onSetCoverImage(imageControl.controls.id.value)" />
           <label
             class="cover-image-label"
             [for]="'cover-radio-' + i">

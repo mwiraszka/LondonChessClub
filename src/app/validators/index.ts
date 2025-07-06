@@ -5,7 +5,6 @@ export { hasSpecialCharValidator } from './has-special-char.validator';
 export { hasUppercaseLetterValidator } from './has-uppercase-letter.validator';
 export { imageCaptionValidator } from './image-caption.validator';
 export { matchingPasswordsValidator } from './matching-passwords.validator';
-export { oneAlbumMinimumValidator } from './one-album-minimum.validator';
 export { phoneNumberValidator } from './phone-number.validator';
 export { ratingValidator } from './rating.validator';
 export { timeValidator } from './time.validator';

@@ -10,8 +10,8 @@ export interface BaseImage {
   filename: string;
   fileSize: number;
   caption: string;
-  albums: string[];
-  coverForAlbum: string;
+  album: string;
+  albumCover: boolean;
   modificationInfo: ModificationInfo;
 }
 
@@ -26,25 +26,20 @@ export interface Image extends BaseImage {
 
 export type IndexedDbImageData = Pick<BaseImage, 'id' | 'filename'> & { dataUrl: Url };
 
-export type ImageFormData = Pick<
-  BaseImage,
-  (typeof IMAGE_FORM_DATA_PROPERTIES)[number]
-> & { album: string };
+export type ImageFormData = Pick<BaseImage, (typeof IMAGE_FORM_DATA_PROPERTIES)[number]>;
 
 export type ImageFormGroup = {
   [Property in keyof ImageFormData]: FormControl<ImageFormData[Property]>;
 };
 
-export interface MultiImageFormData {
-  albums: string[];
+export interface AlbumFormData {
   album: string;
-  existingImages: ImageFormGroup[];
-  newImages: ImageFormGroup[];
+  existingImages: Omit<ImageFormGroup, 'album'>[];
+  newImages: Omit<ImageFormGroup, 'album'>[];
 }
 
-export interface MultiImageFormGroup {
-  albums: FormControl<string[]>;
+export interface AlbumFormGroup {
   album: FormControl<string>;
-  existingImages: FormArray<FormGroup<ImageFormGroup>>;
-  newImages: FormArray<FormGroup<ImageFormGroup>>;
+  existingImages: FormArray<FormGroup<Omit<ImageFormGroup, 'album'>>>;
+  newImages: FormArray<FormGroup<Omit<ImageFormGroup, 'album'>>>;
 }

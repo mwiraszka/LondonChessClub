@@ -3,46 +3,15 @@
   [formGroup]="form"
   (ngSubmit)="onSubmit(album)">
   <div class="lcc-form-fields">
-    <label class="lcc-required-field">Albums:</label>
-    <div
-      class="albums-container"
-      (click)="this.form.controls.albums.markAsTouched()">
-      <input
-        id="album-input"
-        class="album-input"
-        [class.invalid]="form.controls.albums.errors && form.controls.albums.touched"
-        type="text"
-        name="album"
-        formControlName="album"
-        maxlength="120"
-        [placeholder]="album ? 'Album name' : 'New album'"
-        (click)="this.form.controls.albums.markAsTouched()" />
-      <fieldset
-        class="existing-album-fieldset"
-        [class.invalid]="form.controls.albums.errors && form.controls.albums.touched"
-        (click)="this.form.controls.albums.markAsTouched()">
-        @for (album of existingAlbums; track album) {
-          <div class="existing-album">
-            <input
-              [id]="'album-' + album"
-              type="checkbox"
-              name="albums"
-              [checked]="form.controls.albums.value.includes(album)"
-              (change)="onToggleAlbum(album)" />
-            <label
-              class="lcc-truncate"
-              [for]="'album-' + album">
-              {{ album }}
-            </label>
-          </div>
-        }
-      </fieldset>
-    </div>
-    <lcc-form-error-icon
-      [control]="
-        form.controls.albums.errors ? form.controls.albums : form.controls.album
-      ">
-    </lcc-form-error-icon>
+    <label class="lcc-required-field">Album title:</label>
+    <input
+      id="album-input"
+      class="album-input"
+      type="text"
+      name="album"
+      formControlName="album"
+      maxlength="120" />
+    <lcc-form-error-icon [control]="form"></lcc-form-error-icon>
   </div>
 
   <label
@@ -95,8 +64,8 @@
             class="cover-image-input"
             type="radio"
             name="coverImage"
-            [checked]="imageControl.controls.coverForAlbum.value === album"
-            (change)="onSetCoverImage(imageControl.controls.id.value)" />
+            [checked]="imageControl.controls.albumCover.value"
+            (change)="onSetAlbumCover(imageControl.controls.id.value)" />
           <label
             class="cover-image-label"
             [for]="'cover-radio-' + i">
@@ -107,9 +76,10 @@
     }
   </div>
 
-  <hr />
-
-  <h3>New images</h3>
+  @if (album || true) {
+    <hr />
+    <h3 class="new-images-header">New images</h3>
+  }
 
   <div
     formArrayName="newImages"
@@ -140,17 +110,17 @@
         <lcc-form-error-icon [control]="imageControl.controls.caption">
         </lcc-form-error-icon>
 
-        <div class="cover-image-input-container">
+        <div class="album-cover-input-container">
           <input
-            [id]="'cover-image-radio-' + i"
-            class="cover-image-input"
+            [id]="'album-cover-radio-' + i"
+            class="album-cover-input"
             type="radio"
-            name="coverImage"
-            [checked]="imageControl.controls.coverForAlbum.value === album"
-            (change)="onSetCoverImage(imageControl.controls.id.value)" />
+            name="albumCover"
+            [checked]="imageControl.controls.albumCover.value"
+            (change)="onSetAlbumCover(imageControl.controls.id.value)" />
           <label
-            class="cover-image-label"
-            [for]="'cover-radio-' + i">
+            class="album-cover-label"
+            [for]="'album-cover-radio-' + i">
             Use as album cover
           </label>
         </div>

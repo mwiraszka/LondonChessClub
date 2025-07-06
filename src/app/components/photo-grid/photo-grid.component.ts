@@ -1,5 +1,4 @@
 import { Store } from '@ngrx/store';
-import { isEmpty } from 'lodash';
 
 import { Component, Input, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -40,7 +39,7 @@ export class PhotoGridComponent implements OnInit {
   };
 
   public get albumCovers(): Image[] {
-    return this.photoImages.filter(image => !isEmpty(image.coverForAlbum));
+    return this.photoImages.filter(image => image.albumCover);
   }
 
   constructor(
@@ -59,7 +58,7 @@ export class PhotoGridComponent implements OnInit {
       inputs: {
         album,
         images: this.photoImages
-          .filter(image => image.albums.includes(album))
+          .filter(image => image.album === album)
           .sort((a, b) => customSort(a, b, 'caption')),
         isAdmin: this.isAdmin,
       },
@@ -88,10 +87,7 @@ export class PhotoGridComponent implements OnInit {
   }
 
   public getAlbumPhotoCount(album: string): string {
-    const photoCount = this.photoImages.filter(image =>
-      image.albums.includes(album),
-    ).length;
-
+    const photoCount = this.photoImages.filter(image => image.album === album).length;
     return `${photoCount} PHOTO${photoCount === 1 ? '' : 'S'}`;
   }
 }

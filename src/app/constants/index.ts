@@ -41,17 +41,16 @@ export const IMAGE_FORM_DATA_PROPERTIES = [
   'id',
   'filename',
   'caption',
-  'albums',
-  'coverForAlbum',
+  'album',
+  'albumCover',
 ] as const;
 
 export const INITIAL_IMAGE_FORM_DATA: ImageFormData = {
   id: '',
   filename: '',
   caption: '',
-  albums: [],
   album: '',
-  coverForAlbum: '',
+  albumCover: false,
 };
 
 export const MEMBER_FORM_DATA_PROPERTIES = [

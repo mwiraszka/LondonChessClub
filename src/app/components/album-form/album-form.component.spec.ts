@@ -10,11 +10,11 @@ import { ArticlesActions } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
 import { query } from '@app/utils';
 
-import { ImagesFormComponent } from './images-form.component';
+import { AlbumFormComponent } from './album-form.component';
 
-describe('ImagesFormComponent', () => {
-  let fixture: ComponentFixture<ImagesFormComponent>;
-  let component: ImagesFormComponent;
+describe('AlbumFormComponent', () => {
+  let fixture: ComponentFixture<AlbumFormComponent>;
+  let component: AlbumFormComponent;
   let store: MockStore;
   let dialogService: DialogService;
 
@@ -30,7 +30,7 @@ describe('ImagesFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ImagesFormComponent, ReactiveFormsModule],
+      imports: [AlbumFormComponent, ReactiveFormsModule],
       providers: [
         FormBuilder,
         provideMockStore(),
@@ -39,7 +39,7 @@ describe('ImagesFormComponent', () => {
     })
       .compileComponents()
       .then(() => {
-        fixture = TestBed.createComponent(ImagesFormComponent);
+        fixture = TestBed.createComponent(AlbumFormComponent);
         component = fixture.componentInstance;
         store = TestBed.inject(MockStore);
         dialogService = TestBed.inject(DialogService);

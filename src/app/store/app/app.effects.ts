@@ -316,7 +316,7 @@ export class AppEffects {
       case ImagesActions.automaticAlbumCoverSwitchSucceeded.type:
         return {
           title: 'Album cover update',
-          message: `Automatically switched ${action.baseImage.coverForAlbum} album cover to ${action.baseImage.filename}`,
+          message: `Automatically switched ${action.baseImage.album} album cover to ${action.baseImage.filename}`,
           type: 'info',
         };
       case ImagesActions.deleteAlbumFailed.type:

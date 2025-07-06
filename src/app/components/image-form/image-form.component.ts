@@ -32,11 +32,7 @@ import { DialogService, ImageFileService } from '@app/services';
 import { ArticlesActions } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
 import { isLccError } from '@app/utils';
-import {
-  imageCaptionValidator,
-  oneAlbumMinimumValidator,
-  uniqueAlbumValidator,
-} from '@app/validators';
+import { imageCaptionValidator, uniqueAlbumValidator } from '@app/validators';
 
 @UntilDestroy()
 @Component({
@@ -63,6 +59,7 @@ export class ImageFormComponent implements OnInit {
 
   public form!: FormGroup<ImageFormGroup>;
   public newImageDataUrl: Url | null = null;
+  public newAlbumValue: string = '';
 
   constructor(
     private readonly dialogService: DialogService,
@@ -84,14 +81,53 @@ export class ImageFormComponent implements OnInit {
     }
   }
 
-  public onToggleAlbum(album: string): void {
-    const selectedAlbums = this.form.controls.albums.value;
-    const albums = selectedAlbums.includes(album)
-      ? selectedAlbums.filter(selectedAlbum => selectedAlbum !== album)
-      : [...selectedAlbums, album].sort();
+  public isNewAlbumSelected(): boolean {
+    // Check if we're in a state where the new album input should be selected
+    return !this.existingAlbums.some(
+      album =>
+        album === this.form.controls.album.value &&
+        this.form.controls.album.value !== this.newAlbumValue,
+    );
+  }
 
-    this.form.patchValue({ albums });
-    this.form.controls.albums.markAsDirty();
+  public isExistingAlbumSelected(album: string): boolean {
+    // Check if this specific existing album should be selected
+    return (
+      album === this.form.controls.album.value &&
+      this.existingAlbums.includes(this.form.controls.album.value) &&
+      this.form.controls.album.value !== this.newAlbumValue
+    );
+  }
+
+  public onToggleAlbum(album: string): void {
+    // Only update the album in the form, not the new-album input value
+    this.form.patchValue({ album });
+  }
+
+  public onNewAlbumInputChange(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const newValue = inputElement.value;
+    this.newAlbumValue = newValue;
+
+    // Update the form value only if the new album radio is selected
+    if (!this.existingAlbums.includes(this.form.controls.album.value)) {
+      this.form.patchValue({ album: newValue });
+    }
+  }
+
+  public onNewAlbumRadioSelect(): void {
+    // When the new album radio is selected, update the form with the current new album value
+    this.form.patchValue({ album: this.newAlbumValue });
+  }
+
+  public onNewAlbumInputFocus(): void {
+    // Automatically select the new album radio button when the input is focused
+    const radioElement = document.getElementById('new-album-input') as HTMLInputElement;
+    if (radioElement) {
+      radioElement.checked = true;
+    }
+    // Update the form value with the current new album value
+    this.form.patchValue({ album: this.newAlbumValue });
   }
 
   public async onChooseFile(event: Event): Promise<void> {
@@ -99,7 +135,7 @@ export class ImageFormComponent implements OnInit {
     const file = fileInputElement.files?.length ? fileInputElement.files[0] : null;
 
     if (file) {
-      const id = `new-${uuid.v4()}`;
+      const id = this.form.controls.id.value;
       const result = await this.imageFileService.storeImageFile(id, file, true);
 
       if (isLccError(result)) {
@@ -172,50 +208,36 @@ export class ImageFormComponent implements OnInit {
     const formData: ImageFormData = this.imageEntity?.formData ??
       this.newImageFormData ?? { ...INITIAL_IMAGE_FORM_DATA, id: `new-${uuid.v4()}` };
 
-    this.form = this.formBuilder.group<ImageFormGroup>(
-      {
-        id: new FormControl(formData.id, {
-          nonNullable: true,
-        }),
-        filename: new FormControl(formData.filename, {
-          nonNullable: true,
-          validators: Validators.required,
-        }),
-        caption: new FormControl(formData.caption, {
-          nonNullable: true,
-          validators: [Validators.required, imageCaptionValidator],
-        }),
-        albums: new FormControl(formData.albums, {
-          nonNullable: true,
-        }),
-        album: new FormControl(formData.album, {
-          nonNullable: true,
-          validators: [
-            Validators.pattern(/[^\s]/),
-            uniqueAlbumValidator(this.existingAlbums),
-          ],
-        }),
-        coverForAlbum: new FormControl(formData.coverForAlbum, {
-          nonNullable: true,
-        }),
-      },
-      {
-        validators: oneAlbumMinimumValidator,
-      },
-    );
+    this.newAlbumValue = formData.album;
+
+    this.form = this.formBuilder.group<ImageFormGroup>({
+      id: new FormControl(formData.id, {
+        nonNullable: true,
+      }),
+      filename: new FormControl(formData.filename, {
+        nonNullable: true,
+        validators: Validators.required,
+      }),
+      caption: new FormControl(formData.caption, {
+        nonNullable: true,
+        validators: [Validators.required, imageCaptionValidator],
+      }),
+      album: new FormControl(formData.album, {
+        nonNullable: true,
+        validators: [
+          Validators.required,
+          Validators.pattern(/[^\s]/),
+          uniqueAlbumValidator(this.existingAlbums),
+        ],
+      }),
+      albumCover: new FormControl(formData.albumCover, { nonNullable: true }),
+    });
   }
 
   private initFormValueChangeListener(): void {
     this.form.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((value: Partial<ImageFormData>) => {
-        // Manually transfer error to inner control to benefit from common error message handling
-        if (this.form.hasError('albumRequired')) {
-          this.form.controls.albums.setErrors({ albumRequired: true });
-        } else {
-          this.form.controls.albums.updateValueAndValidity({ emitEvent: false });
-        }
-
         const id = this.form.controls.id.value;
         this.store.dispatch(
           ImagesActions.formValueChanged({ values: [{ ...value, id }] }),

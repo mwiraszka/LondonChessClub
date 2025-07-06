@@ -105,10 +105,8 @@ export class ImagesEffects {
           id: formData.id,
           filename: formData.filename,
           caption: formData.caption,
-          coverForAlbum: formData.coverForAlbum,
-          albums: formData.album
-            ? [...formData.albums, formData.album].sort()
-            : formData.albums,
+          album: formData.album,
+          albumCover: formData.albumCover,
           modificationInfo: {
             createdBy: `${user.firstName} ${user.lastName}`,
             dateCreated: moment().toISOString(),
@@ -182,10 +180,8 @@ export class ImagesEffects {
             id: '',
             filename,
             caption: formData.caption,
-            coverForAlbum: formData.coverForAlbum,
-            albums: formData.album
-              ? [...formData.albums, formData.album].sort()
-              : formData.albums,
+            album: formData.album,
+            albumCover: formData.albumCover,
             modificationInfo: {
               createdBy: `${user.firstName} ${user.lastName}`,
               dateCreated: moment().toISOString(),
@@ -225,10 +221,8 @@ export class ImagesEffects {
           filename: image.filename,
           fileSize: image.fileSize,
           caption: formData.caption,
-          coverForAlbum: image.coverForAlbum,
-          albums: formData.album
-            ? [...formData.albums, formData.album].sort()
-            : formData.albums,
+          album: formData.album,
+          albumCover: image.albumCover,
           modificationInfo: {
             ...image.modificationInfo,
             lastEditedBy: `${user.firstName} ${user.lastName}`,
@@ -267,10 +261,8 @@ export class ImagesEffects {
           filename: image.filename,
           fileSize: image.fileSize,
           caption: formData.caption,
-          coverForAlbum: image.coverForAlbum,
-          albums: formData.album
-            ? [...formData.albums, formData.album].sort()
-            : formData.albums,
+          album: formData.album,
+          albumCover: image.albumCover,
           modificationInfo: {
             ...image.modificationInfo,
             lastEditedBy: `${user.firstName} ${user.lastName}`,
@@ -314,21 +306,21 @@ export class ImagesEffects {
   automaticallyUpdateAlbumCoverAfterImageDeletion$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.deleteImageSucceeded),
-      filter(({ image }) => !!image.coverForAlbum),
+      filter(({ image }) => image.albumCover),
       concatLatestFrom(({ image }) =>
-        this.store.select(ImagesSelectors.selectImagesByAlbum(image.coverForAlbum)),
+        this.store.select(ImagesSelectors.selectImagesByAlbum(image.album)),
       ),
       filter(([, imagesInAlbum]) => !!imagesInAlbum?.length),
-      map(([{ image }, imagesInAlbum]) => {
+      map(([, imagesInAlbum]) => {
         const newAlbumCoverImage = imagesInAlbum![0];
         const updatedImage: BaseImage = {
           id: newAlbumCoverImage.id,
           filename: newAlbumCoverImage.filename,
           fileSize: newAlbumCoverImage.fileSize,
           caption: newAlbumCoverImage.caption,
-          albums: newAlbumCoverImage.albums,
           modificationInfo: newAlbumCoverImage.modificationInfo,
-          coverForAlbum: image.coverForAlbum,
+          album: newAlbumCoverImage.album,
+          albumCover: true,
         };
         return updatedImage;
       }),
@@ -341,7 +333,7 @@ export class ImagesEffects {
           catchError(error =>
             of(
               ImagesActions.automaticAlbumCoverSwitchFailed({
-                album: updatedImage.coverForAlbum,
+                album: updatedImage.album,
                 error: parseError(error),
               }),
             ),

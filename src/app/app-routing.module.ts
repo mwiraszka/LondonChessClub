@@ -18,24 +18,39 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'members',
+    path: 'album',
     loadChildren: () =>
-      import('./pages/members/members-page-routing.module').then(
-        m => m.MembersPageRoutingModule,
+      import('./pages/album/album-page-routing.module').then(
+        m => m.AlbumPageRoutingModule,
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'article',
+    loadChildren: () =>
+      import('./pages/article/article-page-routing.module').then(
+        m => m.ArticlePageRoutingModule,
       ),
   },
   {
-    path: 'member',
+    path: 'change-password',
     loadChildren: () =>
-      import('./pages/member/member-page-routing.module').then(
-        m => m.MemberPageRoutingModule,
+      import('./pages/change-password/change-password-page-routing.module').then(
+        m => m.ChangePasswordPageRoutingModule,
       ),
   },
   {
-    path: 'schedule',
+    path: 'city-champion',
     loadChildren: () =>
-      import('./pages/schedule/schedule-page-routing.module').then(
-        m => m.SchedulePageRoutingModule,
+      import('./pages/champion/champion-page-routing.module').then(
+        m => m.ChampionPageRoutingModule,
+      ),
+  },
+  {
+    path: 'documents',
+    loadChildren: () =>
+      import('./pages/documents/documents-page-routing.module').then(
+        m => m.DocumentsPageRoutingModule,
       ),
   },
   {
@@ -47,15 +62,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'news',
+    path: 'game-archives',
     loadChildren: () =>
-      import('./pages/news/news-page-routing.module').then(m => m.NewsPageRoutingModule),
-  },
-  {
-    path: 'article',
-    loadChildren: () =>
-      import('./pages/article/article-page-routing.module').then(
-        m => m.ArticlePageRoutingModule,
+      import('./pages/game-archives/game-archives-page-routing.module').then(
+        m => m.GameArchivesPageRoutingModule,
       ),
   },
   {
@@ -67,46 +77,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'images',
-    loadChildren: () =>
-      import('./pages/images/images-page-routing.module').then(
-        m => m.ImagesPageRoutingModule,
-      ),
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'city-champion',
-    loadChildren: () =>
-      import('./pages/champion/champion-page-routing.module').then(
-        m => m.ChampionPageRoutingModule,
-      ),
-  },
-  {
-    path: 'photo-gallery',
-    loadChildren: () =>
-      import('./pages/photo-gallery/photo-gallery-page-routing.module').then(
-        m => m.PhotoGalleryPageRoutingModule,
-      ),
-  },
-  {
-    path: 'game-archives',
-    loadChildren: () =>
-      import('./pages/game-archives/game-archives-page-routing.module').then(
-        m => m.GameArchivesPageRoutingModule,
-      ),
-  },
-  {
     path: 'lifetime-achievement-awards',
     loadChildren: () =>
       import('./pages/lifetime/lifetime-page-routing.module').then(
         m => m.LifetimePageRoutingModule,
-      ),
-  },
-  {
-    path: 'documents',
-    loadChildren: () =>
-      import('./pages/documents/documents-page-routing.module').then(
-        m => m.DocumentsPageRoutingModule,
       ),
   },
   {
@@ -117,10 +91,36 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'change-password',
+    path: 'member',
     loadChildren: () =>
-      import('./pages/change-password/change-password-page-routing.module').then(
-        m => m.ChangePasswordPageRoutingModule,
+      import('./pages/member/member-page-routing.module').then(
+        m => m.MemberPageRoutingModule,
+      ),
+  },
+  {
+    path: 'members',
+    loadChildren: () =>
+      import('./pages/members/members-page-routing.module').then(
+        m => m.MembersPageRoutingModule,
+      ),
+  },
+  {
+    path: 'news',
+    loadChildren: () =>
+      import('./pages/news/news-page-routing.module').then(m => m.NewsPageRoutingModule),
+  },
+  {
+    path: 'photo-gallery',
+    loadChildren: () =>
+      import('./pages/photo-gallery/photo-gallery-page-routing.module').then(
+        m => m.PhotoGalleryPageRoutingModule,
+      ),
+  },
+  {
+    path: 'schedule',
+    loadChildren: () =>
+      import('./pages/schedule/schedule-page-routing.module').then(
+        m => m.SchedulePageRoutingModule,
       ),
   },
   {

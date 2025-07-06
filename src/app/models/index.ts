@@ -17,13 +17,13 @@ export type { Event, EventFormData, EventFormGroup, EventType } from './event.mo
 export type { FilterFormGroup } from './filter-form-group.model';
 export type { GameDetails, GameScore } from './game-details.model';
 export type {
+  AlbumFormData,
+  AlbumFormGroup,
   BaseImage,
   Image,
   ImageFormData,
   ImageFormGroup,
   IndexedDbImageData,
-  MultiImageFormData,
-  MultiImageFormGroup,
 } from './image.model';
 export type { ExternalLink, InternalLink, InternalPath } from './link.model';
 export type { ChangePasswordFormGroup, LoginFormGroup } from './login.model';

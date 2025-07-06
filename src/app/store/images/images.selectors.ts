@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { omit, pick } from 'lodash';
+import { omit, pick, uniq } from 'lodash';
 
 import { INITIAL_IMAGE_FORM_DATA } from '@app/constants';
 import type { Id } from '@app/models';
@@ -34,20 +34,21 @@ export const selectNewImageFormData = createSelector(
 );
 
 export const selectImageEntitiesByAlbum = (album: string | null) =>
-  createSelector(selectAllImageEntities, allImageEntities => {
-    return album
-      ? (allImageEntities.filter(entity => entity.image.albums.includes(album)) ?? [])
-      : [];
-  });
+  createSelector(selectAllImageEntities, allImageEntities =>
+    album ? allImageEntities.filter(entity => entity.image.album === album) : [],
+  );
 
 export const selectAllImages = createSelector(selectAllImageEntities, allImageEntities =>
   allImageEntities.map(entity => entity.image),
 );
 
+export const selectImagesByAlbum = (album: string | null) =>
+  createSelector(selectAllImages, allImages =>
+    album ? allImages.filter(image => image.album === album) : [],
+  );
+
 export const selectPhotoImages = createSelector(selectAllImages, allImages =>
-  allImages?.length
-    ? allImages.filter(image => !image.albums.some(album => album?.startsWith('_')))
-    : [],
+  allImages.filter(image => !image.album.startsWith('_')),
 );
 
 export const selectImageEntityById = (id: Id | null) =>
@@ -111,18 +112,8 @@ export const selectAlbumHasUnsavedChanges = (album: string | null) =>
   });
 
 export const selectAllExistingAlbums = createSelector(selectAllImages, allImages => {
-  const allAlbums = allImages.flatMap(image => image?.albums || []);
-  return [...new Set(allAlbums)].sort();
+  return uniq(allImages.map(image => image.album));
 });
-
-export const selectImagesByAlbum = (album: string | null) =>
-  createSelector(selectAllImages, allImages => {
-    if (!album) {
-      return null;
-    }
-
-    return allImages.filter(image => image?.albums?.includes(album)) ?? [];
-  });
 
 export const selectArticleImages = createSelector(selectAllImages, allImages => {
   return allImages.filter(image => (image?.articleAppearances ?? 0) > 0);

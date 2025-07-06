@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ImagesFormComponent } from '@app/components/images-form/images-form.component';
+import { AlbumFormComponent } from '@app/components/album-form/album-form.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import type { EditorPage, Image, ImageFormData, InternalLink } from '@app/models';
@@ -24,21 +24,21 @@ import { ImagesSelectors } from '@app/store/images';
         [title]="vm.pageTitle">
       </lcc-page-header>
 
-      <lcc-images-form
+      <lcc-album-form
         [album]="vm.album"
         [existingAlbums]="vm.existingAlbums"
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
         [imageEntities]="vm.imageEntities"
         [newImagesFormData]="vm.newImagesFormData">
-      </lcc-images-form>
+      </lcc-album-form>
 
       <lcc-link-list [links]="[photoGalleryLink]"></lcc-link-list>
     }
   `,
-  imports: [CommonModule, ImagesFormComponent, LinkListComponent, PageHeaderComponent],
+  imports: [CommonModule, AlbumFormComponent, LinkListComponent, PageHeaderComponent],
 })
-export class ImagesEditorPageComponent implements EditorPage, OnInit {
-  public readonly entity = 'images';
+export class AlbumEditorPageComponent implements EditorPage, OnInit {
+  public readonly entity = 'album';
   public readonly photoGalleryLink: InternalLink = {
     text: 'Go to Photo Gallery',
     internalPath: 'photo-gallery',
@@ -85,7 +85,7 @@ export class ImagesEditorPageComponent implements EditorPage, OnInit {
           hasUnsavedChanges,
           imageEntities,
           newImagesFormData,
-          pageTitle: album ? `Edit images from ${album}` : 'Add new images',
+          pageTitle: album ? `Edit ${album}` : 'Create a new album',
         }),
       ),
       tap(viewModel => {

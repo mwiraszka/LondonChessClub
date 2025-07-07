@@ -381,7 +381,7 @@ describe('ImageFormComponent', () => {
         inputs: {
           dialog: {
             title: 'Confirm',
-            body: `Add ${mockFormData.filename}`,
+            body: `Add ${mockFormData.filename}?`,
             confirmButtonText: 'Add',
           },
         },

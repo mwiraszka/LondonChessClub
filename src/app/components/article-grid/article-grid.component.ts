@@ -116,7 +116,7 @@ export class ArticleGridComponent implements OnInit, OnChanges {
 
   public async onDeleteArticle(article: Article): Promise<void> {
     const dialog: Dialog = {
-      title: 'Delete article',
+      title: 'Confirm',
       body: `Delete ${article.title}?`,
       confirmButtonText: 'Delete',
       confirmButtonType: 'warning',
@@ -138,7 +138,7 @@ export class ArticleGridComponent implements OnInit, OnChanges {
   public async onBookmarkArticle(article: Article): Promise<void> {
     const hasBookmark = isDefined(article.bookmarkDate);
     const dialog: Dialog = {
-      title: hasBookmark ? 'Remove bookmark' : 'Add bookmark',
+      title: 'Confirm',
       body: hasBookmark
         ? `Remove bookmark from article ${article.title}?`
         : `Bookmark ${article.title}? This will make the article show up first in the list of articles.`,

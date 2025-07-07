@@ -119,13 +119,12 @@ export class ImageFormComponent implements OnInit {
         this.store.dispatch(ImagesActions.imageFileActionFailed({ error: result }));
       } else {
         const { dataUrl, filename } = result;
+        const caption =
+          this.form.controls.caption.value ||
+          filename.substring(0, filename.lastIndexOf('.'));
 
         this.newImageDataUrl = dataUrl;
-        this.form.patchValue({
-          id,
-          filename,
-          caption: filename.substring(0, filename.lastIndexOf('.')),
-        });
+        this.form.patchValue({ id, filename, caption });
       }
     }
 
@@ -146,7 +145,7 @@ export class ImageFormComponent implements OnInit {
       title: 'Confirm',
       body: this.imageEntity
         ? `Update ${this.imageEntity.image.filename}?`
-        : `Add ${this.form.controls.filename.value}`,
+        : `Add ${this.form.controls.filename.value} to ${this.form.controls.album.value}?`,
       confirmButtonText: this.imageEntity ? 'Update' : 'Add',
     };
 

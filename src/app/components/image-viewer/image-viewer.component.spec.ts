@@ -233,7 +233,7 @@ describe('ImageViewerComponent', () => {
         componentType: BasicDialogComponent,
         inputs: {
           dialog: {
-            title: 'Delete image',
+            title: 'Confirm',
             body: `Delete ${mockImages[1].filename}?`,
             confirmButtonText: 'Delete',
             confirmButtonType: 'warning',
@@ -257,7 +257,7 @@ describe('ImageViewerComponent', () => {
         componentType: BasicDialogComponent,
         inputs: {
           dialog: {
-            title: 'Delete image',
+            title: 'Confirm',
             body: `Delete ${mockImages[1].filename}?`,
             confirmButtonText: 'Delete',
             confirmButtonType: 'warning',

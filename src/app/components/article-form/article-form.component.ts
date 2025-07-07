@@ -109,10 +109,10 @@ export class ArticleFormComponent implements OnInit {
     }
 
     const dialog: Dialog = {
-      title: this.originalArticle ? 'Update article' : 'Publish article',
+      title: 'Confirm',
       body: this.originalArticle?.title
-        ? `Update ${this.originalArticle.title}`
-        : `Publish ${this.formData.title}`,
+        ? `Update ${this.originalArticle.title} article?`
+        : `Publish ${this.formData.title} to News page?`,
       confirmButtonText: this.originalArticle ? 'Update' : 'Add',
     };
 

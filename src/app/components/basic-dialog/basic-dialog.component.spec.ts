@@ -10,7 +10,7 @@ describe('BasicDialogComponent', () => {
   let component: BasicDialogComponent;
 
   const mockDialog = {
-    title: 'Dialog Title',
+    title: 'Confirm' as const,
     body: 'Body of the mock dialog',
     confirmButtonText: 'Confirm',
     cancelButtonText: 'Cancel',
@@ -18,7 +18,7 @@ describe('BasicDialogComponent', () => {
   };
 
   const mockWarningDialog = {
-    title: 'Warning Dialog Title',
+    title: 'Confirm' as const,
     body: 'Body of the mock warning dialog',
     confirmButtonText: 'Delete',
     confirmButtonType: 'warning' as const,

@@ -126,7 +126,7 @@ export class ImageViewerComponent
 
   public async onDeleteImage(image: Image): Promise<void> {
     const dialog: Dialog = {
-      title: 'Delete image',
+      title: 'Confirm',
       body: `Delete ${image.filename}?`,
       confirmButtonText: 'Delete',
       confirmButtonType: 'warning',

@@ -96,7 +96,7 @@ export class PhotoGridComponent implements OnInit {
 
   public async onDeleteAlbum(album: string): Promise<void> {
     const dialog: Dialog = {
-      title: 'Delete album',
+      title: 'Confirm',
       body: `Delete ${album} and its ${this.getAlbumPhotoCountText(album)}?`,
       confirmButtonText: 'Delete',
       confirmButtonType: 'warning',

@@ -73,10 +73,10 @@ export class EventFormComponent implements OnInit {
     }
 
     const dialog: Dialog = {
-      title: this.originalEvent ? 'Update event' : 'Add new event',
+      title: 'Confirm',
       body: this.originalEvent
-        ? `Update ${this.originalEvent.title}?`
-        : `Add ${this.formData.title}?`,
+        ? `Update ${this.originalEvent.title} event?`
+        : `Add ${this.formData.title} to schedule?`,
       confirmButtonText: this.originalEvent ? 'Update' : 'Add',
     };
 

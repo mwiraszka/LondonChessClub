@@ -1,7 +1,7 @@
 import { EventEmitter, Type } from '@angular/core';
 
 export interface Dialog {
-  title: string;
+  title: 'Confirm' | 'Unsaved changes';
   body: string;
   confirmButtonText: string;
   confirmButtonType?: 'primary' | 'warning';

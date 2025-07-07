@@ -234,10 +234,6 @@ describe('ArticleFormComponent', () => {
       await fixture.whenStable();
 
       expect(revertButton).not.toBeNull();
-
-      // TODO: Revisit this component's specs
-      // expect(revertButton.nativeElement.disabled).toBe(false);
-
       expect(component.form.get('bannerImageId')?.value).toBe(mockArticle.bannerImageId);
     });
   });
@@ -324,8 +320,8 @@ describe('ArticleFormComponent', () => {
         isModal: false,
         inputs: {
           dialog: {
-            title: 'Publish article',
-            body: `Publish ${mockFormData.title}`,
+            title: 'Confirm',
+            body: `Publish ${mockFormData.title} to News page?`,
             confirmButtonText: 'Add',
           },
         },
@@ -354,8 +350,8 @@ describe('ArticleFormComponent', () => {
         isModal: false,
         inputs: {
           dialog: {
-            title: 'Update article',
-            body: `Update ${mockArticle.title}`,
+            title: 'Confirm',
+            body: `Update ${mockArticle.title} article?`,
             confirmButtonText: 'Update',
           },
         },

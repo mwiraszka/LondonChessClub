@@ -1,15 +1,24 @@
 import { Store } from '@ngrx/store';
 
+import { UpperCasePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
 import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import { AdminControlsConfig, Id, Image, InternalLink } from '@app/models';
+import {
+  AdminControlsConfig,
+  BasicDialogResult,
+  Dialog,
+  Id,
+  Image,
+  InternalLink,
+} from '@app/models';
 import { DialogService } from '@app/services';
 import { ImagesActions } from '@app/store/images';
 import { customSort } from '@app/utils';
@@ -24,6 +33,7 @@ import { customSort } from '@app/utils';
     LinkListComponent,
     MatIconModule,
     TooltipDirective,
+    UpperCasePipe,
   ],
 })
 export class PhotoGridComponent implements OnInit {
@@ -76,18 +86,38 @@ export class PhotoGridComponent implements OnInit {
   public getAdminControlsConfig(album: string): AdminControlsConfig {
     return {
       buttonSize: 34,
-      deleteCb: () => {},
-      editPath: ['images', 'edit', album],
-      isEditDisabled: true,
-      isDeleteDisabled: true,
-      editDisabledReason: 'Album controls currently unavailable',
-      deleteDisabledReason: 'Album controls currently unavailable',
+      deleteCb: () => this.onDeleteAlbum(album),
+      editPath: ['album', 'edit', album],
+      isEditDisabled: false,
+      isDeleteDisabled: false,
       itemName: album,
     };
   }
 
-  public getAlbumPhotoCount(album: string): string {
+  public async onDeleteAlbum(album: string): Promise<void> {
+    const dialog: Dialog = {
+      title: 'Delete album',
+      body: `Delete ${album} and its ${this.getAlbumPhotoCountText(album)}?`,
+      confirmButtonText: 'Delete',
+      confirmButtonType: 'warning',
+    };
+
+    const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(
+      {
+        componentType: BasicDialogComponent,
+        inputs: { dialog },
+        isModal: true,
+      },
+    );
+
+    if (result === 'confirm') {
+      const imageIds = this.photoImages.map(image => image.id);
+      this.store.dispatch(ImagesActions.deleteAlbumRequested({ album, imageIds }));
+    }
+  }
+
+  public getAlbumPhotoCountText(album: string): string {
     const photoCount = this.photoImages.filter(image => image.album === album).length;
-    return `${photoCount} PHOTO${photoCount === 1 ? '' : 'S'}`;
+    return `${photoCount} photo${photoCount === 1 ? '' : 's'}`;
   }
 }

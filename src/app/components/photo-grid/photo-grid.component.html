@@ -21,7 +21,9 @@
         <img [image]="image" />
         <figcaption>
           <div class="album-name lcc-truncate-max-2-lines">{{ image.album }}</div>
-          <div class="photo-count">{{ getAlbumPhotoCount(image.album) }}</div>
+          <div class="photo-count">
+            {{ getAlbumPhotoCountText(image.album) | uppercase }}
+          </div>
         </figcaption>
       </figure>
     </button>

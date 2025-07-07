@@ -32,7 +32,7 @@ import { DialogService, ImageFileService } from '@app/services';
 import { ArticlesActions } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
 import { isLccError } from '@app/utils';
-import { imageCaptionValidator, uniqueAlbumValidator } from '@app/validators';
+import { imageCaptionValidator } from '@app/validators';
 
 @UntilDestroy()
 @Component({
@@ -58,8 +58,8 @@ export class ImageFormComponent implements OnInit {
   @Input({ required: true }) newImageFormData!: ImageFormData | null;
 
   public form!: FormGroup<ImageFormGroup>;
+  public newAlbumValue!: string;
   public newImageDataUrl: Url | null = null;
-  public newAlbumValue: string = '';
 
   constructor(
     private readonly dialogService: DialogService,
@@ -82,52 +82,29 @@ export class ImageFormComponent implements OnInit {
   }
 
   public isNewAlbumSelected(): boolean {
-    // Check if we're in a state where the new album input should be selected
-    return !this.existingAlbums.some(
-      album =>
-        album === this.form.controls.album.value &&
-        this.form.controls.album.value !== this.newAlbumValue,
-    );
+    return !this.existingAlbums.some(album => album === this.form.controls.album.value);
   }
 
   public isExistingAlbumSelected(album: string): boolean {
-    // Check if this specific existing album should be selected
-    return (
-      album === this.form.controls.album.value &&
-      this.existingAlbums.includes(this.form.controls.album.value) &&
-      this.form.controls.album.value !== this.newAlbumValue
-    );
+    return album === this.form.controls.album.value;
   }
 
-  public onToggleAlbum(album: string): void {
-    // Only update the album in the form, not the new-album input value
+  public onSelectAlbum(album: string): void {
     this.form.patchValue({ album });
   }
 
   public onNewAlbumInputChange(event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
-    const newValue = inputElement.value;
-    this.newAlbumValue = newValue;
-
-    // Update the form value only if the new album radio is selected
-    if (!this.existingAlbums.includes(this.form.controls.album.value)) {
-      this.form.patchValue({ album: newValue });
-    }
-  }
-
-  public onNewAlbumRadioSelect(): void {
-    // When the new album radio is selected, update the form with the current new album value
+    this.newAlbumValue = (event.target as HTMLInputElement).value;
     this.form.patchValue({ album: this.newAlbumValue });
   }
 
   public onNewAlbumInputFocus(): void {
-    // Automatically select the new album radio button when the input is focused
     const radioElement = document.getElementById('new-album-input') as HTMLInputElement;
     if (radioElement) {
       radioElement.checked = true;
     }
-    // Update the form value with the current new album value
-    this.form.patchValue({ album: this.newAlbumValue });
+
+    this.onSelectAlbum(this.newAlbumValue);
   }
 
   public async onChooseFile(event: Event): Promise<void> {
@@ -208,8 +185,6 @@ export class ImageFormComponent implements OnInit {
     const formData: ImageFormData = this.imageEntity?.formData ??
       this.newImageFormData ?? { ...INITIAL_IMAGE_FORM_DATA, id: `new-${uuid.v4()}` };
 
-    this.newAlbumValue = formData.album;
-
     this.form = this.formBuilder.group<ImageFormGroup>({
       id: new FormControl(formData.id, {
         nonNullable: true,
@@ -224,14 +199,14 @@ export class ImageFormComponent implements OnInit {
       }),
       album: new FormControl(formData.album, {
         nonNullable: true,
-        validators: [
-          Validators.required,
-          Validators.pattern(/[^\s]/),
-          uniqueAlbumValidator(this.existingAlbums),
-        ],
+        validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
       albumCover: new FormControl(formData.albumCover, { nonNullable: true }),
     });
+
+    this.newAlbumValue = this.existingAlbums.includes(formData.album)
+      ? ''
+      : formData.album;
   }
 
   private initFormValueChangeListener(): void {

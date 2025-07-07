@@ -21,7 +21,6 @@
               originalUrl: newImageDataUrl || 'assets/fallback-image.png',
             }" />
         </div>
-
         <label
           class="choose-file-button lcc-secondary-button"
           type="button"
@@ -49,8 +48,11 @@
       formControlName="caption"
       maxlength="120" />
     <lcc-form-error-icon [control]="form.controls.caption"></lcc-form-error-icon>
+
     <label class="lcc-required-field">Album:</label>
-    <fieldset class="existing-albums-fieldset">
+    <fieldset
+      class="existing-albums-fieldset"
+      [class.invalid]="form.controls.album.errors && form.controls.album.touched">
       @for (album of existingAlbums; track album) {
         <div class="existing-album">
           <input
@@ -58,7 +60,7 @@
             type="radio"
             name="album"
             [checked]="isExistingAlbumSelected(album)"
-            (change)="onToggleAlbum(album)" />
+            (change)="onSelectAlbum(album)" />
           <label
             class="lcc-truncate"
             [for]="'album-' + album">
@@ -66,14 +68,13 @@
           </label>
         </div>
       }
-
       <div class="new-album">
         <input
           id="new-album-input"
           type="radio"
           name="album"
           [checked]="isNewAlbumSelected()"
-          (change)="onNewAlbumRadioSelect()" />
+          (change)="onSelectAlbum(newAlbumValue)" />
         <input
           class="new-album-input"
           type="text"
@@ -85,7 +86,6 @@
           placeholder="New album" />
       </div>
     </fieldset>
-
     <lcc-form-error-icon [control]="form.controls.album"></lcc-form-error-icon>
   </div>
 

@@ -32,7 +32,7 @@ import { DialogService, ImageFileService } from '@app/services';
 import { ArticlesActions } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
 import { isLccError } from '@app/utils';
-import { imageCaptionValidator, uniqueAlbumValidator } from '@app/validators';
+import { imageCaptionValidator } from '@app/validators';
 
 @UntilDestroy()
 @Component({
@@ -149,10 +149,16 @@ export class AlbumFormComponent implements OnInit {
       return;
     }
 
+    const newImagesCount = this.form.controls.newImages.length;
     const dialog: Dialog = {
       title: 'Confirm',
-      body: album ? `Update ${album}?` : 'Add images?',
-      confirmButtonText: album ? 'Update' : 'Add',
+      body:
+        album && newImagesCount
+          ? `Update ${album} and upload ${newImagesCount} images?`
+          : album
+            ? `Update ${album}?`
+            : `Create new album and upload ${newImagesCount} images?`,
+      confirmButtonText: album ? 'Update' : 'Create',
     };
 
     const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(
@@ -223,14 +229,16 @@ export class AlbumFormComponent implements OnInit {
       ),
     );
 
+    const albumValue = this.imageEntities.length
+      ? this.imageEntities[0].formData.album
+      : Object.keys(this.newImagesFormData).length
+        ? Object.values(this.newImagesFormData)[0].album
+        : (this.album ?? '');
+
     this.form = this.formBuilder.group<AlbumFormGroup>({
-      album: new FormControl(this.album ?? '', {
+      album: new FormControl(albumValue, {
         nonNullable: true,
-        validators: [
-          Validators.required,
-          Validators.pattern(/[^\s]/),
-          uniqueAlbumValidator(this.existingAlbums),
-        ],
+        validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
       existingImages: existingImagesFormArray,
       newImages: newImagesFormArray,
@@ -240,12 +248,14 @@ export class AlbumFormComponent implements OnInit {
   private initFormValueChangeListener(): void {
     this.form.valueChanges.pipe(debounceTime(250), untilDestroyed(this)).subscribe(() => {
       const values: (Partial<ImageFormData> & { id: Id })[] = [
-        ...Array.from(this.form.controls.existingImages.controls).map(control =>
-          control.getRawValue(),
-        ),
-        ...Array.from(this.form.controls.newImages.controls).map(control =>
-          control.getRawValue(),
-        ),
+        ...Array.from(this.form.controls.existingImages.controls).map(control => ({
+          ...control.getRawValue(),
+          album: this.form.controls.album.value,
+        })),
+        ...Array.from(this.form.controls.newImages.controls).map(control => ({
+          ...control.getRawValue(),
+          album: this.form.controls.album.value,
+        })),
       ];
 
       this.store.dispatch(ImagesActions.formValueChanged({ values }));

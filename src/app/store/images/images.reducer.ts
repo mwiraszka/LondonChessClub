@@ -41,10 +41,7 @@ export const imagesReducer = createReducer(
               originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
               thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
             },
-            formData: {
-              ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-              album: '',
-            },
+            formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
           };
         }),
         state,
@@ -61,10 +58,7 @@ export const imagesReducer = createReducer(
           originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
           thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
         },
-        formData: originalEntity?.formData ?? {
-          ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-          album: '',
-        },
+        formData: originalEntity?.formData ?? pick(image, IMAGE_FORM_DATA_PROPERTIES),
       },
       state,
     );
@@ -81,10 +75,7 @@ export const imagesReducer = createReducer(
             originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
             thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
           },
-          formData: originalEntity?.formData ?? {
-            ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-            album: '',
-          },
+          formData: originalEntity?.formData ?? pick(image, IMAGE_FORM_DATA_PROPERTIES),
         };
       }),
       state,
@@ -97,10 +88,7 @@ export const imagesReducer = createReducer(
       imagesAdapter.upsertOne(
         {
           image,
-          formData: {
-            ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-            album: '',
-          },
+          formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
         },
         { ...state, newImagesFormData: {} },
       ),
@@ -117,10 +105,7 @@ export const imagesReducer = createReducer(
             originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
             thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
           },
-          formData: {
-            ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-            album: '',
-          },
+          formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
         };
       }),
       { ...state, newImagesFormData: {} },
@@ -134,10 +119,7 @@ export const imagesReducer = createReducer(
       imagesAdapter.upsertOne(
         {
           image: baseImage,
-          formData: {
-            ...pick(baseImage, IMAGE_FORM_DATA_PROPERTIES),
-            album: '',
-          },
+          formData: pick(baseImage, IMAGE_FORM_DATA_PROPERTIES),
         },
         state,
       ),
@@ -161,10 +143,7 @@ export const imagesReducer = createReducer(
               ...originalEntity.image,
               ...baseImage,
             },
-            formData: {
-              ...pick(baseImage, IMAGE_FORM_DATA_PROPERTIES),
-              album: '',
-            },
+            formData: pick(baseImage, IMAGE_FORM_DATA_PROPERTIES),
           };
         }),
       ),
@@ -257,10 +236,7 @@ export const imagesReducer = createReducer(
 
           return {
             image: originalImage,
-            formData: {
-              ...pick(originalImage, IMAGE_FORM_DATA_PROPERTIES),
-              album: '',
-            },
+            formData: pick(originalImage, IMAGE_FORM_DATA_PROPERTIES),
           };
         }),
       ),

@@ -38,10 +38,6 @@ export class FormErrorIconComponent {
       return 'Invalid year';
     } else if (this.control.hasError('invalidImageCaption')) {
       return 'Image caption can only contain letters, numbers, and readable symbols';
-    } else if (this.control.hasError('albumAlreadyExists')) {
-      return 'Album name already exists';
-    } else if (this.control.hasError('albumRequired')) {
-      return 'Image must be added to at least one album';
     } else if (this.control.hasError('minlength')) {
       return 'Input is too short';
     } else if (this.control.hasError('maxlength')) {

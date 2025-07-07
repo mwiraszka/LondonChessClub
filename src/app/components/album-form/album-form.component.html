@@ -11,20 +11,8 @@
       name="album"
       formControlName="album"
       maxlength="120" />
-    <lcc-form-error-icon [control]="form"></lcc-form-error-icon>
+    <lcc-form-error-icon [control]="form.controls.album"></lcc-form-error-icon>
   </div>
-
-  <label
-    class="choose-files-button lcc-secondary-button"
-    type="button"
-    [tooltip]="imageEntities.length ? 'Add more files' : 'Choose files'">
-    <mat-icon>imageEntities.length ? add_photo_alternate : insert_photo</mat-icon>
-    <input
-      type="file"
-      accept="image/*"
-      multiple
-      (change)="onChooseFiles($event)" />
-  </label>
 
   <div
     formArrayName="existingImages"
@@ -76,10 +64,22 @@
     }
   </div>
 
-  @if (album || true) {
+  @if (album) {
     <hr />
     <h3 class="new-images-header">New images</h3>
   }
+
+  <label
+    class="choose-files-button lcc-secondary-button"
+    type="button"
+    [tooltip]="imageEntities.length ? 'Add more files' : 'Choose files'">
+    <mat-icon>imageEntities.length ? add_photo_alternate : insert_photo</mat-icon>
+    <input
+      type="file"
+      accept="image/*"
+      multiple
+      (change)="onChooseFiles($event)" />
+  </label>
 
   <div
     formArrayName="newImages"

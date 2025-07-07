@@ -84,10 +84,7 @@ export const selectImageHasUnsavedChanges = (id: Id | null) =>
       }
 
       return !areSame(
-        {
-          ...pick(entity.image, Object.getOwnPropertyNames(entity.formData)),
-          album: '',
-        },
+        pick(entity.image, Object.getOwnPropertyNames(entity.formData)),
         entity.formData,
       );
     },
@@ -102,10 +99,7 @@ export const selectAlbumHasUnsavedChanges = (album: string | null) =>
     return entities.some(
       entity =>
         !areSame(
-          {
-            ...pick(entity.image, Object.getOwnPropertyNames(entity.formData)),
-            album: '',
-          },
+          pick(entity.image, Object.getOwnPropertyNames(entity.formData)),
           entity.formData,
         ),
     );

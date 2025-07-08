@@ -72,25 +72,29 @@ export class ImageFormComponent implements OnInit {
     this.initForm();
     this.initFormValueChangeListener();
 
-    if (this.hasUnsavedChanges) {
-      this.form.markAllAsTouched();
-    }
-
     if (this.newImageFormData) {
       this.fetchNewImageDataUrl(this.newImageFormData.id);
     }
+
+    if (
+      this.imageEntity &&
+      !this.imageEntity.image.thumbnailUrl &&
+      !this.imageEntity.image.originalUrl
+    ) {
+      this.store.dispatch(
+        ImagesActions.fetchImageRequested({
+          imageId: this.imageEntity.image.id,
+        }),
+      );
+    }
+
+    if (this.hasUnsavedChanges) {
+      this.form.markAllAsTouched();
+    }
   }
 
-  public isNewAlbumSelected(): boolean {
-    return !this.existingAlbums.some(album => album === this.form.controls.album.value);
-  }
-
-  public isExistingAlbumSelected(album: string): boolean {
-    return album === this.form.controls.album.value;
-  }
-
-  public onSelectAlbum(album: string): void {
-    this.form.patchValue({ album });
+  get albumExists(): boolean {
+    return this.existingAlbums.some(album => album === this.form.controls.album.value);
   }
 
   public onNewAlbumInputChange(event: Event): void {
@@ -103,8 +107,7 @@ export class ImageFormComponent implements OnInit {
     if (radioElement) {
       radioElement.checked = true;
     }
-
-    this.onSelectAlbum(this.newAlbumValue);
+    this.form.patchValue({ album: this.newAlbumValue });
   }
 
   public async onChooseFile(event: Event): Promise<void> {
@@ -203,9 +206,9 @@ export class ImageFormComponent implements OnInit {
       albumCover: new FormControl(formData.albumCover, { nonNullable: true }),
     });
 
-    this.newAlbumValue = this.existingAlbums.includes(formData.album)
-      ? ''
-      : formData.album;
+    this.newAlbumValue = !this.existingAlbums.includes(formData.album)
+      ? formData.album
+      : '';
   }
 
   private initFormValueChangeListener(): void {

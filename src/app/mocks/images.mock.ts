@@ -47,7 +47,7 @@ export const MOCK_IMAGES: Image[] = [
     caption: 'Image 3',
     articleAppearances: 0,
     album: 'Album of Jane',
-    albumCover: true,
+    albumCover: false,
     modificationInfo: {
       createdBy: 'Jane Smith',
       dateCreated: '2023-03-03T00:00:00Z',
@@ -100,8 +100,8 @@ export const MOCK_IMAGES: Image[] = [
     articleAppearances: 0,
     originalUrl: 'https://example.com/image6.png',
     thumbnailUrl: 'https://example.com/image6-thumb.png',
-    album: 'Championships',
-    albumCover: false,
+    album: 'Album of Jane',
+    albumCover: true,
     modificationInfo: {
       createdBy: 'Charlie Parker',
       dateCreated: '2023-04-01T10:00:00Z',

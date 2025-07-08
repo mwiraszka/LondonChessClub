@@ -74,36 +74,49 @@ export const selectImageHasUnsavedChanges = (id: Id | null) =>
     selectNewImageFormData,
     (entity, newImageFormData) => {
       if (!id) {
-        return newImageFormData
-          ? !areSame(omit(newImageFormData, 'id'), omit(INITIAL_IMAGE_FORM_DATA, 'id'))
-          : null;
+        return (
+          !!newImageFormData &&
+          !areSame(omit(newImageFormData, 'id'), omit(INITIAL_IMAGE_FORM_DATA, 'id'))
+        );
       }
 
-      if (!entity) {
-        return null;
-      }
-
-      return !areSame(
-        pick(entity.image, Object.getOwnPropertyNames(entity.formData)),
-        entity.formData,
+      return (
+        !!entity &&
+        !areSame(
+          pick(entity.image, Object.getOwnPropertyNames(entity.formData)),
+          entity.formData,
+        )
       );
     },
   );
 
 export const selectAlbumHasUnsavedChanges = (album: string | null) =>
-  createSelector(selectImageEntitiesByAlbum(album), entities => {
-    if (!entities.length) {
-      return null;
-    }
+  createSelector(
+    selectImageEntitiesByAlbum(album),
+    selectNewImagesFormData,
+    (entities, newImagesFormData) => {
+      if (!album) {
+        return (
+          !!Object.keys(newImagesFormData).length &&
+          Object.values(newImagesFormData).some(
+            newImageFormData =>
+              !areSame(omit(newImageFormData, 'id'), omit(INITIAL_IMAGE_FORM_DATA, 'id')),
+          )
+        );
+      }
 
-    return entities.some(
-      entity =>
-        !areSame(
-          pick(entity.image, Object.getOwnPropertyNames(entity.formData)),
-          entity.formData,
-        ),
-    );
-  });
+      return (
+        !!entities.length &&
+        entities.some(
+          entity =>
+            !areSame(
+              pick(entity.image, Object.getOwnPropertyNames(entity.formData)),
+              entity.formData,
+            ),
+        )
+      );
+    },
+  );
 
 export const selectAllExistingAlbums = createSelector(selectAllImages, allImages => {
   return uniq(allImages.map(image => image.album));

@@ -68,10 +68,15 @@ export class AlbumFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initForm();
+    this.initFormValueChangeListener();
+
     if (this.imageEntities.length) {
       this.store.dispatch(
         ImagesActions.fetchImagesRequested({
-          imageIds: this.imageEntities.map(entity => entity.image.id),
+          imageIds: this.imageEntities
+            .filter(entity => !entity.image.thumbnailUrl && !entity.image.originalUrl)
+            .map(entity => entity.image.id),
         }),
       );
     }
@@ -80,11 +85,8 @@ export class AlbumFormComponent implements OnInit {
       this.fetchNewImageDataUrls();
     }
 
-    this.initForm();
-    this.initFormValueChangeListener();
-
     if (this.hasUnsavedChanges) {
-      this.form.markAllAsDirty();
+      this.form.markAllAsTouched();
     }
   }
 
@@ -110,13 +112,12 @@ export class AlbumFormComponent implements OnInit {
     }
 
     const processFiles = Array.from(files).map(async file => {
-      const id = `new-${uuid.v4()}`;
-      const result = await this.imageFileService.storeImageFile(id, file);
+      const result = await this.imageFileService.storeImageFile(`new-${uuid.v4()}`, file);
 
       if (isLccError(result)) {
         this.store.dispatch(ImagesActions.imageFileActionFailed({ error: result }));
       } else {
-        const { dataUrl, filename } = result;
+        const { id, dataUrl, filename } = result;
 
         this.newImageDataUrls[id] = dataUrl;
 
@@ -143,7 +144,7 @@ export class AlbumFormComponent implements OnInit {
     this.store.dispatch(ArticlesActions.cancelSelected());
   }
 
-  public async onSubmit(album: string | null): Promise<void> {
+  public async onSubmit(): Promise<void> {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -153,12 +154,12 @@ export class AlbumFormComponent implements OnInit {
     const dialog: Dialog = {
       title: 'Confirm',
       body:
-        album && newImagesCount
-          ? `Update ${album} and upload ${newImagesCount} images?`
-          : album
-            ? `Update ${album}?`
-            : `Create new album and upload ${newImagesCount} images?`,
-      confirmButtonText: album ? 'Update' : 'Create',
+        this.album && newImagesCount
+          ? `Update ${this.album} and upload ${newImagesCount} image${newImagesCount === 1 ? '' : 's'}?`
+          : this.album
+            ? `Update ${this.album}?`
+            : `Create new album and upload ${newImagesCount} image${newImagesCount === 1 ? '' : 's'}?`,
+      confirmButtonText: this.album ? 'Update' : 'Create',
     };
 
     const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(
@@ -173,8 +174,8 @@ export class AlbumFormComponent implements OnInit {
       return;
     }
 
-    if (album) {
-      this.store.dispatch(ImagesActions.updateAlbumRequested({ album }));
+    if (this.album) {
+      this.store.dispatch(ImagesActions.updateAlbumRequested({ album: this.album }));
     } else {
       this.store.dispatch(ImagesActions.addImagesRequested());
     }
@@ -182,7 +183,6 @@ export class AlbumFormComponent implements OnInit {
 
   private async fetchNewImageDataUrls(): Promise<void> {
     const result = await this.imageFileService.getAllImages();
-
     if (isLccError(result)) {
       this.store.dispatch(ImagesActions.imageFileActionFailed({ error: result }));
     } else {
@@ -200,7 +200,7 @@ export class AlbumFormComponent implements OnInit {
     const existingImagesFormArray = new FormArray(
       this.imageEntities.map(entity =>
         this.formBuilder.group<Omit<ImageFormGroup, 'album'>>({
-          id: new FormControl(entity.image.id, { nonNullable: true }),
+          id: new FormControl(entity.formData.id, { nonNullable: true }),
           filename: new FormControl(entity.formData.filename, { nonNullable: true }),
           caption: new FormControl(entity.formData.caption, {
             nonNullable: true,

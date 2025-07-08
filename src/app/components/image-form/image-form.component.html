@@ -53,14 +53,14 @@
     <fieldset
       class="existing-albums-fieldset"
       [class.invalid]="form.controls.album.errors && form.controls.album.touched">
-      @for (album of existingAlbums; track album) {
+      @for (album of existingAlbums; track $index) {
         <div class="existing-album">
           <input
             [id]="'album-' + album"
             type="radio"
             name="album"
-            [checked]="isExistingAlbumSelected(album)"
-            (change)="onSelectAlbum(album)" />
+            [checked]="album === form.controls.album.value"
+            (change)="form.patchValue({ album })" />
           <label
             class="lcc-truncate"
             [for]="'album-' + album">
@@ -73,8 +73,8 @@
           id="new-album-input"
           type="radio"
           name="album"
-          [checked]="isNewAlbumSelected()"
-          (change)="onSelectAlbum(newAlbumValue)" />
+          [checked]="!albumExists"
+          (change)="form.patchValue({ album: newAlbumValue })" />
         <input
           class="new-album-input"
           type="text"

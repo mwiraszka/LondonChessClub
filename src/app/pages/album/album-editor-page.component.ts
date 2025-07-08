@@ -47,7 +47,7 @@ export class AlbumEditorPageComponent implements EditorPage, OnInit {
   public viewModel$?: Observable<{
     album: string | null;
     existingAlbums: string[];
-    hasUnsavedChanges: boolean | null;
+    hasUnsavedChanges: boolean;
     imageEntities: { image: Image; formData: ImageFormData }[];
     newImagesFormData: Record<string, ImageFormData>;
     pageTitle: string;

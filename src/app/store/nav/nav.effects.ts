@@ -279,19 +279,17 @@ export class NavEffects {
     ),
   );
 
-  resetImagesFormData$ = createEffect(() =>
+  resetAlbumFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
       filter(([{ payload }, previousPath]) => {
         const currentPath = payload.event.url;
         return (
-          !!previousPath?.startsWith('/images/') && !currentPath?.startsWith('/images/')
+          !!previousPath?.startsWith('/album/') && !currentPath?.startsWith('/album/')
         );
       }),
-      map(
-        ([, previousPath]) => previousPath!.split('/images/')[1]?.split('/')[1] ?? null,
-      ),
+      map(([, previousPath]) => previousPath!.split('/album/')[1]?.split('/')[1] ?? null),
       concatLatestFrom(album =>
         this.store.select(ImagesSelectors.selectImageEntitiesByAlbum(album)),
       ),

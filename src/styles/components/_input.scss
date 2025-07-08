@@ -13,7 +13,7 @@ textarea {
   background-color: var(--lcc-color--input-background);
   color: var(--lcc-color--input-text);
 
-  &.ng-invalid.ng-dirty {
+  &.ng-invalid.ng-touched {
     border-color: var(--lcc-color--input-invalidBorder);
   }
 

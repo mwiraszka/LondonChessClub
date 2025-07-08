@@ -189,10 +189,10 @@
   --lcc-color--lifetimePage-sectionHeaderDivider: #{clr(primary, base)};
   --lcc-color--lifetimePage-sectionHeaderText: #{clr(grayscale, black-2)};
 
-  --lcc-color--link: #{clr(primary, light)};
+  --lcc-color--link: #{clr(primary, base)};
   --lcc-color--linkDisabled: #{clr(grayscale, gray-50)};
-  --lcc-color--linkOnHover: #{clr(primary, lighter)};
-  --lcc-color--linkUnderline: #{clr(primary, lighter, 0.8)};
+  --lcc-color--linkOnHover: #{clr(primary, light)};
+  --lcc-color--linkUnderline: #{clr(primary, light, 0.8)};
 
   --lcc-color--linkList-headerText: #{clr(grayscale, gray-35)};
 

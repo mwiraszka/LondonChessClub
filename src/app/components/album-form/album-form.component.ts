@@ -144,7 +144,7 @@ export class AlbumFormComponent implements OnInit {
   public async onRestoreForm(): Promise<void> {
     const dialog: Dialog = {
       title: 'Confirm',
-      body: 'Are you sure you want to restore this album to its original state? All changes will be lost.',
+      body: 'Restore this album to its original state? All changes will be lost.',
       confirmButtonText: 'Restore',
       confirmButtonType: 'warning',
     };
@@ -178,7 +178,7 @@ export class AlbumFormComponent implements OnInit {
   ): Promise<void> {
     const dialog: Dialog = {
       title: 'Confirm',
-      body: `Are you sure you want to remove ${image.filename}?`,
+      body: `Remove ${image.filename}?`,
       confirmButtonText: 'Remove',
       confirmButtonType: 'warning',
     };

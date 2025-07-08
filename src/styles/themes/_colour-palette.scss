@@ -22,11 +22,12 @@ $lcc-color-palette: (
     white-98: hsl(0, 0%, 98%),
   ),
   primary: (
-    darker: hsl(202, 25%, 30%),
-    dark: hsl(202, 25%, 36%),
-    base: hsl(202, 25%, 45%),
-    light: hsl(202, 25%, 52%),
-    lighter: hsl(202, 25%, 64%),
+    darker: hsl(202, 35%, 30%),
+    dark: hsl(202, 35%, 40%),
+    base: hsl(202, 35%, 52%),
+    light: hsl(202, 35%, 70%),
+    lighter: hsl(202, 35%, 80%),
+    lightest: hsl(202, 35%, 88%),
   ),
   secondary: (
     darker: hsl(24, 73%, 38%),

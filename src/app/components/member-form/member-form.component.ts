@@ -17,6 +17,7 @@ import { DatePickerComponent } from '@app/components/date-picker/date-picker.com
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { SafeModeNoticeComponent } from '@app/components/safe-mode-notice/safe-mode-notice.component';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import type {
   BasicDialogResult,
   Dialog,
@@ -45,6 +46,7 @@ import {
     ModificationInfoComponent,
     ReactiveFormsModule,
     SafeModeNoticeComponent,
+    TooltipDirective,
   ],
 })
 export class MemberFormComponent implements OnInit {
@@ -68,6 +70,33 @@ export class MemberFormComponent implements OnInit {
     if (this.hasUnsavedChanges) {
       this.form.markAllAsTouched();
     }
+  }
+
+  public async onRestore(): Promise<void> {
+    const dialog: Dialog = {
+      title: 'Confirm',
+      body: 'Restore original member data? All changes will be lost.',
+      confirmButtonText: 'Restore',
+      confirmButtonType: 'warning',
+    };
+
+    const dialogResult = await this.dialogService.open<
+      BasicDialogComponent,
+      BasicDialogResult
+    >({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+      isModal: false,
+    });
+
+    if (dialogResult !== 'confirm') {
+      return;
+    }
+
+    const memberId = this.originalMember?.id ?? null;
+    this.store.dispatch(MembersActions.memberFormDataReset({ memberId }));
+
+    setTimeout(() => this.ngOnInit());
   }
 
   public onCancel(): void {

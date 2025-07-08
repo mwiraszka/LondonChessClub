@@ -32,7 +32,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.5.0 - July TBD, 2025</summary>
+<summary>v5.5.0 - July 10th, 2025</summary>
 
 - 🚀 Support uploading, editing, and deleting multiple images at a time
 - 🚀 Build out website footer to include the club logo, social media links, and a proper site map

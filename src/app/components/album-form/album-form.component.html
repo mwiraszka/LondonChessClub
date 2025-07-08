@@ -84,8 +84,9 @@
 
     <button
       class="restore-button lcc-secondary-button"
+      [disabled]="!hasUnsavedChanges"
       tooltip="Restore album to its original state"
-      (click)="onRestoreForm()">
+      (click)="onRestore()">
       <mat-icon>restore</mat-icon>
     </button>
   </div>

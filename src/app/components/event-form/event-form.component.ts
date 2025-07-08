@@ -11,11 +11,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { DatePickerComponent } from '@app/components/date-picker/date-picker.component';
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import type {
   BasicDialogResult,
   Dialog,
@@ -36,8 +38,10 @@ import { timeValidator } from '@app/validators';
   imports: [
     DatePickerComponent,
     FormErrorIconComponent,
+    MatIconModule,
     ModificationInfoComponent,
     ReactiveFormsModule,
+    TooltipDirective,
   ],
 })
 export class EventFormComponent implements OnInit {
@@ -60,6 +64,34 @@ export class EventFormComponent implements OnInit {
     if (this.hasUnsavedChanges) {
       this.form.markAllAsTouched();
     }
+  }
+
+  public async onRestore(): Promise<void> {
+    const dialog: Dialog = {
+      title: 'Confirm',
+      body: 'Restore original event data? All changes will be lost.',
+      confirmButtonText: 'Restore',
+      confirmButtonType: 'warning',
+    };
+
+    const dialogResult = await this.dialogService.open<
+      BasicDialogComponent,
+      BasicDialogResult
+    >({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+      isModal: false,
+    });
+
+    if (dialogResult !== 'confirm') {
+      return;
+    }
+
+    const eventId = this.originalEvent?.id ?? null;
+    this.store.dispatch(EventsActions.eventFormDataReset({ eventId }));
+
+    // Add more time to ensure state is updated before form re-initialization
+    setTimeout(() => this.ngOnInit(), 10);
   }
 
   public onCancel(): void {

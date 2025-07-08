@@ -81,6 +81,33 @@ export class ArticleFormComponent implements OnInit {
     }
   }
 
+  public async onRestore(): Promise<void> {
+    const dialog: Dialog = {
+      title: 'Confirm',
+      body: 'Restore original article data? All changes will be lost.',
+      confirmButtonText: 'Restore',
+      confirmButtonType: 'warning',
+    };
+
+    const dialogResult = await this.dialogService.open<
+      BasicDialogComponent,
+      BasicDialogResult
+    >({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+      isModal: false,
+    });
+
+    if (dialogResult !== 'confirm') {
+      return;
+    }
+
+    const articleId = this.originalArticle?.id ?? null;
+    this.store.dispatch(ArticlesActions.articleFormDataReset({ articleId }));
+
+    setTimeout(() => this.ngOnInit());
+  }
+
   public async onOpenImageExplorer(): Promise<void> {
     const thumbnailImageId = await this.dialogService.open<ImageExplorerComponent, Id>({
       componentType: ImageExplorerComponent,

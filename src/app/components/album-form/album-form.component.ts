@@ -141,10 +141,10 @@ export class AlbumFormComponent implements OnInit {
     });
   }
 
-  public async onRestoreForm(): Promise<void> {
+  public async onRestore(): Promise<void> {
     const dialog: Dialog = {
       title: 'Confirm',
-      body: 'Restore this album to its original state? All changes will be lost.',
+      body: 'Restore original album data? All changes will be lost.',
       confirmButtonText: 'Restore',
       confirmButtonType: 'warning',
     };

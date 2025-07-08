@@ -151,6 +151,14 @@
       formControlName="articleId"
       maxlength="24" />
     <lcc-form-error-icon [control]="form.controls.articleId"></lcc-form-error-icon>
+
+    <button
+      class="restore-button lcc-secondary-button"
+      [disabled]="!hasUnsavedChanges"
+      tooltip="Restore event to its original state"
+      (click)="onRestore()">
+      <mat-icon>restore</mat-icon>
+    </button>
   </div>
 
   <aside class="lcc-required-fields-legend">Required fields</aside>

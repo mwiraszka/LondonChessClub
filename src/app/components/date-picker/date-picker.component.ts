@@ -52,10 +52,12 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
       );
       this.currentMonth = moment();
       this.selectedDate = moment();
+    } else {
+      this.currentMonth = moment(date);
+      this.selectedDate = moment(date);
+      // Ensure calendar is re-rendered when value is restored
+      this.renderCalendar();
     }
-
-    this.currentMonth = moment(date);
-    this.selectedDate = moment(date);
   }
 
   public registerOnChange(fn: (date: IsoDate) => IsoDate): void {

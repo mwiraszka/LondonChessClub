@@ -134,6 +134,33 @@ export class ImageFormComponent implements OnInit {
     fileInputElement.value = '';
   }
 
+  public async onRestore(): Promise<void> {
+    const dialog: Dialog = {
+      title: 'Confirm',
+      body: 'Restore original image data? All changes will be lost.',
+      confirmButtonText: 'Restore',
+      confirmButtonType: 'warning',
+    };
+
+    const dialogResult = await this.dialogService.open<
+      BasicDialogComponent,
+      BasicDialogResult
+    >({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+      isModal: false,
+    });
+
+    if (dialogResult !== 'confirm') {
+      return;
+    }
+
+    const imageId = this.form.controls.id.value;
+    this.store.dispatch(ImagesActions.imageFormDataReset({ imageId }));
+
+    setTimeout(() => this.ngOnInit());
+  }
+
   public onCancel(): void {
     this.store.dispatch(ArticlesActions.cancelSelected());
   }

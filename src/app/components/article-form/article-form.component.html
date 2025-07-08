@@ -18,11 +18,11 @@
           <mat-icon>image_search</mat-icon>
         </button>
         <button
-          class="revert-button lcc-secondary-button"
+          class="revert-image-button lcc-secondary-button"
           type="button"
           tooltip="Revert to original image"
           [disabled]="
-            originalArticle?.bannerImageId ?? '' === form.controls.bannerImageId.value
+            (originalArticle?.bannerImageId ?? '') === form.controls.bannerImageId.value
           "
           (click)="onRevertImage()">
           <mat-icon>restore_page</mat-icon>
@@ -56,6 +56,14 @@
       maxlength="50000">
     </textarea>
     <lcc-form-error-icon [control]="form.controls.body"></lcc-form-error-icon>
+
+    <button
+      class="restore-button lcc-secondary-button"
+      [disabled]="!hasUnsavedChanges"
+      tooltip="Restore article to its original state"
+      (click)="onRestore()">
+      <mat-icon>restore</mat-icon>
+    </button>
   </div>
 
   <aside class="lcc-required-fields-legend">Required fields</aside>

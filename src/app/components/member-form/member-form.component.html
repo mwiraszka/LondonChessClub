@@ -121,6 +121,14 @@
         name="is-active"
         formControlName="isActive" />
     }
+
+    <button
+      class="restore-button lcc-secondary-button"
+      [disabled]="!hasUnsavedChanges"
+      tooltip="Restore member to its original state"
+      (click)="onRestore()">
+      <mat-icon>restore</mat-icon>
+    </button>
   </div>
 
   <aside class="lcc-required-fields-legend">Required fields</aside>

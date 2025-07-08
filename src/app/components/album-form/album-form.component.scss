@@ -82,7 +82,7 @@
 .control-buttons-container {
   display: flex;
   flex-direction: row;
-  align-self: start;
+  align-self: end;
   gap: 8px;
 
   .choose-files-button,
@@ -90,7 +90,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: 4px;
 
     & > input {

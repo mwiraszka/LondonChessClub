@@ -40,16 +40,27 @@
       gap: 8px;
       align-self: flex-end;
 
-      button {
-        padding: 0;
-        height: 40px;
-        min-width: 40px;
+      .image-explorer-button,
+      .revert-image-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
       }
     }
   }
 
   textarea {
     height: 320px;
+  }
+
+  .restore-button {
+    grid-column: 2 / 3;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
   }
 
   .preview-section-container {

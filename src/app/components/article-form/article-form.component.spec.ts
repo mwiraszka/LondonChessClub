@@ -212,28 +212,27 @@ describe('ArticleFormComponent', () => {
     });
   });
 
-  describe('revert button', () => {
+  describe('revert image button', () => {
     it('should be disabled if original banner image is already set', () => {
-      const revertButton = query(fixture.debugElement, '.revert-button');
+      const revertImageButton = query(fixture.debugElement, '.revert-image-button');
       fixture.detectChanges();
 
-      revertButton.triggerEventHandler('click');
+      revertImageButton.triggerEventHandler('click');
       fixture.detectChanges();
 
-      expect(revertButton).not.toBeNull();
-      expect(revertButton.nativeElement.disabled).toBe(true);
+      expect(revertImageButton.nativeElement.disabled).toBe(true);
       expect(component.form.get('bannerImageId')?.value).toBe(mockArticle.bannerImageId);
     });
 
     it('should be enabled if current banner image is different, and revert to original image when pressed', async () => {
-      const revertButton = query(fixture.debugElement, '.revert-button');
+      const revertImageButton = query(fixture.debugElement, '.revert-image-button');
       component.form.controls.bannerImageId.setValue('new-image-id');
       fixture.detectChanges();
 
-      revertButton.triggerEventHandler('click');
+      revertImageButton.triggerEventHandler('click');
       await fixture.whenStable();
 
-      expect(revertButton).not.toBeNull();
+      expect(revertImageButton.nativeElement.disabled).toBe(false);
       expect(component.form.get('bannerImageId')?.value).toBe(mockArticle.bannerImageId);
     });
   });

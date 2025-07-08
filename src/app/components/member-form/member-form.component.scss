@@ -14,6 +14,15 @@ form {
   max-width: var(--lcc-width--smallForm);
 }
 
+.restore-button {
+  grid-column: 2 / 3;
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
 hr {
   width: 100%;
   border-top: 1px solid var(--lcc-color--general-dividerLine);

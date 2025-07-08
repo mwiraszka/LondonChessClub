@@ -87,6 +87,14 @@
       </div>
     </fieldset>
     <lcc-form-error-icon [control]="form.controls.album"></lcc-form-error-icon>
+
+    <button
+      class="restore-button lcc-secondary-button"
+      [disabled]="!hasUnsavedChanges"
+      tooltip="Restore image to its original state"
+      (click)="onRestore()">
+      <mat-icon>restore</mat-icon>
+    </button>
   </div>
 
   <aside class="lcc-required-fields-legend">Required fields</aside>

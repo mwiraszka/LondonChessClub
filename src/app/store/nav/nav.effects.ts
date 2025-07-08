@@ -273,8 +273,7 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const imageId = previousPath!.split('/image/')[1]?.split('/')[1] ?? null;
-        const imageIds = imageId ? [imageId] : [];
-        return ImagesActions.formDataReset({ imageIds });
+        return ImagesActions.imageFormDataReset({ imageId });
       }),
     ),
   );
@@ -295,7 +294,7 @@ export class NavEffects {
       ),
       map(([, entities]) => {
         const imageIds = entities.map(entity => entity.image.id);
-        return ImagesActions.formDataReset({ imageIds });
+        return ImagesActions.albumFormDataReset({ imageIds });
       }),
     ),
   );
@@ -327,7 +326,7 @@ export class NavEffects {
   clearIndexedDbImageFileData$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(ImagesActions.formDataReset),
+        ofType(ImagesActions.imageFormDataReset, ImagesActions.albumFormDataReset),
         tap(() => this.imageFileService.clearAllImages()),
       ),
     { dispatch: false },

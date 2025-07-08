@@ -82,17 +82,15 @@ export const imagesReducer = createReducer(
     );
   }),
 
-  on(
-    ImagesActions.addImageSucceeded,
-    (state, { image }): ImagesState =>
-      imagesAdapter.upsertOne(
-        {
-          image,
-          formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
-        },
-        { ...state, newImagesFormData: {} },
-      ),
-  ),
+  on(ImagesActions.addImageSucceeded, (state, { image }): ImagesState => {
+    return imagesAdapter.upsertOne(
+      {
+        image,
+        formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
+      },
+      { ...state, newImagesFormData: {} },
+    );
+  }),
 
   on(ImagesActions.addImagesSucceeded, (state, { images }): ImagesState => {
     return imagesAdapter.upsertMany(
@@ -221,7 +219,23 @@ export const imagesReducer = createReducer(
       : stateWithNewImages;
   }),
 
-  on(ImagesActions.formDataReset, (state, { imageIds }): ImagesState => {
+  on(ImagesActions.imageFormDataReset, (state, { imageId }): ImagesState => {
+    const originalImage = state.entities[imageId]?.image;
+
+    if (!originalImage) {
+      return { ...state, newImagesFormData: {} };
+    }
+
+    return imagesAdapter.upsertOne(
+      {
+        image: originalImage,
+        formData: pick(originalImage, IMAGE_FORM_DATA_PROPERTIES),
+      },
+      { ...state, newImagesFormData: {} },
+    );
+  }),
+
+  on(ImagesActions.albumFormDataReset, (state, { imageIds }): ImagesState => {
     return imagesAdapter.upsertMany(
       compact(
         imageIds.map(imageId => {
@@ -229,7 +243,7 @@ export const imagesReducer = createReducer(
 
           if (!originalImage) {
             console.warn(
-              `[LCC] Unable to find image ${imageId} for images form data reset`,
+              `[LCC] Unable to find image ${imageId} for album form data reset`,
             );
             return undefined;
           }
@@ -242,5 +256,21 @@ export const imagesReducer = createReducer(
       ),
       { ...state, newImagesFormData: {} },
     );
+  }),
+
+  on(ImagesActions.newImageRemoved, (state, { imageId }): ImagesState => {
+    const { [imageId]: removed, ...restNewImagesFormData } = state.newImagesFormData;
+
+    return {
+      ...state,
+      newImagesFormData: restNewImagesFormData,
+    };
+  }),
+
+  on(ImagesActions.allNewImagesRemoved, (state): ImagesState => {
+    return {
+      ...state,
+      newImagesFormData: {},
+    };
   }),
 );

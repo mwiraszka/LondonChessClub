@@ -10,7 +10,6 @@ import { IMAGE_FORM_DATA_PROPERTIES } from '@app/constants';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { LccError } from '@app/models';
 import { DialogService, ImageFileService } from '@app/services';
-import { ArticlesActions } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
 import { query, queryTextContent } from '@app/utils';
 
@@ -571,7 +570,7 @@ describe('AlbumFormComponent', () => {
       query(fixture.debugElement, '.cancel-button').triggerEventHandler('click');
       fixture.detectChanges();
 
-      expect(store.dispatch).toHaveBeenCalledWith(ArticlesActions.cancelSelected());
+      expect(store.dispatch).toHaveBeenCalledWith(ImagesActions.cancelSelected());
     });
   });
 
@@ -650,7 +649,7 @@ describe('AlbumFormComponent', () => {
         inputs: {
           dialog: {
             title: 'Confirm',
-            body: 'Create new album and upload 1 image?',
+            body: 'Create new album with this 1 new image?',
             confirmButtonText: 'Create',
           },
         },

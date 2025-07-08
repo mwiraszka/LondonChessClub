@@ -40,6 +40,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 - 🚀 Display tooltip or admin controls menu on touch devices whenever a long-press touch event is detected
 - 🚀 Create Safe Mode Notice component to be displayed wherever users' personal information is hidden from view
 - 🚀 Make wording in dialogs/modals throughout the app more consistent
+- 🚀 Add button in all forms to restore form to its initial state
 - 🐛 Various minor layout fixes in Navigation Bar and Form Error Icon components
 - 🐛 Ensure member/event/article form data is properly reset when unsaved changes are cancelled
 - 🐛 Prevent multiple of the same dialogs from stacking and ensure Document Viewer dialog automatically closes when the page is exited

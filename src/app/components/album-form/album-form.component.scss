@@ -12,15 +12,6 @@
   border-radius: var(--lcc-borderRadius--small);
 }
 
-.choose-files-button {
-  align-self: start;
-  padding: 4px 8px;
-
-  & > input {
-    display: none;
-  }
-}
-
 .images-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -36,6 +27,7 @@
     max-height: 180px;
     background: var(--lcc-color--contentPlaceholder-background);
     border-radius: var(--lcc-borderRadius--large);
+    position: relative;
 
     &.full-span {
       grid-column: 1 / -1;
@@ -47,6 +39,20 @@
       width: auto;
       height: auto;
       object-fit: contain;
+    }
+
+    &:hover .remove-image-button {
+      display: flex;
+    }
+
+    .remove-image-button {
+      @include icon-size(24px);
+
+      display: none;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      cursor: pointer;
     }
   }
 
@@ -71,6 +77,26 @@
 .new-images-header {
   align-self: start;
   color: var(--lcc-color--albumForm-headerText);
+}
+
+.control-buttons-container {
+  display: flex;
+  flex-direction: row;
+  align-self: start;
+  gap: 8px;
+
+  .choose-files-button,
+  .restore-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 4px;
+
+    & > input {
+      display: none;
+    }
+  }
 }
 
 hr {

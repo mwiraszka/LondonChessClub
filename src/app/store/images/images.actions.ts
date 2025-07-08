@@ -134,8 +134,13 @@ export const formValueChanged = createAction(
   props<{ values: (Partial<ImageFormData> & { id: Id })[] }>(),
 );
 
-export const formDataReset = createAction(
-  '[Images] Form data reset',
+export const imageFormDataReset = createAction(
+  '[Images] Image form data reset',
+  props<{ imageId: Id }>(),
+);
+
+export const albumFormDataReset = createAction(
+  '[Images] Album form data reset',
   props<{ imageIds: Id[] }>(),
 );
 
@@ -143,3 +148,10 @@ export const imageFileActionFailed = createAction(
   '[Images] Image file action failed',
   props<{ error: LccError }>(),
 );
+
+export const newImageRemoved = createAction(
+  '[Images] New image removed',
+  props<{ imageId: Id }>(),
+);
+
+export const allNewImagesRemoved = createAction('[Images] All new images removed');

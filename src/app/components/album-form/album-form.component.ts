@@ -29,7 +29,6 @@ import type {
   Url,
 } from '@app/models';
 import { DialogService, ImageFileService } from '@app/services';
-import { ArticlesActions } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
 import { isLccError } from '@app/utils';
 import { imageCaptionValidator } from '@app/validators';
@@ -118,8 +117,8 @@ export class AlbumFormComponent implements OnInit {
         this.store.dispatch(ImagesActions.imageFileActionFailed({ error: result }));
       } else {
         const { id, dataUrl, filename } = result;
-
-        this.newImageDataUrls[id] = dataUrl;
+        const isFirstImageInAlbum =
+          !this.imageEntities.length && !Object.keys(this.newImageDataUrls).length;
 
         const newImageFormGroup = this.formBuilder.group<Omit<ImageFormGroup, 'album'>>({
           id: new FormControl(id, { nonNullable: true }),
@@ -128,8 +127,10 @@ export class AlbumFormComponent implements OnInit {
             nonNullable: true,
             validators: [Validators.required, imageCaptionValidator],
           }),
-          albumCover: new FormControl(false, { nonNullable: true }),
+          albumCover: new FormControl(isFirstImageInAlbum, { nonNullable: true }),
         });
+
+        this.newImageDataUrls[id] = dataUrl;
 
         this.form.controls.newImages.push(newImageFormGroup);
       }
@@ -140,8 +141,84 @@ export class AlbumFormComponent implements OnInit {
     });
   }
 
+  public async onRestoreForm(): Promise<void> {
+    const dialog: Dialog = {
+      title: 'Confirm',
+      body: 'Are you sure you want to restore this album to its original state? All changes will be lost.',
+      confirmButtonText: 'Restore',
+      confirmButtonType: 'warning',
+    };
+
+    const dialogResult = await this.dialogService.open<
+      BasicDialogComponent,
+      BasicDialogResult
+    >({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+      isModal: false,
+    });
+
+    if (dialogResult !== 'confirm') {
+      return;
+    }
+
+    const imageIds = this.imageEntities.map(entity => entity.image.id);
+    this.store.dispatch(ImagesActions.albumFormDataReset({ imageIds }));
+
+    setTimeout(() => this.ngOnInit());
+  }
+
   public onCancel(): void {
-    this.store.dispatch(ArticlesActions.cancelSelected());
+    this.store.dispatch(ImagesActions.cancelSelected());
+  }
+
+  public async onRemoveNewImage(
+    image: Omit<ImageFormData, 'album'>,
+    index: number,
+  ): Promise<void> {
+    const dialog: Dialog = {
+      title: 'Confirm',
+      body: `Are you sure you want to remove ${image.filename}?`,
+      confirmButtonText: 'Remove',
+      confirmButtonType: 'warning',
+    };
+
+    const dialogResult = await this.dialogService.open<
+      BasicDialogComponent,
+      BasicDialogResult
+    >({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+      isModal: false,
+    });
+
+    if (dialogResult !== 'confirm') {
+      return;
+    }
+
+    const deleteResult = await this.imageFileService.deleteImage(image.id);
+    if (isLccError(deleteResult)) {
+      this.store.dispatch(ImagesActions.imageFileActionFailed({ error: deleteResult }));
+    } else {
+      this.form.controls.newImages.removeAt(index);
+      delete this.newImageDataUrls[image.id];
+      this.store.dispatch(ImagesActions.newImageRemoved({ imageId: image.id }));
+
+      // Set album cover to the first available image
+      if (image.albumCover) {
+        const firstAvailableImage =
+          this.form.controls.newImages.controls.find(
+            control => !control.value.albumCover,
+          ) ||
+          this.form.controls.existingImages.controls.find(
+            control => !control.value.albumCover,
+          );
+
+        if (firstAvailableImage) {
+          firstAvailableImage.controls.albumCover.setValue(true);
+        }
+      }
+    }
   }
 
   public async onSubmit(): Promise<void> {
@@ -151,14 +228,19 @@ export class AlbumFormComponent implements OnInit {
     }
 
     const newImagesCount = this.form.controls.newImages.length;
+    const thisOrThese = newImagesCount === 1 ? 'this' : 'these';
+    const imageOrImages = newImagesCount === 1 ? 'image' : 'images';
+
+    const body =
+      this.album && newImagesCount
+        ? `Update ${this.album} and upload ${thisOrThese} ${newImagesCount} new ${imageOrImages}?`
+        : this.album
+          ? `Update ${this.album}?`
+          : `Create new album with ${thisOrThese} ${newImagesCount} new ${imageOrImages}?`;
+
     const dialog: Dialog = {
       title: 'Confirm',
-      body:
-        this.album && newImagesCount
-          ? `Update ${this.album} and upload ${newImagesCount} image${newImagesCount === 1 ? '' : 's'}?`
-          : this.album
-            ? `Update ${this.album}?`
-            : `Create new album and upload ${newImagesCount} image${newImagesCount === 1 ? '' : 's'}?`,
+      body,
       confirmButtonText: this.album ? 'Update' : 'Create',
     };
 

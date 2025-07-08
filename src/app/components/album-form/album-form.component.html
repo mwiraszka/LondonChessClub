@@ -69,17 +69,26 @@
     <h3 class="new-images-header">New images</h3>
   }
 
-  <label
-    class="choose-files-button lcc-secondary-button"
-    type="button"
-    [tooltip]="imageEntities.length ? 'Add more files' : 'Choose files'">
-    <mat-icon>imageEntities.length ? add_photo_alternate : insert_photo</mat-icon>
-    <input
-      type="file"
-      accept="image/*"
-      multiple
-      (change)="onChooseFiles($event)" />
-  </label>
+  <div class="control-buttons-container">
+    <label
+      class="choose-files-button lcc-secondary-button"
+      type="button"
+      [tooltip]="imageEntities.length ? 'Add more files' : 'Choose files'">
+      <mat-icon>imageEntities.length ? add_photo_alternate : insert_photo</mat-icon>
+      <input
+        type="file"
+        accept="image/*"
+        multiple
+        (change)="onChooseFiles($event)" />
+    </label>
+
+    <button
+      class="restore-button lcc-secondary-button"
+      tooltip="Restore album to its original state"
+      (click)="onRestoreForm()">
+      <mat-icon>restore</mat-icon>
+    </button>
+  </div>
 
   <div
     formArrayName="newImages"
@@ -95,6 +104,13 @@
         <div class="image-container full-span">
           <img
             [image]="{ originalUrl: newImageDataUrls[imageControl.controls.id.value] }" />
+          <button
+            class="remove-image-button lcc-icon-button"
+            type="button"
+            (click)="onRemoveNewImage(imageControl.getRawValue(), i)"
+            tooltip="Remove image">
+            <mat-icon>cancel</mat-icon>
+          </button>
         </div>
 
         <label
@@ -143,7 +159,7 @@
       class="submit-button lcc-primary-button"
       type="submit"
       [disabled]="form.invalid || !hasUnsavedChanges">
-      {{ album ? 'Update' : 'Add' }}
+      {{ album ? 'Update album' : 'Create album' }}
     </button>
   </div>
 </form>

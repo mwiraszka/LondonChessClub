@@ -1,5 +1,5 @@
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { pick } from 'lodash';
+import { pick, uniq } from 'lodash';
 import * as uuid from 'uuid';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -10,7 +10,6 @@ import { IMAGE_FORM_DATA_PROPERTIES, INITIAL_IMAGE_FORM_DATA } from '@app/consta
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { LccError } from '@app/models';
 import { DialogService, ImageFileService } from '@app/services';
-import { ArticlesActions } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
 import { query } from '@app/utils';
 
@@ -23,10 +22,15 @@ describe('ImageFormComponent', () => {
   let dialogService: DialogService;
   let imageFileService: ImageFileService;
 
+  let cancelSpy: jest.SpyInstance;
+  let dialogOpenSpy: jest.SpyInstance;
+  let dispatchSpy: jest.SpyInstance;
   let fetchNewImageDataUrlSpy: jest.SpyInstance;
   let initFormSpy: jest.SpyInstance;
   let initFormValueChangeListenerSpy: jest.SpyInstance;
+  let restoreSpy: jest.SpyInstance;
   let storeImageFileSpy: jest.SpyInstance;
+  let submitSpy: jest.SpyInstance;
   let uuidSpy: jest.SpyInstance;
 
   beforeEach(async () => {
@@ -41,8 +45,6 @@ describe('ImageFormComponent', () => {
           useValue: {
             storeImageFile: jest.fn(),
             getImage: jest.fn(),
-            deleteImage: jest.fn(),
-            clearAllImages: jest.fn(),
           },
         },
       ],
@@ -51,16 +53,14 @@ describe('ImageFormComponent', () => {
       .then(() => {
         fixture = TestBed.createComponent(ImageFormComponent);
         component = fixture.componentInstance;
-        store = TestBed.inject(MockStore);
 
         dialogService = TestBed.inject(DialogService);
         imageFileService = TestBed.inject(ImageFileService);
+        store = TestBed.inject(MockStore);
 
-        component.existingAlbums = MOCK_IMAGES.map(image => image.album);
-        component.hasUnsavedChanges = false;
-        component.imageEntity = null;
-        component.newImageFormData = null;
-
+        cancelSpy = jest.spyOn(component, 'onCancel');
+        dialogOpenSpy = jest.spyOn(dialogService, 'open');
+        dispatchSpy = jest.spyOn(store, 'dispatch');
         // @ts-expect-error Private class member
         fetchNewImageDataUrlSpy = jest.spyOn(component, 'fetchNewImageDataUrl');
         // @ts-expect-error Private class member
@@ -70,13 +70,15 @@ describe('ImageFormComponent', () => {
           // @ts-expect-error Private class member
           'initFormValueChangeListener',
         );
+        restoreSpy = jest.spyOn(component, 'onRestore');
         storeImageFileSpy = jest.spyOn(imageFileService, 'storeImageFile');
+        submitSpy = jest.spyOn(component, 'onSubmit');
+        uuidSpy = jest.spyOn(uuid, 'v4');
 
-        uuidSpy = jest
-          .spyOn(uuid, 'v4')
-          .mockReturnValue('1234' as unknown as Uint8Array<ArrayBufferLike>);
-
-        jest.spyOn(store, 'dispatch');
+        component.existingAlbums = [];
+        component.hasUnsavedChanges = false;
+        component.imageEntity = null;
+        component.newImageFormData = null;
 
         fixture.detectChanges();
       });
@@ -86,9 +88,119 @@ describe('ImageFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  describe('UI elements', () => {
+    describe('modification info', () => {
+      it('should render if imageEntity is defined', () => {
+        component.imageEntity = {
+          image: MOCK_IMAGES[0],
+          formData: pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES),
+        };
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, 'lcc-modification-info')).not.toBeNull();
+      });
+
+      it('should not render if imageEntity is null', () => {
+        component.imageEntity = null;
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeNull();
+      });
+    });
+
+    describe('restore button', () => {
+      it('should be disabled if there are no unsaved changes', () => {
+        component.hasUnsavedChanges = false;
+        fixture.detectChanges();
+
+        const restoreButton = query(fixture.debugElement, '.restore-button');
+        expect(restoreButton.nativeElement.disabled).toBe(true);
+      });
+
+      it('should be enabled if there are unsaved changes', () => {
+        component.hasUnsavedChanges = true;
+        fixture.detectChanges();
+
+        const restoreButton = query(fixture.debugElement, '.restore-button');
+        restoreButton.triggerEventHandler('click');
+
+        expect(restoreButton.nativeElement.disabled).toBe(false);
+        expect(restoreSpy).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('cancel button', () => {
+      it('should be enabled if there are unsaved changes', () => {
+        component.hasUnsavedChanges = true;
+        fixture.detectChanges();
+
+        const cancelButton = query(fixture.debugElement, '.cancel-button');
+        cancelButton.triggerEventHandler('click');
+
+        expect(cancelButton.nativeElement.disabled).toBe(false);
+        expect(cancelSpy).toHaveBeenCalledTimes(1);
+      });
+
+      it('should also be enabled if there are no unsaved changes', () => {
+        component.hasUnsavedChanges = false;
+        fixture.detectChanges();
+
+        const cancelButton = query(fixture.debugElement, '.cancel-button');
+        cancelButton.triggerEventHandler('click');
+
+        expect(cancelButton.nativeElement.disabled).toBe(false);
+        expect(cancelSpy).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('submit button', () => {
+      it('should be disabled if there are no unsaved changes', () => {
+        component.form.setValue(pick(MOCK_IMAGES[3], IMAGE_FORM_DATA_PROPERTIES));
+        component.hasUnsavedChanges = false;
+        fixture.detectChanges();
+
+        const submitButton = query(fixture.debugElement, '.submit-button');
+        expect(submitButton.nativeElement.disabled).toBe(true);
+      });
+
+      it('should be disabled if the form is invalid', () => {
+        component.form.setValue({
+          ...pick(MOCK_IMAGES[3], IMAGE_FORM_DATA_PROPERTIES),
+          caption: '', // Invalid - caption is a required field
+        });
+        component.hasUnsavedChanges = true;
+        fixture.detectChanges();
+
+        const submitButton = query(fixture.debugElement, '.submit-button');
+        expect(submitButton.nativeElement.disabled).toBe(true);
+      });
+
+      it('should be enabled if there are unsaved changes and the form is valid', () => {
+        dialogOpenSpy.mockResolvedValue('cancel');
+        component.form.setValue(pick(MOCK_IMAGES[3], IMAGE_FORM_DATA_PROPERTIES));
+        component.hasUnsavedChanges = true;
+        fixture.detectChanges();
+
+        const form = fixture.debugElement.query(selector => selector.name === 'form');
+        form.triggerEventHandler('ngSubmit');
+
+        const submitButton = query(fixture.debugElement, '.submit-button');
+        expect(submitButton.nativeElement.disabled).toBe(false);
+        expect(submitSpy).toHaveBeenCalledTimes(1);
+      });
+    });
+  });
+
   describe('form initialization', () => {
-    describe('when both imageEntity and newImageFormData are null', () => {
+    beforeEach(() => uuidSpy.mockReturnValue('1234'));
+
+    describe('if both imageEntity and newImageFormData are null', () => {
       beforeEach(() => {
+        component.existingAlbums = uniq(MOCK_IMAGES.map(image => image.album));
+        component.imageEntity = null;
+        component.newImageFormData = null;
+        fixture.detectChanges();
+
         jest.clearAllMocks();
         component.ngOnInit();
       });
@@ -101,16 +213,11 @@ describe('ImageFormComponent', () => {
       it('should initialize the form with untouched values from INITIAL_IMAGE_FORM_DATA', () => {
         const expectedFormData = { ...INITIAL_IMAGE_FORM_DATA, id: 'new-1234' };
 
-        for (const property in expectedFormData) {
-          expect(
-            component.form.controls[property as keyof typeof component.form.controls]
-              .value,
-          ).toBe(expectedFormData[property as keyof typeof expectedFormData]);
-
-          expect(
-            component.form.controls[property as keyof typeof component.form.controls]
-              .untouched,
-          ).toBe(true);
+        for (const property of IMAGE_FORM_DATA_PROPERTIES) {
+          expect(component.form.controls[property].value).toBe(
+            expectedFormData[property],
+          );
+          expect(component.form.controls[property].untouched).toBe(true);
         }
 
         expect(uuidSpy).toHaveBeenCalledTimes(1);
@@ -125,16 +232,18 @@ describe('ImageFormComponent', () => {
       });
 
       it('should not dispatch fetchImageRequested', () => {
-        expect(store.dispatch).not.toHaveBeenCalled();
+        expect(dispatchSpy).not.toHaveBeenCalled();
       });
     });
 
-    describe('when imageEntity is null and newImageFormData is defined', () => {
+    describe('if imageEntity is null and newImageFormData is defined', () => {
       beforeEach(() => {
-        jest.clearAllMocks();
+        component.existingAlbums = uniq(MOCK_IMAGES.map(image => image.album));
+        component.imageEntity = null;
         component.newImageFormData = pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES);
         fixture.detectChanges();
 
+        jest.clearAllMocks();
         component.ngOnInit();
       });
 
@@ -144,18 +253,13 @@ describe('ImageFormComponent', () => {
       });
 
       it('should initialize the form with untouched values from newImageFormData', () => {
-        const expectedFormData = component.newImageFormData;
+        const expectedFormData = pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES);
 
-        for (const property in expectedFormData) {
-          expect(
-            component.form.controls[property as keyof typeof component.form.controls]
-              .value,
-          ).toBe(expectedFormData[property as keyof typeof expectedFormData]);
-
-          expect(
-            component.form.controls[property as keyof typeof component.form.controls]
-              .untouched,
-          ).toBe(true);
+        for (const property of IMAGE_FORM_DATA_PROPERTIES) {
+          expect(component.form.controls[property].value).toBe(
+            expectedFormData[property],
+          );
+          expect(component.form.controls[property].untouched).toBe(true);
         }
 
         expect(uuidSpy).not.toHaveBeenCalled();
@@ -170,19 +274,20 @@ describe('ImageFormComponent', () => {
       });
 
       it('should not dispatch fetchImageRequested', () => {
-        expect(store.dispatch).not.toHaveBeenCalled();
+        expect(dispatchSpy).not.toHaveBeenCalled();
       });
     });
 
-    describe('when imageEntity is defined (without unsaved changes)', () => {
+    describe('if imageEntity is defined (without unsaved changes)', () => {
       beforeEach(() => {
-        jest.clearAllMocks();
+        component.existingAlbums = uniq(MOCK_IMAGES.map(image => image.album));
         component.imageEntity = {
           image: MOCK_IMAGES[0],
           formData: pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES),
         };
         fixture.detectChanges();
 
+        jest.clearAllMocks();
         component.ngOnInit();
       });
 
@@ -192,18 +297,13 @@ describe('ImageFormComponent', () => {
       });
 
       it('should initialize the form with untouched values from imageEntity formData', () => {
-        const expectedFormData = component.imageEntity?.formData;
+        const expectedFormData = pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES);
 
-        for (const property in expectedFormData) {
-          expect(
-            component.form.controls[property as keyof typeof component.form.controls]
-              .value,
-          ).toBe(expectedFormData[property as keyof typeof expectedFormData]);
-
-          expect(
-            component.form.controls[property as keyof typeof component.form.controls]
-              .untouched,
-          ).toBe(true);
+        for (const property of IMAGE_FORM_DATA_PROPERTIES) {
+          expect(component.form.controls[property].value).toBe(
+            expectedFormData[property],
+          );
+          expect(component.form.controls[property].untouched).toBe(true);
         }
 
         expect(uuidSpy).not.toHaveBeenCalled();
@@ -218,14 +318,13 @@ describe('ImageFormComponent', () => {
       });
 
       it('should not dispatch fetchImageRequested', () => {
-        expect(store.dispatch).not.toHaveBeenCalled();
+        expect(dispatchSpy).not.toHaveBeenCalled();
       });
     });
 
-    describe('when imageEntity is defined (with unsaved changes and undefined urls)', () => {
+    describe('if imageEntity is defined (with unsaved changes and undefined urls)', () => {
       beforeEach(() => {
-        jest.clearAllMocks();
-        component.hasUnsavedChanges = true;
+        component.existingAlbums = uniq(MOCK_IMAGES.map(image => image.album));
         component.imageEntity = {
           image: {
             ...MOCK_IMAGES[0],
@@ -242,6 +341,7 @@ describe('ImageFormComponent', () => {
         };
         fixture.detectChanges();
 
+        jest.clearAllMocks();
         component.ngOnInit();
       });
 
@@ -251,18 +351,19 @@ describe('ImageFormComponent', () => {
       });
 
       it('should initialize the form with touched values from imageEntity formData', () => {
-        const expectedFormData = component.imageEntity?.formData;
+        const expectedFormData = {
+          id: MOCK_IMAGES[0].id,
+          filename: MOCK_IMAGES[0].filename,
+          caption: 'A new caption',
+          album: 'A new album title',
+          albumCover: true,
+        };
 
-        for (const property in expectedFormData) {
-          expect(
-            component.form.controls[property as keyof typeof component.form.controls]
-              .value,
-          ).toBe(expectedFormData[property as keyof typeof expectedFormData]);
-
-          expect(
-            component.form.controls[property as keyof typeof component.form.controls]
-              .touched,
-          ).toBe(true);
+        for (const property of IMAGE_FORM_DATA_PROPERTIES) {
+          expect(component.form.controls[property].value).toBe(
+            expectedFormData[property],
+          );
+          expect(component.form.controls[property].untouched).toBe(true);
         }
 
         expect(uuidSpy).not.toHaveBeenCalled();
@@ -277,7 +378,7 @@ describe('ImageFormComponent', () => {
       });
 
       it('should dispatch fetchImageRequested', () => {
-        expect(store.dispatch).toHaveBeenCalledWith(
+        expect(dispatchSpy).toHaveBeenCalledWith(
           ImagesActions.fetchImageRequested({ imageId: MOCK_IMAGES[0].id }),
         );
       });
@@ -288,7 +389,6 @@ describe('ImageFormComponent', () => {
     describe('required validator', () => {
       it('should mark empty field as invalid', () => {
         component.form.patchValue({ caption: '' });
-        component.form.markAllAsTouched();
         fixture.detectChanges();
 
         expect(component.form.controls.caption.hasError('required')).toBe(true);
@@ -296,7 +396,6 @@ describe('ImageFormComponent', () => {
 
       it('should mark non-empty field as valid', () => {
         component.form.patchValue({ caption: 'Valid Caption' });
-        component.form.markAllAsTouched();
         fixture.detectChanges();
 
         expect(component.form.controls.caption.hasError('required')).toBe(false);
@@ -306,7 +405,6 @@ describe('ImageFormComponent', () => {
     describe('pattern validator', () => {
       it('should mark field with an invalid pattern as invalid', () => {
         component.form.patchValue({ album: '   ' });
-        component.form.controls.album.markAsTouched();
         fixture.detectChanges();
 
         expect(component.form.controls.album.hasError('pattern')).toBe(true);
@@ -314,7 +412,6 @@ describe('ImageFormComponent', () => {
 
       it('should mark field with a valid pattern as valid', () => {
         component.form.patchValue({ album: '🔥' });
-        component.form.markAllAsTouched();
         fixture.detectChanges();
 
         expect(component.form.controls.album.hasError('pattern')).toBe(false);
@@ -324,7 +421,6 @@ describe('ImageFormComponent', () => {
     describe('image caption validator', () => {
       it('should mark field with an out-of-range ASCII character as invalid', () => {
         component.form.patchValue({ caption: 'Żubrówka' });
-        component.form.markAllAsTouched();
         fixture.detectChanges();
 
         expect(component.form.controls.caption.hasError('invalidImageCaption')).toBe(
@@ -334,7 +430,6 @@ describe('ImageFormComponent', () => {
 
       it('should mark field without an out-of-range ASCII character as valid', () => {
         component.form.patchValue({ caption: 'Absolut' });
-        component.form.markAllAsTouched();
         fixture.detectChanges();
 
         expect(component.form.controls.caption.hasError('invalidImageCaption')).toBe(
@@ -345,14 +440,16 @@ describe('ImageFormComponent', () => {
   });
 
   describe('albumExists', () => {
-    it('should return true if current album form value is in existingAlbums array', () => {
+    it('should return true if current image form value is in existingAlbums array', () => {
+      component.existingAlbums = uniq(MOCK_IMAGES.map(image => image.album));
       component.form.patchValue({ album: MOCK_IMAGES[3].album });
       fixture.detectChanges();
 
       expect(component.albumExists).toBe(true);
     });
 
-    it('should return false if current album form value is NOT in existingAlbums array', () => {
+    it('should return false if current image form value is NOT in existingAlbums array', () => {
+      component.existingAlbums = uniq(MOCK_IMAGES.map(image => image.album));
       component.form.patchValue({ album: 'Some new value' });
       fixture.detectChanges();
 
@@ -361,7 +458,7 @@ describe('ImageFormComponent', () => {
   });
 
   describe('onNewAlbumInputChange', () => {
-    it('should update the newAlbumValue and patch album form control', () => {
+    it('should update the newAlbumValue and patch image form control', () => {
       const inputElement = document.createElement('input');
       inputElement.value = 'New Album';
       const event = { target: inputElement };
@@ -374,15 +471,20 @@ describe('ImageFormComponent', () => {
   });
 
   describe('onNewAlbumInputFocus', () => {
-    it('should check the radio button and update album form control', () => {
-      document.body.innerHTML = '<input type="radio" id="new-album-input">';
-      const radioElement = document.getElementById('new-album-input') as HTMLInputElement;
+    it('should check the radio button and update image form control', () => {
+      component.existingAlbums = uniq(MOCK_IMAGES.map(image => image.album));
+      component.form.setValue(pick(MOCK_IMAGES[3], IMAGE_FORM_DATA_PROPERTIES));
+      component.newAlbumValue = 'New album title';
+      fixture.detectChanges();
 
-      component.newAlbumValue = 'Focused Album';
+      const radioElement = document.getElementById('new-album-input') as HTMLInputElement;
+      expect(radioElement.checked).toBe(false);
+      expect(component.form.controls.album.value).toBe(MOCK_IMAGES[3].album);
+
       component.onNewAlbumInputFocus();
 
       expect(radioElement.checked).toBe(true);
-      expect(component.form.controls.album.value).toBe('Focused Album');
+      expect(component.form.controls.album.value).toBe('New album title');
     });
   });
 
@@ -432,7 +534,7 @@ describe('ImageFormComponent', () => {
 
       expect(storeImageFileSpy).toHaveBeenCalledTimes(1);
       expect(fileInputElement.value).toBe('');
-      expect(store.dispatch).toHaveBeenCalledWith(
+      expect(dispatchSpy).toHaveBeenCalledWith(
         ImagesActions.imageFileActionFailed({ error }),
       );
     });
@@ -452,81 +554,99 @@ describe('ImageFormComponent', () => {
     });
   });
 
-  describe('cancel button', () => {
-    it('should dispatch cancelSelected action when pressed', () => {
-      query(fixture.debugElement, '.cancel-button').triggerEventHandler('click');
+  describe('onRestore', () => {
+    beforeEach(() => {
+      component.hasUnsavedChanges = true;
+      component.imageEntity = {
+        image: MOCK_IMAGES[0],
+        formData: pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES),
+      };
+      component.newImageFormData = pick(MOCK_IMAGES[1], IMAGE_FORM_DATA_PROPERTIES);
+      component.newImageDataUrl = 'data:image/png;base64,abc';
       fixture.detectChanges();
 
-      expect(store.dispatch).toHaveBeenCalledWith(ArticlesActions.cancelSelected());
-    });
-  });
+      component.ngOnInit();
 
-  describe('submit button', () => {
-    it('should be disabled when there are no unsaved changes', () => {
-      component.form.patchValue(pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES));
-      component.hasUnsavedChanges = false;
-      fixture.detectChanges();
-
-      expect(query(fixture.debugElement, '.submit-button').nativeElement.disabled).toBe(
-        true,
-      );
+      jest.clearAllMocks();
+      jest.useFakeTimers();
     });
 
-    it('should be disabled when the form is invalid', () => {
-      component.form.patchValue(pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES));
-      component.form.patchValue({
-        caption: '', // Invalid - required field
+    afterEach(() => jest.useRealTimers());
+
+    it('should dispatch image form data reset and re-initialize form if dialog is confirmed', async () => {
+      dialogOpenSpy.mockResolvedValue('confirm');
+
+      await component.onRestore();
+      jest.runAllTimers();
+
+      expect(dialogOpenSpy).toHaveBeenCalledWith({
+        componentType: BasicDialogComponent,
+        isModal: false,
+        inputs: {
+          dialog: {
+            title: 'Confirm',
+            body: 'Restore original image data? All changes will be lost.',
+            confirmButtonText: 'Restore',
+            confirmButtonType: 'warning',
+          },
+        },
       });
-      component.hasUnsavedChanges = true;
-      fixture.detectChanges();
 
-      expect(query(fixture.debugElement, '.submit-button').nativeElement.disabled).toBe(
-        true,
+      expect(dispatchSpy).toHaveBeenCalledWith(
+        ImagesActions.imageFormDataReset({ imageId: MOCK_IMAGES[0].id }),
       );
+      expect(initFormSpy).toHaveBeenCalledTimes(1);
+      expect(initFormValueChangeListenerSpy).toHaveBeenCalledTimes(1);
+
+      // Verify formValueChanged was dispatched at least once
+      const formValueChangedCalls = dispatchSpy.mock.calls.filter(
+        call => call[0].type === ImagesActions.formValueChanged.type,
+      );
+      expect(formValueChangedCalls.length).toBeGreaterThan(0);
     });
 
-    it('should be enabled when there are unsaved changes and the form is valid', () => {
-      component.form.patchValue(pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES));
-      component.hasUnsavedChanges = true;
-      fixture.detectChanges();
+    it('should not dispatch reset action or re-initialize form if dialog is cancelled', async () => {
+      dialogOpenSpy.mockResolvedValue('cancel');
 
-      expect(query(fixture.debugElement, '.submit-button').nativeElement.disabled).toBe(
-        false,
-      );
+      await component.onRestore();
+      jest.runAllTimers();
+
+      expect(dialogOpenSpy).toHaveBeenCalledTimes(1);
+      expect(dispatchSpy).not.toHaveBeenCalled();
+      expect(initFormSpy).not.toHaveBeenCalled();
+      expect(initFormValueChangeListenerSpy).not.toHaveBeenCalled();
     });
   });
 
-  describe('form submission', () => {
+  describe('onCancel', () => {
+    it('should dispatch cancelSelected action', () => {
+      component.onCancel();
+      expect(dispatchSpy).toHaveBeenCalledWith(ImagesActions.cancelSelected());
+    });
+  });
+
+  describe('onSubmit', () => {
     it('should mark all fields as touched if form is invalid on submit', async () => {
-      const dialogOpenSpy = jest.spyOn(dialogService, 'open');
-      component.form.patchValue({ caption: '' });
+      component.form.patchValue({ caption: '' }); // Invalid - caption field is required
       component.form.markAsPristine();
       component.form.markAsUntouched();
       fixture.detectChanges();
 
       await component.onSubmit();
-      fixture.detectChanges();
 
-      expect(component.form.controls.id.touched).toBe(true);
       expect(component.form.controls.caption.touched).toBe(true);
-      expect(component.form.controls.albumCover.touched).toBe(true);
+      expect(component.form.controls.album.touched).toBe(true);
+      expect(component.form.touched).toBe(true);
       expect(dialogOpenSpy).not.toHaveBeenCalled();
     });
 
-    it('should open confirmation dialog with correct data when adding a new image', async () => {
-      const dialogOpenSpy = jest
-        .spyOn(dialogService, 'open')
-        .mockResolvedValue('confirm');
-      component.hasUnsavedChanges = true;
-      component.newImageFormData = MOCK_IMAGES[3];
+    it('should open confirmation dialog with correct data if adding a new image', async () => {
+      dialogOpenSpy.mockResolvedValue('confirm');
       component.form.patchValue(pick(MOCK_IMAGES[3], IMAGE_FORM_DATA_PROPERTIES));
+      component.newImageFormData = MOCK_IMAGES[3];
       fixture.detectChanges();
 
-      const form = fixture.debugElement.query(selector => selector.name === 'form');
-      form.triggerEventHandler('ngSubmit');
-
-      await fixture.whenStable();
-      fixture.detectChanges();
+      await component.onSubmit();
 
       expect(dialogOpenSpy).toHaveBeenCalledWith({
         componentType: BasicDialogComponent,
@@ -539,28 +659,21 @@ describe('ImageFormComponent', () => {
           },
         },
       });
-      expect(store.dispatch).toHaveBeenCalledWith(
+      expect(dispatchSpy).toHaveBeenCalledWith(
         ImagesActions.addImageRequested({ imageId: MOCK_IMAGES[3].id }),
       );
     });
 
-    it('should open confirmation dialog with correct data when updating an image', async () => {
-      const dialogOpenSpy = jest
-        .spyOn(dialogService, 'open')
-        .mockResolvedValue('confirm');
-      component.hasUnsavedChanges = true;
+    it('should open confirmation dialog with correct data if updating an image', async () => {
+      dialogOpenSpy.mockResolvedValue('confirm');
       component.imageEntity = {
         image: MOCK_IMAGES[3],
         formData: pick(MOCK_IMAGES[3], IMAGE_FORM_DATA_PROPERTIES),
       };
-      component.form.patchValue(pick(MOCK_IMAGES[3], IMAGE_FORM_DATA_PROPERTIES));
+      component.form.patchValue(component.imageEntity.formData);
       fixture.detectChanges();
 
-      const form = fixture.debugElement.query(selector => selector.name === 'form');
-      form.triggerEventHandler('ngSubmit');
-
-      await fixture.whenStable();
-      fixture.detectChanges();
+      await component.onSubmit();
 
       expect(dialogOpenSpy).toHaveBeenCalledWith({
         componentType: BasicDialogComponent,
@@ -573,29 +686,25 @@ describe('ImageFormComponent', () => {
           },
         },
       });
-      expect(store.dispatch).toHaveBeenCalledWith(
+      expect(dispatchSpy).toHaveBeenCalledWith(
         ImagesActions.updateImageRequested({ imageId: MOCK_IMAGES[3].id }),
       );
     });
 
     it('should not dispatch action if dialog is cancelled', async () => {
-      const dialogOpenSpy = jest.spyOn(dialogService, 'open').mockResolvedValue('cancel');
+      dialogOpenSpy.mockResolvedValue('cancel');
       component.hasUnsavedChanges = true;
       component.newImageFormData = MOCK_IMAGES[3];
       component.form.patchValue(pick(MOCK_IMAGES[3], IMAGE_FORM_DATA_PROPERTIES));
       fixture.detectChanges();
 
-      const form = fixture.debugElement.query(selector => selector.name === 'form');
-      form.triggerEventHandler('ngSubmit');
-
-      await fixture.whenStable();
-      fixture.detectChanges();
+      await component.onSubmit();
 
       expect(dialogOpenSpy).toHaveBeenCalledTimes(1);
-      expect(store.dispatch).not.toHaveBeenCalledWith(
+      expect(dispatchSpy).not.toHaveBeenCalledWith(
         ImagesActions.addImageRequested({ imageId: MOCK_IMAGES[3].id }),
       );
-      expect(store.dispatch).not.toHaveBeenCalledWith(
+      expect(dispatchSpy).not.toHaveBeenCalledWith(
         ImagesActions.updateImageRequested({ imageId: MOCK_IMAGES[3].id }),
       );
     });

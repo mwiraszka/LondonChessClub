@@ -101,8 +101,9 @@
 
   <hr />
 
-  @if (imageEntity?.image?.modificationInfo; as info) {
-    <lcc-modification-info [info]="info"></lcc-modification-info>
+  @if (imageEntity) {
+    <lcc-modification-info [info]="imageEntity.image.modificationInfo">
+    </lcc-modification-info>
   }
 
   <div class="lcc-form-buttons-container">

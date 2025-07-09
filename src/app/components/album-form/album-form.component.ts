@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
+import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import type {
@@ -26,6 +27,7 @@ import type {
   Image,
   ImageFormData,
   ImageFormGroup,
+  ModificationInfo,
   Url,
 } from '@app/models';
 import { DialogService, ImageFileService } from '@app/services';
@@ -42,6 +44,7 @@ import { imageCaptionValidator } from '@app/validators';
     FormErrorIconComponent,
     ImagePreloadDirective,
     MatIconModule,
+    ModificationInfoComponent,
     ReactiveFormsModule,
     TooltipDirective,
   ],
@@ -58,6 +61,25 @@ export class AlbumFormComponent implements OnInit {
 
   public form!: FormGroup<AlbumFormGroup>;
   public newImageDataUrls: Record<string, Url> = {};
+
+  public get mostRecentModificationInfo(): ModificationInfo | null {
+    if (!this.imageEntities.length) {
+      return null;
+    }
+
+    return this.imageEntities.reduce<ModificationInfo | null>((mostRecent, entity) => {
+      const currentModInfo = entity.image.modificationInfo;
+
+      if (!mostRecent) {
+        return currentModInfo;
+      }
+
+      const mostRecentDate = new Date(mostRecent.dateLastEdited);
+      const currentDate = new Date(currentModInfo.dateLastEdited);
+
+      return currentDate > mostRecentDate ? currentModInfo : mostRecent;
+    }, null);
+  }
 
   constructor(
     private readonly dialogService: DialogService,
@@ -100,6 +122,55 @@ export class AlbumFormComponent implements OnInit {
 
     // Trigger a single form value change
     this.form.updateValueAndValidity();
+  }
+
+  public async onRemoveNewImage(
+    image: Omit<ImageFormData, 'album'>,
+    index: number,
+  ): Promise<void> {
+    const dialog: Dialog = {
+      title: 'Confirm',
+      body: `Remove ${image.filename}?`,
+      confirmButtonText: 'Remove',
+      confirmButtonType: 'warning',
+    };
+
+    const dialogResult = await this.dialogService.open<
+      BasicDialogComponent,
+      BasicDialogResult
+    >({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+      isModal: false,
+    });
+
+    if (dialogResult !== 'confirm') {
+      return;
+    }
+
+    const deleteResult = await this.imageFileService.deleteImage(image.id);
+    if (isLccError(deleteResult)) {
+      this.store.dispatch(ImagesActions.imageFileActionFailed({ error: deleteResult }));
+    } else {
+      this.form.controls.newImages.removeAt(index);
+      delete this.newImageDataUrls[image.id];
+      this.store.dispatch(ImagesActions.newImageRemoved({ imageId: image.id }));
+
+      // Set album cover to the first available image
+      if (image.albumCover) {
+        const firstAvailableImage =
+          this.form.controls.newImages.controls.find(
+            control => !control.value.albumCover,
+          ) ||
+          this.form.controls.existingImages.controls.find(
+            control => !control.value.albumCover,
+          );
+
+        if (firstAvailableImage) {
+          firstAvailableImage.controls.albumCover.setValue(true);
+        }
+      }
+    }
   }
 
   public async onChooseFiles(event: Event): Promise<void> {
@@ -170,55 +241,6 @@ export class AlbumFormComponent implements OnInit {
 
   public onCancel(): void {
     this.store.dispatch(ImagesActions.cancelSelected());
-  }
-
-  public async onRemoveNewImage(
-    image: Omit<ImageFormData, 'album'>,
-    index: number,
-  ): Promise<void> {
-    const dialog: Dialog = {
-      title: 'Confirm',
-      body: `Remove ${image.filename}?`,
-      confirmButtonText: 'Remove',
-      confirmButtonType: 'warning',
-    };
-
-    const dialogResult = await this.dialogService.open<
-      BasicDialogComponent,
-      BasicDialogResult
-    >({
-      componentType: BasicDialogComponent,
-      inputs: { dialog },
-      isModal: false,
-    });
-
-    if (dialogResult !== 'confirm') {
-      return;
-    }
-
-    const deleteResult = await this.imageFileService.deleteImage(image.id);
-    if (isLccError(deleteResult)) {
-      this.store.dispatch(ImagesActions.imageFileActionFailed({ error: deleteResult }));
-    } else {
-      this.form.controls.newImages.removeAt(index);
-      delete this.newImageDataUrls[image.id];
-      this.store.dispatch(ImagesActions.newImageRemoved({ imageId: image.id }));
-
-      // Set album cover to the first available image
-      if (image.albumCover) {
-        const firstAvailableImage =
-          this.form.controls.newImages.controls.find(
-            control => !control.value.albumCover,
-          ) ||
-          this.form.controls.existingImages.controls.find(
-            control => !control.value.albumCover,
-          );
-
-        if (firstAvailableImage) {
-          firstAvailableImage.controls.albumCover.setValue(true);
-        }
-      }
-    }
   }
 
   public async onSubmit(): Promise<void> {

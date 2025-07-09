@@ -62,14 +62,9 @@ export class ArticleFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (
-      !this.bannerImage &&
-      (this.formData.bannerImageId || this.originalArticle?.bannerImageId)
-    ) {
+    if (!this.bannerImage) {
       this.store.dispatch(
-        ImagesActions.fetchImageRequested({
-          imageId: this.formData.bannerImageId ?? this.originalArticle!.bannerImageId!,
-        }),
+        ImagesActions.fetchImageRequested({ imageId: this.formData.bannerImageId }),
       );
     }
 
@@ -109,13 +104,13 @@ export class ArticleFormComponent implements OnInit {
   }
 
   public async onOpenImageExplorer(): Promise<void> {
-    const thumbnailImageId = await this.dialogService.open<ImageExplorerComponent, Id>({
+    const dialogResponse = await this.dialogService.open<ImageExplorerComponent, Id>({
       componentType: ImageExplorerComponent,
       isModal: true,
     });
 
-    if (thumbnailImageId) {
-      const imageId = thumbnailImageId.split('-')[0];
+    if (dialogResponse !== 'close') {
+      const imageId = dialogResponse.split('-')[0];
       this.form.patchValue({ bannerImageId: imageId });
       this.store.dispatch(ImagesActions.fetchImageRequested({ imageId }));
     }
@@ -140,7 +135,7 @@ export class ArticleFormComponent implements OnInit {
       body: this.originalArticle?.title
         ? `Update ${this.originalArticle.title} article?`
         : `Publish ${this.formData.title} to News page?`,
-      confirmButtonText: this.originalArticle ? 'Update' : 'Add',
+      confirmButtonText: this.originalArticle ? 'Update' : 'Publish',
     };
 
     const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(

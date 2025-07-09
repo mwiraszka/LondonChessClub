@@ -149,6 +149,10 @@
 
   <hr />
 
+  @if (mostRecentModificationInfo) {
+    <lcc-modification-info [info]="mostRecentModificationInfo"></lcc-modification-info>
+  }
+
   <div class="lcc-form-buttons-container">
     <button
       class="cancel-button lcc-secondary-button"

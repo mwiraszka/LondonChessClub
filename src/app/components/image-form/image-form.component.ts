@@ -29,7 +29,6 @@ import type {
   Url,
 } from '@app/models';
 import { DialogService, ImageFileService } from '@app/services';
-import { ArticlesActions } from '@app/store/articles';
 import { ImagesActions } from '@app/store/images';
 import { isLccError } from '@app/utils';
 import { imageCaptionValidator } from '@app/validators';
@@ -50,7 +49,7 @@ import { imageCaptionValidator } from '@app/validators';
 })
 export class ImageFormComponent implements OnInit {
   @Input({ required: true }) existingAlbums!: string[];
-  @Input({ required: true }) hasUnsavedChanges!: boolean | null;
+  @Input({ required: true }) hasUnsavedChanges!: boolean;
   @Input({ required: true }) imageEntity!: {
     image: Image;
     formData: ImageFormData;
@@ -162,7 +161,7 @@ export class ImageFormComponent implements OnInit {
   }
 
   public onCancel(): void {
-    this.store.dispatch(ArticlesActions.cancelSelected());
+    this.store.dispatch(ImagesActions.cancelSelected());
   }
 
   public async onSubmit(): Promise<void> {

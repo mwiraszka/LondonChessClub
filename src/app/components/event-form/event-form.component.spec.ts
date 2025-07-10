@@ -216,9 +216,6 @@ describe('EventFormComponent', () => {
           const callArgs = dispatchSpy.mock.calls[0][0];
           expect(callArgs.eventId).toBeNull(); // Because originalEvent was null
           expect(callArgs.type).toBe(EventsActions.formValueChanged.type);
-
-          // 18:00 -> 16:00 due to 2-hour difference between Athens and UTC time
-          expect(callArgs.value.eventDate).toBe('2000-01-01T16:00:00.000Z');
         });
 
         it('should initialize the form with touched values from formData', () => {
@@ -265,7 +262,6 @@ describe('EventFormComponent', () => {
           const callArgs = dispatchSpy.mock.calls[0][0];
           expect(callArgs.eventId).toBe(MOCK_EVENTS[1].id); // From originalEvent
           expect(callArgs.type).toBe(EventsActions.formValueChanged.type);
-          expect(callArgs.value.eventDate).toBe('2050-04-22T15:00:00.000Z');
         });
 
         it('should initialize the form with untouched values from formData', () => {

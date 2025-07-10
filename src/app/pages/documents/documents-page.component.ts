@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import moment from 'moment-timezone';
 
-import { Component, DOCUMENT, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, DOCUMENT, Inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { PageHeaderComponent } from '@app/components/page-header/page-header.com
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import type { ClubDocument } from '@app/models';
 import { FormatDatePipe } from '@app/pipes';
-import { DialogService, MetaAndTitleService, RouteFragmentService } from '@app/services';
+import { DialogService, MetaAndTitleService, RoutingService } from '@app/services';
 
 @UntilDestroy()
 @Component({
@@ -25,7 +25,7 @@ import { DialogService, MetaAndTitleService, RouteFragmentService } from '@app/s
     TooltipDirective,
   ],
 })
-export class DocumentsPageComponent implements OnInit, OnDestroy {
+export class DocumentsPageComponent implements OnInit {
   public readonly documents: ClubDocument[] = [
     {
       title: 'Club Bylaws',
@@ -70,7 +70,7 @@ export class DocumentsPageComponent implements OnInit, OnDestroy {
     private readonly dialogService: DialogService,
     @Inject(DOCUMENT) private _document: Document,
     private readonly metaAndTitleService: MetaAndTitleService,
-    private readonly routeFragmentService: RouteFragmentService,
+    private readonly routingService: RoutingService,
   ) {
     this.currentPath = this._document.location.pathname;
   }
@@ -81,7 +81,7 @@ export class DocumentsPageComponent implements OnInit, OnDestroy {
       'A place for all London Chess Club documentation.',
     );
 
-    this.routeFragmentService.fragment$.pipe(untilDestroyed(this)).subscribe(fragment => {
+    this.routingService.fragment$.pipe(untilDestroyed(this)).subscribe(fragment => {
       if (
         fragment &&
         this.documents.find(document => document.fileName === fragment) &&
@@ -94,9 +94,5 @@ export class DocumentsPageComponent implements OnInit, OnDestroy {
         });
       }
     });
-  }
-
-  ngOnDestroy(): void {
-    this.dialogService.closeAll();
   }
 }

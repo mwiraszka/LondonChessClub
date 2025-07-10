@@ -62,7 +62,7 @@ export class ArticleFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (!this.bannerImage) {
+    if (!this.bannerImage && this.formData.bannerImageId) {
       this.store.dispatch(
         ImagesActions.fetchImageRequested({ imageId: this.formData.bannerImageId }),
       );

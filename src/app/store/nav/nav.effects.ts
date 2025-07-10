@@ -99,7 +99,9 @@ export class NavEffects {
       ofType(
         ImagesActions.cancelSelected,
         ImagesActions.addImageSucceeded,
+        ImagesActions.addImagesSucceeded,
         ImagesActions.updateImageSucceeded,
+        ImagesActions.updateAlbumSucceeded,
       ),
       map(() => NavActions.navigationRequested({ path: 'photo-gallery' })),
     ),

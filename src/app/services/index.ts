@@ -9,7 +9,7 @@ export { LocalStorageService } from './local-storage.service';
 export { LoaderService } from './loader.service';
 export { MembersService } from './members.service';
 export { MetaAndTitleService } from './meta-and-title.service';
-export { RouteFragmentService } from './route-fragment.service';
+export { RoutingService } from './routing.service';
 export { ToastService } from './toast.service';
 export { TouchEventsService } from './touch-events.service';
 export { UrlExpirationService } from './url-expiration.service';

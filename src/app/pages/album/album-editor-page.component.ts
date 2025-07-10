@@ -85,7 +85,7 @@ export class AlbumEditorPageComponent implements EditorPage, OnInit {
           hasUnsavedChanges,
           imageEntities,
           newImagesFormData,
-          pageTitle: album ? `Edit ${album}` : 'Create a new album',
+          pageTitle: album ? `Edit ${album}` : 'Create an album',
         }),
       ),
       tap(viewModel => {

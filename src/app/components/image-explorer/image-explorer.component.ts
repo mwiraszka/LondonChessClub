@@ -16,11 +16,14 @@ import type {
   DialogOutput,
   Id,
   Image,
+  InternalLink,
 } from '@app/models';
 import { FormatBytesPipe, FormatDatePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 import * as ImagesActions from '@app/store/images/images.actions';
 import * as ImagesSelectors from '@app/store/images/images.selectors';
+
+import { LinkListComponent } from '../link-list/link-list.component';
 
 @UntilDestroy()
 @Component({
@@ -34,6 +37,7 @@ import * as ImagesSelectors from '@app/store/images/images.selectors';
     FormatBytesPipe,
     FormatDatePipe,
     ImagePreloadDirective,
+    LinkListComponent,
   ],
   hostDirectives: [CdkScrollable],
 })
@@ -43,6 +47,12 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
   @Output() public dialogResult = new EventEmitter<Id | 'close'>();
 
   public images$?: Observable<Image[]>;
+
+  public readonly addImageLink: InternalLink = {
+    internalPath: ['image', 'add'],
+    text: 'Add an image',
+    icon: 'add_circle_outline',
+  };
 
   constructor(
     private readonly dialogService: DialogService,

@@ -1,16 +1,26 @@
 :host {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 8px;
-  height: 90dvh;
-  min-width: min(90vw, var(--lcc-width--appContent));
-  overflow: auto;
-  background-color: var(--lcc-color--imageExplorer-background);
-  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .controls-header {
+    background-color: var(--lcc-color--imageExplorer-controlsHeaderBackground);
+  }
+
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+    height: 90dvh;
+    min-width: min(90vw, var(--lcc-width--appContent));
+    overflow: auto;
+    background-color: var(--lcc-color--imageExplorer-gridBackground);
+    padding: 8px;
+  }
 
   .image-card-container {
     padding: 8px;
-    background-color: var(--lcc-color--imageExplorer-background);
+    background-color: var(--lcc-color--imageExplorer-gridBackground);
     border: none;
     border-radius: var(--lcc-borderRadius--large);
     box-shadow: 1px 2px 4px var(--lcc-color--general-cardBoxShadow);

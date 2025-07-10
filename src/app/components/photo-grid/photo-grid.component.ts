@@ -42,11 +42,18 @@ export class PhotoGridComponent implements OnInit {
 
   @Input() public maxAlbums?: number;
 
-  public readonly addImageLink: InternalLink = {
-    internalPath: ['image', 'add'],
-    text: 'Add an image',
-    icon: 'add_circle_outline',
-  };
+  public readonly links: InternalLink[] = [
+    {
+      internalPath: ['image', 'add'],
+      text: 'Add an image',
+      icon: 'add_circle_outline',
+    },
+    {
+      internalPath: ['album', 'add'],
+      text: 'Create an album',
+      icon: 'add_circle_outline',
+    },
+  ];
 
   public get albumCovers(): Image[] {
     return this.photoImages.filter(image => image.albumCover);

@@ -10,7 +10,7 @@ import {
   convertToParamMap,
 } from '@angular/router';
 
-import { RouteFragmentService } from '@app/services';
+import { RoutingService } from '@app/services';
 import { query, queryAll } from '@app/utils';
 
 import { MarkdownRendererComponent } from './markdown-renderer.component';
@@ -52,7 +52,7 @@ describe('MarkdownRendererComponent', () => {
           },
         },
         {
-          provide: RouteFragmentService,
+          provide: RoutingService,
           useValue: { fragment$: of('mock-fragment') },
         },
       ],

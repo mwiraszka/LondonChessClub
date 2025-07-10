@@ -7,14 +7,33 @@ export const selectNavState = createFeatureSelector<NavState>('navState');
 
 export const selectPathHistory = createSelector(
   selectNavState,
-  state => state?.pathHistory,
+  state => state.pathHistory,
 );
 
 export const selectPreviousPath = createSelector(selectPathHistory, pathHistory =>
-  pathHistory?.length && pathHistory.length > 0
-    ? pathHistory[pathHistory.length - 1]
-    : null,
+  pathHistory.length ? pathHistory[pathHistory.length - 1] : null,
 );
+
+export const selectIsNewPage = createSelector(selectPathHistory, pathHistory => {
+  if (!pathHistory.length) {
+    return null;
+  }
+
+  if (pathHistory.length === 1) {
+    return true;
+  }
+
+  const currentPage = pathHistory[pathHistory.length - 1]
+    .split('/')[1]
+    .split('/')[0]
+    .split('#')[0];
+  const previousPage = pathHistory[pathHistory.length - 2]
+    .split('/')[1]
+    .split('/')[0]
+    .split('#')[0];
+
+  return currentPage !== previousPage;
+});
 
 export const {
   selectCurrentRoute, // select the current route

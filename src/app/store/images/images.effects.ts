@@ -2,7 +2,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
-import { from, of } from 'rxjs';
+import { defer, from, of } from 'rxjs';
 import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
@@ -81,12 +81,12 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.addImageRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(({ imageId }) => [
+      switchMap(({ imageId }) => from(this.imageFileService.getImage(imageId))),
+      concatLatestFrom(() => [
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
         this.store.select(ImagesSelectors.selectNewImageFormData).pipe(filter(isDefined)),
-        from(this.imageFileService.getImage(imageId)),
       ]),
-      switchMap(([, user, formData, imageFileResult]) => {
+      switchMap(([imageFileResult, user, formData]) => {
         if (isLccError(imageFileResult)) {
           return of(ImagesActions.addImageFailed({ error: imageFileResult }));
         }
@@ -102,7 +102,7 @@ export class ImagesEffects {
         }
 
         const imageMetadata: Omit<BaseImage, 'fileSize'> = {
-          id: formData.id,
+          id: formData.id, // Remove temporary 'new-xxxx' id
           filename: formData.filename,
           caption: formData.caption,
           album: formData.album,
@@ -134,12 +134,12 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.addImagesRequested),
       tap(() => this.loaderService.setIsLoading(true)),
+      switchMap(() => from(this.imageFileService.getAllImages())),
       concatLatestFrom(() => [
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
         this.store.select(ImagesSelectors.selectNewImagesFormData),
-        from(this.imageFileService.getAllImages()),
       ]),
-      switchMap(([, user, newImagesFormData, imageFilesResult]) => {
+      switchMap(([imageFilesResult, user, newImagesFormData]) => {
         if (isLccError(imageFilesResult)) {
           return of(ImagesActions.addImageFailed({ error: imageFilesResult }));
         }
@@ -155,7 +155,7 @@ export class ImagesEffects {
         const imageFormData = new FormData();
 
         for (const indexedDbImage of imageFilesResult) {
-          const { filename, dataUrl } = indexedDbImage;
+          const { id, dataUrl, filename } = indexedDbImage;
           const file = dataUrlToFile(dataUrl, filename);
 
           if (!file) {
@@ -166,7 +166,7 @@ export class ImagesEffects {
             return of(ImagesActions.addImageFailed({ error }));
           }
 
-          const formData = newImagesFormData[filename];
+          const formData = newImagesFormData[id];
 
           if (!formData) {
             const error: LccError = {
@@ -177,7 +177,7 @@ export class ImagesEffects {
           }
 
           const imageMetadata: Omit<BaseImage, 'fileSize'> = {
-            id: '',
+            id: '', // Remove temporary 'new-xxxx' id
             filename,
             caption: formData.caption,
             album: formData.album,

@@ -15,7 +15,7 @@ import {
 import { RouterLink } from '@angular/router';
 
 import { KebabCasePipe } from '@app/pipes';
-import { RouteFragmentService } from '@app/services';
+import { RoutingService } from '@app/services';
 
 @UntilDestroy()
 @Component({
@@ -45,7 +45,7 @@ export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
   constructor(
     @Inject(DOCUMENT) private _document: Document,
     private readonly renderer: Renderer2,
-    private readonly routeFragmentService: RouteFragmentService,
+    private readonly routingService: RoutingService,
   ) {
     this.currentPath = this._document.location.pathname;
   }
@@ -71,7 +71,7 @@ export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
   ngAfterViewInit(): void {
     setTimeout(() => {
       // Scroll to anchor when heading link is clicked
-      this.routeFragmentService.fragment$
+      this.routingService.fragment$
         .pipe(untilDestroyed(this))
         .subscribe(fragment => this.scrollToAnchor(fragment));
     });

@@ -14,7 +14,7 @@ import { HeaderComponent } from '@app/components/header/header.component';
 import { NavigationBarComponent } from '@app/components/navigation-bar/navigation-bar.component';
 import { UpcomingEventBannerComponent } from '@app/components/upcoming-event-banner/upcoming-event-banner.component';
 import { Event, IsoDate } from '@app/models';
-import { LoaderService, RouteFragmentService, UrlExpirationService } from '@app/services';
+import { LoaderService, RoutingService, UrlExpirationService } from '@app/services';
 import { TouchEventsService } from '@app/services';
 import { AppActions, AppSelectors } from '@app/store/app';
 import { EventsSelectors } from '@app/store/events';
@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
     private readonly store: Store,
     private readonly touchEventsService: TouchEventsService,
     private readonly urlExpirationService: UrlExpirationService,
-    private readonly routeFragmentService: RouteFragmentService,
+    private readonly routingService: RoutingService,
   ) {
     moment.tz.setDefault('America/Toronto');
   }
@@ -90,7 +90,7 @@ export class AppComponent implements OnInit {
   }
 
   private initNavigationListenerForScrollingBackToTop(): void {
-    this.routeFragmentService.fragment$
+    this.routingService.fragment$
       .pipe(
         untilDestroyed(this),
         filter(fragment => !fragment),

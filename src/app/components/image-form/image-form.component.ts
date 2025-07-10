@@ -156,6 +156,7 @@ export class ImageFormComponent implements OnInit {
 
     const imageId = this.form.controls.id.value;
     this.store.dispatch(ImagesActions.imageFormDataReset({ imageId }));
+    this.newImageDataUrl = null;
 
     setTimeout(() => this.ngOnInit());
   }

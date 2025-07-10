@@ -1,9 +1,8 @@
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { of } from 'rxjs';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, RouterLink, convertToParamMap } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { AuthActions } from '@app/store/auth';
 import { query } from '@app/utils';
@@ -23,13 +22,7 @@ describe('LoginFormComponent', () => {
       providers: [
         FormBuilder,
         provideMockStore(),
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            fragment: of('mock-fragment'),
-            paramMap: of(convertToParamMap({})),
-          },
-        },
+        { provide: ActivatedRoute, useValue: { paramMap: [] } },
       ],
     })
       .compileComponents()

@@ -3,12 +3,7 @@ import { MarkdownComponent } from 'ngx-markdown';
 import { of } from 'rxjs';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {
-  ActivatedRoute,
-  RouterLink,
-  RouterModule,
-  convertToParamMap,
-} from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
 
 import { RoutingService } from '@app/services';
 import { query, queryAll } from '@app/utils';
@@ -44,17 +39,8 @@ describe('MarkdownRendererComponent', () => {
     await TestBed.configureTestingModule({
       imports: [MarkdownRendererComponent, RouterLink, RouterModule.forRoot([])],
       providers: [
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            fragment: of('mock-fragment'),
-            paramMap: of(convertToParamMap({})),
-          },
-        },
-        {
-          provide: RoutingService,
-          useValue: { fragment$: of('mock-fragment') },
-        },
+        { provide: ActivatedRoute, useValue: { fragment: of('mock-fragment') } },
+        { provide: RoutingService, useValue: { fragment$: of('mock-fragment') } },
       ],
     })
       .overrideComponent(MarkdownRendererComponent, {

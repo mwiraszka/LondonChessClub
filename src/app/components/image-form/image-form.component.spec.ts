@@ -181,8 +181,7 @@ describe('ImageFormComponent', () => {
         component.hasUnsavedChanges = true;
         fixture.detectChanges();
 
-        const form = fixture.debugElement.query(selector => selector.name === 'form');
-        form.triggerEventHandler('ngSubmit');
+        query(fixture.debugElement, 'form').triggerEventHandler('ngSubmit');
 
         const submitButton = query(fixture.debugElement, '.submit-button');
         expect(submitButton.nativeElement.disabled).toBe(false);

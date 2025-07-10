@@ -186,7 +186,7 @@ export class MemberFormComponent implements OnInit {
   }
 
   private initFormValueChangeListener(): void {
-    this.form?.valueChanges
+    this.form.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((value: Partial<MemberFormData>) =>
         this.store.dispatch(
@@ -198,6 +198,6 @@ export class MemberFormComponent implements OnInit {
       );
 
     // Manually trigger form value change to pass initial form data to store
-    this.form?.updateValueAndValidity();
+    this.form.updateValueAndValidity();
   }
 }

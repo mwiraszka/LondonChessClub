@@ -113,6 +113,7 @@
       formControlName="lichessUsername"
       maxlength="20" />
     <lcc-form-error-icon [control]="form.controls.lichessUsername"></lcc-form-error-icon>
+
     @if (originalMember) {
       <label for="is-active-input">Active:</label>
       <input
@@ -145,13 +146,13 @@
 
   <div class="lcc-form-buttons-container">
     <button
-      class="lcc-secondary-button"
+      class="cancel-button lcc-secondary-button"
       type="button"
       (click)="onCancel()">
       Cancel
     </button>
     <button
-      class="lcc-primary-button"
+      class="submit-button lcc-primary-button"
       type="submit"
       [disabled]="form.invalid || !hasUnsavedChanges">
       {{ originalMember ? 'Update member' : 'Add member' }}

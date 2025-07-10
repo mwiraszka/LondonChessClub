@@ -90,8 +90,7 @@ export class EventFormComponent implements OnInit {
     const eventId = this.originalEvent?.id ?? null;
     this.store.dispatch(EventsActions.eventFormDataReset({ eventId }));
 
-    // Add more time to ensure state is updated before form re-initialization
-    setTimeout(() => this.ngOnInit(), 10);
+    setTimeout(() => this.ngOnInit());
   }
 
   public onCancel(): void {
@@ -166,7 +165,7 @@ export class EventFormComponent implements OnInit {
   }
 
   private initFormValueChangeListener(): void {
-    this.form?.valueChanges
+    this.form.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((value: Partial<EventFormData & { eventTime: string }>) => {
         const { eventTime, ...formData } = value;
@@ -193,6 +192,6 @@ export class EventFormComponent implements OnInit {
       });
 
     // Manually trigger form value change to pass initial form data to store
-    this.form?.updateValueAndValidity();
+    this.form.updateValueAndValidity();
   }
 }

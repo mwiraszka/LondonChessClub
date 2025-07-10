@@ -1,55 +1,44 @@
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { pick } from 'lodash';
-import { MockComponent } from 'ng-mocks';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
-import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
-import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
-import { ARTICLE_FORM_DATA_PROPERTIES } from '@app/constants';
-import { MOCK_ARTICLES } from '@app/mocks/articles.mock';
-import { MOCK_IMAGES } from '@app/mocks/images.mock';
+import { MEMBER_FORM_DATA_PROPERTIES } from '@app/constants';
+import { MOCK_MEMBERS } from '@app/mocks/members.mock';
 import { DialogService } from '@app/services';
-import { ArticlesActions } from '@app/store/articles';
-import { ImagesActions } from '@app/store/images';
+import { MembersActions } from '@app/store/members';
 import { query } from '@app/utils';
 
-import { ArticleFormComponent } from './article-form.component';
+import { MemberFormComponent } from './member-form.component';
 
-describe('ArticleFormComponent', () => {
-  let fixture: ComponentFixture<ArticleFormComponent>;
-  let component: ArticleFormComponent;
+describe('MemberFormComponent', () => {
+  let fixture: ComponentFixture<MemberFormComponent>;
+  let component: MemberFormComponent;
   let store: MockStore;
   let dialogService: DialogService;
 
   let cancelSpy: jest.SpyInstance;
   let dialogOpenSpy: jest.SpyInstance;
   let dispatchSpy: jest.SpyInstance;
-  let imageExplorerSpy: jest.SpyInstance;
   let initFormSpy: jest.SpyInstance;
   let initFormValueChangeListenerSpy: jest.SpyInstance;
   let restoreSpy: jest.SpyInstance;
-  let revertImageSpy: jest.SpyInstance;
   let submitSpy: jest.SpyInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ArticleFormComponent, ReactiveFormsModule],
+      imports: [MemberFormComponent, ReactiveFormsModule],
       providers: [
         FormBuilder,
         provideMockStore(),
         { provide: DialogService, useValue: { open: jest.fn() } },
       ],
     })
-      .overrideComponent(ArticleFormComponent, {
-        remove: { imports: [MarkdownRendererComponent] },
-        add: { imports: [MockComponent(MarkdownRendererComponent)] },
-      })
       .compileComponents()
       .then(() => {
-        fixture = TestBed.createComponent(ArticleFormComponent);
+        fixture = TestBed.createComponent(MemberFormComponent);
         component = fixture.componentInstance;
 
         dialogService = TestBed.inject(DialogService);
@@ -58,7 +47,6 @@ describe('ArticleFormComponent', () => {
         cancelSpy = jest.spyOn(component, 'onCancel');
         dialogOpenSpy = jest.spyOn(dialogService, 'open');
         dispatchSpy = jest.spyOn(store, 'dispatch');
-        imageExplorerSpy = jest.spyOn(component, 'onOpenImageExplorer');
         // @ts-expect-error Private class member
         initFormSpy = jest.spyOn(component, 'initForm');
         initFormValueChangeListenerSpy = jest.spyOn(
@@ -67,13 +55,12 @@ describe('ArticleFormComponent', () => {
           'initFormValueChangeListener',
         );
         restoreSpy = jest.spyOn(component, 'onRestore');
-        revertImageSpy = jest.spyOn(component, 'onRevertImage');
         submitSpy = jest.spyOn(component, 'onSubmit');
 
-        component.bannerImage = null;
-        component.formData = pick(MOCK_ARTICLES[0], ARTICLE_FORM_DATA_PROPERTIES);
+        component.formData = pick(MOCK_MEMBERS[0], MEMBER_FORM_DATA_PROPERTIES);
         component.hasUnsavedChanges = false;
-        component.originalArticle = null;
+        component.isSafeMode = false;
+        component.originalMember = null;
 
         fixture.detectChanges();
       });
@@ -84,56 +71,51 @@ describe('ArticleFormComponent', () => {
   });
 
   describe('UI elements', () => {
+    describe('is-active input', () => {
+      it('should render if originalMember is defined', () => {
+        component.originalMember = MOCK_MEMBERS[0];
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, '#is-active-input')).not.toBeNull();
+      });
+
+      it('should not render if originalMember is null', () => {
+        component.originalMember = null;
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, '#is-active-input')).toBeNull();
+      });
+    });
+
+    describe('safe-mode notice', () => {
+      it('should render if isSafeMode is true', () => {
+        component.isSafeMode = true;
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, 'lcc-safe-mode-notice')).not.toBeNull();
+      });
+
+      it('should not render if isSafeMode is false', () => {
+        component.isSafeMode = false;
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, 'lcc-safe-mode-notice')).toBeNull();
+      });
+    });
+
     describe('modification info', () => {
-      it('should render if originalArticle is defined', () => {
-        component.originalArticle = MOCK_ARTICLES[0];
+      it('should render if originalMember is defined', () => {
+        component.originalMember = MOCK_MEMBERS[0];
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-modification-info')).not.toBeNull();
       });
 
-      it('should not render if originalArticle is null', () => {
-        component.originalArticle = null;
+      it('should not render if originalMember is null', () => {
+        component.originalMember = null;
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-modification-info')).toBeNull();
-      });
-    });
-
-    describe('image explorer button', () => {
-      it('should call onImageExplorer when clicked', async () => {
-        dialogOpenSpy.mockResolvedValue('close');
-        const imageExplorerButton = query(fixture.debugElement, '.image-explorer-button');
-        imageExplorerButton.triggerEventHandler('click');
-
-        expect(imageExplorerButton.nativeElement.disabled).toBe(false);
-        expect(imageExplorerSpy).toHaveBeenCalledTimes(1);
-      });
-    });
-
-    describe('revert image button', () => {
-      it('should be disabled if original banner image is already set', () => {
-        component.form.controls.bannerImageId.setValue('same-id');
-        component.originalArticle = { ...MOCK_ARTICLES[1], bannerImageId: 'same-id' };
-        fixture.detectChanges();
-
-        const revertImageButton = query(fixture.debugElement, '.revert-image-button');
-        expect(revertImageButton.nativeElement.disabled).toBe(true);
-      });
-
-      it('should be enabled if current banner image differs from originalArticle banner image', () => {
-        component.form.controls.bannerImageId.setValue('mock-id');
-        component.originalArticle = {
-          ...MOCK_ARTICLES[1],
-          bannerImageId: 'different-id',
-        };
-        fixture.detectChanges();
-
-        const revertImageButton = query(fixture.debugElement, '.revert-image-button');
-        revertImageButton.triggerEventHandler('click');
-
-        expect(revertImageButton.nativeElement.disabled).toBe(false);
-        expect(revertImageSpy).toHaveBeenCalledTimes(1);
       });
     });
 
@@ -184,7 +166,7 @@ describe('ArticleFormComponent', () => {
 
     describe('submit button', () => {
       it('should be disabled if there are no unsaved changes', () => {
-        component.form.setValue(pick(MOCK_ARTICLES[3], ARTICLE_FORM_DATA_PROPERTIES));
+        component.form.setValue(pick(MOCK_MEMBERS[3], MEMBER_FORM_DATA_PROPERTIES));
         component.hasUnsavedChanges = false;
         fixture.detectChanges();
 
@@ -194,8 +176,8 @@ describe('ArticleFormComponent', () => {
 
       it('should be disabled if the form is invalid', () => {
         component.form.setValue({
-          ...pick(MOCK_ARTICLES[3], ARTICLE_FORM_DATA_PROPERTIES),
-          body: '', // Invalid - body is a required field
+          ...pick(MOCK_MEMBERS[3], MEMBER_FORM_DATA_PROPERTIES),
+          lastName: '', // Invalid - lastName is a required field
         });
         component.hasUnsavedChanges = true;
         fixture.detectChanges();
@@ -205,7 +187,7 @@ describe('ArticleFormComponent', () => {
       });
 
       it('should be enabled if there are unsaved changes and the form is valid', () => {
-        component.form.setValue(pick(MOCK_ARTICLES[3], ARTICLE_FORM_DATA_PROPERTIES));
+        component.form.setValue(pick(MOCK_MEMBERS[3], MEMBER_FORM_DATA_PROPERTIES));
         component.hasUnsavedChanges = true;
         fixture.detectChanges();
 
@@ -237,7 +219,7 @@ describe('ArticleFormComponent', () => {
           expect(initFormSpy).toHaveBeenCalledTimes(1);
           expect(initFormSpy).toHaveBeenCalledWith(component.formData);
 
-          for (const property of ARTICLE_FORM_DATA_PROPERTIES) {
+          for (const property of MEMBER_FORM_DATA_PROPERTIES) {
             expect(component.form.controls[property].value).toBe(
               component.formData[property],
             );
@@ -263,7 +245,7 @@ describe('ArticleFormComponent', () => {
           expect(initFormSpy).toHaveBeenCalledTimes(1);
           expect(initFormSpy).toHaveBeenCalledWith(component.formData);
 
-          for (const property of ARTICLE_FORM_DATA_PROPERTIES) {
+          for (const property of MEMBER_FORM_DATA_PROPERTIES) {
             expect(component.form.controls[property].value).toBe(
               component.formData[property],
             );
@@ -272,80 +254,50 @@ describe('ArticleFormComponent', () => {
         });
       });
     });
-
-    describe('fetching banner image', () => {
-      it('should not dispatch fetchImageRequested if bannerImage is defined', () => {
-        component.bannerImage = MOCK_IMAGES[0];
-        fixture.detectChanges();
-
-        jest.clearAllMocks();
-        component.ngOnInit();
-
-        expect(dispatchSpy).not.toHaveBeenCalledWith(
-          ImagesActions.fetchImageRequested({
-            imageId: component.formData.bannerImageId,
-          }),
-        );
-      });
-
-      it('should dispatch fetchImageRequested if bannerImage is null', () => {
-        component.bannerImage = null;
-        fixture.detectChanges();
-
-        jest.clearAllMocks();
-        component.ngOnInit();
-
-        expect(dispatchSpy).toHaveBeenCalledWith(
-          ImagesActions.fetchImageRequested({
-            imageId: component.formData.bannerImageId,
-          }),
-        );
-      });
-    });
   });
 
   describe('form validation', () => {
     describe('required validator', () => {
       it('should mark empty field as invalid', () => {
-        component.form.patchValue({ title: '' });
+        component.form.patchValue({ firstName: '' });
         fixture.detectChanges();
 
-        expect(component.form.controls.title.hasError('required')).toBe(true);
+        expect(component.form.controls.firstName.hasError('required')).toBe(true);
       });
 
       it('should mark non-empty field as valid', () => {
-        component.form.patchValue({ bannerImageId: 'id-1234' });
+        component.form.patchValue({ rating: '1000' });
         fixture.detectChanges();
 
-        expect(component.form.controls.bannerImageId.hasError('required')).toBe(false);
+        expect(component.form.controls.rating.hasError('required')).toBe(false);
       });
     });
 
     describe('pattern validator', () => {
       it('should mark field with an invalid pattern as invalid', () => {
         component.form.patchValue({
-          bannerImageId: ' ',
-          title: '\t\n',
-          body: '  ',
+          firstName: ' ',
+          lastName: '\t\n',
+          city: '  ',
         });
         fixture.detectChanges();
 
-        expect(component.form.controls.bannerImageId.hasError('pattern')).toBe(true);
-        expect(component.form.controls.title.hasError('pattern')).toBe(true);
-        expect(component.form.controls.body.hasError('pattern')).toBe(true);
+        expect(component.form.controls.firstName.hasError('pattern')).toBe(true);
+        expect(component.form.controls.lastName.hasError('pattern')).toBe(true);
+        expect(component.form.controls.city.hasError('pattern')).toBe(true);
       });
 
       it('should mark field with a valid pattern as valid', () => {
         component.form.patchValue({
-          bannerImageId: '🔥',
-          title: 'abc',
-          body: '123',
+          firstName: '🔥',
+          lastName: 'abc',
+          city: '123',
         });
         fixture.detectChanges();
 
-        expect(component.form.controls.bannerImageId.hasError('pattern')).toBe(false);
-        expect(component.form.controls.title.hasError('pattern')).toBe(false);
-        expect(component.form.controls.body.hasError('pattern')).toBe(false);
+        expect(component.form.controls.firstName.hasError('pattern')).toBe(false);
+        expect(component.form.controls.lastName.hasError('pattern')).toBe(false);
+        expect(component.form.controls.city.hasError('pattern')).toBe(false);
       });
     });
   });
@@ -353,7 +305,7 @@ describe('ArticleFormComponent', () => {
   describe('onRestore', () => {
     beforeEach(() => {
       component.hasUnsavedChanges = true;
-      component.originalArticle = MOCK_ARTICLES[4];
+      component.originalMember = MOCK_MEMBERS[4];
       fixture.detectChanges();
 
       component.ngOnInit();
@@ -364,7 +316,7 @@ describe('ArticleFormComponent', () => {
 
     afterEach(() => jest.useRealTimers());
 
-    it('should dispatch article form data reset and re-initialize form if dialog is confirmed', async () => {
+    it('should dispatch member form data reset and re-initialize form if dialog is confirmed', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
 
       await component.onRestore();
@@ -376,7 +328,7 @@ describe('ArticleFormComponent', () => {
         inputs: {
           dialog: {
             title: 'Confirm',
-            body: 'Restore original article data? All changes will be lost.',
+            body: 'Restore original member data? All changes will be lost.',
             confirmButtonText: 'Restore',
             confirmButtonType: 'warning',
           },
@@ -384,14 +336,14 @@ describe('ArticleFormComponent', () => {
       });
 
       expect(dispatchSpy).toHaveBeenCalledWith(
-        ArticlesActions.articleFormDataReset({ articleId: MOCK_ARTICLES[4].id }),
+        MembersActions.memberFormDataReset({ memberId: MOCK_MEMBERS[4].id }),
       );
       expect(initFormSpy).toHaveBeenCalledTimes(1);
       expect(initFormValueChangeListenerSpy).toHaveBeenCalledTimes(1);
 
       // Verify formValueChanged was dispatched at least once
       const formValueChangedCalls = dispatchSpy.mock.calls.filter(
-        call => call[0].type === ArticlesActions.formValueChanged.type,
+        call => call[0].type === MembersActions.formValueChanged.type,
       );
       expect(formValueChangedCalls.length).toBeGreaterThan(0);
     });
@@ -409,102 +361,31 @@ describe('ArticleFormComponent', () => {
     });
   });
 
-  describe('onOpenImageExplorer', () => {
-    it('should set selected image as the new banner image', async () => {
-      const newImageId = 'new_image_id';
-      dialogOpenSpy.mockResolvedValue(`${newImageId}-thumb`);
-      component.form.patchValue({ bannerImageId: 'old-image-id' });
-      fixture.detectChanges();
-      jest.clearAllMocks();
-
-      await component.onOpenImageExplorer();
-
-      expect(dialogOpenSpy).toHaveBeenCalledWith({
-        componentType: ImageExplorerComponent,
-        isModal: true,
-      });
-      expect(component.form.controls.bannerImageId.value).toBe(newImageId);
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        ImagesActions.fetchImageRequested({ imageId: newImageId }),
-      );
-    });
-
-    it('should keep current banner image if dialog is closed', async () => {
-      dialogOpenSpy.mockResolvedValue('close');
-      component.form.patchValue({ bannerImageId: 'old-image-id' });
-      fixture.detectChanges();
-      jest.clearAllMocks();
-
-      await component.onOpenImageExplorer();
-
-      expect(dialogOpenSpy).toHaveBeenCalledWith({
-        componentType: ImageExplorerComponent,
-        isModal: true,
-      });
-      expect(component.form.controls.bannerImageId.value).toBe('old-image-id');
-      expect(dispatchSpy).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('onRevertImage', () => {
-    it('should patch value originalArticle bannerImageId if originalArticle is defined', () => {
-      component.formData = pick(MOCK_ARTICLES[2], ARTICLE_FORM_DATA_PROPERTIES);
-      component.originalArticle = MOCK_ARTICLES[3];
-      fixture.detectChanges();
-
-      component.ngOnInit();
-      expect(component.form.controls.bannerImageId.value).toBe(
-        MOCK_ARTICLES[2].bannerImageId,
-      );
-
-      component.onRevertImage();
-
-      expect(component.form.controls.bannerImageId.value).toBe(
-        MOCK_ARTICLES[3].bannerImageId,
-      );
-    });
-
-    it('should patch value to empty string otherwise', async () => {
-      component.formData = pick(MOCK_ARTICLES[2], ARTICLE_FORM_DATA_PROPERTIES);
-      component.originalArticle = null;
-      fixture.detectChanges();
-
-      component.ngOnInit();
-      expect(component.form.controls.bannerImageId.value).toBe(
-        MOCK_ARTICLES[2].bannerImageId,
-      );
-
-      component.onRevertImage();
-
-      expect(component.form.controls.bannerImageId.value).toBe('');
-    });
-  });
-
   describe('onCancel', () => {
     it('should dispatch cancelSelected action', () => {
       component.onCancel();
-      expect(dispatchSpy).toHaveBeenCalledWith(ArticlesActions.cancelSelected());
+      expect(dispatchSpy).toHaveBeenCalledWith(MembersActions.cancelSelected());
     });
   });
 
   describe('onSubmit', () => {
     it('should mark all fields as touched if form is invalid on submit', async () => {
-      component.form.patchValue({ title: '' }); // Invalid - caption field is required
+      component.form.patchValue({ rating: '' }); // Invalid - rating field is required
       component.form.markAsPristine();
       component.form.markAsUntouched();
       fixture.detectChanges();
 
       await component.onSubmit();
 
-      expect(component.form.controls.title.touched).toBe(true);
+      expect(component.form.controls.rating.touched).toBe(true);
       expect(component.form.touched).toBe(true);
       expect(dialogOpenSpy).not.toHaveBeenCalled();
     });
 
-    it('should open confirmation dialog with correct data if adding a new article', async () => {
+    it('should open confirmation dialog with correct data if adding a new member', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
-      component.formData = pick(MOCK_ARTICLES[3], ARTICLE_FORM_DATA_PROPERTIES);
-      component.originalArticle = null;
+      component.formData = pick(MOCK_MEMBERS[3], MEMBER_FORM_DATA_PROPERTIES);
+      component.originalMember = null;
       fixture.detectChanges();
 
       await component.onSubmit();
@@ -515,18 +396,18 @@ describe('ArticleFormComponent', () => {
         inputs: {
           dialog: {
             title: 'Confirm',
-            body: `Publish ${MOCK_ARTICLES[3].title} to News page?`,
-            confirmButtonText: 'Publish',
+            body: `Add ${component.formData.firstName} ${component.formData.lastName}?`,
+            confirmButtonText: 'Add',
           },
         },
       });
-      expect(dispatchSpy).toHaveBeenCalledWith(ArticlesActions.publishArticleRequested());
+      expect(dispatchSpy).toHaveBeenCalledWith(MembersActions.addMemberRequested());
     });
 
-    it('should open confirmation dialog with correct data if updating an article', async () => {
+    it('should open confirmation dialog with correct data if updating a member', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
-      component.formData = pick(MOCK_ARTICLES[3], ARTICLE_FORM_DATA_PROPERTIES);
-      component.originalArticle = MOCK_ARTICLES[2];
+      component.formData = pick(MOCK_MEMBERS[3], MEMBER_FORM_DATA_PROPERTIES);
+      component.originalMember = MOCK_MEMBERS[2];
       fixture.detectChanges();
 
       await component.onSubmit();
@@ -537,30 +418,28 @@ describe('ArticleFormComponent', () => {
         inputs: {
           dialog: {
             title: 'Confirm',
-            body: `Update ${MOCK_ARTICLES[2].title} article?`,
+            body: `Update ${component.originalMember.firstName} ${component.originalMember.lastName}?`,
             confirmButtonText: 'Update',
           },
         },
       });
       expect(dispatchSpy).toHaveBeenCalledWith(
-        ArticlesActions.updateArticleRequested({ articleId: MOCK_ARTICLES[2].id }),
+        MembersActions.updateMemberRequested({ memberId: MOCK_MEMBERS[2].id }),
       );
     });
 
     it('should not dispatch action if dialog is cancelled', async () => {
       dialogOpenSpy.mockResolvedValue('cancel');
-      component.formData = pick(MOCK_ARTICLES[3], ARTICLE_FORM_DATA_PROPERTIES);
-      component.originalArticle = null;
+      component.formData = pick(MOCK_MEMBERS[3], MEMBER_FORM_DATA_PROPERTIES);
+      component.originalMember = null;
       fixture.detectChanges();
 
       await component.onSubmit();
 
       expect(dialogOpenSpy).toHaveBeenCalledTimes(1);
+      expect(dispatchSpy).not.toHaveBeenCalledWith(MembersActions.addMemberRequested());
       expect(dispatchSpy).not.toHaveBeenCalledWith(
-        ArticlesActions.publishArticleRequested(),
-      );
-      expect(dispatchSpy).not.toHaveBeenCalledWith(
-        ArticlesActions.updateArticleRequested({ articleId: MOCK_ARTICLES[2].id }),
+        MembersActions.updateMemberRequested({ memberId: MOCK_MEMBERS[2].id }),
       );
     });
   });

@@ -53,4 +53,10 @@ export class ImagesService {
       `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
     );
   }
+
+  public deleteAlbum(album: string): Observable<ApiResponse<Id[]>> {
+    return this.http.delete<ApiResponse<Id[]>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/album/${encodeURIComponent(album)}`,
+    );
+  }
 }

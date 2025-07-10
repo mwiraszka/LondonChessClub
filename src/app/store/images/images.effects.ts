@@ -343,6 +343,22 @@ export class ImagesEffects {
     );
   });
 
+  deleteAlbum$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.deleteAlbumRequested),
+      tap(() => this.loaderService.setIsLoading(true)),
+      switchMap(({ album, imageIds }) => {
+        return this.imagesService.deleteAlbum(album).pipe(
+          map(() => ImagesActions.deleteAlbumSucceeded({ album, imageIds })),
+          catchError(error =>
+            of(ImagesActions.deleteAlbumFailed({ album, error: parseError(error) })),
+          ),
+        );
+      }),
+      tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
   constructor(
     private readonly actions$: Actions,
     private readonly imageFileService: ImageFileService,

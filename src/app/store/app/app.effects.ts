@@ -328,7 +328,7 @@ export class AppEffects {
       case ImagesActions.deleteAlbumSucceeded.type:
         return {
           title: 'Album deletion',
-          message: `Successfully deleted ${action.album} and all its images`,
+          message: `Successfully deleted ${action.album} and all ${action.imageIds.length} of its images`,
           type: 'success',
         };
       case ImagesActions.deleteImageFailed.type:

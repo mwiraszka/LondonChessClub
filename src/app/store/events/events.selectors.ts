@@ -10,6 +10,11 @@ import { EventsState, eventsAdapter } from './events.reducer';
 
 const selectEventsState = createFeatureSelector<EventsState>('eventsState');
 
+export const selectLastFetch = createSelector(
+  selectEventsState,
+  state => state.lastFetch,
+);
+
 const { selectAll: selectAllEventEntities } =
   eventsAdapter.getSelectors(selectEventsState);
 

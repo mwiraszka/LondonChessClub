@@ -113,12 +113,12 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
     this.background = 'var(--lcc-color--contentPlaceholder-background)';
     this.setAspectRatio(this.image?.width || 200, this.image?.height || 200);
 
-    // Don't hide the img element completely
-    this.renderer.removeAttribute(this.elementRef.nativeElement, 'src');
-
-    this.currentSrc = null;
+    // Use the data URI for a transparent 1x1 pixel image to hide the broken image icon
+    this.currentSrc =
+      'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
     const shimmer = this.renderer.createElement('div');
+
     this.renderer.addClass(shimmer, 'lcc-content-placeholder');
     this.renderer.setStyle(shimmer, 'position', 'absolute');
     this.renderer.setStyle(shimmer, 'top', '0');

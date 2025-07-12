@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import { EVENT_FORM_DATA_PROPERTIES, INITIAL_EVENT_FORM_DATA } from '@app/constants';
-import type { Event, EventFormData } from '@app/models';
+import type { Event, EventFormData, IsoDate } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as EventsActions from './events.actions';
@@ -12,6 +12,7 @@ export interface EventsState
   extends EntityState<{ event: Event; formData: EventFormData }> {
   newEventFormData: EventFormData;
   showPastEvents: boolean;
+  lastFetch: IsoDate | null;
 }
 
 export const eventsAdapter = createEntityAdapter<{
@@ -25,6 +26,7 @@ export const eventsAdapter = createEntityAdapter<{
 export const initialState: EventsState = eventsAdapter.getInitialState({
   newEventFormData: INITIAL_EVENT_FORM_DATA,
   showPastEvents: false,
+  lastFetch: null,
 });
 
 export const eventsReducer = createReducer(
@@ -36,7 +38,7 @@ export const eventsReducer = createReducer(
         event,
         formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
       })),
-      state,
+      { ...state, lastFetch: new Date().toISOString() },
     );
   }),
 

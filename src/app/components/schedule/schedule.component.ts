@@ -1,4 +1,5 @@
 import { Store } from '@ngrx/store';
+import { take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
@@ -17,7 +18,8 @@ import type {
 } from '@app/models';
 import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { EventsActions } from '@app/store/events';
+import { EventsActions, EventsSelectors } from '@app/store/events';
+import { isSecondsInPast } from '@app/utils';
 
 @Component({
   selector: 'lcc-schedule',
@@ -56,11 +58,14 @@ export class ScheduleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.fetchEvents();
-  }
-
-  public fetchEvents(): void {
-    this.store.dispatch(EventsActions.fetchEventsRequested());
+    this.store
+      .select(EventsSelectors.selectLastFetch)
+      .pipe(take(1))
+      .subscribe(lastFetch => {
+        if (!lastFetch || isSecondsInPast(lastFetch, 60)) {
+          this.store.dispatch(EventsActions.fetchEventsRequested());
+        }
+      });
   }
 
   public getAdminControlsConfig(event: Event): AdminControlsConfig {

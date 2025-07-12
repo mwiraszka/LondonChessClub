@@ -69,6 +69,12 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchBatchThumbnailsRequested),
       switchMap(({ imageIds, context }) => {
+        // return of(
+        //   ImagesActions.fetchBatchThumbnailsFailed({
+        //     error: parseError('test'),
+        //   }),
+        // );
+
         return this.imagesService.getBatchThumbnailImages(imageIds).pipe(
           map(response =>
             ImagesActions.fetchBatchThumbnailsSucceeded({

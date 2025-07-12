@@ -57,7 +57,6 @@ export class PhotoGridComponent implements OnChanges {
   ];
 
   public get albumCovers(): Image[] {
-    console.log(':: photoImages', this.photoImages);
     return this.photoImages
       .filter(image => image.albumCover)
       .map(image => ({

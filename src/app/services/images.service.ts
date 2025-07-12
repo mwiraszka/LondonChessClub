@@ -17,20 +17,26 @@ export class ImagesService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getThumbnailImages(): Observable<ApiResponse<Image[]>> {
-    return this.http.get<ApiResponse<Image[]>>(`${this.API_BASE_URL}/${this.COLLECTION}`);
-  }
-
-  public getImage(id: Id): Observable<ApiResponse<Image>> {
-    return this.http.get<ApiResponse<Image>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
+  public getAllImagesMetadata(): Observable<ApiResponse<BaseImage[]>> {
+    return this.http.get<ApiResponse<BaseImage[]>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/metadata`,
     );
   }
 
-  public getImageBatch(ids: Id[]): Observable<ApiResponse<Image[]>> {
+  public getAllThumbnailImages(): Observable<ApiResponse<Image[]>> {
+    return this.http.get<ApiResponse<Image[]>>(`${this.API_BASE_URL}/${this.COLLECTION}`);
+  }
+
+  public getBatchThumbnailImages(ids: Id[]): Observable<ApiResponse<Image[]>> {
     return this.http.get<ApiResponse<Image[]>>(
       `${this.API_BASE_URL}/${this.COLLECTION}/batch`,
       { params: { ids: ids.join(',') } },
+    );
+  }
+
+  public getOriginalImage(id: Id): Observable<ApiResponse<Image>> {
+    return this.http.get<ApiResponse<Image>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
     );
   }
 

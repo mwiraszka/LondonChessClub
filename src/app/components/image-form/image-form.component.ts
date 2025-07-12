@@ -81,7 +81,7 @@ export class ImageFormComponent implements OnInit {
       !this.imageEntity.image.originalUrl
     ) {
       this.store.dispatch(
-        ImagesActions.fetchImageRequested({
+        ImagesActions.fetchOriginalRequested({
           imageId: this.imageEntity.image.id,
         }),
       );

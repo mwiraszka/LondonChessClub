@@ -17,20 +17,20 @@ import { ImagesActions, ImagesSelectors } from '.';
 
 @Injectable()
 export class ImagesEffects {
-  fetchImageThumbnails$ = createEffect(() => {
+  fetchAllImagesMetadata$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchImageThumbnailsRequested),
+      ofType(ImagesActions.fetchAllImagesMetadataRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() =>
-        this.imagesService.getThumbnailImages().pipe(
+        this.imagesService.getAllImagesMetadata().pipe(
           map(response =>
-            ImagesActions.fetchImageThumbnailsSucceeded({
+            ImagesActions.fetchAllImagesMetadataSucceeded({
               images: response.data,
             }),
           ),
           catchError(error =>
             of(
-              ImagesActions.fetchImageThumbnailsFailed({
+              ImagesActions.fetchAllImagesMetadataFailed({
                 error: parseError(error),
               }),
             ),
@@ -41,15 +41,44 @@ export class ImagesEffects {
     );
   });
 
-  fetchImage$ = createEffect(() => {
+  fetchAllThumbnailImages$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchImageRequested),
-      switchMap(({ imageId }) => {
-        return this.imagesService.getImage(imageId).pipe(
-          map(response => ImagesActions.fetchImageSucceeded({ image: response.data })),
+      ofType(ImagesActions.fetchAllThumbnailsRequested),
+      tap(() => this.loaderService.setIsLoading(true)),
+      switchMap(() =>
+        this.imagesService.getAllThumbnailImages().pipe(
+          map(response =>
+            ImagesActions.fetchAllThumbnailsSucceeded({
+              images: response.data,
+            }),
+          ),
+          catchError(error =>
+            of(
+              ImagesActions.fetchAllThumbnailsFailed({
+                error: parseError(error),
+              }),
+            ),
+          ),
+        ),
+      ),
+      tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
+  fetchBatchThumbnailImages$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.fetchBatchThumbnailsRequested),
+      switchMap(({ imageIds, context }) => {
+        return this.imagesService.getBatchThumbnailImages(imageIds).pipe(
+          map(response =>
+            ImagesActions.fetchBatchThumbnailsSucceeded({
+              images: response.data,
+              context,
+            }),
+          ),
           catchError(error => {
             return of(
-              ImagesActions.fetchImageFailed({
+              ImagesActions.fetchBatchThumbnailsFailed({
                 error: parseError(error),
               }),
             );
@@ -59,15 +88,15 @@ export class ImagesEffects {
     );
   });
 
-  fetchImages$ = createEffect(() => {
+  fetchOriginalImage$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchImagesRequested),
-      switchMap(({ imageIds }) => {
-        return this.imagesService.getImageBatch(imageIds).pipe(
-          map(response => ImagesActions.fetchImagesSucceeded({ images: response.data })),
+      ofType(ImagesActions.fetchOriginalRequested),
+      switchMap(({ imageId }) => {
+        return this.imagesService.getOriginalImage(imageId).pipe(
+          map(response => ImagesActions.fetchOriginalSucceeded({ image: response.data })),
           catchError(error => {
             return of(
-              ImagesActions.fetchImagesFailed({
+              ImagesActions.fetchOriginalFailed({
                 error: parseError(error),
               }),
             );
@@ -303,6 +332,22 @@ export class ImagesEffects {
     );
   });
 
+  deleteAlbum$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.deleteAlbumRequested),
+      tap(() => this.loaderService.setIsLoading(true)),
+      switchMap(({ album, imageIds }) => {
+        return this.imagesService.deleteAlbum(album).pipe(
+          map(() => ImagesActions.deleteAlbumSucceeded({ album, imageIds })),
+          catchError(error =>
+            of(ImagesActions.deleteAlbumFailed({ album, error: parseError(error) })),
+          ),
+        );
+      }),
+      tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
   automaticallyUpdateAlbumCoverAfterImageDeletion$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.deleteImageSucceeded),
@@ -340,22 +385,6 @@ export class ImagesEffects {
           ),
         );
       }),
-    );
-  });
-
-  deleteAlbum$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ImagesActions.deleteAlbumRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(({ album, imageIds }) => {
-        return this.imagesService.deleteAlbum(album).pipe(
-          map(() => ImagesActions.deleteAlbumSucceeded({ album, imageIds })),
-          catchError(error =>
-            of(ImagesActions.deleteAlbumFailed({ album, error: parseError(error) })),
-          ),
-        );
-      }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 

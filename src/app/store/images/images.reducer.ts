@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import { compact, pick } from 'lodash';
 
 import { IMAGE_FORM_DATA_PROPERTIES, INITIAL_IMAGE_FORM_DATA } from '@app/constants';
-import { Id, Image, ImageFormData } from '@app/models';
+import { Id, Image, ImageFormData, IsoDate } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as ImagesActions from './images.actions';
@@ -11,6 +11,10 @@ import * as ImagesActions from './images.actions';
 export interface ImagesState
   extends EntityState<{ image: Image; formData: ImageFormData }> {
   newImagesFormData: Record<string, ImageFormData>;
+  lastMetadataFetch: IsoDate | null;
+  lastThumbnailsFetch: IsoDate | null;
+  lastAlbumCoversFetch: IsoDate | null;
+  lastArticleImagesFetch: IsoDate | null;
 }
 
 export const imagesAdapter = createEntityAdapter<{
@@ -23,14 +27,57 @@ export const imagesAdapter = createEntityAdapter<{
 
 export const initialState: ImagesState = imagesAdapter.getInitialState({
   newImagesFormData: {},
+  lastMetadataFetch: null,
+  lastThumbnailsFetch: null,
+  lastAlbumCoversFetch: null,
+  lastArticleImagesFetch: null,
 });
 
 export const imagesReducer = createReducer(
   initialState,
 
   on(
-    ImagesActions.fetchImageThumbnailsSucceeded,
+    ImagesActions.fetchAllImagesMetadataSucceeded,
     (state, { images }): ImagesState =>
+      imagesAdapter.upsertMany(
+        images.map(image => {
+          return {
+            image,
+            formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
+          };
+        }),
+        { ...state, lastMetadataFetch: new Date(Date.now()).toISOString() },
+      ),
+  ),
+
+  on(ImagesActions.fetchAllThumbnailsSucceeded, (state, { images }): ImagesState => {
+    const fetchDate = new Date(Date.now()).toISOString();
+
+    return imagesAdapter.upsertMany(
+      images.map(image => {
+        const originalEntity = image ? state.entities[image.id] : null;
+
+        return {
+          image: {
+            ...image,
+            originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
+            thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
+          },
+          formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
+        };
+      }),
+      {
+        ...state,
+        lastThumbnailsFetch: fetchDate,
+        lastArticleImagesFetch: fetchDate,
+        lastAlbumCoversFetch: fetchDate,
+      },
+    );
+  }),
+
+  on(
+    ImagesActions.fetchBatchThumbnailsSucceeded,
+    (state, { images, context }): ImagesState =>
       imagesAdapter.upsertMany(
         images.map(image => {
           const originalEntity = image ? state.entities[image.id] : null;
@@ -44,11 +91,21 @@ export const imagesReducer = createReducer(
             formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
           };
         }),
-        state,
+        {
+          ...state,
+          lastArticleImagesFetch:
+            context === 'articles'
+              ? new Date(Date.now()).toISOString()
+              : state.lastArticleImagesFetch,
+          lastAlbumCoversFetch:
+            context === 'photos'
+              ? new Date(Date.now()).toISOString()
+              : state.lastAlbumCoversFetch,
+        },
       ),
   ),
 
-  on(ImagesActions.fetchImageSucceeded, (state, { image }): ImagesState => {
+  on(ImagesActions.fetchOriginalSucceeded, (state, { image }): ImagesState => {
     const originalEntity = image ? state.entities[image.id] : null;
 
     return imagesAdapter.upsertOne(
@@ -60,24 +117,6 @@ export const imagesReducer = createReducer(
         },
         formData: originalEntity?.formData ?? pick(image, IMAGE_FORM_DATA_PROPERTIES),
       },
-      state,
-    );
-  }),
-
-  on(ImagesActions.fetchImagesSucceeded, (state, { images }): ImagesState => {
-    return imagesAdapter.upsertMany(
-      images.map(image => {
-        const originalEntity = image ? state.entities[image.id] : null;
-
-        return {
-          image: {
-            ...image,
-            originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
-            thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
-          },
-          formData: originalEntity?.formData ?? pick(image, IMAGE_FORM_DATA_PROPERTIES),
-        };
-      }),
       state,
     );
   }),

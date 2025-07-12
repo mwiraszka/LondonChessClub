@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import { INITIAL_MEMBER_FORM_DATA, MEMBER_FORM_DATA_PROPERTIES } from '@app/constants';
-import type { Member, MemberFormData } from '@app/models';
+import type { IsoDate, Member, MemberFormData } from '@app/models';
 
 import * as MembersActions from './members.actions';
 
@@ -15,6 +15,7 @@ export interface MembersState
   pageNum: number;
   pageSize: number;
   showActiveOnly: boolean;
+  lastFetch: IsoDate | null;
 }
 
 export const membersAdapter = createEntityAdapter<{
@@ -31,6 +32,7 @@ export const initialState: MembersState = membersAdapter.getInitialState({
   pageNum: 1,
   pageSize: 20,
   showActiveOnly: true,
+  lastFetch: null,
 });
 
 export const membersReducer = createReducer(
@@ -44,7 +46,7 @@ export const membersReducer = createReducer(
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
         })),
-        state,
+        { ...state, lastFetch: new Date().toISOString() },
       ),
   ),
 

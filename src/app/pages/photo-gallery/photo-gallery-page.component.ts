@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +12,8 @@ import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.compon
 import type { ExternalLink, Image } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { ImagesSelectors } from '@app/store/images';
+import { ImagesActions, ImagesSelectors } from '@app/store/images';
+import { isSecondsInPast } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -111,7 +112,7 @@ export class PhotoGalleryPageComponent implements OnInit {
       externalPath: 'https://londonchessclub.ca/?page_id=916',
     },
   ].map(link => ({ ...link, icon: 'photo_camera' }));
-  public viewModel$?: Observable<{ photoImages: Image[]; isAdmin: boolean }>;
+  public viewModel$?: Observable<{ isAdmin: boolean; photoImages: Image[] }>;
 
   constructor(
     private readonly metaAndTitleService: MetaAndTitleService,
@@ -125,11 +126,20 @@ export class PhotoGalleryPageComponent implements OnInit {
     );
 
     this.viewModel$ = combineLatest([
-      this.store.select(ImagesSelectors.selectPhotoImages),
       this.store.select(AuthSelectors.selectIsAdmin),
+      this.store.select(ImagesSelectors.selectPhotoImages),
     ]).pipe(
       untilDestroyed(this),
-      map(([photoImages, isAdmin]) => ({ photoImages, isAdmin })),
+      map(([isAdmin, photoImages]) => ({ isAdmin, photoImages })),
     );
+
+    this.store
+      .select(ImagesSelectors.selectLastMetadataFetch)
+      .pipe(take(1))
+      .subscribe(lastFetch => {
+        if (!lastFetch || isSecondsInPast(lastFetch, 60)) {
+          this.store.dispatch(ImagesActions.fetchAllImagesMetadataRequested());
+        }
+      });
   }
 }

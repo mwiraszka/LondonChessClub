@@ -93,11 +93,14 @@ export class AlbumFormComponent implements OnInit {
     this.initFormValueChangeListener();
 
     if (this.imageEntities.length) {
+      const imageIds = this.imageEntities
+        .filter(entity => !entity.image.thumbnailUrl && !entity.image.originalUrl)
+        .map(entity => entity.image.id);
+
       this.store.dispatch(
-        ImagesActions.fetchImagesRequested({
-          imageIds: this.imageEntities
-            .filter(entity => !entity.image.thumbnailUrl && !entity.image.originalUrl)
-            .map(entity => entity.image.id),
+        ImagesActions.fetchBatchThumbnailsRequested({
+          imageIds,
+          context: 'album',
         }),
       );
     }

@@ -64,9 +64,9 @@ describe('ImageViewerComponent', () => {
   });
 
   describe('initialization', () => {
-    it('should dispatch fetchImageRequested for image at index 0', () => {
+    it('should dispatch fetchOriginalRequested for image at index 0', () => {
       expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchImageRequested({ imageId: mockImages[0].id }),
+        ImagesActions.fetchOriginalRequested({ imageId: mockImages[0].id }),
       );
     });
 

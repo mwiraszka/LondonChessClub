@@ -19,7 +19,6 @@ export class ArticlesEffects {
   fetchArticles$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticlesRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() =>
         this.articlesService.getArticles().pipe(
           map(response =>
@@ -30,7 +29,6 @@ export class ArticlesEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 

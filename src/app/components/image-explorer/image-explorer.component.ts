@@ -1,6 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 
 import { CdkScrollable, CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
@@ -22,6 +22,7 @@ import { FormatBytesPipe, FormatDatePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 import * as ImagesActions from '@app/store/images/images.actions';
 import * as ImagesSelectors from '@app/store/images/images.selectors';
+import { isSecondsInPast } from '@app/utils';
 
 import { LinkListComponent } from '../link-list/link-list.component';
 
@@ -60,7 +61,15 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(ImagesActions.fetchImageThumbnailsRequested());
+    this.store
+      .select(ImagesSelectors.selectLastThumbnailsFetch)
+      .pipe(take(1))
+      .subscribe(lastFetch => {
+        if (!lastFetch || isSecondsInPast(lastFetch, 60)) {
+          this.store.dispatch(ImagesActions.fetchAllThumbnailsRequested());
+        }
+      });
+
     this.images$ = this.store
       .select(ImagesSelectors.selectAllImages)
       .pipe(untilDestroyed(this));

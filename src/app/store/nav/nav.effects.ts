@@ -255,7 +255,7 @@ export class NavEffects {
         if (controlMode === 'add' && !isDefined(imageId)) {
           return ImagesActions.addAnImageSelected();
         } else if (controlMode === 'edit' && isValidCollectionId(imageId)) {
-          return ImagesActions.fetchImageRequested({ imageId });
+          return ImagesActions.fetchOriginalRequested({ imageId });
         } else {
           return NavActions.navigationRequested({ path: 'photo-gallery' });
         }
@@ -303,7 +303,7 @@ export class NavEffects {
 
   redirectToPhotoGalleryRouteOnImageFetchFail$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ImagesActions.fetchImageFailed),
+      ofType(ImagesActions.fetchOriginalFailed),
       map(() => NavActions.navigationRequested({ path: '' })),
     ),
   );
@@ -320,7 +320,7 @@ export class NavEffects {
       ),
       filter(([, article]) => isDefined(article?.bannerImageId)),
       map(([, article]) =>
-        ImagesActions.fetchImageRequested({ imageId: article!.bannerImageId! }),
+        ImagesActions.fetchOriginalRequested({ imageId: article!.bannerImageId! }),
       ),
     ),
   );

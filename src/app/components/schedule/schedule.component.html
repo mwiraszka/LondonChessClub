@@ -11,7 +11,7 @@
   <tbody>
     @for (
       event of showPastEvents && allowTogglePastEvents
-        ? allEvents
+        ? events
         : upcomingEvents.slice(0, upcomingEventLimit ?? upcomingEvents.length);
       track event.id
     ) {

@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import { ARTICLE_FORM_DATA_PROPERTIES, INITIAL_ARTICLE_FORM_DATA } from '@app/constants';
-import type { Article, ArticleFormData } from '@app/models';
+import type { Article, ArticleFormData, IsoDate } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
@@ -11,6 +11,7 @@ import * as ArticlesActions from './articles.actions';
 export interface ArticlesState
   extends EntityState<{ article: Article; formData: ArticleFormData }> {
   newArticleFormData: ArticleFormData;
+  lastFetch: IsoDate | null;
 }
 
 export const articlesAdapter = createEntityAdapter<{
@@ -31,6 +32,7 @@ export const articlesAdapter = createEntityAdapter<{
 
 export const initialState: ArticlesState = articlesAdapter.getInitialState({
   newArticleFormData: INITIAL_ARTICLE_FORM_DATA,
+  lastFetch: null,
 });
 
 export const articlesReducer = createReducer(
@@ -44,7 +46,7 @@ export const articlesReducer = createReducer(
           article,
           formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
         })),
-        state,
+        { ...state, lastFetch: new Date().toISOString() },
       ),
   ),
 

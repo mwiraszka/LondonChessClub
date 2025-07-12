@@ -48,9 +48,9 @@ describe('ImageExplorerComponent', () => {
   });
 
   describe('initialization', () => {
-    it('should dispatch fetchImageThumbnailsRequested on init', () => {
+    it('should dispatch fetchAllThumbnailsRequested on init', () => {
       expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchImageThumbnailsRequested(),
+        ImagesActions.fetchAllThumbnailsRequested(),
       );
     });
 

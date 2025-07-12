@@ -68,8 +68,10 @@ export class AppEffects {
     ImagesActions.deleteAlbumSucceeded,
     ImagesActions.deleteImageFailed,
     ImagesActions.deleteImageSucceeded,
-    ImagesActions.fetchImageFailed,
-    ImagesActions.fetchImageThumbnailsFailed,
+    ImagesActions.fetchAllImagesMetadataFailed,
+    ImagesActions.fetchAllThumbnailsFailed,
+    ImagesActions.fetchBatchThumbnailsFailed,
+    ImagesActions.fetchOriginalFailed,
     ImagesActions.imageFileActionFailed,
     ImagesActions.updateAlbumFailed,
     ImagesActions.updateImageFailed,
@@ -92,8 +94,9 @@ export class AppEffects {
     ArticlesActions.fetchArticleFailed,
     EventsActions.fetchEventsFailed,
     EventsActions.fetchEventFailed,
-    ImagesActions.fetchImageThumbnailsFailed,
-    ImagesActions.fetchImageFailed,
+    ImagesActions.fetchAllThumbnailsFailed,
+    ImagesActions.fetchBatchThumbnailsFailed,
+    ImagesActions.fetchOriginalFailed,
     MembersActions.fetchMembersFailed,
     MembersActions.fetchMemberFailed,
   ] as const;
@@ -343,15 +346,27 @@ export class AppEffects {
           message: `Successfully deleted ${action.image.filename}`,
           type: 'success',
         };
-      case ImagesActions.fetchImageFailed.type:
+      case ImagesActions.fetchAllImagesMetadataFailed.type:
         return {
-          title: 'Load image',
+          title: "Fetch images' metadata",
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case ImagesActions.fetchImageThumbnailsFailed.type:
+      case ImagesActions.fetchAllThumbnailsFailed.type:
         return {
-          title: 'Load image thumbnails',
+          title: 'Fetch images',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case ImagesActions.fetchBatchThumbnailsFailed.type:
+        return {
+          title: 'Fetch images',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case ImagesActions.fetchOriginalFailed.type:
+        return {
+          title: 'Fetch image',
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };

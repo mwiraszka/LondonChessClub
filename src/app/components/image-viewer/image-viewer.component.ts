@@ -197,7 +197,7 @@ export class ImageViewerComponent
       .pipe(take(1))
       .subscribe(image => {
         if (!image?.originalUrl) {
-          this.store.dispatch(ImagesActions.fetchImageRequested({ imageId }));
+          this.store.dispatch(ImagesActions.fetchOriginalRequested({ imageId }));
         }
       });
   }

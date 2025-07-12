@@ -17,6 +17,22 @@ export const selectNewImagesFormData = createSelector(selectImagesState, state =
   return state.newImagesFormData;
 });
 
+export const selectLastMetadataFetch = createSelector(selectImagesState, state => {
+  return state.lastMetadataFetch;
+});
+
+export const selectLastThumbnailsFetch = createSelector(selectImagesState, state => {
+  return state.lastThumbnailsFetch;
+});
+
+export const selectLastAlbumCoversFetch = createSelector(selectImagesState, state => {
+  return state.lastAlbumCoversFetch;
+});
+
+export const selectLastArticleImagesFetch = createSelector(selectImagesState, state => {
+  return state.lastArticleImagesFetch;
+});
+
 export const selectNewImageFormData = createSelector(
   selectNewImagesFormData,
   newImagesFormData => {

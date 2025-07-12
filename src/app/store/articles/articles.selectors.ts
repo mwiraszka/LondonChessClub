@@ -9,6 +9,11 @@ import { ArticlesState, articlesAdapter } from './articles.reducer';
 
 const selectArticlesState = createFeatureSelector<ArticlesState>('articlesState');
 
+export const selectLastFetch = createSelector(
+  selectArticlesState,
+  state => state.lastFetch,
+);
+
 const { selectAll: selectAllArticleEntities } =
   articlesAdapter.getSelectors(selectArticlesState);
 

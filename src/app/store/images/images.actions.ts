@@ -1,43 +1,64 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Id, Image, ImageFormData, LccError } from '@app/models';
+import type {
+  BatchImageFetchContext,
+  Id,
+  Image,
+  ImageFormData,
+  LccError,
+} from '@app/models';
 import { BaseImage } from '@app/models/image.model';
 
-export const fetchImageThumbnailsRequested = createAction(
-  '[Images] Fetch image thumbnails requested',
+export const fetchAllImagesMetadataRequested = createAction(
+  '[Images] Fetch all images metadata requested',
 );
-export const fetchImageThumbnailsSucceeded = createAction(
-  '[Images] Fetch image thumbnails succeeded',
-  props<{ images: Image[] }>(),
+export const fetchAllImagesMetadataSucceeded = createAction(
+  '[Images] Fetch all images metadata succeeded',
+  props<{ images: BaseImage[] }>(),
 );
-export const fetchImageThumbnailsFailed = createAction(
-  '[Images] Fetch image thumbnails failed',
+export const fetchAllImagesMetadataFailed = createAction(
+  '[Images] Fetch all images metadata failed',
   props<{ error: LccError }>(),
 );
 
-export const fetchImageRequested = createAction(
-  '[Images] Fetch image requested',
+export const fetchAllThumbnailsRequested = createAction(
+  '[Images] Fetch all thumbnails requested',
+);
+export const fetchAllThumbnailsSucceeded = createAction(
+  '[Images] Fetch all thumbnails succeeded',
+  props<{ images: Image[] }>(),
+);
+export const fetchAllThumbnailsFailed = createAction(
+  '[Images] Fetch all thumbnails failed',
+  props<{ error: LccError }>(),
+);
+
+export const fetchBatchThumbnailsRequested = createAction(
+  '[Images] Fetch batch thumbnails requested',
+  props<{
+    imageIds: Id[];
+    context: BatchImageFetchContext;
+  }>(),
+);
+export const fetchBatchThumbnailsSucceeded = createAction(
+  '[Images] Fetch batch thumbnails succeeded',
+  props<{ images: Image[]; context: BatchImageFetchContext }>(),
+);
+export const fetchBatchThumbnailsFailed = createAction(
+  '[Images] Fetch batch thumbnails failed',
+  props<{ error: LccError }>(),
+);
+
+export const fetchOriginalRequested = createAction(
+  '[Images] Fetch original requested',
   props<{ imageId: Id }>(),
 );
-export const fetchImageSucceeded = createAction(
-  '[Images] Fetch image succeeded',
+export const fetchOriginalSucceeded = createAction(
+  '[Images] Fetch original succeeded',
   props<{ image: Image }>(),
 );
-export const fetchImageFailed = createAction(
-  '[Images] Fetch image failed',
-  props<{ error: LccError }>(),
-);
-
-export const fetchImagesRequested = createAction(
-  '[Images] Fetch images requested',
-  props<{ imageIds: Id[] }>(),
-);
-export const fetchImagesSucceeded = createAction(
-  '[Images] Fetch images succeeded',
-  props<{ images: Image[] }>(),
-);
-export const fetchImagesFailed = createAction(
-  '[Images] Fetch images failed',
+export const fetchOriginalFailed = createAction(
+  '[Images] Fetch original failed',
   props<{ error: LccError }>(),
 );
 

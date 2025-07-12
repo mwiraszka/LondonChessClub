@@ -257,7 +257,7 @@ describe('AlbumFormComponent', () => {
         expect(fetchNewImageDataUrlsSpy).not.toHaveBeenCalled();
       });
 
-      it('should not dispatch fetchImageRequested', () => {
+      it('should not dispatch fetchBatchThumbnailsRequested', () => {
         expect(dispatchSpy).not.toHaveBeenCalled();
       });
     });
@@ -305,10 +305,11 @@ describe('AlbumFormComponent', () => {
         expect(fetchNewImageDataUrlsSpy).toHaveBeenCalledTimes(1);
       });
 
-      it('should not dispatch fetchImageRequested', () => {
+      it('should not dispatch fetchBatchThumbnailsRequested', () => {
         expect(dispatchSpy).not.toHaveBeenCalledWith(
-          ImagesActions.fetchImagesRequested({
+          ImagesActions.fetchBatchThumbnailsRequested({
             imageIds: [MOCK_IMAGES[0].id, MOCK_IMAGES[3].id],
+            context: 'album',
           }),
         );
       });
@@ -362,10 +363,11 @@ describe('AlbumFormComponent', () => {
         expect(fetchNewImageDataUrlsSpy).not.toHaveBeenCalled();
       });
 
-      it('should not dispatch fetchImageRequested', () => {
+      it('should not dispatch fetchBatchThumbnailsRequested', () => {
         expect(dispatchSpy).not.toHaveBeenCalledWith(
-          ImagesActions.fetchImagesRequested({
+          ImagesActions.fetchBatchThumbnailsRequested({
             imageIds: [MOCK_IMAGES[0].id, MOCK_IMAGES[3].id],
+            context: 'album',
           }),
         );
       });
@@ -430,16 +432,15 @@ describe('AlbumFormComponent', () => {
       });
 
       it('should not call fetchNewImagesDataUrls', () => {
-        expect(dispatchSpy).not.toHaveBeenCalledWith(
-          ImagesActions.fetchImagesRequested({
-            imageIds: [MOCK_IMAGES[0].id, MOCK_IMAGES[3].id],
-          }),
-        );
+        expect(fetchNewImageDataUrlsSpy).not.toHaveBeenCalled();
       });
 
-      it('should dispatch fetchImageRequested only for the image with undefined urls', () => {
+      it('should dispatch fetchBatchThumbnailsRequested only for the image with undefined urls', () => {
         expect(dispatchSpy).toHaveBeenCalledWith(
-          ImagesActions.fetchImagesRequested({ imageIds: [MOCK_IMAGES[3].id] }),
+          ImagesActions.fetchBatchThumbnailsRequested({
+            imageIds: [MOCK_IMAGES[3].id],
+            context: 'album',
+          }),
         );
       });
     });

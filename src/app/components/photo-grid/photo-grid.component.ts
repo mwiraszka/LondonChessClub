@@ -1,7 +1,8 @@
 import { Store } from '@ngrx/store';
+import { take } from 'rxjs';
 
 import { UpperCasePipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
@@ -20,8 +21,8 @@ import {
   InternalLink,
 } from '@app/models';
 import { DialogService } from '@app/services';
-import { ImagesActions } from '@app/store/images';
-import { customSort } from '@app/utils';
+import { ImagesActions, ImagesSelectors } from '@app/store/images';
+import { customSort, isSecondsInPast } from '@app/utils';
 
 @Component({
   selector: 'lcc-photo-grid',
@@ -36,7 +37,7 @@ import { customSort } from '@app/utils';
     UpperCasePipe,
   ],
 })
-export class PhotoGridComponent implements OnInit {
+export class PhotoGridComponent implements OnChanges {
   @Input({ required: true }) public isAdmin!: boolean;
   @Input({ required: true }) public photoImages!: Image[];
 
@@ -56,7 +57,15 @@ export class PhotoGridComponent implements OnInit {
   ];
 
   public get albumCovers(): Image[] {
-    return this.photoImages.filter(image => image.albumCover);
+    console.log(':: photoImages', this.photoImages);
+    return this.photoImages
+      .filter(image => image.albumCover)
+      .map(image => ({
+        ...image,
+        width: image.width || 200,
+        height: image.height || 200,
+        caption: image.caption || 'Loading...',
+      }));
   }
 
   constructor(
@@ -64,8 +73,23 @@ export class PhotoGridComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
-    this.store.dispatch(ImagesActions.fetchImageThumbnailsRequested());
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['photoImages'] && this.photoImages.length) {
+      this.store
+        .select(ImagesSelectors.selectLastAlbumCoversFetch)
+        .pipe(take(1))
+        .subscribe(lastFetch => {
+          const imageIds = this.albumCovers.map(image => image.id);
+          if (!lastFetch || isSecondsInPast(lastFetch, 60)) {
+            this.store.dispatch(
+              ImagesActions.fetchBatchThumbnailsRequested({
+                imageIds,
+                context: 'photos',
+              }),
+            );
+          }
+        });
+    }
   }
 
   public async onClickAlbumCover(album: string): Promise<void> {

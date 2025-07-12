@@ -1,4 +1,5 @@
 import { Store } from '@ngrx/store';
+import { take } from 'rxjs/operators';
 
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,9 +26,9 @@ import {
   WasEditedPipe,
 } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { ArticlesActions } from '@app/store/articles';
-import { ImagesActions } from '@app/store/images';
-import { isDefined } from '@app/utils';
+import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
+import { ImagesActions, ImagesSelectors } from '@app/store/images';
+import { isDefined, isSecondsInPast } from '@app/utils';
 
 @Component({
   selector: 'lcc-article-grid',
@@ -53,7 +54,7 @@ export class ArticleGridComponent implements OnInit, OnChanges {
 
   @Input() public maxArticles?: number;
 
-  private bannerImageCache = new Map<Id, Partial<Image> | null>();
+  private bannerImagesMap = new Map<Id, Image>();
 
   public readonly createArticleLink: InternalLink = {
     internalPath: ['article', 'add'],
@@ -67,40 +68,44 @@ export class ArticleGridComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(ArticlesActions.fetchArticlesRequested());
-    this.store.dispatch(ImagesActions.fetchImageThumbnailsRequested());
-    this.updateBannerImageCache();
+    this.store
+      .select(ArticlesSelectors.selectLastFetch)
+      .pipe(take(1))
+      .subscribe(lastFetch => {
+        if (!lastFetch || isSecondsInPast(lastFetch, 60)) {
+          this.store.dispatch(ArticlesActions.fetchArticlesRequested());
+        }
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['articleImages'] || changes['articles']) {
-      this.updateBannerImageCache();
+    if (changes['articles'] && this.articles.length) {
+      this.store
+        .select(ImagesSelectors.selectLastArticleImagesFetch)
+        .pipe(take(1))
+        .subscribe(lastFetch => {
+          if (!lastFetch || isSecondsInPast(lastFetch, 60)) {
+            const bannerImageIds = this.articles.map(article => article.bannerImageId);
+            this.store.dispatch(
+              ImagesActions.fetchBatchThumbnailsRequested({
+                imageIds: bannerImageIds,
+                context: 'articles',
+              }),
+            );
+          }
+        });
+    }
+
+    if (changes['articleImages']) {
+      this.bannerImagesMap.clear();
+      this.articleImages.forEach(image => {
+        this.bannerImagesMap.set(image.id, image);
+      });
     }
   }
 
   public getBannerImage(imageId: Id): Partial<Image> | null {
-    return this.bannerImageCache.get(imageId) ?? null;
-  }
-
-  private updateBannerImageCache(): void {
-    this.bannerImageCache.clear();
-
-    // Get all unique banner image IDs from articles
-    const bannerImageIds = new Set(
-      this.articles.map(article => article.bannerImageId).filter(isDefined),
-    );
-
-    // Cache results for each banner image ID
-    bannerImageIds.forEach(imageId => {
-      const foundImage = this.articleImages.find(image => image.id === imageId);
-
-      this.bannerImageCache.set(
-        imageId,
-        foundImage ?? {
-          caption: 'Loading...',
-        },
-      );
-    });
+    return this.bannerImagesMap.get(imageId) || { id: imageId, caption: 'Loading...' };
   }
 
   public getAdminControlsConfig(article: Article): AdminControlsConfig {

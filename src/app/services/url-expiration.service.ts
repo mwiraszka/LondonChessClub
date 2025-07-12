@@ -28,6 +28,13 @@ export class UrlExpirationService implements OnDestroy {
 
   constructor(private readonly store: Store) {}
 
+  ngOnDestroy(): void {
+    this.expirationTimers.forEach(subscription => subscription.unsubscribe());
+    this.expirationTimers.clear();
+    this.batchTimer?.unsubscribe();
+    this.allImagesSubscription?.unsubscribe();
+  }
+
   public listenForImageChanges(): void {
     this.allImagesSubscription = this.store
       .select(ImagesSelectors.selectAllImages)
@@ -42,22 +49,8 @@ export class UrlExpirationService implements OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
-    this.expirationTimers.forEach(subscription => subscription.unsubscribe());
-    this.expirationTimers.clear();
-    this.batchTimer?.unsubscribe();
-    this.allImagesSubscription?.unsubscribe();
-  }
-
-  public prioritizeImage(imageId: Id): void {
-    if (this.pendingRefreshes.has(imageId)) {
-      this.processBatchIfNeeded();
-    }
-  }
-
   private setupTimer(image: Image): void {
     if (!image.urlExpirationDate) {
-      console.warn(`[LCC] Image ${image.id} does not include URL expiration date`);
       return;
     }
 
@@ -107,7 +100,12 @@ export class UrlExpirationService implements OnDestroy {
 
     const imageIds = Array.from(this.pendingRefreshes).slice(0, this.BATCH_SIZE);
 
-    this.store.dispatch(ImagesActions.fetchImagesRequested({ imageIds }));
+    this.store.dispatch(
+      ImagesActions.fetchBatchThumbnailsRequested({
+        imageIds,
+        context: 'url-expiration',
+      }),
+    );
 
     imageIds.forEach(id => this.pendingRefreshes.delete(id));
 

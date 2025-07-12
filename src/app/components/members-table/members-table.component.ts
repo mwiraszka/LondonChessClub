@@ -1,5 +1,6 @@
 import { Store } from '@ngrx/store';
 import { camelCase } from 'lodash';
+import { take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
@@ -21,7 +22,8 @@ import type {
 } from '@app/models';
 import { CamelCasePipe, FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { MembersActions } from '@app/store/members';
+import { MembersActions, MembersSelectors } from '@app/store/members';
+import { isSecondsInPast } from '@app/utils';
 
 @Component({
   selector: 'lcc-members-table',
@@ -91,7 +93,14 @@ export class MembersTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(MembersActions.fetchMembersRequested());
+    this.store
+      .select(MembersSelectors.selectLastFetch)
+      .pipe(take(1))
+      .subscribe(lastFetch => {
+        if (!lastFetch || isSecondsInPast(lastFetch, 60)) {
+          this.store.dispatch(MembersActions.fetchMembersRequested());
+        }
+      });
   }
 
   public onSelectTableHeader(header: string): void {

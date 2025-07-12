@@ -34,7 +34,7 @@ import { EventsActions } from '@app/store/events';
   ],
 })
 export class ScheduleComponent implements OnInit {
-  @Input({ required: true }) public allEvents!: Event[];
+  @Input({ required: true }) public events!: Event[];
   @Input({ required: true }) public isAdmin!: boolean;
   @Input({ required: true }) public nextEvent!: Event | null;
   @Input({ required: true }) public showPastEvents!: boolean;

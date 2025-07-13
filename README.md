@@ -32,6 +32,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.5.1 - July 12th, 2025</summary>
+
+- 🔧 Increase cache duration for infrequently updated resources
+
+</details>
+
+<details>
 <summary>v5.5.0 - July 12th, 2025</summary>
 
 - 🚀 Support uploading, editing, and deleting multiple images at a time

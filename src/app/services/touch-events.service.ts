@@ -1,6 +1,8 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 
+import { isTouchDevice } from '@app/utils';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -12,7 +14,7 @@ export class TouchEventsService {
   constructor(@Inject(DOCUMENT) private _document: Document) {}
 
   public listenForTouchEvents(): void {
-    if (!this.isTouchScreen()) {
+    if (!isTouchDevice()) {
       return;
     }
 
@@ -99,9 +101,5 @@ export class TouchEventsService {
       window.clearTimeout(this.touchTimeoutId);
       this.touchTimeoutId = null;
     }
-  }
-
-  private isTouchScreen(): boolean {
-    return window.matchMedia('(pointer: coarse)').matches;
   }
 }

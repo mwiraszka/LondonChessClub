@@ -5,6 +5,7 @@ export { DIALOG_CONFIG_TOKEN, DialogService } from './dialog.service';
 export { EventsService } from './events.service';
 export { ImageFileService } from './image-file.service';
 export { ImagesService } from './images.service';
+export { KeyStateService } from './key-state.service';
 export { LocalStorageService } from './local-storage.service';
 export { LoaderService } from './loader.service';
 export { MembersService } from './members.service';

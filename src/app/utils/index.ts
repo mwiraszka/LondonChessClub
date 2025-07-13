@@ -5,6 +5,9 @@ export { isDefined } from './common/is-defined.util';
 export { isString } from './common/is-string.util';
 export { takeRandomly } from './common/take-randomly.util';
 
+export { isMac } from './device/is-mac.util';
+export { isTouchDevice } from './device/is-touch-device.util';
+
 export { isValidCollectionId } from './database/is-valid-collection-id.util';
 export { formatDate } from './datetime/format-date.util';
 export { isSecondsInPast } from './datetime/is-seconds-in-past.util';

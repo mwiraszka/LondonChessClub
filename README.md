@@ -34,7 +34,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <details>
 <summary>v5.5.2 - July 13th, 2025</summary>
 
--
+- 🚀 Create new KeyState service, and isTouchDevice and isMac utility functions and use them to display delete button in Admin Controls only when ctrl/cmd is pressed
 
 </details>
 

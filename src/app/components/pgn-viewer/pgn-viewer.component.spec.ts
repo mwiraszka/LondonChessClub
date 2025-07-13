@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MOCK_PGNS } from '@app/mocks/pgns.mock';
 import { queryTextContent } from '@app/utils';
-import * as playerUtils from '@app/utils/pgn/get-player-name.util';
-import * as scoreUtils from '@app/utils/pgn/get-score.util';
+import * as pgnUtils from '@app/utils';
 
 import { PgnViewerComponent } from './pgn-viewer.component';
 
@@ -10,22 +10,8 @@ describe('PgnViewerComponent', () => {
   let fixture: ComponentFixture<PgnViewerComponent>;
   let component: PgnViewerComponent;
 
-  jest
-    .spyOn(playerUtils, 'getPlayerName')
-    .mockImplementation((_, __, color) => (color === 'White' ? 'Player1' : 'Player2'));
-  jest
-    .spyOn(scoreUtils, 'getScore')
-    .mockImplementation((_, color) => (color === 'White' ? '1' : '0'));
-
-  const samplePgn = `[Event "Chess Game"]
-[Site "London"]
-[Date "2023.01.01"]
-[Round "1"]
-[White "One, Player"]
-[Black "Two, Player"]
-[Result "1-0"]
-
-1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O 1-0`;
+  let getPlayerNameSpy: jest.SpyInstance;
+  let getScoreSpy: jest.SpyInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -38,7 +24,10 @@ describe('PgnViewerComponent', () => {
 
         component.index = 1;
         component.label = 'test-game';
-        component.pgn = samplePgn;
+        component.pgn = MOCK_PGNS[0];
+
+        getPlayerNameSpy = jest.spyOn(pgnUtils, 'getPlayerName');
+        getScoreSpy = jest.spyOn(pgnUtils, 'getScore');
 
         fixture.detectChanges();
       });
@@ -69,10 +58,16 @@ describe('PgnViewerComponent', () => {
 
   describe('after view init', () => {
     it('should get player names and scores from PGN', () => {
-      expect(playerUtils.getPlayerName).toHaveBeenCalledWith(samplePgn, 'full', 'White');
-      expect(playerUtils.getPlayerName).toHaveBeenCalledWith(samplePgn, 'full', 'Black');
-      expect(scoreUtils.getScore).toHaveBeenCalledWith(samplePgn, 'White');
-      expect(scoreUtils.getScore).toHaveBeenCalledWith(samplePgn, 'Black');
+      getPlayerNameSpy.mockImplementation((_, __, color) =>
+        color === 'White' ? 'Player1' : 'Player2',
+      );
+      getScoreSpy.mockImplementation((_, color) => (color === 'White' ? '1' : '0'));
+      component.ngAfterViewInit();
+
+      expect(getPlayerNameSpy).toHaveBeenCalledWith(MOCK_PGNS[0], 'full', 'White');
+      expect(getPlayerNameSpy).toHaveBeenCalledWith(MOCK_PGNS[0], 'full', 'Black');
+      expect(getScoreSpy).toHaveBeenCalledWith(MOCK_PGNS[0], 'White');
+      expect(getScoreSpy).toHaveBeenCalledWith(MOCK_PGNS[0], 'Black');
     });
   });
 
@@ -82,10 +77,9 @@ describe('PgnViewerComponent', () => {
     });
 
     it('should log a warning if White player name is missing', () => {
-      jest
-        .spyOn(playerUtils, 'getPlayerName')
-        // @ts-expect-error Intentional type error
-        .mockImplementation((_, __, color) => (color === 'White' ? null : 'Player2'));
+      getPlayerNameSpy.mockImplementation((_, __, color) =>
+        color === 'White' ? null : 'Player2',
+      );
 
       component.ngAfterViewInit();
 
@@ -96,10 +90,9 @@ describe('PgnViewerComponent', () => {
     });
 
     it('should log a warning if Black player name is missing', () => {
-      jest
-        .spyOn(playerUtils, 'getPlayerName')
-        // @ts-expect-error Intentional type error
-        .mockImplementation((_, __, color) => (color === 'White' ? 'Player1' : null));
+      getPlayerNameSpy.mockImplementation((_, __, color) =>
+        color === 'White' ? 'Player1' : null,
+      );
 
       component.ngAfterViewInit();
 
@@ -110,10 +103,7 @@ describe('PgnViewerComponent', () => {
     });
 
     it('should log a warning if White score is missing', () => {
-      jest
-        .spyOn(scoreUtils, 'getScore')
-        // @ts-expect-error Intentional type error
-        .mockImplementation((_, color) => (color === 'White' ? null : '0'));
+      getScoreSpy.mockImplementation((_, color) => (color === 'White' ? null : '0'));
 
       component.ngAfterViewInit();
 
@@ -124,10 +114,7 @@ describe('PgnViewerComponent', () => {
     });
 
     it('should log a warning if Black score is missing', () => {
-      jest
-        .spyOn(scoreUtils, 'getScore')
-        // @ts-expect-error Intentional type error
-        .mockImplementation((_, color) => (color === 'White' ? '1' : null));
+      getScoreSpy.mockImplementation((_, color) => (color === 'White' ? '1' : null));
 
       component.ngAfterViewInit();
 

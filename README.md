@@ -32,6 +32,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.5.2 - July 13th, 2025</summary>
+
+-
+
+</details>
+
+<details>
 <summary>v5.5.1 - July 12th, 2025</summary>
 
 - 🔧 Increase cache duration for infrequently updated resources

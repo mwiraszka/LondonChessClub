@@ -116,7 +116,7 @@ export class HomePageComponent implements OnInit {
       .select(ImagesSelectors.selectLastMetadataFetch)
       .pipe(take(1))
       .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
+        if (!lastFetch || isSecondsInPast(lastFetch, 1800)) {
           this.store.dispatch(ImagesActions.fetchAllImagesMetadataRequested());
         }
       });

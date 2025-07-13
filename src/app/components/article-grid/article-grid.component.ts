@@ -72,7 +72,7 @@ export class ArticleGridComponent implements OnInit, OnChanges {
       .select(ArticlesSelectors.selectLastFetch)
       .pipe(take(1))
       .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
+        if (!lastFetch || isSecondsInPast(lastFetch, 1800)) {
           this.store.dispatch(ArticlesActions.fetchArticlesRequested());
         }
       });
@@ -84,7 +84,7 @@ export class ArticleGridComponent implements OnInit, OnChanges {
         .select(ImagesSelectors.selectLastArticleImagesFetch)
         .pipe(take(1))
         .subscribe(lastFetch => {
-          if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
+          if (!lastFetch || isSecondsInPast(lastFetch, 1800)) {
             const bannerImageIds = this.articles.map(article => article.bannerImageId);
             this.store.dispatch(
               ImagesActions.fetchBatchThumbnailsRequested({

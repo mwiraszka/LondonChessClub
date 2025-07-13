@@ -1,5 +1,7 @@
 import { FormControl } from '@angular/forms';
 
+import { MEMBER_FORM_DATA_PROPERTIES } from '@app/constants';
+
 import { Id, IsoDate } from './core.model';
 import type { ModificationInfo } from './modification-info.model';
 
@@ -19,21 +21,6 @@ export interface Member {
   dateJoined: IsoDate;
   modificationInfo: ModificationInfo;
 }
-
-export const MEMBER_FORM_DATA_PROPERTIES = [
-  'firstName',
-  'lastName',
-  'rating',
-  'peakRating',
-  'email',
-  'phoneNumber',
-  'city',
-  'yearOfBirth',
-  'chessComUsername',
-  'lichessUsername',
-  'isActive',
-  'dateJoined',
-] as const;
 
 export type MemberFormData = Pick<Member, (typeof MEMBER_FORM_DATA_PROPERTIES)[number]>;
 

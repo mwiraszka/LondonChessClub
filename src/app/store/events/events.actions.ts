@@ -70,8 +70,9 @@ export const formValueChanged = createAction(
   props<{ eventId: Id | null; value: Partial<EventFormData> }>(),
 );
 
-export const eventFormDataCleared = createAction(
-  '[Events] Event form data cleared',
+export const eventFormDataReset = createAction(
+  '[Events] Event form data reset',
   props<{ eventId: Id | null }>(),
 );
+
 export const pastEventsToggled = createAction('[Events] Past events toggled');

@@ -82,7 +82,7 @@ export class ChangePasswordFormComponent implements OnInit {
         }),
         code: new FormControl('', {
           nonNullable: true,
-          validators: [Validators.pattern(/\d{6}/)],
+          validators: [Validators.required, Validators.pattern(/\d{6}/)],
         }),
         newPassword: new FormControl('', {
           nonNullable: true,

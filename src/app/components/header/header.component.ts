@@ -19,7 +19,7 @@ import { RangePipe } from '@app/pipes';
                 originalUrl: 'assets/lcc-branding.svg',
                 width: 60,
                 height: 60,
-                caption: 'LCC branding',
+                caption: 'London Chess Club',
               }" />
           </div>
         </a>

@@ -151,6 +151,14 @@
       formControlName="articleId"
       maxlength="24" />
     <lcc-form-error-icon [control]="form.controls.articleId"></lcc-form-error-icon>
+
+    <button
+      class="restore-button lcc-secondary-button"
+      [disabled]="!hasUnsavedChanges"
+      tooltip="Restore event to its original state"
+      (click)="onRestore()">
+      <mat-icon>restore</mat-icon>
+    </button>
   </div>
 
   <aside class="lcc-required-fields-legend">Required fields</aside>
@@ -163,16 +171,16 @@
 
   <div class="lcc-form-buttons-container">
     <button
-      class="lcc-secondary-button"
+      class="cancel-button lcc-secondary-button"
       type="button"
       (click)="onCancel()">
       Cancel
     </button>
     <button
-      class="lcc-primary-button"
+      class="submit-button lcc-primary-button"
       type="submit"
       [disabled]="form.invalid || !hasUnsavedChanges">
-      {{ originalEvent ? 'Update' : 'Add event' }}
+      {{ originalEvent ? 'Update event' : 'Add event' }}
     </button>
   </div>
 </form>

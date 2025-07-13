@@ -7,10 +7,11 @@ import { filter, map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { ImageFileService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthActions } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
-import { ImagesActions } from '@app/store/images';
+import { ImagesActions, ImagesSelectors } from '@app/store/images';
 import { MembersActions } from '@app/store/members';
 import { isDefined, isValidCollectionId } from '@app/utils';
 
@@ -98,7 +99,9 @@ export class NavEffects {
       ofType(
         ImagesActions.cancelSelected,
         ImagesActions.addImageSucceeded,
+        ImagesActions.addImagesSucceeded,
         ImagesActions.updateImageSucceeded,
+        ImagesActions.updateAlbumSucceeded,
       ),
       map(() => NavActions.navigationRequested({ path: 'photo-gallery' })),
     ),
@@ -130,7 +133,7 @@ export class NavEffects {
     ),
   );
 
-  clearEventFormData$ = createEffect(() =>
+  resetEventFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -142,7 +145,7 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const eventId = previousPath!.split('/event/')[1]?.split('/')[1] ?? null;
-        return EventsActions.eventFormDataCleared({ eventId });
+        return EventsActions.eventFormDataReset({ eventId });
       }),
     ),
   );
@@ -166,7 +169,7 @@ export class NavEffects {
     ),
   );
 
-  clearMemberFormData$ = createEffect(() =>
+  resetMemberFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -178,7 +181,7 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const memberId = previousPath!.split('/member/')[1]?.split('/')[1] ?? null;
-        return MembersActions.memberFormDataCleared({ memberId });
+        return MembersActions.memberFormDataReset({ memberId });
       }),
     ),
   );
@@ -213,7 +216,7 @@ export class NavEffects {
     ),
   );
 
-  clearArticleFormData$ = createEffect(() =>
+  resetArticleFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -225,7 +228,7 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const articleId = previousPath!.split('/article/')[1]?.split('/')[1] ?? null;
-        return ArticlesActions.articleFormDataCleared({ articleId });
+        return ArticlesActions.articleFormDataReset({ articleId });
       }),
     ),
   );
@@ -252,7 +255,7 @@ export class NavEffects {
         if (controlMode === 'add' && !isDefined(imageId)) {
           return ImagesActions.addAnImageSelected();
         } else if (controlMode === 'edit' && isValidCollectionId(imageId)) {
-          return ImagesActions.fetchImageRequested({ imageId });
+          return ImagesActions.fetchOriginalRequested({ imageId });
         } else {
           return NavActions.navigationRequested({ path: 'photo-gallery' });
         }
@@ -260,7 +263,7 @@ export class NavEffects {
     ),
   );
 
-  clearImageFormData$ = createEffect(() =>
+  resetImageFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -272,14 +275,35 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const imageId = previousPath!.split('/image/')[1]?.split('/')[1] ?? null;
-        return ImagesActions.imageFormDataCleared({ imageId });
+        return ImagesActions.imageFormDataReset({ imageId });
+      }),
+    ),
+  );
+
+  resetAlbumFormData$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
+      filter(([{ payload }, previousPath]) => {
+        const currentPath = payload.event.url;
+        return (
+          !!previousPath?.startsWith('/album/') && !currentPath?.startsWith('/album/')
+        );
+      }),
+      map(([, previousPath]) => previousPath!.split('/album/')[1]?.split('/')[1] ?? null),
+      concatLatestFrom(album =>
+        this.store.select(ImagesSelectors.selectImageEntitiesByAlbum(album)),
+      ),
+      map(([, entities]) => {
+        const imageIds = entities.map(entity => entity.image.id);
+        return ImagesActions.albumFormDataReset({ imageIds });
       }),
     ),
   );
 
   redirectToPhotoGalleryRouteOnImageFetchFail$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ImagesActions.fetchImageFailed),
+      ofType(ImagesActions.fetchOriginalFailed),
       map(() => NavActions.navigationRequested({ path: '' })),
     ),
   );
@@ -296,13 +320,23 @@ export class NavEffects {
       ),
       filter(([, article]) => isDefined(article?.bannerImageId)),
       map(([, article]) =>
-        ImagesActions.fetchImageRequested({ imageId: article!.bannerImageId! }),
+        ImagesActions.fetchOriginalRequested({ imageId: article!.bannerImageId! }),
       ),
     ),
   );
 
+  clearIndexedDbImageFileData$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ImagesActions.imageFormDataReset, ImagesActions.albumFormDataReset),
+        tap(() => this.imageFileService.clearAllImages()),
+      ),
+    { dispatch: false },
+  );
+
   constructor(
     private readonly actions$: Actions,
+    private readonly imageFileService: ImageFileService,
     private readonly router: Router,
     private readonly store: Store,
   ) {}

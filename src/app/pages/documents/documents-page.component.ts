@@ -1,23 +1,31 @@
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import moment from 'moment-timezone';
 
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, DOCUMENT, Inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute, Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 import { DocumentViewerComponent } from '@app/components/document-viewer/document-viewer.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import type { ClubDocument } from '@app/models';
 import { FormatDatePipe } from '@app/pipes';
-import { DialogService, MetaAndTitleService } from '@app/services';
+import { DialogService, MetaAndTitleService, RoutingService } from '@app/services';
 
+@UntilDestroy()
 @Component({
   selector: 'lcc-documents-page',
   templateUrl: './documents-page.component.html',
   styleUrl: './documents-page.component.scss',
-  imports: [FormatDatePipe, MatIconModule, PageHeaderComponent, TooltipDirective],
+  imports: [
+    FormatDatePipe,
+    MatIconModule,
+    PageHeaderComponent,
+    RouterLink,
+    TooltipDirective,
+  ],
 })
-export class DocumentsPageComponent implements OnInit, AfterViewInit {
+export class DocumentsPageComponent implements OnInit {
   public readonly documents: ClubDocument[] = [
     {
       title: 'Club Bylaws',
@@ -56,41 +64,35 @@ export class DocumentsPageComponent implements OnInit, AfterViewInit {
       dateLastModified: '2025-03-20',
     },
   ];
+  public currentPath!: string;
 
   constructor(
-    private readonly activatedRoute: ActivatedRoute,
     private readonly dialogService: DialogService,
+    @Inject(DOCUMENT) private _document: Document,
     private readonly metaAndTitleService: MetaAndTitleService,
-    private readonly router: Router,
-  ) {}
+    private readonly routingService: RoutingService,
+  ) {
+    this.currentPath = this._document.location.pathname;
+  }
 
   ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Documents');
     this.metaAndTitleService.updateDescription(
       'A place for all London Chess Club documentation.',
     );
-  }
 
-  ngAfterViewInit(): void {
-    this.documents.forEach(document => {
-      if (this.activatedRoute.snapshot.fragment === document.fileName) {
-        this.onSelectDocument(document.fileName);
+    this.routingService.fragment$.pipe(untilDestroyed(this)).subscribe(fragment => {
+      if (
+        fragment &&
+        this.documents.find(document => document.fileName === fragment) &&
+        !this.dialogService.topDialogComponentType
+      ) {
+        this.dialogService.open<DocumentViewerComponent, null>({
+          componentType: DocumentViewerComponent,
+          isModal: true,
+          inputs: { documentPath: `assets/documents/${fragment}` },
+        });
       }
-    });
-  }
-
-  public async onSelectDocument(fileName: string): Promise<void> {
-    // Update the URL fragment with the filename before opening the dialog
-    await this.router.navigate([], {
-      fragment: fileName,
-      replaceUrl: false, // Preserve the history
-    });
-
-    // Open the dialog and wait for it to close
-    await this.dialogService.open<DocumentViewerComponent, null>({
-      componentType: DocumentViewerComponent,
-      isModal: true,
-      inputs: { documentPath: `assets/documents/${fileName}` },
     });
   }
 }

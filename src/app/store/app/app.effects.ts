@@ -39,6 +39,7 @@ export class AppEffects {
     ArticlesActions.publishArticleSucceeded,
     ArticlesActions.updateArticleFailed,
     ArticlesActions.updateArticleSucceeded,
+
     AuthActions.codeForPasswordChangeFailed,
     AuthActions.codeForPasswordChangeSucceeded,
     AuthActions.loginFailed,
@@ -47,6 +48,7 @@ export class AppEffects {
     AuthActions.logoutSucceeded,
     AuthActions.passwordChangeFailed,
     AuthActions.passwordChangeSucceeded,
+
     EventsActions.addEventFailed,
     EventsActions.addEventSucceeded,
     EventsActions.deleteEventFailed,
@@ -55,18 +57,27 @@ export class AppEffects {
     EventsActions.fetchEventsFailed,
     EventsActions.updateEventFailed,
     EventsActions.updateEventSucceeded,
+
     ImagesActions.addImageFailed,
+    ImagesActions.addImagesFailed,
     ImagesActions.addImageSucceeded,
+    ImagesActions.addImagesSucceeded,
+    ImagesActions.automaticAlbumCoverSwitchFailed,
+    ImagesActions.automaticAlbumCoverSwitchSucceeded,
+    ImagesActions.deleteAlbumFailed,
+    ImagesActions.deleteAlbumSucceeded,
     ImagesActions.deleteImageFailed,
     ImagesActions.deleteImageSucceeded,
-    ImagesActions.fetchImageFailed,
-    ImagesActions.fetchImageThumbnailsFailed,
-    ImagesActions.imageFileLoadFailed,
-    ImagesActions.imageFileLoadSucceeded,
-    ImagesActions.updateCoverImageFailed,
-    ImagesActions.updateCoverImageSucceeded,
+    ImagesActions.fetchAllImagesMetadataFailed,
+    ImagesActions.fetchAllThumbnailsFailed,
+    ImagesActions.fetchBatchThumbnailsFailed,
+    ImagesActions.fetchOriginalFailed,
+    ImagesActions.imageFileActionFailed,
+    ImagesActions.updateAlbumFailed,
     ImagesActions.updateImageFailed,
+    ImagesActions.updateAlbumSucceeded,
     ImagesActions.updateImageSucceeded,
+
     MembersActions.addMemberFailed,
     MembersActions.addMemberSucceeded,
     MembersActions.deleteMemberFailed,
@@ -83,8 +94,9 @@ export class AppEffects {
     ArticlesActions.fetchArticleFailed,
     EventsActions.fetchEventsFailed,
     EventsActions.fetchEventFailed,
-    ImagesActions.fetchImageThumbnailsFailed,
-    ImagesActions.fetchImageFailed,
+    ImagesActions.fetchAllThumbnailsFailed,
+    ImagesActions.fetchBatchThumbnailsFailed,
+    ImagesActions.fetchOriginalFailed,
     MembersActions.fetchMembersFailed,
     MembersActions.fetchMemberFailed,
   ] as const;
@@ -173,6 +185,7 @@ export class AppEffects {
           message: `Successfully updated ${action.originalArticleTitle}`,
           type: 'success',
         };
+
       case AuthActions.codeForPasswordChangeFailed.type:
         return {
           title: 'Password change',
@@ -223,6 +236,7 @@ export class AppEffects {
           message: 'Successfully changed password and logged in',
           type: 'success',
         };
+
       case EventsActions.addEventFailed.type:
         return {
           title: 'New event',
@@ -271,9 +285,16 @@ export class AppEffects {
           message: `Successfully updated ${action.originalEventTitle}`,
           type: 'success',
         };
+
       case ImagesActions.addImageFailed.type:
         return {
           title: 'Add image',
+          message: `Failed to add image: ${this.getErrorMessage(action.error)}`,
+          type: 'warning',
+        };
+      case ImagesActions.addImagesFailed.type:
+        return {
+          title: 'Add images',
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
@@ -283,10 +304,40 @@ export class AppEffects {
           message: `Successfully uploaded ${action.image.filename}`,
           type: 'success',
         };
+      case ImagesActions.addImagesSucceeded.type:
+        return {
+          title: 'Add images',
+          message: `Successfully uploaded ${action.images.length === 1 ? '1 image' : `${action.images.length} images`}`,
+          type: 'success',
+        };
+      case ImagesActions.automaticAlbumCoverSwitchFailed.type:
+        return {
+          title: 'Album cover update',
+          message: `Failed to automatically switch album cover for ${action.album}: ${this.getErrorMessage(action.error)}`,
+          type: 'warning',
+        };
+      case ImagesActions.automaticAlbumCoverSwitchSucceeded.type:
+        return {
+          title: 'Album cover update',
+          message: `Automatically switched ${action.baseImage.album} album cover to ${action.baseImage.filename}`,
+          type: 'info',
+        };
+      case ImagesActions.deleteAlbumFailed.type:
+        return {
+          title: 'Album deletion',
+          message: `Failed to delete ${action.album}: ${this.getErrorMessage(action.error)}`,
+          type: 'warning',
+        };
+      case ImagesActions.deleteAlbumSucceeded.type:
+        return {
+          title: 'Album deletion',
+          message: `Successfully deleted ${action.album} and all ${action.imageIds.length} of its images`,
+          type: 'success',
+        };
       case ImagesActions.deleteImageFailed.type:
         return {
           title: 'Image deletion',
-          message: this.getErrorMessage(action.error),
+          message: `Failed to delete ${action.image.filename}: ${this.getErrorMessage(action.error)}`,
           type: 'warning',
         };
       case ImagesActions.deleteImageSucceeded.type:
@@ -295,40 +346,46 @@ export class AppEffects {
           message: `Successfully deleted ${action.image.filename}`,
           type: 'success',
         };
-      case ImagesActions.fetchImageFailed.type:
+      case ImagesActions.fetchAllImagesMetadataFailed.type:
         return {
-          title: 'Load image',
+          title: "Fetch images' metadata",
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case ImagesActions.fetchImageThumbnailsFailed.type:
+      case ImagesActions.fetchAllThumbnailsFailed.type:
         return {
-          title: 'Load image thumbnails',
+          title: 'Fetch images',
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case ImagesActions.imageFileLoadFailed.type:
+      case ImagesActions.fetchBatchThumbnailsFailed.type:
         return {
-          title: 'Load image file',
+          title: 'Fetch images',
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case ImagesActions.imageFileLoadSucceeded.type:
+      case ImagesActions.fetchOriginalFailed.type:
         return {
-          title: 'Load image file',
-          message: `Successfully loaded ${action.numFiles} files into Image Explorer`,
-          type: 'success',
-        };
-      case ImagesActions.updateCoverImageFailed.type:
-        return {
-          title: 'Image album cover update',
+          title: 'Fetch image',
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case ImagesActions.updateCoverImageSucceeded.type:
+      case ImagesActions.imageFileActionFailed.type:
         return {
-          title: 'Image album cover update',
-          message: `Successfully switched ${action.baseImage.coverForAlbum} album cover to ${action.baseImage.filename}`,
+          title: 'Image file',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case ImagesActions.updateAlbumFailed.type:
+        return {
+          title: 'Album update',
+          message: `Failed to update album ${action.album}: ${this.getErrorMessage(action.error)}`,
+          type: 'warning',
+        };
+      case ImagesActions.updateAlbumSucceeded.type:
+        return {
+          title: 'Album update',
+          message: `Successfully updated ${action.album}`,
           type: 'success',
         };
       case ImagesActions.updateImageFailed.type:
@@ -343,6 +400,7 @@ export class AppEffects {
           message: `Successfully updated ${action.baseImage.filename}`,
           type: 'success',
         };
+
       case MembersActions.addMemberFailed.type:
         return {
           title: 'New member',

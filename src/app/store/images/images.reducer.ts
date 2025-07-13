@@ -1,23 +1,20 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
-import { pick } from 'lodash';
+import { compact, pick } from 'lodash';
 
-import { IMAGE_FORM_DATA_PROPERTIES, Image, ImageFormData } from '@app/models';
+import { IMAGE_FORM_DATA_PROPERTIES, INITIAL_IMAGE_FORM_DATA } from '@app/constants';
+import { Id, Image, ImageFormData, IsoDate } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as ImagesActions from './images.actions';
 
-export const INITIAL_IMAGE_FORM_DATA: ImageFormData = {
-  filename: '',
-  caption: '',
-  albums: [],
-  newAlbum: '',
-  dataUrl: '',
-};
-
 export interface ImagesState
   extends EntityState<{ image: Image; formData: ImageFormData }> {
-  newImageFormData: ImageFormData;
+  newImagesFormData: Record<string, ImageFormData>;
+  lastMetadataFetch: IsoDate | null;
+  lastThumbnailsFetch: IsoDate | null;
+  lastAlbumCoversFetch: IsoDate | null;
+  lastArticleImagesFetch: IsoDate | null;
 }
 
 export const imagesAdapter = createEntityAdapter<{
@@ -29,57 +26,33 @@ export const imagesAdapter = createEntityAdapter<{
 });
 
 export const initialState: ImagesState = imagesAdapter.getInitialState({
-  newImageFormData: INITIAL_IMAGE_FORM_DATA,
+  newImagesFormData: {},
+  lastMetadataFetch: null,
+  lastThumbnailsFetch: null,
+  lastAlbumCoversFetch: null,
+  lastArticleImagesFetch: null,
 });
 
 export const imagesReducer = createReducer(
   initialState,
 
   on(
-    ImagesActions.fetchImageThumbnailsSucceeded,
+    ImagesActions.fetchAllImagesMetadataSucceeded,
     (state, { images }): ImagesState =>
       imagesAdapter.upsertMany(
         images.map(image => {
-          const originalEntity = image ? state.entities[image.id] : null;
-
           return {
-            image: {
-              ...image,
-              originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
-              thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
-            },
-            formData: {
-              ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-              newAlbum: '',
-              dataUrl: '',
-            },
+            image,
+            formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
           };
         }),
-        state,
+        { ...state, lastMetadataFetch: new Date(Date.now()).toISOString() },
       ),
   ),
 
-  on(ImagesActions.fetchImageSucceeded, (state, { image }): ImagesState => {
-    const originalEntity = image ? state.entities[image.id] : null;
+  on(ImagesActions.fetchAllThumbnailsSucceeded, (state, { images }): ImagesState => {
+    const fetchDate = new Date(Date.now()).toISOString();
 
-    return imagesAdapter.upsertOne(
-      {
-        image: {
-          ...image,
-          originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
-          thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
-        },
-        formData: originalEntity?.formData ?? {
-          ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-          newAlbum: '',
-          dataUrl: '',
-        },
-      },
-      state,
-    );
-  }),
-
-  on(ImagesActions.fetchImagesSucceeded, (state, { images }): ImagesState => {
     return imagesAdapter.upsertMany(
       images.map(image => {
         const originalEntity = image ? state.entities[image.id] : null;
@@ -90,97 +63,253 @@ export const imagesReducer = createReducer(
             originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
             thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
           },
-          formData: originalEntity?.formData ?? {
-            ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-            newAlbum: '',
-            dataUrl: '',
-          },
+          formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
         };
       }),
-      state,
+      {
+        ...state,
+        lastThumbnailsFetch: fetchDate,
+        lastArticleImagesFetch: fetchDate,
+        lastAlbumCoversFetch: fetchDate,
+      },
     );
   }),
 
   on(
-    ImagesActions.addImageSucceeded,
-    (state, { image }): ImagesState =>
-      imagesAdapter.upsertOne(
+    ImagesActions.fetchBatchThumbnailsSucceeded,
+    (state, { images, context }): ImagesState =>
+      imagesAdapter.upsertMany(
+        images.map(image => {
+          const originalEntity = image ? state.entities[image.id] : null;
+
+          return {
+            image: {
+              ...image,
+              originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
+              thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
+            },
+            formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
+          };
+        }),
         {
-          image,
-          formData: {
-            ...pick(image, IMAGE_FORM_DATA_PROPERTIES),
-            newAlbum: '',
-            dataUrl: '',
-          },
+          ...state,
+          lastArticleImagesFetch:
+            context === 'articles'
+              ? new Date(Date.now()).toISOString()
+              : state.lastArticleImagesFetch,
+          lastAlbumCoversFetch:
+            context === 'photos'
+              ? new Date(Date.now()).toISOString()
+              : state.lastAlbumCoversFetch,
         },
-        { ...state, newImageFormData: INITIAL_IMAGE_FORM_DATA },
       ),
   ),
 
+  on(ImagesActions.fetchOriginalSucceeded, (state, { image }): ImagesState => {
+    const originalEntity = image ? state.entities[image.id] : null;
+
+    return imagesAdapter.upsertOne(
+      {
+        image: {
+          ...image,
+          originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
+          thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
+        },
+        formData: originalEntity?.formData ?? pick(image, IMAGE_FORM_DATA_PROPERTIES),
+      },
+      state,
+    );
+  }),
+
+  on(ImagesActions.addImageSucceeded, (state, { image }): ImagesState => {
+    return imagesAdapter.upsertOne(
+      {
+        image,
+        formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
+      },
+      { ...state, newImagesFormData: {} },
+    );
+  }),
+
+  on(ImagesActions.addImagesSucceeded, (state, { images }): ImagesState => {
+    return imagesAdapter.upsertMany(
+      images.map(image => {
+        const originalEntity = image ? state.entities[image.id] : null;
+
+        return {
+          image: {
+            ...image,
+            originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
+            thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
+          },
+          formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
+        };
+      }),
+      { ...state, newImagesFormData: {} },
+    );
+  }),
+
   on(
     ImagesActions.updateImageSucceeded,
-    ImagesActions.updateCoverImageSucceeded,
+    ImagesActions.automaticAlbumCoverSwitchSucceeded,
     (state, { baseImage }): ImagesState =>
       imagesAdapter.upsertOne(
         {
           image: baseImage,
-          formData: {
-            ...pick(baseImage, IMAGE_FORM_DATA_PROPERTIES),
-            newAlbum: '',
-            dataUrl: '',
-          },
+          formData: pick(baseImage, IMAGE_FORM_DATA_PROPERTIES),
         },
         state,
       ),
   ),
 
-  on(
-    ImagesActions.deleteImageSucceeded,
-    (state, { image }): ImagesState =>
-      imagesAdapter.removeMany([image.id, `${image.id}-thumb`], state),
-  ),
+  on(ImagesActions.updateAlbumSucceeded, (state, { baseImages }): ImagesState => {
+    return imagesAdapter.upsertMany(
+      compact(
+        baseImages.map(baseImage => {
+          const originalEntity = baseImage ? state.entities[baseImage.id] : null;
 
-  on(ImagesActions.formValueChanged, (state, { imageId, value }): ImagesState => {
-    const originalImage = imageId ? state.entities[imageId] : null;
+          if (!originalEntity) {
+            console.warn(
+              `[LCC] Unable to find image ${baseImage.id} after successful album update`,
+            );
+            return undefined;
+          }
 
-    if (!originalImage) {
-      return {
-        ...state,
-        newImageFormData: {
-          ...state.newImageFormData,
-          ...value,
-        },
-      };
-    }
-
-    return imagesAdapter.upsertOne(
-      {
-        ...originalImage,
-        formData: {
-          ...(originalImage?.formData ?? INITIAL_IMAGE_FORM_DATA),
-          ...value,
-        },
-      },
-      state,
+          return {
+            image: {
+              ...originalEntity.image,
+              ...baseImage,
+            },
+            formData: pick(baseImage, IMAGE_FORM_DATA_PROPERTIES),
+          };
+        }),
+      ),
+      { ...state, newImagesFormData: {} },
     );
   }),
 
-  on(ImagesActions.imageFormDataCleared, (state, { imageId }): ImagesState => {
-    const originalArticle = imageId ? state.entities[imageId] : null;
+  on(
+    ImagesActions.deleteImageSucceeded,
+    (state, { image }): ImagesState => imagesAdapter.removeOne(image.id, state),
+  ),
 
-    if (!originalArticle) {
-      return {
-        ...state,
-        newImageFormData: INITIAL_IMAGE_FORM_DATA,
+  on(
+    ImagesActions.deleteAlbumSucceeded,
+    (state, { imageIds }): ImagesState => imagesAdapter.removeMany(imageIds, state),
+  ),
+
+  on(ImagesActions.formValueChanged, (state, { values }): ImagesState => {
+    if (!values.length) {
+      return state;
+    }
+
+    const newImageValues: (Partial<ImageFormData> & { id: Id })[] = [];
+    const existingImageValues: (Partial<ImageFormData> & { id: Id })[] = [];
+
+    values.forEach(value => {
+      if (value.id.toString().startsWith('new')) {
+        newImageValues.push(value);
+      } else {
+        existingImageValues.push(value);
+      }
+    });
+
+    let newImagesFormData = { ...state.newImagesFormData };
+
+    newImageValues.forEach(value => {
+      const { id } = value;
+      const existingFormData = newImagesFormData[id] || INITIAL_IMAGE_FORM_DATA;
+
+      newImagesFormData = {
+        ...newImagesFormData,
+        [id]: {
+          ...existingFormData,
+          ...value,
+        },
       };
+    });
+
+    const updatedEntities = compact(
+      existingImageValues.map(value => {
+        const { id } = value;
+        const originalEntity = state.entities[id];
+
+        if (!originalEntity) {
+          console.warn(
+            `[LCC] Could not find image ${id} to update after form value change`,
+          );
+          return undefined;
+        }
+
+        return {
+          ...originalEntity,
+          formData: {
+            ...originalEntity.formData,
+            ...value,
+          },
+        };
+      }),
+    );
+
+    const stateWithNewImages = { ...state, newImagesFormData };
+
+    return updatedEntities.length > 0
+      ? imagesAdapter.upsertMany(updatedEntities, stateWithNewImages)
+      : stateWithNewImages;
+  }),
+
+  on(ImagesActions.imageFormDataReset, (state, { imageId }): ImagesState => {
+    const originalImage = state.entities[imageId]?.image;
+
+    if (!originalImage) {
+      return { ...state, newImagesFormData: {} };
     }
 
     return imagesAdapter.upsertOne(
       {
-        ...originalArticle,
-        formData: INITIAL_IMAGE_FORM_DATA,
+        image: originalImage,
+        formData: pick(originalImage, IMAGE_FORM_DATA_PROPERTIES),
       },
-      state,
+      { ...state, newImagesFormData: {} },
     );
+  }),
+
+  on(ImagesActions.albumFormDataReset, (state, { imageIds }): ImagesState => {
+    return imagesAdapter.upsertMany(
+      compact(
+        imageIds.map(imageId => {
+          const originalImage = state.entities[imageId]?.image;
+
+          if (!originalImage) {
+            console.warn(
+              `[LCC] Unable to find image ${imageId} for album form data reset`,
+            );
+            return undefined;
+          }
+
+          return {
+            image: originalImage,
+            formData: pick(originalImage, IMAGE_FORM_DATA_PROPERTIES),
+          };
+        }),
+      ),
+      { ...state, newImagesFormData: {} },
+    );
+  }),
+
+  on(ImagesActions.newImageRemoved, (state, { imageId }): ImagesState => {
+    const { [imageId]: removed, ...restNewImagesFormData } = state.newImagesFormData;
+
+    return {
+      ...state,
+      newImagesFormData: restNewImagesFormData,
+    };
+  }),
+
+  on(ImagesActions.allNewImagesRemoved, (state): ImagesState => {
+    return {
+      ...state,
+      newImagesFormData: {},
+    };
   }),
 );

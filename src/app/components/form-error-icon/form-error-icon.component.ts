@@ -7,12 +7,13 @@ import { TooltipDirective } from '@app/directives/tooltip.directive';
 @Component({
   selector: 'lcc-form-error-icon',
   template: `
-    @if (hasError) {
-      <mat-icon [tooltip]="errorMessage">warning_amber</mat-icon>
-    }
+    <mat-icon
+      [style.visibility]="hasError ? 'visible' : 'hidden'"
+      [tooltip]="errorMessage">
+      warning_amber
+    </mat-icon>
   `,
   styleUrl: './form-error-icon.component.scss',
-  standalone: true,
   imports: [MatIconModule, TooltipDirective],
 })
 export class FormErrorIconComponent {
@@ -37,10 +38,6 @@ export class FormErrorIconComponent {
       return 'Invalid year';
     } else if (this.control.hasError('invalidImageCaption')) {
       return 'Image caption can only contain letters, numbers, and readable symbols';
-    } else if (this.control.hasError('albumAlreadyExists')) {
-      return 'Album name already exists';
-    } else if (this.control.hasError('albumRequired')) {
-      return 'Image must be added to at least one album';
     } else if (this.control.hasError('minlength')) {
       return 'Input is too short';
     } else if (this.control.hasError('maxlength')) {

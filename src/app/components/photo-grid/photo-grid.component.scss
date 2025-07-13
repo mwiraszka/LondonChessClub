@@ -110,15 +110,15 @@
   }
 
   @include respond-to('gt-sm') {
-    -webkit-column-count: 2;
-    -moz-column-count: 2;
-    column-count: 2;
-  }
-
-  @include respond-to('gt-md') {
     -webkit-column-count: 3;
     -moz-column-count: 3;
     column-count: 3;
+  }
+
+  @include respond-to('gt-md') {
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
   }
 
   @include respond-to('gt-lg') {

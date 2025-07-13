@@ -64,9 +64,12 @@ describe('ImageViewerComponent', () => {
   });
 
   describe('initialization', () => {
-    it('should dispatch fetchImageRequested for image at index 0', () => {
+    it('should dispatch fetchOriginalRequested for image at index 0', () => {
       expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchImageRequested({ imageId: mockImages[0].id }),
+        ImagesActions.fetchOriginalRequested({
+          imageId: mockImages[0].id,
+          isPrefetch: false,
+        }),
       );
     });
 
@@ -105,7 +108,7 @@ describe('ImageViewerComponent', () => {
         jest.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).toHaveBeenCalledTimes(1);
-        expect(fetchImageSpy).toHaveBeenCalledWith(1);
+        expect(fetchImageSpy).toHaveBeenCalledWith(1, true);
 
         jest.clearAllMocks();
         jest.advanceTimersByTime(1000);
@@ -122,13 +125,13 @@ describe('ImageViewerComponent', () => {
         jest.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).toHaveBeenCalledTimes(1);
-        expect(fetchImageSpy).toHaveBeenCalledWith(1);
+        expect(fetchImageSpy).toHaveBeenCalledWith(1, true);
 
         jest.clearAllMocks();
         jest.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).toHaveBeenCalledTimes(1);
-        expect(fetchImageSpy).toHaveBeenCalledWith(2);
+        expect(fetchImageSpy).toHaveBeenCalledWith(2, true);
 
         jest.clearAllMocks();
         jest.advanceTimersByTime(1000);
@@ -143,13 +146,13 @@ describe('ImageViewerComponent', () => {
         jest.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).toHaveBeenCalledTimes(1);
-        expect(fetchImageSpy).toHaveBeenCalledWith(1);
+        expect(fetchImageSpy).toHaveBeenCalledWith(1, true);
 
         jest.clearAllMocks();
         jest.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).toHaveBeenCalledTimes(1);
-        expect(fetchImageSpy).toHaveBeenCalledWith(mockImages.length - 1);
+        expect(fetchImageSpy).toHaveBeenCalledWith(mockImages.length - 1, true);
 
         // Current image, immediate next image and immediate previous image have already been fetched
         const remainingImages = mockImages.length - 3;
@@ -159,14 +162,14 @@ describe('ImageViewerComponent', () => {
 
         expect(fetchImageSpy).toHaveBeenCalledTimes(remainingImages);
 
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(1, 2);
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(2, mockImages.length - 2);
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(3, 3);
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(4, mockImages.length - 3);
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(5, 4);
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(6, mockImages.length - 4);
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(7, 5);
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(8, mockImages.length - 5);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(1, 2, true);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(2, mockImages.length - 2, true);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(3, 3, true);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(4, mockImages.length - 3, true);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(5, 4, true);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(6, mockImages.length - 4, true);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(7, 5, true);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(8, mockImages.length - 5, true);
       });
     });
   });
@@ -233,7 +236,7 @@ describe('ImageViewerComponent', () => {
         componentType: BasicDialogComponent,
         inputs: {
           dialog: {
-            title: 'Delete image',
+            title: 'Confirm',
             body: `Delete ${mockImages[1].filename}?`,
             confirmButtonText: 'Delete',
             confirmButtonType: 'warning',
@@ -257,7 +260,7 @@ describe('ImageViewerComponent', () => {
         componentType: BasicDialogComponent,
         inputs: {
           dialog: {
-            title: 'Delete image',
+            title: 'Confirm',
             body: `Delete ${mockImages[1].filename}?`,
             confirmButtonText: 'Delete',
             confirmButtonType: 'warning',

@@ -5,31 +5,174 @@
   flex-direction: column;
   text-align: center;
   gap: 4px;
-  padding: 32px 0;
   white-space: nowrap;
-  background-color: var(--lcc-color--footer-background);
-  color: var(--lcc-color--footer-text);
   font-size: 13px;
+  background-color: var(--lcc-color--footer-background);
+  color: var(--lcc-color--footer-primaryText);
 }
 
-.website-details {
+.main-section {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 8px;
-  text-decoration: none;
-  font-style: normal;
 
-  mat-icon {
-    @include icon-size(14px);
-
-    margin-left: 4px;
-    vertical-align: text-bottom;
+  @include respond-to('gt-md') {
+    flex-direction: row;
   }
 
-  .divider {
-    margin: 0 8px;
-    color: var(--lcc-color--footer-verticalSpacer);
+  .main-content {
+    width: var(--lcc-width--appContent);
+    margin: 32px 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+    font-style: normal;
+    text-decoration: none;
+
+    @include respond-to('gt-xxs') {
+      gap: 32px;
+    }
+
+    .branding-and-socials {
+      .club-name {
+        margin-top: 4px;
+
+        .website-version {
+          color: var(--lcc-color--footer-secondaryText);
+        }
+      }
+
+      .socials {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        margin-top: 32px;
+
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 28px;
+          filter: grayscale(0.4);
+
+          &.chesscom {
+            width: 22px;
+          }
+        }
+
+        a:hover {
+          filter: grayscale(0);
+
+          img {
+            animation: raise 0.3s ease forwards;
+          }
+        }
+      }
+    }
+
+    .site-links {
+      display: grid;
+      grid-template-areas:
+        'about-us'
+        'club-events'
+        'archives'
+        'documents'
+        'website';
+      gap: 16px;
+      font-size: 12px;
+
+      @include respond-to('gt-md') {
+        grid-template-areas:
+          'about-us archives'
+          'about-us documents'
+          'club-events website';
+        grid-template-columns: 1fr 1fr;
+        font-size: 13px;
+      }
+
+      @include respond-to('gt-lg') {
+        grid-template-areas: 'about-us club-events archives documents website';
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      }
+
+      section {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+
+        &.about-us {
+          grid-area: about-us;
+        }
+        &.club-events {
+          grid-area: club-events;
+        }
+        &.archives {
+          grid-area: archives;
+        }
+        &.documents {
+          grid-area: documents;
+        }
+        &.website {
+          grid-area: website;
+        }
+
+        header {
+          font-style: normal;
+        }
+
+        hr {
+          width: 100%;
+          border-top: 1px solid var(--lcc-color--footer-dividerLine);
+          margin: 4px 0 8px;
+        }
+
+        a {
+          line-height: 18px;
+          margin: 4px 0;
+
+          mat-icon {
+            @include icon-size(14px);
+
+            margin-left: 4px;
+            vertical-align: text-bottom;
+          }
+        }
+      }
+    }
+  }
+}
+
+.copyright-notice {
+  width: 100%;
+  padding: 4px 8px;
+  font-size: 10px;
+  background-color: var(--lcc-color--footer-copyrightSectionBackground);
+  color: var(--lcc-color--footer-copyrightSectionText);
+
+  @include respond-to('gt-xxs') {
+    font-size: 11px;
+  }
+
+  @include respond-to('gt-xs') {
+    font-size: 12px;
+  }
+}
+
+.divider {
+  margin: 0 8px;
+  color: var(--lcc-color--footer-verticalSpacer);
+}
+
+.tooltip-highlighted-text {
+  color: var(--lcc-color--tooltip-highlightedText) !important;
+}
+
+@keyframes raise {
+  0% {
+    scale: 1;
+  }
+  100% {
+    scale: 1.1;
   }
 }

@@ -1,5 +1,6 @@
 import { Store } from '@ngrx/store';
 import { camelCase } from 'lodash';
+import { take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
@@ -9,6 +10,7 @@ import { RouterLink } from '@angular/router';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PaginatorComponent } from '@app/components/paginator/paginator.component';
+import { SafeModeNoticeComponent } from '@app/components/safe-mode-notice/safe-mode-notice.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import type {
@@ -20,7 +22,8 @@ import type {
 } from '@app/models';
 import { CamelCasePipe, FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { MembersActions } from '@app/store/members';
+import { MembersActions, MembersSelectors } from '@app/store/members';
+import { isSecondsInPast } from '@app/utils';
 
 @Component({
   selector: 'lcc-members-table',
@@ -36,6 +39,7 @@ import { MembersActions } from '@app/store/members';
     MatIconModule,
     PaginatorComponent,
     RouterLink,
+    SafeModeNoticeComponent,
     TooltipDirective,
   ],
 })
@@ -89,7 +93,14 @@ export class MembersTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(MembersActions.fetchMembersRequested());
+    this.store
+      .select(MembersSelectors.selectLastFetch)
+      .pipe(take(1))
+      .subscribe(lastFetch => {
+        if (!lastFetch || isSecondsInPast(lastFetch, 60)) {
+          this.store.dispatch(MembersActions.fetchMembersRequested());
+        }
+      });
   }
 
   public onSelectTableHeader(header: string): void {
@@ -124,7 +135,7 @@ export class MembersTableComponent implements OnInit {
 
   private async onDeleteMember(member: Member): Promise<void> {
     const dialog: Dialog = {
-      title: 'Delete member',
+      title: 'Confirm',
       body: `Delete ${member.firstName} ${member.lastName}?`,
       confirmButtonText: 'Delete',
       confirmButtonType: 'warning',

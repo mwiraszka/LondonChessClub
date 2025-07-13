@@ -113,6 +113,7 @@
       formControlName="lichessUsername"
       maxlength="20" />
     <lcc-form-error-icon [control]="form.controls.lichessUsername"></lcc-form-error-icon>
+
     @if (originalMember) {
       <label for="is-active-input">Active:</label>
       <input
@@ -121,18 +122,20 @@
         name="is-active"
         formControlName="isActive" />
     }
+
+    <button
+      class="restore-button lcc-secondary-button"
+      [disabled]="!hasUnsavedChanges"
+      tooltip="Restore member to its original state"
+      (click)="onRestore()">
+      <mat-icon>restore</mat-icon>
+    </button>
   </div>
 
   <aside class="lcc-required-fields-legend">Required fields</aside>
 
   @if (isSafeMode) {
-    <aside class="safe-mode-notice">
-      <mat-icon class="checkmark-icon">check_circle_outline</mat-icon>
-      <div class="text-container">
-        Member's personal details have been hidden from view. You can disable Safe Mode
-        from the User Settings menu.
-      </div>
-    </aside>
+    <lcc-safe-mode-notice entity="member's"></lcc-safe-mode-notice>
   }
 
   <hr />
@@ -143,16 +146,16 @@
 
   <div class="lcc-form-buttons-container">
     <button
-      class="lcc-secondary-button"
+      class="cancel-button lcc-secondary-button"
       type="button"
       (click)="onCancel()">
       Cancel
     </button>
     <button
-      class="lcc-primary-button"
+      class="submit-button lcc-primary-button"
       type="submit"
       [disabled]="form.invalid || !hasUnsavedChanges">
-      {{ originalMember ? 'Update' : 'Add member' }}
+      {{ originalMember ? 'Update member' : 'Add member' }}
     </button>
   </div>
 </form>

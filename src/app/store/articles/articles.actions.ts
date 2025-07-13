@@ -78,7 +78,7 @@ export const formValueChanged = createAction(
   props<{ articleId: Id | null; value: Partial<ArticleFormData> }>(),
 );
 
-export const articleFormDataCleared = createAction(
-  '[Articles] Article form data cleared',
+export const articleFormDataReset = createAction(
+  '[Articles] Article form data reset',
   props<{ articleId: Id | null }>(),
 );

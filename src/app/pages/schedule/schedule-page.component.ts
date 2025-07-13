@@ -23,7 +23,7 @@ import { EventsSelectors } from '@app/store/events';
         icon="calendar_month">
       </lcc-page-header>
       <lcc-schedule
-        [allEvents]="vm.allEvents"
+        [events]="vm.events"
         [isAdmin]="vm.isAdmin"
         [nextEvent]="vm.nextEvent"
         [showPastEvents]="vm.showPastEvents"
@@ -35,7 +35,7 @@ import { EventsSelectors } from '@app/store/events';
 })
 export class SchedulePageComponent implements OnInit {
   public viewModel$?: Observable<{
-    allEvents: Event[];
+    events: Event[];
     isAdmin: boolean;
     nextEvent: Event | null;
     showPastEvents: boolean;
@@ -62,8 +62,8 @@ export class SchedulePageComponent implements OnInit {
       this.store.select(EventsSelectors.selectUpcomingEvents),
     ]).pipe(
       untilDestroyed(this),
-      map(([allEvents, isAdmin, nextEvent, showPastEvents, upcomingEvents]) => ({
-        allEvents,
+      map(([events, isAdmin, nextEvent, showPastEvents, upcomingEvents]) => ({
+        events,
         isAdmin,
         nextEvent,
         showPastEvents,

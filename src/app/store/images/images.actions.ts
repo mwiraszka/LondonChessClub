@@ -1,64 +1,89 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Id, Image, ImageFormData, LccError } from '@app/models';
+import type {
+  BatchImageFetchContext,
+  Id,
+  Image,
+  ImageFormData,
+  LccError,
+} from '@app/models';
 import { BaseImage } from '@app/models/image.model';
 
-export const fetchImageThumbnailsRequested = createAction(
-  '[Images] Fetch image thumbnails requested',
+export const fetchAllImagesMetadataRequested = createAction(
+  '[Images] Fetch all images metadata requested',
 );
-export const fetchImageThumbnailsSucceeded = createAction(
-  '[Images] Fetch image thumbnails succeeded',
-  props<{ images: Image[] }>(),
+export const fetchAllImagesMetadataSucceeded = createAction(
+  '[Images] Fetch all images metadata succeeded',
+  props<{ images: BaseImage[] }>(),
 );
-export const fetchImageThumbnailsFailed = createAction(
-  '[Images] Fetch image thumbnails failed',
+export const fetchAllImagesMetadataFailed = createAction(
+  '[Images] Fetch all images metadata failed',
   props<{ error: LccError }>(),
 );
 
-export const fetchImageRequested = createAction(
-  '[Images] Fetch image requested',
-  props<{ imageId: Id }>(),
+export const fetchAllThumbnailsRequested = createAction(
+  '[Images] Fetch all thumbnails requested',
 );
-export const fetchImageSucceeded = createAction(
-  '[Images] Fetch image succeeded',
+export const fetchAllThumbnailsSucceeded = createAction(
+  '[Images] Fetch all thumbnails succeeded',
+  props<{ images: Image[] }>(),
+);
+export const fetchAllThumbnailsFailed = createAction(
+  '[Images] Fetch all thumbnails failed',
+  props<{ error: LccError }>(),
+);
+
+export const fetchBatchThumbnailsRequested = createAction(
+  '[Images] Fetch batch thumbnails requested',
+  props<{
+    imageIds: Id[];
+    context: BatchImageFetchContext;
+  }>(),
+);
+export const fetchBatchThumbnailsSucceeded = createAction(
+  '[Images] Fetch batch thumbnails succeeded',
+  props<{ images: Image[]; context: BatchImageFetchContext }>(),
+);
+export const fetchBatchThumbnailsFailed = createAction(
+  '[Images] Fetch batch thumbnails failed',
+  props<{ error: LccError }>(),
+);
+
+export const fetchOriginalRequested = createAction(
+  '[Images] Fetch original requested',
+  props<{ imageId: Id; isPrefetch?: boolean }>(),
+);
+export const fetchOriginalSucceeded = createAction(
+  '[Images] Fetch original succeeded',
   props<{ image: Image }>(),
 );
-export const fetchImageFailed = createAction(
-  '[Images] Fetch image failed',
-  props<{ error: LccError }>(),
-);
-
-export const fetchImagesRequested = createAction(
-  '[Images] Fetch images requested',
-  props<{ imageIds: Id[] }>(),
-);
-export const fetchImagesSucceeded = createAction(
-  '[Images] Fetch images succeeded',
-  props<{ images: Image[] }>(),
-);
-export const fetchImagesFailed = createAction(
-  '[Images] Fetch images failed',
+export const fetchOriginalFailed = createAction(
+  '[Images] Fetch original failed',
   props<{ error: LccError }>(),
 );
 
 export const addAnImageSelected = createAction('[Images] Add an image selected');
 
-export const imageFileLoadSucceeded = createAction(
-  '[Images] Image file load succeeded',
-  props<{ numFiles: number }>(),
+export const addImageRequested = createAction(
+  '[Images] Add image requested',
+  props<{ imageId: Id }>(),
 );
-export const imageFileLoadFailed = createAction(
-  '[Images] Image file load failed',
-  props<{ error: LccError }>(),
-);
-
-export const addImageRequested = createAction('[Images] Add image requested');
 export const addImageSucceeded = createAction(
   '[Images] Add image succeeded',
   props<{ image: Image }>(),
 );
 export const addImageFailed = createAction(
   '[Images] Add image failed',
+  props<{ error: LccError }>(),
+);
+
+export const addImagesRequested = createAction('[Images] Add images requested');
+export const addImagesSucceeded = createAction(
+  '[Images] Add images succeeded',
+  props<{ images: Image[] }>(),
+);
+export const addImagesFailed = createAction(
+  '[Images] Add images failed',
   props<{ error: LccError }>(),
 );
 
@@ -72,20 +97,29 @@ export const updateImageSucceeded = createAction(
 );
 export const updateImageFailed = createAction(
   '[Images] Update image failed',
-  props<{ error: LccError }>(),
+  props<{ baseImage: BaseImage; error: LccError }>(),
 );
 
-export const updateCoverImageRequested = createAction(
-  '[Images] Update cover image requested',
-  props<{ image: Image; album: string }>(),
+export const updateAlbumRequested = createAction(
+  '[Images] Update album requested',
+  props<{ album: string }>(),
 );
-export const updateCoverImageSucceeded = createAction(
-  '[Images] Update cover image succeeded',
+export const updateAlbumSucceeded = createAction(
+  '[Images] Update album images succeeded',
+  props<{ album: string; baseImages: BaseImage[] }>(),
+);
+export const updateAlbumFailed = createAction(
+  '[Images] Update images failed',
+  props<{ album: string; error: LccError }>(),
+);
+
+export const automaticAlbumCoverSwitchSucceeded = createAction(
+  '[Images] Automatic album cover switch succeeded',
   props<{ baseImage: BaseImage }>(),
 );
-export const updateCoverImageFailed = createAction(
-  '[Images] Update cover image failed',
-  props<{ error: LccError }>(),
+export const automaticAlbumCoverSwitchFailed = createAction(
+  '[Images] Automatic album cover switch failed',
+  props<{ album: string; error: LccError }>(),
 );
 
 export const deleteImageRequested = createAction(
@@ -98,17 +132,47 @@ export const deleteImageSucceeded = createAction(
 );
 export const deleteImageFailed = createAction(
   '[Images] Delete image failed',
-  props<{ error: LccError }>(),
+  props<{ image: Image; error: LccError }>(),
+);
+
+export const deleteAlbumRequested = createAction(
+  '[Images] Delete album requested',
+  props<{ album: string; imageIds: Id[] }>(),
+);
+export const deleteAlbumSucceeded = createAction(
+  '[Images] Delete album succeeded',
+  props<{ album: string; imageIds: Id[] }>(),
+);
+export const deleteAlbumFailed = createAction(
+  '[Images] Delete album failed',
+  props<{ album: string; error: LccError }>(),
 );
 
 export const cancelSelected = createAction('[Images] Cancel selected');
 
 export const formValueChanged = createAction(
   '[Images] Form value changed',
-  props<{ imageId: Id | null; value: Partial<ImageFormData> }>(),
+  props<{ values: (Partial<ImageFormData> & { id: Id })[] }>(),
 );
 
-export const imageFormDataCleared = createAction(
-  '[Images] Image form data cleared',
-  props<{ imageId: Id | null }>(),
+export const imageFormDataReset = createAction(
+  '[Images] Image form data reset',
+  props<{ imageId: Id }>(),
 );
+
+export const albumFormDataReset = createAction(
+  '[Images] Album form data reset',
+  props<{ imageIds: Id[] }>(),
+);
+
+export const imageFileActionFailed = createAction(
+  '[Images] Image file action failed',
+  props<{ error: LccError }>(),
+);
+
+export const newImageRemoved = createAction(
+  '[Images] New image removed',
+  props<{ imageId: Id }>(),
+);
+
+export const allNewImagesRemoved = createAction('[Images] All new images removed');

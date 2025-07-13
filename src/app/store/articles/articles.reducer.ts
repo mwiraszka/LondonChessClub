@@ -2,24 +2,16 @@ import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
-import {
-  ARTICLE_FORM_DATA_PROPERTIES,
-  type Article,
-  type ArticleFormData,
-} from '@app/models';
+import { ARTICLE_FORM_DATA_PROPERTIES, INITIAL_ARTICLE_FORM_DATA } from '@app/constants';
+import type { Article, ArticleFormData, IsoDate } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
 
-export const INITIAL_ARTICLE_FORM_DATA: ArticleFormData = {
-  title: '',
-  body: '',
-  bannerImageId: '',
-};
-
 export interface ArticlesState
   extends EntityState<{ article: Article; formData: ArticleFormData }> {
   newArticleFormData: ArticleFormData;
+  lastFetch: IsoDate | null;
 }
 
 export const articlesAdapter = createEntityAdapter<{
@@ -40,6 +32,7 @@ export const articlesAdapter = createEntityAdapter<{
 
 export const initialState: ArticlesState = articlesAdapter.getInitialState({
   newArticleFormData: INITIAL_ARTICLE_FORM_DATA,
+  lastFetch: null,
 });
 
 export const articlesReducer = createReducer(
@@ -53,7 +46,7 @@ export const articlesReducer = createReducer(
           article,
           formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
         })),
-        state,
+        { ...state, lastFetch: new Date().toISOString() },
       ),
   ),
 
@@ -120,8 +113,8 @@ export const articlesReducer = createReducer(
     );
   }),
 
-  on(ArticlesActions.articleFormDataCleared, (state, { articleId }): ArticlesState => {
-    const originalArticle = articleId ? state.entities[articleId] : null;
+  on(ArticlesActions.articleFormDataReset, (state, { articleId }): ArticlesState => {
+    const originalArticle = articleId ? state.entities[articleId]?.article : null;
 
     if (!originalArticle) {
       return {
@@ -132,8 +125,8 @@ export const articlesReducer = createReducer(
 
     return articlesAdapter.upsertOne(
       {
-        ...originalArticle,
-        formData: INITIAL_ARTICLE_FORM_DATA,
+        article: originalArticle,
+        formData: pick(originalArticle, ARTICLE_FORM_DATA_PROPERTIES),
       },
       state,
     );

@@ -1,31 +1,18 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
-import moment from 'moment-timezone';
 
-import { EVENT_FORM_DATA_PROPERTIES, type Event, type EventFormData } from '@app/models';
+import { EVENT_FORM_DATA_PROPERTIES, INITIAL_EVENT_FORM_DATA } from '@app/constants';
+import type { Event, EventFormData, IsoDate } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as EventsActions from './events.actions';
-
-export const INITIAL_EVENT_FORM_DATA: EventFormData = {
-  type: 'blitz tournament (10 mins)',
-  eventDate: moment()
-    .tz('America/Toronto', false)
-    .set('hours', 18)
-    .set('minutes', 0)
-    .set('seconds', 0)
-    .set('milliseconds', 0)
-    .toISOString(),
-  title: '',
-  details: '',
-  articleId: '',
-};
 
 export interface EventsState
   extends EntityState<{ event: Event; formData: EventFormData }> {
   newEventFormData: EventFormData;
   showPastEvents: boolean;
+  lastFetch: IsoDate | null;
 }
 
 export const eventsAdapter = createEntityAdapter<{
@@ -39,6 +26,7 @@ export const eventsAdapter = createEntityAdapter<{
 export const initialState: EventsState = eventsAdapter.getInitialState({
   newEventFormData: INITIAL_EVENT_FORM_DATA,
   showPastEvents: false,
+  lastFetch: null,
 });
 
 export const eventsReducer = createReducer(
@@ -50,7 +38,7 @@ export const eventsReducer = createReducer(
         event,
         formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
       })),
-      state,
+      { ...state, lastFetch: new Date().toISOString() },
     );
   }),
 
@@ -119,8 +107,8 @@ export const eventsReducer = createReducer(
     );
   }),
 
-  on(EventsActions.eventFormDataCleared, (state, { eventId }): EventsState => {
-    const originalEvent = eventId ? state.entities[eventId] : null;
+  on(EventsActions.eventFormDataReset, (state, { eventId }): EventsState => {
+    const originalEvent = eventId ? state.entities[eventId]?.event : null;
 
     if (!originalEvent) {
       return {
@@ -131,8 +119,8 @@ export const eventsReducer = createReducer(
 
     return eventsAdapter.upsertOne(
       {
-        ...originalEvent,
-        formData: INITIAL_EVENT_FORM_DATA,
+        event: originalEvent,
+        formData: pick(originalEvent, EVENT_FORM_DATA_PROPERTIES),
       },
       state,
     );

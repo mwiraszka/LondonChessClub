@@ -1,6 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 
 import { CdkScrollable, CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
@@ -16,11 +16,15 @@ import type {
   DialogOutput,
   Id,
   Image,
+  InternalLink,
 } from '@app/models';
 import { FormatBytesPipe, FormatDatePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 import * as ImagesActions from '@app/store/images/images.actions';
 import * as ImagesSelectors from '@app/store/images/images.selectors';
+import { isSecondsInPast } from '@app/utils';
+
+import { LinkListComponent } from '../link-list/link-list.component';
 
 @UntilDestroy()
 @Component({
@@ -34,6 +38,7 @@ import * as ImagesSelectors from '@app/store/images/images.selectors';
     FormatBytesPipe,
     FormatDatePipe,
     ImagePreloadDirective,
+    LinkListComponent,
   ],
   hostDirectives: [CdkScrollable],
 })
@@ -44,13 +49,27 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
 
   public images$?: Observable<Image[]>;
 
+  public readonly addImageLink: InternalLink = {
+    internalPath: ['image', 'add'],
+    text: 'Add an image',
+    icon: 'add_circle_outline',
+  };
+
   constructor(
     private readonly dialogService: DialogService,
     private readonly store: Store,
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(ImagesActions.fetchImageThumbnailsRequested());
+    this.store
+      .select(ImagesSelectors.selectLastThumbnailsFetch)
+      .pipe(take(1))
+      .subscribe(lastFetch => {
+        if (!lastFetch || isSecondsInPast(lastFetch, 60)) {
+          this.store.dispatch(ImagesActions.fetchAllThumbnailsRequested());
+        }
+      });
+
     this.images$ = this.store
       .select(ImagesSelectors.selectAllImages)
       .pipe(untilDestroyed(this));
@@ -70,7 +89,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
 
   public async onDeleteImage(image: Image): Promise<void> {
     const dialog: Dialog = {
-      title: 'Delete image',
+      title: 'Confirm',
       body: `Delete ${image.filename}?`,
       confirmButtonText: 'Delete',
       confirmButtonType: 'warning',

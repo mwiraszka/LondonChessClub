@@ -2,35 +2,35 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
-import { of } from 'rxjs';
+import { from, of } from 'rxjs';
 import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { BaseImage, LccError } from '@app/models';
-import { ImagesService, LoaderService } from '@app/services';
+import type { BaseImage, LccError } from '@app/models';
+import { ImageFileService, ImagesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { dataUrlToFile, isDefined } from '@app/utils';
+import { dataUrlToFile, isDefined, isLccError } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
 
 import { ImagesActions, ImagesSelectors } from '.';
 
 @Injectable()
 export class ImagesEffects {
-  fetchImageThumbnails$ = createEffect(() => {
+  fetchAllImagesMetadata$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchImageThumbnailsRequested),
+      ofType(ImagesActions.fetchAllImagesMetadataRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() =>
-        this.imagesService.getThumbnailImages().pipe(
+        this.imagesService.getAllImagesMetadata().pipe(
           map(response =>
-            ImagesActions.fetchImageThumbnailsSucceeded({
+            ImagesActions.fetchAllImagesMetadataSucceeded({
               images: response.data,
             }),
           ),
           catchError(error =>
             of(
-              ImagesActions.fetchImageThumbnailsFailed({
+              ImagesActions.fetchAllImagesMetadataFailed({
                 error: parseError(error),
               }),
             ),
@@ -41,15 +41,48 @@ export class ImagesEffects {
     );
   });
 
-  fetchImage$ = createEffect(() => {
+  fetchAllThumbnailImages$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchImageRequested),
-      switchMap(({ imageId }) => {
-        return this.imagesService.getImage(imageId).pipe(
-          map(response => ImagesActions.fetchImageSucceeded({ image: response.data })),
+      ofType(ImagesActions.fetchAllThumbnailsRequested),
+      switchMap(() =>
+        this.imagesService.getAllThumbnailImages().pipe(
+          map(response =>
+            ImagesActions.fetchAllThumbnailsSucceeded({
+              images: response.data,
+            }),
+          ),
+          catchError(error =>
+            of(
+              ImagesActions.fetchAllThumbnailsFailed({
+                error: parseError(error),
+              }),
+            ),
+          ),
+        ),
+      ),
+    );
+  });
+
+  fetchBatchThumbnailImages$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.fetchBatchThumbnailsRequested),
+      switchMap(({ imageIds, context }) => {
+        // return of(
+        //   ImagesActions.fetchBatchThumbnailsFailed({
+        //     error: parseError('test'),
+        //   }),
+        // );
+
+        return this.imagesService.getBatchThumbnailImages(imageIds).pipe(
+          map(response =>
+            ImagesActions.fetchBatchThumbnailsSucceeded({
+              images: response.data,
+              context,
+            }),
+          ),
           catchError(error => {
             return of(
-              ImagesActions.fetchImageFailed({
+              ImagesActions.fetchBatchThumbnailsFailed({
                 error: parseError(error),
               }),
             );
@@ -59,15 +92,15 @@ export class ImagesEffects {
     );
   });
 
-  fetchImages$ = createEffect(() => {
+  fetchOriginalImage$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchImagesRequested),
-      switchMap(({ imageIds }) => {
-        return this.imagesService.getImageBatch(imageIds).pipe(
-          map(response => ImagesActions.fetchImagesSucceeded({ images: response.data })),
+      ofType(ImagesActions.fetchOriginalRequested),
+      switchMap(({ imageId, isPrefetch }) => {
+        return this.imagesService.getOriginalImage(imageId, isPrefetch).pipe(
+          map(response => ImagesActions.fetchOriginalSucceeded({ image: response.data })),
           catchError(error => {
             return of(
-              ImagesActions.fetchImagesFailed({
+              ImagesActions.fetchOriginalFailed({
                 error: parseError(error),
               }),
             );
@@ -80,30 +113,33 @@ export class ImagesEffects {
   addImage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.addImageRequested),
-      tap(() => this.loaderService.setIsLoading(true, false)),
+      tap(() => this.loaderService.setIsLoading(true)),
+      switchMap(({ imageId }) => from(this.imageFileService.getImage(imageId))),
       concatLatestFrom(() => [
-        this.store.select(ImagesSelectors.selectImageFormDataById(null)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
+        this.store.select(ImagesSelectors.selectNewImageFormData).pipe(filter(isDefined)),
       ]),
-      switchMap(([, formData, user]) => {
-        const file = dataUrlToFile(formData.dataUrl, formData.filename);
+      switchMap(([imageFileResult, user, formData]) => {
+        if (isLccError(imageFileResult)) {
+          return of(ImagesActions.addImageFailed({ error: imageFileResult }));
+        }
+
+        const file = dataUrlToFile(imageFileResult.dataUrl, formData.filename);
 
         if (!file) {
           const error: LccError = {
             name: 'LCCError',
-            message: 'Unable to construct file object from image data URL.',
+            message: `Unable to construct file object from image data URL for ${formData.filename}`,
           };
           return of(ImagesActions.addImageFailed({ error }));
         }
 
         const imageMetadata: Omit<BaseImage, 'fileSize'> = {
-          id: '',
+          id: formData.id,
           filename: formData.filename,
           caption: formData.caption,
-          coverForAlbum: formData.newAlbum ?? '',
-          albums: formData.newAlbum
-            ? [...formData.albums, formData.newAlbum].sort()
-            : formData.albums,
+          album: formData.album,
+          albumCover: formData.albumCover,
           modificationInfo: {
             createdBy: `${user.firstName} ${user.lastName}`,
             dateCreated: moment().toISOString(),
@@ -113,13 +149,88 @@ export class ImagesEffects {
         };
 
         const imageFormData = new FormData();
-        imageFormData.append('file', file);
+        imageFormData.append('files', file);
         imageFormData.append('imageMetadata', JSON.stringify(imageMetadata));
 
-        return this.imagesService.addImage(imageFormData).pipe(
-          map(response => ImagesActions.addImageSucceeded({ image: response.data })),
+        return this.imagesService.addImages(imageFormData).pipe(
+          map(response => ImagesActions.addImageSucceeded({ image: response.data[0] })),
           catchError(error =>
             of(ImagesActions.addImageFailed({ error: parseError(error) })),
+          ),
+        );
+      }),
+      tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
+  addImages$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.addImagesRequested),
+      tap(() => this.loaderService.setIsLoading(true)),
+      switchMap(() => from(this.imageFileService.getAllImages())),
+      concatLatestFrom(() => [
+        this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
+        this.store.select(ImagesSelectors.selectNewImagesFormData),
+      ]),
+      switchMap(([imageFilesResult, user, newImagesFormData]) => {
+        if (isLccError(imageFilesResult)) {
+          return of(ImagesActions.addImageFailed({ error: imageFilesResult }));
+        }
+
+        if (!imageFilesResult.length) {
+          const error: LccError = {
+            name: 'LCCError',
+            message: 'No image data found in IndexedDB',
+          };
+          return of(ImagesActions.addImageFailed({ error }));
+        }
+
+        const imageFormData = new FormData();
+
+        for (const indexedDbImage of imageFilesResult) {
+          const { id, dataUrl, filename } = indexedDbImage;
+          const file = dataUrlToFile(dataUrl, filename);
+
+          if (!file) {
+            const error: LccError = {
+              name: 'LCCError',
+              message: `Unable to construct file object from image data URL for ${filename}`,
+            };
+            return of(ImagesActions.addImageFailed({ error }));
+          }
+
+          const formData = newImagesFormData[id];
+
+          if (!formData) {
+            const error: LccError = {
+              name: 'LCCError',
+              message: `Unable to retrieve form data for ${filename}`,
+            };
+            return of(ImagesActions.addImageFailed({ error }));
+          }
+
+          const imageMetadata: Omit<BaseImage, 'fileSize'> = {
+            id,
+            filename,
+            caption: formData.caption,
+            album: formData.album,
+            albumCover: formData.albumCover,
+            modificationInfo: {
+              createdBy: `${user.firstName} ${user.lastName}`,
+              dateCreated: moment().toISOString(),
+              lastEditedBy: `${user.firstName} ${user.lastName}`,
+              dateLastEdited: moment().toISOString(),
+            },
+          };
+
+          imageFormData.append('files', file);
+          imageFormData.append('imageMetadata', JSON.stringify(imageMetadata));
+        }
+
+        return this.imagesService.addImages(imageFormData).pipe(
+          map(response => ImagesActions.addImagesSucceeded({ images: response.data })),
+          catchError(error =>
+            of(ImagesActions.addImagesFailed({ error: parseError(error) })),
           ),
         );
       }),
@@ -130,26 +241,20 @@ export class ImagesEffects {
   updateImage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.updateImageRequested),
-      tap(() => this.loaderService.setIsLoading(true, false)),
+      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(({ imageId }) => [
         this.store
-          .select(ImagesSelectors.selectImageById(imageId))
-          .pipe(filter(isDefined)),
-        this.store
-          .select(ImagesSelectors.selectImageFormDataById(imageId))
+          .select(ImagesSelectors.selectImageEntityById(imageId))
           .pipe(filter(isDefined)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ]),
-      switchMap(([, image, formData, user]) => {
+      switchMap(([, { image, formData }, user]) => {
         const updatedImage: BaseImage = {
           id: image.id,
           filename: image.filename,
-          fileSize: image.fileSize,
           caption: formData.caption,
-          coverForAlbum: image.coverForAlbum,
-          albums: formData.newAlbum
-            ? [...formData.albums, formData.newAlbum].sort()
-            : formData.albums,
+          album: formData.album,
+          albumCover: formData.albumCover,
           modificationInfo: {
             ...image.modificationInfo,
             lastEditedBy: `${user.firstName} ${user.lastName}`,
@@ -157,12 +262,53 @@ export class ImagesEffects {
           },
         };
 
-        return this.imagesService.updateImage(updatedImage).pipe(
-          filter(response => response.data === image.id),
+        return this.imagesService.updateImages([updatedImage]).pipe(
+          filter(response => response.data[0] === image.id),
           map(() => ImagesActions.updateImageSucceeded({ baseImage: updatedImage })),
           catchError(error =>
             of(
               ImagesActions.updateImageFailed({
+                baseImage: updatedImage,
+                error: parseError(error),
+              }),
+            ),
+          ),
+        );
+      }),
+      tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
+  updateAlbum$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.updateAlbumRequested),
+      tap(() => this.loaderService.setIsLoading(true)),
+      concatLatestFrom(({ album }) => [
+        this.store.select(ImagesSelectors.selectImageEntitiesByAlbum(album)),
+        this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
+      ]),
+      switchMap(([{ album }, entities, user]) => {
+        const updatedImages: BaseImage[] = entities.map(({ image, formData }) => ({
+          id: image.id,
+          filename: image.filename,
+          caption: formData.caption,
+          album: formData.album,
+          albumCover: formData.albumCover,
+          modificationInfo: {
+            ...image.modificationInfo,
+            lastEditedBy: `${user.firstName} ${user.lastName}`,
+            dateLastEdited: moment().toISOString(),
+          },
+        }));
+
+        return this.imagesService.updateImages(updatedImages).pipe(
+          map(() =>
+            ImagesActions.updateAlbumSucceeded({ album, baseImages: updatedImages }),
+          ),
+          catchError(error =>
+            of(
+              ImagesActions.updateAlbumFailed({
+                album,
                 error: parseError(error),
               }),
             ),
@@ -181,50 +327,59 @@ export class ImagesEffects {
           filter(response => response.data === image.id),
           map(() => ImagesActions.deleteImageSucceeded({ image })),
           catchError(error =>
-            of(ImagesActions.deleteImageFailed({ error: parseError(error) })),
+            of(ImagesActions.deleteImageFailed({ image, error: parseError(error) })),
           ),
         );
       }),
     );
   });
 
-  handleDeletedCoverImage$ = createEffect(() => {
+  deleteAlbum$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.deleteImageSucceeded),
-      filter(({ image }) => !!image.coverForAlbum),
-      concatLatestFrom(({ image }) =>
-        this.store.select(ImagesSelectors.selectImagesByAlbum(image.coverForAlbum)),
-      ),
-      filter(([, images]) => !!images?.length),
-      map(([{ image }, images]) =>
-        ImagesActions.updateCoverImageRequested({
-          image: images![0],
-          album: image.coverForAlbum,
-        }),
-      ),
+      ofType(ImagesActions.deleteAlbumRequested),
+      tap(() => this.loaderService.setIsLoading(true)),
+      switchMap(({ album, imageIds }) => {
+        return this.imagesService.deleteAlbum(album).pipe(
+          map(() => ImagesActions.deleteAlbumSucceeded({ album, imageIds })),
+          catchError(error =>
+            of(ImagesActions.deleteAlbumFailed({ album, error: parseError(error) })),
+          ),
+        );
+      }),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
-  updateCoverImage$ = createEffect(() => {
+  automaticallyUpdateAlbumCoverAfterImageDeletion$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.updateCoverImageRequested),
-      switchMap(({ image, album }) => {
+      ofType(ImagesActions.deleteImageSucceeded),
+      filter(({ image }) => image.albumCover),
+      concatLatestFrom(({ image }) =>
+        this.store.select(ImagesSelectors.selectImagesByAlbum(image.album)),
+      ),
+      filter(([, imagesInAlbum]) => !!imagesInAlbum?.length),
+      map(([, imagesInAlbum]) => {
+        const newAlbumCoverImage = imagesInAlbum![0];
         const updatedImage: BaseImage = {
-          id: image.id,
-          filename: image.filename,
-          fileSize: image.fileSize,
-          caption: image.caption,
-          albums: image.albums,
-          modificationInfo: image.modificationInfo,
-          coverForAlbum: album,
+          id: newAlbumCoverImage.id,
+          filename: newAlbumCoverImage.filename,
+          caption: newAlbumCoverImage.caption,
+          modificationInfo: newAlbumCoverImage.modificationInfo,
+          album: newAlbumCoverImage.album,
+          albumCover: true,
         };
-
-        return this.imagesService.updateImage(updatedImage).pipe(
-          filter(response => response.data === image.id),
-          map(() => ImagesActions.updateCoverImageSucceeded({ baseImage: updatedImage })),
+        return updatedImage;
+      }),
+      switchMap(updatedImage => {
+        return this.imagesService.updateImages([updatedImage]).pipe(
+          filter(response => response.data[0] === updatedImage.id),
+          map(() =>
+            ImagesActions.automaticAlbumCoverSwitchSucceeded({ baseImage: updatedImage }),
+          ),
           catchError(error =>
             of(
-              ImagesActions.updateCoverImageFailed({
+              ImagesActions.automaticAlbumCoverSwitchFailed({
+                album: updatedImage.album,
                 error: parseError(error),
               }),
             ),
@@ -236,6 +391,7 @@ export class ImagesEffects {
 
   constructor(
     private readonly actions$: Actions,
+    private readonly imageFileService: ImageFileService,
     private readonly imagesService: ImagesService,
     private readonly loaderService: LoaderService,
     private readonly store: Store,

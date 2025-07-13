@@ -1,79 +1,142 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { pick } from 'lodash';
+import { omit, pick, uniq } from 'lodash';
 
+import { INITIAL_IMAGE_FORM_DATA } from '@app/constants';
 import type { Id } from '@app/models';
 import { ArticlesSelectors } from '@app/store/articles';
 import { areSame } from '@app/utils';
 
-import { INITIAL_IMAGE_FORM_DATA, ImagesState, imagesAdapter } from './images.reducer';
+import { ImagesState, imagesAdapter } from './images.reducer';
 
 const selectImagesState = createFeatureSelector<ImagesState>('imagesState');
 
 const { selectAll: selectAllImageEntities } =
   imagesAdapter.getSelectors(selectImagesState);
 
-export const selectImageEntitiesByAlbum = (album: string | null) =>
-  createSelector(selectAllImageEntities, allImageEntities => {
-    return album
-      ? allImageEntities.filter(entity => entity?.image?.albums?.includes(album))
+export const selectNewImagesFormData = createSelector(selectImagesState, state => {
+  return state.newImagesFormData;
+});
+
+export const selectLastMetadataFetch = createSelector(selectImagesState, state => {
+  return state.lastMetadataFetch;
+});
+
+export const selectLastThumbnailsFetch = createSelector(selectImagesState, state => {
+  return state.lastThumbnailsFetch;
+});
+
+export const selectLastAlbumCoversFetch = createSelector(selectImagesState, state => {
+  return state.lastAlbumCoversFetch;
+});
+
+export const selectLastArticleImagesFetch = createSelector(selectImagesState, state => {
+  return state.lastArticleImagesFetch;
+});
+
+export const selectNewImageFormData = createSelector(
+  selectNewImagesFormData,
+  newImagesFormData => {
+    if (Object.keys(newImagesFormData).length > 1) {
+      console.warn(
+        '[LCC] Image data for multiple images found while selecting new image form data',
+      );
+      return null;
+    }
+
+    return Object.keys(newImagesFormData).length === 1
+      ? Object.values(newImagesFormData)[0]
       : null;
-  });
+  },
+);
+
+export const selectImageEntitiesByAlbum = (album: string | null) =>
+  createSelector(selectAllImageEntities, allImageEntities =>
+    album ? allImageEntities.filter(entity => entity.image.album === album) : [],
+  );
 
 export const selectAllImages = createSelector(selectAllImageEntities, allImageEntities =>
-  allImageEntities.map(entity => entity?.image),
+  allImageEntities.map(entity => entity.image),
 );
+
+export const selectImagesByAlbum = (album: string | null) =>
+  createSelector(selectAllImages, allImages =>
+    album ? allImages.filter(image => image.album === album) : [],
+  );
 
 export const selectPhotoImages = createSelector(selectAllImages, allImages =>
-  allImages?.length
-    ? allImages.filter(image => !image?.albums?.some(album => album?.startsWith('_')))
-    : [],
+  allImages.filter(image => !image.album.startsWith('_')),
 );
 
-export const selectImageById = (id: Id | null) =>
+export const selectImageEntityById = (id: Id | null) =>
+  createSelector(
+    selectAllImageEntities,
+    allImageEntities => allImageEntities.find(entity => entity.image.id === id) ?? null,
+  );
+
+export const selectImageById = (id: Id) =>
   createSelector(
     selectAllImages,
-    allImages => allImages?.find(image => image?.id === id) ?? null,
+    allImages => allImages.find(image => image.id === id) ?? null,
   );
 
-export const selectImageFormDataById = (id: Id | null) =>
-  createSelector(
-    selectImagesState,
-    selectAllImageEntities,
-    (state, allImageEntities) =>
-      allImageEntities.find(entity => entity?.image?.id === id)?.formData ??
-      state.newImageFormData,
+export const selectImagesByIds = (ids: Id[]) =>
+  createSelector(selectAllImages, allImages =>
+    allImages.filter(image => ids.find(id => id === image.id)),
   );
 
-export const selectHasUnsavedChanges = (id: Id | null) =>
+export const selectImageHasUnsavedChanges = (id: Id | null) =>
   createSelector(
-    selectImageById(id),
-    selectImageFormDataById(id),
-    (image, imageFormData) => {
-      const formPropertiesOfOriginalImage = pick(
-        image ?? INITIAL_IMAGE_FORM_DATA,
-        Object.getOwnPropertyNames(imageFormData),
+    selectImageEntityById(id),
+    selectNewImageFormData,
+    (entity, newImageFormData) => {
+      if (!id) {
+        return (
+          !!newImageFormData &&
+          !areSame(omit(newImageFormData, 'id'), omit(INITIAL_IMAGE_FORM_DATA, 'id'))
+        );
+      }
+
+      return (
+        !!entity &&
+        !areSame(
+          pick(entity.image, Object.getOwnPropertyNames(entity.formData)),
+          entity.formData,
+        )
       );
+    },
+  );
 
-      return !areSame(
-        { ...formPropertiesOfOriginalImage, newAlbum: '', dataUrl: '' },
-        imageFormData,
+export const selectAlbumHasUnsavedChanges = (album: string | null) =>
+  createSelector(
+    selectImageEntitiesByAlbum(album),
+    selectNewImagesFormData,
+    (entities, newImagesFormData) => {
+      if (!album) {
+        return (
+          !!Object.keys(newImagesFormData).length &&
+          Object.values(newImagesFormData).some(
+            newImageFormData =>
+              !areSame(omit(newImageFormData, 'id'), omit(INITIAL_IMAGE_FORM_DATA, 'id')),
+          )
+        );
+      }
+
+      return (
+        !!entities.length &&
+        entities.some(
+          entity =>
+            !areSame(
+              pick(entity.image, Object.getOwnPropertyNames(entity.formData)),
+              entity.formData,
+            ),
+        )
       );
     },
   );
 
 export const selectAllExistingAlbums = createSelector(selectAllImages, allImages => {
-  const allAlbums = allImages.flatMap(image => image?.albums || []);
-  return [...new Set(allAlbums)].sort();
+  return uniq(allImages.map(image => image.album));
 });
-
-export const selectImagesByAlbum = (album: string | null) =>
-  createSelector(selectAllImages, allImages => {
-    if (!album) {
-      return null;
-    }
-
-    return allImages.filter(image => image?.albums?.includes(album)) ?? [];
-  });
 
 export const selectArticleImages = createSelector(selectAllImages, allImages => {
   return allImages.filter(image => (image?.articleAppearances ?? 0) > 0);

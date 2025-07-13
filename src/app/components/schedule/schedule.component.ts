@@ -1,4 +1,5 @@
 import { Store } from '@ngrx/store';
+import { take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
@@ -17,7 +18,8 @@ import type {
 } from '@app/models';
 import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { EventsActions } from '@app/store/events';
+import { EventsActions, EventsSelectors } from '@app/store/events';
+import { isSecondsInPast } from '@app/utils';
 
 @Component({
   selector: 'lcc-schedule',
@@ -34,7 +36,7 @@ import { EventsActions } from '@app/store/events';
   ],
 })
 export class ScheduleComponent implements OnInit {
-  @Input({ required: true }) public allEvents!: Event[];
+  @Input({ required: true }) public events!: Event[];
   @Input({ required: true }) public isAdmin!: boolean;
   @Input({ required: true }) public nextEvent!: Event | null;
   @Input({ required: true }) public showPastEvents!: boolean;
@@ -56,11 +58,14 @@ export class ScheduleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.fetchEvents();
-  }
-
-  public fetchEvents(): void {
-    this.store.dispatch(EventsActions.fetchEventsRequested());
+    this.store
+      .select(EventsSelectors.selectLastFetch)
+      .pipe(take(1))
+      .subscribe(lastFetch => {
+        if (!lastFetch || isSecondsInPast(lastFetch, 60)) {
+          this.store.dispatch(EventsActions.fetchEventsRequested());
+        }
+      });
   }
 
   public getAdminControlsConfig(event: Event): AdminControlsConfig {
@@ -74,7 +79,7 @@ export class ScheduleComponent implements OnInit {
 
   public async onDeleteEvent(event: Event): Promise<void> {
     const dialog: Dialog = {
-      title: 'Delete event',
+      title: 'Confirm',
       body: `Delete ${event.title}?`,
       confirmButtonText: 'Delete',
       confirmButtonType: 'warning',

@@ -1,19 +1,28 @@
 import { Store } from '@ngrx/store';
-import { isEmpty } from 'lodash';
+import { take } from 'rxjs';
 
-import { Component, Input, OnInit } from '@angular/core';
+import { UpperCasePipe } from '@angular/common';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
 import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import { AdminControlsConfig, Id, Image, InternalLink } from '@app/models';
+import {
+  AdminControlsConfig,
+  BasicDialogResult,
+  Dialog,
+  Id,
+  Image,
+  InternalLink,
+} from '@app/models';
 import { DialogService } from '@app/services';
-import { ImagesActions } from '@app/store/images';
-import { customSort } from '@app/utils';
+import { ImagesActions, ImagesSelectors } from '@app/store/images';
+import { customSort, isSecondsInPast } from '@app/utils';
 
 @Component({
   selector: 'lcc-photo-grid',
@@ -25,22 +34,37 @@ import { customSort } from '@app/utils';
     LinkListComponent,
     MatIconModule,
     TooltipDirective,
+    UpperCasePipe,
   ],
 })
-export class PhotoGridComponent implements OnInit {
+export class PhotoGridComponent implements OnChanges {
   @Input({ required: true }) public isAdmin!: boolean;
   @Input({ required: true }) public photoImages!: Image[];
 
   @Input() public maxAlbums?: number;
 
-  public readonly addImageLink: InternalLink = {
-    internalPath: ['image', 'add'],
-    text: 'Add an image',
-    icon: 'add_circle_outline',
-  };
+  public readonly links: InternalLink[] = [
+    {
+      internalPath: ['image', 'add'],
+      text: 'Add an image',
+      icon: 'add_circle_outline',
+    },
+    {
+      internalPath: ['album', 'add'],
+      text: 'Create an album',
+      icon: 'add_circle_outline',
+    },
+  ];
 
   public get albumCovers(): Image[] {
-    return this.photoImages.filter(image => !isEmpty(image.coverForAlbum));
+    return this.photoImages
+      .filter(image => image.albumCover)
+      .map(image => ({
+        ...image,
+        width: image.width || 300,
+        height: image.height || 300,
+        caption: image.caption || 'Loading...',
+      }));
   }
 
   constructor(
@@ -48,8 +72,23 @@ export class PhotoGridComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
-    this.store.dispatch(ImagesActions.fetchImageThumbnailsRequested());
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['photoImages'] && this.photoImages.length) {
+      this.store
+        .select(ImagesSelectors.selectLastAlbumCoversFetch)
+        .pipe(take(1))
+        .subscribe(lastFetch => {
+          const imageIds = this.albumCovers.map(image => image.id);
+          if (!lastFetch || isSecondsInPast(lastFetch, 60)) {
+            this.store.dispatch(
+              ImagesActions.fetchBatchThumbnailsRequested({
+                imageIds,
+                context: 'photos',
+              }),
+            );
+          }
+        });
+    }
   }
 
   public async onClickAlbumCover(album: string): Promise<void> {
@@ -59,7 +98,7 @@ export class PhotoGridComponent implements OnInit {
       inputs: {
         album,
         images: this.photoImages
-          .filter(image => image.albums.includes(album))
+          .filter(image => image.album === album)
           .sort((a, b) => customSort(a, b, 'caption')),
         isAdmin: this.isAdmin,
       },
@@ -77,21 +116,40 @@ export class PhotoGridComponent implements OnInit {
   public getAdminControlsConfig(album: string): AdminControlsConfig {
     return {
       buttonSize: 34,
-      deleteCb: () => {},
-      editPath: ['images', 'edit', album],
-      isEditDisabled: true,
-      isDeleteDisabled: true,
-      editDisabledReason: 'Album controls currently unavailable',
-      deleteDisabledReason: 'Album controls currently unavailable',
+      deleteCb: () => this.onDeleteAlbum(album),
+      editPath: ['album', 'edit', album],
+      isEditDisabled: false,
+      isDeleteDisabled: false,
       itemName: album,
     };
   }
 
-  public getAlbumPhotoCount(album: string): string {
-    const photoCount = this.photoImages.filter(image =>
-      image.albums.includes(album),
-    ).length;
+  public async onDeleteAlbum(album: string): Promise<void> {
+    const dialog: Dialog = {
+      title: 'Confirm',
+      body: `Delete ${album} and its ${this.getAlbumPhotoCountText(album)}?`,
+      confirmButtonText: 'Delete',
+      confirmButtonType: 'warning',
+    };
 
-    return `${photoCount} PHOTO${photoCount === 1 ? '' : 'S'}`;
+    const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(
+      {
+        componentType: BasicDialogComponent,
+        inputs: { dialog },
+        isModal: true,
+      },
+    );
+
+    if (result === 'confirm') {
+      const imageIds = this.photoImages
+        .filter(image => image.album === album)
+        .map(image => image.id);
+      this.store.dispatch(ImagesActions.deleteAlbumRequested({ album, imageIds }));
+    }
+  }
+
+  public getAlbumPhotoCountText(album: string): string {
+    const photoCount = this.photoImages.filter(image => image.album === album).length;
+    return `${photoCount} photo${photoCount === 1 ? '' : 's'}`;
   }
 }

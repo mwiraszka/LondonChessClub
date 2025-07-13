@@ -16,7 +16,7 @@
     flex-direction: row;
     gap: 8px;
 
-    .upload-file-button {
+    .choose-file-button {
       align-self: end;
       padding: 4px 8px;
 
@@ -48,29 +48,44 @@
     }
   }
 
-  .existing-album-fieldset {
+  .existing-albums-fieldset {
     display: grid;
     grid-template-columns: auto;
-    gap: 4px 16px;
-
-    @include respond-to('gt-md') {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
+    gap: 0 16px;
 
     &.invalid {
       border-color: var(--lcc-color--input-invalidBorder);
     }
 
-    .existing-album {
+    .existing-album,
+    .new-album {
+      height: 42px; // Match height of new album input
       display: flex;
       flex-direction: row;
       gap: 4px;
+
+      input {
+        margin-left: 8px;
+      }
 
       label {
         text-align: unset;
         max-width: unset;
       }
     }
+
+    @include respond-to('gt-md') {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+  }
+
+  .restore-button {
+    grid-column: 2 / 3;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
   }
 
   hr {

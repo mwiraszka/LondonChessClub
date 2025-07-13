@@ -35,7 +35,7 @@ export async function parseCsv(
 
     return skipFirstRow && rowsOfData.length > 0 ? rowsOfData.slice(1) : rowsOfData;
   } catch {
-    console.error('[LCC] Unable to parse CSV file.');
+    console.error('[LCC] Unable to parse CSV file');
     return null;
   }
 }

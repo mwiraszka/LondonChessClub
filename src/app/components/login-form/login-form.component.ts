@@ -43,15 +43,15 @@ export class LoginFormComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    if (this.form?.invalid) {
+    if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
     this.store.dispatch(
       AuthActions.loginRequested({
-        email: this.form!.value.email!,
-        password: this.form!.value.password!,
+        email: this.form.value.email!,
+        password: this.form.value.password!,
       }),
     );
   }

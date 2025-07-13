@@ -8,47 +8,87 @@ import { BaseImage } from '@app/models/image.model';
 
 import { environment } from '@env';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root',
+})
 export class ImagesService {
   private readonly API_BASE_URL = environment.lccApiBaseUrl;
   private readonly COLLECTION: DbCollection = 'images';
 
   constructor(private readonly http: HttpClient) {}
 
-  public getThumbnailImages(): Observable<ApiResponse<Image[]>> {
-    return this.http.get<ApiResponse<Image[]>>(`${this.API_BASE_URL}/${this.COLLECTION}`);
-  }
-
-  public getImage(id: Id): Observable<ApiResponse<Image>> {
-    return this.http.get<ApiResponse<Image>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
+  public getAllImagesMetadata(): Observable<ApiResponse<BaseImage[]>> {
+    return this.http.get<ApiResponse<BaseImage[]>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/all-metadata`,
     );
   }
-  
-  public getImageBatch(ids: Id[]): Observable<ApiResponse<Image[]>> {
+
+  public getAllThumbnailImages(): Observable<ApiResponse<Image[]>> {
     return this.http.get<ApiResponse<Image[]>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}/batch`,
-      { params: { ids: ids.join(',') } }
+      `${this.API_BASE_URL}/${this.COLLECTION}/all-thumbnails`,
     );
   }
 
-  public addImage(imageFormData: FormData): Observable<ApiResponse<Image>> {
-    return this.http.post<ApiResponse<Image>>(
+  public getBatchThumbnailImages(ids: Id[]): Observable<ApiResponse<Image[]>> {
+    return this.http.get<ApiResponse<Image[]>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/batch-thumbnails`,
+      { params: { ids: ids.join(',') } },
+    );
+  }
+
+  public getOriginalImage(id: Id, isPrefetch = false): Observable<ApiResponse<Image>> {
+    const url = `${this.API_BASE_URL}/${this.COLLECTION}/${id}`;
+
+    if (isPrefetch) {
+      // Use Fetch API with keepalive to prevent browser cancellation when image is not in viewport
+      return new Observable(observer => {
+        fetch(url, { method: 'GET', keepalive: true, credentials: 'include' })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(
+                `[LCC] HTTP error during prefetch! Status: ${response.status}`,
+              );
+            }
+            return response.json();
+          })
+          .then(data => {
+            observer.next(data);
+            observer.complete();
+          })
+          .catch(error => {
+            console.error(`[LCC] Error prefetching image ${id}:`, error);
+            observer.error(error);
+          });
+      });
+    }
+
+    // Use standard HttpClient if keepalive is not requested
+    return this.http.get<ApiResponse<Image>>(url);
+  }
+
+  public addImages(imagesFormData: FormData): Observable<ApiResponse<Image[]>> {
+    return this.http.post<ApiResponse<Image[]>>(
       `${this.API_BASE_URL}/${this.COLLECTION}`,
-      imageFormData,
+      imagesFormData,
     );
   }
 
-  public updateImage(baseImage: BaseImage): Observable<ApiResponse<Id>> {
-    return this.http.put<ApiResponse<Id>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}/${baseImage.id}`,
-      baseImage,
+  public updateImages(baseImages: BaseImage[]): Observable<ApiResponse<Id[]>> {
+    return this.http.put<ApiResponse<Id[]>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}`,
+      baseImages,
     );
   }
 
   public deleteImage(id: Id): Observable<ApiResponse<Id>> {
     return this.http.delete<ApiResponse<Id>>(
       `${this.API_BASE_URL}/${this.COLLECTION}/${id}`,
+    );
+  }
+
+  public deleteAlbum(album: string): Observable<ApiResponse<Id[]>> {
+    return this.http.delete<ApiResponse<Id[]>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}/album/${encodeURIComponent(album)}`,
     );
   }
 }

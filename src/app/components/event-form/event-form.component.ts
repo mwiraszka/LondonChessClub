@@ -11,11 +11,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { DatePickerComponent } from '@app/components/date-picker/date-picker.component';
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import type {
   BasicDialogResult,
   Dialog,
@@ -36,8 +38,10 @@ import { timeValidator } from '@app/validators';
   imports: [
     DatePickerComponent,
     FormErrorIconComponent,
+    MatIconModule,
     ModificationInfoComponent,
     ReactiveFormsModule,
+    TooltipDirective,
   ],
 })
 export class EventFormComponent implements OnInit {
@@ -62,6 +66,33 @@ export class EventFormComponent implements OnInit {
     }
   }
 
+  public async onRestore(): Promise<void> {
+    const dialog: Dialog = {
+      title: 'Confirm',
+      body: 'Restore original event data? All changes will be lost.',
+      confirmButtonText: 'Restore',
+      confirmButtonType: 'warning',
+    };
+
+    const dialogResult = await this.dialogService.open<
+      BasicDialogComponent,
+      BasicDialogResult
+    >({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+      isModal: false,
+    });
+
+    if (dialogResult !== 'confirm') {
+      return;
+    }
+
+    const eventId = this.originalEvent?.id ?? null;
+    this.store.dispatch(EventsActions.eventFormDataReset({ eventId }));
+
+    setTimeout(() => this.ngOnInit());
+  }
+
   public onCancel(): void {
     this.store.dispatch(EventsActions.cancelSelected());
   }
@@ -73,10 +104,10 @@ export class EventFormComponent implements OnInit {
     }
 
     const dialog: Dialog = {
-      title: this.originalEvent ? 'Update event' : 'Add new event',
+      title: 'Confirm',
       body: this.originalEvent
-        ? `Update ${this.originalEvent.title}?`
-        : `Add ${this.formData.title}?`,
+        ? `Update ${this.originalEvent.title} event?`
+        : `Add ${this.formData.title} to schedule?`,
       confirmButtonText: this.originalEvent ? 'Update' : 'Add',
     };
 
@@ -134,7 +165,7 @@ export class EventFormComponent implements OnInit {
   }
 
   private initFormValueChangeListener(): void {
-    this.form?.valueChanges
+    this.form.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((value: Partial<EventFormData & { eventTime: string }>) => {
         const { eventTime, ...formData } = value;
@@ -161,6 +192,6 @@ export class EventFormComponent implements OnInit {
       });
 
     // Manually trigger form value change to pass initial form data to store
-    this.form?.updateValueAndValidity();
+    this.form.updateValueAndValidity();
   }
 }

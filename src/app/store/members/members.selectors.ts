@@ -1,16 +1,18 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { pick } from 'lodash';
 
+import { INITIAL_MEMBER_FORM_DATA } from '@app/constants';
 import type { Id } from '@app/models';
 import { areSame, customSort } from '@app/utils';
 
-import {
-  INITIAL_MEMBER_FORM_DATA,
-  MembersState,
-  membersAdapter,
-} from './members.reducer';
+import { MembersState, membersAdapter } from './members.reducer';
 
 const selectMembersState = createFeatureSelector<MembersState>('membersState');
+
+export const selectLastFetch = createSelector(
+  selectMembersState,
+  state => state.lastFetch,
+);
 
 const { selectAll: selectAllMemberEntities } =
   membersAdapter.getSelectors(selectMembersState);

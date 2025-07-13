@@ -24,6 +24,8 @@
   --lcc-color--adminControls-editIcon: #{clr(primary, base)};
   --lcc-color--adminControls-editIconOnHover: #{clr(primary, light)};
 
+  --lcc-color--albumForm-headerText: #{clr(grayscale, white-80)};
+
   --lcc-color--app-mainBackground: #{clr(grayscale, gray-25)};
 
   --lcc-color--article-authorText: #{clr(grayscale, white-95)};
@@ -37,14 +39,13 @@
   --lcc-color--articleForm-previewHeaderText: #{clr(grayscale, gray-65)};
 
   --lcc-color--articleGrid-articleDatesPrimaryText: #{clr(grayscale, white-85)};
-  --lcc-color--articleGrid-articleDatesSecondaryText: #{clr(grayscale, gray-65)};
+  --lcc-color--articleGrid-articleDatesSecondaryText: #{clr(grayscale, gray-75, 0.7)};
   --lcc-color--articleGrid-articleHeaderText: #{clr(grayscale, white-90)};
   --lcc-color--articleGrid-articleSummaryText: #{clr(grayscale, white-85)};
-  --lcc-color--articleGrid-cardBackground1: #{clr(primary, dark, 0.6)};
-  --lcc-color--articleGrid-cardBackground2: #{clr(primary, dark, 0.8)};
-  --lcc-color--articleGrid-cardBackgroundOnHover: #{clr(primary, dark, 0.9)};
-  --lcc-color--articleGrid-cardDividerLine: #{clr(grayscale, gray-50, 0.5)};
   --lcc-color--articleGrid-bookmarkIcon: #{clr(grayscale, white-90, 0.6)};
+  --lcc-color--articleGrid-cardBackground: #{clr(primary, darker, 0.85)};
+  --lcc-color--articleGrid-cardBackgroundOnHover: #{clr(primary, darker)};
+  --lcc-color--articleGrid-cardDividerLine: #{clr(grayscale, gray-50, 0.5)};
 
   --lcc-color--button-border: #{clr(grayscale, white-95, 0.2)};
   --lcc-color--button-darkSecondaryButtonBorder: #{clr(grayscale, gray-25)};
@@ -106,12 +107,16 @@
   --lcc-color--documentViewer-scrollbarBackground: #{clr(grayscale, white-90)};
   --lcc-color--documentViewer-scrollbar: #{clr(grayscale, gray-65)};
 
-  --lcc-color--figure-captionBackground: #{clr(primary, base, 0.5)};
+  --lcc-color--figure-captionBackground: #{clr(primary, darker)};
   --lcc-color--figure-captionText: #{clr(grayscale, white-90)};
 
-  --lcc-color--footer-background: #{clr(grayscale, black-15)};
-  --lcc-color--footer-text: #{clr(grayscale, white-85)};
-  --lcc-color--footer-verticalSpacer: #{clr(grayscale, gray-35)};
+  --lcc-color--footer-background: #{clr(grayscale, black-20)};
+  --lcc-color--footer-copyrightSectionBackground: #{clr(primary, darker)};
+  --lcc-color--footer-copyrightSectionText: #{clr(grayscale, white-95)};
+  --lcc-color--footer-dividerLine: #{clr(grayscale, gray-35, 0.5)};
+  --lcc-color--footer-primaryText: #{clr(grayscale, white-85)};
+  --lcc-color--footer-secondaryText: #{clr(grayscale, gray-65)};
+  --lcc-color--footer-verticalSpacer: #{clr(grayscale, gray-50)};
 
   --lcc-color--form-background: #{clr(grayscale, black-15)};
   --lcc-color--form-boxShadow: #{clr(grayscale, black-15, 0.7)};
@@ -143,8 +148,7 @@
   --lcc-color--general-overlayModalBackdrop: #{clr(grayscale, black-10, 0.7)};
   --lcc-color--general-scrollbar: #{clr(grayscale, gray-50, 0.7)};
 
-  --lcc-color--header-background1: #{clr(grayscale, gray-35)};
-  --lcc-color--header-background2: #{clr(primary, base)};
+  --lcc-color--header-background: #{clr(primary, darker)};
   --lcc-color--header-brandingBackground: #{clr(grayscale, white-85)};
   --lcc-color--header-brandingBackgroundOnHover: #{clr(grayscale, white-95)};
   --lcc-color--header-text: #{clr(grayscale, white-85)};
@@ -156,7 +160,8 @@
   --lcc-color--homePage-welcomeSectionText: #{clr(grayscale, gray-65)};
 
   --lcc-color--imageExplorer-articleAppearancesText: #{clr(primary, base)};
-  --lcc-color--imageExplorer-background: #{clr(grayscale, white-95)};
+  --lcc-color--imageExplorer-controlsHeaderBackground: #{clr(grayscale, gray-25)};
+  --lcc-color--imageExplorer-gridBackground: #{clr(grayscale, white-95)};
   --lcc-color--imageExplorer-imageBackgroundOnHover: #{clr(grayscale, gray-75, 0.5)};
   --lcc-color--imageExplorer-imageBorderOnHover: #{clr(primary, base)};
   --lcc-color--imageExplorer-text: #{clr(grayscale, black-20)};
@@ -173,7 +178,7 @@
   --lcc-color--input-border: #{clr(grayscale, gray-35)};
   --lcc-color--input-borderOnHover: #{clr(grayscale, gray-50, 0.5)};
   --lcc-color--input-boxShadowOnHover: #{clr(primary, lighter, 0.6)};
-  --lcc-color--input-checkboxAndRadio: #{clr(primary, lightest)};
+  --lcc-color--input-checkboxAndRadio: #{clr(primary, lighter)};
   --lcc-color--input-invalidBorder: #{clr(warning, lighter)};
   --lcc-color--input-text: #{clr(grayscale, white-95)};
 
@@ -187,6 +192,7 @@
   --lcc-color--link: #{clr(primary, lighter)};
   --lcc-color--linkDisabled: #{clr(grayscale, gray-35)};
   --lcc-color--linkOnHover: #{clr(primary, lightest)};
+  --lcc-color--linkUnderline: #{clr(primary, lightest, 0.8)};
 
   --lcc-color--linkList-headerText: #{clr(grayscale, gray-75)};
 
@@ -198,10 +204,6 @@
   --lcc-color--markdownRenderer-blockquoteBorder: #{clr(grayscale, gray-25, 0.5)};
   --lcc-color--markdownRenderer-primaryText: #{clr(grayscale, white-95)};
   --lcc-color--markdownRenderer-secondaryText: #{clr(grayscale, gray-75)};
-
-  --lcc-color--memberForm-safeModeNoticeBorder: #{clr(success, base)};
-  --lcc-color--memberForm-safeModeNoticeIcon: #{clr(success, base)};
-  --lcc-color--memberForm-safeModeNoticeText: #{clr(grayscale, gray-75)};
 
   --lcc-color--membersTable-cityChampionIcon: #{clr(secondary, base)};
   --lcc-color--membersTable-cityChampionIconHover: #{clr(secondary, lighter)};
@@ -239,6 +241,10 @@
   --lcc-color--photoGrid-albumNameText: #{clr(grayscale, white-80)};
   --lcc-color--photoGrid-albumNameTextHover: #{clr(grayscale, white-98)};
   --lcc-color--photoGrid-photoCountText: #{clr(grayscale, gray-65)};
+
+  --lcc-color--safeModeNotice-border: #{clr(success, base)};
+  --lcc-color--safeModeNotice-icon: #{clr(success, base)};
+  --lcc-color--safeModeNotice-text: #{clr(grayscale, gray-75)};
 
   --lcc-color--schedule-blitz10TournamentBackground: #{clr(
       event-blitz-10-tournament,
@@ -295,10 +301,8 @@
   --lcc-color--pageHeader-icon: #{clr(secondary, base)};
   --lcc-color--pageHeader-text: #{clr(grayscale, white-85)};
 
-  --lcc-color--table-border: #{clr(grayscale, gray-50, 0.2)};
   --lcc-color--table-footerForeground: #{clr(grayscale, gray-65)};
-  --lcc-color--table-headerBackground1: #{clr(grayscale, gray-35)};
-  --lcc-color--table-headerBackground2: #{clr(primary, base)};
+  --lcc-color--table-headerBackground: #{clr(primary, darker)};
   --lcc-color--table-headerForeground: #{clr(grayscale, white-95)};
   --lcc-color--table-rowBackgroundEven: #{clr(grayscale, gray-30)};
   --lcc-color--table-rowBackgroundOdd: #{clr(grayscale, gray-32)};

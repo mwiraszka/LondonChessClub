@@ -34,7 +34,7 @@ $border-thickness: 2px;
 
     // Add border thickness to side padding for non-active links to prevent layout shifts
     // when a link becomes active and a border is added
-    padding: 3px calc(3px + #{$border-thickness});
+    padding: 3px calc(2px + #{$border-thickness});
     border-top: $border-thickness solid transparent;
     border-top-left-radius: var(--lcc-borderRadius--large);
     border-top-right-radius: var(--lcc-borderRadius--large);
@@ -51,7 +51,7 @@ $border-thickness: 2px;
       cursor: default;
       pointer-events: none;
       background-color: var(--lcc-color--app-mainBackground);
-      padding: 3px;
+      padding: 3px 2px;
       border-top-color: var(--lcc-color--nav-border);
       border-left: $border-thickness solid var(--lcc-color--nav-border);
       border-right: $border-thickness solid var(--lcc-color--nav-border);
@@ -84,7 +84,7 @@ $border-thickness: 2px;
       }
     }
 
-    @include respond-to('gt-nav-icons') {
+    @include respond-to('gt-md') {
       .link-text {
         display: block;
         visibility: unset;
@@ -119,6 +119,11 @@ $border-thickness: 2px;
 .nav-left,
 .nav-right,
 .nav-mid {
-  flex: 1;
   border-bottom: $border-thickness solid var(--lcc-color--nav-border);
+  flex: 1;
+}
+
+.nav-left,
+.nav-right {
+  min-width: 8px;
 }

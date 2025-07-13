@@ -6,13 +6,16 @@ import {
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
+  DOCUMENT,
   Directive,
   ElementRef,
   HostListener,
+  Inject,
   InjectionToken,
   Injector,
   Input,
   OnDestroy,
+  Renderer2,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
@@ -34,19 +37,17 @@ export class TooltipDirective implements OnDestroy {
   private overlayRef: OverlayRef | null = null;
 
   constructor(
+    @Inject(DOCUMENT) private _document: Document,
     private readonly elementRef: ElementRef<HTMLElement>,
     private readonly overlay: Overlay,
+    private readonly renderer: Renderer2,
     private readonly viewContainerRef: ViewContainerRef,
   ) {}
 
   @HostListener('mouseenter', ['$event'])
   @HostListener('focus', ['$event'])
   public attach(event?: MouseEvent | FocusEvent): void {
-    if (
-      isDefined(this.tooltip) &&
-      !this.isTouchScreen() &&
-      !this.overlayRef?.hasAttached()
-    ) {
+    if (isDefined(this.tooltip) && !this.overlayRef?.hasAttached()) {
       const clientY: Pixels | undefined =
         event instanceof MouseEvent ? event.clientY : undefined;
 
@@ -73,6 +74,13 @@ export class TooltipDirective implements OnDestroy {
       );
 
       this.overlayRef.attach(componentPortal);
+
+      const overlayContainerElement = this._document.querySelector(
+        '.cdk-overlay-container',
+      );
+      if (overlayContainerElement) {
+        this.renderer.setStyle(overlayContainerElement, 'z-index', '1200');
+      }
     }
   }
 
@@ -155,9 +163,5 @@ export class TooltipDirective implements OnDestroy {
       .position()
       .flexibleConnectedTo(this.elementRef)
       .withPositions(preferredPositions);
-  }
-
-  private isTouchScreen(): boolean {
-    return window.matchMedia('(pointer: coarse)').matches;
   }
 }

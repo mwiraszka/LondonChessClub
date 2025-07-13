@@ -58,28 +58,20 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
   }
 
   protected onImageLoad(): void {
-    this.filter = 'none';
-    this.opacity = '1';
     this.removeShimmerEffect();
 
+    // If thumbnail URL is currently displayed but the original URL exists, load it
     if (this.currentSrc === this.image?.thumbnailUrl && this.image?.originalUrl) {
+      // Display a blur effect during the transition
+      this.filter = 'blur(3px)';
+
       const fullImage = new Image();
 
-      fullImage.onload = () => {
-        this.currentSrc = this.image!.originalUrl;
-        this.filter = 'none';
-        this.opacity = '1';
-      };
-
-      fullImage.onerror = () => {
-        this.filter = 'none';
-        this.opacity = '1';
-      };
-
       fullImage.src = this.image.originalUrl;
-    } else {
-      this.filter = 'none';
-      this.opacity = '1';
+      fullImage.onload = () => {
+        this.currentSrc = this.image?.originalUrl || this.FALLBACK_SRC;
+        this.filter = 'none';
+      };
     }
   }
 
@@ -90,15 +82,12 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
 
     this.removeShimmerEffect();
     this.currentSrc = this.image?.originalUrl || this.FALLBACK_SRC;
-    this.filter = 'none';
-    this.opacity = '1';
   }
 
   protected updateImage(): void {
     if (!this.image) {
       this.removeShimmerEffect();
       this.currentSrc = this.FALLBACK_SRC;
-      this.opacity = '1';
       return;
     }
 
@@ -108,13 +97,10 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
 
     const { originalUrl, thumbnailUrl } = this.image;
 
-    if (originalUrl) {
+    if (originalUrl || thumbnailUrl) {
+      // Use the original or thumbnail URL and clear any effects
       this.removeShimmerEffect();
-      this.currentSrc = originalUrl;
-    } else if (thumbnailUrl) {
-      this.removeShimmerEffect();
-      this.currentSrc = thumbnailUrl;
-      this.filter = 'blur(3px)';
+      this.currentSrc = originalUrl || thumbnailUrl;
     } else {
       this.displayShimmerEffect();
     }
@@ -125,12 +111,13 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
     this.removeShimmerEffect();
 
     this.background = 'var(--lcc-color--contentPlaceholder-background)';
-    // Remove src attribute and hide img element completely
-    this.renderer.removeAttribute(this.elementRef.nativeElement, 'src');
-    this.renderer.setStyle(this.elementRef.nativeElement, 'display', 'none');
-    this.currentSrc = null;
+
+    // Use the data URI for a transparent 1x1 pixel image to hide the broken image icon
+    this.currentSrc =
+      'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
     const shimmer = this.renderer.createElement('div');
+
     this.renderer.addClass(shimmer, 'lcc-content-placeholder');
     this.renderer.setStyle(shimmer, 'position', 'absolute');
     this.renderer.setStyle(shimmer, 'top', '0');
@@ -158,6 +145,7 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
       this.renderer.removeChild(parentElement, this.skeletonElement);
     }
 
+    // Make sure the image is visible
     this.renderer.removeStyle(this.elementRef.nativeElement, 'display');
     this.skeletonElement = undefined;
     this.background = '';

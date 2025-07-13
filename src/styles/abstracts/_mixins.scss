@@ -4,6 +4,12 @@
 
 /* Viewport breakpoint map */
 $breakpoints: (
+  'lt-xxs': (
+    max-width: 350px,
+  ),
+  'gt-xxs': (
+    min-width: 350px,
+  ),
   'lt-xs': (
     max-width: 420px,
   ),
@@ -34,10 +40,6 @@ $breakpoints: (
   'gt-xl': (
     min-width: 1500px,
   ),
-  'gt-nav-icons': (
-    min-width: 880px,
-    // Custom breakpoint for when icons switch to text in navbar
-  ),
 );
 
 /// Responsive breakpoint manager
@@ -58,8 +60,7 @@ $breakpoints: (
       @content;
     }
   } @else {
-    @error '[LCC] No value found for `#{$breakpoint}`. '
-         + 'Please make sure it is defined in `$breakpoints` map.';
+    @error '[LCC] Value `#{$breakpoint}` is not defined in `$breakpoints` map';
   }
 }
 

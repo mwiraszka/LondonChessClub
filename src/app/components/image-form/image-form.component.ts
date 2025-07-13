@@ -1,6 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
+import * as uuid from 'uuid';
 
 import { Component, Input, OnInit } from '@angular/core';
 import {
@@ -15,26 +16,22 @@ import { MatIconModule } from '@angular/material/icon';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
+import { INITIAL_IMAGE_FORM_DATA } from '@app/constants';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import type {
   BasicDialogResult,
   Dialog,
+  Id,
   Image,
   ImageFormData,
   ImageFormGroup,
-  LccError,
   Url,
 } from '@app/models';
-import { DialogService } from '@app/services';
-import { ArticlesActions } from '@app/store/articles';
+import { DialogService, ImageFileService } from '@app/services';
 import { ImagesActions } from '@app/store/images';
-import { dataUrlToFile, formatBytes } from '@app/utils';
-import {
-  imageCaptionValidator,
-  oneAlbumMinimumValidator,
-  uniqueAlbumValidator,
-} from '@app/validators';
+import { isLccError } from '@app/utils';
+import { imageCaptionValidator } from '@app/validators';
 
 @UntilDestroy()
 @Component({
@@ -52,101 +49,120 @@ import {
 })
 export class ImageFormComponent implements OnInit {
   @Input({ required: true }) existingAlbums!: string[];
-  @Input({ required: true }) formData!: ImageFormData;
   @Input({ required: true }) hasUnsavedChanges!: boolean;
-  @Input({ required: true }) originalImage!: Image | null;
+  @Input({ required: true }) imageEntity!: {
+    image: Image;
+    formData: ImageFormData;
+  } | null;
+  @Input({ required: true }) newImageFormData!: ImageFormData | null;
 
   public form!: FormGroup<ImageFormGroup>;
+  public newAlbumValue!: string;
+  public newImageDataUrl: Url | null = null;
 
   constructor(
     private readonly dialogService: DialogService,
     private readonly formBuilder: FormBuilder,
+    private readonly imageFileService: ImageFileService,
     private readonly store: Store,
   ) {}
 
   ngOnInit(): void {
-    this.initForm(this.formData);
+    this.initForm();
     this.initFormValueChangeListener();
+
+    if (this.newImageFormData) {
+      this.fetchNewImageDataUrl(this.newImageFormData.id);
+    }
+
+    if (
+      this.imageEntity &&
+      !this.imageEntity.image.thumbnailUrl &&
+      !this.imageEntity.image.originalUrl
+    ) {
+      this.store.dispatch(
+        ImagesActions.fetchOriginalRequested({
+          imageId: this.imageEntity.image.id,
+        }),
+      );
+    }
 
     if (this.hasUnsavedChanges) {
       this.form.markAllAsTouched();
     }
   }
 
-  public toggleAlbum(album: string): void {
-    const selectedAlbums = this.form.controls.albums.value;
-    const albums = selectedAlbums.includes(album)
-      ? selectedAlbums.filter(selectedAlbum => selectedAlbum !== album)
-      : [...selectedAlbums, album].sort();
-
-    this.form.patchValue({ albums });
-    this.form.controls.albums.markAsDirty();
+  get albumExists(): boolean {
+    return this.existingAlbums.some(album => album === this.form.controls.album.value);
   }
 
-  public onUploadNewImage(event: Event): void {
+  public onNewAlbumInputChange(event: Event): void {
+    this.newAlbumValue = (event.target as HTMLInputElement).value;
+    this.form.patchValue({ album: this.newAlbumValue });
+  }
+
+  public onNewAlbumInputFocus(): void {
+    const radioElement = document.getElementById('new-album-input') as HTMLInputElement;
+    if (radioElement) {
+      radioElement.checked = true;
+    }
+    this.form.patchValue({ album: this.newAlbumValue });
+  }
+
+  public async onChooseFile(event: Event): Promise<void> {
     const fileInputElement = event.target as HTMLInputElement;
     const file = fileInputElement.files?.length ? fileInputElement.files[0] : null;
 
-    if (!file) {
-      return;
-    }
+    if (file) {
+      const id = this.form.controls.id.value;
+      const result = await this.imageFileService.storeImageFile(id, file, true);
 
-    if (!['image/png', 'image/jpeg', 'image/jpg'].includes(file.type.toLowerCase())) {
-      const error: LccError = {
-        name: 'LCCError',
-        message: 'Sorry Ryan, currently only PNG or JPEG image formats are supported',
-      };
-      this.store.dispatch(ImagesActions.imageFileLoadFailed({ error }));
-      fileInputElement.value = '';
-      return;
-    }
+      if (isLccError(result)) {
+        this.store.dispatch(ImagesActions.imageFileActionFailed({ error: result }));
+      } else {
+        const { dataUrl, filename } = result;
+        const caption =
+          this.form.controls.caption.value ||
+          filename.substring(0, filename.lastIndexOf('.'));
 
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-
-    reader.onload = () => {
-      const dataUrl = reader.result as Url;
-
-      const sanitizedFilename =
-        file.name
-          .substring(0, file.name.lastIndexOf('.'))
-          .replaceAll(/[^a-zA-Z0-9-_]/g, '') +
-        file.name.substring(file.name.lastIndexOf('.'));
-
-      const imageFile = dataUrlToFile(dataUrl, sanitizedFilename);
-
-      if (!imageFile) {
-        const error: LccError = {
-          name: 'LCCError',
-          message: 'Unable to load image file',
-        };
-        this.store.dispatch(ImagesActions.imageFileLoadFailed({ error }));
-        return;
+        this.newImageDataUrl = dataUrl;
+        this.form.patchValue({ id, filename, caption });
       }
-
-      if (imageFile.size > 1_258_291) {
-        const error: LccError = {
-          name: 'LCCError',
-          message: `Image is too large (${formatBytes(imageFile.size)}) - please reduce to below 1.2 MB`,
-        };
-        this.store.dispatch(ImagesActions.imageFileLoadFailed({ error }));
-        return;
-      }
-
-      this.form.patchValue({
-        dataUrl,
-        filename: imageFile.name,
-        caption:
-          this.form.value.caption ||
-          imageFile.name.substring(0, file.name.lastIndexOf('.')),
-      });
-    };
+    }
 
     fileInputElement.value = '';
   }
 
+  public async onRestore(): Promise<void> {
+    const dialog: Dialog = {
+      title: 'Confirm',
+      body: 'Restore original image data? All changes will be lost.',
+      confirmButtonText: 'Restore',
+      confirmButtonType: 'warning',
+    };
+
+    const dialogResult = await this.dialogService.open<
+      BasicDialogComponent,
+      BasicDialogResult
+    >({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+      isModal: false,
+    });
+
+    if (dialogResult !== 'confirm') {
+      return;
+    }
+
+    const imageId = this.form.controls.id.value;
+    this.store.dispatch(ImagesActions.imageFormDataReset({ imageId }));
+    this.newImageDataUrl = null;
+
+    setTimeout(() => this.ngOnInit());
+  }
+
   public onCancel(): void {
-    this.store.dispatch(ArticlesActions.cancelSelected());
+    this.store.dispatch(ImagesActions.cancelSelected());
   }
 
   public async onSubmit(): Promise<void> {
@@ -157,10 +173,10 @@ export class ImageFormComponent implements OnInit {
 
     const dialog: Dialog = {
       title: 'Confirm',
-      body: this.originalImage
-        ? `Update ${this.originalImage.filename}?`
-        : `Add ${this.formData.filename}`,
-      confirmButtonText: this.originalImage ? 'Update' : 'Add',
+      body: this.imageEntity
+        ? `Update ${this.imageEntity.image.filename}?`
+        : `Add ${this.form.controls.filename.value} to ${this.form.controls.album.value}?`,
+      confirmButtonText: this.imageEntity ? 'Update' : 'Add',
     };
 
     const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(
@@ -175,60 +191,60 @@ export class ImageFormComponent implements OnInit {
       return;
     }
 
-    if (this.originalImage) {
-      this.store.dispatch(
-        ImagesActions.updateImageRequested({ imageId: this.originalImage.id }),
-      );
+    const imageId = this.form.controls.id.value;
+
+    if (this.imageEntity) {
+      this.store.dispatch(ImagesActions.updateImageRequested({ imageId }));
     } else {
-      this.store.dispatch(ImagesActions.addImageRequested());
+      this.store.dispatch(ImagesActions.addImageRequested({ imageId }));
     }
   }
 
-  private initForm(formData: ImageFormData): void {
-    this.form = this.formBuilder.group<ImageFormGroup>(
-      {
-        filename: new FormControl(formData.filename, {
-          nonNullable: true,
-          validators: Validators.required,
-        }),
-        dataUrl: new FormControl(formData.dataUrl, {
-          nonNullable: true,
-        }),
-        caption: new FormControl(formData.caption, {
-          nonNullable: true,
-          validators: [Validators.required, imageCaptionValidator],
-        }),
-        albums: new FormControl(formData.albums, {
-          nonNullable: true,
-        }),
-        newAlbum: new FormControl(formData.newAlbum, {
-          nonNullable: true,
-          validators: [
-            Validators.pattern(/[^\s]/),
-            uniqueAlbumValidator(this.existingAlbums),
-          ],
-        }),
-      },
-      {
-        validators: oneAlbumMinimumValidator,
-      },
-    );
+  private async fetchNewImageDataUrl(id: Id): Promise<void> {
+    const result = await this.imageFileService.getImage(id);
+
+    if (isLccError(result)) {
+      this.store.dispatch(ImagesActions.imageFileActionFailed({ error: result }));
+    } else if (result) {
+      this.newImageDataUrl = result.dataUrl;
+    }
+  }
+
+  private initForm(): void {
+    const formData: ImageFormData = this.imageEntity?.formData ??
+      this.newImageFormData ?? { ...INITIAL_IMAGE_FORM_DATA, id: `new-${uuid.v4()}` };
+
+    this.form = this.formBuilder.group<ImageFormGroup>({
+      id: new FormControl(formData.id, {
+        nonNullable: true,
+      }),
+      filename: new FormControl(formData.filename, {
+        nonNullable: true,
+        validators: Validators.required,
+      }),
+      caption: new FormControl(formData.caption, {
+        nonNullable: true,
+        validators: [Validators.required, imageCaptionValidator],
+      }),
+      album: new FormControl(formData.album, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.pattern(/[^\s]/)],
+      }),
+      albumCover: new FormControl(formData.albumCover, { nonNullable: true }),
+    });
+
+    this.newAlbumValue = !this.existingAlbums.includes(formData.album)
+      ? formData.album
+      : '';
   }
 
   private initFormValueChangeListener(): void {
     this.form.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((value: Partial<ImageFormData>) => {
-        // Manually transfer error to inner control to benefit from common error message handling
-        if (this.form.hasError('albumRequired')) {
-          this.form.controls.albums.setErrors({ albumRequired: true });
-        }
-
+        const id = this.form.controls.id.value;
         this.store.dispatch(
-          ImagesActions.formValueChanged({
-            imageId: this.originalImage?.id ?? null,
-            value,
-          }),
+          ImagesActions.formValueChanged({ values: [{ ...value, id }] }),
         );
       });
 

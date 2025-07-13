@@ -62,14 +62,9 @@ export class ArticleFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (
-      !this.bannerImage &&
-      (this.formData.bannerImageId || this.originalArticle?.bannerImageId)
-    ) {
+    if (!this.bannerImage && this.formData.bannerImageId) {
       this.store.dispatch(
-        ImagesActions.fetchImageRequested({
-          imageId: this.formData.bannerImageId ?? this.originalArticle!.bannerImageId!,
-        }),
+        ImagesActions.fetchOriginalRequested({ imageId: this.formData.bannerImageId }),
       );
     }
 
@@ -81,16 +76,43 @@ export class ArticleFormComponent implements OnInit {
     }
   }
 
+  public async onRestore(): Promise<void> {
+    const dialog: Dialog = {
+      title: 'Confirm',
+      body: 'Restore original article data? All changes will be lost.',
+      confirmButtonText: 'Restore',
+      confirmButtonType: 'warning',
+    };
+
+    const dialogResult = await this.dialogService.open<
+      BasicDialogComponent,
+      BasicDialogResult
+    >({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+      isModal: false,
+    });
+
+    if (dialogResult !== 'confirm') {
+      return;
+    }
+
+    const articleId = this.originalArticle?.id ?? null;
+    this.store.dispatch(ArticlesActions.articleFormDataReset({ articleId }));
+
+    setTimeout(() => this.ngOnInit());
+  }
+
   public async onOpenImageExplorer(): Promise<void> {
-    const thumbnailImageId = await this.dialogService.open<ImageExplorerComponent, Id>({
+    const dialogResponse = await this.dialogService.open<ImageExplorerComponent, Id>({
       componentType: ImageExplorerComponent,
       isModal: true,
     });
 
-    if (thumbnailImageId) {
-      const imageId = thumbnailImageId.split('-')[0];
+    if (dialogResponse !== 'close') {
+      const imageId = dialogResponse.split('-')[0];
       this.form.patchValue({ bannerImageId: imageId });
-      this.store.dispatch(ImagesActions.fetchImageRequested({ imageId }));
+      this.store.dispatch(ImagesActions.fetchOriginalRequested({ imageId }));
     }
   }
 
@@ -109,11 +131,11 @@ export class ArticleFormComponent implements OnInit {
     }
 
     const dialog: Dialog = {
-      title: this.originalArticle ? 'Update article' : 'Publish article',
+      title: 'Confirm',
       body: this.originalArticle?.title
-        ? `Update ${this.originalArticle.title}`
-        : `Publish ${this.formData.title}`,
-      confirmButtonText: this.originalArticle ? 'Update' : 'Add',
+        ? `Update ${this.originalArticle.title} article?`
+        : `Publish ${this.formData.title} to News page?`,
+      confirmButtonText: this.originalArticle ? 'Update' : 'Publish',
     };
 
     const result = await this.dialogService.open<BasicDialogComponent, BasicDialogResult>(

@@ -47,15 +47,17 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
 
   public writeValue(date: IsoDate): void {
     if (!date) {
-      console.error(
-        "[LCC] No date provided to Date Picker - using today's date as fallback.",
+      console.warn(
+        "[LCC] No date provided to Date Picker - using today's date as fallback",
       );
       this.currentMonth = moment();
       this.selectedDate = moment();
+    } else {
+      this.currentMonth = moment(date);
+      this.selectedDate = moment(date);
+      // Ensure calendar is re-rendered when value is restored
+      this.renderCalendar();
     }
-
-    this.currentMonth = moment(date);
-    this.selectedDate = moment(date);
   }
 
   public registerOnChange(fn: (date: IsoDate) => IsoDate): void {

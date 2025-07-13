@@ -22,8 +22,8 @@
     <section>
       <h4>Upcoming events</h4>
       <lcc-schedule
-        [allEvents]="vm.allEvents"
         [allowTogglePastEvents]="false"
+        [events]="vm.events"
         [includeDetails]="false"
         [isAdmin]="vm.isAdmin"
         [nextEvent]="vm.nextEvent"
@@ -39,7 +39,7 @@
     <section>
       <h4>Latest news</h4>
       <lcc-article-grid
-        [articles]="vm.allArticles"
+        [articles]="vm.articles"
         [articleImages]="vm.articleImages"
         [isAdmin]="vm.isAdmin"
         [maxArticles]="maxArticles">

@@ -1,14 +1,13 @@
 import moment from 'moment-timezone';
 
 import { Article } from '@app/models';
-import { generateId } from '@app/utils/common/generate-id.util';
 
 import { MOCK_IMAGES } from './images.mock';
 import { MOCK_MODIFICATION_INFOS } from './modification-info.mock';
 
 export const MOCK_ARTICLES: Article[] = [
   {
-    id: generateId(),
+    id: 'a7b8c9d0e1f2a3b4',
     title: 'Blitz Tournament Results - January 1st, 2025',
     body: `
       ### **Open**\n<br>\n\n| # | Name | Rating | Round 1 | Round 2 | Round 3 | Round 4 | Round 5
@@ -50,7 +49,7 @@ export const MOCK_ARTICLES: Article[] = [
     modificationInfo: MOCK_MODIFICATION_INFOS[0],
   },
   {
-    id: generateId(),
+    id: 'b8c9d0e1f2a3b4c5',
     title: '2025 London Chess Championship Announcement',
     body: `
       ## **2025 London Chess Championship**\n<br>\n\n[Details]
@@ -129,7 +128,7 @@ export const MOCK_ARTICLES: Article[] = [
     modificationInfo: MOCK_MODIFICATION_INFOS[1],
   },
   {
-    id: generateId(),
+    id: 'c9d0e1f2a3b4c5d6',
     title:
       'A Very Short Article But With An Exceptionally Long Title That Goes Beyond the Character Limit for Article Titles and Should Be Truncated',
     body: `
@@ -140,7 +139,7 @@ export const MOCK_ARTICLES: Article[] = [
     modificationInfo: MOCK_MODIFICATION_INFOS[2],
   },
   {
-    id: generateId(),
+    id: 'd0e1f2a3b4c5d6e7',
     title: 'An even shorter one',
     body: `Got nothing to say!`,
     bannerImageId: MOCK_IMAGES[0].id,
@@ -148,7 +147,7 @@ export const MOCK_ARTICLES: Article[] = [
     modificationInfo: MOCK_MODIFICATION_INFOS[3],
   },
   {
-    id: generateId(),
+    id: 'e0f1a2b3c4d5e6f7',
     title: 'An article currently being modified',
     body: `Some article body text here...`,
     bannerImageId: MOCK_IMAGES[0].id,

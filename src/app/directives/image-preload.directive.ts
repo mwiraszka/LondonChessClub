@@ -111,7 +111,6 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
     this.removeShimmerEffect();
 
     this.background = 'var(--lcc-color--contentPlaceholder-background)';
-    this.setAspectRatio(this.image?.width || 200, this.image?.height || 200);
 
     // Use the data URI for a transparent 1x1 pixel image to hide the broken image icon
     this.currentSrc =

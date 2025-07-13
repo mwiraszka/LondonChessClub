@@ -61,8 +61,8 @@ export class PhotoGridComponent implements OnChanges {
       .filter(image => image.albumCover)
       .map(image => ({
         ...image,
-        width: image.width || 200,
-        height: image.height || 200,
+        width: image.width || 300,
+        height: image.height || 300,
         caption: image.caption || 'Loading...',
       }));
   }
@@ -141,7 +141,9 @@ export class PhotoGridComponent implements OnChanges {
     );
 
     if (result === 'confirm') {
-      const imageIds = this.photoImages.map(image => image.id);
+      const imageIds = this.photoImages
+        .filter(image => image.album === album)
+        .map(image => image.id);
       this.store.dispatch(ImagesActions.deleteAlbumRequested({ album, imageIds }));
     }
   }

@@ -8,7 +8,6 @@ import { ModificationInfo } from './modification-info.model';
 export interface BaseImage {
   id: Id;
   filename: string;
-  fileSize: number;
   caption: string;
   album: string;
   albumCover: boolean;
@@ -16,11 +15,12 @@ export interface BaseImage {
 }
 
 export interface Image extends BaseImage {
-  width?: number;
-  height?: number;
-  urlExpirationDate?: IsoDate;
   originalUrl?: Url;
   thumbnailUrl?: Url;
+  urlExpirationDate?: IsoDate;
+  width?: number;
+  height?: number;
+  fileSize?: number;
   articleAppearances?: number;
 }
 

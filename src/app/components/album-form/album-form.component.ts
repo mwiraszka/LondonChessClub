@@ -97,12 +97,14 @@ export class AlbumFormComponent implements OnInit {
         .filter(entity => !entity.image.thumbnailUrl && !entity.image.originalUrl)
         .map(entity => entity.image.id);
 
-      this.store.dispatch(
-        ImagesActions.fetchBatchThumbnailsRequested({
-          imageIds,
-          context: 'album',
-        }),
-      );
+      if (imageIds.length) {
+        this.store.dispatch(
+          ImagesActions.fetchBatchThumbnailsRequested({
+            imageIds,
+            context: 'album',
+          }),
+        );
+      }
     }
 
     if (Object.keys(this.newImagesFormData).length) {
@@ -283,7 +285,9 @@ export class AlbumFormComponent implements OnInit {
 
     if (this.album) {
       this.store.dispatch(ImagesActions.updateAlbumRequested({ album: this.album }));
-    } else {
+    }
+
+    if (Object.keys(this.newImagesFormData).length) {
       this.store.dispatch(ImagesActions.addImagesRequested());
     }
   }

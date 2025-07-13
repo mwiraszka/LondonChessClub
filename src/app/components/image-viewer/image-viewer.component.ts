@@ -152,11 +152,11 @@ export class ImageViewerComponent
     }
 
     // Immediate next image with a small delay
-    setTimeout(() => this.fetchImage(1), 1000);
+    setTimeout(() => this.fetchImage(1, true), 1000);
 
     if (this.images.length > 2) {
       // Previous image (last index) with a bigger delay
-      setTimeout(() => this.fetchImage(this.images.length - 1), 2000);
+      setTimeout(() => this.fetchImage(this.images.length - 1, true), 2000);
     }
 
     if (this.images.length > 3) {
@@ -174,7 +174,7 @@ export class ImageViewerComponent
 
       const prefetchNext = () => {
         if (index < imagesToPrefetch.length) {
-          this.fetchImage(imagesToPrefetch[index]);
+          this.fetchImage(imagesToPrefetch[index], true);
           index++;
           setTimeout(prefetchNext, 1000);
         }
@@ -185,7 +185,7 @@ export class ImageViewerComponent
     }
   }
 
-  private fetchImage(index: number): void {
+  private fetchImage(index: number, isPrefetch = false): void {
     if (index < 0 || index >= this.images.length) {
       return;
     }
@@ -197,7 +197,9 @@ export class ImageViewerComponent
       .pipe(take(1))
       .subscribe(image => {
         if (!image?.originalUrl) {
-          this.store.dispatch(ImagesActions.fetchOriginalRequested({ imageId }));
+          this.store.dispatch(
+            ImagesActions.fetchOriginalRequested({ imageId, isPrefetch }),
+          );
         }
       });
   }

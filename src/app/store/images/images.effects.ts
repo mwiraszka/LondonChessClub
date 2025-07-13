@@ -44,7 +44,6 @@ export class ImagesEffects {
   fetchAllThumbnailImages$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchAllThumbnailsRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() =>
         this.imagesService.getAllThumbnailImages().pipe(
           map(response =>
@@ -61,7 +60,6 @@ export class ImagesEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
@@ -97,8 +95,8 @@ export class ImagesEffects {
   fetchOriginalImage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchOriginalRequested),
-      switchMap(({ imageId }) => {
-        return this.imagesService.getOriginalImage(imageId).pipe(
+      switchMap(({ imageId, isPrefetch }) => {
+        return this.imagesService.getOriginalImage(imageId, isPrefetch).pipe(
           map(response => ImagesActions.fetchOriginalSucceeded({ image: response.data })),
           catchError(error => {
             return of(
@@ -137,7 +135,7 @@ export class ImagesEffects {
         }
 
         const imageMetadata: Omit<BaseImage, 'fileSize'> = {
-          id: formData.id, // Remove temporary 'new-xxxx' id
+          id: formData.id,
           filename: formData.filename,
           caption: formData.caption,
           album: formData.album,
@@ -212,7 +210,7 @@ export class ImagesEffects {
           }
 
           const imageMetadata: Omit<BaseImage, 'fileSize'> = {
-            id: '', // Remove temporary 'new-xxxx' id
+            id,
             filename,
             caption: formData.caption,
             album: formData.album,
@@ -254,10 +252,9 @@ export class ImagesEffects {
         const updatedImage: BaseImage = {
           id: image.id,
           filename: image.filename,
-          fileSize: image.fileSize,
           caption: formData.caption,
           album: formData.album,
-          albumCover: image.albumCover,
+          albumCover: formData.albumCover,
           modificationInfo: {
             ...image.modificationInfo,
             lastEditedBy: `${user.firstName} ${user.lastName}`,
@@ -294,10 +291,9 @@ export class ImagesEffects {
         const updatedImages: BaseImage[] = entities.map(({ image, formData }) => ({
           id: image.id,
           filename: image.filename,
-          fileSize: image.fileSize,
           caption: formData.caption,
           album: formData.album,
-          albumCover: image.albumCover,
+          albumCover: formData.albumCover,
           modificationInfo: {
             ...image.modificationInfo,
             lastEditedBy: `${user.firstName} ${user.lastName}`,
@@ -367,7 +363,6 @@ export class ImagesEffects {
         const updatedImage: BaseImage = {
           id: newAlbumCoverImage.id,
           filename: newAlbumCoverImage.filename,
-          fileSize: newAlbumCoverImage.fileSize,
           caption: newAlbumCoverImage.caption,
           modificationInfo: newAlbumCoverImage.modificationInfo,
           album: newAlbumCoverImage.album,

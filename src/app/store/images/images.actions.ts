@@ -51,7 +51,7 @@ export const fetchBatchThumbnailsFailed = createAction(
 
 export const fetchOriginalRequested = createAction(
   '[Images] Fetch original requested',
-  props<{ imageId: Id }>(),
+  props<{ imageId: Id; isPrefetch?: boolean }>(),
 );
 export const fetchOriginalSucceeded = createAction(
   '[Images] Fetch original succeeded',

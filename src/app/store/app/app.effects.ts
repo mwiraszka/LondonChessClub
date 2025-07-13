@@ -307,7 +307,7 @@ export class AppEffects {
       case ImagesActions.addImagesSucceeded.type:
         return {
           title: 'Add images',
-          message: `Successfully uploaded ${action.images.length} images`,
+          message: `Successfully uploaded ${action.images.length === 1 ? '1 image' : `${action.images.length} images`}`,
           type: 'success',
         };
       case ImagesActions.automaticAlbumCoverSwitchFailed.type:

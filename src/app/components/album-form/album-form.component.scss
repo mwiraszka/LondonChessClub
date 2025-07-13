@@ -14,7 +14,7 @@
 
 .images-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   width: 100%;
   column-gap: 8px;
   row-gap: 32px;
@@ -24,7 +24,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    max-height: 180px;
+    height: 180px;
     background: var(--lcc-color--contentPlaceholder-background);
     border-radius: var(--lcc-borderRadius--large);
     position: relative;

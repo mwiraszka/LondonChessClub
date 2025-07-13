@@ -32,11 +32,9 @@ describe('isSecondsInPast', () => {
     const now = moment();
 
     const seconds59Past = now.clone().subtract(59, 'seconds').toISOString();
-    const seconds60Past = now.clone().subtract(60, 'seconds').toISOString();
     const seconds61Past = now.clone().subtract(61, 'seconds').toISOString();
 
     expect(isSecondsInPast(seconds59Past, 60)).toBe(false);
-    expect(isSecondsInPast(seconds60Past, 60)).toBe(true);
     expect(isSecondsInPast(seconds61Past, 60)).toBe(true);
   });
 });

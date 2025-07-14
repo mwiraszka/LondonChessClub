@@ -19,13 +19,15 @@
   </a>
 }
 
-<button
-  class="admin-control-button delete-button"
-  [disabled]="config.isDeleteDisabled"
-  [tooltip]="deleteTooltipContent"
-  (click)="config.isDeleteDisabled ? undefined : config.deleteCb()">
-  <mat-icon class="delete-icon">delete_outline</mat-icon>
-</button>
+@if (showDeleteButton) {
+  <button
+    class="admin-control-button delete-button"
+    [disabled]="config.isDeleteDisabled"
+    [tooltip]="deleteTooltipContent"
+    (click)="config.isDeleteDisabled ? undefined : config.deleteCb()">
+    <mat-icon class="delete-icon">delete_outline</mat-icon>
+  </button>
+}
 
 <ng-template #bookmarkTooltipContent>
   <span>{{ config.bookmarked ? 'Remove bookmark from' : 'Bookmark' }}</span>

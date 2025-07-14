@@ -2,6 +2,7 @@ import { Config } from 'jest';
 
 const jestConfig: Config = {
   clearMocks: true,
+  restoreMocks: true,
   moduleDirectories: ['node_modules', '<rootDir>'],
   moduleNameMapper: {
     '@app/(.*)': '<rootDir>/src/app/$1',

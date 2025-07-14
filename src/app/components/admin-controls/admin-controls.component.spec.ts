@@ -1,8 +1,10 @@
+import { of } from 'rxjs';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 
 import { ADMIN_CONTROLS_CONFIG_TOKEN } from '@app/directives/admin-controls.directive';
-import type { AdminControlsConfig } from '@app/models';
+import { KeyStateService } from '@app/services';
 import { query } from '@app/utils';
 
 import { AdminControlsComponent } from './admin-controls.component';
@@ -10,11 +12,11 @@ import { AdminControlsComponent } from './admin-controls.component';
 describe('AdminControlsComponent', () => {
   let fixture: ComponentFixture<AdminControlsComponent>;
   let component: AdminControlsComponent;
+  let keyStateService: KeyStateService;
 
-  const mockAdminControlsConfig: AdminControlsConfig = {
-    buttonSize: 15,
-    deleteCb: () => 'mock delete callback',
-  };
+  let ctrlMetaKeyPressedSpy: jest.SpyInstance;
+  let deleteCbSpy: jest.SpyInstance;
+  let destroyedSpy: jest.SpyInstance;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -22,14 +24,23 @@ describe('AdminControlsComponent', () => {
       providers: [
         {
           provide: ADMIN_CONTROLS_CONFIG_TOKEN,
-          useValue: mockAdminControlsConfig,
+          useValue: { buttonSize: 15, deleteCb: jest.fn() },
         },
+        KeyStateService,
       ],
     })
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(AdminControlsComponent);
         component = fixture.componentInstance;
+
+        keyStateService = TestBed.inject(KeyStateService);
+
+        ctrlMetaKeyPressedSpy = jest.spyOn(keyStateService, 'ctrlMetaKeyPressed$', 'get');
+        deleteCbSpy = jest.spyOn(component.config, 'deleteCb');
+        destroyedSpy = jest.spyOn(component.destroyed, 'emit');
+
+        fixture.detectChanges();
       });
   });
 
@@ -37,94 +48,184 @@ describe('AdminControlsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('bookmark button', () => {
-    it('should NOT render if only bookmark callback provided', () => {
-      component.config.bookmarkCb = () => 'mock bookmark callback';
-      component.config.bookmarked = undefined;
-      fixture.detectChanges();
+  describe('UI elements', () => {
+    describe('bookmark button', () => {
+      it('should not render if only bookmarkCb is provided', () => {
+        component.config.bookmarkCb = () => 'mock bookmark callback';
+        component.config.bookmarked = undefined;
+        fixture.detectChanges();
 
-      expect(query(fixture.debugElement, '.bookmark-button')).toBeNull();
+        expect(query(fixture.debugElement, '.bookmark-button')).toBeNull();
+      });
+
+      it('should not render if only bookmarked is provided', () => {
+        component.config.bookmarkCb = undefined;
+        component.config.bookmarked = false;
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, '.bookmark-button')).toBeNull();
+      });
+
+      it('should render if both bookmarkCb and bookmarked are provided', () => {
+        component.config.bookmarkCb = () => 'mock bookmark callback';
+        component.config.bookmarked = false;
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, '.bookmark-button')).not.toBeNull();
+      });
+
+      it('should invoke bookmarkCb when clicked', () => {
+        component.config.bookmarkCb = () => 'mock bookmark callback';
+        component.config.bookmarked = false;
+        fixture.detectChanges();
+
+        const bookmarkCbSpy = jest.spyOn(component.config, 'bookmarkCb');
+
+        query(fixture.debugElement, '.bookmark-button').triggerEventHandler('click');
+
+        expect(bookmarkCbSpy).toHaveBeenCalledTimes(1);
+      });
     });
 
-    it('should NOT render if only bookmarked flag provided', () => {
-      component.config.bookmarkCb = undefined;
-      component.config.bookmarked = false;
-      fixture.detectChanges();
+    describe('edit button', () => {
+      it('should not render if editPath is not provided', () => {
+        component.config.editPath = undefined;
+        fixture.detectChanges();
 
-      expect(query(fixture.debugElement, '.bookmark-button')).toBeNull();
+        expect(query(fixture.debugElement, '.edit-button')).toBeNull();
+      });
+
+      it('should render if editPath is provided', () => {
+        component.config.editPath = ['event', 'edit'];
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, '.edit-button')).not.toBeNull();
+      });
     });
 
-    it('should only render if both bookmark callback and bookmarked flag are provided', () => {
-      component.config.bookmarkCb = () => 'mock bookmark callback';
-      component.config.bookmarked = false;
-      fixture.detectChanges();
+    describe('delete button', () => {
+      describe('on touch devices', () => {
+        beforeEach(() => {
+          component.isTouchDevice = true;
+          fixture.detectChanges();
 
-      expect(query(fixture.debugElement, '.bookmark-button')).not.toBeNull();
-    });
+          component.ngOnInit();
+        });
 
-    it('should invoke bookmark callback function when clicked', () => {
-      component.config.bookmarkCb = () => 'mock bookmark callback';
-      fixture.detectChanges();
-      const bookmarkCbSpy = jest.spyOn(component.config, 'bookmarkCb');
+        it('should render disabled when isDeleteDisabled is true', () => {
+          component.config.isDeleteDisabled = true;
+          fixture.detectChanges();
 
-      query(fixture.debugElement, '.bookmark-button').triggerEventHandler('click');
+          expect(
+            query(fixture.debugElement, '.delete-button').nativeElement.disabled,
+          ).toBe(true);
+        });
 
-      expect(bookmarkCbSpy).toHaveBeenCalledTimes(1);
+        it('should not invoke deleteCb when clicked when isDeleteDisabled is true', () => {
+          component.config.isDeleteDisabled = true;
+          fixture.detectChanges();
+
+          query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
+
+          expect(deleteCbSpy).not.toHaveBeenCalled();
+        });
+
+        it('should render enabled when isDeleteDisabled is false', () => {
+          component.config.isDeleteDisabled = false;
+          fixture.detectChanges();
+
+          expect(
+            query(fixture.debugElement, '.delete-button').nativeElement.disabled,
+          ).toBe(false);
+        });
+
+        it('should invoke deleteCb when clicked when isDeleteDisabled is false', () => {
+          component.config.isDeleteDisabled = false;
+          fixture.detectChanges();
+
+          query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
+
+          expect(deleteCbSpy).toHaveBeenCalledTimes(1);
+        });
+      });
+
+      describe('on non-touch devices when ctrlMeta button is pressed', () => {
+        beforeEach(() => {
+          ctrlMetaKeyPressedSpy.mockReturnValue(of(true));
+          component.isTouchDevice = false;
+          fixture.detectChanges();
+
+          component.ngOnInit();
+        });
+
+        it('should render disabled when isDeleteDisabled is true', () => {
+          component.config.isDeleteDisabled = true;
+          fixture.detectChanges();
+
+          expect(
+            query(fixture.debugElement, '.delete-button').nativeElement.disabled,
+          ).toBe(true);
+        });
+
+        it('should not invoke deleteCb when clicked when isDeleteDisabled is true', () => {
+          component.config.isDeleteDisabled = true;
+          fixture.detectChanges();
+
+          query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
+
+          expect(deleteCbSpy).not.toHaveBeenCalled();
+        });
+
+        it('should render enabled when isDeleteDisabled is false', () => {
+          component.config.isDeleteDisabled = false;
+          fixture.detectChanges();
+
+          expect(
+            query(fixture.debugElement, '.delete-button').nativeElement.disabled,
+          ).toBe(false);
+        });
+
+        it('should invoke deleteCb when clicked when isDeleteDisabled is false', () => {
+          component.config.isDeleteDisabled = false;
+          fixture.detectChanges();
+
+          query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
+
+          expect(deleteCbSpy).toHaveBeenCalledTimes(1);
+        });
+      });
+
+      describe('on non-touch devices without pressed ctrlMeta button', () => {
+        beforeEach(() => {
+          ctrlMetaKeyPressedSpy.mockReturnValue(of(false));
+          component.isTouchDevice = false;
+          fixture.detectChanges();
+
+          component.ngOnInit();
+        });
+
+        it('should not render when isDeleteDisabled is true', () => {
+          component.config.isDeleteDisabled = true;
+          fixture.detectChanges();
+
+          expect(query(fixture.debugElement, '.delete-button')).toBeNull();
+        });
+
+        it('should not render when isDeleteDisabled is false', () => {
+          component.config.isDeleteDisabled = false;
+          fixture.detectChanges();
+
+          expect(query(fixture.debugElement, '.delete-button')).toBeNull();
+        });
+      });
     });
   });
 
-  describe('edit button', () => {
-    it('should NOT be rendered if no edit path provided', () => {
-      expect(query(fixture.debugElement, '.edit-button')).toBeNull();
-    });
+  describe('on destroy', () => {
+    it('should emit destroyed event', () => {
+      component.ngOnDestroy();
 
-    it('should be rendered if edit path provided', () => {
-      component.config.editPath = ['event', 'edit'];
-      fixture.detectChanges();
-
-      expect(query(fixture.debugElement, '.edit-button')).not.toBeNull();
-    });
-  });
-
-  describe('delete button', () => {
-    describe('enabled', () => {
-      it('should render', () => {
-        component.config.isDeleteDisabled = false;
-        fixture.detectChanges();
-
-        expect(query(fixture.debugElement, '.delete-button')).not.toBeNull();
-      });
-
-      it('should invoke delete callback function when clicked', () => {
-        component.config.isDeleteDisabled = false;
-        fixture.detectChanges();
-
-        const deleteCbSpy = jest.spyOn(component.config, 'deleteCb');
-
-        query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
-
-        expect(deleteCbSpy).toHaveBeenCalledTimes(1);
-      });
-    });
-
-    describe('disabled', () => {
-      it('should render', () => {
-        component.config.isDeleteDisabled = true;
-        fixture.detectChanges();
-
-        expect(query(fixture.debugElement, '.delete-button')).not.toBeNull();
-      });
-
-      it('should NOT invoke delete callback function when clicked', () => {
-        component.config.isDeleteDisabled = true;
-        fixture.detectChanges();
-
-        const deleteCbSpy = jest.spyOn(component.config, 'deleteCb');
-
-        query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
-
-        expect(deleteCbSpy).not.toHaveBeenCalled();
-      });
+      expect(destroyedSpy).toHaveBeenCalledTimes(1);
     });
   });
 });

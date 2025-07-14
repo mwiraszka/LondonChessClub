@@ -1,3 +1,5 @@
+import { of } from 'rxjs';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 
@@ -14,6 +16,7 @@ describe('AdminControlsComponent', () => {
 
   let ctrlMetaKeyPressedSpy: jest.SpyInstance;
   let deleteCbSpy: jest.SpyInstance;
+  let destroyedSpy: jest.SpyInstance;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,9 +24,7 @@ describe('AdminControlsComponent', () => {
       providers: [
         {
           provide: ADMIN_CONTROLS_CONFIG_TOKEN,
-          useValue: {
-            buttonSize: 15,
-          },
+          useValue: { buttonSize: 15, deleteCb: jest.fn() },
         },
         KeyStateService,
       ],
@@ -35,8 +36,9 @@ describe('AdminControlsComponent', () => {
 
         keyStateService = TestBed.inject(KeyStateService);
 
-        ctrlMetaKeyPressedSpy = jest.spyOn(keyStateService, 'ctrlMetaKeyPressed', 'get');
+        ctrlMetaKeyPressedSpy = jest.spyOn(keyStateService, 'ctrlMetaKeyPressed$', 'get');
         deleteCbSpy = jest.spyOn(component.config, 'deleteCb');
+        destroyedSpy = jest.spyOn(component.destroyed, 'emit');
 
         fixture.detectChanges();
       });
@@ -110,111 +112,120 @@ describe('AdminControlsComponent', () => {
           component.ngOnInit();
         });
 
-        describe('when isDeleteDisabled is true', () => {
-          beforeEach(() => {
-            component.config.isDeleteDisabled = true;
-            fixture.detectChanges();
-          });
+        it('should render disabled when isDeleteDisabled is true', () => {
+          component.config.isDeleteDisabled = true;
+          fixture.detectChanges();
 
-          it('should render disabled', () => {
-            expect(
-              query(fixture.debugElement, '.delete-button').nativeElement.disabled,
-            ).toBe(true);
-          });
-
-          it('should not invoke deleteCb when clicked', () => {
-            query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
-
-            expect(deleteCbSpy).toHaveBeenCalledTimes(1);
-          });
+          expect(
+            query(fixture.debugElement, '.delete-button').nativeElement.disabled,
+          ).toBe(true);
         });
 
-        describe('when isDeleteDisabled is false', () => {
-          beforeEach(() => {
-            component.config.isDeleteDisabled = false;
-            fixture.detectChanges();
-          });
+        it('should not invoke deleteCb when clicked when isDeleteDisabled is true', () => {
+          component.config.isDeleteDisabled = true;
+          fixture.detectChanges();
 
-          it('should render enabled', () => {
-            expect(
-              query(fixture.debugElement, '.delete-button').nativeElement.disabled,
-            ).toBe(false);
-          });
+          query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
 
-          it('should invoke deleteCb when clicked', () => {
-            query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
+          expect(deleteCbSpy).not.toHaveBeenCalled();
+        });
 
-            expect(deleteCbSpy).toHaveBeenCalledTimes(1);
-          });
+        it('should render enabled when isDeleteDisabled is false', () => {
+          component.config.isDeleteDisabled = false;
+          fixture.detectChanges();
+
+          expect(
+            query(fixture.debugElement, '.delete-button').nativeElement.disabled,
+          ).toBe(false);
+        });
+
+        it('should invoke deleteCb when clicked when isDeleteDisabled is false', () => {
+          component.config.isDeleteDisabled = false;
+          fixture.detectChanges();
+
+          query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
+
+          expect(deleteCbSpy).toHaveBeenCalledTimes(1);
         });
       });
 
-      describe('on non-touch devices', () => {
+      describe('on non-touch devices when ctrlMeta button is pressed', () => {
         beforeEach(() => {
+          ctrlMetaKeyPressedSpy.mockReturnValue(of(true));
           component.isTouchDevice = false;
           fixture.detectChanges();
 
           component.ngOnInit();
         });
 
-        describe('when isDeleteDisabled is true', () => {
-          beforeEach(() => {
-            component.config.isDeleteDisabled = true;
-            fixture.detectChanges();
-          });
+        it('should render disabled when isDeleteDisabled is true', () => {
+          component.config.isDeleteDisabled = true;
+          fixture.detectChanges();
 
-          it('should render disabled if ctrlMeta button is pressed', () => {
-            ctrlMetaKeyPressedSpy.mockReturnValue(true);
-            fixture.detectChanges();
-
-            expect(
-              query(fixture.debugElement, '.delete-button').nativeElement.disabled,
-            ).toBe(true);
-          });
-
-          it('should not render if ctrlMeta button is not pressed', () => {
-            ctrlMetaKeyPressedSpy.mockResolvedValue(false);
-            fixture.detectChanges();
-
-            expect(query(fixture.debugElement, '.delete-button')).toBeNull();
-          });
-
-          it('should not invoke deleteCb when clicked', () => {
-            query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
-
-            expect(deleteCbSpy).toHaveBeenCalledTimes(1);
-          });
+          expect(
+            query(fixture.debugElement, '.delete-button').nativeElement.disabled,
+          ).toBe(true);
         });
 
-        describe('when isDeleteDisabled is false', () => {
-          beforeEach(() => {
-            component.config.isDeleteDisabled = false;
-            fixture.detectChanges();
-          });
+        it('should not invoke deleteCb when clicked when isDeleteDisabled is true', () => {
+          component.config.isDeleteDisabled = true;
+          fixture.detectChanges();
 
-          it('should render enabled if ctrlMeta button is pressed', () => {
-            ctrlMetaKeyPressedSpy.mockResolvedValue(true);
-            fixture.detectChanges();
+          query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
 
-            expect(
-              query(fixture.debugElement, '.delete-button').nativeElement.disabled,
-            ).toBe(false);
-          });
+          expect(deleteCbSpy).not.toHaveBeenCalled();
+        });
 
-          it('should not render if ctrlMeta button is not pressed', () => {
-            ctrlMetaKeyPressedSpy.mockResolvedValue(false);
-            fixture.detectChanges();
+        it('should render enabled when isDeleteDisabled is false', () => {
+          component.config.isDeleteDisabled = false;
+          fixture.detectChanges();
 
-            expect(query(fixture.debugElement, '.delete-button')).toBeNull();
-          });
+          expect(
+            query(fixture.debugElement, '.delete-button').nativeElement.disabled,
+          ).toBe(false);
+        });
 
-          it('should invoke deleteCb when clicked', () => {
-            query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
+        it('should invoke deleteCb when clicked when isDeleteDisabled is false', () => {
+          component.config.isDeleteDisabled = false;
+          fixture.detectChanges();
 
-            expect(deleteCbSpy).toHaveBeenCalledTimes(1);
-          });
+          query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
+
+          expect(deleteCbSpy).toHaveBeenCalledTimes(1);
         });
       });
+
+      describe('on non-touch devices without pressed ctrlMeta button', () => {
+        beforeEach(() => {
+          ctrlMetaKeyPressedSpy.mockReturnValue(of(false));
+          component.isTouchDevice = false;
+          fixture.detectChanges();
+
+          component.ngOnInit();
+        });
+
+        it('should not render when isDeleteDisabled is true', () => {
+          component.config.isDeleteDisabled = true;
+          fixture.detectChanges();
+
+          expect(query(fixture.debugElement, '.delete-button')).toBeNull();
+        });
+
+        it('should not render when isDeleteDisabled is false', () => {
+          component.config.isDeleteDisabled = false;
+          fixture.detectChanges();
+
+          expect(query(fixture.debugElement, '.delete-button')).toBeNull();
+        });
+      });
+    });
+  });
+
+  describe('on destroy', () => {
+    it('should emit destroyed event', () => {
+      component.ngOnDestroy();
+
+      expect(destroyedSpy).toHaveBeenCalledTimes(1);
     });
   });
 });

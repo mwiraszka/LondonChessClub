@@ -1,6 +1,13 @@
-import { DOCUMENT } from '@angular/common';
-import { Injectable, Inject, OnDestroy, Renderer2, RendererFactory2 } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+
+import { DOCUMENT } from '@angular/common';
+import {
+  Inject,
+  Injectable,
+  OnDestroy,
+  Renderer2,
+  RendererFactory2,
+} from '@angular/core';
 
 import { isMac } from '@app/utils';
 
@@ -8,7 +15,7 @@ import { isMac } from '@app/utils';
   providedIn: 'root',
 })
 export class KeyStateService implements OnDestroy {
-  private isCtrlMetaKeyPressed$ = new BehaviorSubject<boolean>(false);
+  private isCtrlMetaKeyPressed = new BehaviorSubject<boolean>(false);
   private keyDownListener?: () => void;
   private keyUpListener?: () => void;
   private renderer: Renderer2;
@@ -21,8 +28,8 @@ export class KeyStateService implements OnDestroy {
     this.setupGlobalListeners();
   }
 
-  public get ctrlMetaKeyPressed(): Observable<boolean> {
-    return this.isCtrlMetaKeyPressed$.asObservable();
+  public get ctrlMetaKeyPressed$(): Observable<boolean> {
+    return this.isCtrlMetaKeyPressed.asObservable();
   }
 
   public ngOnDestroy(): void {
@@ -36,9 +43,9 @@ export class KeyStateService implements OnDestroy {
       'keydown',
       (event: KeyboardEvent) => {
         if ((!isMac() && event.key === 'Control') || (isMac() && event.key === 'Meta')) {
-          this.isCtrlMetaKeyPressed$.next(true);
+          this.isCtrlMetaKeyPressed.next(true);
         }
-      }
+      },
     );
 
     this.keyUpListener = this.renderer.listen(
@@ -46,9 +53,9 @@ export class KeyStateService implements OnDestroy {
       'keyup',
       (event: KeyboardEvent) => {
         if ((!isMac() && event.key === 'Control') || (isMac() && event.key === 'Meta')) {
-          this.isCtrlMetaKeyPressed$.next(false);
+          this.isCtrlMetaKeyPressed.next(false);
         }
-      }
+      },
     );
   }
 }

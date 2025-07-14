@@ -55,7 +55,7 @@ export class AdminControlsComponent implements OnInit, OnDestroy {
     if (this.isTouchDevice) {
       this.showDeleteButton = true;
     } else {
-      this.keyStateService.ctrlMetaKeyPressed
+      this.keyStateService.ctrlMetaKeyPressed$
         .pipe(untilDestroyed(this))
         .subscribe(isPressed => {
           this.showDeleteButton = isPressed;

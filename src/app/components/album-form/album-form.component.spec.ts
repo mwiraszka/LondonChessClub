@@ -583,8 +583,8 @@ describe('AlbumFormComponent', () => {
         [MOCK_IMAGES[0].id]: 'data:image/png;base64,def',
         [MOCK_IMAGES[3].id]: 'data:image/jpeg;base64,xyz',
       };
-      component.ngOnInit();
       fixture.detectChanges();
+      component.ngOnInit();
 
       // Initially image at index 1 is album cover
       const newImagesControl = component.form.controls.newImages;
@@ -630,8 +630,8 @@ describe('AlbumFormComponent', () => {
       component.newImagesFormData = {
         [MOCK_IMAGES[0].id]: pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES),
       };
-      component.ngOnInit();
       fixture.detectChanges();
+      component.ngOnInit();
 
       const newImagesControl = component.form.controls.newImages;
       await component.onRemoveNewImage(newImagesControl.at(0).getRawValue(), 0);
@@ -649,8 +649,8 @@ describe('AlbumFormComponent', () => {
       component.newImagesFormData = {
         [MOCK_IMAGES[0].id]: pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES),
       };
-      component.ngOnInit();
       fixture.detectChanges();
+      component.ngOnInit();
 
       const newImagesControl = component.form.controls.newImages;
       await component.onRemoveNewImage(newImagesControl.at(0).getRawValue(), 0);
@@ -745,7 +745,6 @@ describe('AlbumFormComponent', () => {
         return acc;
       }, {}); // 19 images
       fixture.detectChanges();
-      component.ngOnInit();
 
       expect(Object.keys(component.newImagesFormData).length).toBe(19);
 

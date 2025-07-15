@@ -183,6 +183,21 @@ export class AlbumFormComponent implements OnInit {
     const files = fileInputElement.files;
 
     if (!files?.length) {
+      fileInputElement.value = '';
+      return;
+    }
+
+    const totalNewImages = Object.keys(this.newImagesFormData).length + files.length;
+    if (totalNewImages > 20) {
+      this.store.dispatch(
+        ImagesActions.imageFileActionFailed({
+          error: {
+            name: 'LCCError',
+            message: `Only up to 20 images can be uploaded at a time`,
+          },
+        }),
+      );
+      fileInputElement.value = '';
       return;
     }
 

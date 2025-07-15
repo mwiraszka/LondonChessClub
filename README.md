@@ -32,6 +32,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.5.3 - July 15th, 2025</summary>
+
+- 🚀 Increase image file size limit to 2.5 MB and ensure only up to 20 images can be uploaded at a time
+
+</details>
+
+<details>
 <summary>v5.5.2 - July 13th, 2025</summary>
 
 - 🚀 Create new KeyState service, and a few new device utility functions; use them to display delete button in Admin Controls only when ctrl/cmd is pressed

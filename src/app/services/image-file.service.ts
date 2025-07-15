@@ -306,10 +306,10 @@ export class ImageFileService {
             name: 'LCCError',
             message: 'Unable to load image file',
           });
-        } else if (processedFile.size > 1_258_291) {
+        } else if (processedFile.size > 2_621_440) {
           resolve({
             name: 'LCCError',
-            message: `Image is too large (${formatBytes(processedFile.size)}) - please reduce to below 1.2 MB`,
+            message: `Image is too large (${formatBytes(processedFile.size)}) - please reduce to below 2.5 MB`,
           });
         } else {
           resolve({ dataUrl, filename: processedFile.name });

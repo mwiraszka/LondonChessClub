@@ -8,7 +8,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { IMAGE_FORM_DATA_PROPERTIES } from '@app/constants';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
-import { LccError } from '@app/models';
+import { ImageFormData, LccError } from '@app/models';
 import { DialogService, ImageFileService } from '@app/services';
 import { ImagesActions } from '@app/store/images';
 import { query, queryTextContent } from '@app/utils';
@@ -736,7 +736,38 @@ describe('AlbumFormComponent', () => {
       expect(newImagesControl.at(1).controls.caption.value).toBe('new-file.2');
     });
 
-    it('should handle errors from the imageFileService', async () => {
+    it('should process limit new image total to 20', async () => {
+      component.newImagesFormData = [
+        ...MOCK_IMAGES,
+        ...MOCK_IMAGES.slice(0, 5).map(image => ({ ...image, id: `_${image.id}` })),
+      ].reduce((acc: { [key: string]: ImageFormData }, image) => {
+        acc[image.id] = pick(image, IMAGE_FORM_DATA_PROPERTIES);
+        return acc;
+      }, {}); // 19 images
+      fixture.detectChanges();
+      component.ngOnInit();
+
+      expect(Object.keys(component.newImagesFormData).length).toBe(19);
+
+      const file20 = new File([':)'], 'new-file.20.jpg', { type: 'image/jpeg' });
+      const file21 = new File([':)'], 'new-file.21.jpg', { type: 'image/jpeg' });
+      const fileInputElement = document.createElement('input');
+      Object.defineProperty(fileInputElement, 'files', {
+        value: [file20, file21],
+        writable: true,
+      });
+      const event = { target: fileInputElement };
+
+      await component.onChooseFiles(event as unknown as Event);
+      await fixture.whenStable();
+
+      expect(Object.keys(component.newImagesFormData).length).toBe(19);
+      expect(storeImageFileSpy).not.toHaveBeenCalled();
+      expect(uuidSpy).not.toHaveBeenCalled();
+      expect(fileInputElement.value).toBe('');
+    });
+
+    it('should handle other errors from the imageFileService', async () => {
       const file1 = new File([':)'], 'new-file.1.png', { type: 'image/png' });
       const file2 = new File([':('], 'new-file.2.tiff', { type: 'image/tiff' });
       const file3 = new File([':)'], 'new-file.3.jpg', { type: 'image/jpeg' });

@@ -234,6 +234,7 @@ describe('ImageFormComponent', () => {
             caption: 'A new caption',
             album: 'A new album title',
             albumCover: true,
+            albumOrdinality: 1,
           },
         };
         fixture.detectChanges();
@@ -254,6 +255,7 @@ describe('ImageFormComponent', () => {
           caption: 'A new caption',
           album: 'A new album title',
           albumCover: true,
+          albumOrdinality: 1,
         };
 
         for (const property of IMAGE_FORM_DATA_PROPERTIES) {

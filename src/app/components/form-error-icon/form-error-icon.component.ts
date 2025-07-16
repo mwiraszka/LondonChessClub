@@ -28,6 +28,8 @@ export class FormErrorIconComponent {
       return 'This field is required';
     } else if (this.control.hasError('pattern')) {
       return 'Invalid input (incorrect format)';
+    } else if (this.control.hasError('invalidOrdinal')) {
+      return 'Invalid ordinal number - please input a number between 1 and 99';
     } else if (this.control.hasError('invalidEmailFormat')) {
       return 'Invalid email';
     } else if (this.control.hasError('invalidPhoneNumberFormat')) {

@@ -35,6 +35,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.5.3 - July 15th, 2025</summary>
 
 - 🚀 Increase image file size limit to 2.5 MB and ensure only up to 20 images can be uploaded at a time
+- 🚀 Create new album ordinality property on images for a more explicit way of ordering images in an album
 
 </details>
 

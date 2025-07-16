@@ -140,6 +140,7 @@ export class ImagesEffects {
           caption: formData.caption,
           album: formData.album,
           albumCover: formData.albumCover,
+          albumOrdinality: formData.albumOrdinality,
           modificationInfo: {
             createdBy: `${user.firstName} ${user.lastName}`,
             dateCreated: moment().toISOString(),
@@ -215,6 +216,7 @@ export class ImagesEffects {
             caption: formData.caption,
             album: formData.album,
             albumCover: formData.albumCover,
+            albumOrdinality: formData.albumOrdinality,
             modificationInfo: {
               createdBy: `${user.firstName} ${user.lastName}`,
               dateCreated: moment().toISOString(),
@@ -255,6 +257,7 @@ export class ImagesEffects {
           caption: formData.caption,
           album: formData.album,
           albumCover: formData.albumCover,
+          albumOrdinality: formData.albumOrdinality,
           modificationInfo: {
             ...image.modificationInfo,
             lastEditedBy: `${user.firstName} ${user.lastName}`,
@@ -294,6 +297,7 @@ export class ImagesEffects {
           caption: formData.caption,
           album: formData.album,
           albumCover: formData.albumCover,
+          albumOrdinality: formData.albumOrdinality,
           modificationInfo: {
             ...image.modificationInfo,
             lastEditedBy: `${user.firstName} ${user.lastName}`,
@@ -367,6 +371,7 @@ export class ImagesEffects {
           modificationInfo: newAlbumCoverImage.modificationInfo,
           album: newAlbumCoverImage.album,
           albumCover: true,
+          albumOrdinality: newAlbumCoverImage.albumOrdinality,
         };
         return updatedImage;
       }),

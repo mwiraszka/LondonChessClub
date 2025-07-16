@@ -33,7 +33,7 @@ import type {
 import { DialogService, ImageFileService } from '@app/services';
 import { ImagesActions } from '@app/store/images';
 import { isLccError } from '@app/utils';
-import { imageCaptionValidator } from '@app/validators';
+import { imageCaptionValidator, ordinalityValidator } from '@app/validators';
 
 @UntilDestroy()
 @Component({
@@ -201,7 +201,7 @@ export class AlbumFormComponent implements OnInit {
       return;
     }
 
-    const processFiles = Array.from(files).map(async file => {
+    const processFiles = Array.from(files).map(async (file, index) => {
       const result = await this.imageFileService.storeImageFile(`new-${uuid.v4()}`, file);
 
       if (isLccError(result)) {
@@ -218,6 +218,10 @@ export class AlbumFormComponent implements OnInit {
             nonNullable: true,
             validators: [Validators.required, imageCaptionValidator],
           }),
+          albumOrdinality: new FormControl(
+            Object.keys(this.newImagesFormData).length + index + 1,
+            { nonNullable: true },
+          ),
           albumCover: new FormControl(isFirstImageInAlbum, { nonNullable: true }),
         });
 
@@ -332,6 +336,10 @@ export class AlbumFormComponent implements OnInit {
             nonNullable: true,
             validators: [Validators.required, imageCaptionValidator],
           }),
+          albumOrdinality: new FormControl(entity.formData.albumOrdinality, {
+            nonNullable: true,
+            validators: [Validators.required, ordinalityValidator],
+          }),
           albumCover: new FormControl(entity.formData.albumCover, {
             nonNullable: true,
           }),
@@ -347,6 +355,10 @@ export class AlbumFormComponent implements OnInit {
           caption: new FormControl(formData.caption, {
             nonNullable: true,
             validators: [Validators.required, imageCaptionValidator],
+          }),
+          albumOrdinality: new FormControl(formData.albumOrdinality, {
+            nonNullable: true,
+            validators: [Validators.required, ordinalityValidator],
           }),
           albumCover: new FormControl(formData.albumCover, {
             nonNullable: true,

@@ -201,7 +201,8 @@ export class AlbumFormComponent implements OnInit {
       return;
     }
 
-    const processFiles = Array.from(files).map(async (file, index) => {
+    let ordinalityCounter = 1;
+    const processFiles = Array.from(files).map(async file => {
       const result = await this.imageFileService.storeImageFile(`new-${uuid.v4()}`, file);
 
       if (isLccError(result)) {
@@ -210,6 +211,10 @@ export class AlbumFormComponent implements OnInit {
         const { id, dataUrl, filename } = result;
         const isFirstImageInAlbum =
           !this.imageEntities.length && !Object.keys(this.newImageDataUrls).length;
+        const albumOrdinality =
+          this.imageEntities.length +
+          Object.keys(this.newImagesFormData).length +
+          +ordinalityCounter;
 
         const newImageFormGroup = this.formBuilder.group<Omit<ImageFormGroup, 'album'>>({
           id: new FormControl(id, { nonNullable: true }),
@@ -218,16 +223,18 @@ export class AlbumFormComponent implements OnInit {
             nonNullable: true,
             validators: [Validators.required, imageCaptionValidator],
           }),
-          albumOrdinality: new FormControl(
-            Object.keys(this.newImagesFormData).length + index + 1,
-            { nonNullable: true },
-          ),
+          albumOrdinality: new FormControl(`${albumOrdinality}`, {
+            nonNullable: true,
+            validators: [Validators.required, ordinalityValidator],
+          }),
           albumCover: new FormControl(isFirstImageInAlbum, { nonNullable: true }),
         });
 
         this.newImageDataUrls[id] = dataUrl;
 
         this.form.controls.newImages.push(newImageFormGroup);
+
+        ordinalityCounter++;
       }
     });
 

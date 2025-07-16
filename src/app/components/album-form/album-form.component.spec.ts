@@ -260,7 +260,7 @@ describe('AlbumFormComponent', () => {
               caption: 'A new caption',
               album: 'A new album title',
               albumCover: true,
-              albumOrdinality: 1,
+              albumOrdinality: '1',
             },
           },
           {

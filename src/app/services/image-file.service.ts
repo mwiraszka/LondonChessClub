@@ -283,7 +283,7 @@ export class ImageFileService {
       if (!['image/png', 'image/jpeg', 'image/jpg'].includes(file.type.toLowerCase())) {
         resolve({
           name: 'LCCError',
-          message: 'Sorry Ryan, currently only PNG or JPEG image formats are supported',
+          message: `${file.type} is currently unsupported. Please try uploading ${file.name} again as either a PNG or JPEG.`,
         });
         return;
       }

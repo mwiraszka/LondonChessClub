@@ -11,7 +11,7 @@ export interface BaseImage {
   caption: string;
   album: string;
   albumCover: boolean;
-  albumOrdinality: number;
+  albumOrdinality: string;
   modificationInfo: ModificationInfo;
 }
 

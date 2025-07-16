@@ -99,7 +99,7 @@ export class PhotoGridComponent implements OnChanges {
         album,
         images: this.photoImages
           .filter(image => image.album === album)
-          .sort((a, b) => customSort(a, b, 'caption')),
+          .sort((a, b) => customSort(a, b, 'albumOrdinality', false, 'caption', false)),
         isAdmin: this.isAdmin,
       },
     });

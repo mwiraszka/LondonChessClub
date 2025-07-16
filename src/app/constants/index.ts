@@ -52,7 +52,7 @@ export const INITIAL_IMAGE_FORM_DATA: ImageFormData = {
   caption: '',
   album: '',
   albumCover: false,
-  albumOrdinality: 1,
+  albumOrdinality: '1',
 };
 
 export const MEMBER_FORM_DATA_PROPERTIES = [

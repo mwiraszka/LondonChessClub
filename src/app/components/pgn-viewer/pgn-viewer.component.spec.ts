@@ -10,11 +10,12 @@ describe('PgnViewerComponent', () => {
   let fixture: ComponentFixture<PgnViewerComponent>;
   let component: PgnViewerComponent;
 
+  let consoleWarnSpy: jest.SpyInstance;
   let getPlayerNameSpy: jest.SpyInstance;
   let getScoreSpy: jest.SpyInstance;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [PgnViewerComponent],
     })
       .compileComponents()
@@ -26,6 +27,7 @@ describe('PgnViewerComponent', () => {
         component.label = 'test-game';
         component.pgn = MOCK_PGNS[0];
 
+        consoleWarnSpy = jest.spyOn(console, 'warn');
         getPlayerNameSpy = jest.spyOn(pgnUtils, 'getPlayerName');
         getScoreSpy = jest.spyOn(pgnUtils, 'getScore');
 
@@ -50,12 +52,6 @@ describe('PgnViewerComponent', () => {
     });
   });
 
-  it('should render link in the Link List component', () => {
-    expect(queryTextContent(fixture.debugElement, 'lcc-link-list')).toContain(
-      'Analyze game on Lichess',
-    );
-  });
-
   describe('after view init', () => {
     it('should get player names and scores from PGN', () => {
       getPlayerNameSpy.mockImplementation((_, __, color) =>
@@ -72,10 +68,6 @@ describe('PgnViewerComponent', () => {
   });
 
   describe('error handling', () => {
-    beforeEach(() => {
-      jest.spyOn(console, 'warn').mockImplementation();
-    });
-
     it('should log a warning if White player name is missing', () => {
       getPlayerNameSpy.mockImplementation((_, __, color) =>
         color === 'White' ? null : 'Player2',
@@ -83,7 +75,7 @@ describe('PgnViewerComponent', () => {
 
       component.ngAfterViewInit();
 
-      expect(console.warn).toHaveBeenCalledWith(
+      expect(consoleWarnSpy).toHaveBeenCalledWith(
         expect.stringContaining('undefined White player'),
         expect.anything(),
       );
@@ -96,7 +88,7 @@ describe('PgnViewerComponent', () => {
 
       component.ngAfterViewInit();
 
-      expect(console.warn).toHaveBeenCalledWith(
+      expect(consoleWarnSpy).toHaveBeenCalledWith(
         expect.stringContaining('undefined Black player'),
         expect.anything(),
       );
@@ -107,7 +99,7 @@ describe('PgnViewerComponent', () => {
 
       component.ngAfterViewInit();
 
-      expect(console.warn).toHaveBeenCalledWith(
+      expect(consoleWarnSpy).toHaveBeenCalledWith(
         expect.stringContaining('invalid score for White'),
         expect.anything(),
       );
@@ -118,9 +110,17 @@ describe('PgnViewerComponent', () => {
 
       component.ngAfterViewInit();
 
-      expect(console.warn).toHaveBeenCalledWith(
+      expect(consoleWarnSpy).toHaveBeenCalledWith(
         expect.stringContaining('invalid score for Black'),
         expect.anything(),
+      );
+    });
+  });
+
+  describe('template rendering', () => {
+    it('should render link in the Link List component', () => {
+      expect(queryTextContent(fixture.debugElement, 'lcc-link-list')).toContain(
+        'Analyze game on Lichess',
       );
     });
   });

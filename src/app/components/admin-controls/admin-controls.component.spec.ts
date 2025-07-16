@@ -12,6 +12,7 @@ import { AdminControlsComponent } from './admin-controls.component';
 describe('AdminControlsComponent', () => {
   let fixture: ComponentFixture<AdminControlsComponent>;
   let component: AdminControlsComponent;
+
   let keyStateService: KeyStateService;
 
   let ctrlMetaKeyPressedSpy: jest.SpyInstance;
@@ -39,8 +40,6 @@ describe('AdminControlsComponent', () => {
         ctrlMetaKeyPressedSpy = jest.spyOn(keyStateService, 'ctrlMetaKeyPressed$', 'get');
         deleteCbSpy = jest.spyOn(component.config, 'deleteCb');
         destroyedSpy = jest.spyOn(component.destroyed, 'emit');
-
-        fixture.detectChanges();
       });
   });
 
@@ -48,10 +47,19 @@ describe('AdminControlsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('UI elements', () => {
+  describe('destroyed event emitter', () => {
+    it('should emit destroyed event on ngOnDestroy', () => {
+      expect(destroyedSpy).toHaveBeenCalledTimes(0);
+      component.ngOnDestroy();
+
+      expect(destroyedSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('template rendering', () => {
     describe('bookmark button', () => {
       it('should not render if only bookmarkCb is provided', () => {
-        component.config.bookmarkCb = () => 'mock bookmark callback';
+        component.config.bookmarkCb = jest.fn();
         component.config.bookmarked = undefined;
         fixture.detectChanges();
 
@@ -67,7 +75,7 @@ describe('AdminControlsComponent', () => {
       });
 
       it('should render if both bookmarkCb and bookmarked are provided', () => {
-        component.config.bookmarkCb = () => 'mock bookmark callback';
+        component.config.bookmarkCb = jest.fn();
         component.config.bookmarked = false;
         fixture.detectChanges();
 
@@ -75,10 +83,11 @@ describe('AdminControlsComponent', () => {
       });
 
       it('should invoke bookmarkCb when clicked', () => {
-        component.config.bookmarkCb = () => 'mock bookmark callback';
+        component.config.bookmarkCb = jest.fn();
         component.config.bookmarked = false;
         fixture.detectChanges();
 
+        // Must redeclare spy after callback change
         const bookmarkCbSpy = jest.spyOn(component.config, 'bookmarkCb');
 
         query(fixture.debugElement, '.bookmark-button').triggerEventHandler('click');
@@ -218,14 +227,6 @@ describe('AdminControlsComponent', () => {
           expect(query(fixture.debugElement, '.delete-button')).toBeNull();
         });
       });
-    });
-  });
-
-  describe('on destroy', () => {
-    it('should emit destroyed event', () => {
-      component.ngOnDestroy();
-
-      expect(destroyedSpy).toHaveBeenCalledTimes(1);
     });
   });
 });

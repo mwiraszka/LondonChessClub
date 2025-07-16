@@ -10,7 +10,7 @@ import { AdminControlsDirective } from '@app/directives/admin-controls.directive
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { DialogService } from '@app/services';
-import { ImagesActions } from '@app/store/images';
+import { ImagesActions, ImagesSelectors } from '@app/store/images';
 import { customSort, query, queryAll, queryTextContent } from '@app/utils';
 
 import { PhotoGridComponent } from './photo-grid.component';
@@ -23,11 +23,17 @@ class PhotoGalleryStubComponent {}
 describe('PhotoGridComponent', () => {
   let fixture: ComponentFixture<PhotoGridComponent>;
   let component: PhotoGridComponent;
-  let store: MockStore;
-  let dialogService: DialogService;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  let dialogService: DialogService;
+  let store: MockStore;
+
+  let dialogOpenSpy: jest.SpyInstance;
+  let dispatchSpy: jest.SpyInstance;
+  let onClickAlbumCoverSpy: jest.SpyInstance;
+  let onOpenImageExplorerSpy: jest.SpyInstance;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [AdminControlsDirective, PhotoGridComponent, TooltipDirective],
       providers: [
         provideMockStore(),
@@ -46,7 +52,10 @@ describe('PhotoGridComponent', () => {
         component.isAdmin = true;
         component.photoImages = MOCK_IMAGES;
 
-        jest.spyOn(store, 'dispatch');
+        dialogOpenSpy = jest.spyOn(dialogService, 'open');
+        dispatchSpy = jest.spyOn(store, 'dispatch');
+        onClickAlbumCoverSpy = jest.spyOn(component, 'onClickAlbumCover');
+        onOpenImageExplorerSpy = jest.spyOn(component, 'onOpenImageExplorer');
 
         fixture.detectChanges();
       });
@@ -57,14 +66,62 @@ describe('PhotoGridComponent', () => {
   });
 
   describe('initialization', () => {
-    // TODO: Revisit
-    it.skip('should dispatch fetchBatchThumbnailsRequested on init if lastFetch is null', () => {
-      expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchBatchThumbnailsRequested({
-          imageIds: MOCK_IMAGES.map(image => image.id),
-          context: 'photos',
-        }),
-      );
+    describe('when thumbnails were fetched less than 30 minutes ago', () => {
+      beforeEach(() => {
+        component.photoImages = [MOCK_IMAGES[1]];
+        store.overrideSelector(
+          ImagesSelectors.selectLastAlbumCoversFetch,
+          new Date(Date.now() - 29 * 60 * 1000).toISOString(),
+        );
+
+        component.ngOnChanges({
+          photoImages: {
+            currentValue: [MOCK_IMAGES[1]],
+            previousValue: [],
+            firstChange: false,
+            isFirstChange: () => false,
+          },
+        });
+        fixture.detectChanges();
+      });
+
+      it('should not dispatch fetchBatchThumbnailsRequested', () => {
+        expect(dispatchSpy).not.toHaveBeenCalledWith(
+          ImagesActions.fetchBatchThumbnailsRequested({
+            imageIds: MOCK_IMAGES.map(image => image.id),
+            context: 'photos',
+          }),
+        );
+      });
+    });
+
+    describe('when thumbnails were last fetched over 30 minutes ago', () => {
+      beforeEach(() => {
+        component.photoImages = [MOCK_IMAGES[0]];
+        store.overrideSelector(
+          ImagesSelectors.selectLastAlbumCoversFetch,
+          new Date(Date.now() - 31 * 60 * 1000).toISOString(),
+        );
+
+        component.ngOnChanges({
+          photoImages: {
+            currentValue: [MOCK_IMAGES[0]],
+            previousValue: [],
+            firstChange: false,
+            isFirstChange: () => false,
+          },
+        });
+        fixture.detectChanges();
+      });
+
+      it('should dispatch fetchBatchThumbnailsRequested', () => {
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          ImagesActions.fetchBatchThumbnailsRequested({
+            imageIds: [MOCK_IMAGES[0].id],
+            context: 'photos',
+          }),
+        );
+      });
     });
 
     it('should have albumCovers getter that filters images with albumCover', () => {
@@ -88,15 +145,12 @@ describe('PhotoGridComponent', () => {
 
   describe('album interactions', () => {
     it('should call onClickAlbumCover when an album cover is clicked', () => {
-      jest.spyOn(component, 'onClickAlbumCover');
-
       query(fixture.debugElement, '.album-cover').triggerEventHandler('click');
 
-      expect(component.onClickAlbumCover).toHaveBeenCalledWith("John's Images");
+      expect(onClickAlbumCoverSpy).toHaveBeenCalledWith("John's Images");
     });
 
     it('should open ImageViewerComponent dialog with filtered images when clicking album cover', async () => {
-      const dialogOpenSpy = jest.spyOn(dialogService, 'open');
       const album = 'Album of Jane';
       const albumPhotos = MOCK_IMAGES.filter(image => image.album === album).sort(
         (a, b) => customSort(a, b, 'caption'),
@@ -116,16 +170,12 @@ describe('PhotoGridComponent', () => {
     });
 
     it('should call onOpenImageExplorer when image explorer button is clicked', () => {
-      jest.spyOn(component, 'onOpenImageExplorer');
-
       query(fixture.debugElement, '.image-explorer-button').triggerEventHandler('click');
 
-      expect(component.onOpenImageExplorer).toHaveBeenCalledTimes(1);
+      expect(onOpenImageExplorerSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should open ImageExplorerComponent dialog with selectable false when opening image explorer', async () => {
-      const dialogOpenSpy = jest.spyOn(dialogService, 'open');
-
       await component.onOpenImageExplorer();
 
       expect(dialogOpenSpy).toHaveBeenCalledWith({
@@ -166,7 +216,7 @@ describe('PhotoGridComponent', () => {
     });
   });
 
-  describe('UI elements', () => {
+  describe('template rendering', () => {
     it('should display admin controls header when isAdmin is true', () => {
       component.isAdmin = true;
       fixture.detectChanges();

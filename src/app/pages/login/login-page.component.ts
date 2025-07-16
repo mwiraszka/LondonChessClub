@@ -15,7 +15,7 @@ import { MetaAndTitleService } from '@app/services';
 export class LoginPageComponent implements OnInit {
   constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Log In');
     this.metaAndTitleService.updateDescription(
       'Log in to your London Chess Club admin account',

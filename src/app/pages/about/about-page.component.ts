@@ -15,7 +15,7 @@ import { MetaAndTitleService } from '@app/services';
 export class AboutPageComponent implements OnInit {
   constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.metaAndTitleService.updateTitle('About');
     this.metaAndTitleService.updateDescription(
       'A brief overview of the London Chess Club.',

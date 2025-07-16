@@ -16,6 +16,8 @@ describe('UpcomingEventBannerComponent', () => {
   let fixture: ComponentFixture<UpcomingEventBannerComponent>;
   let component: UpcomingEventBannerComponent;
 
+  let clearBannerSpy: jest.SpyInstance;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [UpcomingEventBannerComponent],
@@ -27,7 +29,11 @@ describe('UpcomingEventBannerComponent', () => {
       .then(() => {
         fixture = TestBed.createComponent(UpcomingEventBannerComponent);
         component = fixture.componentInstance;
+
         component.nextEvent = MOCK_EVENTS[0];
+
+        clearBannerSpy = jest.spyOn(component.clearBanner, 'emit');
+
         fixture.detectChanges();
       });
   });
@@ -36,44 +42,44 @@ describe('UpcomingEventBannerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('banner message', () => {
-    it('should contain the title and date of the next event', () => {
-      const bannerText = queryTextContent(fixture.debugElement, '.banner-message');
+  describe('template rendering', () => {
+    describe('banner message', () => {
+      it('should contain the title and date of the next event', () => {
+        const bannerText = queryTextContent(fixture.debugElement, '.banner-message');
 
-      expect(bannerText).toContain(MOCK_EVENTS[0].title);
-      expect(bannerText).toContain(formatDate(MOCK_EVENTS[0].eventDate, 'short'));
+        expect(bannerText).toContain(MOCK_EVENTS[0].title);
+        expect(bannerText).toContain(formatDate(MOCK_EVENTS[0].eventDate, 'short'));
+      });
+
+      it('should emit clearBanner when clicked', () => {
+        query(fixture.debugElement, '.banner-message').nativeElement.dispatchEvent(
+          new MouseEvent('click'),
+        );
+        fixture.detectChanges();
+
+        expect(clearBannerSpy).toHaveBeenCalledTimes(1);
+      });
+
+      it('should have router link set to the schedule page', () => {
+        expect(
+          query(fixture.debugElement, '.banner-message').attributes['routerLink'],
+        ).toBe('/schedule');
+      });
     });
 
-    it('should emit clearBanner when clicked', () => {
-      const clearBannerSpy = jest.spyOn(component.clearBanner, 'emit');
+    describe('close button', () => {
+      it('should display a close icon', () => {
+        expect(query(fixture.debugElement, 'mat-icon')).not.toBeNull();
+      });
 
-      const bannerMessage = query(fixture.debugElement, '.banner-message').nativeElement;
-      bannerMessage.dispatchEvent(new MouseEvent('click'));
-      fixture.detectChanges();
+      it('should emit a clear banner event when clicked', () => {
+        query(fixture.debugElement, '.close-button').nativeElement.dispatchEvent(
+          new MouseEvent('click'),
+        );
+        fixture.detectChanges();
 
-      expect(clearBannerSpy).toHaveBeenCalledTimes(1);
-    });
-
-    it('should have router link set to the schedule page', () => {
-      expect(
-        query(fixture.debugElement, '.banner-message').attributes['routerLink'],
-      ).toBe('/schedule');
-    });
-  });
-
-  describe('close button', () => {
-    it('should display a close icon', () => {
-      expect(query(fixture.debugElement, 'mat-icon')).toBeTruthy();
-    });
-
-    it('should emit a clear banner event when clicked', () => {
-      const clearBannerSpy = jest.spyOn(component.clearBanner, 'emit');
-
-      const closeButton = query(fixture.debugElement, '.close-button').nativeElement;
-      closeButton.dispatchEvent(new MouseEvent('click'));
-      fixture.detectChanges();
-
-      expect(clearBannerSpy).toHaveBeenCalledTimes(1);
+        expect(clearBannerSpy).toHaveBeenCalledTimes(1);
+      });
     });
   });
 });

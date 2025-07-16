@@ -21,8 +21,9 @@ import { ArticleFormComponent } from './article-form.component';
 describe('ArticleFormComponent', () => {
   let fixture: ComponentFixture<ArticleFormComponent>;
   let component: ArticleFormComponent;
-  let store: MockStore;
+
   let dialogService: DialogService;
+  let store: MockStore;
 
   let cancelSpy: jest.SpyInstance;
   let dialogOpenSpy: jest.SpyInstance;
@@ -34,8 +35,8 @@ describe('ArticleFormComponent', () => {
   let revertImageSpy: jest.SpyInstance;
   let submitSpy: jest.SpyInstance;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [ArticleFormComponent, ReactiveFormsModule],
       providers: [
         FormBuilder,
@@ -55,6 +56,12 @@ describe('ArticleFormComponent', () => {
         dialogService = TestBed.inject(DialogService);
         store = TestBed.inject(MockStore);
 
+        component.bannerImage = null;
+        component.formData = pick(MOCK_ARTICLES[0], ARTICLE_FORM_DATA_PROPERTIES);
+        component.hasUnsavedChanges = false;
+        component.originalArticle = null;
+        fixture.detectChanges();
+
         cancelSpy = jest.spyOn(component, 'onCancel');
         dialogOpenSpy = jest.spyOn(dialogService, 'open');
         dispatchSpy = jest.spyOn(store, 'dispatch');
@@ -69,153 +76,11 @@ describe('ArticleFormComponent', () => {
         restoreSpy = jest.spyOn(component, 'onRestore');
         revertImageSpy = jest.spyOn(component, 'onRevertImage');
         submitSpy = jest.spyOn(component, 'onSubmit');
-
-        component.bannerImage = null;
-        component.formData = pick(MOCK_ARTICLES[0], ARTICLE_FORM_DATA_PROPERTIES);
-        component.hasUnsavedChanges = false;
-        component.originalArticle = null;
-
-        fixture.detectChanges();
       });
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  describe('UI elements', () => {
-    describe('modification info', () => {
-      it('should render if originalArticle is defined', () => {
-        component.originalArticle = MOCK_ARTICLES[0];
-        fixture.detectChanges();
-
-        expect(query(fixture.debugElement, 'lcc-modification-info')).not.toBeNull();
-      });
-
-      it('should not render if originalArticle is null', () => {
-        component.originalArticle = null;
-        fixture.detectChanges();
-
-        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeNull();
-      });
-    });
-
-    describe('image explorer button', () => {
-      it('should call onImageExplorer when clicked', async () => {
-        dialogOpenSpy.mockResolvedValue('close');
-        const imageExplorerButton = query(fixture.debugElement, '.image-explorer-button');
-        imageExplorerButton.triggerEventHandler('click');
-
-        expect(imageExplorerButton.nativeElement.disabled).toBe(false);
-        expect(imageExplorerSpy).toHaveBeenCalledTimes(1);
-      });
-    });
-
-    describe('revert image button', () => {
-      it('should be disabled if original banner image is already set', () => {
-        component.form.controls.bannerImageId.setValue('same-id');
-        component.originalArticle = { ...MOCK_ARTICLES[1], bannerImageId: 'same-id' };
-        fixture.detectChanges();
-
-        const revertImageButton = query(fixture.debugElement, '.revert-image-button');
-        expect(revertImageButton.nativeElement.disabled).toBe(true);
-      });
-
-      it('should be enabled if current banner image differs from originalArticle banner image', () => {
-        component.form.controls.bannerImageId.setValue('mock-id');
-        component.originalArticle = {
-          ...MOCK_ARTICLES[1],
-          bannerImageId: 'different-id',
-        };
-        fixture.detectChanges();
-
-        const revertImageButton = query(fixture.debugElement, '.revert-image-button');
-        revertImageButton.triggerEventHandler('click');
-
-        expect(revertImageButton.nativeElement.disabled).toBe(false);
-        expect(revertImageSpy).toHaveBeenCalledTimes(1);
-      });
-    });
-
-    describe('restore button', () => {
-      it('should be disabled if there are no unsaved changes', () => {
-        component.hasUnsavedChanges = false;
-        fixture.detectChanges();
-
-        const restoreButton = query(fixture.debugElement, '.restore-button');
-        expect(restoreButton.nativeElement.disabled).toBe(true);
-      });
-
-      it('should be enabled if there are unsaved changes', () => {
-        component.hasUnsavedChanges = true;
-        fixture.detectChanges();
-
-        const restoreButton = query(fixture.debugElement, '.restore-button');
-        restoreButton.triggerEventHandler('click');
-
-        expect(restoreButton.nativeElement.disabled).toBe(false);
-        expect(restoreSpy).toHaveBeenCalledTimes(1);
-      });
-    });
-
-    describe('cancel button', () => {
-      it('should be enabled if there are unsaved changes', () => {
-        component.hasUnsavedChanges = true;
-        fixture.detectChanges();
-
-        const cancelButton = query(fixture.debugElement, '.cancel-button');
-        cancelButton.triggerEventHandler('click');
-
-        expect(cancelButton.nativeElement.disabled).toBe(false);
-        expect(cancelSpy).toHaveBeenCalledTimes(1);
-      });
-
-      it('should also be enabled if there are no unsaved changes', () => {
-        component.hasUnsavedChanges = false;
-        fixture.detectChanges();
-
-        const cancelButton = query(fixture.debugElement, '.cancel-button');
-        cancelButton.triggerEventHandler('click');
-
-        expect(cancelButton.nativeElement.disabled).toBe(false);
-        expect(cancelSpy).toHaveBeenCalledTimes(1);
-      });
-    });
-
-    describe('submit button', () => {
-      it('should be disabled if there are no unsaved changes', () => {
-        component.form.setValue(pick(MOCK_ARTICLES[3], ARTICLE_FORM_DATA_PROPERTIES));
-        component.hasUnsavedChanges = false;
-        fixture.detectChanges();
-
-        const submitButton = query(fixture.debugElement, '.submit-button');
-        expect(submitButton.nativeElement.disabled).toBe(true);
-      });
-
-      it('should be disabled if the form is invalid', () => {
-        component.form.setValue({
-          ...pick(MOCK_ARTICLES[3], ARTICLE_FORM_DATA_PROPERTIES),
-          body: '', // Invalid - body is a required field
-        });
-        component.hasUnsavedChanges = true;
-        fixture.detectChanges();
-
-        const submitButton = query(fixture.debugElement, '.submit-button');
-        expect(submitButton.nativeElement.disabled).toBe(true);
-      });
-
-      it('should be enabled if there are unsaved changes and the form is valid', () => {
-        component.form.setValue(pick(MOCK_ARTICLES[3], ARTICLE_FORM_DATA_PROPERTIES));
-        component.hasUnsavedChanges = true;
-        fixture.detectChanges();
-
-        query(fixture.debugElement, 'form').triggerEventHandler('ngSubmit');
-
-        const submitButton = query(fixture.debugElement, '.submit-button');
-        expect(submitButton.nativeElement.disabled).toBe(false);
-        expect(submitSpy).toHaveBeenCalledTimes(1);
-      });
-    });
   });
 
   describe('form initialization', () => {
@@ -229,13 +94,9 @@ describe('ArticleFormComponent', () => {
           component.ngOnInit();
         });
 
-        it('should initialize the form value change listener', () => {
-          expect(initFormValueChangeListenerSpy).toHaveBeenCalledTimes(1);
-        });
-
         it('should initialize the form with touched values from formData', () => {
           expect(initFormSpy).toHaveBeenCalledTimes(1);
-          expect(initFormSpy).toHaveBeenCalledWith(component.formData);
+          expect(initFormValueChangeListenerSpy).toHaveBeenCalledTimes(1);
 
           for (const property of ARTICLE_FORM_DATA_PROPERTIES) {
             expect(component.form.controls[property].value).toBe(
@@ -255,13 +116,9 @@ describe('ArticleFormComponent', () => {
           component.ngOnInit();
         });
 
-        it('should initialize the form value change listener', () => {
-          expect(initFormValueChangeListenerSpy).toHaveBeenCalledTimes(1);
-        });
-
         it('should initialize the form with untouched values from formData', () => {
           expect(initFormSpy).toHaveBeenCalledTimes(1);
-          expect(initFormSpy).toHaveBeenCalledWith(component.formData);
+          expect(initFormValueChangeListenerSpy).toHaveBeenCalledTimes(1);
 
           for (const property of ARTICLE_FORM_DATA_PROPERTIES) {
             expect(component.form.controls[property].value).toBe(
@@ -562,6 +419,141 @@ describe('ArticleFormComponent', () => {
       expect(dispatchSpy).not.toHaveBeenCalledWith(
         ArticlesActions.updateArticleRequested({ articleId: MOCK_ARTICLES[2].id }),
       );
+    });
+  });
+
+  describe('template rendering', () => {
+    describe('modification info', () => {
+      it('should render if originalArticle is defined', () => {
+        component.originalArticle = MOCK_ARTICLES[0];
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, 'lcc-modification-info')).not.toBeNull();
+      });
+
+      it('should not render if originalArticle is null', () => {
+        component.originalArticle = null;
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeNull();
+      });
+    });
+
+    describe('image explorer button', () => {
+      it('should call onImageExplorer when clicked', async () => {
+        dialogOpenSpy.mockResolvedValue('close');
+        const imageExplorerButton = query(fixture.debugElement, '.image-explorer-button');
+        imageExplorerButton.triggerEventHandler('click');
+
+        expect(imageExplorerButton.nativeElement.disabled).toBe(false);
+        expect(imageExplorerSpy).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('revert image button', () => {
+      it('should be disabled if original banner image is already set', () => {
+        component.form.controls.bannerImageId.setValue('same-id');
+        component.originalArticle = { ...MOCK_ARTICLES[1], bannerImageId: 'same-id' };
+        fixture.detectChanges();
+
+        const revertImageButton = query(fixture.debugElement, '.revert-image-button');
+        expect(revertImageButton.nativeElement.disabled).toBe(true);
+      });
+
+      it('should be enabled if current banner image differs from originalArticle banner image', () => {
+        component.form.controls.bannerImageId.setValue('mock-id');
+        component.originalArticle = {
+          ...MOCK_ARTICLES[1],
+          bannerImageId: 'different-id',
+        };
+        fixture.detectChanges();
+
+        const revertImageButton = query(fixture.debugElement, '.revert-image-button');
+        revertImageButton.triggerEventHandler('click');
+
+        expect(revertImageButton.nativeElement.disabled).toBe(false);
+        expect(revertImageSpy).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('restore button', () => {
+      it('should be disabled if there are no unsaved changes', () => {
+        component.hasUnsavedChanges = false;
+        fixture.detectChanges();
+
+        const restoreButton = query(fixture.debugElement, '.restore-button');
+        expect(restoreButton.nativeElement.disabled).toBe(true);
+      });
+
+      it('should be enabled if there are unsaved changes', () => {
+        component.hasUnsavedChanges = true;
+        fixture.detectChanges();
+
+        const restoreButton = query(fixture.debugElement, '.restore-button');
+        restoreButton.triggerEventHandler('click');
+
+        expect(restoreButton.nativeElement.disabled).toBe(false);
+        expect(restoreSpy).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('cancel button', () => {
+      it('should be enabled if there are unsaved changes', () => {
+        component.hasUnsavedChanges = true;
+        fixture.detectChanges();
+
+        const cancelButton = query(fixture.debugElement, '.cancel-button');
+        cancelButton.triggerEventHandler('click');
+
+        expect(cancelButton.nativeElement.disabled).toBe(false);
+        expect(cancelSpy).toHaveBeenCalledTimes(1);
+      });
+
+      it('should also be enabled if there are no unsaved changes', () => {
+        component.hasUnsavedChanges = false;
+        fixture.detectChanges();
+
+        const cancelButton = query(fixture.debugElement, '.cancel-button');
+        cancelButton.triggerEventHandler('click');
+
+        expect(cancelButton.nativeElement.disabled).toBe(false);
+        expect(cancelSpy).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('submit button', () => {
+      it('should be disabled if there are no unsaved changes', () => {
+        component.form.setValue(pick(MOCK_ARTICLES[3], ARTICLE_FORM_DATA_PROPERTIES));
+        component.hasUnsavedChanges = false;
+        fixture.detectChanges();
+
+        const submitButton = query(fixture.debugElement, '.submit-button');
+        expect(submitButton.nativeElement.disabled).toBe(true);
+      });
+
+      it('should be disabled if the form is invalid', () => {
+        component.form.setValue({
+          ...pick(MOCK_ARTICLES[3], ARTICLE_FORM_DATA_PROPERTIES),
+          body: '', // Invalid - body is a required field
+        });
+        component.hasUnsavedChanges = true;
+        fixture.detectChanges();
+
+        const submitButton = query(fixture.debugElement, '.submit-button');
+        expect(submitButton.nativeElement.disabled).toBe(true);
+      });
+
+      it('should be enabled if there are unsaved changes and the form is valid', () => {
+        component.form.setValue(pick(MOCK_ARTICLES[3], ARTICLE_FORM_DATA_PROPERTIES));
+        component.hasUnsavedChanges = true;
+        fixture.detectChanges();
+
+        query(fixture.debugElement, 'form').triggerEventHandler('ngSubmit');
+
+        const submitButton = query(fixture.debugElement, '.submit-button');
+        expect(submitButton.nativeElement.disabled).toBe(false);
+        expect(submitSpy).toHaveBeenCalledTimes(1);
+      });
     });
   });
 });

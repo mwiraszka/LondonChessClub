@@ -72,7 +72,7 @@ export class PhotoGridComponent implements OnChanges {
     private readonly store: Store,
   ) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     if (changes['photoImages'] && this.photoImages.length) {
       this.store
         .select(ImagesSelectors.selectLastAlbumCoversFetch)

@@ -67,7 +67,7 @@ export class ImageFormComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initForm();
     this.initFormValueChangeListener();
 

@@ -29,7 +29,7 @@ export class LoginFormComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.form = this.formBuilder.group({
       email: new FormControl('', {
         nonNullable: true,

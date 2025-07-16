@@ -60,7 +60,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.store
       .select(ImagesSelectors.selectLastThumbnailsFetch)
       .pipe(take(1))

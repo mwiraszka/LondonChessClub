@@ -24,15 +24,17 @@ describe('ClubLinksComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render links with an image, text and open in new tab icon for each of the four sections', () => {
-    const linkElements = queryAll(fixture.debugElement, 'section a');
+  describe('template rendering', () => {
+    it('should render links with an image, text and open in new tab icon for each of the four sections', () => {
+      const linkElements = queryAll(fixture.debugElement, 'section a');
 
-    expect(linkElements.length).toBe(4);
+      expect(linkElements.length).toBe(4);
 
-    linkElements.forEach(linkElement => {
-      expect(queryTextContent(linkElement, 'mat-icon')).toBe('open_in_new');
-      expect(query(linkElement, '.image-container img')).not.toBeNull();
-      expect(queryTextContent(linkElement, 'span')).not.toBeNull();
+      linkElements.forEach(linkElement => {
+        expect(queryTextContent(linkElement, 'mat-icon')).toBe('open_in_new');
+        expect(query(linkElement, '.image-container img')).not.toBeNull();
+        expect(queryTextContent(linkElement, 'span')).not.toBeNull();
+      });
     });
   });
 });

@@ -24,54 +24,56 @@ describe('PageHeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should always display title', () => {
-    component.title = 'Mock Title';
-    fixture.detectChanges();
+  describe('template rendering', () => {
+    it('should always display title', () => {
+      component.title = 'Mock Title';
+      fixture.detectChanges();
 
-    expect(queryTextContent(fixture.debugElement, '.page-title')).toBe('Mock Title');
-  });
+      expect(queryTextContent(fixture.debugElement, '.page-title')).toBe('Mock Title');
+    });
 
-  it('should display icon when provided', () => {
-    component.icon = 'home';
-    fixture.detectChanges();
+    it('should display icon when provided', () => {
+      component.icon = 'home';
+      fixture.detectChanges();
 
-    expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('home');
-  });
+      expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('home');
+    });
 
-  it('should not display icon when not provided', () => {
-    component.icon = null;
-    fixture.detectChanges();
+    it('should not display icon when not provided', () => {
+      component.icon = null;
+      fixture.detectChanges();
 
-    expect(query(fixture.debugElement, 'mat-icon')).toBeNull();
-  });
+      expect(query(fixture.debugElement, 'mat-icon')).toBeNull();
+    });
 
-  it('should add end-with-asterisk class when hasUnsavedChanges is true', () => {
-    component.title = 'Mock Title';
-    component.hasUnsavedChanges = true;
-    fixture.detectChanges();
+    it('should add end-with-asterisk class when hasUnsavedChanges is true', () => {
+      component.title = 'Mock Title';
+      component.hasUnsavedChanges = true;
+      fixture.detectChanges();
 
-    expect(query(fixture.debugElement, '.page-title').classes['end-with-asterisk']).toBe(
-      true,
-    );
-  });
+      expect(
+        query(fixture.debugElement, '.page-title').classes['end-with-asterisk'],
+      ).toBe(true);
+    });
 
-  it('should not add end-with-asterisk class when hasUnsavedChanges is false', () => {
-    component.title = 'Mock Title';
-    component.hasUnsavedChanges = false;
-    fixture.detectChanges();
+    it('should not add end-with-asterisk class when hasUnsavedChanges is false', () => {
+      component.title = 'Mock Title';
+      component.hasUnsavedChanges = false;
+      fixture.detectChanges();
 
-    expect(
-      query(fixture.debugElement, '.page-title').classes['end-with-asterisk'],
-    ).toBeUndefined();
-  });
+      expect(
+        query(fixture.debugElement, '.page-title').classes['end-with-asterisk'],
+      ).toBeUndefined();
+    });
 
-  it('should not add end-with-asterisk class when hasUnsavedChanges is null', () => {
-    component.title = 'Mock Title';
-    component.hasUnsavedChanges = null;
-    fixture.detectChanges();
+    it('should not add end-with-asterisk class when hasUnsavedChanges is null', () => {
+      component.title = 'Mock Title';
+      component.hasUnsavedChanges = null;
+      fixture.detectChanges();
 
-    expect(
-      query(fixture.debugElement, '.page-title').classes['end-with-asterisk'],
-    ).toBeUndefined();
+      expect(
+        query(fixture.debugElement, '.page-title').classes['end-with-asterisk'],
+      ).toBeUndefined();
+    });
   });
 });

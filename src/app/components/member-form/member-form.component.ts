@@ -63,8 +63,8 @@ export class MemberFormComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
-    this.initForm(this.formData);
+  public ngOnInit(): void {
+    this.initForm();
     this.initFormValueChangeListener();
 
     if (this.hasUnsavedChanges) {
@@ -138,50 +138,50 @@ export class MemberFormComponent implements OnInit {
     }
   }
 
-  private initForm(formData: MemberFormData): void {
+  private initForm(): void {
     this.form = this.formBuilder.group<MemberFormGroup>({
-      firstName: new FormControl(formData.firstName, {
+      firstName: new FormControl(this.formData.firstName, {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
-      lastName: new FormControl(formData.lastName, {
+      lastName: new FormControl(this.formData.lastName, {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
-      city: new FormControl(formData.city, {
+      city: new FormControl(this.formData.city, {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
-      rating: new FormControl(formData.rating, {
+      rating: new FormControl(this.formData.rating, {
         nonNullable: true,
         validators: [Validators.required, ratingValidator],
       }),
-      dateJoined: new FormControl(formData.dateJoined, {
+      dateJoined: new FormControl(this.formData.dateJoined, {
         nonNullable: true,
         validators: [Validators.required],
       }),
-      email: new FormControl(formData.email, {
+      email: new FormControl(this.formData.email, {
         nonNullable: true,
         validators: emailValidator,
       }),
-      phoneNumber: new FormControl(formData.phoneNumber, {
+      phoneNumber: new FormControl(this.formData.phoneNumber, {
         nonNullable: true,
         validators: phoneNumberValidator,
       }),
-      yearOfBirth: new FormControl(formData.yearOfBirth, {
+      yearOfBirth: new FormControl(this.formData.yearOfBirth, {
         nonNullable: true,
         validators: yearOfBirthValidator,
       }),
-      chessComUsername: new FormControl(formData.chessComUsername, {
+      chessComUsername: new FormControl(this.formData.chessComUsername, {
         nonNullable: true,
         validators: Validators.pattern(/[^\s]/),
       }),
-      lichessUsername: new FormControl(formData.lichessUsername, {
+      lichessUsername: new FormControl(this.formData.lichessUsername, {
         nonNullable: true,
         validators: Validators.pattern(/[^\s]/),
       }),
-      isActive: new FormControl(formData.isActive, { nonNullable: true }),
-      peakRating: new FormControl(formData.peakRating, { nonNullable: true }),
+      isActive: new FormControl(this.formData.isActive, { nonNullable: true }),
+      peakRating: new FormControl(this.formData.peakRating, { nonNullable: true }),
     });
   }
 

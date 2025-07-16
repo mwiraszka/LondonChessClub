@@ -17,8 +17,9 @@ import { EventFormComponent } from './event-form.component';
 describe('EventFormComponent', () => {
   let fixture: ComponentFixture<EventFormComponent>;
   let component: EventFormComponent;
-  let store: MockStore;
+
   let dialogService: DialogService;
+  let store: MockStore;
 
   let cancelSpy: jest.SpyInstance;
   let dialogOpenSpy: jest.SpyInstance;
@@ -28,8 +29,8 @@ describe('EventFormComponent', () => {
   let restoreSpy: jest.SpyInstance;
   let submitSpy: jest.SpyInstance;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [EventFormComponent, ReactiveFormsModule],
       providers: [
         FormBuilder,
@@ -45,6 +46,11 @@ describe('EventFormComponent', () => {
         dialogService = TestBed.inject(DialogService);
         store = TestBed.inject(MockStore);
 
+        component.formData = pick(MOCK_EVENTS[0], EVENT_FORM_DATA_PROPERTIES);
+        component.hasUnsavedChanges = false;
+        component.originalEvent = null;
+        fixture.detectChanges();
+
         cancelSpy = jest.spyOn(component, 'onCancel');
         dialogOpenSpy = jest.spyOn(dialogService, 'open');
         dispatchSpy = jest.spyOn(store, 'dispatch');
@@ -57,124 +63,11 @@ describe('EventFormComponent', () => {
         );
         restoreSpy = jest.spyOn(component, 'onRestore');
         submitSpy = jest.spyOn(component, 'onSubmit');
-
-        component.formData = pick(MOCK_EVENTS[0], EVENT_FORM_DATA_PROPERTIES);
-        component.hasUnsavedChanges = false;
-        component.originalEvent = null;
-
-        fixture.detectChanges();
       });
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  describe('UI elements', () => {
-    describe('modification info', () => {
-      it('should render if originalEvent is defined', () => {
-        component.originalEvent = MOCK_EVENTS[0];
-        fixture.detectChanges();
-
-        expect(query(fixture.debugElement, 'lcc-modification-info')).not.toBeNull();
-      });
-
-      it('should not render if originalEvent is null', () => {
-        component.originalEvent = null;
-        fixture.detectChanges();
-
-        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeNull();
-      });
-    });
-
-    describe('restore button', () => {
-      it('should be disabled if there are no unsaved changes', () => {
-        component.hasUnsavedChanges = false;
-        fixture.detectChanges();
-
-        const restoreButton = query(fixture.debugElement, '.restore-button');
-        expect(restoreButton.nativeElement.disabled).toBe(true);
-      });
-
-      it('should be enabled if there are unsaved changes', () => {
-        component.hasUnsavedChanges = true;
-        fixture.detectChanges();
-
-        const restoreButton = query(fixture.debugElement, '.restore-button');
-        restoreButton.triggerEventHandler('click');
-
-        expect(restoreButton.nativeElement.disabled).toBe(false);
-        expect(restoreSpy).toHaveBeenCalledTimes(1);
-      });
-    });
-
-    describe('cancel button', () => {
-      it('should be enabled if there are unsaved changes', () => {
-        component.hasUnsavedChanges = true;
-        fixture.detectChanges();
-
-        const cancelButton = query(fixture.debugElement, '.cancel-button');
-        cancelButton.triggerEventHandler('click');
-
-        expect(cancelButton.nativeElement.disabled).toBe(false);
-        expect(cancelSpy).toHaveBeenCalledTimes(1);
-      });
-
-      it('should also be enabled if there are no unsaved changes', () => {
-        component.hasUnsavedChanges = false;
-        fixture.detectChanges();
-
-        const cancelButton = query(fixture.debugElement, '.cancel-button');
-        cancelButton.triggerEventHandler('click');
-
-        expect(cancelButton.nativeElement.disabled).toBe(false);
-        expect(cancelSpy).toHaveBeenCalledTimes(1);
-      });
-    });
-
-    describe('submit button', () => {
-      it('should be disabled if there are no unsaved changes', () => {
-        component.form.setValue({
-          ...pick(MOCK_EVENTS[3], EVENT_FORM_DATA_PROPERTIES),
-          articleId: generateId(24),
-          eventTime: '6:00 pm',
-        });
-        component.hasUnsavedChanges = false;
-        fixture.detectChanges();
-
-        const submitButton = query(fixture.debugElement, '.submit-button');
-        expect(submitButton.nativeElement.disabled).toBe(true);
-      });
-
-      it('should be disabled if the form is invalid', () => {
-        component.form.setValue({
-          ...pick(MOCK_EVENTS[3], EVENT_FORM_DATA_PROPERTIES),
-          articleId: generateId(24),
-          eventTime: '6:00pm', // Invalid - unsupported time format
-        });
-        component.hasUnsavedChanges = true;
-        fixture.detectChanges();
-
-        const submitButton = query(fixture.debugElement, '.submit-button');
-        expect(submitButton.nativeElement.disabled).toBe(true);
-      });
-
-      it('should be enabled if there are unsaved changes and the form is valid', () => {
-        component.form.setValue({
-          ...pick(MOCK_EVENTS[3], EVENT_FORM_DATA_PROPERTIES),
-          articleId: generateId(24),
-          eventTime: '6:00 pm',
-        });
-        component.hasUnsavedChanges = true;
-        fixture.detectChanges();
-
-        query(fixture.debugElement, 'form').triggerEventHandler('ngSubmit');
-
-        const submitButton = query(fixture.debugElement, '.submit-button');
-        expect(submitButton.nativeElement.disabled).toBe(false);
-        expect(submitSpy).toHaveBeenCalledTimes(1);
-      });
-    });
   });
 
   describe('form initialization', () => {
@@ -204,10 +97,6 @@ describe('EventFormComponent', () => {
 
         afterEach(() => jest.useRealTimers());
 
-        it('should initialize the form value change listener', () => {
-          expect(initFormValueChangeListenerSpy).toHaveBeenCalledTimes(1);
-        });
-
         it('should convert value correctly before dispatching formValueChanged action', () => {
           // Run debounce timer to trigger the valueChanges subscription
           jest.runAllTimers();
@@ -220,7 +109,7 @@ describe('EventFormComponent', () => {
 
         it('should initialize the form with touched values from formData', () => {
           expect(initFormSpy).toHaveBeenCalledTimes(1);
-          expect(initFormSpy).toHaveBeenCalledWith(component.formData);
+          expect(initFormValueChangeListenerSpy).toHaveBeenCalledTimes(1);
 
           for (const property of EVENT_FORM_DATA_PROPERTIES) {
             expect(component.form.controls[property].value).toBe(
@@ -251,10 +140,6 @@ describe('EventFormComponent', () => {
           component.ngOnInit();
         });
 
-        it('should initialize the form value change listener', () => {
-          expect(initFormValueChangeListenerSpy).toHaveBeenCalledTimes(1);
-        });
-
         it('should convert value correctly before dispatching formValueChanged action', () => {
           // Run debounce timer to trigger the valueChanges subscription
           jest.runAllTimers();
@@ -266,7 +151,7 @@ describe('EventFormComponent', () => {
 
         it('should initialize the form with untouched values from formData', () => {
           expect(initFormSpy).toHaveBeenCalledTimes(1);
-          expect(initFormSpy).toHaveBeenCalledWith(component.formData);
+          expect(initFormValueChangeListenerSpy).toHaveBeenCalledTimes(1);
 
           for (const property of EVENT_FORM_DATA_PROPERTIES) {
             expect(component.form.controls[property].value).toBe(
@@ -460,6 +345,113 @@ describe('EventFormComponent', () => {
       expect(dispatchSpy).not.toHaveBeenCalledWith(
         EventsActions.updateEventRequested({ eventId: MOCK_EVENTS[2].id }),
       );
+    });
+  });
+
+  describe('template rendering', () => {
+    describe('modification info', () => {
+      it('should render if originalEvent is defined', () => {
+        component.originalEvent = MOCK_EVENTS[0];
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, 'lcc-modification-info')).not.toBeNull();
+      });
+
+      it('should not render if originalEvent is null', () => {
+        component.originalEvent = null;
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeNull();
+      });
+    });
+
+    describe('restore button', () => {
+      it('should be disabled if there are no unsaved changes', () => {
+        component.hasUnsavedChanges = false;
+        fixture.detectChanges();
+
+        const restoreButton = query(fixture.debugElement, '.restore-button');
+        expect(restoreButton.nativeElement.disabled).toBe(true);
+      });
+
+      it('should be enabled if there are unsaved changes', () => {
+        component.hasUnsavedChanges = true;
+        fixture.detectChanges();
+
+        const restoreButton = query(fixture.debugElement, '.restore-button');
+        restoreButton.triggerEventHandler('click');
+
+        expect(restoreButton.nativeElement.disabled).toBe(false);
+        expect(restoreSpy).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('cancel button', () => {
+      it('should be enabled if there are unsaved changes', () => {
+        component.hasUnsavedChanges = true;
+        fixture.detectChanges();
+
+        const cancelButton = query(fixture.debugElement, '.cancel-button');
+        cancelButton.triggerEventHandler('click');
+
+        expect(cancelButton.nativeElement.disabled).toBe(false);
+        expect(cancelSpy).toHaveBeenCalledTimes(1);
+      });
+
+      it('should also be enabled if there are no unsaved changes', () => {
+        component.hasUnsavedChanges = false;
+        fixture.detectChanges();
+
+        const cancelButton = query(fixture.debugElement, '.cancel-button');
+        cancelButton.triggerEventHandler('click');
+
+        expect(cancelButton.nativeElement.disabled).toBe(false);
+        expect(cancelSpy).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('submit button', () => {
+      it('should be disabled if there are no unsaved changes', () => {
+        component.form.setValue({
+          ...pick(MOCK_EVENTS[3], EVENT_FORM_DATA_PROPERTIES),
+          articleId: generateId(24),
+          eventTime: '6:00 pm',
+        });
+        component.hasUnsavedChanges = false;
+        fixture.detectChanges();
+
+        const submitButton = query(fixture.debugElement, '.submit-button');
+        expect(submitButton.nativeElement.disabled).toBe(true);
+      });
+
+      it('should be disabled if the form is invalid', () => {
+        component.form.setValue({
+          ...pick(MOCK_EVENTS[3], EVENT_FORM_DATA_PROPERTIES),
+          articleId: generateId(24),
+          eventTime: '6:00pm', // Invalid - unsupported time format
+        });
+        component.hasUnsavedChanges = true;
+        fixture.detectChanges();
+
+        const submitButton = query(fixture.debugElement, '.submit-button');
+        expect(submitButton.nativeElement.disabled).toBe(true);
+      });
+
+      it('should be enabled if there are unsaved changes and the form is valid', () => {
+        component.form.setValue({
+          ...pick(MOCK_EVENTS[3], EVENT_FORM_DATA_PROPERTIES),
+          articleId: generateId(24),
+          eventTime: '6:00 pm',
+        });
+        component.hasUnsavedChanges = true;
+        fixture.detectChanges();
+
+        query(fixture.debugElement, 'form').triggerEventHandler('ngSubmit');
+
+        const submitButton = query(fixture.debugElement, '.submit-button');
+        expect(submitButton.nativeElement.disabled).toBe(false);
+        expect(submitSpy).toHaveBeenCalledTimes(1);
+      });
     });
   });
 });

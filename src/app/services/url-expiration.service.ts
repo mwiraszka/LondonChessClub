@@ -28,7 +28,7 @@ export class UrlExpirationService implements OnDestroy {
 
   constructor(private readonly store: Store) {}
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.expirationTimers.forEach(subscription => subscription.unsubscribe());
     this.expirationTimers.clear();
     this.batchTimer?.unsubscribe();

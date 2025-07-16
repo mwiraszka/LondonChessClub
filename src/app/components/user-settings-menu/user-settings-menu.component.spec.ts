@@ -1,7 +1,6 @@
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
 import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
 import { User } from '@app/models';
@@ -15,6 +14,7 @@ import { UserSettingsMenuComponent } from './user-settings-menu.component';
 describe('UserSettingsMenuComponent', () => {
   let fixture: ComponentFixture<UserSettingsMenuComponent>;
   let component: UserSettingsMenuComponent;
+
   let store: MockStore;
 
   let closeSpy: jest.SpyInstance;
@@ -57,85 +57,96 @@ describe('UserSettingsMenuComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display user name when user is logged in', () => {
-    store.overrideSelector(AuthSelectors.selectUser, mockUser);
-    store.refreshState();
-    fixture.detectChanges();
+  describe('onToggleTheme', () => {
+    it('should dispatch themeToggled action', () => {
+      component.onToggleTheme();
 
-    expect(queryTextContent(fixture.debugElement, '.user-name span')).toBe(
-      `${mockUser.firstName} ${mockUser.lastName}`,
-    );
+      expect(dispatchSpy).toHaveBeenCalledWith(AppActions.themeToggled());
+    });
   });
 
-  it('should not display user name when user is not logged in', () => {
-    expect(query(fixture.debugElement, '.user-name')).toBeNull();
+  describe('onToggleSafeMode', () => {
+    it('should dispatch safeModeToggled action', () => {
+      component.onToggleSafeMode();
+
+      expect(dispatchSpy).toHaveBeenCalledWith(AppActions.safeModeToggled());
+    });
   });
 
-  it('should show admin login button when user is not logged in', () => {
-    expect(query(fixture.debugElement, '.admin-login')).not.toBeNull();
+  describe('onLogin', () => {
+    it('should navigate to login page and emit close event', () => {
+      component.onLogin();
+
+      expect(routerSpy).toHaveBeenCalledWith(['login']);
+      expect(closeSpy).toHaveBeenCalledTimes(1);
+    });
   });
 
-  it('should show logout and change password options when user is logged in', () => {
-    store.overrideSelector(AuthSelectors.selectUser, mockUser);
-    store.refreshState();
-    fixture.detectChanges();
+  describe('onLogout', () => {
+    it('should dispatch logout action and emit close event', () => {
+      component.onLogout();
 
-    expect(query(fixture.debugElement, '.change-password')).not.toBeNull();
-    expect(query(fixture.debugElement, '.admin-logout')).not.toBeNull();
+      expect(dispatchSpy).toHaveBeenCalledWith(AuthActions.logoutRequested({}));
+      expect(closeSpy).toHaveBeenCalledTimes(1);
+    });
   });
 
-  it('should dispatch themeToggled action when theme toggle is clicked', () => {
-    component.onToggleTheme();
+  describe('onChangePassword', () => {
+    it('should navigate to change password page and emit close event', () => {
+      component.onChangePassword();
 
-    expect(dispatchSpy).toHaveBeenCalledWith(AppActions.themeToggled());
+      expect(routerSpy).toHaveBeenCalledWith(['change-password']);
+      expect(closeSpy).toHaveBeenCalledTimes(1);
+    });
   });
 
-  it('should dispatch safeModeToggled action when safe mode toggle is clicked', () => {
-    component.onToggleSafeMode();
+  describe('template rendering', () => {
+    it('should display user name when user is logged in', () => {
+      store.overrideSelector(AuthSelectors.selectUser, mockUser);
+      store.refreshState();
+      fixture.detectChanges();
 
-    expect(dispatchSpy).toHaveBeenCalledWith(AppActions.safeModeToggled());
-  });
+      expect(queryTextContent(fixture.debugElement, '.user-name span')).toBe(
+        `${mockUser.firstName} ${mockUser.lastName}`,
+      );
+    });
 
-  it('should navigate to login page and emit close event when login is clicked', () => {
-    component.onLogin();
+    it('should not display user name when user is not logged in', () => {
+      expect(query(fixture.debugElement, '.user-name')).toBeNull();
+    });
 
-    expect(routerSpy).toHaveBeenCalledWith(['login']);
-    expect(closeSpy).toHaveBeenCalledTimes(1);
-  });
+    it('should show admin login button when user is not logged in', () => {
+      expect(query(fixture.debugElement, '.admin-login')).not.toBeNull();
+    });
 
-  it('should dispatch logout action and emit close event when logout is clicked', () => {
-    component.onLogout();
+    it('should show logout and change password options when user is logged in', () => {
+      store.overrideSelector(AuthSelectors.selectUser, mockUser);
+      store.refreshState();
+      fixture.detectChanges();
 
-    expect(dispatchSpy).toHaveBeenCalledWith(AuthActions.logoutRequested({}));
-    expect(closeSpy).toHaveBeenCalledTimes(1);
-  });
+      expect(query(fixture.debugElement, '.change-password')).not.toBeNull();
+      expect(query(fixture.debugElement, '.admin-logout')).not.toBeNull();
+    });
 
-  it('should navigate to change password page and emit close event when change password is clicked', () => {
-    component.onChangePassword();
+    it('should set correct toggle switch properties based on store state', () => {
+      store.overrideSelector(AppSelectors.selectIsDarkMode, true);
+      store.overrideSelector(AppSelectors.selectIsSafeMode, false);
+      store.refreshState();
+      fixture.detectChanges();
 
-    expect(routerSpy).toHaveBeenCalledWith(['change-password']);
-    expect(closeSpy).toHaveBeenCalledTimes(1);
-  });
+      const themeToggle = query(fixture.debugElement, '.theme-toggle lcc-toggle-switch');
+      expect(themeToggle.componentInstance.switchedOn).toBe(true);
 
-  it('should set correct toggle switch properties based on store state', () => {
-    store.overrideSelector(AppSelectors.selectIsDarkMode, true);
-    store.overrideSelector(AppSelectors.selectIsSafeMode, false);
-    store.refreshState();
-    fixture.detectChanges();
+      store.overrideSelector(AuthSelectors.selectUser, mockUser);
+      store.refreshState();
+      fixture.detectChanges();
 
-    const themeToggle = fixture.debugElement.query(
-      By.css('.theme-toggle lcc-toggle-switch'),
-    );
-    expect(themeToggle.componentInstance.switchedOn).toBe(true);
-
-    store.overrideSelector(AuthSelectors.selectUser, mockUser);
-    store.refreshState();
-    fixture.detectChanges();
-
-    const safeModeToggle = fixture.debugElement.query(
-      By.css('.safe-mode-toggle lcc-toggle-switch'),
-    );
-    expect(safeModeToggle.componentInstance.switchedOn).toBe(false);
-    expect(safeModeToggle.componentInstance.warningWhenOff).toBe(true);
+      const safeModeToggle = query(
+        fixture.debugElement,
+        '.safe-mode-toggle lcc-toggle-switch',
+      );
+      expect(safeModeToggle.componentInstance.switchedOn).toBe(false);
+      expect(safeModeToggle.componentInstance.warningWhenOff).toBe(true);
+    });
   });
 });

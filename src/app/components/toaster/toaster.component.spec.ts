@@ -20,7 +20,9 @@ describe('ToasterComponent', () => {
       .then(() => {
         fixture = TestBed.createComponent(ToasterComponent);
         component = fixture.componentInstance;
+
         component.toasts = MOCK_TOASTS;
+
         fixture.detectChanges();
       });
   });
@@ -29,19 +31,21 @@ describe('ToasterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render all toasts', () => {
-    expect(queryAll(fixture.debugElement, '.toast').length).toBe(MOCK_TOASTS.length);
-  });
+  describe('template rendering', () => {
+    it('should render all toasts', () => {
+      expect(queryAll(fixture.debugElement, '.toast').length).toBe(MOCK_TOASTS.length);
+    });
 
-  it('should apply correct classes and render correct content within each toast', () => {
-    queryAll(fixture.debugElement, '.toast').forEach((element, i) => {
-      expect(element.attributes['class']).toContain(`toast-${MOCK_TOASTS[i].type}`);
+    it('should apply correct classes and render correct content within each toast', () => {
+      queryAll(fixture.debugElement, '.toast').forEach((element, i) => {
+        expect(element.attributes['class']).toContain(`toast-${MOCK_TOASTS[i].type}`);
 
-      expect(queryTextContent(element, 'mat-icon')).toBe(
-        component.getIcon(MOCK_TOASTS[i].type),
-      );
-      expect(queryTextContent(element, '.title')).toBe(MOCK_TOASTS[i].title);
-      expect(queryTextContent(element, '.message')).toBe(MOCK_TOASTS[i].message);
+        expect(queryTextContent(element, 'mat-icon')).toBe(
+          component.getIcon(MOCK_TOASTS[i].type),
+        );
+        expect(queryTextContent(element, '.title')).toBe(MOCK_TOASTS[i].title);
+        expect(queryTextContent(element, '.message')).toBe(MOCK_TOASTS[i].message);
+      });
     });
   });
 });

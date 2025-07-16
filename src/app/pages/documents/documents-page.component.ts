@@ -75,7 +75,7 @@ export class DocumentsPageComponent implements OnInit {
     this.currentPath = this._document.location.pathname;
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Documents');
     this.metaAndTitleService.updateDescription(
       'A place for all London Chess Club documentation.',

@@ -50,7 +50,7 @@ export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
     this.currentPath = this._document.location.pathname;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     if (changes['data']) {
       this.renderer.setStyle(
         this._document.querySelector('markdown'),
@@ -68,7 +68,7 @@ export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     setTimeout(() => {
       // Scroll to anchor when heading link is clicked
       this.routingService.fragment$

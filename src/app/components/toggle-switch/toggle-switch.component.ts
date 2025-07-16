@@ -62,7 +62,7 @@ export class ToggleSwitchComponent implements OnInit {
 
   public uniqueId!: string;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.uniqueId = uuid.v4().slice(-8);
   }
 

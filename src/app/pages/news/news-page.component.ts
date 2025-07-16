@@ -44,7 +44,7 @@ export class NewsPageComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.metaAndTitleService.updateTitle('News');
     this.metaAndTitleService.updateDescription(
       'Read about a variety of topics related to the London Chess Club.',

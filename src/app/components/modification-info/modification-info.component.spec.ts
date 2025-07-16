@@ -26,40 +26,42 @@ describe('ModificationInfoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display creation information correctly', () => {
-    component.info = MOCK_MODIFICATION_INFOS[0];
-    fixture.detectChanges();
+  describe('template rendering', () => {
+    it('should render correct creation information', () => {
+      component.info = MOCK_MODIFICATION_INFOS[0];
+      fixture.detectChanges();
 
-    const createDetails = query(fixture.debugElement, '.create-details-container');
+      const createDetails = query(fixture.debugElement, '.create-details-container');
 
-    expect(queryTextContent(createDetails, 'mat-icon')).toBe('post_add');
-    expect(queryTextContent(createDetails, '.name')).toBe(
-      MOCK_MODIFICATION_INFOS[0].createdBy,
-    );
-    expect(queryTextContent(createDetails, '.date')).toBe(
-      formatDate(MOCK_MODIFICATION_INFOS[0].dateCreated, 'short'),
-    );
-  });
+      expect(queryTextContent(createDetails, 'mat-icon')).toBe('post_add');
+      expect(queryTextContent(createDetails, '.name')).toBe(
+        MOCK_MODIFICATION_INFOS[0].createdBy,
+      );
+      expect(queryTextContent(createDetails, '.date')).toBe(
+        formatDate(MOCK_MODIFICATION_INFOS[0].dateCreated, 'short'),
+      );
+    });
 
-  it('should display edit information when creation and edit dates are different', () => {
-    component.info = MOCK_MODIFICATION_INFOS[0];
-    fixture.detectChanges();
+    it('should render correct edit information when creation and edit dates are different', () => {
+      component.info = MOCK_MODIFICATION_INFOS[0];
+      fixture.detectChanges();
 
-    const editDetails = query(fixture.debugElement, '.edit-details-container');
+      const editDetails = query(fixture.debugElement, '.edit-details-container');
 
-    expect(queryTextContent(editDetails, 'mat-icon')).toBe('edit');
-    expect(queryTextContent(editDetails, '.name')).toBe(
-      MOCK_MODIFICATION_INFOS[0].lastEditedBy,
-    );
-    expect(queryTextContent(editDetails, '.date')).toBe(
-      formatDate(MOCK_MODIFICATION_INFOS[0].dateLastEdited, 'short'),
-    );
-  });
+      expect(queryTextContent(editDetails, 'mat-icon')).toBe('edit');
+      expect(queryTextContent(editDetails, '.name')).toBe(
+        MOCK_MODIFICATION_INFOS[0].lastEditedBy,
+      );
+      expect(queryTextContent(editDetails, '.date')).toBe(
+        formatDate(MOCK_MODIFICATION_INFOS[0].dateLastEdited, 'short'),
+      );
+    });
 
-  it('should not display edit information when creation and edit dates are the same', () => {
-    component.info = MOCK_MODIFICATION_INFOS[4];
-    fixture.detectChanges();
+    it('should not render edit information when creation and edit dates are the same', () => {
+      component.info = MOCK_MODIFICATION_INFOS[4];
+      fixture.detectChanges();
 
-    expect(query(fixture.debugElement, '.edit-details-container')).toBeNull();
+      expect(query(fixture.debugElement, '.edit-details-container')).toBeNull();
+    });
   });
 });

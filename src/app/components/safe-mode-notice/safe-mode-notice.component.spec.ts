@@ -24,16 +24,18 @@ describe('SafeModeNoticeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should use given entity in aside text', () => {
-    component.entity = 'Michal';
-    fixture.detectChanges();
+  describe('template rendering', () => {
+    it('should use given entity in aside text', () => {
+      component.entity = 'Michal';
+      fixture.detectChanges();
 
-    expect(queryTextContent(fixture.debugElement, 'aside')).toContain('Michal');
-  });
+      expect(queryTextContent(fixture.debugElement, 'aside')).toContain('Michal');
+    });
 
-  it('should render a checkmark icon', () => {
-    expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe(
-      'check_circle_outline',
-    );
+    it('should render a checkmark icon', () => {
+      expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe(
+        'check_circle_outline',
+      );
+    });
   });
 });

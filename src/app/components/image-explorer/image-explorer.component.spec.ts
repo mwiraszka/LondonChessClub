@@ -15,13 +15,18 @@ import { ImageExplorerComponent } from './image-explorer.component';
 describe('ImageExplorerComponent', () => {
   let fixture: ComponentFixture<ImageExplorerComponent>;
   let component: ImageExplorerComponent;
-  let store: MockStore;
+
   let dialogService: DialogService;
+  let store: MockStore;
+
+  let dialogOpenSpy: jest.SpyInstance;
+  let dialogResultSpy: jest.SpyInstance;
+  let dispatchSpy: jest.SpyInstance;
 
   const mockImages = MOCK_IMAGES;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [AdminControlsDirective, ImageExplorerComponent],
       providers: [
         provideMockStore(),
@@ -33,19 +38,15 @@ describe('ImageExplorerComponent', () => {
       .then(() => {
         fixture = TestBed.createComponent(ImageExplorerComponent);
         component = fixture.componentInstance;
-        store = TestBed.inject(MockStore);
+
         dialogService = TestBed.inject(DialogService);
+        store = TestBed.inject(MockStore);
 
         store.overrideSelector(ImagesSelectors.selectAllImages, mockImages);
 
-        // Mock the store selector to skip fetchAllThumbnailsRequested dispatch
-        store.overrideSelector(
-          'ImagesSelectors.selectLastThumbnailsFetch',
-          new Date().toISOString(),
-        );
-        jest.spyOn(store, 'dispatch');
-
-        fixture.detectChanges();
+        dialogOpenSpy = jest.spyOn(dialogService, 'open');
+        dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
+        dispatchSpy = jest.spyOn(store, 'dispatch');
       });
   });
 
@@ -54,15 +55,46 @@ describe('ImageExplorerComponent', () => {
   });
 
   describe('initialization', () => {
-    // TODO: Revisit
-    it.skip('should dispatch fetchAllThumbnailsRequested on init', () => {
-      expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.fetchAllThumbnailsRequested(),
-      );
+    beforeEach(() => {
+      fixture.detectChanges();
     });
 
-    it('should have selectable input set to true by default', () => {
+    it('should be selectable by default', () => {
       expect(component.selectable).toBe(true);
+    });
+
+    describe('when thumbnails were fetched less than 30 minutes ago', () => {
+      beforeEach(() => {
+        store.overrideSelector(
+          ImagesSelectors.selectLastThumbnailsFetch,
+          new Date(Date.now() - 29 * 60 * 1000).toISOString(),
+        );
+        fixture.detectChanges();
+        component.ngOnInit();
+      });
+
+      it('should not dispatch fetchAllThumbnailsRequested', () => {
+        expect(dispatchSpy).not.toHaveBeenCalledWith(
+          ImagesActions.fetchAllThumbnailsRequested(),
+        );
+      });
+    });
+
+    describe('when thumbnails were last fetched over 30 minutes ago', () => {
+      beforeEach(() => {
+        store.overrideSelector(
+          ImagesSelectors.selectLastThumbnailsFetch,
+          new Date(Date.now() - 31 * 60 * 1000).toISOString(),
+        );
+        fixture.detectChanges();
+        component.ngOnInit();
+      });
+
+      it('should dispatch fetchAllThumbnailsRequested', () => {
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          ImagesActions.fetchAllThumbnailsRequested(),
+        );
+      });
     });
   });
 
@@ -91,10 +123,7 @@ describe('ImageExplorerComponent', () => {
 
   describe('image deletion', () => {
     it('should open confirmation dialog and dispatch delete action when confirmed', async () => {
-      const dialogOpenSpy = jest
-        .spyOn(dialogService, 'open')
-        .mockResolvedValue('confirm');
-      const dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
+      dialogOpenSpy.mockResolvedValue('confirm');
 
       await component.onDeleteImage(mockImages[1]);
 
@@ -110,7 +139,7 @@ describe('ImageExplorerComponent', () => {
         },
         isModal: true,
       });
-      expect(store.dispatch).toHaveBeenCalledWith(
+      expect(dispatchSpy).toHaveBeenCalledWith(
         ImagesActions.deleteImageRequested({ image: mockImages[1] }),
       );
       expect(dialogResultSpy).not.toHaveBeenCalled();
@@ -119,8 +148,7 @@ describe('ImageExplorerComponent', () => {
     it('should not dispatch delete action when dialog is cancelled', async () => {
       // Reset all mocks before this test
       jest.clearAllMocks();
-      const dialogOpenSpy = jest.spyOn(dialogService, 'open').mockResolvedValue('cancel');
-      const dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
+      dialogOpenSpy.mockResolvedValue('cancel');
 
       await component.onDeleteImage(mockImages[1]);
 
@@ -136,12 +164,12 @@ describe('ImageExplorerComponent', () => {
         },
         isModal: true,
       });
-      expect(store.dispatch).not.toHaveBeenCalled();
+      expect(dispatchSpy).not.toHaveBeenCalled();
       expect(dialogResultSpy).not.toHaveBeenCalled();
     });
   });
 
-  describe('UI elements', () => {
+  describe('template rendering', () => {
     beforeEach(() => {
       // Set up mock data and rerender component
       store.overrideSelector(ImagesSelectors.selectAllImages, mockImages);
@@ -173,7 +201,6 @@ describe('ImageExplorerComponent', () => {
     });
 
     it('should emit dialogResult with image id when clicked and selectable is true', () => {
-      const dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
       component.selectable = true;
       fixture.detectChanges();
 
@@ -183,7 +210,6 @@ describe('ImageExplorerComponent', () => {
     });
 
     it('should not emit dialogResult when clicked and selectable is false', () => {
-      const dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
       component.selectable = false;
       fixture.detectChanges();
 

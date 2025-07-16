@@ -44,7 +44,7 @@ export class DialogComponent<TComponent extends DialogOutput<TResult>, TResult>
     @Inject(DIALOG_CONFIG_TOKEN) private dialogConfig: DialogConfig<TComponent>,
   ) {}
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     this.contentComponentRef = this.containerRef?.createComponent<TComponent>(
       this.dialogConfig.componentType,
     );

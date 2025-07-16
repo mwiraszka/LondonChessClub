@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
     moment.tz.setDefault('America/Toronto');
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initNavigationListenerForScrollingBackToTop();
     this.urlExpirationService.listenForImageChanges();
     this.touchEventsService.listenForTouchEvents();

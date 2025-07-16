@@ -22,21 +22,22 @@ describe('Debug Element Queries', () => {
   let fixture: ComponentFixture<TestComponent>;
   let debugElement: DebugElement;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [TestComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(TestComponent);
-    debugElement = fixture.debugElement;
-    fixture.detectChanges();
+    })
+      .compileComponents()
+      .then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        debugElement = fixture.debugElement;
+        fixture.detectChanges();
+      });
   });
 
   describe('queryAll', () => {
     it('should return all elements matching the selector', () => {
       const paragraphs = queryAll(debugElement, '.paragraph');
 
-      expect(paragraphs).toBeDefined();
       expect(paragraphs.length).toBe(3);
       expect(paragraphs[0].nativeElement.textContent).toBe('First paragraph');
       expect(paragraphs[1].nativeElement.textContent).toBe('Second paragraph');
@@ -46,7 +47,6 @@ describe('Debug Element Queries', () => {
     it('should return an empty array when no elements match the selector', () => {
       const nonExistentElements = queryAll(debugElement, '.non-existent');
 
-      expect(nonExistentElements).toBeDefined();
       expect(nonExistentElements.length).toBe(0);
     });
   });
@@ -55,7 +55,6 @@ describe('Debug Element Queries', () => {
     it('should return the first element matching the selector', () => {
       const paragraph = query(debugElement, '.paragraph');
 
-      expect(paragraph).toBeDefined();
       expect(paragraph.nativeElement.textContent).toBe('First paragraph');
     });
 
@@ -87,7 +86,6 @@ describe('Debug Element Queries', () => {
 
     it('should work with a child element as the starting point', () => {
       const nestedDiv = query(debugElement, '.nested');
-
       const nestedText = queryTextContent(nestedDiv, '.text');
 
       expect(nestedText).toBe('Nested text');

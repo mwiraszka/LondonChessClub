@@ -92,7 +92,7 @@ export class MembersTableComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.store
       .select(MembersSelectors.selectLastFetch)
       .pipe(take(1))

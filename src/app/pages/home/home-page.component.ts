@@ -69,7 +69,7 @@ export class HomePageComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.metaAndTitleService.updateTitle('London Chess Club');
     this.metaAndTitleService.updateDescription(
       `The London Chess Club is open to players of all ages and abilities. We host

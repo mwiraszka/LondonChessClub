@@ -26,8 +26,8 @@ describe('BasicDialogComponent', () => {
 
   let dialogResultSpy: jest.SpyInstance;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [BasicDialogComponent],
       providers: [{ provide: Renderer2, useValue: { listen: jest.fn() } }],
     })
@@ -37,9 +37,9 @@ describe('BasicDialogComponent', () => {
         component = fixture.componentInstance;
 
         component.dialog = mockDialog;
-        dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
-
         fixture.detectChanges();
+
+        dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
       });
   });
 
@@ -47,37 +47,41 @@ describe('BasicDialogComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render dialog title and body', () => {
-    expect(queryTextContent(fixture.debugElement, 'h3')).toBe(mockDialog.title);
-    expect(queryTextContent(fixture.debugElement, 'p')).toBe(mockDialog.body);
-  });
+  describe('dialog result handling', () => {
+    it('should emit "cancel" when cancel button is clicked', () => {
+      query(fixture.debugElement, '.cancel-button').triggerEventHandler('click');
 
-  it('should emit "cancel" when cancel button is clicked', () => {
-    query(fixture.debugElement, '.cancel-button').triggerEventHandler('click');
-
-    expect(dialogResultSpy).toHaveBeenCalledWith('cancel');
-  });
-
-  it('should emit "confirm" when confirm button is clicked', () => {
-    query(fixture.debugElement, '.confirm-button').triggerEventHandler('click');
-
-    expect(dialogResultSpy).toHaveBeenCalledWith('confirm');
-  });
-
-  it('should emit "confirm" when enter key is pressed', () => {
-    const enterEvent = new KeyboardEvent('keydown', {
-      key: 'Enter',
-      bubbles: true,
+      expect(dialogResultSpy).toHaveBeenCalledWith('cancel');
     });
-    document.dispatchEvent(enterEvent);
 
-    expect(dialogResultSpy).toHaveBeenCalledWith('confirm');
+    it('should emit "confirm" when confirm button is clicked', () => {
+      query(fixture.debugElement, '.confirm-button').triggerEventHandler('click');
+
+      expect(dialogResultSpy).toHaveBeenCalledWith('confirm');
+    });
+
+    it('should emit "confirm" when enter key is pressed', () => {
+      const enterEvent = new KeyboardEvent('keydown', {
+        key: 'Enter',
+        bubbles: true,
+      });
+      document.dispatchEvent(enterEvent);
+
+      expect(dialogResultSpy).toHaveBeenCalledWith('confirm');
+    });
   });
 
-  it('should use default cancel text if not provided', () => {
-    component.dialog = mockWarningDialog;
-    fixture.detectChanges();
+  describe('template rendering', () => {
+    it('should render dialog title and body', () => {
+      expect(queryTextContent(fixture.debugElement, 'h3')).toBe(mockDialog.title);
+      expect(queryTextContent(fixture.debugElement, 'p')).toBe(mockDialog.body);
+    });
 
-    expect(queryTextContent(fixture.debugElement, '.cancel-button')).toBe('Cancel');
+    it('should use default cancel text if not provided', () => {
+      component.dialog = mockWarningDialog;
+      fixture.detectChanges();
+
+      expect(queryTextContent(fixture.debugElement, '.cancel-button')).toBe('Cancel');
+    });
   });
 });

@@ -48,7 +48,7 @@ export class SchedulePageComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Schedule');
     this.metaAndTitleService.updateDescription(
       'Scheduled events at the London Chess Club',

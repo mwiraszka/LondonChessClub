@@ -59,7 +59,7 @@ export class AlbumEditorPageComponent implements EditorPage, OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.viewModel$ = this.activatedRoute.params.pipe(
       untilDestroyed(this),
       map(params => (params['album'] ?? null) as string | null),

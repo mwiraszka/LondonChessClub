@@ -57,8 +57,8 @@ export class EventFormComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
-    this.initForm(this.formData);
+  public ngOnInit(): void {
+    this.initForm();
     this.initFormValueChangeListener();
 
     if (this.hasUnsavedChanges) {
@@ -132,12 +132,12 @@ export class EventFormComponent implements OnInit {
     }
   }
 
-  private initForm(formData: EventFormData): void {
+  private initForm(): void {
     // Displayed in local time since America/Toronto set as default timezone in app.component
-    const eventTime: string = moment(formData.eventDate).format('h:mm A');
+    const eventTime: string = moment(this.formData.eventDate).format('h:mm A');
 
     this.form = this.formBuilder.group({
-      eventDate: new FormControl(formData.eventDate, {
+      eventDate: new FormControl(this.formData.eventDate, {
         nonNullable: true,
         validators: Validators.required,
       }),
@@ -145,20 +145,20 @@ export class EventFormComponent implements OnInit {
         nonNullable: true,
         validators: [Validators.required, timeValidator],
       }),
-      title: new FormControl(formData.title, {
+      title: new FormControl(this.formData.title, {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
-      details: new FormControl(formData.details, {
+      details: new FormControl(this.formData.details, {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
-      type: new FormControl(formData.type, {
+      type: new FormControl(this.formData.type, {
         nonNullable: true,
         validators: Validators.required,
       }),
       articleId: new FormControl(
-        formData.articleId,
+        this.formData.articleId,
         Validators.pattern(/^[a-fA-F0-9]{24}$/),
       ),
     });

@@ -26,7 +26,7 @@ export class ClubMapComponent implements OnInit {
 
   constructor(private elementRef: ElementRef) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.loader = new Loader({
       apiKey: environment.googleMapsApiKey,
       version: 'weekly',

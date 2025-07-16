@@ -43,7 +43,7 @@ export class DropdownDirective {
     private readonly viewContainerRef: ViewContainerRef,
   ) {}
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.overlayRef?.dispose();
   }
 

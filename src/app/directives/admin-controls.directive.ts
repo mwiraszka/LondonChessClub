@@ -54,7 +54,7 @@ export class AdminControlsDirective implements OnDestroy {
     private readonly viewContainerRef: ViewContainerRef,
   ) {}
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.overlayRef?.dispose();
   }
 

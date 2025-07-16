@@ -43,51 +43,53 @@ describe('NavigationBarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('navigation links', () => {
-    it('should render the correct number of links when screenWidth is above 700px', () => {
-      component.screenWidth = 800;
-      fixture.detectChanges();
+  describe('template rendering', () => {
+    describe('navigation links', () => {
+      it('should render the correct number of links when screenWidth is above 700px', () => {
+        component.screenWidth = 800;
+        fixture.detectChanges();
 
-      const renderedLinks = fixture.nativeElement.querySelectorAll('.nav-link');
-      expect(renderedLinks.length).toBe(component.links.length);
+        const renderedLinks = fixture.nativeElement.querySelectorAll('.nav-link');
+        expect(renderedLinks.length).toBe(component.links.length);
+      });
+
+      it('should render the correct number of links when screenWidth is below 700px', () => {
+        component.screenWidth = 600;
+        fixture.detectChanges();
+
+        const renderedLinks = fixture.nativeElement.querySelectorAll('.nav-link');
+        expect(renderedLinks.length).toBe(component.links.length);
+      });
     });
 
-    it('should render the correct number of links when screenWidth is below 700px', () => {
-      component.screenWidth = 600;
-      fixture.detectChanges();
+    describe('user settings button', () => {
+      it('should always display the settings icon', () => {
+        component.isDropdownOpen = true;
+        fixture.detectChanges();
+        expect(query(fixture.debugElement, '.user-settings-button')).not.toBeNull();
 
-      const renderedLinks = fixture.nativeElement.querySelectorAll('.nav-link');
-      expect(renderedLinks.length).toBe(component.links.length);
-    });
-  });
+        component.isDropdownOpen = false;
+        fixture.detectChanges();
+        expect(query(fixture.debugElement, '.user-settings-button')).not.toBeNull();
+      });
 
-  describe('user settings button', () => {
-    it('should always display the settings icon', () => {
-      component.isDropdownOpen = true;
-      fixture.detectChanges();
-      expect(query(fixture.debugElement, '.user-settings-button')).not.toBeNull();
+      it('should display correct dropdown icon when `isDropdownOpen` is true', () => {
+        component.isDropdownOpen = true;
+        fixture.detectChanges();
 
-      component.isDropdownOpen = false;
-      fixture.detectChanges();
-      expect(query(fixture.debugElement, '.user-settings-button')).not.toBeNull();
-    });
+        expect(queryTextContent(fixture.debugElement, '.dropdown-icon')).toBe(
+          'expand_more',
+        );
+      });
 
-    it('should display correct dropdown icon when `isDropdownOpen` is true', () => {
-      component.isDropdownOpen = true;
-      fixture.detectChanges();
+      it('should display correct dropdown icon when `isDropdownOpen` is false', () => {
+        component.isDropdownOpen = false;
+        fixture.detectChanges();
 
-      expect(queryTextContent(fixture.debugElement, '.dropdown-icon')).toBe(
-        'expand_more',
-      );
-    });
-
-    it('should display correct dropdown icon when `isDropdownOpen` is false', () => {
-      component.isDropdownOpen = false;
-      fixture.detectChanges();
-
-      expect(queryTextContent(fixture.debugElement, '.dropdown-icon')).toBe(
-        'expand_less',
-      );
+        expect(queryTextContent(fixture.debugElement, '.dropdown-icon')).toBe(
+          'expand_less',
+        );
+      });
     });
   });
 });

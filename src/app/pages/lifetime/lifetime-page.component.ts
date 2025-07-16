@@ -22,7 +22,7 @@ export class LifetimePageComponent implements OnInit {
 
   constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Lifetime');
     this.metaAndTitleService.updateDescription(
       'Lifetime Achievement Awards at the London Chess Club.',

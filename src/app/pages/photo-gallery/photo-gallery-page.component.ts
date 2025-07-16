@@ -119,7 +119,7 @@ export class PhotoGalleryPageComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Photo Gallery');
     this.metaAndTitleService.updateDescription(
       'Browse through photos of our club events over the years.',

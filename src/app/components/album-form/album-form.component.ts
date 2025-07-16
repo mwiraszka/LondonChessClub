@@ -33,7 +33,7 @@ import type {
 import { DialogService, ImageFileService } from '@app/services';
 import { ImagesActions } from '@app/store/images';
 import { isLccError } from '@app/utils';
-import { imageCaptionValidator } from '@app/validators';
+import { imageCaptionValidator, ordinalityValidator } from '@app/validators';
 
 @UntilDestroy()
 @Component({
@@ -88,7 +88,7 @@ export class AlbumFormComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initForm();
     this.initFormValueChangeListener();
 
@@ -183,9 +183,25 @@ export class AlbumFormComponent implements OnInit {
     const files = fileInputElement.files;
 
     if (!files?.length) {
+      fileInputElement.value = '';
       return;
     }
 
+    const totalNewImages = Object.keys(this.newImagesFormData).length + files.length;
+    if (totalNewImages > 20) {
+      this.store.dispatch(
+        ImagesActions.imageFileActionFailed({
+          error: {
+            name: 'LCCError',
+            message: `Only up to 20 images can be uploaded at a time`,
+          },
+        }),
+      );
+      fileInputElement.value = '';
+      return;
+    }
+
+    let ordinalityCounter = 1;
     const processFiles = Array.from(files).map(async file => {
       const result = await this.imageFileService.storeImageFile(`new-${uuid.v4()}`, file);
 
@@ -195,6 +211,10 @@ export class AlbumFormComponent implements OnInit {
         const { id, dataUrl, filename } = result;
         const isFirstImageInAlbum =
           !this.imageEntities.length && !Object.keys(this.newImageDataUrls).length;
+        const albumOrdinality =
+          this.imageEntities.length +
+          Object.keys(this.newImagesFormData).length +
+          +ordinalityCounter;
 
         const newImageFormGroup = this.formBuilder.group<Omit<ImageFormGroup, 'album'>>({
           id: new FormControl(id, { nonNullable: true }),
@@ -203,12 +223,18 @@ export class AlbumFormComponent implements OnInit {
             nonNullable: true,
             validators: [Validators.required, imageCaptionValidator],
           }),
+          albumOrdinality: new FormControl(`${albumOrdinality}`, {
+            nonNullable: true,
+            validators: [Validators.required, ordinalityValidator],
+          }),
           albumCover: new FormControl(isFirstImageInAlbum, { nonNullable: true }),
         });
 
         this.newImageDataUrls[id] = dataUrl;
 
         this.form.controls.newImages.push(newImageFormGroup);
+
+        ordinalityCounter++;
       }
     });
 
@@ -317,6 +343,10 @@ export class AlbumFormComponent implements OnInit {
             nonNullable: true,
             validators: [Validators.required, imageCaptionValidator],
           }),
+          albumOrdinality: new FormControl(entity.formData.albumOrdinality, {
+            nonNullable: true,
+            validators: [Validators.required, ordinalityValidator],
+          }),
           albumCover: new FormControl(entity.formData.albumCover, {
             nonNullable: true,
           }),
@@ -332,6 +362,10 @@ export class AlbumFormComponent implements OnInit {
           caption: new FormControl(formData.caption, {
             nonNullable: true,
             validators: [Validators.required, imageCaptionValidator],
+          }),
+          albumOrdinality: new FormControl(formData.albumOrdinality, {
+            nonNullable: true,
+            validators: [Validators.required, ordinalityValidator],
           }),
           albumCover: new FormControl(formData.albumCover, {
             nonNullable: true,

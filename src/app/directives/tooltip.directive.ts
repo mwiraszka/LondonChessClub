@@ -92,7 +92,7 @@ export class TooltipDirective implements OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.overlayRef?.dispose();
   }
 

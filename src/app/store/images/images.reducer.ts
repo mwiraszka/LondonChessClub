@@ -22,7 +22,8 @@ export const imagesAdapter = createEntityAdapter<{
   formData: ImageFormData;
 }>({
   selectId: ({ image }) => image.id,
-  sortComparer: (a, b) => customSort(a, b, 'image.modificationInfo.dateCreated', true),
+  sortComparer: (a, b) =>
+    customSort(a, b, 'image.albumOrdinality', false, 'image.caption', false),
 });
 
 export const initialState: ImagesState = imagesAdapter.getInitialState({

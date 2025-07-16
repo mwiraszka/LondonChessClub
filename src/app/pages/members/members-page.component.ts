@@ -62,7 +62,7 @@ export class MembersPageComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Members');
     this.metaAndTitleService.updateDescription(
       'Club ratings and other members information',

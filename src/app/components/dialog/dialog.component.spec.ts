@@ -25,21 +25,28 @@ describe('DialogComponent', () => {
   let fixture: ComponentFixture<DialogComponent<MockContentComponent, string>>;
   let component: DialogComponent<MockContentComponent, string>;
 
-  const mockDialogConfig = {
-    componentType: MockContentComponent,
-    inputs: { testInput: 'testValue' },
-    isModal: true,
-  };
+  let resultEmitSpy: jest.SpyInstance;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [DialogComponent, MatIconModule, MockContentComponent],
-      providers: [{ provide: DIALOG_CONFIG_TOKEN, useValue: mockDialogConfig }],
+      providers: [
+        {
+          provide: DIALOG_CONFIG_TOKEN,
+          useValue: {
+            componentType: MockContentComponent,
+            inputs: { testInput: 'testValue' },
+            isModal: true,
+          },
+        },
+      ],
     })
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(DialogComponent<MockContentComponent, string>);
         component = fixture.componentInstance;
+
+        resultEmitSpy = jest.spyOn(component.result, 'emit');
 
         fixture.detectChanges();
       });
@@ -49,20 +56,18 @@ describe('DialogComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have a close button that emits "close" result event', () => {
-    const resultEmitSpy = jest.spyOn(component.result, 'emit');
-
-    query(fixture.debugElement, '.close-button').triggerEventHandler('click');
-
-    expect(resultEmitSpy).toHaveBeenCalledWith('close');
-  });
-
   it('should forward events from the content component', () => {
-    const resultEmitSpy = jest.spyOn(component.result, 'emit');
-
     // @ts-expect-error Private class member
     component.contentComponentRef?.instance.dialogResult.emit('test-result');
 
     expect(resultEmitSpy).toHaveBeenCalledWith('test-result');
+  });
+
+  describe('template rendering', () => {
+    it('should have a close button that emits "close" result event', () => {
+      query(fixture.debugElement, '.close-button').triggerEventHandler('click');
+
+      expect(resultEmitSpy).toHaveBeenCalledWith('close');
+    });
   });
 });

@@ -61,7 +61,7 @@ export class ArticleViewerPageComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.viewModel$ = this.activatedRoute.params.pipe(
       untilDestroyed(this),
       map(params => params['article_id'] as Id),

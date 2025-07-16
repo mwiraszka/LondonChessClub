@@ -79,7 +79,7 @@ export class ImageViewerComponent
   private keydownListener?: () => void;
   private keyupListener?: () => void;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.currentImage$ = this.indexSubject.asObservable().pipe(
       untilDestroyed(this),
       switchMap(index => {
@@ -91,11 +91,11 @@ export class ImageViewerComponent
     this.prefetchAdjacentImages();
   }
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     setTimeout(() => this.initKeyListeners());
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.keydownListener?.();
     this.keyupListener?.();
   }

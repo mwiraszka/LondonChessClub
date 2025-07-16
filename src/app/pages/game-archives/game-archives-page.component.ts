@@ -132,7 +132,7 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
     this.cdkVirtualScrollViewport?.checkViewportSize();
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     Chart.register(...registerables);
 
     this.metaAndTitleService.updateTitle('Game Archives');
@@ -261,7 +261,7 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     if (this.openingChart) {
       this.openingChart.destroy();
       this.openingChart = undefined;

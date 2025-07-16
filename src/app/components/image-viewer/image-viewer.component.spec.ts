@@ -1,4 +1,5 @@
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { of } from 'rxjs';
 
 import { Renderer2 } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -6,6 +7,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
+import { Image } from '@app/models';
 import { DialogService } from '@app/services';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
 import { query, queryTextContent } from '@app/utils';
@@ -15,15 +17,19 @@ import { ImageViewerComponent } from './image-viewer.component';
 describe('ImageViewerComponent', () => {
   let fixture: ComponentFixture<ImageViewerComponent>;
   let component: ImageViewerComponent;
-  let store: MockStore;
+
   let dialogService: DialogService;
+  let store: MockStore;
 
-  const mockAlbum = 'Test Album';
-  const mockImages = MOCK_IMAGES;
-  const mockIsAdmin = true;
+  let adminControlsDetachSpy: jest.SpyInstance;
+  let dialogOpenSpy: jest.SpyInstance;
+  let dialogResultSpy: jest.SpyInstance;
+  let dispatchSpy: jest.SpyInstance;
+  let fetchImageSpy: jest.SpyInstance;
+  let indexSubjectNextSpy: jest.SpyInstance;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [AdminControlsDirective, ImageViewerComponent],
       providers: [
         provideMockStore(),
@@ -40,22 +46,35 @@ describe('ImageViewerComponent', () => {
       .then(() => {
         fixture = TestBed.createComponent(ImageViewerComponent);
         component = fixture.componentInstance;
+
+        component.album = 'Mock Album';
+        component.images = MOCK_IMAGES;
+        component.isAdmin = true;
+        fixture.detectChanges();
+
         store = TestBed.inject(MockStore);
         dialogService = TestBed.inject(DialogService);
 
-        component.album = mockAlbum;
-        component.images = mockImages;
-        component.isAdmin = mockIsAdmin;
+        store.overrideSelector(ImagesSelectors.selectAllImages, MOCK_IMAGES);
 
-        store.overrideSelector(ImagesSelectors.selectAllImages, mockImages);
-        store.overrideSelector(
-          ImagesSelectors.selectImageById(mockImages[0].id),
-          mockImages[0],
-        );
+        const entities: { [key: string]: Image } = {};
+        MOCK_IMAGES.forEach(image => {
+          entities[image.id] = image;
+        });
 
-        jest.spyOn(store, 'dispatch');
+        MOCK_IMAGES.forEach(image => {
+          store.overrideSelector(ImagesSelectors.selectImageById(image.id), image);
+        });
 
-        fixture.detectChanges();
+        // @ts-expect-error Private class member
+        adminControlsDetachSpy = jest.spyOn(component.adminControlsDirective, 'detach');
+        dialogOpenSpy = jest.spyOn(dialogService, 'open');
+        dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
+        dispatchSpy = jest.spyOn(store, 'dispatch');
+        // @ts-expect-error Private class member
+        fetchImageSpy = jest.spyOn(component, 'fetchImage');
+        // @ts-expect-error Private class member
+        indexSubjectNextSpy = jest.spyOn(component.indexSubject, 'next');
       });
   });
 
@@ -64,10 +83,16 @@ describe('ImageViewerComponent', () => {
   });
 
   describe('initialization', () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      component.ngOnInit();
+      fixture.detectChanges();
+    });
+
     it('should dispatch fetchOriginalRequested for image at index 0', () => {
-      expect(store.dispatch).toHaveBeenCalledWith(
+      expect(dispatchSpy).toHaveBeenCalledWith(
         ImagesActions.fetchOriginalRequested({
-          imageId: mockImages[0].id,
+          imageId: MOCK_IMAGES[0].id,
           isPrefetch: false,
         }),
       );
@@ -75,21 +100,17 @@ describe('ImageViewerComponent', () => {
 
     it('should set up currentImage$ observable', () => {
       component.currentImage$.subscribe(image => {
-        expect(image).toEqual(mockImages[0]);
+        expect(image).toEqual(MOCK_IMAGES[0]);
       });
     });
 
     describe('prefetching adjacent images', () => {
-      let fetchImageSpy: jest.SpyInstance;
-
-      beforeEach(() => {
-        jest.useFakeTimers();
-        // @ts-expect-error Private class member
-        fetchImageSpy = jest.spyOn(component, 'fetchImage');
-      });
+      beforeEach(() => jest.useFakeTimers());
+      afterEach(() => jest.useRealTimers());
 
       it('should correctly handle albums with a single image', () => {
-        component.images = [mockImages[0]];
+        jest.clearAllMocks();
+        component.images = [MOCK_IMAGES[0]];
 
         // @ts-expect-error Private class member
         component.prefetchAdjacentImages();
@@ -100,7 +121,8 @@ describe('ImageViewerComponent', () => {
       });
 
       it('should correctly handle albums with two images', () => {
-        component.images = [mockImages[0], mockImages[1]];
+        jest.clearAllMocks();
+        component.images = [MOCK_IMAGES[0], MOCK_IMAGES[1]];
 
         // @ts-expect-error Private class member
         component.prefetchAdjacentImages();
@@ -117,7 +139,8 @@ describe('ImageViewerComponent', () => {
       });
 
       it('should correctly handle albums with three images', () => {
-        component.images = [mockImages[0], mockImages[1], mockImages[2]];
+        jest.clearAllMocks();
+        component.images = [MOCK_IMAGES[0], MOCK_IMAGES[1], MOCK_IMAGES[2]];
 
         // @ts-expect-error Private class member
         component.prefetchAdjacentImages();
@@ -140,6 +163,8 @@ describe('ImageViewerComponent', () => {
       });
 
       it('should correctly handle albums with many images', () => {
+        jest.clearAllMocks();
+
         // @ts-expect-error Private class member
         component.prefetchAdjacentImages();
 
@@ -152,10 +177,10 @@ describe('ImageViewerComponent', () => {
         jest.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).toHaveBeenCalledTimes(1);
-        expect(fetchImageSpy).toHaveBeenCalledWith(mockImages.length - 1, true);
+        expect(fetchImageSpy).toHaveBeenCalledWith(MOCK_IMAGES.length - 1, true);
 
         // Current image, immediate next image and immediate previous image have already been fetched
-        const remainingImages = mockImages.length - 3;
+        const remainingImages = MOCK_IMAGES.length - 3;
 
         jest.clearAllMocks();
         jest.advanceTimersByTime(remainingImages * 1000);
@@ -163,27 +188,19 @@ describe('ImageViewerComponent', () => {
         expect(fetchImageSpy).toHaveBeenCalledTimes(remainingImages);
 
         expect(fetchImageSpy).toHaveBeenNthCalledWith(1, 2, true);
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(2, mockImages.length - 2, true);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(2, MOCK_IMAGES.length - 2, true);
         expect(fetchImageSpy).toHaveBeenNthCalledWith(3, 3, true);
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(4, mockImages.length - 3, true);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(4, MOCK_IMAGES.length - 3, true);
         expect(fetchImageSpy).toHaveBeenNthCalledWith(5, 4, true);
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(6, mockImages.length - 4, true);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(6, MOCK_IMAGES.length - 4, true);
         expect(fetchImageSpy).toHaveBeenNthCalledWith(7, 5, true);
-        expect(fetchImageSpy).toHaveBeenNthCalledWith(8, mockImages.length - 5, true);
+        expect(fetchImageSpy).toHaveBeenNthCalledWith(8, MOCK_IMAGES.length - 5, true);
       });
     });
   });
 
   describe('navigation', () => {
-    let adminControlsDetachSpy: jest.SpyInstance;
-    let indexSubjectNextSpy: jest.SpyInstance;
-
     beforeEach(() => {
-      // @ts-expect-error Private class member
-      adminControlsDetachSpy = jest.spyOn(component.adminControlsDirective, 'detach');
-      // @ts-expect-error Private class member
-      indexSubjectNextSpy = jest.spyOn(component.indexSubject, 'next');
-
       // @ts-expect-error Private class member
       component.indexSubject.next(0);
       jest.clearAllMocks();
@@ -195,7 +212,7 @@ describe('ImageViewerComponent', () => {
 
       expect(adminControlsDetachSpy).toHaveBeenCalledTimes(1);
       expect(indexSubjectNextSpy).toHaveBeenCalledTimes(1);
-      expect(indexSubjectNextSpy).toHaveBeenCalledWith(mockImages.length - 1);
+      expect(indexSubjectNextSpy).toHaveBeenCalledWith(MOCK_IMAGES.length - 1);
     });
 
     it('should go to next image and detach admin controls when onNextImage is called', () => {
@@ -210,34 +227,31 @@ describe('ImageViewerComponent', () => {
 
   describe('admin controls', () => {
     it('should return correct admin controls config', () => {
-      const config = component.getAdminControlsConfig(mockImages[0]);
+      const config = component.getAdminControlsConfig(MOCK_IMAGES[0]);
 
       expect(config.buttonSize).toBe(34);
-      expect(config.editPath).toEqual(['image', 'edit', mockImages[0].id]);
+      expect(config.editPath).toEqual(['image', 'edit', MOCK_IMAGES[0].id]);
       expect(config.editInNewTab).toBe(true);
-      expect(config.isDeleteDisabled).toBe(false); // mockImages[0] has no article appearances
+      expect(config.isDeleteDisabled).toBe(false); // MOCK_IMAGES[0] has no article appearances
       expect(config.deleteDisabledReason).toBe(
         'Image cannot be deleted while it is used in an article',
       );
-      expect(config.itemName).toBe(mockImages[0].filename);
+      expect(config.itemName).toBe(MOCK_IMAGES[0].filename);
     });
   });
 
   describe('image deletion', () => {
     it('should open confirmation dialog and dispatch delete action when confirmed', async () => {
-      const dialogOpenSpy = jest
-        .spyOn(dialogService, 'open')
-        .mockResolvedValue('confirm');
-      const dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
+      dialogOpenSpy.mockResolvedValue('confirm');
 
-      await component.onDeleteImage(mockImages[1]);
+      await component.onDeleteImage(MOCK_IMAGES[1]);
 
       expect(dialogOpenSpy).toHaveBeenCalledWith({
         componentType: BasicDialogComponent,
         inputs: {
           dialog: {
             title: 'Confirm',
-            body: `Delete ${mockImages[1].filename}?`,
+            body: `Delete ${MOCK_IMAGES[1].filename}?`,
             confirmButtonText: 'Delete',
             confirmButtonType: 'warning',
           },
@@ -245,23 +259,22 @@ describe('ImageViewerComponent', () => {
         isModal: true,
       });
       expect(dialogResultSpy).toHaveBeenCalledWith(null);
-      expect(store.dispatch).toHaveBeenCalledWith(
-        ImagesActions.deleteImageRequested({ image: mockImages[1] }),
+      expect(dispatchSpy).toHaveBeenCalledWith(
+        ImagesActions.deleteImageRequested({ image: MOCK_IMAGES[1] }),
       );
     });
 
     it('should not dispatch delete action when dialog is cancelled', async () => {
-      const dialogOpenSpy = jest.spyOn(dialogService, 'open').mockResolvedValue('cancel');
-      const dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
+      dialogOpenSpy.mockResolvedValue('cancel');
 
-      await component.onDeleteImage(mockImages[1]);
+      await component.onDeleteImage(MOCK_IMAGES[1]);
 
       expect(dialogOpenSpy).toHaveBeenCalledWith({
         componentType: BasicDialogComponent,
         inputs: {
           dialog: {
             title: 'Confirm',
-            body: `Delete ${mockImages[1].filename}?`,
+            body: `Delete ${MOCK_IMAGES[1].filename}?`,
             confirmButtonText: 'Delete',
             confirmButtonType: 'warning',
           },
@@ -269,24 +282,35 @@ describe('ImageViewerComponent', () => {
         isModal: true,
       });
       expect(dialogResultSpy).not.toHaveBeenCalled();
-      expect(store.dispatch).not.toHaveBeenCalledWith(
-        ImagesActions.deleteImageRequested({ image: mockImages[1] }),
+      expect(dispatchSpy).not.toHaveBeenCalledWith(
+        ImagesActions.deleteImageRequested({ image: MOCK_IMAGES[1] }),
       );
     });
   });
 
-  describe('UI elements', () => {
+  describe('template rendering', () => {
+    beforeEach(() => {
+      component.album = MOCK_IMAGES[0].album;
+      component.currentImage$ = of(MOCK_IMAGES[0]);
+      fixture.detectChanges();
+    });
+
     it('should display image with album name and caption after image load', () => {
       query(fixture.debugElement, '.image-container img').triggerEventHandler('load');
       fixture.detectChanges();
 
-      expect(queryTextContent(fixture.debugElement, '.album-name')).toBe(mockAlbum);
+      expect(queryTextContent(fixture.debugElement, '.album-name')).toBe(
+        MOCK_IMAGES[0].album,
+      );
       expect(queryTextContent(fixture.debugElement, '.image-caption')).toBe(
-        mockImages[0].caption,
+        MOCK_IMAGES[0].caption,
       );
     });
 
     it('should display enabled previous and next buttons if album contains more than one image', () => {
+      component.images = MOCK_IMAGES;
+      fixture.detectChanges();
+
       expect(
         query(fixture.debugElement, '.previous-image-button').nativeElement.disabled,
       ).toBe(false);
@@ -296,7 +320,7 @@ describe('ImageViewerComponent', () => {
     });
 
     it('should display disabled previous and next buttons if album contains exactly one image', () => {
-      component.images = [mockImages[0]];
+      component.images = [MOCK_IMAGES[0]];
       fixture.detectChanges();
 
       expect(

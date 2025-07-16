@@ -61,14 +61,14 @@ export class ArticleFormComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (!this.bannerImage && this.formData.bannerImageId) {
       this.store.dispatch(
         ImagesActions.fetchOriginalRequested({ imageId: this.formData.bannerImageId }),
       );
     }
 
-    this.initForm(this.formData);
+    this.initForm();
     this.initFormValueChangeListener();
 
     if (this.hasUnsavedChanges) {
@@ -159,17 +159,17 @@ export class ArticleFormComponent implements OnInit {
     }
   }
 
-  private initForm(formData: ArticleFormData): void {
+  private initForm(): void {
     this.form = this.formBuilder.group<ArticleFormGroup>({
-      bannerImageId: new FormControl(formData.bannerImageId, {
+      bannerImageId: new FormControl(this.formData.bannerImageId, {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
-      title: new FormControl(formData.title, {
+      title: new FormControl(this.formData.title, {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
-      body: new FormControl(formData.body, {
+      body: new FormControl(this.formData.body, {
         nonNullable: true,
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),

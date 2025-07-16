@@ -34,7 +34,7 @@ export class UserSettingsMenuComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.viewModel$ = combineLatest([
       this.store.select(AuthSelectors.selectUser),
       this.store.select(AppSelectors.selectIsDarkMode),

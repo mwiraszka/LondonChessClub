@@ -111,14 +111,12 @@ export const selectAlbumHasUnsavedChanges = (album: string | null) =>
     selectImageEntitiesByAlbum(album),
     selectNewImagesFormData,
     (entities, newImagesFormData) => {
+      if (Object.keys(newImagesFormData).length > 0) {
+        return true;
+      }
+
       if (!album) {
-        return (
-          !!Object.keys(newImagesFormData).length &&
-          Object.values(newImagesFormData).some(
-            newImageFormData =>
-              !areSame(omit(newImageFormData, 'id'), omit(INITIAL_IMAGE_FORM_DATA, 'id')),
-          )
-        );
+        return false;
       }
 
       return (

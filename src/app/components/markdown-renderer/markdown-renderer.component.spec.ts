@@ -14,10 +14,10 @@ describe('MarkdownRendererComponent', () => {
   let fixture: ComponentFixture<MarkdownRendererComponent>;
   let component: MarkdownRendererComponent;
 
-  let wrapMarkdownTablesSpy: jest.SpyInstance;
-  let addBlockquoteIconsSpy: jest.SpyInstance;
   let addAnchorIdsToHeadingsSpy: jest.SpyInstance;
+  let addBlockquoteIconsSpy: jest.SpyInstance;
   let scrollToAnchorSpy: jest.SpyInstance;
+  let wrapMarkdownTablesSpy: jest.SpyInstance;
 
   const mockMarkdownText = `
   ## Heading 1
@@ -35,8 +35,8 @@ describe('MarkdownRendererComponent', () => {
   > This is a blockquote
   `;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [MarkdownRendererComponent, RouterLink, RouterModule.forRoot([])],
       providers: [
         { provide: ActivatedRoute, useValue: { fragment: of('mock-fragment') } },
@@ -53,13 +53,13 @@ describe('MarkdownRendererComponent', () => {
         component = fixture.componentInstance;
 
         // @ts-expect-error Private class member
-        scrollToAnchorSpy = jest.spyOn(component, 'scrollToAnchor');
-        // @ts-expect-error Private class member
-        wrapMarkdownTablesSpy = jest.spyOn(component, 'wrapMarkdownTables');
+        addAnchorIdsToHeadingsSpy = jest.spyOn(component, 'addAnchorIdsToHeadings');
         // @ts-expect-error Private class member
         addBlockquoteIconsSpy = jest.spyOn(component, 'addBlockquoteIcons');
         // @ts-expect-error Private class member
-        addAnchorIdsToHeadingsSpy = jest.spyOn(component, 'addAnchorIdsToHeadings');
+        scrollToAnchorSpy = jest.spyOn(component, 'scrollToAnchor');
+        // @ts-expect-error Private class member
+        wrapMarkdownTablesSpy = jest.spyOn(component, 'wrapMarkdownTables');
 
         fixture.detectChanges();
       });
@@ -69,23 +69,25 @@ describe('MarkdownRendererComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set currentPath from document location (JSDOM location for this test)', () => {
-    expect(component.currentPath).toBe('/');
+  describe('initialization', () => {
+    it('should set currentPath from document location (JSDOM location for this test)', () => {
+      expect(component.currentPath).toBe('/');
+    });
+
+    it('should scroll to URL fragment after view init', () => {
+      jest.useFakeTimers();
+
+      component.ngAfterViewInit();
+
+      jest.advanceTimersByTime(1);
+
+      expect(scrollToAnchorSpy).toHaveBeenCalledWith('mock-fragment');
+
+      jest.useRealTimers();
+    });
   });
 
-  it('should scroll to URL fragment after view init', () => {
-    jest.useFakeTimers();
-
-    component.ngAfterViewInit();
-
-    jest.advanceTimersByTime(1);
-
-    expect(scrollToAnchorSpy).toHaveBeenCalledWith('mock-fragment');
-
-    jest.useRealTimers();
-  });
-
-  describe('when markdown data changes', () => {
+  describe('data changes', () => {
     beforeAll(() => jest.useFakeTimers());
     afterAll(() => jest.useRealTimers());
 
@@ -105,31 +107,33 @@ describe('MarkdownRendererComponent', () => {
       jest.advanceTimersByTime(1);
     });
 
-    it('should pass data to markdown component', () => {
+    it('should pass new data to markdown component', () => {
       expect(query(fixture.debugElement, 'markdown').componentInstance.data).toBe(
         mockMarkdownText,
       );
     });
 
-    it('should add custom blockquote and table styles, and add anchor ids to headings', () => {
+    it('should add custom blockquote icons, wrap tables, and add anchor ids to headings', () => {
       expect(addBlockquoteIconsSpy).toHaveBeenCalledTimes(1);
       expect(wrapMarkdownTablesSpy).toHaveBeenCalledTimes(1);
       expect(addAnchorIdsToHeadingsSpy).toHaveBeenCalledTimes(1);
     });
   });
 
-  it('should create a table of contents link for each heading', () => {
-    component.headings = ['Heading 1', 'Heading 2', 'Heading 3'];
-    fixture.detectChanges();
+  describe('template rendering', () => {
+    it('should create a table of contents link for each heading', () => {
+      component.headings = ['Heading 1', 'Heading 2', 'Heading 3'];
+      fixture.detectChanges();
 
-    const headingLinks = queryAll(
-      fixture.debugElement,
-      '.table-of-contents .heading-link',
-    );
+      const headingLinks = queryAll(
+        fixture.debugElement,
+        '.table-of-contents .heading-link',
+      );
 
-    expect(headingLinks.length).toBe(3);
-    expect(headingLinks[0].nativeElement.textContent.trim()).toBe('Heading 1');
-    expect(headingLinks[1].nativeElement.textContent.trim()).toBe('Heading 2');
-    expect(headingLinks[2].nativeElement.textContent.trim()).toBe('Heading 3');
+      expect(headingLinks.length).toBe(3);
+      expect(headingLinks[0].nativeElement.textContent.trim()).toBe('Heading 1');
+      expect(headingLinks[1].nativeElement.textContent.trim()).toBe('Heading 2');
+      expect(headingLinks[2].nativeElement.textContent.trim()).toBe('Heading 3');
+    });
   });
 });

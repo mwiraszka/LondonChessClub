@@ -12,6 +12,7 @@ export const MOCK_IMAGES: Image[] = [
     thumbnailUrl: 'https://example.com/image1-thumb.jpg',
     album: "John's Images",
     albumCover: true,
+    albumOrdinality: '1',
     modificationInfo: {
       createdBy: 'John Doe',
       dateCreated: '2023-01-01T00:00:00Z',
@@ -31,6 +32,7 @@ export const MOCK_IMAGES: Image[] = [
     thumbnailUrl: 'https://example.com/image2-thumb.jpg',
     album: 'Album of Jane',
     albumCover: false,
+    albumOrdinality: '1',
     modificationInfo: {
       createdBy: 'Jane Smith',
       dateCreated: '2023-02-01T00:00:00Z',
@@ -48,6 +50,7 @@ export const MOCK_IMAGES: Image[] = [
     articleAppearances: 0,
     album: 'Album of Jane',
     albumCover: false,
+    albumOrdinality: '2',
     modificationInfo: {
       createdBy: 'Jane Smith',
       dateCreated: '2023-03-03T00:00:00Z',
@@ -65,6 +68,7 @@ export const MOCK_IMAGES: Image[] = [
     articleAppearances: 0,
     album: "John's Images",
     albumCover: false,
+    albumOrdinality: '2',
     modificationInfo: {
       createdBy: 'John Doe',
       dateCreated: '2023-01-01T00:00:00Z',
@@ -83,6 +87,7 @@ export const MOCK_IMAGES: Image[] = [
     thumbnailUrl: 'https://example.com/image5-thumb.jpg',
     album: 'Tournaments',
     albumCover: true,
+    albumOrdinality: '1',
     modificationInfo: {
       createdBy: 'Alice Cooper',
       dateCreated: '2023-03-15T14:30:00Z',
@@ -102,6 +107,7 @@ export const MOCK_IMAGES: Image[] = [
     thumbnailUrl: 'https://example.com/image6-thumb.png',
     album: 'Album of Jane',
     albumCover: true,
+    albumOrdinality: '3',
     modificationInfo: {
       createdBy: 'Charlie Parker',
       dateCreated: '2023-04-01T10:00:00Z',
@@ -119,6 +125,7 @@ export const MOCK_IMAGES: Image[] = [
     articleAppearances: 2,
     album: 'Ceremonies',
     albumCover: true,
+    albumOrdinality: '1',
     modificationInfo: {
       createdBy: 'David Bowie',
       dateCreated: '2023-04-15T16:20:00Z',
@@ -137,6 +144,7 @@ export const MOCK_IMAGES: Image[] = [
     thumbnailUrl: 'https://example.com/image8-thumb.jpg',
     album: 'Education',
     albumCover: true,
+    albumOrdinality: '1',
     modificationInfo: {
       createdBy: 'Frank Sinatra',
       dateCreated: '2023-05-02T09:15:00Z',
@@ -156,6 +164,7 @@ export const MOCK_IMAGES: Image[] = [
     thumbnailUrl: 'https://example.com/image9-thumb.png',
     album: 'Exhibitions',
     albumCover: true,
+    albumOrdinality: '1',
     modificationInfo: {
       createdBy: 'Grace Kelly',
       dateCreated: '2023-05-20T13:45:00Z',
@@ -173,6 +182,7 @@ export const MOCK_IMAGES: Image[] = [
     articleAppearances: 0,
     album: 'Youth Programs',
     albumCover: true,
+    albumOrdinality: '1',
     modificationInfo: {
       createdBy: 'Harry Styles',
       dateCreated: '2023-06-05T10:30:00Z',
@@ -191,6 +201,7 @@ export const MOCK_IMAGES: Image[] = [
     thumbnailUrl: 'https://example.com/image11-thumb.jpg',
     album: 'Social Events',
     albumCover: false,
+    albumOrdinality: '1',
     modificationInfo: {
       createdBy: 'Irene Adler',
       dateCreated: '2023-06-20T19:00:00Z',
@@ -210,6 +221,7 @@ export const MOCK_IMAGES: Image[] = [
     thumbnailUrl: 'https://example.com/image12-thumb.jpg',
     album: 'Outdoor Events',
     albumCover: true,
+    albumOrdinality: '1',
     modificationInfo: {
       createdBy: 'Jack White',
       dateCreated: '2023-07-10T15:45:00Z',
@@ -227,6 +239,7 @@ export const MOCK_IMAGES: Image[] = [
     articleAppearances: 2,
     album: 'Social Events',
     albumCover: true,
+    albumOrdinality: '1',
     modificationInfo: {
       createdBy: 'Kate Bush',
       dateCreated: '2023-07-25T12:30:00Z',
@@ -245,6 +258,7 @@ export const MOCK_IMAGES: Image[] = [
     thumbnailUrl: 'https://example.com/image14-thumb.jpg',
     album: 'Seminars',
     albumCover: true,
+    albumOrdinality: '1',
     modificationInfo: {
       createdBy: 'Leonardo DiCaprio',
       dateCreated: '2023-08-15T14:00:00Z',

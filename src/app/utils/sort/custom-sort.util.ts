@@ -36,7 +36,11 @@ export function customSort(
     }
 
     if (!has(a, key) || !has(b, key)) {
-      console.error(`[LCC] Sort error: property '${key}' does not exist on both objects`);
+      console.error(
+        `[LCC] Sort error: property '${key}' does not exist on both objects`,
+        a,
+        b,
+      );
       return 0;
     }
 
@@ -94,7 +98,7 @@ export function customSort(
     let aCompare;
     let bCompare;
 
-    if (['rating', 'peakRating'].includes(key)) {
+    if (['rating', 'peakRating', 'albumOrdinality'].includes(key)) {
       aCompare = Number(aVal.split('/')[0]);
       bCompare = Number(bVal.split('/')[0]);
       return aCompare < bCompare ? -1 : aCompare === bCompare ? 0 : 1;

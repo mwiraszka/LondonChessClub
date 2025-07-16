@@ -13,6 +13,7 @@ import { ChangePasswordFormComponent } from './change-password-form.component';
 describe('ChangePasswordFormComponent', () => {
   let fixture: ComponentFixture<ChangePasswordFormComponent>;
   let component: ChangePasswordFormComponent;
+
   let store: MockStore;
 
   let dispatchSpy: jest.SpyInstance;
@@ -20,8 +21,8 @@ describe('ChangePasswordFormComponent', () => {
   let initFormValueChangeListenerSpy: jest.SpyInstance;
   let requestNewCodeSpy: jest.SpyInstance;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [ChangePasswordFormComponent, ReactiveFormsModule, RouterLink],
       providers: [
         FormBuilder,
@@ -33,7 +34,11 @@ describe('ChangePasswordFormComponent', () => {
       .then(() => {
         fixture = TestBed.createComponent(ChangePasswordFormComponent);
         component = fixture.componentInstance;
+
         store = TestBed.inject(MockStore);
+
+        component.hasCode = false;
+        fixture.detectChanges();
 
         dispatchSpy = jest.spyOn(store, 'dispatch');
         // @ts-expect-error Private class member
@@ -44,10 +49,6 @@ describe('ChangePasswordFormComponent', () => {
           'initFormValueChangeListener',
         );
         requestNewCodeSpy = jest.spyOn(component, 'onRequestNewCode');
-
-        component.hasCode = false;
-
-        fixture.detectChanges();
       });
   });
 
@@ -55,112 +56,11 @@ describe('ChangePasswordFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('UI elements without verification code', () => {
-    beforeEach(() => {
-      component.hasCode = false;
-      fixture.detectChanges();
-    });
-
-    it('should render form with email field only', () => {
-      expect(query(fixture.debugElement, '#email-input')).not.toBeNull();
-      expect(query(fixture.debugElement, '#code-input')).toBeNull();
-      expect(query(fixture.debugElement, '#new-password-input')).toBeNull();
-      expect(query(fixture.debugElement, '#confirm-password-input')).toBeNull();
-    });
-
-    it('should show "Get code" button', () => {
-      expect(queryTextContent(fixture.debugElement, '.submit-button')).toBe('Get code');
-    });
-
-    it('should disable submit button when email is invalid', () => {
-      component.form.patchValue({ email: 'invalid-email' });
-      fixture.detectChanges();
-
-      expect(query(fixture.debugElement, '.submit-button').nativeElement.disabled).toBe(
-        true,
-      );
-    });
-
-    it('should enable submit button when email is valid', () => {
-      component.form.patchValue({ email: 'valid@example.com' });
-      fixture.detectChanges();
-
-      expect(query(fixture.debugElement, '.submit-button').nativeElement.disabled).toBe(
-        false,
-      );
-    });
-
-    it('should not show "Request new code" link', () => {
-      expect(query(fixture.debugElement, '.request-new-code-link')).toBeNull();
-    });
-  });
-
-  describe('UI elements with verification code', () => {
-    beforeEach(() => {
-      component.hasCode = true;
-      fixture.detectChanges();
-    });
-
-    it('should render form with all fields', () => {
-      expect(query(fixture.debugElement, '#email-input')).not.toBeNull();
-      expect(query(fixture.debugElement, '#code-input')).not.toBeNull();
-      expect(query(fixture.debugElement, '#new-password-input')).not.toBeNull();
-      expect(query(fixture.debugElement, '#confirm-password-input')).not.toBeNull();
-    });
-
-    it('should show "Change password" button', () => {
-      expect(queryTextContent(fixture.debugElement, '.submit-button')).toBe(
-        'Change password',
-      );
-    });
-
-    it('should disable submit button when form is invalid', () => {
-      component.form.patchValue({
-        email: 'valid@example.com',
-        code: '12345', // Invalid code (not 6 digits)
-        newPassword: 'Password123!',
-        confirmPassword: 'Password123!',
-      });
-      fixture.detectChanges();
-
-      expect(query(fixture.debugElement, '.submit-button').nativeElement.disabled).toBe(
-        true,
-      );
-    });
-
-    it('should enable submit button when form is valid', () => {
-      component.form.patchValue({
-        email: 'valid@example.com',
-        code: '123456',
-        newPassword: 'Password123!',
-        confirmPassword: 'Password123!',
-      });
-      fixture.detectChanges();
-
-      expect(query(fixture.debugElement, '.submit-button').nativeElement.disabled).toBe(
-        false,
-      );
-    });
-
-    it('should display "Return to login" and "Request new code" links', () => {
-      expect(queryTextContent(fixture.debugElement, '.return-to-login-link')).toBe(
-        'Return to login',
-      );
-      expect(queryTextContent(fixture.debugElement, '.request-new-code-link')).toBe(
-        'Request new code',
-      );
-    });
-
-    it('should call onRequestNewCode when "Request new code" link is clicked', () => {
-      query(fixture.debugElement, '.request-new-code-link').triggerEventHandler('click');
-      fixture.detectChanges();
-
-      expect(requestNewCodeSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(AuthActions.requestNewCodeSelected());
-    });
-  });
-
   describe('form initialization', () => {
+    beforeEach(() => {
+      component.ngOnInit();
+    });
+
     it('should initialize form and its value change listener', () => {
       expect(initFormSpy).toHaveBeenCalledTimes(1);
       expect(initFormValueChangeListenerSpy).toHaveBeenCalledTimes(1);
@@ -328,6 +228,115 @@ describe('ChangePasswordFormComponent', () => {
       fixture.detectChanges();
 
       expect(dispatchSpy).toHaveBeenCalledWith(AuthActions.requestNewCodeSelected());
+    });
+  });
+
+  describe('template rendering', () => {
+    describe('with verification code', () => {
+      beforeEach(() => {
+        component.hasCode = true;
+        fixture.detectChanges();
+      });
+
+      it('should render form with all fields', () => {
+        expect(query(fixture.debugElement, '#email-input')).not.toBeNull();
+        expect(query(fixture.debugElement, '#code-input')).not.toBeNull();
+        expect(query(fixture.debugElement, '#new-password-input')).not.toBeNull();
+        expect(query(fixture.debugElement, '#confirm-password-input')).not.toBeNull();
+      });
+
+      it('should show "Change password" button', () => {
+        expect(queryTextContent(fixture.debugElement, '.submit-button')).toBe(
+          'Change password',
+        );
+      });
+
+      it('should disable submit button when form is invalid', () => {
+        component.form.patchValue({
+          email: 'valid@example.com',
+          code: '12345', // Invalid code (not 6 digits)
+          newPassword: 'Password123!',
+          confirmPassword: 'Password123!',
+        });
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, '.submit-button').nativeElement.disabled).toBe(
+          true,
+        );
+      });
+
+      it('should enable submit button when form is valid', () => {
+        component.form.patchValue({
+          email: 'valid@example.com',
+          code: '123456',
+          newPassword: 'Password123!',
+          confirmPassword: 'Password123!',
+        });
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, '.submit-button').nativeElement.disabled).toBe(
+          false,
+        );
+      });
+
+      it('should display "Return to login" and "Request new code" links', () => {
+        expect(queryTextContent(fixture.debugElement, '.return-to-login-link')).toBe(
+          'Return to login',
+        );
+        expect(queryTextContent(fixture.debugElement, '.request-new-code-link')).toBe(
+          'Request new code',
+        );
+      });
+
+      it('should call onRequestNewCode when "Request new code" link is clicked', () => {
+        query(fixture.debugElement, '.request-new-code-link').triggerEventHandler(
+          'click',
+        );
+        fixture.detectChanges();
+
+        expect(requestNewCodeSpy).toHaveBeenCalledTimes(1);
+        expect(dispatchSpy).toHaveBeenCalledWith(AuthActions.requestNewCodeSelected());
+      });
+    });
+
+    describe('without verification code', () => {
+      beforeEach(() => {
+        component.hasCode = false;
+        fixture.detectChanges();
+      });
+
+      it('should render form with email field only', () => {
+        expect(query(fixture.debugElement, '#email-input')).not.toBeNull();
+        expect(query(fixture.debugElement, '#code-input')).toBeNull();
+        expect(query(fixture.debugElement, '#new-password-input')).toBeNull();
+        expect(query(fixture.debugElement, '#confirm-password-input')).toBeNull();
+      });
+
+      it('should show "Get code" button', () => {
+        expect(queryTextContent(fixture.debugElement, '.submit-button')).toBe('Get code');
+      });
+
+      it('should disable submit button when email is invalid', () => {
+        component.form.patchValue({ email: 'invalid-email' });
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, '.submit-button').nativeElement.disabled).toBe(
+          true,
+        );
+      });
+
+      it('should enable submit button when email is valid', () => {
+        component.form.patchValue({ email: 'valid@example.com' });
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, '.submit-button').nativeElement.disabled).toBe(
+          false,
+        );
+      });
+
+      it('should not show "Request new code" link', () => {
+        expect(query(fixture.debugElement, '.request-new-code-link')).toBeNull();
+      });
     });
   });
 });

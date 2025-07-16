@@ -12,12 +12,13 @@ import { LoginFormComponent } from './login-form.component';
 describe('LoginFormComponent', () => {
   let fixture: ComponentFixture<LoginFormComponent>;
   let component: LoginFormComponent;
+
   let store: MockStore;
 
   let dispatchSpy: jest.SpyInstance;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [LoginFormComponent, ReactiveFormsModule, RouterLink],
       providers: [
         FormBuilder,
@@ -29,6 +30,7 @@ describe('LoginFormComponent', () => {
       .then(() => {
         fixture = TestBed.createComponent(LoginFormComponent);
         component = fixture.componentInstance;
+
         store = TestBed.inject(MockStore);
 
         dispatchSpy = jest.spyOn(store, 'dispatch');
@@ -40,39 +42,6 @@ describe('LoginFormComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  describe('UI elements', () => {
-    it('should render login form with correct fields', () => {
-      expect(query(fixture.debugElement, 'input#email-input')).toBeTruthy();
-      expect(query(fixture.debugElement, 'input#password-input')).toBeTruthy();
-      expect(query(fixture.debugElement, 'button.login-button')).toBeTruthy();
-      expect(
-        query(fixture.debugElement, 'a.lcc-link[routerLink="/change-password"]'),
-      ).toBeTruthy();
-    });
-
-    it('should have disabled login button when form is invalid', () => {
-      component.form.patchValue({
-        email: '',
-        password: '',
-      });
-      fixture.detectChanges();
-
-      const loginButton = query(fixture.debugElement, '.login-button');
-      expect(loginButton.nativeElement.disabled).toBe(true);
-    });
-
-    it('should have enabled login button when form is valid', () => {
-      component.form.patchValue({
-        email: 'valid@example.com',
-        password: 'password123',
-      });
-      fixture.detectChanges();
-
-      const loginButton = query(fixture.debugElement, '.login-button');
-      expect(loginButton.nativeElement.disabled).toBe(false);
-    });
   });
 
   describe('form initialization', () => {
@@ -134,7 +103,7 @@ describe('LoginFormComponent', () => {
     });
   });
 
-  describe('form submission', () => {
+  describe('onSubmit', () => {
     it('should mark all fields as touched if form is invalid on submit', () => {
       component.form.patchValue({
         email: '',
@@ -151,8 +120,43 @@ describe('LoginFormComponent', () => {
       expect(component.form.controls.password.touched).toBe(true);
       expect(dispatchSpy).not.toHaveBeenCalled();
     });
+  });
 
-    it('should dispatch login action when form is valid', () => {
+  describe('template rendering', () => {
+    it('should render login form with correct fields', () => {
+      expect(query(fixture.debugElement, 'input#email-input')).not.toBeNull();
+      expect(query(fixture.debugElement, 'input#password-input')).not.toBeNull();
+      expect(query(fixture.debugElement, 'button.login-button')).not.toBeNull();
+      expect(
+        query(fixture.debugElement, 'a.lcc-link[routerLink="/change-password"]'),
+      ).not.toBeNull();
+    });
+
+    it('should have disabled login button when form is invalid', () => {
+      component.form.patchValue({
+        email: '',
+        password: '',
+      });
+      fixture.detectChanges();
+
+      expect(query(fixture.debugElement, '.login-button').nativeElement.disabled).toBe(
+        true,
+      );
+    });
+
+    it('should have enabled login button when form is valid', () => {
+      component.form.patchValue({
+        email: 'valid@example.com',
+        password: 'password123',
+      });
+      fixture.detectChanges();
+
+      expect(query(fixture.debugElement, '.login-button').nativeElement.disabled).toBe(
+        false,
+      );
+    });
+
+    it('should dispatch login action on submission', () => {
       component.form.patchValue({
         email: 'test@example.com',
         password: 'password123',

@@ -26,60 +26,64 @@ describe('FormErrorIconComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render visible icon if control is touched and invalid', () => {
-    component.control = new FormControl('', {
-      validators: Validators.required,
+  describe('template rendering', () => {
+    it('should render visible icon if control is touched and invalid', () => {
+      component.control = new FormControl('', {
+        validators: Validators.required,
+      });
+      component.control.markAsTouched();
+      fixture.detectChanges();
+
+      expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('warning_amber');
+      expect(fixture.nativeElement.querySelector('mat-icon').style.visibility).toBe(
+        'visible',
+      );
     });
-    component.control.markAsTouched();
-    fixture.detectChanges();
 
-    expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('warning_amber');
-    expect(fixture.nativeElement.querySelector('mat-icon').style.visibility).toBe(
-      'visible',
-    );
-  });
+    it('should render hidden icon if control is invalid but not touched', () => {
+      component.control = new FormControl('', {
+        validators: Validators.required,
+      });
+      fixture.detectChanges();
 
-  it('should render hidden icon if control is invalid but not touched', () => {
-    component.control = new FormControl('', {
-      validators: Validators.required,
+      expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('warning_amber');
+      expect(fixture.nativeElement.querySelector('mat-icon').style.visibility).toBe(
+        'hidden',
+      );
     });
-    fixture.detectChanges();
 
-    expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('warning_amber');
-    expect(fixture.nativeElement.querySelector('mat-icon').style.visibility).toBe(
-      'hidden',
-    );
-  });
+    it('should render hidden icon if control is touched but not invalid', () => {
+      component.control = new FormControl('hello world', {
+        validators: Validators.required,
+      });
+      component.control.markAsTouched();
+      fixture.detectChanges();
 
-  it('should render hidden icon if control is touched but not invalid', () => {
-    component.control = new FormControl('hello world', {
-      validators: Validators.required,
+      expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('warning_amber');
+      expect(fixture.nativeElement.querySelector('mat-icon').style.visibility).toBe(
+        'hidden',
+      );
     });
-    component.control.markAsTouched();
-    fixture.detectChanges();
 
-    expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('warning_amber');
-    expect(fixture.nativeElement.querySelector('mat-icon').style.visibility).toBe(
-      'hidden',
-    );
-  });
+    it('should display first listed error message in tooltip if control has multiple errors', () => {
+      component.control = new FormControl('test', {
+        validators: [Validators.required, hasSpecialCharValidator],
+      });
+      component.control.markAsTouched();
+      fixture.detectChanges();
 
-  it('should display first listed error message in tooltip if control has multiple errors', () => {
-    component.control = new FormControl('test', {
-      validators: [Validators.required, hasSpecialCharValidator],
+      const tooltipDirective = query(fixture.debugElement, 'mat-icon').injector.get(
+        TooltipDirective,
+      );
+
+      expect(tooltipDirective.tooltip).toBe(
+        'Must include at least one special character',
+      );
+
+      component.control.setValue('');
+      fixture.detectChanges();
+
+      expect(tooltipDirective.tooltip).toBe('This field is required');
     });
-    component.control.markAsTouched();
-    fixture.detectChanges();
-
-    const tooltipDirective = query(fixture.debugElement, 'mat-icon').injector.get(
-      TooltipDirective,
-    );
-
-    expect(tooltipDirective.tooltip).toBe('Must include at least one special character');
-
-    component.control.setValue('');
-    fixture.detectChanges();
-
-    expect(tooltipDirective.tooltip).toBe('This field is required');
   });
 });

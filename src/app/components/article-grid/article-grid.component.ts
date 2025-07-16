@@ -67,7 +67,7 @@ export class ArticleGridComponent implements OnInit, OnChanges {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.store
       .select(ArticlesSelectors.selectLastFetch)
       .pipe(take(1))
@@ -78,7 +78,7 @@ export class ArticleGridComponent implements OnInit, OnChanges {
       });
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     if (changes['articles'] && this.articles.length) {
       this.store
         .select(ImagesSelectors.selectLastArticleImagesFetch)

@@ -7,6 +7,7 @@ import { ClubMapComponent } from './club-map.component';
 describe('ClubMapComponent', () => {
   let component: ClubMapComponent;
   let fixture: ComponentFixture<ClubMapComponent>;
+
   let initMapSpy: jest.SpyInstance;
 
   beforeEach(() => {
@@ -20,8 +21,6 @@ describe('ClubMapComponent', () => {
 
         // @ts-expect-error Private class member
         initMapSpy = jest.spyOn(component, 'initMap');
-
-        fixture.detectChanges();
       });
   });
 
@@ -30,8 +29,10 @@ describe('ClubMapComponent', () => {
   });
 
   describe('initialization', () => {
-    it('should render the club map element that hosts the Google Maps widget', () => {
-      expect(query(fixture.debugElement, '#club-map')).not.toBeNull();
+    it('should call initMap', () => {
+      component.ngOnInit();
+
+      expect(initMapSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should set the map options correctly', () => {
@@ -43,9 +44,11 @@ describe('ClubMapComponent', () => {
       expect(mapOptions.mapTypeControl).toBe(false);
       expect(mapOptions.zoom).toBe(15);
     });
+  });
 
-    it('should call initMap', () => {
-      expect(initMapSpy).toHaveBeenCalledTimes(1);
+  describe('template rendering', () => {
+    it('should render the club map element that hosts the Google Maps widget', () => {
+      expect(query(fixture.debugElement, '#club-map')).not.toBeNull();
     });
   });
 });

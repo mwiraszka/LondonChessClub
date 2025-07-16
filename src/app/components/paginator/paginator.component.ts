@@ -27,7 +27,7 @@ export class PaginatorComponent implements OnChanges {
   @Output() public pageChange = new EventEmitter<number>();
   @Output() public pageSizeChange = new EventEmitter<number>();
 
-  ngOnChanges(changes: SimpleChanges): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     if (changes['totalItems']) {
       // setTimeout to avoid ExpressionChangedAfterItHasBeenCheckedError
       setTimeout(() => {

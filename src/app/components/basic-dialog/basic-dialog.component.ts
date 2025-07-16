@@ -65,7 +65,7 @@ export class BasicDialogComponent implements DialogOutput<BasicDialogResult> {
     this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.enterKeyListener = this.renderer.listen(
       'document',
       'keydown.enter',
@@ -76,7 +76,7 @@ export class BasicDialogComponent implements DialogOutput<BasicDialogResult> {
     );
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.enterKeyListener();
   }
 }

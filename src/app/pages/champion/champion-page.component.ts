@@ -277,7 +277,7 @@ export class ChampionPageComponent implements OnInit {
 
   constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.metaAndTitleService.updateTitle('City Champion');
     this.metaAndTitleService.updateDescription(
       'All about the London Chess Championship and past winners.',

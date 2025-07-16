@@ -30,7 +30,7 @@ export const DIALOG_CONFIG_TOKEN = new InjectionToken<DialogConfig<unknown>>(
 })
 export class DialogService {
   private documentClickListener?: () => void;
-  private keyDownListener?: () => void;
+  private keydownListener?: () => void;
   private renderer!: Renderer2;
 
   private _dialogComponentTypes: Array<Type<unknown>> = [];
@@ -118,7 +118,7 @@ export class DialogService {
     // Only remove listeners when there are no more overlays
     if (this._overlayRefs.length === 0) {
       this.documentClickListener?.();
-      this.keyDownListener?.();
+      this.keydownListener?.();
     }
   }
 
@@ -137,7 +137,7 @@ export class DialogService {
       },
     );
 
-    this.keyDownListener = this.renderer.listen(
+    this.keydownListener = this.renderer.listen(
       'document',
       'keydown',
       (event: KeyboardEvent) => {

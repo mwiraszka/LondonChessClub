@@ -29,7 +29,7 @@ export class ChangePasswordPageComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.metaAndTitleService.updateTitle('Change Password');
     this.metaAndTitleService.updateDescription(
       'Securely and conveniently change your London Chess Club password.',

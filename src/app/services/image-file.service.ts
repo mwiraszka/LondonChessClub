@@ -283,7 +283,7 @@ export class ImageFileService {
       if (!['image/png', 'image/jpeg', 'image/jpg'].includes(file.type.toLowerCase())) {
         resolve({
           name: 'LCCError',
-          message: 'Sorry Ryan, currently only PNG or JPEG image formats are supported',
+          message: `${file.type} is currently unsupported. Please try uploading ${file.name} again as either a PNG or JPEG.`,
         });
         return;
       }
@@ -306,10 +306,10 @@ export class ImageFileService {
             name: 'LCCError',
             message: 'Unable to load image file',
           });
-        } else if (processedFile.size > 1_258_291) {
+        } else if (processedFile.size > 2_621_440) {
           resolve({
             name: 'LCCError',
-            message: `Image is too large (${formatBytes(processedFile.size)}) - please reduce to below 1.2 MB`,
+            message: `Image is too large (${formatBytes(processedFile.size)}) - please reduce to below 2.5 MB`,
           });
         } else {
           resolve({ dataUrl, filename: processedFile.name });

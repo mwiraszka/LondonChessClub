@@ -8,7 +8,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { IMAGE_FORM_DATA_PROPERTIES } from '@app/constants';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
-import { LccError } from '@app/models';
+import { ImageFormData, LccError } from '@app/models';
 import { DialogService, ImageFileService } from '@app/services';
 import { ImagesActions } from '@app/store/images';
 import { query, queryTextContent } from '@app/utils';
@@ -18,9 +18,10 @@ import { AlbumFormComponent } from './album-form.component';
 describe('AlbumFormComponent', () => {
   let fixture: ComponentFixture<AlbumFormComponent>;
   let component: AlbumFormComponent;
-  let store: MockStore;
+
   let dialogService: DialogService;
   let imageFileService: ImageFileService;
+  let store: MockStore;
 
   let cancelSpy: jest.SpyInstance;
   let deleteImageSpy: jest.SpyInstance;
@@ -34,8 +35,8 @@ describe('AlbumFormComponent', () => {
   let submitSpy: jest.SpyInstance;
   let uuidSpy: jest.SpyInstance;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [AlbumFormComponent, ReactiveFormsModule],
       providers: [
         FormBuilder,
@@ -55,6 +56,13 @@ describe('AlbumFormComponent', () => {
       .then(() => {
         fixture = TestBed.createComponent(AlbumFormComponent);
         component = fixture.componentInstance;
+
+        component.album = null;
+        component.existingAlbums = [];
+        component.hasUnsavedChanges = false;
+        component.imageEntities = [];
+        component.newImagesFormData = {};
+        fixture.detectChanges();
 
         dialogService = TestBed.inject(DialogService);
         imageFileService = TestBed.inject(ImageFileService);
@@ -90,145 +98,11 @@ describe('AlbumFormComponent', () => {
         storeImageFileSpy = jest.spyOn(imageFileService, 'storeImageFile');
         submitSpy = jest.spyOn(component, 'onSubmit');
         uuidSpy = jest.spyOn(uuid, 'v4');
-
-        component.album = null;
-        component.existingAlbums = [];
-        component.hasUnsavedChanges = false;
-        component.imageEntities = [];
-        component.newImagesFormData = {};
-
-        fixture.detectChanges();
       });
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  describe('UI elements', () => {
-    describe('modification info', () => {
-      it('should render if imageEntity is defined', () => {
-        component.imageEntities = [
-          {
-            image: MOCK_IMAGES[0],
-            formData: pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES),
-          },
-        ];
-        fixture.detectChanges();
-
-        expect(query(fixture.debugElement, 'lcc-modification-info')).not.toBeNull();
-      });
-
-      it('should not render if imageEntity is null', () => {
-        component.imageEntities = [];
-        fixture.detectChanges();
-
-        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeNull();
-      });
-    });
-
-    describe('new images header', () => {
-      it('should not render if album is empty', () => {
-        component.album = '';
-        fixture.detectChanges();
-
-        expect(query(fixture.debugElement, '.new-images-header')).toBeNull();
-      });
-
-      it('should render if album is defined', () => {
-        component.album = 'My album';
-        fixture.detectChanges();
-
-        expect(queryTextContent(fixture.debugElement, '.new-images-header')).toBe(
-          'New images',
-        );
-      });
-    });
-
-    describe('restore button', () => {
-      it('should be disabled if there are no unsaved changes', () => {
-        component.hasUnsavedChanges = false;
-        fixture.detectChanges();
-
-        const restoreButton = query(fixture.debugElement, '.restore-button');
-        expect(restoreButton.nativeElement.disabled).toBe(true);
-      });
-
-      it('should be enabled if there are unsaved changes', () => {
-        component.hasUnsavedChanges = true;
-        fixture.detectChanges();
-
-        const restoreButton = query(fixture.debugElement, '.restore-button');
-        restoreButton.triggerEventHandler('click');
-
-        expect(restoreButton.nativeElement.disabled).toBe(false);
-        expect(restoreSpy).toHaveBeenCalledTimes(1);
-      });
-    });
-
-    describe('cancel button', () => {
-      it('should be enabled if there are unsaved changes', () => {
-        component.hasUnsavedChanges = true;
-        fixture.detectChanges();
-
-        const cancelButton = query(fixture.debugElement, '.cancel-button');
-        cancelButton.triggerEventHandler('click');
-
-        expect(cancelButton.nativeElement.disabled).toBe(false);
-        expect(cancelSpy).toHaveBeenCalledTimes(1);
-      });
-
-      it('should also be enabled if there are no unsaved changes', () => {
-        component.hasUnsavedChanges = false;
-        fixture.detectChanges();
-
-        const cancelButton = query(fixture.debugElement, '.cancel-button');
-        cancelButton.triggerEventHandler('click');
-
-        expect(cancelButton.nativeElement.disabled).toBe(false);
-        expect(cancelSpy).toHaveBeenCalledTimes(1);
-      });
-    });
-
-    describe('submit button', () => {
-      it('should be disabled if there are no unsaved changes', () => {
-        component.newImagesFormData = { [MOCK_IMAGES[3].id]: MOCK_IMAGES[3] };
-        component.hasUnsavedChanges = false;
-        fixture.detectChanges();
-        component.ngOnInit(); // Initialize form with newImagesFormData
-
-        const submitButton = query(fixture.debugElement, '.submit-button');
-        expect(submitButton.nativeElement.disabled).toBe(true);
-      });
-
-      it('should be disabled if the form is invalid', () => {
-        component.newImagesFormData = {
-          [MOCK_IMAGES[0].id]: {
-            ...MOCK_IMAGES[0],
-            caption: '', // Invalid - required field
-          },
-        };
-        component.hasUnsavedChanges = true;
-        fixture.detectChanges();
-        component.ngOnInit(); // Initialize form with newImagesFormData
-
-        const submitButton = query(fixture.debugElement, '.submit-button');
-        expect(submitButton.nativeElement.disabled).toBe(true);
-      });
-
-      it('should be enabled if there are unsaved changes and the form is valid', () => {
-        component.newImagesFormData = { [MOCK_IMAGES[3].id]: MOCK_IMAGES[3] };
-        component.hasUnsavedChanges = true;
-        component.ngOnInit();
-        fixture.detectChanges();
-
-        query(fixture.debugElement, 'form').triggerEventHandler('ngSubmit');
-
-        const submitButton = query(fixture.debugElement, '.submit-button');
-        expect(submitButton.nativeElement.disabled).toBe(false);
-        expect(submitSpy).toHaveBeenCalledTimes(1);
-      });
-    });
   });
 
   describe('form initialization', () => {
@@ -386,6 +260,7 @@ describe('AlbumFormComponent', () => {
               caption: 'A new caption',
               album: 'A new album title',
               albumCover: true,
+              albumOrdinality: '1',
             },
           },
           {
@@ -583,8 +458,8 @@ describe('AlbumFormComponent', () => {
         [MOCK_IMAGES[0].id]: 'data:image/png;base64,def',
         [MOCK_IMAGES[3].id]: 'data:image/jpeg;base64,xyz',
       };
-      component.ngOnInit();
       fixture.detectChanges();
+      component.ngOnInit();
 
       // Initially image at index 1 is album cover
       const newImagesControl = component.form.controls.newImages;
@@ -630,8 +505,8 @@ describe('AlbumFormComponent', () => {
       component.newImagesFormData = {
         [MOCK_IMAGES[0].id]: pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES),
       };
-      component.ngOnInit();
       fixture.detectChanges();
+      component.ngOnInit();
 
       const newImagesControl = component.form.controls.newImages;
       await component.onRemoveNewImage(newImagesControl.at(0).getRawValue(), 0);
@@ -649,8 +524,8 @@ describe('AlbumFormComponent', () => {
       component.newImagesFormData = {
         [MOCK_IMAGES[0].id]: pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES),
       };
-      component.ngOnInit();
       fixture.detectChanges();
+      component.ngOnInit();
 
       const newImagesControl = component.form.controls.newImages;
       await component.onRemoveNewImage(newImagesControl.at(0).getRawValue(), 0);
@@ -736,7 +611,37 @@ describe('AlbumFormComponent', () => {
       expect(newImagesControl.at(1).controls.caption.value).toBe('new-file.2');
     });
 
-    it('should handle errors from the imageFileService', async () => {
+    it('should process limit new image total to 20', async () => {
+      component.newImagesFormData = [
+        ...MOCK_IMAGES,
+        ...MOCK_IMAGES.slice(0, 5).map(image => ({ ...image, id: `_${image.id}` })),
+      ].reduce((acc: { [key: string]: ImageFormData }, image) => {
+        acc[image.id] = pick(image, IMAGE_FORM_DATA_PROPERTIES);
+        return acc;
+      }, {}); // 19 images
+      fixture.detectChanges();
+
+      expect(Object.keys(component.newImagesFormData).length).toBe(19);
+
+      const file20 = new File([':)'], 'new-file.20.jpg', { type: 'image/jpeg' });
+      const file21 = new File([':)'], 'new-file.21.jpg', { type: 'image/jpeg' });
+      const fileInputElement = document.createElement('input');
+      Object.defineProperty(fileInputElement, 'files', {
+        value: [file20, file21],
+        writable: true,
+      });
+      const event = { target: fileInputElement };
+
+      await component.onChooseFiles(event as unknown as Event);
+      await fixture.whenStable();
+
+      expect(Object.keys(component.newImagesFormData).length).toBe(19);
+      expect(storeImageFileSpy).not.toHaveBeenCalled();
+      expect(uuidSpy).not.toHaveBeenCalled();
+      expect(fileInputElement.value).toBe('');
+    });
+
+    it('should handle other errors from the imageFileService', async () => {
       const file1 = new File([':)'], 'new-file.1.png', { type: 'image/png' });
       const file2 = new File([':('], 'new-file.2.tiff', { type: 'image/tiff' });
       const file3 = new File([':)'], 'new-file.3.jpg', { type: 'image/jpeg' });
@@ -972,6 +877,132 @@ describe('AlbumFormComponent', () => {
       expect(dispatchSpy).not.toHaveBeenCalledWith(
         ImagesActions.updateImageRequested({ imageId: MOCK_IMAGES[3].id }),
       );
+    });
+  });
+
+  describe('template rendering', () => {
+    describe('modification info', () => {
+      it('should render if imageEntity is defined', () => {
+        component.imageEntities = [
+          {
+            image: MOCK_IMAGES[0],
+            formData: pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES),
+          },
+        ];
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, 'lcc-modification-info')).not.toBeNull();
+      });
+
+      it('should not render if imageEntity is null', () => {
+        component.imageEntities = [];
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeNull();
+      });
+    });
+
+    describe('new images header', () => {
+      it('should render if album is defined', () => {
+        component.album = 'My album';
+        fixture.detectChanges();
+
+        expect(queryTextContent(fixture.debugElement, '.new-images-header')).toBe(
+          'New images',
+        );
+      });
+
+      it('should not render if album is empty', () => {
+        component.album = '';
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, '.new-images-header')).toBeNull();
+      });
+    });
+
+    describe('restore button', () => {
+      it('should be disabled if there are no unsaved changes', () => {
+        component.hasUnsavedChanges = false;
+        fixture.detectChanges();
+
+        const restoreButton = query(fixture.debugElement, '.restore-button');
+        expect(restoreButton.nativeElement.disabled).toBe(true);
+      });
+
+      it('should be enabled if there are unsaved changes', () => {
+        component.hasUnsavedChanges = true;
+        fixture.detectChanges();
+
+        const restoreButton = query(fixture.debugElement, '.restore-button');
+        restoreButton.triggerEventHandler('click');
+
+        expect(restoreButton.nativeElement.disabled).toBe(false);
+        expect(restoreSpy).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('cancel button', () => {
+      it('should be enabled if there are unsaved changes', () => {
+        component.hasUnsavedChanges = true;
+        fixture.detectChanges();
+
+        const cancelButton = query(fixture.debugElement, '.cancel-button');
+        cancelButton.triggerEventHandler('click');
+
+        expect(cancelButton.nativeElement.disabled).toBe(false);
+        expect(cancelSpy).toHaveBeenCalledTimes(1);
+      });
+
+      it('should also be enabled if there are no unsaved changes', () => {
+        component.hasUnsavedChanges = false;
+        fixture.detectChanges();
+
+        const cancelButton = query(fixture.debugElement, '.cancel-button');
+        cancelButton.triggerEventHandler('click');
+
+        expect(cancelButton.nativeElement.disabled).toBe(false);
+        expect(cancelSpy).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('submit button', () => {
+      it('should be disabled if there are no unsaved changes', () => {
+        component.newImagesFormData = { [MOCK_IMAGES[3].id]: MOCK_IMAGES[3] };
+        component.hasUnsavedChanges = false;
+        fixture.detectChanges();
+        component.ngOnInit(); // Initialize form with newImagesFormData
+
+        const submitButton = query(fixture.debugElement, '.submit-button');
+        expect(submitButton.nativeElement.disabled).toBe(true);
+      });
+
+      it('should be disabled if the form is invalid', () => {
+        component.newImagesFormData = {
+          [MOCK_IMAGES[0].id]: {
+            ...MOCK_IMAGES[0],
+            caption: '', // Invalid - required field
+          },
+        };
+        component.hasUnsavedChanges = true;
+        fixture.detectChanges();
+        component.ngOnInit(); // Initialize form with newImagesFormData
+
+        const submitButton = query(fixture.debugElement, '.submit-button');
+        expect(submitButton.nativeElement.disabled).toBe(true);
+      });
+
+      it('should be enabled if there are unsaved changes and the form is valid', () => {
+        component.newImagesFormData = { [MOCK_IMAGES[3].id]: MOCK_IMAGES[3] };
+        component.hasUnsavedChanges = true;
+        component.ngOnInit();
+        fixture.detectChanges();
+
+        query(fixture.debugElement, 'form').triggerEventHandler('ngSubmit');
+
+        const submitButton = query(fixture.debugElement, '.submit-button');
+        expect(submitButton.nativeElement.disabled).toBe(false);
+        expect(submitSpy).toHaveBeenCalledTimes(1);
+      });
     });
   });
 });

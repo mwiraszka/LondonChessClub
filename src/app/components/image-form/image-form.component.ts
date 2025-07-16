@@ -67,7 +67,7 @@ export class ImageFormComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initForm();
     this.initFormValueChangeListener();
 
@@ -231,6 +231,7 @@ export class ImageFormComponent implements OnInit {
         validators: [Validators.required, Validators.pattern(/[^\s]/)],
       }),
       albumCover: new FormControl(formData.albumCover, { nonNullable: true }),
+      albumOrdinality: new FormControl(formData.albumOrdinality, { nonNullable: true }),
     });
 
     this.newAlbumValue = !this.existingAlbums.includes(formData.album)

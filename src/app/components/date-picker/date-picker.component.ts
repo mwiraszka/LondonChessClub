@@ -37,7 +37,7 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
 
   constructor() {}
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     // Prevent Angular's ExpressionChangedAfterItHasBeenCheckedError
     setTimeout(() => this.renderCalendar());
   }

@@ -57,7 +57,7 @@ export class ScheduleComponent implements OnInit {
     private readonly store: Store,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.store
       .select(EventsSelectors.selectLastFetch)
       .pipe(take(1))

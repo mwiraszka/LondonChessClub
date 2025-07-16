@@ -14,14 +14,13 @@ describe('ArticleComponent', () => {
   let component: ArticleComponent;
 
   beforeEach(() => {
-    TestBed.overrideComponent(ArticleComponent, {
-      remove: { imports: [MarkdownRendererComponent] },
-      add: { imports: [MockComponent(MarkdownRendererComponent)] },
-    });
-
     TestBed.configureTestingModule({
       imports: [ArticleComponent],
     })
+      .overrideComponent(ArticleComponent, {
+        remove: { imports: [MarkdownRendererComponent] },
+        add: { imports: [MockComponent(MarkdownRendererComponent)] },
+      })
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(ArticleComponent);
@@ -34,32 +33,34 @@ describe('ArticleComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('with article', () => {
+  describe('template rendering', () => {
     beforeEach(() => {
       component.article = MOCK_ARTICLES[2];
-      component.bannerImage = MOCK_IMAGES[0];
       fixture.detectChanges();
     });
 
-    it('should render all containers', () => {
-      expect(query(fixture.debugElement, '.banner-image-container')).not.toBeNull();
-      expect(query(fixture.debugElement, '.article-details-container')).not.toBeNull();
-      expect(query(fixture.debugElement, '.editor-container')).not.toBeNull();
-      expect(query(fixture.debugElement, '.markdown-container')).not.toBeNull();
-    });
+    it('should render all article container and content elements, and the Markdown Renderer component', () => {
+      const containerSelectors = [
+        '.banner-image-container',
+        '.article-details-container',
+        '.editor-container',
+        '.markdown-container',
+      ];
 
-    it('should render all article content elements and Markdown Renderer component', () => {
-      expect(query(fixture.debugElement, '.title')).not.toBeNull();
-      expect(query(fixture.debugElement, '.author-name')).not.toBeNull();
-      expect(query(fixture.debugElement, '.date-created')).not.toBeNull();
-      expect(query(fixture.debugElement, '.updated')).not.toBeNull();
-      expect(query(fixture.debugElement, '.editor-name')).not.toBeNull();
-      expect(query(fixture.debugElement, '.date-last-edited')).not.toBeNull();
-      expect(query(fixture.debugElement, 'lcc-markdown-renderer')).not.toBeNull();
-    });
+      const contentSelectors = [
+        'img',
+        '.title',
+        '.author-name',
+        '.date-created',
+        '.updated',
+        '.editor-name',
+        '.date-last-edited',
+        'lcc-markdown-renderer',
+      ];
 
-    it('should render an image element with the banner image', () => {
-      expect(query(fixture.debugElement, 'img')).not.toBeNull();
+      [...containerSelectors, ...contentSelectors].forEach(selector => {
+        expect(query(fixture.debugElement, selector)).not.toBeNull();
+      });
     });
 
     it('should truncate article title to 120 characters', () => {
@@ -85,13 +86,11 @@ describe('ArticleComponent', () => {
       );
     });
 
-    describe('when article creation and last edited date are on the same day', () => {
-      beforeEach(() => {
+    describe('article created and edited on the same day', () => {
+      it('should display article creation info but not last edit info', () => {
         component.article = MOCK_ARTICLES[4];
         fixture.detectChanges();
-      });
 
-      it('should display article creation info but not last edit info', () => {
         expect(queryTextContent(fixture.debugElement, '.date-created')).toBe(
           'Thu, Jan 2, 2025, 12:00 PM',
         );
@@ -99,15 +98,23 @@ describe('ArticleComponent', () => {
       });
     });
 
-    describe('when article image URL is not available', () => {
-      beforeEach(() => {
-        component.article = MOCK_ARTICLES[3];
-        component.bannerImage = null;
+    describe('banner image', () => {
+      it('should use the banner image as the source when bannerImage is defined', () => {
+        component.bannerImage = MOCK_IMAGES[0];
         fixture.detectChanges();
+
+        expect(query(fixture.debugElement, 'img').attributes['src']).toBe(
+          MOCK_IMAGES[0].thumbnailUrl,
+        );
       });
 
-      it('should still render the image element', () => {
-        expect(query(fixture.debugElement, 'img')).not.toBeNull();
+      it('should default to the placeholder image when bannerImage is null', () => {
+        component.bannerImage = null;
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, 'img').attributes['src']).toBe(
+          'assets/fallback-image.png',
+        );
       });
     });
   });

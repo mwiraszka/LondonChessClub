@@ -29,7 +29,7 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
 
   constructor(@Inject(DOCUMENT) private _document: Document) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.viewerId = `pgn-viewer--${this.label}--${this.index}`;
 
     this.lichessAnalysisBoardLink = {
@@ -39,7 +39,7 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
     };
   }
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     const container = this._document.getElementById(this.viewerId);
 
     if (container) {

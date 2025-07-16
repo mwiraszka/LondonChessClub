@@ -46,6 +46,20 @@
         <lcc-form-error-icon [control]="imageControl.controls.caption">
         </lcc-form-error-icon>
 
+        <label
+          [for]="'album-ordinality-input-' + i"
+          class="lcc-required-field">
+          Ordinality:
+        </label>
+        <input
+          [id]="'album-orginality-input-' + i"
+          class="album-ordinality-input"
+          type="text"
+          formControlName="albumOrdinality"
+          maxlength="2" />
+        <lcc-form-error-icon [control]="imageControl.controls.albumOrdinality">
+        </lcc-form-error-icon>
+
         <div class="cover-image-input-container">
           <input
             [id]="'cover-image-radio-' + i"
@@ -129,6 +143,20 @@
           formControlName="caption"
           maxlength="120" />
         <lcc-form-error-icon [control]="imageControl.controls.caption">
+        </lcc-form-error-icon>
+
+        <label
+          [for]="'album-ordinality-input-' + i"
+          class="lcc-required-field">
+          Ordinality:
+        </label>
+        <input
+          [id]="'album-orginality-input-' + i"
+          class="album-ordinality-input"
+          type="text"
+          formControlName="albumOrdinality"
+          maxlength="2" />
+        <lcc-form-error-icon [control]="imageControl.controls.albumOrdinality">
         </lcc-form-error-icon>
 
         <div class="album-cover-input-container">

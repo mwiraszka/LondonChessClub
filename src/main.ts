@@ -14,7 +14,11 @@ import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from '@app/app-routing.module';
-import { AuthInterceptorProvider, LoggingInterceptorProvider } from '@app/interceptors';
+import {
+  AuthInterceptorProvider,
+  CacheControlInterceptorProvider,
+  LoggingInterceptorProvider
+} from '@app/interceptors';
 import { AppStoreModule } from '@app/store/app';
 import { ArticlesStoreModule } from '@app/store/articles';
 import { AuthStoreModule } from '@app/store/auth';
@@ -68,6 +72,7 @@ bootstrapApplication(AppComponent, {
     provideAnimations(),
     provideHttpClient(withInterceptorsFromDi(), withJsonpSupport()),
     AuthInterceptorProvider,
+    CacheControlInterceptorProvider,
     LoggingInterceptorProvider,
   ],
 }).catch(error => console.error(`[LCC] Bootstrap error: ${error}`));

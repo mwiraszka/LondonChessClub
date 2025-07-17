@@ -4,22 +4,22 @@
 </lcc-page-header>
 
 <section class="grid-container">
-  <article class="cup">
-    <figure class="lcc-figure cup-figure">
+  <article class="trophies-photo">
+    <figure class="lcc-figure 2023-championship-trophies">
       <div class="image-container">
         <img
           [image]="{
-            originalUrl: 'assets/london-chess-champion/championship-cup.jpg',
-            width: 450,
-            height: 600,
-            caption: 'Championship Cup',
+            originalUrl: 'assets/london-chess-champion/2023-championship-trophies.png',
+            width: 957,
+            height: 637,
+            caption: '2023 Championship Trophies',
           }" />
       </div>
-      <figcaption>The Championship Cup</figcaption>
+      <figcaption>2023 Championship Trophies</figcaption>
     </figure>
   </article>
 
-  <article class="champion-2023">
+  <article class="other-photos">
     <figure class="lcc-figure 2023-champion-figure">
       <div class="image-container">
         <img
@@ -35,24 +35,20 @@
         <b>Serhii Ivanchuk</b>
       </figcaption>
     </figure>
-  </article>
 
-  <article class="trophies-2023">
-    <figure class="lcc-figure 2023-championship-trophies">
+    <figure class="lcc-figure cup-figure">
       <div class="image-container">
         <img
           [image]="{
-            originalUrl: 'assets/london-chess-champion/2023-championship-trophies.png',
-            width: 957,
-            height: 637,
-            caption: '2023 Championship Trophies',
+            originalUrl: 'assets/london-chess-champion/championship-cup.jpg',
+            width: 450,
+            height: 600,
+            caption: 'Championship Cup',
           }" />
       </div>
-      <figcaption>2023 Championship Trophies</figcaption>
+      <figcaption>The Championship Cup</figcaption>
     </figure>
-  </article>
 
-  <article class="champion-2019">
     <figure class="lcc-figure 2019-champion-figure">
       <div class="image-container">
         <img
@@ -68,9 +64,7 @@
         <b>Kevin Gibson</b>
       </figcaption>
     </figure>
-  </article>
 
-  <article class="championship-match-2022">
     <figure class="lcc-figure 2022-championship-match-figure">
       <div class="image-container">
         <img
@@ -104,8 +98,9 @@
     </p>
   </article>
 
-  <article class="past-winners">
-    <h3>Past winners</h3>
+  <article class="standard-championship">
+    <h3>Past champions</h3>
+    <hr />
     <table class="lcc-table">
       <thead>
         <th>Year</th>
@@ -113,17 +108,27 @@
       </thead>
       <tbody>
         @for (
-          championship of pastChampionships;
+          championship of standardChampionships;
           track championship.year;
           let first = $first
         ) {
           <tr>
-            <td [style]="championship.style">{{ championship.year }}</td>
-            <td [style]="championship.style">
+            <td [style]="championship.textStyle">{{ championship.year }}</td>
+            <td [style]="championship.textStyle">
               @if (first) {
                 <mat-icon class="championship-icon">emoji_events</mat-icon>
               }
-              <span>{{ championship.winner }}</span>
+              @for (winner of championship.winners; track winner.name; let last = $last) {
+                <span class="winner-name">
+                  {{ winner.name }}
+                  @if (winner.peakRating) {
+                    <span class="winner-peak-rating">({{ winner.peakRating }})</span>
+                  }
+                  @if (!last) {
+                    <span>, </span>
+                  }
+                </span>
+              }
             </td>
           </tr>
         }
@@ -135,6 +140,165 @@
       </tfoot>
     </table>
   </article>
-</section>
 
-<lcc-link-list [links]="links"></lcc-link-list>
+  <article class="other-championships">
+    <h3>Other championships (held until 2019)</h3>
+    <hr />
+    <div class="tables-container">
+      <section class="junior-champions">
+        <div
+          class="expansion-header"
+          (click)="juniorPanelExpanded = !juniorPanelExpanded">
+          <h4
+            >Past winners of <b>Junior Championship</b> (1996&nbsp;&mdash;&nbsp;2011)</h4
+          >
+          <mat-icon>{{ juniorPanelExpanded ? 'expand_more' : 'expand_less' }}</mat-icon>
+        </div>
+        @if (juniorPanelExpanded) {
+          <table class="lcc-table">
+            <thead>
+              <th>Year</th>
+              <th>Winner</th>
+            </thead>
+            <tbody>
+              @for (
+                championship of juniorChampionships;
+                track championship.year;
+                let first = $first
+              ) {
+                <tr>
+                  <td [style]="championship.textStyle">{{ championship.year }}</td>
+                  <td [style]="championship.textStyle">
+                    @for (
+                      winner of championship.winners;
+                      track winner.name;
+                      let last = $last
+                    ) {
+                      <span class="winner-name">
+                        {{ winner.name }}
+                        @if (winner.peakRating) {
+                          <span class="winner-peak-rating"
+                            >({{ winner.peakRating }})</span
+                          >
+                        }
+                        @if (!last) {
+                          <span>, </span>
+                        }
+                      </span>
+                    }
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+      </section>
+
+      <section class="active-champions">
+        <div
+          class="expansion-header"
+          (click)="activePanelExpanded = !activePanelExpanded">
+          <h4
+            >Past winners of <b>Active Championship</b> (1994&nbsp;&mdash;&nbsp;2019)</h4
+          >
+          <mat-icon>{{ activePanelExpanded ? 'expand_more' : 'expand_less' }}</mat-icon>
+        </div>
+        @if (activePanelExpanded) {
+          <table class="lcc-table">
+            <thead>
+              <th>Year</th>
+              <th>Winner</th>
+            </thead>
+            <tbody>
+              @for (
+                championship of activeChampionships;
+                track championship.year;
+                let first = $first
+              ) {
+                <tr>
+                  <td [style]="championship.textStyle">{{ championship.year }}</td>
+                  <td [style]="championship.textStyle">
+                    @for (
+                      winner of championship.winners;
+                      track winner.name;
+                      let last = $last
+                    ) {
+                      <span class="winner-name">
+                        {{ winner.name }}
+                        @if (winner.peakRating) {
+                          <span class="winner-peak-rating"
+                            >({{ winner.peakRating }}*)</span
+                          >
+                        }
+                        @if (!last) {
+                          <span>, </span>
+                        }
+                      </span>
+                    }
+                  </td>
+                </tr>
+              }
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="100%">* peak active rating (no longer maintained)</td>
+              </tr>
+            </tfoot>
+          </table>
+        }
+      </section>
+
+      <section class="speed-champions">
+        <div
+          class="expansion-header"
+          (click)="speedPanelExpanded = !speedPanelExpanded">
+          <h4>Past winners of <b>Speed Championship</b> (1993&nbsp;&mdash;&nbsp;2019)</h4>
+          <mat-icon>{{ speedPanelExpanded ? 'expand_more' : 'expand_less' }}</mat-icon>
+        </div>
+        @if (speedPanelExpanded) {
+          <table class="lcc-table">
+            <thead>
+              <th>Year</th>
+              <th>Winner</th>
+            </thead>
+            <tbody>
+              @for (
+                championship of speedChampionships;
+                track championship.year;
+                let first = $first
+              ) {
+                <tr>
+                  <td [style]="championship.textStyle">{{ championship.year }}</td>
+                  <td [style]="championship.textStyle">
+                    @for (
+                      winner of championship.winners;
+                      track winner.name;
+                      let last = $last
+                    ) {
+                      <span class="winner-name">
+                        {{ winner.name }}
+                        @if (winner.peakRating) {
+                          <span class="winner-peak-rating"
+                            >({{ winner.peakRating }}*)</span
+                          >
+                        }
+                        @if (!last) {
+                          <span>, </span>
+                        }
+                      </span>
+                    }
+                  </td>
+                </tr>
+              }
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="100%">* peak active rating (no longer maintained)</td>
+              </tr>
+            </tfoot>
+          </table>
+        }
+      </section>
+    </div>
+  </article>
+</section>

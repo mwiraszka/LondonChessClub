@@ -32,6 +32,15 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.5.5 - July 17th, 2025</summary>
+
+- 🚀 Add players' ratings to past winners' table on City Champion page
+- 🚀 Add past winner tables for active, speed and junior championships
+- 🚀 Remove remaining links to the old website and Google Drive now that all data has been copied over
+
+</details>
+
+<details>
 <summary>v5.5.4 - July 17th, 2025</summary>
 
 - 🚀 Create a Cache Control HTTP request interceptor to have more granular control of how browsers cache stale image data

@@ -5,30 +5,27 @@
   grid-template-columns: 1fr;
   grid-template-areas:
     'history'
-    'champ-2023'
-    'trophies-2023'
-    'cup'
-    'champ-2022'
-    'champ-2019'
-    'past-winners';
-  gap: 4px;
+    'trophies-photo'
+    'other-photos'
+    'standard-champs'
+    'other-champs';
+  gap: 8px;
 
   @include respond-to('gt-sm') {
-    grid-template-columns: 3fr 2fr 2fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      'history history history'
-      'champ-2023 trophies-2023 trophies-2023'
-      'champ-2022 cup champ-2019'
-      'past-winners past-winners past-winners';
+      'history trophies-photo'
+      'other-photos other-photos'
+      'standard-champs standard-champs'
+      'other-champs other-champs';
   }
 
   @include respond-to('gt-lg') {
-    grid-template-columns: 3fr 2fr 2fr 2fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-areas:
-      'history history history past-winners'
-      'champ-2023 trophies-2023 trophies-2023 past-winners'
-      'champ-2022 cup champ-2019 past-winners'
-      '. . . past-winners';
+      'history trophies-photo trophies-photo trophies-photo'
+      'other-photos other-photos other-photos other-photos'
+      'standard-champs standard-champs other-champs other-champs';
   }
 
   article {
@@ -36,8 +33,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     gap: 8px;
+    padding: 16px;
     border: 1px solid var(--lcc-color--championPage-cellBorder);
     background-color: var(--lcc-color--championPage-cellBackground);
 
@@ -66,44 +64,98 @@
 
     &.history {
       grid-area: history;
-      padding: 16px;
-      align-items: flex-start;
 
       p {
         margin: 0.5em 0;
-        color: var(--lcc-color--championPage-historyText);
+        color: var(--lcc-color--championPage-primaryText);
 
         b {
-          color: var(--lcc-color--championPage-historyTextBold);
+          color: var(--lcc-color--championPage-primaryTextBold);
         }
       }
     }
 
-    &.cup {
-      grid-area: cup;
+    &.trophies-photo {
+      grid-area: trophies-photo;
+    }
 
-      @include respond-to('lt-sm') {
-        margin: 0 4px;
-        border-radius: var(--lcc-borderRadius--large);
+    &.other-photos {
+      grid-area: other-photos;
+      justify-content: center;
+      align-items: start;
+      display: flex;
+      flex-flow: row wrap;
+    }
+
+    &.standard-championship {
+      grid-area: standard-champs;
+    }
+
+    &.other-championships {
+      grid-area: other-champs;
+      display: flex;
+      flex-direction: column;
+
+      .tables-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        section {
+          flex: 1;
+
+          .expansion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 16px 8px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+
+            &:hover {
+              background-color: var(
+                --lcc-color--championPage-expansionHeaderBackgroundOnHover
+              );
+            }
+
+            h4 {
+              text-align: center;
+              margin-bottom: 4px;
+              font-size: 15px;
+              color: var(--lcc-color--championPage-primaryText);
+
+              b {
+                margin: 0 4px;
+              }
+            }
+
+            mat-icon {
+              @include icon-size(16px);
+
+              color: var(--lcc-color--championPage-primaryText);
+            }
+          }
+        }
       }
     }
 
-    &.past-winners {
-      grid-area: past-winners;
-      padding: 16px;
-
+    &.standard-championship,
+    &.other-championships {
       h3 {
         width: 100%;
         text-align: left;
-        padding: 2px 2px 4px;
+        color: var(--lcc-color--championPage-headerText);
+      }
+
+      hr {
+        width: 100%;
+        margin: 0 0 8px;
         border-bottom: 1px solid var(--lcc-color--general-dividerLine);
-        margin-bottom: 0.5em;
-        color: var(--lcc-color--championPage-pastWinnersHeaderText);
       }
 
       table {
-        min-width: 350px;
-
         tfoot tr td {
           text-align: center;
         }
@@ -117,40 +169,9 @@
       }
     }
 
-    &.champion-2023 {
-      grid-area: champ-2023;
-
-      @include respond-to('lt-sm') {
-        margin: 0 4px;
-        border-radius: var(--lcc-borderRadius--large);
-      }
-    }
-
-    &.trophies-2023 {
-      grid-area: trophies-2023;
-
-      @include respond-to('lt-sm') {
-        margin: 0 4px;
-        border-radius: var(--lcc-borderRadius--large);
-      }
-    }
-
-    &.champion-2019 {
-      grid-area: champ-2019;
-
-      @include respond-to('lt-sm') {
-        margin: 0 4px;
-        border-radius: var(--lcc-borderRadius--large);
-      }
-    }
-
-    &.championship-match-2022 {
-      grid-area: champ-2022;
-
-      @include respond-to('lt-sm') {
-        margin: 0 4px;
-        border-radius: var(--lcc-borderRadius--large);
-      }
+    .winner-peak-rating {
+      font-size: 0.9em;
+      color: var(--lcc-color--championPage-secondaryText);
     }
   }
 }

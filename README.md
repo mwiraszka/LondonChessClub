@@ -36,7 +36,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 
 - 🚀 Add players' ratings to past winners' table on City Champion page
 - 🚀 Add past winner tables for active, speed and junior championships
-- 🚀 Remove no longer needed links to the old website
+- 🚀 Remove remaining links to the old website and Google Drive now that all data has been copied over
 
 </details>
 

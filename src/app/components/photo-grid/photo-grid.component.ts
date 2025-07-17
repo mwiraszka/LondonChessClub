@@ -79,7 +79,7 @@ export class PhotoGridComponent implements OnChanges {
         .pipe(take(1))
         .subscribe(lastFetch => {
           const imageIds = this.albumCovers.map(image => image.id);
-          if (!lastFetch || isSecondsInPast(lastFetch, 1800)) {
+          if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
             this.store.dispatch(
               ImagesActions.fetchBatchThumbnailsRequested({
                 imageIds,

@@ -65,7 +65,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
       .select(ImagesSelectors.selectLastThumbnailsFetch)
       .pipe(take(1))
       .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 1800)) {
+        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
           this.store.dispatch(ImagesActions.fetchAllThumbnailsRequested());
         }
       });

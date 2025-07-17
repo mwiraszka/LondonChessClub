@@ -63,11 +63,11 @@ describe('ImageExplorerComponent', () => {
       expect(component.selectable).toBe(true);
     });
 
-    describe('when thumbnails were fetched less than 30 minutes ago', () => {
+    describe('when thumbnails were fetched less than 10 minutes ago', () => {
       beforeEach(() => {
         store.overrideSelector(
           ImagesSelectors.selectLastThumbnailsFetch,
-          new Date(Date.now() - 29 * 60 * 1000).toISOString(),
+          new Date(Date.now() - 9 * 60 * 1000).toISOString(),
         );
         fixture.detectChanges();
         component.ngOnInit();
@@ -80,11 +80,11 @@ describe('ImageExplorerComponent', () => {
       });
     });
 
-    describe('when thumbnails were last fetched over 30 minutes ago', () => {
+    describe('when thumbnails were last fetched over 10 minutes ago', () => {
       beforeEach(() => {
         store.overrideSelector(
           ImagesSelectors.selectLastThumbnailsFetch,
-          new Date(Date.now() - 31 * 60 * 1000).toISOString(),
+          new Date(Date.now() - 11 * 60 * 1000).toISOString(),
         );
         fixture.detectChanges();
         component.ngOnInit();

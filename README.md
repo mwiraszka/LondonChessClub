@@ -32,6 +32,14 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.5.4 - July 17th, 2025</summary>
+
+- 🚀 Create a Cache Control HTTP request interceptor to have more granular control of how browsers cache stale image data
+- 🐛 Reduce cache window from 30 mins to 10 mins, and ensure expired presigned URLs are fetched when within the window
+
+</details>
+
+<details>
 <summary>v5.5.3 - July 16th, 2025</summary>
 
 - 🚀 Increase image file size limit to 2.5 MB and ensure only up to 20 images can be uploaded at a time

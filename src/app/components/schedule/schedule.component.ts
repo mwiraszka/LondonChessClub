@@ -62,7 +62,7 @@ export class ScheduleComponent implements OnInit {
       .select(EventsSelectors.selectLastFetch)
       .pipe(take(1))
       .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 1800)) {
+        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
           this.store.dispatch(EventsActions.fetchEventsRequested());
         }
       });

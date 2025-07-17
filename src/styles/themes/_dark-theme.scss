@@ -74,9 +74,15 @@
   --lcc-color--championPage-cellBackground: #{clr(grayscale, black-15)};
   --lcc-color--championPage-cellBorder: #{clr(grayscale, gray-50, 0.4)};
   --lcc-color--championPage-championshipIcon: #{clr(secondary, base)};
-  --lcc-color--championPage-historyText: #{clr(grayscale, gray-75)};
-  --lcc-color--championPage-historyTextBold: #{clr(grayscale, white-98)};
-  --lcc-color--championPage-pastWinnersHeaderText: #{clr(grayscale, gray-75)};
+  --lcc-color--championPage-expansionHeaderBackgroundOnHover: #{clr(
+      grayscale,
+      gray-25,
+      0.3
+    )};
+  --lcc-color--championPage-headerText: #{clr(grayscale, gray-75)};
+  --lcc-color--championPage-primaryText: #{clr(grayscale, gray-75)};
+  --lcc-color--championPage-primaryTextBold: #{clr(grayscale, white-98)};
+  --lcc-color--championPage-secondaryText: #{clr(grayscale, gray-65)};
 
   --lcc-color--contentPlaceholder-background: #{clr(grayscale, gray-75)};
   --lcc-color--contentPlaceholder-foreground1: #{clr(grayscale, gray-65, 0.05)};

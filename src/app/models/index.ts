@@ -2,6 +2,7 @@ export type { AdminControlsConfig } from './admin-controls-config.model';
 export type { ApiResponse } from './api-response.model';
 export type { ApiScope } from './api-scope.model';
 export type { Article, ArticleFormData, ArticleFormGroup } from './article.model';
+export type { ChampionshipTableRowData } from './championship-data.model';
 export type { ClubDocument } from './club-document.model';
 export type { Id, IsoDate, Pixels, Url } from './core.model';
 export type {

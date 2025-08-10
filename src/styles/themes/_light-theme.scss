@@ -39,14 +39,13 @@
   --lcc-color--articleForm-markdownPreviewBoxShadow: #{clr(grayscale, gray-75, 0.5)};
   --lcc-color--articleForm-previewHeaderText: #{clr(grayscale, gray-35)};
 
-  --lcc-color--articleGrid-articleDatesPrimaryText: #{clr(grayscale, white-85)};
-  --lcc-color--articleGrid-articleDatesSecondaryText: #{clr(grayscale, gray-75, 0.7)};
-  --lcc-color--articleGrid-articleHeaderText: #{clr(grayscale, white-90)};
-  --lcc-color--articleGrid-articleSummaryText: #{clr(grayscale, white-85)};
+  --lcc-color--articleGrid-articleCreationDateText: #{clr(grayscale, white-80)};
+  --lcc-color--articleGrid-articleHeaderText: #{clr(grayscale, white-92)};
+  --lcc-color--articleGrid-articleSummaryText: #{clr(grayscale, white-90)};
   --lcc-color--articleGrid-bookmarkIcon: #{clr(grayscale, white-90, 0.6)};
   --lcc-color--articleGrid-cardBackground: #{clr(primary, base)};
   --lcc-color--articleGrid-cardBackgroundOnHover: #{clr(primary, base, 0.95)};
-  --lcc-color--articleGrid-cardDividerLine: #{clr(grayscale, gray-50, 0.5)};
+  --lcc-color--articleGrid-cardDividerLine: #{clr(grayscale, white-80, 0.5)};
 
   --lcc-color--button-border: #{clr(grayscale, white-95, 0.2)};
   --lcc-color--button-darkSecondaryButtonBorder: #{clr(grayscale, gray-50)};

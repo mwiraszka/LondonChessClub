@@ -1,11 +1,9 @@
 @use '../../../styles/abstracts/mixins' as *;
 
-// Minimum width to keep dates on one line, while still being narrow enough to fit two cards
-// side-by-side at gt-md breakpoint (700px)
-$card-min-width: 282px;
-$flex-basis: 310px;
-$grid-gap: 8px;
 $app-content-width: 1500px; // Re-declare since CSS var cannot be passed to mixin
+$card-padding: 8px;
+$max-image-width: 320px; // The width of a thumbnail image
+$min-card-width: 215px; // Must be less than half of sm breakpoint + 2 x card padding = 223px
 
 :host {
   display: flex;
@@ -22,28 +20,25 @@ lcc-link-list,
 }
 
 .articles-container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+  display: grid;
   align-items: center;
-  gap: $grid-gap;
+  justify-content: center;
+  width: 100%;
+  gap: 8px;
+
+  @include respond-to('gt-sm') {
+    grid-template-columns: repeat(auto-fit, minmax(#{$min-card-width}, 1fr));
+  }
 
   .article {
     display: flex;
     flex-flow: column nowrap;
     gap: 4px;
     height: auto;
-    margin: 0 4px;
-    min-width: $card-min-width;
-    padding: 8px;
+    max-width: calc(#{$max-image-width} + 2 * #{$card-padding});
+    padding: $card-padding;
     background: var(--lcc-color--articleGrid-cardBackground);
     border-radius: var(--lcc-borderRadius--large);
-
-    @include flex-wrap-fix-width($flex-basis, $grid-gap, $app-content-width);
-
-    @include respond-to('gt-sm') {
-      margin: 0;
-    }
 
     &:hover {
       cursor: pointer;
@@ -84,7 +79,7 @@ lcc-link-list,
       height: 100%;
       padding: 4px 8px;
 
-      h3 {
+      .article-title {
         text-align: center;
         font-weight: 400;
         // Hardcode height to ensure title sections align between cards
@@ -96,10 +91,10 @@ lcc-link-list,
       hr {
         width: 100%;
         border-top: 1px solid var(--lcc-color--articleGrid-cardDividerLine);
-        padding-top: 8px;
+        margin: 8px 0;
       }
 
-      p {
+      .article-preview {
         // Hardcode to keep alignment in case there are fewer than 5 lines of text
         height: 91px;
         font-size: 14px;
@@ -107,27 +102,11 @@ lcc-link-list,
         line-height: 1.3em !important;
       }
 
-      .article-dates-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      .article-creation-date {
         font-size: 11px;
         text-align: center;
         margin-top: 8px;
-
-        .date-created,
-        .date-last-edited {
-          color: var(--lcc-color--articleGrid-articleDatesPrimaryText);
-        }
-
-        .edited,
-        .vertical-spacer {
-          color: var(--lcc-color--articleGrid-articleDatesSecondaryText);
-        }
-
-        .vertical-spacer {
-          padding: 0 1em;
-        }
+        color: var(--lcc-color--articleGrid-articleCreationDateText);
       }
     }
   }

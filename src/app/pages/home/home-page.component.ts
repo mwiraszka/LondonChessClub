@@ -40,7 +40,7 @@ export class HomePageComponent implements OnInit {
     text: 'More about the London Chess Club',
     internalPath: 'about',
   };
-  public maxArticles!: number;
+  public articleCount!: number;
   public readonly photoGalleryPageLink: InternalLink = {
     text: 'More photos',
     internalPath: 'photo-gallery',
@@ -124,15 +124,13 @@ export class HomePageComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   private setArticleCountBasedOnScreenWidth = () => {
-    this.maxArticles =
-      window.innerWidth < 550
-        ? 3
-        : window.innerWidth < 930
-          ? 4
-          : window.innerWidth < 1240
-            ? 6
-            : window.innerWidth < 1550
-              ? 8
-              : 10;
+    this.articleCount =
+      window.innerWidth < 717
+        ? 4
+        : window.innerWidth < 940
+          ? 6
+          : window.innerWidth < 1420
+            ? 4
+            : 6;
   };
 }

@@ -34,6 +34,9 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <details>
 <summary>v5.6.0 - August TBD, 2025</summary>
 
+- 🚀 Create reusable Pagination, Filters, and Search components to only fetch subsets of the given collection
+- 🚀 Integrate said components with the Members Table
+- 🚀 Minor style and layout tweaks to article cards in Article Grid
 
 </details>
 

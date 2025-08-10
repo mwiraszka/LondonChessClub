@@ -35,8 +35,8 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.6.0 - August TBD, 2025</summary>
 
 - 🚀 Create reusable Pagination, Filters, and Search components to only fetch subsets of the given collection
-- 🚀 Integrate said components with the Members Table
-- 🚀 Minor style and layout tweaks to article cards in Article Grid
+- 🚀 Integrate these new components with the Members Table
+- 🚀 Minor style and layout tweaks to article cards in Article Grid and tables throughout the application
 - 🔧 Change web application license from MIT to GPL-3.0, ensuring the project remains free and open-source, removing the risk of anyone making it proprietary/closed-source in the future and changing the license to something more restrictive
 
 </details>

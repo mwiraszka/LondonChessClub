@@ -1,10 +1,9 @@
 @use 'colour-palette' as *;
 
-[data-theme='dark'] {
+:root:has(body[data-theme='dark']),
+body[data-theme='dark'] {
   --lcc-color--aboutPage-addressAndTimeText: #{clr(grayscale, white-90)};
   --lcc-color--aboutPage-boardChairText: #{clr(grayscale, gray-65)};
-  --lcc-color--aboutPage-cardBackground: #{clr(grayscale, black-20)};
-  --lcc-color--aboutPage-cardBoxShadow: #{clr(grayscale, black-10, 0.7)};
   --lcc-color--aboutPage-cellBorder: #{clr(grayscale, black-20, 0.2)};
   --lcc-color--aboutPage-cellBackground1: #{clr(grayscale, black-15)};
   --lcc-color--aboutPage-cellBackground2: #{clr(grayscale, black-20)};
@@ -83,6 +82,8 @@
   --lcc-color--championPage-primaryTextBold: #{clr(grayscale, white-98)};
   --lcc-color--championPage-secondaryText: #{clr(grayscale, gray-65)};
 
+  --lcc-color--clubLinks-boxShadow: #{clr(grayscale, black-10, 0.7)};
+
   --lcc-color--contentPlaceholder-background: #{clr(grayscale, gray-75)};
   --lcc-color--contentPlaceholder-foreground1: #{clr(grayscale, gray-65, 0.05)};
   --lcc-color--contentPlaceholder-foreground2: #{clr(grayscale, gray-65, 0.3)};
@@ -133,7 +134,6 @@
   --lcc-color--formErrorIcon: #{clr(warning, light)};
 
   --lcc-color--gameArchivesPage-activeButtonBackground: #{clr(primary, lighter)};
-  --lcc-color--gameArchivesPage-activeButtonBoxShadow: #{clr(grayscale, white-85, 0.7)};
   --lcc-color--gameArchivesPage-activeButtonText: #{clr(grayscale, white-98)};
   --lcc-color--gameArchivesPage-activeGamesBackground: #{clr(grayscale, black-15)};
   --lcc-color--gameArchivesPage-chartLabel: #{clr(grayscale, white-90)};
@@ -306,6 +306,7 @@
   --lcc-color--pageHeader-icon: #{clr(secondary, base)};
   --lcc-color--pageHeader-text: #{clr(grayscale, white-85)};
 
+  --lcc-color--table-boxShadow: #{clr(grayscale, black-20, 0.7)};
   --lcc-color--table-footerForeground: #{clr(grayscale, gray-65)};
   --lcc-color--table-headerBackground: #{clr(primary, darker)};
   --lcc-color--table-headerForeground: #{clr(grayscale, white-95)};

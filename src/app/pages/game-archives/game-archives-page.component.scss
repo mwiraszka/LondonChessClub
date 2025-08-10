@@ -160,7 +160,7 @@ $pgn-viewer-width: 432px;
     &.active {
       background-color: var(--lcc-color--gameArchivesPage-activeButtonBackground);
       color: var(--lcc-color--gameArchivesPage-activeButtonText);
-      animation: shadow-pulse 2s infinite;
+      animation: shadow-pulse 2s ease-in-out infinite;
       position: relative;
       overflow: visible;
     }
@@ -194,12 +194,12 @@ $pgn-viewer-width: 432px;
 
 @keyframes shadow-pulse {
   0% {
-    box-shadow: 0 0 0 0 var(--lcc-color--gameArchivesPage-activeButtonBoxShadow);
+    transform: scale(1);
   }
-  60% {
-    box-shadow: 0 0 0 1px var(--lcc-color--gameArchivesPage-activeButtonBoxShadow);
+  50% {
+    transform: scale(1.04);
   }
   100% {
-    box-shadow: 0 0 0 0 var(--lcc-color--gameArchivesPage-activeButtonBoxShadow);
+    transform: scale(1);
   }
 }

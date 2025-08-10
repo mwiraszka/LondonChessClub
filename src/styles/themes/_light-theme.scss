@@ -84,6 +84,8 @@
   --lcc-color--championPage-historyTextBold: #{clr(grayscale, black-5)};
   --lcc-color--championPage-secondaryText: #{clr(grayscale, gray-35)};
 
+  --lcc-color--clubLinks-boxShadow: #{clr(grayscale, white-85, 0.7)};
+
   --lcc-color--contentPlaceholder-background: #{clr(grayscale, white-90)};
   --lcc-color--contentPlaceholder-foreground1: #{clr(grayscale, white-95, 0.05)};
   --lcc-color--contentPlaceholder-foreground2: #{clr(grayscale, white-95, 0.3)};
@@ -134,7 +136,6 @@
   --lcc-color--formErrorIcon: #{clr(warning, lighter)};
 
   --lcc-color--gameArchivesPage-activeButtonBackground: #{clr(primary, lighter)};
-  --lcc-color--gameArchivesPage-activeButtonBoxShadow: #{clr(grayscale, white-85, 0.7)};
   --lcc-color--gameArchivesPage-activeButtonText: #{clr(grayscale, white-98)};
   --lcc-color--gameArchivesPage-activeGamesBackground: #{clr(grayscale, white-90)};
   --lcc-color--gameArchivesPage-chartLabel: #{clr(grayscale, black-10)};
@@ -307,6 +308,7 @@
   --lcc-color--pageHeader-icon: #{clr(secondary, base)};
   --lcc-color--pageHeader-text: #{clr(grayscale, black-10)};
 
+  --lcc-color--table-boxShadow: #{clr(grayscale, white-85, 0.7)};
   --lcc-color--table-footerForeground: #{clr(grayscale, gray-35)};
   --lcc-color--table-headerBackground: #{clr(primary, base)};
   --lcc-color--table-headerForeground: #{clr(grayscale, white-95)};

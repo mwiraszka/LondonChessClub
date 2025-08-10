@@ -9,6 +9,8 @@
 }
 
 table {
+  margin: auto;
+
   @include respond-to('lt-sm') {
     font-size: 13px;
   }

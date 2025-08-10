@@ -34,7 +34,12 @@
       </thead>
 
       <tbody>
-        @for (member of filteredMembers; track member.id; let i = $index; let last = $last) {
+        @for (
+          member of filteredMembers;
+          track member.id;
+          let i = $index;
+          let last = $last
+        ) {
           <tr
             [adminControls]="isAdmin ? getAdminControlsConfig(member) : null"
             [ngClass]="{ 'last-row': last }"
@@ -97,7 +102,9 @@
 
       <tfoot>
         <tr>
-          <td colspan="100%">Showing {{ filteredMembers.length }} / {{ totalMemberCount }} members</td>
+          <td colspan="100%">
+            Showing {{ filteredMembers.length }} / {{ totalMemberCount }} members
+          </td>
         </tr>
       </tfoot>
     </table>

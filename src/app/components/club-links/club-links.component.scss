@@ -15,11 +15,11 @@ section {
   padding: 16px;
   background-color: var(--lcc-color--general-cardBackground);
   border-radius: var(--lcc-borderRadius--large);
-  box-shadow: 3px 3px 5px var(--lcc-color--general-cardBoxShadow);
+  box-shadow: 3px 3px 5px var(--lcc-color--clubLinks-boxShadow);
 
   &:hover {
     animation: raise 0.2s ease forwards;
-    box-shadow: 4px 4px 8px var(--lcc-color--general-cardBoxShadow);
+    box-shadow: 4px 4px 8px var(--lcc-color--clubLinks-boxShadow);
   }
 
   > span {

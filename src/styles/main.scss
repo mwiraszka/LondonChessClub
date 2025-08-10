@@ -1,14 +1,14 @@
 @charset 'utf-8';
 
-@forward 'abstracts/mixins';
-@forward 'abstracts/variables';
-
 @forward 'base/reset';
 @forward 'base/typography';
 
 @forward 'themes/colour-palette';
 @forward 'themes/dark-theme';
 @forward 'themes/light-theme';
+
+@forward 'abstracts/mixins';
+@forward 'abstracts/variables';
 
 @forward 'layout/truncate';
 @forward 'layout/overlay';

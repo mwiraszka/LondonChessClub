@@ -125,11 +125,11 @@ export class HomePageComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   private setArticleCountBasedOnScreenWidth = () => {
     this.articleCount =
-      window.innerWidth < 717
+      window.innerWidth < 726
         ? 4
-        : window.innerWidth < 940
+        : window.innerWidth < 952
           ? 6
-          : window.innerWidth < 1420
+          : window.innerWidth < 1405
             ? 4
             : 6;
   };

@@ -1,9 +1,11 @@
 @use '../../../styles/abstracts/mixins' as *;
 
-$app-content-width: 1500px; // Re-declare since CSS var cannot be passed to mixin
 $card-padding: 8px;
-$max-image-width: 320px; // The width of a thumbnail image
-$min-card-width: 215px; // Must be less than half of sm breakpoint + 2 x card padding = 223px
+
+// The width of a thumbnail image
+$max-image-width: 320px;
+
+$min-card-width: 215px;
 
 :host {
   display: flex;
@@ -27,7 +29,8 @@ lcc-link-list,
   gap: 8px;
 
   @include respond-to('gt-sm') {
-    grid-template-columns: repeat(auto-fit, minmax(#{$min-card-width}, 1fr));
+    // Minimum of 218px to ensure two columns can fit at the 'sm' breakpoint (500px)
+    grid-template-columns: repeat(auto-fit, minmax(218px, 1fr));
   }
 
   .article {

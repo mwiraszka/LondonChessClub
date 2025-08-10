@@ -1,9 +1,6 @@
 @use '../../../styles/abstracts/mixins' as *;
 
-$app-content-width: 1500px; // Re-declare since CSS var cannot be passed to mixin
 $grid-button-min-width: 115px;
-$grid-button-flex-basis: 150px;
-$grid-gap: 8px;
 $pgn-viewer-width: 432px;
 
 .intro {
@@ -147,20 +144,18 @@ $pgn-viewer-width: 432px;
 }
 
 .year-grid {
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(#{$grid-button-min-width}, 1fr));
   align-items: center;
   justify-content: center;
-  gap: $grid-gap;
+  gap: 8px;
   margin: 32px 0;
   border-radius: var(--lcc-borderRadius--large);
 
   button {
-    min-width: $grid-button-min-width;
     padding: 8px 16px;
     text-transform: none;
-
-    @include flex-wrap-fix-width($grid-button-flex-basis, $grid-gap, $app-content-width);
 
     &.active {
       background-color: var(--lcc-color--gameArchivesPage-activeButtonBackground);

@@ -1,0 +1,35 @@
+@if (viewModel$ | async; as vm) {
+  <lcc-page-header
+    title="Members"
+    icon="groups">
+  </lcc-page-header>
+
+  <lcc-paginator
+    entity="members"
+    [pageNum]="vm.options.pageNum"
+    [pageSize]="vm.options.pageSize"
+    [totalItems]="vm.options.totalItems"
+    (pageChange)="onPageChange($event)"
+    (pageSizeChange)="onPageSizeChange($event)">
+  </lcc-paginator>
+
+  <lcc-search
+    [placeholder]="searchPlaceholder"
+    [searchQuery]="vm.options.searchQuery"
+    (searchChange)="onSearchChange($event)">
+  </lcc-search>
+
+  <lcc-filters
+    [filters]="vm.options.filters"
+    (filtersChange)="onFiltersChange($event)">
+  </lcc-filters>
+
+  <lcc-members-table
+    [filteredMembers]="vm.filteredMembers"
+    [isAdmin]="vm.isAdmin"
+    [isAscending]="vm.options.isAscending"
+    [isSafeMode]="vm.isSafeMode"
+    [sortedBy]="vm.options.sortedBy"
+    [totalMemberCount]="vm.totalMemberCount">
+  </lcc-members-table>
+}

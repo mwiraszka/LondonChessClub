@@ -15,13 +15,13 @@
 </button>
 
 <section class="page-control-section">
-  <div class="page-counter">Page: {{ pageNum }} / {{ lastPage() }}</div>
+  <div class="page-counter">Page: {{ pageNum }} / {{ lastPage }}</div>
   <div class="page-size-buttons">
     @for (size of PAGE_SIZES; track size) {
       <button
         class="lcc-secondary-button page-size-button"
         [class.selected]="pageSize === size"
-        [tooltip]="'Show ' + size + ' ' + typeOfItems + ' per page'"
+        [tooltip]="'Show ' + size + ' ' + entity + ' per page'"
         (click)="onPageSizeChange(size)">
         {{ size }}
       </button>
@@ -31,16 +31,16 @@
 
 <button
   class="lcc-secondary-button page-navigation-button"
-  [disabled]="pageNum === lastPage()"
-  [tooltip]="pageNum === lastPage() ? null : 'Next page'"
+  [disabled]="pageNum === lastPage"
+  [tooltip]="pageNum === lastPage ? null : 'Next page'"
   (click)="onNext()">
   <mat-icon class="next-page-icon">chevron_right</mat-icon>
 </button>
 
 <button
   class="lcc-secondary-button page-navigation-button"
-  [disabled]="pageNum === lastPage()"
-  [tooltip]="pageNum === lastPage() ? null : 'Last page'"
+  [disabled]="pageNum === lastPage"
+  [tooltip]="pageNum === lastPage ? null : 'Last page'"
   (click)="onLast()">
   <mat-icon class="last-page-icon">last_page</mat-icon>
 </button>

@@ -1,0 +1,10 @@
+@for (filter of filters; track filter.key) {
+  <label [for]="filter.key">
+    {{ filter.label }}
+  </label>
+  <input
+    [id]="filter.key"
+    type="checkbox"
+    [checked]="filter.value"
+    (change)="onToggleFilter(filter)" />
+}

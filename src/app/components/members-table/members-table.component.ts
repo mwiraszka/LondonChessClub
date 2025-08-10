@@ -9,7 +9,6 @@ import { RouterLink } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
-import { PaginatorComponent } from '@app/components/paginator/paginator.component';
 import { SafeModeNoticeComponent } from '@app/components/safe-mode-notice/safe-mode-notice.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
@@ -37,25 +36,18 @@ import { isSecondsInPast } from '@app/utils';
     KebabCasePipe,
     LinkListComponent,
     MatIconModule,
-    PaginatorComponent,
     RouterLink,
     SafeModeNoticeComponent,
     TooltipDirective,
   ],
 })
 export class MembersTableComponent implements OnInit {
-  @Input({ required: true }) activeMembers!: Member[];
-  @Input({ required: true }) allMembers!: Member[];
-  @Input({ required: true }) displayedMembers!: Member[];
   @Input({ required: true }) filteredMembers!: Member[];
   @Input({ required: true }) isAdmin!: boolean;
   @Input({ required: true }) isAscending!: boolean;
   @Input({ required: true }) isSafeMode!: boolean;
-  @Input({ required: true }) pageNum!: number;
-  @Input({ required: true }) pageSize!: number;
-  @Input({ required: true }) showActiveOnly!: boolean;
   @Input({ required: true }) sortedBy!: string;
-  @Input({ required: true }) startIndex!: number;
+  @Input({ required: true }) totalMemberCount!: number;
 
   public readonly DEFAULT_TABLE_HEADERS = [
     'Name',
@@ -103,21 +95,10 @@ export class MembersTableComponent implements OnInit {
       });
   }
 
-  public onSelectTableHeader(header: string): void {
-    header = camelCase(header);
+  public onSelectTableHeader(headerLabel: string): void {
+    // TODO: clean up
+    const header = camelCase(headerLabel) as keyof Member;
     this.store.dispatch(MembersActions.tableHeaderSelected({ header }));
-  }
-
-  public onToggleInactiveMembers(): void {
-    this.store.dispatch(MembersActions.inactiveMembersToggled());
-  }
-
-  public onChangePage(pageNum: number): void {
-    this.store.dispatch(MembersActions.pageChanged({ pageNum }));
-  }
-
-  public onChangePageSize(pageSize: number): void {
-    this.store.dispatch(MembersActions.pageSizeChanged({ pageSize }));
   }
 
   public getAdminControlsConfig(member: Member): AdminControlsConfig {

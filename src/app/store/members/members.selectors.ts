@@ -3,7 +3,7 @@ import { pick } from 'lodash';
 
 import { INITIAL_MEMBER_FORM_DATA } from '@app/constants';
 import type { Id } from '@app/models';
-import { areSame, customSort } from '@app/utils';
+import { areSame } from '@app/utils';
 
 import { MembersState, membersAdapter } from './members.reducer';
 
@@ -59,78 +59,14 @@ export const selectHasUnsavedChanges = (id: Id | null) =>
     },
   );
 
-export const selectSortedBy = createSelector(selectMembersState, state => state.sortedBy);
+export const selectOptions = createSelector(selectMembersState, state => state.options);
 
-export const selectIsAscending = createSelector(
+export const selectTotalMemberCount = createSelector(
   selectMembersState,
-  state => state.isAscending,
-);
-
-export const selectPageNum = createSelector(selectMembersState, state => state.pageNum);
-
-export const selectPageSize = createSelector(selectMembersState, state => state.pageSize);
-
-export const selectStartIndex = createSelector(
-  selectPageSize,
-  selectPageNum,
-  (pageSize, pageNum) => pageSize * (pageNum - 1),
-);
-
-export const selectEndIndex = createSelector(
-  selectPageSize,
-  selectPageNum,
-  (pageSize, pageNum) => pageSize * pageNum,
-);
-
-export const selectShowActiveOnly = createSelector(
-  selectMembersState,
-  state => state.showActiveOnly,
-);
-
-export const selectActiveMembers = createSelector(selectAllMembers, allMembers =>
-  allMembers.filter(member => member.isActive),
-);
-
-export const selectSortedMembers = createSelector(
-  selectAllMembers,
-  selectSortedBy,
-  selectIsAscending,
-  (allMembers, sortedBy, isAscending) => {
-    let primarySortKey: string;
-
-    switch (sortedBy) {
-      case 'born':
-        primarySortKey = 'yearOfBirth';
-        break;
-      case 'name':
-        primarySortKey = 'lastName';
-        break;
-      case 'lastUpdated':
-        primarySortKey = 'modificationInfo.dateLastEdited';
-        break;
-      default:
-        primarySortKey = sortedBy;
-    }
-
-    const secondarySortKey = primarySortKey === 'lastName' ? 'firstName' : 'lastName';
-
-    return [...allMembers].sort((a, b) =>
-      customSort(a, b, primarySortKey, !isAscending, secondarySortKey),
-    );
-  },
+  state => state.totalMemberCount,
 );
 
 export const selectFilteredMembers = createSelector(
-  selectSortedMembers,
-  selectShowActiveOnly,
-  (sortedMembers, showActiveOnly) =>
-    showActiveOnly ? sortedMembers.filter(member => member.isActive) : sortedMembers,
-);
-
-export const selectDisplayedMembers = createSelector(
-  selectFilteredMembers,
-  selectStartIndex,
-  selectEndIndex,
-  (filteredMembers, startIndex, endIndex) =>
-    filteredMembers.slice(startIndex ?? 0, endIndex ?? undefined),
+  selectAllMembers,
+  allMembers => allMembers,
 );

@@ -9,6 +9,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
+import { Entity } from '@app/models';
 
 @Component({
   selector: 'lcc-paginator',
@@ -19,13 +20,18 @@ import { TooltipDirective } from '@app/directives/tooltip.directive';
 export class PaginatorComponent implements OnChanges {
   public readonly PAGE_SIZES = [10, 20, 50, 100];
 
+  @Input({ required: true }) public entity!: Entity;
+
   @Input() public pageNum = 1;
-  @Input() public totalItems = 0;
-  @Input() public typeOfItems = 'items';
   @Input() public pageSize = this.PAGE_SIZES[1];
+  @Input() public totalItems = 0;
 
   @Output() public pageChange = new EventEmitter<number>();
   @Output() public pageSizeChange = new EventEmitter<number>();
+
+  public get lastPage(): number {
+    return Math.ceil(this.totalItems / this.pageSize) || 1;
+  }
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['totalItems']) {
@@ -54,11 +60,7 @@ export class PaginatorComponent implements OnChanges {
   }
 
   public onLast(): void {
-    this.onPageChange(this.lastPage());
-  }
-
-  public lastPage(): number {
-    return Math.ceil(this.totalItems / this.pageSize);
+    this.onPageChange(this.lastPage);
   }
 
   public onPageChange(pageNum: number): void {

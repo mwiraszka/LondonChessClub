@@ -4,6 +4,7 @@ export type { ApiScope } from './api-scope.model';
 export type { Article, ArticleFormData, ArticleFormGroup } from './article.model';
 export type { ChampionshipTableRowData } from './championship-data.model';
 export type { ClubDocument } from './club-document.model';
+export type { CollectionDisplayOptions } from './collection-display-options.model';
 export type { Id, IsoDate, Pixels, Url } from './core.model';
 export type {
   BasicDialogResult,
@@ -13,8 +14,10 @@ export type {
 } from './dialog.model';
 export type { DbCollection } from './db-collection.model';
 export type { EditorPage } from './editor-page.model';
+export type { Entity, EntityType } from './entity.model';
 export type { LccError } from './error.model';
 export type { Event, EventFormData, EventFormGroup, EventType } from './event.model';
+export type { Filter } from './filter.model';
 export type { FilterFormGroup } from './filter-form-group.model';
 export type { GameDetails, GameScore } from './game-details.model';
 export type {

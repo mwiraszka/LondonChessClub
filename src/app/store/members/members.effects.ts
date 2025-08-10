@@ -21,12 +21,20 @@ export class MembersEffects {
     return this.actions$.pipe(
       ofType(MembersActions.fetchMembersRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
-      switchMap(([, isAdmin]) => {
+      concatLatestFrom(() => [
+        this.store.select(AuthSelectors.selectIsAdmin),
+        this.store.select(MembersSelectors.selectOptions),
+      ]),
+      switchMap(([, isAdmin, options]) => {
         const scope: ApiScope = isAdmin ? 'admin' : 'public';
-        return this.membersService.getMembers(scope).pipe(
+
+        return this.membersService.getMembers(scope, options).pipe(
           map(response =>
-            MembersActions.fetchMembersSucceeded({ members: response.data }),
+            MembersActions.fetchMembersSucceeded({
+              members: response.data.items,
+              totalCount: response.data.total,
+              totalMemberCount: response.data.totalMemberCount,
+            }),
           ),
           catchError(error =>
             of(MembersActions.fetchMembersFailed({ error: parseError(error) })),
@@ -147,6 +155,19 @@ export class MembersEffects {
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
+  fetchMembersOnNewOptions$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(
+        MembersActions.pageChanged,
+        MembersActions.pageSizeChanged,
+        MembersActions.searchQueryChanged,
+        MembersActions.filtersChanged,
+        MembersActions.tableHeaderSelected,
+      ),
+      map(() => MembersActions.fetchMembersRequested()),
     );
   });
 

@@ -6,55 +6,39 @@ import { map } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
+import { FiltersComponent } from '@app/components/filters/filters.component';
 import { MembersTableComponent } from '@app/components/members-table/members-table.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import { Member } from '@app/models';
+import { PaginatorComponent } from '@app/components/paginator/paginator.component';
+import { SearchComponent } from '@app/components/search/search.component';
+import { CollectionDisplayOptions, Filter, Member } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
-import { MembersSelectors } from '@app/store/members';
+import { MembersActions, MembersSelectors } from '@app/store/members';
 
 @UntilDestroy()
 @Component({
   selector: 'lcc-members-page',
-  template: `
-    @if (viewModel$ | async; as vm) {
-      <lcc-page-header
-        title="Members"
-        icon="groups">
-      </lcc-page-header>
-      <lcc-members-table
-        [activeMembers]="vm.activeMembers"
-        [allMembers]="vm.allMembers"
-        [displayedMembers]="vm.displayedMembers"
-        [filteredMembers]="vm.filteredMembers"
-        [isAdmin]="vm.isAdmin"
-        [isAscending]="vm.isAscending"
-        [isSafeMode]="vm.isSafeMode"
-        [pageNum]="vm.pageNum"
-        [pageSize]="vm.pageSize"
-        [showActiveOnly]="vm.showActiveOnly"
-        [sortedBy]="vm.sortedBy"
-        [startIndex]="vm.startIndex">
-      </lcc-members-table>
-    }
-  `,
-  imports: [CommonModule, MembersTableComponent, PageHeaderComponent],
+  templateUrl: './members-page.component.html',
+  imports: [
+    CommonModule,
+    FiltersComponent,
+    MembersTableComponent,
+    PageHeaderComponent,
+    PaginatorComponent,
+    SearchComponent,
+  ],
 })
 export class MembersPageComponent implements OnInit {
-  viewModel$?: Observable<{
-    activeMembers: Member[];
-    allMembers: Member[];
-    displayedMembers: Member[];
+  public searchPlaceholder = 'Search name, city, username, etc.';
+
+  public viewModel$?: Observable<{
     filteredMembers: Member[];
     isAdmin: boolean;
-    isAscending: boolean;
     isSafeMode: boolean;
-    pageNum: number;
-    pageSize: number;
-    showActiveOnly: boolean;
-    sortedBy: string;
-    startIndex: number;
+    options: CollectionDisplayOptions<Member>;
+    totalMemberCount: number;
   }>;
 
   constructor(
@@ -68,50 +52,39 @@ export class MembersPageComponent implements OnInit {
       'Club ratings and other members information',
     );
 
+    this.store.dispatch(MembersActions.fetchMembersRequested());
+
     this.viewModel$ = combineLatest([
-      this.store.select(MembersSelectors.selectActiveMembers),
-      this.store.select(MembersSelectors.selectAllMembers),
-      this.store.select(MembersSelectors.selectDisplayedMembers),
       this.store.select(MembersSelectors.selectFilteredMembers),
-      this.store.select(MembersSelectors.selectIsAscending),
-      this.store.select(MembersSelectors.selectPageNum),
-      this.store.select(MembersSelectors.selectPageSize),
-      this.store.select(MembersSelectors.selectShowActiveOnly),
-      this.store.select(MembersSelectors.selectSortedBy),
-      this.store.select(MembersSelectors.selectStartIndex),
       this.store.select(AuthSelectors.selectIsAdmin),
       this.store.select(AppSelectors.selectIsSafeMode),
+      this.store.select(MembersSelectors.selectOptions),
+      this.store.select(MembersSelectors.selectTotalMemberCount),
     ]).pipe(
       untilDestroyed(this),
-      map(
-        ([
-          activeMembers,
-          allMembers,
-          displayedMembers,
-          filteredMembers,
-          isAscending,
-          pageNum,
-          pageSize,
-          showActiveOnly,
-          sortedBy,
-          startIndex,
-          isAdmin,
-          isSafeMode,
-        ]) => ({
-          activeMembers,
-          allMembers,
-          displayedMembers,
-          filteredMembers,
-          isAdmin,
-          isAscending,
-          isSafeMode,
-          pageNum,
-          pageSize,
-          showActiveOnly,
-          sortedBy,
-          startIndex,
-        }),
-      ),
+      map(([filteredMembers, isAdmin, isSafeMode, options, totalMemberCount]) => ({
+        filteredMembers,
+        isAdmin,
+        isSafeMode,
+        options,
+        totalMemberCount,
+      })),
     );
+  }
+
+  public onFiltersChange(filters: Filter[]): void {
+    this.store.dispatch(MembersActions.filtersChanged({ filters }));
+  }
+
+  public onPageChange(pageNum: number): void {
+    this.store.dispatch(MembersActions.pageChanged({ pageNum }));
+  }
+
+  public onPageSizeChange(pageSize: number): void {
+    this.store.dispatch(MembersActions.pageSizeChanged({ pageSize }));
+  }
+
+  public onSearchChange(searchQuery: string): void {
+    this.store.dispatch(MembersActions.searchQueryChanged({ searchQuery }));
   }
 }

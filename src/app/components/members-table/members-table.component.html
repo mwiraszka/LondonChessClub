@@ -2,28 +2,8 @@
   <lcc-link-list [links]="[addMemberLink]"></lcc-link-list>
 }
 
-<div class="table-controls">
-  <lcc-paginator
-    typeOfItems="members"
-    [pageNum]="pageNum"
-    [pageSize]="pageSize"
-    [totalItems]="filteredMembers.length"
-    (pageChange)="onChangePage($event)"
-    (pageSizeChange)="onChangePageSize($event)">
-  </lcc-paginator>
-
-  <div class="inactive-checkbox-container">
-    <label for="active-only">Show active members only</label>
-    <input
-      id="active-only"
-      type="checkbox"
-      [checked]="showActiveOnly"
-      (change)="onToggleInactiveMembers()" />
-  </div>
-</div>
-
 <div class="lcc-table-wrapper">
-  @if (displayedMembers.length) {
+  @if (filteredMembers.length) {
     <table
       class="lcc-table"
       [class.lcc-show-admin-columns]="isAdmin && !isSafeMode">
@@ -38,6 +18,7 @@
           ) {
             <th
               [ngClass]="header | kebabCase"
+              class="sortable-header"
               (click)="onSelectTableHeader(header)">
               <span>{{ header }}</span>
               <div class="sort-icon-container">
@@ -53,17 +34,12 @@
       </thead>
 
       <tbody>
-        @for (
-          member of displayedMembers;
-          track member.id;
-          let i = $index;
-          let last = $last
-        ) {
+        @for (member of filteredMembers; track member.id; let i = $index; let last = $last) {
           <tr
             [adminControls]="isAdmin ? getAdminControlsConfig(member) : null"
             [ngClass]="{ 'last-row': last }"
             [class.inactive]="!member.isActive">
-            <td class="row-number">{{ i + startIndex + 1 }}</td>
+            <td class="row-number">{{ i + 1 }}</td>
             @if (isAdmin && !isSafeMode) {
               <td
                 class="first-name lcc-truncate"
@@ -121,10 +97,7 @@
 
       <tfoot>
         <tr>
-          <td colspan="100%">
-            {{ allMembers.length }} members ({{ activeMembers.length }}
-            active)
-          </td>
+          <td colspan="100%">Showing {{ filteredMembers.length }} / {{ totalMemberCount }} members</td>
         </tr>
       </tfoot>
     </table>

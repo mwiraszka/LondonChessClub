@@ -169,33 +169,3 @@ table {
     }
   }
 }
-
-.table-controls {
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  background-color: var(--lcc-color--paginator-background);
-  border-radius: var(--lcc-borderRadius--large);
-  padding: 8px 16px;
-
-  lcc-paginator {
-    justify-content: center;
-    align-items: center;
-  }
-
-  .inactive-checkbox-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    color: var(--lcc-color--membersTable-tableControlsText);
-
-    label:hover {
-      cursor: pointer;
-    }
-  }
-}

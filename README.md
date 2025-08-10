@@ -32,6 +32,12 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.6.0 - August TBD, 2025</summary>
+
+
+</details>
+
+<details>
 <summary>v5.5.5 - July 17th, 2025</summary>
 
 - 🚀 Add players' ratings to past winners' table on City Champion page

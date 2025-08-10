@@ -80,9 +80,9 @@
 
 @keyframes raise {
   0% {
-    scale: 1;
+    transform: scale(1);
   }
   100% {
-    scale: 1.02;
+    transform: scale(1.015);
   }
 }

@@ -5,6 +5,7 @@ import { map, take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { ArticleGridComponent } from '@app/components/article-grid/article-grid.component';
@@ -30,6 +31,7 @@ import { isSecondsInPast } from '@app/utils';
     ClubLinksComponent,
     CommonModule,
     LinkListComponent,
+    MatIconModule,
     PhotoGridComponent,
     RouterLink,
     ScheduleComponent,

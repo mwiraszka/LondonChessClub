@@ -7,7 +7,6 @@
 
   @include respond-to('gt-md') {
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
   }
 }
 
@@ -52,9 +51,9 @@ a {
 
 @keyframes raise {
   0% {
-    scale: 1;
+    transform: scale(1);
   }
   100% {
-    scale: 1.02;
+    transform: scale(1.015);
   }
 }

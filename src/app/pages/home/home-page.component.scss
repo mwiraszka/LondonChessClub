@@ -3,94 +3,143 @@
 :host {
   display: grid !important;
   align-items: unset !important;
-  grid-template-areas: 'welcome' 'schedule' 'articles' 'photos';
+  grid-template-areas: 'welcome' 'schedule' 'articles' 'regional-clubs' 'photos';
   grid-template-columns: minmax(0, 1fr);
 
   @include respond-to('gt-lg') {
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: repeat(5, 1fr);
     grid-template-areas:
-      'welcome schedule'
-      'articles articles'
-      'photos photos';
+      'welcome welcome welcome schedule schedule'
+      'articles articles articles articles articles'
+      'regional-clubs regional-clubs photos photos photos';
   }
 
-  article {
-    background-color: var(--lcc-color--homePage-articleBackground);
-    padding: 8px 16px;
+  section {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
+    padding: 16px;
+    border-radius: var(--lcc-borderRadius--small);
+    background-color: var(--lcc-color--homePage-articleBackground);
+    color: var(--lcc-color--homePage-primaryText);
 
-    @include respond-to('gt-lg') {
-      border-radius: var(--lcc-borderRadius--small);
-    }
-
-    &.welcome {
+    &.welcome-section {
       grid-area: welcome;
-      display: flex;
-      flex-direction: column;
-      padding: 16px;
-      border-radius: var(--lcc-borderRadius--small);
-      color: var(--lcc-color--homePage-welcomeSectionText);
 
       @include respond-to('gt-sm') {
-        padding: 32px;
+        padding: 16px 32px;
       }
 
       @include respond-to('gt-md') {
         min-width: 650px;
       }
 
-      h1 {
-        color: var(--lcc-color--homePage-welcomeHeaderText);
-        font-weight: 300;
-        font-size: 23px !important;
+      .section-heading {
+        font-weight: 100;
+        font-size: 20px;
         text-align: center;
-        word-break: nowrap;
+        margin-bottom: 16px;
+        border-bottom: unset;
+        padding: unset;
 
         @include respond-to('gt-sm') {
-          text-align: left;
+          text-align: start;
         }
 
         @include respond-to('gt-md') {
-          font-size: 28px !important;
+          font-size: 22px;
+        }
+      }
+
+      lcc-link-list {
+        padding: 8px 0;
+        margin: auto;
+      }
+    }
+
+    &.schedule-section {
+      grid-area: schedule;
+    }
+
+    &.articles-section {
+      grid-area: articles;
+    }
+
+    &.regional-clubs-section {
+      grid-area: regional-clubs;
+
+      .regional-clubs-container {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 8px;
+      }
+
+      .club-card {
+        flex: 1 1 300px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px;
+        background-color: var(--lcc-color--general-cardBackground);
+        border-radius: var(--lcc-borderRadius--large);
+        box-shadow: 3px 3px 5px var(--lcc-color--homePage-boxShadow);
+        line-height: 20px;
+
+        &:hover {
+          animation: raise 0.2s ease forwards;
+          box-shadow: 4px 4px 8px var(--lcc-color--homePage-boxShadow);
+        }
+
+        h3 {
+          font-size: 18px;
+        }
+
+        .address {
+          display: flex;
+          flex-direction: row;
+          gap: 8px;
+
+          .map-icon {
+            @include icon-size(24px);
+          }
+
+          .address-link {
+            &::after {
+              width: unset;
+            }
+
+            .external-link-icon {
+              @include icon-size(16px);
+
+              margin-bottom: 1px;
+            }
+          }
+        }
+
+        .secondary-text {
+          color: var(--lcc-color--homePage-secondaryText);
         }
       }
     }
 
-    &.schedule {
-      grid-area: schedule;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    &.articles {
-      grid-area: articles;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    &.photos {
+    &.photos-section {
       grid-area: photos;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
 
-    section {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-
-      h4 {
-        width: 100%;
-        text-align: left;
-        padding: 2px 2px 4px;
-        color: var(--lcc-color--homePage-sectionHeaderText);
-        border-bottom: 1px solid var(--lcc-color--general-dividerLine);
-      }
+    .section-heading {
+      width: 100%;
+      color: var(--lcc-color--homePage-headingText);
+      padding: 2px 0 4px;
+      border-bottom: 1px solid var(--lcc-color--general-dividerLine);
     }
+  }
+}
+
+@keyframes raise {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.015);
   }
 }

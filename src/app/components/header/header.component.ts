@@ -26,7 +26,7 @@ import { RangePipe } from '@app/pipes';
         <a
           class="club-name-link"
           routerLink="">
-          London Chess Club
+          <h1>London Chess Club</h1>
         </a>
       </section>
 

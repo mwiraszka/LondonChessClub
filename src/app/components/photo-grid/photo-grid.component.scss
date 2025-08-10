@@ -1,5 +1,9 @@
 @use '../../../styles/abstracts/mixins' as *;
 
+:host {
+  width: 100%;
+}
+
 .admin-controls-header {
   display: flex;
   justify-content: center;
@@ -24,6 +28,8 @@
 }
 
 .album-covers {
+  container: album-covers / inline-size;
+
   // 'Masonry' layout effect:
   -webkit-column-count: 2;
   -moz-column-count: 2;
@@ -33,21 +39,26 @@
   -moz-column-gap: 8px;
   column-gap: 8px;
 
-  @include respond-to('gt-sm') {
+  @container (min-width: 600px) {
     -webkit-column-gap: 16px;
     -moz-column-gap: 16px;
     column-gap: 16px;
   }
 
   .album-cover {
+    display: block;
+    width: 100%;
     background-color: var(--lcc-color--general-cardBackground);
     border: none;
     border-radius: var(--lcc-borderRadius--large);
     box-shadow: 3px 3px 5px var(--lcc-color--general-cardBoxShadow);
-    padding: 8px;
+    padding: 4px;
     margin: 4px 0;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
 
-    @include respond-to('gt-sm') {
+    @container (min-width: 600px) {
       padding: 16px;
       margin: 8px 0;
     }
@@ -90,7 +101,7 @@
           margin-bottom: 8px;
           line-height: 16px;
 
-          @include respond-to('gt-sm') {
+          @container (min-width: 600px) {
             font-size: 15px;
             line-height: 18px;
           }
@@ -100,7 +111,7 @@
           font-size: 11px;
           color: var(--lcc-color--photoGrid-photoCountText);
 
-          @include respond-to('gt-sm') {
+          @container (min-width: 600px) {
             font-size: 13px;
             line-height: 18px;
           }
@@ -109,19 +120,20 @@
     }
   }
 
-  @include respond-to('gt-sm') {
+  // Container-based responsive columns
+  @container (min-width: 600px) {
     -webkit-column-count: 3;
     -moz-column-count: 3;
     column-count: 3;
   }
 
-  @include respond-to('gt-md') {
+  @container (min-width: 900px) {
     -webkit-column-count: 4;
     -moz-column-count: 4;
     column-count: 4;
   }
 
-  @include respond-to('gt-lg') {
+  @container (min-width: 1200px) {
     -webkit-column-count: 5;
     -moz-column-count: 5;
     column-count: 5;
@@ -130,9 +142,9 @@
 
 @keyframes raise {
   0% {
-    scale: 1;
+    transform: scale(1);
   }
   100% {
-    scale: 1.02;
+    transform: scale(1.01);
   }
 }

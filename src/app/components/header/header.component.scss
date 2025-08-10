@@ -58,18 +58,20 @@ $app-header-font-size: 42px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--lcc-color--header-text);
-      white-space: nowrap;
-      font-family: 'Caveat', sans-serif;
-      font-size: calc(#{$app-header-font-size} - 6px);
 
-      @include respond-to('gt-sm') {
-        font-size: $app-header-font-size;
+      &:hover h1 {
+        color: var(--lcc-color--header-textOnHover);
       }
 
-      &:hover {
-        text-decoration: none;
-        color: var(--lcc-color--header-textOnHover);
+      h1 {
+        color: var(--lcc-color--header-text);
+        white-space: nowrap;
+        font-family: 'Caveat', sans-serif;
+        font-size: calc(#{$app-header-font-size} - 6px);
+
+        @include respond-to('gt-sm') {
+          font-size: $app-header-font-size;
+        }
       }
     }
   }

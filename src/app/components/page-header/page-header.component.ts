@@ -7,11 +7,11 @@ import { MatIconModule } from '@angular/material/icon';
     @if (icon) {
       <mat-icon>{{ icon }}</mat-icon>
     }
-    <h1
+    <h2
       class="page-title"
       [class.end-with-asterisk]="hasUnsavedChanges">
       {{ title }}
-    </h1>
+    </h2>
   `,
   styleUrl: './page-header.component.scss',
   imports: [MatIconModule],

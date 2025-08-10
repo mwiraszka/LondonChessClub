@@ -4,6 +4,8 @@
 body[data-theme='dark'] {
   --lcc-color--aboutPage-addressAndTimeText: #{clr(grayscale, white-90)};
   --lcc-color--aboutPage-boardChairText: #{clr(grayscale, gray-65)};
+  --lcc-color--aboutPage-cardBackground: #{clr(grayscale, black-20)};
+  --lcc-color--aboutPage-cardBoxShadow: #{clr(grayscale, black-10, 0.7)};
   --lcc-color--aboutPage-cellBorder: #{clr(grayscale, black-20, 0.2)};
   --lcc-color--aboutPage-cellBackground1: #{clr(grayscale, black-15)};
   --lcc-color--aboutPage-cellBackground2: #{clr(grayscale, black-20)};
@@ -160,9 +162,10 @@ body[data-theme='dark'] {
   --lcc-color--header-textOnHover: #{clr(grayscale, white-95)};
 
   --lcc-color--homePage-articleBackground: #{clr(grayscale, black-15)};
-  --lcc-color--homePage-sectionHeaderText: #{clr(grayscale, gray-75)};
-  --lcc-color--homePage-welcomeHeaderText: #{clr(grayscale, white-95)};
-  --lcc-color--homePage-welcomeSectionText: #{clr(grayscale, gray-65)};
+  --lcc-color--homePage-boxShadow: #{clr(grayscale, black-10, 0.7)};
+  --lcc-color--homePage-headingText: #{clr(grayscale, gray-75)};
+  --lcc-color--homePage-primaryText: #{clr(grayscale, white-90)};
+  --lcc-color--homePage-secondaryText: #{clr(grayscale, gray-65)};
 
   --lcc-color--imageExplorer-articleAppearancesText: #{clr(primary, base)};
   --lcc-color--imageExplorer-controlsHeaderBackground: #{clr(grayscale, gray-25)};

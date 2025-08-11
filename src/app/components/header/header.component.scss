@@ -94,40 +94,30 @@ $app-header-font-size: 42px;
         height: 55px;
         transform: rotate(-3deg);
         filter: opacity(0.65);
-        -webkit-filter: opacity(0.65);
-        -moz-filter: opacity(0.65);
       }
 
       &.pieces-2 {
         height: 42px;
         transform: rotate(1deg);
         filter: opacity(0.55);
-        -webkit-filter: opacity(0.55);
-        -moz-filter: opacity(0.55);
       }
 
       &.pieces-3 {
         height: 35px;
         transform: rotate(-2deg);
         filter: opacity(0.45);
-        -webkit-filter: opacity(0.45);
-        -moz-filter: opacity(0.45);
       }
 
       &.pieces-4 {
         height: 30px;
         transform: rotate(1.5deg);
         filter: opacity(0.4);
-        -webkit-filter: opacity(0.4);
-        -moz-filter: opacity(0.4);
       }
 
       &.pieces-5 {
         height: 27px;
         transform: rotate(-1deg);
         filter: opacity(0.3);
-        -webkit-filter: opacity(0.3);
-        -moz-filter: opacity(0.3);
       }
 
       @include respond-to('gt-xl') {

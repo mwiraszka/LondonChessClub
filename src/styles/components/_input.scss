@@ -35,10 +35,6 @@ input[type='radio'] {
   justify-self: flex-start;
   accent-color: var(--lcc-color--input-checkboxAndRadio);
 
-  -ms-transform: scale(1.5); /* IE */
-  -moz-transform: scale(1.5); /* FF */
-  -webkit-transform: scale(1.5); /* Safari and Chrome */
-  -o-transform: scale(1.5); /* Opera */
   transform: scale(1.5);
 
   &:hover {

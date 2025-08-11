@@ -27,22 +27,28 @@
   }
 }
 
-.album-covers {
+.grid-container {
   container: album-covers / inline-size;
+}
 
-  // 'Masonry' layout effect:
-  -webkit-column-count: 2;
-  -moz-column-count: 2;
+.album-covers {
   column-count: 2;
-
-  -webkit-column-gap: 8px;
-  -moz-column-gap: 8px;
   column-gap: 8px;
 
   @container (min-width: 600px) {
-    -webkit-column-gap: 16px;
-    -moz-column-gap: 16px;
-    column-gap: 16px;
+    column-count: 3;
+  }
+
+  @container (min-width: 800px) {
+    column-count: 4;
+  }
+
+  @container (min-width: 1000px) {
+    column-count: 5;
+  }
+
+  @container (min-width: 1200px) {
+    column-count: 6;
   }
 
   .album-cover {
@@ -50,32 +56,17 @@
     width: 100%;
     background-color: var(--lcc-color--general-cardBackground);
     border: none;
-    border-radius: var(--lcc-borderRadius--large);
-    box-shadow: 3px 3px 5px var(--lcc-color--general-cardBoxShadow);
-    padding: 4px;
-    margin: 4px 0;
-    break-inside: avoid;
-    -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
+    border-radius: var(--lcc-borderRadius--small);
+    box-shadow: 3px 3px 5px var(--lcc-color--photoGrid-boxShadow);
+    padding: 8px;
+    margin: 8px;
 
-    @container (min-width: 600px) {
-      padding: 16px;
-      margin: 8px 0;
-    }
+    break-inside: avoid;
+    page-break-inside: avoid;
 
     &:hover {
       animation: raise 0.2s ease forwards;
-      box-shadow: 4px 4px 8px var(--lcc-color--general-cardBoxShadow);
-
-      img {
-        opacity: 1 !important;
-      }
-
-      figcaption {
-        .album-name {
-          color: var(--lcc-color--photoGrid-albumNameTextHover);
-        }
-      }
+      box-shadow: 4px 4px 8px var(--lcc-color--photoGrid-boxShadow);
     }
 
     figure {
@@ -88,12 +79,12 @@
         height: auto;
         display: block;
         margin-bottom: 2px;
-        border-radius: var(--lcc-borderRadius--large);
-        opacity: 0.85;
+        border-radius: var(--lcc-borderRadius--small);
       }
 
       figcaption {
         text-align: left;
+        margin: 0 2px;
 
         .album-name {
           font-size: 13px;
@@ -119,25 +110,6 @@
       }
     }
   }
-
-  // Container-based responsive columns
-  @container (min-width: 600px) {
-    -webkit-column-count: 3;
-    -moz-column-count: 3;
-    column-count: 3;
-  }
-
-  @container (min-width: 900px) {
-    -webkit-column-count: 4;
-    -moz-column-count: 4;
-    column-count: 4;
-  }
-
-  @container (min-width: 1200px) {
-    -webkit-column-count: 5;
-    -moz-column-count: 5;
-    column-count: 5;
-  }
 }
 
 @keyframes raise {
@@ -145,6 +117,6 @@
     transform: scale(1);
   }
   100% {
-    transform: scale(1.01);
+    transform: scale(1.015);
   }
 }

@@ -44,21 +44,8 @@ $spinner-color2: var(--lcc-color--loadingSpinner2);
   width: 1em;
   height: 1em;
   margin-top: -0.5em;
-  -o-animation: spin 1200ms infinite linear;
-  -moz-animation: spin 1200ms infinite linear;
-  -ms-animation: spin 1200ms infinite linear;
-  -webkit-animation: spin 1200ms infinite linear;
   animation: spin 1200ms infinite linear;
   border-radius: 0.5em;
-  -webkit-box-shadow:
-    $spinner-color1 1.7em 0 0 0,
-    $spinner-color2 1.1em 1.1em 0 0,
-    $spinner-color1 0 1.7em 0 0,
-    $spinner-color2 -1.1em 1.1em 0 0,
-    $spinner-color1 -1.7em 0 0 0,
-    $spinner-color2 -1.1em -1.1em 0 0,
-    $spinner-color1 0 -1.7em 0 0,
-    $spinner-color2 1.1em -1.1em 0 0;
   box-shadow:
     $spinner-color1 1.7em 0 0 0,
     $spinner-color2 1.1em 1.1em 0 0,
@@ -72,17 +59,9 @@ $spinner-color2: var(--lcc-color--loadingSpinner2);
 
 @keyframes spin {
   0% {
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   100% {
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }

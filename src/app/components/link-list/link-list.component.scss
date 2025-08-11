@@ -14,14 +14,10 @@
 
   ul {
     columns: 1;
-    -webkit-columns: 1;
-    -moz-columns: 1;
 
     @include respond-to('gt-md') {
       &:not(.single-column) {
         columns: 2;
-        -webkit-columns: 2;
-        -moz-columns: 2;
       }
     }
 

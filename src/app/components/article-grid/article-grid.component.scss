@@ -1,11 +1,9 @@
 @use '../../../styles/abstracts/mixins' as *;
 
-$card-padding: 8px;
+$card-padding: 6px;
 
 // The width of a thumbnail image
 $max-image-width: 320px;
-
-$min-card-width: 215px;
 
 :host {
   display: flex;

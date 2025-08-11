@@ -38,12 +38,12 @@ lcc-link-list,
     height: auto;
     max-width: calc(#{$max-image-width} + 2 * #{$card-padding});
     padding: $card-padding;
-    background: var(--lcc-color--articleGrid-cardBackground);
+    background-color: var(--lcc-color--articleGrid-cardBackground);
     border-radius: var(--lcc-borderRadius--large);
 
     &:hover {
       cursor: pointer;
-      background: var(--lcc-color--articleGrid-cardBackgroundOnHover);
+      background-color: var(--lcc-color--articleGrid-cardBackgroundOnHover);
       transform: scale(1.01);
     }
 
@@ -55,7 +55,7 @@ lcc-link-list,
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--lcc-color--contentPlaceholder-background);
+      background-color: var(--lcc-color--contentPlaceholder-background);
     }
 
     img {

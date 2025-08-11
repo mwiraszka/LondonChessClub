@@ -7,7 +7,7 @@ $app-header-font-size: 42px;
   display: flex;
   justify-content: center;
   width: 100%;
-  background: var(--lcc-color--header-background);
+  background-color: var(--lcc-color--header-background);
 }
 
 .app-header-container {
@@ -50,7 +50,7 @@ $app-header-font-size: 42px;
 
       &:hover {
         cursor: pointer;
-        background: var(--lcc-color--header-brandingBackgroundOnHover);
+        background-color: var(--lcc-color--header-brandingBackgroundOnHover);
       }
     }
 

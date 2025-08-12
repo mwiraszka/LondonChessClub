@@ -1,29 +1,26 @@
-import { Store } from '@ngrx/store';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { camelCase } from 'lodash';
-import { take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
-import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { SafeModeNoticeComponent } from '@app/components/safe-mode-notice/safe-mode-notice.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import type {
   AdminControlsConfig,
   BasicDialogResult,
+  DataPaginationOptions,
   Dialog,
-  InternalLink,
   Member,
 } from '@app/models';
 import { CamelCasePipe, FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { MembersActions, MembersSelectors } from '@app/store/members';
-import { isSecondsInPast } from '@app/utils';
 
+@UntilDestroy()
 @Component({
   selector: 'lcc-members-table',
   templateUrl: './members-table.component.html',
@@ -34,23 +31,13 @@ import { isSecondsInPast } from '@app/utils';
     CommonModule,
     FormatDatePipe,
     KebabCasePipe,
-    LinkListComponent,
     MatIconModule,
     RouterLink,
     SafeModeNoticeComponent,
     TooltipDirective,
   ],
 })
-export class MembersTableComponent implements OnInit {
-  @Input({ required: true }) filteredMemberCount!: number;
-  @Input({ required: true }) isAdmin!: boolean;
-  @Input({ required: true }) isAscending!: boolean;
-  @Input({ required: true }) isSafeMode!: boolean;
-  @Input({ required: true }) members!: Member[];
-  @Input({ required: true }) sortedBy!: string;
-  @Input({ required: true }) startIndex!: number;
-  @Input({ required: true }) totalMemberCount!: number;
-
+export class MembersTableComponent {
   public readonly DEFAULT_TABLE_HEADERS = [
     'Name',
     'Rating',
@@ -75,32 +62,37 @@ export class MembersTableComponent implements OnInit {
     'Date Joined',
   ];
 
-  public readonly addMemberLink: InternalLink = {
-    internalPath: ['member', 'add'],
-    text: 'Add a member',
-    icon: 'add_circle_outline',
-  };
+  @Input({ required: true }) isAdmin!: boolean;
+  @Input({ required: true }) options!: DataPaginationOptions<Member>;
+  @Input({ required: true }) isSafeMode!: boolean;
+  @Input({ required: true }) members!: Member[];
 
-  constructor(
-    private readonly dialogService: DialogService,
-    private readonly store: Store,
-  ) {}
+  @Output() public requestDeleteMember = new EventEmitter<Member>();
+  @Output() public optionsChange = new EventEmitter<DataPaginationOptions<Member>>();
 
-  public ngOnInit(): void {
-    this.store
-      .select(MembersSelectors.selectLastFetch)
-      .pipe(take(1))
-      .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(MembersActions.fetchMembersRequested());
-        }
-      });
+  public get startIndex(): number {
+    return this.options.pageSize * (this.options.page - 1) + 1;
   }
 
+  constructor(private readonly dialogService: DialogService) {}
+
   public onSelectTableHeader(headerLabel: string): void {
-    // TODO: clean up
     const header = camelCase(headerLabel) as keyof Member;
-    this.store.dispatch(MembersActions.tableHeaderSelected({ header }));
+    const isSameHeader = this.options.sortBy === header;
+
+    let sortOrder: 'asc' | 'desc';
+
+    if (isSameHeader) {
+      sortOrder = this.options.sortOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+      sortOrder = ['rating', 'peakRating'].includes(header) ? 'desc' : 'asc';
+    }
+
+    this.optionsChange.emit({
+      ...this.options,
+      sortBy: header,
+      sortOrder,
+    });
   }
 
   public getAdminControlsConfig(member: Member): AdminControlsConfig {
@@ -133,7 +125,7 @@ export class MembersTableComponent implements OnInit {
     );
 
     if (result === 'confirm') {
-      this.store.dispatch(MembersActions.deleteMemberRequested({ member }));
+      this.requestDeleteMember.emit(member);
     }
   }
 }

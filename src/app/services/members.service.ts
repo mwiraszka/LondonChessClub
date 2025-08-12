@@ -1,17 +1,17 @@
-import { isEmpty } from 'lodash';
 import { Observable } from 'rxjs';
 
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import type {
   ApiResponse,
   ApiScope,
-  DataDisplayOptions,
+  DataPaginationOptions,
   DbCollection,
   Id,
   Member,
 } from '@app/models';
+import { setPaginationParams } from '@app/utils';
 
 import { environment } from '@env';
 
@@ -26,40 +26,13 @@ export class MembersService {
 
   public getMembers(
     scope: ApiScope,
-    options: DataDisplayOptions<Member>,
+    options: DataPaginationOptions<Member>,
   ): Observable<
-    ApiResponse<{ items: Member[]; filteredTotal: number; collectionTotal: number }>
+    ApiResponse<{ items: Member[]; filteredCount: number; totalCount: number }>
   > {
-    let params = new HttpParams();
-
-    if (options?.pageNum) {
-      params = params.set('page', options.pageNum.toString());
-    }
-
-    if (options?.pageSize) {
-      params = params.set('pageSize', options.pageSize.toString());
-    }
-
-    if (options?.sortedBy) {
-      params = params.set('sortBy', options.sortedBy);
-    }
-
-    if (options?.isAscending) {
-      params = params.set('sortOrder', options.isAscending ? 'asc' : 'desc');
-    }
-
-    if (!isEmpty(options?.searchQuery)) {
-      params = params.set('search', options.searchQuery.trim());
-    }
-
-    if (Object.keys(options?.filters)?.length) {
-      Object.entries(options.filters).forEach(([key, filter]) => {
-        params = params.set(`filter_${key}`, filter.value.toString());
-      });
-    }
-
+    const params = setPaginationParams(options);
     return this.http.get<
-      ApiResponse<{ items: Member[]; filteredTotal: number; collectionTotal: number }>
+      ApiResponse<{ items: Member[]; filteredCount: number; totalCount: number }>
     >(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`, { params });
   }
 

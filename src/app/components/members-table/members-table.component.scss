@@ -71,6 +71,9 @@ table {
 
         &.row-number {
           text-align: right;
+
+          // Enough space to fit 3-digit numbers
+          min-width: 58px !important;
         }
 
         &.first-name,

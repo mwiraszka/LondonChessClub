@@ -91,10 +91,10 @@
   --lcc-color--contentPlaceholder-foreground2: #{clr(grayscale, white-95, 0.3)};
   --lcc-color--contentPlaceholder-foreground3: #{clr(grayscale, white-95, 0.6)};
 
+  --lcc-color--dataToolbar-background: #{clr(primary, lightest, 0.4)};
   --lcc-color--dataToolbar-buttonBorder: #{clr(grayscale, gray-35)};
-  --lcc-color--dataToolbar-primaryText: #{clr(grayscale, black-10)};
-  --lcc-color--dataToolbar-secondaryText: #{clr(grayscale, gray-50)};
   --lcc-color--dataToolbar-selectedButtonBorder: #{clr(secondary, base)};
+  --lcc-color--dataToolbar-text: #{clr(grayscale, black-10)};
 
   --lcc-color--datePicker-buttonsBackground: #{clr(primary, base)};
   --lcc-color--datePicker-buttonsBackgroundOnHover: #{clr(primary, light)};
@@ -192,6 +192,7 @@
   --lcc-color--input-borderOnHover: #{clr(grayscale, gray-65)};
   --lcc-color--input-checkboxAndRadio: #{clr(primary, base)};
   --lcc-color--input-invalidBorder: #{clr(warning, lighter)};
+  --lcc-color--input-placeholderText: #{clr(grayscale, gray-35)};
   --lcc-color--input-text: #{clr(grayscale, black-5)};
 
   --lcc-color--lifetimePage-blockBackground: #{clr(grayscale, white-90)};

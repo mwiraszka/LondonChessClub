@@ -1,5 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject } from 'rxjs';
+import { isEqual } from 'lodash';
+import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { CommonModule, KeyValue } from '@angular/common';
@@ -7,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import { Entity, Filter, FiltersRecord, PageSize } from '@app/models';
+import { DataPaginationOptions, Entity, EntityType, Filter, PageSize } from '@app/models';
 
 @UntilDestroy()
 @Component({
@@ -16,68 +17,68 @@ import { Entity, Filter, FiltersRecord, PageSize } from '@app/models';
   styleUrls: ['./data-toolbar.component.scss'],
   imports: [CommonModule, MatIconModule, TooltipDirective],
 })
-export class DataToolbarComponent {
+export class DataToolbarComponent<T = EntityType> implements OnInit {
   public readonly PAGE_SIZES: PageSize[] = [10, 20, 50, 100];
 
-  @Input({ required: true }) public entity!: Entity;
-  @Input({ required: true }) public pageNum!: number;
-  @Input({ required: true }) public pageSize!: PageSize;
-  @Input({ required: true }) public searchQuery!: string;
-  @Input({ required: true }) public totalItems!: number;
+  private readonly searchQuerySubject = new Subject<DataPaginationOptions<T>>();
 
-  @Input() public filters?: FiltersRecord;
+  @Input({ required: true }) public entity!: Entity;
+  @Input({ required: true }) public filteredCount!: number;
+  @Input({ required: true }) public options!: DataPaginationOptions<T>;
+  @Input({ required: true }) public totalCount!: number;
+
   @Input() public searchPlaceholder: string = 'Search';
 
-  @Output() public filtersChange = new EventEmitter<FiltersRecord>();
-  @Output() public pageChange = new EventEmitter<number>();
-  @Output() public pageSizeChange = new EventEmitter<PageSize>();
-  @Output() public searchChange = new EventEmitter<string>();
+  @Output() public optionsChange = new EventEmitter<DataPaginationOptions<T>>();
 
   public isSearchFocused = false;
 
   public get lastPage(): number {
-    return Math.ceil(this.totalItems / this.pageSize) || 1;
+    return Math.ceil(this.totalCount / this.options.pageSize) || 1;
   }
 
-  public onFirstPage(): void {
-    this.onPageChange(1);
-  }
-
-  public onPreviousPage(): void {
-    this.onPageChange(this.pageNum - 1);
-  }
-
-  public onNextPage(): void {
-    this.onPageChange(this.pageNum + 1);
-  }
-
-  public onLastPage(): void {
-    this.onPageChange(this.lastPage);
-  }
-
-  public onPageChange(pageNum: number): void {
-    this.pageChange.emit(pageNum);
+  public ngOnInit(): void {
+    // Debounce to avoid emitting on every keystroke
+    this.searchQuerySubject
+      .pipe(untilDestroyed(this), debounceTime(300), distinctUntilChanged(isEqual))
+      .subscribe(options => this.optionsChange.emit(options));
   }
 
   public onPageSizeChange(pageSize: PageSize): void {
-    this.pageSizeChange.emit(pageSize);
+    this.optionsChange.emit({ ...this.options, pageSize, page: 1 });
+  }
+
+  public onFirstPage(): void {
+    this.optionsChange.emit({ ...this.options, page: 1 });
+  }
+
+  public onPreviousPage(): void {
+    this.optionsChange.emit({ ...this.options, page: this.options.page - 1 });
+  }
+
+  public onNextPage(): void {
+    this.optionsChange.emit({ ...this.options, page: this.options.page + 1 });
+  }
+
+  public onLastPage(): void {
+    this.optionsChange.emit({ ...this.options, page: this.lastPage });
   }
 
   public onSearchQueryChange(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    this.searchChange.emit(target.value);
+    const search = (event.target as HTMLInputElement).value;
+    this.searchQuerySubject.next({ ...this.options, search });
   }
 
   public onToggleFilter(filter: KeyValue<string, Filter>): void {
-    if (!this.filters) {
+    if (!this.options.filters) {
       return;
     }
 
     const filters = {
-      ...this.filters,
+      ...this.options.filters,
       [filter.key]: { ...filter.value, value: !filter.value.value },
     };
-    this.filtersChange.emit(filters);
+    this.optionsChange.emit({ ...this.options, filters });
   }
 
   public originalOrder = () => 0;

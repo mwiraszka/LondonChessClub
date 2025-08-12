@@ -96,10 +96,10 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
     }
 
     if (filteredGameCount === allGamesCount) {
-      return `Displaying all ${filteredGameCount} games`;
+      return `Showing all ${filteredGameCount} games`;
     }
 
-    return `Displaying ${filteredGameCount} / ${allGamesCount} ${filteredGameCount === 1 ? 'game' : 'games'} 😎`;
+    return `Showing ${filteredGameCount} / ${allGamesCount} ${filteredGameCount === 1 ? 'game' : 'games'} 😎`;
   }
 
   public get filteredGameCount(): number {

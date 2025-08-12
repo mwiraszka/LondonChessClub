@@ -11,12 +11,11 @@ export interface FiltersRecord {
 
 export type PageSize = 10 | 20 | 50 | 100;
 
-export interface DataDisplayOptions<T = EntityType> {
-  filters: Record<string, Filter>;
-  isAscending: boolean;
-  pageNum: number;
+export interface DataPaginationOptions<T = EntityType> {
+  page: number;
   pageSize: PageSize;
-  searchQuery: string;
-  sortedBy: keyof T;
-  filteredTotal: number;
+  sortBy: keyof T;
+  sortOrder: 'asc' | 'desc';
+  filters: Record<string, Filter>;
+  search: string;
 }

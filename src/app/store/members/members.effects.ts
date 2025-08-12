@@ -19,7 +19,10 @@ import { MembersActions, MembersSelectors } from '.';
 export class MembersEffects {
   fetchMembers$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(MembersActions.fetchMembersRequested),
+      ofType(
+        MembersActions.fetchMembersRequested,
+        MembersActions.paginationOptionsChanged,
+      ),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store.select(AuthSelectors.selectIsAdmin),
@@ -32,8 +35,8 @@ export class MembersEffects {
           map(response =>
             MembersActions.fetchMembersSucceeded({
               members: response.data.items,
-              filteredTotal: response.data.filteredTotal,
-              collectionTotal: response.data.collectionTotal,
+              filteredCount: response.data.filteredCount,
+              totalCount: response.data.totalCount,
             }),
           ),
           catchError(error =>
@@ -155,19 +158,6 @@ export class MembersEffects {
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),
-    );
-  });
-
-  fetchMembersOnNewOptions$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(
-        MembersActions.pageChanged,
-        MembersActions.pageSizeChanged,
-        MembersActions.searchQueryChanged,
-        MembersActions.filtersChanged,
-        MembersActions.tableHeaderSelected,
-      ),
-      map(() => MembersActions.fetchMembersRequested()),
     );
   });
 

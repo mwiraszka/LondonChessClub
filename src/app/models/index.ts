@@ -5,7 +5,7 @@ export type { Article, ArticleFormData, ArticleFormGroup } from './article.model
 export type { ChampionshipTableRowData } from './championship-data.model';
 export type { ClubDocument } from './club-document.model';
 export type {
-  DataDisplayOptions,
+  DataPaginationOptions,
   Filter,
   FiltersRecord,
   PageSize,

@@ -1,11 +1,22 @@
 :host {
   width: 100%;
   display: flex;
-  flex-flow: row wrap;
-  gap: 8px 32px;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 16px;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: var(--lcc-color--dataToolbar-background);
+  border-radius: var(--lcc-borderRadius--small);
+  box-shadow: 0 2px 4px 0 var(--lcc-color--table-boxShadow);
+}
+
+.data-toolbar-controls {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  gap: 8px 32px;
 }
 
 .paginator {
@@ -31,10 +42,7 @@
     gap: 4px;
     font-size: 14px;
     padding: 0 4px;
-
-    .page-counter {
-      color: var(--lcc-color--dataToolbar-secondaryText);
-    }
+    color: var(--lcc-color--dataToolbar-text);
 
     .page-size-buttons {
       display: flex;
@@ -44,10 +52,10 @@
       .page-size-button {
         padding: 4px;
         border-color: var(--lcc-color--dataToolbar-buttonBorder);
-        color: var(--lcc-color--dataToolbar-primaryText);
+        color: var(--lcc-color--dataToolbar-text);
 
         &.selected {
-          color: var(--lcc-color--dataToolbar-primaryText);
+          color: var(--lcc-color--dataToolbar-text);
           border-color: var(--lcc-color--dataToolbar-selectedButtonBorder);
         }
       }
@@ -58,7 +66,7 @@
 .search-input {
   min-width: 240px;
   max-width: 350px;
-  min-width: 240px;
+  align-self: center;
 }
 
 .filters {
@@ -77,6 +85,12 @@
     gap: 8px;
     font-size: 14px;
     white-space: nowrap;
-    color: var(--lcc-color--dataToolbar-primaryText);
+    color: var(--lcc-color--dataToolbar-text);
   }
+}
+
+.filter-counter {
+  font-size: 14px;
+  color: var(--lcc-color--dataToolbar-text);
+  text-align: center;
 }

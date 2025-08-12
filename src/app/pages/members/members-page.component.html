@@ -4,28 +4,25 @@
     icon="groups">
   </lcc-page-header>
 
+  @if (vm.isAdmin) {
+    <lcc-link-list [links]="[addMemberLink]"></lcc-link-list>
+  }
+
   <lcc-data-toolbar
     entity="members"
-    [filters]="vm.options.filters"
-    [pageNum]="vm.options.pageNum"
-    [pageSize]="vm.options.pageSize"
-    [searchPlaceholder]="searchPlaceholder"
-    [searchQuery]="vm.options.searchQuery"
-    [totalItems]="vm.options.filteredTotal"
-    (filtersChange)="onFiltersChange($event)"
-    (pageChange)="onPageChange($event)"
-    (pageSizeChange)="onPageSizeChange($event)"
-    (searchChange)="onSearchChange($event)">
+    [filteredCount]="vm.filteredCount"
+    [options]="vm.options"
+    searchPlaceholder="Search by name, city or username"
+    [totalCount]="vm.totalCount"
+    (optionsChange)="onOptionsChange($event)">
   </lcc-data-toolbar>
 
   <lcc-members-table
-    [filteredMemberCount]="vm.options.filteredTotal"
     [isAdmin]="vm.isAdmin"
-    [isAscending]="vm.options.isAscending"
     [isSafeMode]="vm.isSafeMode"
     [members]="vm.members"
-    [sortedBy]="vm.options.sortedBy"
-    [startIndex]="vm.options.pageSize * (vm.options.pageNum - 1) + 1"
-    [totalMemberCount]="vm.collectionTotal">
+    [options]="vm.options"
+    (optionsChange)="onOptionsChange($event)"
+    (requestDeleteMember)="onRequestDeleteMember($event)">
   </lcc-members-table>
 }

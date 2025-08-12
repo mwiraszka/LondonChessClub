@@ -91,10 +91,10 @@ body[data-theme='dark'] {
   --lcc-color--contentPlaceholder-foreground2: #{clr(grayscale, gray-65, 0.3)};
   --lcc-color--contentPlaceholder-foreground3: #{clr(grayscale, gray-65, 0.6)};
 
+  --lcc-color--dataToolbar-background: #{clr(primary, light, 0.4)};
   --lcc-color--dataToolbar-buttonBorder: #{clr(grayscale, gray-75)};
-  --lcc-color--dataToolbar-primaryText: #{clr(grayscale, white-90)};
-  --lcc-color--dataToolbar-secondaryText: #{clr(grayscale, gray-65)};
   --lcc-color--dataToolbar-selectedButtonBorder: #{clr(secondary, base)};
+  --lcc-color--dataToolbar-text: #{clr(grayscale, white-90)};
 
   --lcc-color--datePicker-buttonsBackground: #{clr(primary, base, 0.4)};
   --lcc-color--datePicker-buttonsBackgroundOnHover: #{clr(primary, light, 0.4)};
@@ -192,6 +192,7 @@ body[data-theme='dark'] {
   --lcc-color--input-borderOnHover: #{clr(grayscale, gray-50)};
   --lcc-color--input-checkboxAndRadio: #{clr(primary, lighter)};
   --lcc-color--input-invalidBorder: #{clr(warning, lighter)};
+  --lcc-color--input-placeholderText: #{clr(grayscale, gray-65)};
   --lcc-color--input-text: #{clr(grayscale, white-95)};
 
   --lcc-color--lifetimePage-blockBackground: #{clr(grayscale, black-20)};

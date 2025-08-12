@@ -14,6 +14,18 @@ export const selectLastFetch = createSelector(
   state => state.lastFetch,
 );
 
+export const selectOptions = createSelector(selectMembersState, state => state.options);
+
+export const selectFilteredCount = createSelector(
+  selectMembersState,
+  state => state.filteredCount,
+);
+
+export const selectTotalCount = createSelector(
+  selectMembersState,
+  state => state.totalCount,
+);
+
 const { selectAll: selectAllMemberEntities } =
   membersAdapter.getSelectors(selectMembersState);
 
@@ -58,10 +70,3 @@ export const selectHasUnsavedChanges = (id: Id | null) =>
       );
     },
   );
-
-export const selectOptions = createSelector(selectMembersState, state => state.options);
-
-export const selectCollectionTotal = createSelector(
-  selectMembersState,
-  state => state.collectionTotal,
-);

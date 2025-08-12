@@ -1,7 +1,3 @@
-@if (isAdmin) {
-  <lcc-link-list [links]="[addMemberLink]"></lcc-link-list>
-}
-
 <div class="lcc-table-wrapper">
   @if (members.length) {
     <table
@@ -22,9 +18,9 @@
               (click)="onSelectTableHeader(header)">
               <span>{{ header }}</span>
               <div class="sort-icon-container">
-                @if (sortedBy === (header | camelCase)) {
+                @if (options.sortBy === (header | camelCase)) {
                   <mat-icon class="sort-icon">
-                    {{ isAscending ? 'arrow_downward' : 'arrow_upward' }}
+                    {{ options.sortOrder === 'desc' ? 'arrow_downward' : 'arrow_upward' }}
                   </mat-icon>
                 }
               </div>
@@ -94,14 +90,6 @@
           </tr>
         }
       </tbody>
-
-      <tfoot>
-        <tr>
-          <td colspan="100%">
-            Showing {{ filteredMemberCount }} / {{ totalMemberCount }} members
-          </td>
-        </tr>
-      </tfoot>
     </table>
   }
 </div>

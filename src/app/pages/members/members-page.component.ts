@@ -86,8 +86,9 @@ export class MembersPageComponent implements OnInit {
     );
   }
 
-  public onOptionsChange(options: DataPaginationOptions<Member>): void {
-    this.store.dispatch(MembersActions.paginationOptionsChanged({ options }));
+  public onOptionsChange(options: DataPaginationOptions<Member>, fetch = true): void {
+    console.log(':: fetch', fetch, options);
+    this.store.dispatch(MembersActions.paginationOptionsChanged({ options, fetch }));
   }
 
   public onRequestDeleteMember(member: Member): void {

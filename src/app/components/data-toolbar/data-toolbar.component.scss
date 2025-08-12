@@ -17,75 +17,75 @@
   justify-content: center;
   flex-flow: row wrap;
   gap: 8px 32px;
-}
 
-.paginator {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-
-  .page-navigation-button {
+  .paginator {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 2px;
-  }
+    gap: 8px;
 
-  .page-control-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 4px;
-    font-size: 14px;
-    padding: 0 4px;
-    color: var(--lcc-color--dataToolbar-text);
-
-    .page-size-buttons {
+    .page-navigation-button {
       display: flex;
-      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 2px;
+    }
+
+    .page-control-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       gap: 4px;
+      font-size: 14px;
+      padding: 0 4px;
+      color: var(--lcc-color--dataToolbar-text);
 
-      .page-size-button {
-        padding: 4px;
-        border-color: var(--lcc-color--dataToolbar-buttonBorder);
-        color: var(--lcc-color--dataToolbar-text);
+      .page-size-buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 4px;
 
-        &.selected {
+        .page-size-button {
+          padding: 4px;
+          border-color: var(--lcc-color--dataToolbar-buttonBorder);
           color: var(--lcc-color--dataToolbar-text);
-          border-color: var(--lcc-color--dataToolbar-selectedButtonBorder);
+
+          &.selected {
+            color: var(--lcc-color--dataToolbar-text);
+            border-color: var(--lcc-color--dataToolbar-selectedButtonBorder);
+          }
         }
       }
     }
   }
-}
 
-.search-input {
-  min-width: 240px;
-  max-width: 350px;
-  align-self: center;
-}
+  .search-input {
+    min-width: 240px;
+    max-width: 350px;
+    align-self: center;
+  }
 
-.filters {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-
-  .filter {
-    list-style: none;
+  .filters {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 8px;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    font-size: 14px;
-    white-space: nowrap;
-    color: var(--lcc-color--dataToolbar-text);
+
+    .filter {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      white-space: nowrap;
+      color: var(--lcc-color--dataToolbar-text);
+    }
   }
 }
 

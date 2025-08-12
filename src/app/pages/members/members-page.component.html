@@ -14,7 +14,8 @@
     [options]="vm.options"
     searchPlaceholder="Search by name, city or username"
     [totalCount]="vm.totalCount"
-    (optionsChange)="onOptionsChange($event)">
+    (optionsChange)="onOptionsChange($event)"
+    (optionsChangeNoFetch)="onOptionsChange($event, false)">
   </lcc-data-toolbar>
 
   <lcc-members-table

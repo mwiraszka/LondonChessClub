@@ -30,7 +30,12 @@
       </thead>
 
       <tbody>
-        @for (member of members; track member.id; let i = $index; let last = $last) {
+        @for (
+          member of members.slice(0, options.pageSize);
+          track member.id;
+          let i = $index;
+          let last = $last
+        ) {
           <tr
             [adminControls]="isAdmin ? getAdminControlsConfig(member) : null"
             [ngClass]="{ 'last-row': last }"
@@ -69,19 +74,15 @@
             <td class="rating">{{ member.rating }}</td>
             <td class="peak-rating">{{ member.peakRating }}</td>
             <td class="city lcc-truncate">{{ member.city }}</td>
-            <td class="chess-com-username lcc-truncate">
-              {{ member?.chessComUsername }}
-            </td>
-            <td class="lichess-username lcc-truncate">
-              {{ member?.lichessUsername }}
-            </td>
+            <td class="chess-com-username lcc-truncate">{{ member.chessComUsername }}</td>
+            <td class="lichess-username lcc-truncate">{{ member.lichessUsername }}</td>
 
             @if (isAdmin && !isSafeMode) {
-              <td class="last-updated">
+              <td class="last-updated lcc-truncate">
                 {{ member.modificationInfo.dateLastEdited | formatDate: 'short no-time' }}
               </td>
               <td class="born">{{ member.yearOfBirth }}</td>
-              <td class="email">{{ member.email }}</td>
+              <td class="email lcc-truncate">{{ member.email }}</td>
               <td class="phone-number">{{ member.phoneNumber }}</td>
               <td class="date-joined">
                 {{ member.dateJoined | formatDate: 'short no-time' }}

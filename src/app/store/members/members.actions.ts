@@ -71,7 +71,7 @@ export const deleteMemberFailed = createAction(
 
 export const paginationOptionsChanged = createAction(
   '[Members] Pagination options changed',
-  props<{ options: DataPaginationOptions<Member> }>(),
+  props<{ options: DataPaginationOptions<Member>; fetch: boolean }>(),
 );
 
 export const cancelSelected = createAction('[Members] Cancel selected');

@@ -30,11 +30,12 @@ export class DataToolbarComponent<T = EntityType> implements OnInit {
   @Input() public searchPlaceholder: string = 'Search';
 
   @Output() public optionsChange = new EventEmitter<DataPaginationOptions<T>>();
+  @Output() public optionsChangeNoFetch = new EventEmitter<DataPaginationOptions<T>>();
 
   public isSearchFocused = false;
 
   public get lastPage(): number {
-    return Math.ceil(this.totalCount / this.options.pageSize) || 1;
+    return Math.ceil(this.filteredCount / this.options.pageSize) || 1;
   }
 
   public ngOnInit(): void {
@@ -45,6 +46,12 @@ export class DataToolbarComponent<T = EntityType> implements OnInit {
   }
 
   public onPageSizeChange(pageSize: PageSize): void {
+    // Prevent unnecessary fetch when all displayed members are guaranteed to already have been loaded
+    if (this.options.page === 1 && pageSize < this.options.pageSize) {
+      this.optionsChangeNoFetch.emit({ ...this.options, pageSize });
+      return;
+    }
+
     this.optionsChange.emit({ ...this.options, pageSize, page: 1 });
   }
 
@@ -66,7 +73,7 @@ export class DataToolbarComponent<T = EntityType> implements OnInit {
 
   public onSearchQueryChange(event: Event): void {
     const search = (event.target as HTMLInputElement).value;
-    this.searchQuerySubject.next({ ...this.options, search });
+    this.searchQuerySubject.next({ ...this.options, search, page: 1 });
   }
 
   public onToggleFilter(filter: KeyValue<string, Filter>): void {
@@ -78,7 +85,7 @@ export class DataToolbarComponent<T = EntityType> implements OnInit {
       ...this.options.filters,
       [filter.key]: { ...filter.value, value: !filter.value.value },
     };
-    this.optionsChange.emit({ ...this.options, filters });
+    this.optionsChange.emit({ ...this.options, filters, page: 1 });
   }
 
   public originalOrder = () => 0;

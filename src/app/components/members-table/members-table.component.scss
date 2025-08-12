@@ -34,7 +34,6 @@ table {
 
         mat-icon {
           @include icon-size(16px);
-
           height: 100%;
         }
       }
@@ -70,17 +69,42 @@ table {
         }
 
         &.row-number {
-          text-align: right;
-
           // Enough space to fit 3-digit numbers
-          min-width: 58px !important;
+          min-width: 58px;
+          max-width: 58px;
+          text-align: right;
+        }
+
+        &.name {
+          min-width: 220px;
+          max-width: 220px;
+        }
+
+        &.first-name,
+        &.last-name {
+          min-width: 150px;
+          max-width: 150px;
+        }
+
+        &.city {
+          min-width: 130px;
+          max-width: 130px;
+        }
+
+        &.email {
+          min-width: 250px;
+          max-width: 250px;
+        }
+
+        &.date-joined,
+        &.last-updated {
+          min-width: 160px;
+          max-width: 160px;
+          text-align: right;
         }
 
         &.first-name,
         &.name {
-          min-width: 200px;
-          max-width: 250px;
-
           .city-champion-link {
             display: inline-block;
 
@@ -90,7 +114,8 @@ table {
               color: var(--lcc-color--membersTable-cityChampionIcon);
               vertical-align: middle;
               display: inline-block;
-              transform: translateY(-2px); // Fine-tune vertical alignment
+              // Fine-tune vertical alignment
+              transform: translateY(-2px);
               transition: color 1s ease;
             }
 
@@ -100,43 +125,6 @@ table {
               }
             }
           }
-        }
-
-        &.last-name {
-          min-width: 150px;
-          max-width: 180px;
-
-          &.lcc-truncate {
-            display: table-cell;
-            text-overflow: ellipsis;
-          }
-        }
-
-        &.city {
-          min-width: 150px;
-          max-width: 200px;
-        }
-
-        &.chess-com-username {
-          max-width: 200px;
-        }
-
-        &.lichess-username {
-          max-width: 200px;
-        }
-
-        &.last-updated {
-          text-align: right;
-          min-width: 150px;
-        }
-
-        &.email {
-          min-width: 250px;
-        }
-
-        &.date-joined {
-          text-align: right;
-          min-width: 150px;
         }
       }
     }

@@ -91,6 +91,7 @@ export class MembersTableComponent {
     this.optionsChange.emit({
       ...this.options,
       sortBy: header,
+      page: 1,
       sortOrder,
     });
   }

@@ -1,11 +1,18 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Filter, Id, LccError, Member, MemberFormData } from '@app/models';
+import type {
+  FiltersRecord,
+  Id,
+  LccError,
+  Member,
+  MemberFormData,
+  PageSize,
+} from '@app/models';
 
 export const fetchMembersRequested = createAction('[Members] Fetch members requested');
 export const fetchMembersSucceeded = createAction(
   '[Members] Fetch members succeeded',
-  props<{ members: Member[]; totalCount: number; totalMemberCount: number }>(),
+  props<{ members: Member[]; filteredTotal: number; collectionTotal: number }>(),
 );
 export const fetchMembersFailed = createAction(
   '[Members] Fetch members failed',
@@ -41,7 +48,7 @@ export const pageChanged = createAction(
 );
 export const pageSizeChanged = createAction(
   '[Members] Page size changed',
-  props<{ pageSize: number }>(),
+  props<{ pageSize: PageSize }>(),
 );
 export const searchQueryChanged = createAction(
   '[Members] Search query changed',
@@ -49,7 +56,7 @@ export const searchQueryChanged = createAction(
 );
 export const filtersChanged = createAction(
   '[Members] Filters changed',
-  props<{ filters: Filter[] }>(),
+  props<{ filters: FiltersRecord }>(),
 );
 
 export const addMemberRequested = createAction('[Members] Add member requested');

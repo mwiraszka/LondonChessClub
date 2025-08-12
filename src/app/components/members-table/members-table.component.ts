@@ -42,11 +42,13 @@ import { isSecondsInPast } from '@app/utils';
   ],
 })
 export class MembersTableComponent implements OnInit {
-  @Input({ required: true }) filteredMembers!: Member[];
+  @Input({ required: true }) filteredMemberCount!: number;
   @Input({ required: true }) isAdmin!: boolean;
   @Input({ required: true }) isAscending!: boolean;
   @Input({ required: true }) isSafeMode!: boolean;
+  @Input({ required: true }) members!: Member[];
   @Input({ required: true }) sortedBy!: string;
+  @Input({ required: true }) startIndex!: number;
   @Input({ required: true }) totalMemberCount!: number;
 
   public readonly DEFAULT_TABLE_HEADERS = [

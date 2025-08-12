@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 import type {
   ApiResponse,
   ApiScope,
-  CollectionDisplayOptions,
+  DataDisplayOptions,
   DbCollection,
   Id,
   Member,
@@ -26,9 +26,9 @@ export class MembersService {
 
   public getMembers(
     scope: ApiScope,
-    options: CollectionDisplayOptions<Member>,
+    options: DataDisplayOptions<Member>,
   ): Observable<
-    ApiResponse<{ items: Member[]; total: number; totalMemberCount: number }>
+    ApiResponse<{ items: Member[]; filteredTotal: number; collectionTotal: number }>
   > {
     let params = new HttpParams();
 
@@ -52,17 +52,14 @@ export class MembersService {
       params = params.set('search', options.searchQuery.trim());
     }
 
-    if (options?.filters && options.filters.length > 0) {
-      options.filters.forEach(filter => {
-        if (filter.value) {
-          // Only add filters that are enabled (value = true)
-          params = params.set(`filter_${filter.key}`, filter.value.toString());
-        }
+    if (Object.keys(options?.filters)?.length) {
+      Object.entries(options.filters).forEach(([key, filter]) => {
+        params = params.set(`filter_${key}`, filter.value.toString());
       });
     }
 
     return this.http.get<
-      ApiResponse<{ items: Member[]; total: number; totalMemberCount: number }>
+      ApiResponse<{ items: Member[]; filteredTotal: number; collectionTotal: number }>
     >(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`, { params });
   }
 

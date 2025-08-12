@@ -35,7 +35,7 @@ import { isTouchDevice } from '@app/utils';
   ],
 })
 export class AdminControlsComponent implements OnInit, OnDestroy {
-  @Output() destroyed = new EventEmitter<void>();
+  @Output() public destroyed = new EventEmitter<void>();
 
   public isTouchDevice = isTouchDevice();
   public showDeleteButton!: boolean;

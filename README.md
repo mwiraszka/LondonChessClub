@@ -34,9 +34,8 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <details>
 <summary>v5.6.0 - August TBD, 2025</summary>
 
-- 🚀 Create reusable Pagination, Filters, and Search components to only fetch subsets of the given collection
-- 🚀 Configure pagination for Members Table
-- 🚀 Minor style and layout tweaks to articles, photos, and tables
+- 🚀 Create a reusable Data Toolbar component for pagination, filtering, and search controls on any given collection, and integrate with the Members Table
+- 🚀 Minor style and layout tweaks to Article Grid, Photo Grid, and all tables
 - 🔧 Change web application license from MIT to GPL-3.0, ensuring the project remains free and open-source, removing the risk of anyone making it proprietary/closed-source in the future and changing the license to something more restrictive
 - 🔧 Remove no longer needed `-webkit-` and `-moz-` vendor prefixes, and use PostCSS Autoprefixer package instead
 

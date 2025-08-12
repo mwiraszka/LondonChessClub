@@ -61,12 +61,7 @@ export const selectHasUnsavedChanges = (id: Id | null) =>
 
 export const selectOptions = createSelector(selectMembersState, state => state.options);
 
-export const selectTotalMemberCount = createSelector(
+export const selectCollectionTotal = createSelector(
   selectMembersState,
-  state => state.totalMemberCount,
-);
-
-export const selectFilteredMembers = createSelector(
-  selectAllMembers,
-  allMembers => allMembers,
+  state => state.collectionTotal,
 );

@@ -6,12 +6,10 @@ import { map } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
-import { FiltersComponent } from '@app/components/filters/filters.component';
+import { DataToolbarComponent } from '@app/components/data-toolbar/data-toolbar.component';
 import { MembersTableComponent } from '@app/components/members-table/members-table.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import { PaginatorComponent } from '@app/components/paginator/paginator.component';
-import { SearchComponent } from '@app/components/search/search.component';
-import { CollectionDisplayOptions, Filter, Member } from '@app/models';
+import { DataDisplayOptions, FiltersRecord, Member, PageSize } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
@@ -21,24 +19,23 @@ import { MembersActions, MembersSelectors } from '@app/store/members';
 @Component({
   selector: 'lcc-members-page',
   templateUrl: './members-page.component.html',
+  styleUrl: './members-page.component.scss',
   imports: [
     CommonModule,
-    FiltersComponent,
+    DataToolbarComponent,
     MembersTableComponent,
     PageHeaderComponent,
-    PaginatorComponent,
-    SearchComponent,
   ],
 })
 export class MembersPageComponent implements OnInit {
-  public searchPlaceholder = 'Search name, city, username, etc.';
+  public searchPlaceholder = 'Search name, city, etc.';
 
   public viewModel$?: Observable<{
-    filteredMembers: Member[];
     isAdmin: boolean;
     isSafeMode: boolean;
-    options: CollectionDisplayOptions<Member>;
-    totalMemberCount: number;
+    members: Member[];
+    options: DataDisplayOptions<Member>;
+    collectionTotal: number;
   }>;
 
   constructor(
@@ -55,24 +52,24 @@ export class MembersPageComponent implements OnInit {
     this.store.dispatch(MembersActions.fetchMembersRequested());
 
     this.viewModel$ = combineLatest([
-      this.store.select(MembersSelectors.selectFilteredMembers),
+      this.store.select(MembersSelectors.selectAllMembers),
       this.store.select(AuthSelectors.selectIsAdmin),
       this.store.select(AppSelectors.selectIsSafeMode),
       this.store.select(MembersSelectors.selectOptions),
-      this.store.select(MembersSelectors.selectTotalMemberCount),
+      this.store.select(MembersSelectors.selectCollectionTotal),
     ]).pipe(
       untilDestroyed(this),
-      map(([filteredMembers, isAdmin, isSafeMode, options, totalMemberCount]) => ({
-        filteredMembers,
+      map(([members, isAdmin, isSafeMode, options, collectionTotal]) => ({
         isAdmin,
         isSafeMode,
+        members,
         options,
-        totalMemberCount,
+        collectionTotal,
       })),
     );
   }
 
-  public onFiltersChange(filters: Filter[]): void {
+  public onFiltersChange(filters: FiltersRecord): void {
     this.store.dispatch(MembersActions.filtersChanged({ filters }));
   }
 
@@ -80,7 +77,7 @@ export class MembersPageComponent implements OnInit {
     this.store.dispatch(MembersActions.pageChanged({ pageNum }));
   }
 
-  public onPageSizeChange(pageSize: number): void {
+  public onPageSizeChange(pageSize: PageSize): void {
     this.store.dispatch(MembersActions.pageSizeChanged({ pageSize }));
   }
 

@@ -1,4 +1,4 @@
-import { KeyValuePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
@@ -10,7 +10,7 @@ import { MetaAndTitleService } from '@app/services';
   selector: 'lcc-lifetime-page',
   templateUrl: './lifetime-page.component.html',
   styleUrl: './lifetime-page.component.scss',
-  imports: [ImagePreloadDirective, KebabCasePipe, KeyValuePipe, PageHeaderComponent],
+  imports: [CommonModule, ImagePreloadDirective, KebabCasePipe, PageHeaderComponent],
 })
 export class LifetimePageComponent implements OnInit {
   public readonly IMAGE_PATH = 'assets/lifetime-achievement-awards/';
@@ -29,7 +29,5 @@ export class LifetimePageComponent implements OnInit {
     );
   }
 
-  public originalOrder = (): number => {
-    return 0;
-  };
+  public originalOrder = () => 0;
 }

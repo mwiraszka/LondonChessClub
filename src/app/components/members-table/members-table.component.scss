@@ -25,7 +25,7 @@ table {
   }
 
   thead {
-    th {
+    .sortable-header {
       .sort-icon-container {
         display: inline-flex;
         height: 14px;
@@ -33,7 +33,9 @@ table {
         margin-left: 4px;
 
         mat-icon {
-          @include icon-size(14px);
+          @include icon-size(16px);
+
+          height: 100%;
         }
       }
 
@@ -62,6 +64,11 @@ table {
       td {
         white-space: nowrap;
 
+        &.lcc-truncate {
+          display: table-cell;
+          text-overflow: ellipsis;
+        }
+
         &.row-number {
           text-align: right;
         }
@@ -70,17 +77,6 @@ table {
         &.name {
           min-width: 200px;
           max-width: 250px;
-
-          // More room with smaller font size
-          @include respond-to('lt-sm') {
-            min-width: 120px;
-            max-width: 140px;
-          }
-
-          &.lcc-truncate {
-            display: table-cell;
-            text-overflow: ellipsis;
-          }
 
           .city-champion-link {
             display: inline-block;
@@ -106,12 +102,6 @@ table {
         &.last-name {
           min-width: 150px;
           max-width: 180px;
-
-          // More room with smaller font size
-          @include respond-to('lt-sm') {
-            min-width: 120px;
-            max-width: 140px;
-          }
 
           &.lcc-truncate {
             display: table-cell;
@@ -145,28 +135,6 @@ table {
           text-align: right;
           min-width: 150px;
         }
-      }
-    }
-  }
-
-  .peak-rating,
-  .city,
-  .chess-com-username,
-  .lichess-username,
-  .last-updated,
-  .born,
-  .email,
-  .phone-number,
-  .date-joined {
-    display: none;
-
-    @include respond-to('gt-sm') {
-      display: table-cell;
-
-      // Override truncation strategy for table
-      &.lcc-truncate {
-        display: table-cell;
-        text-overflow: ellipsis;
       }
     }
   }

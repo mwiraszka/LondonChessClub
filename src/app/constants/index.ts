@@ -2,21 +2,10 @@ import moment from 'moment-timezone';
 
 import {
   ArticleFormData,
-  CollectionDisplayOptions,
   EventFormData,
   ImageFormData,
   MemberFormData,
 } from '@app/models';
-
-export const INITIAL_COLLECTION_DISPLAY_OPTIONS: CollectionDisplayOptions = {
-  filters: [],
-  isAscending: true,
-  pageNum: 1,
-  pageSize: 10,
-  searchQuery: '',
-  sortedBy: 'modificationInfo',
-  totalItems: 0,
-};
 
 export const ARTICLE_FORM_DATA_PROPERTIES = ['title', 'body', 'bannerImageId'] as const;
 

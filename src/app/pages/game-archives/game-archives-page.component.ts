@@ -8,7 +8,7 @@ import {
   CdkVirtualForOf,
   CdkVirtualScrollViewport,
 } from '@angular/cdk/scrolling';
-import { CommonModule, KeyValuePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -55,7 +55,6 @@ import { YEARS } from './years';
     CommonModule,
     FormErrorIconComponent,
     ImagePreloadDirective,
-    KeyValuePipe,
     PageHeaderComponent,
     PgnViewerComponent,
     ReactiveFormsModule,
@@ -282,9 +281,7 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  public originalOrder = (): number => {
-    return 0;
-  };
+  public originalOrder = () => 0;
 
   private initForm(): void {
     this.form = this.formBuilder.group({

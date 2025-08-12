@@ -56,7 +56,7 @@ import type { BasicDialogResult, Dialog, DialogOutput } from '@app/models';
 export class BasicDialogComponent implements DialogOutput<BasicDialogResult> {
   @Input({ required: true }) dialog!: Dialog;
 
-  @Output() dialogResult = new EventEmitter<BasicDialogResult | 'close'>();
+  @Output() public dialogResult = new EventEmitter<BasicDialogResult | 'close'>();
 
   private enterKeyListener!: () => void;
   private readonly renderer!: Renderer2;

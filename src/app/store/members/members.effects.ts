@@ -32,8 +32,8 @@ export class MembersEffects {
           map(response =>
             MembersActions.fetchMembersSucceeded({
               members: response.data.items,
-              totalCount: response.data.total,
-              totalMemberCount: response.data.totalMemberCount,
+              filteredTotal: response.data.filteredTotal,
+              collectionTotal: response.data.collectionTotal,
             }),
           ),
           catchError(error =>

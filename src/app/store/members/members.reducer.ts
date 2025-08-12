@@ -2,17 +2,8 @@ import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
-import {
-  INITIAL_COLLECTION_DISPLAY_OPTIONS,
-  INITIAL_MEMBER_FORM_DATA,
-  MEMBER_FORM_DATA_PROPERTIES,
-} from '@app/constants';
-import type {
-  CollectionDisplayOptions,
-  IsoDate,
-  Member,
-  MemberFormData,
-} from '@app/models';
+import { INITIAL_MEMBER_FORM_DATA, MEMBER_FORM_DATA_PROPERTIES } from '@app/constants';
+import type { DataDisplayOptions, IsoDate, Member, MemberFormData } from '@app/models';
 
 import * as MembersActions from './members.actions';
 
@@ -20,8 +11,8 @@ export interface MembersState
   extends EntityState<{ member: Member; formData: MemberFormData }> {
   lastFetch: IsoDate | null;
   newMemberFormData: MemberFormData;
-  options: CollectionDisplayOptions<Member>;
-  totalMemberCount: number;
+  options: DataDisplayOptions<Member>;
+  collectionTotal: number;
 }
 
 export const membersAdapter = createEntityAdapter<{
@@ -34,8 +25,21 @@ export const membersAdapter = createEntityAdapter<{
 export const initialState: MembersState = membersAdapter.getInitialState({
   lastFetch: null,
   newMemberFormData: INITIAL_MEMBER_FORM_DATA,
-  options: INITIAL_COLLECTION_DISPLAY_OPTIONS,
-  totalMemberCount: 0,
+  options: {
+    pageNum: 1,
+    pageSize: 20,
+    sortedBy: 'rating',
+    isAscending: false,
+    searchQuery: '',
+    filters: {
+      isActive: {
+        label: 'Show inactive members',
+        value: false,
+      },
+    },
+    filteredTotal: 0,
+  },
+  collectionTotal: 0,
 });
 
 export const membersReducer = createReducer(
@@ -43,20 +47,20 @@ export const membersReducer = createReducer(
 
   on(
     MembersActions.fetchMembersSucceeded,
-    (state, { members, totalCount, totalMemberCount }): MembersState =>
+    (state, { members, filteredTotal, collectionTotal }): MembersState =>
       membersAdapter.setAll(
         members.map(member => ({
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
         })),
-        { 
-          ...state, 
+        {
+          ...state,
           lastFetch: new Date().toISOString(),
           options: {
             ...state.options,
-            totalItems: totalCount,
+            filteredTotal: filteredTotal,
           },
-          totalMemberCount,
+          collectionTotal,
         },
       ),
   ),

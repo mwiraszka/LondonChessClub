@@ -21,7 +21,6 @@ textarea {
   &:focus {
     outline: none;
     border: 1px solid var(--lcc-color--input-borderOnHover);
-    box-shadow: 0 0 4px 1px var(--lcc-color--input-boxShadowOnHover);
   }
 
   &::placeholder {

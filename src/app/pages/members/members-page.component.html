@@ -4,32 +4,28 @@
     icon="groups">
   </lcc-page-header>
 
-  <lcc-paginator
+  <lcc-data-toolbar
     entity="members"
+    [filters]="vm.options.filters"
     [pageNum]="vm.options.pageNum"
     [pageSize]="vm.options.pageSize"
-    [totalItems]="vm.options.totalItems"
-    (pageChange)="onPageChange($event)"
-    (pageSizeChange)="onPageSizeChange($event)">
-  </lcc-paginator>
-
-  <lcc-search
-    [placeholder]="searchPlaceholder"
+    [searchPlaceholder]="searchPlaceholder"
     [searchQuery]="vm.options.searchQuery"
+    [totalItems]="vm.options.filteredTotal"
+    (filtersChange)="onFiltersChange($event)"
+    (pageChange)="onPageChange($event)"
+    (pageSizeChange)="onPageSizeChange($event)"
     (searchChange)="onSearchChange($event)">
-  </lcc-search>
-
-  <lcc-filters
-    [filters]="vm.options.filters"
-    (filtersChange)="onFiltersChange($event)">
-  </lcc-filters>
+  </lcc-data-toolbar>
 
   <lcc-members-table
-    [filteredMembers]="vm.filteredMembers"
+    [filteredMemberCount]="vm.options.filteredTotal"
     [isAdmin]="vm.isAdmin"
     [isAscending]="vm.options.isAscending"
     [isSafeMode]="vm.isSafeMode"
+    [members]="vm.members"
     [sortedBy]="vm.options.sortedBy"
-    [totalMemberCount]="vm.totalMemberCount">
+    [startIndex]="vm.options.pageSize * (vm.options.pageNum - 1) + 1"
+    [totalMemberCount]="vm.collectionTotal">
   </lcc-members-table>
 }

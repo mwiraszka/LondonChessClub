@@ -42,8 +42,7 @@ describe('ArticleComponent', () => {
     it('should render all article container and content elements, and the Markdown Renderer component', () => {
       const containerSelectors = [
         '.banner-image-container',
-        '.article-details-container',
-        '.editor-container',
+        '.modification-info-container',
         '.markdown-container',
       ];
 

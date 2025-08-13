@@ -31,6 +31,14 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🐛  | Bug fixes                         |
 | 🔧  | Behind-the-scenes changes         |
 
+
+<details>
+<summary>v5.7.0 - August TBD, 2025</summary>
+
+- 🚀 Minor improvement to pagination summary text at the bottom of the Data Toolbar component
+
+</details>
+
 <details>
 <summary>v5.6.2 - August 13th, 2025</summary>
 

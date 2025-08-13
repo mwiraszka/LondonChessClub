@@ -32,9 +32,8 @@ describe('DataToolbarComponent', () => {
         fixture = TestBed.createComponent(DataToolbarComponent<Member>);
         component = fixture.componentInstance;
 
-        component.entity = 'member';
-        component.totalCount = MOCK_MEMBERS.length;
-        component.filteredCount = 2;
+        component.entity = 'members';
+        component.filteredCount = MOCK_MEMBERS.length;
         component.options = { ...mockOptions };
         fixture.detectChanges();
 
@@ -264,17 +263,14 @@ describe('DataToolbarComponent', () => {
       });
     });
 
-    describe('filter counter', () => {
-      it('should include total and filtered counts', () => {
-        const text = queryTextContent(fixture.debugElement, '.filter-counter');
-        expect(
-          text.includes(`${component.filteredCount} / ${component.totalCount}`),
-        ).toBe(true);
-      });
+    describe('pagination summary', () => {
+      it('should summarize correctly', () => {
+        component.filteredCount = 99;
+        fixture.detectChanges();
 
-      it('should include entity name', () => {
-        const text = queryTextContent(fixture.debugElement, '.filter-counter');
-        expect(text.includes(`${component.entity}`)).toBe(true);
+        expect(queryTextContent(fixture.debugElement, '.pagination-summary')).toBe(
+          'Showing 21\u00A0\u2013\u00A030\u00A0\u00A0/\u00A0\u00A099 members',
+        );
       });
     });
   });

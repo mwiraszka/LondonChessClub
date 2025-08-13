@@ -20,8 +20,36 @@ import { isSecondsInPast } from '@app/utils';
 @UntilDestroy()
 @Component({
   selector: 'lcc-members-page',
-  templateUrl: './members-page.component.html',
-  styleUrl: './members-page.component.scss',
+  template: `
+    @if (viewModel$ | async; as vm) {
+      <lcc-page-header
+        title="Members"
+        icon="groups">
+      </lcc-page-header>
+
+      @if (vm.isAdmin) {
+        <lcc-link-list [links]="[addMemberLink]"></lcc-link-list>
+      }
+
+      <lcc-data-toolbar
+        entity="members"
+        [filteredCount]="vm.filteredCount"
+        [options]="vm.options"
+        searchPlaceholder="Search by name, city or username"
+        (optionsChange)="onOptionsChange($event)"
+        (optionsChangeNoFetch)="onOptionsChange($event, false)">
+      </lcc-data-toolbar>
+
+      <lcc-members-table
+        [isAdmin]="vm.isAdmin"
+        [isSafeMode]="vm.isSafeMode"
+        [members]="vm.members"
+        [options]="vm.options"
+        (optionsChange)="onOptionsChange($event)"
+        (requestDeleteMember)="onRequestDeleteMember($event)">
+      </lcc-members-table>
+    }
+  `,
   imports: [
     CommonModule,
     DataToolbarComponent,
@@ -43,7 +71,6 @@ export class MembersPageComponent implements OnInit {
     isSafeMode: boolean;
     members: Member[];
     options: DataPaginationOptions<Member>;
-    totalCount: number;
   }>;
 
   constructor(
@@ -67,21 +94,19 @@ export class MembersPageComponent implements OnInit {
       });
 
     this.viewModel$ = combineLatest([
-      this.store.select(MembersSelectors.selectAllMembers),
+      this.store.select(MembersSelectors.selectFilteredCount),
       this.store.select(AuthSelectors.selectIsAdmin),
       this.store.select(AppSelectors.selectIsSafeMode),
+      this.store.select(MembersSelectors.selectAllMembers),
       this.store.select(MembersSelectors.selectOptions),
-      this.store.select(MembersSelectors.selectFilteredCount),
-      this.store.select(MembersSelectors.selectTotalCount),
     ]).pipe(
       untilDestroyed(this),
-      map(([members, isAdmin, isSafeMode, options, filteredCount, totalCount]) => ({
+      map(([filteredCount, isAdmin, isSafeMode, members, options]) => ({
         filteredCount,
         isAdmin,
         isSafeMode,
         members,
         options,
-        totalCount,
       })),
     );
   }

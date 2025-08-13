@@ -25,7 +25,6 @@ export class DataToolbarComponent<T = EntityType> implements OnInit {
   @Input({ required: true }) public entity!: Entity;
   @Input({ required: true }) public filteredCount!: number;
   @Input({ required: true }) public options!: DataPaginationOptions<T>;
-  @Input({ required: true }) public totalCount!: number;
 
   @Input() public searchPlaceholder: string = 'Search';
 
@@ -36,6 +35,17 @@ export class DataToolbarComponent<T = EntityType> implements OnInit {
 
   public get lastPage(): number {
     return Math.ceil(this.filteredCount / this.options.pageSize) || 1;
+  }
+
+  public get paginationSummary(): string {
+    const rangeStart = this.options.pageSize * (this.options.page - 1) + 1;
+    const rangeEnd = Math.min(
+      this.options.pageSize * this.options.page,
+      this.filteredCount,
+    );
+    const range = `${rangeStart}\u00A0\u2013\u00A0${rangeEnd}`;
+
+    return `Showing ${range}\u00A0\u00A0/\u00A0\u00A0${this.filteredCount} ${this.entity}`;
   }
 
   public ngOnInit(): void {

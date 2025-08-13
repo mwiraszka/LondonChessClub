@@ -32,6 +32,14 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.6.1 - August 13th, 2025</summary>
+
+- 🚀 Reduce number of photo albums displayed on the homepage now that that section takes up less space
+- 🐛 Fix typo in filter counter section of new Data Toolbar component
+
+</details>
+
+<details>
 <summary>v5.6.0 - August 13th, 2025</summary>
 
 - 🚀 Create a reusable Data Toolbar component for pagination, filtering, and search controls on any given collection, and integrate with the Members Table

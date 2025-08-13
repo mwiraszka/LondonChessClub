@@ -32,6 +32,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.6.2 - August 13th, 2025</summary>
+
+- 🐛 Ensure article headings are sized appropriately, and a few other minor typography adjustments
+
+</details>
+
+<details>
 <summary>v5.6.1 - August 13th, 2025</summary>
 
 - 🚀 Reduce number of photo albums displayed on the homepage now that that section takes up less space

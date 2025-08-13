@@ -1,3 +1,5 @@
+@use '../../../styles/abstracts/mixins' as *;
+
 :host {
   width: 100%;
 }
@@ -33,7 +35,15 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
-  padding: 16px;
+  padding: 16px 4px;
+
+  @include respond-to('gt-sm') {
+    padding: 16px 8px;
+  }
+
+  @include respond-to('gt-md') {
+    padding: 16px;
+  }
 
   .author-container {
     display: flex;
@@ -44,6 +54,7 @@
     .date-created {
       font-size: 14px;
       color: var(--lcc-color--article-dateCreatedText);
+      white-space: nowrap;
     }
   }
 
@@ -53,6 +64,7 @@
 
     .updated {
       font-weight: 100;
+      white-space: nowrap;
     }
 
     .editor-name {
@@ -62,6 +74,10 @@
     .vertical-spacer {
       padding: 0 0.5em;
       color: var(--lcc-color--general-editorTextSpacer);
+    }
+
+    .date-last-edited {
+      white-space: nowrap;
     }
   }
 }
@@ -75,4 +91,12 @@ hr {
 .markdown-container {
   padding: 4px;
   overflow-x: hidden;
+
+  @include respond-to('gt-sm') {
+    padding: 4px 8px;
+  }
+
+  @include respond-to('gt-md') {
+    padding: 4px 16px;
+  }
 }

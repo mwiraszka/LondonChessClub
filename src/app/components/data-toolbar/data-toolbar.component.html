@@ -48,15 +48,15 @@
     </button>
   </section>
 
-  @if (options.filters) {
+  @if ((options.filters | keyvalue).length > 0) {
     <ul class="filters">
       @for (filter of options.filters | keyvalue: originalOrder; track filter.key) {
         <li class="filter">
-          <label [for]="filter.key">{{ filter.value.label }}</label>
+          <label [for]="filter.key">{{ filter.value!.label }}</label>
           <input
             [id]="filter.key"
             type="checkbox"
-            [checked]="filter.value.value"
+            [checked]="filter.value!.value"
             (change)="onToggleFilter(filter)" />
         </li>
       }
@@ -75,5 +75,5 @@
 </div>
 
 <aside class="filter-counter">
-  Showing {{ filteredCount }} / {{ totalCount }} members
+  Showing {{ filteredCount }} / {{ totalCount }} {{ entity }}s
 </aside>

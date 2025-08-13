@@ -1,19 +1,19 @@
 import { HttpParams } from '@angular/common/http';
 
-import { Article, DataPaginationOptions } from '@app/models';
+import { DataPaginationOptions, Image } from '@app/models';
 
 import { setPaginationParams } from './set-pagination-params.util';
 
 describe('setPaginationParams', () => {
   it('should handle options with filters', () => {
-    const options: DataPaginationOptions<Article> = {
+    const options: DataPaginationOptions<Image> = {
       page: 1,
       pageSize: 20,
-      sortBy: 'title',
+      sortBy: 'caption',
       sortOrder: 'desc',
       filters: {
-        isArchived: {
-          label: 'Show archived articles',
+        albumCover: {
+          label: 'Show non-album cover images',
           value: true,
         },
       },
@@ -23,15 +23,15 @@ describe('setPaginationParams', () => {
     const expectedParams = new HttpParams()
       .set('page', '1')
       .set('pageSize', '20')
-      .set('sortBy', 'title')
+      .set('sortBy', 'caption')
       .set('sortOrder', 'desc')
       .set('search', 'some text')
-      .set('filter_isArchived', 'true');
+      .set('filter_albumCover', 'true');
     expect(setPaginationParams(options).toString()).toEqual(expectedParams.toString());
   });
 
   it('should handle options without filters', () => {
-    const options: DataPaginationOptions<Article> = {
+    const options: DataPaginationOptions<Image> = {
       page: 2,
       pageSize: 100,
       sortBy: 'id',
@@ -50,10 +50,10 @@ describe('setPaginationParams', () => {
   });
 
   it('should ignore empty string search query', () => {
-    const options: DataPaginationOptions<Article> = {
+    const options: DataPaginationOptions<Image> = {
       page: 3,
       pageSize: 50,
-      sortBy: 'bookmarkDate',
+      sortBy: 'albumOrdinality',
       sortOrder: 'desc',
       search: '',
       filters: {},
@@ -62,7 +62,7 @@ describe('setPaginationParams', () => {
     const expectedParams = new HttpParams()
       .set('page', '3')
       .set('pageSize', '50')
-      .set('sortBy', 'bookmarkDate')
+      .set('sortBy', 'albumOrdinality')
       .set('sortOrder', 'desc');
     expect(setPaginationParams(options).toString()).toEqual(expectedParams.toString());
   });

@@ -46,7 +46,11 @@ export class DataToolbarComponent<T = EntityType> implements OnInit {
   }
 
   public onPageSizeChange(pageSize: PageSize): void {
-    // Prevent unnecessary fetch when all displayed members are guaranteed to already have been loaded
+    if (pageSize === this.options.pageSize) {
+      return;
+    }
+
+    // Prevent unnecessary fetch when all data is guaranteed to already be available
     if (this.options.page === 1 && pageSize < this.options.pageSize) {
       this.optionsChangeNoFetch.emit({ ...this.options, pageSize });
       return;
@@ -73,11 +77,13 @@ export class DataToolbarComponent<T = EntityType> implements OnInit {
 
   public onSearchQueryChange(event: Event): void {
     const search = (event.target as HTMLInputElement).value;
+
     this.searchQuerySubject.next({ ...this.options, search, page: 1 });
   }
 
-  public onToggleFilter(filter: KeyValue<string, Filter>): void {
-    if (!this.options.filters) {
+  public onToggleFilter(filter: KeyValue<string, Filter | undefined>): void {
+    // TODO: Investigate how filter.value is still flagged as possibly undefined
+    if (!filter.value || !this.options.filters) {
       return;
     }
 

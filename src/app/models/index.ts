@@ -4,12 +4,6 @@ export type { ApiScope } from './api-scope.model';
 export type { Article, ArticleFormData, ArticleFormGroup } from './article.model';
 export type { ChampionshipTableRowData } from './championship-data.model';
 export type { ClubDocument } from './club-document.model';
-export type {
-  DataPaginationOptions,
-  Filter,
-  FiltersRecord,
-  PageSize,
-} from './data-toolbar.model';
 export type { Id, IsoDate, Pixels, Url } from './core.model';
 export type {
   BasicDialogResult,
@@ -39,5 +33,6 @@ export type { ChangePasswordFormGroup, LoginFormGroup } from './login.model';
 export type { Member, MemberFormData, MemberFormGroup } from './member.model';
 export type { ModificationInfo } from './modification-info.model';
 export type { NavPath } from './nav-path.model';
+export type { DataPaginationOptions, Filter, PageSize } from './pagination-options.model';
 export type { Toast } from './toast.model';
 export type { User } from './user.model';

@@ -5,10 +5,6 @@ export interface Filter {
   value: boolean;
 }
 
-export interface FiltersRecord {
-  [key: string]: Filter;
-}
-
 export type PageSize = 10 | 20 | 50 | 100;
 
 export interface DataPaginationOptions<T = EntityType> {
@@ -16,6 +12,6 @@ export interface DataPaginationOptions<T = EntityType> {
   pageSize: PageSize;
   sortBy: keyof T;
   sortOrder: 'asc' | 'desc';
-  filters: Record<string, Filter>;
+  filters: Partial<NonNullable<Record<keyof T, Filter>>>;
   search: string;
 }

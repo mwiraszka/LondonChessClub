@@ -1,6 +1,6 @@
 {
   "name": "lcc-frontend",
-  "version": "5.5.5",
+  "version": "5.6.0",
   "description": "Frontend for the London Chess Club website, built with Angular",
   "author": "Michal Wiraszka (https://wiraszka.com)",
   "repository": {
@@ -73,6 +73,7 @@
     "@types/ws": "8.18.1",
     "@typescript-eslint/eslint-plugin": "8.34.0",
     "@typescript-eslint/parser": "8.34.0",
+    "autoprefixer": "10.4.21",
     "eslint": "9.29.0",
     "eslint-config-prettier": "10.1.5",
     "eslint-plugin-prettier": "5.4.1",
@@ -80,6 +81,7 @@
     "jest": "30.0.0",
     "jest-preset-angular": "15.0.0-next.0",
     "ng-mocks": "14.13.5",
+    "postcss": "8.5.6",
     "prettier": "3.5.3",
     "prettier-eslint": "16.4.2",
     "ts-node": "10.9.2",

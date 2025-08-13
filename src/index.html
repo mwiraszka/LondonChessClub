@@ -28,6 +28,25 @@
     <meta
       name="theme-color"
       content="#1976d2" />
+    <!-- SEO meta tags -->
+    <meta
+      name="robots"
+      content="index, follow" />
+    <meta
+      property="og:title"
+      content="London Chess Club - Open to Players of All Ages and Abilities" />
+    <meta
+      property="og:description"
+      content="The London Chess Club is open to players of all ages and abilities. We host regular blitz and rapid chess tournaments, as well as a variety of lectures, simuls and team competitions." />
+    <meta
+      property="og:type"
+      content="website" />
+    <meta
+      property="og:url"
+      content="https://londonchess.ca/" />
+    <meta
+      property="og:site_name"
+      content="London Chess Club" />
     <!-- icons -->
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -80,6 +99,57 @@
       defer
       data-domain="londonchess.ca"
       src="https://plausible.io/js/script.file-downloads.hash.outbound-links.tagged-events.js"></script>
+    <!-- structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SportsOrganization",
+        "name": "London Chess Club",
+        "alternateName": "LCC",
+        "description": "The London Chess Club is open to players of all ages and abilities. We host regular blitz and rapid chess tournaments, as well as a variety of lectures, simuls and team competitions.",
+        "url": "https://londonchess.ca",
+        "logo": "https://londonchess.ca/assets/icons/apple-touch-icon.png",
+        "sport": "Chess",
+        "memberOf": [
+          {
+            "@type": "SportsOrganization",
+            "name": "Chess Federation of Canada",
+            "url": "https://chess.ca"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "London",
+          "addressRegion": "ON",
+          "addressCountry": "CA"
+        },
+        "event": [
+          {
+            "@type": "Event",
+            "name": "Weekly Blitz Tournament",
+            "description": "Regular blitz chess tournaments",
+            "organizer": {
+              "@type": "SportsOrganization",
+              "name": "London Chess Club"
+            }
+          },
+          {
+            "@type": "Event",
+            "name": "Annual London Chess Championship",
+            "description": "Every fall, chess players from around London and the surrounding region gather to compete for the title of London Chess Champion",
+            "organizer": {
+              "@type": "SportsOrganization",
+              "name": "London Chess Club"
+            }
+          }
+        ],
+        "sameAs": [
+          "https://www.instagram.com/londonchessclub_?igsh=MWxqM25sMDdzemV5aA%3D%3D&utm_source=qr",
+          "bit.ly/LCC-NoticeBoard",
+          "https://www.chess.com/club/london-chess-club-canada"
+        ]
+      }
+    </script>
   </head>
 
   <body>

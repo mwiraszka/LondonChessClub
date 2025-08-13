@@ -12,9 +12,9 @@ import { DialogComponent } from './dialog.component';
   template: '<div>Test Content</div>',
 })
 export class MockContentComponent implements DialogOutput<string> {
-  @Input() testInput?: string;
+  @Input() public testInput?: string;
 
-  @Output() dialogResult = new EventEmitter<string | 'close'>();
+  @Output() public dialogResult = new EventEmitter<string | 'close'>();
 
   public emitResult(result: string): void {
     this.dialogResult.emit(result);

@@ -3,7 +3,15 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import type { ApiResponse, ApiScope, DbCollection, Id, Member } from '@app/models';
+import type {
+  ApiResponse,
+  ApiScope,
+  DataPaginationOptions,
+  DbCollection,
+  Id,
+  Member,
+} from '@app/models';
+import { setPaginationParams } from '@app/utils';
 
 import { environment } from '@env';
 
@@ -16,10 +24,16 @@ export class MembersService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getMembers(scope: ApiScope): Observable<ApiResponse<Member[]>> {
-    return this.http.get<ApiResponse<Member[]>>(
-      `${this.API_BASE_URL}/${scope}/${this.COLLECTION}`,
-    );
+  public getMembers(
+    scope: ApiScope,
+    options: DataPaginationOptions<Member>,
+  ): Observable<
+    ApiResponse<{ items: Member[]; filteredCount: number; totalCount: number }>
+  > {
+    const params = setPaginationParams(options);
+    return this.http.get<
+      ApiResponse<{ items: Member[]; filteredCount: number; totalCount: number }>
+    >(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`, { params });
   }
 
   public getMember(id: Id): Observable<ApiResponse<Member>> {

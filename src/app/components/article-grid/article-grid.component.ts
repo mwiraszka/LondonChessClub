@@ -23,7 +23,6 @@ import {
   IsDefinedPipe,
   RouterLinkPipe,
   StripMarkdownPipe,
-  WasEditedPipe,
 } from '@app/pipes';
 import { DialogService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
@@ -44,7 +43,6 @@ import { isDefined, isSecondsInPast } from '@app/utils';
     RouterLink,
     RouterLinkPipe,
     StripMarkdownPipe,
-    WasEditedPipe,
   ],
 })
 export class ArticleGridComponent implements OnInit, OnChanges {
@@ -52,7 +50,7 @@ export class ArticleGridComponent implements OnInit, OnChanges {
   @Input({ required: true }) articleImages!: Image[];
   @Input({ required: true }) isAdmin!: boolean;
 
-  @Input() public maxArticles?: number;
+  @Input() public articleCount?: number;
 
   private bannerImagesMap = new Map<Id, Image>();
 

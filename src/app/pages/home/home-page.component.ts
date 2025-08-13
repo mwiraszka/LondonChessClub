@@ -5,6 +5,7 @@ import { map, take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { ArticleGridComponent } from '@app/components/article-grid/article-grid.component';
@@ -30,6 +31,7 @@ import { isSecondsInPast } from '@app/utils';
     ClubLinksComponent,
     CommonModule,
     LinkListComponent,
+    MatIconModule,
     PhotoGridComponent,
     RouterLink,
     ScheduleComponent,
@@ -40,7 +42,7 @@ export class HomePageComponent implements OnInit {
     text: 'More about the London Chess Club',
     internalPath: 'about',
   };
-  public maxArticles!: number;
+  public articleCount!: number;
   public readonly photoGalleryPageLink: InternalLink = {
     text: 'More photos',
     internalPath: 'photo-gallery',
@@ -124,15 +126,13 @@ export class HomePageComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   private setArticleCountBasedOnScreenWidth = () => {
-    this.maxArticles =
-      window.innerWidth < 550
-        ? 3
-        : window.innerWidth < 930
-          ? 4
-          : window.innerWidth < 1240
-            ? 6
-            : window.innerWidth < 1550
-              ? 8
-              : 10;
+    this.articleCount =
+      window.innerWidth < 726
+        ? 4
+        : window.innerWidth < 952
+          ? 6
+          : window.innerWidth < 1405
+            ? 4
+            : 6;
   };
 }

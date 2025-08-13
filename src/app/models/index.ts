@@ -13,6 +13,7 @@ export type {
 } from './dialog.model';
 export type { DbCollection } from './db-collection.model';
 export type { EditorPage } from './editor-page.model';
+export type { Entity, EntityType } from './entity.model';
 export type { LccError } from './error.model';
 export type { Event, EventFormData, EventFormGroup, EventType } from './event.model';
 export type { FilterFormGroup } from './filter-form-group.model';
@@ -32,5 +33,6 @@ export type { ChangePasswordFormGroup, LoginFormGroup } from './login.model';
 export type { Member, MemberFormData, MemberFormGroup } from './member.model';
 export type { ModificationInfo } from './modification-info.model';
 export type { NavPath } from './nav-path.model';
+export type { DataPaginationOptions, Filter, PageSize } from './pagination-options.model';
 export type { Toast } from './toast.model';
 export type { User } from './user.model';

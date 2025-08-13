@@ -8,7 +8,7 @@ import {
   CdkVirtualForOf,
   CdkVirtualScrollViewport,
 } from '@angular/cdk/scrolling';
-import { CommonModule, KeyValuePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -55,7 +55,6 @@ import { YEARS } from './years';
     CommonModule,
     FormErrorIconComponent,
     ImagePreloadDirective,
-    KeyValuePipe,
     PageHeaderComponent,
     PgnViewerComponent,
     ReactiveFormsModule,
@@ -97,10 +96,10 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
     }
 
     if (filteredGameCount === allGamesCount) {
-      return `Displaying all ${filteredGameCount} games`;
+      return `Showing all ${filteredGameCount} games`;
     }
 
-    return `Displaying ${filteredGameCount} / ${allGamesCount} ${filteredGameCount === 1 ? 'game' : 'games'} 😎`;
+    return `Showing ${filteredGameCount} / ${allGamesCount} ${filteredGameCount === 1 ? 'game' : 'games'} 😎`;
   }
 
   public get filteredGameCount(): number {
@@ -282,9 +281,7 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  public originalOrder = (): number => {
-    return 0;
-  };
+  public originalOrder = () => 0;
 
   private initForm(): void {
     this.form = this.formBuilder.group({

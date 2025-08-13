@@ -11,7 +11,7 @@
     'other-champs';
   gap: 8px;
 
-  @include respond-to('gt-sm') {
+  @include respond-to('gt-md') {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       'history trophies-photo'
@@ -23,7 +23,7 @@
   @include respond-to('gt-lg') {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-areas:
-      'history trophies-photo trophies-photo trophies-photo'
+      'history history trophies-photo trophies-photo'
       'other-photos other-photos other-photos other-photos'
       'standard-champs standard-champs other-champs other-champs';
   }
@@ -156,6 +156,7 @@
       }
 
       table {
+        width: 100%;
         tfoot tr td {
           text-align: center;
         }

@@ -32,7 +32,7 @@ export const TOOLTIP_CONTENT_TOKEN = new InjectionToken<string | TemplateRef<unk
   selector: '[tooltip]',
 })
 export class TooltipDirective implements OnDestroy {
-  @Input() tooltip: string | TemplateRef<unknown> | null = null;
+  @Input() public tooltip: string | TemplateRef<unknown> | null = null;
 
   private overlayRef: OverlayRef | null = null;
 

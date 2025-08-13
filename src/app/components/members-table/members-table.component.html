@@ -1,29 +1,5 @@
-@if (isAdmin) {
-  <lcc-link-list [links]="[addMemberLink]"></lcc-link-list>
-}
-
-<div class="table-controls">
-  <lcc-paginator
-    typeOfItems="members"
-    [pageNum]="pageNum"
-    [pageSize]="pageSize"
-    [totalItems]="filteredMembers.length"
-    (pageChange)="onChangePage($event)"
-    (pageSizeChange)="onChangePageSize($event)">
-  </lcc-paginator>
-
-  <div class="inactive-checkbox-container">
-    <label for="active-only">Show active members only</label>
-    <input
-      id="active-only"
-      type="checkbox"
-      [checked]="showActiveOnly"
-      (change)="onToggleInactiveMembers()" />
-  </div>
-</div>
-
 <div class="lcc-table-wrapper">
-  @if (displayedMembers.length) {
+  @if (members.length) {
     <table
       class="lcc-table"
       [class.lcc-show-admin-columns]="isAdmin && !isSafeMode">
@@ -38,12 +14,13 @@
           ) {
             <th
               [ngClass]="header | kebabCase"
+              class="sortable-header"
               (click)="onSelectTableHeader(header)">
               <span>{{ header }}</span>
               <div class="sort-icon-container">
-                @if (sortedBy === (header | camelCase)) {
+                @if (options.sortBy === (header | camelCase)) {
                   <mat-icon class="sort-icon">
-                    {{ isAscending ? 'expand_less' : 'expand_more' }}
+                    {{ options.sortOrder === 'desc' ? 'arrow_downward' : 'arrow_upward' }}
                   </mat-icon>
                 }
               </div>
@@ -54,7 +31,7 @@
 
       <tbody>
         @for (
-          member of displayedMembers;
+          member of members.slice(0, options.pageSize);
           track member.id;
           let i = $index;
           let last = $last
@@ -63,7 +40,7 @@
             [adminControls]="isAdmin ? getAdminControlsConfig(member) : null"
             [ngClass]="{ 'last-row': last }"
             [class.inactive]="!member.isActive">
-            <td class="row-number">{{ i + startIndex + 1 }}</td>
+            <td class="row-number">{{ startIndex + i }}</td>
             @if (isAdmin && !isSafeMode) {
               <td
                 class="first-name lcc-truncate"
@@ -97,19 +74,15 @@
             <td class="rating">{{ member.rating }}</td>
             <td class="peak-rating">{{ member.peakRating }}</td>
             <td class="city lcc-truncate">{{ member.city }}</td>
-            <td class="chess-com-username lcc-truncate">
-              {{ member?.chessComUsername }}
-            </td>
-            <td class="lichess-username lcc-truncate">
-              {{ member?.lichessUsername }}
-            </td>
+            <td class="chess-com-username lcc-truncate">{{ member.chessComUsername }}</td>
+            <td class="lichess-username lcc-truncate">{{ member.lichessUsername }}</td>
 
             @if (isAdmin && !isSafeMode) {
-              <td class="last-updated">
+              <td class="last-updated lcc-truncate">
                 {{ member.modificationInfo.dateLastEdited | formatDate: 'short no-time' }}
               </td>
               <td class="born">{{ member.yearOfBirth }}</td>
-              <td class="email">{{ member.email }}</td>
+              <td class="email lcc-truncate">{{ member.email }}</td>
               <td class="phone-number">{{ member.phoneNumber }}</td>
               <td class="date-joined">
                 {{ member.dateJoined | formatDate: 'short no-time' }}
@@ -118,19 +91,10 @@
           </tr>
         }
       </tbody>
-
-      <tfoot>
-        <tr>
-          <td colspan="100%">
-            {{ allMembers.length }} members ({{ activeMembers.length }}
-            active)
-          </td>
-        </tr>
-      </tfoot>
     </table>
   }
 </div>
 
-@if (isSafeMode) {
+@if (isAdmin && isSafeMode) {
   <lcc-safe-mode-notice entity="members'"></lcc-safe-mode-notice>
 }

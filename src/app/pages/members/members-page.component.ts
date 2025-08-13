@@ -1,60 +1,49 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
+import { DataToolbarComponent } from '@app/components/data-toolbar/data-toolbar.component';
+import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { MembersTableComponent } from '@app/components/members-table/members-table.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import { Member } from '@app/models';
+import { DataPaginationOptions, InternalLink, Member } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
-import { MembersSelectors } from '@app/store/members';
+import { MembersActions, MembersSelectors } from '@app/store/members';
+import { isSecondsInPast } from '@app/utils';
 
 @UntilDestroy()
 @Component({
   selector: 'lcc-members-page',
-  template: `
-    @if (viewModel$ | async; as vm) {
-      <lcc-page-header
-        title="Members"
-        icon="groups">
-      </lcc-page-header>
-      <lcc-members-table
-        [activeMembers]="vm.activeMembers"
-        [allMembers]="vm.allMembers"
-        [displayedMembers]="vm.displayedMembers"
-        [filteredMembers]="vm.filteredMembers"
-        [isAdmin]="vm.isAdmin"
-        [isAscending]="vm.isAscending"
-        [isSafeMode]="vm.isSafeMode"
-        [pageNum]="vm.pageNum"
-        [pageSize]="vm.pageSize"
-        [showActiveOnly]="vm.showActiveOnly"
-        [sortedBy]="vm.sortedBy"
-        [startIndex]="vm.startIndex">
-      </lcc-members-table>
-    }
-  `,
-  imports: [CommonModule, MembersTableComponent, PageHeaderComponent],
+  templateUrl: './members-page.component.html',
+  styleUrl: './members-page.component.scss',
+  imports: [
+    CommonModule,
+    DataToolbarComponent,
+    LinkListComponent,
+    MembersTableComponent,
+    PageHeaderComponent,
+  ],
 })
 export class MembersPageComponent implements OnInit {
-  viewModel$?: Observable<{
-    activeMembers: Member[];
-    allMembers: Member[];
-    displayedMembers: Member[];
-    filteredMembers: Member[];
+  public addMemberLink: InternalLink = {
+    internalPath: ['member', 'add'],
+    text: 'Add a member',
+    icon: 'add_circle_outline',
+  };
+
+  public viewModel$?: Observable<{
+    filteredCount: number;
     isAdmin: boolean;
-    isAscending: boolean;
     isSafeMode: boolean;
-    pageNum: number;
-    pageSize: number;
-    showActiveOnly: boolean;
-    sortedBy: string;
-    startIndex: number;
+    members: Member[];
+    options: DataPaginationOptions<Member>;
+    totalCount: number;
   }>;
 
   constructor(
@@ -68,50 +57,40 @@ export class MembersPageComponent implements OnInit {
       'Club ratings and other members information',
     );
 
+    this.store
+      .select(MembersSelectors.selectLastFetch)
+      .pipe(take(1))
+      .subscribe(lastFetch => {
+        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
+          this.store.dispatch(MembersActions.fetchMembersRequested());
+        }
+      });
+
     this.viewModel$ = combineLatest([
-      this.store.select(MembersSelectors.selectActiveMembers),
       this.store.select(MembersSelectors.selectAllMembers),
-      this.store.select(MembersSelectors.selectDisplayedMembers),
-      this.store.select(MembersSelectors.selectFilteredMembers),
-      this.store.select(MembersSelectors.selectIsAscending),
-      this.store.select(MembersSelectors.selectPageNum),
-      this.store.select(MembersSelectors.selectPageSize),
-      this.store.select(MembersSelectors.selectShowActiveOnly),
-      this.store.select(MembersSelectors.selectSortedBy),
-      this.store.select(MembersSelectors.selectStartIndex),
       this.store.select(AuthSelectors.selectIsAdmin),
       this.store.select(AppSelectors.selectIsSafeMode),
+      this.store.select(MembersSelectors.selectOptions),
+      this.store.select(MembersSelectors.selectFilteredCount),
+      this.store.select(MembersSelectors.selectTotalCount),
     ]).pipe(
       untilDestroyed(this),
-      map(
-        ([
-          activeMembers,
-          allMembers,
-          displayedMembers,
-          filteredMembers,
-          isAscending,
-          pageNum,
-          pageSize,
-          showActiveOnly,
-          sortedBy,
-          startIndex,
-          isAdmin,
-          isSafeMode,
-        ]) => ({
-          activeMembers,
-          allMembers,
-          displayedMembers,
-          filteredMembers,
-          isAdmin,
-          isAscending,
-          isSafeMode,
-          pageNum,
-          pageSize,
-          showActiveOnly,
-          sortedBy,
-          startIndex,
-        }),
-      ),
+      map(([members, isAdmin, isSafeMode, options, filteredCount, totalCount]) => ({
+        filteredCount,
+        isAdmin,
+        isSafeMode,
+        members,
+        options,
+        totalCount,
+      })),
     );
+  }
+
+  public onOptionsChange(options: DataPaginationOptions<Member>, fetch = true): void {
+    this.store.dispatch(MembersActions.paginationOptionsChanged({ options, fetch }));
+  }
+
+  public onRequestDeleteMember(member: Member): void {
+    this.store.dispatch(MembersActions.deleteMemberRequested({ member }));
   }
 }

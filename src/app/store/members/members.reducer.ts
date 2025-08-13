@@ -3,19 +3,17 @@ import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import { INITIAL_MEMBER_FORM_DATA, MEMBER_FORM_DATA_PROPERTIES } from '@app/constants';
-import type { IsoDate, Member, MemberFormData } from '@app/models';
+import type { DataPaginationOptions, IsoDate, Member, MemberFormData } from '@app/models';
 
 import * as MembersActions from './members.actions';
 
 export interface MembersState
   extends EntityState<{ member: Member; formData: MemberFormData }> {
-  newMemberFormData: MemberFormData;
-  sortedBy: string;
-  isAscending: boolean;
-  pageNum: number;
-  pageSize: number;
-  showActiveOnly: boolean;
   lastFetch: IsoDate | null;
+  newMemberFormData: MemberFormData;
+  options: DataPaginationOptions<Member>;
+  filteredCount: number;
+  totalCount: number;
 }
 
 export const membersAdapter = createEntityAdapter<{
@@ -26,13 +24,23 @@ export const membersAdapter = createEntityAdapter<{
 });
 
 export const initialState: MembersState = membersAdapter.getInitialState({
-  newMemberFormData: INITIAL_MEMBER_FORM_DATA,
-  sortedBy: 'rating',
-  isAscending: false,
-  pageNum: 1,
-  pageSize: 20,
-  showActiveOnly: true,
   lastFetch: null,
+  newMemberFormData: INITIAL_MEMBER_FORM_DATA,
+  options: {
+    page: 1,
+    pageSize: 20,
+    sortBy: 'rating',
+    sortOrder: 'desc',
+    filters: {
+      isActive: {
+        label: 'Show inactive members',
+        value: false,
+      },
+    },
+    search: '',
+  },
+  filteredCount: 0,
+  totalCount: 0,
 });
 
 export const membersReducer = createReducer(
@@ -40,13 +48,18 @@ export const membersReducer = createReducer(
 
   on(
     MembersActions.fetchMembersSucceeded,
-    (state, { members }): MembersState =>
+    (state, { members, filteredCount, totalCount }): MembersState =>
       membersAdapter.setAll(
         members.map(member => ({
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
         })),
-        { ...state, lastFetch: new Date().toISOString() },
+        {
+          ...state,
+          lastFetch: new Date().toISOString(),
+          filteredCount,
+          totalCount,
+        },
       ),
   ),
 
@@ -115,6 +128,14 @@ export const membersReducer = createReducer(
     );
   }),
 
+  on(
+    MembersActions.paginationOptionsChanged,
+    (state, { options }): MembersState => ({
+      ...state,
+      options,
+    }),
+  ),
+
   on(MembersActions.memberFormDataReset, (state, { memberId }): MembersState => {
     const originalMember = memberId ? state.entities[memberId]?.member : null;
 
@@ -133,40 +154,4 @@ export const membersReducer = createReducer(
       state,
     );
   }),
-
-  on(
-    MembersActions.pageChanged,
-    (state, { pageNum }): MembersState => ({
-      ...state,
-      pageNum,
-    }),
-  ),
-
-  on(
-    MembersActions.pageSizeChanged,
-    (state, { pageSize }): MembersState => ({
-      ...state,
-      pageSize,
-      pageNum: 1,
-    }),
-  ),
-
-  on(
-    MembersActions.tableHeaderSelected,
-    (state, { header }): MembersState => ({
-      ...state,
-      sortedBy: header,
-      isAscending: header === state.sortedBy ? !state.isAscending : state.isAscending,
-      pageNum: 1,
-    }),
-  ),
-
-  on(
-    MembersActions.inactiveMembersToggled,
-    (state): MembersState => ({
-      ...state,
-      showActiveOnly: !state.showActiveOnly,
-      pageNum: 1,
-    }),
-  ),
 );

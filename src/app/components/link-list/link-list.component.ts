@@ -48,6 +48,6 @@ import { RouterLinkPipe } from '@app/pipes';
   imports: [MatIconModule, RouterLink, RouterLinkPipe, TooltipDirective],
 })
 export class LinkListComponent {
-  @Input() header?: string;
-  @Input() links: Array<InternalLink | ExternalLink> = [];
+  @Input() public header?: string;
+  @Input() public links: Array<InternalLink | ExternalLink> = [];
 }

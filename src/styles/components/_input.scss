@@ -21,11 +21,11 @@ textarea {
   &:focus {
     outline: none;
     border: 1px solid var(--lcc-color--input-borderOnHover);
-    box-shadow: 0 0 4px 1px var(--lcc-color--input-boxShadowOnHover);
   }
 
   &::placeholder {
     font-size: 14px;
+    color: var(--lcc-color--input-placeholderText);
   }
 }
 
@@ -35,10 +35,6 @@ input[type='radio'] {
   justify-self: flex-start;
   accent-color: var(--lcc-color--input-checkboxAndRadio);
 
-  -ms-transform: scale(1.5); /* IE */
-  -moz-transform: scale(1.5); /* FF */
-  -webkit-transform: scale(1.5); /* Safari and Chrome */
-  -o-transform: scale(1.5); /* Opera */
   transform: scale(1.5);
 
   &:hover {

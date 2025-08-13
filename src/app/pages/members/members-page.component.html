@@ -1,0 +1,29 @@
+@if (viewModel$ | async; as vm) {
+  <lcc-page-header
+    title="Members"
+    icon="groups">
+  </lcc-page-header>
+
+  @if (vm.isAdmin) {
+    <lcc-link-list [links]="[addMemberLink]"></lcc-link-list>
+  }
+
+  <lcc-data-toolbar
+    entity="members"
+    [filteredCount]="vm.filteredCount"
+    [options]="vm.options"
+    searchPlaceholder="Search by name, city or username"
+    [totalCount]="vm.totalCount"
+    (optionsChange)="onOptionsChange($event)"
+    (optionsChangeNoFetch)="onOptionsChange($event, false)">
+  </lcc-data-toolbar>
+
+  <lcc-members-table
+    [isAdmin]="vm.isAdmin"
+    [isSafeMode]="vm.isSafeMode"
+    [members]="vm.members"
+    [options]="vm.options"
+    (optionsChange)="onOptionsChange($event)"
+    (requestDeleteMember)="onRequestDeleteMember($event)">
+  </lcc-members-table>
+}

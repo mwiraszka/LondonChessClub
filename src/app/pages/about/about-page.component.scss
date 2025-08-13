@@ -37,7 +37,7 @@
   }
 }
 
-article {
+section {
   place-self: stretch;
   display: flex;
   flex-direction: column;
@@ -46,12 +46,16 @@ article {
   border: 2px solid var(--lcc-color--aboutPage-cellBorder);
   padding: 16px;
 
-  &.first-visit {
+  &.first-visit-section {
     grid-area: first-visit;
     background-color: var(--lcc-color--aboutPage-cellBackground2);
+
+    :first-child {
+      color: var(--lcc-color--aboutPage-sectionHeaderText);
+    }
   }
 
-  &.where-and-when {
+  &.where-and-when-section {
     grid-area: where-and-when;
     display: flex;
     flex-direction: column;
@@ -94,7 +98,7 @@ article {
     }
   }
 
-  &.club-regulations {
+  &.club-regulations-section {
     grid-area: club-regulations;
     background-color: var(--lcc-color--aboutPage-cellBackground2);
 
@@ -107,37 +111,37 @@ article {
     }
   }
 
-  &.membership-fee {
+  &.membership-fee-section {
     grid-area: membership-fee;
     background-color: var(--lcc-color--aboutPage-cellBackground1);
   }
 
-  &.supplies {
+  &.supplies-section {
     grid-area: supplies;
     background-color: var(--lcc-color--aboutPage-cellBackground2);
   }
 
-  &.parking {
+  &.parking-section {
     grid-area: parking;
     background-color: var(--lcc-color--aboutPage-cellBackground2);
   }
 
-  &.ratings {
+  &.ratings-section {
     grid-area: ratings;
     background-color: var(--lcc-color--aboutPage-cellBackground1);
   }
 
-  &.rules {
+  &.rules-section {
     grid-area: rules;
     background-color: var(--lcc-color--aboutPage-cellBackground1);
   }
 
-  &.tournaments {
+  &.tournaments-section {
     grid-area: tournaments;
     background-color: var(--lcc-color--aboutPage-cellBackground2);
   }
 
-  &.leadership {
+  &.leadership-section {
     grid-area: leadership;
     background-color: var(--lcc-color--aboutPage-cellBackground2);
 
@@ -191,7 +195,7 @@ article {
     }
   }
 
-  h3 {
+  .section-heading {
     font-weight: 400;
     color: var(--lcc-color--aboutPage-sectionHeaderText);
   }

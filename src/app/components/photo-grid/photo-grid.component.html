@@ -11,21 +11,26 @@
   </div>
 }
 
-<section class="album-covers">
-  @for (image of albumCovers.slice(0, maxAlbums ?? albumCovers.length); track image.id) {
-    <button
-      class="album-cover"
-      [adminControls]="isAdmin ? getAdminControlsConfig(image.album) : null"
-      (click)="onClickAlbumCover(image.album)">
-      <figure>
-        <img [image]="image" />
-        <figcaption>
-          <div class="album-name lcc-truncate-max-2-lines">{{ image.album }}</div>
-          <div class="photo-count">
-            {{ getAlbumPhotoCountText(image.album) | uppercase }}
-          </div>
-        </figcaption>
-      </figure>
-    </button>
-  }
+<section class="grid-container">
+  <div class="album-covers">
+    @for (
+      image of albumCovers.slice(0, maxAlbums ?? albumCovers.length);
+      track image.id
+    ) {
+      <button
+        class="album-cover"
+        [adminControls]="isAdmin ? getAdminControlsConfig(image.album) : null"
+        (click)="onClickAlbumCover(image.album)">
+        <figure>
+          <img [image]="image" />
+          <figcaption>
+            <div class="album-name lcc-truncate-max-2-lines">{{ image.album }}</div>
+            <div class="photo-count">
+              {{ getAlbumPhotoCountText(image.album) | uppercase }}
+            </div>
+          </figcaption>
+        </figure>
+      </button>
+    }
+  </div>
 </section>

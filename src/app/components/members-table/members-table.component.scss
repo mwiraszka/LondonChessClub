@@ -9,6 +9,8 @@
 }
 
 table {
+  margin: auto;
+
   @include respond-to('lt-sm') {
     font-size: 13px;
   }
@@ -23,7 +25,7 @@ table {
   }
 
   thead {
-    th {
+    .sortable-header {
       .sort-icon-container {
         display: inline-flex;
         height: 14px;
@@ -31,7 +33,8 @@ table {
         margin-left: 4px;
 
         mat-icon {
-          @include icon-size(14px);
+          @include icon-size(16px);
+          height: 100%;
         }
       }
 
@@ -60,26 +63,48 @@ table {
       td {
         white-space: nowrap;
 
+        &.lcc-truncate {
+          display: table-cell;
+          text-overflow: ellipsis;
+        }
+
         &.row-number {
+          // Enough space to fit 3-digit numbers
+          min-width: 58px;
+          max-width: 58px;
+          text-align: right;
+        }
+
+        &.name {
+          min-width: 220px;
+          max-width: 220px;
+        }
+
+        &.first-name,
+        &.last-name {
+          min-width: 150px;
+          max-width: 150px;
+        }
+
+        &.city {
+          min-width: 130px;
+          max-width: 130px;
+        }
+
+        &.email {
+          min-width: 250px;
+          max-width: 250px;
+        }
+
+        &.date-joined,
+        &.last-updated {
+          min-width: 160px;
+          max-width: 160px;
           text-align: right;
         }
 
         &.first-name,
         &.name {
-          min-width: 200px;
-          max-width: 250px;
-
-          // More room with smaller font size
-          @include respond-to('lt-sm') {
-            min-width: 120px;
-            max-width: 140px;
-          }
-
-          &.lcc-truncate {
-            display: table-cell;
-            text-overflow: ellipsis;
-          }
-
           .city-champion-link {
             display: inline-block;
 
@@ -89,7 +114,8 @@ table {
               color: var(--lcc-color--membersTable-cityChampionIcon);
               vertical-align: middle;
               display: inline-block;
-              transform: translateY(-2px); // Fine-tune vertical alignment
+              // Fine-tune vertical alignment
+              transform: translateY(-2px);
               transition: color 1s ease;
             }
 
@@ -100,102 +126,7 @@ table {
             }
           }
         }
-
-        &.last-name {
-          min-width: 150px;
-          max-width: 180px;
-
-          // More room with smaller font size
-          @include respond-to('lt-sm') {
-            min-width: 120px;
-            max-width: 140px;
-          }
-
-          &.lcc-truncate {
-            display: table-cell;
-            text-overflow: ellipsis;
-          }
-        }
-
-        &.city {
-          min-width: 150px;
-          max-width: 200px;
-        }
-
-        &.chess-com-username {
-          max-width: 200px;
-        }
-
-        &.lichess-username {
-          max-width: 200px;
-        }
-
-        &.last-updated {
-          text-align: right;
-          min-width: 150px;
-        }
-
-        &.email {
-          min-width: 250px;
-        }
-
-        &.date-joined {
-          text-align: right;
-          min-width: 150px;
-        }
       }
-    }
-  }
-
-  .peak-rating,
-  .city,
-  .chess-com-username,
-  .lichess-username,
-  .last-updated,
-  .born,
-  .email,
-  .phone-number,
-  .date-joined {
-    display: none;
-
-    @include respond-to('gt-sm') {
-      display: table-cell;
-
-      // Override truncation strategy for table
-      &.lcc-truncate {
-        display: table-cell;
-        text-overflow: ellipsis;
-      }
-    }
-  }
-}
-
-.table-controls {
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  background-color: var(--lcc-color--paginator-background);
-  border-radius: var(--lcc-borderRadius--large);
-  padding: 8px 16px;
-
-  lcc-paginator {
-    justify-content: center;
-    align-items: center;
-  }
-
-  .inactive-checkbox-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    color: var(--lcc-color--membersTable-tableControlsText);
-
-    label:hover {
-      cursor: pointer;
     }
   }
 }

@@ -1,30 +1,26 @@
-import { Store } from '@ngrx/store';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { camelCase } from 'lodash';
-import { take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
-import { LinkListComponent } from '@app/components/link-list/link-list.component';
-import { PaginatorComponent } from '@app/components/paginator/paginator.component';
 import { SafeModeNoticeComponent } from '@app/components/safe-mode-notice/safe-mode-notice.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import type {
   AdminControlsConfig,
   BasicDialogResult,
+  DataPaginationOptions,
   Dialog,
-  InternalLink,
   Member,
 } from '@app/models';
 import { CamelCasePipe, FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { MembersActions, MembersSelectors } from '@app/store/members';
-import { isSecondsInPast } from '@app/utils';
 
+@UntilDestroy()
 @Component({
   selector: 'lcc-members-table',
   templateUrl: './members-table.component.html',
@@ -35,28 +31,13 @@ import { isSecondsInPast } from '@app/utils';
     CommonModule,
     FormatDatePipe,
     KebabCasePipe,
-    LinkListComponent,
     MatIconModule,
-    PaginatorComponent,
     RouterLink,
     SafeModeNoticeComponent,
     TooltipDirective,
   ],
 })
-export class MembersTableComponent implements OnInit {
-  @Input({ required: true }) activeMembers!: Member[];
-  @Input({ required: true }) allMembers!: Member[];
-  @Input({ required: true }) displayedMembers!: Member[];
-  @Input({ required: true }) filteredMembers!: Member[];
-  @Input({ required: true }) isAdmin!: boolean;
-  @Input({ required: true }) isAscending!: boolean;
-  @Input({ required: true }) isSafeMode!: boolean;
-  @Input({ required: true }) pageNum!: number;
-  @Input({ required: true }) pageSize!: number;
-  @Input({ required: true }) showActiveOnly!: boolean;
-  @Input({ required: true }) sortedBy!: string;
-  @Input({ required: true }) startIndex!: number;
-
+export class MembersTableComponent {
   public readonly DEFAULT_TABLE_HEADERS = [
     'Name',
     'Rating',
@@ -81,43 +62,38 @@ export class MembersTableComponent implements OnInit {
     'Date Joined',
   ];
 
-  public readonly addMemberLink: InternalLink = {
-    internalPath: ['member', 'add'],
-    text: 'Add a member',
-    icon: 'add_circle_outline',
-  };
+  @Input({ required: true }) isAdmin!: boolean;
+  @Input({ required: true }) options!: DataPaginationOptions<Member>;
+  @Input({ required: true }) isSafeMode!: boolean;
+  @Input({ required: true }) members!: Member[];
 
-  constructor(
-    private readonly dialogService: DialogService,
-    private readonly store: Store,
-  ) {}
+  @Output() public requestDeleteMember = new EventEmitter<Member>();
+  @Output() public optionsChange = new EventEmitter<DataPaginationOptions<Member>>();
 
-  public ngOnInit(): void {
-    this.store
-      .select(MembersSelectors.selectLastFetch)
-      .pipe(take(1))
-      .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(MembersActions.fetchMembersRequested());
-        }
-      });
+  public get startIndex(): number {
+    return this.options.pageSize * (this.options.page - 1) + 1;
   }
 
-  public onSelectTableHeader(header: string): void {
-    header = camelCase(header);
-    this.store.dispatch(MembersActions.tableHeaderSelected({ header }));
-  }
+  constructor(private readonly dialogService: DialogService) {}
 
-  public onToggleInactiveMembers(): void {
-    this.store.dispatch(MembersActions.inactiveMembersToggled());
-  }
+  public onSelectTableHeader(headerLabel: string): void {
+    const header = camelCase(headerLabel) as keyof Member;
+    const isSameHeader = this.options.sortBy === header;
 
-  public onChangePage(pageNum: number): void {
-    this.store.dispatch(MembersActions.pageChanged({ pageNum }));
-  }
+    let sortOrder: 'asc' | 'desc';
 
-  public onChangePageSize(pageSize: number): void {
-    this.store.dispatch(MembersActions.pageSizeChanged({ pageSize }));
+    if (isSameHeader) {
+      sortOrder = this.options.sortOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+      sortOrder = ['rating', 'peakRating'].includes(header) ? 'desc' : 'asc';
+    }
+
+    this.optionsChange.emit({
+      ...this.options,
+      sortBy: header,
+      page: 1,
+      sortOrder,
+    });
   }
 
   public getAdminControlsConfig(member: Member): AdminControlsConfig {
@@ -150,7 +126,7 @@ export class MembersTableComponent implements OnInit {
     );
 
     if (result === 'confirm') {
-      this.store.dispatch(MembersActions.deleteMemberRequested({ member }));
+      this.requestDeleteMember.emit(member);
     }
   }
 }

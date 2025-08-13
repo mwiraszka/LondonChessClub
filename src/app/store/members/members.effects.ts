@@ -21,12 +21,20 @@ export class MembersEffects {
     return this.actions$.pipe(
       ofType(MembersActions.fetchMembersRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
-      switchMap(([, isAdmin]) => {
+      concatLatestFrom(() => [
+        this.store.select(AuthSelectors.selectIsAdmin),
+        this.store.select(MembersSelectors.selectOptions),
+      ]),
+      switchMap(([, isAdmin, options]) => {
         const scope: ApiScope = isAdmin ? 'admin' : 'public';
-        return this.membersService.getMembers(scope).pipe(
+
+        return this.membersService.getMembers(scope, options).pipe(
           map(response =>
-            MembersActions.fetchMembersSucceeded({ members: response.data }),
+            MembersActions.fetchMembersSucceeded({
+              members: response.data.items,
+              filteredCount: response.data.filteredCount,
+              totalCount: response.data.totalCount,
+            }),
           ),
           catchError(error =>
             of(MembersActions.fetchMembersFailed({ error: parseError(error) })),
@@ -34,6 +42,14 @@ export class MembersEffects {
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
+  refetchMembersAfterPaginationOptionsChange$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(MembersActions.paginationOptionsChanged),
+      filter(({ fetch }) => fetch),
+      map(() => MembersActions.fetchMembersRequested()),
     );
   });
 
@@ -115,7 +131,7 @@ export class MembersEffects {
         return this.membersService.updateMember(updatedMember).pipe(
           map(() =>
             MembersActions.updateMemberSucceeded({
-              member,
+              member: updatedMember,
               originalMemberName: `${member.firstName} ${member.lastName}`,
             }),
           ),

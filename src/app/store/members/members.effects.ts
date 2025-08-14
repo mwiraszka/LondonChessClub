@@ -7,7 +7,7 @@ import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import type { ApiScope, Member } from '@app/models';
+import type { Member } from '@app/models';
 import { LoaderService, MembersService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { getNewPeakRating, isDefined } from '@app/utils';
@@ -25,10 +25,8 @@ export class MembersEffects {
         this.store.select(AuthSelectors.selectIsAdmin),
         this.store.select(MembersSelectors.selectOptions),
       ]),
-      switchMap(([, isAdmin, options]) => {
-        const scope: ApiScope = isAdmin ? 'admin' : 'public';
-
-        return this.membersService.getMembers(scope, options).pipe(
+      switchMap(([, isAdmin, options]) =>
+        this.membersService.getMembers(isAdmin, options).pipe(
           map(response =>
             MembersActions.fetchMembersSucceeded({
               members: response.data.items,
@@ -39,8 +37,8 @@ export class MembersEffects {
           catchError(error =>
             of(MembersActions.fetchMembersFailed({ error: parseError(error) })),
           ),
-        );
-      }),
+        ),
+      ),
       tap(() => this.loaderService.setIsLoading(false)),
     );
   });

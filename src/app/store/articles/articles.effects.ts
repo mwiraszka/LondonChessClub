@@ -20,10 +20,15 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticlesRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(() =>
-        this.articlesService.getArticles().pipe(
+      concatLatestFrom(() => this.store.select(ArticlesSelectors.selectOptions)),
+      switchMap(([, options]) =>
+        this.articlesService.getArticles(options).pipe(
           map(response =>
-            ArticlesActions.fetchArticlesSucceeded({ articles: response.data }),
+            ArticlesActions.fetchArticlesSucceeded({
+              articles: response.data.items,
+              filteredCount: response.data.filteredCount,
+              totalCount: response.data.totalCount,
+            }),
           ),
           catchError(error =>
             of(ArticlesActions.fetchArticlesFailed({ error: parseError(error) })),
@@ -31,6 +36,14 @@ export class ArticlesEffects {
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
+  refetchArticlesAfterPaginationOptionsChange$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.paginationOptionsChanged),
+      filter(({ fetch }) => fetch),
+      map(() => ArticlesActions.fetchArticlesRequested()),
     );
   });
 
@@ -128,7 +141,7 @@ export class ArticlesEffects {
 
   updateArticleBookmarkRequested$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.updateActicleBookmarkRequested),
+      ofType(ArticlesActions.updateArticleBookmarkRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(({ articleId }) =>
         this.store

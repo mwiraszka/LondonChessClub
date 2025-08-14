@@ -81,7 +81,7 @@ export class HomePageComponent implements OnInit {
     this.setArticleCountBasedOnScreenWidth();
 
     this.viewModel$ = combineLatest([
-      this.store.select(ArticlesSelectors.selectAllArticles),
+      this.store.select(ArticlesSelectors.selectArticles),
       this.store.select(ImagesSelectors.selectArticleImages),
       this.store.select(EventsSelectors.selectAllEvents),
       this.store.select(AuthSelectors.selectIsAdmin),

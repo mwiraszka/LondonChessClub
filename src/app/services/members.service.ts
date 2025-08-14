@@ -10,6 +10,7 @@ import type {
   DbCollection,
   Id,
   Member,
+  PaginatedItems,
 } from '@app/models';
 import { setPaginationParams } from '@app/utils';
 
@@ -25,15 +26,16 @@ export class MembersService {
   constructor(private readonly http: HttpClient) {}
 
   public getMembers(
-    scope: ApiScope,
+    isAdmin: boolean,
     options: DataPaginationOptions<Member>,
-  ): Observable<
-    ApiResponse<{ items: Member[]; filteredCount: number; totalCount: number }>
-  > {
+  ): Observable<ApiResponse<PaginatedItems<Member>>> {
+    const scope: ApiScope = isAdmin ? 'admin' : 'public';
     const params = setPaginationParams(options);
-    return this.http.get<
-      ApiResponse<{ items: Member[]; filteredCount: number; totalCount: number }>
-    >(`${this.API_BASE_URL}/${scope}/${this.COLLECTION}`, { params });
+
+    return this.http.get<ApiResponse<PaginatedItems<Member>>>(
+      `${this.API_BASE_URL}/${scope}/${this.COLLECTION}`,
+      { params },
+    );
   }
 
   public getMember(id: Id): Observable<ApiResponse<Member>> {

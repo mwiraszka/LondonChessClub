@@ -29,14 +29,13 @@ export const selectTotalCount = createSelector(
 const { selectAll: selectAllMemberEntities } =
   membersAdapter.getSelectors(selectMembersState);
 
-export const selectAllMembers = createSelector(
-  selectAllMemberEntities,
-  allMemberEntities => allMemberEntities.map(entity => entity?.member),
+export const selectMembers = createSelector(selectAllMemberEntities, allMemberEntities =>
+  allMemberEntities.map(entity => entity?.member),
 );
 
 export const selectMemberById = (id: Id | null) =>
   createSelector(
-    selectAllMembers,
+    selectMembers,
     allMembers => allMembers.find(member => member.id === id) ?? null,
   );
 

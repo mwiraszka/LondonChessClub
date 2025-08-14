@@ -1,11 +1,17 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Article, ArticleFormData, Id, LccError } from '@app/models';
+import type {
+  Article,
+  ArticleFormData,
+  DataPaginationOptions,
+  Id,
+  LccError,
+} from '@app/models';
 
 export const fetchArticlesRequested = createAction('[Articles] Fetch articles requested');
 export const fetchArticlesSucceeded = createAction(
   '[Articles] Fetch articles succeeded',
-  props<{ articles: Article[] }>(),
+  props<{ articles: Article[]; filteredCount: number; totalCount: number }>(),
 );
 export const fetchArticlesFailed = createAction(
   '[Articles] Fetch articles failed',
@@ -41,7 +47,7 @@ export const publishArticleFailed = createAction(
   props<{ error: LccError }>(),
 );
 
-export const updateActicleBookmarkRequested = createAction(
+export const updateArticleBookmarkRequested = createAction(
   '[Articles] Update article bookmark requested',
   props<{ articleId: Id; bookmark: boolean }>(),
 );
@@ -69,6 +75,11 @@ export const deleteArticleSucceeded = createAction(
 export const deleteArticleFailed = createAction(
   '[Articles] Delete article failed',
   props<{ error: LccError }>(),
+);
+
+export const paginationOptionsChanged = createAction(
+  '[Articles] Pagination options changed',
+  props<{ options: DataPaginationOptions<Article>; fetch: boolean }>(),
 );
 
 export const cancelSelected = createAction('[Articles] Cancel selected');

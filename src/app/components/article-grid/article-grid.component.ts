@@ -4,6 +4,7 @@ import { take } from 'rxjs/operators';
 import {
   Component,
   EventEmitter,
+  HostBinding,
   Input,
   OnChanges,
   Output,
@@ -62,6 +63,12 @@ export class ArticleGridComponent implements OnChanges {
     articleId: Id;
     bookmark: boolean;
   }>();
+
+  // TODO: Base on grid container width instead of screen width for better flexibility
+  @HostBinding('class')
+  public get gridClass(): string {
+    return `card-count-${this.articles.length}`;
+  }
 
   private bannerImagesMap = new Map<Id, Image>();
 

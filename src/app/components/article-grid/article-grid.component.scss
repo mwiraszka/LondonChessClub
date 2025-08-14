@@ -12,9 +12,34 @@ $max-image-width: 320px;
   width: 100%;
   gap: 8px;
 
+  &.card-count-1 {
+    display: flex;
+  }
+
   @include respond-to('gt-sm') {
     // Minimum of 218px to ensure two columns can fit at the 'sm' breakpoint (500px)
     grid-template-columns: repeat(auto-fit, minmax(218px, 1fr));
+  }
+
+  @include respond-to('gt-md') {
+    &.card-count-2 {
+      display: flex;
+      flex-flow: row wrap;
+    }
+  }
+
+  @media screen and (min-width: 1035px) {
+    &.card-count-3 {
+      display: flex;
+      flex-flow: row wrap;
+    }
+  }
+
+  @media screen and (min-width: 1380px) {
+    &.card-count-4 {
+      display: flex;
+      flex-flow: row wrap;
+    }
   }
 
   .article {

@@ -1,22 +1,28 @@
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
-import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import type {
   AdminControlsConfig,
   Article,
   BasicDialogResult,
+  DataPaginationOptions,
   Dialog,
   Id,
   Image,
-  InternalLink,
 } from '@app/models';
 import {
   FormatDatePipe,
@@ -25,7 +31,6 @@ import {
   StripMarkdownPipe,
 } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
 import { isDefined, isSecondsInPast } from '@app/utils';
 
@@ -38,44 +43,35 @@ import { isDefined, isSecondsInPast } from '@app/utils';
     FormatDatePipe,
     ImagePreloadDirective,
     IsDefinedPipe,
-    LinkListComponent,
     MatIconModule,
     RouterLink,
     RouterLinkPipe,
     StripMarkdownPipe,
   ],
 })
-export class ArticleGridComponent implements OnInit, OnChanges {
+export class ArticleGridComponent implements OnChanges {
   @Input({ required: true }) articles!: Article[];
   @Input({ required: true }) articleImages!: Image[];
   @Input({ required: true }) isAdmin!: boolean;
 
-  @Input() public articleCount?: number;
+  @Input() articleCount?: number;
+  @Input() options?: DataPaginationOptions<Article>;
+
+  @Output() public requestDeleteArticle = new EventEmitter<Article>();
+  @Output() public requestUpdateArticleBookmark = new EventEmitter<{
+    articleId: Id;
+    bookmark: boolean;
+  }>();
 
   private bannerImagesMap = new Map<Id, Image>();
-
-  public readonly createArticleLink: InternalLink = {
-    internalPath: ['article', 'add'],
-    text: 'Create an article',
-    icon: 'add_circle_outline',
-  };
 
   constructor(
     private readonly dialogService: DialogService,
     private readonly store: Store,
   ) {}
 
-  public ngOnInit(): void {
-    this.store
-      .select(ArticlesSelectors.selectLastFetch)
-      .pipe(take(1))
-      .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(ArticlesActions.fetchArticlesRequested());
-        }
-      });
-  }
-
+  // TODO: Integrate into article fetch effect to prevent duplication in all screens that display
+  // articles, and to be able to shed the last dependency on NgRx store in this component
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['articles'] && this.articles.length) {
       this.store
@@ -134,7 +130,7 @@ export class ArticleGridComponent implements OnInit, OnChanges {
     );
 
     if (result === 'confirm') {
-      this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
+      this.requestDeleteArticle.emit(article);
     }
   }
 
@@ -158,12 +154,10 @@ export class ArticleGridComponent implements OnInit, OnChanges {
     );
 
     if (result === 'confirm') {
-      this.store.dispatch(
-        ArticlesActions.updateActicleBookmarkRequested({
-          articleId: article.id!,
-          bookmark: !hasBookmark,
-        }),
-      );
+      this.requestUpdateArticleBookmark.emit({
+        articleId: article.id!,
+        bookmark: !hasBookmark,
+      });
     }
   }
 }

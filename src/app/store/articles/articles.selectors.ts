@@ -14,10 +14,22 @@ export const selectLastFetch = createSelector(
   state => state.lastFetch,
 );
 
+export const selectOptions = createSelector(selectArticlesState, state => state.options);
+
+export const selectFilteredCount = createSelector(
+  selectArticlesState,
+  state => state.filteredCount,
+);
+
+export const selectTotalCount = createSelector(
+  selectArticlesState,
+  state => state.totalCount,
+);
+
 const { selectAll: selectAllArticleEntities } =
   articlesAdapter.getSelectors(selectArticlesState);
 
-export const selectAllArticles = createSelector(
+export const selectArticles = createSelector(
   selectAllArticleEntities,
   allArticleEntities => allArticleEntities.map(entity => entity?.article),
 );

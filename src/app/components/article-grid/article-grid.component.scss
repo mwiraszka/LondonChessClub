@@ -6,20 +6,6 @@ $card-padding: 6px;
 $max-image-width: 320px;
 
 :host {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-}
-
-lcc-link-list,
-.articles-container {
-  width: 100%;
-}
-
-.articles-container {
   display: grid;
   align-items: center;
   justify-content: center;

@@ -3,8 +3,12 @@ import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import { ARTICLE_FORM_DATA_PROPERTIES, INITIAL_ARTICLE_FORM_DATA } from '@app/constants';
-import type { Article, ArticleFormData, IsoDate } from '@app/models';
-import { customSort } from '@app/utils';
+import type {
+  Article,
+  ArticleFormData,
+  DataPaginationOptions,
+  IsoDate,
+} from '@app/models';
 
 import * as ArticlesActions from './articles.actions';
 
@@ -12,6 +16,9 @@ export interface ArticlesState
   extends EntityState<{ article: Article; formData: ArticleFormData }> {
   newArticleFormData: ArticleFormData;
   lastFetch: IsoDate | null;
+  options: DataPaginationOptions<Article>;
+  filteredCount: number;
+  totalCount: number;
 }
 
 export const articlesAdapter = createEntityAdapter<{
@@ -19,20 +26,21 @@ export const articlesAdapter = createEntityAdapter<{
   formData: ArticleFormData;
 }>({
   selectId: ({ article }) => article.id,
-  sortComparer: (a, b) =>
-    customSort(
-      a,
-      b,
-      'article.bookmarkDate',
-      true,
-      'article.modificationInfo.dateCreated',
-      true,
-    ),
 });
 
 export const initialState: ArticlesState = articlesAdapter.getInitialState({
   newArticleFormData: INITIAL_ARTICLE_FORM_DATA,
   lastFetch: null,
+  options: {
+    page: 1,
+    pageSize: 10,
+    sortBy: 'bookmarkDate',
+    sortOrder: 'desc',
+    filters: {},
+    search: '',
+  },
+  filteredCount: 0,
+  totalCount: 0,
 });
 
 export const articlesReducer = createReducer(
@@ -40,13 +48,13 @@ export const articlesReducer = createReducer(
 
   on(
     ArticlesActions.fetchArticlesSucceeded,
-    (state, { articles }): ArticlesState =>
+    (state, { articles, filteredCount, totalCount }): ArticlesState =>
       articlesAdapter.setAll(
         articles.map(article => ({
           article,
           formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
         })),
-        { ...state, lastFetch: new Date().toISOString() },
+        { ...state, lastFetch: new Date().toISOString(), filteredCount, totalCount },
       ),
   ),
 
@@ -112,6 +120,14 @@ export const articlesReducer = createReducer(
       state,
     );
   }),
+
+  on(
+    ArticlesActions.paginationOptionsChanged,
+    (state, { options }): ArticlesState => ({
+      ...state,
+      options,
+    }),
+  ),
 
   on(ArticlesActions.articleFormDataReset, (state, { articleId }): ArticlesState => {
     const originalArticle = articleId ? state.entities[articleId]?.article : null;

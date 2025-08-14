@@ -97,7 +97,7 @@ export class MembersPageComponent implements OnInit {
       this.store.select(MembersSelectors.selectFilteredCount),
       this.store.select(AuthSelectors.selectIsAdmin),
       this.store.select(AppSelectors.selectIsSafeMode),
-      this.store.select(MembersSelectors.selectAllMembers),
+      this.store.select(MembersSelectors.selectMembers),
       this.store.select(MembersSelectors.selectOptions),
     ]).pipe(
       untilDestroyed(this),

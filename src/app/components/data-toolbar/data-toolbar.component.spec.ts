@@ -1,3 +1,4 @@
+import { SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
@@ -231,12 +232,18 @@ describe('DataToolbarComponent', () => {
 
     it('should render page size buttons', () => {
       const pageSizeButtons = queryAll(fixture.debugElement, '.page-size-button');
-      expect(pageSizeButtons.length).toBe(component.PAGE_SIZES.length);
+
+      // Add 1 to account for the ALL button at the end
+      expect(pageSizeButtons.length).toBe(component.STANDARD_PAGE_SIZES.length + 1);
 
       pageSizeButtons.forEach((button, index) => {
-        expect(button.nativeElement.textContent.trim()).toBe(
-          component.PAGE_SIZES[index].toString(),
-        );
+        if (index < component.STANDARD_PAGE_SIZES.length) {
+          expect(button.nativeElement.textContent.trim()).toBe(
+            component.STANDARD_PAGE_SIZES[index].toString(),
+          );
+        } else {
+          expect(button.nativeElement.textContent.trim()).toBe('all');
+        }
       });
     });
 
@@ -272,6 +279,92 @@ describe('DataToolbarComponent', () => {
           'Showing 21\u00A0\u2013\u00A030\u00A0\u00A0/\u00A0\u00A099 members',
         );
       });
+
+      it('should show "No matches" when filteredCount is 0', () => {
+        component.filteredCount = 0;
+        fixture.detectChanges();
+
+        expect(queryTextContent(fixture.debugElement, '.pagination-summary')).toBe(
+          'No matches 😢',
+        );
+      });
+    });
+  });
+
+  describe('ALL page size selection tracking', () => {
+    describe('ngOnChanges', () => {
+      beforeEach(() => {
+        // Initialize component with ALL selected
+        component.filteredCount = 50;
+        component.options = { ...mockOptions, pageSize: 50 };
+        component.ngOnInit();
+      });
+
+      it('should update pageSize when filteredCount changes and ALL is selected', () => {
+        const changes = {
+          filteredCount: new SimpleChange(50, 30, false),
+        };
+        component.filteredCount = 30;
+        component.ngOnChanges(changes);
+
+        expect(optionsChangeNoFetchSpy).toHaveBeenCalledWith({
+          ...mockOptions,
+          pageSize: 30,
+        });
+      });
+
+      it('should set pageSize to 0 when filteredCount becomes 0 and ALL is selected', () => {
+        const changes = {
+          filteredCount: new SimpleChange(50, 0, false),
+        };
+        component.filteredCount = 0;
+        component.ngOnChanges(changes);
+
+        expect(optionsChangeNoFetchSpy).toHaveBeenCalledWith({
+          ...mockOptions,
+          pageSize: 0,
+        });
+      });
+
+      it('should not update pageSize when ALL is not selected', () => {
+        // Select a standard page size instead of ALL
+        component.onPageSizeChange(10);
+        fixture.detectChanges();
+
+        const changes = {
+          filteredCount: new SimpleChange(50, 30, false),
+        };
+        component.filteredCount = 30;
+        component.ngOnChanges(changes);
+
+        expect(optionsChangeNoFetchSpy).not.toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe('lastPage getter', () => {
+    it('should return 1 when filteredCount is 0', () => {
+      component.filteredCount = 0;
+      component.options = { ...mockOptions, pageSize: 10 };
+      fixture.detectChanges();
+
+      expect(component.lastPage).toBe(1);
+    });
+
+    it('should return 1 when pageSize is 0', () => {
+      component.filteredCount = 50;
+      component.options = { ...mockOptions, pageSize: 0 };
+      fixture.detectChanges();
+
+      expect(component.lastPage).toBe(1);
+    });
+
+    it('should calculate correctly when both values are positive', () => {
+      component.filteredCount = 25;
+      component.options = { ...mockOptions, pageSize: 10 };
+      fixture.detectChanges();
+
+      expect(component.lastPage).toBe(3);
     });
   });
 });

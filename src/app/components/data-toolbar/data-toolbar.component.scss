@@ -1,3 +1,5 @@
+@use '../../../styles/abstracts/mixins' as *;
+
 :host {
   width: 100%;
   display: flex;
@@ -23,7 +25,11 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 2px;
+
+    @include respond-to('gt-xxs') {
+      gap: 8px;
+    }
 
     .page-navigation-button {
       display: flex;
@@ -38,15 +44,23 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      gap: 4px;
+      gap: 2px;
       font-size: 14px;
       padding: 0 4px;
       color: var(--lcc-color--dataToolbar-text);
 
+      @include respond-to('gt-xxs') {
+        gap: 4px;
+      }
+
       .page-size-buttons {
         display: flex;
         flex-direction: row;
-        gap: 4px;
+        gap: 2px;
+
+        @include respond-to('gt-xxs') {
+          gap: 4px;
+        }
 
         .page-size-button {
           padding: 4px;

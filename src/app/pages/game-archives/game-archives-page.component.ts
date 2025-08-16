@@ -92,14 +92,10 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
     const filteredGameCount = this.filteredGameCount;
 
     if (filteredGameCount === 0) {
-      return 'No games found 😢';
+      return 'No matches 😢';
     }
 
-    if (filteredGameCount === allGamesCount) {
-      return `Showing all ${filteredGameCount} games`;
-    }
-
-    return `Showing ${filteredGameCount} / ${allGamesCount} ${filteredGameCount === 1 ? 'game' : 'games'} 😎`;
+    return `Showing ${filteredGameCount} / ${allGamesCount} ${filteredGameCount === 1 ? 'game' : 'games'}`;
   }
 
   public get filteredGameCount(): number {

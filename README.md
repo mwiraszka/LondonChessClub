@@ -36,7 +36,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.7.0 - August TBD, 2025</summary>
 
 - 🚀 Integrate Data Toolbar with the News page for quicker navigation through articles, and the ability to search by article author, title or any text within its body
-- 🚀 Minor improvement to pagination summary text at the bottom of the Data Toolbar component
+- 🚀 Improve pagination summary text at bottom of the Data Toolbar component and include an 'ALL' page size option to view all items on a single page
 
 </details>
 

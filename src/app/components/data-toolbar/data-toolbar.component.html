@@ -19,15 +19,22 @@
     <section class="page-control-section">
       <div class="page-counter">Page: {{ options.page }} / {{ lastPage }}</div>
       <div class="page-size-buttons">
-        @for (size of PAGE_SIZES; track size) {
+        @for (size of STANDARD_PAGE_SIZES; track size) {
           <button
             class="page-size-button lcc-secondary-button"
-            [class.selected]="options.pageSize === size"
+            [class.selected]="options.pageSize === size && !isAllPageSizeSelected"
             [tooltip]="'Show ' + size + ' ' + entity + ' per page'"
             (click)="onPageSizeChange(size)">
             {{ size }}
           </button>
         }
+        <button
+          class="page-size-button lcc-secondary-button"
+          [class.selected]="isAllPageSizeSelected"
+          [tooltip]="'Show all ' + filteredCount + ' ' + entity + ' on a single page'"
+          (click)="onPageSizeChange(filteredCount, true)">
+          all
+        </button>
       </div>
     </section>
 

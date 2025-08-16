@@ -1,12 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type {
-  BatchImageFetchContext,
-  Id,
-  Image,
-  ImageFormData,
-  LccError,
-} from '@app/models';
+import { BatchImageFetchContext, Id, Image, ImageFormData, LccError } from '@app/models';
 import { BaseImage } from '@app/models/image.model';
 
 export const fetchAllImagesMetadataRequested = createAction(

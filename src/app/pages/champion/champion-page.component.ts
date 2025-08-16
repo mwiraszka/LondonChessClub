@@ -3,7 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
-import type { ChampionshipTableRowData } from '@app/models';
+import { ChampionshipTableRowData } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 
 @Component({

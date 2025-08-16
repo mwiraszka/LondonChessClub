@@ -5,7 +5,7 @@ import { switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import type { ApiResponse, DbCollection, User } from '@app/models';
+import { ApiResponse, DbCollection, User } from '@app/models';
 import { AuthSelectors } from '@app/store/auth';
 
 import { environment } from '@env';

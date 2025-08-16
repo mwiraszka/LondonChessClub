@@ -10,13 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ArticleFormComponent } from '@app/components/article-form/article-form.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import type {
-  Article,
-  ArticleFormData,
-  EditorPage,
-  Image,
-  InternalLink,
-} from '@app/models';
+import { Article, ArticleFormData, EditorPage, Image, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ArticlesSelectors } from '@app/store/articles';
 import { ImagesSelectors } from '@app/store/images';

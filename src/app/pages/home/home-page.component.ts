@@ -13,7 +13,7 @@ import { ClubLinksComponent } from '@app/components/club-links/club-links.compon
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
 import { ScheduleComponent } from '@app/components/schedule/schedule.component';
-import type { Article, Event, Image, InternalLink } from '@app/models';
+import { Article, Event, Image, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';

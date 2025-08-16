@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { MemberFormComponent } from '@app/components/member-form/member-form.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import type { EditorPage, InternalLink, Member, MemberFormData } from '@app/models';
+import { EditorPage, InternalLink, Member, MemberFormData } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import { MembersSelectors } from '@app/store/members';

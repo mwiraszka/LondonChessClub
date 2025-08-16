@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import { EVENT_FORM_DATA_PROPERTIES, INITIAL_EVENT_FORM_DATA } from '@app/constants';
-import type { Event, EventFormData, IsoDate } from '@app/models';
+import { Event, EventFormData, IsoDate } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as EventsActions from './events.actions';

@@ -3,12 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import { ARTICLE_FORM_DATA_PROPERTIES, INITIAL_ARTICLE_FORM_DATA } from '@app/constants';
-import type {
-  Article,
-  ArticleFormData,
-  DataPaginationOptions,
-  IsoDate,
-} from '@app/models';
+import { Article, ArticleFormData, DataPaginationOptions, IsoDate } from '@app/models';
 
 import * as ArticlesActions from './articles.actions';
 

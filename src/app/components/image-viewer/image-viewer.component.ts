@@ -20,7 +20,7 @@ import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import type {
+import {
   AdminControlsConfig,
   BasicDialogResult,
   Dialog,

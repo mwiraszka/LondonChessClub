@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type {
+import {
   Article,
   ArticleFormData,
   DataPaginationOptions,

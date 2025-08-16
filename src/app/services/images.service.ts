@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import type { ApiResponse, DbCollection, Id, Image } from '@app/models';
+import { ApiResponse, DbCollection, Id, Image } from '@app/models';
 import { BaseImage } from '@app/models/image.model';
 
 import { environment } from '@env';

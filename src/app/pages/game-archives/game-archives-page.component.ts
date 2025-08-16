@@ -29,7 +29,7 @@ import { FormErrorIconComponent } from '@app/components/form-error-icon/form-err
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { PgnViewerComponent } from '@app/components/pgn-viewer/pgn-viewer.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
-import type { FilterFormGroup, GameDetails } from '@app/models';
+import { FilterFormGroup, GameDetails } from '@app/models';
 import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import {

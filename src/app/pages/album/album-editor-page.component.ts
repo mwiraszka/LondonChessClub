@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AlbumFormComponent } from '@app/components/album-form/album-form.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import type { EditorPage, Image, ImageFormData, InternalLink } from '@app/models';
+import { EditorPage, Image, ImageFormData, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ImagesSelectors } from '@app/store/images';
 

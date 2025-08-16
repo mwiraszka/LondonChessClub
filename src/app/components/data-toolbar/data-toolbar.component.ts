@@ -4,19 +4,17 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { CommonModule, KeyValue } from '@angular/common';
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import { DataPaginationOptions, Entity, EntityType, Filter } from '@app/models';
+import {
+  DataPaginationOptions,
+  Entity,
+  EntityType,
+  Filter,
+  NgChanges,
+} from '@app/models';
 
 @UntilDestroy()
 @Component({
@@ -72,8 +70,8 @@ export class DataToolbarComponent<T = EntityType> implements OnInit, OnChanges {
       .subscribe(options => this.optionsChange.emit(options));
   }
 
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['filteredCount']) {
+  public ngOnChanges(changes: NgChanges<DataToolbarComponent>): void {
+    if (changes.filteredCount) {
       // If ALL was selected and filteredCount changed, update pageSize to match filteredCount
       if (this.isAllPageSizeSelected && this.options.pageSize !== this.filteredCount) {
         this.optionsChangeNoFetch.emit({ ...this.options, pageSize: this.filteredCount });

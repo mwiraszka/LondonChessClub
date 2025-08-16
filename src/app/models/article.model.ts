@@ -2,8 +2,8 @@ import { FormControl } from '@angular/forms';
 
 import { ARTICLE_FORM_DATA_PROPERTIES } from '@app/constants';
 
-import type { Id, IsoDate } from './core.model';
-import type { ModificationInfo } from './modification-info.model';
+import { Id, IsoDate } from './core.model';
+import { ModificationInfo } from './modification-info.model';
 
 export interface Article {
   id: Id;

@@ -1,12 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type {
-  DataPaginationOptions,
-  Id,
-  LccError,
-  Member,
-  MemberFormData,
-} from '@app/models';
+import { DataPaginationOptions, Id, LccError, Member, MemberFormData } from '@app/models';
 
 export const fetchMembersRequested = createAction('[Members] Fetch members requested');
 export const fetchMembersSucceeded = createAction(

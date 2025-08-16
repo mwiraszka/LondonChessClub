@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
-import type { BasicDialogResult, Dialog, EditorPage } from '@app/models';
+import { BasicDialogResult, Dialog, EditorPage } from '@app/models';
 import { DialogService } from '@app/services';
 
 @Injectable({

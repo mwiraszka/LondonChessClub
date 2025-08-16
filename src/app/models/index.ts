@@ -32,6 +32,7 @@ export type { ChangePasswordFormGroup, LoginFormGroup } from './login.model';
 export type { Member, MemberFormData, MemberFormGroup } from './member.model';
 export type { ModificationInfo } from './modification-info.model';
 export type { NavPath } from './nav-path.model';
+export type { NgChanges } from './ng-changes.model';
 export type { DataPaginationOptions, Filter } from './pagination.model';
 export type { Toast } from './toast.model';
 export type { User } from './user.model';

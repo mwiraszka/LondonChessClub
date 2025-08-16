@@ -18,7 +18,7 @@ import { DatePickerComponent } from '@app/components/date-picker/date-picker.com
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import type {
+import {
   BasicDialogResult,
   Dialog,
   Event,

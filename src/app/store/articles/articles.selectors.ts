@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import { INITIAL_ARTICLE_FORM_DATA } from '@app/constants';
-import type { Id } from '@app/models';
+import { Id } from '@app/models';
 import { areSame } from '@app/utils';
 
 import { ArticlesState, articlesAdapter } from './articles.reducer';

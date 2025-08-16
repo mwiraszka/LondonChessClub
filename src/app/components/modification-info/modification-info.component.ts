@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
-import type { ModificationInfo } from '@app/models';
+import { ModificationInfo } from '@app/models';
 import { FormatDatePipe } from '@app/pipes';
 
 @Component({

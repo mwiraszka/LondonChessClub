@@ -4,7 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { DropdownDirective } from '@app/directives/dropdown.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import type { InternalLink } from '@app/models';
+import { InternalLink } from '@app/models';
 import { RouterLinkPipe } from '@app/pipes';
 
 @Component({

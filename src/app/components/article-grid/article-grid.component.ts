@@ -8,7 +8,6 @@ import {
   Input,
   OnChanges,
   Output,
-  SimpleChanges,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
@@ -16,7 +15,7 @@ import { RouterLink } from '@angular/router';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
-import type {
+import {
   AdminControlsConfig,
   Article,
   BasicDialogResult,
@@ -24,6 +23,7 @@ import type {
   Dialog,
   Id,
   Image,
+  NgChanges,
 } from '@app/models';
 import {
   FormatDatePipe,
@@ -79,8 +79,8 @@ export class ArticleGridComponent implements OnChanges {
 
   // TODO: Integrate into article fetch effect to prevent duplication in all screens that display
   // articles, and to be able to shed the last dependency on NgRx store in this component
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['articles'] && this.articles.length) {
+  public ngOnChanges(changes: NgChanges<ArticleGridComponent>): void {
+    if (changes.articles && this.articles.length) {
       this.store
         .select(ImagesSelectors.selectLastArticleImagesFetch)
         .pipe(take(1))
@@ -97,7 +97,7 @@ export class ArticleGridComponent implements OnChanges {
         });
     }
 
-    if (changes['articleImages']) {
+    if (changes.articleImages) {
       this.bannerImagesMap.clear();
       this.articleImages.forEach(image => {
         this.bannerImagesMap.set(image.id, image);

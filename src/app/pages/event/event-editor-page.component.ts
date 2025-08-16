@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EventFormComponent } from '@app/components/event-form/event-form.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import type { EditorPage, Event, EventFormData, InternalLink } from '@app/models';
+import { EditorPage, Event, EventFormData, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { EventsSelectors } from '@app/store/events';
 

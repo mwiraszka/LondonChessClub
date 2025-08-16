@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { LccError, User } from '@app/models';
+import { LccError, User } from '@app/models';
 
 export const loginRequested = createAction(
   '[Auth] Login requested',

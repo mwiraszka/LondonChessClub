@@ -19,7 +19,7 @@ import { FormErrorIconComponent } from '@app/components/form-error-icon/form-err
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import type {
+import {
   AlbumFormGroup,
   BasicDialogResult,
   Dialog,

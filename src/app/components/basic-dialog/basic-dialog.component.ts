@@ -8,7 +8,7 @@ import {
   RendererFactory2,
 } from '@angular/core';
 
-import type { BasicDialogResult, Dialog, DialogOutput } from '@app/models';
+import { BasicDialogResult, Dialog, DialogOutput } from '@app/models';
 
 @Component({
   selector: 'lcc-basic-dialog',

@@ -2,7 +2,7 @@ import { PDFProgressData, PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import type { DialogOutput } from '@app/models';
+import { DialogOutput } from '@app/models';
 
 @Component({
   selector: 'lcc-document-viewer',

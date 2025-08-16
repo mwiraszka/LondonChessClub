@@ -19,7 +19,7 @@ import {
 } from '@angular/core';
 
 import { DialogComponent } from '@app/components/dialog/dialog.component';
-import type { DialogConfig, DialogOutput } from '@app/models';
+import { DialogConfig, DialogOutput } from '@app/models';
 
 export const DIALOG_CONFIG_TOKEN = new InjectionToken<DialogConfig<unknown>>(
   'Dialog Config',

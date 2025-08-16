@@ -7,7 +7,7 @@ import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import type { BaseImage, LccError } from '@app/models';
+import { BaseImage, LccError } from '@app/models';
 import { ImageFileService, ImagesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { dataUrlToFile, isDefined, isLccError } from '@app/utils';

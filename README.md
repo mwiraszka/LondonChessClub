@@ -37,6 +37,8 @@ Below you'll find an overview of the tools and technologies that power the app, 
 
 - 🚀 Integrate Data Toolbar with the News page for quicker navigation through articles, and the ability to search by article author, title or any text within its body
 - 🚀 Improve pagination summary text at bottom of the Data Toolbar component and include an 'ALL' page size option to view all items on a single page
+- 🚀 Create a reusable Admin Toolbar component for the admin links and buttons displayed above various sections; add new admin icon or colour in admin-only access areas
+- 🐛 Fix a couple layout issues with Photo Grid
 - 🔧 Replace all of Angular's `SimpleChanges` with custom `NgChanges<Component>` variant, fully-typed to the component
 - 🔧 Remove redundant type-import markings on model imports as they are all already exported as types 
 

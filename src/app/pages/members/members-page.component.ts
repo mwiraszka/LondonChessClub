@@ -4,13 +4,13 @@ import { Observable, combineLatest } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
+import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
 import { DataToolbarComponent } from '@app/components/data-toolbar/data-toolbar.component';
-import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { MembersTableComponent } from '@app/components/members-table/members-table.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import { DataPaginationOptions, InternalLink, Member } from '@app/models';
+import { AdminButton, DataPaginationOptions, InternalLink, Member } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
@@ -28,7 +28,16 @@ import { isSecondsInPast } from '@app/utils';
       </lcc-page-header>
 
       @if (vm.isAdmin) {
-        <lcc-link-list [links]="[addMemberLink]"></lcc-link-list>
+        <input
+          #fileInput
+          type="file"
+          accept=".csv"
+          style="display: none"
+          (change)="onFileSelected($event)" />
+        <lcc-admin-toolbar
+          [adminLinks]="[addMemberLink]"
+          [adminButtons]="adminButtons">
+        </lcc-admin-toolbar>
       }
 
       <lcc-data-toolbar
@@ -51,19 +60,36 @@ import { isSecondsInPast } from '@app/utils';
     }
   `,
   imports: [
+    AdminToolbarComponent,
     CommonModule,
     DataToolbarComponent,
-    LinkListComponent,
     MembersTableComponent,
     PageHeaderComponent,
   ],
 })
 export class MembersPageComponent implements OnInit {
+  @ViewChild('fileInput') fileInput?: ElementRef<HTMLInputElement>;
+
   public addMemberLink: InternalLink = {
     internalPath: ['member', 'add'],
     text: 'Add a member',
     icon: 'add_circle_outline',
   };
+
+  public adminButtons: AdminButton[] = [
+    {
+      id: 'import-from-csv',
+      tooltip: 'Import from CSV',
+      icon: 'upload_file',
+      action: () => this.fileInput?.nativeElement.click(),
+    },
+    {
+      id: 'export-to-csv',
+      tooltip: 'Export to CSV',
+      icon: 'download',
+      action: () => this.onExportToCsv(),
+    },
+  ];
 
   public viewModel$?: Observable<{
     filteredCount: number;
@@ -117,5 +143,20 @@ export class MembersPageComponent implements OnInit {
 
   public onRequestDeleteMember(member: Member): void {
     this.store.dispatch(MembersActions.deleteMemberRequested({ member }));
+  }
+
+  public onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (file) {
+      this.store.dispatch(MembersActions.importMembersFromCsvRequested({ file }));
+      // Reset input so the same file can be selected again
+      input.value = '';
+    }
+  }
+
+  public onExportToCsv(): void {
+    this.store.dispatch(MembersActions.exportMembersToCsvRequested());
   }
 }

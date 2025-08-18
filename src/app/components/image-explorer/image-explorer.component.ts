@@ -6,6 +6,7 @@ import { CdkScrollable, CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
@@ -24,8 +25,6 @@ import * as ImagesActions from '@app/store/images/images.actions';
 import * as ImagesSelectors from '@app/store/images/images.selectors';
 import { isSecondsInPast } from '@app/utils';
 
-import { LinkListComponent } from '../link-list/link-list.component';
-
 @UntilDestroy()
 @Component({
   selector: 'lcc-image-explorer',
@@ -33,12 +32,12 @@ import { LinkListComponent } from '../link-list/link-list.component';
   styleUrl: './image-explorer.component.scss',
   imports: [
     AdminControlsDirective,
+    AdminToolbarComponent,
     CdkScrollableModule,
     CommonModule,
     FormatBytesPipe,
     FormatDatePipe,
     ImagePreloadDirective,
-    LinkListComponent,
   ],
   hostDirectives: [CdkScrollable],
 })

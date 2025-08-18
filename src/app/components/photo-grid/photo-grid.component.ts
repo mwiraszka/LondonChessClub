@@ -2,27 +2,29 @@ import { Store } from '@ngrx/store';
 import { take } from 'rxjs';
 
 import { UpperCasePipe } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
 import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
-import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
-import { TooltipDirective } from '@app/directives/tooltip.directive';
 import {
+  AdminButton,
   AdminControlsConfig,
   BasicDialogResult,
   Dialog,
   Id,
   Image,
   InternalLink,
+  NgChanges,
 } from '@app/models';
 import { DialogService } from '@app/services';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
 import { customSort, isSecondsInPast } from '@app/utils';
+
+import { AdminToolbarComponent } from '../admin-toolbar/admin-toolbar.component';
 
 @Component({
   selector: 'lcc-photo-grid',
@@ -31,10 +33,9 @@ import { customSort, isSecondsInPast } from '@app/utils';
   imports: [
     AdminControlsDirective,
     ImagePreloadDirective,
-    LinkListComponent,
     MatIconModule,
-    TooltipDirective,
     UpperCasePipe,
+    AdminToolbarComponent,
   ],
 })
 export class PhotoGridComponent implements OnChanges {
@@ -43,7 +44,16 @@ export class PhotoGridComponent implements OnChanges {
 
   @Input() public maxAlbums?: number;
 
-  public readonly links: InternalLink[] = [
+  public readonly adminButtons: AdminButton[] = [
+    {
+      id: 'open-image-explorer',
+      tooltip: 'Open image explorer',
+      icon: 'image_search',
+      action: () => this.onOpenImageExplorer(),
+    },
+  ];
+
+  public readonly adminLinks: InternalLink[] = [
     {
       internalPath: ['image', 'add'],
       text: 'Add an image',
@@ -72,8 +82,8 @@ export class PhotoGridComponent implements OnChanges {
     private readonly store: Store,
   ) {}
 
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['photoImages'] && this.photoImages.length) {
+  public ngOnChanges(changes: NgChanges<PhotoGridComponent>): void {
+    if (changes.photoImages && this.photoImages.length) {
       this.store
         .select(ImagesSelectors.selectLastAlbumCoversFetch)
         .pipe(take(1))

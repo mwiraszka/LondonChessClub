@@ -21,6 +21,7 @@ import { ImagesSelectors } from '@app/store/images';
     @if (viewModel$ | async; as vm) {
       <lcc-page-header
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
+        icon="admin_panel_settings"
         [title]="vm.pageTitle">
       </lcc-page-header>
 

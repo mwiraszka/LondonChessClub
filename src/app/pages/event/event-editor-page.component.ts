@@ -21,6 +21,7 @@ import { EventsSelectors } from '@app/store/events';
     @if (viewModel$ | async; as vm) {
       <lcc-page-header
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
+        icon="admin_panel_settings"
         [title]="vm.pageTitle">
       </lcc-page-header>
       <lcc-event-form

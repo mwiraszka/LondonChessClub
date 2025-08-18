@@ -1,6 +1,4 @@
-<div class="controls-header">
-  <lcc-link-list [links]="[addImageLink]"></lcc-link-list>
-</div>
+<lcc-admin-toolbar [adminLinks]="[addImageLink]"></lcc-admin-toolbar>
 
 <div class="image-grid">
   @for (image of images$ | async; track image.id) {

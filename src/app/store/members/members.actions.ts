@@ -79,3 +79,27 @@ export const memberFormDataReset = createAction(
   '[Members] Member form data reset',
   props<{ memberId: Id | null }>(),
 );
+
+export const importMembersFromCsvRequested = createAction(
+  '[Members] Import members from CSV requested',
+  props<{ file: File }>(),
+);
+export const importMembersFromCsvSucceeded = createAction(
+  '[Members] Import members from CSV succeeded',
+  props<{ importedCount: number }>(),
+);
+export const importMembersFromCsvFailed = createAction(
+  '[Members] Import members from CSV failed',
+  props<{ error: LccError }>(),
+);
+
+export const exportMembersToCsvRequested = createAction(
+  '[Members] Export members to CSV requested',
+);
+export const exportMembersToCsvSucceeded = createAction(
+  '[Members] Export members to CSV succeeded',
+);
+export const exportMembersToCsvFailed = createAction(
+  '[Members] Export members to CSV failed',
+  props<{ error: LccError }>(),
+);

@@ -25,6 +25,12 @@
   --lcc-color--adminControls-editIcon: #{clr(primary, base)};
   --lcc-color--adminControls-editIconOnHover: #{clr(primary, light)};
 
+  --lcc-color--adminToolbar-adminIcon: #{clr(admin, dark, 0.15)};
+  --lcc-color--adminToolbar-boxShadow: #{clr(grayscale, black-20, 0.7)};
+  --lcc-color--adminToolbar-button: #{clr(admin, dark)};
+  --lcc-color--adminToolbar-innerBackground: #{clr(grayscale, white-90)};
+  --lcc-color--adminToolbar-outerBackground: #{clr(admin, base)};
+
   --lcc-color--albumForm-headerText: #{clr(grayscale, black-15)};
 
   --lcc-color--app-mainBackground: #{clr(grayscale, white-95)};
@@ -46,6 +52,8 @@
   --lcc-color--articleGrid-cardBackground: #{clr(primary, base)};
   --lcc-color--articleGrid-cardBackgroundOnHover: #{clr(primary, base, 0.95)};
   --lcc-color--articleGrid-cardDividerLine: #{clr(grayscale, white-80, 0.5)};
+
+  --lcc-color--basicDialog-dividerLine: #{clr(grayscale, white-80)};
 
   --lcc-color--button-border: #{clr(grayscale, white-95, 0.2)};
   --lcc-color--button-darkSecondaryButtonBorder: #{clr(grayscale, gray-50)};
@@ -299,6 +307,7 @@
   --lcc-color--schedule-simulBorder: #{clr(event-simul, base, 0.5)};
   --lcc-color--schedule-titleText: #{clr(grayscale, black-5)};
 
+  --lcc-color--pageHeader-adminIcon: #{clr(admin, dark)};
   --lcc-color--pageHeader-asteriskText: #{clr(grayscale, gray-35)};
   --lcc-color--pageHeader-background: #{clr(grayscale, white-95)};
   --lcc-color--pageHeader-boxShadow: #{clr(grayscale, white-85, 0.7)};
@@ -364,5 +373,6 @@
   --lcc-color--userSettingsMenu-itemBackgroundOnHover: #{clr(grayscale, white-95)};
   --lcc-color--userSettingsMenu-itemForeground: #{clr(grayscale, black-15)};
   --lcc-color--userSettingsMenu-itemTextOnHover: #{clr(grayscale, black-2)};
+  --lcc-color--userSettingsMenu-userIcon: #{clr(admin, dark)};
   --lcc-color--userSettingsMenu-warning: #{clr(warning, lighter)};
 }

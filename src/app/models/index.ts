@@ -1,4 +1,5 @@
 export type { AdminControlsConfig } from './admin-controls-config.model';
+export type { AdminButton } from './admin-button.model';
 export type { ApiScope, ApiResponse, PaginatedItems } from './api.model';
 export type { Article, ArticleFormData, ArticleFormGroup } from './article.model';
 export type { ChampionshipTableRowData } from './championship-data.model';

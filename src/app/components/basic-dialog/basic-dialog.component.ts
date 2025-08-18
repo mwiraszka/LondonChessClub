@@ -13,8 +13,8 @@ import { BasicDialogResult, Dialog, DialogOutput } from '@app/models';
 @Component({
   selector: 'lcc-basic-dialog',
   template: `
-    <h3>{{ dialog.title }}</h3>
-    <p>{{ dialog.body }}</p>
+    <h3 class="dialog-title">{{ dialog.title }}</h3>
+    <p class="dialog-body">{{ dialog.body }}</p>
     <div class="buttons-container">
       <button
         class="cancel-button lcc-secondary-button lcc-dark-button"
@@ -41,6 +41,11 @@ import { BasicDialogResult, Dialog, DialogOutput } from '@app/models';
       gap: 16px;
       text-align: start;
       padding: 16px 32px;
+
+      .dialog-title {
+        padding-bottom: 4px;
+        border-bottom: 1px solid var(--lcc-color--basicDialog-dividerLine);
+      }
 
       .buttons-container {
         display: flex;

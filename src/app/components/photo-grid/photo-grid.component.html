@@ -1,14 +1,8 @@
 @if (isAdmin) {
-  <div class="admin-controls-header">
-    <lcc-link-list [links]="links"></lcc-link-list>
-    <button
-      class="image-explorer-button lcc-secondary-button"
-      type="button"
-      tooltip="Open Image Explorer"
-      (click)="onOpenImageExplorer()">
-      <mat-icon>image_search</mat-icon>
-    </button>
-  </div>
+  <lcc-admin-toolbar
+    [adminButtons]="adminButtons"
+    [adminLinks]="adminLinks">
+  </lcc-admin-toolbar>
 }
 
 <section class="grid-container">

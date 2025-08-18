@@ -1,14 +1,14 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
-import { map, take, tap } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
+import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
 import { ArticleGridComponent } from '@app/components/article-grid/article-grid.component';
 import { DataToolbarComponent } from '@app/components/data-toolbar/data-toolbar.component';
-import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { Article, DataPaginationOptions, Id, Image, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
@@ -28,7 +28,7 @@ import { isSecondsInPast } from '@app/utils';
       </lcc-page-header>
 
       @if (vm.isAdmin) {
-        <lcc-link-list [links]="[createArticleLink]"></lcc-link-list>
+        <lcc-admin-toolbar [adminLinks]="[createArticleLink]"></lcc-admin-toolbar>
       }
 
       <lcc-data-toolbar
@@ -53,10 +53,10 @@ import { isSecondsInPast } from '@app/utils';
     }
   `,
   imports: [
+    AdminToolbarComponent,
     ArticleGridComponent,
     CommonModule,
     DataToolbarComponent,
-    LinkListComponent,
     PageHeaderComponent,
   ],
 })

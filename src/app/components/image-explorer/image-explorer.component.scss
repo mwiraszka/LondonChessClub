@@ -3,8 +3,9 @@
   flex-direction: column;
   gap: 4px;
 
-  .controls-header {
-    background-color: var(--lcc-color--imageExplorer-controlsHeaderBackground);
+  lcc-admin-toolbar {
+    margin: 8px;
+    width: calc(100% - 16px);
   }
 
   .image-grid {

@@ -36,10 +36,10 @@
   <section class="articles-section">
     <h2 class="section-heading">Latest news</h2>
     <lcc-article-grid
-      [articleCount]="articleCount"
       [articles]="vm.articles"
       [articleImages]="vm.articleImages"
-      [isAdmin]="vm.isAdmin">
+      [isAdmin]="vm.isAdmin"
+      [options]="articleOptions">
     </lcc-article-grid>
     <lcc-link-list [links]="[newsPageLink]"></lcc-link-list>
   </section>

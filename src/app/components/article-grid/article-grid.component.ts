@@ -27,6 +27,7 @@ import {
 } from '@app/models';
 import {
   FormatDatePipe,
+  HighlightPipe,
   IsDefinedPipe,
   RouterLinkPipe,
   StripMarkdownPipe,
@@ -42,6 +43,7 @@ import { isDefined, isSecondsInPast } from '@app/utils';
   imports: [
     AdminControlsDirective,
     FormatDatePipe,
+    HighlightPipe,
     ImagePreloadDirective,
     IsDefinedPipe,
     MatIconModule,
@@ -54,9 +56,9 @@ export class ArticleGridComponent implements OnChanges {
   @Input({ required: true }) articles!: Article[];
   @Input({ required: true }) articleImages!: Image[];
   @Input({ required: true }) isAdmin!: boolean;
+  @Input({ required: true }) options!: DataPaginationOptions<Article>;
 
   @Input() articleCount?: number;
-  @Input() options?: DataPaginationOptions<Article>;
 
   @Output() public requestDeleteArticle = new EventEmitter<Article>();
   @Output() public requestUpdateArticleBookmark = new EventEmitter<{

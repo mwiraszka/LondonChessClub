@@ -1,7 +1,4 @@
-@for (
-  article of articles.slice(0, articleCount ?? options?.pageSize ?? articles.length);
-  track article.id
-) {
+@for (article of articles.slice(0, options.pageSize); track article.id) {
   <a
     class="article"
     [adminControls]="isAdmin ? getAdminControlsConfig(article) : null"
@@ -17,10 +14,14 @@
     </div>
 
     <div class="article-summary-container">
-      <h3 class="article-title lcc-truncate-max-2-lines">{{ article.title }}</h3>
+      <h3
+        class="article-title lcc-truncate-max-2-lines"
+        [innerHTML]="article.title | highlight: options.search"></h3>
+
       <hr />
-      <p class="article-preview lcc-truncate-max-5-lines">
-        {{ article.body | stripMarkdown }}
+      <p
+        class="article-preview lcc-truncate-max-5-lines"
+        [innerHTML]="article.body | stripMarkdown | highlight: options.search">
       </p>
       <div class="article-creation-date">
         {{ article.modificationInfo.dateCreated | formatDate: 'short no-time' }}

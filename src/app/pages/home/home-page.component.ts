@@ -13,7 +13,7 @@ import { ClubLinksComponent } from '@app/components/club-links/club-links.compon
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
 import { ScheduleComponent } from '@app/components/schedule/schedule.component';
-import { Article, Event, Image, InternalLink } from '@app/models';
+import { Article, DataPaginationOptions, Event, Image, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
@@ -38,11 +38,21 @@ import { isSecondsInPast } from '@app/utils';
   ],
 })
 export class HomePageComponent implements OnInit {
+  public viewModel$?: Observable<{
+    articles: Article[];
+    articleImages: Image[];
+    events: Event[];
+    isAdmin: boolean;
+    nextEvent: Event | null;
+    photoImages: Image[];
+    showPastEvents: boolean;
+    upcomingEvents: Event[];
+  }>;
+
   public readonly aboutPageLink: InternalLink = {
     text: 'More about the London Chess Club',
     internalPath: 'about',
   };
-  public articleCount!: number;
   public readonly photoGalleryPageLink: InternalLink = {
     text: 'More photos',
     internalPath: 'photo-gallery',
@@ -55,16 +65,19 @@ export class HomePageComponent implements OnInit {
     text: 'All scheduled events',
     internalPath: 'schedule',
   };
-  public viewModel$?: Observable<{
-    articles: Article[];
-    articleImages: Image[];
-    events: Event[];
-    isAdmin: boolean;
-    nextEvent: Event | null;
-    photoImages: Image[];
-    showPastEvents: boolean;
-    upcomingEvents: Event[];
-  }>;
+
+  public get articleOptions(): DataPaginationOptions<Article> {
+    return {
+      page: 1,
+      pageSize: this.articleCount,
+      sortBy: 'bookmarkDate',
+      sortOrder: 'desc',
+      filters: {},
+      search: '',
+    };
+  }
+
+  private articleCount!: number;
 
   constructor(
     private readonly metaAndTitleService: MetaAndTitleService,

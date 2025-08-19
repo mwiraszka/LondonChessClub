@@ -53,14 +53,21 @@
                     <mat-icon class="city-champion-icon">emoji_events</mat-icon>
                   </a>
                 }
-                {{ member.firstName }}
+                <span [innerHTML]="member.firstName | highlight: options.search"></span>
               </td>
-              <td class="last-name lcc-truncate">{{ member.lastName }}</td>
+              <td
+                class="last-name lcc-truncate"
+                [innerHTML]="member.lastName | highlight: options.search">
+              </td>
             } @else {
               <td
                 class="name lcc-truncate"
                 [tooltip]="member.isActive ? null : 'Inactive member'">
-                {{ member.firstName }} {{ member.lastName }}
+                <span
+                  [innerHTML]="
+                    member.firstName + ' ' + member.lastName | highlight: options.search
+                  ">
+                </span>
                 @if (isCityChampion(member)) {
                   <a
                     class="city-champion-link"
@@ -73,9 +80,18 @@
             }
             <td class="rating">{{ member.rating }}</td>
             <td class="peak-rating">{{ member.peakRating }}</td>
-            <td class="city lcc-truncate">{{ member.city }}</td>
-            <td class="chess-com-username lcc-truncate">{{ member.chessComUsername }}</td>
-            <td class="lichess-username lcc-truncate">{{ member.lichessUsername }}</td>
+            <td
+              class="city lcc-truncate"
+              [innerHTML]="member.city | highlight: options.search">
+            </td>
+            <td
+              class="chess-com-username lcc-truncate"
+              [innerHTML]="member.chessComUsername | highlight: options.search">
+            </td>
+            <td
+              class="lichess-username lcc-truncate"
+              [innerHTML]="member.lichessUsername | highlight: options.search">
+            </td>
 
             @if (isAdmin && !isSafeMode) {
               <td class="last-updated lcc-truncate">

@@ -17,7 +17,7 @@ import {
   Dialog,
   Member,
 } from '@app/models';
-import { CamelCasePipe, FormatDatePipe, KebabCasePipe } from '@app/pipes';
+import { CamelCasePipe, FormatDatePipe, HighlightPipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 
 @UntilDestroy()
@@ -30,6 +30,7 @@ import { DialogService } from '@app/services';
     CamelCasePipe,
     CommonModule,
     FormatDatePipe,
+    HighlightPipe,
     KebabCasePipe,
     MatIconModule,
     RouterLink,

@@ -306,6 +306,9 @@ body[data-theme='dark'] {
   --lcc-color--schedule-simulBorder: #{clr(event-simul, base, 0.5)};
   --lcc-color--schedule-titleText: #{clr(grayscale, white-95)};
 
+  --lcc-color--searchHighlight-background: #{clr(highlight, light)};
+  --lcc-color--searchHighlight-text: #{clr(grayscale, black-10)};
+
   --lcc-color--pageHeader-adminIcon: #{clr(admin, base)};
   --lcc-color--pageHeader-asteriskText: #{clr(grayscale, gray-50)};
   --lcc-color--pageHeader-background: #{clr(grayscale, black-15)};

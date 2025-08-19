@@ -1,17 +1,25 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, firstValueFrom } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { DataToolbarComponent } from '@app/components/data-toolbar/data-toolbar.component';
 import { MembersTableComponent } from '@app/components/members-table/members-table.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import { AdminButton, DataPaginationOptions, InternalLink, Member } from '@app/models';
-import { MetaAndTitleService } from '@app/services';
+import {
+  AdminButton,
+  BasicDialogResult,
+  DataPaginationOptions,
+  Dialog,
+  InternalLink,
+  Member,
+} from '@app/models';
+import { DialogService, MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
 import { MembersActions, MembersSelectors } from '@app/store/members';
@@ -97,9 +105,11 @@ export class MembersPageComponent implements OnInit {
     isSafeMode: boolean;
     members: Member[];
     options: DataPaginationOptions<Member>;
+    totalCount: number;
   }>;
 
   constructor(
+    private readonly dialogService: DialogService,
     private readonly metaAndTitleService: MetaAndTitleService,
     private readonly store: Store,
   ) {}
@@ -125,14 +135,16 @@ export class MembersPageComponent implements OnInit {
       this.store.select(AppSelectors.selectIsSafeMode),
       this.store.select(MembersSelectors.selectMembers),
       this.store.select(MembersSelectors.selectOptions),
+      this.store.select(MembersSelectors.selectTotalCount),
     ]).pipe(
       untilDestroyed(this),
-      map(([filteredCount, isAdmin, isSafeMode, members, options]) => ({
+      map(([filteredCount, isAdmin, isSafeMode, members, options, totalCount]) => ({
         filteredCount,
         isAdmin,
         isSafeMode,
         members,
         options,
+        totalCount,
       })),
     );
   }
@@ -156,7 +168,39 @@ export class MembersPageComponent implements OnInit {
     }
   }
 
-  public onExportToCsv(): void {
+  public async onExportToCsv(): Promise<void> {
+    if (!this.viewModel$) {
+      return;
+    }
+
+    const memberCount = await firstValueFrom(
+      this.viewModel$.pipe(map(vm => vm.totalCount)),
+    );
+
+    if (!memberCount) {
+      return;
+    }
+
+    const dialog: Dialog = {
+      title: 'Confirm',
+      body: `Export all ${memberCount} members to a CSV file?`,
+      confirmButtonText: 'Export',
+      confirmButtonType: 'primary',
+    };
+
+    const dialogResult = await this.dialogService.open<
+      BasicDialogComponent,
+      BasicDialogResult
+    >({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+      isModal: false,
+    });
+
+    if (dialogResult !== 'confirm') {
+      return;
+    }
+
     this.store.dispatch(MembersActions.exportMembersToCsvRequested());
   }
 }

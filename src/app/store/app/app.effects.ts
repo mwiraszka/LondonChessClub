@@ -86,6 +86,11 @@ export class AppEffects {
     MembersActions.fetchMembersFailed,
     MembersActions.updateMemberFailed,
     MembersActions.updateMemberSucceeded,
+    MembersActions.importMembersFromCsvFailed,
+    MembersActions.importMembersFromCsvSucceeded,
+    MembersActions.exportMembersToCsvFailed,
+    MembersActions.exportMembersToCsvSucceeded,
+
     NavActions.pageAccessDenied,
   ] as const;
 
@@ -447,6 +452,30 @@ export class AppEffects {
         return {
           title: 'Member update',
           message: `Successfully updated ${action.originalMemberName}`,
+          type: 'success',
+        };
+      case MembersActions.importMembersFromCsvFailed.type:
+        return {
+          title: 'CSV import',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case MembersActions.importMembersFromCsvSucceeded.type:
+        return {
+          title: 'CSV import',
+          message: `Successfully imported ${action.importedCount} members from CSV`,
+          type: 'success',
+        };
+      case MembersActions.exportMembersToCsvFailed.type:
+        return {
+          title: 'CSV export',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case MembersActions.exportMembersToCsvSucceeded.type:
+        return {
+          title: 'CSV export',
+          message: `Successfully exported ${action.exportedCount} members to CSV`,
           type: 'success',
         };
       case NavActions.pageAccessDenied.type:

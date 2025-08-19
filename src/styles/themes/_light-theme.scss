@@ -27,7 +27,6 @@
 
   --lcc-color--adminToolbar-adminIcon: #{clr(admin, dark, 0.15)};
   --lcc-color--adminToolbar-boxShadow: #{clr(grayscale, black-20, 0.7)};
-  --lcc-color--adminToolbar-button: #{clr(admin, dark)};
   --lcc-color--adminToolbar-innerBackground: #{clr(grayscale, white-90)};
   --lcc-color--adminToolbar-outerBackground: #{clr(admin, base)};
 
@@ -210,10 +209,10 @@
   --lcc-color--lifetimePage-sectionHeaderDivider: #{clr(primary, base)};
   --lcc-color--lifetimePage-sectionHeaderText: #{clr(grayscale, black-2)};
 
-  --lcc-color--link: #{clr(primary, base)};
+  --lcc-color--link: #{clr(primary, dark)};
   --lcc-color--linkDisabled: #{clr(grayscale, gray-50)};
-  --lcc-color--linkOnHover: #{clr(primary, light)};
-  --lcc-color--linkUnderline: #{clr(primary, light, 0.8)};
+  --lcc-color--linkOnHover: #{clr(primary, base)};
+  --lcc-color--linkUnderline: #{clr(primary, base, 0.8)};
 
   --lcc-color--linkList-headerText: #{clr(grayscale, gray-35)};
 

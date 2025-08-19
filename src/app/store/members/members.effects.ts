@@ -7,10 +7,10 @@ import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { Member } from '@app/models';
+import { DataPaginationOptions, Member } from '@app/models';
 import { LoaderService, MembersService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { getNewPeakRating, isDefined } from '@app/utils';
+import { exportDataToCsv, getNewPeakRating, isDefined } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
 
 import { MembersActions, MembersSelectors } from '.';
@@ -161,6 +161,44 @@ export class MembersEffects {
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
+  exportMembersToCsv$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(MembersActions.exportMembersToCsvRequested),
+      concatLatestFrom(() => [
+        this.store.select(MembersSelectors.selectTotalCount),
+        this.store.select(AuthSelectors.selectIsAdmin),
+      ]),
+      filter(([, totalCount]) => totalCount > 0),
+      switchMap(([, totalCount, isAdmin]) => {
+        // Fetch all members without pagination
+        const options: DataPaginationOptions<Member> = {
+          page: 1,
+          pageSize: totalCount,
+          sortBy: 'lastName',
+          sortOrder: 'asc',
+          filters: {},
+          search: '',
+        };
+
+        return this.membersService.getMembers(isAdmin, options).pipe(
+          map(response => {
+            const filename = `members_export_${new Date().toISOString().split('T')[0]}.csv`;
+            const exportResult = exportDataToCsv(response.data.items, filename);
+
+            return typeof exportResult === 'number'
+              ? MembersActions.exportMembersToCsvSucceeded({
+                  exportedCount: exportResult,
+                })
+              : MembersActions.exportMembersToCsvFailed({ error: exportResult });
+          }),
+          catchError(error =>
+            of(MembersActions.fetchMembersFailed({ error: parseError(error) })),
+          ),
+        );
+      }),
     );
   });
 

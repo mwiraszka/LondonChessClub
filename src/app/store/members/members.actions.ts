@@ -98,6 +98,7 @@ export const exportMembersToCsvRequested = createAction(
 );
 export const exportMembersToCsvSucceeded = createAction(
   '[Members] Export members to CSV succeeded',
+  props<{ exportedCount: number }>(),
 );
 export const exportMembersToCsvFailed = createAction(
   '[Members] Export members to CSV failed',

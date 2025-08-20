@@ -41,19 +41,22 @@ export class ImagesEffects {
     );
   });
 
-  fetchAllThumbnailImages$ = createEffect(() => {
+  fetchThumbnailImages$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchAllThumbnailsRequested),
-      switchMap(() =>
-        this.imagesService.getAllThumbnailImages().pipe(
+      ofType(ImagesActions.fetchThumbnailsRequested),
+      concatLatestFrom(() => this.store.select(ImagesSelectors.selectOptions)),
+      switchMap(([, options]) =>
+        this.imagesService.getThumbnailImages(options).pipe(
           map(response =>
-            ImagesActions.fetchAllThumbnailsSucceeded({
-              images: response.data,
+            ImagesActions.fetchThumbnailsSucceeded({
+              images: response.data.items,
+              filteredCount: response.data.filteredCount,
+              totalCount: response.data.totalCount,
             }),
           ),
           catchError(error =>
             of(
-              ImagesActions.fetchAllThumbnailsFailed({
+              ImagesActions.fetchThumbnailsFailed({
                 error: parseError(error),
               }),
             ),
@@ -63,17 +66,19 @@ export class ImagesEffects {
     );
   });
 
+  paginationOptionsChanged$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.paginationOptionsChanged),
+      filter(({ fetch }) => fetch),
+      map(() => ImagesActions.fetchThumbnailsRequested()),
+    );
+  });
+
   fetchBatchThumbnailImages$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchBatchThumbnailsRequested),
-      switchMap(({ imageIds, context }) => {
-        // return of(
-        //   ImagesActions.fetchBatchThumbnailsFailed({
-        //     error: parseError('test'),
-        //   }),
-        // );
-
-        return this.imagesService.getBatchThumbnailImages(imageIds).pipe(
+      switchMap(({ imageIds, context }) =>
+        this.imagesService.getBatchThumbnailImages(imageIds).pipe(
           map(response =>
             ImagesActions.fetchBatchThumbnailsSucceeded({
               images: response.data,
@@ -87,8 +92,8 @@ export class ImagesEffects {
               }),
             );
           }),
-        );
-      }),
+        ),
+      ),
     );
   });
 

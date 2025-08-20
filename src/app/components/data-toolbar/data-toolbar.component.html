@@ -1,7 +1,7 @@
 <div class="data-toolbar-controls">
   <section class="paginator">
     <button
-      class="first-page-button page-navigation-button lcc-secondary-button"
+      class="first-page-button page-navigation-button lcc-secondary-button lcc-light-button"
       [disabled]="options.page === 1"
       [tooltip]="options.page === 1 ? null : 'First page'"
       (click)="onFirstPage()">
@@ -9,7 +9,7 @@
     </button>
 
     <button
-      class="previous-page-button page-navigation-button lcc-secondary-button"
+      class="previous-page-button page-navigation-button lcc-secondary-button lcc-light-button"
       [disabled]="options.page === 1"
       [tooltip]="options.page === 1 ? null : 'Previous page'"
       (click)="onPreviousPage()">
@@ -39,7 +39,7 @@
     </section>
 
     <button
-      class="next-page-button page-navigation-button lcc-secondary-button"
+      class="next-page-button page-navigation-button lcc-secondary-button lcc-light-button"
       [disabled]="options.page === lastPage"
       [tooltip]="options.page === lastPage ? null : 'Next page'"
       (click)="onNextPage()">
@@ -47,7 +47,7 @@
     </button>
 
     <button
-      class="last-page-button page-navigation-button lcc-secondary-button"
+      class="last-page-button page-navigation-button lcc-secondary-button lcc-light-button"
       [disabled]="options.page === lastPage"
       [tooltip]="options.page === lastPage ? null : 'Last page'"
       (click)="onLastPage()">

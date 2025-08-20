@@ -33,6 +33,18 @@ export const selectLastArticleImagesFetch = createSelector(selectImagesState, st
   return state.lastArticleImagesFetch;
 });
 
+export const selectOptions = createSelector(selectImagesState, state => {
+  return state.options;
+});
+
+export const selectFilteredCount = createSelector(selectImagesState, state => {
+  return state.filteredCount;
+});
+
+export const selectTotalCount = createSelector(selectImagesState, state => {
+  return state.totalCount;
+});
+
 export const selectNewImageFormData = createSelector(
   selectNewImagesFormData,
   newImagesFormData => {

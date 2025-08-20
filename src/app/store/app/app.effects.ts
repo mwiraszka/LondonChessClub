@@ -69,7 +69,7 @@ export class AppEffects {
     ImagesActions.deleteImageFailed,
     ImagesActions.deleteImageSucceeded,
     ImagesActions.fetchAllImagesMetadataFailed,
-    ImagesActions.fetchAllThumbnailsFailed,
+    ImagesActions.fetchThumbnailsFailed,
     ImagesActions.fetchBatchThumbnailsFailed,
     ImagesActions.fetchOriginalFailed,
     ImagesActions.imageFileActionFailed,
@@ -99,7 +99,7 @@ export class AppEffects {
     ArticlesActions.fetchArticleFailed,
     EventsActions.fetchEventsFailed,
     EventsActions.fetchEventFailed,
-    ImagesActions.fetchAllThumbnailsFailed,
+    ImagesActions.fetchThumbnailsFailed,
     ImagesActions.fetchBatchThumbnailsFailed,
     ImagesActions.fetchOriginalFailed,
     MembersActions.fetchMembersFailed,
@@ -357,7 +357,7 @@ export class AppEffects {
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case ImagesActions.fetchAllThumbnailsFailed.type:
+      case ImagesActions.fetchThumbnailsFailed.type:
         return {
           title: 'Fetch images',
           message: this.getErrorMessage(action.error),

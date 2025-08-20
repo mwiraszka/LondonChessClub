@@ -1,5 +1,6 @@
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
+import { ChangeDetectorRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 
@@ -18,6 +19,7 @@ describe('ImageExplorerComponent', () => {
 
   let dialogService: DialogService;
   let store: MockStore;
+  let changeDetectorRef: ChangeDetectorRef;
 
   let dialogOpenSpy: jest.SpyInstance;
   let dialogResultSpy: jest.SpyInstance;
@@ -41,8 +43,20 @@ describe('ImageExplorerComponent', () => {
 
         dialogService = TestBed.inject(DialogService);
         store = TestBed.inject(MockStore);
+        changeDetectorRef = fixture.debugElement.injector.get(ChangeDetectorRef);
 
         store.overrideSelector(ImagesSelectors.selectAllImages, mockImages);
+        store.overrideSelector(ImagesSelectors.selectFilteredCount, mockImages.length);
+        store.overrideSelector(ImagesSelectors.selectTotalCount, mockImages.length);
+        store.overrideSelector(ImagesSelectors.selectOptions, {
+          page: 1,
+          pageSize: 20,
+          sortBy: 'modificationInfo' as keyof (typeof mockImages)[0],
+          sortOrder: 'desc',
+          filters: {},
+          search: '',
+        });
+        store.overrideSelector(ImagesSelectors.selectLastThumbnailsFetch, null);
 
         dialogOpenSpy = jest.spyOn(dialogService, 'open');
         dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
@@ -55,44 +69,43 @@ describe('ImageExplorerComponent', () => {
   });
 
   describe('initialization', () => {
-    beforeEach(() => {
-      fixture.detectChanges();
-    });
-
     it('should be selectable by default', () => {
+      fixture.detectChanges();
       expect(component.selectable).toBe(true);
     });
 
-    describe('when thumbnails were fetched less than 10 minutes ago', () => {
+    describe('when images were fetched less than 10 minutes ago', () => {
       beforeEach(() => {
+        jest.clearAllMocks();
         store.overrideSelector(
           ImagesSelectors.selectLastThumbnailsFetch,
           new Date(Date.now() - 9 * 60 * 1000).toISOString(),
         );
+        store.refreshState();
         fixture.detectChanges();
-        component.ngOnInit();
       });
 
-      it('should not dispatch fetchAllThumbnailsRequested', () => {
+      it('should not dispatch fetchThumbnailsRequested', () => {
         expect(dispatchSpy).not.toHaveBeenCalledWith(
-          ImagesActions.fetchAllThumbnailsRequested(),
+          ImagesActions.fetchThumbnailsRequested(),
         );
       });
     });
 
-    describe('when thumbnails were last fetched over 10 minutes ago', () => {
+    describe('when images were last fetched over 10 minutes ago', () => {
       beforeEach(() => {
+        jest.clearAllMocks();
         store.overrideSelector(
           ImagesSelectors.selectLastThumbnailsFetch,
           new Date(Date.now() - 11 * 60 * 1000).toISOString(),
         );
+        store.refreshState();
         fixture.detectChanges();
-        component.ngOnInit();
       });
 
-      it('should dispatch fetchAllThumbnailsRequested', () => {
+      it('should dispatch fetchThumbnailsRequested', () => {
         expect(dispatchSpy).toHaveBeenCalledWith(
-          ImagesActions.fetchAllThumbnailsRequested(),
+          ImagesActions.fetchThumbnailsRequested(),
         );
       });
     });
@@ -171,7 +184,7 @@ describe('ImageExplorerComponent', () => {
 
   describe('template rendering', () => {
     beforeEach(() => {
-      // Set up mock data and rerender component
+      // Set up mock data and re-render component
       store.overrideSelector(ImagesSelectors.selectAllImages, mockImages);
       fixture.detectChanges();
     });
@@ -193,6 +206,7 @@ describe('ImageExplorerComponent', () => {
 
     it('should not apply selectable class when selectable is false', () => {
       component.selectable = false;
+      changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(

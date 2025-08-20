@@ -11,9 +11,9 @@
   &:disabled {
     cursor: default;
     pointer-events: none;
-    border-color: var(--lcc-color--button-disabledButtonBorder);
+    border-color: var(--lcc-color--button-disabledButtonBorder) !important;
     background-color: var(--lcc-color--button-disabledButtonBackground);
-    color: var(--lcc-color--button-disabledButtonForeground);
+    color: var(--lcc-color--button-disabledButtonForeground) !important;
   }
 
   &:focus {

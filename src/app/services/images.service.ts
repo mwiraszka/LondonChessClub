@@ -3,8 +3,16 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { ApiResponse, DbCollection, Id, Image } from '@app/models';
+import {
+  ApiResponse,
+  DataPaginationOptions,
+  DbCollection,
+  Id,
+  Image,
+  PaginatedItems,
+} from '@app/models';
 import { BaseImage } from '@app/models/image.model';
+import { setPaginationParams } from '@app/utils';
 
 import { environment } from '@env';
 
@@ -23,9 +31,14 @@ export class ImagesService {
     );
   }
 
-  public getAllThumbnailImages(): Observable<ApiResponse<Image[]>> {
-    return this.http.get<ApiResponse<Image[]>>(
+  public getThumbnailImages(
+    options: DataPaginationOptions<Image>,
+  ): Observable<ApiResponse<PaginatedItems<Image>>> {
+    const params = setPaginationParams(options);
+
+    return this.http.get<ApiResponse<PaginatedItems<Image>>>(
       `${this.API_BASE_URL}/${this.COLLECTION}/all-thumbnails`,
+      { params },
     );
   }
 

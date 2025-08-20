@@ -98,7 +98,7 @@ body[data-theme='dark'] {
   --lcc-color--contentPlaceholder-foreground2: #{clr(grayscale, gray-65, 0.3)};
   --lcc-color--contentPlaceholder-foreground3: #{clr(grayscale, gray-65, 0.6)};
 
-  --lcc-color--dataToolbar-background: #{clr(primary, light, 0.4)};
+  --lcc-color--dataToolbar-background: #{clr(primary, darker)};
   --lcc-color--dataToolbar-buttonBorder: #{clr(grayscale, gray-75)};
   --lcc-color--dataToolbar-selectedButtonBorder: #{clr(secondary, base)};
   --lcc-color--dataToolbar-text: #{clr(grayscale, white-90)};

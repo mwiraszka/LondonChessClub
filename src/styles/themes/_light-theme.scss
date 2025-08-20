@@ -59,9 +59,9 @@
   --lcc-color--button-darkSecondaryButtonBorderOnHover: #{clr(grayscale, black-15)};
   --lcc-color--button-darkSecondaryButtonForeground: #{clr(grayscale, gray-25)};
   --lcc-color--button-darkSecondaryButtonForegroundOnHover: #{clr(grayscale, black-2)};
-  --lcc-color--button-disabledButtonBackground: #{clr(grayscale, white-90)};
-  --lcc-color--button-disabledButtonBorder: #{clr(grayscale, gray-50, 0.3)};
-  --lcc-color--button-disabledButtonForeground: #{clr(grayscale, gray-50, 0.4)};
+  --lcc-color--button-disabledButtonBackground: #{clr(grayscale, white-90, 0.7)};
+  --lcc-color--button-disabledButtonBorder: #{clr(grayscale, gray-65, 0.7)};
+  --lcc-color--button-disabledButtonForeground: #{clr(grayscale, gray-65, 0.7)};
   --lcc-color--button-lightSecondaryButtonBorder: #{clr(grayscale, gray-75)};
   --lcc-color--button-lightSecondaryButtonBorderOnHover: #{clr(grayscale, white-85)};
   --lcc-color--button-lightSecondaryButtonForeground: #{clr(grayscale, gray-75)};
@@ -98,10 +98,10 @@
   --lcc-color--contentPlaceholder-foreground2: #{clr(grayscale, white-95, 0.3)};
   --lcc-color--contentPlaceholder-foreground3: #{clr(grayscale, white-95, 0.6)};
 
-  --lcc-color--dataToolbar-background: #{clr(primary, lightest, 0.4)};
-  --lcc-color--dataToolbar-buttonBorder: #{clr(grayscale, gray-35)};
+  --lcc-color--dataToolbar-background: #{clr(primary, base)};
+  --lcc-color--dataToolbar-buttonBorder: #{clr(grayscale, gray-75)};
   --lcc-color--dataToolbar-selectedButtonBorder: #{clr(secondary, base)};
-  --lcc-color--dataToolbar-text: #{clr(grayscale, black-10)};
+  --lcc-color--dataToolbar-text: #{clr(grayscale, white-90)};
 
   --lcc-color--datePicker-buttonsBackground: #{clr(primary, base)};
   --lcc-color--datePicker-buttonsBackgroundOnHover: #{clr(primary, light)};

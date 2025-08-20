@@ -148,10 +148,10 @@ describe('DataToolbarComponent', () => {
   describe('template rendering', () => {
     describe('page navigation buttons', () => {
       it('should always render page navigation buttons', () => {
-        expect(query(fixture.debugElement, '.first-page-button')).not.toBeNull();
-        expect(query(fixture.debugElement, '.previous-page-button')).not.toBeNull();
-        expect(query(fixture.debugElement, '.next-page-button')).not.toBeNull();
-        expect(query(fixture.debugElement, '.last-page-button')).not.toBeNull();
+        expect(query(fixture.debugElement, '.first-page-button')).toBeTruthy();
+        expect(query(fixture.debugElement, '.previous-page-button')).toBeTruthy();
+        expect(query(fixture.debugElement, '.next-page-button')).toBeTruthy();
+        expect(query(fixture.debugElement, '.last-page-button')).toBeTruthy();
       });
 
       describe('with only one pages of data', () => {
@@ -257,7 +257,7 @@ describe('DataToolbarComponent', () => {
         };
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, '.filters')).not.toBeNull();
+        expect(query(fixture.debugElement, '.filters')).toBeTruthy();
         expect(queryAll(fixture.debugElement, '.filter').length).toBe(1);
       });
 
@@ -265,7 +265,7 @@ describe('DataToolbarComponent', () => {
         component.options = { ...mockOptions, filters: {} };
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, '.filters')).toBeNull();
+        expect(query(fixture.debugElement, '.filters')).toBeFalsy();
         expect(queryAll(fixture.debugElement, '.filter').length).toBe(0);
       });
     });

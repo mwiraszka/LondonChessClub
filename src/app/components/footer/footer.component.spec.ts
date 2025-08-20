@@ -37,25 +37,25 @@ describe('FooterComponent', () => {
   describe('template rendering', () => {
     describe('footer structure', () => {
       it('should render the main section', () => {
-        expect(query(fixture.debugElement, '.main-section')).not.toBeNull();
+        expect(query(fixture.debugElement, '.main-section')).toBeTruthy();
       });
 
       it('should render the branding and socials section', () => {
-        expect(query(fixture.debugElement, '.branding-and-socials')).not.toBeNull();
+        expect(query(fixture.debugElement, '.branding-and-socials')).toBeTruthy();
       });
 
       it('should render the site links section', () => {
-        expect(query(fixture.debugElement, '.site-links')).not.toBeNull();
+        expect(query(fixture.debugElement, '.site-links')).toBeTruthy();
       });
 
       it('should render the copyright notice section', () => {
-        expect(query(fixture.debugElement, '.copyright-notice')).not.toBeNull();
+        expect(query(fixture.debugElement, '.copyright-notice')).toBeTruthy();
       });
     });
 
     describe('club logo and name', () => {
       it('should display the club logo', () => {
-        expect(query(fixture.debugElement, '.logo img')).not.toBeNull();
+        expect(query(fixture.debugElement, '.logo img')).toBeTruthy();
       });
 
       it('should display the club name and current app version', () => {
@@ -104,7 +104,7 @@ describe('FooterComponent', () => {
           'chess.com/club/london-chess-club-canada',
         );
         expect(chesscomLink.nativeElement.target).toBe('_blank');
-        expect(chesscomLink.injector.get(TooltipDirective).tooltip).not.toBeNull();
+        expect(chesscomLink.injector.get(TooltipDirective).tooltip).toBeTruthy();
       });
 
       it('should properly render email link', () => {
@@ -112,7 +112,7 @@ describe('FooterComponent', () => {
 
         expect(emailLink.nativeElement.href).toContain('mailto:welcome@londonchess.ca');
         expect(emailLink.nativeElement.target).toBe('_blank');
-        expect(emailLink.injector.get(TooltipDirective).tooltip).not.toBeNull();
+        expect(emailLink.injector.get(TooltipDirective).tooltip).toBeTruthy();
       });
     });
 

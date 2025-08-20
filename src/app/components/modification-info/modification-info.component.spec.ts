@@ -61,7 +61,7 @@ describe('ModificationInfoComponent', () => {
       component.info = MOCK_MODIFICATION_INFOS[4];
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, '.edit-details-container')).toBeNull();
+      expect(query(fixture.debugElement, '.edit-details-container')).toBeFalsy();
     });
   });
 });

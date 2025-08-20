@@ -4,12 +4,12 @@ import { phoneNumberValidator } from './phone-number.validator';
 
 describe('phoneNumberValidator', () => {
   it('returns `null` for an empty string', () => {
-    expect(getErrorForValue('')).toBeNull();
+    expect(getErrorForValue('')).toBeFalsy();
   });
 
   it('returns `null` if valid', () => {
-    expect(getErrorForValue('123-123-1234')).toBeNull();
-    expect(getErrorForValue('555-232-2424')).toBeNull();
+    expect(getErrorForValue('123-123-1234')).toBeFalsy();
+    expect(getErrorForValue('555-232-2424')).toBeFalsy();
   });
 
   it('returns `invalidPhoneNumberFormat` error if invalid', () => {

@@ -241,7 +241,7 @@ describe('ImageExplorerComponent', () => {
       );
 
       // Actual text will depend on formatDate pipe implementation
-      expect(query(fixture.debugElement, '.upload-date span')).not.toBeNull();
+      expect(query(fixture.debugElement, '.upload-date span')).toBeTruthy();
     });
   });
 });

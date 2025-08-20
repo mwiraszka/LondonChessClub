@@ -32,8 +32,8 @@ describe('ClubLinksComponent', () => {
 
       linkElements.forEach(linkElement => {
         expect(queryTextContent(linkElement, 'mat-icon')).toBe('open_in_new');
-        expect(query(linkElement, '.image-container img')).not.toBeNull();
-        expect(queryTextContent(linkElement, 'span')).not.toBeNull();
+        expect(query(linkElement, '.image-container img')).toBeTruthy();
+        expect(queryTextContent(linkElement, 'span')).toBeTruthy();
       });
     });
   });

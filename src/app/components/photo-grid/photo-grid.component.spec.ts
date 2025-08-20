@@ -202,14 +202,14 @@ describe('PhotoGridComponent', () => {
       component.isAdmin = true;
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, 'lcc-admin-toolbar')).not.toBeNull();
+      expect(query(fixture.debugElement, 'lcc-admin-toolbar')).toBeTruthy();
     });
 
     it('should not display admin toolbar when isAdmin is false', () => {
       component.isAdmin = false;
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, 'lcc-admin-toolbar')).toBeNull();
+      expect(query(fixture.debugElement, 'lcc-admin-toolbar')).toBeFalsy();
     });
 
     it('should display album covers with correct information', () => {

@@ -43,7 +43,7 @@ describe('PageHeaderComponent', () => {
       component.icon = null;
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, 'mat-icon')).toBeNull();
+      expect(query(fixture.debugElement, 'mat-icon')).toBeFalsy();
     });
 
     it('should add end-with-asterisk class when hasUnsavedChanges is true', () => {

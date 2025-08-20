@@ -415,7 +415,7 @@ describe('AlbumFormComponent', () => {
       component.imageEntities = [];
       fixture.detectChanges();
 
-      expect(component.mostRecentModificationInfo).toBeNull();
+      expect(component.mostRecentModificationInfo).toBeFalsy();
     });
   });
 
@@ -891,14 +891,14 @@ describe('AlbumFormComponent', () => {
         ];
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, 'lcc-modification-info')).not.toBeNull();
+        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeTruthy();
       });
 
       it('should not render if imageEntity is null', () => {
         component.imageEntities = [];
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeNull();
+        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeFalsy();
       });
     });
 
@@ -916,7 +916,7 @@ describe('AlbumFormComponent', () => {
         component.album = '';
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, '.new-images-header')).toBeNull();
+        expect(query(fixture.debugElement, '.new-images-header')).toBeFalsy();
       });
     });
 

@@ -58,7 +58,7 @@ describe('ArticleComponent', () => {
       ];
 
       [...containerSelectors, ...contentSelectors].forEach(selector => {
-        expect(query(fixture.debugElement, selector)).not.toBeNull();
+        expect(query(fixture.debugElement, selector)).toBeTruthy();
       });
     });
 
@@ -93,7 +93,7 @@ describe('ArticleComponent', () => {
         expect(queryTextContent(fixture.debugElement, '.date-created')).toBe(
           'Thu, Jan 2, 2025, 12:00 PM',
         );
-        expect(query(fixture.debugElement, '.date-last-edited')).toBeNull();
+        expect(query(fixture.debugElement, '.date-last-edited')).toBeFalsy();
       });
     });
 

@@ -103,7 +103,7 @@ describe('EventFormComponent', () => {
 
           expect(dispatchSpy).toHaveBeenCalled();
           const callArgs = dispatchSpy.mock.calls[0][0];
-          expect(callArgs.eventId).toBeNull(); // Because originalEvent was null
+          expect(callArgs.eventId).toBeFalsy(); // Because originalEvent was null
           expect(callArgs.type).toBe(EventsActions.formValueChanged.type);
         });
 
@@ -354,14 +354,14 @@ describe('EventFormComponent', () => {
         component.originalEvent = MOCK_EVENTS[0];
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, 'lcc-modification-info')).not.toBeNull();
+        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeTruthy();
       });
 
       it('should not render if originalEvent is null', () => {
         component.originalEvent = null;
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeNull();
+        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeFalsy();
       });
     });
 

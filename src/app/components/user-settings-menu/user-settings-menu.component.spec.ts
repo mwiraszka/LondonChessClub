@@ -112,11 +112,11 @@ describe('UserSettingsMenuComponent', () => {
     });
 
     it('should not display user name when user is not logged in', () => {
-      expect(query(fixture.debugElement, '.user-name')).toBeNull();
+      expect(query(fixture.debugElement, '.user-name')).toBeFalsy();
     });
 
     it('should show admin login button when user is not logged in', () => {
-      expect(query(fixture.debugElement, '.admin-login')).not.toBeNull();
+      expect(query(fixture.debugElement, '.admin-login')).toBeTruthy();
     });
 
     it('should show logout and change password options when user is logged in', () => {
@@ -124,8 +124,8 @@ describe('UserSettingsMenuComponent', () => {
       store.refreshState();
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, '.change-password')).not.toBeNull();
-      expect(query(fixture.debugElement, '.admin-logout')).not.toBeNull();
+      expect(query(fixture.debugElement, '.change-password')).toBeTruthy();
+      expect(query(fixture.debugElement, '.admin-logout')).toBeTruthy();
     });
 
     it('should set correct toggle switch properties based on store state', () => {

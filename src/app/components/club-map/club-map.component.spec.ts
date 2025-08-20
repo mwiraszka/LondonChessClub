@@ -48,7 +48,7 @@ describe('ClubMapComponent', () => {
 
   describe('template rendering', () => {
     it('should render the club map element that hosts the Google Maps widget', () => {
-      expect(query(fixture.debugElement, '#club-map')).not.toBeNull();
+      expect(query(fixture.debugElement, '#club-map')).toBeTruthy();
     });
   });
 });

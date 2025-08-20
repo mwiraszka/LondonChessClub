@@ -239,10 +239,10 @@ describe('ChangePasswordFormComponent', () => {
       });
 
       it('should render form with all fields', () => {
-        expect(query(fixture.debugElement, '#email-input')).not.toBeNull();
-        expect(query(fixture.debugElement, '#code-input')).not.toBeNull();
-        expect(query(fixture.debugElement, '#new-password-input')).not.toBeNull();
-        expect(query(fixture.debugElement, '#confirm-password-input')).not.toBeNull();
+        expect(query(fixture.debugElement, '#email-input')).toBeTruthy();
+        expect(query(fixture.debugElement, '#code-input')).toBeTruthy();
+        expect(query(fixture.debugElement, '#new-password-input')).toBeTruthy();
+        expect(query(fixture.debugElement, '#confirm-password-input')).toBeTruthy();
       });
 
       it('should show "Change password" button', () => {
@@ -306,10 +306,10 @@ describe('ChangePasswordFormComponent', () => {
       });
 
       it('should render form with email field only', () => {
-        expect(query(fixture.debugElement, '#email-input')).not.toBeNull();
-        expect(query(fixture.debugElement, '#code-input')).toBeNull();
-        expect(query(fixture.debugElement, '#new-password-input')).toBeNull();
-        expect(query(fixture.debugElement, '#confirm-password-input')).toBeNull();
+        expect(query(fixture.debugElement, '#email-input')).toBeTruthy();
+        expect(query(fixture.debugElement, '#code-input')).toBeFalsy();
+        expect(query(fixture.debugElement, '#new-password-input')).toBeFalsy();
+        expect(query(fixture.debugElement, '#confirm-password-input')).toBeFalsy();
       });
 
       it('should show "Get code" button', () => {
@@ -335,7 +335,7 @@ describe('ChangePasswordFormComponent', () => {
       });
 
       it('should not show "Request new code" link', () => {
-        expect(query(fixture.debugElement, '.request-new-code-link')).toBeNull();
+        expect(query(fixture.debugElement, '.request-new-code-link')).toBeFalsy();
       });
     });
   });

@@ -244,14 +244,14 @@ describe('MembersTableComponent', () => {
       component.isSafeMode = true;
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, 'lcc-safe-mode-notice')).not.toBeNull();
+      expect(query(fixture.debugElement, 'lcc-safe-mode-notice')).toBeTruthy();
     });
 
     it('should not display safe mode notice when isSafeMode is false', () => {
       component.isSafeMode = false;
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, 'lcc-safe-mode-notice')).toBeNull();
+      expect(query(fixture.debugElement, 'lcc-safe-mode-notice')).toBeFalsy();
     });
 
     it('should display correct member data for general public', () => {

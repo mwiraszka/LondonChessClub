@@ -335,10 +335,10 @@ describe('ArticleGridComponent', () => {
       component.articles = [MOCK_ARTICLES[0]];
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, '.article')).not.toBeNull();
+      expect(query(fixture.debugElement, '.article')).toBeTruthy();
 
       const adminConfig = component.getAdminControlsConfig(MOCK_ARTICLES[0]);
-      expect(adminConfig.editPath).not.toBeNull();
+      expect(adminConfig.editPath).toBeTruthy();
     });
 
     it('should not show admin controls when isAdmin is false', () => {
@@ -346,7 +346,7 @@ describe('ArticleGridComponent', () => {
       component.articles = [MOCK_ARTICLES[0]];
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, '.article')).not.toBeNull();
+      expect(query(fixture.debugElement, '.article')).toBeTruthy();
       expect(component.isAdmin).toBe(false);
     });
 
@@ -354,14 +354,14 @@ describe('ArticleGridComponent', () => {
       component.articles = [MOCK_ARTICLES[0]];
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, '.bookmark-icon')).not.toBeNull();
+      expect(query(fixture.debugElement, '.bookmark-icon')).toBeTruthy();
     });
 
     it('should not show bookmark icon for non-bookmarked articles', () => {
       component.articles = [MOCK_ARTICLES[2]];
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, '.bookmark-icon')).toBeNull();
+      expect(query(fixture.debugElement, '.bookmark-icon')).toBeFalsy();
     });
 
     it('should apply correct router link to article cards', () => {

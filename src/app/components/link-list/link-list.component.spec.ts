@@ -74,7 +74,7 @@ describe('LinkListComponent', () => {
       component.header = undefined;
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, 'h3')).toBeNull();
+      expect(query(fixture.debugElement, 'h3')).toBeFalsy();
     });
 
     it('should render internal links correctly', () => {

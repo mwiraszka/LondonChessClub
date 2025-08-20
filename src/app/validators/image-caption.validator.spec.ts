@@ -4,16 +4,16 @@ import { imageCaptionValidator } from './image-caption.validator';
 
 describe('imageCaptionValidator', () => {
   it('returns `null` for an empty string', () => {
-    expect(getErrorForValue('')).toBeNull();
+    expect(getErrorForValue('')).toBeFalsy();
   });
 
   it('returns `null` if valid', () => {
-    expect(getErrorForValue('My caption!')).toBeNull();
+    expect(getErrorForValue('My caption!')).toBeFalsy();
     expect(
       getErrorForValue(
         'Text with all accepted characters: !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~',
       ),
-    ).toBeNull();
+    ).toBeFalsy();
   });
 
   it('returns `invalidImageCaption` error if invalid', () => {

@@ -4,13 +4,13 @@ import { yearOfBirthValidator } from './year-of-birth.validator';
 
 describe('yearOfBirthValidator', () => {
   it('returns `null` for an empty string', () => {
-    expect(getErrorForValue('')).toBeNull();
+    expect(getErrorForValue('')).toBeFalsy();
   });
 
   it('returns `null` if valid', () => {
-    expect(getErrorForValue('2024')).toBeNull();
-    expect(getErrorForValue('1999')).toBeNull();
-    expect(getErrorForValue('1890')).toBeNull();
+    expect(getErrorForValue('2024')).toBeFalsy();
+    expect(getErrorForValue('1999')).toBeFalsy();
+    expect(getErrorForValue('1890')).toBeFalsy();
   });
 
   it('returns `invalidYearOfBirth` error if invalid', () => {

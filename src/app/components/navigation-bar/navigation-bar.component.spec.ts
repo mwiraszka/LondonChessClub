@@ -66,11 +66,11 @@ describe('NavigationBarComponent', () => {
       it('should always display the settings icon', () => {
         component.isDropdownOpen = true;
         fixture.detectChanges();
-        expect(query(fixture.debugElement, '.user-settings-button')).not.toBeNull();
+        expect(query(fixture.debugElement, '.user-settings-button')).toBeTruthy();
 
         component.isDropdownOpen = false;
         fixture.detectChanges();
-        expect(query(fixture.debugElement, '.user-settings-button')).not.toBeNull();
+        expect(query(fixture.debugElement, '.user-settings-button')).toBeTruthy();
       });
 
       it('should display correct dropdown icon when `isDropdownOpen` is true', () => {

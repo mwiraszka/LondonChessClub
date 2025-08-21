@@ -7,7 +7,7 @@ import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { Article } from '@app/models';
+import { Article, DataPaginationOptions } from '@app/models';
 import { ArticlesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { isDefined, parseError } from '@app/utils';
@@ -16,22 +16,51 @@ import { ArticlesActions, ArticlesSelectors } from '.';
 
 @Injectable()
 export class ArticlesEffects {
-  fetchArticles$ = createEffect(() => {
+  fetchHomePageArticles$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.fetchArticlesRequested),
+      ofType(ArticlesActions.fetchHomePageArticlesRequested),
+      tap(() => this.loaderService.setIsLoading(true)),
+      switchMap(() => {
+        const options: DataPaginationOptions<Article> = {
+          page: 1,
+          pageSize: 6,
+          sortBy: 'bookmarkDate',
+          sortOrder: 'desc',
+          filters: {},
+          search: '',
+        };
+
+        return this.articlesService.getArticles(options).pipe(
+          map(response =>
+            ArticlesActions.fetchHomePageArticlesSucceeded({
+              articles: response.data.items,
+            }),
+          ),
+          catchError(error =>
+            of(ArticlesActions.fetchHomePageArticlesFailed({ error: parseError(error) })),
+          ),
+        );
+      }),
+      tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
+  fetchNewsPageArticles$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.fetchNewsPageArticlesRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => this.store.select(ArticlesSelectors.selectOptions)),
       switchMap(([, options]) =>
         this.articlesService.getArticles(options).pipe(
           map(response =>
-            ArticlesActions.fetchArticlesSucceeded({
+            ArticlesActions.fetchNewsPageArticlesSucceeded({
               articles: response.data.items,
               filteredCount: response.data.filteredCount,
               totalCount: response.data.totalCount,
             }),
           ),
           catchError(error =>
-            of(ArticlesActions.fetchArticlesFailed({ error: parseError(error) })),
+            of(ArticlesActions.fetchNewsPageArticlesFailed({ error: parseError(error) })),
           ),
         ),
       ),
@@ -43,7 +72,7 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.paginationOptionsChanged),
       filter(({ fetch }) => fetch),
-      map(() => ArticlesActions.fetchArticlesRequested()),
+      map(() => ArticlesActions.fetchNewsPageArticlesRequested()),
     );
   });
 

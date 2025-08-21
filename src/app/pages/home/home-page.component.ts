@@ -16,7 +16,7 @@ import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.compon
 import { ScheduleComponent } from '@app/components/schedule/schedule.component';
 import { Article, DataPaginationOptions, Event, Image, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
-import { ArticlesSelectors } from '@app/store/articles';
+import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
 import { EventsSelectors } from '@app/store/events';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
@@ -73,6 +73,7 @@ export class HomePageComponent implements OnInit {
     internalPath: 'schedule',
   };
 
+  // Only passed in for the pageSize; options for API call are set in the effect
   public get articleOptions(): DataPaginationOptions<Article> {
     return {
       page: 1,
@@ -100,8 +101,17 @@ export class HomePageComponent implements OnInit {
     );
     this.setArticleCountBasedOnScreenWidth();
 
+    this.store
+      .select(ArticlesSelectors.selectLastHomePageFetch)
+      .pipe(take(1))
+      .subscribe(lastFetch => {
+        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
+          this.store.dispatch(ArticlesActions.fetchHomePageArticlesRequested());
+        }
+      });
+
     this.viewModel$ = combineLatest([
-      this.store.select(ArticlesSelectors.selectArticles),
+      this.store.select(ArticlesSelectors.selectHomePageArticles),
       this.store.select(ImagesSelectors.selectArticleImages),
       this.store.select(EventsSelectors.selectAllEvents),
       this.store.select(AuthSelectors.selectIsAdmin),

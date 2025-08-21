@@ -1,8 +1,6 @@
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 
-import { HighContrastModeDetector } from '@angular/cdk/a11y';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
@@ -27,10 +25,10 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
 
-  let store: MockStore;
   let loaderService: LoaderService;
-  let urlExpirationService: UrlExpirationService;
+  let store: MockStore;
   let touchEventsService: TouchEventsService;
+  let urlExpirationService: UrlExpirationService;
 
   let dispatchSpy: jest.SpyInstance;
   let querySelectorSpy: jest.SpyInstance;
@@ -43,10 +41,9 @@ describe('AppComponent', () => {
     nextEvent: MOCK_EVENTS[0],
   };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [
-        ScrollingModule,
         AppComponent,
         FooterComponent,
         HeaderComponent,
@@ -56,13 +53,6 @@ describe('AppComponent', () => {
       providers: [
         provideMockStore(),
         provideRouter([]),
-        {
-          provide: HighContrastModeDetector,
-          useValue: {
-            getHighContrastMode: jest.fn().mockReturnValue(0),
-            _applyBodyHighContrastModeCssClasses: jest.fn(),
-          },
-        },
         {
           provide: LoaderService,
           useValue: { isLoading$: of(false) },
@@ -80,30 +70,32 @@ describe('AppComponent', () => {
           useValue: { listenForTouchEvents: jest.fn() },
         },
       ],
-    }).compileComponents();
+    })
+      .compileComponents()
+      .then(() => {
+        fixture = TestBed.createComponent(AppComponent);
+        component = fixture.componentInstance;
 
-    store = TestBed.inject(MockStore);
-    loaderService = TestBed.inject(LoaderService);
-    urlExpirationService = TestBed.inject(UrlExpirationService);
-    touchEventsService = TestBed.inject(TouchEventsService);
+        store = TestBed.inject(MockStore);
+        loaderService = TestBed.inject(LoaderService);
+        urlExpirationService = TestBed.inject(UrlExpirationService);
+        touchEventsService = TestBed.inject(TouchEventsService);
 
-    store.overrideSelector(AppSelectors.selectIsDarkMode, mockState.isDarkMode);
-    store.overrideSelector(
-      AppSelectors.selectShowUpcomingEventBanner,
-      mockState.showUpcomingEventBanner,
-    );
-    store.overrideSelector(
-      AppSelectors.selectBannerLastCleared,
-      mockState.bannerLastCleared,
-    );
-    store.overrideSelector(EventsSelectors.selectNextEvent, mockState.nextEvent);
+        store.overrideSelector(AppSelectors.selectIsDarkMode, mockState.isDarkMode);
+        store.overrideSelector(
+          AppSelectors.selectShowUpcomingEventBanner,
+          mockState.showUpcomingEventBanner,
+        );
+        store.overrideSelector(
+          AppSelectors.selectBannerLastCleared,
+          mockState.bannerLastCleared,
+        );
+        store.overrideSelector(EventsSelectors.selectNextEvent, mockState.nextEvent);
 
-    dispatchSpy = jest.spyOn(store, 'dispatch');
-    querySelectorSpy = jest.spyOn(document, 'querySelector');
-    setAttributeSpy = jest.spyOn(document.body, 'setAttribute');
-
-    fixture = TestBed.createComponent(AppComponent);
-    component = fixture.componentInstance;
+        dispatchSpy = jest.spyOn(store, 'dispatch');
+        querySelectorSpy = jest.spyOn(document, 'querySelector');
+        setAttributeSpy = jest.spyOn(document.body, 'setAttribute');
+      });
   });
 
   it('should create', () => {

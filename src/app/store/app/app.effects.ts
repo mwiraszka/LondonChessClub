@@ -34,7 +34,8 @@ export class AppEffects {
     ArticlesActions.deleteArticleFailed,
     ArticlesActions.deleteArticleSucceeded,
     ArticlesActions.fetchArticleFailed,
-    ArticlesActions.fetchArticlesFailed,
+    ArticlesActions.fetchHomePageArticlesFailed,
+    ArticlesActions.fetchNewsPageArticlesFailed,
     ArticlesActions.publishArticleFailed,
     ArticlesActions.publishArticleSucceeded,
     ArticlesActions.updateArticleFailed,
@@ -95,7 +96,8 @@ export class AppEffects {
   ] as const;
 
   readonly SUPPRESSED_TOASTS_IN_PROD = [
-    ArticlesActions.fetchArticlesFailed,
+    ArticlesActions.fetchHomePageArticlesFailed,
+    ArticlesActions.fetchNewsPageArticlesFailed,
     ArticlesActions.fetchArticleFailed,
     EventsActions.fetchEventsFailed,
     EventsActions.fetchEventFailed,
@@ -160,7 +162,13 @@ export class AppEffects {
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case ArticlesActions.fetchArticlesFailed.type:
+      case ArticlesActions.fetchHomePageArticlesFailed.type:
+        return {
+          title: 'Load articles',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case ArticlesActions.fetchNewsPageArticlesFailed.type:
         return {
           title: 'Load articles',
           message: this.getErrorMessage(action.error),

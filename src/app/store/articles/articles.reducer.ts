@@ -10,10 +10,12 @@ import * as ArticlesActions from './articles.actions';
 export interface ArticlesState
   extends EntityState<{ article: Article; formData: ArticleFormData }> {
   newArticleFormData: ArticleFormData;
-  lastFetch: IsoDate | null;
+  lastHomePageFetch: IsoDate | null;
+  lastNewsPageFetch: IsoDate | null;
   options: DataPaginationOptions<Article>;
   filteredCount: number;
   totalCount: number;
+  homePageArticles: Article[];
 }
 
 export const articlesAdapter = createEntityAdapter<{
@@ -25,7 +27,8 @@ export const articlesAdapter = createEntityAdapter<{
 
 export const initialState: ArticlesState = articlesAdapter.getInitialState({
   newArticleFormData: INITIAL_ARTICLE_FORM_DATA,
-  lastFetch: null,
+  lastHomePageFetch: null,
+  lastNewsPageFetch: null,
   options: {
     page: 1,
     pageSize: 10,
@@ -36,20 +39,35 @@ export const initialState: ArticlesState = articlesAdapter.getInitialState({
   },
   filteredCount: 0,
   totalCount: 0,
+  homePageArticles: [],
 });
 
 export const articlesReducer = createReducer(
   initialState,
 
   on(
-    ArticlesActions.fetchArticlesSucceeded,
+    ArticlesActions.fetchHomePageArticlesSucceeded,
+    (state, { articles }): ArticlesState => ({
+      ...state,
+      homePageArticles: articles,
+      lastHomePageFetch: new Date().toISOString(),
+    }),
+  ),
+
+  on(
+    ArticlesActions.fetchNewsPageArticlesSucceeded,
     (state, { articles, filteredCount, totalCount }): ArticlesState =>
       articlesAdapter.setAll(
         articles.map(article => ({
           article,
           formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
         })),
-        { ...state, lastFetch: new Date().toISOString(), filteredCount, totalCount },
+        {
+          ...state,
+          lastNewsPageFetch: new Date().toISOString(),
+          filteredCount,
+          totalCount,
+        },
       ),
   ),
 

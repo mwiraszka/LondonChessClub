@@ -87,11 +87,11 @@ export class NewsPageComponent implements OnInit {
     );
 
     this.store
-      .select(ArticlesSelectors.selectLastFetch)
+      .select(ArticlesSelectors.selectLastNewsPageFetch)
       .pipe(take(1))
       .subscribe(lastFetch => {
         if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(ArticlesActions.fetchArticlesRequested());
+          this.store.dispatch(ArticlesActions.fetchNewsPageArticlesRequested());
         }
       });
 

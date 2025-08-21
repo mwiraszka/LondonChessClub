@@ -7,11 +7,11 @@
   grid-template-columns: minmax(0, 1fr);
 
   @include respond-to('gt-lg') {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: 420px 1fr 1fr 1fr;
     grid-template-areas:
-      'welcome welcome welcome schedule schedule'
-      'articles articles articles articles articles'
-      'regional-clubs regional-clubs photos photos photos';
+      'welcome welcome schedule schedule'
+      'articles articles articles articles'
+      'regional-clubs photos photos photos';
   }
 
   section {
@@ -79,11 +79,15 @@
         display: flex;
         flex-direction: column;
         gap: 16px;
-        padding: 16px;
+        padding: 16px 8px;
         background-color: var(--lcc-color--general-cardBackground);
         border-radius: var(--lcc-borderRadius--large);
         box-shadow: 3px 3px 5px var(--lcc-color--homePage-boxShadow);
         line-height: 20px;
+
+        @include respond-to('gt-xxs') {
+          padding: 16px;
+        }
 
         &:hover {
           animation: raise 0.2s ease forwards;

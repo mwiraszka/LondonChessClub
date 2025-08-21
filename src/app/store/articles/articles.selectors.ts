@@ -9,9 +9,13 @@ import { ArticlesState, articlesAdapter } from './articles.reducer';
 
 const selectArticlesState = createFeatureSelector<ArticlesState>('articlesState');
 
-export const selectLastFetch = createSelector(
+export const selectLastHomePageFetch = createSelector(
   selectArticlesState,
-  state => state.lastFetch,
+  state => state.lastHomePageFetch,
+);
+export const selectLastNewsPageFetch = createSelector(
+  selectArticlesState,
+  state => state.lastNewsPageFetch,
 );
 
 export const selectOptions = createSelector(selectArticlesState, state => state.options);
@@ -24,6 +28,11 @@ export const selectFilteredCount = createSelector(
 export const selectTotalCount = createSelector(
   selectArticlesState,
   state => state.totalCount,
+);
+
+export const selectHomePageArticles = createSelector(
+  selectArticlesState,
+  state => state.homePageArticles,
 );
 
 const { selectAll: selectAllArticleEntities } =

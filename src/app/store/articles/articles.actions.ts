@@ -8,13 +8,27 @@ import {
   LccError,
 } from '@app/models';
 
-export const fetchArticlesRequested = createAction('[Articles] Fetch articles requested');
-export const fetchArticlesSucceeded = createAction(
-  '[Articles] Fetch articles succeeded',
+export const fetchHomePageArticlesRequested = createAction(
+  '[Articles] Fetch home page articles requested',
+);
+export const fetchHomePageArticlesSucceeded = createAction(
+  '[Articles] Fetch home page articles succeeded',
+  props<{ articles: Article[] }>(),
+);
+export const fetchHomePageArticlesFailed = createAction(
+  '[Articles] Fetch home page articles failed',
+  props<{ error: LccError }>(),
+);
+
+export const fetchNewsPageArticlesRequested = createAction(
+  '[Articles] Fetch news page articles requested',
+);
+export const fetchNewsPageArticlesSucceeded = createAction(
+  '[Articles] Fetch news page articles succeeded',
   props<{ articles: Article[]; filteredCount: number; totalCount: number }>(),
 );
-export const fetchArticlesFailed = createAction(
-  '[Articles] Fetch articles failed',
+export const fetchNewsPageArticlesFailed = createAction(
+  '[Articles] Fetch news page articles failed',
   props<{ error: LccError }>(),
 );
 

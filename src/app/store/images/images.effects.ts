@@ -44,6 +44,7 @@ export class ImagesEffects {
   fetchThumbnailImages$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchThumbnailsRequested),
+      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => this.store.select(ImagesSelectors.selectOptions)),
       switchMap(([, options]) =>
         this.imagesService.getThumbnailImages(options).pipe(
@@ -63,6 +64,7 @@ export class ImagesEffects {
           ),
         ),
       ),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 

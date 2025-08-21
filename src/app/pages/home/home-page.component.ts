@@ -8,6 +8,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
+import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
 import { ArticleGridComponent } from '@app/components/article-grid/article-grid.component';
 import { ClubLinksComponent } from '@app/components/club-links/club-links.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
@@ -27,6 +28,7 @@ import { isSecondsInPast } from '@app/utils';
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
   imports: [
+    AdminToolbarComponent,
     ArticleGridComponent,
     ClubLinksComponent,
     CommonModule,
@@ -49,19 +51,24 @@ export class HomePageComponent implements OnInit {
     upcomingEvents: Event[];
   }>;
 
-  public readonly aboutPageLink: InternalLink = {
+  public aboutPageLink: InternalLink = {
     text: 'More about the London Chess Club',
     internalPath: 'about',
   };
-  public readonly photoGalleryPageLink: InternalLink = {
-    text: 'More photos',
-    internalPath: 'photo-gallery',
+  public createArticleLink: InternalLink = {
+    internalPath: ['article', 'add'],
+    text: 'Create an article',
+    icon: 'add_circle_outline',
   };
-  public readonly newsPageLink: InternalLink = {
+  public newsPageLink: InternalLink = {
     text: 'More news',
     internalPath: 'news',
   };
-  public readonly schedulePageLink: InternalLink = {
+  public photoGalleryPageLink: InternalLink = {
+    text: 'More photos',
+    internalPath: 'photo-gallery',
+  };
+  public schedulePageLink: InternalLink = {
     text: 'All scheduled events',
     internalPath: 'schedule',
   };

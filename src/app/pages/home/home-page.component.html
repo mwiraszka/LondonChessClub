@@ -35,6 +35,9 @@
 
   <section class="articles-section">
     <h2 class="section-heading">Latest news</h2>
+    @if (vm.isAdmin) {
+      <lcc-admin-toolbar [adminLinks]="[createArticleLink]"></lcc-admin-toolbar>
+    }
     <lcc-article-grid
       [articles]="vm.articles"
       [articleImages]="vm.articleImages"

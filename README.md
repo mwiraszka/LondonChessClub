@@ -43,7 +43,8 @@ Below you'll find an overview of the tools and technologies that power the app, 
 - 🚀 Create a reusable Admin Toolbar component for the admin links and buttons displayed above various sections; add new admin icon or colour in admin-only access areas
 - 🐛 Fix a couple layout issues with Photo Grid
 - 🔧 Replace all of Angular's `SimpleChanges` with custom `NgChanges<Component>` variant, fully-typed to the component
-- 🔧 Remove redundant type-import markings on model imports as they are all already exported as types 
+- 🔧 Remove redundant type-import markings on model imports as they are all already exported as types
+- 🔧 Add specs for all remaining reusable components
 
 </details>
 

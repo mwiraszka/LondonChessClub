@@ -1,6 +1,3 @@
-import { Store } from '@ngrx/store';
-import { take } from 'rxjs/operators';
-
 import {
   Component,
   EventEmitter,
@@ -33,8 +30,7 @@ import {
   StripMarkdownPipe,
 } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { ImagesActions, ImagesSelectors } from '@app/store/images';
-import { isDefined, isSecondsInPast } from '@app/utils';
+import { isDefined } from '@app/utils';
 
 @Component({
   selector: 'lcc-article-grid',
@@ -66,39 +62,16 @@ export class ArticleGridComponent implements OnChanges {
     bookmark: boolean;
   }>();
 
-  // TODO: Base on grid container width instead of screen width for better flexibility
-  @HostBinding('class')
-  public get gridClass(): string {
-    return `card-count-${this.articles.length}`;
+  @HostBinding('attr.card-count')
+  public get cardCount(): number {
+    return this.articles.length;
   }
 
   private bannerImagesMap = new Map<Id, Image>();
 
-  constructor(
-    private readonly dialogService: DialogService,
-    private readonly store: Store,
-  ) {}
+  constructor(private readonly dialogService: DialogService) {}
 
-  // TODO: Integrate into article fetch effect to prevent duplication in all screens that display
-  // articles, and to be able to shed the last dependency on NgRx store in this component
   public ngOnChanges(changes: NgChanges<ArticleGridComponent>): void {
-    if (changes.articles && this.articles.length) {
-      this.store
-        .select(ImagesSelectors.selectLastArticleImagesFetch)
-        .pipe(take(1))
-        .subscribe(lastFetch => {
-          if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-            const bannerImageIds = this.articles.map(article => article.bannerImageId);
-            this.store.dispatch(
-              ImagesActions.fetchBatchThumbnailsRequested({
-                imageIds: bannerImageIds,
-                context: 'articles',
-              }),
-            );
-          }
-        });
-    }
-
     if (changes.articleImages) {
       this.bannerImagesMap.clear();
       this.articleImages.forEach(image => {

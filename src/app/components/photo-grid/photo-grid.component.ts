@@ -93,7 +93,7 @@ export class PhotoGridComponent implements OnChanges {
             this.store.dispatch(
               ImagesActions.fetchBatchThumbnailsRequested({
                 imageIds,
-                context: 'photos',
+                isAlbumCoverFetch: true,
               }),
             );
           }

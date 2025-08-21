@@ -10,6 +10,7 @@ import { Injectable } from '@angular/core';
 import { Article, DataPaginationOptions } from '@app/models';
 import { ArticlesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
+import { ImagesActions } from '@app/store/images';
 import { isDefined, parseError } from '@app/utils';
 
 import { ArticlesActions, ArticlesSelectors } from '.';
@@ -42,6 +43,20 @@ export class ArticlesEffects {
         );
       }),
       tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
+  fetchArticleBannerImages$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(
+        ArticlesActions.fetchHomePageArticlesSucceeded,
+        ArticlesActions.fetchNewsPageArticlesSucceeded,
+      ),
+      map(({ articles }) =>
+        ImagesActions.fetchBatchThumbnailsRequested({
+          imageIds: articles.map(article => article.bannerImageId),
+        }),
+      ),
     );
   });
 

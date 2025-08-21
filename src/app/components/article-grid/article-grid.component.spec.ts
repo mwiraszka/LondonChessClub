@@ -1,5 +1,3 @@
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
@@ -10,7 +8,6 @@ import { MOCK_ARTICLES } from '@app/mocks/articles.mock';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { Article, DataPaginationOptions } from '@app/models';
 import { DialogService } from '@app/services';
-import { ImagesActions, ImagesSelectors } from '@app/store/images';
 import { query, queryAll, queryTextContent } from '@app/utils';
 
 import { ArticleGridComponent } from './article-grid.component';
@@ -20,10 +17,8 @@ describe('ArticleGridComponent', () => {
   let component: ArticleGridComponent;
 
   let dialogService: DialogService;
-  let store: MockStore;
 
   let dialogOpenSpy: jest.SpyInstance;
-  let dispatchSpy: jest.SpyInstance;
   let requestDeleteArticleSpy: jest.SpyInstance;
   let requestUpdateArticleBookmarkSpy: jest.SpyInstance;
 
@@ -40,7 +35,6 @@ describe('ArticleGridComponent', () => {
     TestBed.configureTestingModule({
       imports: [AdminControlsDirective, ArticleGridComponent, ImagePreloadDirective],
       providers: [
-        provideMockStore(),
         provideRouter([]),
         { provide: DialogService, useValue: { open: jest.fn() } },
       ],
@@ -50,7 +44,6 @@ describe('ArticleGridComponent', () => {
         fixture = TestBed.createComponent(ArticleGridComponent);
         component = fixture.componentInstance;
         dialogService = TestBed.inject(DialogService);
-        store = TestBed.inject(MockStore);
 
         component.articles = MOCK_ARTICLES;
         component.articleImages = MOCK_IMAGES;
@@ -58,7 +51,6 @@ describe('ArticleGridComponent', () => {
         component.options = mockOptions;
 
         dialogOpenSpy = jest.spyOn(dialogService, 'open');
-        dispatchSpy = jest.spyOn(store, 'dispatch');
         requestDeleteArticleSpy = jest.spyOn(component.requestDeleteArticle, 'emit');
         requestUpdateArticleBookmarkSpy = jest.spyOn(
           component.requestUpdateArticleBookmark,
@@ -73,85 +65,27 @@ describe('ArticleGridComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('initialization and image fetching', () => {
-    describe('when article images were fetched less than 10 minutes ago', () => {
-      beforeEach(() => {
-        store.overrideSelector(
-          ImagesSelectors.selectLastArticleImagesFetch,
-          new Date(Date.now() - 9 * 60 * 1000).toISOString(),
-        );
-
-        component.ngOnChanges({
-          articles: {
-            currentValue: MOCK_ARTICLES,
-            previousValue: [],
-            firstChange: false,
-            isFirstChange: () => false,
-          },
-        });
+  describe('when articleImages changes', () => {
+    it('should update the bannerImagesMap', () => {
+      component.ngOnChanges({
+        articleImages: {
+          currentValue: MOCK_IMAGES,
+          previousValue: [],
+          firstChange: false,
+          isFirstChange: () => false,
+        },
       });
 
-      it('should not dispatch fetchBatchThumbnailsRequested', () => {
-        expect(dispatchSpy).not.toHaveBeenCalledWith(
-          ImagesActions.fetchBatchThumbnailsRequested({
-            imageIds: expect.any(Array),
-            context: 'articles',
-          }),
-        );
-      });
-    });
-
-    describe('when article images were last fetched over 10 minutes ago', () => {
-      beforeEach(() => {
-        store.overrideSelector(
-          ImagesSelectors.selectLastArticleImagesFetch,
-          new Date(Date.now() - 11 * 60 * 1000).toISOString(),
-        );
-
-        component.ngOnChanges({
-          articles: {
-            currentValue: MOCK_ARTICLES,
-            previousValue: [],
-            firstChange: false,
-            isFirstChange: () => false,
-          },
-        });
-      });
-
-      it('should dispatch fetchBatchThumbnailsRequested with banner image IDs', () => {
-        const bannerImageIds = MOCK_ARTICLES.map(article => article.bannerImageId);
-        expect(dispatchSpy).toHaveBeenCalledWith(
-          ImagesActions.fetchBatchThumbnailsRequested({
-            imageIds: bannerImageIds,
-            context: 'articles',
-          }),
-        );
-      });
-    });
-
-    describe('when articleImages changes', () => {
-      it('should update the bannerImagesMap', () => {
-        component.ngOnChanges({
-          articleImages: {
-            currentValue: MOCK_IMAGES,
-            previousValue: [],
-            firstChange: false,
-            isFirstChange: () => false,
-          },
-        });
-
-        const bannerImage = component.getBannerImage(MOCK_IMAGES[0].id);
-        expect(bannerImage).toEqual(MOCK_IMAGES[0]);
-      });
+      expect(component.getBannerImage(MOCK_IMAGES[0].id)).toEqual(MOCK_IMAGES[0]);
     });
   });
 
-  describe('gridClass getter', () => {
-    it('should return correct CSS class based on article count', () => {
+  describe('cardCount getter', () => {
+    it('should return correct article card count', () => {
       component.articles = MOCK_ARTICLES.slice(0, 3);
       fixture.detectChanges();
 
-      expect(component.gridClass).toBe('card-count-3');
+      expect(component.cardCount).toBe(3);
     });
   });
 
@@ -409,7 +343,6 @@ describe('ArticleGridComponent', () => {
         fixture.debugElement,
         '.article-title mark',
       );
-      console.log(':: highlightedTitle', highlightedTitle);
       expect(highlightedTitle).toContain('Blitz');
     });
   });

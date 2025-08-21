@@ -22,7 +22,7 @@
         @for (size of STANDARD_PAGE_SIZES; track size) {
           <button
             class="page-size-button lcc-secondary-button"
-            [class.selected]="options.pageSize === size && !isAllPageSizeSelected"
+            [class.selected]="options.pageSize === size"
             [tooltip]="'Show ' + size + ' ' + entity + ' per page'"
             (click)="onPageSizeChange(size)">
             {{ size }}
@@ -30,9 +30,9 @@
         }
         <button
           class="page-size-button lcc-secondary-button"
-          [class.selected]="isAllPageSizeSelected"
-          [tooltip]="'Show all ' + filteredCount + ' ' + entity + ' on a single page'"
-          (click)="onPageSizeChange(filteredCount, true)">
+          [class.selected]="options.pageSize === -1"
+          [tooltip]="allPageSizeTooltip"
+          (click)="onPageSizeChange(-1)">
           all
         </button>
       </div>

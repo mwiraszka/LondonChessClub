@@ -41,15 +41,15 @@ export class ImagesEffects {
     );
   });
 
-  fetchThumbnailImages$ = createEffect(() => {
+  fetchFilteredThumbnailImages$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchThumbnailsRequested),
+      ofType(ImagesActions.fetchFilteredThumbnailsRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => this.store.select(ImagesSelectors.selectOptions)),
       switchMap(([, options]) =>
         this.imagesService.getThumbnailImages(options).pipe(
           map(response =>
-            ImagesActions.fetchThumbnailsSucceeded({
+            ImagesActions.fetchFilteredThumbnailsSucceeded({
               images: response.data.items,
               filteredCount: response.data.filteredCount,
               totalCount: response.data.totalCount,
@@ -57,7 +57,7 @@ export class ImagesEffects {
           ),
           catchError(error =>
             of(
-              ImagesActions.fetchThumbnailsFailed({
+              ImagesActions.fetchFilteredThumbnailsFailed({
                 error: parseError(error),
               }),
             ),
@@ -72,19 +72,19 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.paginationOptionsChanged),
       filter(({ fetch }) => fetch),
-      map(() => ImagesActions.fetchThumbnailsRequested()),
+      map(() => ImagesActions.fetchFilteredThumbnailsRequested()),
     );
   });
 
   fetchBatchThumbnailImages$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchBatchThumbnailsRequested),
-      switchMap(({ imageIds, context }) =>
+      switchMap(({ imageIds, isAlbumCoverFetch }) =>
         this.imagesService.getBatchThumbnailImages(imageIds).pipe(
           map(response =>
             ImagesActions.fetchBatchThumbnailsSucceeded({
               images: response.data,
-              context,
+              isAlbumCoverFetch,
             }),
           ),
           catchError(error => {

@@ -13,7 +13,7 @@ export interface ArticlesState
   lastHomePageFetch: IsoDate | null;
   lastNewsPageFetch: IsoDate | null;
   options: DataPaginationOptions<Article>;
-  filteredCount: number;
+  filteredCount: number | null;
   totalCount: number;
   homePageArticles: Article[];
 }
@@ -37,7 +37,7 @@ export const initialState: ArticlesState = articlesAdapter.getInitialState({
     filters: {},
     search: '',
   },
-  filteredCount: 0,
+  filteredCount: null,
   totalCount: 0,
   homePageArticles: [],
 });

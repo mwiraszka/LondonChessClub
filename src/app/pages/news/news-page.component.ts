@@ -70,7 +70,7 @@ export class NewsPageComponent implements OnInit {
   public viewModel$?: Observable<{
     articles: Article[];
     articleImages: Image[];
-    filteredCount: number;
+    filteredCount: number | null;
     isAdmin: boolean;
     options: DataPaginationOptions<Article>;
   }>;

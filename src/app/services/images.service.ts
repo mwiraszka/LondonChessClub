@@ -37,7 +37,7 @@ export class ImagesService {
     const params = setPaginationParams(options);
 
     return this.http.get<ApiResponse<PaginatedItems<Image>>>(
-      `${this.API_BASE_URL}/${this.COLLECTION}/all-thumbnails`,
+      `${this.API_BASE_URL}/${this.COLLECTION}/thumbnails`,
       { params },
     );
   }

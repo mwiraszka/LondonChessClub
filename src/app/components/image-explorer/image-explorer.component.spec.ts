@@ -45,7 +45,7 @@ describe('ImageExplorerComponent', () => {
         store = TestBed.inject(MockStore);
         changeDetectorRef = fixture.debugElement.injector.get(ChangeDetectorRef);
 
-        store.overrideSelector(ImagesSelectors.selectAllImages, mockImages);
+        store.overrideSelector(ImagesSelectors.selectFilteredImages, mockImages);
         store.overrideSelector(ImagesSelectors.selectFilteredCount, mockImages.length);
         store.overrideSelector(ImagesSelectors.selectTotalCount, mockImages.length);
         store.overrideSelector(ImagesSelectors.selectOptions, {
@@ -56,7 +56,7 @@ describe('ImageExplorerComponent', () => {
           filters: {},
           search: '',
         });
-        store.overrideSelector(ImagesSelectors.selectLastThumbnailsFetch, null);
+        store.overrideSelector(ImagesSelectors.selectLastFilteredThumbnailsFetch, null);
 
         dialogOpenSpy = jest.spyOn(dialogService, 'open');
         dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
@@ -78,16 +78,16 @@ describe('ImageExplorerComponent', () => {
       beforeEach(() => {
         jest.clearAllMocks();
         store.overrideSelector(
-          ImagesSelectors.selectLastThumbnailsFetch,
+          ImagesSelectors.selectLastFilteredThumbnailsFetch,
           new Date(Date.now() - 9 * 60 * 1000).toISOString(),
         );
         store.refreshState();
         fixture.detectChanges();
       });
 
-      it('should not dispatch fetchThumbnailsRequested', () => {
+      it('should not dispatch fetchFilteredThumbnailsRequested', () => {
         expect(dispatchSpy).not.toHaveBeenCalledWith(
-          ImagesActions.fetchThumbnailsRequested(),
+          ImagesActions.fetchFilteredThumbnailsRequested(),
         );
       });
     });
@@ -96,16 +96,16 @@ describe('ImageExplorerComponent', () => {
       beforeEach(() => {
         jest.clearAllMocks();
         store.overrideSelector(
-          ImagesSelectors.selectLastThumbnailsFetch,
+          ImagesSelectors.selectLastFilteredThumbnailsFetch,
           new Date(Date.now() - 11 * 60 * 1000).toISOString(),
         );
         store.refreshState();
         fixture.detectChanges();
       });
 
-      it('should dispatch fetchThumbnailsRequested', () => {
+      it('should dispatch fetchFilteredThumbnailsRequested', () => {
         expect(dispatchSpy).toHaveBeenCalledWith(
-          ImagesActions.fetchThumbnailsRequested(),
+          ImagesActions.fetchFilteredThumbnailsRequested(),
         );
       });
     });

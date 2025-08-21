@@ -61,7 +61,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
 
   public viewModel$?: Observable<{
     images: Image[];
-    filteredCount: number;
+    filteredCount: number | null;
     options: DataPaginationOptions<Image>;
     totalCount: number;
   }>;
@@ -78,9 +78,8 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
   ) {}
 
   public ngOnInit(): void {
-    // Set up the view model first
     this.viewModel$ = combineLatest([
-      this.store.select(ImagesSelectors.selectAllImages),
+      this.store.select(ImagesSelectors.selectFilteredImages),
       this.store.select(ImagesSelectors.selectFilteredCount),
       this.store.select(ImagesSelectors.selectOptions),
       this.store.select(ImagesSelectors.selectTotalCount),
@@ -95,17 +94,14 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
       shareReplay(1),
     );
 
-    // Dispatch action after a microtask to avoid change detection issues
-    Promise.resolve().then(() => {
-      this.store
-        .select(ImagesSelectors.selectLastThumbnailsFetch)
-        .pipe(take(1))
-        .subscribe(lastFetch => {
-          if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-            this.store.dispatch(ImagesActions.fetchThumbnailsRequested());
-          }
-        });
-    });
+    this.store
+      .select(ImagesSelectors.selectLastFilteredThumbnailsFetch)
+      .pipe(take(1))
+      .subscribe(lastFetch => {
+        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
+          this.store.dispatch(ImagesActions.fetchFilteredThumbnailsRequested());
+        }
+      });
   }
 
   public getAdminControlsConfig(image: Image): AdminControlsConfig {

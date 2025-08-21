@@ -98,12 +98,7 @@ export class AlbumFormComponent implements OnInit {
         .map(entity => entity.image.id);
 
       if (imageIds.length) {
-        this.store.dispatch(
-          ImagesActions.fetchBatchThumbnailsRequested({
-            imageIds,
-            context: 'album',
-          }),
-        );
+        this.store.dispatch(ImagesActions.fetchBatchThumbnailsRequested({ imageIds }));
       }
     }
 

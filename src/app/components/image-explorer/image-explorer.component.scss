@@ -1,7 +1,14 @@
+@use '../../../styles/abstracts/mixins' as *;
+
+$card-padding: 6px;
+$max-card-width: 250px;
+
 :host {
+  height: 90dvh;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  background-color: var(--lcc-color--imageExplorer-gridBackground);
 
   lcc-admin-toolbar {
     margin: 8px 8px 0;
@@ -15,16 +22,50 @@
 
   .image-grid {
     display: grid;
+    align-items: stretch;
+    justify-content: center;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 8px;
-    height: 90dvh;
     min-width: min(90vw, var(--lcc-width--appContent));
     overflow: auto;
-    background-color: var(--lcc-color--imageExplorer-gridBackground);
     padding: 8px;
+
+    &[card-count='1'] {
+      display: flex;
+    }
+
+    @media screen and (min-width: 610px) {
+      &[card-count='2'] {
+        display: flex;
+        flex-flow: row wrap;
+      }
+    }
+
+    @media screen and (min-width: 910px) {
+      &[card-count='3'] {
+        display: flex;
+        flex-flow: row wrap;
+      }
+    }
+
+    @media screen and (min-width: 1210px) {
+      &[card-count='4'] {
+        display: flex;
+        flex-flow: row wrap;
+      }
+    }
+
+    @media screen and (min-width: 1510px) {
+      &[card-count='5'] {
+        display: flex;
+        flex-flow: row wrap;
+      }
+    }
   }
 
   .image-card-container {
+    max-height: 500px;
+    max-width: calc(#{$max-card-width} + 2 * #{$card-padding});
     padding: 8px;
     background-color: var(--lcc-color--imageExplorer-gridBackground);
     border: none;

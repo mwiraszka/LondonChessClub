@@ -1,13 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import {
-  BatchImageFetchContext,
-  DataPaginationOptions,
-  Id,
-  Image,
-  ImageFormData,
-  LccError,
-} from '@app/models';
+import { DataPaginationOptions, Id, Image, ImageFormData, LccError } from '@app/models';
 import { BaseImage } from '@app/models/image.model';
 
 export const fetchAllImagesMetadataRequested = createAction(
@@ -22,15 +15,15 @@ export const fetchAllImagesMetadataFailed = createAction(
   props<{ error: LccError }>(),
 );
 
-export const fetchThumbnailsRequested = createAction(
-  '[Images] Fetch thumbnails requested',
+export const fetchFilteredThumbnailsRequested = createAction(
+  '[Images] Fetch filtered thumbnails requested',
 );
-export const fetchThumbnailsSucceeded = createAction(
-  '[Images] Fetch thumbnails succeeded',
+export const fetchFilteredThumbnailsSucceeded = createAction(
+  '[Images] Fetch filtered thumbnails succeeded',
   props<{ images: Image[]; filteredCount: number; totalCount: number }>(),
 );
-export const fetchThumbnailsFailed = createAction(
-  '[Images] Fetch thumbnails failed',
+export const fetchFilteredThumbnailsFailed = createAction(
+  '[Images] Fetch filtered thumbnails failed',
   props<{ error: LccError }>(),
 );
 
@@ -38,12 +31,12 @@ export const fetchBatchThumbnailsRequested = createAction(
   '[Images] Fetch batch thumbnails requested',
   props<{
     imageIds: Id[];
-    context: BatchImageFetchContext;
+    isAlbumCoverFetch?: boolean;
   }>(),
 );
 export const fetchBatchThumbnailsSucceeded = createAction(
   '[Images] Fetch batch thumbnails succeeded',
-  props<{ images: Image[]; context: BatchImageFetchContext }>(),
+  props<{ images: Image[]; isAlbumCoverFetch?: boolean }>(),
 );
 export const fetchBatchThumbnailsFailed = createAction(
   '[Images] Fetch batch thumbnails failed',

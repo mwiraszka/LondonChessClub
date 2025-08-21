@@ -183,7 +183,6 @@ describe('AlbumFormComponent', () => {
         expect(dispatchSpy).not.toHaveBeenCalledWith(
           ImagesActions.fetchBatchThumbnailsRequested({
             imageIds: [MOCK_IMAGES[0].id, MOCK_IMAGES[3].id],
-            context: 'album',
           }),
         );
       });
@@ -241,7 +240,6 @@ describe('AlbumFormComponent', () => {
         expect(dispatchSpy).not.toHaveBeenCalledWith(
           ImagesActions.fetchBatchThumbnailsRequested({
             imageIds: [MOCK_IMAGES[0].id, MOCK_IMAGES[3].id],
-            context: 'album',
           }),
         );
       });
@@ -314,7 +312,6 @@ describe('AlbumFormComponent', () => {
         expect(dispatchSpy).toHaveBeenCalledWith(
           ImagesActions.fetchBatchThumbnailsRequested({
             imageIds: [MOCK_IMAGES[3].id],
-            context: 'album',
           }),
         );
       });

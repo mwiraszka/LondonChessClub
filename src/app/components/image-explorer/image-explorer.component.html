@@ -5,13 +5,15 @@
     entity="images"
     [filteredCount]="vm.filteredCount"
     [options]="vm.options"
-    searchPlaceholder="Search by caption, filename, album or upload date"
+    searchPlaceholder="Search by caption, filename or album"
     (optionsChange)="onOptionsChange($event)"
     (optionsChangeNoFetch)="onOptionsChange($event, false)">
   </lcc-data-toolbar>
 
-  <div class="image-grid">
-    @for (image of vm.images.slice(0, vm.options.pageSize); track image.id) {
+  <div
+    [attr.card-count]="vm.images.length"
+    class="image-grid">
+    @for (image of vm.images; track image.id) {
       <div
         class="image-card-container"
         [class.selectable]="selectable"
@@ -25,27 +27,31 @@
           <label>Caption:</label>
           <span
             class="lcc-truncate"
-            [innerHTML]="image.caption | highlight: vm.options.search"></span>
+            [innerHTML]="image.caption | highlight: vm.options.search">
+          </span>
         </div>
 
         <div class="filename">
           <label>Filename:</label>
           <span
             class="lcc-truncate"
-            [innerHTML]="image.filename | highlight: vm.options.search"></span>
+            [innerHTML]="image.filename | highlight: vm.options.search">
+          </span>
         </div>
 
         @if (image.fileSize) {
           <div class="file-size">
             <label>File size:</label>
-            <span class="lcc-truncate">{{ image.fileSize | formatBytes }}</span>
+            <span class="lcc-truncate">
+              {{ image.fileSize | formatBytes }}
+            </span>
           </div>
         }
 
         @if (image.width && image.height) {
           <div class="dimensions">
             <label>Dimensions:</label>
-            <span class="lcc-truncate">{{ image.width }} x {{ image.height }} px</span>
+            <span class="lcc-truncate"> {{ image.width }} x {{ image.height }} px </span>
           </div>
         }
 

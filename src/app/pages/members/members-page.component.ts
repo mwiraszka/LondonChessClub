@@ -100,7 +100,7 @@ export class MembersPageComponent implements OnInit {
   ];
 
   public viewModel$?: Observable<{
-    filteredCount: number;
+    filteredCount: number | null;
     isAdmin: boolean;
     isSafeMode: boolean;
     members: Member[];

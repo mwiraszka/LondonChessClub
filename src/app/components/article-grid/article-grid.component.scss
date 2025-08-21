@@ -12,7 +12,7 @@ $max-image-width: 320px;
   width: 100%;
   gap: 8px;
 
-  &.card-count-1 {
+  &[card-count='1'] {
     display: flex;
   }
 
@@ -22,21 +22,21 @@ $max-image-width: 320px;
   }
 
   @include respond-to('gt-md') {
-    &.card-count-2 {
+    &[card-count='2'] {
       display: flex;
       flex-flow: row wrap;
     }
   }
 
   @media screen and (min-width: 1035px) {
-    &.card-count-3 {
+    &[card-count='3'] {
       display: flex;
       flex-flow: row wrap;
     }
   }
 
   @media screen and (min-width: 1380px) {
-    &.card-count-4 {
+    &[card-count='4'] {
       display: flex;
       flex-flow: row wrap;
     }

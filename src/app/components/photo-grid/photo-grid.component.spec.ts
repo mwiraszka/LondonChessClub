@@ -86,7 +86,7 @@ describe('PhotoGridComponent', () => {
         expect(dispatchSpy).not.toHaveBeenCalledWith(
           ImagesActions.fetchBatchThumbnailsRequested({
             imageIds: MOCK_IMAGES.map(image => image.id),
-            context: 'photos',
+            isAlbumCoverFetch: true,
           }),
         );
       });
@@ -115,7 +115,7 @@ describe('PhotoGridComponent', () => {
         expect(dispatchSpy).toHaveBeenCalledWith(
           ImagesActions.fetchBatchThumbnailsRequested({
             imageIds: [MOCK_IMAGES[0].id],
-            context: 'photos',
+            isAlbumCoverFetch: true,
           }),
         );
       });

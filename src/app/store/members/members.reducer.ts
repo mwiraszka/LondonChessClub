@@ -12,7 +12,7 @@ export interface MembersState
   newMemberFormData: MemberFormData;
   lastFetch: IsoDate | null;
   options: DataPaginationOptions<Member>;
-  filteredCount: number;
+  filteredCount: number | null;
   totalCount: number;
 }
 
@@ -39,7 +39,7 @@ export const initialState: MembersState = membersAdapter.getInitialState({
     },
     search: '',
   },
-  filteredCount: 0,
+  filteredCount: null,
   totalCount: 0,
 });
 

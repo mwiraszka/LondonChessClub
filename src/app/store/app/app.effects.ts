@@ -70,8 +70,8 @@ export class AppEffects {
     ImagesActions.deleteImageFailed,
     ImagesActions.deleteImageSucceeded,
     ImagesActions.fetchAllImagesMetadataFailed,
-    ImagesActions.fetchThumbnailsFailed,
     ImagesActions.fetchBatchThumbnailsFailed,
+    ImagesActions.fetchFilteredThumbnailsFailed,
     ImagesActions.fetchOriginalFailed,
     ImagesActions.imageFileActionFailed,
     ImagesActions.updateAlbumFailed,
@@ -99,11 +99,15 @@ export class AppEffects {
     ArticlesActions.fetchHomePageArticlesFailed,
     ArticlesActions.fetchNewsPageArticlesFailed,
     ArticlesActions.fetchArticleFailed,
+
     EventsActions.fetchEventsFailed,
     EventsActions.fetchEventFailed,
-    ImagesActions.fetchThumbnailsFailed,
+
+    ImagesActions.fetchAllImagesMetadataFailed,
     ImagesActions.fetchBatchThumbnailsFailed,
+    ImagesActions.fetchFilteredThumbnailsFailed,
     ImagesActions.fetchOriginalFailed,
+
     MembersActions.fetchMembersFailed,
     MembersActions.fetchMemberFailed,
   ] as const;
@@ -365,13 +369,13 @@ export class AppEffects {
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case ImagesActions.fetchThumbnailsFailed.type:
+      case ImagesActions.fetchBatchThumbnailsFailed.type:
         return {
           title: 'Fetch images',
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case ImagesActions.fetchBatchThumbnailsFailed.type:
+      case ImagesActions.fetchFilteredThumbnailsFailed.type:
         return {
           title: 'Fetch images',
           message: this.getErrorMessage(action.error),

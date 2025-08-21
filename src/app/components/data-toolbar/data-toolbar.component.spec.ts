@@ -1,4 +1,3 @@
-import { SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
@@ -280,6 +279,25 @@ describe('DataToolbarComponent', () => {
         );
       });
 
+      it('should modify summary when filteredCount is exactly 1', () => {
+        component.filteredCount = 1;
+        component.options = { ...mockOptions, page: 1 };
+        fixture.detectChanges();
+
+        expect(queryTextContent(fixture.debugElement, '.pagination-summary')).toBe(
+          'Showing 1\u00A0\u2013\u00A01\u00A0\u00A0/\u00A0\u00A01 member',
+        );
+      });
+
+      it('should modify summary when filteredCount is exactly 0', () => {
+        component.filteredCount = 0;
+        fixture.detectChanges();
+
+        expect(queryTextContent(fixture.debugElement, '.pagination-summary')).toBe(
+          'No matches 😢',
+        );
+      });
+
       it('should show "No matches" when filteredCount is 0', () => {
         component.filteredCount = 0;
         fixture.detectChanges();
@@ -288,56 +306,14 @@ describe('DataToolbarComponent', () => {
           'No matches 😢',
         );
       });
-    });
-  });
 
-  describe('ALL page size selection tracking', () => {
-    describe('ngOnChanges', () => {
-      beforeEach(() => {
-        // Initialize component with ALL selected
-        component.filteredCount = 50;
-        component.options = { ...mockOptions, pageSize: 50 };
-        component.ngOnInit();
-      });
-
-      it('should update pageSize when filteredCount changes and ALL is selected', () => {
-        const changes = {
-          filteredCount: new SimpleChange(50, 30, false),
-        };
-        component.filteredCount = 30;
-        component.ngOnChanges(changes);
-
-        expect(optionsChangeNoFetchSpy).toHaveBeenCalledWith({
-          ...mockOptions,
-          pageSize: 30,
-        });
-      });
-
-      it('should set pageSize to 0 when filteredCount becomes 0 and ALL is selected', () => {
-        const changes = {
-          filteredCount: new SimpleChange(50, 0, false),
-        };
-        component.filteredCount = 0;
-        component.ngOnChanges(changes);
-
-        expect(optionsChangeNoFetchSpy).toHaveBeenCalledWith({
-          ...mockOptions,
-          pageSize: 0,
-        });
-      });
-
-      it('should not update pageSize when ALL is not selected', () => {
-        // Select a standard page size instead of ALL
-        component.onPageSizeChange(10);
+      it('should show "Loading" when filteredCount is null', () => {
+        component.filteredCount = null;
         fixture.detectChanges();
 
-        const changes = {
-          filteredCount: new SimpleChange(50, 30, false),
-        };
-        component.filteredCount = 30;
-        component.ngOnChanges(changes);
-
-        expect(optionsChangeNoFetchSpy).not.toHaveBeenCalled();
+        expect(queryTextContent(fixture.debugElement, '.pagination-summary')).toBe(
+          'Loading...',
+        );
       });
     });
   });

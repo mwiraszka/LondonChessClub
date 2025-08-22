@@ -16,7 +16,6 @@ export interface ArticlesState
   options: DataPaginationOptions<Article>;
   filteredCount: number | null;
   totalCount: number;
-  homePageArticles: Article[];
 }
 
 export const articlesAdapter = createEntityAdapter<{
@@ -41,7 +40,6 @@ export const initialState: ArticlesState = articlesAdapter.getInitialState({
   },
   filteredCount: null,
   totalCount: 0,
-  homePageArticles: [],
 });
 
 export const articlesReducer = createReducer(

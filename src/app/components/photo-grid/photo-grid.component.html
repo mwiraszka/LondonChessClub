@@ -1,14 +1,8 @@
 @if (isAdmin) {
-  <div class="admin-controls-header">
-    <lcc-link-list [links]="links"></lcc-link-list>
-    <button
-      class="image-explorer-button lcc-secondary-button"
-      type="button"
-      tooltip="Open Image Explorer"
-      (click)="onOpenImageExplorer()">
-      <mat-icon>image_search</mat-icon>
-    </button>
-  </div>
+  <lcc-admin-toolbar
+    [adminButtons]="adminButtons"
+    [adminLinks]="adminLinks">
+  </lcc-admin-toolbar>
 }
 
 <section class="grid-container">
@@ -22,7 +16,9 @@
         [adminControls]="isAdmin ? getAdminControlsConfig(image.album) : null"
         (click)="onClickAlbumCover(image.album)">
         <figure>
-          <img [image]="image" />
+          <div class="album-image-container">
+            <img [image]="image" />
+          </div>
           <figcaption>
             <div class="album-name lcc-truncate-max-2-lines">{{ image.album }}</div>
             <div class="photo-count">

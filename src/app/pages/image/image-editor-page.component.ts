@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ImageFormComponent } from '@app/components/image-form/image-form.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import type { EditorPage, Image, ImageFormData, InternalLink } from '@app/models';
+import { EditorPage, Image, ImageFormData, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ImagesSelectors } from '@app/store/images';
 
@@ -21,6 +21,7 @@ import { ImagesSelectors } from '@app/store/images';
     @if (viewModel$ | async; as vm) {
       <lcc-page-header
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
+        icon="admin_panel_settings"
         [title]="vm.pageTitle">
       </lcc-page-header>
       <lcc-image-form

@@ -4,15 +4,15 @@ import { ordinalityValidator } from './ordinality.validator';
 
 describe('ordinalityValidator', () => {
   it('returns `null` for an empty string', () => {
-    expect(getErrorForValue('')).toBeNull();
+    expect(getErrorForValue('')).toBeFalsy();
   });
 
   it('returns `null` if valid', () => {
-    expect(getErrorForValue('1')).toBeNull();
-    expect(getErrorForValue('9')).toBeNull();
-    expect(getErrorForValue('10')).toBeNull();
-    expect(getErrorForValue('42')).toBeNull();
-    expect(getErrorForValue('99')).toBeNull();
+    expect(getErrorForValue('1')).toBeFalsy();
+    expect(getErrorForValue('9')).toBeFalsy();
+    expect(getErrorForValue('10')).toBeFalsy();
+    expect(getErrorForValue('42')).toBeFalsy();
+    expect(getErrorForValue('99')).toBeFalsy();
   });
 
   it('returns `invalidOrdinal` error if invalid', () => {

@@ -1,33 +1,34 @@
-@if (isAdmin) {
-  <lcc-link-list [links]="[createArticleLink]"></lcc-link-list>
+@for (
+  article of options.pageSize > 0 ? articles.slice(0, options.pageSize) : articles;
+  track article.id
+) {
+  <a
+    class="article"
+    [adminControls]="isAdmin ? getAdminControlsConfig(article) : null"
+    [routerLink]="
+      article.title ? (['article', 'view', article.id] | routerLink) : undefined
+    ">
+    @if (article.bookmarkDate | isDefined) {
+      <mat-icon class="bookmark-icon">bookmark_border</mat-icon>
+    }
+
+    <div class="image-container">
+      <img [image]="getBannerImage(article.bannerImageId)" />
+    </div>
+
+    <div class="article-summary-container">
+      <h3
+        class="article-title lcc-truncate-max-2-lines"
+        [innerHTML]="article.title | highlight: options.search">
+      </h3>
+      <hr />
+      <p
+        class="article-preview lcc-truncate-max-5-lines"
+        [innerHTML]="article.body | stripMarkdown | highlight: options.search">
+      </p>
+      <div class="article-creation-date">
+        {{ article.modificationInfo.dateCreated | formatDate: 'short no-time' }}
+      </div>
+    </div>
+  </a>
 }
-
-<div class="articles-container">
-  @for (article of articles.slice(0, articleCount ?? articles.length); track article.id) {
-    <a
-      class="article"
-      [adminControls]="isAdmin ? getAdminControlsConfig(article) : null"
-      [routerLink]="
-        article.title ? (['article', 'view', article.id] | routerLink) : undefined
-      ">
-      @if (article.bookmarkDate | isDefined) {
-        <mat-icon class="bookmark-icon">bookmark_border</mat-icon>
-      }
-
-      <div class="image-container">
-        <img [image]="getBannerImage(article.bannerImageId)" />
-      </div>
-
-      <div class="article-summary-container">
-        <h3 class="article-title lcc-truncate-max-2-lines">{{ article.title }}</h3>
-        <hr />
-        <p class="article-preview lcc-truncate-max-5-lines">
-          {{ article.body | stripMarkdown }}
-        </p>
-        <div class="article-creation-date">
-          {{ article.modificationInfo.dateCreated | formatDate: 'short no-time' }}
-        </div>
-      </div>
-    </a>
-  }
-</div>

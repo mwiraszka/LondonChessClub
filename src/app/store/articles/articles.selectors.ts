@@ -2,22 +2,43 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import { INITIAL_ARTICLE_FORM_DATA } from '@app/constants';
-import type { Id } from '@app/models';
+import { Id } from '@app/models';
 import { areSame } from '@app/utils';
 
 import { ArticlesState, articlesAdapter } from './articles.reducer';
 
 const selectArticlesState = createFeatureSelector<ArticlesState>('articlesState');
 
-export const selectLastFetch = createSelector(
+export const selectLastHomePageFetch = createSelector(
   selectArticlesState,
-  state => state.lastFetch,
+  state => state.lastHomePageFetch,
+);
+export const selectLastNewsPageFetch = createSelector(
+  selectArticlesState,
+  state => state.lastNewsPageFetch,
+);
+
+export const selectOptions = createSelector(selectArticlesState, state => state.options);
+
+export const selectFilteredCount = createSelector(
+  selectArticlesState,
+  state => state.filteredCount,
+);
+
+export const selectTotalCount = createSelector(
+  selectArticlesState,
+  state => state.totalCount,
+);
+
+export const selectHomePageArticles = createSelector(
+  selectArticlesState,
+  state => state.homePageArticles,
 );
 
 const { selectAll: selectAllArticleEntities } =
   articlesAdapter.getSelectors(selectArticlesState);
 
-export const selectAllArticles = createSelector(
+export const selectArticles = createSelector(
   selectAllArticleEntities,
   allArticleEntities => allArticleEntities.map(entity => entity?.article),
 );

@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import { INITIAL_MEMBER_FORM_DATA } from '@app/constants';
-import type { Id } from '@app/models';
+import { Id } from '@app/models';
 import { areSame } from '@app/utils';
 
 import { MembersState, membersAdapter } from './members.reducer';
@@ -29,14 +29,13 @@ export const selectTotalCount = createSelector(
 const { selectAll: selectAllMemberEntities } =
   membersAdapter.getSelectors(selectMembersState);
 
-export const selectAllMembers = createSelector(
-  selectAllMemberEntities,
-  allMemberEntities => allMemberEntities.map(entity => entity?.member),
+export const selectMembers = createSelector(selectAllMemberEntities, allMemberEntities =>
+  allMemberEntities.map(entity => entity?.member),
 );
 
 export const selectMemberById = (id: Id | null) =>
   createSelector(
-    selectAllMembers,
+    selectMembers,
     allMembers => allMembers.find(member => member.id === id) ?? null,
   );
 

@@ -3,7 +3,7 @@ import { pick } from 'lodash';
 import moment from 'moment-timezone';
 
 import { INITIAL_EVENT_FORM_DATA } from '@app/constants';
-import type { Id } from '@app/models';
+import { Id } from '@app/models';
 import { areSame } from '@app/utils';
 
 import { EventsState, eventsAdapter } from './events.reducer';

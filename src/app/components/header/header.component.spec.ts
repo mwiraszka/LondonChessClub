@@ -30,7 +30,7 @@ describe('HeaderComponent', () => {
       it('should include the LCC brand image', () => {
         expect(
           query(fixture.debugElement, '.branding-link img').nativeElement,
-        ).not.toBeNull();
+        ).toBeTruthy();
       });
 
       it('should link to the homepage via the LCC brand image', () => {

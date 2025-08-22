@@ -1,7 +1,7 @@
 <div class="data-toolbar-controls">
   <section class="paginator">
     <button
-      class="first-page-button page-navigation-button lcc-secondary-button"
+      class="first-page-button page-navigation-button lcc-secondary-button lcc-light-button"
       [disabled]="options.page === 1"
       [tooltip]="options.page === 1 ? null : 'First page'"
       (click)="onFirstPage()">
@@ -9,7 +9,7 @@
     </button>
 
     <button
-      class="previous-page-button page-navigation-button lcc-secondary-button"
+      class="previous-page-button page-navigation-button lcc-secondary-button lcc-light-button"
       [disabled]="options.page === 1"
       [tooltip]="options.page === 1 ? null : 'Previous page'"
       (click)="onPreviousPage()">
@@ -19,7 +19,7 @@
     <section class="page-control-section">
       <div class="page-counter">Page: {{ options.page }} / {{ lastPage }}</div>
       <div class="page-size-buttons">
-        @for (size of PAGE_SIZES; track size) {
+        @for (size of STANDARD_PAGE_SIZES; track size) {
           <button
             class="page-size-button lcc-secondary-button"
             [class.selected]="options.pageSize === size"
@@ -28,11 +28,18 @@
             {{ size }}
           </button>
         }
+        <button
+          class="page-size-button lcc-secondary-button"
+          [class.selected]="options.pageSize === -1"
+          [tooltip]="allPageSizeTooltip"
+          (click)="onPageSizeChange(-1)">
+          all
+        </button>
       </div>
     </section>
 
     <button
-      class="next-page-button page-navigation-button lcc-secondary-button"
+      class="next-page-button page-navigation-button lcc-secondary-button lcc-light-button"
       [disabled]="options.page === lastPage"
       [tooltip]="options.page === lastPage ? null : 'Next page'"
       (click)="onNextPage()">
@@ -40,7 +47,7 @@
     </button>
 
     <button
-      class="last-page-button page-navigation-button lcc-secondary-button"
+      class="last-page-button page-navigation-button lcc-secondary-button lcc-light-button"
       [disabled]="options.page === lastPage"
       [tooltip]="options.page === lastPage ? null : 'Last page'"
       (click)="onLastPage()">
@@ -74,6 +81,4 @@
     (input)="onSearchQueryChange($event)" />
 </div>
 
-<aside class="filter-counter">
-  Showing {{ filteredCount }} / {{ totalCount }} {{ entity }}
-</aside>
+<aside class="pagination-summary">{{ paginationSummary }}</aside>

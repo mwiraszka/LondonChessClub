@@ -1,6 +1,6 @@
 import moment from 'moment-timezone';
 
-import type { IsoDate } from '@app/models';
+import { IsoDate } from '@app/models';
 
 import { isValidIsoDate } from './is-valid-iso-date.util';
 

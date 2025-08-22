@@ -5,7 +5,11 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'lcc-page-header',
   template: `
     @if (icon) {
-      <mat-icon>{{ icon }}</mat-icon>
+      <mat-icon
+        class="page-header-icon"
+        [class.admin-page]="icon === 'admin_panel_settings'">
+        {{ icon }}
+      </mat-icon>
     }
     <h2
       class="page-title"

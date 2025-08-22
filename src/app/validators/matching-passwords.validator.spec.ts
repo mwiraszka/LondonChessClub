@@ -4,13 +4,13 @@ import { matchingPasswordsValidator } from './matching-passwords.validator';
 
 describe('matchingPasswordsValidator', () => {
   it('returns `null` if either of the two password is an empty string', () => {
-    expect(getErrorForValue('', 'passw0rd_123')).toBeNull();
-    expect(getErrorForValue('monkey15', '')).toBeNull();
+    expect(getErrorForValue('', 'passw0rd_123')).toBeFalsy();
+    expect(getErrorForValue('monkey15', '')).toBeFalsy();
   });
 
   it('returns `null` if passwords match', () => {
-    expect(getErrorForValue('passw0rd_123', 'passw0rd_123')).toBeNull();
-    expect(getErrorForValue('monkey15', 'monkey15')).toBeNull();
+    expect(getErrorForValue('passw0rd_123', 'passw0rd_123')).toBeFalsy();
+    expect(getErrorForValue('monkey15', 'monkey15')).toBeFalsy();
   });
 
   it('returns `passwordMismatch` error if passwords do not match', () => {

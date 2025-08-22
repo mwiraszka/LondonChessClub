@@ -10,10 +10,10 @@ import {
   Input,
   OnChanges,
   Renderer2,
-  SimpleChanges,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { NgChanges } from '@app/models';
 import { KebabCasePipe } from '@app/pipes';
 import { RoutingService } from '@app/services';
 
@@ -50,8 +50,8 @@ export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
     this.currentPath = this._document.location.pathname;
   }
 
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['data']) {
+  public ngOnChanges(changes: NgChanges<MarkdownRendererComponent>): void {
+    if (changes.data) {
       this.renderer.setStyle(
         this._document.querySelector('markdown'),
         'visibility',

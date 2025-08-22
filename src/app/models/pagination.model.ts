@@ -5,11 +5,9 @@ export interface Filter {
   value: boolean;
 }
 
-export type PageSize = 10 | 20 | 50 | 100;
-
 export interface DataPaginationOptions<T = EntityType> {
   page: number;
-  pageSize: PageSize;
+  pageSize: number;
   sortBy: keyof T;
   sortOrder: 'asc' | 'desc';
   filters: Partial<NonNullable<Record<keyof T, Filter>>>;

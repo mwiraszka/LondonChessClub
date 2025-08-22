@@ -2,38 +2,19 @@
 
 :host {
   width: 100%;
-}
-
-.admin-controls-header {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 16px;
-  position: relative;
-
-  lcc-link-list {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-  }
-
-  .image-explorer-button {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    right: 0;
-    padding: 4px;
-  }
+  flex-direction: column;
+  gap: 16px;
 }
 
 .grid-container {
+  width: 100%;
   container: album-covers / inline-size;
 }
 
 .album-covers {
   column-count: 2;
-  column-gap: 8px;
+  column-gap: 0;
 
   @container (min-width: 600px) {
     column-count: 3;
@@ -53,13 +34,17 @@
 
   .album-cover {
     display: block;
-    width: 100%;
+    width: calc(100% - 16px);
     background-color: var(--lcc-color--general-cardBackground);
     border: none;
     border-radius: var(--lcc-borderRadius--small);
     box-shadow: 3px 3px 5px var(--lcc-color--photoGrid-boxShadow);
     padding: 6px;
     margin: 8px;
+
+    &:first-child {
+      margin-top: 0;
+    }
 
     break-inside: avoid;
     page-break-inside: avoid;

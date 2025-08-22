@@ -19,7 +19,7 @@ import { MarkdownRendererComponent } from '@app/components/markdown-renderer/mar
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import type {
+import {
   Article,
   ArticleFormData,
   ArticleFormGroup,

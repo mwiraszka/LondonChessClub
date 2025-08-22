@@ -29,7 +29,7 @@ import { FormErrorIconComponent } from '@app/components/form-error-icon/form-err
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { PgnViewerComponent } from '@app/components/pgn-viewer/pgn-viewer.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
-import type { FilterFormGroup, GameDetails } from '@app/models';
+import { FilterFormGroup, GameDetails } from '@app/models';
 import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import {
@@ -92,14 +92,10 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
     const filteredGameCount = this.filteredGameCount;
 
     if (filteredGameCount === 0) {
-      return 'No games found 😢';
+      return 'No matches 😢';
     }
 
-    if (filteredGameCount === allGamesCount) {
-      return `Showing all ${filteredGameCount} games`;
-    }
-
-    return `Showing ${filteredGameCount} / ${allGamesCount} ${filteredGameCount === 1 ? 'game' : 'games'} 😎`;
+    return `Showing ${filteredGameCount} / ${allGamesCount} ${filteredGameCount === 1 ? 'game' : 'games'}`;
   }
 
   public get filteredGameCount(): number {

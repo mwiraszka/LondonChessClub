@@ -3,16 +3,16 @@ import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import { INITIAL_MEMBER_FORM_DATA, MEMBER_FORM_DATA_PROPERTIES } from '@app/constants';
-import type { DataPaginationOptions, IsoDate, Member, MemberFormData } from '@app/models';
+import { DataPaginationOptions, IsoDate, Member, MemberFormData } from '@app/models';
 
 import * as MembersActions from './members.actions';
 
 export interface MembersState
   extends EntityState<{ member: Member; formData: MemberFormData }> {
-  lastFetch: IsoDate | null;
   newMemberFormData: MemberFormData;
+  lastFetch: IsoDate | null;
   options: DataPaginationOptions<Member>;
-  filteredCount: number;
+  filteredCount: number | null;
   totalCount: number;
 }
 
@@ -24,8 +24,8 @@ export const membersAdapter = createEntityAdapter<{
 });
 
 export const initialState: MembersState = membersAdapter.getInitialState({
-  lastFetch: null,
   newMemberFormData: INITIAL_MEMBER_FORM_DATA,
+  lastFetch: null,
   options: {
     page: 1,
     pageSize: 20,
@@ -39,7 +39,7 @@ export const initialState: MembersState = membersAdapter.getInitialState({
     },
     search: '',
   },
-  filteredCount: 0,
+  filteredCount: null,
   totalCount: 0,
 });
 

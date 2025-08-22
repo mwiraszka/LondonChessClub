@@ -2,7 +2,7 @@ import moment from 'moment-timezone';
 
 import { Pipe, PipeTransform } from '@angular/core';
 
-import type { ModificationInfo } from '@app/models';
+import { ModificationInfo } from '@app/models';
 import { isValidIsoDate } from '@app/utils';
 
 /**

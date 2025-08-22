@@ -27,6 +27,10 @@
       justify-content: center;
       margin: 4px;
 
+      .user-icon {
+        color: var(--lcc-color--userSettingsMenu-userIcon);
+      }
+
       span {
         padding: 4px;
       }

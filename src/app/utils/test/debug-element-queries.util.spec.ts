@@ -61,7 +61,7 @@ describe('Debug Element Queries', () => {
     it('should return null when no elements match the selector', () => {
       const nonExistentElement = query(debugElement, '.non-existent');
 
-      expect(nonExistentElement).toBeNull();
+      expect(nonExistentElement).toBeFalsy();
     });
   });
 

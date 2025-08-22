@@ -1,18 +1,21 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
+import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
 import { ArticleGridComponent } from '@app/components/article-grid/article-grid.component';
+import { DataToolbarComponent } from '@app/components/data-toolbar/data-toolbar.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import { Article, Image } from '@app/models';
+import { Article, DataPaginationOptions, Id, Image, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
-import { ArticlesSelectors } from '@app/store/articles';
+import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
 import { ImagesSelectors } from '@app/store/images';
+import { isSecondsInPast } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -23,20 +26,53 @@ import { ImagesSelectors } from '@app/store/images';
         title="News"
         icon="map">
       </lcc-page-header>
+
+      @if (vm.isAdmin) {
+        <lcc-admin-toolbar [adminLinks]="[createArticleLink]"></lcc-admin-toolbar>
+      }
+
+      <lcc-data-toolbar
+        entity="articles"
+        [filteredCount]="vm.filteredCount"
+        [options]="vm.options"
+        searchPlaceholder="Search by author, title or content"
+        (optionsChange)="onOptionsChange($event)"
+        (optionsChangeNoFetch)="onOptionsChange($event, false)">
+      </lcc-data-toolbar>
+
       <lcc-article-grid
-        [articles]="vm.allArticles"
+        [articles]="vm.articles"
         [articleImages]="vm.articleImages"
-        [isAdmin]="vm.isAdmin">
+        [isAdmin]="vm.isAdmin"
+        [options]="vm.options"
+        (requestDeleteArticle)="onRequestDeleteArticle($event)"
+        (requestUpdateArticleBookmark)="
+          onRequestUpdateArticleBookmark($event.articleId, $event.bookmark)
+        ">
       </lcc-article-grid>
     }
   `,
-  imports: [ArticleGridComponent, CommonModule, PageHeaderComponent],
+  imports: [
+    AdminToolbarComponent,
+    ArticleGridComponent,
+    CommonModule,
+    DataToolbarComponent,
+    PageHeaderComponent,
+  ],
 })
 export class NewsPageComponent implements OnInit {
+  public createArticleLink: InternalLink = {
+    internalPath: ['article', 'add'],
+    text: 'Create an article',
+    icon: 'add_circle_outline',
+  };
+
   public viewModel$?: Observable<{
-    allArticles: Article[];
+    articles: Article[];
     articleImages: Image[];
+    filteredCount: number | null;
     isAdmin: boolean;
+    options: DataPaginationOptions<Article>;
   }>;
 
   constructor(
@@ -50,17 +86,44 @@ export class NewsPageComponent implements OnInit {
       'Read about a variety of topics related to the London Chess Club.',
     );
 
+    this.store
+      .select(ArticlesSelectors.selectLastNewsPageFetch)
+      .pipe(take(1))
+      .subscribe(lastFetch => {
+        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
+          this.store.dispatch(ArticlesActions.fetchNewsPageArticlesRequested());
+        }
+      });
+
     this.viewModel$ = combineLatest([
-      this.store.select(ArticlesSelectors.selectAllArticles),
+      this.store.select(ArticlesSelectors.selectArticles),
       this.store.select(ImagesSelectors.selectArticleImages),
+      this.store.select(ArticlesSelectors.selectFilteredCount),
       this.store.select(AuthSelectors.selectIsAdmin),
+      this.store.select(ArticlesSelectors.selectOptions),
     ]).pipe(
       untilDestroyed(this),
-      map(([allArticles, articleImages, isAdmin]) => ({
-        allArticles,
+      map(([articles, articleImages, filteredCount, isAdmin, options]) => ({
+        articles,
         articleImages,
+        filteredCount,
         isAdmin,
+        options,
       })),
+    );
+  }
+
+  public onOptionsChange(options: DataPaginationOptions<Article>, fetch = true): void {
+    this.store.dispatch(ArticlesActions.paginationOptionsChanged({ options, fetch }));
+  }
+
+  public onRequestDeleteArticle(article: Article): void {
+    this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
+  }
+
+  public onRequestUpdateArticleBookmark(articleId: Id, bookmark: boolean): void {
+    this.store.dispatch(
+      ArticlesActions.updateArticleBookmarkRequested({ articleId, bookmark }),
     );
   }
 }

@@ -8,14 +8,15 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
+import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
 import { ArticleGridComponent } from '@app/components/article-grid/article-grid.component';
 import { ClubLinksComponent } from '@app/components/club-links/club-links.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
 import { ScheduleComponent } from '@app/components/schedule/schedule.component';
-import type { Article, Event, Image, InternalLink } from '@app/models';
+import { Article, DataPaginationOptions, Event, Image, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
-import { ArticlesSelectors } from '@app/store/articles';
+import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
 import { EventsSelectors } from '@app/store/events';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
@@ -27,6 +28,7 @@ import { isSecondsInPast } from '@app/utils';
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
   imports: [
+    AdminToolbarComponent,
     ArticleGridComponent,
     ClubLinksComponent,
     CommonModule,
@@ -38,23 +40,6 @@ import { isSecondsInPast } from '@app/utils';
   ],
 })
 export class HomePageComponent implements OnInit {
-  public readonly aboutPageLink: InternalLink = {
-    text: 'More about the London Chess Club',
-    internalPath: 'about',
-  };
-  public articleCount!: number;
-  public readonly photoGalleryPageLink: InternalLink = {
-    text: 'More photos',
-    internalPath: 'photo-gallery',
-  };
-  public readonly newsPageLink: InternalLink = {
-    text: 'More news',
-    internalPath: 'news',
-  };
-  public readonly schedulePageLink: InternalLink = {
-    text: 'All scheduled events',
-    internalPath: 'schedule',
-  };
   public viewModel$?: Observable<{
     articles: Article[];
     articleImages: Image[];
@@ -65,6 +50,42 @@ export class HomePageComponent implements OnInit {
     showPastEvents: boolean;
     upcomingEvents: Event[];
   }>;
+
+  public aboutPageLink: InternalLink = {
+    text: 'More about the London Chess Club',
+    internalPath: 'about',
+  };
+  public createArticleLink: InternalLink = {
+    internalPath: ['article', 'add'],
+    text: 'Create an article',
+    icon: 'add_circle_outline',
+  };
+  public newsPageLink: InternalLink = {
+    text: 'More news',
+    internalPath: 'news',
+  };
+  public photoGalleryPageLink: InternalLink = {
+    text: 'More photos',
+    internalPath: 'photo-gallery',
+  };
+  public schedulePageLink: InternalLink = {
+    text: 'All scheduled events',
+    internalPath: 'schedule',
+  };
+
+  // Only passed in for the pageSize; options for API call are set in the effect
+  public get articleOptions(): DataPaginationOptions<Article> {
+    return {
+      page: 1,
+      pageSize: this.articleCount,
+      sortBy: 'bookmarkDate',
+      sortOrder: 'desc',
+      filters: {},
+      search: '',
+    };
+  }
+
+  private articleCount!: number;
 
   constructor(
     private readonly metaAndTitleService: MetaAndTitleService,
@@ -80,8 +101,17 @@ export class HomePageComponent implements OnInit {
     );
     this.setArticleCountBasedOnScreenWidth();
 
+    this.store
+      .select(ArticlesSelectors.selectLastHomePageFetch)
+      .pipe(take(1))
+      .subscribe(lastFetch => {
+        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
+          this.store.dispatch(ArticlesActions.fetchHomePageArticlesRequested());
+        }
+      });
+
     this.viewModel$ = combineLatest([
-      this.store.select(ArticlesSelectors.selectAllArticles),
+      this.store.select(ArticlesSelectors.selectHomePageArticles),
       this.store.select(ImagesSelectors.selectArticleImages),
       this.store.select(EventsSelectors.selectAllEvents),
       this.store.select(AuthSelectors.selectIsAdmin),

@@ -4,12 +4,12 @@ import { ratingValidator } from './rating.validator';
 
 describe('ratingValidator', () => {
   it('returns `null` for an empty string', () => {
-    expect(getErrorForValue('')).toBeNull();
+    expect(getErrorForValue('')).toBeFalsy();
   });
 
   it('returns `null` if valid', () => {
-    expect(getErrorForValue('1')).toBeNull();
-    expect(getErrorForValue('9999')).toBeNull();
+    expect(getErrorForValue('1')).toBeFalsy();
+    expect(getErrorForValue('9999')).toBeFalsy();
   });
 
   it('returns `invalidRating` error if invalid', () => {

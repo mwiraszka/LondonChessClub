@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
-import type { Image } from '@app/models';
+import { Image } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';

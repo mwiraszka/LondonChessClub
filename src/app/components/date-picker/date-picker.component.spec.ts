@@ -53,11 +53,11 @@ describe('DatePickerComponent', () => {
   describe('template rendering', () => {
     describe('header', () => {
       it('should render previous month button', () => {
-        expect(query(fixture.debugElement, '.previous-month-button')).not.toBeNull();
+        expect(query(fixture.debugElement, '.previous-month-button')).toBeTruthy();
       });
 
       it('should render next month button', () => {
-        expect(query(fixture.debugElement, '.next-month-button')).not.toBeNull();
+        expect(query(fixture.debugElement, '.next-month-button')).toBeTruthy();
       });
 
       it('should render the currently selected month and year as the title', () => {
@@ -97,7 +97,7 @@ describe('DatePickerComponent', () => {
         const bodyRows = queryAll(table, 'tbody tr');
         const dayCells = queryAll(table, 'tbody tr td');
 
-        expect(table).not.toBeNull();
+        expect(table).toBeTruthy();
         expect(headerCells.length).toBe(component.DAYS_OF_WEEK.length);
         expect(headerCells[0].nativeElement.textContent).toBe('Sun');
         expect(headerCells[6].nativeElement.textContent).toBe('Sat');
@@ -146,7 +146,7 @@ describe('DatePickerComponent', () => {
         component.renderCalendar();
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, '.selected-day')).toBeNull();
+        expect(query(fixture.debugElement, '.selected-day')).toBeFalsy();
 
         query(
           fixture.debugElement,
@@ -155,7 +155,7 @@ describe('DatePickerComponent', () => {
         fixture.detectChanges();
 
         expect(onChangeSpy).toHaveBeenCalledWith('2050-01-02T00:00:00.000Z');
-        expect(query(fixture.debugElement, '.selected-day')).not.toBeNull();
+        expect(query(fixture.debugElement, '.selected-day')).toBeTruthy();
       });
 
       it('should display the selected date in the footer', () => {

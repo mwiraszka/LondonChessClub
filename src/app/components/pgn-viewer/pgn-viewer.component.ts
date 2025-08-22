@@ -3,7 +3,7 @@ import LichessPgnViewer from 'lichess-pgn-viewer';
 import { AfterViewInit, Component, DOCUMENT, Inject, Input, OnInit } from '@angular/core';
 
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
-import type { ExternalLink } from '@app/models';
+import { ExternalLink } from '@app/models';
 import { getLichessAnalysisUrl, getPlayerName, getScore } from '@app/utils';
 
 @Component({

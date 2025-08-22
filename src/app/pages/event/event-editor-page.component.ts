@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EventFormComponent } from '@app/components/event-form/event-form.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import type { EditorPage, Event, EventFormData, InternalLink } from '@app/models';
+import { EditorPage, Event, EventFormData, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { EventsSelectors } from '@app/store/events';
 
@@ -21,6 +21,7 @@ import { EventsSelectors } from '@app/store/events';
     @if (viewModel$ | async; as vm) {
       <lcc-page-header
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
+        icon="admin_panel_settings"
         [title]="vm.pageTitle">
       </lcc-page-header>
       <lcc-event-form

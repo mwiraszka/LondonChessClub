@@ -3,7 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import type { ExternalLink, InternalLink } from '@app/models';
+import { ExternalLink, InternalLink } from '@app/models';
 import { RouterLinkPipe } from '@app/pipes';
 
 @Component({

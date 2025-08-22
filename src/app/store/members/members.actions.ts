@@ -1,12 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type {
-  DataPaginationOptions,
-  Id,
-  LccError,
-  Member,
-  MemberFormData,
-} from '@app/models';
+import { DataPaginationOptions, Id, LccError, Member, MemberFormData } from '@app/models';
 
 export const fetchMembersRequested = createAction('[Members] Fetch members requested');
 export const fetchMembersSucceeded = createAction(
@@ -84,4 +78,29 @@ export const formValueChanged = createAction(
 export const memberFormDataReset = createAction(
   '[Members] Member form data reset',
   props<{ memberId: Id | null }>(),
+);
+
+export const importMembersFromCsvRequested = createAction(
+  '[Members] Import members from CSV requested',
+  props<{ file: File }>(),
+);
+export const importMembersFromCsvSucceeded = createAction(
+  '[Members] Import members from CSV succeeded',
+  props<{ importedCount: number }>(),
+);
+export const importMembersFromCsvFailed = createAction(
+  '[Members] Import members from CSV failed',
+  props<{ error: LccError }>(),
+);
+
+export const exportMembersToCsvRequested = createAction(
+  '[Members] Export members to CSV requested',
+);
+export const exportMembersToCsvSucceeded = createAction(
+  '[Members] Export members to CSV succeeded',
+  props<{ exportedCount: number }>(),
+);
+export const exportMembersToCsvFailed = createAction(
+  '[Members] Export members to CSV failed',
+  props<{ error: LccError }>(),
 );

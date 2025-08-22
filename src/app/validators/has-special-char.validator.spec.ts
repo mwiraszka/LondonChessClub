@@ -4,13 +4,13 @@ import { hasSpecialCharValidator } from './has-special-char.validator';
 
 describe('hasSpecialCharValidator', () => {
   it('returns `null` for an empty string', () => {
-    expect(getErrorForValue('')).toBeNull();
+    expect(getErrorForValue('')).toBeFalsy();
   });
 
   it('returns `null` if valid', () => {
-    expect(getErrorForValue('#')).toBeNull();
-    expect(getErrorForValue('@@@')).toBeNull();
-    expect(getErrorForValue('Abc123 $')).toBeNull();
+    expect(getErrorForValue('#')).toBeFalsy();
+    expect(getErrorForValue('@@@')).toBeFalsy();
+    expect(getErrorForValue('Abc123 $')).toBeFalsy();
   });
 
   it('returns `noSpecialChar` error if invalid', () => {

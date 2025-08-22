@@ -1,12 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type {
-  BatchImageFetchContext,
-  Id,
-  Image,
-  ImageFormData,
-  LccError,
-} from '@app/models';
+import { DataPaginationOptions, Id, Image, ImageFormData, LccError } from '@app/models';
 import { BaseImage } from '@app/models/image.model';
 
 export const fetchAllImagesMetadataRequested = createAction(
@@ -21,15 +15,15 @@ export const fetchAllImagesMetadataFailed = createAction(
   props<{ error: LccError }>(),
 );
 
-export const fetchAllThumbnailsRequested = createAction(
-  '[Images] Fetch all thumbnails requested',
+export const fetchFilteredThumbnailsRequested = createAction(
+  '[Images] Fetch filtered thumbnails requested',
 );
-export const fetchAllThumbnailsSucceeded = createAction(
-  '[Images] Fetch all thumbnails succeeded',
-  props<{ images: Image[] }>(),
+export const fetchFilteredThumbnailsSucceeded = createAction(
+  '[Images] Fetch filtered thumbnails succeeded',
+  props<{ images: Image[]; filteredCount: number; totalCount: number }>(),
 );
-export const fetchAllThumbnailsFailed = createAction(
-  '[Images] Fetch all thumbnails failed',
+export const fetchFilteredThumbnailsFailed = createAction(
+  '[Images] Fetch filtered thumbnails failed',
   props<{ error: LccError }>(),
 );
 
@@ -37,12 +31,12 @@ export const fetchBatchThumbnailsRequested = createAction(
   '[Images] Fetch batch thumbnails requested',
   props<{
     imageIds: Id[];
-    context: BatchImageFetchContext;
+    isAlbumCoverFetch?: boolean;
   }>(),
 );
 export const fetchBatchThumbnailsSucceeded = createAction(
   '[Images] Fetch batch thumbnails succeeded',
-  props<{ images: Image[]; context: BatchImageFetchContext }>(),
+  props<{ images: Image[]; isAlbumCoverFetch?: boolean }>(),
 );
 export const fetchBatchThumbnailsFailed = createAction(
   '[Images] Fetch batch thumbnails failed',
@@ -146,6 +140,11 @@ export const deleteAlbumSucceeded = createAction(
 export const deleteAlbumFailed = createAction(
   '[Images] Delete album failed',
   props<{ album: string; error: LccError }>(),
+);
+
+export const paginationOptionsChanged = createAction(
+  '[Images] Pagination options changed',
+  props<{ options: DataPaginationOptions<Image>; fetch: boolean }>(),
 );
 
 export const cancelSelected = createAction('[Images] Cancel selected');

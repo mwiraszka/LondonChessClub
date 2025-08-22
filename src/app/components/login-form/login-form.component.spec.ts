@@ -124,12 +124,12 @@ describe('LoginFormComponent', () => {
 
   describe('template rendering', () => {
     it('should render login form with correct fields', () => {
-      expect(query(fixture.debugElement, 'input#email-input')).not.toBeNull();
-      expect(query(fixture.debugElement, 'input#password-input')).not.toBeNull();
-      expect(query(fixture.debugElement, 'button.login-button')).not.toBeNull();
+      expect(query(fixture.debugElement, 'input#email-input')).toBeTruthy();
+      expect(query(fixture.debugElement, 'input#password-input')).toBeTruthy();
+      expect(query(fixture.debugElement, 'button.login-button')).toBeTruthy();
       expect(
         query(fixture.debugElement, 'a.lcc-link[routerLink="/change-password"]'),
-      ).not.toBeNull();
+      ).toBeTruthy();
     });
 
     it('should have disabled login button when form is invalid', () => {

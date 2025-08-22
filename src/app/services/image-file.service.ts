@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import type { Id, IndexedDbImageData, LccError, Url } from '@app/models';
+import { Id, IndexedDbImageData, LccError, Url } from '@app/models';
 import { dataUrlToFile, formatBytes, isLccError } from '@app/utils';
 
 const DB_NAME = 'LccImagesDB';

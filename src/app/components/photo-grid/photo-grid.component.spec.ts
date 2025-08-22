@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
-import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
 import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
@@ -30,7 +29,6 @@ describe('PhotoGridComponent', () => {
   let dialogOpenSpy: jest.SpyInstance;
   let dispatchSpy: jest.SpyInstance;
   let onClickAlbumCoverSpy: jest.SpyInstance;
-  let onOpenImageExplorerSpy: jest.SpyInstance;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -55,7 +53,6 @@ describe('PhotoGridComponent', () => {
         dialogOpenSpy = jest.spyOn(dialogService, 'open');
         dispatchSpy = jest.spyOn(store, 'dispatch');
         onClickAlbumCoverSpy = jest.spyOn(component, 'onClickAlbumCover');
-        onOpenImageExplorerSpy = jest.spyOn(component, 'onOpenImageExplorer');
 
         fixture.detectChanges();
       });
@@ -89,7 +86,7 @@ describe('PhotoGridComponent', () => {
         expect(dispatchSpy).not.toHaveBeenCalledWith(
           ImagesActions.fetchBatchThumbnailsRequested({
             imageIds: MOCK_IMAGES.map(image => image.id),
-            context: 'photos',
+            isAlbumCoverFetch: true,
           }),
         );
       });
@@ -118,7 +115,7 @@ describe('PhotoGridComponent', () => {
         expect(dispatchSpy).toHaveBeenCalledWith(
           ImagesActions.fetchBatchThumbnailsRequested({
             imageIds: [MOCK_IMAGES[0].id],
-            context: 'photos',
+            isAlbumCoverFetch: true,
           }),
         );
       });
@@ -168,22 +165,6 @@ describe('PhotoGridComponent', () => {
         },
       });
     });
-
-    it('should call onOpenImageExplorer when image explorer button is clicked', () => {
-      query(fixture.debugElement, '.image-explorer-button').triggerEventHandler('click');
-
-      expect(onOpenImageExplorerSpy).toHaveBeenCalledTimes(1);
-    });
-
-    it('should open ImageExplorerComponent dialog with selectable false when opening image explorer', async () => {
-      await component.onOpenImageExplorer();
-
-      expect(dialogOpenSpy).toHaveBeenCalledWith({
-        componentType: ImageExplorerComponent,
-        inputs: { selectable: false },
-        isModal: true,
-      });
-    });
   });
 
   describe('admin controls', () => {
@@ -217,18 +198,18 @@ describe('PhotoGridComponent', () => {
   });
 
   describe('template rendering', () => {
-    it('should display admin controls header when isAdmin is true', () => {
+    it('should display admin toolbar when isAdmin is true', () => {
       component.isAdmin = true;
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, '.admin-controls-header')).not.toBeNull();
+      expect(query(fixture.debugElement, 'lcc-admin-toolbar')).toBeTruthy();
     });
 
-    it('should not display admin controls header when isAdmin is false', () => {
+    it('should not display admin toolbar when isAdmin is false', () => {
       component.isAdmin = false;
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, '.admin-controls-header')).toBeNull();
+      expect(query(fixture.debugElement, 'lcc-admin-toolbar')).toBeFalsy();
     });
 
     it('should display album covers with correct information', () => {

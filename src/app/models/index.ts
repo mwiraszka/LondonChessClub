@@ -1,6 +1,6 @@
 export type { AdminControlsConfig } from './admin-controls-config.model';
-export type { ApiResponse } from './api-response.model';
-export type { ApiScope } from './api-scope.model';
+export type { AdminButton } from './admin-button.model';
+export type { ApiScope, ApiResponse, PaginatedItems } from './api.model';
 export type { Article, ArticleFormData, ArticleFormGroup } from './article.model';
 export type { ChampionshipTableRowData } from './championship-data.model';
 export type { ClubDocument } from './club-document.model';
@@ -33,6 +33,7 @@ export type { ChangePasswordFormGroup, LoginFormGroup } from './login.model';
 export type { Member, MemberFormData, MemberFormGroup } from './member.model';
 export type { ModificationInfo } from './modification-info.model';
 export type { NavPath } from './nav-path.model';
-export type { DataPaginationOptions, Filter, PageSize } from './pagination-options.model';
+export type { NgChanges } from './ng-changes.model';
+export type { DataPaginationOptions, Filter } from './pagination.model';
 export type { Toast } from './toast.model';
 export type { User } from './user.model';

@@ -32,9 +32,8 @@ describe('DataToolbarComponent', () => {
         fixture = TestBed.createComponent(DataToolbarComponent<Member>);
         component = fixture.componentInstance;
 
-        component.entity = 'member';
-        component.totalCount = MOCK_MEMBERS.length;
-        component.filteredCount = 2;
+        component.entity = 'members';
+        component.filteredCount = MOCK_MEMBERS.length;
         component.options = { ...mockOptions };
         fixture.detectChanges();
 
@@ -148,10 +147,10 @@ describe('DataToolbarComponent', () => {
   describe('template rendering', () => {
     describe('page navigation buttons', () => {
       it('should always render page navigation buttons', () => {
-        expect(query(fixture.debugElement, '.first-page-button')).not.toBeNull();
-        expect(query(fixture.debugElement, '.previous-page-button')).not.toBeNull();
-        expect(query(fixture.debugElement, '.next-page-button')).not.toBeNull();
-        expect(query(fixture.debugElement, '.last-page-button')).not.toBeNull();
+        expect(query(fixture.debugElement, '.first-page-button')).toBeTruthy();
+        expect(query(fixture.debugElement, '.previous-page-button')).toBeTruthy();
+        expect(query(fixture.debugElement, '.next-page-button')).toBeTruthy();
+        expect(query(fixture.debugElement, '.last-page-button')).toBeTruthy();
       });
 
       describe('with only one pages of data', () => {
@@ -232,12 +231,18 @@ describe('DataToolbarComponent', () => {
 
     it('should render page size buttons', () => {
       const pageSizeButtons = queryAll(fixture.debugElement, '.page-size-button');
-      expect(pageSizeButtons.length).toBe(component.PAGE_SIZES.length);
+
+      // Add 1 to account for the ALL button at the end
+      expect(pageSizeButtons.length).toBe(component.STANDARD_PAGE_SIZES.length + 1);
 
       pageSizeButtons.forEach((button, index) => {
-        expect(button.nativeElement.textContent.trim()).toBe(
-          component.PAGE_SIZES[index].toString(),
-        );
+        if (index < component.STANDARD_PAGE_SIZES.length) {
+          expect(button.nativeElement.textContent.trim()).toBe(
+            component.STANDARD_PAGE_SIZES[index].toString(),
+          );
+        } else {
+          expect(button.nativeElement.textContent.trim()).toBe('all');
+        }
       });
     });
 
@@ -251,7 +256,7 @@ describe('DataToolbarComponent', () => {
         };
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, '.filters')).not.toBeNull();
+        expect(query(fixture.debugElement, '.filters')).toBeTruthy();
         expect(queryAll(fixture.debugElement, '.filter').length).toBe(1);
       });
 
@@ -259,23 +264,83 @@ describe('DataToolbarComponent', () => {
         component.options = { ...mockOptions, filters: {} };
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, '.filters')).toBeNull();
+        expect(query(fixture.debugElement, '.filters')).toBeFalsy();
         expect(queryAll(fixture.debugElement, '.filter').length).toBe(0);
       });
     });
 
-    describe('filter counter', () => {
-      it('should include total and filtered counts', () => {
-        const text = queryTextContent(fixture.debugElement, '.filter-counter');
-        expect(
-          text.includes(`${component.filteredCount} / ${component.totalCount}`),
-        ).toBe(true);
+    describe('pagination summary', () => {
+      it('should summarize correctly', () => {
+        component.filteredCount = 99;
+        fixture.detectChanges();
+
+        expect(queryTextContent(fixture.debugElement, '.pagination-summary')).toBe(
+          'Showing 21\u00A0\u2013\u00A030\u00A0\u00A0/\u00A0\u00A099 members',
+        );
       });
 
-      it('should include entity name', () => {
-        const text = queryTextContent(fixture.debugElement, '.filter-counter');
-        expect(text.includes(`${component.entity}`)).toBe(true);
+      it('should modify summary when filteredCount is exactly 1', () => {
+        component.filteredCount = 1;
+        component.options = { ...mockOptions, page: 1 };
+        fixture.detectChanges();
+
+        expect(queryTextContent(fixture.debugElement, '.pagination-summary')).toBe(
+          'Showing 1\u00A0\u2013\u00A01\u00A0\u00A0/\u00A0\u00A01 member',
+        );
       });
+
+      it('should modify summary when filteredCount is exactly 0', () => {
+        component.filteredCount = 0;
+        fixture.detectChanges();
+
+        expect(queryTextContent(fixture.debugElement, '.pagination-summary')).toBe(
+          'No matches 😢',
+        );
+      });
+
+      it('should show "No matches" when filteredCount is 0', () => {
+        component.filteredCount = 0;
+        fixture.detectChanges();
+
+        expect(queryTextContent(fixture.debugElement, '.pagination-summary')).toBe(
+          'No matches 😢',
+        );
+      });
+
+      it('should show "Loading" when filteredCount is null', () => {
+        component.filteredCount = null;
+        fixture.detectChanges();
+
+        expect(queryTextContent(fixture.debugElement, '.pagination-summary')).toBe(
+          'Loading...',
+        );
+      });
+    });
+  });
+
+  describe('lastPage getter', () => {
+    it('should return 1 when filteredCount is 0', () => {
+      component.filteredCount = 0;
+      component.options = { ...mockOptions, pageSize: 10 };
+      fixture.detectChanges();
+
+      expect(component.lastPage).toBe(1);
+    });
+
+    it('should return 1 when pageSize is 0', () => {
+      component.filteredCount = 50;
+      component.options = { ...mockOptions, pageSize: 0 };
+      fixture.detectChanges();
+
+      expect(component.lastPage).toBe(1);
+    });
+
+    it('should calculate correctly when both values are positive', () => {
+      component.filteredCount = 25;
+      component.options = { ...mockOptions, pageSize: 10 };
+      fixture.detectChanges();
+
+      expect(component.lastPage).toBe(3);
     });
   });
 });

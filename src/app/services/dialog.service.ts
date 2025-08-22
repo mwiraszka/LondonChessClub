@@ -19,7 +19,7 @@ import {
 } from '@angular/core';
 
 import { DialogComponent } from '@app/components/dialog/dialog.component';
-import type { DialogConfig, DialogOutput } from '@app/models';
+import { DialogConfig, DialogOutput } from '@app/models';
 
 export const DIALOG_CONFIG_TOKEN = new InjectionToken<DialogConfig<unknown>>(
   'Dialog Config',
@@ -141,13 +141,7 @@ export class DialogService {
       'document',
       'keydown',
       (event: KeyboardEvent) => {
-        if (
-          ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Tab', ' '].includes(
-            event.key,
-          )
-        ) {
-          event.preventDefault();
-        } else if (event.key === 'Escape') {
+        if (event.key === 'Escape') {
           event.stopImmediatePropagation();
           this.closeTopDialog();
         }

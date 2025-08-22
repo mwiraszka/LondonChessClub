@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import { compact, pick } from 'lodash';
 
 import { IMAGE_FORM_DATA_PROPERTIES, INITIAL_IMAGE_FORM_DATA } from '@app/constants';
-import { Id, Image, ImageFormData, IsoDate } from '@app/models';
+import { DataPaginationOptions, Id, Image, ImageFormData, IsoDate } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as ImagesActions from './images.actions';
@@ -12,9 +12,12 @@ export interface ImagesState
   extends EntityState<{ image: Image; formData: ImageFormData }> {
   newImagesFormData: Record<string, ImageFormData>;
   lastMetadataFetch: IsoDate | null;
-  lastThumbnailsFetch: IsoDate | null;
+  lastFilteredThumbnailsFetch: IsoDate | null;
   lastAlbumCoversFetch: IsoDate | null;
-  lastArticleImagesFetch: IsoDate | null;
+  filteredImages: Image[];
+  options: DataPaginationOptions<Image>;
+  filteredCount: number | null;
+  totalCount: number;
 }
 
 export const imagesAdapter = createEntityAdapter<{
@@ -29,9 +32,19 @@ export const imagesAdapter = createEntityAdapter<{
 export const initialState: ImagesState = imagesAdapter.getInitialState({
   newImagesFormData: {},
   lastMetadataFetch: null,
-  lastThumbnailsFetch: null,
+  lastFilteredThumbnailsFetch: null,
   lastAlbumCoversFetch: null,
-  lastArticleImagesFetch: null,
+  filteredImages: [],
+  options: {
+    page: 1,
+    pageSize: 20,
+    sortBy: 'modificationInfo',
+    sortOrder: 'desc',
+    filters: {},
+    search: '',
+  },
+  filteredCount: null,
+  totalCount: 0,
 });
 
 export const imagesReducer = createReducer(
@@ -51,57 +64,48 @@ export const imagesReducer = createReducer(
       ),
   ),
 
-  on(ImagesActions.fetchAllThumbnailsSucceeded, (state, { images }): ImagesState => {
-    const fetchDate = new Date(Date.now()).toISOString();
-
-    return imagesAdapter.upsertMany(
-      images.map(image => {
-        const originalEntity = image ? state.entities[image.id] : null;
-
-        return {
-          image: {
-            ...image,
-            originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
-            thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
-          },
-          formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
-        };
-      }),
-      {
-        ...state,
-        lastThumbnailsFetch: fetchDate,
-        lastArticleImagesFetch: fetchDate,
-        lastAlbumCoversFetch: fetchDate,
-      },
-    );
-  }),
-
   on(
-    ImagesActions.fetchBatchThumbnailsSucceeded,
-    (state, { images, context }): ImagesState =>
-      imagesAdapter.upsertMany(
+    ImagesActions.fetchFilteredThumbnailsSucceeded,
+    (state, { images, filteredCount, totalCount }): ImagesState => {
+      return imagesAdapter.upsertMany(
         images.map(image => {
-          const originalEntity = image ? state.entities[image.id] : null;
-
           return {
             image: {
               ...image,
-              originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
-              thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
+              thumbnailUrl: image.thumbnailUrl!,
             },
             formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
           };
         }),
         {
           ...state,
-          lastArticleImagesFetch:
-            context === 'articles'
-              ? new Date(Date.now()).toISOString()
-              : state.lastArticleImagesFetch,
-          lastAlbumCoversFetch:
-            context === 'photos'
-              ? new Date(Date.now()).toISOString()
-              : state.lastAlbumCoversFetch,
+          lastFilteredThumbnailsFetch: new Date(Date.now()).toISOString(),
+          filteredImages: images,
+          filteredCount,
+          totalCount,
+        },
+      );
+    },
+  ),
+
+  on(
+    ImagesActions.fetchBatchThumbnailsSucceeded,
+    (state, { images, isAlbumCoverFetch }): ImagesState =>
+      imagesAdapter.upsertMany(
+        images.map(image => {
+          return {
+            image: {
+              ...image,
+              thumbnailUrl: image.thumbnailUrl!,
+            },
+            formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
+          };
+        }),
+        {
+          ...state,
+          lastAlbumCoversFetch: isAlbumCoverFetch
+            ? new Date(Date.now()).toISOString()
+            : state.lastAlbumCoversFetch,
         },
       ),
   ),
@@ -159,7 +163,12 @@ export const imagesReducer = createReducer(
           image: baseImage,
           formData: pick(baseImage, IMAGE_FORM_DATA_PROPERTIES),
         },
-        state,
+        {
+          ...state,
+          lastFilteredThumbnailsFetch: null,
+          lastAlbumCoversFetch: null,
+          lastMetadataFetch: null,
+        },
       ),
   ),
 
@@ -185,7 +194,13 @@ export const imagesReducer = createReducer(
           };
         }),
       ),
-      { ...state, newImagesFormData: {} },
+      {
+        ...state,
+        lastFilteredThumbnailsFetch: null,
+        lastAlbumCoversFetch: null,
+        lastMetadataFetch: null,
+        newImagesFormData: {},
+      },
     );
   }),
 
@@ -258,6 +273,14 @@ export const imagesReducer = createReducer(
       ? imagesAdapter.upsertMany(updatedEntities, stateWithNewImages)
       : stateWithNewImages;
   }),
+
+  on(
+    ImagesActions.paginationOptionsChanged,
+    (state, { options }): ImagesState => ({
+      ...state,
+      options,
+    }),
+  ),
 
   on(ImagesActions.imageFormDataReset, (state, { imageId }): ImagesState => {
     const originalImage = state.entities[imageId]?.image;

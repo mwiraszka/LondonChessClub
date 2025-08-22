@@ -4,13 +4,13 @@ import { hasNumberValidator } from './has-number.validator';
 
 describe('hasNumberValidator', () => {
   it('returns `null` for an empty string', () => {
-    expect(getErrorForValue('')).toBeNull();
+    expect(getErrorForValue('')).toBeFalsy();
   });
 
   it('returns `null` if valid', () => {
-    expect(getErrorForValue('1')).toBeNull();
-    expect(getErrorForValue('123')).toBeNull();
-    expect(getErrorForValue('Abc123-_ #$')).toBeNull();
+    expect(getErrorForValue('1')).toBeFalsy();
+    expect(getErrorForValue('123')).toBeFalsy();
+    expect(getErrorForValue('Abc123-_ #$')).toBeFalsy();
   });
 
   it('returns `noNumber` error if invalid', () => {

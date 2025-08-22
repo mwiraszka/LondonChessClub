@@ -3,7 +3,15 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import type { ApiResponse, Article, DbCollection, Id } from '@app/models';
+import {
+  ApiResponse,
+  Article,
+  DataPaginationOptions,
+  DbCollection,
+  Id,
+  PaginatedItems,
+} from '@app/models';
+import { setPaginationParams } from '@app/utils';
 
 import { environment } from '@env';
 
@@ -16,9 +24,13 @@ export class ArticlesService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getArticles(): Observable<ApiResponse<Article[]>> {
-    return this.http.get<ApiResponse<Article[]>>(
+  public getArticles(
+    options: DataPaginationOptions<Article>,
+  ): Observable<ApiResponse<PaginatedItems<Article>>> {
+    const params = setPaginationParams(options);
+    return this.http.get<ApiResponse<PaginatedItems<Article>>>(
       `${this.API_BASE_URL}/${this.COLLECTION}`,
+      { params },
     );
   }
 

@@ -10,14 +10,14 @@ import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.
 import { SafeModeNoticeComponent } from '@app/components/safe-mode-notice/safe-mode-notice.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import type {
+import {
   AdminControlsConfig,
   BasicDialogResult,
   DataPaginationOptions,
   Dialog,
   Member,
 } from '@app/models';
-import { CamelCasePipe, FormatDatePipe, KebabCasePipe } from '@app/pipes';
+import { CamelCasePipe, FormatDatePipe, HighlightPipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 
 @UntilDestroy()
@@ -30,6 +30,7 @@ import { DialogService } from '@app/services';
     CamelCasePipe,
     CommonModule,
     FormatDatePipe,
+    HighlightPipe,
     KebabCasePipe,
     MatIconModule,
     RouterLink,

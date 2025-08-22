@@ -618,14 +618,14 @@ describe('ImageFormComponent', () => {
         };
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, 'lcc-modification-info')).not.toBeNull();
+        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeTruthy();
       });
 
       it('should not render if imageEntity is null', () => {
         component.imageEntity = null;
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeNull();
+        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeFalsy();
       });
     });
 

@@ -19,7 +19,7 @@ import { ModificationInfoComponent } from '@app/components/modification-info/mod
 import { INITIAL_IMAGE_FORM_DATA } from '@app/constants';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import type {
+import {
   BasicDialogResult,
   Dialog,
   Id,

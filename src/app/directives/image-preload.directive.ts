@@ -6,10 +6,9 @@ import {
   OnChanges,
   OnInit,
   Renderer2,
-  SimpleChanges,
 } from '@angular/core';
 
-import { Image } from '@app/models';
+import { Image, NgChanges } from '@app/models';
 import { calculateAspectRatio } from '@app/utils';
 
 /**
@@ -51,8 +50,8 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
     this.updateImage();
   }
 
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['image']) {
+  public ngOnChanges(changes: NgChanges<ImagePreloadDirective>): void {
+    if (changes.image) {
       this.updateImage();
     }
   }
@@ -129,6 +128,7 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
     const parentElement = this.elementRef.nativeElement.parentElement;
     if (parentElement) {
       this.renderer.setStyle(parentElement, 'position', 'relative');
+      this.renderer.setStyle(parentElement, 'overflow', 'hidden');
       this.renderer.appendChild(parentElement, shimmer);
     }
     this.skeletonElement = shimmer;
@@ -143,6 +143,7 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
 
     if (parentElement && parentElement.contains(this.skeletonElement)) {
       this.renderer.removeChild(parentElement, this.skeletonElement);
+      this.renderer.removeStyle(parentElement, 'overflow');
     }
 
     // Make sure the image is visible

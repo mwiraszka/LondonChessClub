@@ -34,7 +34,8 @@ export class AppEffects {
     ArticlesActions.deleteArticleFailed,
     ArticlesActions.deleteArticleSucceeded,
     ArticlesActions.fetchArticleFailed,
-    ArticlesActions.fetchArticlesFailed,
+    ArticlesActions.fetchHomePageArticlesFailed,
+    ArticlesActions.fetchNewsPageArticlesFailed,
     ArticlesActions.publishArticleFailed,
     ArticlesActions.publishArticleSucceeded,
     ArticlesActions.updateArticleFailed,
@@ -69,8 +70,8 @@ export class AppEffects {
     ImagesActions.deleteImageFailed,
     ImagesActions.deleteImageSucceeded,
     ImagesActions.fetchAllImagesMetadataFailed,
-    ImagesActions.fetchAllThumbnailsFailed,
     ImagesActions.fetchBatchThumbnailsFailed,
+    ImagesActions.fetchFilteredThumbnailsFailed,
     ImagesActions.fetchOriginalFailed,
     ImagesActions.imageFileActionFailed,
     ImagesActions.updateAlbumFailed,
@@ -86,17 +87,27 @@ export class AppEffects {
     MembersActions.fetchMembersFailed,
     MembersActions.updateMemberFailed,
     MembersActions.updateMemberSucceeded,
+    MembersActions.importMembersFromCsvFailed,
+    MembersActions.importMembersFromCsvSucceeded,
+    MembersActions.exportMembersToCsvFailed,
+    MembersActions.exportMembersToCsvSucceeded,
+
     NavActions.pageAccessDenied,
   ] as const;
 
   readonly SUPPRESSED_TOASTS_IN_PROD = [
-    ArticlesActions.fetchArticlesFailed,
+    ArticlesActions.fetchHomePageArticlesFailed,
+    ArticlesActions.fetchNewsPageArticlesFailed,
     ArticlesActions.fetchArticleFailed,
+
     EventsActions.fetchEventsFailed,
     EventsActions.fetchEventFailed,
-    ImagesActions.fetchAllThumbnailsFailed,
+
+    ImagesActions.fetchAllImagesMetadataFailed,
     ImagesActions.fetchBatchThumbnailsFailed,
+    ImagesActions.fetchFilteredThumbnailsFailed,
     ImagesActions.fetchOriginalFailed,
+
     MembersActions.fetchMembersFailed,
     MembersActions.fetchMemberFailed,
   ] as const;
@@ -155,7 +166,13 @@ export class AppEffects {
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case ArticlesActions.fetchArticlesFailed.type:
+      case ArticlesActions.fetchHomePageArticlesFailed.type:
+        return {
+          title: 'Load articles',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case ArticlesActions.fetchNewsPageArticlesFailed.type:
         return {
           title: 'Load articles',
           message: this.getErrorMessage(action.error),
@@ -352,13 +369,13 @@ export class AppEffects {
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case ImagesActions.fetchAllThumbnailsFailed.type:
+      case ImagesActions.fetchBatchThumbnailsFailed.type:
         return {
           title: 'Fetch images',
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case ImagesActions.fetchBatchThumbnailsFailed.type:
+      case ImagesActions.fetchFilteredThumbnailsFailed.type:
         return {
           title: 'Fetch images',
           message: this.getErrorMessage(action.error),
@@ -447,6 +464,30 @@ export class AppEffects {
         return {
           title: 'Member update',
           message: `Successfully updated ${action.originalMemberName}`,
+          type: 'success',
+        };
+      case MembersActions.importMembersFromCsvFailed.type:
+        return {
+          title: 'CSV import',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case MembersActions.importMembersFromCsvSucceeded.type:
+        return {
+          title: 'CSV import',
+          message: `Successfully imported ${action.importedCount} members from CSV`,
+          type: 'success',
+        };
+      case MembersActions.exportMembersToCsvFailed.type:
+        return {
+          title: 'CSV export',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case MembersActions.exportMembersToCsvSucceeded.type:
+        return {
+          title: 'CSV export',
+          message: `Successfully exported ${action.exportedCount} members to CSV`,
           type: 'success',
         };
       case NavActions.pageAccessDenied.type:

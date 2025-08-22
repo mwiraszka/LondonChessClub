@@ -7,7 +7,7 @@ import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import type { Event } from '@app/models';
+import { Event } from '@app/models';
 import { EventsService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { isDefined, parseError } from '@app/utils';

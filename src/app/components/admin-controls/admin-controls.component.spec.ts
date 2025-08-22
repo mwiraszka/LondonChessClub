@@ -63,7 +63,7 @@ describe('AdminControlsComponent', () => {
         component.config.bookmarked = undefined;
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, '.bookmark-button')).toBeNull();
+        expect(query(fixture.debugElement, '.bookmark-button')).toBeFalsy();
       });
 
       it('should not render if only bookmarked is provided', () => {
@@ -71,7 +71,7 @@ describe('AdminControlsComponent', () => {
         component.config.bookmarked = false;
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, '.bookmark-button')).toBeNull();
+        expect(query(fixture.debugElement, '.bookmark-button')).toBeFalsy();
       });
 
       it('should render if both bookmarkCb and bookmarked are provided', () => {
@@ -79,7 +79,7 @@ describe('AdminControlsComponent', () => {
         component.config.bookmarked = false;
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, '.bookmark-button')).not.toBeNull();
+        expect(query(fixture.debugElement, '.bookmark-button')).toBeTruthy();
       });
 
       it('should invoke bookmarkCb when clicked', () => {
@@ -101,14 +101,14 @@ describe('AdminControlsComponent', () => {
         component.config.editPath = undefined;
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, '.edit-button')).toBeNull();
+        expect(query(fixture.debugElement, '.edit-button')).toBeFalsy();
       });
 
       it('should render if editPath is provided', () => {
         component.config.editPath = ['event', 'edit'];
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, '.edit-button')).not.toBeNull();
+        expect(query(fixture.debugElement, '.edit-button')).toBeTruthy();
       });
     });
 
@@ -217,14 +217,14 @@ describe('AdminControlsComponent', () => {
           component.config.isDeleteDisabled = true;
           fixture.detectChanges();
 
-          expect(query(fixture.debugElement, '.delete-button')).toBeNull();
+          expect(query(fixture.debugElement, '.delete-button')).toBeFalsy();
         });
 
         it('should not render when isDeleteDisabled is false', () => {
           component.config.isDeleteDisabled = false;
           fixture.detectChanges();
 
-          expect(query(fixture.debugElement, '.delete-button')).toBeNull();
+          expect(query(fixture.debugElement, '.delete-button')).toBeFalsy();
         });
       });
     });

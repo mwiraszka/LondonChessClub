@@ -4,13 +4,13 @@ import { timeValidator } from './time.validator';
 
 describe('timeValidator', () => {
   it('returns `null` for an empty string', () => {
-    expect(getErrorForValue('')).toBeNull();
+    expect(getErrorForValue('')).toBeFalsy();
   });
 
   // See is-valid-time.util.spec.ts for more tests
   it('returns `null` if valid', () => {
-    expect(getErrorForValue('1:11 am')).toBeNull();
-    expect(getErrorForValue('1:01 AM')).toBeNull();
+    expect(getErrorForValue('1:11 am')).toBeFalsy();
+    expect(getErrorForValue('1:01 AM')).toBeFalsy();
   });
 
   it('returns `invalidTimeFormat` error if invalid', () => {

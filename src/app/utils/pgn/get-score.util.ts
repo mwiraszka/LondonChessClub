@@ -1,4 +1,4 @@
-import type { GameScore } from '@app/models';
+import { GameScore } from '@app/models';
 import { isGameScore } from '@app/models/game-details.model';
 
 import { isDefined } from '../common/is-defined.util';

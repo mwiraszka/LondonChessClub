@@ -19,7 +19,7 @@ import { FormErrorIconComponent } from '@app/components/form-error-icon/form-err
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import type {
+import {
   AlbumFormGroup,
   BasicDialogResult,
   Dialog,
@@ -98,12 +98,7 @@ export class AlbumFormComponent implements OnInit {
         .map(entity => entity.image.id);
 
       if (imageIds.length) {
-        this.store.dispatch(
-          ImagesActions.fetchBatchThumbnailsRequested({
-            imageIds,
-            context: 'album',
-          }),
-        );
+        this.store.dispatch(ImagesActions.fetchBatchThumbnailsRequested({ imageIds }));
       }
     }
 

@@ -7,7 +7,7 @@ import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import type { BaseImage, LccError } from '@app/models';
+import { BaseImage, LccError } from '@app/models';
 import { ImageFileService, ImagesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { dataUrlToFile, isDefined, isLccError } from '@app/utils';
@@ -41,43 +41,50 @@ export class ImagesEffects {
     );
   });
 
-  fetchAllThumbnailImages$ = createEffect(() => {
+  fetchFilteredThumbnailImages$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchAllThumbnailsRequested),
-      switchMap(() =>
-        this.imagesService.getAllThumbnailImages().pipe(
+      ofType(ImagesActions.fetchFilteredThumbnailsRequested),
+      tap(() => this.loaderService.setIsLoading(true)),
+      concatLatestFrom(() => this.store.select(ImagesSelectors.selectOptions)),
+      switchMap(([, options]) =>
+        this.imagesService.getThumbnailImages(options).pipe(
           map(response =>
-            ImagesActions.fetchAllThumbnailsSucceeded({
-              images: response.data,
+            ImagesActions.fetchFilteredThumbnailsSucceeded({
+              images: response.data.items,
+              filteredCount: response.data.filteredCount,
+              totalCount: response.data.totalCount,
             }),
           ),
           catchError(error =>
             of(
-              ImagesActions.fetchAllThumbnailsFailed({
+              ImagesActions.fetchFilteredThumbnailsFailed({
                 error: parseError(error),
               }),
             ),
           ),
         ),
       ),
+      tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
+  paginationOptionsChanged$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.paginationOptionsChanged),
+      filter(({ fetch }) => fetch),
+      map(() => ImagesActions.fetchFilteredThumbnailsRequested()),
     );
   });
 
   fetchBatchThumbnailImages$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchBatchThumbnailsRequested),
-      switchMap(({ imageIds, context }) => {
-        // return of(
-        //   ImagesActions.fetchBatchThumbnailsFailed({
-        //     error: parseError('test'),
-        //   }),
-        // );
-
-        return this.imagesService.getBatchThumbnailImages(imageIds).pipe(
+      switchMap(({ imageIds, isAlbumCoverFetch }) =>
+        this.imagesService.getBatchThumbnailImages(imageIds).pipe(
           map(response =>
             ImagesActions.fetchBatchThumbnailsSucceeded({
               images: response.data,
-              context,
+              isAlbumCoverFetch,
             }),
           ),
           catchError(error => {
@@ -87,8 +94,8 @@ export class ImagesEffects {
               }),
             );
           }),
-        );
-      }),
+        ),
+      ),
     );
   });
 

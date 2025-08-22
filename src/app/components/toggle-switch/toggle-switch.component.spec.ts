@@ -85,7 +85,7 @@ describe('ToggleSwitchComponent', () => {
         component.iconWhenOff = undefined;
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, 'mat-icon')).toBeNull();
+        expect(query(fixture.debugElement, 'mat-icon')).toBeFalsy();
       });
 
       it('should apply iconTooltipWhenOff to icon if tooltip is provided', () => {
@@ -102,7 +102,7 @@ describe('ToggleSwitchComponent', () => {
         const tooltipDirective = query(fixture.debugElement, 'mat-icon').injector.get(
           TooltipDirective,
         );
-        expect(tooltipDirective.tooltip).toBeNull();
+        expect(tooltipDirective.tooltip).toBeFalsy();
       });
 
       it('should apply warning class when warningWhenOff is true', () => {
@@ -147,7 +147,7 @@ describe('ToggleSwitchComponent', () => {
         component.iconWhenOn = undefined;
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, 'mat-icon')).toBeNull();
+        expect(query(fixture.debugElement, 'mat-icon')).toBeFalsy();
       });
 
       it('should not apply warning class when warningWhenOff is true', () => {

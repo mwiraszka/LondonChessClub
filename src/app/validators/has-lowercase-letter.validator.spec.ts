@@ -4,13 +4,13 @@ import { hasLowercaseLetterValidator } from './has-lowercase-letter.validator';
 
 describe('hasLowercaseLetterValidator', () => {
   it('returns `null` for an empty string', () => {
-    expect(getErrorForValue('')).toBeNull();
+    expect(getErrorForValue('')).toBeFalsy();
   });
 
   it('returns `null` if valid', () => {
-    expect(getErrorForValue('a')).toBeNull();
-    expect(getErrorForValue('abc')).toBeNull();
-    expect(getErrorForValue('123 $ # A a()')).toBeNull();
+    expect(getErrorForValue('a')).toBeFalsy();
+    expect(getErrorForValue('abc')).toBeFalsy();
+    expect(getErrorForValue('123 $ # A a()')).toBeFalsy();
   });
 
   it('returns `noLowercaseLetter` error if invalid', () => {

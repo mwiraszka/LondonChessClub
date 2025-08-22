@@ -313,14 +313,14 @@ describe('MemberFormComponent', () => {
         component.originalMember = MOCK_MEMBERS[0];
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, '#is-active-input')).not.toBeNull();
+        expect(query(fixture.debugElement, '#is-active-input')).toBeTruthy();
       });
 
       it('should not render if originalMember is null', () => {
         component.originalMember = null;
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, '#is-active-input')).toBeNull();
+        expect(query(fixture.debugElement, '#is-active-input')).toBeFalsy();
       });
     });
 
@@ -329,14 +329,14 @@ describe('MemberFormComponent', () => {
         component.isSafeMode = true;
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, 'lcc-safe-mode-notice')).not.toBeNull();
+        expect(query(fixture.debugElement, 'lcc-safe-mode-notice')).toBeTruthy();
       });
 
       it('should not render if isSafeMode is false', () => {
         component.isSafeMode = false;
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, 'lcc-safe-mode-notice')).toBeNull();
+        expect(query(fixture.debugElement, 'lcc-safe-mode-notice')).toBeFalsy();
       });
     });
 
@@ -345,14 +345,14 @@ describe('MemberFormComponent', () => {
         component.originalMember = MOCK_MEMBERS[0];
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, 'lcc-modification-info')).not.toBeNull();
+        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeTruthy();
       });
 
       it('should not render if originalMember is null', () => {
         component.originalMember = null;
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeNull();
+        expect(query(fixture.debugElement, 'lcc-modification-info')).toBeFalsy();
       });
     });
 

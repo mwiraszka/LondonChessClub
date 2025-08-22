@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { omit, pick, uniq } from 'lodash';
 
 import { INITIAL_IMAGE_FORM_DATA } from '@app/constants';
-import type { Id } from '@app/models';
+import { Id } from '@app/models';
 import { ArticlesSelectors } from '@app/store/articles';
 import { areSame } from '@app/utils';
 
@@ -21,16 +21,31 @@ export const selectLastMetadataFetch = createSelector(selectImagesState, state =
   return state.lastMetadataFetch;
 });
 
-export const selectLastThumbnailsFetch = createSelector(selectImagesState, state => {
-  return state.lastThumbnailsFetch;
-});
+export const selectLastFilteredThumbnailsFetch = createSelector(
+  selectImagesState,
+  state => {
+    return state.lastFilteredThumbnailsFetch;
+  },
+);
 
 export const selectLastAlbumCoversFetch = createSelector(selectImagesState, state => {
   return state.lastAlbumCoversFetch;
 });
 
-export const selectLastArticleImagesFetch = createSelector(selectImagesState, state => {
-  return state.lastArticleImagesFetch;
+export const selectFilteredImages = createSelector(selectImagesState, state => {
+  return state.filteredImages;
+});
+
+export const selectOptions = createSelector(selectImagesState, state => {
+  return state.options;
+});
+
+export const selectFilteredCount = createSelector(selectImagesState, state => {
+  return state.filteredCount;
+});
+
+export const selectTotalCount = createSelector(selectImagesState, state => {
+  return state.totalCount;
 });
 
 export const selectNewImageFormData = createSelector(

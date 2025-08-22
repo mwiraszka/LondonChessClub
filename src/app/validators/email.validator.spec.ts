@@ -4,13 +4,13 @@ import { emailValidator } from './email.validator';
 
 describe('emailValidator', () => {
   it('returns `null` for an empty string', () => {
-    expect(getErrorForValue('')).toBeNull();
+    expect(getErrorForValue('')).toBeFalsy();
   });
 
   it('returns `null` if valid', () => {
-    expect(getErrorForValue('michal@test.com')).toBeNull();
-    expect(getErrorForValue('a@b.ca')).toBeNull();
-    expect(getErrorForValue('silly_but_valid-123++--%%@abc.1-2-3.zzzz')).toBeNull();
+    expect(getErrorForValue('michal@test.com')).toBeFalsy();
+    expect(getErrorForValue('a@b.ca')).toBeFalsy();
+    expect(getErrorForValue('silly_but_valid-123++--%%@abc.1-2-3.zzzz')).toBeFalsy();
   });
 
   it('returns `invalidEmailFormat` error if invalid', () => {

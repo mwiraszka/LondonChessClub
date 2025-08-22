@@ -14,7 +14,7 @@ import {
 import { RouterLink } from '@angular/router';
 
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
-import type { ChangePasswordFormGroup } from '@app/models';
+import { ChangePasswordFormGroup } from '@app/models';
 import { AuthActions } from '@app/store/auth';
 import {
   emailValidator,

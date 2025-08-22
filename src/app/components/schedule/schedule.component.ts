@@ -6,10 +6,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
+import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
-import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
-import type {
+import {
   AdminControlsConfig,
   BasicDialogResult,
   Dialog,
@@ -27,10 +27,10 @@ import { isSecondsInPast } from '@app/utils';
   styleUrl: './schedule.component.scss',
   imports: [
     AdminControlsDirective,
+    AdminToolbarComponent,
     CommonModule,
     FormatDatePipe,
     KebabCasePipe,
-    LinkListComponent,
     MatIconModule,
     RouterLink,
   ],

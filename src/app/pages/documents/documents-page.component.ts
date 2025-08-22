@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
 import { DocumentViewerComponent } from '@app/components/document-viewer/document-viewer.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import type { ClubDocument } from '@app/models';
+import { ClubDocument } from '@app/models';
 import { FormatDatePipe } from '@app/pipes';
 import { DialogService, MetaAndTitleService, RoutingService } from '@app/services';
 

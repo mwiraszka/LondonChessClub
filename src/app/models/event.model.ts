@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { EVENT_FORM_DATA_PROPERTIES } from '@app/constants';
 
 import { Id, IsoDate } from './core.model';
-import type { ModificationInfo } from './modification-info.model';
+import { ModificationInfo } from './modification-info.model';
 
 const EVENT_TYPES = [
   'blitz tournament (10 mins)',

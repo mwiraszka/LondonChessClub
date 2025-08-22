@@ -7,30 +7,87 @@ import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import type { Article } from '@app/models';
+import { Article, DataPaginationOptions } from '@app/models';
 import { ArticlesService, LoaderService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
+import { ImagesActions } from '@app/store/images';
 import { isDefined, parseError } from '@app/utils';
 
 import { ArticlesActions, ArticlesSelectors } from '.';
 
 @Injectable()
 export class ArticlesEffects {
-  fetchArticles$ = createEffect(() => {
+  fetchHomePageArticles$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.fetchArticlesRequested),
+      ofType(ArticlesActions.fetchHomePageArticlesRequested),
       tap(() => this.loaderService.setIsLoading(true)),
-      switchMap(() =>
-        this.articlesService.getArticles().pipe(
+      switchMap(() => {
+        const options: DataPaginationOptions<Article> = {
+          page: 1,
+          pageSize: 6,
+          sortBy: 'bookmarkDate',
+          sortOrder: 'desc',
+          filters: {},
+          search: '',
+        };
+
+        return this.articlesService.getArticles(options).pipe(
           map(response =>
-            ArticlesActions.fetchArticlesSucceeded({ articles: response.data }),
+            ArticlesActions.fetchHomePageArticlesSucceeded({
+              articles: response.data.items,
+            }),
           ),
           catchError(error =>
-            of(ArticlesActions.fetchArticlesFailed({ error: parseError(error) })),
+            of(ArticlesActions.fetchHomePageArticlesFailed({ error: parseError(error) })),
+          ),
+        );
+      }),
+      tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
+  fetchArticleBannerImages$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(
+        ArticlesActions.fetchHomePageArticlesSucceeded,
+        ArticlesActions.fetchNewsPageArticlesSucceeded,
+      ),
+      map(({ articles }) =>
+        ImagesActions.fetchBatchThumbnailsRequested({
+          imageIds: articles.map(article => article.bannerImageId),
+        }),
+      ),
+    );
+  });
+
+  fetchNewsPageArticles$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.fetchNewsPageArticlesRequested),
+      tap(() => this.loaderService.setIsLoading(true)),
+      concatLatestFrom(() => this.store.select(ArticlesSelectors.selectOptions)),
+      switchMap(([, options]) =>
+        this.articlesService.getArticles(options).pipe(
+          map(response =>
+            ArticlesActions.fetchNewsPageArticlesSucceeded({
+              articles: response.data.items,
+              filteredCount: response.data.filteredCount,
+              totalCount: response.data.totalCount,
+            }),
+          ),
+          catchError(error =>
+            of(ArticlesActions.fetchNewsPageArticlesFailed({ error: parseError(error) })),
           ),
         ),
       ),
       tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
+  refetchArticlesAfterPaginationOptionsChange$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.paginationOptionsChanged),
+      filter(({ fetch }) => fetch),
+      map(() => ArticlesActions.fetchNewsPageArticlesRequested()),
     );
   });
 
@@ -128,7 +185,7 @@ export class ArticlesEffects {
 
   updateArticleBookmarkRequested$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.updateActicleBookmarkRequested),
+      ofType(ArticlesActions.updateArticleBookmarkRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(({ articleId }) =>
         this.store

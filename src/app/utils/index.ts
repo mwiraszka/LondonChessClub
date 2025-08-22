@@ -1,6 +1,7 @@
 export { isStorageSupported } from './browser/is-storage-supported.util';
 
 export { areSame } from './common/are-same.util';
+export { camelCaseToSentenceCase } from './common/camel-case-to-sentence-case.util';
 export { isDefined } from './common/is-defined.util';
 export { isString } from './common/is-string.util';
 export { takeRandomly } from './common/take-randomly.util';
@@ -18,6 +19,7 @@ export { isLccError } from './error/is-lcc-error.util';
 export { parseError } from './error/parse-error.util';
 
 export { dataUrlToFile } from './file/data-url-to-file.util';
+export { exportDataToCsv } from './file/export-data-to-csv.util';
 export { formatBytes } from './file/format-bytes.util';
 export { parseCsv } from './file/parse-csv.util';
 

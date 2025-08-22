@@ -4,11 +4,11 @@ import { isSecondsInPast } from './is-seconds-in-past.util';
 
 describe('isSecondsInPast', () => {
   it('returns null for invalid dates', () => {
-    expect(isSecondsInPast('')).toBeNull();
-    expect(isSecondsInPast('invalid-date')).toBeNull();
-    expect(isSecondsInPast('2023-13-32')).toBeNull();
-    expect(isSecondsInPast('2023/01/01')).toBeNull();
-    expect(isSecondsInPast(undefined)).toBeNull();
+    expect(isSecondsInPast('')).toBeFalsy();
+    expect(isSecondsInPast('invalid-date')).toBeFalsy();
+    expect(isSecondsInPast('2023-13-32')).toBeFalsy();
+    expect(isSecondsInPast('2023/01/01')).toBeFalsy();
+    expect(isSecondsInPast(undefined)).toBeFalsy();
   });
 
   it('returns true when date is in the past (default 0 seconds)', () => {

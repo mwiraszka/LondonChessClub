@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 
-import type { IsoDate } from '@app/models';
+import { IsoDate } from '@app/models';
 
 @Component({
   selector: 'lcc-date-picker',

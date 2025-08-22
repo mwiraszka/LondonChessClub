@@ -18,7 +18,7 @@ import { FormErrorIconComponent } from '@app/components/form-error-icon/form-err
 import { ModificationInfoComponent } from '@app/components/modification-info/modification-info.component';
 import { SafeModeNoticeComponent } from '@app/components/safe-mode-notice/safe-mode-notice.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import type {
+import {
   BasicDialogResult,
   Dialog,
   Member,

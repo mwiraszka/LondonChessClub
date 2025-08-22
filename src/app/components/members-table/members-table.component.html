@@ -31,7 +31,7 @@
 
       <tbody>
         @for (
-          member of members.slice(0, options.pageSize);
+          member of options.pageSize > 0 ? members.slice(0, options.pageSize) : members;
           track member.id;
           let i = $index;
           let last = $last

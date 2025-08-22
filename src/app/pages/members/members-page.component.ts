@@ -86,8 +86,8 @@ export class MembersPageComponent implements OnInit {
 
   public adminButtons: AdminButton[] = [
     {
-      id: 'import-from-csv',
-      tooltip: 'Import from CSV',
+      id: 'update-ratings-from-csv',
+      tooltip: 'Update member ratings from CSV (coming soonnn 🫠)',
       icon: 'upload_file',
       action: () => this.fileInput?.nativeElement.click(),
     },

@@ -1,4 +1,7 @@
-@for (article of articles.slice(0, options.pageSize); track article.id) {
+@for (
+  article of options.pageSize > 0 ? articles.slice(0, options.pageSize) : articles;
+  track article.id
+) {
   <a
     class="article"
     [adminControls]="isAdmin ? getAdminControlsConfig(article) : null"

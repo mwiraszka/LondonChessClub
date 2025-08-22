@@ -12,6 +12,7 @@ export interface ArticlesState
   newArticleFormData: ArticleFormData;
   lastHomePageFetch: IsoDate | null;
   lastNewsPageFetch: IsoDate | null;
+  homePageArticles: Article[];
   options: DataPaginationOptions<Article>;
   filteredCount: number | null;
   totalCount: number;
@@ -29,6 +30,7 @@ export const initialState: ArticlesState = articlesAdapter.getInitialState({
   newArticleFormData: INITIAL_ARTICLE_FORM_DATA,
   lastHomePageFetch: null,
   lastNewsPageFetch: null,
+  homePageArticles: [],
   options: {
     page: 1,
     pageSize: 10,

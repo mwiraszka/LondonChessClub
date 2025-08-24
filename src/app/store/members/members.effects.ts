@@ -3,12 +3,12 @@ import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
 import { of } from 'rxjs';
-import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, filter, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { Member } from '@app/models';
-import { LoaderService, MembersService } from '@app/services';
+import { MembersService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { exportDataToCsv, getNewPeakRating, isDefined } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
@@ -20,7 +20,6 @@ export class MembersEffects {
   fetchAllMembers$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.fetchAllMembersRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store.select(AuthSelectors.selectIsAdmin),
         this.store.select(MembersSelectors.selectOptions),
@@ -38,14 +37,12 @@ export class MembersEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   fetchFilteredMembers$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.fetchFilteredMembersRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store.select(AuthSelectors.selectIsAdmin),
         this.store.select(MembersSelectors.selectOptions),
@@ -64,7 +61,6 @@ export class MembersEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
@@ -89,7 +85,6 @@ export class MembersEffects {
   fetchMember$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.fetchMemberRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ memberId }) => {
         return this.membersService.getMember(memberId).pipe(
           map(response => MembersActions.fetchMemberSucceeded({ member: response.data })),
@@ -98,14 +93,12 @@ export class MembersEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   addMember$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.addMemberRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store.select(MembersSelectors.selectMemberFormDataById(null)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
@@ -134,14 +127,12 @@ export class MembersEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   updateMember$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.updateMemberRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(({ memberId }) => [
         this.store
           .select(MembersSelectors.selectMemberById(memberId))
@@ -174,14 +165,12 @@ export class MembersEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   deleteMember$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.deleteMemberRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ member }) =>
         this.membersService.deleteMember(member.id).pipe(
           filter(response => response.data === member.id),
@@ -196,7 +185,6 @@ export class MembersEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
@@ -230,7 +218,6 @@ export class MembersEffects {
       concatLatestFrom(() =>
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
       ),
-      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(([{ membersWithNewRatings }, user]) => {
         const updatedMembers: Member[] = membersWithNewRatings.map(
           memberWithNewRatings => {
@@ -258,13 +245,11 @@ export class MembersEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   constructor(
     private readonly actions$: Actions,
-    private readonly loaderService: LoaderService,
     private readonly membersService: MembersService,
     private readonly store: Store,
   ) {}

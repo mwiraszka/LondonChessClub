@@ -3,13 +3,21 @@ import { createReducer, on } from '@ngrx/store';
 import { compact, pick } from 'lodash';
 
 import { IMAGE_FORM_DATA_PROPERTIES, INITIAL_IMAGE_FORM_DATA } from '@app/constants';
-import { DataPaginationOptions, Id, Image, ImageFormData, IsoDate } from '@app/models';
+import {
+  CallState,
+  DataPaginationOptions,
+  Id,
+  Image,
+  ImageFormData,
+  IsoDate,
+} from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as ImagesActions from './images.actions';
 
 export interface ImagesState
   extends EntityState<{ image: Image; formData: ImageFormData }> {
+  callState: CallState;
   newImagesFormData: Record<string, ImageFormData>;
   lastMetadataFetch: IsoDate | null;
   lastFilteredThumbnailsFetch: IsoDate | null;
@@ -30,6 +38,7 @@ export const imagesAdapter = createEntityAdapter<{
 });
 
 export const initialState: ImagesState = imagesAdapter.getInitialState({
+  callState: 'idle',
   newImagesFormData: {},
   lastMetadataFetch: null,
   lastFilteredThumbnailsFetch: null,
@@ -51,6 +60,40 @@ export const imagesReducer = createReducer(
   initialState,
 
   on(
+    ImagesActions.fetchAllImagesMetadataRequested,
+    ImagesActions.fetchFilteredThumbnailsRequested,
+    ImagesActions.fetchBatchThumbnailsRequested,
+    ImagesActions.fetchOriginalRequested,
+    ImagesActions.addImageRequested,
+    ImagesActions.addImagesRequested,
+    ImagesActions.updateImageRequested,
+    ImagesActions.updateAlbumRequested,
+    ImagesActions.deleteImageRequested,
+    ImagesActions.deleteAlbumRequested,
+    (state): ImagesState => ({
+      ...state,
+      callState: 'loading',
+    }),
+  ),
+
+  on(
+    ImagesActions.fetchAllImagesMetadataFailed,
+    ImagesActions.fetchFilteredThumbnailsFailed,
+    ImagesActions.fetchBatchThumbnailsFailed,
+    ImagesActions.fetchOriginalFailed,
+    ImagesActions.addImageFailed,
+    ImagesActions.addImagesFailed,
+    ImagesActions.updateImageFailed,
+    ImagesActions.updateAlbumFailed,
+    ImagesActions.deleteImageFailed,
+    ImagesActions.deleteAlbumFailed,
+    (state): ImagesState => ({
+      ...state,
+      callState: 'error',
+    }),
+  ),
+
+  on(
     ImagesActions.fetchAllImagesMetadataSucceeded,
     (state, { images }): ImagesState =>
       imagesAdapter.upsertMany(
@@ -60,7 +103,11 @@ export const imagesReducer = createReducer(
             formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
           };
         }),
-        { ...state, lastMetadataFetch: new Date(Date.now()).toISOString() },
+        {
+          ...state,
+          callState: 'idle',
+          lastMetadataFetch: new Date(Date.now()).toISOString(),
+        },
       ),
   ),
 
@@ -79,6 +126,7 @@ export const imagesReducer = createReducer(
         }),
         {
           ...state,
+          callState: 'idle',
           lastFilteredThumbnailsFetch: new Date(Date.now()).toISOString(),
           filteredImages: images,
           filteredCount,
@@ -103,6 +151,7 @@ export const imagesReducer = createReducer(
         }),
         {
           ...state,
+          callState: 'idle',
           lastAlbumCoversFetch: isAlbumCoverFetch
             ? new Date(Date.now()).toISOString()
             : state.lastAlbumCoversFetch,
@@ -122,7 +171,7 @@ export const imagesReducer = createReducer(
         },
         formData: originalEntity?.formData ?? pick(image, IMAGE_FORM_DATA_PROPERTIES),
       },
-      state,
+      { ...state, callState: 'idle' },
     );
   }),
 
@@ -134,6 +183,7 @@ export const imagesReducer = createReducer(
       },
       {
         ...state,
+        callState: 'idle',
         newImagesFormData: {},
         lastFilteredThumbnailsFetch: null,
         lastAlbumCoversFetch: null,
@@ -158,6 +208,7 @@ export const imagesReducer = createReducer(
       }),
       {
         ...state,
+        callState: 'idle',
         newImagesFormData: {},
         lastFilteredThumbnailsFetch: null,
         lastAlbumCoversFetch: null,
@@ -177,6 +228,7 @@ export const imagesReducer = createReducer(
         },
         {
           ...state,
+          callState: 'idle',
           lastFilteredThumbnailsFetch: null,
           lastAlbumCoversFetch: null,
           lastMetadataFetch: null,
@@ -208,6 +260,7 @@ export const imagesReducer = createReducer(
       ),
       {
         ...state,
+        callState: 'idle',
         lastFilteredThumbnailsFetch: null,
         lastAlbumCoversFetch: null,
         lastMetadataFetch: null,
@@ -221,6 +274,7 @@ export const imagesReducer = createReducer(
     (state, { image }): ImagesState =>
       imagesAdapter.removeOne(image.id, {
         ...state,
+        callState: 'idle',
         lastFilteredThumbnailsFetch: null,
         lastAlbumCoversFetch: null,
         lastMetadataFetch: null,
@@ -232,6 +286,7 @@ export const imagesReducer = createReducer(
     (state, { imageIds }): ImagesState =>
       imagesAdapter.removeMany(imageIds, {
         ...state,
+        callState: 'idle',
         lastFilteredThumbnailsFetch: null,
         lastAlbumCoversFetch: null,
         lastMetadataFetch: null,

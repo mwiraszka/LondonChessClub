@@ -107,13 +107,14 @@ table {
         &.name {
           .city-champion-link {
             display: inline-block;
+            padding-right: 4px;
 
             .city-champion-icon {
               @include icon-size(16px);
 
-              color: var(--lcc-color--membersTable-cityChampionIcon);
-              vertical-align: middle;
               display: inline-block;
+              vertical-align: middle;
+              color: var(--lcc-color--membersTable-cityChampionIcon);
               // Fine-tune vertical alignment
               transform: translateY(-2px);
               transition: color 1s ease;

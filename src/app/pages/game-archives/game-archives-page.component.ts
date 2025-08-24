@@ -30,7 +30,7 @@ import { PageHeaderComponent } from '@app/components/page-header/page-header.com
 import { PgnViewerComponent } from '@app/components/pgn-viewer/pgn-viewer.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { FilterFormGroup, GameDetails } from '@app/models';
-import { LoaderService, MetaAndTitleService } from '@app/services';
+import { MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import {
   getOpeningTallies,
@@ -120,7 +120,6 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly loaderService: LoaderService,
     private readonly metaAndTitleService: MetaAndTitleService,
     private readonly store: Store,
   ) {}
@@ -442,8 +441,6 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
   }
 
   private async filterGames(): Promise<void> {
-    this.loaderService.setIsLoading(true);
-
     const firstName = this.form.value['firstName']?.toLowerCase();
     const lastName = this.form.value['lastName']?.toLowerCase();
     const pliesMin = Number(this.form.value['movesMin']) * 2;
@@ -500,8 +497,6 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
     this.activeYear = this.filteredGames.size
       ? (this.filteredGames.keys().next().value ?? null)
       : null;
-
-    this.loaderService.setIsLoading(false);
   }
 
   private updateStats(games: Map<string, GameDetails[]>): void {

@@ -9,6 +9,11 @@ import { MembersState, membersAdapter } from './members.reducer';
 
 const selectMembersState = createFeatureSelector<MembersState>('membersState');
 
+export const selectCallState = createSelector(
+  selectMembersState,
+  state => state.callState,
+);
+
 export const selectLastFullFetch = createSelector(
   selectMembersState,
   state => state.lastFullFetch,

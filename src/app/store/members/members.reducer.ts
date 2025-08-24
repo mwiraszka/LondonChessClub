@@ -3,12 +3,19 @@ import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import { INITIAL_MEMBER_FORM_DATA, MEMBER_FORM_DATA_PROPERTIES } from '@app/constants';
-import { DataPaginationOptions, IsoDate, Member, MemberFormData } from '@app/models';
+import {
+  CallState,
+  DataPaginationOptions,
+  IsoDate,
+  Member,
+  MemberFormData,
+} from '@app/models';
 
 import * as MembersActions from './members.actions';
 
 export interface MembersState
   extends EntityState<{ member: Member; formData: MemberFormData }> {
+  callState: CallState;
   newMemberFormData: MemberFormData;
   lastFullFetch: IsoDate | null;
   lastFilteredFetch: IsoDate | null;
@@ -26,6 +33,7 @@ export const membersAdapter = createEntityAdapter<{
 });
 
 export const initialState: MembersState = membersAdapter.getInitialState({
+  callState: 'idle',
   newMemberFormData: INITIAL_MEMBER_FORM_DATA,
   lastFullFetch: null,
   lastFilteredFetch: null,
@@ -51,6 +59,34 @@ export const membersReducer = createReducer(
   initialState,
 
   on(
+    MembersActions.fetchAllMembersRequested,
+    MembersActions.fetchFilteredMembersRequested,
+    MembersActions.fetchMemberRequested,
+    MembersActions.addMemberRequested,
+    MembersActions.updateMemberRequested,
+    MembersActions.deleteMemberRequested,
+    MembersActions.updateMemberRatingsRequested,
+    (state): MembersState => ({
+      ...state,
+      callState: 'loading',
+    }),
+  ),
+
+  on(
+    MembersActions.fetchAllMembersFailed,
+    MembersActions.fetchFilteredMembersFailed,
+    MembersActions.fetchMemberFailed,
+    MembersActions.addMemberFailed,
+    MembersActions.updateMemberFailed,
+    MembersActions.deleteMemberFailed,
+    MembersActions.updateMemberRatingsFailed,
+    (state): MembersState => ({
+      ...state,
+      callState: 'error',
+    }),
+  ),
+
+  on(
     MembersActions.fetchAllMembersSucceeded,
     (state, { members, totalCount }): MembersState =>
       membersAdapter.setAll(
@@ -60,6 +96,7 @@ export const membersReducer = createReducer(
         })),
         {
           ...state,
+          callState: 'idle',
           lastFullFetch: new Date().toISOString(),
           totalCount,
         },
@@ -76,6 +113,7 @@ export const membersReducer = createReducer(
         })),
         {
           ...state,
+          callState: 'idle',
           lastFilteredFetch: new Date(Date.now()).toISOString(),
           filteredMembers: members,
           filteredCount,
@@ -92,7 +130,7 @@ export const membersReducer = createReducer(
         member,
         formData: previousFormData ?? pick(member, MEMBER_FORM_DATA_PROPERTIES),
       },
-      state,
+      { ...state, callState: 'idle' },
     );
   }),
 
@@ -104,7 +142,7 @@ export const membersReducer = createReducer(
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
         },
-        { ...state, newMemberFormData: INITIAL_MEMBER_FORM_DATA },
+        { ...state, callState: 'idle', newMemberFormData: INITIAL_MEMBER_FORM_DATA },
       ),
   ),
 
@@ -116,7 +154,7 @@ export const membersReducer = createReducer(
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
         },
-        { ...state, lastFilteredFetch: null },
+        { ...state, callState: 'idle', lastFilteredFetch: null },
       ),
   ),
 
@@ -128,14 +166,18 @@ export const membersReducer = createReducer(
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
         })),
-        { ...state, lastFilteredFetch: null },
+        { ...state, callState: 'idle', lastFilteredFetch: null },
       ),
   ),
 
   on(
     MembersActions.deleteMemberSucceeded,
     (state, { memberId }): MembersState =>
-      membersAdapter.removeOne(memberId, { ...state, lastFilteredFetch: null }),
+      membersAdapter.removeOne(memberId, {
+        ...state,
+        callState: 'idle',
+        lastFilteredFetch: null,
+      }),
   ),
 
   on(MembersActions.formValueChanged, (state, { memberId, value }): MembersState => {

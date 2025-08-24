@@ -1,8 +1,46 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
+import { CallState } from '@app/models';
+import { ArticlesSelectors } from '@app/store/articles';
+import { AuthSelectors } from '@app/store/auth';
+import { EventsSelectors } from '@app/store/events';
+import { ImagesSelectors } from '@app/store/images';
+import { MembersSelectors } from '@app/store/members';
+
 import { AppState } from './app.reducer';
 
 export const selectAppState = createFeatureSelector<AppState>('appState');
+
+export const selectAppCallState = createSelector(
+  ArticlesSelectors.selectCallState,
+  AuthSelectors.selectCallState,
+  EventsSelectors.selectCallState,
+  ImagesSelectors.selectCallState,
+  MembersSelectors.selectCallState,
+  (
+    articlesCallState,
+    authCallState,
+    eventsCallState,
+    imagesCallState,
+    membersCallState,
+  ) => {
+    const callStates = [
+      articlesCallState,
+      authCallState,
+      eventsCallState,
+      imagesCallState,
+      membersCallState,
+    ];
+
+    const appCallState: CallState = callStates.some(callState => callState === 'loading')
+      ? 'loading'
+      : callStates.some(callState => callState === 'error')
+        ? 'idle'
+        : 'error';
+
+    return appCallState;
+  },
+);
 
 export const selectIsDarkMode = createSelector(selectAppState, state => state.isDarkMode);
 

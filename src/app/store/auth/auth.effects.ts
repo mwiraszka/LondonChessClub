@@ -2,11 +2,11 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, filter, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { AuthService, LoaderService } from '@app/services';
+import { AuthService } from '@app/services';
 import { parseError } from '@app/utils';
 
 import { AuthActions, AuthSelectors } from '.';
@@ -36,7 +36,6 @@ export class AuthEffects {
           catchError(error => of(AuthActions.logoutFailed({ error: parseError(error) }))),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
@@ -71,7 +70,6 @@ export class AuthEffects {
   constructor(
     private readonly actions$: Actions,
     private readonly authService: AuthService,
-    private readonly loaderService: LoaderService,
     private readonly store: Store,
   ) {}
 }

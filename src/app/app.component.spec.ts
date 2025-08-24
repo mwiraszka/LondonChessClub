@@ -9,12 +9,7 @@ import { HeaderComponent } from '@app/components/header/header.component';
 import { NavigationBarComponent } from '@app/components/navigation-bar/navigation-bar.component';
 import { UpcomingEventBannerComponent } from '@app/components/upcoming-event-banner/upcoming-event-banner.component';
 import { MOCK_EVENTS } from '@app/mocks/events.mock';
-import {
-  LoaderService,
-  RoutingService,
-  TouchEventsService,
-  UrlExpirationService,
-} from '@app/services';
+import { RoutingService, TouchEventsService, UrlExpirationService } from '@app/services';
 import { AppActions, AppSelectors } from '@app/store/app';
 import { EventsSelectors } from '@app/store/events';
 import { query } from '@app/utils';
@@ -25,7 +20,6 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
 
-  let loaderService: LoaderService;
   let store: MockStore;
   let touchEventsService: TouchEventsService;
   let urlExpirationService: UrlExpirationService;
@@ -35,10 +29,11 @@ describe('AppComponent', () => {
   let setAttributeSpy: jest.SpyInstance;
 
   const mockState = {
-    isDarkMode: false,
-    showUpcomingEventBanner: true,
+    appCallState: 'idle' as const,
     bannerLastCleared: null,
+    isDarkMode: false,
     nextEvent: MOCK_EVENTS[0],
+    showUpcomingEventBanner: true,
   };
 
   beforeEach(() => {
@@ -53,10 +48,6 @@ describe('AppComponent', () => {
       providers: [
         provideMockStore(),
         provideRouter([]),
-        {
-          provide: LoaderService,
-          useValue: { isLoading$: of(false) },
-        },
         {
           provide: RoutingService,
           useValue: { fragment$: of(null) },
@@ -77,10 +68,10 @@ describe('AppComponent', () => {
         component = fixture.componentInstance;
 
         store = TestBed.inject(MockStore);
-        loaderService = TestBed.inject(LoaderService);
-        urlExpirationService = TestBed.inject(UrlExpirationService);
         touchEventsService = TestBed.inject(TouchEventsService);
+        urlExpirationService = TestBed.inject(UrlExpirationService);
 
+        store.overrideSelector(AppSelectors.selectAppCallState, mockState.appCallState);
         store.overrideSelector(AppSelectors.selectIsDarkMode, mockState.isDarkMode);
         store.overrideSelector(
           AppSelectors.selectShowUpcomingEventBanner,
@@ -216,20 +207,6 @@ describe('AppComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should render loading spinner when loading', () => {
-      loaderService.isLoading$ = of(true);
-      fixture.detectChanges();
-
-      expect(query(fixture.debugElement, '.lcc-loading-spinner')).toBeTruthy();
-    });
-
-    it('should not render loading spinner when not loading', () => {
-      loaderService.isLoading$ = of(false);
-      fixture.detectChanges();
-
-      expect(query(fixture.debugElement, '.lcc-loading-spinner')).toBeFalsy();
-    });
-
     it('should render header component', () => {
       expect(query(fixture.debugElement, 'lcc-header')).toBeTruthy();
     });
@@ -248,6 +225,35 @@ describe('AppComponent', () => {
 
     it('should render footer component', () => {
       expect(query(fixture.debugElement, 'lcc-footer')).toBeTruthy();
+    });
+
+    describe('loader', () => {
+      it('should render loader when appCallState is loading', () => {
+        store.overrideSelector(AppSelectors.selectAppCallState, 'loading');
+
+        component.ngOnInit();
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, '.lcc-loader')).toBeTruthy();
+      });
+
+      it('should not render loader when appCallState is idle', () => {
+        store.overrideSelector(AppSelectors.selectAppCallState, 'idle');
+
+        component.ngOnInit();
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, '.lcc-loader')).toBeFalsy();
+      });
+
+      it('should not render loader when appCallState is error', () => {
+        store.overrideSelector(AppSelectors.selectAppCallState, 'error');
+
+        component.ngOnInit();
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, '.lcc-loader')).toBeFalsy();
+      });
     });
 
     describe('upcoming event banner', () => {

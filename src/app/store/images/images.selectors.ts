@@ -10,6 +10,11 @@ import { ImagesState, imagesAdapter } from './images.reducer';
 
 const selectImagesState = createFeatureSelector<ImagesState>('imagesState');
 
+export const selectCallState = createSelector(
+  selectImagesState,
+  state => state.callState,
+);
+
 const { selectAll: selectAllImageEntities } =
   imagesAdapter.getSelectors(selectImagesState);
 

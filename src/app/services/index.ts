@@ -6,7 +6,6 @@ export { ImageFileService } from './image-file.service';
 export { ImagesService } from './images.service';
 export { KeyStateService } from './key-state.service';
 export { LocalStorageService } from './local-storage.service';
-export { LoaderService } from './loader.service';
 export { MembersService } from './members.service';
 export { MetaAndTitleService } from './meta-and-title.service';
 export { RoutingService } from './routing.service';

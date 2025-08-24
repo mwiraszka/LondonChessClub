@@ -3,12 +3,12 @@ import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
 import { from, of } from 'rxjs';
-import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, filter, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { BaseImage, LccError } from '@app/models';
-import { ImageFileService, ImagesService, LoaderService } from '@app/services';
+import { ImageFileService, ImagesService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { dataUrlToFile, isDefined, isLccError } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
@@ -20,7 +20,6 @@ export class ImagesEffects {
   fetchAllImagesMetadata$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchAllImagesMetadataRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() =>
         this.imagesService.getAllImagesMetadata().pipe(
           map(response =>
@@ -37,14 +36,12 @@ export class ImagesEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   fetchFilteredThumbnailImages$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchFilteredThumbnailsRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => this.store.select(ImagesSelectors.selectOptions)),
       switchMap(([, options]) =>
         this.imagesService.getThumbnailImages(options).pipe(
@@ -64,7 +61,6 @@ export class ImagesEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
@@ -72,6 +68,20 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.paginationOptionsChanged),
       filter(({ fetch }) => fetch),
+      map(() => ImagesActions.fetchFilteredThumbnailsRequested()),
+    );
+  });
+
+  refetchFilteredThumbnails$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(
+        ImagesActions.addImageSucceeded,
+        ImagesActions.addImagesSucceeded,
+        ImagesActions.updateImageSucceeded,
+        ImagesActions.updateAlbumSucceeded,
+        ImagesActions.deleteImageSucceeded,
+        ImagesActions.deleteAlbumSucceeded,
+      ),
       map(() => ImagesActions.fetchFilteredThumbnailsRequested()),
     );
   });
@@ -120,7 +130,6 @@ export class ImagesEffects {
   addImage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.addImageRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ imageId }) => from(this.imageFileService.getImage(imageId))),
       concatLatestFrom(() => [
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
@@ -167,14 +176,12 @@ export class ImagesEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   addImages$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.addImagesRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() => from(this.imageFileService.getAllImages())),
       concatLatestFrom(() => [
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
@@ -243,14 +250,12 @@ export class ImagesEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   updateImage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.updateImageRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(({ imageId }) => [
         this.store
           .select(ImagesSelectors.selectImageEntityById(imageId))
@@ -285,14 +290,12 @@ export class ImagesEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   updateAlbum$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.updateAlbumRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(({ album }) => [
         this.store.select(ImagesSelectors.selectImageEntitiesByAlbum(album)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
@@ -326,7 +329,6 @@ export class ImagesEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
@@ -348,7 +350,6 @@ export class ImagesEffects {
   deleteAlbum$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.deleteAlbumRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ album, imageIds }) => {
         return this.imagesService.deleteAlbum(album).pipe(
           map(() => ImagesActions.deleteAlbumSucceeded({ album, imageIds })),
@@ -357,7 +358,6 @@ export class ImagesEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
@@ -405,7 +405,6 @@ export class ImagesEffects {
     private readonly actions$: Actions,
     private readonly imageFileService: ImageFileService,
     private readonly imagesService: ImagesService,
-    private readonly loaderService: LoaderService,
     private readonly store: Store,
   ) {}
 }

@@ -3,12 +3,12 @@ import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
 import { of } from 'rxjs';
-import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, filter, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { Article, DataPaginationOptions } from '@app/models';
-import { ArticlesService, LoaderService } from '@app/services';
+import { ArticlesService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { ImagesActions } from '@app/store/images';
 import { isDefined, parseError } from '@app/utils';
@@ -20,7 +20,6 @@ export class ArticlesEffects {
   fetchHomePageArticles$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchHomePageArticlesRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() => {
         const options: DataPaginationOptions<Article> = {
           page: 1,
@@ -42,7 +41,6 @@ export class ArticlesEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
@@ -63,7 +61,6 @@ export class ArticlesEffects {
   fetchNewsPageArticles$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchNewsPageArticlesRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => this.store.select(ArticlesSelectors.selectOptions)),
       switchMap(([, options]) =>
         this.articlesService.getArticles(options).pipe(
@@ -79,7 +76,6 @@ export class ArticlesEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
@@ -94,7 +90,6 @@ export class ArticlesEffects {
   fetchArticle$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticleRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ articleId }) =>
         this.articlesService.getArticle(articleId).pipe(
           map(response =>
@@ -105,14 +100,12 @@ export class ArticlesEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   publishArticle$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.publishArticleRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store.select(ArticlesSelectors.selectArticleFormDataById(null)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
@@ -141,14 +134,12 @@ export class ArticlesEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   updateArticle$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(({ articleId }) => [
         this.store
           .select(ArticlesSelectors.selectArticleById(articleId))
@@ -180,14 +171,12 @@ export class ArticlesEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   updateArticleBookmarkRequested$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.updateArticleBookmarkRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(({ articleId }) =>
         this.store
           .select(ArticlesSelectors.selectArticleById(articleId))
@@ -210,14 +199,12 @@ export class ArticlesEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   deleteArticle$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ article }) =>
         this.articlesService.deleteArticle(article.id).pipe(
           filter(response => response.data === article.id),
@@ -232,14 +219,12 @@ export class ArticlesEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   constructor(
     private readonly actions$: Actions,
     private readonly articlesService: ArticlesService,
-    private readonly loaderService: LoaderService,
     private readonly store: Store,
   ) {}
 }

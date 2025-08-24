@@ -12,7 +12,8 @@
 
   <div
     [attr.card-count]="vm.images.length"
-    class="image-grid">
+    class="image-grid"
+    cdkScrollable>
     @for (image of vm.images; track image.id) {
       <div
         class="image-card-container"

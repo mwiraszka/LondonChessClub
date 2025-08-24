@@ -64,6 +64,18 @@ export class AdminControlsDirective implements OnDestroy {
       // Only prevent context menu if no text is selected
       const selection = window.getSelection();
       if (!selection || selection.toString().trim() === '') {
+        // If the element's top is scrolled above its scroll container's visible top,
+        // skip opening the admin controls (let native context menu occur instead)
+        const hostEl = this.elementRef.nativeElement as HTMLElement;
+        const scroller = hostEl.closest('.image-grid') as HTMLElement | null;
+        if (scroller) {
+          const elRect = hostEl.getBoundingClientRect();
+          const scRect = scroller.getBoundingClientRect();
+          if (elRect.top < scRect.top) {
+            // Partially hidden above the viewport of the scrolling grid
+            return;
+          }
+        }
         event.preventDefault();
         this.attach();
       }

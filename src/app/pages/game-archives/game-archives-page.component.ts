@@ -84,10 +84,16 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
   }
 
   public set showStats(value: boolean) {
+    if (this._showStats === value) {
+      return;
+    }
+
     this._showStats = value;
+
     if (value) {
-      // Use setTimeout to ensure view has updated before initializing charts
-      setTimeout(() => this.initCharts(), 0);
+      this.updateCharts();
+    } else {
+      this.destroyCharts();
     }
   }
 
@@ -110,13 +116,113 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
   public cdkVirtualScrollViewport?: CdkVirtualScrollViewport;
 
   @ViewChild('openingChart')
-  public openingChartCanvas?: ElementRef<HTMLCanvasElement>;
+  set openingChartCanvas(ref: ElementRef<HTMLCanvasElement> | undefined) {
+    this._openingChartCanvas = ref;
+    this.tryInitOpeningChart();
+  }
+  private _openingChartCanvas?: ElementRef<HTMLCanvasElement>;
+  public get openingChartCanvas(): ElementRef<HTMLCanvasElement> | undefined {
+    return this._openingChartCanvas;
+  }
 
   @ViewChild('resultChart')
-  public resultChartCanvas?: ElementRef<HTMLCanvasElement>;
+  set resultChartCanvas(ref: ElementRef<HTMLCanvasElement> | undefined) {
+    this._resultChartCanvas = ref;
+    this.tryInitResultChart();
+  }
+  private _resultChartCanvas?: ElementRef<HTMLCanvasElement>;
+  public get resultChartCanvas(): ElementRef<HTMLCanvasElement> | undefined {
+    return this._resultChartCanvas;
+  }
 
   private openingChart?: Chart;
   private resultChart?: Chart;
+
+  private destroyCharts(): void {
+    this.openingChart?.destroy();
+    this.openingChart = undefined;
+    this.resultChart?.destroy();
+    this.resultChart = undefined;
+  }
+
+  private buildCommonOptions(): ChartConfiguration<'doughnut'>['options'] {
+    return {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'top',
+          labels: { boxWidth: 15, padding: 10, font: { size: 12 } },
+        },
+        tooltip: { enabled: true },
+      },
+      color: this.chartTextColor,
+    };
+  }
+
+  private tryInitOpeningChart(): void {
+    if (!this.showStats) return;
+    if (this.openingChart || !this.openingChartCanvas || !this.openingChartLabels.length)
+      return;
+    this.openingChart = new Chart(this.openingChartCanvas.nativeElement, {
+      type: 'doughnut',
+      data: { labels: this.openingChartLabels, datasets: this.openingChartDatasets },
+      options: this.buildCommonOptions(),
+    });
+  }
+
+  private tryInitResultChart(): void {
+    if (!this.showStats) return;
+    if (this.resultChart || !this.resultChartCanvas || !this.resultChartLabels.length)
+      return;
+    this.resultChart = new Chart(this.resultChartCanvas.nativeElement, {
+      type: 'doughnut',
+      data: { labels: this.resultChartLabels, datasets: this.resultChartDatasets },
+      options: this.buildCommonOptions(),
+    });
+  }
+
+  private updateCharts(forceRecreate = false): void {
+    if (!this.showStats) return;
+
+    // Opening chart
+    if (forceRecreate && this.openingChart) {
+      this.openingChart.destroy();
+      this.openingChart = undefined;
+    }
+    if (!this.openingChartLabels.length) {
+      if (this.openingChart) {
+        this.openingChart.destroy();
+        this.openingChart = undefined;
+      }
+    } else if (this.openingChart) {
+      this.openingChart.data.labels = this.openingChartLabels;
+      this.openingChart.data.datasets = this.openingChartDatasets;
+      this.openingChart.options.color = this.chartTextColor;
+      this.openingChart.update();
+    } else {
+      this.tryInitOpeningChart();
+    }
+
+    // Result chart
+    if (forceRecreate && this.resultChart) {
+      this.resultChart.destroy();
+      this.resultChart = undefined;
+    }
+    if (!this.resultChartLabels.length) {
+      if (this.resultChart) {
+        this.resultChart.destroy();
+        this.resultChart = undefined;
+      }
+    } else if (this.resultChart) {
+      this.resultChart.data.labels = this.resultChartLabels;
+      this.resultChart.data.datasets = this.resultChartDatasets;
+      this.resultChart.options.color = this.chartTextColor;
+      this.resultChart.update();
+    } else {
+      this.tryInitResultChart();
+    }
+  }
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -151,7 +257,7 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
       .subscribe(isDarkMode => {
         this.isDarkMode = isDarkMode;
         if (this.showStats) {
-          this.initCharts();
+          this.updateCharts(true);
         }
       });
   }
@@ -193,69 +299,6 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
     }
 
     return colors;
-  }
-
-  private initCharts(): void {
-    // Ensure we have both canvases and that charts should be shown
-    if (!this.openingChartCanvas || !this.resultChartCanvas || !this.showStats) {
-      return;
-    }
-
-    // Destroy existing charts if they exist
-    if (this.openingChart) {
-      this.openingChart.destroy();
-      this.openingChart = undefined;
-    }
-    if (this.resultChart) {
-      this.resultChart.destroy();
-      this.resultChart = undefined;
-    }
-
-    // Define common chart options for better rendering
-    const commonOptions: ChartConfiguration<'doughnut'>['options'] = {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          position: 'top',
-          labels: {
-            boxWidth: 15,
-            padding: 10,
-            font: {
-              size: 12,
-            },
-          },
-        },
-        tooltip: {
-          enabled: true,
-        },
-      },
-      color: this.chartTextColor,
-    };
-
-    // Only create opening chart if we have data
-    if (this.openingChartLabels.length > 0) {
-      this.openingChart = new Chart(this.openingChartCanvas.nativeElement, {
-        type: 'doughnut',
-        data: {
-          labels: this.openingChartLabels,
-          datasets: this.openingChartDatasets,
-        },
-        options: commonOptions,
-      });
-    }
-
-    // Only create result chart if we have data
-    if (this.resultChartLabels.length > 0) {
-      this.resultChart = new Chart(this.resultChartCanvas.nativeElement, {
-        type: 'doughnut',
-        data: {
-          labels: this.resultChartLabels,
-          datasets: this.resultChartDatasets,
-        },
-        options: commonOptions,
-      });
-    }
   }
 
   public ngOnDestroy(): void {
@@ -436,7 +479,7 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
     this.updateStats(this.filteredGames);
     // Initialize charts after we have data if they should be shown
     if (this.showStats) {
-      setTimeout(() => this.initCharts());
+      this.updateCharts();
     }
   }
 
@@ -556,26 +599,7 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
 
     // If stats are being shown, handle chart initialization or update
     if (this.showStats) {
-      // If we have canvas elements but charts aren't initialized, initialize them
-      if (
-        (!this.openingChart || !this.resultChart) &&
-        this.openingChartCanvas &&
-        this.resultChartCanvas
-      ) {
-        setTimeout(() => this.initCharts(), 0);
-      } else if (this.openingChart || this.resultChart) {
-        // Update existing charts if they exist
-        if (this.openingChart) {
-          this.openingChart.data.labels = this.openingChartLabels;
-          this.openingChart.data.datasets = this.openingChartDatasets;
-          this.openingChart.update();
-        }
-        if (this.resultChart) {
-          this.resultChart.data.labels = this.resultChartLabels;
-          this.resultChart.data.datasets = this.resultChartDatasets;
-          this.resultChart.update();
-        }
-      }
+      this.updateCharts();
     }
   }
 }

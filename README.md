@@ -35,10 +35,10 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.8.0 - August TBD, 2025</summary>
 
 - 🚀 Add support for bulk member rating updates through CSV import
-- 🚀 Improve efficiency of chess opening lookup in Game Archives page
+- 🚀 Some minor improvements to chess openings lookup and responsiveness on Game Archives page
 - 🚀 A new page loader animation!
 - 🐛 List the full-size images' file size, width and height in Image Explorer and ensure Admin Controls automatically hide on scroll
-- 🐛 Prevent default scrolling behaviour on content behind Image Viewer overlay when using arrow keys
+- 🐛 Prevent default scrolling behaviour on content behind Image Viewer overlay when using arrow keys, and a few other minor fixes to image navigation
 - 🔧 Refactor Loader Service as a call state for each store slice to allow for more accurate handling of individual and combined call states
 - 🔧 Store full-size and thumbnail images' width, height and file size values as part of metadata to allow for quicker lookups, allowing for aspect ratios to be calculated sooner, reducing layout shifts while the page loads
 

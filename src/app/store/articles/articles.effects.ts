@@ -50,6 +50,7 @@ export class ArticlesEffects {
         ArticlesActions.fetchHomePageArticlesSucceeded,
         ArticlesActions.fetchNewsPageArticlesSucceeded,
       ),
+      filter(({ articles }) => articles.length > 0),
       map(({ articles }) =>
         ImagesActions.fetchBatchThumbnailsRequested({
           imageIds: articles.map(article => article.bannerImageId),

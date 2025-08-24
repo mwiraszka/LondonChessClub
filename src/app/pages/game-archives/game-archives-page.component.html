@@ -160,7 +160,7 @@
   }
 </section>
 
-@if (activeYear) {
+@if (activeYear && filteredGames.get(activeYear)?.length) {
   <section class="active-games">
     @defer {
       <cdk-virtual-scroll-viewport

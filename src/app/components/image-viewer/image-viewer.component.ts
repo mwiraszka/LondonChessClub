@@ -197,9 +197,13 @@ export class ImageViewerComponent
       .pipe(take(1))
       .subscribe(image => {
         if (!image?.mainUrl) {
-          this.store.dispatch(
-            ImagesActions.fetchOriginalRequested({ imageId, isPrefetch }),
-          );
+          if (isPrefetch) {
+            this.store.dispatch(
+              ImagesActions.fetchOriginalInBackgroundRequested({ imageId }),
+            );
+          } else {
+            this.store.dispatch(ImagesActions.fetchOriginalRequested({ imageId }));
+          }
         }
       });
   }
@@ -217,12 +221,17 @@ export class ImageViewerComponent
         event.preventDefault();
         event.stopPropagation();
 
-        if (event.key === 'ArrowLeft' && this.images.length > 1) {
+        if (
+          event.key === 'ArrowLeft' &&
+          this.images.length > 1 &&
+          !this.isPreviousImageButtonActive
+        ) {
           this.isPreviousImageButtonActive = true;
           this.onPreviousImage();
         } else if (
           (event.key === 'ArrowRight' || event.key === ' ') &&
-          this.images.length > 1
+          this.images.length > 1 &&
+          !this.isNextImageButtonActive
         ) {
           this.isNextImageButtonActive = true;
           this.onNextImage();

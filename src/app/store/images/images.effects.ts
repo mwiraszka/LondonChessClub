@@ -112,8 +112,26 @@ export class ImagesEffects {
   fetchOriginalImage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchOriginalRequested),
-      switchMap(({ imageId, isPrefetch }) => {
-        return this.imagesService.getOriginalImage(imageId, isPrefetch).pipe(
+      switchMap(({ imageId }) => {
+        return this.imagesService.getOriginalImage(imageId).pipe(
+          map(response => ImagesActions.fetchOriginalSucceeded({ image: response.data })),
+          catchError(error => {
+            return of(
+              ImagesActions.fetchOriginalFailed({
+                error: parseError(error),
+              }),
+            );
+          }),
+        );
+      }),
+    );
+  });
+
+  fetchOriginalImageInBackground$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.fetchOriginalInBackgroundRequested),
+      switchMap(({ imageId }) => {
+        return this.imagesService.getOriginalImage(imageId, true).pipe(
           map(response => ImagesActions.fetchOriginalSucceeded({ image: response.data })),
           catchError(error => {
             return of(

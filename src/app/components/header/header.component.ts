@@ -16,9 +16,9 @@ import { RangePipe } from '@app/pipes';
           <div class="image-container">
             <img
               [image]="{
-                originalUrl: 'assets/lcc-branding.svg',
-                width: 60,
-                height: 60,
+                mainUrl: 'assets/lcc-branding.svg',
+                mainWidth: 60,
+                mainHeight: 60,
                 caption: 'London Chess Club',
               }" />
           </div>

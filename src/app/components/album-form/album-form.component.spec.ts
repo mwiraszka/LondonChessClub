@@ -264,7 +264,7 @@ describe('AlbumFormComponent', () => {
           {
             image: {
               ...MOCK_IMAGES[3],
-              originalUrl: undefined,
+              mainUrl: undefined,
               thumbnailUrl: undefined,
             },
             formData: {

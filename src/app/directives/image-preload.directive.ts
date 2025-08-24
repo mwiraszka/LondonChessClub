@@ -59,16 +59,16 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
   protected onImageLoad(): void {
     this.removeShimmerEffect();
 
-    // If thumbnail URL is currently displayed but the original URL exists, load it
-    if (this.currentSrc === this.image?.thumbnailUrl && this.image?.originalUrl) {
+    // If thumbnail URL is currently displayed but the main URL exists, load it
+    if (this.currentSrc === this.image?.thumbnailUrl && this.image?.mainUrl) {
       // Display a blur effect during the transition
       this.filter = 'blur(3px)';
 
       const fullImage = new Image();
 
-      fullImage.src = this.image.originalUrl;
+      fullImage.src = this.image.mainUrl;
       fullImage.onload = () => {
-        this.currentSrc = this.image?.originalUrl || this.FALLBACK_SRC;
+        this.currentSrc = this.image?.mainUrl || this.FALLBACK_SRC;
         this.filter = 'none';
       };
     }
@@ -80,7 +80,7 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
     }
 
     this.removeShimmerEffect();
-    this.currentSrc = this.image?.originalUrl || this.FALLBACK_SRC;
+    this.currentSrc = this.image?.mainUrl || this.FALLBACK_SRC;
   }
 
   protected updateImage(): void {
@@ -90,16 +90,16 @@ export class ImagePreloadDirective implements OnInit, OnChanges {
       return;
     }
 
-    if (this.image?.width && this.image?.height) {
-      this.setAspectRatio(this.image.width, this.image.height);
+    if (this.image?.mainWidth && this.image?.mainHeight) {
+      this.setAspectRatio(this.image.mainWidth, this.image.mainHeight);
     }
 
-    const { originalUrl, thumbnailUrl } = this.image;
+    const { mainUrl, thumbnailUrl } = this.image;
 
-    if (originalUrl || thumbnailUrl) {
-      // Use the original or thumbnail URL and clear any effects
+    if (mainUrl || thumbnailUrl) {
+      // Use the main or thumbnail URL and clear any effects
       this.removeShimmerEffect();
-      this.currentSrc = originalUrl || thumbnailUrl;
+      this.currentSrc = mainUrl || thumbnailUrl;
     } else {
       this.displayShimmerEffect();
     }

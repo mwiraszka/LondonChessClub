@@ -35,7 +35,8 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.8.0 - August TBD, 2025</summary>
 
 - 🚀 Add support for bulk member rating updates through CSV import
-- 🚀 Improve efficiency of chess opening look-up in Game Archives page
+- 🚀 Improve efficiency of chess opening lookup in Game Archives page
+- 🔧 Store full-size and thumbnail images' width, height and file size values as part of metadata to allow for quicker lookups, allowing for aspect ratios to be calculated sooner, reducing layout shifts while the page loads
 
 </details>
 

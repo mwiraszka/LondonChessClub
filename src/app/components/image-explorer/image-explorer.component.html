@@ -39,19 +39,21 @@
           </span>
         </div>
 
-        @if (image.fileSize) {
+        @if (image.mainFileSize) {
           <div class="file-size">
             <label>File size:</label>
             <span class="lcc-truncate">
-              {{ image.fileSize | formatBytes }}
+              {{ image.mainFileSize | formatBytes }}
             </span>
           </div>
         }
 
-        @if (image.width && image.height) {
+        @if (image.mainWidth && image.mainHeight) {
           <div class="dimensions">
             <label>Dimensions:</label>
-            <span class="lcc-truncate"> {{ image.width }} x {{ image.height }} px </span>
+            <span class="lcc-truncate">
+              {{ image.mainWidth }} x {{ image.mainHeight }} px
+            </span>
           </div>
         }
 

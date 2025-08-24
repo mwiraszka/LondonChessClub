@@ -5,6 +5,7 @@ import { IMAGE_FORM_DATA_PROPERTIES } from '@app/constants';
 import { Id, IsoDate, Url } from './core.model';
 import { ModificationInfo } from './modification-info.model';
 
+// The image properties that are determined in the frontend
 export interface BaseImage {
   id: Id;
   filename: string;
@@ -15,13 +16,17 @@ export interface BaseImage {
   modificationInfo: ModificationInfo;
 }
 
+// The image properties that are only determined once processed in the backend
 export interface Image extends BaseImage {
-  originalUrl?: Url;
+  mainWidth?: number;
+  mainHeight?: number;
+  mainFileSize?: number;
+  mainUrl?: Url;
+  thumbnailWidth?: number;
+  thumbnailHeight?: number;
+  thumbnailFileSize?: number;
   thumbnailUrl?: Url;
   urlExpirationDate?: IsoDate;
-  width?: number;
-  height?: number;
-  fileSize?: number;
   articleAppearances?: number;
 }
 

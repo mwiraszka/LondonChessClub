@@ -196,7 +196,7 @@ export class ImageViewerComponent
       .select(ImagesSelectors.selectImageById(imageId))
       .pipe(take(1))
       .subscribe(image => {
-        if (!image?.originalUrl) {
+        if (!image?.mainUrl) {
           this.store.dispatch(
             ImagesActions.fetchOriginalRequested({ imageId, isPrefetch }),
           );

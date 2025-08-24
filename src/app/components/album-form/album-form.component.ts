@@ -94,7 +94,7 @@ export class AlbumFormComponent implements OnInit {
 
     if (this.imageEntities.length) {
       const imageIds = this.imageEntities
-        .filter(entity => !entity.image.thumbnailUrl && !entity.image.originalUrl)
+        .filter(entity => !entity.image.thumbnailUrl && !entity.image.mainUrl)
         .map(entity => entity.image.id);
 
       if (imageIds.length) {

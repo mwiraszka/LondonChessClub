@@ -93,7 +93,6 @@ describe('ImageViewerComponent', () => {
       expect(dispatchSpy).toHaveBeenCalledWith(
         ImagesActions.fetchOriginalRequested({
           imageId: MOCK_IMAGES[0].id,
-          isPrefetch: false,
         }),
       );
     });

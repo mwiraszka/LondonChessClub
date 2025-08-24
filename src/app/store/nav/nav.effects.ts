@@ -325,6 +325,54 @@ export class NavEffects {
     ),
   );
 
+  refetchBannerImagesForHomePageArticles$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      filter(({ payload }) => payload.event.url === '/'),
+      concatLatestFrom(() => [
+        this.store.select(ArticlesSelectors.selectHomePageArticles),
+        this.store
+          .select(ImagesSelectors.selectArticleImages)
+          .pipe(map(images => images.map(image => image.id))),
+      ]),
+      map(([, articles, storedArticleImageIds]) => {
+        const missingArticleImageIds = articles
+          .map(article => article.bannerImageId)
+          .filter(id => !storedArticleImageIds.includes(id));
+
+        return missingArticleImageIds;
+      }),
+      filter(missingArticleImageIds => missingArticleImageIds.length > 0),
+      map(missingArticleImageIds =>
+        ImagesActions.fetchBatchThumbnailsRequested({ imageIds: missingArticleImageIds }),
+      ),
+    ),
+  );
+
+  refetchBannerImagesForNewsPageArticles$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(routerNavigatedAction),
+      filter(({ payload }) => payload.event.url === '/news'),
+      concatLatestFrom(() => [
+        this.store.select(ArticlesSelectors.selectArticles),
+        this.store
+          .select(ImagesSelectors.selectArticleImages)
+          .pipe(map(images => images.map(image => image.id))),
+      ]),
+      map(([, articles, storedArticleImageIds]) => {
+        const missingArticleImageIds = articles
+          .map(article => article.bannerImageId)
+          .filter(id => !storedArticleImageIds.includes(id));
+
+        return missingArticleImageIds;
+      }),
+      filter(missingArticleImageIds => missingArticleImageIds.length > 0),
+      map(missingArticleImageIds =>
+        ImagesActions.fetchBatchThumbnailsRequested({ imageIds: missingArticleImageIds }),
+      ),
+    ),
+  );
+
   clearIndexedDbImageFileData$ = createEffect(
     () =>
       this.actions$.pipe(

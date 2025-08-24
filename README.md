@@ -38,6 +38,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 - 🚀 Add a button on the home page that links to our tournament registration Google Docs form
 - 🚀 Some minor improvements to chess openings lookup and responsiveness on Game Archives page
 - 🚀 A new page loader animation!
+- 🚀 Add image request tracking mechanism and failsafes to help prevent orphaned loading states/ missing banner images during network outages, etc.
 - 🐛 List the full-size images' file size, width and height in Image Explorer and ensure Admin Controls automatically hide on scroll
 - 🐛 Prevent default scrolling behaviour on content behind Image Viewer overlay when using arrow keys, and a few other minor fixes to image navigation
 - 🔧 Refactor Loader Service as a call state for each store slice to allow for more accurate handling of individual and combined call states

@@ -1,7 +1,29 @@
 import { createAction, props } from '@ngrx/store';
 
-import { DataPaginationOptions, Id, Image, ImageFormData, LccError } from '@app/models';
+import {
+  DataPaginationOptions,
+  Id,
+  Image,
+  ImageFormData,
+  ImageRequestKind,
+  LccError,
+} from '@app/models';
 import { BaseImage } from '@app/models/image.model';
+
+export const imageRequestStarted = createAction(
+  '[Images] Image request started',
+  props<{ kind: ImageRequestKind; requestId: string; startedAt: number }>(),
+);
+
+export const imageRequestFinished = createAction(
+  '[Images] Image request finished',
+  props<{ kind: ImageRequestKind; requestId: string }>(),
+);
+
+export const imageRequestTimedOut = createAction(
+  '[Images] Image request timed out',
+  props<{ kind: ImageRequestKind; requestId: string; timeoutMs: number }>(),
+);
 
 export const fetchAllImagesMetadataRequested = createAction(
   '[Images] Fetch all images metadata requested',

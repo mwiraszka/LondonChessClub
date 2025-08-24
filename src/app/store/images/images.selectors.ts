@@ -15,6 +15,11 @@ export const selectCallState = createSelector(
   state => state.callState,
 );
 
+export const selectImagesRequests = createSelector(
+  selectImagesState,
+  state => state.requests,
+);
+
 const { selectAll: selectAllImageEntities } =
   imagesAdapter.getSelectors(selectImagesState);
 

@@ -36,6 +36,8 @@ Below you'll find an overview of the tools and technologies that power the app, 
 
 - 🚀 Add support for bulk member rating updates through CSV import
 - 🚀 Improve efficiency of chess opening lookup in Game Archives page
+- 🐛 List the full-size images' file size, width and height in Image Explorer and ensure Admin Controls automatically hide on scroll
+- 🐛 Prevent default scrolling behaviour on content behind Image Viewer overlay when using arrow keys
 - 🔧 Store full-size and thumbnail images' width, height and file size values as part of metadata to allow for quicker lookups, allowing for aspect ratios to be calculated sooner, reducing layout shifts while the page loads
 
 </details>

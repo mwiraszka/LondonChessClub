@@ -209,9 +209,13 @@ export class ImageViewerComponent
       'document',
       'keydown',
       (event: KeyboardEvent) => {
-        if (this.isPreviousImageButtonActive || this.isNextImageButtonActive) {
+        const navKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' '];
+        if (!navKeys.includes(event.key)) {
           return;
         }
+
+        event.preventDefault();
+        event.stopPropagation();
 
         if (event.key === 'ArrowLeft' && this.images.length > 1) {
           this.isPreviousImageButtonActive = true;

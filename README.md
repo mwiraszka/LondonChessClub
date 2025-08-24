@@ -35,6 +35,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.8.0 - August TBD, 2025</summary>
 
 - 🚀 Add support for bulk member rating updates through CSV import
+- 🚀 Add a button on the home page that links to our tournament registration Google Docs form
 - 🚀 Some minor improvements to chess openings lookup and responsiveness on Game Archives page
 - 🚀 A new page loader animation!
 - 🐛 List the full-size images' file size, width and height in Image Explorer and ensure Admin Controls automatically hide on scroll

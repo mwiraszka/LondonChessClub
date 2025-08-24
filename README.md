@@ -32,7 +32,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.8.0 - August TBD, 2025</summary>
+<summary>v5.8.0 - August 24th, 2025</summary>
 
 - 🚀 Add support for bulk member rating updates through CSV import
 - 🚀 Add a button on the home page that links to our tournament registration Google Docs form

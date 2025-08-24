@@ -7,20 +7,23 @@ import { EntityType, Image, LccError, Member } from '@app/models';
 import { exportDataToCsv } from './export-data-to-csv.util';
 
 describe('exportDataToCsv', () => {
-  let createElementSpy: jest.SpyInstance;
-  let setAttributeSpy: jest.Mock;
-  let mockLink: HTMLAnchorElement;
   let appendChildSpy: jest.SpyInstance;
-  let removeChildSpy: jest.SpyInstance;
   let blobSpy: jest.SpyInstance;
+  let clickSpy: jest.SpyInstance;
+  let createElementSpy: jest.SpyInstance;
+  let mockLink: HTMLAnchorElement;
+  let removeChildSpy: jest.SpyInstance;
+  let setAttributeSpy: jest.Mock;
 
   beforeEach(() => {
     setAttributeSpy = jest.fn();
+    clickSpy = jest.fn();
 
     mockLink = {
+      click: clickSpy,
+      download: '',
       href: '',
       setAttribute: setAttributeSpy,
-      download: '',
       style: {} as CSSStyleDeclaration,
     } as unknown as HTMLAnchorElement;
 
@@ -50,6 +53,7 @@ describe('exportDataToCsv', () => {
     const result = exportDataToCsv(MOCK_MEMBERS, 'members-export.csv');
 
     expect(result).toBe(MOCK_MEMBERS.length);
+    expect(clickSpy).toHaveBeenCalledTimes(1);
     expect(createElementSpy).toHaveBeenCalledWith('a');
     expect(window.Blob).toHaveBeenCalledWith([expect.any(String)], {
       type: 'text/csv;charset=utf-8;',
@@ -63,21 +67,33 @@ describe('exportDataToCsv', () => {
     const result = exportDataToCsv(MOCK_ARTICLES, 'articles.csv');
 
     expect(result).toBe(MOCK_ARTICLES.length);
-    expect(createElementSpy).toHaveBeenCalled();
+    expect(clickSpy).toHaveBeenCalledTimes(1);
+    expect(createElementSpy).toHaveBeenCalledWith('a');
+    expect(setAttributeSpy).toHaveBeenCalledWith('download', 'articles.csv');
+    expect(appendChildSpy).toHaveBeenCalledWith(mockLink);
+    expect(removeChildSpy).toHaveBeenCalledWith(mockLink);
   });
 
   it('should export Event data to CSV successfully', () => {
     const result = exportDataToCsv(MOCK_EVENTS, 'events-schedule.csv');
 
     expect(result).toBe(MOCK_EVENTS.length);
+    expect(clickSpy).toHaveBeenCalledTimes(1);
+    expect(createElementSpy).toHaveBeenCalledWith('a');
     expect(setAttributeSpy).toHaveBeenCalledWith('download', 'events-schedule.csv');
+    expect(appendChildSpy).toHaveBeenCalledWith(mockLink);
+    expect(removeChildSpy).toHaveBeenCalledWith(mockLink);
   });
 
   it('should export Image data to CSV successfully', () => {
     const result = exportDataToCsv(MOCK_IMAGES, 'photos.csv');
 
     expect(result).toBe(MOCK_IMAGES.length);
-    expect(createElementSpy).toHaveBeenCalled();
+    expect(clickSpy).toHaveBeenCalledTimes(1);
+    expect(createElementSpy).toHaveBeenCalledWith('a');
+    expect(setAttributeSpy).toHaveBeenCalledWith('download', 'photos.csv');
+    expect(appendChildSpy).toHaveBeenCalledWith(mockLink);
+    expect(removeChildSpy).toHaveBeenCalledWith(mockLink);
   });
 
   it('should handle empty data array', () => {
@@ -90,8 +106,8 @@ describe('exportDataToCsv', () => {
       message: 'No data available for export',
     } as LccError);
 
-    expect(window.Blob).not.toHaveBeenCalled();
     expect(createElementSpy).not.toHaveBeenCalled();
+    expect(window.Blob).not.toHaveBeenCalled();
   });
 
   it('should handle errors during export', () => {
@@ -142,13 +158,16 @@ describe('exportDataToCsv', () => {
       {
         id: 'img123',
         filename: 'test.jpg',
+        mainFileSize: 2048000,
+        mainWidth: 1920,
+        mainHeight: 1080,
+        thumbnailFileSize: 987654,
+        thumbnailWidth: 300,
+        thumbnailHeight: 169,
         caption: 'Test Image',
         album: 'Test Album',
         albumCover: true,
         albumOrdinality: '1',
-        width: 1920,
-        height: 1080,
-        fileSize: 2048000,
         articleAppearances: 0,
         modificationInfo: {
           createdBy: 'user',
@@ -166,9 +185,7 @@ describe('exportDataToCsv', () => {
     const csvContent = blobCall[0][0] as string;
 
     expect(csvContent).toContain('true');
-    expect(csvContent).toContain('1920');
-    expect(csvContent).toContain('1080');
-    expect(csvContent).toContain('2048000');
+    expect(csvContent).toContain('987654');
     expect(csvContent).toContain('0');
   });
 });

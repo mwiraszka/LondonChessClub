@@ -29,7 +29,7 @@
           <img
             [image]="{
               thumbnailUrl: imageEntities[i].image.thumbnailUrl,
-              originalUrl: imageEntities[i].image.originalUrl,
+              mainUrl: imageEntities[i].image.mainUrl,
             }" />
         </div>
 
@@ -122,7 +122,9 @@
         [formGroupName]="i">
         <div class="image-container full-span">
           <img
-            [image]="{ originalUrl: newImageDataUrls[imageControl.controls.id.value] }" />
+            [image]="{
+              thumbnailUrl: newImageDataUrls[imageControl.controls.id.value],
+            }" />
           <button
             class="remove-image-button lcc-icon-button"
             type="button"

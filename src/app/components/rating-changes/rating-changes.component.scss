@@ -1,0 +1,37 @@
+:host {
+  max-height: 80vh;
+  width: min-content !important;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 24px;
+}
+
+.dialog-title {
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--lcc-color--basicDialog-dividerLine);
+}
+
+.rating-changes-table {
+  td.changed {
+    background: var(--lcc-color--ratingChanges-changedCellBackground);
+    font-weight: 600;
+  }
+}
+
+.unmatched-section {
+  width: auto;
+  margin-top: 8px;
+
+  .unmatched-member-list {
+    margin: 16px 0;
+    padding-left: 24px;
+  }
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}

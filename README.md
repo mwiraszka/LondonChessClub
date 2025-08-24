@@ -31,6 +31,20 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🐛  | Bug fixes                         |
 | 🔧  | Behind-the-scenes changes         |
 
+<details>
+<summary>v5.8.0 - August 24th, 2025</summary>
+
+- 🚀 Add support for bulk member rating updates through CSV import
+- 🚀 Add a button on the home page that links to our tournament registration Google Docs form
+- 🚀 Some minor improvements to chess openings lookup and responsiveness on Game Archives page
+- 🚀 A new page loader animation!
+- 🚀 Add image request tracking mechanism and failsafes to help prevent orphaned loading states/ missing banner images during network outages, etc.
+- 🐛 List the full-size images' file size, width and height in Image Explorer and ensure Admin Controls automatically hide on scroll
+- 🐛 Prevent default scrolling behaviour on content behind Image Viewer overlay when using arrow keys, and a few other minor fixes to image navigation
+- 🔧 Refactor Loader Service as a call state for each store slice to allow for more accurate handling of individual and combined call states
+- 🔧 Store full-size and thumbnail images' width, height and file size values as part of metadata to allow for quicker lookups, allowing for aspect ratios to be calculated sooner, reducing layout shifts while the page loads
+
+</details>
 
 <details>
 <summary>v5.7.0 - August 21st, 2025</summary>

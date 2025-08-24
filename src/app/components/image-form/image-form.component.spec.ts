@@ -225,7 +225,7 @@ describe('ImageFormComponent', () => {
         component.imageEntity = {
           image: {
             ...MOCK_IMAGES[0],
-            originalUrl: undefined,
+            mainUrl: undefined,
             thumbnailUrl: undefined,
           },
           formData: {

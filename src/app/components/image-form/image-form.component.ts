@@ -78,7 +78,7 @@ export class ImageFormComponent implements OnInit {
     if (
       this.imageEntity &&
       !this.imageEntity.image.thumbnailUrl &&
-      !this.imageEntity.image.originalUrl
+      !this.imageEntity.image.mainUrl
     ) {
       this.store.dispatch(
         ImagesActions.fetchOriginalRequested({

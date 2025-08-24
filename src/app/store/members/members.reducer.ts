@@ -3,14 +3,23 @@ import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import { INITIAL_MEMBER_FORM_DATA, MEMBER_FORM_DATA_PROPERTIES } from '@app/constants';
-import { DataPaginationOptions, IsoDate, Member, MemberFormData } from '@app/models';
+import {
+  CallState,
+  DataPaginationOptions,
+  IsoDate,
+  Member,
+  MemberFormData,
+} from '@app/models';
 
 import * as MembersActions from './members.actions';
 
 export interface MembersState
   extends EntityState<{ member: Member; formData: MemberFormData }> {
+  callState: CallState;
   newMemberFormData: MemberFormData;
-  lastFetch: IsoDate | null;
+  lastFullFetch: IsoDate | null;
+  lastFilteredFetch: IsoDate | null;
+  filteredMembers: Member[];
   options: DataPaginationOptions<Member>;
   filteredCount: number | null;
   totalCount: number;
@@ -24,8 +33,11 @@ export const membersAdapter = createEntityAdapter<{
 });
 
 export const initialState: MembersState = membersAdapter.getInitialState({
+  callState: 'idle',
   newMemberFormData: INITIAL_MEMBER_FORM_DATA,
-  lastFetch: null,
+  lastFullFetch: null,
+  lastFilteredFetch: null,
+  filteredMembers: [],
   options: {
     page: 1,
     pageSize: 20,
@@ -47,8 +59,36 @@ export const membersReducer = createReducer(
   initialState,
 
   on(
-    MembersActions.fetchMembersSucceeded,
-    (state, { members, filteredCount, totalCount }): MembersState =>
+    MembersActions.fetchAllMembersRequested,
+    MembersActions.fetchFilteredMembersRequested,
+    MembersActions.fetchMemberRequested,
+    MembersActions.addMemberRequested,
+    MembersActions.updateMemberRequested,
+    MembersActions.deleteMemberRequested,
+    MembersActions.updateMemberRatingsRequested,
+    (state): MembersState => ({
+      ...state,
+      callState: 'loading',
+    }),
+  ),
+
+  on(
+    MembersActions.fetchAllMembersFailed,
+    MembersActions.fetchFilteredMembersFailed,
+    MembersActions.fetchMemberFailed,
+    MembersActions.addMemberFailed,
+    MembersActions.updateMemberFailed,
+    MembersActions.deleteMemberFailed,
+    MembersActions.updateMemberRatingsFailed,
+    (state): MembersState => ({
+      ...state,
+      callState: 'error',
+    }),
+  ),
+
+  on(
+    MembersActions.fetchAllMembersSucceeded,
+    (state, { members, totalCount }): MembersState =>
       membersAdapter.setAll(
         members.map(member => ({
           member,
@@ -56,11 +96,31 @@ export const membersReducer = createReducer(
         })),
         {
           ...state,
-          lastFetch: new Date().toISOString(),
-          filteredCount,
+          callState: 'idle',
+          lastFullFetch: new Date().toISOString(),
           totalCount,
         },
       ),
+  ),
+
+  on(
+    MembersActions.fetchFilteredMembersSucceeded,
+    (state, { members, filteredCount, totalCount }): MembersState => {
+      return membersAdapter.upsertMany(
+        members.map(member => ({
+          member,
+          formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
+        })),
+        {
+          ...state,
+          callState: 'idle',
+          lastFilteredFetch: new Date(Date.now()).toISOString(),
+          filteredMembers: members,
+          filteredCount,
+          totalCount,
+        },
+      );
+    },
   ),
 
   on(MembersActions.fetchMemberSucceeded, (state, { member }): MembersState => {
@@ -70,7 +130,7 @@ export const membersReducer = createReducer(
         member,
         formData: previousFormData ?? pick(member, MEMBER_FORM_DATA_PROPERTIES),
       },
-      state,
+      { ...state, callState: 'idle' },
     );
   }),
 
@@ -82,7 +142,7 @@ export const membersReducer = createReducer(
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
         },
-        { ...state, newMemberFormData: INITIAL_MEMBER_FORM_DATA },
+        { ...state, callState: 'idle', newMemberFormData: INITIAL_MEMBER_FORM_DATA },
       ),
   ),
 
@@ -94,13 +154,30 @@ export const membersReducer = createReducer(
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
         },
-        state,
+        { ...state, callState: 'idle', lastFilteredFetch: null },
+      ),
+  ),
+
+  on(
+    MembersActions.updateMemberRatingsSucceeded,
+    (state, { members }): MembersState =>
+      membersAdapter.upsertMany(
+        members.map(member => ({
+          member,
+          formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
+        })),
+        { ...state, callState: 'idle', lastFilteredFetch: null },
       ),
   ),
 
   on(
     MembersActions.deleteMemberSucceeded,
-    (state, { memberId }): MembersState => membersAdapter.removeOne(memberId, state),
+    (state, { memberId }): MembersState =>
+      membersAdapter.removeOne(memberId, {
+        ...state,
+        callState: 'idle',
+        lastFilteredFetch: null,
+      }),
   ),
 
   on(MembersActions.formValueChanged, (state, { memberId, value }): MembersState => {

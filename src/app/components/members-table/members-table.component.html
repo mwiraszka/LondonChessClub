@@ -30,12 +30,7 @@
       </thead>
 
       <tbody>
-        @for (
-          member of options.pageSize > 0 ? members.slice(0, options.pageSize) : members;
-          track member.id;
-          let i = $index;
-          let last = $last
-        ) {
+        @for (member of members; track member.id; let i = $index; let last = $last) {
           <tr
             [adminControls]="isAdmin ? getAdminControlsConfig(member) : null"
             [ngClass]="{ 'last-row': last }"

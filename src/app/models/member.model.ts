@@ -27,3 +27,8 @@ export type MemberFormData = Pick<Member, (typeof MEMBER_FORM_DATA_PROPERTIES)[n
 export type MemberFormGroup = {
   [Property in keyof MemberFormData]: FormControl<MemberFormData[Property]>;
 };
+
+export interface MemberWithNewRatings extends Member {
+  newRating: string;
+  newPeakRating: string;
+}

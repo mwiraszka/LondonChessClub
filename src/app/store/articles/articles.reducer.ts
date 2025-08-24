@@ -3,12 +3,19 @@ import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import { ARTICLE_FORM_DATA_PROPERTIES, INITIAL_ARTICLE_FORM_DATA } from '@app/constants';
-import { Article, ArticleFormData, DataPaginationOptions, IsoDate } from '@app/models';
+import {
+  Article,
+  ArticleFormData,
+  CallState,
+  DataPaginationOptions,
+  IsoDate,
+} from '@app/models';
 
 import * as ArticlesActions from './articles.actions';
 
 export interface ArticlesState
   extends EntityState<{ article: Article; formData: ArticleFormData }> {
+  callState: CallState;
   newArticleFormData: ArticleFormData;
   lastHomePageFetch: IsoDate | null;
   lastNewsPageFetch: IsoDate | null;
@@ -26,6 +33,7 @@ export const articlesAdapter = createEntityAdapter<{
 });
 
 export const initialState: ArticlesState = articlesAdapter.getInitialState({
+  callState: 'idle',
   newArticleFormData: INITIAL_ARTICLE_FORM_DATA,
   lastHomePageFetch: null,
   lastNewsPageFetch: null,
@@ -46,9 +54,37 @@ export const articlesReducer = createReducer(
   initialState,
 
   on(
+    ArticlesActions.fetchHomePageArticlesRequested,
+    ArticlesActions.fetchNewsPageArticlesRequested,
+    ArticlesActions.fetchArticleRequested,
+    ArticlesActions.publishArticleRequested,
+    ArticlesActions.updateArticleRequested,
+    ArticlesActions.updateArticleBookmarkRequested,
+    ArticlesActions.deleteArticleRequested,
+    (state): ArticlesState => ({
+      ...state,
+      callState: 'loading',
+    }),
+  ),
+
+  on(
+    ArticlesActions.fetchHomePageArticlesFailed,
+    ArticlesActions.fetchNewsPageArticlesFailed,
+    ArticlesActions.fetchArticleFailed,
+    ArticlesActions.publishArticleFailed,
+    ArticlesActions.updateArticleFailed,
+    ArticlesActions.deleteArticleFailed,
+    (state): ArticlesState => ({
+      ...state,
+      callState: 'error',
+    }),
+  ),
+
+  on(
     ArticlesActions.fetchHomePageArticlesSucceeded,
     (state, { articles }): ArticlesState => ({
       ...state,
+      callState: 'idle',
       homePageArticles: articles,
       lastHomePageFetch: new Date().toISOString(),
     }),
@@ -64,6 +100,7 @@ export const articlesReducer = createReducer(
         })),
         {
           ...state,
+          callState: 'idle',
           lastNewsPageFetch: new Date().toISOString(),
           filteredCount,
           totalCount,
@@ -78,7 +115,7 @@ export const articlesReducer = createReducer(
         article,
         formData: previousFormData ?? pick(article, ARTICLE_FORM_DATA_PROPERTIES),
       },
-      state,
+      { ...state, callState: 'idle' },
     );
   }),
 
@@ -90,23 +127,42 @@ export const articlesReducer = createReducer(
           article,
           formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
         },
-        { ...state, newArticleFormData: INITIAL_ARTICLE_FORM_DATA },
+        {
+          ...state,
+          callState: 'idle',
+          newArticleFormData: INITIAL_ARTICLE_FORM_DATA,
+          lastHomePageFetch: null,
+          lastNewsPageFetch: null,
+        },
       ),
   ),
 
-  on(ArticlesActions.updateArticleSucceeded, (state, { article }) =>
-    articlesAdapter.upsertOne(
-      {
-        article,
-        formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
-      },
-      state,
-    ),
+  on(
+    ArticlesActions.updateArticleSucceeded,
+    (state, { article }): ArticlesState =>
+      articlesAdapter.upsertOne(
+        {
+          article,
+          formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+        },
+        {
+          ...state,
+          callState: 'idle',
+          lastHomePageFetch: null,
+          lastNewsPageFetch: null,
+        },
+      ),
   ),
 
   on(
     ArticlesActions.deleteArticleSucceeded,
-    (state, { articleId }): ArticlesState => articlesAdapter.removeOne(articleId, state),
+    (state, { articleId }): ArticlesState =>
+      articlesAdapter.removeOne(articleId, {
+        ...state,
+        callState: 'idle',
+        lastHomePageFetch: null,
+        lastNewsPageFetch: null,
+      }),
   ),
 
   on(ArticlesActions.formValueChanged, (state, { articleId, value }): ArticlesState => {

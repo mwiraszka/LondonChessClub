@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 8px 16px;
+  padding: 8px 32px;
   background-color: var(--lcc-color--dataToolbar-background);
   border-radius: var(--lcc-borderRadius--small);
   box-shadow: 0 2px 4px 0 var(--lcc-color--table-boxShadow);
@@ -27,15 +27,19 @@
     align-items: center;
     gap: 2px;
 
-    @include respond-to('gt-xxs') {
-      gap: 8px;
+    @include respond-to('gt-xs') {
+      gap: 4px;
     }
 
     .page-navigation-button {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 2px;
+      padding: 0;
+
+      @include respond-to('gt-md') {
+        padding: 2px;
+      }
     }
 
     .page-control-section {
@@ -44,13 +48,13 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      gap: 2px;
-      font-size: 14px;
+      gap: 8px;
+      font-size: 13px;
       padding: 0 4px;
       color: var(--lcc-color--dataToolbar-text);
 
-      @include respond-to('gt-xxs') {
-        gap: 4px;
+      @include respond-to('gt-xs') {
+        font-size: 14px;
       }
 
       .page-size-buttons {
@@ -58,7 +62,7 @@
         flex-direction: row;
         gap: 2px;
 
-        @include respond-to('gt-xxs') {
+        @include respond-to('gt-xs') {
           gap: 4px;
         }
 
@@ -66,6 +70,11 @@
           padding: 4px;
           border-color: var(--lcc-color--dataToolbar-buttonBorder);
           color: var(--lcc-color--dataToolbar-text);
+          font-size: 12px;
+
+          @include respond-to('gt-xs') {
+            font-size: 13px;
+          }
 
           &.selected {
             color: var(--lcc-color--dataToolbar-text);
@@ -104,7 +113,11 @@
 }
 
 .pagination-summary {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--lcc-color--dataToolbar-text);
   text-align: center;
+
+  @include respond-to('gt-xs') {
+    font-size: 14px;
+  }
 }

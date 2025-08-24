@@ -1,7 +1,7 @@
 @use '../../../styles/abstracts/mixins' as *;
 
 $card-padding: 6px;
-$max-card-width: 250px;
+$max-card-width: 270px;
 
 :host {
   height: 90dvh;
@@ -34,28 +34,32 @@ $max-card-width: 250px;
       display: flex;
     }
 
+    @media screen and (max-width: 435px) {
+      display: flex;
+      flex-flow: row wrap;
+    }
+
     @media screen and (min-width: 610px) {
       &[card-count='2'] {
         display: flex;
-        flex-flow: row wrap;
       }
     }
 
-    @media screen and (min-width: 910px) {
+    @media screen and (min-width: 976px) {
       &[card-count='3'] {
         display: flex;
         flex-flow: row wrap;
       }
     }
 
-    @media screen and (min-width: 1210px) {
+    @media screen and (min-width: 1298px) {
       &[card-count='4'] {
         display: flex;
         flex-flow: row wrap;
       }
     }
 
-    @media screen and (min-width: 1510px) {
+    @media screen and (min-width: 1620px) {
       &[card-count='5'] {
         display: flex;
         flex-flow: row wrap;

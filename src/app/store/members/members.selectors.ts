@@ -9,9 +9,24 @@ import { MembersState, membersAdapter } from './members.reducer';
 
 const selectMembersState = createFeatureSelector<MembersState>('membersState');
 
-export const selectLastFetch = createSelector(
+export const selectCallState = createSelector(
   selectMembersState,
-  state => state.lastFetch,
+  state => state.callState,
+);
+
+export const selectLastFullFetch = createSelector(
+  selectMembersState,
+  state => state.lastFullFetch,
+);
+
+export const selectLastFilteredFetch = createSelector(
+  selectMembersState,
+  state => state.lastFilteredFetch,
+);
+
+export const selectFilteredMembers = createSelector(
+  selectMembersState,
+  state => state.filteredMembers,
 );
 
 export const selectOptions = createSelector(selectMembersState, state => state.options);
@@ -29,13 +44,14 @@ export const selectTotalCount = createSelector(
 const { selectAll: selectAllMemberEntities } =
   membersAdapter.getSelectors(selectMembersState);
 
-export const selectMembers = createSelector(selectAllMemberEntities, allMemberEntities =>
-  allMemberEntities.map(entity => entity?.member),
+export const selectAllMembers = createSelector(
+  selectAllMemberEntities,
+  allMemberEntities => allMemberEntities.map(entity => entity?.member),
 );
 
 export const selectMemberById = (id: Id | null) =>
   createSelector(
-    selectMembers,
+    selectAllMembers,
     allMembers => allMembers.find(member => member.id === id) ?? null,
   );
 

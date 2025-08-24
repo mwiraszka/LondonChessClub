@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, firstValueFrom } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { filter, map, take, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
@@ -11,6 +11,7 @@ import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.
 import { DataToolbarComponent } from '@app/components/data-toolbar/data-toolbar.component';
 import { MembersTableComponent } from '@app/components/members-table/members-table.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
+import { RatingChangesComponent } from '@app/components/rating-changes/rating-changes.component';
 import {
   AdminButton,
   BasicDialogResult,
@@ -18,12 +19,13 @@ import {
   Dialog,
   InternalLink,
   Member,
+  MemberWithNewRatings,
 } from '@app/models';
 import { DialogService, MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
 import { MembersActions, MembersSelectors } from '@app/store/members';
-import { isSecondsInPast } from '@app/utils';
+import { isLccError, isSecondsInPast, parseCsv } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -37,11 +39,11 @@ import { isSecondsInPast } from '@app/utils';
 
       @if (vm.isAdmin) {
         <input
-          #fileInput
+          #memberRatingChangesFileInput
           type="file"
           accept=".csv"
           style="display: none"
-          (change)="onFileSelected($event)" />
+          (change)="onMemberRatingChangesFileSelected($event)" />
         <lcc-admin-toolbar
           [adminLinks]="[addMemberLink]"
           [adminButtons]="adminButtons">
@@ -60,7 +62,7 @@ import { isSecondsInPast } from '@app/utils';
       <lcc-members-table
         [isAdmin]="vm.isAdmin"
         [isSafeMode]="vm.isSafeMode"
-        [members]="vm.members"
+        [members]="vm.filteredMembers"
         [options]="vm.options"
         (optionsChange)="onOptionsChange($event)"
         (requestDeleteMember)="onRequestDeleteMember($event)">
@@ -76,7 +78,8 @@ import { isSecondsInPast } from '@app/utils';
   ],
 })
 export class MembersPageComponent implements OnInit {
-  @ViewChild('fileInput') fileInput?: ElementRef<HTMLInputElement>;
+  @ViewChild('memberRatingChangesFileInput')
+  memberRatingChangesFileInput?: ElementRef<HTMLInputElement>;
 
   public addMemberLink: InternalLink = {
     internalPath: ['member', 'add'],
@@ -87,9 +90,9 @@ export class MembersPageComponent implements OnInit {
   public adminButtons: AdminButton[] = [
     {
       id: 'update-ratings-from-csv',
-      tooltip: 'Update member ratings from CSV (coming soonnn 🫠)',
+      tooltip: 'Update member ratings from CSV',
       icon: 'upload_file',
-      action: () => this.fileInput?.nativeElement.click(),
+      action: () => this.memberRatingChangesFileInput?.nativeElement.click(),
     },
     {
       id: 'export-to-csv',
@@ -101,9 +104,9 @@ export class MembersPageComponent implements OnInit {
 
   public viewModel$?: Observable<{
     filteredCount: number | null;
+    filteredMembers: Member[];
     isAdmin: boolean;
     isSafeMode: boolean;
-    members: Member[];
     options: DataPaginationOptions<Member>;
     totalCount: number;
   }>;
@@ -121,31 +124,33 @@ export class MembersPageComponent implements OnInit {
     );
 
     this.store
-      .select(MembersSelectors.selectLastFetch)
+      .select(MembersSelectors.selectLastFilteredFetch)
       .pipe(take(1))
       .subscribe(lastFetch => {
         if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(MembersActions.fetchMembersRequested());
+          this.store.dispatch(MembersActions.fetchFilteredMembersRequested());
         }
       });
 
     this.viewModel$ = combineLatest([
       this.store.select(MembersSelectors.selectFilteredCount),
+      this.store.select(MembersSelectors.selectFilteredMembers),
       this.store.select(AuthSelectors.selectIsAdmin),
       this.store.select(AppSelectors.selectIsSafeMode),
-      this.store.select(MembersSelectors.selectMembers),
       this.store.select(MembersSelectors.selectOptions),
       this.store.select(MembersSelectors.selectTotalCount),
     ]).pipe(
       untilDestroyed(this),
-      map(([filteredCount, isAdmin, isSafeMode, members, options, totalCount]) => ({
-        filteredCount,
-        isAdmin,
-        isSafeMode,
-        members,
-        options,
-        totalCount,
-      })),
+      map(
+        ([filteredCount, filteredMembers, isAdmin, isSafeMode, options, totalCount]) => ({
+          filteredCount,
+          filteredMembers,
+          isAdmin,
+          isSafeMode,
+          options,
+          totalCount,
+        }),
+      ),
     );
   }
 
@@ -157,15 +162,83 @@ export class MembersPageComponent implements OnInit {
     this.store.dispatch(MembersActions.deleteMemberRequested({ member }));
   }
 
-  public onFileSelected(event: Event): void {
+  public async onMemberRatingChangesFileSelected(event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
+    input.value = '';
 
-    if (file) {
-      this.store.dispatch(MembersActions.importMembersFromCsvRequested({ file }));
-      // Reset input so the same file can be selected again
-      input.value = '';
+    if (!file) {
+      return;
     }
+
+    const expectedHeadersInCsv = ['first name', 'last name', 'old', 'new', 'peak'];
+    const parsingResult = await parseCsv(file, expectedHeadersInCsv, 5);
+
+    if (isLccError(parsingResult)) {
+      this.store.dispatch(
+        MembersActions.parseMemberRatingsFromCsvFailed({ error: parsingResult }),
+      );
+      return;
+    }
+
+    // Ensure all members have been fetched to compare against
+    const allMembers = await firstValueFrom(
+      combineLatest([
+        this.store.select(MembersSelectors.selectAllMembers),
+        this.store.select(MembersSelectors.selectTotalCount),
+      ]).pipe(
+        tap(([members, totalCount]) => {
+          if (totalCount > 0 && members.length !== totalCount) {
+            this.store.dispatch(MembersActions.fetchAllMembersRequested());
+          }
+        }),
+        filter(
+          ([members, totalCount]) => totalCount > 0 && members.length === totalCount,
+        ),
+        take(1),
+        map(([members]) => members),
+      ),
+    );
+
+    const membersWithNewRatings: MemberWithNewRatings[] = [];
+    const unmatchedMembers: string[] = [];
+
+    parsingResult.forEach(row => {
+      const [firstName, lastName, rating, newRating, newPeakRating] = row;
+      const matchedMember = allMembers.find(
+        member =>
+          member.firstName === firstName &&
+          member.lastName === lastName &&
+          member.rating === rating,
+      );
+
+      if (matchedMember) {
+        membersWithNewRatings.push({
+          ...matchedMember,
+          newRating,
+          newPeakRating,
+        });
+      } else {
+        unmatchedMembers.push(`${firstName} ${lastName}`);
+      }
+    });
+
+    const dialogResult = await this.dialogService.open<
+      RatingChangesComponent,
+      'confirm' | 'cancel'
+    >({
+      componentType: RatingChangesComponent,
+      inputs: { membersWithNewRatings, unmatchedMembers },
+      isModal: false,
+    });
+
+    if (dialogResult !== 'confirm') {
+      return;
+    }
+
+    this.store.dispatch(
+      MembersActions.updateMemberRatingsRequested({ membersWithNewRatings }),
+    );
   }
 
   public async onExportToCsv(): Promise<void> {

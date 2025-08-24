@@ -7,9 +7,9 @@
   <div class="image-container">
     <img
       [image]="{
-        originalUrl: 'assets/game-archives.png',
-        width: 1000,
-        height: 323,
+        mainUrl: 'assets/game-archives.png',
+        mainWidth: 1000,
+        mainHeight: 323,
         caption: 'A little piece of history',
       }" />
   </div>
@@ -160,7 +160,7 @@
   }
 </section>
 
-@if (activeYear) {
+@if (activeYear && filteredGames.get(activeYear)?.length) {
   <section class="active-games">
     @defer {
       <cdk-virtual-scroll-viewport

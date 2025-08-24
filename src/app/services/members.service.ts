@@ -25,7 +25,17 @@ export class MembersService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getMembers(
+  public getAllMembers(
+    isAdmin: boolean,
+  ): Observable<ApiResponse<PaginatedItems<Member>>> {
+    const scope: ApiScope = isAdmin ? 'admin' : 'public';
+
+    return this.http.get<ApiResponse<PaginatedItems<Member>>>(
+      `${this.API_BASE_URL}/${scope}/${this.COLLECTION}`,
+    );
+  }
+
+  public getFilteredMembers(
     isAdmin: boolean,
     options: DataPaginationOptions<Member>,
   ): Observable<ApiResponse<PaginatedItems<Member>>> {
@@ -48,6 +58,13 @@ export class MembersService {
     return this.http.post<ApiResponse<Id>>(
       `${this.API_BASE_URL}/admin/${this.COLLECTION}`,
       member,
+    );
+  }
+
+  public updateMembers(members: Member[]): Observable<ApiResponse<Member[]>> {
+    return this.http.put<ApiResponse<Member[]>>(
+      `${this.API_BASE_URL}/admin/${this.COLLECTION}`,
+      members,
     );
   }
 

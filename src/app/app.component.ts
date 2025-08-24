@@ -13,8 +13,8 @@ import { FooterComponent } from '@app/components/footer/footer.component';
 import { HeaderComponent } from '@app/components/header/header.component';
 import { NavigationBarComponent } from '@app/components/navigation-bar/navigation-bar.component';
 import { UpcomingEventBannerComponent } from '@app/components/upcoming-event-banner/upcoming-event-banner.component';
-import { Event, IsoDate } from '@app/models';
-import { LoaderService, RoutingService, UrlExpirationService } from '@app/services';
+import { CallState, Event, IsoDate } from '@app/models';
+import { RoutingService, UrlExpirationService } from '@app/services';
 import { TouchEventsService } from '@app/services';
 import { AppActions, AppSelectors } from '@app/store/app';
 import { EventsSelectors } from '@app/store/events';
@@ -37,6 +37,7 @@ import { isDefined } from '@app/utils';
 })
 export class AppComponent implements OnInit {
   public viewModel$?: Observable<{
+    appCallState: CallState;
     bannerLastCleared: IsoDate | null;
     isDarkMode: boolean;
     nextEvent: Event | null;
@@ -45,11 +46,10 @@ export class AppComponent implements OnInit {
 
   constructor(
     @Inject(DOCUMENT) private readonly _document: Document,
-    public readonly loaderService: LoaderService,
     private readonly store: Store,
     private readonly touchEventsService: TouchEventsService,
-    private readonly urlExpirationService: UrlExpirationService,
     private readonly routingService: RoutingService,
+    private readonly urlExpirationService: UrlExpirationService,
   ) {
     moment.tz.setDefault('America/Toronto');
   }
@@ -60,18 +60,28 @@ export class AppComponent implements OnInit {
     this.touchEventsService.listenForTouchEvents();
 
     this.viewModel$ = combineLatest([
-      this.store.select(AppSelectors.selectIsDarkMode),
-      this.store.select(AppSelectors.selectShowUpcomingEventBanner),
+      this.store.select(AppSelectors.selectAppCallState),
       this.store.select(AppSelectors.selectBannerLastCleared),
+      this.store.select(AppSelectors.selectIsDarkMode),
       this.store.select(EventsSelectors.selectNextEvent),
+      this.store.select(AppSelectors.selectShowUpcomingEventBanner),
     ]).pipe(
       untilDestroyed(this),
-      map(([isDarkMode, showUpcomingEventBanner, bannerLastCleared, nextEvent]) => ({
-        isDarkMode,
-        showUpcomingEventBanner,
-        bannerLastCleared,
-        nextEvent,
-      })),
+      map(
+        ([
+          appCallState,
+          bannerLastCleared,
+          isDarkMode,
+          nextEvent,
+          showUpcomingEventBanner,
+        ]) => ({
+          appCallState,
+          bannerLastCleared,
+          isDarkMode,
+          nextEvent,
+          showUpcomingEventBanner,
+        }),
+      ),
       tap(({ isDarkMode, bannerLastCleared }) => {
         this._document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
 

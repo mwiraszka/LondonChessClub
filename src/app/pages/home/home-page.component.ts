@@ -14,6 +14,7 @@ import { ClubLinksComponent } from '@app/components/club-links/club-links.compon
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
 import { ScheduleComponent } from '@app/components/schedule/schedule.component';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { Article, DataPaginationOptions, Event, Image, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
@@ -37,6 +38,7 @@ import { isSecondsInPast } from '@app/utils';
     PhotoGridComponent,
     RouterLink,
     ScheduleComponent,
+    TooltipDirective,
   ],
 })
 export class HomePageComponent implements OnInit {

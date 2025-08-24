@@ -3,12 +3,12 @@ import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
 import { of } from 'rxjs';
-import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, filter, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { Event } from '@app/models';
-import { EventsService, LoaderService } from '@app/services';
+import { EventsService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { isDefined, parseError } from '@app/utils';
 
@@ -19,7 +19,6 @@ export class EventsEffects {
   fetchEvents$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventsActions.fetchEventsRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(() =>
         this.eventsService.getEvents().pipe(
           map(response => EventsActions.fetchEventsSucceeded({ events: response.data })),
@@ -28,14 +27,12 @@ export class EventsEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   fetchEvent$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventsActions.fetchEventRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ eventId }) => {
         return this.eventsService.getEvent(eventId).pipe(
           map(response => EventsActions.fetchEventSucceeded({ event: response.data })),
@@ -44,14 +41,12 @@ export class EventsEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   addEvent$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventsActions.addEventRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store.select(EventsSelectors.selectEventFormDataById(null)),
         this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
@@ -79,14 +74,12 @@ export class EventsEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   updateEvent$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventsActions.updateEventRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(({ eventId }) => [
         this.store
           .select(EventsSelectors.selectEventById(eventId))
@@ -106,6 +99,7 @@ export class EventsEffects {
         };
 
         return this.eventsService.updateEvent(updatedEvent).pipe(
+          filter(response => response.data === updatedEvent.id),
           map(() =>
             EventsActions.updateEventSucceeded({
               event: updatedEvent,
@@ -117,14 +111,12 @@ export class EventsEffects {
           ),
         );
       }),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   deleteEvent$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventsActions.deleteEventRequested),
-      tap(() => this.loaderService.setIsLoading(true)),
       switchMap(({ event }) =>
         this.eventsService.deleteEvent(event.id).pipe(
           filter(response => response.data === event.id),
@@ -139,14 +131,12 @@ export class EventsEffects {
           ),
         ),
       ),
-      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 
   constructor(
     private readonly actions$: Actions,
     private readonly eventsService: EventsService,
-    private readonly loaderService: LoaderService,
     private readonly store: Store,
   ) {}
 }

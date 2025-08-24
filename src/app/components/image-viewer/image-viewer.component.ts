@@ -196,10 +196,14 @@ export class ImageViewerComponent
       .select(ImagesSelectors.selectImageById(imageId))
       .pipe(take(1))
       .subscribe(image => {
-        if (!image?.originalUrl) {
-          this.store.dispatch(
-            ImagesActions.fetchOriginalRequested({ imageId, isPrefetch }),
-          );
+        if (!image?.mainUrl) {
+          if (isPrefetch) {
+            this.store.dispatch(
+              ImagesActions.fetchOriginalInBackgroundRequested({ imageId }),
+            );
+          } else {
+            this.store.dispatch(ImagesActions.fetchOriginalRequested({ imageId }));
+          }
         }
       });
   }
@@ -209,16 +213,25 @@ export class ImageViewerComponent
       'document',
       'keydown',
       (event: KeyboardEvent) => {
-        if (this.isPreviousImageButtonActive || this.isNextImageButtonActive) {
+        const navKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' '];
+        if (!navKeys.includes(event.key)) {
           return;
         }
 
-        if (event.key === 'ArrowLeft' && this.images.length > 1) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (
+          event.key === 'ArrowLeft' &&
+          this.images.length > 1 &&
+          !this.isPreviousImageButtonActive
+        ) {
           this.isPreviousImageButtonActive = true;
           this.onPreviousImage();
         } else if (
           (event.key === 'ArrowRight' || event.key === ' ') &&
-          this.images.length > 1
+          this.images.length > 1 &&
+          !this.isNextImageButtonActive
         ) {
           this.isNextImageButtonActive = true;
           this.onNextImage();

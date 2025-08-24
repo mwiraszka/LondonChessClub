@@ -3,13 +3,52 @@ import { createReducer, on } from '@ngrx/store';
 import { compact, pick } from 'lodash';
 
 import { IMAGE_FORM_DATA_PROPERTIES, INITIAL_IMAGE_FORM_DATA } from '@app/constants';
-import { DataPaginationOptions, Id, Image, ImageFormData, IsoDate } from '@app/models';
+import {
+  CallState,
+  DataPaginationOptions,
+  Id,
+  Image,
+  ImageFormData,
+  ImageRequestKind,
+  IsoDate,
+} from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as ImagesActions from './images.actions';
 
 export interface ImagesState
   extends EntityState<{ image: Image; formData: ImageFormData }> {
+  callState: CallState;
+  // Per-request tracking to avoid orphaned global loading states
+  requests: Record<
+    ImageRequestKind,
+    | {
+        status: 'idle';
+        requestId?: string;
+        startedAt?: number;
+        lastSuccessAt?: number;
+        timeoutMs?: number;
+      }
+    | {
+        status: 'loading';
+        requestId: string;
+        startedAt: number;
+        timeoutMs?: number;
+      }
+    | {
+        status: 'timedOut';
+        requestId: string;
+        startedAt: number;
+        timeoutMs: number;
+      }
+    | {
+        status: 'error';
+        requestId?: string;
+        startedAt?: number;
+        lastSuccessAt?: number;
+        timeoutMs?: number;
+      }
+  >;
   newImagesFormData: Record<string, ImageFormData>;
   lastMetadataFetch: IsoDate | null;
   lastFilteredThumbnailsFetch: IsoDate | null;
@@ -30,6 +69,21 @@ export const imagesAdapter = createEntityAdapter<{
 });
 
 export const initialState: ImagesState = imagesAdapter.getInitialState({
+  callState: 'idle',
+  requests: {
+    fetchAllImagesMetadata: { status: 'idle' },
+    fetchFilteredThumbnails: { status: 'idle' },
+    fetchBatchThumbnails: { status: 'idle' },
+    fetchOriginal: { status: 'idle' },
+    fetchOriginalInBackground: { status: 'idle' },
+    addImage: { status: 'idle' },
+    addImages: { status: 'idle' },
+    updateImage: { status: 'idle' },
+    updateAlbum: { status: 'idle' },
+    deleteImage: { status: 'idle' },
+    deleteAlbum: { status: 'idle' },
+    automaticAlbumCoverSwitch: { status: 'idle' },
+  },
   newImagesFormData: {},
   lastMetadataFetch: null,
   lastFilteredThumbnailsFetch: null,
@@ -51,6 +105,94 @@ export const imagesReducer = createReducer(
   initialState,
 
   on(
+    ImagesActions.imageRequestStarted,
+    (state, { kind, requestId, startedAt }): ImagesState => ({
+      ...state,
+      requests: {
+        ...state.requests,
+        [kind]: { status: 'loading', requestId, startedAt },
+      },
+    }),
+  ),
+
+  on(ImagesActions.imageRequestFinished, (state, { kind, requestId }): ImagesState => {
+    const current = state.requests[kind];
+    if (!current || current.requestId !== requestId) {
+      return state;
+    }
+
+    return {
+      ...state,
+      requests: {
+        ...state.requests,
+        [kind]: {
+          status: 'idle',
+          requestId,
+          startedAt: current.startedAt,
+          lastSuccessAt: Date.now(),
+        },
+      },
+    };
+  }),
+
+  on(
+    ImagesActions.imageRequestTimedOut,
+    (state, { kind, requestId, timeoutMs }): ImagesState => {
+      const current = state.requests[kind];
+      if (!current || current.requestId !== requestId) {
+        return state;
+      }
+
+      return {
+        ...state,
+        requests: {
+          ...state.requests,
+          [kind]: {
+            status: 'timedOut',
+            requestId,
+            startedAt: current.startedAt,
+            timeoutMs,
+          },
+        },
+      };
+    },
+  ),
+
+  on(
+    ImagesActions.fetchAllImagesMetadataRequested,
+    ImagesActions.fetchFilteredThumbnailsRequested,
+    ImagesActions.fetchBatchThumbnailsRequested,
+    ImagesActions.fetchOriginalRequested,
+    ImagesActions.addImageRequested,
+    ImagesActions.addImagesRequested,
+    ImagesActions.updateImageRequested,
+    ImagesActions.updateAlbumRequested,
+    ImagesActions.deleteImageRequested,
+    ImagesActions.deleteAlbumRequested,
+    (state): ImagesState => ({
+      ...state,
+      callState: 'loading',
+    }),
+  ),
+
+  on(
+    ImagesActions.fetchAllImagesMetadataFailed,
+    ImagesActions.fetchFilteredThumbnailsFailed,
+    ImagesActions.fetchBatchThumbnailsFailed,
+    ImagesActions.fetchOriginalFailed,
+    ImagesActions.addImageFailed,
+    ImagesActions.addImagesFailed,
+    ImagesActions.updateImageFailed,
+    ImagesActions.updateAlbumFailed,
+    ImagesActions.deleteImageFailed,
+    ImagesActions.deleteAlbumFailed,
+    (state): ImagesState => ({
+      ...state,
+      callState: 'error',
+    }),
+  ),
+
+  on(
     ImagesActions.fetchAllImagesMetadataSucceeded,
     (state, { images }): ImagesState =>
       imagesAdapter.upsertMany(
@@ -60,7 +202,11 @@ export const imagesReducer = createReducer(
             formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
           };
         }),
-        { ...state, lastMetadataFetch: new Date(Date.now()).toISOString() },
+        {
+          ...state,
+          callState: 'idle',
+          lastMetadataFetch: new Date(Date.now()).toISOString(),
+        },
       ),
   ),
 
@@ -79,6 +225,7 @@ export const imagesReducer = createReducer(
         }),
         {
           ...state,
+          callState: 'idle',
           lastFilteredThumbnailsFetch: new Date(Date.now()).toISOString(),
           filteredImages: images,
           filteredCount,
@@ -103,6 +250,7 @@ export const imagesReducer = createReducer(
         }),
         {
           ...state,
+          callState: 'idle',
           lastAlbumCoversFetch: isAlbumCoverFetch
             ? new Date(Date.now()).toISOString()
             : state.lastAlbumCoversFetch,
@@ -117,12 +265,12 @@ export const imagesReducer = createReducer(
       {
         image: {
           ...image,
-          originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
+          mainUrl: image.mainUrl ?? originalEntity?.image.mainUrl,
           thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
         },
         formData: originalEntity?.formData ?? pick(image, IMAGE_FORM_DATA_PROPERTIES),
       },
-      state,
+      { ...state, callState: 'idle' },
     );
   }),
 
@@ -132,7 +280,14 @@ export const imagesReducer = createReducer(
         image,
         formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
       },
-      { ...state, newImagesFormData: {} },
+      {
+        ...state,
+        callState: 'idle',
+        newImagesFormData: {},
+        lastFilteredThumbnailsFetch: null,
+        lastAlbumCoversFetch: null,
+        lastMetadataFetch: null,
+      },
     );
   }),
 
@@ -144,13 +299,20 @@ export const imagesReducer = createReducer(
         return {
           image: {
             ...image,
-            originalUrl: image.originalUrl ?? originalEntity?.image.originalUrl,
+            mainUrl: image.mainUrl ?? originalEntity?.image.mainUrl,
             thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
           },
           formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
         };
       }),
-      { ...state, newImagesFormData: {} },
+      {
+        ...state,
+        callState: 'idle',
+        newImagesFormData: {},
+        lastFilteredThumbnailsFetch: null,
+        lastAlbumCoversFetch: null,
+        lastMetadataFetch: null,
+      },
     );
   }),
 
@@ -165,6 +327,7 @@ export const imagesReducer = createReducer(
         },
         {
           ...state,
+          callState: 'idle',
           lastFilteredThumbnailsFetch: null,
           lastAlbumCoversFetch: null,
           lastMetadataFetch: null,
@@ -196,6 +359,7 @@ export const imagesReducer = createReducer(
       ),
       {
         ...state,
+        callState: 'idle',
         lastFilteredThumbnailsFetch: null,
         lastAlbumCoversFetch: null,
         lastMetadataFetch: null,
@@ -206,12 +370,26 @@ export const imagesReducer = createReducer(
 
   on(
     ImagesActions.deleteImageSucceeded,
-    (state, { image }): ImagesState => imagesAdapter.removeOne(image.id, state),
+    (state, { image }): ImagesState =>
+      imagesAdapter.removeOne(image.id, {
+        ...state,
+        callState: 'idle',
+        lastFilteredThumbnailsFetch: null,
+        lastAlbumCoversFetch: null,
+        lastMetadataFetch: null,
+      }),
   ),
 
   on(
     ImagesActions.deleteAlbumSucceeded,
-    (state, { imageIds }): ImagesState => imagesAdapter.removeMany(imageIds, state),
+    (state, { imageIds }): ImagesState =>
+      imagesAdapter.removeMany(imageIds, {
+        ...state,
+        callState: 'idle',
+        lastFilteredThumbnailsFetch: null,
+        lastAlbumCoversFetch: null,
+        lastMetadataFetch: null,
+      }),
   ),
 
   on(ImagesActions.formValueChanged, (state, { values }): ImagesState => {

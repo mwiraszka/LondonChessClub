@@ -3,13 +3,14 @@ import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import { EVENT_FORM_DATA_PROPERTIES, INITIAL_EVENT_FORM_DATA } from '@app/constants';
-import { Event, EventFormData, IsoDate } from '@app/models';
+import { CallState, Event, EventFormData, IsoDate } from '@app/models';
 import { customSort } from '@app/utils';
 
 import * as EventsActions from './events.actions';
 
 export interface EventsState
   extends EntityState<{ event: Event; formData: EventFormData }> {
+  callState: CallState;
   newEventFormData: EventFormData;
   showPastEvents: boolean;
   lastFetch: IsoDate | null;
@@ -24,6 +25,7 @@ export const eventsAdapter = createEntityAdapter<{
 });
 
 export const initialState: EventsState = eventsAdapter.getInitialState({
+  callState: 'idle',
   newEventFormData: INITIAL_EVENT_FORM_DATA,
   showPastEvents: false,
   lastFetch: null,
@@ -32,13 +34,37 @@ export const initialState: EventsState = eventsAdapter.getInitialState({
 export const eventsReducer = createReducer(
   initialState,
 
+  on(
+    EventsActions.fetchEventsRequested,
+    EventsActions.fetchEventRequested,
+    EventsActions.addEventRequested,
+    EventsActions.updateEventRequested,
+    EventsActions.deleteEventRequested,
+    (state): EventsState => ({
+      ...state,
+      callState: 'loading',
+    }),
+  ),
+
+  on(
+    EventsActions.fetchEventsFailed,
+    EventsActions.fetchEventFailed,
+    EventsActions.addEventFailed,
+    EventsActions.updateEventFailed,
+    EventsActions.deleteEventFailed,
+    (state): EventsState => ({
+      ...state,
+      callState: 'error',
+    }),
+  ),
+
   on(EventsActions.fetchEventsSucceeded, (state, { events }): EventsState => {
     return eventsAdapter.setAll(
       events.map(event => ({
         event,
         formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
       })),
-      { ...state, lastFetch: new Date().toISOString() },
+      { ...state, callState: 'idle', lastFetch: new Date().toISOString() },
     );
   }),
 
@@ -49,7 +75,7 @@ export const eventsReducer = createReducer(
         event,
         formData: previousFormData ?? pick(event, EVENT_FORM_DATA_PROPERTIES),
       },
-      state,
+      { ...state, callState: 'idle' },
     );
   }),
 
@@ -61,7 +87,7 @@ export const eventsReducer = createReducer(
           event,
           formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
         },
-        { ...state, newEventFormData: INITIAL_EVENT_FORM_DATA },
+        { ...state, callState: 'idle', newEventFormData: INITIAL_EVENT_FORM_DATA },
       ),
   ),
 
@@ -73,13 +99,14 @@ export const eventsReducer = createReducer(
           event,
           formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
         },
-        state,
+        { ...state, callState: 'idle' },
       ),
   ),
 
   on(
     EventsActions.deleteEventSucceeded,
-    (state, { eventId }): EventsState => eventsAdapter.removeOne(eventId, state),
+    (state, { eventId }): EventsState =>
+      eventsAdapter.removeOne(eventId, { ...state, callState: 'idle' }),
   ),
 
   on(EventsActions.formValueChanged, (state, { eventId, value }): EventsState => {

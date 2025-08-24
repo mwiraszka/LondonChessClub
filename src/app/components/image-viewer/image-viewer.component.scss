@@ -81,6 +81,7 @@ figcaption {
 .button-wrapper {
   position: absolute;
   top: 50%;
+  z-index: 1000;
 
   &:first-of-type {
     left: 8px;

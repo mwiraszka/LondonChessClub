@@ -163,8 +163,8 @@
   --lcc-color--general-dividerLine: #{clr(grayscale, gray-75, 0.5)};
   --lcc-color--general-dividerLineLight: #{clr(grayscale, white-85, 0.5)};
   --lcc-color--general-editorTextSpacer: #{clr(grayscale, gray-75)};
-  --lcc-color--general-overlayDialogBackdrop: #{clr(grayscale, black-20, 0.4)};
-  --lcc-color--general-overlayModalBackdrop: #{clr(grayscale, black-10, 0.7)};
+  --lcc-color--general-overlayLightBackdrop: #{clr(grayscale, black-20, 0.4)};
+  --lcc-color--general-overlayHeavyBackdrop: #{clr(grayscale, black-10, 0.7)};
   --lcc-color--general-scrollbar: #{clr(grayscale, gray-50, 0.7)};
 
   --lcc-color--header-background: #{clr(primary, base)};
@@ -216,9 +216,7 @@
 
   --lcc-color--linkList-headerText: #{clr(grayscale, gray-35)};
 
-  --lcc-color--loadingSpinner1: #{clr(grayscale, black-2, 0.7)};
-  --lcc-color--loadingSpinner2: #{clr(grayscale, black-2, 0.9)};
-  --lcc-color--loadingSpinner-screenOverlay: #{clr(grayscale, black-10, 0.5)};
+  --lcc-color--loader: #{clr(grayscale, black-15)};
 
   --lcc-color--markdownRenderer-blockquoteBackground: #{clr(grayscale, white-90)};
   --lcc-color--markdownRenderer-blockquoteBorder: #{clr(grayscale, white-85, 0.5)};
@@ -252,6 +250,8 @@
   --lcc-color--photoGrid-albumNameTextHover: #{clr(grayscale, black-2)};
   --lcc-color--photoGrid-boxShadow: #{clr(grayscale, white-85, 0.7)};
   --lcc-color--photoGrid-photoCountText: #{clr(grayscale, gray-50)};
+
+  --lcc-color--ratingChanges-changedCellBackground: #{clr(secondary, base, 0.15)};
 
   --lcc-color--safeModeNotice-border: #{clr(success, base)};
   --lcc-color--safeModeNotice-icon: #{clr(success, base)};

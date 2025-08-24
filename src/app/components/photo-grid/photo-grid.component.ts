@@ -71,8 +71,8 @@ export class PhotoGridComponent implements OnChanges {
       .filter(image => image.albumCover)
       .map(image => ({
         ...image,
-        width: image.width || 300,
-        height: image.height || 300,
+        mainWidth: image.mainWidth || 300,
+        mainHeight: image.mainHeight || 300,
         caption: image.caption || 'Loading...',
       }));
   }

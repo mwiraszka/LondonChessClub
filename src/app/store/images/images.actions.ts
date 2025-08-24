@@ -1,7 +1,29 @@
 import { createAction, props } from '@ngrx/store';
 
-import { DataPaginationOptions, Id, Image, ImageFormData, LccError } from '@app/models';
+import {
+  DataPaginationOptions,
+  Id,
+  Image,
+  ImageFormData,
+  ImageRequestKind,
+  LccError,
+} from '@app/models';
 import { BaseImage } from '@app/models/image.model';
+
+export const imageRequestStarted = createAction(
+  '[Images] Image request started',
+  props<{ kind: ImageRequestKind; requestId: string; startedAt: number }>(),
+);
+
+export const imageRequestFinished = createAction(
+  '[Images] Image request finished',
+  props<{ kind: ImageRequestKind; requestId: string }>(),
+);
+
+export const imageRequestTimedOut = createAction(
+  '[Images] Image request timed out',
+  props<{ kind: ImageRequestKind; requestId: string; timeoutMs: number }>(),
+);
 
 export const fetchAllImagesMetadataRequested = createAction(
   '[Images] Fetch all images metadata requested',
@@ -45,7 +67,11 @@ export const fetchBatchThumbnailsFailed = createAction(
 
 export const fetchOriginalRequested = createAction(
   '[Images] Fetch original requested',
-  props<{ imageId: Id; isPrefetch?: boolean }>(),
+  props<{ imageId: Id }>(),
+);
+export const fetchOriginalInBackgroundRequested = createAction(
+  '[Images] Fetch original in background requested',
+  props<{ imageId: Id }>(),
 );
 export const fetchOriginalSucceeded = createAction(
   '[Images] Fetch original succeeded',

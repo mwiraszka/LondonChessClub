@@ -1,8 +1,8 @@
-@if (loaderService.isLoading$ | async) {
-  <span class="lcc-loading-spinner"></span>
-}
-
 @if (viewModel$ | async; as vm) {
+  @if (vm.appCallState === 'loading') {
+    <div class="lcc-loader"><div></div></div>
+  }
+
   @if (vm.showUpcomingEventBanner && vm.nextEvent) {
     <lcc-upcoming-event-banner
       [nextEvent]="vm.nextEvent"

@@ -1,0 +1,68 @@
+<h3 class="dialog-title">Confirm rating changes</h3>
+<p class="dialog-body">
+  The following rating changes were parsed from the CSV file. Review and confirm to apply
+  updates.
+</p>
+
+@if (membersWithNewRatings?.length) {
+  <table class="rating-changes-table lcc-table">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Old Rating</th>
+        <th>New Rating</th>
+        <th>Old Peak Rating</th>
+        <th>New Peak Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (member of membersWithNewRatings; track member) {
+        <tr>
+          <td>{{ member.firstName }}</td>
+          <td>{{ member.lastName }}</td>
+          <td>{{ member.rating }}</td>
+          <td [class.changed]="member.rating !== member.newRating">
+            {{ member.newRating }}
+          </td>
+          <td>{{ member.peakRating }}</td>
+          <td [class.changed]="member.peakRating !== member.newPeakRating">
+            {{ member.newPeakRating }}
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+} @else {
+  <p>No valid rating changes found.</p>
+}
+
+@if (unmatchedMembers?.length) {
+  <section class="unmatched-section">
+    <p>The following CSV entries could not be matched to existing members:</p>
+    <ul class="unmatched-member-list">
+      @for (memberName of unmatchedMembers; track memberName) {
+        <li>{{ memberName }}</li>
+      }
+    </ul>
+    <p>
+      New members need to be added individually. If any of these members are expected to
+      already exist in the database, please check the spelling of the names and ensure
+      that the current ratings are correct.
+    </p>
+  </section>
+}
+
+<div class="buttons-container">
+  <button
+    class="cancel-button lcc-secondary-button lcc-dark-button"
+    (click)="dialogResult.emit('cancel')">
+    Cancel
+  </button>
+  <button
+    class="confirm-button lcc-primary-button"
+    [disabled]="!membersWithNewRatings?.length"
+    (click)="dialogResult.emit('confirm')">
+    Update members
+  </button>
+</div>

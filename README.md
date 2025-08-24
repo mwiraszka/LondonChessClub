@@ -31,6 +31,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🐛  | Bug fixes                         |
 | 🔧  | Behind-the-scenes changes         |
 
+<details>
+<summary>v5.8.0 - August TBD, 2025</summary>
+
+- 🚀 Add support for bulk member rating updates through CSV import
+- 🚀 Improve efficiency of chess opening look-up in Game Archives page
+
+</details>
 
 <details>
 <summary>v5.7.0 - August 21st, 2025</summary>

@@ -7,7 +7,7 @@ import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { DataPaginationOptions, Member } from '@app/models';
+import { Member } from '@app/models';
 import { LoaderService, MembersService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { exportDataToCsv, getNewPeakRating, isDefined } from '@app/utils';
@@ -17,25 +17,24 @@ import { MembersActions, MembersSelectors } from '.';
 
 @Injectable()
 export class MembersEffects {
-  fetchMembers$ = createEffect(() => {
+  fetchAllMembers$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(MembersActions.fetchMembersRequested),
+      ofType(MembersActions.fetchAllMembersRequested),
       tap(() => this.loaderService.setIsLoading(true)),
       concatLatestFrom(() => [
         this.store.select(AuthSelectors.selectIsAdmin),
         this.store.select(MembersSelectors.selectOptions),
       ]),
-      switchMap(([, isAdmin, options]) =>
-        this.membersService.getMembers(isAdmin, options).pipe(
+      switchMap(([, isAdmin]) =>
+        this.membersService.getAllMembers(isAdmin).pipe(
           map(response =>
-            MembersActions.fetchMembersSucceeded({
+            MembersActions.fetchAllMembersSucceeded({
               members: response.data.items,
-              filteredCount: response.data.filteredCount,
               totalCount: response.data.totalCount,
             }),
           ),
           catchError(error =>
-            of(MembersActions.fetchMembersFailed({ error: parseError(error) })),
+            of(MembersActions.fetchAllMembersFailed({ error: parseError(error) })),
           ),
         ),
       ),
@@ -43,11 +42,47 @@ export class MembersEffects {
     );
   });
 
-  refetchMembersAfterPaginationOptionsChange$ = createEffect(() => {
+  fetchFilteredMembers$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(MembersActions.fetchFilteredMembersRequested),
+      tap(() => this.loaderService.setIsLoading(true)),
+      concatLatestFrom(() => [
+        this.store.select(AuthSelectors.selectIsAdmin),
+        this.store.select(MembersSelectors.selectOptions),
+      ]),
+      switchMap(([, isAdmin, options]) =>
+        this.membersService.getFilteredMembers(isAdmin, options).pipe(
+          map(response =>
+            MembersActions.fetchFilteredMembersSucceeded({
+              members: response.data.items,
+              filteredCount: response.data.filteredCount,
+              totalCount: response.data.totalCount,
+            }),
+          ),
+          catchError(error =>
+            of(MembersActions.fetchFilteredMembersFailed({ error: parseError(error) })),
+          ),
+        ),
+      ),
+      tap(() => this.loaderService.setIsLoading(false)),
+    );
+  });
+
+  refetchFilteredMembersAfterPaginationOptionsChange$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.paginationOptionsChanged),
       filter(({ fetch }) => fetch),
-      map(() => MembersActions.fetchMembersRequested()),
+      map(() => MembersActions.fetchFilteredMembersRequested()),
+    );
+  });
+
+  refetchFilteredMembersAfterUpdate$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(
+        MembersActions.updateMemberSucceeded,
+        MembersActions.updateMemberRatingsSucceeded,
+      ),
+      map(() => MembersActions.fetchFilteredMembersRequested()),
     );
   });
 
@@ -127,6 +162,7 @@ export class MembersEffects {
         };
 
         return this.membersService.updateMember(updatedMember).pipe(
+          filter(response => response.data === updatedMember.id),
           map(() =>
             MembersActions.updateMemberSucceeded({
               member: updatedMember,
@@ -167,23 +203,9 @@ export class MembersEffects {
   exportMembersToCsv$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.exportMembersToCsvRequested),
-      concatLatestFrom(() => [
-        this.store.select(MembersSelectors.selectTotalCount),
-        this.store.select(AuthSelectors.selectIsAdmin),
-      ]),
-      filter(([, totalCount]) => totalCount > 0),
-      switchMap(([, totalCount, isAdmin]) => {
-        // Fetch all members without pagination
-        const options: DataPaginationOptions<Member> = {
-          page: 1,
-          pageSize: totalCount,
-          sortBy: 'lastName',
-          sortOrder: 'asc',
-          filters: {},
-          search: '',
-        };
-
-        return this.membersService.getMembers(isAdmin, options).pipe(
+      concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
+      switchMap(([, isAdmin]) => {
+        return this.membersService.getAllMembers(isAdmin).pipe(
           map(response => {
             const filename = `members_export_${new Date().toISOString().split('T')[0]}.csv`;
             const exportResult = exportDataToCsv(response.data.items, filename);
@@ -195,10 +217,48 @@ export class MembersEffects {
               : MembersActions.exportMembersToCsvFailed({ error: exportResult });
           }),
           catchError(error =>
-            of(MembersActions.fetchMembersFailed({ error: parseError(error) })),
+            of(MembersActions.fetchAllMembersFailed({ error: parseError(error) })),
           ),
         );
       }),
+    );
+  });
+
+  updateMemberRatings$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(MembersActions.updateMemberRatingsRequested),
+      concatLatestFrom(() =>
+        this.store.select(AuthSelectors.selectUser).pipe(filter(isDefined)),
+      ),
+      tap(() => this.loaderService.setIsLoading(true)),
+      switchMap(([{ membersWithNewRatings }, user]) => {
+        const updatedMembers: Member[] = membersWithNewRatings.map(
+          memberWithNewRatings => {
+            const { newRating, newPeakRating, ...member } = memberWithNewRatings;
+
+            return {
+              ...member,
+              rating: newRating,
+              peakRating: newPeakRating,
+              modificationInfo: {
+                ...member.modificationInfo,
+                lastEditedBy: `${user.firstName} ${user.lastName}`,
+                dateLastEdited: moment().toISOString(),
+              },
+            };
+          },
+        );
+
+        return this.membersService.updateMembers(updatedMembers).pipe(
+          map(() =>
+            MembersActions.updateMemberRatingsSucceeded({ members: updatedMembers }),
+          ),
+          catchError(error =>
+            of(MembersActions.updateMemberRatingsFailed({ error: parseError(error) })),
+          ),
+        );
+      }),
+      tap(() => this.loaderService.setIsLoading(false)),
     );
   });
 

@@ -1,6 +1,5 @@
 export { ArticlesService } from './articles.service';
 export { AuthService } from './auth.service';
-export { ChessOpeningsService } from './chess-openings.service';
 export { DIALOG_CONFIG_TOKEN, DialogService } from './dialog.service';
 export { EventsService } from './events.service';
 export { ImageFileService } from './image-file.service';

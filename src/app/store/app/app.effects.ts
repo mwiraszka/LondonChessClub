@@ -84,11 +84,13 @@ export class AppEffects {
     MembersActions.deleteMemberFailed,
     MembersActions.deleteMemberSucceeded,
     MembersActions.fetchMemberFailed,
-    MembersActions.fetchMembersFailed,
+    MembersActions.fetchAllMembersFailed,
+    MembersActions.fetchFilteredMembersFailed,
     MembersActions.updateMemberFailed,
     MembersActions.updateMemberSucceeded,
-    MembersActions.importMembersFromCsvFailed,
-    MembersActions.importMembersFromCsvSucceeded,
+    MembersActions.updateMemberRatingsSucceeded,
+    MembersActions.updateMemberRatingsFailed,
+    MembersActions.parseMemberRatingsFromCsvFailed,
     MembersActions.exportMembersToCsvFailed,
     MembersActions.exportMembersToCsvSucceeded,
 
@@ -108,7 +110,8 @@ export class AppEffects {
     ImagesActions.fetchFilteredThumbnailsFailed,
     ImagesActions.fetchOriginalFailed,
 
-    MembersActions.fetchMembersFailed,
+    MembersActions.fetchAllMembersFailed,
+    MembersActions.fetchFilteredMembersFailed,
     MembersActions.fetchMemberFailed,
   ] as const;
 
@@ -448,7 +451,13 @@ export class AppEffects {
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case MembersActions.fetchMembersFailed.type:
+      case MembersActions.fetchAllMembersFailed.type:
+        return {
+          title: 'Load members',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case MembersActions.fetchFilteredMembersFailed.type:
         return {
           title: 'Load members',
           message: this.getErrorMessage(action.error),
@@ -466,17 +475,11 @@ export class AppEffects {
           message: `Successfully updated ${action.originalMemberName}`,
           type: 'success',
         };
-      case MembersActions.importMembersFromCsvFailed.type:
+      case MembersActions.parseMemberRatingsFromCsvFailed.type:
         return {
           title: 'CSV import',
           message: this.getErrorMessage(action.error),
           type: 'warning',
-        };
-      case MembersActions.importMembersFromCsvSucceeded.type:
-        return {
-          title: 'CSV import',
-          message: `Successfully imported ${action.importedCount} members from CSV`,
-          type: 'success',
         };
       case MembersActions.exportMembersToCsvFailed.type:
         return {
@@ -488,6 +491,18 @@ export class AppEffects {
         return {
           title: 'CSV export',
           message: `Successfully exported ${action.exportedCount} members to CSV`,
+          type: 'success',
+        };
+      case MembersActions.updateMemberRatingsFailed.type:
+        return {
+          title: 'Members update',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case MembersActions.updateMemberRatingsSucceeded.type:
+        return {
+          title: 'Members update',
+          message: `Successfully updated ${action.members.length} members`,
           type: 'success',
         };
       case NavActions.pageAccessDenied.type:

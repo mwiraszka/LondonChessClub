@@ -1,38 +1,99 @@
+import { isLccError } from '../error/is-lcc-error.util';
 import { parseCsv } from './parse-csv.util';
 
+const HEADERS = ['First Name', 'Last Name', 'Old', 'Perf', 'New', 'Peak'];
+
+function mockFile(content: string, name: string): File {
+  return { name, text: () => Promise.resolve(content) } as unknown as File;
+}
+
 describe('parseCsv', () => {
-  it('returns `null` if the file path is `undefined` or invalid', async () => {
-    expect(await parseCsv(undefined)).toBe(null);
-    expect(await parseCsv('')).toBe(null);
-    expect(await parseCsv('not-a-csv.pdf')).toBe(null);
+  it('returns error for non-csv file', async () => {
+    const file = mockFile('x', 'test.txt');
+    const result = await parseCsv(file, HEADERS);
+
+    expect(result).toEqual({
+      name: 'LCCError',
+      message: 'Invalid file extension',
+    });
   });
 
-  // TODO: Add more unit tests after building out CSV parsing functionality
-  //   it('parses the data of a valid CSV file with `skipFirstRow` set to `true`', async () => {
-  //     const mockData = `
-  //   id,firstName,lastName,email
-  // 1,Clarette,Fulford,cfulford0@dedecms.com
-  // 2,Jacinta,Uccelli,
-  // 3,Celestyn,Mallett,
-  // 4,Fanchette,Schanke,fschanke3@adobe.com
-  // 5,Ulla,Purselow,
-  // 6,Alysa,,
-  // 7,Johnathon,Holsey,jholsey6@wikipedia.org
-  // 8,Kingsley,McReynolds,kmcreynolds7@nasa.gov
-  // 9,Helli,Hele,hhele8@java.com
-  // 10,Nelson,Dungey,
-  //   `;
+  it('returns error for empty file', async () => {
+    const file = mockFile('', 'ratings.csv');
+    const result = await parseCsv(file, HEADERS);
 
-  //     window.fetch = jest.fn().mockImplementation(() => {
-  //       return new Promise(resolve => {
-  //         resolve({
-  //           ok: true,
-  //           status: 200,
-  //           json: () => mockData,
-  //         });
-  //       });
-  //     });
+    expect(result).toEqual({
+      name: 'LCCError',
+      message: 'Empty file',
+    });
+  });
 
-  //     expect(await parseCsv('some-valid-file.csv')).toBe('tbd');
-  //   });
+  it('returns error when first row has fewer columns than headers', async () => {
+    const content = 'first name,last name,old,new,perf\n1,2,3,4,5';
+    const file = mockFile(content, 'ratings.csv');
+    const result = await parseCsv(file, HEADERS);
+
+    expect(result).toEqual({
+      name: 'LCCError',
+      message: 'Insufficient data in CSV',
+    });
+  });
+
+  it('returns error when headers not found within scan limit', async () => {
+    // Expected headers placed after the scan limit of 2 lines
+    const content = `
+      Meta,Row,One,,,,\n
+      Meta,Row,Two,,,,\n
+      FIRST NAME,LAST NAME,OLD,PERF,NEW,PEAK\n
+      John,Doe,1200,1300,1210,1300
+    `;
+    const file = mockFile(content.trim(), 'ratings.csv');
+    const result = await parseCsv(file, HEADERS, 2);
+
+    expect(result).toEqual({
+      name: 'LCCError',
+      message: `All required headers [${HEADERS.join(', ')}] were unable to be found within the scan limit`,
+    });
+  });
+
+  it('finds header row within scan limit and projects only requested columns', async () => {
+    // Add an extra column we don't request (RESULTS) to ensure projection works
+    const content = `
+      Meta,Row,One,,,,\n
+      FIRST NAME,LAST NAME,OLD,PERF,NEW,PEAK,RESULTS\n
+      John,Doe,1200,1300,1210,1300,5.0
+    `;
+    const file = mockFile(content.trim(), 'ratings.csv');
+    const result = await parseCsv(file, HEADERS, 3);
+
+    if (isLccError(result)) {
+      fail('Expected successful parse');
+    }
+
+    // Should return only rows after header, with only columns matching HEADERS (6 columns)
+    expect(result.length).toBe(1);
+    expect(result[0].length).toBe(HEADERS.length);
+    expect(result[0]).toEqual(['John', 'Doe', '1200', '1300', '1210', '1300']);
+  });
+
+  it('filters out rows missing any required column value', async () => {
+    const content = `
+      FIRST NAME,LAST NAME,OLD,PERF,NEW,PEAK\n
+      John,Doe,1200,1300,1210,1300\n
+      Jane,,1250,1290,1260,1295\n
+      Smith,1100,1150,1110,1150\n
+      ,,,,,\n
+      Magnus,Carlsen,2830,3000,2850,2882\n
+    `;
+    const file = mockFile(content.trim(), 'ratings.csv');
+    const result = await parseCsv(file, HEADERS);
+
+    if (isLccError(result)) {
+      fail('Expected successful parse');
+    }
+
+    expect(result.length).toBe(2);
+    expect(result[0]).toEqual(['John', 'Doe', '1200', '1300', '1210', '1300']);
+    expect(result[1]).toEqual(['Magnus', 'Carlsen', '2830', '3000', '2850', '2882']);
+  });
 });

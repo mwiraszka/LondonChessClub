@@ -90,7 +90,12 @@ export const articlesReducer = createReducer(
           article,
           formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
         },
-        { ...state, newArticleFormData: INITIAL_ARTICLE_FORM_DATA },
+        {
+          ...state,
+          newArticleFormData: INITIAL_ARTICLE_FORM_DATA,
+          lastHomePageFetch: null,
+          lastNewsPageFetch: null,
+        },
       ),
   ),
 
@@ -100,13 +105,18 @@ export const articlesReducer = createReducer(
         article,
         formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
       },
-      state,
+      { ...state, lastHomePageFetch: null, lastNewsPageFetch: null },
     ),
   ),
 
   on(
     ArticlesActions.deleteArticleSucceeded,
-    (state, { articleId }): ArticlesState => articlesAdapter.removeOne(articleId, state),
+    (state, { articleId }): ArticlesState =>
+      articlesAdapter.removeOne(articleId, {
+        ...state,
+        lastHomePageFetch: null,
+        lastNewsPageFetch: null,
+      }),
   ),
 
   on(ArticlesActions.formValueChanged, (state, { articleId, value }): ArticlesState => {

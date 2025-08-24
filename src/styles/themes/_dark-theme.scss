@@ -253,6 +253,8 @@ body[data-theme='dark'] {
   --lcc-color--photoGrid-boxShadow: #{clr(grayscale, black-10, 0.7)};
   --lcc-color--photoGrid-photoCountText: #{clr(grayscale, gray-65)};
 
+  --lcc-color--ratingChanges-changedCellBackground: #{clr(secondary, base, 0.15)};
+
   --lcc-color--safeModeNotice-border: #{clr(success, base)};
   --lcc-color--safeModeNotice-icon: #{clr(success, base)};
   --lcc-color--safeModeNotice-text: #{clr(grayscale, gray-75)};

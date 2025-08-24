@@ -253,6 +253,8 @@
   --lcc-color--photoGrid-boxShadow: #{clr(grayscale, white-85, 0.7)};
   --lcc-color--photoGrid-photoCountText: #{clr(grayscale, gray-50)};
 
+  --lcc-color--ratingChanges-changedCellBackground: #{clr(secondary, base, 0.15)};
+
   --lcc-color--safeModeNotice-border: #{clr(success, base)};
   --lcc-color--safeModeNotice-icon: #{clr(success, base)};
   --lcc-color--safeModeNotice-text: #{clr(grayscale, black-15)};

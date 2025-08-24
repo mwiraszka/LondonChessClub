@@ -10,7 +10,9 @@ import * as MembersActions from './members.actions';
 export interface MembersState
   extends EntityState<{ member: Member; formData: MemberFormData }> {
   newMemberFormData: MemberFormData;
-  lastFetch: IsoDate | null;
+  lastFullFetch: IsoDate | null;
+  lastFilteredFetch: IsoDate | null;
+  filteredMembers: Member[];
   options: DataPaginationOptions<Member>;
   filteredCount: number | null;
   totalCount: number;
@@ -25,7 +27,9 @@ export const membersAdapter = createEntityAdapter<{
 
 export const initialState: MembersState = membersAdapter.getInitialState({
   newMemberFormData: INITIAL_MEMBER_FORM_DATA,
-  lastFetch: null,
+  lastFullFetch: null,
+  lastFilteredFetch: null,
+  filteredMembers: [],
   options: {
     page: 1,
     pageSize: 20,
@@ -47,8 +51,8 @@ export const membersReducer = createReducer(
   initialState,
 
   on(
-    MembersActions.fetchMembersSucceeded,
-    (state, { members, filteredCount, totalCount }): MembersState =>
+    MembersActions.fetchAllMembersSucceeded,
+    (state, { members, totalCount }): MembersState =>
       membersAdapter.setAll(
         members.map(member => ({
           member,
@@ -56,11 +60,29 @@ export const membersReducer = createReducer(
         })),
         {
           ...state,
-          lastFetch: new Date().toISOString(),
-          filteredCount,
+          lastFullFetch: new Date().toISOString(),
           totalCount,
         },
       ),
+  ),
+
+  on(
+    MembersActions.fetchFilteredMembersSucceeded,
+    (state, { members, filteredCount, totalCount }): MembersState => {
+      return membersAdapter.upsertMany(
+        members.map(member => ({
+          member,
+          formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
+        })),
+        {
+          ...state,
+          lastFilteredFetch: new Date(Date.now()).toISOString(),
+          filteredMembers: members,
+          filteredCount,
+          totalCount,
+        },
+      );
+    },
   ),
 
   on(MembersActions.fetchMemberSucceeded, (state, { member }): MembersState => {
@@ -94,13 +116,26 @@ export const membersReducer = createReducer(
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
         },
-        state,
+        { ...state, lastFilteredFetch: null },
+      ),
+  ),
+
+  on(
+    MembersActions.updateMemberRatingsSucceeded,
+    (state, { members }): MembersState =>
+      membersAdapter.upsertMany(
+        members.map(member => ({
+          member,
+          formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
+        })),
+        { ...state, lastFilteredFetch: null },
       ),
   ),
 
   on(
     MembersActions.deleteMemberSucceeded,
-    (state, { memberId }): MembersState => membersAdapter.removeOne(memberId, state),
+    (state, { memberId }): MembersState =>
+      membersAdapter.removeOne(memberId, { ...state, lastFilteredFetch: null }),
   ),
 
   on(MembersActions.formValueChanged, (state, { memberId, value }): MembersState => {

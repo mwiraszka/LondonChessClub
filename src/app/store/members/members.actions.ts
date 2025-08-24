@@ -1,14 +1,35 @@
 import { createAction, props } from '@ngrx/store';
 
-import { DataPaginationOptions, Id, LccError, Member, MemberFormData } from '@app/models';
+import {
+  DataPaginationOptions,
+  Id,
+  LccError,
+  Member,
+  MemberFormData,
+  MemberWithNewRatings,
+} from '@app/models';
 
-export const fetchMembersRequested = createAction('[Members] Fetch members requested');
-export const fetchMembersSucceeded = createAction(
-  '[Members] Fetch members succeeded',
+export const fetchAllMembersRequested = createAction(
+  '[Members] Fetch all members requested',
+);
+export const fetchAllMembersSucceeded = createAction(
+  '[Members] Fetch all members succeeded',
+  props<{ members: Member[]; totalCount: number }>(),
+);
+export const fetchAllMembersFailed = createAction(
+  '[Members] Fetch all members failed',
+  props<{ error: LccError }>(),
+);
+
+export const fetchFilteredMembersRequested = createAction(
+  '[Members] Fetch filtered members requested',
+);
+export const fetchFilteredMembersSucceeded = createAction(
+  '[Members] Fetch filtered members succeeded',
   props<{ members: Member[]; filteredCount: number; totalCount: number }>(),
 );
-export const fetchMembersFailed = createAction(
-  '[Members] Fetch members failed',
+export const fetchFilteredMembersFailed = createAction(
+  '[Members] Fetch filtered members failed',
   props<{ error: LccError }>(),
 );
 
@@ -34,6 +55,19 @@ export const addMemberSucceeded = createAction(
 );
 export const addMemberFailed = createAction(
   '[Members] Add member failed',
+  props<{ error: LccError }>(),
+);
+
+export const updateMemberRatingsRequested = createAction(
+  '[Members] Update member ratings requested',
+  props<{ membersWithNewRatings: MemberWithNewRatings[] }>(),
+);
+export const updateMemberRatingsSucceeded = createAction(
+  '[Members] Update member ratings succeeded',
+  props<{ members: Member[] }>(),
+);
+export const updateMemberRatingsFailed = createAction(
+  '[Members] Update member ratings failed',
   props<{ error: LccError }>(),
 );
 
@@ -80,16 +114,8 @@ export const memberFormDataReset = createAction(
   props<{ memberId: Id | null }>(),
 );
 
-export const importMembersFromCsvRequested = createAction(
-  '[Members] Import members from CSV requested',
-  props<{ file: File }>(),
-);
-export const importMembersFromCsvSucceeded = createAction(
-  '[Members] Import members from CSV succeeded',
-  props<{ importedCount: number }>(),
-);
-export const importMembersFromCsvFailed = createAction(
-  '[Members] Import members from CSV failed',
+export const parseMemberRatingsFromCsvFailed = createAction(
+  '[Members] Parse member ratings from CSV failed',
   props<{ error: LccError }>(),
 );
 

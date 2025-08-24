@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Chart, ChartConfiguration, registerables } from 'chart.js';
-import { debounceTime, distinctUntilChanged, take } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import {
   CdkFixedSizeVirtualScroll,
@@ -30,7 +30,7 @@ import { PageHeaderComponent } from '@app/components/page-header/page-header.com
 import { PgnViewerComponent } from '@app/components/pgn-viewer/pgn-viewer.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { FilterFormGroup, GameDetails } from '@app/models';
-import { ChessOpeningsService, LoaderService, MetaAndTitleService } from '@app/services';
+import { LoaderService, MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import {
   getOpeningTallies,
@@ -38,6 +38,8 @@ import {
   getPlyCount,
   getResultTallies,
   getScore,
+  isLccError,
+  parseCsv,
 } from '@app/utils';
 
 import * as fromPgns from './pgns';
@@ -61,6 +63,8 @@ import { YEARS } from './years';
   ],
 })
 export class GameArchivesPageComponent implements OnInit, OnDestroy {
+  private readonly FILE_PATH = 'assets/eco-openings.csv';
+
   public activeYear!: string | null;
   public allGames: Map<string, GameDetails[]> = new Map();
   public chessOpenings: Map<string, string> | null = null;
@@ -115,7 +119,6 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
   private resultChart?: Chart;
 
   constructor(
-    private readonly chessOpeningsService: ChessOpeningsService,
     private readonly formBuilder: FormBuilder,
     private readonly loaderService: LoaderService,
     private readonly metaAndTitleService: MetaAndTitleService,
@@ -416,18 +419,26 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
       });
   }
 
-  private loadChessOpenings(): void {
-    this.chessOpeningsService
-      .fetchOpenings()
-      .pipe(take(1))
-      .subscribe(openings => {
-        this.chessOpenings = openings;
-        this.updateStats(this.filteredGames);
-        // Initialize charts after we have data if they should be shown
-        if (this.showStats) {
-          setTimeout(() => this.initCharts(), 0);
-        }
-      });
+  private async loadChessOpenings(): Promise<void> {
+    const rawData = await fetch(this.FILE_PATH);
+    const blob = await rawData.blob();
+    const file = new File([blob], this.FILE_PATH, { type: 'text/csv' });
+
+    const parsedData = await parseCsv(file, ['eco', 'name', 'moves'], 2);
+
+    if (isLccError(parsedData)) {
+      console.error('[LCC] Error parsing chess opening CSV data:', parsedData);
+      return;
+    }
+
+    // Convert to a map of ECO codes mapped to their corresponding opening names
+    this.chessOpenings = new Map(parsedData.map(opening => [opening[0], opening[1]]));
+
+    this.updateStats(this.filteredGames);
+    // Initialize charts after we have data if they should be shown
+    if (this.showStats) {
+      setTimeout(() => this.initCharts());
+    }
   }
 
   private async filterGames(): Promise<void> {

@@ -132,7 +132,13 @@ export const imagesReducer = createReducer(
         image,
         formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
       },
-      { ...state, newImagesFormData: {} },
+      {
+        ...state,
+        newImagesFormData: {},
+        lastFilteredThumbnailsFetch: null,
+        lastAlbumCoversFetch: null,
+        lastMetadataFetch: null,
+      },
     );
   }),
 
@@ -150,7 +156,13 @@ export const imagesReducer = createReducer(
           formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
         };
       }),
-      { ...state, newImagesFormData: {} },
+      {
+        ...state,
+        newImagesFormData: {},
+        lastFilteredThumbnailsFetch: null,
+        lastAlbumCoversFetch: null,
+        lastMetadataFetch: null,
+      },
     );
   }),
 
@@ -206,12 +218,24 @@ export const imagesReducer = createReducer(
 
   on(
     ImagesActions.deleteImageSucceeded,
-    (state, { image }): ImagesState => imagesAdapter.removeOne(image.id, state),
+    (state, { image }): ImagesState =>
+      imagesAdapter.removeOne(image.id, {
+        ...state,
+        lastFilteredThumbnailsFetch: null,
+        lastAlbumCoversFetch: null,
+        lastMetadataFetch: null,
+      }),
   ),
 
   on(
     ImagesActions.deleteAlbumSucceeded,
-    (state, { imageIds }): ImagesState => imagesAdapter.removeMany(imageIds, state),
+    (state, { imageIds }): ImagesState =>
+      imagesAdapter.removeMany(imageIds, {
+        ...state,
+        lastFilteredThumbnailsFetch: null,
+        lastAlbumCoversFetch: null,
+        lastMetadataFetch: null,
+      }),
   ),
 
   on(ImagesActions.formValueChanged, (state, { values }): ImagesState => {

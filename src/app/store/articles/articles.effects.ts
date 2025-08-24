@@ -168,6 +168,7 @@ export class ArticlesEffects {
         };
 
         return this.articlesService.updateArticle(updatedArticle).pipe(
+          filter(response => response.data === updatedArticle.id),
           map(() =>
             ArticlesActions.updateArticleSucceeded({
               article: updatedArticle,

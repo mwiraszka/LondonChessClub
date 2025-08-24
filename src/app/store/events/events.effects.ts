@@ -106,6 +106,7 @@ export class EventsEffects {
         };
 
         return this.eventsService.updateEvent(updatedEvent).pipe(
+          filter(response => response.data === updatedEvent.id),
           map(() =>
             EventsActions.updateEventSucceeded({
               event: updatedEvent,

@@ -2,7 +2,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
 
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -46,6 +46,7 @@ import { ImagesActions } from '@app/store/images';
     ReactiveFormsModule,
     TooltipDirective,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleFormComponent implements OnInit {
   @Input({ required: true }) bannerImage!: Image | null;

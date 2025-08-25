@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
@@ -32,6 +32,7 @@ import { AdminButton, ExternalLink, InternalLink } from '@app/models';
   `,
   styleUrl: './admin-toolbar.component.scss',
   imports: [CommonModule, LinkListComponent, MatIconModule, TooltipDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminToolbarComponent {
   @Input() adminButtons?: AdminButton[];

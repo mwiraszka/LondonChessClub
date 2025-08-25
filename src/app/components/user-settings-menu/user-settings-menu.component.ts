@@ -4,7 +4,13 @@ import { Observable, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 
@@ -19,6 +25,7 @@ import { AuthActions, AuthSelectors } from '@app/store/auth';
   templateUrl: './user-settings-menu.component.html',
   styleUrl: './user-settings-menu.component.scss',
   imports: [CommonModule, MatIconModule, ToggleSwitchComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserSettingsMenuComponent implements OnInit {
   public viewModel$?: Observable<{

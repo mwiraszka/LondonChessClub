@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
@@ -46,6 +46,7 @@ import { RouterLinkPipe } from '@app/pipes';
   `,
   styleUrl: './link-list.component.scss',
   imports: [MatIconModule, RouterLink, RouterLinkPipe, TooltipDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LinkListComponent {
   @Input() public header?: string;

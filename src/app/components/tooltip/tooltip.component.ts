@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, TemplateRef } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { TOOLTIP_CONTENT_TOKEN } from '@app/directives/tooltip.directive';
@@ -19,6 +19,7 @@ import { IsStringPipe } from '@app/pipes';
   `,
   styleUrl: './tooltip.component.scss',
   imports: [CommonModule, IsStringPipe, MatIconModule, TruncateByCharsPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TooltipComponent {
   constructor(

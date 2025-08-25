@@ -40,7 +40,6 @@ import { isSecondsInPast } from '@app/utils';
   selector: 'lcc-image-explorer',
   templateUrl: './image-explorer.component.html',
   styleUrl: './image-explorer.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AdminControlsDirective,
     AdminToolbarComponent,
@@ -52,6 +51,7 @@ import { isSecondsInPast } from '@app/utils';
     HighlightPipe,
     ImagePreloadDirective,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [CdkScrollable],
 })
 export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {

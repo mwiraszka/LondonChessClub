@@ -4,7 +4,14 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { CommonModule, KeyValue } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
@@ -16,6 +23,7 @@ import { DataPaginationOptions, Entity, EntityType, Filter } from '@app/models';
   templateUrl: './data-toolbar.component.html',
   styleUrls: ['./data-toolbar.component.scss'],
   imports: [CommonModule, MatIconModule, TooltipDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataToolbarComponent<T = EntityType> implements OnInit {
   public readonly STANDARD_PAGE_SIZES: number[] = [10, 20, 50, 100];

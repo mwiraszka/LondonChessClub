@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { Toast } from '@app/models';
@@ -26,6 +26,7 @@ import { ToastService } from '@app/services';
   `,
   styleUrl: './toaster.component.scss',
   imports: [CommonModule, MatIconModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToasterComponent {
   readonly ToastService = ToastService;

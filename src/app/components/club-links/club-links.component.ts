@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
@@ -8,5 +8,6 @@ import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
   templateUrl: './club-links.component.html',
   styleUrl: './club-links.component.scss',
   imports: [ImagePreloadDirective, MatIconModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClubLinksComponent {}

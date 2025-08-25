@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { ModificationInfo } from '@app/models';
@@ -35,6 +35,7 @@ import { FormatDatePipe } from '@app/pipes';
   `,
   styleUrl: './modification-info.component.scss',
   imports: [FormatDatePipe, MatIconModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModificationInfoComponent {
   @Input({ required: true }) info!: ModificationInfo;

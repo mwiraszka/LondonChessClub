@@ -2,7 +2,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
 
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -31,6 +31,7 @@ import {
   templateUrl: './change-password-form.component.html',
   styleUrl: './change-password-form.component.scss',
   imports: [FormErrorIconComponent, ReactiveFormsModule, RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChangePasswordFormComponent implements OnInit {
   @Input({ required: true }) hasCode!: boolean;

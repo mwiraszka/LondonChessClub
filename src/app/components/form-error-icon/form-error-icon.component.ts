@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -15,6 +15,7 @@ import { TooltipDirective } from '@app/directives/tooltip.directive';
   `,
   styleUrl: './form-error-icon.component.scss',
   imports: [MatIconModule, TooltipDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormErrorIconComponent {
   @Input({ required: true }) control!: AbstractControl;

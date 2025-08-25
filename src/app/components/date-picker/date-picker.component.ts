@@ -1,6 +1,11 @@
 import moment, { Moment } from 'moment-timezone';
 
-import { AfterViewInit, Component, HostListener } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+} from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -22,6 +27,7 @@ import { IsoDate } from '@app/models';
     },
   ],
   imports: [MatIconModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatePickerComponent implements AfterViewInit, ControlValueAccessor {
   // Always render 6 weeks in calendar (the most that will ever be needed for any month)

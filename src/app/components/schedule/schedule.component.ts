@@ -2,7 +2,7 @@ import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
@@ -34,6 +34,7 @@ import { isSecondsInPast } from '@app/utils';
     MatIconModule,
     RouterLink,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScheduleComponent implements OnInit {
   @Input({ required: true }) public events!: Event[];

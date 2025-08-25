@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, switchMap, take } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -43,6 +44,7 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
     MatIconModule,
     TooltipDirective,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageViewerComponent
   implements OnInit, AfterViewInit, OnDestroy, DialogOutput<null>

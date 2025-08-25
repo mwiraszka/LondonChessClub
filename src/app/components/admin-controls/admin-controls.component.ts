@@ -2,6 +2,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
@@ -33,6 +34,7 @@ import { isTouchDevice } from '@app/utils';
     RouterLinkPipe,
     TooltipDirective,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminControlsComponent implements OnInit, OnDestroy {
   @Output() public destroyed = new EventEmitter<void>();

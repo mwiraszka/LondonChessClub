@@ -4,6 +4,7 @@ import { MarkdownComponent } from 'ngx-markdown';
 
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   DOCUMENT,
   Inject,
@@ -35,6 +36,7 @@ import { RoutingService } from '@app/services';
   `,
   styleUrl: './markdown-renderer.component.scss',
   imports: [KebabCasePipe, MarkdownComponent, RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
   @Input() public data?: string;

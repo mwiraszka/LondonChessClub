@@ -2,7 +2,13 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 import { camelCase } from 'lodash';
 
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
@@ -37,6 +43,7 @@ import { DialogService } from '@app/services';
     SafeModeNoticeComponent,
     TooltipDirective,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MembersTableComponent {
   public readonly DEFAULT_TABLE_HEADERS = [

@@ -1,6 +1,12 @@
 import { PDFProgressData, PdfViewerModule } from 'ng2-pdf-viewer';
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
 import { DialogOutput } from '@app/models';
 
@@ -22,6 +28,7 @@ import { DialogOutput } from '@app/models';
   `,
   styleUrl: './document-viewer.component.scss',
   imports: [PdfViewerModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocumentViewerComponent implements DialogOutput<null> {
   @Input() public documentPath?: string;

@@ -18,9 +18,15 @@ export const selectLastHomePageFetch = createSelector(
   selectArticlesState,
   state => state.lastHomePageFetch,
 );
-export const selectLastNewsPageFetch = createSelector(
+
+export const selectLastFilteredFetch = createSelector(
   selectArticlesState,
-  state => state.lastNewsPageFetch,
+  state => state.lastFilteredFetch,
+);
+
+export const selectFilteredArticles = createSelector(
+  selectArticlesState,
+  state => state.filteredArticles,
 );
 
 export const selectOptions = createSelector(selectArticlesState, state => state.options);
@@ -43,16 +49,15 @@ export const selectHomePageArticles = createSelector(
 const { selectAll: selectAllArticleEntities } =
   articlesAdapter.getSelectors(selectArticlesState);
 
-export const selectArticles = createSelector(
+export const selectAllArticles = createSelector(
   selectAllArticleEntities,
   allArticleEntities => allArticleEntities.map(entity => entity?.article),
 );
 
 export const selectArticleById = (id: Id | null) =>
   createSelector(
-    selectAllArticleEntities,
-    allArticleEntities =>
-      allArticleEntities.find(entity => entity.article.id === id)?.article ?? null,
+    selectAllArticles,
+    allArticles => allArticles.find(article => article.id === id) ?? null,
   );
 
 export const selectArticleFormDataById = (id: Id | null) =>

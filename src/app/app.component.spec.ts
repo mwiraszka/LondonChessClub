@@ -29,9 +29,9 @@ describe('AppComponent', () => {
   let setAttributeSpy: jest.SpyInstance;
 
   const mockState = {
-    appCallState: 'idle' as const,
     bannerLastCleared: null,
     isDarkMode: false,
+    isLoading: false,
     nextEvent: MOCK_EVENTS[0],
     showUpcomingEventBanner: true,
   };
@@ -71,21 +71,23 @@ describe('AppComponent', () => {
         touchEventsService = TestBed.inject(TouchEventsService);
         urlExpirationService = TestBed.inject(UrlExpirationService);
 
-        store.overrideSelector(AppSelectors.selectAppCallState, mockState.appCallState);
-        store.overrideSelector(AppSelectors.selectIsDarkMode, mockState.isDarkMode);
-        store.overrideSelector(
-          AppSelectors.selectShowUpcomingEventBanner,
-          mockState.showUpcomingEventBanner,
-        );
         store.overrideSelector(
           AppSelectors.selectBannerLastCleared,
           mockState.bannerLastCleared,
+        );
+        store.overrideSelector(AppSelectors.selectIsDarkMode, mockState.isDarkMode);
+        store.overrideSelector(AppSelectors.selectIsLoading, mockState.isLoading);
+        store.overrideSelector(
+          AppSelectors.selectShowUpcomingEventBanner,
+          mockState.showUpcomingEventBanner,
         );
         store.overrideSelector(EventsSelectors.selectNextEvent, mockState.nextEvent);
 
         dispatchSpy = jest.spyOn(store, 'dispatch');
         querySelectorSpy = jest.spyOn(document, 'querySelector');
         setAttributeSpy = jest.spyOn(document.body, 'setAttribute');
+        // Emit initial overridden selector values to subscribers
+        store.refreshState();
       });
   });
 
@@ -126,50 +128,12 @@ describe('AppComponent', () => {
     it('should set data-theme attribute to dark when isDarkMode is true', () => {
       const setAttributeSpy = jest.spyOn(document.body, 'setAttribute');
       store.overrideSelector(AppSelectors.selectIsDarkMode, true);
+      store.refreshState();
 
       component.ngOnInit();
       fixture.detectChanges();
 
       expect(setAttributeSpy).toHaveBeenCalledWith('data-theme', 'dark');
-    });
-
-    it('should reinstate banner when last cleared more than a day ago', () => {
-      const twoDaysAgo = new Date();
-      twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
-      store.overrideSelector(
-        AppSelectors.selectBannerLastCleared,
-        twoDaysAgo.toISOString(),
-      );
-
-      component.ngOnInit();
-      fixture.detectChanges();
-
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        AppActions.upcomingEventBannerReinstated(),
-      );
-    });
-
-    it('should not reinstate banner when last cleared today', () => {
-      const today = new Date().toISOString();
-      store.overrideSelector(AppSelectors.selectBannerLastCleared, today);
-
-      component.ngOnInit();
-      fixture.detectChanges();
-
-      expect(dispatchSpy).not.toHaveBeenCalledWith(
-        AppActions.upcomingEventBannerReinstated(),
-      );
-    });
-
-    it('should not reinstate banner when bannerLastCleared is null', () => {
-      store.overrideSelector(AppSelectors.selectBannerLastCleared, null);
-
-      component.ngOnInit();
-      fixture.detectChanges();
-
-      expect(dispatchSpy).not.toHaveBeenCalledWith(
-        AppActions.upcomingEventBannerReinstated(),
-      );
     });
 
     it('should initialize navigation listener for scrolling', () => {
@@ -228,8 +192,9 @@ describe('AppComponent', () => {
     });
 
     describe('loader', () => {
-      it('should render loader when appCallState is loading', () => {
-        store.overrideSelector(AppSelectors.selectAppCallState, 'loading');
+      it('should render loader when app is loading data', () => {
+        store.overrideSelector(AppSelectors.selectIsLoading, true);
+        store.refreshState();
 
         component.ngOnInit();
         fixture.detectChanges();
@@ -237,17 +202,9 @@ describe('AppComponent', () => {
         expect(query(fixture.debugElement, '.lcc-loader')).toBeTruthy();
       });
 
-      it('should not render loader when appCallState is idle', () => {
-        store.overrideSelector(AppSelectors.selectAppCallState, 'idle');
-
-        component.ngOnInit();
-        fixture.detectChanges();
-
-        expect(query(fixture.debugElement, '.lcc-loader')).toBeFalsy();
-      });
-
-      it('should not render loader when appCallState is error', () => {
-        store.overrideSelector(AppSelectors.selectAppCallState, 'error');
+      it('should not render loader when app is not loading data', () => {
+        store.overrideSelector(AppSelectors.selectIsLoading, false);
+        store.refreshState();
 
         component.ngOnInit();
         fixture.detectChanges();
@@ -260,6 +217,7 @@ describe('AppComponent', () => {
       it('should render banner when showUpcomingEventBanner is true and nextEvent exists', () => {
         store.overrideSelector(AppSelectors.selectShowUpcomingEventBanner, true);
         store.overrideSelector(EventsSelectors.selectNextEvent, MOCK_EVENTS[0]);
+        store.refreshState();
 
         component.ngOnInit();
         fixture.detectChanges();
@@ -273,6 +231,7 @@ describe('AppComponent', () => {
       it('should not render banner when showUpcomingEventBanner is false', () => {
         store.overrideSelector(AppSelectors.selectShowUpcomingEventBanner, false);
         store.overrideSelector(EventsSelectors.selectNextEvent, MOCK_EVENTS[0]);
+        store.refreshState();
 
         component.ngOnInit();
         fixture.detectChanges();
@@ -283,6 +242,7 @@ describe('AppComponent', () => {
       it('should not render banner when nextEvent is null', () => {
         store.overrideSelector(AppSelectors.selectShowUpcomingEventBanner, true);
         store.overrideSelector(EventsSelectors.selectNextEvent, null);
+        store.refreshState();
 
         component.ngOnInit();
         fixture.detectChanges();
@@ -293,6 +253,7 @@ describe('AppComponent', () => {
       it('should handle clearBanner event from banner component', () => {
         store.overrideSelector(AppSelectors.selectShowUpcomingEventBanner, true);
         store.overrideSelector(EventsSelectors.selectNextEvent, MOCK_EVENTS[0]);
+        store.refreshState();
 
         component.ngOnInit();
         fixture.detectChanges();

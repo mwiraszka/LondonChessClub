@@ -64,7 +64,7 @@ export class ArticleFormComponent implements OnInit {
   public ngOnInit(): void {
     if (!this.bannerImage && this.formData.bannerImageId) {
       this.store.dispatch(
-        ImagesActions.fetchOriginalRequested({ imageId: this.formData.bannerImageId }),
+        ImagesActions.fetchMainImageRequested({ imageId: this.formData.bannerImageId }),
       );
     }
 
@@ -112,7 +112,7 @@ export class ArticleFormComponent implements OnInit {
     if (dialogResponse !== 'close') {
       const imageId = dialogResponse.split('-')[0];
       this.form.patchValue({ bannerImageId: imageId });
-      this.store.dispatch(ImagesActions.fetchOriginalRequested({ imageId }));
+      this.store.dispatch(ImagesActions.fetchMainImageRequested({ imageId }));
     }
   }
 

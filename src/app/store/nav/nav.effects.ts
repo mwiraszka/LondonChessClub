@@ -2,7 +2,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { routerNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
-import { filter, map, tap } from 'rxjs/operators';
+import { concat } from 'lodash';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -255,7 +256,7 @@ export class NavEffects {
         if (controlMode === 'add' && !isDefined(imageId)) {
           return ImagesActions.addAnImageSelected();
         } else if (controlMode === 'edit' && isValidCollectionId(imageId)) {
-          return ImagesActions.fetchOriginalRequested({ imageId });
+          return ImagesActions.fetchMainImageRequested({ imageId });
         } else {
           return NavActions.navigationRequested({ path: 'photo-gallery' });
         }
@@ -303,7 +304,7 @@ export class NavEffects {
 
   redirectToPhotoGalleryRouteOnImageFetchFail$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ImagesActions.fetchOriginalFailed),
+      ofType(ImagesActions.fetchMainImageFailed),
       map(() => NavActions.navigationRequested({ path: '' })),
     ),
   );
@@ -320,55 +321,49 @@ export class NavEffects {
       ),
       filter(([, article]) => isDefined(article?.bannerImageId)),
       map(([, article]) =>
-        ImagesActions.fetchOriginalRequested({ imageId: article!.bannerImageId! }),
+        ImagesActions.fetchMainImageRequested({ imageId: article!.bannerImageId! }),
       ),
     ),
   );
 
-  refetchBannerImagesForHomePageArticles$ = createEffect(() =>
+  refetchHomePageArticleBannerImages$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       filter(({ payload }) => payload.event.url === '/'),
-      concatLatestFrom(() => [
-        this.store.select(ArticlesSelectors.selectHomePageArticles),
-        this.store
-          .select(ImagesSelectors.selectArticleImages)
-          .pipe(map(images => images.map(image => image.id))),
-      ]),
-      map(([, articles, storedArticleImageIds]) => {
-        const missingArticleImageIds = articles
-          .map(article => article.bannerImageId)
-          .filter(id => !storedArticleImageIds.includes(id));
-
-        return missingArticleImageIds;
+      switchMap(() => this.store.select(ArticlesSelectors.selectHomePageArticles)),
+      filter(articles => articles.length > 0),
+      concatLatestFrom(articles => {
+        const imageIds = articles
+          .filter(article => article.bannerImageId)
+          .map(article => article.bannerImageId);
+        return this.store.select(ImagesSelectors.selectImagesByIds(imageIds));
       }),
-      filter(missingArticleImageIds => missingArticleImageIds.length > 0),
-      map(missingArticleImageIds =>
-        ImagesActions.fetchBatchThumbnailsRequested({ imageIds: missingArticleImageIds }),
+      filter(([articles, bannerImages]) => bannerImages.length < articles.length),
+      map(([, bannerImages]) =>
+        ImagesActions.fetchBatchThumbnailsRequested({
+          imageIds: bannerImages.map(image => image.id),
+        }),
       ),
     ),
   );
 
-  refetchBannerImagesForNewsPageArticles$ = createEffect(() =>
+  refetchFilteredArticleBannerImages$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       filter(({ payload }) => payload.event.url === '/news'),
-      concatLatestFrom(() => [
-        this.store.select(ArticlesSelectors.selectArticles),
-        this.store
-          .select(ImagesSelectors.selectArticleImages)
-          .pipe(map(images => images.map(image => image.id))),
-      ]),
-      map(([, articles, storedArticleImageIds]) => {
-        const missingArticleImageIds = articles
-          .map(article => article.bannerImageId)
-          .filter(id => !storedArticleImageIds.includes(id));
-
-        return missingArticleImageIds;
+      switchMap(() => this.store.select(ArticlesSelectors.selectFilteredArticles)),
+      filter(articles => articles.length > 0),
+      concatLatestFrom(articles => {
+        const imageIds = articles
+          .filter(article => article.bannerImageId)
+          .map(article => article.bannerImageId);
+        return this.store.select(ImagesSelectors.selectImagesByIds(imageIds));
       }),
-      filter(missingArticleImageIds => missingArticleImageIds.length > 0),
-      map(missingArticleImageIds =>
-        ImagesActions.fetchBatchThumbnailsRequested({ imageIds: missingArticleImageIds }),
+      filter(([articles, bannerImages]) => bannerImages.length < articles.length),
+      map(([, bannerImages]) =>
+        ImagesActions.fetchBatchThumbnailsRequested({
+          imageIds: bannerImages.map(image => image.id),
+        }),
       ),
     ),
   );

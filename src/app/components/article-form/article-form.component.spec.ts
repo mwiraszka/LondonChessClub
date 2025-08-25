@@ -131,7 +131,7 @@ describe('ArticleFormComponent', () => {
     });
 
     describe('fetching banner image', () => {
-      it('should not dispatch fetchOriginalRequested if bannerImage is defined', () => {
+      it('should not dispatch fetchMainImageRequested if bannerImage is defined', () => {
         component.bannerImage = MOCK_IMAGES[0];
         fixture.detectChanges();
 
@@ -139,13 +139,13 @@ describe('ArticleFormComponent', () => {
         component.ngOnInit();
 
         expect(dispatchSpy).not.toHaveBeenCalledWith(
-          ImagesActions.fetchOriginalRequested({
+          ImagesActions.fetchMainImageRequested({
             imageId: component.formData.bannerImageId,
           }),
         );
       });
 
-      it('should dispatch fetchOriginalRequested if bannerImage is null', () => {
+      it('should dispatch fetchMainImageRequested if bannerImage is null', () => {
         component.bannerImage = null;
         fixture.detectChanges();
 
@@ -153,7 +153,7 @@ describe('ArticleFormComponent', () => {
         component.ngOnInit();
 
         expect(dispatchSpy).toHaveBeenCalledWith(
-          ImagesActions.fetchOriginalRequested({
+          ImagesActions.fetchMainImageRequested({
             imageId: component.formData.bannerImageId,
           }),
         );
@@ -282,7 +282,7 @@ describe('ArticleFormComponent', () => {
       });
       expect(component.form.controls.bannerImageId.value).toBe(newImageId);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        ImagesActions.fetchOriginalRequested({ imageId: newImageId }),
+        ImagesActions.fetchMainImageRequested({ imageId: newImageId }),
       );
     });
 

@@ -89,9 +89,9 @@ describe('ImageViewerComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should dispatch fetchOriginalRequested for image at index 0', () => {
+    it('should dispatch fetchMainImageRequested for image at index 0', () => {
       expect(dispatchSpy).toHaveBeenCalledWith(
-        ImagesActions.fetchOriginalRequested({
+        ImagesActions.fetchMainImageRequested({
           imageId: MOCK_IMAGES[0].id,
         }),
       );

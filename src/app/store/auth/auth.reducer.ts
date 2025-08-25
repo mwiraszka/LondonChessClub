@@ -11,7 +11,11 @@ export interface AuthState {
 }
 
 export const initialState: AuthState = {
-  callState: 'idle',
+  callState: {
+    status: 'idle',
+    loadStart: null,
+    error: null,
+  },
   user: null,
   hasCode: false,
 };
@@ -26,7 +30,11 @@ export const authReducer = createReducer(
     AuthActions.passwordChangeRequested,
     (state): AuthState => ({
       ...state,
-      callState: 'loading',
+      callState: {
+        status: 'loading',
+        loadStart: new Date().toISOString(),
+        error: null,
+      },
     }),
   ),
 
@@ -34,9 +42,13 @@ export const authReducer = createReducer(
     AuthActions.loginFailed,
     AuthActions.logoutFailed,
     AuthActions.passwordChangeFailed,
-    (state): AuthState => ({
+    (state, { error }): AuthState => ({
       ...state,
-      callState: 'error',
+      callState: {
+        status: 'error',
+        loadStart: null,
+        error,
+      },
     }),
   ),
 
@@ -45,33 +57,31 @@ export const authReducer = createReducer(
     AuthActions.passwordChangeSucceeded,
     (state, { user }): AuthState => ({
       ...state,
-      callState: 'idle',
+      callState: initialState.callState,
       user,
     }),
   ),
 
-  on(
-    AuthActions.logoutSucceeded,
-    (): AuthState => ({
-      ...initialState,
-      callState: 'idle',
-    }),
-  ),
+  on(AuthActions.logoutSucceeded, (): AuthState => ({ ...initialState })),
 
   on(
     AuthActions.codeForPasswordChangeSucceeded,
     (state): AuthState => ({
       ...state,
-      callState: 'idle',
+      callState: initialState.callState,
       hasCode: true,
     }),
   ),
 
   on(
     AuthActions.codeForPasswordChangeFailed,
-    (state): AuthState => ({
+    (state, { error }): AuthState => ({
       ...state,
-      callState: 'error',
+      callState: {
+        status: 'error',
+        loadStart: null,
+        error,
+      },
       hasCode: false,
     }),
   ),
@@ -81,8 +91,20 @@ export const authReducer = createReducer(
     AuthActions.passwordChangeSucceeded,
     (state): AuthState => ({
       ...state,
-      callState: 'idle',
+      callState: initialState.callState,
       hasCode: false,
+    }),
+  ),
+
+  on(
+    AuthActions.requestTimedOut,
+    (state): AuthState => ({
+      ...state,
+      callState: {
+        status: 'error',
+        loadStart: null,
+        error: { name: 'LCCError', message: 'Request timed out' },
+      },
     }),
   ),
 );

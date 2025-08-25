@@ -30,10 +30,11 @@ export class ArticlesEffects {
           search: '',
         };
 
-        return this.articlesService.getArticles(options).pipe(
+        return this.articlesService.getFilteredArticles(options).pipe(
           map(response =>
             ArticlesActions.fetchHomePageArticlesSucceeded({
               articles: response.data.items,
+              totalCount: response.data.totalCount,
             }),
           ),
           catchError(error =>
@@ -44,12 +45,41 @@ export class ArticlesEffects {
     );
   });
 
-  fetchArticleBannerImages$ = createEffect(() => {
+  fetchHomePageArticleBannerImages$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(
-        ArticlesActions.fetchHomePageArticlesSucceeded,
-        ArticlesActions.fetchNewsPageArticlesSucceeded,
+      ofType(ArticlesActions.fetchHomePageArticlesSucceeded),
+      map(({ articles }) =>
+        ImagesActions.fetchBatchThumbnailsRequested({
+          imageIds: articles.map(article => article.bannerImageId),
+        }),
       ),
+    );
+  });
+
+  fetchFilteredArticles$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.fetchFilteredArticlesRequested),
+      concatLatestFrom(() => this.store.select(ArticlesSelectors.selectOptions)),
+      switchMap(([, options]) =>
+        this.articlesService.getFilteredArticles(options).pipe(
+          map(response =>
+            ArticlesActions.fetchFilteredArticlesSucceeded({
+              articles: response.data.items,
+              filteredCount: response.data.filteredCount,
+              totalCount: response.data.totalCount,
+            }),
+          ),
+          catchError(error =>
+            of(ArticlesActions.fetchFilteredArticlesFailed({ error: parseError(error) })),
+          ),
+        ),
+      ),
+    );
+  });
+
+  fetchFilteredArticleBannerImages$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ArticlesActions.fetchFilteredArticlesSucceeded),
       filter(({ articles }) => articles.length > 0),
       map(({ articles }) =>
         ImagesActions.fetchBatchThumbnailsRequested({
@@ -59,32 +89,11 @@ export class ArticlesEffects {
     );
   });
 
-  fetchNewsPageArticles$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.fetchNewsPageArticlesRequested),
-      concatLatestFrom(() => this.store.select(ArticlesSelectors.selectOptions)),
-      switchMap(([, options]) =>
-        this.articlesService.getArticles(options).pipe(
-          map(response =>
-            ArticlesActions.fetchNewsPageArticlesSucceeded({
-              articles: response.data.items,
-              filteredCount: response.data.filteredCount,
-              totalCount: response.data.totalCount,
-            }),
-          ),
-          catchError(error =>
-            of(ArticlesActions.fetchNewsPageArticlesFailed({ error: parseError(error) })),
-          ),
-        ),
-      ),
-    );
-  });
-
-  refetchArticlesAfterPaginationOptionsChange$ = createEffect(() => {
+  refetchFilteredArticlesAfterPaginationOptionsChange$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.paginationOptionsChanged),
       filter(({ fetch }) => fetch),
-      map(() => ArticlesActions.fetchNewsPageArticlesRequested()),
+      map(() => ArticlesActions.fetchFilteredArticlesRequested()),
     );
   });
 

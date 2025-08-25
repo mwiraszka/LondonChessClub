@@ -87,16 +87,16 @@ export class NewsPageComponent implements OnInit {
     );
 
     this.store
-      .select(ArticlesSelectors.selectLastNewsPageFetch)
+      .select(ArticlesSelectors.selectLastFilteredFetch)
       .pipe(take(1))
       .subscribe(lastFetch => {
         if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(ArticlesActions.fetchNewsPageArticlesRequested());
+          this.store.dispatch(ArticlesActions.fetchFilteredArticlesRequested());
         }
       });
 
     this.viewModel$ = combineLatest([
-      this.store.select(ArticlesSelectors.selectArticles),
+      this.store.select(ArticlesSelectors.selectFilteredArticles),
       this.store.select(ImagesSelectors.selectArticleImages),
       this.store.select(ArticlesSelectors.selectFilteredCount),
       this.store.select(AuthSelectors.selectIsAdmin),

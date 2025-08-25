@@ -128,7 +128,7 @@ describe('ImageFormComponent', () => {
         expect(fetchNewImageDataUrlSpy).not.toHaveBeenCalled();
       });
 
-      it('should not dispatch fetchOriginalRequested', () => {
+      it('should not dispatch fetchMainImageRequested', () => {
         expect(dispatchSpy).not.toHaveBeenCalled();
       });
     });
@@ -170,7 +170,7 @@ describe('ImageFormComponent', () => {
         expect(fetchNewImageDataUrlSpy).toHaveBeenCalledWith(MOCK_IMAGES[0].id);
       });
 
-      it('should not dispatch fetchOriginalRequested', () => {
+      it('should not dispatch fetchMainImageRequested', () => {
         expect(dispatchSpy).not.toHaveBeenCalled();
       });
     });
@@ -214,7 +214,7 @@ describe('ImageFormComponent', () => {
         expect(fetchNewImageDataUrlSpy).not.toHaveBeenCalled();
       });
 
-      it('should not dispatch fetchOriginalRequested', () => {
+      it('should not dispatch fetchMainImageRequested', () => {
         expect(dispatchSpy).not.toHaveBeenCalled();
       });
     });
@@ -276,9 +276,9 @@ describe('ImageFormComponent', () => {
         expect(fetchNewImageDataUrlSpy).not.toHaveBeenCalled();
       });
 
-      it('should dispatch fetchOriginalRequested', () => {
+      it('should dispatch fetchMainImageRequested', () => {
         expect(dispatchSpy).toHaveBeenCalledWith(
-          ImagesActions.fetchOriginalRequested({ imageId: MOCK_IMAGES[0].id }),
+          ImagesActions.fetchMainImageRequested({ imageId: MOCK_IMAGES[0].id }),
         );
       });
     });

@@ -1,6 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { CallState } from '@app/models';
 import { ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
 import { EventsSelectors } from '@app/store/events';
@@ -11,7 +10,7 @@ import { AppState } from './app.reducer';
 
 export const selectAppState = createFeatureSelector<AppState>('appState');
 
-export const selectAppCallState = createSelector(
+export const selectIsLoading = createSelector(
   ArticlesSelectors.selectCallState,
   AuthSelectors.selectCallState,
   EventsSelectors.selectCallState,
@@ -24,21 +23,13 @@ export const selectAppCallState = createSelector(
     imagesCallState,
     membersCallState,
   ) => {
-    const callStates = [
+    return [
       articlesCallState,
       authCallState,
       eventsCallState,
       imagesCallState,
       membersCallState,
-    ];
-
-    const appCallState: CallState = callStates.some(callState => callState === 'loading')
-      ? 'loading'
-      : callStates.some(callState => callState === 'error')
-        ? 'idle'
-        : 'error';
-
-    return appCallState;
+    ].some(callState => callState.status === 'loading');
   },
 );
 

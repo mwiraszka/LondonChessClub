@@ -31,7 +31,7 @@ export class ImagesService {
     );
   }
 
-  public getThumbnailImages(
+  public getFilteredThumbnailImages(
     options: DataPaginationOptions<Image>,
   ): Observable<ApiResponse<PaginatedItems<Image>>> {
     const params = setPaginationParams(options);

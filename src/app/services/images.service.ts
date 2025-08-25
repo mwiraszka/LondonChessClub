@@ -31,7 +31,7 @@ export class ImagesService {
     );
   }
 
-  public getThumbnailImages(
+  public getFilteredThumbnailImages(
     options: DataPaginationOptions<Image>,
   ): Observable<ApiResponse<PaginatedItems<Image>>> {
     const params = setPaginationParams(options);
@@ -49,7 +49,7 @@ export class ImagesService {
     );
   }
 
-  public getOriginalImage(id: Id, isPrefetch = false): Observable<ApiResponse<Image>> {
+  public getMainImage(id: Id, isPrefetch = false): Observable<ApiResponse<Image>> {
     const url = `${this.API_BASE_URL}/${this.COLLECTION}/${id}`;
 
     if (isPrefetch) {

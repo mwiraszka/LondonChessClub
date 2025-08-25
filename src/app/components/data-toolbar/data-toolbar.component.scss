@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 8px 32px;
+  padding: 8px 16px;
   background-color: var(--lcc-color--dataToolbar-background);
   border-radius: var(--lcc-borderRadius--small);
   box-shadow: 0 2px 4px 0 var(--lcc-color--table-boxShadow);
@@ -113,11 +113,7 @@
 }
 
 .pagination-summary {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--lcc-color--dataToolbar-text);
   text-align: center;
-
-  @include respond-to('gt-xs') {
-    font-size: 14px;
-  }
 }

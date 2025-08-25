@@ -1,5 +1,5 @@
 @if (viewModel$ | async; as vm) {
-  @if (vm.appCallState === 'loading') {
+  @if (vm.isLoading) {
     <div class="lcc-loader"><div></div></div>
   }
 

@@ -29,7 +29,6 @@ export type {
   ImageFormGroup,
   IndexedDbImageData,
 } from './image.model';
-export type { ImageRequestKind } from './image-request-kind.model';
 export type { ExternalLink, InternalLink, InternalPath } from './link.model';
 export type { ChangePasswordFormGroup, LoginFormGroup } from './login.model';
 export type {

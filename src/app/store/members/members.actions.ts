@@ -130,3 +130,5 @@ export const exportMembersToCsvFailed = createAction(
   '[Members] Export members to CSV failed',
   props<{ error: LccError }>(),
 );
+
+export const requestTimedOut = createAction('[Members] Request timed out');

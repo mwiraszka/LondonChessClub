@@ -199,10 +199,10 @@ export class ImageViewerComponent
         if (!image?.mainUrl) {
           if (isPrefetch) {
             this.store.dispatch(
-              ImagesActions.fetchOriginalInBackgroundRequested({ imageId }),
+              ImagesActions.fetchMainImageInBackgroundRequested({ imageId }),
             );
           } else {
-            this.store.dispatch(ImagesActions.fetchOriginalRequested({ imageId }));
+            this.store.dispatch(ImagesActions.fetchMainImageRequested({ imageId }));
           }
         }
       });

@@ -18,8 +18,9 @@ export interface ArticlesState
   callState: CallState;
   newArticleFormData: ArticleFormData;
   lastHomePageFetch: IsoDate | null;
-  lastNewsPageFetch: IsoDate | null;
+  lastFilteredFetch: IsoDate | null;
   homePageArticles: Article[];
+  filteredArticles: Article[];
   options: DataPaginationOptions<Article>;
   filteredCount: number | null;
   totalCount: number;
@@ -33,11 +34,16 @@ export const articlesAdapter = createEntityAdapter<{
 });
 
 export const initialState: ArticlesState = articlesAdapter.getInitialState({
-  callState: 'idle',
+  callState: {
+    status: 'idle',
+    loadStart: null,
+    error: null,
+  },
   newArticleFormData: INITIAL_ARTICLE_FORM_DATA,
   lastHomePageFetch: null,
-  lastNewsPageFetch: null,
+  lastFilteredFetch: null,
   homePageArticles: [],
+  filteredArticles: [],
   options: {
     page: 1,
     pageSize: 10,
@@ -55,7 +61,7 @@ export const articlesReducer = createReducer(
 
   on(
     ArticlesActions.fetchHomePageArticlesRequested,
-    ArticlesActions.fetchNewsPageArticlesRequested,
+    ArticlesActions.fetchFilteredArticlesRequested,
     ArticlesActions.fetchArticleRequested,
     ArticlesActions.publishArticleRequested,
     ArticlesActions.updateArticleRequested,
@@ -63,45 +69,62 @@ export const articlesReducer = createReducer(
     ArticlesActions.deleteArticleRequested,
     (state): ArticlesState => ({
       ...state,
-      callState: 'loading',
+      callState: {
+        status: 'loading',
+        loadStart: new Date().toISOString(),
+        error: null,
+      },
     }),
   ),
 
   on(
     ArticlesActions.fetchHomePageArticlesFailed,
-    ArticlesActions.fetchNewsPageArticlesFailed,
+    ArticlesActions.fetchFilteredArticlesFailed,
     ArticlesActions.fetchArticleFailed,
     ArticlesActions.publishArticleFailed,
     ArticlesActions.updateArticleFailed,
     ArticlesActions.deleteArticleFailed,
-    (state): ArticlesState => ({
+    (state, { error }): ArticlesState => ({
       ...state,
-      callState: 'error',
+      callState: {
+        status: 'error',
+        loadStart: null,
+        error,
+      },
     }),
   ),
 
   on(
     ArticlesActions.fetchHomePageArticlesSucceeded,
-    (state, { articles }): ArticlesState => ({
-      ...state,
-      callState: 'idle',
-      homePageArticles: articles,
-      lastHomePageFetch: new Date().toISOString(),
-    }),
-  ),
-
-  on(
-    ArticlesActions.fetchNewsPageArticlesSucceeded,
-    (state, { articles, filteredCount, totalCount }): ArticlesState =>
-      articlesAdapter.setAll(
+    (state, { articles, totalCount }): ArticlesState =>
+      articlesAdapter.upsertMany(
         articles.map(article => ({
           article,
           formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
         })),
         {
           ...state,
-          callState: 'idle',
-          lastNewsPageFetch: new Date().toISOString(),
+          callState: initialState.callState,
+          homePageArticles: articles,
+          lastHomePageFetch: new Date().toISOString(),
+          totalCount,
+        },
+      ),
+  ),
+
+  on(
+    ArticlesActions.fetchFilteredArticlesSucceeded,
+    (state, { articles, filteredCount, totalCount }): ArticlesState =>
+      articlesAdapter.upsertMany(
+        articles.map(article => ({
+          article,
+          formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+        })),
+        {
+          ...state,
+          callState: initialState.callState,
+          filteredArticles: articles,
+          lastFilteredFetch: new Date().toISOString(),
           filteredCount,
           totalCount,
         },
@@ -115,7 +138,10 @@ export const articlesReducer = createReducer(
         article,
         formData: previousFormData ?? pick(article, ARTICLE_FORM_DATA_PROPERTIES),
       },
-      { ...state, callState: 'idle' },
+      {
+        ...state,
+        callState: initialState.callState,
+      },
     );
   }),
 
@@ -129,10 +155,10 @@ export const articlesReducer = createReducer(
         },
         {
           ...state,
-          callState: 'idle',
+          callState: initialState.callState,
           newArticleFormData: INITIAL_ARTICLE_FORM_DATA,
           lastHomePageFetch: null,
-          lastNewsPageFetch: null,
+          lastFilteredFetch: null,
         },
       ),
   ),
@@ -147,9 +173,9 @@ export const articlesReducer = createReducer(
         },
         {
           ...state,
-          callState: 'idle',
+          callState: initialState.callState,
           lastHomePageFetch: null,
-          lastNewsPageFetch: null,
+          lastFilteredFetch: null,
         },
       ),
   ),
@@ -159,10 +185,22 @@ export const articlesReducer = createReducer(
     (state, { articleId }): ArticlesState =>
       articlesAdapter.removeOne(articleId, {
         ...state,
-        callState: 'idle',
+        callState: initialState.callState,
         lastHomePageFetch: null,
         lastNewsPageFetch: null,
       }),
+  ),
+
+  on(
+    ArticlesActions.requestTimedOut,
+    (state): ArticlesState => ({
+      ...state,
+      callState: {
+        status: 'error',
+        loadStart: null,
+        error: { name: 'LCCError', message: 'Request timed out' },
+      },
+    }),
   ),
 
   on(ArticlesActions.formValueChanged, (state, { articleId, value }): ArticlesState => {

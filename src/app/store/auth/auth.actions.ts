@@ -54,3 +54,5 @@ export const passwordChangeFailed = createAction(
   '[Auth] Password change failed',
   props<{ error: LccError }>(),
 );
+
+export const requestTimedOut = createAction('[Auth] Request timed out');

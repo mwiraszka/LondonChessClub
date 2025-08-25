@@ -32,6 +32,15 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.8.1 - August 25th, 2025</summary>
+
+- 🚀 Increase input text font size to prevent native zoom-on-focus behaviour on iPhones 
+- 🐛 Ensure article banner images always load on initial page load
+- 🔧 Minor adjustments to call state updates and request timeouts
+
+</details>
+
+<details>
 <summary>v5.8.0 - August 24th, 2025</summary>
 
 - 🚀 Add support for bulk member rating updates through CSV import

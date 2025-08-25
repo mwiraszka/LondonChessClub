@@ -9,7 +9,6 @@ import {
   Id,
   Image,
   ImageFormData,
-  ImageRequestKind,
   IsoDate,
 } from '@app/models';
 import { customSort } from '@app/utils';
@@ -19,36 +18,6 @@ import * as ImagesActions from './images.actions';
 export interface ImagesState
   extends EntityState<{ image: Image; formData: ImageFormData }> {
   callState: CallState;
-  // Per-request tracking to avoid orphaned global loading states
-  requests: Record<
-    ImageRequestKind,
-    | {
-        status: 'idle';
-        requestId?: string;
-        startedAt?: number;
-        lastSuccessAt?: number;
-        timeoutMs?: number;
-      }
-    | {
-        status: 'loading';
-        requestId: string;
-        startedAt: number;
-        timeoutMs?: number;
-      }
-    | {
-        status: 'timedOut';
-        requestId: string;
-        startedAt: number;
-        timeoutMs: number;
-      }
-    | {
-        status: 'error';
-        requestId?: string;
-        startedAt?: number;
-        lastSuccessAt?: number;
-        timeoutMs?: number;
-      }
-  >;
   newImagesFormData: Record<string, ImageFormData>;
   lastMetadataFetch: IsoDate | null;
   lastFilteredThumbnailsFetch: IsoDate | null;
@@ -69,20 +38,10 @@ export const imagesAdapter = createEntityAdapter<{
 });
 
 export const initialState: ImagesState = imagesAdapter.getInitialState({
-  callState: 'idle',
-  requests: {
-    fetchAllImagesMetadata: { status: 'idle' },
-    fetchFilteredThumbnails: { status: 'idle' },
-    fetchBatchThumbnails: { status: 'idle' },
-    fetchOriginal: { status: 'idle' },
-    fetchOriginalInBackground: { status: 'idle' },
-    addImage: { status: 'idle' },
-    addImages: { status: 'idle' },
-    updateImage: { status: 'idle' },
-    updateAlbum: { status: 'idle' },
-    deleteImage: { status: 'idle' },
-    deleteAlbum: { status: 'idle' },
-    automaticAlbumCoverSwitch: { status: 'idle' },
+  callState: {
+    status: 'idle',
+    loadStart: null,
+    error: null,
   },
   newImagesFormData: {},
   lastMetadataFetch: null,
@@ -105,64 +64,10 @@ export const imagesReducer = createReducer(
   initialState,
 
   on(
-    ImagesActions.imageRequestStarted,
-    (state, { kind, requestId, startedAt }): ImagesState => ({
-      ...state,
-      requests: {
-        ...state.requests,
-        [kind]: { status: 'loading', requestId, startedAt },
-      },
-    }),
-  ),
-
-  on(ImagesActions.imageRequestFinished, (state, { kind, requestId }): ImagesState => {
-    const current = state.requests[kind];
-    if (!current || current.requestId !== requestId) {
-      return state;
-    }
-
-    return {
-      ...state,
-      requests: {
-        ...state.requests,
-        [kind]: {
-          status: 'idle',
-          requestId,
-          startedAt: current.startedAt,
-          lastSuccessAt: Date.now(),
-        },
-      },
-    };
-  }),
-
-  on(
-    ImagesActions.imageRequestTimedOut,
-    (state, { kind, requestId, timeoutMs }): ImagesState => {
-      const current = state.requests[kind];
-      if (!current || current.requestId !== requestId) {
-        return state;
-      }
-
-      return {
-        ...state,
-        requests: {
-          ...state.requests,
-          [kind]: {
-            status: 'timedOut',
-            requestId,
-            startedAt: current.startedAt,
-            timeoutMs,
-          },
-        },
-      };
-    },
-  ),
-
-  on(
     ImagesActions.fetchAllImagesMetadataRequested,
     ImagesActions.fetchFilteredThumbnailsRequested,
     ImagesActions.fetchBatchThumbnailsRequested,
-    ImagesActions.fetchOriginalRequested,
+    ImagesActions.fetchMainImageRequested,
     ImagesActions.addImageRequested,
     ImagesActions.addImagesRequested,
     ImagesActions.updateImageRequested,
@@ -171,7 +76,11 @@ export const imagesReducer = createReducer(
     ImagesActions.deleteAlbumRequested,
     (state): ImagesState => ({
       ...state,
-      callState: 'loading',
+      callState: {
+        status: 'loading',
+        loadStart: new Date().toISOString(),
+        error: null,
+      },
     }),
   ),
 
@@ -179,16 +88,20 @@ export const imagesReducer = createReducer(
     ImagesActions.fetchAllImagesMetadataFailed,
     ImagesActions.fetchFilteredThumbnailsFailed,
     ImagesActions.fetchBatchThumbnailsFailed,
-    ImagesActions.fetchOriginalFailed,
+    ImagesActions.fetchMainImageFailed,
     ImagesActions.addImageFailed,
     ImagesActions.addImagesFailed,
     ImagesActions.updateImageFailed,
     ImagesActions.updateAlbumFailed,
     ImagesActions.deleteImageFailed,
     ImagesActions.deleteAlbumFailed,
-    (state): ImagesState => ({
+    (state, { error }): ImagesState => ({
       ...state,
-      callState: 'error',
+      callState: {
+        status: 'error',
+        loadStart: null,
+        error,
+      },
     }),
   ),
 
@@ -197,14 +110,20 @@ export const imagesReducer = createReducer(
     (state, { images }): ImagesState =>
       imagesAdapter.upsertMany(
         images.map(image => {
+          const originalEntity = image ? state.entities[image.id] : null;
+
           return {
-            image,
+            image: {
+              ...image,
+              mainUrl: originalEntity?.image.mainUrl,
+              thumbnailUrl: originalEntity?.image.thumbnailUrl,
+            },
             formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
           };
         }),
         {
           ...state,
-          callState: 'idle',
+          callState: initialState.callState,
           lastMetadataFetch: new Date(Date.now()).toISOString(),
         },
       ),
@@ -215,17 +134,19 @@ export const imagesReducer = createReducer(
     (state, { images, filteredCount, totalCount }): ImagesState => {
       return imagesAdapter.upsertMany(
         images.map(image => {
+          const originalEntity = image ? state.entities[image.id] : null;
+
           return {
             image: {
               ...image,
-              thumbnailUrl: image.thumbnailUrl!,
+              mainUrl: originalEntity?.image.mainUrl,
             },
             formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
           };
         }),
         {
           ...state,
-          callState: 'idle',
+          callState: initialState.callState,
           lastFilteredThumbnailsFetch: new Date(Date.now()).toISOString(),
           filteredImages: images,
           filteredCount,
@@ -240,17 +161,19 @@ export const imagesReducer = createReducer(
     (state, { images, isAlbumCoverFetch }): ImagesState =>
       imagesAdapter.upsertMany(
         images.map(image => {
+          const originalEntity = image ? state.entities[image.id] : null;
+
           return {
             image: {
               ...image,
-              thumbnailUrl: image.thumbnailUrl!,
+              mainUrl: originalEntity?.image.mainUrl,
             },
             formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
           };
         }),
         {
           ...state,
-          callState: 'idle',
+          callState: initialState.callState,
           lastAlbumCoversFetch: isAlbumCoverFetch
             ? new Date(Date.now()).toISOString()
             : state.lastAlbumCoversFetch,
@@ -258,7 +181,7 @@ export const imagesReducer = createReducer(
       ),
   ),
 
-  on(ImagesActions.fetchOriginalSucceeded, (state, { image }): ImagesState => {
+  on(ImagesActions.fetchMainImageSucceeded, (state, { image }): ImagesState => {
     const originalEntity = image ? state.entities[image.id] : null;
 
     return imagesAdapter.upsertOne(
@@ -266,11 +189,10 @@ export const imagesReducer = createReducer(
         image: {
           ...image,
           mainUrl: image.mainUrl ?? originalEntity?.image.mainUrl,
-          thumbnailUrl: image.thumbnailUrl ?? originalEntity?.image.thumbnailUrl,
         },
         formData: originalEntity?.formData ?? pick(image, IMAGE_FORM_DATA_PROPERTIES),
       },
-      { ...state, callState: 'idle' },
+      { ...state, callState: initialState.callState },
     );
   }),
 
@@ -282,7 +204,7 @@ export const imagesReducer = createReducer(
       },
       {
         ...state,
-        callState: 'idle',
+        callState: initialState.callState,
         newImagesFormData: {},
         lastFilteredThumbnailsFetch: null,
         lastAlbumCoversFetch: null,
@@ -307,7 +229,7 @@ export const imagesReducer = createReducer(
       }),
       {
         ...state,
-        callState: 'idle',
+        callState: initialState.callState,
         newImagesFormData: {},
         lastFilteredThumbnailsFetch: null,
         lastAlbumCoversFetch: null,
@@ -327,7 +249,7 @@ export const imagesReducer = createReducer(
         },
         {
           ...state,
-          callState: 'idle',
+          callState: initialState.callState,
           lastFilteredThumbnailsFetch: null,
           lastAlbumCoversFetch: null,
           lastMetadataFetch: null,
@@ -359,7 +281,7 @@ export const imagesReducer = createReducer(
       ),
       {
         ...state,
-        callState: 'idle',
+        callState: initialState.callState,
         lastFilteredThumbnailsFetch: null,
         lastAlbumCoversFetch: null,
         lastMetadataFetch: null,
@@ -373,7 +295,7 @@ export const imagesReducer = createReducer(
     (state, { image }): ImagesState =>
       imagesAdapter.removeOne(image.id, {
         ...state,
-        callState: 'idle',
+        callState: initialState.callState,
         lastFilteredThumbnailsFetch: null,
         lastAlbumCoversFetch: null,
         lastMetadataFetch: null,
@@ -385,7 +307,7 @@ export const imagesReducer = createReducer(
     (state, { imageIds }): ImagesState =>
       imagesAdapter.removeMany(imageIds, {
         ...state,
-        callState: 'idle',
+        callState: initialState.callState,
         lastFilteredThumbnailsFetch: null,
         lastAlbumCoversFetch: null,
         lastMetadataFetch: null,
@@ -514,4 +436,16 @@ export const imagesReducer = createReducer(
       newImagesFormData: {},
     };
   }),
+
+  on(
+    ImagesActions.requestTimedOut,
+    (state): ImagesState => ({
+      ...state,
+      callState: {
+        status: 'error',
+        loadStart: null,
+        error: { name: 'LCCError', message: 'Request timed out' },
+      },
+    }),
+  ),
 );

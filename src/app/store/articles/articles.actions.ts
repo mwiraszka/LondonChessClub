@@ -13,22 +13,22 @@ export const fetchHomePageArticlesRequested = createAction(
 );
 export const fetchHomePageArticlesSucceeded = createAction(
   '[Articles] Fetch home page articles succeeded',
-  props<{ articles: Article[] }>(),
+  props<{ articles: Article[]; totalCount: number }>(),
 );
 export const fetchHomePageArticlesFailed = createAction(
   '[Articles] Fetch home page articles failed',
   props<{ error: LccError }>(),
 );
 
-export const fetchNewsPageArticlesRequested = createAction(
-  '[Articles] Fetch news page articles requested',
+export const fetchFilteredArticlesRequested = createAction(
+  '[Articles] Fetch filtered articles requested',
 );
-export const fetchNewsPageArticlesSucceeded = createAction(
-  '[Articles] Fetch news page articles succeeded',
+export const fetchFilteredArticlesSucceeded = createAction(
+  '[Articles] Fetch filtered articles succeeded',
   props<{ articles: Article[]; filteredCount: number; totalCount: number }>(),
 );
-export const fetchNewsPageArticlesFailed = createAction(
-  '[Articles] Fetch news page articles failed',
+export const fetchFilteredArticlesFailed = createAction(
+  '[Articles] Fetch filtered articles failed',
   props<{ error: LccError }>(),
 );
 
@@ -107,3 +107,5 @@ export const articleFormDataReset = createAction(
   '[Articles] Article form data reset',
   props<{ articleId: Id | null }>(),
 );
+
+export const requestTimedOut = createAction('[Articles] Request timed out');

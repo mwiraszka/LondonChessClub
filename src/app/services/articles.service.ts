@@ -24,7 +24,7 @@ export class ArticlesService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getArticles(
+  public getFilteredArticles(
     options: DataPaginationOptions<Article>,
   ): Observable<ApiResponse<PaginatedItems<Article>>> {
     const params = setPaginationParams(options);

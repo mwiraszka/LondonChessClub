@@ -33,7 +33,11 @@ export const membersAdapter = createEntityAdapter<{
 });
 
 export const initialState: MembersState = membersAdapter.getInitialState({
-  callState: 'idle',
+  callState: {
+    status: 'idle',
+    loadStart: null,
+    error: null,
+  },
   newMemberFormData: INITIAL_MEMBER_FORM_DATA,
   lastFullFetch: null,
   lastFilteredFetch: null,
@@ -68,7 +72,11 @@ export const membersReducer = createReducer(
     MembersActions.updateMemberRatingsRequested,
     (state): MembersState => ({
       ...state,
-      callState: 'loading',
+      callState: {
+        status: 'loading',
+        loadStart: new Date().toISOString(),
+        error: null,
+      },
     }),
   ),
 
@@ -80,9 +88,13 @@ export const membersReducer = createReducer(
     MembersActions.updateMemberFailed,
     MembersActions.deleteMemberFailed,
     MembersActions.updateMemberRatingsFailed,
-    (state): MembersState => ({
+    (state, { error }): MembersState => ({
       ...state,
-      callState: 'error',
+      callState: {
+        status: 'error',
+        loadStart: null,
+        error,
+      },
     }),
   ),
 
@@ -96,7 +108,7 @@ export const membersReducer = createReducer(
         })),
         {
           ...state,
-          callState: 'idle',
+          callState: initialState.callState,
           lastFullFetch: new Date().toISOString(),
           totalCount,
         },
@@ -105,22 +117,21 @@ export const membersReducer = createReducer(
 
   on(
     MembersActions.fetchFilteredMembersSucceeded,
-    (state, { members, filteredCount, totalCount }): MembersState => {
-      return membersAdapter.upsertMany(
+    (state, { members, filteredCount, totalCount }): MembersState =>
+      membersAdapter.upsertMany(
         members.map(member => ({
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
         })),
         {
           ...state,
-          callState: 'idle',
+          callState: initialState.callState,
           lastFilteredFetch: new Date(Date.now()).toISOString(),
           filteredMembers: members,
           filteredCount,
           totalCount,
         },
-      );
-    },
+      ),
   ),
 
   on(MembersActions.fetchMemberSucceeded, (state, { member }): MembersState => {
@@ -130,7 +141,7 @@ export const membersReducer = createReducer(
         member,
         formData: previousFormData ?? pick(member, MEMBER_FORM_DATA_PROPERTIES),
       },
-      { ...state, callState: 'idle' },
+      { ...state, callState: initialState.callState },
     );
   }),
 
@@ -142,7 +153,11 @@ export const membersReducer = createReducer(
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
         },
-        { ...state, callState: 'idle', newMemberFormData: INITIAL_MEMBER_FORM_DATA },
+        {
+          ...state,
+          callState: initialState.callState,
+          newMemberFormData: INITIAL_MEMBER_FORM_DATA,
+        },
       ),
   ),
 
@@ -154,7 +169,7 @@ export const membersReducer = createReducer(
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
         },
-        { ...state, callState: 'idle', lastFilteredFetch: null },
+        { ...state, callState: initialState.callState, lastFilteredFetch: null },
       ),
   ),
 
@@ -166,7 +181,7 @@ export const membersReducer = createReducer(
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
         })),
-        { ...state, callState: 'idle', lastFilteredFetch: null },
+        { ...state, callState: initialState.callState, lastFilteredFetch: null },
       ),
   ),
 
@@ -175,7 +190,7 @@ export const membersReducer = createReducer(
     (state, { memberId }): MembersState =>
       membersAdapter.removeOne(memberId, {
         ...state,
-        callState: 'idle',
+        callState: initialState.callState,
         lastFilteredFetch: null,
       }),
   ),
@@ -231,4 +246,16 @@ export const membersReducer = createReducer(
       state,
     );
   }),
+
+  on(
+    MembersActions.requestTimedOut,
+    (state): MembersState => ({
+      ...state,
+      callState: {
+        status: 'error',
+        loadStart: null,
+        error: { name: 'LCCError', message: 'Request timed out' },
+      },
+    }),
+  ),
 );

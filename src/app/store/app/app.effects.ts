@@ -1,23 +1,26 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
-import { filter, map, tap } from 'rxjs/operators';
+import { ActionCreator } from '@ngrx/store';
+import moment from 'moment-timezone';
+import { timer } from 'rxjs';
+import { filter, map, mergeMap, take, tap, withLatestFrom } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { LccError, Toast } from '@app/models';
+import { CallState, LccError, Toast } from '@app/models';
 import { ToastService } from '@app/services';
-import { ArticlesActions } from '@app/store/articles';
+import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
-import { EventsActions } from '@app/store/events';
-import { ImagesActions } from '@app/store/images';
-import { MembersActions } from '@app/store/members';
+import { EventsActions, EventsSelectors } from '@app/store/events';
+import { ImagesActions, ImagesSelectors } from '@app/store/images';
+import { MembersActions, MembersSelectors } from '@app/store/members';
 import { NavActions } from '@app/store/nav';
 import { isDefined } from '@app/utils';
 
 import { environment } from '@env';
 
-import { AppActions } from '.';
+import { AppActions, AppSelectors } from '.';
 
 type NotifyAction = ReturnType<
   | (typeof ArticlesActions)[keyof typeof ArticlesActions]
@@ -34,10 +37,11 @@ export class AppEffects {
     ArticlesActions.deleteArticleFailed,
     ArticlesActions.deleteArticleSucceeded,
     ArticlesActions.fetchArticleFailed,
+    ArticlesActions.fetchFilteredArticlesFailed,
     ArticlesActions.fetchHomePageArticlesFailed,
-    ArticlesActions.fetchNewsPageArticlesFailed,
     ArticlesActions.publishArticleFailed,
     ArticlesActions.publishArticleSucceeded,
+    ArticlesActions.requestTimedOut,
     ArticlesActions.updateArticleFailed,
     ArticlesActions.updateArticleSucceeded,
 
@@ -49,6 +53,7 @@ export class AppEffects {
     AuthActions.logoutSucceeded,
     AuthActions.passwordChangeFailed,
     AuthActions.passwordChangeSucceeded,
+    AuthActions.requestTimedOut,
 
     EventsActions.addEventFailed,
     EventsActions.addEventSucceeded,
@@ -56,6 +61,7 @@ export class AppEffects {
     EventsActions.deleteEventSucceeded,
     EventsActions.fetchEventFailed,
     EventsActions.fetchEventsFailed,
+    EventsActions.requestTimedOut,
     EventsActions.updateEventFailed,
     EventsActions.updateEventSucceeded,
 
@@ -72,8 +78,9 @@ export class AppEffects {
     ImagesActions.fetchAllImagesMetadataFailed,
     ImagesActions.fetchBatchThumbnailsFailed,
     ImagesActions.fetchFilteredThumbnailsFailed,
-    ImagesActions.fetchOriginalFailed,
+    ImagesActions.fetchMainImageFailed,
     ImagesActions.imageFileActionFailed,
+    ImagesActions.requestTimedOut,
     ImagesActions.updateAlbumFailed,
     ImagesActions.updateImageFailed,
     ImagesActions.updateAlbumSucceeded,
@@ -83,23 +90,24 @@ export class AppEffects {
     MembersActions.addMemberSucceeded,
     MembersActions.deleteMemberFailed,
     MembersActions.deleteMemberSucceeded,
+    MembersActions.exportMembersToCsvFailed,
+    MembersActions.exportMembersToCsvSucceeded,
     MembersActions.fetchMemberFailed,
     MembersActions.fetchAllMembersFailed,
     MembersActions.fetchFilteredMembersFailed,
+    MembersActions.parseMemberRatingsFromCsvFailed,
+    MembersActions.requestTimedOut,
     MembersActions.updateMemberFailed,
     MembersActions.updateMemberSucceeded,
     MembersActions.updateMemberRatingsSucceeded,
     MembersActions.updateMemberRatingsFailed,
-    MembersActions.parseMemberRatingsFromCsvFailed,
-    MembersActions.exportMembersToCsvFailed,
-    MembersActions.exportMembersToCsvSucceeded,
 
     NavActions.pageAccessDenied,
   ] as const;
 
   readonly SUPPRESSED_TOASTS_IN_PROD = [
+    ArticlesActions.fetchFilteredArticlesFailed,
     ArticlesActions.fetchHomePageArticlesFailed,
-    ArticlesActions.fetchNewsPageArticlesFailed,
     ArticlesActions.fetchArticleFailed,
 
     EventsActions.fetchEventsFailed,
@@ -108,12 +116,14 @@ export class AppEffects {
     ImagesActions.fetchAllImagesMetadataFailed,
     ImagesActions.fetchBatchThumbnailsFailed,
     ImagesActions.fetchFilteredThumbnailsFailed,
-    ImagesActions.fetchOriginalFailed,
+    ImagesActions.fetchMainImageFailed,
 
     MembersActions.fetchAllMembersFailed,
     MembersActions.fetchFilteredMembersFailed,
     MembersActions.fetchMemberFailed,
   ] as const;
+
+  readonly REQUEST_TIMEOUT_MS = 10000;
 
   notify$ = createEffect(() => {
     return this.actions$.pipe(
@@ -139,11 +149,134 @@ export class AppEffects {
     );
   });
 
+  reinstateUpcomingEventBanner$ = createEffect(() =>
+    this.store.select(AppSelectors.selectBannerLastCleared).pipe(
+      take(1),
+      filter(
+        bannerLastCleared =>
+          isDefined(bannerLastCleared) && moment().diff(bannerLastCleared, 'days') > 0,
+      ),
+      map(() => AppActions.upcomingEventBannerReinstated()),
+    ),
+  );
+
   constructor(
     private readonly actions$: Actions,
     private readonly store: Store,
     private readonly toastService: ToastService,
   ) {}
+
+  private readonly articlesRequested = [
+    ArticlesActions.fetchFilteredArticlesRequested,
+    ArticlesActions.fetchHomePageArticlesRequested,
+    ArticlesActions.fetchArticleRequested,
+    ArticlesActions.publishArticleRequested,
+    ArticlesActions.updateArticleRequested,
+    ArticlesActions.updateArticleBookmarkRequested,
+    ArticlesActions.deleteArticleRequested,
+  ];
+
+  private readonly eventsRequested = [
+    EventsActions.fetchEventsRequested,
+    EventsActions.fetchEventRequested,
+    EventsActions.addEventRequested,
+    EventsActions.updateEventRequested,
+    EventsActions.deleteEventRequested,
+  ];
+
+  private readonly imagesRequested = [
+    ImagesActions.fetchAllImagesMetadataRequested,
+    ImagesActions.fetchFilteredThumbnailsRequested,
+    ImagesActions.fetchBatchThumbnailsRequested,
+    ImagesActions.fetchMainImageRequested,
+    ImagesActions.addImageRequested,
+    ImagesActions.addImagesRequested,
+    ImagesActions.updateImageRequested,
+    ImagesActions.updateAlbumRequested,
+    ImagesActions.deleteImageRequested,
+    ImagesActions.deleteAlbumRequested,
+  ];
+
+  private readonly membersRequested = [
+    MembersActions.fetchAllMembersRequested,
+    MembersActions.fetchFilteredMembersRequested,
+    MembersActions.fetchMemberRequested,
+    MembersActions.addMemberRequested,
+    MembersActions.updateMemberRequested,
+    MembersActions.deleteMemberRequested,
+    MembersActions.updateMemberRatingsRequested,
+    MembersActions.exportMembersToCsvRequested,
+  ];
+
+  private readonly authRequested = [
+    AuthActions.loginRequested,
+    AuthActions.logoutRequested,
+    AuthActions.codeForPasswordChangeRequested,
+    AuthActions.passwordChangeRequested,
+  ];
+
+  private createTimeoutEffect(
+    requestedActions: ActionCreator[],
+    selectCallState: (state: object) => CallState,
+    timeoutAction: () => { type: string },
+  ) {
+    return createEffect(
+      () =>
+        this.actions$.pipe(
+          ofType(...requestedActions),
+          withLatestFrom(this.store.select(selectCallState)),
+          map(([, callState]) => callState.loadStart),
+          filter(isDefined),
+          mergeMap(loadStart =>
+            timer(this.REQUEST_TIMEOUT_MS).pipe(
+              withLatestFrom(this.store.select(selectCallState)),
+              filter(([, latest]) => {
+                return (
+                  latest.status === 'loading' &&
+                  !!latest.loadStart &&
+                  latest.loadStart === loadStart &&
+                  Date.now() - new Date(latest.loadStart).getTime() >=
+                    this.REQUEST_TIMEOUT_MS
+                );
+              }),
+              map(() => timeoutAction()),
+            ),
+          ),
+        ),
+      { dispatch: true },
+    );
+  }
+
+  // Individual timeout effects per feature slice
+  articlesTimeout$ = this.createTimeoutEffect(
+    this.articlesRequested,
+    ArticlesSelectors.selectCallState,
+    () => ArticlesActions.requestTimedOut(),
+  );
+
+  authTimeout$ = this.createTimeoutEffect(
+    this.authRequested,
+    AuthSelectors.selectCallState,
+    () => AuthActions.requestTimedOut(),
+  );
+
+  eventsTimeout$ = this.createTimeoutEffect(
+    this.eventsRequested,
+    EventsSelectors.selectCallState,
+    () => EventsActions.requestTimedOut(),
+  );
+
+  imagesTimeout$ = this.createTimeoutEffect(
+    this.imagesRequested,
+    ImagesSelectors.selectCallState,
+    () => ImagesActions.requestTimedOut(),
+  );
+
+  membersTimeout$ = this.createTimeoutEffect(
+    this.membersRequested,
+    MembersSelectors.selectCallState,
+    () => MembersActions.requestTimedOut(),
+  );
 
   private getErrorMessage(error: LccError): string {
     return error.status ? `[${error.status}] ${error.message}` : error.message;
@@ -169,13 +302,13 @@ export class AppEffects {
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case ArticlesActions.fetchHomePageArticlesFailed.type:
+      case ArticlesActions.fetchFilteredArticlesFailed.type:
         return {
           title: 'Load articles',
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case ArticlesActions.fetchNewsPageArticlesFailed.type:
+      case ArticlesActions.fetchHomePageArticlesFailed.type:
         return {
           title: 'Load articles',
           message: this.getErrorMessage(action.error),
@@ -192,6 +325,12 @@ export class AppEffects {
           title: 'New article',
           message: `Successfully published ${action.article.title}`,
           type: 'success',
+        };
+      case ArticlesActions.requestTimedOut.type:
+        return {
+          title: 'Articles request',
+          message: 'Request timed out',
+          type: 'warning',
         };
       case ArticlesActions.updateArticleFailed.type:
         return {
@@ -256,6 +395,12 @@ export class AppEffects {
           message: 'Successfully changed password and logged in',
           type: 'success',
         };
+      case AuthActions.requestTimedOut.type:
+        return {
+          title: 'Auth request',
+          message: 'Request timed out',
+          type: 'warning',
+        };
 
       case EventsActions.addEventFailed.type:
         return {
@@ -291,6 +436,12 @@ export class AppEffects {
         return {
           title: 'Load events',
           message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case EventsActions.requestTimedOut.type:
+        return {
+          title: 'Events request',
+          message: 'Request timed out',
           type: 'warning',
         };
       case EventsActions.updateEventFailed.type:
@@ -384,7 +535,7 @@ export class AppEffects {
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case ImagesActions.fetchOriginalFailed.type:
+      case ImagesActions.fetchMainImageFailed.type:
         return {
           title: 'Fetch image',
           message: this.getErrorMessage(action.error),
@@ -394,6 +545,12 @@ export class AppEffects {
         return {
           title: 'Image file',
           message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case ImagesActions.requestTimedOut.type:
+        return {
+          title: 'Images request',
+          message: 'Request timed out',
           type: 'warning',
         };
       case ImagesActions.updateAlbumFailed.type:
@@ -445,6 +602,18 @@ export class AppEffects {
           message: `Successfully deleted ${action.memberName}`,
           type: 'success',
         };
+      case MembersActions.exportMembersToCsvFailed.type:
+        return {
+          title: 'CSV export',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case MembersActions.exportMembersToCsvSucceeded.type:
+        return {
+          title: 'CSV export',
+          message: `Successfully exported ${action.exportedCount} members to CSV`,
+          type: 'success',
+        };
       case MembersActions.fetchMemberFailed.type:
         return {
           title: 'Load member',
@@ -463,35 +632,23 @@ export class AppEffects {
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case MembersActions.updateMemberFailed.type:
-        return {
-          title: 'Member update',
-          message: this.getErrorMessage(action.error),
-          type: 'warning',
-        };
-      case MembersActions.updateMemberSucceeded.type:
-        return {
-          title: 'Member update',
-          message: `Successfully updated ${action.originalMemberName}`,
-          type: 'success',
-        };
       case MembersActions.parseMemberRatingsFromCsvFailed.type:
         return {
           title: 'CSV import',
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case MembersActions.exportMembersToCsvFailed.type:
+      case MembersActions.requestTimedOut.type:
         return {
-          title: 'CSV export',
-          message: this.getErrorMessage(action.error),
+          title: 'Members request',
+          message: 'Request timed out',
           type: 'warning',
         };
-      case MembersActions.exportMembersToCsvSucceeded.type:
+      case MembersActions.updateMemberFailed.type:
         return {
-          title: 'CSV export',
-          message: `Successfully exported ${action.exportedCount} members to CSV`,
-          type: 'success',
+          title: 'Member update',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
         };
       case MembersActions.updateMemberRatingsFailed.type:
         return {
@@ -505,6 +662,13 @@ export class AppEffects {
           message: `Successfully updated ${action.members.length} members`,
           type: 'success',
         };
+      case MembersActions.updateMemberSucceeded.type:
+        return {
+          title: 'Member update',
+          message: `Successfully updated ${action.originalMemberName}`,
+          type: 'success',
+        };
+
       case NavActions.pageAccessDenied.type:
         return {
           title: 'Access denied',

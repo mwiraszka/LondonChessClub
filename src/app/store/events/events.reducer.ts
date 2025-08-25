@@ -25,7 +25,11 @@ export const eventsAdapter = createEntityAdapter<{
 });
 
 export const initialState: EventsState = eventsAdapter.getInitialState({
-  callState: 'idle',
+  callState: {
+    status: 'idle',
+    loadStart: null,
+    error: null,
+  },
   newEventFormData: INITIAL_EVENT_FORM_DATA,
   showPastEvents: false,
   lastFetch: null,
@@ -42,7 +46,11 @@ export const eventsReducer = createReducer(
     EventsActions.deleteEventRequested,
     (state): EventsState => ({
       ...state,
-      callState: 'loading',
+      callState: {
+        status: 'loading',
+        loadStart: new Date().toISOString(),
+        error: null,
+      },
     }),
   ),
 
@@ -52,9 +60,13 @@ export const eventsReducer = createReducer(
     EventsActions.addEventFailed,
     EventsActions.updateEventFailed,
     EventsActions.deleteEventFailed,
-    (state): EventsState => ({
+    (state, { error }): EventsState => ({
       ...state,
-      callState: 'error',
+      callState: {
+        status: 'error',
+        loadStart: null,
+        error,
+      },
     }),
   ),
 
@@ -64,7 +76,11 @@ export const eventsReducer = createReducer(
         event,
         formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
       })),
-      { ...state, callState: 'idle', lastFetch: new Date().toISOString() },
+      {
+        ...state,
+        callState: initialState.callState,
+        lastFetch: new Date().toISOString(),
+      },
     );
   }),
 
@@ -75,7 +91,7 @@ export const eventsReducer = createReducer(
         event,
         formData: previousFormData ?? pick(event, EVENT_FORM_DATA_PROPERTIES),
       },
-      { ...state, callState: 'idle' },
+      { ...state, callState: initialState.callState },
     );
   }),
 
@@ -87,7 +103,11 @@ export const eventsReducer = createReducer(
           event,
           formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
         },
-        { ...state, callState: 'idle', newEventFormData: INITIAL_EVENT_FORM_DATA },
+        {
+          ...state,
+          callState: initialState.callState,
+          newEventFormData: INITIAL_EVENT_FORM_DATA,
+        },
       ),
   ),
 
@@ -99,14 +119,26 @@ export const eventsReducer = createReducer(
           event,
           formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
         },
-        { ...state, callState: 'idle' },
+        { ...state, callState: initialState.callState },
       ),
   ),
 
   on(
     EventsActions.deleteEventSucceeded,
     (state, { eventId }): EventsState =>
-      eventsAdapter.removeOne(eventId, { ...state, callState: 'idle' }),
+      eventsAdapter.removeOne(eventId, { ...state, callState: initialState.callState }),
+  ),
+
+  on(
+    EventsActions.requestTimedOut,
+    (state): EventsState => ({
+      ...state,
+      callState: {
+        status: 'error',
+        loadStart: null,
+        error: { name: 'LCCError', message: 'Request timed out' },
+      },
+    }),
   ),
 
   on(EventsActions.formValueChanged, (state, { eventId, value }): EventsState => {

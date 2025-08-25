@@ -2,13 +2,12 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
-import { from, interval, of } from 'rxjs';
-import { catchError, filter, finalize, map, switchMap, timeout } from 'rxjs/operators';
-import { v4 as uuidv4 } from 'uuid';
+import { from, of } from 'rxjs';
+import { catchError, filter, map, mergeMap, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { BaseImage, ImageRequestKind, LccError } from '@app/models';
+import { BaseImage, LccError } from '@app/models';
 import { ImageFileService, ImagesService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { dataUrlToFile, isDefined, isLccError } from '@app/utils';
@@ -16,57 +15,27 @@ import { parseError } from '@app/utils/error/parse-error.util';
 
 import { ImagesActions, ImagesSelectors } from '.';
 
-const IMAGE_REQUEST_TIMEOUT_MS = 15000;
-const SWEEP_INTERVAL_MS = 10000;
-
 @Injectable()
 export class ImagesEffects {
   fetchAllImagesMetadata$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchAllImagesMetadataRequested),
-      switchMap(() => {
-        const requestId = uuidv4();
-        this.store.dispatch(
-          ImagesActions.imageRequestStarted({
-            kind: 'fetchAllImagesMetadata',
-            requestId,
-            startedAt: Date.now(),
-          }),
-        );
-        return this.imagesService.getAllImagesMetadata().pipe(
-          timeout({ each: IMAGE_REQUEST_TIMEOUT_MS }),
+      switchMap(() =>
+        this.imagesService.getAllImagesMetadata().pipe(
           map(response =>
             ImagesActions.fetchAllImagesMetadataSucceeded({
               images: response.data,
             }),
           ),
-          catchError(error => {
-            const isTimeout = error?.name === 'TimeoutError';
-            if (isTimeout) {
-              return of(
-                ImagesActions.imageRequestTimedOut({
-                  kind: 'fetchAllImagesMetadata',
-                  requestId,
-                  timeoutMs: IMAGE_REQUEST_TIMEOUT_MS,
-                }),
-              );
-            }
-            return of(
+          catchError(error =>
+            of(
               ImagesActions.fetchAllImagesMetadataFailed({
                 error: parseError(error),
               }),
-            );
-          }),
-          finalize(() =>
-            this.store.dispatch(
-              ImagesActions.imageRequestFinished({
-                kind: 'fetchAllImagesMetadata',
-                requestId,
-              }),
             ),
           ),
-        );
-      }),
+        ),
+      ),
     );
   });
 
@@ -74,17 +43,8 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchFilteredThumbnailsRequested),
       concatLatestFrom(() => this.store.select(ImagesSelectors.selectOptions)),
-      switchMap(([, options]) => {
-        const requestId = uuidv4();
-        this.store.dispatch(
-          ImagesActions.imageRequestStarted({
-            kind: 'fetchFilteredThumbnails',
-            requestId,
-            startedAt: Date.now(),
-          }),
-        );
-        return this.imagesService.getThumbnailImages(options).pipe(
-          timeout({ each: IMAGE_REQUEST_TIMEOUT_MS }),
+      switchMap(([, options]) =>
+        this.imagesService.getFilteredThumbnailImages(options).pipe(
           map(response =>
             ImagesActions.fetchFilteredThumbnailsSucceeded({
               images: response.data.items,
@@ -92,37 +52,19 @@ export class ImagesEffects {
               totalCount: response.data.totalCount,
             }),
           ),
-          catchError(error => {
-            const isTimeout = error?.name === 'TimeoutError';
-            if (isTimeout) {
-              return of(
-                ImagesActions.imageRequestTimedOut({
-                  kind: 'fetchFilteredThumbnails',
-                  requestId,
-                  timeoutMs: IMAGE_REQUEST_TIMEOUT_MS,
-                }),
-              );
-            }
-            return of(
+          catchError(error =>
+            of(
               ImagesActions.fetchFilteredThumbnailsFailed({
                 error: parseError(error),
               }),
-            );
-          }),
-          finalize(() =>
-            this.store.dispatch(
-              ImagesActions.imageRequestFinished({
-                kind: 'fetchFilteredThumbnails',
-                requestId,
-              }),
             ),
           ),
-        );
-      }),
+        ),
+      ),
     );
   });
 
-  paginationOptionsChanged$ = createEffect(() => {
+  refetchFilteredThumbnailsAfterPaginationOptionsChanged$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.paginationOptionsChanged),
       filter(({ fetch }) => fetch),
@@ -147,166 +89,63 @@ export class ImagesEffects {
   fetchBatchThumbnailImages$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchBatchThumbnailsRequested),
-      switchMap(({ imageIds, isAlbumCoverFetch }) => {
-        const requestId = uuidv4();
-        this.store.dispatch(
-          ImagesActions.imageRequestStarted({
-            kind: 'fetchBatchThumbnails',
-            requestId,
-            startedAt: Date.now(),
-          }),
-        );
-        return this.imagesService.getBatchThumbnailImages(imageIds).pipe(
-          timeout({ each: IMAGE_REQUEST_TIMEOUT_MS }),
+      mergeMap(({ imageIds, isAlbumCoverFetch }) =>
+        this.imagesService.getBatchThumbnailImages(imageIds).pipe(
           map(response =>
             ImagesActions.fetchBatchThumbnailsSucceeded({
               images: response.data,
               isAlbumCoverFetch,
             }),
           ),
-          catchError(error => {
-            const isTimeout = error?.name === 'TimeoutError';
-            if (isTimeout) {
-              return of(
-                ImagesActions.imageRequestTimedOut({
-                  kind: 'fetchBatchThumbnails',
-                  requestId,
-                  timeoutMs: IMAGE_REQUEST_TIMEOUT_MS,
-                }),
-              );
-            }
-            return of(
+          catchError(error =>
+            of(
               ImagesActions.fetchBatchThumbnailsFailed({
                 error: parseError(error),
               }),
-            );
-          }),
-          finalize(() =>
-            this.store.dispatch(
-              ImagesActions.imageRequestFinished({
-                kind: 'fetchBatchThumbnails',
-                requestId,
-              }),
             ),
           ),
-        );
-      }),
+        ),
+      ),
     );
   });
 
-  fetchOriginalImage$ = createEffect(() => {
+  fetchMainImage$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchOriginalRequested),
-      switchMap(({ imageId }) => {
-        const requestId = uuidv4();
-        this.store.dispatch(
-          ImagesActions.imageRequestStarted({
-            kind: 'fetchOriginal',
-            requestId,
-            startedAt: Date.now(),
-          }),
-        );
-        return this.imagesService.getOriginalImage(imageId).pipe(
-          timeout({ each: IMAGE_REQUEST_TIMEOUT_MS }),
-          map(response => ImagesActions.fetchOriginalSucceeded({ image: response.data })),
-          catchError(error => {
-            const isTimeout = error?.name === 'TimeoutError';
-            if (isTimeout) {
-              return of(
-                ImagesActions.imageRequestTimedOut({
-                  kind: 'fetchOriginal',
-                  requestId,
-                  timeoutMs: IMAGE_REQUEST_TIMEOUT_MS,
-                }),
-              );
-            }
-            return of(
-              ImagesActions.fetchOriginalFailed({
+      ofType(ImagesActions.fetchMainImageRequested),
+      switchMap(({ imageId }) =>
+        this.imagesService.getMainImage(imageId).pipe(
+          map(response =>
+            ImagesActions.fetchMainImageSucceeded({ image: response.data }),
+          ),
+          catchError(error =>
+            of(
+              ImagesActions.fetchMainImageFailed({
                 error: parseError(error),
               }),
-            );
-          }),
-          finalize(() =>
-            this.store.dispatch(
-              ImagesActions.imageRequestFinished({
-                kind: 'fetchOriginal',
-                requestId,
-              }),
             ),
           ),
-        );
-      }),
+        ),
+      ),
     );
   });
 
-  fetchOriginalImageInBackground$ = createEffect(() => {
+  fetchMainImageInBackground$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ImagesActions.fetchOriginalInBackgroundRequested),
-      switchMap(({ imageId }) => {
-        const requestId = uuidv4();
-        this.store.dispatch(
-          ImagesActions.imageRequestStarted({
-            kind: 'fetchOriginalInBackground',
-            requestId,
-            startedAt: Date.now(),
-          }),
-        );
-        return this.imagesService.getOriginalImage(imageId, true).pipe(
-          timeout({ each: IMAGE_REQUEST_TIMEOUT_MS }),
-          map(response => ImagesActions.fetchOriginalSucceeded({ image: response.data })),
-          catchError(error => {
-            const isTimeout = error?.name === 'TimeoutError';
-            if (isTimeout) {
-              return of(
-                ImagesActions.imageRequestTimedOut({
-                  kind: 'fetchOriginalInBackground',
-                  requestId,
-                  timeoutMs: IMAGE_REQUEST_TIMEOUT_MS,
-                }),
-              );
-            }
-            return of(
-              ImagesActions.fetchOriginalFailed({
+      ofType(ImagesActions.fetchMainImageInBackgroundRequested),
+      switchMap(({ imageId }) =>
+        this.imagesService.getMainImage(imageId, true).pipe(
+          map(response =>
+            ImagesActions.fetchMainImageSucceeded({ image: response.data }),
+          ),
+          catchError(error =>
+            of(
+              ImagesActions.fetchMainImageFailed({
                 error: parseError(error),
               }),
-            );
-          }),
-          finalize(() =>
-            this.store.dispatch(
-              ImagesActions.imageRequestFinished({
-                kind: 'fetchOriginalInBackground',
-                requestId,
-              }),
             ),
           ),
-        );
-      }),
-    );
-  });
-
-  // Periodic sweeper dispatching timeout for any lingering loading requests
-  sweepForStuckRequests$ = createEffect(() => {
-    return interval(SWEEP_INTERVAL_MS).pipe(
-      concatLatestFrom(() => this.store.select(ImagesSelectors.selectImagesRequests)),
-      map(([, requests]) => {
-        const now = Date.now();
-        return Object.entries(requests)
-          .filter(
-            ([, r]) =>
-              r.status === 'loading' &&
-              now - (r.startedAt || 0) > IMAGE_REQUEST_TIMEOUT_MS &&
-              !!r.requestId,
-          )
-          .map(([kind, r]) =>
-            ImagesActions.imageRequestTimedOut({
-              kind: kind as ImageRequestKind,
-              requestId: r.requestId!,
-              timeoutMs: IMAGE_REQUEST_TIMEOUT_MS,
-            }),
-          );
-      }),
-      filter(actions => actions.length > 0),
-      switchMap(actions => of(...actions)),
+        ),
+      ),
     );
   });
 

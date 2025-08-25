@@ -76,3 +76,5 @@ export const eventFormDataReset = createAction(
 );
 
 export const pastEventsToggled = createAction('[Events] Past events toggled');
+
+export const requestTimedOut = createAction('[Events] Request timed out');

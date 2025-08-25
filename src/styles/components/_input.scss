@@ -1,3 +1,5 @@
+@use '../abstracts/mixins' as *;
+
 input[type='text'],
 input[type='password'],
 textarea {
@@ -6,12 +8,23 @@ textarea {
   min-width: 40px;
   border: 1px solid var(--lcc-color--input-border);
   border-radius: var(--lcc-borderRadius--small) !important;
-  font-size: 14px !important;
+  line-height: 1.4;
   height: 36px;
   padding: 10px;
   margin: 3px 0 !important;
   background-color: var(--lcc-color--input-background);
   color: var(--lcc-color--input-text);
+  font-size: 14px;
+
+  // Ensure font size is at least 16px on mobile to prevent
+  // iOS Safari's native zoom-on-focus behaviour
+  @include respond-to('lt-md') {
+    font-size: 16px !important;
+
+    &::placeholder {
+      font-size: 16px !important;
+    }
+  }
 
   &.ng-invalid.ng-touched {
     border-color: var(--lcc-color--input-invalidBorder);

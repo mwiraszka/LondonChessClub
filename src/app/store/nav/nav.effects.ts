@@ -2,7 +2,6 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { routerNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
-import { concat } from 'lodash';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
@@ -316,12 +315,14 @@ export class NavEffects {
       filter(currentPath => currentPath.startsWith('/article/view/')),
       map(currentPath => currentPath.split('/article/view/')[1]),
       filter(isDefined),
-      concatLatestFrom(articleId =>
-        this.store.select(ArticlesSelectors.selectArticleById(articleId)),
-      ),
-      filter(([, article]) => isDefined(article?.bannerImageId)),
-      map(([, article]) =>
-        ImagesActions.fetchMainImageRequested({ imageId: article!.bannerImageId! }),
+      switchMap(articleId =>
+        this.store.select(ArticlesSelectors.selectArticleById(articleId)).pipe(
+          filter(isDefined),
+          map(article => article.bannerImageId),
+          concatLatestFrom(id => this.store.select(ImagesSelectors.selectImageById(id))),
+          filter(([, image]) => !image?.mainUrl),
+          map(([imageId]) => ImagesActions.fetchMainImageRequested({ imageId })),
+        ),
       ),
     ),
   );

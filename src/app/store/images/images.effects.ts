@@ -109,11 +109,11 @@ export class ImagesEffects {
     );
   });
 
-  fetchOriginalImage$ = createEffect(() => {
+  fetchMainImage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchMainImageRequested),
       switchMap(({ imageId }) =>
-        this.imagesService.getOriginalImage(imageId).pipe(
+        this.imagesService.getMainImage(imageId).pipe(
           map(response =>
             ImagesActions.fetchMainImageSucceeded({ image: response.data }),
           ),
@@ -129,11 +129,11 @@ export class ImagesEffects {
     );
   });
 
-  fetchOriginalImageInBackground$ = createEffect(() => {
+  fetchMainImageInBackground$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchMainImageInBackgroundRequested),
       switchMap(({ imageId }) =>
-        this.imagesService.getOriginalImage(imageId, true).pipe(
+        this.imagesService.getMainImage(imageId, true).pipe(
           map(response =>
             ImagesActions.fetchMainImageSucceeded({ image: response.data }),
           ),

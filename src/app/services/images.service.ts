@@ -49,7 +49,7 @@ export class ImagesService {
     );
   }
 
-  public getOriginalImage(id: Id, isPrefetch = false): Observable<ApiResponse<Image>> {
+  public getMainImage(id: Id, isPrefetch = false): Observable<ApiResponse<Image>> {
     const url = `${this.API_BASE_URL}/${this.COLLECTION}/${id}`;
 
     if (isPrefetch) {

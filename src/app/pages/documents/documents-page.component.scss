@@ -3,6 +3,8 @@
 $icon-height: 18px;
 
 .documents-table {
+  width: 100%;
+
   th {
     &.published,
     &.last-modified {

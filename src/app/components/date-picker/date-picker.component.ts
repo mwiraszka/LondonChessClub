@@ -1,6 +1,11 @@
 import moment, { Moment } from 'moment-timezone';
 
-import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+} from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -36,7 +41,7 @@ export class DatePickerComponent implements ControlValueAccessor {
   public screenWidth = window.innerWidth;
   public selectedDate!: Moment;
 
-  constructor() {}
+  constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
 
   @HostListener('window:resize', ['$event'])
   private onResize = () => (this.screenWidth = window.innerWidth);
@@ -54,6 +59,7 @@ export class DatePickerComponent implements ControlValueAccessor {
     }
 
     this.renderCalendar();
+    this.changeDetectorRef.markForCheck();
   }
 
   public registerOnChange(fn: (date: IsoDate) => IsoDate): void {
@@ -82,6 +88,7 @@ export class DatePickerComponent implements ControlValueAccessor {
     this.selectedDate = this.getCalendarFirstDay().add(row, 'weeks').add(column, 'days');
     this.renderCalendar();
     this.onChange(this.selectedDate.toISOString());
+    this.changeDetectorRef.markForCheck();
   }
 
   public setSelectedDate(dateIso: IsoDate): void {
@@ -89,6 +96,7 @@ export class DatePickerComponent implements ControlValueAccessor {
     // Anchor calendar to start of selected date's month for consistent rendering
     this.currentMonth = this.selectedDate.clone().startOf('month');
     this.renderCalendar();
+    this.changeDetectorRef.markForCheck();
   }
 
   public renderCalendar(): void {

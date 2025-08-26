@@ -32,6 +32,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.8.3 - August TBD, 2025</summary>
+
+- 🐛 Prevent layout shift with club logo image in app header as the page loads
+
+</details>
+
+<details>
 <summary>v5.8.2 - August 25th, 2025</summary>
 
 - 🚀 Set the change detection strategy on all reusable components to `OnPush` for a notable performance boost across the entire app

@@ -15,10 +15,10 @@ import { RangePipe } from '@app/pipes';
           routerLink="">
           <div class="image-container">
             <img
+              decoding="async"
+              fetchpriority="high"
               [image]="{
                 mainUrl: 'assets/lcc-branding.svg',
-                mainWidth: 60,
-                mainHeight: 60,
                 caption: 'London Chess Club',
               }" />
           </div>

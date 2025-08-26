@@ -3,6 +3,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -43,6 +44,7 @@ export class AdminControlsComponent implements OnInit, OnDestroy {
   public showDeleteButton!: boolean;
 
   constructor(
+    private readonly changeDetectorRef: ChangeDetectorRef,
     @Inject(ADMIN_CONTROLS_CONFIG_TOKEN) public config: AdminControlsConfig,
     private readonly elementRef: ElementRef,
     private readonly keyStateService: KeyStateService,
@@ -61,6 +63,9 @@ export class AdminControlsComponent implements OnInit, OnDestroy {
         .pipe(untilDestroyed(this))
         .subscribe(isPressed => {
           this.showDeleteButton = isPressed;
+          // Renderer-based global listeners run outside Angular change detection;
+          // explicitly mark for check so OnPush view updates when key pressed AFTER opening.
+          this.changeDetectorRef.markForCheck();
         });
     }
   }

@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
@@ -33,6 +39,7 @@ import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
   `,
   styleUrl: './upcoming-event-banner.component.scss',
   imports: [CommonModule, FormatDatePipe, KebabCasePipe, MatIconModule, RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UpcomingEventBannerComponent {
   @Input({ required: true }) public nextEvent!: Event;

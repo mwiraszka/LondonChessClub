@@ -340,9 +340,9 @@ export class NavEffects {
         return this.store.select(ImagesSelectors.selectImagesByIds(imageIds));
       }),
       filter(([articles, bannerImages]) => bannerImages.length < articles.length),
-      map(([, bannerImages]) =>
+      map(([articles]) =>
         ImagesActions.fetchBatchThumbnailsRequested({
-          imageIds: bannerImages.map(image => image.id),
+          imageIds: articles.map(article => article.bannerImageId),
         }),
       ),
     ),
@@ -361,9 +361,9 @@ export class NavEffects {
         return this.store.select(ImagesSelectors.selectImagesByIds(imageIds));
       }),
       filter(([articles, bannerImages]) => bannerImages.length < articles.length),
-      map(([, bannerImages]) =>
+      map(([articles]) =>
         ImagesActions.fetchBatchThumbnailsRequested({
-          imageIds: bannerImages.map(image => image.id),
+          imageIds: articles.map(article => article.bannerImageId),
         }),
       ),
     ),

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   HostBinding,
@@ -47,6 +48,7 @@ import { isDefined } from '@app/utils';
     RouterLinkPipe,
     StripMarkdownPipe,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleGridComponent implements OnChanges {
   @Input({ required: true }) articles!: Article[];

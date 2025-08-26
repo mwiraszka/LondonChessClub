@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
@@ -22,6 +22,7 @@ import {
     TruncateByCharsPipe,
     WasEditedPipe,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleComponent {
   @Input({ required: true }) article!: Article;

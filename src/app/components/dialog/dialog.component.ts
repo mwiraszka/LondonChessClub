@@ -2,6 +2,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ComponentRef,
   EventEmitter,
@@ -30,6 +31,7 @@ import { DIALOG_CONFIG_TOKEN } from '@app/services';
   `,
   styleUrl: './dialog.component.scss',
   imports: [MatIconModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogComponent<TComponent extends DialogOutput<TResult>, TResult>
   implements AfterViewInit

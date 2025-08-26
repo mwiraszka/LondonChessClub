@@ -6,7 +6,6 @@ import { PageHeaderComponent } from './page-header.component';
 
 describe('PageHeaderComponent', () => {
   let fixture: ComponentFixture<PageHeaderComponent>;
-  let component: PageHeaderComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -15,40 +14,41 @@ describe('PageHeaderComponent', () => {
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(PageHeaderComponent);
-        component = fixture.componentInstance;
         fixture.detectChanges();
       });
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
   describe('template rendering', () => {
     it('should always display title', () => {
-      component.title = 'Mock Title';
+      fixture.componentRef.setInput('title', 'Mock Title');
       fixture.detectChanges();
 
       expect(queryTextContent(fixture.debugElement, '.page-title')).toBe('Mock Title');
     });
 
     it('should display icon when provided', () => {
-      component.icon = 'home';
+      fixture.componentRef.setInput('title', 'Mock Title');
+      fixture.componentRef.setInput('icon', 'home');
       fixture.detectChanges();
 
       expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('home');
     });
 
     it('should not display icon when not provided', () => {
-      component.icon = null;
+      fixture.componentRef.setInput('title', 'Mock Title');
+      fixture.componentRef.setInput('icon', null);
       fixture.detectChanges();
 
       expect(query(fixture.debugElement, 'mat-icon')).toBeFalsy();
     });
 
     it('should add end-with-asterisk class when hasUnsavedChanges is true', () => {
-      component.title = 'Mock Title';
-      component.hasUnsavedChanges = true;
+      fixture.componentRef.setInput('title', 'Mock Title');
+      fixture.componentRef.setInput('hasUnsavedChanges', true);
       fixture.detectChanges();
 
       expect(
@@ -57,8 +57,8 @@ describe('PageHeaderComponent', () => {
     });
 
     it('should not add end-with-asterisk class when hasUnsavedChanges is false', () => {
-      component.title = 'Mock Title';
-      component.hasUnsavedChanges = false;
+      fixture.componentRef.setInput('title', 'Mock Title');
+      fixture.componentRef.setInput('hasUnsavedChanges', false);
       fixture.detectChanges();
 
       expect(
@@ -67,8 +67,8 @@ describe('PageHeaderComponent', () => {
     });
 
     it('should not add end-with-asterisk class when hasUnsavedChanges is null', () => {
-      component.title = 'Mock Title';
-      component.hasUnsavedChanges = null;
+      fixture.componentRef.setInput('title', 'Mock Title');
+      fixture.componentRef.setInput('hasUnsavedChanges', null);
       fixture.detectChanges();
 
       expect(

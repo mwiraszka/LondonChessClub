@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -57,6 +58,7 @@ import { BasicDialogResult, Dialog, DialogOutput } from '@app/models';
     }
   `,
   imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BasicDialogComponent implements DialogOutput<BasicDialogResult> {
   @Input({ required: true }) dialog!: Dialog;

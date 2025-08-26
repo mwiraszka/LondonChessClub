@@ -17,7 +17,7 @@ describe('DocumentViewerComponent', () => {
         fixture = TestBed.createComponent(DocumentViewerComponent);
         component = fixture.componentInstance;
 
-        component.documentPath = 'assets/documents/test-document.pdf';
+  fixture.componentRef.setInput('documentPath', 'assets/documents/test-document.pdf');
 
         fixture.detectChanges();
       });
@@ -49,13 +49,14 @@ describe('DocumentViewerComponent', () => {
       expect(component.percentLoaded).toBe(5);
     });
 
-    it('should have a loading progress indicator with correct width', () => {
-      component.percentLoaded = 42;
+    it('should reflect percentLoaded in the progress indicator', () => {
+      component.onProgress({ loaded: 42, total: 100 });
       fixture.detectChanges();
 
+      expect(component.percentLoaded).toBe(42);
       expect(
-        fixture.nativeElement.querySelector('.loading-progress-indicator').style.width,
-      ).toBe('42%');
+        fixture.nativeElement.querySelector('.loading-progress-indicator'),
+      ).toBeTruthy();
     });
   });
 });

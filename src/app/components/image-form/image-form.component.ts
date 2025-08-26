@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
 import * as uuid from 'uuid';
 
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -46,6 +46,7 @@ import { imageCaptionValidator } from '@app/validators';
     ReactiveFormsModule,
     TooltipDirective,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageFormComponent implements OnInit {
   @Input({ required: true }) existingAlbums!: string[];

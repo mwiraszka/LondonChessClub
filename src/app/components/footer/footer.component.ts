@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
@@ -12,6 +12,7 @@ import packageJson from '../../../../package.json';
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
   imports: [ImagePreloadDirective, MatIconModule, RouterLink, TooltipDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
   public CURRENT_VERSION = packageJson.version;

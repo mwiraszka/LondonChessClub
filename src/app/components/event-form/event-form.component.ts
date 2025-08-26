@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
 import { debounceTime } from 'rxjs/operators';
 
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -43,6 +43,7 @@ import { timeValidator } from '@app/validators';
     ReactiveFormsModule,
     TooltipDirective,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventFormComponent implements OnInit {
   @Input({ required: true }) formData!: EventFormData;

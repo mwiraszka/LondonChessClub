@@ -1,5 +1,5 @@
 import { TitleCasePipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
   `,
   styleUrl: './safe-mode-notice.component.scss',
   imports: [MatIconModule, TitleCasePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SafeModeNoticeComponent {
   @Input({ required: true }) entity!: string;

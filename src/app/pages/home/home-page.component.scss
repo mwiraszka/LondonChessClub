@@ -68,6 +68,10 @@
 
     &.schedule-section {
       grid-area: schedule;
+
+      ::ng-deep .events-table {
+        width: 100%;
+      }
     }
 
     &.articles-section {

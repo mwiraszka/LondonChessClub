@@ -234,7 +234,7 @@ describe('ChangePasswordFormComponent', () => {
   describe('template rendering', () => {
     describe('with verification code', () => {
       beforeEach(() => {
-        component.hasCode = true;
+        fixture.componentRef.setInput('hasCode', true);
         fixture.detectChanges();
       });
 
@@ -301,7 +301,7 @@ describe('ChangePasswordFormComponent', () => {
 
     describe('without verification code', () => {
       beforeEach(() => {
-        component.hasCode = false;
+        fixture.componentRef.setInput('hasCode', false);
         fixture.detectChanges();
       });
 

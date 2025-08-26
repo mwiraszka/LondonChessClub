@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
   `,
   styleUrl: './page-header.component.scss',
   imports: [MatIconModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageHeaderComponent {
   @Input({ required: true }) public title!: string;

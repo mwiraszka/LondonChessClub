@@ -32,9 +32,9 @@ describe('DataToolbarComponent', () => {
         fixture = TestBed.createComponent(DataToolbarComponent<Member>);
         component = fixture.componentInstance;
 
-        component.entity = 'members';
-        component.filteredCount = MOCK_MEMBERS.length;
-        component.options = { ...mockOptions };
+        fixture.componentRef.setInput('entity', 'members');
+        fixture.componentRef.setInput('filteredCount', MOCK_MEMBERS.length);
+        fixture.componentRef.setInput('options', { ...mockOptions });
         fixture.detectChanges();
 
         optionsChangeSpy = jest.spyOn(component.optionsChange, 'emit');
@@ -155,8 +155,12 @@ describe('DataToolbarComponent', () => {
 
       describe('with only one pages of data', () => {
         beforeEach(() => {
-          component.options = { ...mockOptions, page: 1, pageSize: 20 };
-          component.filteredCount = 20;
+          fixture.componentRef.setInput('options', {
+            ...mockOptions,
+            page: 1,
+            pageSize: 20,
+          });
+          fixture.componentRef.setInput('filteredCount', 20);
           fixture.detectChanges();
         });
 
@@ -178,8 +182,12 @@ describe('DataToolbarComponent', () => {
 
       describe('when on first page with at least 2 pages of data', () => {
         beforeEach(() => {
-          component.options = { ...mockOptions, page: 1, pageSize: 10 };
-          component.filteredCount = 11;
+          fixture.componentRef.setInput('options', {
+            ...mockOptions,
+            page: 1,
+            pageSize: 10,
+          });
+          fixture.componentRef.setInput('filteredCount', 11);
           fixture.detectChanges();
         });
 
@@ -204,8 +212,12 @@ describe('DataToolbarComponent', () => {
 
       describe('when on last page with at least 2 pages of data', () => {
         beforeEach(() => {
-          component.options = { ...mockOptions, page: 2, pageSize: 10 };
-          component.filteredCount = 11;
+          fixture.componentRef.setInput('options', {
+            ...mockOptions,
+            page: 2,
+            pageSize: 10,
+          });
+          fixture.componentRef.setInput('filteredCount', 11);
           fixture.detectChanges();
         });
 
@@ -248,12 +260,12 @@ describe('DataToolbarComponent', () => {
 
     describe('filters', () => {
       it('should render filters section and a filter item for each ', () => {
-        component.options = {
+        fixture.componentRef.setInput('options', {
           ...mockOptions,
           filters: {
             isActive: { label: 'Show active members', value: true },
           },
-        };
+        });
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.filters')).toBeTruthy();
@@ -261,7 +273,7 @@ describe('DataToolbarComponent', () => {
       });
 
       it('should not render filters section if no filters are defined', () => {
-        component.options = { ...mockOptions, filters: {} };
+        fixture.componentRef.setInput('options', { ...mockOptions, filters: {} });
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.filters')).toBeFalsy();
@@ -271,7 +283,7 @@ describe('DataToolbarComponent', () => {
 
     describe('pagination summary', () => {
       it('should summarize correctly', () => {
-        component.filteredCount = 99;
+        fixture.componentRef.setInput('filteredCount', 99);
         fixture.detectChanges();
 
         expect(queryTextContent(fixture.debugElement, '.pagination-summary')).toBe(
@@ -280,8 +292,8 @@ describe('DataToolbarComponent', () => {
       });
 
       it('should modify summary when filteredCount is exactly 1', () => {
-        component.filteredCount = 1;
-        component.options = { ...mockOptions, page: 1 };
+        fixture.componentRef.setInput('filteredCount', 1);
+        fixture.componentRef.setInput('options', { ...mockOptions, page: 1 });
         fixture.detectChanges();
 
         expect(queryTextContent(fixture.debugElement, '.pagination-summary')).toBe(
@@ -290,7 +302,7 @@ describe('DataToolbarComponent', () => {
       });
 
       it('should modify summary when filteredCount is exactly 0', () => {
-        component.filteredCount = 0;
+        fixture.componentRef.setInput('filteredCount', 0);
         fixture.detectChanges();
 
         expect(queryTextContent(fixture.debugElement, '.pagination-summary')).toBe(
@@ -299,7 +311,7 @@ describe('DataToolbarComponent', () => {
       });
 
       it('should show "No matches" when filteredCount is 0', () => {
-        component.filteredCount = 0;
+        fixture.componentRef.setInput('filteredCount', 0);
         fixture.detectChanges();
 
         expect(queryTextContent(fixture.debugElement, '.pagination-summary')).toBe(
@@ -308,7 +320,7 @@ describe('DataToolbarComponent', () => {
       });
 
       it('should show "Loading" when filteredCount is null', () => {
-        component.filteredCount = null;
+        fixture.componentRef.setInput('filteredCount', null);
         fixture.detectChanges();
 
         expect(queryTextContent(fixture.debugElement, '.pagination-summary')).toBe(

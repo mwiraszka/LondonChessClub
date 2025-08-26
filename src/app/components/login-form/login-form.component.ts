@@ -1,6 +1,6 @@
 import { Store } from '@ngrx/store';
 
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -20,6 +20,7 @@ import { emailValidator } from '@app/validators';
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss',
   imports: [FormErrorIconComponent, ReactiveFormsModule, RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginFormComponent implements OnInit {
   public form!: FormGroup<LoginFormGroup>;

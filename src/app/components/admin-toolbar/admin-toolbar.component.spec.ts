@@ -10,7 +10,6 @@ import { AdminToolbarComponent } from './admin-toolbar.component';
 
 describe('AdminToolbarComponent', () => {
   let fixture: ComponentFixture<AdminToolbarComponent>;
-  let component: AdminToolbarComponent;
 
   const mockAdminButtons: AdminButton[] = [
     {
@@ -56,13 +55,12 @@ describe('AdminToolbarComponent', () => {
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(AdminToolbarComponent);
-        component = fixture.componentInstance;
         fixture.detectChanges();
       });
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
   describe('template rendering', () => {
@@ -75,14 +73,14 @@ describe('AdminToolbarComponent', () => {
 
     describe('with no inputs', () => {
       it('should not render link list when adminLinks is undefined', () => {
-        component.adminLinks = undefined;
+        fixture.componentRef.setInput('adminLinks', undefined);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-link-list')).toBeFalsy();
       });
 
       it('should not render admin buttons section when adminButtons is undefined', () => {
-        component.adminButtons = undefined;
+        fixture.componentRef.setInput('adminButtons', undefined);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.admin-buttons')).toBeFalsy();
@@ -91,7 +89,7 @@ describe('AdminToolbarComponent', () => {
 
     describe('with adminLinks', () => {
       beforeEach(() => {
-        component.adminLinks = mockAdminLinks;
+        fixture.componentRef.setInput('adminLinks', mockAdminLinks);
         fixture.detectChanges();
       });
 
@@ -108,7 +106,7 @@ describe('AdminToolbarComponent', () => {
 
     describe('with adminButtons', () => {
       beforeEach(() => {
-        component.adminButtons = mockAdminButtons;
+        fixture.componentRef.setInput('adminButtons', mockAdminButtons);
         fixture.detectChanges();
       });
 
@@ -161,8 +159,8 @@ describe('AdminToolbarComponent', () => {
 
     describe('with both adminLinks and adminButtons', () => {
       beforeEach(() => {
-        component.adminLinks = mockAdminLinks;
-        component.adminButtons = mockAdminButtons;
+        fixture.componentRef.setInput('adminLinks', mockAdminLinks);
+        fixture.componentRef.setInput('adminButtons', mockAdminButtons);
         fixture.detectChanges();
       });
 
@@ -182,7 +180,7 @@ describe('AdminToolbarComponent', () => {
 
     describe('button click handling', () => {
       beforeEach(() => {
-        component.adminButtons = mockAdminButtons;
+        fixture.componentRef.setInput('adminButtons', mockAdminButtons);
         fixture.detectChanges();
       });
 
@@ -208,13 +206,13 @@ describe('AdminToolbarComponent', () => {
 
     describe('dynamic updates', () => {
       it('should update buttons when adminButtons input changes', () => {
-        component.adminButtons = mockAdminButtons.slice(0, 2);
+        fixture.componentRef.setInput('adminButtons', mockAdminButtons.slice(0, 2));
         fixture.detectChanges();
 
         let buttons = queryAll(fixture.debugElement, '.admin-button');
         expect(buttons.length).toBe(2);
 
-        component.adminButtons = mockAdminButtons;
+        fixture.componentRef.setInput('adminButtons', mockAdminButtons);
         fixture.detectChanges();
 
         buttons = queryAll(fixture.debugElement, '.admin-button');
@@ -222,13 +220,13 @@ describe('AdminToolbarComponent', () => {
       });
 
       it('should update links when adminLinks input changes', () => {
-        component.adminLinks = mockAdminLinks.slice(0, 1);
+        fixture.componentRef.setInput('adminLinks', mockAdminLinks.slice(0, 1));
         fixture.detectChanges();
 
         let linkList = query(fixture.debugElement, 'lcc-link-list');
         expect(linkList.componentInstance.links.length).toBe(1);
 
-        component.adminLinks = mockAdminLinks;
+        fixture.componentRef.setInput('adminLinks', mockAdminLinks);
         fixture.detectChanges();
 
         linkList = query(fixture.debugElement, 'lcc-link-list');
@@ -236,24 +234,24 @@ describe('AdminToolbarComponent', () => {
       });
 
       it('should handle removal of all buttons', () => {
-        component.adminButtons = mockAdminButtons;
+        fixture.componentRef.setInput('adminButtons', mockAdminButtons);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.admin-buttons')).toBeTruthy();
 
-        component.adminButtons = undefined;
+        fixture.componentRef.setInput('adminButtons', undefined);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.admin-buttons')).toBeFalsy();
       });
 
       it('should handle removal of all links', () => {
-        component.adminLinks = mockAdminLinks;
+        fixture.componentRef.setInput('adminLinks', mockAdminLinks);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-link-list')).toBeTruthy();
 
-        component.adminLinks = undefined;
+        fixture.componentRef.setInput('adminLinks', undefined);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-link-list')).toBeFalsy();

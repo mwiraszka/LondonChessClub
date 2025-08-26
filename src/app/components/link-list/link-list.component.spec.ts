@@ -17,7 +17,6 @@ class LoginPageStubComponent {}
 
 describe('LinkListComponent', () => {
   let fixture: ComponentFixture<LinkListComponent>;
-  let component: LinkListComponent;
 
   const mockInternalLinks: InternalLink[] = [
     {
@@ -53,32 +52,31 @@ describe('LinkListComponent', () => {
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(LinkListComponent);
-        component = fixture.componentInstance;
         fixture.detectChanges();
       });
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
   describe('template rendering', () => {
     it('should render header when provided', () => {
-      component.header = 'Mock Header';
+      fixture.componentRef.setInput('header', 'Mock Header');
       fixture.detectChanges();
 
       expect(queryTextContent(fixture.debugElement, 'h3')).toBe('Mock Header');
     });
 
     it('should not render header when not provided', () => {
-      component.header = undefined;
+      fixture.componentRef.setInput('header', undefined);
       fixture.detectChanges();
 
       expect(query(fixture.debugElement, 'h3')).toBeFalsy();
     });
 
     it('should render internal links correctly', () => {
-      component.links = mockInternalLinks;
+      fixture.componentRef.setInput('links', mockInternalLinks);
       fixture.detectChanges();
 
       const linkElements = queryAll(fixture.debugElement, '.lcc-link');
@@ -101,7 +99,7 @@ describe('LinkListComponent', () => {
     });
 
     it('should render external links correctly', () => {
-      component.links = mockExternalLinks;
+      fixture.componentRef.setInput('links', mockExternalLinks);
       fixture.detectChanges();
 
       const linkElements = queryAll(fixture.debugElement, '.lcc-link');
@@ -129,14 +127,17 @@ describe('LinkListComponent', () => {
     });
 
     it('should apply single-column class when links length is less than 4', () => {
-      component.links = mockInternalLinks;
+      fixture.componentRef.setInput('links', mockInternalLinks);
       fixture.detectChanges();
 
       expect(query(fixture.debugElement, 'ul').classes['single-column']).toBe(true);
     });
 
     it('should not apply single-column class when links length is 4 or more', () => {
-      component.links = [...mockInternalLinks, ...mockExternalLinks];
+      fixture.componentRef.setInput('links', [
+        ...mockInternalLinks,
+        ...mockExternalLinks,
+      ]);
       fixture.detectChanges();
 
       expect(query(fixture.debugElement, 'ul').classes['single-column']).toBeUndefined();

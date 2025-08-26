@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 
 import { ADMIN_CONTROLS_CONFIG_TOKEN } from '@app/directives/admin-controls.directive';
+import { AdminControlsConfig } from '@app/models/admin-controls-config.model';
 import { KeyStateService } from '@app/services';
 import { query } from '@app/utils';
 
@@ -25,7 +26,7 @@ describe('AdminControlsComponent', () => {
       providers: [
         {
           provide: ADMIN_CONTROLS_CONFIG_TOKEN,
-          useValue: { buttonSize: 15, deleteCb: jest.fn() },
+          useValue: { buttonSize: 15, deleteCb: jest.fn(), isDeleteDisabled: false },
         },
         KeyStateService,
       ],
@@ -116,13 +117,14 @@ describe('AdminControlsComponent', () => {
       describe('on touch devices', () => {
         beforeEach(() => {
           component.isTouchDevice = true;
-          fixture.detectChanges();
-
-          component.ngOnInit();
         });
 
         it('should render disabled when isDeleteDisabled is true', () => {
-          component.config.isDeleteDisabled = true;
+          component.config = {
+            ...component.config,
+            isDeleteDisabled: true,
+          } as AdminControlsConfig;
+          component.ngOnInit();
           fixture.detectChanges();
 
           expect(
@@ -131,7 +133,11 @@ describe('AdminControlsComponent', () => {
         });
 
         it('should not invoke deleteCb when clicked when isDeleteDisabled is true', () => {
-          component.config.isDeleteDisabled = true;
+          component.config = {
+            ...component.config,
+            isDeleteDisabled: true,
+          } as AdminControlsConfig;
+          component.ngOnInit();
           fixture.detectChanges();
 
           query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
@@ -140,7 +146,11 @@ describe('AdminControlsComponent', () => {
         });
 
         it('should render enabled when isDeleteDisabled is false', () => {
-          component.config.isDeleteDisabled = false;
+          component.config = {
+            ...component.config,
+            isDeleteDisabled: false,
+          } as AdminControlsConfig;
+          component.ngOnInit();
           fixture.detectChanges();
 
           expect(
@@ -149,7 +159,11 @@ describe('AdminControlsComponent', () => {
         });
 
         it('should invoke deleteCb when clicked when isDeleteDisabled is false', () => {
-          component.config.isDeleteDisabled = false;
+          component.config = {
+            ...component.config,
+            isDeleteDisabled: false,
+          } as AdminControlsConfig;
+          component.ngOnInit();
           fixture.detectChanges();
 
           query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
@@ -162,13 +176,14 @@ describe('AdminControlsComponent', () => {
         beforeEach(() => {
           ctrlMetaKeyPressedSpy.mockReturnValue(of(true));
           component.isTouchDevice = false;
-          fixture.detectChanges();
-
-          component.ngOnInit();
         });
 
         it('should render disabled when isDeleteDisabled is true', () => {
-          component.config.isDeleteDisabled = true;
+          component.config = {
+            ...component.config,
+            isDeleteDisabled: true,
+          } as AdminControlsConfig;
+          component.ngOnInit();
           fixture.detectChanges();
 
           expect(
@@ -177,7 +192,11 @@ describe('AdminControlsComponent', () => {
         });
 
         it('should not invoke deleteCb when clicked when isDeleteDisabled is true', () => {
-          component.config.isDeleteDisabled = true;
+          component.config = {
+            ...component.config,
+            isDeleteDisabled: true,
+          } as AdminControlsConfig;
+          component.ngOnInit();
           fixture.detectChanges();
 
           query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
@@ -186,7 +205,11 @@ describe('AdminControlsComponent', () => {
         });
 
         it('should render enabled when isDeleteDisabled is false', () => {
-          component.config.isDeleteDisabled = false;
+          component.config = {
+            ...component.config,
+            isDeleteDisabled: false,
+          } as AdminControlsConfig;
+          component.ngOnInit();
           fixture.detectChanges();
 
           expect(
@@ -195,7 +218,11 @@ describe('AdminControlsComponent', () => {
         });
 
         it('should invoke deleteCb when clicked when isDeleteDisabled is false', () => {
-          component.config.isDeleteDisabled = false;
+          component.config = {
+            ...component.config,
+            isDeleteDisabled: false,
+          } as AdminControlsConfig;
+          component.ngOnInit();
           fixture.detectChanges();
 
           query(fixture.debugElement, '.delete-button').triggerEventHandler('click');
@@ -214,14 +241,20 @@ describe('AdminControlsComponent', () => {
         });
 
         it('should not render when isDeleteDisabled is true', () => {
-          component.config.isDeleteDisabled = true;
+          component.config = {
+            ...component.config,
+            isDeleteDisabled: true,
+          } as AdminControlsConfig;
           fixture.detectChanges();
 
           expect(query(fixture.debugElement, '.delete-button')).toBeFalsy();
         });
 
         it('should not render when isDeleteDisabled is false', () => {
-          component.config.isDeleteDisabled = false;
+          component.config = {
+            ...component.config,
+            isDeleteDisabled: false,
+          } as AdminControlsConfig;
           fixture.detectChanges();
 
           expect(query(fixture.debugElement, '.delete-button')).toBeFalsy();

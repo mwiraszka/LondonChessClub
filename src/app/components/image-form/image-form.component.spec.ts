@@ -178,10 +178,10 @@ describe('ImageFormComponent', () => {
     describe('when imageEntity is defined (without unsaved changes)', () => {
       beforeEach(() => {
         component.existingAlbums = uniq(MOCK_IMAGES.map(image => image.album));
-        component.imageEntity = {
+        fixture.componentRef.setInput('imageEntity', {
           image: MOCK_IMAGES[0],
           formData: pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES),
-        };
+        });
         fixture.detectChanges();
 
         jest.clearAllMocks();
@@ -612,17 +612,23 @@ describe('ImageFormComponent', () => {
   describe('template rendering', () => {
     describe('modification info', () => {
       it('should render if imageEntity is defined', () => {
-        component.imageEntity = {
+        fixture.componentRef.setInput('existingAlbums', []);
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
+        fixture.componentRef.setInput('newImageFormData', null);
+        fixture.componentRef.setInput('imageEntity', {
           image: MOCK_IMAGES[0],
           formData: pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES),
-        };
+        });
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-modification-info')).toBeTruthy();
       });
 
       it('should not render if imageEntity is null', () => {
-        component.imageEntity = null;
+        fixture.componentRef.setInput('existingAlbums', []);
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
+        fixture.componentRef.setInput('newImageFormData', null);
+        fixture.componentRef.setInput('imageEntity', null);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-modification-info')).toBeFalsy();
@@ -631,7 +637,7 @@ describe('ImageFormComponent', () => {
 
     describe('restore button', () => {
       it('should be disabled if there are no unsaved changes', () => {
-        component.hasUnsavedChanges = false;
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
         fixture.detectChanges();
 
         const restoreButton = query(fixture.debugElement, '.restore-button');
@@ -639,7 +645,7 @@ describe('ImageFormComponent', () => {
       });
 
       it('should be enabled if there are unsaved changes', () => {
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
         const restoreButton = query(fixture.debugElement, '.restore-button');
@@ -652,7 +658,7 @@ describe('ImageFormComponent', () => {
 
     describe('cancel button', () => {
       it('should be enabled if there are unsaved changes', () => {
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
         const cancelButton = query(fixture.debugElement, '.cancel-button');
@@ -663,7 +669,7 @@ describe('ImageFormComponent', () => {
       });
 
       it('should also be enabled if there are no unsaved changes', () => {
-        component.hasUnsavedChanges = false;
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
         fixture.detectChanges();
 
         const cancelButton = query(fixture.debugElement, '.cancel-button');
@@ -677,7 +683,7 @@ describe('ImageFormComponent', () => {
     describe('submit button', () => {
       it('should be disabled if there are no unsaved changes', () => {
         component.form.setValue(pick(MOCK_IMAGES[3], IMAGE_FORM_DATA_PROPERTIES));
-        component.hasUnsavedChanges = false;
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
         fixture.detectChanges();
 
         const submitButton = query(fixture.debugElement, '.submit-button');
@@ -689,7 +695,7 @@ describe('ImageFormComponent', () => {
           ...pick(MOCK_IMAGES[3], IMAGE_FORM_DATA_PROPERTIES),
           caption: '', // Invalid - caption is a required field
         });
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
         const submitButton = query(fixture.debugElement, '.submit-button');

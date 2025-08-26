@@ -10,18 +10,13 @@ describe('TooltipComponent', () => {
   let fixture: ComponentFixture<TooltipComponent>;
   let component: TooltipComponent;
 
-  describe('with string content', () => {
-    const mockStringContent = 'This is a tooltip message';
+  describe('with short string content', () => {
+    const shortString = 'This is a tooltip message';
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [TooltipComponent],
-        providers: [
-          {
-            provide: TOOLTIP_CONTENT_TOKEN,
-            useValue: mockStringContent,
-          },
-        ],
+        providers: [{ provide: TOOLTIP_CONTENT_TOKEN, useValue: shortString }],
       })
         .compileComponents()
         .then(() => {
@@ -36,7 +31,7 @@ describe('TooltipComponent', () => {
     });
 
     it('should receive content through dependency injection', () => {
-      expect(component.tooltipContent).toBe(mockStringContent);
+      expect(component.tooltipContent).toBe(shortString);
     });
 
     it('should render string content in a div', () => {
@@ -44,19 +39,39 @@ describe('TooltipComponent', () => {
     });
 
     it('should display the string content', () => {
-      expect(queryTextContent(fixture.debugElement, 'div')).toBe(mockStringContent);
-    });
-
-    it('should apply truncate pipe to string content', () => {
-      component.tooltipContent =
-        'This is a very long tooltip message that should be truncated after reaching the character limit set by the truncate pipe';
-      fixture.detectChanges();
-
-      expect(queryTextContent(fixture.debugElement, 'div').length).toBe(80);
+      expect(queryTextContent(fixture.debugElement, 'div')).toBe(shortString);
     });
 
     it('should not display template outlet for string content', () => {
       expect(query(fixture.debugElement, 'ng-template')).toBeFalsy();
+    });
+  });
+
+  describe('with long string content', () => {
+    const longString =
+      'This is a very long tooltip message that should be truncated after reaching the character limit set by the truncate pipe';
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [TooltipComponent],
+        providers: [{ provide: TOOLTIP_CONTENT_TOKEN, useValue: longString }],
+      })
+        .compileComponents()
+        .then(() => {
+          fixture = TestBed.createComponent(TooltipComponent);
+          component = fixture.componentInstance;
+          fixture.detectChanges();
+        });
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+
+    it('should truncate long string content to 80 characters (including ellipsis)', () => {
+      const rendered = queryTextContent(fixture.debugElement, 'div');
+      expect(rendered.length).toBe(80);
+      expect(rendered.endsWith('...')).toBe(true);
     });
   });
 

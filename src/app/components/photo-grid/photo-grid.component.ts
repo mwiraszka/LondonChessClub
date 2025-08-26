@@ -2,7 +2,7 @@ import { Store } from '@ngrx/store';
 import { take } from 'rxjs';
 
 import { UpperCasePipe } from '@angular/common';
-import { Component, Input, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
@@ -37,6 +37,7 @@ import { AdminToolbarComponent } from '../admin-toolbar/admin-toolbar.component'
     UpperCasePipe,
     AdminToolbarComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhotoGridComponent implements OnChanges {
   @Input({ required: true }) public isAdmin!: boolean;

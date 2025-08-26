@@ -46,9 +46,12 @@ describe('EventFormComponent', () => {
         dialogService = TestBed.inject(DialogService);
         store = TestBed.inject(MockStore);
 
-        component.formData = pick(MOCK_EVENTS[0], EVENT_FORM_DATA_PROPERTIES);
-        component.hasUnsavedChanges = false;
-        component.originalEvent = null;
+        fixture.componentRef.setInput(
+          'formData',
+          pick(MOCK_EVENTS[0], EVENT_FORM_DATA_PROPERTIES),
+        );
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
+        fixture.componentRef.setInput('originalEvent', null);
         fixture.detectChanges();
 
         cancelSpy = jest.spyOn(component, 'onCancel');
@@ -76,12 +79,12 @@ describe('EventFormComponent', () => {
         beforeEach(() => {
           jest.useFakeTimers();
 
-          component.formData = {
+          fixture.componentRef.setInput('formData', {
             ...pick(MOCK_EVENTS[1], EVENT_FORM_DATA_PROPERTIES),
             eventDate: '2000-01-01T16:00:00.000Z',
-          };
-          component.hasUnsavedChanges = true;
-          component.originalEvent = null;
+          });
+          fixture.componentRef.setInput('hasUnsavedChanges', true);
+          fixture.componentRef.setInput('originalEvent', null);
           fixture.detectChanges();
           component.ngOnInit();
 
@@ -124,9 +127,12 @@ describe('EventFormComponent', () => {
         beforeEach(() => {
           jest.useFakeTimers();
 
-          component.formData = pick(MOCK_EVENTS[2], EVENT_FORM_DATA_PROPERTIES);
-          component.hasUnsavedChanges = false;
-          component.originalEvent = MOCK_EVENTS[1];
+          fixture.componentRef.setInput(
+            'formData',
+            pick(MOCK_EVENTS[2], EVENT_FORM_DATA_PROPERTIES),
+          );
+          fixture.componentRef.setInput('hasUnsavedChanges', false);
+          fixture.componentRef.setInput('originalEvent', MOCK_EVENTS[1]);
           fixture.detectChanges();
           component.ngOnInit();
 
@@ -208,8 +214,8 @@ describe('EventFormComponent', () => {
 
   describe('onRestore', () => {
     beforeEach(() => {
-      component.hasUnsavedChanges = true;
-      component.originalEvent = MOCK_EVENTS[4];
+      fixture.componentRef.setInput('hasUnsavedChanges', true);
+      fixture.componentRef.setInput('originalEvent', MOCK_EVENTS[4]);
       fixture.detectChanges();
 
       component.ngOnInit();
@@ -288,8 +294,11 @@ describe('EventFormComponent', () => {
 
     it('should open confirmation dialog with correct data if adding a new event', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
-      component.formData = pick(MOCK_EVENTS[3], EVENT_FORM_DATA_PROPERTIES);
-      component.originalEvent = null;
+      fixture.componentRef.setInput(
+        'formData',
+        pick(MOCK_EVENTS[3], EVENT_FORM_DATA_PROPERTIES),
+      );
+      fixture.componentRef.setInput('originalEvent', null);
       fixture.detectChanges();
 
       await component.onSubmit();
@@ -310,8 +319,11 @@ describe('EventFormComponent', () => {
 
     it('should open confirmation dialog with correct data if updating an event', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
-      component.formData = pick(MOCK_EVENTS[3], EVENT_FORM_DATA_PROPERTIES);
-      component.originalEvent = MOCK_EVENTS[2];
+      fixture.componentRef.setInput(
+        'formData',
+        pick(MOCK_EVENTS[3], EVENT_FORM_DATA_PROPERTIES),
+      );
+      fixture.componentRef.setInput('originalEvent', MOCK_EVENTS[2]);
       fixture.detectChanges();
 
       await component.onSubmit();
@@ -322,7 +334,7 @@ describe('EventFormComponent', () => {
         inputs: {
           dialog: {
             title: 'Confirm',
-            body: `Update ${component.originalEvent.title} event?`,
+            body: `Update ${component.originalEvent!.title} event?`,
             confirmButtonText: 'Update',
           },
         },
@@ -334,8 +346,11 @@ describe('EventFormComponent', () => {
 
     it('should not dispatch action if dialog is cancelled', async () => {
       dialogOpenSpy.mockResolvedValue('cancel');
-      component.formData = pick(MOCK_EVENTS[3], EVENT_FORM_DATA_PROPERTIES);
-      component.originalEvent = null;
+      fixture.componentRef.setInput(
+        'formData',
+        pick(MOCK_EVENTS[3], EVENT_FORM_DATA_PROPERTIES),
+      );
+      fixture.componentRef.setInput('originalEvent', null);
       fixture.detectChanges();
 
       await component.onSubmit();
@@ -351,14 +366,14 @@ describe('EventFormComponent', () => {
   describe('template rendering', () => {
     describe('modification info', () => {
       it('should render if originalEvent is defined', () => {
-        component.originalEvent = MOCK_EVENTS[0];
+        fixture.componentRef.setInput('originalEvent', MOCK_EVENTS[0]);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-modification-info')).toBeTruthy();
       });
 
       it('should not render if originalEvent is null', () => {
-        component.originalEvent = null;
+        fixture.componentRef.setInput('originalEvent', null);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-modification-info')).toBeFalsy();
@@ -367,7 +382,7 @@ describe('EventFormComponent', () => {
 
     describe('restore button', () => {
       it('should be disabled if there are no unsaved changes', () => {
-        component.hasUnsavedChanges = false;
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
         fixture.detectChanges();
 
         const restoreButton = query(fixture.debugElement, '.restore-button');
@@ -375,7 +390,7 @@ describe('EventFormComponent', () => {
       });
 
       it('should be enabled if there are unsaved changes', () => {
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
         const restoreButton = query(fixture.debugElement, '.restore-button');
@@ -388,7 +403,7 @@ describe('EventFormComponent', () => {
 
     describe('cancel button', () => {
       it('should be enabled if there are unsaved changes', () => {
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
         const cancelButton = query(fixture.debugElement, '.cancel-button');
@@ -399,7 +414,7 @@ describe('EventFormComponent', () => {
       });
 
       it('should also be enabled if there are no unsaved changes', () => {
-        component.hasUnsavedChanges = false;
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
         fixture.detectChanges();
 
         const cancelButton = query(fixture.debugElement, '.cancel-button');
@@ -430,7 +445,7 @@ describe('EventFormComponent', () => {
           articleId: generateId(24),
           eventTime: '6:00pm', // Invalid - unsupported time format
         });
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
         const submitButton = query(fixture.debugElement, '.submit-button');
@@ -443,7 +458,7 @@ describe('EventFormComponent', () => {
           articleId: generateId(24),
           eventTime: '6:00 pm',
         });
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
         query(fixture.debugElement, 'form').triggerEventHandler('ngSubmit');

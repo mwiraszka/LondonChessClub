@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
@@ -42,5 +42,6 @@ import { RangePipe } from '@app/pipes';
   `,
   styleUrl: './header.component.scss',
   imports: [CommonModule, ImagePreloadDirective, RangePipe, RouterModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {}

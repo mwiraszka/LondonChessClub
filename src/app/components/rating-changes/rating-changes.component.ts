@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
 import { DialogOutput, MemberWithNewRatings } from '@app/models';
 
@@ -8,6 +14,7 @@ import { DialogOutput, MemberWithNewRatings } from '@app/models';
   templateUrl: './rating-changes.component.html',
   styleUrl: './rating-changes.component.scss',
   imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RatingChangesComponent implements DialogOutput<'confirm' | 'cancel'> {
   @Input() membersWithNewRatings?: MemberWithNewRatings[];

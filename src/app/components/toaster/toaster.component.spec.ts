@@ -9,7 +9,6 @@ import { ToasterComponent } from './toaster.component';
 
 describe('ToasterComponent', () => {
   let fixture: ComponentFixture<ToasterComponent>;
-  let component: ToasterComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -19,16 +18,13 @@ describe('ToasterComponent', () => {
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(ToasterComponent);
-        component = fixture.componentInstance;
-
-        component.toasts = MOCK_TOASTS;
-
+        fixture.componentRef.setInput('toasts', MOCK_TOASTS);
         fixture.detectChanges();
       });
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
   describe('template rendering', () => {
@@ -41,7 +37,7 @@ describe('ToasterComponent', () => {
         expect(element.attributes['class']).toContain(`toast-${MOCK_TOASTS[i].type}`);
 
         expect(queryTextContent(element, 'mat-icon')).toBe(
-          component.getIcon(MOCK_TOASTS[i].type),
+          fixture.componentInstance.getIcon(MOCK_TOASTS[i].type),
         );
         expect(queryTextContent(element, '.title')).toBe(MOCK_TOASTS[i].title);
         expect(queryTextContent(element, '.message')).toBe(MOCK_TOASTS[i].message);

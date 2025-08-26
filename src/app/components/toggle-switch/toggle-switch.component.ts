@@ -1,6 +1,7 @@
 import * as uuid from 'uuid';
 
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -44,6 +45,7 @@ import { TooltipDirective } from '@app/directives/tooltip.directive';
   `,
   styleUrl: './toggle-switch.component.scss',
   imports: [MatIconModule, TooltipDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToggleSwitchComponent implements OnInit {
   @Input({ required: true }) public switchedOn = false;

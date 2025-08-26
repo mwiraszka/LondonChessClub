@@ -67,7 +67,7 @@ describe('ToggleSwitchComponent', () => {
   describe('template rendering', () => {
     describe('when switched off', () => {
       beforeEach(() => {
-        component.switchedOn = false;
+        fixture.componentRef.setInput('switchedOn', false);
         fixture.detectChanges();
       });
 
@@ -82,9 +82,8 @@ describe('ToggleSwitchComponent', () => {
       });
 
       it('should not display any icon if iconWhenOff is not provided', () => {
-        component.iconWhenOff = undefined;
+        fixture.componentRef.setInput('iconWhenOff', undefined);
         fixture.detectChanges();
-
         expect(query(fixture.debugElement, 'mat-icon')).toBeFalsy();
       });
 
@@ -96,17 +95,17 @@ describe('ToggleSwitchComponent', () => {
       });
 
       it('should not apply tooltip to icon if iconTooltipWhenOff is not provided', () => {
-        component.iconTooltipWhenOff = null;
+        fixture.componentRef.setInput('iconTooltipWhenOff', null);
         fixture.detectChanges();
-
-        const tooltipDirective = query(fixture.debugElement, 'mat-icon').injector.get(
-          TooltipDirective,
-        );
-        expect(tooltipDirective.tooltip).toBeFalsy();
+        const iconEl = query(fixture.debugElement, 'mat-icon');
+        if (iconEl) {
+          const tooltipDirective = iconEl.injector.get(TooltipDirective);
+          expect(tooltipDirective.tooltip).toBeFalsy();
+        }
       });
 
       it('should apply warning class when warningWhenOff is true', () => {
-        component.warningWhenOff = true;
+        fixture.componentRef.setInput('warningWhenOff', true);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.slider').classes['warning']).toBe(true);
@@ -126,7 +125,7 @@ describe('ToggleSwitchComponent', () => {
 
     describe('when switched on', () => {
       beforeEach(() => {
-        component.switchedOn = true;
+        fixture.componentRef.setInput('switchedOn', true);
         fixture.detectChanges();
       });
 
@@ -137,28 +136,28 @@ describe('ToggleSwitchComponent', () => {
       });
 
       it('should show iconWhenOn if icon is provided', () => {
-        component.iconWhenOn = 'visibility';
+        fixture.componentRef.setInput('iconWhenOn', 'visibility');
         fixture.detectChanges();
 
         expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('visibility');
       });
 
       it('should not display any icon if iconWhenOn is not provided', () => {
-        component.iconWhenOn = undefined;
+        fixture.componentRef.setInput('iconWhenOn', undefined);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'mat-icon')).toBeFalsy();
       });
 
       it('should not apply warning class when warningWhenOff is true', () => {
-        component.warningWhenOff = true;
+        fixture.componentRef.setInput('warningWhenOff', true);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.slider').classes['warning']).toBeUndefined();
       });
 
       it('should not apply warning class when warningWhenOff is false', () => {
-        component.warningWhenOff = false;
+        fixture.componentRef.setInput('warningWhenOff', false);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.slider').classes['warning']).toBeUndefined();

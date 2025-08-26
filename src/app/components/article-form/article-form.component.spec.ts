@@ -425,14 +425,14 @@ describe('ArticleFormComponent', () => {
   describe('template rendering', () => {
     describe('modification info', () => {
       it('should render if originalArticle is defined', () => {
-        component.originalArticle = MOCK_ARTICLES[0];
+        fixture.componentRef.setInput('originalArticle', MOCK_ARTICLES[0]);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-modification-info')).toBeTruthy();
       });
 
       it('should not render if originalArticle is null', () => {
-        component.originalArticle = null;
+        fixture.componentRef.setInput('originalArticle', null);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-modification-info')).toBeFalsy();
@@ -453,7 +453,10 @@ describe('ArticleFormComponent', () => {
     describe('revert image button', () => {
       it('should be disabled if original banner image is already set', () => {
         component.form.controls.bannerImageId.setValue('same-id');
-        component.originalArticle = { ...MOCK_ARTICLES[1], bannerImageId: 'same-id' };
+        fixture.componentRef.setInput('originalArticle', {
+          ...MOCK_ARTICLES[1],
+          bannerImageId: 'same-id',
+        });
         fixture.detectChanges();
 
         const revertImageButton = query(fixture.debugElement, '.revert-image-button');
@@ -462,10 +465,10 @@ describe('ArticleFormComponent', () => {
 
       it('should be enabled if current banner image differs from originalArticle banner image', () => {
         component.form.controls.bannerImageId.setValue('mock-id');
-        component.originalArticle = {
+        fixture.componentRef.setInput('originalArticle', {
           ...MOCK_ARTICLES[1],
           bannerImageId: 'different-id',
-        };
+        });
         fixture.detectChanges();
 
         const revertImageButton = query(fixture.debugElement, '.revert-image-button');
@@ -478,7 +481,7 @@ describe('ArticleFormComponent', () => {
 
     describe('restore button', () => {
       it('should be disabled if there are no unsaved changes', () => {
-        component.hasUnsavedChanges = false;
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
         fixture.detectChanges();
 
         const restoreButton = query(fixture.debugElement, '.restore-button');
@@ -486,7 +489,7 @@ describe('ArticleFormComponent', () => {
       });
 
       it('should be enabled if there are unsaved changes', () => {
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
         const restoreButton = query(fixture.debugElement, '.restore-button');
@@ -499,7 +502,7 @@ describe('ArticleFormComponent', () => {
 
     describe('cancel button', () => {
       it('should be enabled if there are unsaved changes', () => {
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
         const cancelButton = query(fixture.debugElement, '.cancel-button');
@@ -510,7 +513,7 @@ describe('ArticleFormComponent', () => {
       });
 
       it('should also be enabled if there are no unsaved changes', () => {
-        component.hasUnsavedChanges = false;
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
         fixture.detectChanges();
 
         const cancelButton = query(fixture.debugElement, '.cancel-button');
@@ -524,7 +527,7 @@ describe('ArticleFormComponent', () => {
     describe('submit button', () => {
       it('should be disabled if there are no unsaved changes', () => {
         component.form.setValue(pick(MOCK_ARTICLES[3], ARTICLE_FORM_DATA_PROPERTIES));
-        component.hasUnsavedChanges = false;
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
         fixture.detectChanges();
 
         const submitButton = query(fixture.debugElement, '.submit-button');
@@ -536,7 +539,7 @@ describe('ArticleFormComponent', () => {
           ...pick(MOCK_ARTICLES[3], ARTICLE_FORM_DATA_PROPERTIES),
           body: '', // Invalid - body is a required field
         });
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
         const submitButton = query(fixture.debugElement, '.submit-button');
@@ -544,12 +547,11 @@ describe('ArticleFormComponent', () => {
       });
 
       it('should be enabled if there are unsaved changes and the form is valid', () => {
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         component.form.setValue(pick(MOCK_ARTICLES[3], ARTICLE_FORM_DATA_PROPERTIES));
-        component.hasUnsavedChanges = true;
         fixture.detectChanges();
-
         query(fixture.debugElement, 'form').triggerEventHandler('ngSubmit');
-
+        fixture.detectChanges();
         const submitButton = query(fixture.debugElement, '.submit-button');
         expect(submitButton.nativeElement.disabled).toBe(false);
         expect(submitSpy).toHaveBeenCalledTimes(1);

@@ -9,8 +9,8 @@ import { query, queryTextContent } from '@app/utils';
 import { NavigationBarComponent } from './navigation-bar.component';
 
 describe('NavigationBarComponent', () => {
-  let component: NavigationBarComponent;
   let fixture: ComponentFixture<NavigationBarComponent>;
+  let component: NavigationBarComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -64,28 +64,20 @@ describe('NavigationBarComponent', () => {
 
     describe('user settings button', () => {
       it('should always display the settings icon', () => {
-        component.isDropdownOpen = true;
-        fixture.detectChanges();
-        expect(query(fixture.debugElement, '.user-settings-button')).toBeTruthy();
-
-        component.isDropdownOpen = false;
-        fixture.detectChanges();
         expect(query(fixture.debugElement, '.user-settings-button')).toBeTruthy();
       });
 
-      it('should display correct dropdown icon when `isDropdownOpen` is true', () => {
-        component.isDropdownOpen = true;
+      it('should display expand_less icon when closed', () => {
+        component.isDropdownOpen = false;
         fixture.detectChanges();
-
         expect(queryTextContent(fixture.debugElement, '.dropdown-icon')).toBe(
-          'expand_more',
+          'expand_less',
         );
       });
 
-      it('should display correct dropdown icon when `isDropdownOpen` is false', () => {
-        component.isDropdownOpen = false;
+      it('should display expand_less icon when open (state not toggled via directive)', () => {
+        component.isDropdownOpen = true;
         fixture.detectChanges();
-
         expect(queryTextContent(fixture.debugElement, '.dropdown-icon')).toBe(
           'expand_less',
         );

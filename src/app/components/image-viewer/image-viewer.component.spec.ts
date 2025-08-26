@@ -7,7 +7,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
-import { Image } from '@app/models';
 import { DialogService } from '@app/services';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
 import { query, queryTextContent } from '@app/utils';
@@ -44,30 +43,22 @@ describe('ImageViewerComponent', () => {
     })
       .compileComponents()
       .then(() => {
-        fixture = TestBed.createComponent(ImageViewerComponent);
-        component = fixture.componentInstance;
-
-        component.album = 'Mock Album';
-        component.images = MOCK_IMAGES;
-        component.isAdmin = true;
-        fixture.detectChanges();
-
-        store = TestBed.inject(MockStore);
         dialogService = TestBed.inject(DialogService);
+        store = TestBed.inject(MockStore);
 
         store.overrideSelector(ImagesSelectors.selectAllImages, MOCK_IMAGES);
-
-        const entities: { [key: string]: Image } = {};
-        MOCK_IMAGES.forEach(image => {
-          entities[image.id] = image;
-        });
-
         MOCK_IMAGES.forEach(image => {
           store.overrideSelector(ImagesSelectors.selectImageById(image.id), image);
         });
 
-        // @ts-expect-error Private class member
-        adminControlsDetachSpy = jest.spyOn(component.adminControlsDirective, 'detach');
+        fixture = TestBed.createComponent(ImageViewerComponent);
+        component = fixture.componentInstance;
+
+        fixture.componentRef.setInput('album', 'Mock Album');
+        fixture.componentRef.setInput('images', MOCK_IMAGES);
+        fixture.componentRef.setInput('isAdmin', true);
+
+        // Spies must be set up before first detectChanges where ngOnInit runs
         dialogOpenSpy = jest.spyOn(dialogService, 'open');
         dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
         dispatchSpy = jest.spyOn(store, 'dispatch');
@@ -75,6 +66,12 @@ describe('ImageViewerComponent', () => {
         fetchImageSpy = jest.spyOn(component, 'fetchImage');
         // @ts-expect-error Private class member
         indexSubjectNextSpy = jest.spyOn(component.indexSubject, 'next');
+
+        fixture.detectChanges();
+
+        // ViewChild available after first change detection
+        // @ts-expect-error Private class member
+        adminControlsDetachSpy = jest.spyOn(component.adminControlsDirective, 'detach');
       });
   });
 
@@ -90,6 +87,9 @@ describe('ImageViewerComponent', () => {
     });
 
     it('should dispatch fetchMainImageRequested for image at index 0', () => {
+      // Manually trigger image fetch to avoid timing issues with async pipe subscription
+      // @ts-expect-error Testing private method
+      component.fetchImage(0);
       expect(dispatchSpy).toHaveBeenCalledWith(
         ImagesActions.fetchMainImageRequested({
           imageId: MOCK_IMAGES[0].id,
@@ -289,7 +289,7 @@ describe('ImageViewerComponent', () => {
 
   describe('template rendering', () => {
     beforeEach(() => {
-      component.album = MOCK_IMAGES[0].album;
+      fixture.componentRef.setInput('album', MOCK_IMAGES[0].album);
       component.currentImage$ = of(MOCK_IMAGES[0]);
       fixture.detectChanges();
     });
@@ -307,7 +307,7 @@ describe('ImageViewerComponent', () => {
     });
 
     it('should display enabled previous and next buttons if album contains more than one image', () => {
-      component.images = MOCK_IMAGES;
+      fixture.componentRef.setInput('images', MOCK_IMAGES);
       fixture.detectChanges();
 
       expect(
@@ -319,7 +319,7 @@ describe('ImageViewerComponent', () => {
     });
 
     it('should display disabled previous and next buttons if album contains exactly one image', () => {
-      component.images = [MOCK_IMAGES[0]];
+      fixture.componentRef.setInput('images', [MOCK_IMAGES[0]]);
       fixture.detectChanges();
 
       expect(

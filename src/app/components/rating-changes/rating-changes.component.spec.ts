@@ -8,7 +8,6 @@ import { RatingChangesComponent } from './rating-changes.component';
 
 describe('RatingChangesComponent', () => {
   let fixture: ComponentFixture<RatingChangesComponent>;
-  let component: RatingChangesComponent;
 
   let dialogResultSpy: jest.SpyInstance;
 
@@ -34,17 +33,16 @@ describe('RatingChangesComponent', () => {
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(RatingChangesComponent);
-        component = fixture.componentInstance;
-        component.membersWithNewRatings = mockMembersWithNewRatings;
-        component.unmatchedMembers = unmatchedMembers;
+        fixture.componentRef.setInput('membersWithNewRatings', mockMembersWithNewRatings);
+        fixture.componentRef.setInput('unmatchedMembers', unmatchedMembers);
         fixture.detectChanges();
 
-        dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
+        dialogResultSpy = jest.spyOn(fixture.componentInstance.dialogResult, 'emit');
       });
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
   describe('template rendering', () => {
@@ -99,7 +97,7 @@ describe('RatingChangesComponent', () => {
     });
 
     it('should disable confirm button when there are no members with new ratings', () => {
-      component.membersWithNewRatings = [];
+      fixture.componentRef.setInput('membersWithNewRatings', []);
       fixture.detectChanges();
 
       expect(query(fixture.debugElement, '.confirm-button').properties['disabled']).toBe(

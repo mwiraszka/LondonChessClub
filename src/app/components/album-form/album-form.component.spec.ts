@@ -880,19 +880,19 @@ describe('AlbumFormComponent', () => {
   describe('template rendering', () => {
     describe('modification info', () => {
       it('should render if imageEntity is defined', () => {
-        component.imageEntities = [
+        fixture.componentRef.setInput('imageEntities', [
           {
             image: MOCK_IMAGES[0],
             formData: pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES),
           },
-        ];
+        ]);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-modification-info')).toBeTruthy();
       });
 
       it('should not render if imageEntity is null', () => {
-        component.imageEntities = [];
+        fixture.componentRef.setInput('imageEntities', []);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-modification-info')).toBeFalsy();
@@ -901,7 +901,7 @@ describe('AlbumFormComponent', () => {
 
     describe('new images header', () => {
       it('should render if album is defined', () => {
-        component.album = 'My album';
+        fixture.componentRef.setInput('album', 'My album');
         fixture.detectChanges();
 
         expect(queryTextContent(fixture.debugElement, '.new-images-header')).toBe(
@@ -910,7 +910,7 @@ describe('AlbumFormComponent', () => {
       });
 
       it('should not render if album is empty', () => {
-        component.album = '';
+        fixture.componentRef.setInput('album', '');
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.new-images-header')).toBeFalsy();
@@ -919,7 +919,7 @@ describe('AlbumFormComponent', () => {
 
     describe('restore button', () => {
       it('should be disabled if there are no unsaved changes', () => {
-        component.hasUnsavedChanges = false;
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
         fixture.detectChanges();
 
         const restoreButton = query(fixture.debugElement, '.restore-button');
@@ -927,7 +927,7 @@ describe('AlbumFormComponent', () => {
       });
 
       it('should be enabled if there are unsaved changes', () => {
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
         const restoreButton = query(fixture.debugElement, '.restore-button');
@@ -940,7 +940,7 @@ describe('AlbumFormComponent', () => {
 
     describe('cancel button', () => {
       it('should be enabled if there are unsaved changes', () => {
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
         const cancelButton = query(fixture.debugElement, '.cancel-button');
@@ -951,7 +951,7 @@ describe('AlbumFormComponent', () => {
       });
 
       it('should also be enabled if there are no unsaved changes', () => {
-        component.hasUnsavedChanges = false;
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
         fixture.detectChanges();
 
         const cancelButton = query(fixture.debugElement, '.cancel-button');
@@ -964,8 +964,10 @@ describe('AlbumFormComponent', () => {
 
     describe('submit button', () => {
       it('should be disabled if there are no unsaved changes', () => {
-        component.newImagesFormData = { [MOCK_IMAGES[3].id]: MOCK_IMAGES[3] };
-        component.hasUnsavedChanges = false;
+        fixture.componentRef.setInput('newImagesFormData', {
+          [MOCK_IMAGES[3].id]: MOCK_IMAGES[3],
+        });
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
         fixture.detectChanges();
         component.ngOnInit(); // Initialize form with newImagesFormData
 
@@ -974,13 +976,13 @@ describe('AlbumFormComponent', () => {
       });
 
       it('should be disabled if the form is invalid', () => {
-        component.newImagesFormData = {
+        fixture.componentRef.setInput('newImagesFormData', {
           [MOCK_IMAGES[0].id]: {
             ...MOCK_IMAGES[0],
             caption: '', // Invalid - required field
           },
-        };
-        component.hasUnsavedChanges = true;
+        });
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
         component.ngOnInit(); // Initialize form with newImagesFormData
 
@@ -989,8 +991,10 @@ describe('AlbumFormComponent', () => {
       });
 
       it('should be enabled if there are unsaved changes and the form is valid', () => {
-        component.newImagesFormData = { [MOCK_IMAGES[3].id]: MOCK_IMAGES[3] };
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('newImagesFormData', {
+          [MOCK_IMAGES[3].id]: MOCK_IMAGES[3],
+        });
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         component.ngOnInit();
         fixture.detectChanges();
 

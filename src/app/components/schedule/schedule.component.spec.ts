@@ -53,13 +53,16 @@ describe('ScheduleComponent', () => {
         dispatchSpy = jest.spyOn(store, 'dispatch');
         onTogglePastEventsSpy = jest.spyOn(component, 'onTogglePastEvents');
 
-        component.events = [...mockPastEvents, ...mockUpcomingEvents];
-        component.upcomingEvents = mockUpcomingEvents;
-        component.nextEvent = mockNextEvent;
-        component.isAdmin = false;
-        component.showPastEvents = false;
-        component.allowTogglePastEvents = true;
-        component.includeDetails = true;
+        fixture.componentRef.setInput('events', [
+          ...mockPastEvents,
+          ...mockUpcomingEvents,
+        ]);
+        fixture.componentRef.setInput('upcomingEvents', mockUpcomingEvents);
+        fixture.componentRef.setInput('nextEvent', mockNextEvent);
+        fixture.componentRef.setInput('isAdmin', false);
+        fixture.componentRef.setInput('showPastEvents', false);
+        fixture.componentRef.setInput('allowTogglePastEvents', true);
+        fixture.componentRef.setInput('includeDetails', true);
         fixture.detectChanges();
       });
   });
@@ -178,7 +181,7 @@ describe('ScheduleComponent', () => {
 
     describe('admin toolbar', () => {
       it('should render admin toolbar with correct links when isAdmin is true', () => {
-        component.isAdmin = true;
+        fixture.componentRef.setInput('isAdmin', true);
         fixture.detectChanges();
 
         expect(
@@ -187,7 +190,7 @@ describe('ScheduleComponent', () => {
       });
 
       it('should not render admin toolbar when isAdmin is false', () => {
-        component.isAdmin = false;
+        fixture.componentRef.setInput('isAdmin', false);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-admin-toolbar')).toBeFalsy();
@@ -205,7 +208,7 @@ describe('ScheduleComponent', () => {
       });
 
       it('should show only upcoming events when showPastEvents is false', () => {
-        component.showPastEvents = false;
+        fixture.componentRef.setInput('showPastEvents', false);
         fixture.detectChanges();
 
         expect(queryAll(fixture.debugElement, 'tbody tr').length).toBe(
@@ -214,7 +217,7 @@ describe('ScheduleComponent', () => {
       });
 
       it('should show all events when showPastEvents is true', () => {
-        component.showPastEvents = true;
+        fixture.componentRef.setInput('showPastEvents', true);
         fixture.detectChanges();
 
         expect(queryAll(fixture.debugElement, 'tbody tr').length).toBe(
@@ -223,8 +226,8 @@ describe('ScheduleComponent', () => {
       });
 
       it('should limit upcoming events when upcomingEventLimit is set', () => {
-        component.showPastEvents = false;
-        component.upcomingEventLimit = 2;
+        fixture.componentRef.setInput('showPastEvents', false);
+        fixture.componentRef.setInput('upcomingEventLimit', 2);
         fixture.detectChanges();
 
         expect(queryAll(fixture.debugElement, 'tbody tr').length).toBe(2);
@@ -237,7 +240,7 @@ describe('ScheduleComponent', () => {
       });
 
       it('should apply showing-past-events class when showing past events', () => {
-        component.showPastEvents = true;
+        fixture.componentRef.setInput('showPastEvents', true);
         fixture.detectChanges();
 
         queryAll(fixture.debugElement, 'tbody tr').forEach(row => {
@@ -268,7 +271,7 @@ describe('ScheduleComponent', () => {
       });
 
       it('should display championship icon for championship events', () => {
-        component.upcomingEvents = [MOCK_EVENTS[1]]; // Championship event
+        fixture.componentRef.setInput('upcomingEvents', [MOCK_EVENTS[1]]);
         fixture.detectChanges();
 
         expect(queryTextContent(fixture.debugElement, '.championship-icon')).toBe(
@@ -277,7 +280,7 @@ describe('ScheduleComponent', () => {
       });
 
       it('should display event details when includeDetails is true', () => {
-        component.includeDetails = true;
+        fixture.componentRef.setInput('includeDetails', true);
         fixture.detectChanges();
 
         expect(queryTextContent(fixture.debugElement, '.event-details')).toContain(
@@ -286,7 +289,7 @@ describe('ScheduleComponent', () => {
       });
 
       it('should not display event details when includeDetails is false', () => {
-        component.includeDetails = false;
+        fixture.componentRef.setInput('includeDetails', false);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.event-details')).toBeFalsy();
@@ -296,7 +299,7 @@ describe('ScheduleComponent', () => {
         const eventWithArticle = mockUpcomingEvents.find(
           event => event.articleId !== null,
         );
-        component.upcomingEvents = [eventWithArticle!];
+        fixture.componentRef.setInput('upcomingEvents', [eventWithArticle!]);
         fixture.detectChanges();
 
         const articleLink = query(fixture.debugElement, '.event-article');
@@ -310,15 +313,15 @@ describe('ScheduleComponent', () => {
         const eventWithoutArticle = mockUpcomingEvents.find(
           event => event.articleId === null,
         );
-        component.upcomingEvents = [eventWithoutArticle!];
+        fixture.componentRef.setInput('upcomingEvents', [eventWithoutArticle!]);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.event-article')).toBeFalsy();
       });
 
       it('should display modification info when includeDetails and isAdmin are true', () => {
-        component.includeDetails = true;
-        component.isAdmin = true;
+        fixture.componentRef.setInput('includeDetails', true);
+        fixture.componentRef.setInput('isAdmin', true);
         fixture.detectChanges();
 
         const modInfoText = queryTextContent(fixture.debugElement, '.created-and-edited');
@@ -327,15 +330,15 @@ describe('ScheduleComponent', () => {
       });
 
       it('should not display modification info when isAdmin is false', () => {
-        component.includeDetails = true;
-        component.isAdmin = false;
+        fixture.componentRef.setInput('includeDetails', true);
+        fixture.componentRef.setInput('isAdmin', false);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.created-and-edited')).toBeFalsy();
       });
 
       it('should show admin controls on rows when isAdmin is true', () => {
-        component.isAdmin = true;
+        fixture.componentRef.setInput('isAdmin', true);
         fixture.detectChanges();
 
         const row = query(fixture.debugElement, 'tbody tr');
@@ -348,21 +351,21 @@ describe('ScheduleComponent', () => {
 
     describe('toggle past events button', () => {
       it('should render toggle button when allowTogglePastEvents is true', () => {
-        component.allowTogglePastEvents = true;
+        fixture.componentRef.setInput('allowTogglePastEvents', true);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.toggle-past-events-button')).toBeTruthy();
       });
 
       it('should not render toggle button when allowTogglePastEvents is false', () => {
-        component.allowTogglePastEvents = false;
+        fixture.componentRef.setInput('allowTogglePastEvents', false);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.toggle-past-events-button')).toBeFalsy();
       });
 
       it('should display "Show past events" when showPastEvents is false', () => {
-        component.showPastEvents = false;
+        fixture.componentRef.setInput('showPastEvents', false);
         fixture.detectChanges();
 
         expect(queryTextContent(fixture.debugElement, '.toggle-past-events-button')).toBe(
@@ -371,7 +374,7 @@ describe('ScheduleComponent', () => {
       });
 
       it('should display "Hide past events" when showPastEvents is true', () => {
-        component.showPastEvents = true;
+        fixture.componentRef.setInput('showPastEvents', true);
         fixture.detectChanges();
 
         expect(queryTextContent(fixture.debugElement, '.toggle-past-events-button')).toBe(

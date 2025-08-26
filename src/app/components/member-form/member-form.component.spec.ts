@@ -58,10 +58,13 @@ describe('MemberFormComponent', () => {
         restoreSpy = jest.spyOn(component, 'onRestore');
         submitSpy = jest.spyOn(component, 'onSubmit');
 
-        component.formData = pick(MOCK_MEMBERS[0], MEMBER_FORM_DATA_PROPERTIES);
-        component.hasUnsavedChanges = false;
-        component.isSafeMode = false;
-        component.originalMember = null;
+        fixture.componentRef.setInput(
+          'formData',
+          pick(MOCK_MEMBERS[0], MEMBER_FORM_DATA_PROPERTIES),
+        );
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
+        fixture.componentRef.setInput('isSafeMode', false);
+        fixture.componentRef.setInput('originalMember', null);
 
         fixture.detectChanges();
       });
@@ -75,7 +78,7 @@ describe('MemberFormComponent', () => {
     describe('handling form data', () => {
       describe('if form has unsaved changes', () => {
         beforeEach(() => {
-          component.hasUnsavedChanges = true;
+          fixture.componentRef.setInput('hasUnsavedChanges', true);
           fixture.detectChanges();
 
           jest.clearAllMocks();
@@ -97,7 +100,7 @@ describe('MemberFormComponent', () => {
 
       describe('if form does not have unsaved changes', () => {
         beforeEach(() => {
-          component.hasUnsavedChanges = false;
+          fixture.componentRef.setInput('hasUnsavedChanges', false);
           fixture.detectChanges();
 
           jest.clearAllMocks();
@@ -167,8 +170,8 @@ describe('MemberFormComponent', () => {
 
   describe('onRestore', () => {
     beforeEach(() => {
-      component.hasUnsavedChanges = true;
-      component.originalMember = MOCK_MEMBERS[4];
+      fixture.componentRef.setInput('hasUnsavedChanges', true);
+      fixture.componentRef.setInput('originalMember', MOCK_MEMBERS[4]);
       fixture.detectChanges();
 
       component.ngOnInit();
@@ -247,8 +250,11 @@ describe('MemberFormComponent', () => {
 
     it('should open confirmation dialog with correct data if adding a new member', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
-      component.formData = pick(MOCK_MEMBERS[3], MEMBER_FORM_DATA_PROPERTIES);
-      component.originalMember = null;
+      fixture.componentRef.setInput(
+        'formData',
+        pick(MOCK_MEMBERS[3], MEMBER_FORM_DATA_PROPERTIES),
+      );
+      fixture.componentRef.setInput('originalMember', null);
       fixture.detectChanges();
 
       await component.onSubmit();
@@ -269,8 +275,11 @@ describe('MemberFormComponent', () => {
 
     it('should open confirmation dialog with correct data if updating a member', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
-      component.formData = pick(MOCK_MEMBERS[3], MEMBER_FORM_DATA_PROPERTIES);
-      component.originalMember = MOCK_MEMBERS[2];
+      fixture.componentRef.setInput(
+        'formData',
+        pick(MOCK_MEMBERS[3], MEMBER_FORM_DATA_PROPERTIES),
+      );
+      fixture.componentRef.setInput('originalMember', MOCK_MEMBERS[2]);
       fixture.detectChanges();
 
       await component.onSubmit();
@@ -281,7 +290,7 @@ describe('MemberFormComponent', () => {
         inputs: {
           dialog: {
             title: 'Confirm',
-            body: `Update ${component.originalMember.firstName} ${component.originalMember.lastName}?`,
+            body: `Update ${component.originalMember!.firstName} ${component.originalMember!.lastName}?`,
             confirmButtonText: 'Update',
           },
         },
@@ -293,8 +302,11 @@ describe('MemberFormComponent', () => {
 
     it('should not dispatch action if dialog is cancelled', async () => {
       dialogOpenSpy.mockResolvedValue('cancel');
-      component.formData = pick(MOCK_MEMBERS[3], MEMBER_FORM_DATA_PROPERTIES);
-      component.originalMember = null;
+      fixture.componentRef.setInput(
+        'formData',
+        pick(MOCK_MEMBERS[3], MEMBER_FORM_DATA_PROPERTIES),
+      );
+      fixture.componentRef.setInput('originalMember', null);
       fixture.detectChanges();
 
       await component.onSubmit();
@@ -310,14 +322,14 @@ describe('MemberFormComponent', () => {
   describe('template rendering', () => {
     describe('is-active input', () => {
       it('should render if originalMember is defined', () => {
-        component.originalMember = MOCK_MEMBERS[0];
+        fixture.componentRef.setInput('originalMember', MOCK_MEMBERS[0]);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '#is-active-input')).toBeTruthy();
       });
 
       it('should not render if originalMember is null', () => {
-        component.originalMember = null;
+        fixture.componentRef.setInput('originalMember', null);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '#is-active-input')).toBeFalsy();
@@ -326,14 +338,14 @@ describe('MemberFormComponent', () => {
 
     describe('safe-mode notice', () => {
       it('should render if isSafeMode is true', () => {
-        component.isSafeMode = true;
+        fixture.componentRef.setInput('isSafeMode', true);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-safe-mode-notice')).toBeTruthy();
       });
 
       it('should not render if isSafeMode is false', () => {
-        component.isSafeMode = false;
+        fixture.componentRef.setInput('isSafeMode', false);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-safe-mode-notice')).toBeFalsy();
@@ -342,14 +354,14 @@ describe('MemberFormComponent', () => {
 
     describe('modification info', () => {
       it('should render if originalMember is defined', () => {
-        component.originalMember = MOCK_MEMBERS[0];
+        fixture.componentRef.setInput('originalMember', MOCK_MEMBERS[0]);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-modification-info')).toBeTruthy();
       });
 
       it('should not render if originalMember is null', () => {
-        component.originalMember = null;
+        fixture.componentRef.setInput('originalMember', null);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'lcc-modification-info')).toBeFalsy();
@@ -358,7 +370,7 @@ describe('MemberFormComponent', () => {
 
     describe('restore button', () => {
       it('should be disabled if there are no unsaved changes', () => {
-        component.hasUnsavedChanges = false;
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
         fixture.detectChanges();
 
         const restoreButton = query(fixture.debugElement, '.restore-button');
@@ -366,7 +378,7 @@ describe('MemberFormComponent', () => {
       });
 
       it('should be enabled if there are unsaved changes', () => {
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
         const restoreButton = query(fixture.debugElement, '.restore-button');
@@ -379,7 +391,7 @@ describe('MemberFormComponent', () => {
 
     describe('cancel button', () => {
       it('should be enabled if there are unsaved changes', () => {
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
         const cancelButton = query(fixture.debugElement, '.cancel-button');
@@ -390,7 +402,7 @@ describe('MemberFormComponent', () => {
       });
 
       it('should also be enabled if there are no unsaved changes', () => {
-        component.hasUnsavedChanges = false;
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
         fixture.detectChanges();
 
         const cancelButton = query(fixture.debugElement, '.cancel-button');
@@ -404,7 +416,7 @@ describe('MemberFormComponent', () => {
     describe('submit button', () => {
       it('should be disabled if there are no unsaved changes', () => {
         component.form.setValue(pick(MOCK_MEMBERS[3], MEMBER_FORM_DATA_PROPERTIES));
-        component.hasUnsavedChanges = false;
+        fixture.componentRef.setInput('hasUnsavedChanges', false);
         fixture.detectChanges();
 
         const submitButton = query(fixture.debugElement, '.submit-button');
@@ -416,7 +428,7 @@ describe('MemberFormComponent', () => {
           ...pick(MOCK_MEMBERS[3], MEMBER_FORM_DATA_PROPERTIES),
           lastName: '', // Invalid - lastName is a required field
         });
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
         const submitButton = query(fixture.debugElement, '.submit-button');
@@ -425,7 +437,7 @@ describe('MemberFormComponent', () => {
 
       it('should be enabled if there are unsaved changes and the form is valid', () => {
         component.form.setValue(pick(MOCK_MEMBERS[3], MEMBER_FORM_DATA_PROPERTIES));
-        component.hasUnsavedChanges = true;
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
         query(fixture.debugElement, 'form').triggerEventHandler('ngSubmit');

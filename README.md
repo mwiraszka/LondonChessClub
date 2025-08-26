@@ -35,6 +35,8 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.8.2 - August 25th, 2025</summary>
 
 - 🚀 Set the change detection strategy on all reusable components to `OnPush` for a notable performance boost across the entire app
+- 🔧 Clean up Date Picker and Admin Controls components and make them more resilient to potential change detection issues
+- 🔧 Silence expected console errors and warnings when running test suites
 
 </details>
 

@@ -59,13 +59,9 @@ describe('FooterComponent', () => {
       });
 
       it('should display the club name and current app version', () => {
-        component.CURRENT_VERSION = '1.2.3';
-        fixture.detectChanges();
-
         const clubNameText = queryTextContent(fixture.debugElement, '.club-name');
-
         expect(clubNameText).toContain('London Chess Club');
-        expect(clubNameText).toContain('v1.2.3');
+        expect(clubNameText).toContain(`v${component.CURRENT_VERSION}`);
       });
     });
 
@@ -166,15 +162,13 @@ describe('FooterComponent', () => {
 
     describe('copyright notice', () => {
       it('should contain the correct text and include the current year', () => {
-        component.CURRENT_YEAR = 2088;
-        fixture.detectChanges();
-
         const copyrightNoticeText = queryTextContent(
           fixture.debugElement,
           '.copyright-notice',
         );
-
-        expect(copyrightNoticeText).toContain('Copyright © 2088 London Chess Club');
+        expect(copyrightNoticeText).toContain(
+          `Copyright © ${component.CURRENT_YEAR} London Chess Club`,
+        );
         expect(copyrightNoticeText).toContain('All Rights Reserved.');
       });
     });

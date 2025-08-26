@@ -35,7 +35,8 @@ describe('ArticleComponent', () => {
 
   describe('template rendering', () => {
     beforeEach(() => {
-      component.article = MOCK_ARTICLES[2];
+      fixture.componentRef.setInput('article', MOCK_ARTICLES[2]);
+      fixture.componentRef.setInput('bannerImage', null);
       fixture.detectChanges();
     });
 
@@ -87,7 +88,7 @@ describe('ArticleComponent', () => {
 
     describe('article created and edited on the same day', () => {
       it('should display article creation info but not last edit info', () => {
-        component.article = MOCK_ARTICLES[4];
+        fixture.componentRef.setInput('article', MOCK_ARTICLES[4]);
         fixture.detectChanges();
 
         expect(queryTextContent(fixture.debugElement, '.date-created')).toBe(
@@ -99,7 +100,7 @@ describe('ArticleComponent', () => {
 
     describe('banner image', () => {
       it('should use the banner image as the source when bannerImage is defined', () => {
-        component.bannerImage = MOCK_IMAGES[0];
+        fixture.componentRef.setInput('bannerImage', MOCK_IMAGES[0]);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'img').attributes['src']).toBe(
@@ -108,7 +109,7 @@ describe('ArticleComponent', () => {
       });
 
       it('should default to the placeholder image when bannerImage is null', () => {
-        component.bannerImage = null;
+        fixture.componentRef.setInput('bannerImage', null);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, 'img').attributes['src']).toBe(

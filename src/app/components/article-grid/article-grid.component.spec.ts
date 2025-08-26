@@ -45,10 +45,10 @@ describe('ArticleGridComponent', () => {
         component = fixture.componentInstance;
         dialogService = TestBed.inject(DialogService);
 
-        component.articles = MOCK_ARTICLES;
-        component.articleImages = MOCK_IMAGES;
-        component.isAdmin = true;
-        component.options = mockOptions;
+        fixture.componentRef.setInput('articles', MOCK_ARTICLES);
+        fixture.componentRef.setInput('articleImages', MOCK_IMAGES);
+        fixture.componentRef.setInput('isAdmin', true);
+        fixture.componentRef.setInput('options', mockOptions);
 
         dialogOpenSpy = jest.spyOn(dialogService, 'open');
         requestDeleteArticleSpy = jest.spyOn(component.requestDeleteArticle, 'emit');
@@ -82,7 +82,7 @@ describe('ArticleGridComponent', () => {
 
   describe('cardCount getter', () => {
     it('should return correct article card count', () => {
-      component.articles = MOCK_ARTICLES.slice(0, 3);
+      fixture.componentRef.setInput('articles', MOCK_ARTICLES.slice(0, 3));
       fixture.detectChanges();
 
       expect(component.cardCount).toBe(3);
@@ -240,14 +240,14 @@ describe('ArticleGridComponent', () => {
 
   describe('template rendering', () => {
     it('should render correct number of article cards', () => {
-      component.articles = MOCK_ARTICLES.slice(0, 3);
+      fixture.componentRef.setInput('articles', MOCK_ARTICLES.slice(0, 3));
       fixture.detectChanges();
 
       expect(queryAll(fixture.debugElement, '.article').length).toBe(3);
     });
 
     it('should display article titles', () => {
-      component.articles = [MOCK_ARTICLES[0]];
+      fixture.componentRef.setInput('articles', [MOCK_ARTICLES[0]]);
       fixture.detectChanges();
 
       expect(queryTextContent(fixture.debugElement, '.article-title')).toBe(
@@ -256,7 +256,7 @@ describe('ArticleGridComponent', () => {
     });
 
     it('should display formatted dates', () => {
-      component.articles = [MOCK_ARTICLES[0]];
+      fixture.componentRef.setInput('articles', [MOCK_ARTICLES[0]]);
       fixture.detectChanges();
 
       expect(queryTextContent(fixture.debugElement, '.article-creation-date')).toContain(
@@ -265,8 +265,8 @@ describe('ArticleGridComponent', () => {
     });
 
     it('should show admin controls when isAdmin is true', () => {
-      component.isAdmin = true;
-      component.articles = [MOCK_ARTICLES[0]];
+      fixture.componentRef.setInput('isAdmin', true);
+      fixture.componentRef.setInput('articles', [MOCK_ARTICLES[0]]);
       fixture.detectChanges();
 
       expect(query(fixture.debugElement, '.article')).toBeTruthy();
@@ -276,8 +276,8 @@ describe('ArticleGridComponent', () => {
     });
 
     it('should not show admin controls when isAdmin is false', () => {
-      component.isAdmin = false;
-      component.articles = [MOCK_ARTICLES[0]];
+      fixture.componentRef.setInput('isAdmin', false);
+      fixture.componentRef.setInput('articles', [MOCK_ARTICLES[0]]);
       fixture.detectChanges();
 
       expect(query(fixture.debugElement, '.article')).toBeTruthy();
@@ -285,21 +285,21 @@ describe('ArticleGridComponent', () => {
     });
 
     it('should show bookmark icon for bookmarked articles', () => {
-      component.articles = [MOCK_ARTICLES[0]];
+      fixture.componentRef.setInput('articles', [MOCK_ARTICLES[0]]);
       fixture.detectChanges();
 
       expect(query(fixture.debugElement, '.bookmark-icon')).toBeTruthy();
     });
 
     it('should not show bookmark icon for non-bookmarked articles', () => {
-      component.articles = [MOCK_ARTICLES[2]];
+      fixture.componentRef.setInput('articles', [MOCK_ARTICLES[2]]);
       fixture.detectChanges();
 
       expect(query(fixture.debugElement, '.bookmark-icon')).toBeFalsy();
     });
 
     it('should apply correct router link to article cards', () => {
-      component.articles = [MOCK_ARTICLES[0]];
+      fixture.componentRef.setInput('articles', [MOCK_ARTICLES[0]]);
       fixture.detectChanges();
 
       expect(
@@ -308,8 +308,8 @@ describe('ArticleGridComponent', () => {
     });
 
     it('should display banner images with correct source', () => {
-      component.articles = [MOCK_ARTICLES[0]];
-      component.articleImages = [MOCK_IMAGES[0]];
+      fixture.componentRef.setInput('articles', [MOCK_ARTICLES[0]]);
+      fixture.componentRef.setInput('articleImages', [MOCK_IMAGES[0]]);
       component.ngOnChanges({
         articleImages: {
           currentValue: [MOCK_IMAGES[0]],
@@ -325,7 +325,7 @@ describe('ArticleGridComponent', () => {
     });
 
     it('should strip markdown from article body preview', () => {
-      component.articles = [MOCK_ARTICLES[2]];
+      fixture.componentRef.setInput('articles', [MOCK_ARTICLES[2]]);
       fixture.detectChanges();
 
       const bodyPreview = queryTextContent(fixture.debugElement, '.article-preview');
@@ -335,8 +335,8 @@ describe('ArticleGridComponent', () => {
     });
 
     it('should apply search highlighting when search term is present', () => {
-      component.options = { ...mockOptions, search: 'blitz' };
-      component.articles = [MOCK_ARTICLES[0]];
+      fixture.componentRef.setInput('options', { ...mockOptions, search: 'blitz' });
+      fixture.componentRef.setInput('articles', [MOCK_ARTICLES[0]]);
       fixture.detectChanges();
 
       const highlightedTitle = queryTextContent(

@@ -28,11 +28,8 @@ describe('DatePickerComponent', () => {
         fixture = TestBed.createComponent(DatePickerComponent);
         component = fixture.componentInstance;
 
-        component.currentMonth = moment('2050-01-01');
+        component.writeValue('2050-01-01T00:00:00.000Z');
         component.screenWidth = 1000;
-        component.selectedDate = moment('2050-01-01');
-        // Initialize the calendar data
-        component.renderCalendar();
         fixture.detectChanges();
 
         // @ts-expect-error Private class member
@@ -65,7 +62,9 @@ describe('DatePickerComponent', () => {
       });
 
       it('should shorten the month text on small screens', () => {
-        component.screenWidth = 300;
+        // Simulate resize so HostListener updates value (some environments may override manual assignment)
+        Object.defineProperty(window, 'innerWidth', { configurable: true, value: 300 });
+        window.dispatchEvent(new Event('resize'));
         fixture.detectChanges();
 
         expect(queryTextContent(fixture.debugElement, '.title')).toBe('Jan 2050');
@@ -123,10 +122,11 @@ describe('DatePickerComponent', () => {
       });
 
       it('should highlight the selected date', () => {
-        component.selectedDate = moment('2050-01-15');
-        component.renderCalendar();
+        const day15 = queryAll(fixture.debugElement, 'tbody td').find(
+          cell => cell.nativeElement.textContent.trim() === '15',
+        );
+        day15!.triggerEventHandler('click');
         fixture.detectChanges();
-
         expect(queryTextContent(fixture.debugElement, '.selected-day')).toBe('15');
       });
 
@@ -142,16 +142,15 @@ describe('DatePickerComponent', () => {
       });
 
       it('should update selected date when a day is clicked', () => {
-        component.selectedDate = moment('2049-12-01'); // Different from any day in the calendar
-        component.renderCalendar();
+        component.writeValue('2050-01-01T00:00:00.000Z');
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, '.selected-day')).toBeFalsy();
-
-        query(
-          fixture.debugElement,
-          'tbody tr:nth-child(2) td:nth-child(1)',
-        ).triggerEventHandler('click');
+        // Click the cell containing day 2
+        const dayCells = queryAll(fixture.debugElement, 'tbody td');
+        const day2Cell = dayCells.find(
+          cell => cell.nativeElement.textContent.trim() === '2',
+        );
+        day2Cell!.triggerEventHandler('click');
         fixture.detectChanges();
 
         expect(onChangeSpy).toHaveBeenCalledWith('2050-01-02T00:00:00.000Z');
@@ -159,14 +158,18 @@ describe('DatePickerComponent', () => {
       });
 
       it('should display the selected date in the footer', () => {
-        component.selectedDate = moment('2050-01-15');
+        const day15 = queryAll(fixture.debugElement, 'tbody td').find(
+          cell => cell.nativeElement.textContent.trim() === '15',
+        );
+        day15!.triggerEventHandler('click');
         fixture.detectChanges();
 
         expect(queryTextContent(fixture.debugElement, '.selected-date')).toBe(
           'Saturday, January 15th 2050',
         );
 
-        component.screenWidth = 300;
+        Object.defineProperty(window, 'innerWidth', { configurable: true, value: 300 });
+        window.dispatchEvent(new Event('resize'));
         fixture.detectChanges();
 
         expect(queryTextContent(fixture.debugElement, '.selected-date')).toBe(

@@ -1,11 +1,6 @@
 import moment, { Moment } from 'moment-timezone';
 
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  HostListener,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -29,7 +24,7 @@ import { IsoDate } from '@app/models';
   imports: [MatIconModule, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DatePickerComponent implements AfterViewInit, ControlValueAccessor {
+export class DatePickerComponent implements ControlValueAccessor {
   // Always render 6 weeks in calendar (the most that will ever be needed for any month)
   // to prevent layout shifts when switching between months
   public readonly WEEKS_IN_CALENDAR = 6;
@@ -42,11 +37,6 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
   public selectedDate!: Moment;
 
   constructor() {}
-
-  public ngAfterViewInit(): void {
-    // Prevent Angular's ExpressionChangedAfterItHasBeenCheckedError
-    setTimeout(() => this.renderCalendar());
-  }
 
   @HostListener('window:resize', ['$event'])
   private onResize = () => (this.screenWidth = window.innerWidth);
@@ -61,9 +51,9 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
     } else {
       this.currentMonth = moment(date);
       this.selectedDate = moment(date);
-      // Ensure calendar is re-rendered when value is restored
-      this.renderCalendar();
     }
+
+    this.renderCalendar();
   }
 
   public registerOnChange(fn: (date: IsoDate) => IsoDate): void {
@@ -94,7 +84,18 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
     this.onChange(this.selectedDate.toISOString());
   }
 
+  public setSelectedDate(dateIso: IsoDate): void {
+    this.selectedDate = moment(dateIso);
+    // Anchor calendar to start of selected date's month for consistent rendering
+    this.currentMonth = this.selectedDate.clone().startOf('month');
+    this.renderCalendar();
+  }
+
   public renderCalendar(): void {
+    if (!this.currentMonth || !this.selectedDate) {
+      return;
+    }
+
     const day = this.getCalendarFirstDay();
     this.calendarDays = [];
 

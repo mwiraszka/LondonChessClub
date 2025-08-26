@@ -47,8 +47,8 @@ describe('PhotoGridComponent', () => {
 
         store = TestBed.inject(MockStore);
 
-        component.isAdmin = true;
-        component.photoImages = MOCK_IMAGES;
+        fixture.componentRef.setInput('isAdmin', true);
+        fixture.componentRef.setInput('photoImages', MOCK_IMAGES);
 
         dialogOpenSpy = jest.spyOn(dialogService, 'open');
         dispatchSpy = jest.spyOn(store, 'dispatch');
@@ -65,7 +65,7 @@ describe('PhotoGridComponent', () => {
   describe('initialization', () => {
     describe('when thumbnails were fetched less than 30 minutes ago', () => {
       beforeEach(() => {
-        component.photoImages = [MOCK_IMAGES[1]];
+        fixture.componentRef.setInput('photoImages', [MOCK_IMAGES[1]]);
         store.overrideSelector(
           ImagesSelectors.selectLastAlbumCoversFetch,
           new Date(Date.now() - 29 * 60 * 1000).toISOString(),
@@ -94,7 +94,7 @@ describe('PhotoGridComponent', () => {
 
     describe('when thumbnails were last fetched over 30 minutes ago', () => {
       beforeEach(() => {
-        component.photoImages = [MOCK_IMAGES[0]];
+        fixture.componentRef.setInput('photoImages', [MOCK_IMAGES[0]]);
         store.overrideSelector(
           ImagesSelectors.selectLastAlbumCoversFetch,
           new Date(Date.now() - 31 * 60 * 1000).toISOString(),
@@ -133,7 +133,7 @@ describe('PhotoGridComponent', () => {
     });
 
     it('should honour maxAlbums input property', () => {
-      component.maxAlbums = 1;
+      fixture.componentRef.setInput('maxAlbums', 1);
       fixture.detectChanges();
 
       expect(queryAll(fixture.debugElement, '.album-cover').length).toBe(1);
@@ -199,14 +199,14 @@ describe('PhotoGridComponent', () => {
 
   describe('template rendering', () => {
     it('should display admin toolbar when isAdmin is true', () => {
-      component.isAdmin = true;
+      fixture.componentRef.setInput('isAdmin', true);
       fixture.detectChanges();
 
       expect(query(fixture.debugElement, 'lcc-admin-toolbar')).toBeTruthy();
     });
 
     it('should not display admin toolbar when isAdmin is false', () => {
-      component.isAdmin = false;
+      fixture.componentRef.setInput('isAdmin', false);
       fixture.detectChanges();
 
       expect(query(fixture.debugElement, 'lcc-admin-toolbar')).toBeFalsy();

@@ -8,7 +8,7 @@ import { catchError, filter, map, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { Event } from '@app/models';
-import { EventsService } from '@app/services';
+import { EventsApiService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { isDefined, parseError } from '@app/utils';
 
@@ -20,7 +20,7 @@ export class EventsEffects {
     return this.actions$.pipe(
       ofType(EventsActions.fetchEventsRequested),
       switchMap(() =>
-        this.eventsService.getEvents().pipe(
+        this.eventsApiService.getEvents().pipe(
           map(response => EventsActions.fetchEventsSucceeded({ events: response.data })),
           catchError(error =>
             of(EventsActions.fetchEventsFailed({ error: parseError(error) })),
@@ -34,7 +34,7 @@ export class EventsEffects {
     return this.actions$.pipe(
       ofType(EventsActions.fetchEventRequested),
       switchMap(({ eventId }) => {
-        return this.eventsService.getEvent(eventId).pipe(
+        return this.eventsApiService.getEvent(eventId).pipe(
           map(response => EventsActions.fetchEventSucceeded({ event: response.data })),
           catchError(error =>
             of(EventsActions.fetchEventFailed({ error: parseError(error) })),
@@ -63,7 +63,7 @@ export class EventsEffects {
           },
         };
 
-        return this.eventsService.addEvent(event).pipe(
+        return this.eventsApiService.addEvent(event).pipe(
           map(response =>
             EventsActions.addEventSucceeded({
               event: { ...event, id: response.data },
@@ -98,7 +98,7 @@ export class EventsEffects {
           },
         };
 
-        return this.eventsService.updateEvent(updatedEvent).pipe(
+        return this.eventsApiService.updateEvent(updatedEvent).pipe(
           filter(response => response.data === updatedEvent.id),
           map(() =>
             EventsActions.updateEventSucceeded({
@@ -118,7 +118,7 @@ export class EventsEffects {
     return this.actions$.pipe(
       ofType(EventsActions.deleteEventRequested),
       switchMap(({ event }) =>
-        this.eventsService.deleteEvent(event.id).pipe(
+        this.eventsApiService.deleteEvent(event.id).pipe(
           filter(response => response.data === event.id),
           map(() =>
             EventsActions.deleteEventSucceeded({
@@ -136,7 +136,7 @@ export class EventsEffects {
 
   constructor(
     private readonly actions$: Actions,
-    private readonly eventsService: EventsService,
+    private readonly eventsApiService: EventsApiService,
     private readonly store: Store,
   ) {}
 }

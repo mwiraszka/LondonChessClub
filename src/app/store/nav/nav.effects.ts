@@ -327,48 +327,6 @@ export class NavEffects {
     ),
   );
 
-  refetchHomePageArticleBannerImages$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      filter(({ payload }) => payload.event.url === '/'),
-      switchMap(() => this.store.select(ArticlesSelectors.selectHomePageArticles)),
-      filter(articles => articles.length > 0),
-      concatLatestFrom(articles => {
-        const imageIds = articles
-          .filter(article => article.bannerImageId)
-          .map(article => article.bannerImageId);
-        return this.store.select(ImagesSelectors.selectImagesByIds(imageIds));
-      }),
-      filter(([articles, bannerImages]) => bannerImages.length < articles.length),
-      map(([articles]) =>
-        ImagesActions.fetchBatchThumbnailsRequested({
-          imageIds: articles.map(article => article.bannerImageId),
-        }),
-      ),
-    ),
-  );
-
-  refetchFilteredArticleBannerImages$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      filter(({ payload }) => payload.event.url === '/news'),
-      switchMap(() => this.store.select(ArticlesSelectors.selectFilteredArticles)),
-      filter(articles => articles.length > 0),
-      concatLatestFrom(articles => {
-        const imageIds = articles
-          .filter(article => article.bannerImageId)
-          .map(article => article.bannerImageId);
-        return this.store.select(ImagesSelectors.selectImagesByIds(imageIds));
-      }),
-      filter(([articles, bannerImages]) => bannerImages.length < articles.length),
-      map(([articles]) =>
-        ImagesActions.fetchBatchThumbnailsRequested({
-          imageIds: articles.map(article => article.bannerImageId),
-        }),
-      ),
-    ),
-  );
-
   clearIndexedDbImageFileData$ = createEffect(
     () =>
       this.actions$.pipe(

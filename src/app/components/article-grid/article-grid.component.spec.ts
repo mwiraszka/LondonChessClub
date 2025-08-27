@@ -53,7 +53,7 @@ describe('ArticleGridComponent', () => {
     );
 
     fixture.componentRef.setInput('articles', MOCK_ARTICLES);
-    fixture.componentRef.setInput('articleImages', MOCK_IMAGES);
+    fixture.componentRef.setInput('images', MOCK_IMAGES);
     fixture.componentRef.setInput('isAdmin', true);
     fixture.componentRef.setInput('options', mockOptions);
 
@@ -64,10 +64,10 @@ describe('ArticleGridComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('when articleImages changes', () => {
+  describe('when images changes', () => {
     it('should update the bannerImagesMap', () => {
       component.ngOnChanges({
-        articleImages: {
+        images: {
           currentValue: MOCK_IMAGES,
           previousValue: [],
           firstChange: false,
@@ -92,7 +92,7 @@ describe('ArticleGridComponent', () => {
     it('should return the image from bannerImagesMap when available', () => {
       const mockImage = MOCK_IMAGES[0];
       component.ngOnChanges({
-        articleImages: {
+        images: {
           currentValue: [mockImage],
           previousValue: [],
           firstChange: false,
@@ -308,9 +308,9 @@ describe('ArticleGridComponent', () => {
 
     it('should display banner images with correct source', () => {
       fixture.componentRef.setInput('articles', [MOCK_ARTICLES[0]]);
-      fixture.componentRef.setInput('articleImages', [MOCK_IMAGES[0]]);
+      fixture.componentRef.setInput('images', [MOCK_IMAGES[0]]);
       component.ngOnChanges({
-        articleImages: {
+        images: {
           currentValue: [MOCK_IMAGES[0]],
           previousValue: [],
           firstChange: false,

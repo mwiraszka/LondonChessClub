@@ -44,7 +44,7 @@ import { isSecondsInPast } from '@app/utils';
 export class HomePageComponent implements OnInit {
   public viewModel$?: Observable<{
     articles: Article[];
-    articleImages: Image[];
+    images: Image[];
     events: Event[];
     isAdmin: boolean;
     nextEvent: Event | null;
@@ -114,7 +114,7 @@ export class HomePageComponent implements OnInit {
 
     this.viewModel$ = combineLatest([
       this.store.select(ArticlesSelectors.selectHomePageArticles),
-      this.store.select(ImagesSelectors.selectArticleImages),
+      this.store.select(ImagesSelectors.selectAllImages),
       this.store.select(EventsSelectors.selectAllEvents),
       this.store.select(AuthSelectors.selectIsAdmin),
       this.store.select(EventsSelectors.selectNextEvent),
@@ -126,7 +126,7 @@ export class HomePageComponent implements OnInit {
       map(
         ([
           articles,
-          articleImages,
+          images,
           events,
           isAdmin,
           nextEvent,
@@ -135,7 +135,7 @@ export class HomePageComponent implements OnInit {
           upcomingEvents,
         ]) => ({
           articles,
-          articleImages,
+          images,
           events,
           isAdmin,
           nextEvent,

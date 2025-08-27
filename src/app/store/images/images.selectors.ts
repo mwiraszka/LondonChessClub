@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { omit, pick, uniq } from 'lodash';
 
 import { INITIAL_IMAGE_FORM_DATA } from '@app/constants';
-import { Id } from '@app/models';
+import { Article, Id } from '@app/models';
 import { ArticlesSelectors } from '@app/store/articles';
 import { areSame } from '@app/utils';
 
@@ -159,6 +159,18 @@ export const selectAllExistingAlbums = createSelector(selectAllImages, allImages
 export const selectArticleImages = createSelector(selectAllImages, allImages => {
   return allImages.filter(image => (image?.articleAppearances ?? 0) > 0);
 });
+
+export const selectIdsOfArticleBannerImagesWithMissingThumbnailUrls = (
+  articles: Article[],
+) =>
+  createSelector(selectAllImages, allImages => {
+    return articles
+      .map(article => article.bannerImageId)
+      .filter(
+        bannerImageId =>
+          !allImages.find(image => image.id === bannerImageId)?.thumbnailUrl,
+      );
+  });
 
 export const selectImageByArticleId = (articleId: Id | null) =>
   createSelector(

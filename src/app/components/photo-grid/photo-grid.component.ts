@@ -32,10 +32,10 @@ import { AdminToolbarComponent } from '../admin-toolbar/admin-toolbar.component'
   styleUrl: './photo-grid.component.scss',
   imports: [
     AdminControlsDirective,
+    AdminToolbarComponent,
     ImagePreloadDirective,
     MatIconModule,
     UpperCasePipe,
-    AdminToolbarComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

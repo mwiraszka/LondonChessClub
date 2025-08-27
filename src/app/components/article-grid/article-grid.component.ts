@@ -52,7 +52,7 @@ import { isDefined } from '@app/utils';
 })
 export class ArticleGridComponent implements OnChanges {
   @Input({ required: true }) articles!: Article[];
-  @Input({ required: true }) articleImages!: Image[];
+  @Input({ required: true }) images!: Image[];
   @Input({ required: true }) isAdmin!: boolean;
   @Input({ required: true }) options!: DataPaginationOptions<Article>;
 
@@ -74,9 +74,9 @@ export class ArticleGridComponent implements OnChanges {
   constructor(private readonly dialogService: DialogService) {}
 
   public ngOnChanges(changes: NgChanges<ArticleGridComponent>): void {
-    if (changes.articleImages) {
+    if (changes.images) {
       this.bannerImagesMap.clear();
-      this.articleImages.forEach(image => {
+      this.images.forEach(image => {
         this.bannerImagesMap.set(image.id, image);
       });
     }

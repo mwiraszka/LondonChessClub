@@ -42,7 +42,7 @@ import { isSecondsInPast } from '@app/utils';
 
       <lcc-article-grid
         [articles]="vm.articles"
-        [articleImages]="vm.articleImages"
+        [images]="vm.images"
         [isAdmin]="vm.isAdmin"
         [options]="vm.options"
         (requestDeleteArticle)="onRequestDeleteArticle($event)"
@@ -69,8 +69,8 @@ export class NewsPageComponent implements OnInit {
 
   public viewModel$?: Observable<{
     articles: Article[];
-    articleImages: Image[];
     filteredCount: number | null;
+    images: Image[];
     isAdmin: boolean;
     options: DataPaginationOptions<Article>;
   }>;
@@ -97,15 +97,15 @@ export class NewsPageComponent implements OnInit {
 
     this.viewModel$ = combineLatest([
       this.store.select(ArticlesSelectors.selectFilteredArticles),
-      this.store.select(ImagesSelectors.selectArticleImages),
       this.store.select(ArticlesSelectors.selectFilteredCount),
+      this.store.select(ImagesSelectors.selectAllImages),
       this.store.select(AuthSelectors.selectIsAdmin),
       this.store.select(ArticlesSelectors.selectOptions),
     ]).pipe(
       untilDestroyed(this),
-      map(([articles, articleImages, filteredCount, isAdmin, options]) => ({
+      map(([articles, filteredCount, images, isAdmin, options]) => ({
         articles,
-        articleImages,
+        images,
         filteredCount,
         isAdmin,
         options,

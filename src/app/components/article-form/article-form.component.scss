@@ -10,12 +10,21 @@
   border-radius: var(--lcc-borderRadius--small);
 
   .image-section-container {
+    $button-size: 34px;
+    $button-gap: 8px;
+    $banner-image-aspect-ratio: 1.5;
+    $banner-image-height: 300px;
+
     display: flex;
     flex-direction: row;
-    gap: 8px;
-    height: 300px;
+    gap: $button-gap;
+    height: $banner-image-height;
     width: 100%;
-    max-width: 500px;
+
+    // To keep the image at a 3:2 aspect ratio on larger screen sizes
+    max-width: calc(
+      $banner-image-height * $banner-image-aspect-ratio + $button-gap + $button-size
+    );
 
     .image-container {
       flex: 1;

@@ -36,7 +36,7 @@ describe('AppComponent', () => {
     showUpcomingEventBanner: true,
   };
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         AppComponent,
@@ -61,34 +61,32 @@ describe('AppComponent', () => {
           useValue: { listenForTouchEvents: jest.fn() },
         },
       ],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(AppComponent);
-        component = fixture.componentInstance;
+    }).compileComponents();
 
-        store = TestBed.inject(MockStore);
-        touchEventsService = TestBed.inject(TouchEventsService);
-        urlExpirationService = TestBed.inject(UrlExpirationService);
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
 
-        store.overrideSelector(
-          AppSelectors.selectBannerLastCleared,
-          mockState.bannerLastCleared,
-        );
-        store.overrideSelector(AppSelectors.selectIsDarkMode, mockState.isDarkMode);
-        store.overrideSelector(AppSelectors.selectIsLoading, mockState.isLoading);
-        store.overrideSelector(
-          AppSelectors.selectShowUpcomingEventBanner,
-          mockState.showUpcomingEventBanner,
-        );
-        store.overrideSelector(EventsSelectors.selectNextEvent, mockState.nextEvent);
+    store = TestBed.inject(MockStore);
+    touchEventsService = TestBed.inject(TouchEventsService);
+    urlExpirationService = TestBed.inject(UrlExpirationService);
 
-        dispatchSpy = jest.spyOn(store, 'dispatch');
-        querySelectorSpy = jest.spyOn(document, 'querySelector');
-        setAttributeSpy = jest.spyOn(document.body, 'setAttribute');
-        // Emit initial overridden selector values to subscribers
-        store.refreshState();
-      });
+    store.overrideSelector(
+      AppSelectors.selectBannerLastCleared,
+      mockState.bannerLastCleared,
+    );
+    store.overrideSelector(AppSelectors.selectIsDarkMode, mockState.isDarkMode);
+    store.overrideSelector(AppSelectors.selectIsLoading, mockState.isLoading);
+    store.overrideSelector(
+      AppSelectors.selectShowUpcomingEventBanner,
+      mockState.showUpcomingEventBanner,
+    );
+    store.overrideSelector(EventsSelectors.selectNextEvent, mockState.nextEvent);
+
+    dispatchSpy = jest.spyOn(store, 'dispatch');
+    querySelectorSpy = jest.spyOn(document, 'querySelector');
+    setAttributeSpy = jest.spyOn(document.body, 'setAttribute');
+    // Emit initial overridden selector values to subscribers
+    store.refreshState();
   });
 
   it('should create', () => {

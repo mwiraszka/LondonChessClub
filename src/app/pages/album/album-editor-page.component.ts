@@ -12,7 +12,7 @@ import { LinkListComponent } from '@app/components/link-list/link-list.component
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { EditorPage, Image, ImageFormData, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
-import { ImagesSelectors } from '@app/store/images';
+import { ImagesActions, ImagesSelectors } from '@app/store/images';
 
 @UntilDestroy()
 @Component({
@@ -30,7 +30,15 @@ import { ImagesSelectors } from '@app/store/images';
         [existingAlbums]="vm.existingAlbums"
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
         [imageEntities]="vm.imageEntities"
-        [newImagesFormData]="vm.newImagesFormData">
+        [newImagesFormData]="vm.newImagesFormData"
+        (cancel)="onCancel()"
+        (change)="onChange($event)"
+        (fileActionFail)="onFileActionFail($event)"
+        (removeNewImage)="onRemoveNewImage($event)"
+        (requestAddImages)="onRequestAddImages()"
+        (requestFetchImageThumbnails)="onRequestFetchImageThumbnails($event)"
+        (requestUpdateAlbum)="onRequestUpdateAlbum($event)"
+        (restore)="onRestore($event)">
       </lcc-album-form>
 
       <lcc-link-list [links]="[photoGalleryLink]"></lcc-link-list>
@@ -96,5 +104,37 @@ export class AlbumEditorPageComponent implements EditorPage, OnInit {
         );
       }),
     );
+  }
+
+  public onCancel(): void {
+    this.store.dispatch(ImagesActions.cancelSelected());
+  }
+
+  public onChange(multipleFormData: (Partial<ImageFormData> & { id: string })[]): void {
+    this.store.dispatch(ImagesActions.formDataChanged({ multipleFormData }));
+  }
+
+  public onFileActionFail(error: { name: 'LCCError'; message: string }): void {
+    this.store.dispatch(ImagesActions.imageFileActionFailed({ error }));
+  }
+
+  public onRemoveNewImage(imageId: string): void {
+    this.store.dispatch(ImagesActions.newImageRemoved({ imageId }));
+  }
+
+  public onRequestAddImages(): void {
+    this.store.dispatch(ImagesActions.addImagesRequested());
+  }
+
+  public onRequestFetchImageThumbnails(imageIds: string[]): void {
+    this.store.dispatch(ImagesActions.fetchBatchThumbnailsRequested({ imageIds }));
+  }
+
+  public onRequestUpdateAlbum(album: string): void {
+    this.store.dispatch(ImagesActions.updateAlbumRequested({ album }));
+  }
+
+  public onRestore(imageIds: string[]): void {
+    this.store.dispatch(ImagesActions.albumFormDataRestored({ imageIds }));
   }
 }

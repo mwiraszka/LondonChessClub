@@ -1,10 +1,7 @@
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
-import { AuthActions } from '@app/store/auth';
 import { query } from '@app/utils';
 
 import { LoginFormComponent } from './login-form.component';
@@ -13,31 +10,21 @@ describe('LoginFormComponent', () => {
   let fixture: ComponentFixture<LoginFormComponent>;
   let component: LoginFormComponent;
 
-  let store: MockStore;
+  let requestLoginSpy: jest.SpyInstance;
 
-  let dispatchSpy: jest.SpyInstance;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [LoginFormComponent, ReactiveFormsModule, RouterLink],
-      providers: [
-        FormBuilder,
-        provideMockStore(),
-        { provide: ActivatedRoute, useValue: { paramMap: [] } },
-      ],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(LoginFormComponent);
-        component = fixture.componentInstance;
+      providers: [FormBuilder, { provide: ActivatedRoute, useValue: { paramMap: [] } }],
+    }).compileComponents();
 
-        store = TestBed.inject(MockStore);
+    fixture = TestBed.createComponent(LoginFormComponent);
+    component = fixture.componentInstance;
 
-        dispatchSpy = jest.spyOn(store, 'dispatch');
+    requestLoginSpy = jest.spyOn(component.requestLogin, 'emit');
 
-        component.ngOnInit();
-        fixture.detectChanges();
-      });
+    component.ngOnInit();
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -118,7 +105,7 @@ describe('LoginFormComponent', () => {
 
       expect(component.form.controls.email.touched).toBe(true);
       expect(component.form.controls.password.touched).toBe(true);
-      expect(dispatchSpy).not.toHaveBeenCalled();
+      expect(requestLoginSpy).not.toHaveBeenCalled();
     });
   });
 
@@ -156,7 +143,7 @@ describe('LoginFormComponent', () => {
       );
     });
 
-    it('should dispatch login action on submission', () => {
+    it('should emit request login event on submission', () => {
       component.form.patchValue({
         email: 'test@example.com',
         password: 'password123',
@@ -165,12 +152,10 @@ describe('LoginFormComponent', () => {
 
       query(fixture.debugElement, 'form').triggerEventHandler('ngSubmit');
 
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        AuthActions.loginRequested({
-          email: 'test@example.com',
-          password: 'password123',
-        }),
-      );
+      expect(requestLoginSpy).toHaveBeenCalledWith({
+        email: 'test@example.com',
+        password: 'password123',
+      });
     });
   });
 });

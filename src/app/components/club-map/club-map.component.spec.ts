@@ -10,18 +10,16 @@ describe('ClubMapComponent', () => {
 
   let initMapSpy: jest.SpyInstance;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [ClubMapComponent],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(ClubMapComponent);
-        component = fixture.componentInstance;
+    }).compileComponents();
 
-        // @ts-expect-error Private class member
-        initMapSpy = jest.spyOn(component, 'initMap');
-      });
+    fixture = TestBed.createComponent(ClubMapComponent);
+    component = fixture.componentInstance;
+
+    // @ts-expect-error Private class member
+    initMapSpy = jest.spyOn(component, 'initMap');
   });
 
   it('should create', () => {

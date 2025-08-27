@@ -12,7 +12,7 @@ import { LinkListComponent } from '@app/components/link-list/link-list.component
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { EditorPage, Event, EventFormData, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
-import { EventsSelectors } from '@app/store/events';
+import { EventsActions, EventsSelectors } from '@app/store/events';
 
 @UntilDestroy()
 @Component({
@@ -24,11 +24,18 @@ import { EventsSelectors } from '@app/store/events';
         icon="admin_panel_settings"
         [title]="vm.pageTitle">
       </lcc-page-header>
+
       <lcc-event-form
         [formData]="vm.formData"
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
-        [originalEvent]="vm.originalEvent">
+        [originalEvent]="vm.originalEvent"
+        (cancel)="onCancel()"
+        (change)="onChange($event.eventId, $event.formData)"
+        (requestAddEvent)="onRequestAddEvent()"
+        (requestUpdateEvent)="onRequestUpdateEvent($event)"
+        (restore)="onRestore($event)">
       </lcc-event-form>
+
       <lcc-link-list [links]="[schedulePageLink]"></lcc-link-list>
     }
   `,
@@ -78,5 +85,25 @@ export class EventEditorPageComponent implements EditorPage, OnInit {
         );
       }),
     );
+  }
+
+  public onCancel(): void {
+    this.store.dispatch(EventsActions.cancelSelected());
+  }
+
+  public onChange(eventId: string | null, formData: Partial<EventFormData>): void {
+    this.store.dispatch(EventsActions.formDataChanged({ eventId, formData }));
+  }
+
+  public onRequestAddEvent(): void {
+    this.store.dispatch(EventsActions.addEventRequested());
+  }
+
+  public onRequestUpdateEvent(eventId: string): void {
+    this.store.dispatch(EventsActions.updateEventRequested({ eventId }));
+  }
+
+  public onRestore(eventId: string | null): void {
+    this.store.dispatch(EventsActions.formDataRestored({ eventId }));
   }
 }

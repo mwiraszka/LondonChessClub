@@ -1,10 +1,20 @@
-import { TemplateRef } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TOOLTIP_CONTENT_TOKEN } from '@app/directives/tooltip.directive';
 import { query, queryTextContent } from '@app/utils';
 
 import { TooltipComponent } from './tooltip.component';
+
+// Host component to obtain a real TemplateRef instance for the template-content tests
+// (required by Angular as of version 20)
+@Component({
+  standalone: true,
+  template: `<ng-template #templateRef>Template Content</ng-template>`,
+})
+class TooltipHostTemplateComponent {
+  @ViewChild('templateRef', { read: TemplateRef }) templateRef!: TemplateRef<unknown>;
+}
 
 describe('TooltipComponent', () => {
   let fixture: ComponentFixture<TooltipComponent>;
@@ -13,17 +23,14 @@ describe('TooltipComponent', () => {
   describe('with short string content', () => {
     const shortString = 'This is a tooltip message';
 
-    beforeEach(() => {
-      TestBed.configureTestingModule({
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
         imports: [TooltipComponent],
         providers: [{ provide: TOOLTIP_CONTENT_TOKEN, useValue: shortString }],
-      })
-        .compileComponents()
-        .then(() => {
-          fixture = TestBed.createComponent(TooltipComponent);
-          component = fixture.componentInstance;
-          fixture.detectChanges();
-        });
+      }).compileComponents();
+      fixture = TestBed.createComponent(TooltipComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
     });
 
     it('should create', () => {
@@ -51,17 +58,14 @@ describe('TooltipComponent', () => {
     const longString =
       'This is a very long tooltip message that should be truncated after reaching the character limit set by the truncate pipe';
 
-    beforeEach(() => {
-      TestBed.configureTestingModule({
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
         imports: [TooltipComponent],
         providers: [{ provide: TOOLTIP_CONTENT_TOKEN, useValue: longString }],
-      })
-        .compileComponents()
-        .then(() => {
-          fixture = TestBed.createComponent(TooltipComponent);
-          component = fixture.componentInstance;
-          fixture.detectChanges();
-        });
+      }).compileComponents();
+      fixture = TestBed.createComponent(TooltipComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
     });
 
     it('should create', () => {
@@ -76,29 +80,27 @@ describe('TooltipComponent', () => {
   });
 
   describe('with template content', () => {
-    let mockTemplateRef: TemplateRef<unknown>;
+    let templateRef: TemplateRef<unknown>;
 
-    beforeEach(() => {
-      mockTemplateRef = {
-        createEmbeddedView: jest.fn(),
-        elementRef: {},
-      } as unknown as TemplateRef<unknown>;
+    beforeEach(async () => {
+      // First configure a module to obtain a real TemplateRef
+      await TestBed.configureTestingModule({
+        imports: [TooltipHostTemplateComponent],
+      }).compileComponents();
+      const hostFixture = TestBed.createComponent(TooltipHostTemplateComponent);
+      hostFixture.detectChanges();
+      templateRef = hostFixture.componentInstance.templateRef;
 
-      TestBed.configureTestingModule({
+      // Reset and configure a fresh testing module supplying the real TemplateRef
+      TestBed.resetTestingModule();
+      await TestBed.configureTestingModule({
         imports: [TooltipComponent],
-        providers: [
-          {
-            provide: TOOLTIP_CONTENT_TOKEN,
-            useValue: mockTemplateRef,
-          },
-        ],
-      })
-        .compileComponents()
-        .then(() => {
-          fixture = TestBed.createComponent(TooltipComponent);
-          component = fixture.componentInstance;
-          fixture.detectChanges();
-        });
+        providers: [{ provide: TOOLTIP_CONTENT_TOKEN, useValue: templateRef }],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(TooltipComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
     });
 
     it('should create', () => {
@@ -106,7 +108,7 @@ describe('TooltipComponent', () => {
     });
 
     it('should receive content through dependency injection', () => {
-      expect(component.tooltipContent).toBe(mockTemplateRef);
+      expect(component.tooltipContent).toBe(templateRef);
     });
 
     it('should not render div for template content', () => {
@@ -114,13 +116,11 @@ describe('TooltipComponent', () => {
     });
 
     it('should use ng-container with ngTemplateOutlet for template content', () => {
-      // ng-template elements are not rendered in the DOM, but we can check the content is rendered
-      // by confirming the template content is rendered directly without the div wrapper
       expect(fixture.debugElement.nativeElement.querySelector('div')).toBeFalsy();
     });
 
     it('should pass template reference to ngTemplateOutlet', () => {
-      expect(component.tooltipContent).toBe(mockTemplateRef);
+      expect(component.tooltipContent).toBe(templateRef);
     });
   });
 });

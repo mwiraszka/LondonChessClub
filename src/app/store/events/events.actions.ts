@@ -65,13 +65,13 @@ export const deleteEventFailed = createAction(
 
 export const cancelSelected = createAction('[Events] Cancel selected');
 
-export const formValueChanged = createAction(
-  '[Events] Form value changed',
-  props<{ eventId: Id | null; value: Partial<EventFormData> }>(),
+export const formDataChanged = createAction(
+  '[Events] Form data changed',
+  props<{ eventId: Id | null; formData: Partial<EventFormData> }>(),
 );
 
-export const eventFormDataReset = createAction(
-  '[Events] Event form data reset',
+export const formDataRestored = createAction(
+  '[Events] Form data restored',
   props<{ eventId: Id | null }>(),
 );
 

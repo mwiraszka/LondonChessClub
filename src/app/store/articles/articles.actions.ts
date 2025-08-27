@@ -98,13 +98,13 @@ export const paginationOptionsChanged = createAction(
 
 export const cancelSelected = createAction('[Articles] Cancel selected');
 
-export const formValueChanged = createAction(
-  '[Articles] Form value changed',
-  props<{ articleId: Id | null; value: Partial<ArticleFormData> }>(),
+export const formDataChanged = createAction(
+  '[Articles] Form data changed',
+  props<{ articleId: Id | null; formData: Partial<ArticleFormData> }>(),
 );
 
-export const articleFormDataReset = createAction(
-  '[Articles] Article form data reset',
+export const formDataRestored = createAction(
+  '[Articles] Form data restored',
   props<{ articleId: Id | null }>(),
 );
 

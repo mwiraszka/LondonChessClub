@@ -30,41 +30,35 @@ describe('ScheduleComponent', () => {
   const mockUpcomingEvents = [MOCK_EVENTS[2], MOCK_EVENTS[3], MOCK_EVENTS[4]];
   const mockNextEvent = mockUpcomingEvents[0];
 
-  beforeEach(() => {
-    windowScrollSpy = jest.spyOn(window, 'scroll').mockImplementation();
-
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [AdminControlsDirective, AdminToolbarComponent, ScheduleComponent],
       providers: [
         provideMockStore(),
         provideRouter([]),
         { provide: DialogService, useValue: { open: jest.fn() } },
       ],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(ScheduleComponent);
-        component = fixture.componentInstance;
+    }).compileComponents();
 
-        store = TestBed.inject(MockStore);
-        dialogService = TestBed.inject(DialogService);
+    fixture = TestBed.createComponent(ScheduleComponent);
+    component = fixture.componentInstance;
 
-        dialogOpenSpy = jest.spyOn(dialogService, 'open');
-        dispatchSpy = jest.spyOn(store, 'dispatch');
-        onTogglePastEventsSpy = jest.spyOn(component, 'onTogglePastEvents');
+    dialogService = TestBed.inject(DialogService);
+    store = TestBed.inject(MockStore);
 
-        fixture.componentRef.setInput('events', [
-          ...mockPastEvents,
-          ...mockUpcomingEvents,
-        ]);
-        fixture.componentRef.setInput('upcomingEvents', mockUpcomingEvents);
-        fixture.componentRef.setInput('nextEvent', mockNextEvent);
-        fixture.componentRef.setInput('isAdmin', false);
-        fixture.componentRef.setInput('showPastEvents', false);
-        fixture.componentRef.setInput('allowTogglePastEvents', true);
-        fixture.componentRef.setInput('includeDetails', true);
-        fixture.detectChanges();
-      });
+    dialogOpenSpy = jest.spyOn(dialogService, 'open');
+    dispatchSpy = jest.spyOn(store, 'dispatch');
+    onTogglePastEventsSpy = jest.spyOn(component, 'onTogglePastEvents');
+    windowScrollSpy = jest.spyOn(window, 'scroll').mockImplementation();
+
+    fixture.componentRef.setInput('events', [...mockPastEvents, ...mockUpcomingEvents]);
+    fixture.componentRef.setInput('upcomingEvents', mockUpcomingEvents);
+    fixture.componentRef.setInput('nextEvent', mockNextEvent);
+    fixture.componentRef.setInput('isAdmin', false);
+    fixture.componentRef.setInput('showPastEvents', false);
+    fixture.componentRef.setInput('allowTogglePastEvents', true);
+    fixture.componentRef.setInput('includeDetails', true);
+    fixture.detectChanges();
   });
 
   afterEach(() => {

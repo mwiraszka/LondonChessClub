@@ -38,26 +38,23 @@ describe('MembersTableComponent', () => {
         provideRouter([]),
         { provide: DialogService, useValue: { open: jest.fn() } },
       ],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(MembersTableComponent);
-        component = fixture.componentInstance;
-        dialogService = TestBed.inject(DialogService);
+    }).compileComponents();
 
-        fixture.componentRef.setInput('isAdmin', true);
-        fixture.componentRef.setInput('isSafeMode', false);
-        fixture.componentRef.setInput('members', MOCK_MEMBERS);
-        fixture.componentRef.setInput('options', { ...mockOptions });
+    fixture = TestBed.createComponent(MembersTableComponent);
+    component = fixture.componentInstance;
+    dialogService = TestBed.inject(DialogService);
 
-        dialogOpenSpy = jest.spyOn(dialogService, 'open');
-        // @ts-expect-error Private class member
-        onDeleteMemberSpy = jest.spyOn(component, 'onDeleteMember');
-        optionsChangeSpy = jest.spyOn(component.optionsChange, 'emit');
-        requestDeleteMemberSpy = jest.spyOn(component.requestDeleteMember, 'emit');
+    dialogOpenSpy = jest.spyOn(dialogService, 'open');
+    // @ts-expect-error Private class member
+    onDeleteMemberSpy = jest.spyOn(component, 'onDeleteMember');
+    optionsChangeSpy = jest.spyOn(component.optionsChange, 'emit');
+    requestDeleteMemberSpy = jest.spyOn(component.requestDeleteMember, 'emit');
 
-        fixture.detectChanges();
-      });
+    component.isAdmin = true;
+    component.isSafeMode = false;
+    component.members = MOCK_MEMBERS;
+    component.options = { ...mockOptions };
+    fixture.detectChanges();
   });
 
   it('should create', () => {

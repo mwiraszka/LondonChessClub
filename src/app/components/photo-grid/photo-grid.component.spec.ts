@@ -30,32 +30,30 @@ describe('PhotoGridComponent', () => {
   let dispatchSpy: jest.SpyInstance;
   let onClickAlbumCoverSpy: jest.SpyInstance;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [AdminControlsDirective, PhotoGridComponent, TooltipDirective],
       providers: [
         provideMockStore(),
         provideRouter([{ path: 'photo-gallery', component: PhotoGalleryStubComponent }]),
         { provide: DialogService, useValue: { open: jest.fn() } },
       ],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(PhotoGridComponent);
-        component = fixture.componentInstance;
-        dialogService = TestBed.inject(DialogService);
+    }).compileComponents();
 
-        store = TestBed.inject(MockStore);
+    fixture = TestBed.createComponent(PhotoGridComponent);
+    component = fixture.componentInstance;
 
-        fixture.componentRef.setInput('isAdmin', true);
-        fixture.componentRef.setInput('photoImages', MOCK_IMAGES);
+    dialogService = TestBed.inject(DialogService);
+    store = TestBed.inject(MockStore);
 
-        dialogOpenSpy = jest.spyOn(dialogService, 'open');
-        dispatchSpy = jest.spyOn(store, 'dispatch');
-        onClickAlbumCoverSpy = jest.spyOn(component, 'onClickAlbumCover');
+    dialogOpenSpy = jest.spyOn(dialogService, 'open');
+    dispatchSpy = jest.spyOn(store, 'dispatch');
+    onClickAlbumCoverSpy = jest.spyOn(component, 'onClickAlbumCover');
 
-        fixture.detectChanges();
-      });
+    component.isAdmin = true;
+    component.photoImages = MOCK_IMAGES;
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {

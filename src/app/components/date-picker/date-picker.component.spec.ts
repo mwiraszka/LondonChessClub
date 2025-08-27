@@ -19,28 +19,25 @@ describe('DatePickerComponent', () => {
   beforeAll(() => moment.tz.setDefault('UTC'));
   afterAll(() => moment.tz.setDefault());
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [DatePickerComponent],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(DatePickerComponent);
-        component = fixture.componentInstance;
+    }).compileComponents();
+    fixture = TestBed.createComponent(DatePickerComponent);
+    component = fixture.componentInstance;
 
-        component.writeValue('2050-01-01T00:00:00.000Z');
-        component.screenWidth = 1000;
-        fixture.detectChanges();
+    // @ts-expect-error Private class member
+    onChangeSpy = jest.spyOn(component, 'onChange');
+    onNextMonthSpy = jest.spyOn(component, 'onNextMonth');
+    onPreviousMonthSpy = jest.spyOn(component, 'onPreviousMonth');
+    onSelectCellSpy = jest.spyOn(component, 'onSelectCell');
+    renderCalendarSpy = jest.spyOn(component, 'renderCalendar');
 
-        // @ts-expect-error Private class member
-        onChangeSpy = jest.spyOn(component, 'onChange');
-        onNextMonthSpy = jest.spyOn(component, 'onNextMonth');
-        onPreviousMonthSpy = jest.spyOn(component, 'onPreviousMonth');
-        onSelectCellSpy = jest.spyOn(component, 'onSelectCell');
-        renderCalendarSpy = jest.spyOn(component, 'renderCalendar');
+    component.writeValue('2050-01-01T00:00:00.000Z');
+    component.screenWidth = 1000;
+    fixture.detectChanges();
 
-        jest.clearAllMocks();
-      });
+    jest.clearAllMocks();
   });
 
   it('should create', () => {

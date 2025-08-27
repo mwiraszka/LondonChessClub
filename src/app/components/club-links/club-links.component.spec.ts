@@ -8,16 +8,14 @@ describe('ClubLinksComponent', () => {
   let fixture: ComponentFixture<ClubLinksComponent>;
   let component: ClubLinksComponent;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [ClubLinksComponent],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(ClubLinksComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-      });
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(ClubLinksComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {

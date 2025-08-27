@@ -203,7 +203,7 @@ export const articlesReducer = createReducer(
     }),
   ),
 
-  on(ArticlesActions.formValueChanged, (state, { articleId, value }): ArticlesState => {
+  on(ArticlesActions.formDataChanged, (state, { articleId, formData }): ArticlesState => {
     const originalArticle = articleId ? state.entities[articleId] : null;
 
     if (!originalArticle) {
@@ -211,7 +211,7 @@ export const articlesReducer = createReducer(
         ...state,
         newArticleFormData: {
           ...state.newArticleFormData,
-          ...value,
+          ...formData,
         },
       };
     }
@@ -221,7 +221,7 @@ export const articlesReducer = createReducer(
         ...originalArticle,
         formData: {
           ...(originalArticle?.formData ?? INITIAL_ARTICLE_FORM_DATA),
-          ...value,
+          ...formData,
         },
       },
       state,
@@ -236,7 +236,7 @@ export const articlesReducer = createReducer(
     }),
   ),
 
-  on(ArticlesActions.articleFormDataReset, (state, { articleId }): ArticlesState => {
+  on(ArticlesActions.formDataRestored, (state, { articleId }): ArticlesState => {
     const originalArticle = articleId ? state.entities[articleId]?.article : null;
 
     if (!originalArticle) {

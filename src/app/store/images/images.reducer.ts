@@ -181,6 +181,14 @@ export const imagesReducer = createReducer(
       ),
   ),
 
+  on(
+    ImagesActions.paginationOptionsChanged,
+    (state, { options }): ImagesState => ({
+      ...state,
+      options,
+    }),
+  ),
+
   on(ImagesActions.fetchMainImageSucceeded, (state, { image }): ImagesState => {
     const originalEntity = image ? state.entities[image.id] : null;
 
@@ -314,45 +322,45 @@ export const imagesReducer = createReducer(
       }),
   ),
 
-  on(ImagesActions.formValueChanged, (state, { values }): ImagesState => {
-    if (!values.length) {
+  on(ImagesActions.formDataChanged, (state, { multipleFormData }): ImagesState => {
+    if (!multipleFormData.length) {
       return state;
     }
 
     const newImageValues: (Partial<ImageFormData> & { id: Id })[] = [];
     const existingImageValues: (Partial<ImageFormData> & { id: Id })[] = [];
 
-    values.forEach(value => {
-      if (value.id.toString().startsWith('new')) {
-        newImageValues.push(value);
+    multipleFormData.forEach(formData => {
+      if (formData.id.toString().startsWith('new')) {
+        newImageValues.push(formData);
       } else {
-        existingImageValues.push(value);
+        existingImageValues.push(formData);
       }
     });
 
     let newImagesFormData = { ...state.newImagesFormData };
 
-    newImageValues.forEach(value => {
-      const { id } = value;
+    newImageValues.forEach(formData => {
+      const { id } = formData;
       const existingFormData = newImagesFormData[id] || INITIAL_IMAGE_FORM_DATA;
 
       newImagesFormData = {
         ...newImagesFormData,
         [id]: {
           ...existingFormData,
-          ...value,
+          ...formData,
         },
       };
     });
 
     const updatedEntities = compact(
-      existingImageValues.map(value => {
-        const { id } = value;
+      existingImageValues.map(formData => {
+        const { id } = formData;
         const originalEntity = state.entities[id];
 
         if (!originalEntity) {
           console.warn(
-            `[LCC] Could not find image ${id} to update after form value change`,
+            `[LCC] Could not find image ${id} to update after form data change`,
           );
           return undefined;
         }
@@ -361,7 +369,7 @@ export const imagesReducer = createReducer(
           ...originalEntity,
           formData: {
             ...originalEntity.formData,
-            ...value,
+            ...formData,
           },
         };
       }),
@@ -374,15 +382,7 @@ export const imagesReducer = createReducer(
       : stateWithNewImages;
   }),
 
-  on(
-    ImagesActions.paginationOptionsChanged,
-    (state, { options }): ImagesState => ({
-      ...state,
-      options,
-    }),
-  ),
-
-  on(ImagesActions.imageFormDataReset, (state, { imageId }): ImagesState => {
+  on(ImagesActions.imageFormDataRestored, (state, { imageId }): ImagesState => {
     const originalImage = state.entities[imageId]?.image;
 
     if (!originalImage) {
@@ -398,7 +398,7 @@ export const imagesReducer = createReducer(
     );
   }),
 
-  on(ImagesActions.albumFormDataReset, (state, { imageIds }): ImagesState => {
+  on(ImagesActions.albumFormDataRestored, (state, { imageIds }): ImagesState => {
     return imagesAdapter.upsertMany(
       compact(
         imageIds.map(imageId => {

@@ -13,29 +13,27 @@ describe('ToggleSwitchComponent', () => {
   let tooltipAttachSpy: jest.SpyInstance;
   let tooltipDetachSpy: jest.SpyInstance;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [ToggleSwitchComponent, TooltipDirective],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(ToggleSwitchComponent);
-        component = fixture.componentInstance;
+    }).compileComponents();
 
-        component.iconTooltipWhenOff = 'Mock tooltip';
-        component.iconWhenOn = 'visibility';
-        component.iconWhenOff = 'visibility_off';
-        component.tooltipWhenOff = 'Tooltip when off';
-        component.tooltipWhenOn = 'Tooltip when on';
+    fixture = TestBed.createComponent(ToggleSwitchComponent);
+    component = fixture.componentInstance;
 
-        fixture.detectChanges();
+    component.iconTooltipWhenOff = 'Mock tooltip';
+    component.iconWhenOn = 'visibility';
+    component.iconWhenOff = 'visibility_off';
+    component.tooltipWhenOff = 'Tooltip when off';
+    component.tooltipWhenOn = 'Tooltip when on';
+    fixture.detectChanges();
 
-        emitSpy = jest.spyOn(component.toggle, 'emit');
-        // @ts-expect-error Private class member
-        tooltipAttachSpy = jest.spyOn(component.tooltipDirective, 'attach');
-        // @ts-expect-error Private class member
-        tooltipDetachSpy = jest.spyOn(component.tooltipDirective, 'detach');
-      });
+    // Tooltip directive spies need to be set after first change detection cycle
+    emitSpy = jest.spyOn(component.toggle, 'emit');
+    // @ts-expect-error Private class member
+    tooltipAttachSpy = jest.spyOn(component.tooltipDirective, 'attach');
+    // @ts-expect-error Private class member
+    tooltipDetachSpy = jest.spyOn(component.tooltipDirective, 'detach');
   });
 
   it('should create', () => {

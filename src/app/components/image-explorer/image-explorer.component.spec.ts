@@ -17,9 +17,9 @@ describe('ImageExplorerComponent', () => {
   let fixture: ComponentFixture<ImageExplorerComponent>;
   let component: ImageExplorerComponent;
 
+  let changeDetectorRef: ChangeDetectorRef;
   let dialogService: DialogService;
   let store: MockStore;
-  let changeDetectorRef: ChangeDetectorRef;
 
   let dialogOpenSpy: jest.SpyInstance;
   let dialogResultSpy: jest.SpyInstance;
@@ -27,41 +27,39 @@ describe('ImageExplorerComponent', () => {
 
   const mockImages = MOCK_IMAGES;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [AdminControlsDirective, ImageExplorerComponent],
       providers: [
         provideMockStore(),
         { provide: DialogService, useValue: { open: jest.fn() } },
         { provide: ActivatedRoute, useValue: { paramMap: [] } },
       ],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(ImageExplorerComponent);
-        component = fixture.componentInstance;
+    }).compileComponents();
 
-        dialogService = TestBed.inject(DialogService);
-        store = TestBed.inject(MockStore);
-        changeDetectorRef = fixture.debugElement.injector.get(ChangeDetectorRef);
+    fixture = TestBed.createComponent(ImageExplorerComponent);
+    component = fixture.componentInstance;
 
-        store.overrideSelector(ImagesSelectors.selectFilteredImages, mockImages);
-        store.overrideSelector(ImagesSelectors.selectFilteredCount, mockImages.length);
-        store.overrideSelector(ImagesSelectors.selectTotalCount, mockImages.length);
-        store.overrideSelector(ImagesSelectors.selectOptions, {
-          page: 1,
-          pageSize: 20,
-          sortBy: 'modificationInfo' as keyof (typeof mockImages)[0],
-          sortOrder: 'desc',
-          filters: {},
-          search: '',
-        });
-        store.overrideSelector(ImagesSelectors.selectLastFilteredThumbnailsFetch, null);
+    changeDetectorRef = fixture.debugElement.injector.get(ChangeDetectorRef);
+    dialogService = TestBed.inject(DialogService);
+    store = TestBed.inject(MockStore);
 
-        dialogOpenSpy = jest.spyOn(dialogService, 'open');
-        dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
-        dispatchSpy = jest.spyOn(store, 'dispatch');
-      });
+    store.overrideSelector(ImagesSelectors.selectFilteredImages, mockImages);
+    store.overrideSelector(ImagesSelectors.selectFilteredCount, mockImages.length);
+    store.overrideSelector(ImagesSelectors.selectTotalCount, mockImages.length);
+    store.overrideSelector(ImagesSelectors.selectOptions, {
+      page: 1,
+      pageSize: 20,
+      sortBy: 'modificationInfo' as keyof (typeof mockImages)[0],
+      sortOrder: 'desc',
+      filters: {},
+      search: '',
+    });
+    store.overrideSelector(ImagesSelectors.selectLastFilteredThumbnailsFetch, null);
+
+    dialogOpenSpy = jest.spyOn(dialogService, 'open');
+    dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
+    dispatchSpy = jest.spyOn(store, 'dispatch');
   });
 
   it('should create', () => {

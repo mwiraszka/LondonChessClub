@@ -1,8 +1,14 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
 
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -21,12 +27,12 @@ import { TooltipDirective } from '@app/directives/tooltip.directive';
 import {
   BasicDialogResult,
   Dialog,
+  Id,
   Member,
   MemberFormData,
   MemberFormGroup,
 } from '@app/models';
 import { DialogService } from '@app/services';
-import { MembersActions } from '@app/store/members';
 import {
   emailValidator,
   phoneNumberValidator,
@@ -56,12 +62,20 @@ export class MemberFormComponent implements OnInit {
   @Input({ required: true }) isSafeMode!: boolean;
   @Input({ required: true }) originalMember!: Member | null;
 
+  @Output() cancel = new EventEmitter<void>();
+  @Output() change = new EventEmitter<{
+    memberId: Id | null;
+    formData: Partial<MemberFormData>;
+  }>();
+  @Output() requestAddMember = new EventEmitter<void>();
+  @Output() requestUpdateMember = new EventEmitter<Id>();
+  @Output() restore = new EventEmitter<Id | null>();
+
   public form!: FormGroup<MemberFormGroup>;
 
   constructor(
     private readonly dialogService: DialogService,
     private readonly formBuilder: FormBuilder,
-    private readonly store: Store,
   ) {}
 
   public ngOnInit(): void {
@@ -94,14 +108,13 @@ export class MemberFormComponent implements OnInit {
       return;
     }
 
-    const memberId = this.originalMember?.id ?? null;
-    this.store.dispatch(MembersActions.memberFormDataReset({ memberId }));
+    this.restore.emit(this.originalMember?.id ?? null);
 
     setTimeout(() => this.ngOnInit());
   }
 
   public onCancel(): void {
-    this.store.dispatch(MembersActions.cancelSelected());
+    this.cancel.emit();
   }
 
   public async onSubmit(): Promise<void> {
@@ -131,11 +144,9 @@ export class MemberFormComponent implements OnInit {
     }
 
     if (this.originalMember) {
-      this.store.dispatch(
-        MembersActions.updateMemberRequested({ memberId: this.originalMember.id }),
-      );
+      this.requestUpdateMember.emit(this.originalMember.id);
     } else {
-      this.store.dispatch(MembersActions.addMemberRequested());
+      this.requestAddMember.emit();
     }
   }
 
@@ -189,16 +200,14 @@ export class MemberFormComponent implements OnInit {
   private initFormValueChangeListener(): void {
     this.form.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
-      .subscribe((value: Partial<MemberFormData>) =>
-        this.store.dispatch(
-          MembersActions.formValueChanged({
-            memberId: this.originalMember?.id ?? null,
-            value,
-          }),
-        ),
+      .subscribe((formData: Partial<MemberFormData>) =>
+        this.change.emit({
+          memberId: this.originalMember?.id ?? null,
+          formData,
+        }),
       );
 
-    // Manually trigger form value change to pass initial form data to store
+    // Manually trigger form data change to pass initial form data to store
     this.form.updateValueAndValidity();
   }
 }

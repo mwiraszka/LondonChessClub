@@ -133,7 +133,7 @@ export class NavEffects {
     ),
   );
 
-  resetEventFormData$ = createEffect(() =>
+  restoreEventFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -145,7 +145,7 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const eventId = previousPath!.split('/event/')[1]?.split('/')[1] ?? null;
-        return EventsActions.eventFormDataReset({ eventId });
+        return EventsActions.formDataRestored({ eventId });
       }),
     ),
   );
@@ -169,7 +169,7 @@ export class NavEffects {
     ),
   );
 
-  resetMemberFormData$ = createEffect(() =>
+  restoreMemberFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -181,7 +181,7 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const memberId = previousPath!.split('/member/')[1]?.split('/')[1] ?? null;
-        return MembersActions.memberFormDataReset({ memberId });
+        return MembersActions.formDataRestored({ memberId });
       }),
     ),
   );
@@ -216,7 +216,7 @@ export class NavEffects {
     ),
   );
 
-  resetArticleFormData$ = createEffect(() =>
+  restoreArticleFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -228,7 +228,7 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const articleId = previousPath!.split('/article/')[1]?.split('/')[1] ?? null;
-        return ArticlesActions.articleFormDataReset({ articleId });
+        return ArticlesActions.formDataRestored({ articleId });
       }),
     ),
   );
@@ -263,7 +263,7 @@ export class NavEffects {
     ),
   );
 
-  resetImageFormData$ = createEffect(() =>
+  restoreImageFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -275,12 +275,12 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const imageId = previousPath!.split('/image/')[1]?.split('/')[1] ?? null;
-        return ImagesActions.imageFormDataReset({ imageId });
+        return ImagesActions.imageFormDataRestored({ imageId });
       }),
     ),
   );
 
-  resetAlbumFormData$ = createEffect(() =>
+  restoreAlbumFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -296,7 +296,7 @@ export class NavEffects {
       ),
       map(([, entities]) => {
         const imageIds = entities.map(entity => entity.image.id);
-        return ImagesActions.albumFormDataReset({ imageIds });
+        return ImagesActions.albumFormDataRestored({ imageIds });
       }),
     ),
   );
@@ -372,7 +372,7 @@ export class NavEffects {
   clearIndexedDbImageFileData$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(ImagesActions.imageFormDataReset, ImagesActions.albumFormDataReset),
+        ofType(ImagesActions.imageFormDataRestored, ImagesActions.albumFormDataRestored),
         tap(() => this.imageFileService.clearAllImages()),
       ),
     { dispatch: false },

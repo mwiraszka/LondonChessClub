@@ -10,10 +10,10 @@ import { ActivatedRoute } from '@angular/router';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { MemberFormComponent } from '@app/components/member-form/member-form.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import { EditorPage, InternalLink, Member, MemberFormData } from '@app/models';
+import { EditorPage, Id, InternalLink, Member, MemberFormData } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
-import { MembersSelectors } from '@app/store/members';
+import { MembersActions, MembersSelectors } from '@app/store/members';
 
 @UntilDestroy()
 @Component({
@@ -25,12 +25,19 @@ import { MembersSelectors } from '@app/store/members';
         icon="admin_panel_settings"
         [title]="vm.pageTitle">
       </lcc-page-header>
+
       <lcc-member-form
         [formData]="vm.formData"
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
         [isSafeMode]="vm.isSafeMode"
-        [originalMember]="vm.originalMember">
+        [originalMember]="vm.originalMember"
+        (cancel)="onCancel()"
+        (change)="onChange($event.memberId, $event.formData)"
+        (requestAddMember)="onRequestAddMember()"
+        (requestUpdateMember)="onRequestUpdateMember($event)"
+        (restore)="onRestore($event)">
       </lcc-member-form>
+
       <lcc-link-list [links]="[membersPageLink]"></lcc-link-list>
     }
   `,
@@ -84,5 +91,25 @@ export class MemberEditorPageComponent implements EditorPage, OnInit {
         );
       }),
     );
+  }
+
+  public onCancel(): void {
+    this.store.dispatch(MembersActions.cancelSelected());
+  }
+
+  public onChange(memberId: Id | null, formData: Partial<MemberFormData>): void {
+    this.store.dispatch(MembersActions.formDataChanged({ memberId, formData }));
+  }
+
+  public onRequestAddMember(): void {
+    this.store.dispatch(MembersActions.addMemberRequested());
+  }
+
+  public onRequestUpdateMember(memberId: Id): void {
+    this.store.dispatch(MembersActions.updateMemberRequested({ memberId }));
+  }
+
+  public onRestore(memberId: Id | null): void {
+    this.store.dispatch(MembersActions.formDataRestored({ memberId }));
   }
 }

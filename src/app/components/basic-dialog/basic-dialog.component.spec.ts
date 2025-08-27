@@ -26,21 +26,19 @@ describe('BasicDialogComponent', () => {
 
   let dialogResultSpy: jest.SpyInstance;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [BasicDialogComponent],
       providers: [{ provide: Renderer2, useValue: { listen: jest.fn() } }],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(BasicDialogComponent);
-        component = fixture.componentInstance;
+    }).compileComponents();
 
-        component.dialog = mockDialog;
-        fixture.detectChanges();
+    fixture = TestBed.createComponent(BasicDialogComponent);
+    component = fixture.componentInstance;
 
-        dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
-      });
+    dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
+
+    component.dialog = mockDialog;
+    fixture.detectChanges();
   });
 
   it('should create', () => {

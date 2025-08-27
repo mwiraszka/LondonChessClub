@@ -141,7 +141,7 @@ export const eventsReducer = createReducer(
     }),
   ),
 
-  on(EventsActions.formValueChanged, (state, { eventId, value }): EventsState => {
+  on(EventsActions.formDataChanged, (state, { eventId, formData }): EventsState => {
     const originalEvent = eventId ? state.entities[eventId] : null;
 
     if (!originalEvent) {
@@ -149,7 +149,7 @@ export const eventsReducer = createReducer(
         ...state,
         newEventFormData: {
           ...state.newEventFormData,
-          ...value,
+          ...formData,
         },
       };
     }
@@ -159,14 +159,14 @@ export const eventsReducer = createReducer(
         ...originalEvent,
         formData: {
           ...(originalEvent?.formData ?? INITIAL_EVENT_FORM_DATA),
-          ...value,
+          ...formData,
         },
       },
       state,
     );
   }),
 
-  on(EventsActions.eventFormDataReset, (state, { eventId }): EventsState => {
+  on(EventsActions.formDataRestored, (state, { eventId }): EventsState => {
     const originalEvent = eventId ? state.entities[eventId]?.event : null;
 
     if (!originalEvent) {

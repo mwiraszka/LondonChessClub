@@ -12,8 +12,8 @@ describe('NavigationBarComponent', () => {
   let fixture: ComponentFixture<NavigationBarComponent>;
   let component: NavigationBarComponent;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [DropdownDirective, NavigationBarComponent, RouterModule.forRoot([])],
       providers: [
         {
@@ -30,13 +30,11 @@ describe('NavigationBarComponent', () => {
           },
         },
       ],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(NavigationBarComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-      });
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(NavigationBarComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {

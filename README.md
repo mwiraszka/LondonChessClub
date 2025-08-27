@@ -34,7 +34,8 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <details>
 <summary>v5.8.3 - August TBD, 2025</summary>
 
-- 🐛 Prevent layout shift with club logo image in app header as the page loads
+- 🐛 Pre-load club logo image in app header to prevent layout shift as page context loads
+- 🔧 Move out store dependencies from low-level components for better separation of concerns and flexibility in future applications
 
 </details>
 

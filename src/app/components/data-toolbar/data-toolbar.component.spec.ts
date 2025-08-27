@@ -23,23 +23,21 @@ describe('DataToolbarComponent', () => {
     search: '',
   };
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [DataToolbarComponent, TooltipDirective],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(DataToolbarComponent<Member>);
-        component = fixture.componentInstance;
+    }).compileComponents();
 
-        fixture.componentRef.setInput('entity', 'members');
-        fixture.componentRef.setInput('filteredCount', MOCK_MEMBERS.length);
-        fixture.componentRef.setInput('options', { ...mockOptions });
-        fixture.detectChanges();
+    fixture = TestBed.createComponent(DataToolbarComponent<Member>);
+    component = fixture.componentInstance;
 
-        optionsChangeSpy = jest.spyOn(component.optionsChange, 'emit');
-        optionsChangeNoFetchSpy = jest.spyOn(component.optionsChangeNoFetch, 'emit');
-      });
+    optionsChangeSpy = jest.spyOn(component.optionsChange, 'emit');
+    optionsChangeNoFetchSpy = jest.spyOn(component.optionsChangeNoFetch, 'emit');
+
+    component.entity = 'members';
+    component.filteredCount = MOCK_MEMBERS.length;
+    component.options = { ...mockOptions };
+    fixture.detectChanges();
   });
 
   it('should create', () => {

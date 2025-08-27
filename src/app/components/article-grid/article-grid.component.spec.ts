@@ -31,34 +31,33 @@ describe('ArticleGridComponent', () => {
     search: '',
   };
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [AdminControlsDirective, ArticleGridComponent, ImagePreloadDirective],
       providers: [
         provideRouter([]),
         { provide: DialogService, useValue: { open: jest.fn() } },
       ],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(ArticleGridComponent);
-        component = fixture.componentInstance;
-        dialogService = TestBed.inject(DialogService);
+    }).compileComponents();
 
-        fixture.componentRef.setInput('articles', MOCK_ARTICLES);
-        fixture.componentRef.setInput('articleImages', MOCK_IMAGES);
-        fixture.componentRef.setInput('isAdmin', true);
-        fixture.componentRef.setInput('options', mockOptions);
+    fixture = TestBed.createComponent(ArticleGridComponent);
+    component = fixture.componentInstance;
 
-        dialogOpenSpy = jest.spyOn(dialogService, 'open');
-        requestDeleteArticleSpy = jest.spyOn(component.requestDeleteArticle, 'emit');
-        requestUpdateArticleBookmarkSpy = jest.spyOn(
-          component.requestUpdateArticleBookmark,
-          'emit',
-        );
+    dialogService = TestBed.inject(DialogService);
 
-        fixture.detectChanges();
-      });
+    dialogOpenSpy = jest.spyOn(dialogService, 'open');
+    requestDeleteArticleSpy = jest.spyOn(component.requestDeleteArticle, 'emit');
+    requestUpdateArticleBookmarkSpy = jest.spyOn(
+      component.requestUpdateArticleBookmark,
+      'emit',
+    );
+
+    fixture.componentRef.setInput('articles', MOCK_ARTICLES);
+    fixture.componentRef.setInput('articleImages', MOCK_IMAGES);
+    fixture.componentRef.setInput('isAdmin', true);
+    fixture.componentRef.setInput('options', mockOptions);
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {

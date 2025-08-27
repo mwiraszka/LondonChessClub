@@ -1,11 +1,9 @@
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
-import { AuthActions } from '@app/store/auth';
 import { query, queryTextContent } from '@app/utils';
 
 import { ChangePasswordFormComponent } from './change-password-form.component';
@@ -14,42 +12,40 @@ describe('ChangePasswordFormComponent', () => {
   let fixture: ComponentFixture<ChangePasswordFormComponent>;
   let component: ChangePasswordFormComponent;
 
-  let store: MockStore;
-
-  let dispatchSpy: jest.SpyInstance;
   let initFormSpy: jest.SpyInstance;
   let initFormValueChangeListenerSpy: jest.SpyInstance;
+  let requestChangePasswordSpy: jest.SpyInstance;
+  let requestCodeForPasswordChangeSpy: jest.SpyInstance;
   let requestNewCodeSpy: jest.SpyInstance;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [ChangePasswordFormComponent, ReactiveFormsModule, RouterLink],
       providers: [
         FormBuilder,
-        provideMockStore(),
         { provide: ActivatedRoute, useValue: { paramMap: of([]) } },
       ],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(ChangePasswordFormComponent);
-        component = fixture.componentInstance;
+    }).compileComponents();
 
-        store = TestBed.inject(MockStore);
+    fixture = TestBed.createComponent(ChangePasswordFormComponent);
+    component = fixture.componentInstance;
 
-        component.hasCode = false;
-        fixture.detectChanges();
+    component.hasCode = false;
+    fixture.detectChanges();
 
-        dispatchSpy = jest.spyOn(store, 'dispatch');
-        // @ts-expect-error Private class member
-        initFormSpy = jest.spyOn(component, 'initForm');
-        initFormValueChangeListenerSpy = jest.spyOn(
-          component,
-          // @ts-expect-error Private class member
-          'initFormValueChangeListener',
-        );
-        requestNewCodeSpy = jest.spyOn(component, 'onRequestNewCode');
-      });
+    // @ts-expect-error Private class member
+    initFormSpy = jest.spyOn(component, 'initForm');
+    initFormValueChangeListenerSpy = jest.spyOn(
+      component,
+      // @ts-expect-error Private class member
+      'initFormValueChangeListener',
+    );
+    requestChangePasswordSpy = jest.spyOn(component.requestChangePassword, 'emit');
+    requestCodeForPasswordChangeSpy = jest.spyOn(
+      component.requestCodeForPasswordChange,
+      'emit',
+    );
+    requestNewCodeSpy = jest.spyOn(component.requestNewCode, 'emit');
   });
 
   it('should create', () => {
@@ -169,7 +165,7 @@ describe('ChangePasswordFormComponent', () => {
 
       expect(component.form.controls.code.touched).toBe(true);
       expect(component.form.touched).toBe(true);
-      expect(dispatchSpy).not.toHaveBeenCalled();
+      expect(requestChangePasswordSpy).not.toHaveBeenCalled();
     });
 
     it('should mark email field as touched if it is invalid when hasCode is false', () => {
@@ -182,10 +178,12 @@ describe('ChangePasswordFormComponent', () => {
       fixture.detectChanges();
 
       expect(component.form.controls.email.touched).toBe(true);
-      expect(dispatchSpy).not.toHaveBeenCalled();
+      expect(requestChangePasswordSpy).not.toHaveBeenCalled();
+      expect(requestCodeForPasswordChangeSpy).not.toHaveBeenCalled();
+      expect(requestNewCodeSpy).not.toHaveBeenCalled();
     });
 
-    it('should dispatch codeForPasswordChangeRequested when hasCode is false and email is valid', () => {
+    it('should emit request code for password change event when hasCode is false and email is valid', () => {
       component.hasCode = false;
       const testEmail = 'valid@example.com';
       component.form.patchValue({ email: testEmail });
@@ -194,12 +192,12 @@ describe('ChangePasswordFormComponent', () => {
       component.onSubmit(false);
       fixture.detectChanges();
 
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        AuthActions.codeForPasswordChangeRequested({ email: testEmail }),
-      );
+      expect(requestCodeForPasswordChangeSpy).toHaveBeenCalledWith(testEmail);
+      expect(requestChangePasswordSpy).not.toHaveBeenCalled();
+      expect(requestNewCodeSpy).not.toHaveBeenCalled();
     });
 
-    it('should dispatch passwordChangeRequested when hasCode is true and form is valid', () => {
+    it('should emit request change password event when hasCode is true and form is valid', () => {
       component.hasCode = true;
       component.form.patchValue({
         email: 'valid@example.com',
@@ -212,22 +210,24 @@ describe('ChangePasswordFormComponent', () => {
       component.onSubmit(true);
       fixture.detectChanges();
 
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        AuthActions.passwordChangeRequested({
-          email: 'valid@example.com',
-          password: 'Password123!',
-          code: '123456',
-        }),
-      );
+      expect(requestChangePasswordSpy).toHaveBeenCalledWith({
+        email: 'valid@example.com',
+        password: 'Password123!',
+        code: '123456',
+      });
+      expect(requestCodeForPasswordChangeSpy).not.toHaveBeenCalled();
+      expect(requestNewCodeSpy).not.toHaveBeenCalled();
     });
   });
 
   describe('onRequestNewCode', () => {
-    it('should dispatch requestNewCodeSelected action', () => {
+    it('should emit request new code event', () => {
       component.onRequestNewCode();
       fixture.detectChanges();
 
-      expect(dispatchSpy).toHaveBeenCalledWith(AuthActions.requestNewCodeSelected());
+      expect(requestNewCodeSpy).toHaveBeenCalledTimes(1);
+      expect(requestChangePasswordSpy).not.toHaveBeenCalled();
+      expect(requestCodeForPasswordChangeSpy).not.toHaveBeenCalled();
     });
   });
 
@@ -295,7 +295,6 @@ describe('ChangePasswordFormComponent', () => {
         fixture.detectChanges();
 
         expect(requestNewCodeSpy).toHaveBeenCalledTimes(1);
-        expect(dispatchSpy).toHaveBeenCalledWith(AuthActions.requestNewCodeSelected());
       });
     });
 

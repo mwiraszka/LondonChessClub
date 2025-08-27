@@ -1,9 +1,15 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
 import * as uuid from 'uuid';
 
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -26,10 +32,10 @@ import {
   Image,
   ImageFormData,
   ImageFormGroup,
+  LccError,
   Url,
 } from '@app/models';
 import { DialogService, ImageFileService } from '@app/services';
-import { ImagesActions } from '@app/store/images';
 import { isLccError } from '@app/utils';
 import { imageCaptionValidator } from '@app/validators';
 
@@ -57,6 +63,16 @@ export class ImageFormComponent implements OnInit {
   } | null;
   @Input({ required: true }) newImageFormData!: ImageFormData | null;
 
+  @Output() cancel = new EventEmitter<void>();
+  @Output() change = new EventEmitter<{
+    multipleFormData: (Partial<ImageFormData> & { id: Id })[];
+  }>();
+  @Output() fileActionFail = new EventEmitter<LccError>();
+  @Output() requestAddImage = new EventEmitter<Id>();
+  @Output() requestFetchMainImage = new EventEmitter<Id>();
+  @Output() requestUpdateImage = new EventEmitter<Id>();
+  @Output() restore = new EventEmitter<Id>();
+
   public form!: FormGroup<ImageFormGroup>;
   public newAlbumValue!: string;
   public newImageDataUrl: Url | null = null;
@@ -65,7 +81,6 @@ export class ImageFormComponent implements OnInit {
     private readonly dialogService: DialogService,
     private readonly formBuilder: FormBuilder,
     private readonly imageFileService: ImageFileService,
-    private readonly store: Store,
   ) {}
 
   public ngOnInit(): void {
@@ -81,11 +96,7 @@ export class ImageFormComponent implements OnInit {
       !this.imageEntity.image.thumbnailUrl &&
       !this.imageEntity.image.mainUrl
     ) {
-      this.store.dispatch(
-        ImagesActions.fetchMainImageRequested({
-          imageId: this.imageEntity.image.id,
-        }),
-      );
+      this.requestFetchMainImage.emit(this.imageEntity.image.id);
     }
 
     if (this.hasUnsavedChanges) {
@@ -119,7 +130,7 @@ export class ImageFormComponent implements OnInit {
       const result = await this.imageFileService.storeImageFile(id, file, true);
 
       if (isLccError(result)) {
-        this.store.dispatch(ImagesActions.imageFileActionFailed({ error: result }));
+        this.fileActionFail.emit(result);
       } else {
         const { dataUrl, filename } = result;
         const caption =
@@ -155,15 +166,14 @@ export class ImageFormComponent implements OnInit {
       return;
     }
 
-    const imageId = this.form.controls.id.value;
-    this.store.dispatch(ImagesActions.imageFormDataReset({ imageId }));
+    this.restore.emit(this.form.controls.id.value);
     this.newImageDataUrl = null;
 
     setTimeout(() => this.ngOnInit());
   }
 
   public onCancel(): void {
-    this.store.dispatch(ImagesActions.cancelSelected());
+    this.cancel.emit();
   }
 
   public async onSubmit(): Promise<void> {
@@ -193,11 +203,10 @@ export class ImageFormComponent implements OnInit {
     }
 
     const imageId = this.form.controls.id.value;
-
     if (this.imageEntity) {
-      this.store.dispatch(ImagesActions.updateImageRequested({ imageId }));
+      this.requestUpdateImage.emit(imageId);
     } else {
-      this.store.dispatch(ImagesActions.addImageRequested({ imageId }));
+      this.requestAddImage.emit(imageId);
     }
   }
 
@@ -205,7 +214,7 @@ export class ImageFormComponent implements OnInit {
     const result = await this.imageFileService.getImage(id);
 
     if (isLccError(result)) {
-      this.store.dispatch(ImagesActions.imageFileActionFailed({ error: result }));
+      this.fileActionFail.emit(result);
     } else if (result) {
       this.newImageDataUrl = result.dataUrl;
     }
@@ -245,12 +254,10 @@ export class ImageFormComponent implements OnInit {
       .pipe(debounceTime(250), untilDestroyed(this))
       .subscribe((value: Partial<ImageFormData>) => {
         const id = this.form.controls.id.value;
-        this.store.dispatch(
-          ImagesActions.formValueChanged({ values: [{ ...value, id }] }),
-        );
+        this.change.emit({ multipleFormData: [{ ...value, id }] });
       });
 
-    // Manually trigger form value change to pass initial form data to store
+    // Manually trigger form data change to pass initial form data to store
     this.form.updateValueAndValidity();
   }
 }

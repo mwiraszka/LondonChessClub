@@ -1,8 +1,14 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
 
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -15,7 +21,6 @@ import { RouterLink } from '@angular/router';
 
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { ChangePasswordFormGroup } from '@app/models';
-import { AuthActions } from '@app/store/auth';
 import {
   emailValidator,
   hasLowercaseLetterValidator,
@@ -36,12 +41,17 @@ import {
 export class ChangePasswordFormComponent implements OnInit {
   @Input({ required: true }) hasCode!: boolean;
 
+  @Output() requestChangePassword = new EventEmitter<{
+    email: string;
+    password: string;
+    code: string;
+  }>();
+  @Output() requestCodeForPasswordChange = new EventEmitter<string>();
+  @Output() requestNewCode = new EventEmitter<void>();
+
   public form!: FormGroup<ChangePasswordFormGroup>;
 
-  constructor(
-    private readonly formBuilder: FormBuilder,
-    private readonly store: Store,
-  ) {}
+  constructor(private readonly formBuilder: FormBuilder) {}
 
   public ngOnInit(): void {
     this.initForm();
@@ -62,16 +72,16 @@ export class ChangePasswordFormComponent implements OnInit {
     const code = this.form.value.code;
 
     if (!hasCode && email) {
-      this.store.dispatch(AuthActions.codeForPasswordChangeRequested({ email }));
+      this.requestCodeForPasswordChange.emit(email);
     }
 
     if (hasCode && email && password && code) {
-      this.store.dispatch(AuthActions.passwordChangeRequested({ email, password, code }));
+      this.requestChangePassword.emit({ email, password, code });
     }
   }
 
   public onRequestNewCode(): void {
-    this.store.dispatch(AuthActions.requestNewCodeSelected());
+    this.requestNewCode.emit();
   }
 
   private initForm(): void {

@@ -20,8 +20,8 @@ describe('AdminControlsComponent', () => {
   let deleteCbSpy: jest.SpyInstance;
   let destroyedSpy: jest.SpyInstance;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [AdminControlsComponent, RouterModule.forRoot([])],
       providers: [
         {
@@ -30,18 +30,16 @@ describe('AdminControlsComponent', () => {
         },
         KeyStateService,
       ],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(AdminControlsComponent);
-        component = fixture.componentInstance;
+    }).compileComponents();
 
-        keyStateService = TestBed.inject(KeyStateService);
+    fixture = TestBed.createComponent(AdminControlsComponent);
+    component = fixture.componentInstance;
 
-        ctrlMetaKeyPressedSpy = jest.spyOn(keyStateService, 'ctrlMetaKeyPressed$', 'get');
-        deleteCbSpy = jest.spyOn(component.config, 'deleteCb');
-        destroyedSpy = jest.spyOn(component.destroyed, 'emit');
-      });
+    keyStateService = TestBed.inject(KeyStateService);
+
+    ctrlMetaKeyPressedSpy = jest.spyOn(keyStateService, 'ctrlMetaKeyPressed$', 'get');
+    deleteCbSpy = jest.spyOn(component.config, 'deleteCb');
+    destroyedSpy = jest.spyOn(component.destroyed, 'emit');
   });
 
   it('should create', () => {

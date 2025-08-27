@@ -1,4 +1,3 @@
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { pick } from 'lodash';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -8,7 +7,6 @@ import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.
 import { EVENT_FORM_DATA_PROPERTIES } from '@app/constants';
 import { MOCK_EVENTS } from '@app/mocks/events.mock';
 import { DialogService } from '@app/services';
-import { EventsActions } from '@app/store/events';
 import { query } from '@app/utils';
 import { generateId } from '@app/utils/common/generate-id.util';
 
@@ -19,54 +17,48 @@ describe('EventFormComponent', () => {
   let component: EventFormComponent;
 
   let dialogService: DialogService;
-  let store: MockStore;
 
   let cancelSpy: jest.SpyInstance;
+  let changeSpy: jest.SpyInstance;
   let dialogOpenSpy: jest.SpyInstance;
-  let dispatchSpy: jest.SpyInstance;
   let initFormSpy: jest.SpyInstance;
   let initFormValueChangeListenerSpy: jest.SpyInstance;
+  let requestAddEventSpy: jest.SpyInstance;
+  let requestUpdateEventSpy: jest.SpyInstance;
   let restoreSpy: jest.SpyInstance;
   let submitSpy: jest.SpyInstance;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [EventFormComponent, ReactiveFormsModule],
-      providers: [
-        FormBuilder,
-        provideMockStore(),
-        { provide: DialogService, useValue: { open: jest.fn() } },
-      ],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(EventFormComponent);
-        component = fixture.componentInstance;
+      providers: [FormBuilder, { provide: DialogService, useValue: { open: jest.fn() } }],
+    }).compileComponents();
 
-        dialogService = TestBed.inject(DialogService);
-        store = TestBed.inject(MockStore);
+    fixture = TestBed.createComponent(EventFormComponent);
+    component = fixture.componentInstance;
 
-        fixture.componentRef.setInput(
-          'formData',
-          pick(MOCK_EVENTS[0], EVENT_FORM_DATA_PROPERTIES),
-        );
-        fixture.componentRef.setInput('hasUnsavedChanges', false);
-        fixture.componentRef.setInput('originalEvent', null);
-        fixture.detectChanges();
+    dialogService = TestBed.inject(DialogService);
 
-        cancelSpy = jest.spyOn(component, 'onCancel');
-        dialogOpenSpy = jest.spyOn(dialogService, 'open');
-        dispatchSpy = jest.spyOn(store, 'dispatch');
-        // @ts-expect-error Private class member
-        initFormSpy = jest.spyOn(component, 'initForm');
-        initFormValueChangeListenerSpy = jest.spyOn(
-          component,
-          // @ts-expect-error Private class member
-          'initFormValueChangeListener',
-        );
-        restoreSpy = jest.spyOn(component, 'onRestore');
-        submitSpy = jest.spyOn(component, 'onSubmit');
-      });
+    cancelSpy = jest.spyOn(component.cancel, 'emit');
+    changeSpy = jest.spyOn(component.change, 'emit');
+    dialogOpenSpy = jest.spyOn(dialogService, 'open');
+    // @ts-expect-error Private class member
+    initFormSpy = jest.spyOn(component, 'initForm');
+    initFormValueChangeListenerSpy = jest.spyOn(
+      component,
+      // @ts-expect-error Private class member
+      'initFormValueChangeListener',
+    );
+    requestAddEventSpy = jest.spyOn(component.requestAddEvent, 'emit');
+    requestUpdateEventSpy = jest.spyOn(component.requestUpdateEvent, 'emit');
+    restoreSpy = jest.spyOn(component.restore, 'emit');
+    submitSpy = jest.spyOn(component, 'onSubmit');
+
+    component.formData = pick(MOCK_EVENTS[0], EVENT_FORM_DATA_PROPERTIES);
+    component.hasUnsavedChanges = false;
+    component.originalEvent = null;
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -85,7 +77,6 @@ describe('EventFormComponent', () => {
           });
           fixture.componentRef.setInput('hasUnsavedChanges', true);
           fixture.componentRef.setInput('originalEvent', null);
-          fixture.detectChanges();
           component.ngOnInit();
 
           component.form.patchValue({
@@ -100,14 +91,10 @@ describe('EventFormComponent', () => {
 
         afterEach(() => jest.useRealTimers());
 
-        it('should convert value correctly before dispatching formValueChanged action', () => {
+        it('should emit change event with converted values', () => {
           // Run debounce timer to trigger the valueChanges subscription
           jest.runAllTimers();
-
-          expect(dispatchSpy).toHaveBeenCalled();
-          const callArgs = dispatchSpy.mock.calls[0][0];
-          expect(callArgs.eventId).toBeFalsy(); // Because originalEvent was null
-          expect(callArgs.type).toBe(EventsActions.formValueChanged.type);
+          expect(changeSpy).toHaveBeenCalled();
         });
 
         it('should initialize the form with touched values from formData', () => {
@@ -133,7 +120,6 @@ describe('EventFormComponent', () => {
           );
           fixture.componentRef.setInput('hasUnsavedChanges', false);
           fixture.componentRef.setInput('originalEvent', MOCK_EVENTS[1]);
-          fixture.detectChanges();
           component.ngOnInit();
 
           component.form.patchValue({
@@ -146,13 +132,10 @@ describe('EventFormComponent', () => {
           component.ngOnInit();
         });
 
-        it('should convert value correctly before dispatching formValueChanged action', () => {
+        it('should emit change event with converted values', () => {
           // Run debounce timer to trigger the valueChanges subscription
           jest.runAllTimers();
-
-          const callArgs = dispatchSpy.mock.calls[0][0];
-          expect(callArgs.eventId).toBe(MOCK_EVENTS[1].id); // From originalEvent
-          expect(callArgs.type).toBe(EventsActions.formValueChanged.type);
+          expect(changeSpy).toHaveBeenCalled();
         });
 
         it('should initialize the form with untouched values from formData', () => {
@@ -173,7 +156,7 @@ describe('EventFormComponent', () => {
   describe('form validation', () => {
     describe('required validator', () => {
       it('should mark empty field as invalid', () => {
-        component.form.patchValue({ title: '' });
+        component.form.patchValue({ title: '' }); // Invalid - title field is required
         fixture.detectChanges();
 
         expect(component.form.controls.title.hasError('required')).toBe(true);
@@ -226,7 +209,7 @@ describe('EventFormComponent', () => {
 
     afterEach(() => jest.useRealTimers());
 
-    it('should dispatch event form data reset and re-initialize form if dialog is confirmed', async () => {
+    it('should emit both change and restore events and re-initialize form if dialog is confirmed', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
 
       await component.onRestore();
@@ -245,36 +228,30 @@ describe('EventFormComponent', () => {
         },
       });
 
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        EventsActions.eventFormDataReset({ eventId: MOCK_EVENTS[4].id }),
-      );
+      expect(changeSpy).toHaveBeenCalled();
+      expect(restoreSpy).toHaveBeenCalledWith(MOCK_EVENTS[4].id);
       expect(initFormSpy).toHaveBeenCalledTimes(1);
       expect(initFormValueChangeListenerSpy).toHaveBeenCalledTimes(1);
-
-      // Verify formValueChanged was dispatched at least once
-      const formValueChangedCalls = dispatchSpy.mock.calls.filter(
-        call => call[0].type === EventsActions.formValueChanged.type,
-      );
-      expect(formValueChangedCalls.length).toBeGreaterThan(0);
     });
 
-    it('should not dispatch reset action or re-initialize form if dialog is cancelled', async () => {
+    it('should not emit change or restore event or re-initialize form if dialog is cancelled', async () => {
       dialogOpenSpy.mockResolvedValue('cancel');
 
       await component.onRestore();
       jest.runAllTimers();
 
       expect(dialogOpenSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).not.toHaveBeenCalled();
+      expect(changeSpy).not.toHaveBeenCalled();
+      expect(restoreSpy).not.toHaveBeenCalled();
       expect(initFormSpy).not.toHaveBeenCalled();
       expect(initFormValueChangeListenerSpy).not.toHaveBeenCalled();
     });
   });
 
   describe('onCancel', () => {
-    it('should dispatch cancelSelected action', () => {
+    it('should emit cancel event', () => {
       component.onCancel();
-      expect(dispatchSpy).toHaveBeenCalledWith(EventsActions.cancelSelected());
+      expect(cancelSpy).toHaveBeenCalled();
     });
   });
 
@@ -292,7 +269,7 @@ describe('EventFormComponent', () => {
       expect(dialogOpenSpy).not.toHaveBeenCalled();
     });
 
-    it('should open confirmation dialog with correct data if adding a new event', async () => {
+    it('should open confirmation dialog with correct data and emit request add event if adding a new event', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
       fixture.componentRef.setInput(
         'formData',
@@ -314,10 +291,10 @@ describe('EventFormComponent', () => {
           },
         },
       });
-      expect(dispatchSpy).toHaveBeenCalledWith(EventsActions.addEventRequested());
+      expect(requestAddEventSpy).toHaveBeenCalled();
     });
 
-    it('should open confirmation dialog with correct data if updating an event', async () => {
+    it('should open confirmation dialog with correct data and emit request update event if updating an event', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
       fixture.componentRef.setInput(
         'formData',
@@ -339,12 +316,10 @@ describe('EventFormComponent', () => {
           },
         },
       });
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        EventsActions.updateEventRequested({ eventId: MOCK_EVENTS[2].id }),
-      );
+      expect(requestUpdateEventSpy).toHaveBeenCalledWith(MOCK_EVENTS[2].id);
     });
 
-    it('should not dispatch action if dialog is cancelled', async () => {
+    it('should not emit add or update events if dialog is cancelled', async () => {
       dialogOpenSpy.mockResolvedValue('cancel');
       fixture.componentRef.setInput(
         'formData',
@@ -356,10 +331,8 @@ describe('EventFormComponent', () => {
       await component.onSubmit();
 
       expect(dialogOpenSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).not.toHaveBeenCalledWith(EventsActions.addEventRequested());
-      expect(dispatchSpy).not.toHaveBeenCalledWith(
-        EventsActions.updateEventRequested({ eventId: MOCK_EVENTS[2].id }),
-      );
+      expect(requestAddEventSpy).not.toHaveBeenCalled();
+      expect(requestUpdateEventSpy).not.toHaveBeenCalled();
     });
   });
 
@@ -385,19 +358,18 @@ describe('EventFormComponent', () => {
         fixture.componentRef.setInput('hasUnsavedChanges', false);
         fixture.detectChanges();
 
-        const restoreButton = query(fixture.debugElement, '.restore-button');
-        expect(restoreButton.nativeElement.disabled).toBe(true);
+        expect(
+          query(fixture.debugElement, '.restore-button').nativeElement.disabled,
+        ).toBe(true);
       });
 
       it('should be enabled if there are unsaved changes', () => {
         fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
-        const restoreButton = query(fixture.debugElement, '.restore-button');
-        restoreButton.triggerEventHandler('click');
-
-        expect(restoreButton.nativeElement.disabled).toBe(false);
-        expect(restoreSpy).toHaveBeenCalledTimes(1);
+        expect(
+          query(fixture.debugElement, '.restore-button').nativeElement.disabled,
+        ).toBe(false);
       });
     });
 

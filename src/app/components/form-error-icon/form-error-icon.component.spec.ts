@@ -11,15 +11,13 @@ describe('FormErrorIconComponent', () => {
   let fixture: ComponentFixture<FormErrorIconComponent>;
   let component: FormErrorIconComponent;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [FormErrorIconComponent, TooltipDirective],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(FormErrorIconComponent);
-        component = fixture.componentInstance;
-      });
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(FormErrorIconComponent);
+    component = fixture.componentInstance;
   });
 
   it('should create', () => {

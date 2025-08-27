@@ -153,18 +153,18 @@ export const paginationOptionsChanged = createAction(
 
 export const cancelSelected = createAction('[Images] Cancel selected');
 
-export const formValueChanged = createAction(
-  '[Images] Form value changed',
-  props<{ values: (Partial<ImageFormData> & { id: Id })[] }>(),
+export const formDataChanged = createAction(
+  '[Images] Form data changed',
+  props<{ multipleFormData: (Partial<ImageFormData> & { id: Id })[] }>(),
 );
 
-export const imageFormDataReset = createAction(
-  '[Images] Image form data reset',
+export const imageFormDataRestored = createAction(
+  '[Images] Image form data restored',
   props<{ imageId: Id }>(),
 );
 
-export const albumFormDataReset = createAction(
-  '[Images] Album form data reset',
+export const albumFormDataRestored = createAction(
+  '[Images] Album form data restored',
   props<{ imageIds: Id[] }>(),
 );
 

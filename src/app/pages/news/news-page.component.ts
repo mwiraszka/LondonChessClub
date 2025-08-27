@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -86,14 +86,11 @@ export class NewsPageComponent implements OnInit {
       'Read about a variety of topics related to the London Chess Club.',
     );
 
-    this.store
-      .select(ArticlesSelectors.selectLastFilteredFetch)
-      .pipe(take(1))
-      .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(ArticlesActions.fetchFilteredArticlesRequested());
-        }
-      });
+    this.store.select(ArticlesSelectors.selectLastFilteredFetch).subscribe(lastFetch => {
+      if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
+        this.store.dispatch(ArticlesActions.fetchFilteredArticlesRequested());
+      }
+    });
 
     this.viewModel$ = combineLatest([
       this.store.select(ArticlesSelectors.selectFilteredArticles),

@@ -36,7 +36,8 @@
       [nextEvent]="vm.nextEvent"
       [showPastEvents]="vm.showPastEvents"
       [upcomingEventLimit]="3"
-      [upcomingEvents]="vm.upcomingEvents">
+      [upcomingEvents]="vm.upcomingEvents"
+      (requestDeleteEvent)="onRequestDeleteEvent($event)">
     </lcc-schedule>
     <lcc-link-list [links]="[schedulePageLink]"></lcc-link-list>
   </section>

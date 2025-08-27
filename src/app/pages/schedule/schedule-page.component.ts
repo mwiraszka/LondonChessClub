@@ -11,7 +11,8 @@ import { ScheduleComponent } from '@app/components/schedule/schedule.component';
 import { Event } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { EventsSelectors } from '@app/store/events';
+import { EventsActions, EventsSelectors } from '@app/store/events';
+import { isSecondsInPast } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -27,7 +28,9 @@ import { EventsSelectors } from '@app/store/events';
         [isAdmin]="vm.isAdmin"
         [nextEvent]="vm.nextEvent"
         [showPastEvents]="vm.showPastEvents"
-        [upcomingEvents]="vm.upcomingEvents">
+        [upcomingEvents]="vm.upcomingEvents"
+        (requestDeleteEvent)="onRequestDeleteEvent($event)"
+        (togglePastEvents)="onTogglePastEvents()">
       </lcc-schedule>
     }
   `,
@@ -84,5 +87,25 @@ export class SchedulePageComponent implements OnInit {
         }
       }),
     );
+
+    this.store.select(EventsSelectors.selectLastFetch).subscribe(lastFetch => {
+      if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
+        this.store.dispatch(EventsActions.fetchEventsRequested());
+      }
+    });
+  }
+
+  public onRequestDeleteEvent(event: Event): void {
+    this.store.dispatch(EventsActions.deleteEventRequested({ event }));
+  }
+
+  public onTogglePastEvents(): void {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+
+    this.store.dispatch(EventsActions.pastEventsToggled());
   }
 }

@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -53,13 +53,10 @@ export class PhotoGalleryPageComponent implements OnInit {
       map(([isAdmin, photoImages]) => ({ isAdmin, photoImages })),
     );
 
-    this.store
-      .select(ImagesSelectors.selectLastMetadataFetch)
-      .pipe(take(1))
-      .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(ImagesActions.fetchAllImagesMetadataRequested());
-        }
-      });
+    this.store.select(ImagesSelectors.selectLastMetadataFetch).subscribe(lastFetch => {
+      if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
+        this.store.dispatch(ImagesActions.fetchAllImagesMetadataRequested());
+      }
+    });
   }
 }

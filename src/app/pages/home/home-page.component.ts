@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
@@ -19,7 +19,7 @@ import { Article, DataPaginationOptions, Event, Image, InternalLink } from '@app
 import { MetaAndTitleService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
-import { EventsSelectors } from '@app/store/events';
+import { EventsActions, EventsSelectors } from '@app/store/events';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
 import { isSecondsInPast } from '@app/utils';
 
@@ -103,15 +103,6 @@ export class HomePageComponent implements OnInit {
     );
     this.setArticleCountBasedOnScreenWidth();
 
-    this.store
-      .select(ArticlesSelectors.selectLastHomePageFetch)
-      .pipe(take(1))
-      .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(ArticlesActions.fetchHomePageArticlesRequested());
-        }
-      });
-
     this.viewModel$ = combineLatest([
       this.store.select(ArticlesSelectors.selectHomePageArticles),
       this.store.select(ImagesSelectors.selectAllImages),
@@ -146,14 +137,27 @@ export class HomePageComponent implements OnInit {
       ),
     );
 
-    this.store
-      .select(ImagesSelectors.selectLastMetadataFetch)
-      .pipe(take(1))
-      .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(ImagesActions.fetchAllImagesMetadataRequested());
-        }
-      });
+    this.store.select(ArticlesSelectors.selectLastHomePageFetch).subscribe(lastFetch => {
+      if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
+        this.store.dispatch(ArticlesActions.fetchHomePageArticlesRequested());
+      }
+    });
+
+    this.store.select(ImagesSelectors.selectLastMetadataFetch).subscribe(lastFetch => {
+      if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
+        this.store.dispatch(ImagesActions.fetchAllImagesMetadataRequested());
+      }
+    });
+
+    this.store.select(EventsSelectors.selectLastFetch).subscribe(lastFetch => {
+      if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
+        this.store.dispatch(EventsActions.fetchEventsRequested());
+      }
+    });
+  }
+
+  public onRequestDeleteEvent(event: Event): void {
+    this.store.dispatch(EventsActions.deleteEventRequested({ event }));
   }
 
   @HostListener('window:resize', ['$event'])

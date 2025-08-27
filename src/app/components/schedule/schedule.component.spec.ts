@@ -1,6 +1,3 @@
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import moment from 'moment-timezone';
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
@@ -9,7 +6,6 @@ import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { MOCK_EVENTS } from '@app/mocks/events.mock';
 import { DialogService } from '@app/services';
-import { EventsActions, EventsSelectors } from '@app/store/events';
 import { query, queryAll, queryTextContent } from '@app/utils';
 
 import { ScheduleComponent } from './schedule.component';
@@ -19,11 +15,10 @@ describe('ScheduleComponent', () => {
   let component: ScheduleComponent;
 
   let dialogService: DialogService;
-  let store: MockStore;
 
   let dialogOpenSpy: jest.SpyInstance;
-  let dispatchSpy: jest.SpyInstance;
-  let onTogglePastEventsSpy: jest.SpyInstance;
+  let requestDeleteEventSpy: jest.SpyInstance;
+  let togglePastEventsSpy: jest.SpyInstance;
   let windowScrollSpy: jest.SpyInstance;
 
   const mockPastEvents = [MOCK_EVENTS[0], MOCK_EVENTS[1]];
@@ -34,7 +29,6 @@ describe('ScheduleComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AdminControlsDirective, AdminToolbarComponent, ScheduleComponent],
       providers: [
-        provideMockStore(),
         provideRouter([]),
         { provide: DialogService, useValue: { open: jest.fn() } },
       ],
@@ -44,11 +38,10 @@ describe('ScheduleComponent', () => {
     component = fixture.componentInstance;
 
     dialogService = TestBed.inject(DialogService);
-    store = TestBed.inject(MockStore);
 
     dialogOpenSpy = jest.spyOn(dialogService, 'open');
-    dispatchSpy = jest.spyOn(store, 'dispatch');
-    onTogglePastEventsSpy = jest.spyOn(component, 'onTogglePastEvents');
+    requestDeleteEventSpy = jest.spyOn(component.requestDeleteEvent, 'emit');
+    togglePastEventsSpy = jest.spyOn(component.togglePastEvents, 'emit');
     windowScrollSpy = jest.spyOn(window, 'scroll').mockImplementation();
 
     fixture.componentRef.setInput('events', [...mockPastEvents, ...mockUpcomingEvents]);
@@ -67,35 +60,6 @@ describe('ScheduleComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  describe('initialization and fetching events', () => {
-    it('should dispatch fetchEventsRequested when last fetch was more than 10 minutes ago', () => {
-      const elevenMinutesAgo = moment().subtract(11, 'minutes').toISOString();
-      store.overrideSelector(EventsSelectors.selectLastFetch, elevenMinutesAgo);
-
-      component.ngOnInit();
-
-      expect(dispatchSpy).toHaveBeenCalledWith(EventsActions.fetchEventsRequested());
-    });
-
-    it('should dispatch fetchEventsRequested when lastFetch is null', () => {
-      store.overrideSelector(EventsSelectors.selectLastFetch, null);
-
-      component.ngOnInit();
-
-      expect(dispatchSpy).toHaveBeenCalledWith(EventsActions.fetchEventsRequested());
-    });
-
-    it('should not dispatch fetchEventsRequested when last fetch was less than 10 minutes ago', () => {
-      const nineMinutesAgo = moment().subtract(9, 'minutes').toISOString();
-      dispatchSpy.mockClear();
-      store.overrideSelector(EventsSelectors.selectLastFetch, nineMinutesAgo);
-
-      component.ngOnInit();
-
-      expect(dispatchSpy).not.toHaveBeenCalledWith(EventsActions.fetchEventsRequested());
-    });
   });
 
   describe('getAdminControlsConfig', () => {
@@ -131,40 +95,26 @@ describe('ScheduleComponent', () => {
       });
     });
 
-    it('should dispatch deleteEventRequested when user confirms', async () => {
+    it('should emit request delete event when user confirms', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
       await component.onDeleteEvent(mockEvent);
 
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        EventsActions.deleteEventRequested({ event: mockEvent }),
-      );
+      expect(requestDeleteEventSpy).toHaveBeenCalledWith(mockEvent);
     });
 
-    it('should not dispatch deleteEventRequested when user cancels', async () => {
+    it('should not emit request delete event event when user cancels', async () => {
       dialogOpenSpy.mockResolvedValue('cancel');
       await component.onDeleteEvent(mockEvent);
 
-      expect(dispatchSpy).not.toHaveBeenCalledWith(
-        EventsActions.deleteEventRequested({ event: mockEvent }),
-      );
+      expect(requestDeleteEventSpy).not.toHaveBeenCalled();
     });
   });
 
   describe('onTogglePastEvents', () => {
-    it('should dispatch pastEventsToggled action', () => {
+    it('should emit toggle past events event', () => {
       component.onTogglePastEvents();
 
-      expect(dispatchSpy).toHaveBeenCalledWith(EventsActions.pastEventsToggled());
-    });
-
-    it('should scroll window to top smoothly', () => {
-      component.onTogglePastEvents();
-
-      expect(windowScrollSpy).toHaveBeenCalledWith({
-        top: 0,
-        left: 0,
-        behavior: 'smooth',
-      });
+      expect(togglePastEventsSpy).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -376,12 +326,12 @@ describe('ScheduleComponent', () => {
         );
       });
 
-      it('should call onTogglePastEvents when clicked', () => {
+      it('should emit toggle past events event when clicked', () => {
         query(fixture.debugElement, '.toggle-past-events-button').triggerEventHandler(
           'click',
         );
 
-        expect(onTogglePastEventsSpy).toHaveBeenCalled();
+        expect(togglePastEventsSpy).toHaveBeenCalledTimes(1);
       });
     });
   });

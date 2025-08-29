@@ -100,7 +100,12 @@ export class UrlExpirationService implements OnDestroy {
 
     const imageIds = Array.from(this.pendingRefreshes).slice(0, this.BATCH_SIZE);
 
-    this.store.dispatch(ImagesActions.fetchBatchThumbnailsRequested({ imageIds }));
+    this.store.dispatch(
+      ImagesActions.fetchBatchThumbnailsRequested({
+        imageIds,
+        context: 'url-expiration',
+      }),
+    );
 
     imageIds.forEach(id => this.pendingRefreshes.delete(id));
 

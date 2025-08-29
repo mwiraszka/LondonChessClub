@@ -1,27 +1,22 @@
 <div class="banner-image-container">
   <img [image]="bannerImage" />
-
-  @if (article | isDefined) {
-    <h3 class="title lcc-truncate-max-2-lines">
-      {{ article.title | truncateByChars: 120 }}
-    </h3>
-  }
+  <h3 class="title lcc-truncate-max-2-lines">
+    {{ article.title | truncateByChars: 120 }}
+  </h3>
 </div>
 
 <div class="modification-info-container">
   <div class="author-container">
-    @if (article | isDefined) {
-      <span class="author-name">
-        {{ article.modificationInfo.createdBy }}
-      </span>
-      <span class="date-created">
-        {{ article.modificationInfo.dateCreated | formatDate: 'short' }}
-      </span>
-    }
+    <span class="author-name">
+      {{ article.modificationInfo.createdBy }}
+    </span>
+    <span class="date-created">
+      {{ article.modificationInfo.dateCreated | formatDate: 'short' }}
+    </span>
   </div>
 
   <div class="editor-container">
-    @if ((article | isDefined) && (article.modificationInfo | wasEdited)) {
+    @if (article.modificationInfo | wasEdited) {
       <span class="updated">last updated</span>
       <span class="editor-name">
         {{ article.modificationInfo.lastEditedBy }}

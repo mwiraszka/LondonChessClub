@@ -10,12 +10,18 @@ import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolb
 import { ArticleGridComponent } from '@app/components/article-grid/article-grid.component';
 import { DataToolbarComponent } from '@app/components/data-toolbar/data-toolbar.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import { Article, DataPaginationOptions, Id, Image, InternalLink } from '@app/models';
+import {
+  Article,
+  DataPaginationOptions,
+  Id,
+  Image,
+  InternalLink,
+  IsoDate,
+} from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
 import { ImagesSelectors } from '@app/store/images';
-import { isSecondsInPast } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -44,11 +50,11 @@ import { isSecondsInPast } from '@app/utils';
         [articles]="vm.articles"
         [images]="vm.images"
         [isAdmin]="vm.isAdmin"
+        [lastFetch]="vm.lastFetch"
         [options]="vm.options"
         (requestDeleteArticle)="onRequestDeleteArticle($event)"
-        (requestUpdateArticleBookmark)="
-          onRequestUpdateArticleBookmark($event.articleId, $event.bookmark)
-        ">
+        (requestFetchArticles)="onRequestFetchArticles()"
+        (requestUpdateArticleBookmark)="onRequestUpdateArticleBookmark($event)">
       </lcc-article-grid>
     }
   `,
@@ -72,6 +78,7 @@ export class NewsPageComponent implements OnInit {
     filteredCount: number | null;
     images: Image[];
     isAdmin: boolean;
+    lastFetch: IsoDate | null;
     options: DataPaginationOptions<Article>;
   }>;
 
@@ -86,25 +93,21 @@ export class NewsPageComponent implements OnInit {
       'Read about a variety of topics related to the London Chess Club.',
     );
 
-    this.store.select(ArticlesSelectors.selectLastFilteredFetch).subscribe(lastFetch => {
-      if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-        this.store.dispatch(ArticlesActions.fetchFilteredArticlesRequested());
-      }
-    });
-
     this.viewModel$ = combineLatest([
       this.store.select(ArticlesSelectors.selectFilteredArticles),
       this.store.select(ArticlesSelectors.selectFilteredCount),
       this.store.select(ImagesSelectors.selectAllImages),
       this.store.select(AuthSelectors.selectIsAdmin),
+      this.store.select(ArticlesSelectors.selectLastFilteredFetch),
       this.store.select(ArticlesSelectors.selectOptions),
     ]).pipe(
       untilDestroyed(this),
-      map(([articles, filteredCount, images, isAdmin, options]) => ({
+      map(([articles, filteredCount, images, isAdmin, lastFetch, options]) => ({
         articles,
-        images,
         filteredCount,
+        images,
         isAdmin,
+        lastFetch,
         options,
       })),
     );
@@ -118,9 +121,14 @@ export class NewsPageComponent implements OnInit {
     this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
   }
 
-  public onRequestUpdateArticleBookmark(articleId: Id, bookmark: boolean): void {
-    this.store.dispatch(
-      ArticlesActions.updateArticleBookmarkRequested({ articleId, bookmark }),
-    );
+  public onRequestFetchArticles(): void {
+    this.store.dispatch(ArticlesActions.fetchFilteredArticlesRequested());
+  }
+
+  public onRequestUpdateArticleBookmark(event: {
+    articleId: Id;
+    bookmark: boolean;
+  }): void {
+    this.store.dispatch(ArticlesActions.updateArticleBookmarkRequested(event));
   }
 }

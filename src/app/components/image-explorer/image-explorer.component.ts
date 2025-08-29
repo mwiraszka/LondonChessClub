@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { Observable, combineLatest, take } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { Observable, combineLatest } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
 import { CdkScrollable, CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
@@ -28,12 +28,13 @@ import {
   Id,
   Image,
   InternalLink,
+  IsoDate,
 } from '@app/models';
 import { FormatBytesPipe, FormatDatePipe, HighlightPipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 import * as ImagesActions from '@app/store/images/images.actions';
 import * as ImagesSelectors from '@app/store/images/images.selectors';
-import { isSecondsInPast } from '@app/utils';
+import { isExpired } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -62,6 +63,8 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
   public viewModel$?: Observable<{
     images: Image[];
     filteredCount: number | null;
+    lastFilteredThumbnailsFetch: IsoDate | null;
+    lastImageMetadataFetch: IsoDate | null;
     options: DataPaginationOptions<Image>;
     totalCount: number;
   }>;
@@ -78,30 +81,51 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
   ) {}
 
   public ngOnInit(): void {
-    this.viewModel$ = combineLatest([
-      this.store.select(ImagesSelectors.selectFilteredImages),
-      this.store.select(ImagesSelectors.selectFilteredCount),
-      this.store.select(ImagesSelectors.selectOptions),
-      this.store.select(ImagesSelectors.selectTotalCount),
-    ]).pipe(
-      untilDestroyed(this),
-      map(([images, filteredCount, options, totalCount]) => ({
-        images,
-        filteredCount,
-        options,
-        totalCount,
-      })),
-      shareReplay(1),
-    );
+    this.store
+      .select(ImagesSelectors.selectLastMetadataFetch)
+      .pipe(take(1))
+      .subscribe(lastMetadataFetch => {
+        if (!lastMetadataFetch || isExpired(lastMetadataFetch)) {
+          this.store.dispatch(ImagesActions.fetchAllImagesMetadataRequested());
+        }
+      });
 
     this.store
       .select(ImagesSelectors.selectLastFilteredThumbnailsFetch)
       .pipe(take(1))
-      .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
+      .subscribe(lastFilteredThumbnailsFetch => {
+        if (!lastFilteredThumbnailsFetch || isExpired(lastFilteredThumbnailsFetch)) {
           this.store.dispatch(ImagesActions.fetchFilteredThumbnailsRequested());
         }
       });
+
+    this.viewModel$ = combineLatest([
+      this.store.select(ImagesSelectors.selectFilteredImages),
+      this.store.select(ImagesSelectors.selectFilteredCount),
+      this.store.select(ImagesSelectors.selectLastFilteredThumbnailsFetch),
+      this.store.select(ImagesSelectors.selectLastMetadataFetch),
+      this.store.select(ImagesSelectors.selectOptions),
+      this.store.select(ImagesSelectors.selectTotalCount),
+    ]).pipe(
+      untilDestroyed(this),
+      map(
+        ([
+          images,
+          filteredCount,
+          lastFilteredThumbnailsFetch,
+          lastImageMetadataFetch,
+          options,
+          totalCount,
+        ]) => ({
+          images,
+          filteredCount,
+          lastFilteredThumbnailsFetch,
+          lastImageMetadataFetch,
+          options,
+          totalCount,
+        }),
+      ),
+    );
   }
 
   public getAdminControlsConfig(image: Image): AdminControlsConfig {

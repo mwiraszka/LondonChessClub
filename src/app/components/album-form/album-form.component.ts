@@ -71,7 +71,7 @@ export class AlbumFormComponent implements OnInit {
   @Output() fileActionFail = new EventEmitter<LccError>();
   @Output() removeNewImage = new EventEmitter<Id>();
   @Output() requestAddImages = new EventEmitter<void>();
-  @Output() requestFetchImageThumbnails = new EventEmitter<Id[]>();
+  @Output() requestFetchThumbnails = new EventEmitter<Id[]>();
   @Output() requestUpdateAlbum = new EventEmitter<string>();
   @Output() restore = new EventEmitter<Id[]>();
 
@@ -113,7 +113,7 @@ export class AlbumFormComponent implements OnInit {
         .map(entity => entity.image.id);
 
       if (imageIds.length) {
-        this.requestFetchImageThumbnails.emit(imageIds);
+        this.requestFetchThumbnails.emit(imageIds);
       }
     }
 

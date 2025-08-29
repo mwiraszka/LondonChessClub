@@ -119,7 +119,10 @@ export const eventsReducer = createReducer(
           event,
           formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
         },
-        { ...state, callState: initialState.callState },
+        {
+          ...state,
+          callState: initialState.callState,
+        },
       ),
   ),
 

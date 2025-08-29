@@ -32,12 +32,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.8.3 - August TBD, 2025</summary>
+<summary>v5.8.3 - August 28th, 2025</summary>
 
 - 🚀 Fix article preview banner image section to 3:2 aspect ratio on larger screen sizes
 - 🚀 Fetch only the missing article banner images to help reduce Home Page and News Page load times
 - 🐛 Pre-load club logo image in app header to prevent layout shift as page context loads
-- 🔧 Move out store dependencies from low-level components for better separation of concerns and flexibility in future applications
+- 🐛 Ensure article bookmark icons appear after initial page load
+- 🔧 Move store dependencies out from low-level components for better separation of concerns and reusability
 
 </details>
 

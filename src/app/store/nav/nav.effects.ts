@@ -7,7 +7,6 @@ import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ImageFileService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthActions } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
@@ -90,6 +89,9 @@ export class NavEffects {
         ArticlesActions.publishArticleSucceeded,
         ArticlesActions.updateArticleSucceeded,
       ),
+      // Only redirect to news if the previous route was an article route (editor/viewer)
+      switchMap(() => this.store.select(NavSelectors.selectPreviousPath)),
+      filter(previousPath => !!previousPath?.startsWith('/article/')),
       map(() => NavActions.navigationRequested({ path: 'news' })),
     ),
   );
@@ -327,18 +329,8 @@ export class NavEffects {
     ),
   );
 
-  clearIndexedDbImageFileData$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(ImagesActions.imageFormDataRestored, ImagesActions.albumFormDataRestored),
-        tap(() => this.imageFileService.clearAllImages()),
-      ),
-    { dispatch: false },
-  );
-
   constructor(
     private readonly actions$: Actions,
-    private readonly imageFileService: ImageFileService,
     private readonly router: Router,
     private readonly store: Store,
   ) {}

@@ -3,12 +3,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MarkdownRendererComponent } from '@app/components/markdown-renderer/markdown-renderer.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
 import { Article, Image } from '@app/models';
-import {
-  FormatDatePipe,
-  IsDefinedPipe,
-  TruncateByCharsPipe,
-  WasEditedPipe,
-} from '@app/pipes';
+import { FormatDatePipe, TruncateByCharsPipe, WasEditedPipe } from '@app/pipes';
 
 @Component({
   selector: 'lcc-article',
@@ -17,7 +12,6 @@ import {
   imports: [
     FormatDatePipe,
     ImagePreloadDirective,
-    IsDefinedPipe,
     MarkdownRendererComponent,
     TruncateByCharsPipe,
     WasEditedPipe,

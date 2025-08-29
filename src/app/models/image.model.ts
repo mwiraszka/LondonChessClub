@@ -49,8 +49,3 @@ export interface AlbumFormGroup {
   existingImages: FormArray<FormGroup<Omit<ImageFormGroup, 'album'>>>;
   newImages: FormArray<FormGroup<Omit<ImageFormGroup, 'album'>>>;
 }
-
-export type BatchImageFetchContext =
-  | 'article-banner-images'
-  | 'album-covers'
-  | 'url-expiration';

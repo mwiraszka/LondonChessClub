@@ -2,11 +2,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { routerNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
-import { uniq } from 'lodash';
+import { isEqual } from 'lodash';
 import moment from 'moment-timezone';
 import { from, of } from 'rxjs';
 import {
-  auditTime,
   catchError,
   distinctUntilChanged,
   filter,
@@ -101,12 +100,20 @@ export class ImagesEffects {
   fetchBatchThumbnailImages$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchBatchThumbnailsRequested),
-      mergeMap(({ imageIds, isAlbumCoverFetch }) =>
+      // Prevent duplicate back-to-back requests with identical params (e.g., double
+      // emission on initial load of home page causing two network calls for the
+      // same album cover thumbnails). We sort IDs to ensure stable comparison.
+      map(({ imageIds, context }) => ({
+        imageIds: [...imageIds].sort(),
+        context,
+      })),
+      distinctUntilChanged((a, b) => a.context === b.context && isEqual(a.imageIds, b.imageIds)),
+      mergeMap(({ imageIds, context }) =>
         this.imagesApiService.getBatchThumbnailImages(imageIds).pipe(
           map(response =>
             ImagesActions.fetchBatchThumbnailsSucceeded({
               images: response.data,
-              isAlbumCoverFetch,
+              context,
             }),
           ),
           catchError(error =>
@@ -384,9 +391,11 @@ export class ImagesEffects {
   deleteAlbum$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.deleteAlbumRequested),
-      switchMap(({ album, imageIds }) => {
+      switchMap(({ album }) => {
         return this.imagesApiService.deleteAlbum(album).pipe(
-          map(() => ImagesActions.deleteAlbumSucceeded({ album, imageIds })),
+          map(response =>
+            ImagesActions.deleteAlbumSucceeded({ album, imageIds: response.data }),
+          ),
           catchError(error =>
             of(ImagesActions.deleteAlbumFailed({ album, error: parseError(error) })),
           ),
@@ -444,12 +453,10 @@ export class ImagesEffects {
       ),
       // Only care about home and news page routes when navigation occurs
       filter(action => {
-        console.log(':: Action Type:', action.type);
         return action.type === routerNavigatedAction.type
           ? ['/', '/news'].includes(action.payload.event.url)
           : true;
       }),
-      auditTime(0), // micro-batch rapid sequential triggers
       switchMap(() =>
         this.store.select(ArticlesSelectors.selectHomePageArticles).pipe(
           concatLatestFrom(() =>
@@ -458,7 +465,6 @@ export class ImagesEffects {
           map(([home, filtered]) => [...home, ...filtered]),
         ),
       ),
-      tap(articles => console.log(':: articles', articles)),
       switchMap(articles =>
         this.store.select(
           ImagesSelectors.selectIdsOfArticleBannerImagesWithMissingThumbnailUrls(
@@ -466,10 +472,24 @@ export class ImagesEffects {
           ),
         ),
       ),
-      tap(ids => console.log(':: missing image ids', ids)),
+      distinctUntilChanged((prev, curr) => isEqual(prev, curr)),
       filter(ids => ids.length > 0),
-      map(imageIds => ImagesActions.fetchBatchThumbnailsRequested({ imageIds })),
+      map(imageIds =>
+        ImagesActions.fetchBatchThumbnailsRequested({
+          imageIds,
+          context: 'article-banner-images',
+        }),
+      ),
     ),
+  );
+
+  clearIndexedDbImageFileData$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ImagesActions.imageFormDataRestored, ImagesActions.albumFormDataRestored),
+        tap(() => this.imageFileService.clearAllImages()),
+      ),
+    { dispatch: false },
   );
 
   constructor(

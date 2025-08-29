@@ -1,10 +1,14 @@
-import { Store } from '@ngrx/store';
-import { take } from 'rxjs';
-
 import { UpperCasePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
+import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { ImageExplorerComponent } from '@app/components/image-explorer/image-explorer.component';
 import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
@@ -18,13 +22,11 @@ import {
   Id,
   Image,
   InternalLink,
+  IsoDate,
   NgChanges,
 } from '@app/models';
 import { DialogService } from '@app/services';
-import { ImagesActions, ImagesSelectors } from '@app/store/images';
-import { customSort, isSecondsInPast } from '@app/utils';
-
-import { AdminToolbarComponent } from '../admin-toolbar/admin-toolbar.component';
+import { customSort, isExpired } from '@app/utils';
 
 @Component({
   selector: 'lcc-photo-grid',
@@ -39,11 +41,16 @@ import { AdminToolbarComponent } from '../admin-toolbar/admin-toolbar.component'
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PhotoGridComponent implements OnChanges {
+export class PhotoGridComponent {
   @Input({ required: true }) public isAdmin!: boolean;
+  @Input({ required: true }) public lastAlbumCoversFetch!: IsoDate | null;
+  @Input({ required: true }) public lastImageMetadataFetch!: IsoDate | null;
   @Input({ required: true }) public photoImages!: Image[];
 
   @Input() public maxAlbums?: number;
+
+  @Output() public readonly requestDeleteAlbum = new EventEmitter<string>();
+  @Output() public readonly requestFetchThumbnails = new EventEmitter<Id[]>();
 
   public readonly adminButtons: AdminButton[] = [
     {
@@ -67,6 +74,26 @@ export class PhotoGridComponent implements OnChanges {
     },
   ];
 
+  constructor(private readonly dialogService: DialogService) {}
+
+  ngOnChanges(changes: NgChanges<PhotoGridComponent>): void {
+    if (
+      changes.photoImages ||
+      changes.lastImageMetadataFetch ||
+      changes.lastAlbumCoversFetch
+    ) {
+      if (
+        this.lastImageMetadataFetch &&
+        this.photoImages.length &&
+        (!this.lastAlbumCoversFetch || isExpired(this.lastAlbumCoversFetch))
+      ) {
+        this.requestFetchThumbnails.emit(
+          this.photoImages.filter(image => image.albumCover).map(image => image.id),
+        );
+      }
+    }
+  }
+
   public get albumCovers(): Image[] {
     return this.photoImages
       .filter(image => image.albumCover)
@@ -76,30 +103,6 @@ export class PhotoGridComponent implements OnChanges {
         mainHeight: image.mainHeight || 300,
         caption: image.caption || 'Loading...',
       }));
-  }
-
-  constructor(
-    private readonly dialogService: DialogService,
-    private readonly store: Store,
-  ) {}
-
-  public ngOnChanges(changes: NgChanges<PhotoGridComponent>): void {
-    if (changes.photoImages && this.photoImages.length) {
-      this.store
-        .select(ImagesSelectors.selectLastAlbumCoversFetch)
-        .pipe(take(1))
-        .subscribe(lastFetch => {
-          const imageIds = this.albumCovers.map(image => image.id);
-          if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-            this.store.dispatch(
-              ImagesActions.fetchBatchThumbnailsRequested({
-                imageIds,
-                isAlbumCoverFetch: true,
-              }),
-            );
-          }
-        });
-    }
   }
 
   public async onClickAlbumCover(album: string): Promise<void> {
@@ -127,7 +130,7 @@ export class PhotoGridComponent implements OnChanges {
   public getAdminControlsConfig(album: string): AdminControlsConfig {
     return {
       buttonSize: 34,
-      deleteCb: () => this.onDeleteAlbum(album),
+      deleteCb: () => this.onRequestDeleteAlbum(album),
       editPath: ['album', 'edit', album],
       isEditDisabled: false,
       isDeleteDisabled: false,
@@ -135,7 +138,7 @@ export class PhotoGridComponent implements OnChanges {
     };
   }
 
-  public async onDeleteAlbum(album: string): Promise<void> {
+  public async onRequestDeleteAlbum(album: string): Promise<void> {
     const dialog: Dialog = {
       title: 'Confirm',
       body: `Delete ${album} and its ${this.getAlbumPhotoCountText(album)}?`,
@@ -152,10 +155,7 @@ export class PhotoGridComponent implements OnChanges {
     );
 
     if (result === 'confirm') {
-      const imageIds = this.photoImages
-        .filter(image => image.album === album)
-        .map(image => image.id);
-      this.store.dispatch(ImagesActions.deleteAlbumRequested({ album, imageIds }));
+      this.requestDeleteAlbum.emit(album);
     }
   }
 

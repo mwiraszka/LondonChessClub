@@ -84,11 +84,11 @@
         }
 
         .photo-count {
-          font-size: 11px;
+          font-size: 10px;
           color: var(--lcc-color--photoGrid-photoCountText);
 
           @container (min-width: 600px) {
-            font-size: 13px;
+            font-size: 12px;
             line-height: 18px;
           }
         }

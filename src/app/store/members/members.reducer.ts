@@ -177,7 +177,11 @@ export const membersReducer = createReducer(
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
         },
-        { ...state, callState: initialState.callState, lastFilteredFetch: null },
+        {
+          ...state,
+          callState: initialState.callState,
+          lastFilteredFetch: null,
+        },
       ),
   ),
 

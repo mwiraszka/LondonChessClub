@@ -163,22 +163,20 @@ export const articlesReducer = createReducer(
       ),
   ),
 
-  on(
-    ArticlesActions.updateArticleSucceeded,
-    (state, { article }): ArticlesState =>
-      articlesAdapter.upsertOne(
-        {
-          article,
-          formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
-        },
-        {
-          ...state,
-          callState: initialState.callState,
-          lastHomePageFetch: null,
-          lastFilteredFetch: null,
-        },
-      ),
-  ),
+  on(ArticlesActions.updateArticleSucceeded, (state, { article }): ArticlesState => {
+    return articlesAdapter.upsertOne(
+      {
+        article,
+        formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+      },
+      {
+        ...state,
+        callState: initialState.callState,
+        lastHomePageFetch: null,
+        lastFilteredFetch: null,
+      },
+    );
+  }),
 
   on(
     ArticlesActions.deleteArticleSucceeded,

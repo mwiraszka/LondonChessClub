@@ -64,24 +64,6 @@ export class MembersEffects {
     );
   });
 
-  refetchFilteredMembersAfterPaginationOptionsChange$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(MembersActions.paginationOptionsChanged),
-      filter(({ fetch }) => fetch),
-      map(() => MembersActions.fetchFilteredMembersRequested()),
-    );
-  });
-
-  refetchFilteredMembersAfterUpdate$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(
-        MembersActions.updateMemberSucceeded,
-        MembersActions.updateMemberRatingsSucceeded,
-      ),
-      map(() => MembersActions.fetchFilteredMembersRequested()),
-    );
-  });
-
   fetchMember$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.fetchMemberRequested),

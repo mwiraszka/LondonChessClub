@@ -65,14 +65,6 @@ export class ArticlesEffects {
     );
   });
 
-  refetchFilteredArticlesAfterPaginationOptionsChange$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.paginationOptionsChanged),
-      filter(({ fetch }) => fetch),
-      map(() => ArticlesActions.fetchFilteredArticlesRequested()),
-    );
-  });
-
   fetchArticle$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticleRequested),

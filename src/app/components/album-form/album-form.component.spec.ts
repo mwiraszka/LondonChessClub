@@ -30,7 +30,7 @@ describe('AlbumFormComponent', () => {
   let initFormValueChangeListenerSpy: jest.SpyInstance;
   let removeNewImageSpy: jest.SpyInstance;
   let requestAddImagesSpy: jest.SpyInstance;
-  let requestFetchImageThumbnailsSpy: jest.SpyInstance;
+  let requestFetchThumbnailsSpy: jest.SpyInstance;
   let requestUpdateAlbumSpy: jest.SpyInstance;
   let restoreSpy: jest.SpyInstance;
   let storeImageFileSpy: jest.SpyInstance;
@@ -88,10 +88,7 @@ describe('AlbumFormComponent', () => {
     );
     removeNewImageSpy = jest.spyOn(component.removeNewImage, 'emit');
     requestAddImagesSpy = jest.spyOn(component.requestAddImages, 'emit');
-    requestFetchImageThumbnailsSpy = jest.spyOn(
-      component.requestFetchImageThumbnails,
-      'emit',
-    );
+    requestFetchThumbnailsSpy = jest.spyOn(component.requestFetchThumbnails, 'emit');
     requestUpdateAlbumSpy = jest.spyOn(component.requestUpdateAlbum, 'emit');
     restoreSpy = jest.spyOn(component.restore, 'emit');
     storeImageFileSpy = jest.spyOn(imageFileService, 'storeImageFile');
@@ -137,8 +134,8 @@ describe('AlbumFormComponent', () => {
         expect(fetchNewImageDataUrlsSpy).not.toHaveBeenCalled();
       });
 
-      it('should not emit request fetch image thumbnails event', () => {
-        expect(requestFetchImageThumbnailsSpy).not.toHaveBeenCalled();
+      it('should not emit request fetch thumbnails event', () => {
+        expect(requestFetchThumbnailsSpy).not.toHaveBeenCalled();
       });
     });
 
@@ -184,8 +181,8 @@ describe('AlbumFormComponent', () => {
         expect(fetchNewImageDataUrlsSpy).toHaveBeenCalledTimes(1);
       });
 
-      it('should not emit request fetch image thumbnails event', () => {
-        expect(requestFetchImageThumbnailsSpy).not.toHaveBeenCalled();
+      it('should not emit request fetch thumbnails event', () => {
+        expect(requestFetchThumbnailsSpy).not.toHaveBeenCalled();
       });
     });
 
@@ -236,8 +233,8 @@ describe('AlbumFormComponent', () => {
         expect(fetchNewImageDataUrlsSpy).not.toHaveBeenCalled();
       });
 
-      it('should not emit request fetch image thumbnails event', () => {
-        expect(requestFetchImageThumbnailsSpy).not.toHaveBeenCalled();
+      it('should not emit request fetch thumbnails event', () => {
+        expect(requestFetchThumbnailsSpy).not.toHaveBeenCalled();
       });
     });
 
@@ -303,8 +300,8 @@ describe('AlbumFormComponent', () => {
         expect(fetchNewImageDataUrlsSpy).not.toHaveBeenCalled();
       });
 
-      it('should emit request fetch image thumbnails event only for the image with undefined urls', () => {
-        expect(requestFetchImageThumbnailsSpy).toHaveBeenCalledWith([MOCK_IMAGES[3].id]);
+      it('should emit request fetch thumbnails event only for the image with undefined urls', () => {
+        expect(requestFetchThumbnailsSpy).toHaveBeenCalledWith([MOCK_IMAGES[3].id]);
       });
     });
   });

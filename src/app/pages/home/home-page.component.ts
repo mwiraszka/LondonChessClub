@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
@@ -15,13 +15,21 @@ import { LinkListComponent } from '@app/components/link-list/link-list.component
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
 import { ScheduleComponent } from '@app/components/schedule/schedule.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import { Article, DataPaginationOptions, Event, Image, InternalLink } from '@app/models';
+import {
+  Article,
+  DataPaginationOptions,
+  Event,
+  Id,
+  Image,
+  InternalLink,
+  IsoDate,
+} from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
 import { EventsActions, EventsSelectors } from '@app/store/events';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
-import { isSecondsInPast } from '@app/utils';
+import { isExpired } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -44,9 +52,13 @@ import { isSecondsInPast } from '@app/utils';
 export class HomePageComponent implements OnInit {
   public viewModel$?: Observable<{
     articles: Article[];
-    images: Image[];
     events: Event[];
+    images: Image[];
     isAdmin: boolean;
+    lastAlbumCoversFetch: IsoDate | null;
+    lastArticlesFetch: IsoDate | null;
+    lastEventsFetch: IsoDate | null;
+    lastImageMetadataFetch: IsoDate | null;
     nextEvent: Event | null;
     photoImages: Image[];
     showPastEvents: boolean;
@@ -103,13 +115,25 @@ export class HomePageComponent implements OnInit {
     );
     this.setArticleCountBasedOnScreenWidth();
 
+    this.store
+      .select(ImagesSelectors.selectLastMetadataFetch)
+      .pipe(take(1))
+      .subscribe(lastMetadataFetch => {
+        if (!lastMetadataFetch || isExpired(lastMetadataFetch)) {
+          this.store.dispatch(ImagesActions.fetchAllImagesMetadataRequested());
+        }
+      });
+
     this.viewModel$ = combineLatest([
       this.store.select(ArticlesSelectors.selectHomePageArticles),
-      this.store.select(ImagesSelectors.selectAllImages),
       this.store.select(EventsSelectors.selectAllEvents),
+      this.store.select(ImagesSelectors.selectAllImages),
       this.store.select(AuthSelectors.selectIsAdmin),
+      this.store.select(ImagesSelectors.selectLastAlbumCoversFetch),
+      this.store.select(ArticlesSelectors.selectLastHomePageFetch),
+      this.store.select(EventsSelectors.selectLastFetch),
+      this.store.select(ImagesSelectors.selectLastMetadataFetch),
       this.store.select(EventsSelectors.selectNextEvent),
-      this.store.select(ImagesSelectors.selectPhotoImages),
       this.store.select(EventsSelectors.selectShowPastEvents),
       this.store.select(EventsSelectors.selectUpcomingEvents),
     ]).pipe(
@@ -117,47 +141,68 @@ export class HomePageComponent implements OnInit {
       map(
         ([
           articles,
-          images,
           events,
+          images,
           isAdmin,
+          lastAlbumCoversFetch,
+          lastArticlesFetch,
+          lastEventsFetch,
+          lastImageMetadataFetch,
           nextEvent,
-          photoImages,
           showPastEvents,
           upcomingEvents,
         ]) => ({
           articles,
-          images,
           events,
+          images,
           isAdmin,
+          lastAlbumCoversFetch,
+          lastArticlesFetch,
+          lastEventsFetch,
+          lastImageMetadataFetch,
           nextEvent,
-          photoImages,
+          photoImages: images.filter(image => !image.album.startsWith('_')),
           showPastEvents,
           upcomingEvents,
         }),
       ),
     );
+  }
 
-    this.store.select(ArticlesSelectors.selectLastHomePageFetch).subscribe(lastFetch => {
-      if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-        this.store.dispatch(ArticlesActions.fetchHomePageArticlesRequested());
-      }
-    });
-
-    this.store.select(ImagesSelectors.selectLastMetadataFetch).subscribe(lastFetch => {
-      if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-        this.store.dispatch(ImagesActions.fetchAllImagesMetadataRequested());
-      }
-    });
-
-    this.store.select(EventsSelectors.selectLastFetch).subscribe(lastFetch => {
-      if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-        this.store.dispatch(EventsActions.fetchEventsRequested());
-      }
-    });
+  public onRequestDeleteArticle(article: Article): void {
+    this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
   }
 
   public onRequestDeleteEvent(event: Event): void {
     this.store.dispatch(EventsActions.deleteEventRequested({ event }));
+  }
+
+  public onRequestDeleteAlbum(album: string): void {
+    this.store.dispatch(ImagesActions.deleteAlbumRequested({ album }));
+  }
+
+  public onRequestFetchArticles(): void {
+    this.store.dispatch(ArticlesActions.fetchHomePageArticlesRequested());
+  }
+
+  public onRequestFetchEvents(): void {
+    this.store.dispatch(EventsActions.fetchEventsRequested());
+  }
+
+  public onRequestFetchAlbumCoverThumbnails(imageIds: Id[]): void {
+    this.store.dispatch(
+      ImagesActions.fetchBatchThumbnailsRequested({
+        imageIds,
+        context: 'album-covers',
+      }),
+    );
+  }
+
+  public onRequestUpdateArticleBookmark(event: {
+    articleId: Id;
+    bookmark: boolean;
+  }): void {
+    this.store.dispatch(ArticlesActions.updateArticleBookmarkRequested(event));
   }
 
   @HostListener('window:resize', ['$event'])

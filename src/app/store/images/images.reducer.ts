@@ -158,7 +158,7 @@ export const imagesReducer = createReducer(
 
   on(
     ImagesActions.fetchBatchThumbnailsSucceeded,
-    (state, { images, isAlbumCoverFetch }): ImagesState =>
+    (state, { images, context }): ImagesState =>
       imagesAdapter.upsertMany(
         images.map(image => {
           const originalEntity = image ? state.entities[image.id] : null;
@@ -174,9 +174,10 @@ export const imagesReducer = createReducer(
         {
           ...state,
           callState: initialState.callState,
-          lastAlbumCoversFetch: isAlbumCoverFetch
-            ? new Date(Date.now()).toISOString()
-            : state.lastAlbumCoversFetch,
+          lastAlbumCoversFetch:
+            context === 'album-covers'
+              ? new Date(Date.now()).toISOString()
+              : state.lastAlbumCoversFetch,
         },
       ),
   ),
@@ -266,36 +267,30 @@ export const imagesReducer = createReducer(
   ),
 
   on(ImagesActions.updateAlbumSucceeded, (state, { baseImages }): ImagesState => {
-    return imagesAdapter.upsertMany(
-      compact(
-        baseImages.map(baseImage => {
-          const originalEntity = baseImage ? state.entities[baseImage.id] : null;
-
-          if (!originalEntity) {
-            console.warn(
-              `[LCC] Unable to find image ${baseImage.id} after successful album update`,
-            );
-            return undefined;
-          }
-
-          return {
-            image: {
-              ...originalEntity.image,
-              ...baseImage,
-            },
-            formData: pick(baseImage, IMAGE_FORM_DATA_PROPERTIES),
-          };
-        }),
-      ),
-      {
-        ...state,
-        callState: initialState.callState,
-        lastFilteredThumbnailsFetch: null,
-        lastAlbumCoversFetch: null,
-        lastMetadataFetch: null,
-        newImagesFormData: {},
-      },
+    const updatedEntities = compact(
+      baseImages.map(baseImage => {
+        const originalEntity = baseImage ? state.entities[baseImage.id] : null;
+        if (!originalEntity) {
+          console.warn(
+            `[LCC] Unable to find image ${baseImage.id} after successful album update`,
+          );
+          return undefined;
+        }
+        return {
+          image: { ...originalEntity.image, ...baseImage },
+          formData: pick(baseImage, IMAGE_FORM_DATA_PROPERTIES),
+        };
+      }),
     );
+
+    return imagesAdapter.upsertMany(updatedEntities, {
+      ...state,
+      callState: initialState.callState,
+      lastFilteredThumbnailsFetch: null,
+      lastAlbumCoversFetch: null,
+      lastMetadataFetch: null,
+      newImagesFormData: {},
+    });
   }),
 
   on(

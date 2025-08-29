@@ -1,5 +1,5 @@
 @for (
-  article of options.pageSize > 0 ? articles.slice(0, options.pageSize) : articles;
+  article of articles.slice(0, options.pageSize > 0 ? options.pageSize : articles.length);
   track article.id
 ) {
   <a
@@ -8,7 +8,7 @@
     [routerLink]="
       article.title ? (['article', 'view', article.id] | routerLink) : undefined
     ">
-    @if (article.bookmarkDate | isDefined) {
+    @if (article.bookmarkDate) {
       <mat-icon class="bookmark-icon">bookmark_border</mat-icon>
     }
 

@@ -21,17 +21,17 @@ import {
   Dialog,
   Id,
   Image,
+  IsoDate,
   NgChanges,
 } from '@app/models';
 import {
   FormatDatePipe,
   HighlightPipe,
-  IsDefinedPipe,
   RouterLinkPipe,
   StripMarkdownPipe,
 } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { isDefined } from '@app/utils';
+import { isDefined, isExpired } from '@app/utils';
 
 @Component({
   selector: 'lcc-article-grid',
@@ -42,7 +42,6 @@ import { isDefined } from '@app/utils';
     FormatDatePipe,
     HighlightPipe,
     ImagePreloadDirective,
-    IsDefinedPipe,
     MatIconModule,
     RouterLink,
     RouterLinkPipe,
@@ -54,11 +53,11 @@ export class ArticleGridComponent implements OnChanges {
   @Input({ required: true }) articles!: Article[];
   @Input({ required: true }) images!: Image[];
   @Input({ required: true }) isAdmin!: boolean;
+  @Input({ required: true }) lastFetch!: IsoDate | null;
   @Input({ required: true }) options!: DataPaginationOptions<Article>;
 
-  @Input() articleCount?: number;
-
   @Output() public requestDeleteArticle = new EventEmitter<Article>();
+  @Output() public requestFetch = new EventEmitter<void>();
   @Output() public requestUpdateArticleBookmark = new EventEmitter<{
     articleId: Id;
     bookmark: boolean;
@@ -79,6 +78,12 @@ export class ArticleGridComponent implements OnChanges {
       this.images.forEach(image => {
         this.bannerImagesMap.set(image.id, image);
       });
+    }
+
+    if (changes.lastFetch) {
+      if (!this.lastFetch || isExpired(this.lastFetch)) {
+        this.requestFetch.emit();
+      }
     }
   }
 

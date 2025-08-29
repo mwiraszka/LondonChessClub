@@ -164,12 +164,14 @@ export const selectIdsOfArticleBannerImagesWithMissingThumbnailUrls = (
   articles: Article[],
 ) =>
   createSelector(selectAllImages, allImages => {
-    return articles
-      .map(article => article.bannerImageId)
-      .filter(
-        bannerImageId =>
-          !allImages.find(image => image.id === bannerImageId)?.thumbnailUrl,
-      );
+    return uniq(
+      articles
+        .map(article => article.bannerImageId)
+        .filter(
+          bannerImageId =>
+            !allImages.find(image => image.id === bannerImageId)?.thumbnailUrl,
+        ),
+    ).sort();
   });
 
 export const selectImageByArticleId = (articleId: Id | null) =>

@@ -1,15 +1,13 @@
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
-
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { ImageViewerComponent } from '@app/components/image-viewer/image-viewer.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { DialogService } from '@app/services';
-import { ImagesActions, ImagesSelectors } from '@app/store/images';
 import { customSort, query, queryAll, queryTextContent } from '@app/utils';
 
 import { PhotoGridComponent } from './photo-grid.component';
@@ -24,17 +22,15 @@ describe('PhotoGridComponent', () => {
   let component: PhotoGridComponent;
 
   let dialogService: DialogService;
-  let store: MockStore;
 
   let dialogOpenSpy: jest.SpyInstance;
-  let dispatchSpy: jest.SpyInstance;
   let onClickAlbumCoverSpy: jest.SpyInstance;
+  let requestDeleteAlbumSpy: jest.SpyInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AdminControlsDirective, PhotoGridComponent, TooltipDirective],
       providers: [
-        provideMockStore(),
         provideRouter([{ path: 'photo-gallery', component: PhotoGalleryStubComponent }]),
         { provide: DialogService, useValue: { open: jest.fn() } },
       ],
@@ -44,11 +40,10 @@ describe('PhotoGridComponent', () => {
     component = fixture.componentInstance;
 
     dialogService = TestBed.inject(DialogService);
-    store = TestBed.inject(MockStore);
 
     dialogOpenSpy = jest.spyOn(dialogService, 'open');
-    dispatchSpy = jest.spyOn(store, 'dispatch');
     onClickAlbumCoverSpy = jest.spyOn(component, 'onClickAlbumCover');
+    requestDeleteAlbumSpy = jest.spyOn(component.requestDeleteAlbum, 'emit');
 
     component.isAdmin = true;
     component.photoImages = MOCK_IMAGES;
@@ -60,92 +55,8 @@ describe('PhotoGridComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('initialization', () => {
-    describe('when thumbnails were fetched less than 30 minutes ago', () => {
-      beforeEach(() => {
-        fixture.componentRef.setInput('photoImages', [MOCK_IMAGES[1]]);
-        store.overrideSelector(
-          ImagesSelectors.selectLastAlbumCoversFetch,
-          new Date(Date.now() - 29 * 60 * 1000).toISOString(),
-        );
-
-        component.ngOnChanges({
-          photoImages: {
-            currentValue: [MOCK_IMAGES[1]],
-            previousValue: [],
-            firstChange: false,
-            isFirstChange: () => false,
-          },
-        });
-        fixture.detectChanges();
-      });
-
-      it('should not dispatch fetchBatchThumbnailsRequested', () => {
-        expect(dispatchSpy).not.toHaveBeenCalledWith(
-          ImagesActions.fetchBatchThumbnailsRequested({
-            imageIds: MOCK_IMAGES.map(image => image.id),
-            isAlbumCoverFetch: true,
-          }),
-        );
-      });
-    });
-
-    describe('when thumbnails were last fetched over 30 minutes ago', () => {
-      beforeEach(() => {
-        fixture.componentRef.setInput('photoImages', [MOCK_IMAGES[0]]);
-        store.overrideSelector(
-          ImagesSelectors.selectLastAlbumCoversFetch,
-          new Date(Date.now() - 31 * 60 * 1000).toISOString(),
-        );
-
-        component.ngOnChanges({
-          photoImages: {
-            currentValue: [MOCK_IMAGES[0]],
-            previousValue: [],
-            firstChange: false,
-            isFirstChange: () => false,
-          },
-        });
-        fixture.detectChanges();
-      });
-
-      it('should dispatch fetchBatchThumbnailsRequested', () => {
-        expect(dispatchSpy).toHaveBeenCalledWith(
-          ImagesActions.fetchBatchThumbnailsRequested({
-            imageIds: [MOCK_IMAGES[0].id],
-            isAlbumCoverFetch: true,
-          }),
-        );
-      });
-    });
-
-    it('should have albumCovers getter that filters images with albumCover', () => {
-      const albumCovers = MOCK_IMAGES.filter(image => image.albumCover);
-
-      expect(component.albumCovers.length).toBe(albumCovers.length);
-
-      albumCovers.forEach((cover, index) => {
-        expect(component.albumCovers[index].albumCover).toBe(cover.albumCover);
-        expect(component.albumCovers[index].id).toBe(cover.id);
-      });
-    });
-
-    it('should honour maxAlbums input property', () => {
-      fixture.componentRef.setInput('maxAlbums', 1);
-      fixture.detectChanges();
-
-      expect(queryAll(fixture.debugElement, '.album-cover').length).toBe(1);
-    });
-  });
-
-  describe('album interactions', () => {
-    it('should call onClickAlbumCover when an album cover is clicked', () => {
-      query(fixture.debugElement, '.album-cover').triggerEventHandler('click');
-
-      expect(onClickAlbumCoverSpy).toHaveBeenCalledWith("John's Images");
-    });
-
-    it('should open ImageViewerComponent dialog with filtered images when clicking album cover', async () => {
+  describe('onClickAlbumCover', () => {
+    it('should open ImageViewerComponent dialog with correct data', async () => {
       const album = 'Album of Jane';
       const albumPhotos = MOCK_IMAGES.filter(image => image.album === album).sort(
         (a, b) => customSort(a, b, 'caption'),
@@ -165,7 +76,19 @@ describe('PhotoGridComponent', () => {
     });
   });
 
-  describe('admin controls', () => {
+  describe('onOpenImageExplorer', () => {
+    it('should open ImageExplorerComponent dialog with correct data', async () => {
+      await component.onOpenImageExplorer();
+
+      expect(dialogOpenSpy).toHaveBeenCalledWith({
+        componentType: expect.any(Function),
+        inputs: { selectable: false },
+        isModal: true,
+      });
+    });
+  });
+
+  describe('getAdminControlsConfig', () => {
     it('should return correct admin controls config for albums', () => {
       const album = MOCK_IMAGES[0].album;
       const config = component.getAdminControlsConfig(album);
@@ -178,7 +101,42 @@ describe('PhotoGridComponent', () => {
     });
   });
 
-  describe('album photo count', () => {
+  describe('onRequestDeleteAlbum', () => {
+    it('should emit request delete album event', async () => {
+      dialogOpenSpy.mockResolvedValue('confirm');
+
+      await component.onRequestDeleteAlbum(MOCK_IMAGES[1].album);
+
+      const photoCount = MOCK_IMAGES.filter(
+        image => image.album === MOCK_IMAGES[1].album,
+      ).length;
+
+      expect(dialogOpenSpy).toHaveBeenCalledWith({
+        componentType: BasicDialogComponent,
+        isModal: true,
+        inputs: {
+          dialog: {
+            title: 'Confirm',
+            body: `Delete ${MOCK_IMAGES[1].album} and its ${photoCount} photos?`,
+            confirmButtonText: 'Delete',
+            confirmButtonType: 'warning',
+          },
+        },
+      });
+      expect(requestDeleteAlbumSpy).toHaveBeenCalledWith(MOCK_IMAGES[1].album);
+    });
+
+    it('should not emit equest delete album event if dialog is cancelled', async () => {
+      dialogOpenSpy.mockResolvedValue('cancel');
+
+      await component.onRequestDeleteAlbum(MOCK_IMAGES[1].album);
+
+      expect(dialogOpenSpy).toHaveBeenCalledTimes(1);
+      expect(requestDeleteAlbumSpy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('getAlbumPhotoCountText', () => {
     it('should return correct singular photo count text', () => {
       expect(component.getAlbumPhotoCountText('Tournaments')).toBe('1 photo');
     });
@@ -196,6 +154,19 @@ describe('PhotoGridComponent', () => {
   });
 
   describe('template rendering', () => {
+    it('should call onClickAlbumCover when an album cover is clicked', () => {
+      query(fixture.debugElement, '.album-cover').triggerEventHandler('click');
+
+      expect(onClickAlbumCoverSpy).toHaveBeenCalledWith("John's Images");
+    });
+
+    it('should honour maxAlbums input property', () => {
+      fixture.componentRef.setInput('maxAlbums', 3);
+      fixture.detectChanges();
+
+      expect(queryAll(fixture.debugElement, '.album-cover').length).toBe(3);
+    });
+
     it('should display admin toolbar when isAdmin is true', () => {
       fixture.componentRef.setInput('isAdmin', true);
       fixture.detectChanges();

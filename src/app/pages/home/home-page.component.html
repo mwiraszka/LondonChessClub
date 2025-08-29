@@ -33,13 +33,11 @@
       [events]="vm.events"
       [includeDetails]="false"
       [isAdmin]="vm.isAdmin"
-      [lastFetch]="vm.lastEventsFetch"
       [nextEvent]="vm.nextEvent"
       [showPastEvents]="vm.showPastEvents"
       [upcomingEventLimit]="3"
       [upcomingEvents]="vm.upcomingEvents"
-      (requestDeleteEvent)="onRequestDeleteEvent($event)"
-      (requestFetch)="onRequestFetchEvents()">
+      (requestDeleteEvent)="onRequestDeleteEvent($event)">
     </lcc-schedule>
     <lcc-link-list [links]="[schedulePageLink]"></lcc-link-list>
   </section>
@@ -53,10 +51,8 @@
       [articles]="vm.articles"
       [images]="vm.images"
       [isAdmin]="vm.isAdmin"
-      [lastFetch]="vm.lastArticlesFetch"
       [options]="articleOptions"
       (requestDeleteArticle)="onRequestDeleteArticle($event)"
-      (requestFetch)="onRequestFetchArticles()"
       (requestUpdateArticleBookmark)="onRequestUpdateArticleBookmark($event)">
     </lcc-article-grid>
     <lcc-link-list [links]="[newsPageLink]"></lcc-link-list>
@@ -117,12 +113,9 @@
   <section class="photos-section">
     <lcc-photo-grid
       [isAdmin]="vm.isAdmin"
-      [lastAlbumCoversFetch]="vm.lastAlbumCoversFetch"
-      [lastImageMetadataFetch]="vm.lastImageMetadataFetch"
       [maxAlbums]="12"
       [photoImages]="vm.photoImages"
-      (requestDeleteAlbum)="onRequestDeleteAlbum($event)"
-      (requestFetchThumbnails)="onRequestFetchAlbumCoverThumbnails($event)">
+      (requestDeleteAlbum)="onRequestDeleteAlbum($event)">
     </lcc-photo-grid>
     <lcc-link-list [links]="[photoGalleryPageLink]"></lcc-link-list>
   </section>

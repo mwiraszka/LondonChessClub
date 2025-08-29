@@ -18,7 +18,6 @@ import {
   DataPaginationOptions,
   Dialog,
   InternalLink,
-  IsoDate,
   Member,
   MemberWithNewRatings,
 } from '@app/models';
@@ -63,12 +62,10 @@ import { isLccError, parseCsv } from '@app/utils';
       <lcc-members-table
         [isAdmin]="vm.isAdmin"
         [isSafeMode]="vm.isSafeMode"
-        [lastFetch]="vm.lastFetch"
         [members]="vm.filteredMembers"
         [options]="vm.options"
         (optionsChange)="onOptionsChange($event)"
-        (requestDeleteMember)="onRequestDeleteMember($event)"
-        (requestFetch)="onRequestFetch()">
+        (requestDeleteMember)="onRequestDeleteMember($event)">
       </lcc-members-table>
     }
   `,
@@ -110,7 +107,6 @@ export class MembersPageComponent implements OnInit {
     filteredMembers: Member[];
     isAdmin: boolean;
     isSafeMode: boolean;
-    lastFetch: IsoDate | null;
     options: DataPaginationOptions<Member>;
     totalCount: number;
   }>;
@@ -132,26 +128,16 @@ export class MembersPageComponent implements OnInit {
       this.store.select(MembersSelectors.selectFilteredMembers),
       this.store.select(AuthSelectors.selectIsAdmin),
       this.store.select(AppSelectors.selectIsSafeMode),
-      this.store.select(MembersSelectors.selectLastFilteredFetch),
       this.store.select(MembersSelectors.selectOptions),
       this.store.select(MembersSelectors.selectTotalCount),
     ]).pipe(
       untilDestroyed(this),
       map(
-        ([
+        ([filteredCount, filteredMembers, isAdmin, isSafeMode, options, totalCount]) => ({
           filteredCount,
           filteredMembers,
           isAdmin,
           isSafeMode,
-          lastFetch,
-          options,
-          totalCount,
-        ]) => ({
-          filteredCount,
-          filteredMembers,
-          isAdmin,
-          isSafeMode,
-          lastFetch,
           options,
           totalCount,
         }),
@@ -161,10 +147,6 @@ export class MembersPageComponent implements OnInit {
 
   public onOptionsChange(options: DataPaginationOptions<Member>, fetch = true): void {
     this.store.dispatch(MembersActions.paginationOptionsChanged({ options, fetch }));
-  }
-
-  public onRequestFetch(): void {
-    this.store.dispatch(MembersActions.fetchFilteredMembersRequested());
   }
 
   public onRequestDeleteMember(member: Member): void {

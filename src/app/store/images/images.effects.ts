@@ -4,7 +4,7 @@ import { routerNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
 import { isEqual } from 'lodash';
 import moment from 'moment-timezone';
-import { from, of } from 'rxjs';
+import { from, merge, of, timer } from 'rxjs';
 import {
   catchError,
   distinctUntilChanged,
@@ -12,6 +12,7 @@ import {
   map,
   mergeMap,
   switchMap,
+  take,
   tap,
 } from 'rxjs/operators';
 
@@ -21,7 +22,7 @@ import { BaseImage, LccError } from '@app/models';
 import { ImageFileService, ImagesApiService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
-import { dataUrlToFile, isDefined, isLccError } from '@app/utils';
+import { dataUrlToFile, isDefined, isExpired, isLccError } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
 
 import { ImagesActions, ImagesSelectors } from '.';
@@ -75,39 +76,9 @@ export class ImagesEffects {
     );
   });
 
-  refetchFilteredThumbnailsAfterPaginationOptionsChanged$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ImagesActions.paginationOptionsChanged),
-      filter(({ fetch }) => fetch),
-      map(() => ImagesActions.fetchFilteredThumbnailsRequested()),
-    );
-  });
-
-  refetchFilteredThumbnails$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(
-        ImagesActions.addImageSucceeded,
-        ImagesActions.addImagesSucceeded,
-        ImagesActions.updateImageSucceeded,
-        ImagesActions.updateAlbumSucceeded,
-        ImagesActions.deleteImageSucceeded,
-        ImagesActions.deleteAlbumSucceeded,
-      ),
-      map(() => ImagesActions.fetchFilteredThumbnailsRequested()),
-    );
-  });
-
   fetchBatchThumbnailImages$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchBatchThumbnailsRequested),
-      // Prevent duplicate back-to-back requests with identical params (e.g., double
-      // emission on initial load of home page causing two network calls for the
-      // same album cover thumbnails). We sort IDs to ensure stable comparison.
-      map(({ imageIds, context }) => ({
-        imageIds: [...imageIds].sort(),
-        context,
-      })),
-      distinctUntilChanged((a, b) => a.context === b.context && isEqual(a.imageIds, b.imageIds)),
       mergeMap(({ imageIds, context }) =>
         this.imagesApiService.getBatchThumbnailImages(imageIds).pipe(
           map(response =>
@@ -127,6 +98,45 @@ export class ImagesEffects {
       ),
     );
   });
+
+  fetchArticleBannerThumbnails$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(
+        ArticlesActions.fetchHomePageArticlesSucceeded,
+        ArticlesActions.fetchFilteredArticlesSucceeded,
+        routerNavigatedAction,
+      ),
+      // Only care about home and news page routes when navigation occurs
+      filter(action => {
+        return action.type === routerNavigatedAction.type
+          ? ['/', '/news'].includes(action.payload.event.url)
+          : true;
+      }),
+      switchMap(() =>
+        this.store.select(ArticlesSelectors.selectHomePageArticles).pipe(
+          concatLatestFrom(() =>
+            this.store.select(ArticlesSelectors.selectFilteredArticles),
+          ),
+          map(([home, filtered]) => [...home, ...filtered]),
+        ),
+      ),
+      switchMap(articles =>
+        this.store.select(
+          ImagesSelectors.selectIdsOfArticleBannerImagesWithMissingThumbnailUrls(
+            articles,
+          ),
+        ),
+      ),
+      distinctUntilChanged((prev, curr) => isEqual(prev, curr)),
+      filter(ids => ids.length > 0),
+      map(imageIds =>
+        ImagesActions.fetchBatchThumbnailsRequested({
+          imageIds,
+          context: 'article-banner-images',
+        }),
+      ),
+    ),
+  );
 
   fetchMainImage$ = createEffect(() => {
     return this.actions$.pipe(
@@ -164,6 +174,95 @@ export class ImagesEffects {
             ),
           ),
         ),
+      ),
+    );
+  });
+
+  // TODO: Generalize refetch flow and consolidate with URL Expiration service
+  refetchMetadata$ = createEffect(() => {
+    const refetchActions$ = this.actions$.pipe(
+      ofType(
+        ImagesActions.addImageSucceeded,
+        ImagesActions.addImagesSucceeded,
+        ImagesActions.updateImageSucceeded,
+        ImagesActions.updateAlbumSucceeded,
+        ImagesActions.deleteImageSucceeded,
+        ImagesActions.deleteAlbumSucceeded,
+        ImagesActions.automaticAlbumCoverSwitchSucceeded,
+      ),
+    );
+
+    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+      switchMap(() =>
+        this.store.select(ImagesSelectors.selectLastMetadataFetch).pipe(take(1)),
+      ),
+      filter(lastFetch => isExpired(lastFetch)),
+    );
+
+    return merge(refetchActions$, periodicCheck$).pipe(
+      map(() => ImagesActions.fetchAllImagesMetadataRequested()),
+    );
+  });
+
+  refetchFilteredThumbnails$ = createEffect(() => {
+    const refetchActions$ = this.actions$.pipe(
+      ofType(
+        ImagesActions.addImageSucceeded,
+        ImagesActions.addImagesSucceeded,
+        ImagesActions.updateImageSucceeded,
+        ImagesActions.updateAlbumSucceeded,
+        ImagesActions.deleteImageSucceeded,
+        ImagesActions.deleteAlbumSucceeded,
+        ImagesActions.automaticAlbumCoverSwitchSucceeded,
+        ImagesActions.paginationOptionsChanged,
+      ),
+    );
+
+    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+      switchMap(() =>
+        this.store
+          .select(ImagesSelectors.selectLastFilteredThumbnailsFetch)
+          .pipe(take(1)),
+      ),
+      filter(lastFetch => isExpired(lastFetch)),
+    );
+
+    return merge(refetchActions$, periodicCheck$).pipe(
+      map(() => ImagesActions.fetchFilteredThumbnailsRequested()),
+    );
+  });
+
+  refetchAlbumCoverThumbnails$ = createEffect(() => {
+    const refetchActions$ = this.actions$.pipe(
+      ofType(
+        ImagesActions.addImageSucceeded,
+        ImagesActions.addImagesSucceeded,
+        ImagesActions.updateImageSucceeded,
+        ImagesActions.updateAlbumSucceeded,
+        ImagesActions.deleteImageSucceeded,
+        ImagesActions.deleteAlbumSucceeded,
+        ImagesActions.automaticAlbumCoverSwitchSucceeded,
+      ),
+    );
+
+    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+      switchMap(() =>
+        this.store.select(ImagesSelectors.selectLastAlbumCoversFetch).pipe(take(1)),
+      ),
+      filter(lastFetch => isExpired(lastFetch)),
+    );
+
+    return merge(refetchActions$, periodicCheck$).pipe(
+      concatLatestFrom(() => [
+        this.store.select(ImagesSelectors.selectLastMetadataFetch),
+        this.store.select(ImagesSelectors.selectAlbumCoverImageIds),
+      ]),
+      filter(([, lastMetadataFetch, ids]) => !!lastMetadataFetch && ids.length > 0),
+      map(([, , imageIds]) =>
+        ImagesActions.fetchBatchThumbnailsRequested({
+          imageIds,
+          context: 'album-covers',
+        }),
       ),
     );
   });
@@ -443,45 +542,6 @@ export class ImagesEffects {
       }),
     );
   });
-
-  fetchMissingArticleBannerThumbnails$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(
-        ArticlesActions.fetchHomePageArticlesSucceeded,
-        ArticlesActions.fetchFilteredArticlesSucceeded,
-        routerNavigatedAction,
-      ),
-      // Only care about home and news page routes when navigation occurs
-      filter(action => {
-        return action.type === routerNavigatedAction.type
-          ? ['/', '/news'].includes(action.payload.event.url)
-          : true;
-      }),
-      switchMap(() =>
-        this.store.select(ArticlesSelectors.selectHomePageArticles).pipe(
-          concatLatestFrom(() =>
-            this.store.select(ArticlesSelectors.selectFilteredArticles),
-          ),
-          map(([home, filtered]) => [...home, ...filtered]),
-        ),
-      ),
-      switchMap(articles =>
-        this.store.select(
-          ImagesSelectors.selectIdsOfArticleBannerImagesWithMissingThumbnailUrls(
-            articles,
-          ),
-        ),
-      ),
-      distinctUntilChanged((prev, curr) => isEqual(prev, curr)),
-      filter(ids => ids.length > 0),
-      map(imageIds =>
-        ImagesActions.fetchBatchThumbnailsRequested({
-          imageIds,
-          context: 'article-banner-images',
-        }),
-      ),
-    ),
-  );
 
   clearIndexedDbImageFileData$ = createEffect(
     () =>

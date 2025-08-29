@@ -2,15 +2,15 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
-import { of } from 'rxjs';
-import { catchError, filter, map, switchMap } from 'rxjs/operators';
+import { merge, of, timer } from 'rxjs';
+import { catchError, filter, map, switchMap, take } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { Member } from '@app/models';
 import { MembersApiService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { exportDataToCsv, getNewPeakRating, isDefined } from '@app/utils';
+import { exportDataToCsv, getNewPeakRating, isDefined, isExpired } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
 
 import { MembersActions, MembersSelectors } from '.';
@@ -61,6 +61,28 @@ export class MembersEffects {
           ),
         ),
       ),
+    );
+  });
+
+  refetchFilteredMembers$ = createEffect(() => {
+    const refetchActions$ = this.actions$.pipe(
+      ofType(
+        MembersActions.addMemberSucceeded,
+        MembersActions.updateMemberSucceeded,
+        MembersActions.deleteMemberSucceeded,
+        MembersActions.paginationOptionsChanged,
+      ),
+    );
+
+    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+      switchMap(() =>
+        this.store.select(MembersSelectors.selectLastFilteredFetch).pipe(take(1)),
+      ),
+      filter(lastFetch => isExpired(lastFetch)),
+    );
+
+    return merge(refetchActions$, periodicCheck$).pipe(
+      map(() => MembersActions.fetchFilteredMembersRequested()),
     );
   });
 

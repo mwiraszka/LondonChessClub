@@ -2,15 +2,15 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
-import { of } from 'rxjs';
-import { catchError, filter, map, switchMap } from 'rxjs/operators';
+import { merge, of, timer } from 'rxjs';
+import { catchError, filter, map, switchMap, take } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { Article, DataPaginationOptions } from '@app/models';
 import { ArticlesApiService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { isDefined, parseError } from '@app/utils';
+import { isDefined, isExpired, parseError } from '@app/utils';
 
 import { ArticlesActions, ArticlesSelectors } from '.';
 
@@ -62,6 +62,49 @@ export class ArticlesEffects {
           ),
         ),
       ),
+    );
+  });
+
+  refetchHomePageArticles$ = createEffect(() => {
+    const refetchActions$ = this.actions$.pipe(
+      ofType(
+        ArticlesActions.publishArticleSucceeded,
+        ArticlesActions.updateArticleSucceeded,
+        ArticlesActions.deleteArticleSucceeded,
+      ),
+    );
+
+    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+      switchMap(() =>
+        this.store.select(ArticlesSelectors.selectLastHomePageFetch).pipe(take(1)),
+      ),
+      filter(lastFetch => isExpired(lastFetch)),
+    );
+
+    return merge(refetchActions$, periodicCheck$).pipe(
+      map(() => ArticlesActions.fetchHomePageArticlesRequested()),
+    );
+  });
+
+  refetchFilteredArticles$ = createEffect(() => {
+    const refetchActions$ = this.actions$.pipe(
+      ofType(
+        ArticlesActions.publishArticleSucceeded,
+        ArticlesActions.updateArticleSucceeded,
+        ArticlesActions.deleteArticleSucceeded,
+        ArticlesActions.paginationOptionsChanged,
+      ),
+    );
+
+    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+      switchMap(() =>
+        this.store.select(ArticlesSelectors.selectLastFilteredFetch).pipe(take(1)),
+      ),
+      filter(lastFetch => isExpired(lastFetch)),
+    );
+
+    return merge(refetchActions$, periodicCheck$).pipe(
+      map(() => ArticlesActions.fetchFilteredArticlesRequested()),
     );
   });
 

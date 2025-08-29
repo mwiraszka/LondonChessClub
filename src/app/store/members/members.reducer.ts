@@ -139,6 +139,7 @@ export const membersReducer = createReducer(
     (state, { options }): MembersState => ({
       ...state,
       options,
+      lastFilteredFetch: null,
     }),
   ),
 

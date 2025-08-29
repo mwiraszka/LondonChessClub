@@ -187,6 +187,7 @@ export const imagesReducer = createReducer(
     (state, { options }): ImagesState => ({
       ...state,
       options,
+      lastFilteredThumbnailsFetch: null,
     }),
   ),
 

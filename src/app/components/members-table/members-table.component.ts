@@ -7,7 +7,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnChanges,
   Output,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,13 +21,10 @@ import {
   BasicDialogResult,
   DataPaginationOptions,
   Dialog,
-  IsoDate,
   Member,
-  NgChanges,
 } from '@app/models';
 import { CamelCasePipe, FormatDatePipe, HighlightPipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { isExpired } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -49,7 +45,7 @@ import { isExpired } from '@app/utils';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MembersTableComponent implements OnChanges {
+export class MembersTableComponent {
   public readonly DEFAULT_TABLE_HEADERS = [
     'Name',
     'Rating',
@@ -75,13 +71,11 @@ export class MembersTableComponent implements OnChanges {
   ];
 
   @Input({ required: true }) isAdmin!: boolean;
-  @Input({ required: true }) lastFetch!: IsoDate | null;
   @Input({ required: true }) options!: DataPaginationOptions<Member>;
   @Input({ required: true }) isSafeMode!: boolean;
   @Input({ required: true }) members!: Member[];
 
   @Output() public requestDeleteMember = new EventEmitter<Member>();
-  @Output() public requestFetch = new EventEmitter<void>();
   @Output() public optionsChange = new EventEmitter<DataPaginationOptions<Member>>();
 
   public get startIndex(): number {
@@ -89,14 +83,6 @@ export class MembersTableComponent implements OnChanges {
   }
 
   constructor(private readonly dialogService: DialogService) {}
-
-  ngOnChanges(changes: NgChanges<MembersTableComponent>): void {
-    if (changes.lastFetch) {
-      if (!this.lastFetch || isExpired(this.lastFetch)) {
-        this.requestFetch.emit();
-      }
-    }
-  }
 
   public onSelectTableHeader(headerLabel: string): void {
     const header = camelCase(headerLabel) as keyof Member;

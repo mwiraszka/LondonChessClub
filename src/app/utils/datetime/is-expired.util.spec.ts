@@ -3,12 +3,13 @@ import moment from 'moment-timezone';
 import { isExpired } from './is-expired.util';
 
 describe('isExpired', () => {
-  it('returns null for invalid dates', () => {
-    expect(isExpired('')).toBeFalsy();
-    expect(isExpired('invalid-date')).toBeFalsy();
-    expect(isExpired('2023-13-32')).toBeFalsy();
-    expect(isExpired('2023/01/01')).toBeFalsy();
-    expect(isExpired(undefined)).toBeFalsy();
+  it('returns true for invalid dates', () => {
+    expect(isExpired('')).toBe(true);
+    expect(isExpired('invalid-date')).toBe(true);
+    expect(isExpired('2023-13-32')).toBe(true);
+    expect(isExpired('2023/01/01')).toBe(true);
+    expect(isExpired(undefined)).toBe(true);
+    expect(isExpired(null)).toBe(true);
   });
 
   it('returns true when date is in the past (default 600 seconds)', () => {

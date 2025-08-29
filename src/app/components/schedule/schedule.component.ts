@@ -4,7 +4,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnChanges,
   Output,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,12 +18,9 @@ import {
   Dialog,
   Event,
   InternalLink,
-  IsoDate,
-  NgChanges,
 } from '@app/models';
 import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { isExpired } from '@app/utils';
 
 @Component({
   selector: 'lcc-schedule',
@@ -41,10 +37,9 @@ import { isExpired } from '@app/utils';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ScheduleComponent implements OnChanges {
+export class ScheduleComponent {
   @Input({ required: true }) public events!: Event[];
   @Input({ required: true }) public isAdmin!: boolean;
-  @Input({ required: true }) public lastFetch!: IsoDate | null;
   @Input({ required: true }) public nextEvent!: Event | null;
   @Input({ required: true }) public showPastEvents!: boolean;
   @Input({ required: true }) public upcomingEvents!: Event[];
@@ -54,7 +49,6 @@ export class ScheduleComponent implements OnChanges {
   @Input() public upcomingEventLimit?: number;
 
   @Output() public requestDeleteEvent = new EventEmitter<Event>();
-  @Output() public requestFetch = new EventEmitter<void>();
   @Output() public togglePastEvents = new EventEmitter<void>();
 
   public readonly addEventLink: InternalLink = {
@@ -64,14 +58,6 @@ export class ScheduleComponent implements OnChanges {
   };
 
   constructor(private readonly dialogService: DialogService) {}
-
-  public ngOnChanges(changes: NgChanges<ScheduleComponent>): void {
-    if (changes.lastFetch) {
-      if (!this.lastFetch || isExpired(this.lastFetch)) {
-        this.requestFetch.emit();
-      }
-    }
-  }
 
   public getAdminControlsConfig(event: Event): AdminControlsConfig {
     return {

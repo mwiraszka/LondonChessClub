@@ -107,6 +107,7 @@ export const eventsReducer = createReducer(
           ...state,
           callState: initialState.callState,
           newEventFormData: INITIAL_EVENT_FORM_DATA,
+          lastFetch: null,
         },
       ),
   ),
@@ -122,6 +123,7 @@ export const eventsReducer = createReducer(
         {
           ...state,
           callState: initialState.callState,
+          lastFetch: null,
         },
       ),
   ),
@@ -129,7 +131,11 @@ export const eventsReducer = createReducer(
   on(
     EventsActions.deleteEventSucceeded,
     (state, { eventId }): EventsState =>
-      eventsAdapter.removeOne(eventId, { ...state, callState: initialState.callState }),
+      eventsAdapter.removeOne(eventId, {
+        ...state,
+        callState: initialState.callState,
+        lastFetch: null,
+      }),
   ),
 
   on(

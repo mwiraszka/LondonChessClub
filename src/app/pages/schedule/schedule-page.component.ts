@@ -8,7 +8,7 @@ import { Component, DOCUMENT, Inject, OnInit } from '@angular/core';
 
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { ScheduleComponent } from '@app/components/schedule/schedule.component';
-import { Event, IsoDate } from '@app/models';
+import { Event } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { EventsActions, EventsSelectors } from '@app/store/events';
@@ -26,12 +26,10 @@ import { EventsActions, EventsSelectors } from '@app/store/events';
       <lcc-schedule
         [events]="vm.events"
         [isAdmin]="vm.isAdmin"
-        [lastFetch]="vm.lastFetch"
         [nextEvent]="vm.nextEvent"
         [showPastEvents]="vm.showPastEvents"
         [upcomingEvents]="vm.upcomingEvents"
         (requestDeleteEvent)="onRequestDeleteEvent($event)"
-        (requestFetch)="onRequestFetchEvents()"
         (togglePastEvents)="onTogglePastEvents()">
       </lcc-schedule>
     }
@@ -42,7 +40,6 @@ export class SchedulePageComponent implements OnInit {
   public viewModel$?: Observable<{
     events: Event[];
     isAdmin: boolean;
-    lastFetch: IsoDate | null;
     nextEvent: Event | null;
     showPastEvents: boolean;
     upcomingEvents: Event[];
@@ -63,16 +60,14 @@ export class SchedulePageComponent implements OnInit {
     this.viewModel$ = combineLatest([
       this.store.select(EventsSelectors.selectAllEvents),
       this.store.select(AuthSelectors.selectIsAdmin),
-      this.store.select(EventsSelectors.selectLastFetch),
       this.store.select(EventsSelectors.selectNextEvent),
       this.store.select(EventsSelectors.selectShowPastEvents),
       this.store.select(EventsSelectors.selectUpcomingEvents),
     ]).pipe(
       untilDestroyed(this),
-      map(([events, isAdmin, lastFetch, nextEvent, showPastEvents, upcomingEvents]) => ({
+      map(([events, isAdmin, nextEvent, showPastEvents, upcomingEvents]) => ({
         events,
         isAdmin,
-        lastFetch,
         nextEvent,
         showPastEvents,
         upcomingEvents,
@@ -93,11 +88,6 @@ export class SchedulePageComponent implements OnInit {
       }),
     );
   }
-
-  public onRequestFetchEvents(): void {
-    this.store.dispatch(EventsActions.fetchEventsRequested());
-  }
-
   public onRequestDeleteEvent(event: Event): void {
     this.store.dispatch(EventsActions.deleteEventRequested({ event }));
   }

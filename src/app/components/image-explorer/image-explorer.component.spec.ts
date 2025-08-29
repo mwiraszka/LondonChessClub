@@ -55,7 +55,6 @@ describe('ImageExplorerComponent', () => {
       filters: {},
       search: '',
     });
-    store.overrideSelector(ImagesSelectors.selectLastFilteredThumbnailsFetch, null);
 
     dialogOpenSpy = jest.spyOn(dialogService, 'open');
     dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
@@ -70,42 +69,6 @@ describe('ImageExplorerComponent', () => {
     it('should be selectable by default', () => {
       fixture.detectChanges();
       expect(component.selectable).toBe(true);
-    });
-
-    describe('when images were fetched less than 10 minutes ago', () => {
-      beforeEach(() => {
-        jest.clearAllMocks();
-        store.overrideSelector(
-          ImagesSelectors.selectLastFilteredThumbnailsFetch,
-          new Date(Date.now() - 9 * 60 * 1000).toISOString(),
-        );
-        store.refreshState();
-        fixture.detectChanges();
-      });
-
-      it('should not dispatch fetchFilteredThumbnailsRequested', () => {
-        expect(dispatchSpy).not.toHaveBeenCalledWith(
-          ImagesActions.fetchFilteredThumbnailsRequested(),
-        );
-      });
-    });
-
-    describe('when images were last fetched over 10 minutes ago', () => {
-      beforeEach(() => {
-        jest.clearAllMocks();
-        store.overrideSelector(
-          ImagesSelectors.selectLastFilteredThumbnailsFetch,
-          new Date(Date.now() - 11 * 60 * 1000).toISOString(),
-        );
-        store.refreshState();
-        fixture.detectChanges();
-      });
-
-      it('should dispatch fetchFilteredThumbnailsRequested', () => {
-        expect(dispatchSpy).toHaveBeenCalledWith(
-          ImagesActions.fetchFilteredThumbnailsRequested(),
-        );
-      });
     });
   });
 

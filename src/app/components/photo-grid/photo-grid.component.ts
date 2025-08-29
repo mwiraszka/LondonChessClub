@@ -22,11 +22,9 @@ import {
   Id,
   Image,
   InternalLink,
-  IsoDate,
-  NgChanges,
 } from '@app/models';
 import { DialogService } from '@app/services';
-import { customSort, isExpired } from '@app/utils';
+import { customSort } from '@app/utils';
 
 @Component({
   selector: 'lcc-photo-grid',
@@ -43,14 +41,11 @@ import { customSort, isExpired } from '@app/utils';
 })
 export class PhotoGridComponent {
   @Input({ required: true }) public isAdmin!: boolean;
-  @Input({ required: true }) public lastAlbumCoversFetch!: IsoDate | null;
-  @Input({ required: true }) public lastImageMetadataFetch!: IsoDate | null;
   @Input({ required: true }) public photoImages!: Image[];
 
   @Input() public maxAlbums?: number;
 
   @Output() public readonly requestDeleteAlbum = new EventEmitter<string>();
-  @Output() public readonly requestFetchThumbnails = new EventEmitter<Id[]>();
 
   public readonly adminButtons: AdminButton[] = [
     {
@@ -75,24 +70,6 @@ export class PhotoGridComponent {
   ];
 
   constructor(private readonly dialogService: DialogService) {}
-
-  ngOnChanges(changes: NgChanges<PhotoGridComponent>): void {
-    if (
-      changes.photoImages ||
-      changes.lastImageMetadataFetch ||
-      changes.lastAlbumCoversFetch
-    ) {
-      if (
-        this.lastImageMetadataFetch &&
-        this.photoImages.length &&
-        (!this.lastAlbumCoversFetch || isExpired(this.lastAlbumCoversFetch))
-      ) {
-        this.requestFetchThumbnails.emit(
-          this.photoImages.filter(image => image.albumCover).map(image => image.id),
-        );
-      }
-    }
-  }
 
   public get albumCovers(): Image[] {
     return this.photoImages

@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
@@ -22,14 +22,12 @@ import {
   Id,
   Image,
   InternalLink,
-  IsoDate,
 } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
 import { EventsActions, EventsSelectors } from '@app/store/events';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
-import { isExpired } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -55,10 +53,6 @@ export class HomePageComponent implements OnInit {
     events: Event[];
     images: Image[];
     isAdmin: boolean;
-    lastAlbumCoversFetch: IsoDate | null;
-    lastArticlesFetch: IsoDate | null;
-    lastEventsFetch: IsoDate | null;
-    lastImageMetadataFetch: IsoDate | null;
     nextEvent: Event | null;
     photoImages: Image[];
     showPastEvents: boolean;
@@ -115,24 +109,11 @@ export class HomePageComponent implements OnInit {
     );
     this.setArticleCountBasedOnScreenWidth();
 
-    this.store
-      .select(ImagesSelectors.selectLastMetadataFetch)
-      .pipe(take(1))
-      .subscribe(lastMetadataFetch => {
-        if (!lastMetadataFetch || isExpired(lastMetadataFetch)) {
-          this.store.dispatch(ImagesActions.fetchAllImagesMetadataRequested());
-        }
-      });
-
     this.viewModel$ = combineLatest([
       this.store.select(ArticlesSelectors.selectHomePageArticles),
       this.store.select(EventsSelectors.selectAllEvents),
       this.store.select(ImagesSelectors.selectAllImages),
       this.store.select(AuthSelectors.selectIsAdmin),
-      this.store.select(ImagesSelectors.selectLastAlbumCoversFetch),
-      this.store.select(ArticlesSelectors.selectLastHomePageFetch),
-      this.store.select(EventsSelectors.selectLastFetch),
-      this.store.select(ImagesSelectors.selectLastMetadataFetch),
       this.store.select(EventsSelectors.selectNextEvent),
       this.store.select(EventsSelectors.selectShowPastEvents),
       this.store.select(EventsSelectors.selectUpcomingEvents),
@@ -144,10 +125,6 @@ export class HomePageComponent implements OnInit {
           events,
           images,
           isAdmin,
-          lastAlbumCoversFetch,
-          lastArticlesFetch,
-          lastEventsFetch,
-          lastImageMetadataFetch,
           nextEvent,
           showPastEvents,
           upcomingEvents,
@@ -156,10 +133,6 @@ export class HomePageComponent implements OnInit {
           events,
           images,
           isAdmin,
-          lastAlbumCoversFetch,
-          lastArticlesFetch,
-          lastEventsFetch,
-          lastImageMetadataFetch,
           nextEvent,
           photoImages: images.filter(image => !image.album.startsWith('_')),
           showPastEvents,
@@ -179,23 +152,6 @@ export class HomePageComponent implements OnInit {
 
   public onRequestDeleteAlbum(album: string): void {
     this.store.dispatch(ImagesActions.deleteAlbumRequested({ album }));
-  }
-
-  public onRequestFetchArticles(): void {
-    this.store.dispatch(ArticlesActions.fetchHomePageArticlesRequested());
-  }
-
-  public onRequestFetchEvents(): void {
-    this.store.dispatch(EventsActions.fetchEventsRequested());
-  }
-
-  public onRequestFetchAlbumCoverThumbnails(imageIds: Id[]): void {
-    this.store.dispatch(
-      ImagesActions.fetchBatchThumbnailsRequested({
-        imageIds,
-        context: 'album-covers',
-      }),
-    );
   }
 
   public onRequestUpdateArticleBookmark(event: {

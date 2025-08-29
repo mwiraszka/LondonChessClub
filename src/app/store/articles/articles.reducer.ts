@@ -185,7 +185,7 @@ export const articlesReducer = createReducer(
         ...state,
         callState: initialState.callState,
         lastHomePageFetch: null,
-        lastNewsPageFetch: null,
+        lastFilteredFetch: null,
       }),
   ),
 
@@ -231,6 +231,7 @@ export const articlesReducer = createReducer(
     (state, { options }): ArticlesState => ({
       ...state,
       options,
+      lastFilteredFetch: null,
     }),
   ),
 

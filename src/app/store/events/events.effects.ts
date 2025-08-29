@@ -2,15 +2,15 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
-import { of } from 'rxjs';
-import { catchError, filter, map, switchMap } from 'rxjs/operators';
+import { merge, of, timer } from 'rxjs';
+import { catchError, filter, map, switchMap, take } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { Event } from '@app/models';
 import { EventsApiService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { isDefined, parseError } from '@app/utils';
+import { isDefined, isExpired, parseError } from '@app/utils';
 
 import { EventsActions, EventsSelectors } from '.';
 
@@ -27,6 +27,25 @@ export class EventsEffects {
           ),
         ),
       ),
+    );
+  });
+
+  refetchEvents$ = createEffect(() => {
+    const refetchActions$ = this.actions$.pipe(
+      ofType(
+        EventsActions.addEventSucceeded,
+        EventsActions.updateEventSucceeded,
+        EventsActions.deleteEventSucceeded,
+      ),
+    );
+
+    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+      switchMap(() => this.store.select(EventsSelectors.selectLastFetch).pipe(take(1))),
+      filter(lastFetch => isExpired(lastFetch)),
+    );
+
+    return merge(refetchActions$, periodicCheck$).pipe(
+      map(() => EventsActions.fetchEventsRequested()),
     );
   });
 

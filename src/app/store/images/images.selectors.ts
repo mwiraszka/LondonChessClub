@@ -10,13 +10,19 @@ import { ImagesState, imagesAdapter } from './images.reducer';
 
 const selectImagesState = createFeatureSelector<ImagesState>('imagesState');
 
-export const selectCallState = createSelector(
-  selectImagesState,
-  state => state.callState,
-);
-
 const { selectAll: selectAllImageEntities } =
   imagesAdapter.getSelectors(selectImagesState);
+
+export const selectAllImages = createSelector(
+  selectAllImageEntities,
+  allImageEntities => {
+    return allImageEntities.map(entity => entity.image);
+  },
+);
+
+export const selectCallState = createSelector(selectImagesState, state => {
+  return state.callState;
+});
 
 export const selectNewImagesFormData = createSelector(selectImagesState, state => {
   return state.newImagesFormData;
@@ -73,10 +79,6 @@ export const selectImageEntitiesByAlbum = (album: string | null) =>
   createSelector(selectAllImageEntities, allImageEntities =>
     album ? allImageEntities.filter(entity => entity.image.album === album) : [],
   );
-
-export const selectAllImages = createSelector(selectAllImageEntities, allImageEntities =>
-  allImageEntities.map(entity => entity.image),
-);
 
 export const selectImagesByAlbum = (album: string | null) =>
   createSelector(selectAllImages, allImages =>
@@ -151,6 +153,10 @@ export const selectAlbumHasUnsavedChanges = (album: string | null) =>
       );
     },
   );
+
+export const selectAlbumCoverImageIds = createSelector(selectAllImages, allImages => {
+  return allImages.filter(image => image.albumCover).map(image => image.id);
+});
 
 export const selectAllExistingAlbums = createSelector(selectAllImages, allImages => {
   return uniq(allImages.map(image => image.album));

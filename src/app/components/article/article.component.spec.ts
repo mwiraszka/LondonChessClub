@@ -13,20 +13,20 @@ describe('ArticleComponent', () => {
   let fixture: ComponentFixture<ArticleComponent>;
   let component: ArticleComponent;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [ArticleComponent],
-    })
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({ imports: [ArticleComponent] })
       .overrideComponent(ArticleComponent, {
         remove: { imports: [MarkdownRendererComponent] },
         add: { imports: [MockComponent(MarkdownRendererComponent)] },
       })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(ArticleComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-      });
+      .compileComponents();
+
+    fixture = TestBed.createComponent(ArticleComponent);
+    component = fixture.componentInstance;
+
+    fixture.componentRef.setInput('article', MOCK_ARTICLES[2]);
+    fixture.componentRef.setInput('bannerImage', null);
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -34,12 +34,6 @@ describe('ArticleComponent', () => {
   });
 
   describe('template rendering', () => {
-    beforeEach(() => {
-      fixture.componentRef.setInput('article', MOCK_ARTICLES[2]);
-      fixture.componentRef.setInput('bannerImage', null);
-      fixture.detectChanges();
-    });
-
     it('should render all article container and content elements, and the Markdown Renderer component', () => {
       const containerSelectors = [
         '.banner-image-container',

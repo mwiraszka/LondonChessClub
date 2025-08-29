@@ -7,7 +7,6 @@ import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ImageFileService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthActions } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
@@ -90,6 +89,9 @@ export class NavEffects {
         ArticlesActions.publishArticleSucceeded,
         ArticlesActions.updateArticleSucceeded,
       ),
+      // Only redirect to news if the previous route was an article route (editor/viewer)
+      switchMap(() => this.store.select(NavSelectors.selectPreviousPath)),
+      filter(previousPath => !!previousPath?.startsWith('/article/')),
       map(() => NavActions.navigationRequested({ path: 'news' })),
     ),
   );
@@ -133,7 +135,7 @@ export class NavEffects {
     ),
   );
 
-  resetEventFormData$ = createEffect(() =>
+  restoreEventFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -145,7 +147,7 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const eventId = previousPath!.split('/event/')[1]?.split('/')[1] ?? null;
-        return EventsActions.eventFormDataReset({ eventId });
+        return EventsActions.formDataRestored({ eventId });
       }),
     ),
   );
@@ -169,7 +171,7 @@ export class NavEffects {
     ),
   );
 
-  resetMemberFormData$ = createEffect(() =>
+  restoreMemberFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -181,7 +183,7 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const memberId = previousPath!.split('/member/')[1]?.split('/')[1] ?? null;
-        return MembersActions.memberFormDataReset({ memberId });
+        return MembersActions.formDataRestored({ memberId });
       }),
     ),
   );
@@ -216,7 +218,7 @@ export class NavEffects {
     ),
   );
 
-  resetArticleFormData$ = createEffect(() =>
+  restoreArticleFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -228,7 +230,7 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const articleId = previousPath!.split('/article/')[1]?.split('/')[1] ?? null;
-        return ArticlesActions.articleFormDataReset({ articleId });
+        return ArticlesActions.formDataRestored({ articleId });
       }),
     ),
   );
@@ -263,7 +265,7 @@ export class NavEffects {
     ),
   );
 
-  resetImageFormData$ = createEffect(() =>
+  restoreImageFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -275,12 +277,12 @@ export class NavEffects {
       }),
       map(([, previousPath]) => {
         const imageId = previousPath!.split('/image/')[1]?.split('/')[1] ?? null;
-        return ImagesActions.imageFormDataReset({ imageId });
+        return ImagesActions.imageFormDataRestored({ imageId });
       }),
     ),
   );
 
-  resetAlbumFormData$ = createEffect(() =>
+  restoreAlbumFormData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
@@ -296,7 +298,7 @@ export class NavEffects {
       ),
       map(([, entities]) => {
         const imageIds = entities.map(entity => entity.image.id);
-        return ImagesActions.albumFormDataReset({ imageIds });
+        return ImagesActions.albumFormDataRestored({ imageIds });
       }),
     ),
   );
@@ -327,60 +329,8 @@ export class NavEffects {
     ),
   );
 
-  refetchHomePageArticleBannerImages$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      filter(({ payload }) => payload.event.url === '/'),
-      switchMap(() => this.store.select(ArticlesSelectors.selectHomePageArticles)),
-      filter(articles => articles.length > 0),
-      concatLatestFrom(articles => {
-        const imageIds = articles
-          .filter(article => article.bannerImageId)
-          .map(article => article.bannerImageId);
-        return this.store.select(ImagesSelectors.selectImagesByIds(imageIds));
-      }),
-      filter(([articles, bannerImages]) => bannerImages.length < articles.length),
-      map(([articles]) =>
-        ImagesActions.fetchBatchThumbnailsRequested({
-          imageIds: articles.map(article => article.bannerImageId),
-        }),
-      ),
-    ),
-  );
-
-  refetchFilteredArticleBannerImages$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      filter(({ payload }) => payload.event.url === '/news'),
-      switchMap(() => this.store.select(ArticlesSelectors.selectFilteredArticles)),
-      filter(articles => articles.length > 0),
-      concatLatestFrom(articles => {
-        const imageIds = articles
-          .filter(article => article.bannerImageId)
-          .map(article => article.bannerImageId);
-        return this.store.select(ImagesSelectors.selectImagesByIds(imageIds));
-      }),
-      filter(([articles, bannerImages]) => bannerImages.length < articles.length),
-      map(([articles]) =>
-        ImagesActions.fetchBatchThumbnailsRequested({
-          imageIds: articles.map(article => article.bannerImageId),
-        }),
-      ),
-    ),
-  );
-
-  clearIndexedDbImageFileData$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(ImagesActions.imageFormDataReset, ImagesActions.albumFormDataReset),
-        tap(() => this.imageFileService.clearAllImages()),
-      ),
-    { dispatch: false },
-  );
-
   constructor(
     private readonly actions$: Actions,
-    private readonly imageFileService: ImageFileService,
     private readonly router: Router,
     private readonly store: Store,
   ) {}

@@ -14,25 +14,23 @@ describe('PgnViewerComponent', () => {
   let getPlayerNameSpy: jest.SpyInstance;
   let getScoreSpy: jest.SpyInstance;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [PgnViewerComponent],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(PgnViewerComponent);
-        component = fixture.componentInstance;
+    }).compileComponents();
 
-        component.index = 1;
-        component.label = 'test-game';
-        component.pgn = MOCK_PGNS[0];
+    fixture = TestBed.createComponent(PgnViewerComponent);
+    component = fixture.componentInstance;
 
-        consoleWarnSpy = jest.spyOn(console, 'warn');
-        getPlayerNameSpy = jest.spyOn(pgnUtils, 'getPlayerName');
-        getScoreSpy = jest.spyOn(pgnUtils, 'getScore');
+    consoleWarnSpy = jest.spyOn(console, 'warn');
+    getPlayerNameSpy = jest.spyOn(pgnUtils, 'getPlayerName');
+    getScoreSpy = jest.spyOn(pgnUtils, 'getScore');
 
-        fixture.detectChanges();
-      });
+    component.index = 1;
+    component.label = 'test-game';
+    component.pgn = MOCK_PGNS[0];
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {

@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { omit, pick, uniq } from 'lodash';
 
 import { INITIAL_IMAGE_FORM_DATA } from '@app/constants';
-import { Id } from '@app/models';
+import { Article, Id } from '@app/models';
 import { ArticlesSelectors } from '@app/store/articles';
 import { areSame } from '@app/utils';
 
@@ -10,13 +10,19 @@ import { ImagesState, imagesAdapter } from './images.reducer';
 
 const selectImagesState = createFeatureSelector<ImagesState>('imagesState');
 
-export const selectCallState = createSelector(
-  selectImagesState,
-  state => state.callState,
-);
-
 const { selectAll: selectAllImageEntities } =
   imagesAdapter.getSelectors(selectImagesState);
+
+export const selectAllImages = createSelector(
+  selectAllImageEntities,
+  allImageEntities => {
+    return allImageEntities.map(entity => entity.image);
+  },
+);
+
+export const selectCallState = createSelector(selectImagesState, state => {
+  return state.callState;
+});
 
 export const selectNewImagesFormData = createSelector(selectImagesState, state => {
   return state.newImagesFormData;
@@ -73,10 +79,6 @@ export const selectImageEntitiesByAlbum = (album: string | null) =>
   createSelector(selectAllImageEntities, allImageEntities =>
     album ? allImageEntities.filter(entity => entity.image.album === album) : [],
   );
-
-export const selectAllImages = createSelector(selectAllImageEntities, allImageEntities =>
-  allImageEntities.map(entity => entity.image),
-);
 
 export const selectImagesByAlbum = (album: string | null) =>
   createSelector(selectAllImages, allImages =>
@@ -152,6 +154,10 @@ export const selectAlbumHasUnsavedChanges = (album: string | null) =>
     },
   );
 
+export const selectAlbumCoverImageIds = createSelector(selectAllImages, allImages => {
+  return allImages.filter(image => image.albumCover).map(image => image.id);
+});
+
 export const selectAllExistingAlbums = createSelector(selectAllImages, allImages => {
   return uniq(allImages.map(image => image.album));
 });
@@ -159,6 +165,20 @@ export const selectAllExistingAlbums = createSelector(selectAllImages, allImages
 export const selectArticleImages = createSelector(selectAllImages, allImages => {
   return allImages.filter(image => (image?.articleAppearances ?? 0) > 0);
 });
+
+export const selectIdsOfArticleBannerImagesWithMissingThumbnailUrls = (
+  articles: Article[],
+) =>
+  createSelector(selectAllImages, allImages => {
+    return uniq(
+      articles
+        .map(article => article.bannerImageId)
+        .filter(
+          bannerImageId =>
+            !allImages.find(image => image.id === bannerImageId)?.thumbnailUrl,
+        ),
+    ).sort();
+  });
 
 export const selectImageByArticleId = (articleId: Id | null) =>
   createSelector(

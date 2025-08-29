@@ -8,19 +8,16 @@ describe('DocumentViewerComponent', () => {
   let fixture: ComponentFixture<DocumentViewerComponent>;
   let component: DocumentViewerComponent;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [PdfViewerModule, DocumentViewerComponent],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(DocumentViewerComponent);
-        component = fixture.componentInstance;
+    }).compileComponents();
 
-  fixture.componentRef.setInput('documentPath', 'assets/documents/test-document.pdf');
+    fixture = TestBed.createComponent(DocumentViewerComponent);
+    component = fixture.componentInstance;
 
-        fixture.detectChanges();
-      });
+    component.documentPath = 'assets/documents/test-document.pdf';
+    fixture.detectChanges();
   });
 
   it('should create', () => {

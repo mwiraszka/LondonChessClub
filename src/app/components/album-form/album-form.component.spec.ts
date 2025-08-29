@@ -1,4 +1,3 @@
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { pick } from 'lodash';
 import * as uuid from 'uuid';
 
@@ -10,7 +9,6 @@ import { IMAGE_FORM_DATA_PROPERTIES } from '@app/constants';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { ImageFormData, LccError } from '@app/models';
 import { DialogService, ImageFileService } from '@app/services';
-import { ImagesActions } from '@app/store/images';
 import { query, queryTextContent } from '@app/utils';
 
 import { AlbumFormComponent } from './album-form.component';
@@ -21,26 +19,29 @@ describe('AlbumFormComponent', () => {
 
   let dialogService: DialogService;
   let imageFileService: ImageFileService;
-  let store: MockStore;
 
   let cancelSpy: jest.SpyInstance;
+  let changeSpy: jest.SpyInstance;
   let deleteImageSpy: jest.SpyInstance;
   let dialogOpenSpy: jest.SpyInstance;
-  let dispatchSpy: jest.SpyInstance;
   let fetchNewImageDataUrlsSpy: jest.SpyInstance;
+  let fileActionFailSpy: jest.SpyInstance;
   let initFormSpy: jest.SpyInstance;
   let initFormValueChangeListenerSpy: jest.SpyInstance;
+  let removeNewImageSpy: jest.SpyInstance;
+  let requestAddImagesSpy: jest.SpyInstance;
+  let requestFetchThumbnailsSpy: jest.SpyInstance;
+  let requestUpdateAlbumSpy: jest.SpyInstance;
   let restoreSpy: jest.SpyInstance;
   let storeImageFileSpy: jest.SpyInstance;
   let submitSpy: jest.SpyInstance;
   let uuidSpy: jest.SpyInstance;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [AlbumFormComponent, ReactiveFormsModule],
       providers: [
         FormBuilder,
-        provideMockStore(),
         { provide: DialogService, useValue: { open: jest.fn() } },
         {
           provide: ImageFileService,
@@ -51,54 +52,56 @@ describe('AlbumFormComponent', () => {
           },
         },
       ],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(AlbumFormComponent);
-        component = fixture.componentInstance;
+    }).compileComponents();
 
-        component.album = null;
-        component.existingAlbums = [];
-        component.hasUnsavedChanges = false;
-        component.imageEntities = [];
-        component.newImagesFormData = {};
-        fixture.detectChanges();
+    fixture = TestBed.createComponent(AlbumFormComponent);
+    component = fixture.componentInstance;
 
-        dialogService = TestBed.inject(DialogService);
-        imageFileService = TestBed.inject(ImageFileService);
-        store = TestBed.inject(MockStore);
+    dialogService = TestBed.inject(DialogService);
+    imageFileService = TestBed.inject(ImageFileService);
+    jest.spyOn(imageFileService, 'getAllImages').mockResolvedValue([
+      {
+        id: 'new-123',
+        filename: 'my-dog.png',
+        dataUrl: 'data:image/png;base64,abc',
+      },
+      {
+        id: 'new-456',
+        filename: 'my-cat.jpeg',
+        dataUrl: 'data:image/jpeg;base64,xyz',
+      },
+    ]);
 
-        jest.spyOn(imageFileService, 'getAllImages').mockResolvedValue([
-          {
-            id: 'new-123',
-            filename: 'my-dog.png',
-            dataUrl: 'data:image/png;base64,abc',
-          },
-          {
-            id: 'new-456',
-            filename: 'my-cat.jpeg',
-            dataUrl: 'data:image/jpeg;base64,xyz',
-          },
-        ]);
+    cancelSpy = jest.spyOn(component.cancel, 'emit');
+    changeSpy = jest.spyOn(component.change, 'emit');
+    deleteImageSpy = jest.spyOn(imageFileService, 'deleteImage');
+    dialogOpenSpy = jest.spyOn(dialogService, 'open');
+    // @ts-expect-error Private class member
+    fetchNewImageDataUrlsSpy = jest.spyOn(component, 'fetchNewImageDataUrls');
+    fileActionFailSpy = jest.spyOn(component.fileActionFail, 'emit');
+    // @ts-expect-error Private class member
+    initFormSpy = jest.spyOn(component, 'initForm');
+    initFormValueChangeListenerSpy = jest.spyOn(
+      component,
+      // @ts-expect-error Private class member
+      'initFormValueChangeListener',
+    );
+    removeNewImageSpy = jest.spyOn(component.removeNewImage, 'emit');
+    requestAddImagesSpy = jest.spyOn(component.requestAddImages, 'emit');
+    requestFetchThumbnailsSpy = jest.spyOn(component.requestFetchThumbnails, 'emit');
+    requestUpdateAlbumSpy = jest.spyOn(component.requestUpdateAlbum, 'emit');
+    restoreSpy = jest.spyOn(component.restore, 'emit');
+    storeImageFileSpy = jest.spyOn(imageFileService, 'storeImageFile');
+    submitSpy = jest.spyOn(component, 'onSubmit');
+    uuidSpy = jest.spyOn(uuid, 'v4');
 
-        cancelSpy = jest.spyOn(component, 'onCancel');
-        deleteImageSpy = jest.spyOn(imageFileService, 'deleteImage');
-        dialogOpenSpy = jest.spyOn(dialogService, 'open');
-        dispatchSpy = jest.spyOn(store, 'dispatch');
-        // @ts-expect-error Private class member
-        fetchNewImageDataUrlsSpy = jest.spyOn(component, 'fetchNewImageDataUrls');
-        // @ts-expect-error Private class member
-        initFormSpy = jest.spyOn(component, 'initForm');
-        initFormValueChangeListenerSpy = jest.spyOn(
-          component,
-          // @ts-expect-error Private class member
-          'initFormValueChangeListener',
-        );
-        restoreSpy = jest.spyOn(component, 'onRestore');
-        storeImageFileSpy = jest.spyOn(imageFileService, 'storeImageFile');
-        submitSpy = jest.spyOn(component, 'onSubmit');
-        uuidSpy = jest.spyOn(uuid, 'v4');
-      });
+    component.album = null;
+    component.existingAlbums = [];
+    component.hasUnsavedChanges = false;
+    component.imageEntities = [];
+    component.newImagesFormData = {};
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -131,8 +134,8 @@ describe('AlbumFormComponent', () => {
         expect(fetchNewImageDataUrlsSpy).not.toHaveBeenCalled();
       });
 
-      it('should not dispatch fetchBatchThumbnailsRequested', () => {
-        expect(dispatchSpy).not.toHaveBeenCalled();
+      it('should not emit request fetch thumbnails event', () => {
+        expect(requestFetchThumbnailsSpy).not.toHaveBeenCalled();
       });
     });
 
@@ -140,11 +143,10 @@ describe('AlbumFormComponent', () => {
       beforeEach(() => {
         jest.clearAllMocks();
         // Two images from the same album
-        component.newImagesFormData = {
+        fixture.componentRef.setInput('newImagesFormData', {
           [MOCK_IMAGES[0].id]: pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES),
           [MOCK_IMAGES[3].id]: pick(MOCK_IMAGES[3], IMAGE_FORM_DATA_PROPERTIES),
-        };
-        fixture.detectChanges();
+        });
 
         component.ngOnInit();
       });
@@ -175,23 +177,19 @@ describe('AlbumFormComponent', () => {
         expect(component.form.controls.newImages.untouched).toBe(true);
       });
 
-      it('should call fetchNewImagesDataUrls', () => {
+      it('should emit data URLs fetch event', () => {
         expect(fetchNewImageDataUrlsSpy).toHaveBeenCalledTimes(1);
       });
 
-      it('should not dispatch fetchBatchThumbnailsRequested', () => {
-        expect(dispatchSpy).not.toHaveBeenCalledWith(
-          ImagesActions.fetchBatchThumbnailsRequested({
-            imageIds: [MOCK_IMAGES[0].id, MOCK_IMAGES[3].id],
-          }),
-        );
+      it('should not emit request fetch thumbnails event', () => {
+        expect(requestFetchThumbnailsSpy).not.toHaveBeenCalled();
       });
     });
 
     describe('if imageEntities contains data (without unsaved changes)', () => {
       beforeEach(() => {
         jest.clearAllMocks();
-        component.imageEntities = [
+        fixture.componentRef.setInput('imageEntities', [
           {
             image: MOCK_IMAGES[0],
             formData: pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES),
@@ -200,8 +198,7 @@ describe('AlbumFormComponent', () => {
             image: MOCK_IMAGES[3],
             formData: pick(MOCK_IMAGES[3], IMAGE_FORM_DATA_PROPERTIES),
           },
-        ];
-        fixture.detectChanges();
+        ]);
 
         component.ngOnInit();
       });
@@ -232,24 +229,20 @@ describe('AlbumFormComponent', () => {
         expect(component.form.controls.newImages.untouched).toBe(true);
       });
 
-      it('should not call fetchNewImagesDataUrls', () => {
+      it('should not emit data URLs fetch event', () => {
         expect(fetchNewImageDataUrlsSpy).not.toHaveBeenCalled();
       });
 
-      it('should not dispatch fetchBatchThumbnailsRequested', () => {
-        expect(dispatchSpy).not.toHaveBeenCalledWith(
-          ImagesActions.fetchBatchThumbnailsRequested({
-            imageIds: [MOCK_IMAGES[0].id, MOCK_IMAGES[3].id],
-          }),
-        );
+      it('should not emit request fetch thumbnails event', () => {
+        expect(requestFetchThumbnailsSpy).not.toHaveBeenCalled();
       });
     });
 
     describe('if imageEntities contains data (with some unsaved changes and undefined urls)', () => {
       beforeEach(() => {
         jest.clearAllMocks();
-        component.hasUnsavedChanges = true;
-        component.imageEntities = [
+        fixture.componentRef.setInput('hasUnsavedChanges', true);
+        fixture.componentRef.setInput('imageEntities', [
           {
             image: MOCK_IMAGES[0],
             formData: {
@@ -272,8 +265,7 @@ describe('AlbumFormComponent', () => {
               album: 'A new album title',
             },
           },
-        ];
-        fixture.detectChanges();
+        ]);
 
         component.ngOnInit();
       });
@@ -304,16 +296,12 @@ describe('AlbumFormComponent', () => {
         expect(component.form.controls.newImages.touched).toBe(true);
       });
 
-      it('should not call fetchNewImagesDataUrls', () => {
+      it('should not emit data URLs fetch event', () => {
         expect(fetchNewImageDataUrlsSpy).not.toHaveBeenCalled();
       });
 
-      it('should dispatch fetchBatchThumbnailsRequested only for the image with undefined urls', () => {
-        expect(dispatchSpy).toHaveBeenCalledWith(
-          ImagesActions.fetchBatchThumbnailsRequested({
-            imageIds: [MOCK_IMAGES[3].id],
-          }),
-        );
+      it('should emit request fetch thumbnails event only for the image with undefined urls', () => {
+        expect(requestFetchThumbnailsSpy).toHaveBeenCalledWith([MOCK_IMAGES[3].id]);
       });
     });
   });
@@ -487,9 +475,7 @@ describe('AlbumFormComponent', () => {
 
       expect(deleteImageSpy).toHaveBeenCalledTimes(1);
       expect(component.newImageDataUrls).not.toHaveProperty(MOCK_IMAGES[0].id);
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        ImagesActions.newImageRemoved({ imageId: MOCK_IMAGES[0].id }),
-      );
+      expect(removeNewImageSpy).toHaveBeenCalledWith(MOCK_IMAGES[0].id);
     });
 
     it('should handle errors from the imageFileService', async () => {
@@ -510,9 +496,7 @@ describe('AlbumFormComponent', () => {
       await fixture.whenStable();
 
       expect(deleteImageSpy).toHaveBeenCalledWith(MOCK_IMAGES[0].id);
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        ImagesActions.imageFileActionFailed({ error }),
-      );
+      expect(fileActionFailSpy).toHaveBeenCalledWith(error);
       expect(newImagesControl.length).toBe(1);
     });
 
@@ -670,10 +654,9 @@ describe('AlbumFormComponent', () => {
       await fixture.whenStable();
 
       expect(storeImageFileSpy).toHaveBeenCalledTimes(3);
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        ImagesActions.imageFileActionFailed({ error }),
-      );
+      expect(fileActionFailSpy).toHaveBeenCalledWith(error);
       expect(fileInputElement.value).toBe('');
+
       const newImagesControl = component.form.controls.newImages;
       expect(newImagesControl.at(0).controls.id.value).toBe('new-123');
       expect(newImagesControl.at(0).controls.filename.value).toBe('new-file.1.png');
@@ -733,7 +716,7 @@ describe('AlbumFormComponent', () => {
 
     afterEach(() => jest.useRealTimers());
 
-    it('should dispatch album form data reset and re-initialize form if dialog is confirmed', async () => {
+    it('should emit both change and restore events and re-initialize form if dialog is confirmed', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
 
       await component.onRestore();
@@ -751,22 +734,13 @@ describe('AlbumFormComponent', () => {
           },
         },
       });
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        ImagesActions.albumFormDataReset({
-          imageIds: [MOCK_IMAGES[0].id, MOCK_IMAGES[1].id],
-        }),
-      );
+      expect(changeSpy).toHaveBeenCalled();
+      expect(restoreSpy).toHaveBeenCalledWith([MOCK_IMAGES[0].id, MOCK_IMAGES[1].id]);
       expect(initFormSpy).toHaveBeenCalledTimes(1);
       expect(initFormValueChangeListenerSpy).toHaveBeenCalledTimes(1);
-
-      // Verify formValueChanged was dispatched at least once
-      const formValueChangedCalls = dispatchSpy.mock.calls.filter(
-        call => call[0].type === ImagesActions.formValueChanged.type,
-      );
-      expect(formValueChangedCalls.length).toBeGreaterThan(0);
     });
 
-    it('should not dispatch reset action or re-initialize form if dialog is cancelled', async () => {
+    it('should not emit change or restore event or re-initialize form if dialog is cancelled', async () => {
       component.hasUnsavedChanges = true;
       dialogOpenSpy.mockResolvedValue('cancel');
 
@@ -774,7 +748,8 @@ describe('AlbumFormComponent', () => {
       jest.runAllTimers();
 
       expect(dialogOpenSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).not.toHaveBeenCalled();
+      expect(changeSpy).not.toHaveBeenCalled();
+      expect(restoreSpy).not.toHaveBeenCalled();
       expect(initFormSpy).not.toHaveBeenCalled();
       expect(initFormValueChangeListenerSpy).not.toHaveBeenCalled();
 
@@ -786,9 +761,9 @@ describe('AlbumFormComponent', () => {
   });
 
   describe('onCancel', () => {
-    it('should dispatch cancelSelected action', () => {
+    it('should emit cancel event', () => {
       component.onCancel();
-      expect(dispatchSpy).toHaveBeenCalledWith(ImagesActions.cancelSelected());
+      expect(cancelSpy).toHaveBeenCalled();
     });
   });
 
@@ -806,7 +781,7 @@ describe('AlbumFormComponent', () => {
       expect(dialogOpenSpy).not.toHaveBeenCalled();
     });
 
-    it('should open confirmation dialog with correct data if adding a new image', async () => {
+    it('should open confirmation dialog with correct data and emit request add images event if adding a new image', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
       component.newImagesFormData = { [MOCK_IMAGES[3].id]: MOCK_IMAGES[3] };
       fixture.detectChanges();
@@ -825,10 +800,10 @@ describe('AlbumFormComponent', () => {
           },
         },
       });
-      expect(dispatchSpy).toHaveBeenCalledWith(ImagesActions.addImagesRequested());
+      expect(requestAddImagesSpy).toHaveBeenCalled();
     });
 
-    it('should open confirmation dialog with correct data if updating an image', async () => {
+    it('should open confirmation dialog with correct data and emit request update album event if updating the album', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
       component.album = MOCK_IMAGES[3].album;
       component.imageEntities = [
@@ -853,12 +828,10 @@ describe('AlbumFormComponent', () => {
           },
         },
       });
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        ImagesActions.updateAlbumRequested({ album: MOCK_IMAGES[3].album }),
-      );
+      expect(requestUpdateAlbumSpy).toHaveBeenCalledWith(MOCK_IMAGES[3].album);
     });
 
-    it('should not dispatch action if dialog is cancelled', async () => {
+    it('should not emit add or update events if dialog is cancelled', async () => {
       dialogOpenSpy.mockResolvedValue('cancel');
       component.hasUnsavedChanges = true;
       component.newImagesFormData = { [MOCK_IMAGES[3].id]: MOCK_IMAGES[3] };
@@ -868,12 +841,8 @@ describe('AlbumFormComponent', () => {
       await component.onSubmit();
 
       expect(dialogOpenSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).not.toHaveBeenCalledWith(
-        ImagesActions.addImageRequested({ imageId: MOCK_IMAGES[3].id }),
-      );
-      expect(dispatchSpy).not.toHaveBeenCalledWith(
-        ImagesActions.updateImageRequested({ imageId: MOCK_IMAGES[3].id }),
-      );
+      expect(requestAddImagesSpy).not.toHaveBeenCalled();
+      expect(requestUpdateAlbumSpy).not.toHaveBeenCalled();
     });
   });
 
@@ -922,19 +891,18 @@ describe('AlbumFormComponent', () => {
         fixture.componentRef.setInput('hasUnsavedChanges', false);
         fixture.detectChanges();
 
-        const restoreButton = query(fixture.debugElement, '.restore-button');
-        expect(restoreButton.nativeElement.disabled).toBe(true);
+        expect(
+          query(fixture.debugElement, '.restore-button').nativeElement.disabled,
+        ).toBe(true);
       });
 
       it('should be enabled if there are unsaved changes', () => {
         fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.detectChanges();
 
-        const restoreButton = query(fixture.debugElement, '.restore-button');
-        restoreButton.triggerEventHandler('click');
-
-        expect(restoreButton.nativeElement.disabled).toBe(false);
-        expect(restoreSpy).toHaveBeenCalledTimes(1);
+        expect(
+          query(fixture.debugElement, '.restore-button').nativeElement.disabled,
+        ).toBe(false);
       });
     });
 

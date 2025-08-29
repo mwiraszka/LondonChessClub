@@ -1,6 +1,10 @@
-import { Store } from '@ngrx/store';
-
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -12,7 +16,6 @@ import { RouterLink } from '@angular/router';
 
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
 import { LoginFormGroup } from '@app/models';
-import { AuthActions } from '@app/store/auth';
 import { emailValidator } from '@app/validators';
 
 @Component({
@@ -25,10 +28,9 @@ import { emailValidator } from '@app/validators';
 export class LoginFormComponent implements OnInit {
   public form!: FormGroup<LoginFormGroup>;
 
-  constructor(
-    private readonly formBuilder: FormBuilder,
-    private readonly store: Store,
-  ) {}
+  @Output() requestLogin = new EventEmitter<{ email: string; password: string }>();
+
+  constructor(private readonly formBuilder: FormBuilder) {}
 
   public ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -49,11 +51,9 @@ export class LoginFormComponent implements OnInit {
       return;
     }
 
-    this.store.dispatch(
-      AuthActions.loginRequested({
-        email: this.form.value.email!,
-        password: this.form.value.password!,
-      }),
-    );
+    this.requestLogin.emit({
+      email: this.form.value.email!,
+      password: this.form.value.password!,
+    });
   }
 }

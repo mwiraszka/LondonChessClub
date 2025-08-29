@@ -26,19 +26,18 @@ describe('RatingChangesComponent', () => {
 
   const unmatchedMembers = ['Charlie Brown', 'Danny Ocean'];
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [RatingChangesComponent],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(RatingChangesComponent);
-        fixture.componentRef.setInput('membersWithNewRatings', mockMembersWithNewRatings);
-        fixture.componentRef.setInput('unmatchedMembers', unmatchedMembers);
-        fixture.detectChanges();
+    }).compileComponents();
 
-        dialogResultSpy = jest.spyOn(fixture.componentInstance.dialogResult, 'emit');
-      });
+    fixture = TestBed.createComponent(RatingChangesComponent);
+
+    dialogResultSpy = jest.spyOn(fixture.componentInstance.dialogResult, 'emit');
+
+    fixture.componentRef.setInput('membersWithNewRatings', mockMembersWithNewRatings);
+    fixture.componentRef.setInput('unmatchedMembers', unmatchedMembers);
+    fixture.detectChanges();
   });
 
   it('should create', () => {

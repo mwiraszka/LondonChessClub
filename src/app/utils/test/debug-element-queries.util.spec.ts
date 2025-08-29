@@ -22,16 +22,14 @@ describe('Debug Element Queries', () => {
   let fixture: ComponentFixture<TestComponent>;
   let debugElement: DebugElement;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [TestComponent],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(TestComponent);
-        debugElement = fixture.debugElement;
-        fixture.detectChanges();
-      });
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(TestComponent);
+    debugElement = fixture.debugElement;
+    fixture.detectChanges();
   });
 
   describe('queryAll', () => {

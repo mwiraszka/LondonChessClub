@@ -11,7 +11,7 @@ import { ScheduleComponent } from '@app/components/schedule/schedule.component';
 import { Event } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { EventsSelectors } from '@app/store/events';
+import { EventsActions, EventsSelectors } from '@app/store/events';
 
 @UntilDestroy()
 @Component({
@@ -22,12 +22,15 @@ import { EventsSelectors } from '@app/store/events';
         title="Schedule"
         icon="calendar_month">
       </lcc-page-header>
+
       <lcc-schedule
         [events]="vm.events"
         [isAdmin]="vm.isAdmin"
         [nextEvent]="vm.nextEvent"
         [showPastEvents]="vm.showPastEvents"
-        [upcomingEvents]="vm.upcomingEvents">
+        [upcomingEvents]="vm.upcomingEvents"
+        (requestDeleteEvent)="onRequestDeleteEvent($event)"
+        (togglePastEvents)="onTogglePastEvents()">
       </lcc-schedule>
     }
   `,
@@ -84,5 +87,18 @@ export class SchedulePageComponent implements OnInit {
         }
       }),
     );
+  }
+  public onRequestDeleteEvent(event: Event): void {
+    this.store.dispatch(EventsActions.deleteEventRequested({ event }));
+  }
+
+  public onTogglePastEvents(): void {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+
+    this.store.dispatch(EventsActions.pastEventsToggled());
   }
 }

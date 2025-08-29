@@ -10,16 +10,16 @@ describe('ModificationInfoComponent', () => {
   let fixture: ComponentFixture<ModificationInfoComponent>;
   let component: ModificationInfoComponent;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [FormatDatePipe, ModificationInfoComponent],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(ModificationInfoComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-      });
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(ModificationInfoComponent);
+    component = fixture.componentInstance;
+
+    component.info = MOCK_MODIFICATION_INFOS[0];
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -28,9 +28,6 @@ describe('ModificationInfoComponent', () => {
 
   describe('template rendering', () => {
     it('should render correct creation information', () => {
-      component.info = MOCK_MODIFICATION_INFOS[0];
-      fixture.detectChanges();
-
       const createDetails = query(fixture.debugElement, '.create-details-container');
 
       expect(queryTextContent(createDetails, 'mat-icon')).toBe('post_add');
@@ -43,9 +40,6 @@ describe('ModificationInfoComponent', () => {
     });
 
     it('should render correct edit information when creation and edit dates are different', () => {
-      component.info = MOCK_MODIFICATION_INFOS[0];
-      fixture.detectChanges();
-
       const editDetails = query(fixture.debugElement, '.edit-details-container');
 
       expect(queryTextContent(editDetails, 'mat-icon')).toBe('edit');
@@ -58,7 +52,7 @@ describe('ModificationInfoComponent', () => {
     });
 
     it('should not render edit information when creation and edit dates are the same', () => {
-      component.info = MOCK_MODIFICATION_INFOS[4];
+      fixture.componentRef.setInput('info', MOCK_MODIFICATION_INFOS[4]);
       fixture.detectChanges();
 
       expect(query(fixture.debugElement, '.edit-details-container')).toBeFalsy();

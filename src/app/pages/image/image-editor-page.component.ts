@@ -11,8 +11,9 @@ import { ImageFormComponent } from '@app/components/image-form/image-form.compon
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { EditorPage, Image, ImageFormData, InternalLink } from '@app/models';
+import { LccError } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
-import { ImagesSelectors } from '@app/store/images';
+import { ImagesActions, ImagesSelectors } from '@app/store/images';
 
 @UntilDestroy()
 @Component({
@@ -24,12 +25,21 @@ import { ImagesSelectors } from '@app/store/images';
         icon="admin_panel_settings"
         [title]="vm.pageTitle">
       </lcc-page-header>
+
       <lcc-image-form
         [existingAlbums]="vm.existingAlbums"
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
         [imageEntity]="vm.imageEntity"
-        [newImageFormData]="vm.newImageFormData">
+        [newImageFormData]="vm.newImageFormData"
+        (cancel)="onCancel()"
+        (change)="onChange($event.multipleFormData)"
+        (fileActionFail)="onFileActionFail($event)"
+        (requestAddImage)="onRequestAddImage($event)"
+        (requestFetchMainImage)="onRequestFetchMainImage($event)"
+        (requestUpdateImage)="onRequestUpdateImage($event)"
+        (restore)="onRestore($event)">
       </lcc-image-form>
+
       <lcc-link-list [links]="[photoGalleryPageLink]"></lcc-link-list>
     }
   `,
@@ -82,5 +92,33 @@ export class ImageEditorPageComponent implements EditorPage, OnInit {
         );
       }),
     );
+  }
+
+  public onCancel(): void {
+    this.store.dispatch(ImagesActions.cancelSelected());
+  }
+
+  public onChange(multipleFormData: (Partial<ImageFormData> & { id: string })[]): void {
+    this.store.dispatch(ImagesActions.formDataChanged({ multipleFormData }));
+  }
+
+  public onRequestAddImage(imageId: string): void {
+    this.store.dispatch(ImagesActions.addImageRequested({ imageId }));
+  }
+
+  public onRequestFetchMainImage(imageId: string): void {
+    this.store.dispatch(ImagesActions.fetchMainImageRequested({ imageId }));
+  }
+
+  public onRequestUpdateImage(imageId: string): void {
+    this.store.dispatch(ImagesActions.updateImageRequested({ imageId }));
+  }
+
+  public onRestore(imageId: string): void {
+    this.store.dispatch(ImagesActions.imageFormDataRestored({ imageId }));
+  }
+
+  public onFileActionFail(error: LccError): void {
+    this.store.dispatch(ImagesActions.imageFileActionFailed({ error }));
   }
 }

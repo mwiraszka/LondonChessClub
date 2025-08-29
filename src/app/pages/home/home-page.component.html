@@ -16,7 +16,7 @@
     </p>
     <a
       class="tournament-registration-link-button lcc-primary-button"
-      href="https://docs.google.com/forms/d/e/1FAIpQLSc7qb1rbunNQAvDIq0ClLQIYAocqjyXa_j-Q8xD2o_YxBabKw/viewform"
+      href="https://docs.google.com/forms/d/e/1FAIpQLSfCucQMB9RyiGNWCIAkh9N22S8CMSD5JWhi_A9RdcYSk4AYsg/viewform?usp=sharing&ouid=101543539456051433769"
       ref="noopener noreferrer"
       target="_blank"
       tooltip="Google Docs registration form for upcoming LCC tournaments">
@@ -36,7 +36,8 @@
       [nextEvent]="vm.nextEvent"
       [showPastEvents]="vm.showPastEvents"
       [upcomingEventLimit]="3"
-      [upcomingEvents]="vm.upcomingEvents">
+      [upcomingEvents]="vm.upcomingEvents"
+      (requestDeleteEvent)="onRequestDeleteEvent($event)">
     </lcc-schedule>
     <lcc-link-list [links]="[schedulePageLink]"></lcc-link-list>
   </section>
@@ -48,9 +49,11 @@
     }
     <lcc-article-grid
       [articles]="vm.articles"
-      [articleImages]="vm.articleImages"
+      [images]="vm.images"
       [isAdmin]="vm.isAdmin"
-      [options]="articleOptions">
+      [options]="articleOptions"
+      (requestDeleteArticle)="onRequestDeleteArticle($event)"
+      (requestUpdateArticleBookmark)="onRequestUpdateArticleBookmark($event)">
     </lcc-article-grid>
     <lcc-link-list [links]="[newsPageLink]"></lcc-link-list>
   </section>
@@ -111,7 +114,8 @@
     <lcc-photo-grid
       [isAdmin]="vm.isAdmin"
       [maxAlbums]="12"
-      [photoImages]="vm.photoImages">
+      [photoImages]="vm.photoImages"
+      (requestDeleteAlbum)="onRequestDeleteAlbum($event)">
     </lcc-photo-grid>
     <lcc-link-list [links]="[photoGalleryPageLink]"></lcc-link-list>
   </section>

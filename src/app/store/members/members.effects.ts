@@ -2,15 +2,15 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
-import { of } from 'rxjs';
-import { catchError, filter, map, switchMap } from 'rxjs/operators';
+import { merge, of, timer } from 'rxjs';
+import { catchError, filter, map, switchMap, take } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { Member } from '@app/models';
-import { MembersService } from '@app/services';
+import { MembersApiService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { exportDataToCsv, getNewPeakRating, isDefined } from '@app/utils';
+import { exportDataToCsv, getNewPeakRating, isDefined, isExpired } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
 
 import { MembersActions, MembersSelectors } from '.';
@@ -25,7 +25,7 @@ export class MembersEffects {
         this.store.select(MembersSelectors.selectOptions),
       ]),
       switchMap(([, isAdmin]) =>
-        this.membersService.getAllMembers(isAdmin).pipe(
+        this.membersApiService.getAllMembers(isAdmin).pipe(
           map(response =>
             MembersActions.fetchAllMembersSucceeded({
               members: response.data.items,
@@ -48,7 +48,7 @@ export class MembersEffects {
         this.store.select(MembersSelectors.selectOptions),
       ]),
       switchMap(([, isAdmin, options]) =>
-        this.membersService.getFilteredMembers(isAdmin, options).pipe(
+        this.membersApiService.getFilteredMembers(isAdmin, options).pipe(
           map(response =>
             MembersActions.fetchFilteredMembersSucceeded({
               members: response.data.items,
@@ -64,20 +64,24 @@ export class MembersEffects {
     );
   });
 
-  refetchFilteredMembersAfterPaginationOptionsChange$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(MembersActions.paginationOptionsChanged),
-      filter(({ fetch }) => fetch),
-      map(() => MembersActions.fetchFilteredMembersRequested()),
-    );
-  });
-
-  refetchFilteredMembersAfterUpdate$ = createEffect(() => {
-    return this.actions$.pipe(
+  refetchFilteredMembers$ = createEffect(() => {
+    const refetchActions$ = this.actions$.pipe(
       ofType(
+        MembersActions.addMemberSucceeded,
         MembersActions.updateMemberSucceeded,
-        MembersActions.updateMemberRatingsSucceeded,
+        MembersActions.deleteMemberSucceeded,
+        MembersActions.paginationOptionsChanged,
       ),
+    );
+
+    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+      switchMap(() =>
+        this.store.select(MembersSelectors.selectLastFilteredFetch).pipe(take(1)),
+      ),
+      filter(lastFetch => isExpired(lastFetch)),
+    );
+
+    return merge(refetchActions$, periodicCheck$).pipe(
       map(() => MembersActions.fetchFilteredMembersRequested()),
     );
   });
@@ -86,7 +90,7 @@ export class MembersEffects {
     return this.actions$.pipe(
       ofType(MembersActions.fetchMemberRequested),
       switchMap(({ memberId }) => {
-        return this.membersService.getMember(memberId).pipe(
+        return this.membersApiService.getMember(memberId).pipe(
           map(response => MembersActions.fetchMemberSucceeded({ member: response.data })),
           catchError(error =>
             of(MembersActions.fetchMemberFailed({ error: parseError(error) })),
@@ -116,7 +120,7 @@ export class MembersEffects {
           },
         };
 
-        return this.membersService.addMember(member).pipe(
+        return this.membersApiService.addMember(member).pipe(
           map(response =>
             MembersActions.addMemberSucceeded({
               member: { ...member, id: response.data },
@@ -152,7 +156,7 @@ export class MembersEffects {
           },
         };
 
-        return this.membersService.updateMember(updatedMember).pipe(
+        return this.membersApiService.updateMember(updatedMember).pipe(
           filter(response => response.data === updatedMember.id),
           map(() =>
             MembersActions.updateMemberSucceeded({
@@ -172,7 +176,7 @@ export class MembersEffects {
     return this.actions$.pipe(
       ofType(MembersActions.deleteMemberRequested),
       switchMap(({ member }) =>
-        this.membersService.deleteMember(member.id).pipe(
+        this.membersApiService.deleteMember(member.id).pipe(
           filter(response => response.data === member.id),
           map(() =>
             MembersActions.deleteMemberSucceeded({
@@ -193,7 +197,7 @@ export class MembersEffects {
       ofType(MembersActions.exportMembersToCsvRequested),
       concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
       switchMap(([, isAdmin]) => {
-        return this.membersService.getAllMembers(isAdmin).pipe(
+        return this.membersApiService.getAllMembers(isAdmin).pipe(
           map(response => {
             const filename = `members_export_${new Date().toISOString().split('T')[0]}.csv`;
             const exportResult = exportDataToCsv(response.data.items, filename);
@@ -236,7 +240,7 @@ export class MembersEffects {
           },
         );
 
-        return this.membersService.updateMembers(updatedMembers).pipe(
+        return this.membersApiService.updateMembers(updatedMembers).pipe(
           map(() =>
             MembersActions.updateMemberRatingsSucceeded({ members: updatedMembers }),
           ),
@@ -250,7 +254,7 @@ export class MembersEffects {
 
   constructor(
     private readonly actions$: Actions,
-    private readonly membersService: MembersService,
+    private readonly membersApiService: MembersApiService,
     private readonly store: Store,
   ) {}
 }

@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { ActionCreator } from '@ngrx/store';
 import moment from 'moment-timezone';
 import { timer } from 'rxjs';
-import { filter, map, mergeMap, take, tap, withLatestFrom } from 'rxjs/operators';
+import { filter, map, mergeMap, tap, withLatestFrom } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
@@ -151,7 +151,6 @@ export class AppEffects {
 
   reinstateUpcomingEventBanner$ = createEffect(() =>
     this.store.select(AppSelectors.selectBannerLastCleared).pipe(
-      take(1),
       filter(
         bannerLastCleared =>
           isDefined(bannerLastCleared) && moment().diff(bannerLastCleared, 'days') > 0,

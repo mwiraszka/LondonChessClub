@@ -2,16 +2,15 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
-import { of } from 'rxjs';
-import { catchError, filter, map, switchMap } from 'rxjs/operators';
+import { merge, of, timer } from 'rxjs';
+import { catchError, filter, map, switchMap, take } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { Article, DataPaginationOptions } from '@app/models';
-import { ArticlesService } from '@app/services';
+import { ArticlesApiService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { ImagesActions } from '@app/store/images';
-import { isDefined, parseError } from '@app/utils';
+import { isDefined, isExpired, parseError } from '@app/utils';
 
 import { ArticlesActions, ArticlesSelectors } from '.';
 
@@ -30,7 +29,7 @@ export class ArticlesEffects {
           search: '',
         };
 
-        return this.articlesService.getFilteredArticles(options).pipe(
+        return this.articlesApiService.getFilteredArticles(options).pipe(
           map(response =>
             ArticlesActions.fetchHomePageArticlesSucceeded({
               articles: response.data.items,
@@ -45,23 +44,12 @@ export class ArticlesEffects {
     );
   });
 
-  fetchHomePageArticleBannerImages$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.fetchHomePageArticlesSucceeded),
-      map(({ articles }) =>
-        ImagesActions.fetchBatchThumbnailsRequested({
-          imageIds: articles.map(article => article.bannerImageId),
-        }),
-      ),
-    );
-  });
-
   fetchFilteredArticles$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchFilteredArticlesRequested),
       concatLatestFrom(() => this.store.select(ArticlesSelectors.selectOptions)),
       switchMap(([, options]) =>
-        this.articlesService.getFilteredArticles(options).pipe(
+        this.articlesApiService.getFilteredArticles(options).pipe(
           map(response =>
             ArticlesActions.fetchFilteredArticlesSucceeded({
               articles: response.data.items,
@@ -77,22 +65,45 @@ export class ArticlesEffects {
     );
   });
 
-  fetchFilteredArticleBannerImages$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.fetchFilteredArticlesSucceeded),
-      filter(({ articles }) => articles.length > 0),
-      map(({ articles }) =>
-        ImagesActions.fetchBatchThumbnailsRequested({
-          imageIds: articles.map(article => article.bannerImageId),
-        }),
+  refetchHomePageArticles$ = createEffect(() => {
+    const refetchActions$ = this.actions$.pipe(
+      ofType(
+        ArticlesActions.publishArticleSucceeded,
+        ArticlesActions.updateArticleSucceeded,
+        ArticlesActions.deleteArticleSucceeded,
       ),
+    );
+
+    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+      switchMap(() =>
+        this.store.select(ArticlesSelectors.selectLastHomePageFetch).pipe(take(1)),
+      ),
+      filter(lastFetch => isExpired(lastFetch)),
+    );
+
+    return merge(refetchActions$, periodicCheck$).pipe(
+      map(() => ArticlesActions.fetchHomePageArticlesRequested()),
     );
   });
 
-  refetchFilteredArticlesAfterPaginationOptionsChange$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ArticlesActions.paginationOptionsChanged),
-      filter(({ fetch }) => fetch),
+  refetchFilteredArticles$ = createEffect(() => {
+    const refetchActions$ = this.actions$.pipe(
+      ofType(
+        ArticlesActions.publishArticleSucceeded,
+        ArticlesActions.updateArticleSucceeded,
+        ArticlesActions.deleteArticleSucceeded,
+        ArticlesActions.paginationOptionsChanged,
+      ),
+    );
+
+    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+      switchMap(() =>
+        this.store.select(ArticlesSelectors.selectLastFilteredFetch).pipe(take(1)),
+      ),
+      filter(lastFetch => isExpired(lastFetch)),
+    );
+
+    return merge(refetchActions$, periodicCheck$).pipe(
       map(() => ArticlesActions.fetchFilteredArticlesRequested()),
     );
   });
@@ -101,7 +112,7 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.fetchArticleRequested),
       switchMap(({ articleId }) =>
-        this.articlesService.getArticle(articleId).pipe(
+        this.articlesApiService.getArticle(articleId).pipe(
           map(response =>
             ArticlesActions.fetchArticleSucceeded({ article: response.data }),
           ),
@@ -133,7 +144,7 @@ export class ArticlesEffects {
           },
         };
 
-        return this.articlesService.addArticle(article).pipe(
+        return this.articlesApiService.addArticle(article).pipe(
           map(response =>
             ArticlesActions.publishArticleSucceeded({
               article: { ...article, id: response.data },
@@ -168,7 +179,7 @@ export class ArticlesEffects {
           },
         };
 
-        return this.articlesService.updateArticle(updatedArticle).pipe(
+        return this.articlesApiService.updateArticle(updatedArticle).pipe(
           filter(response => response.data === updatedArticle.id),
           map(() =>
             ArticlesActions.updateArticleSucceeded({
@@ -197,7 +208,7 @@ export class ArticlesEffects {
           ...article,
           bookmarkDate: bookmark ? moment().toISOString() : null,
         };
-        return this.articlesService.updateArticle(updatedArticle).pipe(
+        return this.articlesApiService.updateArticle(updatedArticle).pipe(
           map(() =>
             ArticlesActions.updateArticleSucceeded({
               article: updatedArticle,
@@ -216,7 +227,7 @@ export class ArticlesEffects {
     return this.actions$.pipe(
       ofType(ArticlesActions.deleteArticleRequested),
       switchMap(({ article }) =>
-        this.articlesService.deleteArticle(article.id).pipe(
+        this.articlesApiService.deleteArticle(article.id).pipe(
           filter(response => response.data === article.id),
           map(() =>
             ArticlesActions.deleteArticleSucceeded({
@@ -234,7 +245,7 @@ export class ArticlesEffects {
 
   constructor(
     private readonly actions$: Actions,
-    private readonly articlesService: ArticlesService,
+    private readonly articlesApiService: ArticlesApiService,
     private readonly store: Store,
   ) {}
 }

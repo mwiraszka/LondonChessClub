@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, firstValueFrom } from 'rxjs';
-import { filter, map, take, tap } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
@@ -25,7 +25,7 @@ import { DialogService, MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
 import { MembersActions, MembersSelectors } from '@app/store/members';
-import { isLccError, isSecondsInPast, parseCsv } from '@app/utils';
+import { isLccError, parseCsv } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -123,15 +123,6 @@ export class MembersPageComponent implements OnInit {
       'Club ratings and other members information',
     );
 
-    this.store
-      .select(MembersSelectors.selectLastFilteredFetch)
-      .pipe(take(1))
-      .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(MembersActions.fetchFilteredMembersRequested());
-        }
-      });
-
     this.viewModel$ = combineLatest([
       this.store.select(MembersSelectors.selectFilteredCount),
       this.store.select(MembersSelectors.selectFilteredMembers),
@@ -195,7 +186,6 @@ export class MembersPageComponent implements OnInit {
         filter(
           ([members, totalCount]) => totalCount > 0 && members.length === totalCount,
         ),
-        take(1),
         map(([members]) => members),
       ),
     );

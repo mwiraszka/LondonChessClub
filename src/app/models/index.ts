@@ -23,7 +23,6 @@ export type {
   AlbumFormData,
   AlbumFormGroup,
   BaseImage,
-  BatchImageFetchContext,
   Image,
   ImageFormData,
   ImageFormGroup,

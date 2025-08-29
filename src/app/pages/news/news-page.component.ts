@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +15,6 @@ import { MetaAndTitleService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
 import { ImagesSelectors } from '@app/store/images';
-import { isSecondsInPast } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -42,13 +41,11 @@ import { isSecondsInPast } from '@app/utils';
 
       <lcc-article-grid
         [articles]="vm.articles"
-        [articleImages]="vm.articleImages"
+        [images]="vm.images"
         [isAdmin]="vm.isAdmin"
         [options]="vm.options"
         (requestDeleteArticle)="onRequestDeleteArticle($event)"
-        (requestUpdateArticleBookmark)="
-          onRequestUpdateArticleBookmark($event.articleId, $event.bookmark)
-        ">
+        (requestUpdateArticleBookmark)="onRequestUpdateArticleBookmark($event)">
       </lcc-article-grid>
     }
   `,
@@ -69,8 +66,8 @@ export class NewsPageComponent implements OnInit {
 
   public viewModel$?: Observable<{
     articles: Article[];
-    articleImages: Image[];
     filteredCount: number | null;
+    images: Image[];
     isAdmin: boolean;
     options: DataPaginationOptions<Article>;
   }>;
@@ -86,27 +83,18 @@ export class NewsPageComponent implements OnInit {
       'Read about a variety of topics related to the London Chess Club.',
     );
 
-    this.store
-      .select(ArticlesSelectors.selectLastFilteredFetch)
-      .pipe(take(1))
-      .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(ArticlesActions.fetchFilteredArticlesRequested());
-        }
-      });
-
     this.viewModel$ = combineLatest([
       this.store.select(ArticlesSelectors.selectFilteredArticles),
-      this.store.select(ImagesSelectors.selectArticleImages),
       this.store.select(ArticlesSelectors.selectFilteredCount),
+      this.store.select(ImagesSelectors.selectAllImages),
       this.store.select(AuthSelectors.selectIsAdmin),
       this.store.select(ArticlesSelectors.selectOptions),
     ]).pipe(
       untilDestroyed(this),
-      map(([articles, articleImages, filteredCount, isAdmin, options]) => ({
+      map(([articles, filteredCount, images, isAdmin, options]) => ({
         articles,
-        articleImages,
         filteredCount,
+        images,
         isAdmin,
         options,
       })),
@@ -121,9 +109,10 @@ export class NewsPageComponent implements OnInit {
     this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
   }
 
-  public onRequestUpdateArticleBookmark(articleId: Id, bookmark: boolean): void {
-    this.store.dispatch(
-      ArticlesActions.updateArticleBookmarkRequested({ articleId, bookmark }),
-    );
+  public onRequestUpdateArticleBookmark(event: {
+    articleId: Id;
+    bookmark: boolean;
+  }): void {
+    this.store.dispatch(ArticlesActions.updateArticleBookmarkRequested(event));
   }
 }

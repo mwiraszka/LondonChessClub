@@ -1,16 +1,28 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
+import { routerNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
+import { isEqual } from 'lodash';
 import moment from 'moment-timezone';
-import { from, of } from 'rxjs';
-import { catchError, filter, map, mergeMap, switchMap } from 'rxjs/operators';
+import { from, merge, of, timer } from 'rxjs';
+import {
+  catchError,
+  distinctUntilChanged,
+  filter,
+  map,
+  mergeMap,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
 import { BaseImage, LccError } from '@app/models';
-import { ImageFileService, ImagesService } from '@app/services';
+import { ImageFileService, ImagesApiService } from '@app/services';
+import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
-import { dataUrlToFile, isDefined, isLccError } from '@app/utils';
+import { dataUrlToFile, isDefined, isExpired, isLccError } from '@app/utils';
 import { parseError } from '@app/utils/error/parse-error.util';
 
 import { ImagesActions, ImagesSelectors } from '.';
@@ -21,7 +33,7 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchAllImagesMetadataRequested),
       switchMap(() =>
-        this.imagesService.getAllImagesMetadata().pipe(
+        this.imagesApiService.getAllImagesMetadata().pipe(
           map(response =>
             ImagesActions.fetchAllImagesMetadataSucceeded({
               images: response.data,
@@ -44,7 +56,7 @@ export class ImagesEffects {
       ofType(ImagesActions.fetchFilteredThumbnailsRequested),
       concatLatestFrom(() => this.store.select(ImagesSelectors.selectOptions)),
       switchMap(([, options]) =>
-        this.imagesService.getFilteredThumbnailImages(options).pipe(
+        this.imagesApiService.getFilteredThumbnailImages(options).pipe(
           map(response =>
             ImagesActions.fetchFilteredThumbnailsSucceeded({
               images: response.data.items,
@@ -64,37 +76,15 @@ export class ImagesEffects {
     );
   });
 
-  refetchFilteredThumbnailsAfterPaginationOptionsChanged$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ImagesActions.paginationOptionsChanged),
-      filter(({ fetch }) => fetch),
-      map(() => ImagesActions.fetchFilteredThumbnailsRequested()),
-    );
-  });
-
-  refetchFilteredThumbnails$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(
-        ImagesActions.addImageSucceeded,
-        ImagesActions.addImagesSucceeded,
-        ImagesActions.updateImageSucceeded,
-        ImagesActions.updateAlbumSucceeded,
-        ImagesActions.deleteImageSucceeded,
-        ImagesActions.deleteAlbumSucceeded,
-      ),
-      map(() => ImagesActions.fetchFilteredThumbnailsRequested()),
-    );
-  });
-
   fetchBatchThumbnailImages$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchBatchThumbnailsRequested),
-      mergeMap(({ imageIds, isAlbumCoverFetch }) =>
-        this.imagesService.getBatchThumbnailImages(imageIds).pipe(
+      mergeMap(({ imageIds, context }) =>
+        this.imagesApiService.getBatchThumbnailImages(imageIds).pipe(
           map(response =>
             ImagesActions.fetchBatchThumbnailsSucceeded({
               images: response.data,
-              isAlbumCoverFetch,
+              context,
             }),
           ),
           catchError(error =>
@@ -109,11 +99,50 @@ export class ImagesEffects {
     );
   });
 
+  fetchArticleBannerThumbnails$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(
+        ArticlesActions.fetchHomePageArticlesSucceeded,
+        ArticlesActions.fetchFilteredArticlesSucceeded,
+        routerNavigatedAction,
+      ),
+      // Only care about home and news page routes when navigation occurs
+      filter(action => {
+        return action.type === routerNavigatedAction.type
+          ? ['/', '/news'].includes(action.payload.event.url)
+          : true;
+      }),
+      switchMap(() =>
+        this.store.select(ArticlesSelectors.selectHomePageArticles).pipe(
+          concatLatestFrom(() =>
+            this.store.select(ArticlesSelectors.selectFilteredArticles),
+          ),
+          map(([home, filtered]) => [...home, ...filtered]),
+        ),
+      ),
+      switchMap(articles =>
+        this.store.select(
+          ImagesSelectors.selectIdsOfArticleBannerImagesWithMissingThumbnailUrls(
+            articles,
+          ),
+        ),
+      ),
+      distinctUntilChanged((prev, curr) => isEqual(prev, curr)),
+      filter(ids => ids.length > 0),
+      map(imageIds =>
+        ImagesActions.fetchBatchThumbnailsRequested({
+          imageIds,
+          context: 'article-banner-images',
+        }),
+      ),
+    ),
+  );
+
   fetchMainImage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchMainImageRequested),
       switchMap(({ imageId }) =>
-        this.imagesService.getMainImage(imageId).pipe(
+        this.imagesApiService.getMainImage(imageId).pipe(
           map(response =>
             ImagesActions.fetchMainImageSucceeded({ image: response.data }),
           ),
@@ -133,7 +162,7 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchMainImageInBackgroundRequested),
       switchMap(({ imageId }) =>
-        this.imagesService.getMainImage(imageId, true).pipe(
+        this.imagesApiService.getMainImage(imageId, true).pipe(
           map(response =>
             ImagesActions.fetchMainImageSucceeded({ image: response.data }),
           ),
@@ -145,6 +174,95 @@ export class ImagesEffects {
             ),
           ),
         ),
+      ),
+    );
+  });
+
+  // TODO: Generalize refetch flow and consolidate with URL Expiration service
+  refetchMetadata$ = createEffect(() => {
+    const refetchActions$ = this.actions$.pipe(
+      ofType(
+        ImagesActions.addImageSucceeded,
+        ImagesActions.addImagesSucceeded,
+        ImagesActions.updateImageSucceeded,
+        ImagesActions.updateAlbumSucceeded,
+        ImagesActions.deleteImageSucceeded,
+        ImagesActions.deleteAlbumSucceeded,
+        ImagesActions.automaticAlbumCoverSwitchSucceeded,
+      ),
+    );
+
+    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+      switchMap(() =>
+        this.store.select(ImagesSelectors.selectLastMetadataFetch).pipe(take(1)),
+      ),
+      filter(lastFetch => isExpired(lastFetch)),
+    );
+
+    return merge(refetchActions$, periodicCheck$).pipe(
+      map(() => ImagesActions.fetchAllImagesMetadataRequested()),
+    );
+  });
+
+  refetchFilteredThumbnails$ = createEffect(() => {
+    const refetchActions$ = this.actions$.pipe(
+      ofType(
+        ImagesActions.addImageSucceeded,
+        ImagesActions.addImagesSucceeded,
+        ImagesActions.updateImageSucceeded,
+        ImagesActions.updateAlbumSucceeded,
+        ImagesActions.deleteImageSucceeded,
+        ImagesActions.deleteAlbumSucceeded,
+        ImagesActions.automaticAlbumCoverSwitchSucceeded,
+        ImagesActions.paginationOptionsChanged,
+      ),
+    );
+
+    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+      switchMap(() =>
+        this.store
+          .select(ImagesSelectors.selectLastFilteredThumbnailsFetch)
+          .pipe(take(1)),
+      ),
+      filter(lastFetch => isExpired(lastFetch)),
+    );
+
+    return merge(refetchActions$, periodicCheck$).pipe(
+      map(() => ImagesActions.fetchFilteredThumbnailsRequested()),
+    );
+  });
+
+  refetchAlbumCoverThumbnails$ = createEffect(() => {
+    const refetchActions$ = this.actions$.pipe(
+      ofType(
+        ImagesActions.addImageSucceeded,
+        ImagesActions.addImagesSucceeded,
+        ImagesActions.updateImageSucceeded,
+        ImagesActions.updateAlbumSucceeded,
+        ImagesActions.deleteImageSucceeded,
+        ImagesActions.deleteAlbumSucceeded,
+        ImagesActions.automaticAlbumCoverSwitchSucceeded,
+      ),
+    );
+
+    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+      switchMap(() =>
+        this.store.select(ImagesSelectors.selectLastAlbumCoversFetch).pipe(take(1)),
+      ),
+      filter(lastFetch => isExpired(lastFetch)),
+    );
+
+    return merge(refetchActions$, periodicCheck$).pipe(
+      concatLatestFrom(() => [
+        this.store.select(ImagesSelectors.selectLastMetadataFetch),
+        this.store.select(ImagesSelectors.selectAlbumCoverImageIds),
+      ]),
+      filter(([, lastMetadataFetch, ids]) => !!lastMetadataFetch && ids.length > 0),
+      map(([, , imageIds]) =>
+        ImagesActions.fetchBatchThumbnailsRequested({
+          imageIds,
+          context: 'album-covers',
+        }),
       ),
     );
   });
@@ -191,7 +309,7 @@ export class ImagesEffects {
         imageFormData.append('files', file);
         imageFormData.append('imageMetadata', JSON.stringify(imageMetadata));
 
-        return this.imagesService.addImages(imageFormData).pipe(
+        return this.imagesApiService.addImages(imageFormData).pipe(
           map(response => ImagesActions.addImageSucceeded({ image: response.data[0] })),
           catchError(error =>
             of(ImagesActions.addImageFailed({ error: parseError(error) })),
@@ -265,7 +383,7 @@ export class ImagesEffects {
           imageFormData.append('imageMetadata', JSON.stringify(imageMetadata));
         }
 
-        return this.imagesService.addImages(imageFormData).pipe(
+        return this.imagesApiService.addImages(imageFormData).pipe(
           map(response => ImagesActions.addImagesSucceeded({ images: response.data })),
           catchError(error =>
             of(ImagesActions.addImagesFailed({ error: parseError(error) })),
@@ -299,7 +417,7 @@ export class ImagesEffects {
           },
         };
 
-        return this.imagesService.updateImages([updatedImage]).pipe(
+        return this.imagesApiService.updateImages([updatedImage]).pipe(
           filter(response => response.data[0] === image.id),
           map(() => ImagesActions.updateImageSucceeded({ baseImage: updatedImage })),
           catchError(error =>
@@ -337,7 +455,7 @@ export class ImagesEffects {
           },
         }));
 
-        return this.imagesService.updateImages(updatedImages).pipe(
+        return this.imagesApiService.updateImages(updatedImages).pipe(
           map(() =>
             ImagesActions.updateAlbumSucceeded({ album, baseImages: updatedImages }),
           ),
@@ -358,7 +476,7 @@ export class ImagesEffects {
     return this.actions$.pipe(
       ofType(ImagesActions.deleteImageRequested),
       switchMap(({ image }) => {
-        return this.imagesService.deleteImage(image.id).pipe(
+        return this.imagesApiService.deleteImage(image.id).pipe(
           filter(response => response.data === image.id),
           map(() => ImagesActions.deleteImageSucceeded({ image })),
           catchError(error =>
@@ -372,9 +490,11 @@ export class ImagesEffects {
   deleteAlbum$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.deleteAlbumRequested),
-      switchMap(({ album, imageIds }) => {
-        return this.imagesService.deleteAlbum(album).pipe(
-          map(() => ImagesActions.deleteAlbumSucceeded({ album, imageIds })),
+      switchMap(({ album }) => {
+        return this.imagesApiService.deleteAlbum(album).pipe(
+          map(response =>
+            ImagesActions.deleteAlbumSucceeded({ album, imageIds: response.data }),
+          ),
           catchError(error =>
             of(ImagesActions.deleteAlbumFailed({ album, error: parseError(error) })),
           ),
@@ -405,7 +525,7 @@ export class ImagesEffects {
         return updatedImage;
       }),
       switchMap(updatedImage => {
-        return this.imagesService.updateImages([updatedImage]).pipe(
+        return this.imagesApiService.updateImages([updatedImage]).pipe(
           filter(response => response.data[0] === updatedImage.id),
           map(() =>
             ImagesActions.automaticAlbumCoverSwitchSucceeded({ baseImage: updatedImage }),
@@ -423,10 +543,19 @@ export class ImagesEffects {
     );
   });
 
+  clearIndexedDbImageFileData$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ImagesActions.imageFormDataRestored, ImagesActions.albumFormDataRestored),
+        tap(() => this.imageFileService.clearAllImages()),
+      ),
+    { dispatch: false },
+  );
+
   constructor(
     private readonly actions$: Actions,
     private readonly imageFileService: ImageFileService,
-    private readonly imagesService: ImagesService,
+    private readonly imagesApiService: ImagesApiService,
     private readonly store: Store,
   ) {}
 }

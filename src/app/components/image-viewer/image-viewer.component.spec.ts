@@ -27,8 +27,8 @@ describe('ImageViewerComponent', () => {
   let fetchImageSpy: jest.SpyInstance;
   let indexSubjectNextSpy: jest.SpyInstance;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [AdminControlsDirective, ImageViewerComponent],
       providers: [
         provideMockStore(),
@@ -40,39 +40,36 @@ describe('ImageViewerComponent', () => {
           },
         },
       ],
-    })
-      .compileComponents()
-      .then(() => {
-        dialogService = TestBed.inject(DialogService);
-        store = TestBed.inject(MockStore);
+    }).compileComponents();
 
-        store.overrideSelector(ImagesSelectors.selectAllImages, MOCK_IMAGES);
-        MOCK_IMAGES.forEach(image => {
-          store.overrideSelector(ImagesSelectors.selectImageById(image.id), image);
-        });
+    dialogService = TestBed.inject(DialogService);
+    store = TestBed.inject(MockStore);
 
-        fixture = TestBed.createComponent(ImageViewerComponent);
-        component = fixture.componentInstance;
+    store.overrideSelector(ImagesSelectors.selectAllImages, MOCK_IMAGES);
+    MOCK_IMAGES.forEach(image => {
+      store.overrideSelector(ImagesSelectors.selectImageById(image.id), image);
+    });
 
-        fixture.componentRef.setInput('album', 'Mock Album');
-        fixture.componentRef.setInput('images', MOCK_IMAGES);
-        fixture.componentRef.setInput('isAdmin', true);
+    fixture = TestBed.createComponent(ImageViewerComponent);
+    component = fixture.componentInstance;
 
-        // Spies must be set up before first detectChanges where ngOnInit runs
-        dialogOpenSpy = jest.spyOn(dialogService, 'open');
-        dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
-        dispatchSpy = jest.spyOn(store, 'dispatch');
-        // @ts-expect-error Private class member
-        fetchImageSpy = jest.spyOn(component, 'fetchImage');
-        // @ts-expect-error Private class member
-        indexSubjectNextSpy = jest.spyOn(component.indexSubject, 'next');
+    // Spies must be set up before first detectChanges where ngOnInit runs
+    dialogOpenSpy = jest.spyOn(dialogService, 'open');
+    dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
+    dispatchSpy = jest.spyOn(store, 'dispatch');
+    // @ts-expect-error Private class member
+    fetchImageSpy = jest.spyOn(component, 'fetchImage');
+    // @ts-expect-error Private class member
+    indexSubjectNextSpy = jest.spyOn(component.indexSubject, 'next');
 
-        fixture.detectChanges();
+    component.album = 'Mock Album';
+    component.images = MOCK_IMAGES;
+    component.isAdmin = true;
+    fixture.detectChanges();
 
-        // ViewChild available after first change detection
-        // @ts-expect-error Private class member
-        adminControlsDetachSpy = jest.spyOn(component.adminControlsDirective, 'detach');
-      });
+    // ViewChild available after first change detection
+    // @ts-expect-error Private class member
+    adminControlsDetachSpy = jest.spyOn(component.adminControlsDirective, 'detach');
   });
 
   it('should create', () => {

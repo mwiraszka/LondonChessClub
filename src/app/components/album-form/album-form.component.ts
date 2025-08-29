@@ -1,9 +1,15 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
 import * as uuid from 'uuid';
 
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -27,11 +33,11 @@ import {
   Image,
   ImageFormData,
   ImageFormGroup,
+  LccError,
   ModificationInfo,
   Url,
 } from '@app/models';
 import { DialogService, ImageFileService } from '@app/services';
-import { ImagesActions } from '@app/store/images';
 import { isLccError } from '@app/utils';
 import { imageCaptionValidator, ordinalityValidator } from '@app/validators';
 
@@ -60,6 +66,15 @@ export class AlbumFormComponent implements OnInit {
   }[];
   @Input({ required: true }) newImagesFormData!: Record<string, ImageFormData>;
 
+  @Output() cancel = new EventEmitter<void>();
+  @Output() change = new EventEmitter<(Partial<ImageFormData> & { id: Id })[]>();
+  @Output() fileActionFail = new EventEmitter<LccError>();
+  @Output() removeNewImage = new EventEmitter<Id>();
+  @Output() requestAddImages = new EventEmitter<void>();
+  @Output() requestFetchThumbnails = new EventEmitter<Id[]>();
+  @Output() requestUpdateAlbum = new EventEmitter<string>();
+  @Output() restore = new EventEmitter<Id[]>();
+
   public form!: FormGroup<AlbumFormGroup>;
   public newImageDataUrls: Record<string, Url> = {};
 
@@ -86,7 +101,6 @@ export class AlbumFormComponent implements OnInit {
     private readonly dialogService: DialogService,
     private readonly formBuilder: FormBuilder,
     private readonly imageFileService: ImageFileService,
-    private readonly store: Store,
   ) {}
 
   public ngOnInit(): void {
@@ -99,7 +113,7 @@ export class AlbumFormComponent implements OnInit {
         .map(entity => entity.image.id);
 
       if (imageIds.length) {
-        this.store.dispatch(ImagesActions.fetchBatchThumbnailsRequested({ imageIds }));
+        this.requestFetchThumbnails.emit(imageIds);
       }
     }
 
@@ -121,7 +135,7 @@ export class AlbumFormComponent implements OnInit {
       control.controls.albumCover.setValue(control.value.id === id, { emitEvent: false });
     });
 
-    // Trigger a single form value change
+    // Trigger a single form data change
     this.form.updateValueAndValidity();
   }
 
@@ -151,11 +165,11 @@ export class AlbumFormComponent implements OnInit {
 
     const deleteResult = await this.imageFileService.deleteImage(image.id);
     if (isLccError(deleteResult)) {
-      this.store.dispatch(ImagesActions.imageFileActionFailed({ error: deleteResult }));
+      this.fileActionFail.emit(deleteResult);
     } else {
       this.form.controls.newImages.removeAt(index);
       delete this.newImageDataUrls[image.id];
-      this.store.dispatch(ImagesActions.newImageRemoved({ imageId: image.id }));
+      this.removeNewImage.emit(image.id);
 
       // Set album cover to the first available image
       if (image.albumCover) {
@@ -185,14 +199,10 @@ export class AlbumFormComponent implements OnInit {
 
     const totalNewImages = Object.keys(this.newImagesFormData).length + files.length;
     if (totalNewImages > 20) {
-      this.store.dispatch(
-        ImagesActions.imageFileActionFailed({
-          error: {
-            name: 'LCCError',
-            message: `Only up to 20 images can be uploaded at a time`,
-          },
-        }),
-      );
+      this.fileActionFail.emit({
+        name: 'LCCError',
+        message: 'Only up to 20 images can be uploaded at a time',
+      });
       fileInputElement.value = '';
       return;
     }
@@ -202,7 +212,7 @@ export class AlbumFormComponent implements OnInit {
       const result = await this.imageFileService.storeImageFile(`new-${uuid.v4()}`, file);
 
       if (isLccError(result)) {
-        this.store.dispatch(ImagesActions.imageFileActionFailed({ error: result }));
+        this.fileActionFail.emit(result);
       } else {
         const { id, dataUrl, filename } = result;
         const isFirstImageInAlbum =
@@ -260,14 +270,13 @@ export class AlbumFormComponent implements OnInit {
       return;
     }
 
-    const imageIds = this.imageEntities.map(entity => entity.image.id);
-    this.store.dispatch(ImagesActions.albumFormDataReset({ imageIds }));
+    this.restore.emit(this.imageEntities.map(entity => entity.image.id));
 
     setTimeout(() => this.ngOnInit());
   }
 
   public onCancel(): void {
-    this.store.dispatch(ImagesActions.cancelSelected());
+    this.cancel.emit();
   }
 
   public async onSubmit(): Promise<void> {
@@ -306,18 +315,16 @@ export class AlbumFormComponent implements OnInit {
     }
 
     if (this.album) {
-      this.store.dispatch(ImagesActions.updateAlbumRequested({ album: this.album }));
-    }
-
-    if (Object.keys(this.newImagesFormData).length) {
-      this.store.dispatch(ImagesActions.addImagesRequested());
+      this.requestUpdateAlbum.emit(this.album);
+    } else if (Object.keys(this.newImagesFormData).length) {
+      this.requestAddImages.emit();
     }
   }
 
   private async fetchNewImageDataUrls(): Promise<void> {
     const result = await this.imageFileService.getAllImages();
     if (isLccError(result)) {
-      this.store.dispatch(ImagesActions.imageFileActionFailed({ error: result }));
+      this.fileActionFail.emit(result);
     } else {
       this.newImageDataUrls = result.reduce(
         (acc, { id, dataUrl }) => {
@@ -388,7 +395,7 @@ export class AlbumFormComponent implements OnInit {
 
   private initFormValueChangeListener(): void {
     this.form.valueChanges.pipe(debounceTime(250), untilDestroyed(this)).subscribe(() => {
-      const values: (Partial<ImageFormData> & { id: Id })[] = [
+      const multipleFormData: (Partial<ImageFormData> & { id: Id })[] = [
         ...Array.from(this.form.controls.existingImages.controls).map(control => ({
           ...control.getRawValue(),
           album: this.form.controls.album.value,
@@ -399,10 +406,10 @@ export class AlbumFormComponent implements OnInit {
         })),
       ];
 
-      this.store.dispatch(ImagesActions.formValueChanged({ values }));
+      this.change.emit(multipleFormData);
     });
 
-    // Manually trigger form value change to pass initial form data to store
+    // Manually trigger form data change to pass initial form data to store
     this.form.updateValueAndValidity();
   }
 }

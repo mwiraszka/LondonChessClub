@@ -5,6 +5,7 @@ import { MarkdownComponent } from 'ngx-markdown';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   DOCUMENT,
   Inject,
@@ -48,24 +49,26 @@ export class MarkdownRendererComponent implements AfterViewInit, OnChanges {
     @Inject(DOCUMENT) private _document: Document,
     private readonly renderer: Renderer2,
     private readonly routingService: RoutingService,
+    private readonly changeDetectorRef: ChangeDetectorRef,
   ) {
     this.currentPath = this._document.location.pathname;
   }
 
   public ngOnChanges(changes: NgChanges<MarkdownRendererComponent>): void {
     if (changes.data) {
-      this.renderer.setStyle(
-        this._document.querySelector('markdown'),
-        'visibility',
-        'hidden',
-      );
+      const markdownElement = this._document.querySelector('markdown');
+      if (markdownElement) {
+        this.renderer.setStyle(markdownElement, 'visibility', 'hidden');
+      }
 
       setTimeout(() => {
         this.wrapMarkdownTables();
         this.addBlockquoteIcons();
         this.addAnchorIdsToHeadings();
-
-        this.renderer.removeStyle(this._document.querySelector('markdown'), 'visibility');
+        if (markdownElement) {
+          this.renderer.removeStyle(markdownElement, 'visibility');
+        }
+        this.changeDetectorRef.markForCheck();
       });
     }
   }

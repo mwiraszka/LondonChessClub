@@ -47,16 +47,14 @@ describe('AdminToolbarComponent', () => {
     },
   ];
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [AdminToolbarComponent, LinkListComponent, TooltipDirective],
       providers: [provideRouter([])],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(AdminToolbarComponent);
-        fixture.detectChanges();
-      });
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(AdminToolbarComponent);
+    fixture.detectChanges();
   });
 
   it('should create', () => {

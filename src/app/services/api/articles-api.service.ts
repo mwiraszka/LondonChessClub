@@ -18,7 +18,7 @@ import { environment } from '@env';
 @Injectable({
   providedIn: 'root',
 })
-export class ArticlesService {
+export class ArticlesApiService {
   private readonly API_BASE_URL = environment.lccApiBaseUrl;
   private readonly COLLECTION: DbCollection = 'articles';
 

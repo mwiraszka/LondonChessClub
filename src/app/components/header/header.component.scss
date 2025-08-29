@@ -31,22 +31,24 @@ $app-header-font-size: 42px;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      width: 40px;
+      height: 40px;
+      flex: 0 0 auto;
+
+      @include respond-to('gt-sm') {
+        width: 60px;
+        height: 60px;
+      }
     }
 
     img {
-      max-height: 40px;
-      max-width: 40px;
-      width: auto;
-      height: auto;
+      width: 100%;
+      height: 100%;
+      display: block;
       background-color: var(--lcc-color--header-brandingBackground) !important;
       border-radius: 50%;
       padding: 3px;
       object-fit: contain;
-
-      @include respond-to('gt-sm') {
-        max-height: 60px;
-        max-width: 60px;
-      }
 
       &:hover {
         cursor: pointer;

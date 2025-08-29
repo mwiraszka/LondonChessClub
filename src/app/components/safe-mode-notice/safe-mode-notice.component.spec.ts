@@ -6,22 +6,18 @@ import { SafeModeNoticeComponent } from './safe-mode-notice.component';
 
 describe('SafeModeNoticeComponent', () => {
   let fixture: ComponentFixture<SafeModeNoticeComponent>;
-  let component: SafeModeNoticeComponent;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [SafeModeNoticeComponent],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(SafeModeNoticeComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-      });
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(SafeModeNoticeComponent);
+    fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
   describe('template rendering', () => {
@@ -35,7 +31,9 @@ describe('SafeModeNoticeComponent', () => {
     it('should render a checkmark icon', () => {
       fixture.componentRef.setInput('entity', 'User');
       fixture.detectChanges();
-      expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('check_circle_outline');
+      expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe(
+        'check_circle_outline',
+      );
     });
   });
 });

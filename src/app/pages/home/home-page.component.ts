@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
@@ -15,13 +15,19 @@ import { LinkListComponent } from '@app/components/link-list/link-list.component
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
 import { ScheduleComponent } from '@app/components/schedule/schedule.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import { Article, DataPaginationOptions, Event, Image, InternalLink } from '@app/models';
+import {
+  Article,
+  DataPaginationOptions,
+  Event,
+  Id,
+  Image,
+  InternalLink,
+} from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
-import { EventsSelectors } from '@app/store/events';
+import { EventsActions, EventsSelectors } from '@app/store/events';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
-import { isSecondsInPast } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -44,8 +50,8 @@ import { isSecondsInPast } from '@app/utils';
 export class HomePageComponent implements OnInit {
   public viewModel$?: Observable<{
     articles: Article[];
-    articleImages: Image[];
     events: Event[];
+    images: Image[];
     isAdmin: boolean;
     nextEvent: Event | null;
     photoImages: Image[];
@@ -103,22 +109,12 @@ export class HomePageComponent implements OnInit {
     );
     this.setArticleCountBasedOnScreenWidth();
 
-    this.store
-      .select(ArticlesSelectors.selectLastHomePageFetch)
-      .pipe(take(1))
-      .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(ArticlesActions.fetchHomePageArticlesRequested());
-        }
-      });
-
     this.viewModel$ = combineLatest([
       this.store.select(ArticlesSelectors.selectHomePageArticles),
-      this.store.select(ImagesSelectors.selectArticleImages),
       this.store.select(EventsSelectors.selectAllEvents),
+      this.store.select(ImagesSelectors.selectAllImages),
       this.store.select(AuthSelectors.selectIsAdmin),
       this.store.select(EventsSelectors.selectNextEvent),
-      this.store.select(ImagesSelectors.selectPhotoImages),
       this.store.select(EventsSelectors.selectShowPastEvents),
       this.store.select(EventsSelectors.selectUpcomingEvents),
     ]).pipe(
@@ -126,34 +122,43 @@ export class HomePageComponent implements OnInit {
       map(
         ([
           articles,
-          articleImages,
           events,
+          images,
           isAdmin,
           nextEvent,
-          photoImages,
           showPastEvents,
           upcomingEvents,
         ]) => ({
           articles,
-          articleImages,
           events,
+          images,
           isAdmin,
           nextEvent,
-          photoImages,
+          photoImages: images.filter(image => !image.album.startsWith('_')),
           showPastEvents,
           upcomingEvents,
         }),
       ),
     );
+  }
 
-    this.store
-      .select(ImagesSelectors.selectLastMetadataFetch)
-      .pipe(take(1))
-      .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(ImagesActions.fetchAllImagesMetadataRequested());
-        }
-      });
+  public onRequestDeleteArticle(article: Article): void {
+    this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
+  }
+
+  public onRequestDeleteEvent(event: Event): void {
+    this.store.dispatch(EventsActions.deleteEventRequested({ event }));
+  }
+
+  public onRequestDeleteAlbum(album: string): void {
+    this.store.dispatch(ImagesActions.deleteAlbumRequested({ album }));
+  }
+
+  public onRequestUpdateArticleBookmark(event: {
+    articleId: Id;
+    bookmark: boolean;
+  }): void {
+    this.store.dispatch(ArticlesActions.updateArticleBookmarkRequested(event));
   }
 
   @HostListener('window:resize', ['$event'])

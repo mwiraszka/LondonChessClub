@@ -1,8 +1,14 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
 
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -29,8 +35,6 @@ import {
   Image,
 } from '@app/models';
 import { DialogService } from '@app/services';
-import { ArticlesActions } from '@app/store/articles';
-import { ImagesActions } from '@app/store/images';
 
 @UntilDestroy()
 @Component({
@@ -54,19 +58,26 @@ export class ArticleFormComponent implements OnInit {
   @Input({ required: true }) hasUnsavedChanges!: boolean;
   @Input({ required: true }) originalArticle!: Article | null;
 
+  @Output() cancel = new EventEmitter<void>();
+  @Output() change = new EventEmitter<{
+    articleId: Id | null;
+    formData: Partial<ArticleFormData>;
+  }>();
+  @Output() requestFetchMainImage = new EventEmitter<Id>();
+  @Output() requestPublishArticle = new EventEmitter<void>();
+  @Output() requestUpdateArticle = new EventEmitter<Id>();
+  @Output() restore = new EventEmitter<Id | null>();
+
   public form!: FormGroup<ArticleFormGroup>;
 
   constructor(
     private readonly dialogService: DialogService,
     private readonly formBuilder: FormBuilder,
-    private readonly store: Store,
   ) {}
 
   public ngOnInit(): void {
     if (!this.bannerImage && this.formData.bannerImageId) {
-      this.store.dispatch(
-        ImagesActions.fetchMainImageRequested({ imageId: this.formData.bannerImageId }),
-      );
+      this.requestFetchMainImage.emit(this.formData.bannerImageId);
     }
 
     this.initForm();
@@ -98,8 +109,7 @@ export class ArticleFormComponent implements OnInit {
       return;
     }
 
-    const articleId = this.originalArticle?.id ?? null;
-    this.store.dispatch(ArticlesActions.articleFormDataReset({ articleId }));
+    this.restore.emit(this.originalArticle?.id ?? null);
 
     setTimeout(() => this.ngOnInit());
   }
@@ -113,7 +123,7 @@ export class ArticleFormComponent implements OnInit {
     if (dialogResponse !== 'close') {
       const imageId = dialogResponse.split('-')[0];
       this.form.patchValue({ bannerImageId: imageId });
-      this.store.dispatch(ImagesActions.fetchMainImageRequested({ imageId }));
+      this.requestFetchMainImage.emit(imageId);
     }
   }
 
@@ -122,7 +132,7 @@ export class ArticleFormComponent implements OnInit {
   }
 
   public onCancel(): void {
-    this.store.dispatch(ArticlesActions.cancelSelected());
+    this.cancel.emit();
   }
 
   public async onSubmit(): Promise<void> {
@@ -152,11 +162,9 @@ export class ArticleFormComponent implements OnInit {
     }
 
     if (this.originalArticle) {
-      this.store.dispatch(
-        ArticlesActions.updateArticleRequested({ articleId: this.originalArticle.id }),
-      );
+      this.requestUpdateArticle.emit(this.originalArticle.id);
     } else {
-      this.store.dispatch(ArticlesActions.publishArticleRequested());
+      this.requestPublishArticle.emit();
     }
   }
 
@@ -180,16 +188,14 @@ export class ArticleFormComponent implements OnInit {
   private initFormValueChangeListener(): void {
     this.form.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
-      .subscribe((value: Partial<ArticleFormData>) => {
-        this.store.dispatch(
-          ArticlesActions.formValueChanged({
-            articleId: this.originalArticle?.id ?? null,
-            value,
-          }),
-        );
+      .subscribe((formData: Partial<ArticleFormData>) => {
+        this.change.emit({
+          articleId: this.originalArticle?.id ?? null,
+          formData,
+        });
       });
 
-    // Manually trigger form value change to pass initial form data to store
+    // Manually trigger form data change to pass initial form data to store
     this.form.updateValueAndValidity();
   }
 }

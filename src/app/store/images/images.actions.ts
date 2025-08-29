@@ -31,12 +31,23 @@ export const fetchBatchThumbnailsRequested = createAction(
   '[Images] Fetch batch thumbnails requested',
   props<{
     imageIds: Id[];
-    isAlbumCoverFetch?: boolean;
+    context:
+      | 'album-covers'
+      | 'article-banner-images'
+      | 'photos-in-album'
+      | 'url-expiration';
   }>(),
 );
 export const fetchBatchThumbnailsSucceeded = createAction(
   '[Images] Fetch batch thumbnails succeeded',
-  props<{ images: Image[]; isAlbumCoverFetch?: boolean }>(),
+  props<{
+    images: Image[];
+    context:
+      | 'album-covers'
+      | 'article-banner-images'
+      | 'photos-in-album'
+      | 'url-expiration';
+  }>(),
 );
 export const fetchBatchThumbnailsFailed = createAction(
   '[Images] Fetch batch thumbnails failed',
@@ -135,7 +146,7 @@ export const deleteImageFailed = createAction(
 
 export const deleteAlbumRequested = createAction(
   '[Images] Delete album requested',
-  props<{ album: string; imageIds: Id[] }>(),
+  props<{ album: string }>(),
 );
 export const deleteAlbumSucceeded = createAction(
   '[Images] Delete album succeeded',
@@ -153,18 +164,18 @@ export const paginationOptionsChanged = createAction(
 
 export const cancelSelected = createAction('[Images] Cancel selected');
 
-export const formValueChanged = createAction(
-  '[Images] Form value changed',
-  props<{ values: (Partial<ImageFormData> & { id: Id })[] }>(),
+export const formDataChanged = createAction(
+  '[Images] Form data changed',
+  props<{ multipleFormData: (Partial<ImageFormData> & { id: Id })[] }>(),
 );
 
-export const imageFormDataReset = createAction(
-  '[Images] Image form data reset',
+export const imageFormDataRestored = createAction(
+  '[Images] Image form data restored',
   props<{ imageId: Id }>(),
 );
 
-export const albumFormDataReset = createAction(
-  '[Images] Album form data reset',
+export const albumFormDataRestored = createAction(
+  '[Images] Album form data restored',
   props<{ imageIds: Id[] }>(),
 );
 

@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { Observable, combineLatest, take } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { Observable, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { CdkScrollable, CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
@@ -33,7 +33,6 @@ import { FormatBytesPipe, FormatDatePipe, HighlightPipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 import * as ImagesActions from '@app/store/images/images.actions';
 import * as ImagesSelectors from '@app/store/images/images.selectors';
-import { isSecondsInPast } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -91,17 +90,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
         options,
         totalCount,
       })),
-      shareReplay(1),
     );
-
-    this.store
-      .select(ImagesSelectors.selectLastFilteredThumbnailsFetch)
-      .pipe(take(1))
-      .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(ImagesActions.fetchFilteredThumbnailsRequested());
-        }
-      });
   }
 
   public getAdminControlsConfig(image: Image): AdminControlsConfig {

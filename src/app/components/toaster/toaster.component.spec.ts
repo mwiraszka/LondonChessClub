@@ -10,17 +10,16 @@ import { ToasterComponent } from './toaster.component';
 describe('ToasterComponent', () => {
   let fixture: ComponentFixture<ToasterComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [RouterModule.forRoot([]), ToasterComponent],
       providers: [ToastService],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(ToasterComponent);
-        fixture.componentRef.setInput('toasts', MOCK_TOASTS);
-        fixture.detectChanges();
-      });
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(ToasterComponent);
+
+    fixture.componentRef.setInput('toasts', MOCK_TOASTS);
+    fixture.detectChanges();
   });
 
   it('should create', () => {

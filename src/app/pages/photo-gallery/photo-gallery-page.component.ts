@@ -1,7 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +12,6 @@ import { Image } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
-import { isSecondsInPast } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -23,16 +22,21 @@ import { isSecondsInPast } from '@app/utils';
         title="Photo Gallery"
         icon="photo_camera">
       </lcc-page-header>
+
       <lcc-photo-grid
         [isAdmin]="vm.isAdmin"
-        [photoImages]="vm.photoImages">
+        [photoImages]="vm.photoImages"
+        (requestDeleteAlbum)="onRequestDeleteAlbum($event)">
       </lcc-photo-grid>
     }
   `,
   imports: [CommonModule, PageHeaderComponent, PhotoGridComponent],
 })
 export class PhotoGalleryPageComponent implements OnInit {
-  public viewModel$?: Observable<{ isAdmin: boolean; photoImages: Image[] }>;
+  public viewModel$?: Observable<{
+    isAdmin: boolean;
+    photoImages: Image[];
+  }>;
 
   constructor(
     private readonly metaAndTitleService: MetaAndTitleService,
@@ -50,16 +54,14 @@ export class PhotoGalleryPageComponent implements OnInit {
       this.store.select(ImagesSelectors.selectPhotoImages),
     ]).pipe(
       untilDestroyed(this),
-      map(([isAdmin, photoImages]) => ({ isAdmin, photoImages })),
+      map(([isAdmin, photoImages]) => ({
+        isAdmin,
+        photoImages,
+      })),
     );
+  }
 
-    this.store
-      .select(ImagesSelectors.selectLastMetadataFetch)
-      .pipe(take(1))
-      .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(ImagesActions.fetchAllImagesMetadataRequested());
-        }
-      });
+  public onRequestDeleteAlbum(album: string): void {
+    this.store.dispatch(ImagesActions.deleteAlbumRequested({ album }));
   }
 }

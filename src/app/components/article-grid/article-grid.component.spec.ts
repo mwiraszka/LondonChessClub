@@ -31,44 +31,43 @@ describe('ArticleGridComponent', () => {
     search: '',
   };
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [AdminControlsDirective, ArticleGridComponent, ImagePreloadDirective],
       providers: [
         provideRouter([]),
         { provide: DialogService, useValue: { open: jest.fn() } },
       ],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(ArticleGridComponent);
-        component = fixture.componentInstance;
-        dialogService = TestBed.inject(DialogService);
+    }).compileComponents();
 
-        fixture.componentRef.setInput('articles', MOCK_ARTICLES);
-        fixture.componentRef.setInput('articleImages', MOCK_IMAGES);
-        fixture.componentRef.setInput('isAdmin', true);
-        fixture.componentRef.setInput('options', mockOptions);
+    fixture = TestBed.createComponent(ArticleGridComponent);
+    component = fixture.componentInstance;
 
-        dialogOpenSpy = jest.spyOn(dialogService, 'open');
-        requestDeleteArticleSpy = jest.spyOn(component.requestDeleteArticle, 'emit');
-        requestUpdateArticleBookmarkSpy = jest.spyOn(
-          component.requestUpdateArticleBookmark,
-          'emit',
-        );
+    dialogService = TestBed.inject(DialogService);
 
-        fixture.detectChanges();
-      });
+    dialogOpenSpy = jest.spyOn(dialogService, 'open');
+    requestDeleteArticleSpy = jest.spyOn(component.requestDeleteArticle, 'emit');
+    requestUpdateArticleBookmarkSpy = jest.spyOn(
+      component.requestUpdateArticleBookmark,
+      'emit',
+    );
+
+    fixture.componentRef.setInput('articles', MOCK_ARTICLES);
+    fixture.componentRef.setInput('images', MOCK_IMAGES);
+    fixture.componentRef.setInput('isAdmin', true);
+    fixture.componentRef.setInput('options', mockOptions);
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('when articleImages changes', () => {
+  describe('when images changes', () => {
     it('should update the bannerImagesMap', () => {
       component.ngOnChanges({
-        articleImages: {
+        images: {
           currentValue: MOCK_IMAGES,
           previousValue: [],
           firstChange: false,
@@ -93,7 +92,7 @@ describe('ArticleGridComponent', () => {
     it('should return the image from bannerImagesMap when available', () => {
       const mockImage = MOCK_IMAGES[0];
       component.ngOnChanges({
-        articleImages: {
+        images: {
           currentValue: [mockImage],
           previousValue: [],
           firstChange: false,
@@ -309,9 +308,9 @@ describe('ArticleGridComponent', () => {
 
     it('should display banner images with correct source', () => {
       fixture.componentRef.setInput('articles', [MOCK_ARTICLES[0]]);
-      fixture.componentRef.setInput('articleImages', [MOCK_IMAGES[0]]);
+      fixture.componentRef.setInput('images', [MOCK_IMAGES[0]]);
       component.ngOnChanges({
-        articleImages: {
+        images: {
           currentValue: [MOCK_IMAGES[0]],
           previousValue: [],
           firstChange: false,

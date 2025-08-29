@@ -78,6 +78,7 @@ $max-image-width: 320px;
 
     .bookmark-icon {
       position: absolute;
+      z-index: 10;
       margin: 4px;
       color: var(--lcc-color--articleGrid-bookmarkIcon);
       height: 24px;

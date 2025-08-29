@@ -29,28 +29,26 @@ describe('UserSettingsMenuComponent', () => {
     isAdmin: true,
   };
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [ToggleSwitchComponent, UserSettingsMenuComponent],
       providers: [provideMockStore()],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(UserSettingsMenuComponent);
-        component = fixture.componentInstance;
-        store = TestBed.inject(MockStore);
+    }).compileComponents();
+    fixture = TestBed.createComponent(UserSettingsMenuComponent);
+    component = fixture.componentInstance;
 
-        store.overrideSelector(AuthSelectors.selectUser, null);
-        store.overrideSelector(AppSelectors.selectIsDarkMode, false);
-        store.overrideSelector(AppSelectors.selectIsSafeMode, true);
+    store = TestBed.inject(MockStore);
 
-        closeSpy = jest.spyOn(component.close, 'emit');
-        dispatchSpy = jest.spyOn(store, 'dispatch');
-        // @ts-expect-error Private class member
-        routerSpy = jest.spyOn(component.router, 'navigate');
+    store.overrideSelector(AuthSelectors.selectUser, null);
+    store.overrideSelector(AppSelectors.selectIsDarkMode, false);
+    store.overrideSelector(AppSelectors.selectIsSafeMode, true);
 
-        fixture.detectChanges();
-      });
+    closeSpy = jest.spyOn(component.close, 'emit');
+    dispatchSpy = jest.spyOn(store, 'dispatch');
+    // @ts-expect-error Private class member
+    routerSpy = jest.spyOn(component.router, 'navigate');
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {

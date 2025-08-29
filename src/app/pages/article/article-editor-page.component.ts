@@ -12,8 +12,8 @@ import { LinkListComponent } from '@app/components/link-list/link-list.component
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { Article, ArticleFormData, EditorPage, Image, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
-import { ArticlesSelectors } from '@app/store/articles';
-import { ImagesSelectors } from '@app/store/images';
+import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
+import { ImagesActions, ImagesSelectors } from '@app/store/images';
 
 @UntilDestroy()
 @Component({
@@ -25,12 +25,20 @@ import { ImagesSelectors } from '@app/store/images';
         icon="admin_panel_settings"
         [title]="vm.pageTitle">
       </lcc-page-header>
+
       <lcc-article-form
         [bannerImage]="vm.bannerImage"
         [formData]="vm.formData"
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
-        [originalArticle]="vm.originalArticle">
+        [originalArticle]="vm.originalArticle"
+        (cancel)="onCancel()"
+        (change)="onChange($event.articleId, $event.formData)"
+        (requestFetchMainImage)="onRequestFetchMainImage($event)"
+        (requestPublishArticle)="onRequestPublishArticle()"
+        (requestUpdateArticle)="onRequestUpdateArticle($event)"
+        (restore)="onRestore($event)">
       </lcc-article-form>
+
       <lcc-link-list [links]="[newsPageLink]"></lcc-link-list>
     }
   `,
@@ -85,5 +93,29 @@ export class ArticleEditorPageComponent implements EditorPage, OnInit {
         );
       }),
     );
+  }
+
+  public onCancel(): void {
+    this.store.dispatch(ArticlesActions.cancelSelected());
+  }
+
+  public onChange(articleId: string | null, formData: Partial<ArticleFormData>): void {
+    this.store.dispatch(ArticlesActions.formDataChanged({ articleId, formData }));
+  }
+
+  public onRequestFetchMainImage(imageId: string): void {
+    this.store.dispatch(ImagesActions.fetchMainImageRequested({ imageId }));
+  }
+
+  public onRequestPublishArticle(): void {
+    this.store.dispatch(ArticlesActions.publishArticleRequested());
+  }
+
+  public onRequestUpdateArticle(articleId: string): void {
+    this.store.dispatch(ArticlesActions.updateArticleRequested({ articleId }));
+  }
+
+  public onRestore(articleId: string | null): void {
+    this.store.dispatch(ArticlesActions.formDataRestored({ articleId }));
   }
 }

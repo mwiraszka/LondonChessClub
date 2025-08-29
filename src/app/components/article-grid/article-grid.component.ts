@@ -26,7 +26,6 @@ import {
 import {
   FormatDatePipe,
   HighlightPipe,
-  IsDefinedPipe,
   RouterLinkPipe,
   StripMarkdownPipe,
 } from '@app/pipes';
@@ -42,7 +41,6 @@ import { isDefined } from '@app/utils';
     FormatDatePipe,
     HighlightPipe,
     ImagePreloadDirective,
-    IsDefinedPipe,
     MatIconModule,
     RouterLink,
     RouterLinkPipe,
@@ -52,11 +50,9 @@ import { isDefined } from '@app/utils';
 })
 export class ArticleGridComponent implements OnChanges {
   @Input({ required: true }) articles!: Article[];
-  @Input({ required: true }) articleImages!: Image[];
+  @Input({ required: true }) images!: Image[];
   @Input({ required: true }) isAdmin!: boolean;
   @Input({ required: true }) options!: DataPaginationOptions<Article>;
-
-  @Input() articleCount?: number;
 
   @Output() public requestDeleteArticle = new EventEmitter<Article>();
   @Output() public requestUpdateArticleBookmark = new EventEmitter<{
@@ -74,9 +70,9 @@ export class ArticleGridComponent implements OnChanges {
   constructor(private readonly dialogService: DialogService) {}
 
   public ngOnChanges(changes: NgChanges<ArticleGridComponent>): void {
-    if (changes.articleImages) {
+    if (changes.images) {
       this.bannerImagesMap.clear();
-      this.articleImages.forEach(image => {
+      this.images.forEach(image => {
         this.bannerImagesMap.set(image.id, image);
       });
     }

@@ -7,15 +7,15 @@ import { PageHeaderComponent } from './page-header.component';
 describe('PageHeaderComponent', () => {
   let fixture: ComponentFixture<PageHeaderComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [PageHeaderComponent],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(PageHeaderComponent);
-        fixture.detectChanges();
-      });
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(PageHeaderComponent);
+    fixture.componentRef.setInput('title', 'Mock Title');
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -24,14 +24,12 @@ describe('PageHeaderComponent', () => {
 
   describe('template rendering', () => {
     it('should always display title', () => {
-      fixture.componentRef.setInput('title', 'Mock Title');
       fixture.detectChanges();
 
       expect(queryTextContent(fixture.debugElement, '.page-title')).toBe('Mock Title');
     });
 
     it('should display icon when provided', () => {
-      fixture.componentRef.setInput('title', 'Mock Title');
       fixture.componentRef.setInput('icon', 'home');
       fixture.detectChanges();
 
@@ -39,7 +37,6 @@ describe('PageHeaderComponent', () => {
     });
 
     it('should not display icon when not provided', () => {
-      fixture.componentRef.setInput('title', 'Mock Title');
       fixture.componentRef.setInput('icon', null);
       fixture.detectChanges();
 
@@ -47,7 +44,6 @@ describe('PageHeaderComponent', () => {
     });
 
     it('should add end-with-asterisk class when hasUnsavedChanges is true', () => {
-      fixture.componentRef.setInput('title', 'Mock Title');
       fixture.componentRef.setInput('hasUnsavedChanges', true);
       fixture.detectChanges();
 
@@ -57,7 +53,6 @@ describe('PageHeaderComponent', () => {
     });
 
     it('should not add end-with-asterisk class when hasUnsavedChanges is false', () => {
-      fixture.componentRef.setInput('title', 'Mock Title');
       fixture.componentRef.setInput('hasUnsavedChanges', false);
       fixture.detectChanges();
 
@@ -67,7 +62,6 @@ describe('PageHeaderComponent', () => {
     });
 
     it('should not add end-with-asterisk class when hasUnsavedChanges is null', () => {
-      fixture.componentRef.setInput('title', 'Mock Title');
       fixture.componentRef.setInput('hasUnsavedChanges', null);
       fixture.detectChanges();
 

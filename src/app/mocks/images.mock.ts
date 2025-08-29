@@ -76,6 +76,7 @@ export const MOCK_IMAGES: Image[] = [
     thumbnailFileSize: 400,
     thumbnailWidth: 300,
     thumbnailHeight: 169,
+    thumbnailUrl: 'https://example.com/image4-thumb.jpg',
     articleAppearances: 0,
     caption: 'Image 4',
     album: "John's Images",

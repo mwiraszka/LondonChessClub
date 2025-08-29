@@ -1,6 +1,7 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, Observable, switchMap, take } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { switchMap, take } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import {
@@ -59,8 +60,8 @@ export class ImageViewerComponent
 
   public currentImage$!: Observable<Image | null>;
   public displayedCaption: string = '';
-  public isPreviousImageButtonActive = false;
   public isNextImageButtonActive = false;
+  public isPreviousImageButtonActive = false;
 
   public get index(): number {
     return this.indexSubject.getValue();

@@ -12,8 +12,8 @@ describe('FooterComponent', () => {
   let fixture: ComponentFixture<FooterComponent>;
   let component: FooterComponent;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         FooterComponent,
         RouterModule.forRoot([]),
@@ -21,13 +21,11 @@ describe('FooterComponent', () => {
         ImagePreloadDirective,
         TooltipDirective,
       ],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(FooterComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-      });
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(FooterComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {

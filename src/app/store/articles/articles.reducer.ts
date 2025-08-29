@@ -163,22 +163,20 @@ export const articlesReducer = createReducer(
       ),
   ),
 
-  on(
-    ArticlesActions.updateArticleSucceeded,
-    (state, { article }): ArticlesState =>
-      articlesAdapter.upsertOne(
-        {
-          article,
-          formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
-        },
-        {
-          ...state,
-          callState: initialState.callState,
-          lastHomePageFetch: null,
-          lastFilteredFetch: null,
-        },
-      ),
-  ),
+  on(ArticlesActions.updateArticleSucceeded, (state, { article }): ArticlesState => {
+    return articlesAdapter.upsertOne(
+      {
+        article,
+        formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+      },
+      {
+        ...state,
+        callState: initialState.callState,
+        lastHomePageFetch: null,
+        lastFilteredFetch: null,
+      },
+    );
+  }),
 
   on(
     ArticlesActions.deleteArticleSucceeded,
@@ -187,7 +185,7 @@ export const articlesReducer = createReducer(
         ...state,
         callState: initialState.callState,
         lastHomePageFetch: null,
-        lastNewsPageFetch: null,
+        lastFilteredFetch: null,
       }),
   ),
 
@@ -203,7 +201,7 @@ export const articlesReducer = createReducer(
     }),
   ),
 
-  on(ArticlesActions.formValueChanged, (state, { articleId, value }): ArticlesState => {
+  on(ArticlesActions.formDataChanged, (state, { articleId, formData }): ArticlesState => {
     const originalArticle = articleId ? state.entities[articleId] : null;
 
     if (!originalArticle) {
@@ -211,7 +209,7 @@ export const articlesReducer = createReducer(
         ...state,
         newArticleFormData: {
           ...state.newArticleFormData,
-          ...value,
+          ...formData,
         },
       };
     }
@@ -221,7 +219,7 @@ export const articlesReducer = createReducer(
         ...originalArticle,
         formData: {
           ...(originalArticle?.formData ?? INITIAL_ARTICLE_FORM_DATA),
-          ...value,
+          ...formData,
         },
       },
       state,
@@ -233,10 +231,11 @@ export const articlesReducer = createReducer(
     (state, { options }): ArticlesState => ({
       ...state,
       options,
+      lastFilteredFetch: null,
     }),
   ),
 
-  on(ArticlesActions.articleFormDataReset, (state, { articleId }): ArticlesState => {
+  on(ArticlesActions.formDataRestored, (state, { articleId }): ArticlesState => {
     const originalArticle = articleId ? state.entities[articleId]?.article : null;
 
     if (!originalArticle) {

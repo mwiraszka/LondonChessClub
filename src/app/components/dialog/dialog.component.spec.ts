@@ -25,10 +25,10 @@ describe('DialogComponent', () => {
   let fixture: ComponentFixture<DialogComponent<MockContentComponent, string>>;
   let component: DialogComponent<MockContentComponent, string>;
 
-  let resultEmitSpy: jest.SpyInstance;
+  let resultSpy: jest.SpyInstance;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [DialogComponent, MatIconModule, MockContentComponent],
       providers: [
         {
@@ -40,16 +40,14 @@ describe('DialogComponent', () => {
           },
         },
       ],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(DialogComponent<MockContentComponent, string>);
-        component = fixture.componentInstance;
+    }).compileComponents();
 
-        resultEmitSpy = jest.spyOn(component.result, 'emit');
+    fixture = TestBed.createComponent(DialogComponent<MockContentComponent, string>);
+    component = fixture.componentInstance;
 
-        fixture.detectChanges();
-      });
+    resultSpy = jest.spyOn(component.result, 'emit');
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -60,14 +58,14 @@ describe('DialogComponent', () => {
     // @ts-expect-error Private class member
     component.contentComponentRef?.instance.dialogResult.emit('test-result');
 
-    expect(resultEmitSpy).toHaveBeenCalledWith('test-result');
+    expect(resultSpy).toHaveBeenCalledWith('test-result');
   });
 
   describe('template rendering', () => {
     it('should have a close button that emits "close" result event', () => {
       query(fixture.debugElement, '.close-button').triggerEventHandler('click');
 
-      expect(resultEmitSpy).toHaveBeenCalledWith('close');
+      expect(resultSpy).toHaveBeenCalledWith('close');
     });
   });
 });

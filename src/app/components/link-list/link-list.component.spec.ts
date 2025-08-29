@@ -44,16 +44,14 @@ describe('LinkListComponent', () => {
     },
   ];
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [LinkListComponent, RouterLink, RouterLinkPipe, TooltipDirective],
       providers: [provideRouter([{ path: 'login', component: LoginPageStubComponent }])],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(LinkListComponent);
-        fixture.detectChanges();
-      });
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(LinkListComponent);
+    fixture.detectChanges();
   });
 
   it('should create', () => {

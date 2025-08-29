@@ -18,24 +18,21 @@ describe('UpcomingEventBannerComponent', () => {
 
   let clearBannerSpy: jest.SpyInstance;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [UpcomingEventBannerComponent],
       providers: [
         provideRouter([{ path: 'schedule', component: ScheduleStubComponent }]),
       ],
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(UpcomingEventBannerComponent);
-        component = fixture.componentInstance;
+    }).compileComponents();
 
-        component.nextEvent = MOCK_EVENTS[0];
+    fixture = TestBed.createComponent(UpcomingEventBannerComponent);
+    component = fixture.componentInstance;
 
-        clearBannerSpy = jest.spyOn(component.clearBanner, 'emit');
+    clearBannerSpy = jest.spyOn(component.clearBanner, 'emit');
 
-        fixture.detectChanges();
-      });
+    component.nextEvent = MOCK_EVENTS[0];
+    fixture.detectChanges();
   });
 
   it('should create', () => {

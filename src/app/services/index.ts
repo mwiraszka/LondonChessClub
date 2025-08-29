@@ -1,12 +1,11 @@
-export { ArticlesService } from './articles.service';
+export { ArticlesApiService } from './api/articles-api.service';
 export { AuthService } from './auth.service';
 export { DIALOG_CONFIG_TOKEN, DialogService } from './dialog.service';
-export { EventsService } from './events.service';
+export { EventsApiService } from './api/events-api.service';
 export { ImageFileService } from './image-file.service';
-export { ImagesService } from './images.service';
+export { ImagesApiService } from './api/images-api.service';
 export { KeyStateService } from './key-state.service';
-export { LocalStorageService } from './local-storage.service';
-export { MembersService } from './members.service';
+export { MembersApiService } from './api/members-api.service';
 export { MetaAndTitleService } from './meta-and-title.service';
 export { RoutingService } from './routing.service';
 export { ToastService } from './toast.service';

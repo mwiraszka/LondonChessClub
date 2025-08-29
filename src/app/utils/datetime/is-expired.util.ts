@@ -5,11 +5,11 @@ import { IsoDate } from '@app/models';
 import { isValidIsoDate } from './is-valid-iso-date.util';
 
 /**
- * Check whether the provided date is X seconds in the past (defaults to 0 seconds).
+ * Check whether the provided date is X seconds in the past (defaults to 600 seconds).
  */
-export function isSecondsInPast(date?: IsoDate, seconds = 0): boolean | null {
+export function isExpired(date?: IsoDate | null, seconds = 600): boolean {
   if (!isValidIsoDate(date)) {
-    return null;
+    return true;
   }
 
   return moment(date).isBefore(moment().subtract(seconds, 'seconds'));

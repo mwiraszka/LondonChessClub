@@ -11,7 +11,7 @@ export { isTouchDevice } from './device/is-touch-device.util';
 
 export { isValidCollectionId } from './database/is-valid-collection-id.util';
 export { formatDate } from './datetime/format-date.util';
-export { isSecondsInPast } from './datetime/is-seconds-in-past.util';
+export { isExpired } from './datetime/is-expired.util';
 export { isValidIsoDate } from './datetime/is-valid-iso-date.util';
 export { isValidTime } from './datetime/is-valid-time.util';
 

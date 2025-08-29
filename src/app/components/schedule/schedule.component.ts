@@ -1,8 +1,11 @@
-import { Store } from '@ngrx/store';
-import { take } from 'rxjs/operators';
-
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
@@ -18,8 +21,6 @@ import {
 } from '@app/models';
 import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { EventsActions, EventsSelectors } from '@app/store/events';
-import { isSecondsInPast } from '@app/utils';
 
 @Component({
   selector: 'lcc-schedule',
@@ -36,7 +37,7 @@ import { isSecondsInPast } from '@app/utils';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ScheduleComponent implements OnInit {
+export class ScheduleComponent {
   @Input({ required: true }) public events!: Event[];
   @Input({ required: true }) public isAdmin!: boolean;
   @Input({ required: true }) public nextEvent!: Event | null;
@@ -47,27 +48,16 @@ export class ScheduleComponent implements OnInit {
   @Input() public includeDetails = true;
   @Input() public upcomingEventLimit?: number;
 
+  @Output() public requestDeleteEvent = new EventEmitter<Event>();
+  @Output() public togglePastEvents = new EventEmitter<void>();
+
   public readonly addEventLink: InternalLink = {
     text: 'Add an event',
     internalPath: ['event', 'add'],
     icon: 'add_circle_outline',
   };
 
-  constructor(
-    private readonly dialogService: DialogService,
-    private readonly store: Store,
-  ) {}
-
-  public ngOnInit(): void {
-    this.store
-      .select(EventsSelectors.selectLastFetch)
-      .pipe(take(1))
-      .subscribe(lastFetch => {
-        if (!lastFetch || isSecondsInPast(lastFetch, 600)) {
-          this.store.dispatch(EventsActions.fetchEventsRequested());
-        }
-      });
-  }
+  constructor(private readonly dialogService: DialogService) {}
 
   public getAdminControlsConfig(event: Event): AdminControlsConfig {
     return {
@@ -95,17 +85,11 @@ export class ScheduleComponent implements OnInit {
     );
 
     if (result === 'confirm') {
-      this.store.dispatch(EventsActions.deleteEventRequested({ event }));
+      this.requestDeleteEvent.emit(event);
     }
   }
 
   public onTogglePastEvents(): void {
-    this.store.dispatch(EventsActions.pastEventsToggled());
-
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
+    this.togglePastEvents.emit();
   }
 }

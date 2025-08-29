@@ -1,9 +1,15 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
 import { debounceTime } from 'rxjs/operators';
 
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -24,9 +30,9 @@ import {
   Event,
   EventFormData,
   EventFormGroup,
+  Id,
 } from '@app/models';
 import { DialogService } from '@app/services';
-import { EventsActions } from '@app/store/events';
 import { isValidTime } from '@app/utils';
 import { timeValidator } from '@app/validators';
 
@@ -50,12 +56,20 @@ export class EventFormComponent implements OnInit {
   @Input({ required: true }) hasUnsavedChanges!: boolean;
   @Input({ required: true }) originalEvent!: Event | null;
 
+  @Output() cancel = new EventEmitter<void>();
+  @Output() change = new EventEmitter<{
+    eventId: Id | null;
+    formData: Partial<EventFormData>;
+  }>();
+  @Output() requestAddEvent = new EventEmitter<void>();
+  @Output() requestUpdateEvent = new EventEmitter<Id>();
+  @Output() restore = new EventEmitter<Id | null>();
+
   public form!: FormGroup<EventFormGroup>;
 
   constructor(
     private readonly dialogService: DialogService,
     private readonly formBuilder: FormBuilder,
-    private readonly store: Store,
   ) {}
 
   public ngOnInit(): void {
@@ -88,14 +102,13 @@ export class EventFormComponent implements OnInit {
       return;
     }
 
-    const eventId = this.originalEvent?.id ?? null;
-    this.store.dispatch(EventsActions.eventFormDataReset({ eventId }));
+    this.restore.emit(this.originalEvent?.id ?? null);
 
     setTimeout(() => this.ngOnInit());
   }
 
   public onCancel(): void {
-    this.store.dispatch(EventsActions.cancelSelected());
+    this.cancel.emit();
   }
 
   public async onSubmit(): Promise<void> {
@@ -125,11 +138,9 @@ export class EventFormComponent implements OnInit {
     }
 
     if (this.originalEvent) {
-      this.store.dispatch(
-        EventsActions.updateEventRequested({ eventId: this.originalEvent.id }),
-      );
+      this.requestUpdateEvent.emit(this.originalEvent.id);
     } else {
-      this.store.dispatch(EventsActions.addEventRequested());
+      this.requestAddEvent.emit();
     }
   }
 
@@ -168,31 +179,31 @@ export class EventFormComponent implements OnInit {
   private initFormValueChangeListener(): void {
     this.form.valueChanges
       .pipe(debounceTime(250), untilDestroyed(this))
-      .subscribe((value: Partial<EventFormData & { eventTime: string }>) => {
-        const { eventTime, ...formData } = value;
+      .subscribe(
+        (formDataWithEventTime: Partial<EventFormData & { eventTime: string }>) => {
+          const { eventTime, ...formData } = formDataWithEventTime;
 
-        if (isValidTime(eventTime)) {
-          let hours = Number(eventTime.split(':')[0]) % 12;
-          if (eventTime.slice(-2).toUpperCase() === 'PM') {
-            hours += 12;
+          if (isValidTime(eventTime)) {
+            let hours = Number(eventTime.split(':')[0]) % 12;
+            if (eventTime.slice(-2).toUpperCase() === 'PM') {
+              hours += 12;
+            }
+            const minutes = Number(eventTime.split(':')[1].slice(0, 2));
+
+            formData.eventDate = moment(formData.eventDate)
+              .hours(hours)
+              .minutes(minutes)
+              .toISOString();
           }
-          const minutes = Number(eventTime.split(':')[1].slice(0, 2));
 
-          formData.eventDate = moment(formData.eventDate)
-            .hours(hours)
-            .minutes(minutes)
-            .toISOString();
-        }
-
-        return this.store.dispatch(
-          EventsActions.formValueChanged({
+          return this.change.emit({
             eventId: this.originalEvent?.id ?? null,
-            value: formData,
-          }),
-        );
-      });
+            formData,
+          });
+        },
+      );
 
-    // Manually trigger form value change to pass initial form data to store
+    // Manually trigger form data change to pass initial form data to store
     this.form.updateValueAndValidity();
   }
 }

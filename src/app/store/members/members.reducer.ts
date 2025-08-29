@@ -134,6 +134,15 @@ export const membersReducer = createReducer(
       ),
   ),
 
+  on(
+    MembersActions.paginationOptionsChanged,
+    (state, { options }): MembersState => ({
+      ...state,
+      options,
+      lastFilteredFetch: null,
+    }),
+  ),
+
   on(MembersActions.fetchMemberSucceeded, (state, { member }): MembersState => {
     const previousFormData = state.entities[member.id]?.formData;
     return membersAdapter.upsertOne(
@@ -169,7 +178,11 @@ export const membersReducer = createReducer(
           member,
           formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
         },
-        { ...state, callState: initialState.callState, lastFilteredFetch: null },
+        {
+          ...state,
+          callState: initialState.callState,
+          lastFilteredFetch: null,
+        },
       ),
   ),
 
@@ -195,7 +208,7 @@ export const membersReducer = createReducer(
       }),
   ),
 
-  on(MembersActions.formValueChanged, (state, { memberId, value }): MembersState => {
+  on(MembersActions.formDataChanged, (state, { memberId, formData }): MembersState => {
     const originalMember = memberId ? state.entities[memberId] : null;
 
     if (!originalMember) {
@@ -203,7 +216,7 @@ export const membersReducer = createReducer(
         ...state,
         newMemberFormData: {
           ...state.newMemberFormData,
-          ...value,
+          ...formData,
         },
       };
     }
@@ -213,22 +226,14 @@ export const membersReducer = createReducer(
         ...originalMember,
         formData: {
           ...(originalMember?.formData ?? INITIAL_MEMBER_FORM_DATA),
-          ...value,
+          ...formData,
         },
       },
       state,
     );
   }),
 
-  on(
-    MembersActions.paginationOptionsChanged,
-    (state, { options }): MembersState => ({
-      ...state,
-      options,
-    }),
-  ),
-
-  on(MembersActions.memberFormDataReset, (state, { memberId }): MembersState => {
+  on(MembersActions.formDataRestored, (state, { memberId }): MembersState => {
     const originalMember = memberId ? state.entities[memberId]?.member : null;
 
     if (!originalMember) {

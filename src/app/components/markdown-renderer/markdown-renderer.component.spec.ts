@@ -34,8 +34,8 @@ describe('MarkdownRendererComponent', () => {
   > This is a blockquote
   `;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [MarkdownRendererComponent, RouterLink, RouterModule.forRoot([])],
       providers: [
         { provide: ActivatedRoute, useValue: { fragment: of('mock-fragment') } },
@@ -46,22 +46,21 @@ describe('MarkdownRendererComponent', () => {
         remove: { imports: [MarkdownComponent] },
         add: { imports: [MockComponent(MarkdownComponent)] },
       })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(MarkdownRendererComponent);
-        component = fixture.componentInstance;
+      .compileComponents();
 
-        // @ts-expect-error Private class member
-        addAnchorIdsToHeadingsSpy = jest.spyOn(component, 'addAnchorIdsToHeadings');
-        // @ts-expect-error Private class member
-        addBlockquoteIconsSpy = jest.spyOn(component, 'addBlockquoteIcons');
-        // @ts-expect-error Private class member
-        scrollToAnchorSpy = jest.spyOn(component, 'scrollToAnchor');
-        // @ts-expect-error Private class member
-        wrapMarkdownTablesSpy = jest.spyOn(component, 'wrapMarkdownTables');
+    fixture = TestBed.createComponent(MarkdownRendererComponent);
+    component = fixture.componentInstance;
 
-        fixture.detectChanges();
-      });
+    // @ts-expect-error Private class member
+    addAnchorIdsToHeadingsSpy = jest.spyOn(component, 'addAnchorIdsToHeadings');
+    // @ts-expect-error Private class member
+    addBlockquoteIconsSpy = jest.spyOn(component, 'addBlockquoteIcons');
+    // @ts-expect-error Private class member
+    scrollToAnchorSpy = jest.spyOn(component, 'scrollToAnchor');
+    // @ts-expect-error Private class member
+    wrapMarkdownTablesSpy = jest.spyOn(component, 'wrapMarkdownTables');
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {

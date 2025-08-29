@@ -38,6 +38,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 - 🚀 Fetch only the missing article banner images to help reduce Home Page and News Page load times
 - 🐛 Pre-load club logo image in app header to prevent layout shift as page context loads
 - 🐛 Ensure article bookmark icons appear after initial page load
+- 🐛 Ensure articles' table of contents headings render as expected
 - 🔧 Move store dependencies out from low-level components for better separation of concerns and reusability
 - 🔧 Perform periodic checks in the background (every 1 minute) and automatically refetch any data that is at least 10 minutes old; include redundant checks for article banner images in case articles loaded but the subsequent images fetch got interrupted and failed to complete
 

@@ -1,44 +1,37 @@
 @use '../../../styles/abstracts/mixins' as *;
 
-$card-padding: 6px;
-
-// The width of a thumbnail image
-$max-image-width: 320px;
+$card-min-width: 190px;
+$card-max-width: 310px;
+$grid-gap: 8px;
 
 :host {
-  display: grid;
+  container-type: inline-size;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  gap: 8px;
+}
 
-  &[card-count='1'] {
-    display: flex;
-  }
+.article-grid {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: $grid-gap;
+  display: flex;
+  flex-flow: row wrap;
 
-  @include respond-to('gt-sm') {
-    // Minimum of 218px to ensure two columns can fit at the 'sm' breakpoint (500px)
-    grid-template-columns: repeat(auto-fit, minmax(218px, 1fr));
-  }
-
-  @include respond-to('gt-md') {
-    &[card-count='2'] {
-      display: flex;
-      flex-flow: row wrap;
+  @container (width >= calc(2 * #{$card-min-width} + #{$grid-gap})) {
+    &:not([card-count='1']) {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax($card-min-width, 1fr));
     }
   }
 
-  @media screen and (min-width: 1035px) {
-    &[card-count='3'] {
-      display: flex;
-      flex-flow: row wrap;
-    }
-  }
-
-  @media screen and (min-width: 1380px) {
-    &[card-count='4'] {
-      display: flex;
-      flex-flow: row wrap;
+  @for $n from 2 through 4 {
+    @container (width >= calc(#{$n} * #{$card-max-width} + #{($n - 1)} * #{$grid-gap})) {
+      &[card-count='#{$n}'] {
+        display: flex;
+      }
     }
   }
 
@@ -47,33 +40,32 @@ $max-image-width: 320px;
     flex-flow: column nowrap;
     gap: 4px;
     height: auto;
-    max-width: calc(#{$max-image-width} + 2 * #{$card-padding});
-    padding: $card-padding;
+    max-width: $card-max-width;
     background-color: var(--lcc-color--articleGrid-cardBackground);
     border-radius: var(--lcc-borderRadius--large);
 
     &:hover {
       cursor: pointer;
       background-color: var(--lcc-color--articleGrid-cardBackgroundOnHover);
-      transform: scale(1.01);
+      transform: scale(1.005);
     }
 
     .image-container {
       aspect-ratio: 3 / 2;
       width: 100%;
-      border-radius: var(--lcc-borderRadius--large);
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       background-color: var(--lcc-color--contentPlaceholder-background);
+      border-top-left-radius: var(--lcc-borderRadius--large);
+      border-top-right-radius: var(--lcc-borderRadius--large);
     }
 
     img {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
-      border-radius: var(--lcc-borderRadius--large);
     }
 
     .bookmark-icon {
@@ -90,7 +82,7 @@ $max-image-width: 320px;
       flex-flow: column nowrap;
       justify-content: space-between;
       height: 100%;
-      padding: 4px 8px;
+      padding: 8px 16px;
 
       .article-title {
         text-align: center;

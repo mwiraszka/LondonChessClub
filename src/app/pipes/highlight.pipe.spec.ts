@@ -40,9 +40,10 @@ describe('HighlightPipe', () => {
     expect(pipe.transform(undefined, 'search')).toBe('');
   });
 
-  it('should return original text when search query is empty', () => {
+  it('should return original text when search query is empty or undefined', () => {
     expect(pipe.transform('Hello World', '')).toBe('Hello World');
     expect(pipe.transform('Hello World', '   ')).toBe('Hello World');
+    expect(pipe.transform('Hello World', undefined)).toBe('Hello World');
   });
 
   it('should highlight matching text case-insensitively', () => {

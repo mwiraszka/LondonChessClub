@@ -34,6 +34,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <details>
 <summary>v5.8.4 - August 30th, 2025</summary>
 
+- 🚀 Minor touch-ups to cards in Article Grid and Image Explorer
 - 🐛 Clean up fragment URL from search bar whenever Document Viewer dialog on Documents page is closed
 - 🔧 Minor improvements to how Dialog Service handles different close events
 

@@ -1,7 +1,11 @@
 @use '../../../styles/abstracts/mixins' as *;
 
-$card-padding: 6px;
-$max-card-width: 270px;
+$side-padding: 8px;
+
+$grid-gap: 8px;
+$card-min-width: 180px;
+$card-max-width: 270px;
+$card-padding: 8px;
 
 :host {
   height: 90dvh;
@@ -16,61 +20,48 @@ $max-card-width: 270px;
   }
 
   lcc-data-toolbar {
-    margin: 0 8px 8px;
-    width: calc(100% - 16px);
+    margin: 0 $side-padding;
+    width: calc(100% - #{$side-padding * 2});
+  }
+
+  .image-grid-wrapper {
+    container-type: inline-size;
+    display: flex;
+    justify-content: center;
+    min-width: min(90vw, var(--lcc-width--appContent));
+    overflow: auto;
   }
 
   .image-grid {
-    display: grid;
+    flex: 1;
     align-items: stretch;
     justify-content: center;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 8px;
-    min-width: min(90vw, var(--lcc-width--appContent));
+    gap: $grid-gap;
+    display: flex;
+    flex-flow: row wrap;
     overflow: auto;
-    padding: 8px;
+    padding: 0 8px $side-padding;
 
-    &[card-count='1'] {
-      display: flex;
-    }
-
-    @media screen and (max-width: 435px) {
-      display: flex;
-      flex-flow: row wrap;
-    }
-
-    @media screen and (min-width: 610px) {
-      &[card-count='2'] {
-        display: flex;
+    @container (width >= calc(2 * (#{$card-min-width} + (2 * #{$side-padding})))) {
+      &:not([card-count='1']) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax($card-min-width, 1fr));
       }
     }
 
-    @media screen and (min-width: 976px) {
-      &[card-count='3'] {
-        display: flex;
-        flex-flow: row wrap;
-      }
-    }
-
-    @media screen and (min-width: 1298px) {
-      &[card-count='4'] {
-        display: flex;
-        flex-flow: row wrap;
-      }
-    }
-
-    @media screen and (min-width: 1620px) {
-      &[card-count='5'] {
-        display: flex;
-        flex-flow: row wrap;
+    @for $n from 2 through 5 {
+      @container (width >= calc(#{$n} * #{$card-max-width} + #{($n - 1)} * #{$grid-gap} + (2 * #{$side-padding}))) {
+        &[card-count='#{$n}'] {
+          display: flex;
+        }
       }
     }
   }
 
-  .image-card-container {
+  .image-card {
     max-height: 500px;
-    max-width: calc(#{$max-card-width} + 2 * #{$card-padding});
-    padding: 8px;
+    max-width: $card-max-width;
+    padding: $card-padding;
     background-color: var(--lcc-color--imageExplorer-gridBackground);
     border: none;
     border-radius: var(--lcc-borderRadius--large);

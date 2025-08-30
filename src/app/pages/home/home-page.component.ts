@@ -4,7 +4,7 @@ import { Observable, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
@@ -15,14 +15,7 @@ import { LinkListComponent } from '@app/components/link-list/link-list.component
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
 import { ScheduleComponent } from '@app/components/schedule/schedule.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import {
-  Article,
-  DataPaginationOptions,
-  Event,
-  Id,
-  Image,
-  InternalLink,
-} from '@app/models';
+import { Article, Event, Id, Image, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
@@ -81,20 +74,6 @@ export class HomePageComponent implements OnInit {
     internalPath: 'schedule',
   };
 
-  // Only passed in for the pageSize; options for API call are set in the effect
-  public get articleOptions(): DataPaginationOptions<Article> {
-    return {
-      page: 1,
-      pageSize: this.articleCount,
-      sortBy: 'bookmarkDate',
-      sortOrder: 'desc',
-      filters: {},
-      search: '',
-    };
-  }
-
-  private articleCount!: number;
-
   constructor(
     private readonly metaAndTitleService: MetaAndTitleService,
     private readonly store: Store,
@@ -107,7 +86,6 @@ export class HomePageComponent implements OnInit {
       regular blitz and rapid chess tournaments, as well as a variety of lectures, simuls
       and team competitions.`,
     );
-    this.setArticleCountBasedOnScreenWidth();
 
     this.viewModel$ = combineLatest([
       this.store.select(ArticlesSelectors.selectHomePageArticles),
@@ -160,16 +138,4 @@ export class HomePageComponent implements OnInit {
   }): void {
     this.store.dispatch(ArticlesActions.updateArticleBookmarkRequested(event));
   }
-
-  @HostListener('window:resize', ['$event'])
-  private setArticleCountBasedOnScreenWidth = () => {
-    this.articleCount =
-      window.innerWidth < 726
-        ? 4
-        : window.innerWidth < 952
-          ? 6
-          : window.innerWidth < 1405
-            ? 4
-            : 6;
-  };
 }

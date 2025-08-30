@@ -1,4 +1,4 @@
-import { firstValueFrom, tap } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 import {
   Overlay,
@@ -8,6 +8,7 @@ import {
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
+  ComponentRef,
   DOCUMENT,
   Inject,
   Injectable,
@@ -15,7 +16,6 @@ import {
   Injector,
   Renderer2,
   RendererFactory2,
-  Type,
 } from '@angular/core';
 
 import { DialogComponent } from '@app/components/dialog/dialog.component';
@@ -29,18 +29,18 @@ export const DIALOG_CONFIG_TOKEN = new InjectionToken<DialogConfig<unknown>>(
   providedIn: 'root',
 })
 export class DialogService {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private dialogComponentRefs: Array<ComponentRef<DialogComponent<any, any>>> = [];
   private documentClickListener?: () => void;
   private keydownListener?: () => void;
+  private overlayRefs: OverlayRef[] = [];
   private renderer!: Renderer2;
 
-  private _dialogComponentTypes: Array<Type<unknown>> = [];
-  public get topDialogComponentType(): Type<unknown> | null {
-    return this._dialogComponentTypes[this._dialogComponentTypes.length - 1] ?? null;
-  }
-
-  private _overlayRefs: OverlayRef[] = [];
-  public get overlayRefs(): OverlayRef[] {
-    return this._overlayRefs;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  get topDialogRef(): ComponentRef<DialogComponent<any, any>> | null {
+    return this.dialogComponentRefs.length
+      ? this.dialogComponentRefs[this.dialogComponentRefs.length - 1]
+      : null;
   }
 
   constructor(
@@ -51,14 +51,15 @@ export class DialogService {
     this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 
-  public open<TComponent extends DialogOutput<TResult>, TResult>(
+  public async open<TComponent extends DialogOutput<TResult>, TResult>(
     dialogConfig: DialogConfig<TComponent>,
   ): Promise<TResult | 'close'> {
-    // Keep track of dialog component types to prevent same type of dialog from stacking
-    if (this.topDialogComponentType === dialogConfig.componentType) {
+    // Prevent same-type dialogs from stacking
+    if (
+      this.topDialogRef?.instance?.dialogConfig?.componentType ===
+      dialogConfig.componentType
+    ) {
       return Promise.resolve('close');
-    } else {
-      this._dialogComponentTypes.push(dialogConfig.componentType);
     }
 
     const overlayContainerElement = this._document.querySelector(
@@ -90,35 +91,21 @@ export class DialogService {
 
     // Only init listeners once, when first overlay is created, and with timeout to prevent
     // the click event that opened up this dialog from being used
-    if (this._overlayRefs.length === 0) {
+    if (this.overlayRefs.length === 0) {
       setTimeout(() => this.initEventListeners());
     }
 
-    this._overlayRefs?.push(overlayRef);
+    this.overlayRefs?.push(overlayRef);
+    this.dialogComponentRefs.push(dialogComponentRef);
 
-    return firstValueFrom(
-      dialogComponentRef.instance.result.pipe(tap(() => this.closeTopDialog())),
+    return firstValueFrom(dialogComponentRef.instance.result).finally(() =>
+      this.dispose(),
     );
   }
 
   public closeAll(): void {
-    while (this._overlayRefs.length > 0) {
-      this.closeTopDialog();
-    }
-  }
-
-  private closeTopDialog(): void {
-    const overlayRef = this._overlayRefs.pop();
-    this._dialogComponentTypes.pop();
-
-    if (overlayRef) {
-      overlayRef.dispose();
-    }
-
-    // Only remove listeners when there are no more overlays
-    if (this._overlayRefs.length === 0) {
-      this.documentClickListener?.();
-      this.keydownListener?.();
+    while (this.topDialogRef) {
+      this.topDialogRef.instance.result.emit('close');
     }
   }
 
@@ -132,7 +119,8 @@ export class DialogService {
           event.target.classList.contains('cdk-overlay-backdrop')
         ) {
           event.stopImmediatePropagation();
-          this.closeTopDialog();
+          // Emit a close result; the tap in open() will handle disposal.
+          this.topDialogRef?.instance.result.emit('close');
         }
       },
     );
@@ -143,7 +131,7 @@ export class DialogService {
       (event: KeyboardEvent) => {
         if (event.key === 'Escape') {
           event.stopImmediatePropagation();
-          this.closeTopDialog();
+          this.topDialogRef?.instance.result.emit('close');
         }
       },
     );
@@ -157,5 +145,20 @@ export class DialogService {
     return isModal
       ? this.overlay.scrollStrategies.noop()
       : this.overlay.scrollStrategies.block();
+  }
+
+  private dispose(): void {
+    const overlayRef = this.overlayRefs.pop();
+    this.dialogComponentRefs.pop();
+
+    if (overlayRef) {
+      overlayRef.dispose();
+    }
+
+    // Only remove listeners when there are no more overlays
+    if (this.overlayRefs.length === 0) {
+      this.documentClickListener?.();
+      this.keydownListener?.();
+    }
   }
 }

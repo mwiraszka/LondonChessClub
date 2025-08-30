@@ -35,9 +35,23 @@ export class RoutingService {
         const fragment = this.router.parseUrl(this.router.url).fragment;
         this._fragmentSubject.next(fragment);
 
-        if (isNewPage && this.dialogService.overlayRefs.length) {
+        if (isNewPage) {
           this.dialogService.closeAll();
         }
       });
+  }
+
+  public removeFragment(): void {
+    if (!this._fragmentSubject.getValue()) {
+      return;
+    }
+
+    this.router.navigate([], {
+      fragment: undefined,
+      queryParamsHandling: 'preserve',
+      replaceUrl: true,
+    });
+
+    this._fragmentSubject.next(null);
   }
 }

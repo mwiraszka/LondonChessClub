@@ -32,6 +32,14 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.8.4 - August 30th, 2025</summary>
+
+- 🐛 Clean up fragment URL from search bar whenever Document Viewer dialog on Documents page is closed
+- 🔧 Minor improvements to how Dialog Service handles different close events
+
+</details>
+
+<details>
 <summary>v5.8.3 - August 29th, 2025</summary>
 
 - 🚀 Fix article preview banner image section to 3:2 aspect ratio on larger screen sizes

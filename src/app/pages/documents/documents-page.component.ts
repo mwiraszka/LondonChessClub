@@ -81,17 +81,19 @@ export class DocumentsPageComponent implements OnInit {
       'A place for all London Chess Club documentation.',
     );
 
-    this.routingService.fragment$.pipe(untilDestroyed(this)).subscribe(fragment => {
+    this.routingService.fragment$.pipe(untilDestroyed(this)).subscribe(async fragment => {
       if (
         fragment &&
         this.documents.find(document => document.fileName === fragment) &&
-        !this.dialogService.topDialogComponentType
+        !this.dialogService.topDialogRef
       ) {
-        this.dialogService.open<DocumentViewerComponent, null>({
+        await this.dialogService.open<DocumentViewerComponent, null>({
           componentType: DocumentViewerComponent,
           isModal: true,
           inputs: { documentPath: `assets/documents/${fragment}` },
         });
+
+        this.routingService.removeFragment();
       }
     });
   }

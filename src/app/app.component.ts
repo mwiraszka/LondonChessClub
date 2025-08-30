@@ -52,9 +52,9 @@ export class AppComponent implements OnInit {
 
   constructor(
     @Inject(DOCUMENT) private readonly _document: Document,
+    private readonly routingService: RoutingService,
     private readonly store: Store,
     private readonly touchEventsService: TouchEventsService,
-    private readonly routingService: RoutingService,
     private readonly urlExpirationService: UrlExpirationService,
   ) {
     moment.tz.setDefault('America/Toronto');

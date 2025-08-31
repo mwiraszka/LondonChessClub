@@ -30,7 +30,6 @@ describe('AlbumFormComponent', () => {
   let initFormValueChangeListenerSpy: jest.SpyInstance;
   let removeNewImageSpy: jest.SpyInstance;
   let requestAddImagesSpy: jest.SpyInstance;
-  let requestFetchThumbnailsSpy: jest.SpyInstance;
   let requestUpdateAlbumSpy: jest.SpyInstance;
   let restoreSpy: jest.SpyInstance;
   let storeImageFileSpy: jest.SpyInstance;
@@ -88,7 +87,6 @@ describe('AlbumFormComponent', () => {
     );
     removeNewImageSpy = jest.spyOn(component.removeNewImage, 'emit');
     requestAddImagesSpy = jest.spyOn(component.requestAddImages, 'emit');
-    requestFetchThumbnailsSpy = jest.spyOn(component.requestFetchThumbnails, 'emit');
     requestUpdateAlbumSpy = jest.spyOn(component.requestUpdateAlbum, 'emit');
     restoreSpy = jest.spyOn(component.restore, 'emit');
     storeImageFileSpy = jest.spyOn(imageFileService, 'storeImageFile');
@@ -133,10 +131,6 @@ describe('AlbumFormComponent', () => {
       it('should not call fetchNewImagesDataUrls', () => {
         expect(fetchNewImageDataUrlsSpy).not.toHaveBeenCalled();
       });
-
-      it('should not emit request fetch thumbnails event', () => {
-        expect(requestFetchThumbnailsSpy).not.toHaveBeenCalled();
-      });
     });
 
     describe('if imageEntities is empty and newImagesFormData contains data', () => {
@@ -179,10 +173,6 @@ describe('AlbumFormComponent', () => {
 
       it('should emit data URLs fetch event', () => {
         expect(fetchNewImageDataUrlsSpy).toHaveBeenCalledTimes(1);
-      });
-
-      it('should not emit request fetch thumbnails event', () => {
-        expect(requestFetchThumbnailsSpy).not.toHaveBeenCalled();
       });
     });
 
@@ -231,10 +221,6 @@ describe('AlbumFormComponent', () => {
 
       it('should not emit data URLs fetch event', () => {
         expect(fetchNewImageDataUrlsSpy).not.toHaveBeenCalled();
-      });
-
-      it('should not emit request fetch thumbnails event', () => {
-        expect(requestFetchThumbnailsSpy).not.toHaveBeenCalled();
       });
     });
 
@@ -298,10 +284,6 @@ describe('AlbumFormComponent', () => {
 
       it('should not emit data URLs fetch event', () => {
         expect(fetchNewImageDataUrlsSpy).not.toHaveBeenCalled();
-      });
-
-      it('should emit request fetch thumbnails event only for the image with undefined urls', () => {
-        expect(requestFetchThumbnailsSpy).toHaveBeenCalledWith([MOCK_IMAGES[3].id]);
       });
     });
   });

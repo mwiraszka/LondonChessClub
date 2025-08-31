@@ -1,8 +1,10 @@
 import { createAction, props } from '@ngrx/store';
 
+import { NavPath } from '@app/models';
+
 export const navigationRequested = createAction(
   '[Nav] Navigation requested',
-  props<{ path: string }>(),
+  props<{ path: NavPath }>(),
 );
 
 export const pageAccessDenied = createAction(
@@ -12,5 +14,5 @@ export const pageAccessDenied = createAction(
 
 export const appendPathToHistory = createAction(
   '[Nav] Append path to history',
-  props<{ path: string }>(),
+  props<{ path: NavPath }>(),
 );

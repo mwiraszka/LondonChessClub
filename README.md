@@ -32,11 +32,12 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.8.4 - August 30th, 2025</summary>
+<summary>v5.8.4 - August 31st, 2025</summary>
 
 - 🚀 Minor touch-ups to cards in Article Grid and Image Explorer
-- 🐛 Clean up fragment URL from search bar whenever Document Viewer dialog on Documents page is closed
+- 🐛 Clean up fragment URL from browser address bar whenever Document Viewer dialog on Documents page is closed
 - 🔧 Minor improvements to how Dialog Service handles different close events
+- 🔧 Clean up navigation and route redirect handling effects
 
 </details>
 

@@ -7,6 +7,9 @@ import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { isEntity } from '@app/models/entity.model';
+import { isNavPath } from '@app/models/nav-path.model';
+import { AppActions } from '@app/store/app';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthActions } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
@@ -16,12 +19,16 @@ import { isDefined, isValidCollectionId } from '@app/utils';
 
 import { NavActions, NavSelectors } from '.';
 
+// TODO: Move all type guard functions to a dedicated utils directory
+
 @Injectable()
 export class NavEffects {
   appendPathToHistory$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
-      map(({ payload }) => NavActions.appendPathToHistory({ path: payload.event.url })),
+      map(({ payload }) => payload.event.url),
+      filter(path => isNavPath(path)),
+      map(path => NavActions.appendPathToHistory({ path })),
     ),
   );
 
@@ -29,8 +36,8 @@ export class NavEffects {
     () =>
       this.actions$.pipe(
         ofType(NavActions.pageAccessDenied),
-        concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
-        tap(([, previousPath]) => this.router.navigate([previousPath ?? '/'])),
+        concatLatestFrom(() => this.store.select(NavSelectors.selectCurrentPath)),
+        tap(([, currentPath]) => this.router.navigate([currentPath ?? '/'])),
       ),
     { dispatch: false },
   );
@@ -89,9 +96,17 @@ export class NavEffects {
         ArticlesActions.publishArticleSucceeded,
         ArticlesActions.updateArticleSucceeded,
       ),
-      // Only redirect to news if the previous route was an article route (editor/viewer)
-      switchMap(() => this.store.select(NavSelectors.selectPreviousPath)),
-      filter(previousPath => !!previousPath?.startsWith('/article/')),
+      map(() => NavActions.navigationRequested({ path: 'news' })),
+    ),
+  );
+
+  navigateToNewsAfterArticleDeletion$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ArticlesActions.deleteArticleSucceeded),
+      concatLatestFrom(() => this.store.select(NavSelectors.selectCurrentPath)),
+      filter(
+        ([{ articleId }, currentPath]) => currentPath === `/article/view/${articleId}`,
+      ),
       map(() => NavActions.navigationRequested({ path: 'news' })),
     ),
   );
@@ -116,197 +131,113 @@ export class NavEffects {
     ),
   );
 
-  handleEventRouteNavigation$ = createEffect(() =>
+  handleEntityRouteNavigationRequest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       map(({ payload }) => payload.event.url),
-      filter(currentPath => currentPath.startsWith('/event/')),
-      map(currentPath => {
-        const [controlMode, eventId] = currentPath.split('/event/')[1].split('/');
-
-        if (controlMode === 'add' && !isDefined(eventId)) {
-          return EventsActions.addAnEventSelected();
-        } else if (controlMode === 'edit' && isValidCollectionId(eventId)) {
-          return EventsActions.fetchEventRequested({ eventId });
-        } else {
-          return NavActions.navigationRequested({ path: 'schedule' });
-        }
-      }),
-    ),
-  );
-
-  restoreEventFormData$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
-      filter(([{ payload }, previousPath]) => {
-        const currentPath = payload.event.url;
-        return (
-          !!previousPath?.startsWith('/event/') && !currentPath?.startsWith('/event/')
-        );
-      }),
-      map(([, previousPath]) => {
-        const eventId = previousPath!.split('/event/')[1]?.split('/')[1] ?? null;
-        return EventsActions.formDataRestored({ eventId });
-      }),
-    ),
-  );
-
-  handleMemberRouteNavigation$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      map(({ payload }) => payload.event.url),
-      filter(currentPath => currentPath.startsWith('/member/')),
-      map(currentPath => {
-        const [controlMode, memberId] = currentPath.split('/member/')[1].split('/');
-
-        if (controlMode === 'add' && !isDefined(memberId)) {
-          return MembersActions.addAMemberSelected();
-        } else if (controlMode === 'edit' && isValidCollectionId(memberId)) {
-          return MembersActions.fetchMemberRequested({ memberId });
-        } else {
-          return NavActions.navigationRequested({ path: 'members' });
-        }
-      }),
-    ),
-  );
-
-  restoreMemberFormData$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
-      filter(([{ payload }, previousPath]) => {
-        const currentPath = payload.event.url;
-        return (
-          !!previousPath?.startsWith('/member/') && !currentPath?.startsWith('/member/')
-        );
-      }),
-      map(([, previousPath]) => {
-        const memberId = previousPath!.split('/member/')[1]?.split('/')[1] ?? null;
-        return MembersActions.formDataRestored({ memberId });
-      }),
-    ),
-  );
-
-  handleArticleRouteNavigation$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      map(({ payload }) => payload.event.url),
-      filter(currentPath => currentPath.startsWith('/article/')),
-      concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
+      concatLatestFrom(() => this.store.select(NavSelectors.selectCurrentPath)),
       filter(
-        ([currentPath, previousPath]) =>
-          previousPath?.split('#')[0] !== currentPath?.split('#')[0],
+        ([requestedPath, currentPath]) =>
+          requestedPath !== currentPath && isEntity(requestedPath.split('/').slice(1)[0]),
       ),
-      map(([currentPath]) => {
-        const [controlMode, articleIdWithFragment] = currentPath
-          .split('/article/')[1]
-          .split('/');
-        const articleId = articleIdWithFragment?.split('#')[0];
+      map(([requestedPath]) => {
+        const [entity, controlMode, idWithFragment] = requestedPath.split('/').slice(1);
+        const id = idWithFragment ? idWithFragment.split('#')[0] : null;
 
-        if (controlMode === 'add' && !isDefined(articleId)) {
-          return ArticlesActions.createAnArticleSelected();
-        } else if (
-          ['edit', 'view'].includes(controlMode) &&
-          isValidCollectionId(articleId)
-        ) {
-          return ArticlesActions.fetchArticleRequested({ articleId });
-        } else {
-          return NavActions.navigationRequested({ path: 'news' });
+        switch (entity) {
+          case 'album':
+            if (controlMode === 'add' && !isDefined(id)) {
+              return ImagesActions.createAnAlbumSelected();
+            } else if (
+              ['edit', 'view'].includes(controlMode) &&
+              isValidCollectionId(id)
+            ) {
+              return ImagesActions.fetchAlbumThumbnailsRequested({ album: id! });
+            }
+            return NavActions.navigationRequested({ path: 'photo-gallery' });
+
+          case 'article':
+            if (controlMode === 'add' && !isDefined(id)) {
+              return ArticlesActions.createAnArticleSelected();
+            } else if (
+              ['edit', 'view'].includes(controlMode) &&
+              isValidCollectionId(id)
+            ) {
+              return ArticlesActions.fetchArticleRequested({ articleId: id! });
+            }
+            return NavActions.navigationRequested({ path: 'news' });
+
+          case 'event':
+            if (controlMode === 'add' && !isDefined(id)) {
+              return EventsActions.addAnEventSelected();
+            } else if (controlMode === 'edit' && isValidCollectionId(id)) {
+              return EventsActions.fetchEventRequested({ eventId: id! });
+            }
+            return NavActions.navigationRequested({ path: 'schedule' });
+
+          case 'image':
+            if (controlMode === 'add' && !isDefined(id)) {
+              return ImagesActions.addAnImageSelected();
+            } else if (controlMode === 'edit' && isValidCollectionId(id)) {
+              return ImagesActions.fetchMainImageRequested({ imageId: id! });
+            }
+            return NavActions.navigationRequested({ path: 'photo-gallery' });
+
+          case 'member':
+            if (controlMode === 'add' && !isDefined(id)) {
+              return MembersActions.addAMemberSelected();
+            } else if (controlMode === 'edit' && isValidCollectionId(id)) {
+              return MembersActions.fetchMemberRequested({ memberId: id! });
+            }
+            return NavActions.navigationRequested({ path: 'members' });
+
+          default:
+            return AppActions.unexpectedErrorOccurred({
+              error: {
+                name: 'LCCError',
+                message: `Unknown entity provided for entity route navigation: ${entity}`,
+              },
+            });
         }
       }),
     ),
   );
 
-  restoreArticleFormData$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
-      filter(([{ payload }, previousPath]) => {
-        const currentPath = payload.event.url;
-        return (
-          !!previousPath?.startsWith('/article/') && !currentPath?.startsWith('/article/')
-        );
-      }),
-      map(([, previousPath]) => {
-        const articleId = previousPath!.split('/article/')[1]?.split('/')[1] ?? null;
-        return ArticlesActions.formDataRestored({ articleId });
-      }),
-    ),
-  );
-
-  redirectToNewsRouteAfterArticleDeletion$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ArticlesActions.deleteArticleSucceeded),
-      concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
-      filter(
-        ([{ articleId }, previousPath]) => previousPath === `/article/view/${articleId}`,
-      ),
-      map(() => NavActions.navigationRequested({ path: 'news' })),
-    ),
-  );
-
-  handleImageRouteNavigation$ = createEffect(() =>
+  restoreFormDataOnNavigationAwayFromEntityRoute$ = createEffect(() =>
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       map(({ payload }) => payload.event.url),
-      filter(currentPath => currentPath.startsWith('/image/')),
-      map(currentPath => {
-        const [controlMode, imageId] = currentPath.split('/image/')[1].split('/');
+      concatLatestFrom(() => this.store.select(NavSelectors.selectCurrentPath)),
+      filter(([requestedPath, currentPath]) => {
+        const currentPathPage = currentPath ? currentPath.split('/').slice(1)[0] : null;
+        const requestedPathPage = requestedPath.split('/').slice(1)[0];
+        return isEntity(currentPathPage) && requestedPathPage !== currentPathPage;
+      }),
+      map(([, currentPath]) => {
+        const [entity, , idWithFragment] = currentPath!.split('/').slice(1);
+        const id = idWithFragment ? idWithFragment.split('#')[0] : null;
 
-        if (controlMode === 'add' && !isDefined(imageId)) {
-          return ImagesActions.addAnImageSelected();
-        } else if (controlMode === 'edit' && isValidCollectionId(imageId)) {
-          return ImagesActions.fetchMainImageRequested({ imageId });
-        } else {
-          return NavActions.navigationRequested({ path: 'photo-gallery' });
+        switch (entity) {
+          case 'album':
+            // Album entity uses unique album name in place of a UUID
+            return ImagesActions.albumFormDataRestored({ album: id });
+          case 'article':
+            return ArticlesActions.formDataRestored({ articleId: id });
+          case 'event':
+            return EventsActions.formDataRestored({ eventId: id });
+          case 'image':
+            return ImagesActions.imageFormDataRestored({ imageId: id });
+          case 'member':
+            return MembersActions.formDataRestored({ memberId: id });
+          default:
+            return AppActions.unexpectedErrorOccurred({
+              error: {
+                name: 'LCCError',
+                message: `Unknown entity provided for form data restoration: ${entity}`,
+              },
+            });
         }
       }),
-    ),
-  );
-
-  restoreImageFormData$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
-      filter(([{ payload }, previousPath]) => {
-        const currentPath = payload.event.url;
-        return (
-          !!previousPath?.startsWith('/image/') && !currentPath?.startsWith('/image/')
-        );
-      }),
-      map(([, previousPath]) => {
-        const imageId = previousPath!.split('/image/')[1]?.split('/')[1] ?? null;
-        return ImagesActions.imageFormDataRestored({ imageId });
-      }),
-    ),
-  );
-
-  restoreAlbumFormData$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(routerNavigatedAction),
-      concatLatestFrom(() => this.store.select(NavSelectors.selectPreviousPath)),
-      filter(([{ payload }, previousPath]) => {
-        const currentPath = payload.event.url;
-        return (
-          !!previousPath?.startsWith('/album/') && !currentPath?.startsWith('/album/')
-        );
-      }),
-      map(([, previousPath]) => previousPath!.split('/album/')[1]?.split('/')[1] ?? null),
-      concatLatestFrom(album =>
-        this.store.select(ImagesSelectors.selectImageEntitiesByAlbum(album)),
-      ),
-      map(([, entities]) => {
-        const imageIds = entities.map(entity => entity.image.id);
-        return ImagesActions.albumFormDataRestored({ imageIds });
-      }),
-    ),
-  );
-
-  redirectToPhotoGalleryRouteOnImageFetchFail$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ImagesActions.fetchMainImageFailed),
-      map(() => NavActions.navigationRequested({ path: '' })),
     ),
   );
 

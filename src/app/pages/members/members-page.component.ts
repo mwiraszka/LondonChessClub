@@ -51,7 +51,7 @@ import { isLccError, parseCsv } from '@app/utils';
       }
 
       <lcc-data-toolbar
-        entity="members"
+        entity="member"
         [filteredCount]="vm.filteredCount"
         [options]="vm.options"
         searchPlaceholder="Search by name, city or username"

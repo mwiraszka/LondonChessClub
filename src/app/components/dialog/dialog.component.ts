@@ -43,7 +43,7 @@ export class DialogComponent<TComponent extends DialogOutput<TResult>, TResult>
   @Output() public result = new EventEmitter<TResult | 'close'>();
 
   constructor(
-    @Inject(DIALOG_CONFIG_TOKEN) private dialogConfig: DialogConfig<TComponent>,
+    @Inject(DIALOG_CONFIG_TOKEN) public dialogConfig: DialogConfig<TComponent>,
   ) {}
 
   public ngAfterViewInit(): void {

@@ -1,7 +1,7 @@
 import { GameScore } from '@app/models';
-import { isGameScore } from '@app/models/game-details.model';
 
-import { isDefined } from '../common/is-defined.util';
+import { isDefined } from '../type-guards/is-defined.util';
+import { isGameScore } from '../type-guards/is-game-score.util';
 
 /**
  * Parse PGN for a player's score (`1`, `1/2`, `0` or `*`).

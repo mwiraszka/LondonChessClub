@@ -64,9 +64,7 @@ export const imagesReducer = createReducer(
   initialState,
 
   on(
-    ImagesActions.fetchAllImagesMetadataRequested,
     ImagesActions.fetchFilteredThumbnailsRequested,
-    ImagesActions.fetchBatchThumbnailsRequested,
     ImagesActions.fetchMainImageRequested,
     ImagesActions.addImageRequested,
     ImagesActions.addImagesRequested,
@@ -78,6 +76,19 @@ export const imagesReducer = createReducer(
       ...state,
       callState: {
         status: 'loading',
+        loadStart: new Date().toISOString(),
+        error: null,
+      },
+    }),
+  ),
+
+  on(
+    ImagesActions.fetchAllImagesMetadataRequested,
+    ImagesActions.fetchBatchThumbnailsRequested,
+    (state): ImagesState => ({
+      ...state,
+      callState: {
+        status: 'background-loading',
         loadStart: new Date().toISOString(),
         error: null,
       },
@@ -379,7 +390,7 @@ export const imagesReducer = createReducer(
   }),
 
   on(ImagesActions.imageFormDataRestored, (state, { imageId }): ImagesState => {
-    const originalImage = state.entities[imageId]?.image;
+    const originalImage = imageId ? state.entities[imageId]?.image : null;
 
     if (!originalImage) {
       return { ...state, newImagesFormData: {} };
@@ -394,25 +405,26 @@ export const imagesReducer = createReducer(
     );
   }),
 
-  on(ImagesActions.albumFormDataRestored, (state, { imageIds }): ImagesState => {
+  on(ImagesActions.albumFormDataRestored, (state, { album }): ImagesState => {
+    if (!album) {
+      return { ...state, newImagesFormData: {} };
+    }
+
+    const albumEntities = compact(
+      state.ids
+        .map(id => state.entities[id])
+        .filter(entity => entity?.image?.album === album),
+    );
+
+    if (!albumEntities.length) {
+      return { ...state, newImagesFormData: {} };
+    }
+
     return imagesAdapter.upsertMany(
-      compact(
-        imageIds.map(imageId => {
-          const originalImage = state.entities[imageId]?.image;
-
-          if (!originalImage) {
-            console.warn(
-              `[LCC] Unable to find image ${imageId} for album form data reset`,
-            );
-            return undefined;
-          }
-
-          return {
-            image: originalImage,
-            formData: pick(originalImage, IMAGE_FORM_DATA_PROPERTIES),
-          };
-        }),
-      ),
+      albumEntities.map(entity => ({
+        image: entity.image,
+        formData: pick(entity.image, IMAGE_FORM_DATA_PROPERTIES),
+      })),
       { ...state, newImagesFormData: {} },
     );
   }),

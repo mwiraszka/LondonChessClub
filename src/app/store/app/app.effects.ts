@@ -23,6 +23,7 @@ import { environment } from '@env';
 import { AppActions, AppSelectors } from '.';
 
 type NotifyAction = ReturnType<
+  | (typeof AppActions)[keyof typeof AppActions]
   | (typeof ArticlesActions)[keyof typeof ArticlesActions]
   | (typeof AuthActions)[keyof typeof AuthActions]
   | (typeof EventsActions)[keyof typeof EventsActions]
@@ -34,6 +35,8 @@ type NotifyAction = ReturnType<
 @Injectable()
 export class AppEffects {
   readonly ACTIONS_TO_NOTIFY = [
+    AppActions.unexpectedErrorOccurred,
+
     ArticlesActions.deleteArticleFailed,
     ArticlesActions.deleteArticleSucceeded,
     ArticlesActions.fetchArticleFailed,
@@ -166,51 +169,52 @@ export class AppEffects {
   ) {}
 
   private readonly articlesRequested = [
+    ArticlesActions.deleteArticleRequested,
+    ArticlesActions.fetchArticleRequested,
     ArticlesActions.fetchFilteredArticlesRequested,
     ArticlesActions.fetchHomePageArticlesRequested,
-    ArticlesActions.fetchArticleRequested,
     ArticlesActions.publishArticleRequested,
-    ArticlesActions.updateArticleRequested,
     ArticlesActions.updateArticleBookmarkRequested,
-    ArticlesActions.deleteArticleRequested,
+    ArticlesActions.updateArticleRequested,
   ];
 
   private readonly eventsRequested = [
+    EventsActions.addEventRequested,
+    EventsActions.deleteEventRequested,
     EventsActions.fetchEventsRequested,
     EventsActions.fetchEventRequested,
-    EventsActions.addEventRequested,
     EventsActions.updateEventRequested,
-    EventsActions.deleteEventRequested,
   ];
 
   private readonly imagesRequested = [
-    ImagesActions.fetchAllImagesMetadataRequested,
-    ImagesActions.fetchFilteredThumbnailsRequested,
-    ImagesActions.fetchBatchThumbnailsRequested,
-    ImagesActions.fetchMainImageRequested,
     ImagesActions.addImageRequested,
     ImagesActions.addImagesRequested,
-    ImagesActions.updateImageRequested,
-    ImagesActions.updateAlbumRequested,
-    ImagesActions.deleteImageRequested,
     ImagesActions.deleteAlbumRequested,
+    ImagesActions.deleteImageRequested,
+    ImagesActions.fetchAlbumThumbnailsRequested,
+    ImagesActions.fetchAllImagesMetadataRequested,
+    ImagesActions.fetchBatchThumbnailsRequested,
+    ImagesActions.fetchFilteredThumbnailsRequested,
+    ImagesActions.fetchMainImageRequested,
+    ImagesActions.updateAlbumRequested,
+    ImagesActions.updateImageRequested,
   ];
 
   private readonly membersRequested = [
+    MembersActions.addMemberRequested,
+    MembersActions.deleteMemberRequested,
+    MembersActions.exportMembersToCsvRequested,
     MembersActions.fetchAllMembersRequested,
     MembersActions.fetchFilteredMembersRequested,
     MembersActions.fetchMemberRequested,
-    MembersActions.addMemberRequested,
-    MembersActions.updateMemberRequested,
-    MembersActions.deleteMemberRequested,
     MembersActions.updateMemberRatingsRequested,
-    MembersActions.exportMembersToCsvRequested,
+    MembersActions.updateMemberRequested,
   ];
 
   private readonly authRequested = [
+    AuthActions.codeForPasswordChangeRequested,
     AuthActions.loginRequested,
     AuthActions.logoutRequested,
-    AuthActions.codeForPasswordChangeRequested,
     AuthActions.passwordChangeRequested,
   ];
 
@@ -283,6 +287,12 @@ export class AppEffects {
 
   private mapActionToToast(action: NotifyAction): Toast | null {
     switch (action.type) {
+      case AppActions.unexpectedErrorOccurred.type:
+        return {
+          title: 'Unexpected error',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
       case ArticlesActions.deleteArticleFailed.type:
         return {
           title: 'Article deletion',

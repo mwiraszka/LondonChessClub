@@ -71,9 +71,8 @@ export class AlbumFormComponent implements OnInit {
   @Output() fileActionFail = new EventEmitter<LccError>();
   @Output() removeNewImage = new EventEmitter<Id>();
   @Output() requestAddImages = new EventEmitter<void>();
-  @Output() requestFetchThumbnails = new EventEmitter<Id[]>();
   @Output() requestUpdateAlbum = new EventEmitter<string>();
-  @Output() restore = new EventEmitter<Id[]>();
+  @Output() restore = new EventEmitter<string | null>();
 
   public form!: FormGroup<AlbumFormGroup>;
   public newImageDataUrls: Record<string, Url> = {};
@@ -106,16 +105,6 @@ export class AlbumFormComponent implements OnInit {
   public ngOnInit(): void {
     this.initForm();
     this.initFormValueChangeListener();
-
-    if (this.imageEntities.length) {
-      const imageIds = this.imageEntities
-        .filter(entity => !entity.image.thumbnailUrl && !entity.image.mainUrl)
-        .map(entity => entity.image.id);
-
-      if (imageIds.length) {
-        this.requestFetchThumbnails.emit(imageIds);
-      }
-    }
 
     if (Object.keys(this.newImagesFormData).length) {
       this.fetchNewImageDataUrls();
@@ -270,7 +259,7 @@ export class AlbumFormComponent implements OnInit {
       return;
     }
 
-    this.restore.emit(this.imageEntities.map(entity => entity.image.id));
+    this.restore.emit(this.album);
 
     setTimeout(() => this.ngOnInit());
   }

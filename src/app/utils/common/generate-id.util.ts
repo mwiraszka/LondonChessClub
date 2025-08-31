@@ -1,6 +1,6 @@
 import { Id } from '@app/models';
 
-import { isDefined } from './is-defined.util';
+import { isDefined } from '../type-guards/is-defined.util';
 
 /**
  * Generate a hexadecimal ID;

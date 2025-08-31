@@ -99,6 +99,55 @@ export class ImagesEffects {
     );
   });
 
+  fetchAlbumThumbnailImages$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ImagesActions.fetchAlbumThumbnailsRequested),
+      // Ensure metadata has been loaded; if not, fetch it first
+      mergeMap(({ album }) =>
+        this.store.select(ImagesSelectors.selectLastMetadataFetch).pipe(
+          take(1),
+          switchMap(lastFetch => {
+            if (!lastFetch) {
+              // Trigger metadata fetch and wait until it succeeds before proceeding
+              this.store.dispatch(ImagesActions.fetchAllImagesMetadataRequested());
+              return this.actions$.pipe(
+                ofType(ImagesActions.fetchAllImagesMetadataSucceeded),
+                take(1),
+                switchMap(() =>
+                  this.store
+                    .select(ImagesSelectors.selectImagesByAlbum(album))
+                    .pipe(take(1)),
+                ),
+              );
+            }
+            return this.store
+              .select(ImagesSelectors.selectImagesByAlbum(album))
+              .pipe(take(1));
+          }),
+          filter(ids => !!ids.length),
+          map(images => images.map(image => image.id)),
+          switchMap(imageIds =>
+            this.imagesApiService.getBatchThumbnailImages(imageIds).pipe(
+              map(response =>
+                ImagesActions.fetchBatchThumbnailsSucceeded({
+                  images: response.data,
+                  context: 'photos-in-album',
+                }),
+              ),
+              catchError(error =>
+                of(
+                  ImagesActions.fetchBatchThumbnailsFailed({
+                    error: parseError(error),
+                  }),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  });
+
   fetchArticleBannerThumbnails$ = createEffect(() =>
     this.actions$.pipe(
       ofType(

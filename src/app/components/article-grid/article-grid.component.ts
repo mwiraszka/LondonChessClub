@@ -2,9 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  HostBinding,
+  HostListener,
   Input,
   OnChanges,
+  OnInit,
   Output,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -48,26 +49,48 @@ import { isDefined } from '@app/utils';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArticleGridComponent implements OnChanges {
+export class ArticleGridComponent implements OnInit, OnChanges {
   @Input({ required: true }) articles!: Article[];
   @Input({ required: true }) images!: Image[];
   @Input({ required: true }) isAdmin!: boolean;
-  @Input({ required: true }) options!: DataPaginationOptions<Article>;
 
-  @Output() public requestDeleteArticle = new EventEmitter<Article>();
-  @Output() public requestUpdateArticleBookmark = new EventEmitter<{
+  @Input() isHomePage?: boolean;
+  @Input() options?: DataPaginationOptions<Article>;
+
+  @Output() requestDeleteArticle = new EventEmitter<Article>();
+  @Output() requestUpdateArticleBookmark = new EventEmitter<{
     articleId: Id;
     bookmark: boolean;
   }>();
 
-  @HostBinding('attr.card-count')
-  public get cardCount(): number {
-    return this.articles.length;
+  private bannerImagesMap = new Map<Id, Image>();
+  private limitToFourArticles = false;
+
+  @HostListener('window:resize', ['$event'])
+  private setHomePageArticleCount = () => {
+    if (this.isHomePage) {
+      this.limitToFourArticles =
+        window.innerWidth < 642 || (window.innerWidth > 839 && window.innerWidth < 1235);
+    }
+  };
+
+  get visibleArticles(): Article[] {
+    if (this.limitToFourArticles) {
+      return this.articles.slice(0, 4);
+    }
+
+    if (!this.options || this.options.pageSize === -1) {
+      return this.articles;
+    }
+
+    return this.articles.slice(0, this.options.pageSize);
   }
 
-  private bannerImagesMap = new Map<Id, Image>();
-
   constructor(private readonly dialogService: DialogService) {}
+
+  public ngOnInit(): void {
+    this.setHomePageArticleCount();
+  }
 
   public ngOnChanges(changes: NgChanges<ArticleGridComponent>): void {
     if (changes.images) {

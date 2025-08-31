@@ -31,22 +31,23 @@ export const fetchBatchThumbnailsRequested = createAction(
   '[Images] Fetch batch thumbnails requested',
   props<{
     imageIds: Id[];
-    context:
-      | 'album-covers'
-      | 'article-banner-images'
-      | 'photos-in-album'
-      | 'url-expiration';
+    context: 'album-covers' | 'article-banner-images' | 'url-expiration';
   }>(),
+);
+export const fetchAlbumThumbnailsRequested = createAction(
+  '[Images] Fetch album thumbnails requested',
+  props<{ album: string }>(),
 );
 export const fetchBatchThumbnailsSucceeded = createAction(
   '[Images] Fetch batch thumbnails succeeded',
   props<{
     images: Image[];
+    album?: string;
     context:
       | 'album-covers'
       | 'article-banner-images'
-      | 'photos-in-album'
-      | 'url-expiration';
+      | 'url-expiration'
+      | 'photos-in-album';
   }>(),
 );
 export const fetchBatchThumbnailsFailed = createAction(
@@ -85,6 +86,8 @@ export const addImageFailed = createAction(
   '[Images] Add image failed',
   props<{ error: LccError }>(),
 );
+
+export const createAnAlbumSelected = createAction('[Images] Create an album selected');
 
 export const addImagesRequested = createAction('[Images] Add images requested');
 export const addImagesSucceeded = createAction(
@@ -171,12 +174,12 @@ export const formDataChanged = createAction(
 
 export const imageFormDataRestored = createAction(
   '[Images] Image form data restored',
-  props<{ imageId: Id }>(),
+  props<{ imageId: Id | null }>(),
 );
 
 export const albumFormDataRestored = createAction(
   '[Images] Album form data restored',
-  props<{ imageIds: Id[] }>(),
+  props<{ album: string | null }>(),
 );
 
 export const imageFileActionFailed = createAction(

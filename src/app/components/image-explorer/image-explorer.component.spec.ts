@@ -151,7 +151,7 @@ describe('ImageExplorerComponent', () => {
     });
 
     it('should render images from the store', () => {
-      expect(queryAll(fixture.debugElement, '.image-card-container').length).toBe(
+      expect(queryAll(fixture.debugElement, '.image-card').length).toBe(
         mockImages.length,
       );
     });
@@ -160,9 +160,7 @@ describe('ImageExplorerComponent', () => {
       component.selectable = true;
       fixture.detectChanges();
 
-      expect(
-        query(fixture.debugElement, '.image-card-container').classes['selectable'],
-      ).toBe(true);
+      expect(query(fixture.debugElement, '.image-card').classes['selectable']).toBe(true);
     });
 
     it('should not apply selectable class when selectable is false', () => {
@@ -170,16 +168,16 @@ describe('ImageExplorerComponent', () => {
       changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
-      expect(
-        query(fixture.debugElement, '.image-card-container').classes['selectable'],
-      ).toBe(undefined);
+      expect(query(fixture.debugElement, '.image-card').classes['selectable']).toBe(
+        undefined,
+      );
     });
 
     it('should emit dialogResult with image id when clicked and selectable is true', () => {
       component.selectable = true;
       fixture.detectChanges();
 
-      query(fixture.debugElement, '.image-card-container').triggerEventHandler('click');
+      query(fixture.debugElement, '.image-card').triggerEventHandler('click');
 
       expect(dialogResultSpy).toHaveBeenCalledWith(mockImages[0].id);
     });
@@ -188,7 +186,7 @@ describe('ImageExplorerComponent', () => {
       component.selectable = false;
       fixture.detectChanges();
 
-      query(fixture.debugElement, '.image-card-container').triggerEventHandler('click');
+      query(fixture.debugElement, '.image-card').triggerEventHandler('click');
 
       expect(dialogResultSpy).not.toHaveBeenCalled();
     });

@@ -49,9 +49,9 @@ export class DataToolbarComponent<T = EntityType> implements OnInit {
 
   public get allPageSizeTooltip(): string {
     if (this.filteredCount === 1) {
-      return 'Show this one ' + this.entity.slice(0, -1) + ' on a single page';
+      return 'Show this one ' + this.entity + ' on a single page';
     }
-    return 'Show all ' + this.filteredCount + ' ' + this.entity + ' on a single page';
+    return 'Show all ' + this.filteredCount + ' ' + this.entity + 's on a single page';
   }
 
   public get paginationSummary(): string {
@@ -69,7 +69,7 @@ export class DataToolbarComponent<T = EntityType> implements OnInit {
         ? this.filteredCount
         : Math.min(this.options.pageSize * this.options.page, this.filteredCount);
     const range = `${rangeStart}\u00A0\u2013\u00A0${rangeEnd}`;
-    const entityName = this.filteredCount === 1 ? this.entity.slice(0, -1) : this.entity;
+    const entityName = this.filteredCount === 1 ? this.entity : this.entity + 's';
 
     return `Showing ${range}\u00A0\u00A0/\u00A0\u00A0${this.filteredCount} ${entityName}`;
   }

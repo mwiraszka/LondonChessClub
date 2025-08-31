@@ -1,4 +1,4 @@
-import { isString } from '../common/is-string.util';
+import { isString } from '../type-guards/is-string.util';
 
 /**
  * Check whether value is a valid time, formatted as `hh:mm A`

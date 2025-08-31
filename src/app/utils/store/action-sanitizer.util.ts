@@ -2,28 +2,21 @@ import { Action } from '@ngrx/store';
 
 import { AuthActions } from '@app/store/auth';
 
+interface GenericAction extends Action {
+  [key: string]: unknown;
+}
+
 /**
- * Sanitize the action by replacing sensitive props if it includes any;
- * otherwise return the same action (id param required for sanitizer for some reason).
+ * Sanitize the action by replacing sensitive props if it includes any.
  */
-export function actionSanitizer(action: Action, id: number): Action {
-  const shruggy = `¯\\_(ツ)_/¯ ${id}`;
-  if (
-    action.type === AuthActions.loginRequested.type ||
-    action.type === AuthActions.passwordChangeRequested.type
-  ) {
-    return {
-      ...action,
-      request: shruggy,
-    } as Action;
-  }
+export function actionSanitizer(action: Action): GenericAction {
+  const shruggy = '¯\\_(ツ)_/¯';
 
-  if (action.type === AuthActions.passwordChangeSucceeded.type) {
-    return {
-      ...action,
-      newPassword: shruggy,
-    } as Action;
+  switch (action.type) {
+    case AuthActions.loginRequested.type:
+    case AuthActions.passwordChangeRequested.type:
+      return { ...action, password: shruggy };
+    default:
+      return { ...action };
   }
-
-  return action;
 }

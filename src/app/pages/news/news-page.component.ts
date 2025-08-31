@@ -31,7 +31,7 @@ import { ImagesSelectors } from '@app/store/images';
       }
 
       <lcc-data-toolbar
-        entity="articles"
+        entity="article"
         [filteredCount]="vm.filteredCount"
         [options]="vm.options"
         searchPlaceholder="Search by author, title or content"

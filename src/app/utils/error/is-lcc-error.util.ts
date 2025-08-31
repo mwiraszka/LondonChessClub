@@ -1,7 +1,7 @@
 import { LccError } from '@app/models';
 
-import { isDefined } from '../common/is-defined.util';
-import { isString } from '../common/is-string.util';
+import { isDefined } from '../type-guards/is-defined.util';
+import { isString } from '../type-guards/is-string.util';
 
 export function isLccError(value: unknown): value is LccError {
   return (

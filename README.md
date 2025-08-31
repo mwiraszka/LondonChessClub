@@ -32,6 +32,18 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.8.4 - August 31st, 2025</summary>
+
+- 🚀 Minor touch-ups to cards in Article Grid and Image Explorer
+- 🚀 Fetch image metadata, article banner thumbnails and album cover thumbnails in the background to keep app responsive and avoid displaying unnecessary loading spinner while they load
+- 🐛 Clean up fragment URL from browser address bar whenever Document Viewer dialog on Documents page is closed
+- 🔧 Minor improvements to how Dialog Service handles different close events
+- 🔧 Clean up navigation and route redirect handling effects
+- 🔧 Reorganize type-guard utility functions and add specs for `actionSanitizer`, `isEntity` and `isGameScore` functions
+
+</details>
+
+<details>
 <summary>v5.8.3 - August 29th, 2025</summary>
 
 - 🚀 Fix article preview banner image section to 3:2 aspect ratio on larger screen sizes

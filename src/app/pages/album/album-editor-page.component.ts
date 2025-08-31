@@ -36,7 +36,6 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
         (fileActionFail)="onFileActionFail($event)"
         (removeNewImage)="onRemoveNewImage($event)"
         (requestAddImages)="onRequestAddImages()"
-        (requestFetchThumbnails)="onRequestFetchThumbnails($event)"
         (requestUpdateAlbum)="onRequestUpdateAlbum($event)"
         (restore)="onRestore($event)">
       </lcc-album-form>
@@ -126,20 +125,11 @@ export class AlbumEditorPageComponent implements EditorPage, OnInit {
     this.store.dispatch(ImagesActions.addImagesRequested());
   }
 
-  public onRequestFetchThumbnails(imageIds: string[]): void {
-    this.store.dispatch(
-      ImagesActions.fetchBatchThumbnailsRequested({
-        imageIds,
-        context: 'photos-in-album',
-      }),
-    );
-  }
-
   public onRequestUpdateAlbum(album: string): void {
     this.store.dispatch(ImagesActions.updateAlbumRequested({ album }));
   }
 
-  public onRestore(imageIds: string[]): void {
-    this.store.dispatch(ImagesActions.albumFormDataRestored({ imageIds }));
+  public onRestore(album: string | null): void {
+    this.store.dispatch(ImagesActions.albumFormDataRestored({ album }));
   }
 }

@@ -79,15 +79,6 @@ describe('ArticleGridComponent', () => {
     });
   });
 
-  describe('cardCount getter', () => {
-    it('should return correct article card count', () => {
-      fixture.componentRef.setInput('articles', MOCK_ARTICLES.slice(0, 3));
-      fixture.detectChanges();
-
-      expect(component.cardCount).toBe(3);
-    });
-  });
-
   describe('getBannerImage', () => {
     it('should return the image from bannerImagesMap when available', () => {
       const mockImage = MOCK_IMAGES[0];
@@ -343,6 +334,99 @@ describe('ArticleGridComponent', () => {
         '.article-title mark',
       );
       expect(highlightedTitle).toContain('Blitz');
+    });
+
+    describe('home page article count based on window size', () => {
+      const allArticles = MOCK_ARTICLES; // 5 total
+      let originalInnerWidth: number;
+      const setWidth = (width: number) => {
+        Object.defineProperty(window, 'innerWidth', { value: width, configurable: true });
+        window.dispatchEvent(new Event('resize'));
+        fixture.detectChanges();
+      };
+
+      beforeEach(() => {
+        originalInnerWidth = window.innerWidth;
+      });
+
+      afterEach(() => {
+        Object.defineProperty(window, 'innerWidth', {
+          value: originalInnerWidth,
+          configurable: true,
+        });
+      });
+
+      it('should not limit articles when isHomePage is false regardless of width', () => {
+        setWidth(500); // would normally trigger limit if home page
+        fixture.componentRef.setInput('isHomePage', false);
+        fixture.componentRef.setInput('articles', allArticles);
+        fixture.detectChanges();
+
+        expect(queryAll(fixture.debugElement, '.article').length).toBe(
+          allArticles.length,
+        );
+      });
+
+      it('should limit to 4 articles when width < 642 (home page)', () => {
+        fixture.componentRef.setInput('isHomePage', true);
+        setWidth(600); // < 642 -> limit
+        fixture.componentRef.setInput('articles', allArticles);
+        fixture.detectChanges();
+
+        expect(queryAll(fixture.debugElement, '.article').length).toBe(4);
+      });
+
+      it('should show all articles when 642 <= width <= 839 (home page)', () => {
+        setWidth(800); // between 642 and 839 -> no limit
+        fixture.componentRef.setInput('isHomePage', true);
+        fixture.componentRef.setInput('articles', allArticles);
+        fixture.detectChanges();
+
+        expect(queryAll(fixture.debugElement, '.article').length).toBe(
+          allArticles.length,
+        );
+      });
+
+      it('should limit to 4 articles when 840 <= width < 1235 (home page)', () => {
+        fixture.componentRef.setInput('isHomePage', true);
+        setWidth(1100); // > 839 and < 1235 -> limit
+        fixture.componentRef.setInput('articles', allArticles);
+        fixture.detectChanges();
+
+        expect(queryAll(fixture.debugElement, '.article').length).toBe(4);
+      });
+
+      it('should show all articles when width >= 1235 (home page)', () => {
+        setWidth(1300); // >= 1235 -> no limit
+        fixture.componentRef.setInput('isHomePage', true);
+        fixture.componentRef.setInput('articles', allArticles);
+        fixture.detectChanges();
+
+        expect(queryAll(fixture.debugElement, '.article').length).toBe(
+          allArticles.length,
+        );
+      });
+
+      it('should update article count dynamically on resize events (home page)', () => {
+        fixture.componentRef.setInput('isHomePage', true);
+        fixture.componentRef.setInput('articles', allArticles);
+
+        setWidth(600); // limit
+        expect(queryAll(fixture.debugElement, '.article').length).toBe(4);
+
+        setWidth(650); // no limit
+        expect(queryAll(fixture.debugElement, '.article').length).toBe(
+          allArticles.length,
+        );
+
+        setWidth(1100); // limit again
+        expect(queryAll(fixture.debugElement, '.article').length).toBe(4);
+
+        setWidth(1400); // no limit
+        expect(queryAll(fixture.debugElement, '.article').length).toBe(
+          allArticles.length,
+        );
+      });
     });
   });
 });

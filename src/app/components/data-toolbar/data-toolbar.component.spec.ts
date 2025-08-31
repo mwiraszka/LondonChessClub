@@ -34,7 +34,7 @@ describe('DataToolbarComponent', () => {
     optionsChangeSpy = jest.spyOn(component.optionsChange, 'emit');
     optionsChangeNoFetchSpy = jest.spyOn(component.optionsChangeNoFetch, 'emit');
 
-    component.entity = 'members';
+    component.entity = 'member';
     component.filteredCount = MOCK_MEMBERS.length;
     component.options = { ...mockOptions };
     fixture.detectChanges();

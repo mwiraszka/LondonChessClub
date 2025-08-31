@@ -666,6 +666,7 @@ describe('AlbumFormComponent', () => {
   describe('onRestore', () => {
     beforeEach(() => {
       component.hasUnsavedChanges = true;
+      component.album = 'My Awesome Album';
       component.imageEntities = [
         {
           image: MOCK_IMAGES[0],
@@ -717,7 +718,7 @@ describe('AlbumFormComponent', () => {
         },
       });
       expect(changeSpy).toHaveBeenCalled();
-      expect(restoreSpy).toHaveBeenCalledWith([MOCK_IMAGES[0].id, MOCK_IMAGES[1].id]);
+      expect(restoreSpy).toHaveBeenCalledWith('My Awesome Album');
       expect(initFormSpy).toHaveBeenCalledTimes(1);
       expect(initFormValueChangeListenerSpy).toHaveBeenCalledTimes(1);
     });

@@ -38,6 +38,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 - 🐛 Clean up fragment URL from browser address bar whenever Document Viewer dialog on Documents page is closed
 - 🔧 Minor improvements to how Dialog Service handles different close events
 - 🔧 Clean up navigation and route redirect handling effects
+- 🔧 Reorganize type-guard utility functions and add specs for `actionSanitizer`, `isEntity` and `isGameScore` functions
 
 </details>
 

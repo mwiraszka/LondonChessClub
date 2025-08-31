@@ -1,4 +1,4 @@
-import { isDefined } from '../common/is-defined.util';
+import { isDefined } from '../type-guards/is-defined.util';
 
 /**
  * Parse PGN for one of the two players' names.

@@ -1,7 +1,7 @@
 import { isString } from './is-string.util';
 
 describe('isString', () => {
-  it('transforms values correctly', () => {
+  it('correctly identifies string-type values', () => {
     expect(isString(undefined)).toBe(false);
     expect(isString(null)).toBe(false);
     expect(isString(true)).toBe(false);

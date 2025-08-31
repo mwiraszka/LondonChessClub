@@ -1,7 +1,7 @@
 import { isDefined } from './is-defined.util';
 
 describe('isDefined', () => {
-  it('transforms values correctly', () => {
+  it('correctly identifies defined values', () => {
     expect(isDefined(undefined)).toBe(false);
     expect(isDefined(null)).toBe(false);
 

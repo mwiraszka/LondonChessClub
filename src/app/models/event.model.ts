@@ -5,22 +5,15 @@ import { EVENT_FORM_DATA_PROPERTIES } from '@app/constants';
 import { Id, IsoDate } from './core.model';
 import { ModificationInfo } from './modification-info.model';
 
-const EVENT_TYPES = [
-  'blitz tournament (10 mins)',
-  'rapid tournament (25 mins)',
-  'rapid tournament (40 mins)',
-  'lecture',
-  'simul',
-  'championship',
-  'closed',
-  'other',
-] as const;
-export type EventType = (typeof EVENT_TYPES)[number];
-
-export function isEventType(value: unknown): value is EventType {
-  return EVENT_TYPES.indexOf(value as EventType) !== -1;
-}
-
+export type EventType =
+  | 'blitz tournament (10 mins)'
+  | 'rapid tournament (25 mins)'
+  | 'rapid tournament (40 mins)'
+  | 'lecture'
+  | 'simul'
+  | 'championship'
+  | 'closed'
+  | 'other';
 export interface Event {
   id: Id;
   type: EventType;

@@ -1,6 +1,6 @@
 import { isEqual } from 'lodash';
 
-import { isDefined } from './is-defined.util';
+import { isDefined } from '../type-guards/is-defined.util';
 
 /**
  * Check whether two values are (deeply) equal.

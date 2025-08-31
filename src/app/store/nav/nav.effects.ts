@@ -7,19 +7,15 @@ import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { isEntity } from '@app/models/entity.model';
-import { isNavPath } from '@app/models/nav-path.model';
 import { AppActions } from '@app/store/app';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthActions } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
 import { MembersActions } from '@app/store/members';
-import { isDefined, isValidCollectionId } from '@app/utils';
+import { isCollectionId, isDefined, isEntity } from '@app/utils';
 
 import { NavActions, NavSelectors } from '.';
-
-// TODO: Move all type guard functions to a dedicated utils directory
 
 @Injectable()
 export class NavEffects {
@@ -27,7 +23,6 @@ export class NavEffects {
     this.actions$.pipe(
       ofType(routerNavigatedAction),
       map(({ payload }) => payload.event.url),
-      filter(path => isNavPath(path)),
       map(path => NavActions.appendPathToHistory({ path })),
     ),
   );
@@ -148,46 +143,40 @@ export class NavEffects {
           case 'album':
             if (controlMode === 'add' && !isDefined(id)) {
               return ImagesActions.createAnAlbumSelected();
-            } else if (
-              ['edit', 'view'].includes(controlMode) &&
-              isValidCollectionId(id)
-            ) {
-              return ImagesActions.fetchAlbumThumbnailsRequested({ album: id! });
+            } else if (['edit', 'view'].includes(controlMode) && isCollectionId(id)) {
+              return ImagesActions.fetchAlbumThumbnailsRequested({ album: id });
             }
             return NavActions.navigationRequested({ path: 'photo-gallery' });
 
           case 'article':
             if (controlMode === 'add' && !isDefined(id)) {
               return ArticlesActions.createAnArticleSelected();
-            } else if (
-              ['edit', 'view'].includes(controlMode) &&
-              isValidCollectionId(id)
-            ) {
-              return ArticlesActions.fetchArticleRequested({ articleId: id! });
+            } else if (['edit', 'view'].includes(controlMode) && isCollectionId(id)) {
+              return ArticlesActions.fetchArticleRequested({ articleId: id });
             }
             return NavActions.navigationRequested({ path: 'news' });
 
           case 'event':
             if (controlMode === 'add' && !isDefined(id)) {
               return EventsActions.addAnEventSelected();
-            } else if (controlMode === 'edit' && isValidCollectionId(id)) {
-              return EventsActions.fetchEventRequested({ eventId: id! });
+            } else if (controlMode === 'edit' && isCollectionId(id)) {
+              return EventsActions.fetchEventRequested({ eventId: id });
             }
             return NavActions.navigationRequested({ path: 'schedule' });
 
           case 'image':
             if (controlMode === 'add' && !isDefined(id)) {
               return ImagesActions.addAnImageSelected();
-            } else if (controlMode === 'edit' && isValidCollectionId(id)) {
-              return ImagesActions.fetchMainImageRequested({ imageId: id! });
+            } else if (controlMode === 'edit' && isCollectionId(id)) {
+              return ImagesActions.fetchMainImageRequested({ imageId: id });
             }
             return NavActions.navigationRequested({ path: 'photo-gallery' });
 
           case 'member':
             if (controlMode === 'add' && !isDefined(id)) {
               return MembersActions.addAMemberSelected();
-            } else if (controlMode === 'edit' && isValidCollectionId(id)) {
-              return MembersActions.fetchMemberRequested({ memberId: id! });
+            } else if (controlMode === 'edit' && isCollectionId(id)) {
+              return MembersActions.fetchMemberRequested({ memberId: id });
             }
             return NavActions.navigationRequested({ path: 'members' });
 

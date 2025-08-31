@@ -35,6 +35,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.8.4 - August 31st, 2025</summary>
 
 - 🚀 Minor touch-ups to cards in Article Grid and Image Explorer
+- 🚀 Fetch image metadata, article banner thumbnails and album cover thumbnails in the background to keep app responsive and avoid displaying unnecessary loading spinner while they load
 - 🐛 Clean up fragment URL from browser address bar whenever Document Viewer dialog on Documents page is closed
 - 🔧 Minor improvements to how Dialog Service handles different close events
 - 🔧 Clean up navigation and route redirect handling effects

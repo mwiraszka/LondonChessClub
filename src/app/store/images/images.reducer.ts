@@ -64,9 +64,7 @@ export const imagesReducer = createReducer(
   initialState,
 
   on(
-    ImagesActions.fetchAllImagesMetadataRequested,
     ImagesActions.fetchFilteredThumbnailsRequested,
-    ImagesActions.fetchBatchThumbnailsRequested,
     ImagesActions.fetchMainImageRequested,
     ImagesActions.addImageRequested,
     ImagesActions.addImagesRequested,
@@ -78,6 +76,19 @@ export const imagesReducer = createReducer(
       ...state,
       callState: {
         status: 'loading',
+        loadStart: new Date().toISOString(),
+        error: null,
+      },
+    }),
+  ),
+
+  on(
+    ImagesActions.fetchAllImagesMetadataRequested,
+    ImagesActions.fetchBatchThumbnailsRequested,
+    (state): ImagesState => ({
+      ...state,
+      callState: {
+        status: 'background-loading',
         loadStart: new Date().toISOString(),
         error: null,
       },

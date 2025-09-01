@@ -37,7 +37,13 @@ describe('ArticleFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ArticleFormComponent, ReactiveFormsModule],
-      providers: [FormBuilder, { provide: DialogService, useValue: { open: jest.fn() } }],
+      providers: [
+        {
+          provide: DialogService,
+          useValue: { open: jest.fn() },
+        },
+        FormBuilder,
+      ],
     })
       .overrideComponent(ArticleFormComponent, {
         remove: { imports: [MarkdownRendererComponent] },

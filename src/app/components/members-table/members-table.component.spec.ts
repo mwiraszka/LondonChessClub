@@ -35,8 +35,11 @@ describe('MembersTableComponent', () => {
     TestBed.configureTestingModule({
       imports: [AdminControlsDirective, MembersTableComponent, TooltipDirective],
       providers: [
+        {
+          provide: DialogService,
+          useValue: { open: jest.fn() },
+        },
         provideRouter([]),
-        { provide: DialogService, useValue: { open: jest.fn() } },
       ],
     }).compileComponents();
 

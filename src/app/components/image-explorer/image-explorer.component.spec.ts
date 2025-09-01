@@ -31,9 +31,15 @@ describe('ImageExplorerComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AdminControlsDirective, ImageExplorerComponent],
       providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: { paramMap: [] },
+        },
+        {
+          provide: DialogService,
+          useValue: { open: jest.fn() },
+        },
         provideMockStore(),
-        { provide: DialogService, useValue: { open: jest.fn() } },
-        { provide: ActivatedRoute, useValue: { paramMap: [] } },
       ],
     }).compileComponents();
 

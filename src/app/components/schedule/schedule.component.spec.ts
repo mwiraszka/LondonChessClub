@@ -29,8 +29,11 @@ describe('ScheduleComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AdminControlsDirective, AdminToolbarComponent, ScheduleComponent],
       providers: [
+        {
+          provide: DialogService,
+          useValue: { open: jest.fn() },
+        },
         provideRouter([]),
-        { provide: DialogService, useValue: { open: jest.fn() } },
       ],
     }).compileComponents();
 

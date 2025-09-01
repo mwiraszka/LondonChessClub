@@ -32,7 +32,10 @@ describe('ImageViewerComponent', () => {
       imports: [AdminControlsDirective, ImageViewerComponent],
       providers: [
         provideMockStore(),
-        { provide: DialogService, useValue: { open: jest.fn() } },
+        {
+          provide: DialogService,
+          useValue: { open: jest.fn() },
+        },
         {
           provide: Renderer2,
           useValue: {
@@ -85,7 +88,7 @@ describe('ImageViewerComponent', () => {
 
     it('should dispatch fetchMainImageRequested for image at index 0', () => {
       // Manually trigger image fetch to avoid timing issues with async pipe subscription
-      // @ts-expect-error Testing private method
+      // @ts-expect-error Private class member
       component.fetchImage(0);
       expect(dispatchSpy).toHaveBeenCalledWith(
         ImagesActions.fetchMainImageRequested({

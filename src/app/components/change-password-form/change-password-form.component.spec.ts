@@ -22,8 +22,11 @@ describe('ChangePasswordFormComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ChangePasswordFormComponent, ReactiveFormsModule, RouterLink],
       providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: { paramMap: of([]) },
+        },
         FormBuilder,
-        { provide: ActivatedRoute, useValue: { paramMap: of([]) } },
       ],
     }).compileComponents();
 

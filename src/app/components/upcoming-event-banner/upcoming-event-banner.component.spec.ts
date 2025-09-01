@@ -22,7 +22,12 @@ describe('UpcomingEventBannerComponent', () => {
     await TestBed.configureTestingModule({
       imports: [UpcomingEventBannerComponent],
       providers: [
-        provideRouter([{ path: 'schedule', component: ScheduleStubComponent }]),
+        provideRouter([
+          {
+            path: 'schedule',
+            component: ScheduleStubComponent,
+          },
+        ]),
       ],
     }).compileComponents();
 

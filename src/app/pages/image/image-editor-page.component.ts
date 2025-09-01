@@ -4,7 +4,7 @@ import { Observable, combineLatest } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ImageFormComponent } from '@app/components/image-form/image-form.component';
@@ -44,6 +44,7 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
     }
   `,
   imports: [CommonModule, ImageFormComponent, LinkListComponent, PageHeaderComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageEditorPageComponent implements EditorPage, OnInit {
   public readonly entity = 'image';

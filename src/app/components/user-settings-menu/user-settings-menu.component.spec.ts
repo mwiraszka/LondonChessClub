@@ -34,6 +34,7 @@ describe('UserSettingsMenuComponent', () => {
       imports: [ToggleSwitchComponent, UserSettingsMenuComponent],
       providers: [provideMockStore()],
     }).compileComponents();
+
     fixture = TestBed.createComponent(UserSettingsMenuComponent);
     component = fixture.componentInstance;
 

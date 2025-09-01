@@ -10,6 +10,7 @@ import {
 } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostListener,
@@ -61,6 +62,7 @@ import { YEARS } from './years';
     PgnViewerComponent,
     ReactiveFormsModule,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameArchivesPageComponent implements OnInit, OnDestroy {
   private readonly FILE_PATH = 'assets/eco-openings.csv';
@@ -138,92 +140,6 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
   private openingChart?: Chart;
   private resultChart?: Chart;
 
-  private destroyCharts(): void {
-    this.openingChart?.destroy();
-    this.openingChart = undefined;
-    this.resultChart?.destroy();
-    this.resultChart = undefined;
-  }
-
-  private buildCommonOptions(): ChartConfiguration<'doughnut'>['options'] {
-    return {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          position: 'top',
-          labels: { boxWidth: 15, padding: 10, font: { size: 12 } },
-        },
-        tooltip: { enabled: true },
-      },
-      color: this.chartTextColor,
-    };
-  }
-
-  private tryInitOpeningChart(): void {
-    if (!this.showStats) return;
-    if (this.openingChart || !this.openingChartCanvas || !this.openingChartLabels.length)
-      return;
-    this.openingChart = new Chart(this.openingChartCanvas.nativeElement, {
-      type: 'doughnut',
-      data: { labels: this.openingChartLabels, datasets: this.openingChartDatasets },
-      options: this.buildCommonOptions(),
-    });
-  }
-
-  private tryInitResultChart(): void {
-    if (!this.showStats) return;
-    if (this.resultChart || !this.resultChartCanvas || !this.resultChartLabels.length)
-      return;
-    this.resultChart = new Chart(this.resultChartCanvas.nativeElement, {
-      type: 'doughnut',
-      data: { labels: this.resultChartLabels, datasets: this.resultChartDatasets },
-      options: this.buildCommonOptions(),
-    });
-  }
-
-  private updateCharts(forceRecreate = false): void {
-    if (!this.showStats) return;
-
-    // Opening chart
-    if (forceRecreate && this.openingChart) {
-      this.openingChart.destroy();
-      this.openingChart = undefined;
-    }
-    if (!this.openingChartLabels.length) {
-      if (this.openingChart) {
-        this.openingChart.destroy();
-        this.openingChart = undefined;
-      }
-    } else if (this.openingChart) {
-      this.openingChart.data.labels = this.openingChartLabels;
-      this.openingChart.data.datasets = this.openingChartDatasets;
-      this.openingChart.options.color = this.chartTextColor;
-      this.openingChart.update();
-    } else {
-      this.tryInitOpeningChart();
-    }
-
-    // Result chart
-    if (forceRecreate && this.resultChart) {
-      this.resultChart.destroy();
-      this.resultChart = undefined;
-    }
-    if (!this.resultChartLabels.length) {
-      if (this.resultChart) {
-        this.resultChart.destroy();
-        this.resultChart = undefined;
-      }
-    } else if (this.resultChart) {
-      this.resultChart.data.labels = this.resultChartLabels;
-      this.resultChart.data.datasets = this.resultChartDatasets;
-      this.resultChart.options.color = this.chartTextColor;
-      this.resultChart.update();
-    } else {
-      this.tryInitResultChart();
-    }
-  }
-
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly metaAndTitleService: MetaAndTitleService,
@@ -260,6 +176,18 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
           this.updateCharts(true);
         }
       });
+  }
+
+  public ngOnDestroy(): void {
+    if (this.openingChart) {
+      this.openingChart.destroy();
+      this.openingChart = undefined;
+    }
+
+    if (this.resultChart) {
+      this.resultChart.destroy();
+      this.resultChart = undefined;
+    }
   }
 
   private get chartTextColor(): string {
@@ -299,18 +227,6 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
     }
 
     return colors;
-  }
-
-  public ngOnDestroy(): void {
-    if (this.openingChart) {
-      this.openingChart.destroy();
-      this.openingChart = undefined;
-    }
-
-    if (this.resultChart) {
-      this.resultChart.destroy();
-      this.resultChart = undefined;
-    }
   }
 
   public trackByFn = (index: number) => `${this.activeYear}-${index}`;
@@ -459,6 +375,92 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
           this.resultChart.update();
         }
       });
+  }
+
+  private destroyCharts(): void {
+    this.openingChart?.destroy();
+    this.openingChart = undefined;
+    this.resultChart?.destroy();
+    this.resultChart = undefined;
+  }
+
+  private buildCommonOptions(): ChartConfiguration<'doughnut'>['options'] {
+    return {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'top',
+          labels: { boxWidth: 15, padding: 10, font: { size: 12 } },
+        },
+        tooltip: { enabled: true },
+      },
+      color: this.chartTextColor,
+    };
+  }
+
+  private tryInitOpeningChart(): void {
+    if (!this.showStats) return;
+    if (this.openingChart || !this.openingChartCanvas || !this.openingChartLabels.length)
+      return;
+    this.openingChart = new Chart(this.openingChartCanvas.nativeElement, {
+      type: 'doughnut',
+      data: { labels: this.openingChartLabels, datasets: this.openingChartDatasets },
+      options: this.buildCommonOptions(),
+    });
+  }
+
+  private tryInitResultChart(): void {
+    if (!this.showStats) return;
+    if (this.resultChart || !this.resultChartCanvas || !this.resultChartLabels.length)
+      return;
+    this.resultChart = new Chart(this.resultChartCanvas.nativeElement, {
+      type: 'doughnut',
+      data: { labels: this.resultChartLabels, datasets: this.resultChartDatasets },
+      options: this.buildCommonOptions(),
+    });
+  }
+
+  private updateCharts(forceRecreate = false): void {
+    if (!this.showStats) return;
+
+    // Opening chart
+    if (forceRecreate && this.openingChart) {
+      this.openingChart.destroy();
+      this.openingChart = undefined;
+    }
+    if (!this.openingChartLabels.length) {
+      if (this.openingChart) {
+        this.openingChart.destroy();
+        this.openingChart = undefined;
+      }
+    } else if (this.openingChart) {
+      this.openingChart.data.labels = this.openingChartLabels;
+      this.openingChart.data.datasets = this.openingChartDatasets;
+      this.openingChart.options.color = this.chartTextColor;
+      this.openingChart.update();
+    } else {
+      this.tryInitOpeningChart();
+    }
+
+    // Result chart
+    if (forceRecreate && this.resultChart) {
+      this.resultChart.destroy();
+      this.resultChart = undefined;
+    }
+    if (!this.resultChartLabels.length) {
+      if (this.resultChart) {
+        this.resultChart.destroy();
+        this.resultChart = undefined;
+      }
+    } else if (this.resultChart) {
+      this.resultChart.data.labels = this.resultChartLabels;
+      this.resultChart.data.datasets = this.resultChartDatasets;
+      this.resultChart.options.color = this.chartTextColor;
+      this.resultChart.update();
+    } else {
+      this.tryInitResultChart();
+    }
   }
 
   private async loadChessOpenings(): Promise<void> {

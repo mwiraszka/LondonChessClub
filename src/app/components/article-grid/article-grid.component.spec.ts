@@ -35,8 +35,11 @@ describe('ArticleGridComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AdminControlsDirective, ArticleGridComponent, ImagePreloadDirective],
       providers: [
+        {
+          provide: DialogService,
+          useValue: { open: jest.fn() },
+        },
         provideRouter([]),
-        { provide: DialogService, useValue: { open: jest.fn() } },
       ],
     }).compileComponents();
 

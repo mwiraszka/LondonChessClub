@@ -31,7 +31,13 @@ describe('EventFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [EventFormComponent, ReactiveFormsModule],
-      providers: [FormBuilder, { provide: DialogService, useValue: { open: jest.fn() } }],
+      providers: [
+        {
+          provide: DialogService,
+          useValue: { open: jest.fn() },
+        },
+        FormBuilder,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(EventFormComponent);

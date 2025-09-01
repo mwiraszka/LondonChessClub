@@ -47,7 +47,14 @@ describe('LinkListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [LinkListComponent, RouterLink, RouterLinkPipe, TooltipDirective],
-      providers: [provideRouter([{ path: 'login', component: LoginPageStubComponent }])],
+      providers: [
+        provideRouter([
+          {
+            path: 'login',
+            component: LoginPageStubComponent,
+          },
+        ]),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LinkListComponent);

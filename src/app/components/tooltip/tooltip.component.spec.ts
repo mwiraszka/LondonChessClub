@@ -26,7 +26,12 @@ describe('TooltipComponent', () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         imports: [TooltipComponent],
-        providers: [{ provide: TOOLTIP_CONTENT_TOKEN, useValue: shortString }],
+        providers: [
+          {
+            provide: TOOLTIP_CONTENT_TOKEN,
+            useValue: shortString,
+          },
+        ],
       }).compileComponents();
       fixture = TestBed.createComponent(TooltipComponent);
       component = fixture.componentInstance;
@@ -61,7 +66,12 @@ describe('TooltipComponent', () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         imports: [TooltipComponent],
-        providers: [{ provide: TOOLTIP_CONTENT_TOKEN, useValue: longString }],
+        providers: [
+          {
+            provide: TOOLTIP_CONTENT_TOKEN,
+            useValue: longString,
+          },
+        ],
       }).compileComponents();
       fixture = TestBed.createComponent(TooltipComponent);
       component = fixture.componentInstance;
@@ -95,7 +105,12 @@ describe('TooltipComponent', () => {
       TestBed.resetTestingModule();
       await TestBed.configureTestingModule({
         imports: [TooltipComponent],
-        providers: [{ provide: TOOLTIP_CONTENT_TOKEN, useValue: templateRef }],
+        providers: [
+          {
+            provide: TOOLTIP_CONTENT_TOKEN,
+            useValue: templateRef,
+          },
+        ],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TooltipComponent);

@@ -28,7 +28,29 @@ import { EventsSelectors } from '@app/store/events';
 @UntilDestroy()
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `
+    @if (viewModel$ | async; as vm) {
+      @if (vm.isLoading) {
+        <div class="lcc-loader"><div></div></div>
+      }
+
+      @if (vm.showUpcomingEventBanner && vm.nextEvent) {
+        <lcc-upcoming-event-banner
+          [nextEvent]="vm.nextEvent"
+          (clearBanner)="onClearBanner()">
+        </lcc-upcoming-event-banner>
+      }
+
+      <lcc-header></lcc-header>
+
+      <lcc-navigation-bar></lcc-navigation-bar>
+
+      <main cdkScrollable>
+        <router-outlet></router-outlet>
+        <lcc-footer></lcc-footer>
+      </main>
+    }
+  `,
   styleUrl: './app.component.scss',
   imports: [
     CdkScrollableModule,

@@ -4,7 +4,7 @@ import { Observable, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
@@ -31,6 +31,7 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
     }
   `,
   imports: [CommonModule, PageHeaderComponent, PhotoGridComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhotoGalleryPageComponent implements OnInit {
   public viewModel$?: Observable<{

@@ -5,7 +5,7 @@ import { Observable, combineLatest } from 'rxjs';
 import { distinctUntilChanged, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ArticleComponent } from '@app/components/article/article.component';
@@ -41,6 +41,7 @@ import { isDefined } from '@app/utils';
     }
   `,
   imports: [AdminControlsDirective, ArticleComponent, CommonModule, LinkListComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleViewerPageComponent implements OnInit {
   public readonly newsPageLink: InternalLink = {

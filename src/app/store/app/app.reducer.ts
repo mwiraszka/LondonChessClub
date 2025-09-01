@@ -10,6 +10,7 @@ export interface AppState {
   isSafeMode: boolean;
   bannerLastCleared: IsoDate | null;
   showUpcomingEventBanner: boolean;
+  isGameArchivesLoading: boolean;
 }
 
 export const initialState: AppState = {
@@ -17,6 +18,7 @@ export const initialState: AppState = {
   isSafeMode: false,
   bannerLastCleared: null,
   showUpcomingEventBanner: true,
+  isGameArchivesLoading: false,
 };
 
 export const appReducer = createReducer(

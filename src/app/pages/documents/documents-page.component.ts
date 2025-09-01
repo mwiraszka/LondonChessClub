@@ -1,7 +1,13 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import moment from 'moment-timezone';
 
-import { Component, DOCUMENT, Inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DOCUMENT,
+  Inject,
+  OnInit,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
@@ -24,6 +30,7 @@ import { DialogService, MetaAndTitleService, RoutingService } from '@app/service
     RouterLink,
     TooltipDirective,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocumentsPageComponent implements OnInit {
   public readonly documents: ClubDocument[] = [

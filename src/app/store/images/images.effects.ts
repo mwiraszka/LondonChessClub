@@ -1,6 +1,5 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
-import { routerNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
 import { isEqual } from 'lodash';
 import moment from 'moment-timezone';
@@ -153,20 +152,13 @@ export class ImagesEffects {
       ofType(
         ArticlesActions.fetchHomePageArticlesSucceeded,
         ArticlesActions.fetchFilteredArticlesSucceeded,
-        routerNavigatedAction,
       ),
-      // Only care about home and news page routes when navigation occurs
-      filter(action => {
-        return action.type === routerNavigatedAction.type
-          ? ['/', '/news'].includes(action.payload.event.url)
-          : true;
-      }),
       switchMap(() =>
         this.store.select(ArticlesSelectors.selectHomePageArticles).pipe(
           concatLatestFrom(() =>
             this.store.select(ArticlesSelectors.selectFilteredArticles),
           ),
-          map(([home, filtered]) => [...home, ...filtered]),
+          map(([home, filtered]) => [...home, ...filtered].sort()),
         ),
       ),
       switchMap(articles =>
@@ -302,17 +294,17 @@ export class ImagesEffects {
     );
 
     return merge(refetchActions$, periodicCheck$).pipe(
-      concatLatestFrom(() => [
-        this.store.select(ImagesSelectors.selectLastMetadataFetch),
-        this.store.select(ImagesSelectors.selectAlbumCoverImageIds),
-      ]),
-      filter(([, lastMetadataFetch, ids]) => !!lastMetadataFetch && ids.length > 0),
-      map(([, , imageIds]) =>
-        ImagesActions.fetchBatchThumbnailsRequested({
+      switchMap(() => this.store.select(ImagesSelectors.selectLastMetadataFetch)),
+      filter(lastMetadataFetch => !isExpired(lastMetadataFetch)),
+      switchMap(() =>
+        this.store.select(ImagesSelectors.selectAlbumCoverImageIds).pipe(take(1)),
+      ),
+      map(imageIds => {
+        return ImagesActions.fetchBatchThumbnailsRequested({
           imageIds,
           context: 'album-covers',
-        }),
-      ),
+        });
+      }),
     );
   });
 

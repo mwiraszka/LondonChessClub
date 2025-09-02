@@ -83,8 +83,6 @@ describe('MemberEditorPageComponent', () => {
     dispatchSpy = jest.spyOn(store, 'dispatch');
     updateDescriptionSpy = jest.spyOn(metaAndTitleService, 'updateDescription');
     updateTitleSpy = jest.spyOn(metaAndTitleService, 'updateTitle');
-
-    store.refreshState();
   });
 
   it('should create', () => {

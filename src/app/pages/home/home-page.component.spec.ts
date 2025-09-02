@@ -13,7 +13,7 @@ import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
 import { EventsActions, EventsSelectors } from '@app/store/events';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
-import { query } from '@app/utils';
+import { query, queryAll } from '@app/utils';
 
 import { HomePageComponent } from './home-page.component';
 
@@ -32,7 +32,7 @@ describe('HomePageComponent', () => {
   const mockEvents = MOCK_EVENTS.slice(0, 3);
   const mockImages: Image[] = [
     ...MOCK_IMAGES.slice(0, 2),
-    { ...MOCK_IMAGES[2], id: 'hidden', album: '_internal' },
+    { ...MOCK_IMAGES[2], id: 'abc123', album: '_internal' },
   ];
   const mockIsAdmin = true;
   const mockNextEvent = MOCK_EVENTS[0];
@@ -96,7 +96,7 @@ describe('HomePageComponent', () => {
         image => !image.album.startsWith('_'),
       );
 
-      expect(vm).toEqual({
+      expect(vm).toStrictEqual({
         articles: mockArticles,
         events: mockEvents,
         images: mockImages,
@@ -161,33 +161,63 @@ describe('HomePageComponent', () => {
   });
 
   describe('template rendering', () => {
-    beforeEach(() => {
-      fixture.detectChanges();
+    describe('when viewModel$ is undefined', () => {
+      it('should not render any content', () => {
+        expect(query(fixture.debugElement, '.welcome-section')).toBeFalsy();
+        expect(query(fixture.debugElement, '.schedule-section')).toBeFalsy();
+        expect(query(fixture.debugElement, '.articles-section')).toBeFalsy();
+        expect(query(fixture.debugElement, '.regional-clubs-section')).toBeFalsy();
+        expect(query(fixture.debugElement, '.photos-section')).toBeFalsy();
+      });
     });
 
-    it('should render welcome section', () => {
-      expect(query(fixture.debugElement, '.welcome-section')).toBeTruthy();
-    });
+    describe('when viewModel$ is defined', () => {
+      beforeEach(() => {
+        fixture.detectChanges();
+      });
 
-    it('should render schedule section', () => {
-      expect(query(fixture.debugElement, '.schedule-section')).toBeTruthy();
-    });
+      it('should render all grid sections and their content', () => {
+        expect(query(fixture.debugElement, '.welcome-section')).toBeTruthy();
 
-    it('should render articles section with admin toolbar when admin', () => {
-      expect(query(fixture.debugElement, '.articles-section')).toBeTruthy();
-      expect(query(fixture.debugElement, 'lcc-admin-toolbar')).toBeTruthy();
-    });
+        expect(
+          query(fixture.debugElement, '.schedule-section lcc-schedule'),
+        ).toBeTruthy();
+        expect(
+          query(fixture.debugElement, '.schedule-section lcc-link-list'),
+        ).toBeTruthy();
 
-    it('should hide admin toolbar when not admin', () => {
-      store.overrideSelector(AuthSelectors.selectIsAdmin, false);
-      store.refreshState();
-      fixture.detectChanges();
+        expect(
+          query(fixture.debugElement, '.articles-section lcc-article-grid'),
+        ).toBeTruthy();
+        expect(
+          query(fixture.debugElement, '.articles-section lcc-link-list'),
+        ).toBeTruthy();
 
-      expect(query(fixture.debugElement, 'lcc-admin-toolbar')).toBeFalsy();
-    });
+        expect(
+          queryAll(fixture.debugElement, '.regional-clubs-section .club-card'),
+        ).toHaveLength(2);
 
-    it('should render photos section', () => {
-      expect(query(fixture.debugElement, '.photos-section')).toBeTruthy();
+        expect(
+          query(fixture.debugElement, '.photos-section lcc-photo-grid'),
+        ).toBeTruthy();
+        expect(query(fixture.debugElement, '.photos-section lcc-link-list')).toBeTruthy();
+      });
+
+      it('should render articles section admin toolbar in when admin', () => {
+        expect(
+          query(fixture.debugElement, '.articles-section lcc-admin-toolbar'),
+        ).toBeTruthy();
+      });
+
+      it('should not render articles section admin toolbar when not admin', () => {
+        store.overrideSelector(AuthSelectors.selectIsAdmin, false);
+        store.refreshState();
+        fixture.detectChanges();
+
+        expect(
+          query(fixture.debugElement, '.articles-section lcc-admin-toolbar'),
+        ).toBeFalsy();
+      });
     });
   });
 });

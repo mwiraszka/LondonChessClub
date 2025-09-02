@@ -11,6 +11,7 @@ describe('AboutPageComponent', () => {
   let component: AboutPageComponent;
 
   let metaAndTitleService: MetaAndTitleService;
+
   let updateDescriptionSpy: jest.SpyInstance;
   let updateTitleSpy: jest.SpyInstance;
 
@@ -18,7 +19,6 @@ describe('AboutPageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AboutPageComponent],
       providers: [
-        provideRouter([]),
         {
           provide: MetaAndTitleService,
           useValue: {
@@ -26,6 +26,7 @@ describe('AboutPageComponent', () => {
             updateDescription: jest.fn(),
           },
         },
+        provideRouter([]),
       ],
     }).compileComponents();
 
@@ -33,6 +34,7 @@ describe('AboutPageComponent', () => {
     component = fixture.componentInstance;
 
     metaAndTitleService = TestBed.inject(MetaAndTitleService);
+
     updateDescriptionSpy = jest.spyOn(metaAndTitleService, 'updateDescription');
     updateTitleSpy = jest.spyOn(metaAndTitleService, 'updateTitle');
   });
@@ -41,12 +43,10 @@ describe('AboutPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('ngOnInit', () => {
-    beforeEach(() => {
-      component.ngOnInit();
-    });
-
+  describe('initialization', () => {
     it('should set meta title and description', () => {
+      component.ngOnInit();
+
       expect(updateTitleSpy).toHaveBeenCalledTimes(1);
       expect(updateTitleSpy).toHaveBeenCalledWith('About');
       expect(updateDescriptionSpy).toHaveBeenCalledTimes(1);

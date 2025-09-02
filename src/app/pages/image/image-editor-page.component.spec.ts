@@ -5,7 +5,7 @@ import { BehaviorSubject, firstValueFrom, take } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 
-import { IMAGE_FORM_DATA_PROPERTIES, INITIAL_IMAGE_FORM_DATA } from '@app/constants';
+import { IMAGE_FORM_DATA_PROPERTIES } from '@app/constants';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { Image, ImageFormData, LccError } from '@app/models';
 import { ImageFileService, MetaAndTitleService } from '@app/services';

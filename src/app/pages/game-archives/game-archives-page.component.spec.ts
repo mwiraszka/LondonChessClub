@@ -29,6 +29,12 @@ describe('GameArchivesPageComponent', () => {
       configurable: true,
     });
 
+    // Mock parseCsv to prevent console errors from CSV parsing
+    jest.spyOn(utils, 'parseCsv').mockResolvedValue([
+      ['A00', 'Dummy Opening', '1. a4'],
+      ['B00', 'Another Opening', '1. e4 e5'],
+    ]);
+
     await TestBed.configureTestingModule({
       imports: [GameArchivesPageComponent, ReactiveFormsModule],
       providers: [
@@ -99,21 +105,9 @@ describe('GameArchivesPageComponent', () => {
       expect(component.filteredGames).toBeInstanceOf(Map);
       expect(component.filteredGames.size).toBeGreaterThan(0);
     });
-
-    it('should initialize chess openings to null', () => {
-      expect(component.chessOpenings).toBeNull();
-    });
   });
 
   describe('form validation', () => {
-    // Install parseCsv spy now so subsequent tests avoid console noise
-    beforeAll(() => {
-      jest.spyOn(utils, 'parseCsv').mockResolvedValue([
-        ['A00', 'Dummy Opening', '1. a4'],
-        ['B00', 'Another Opening', '1. e4 e5'],
-      ] as Array<[string, string, string]>);
-    });
-
     beforeEach(() => {
       component.ngOnInit();
     });

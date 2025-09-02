@@ -4,13 +4,13 @@ import { Observable, combineLatest, of } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { AlbumFormComponent } from '@app/components/album-form/album-form.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import { EditorPage, Image, ImageFormData, InternalLink } from '@app/models';
+import { EditorPage, Image, ImageFormData, InternalLink, LccError } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
 
@@ -44,6 +44,7 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
     }
   `,
   imports: [CommonModule, AlbumFormComponent, LinkListComponent, PageHeaderComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlbumEditorPageComponent implements EditorPage, OnInit {
   public readonly entity = 'album';
@@ -113,7 +114,7 @@ export class AlbumEditorPageComponent implements EditorPage, OnInit {
     this.store.dispatch(ImagesActions.formDataChanged({ multipleFormData }));
   }
 
-  public onFileActionFail(error: { name: 'LCCError'; message: string }): void {
+  public onFileActionFail(error: LccError): void {
     this.store.dispatch(ImagesActions.imageFileActionFailed({ error }));
   }
 

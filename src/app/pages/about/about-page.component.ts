@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
@@ -11,6 +11,7 @@ import { MetaAndTitleService } from '@app/services';
   templateUrl: './about-page.component.html',
   styleUrl: './about-page.component.scss',
   imports: [ClubMapComponent, MatIconModule, PageHeaderComponent, RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutPageComponent implements OnInit {
   constructor(private readonly metaAndTitleService: MetaAndTitleService) {}

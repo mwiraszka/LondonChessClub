@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
@@ -11,6 +11,7 @@ import { MetaAndTitleService } from '@app/services';
   templateUrl: './champion-page.component.html',
   styleUrl: './champion-page.component.scss',
   imports: [ImagePreloadDirective, MatIconModule, PageHeaderComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChampionPageComponent implements OnInit {
   public readonly activeChampionships: ChampionshipTableRowData[] = [

@@ -30,7 +30,13 @@ describe('MemberFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MemberFormComponent, ReactiveFormsModule],
-      providers: [FormBuilder, { provide: DialogService, useValue: { open: jest.fn() } }],
+      providers: [
+        {
+          provide: DialogService,
+          useValue: { open: jest.fn() },
+        },
+        FormBuilder,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MemberFormComponent);

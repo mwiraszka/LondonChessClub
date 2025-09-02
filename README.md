@@ -32,6 +32,15 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.8.5 - September 2nd, 2025</summary>
+
+- 🚀 Configure 'on-push' change detection strategy on all page components to limit screen checks to only when inputs change, resulting in a slightly more performant web app
+- 🐛 Fix issue where all album covers would sometimes not fetch on initial load
+- 🔧 Extend unit test coverage to all page components
+
+</details>
+
+<details>
 <summary>v5.8.4 - August 31st, 2025</summary>
 
 - 🚀 Minor touch-ups to cards in Article Grid and Image Explorer

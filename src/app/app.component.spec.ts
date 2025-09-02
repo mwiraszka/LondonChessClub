@@ -1,5 +1,5 @@
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { of } from 'rxjs';
+import { Subject, firstValueFrom, take } from 'rxjs';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
@@ -20,6 +20,7 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
 
+  let mockFragmentSubject: Subject<string | null>;
   let store: MockStore;
   let touchEventsService: TouchEventsService;
   let urlExpirationService: UrlExpirationService;
@@ -28,16 +29,10 @@ describe('AppComponent', () => {
   let querySelectorSpy: jest.SpyInstance;
   let setAttributeSpy: jest.SpyInstance;
 
-  const mockState = {
-    bannerLastCleared: null,
-    isDarkMode: false,
-    isLoading: false,
-    nextEvent: MOCK_EVENTS[0],
-    showUpcomingEventBanner: true,
-  };
-
   beforeEach(async () => {
-    TestBed.configureTestingModule({
+    mockFragmentSubject = new Subject<string | null>();
+
+    await TestBed.configureTestingModule({
       imports: [
         AppComponent,
         FooterComponent,
@@ -50,15 +45,15 @@ describe('AppComponent', () => {
         provideRouter([]),
         {
           provide: RoutingService,
-          useValue: { fragment$: of(null) },
-        },
-        {
-          provide: UrlExpirationService,
-          useValue: { listenForImageChanges: jest.fn() },
+          useValue: { fragment$: mockFragmentSubject.asObservable() },
         },
         {
           provide: TouchEventsService,
           useValue: { listenForTouchEvents: jest.fn() },
+        },
+        {
+          provide: UrlExpirationService,
+          useValue: { listenForImageChanges: jest.fn() },
         },
       ],
     }).compileComponents();
@@ -70,22 +65,15 @@ describe('AppComponent', () => {
     touchEventsService = TestBed.inject(TouchEventsService);
     urlExpirationService = TestBed.inject(UrlExpirationService);
 
-    store.overrideSelector(
-      AppSelectors.selectBannerLastCleared,
-      mockState.bannerLastCleared,
-    );
-    store.overrideSelector(AppSelectors.selectIsDarkMode, mockState.isDarkMode);
-    store.overrideSelector(AppSelectors.selectIsLoading, mockState.isLoading);
-    store.overrideSelector(
-      AppSelectors.selectShowUpcomingEventBanner,
-      mockState.showUpcomingEventBanner,
-    );
-    store.overrideSelector(EventsSelectors.selectNextEvent, mockState.nextEvent);
-
     dispatchSpy = jest.spyOn(store, 'dispatch');
     querySelectorSpy = jest.spyOn(document, 'querySelector');
     setAttributeSpy = jest.spyOn(document.body, 'setAttribute');
-    // Emit initial overridden selector values to subscribers
+
+    store.overrideSelector(AppSelectors.selectBannerLastCleared, null);
+    store.overrideSelector(AppSelectors.selectIsDarkMode, false);
+    store.overrideSelector(AppSelectors.selectIsLoading, false);
+    store.overrideSelector(EventsSelectors.selectNextEvent, MOCK_EVENTS[0]);
+    store.overrideSelector(AppSelectors.selectShowUpcomingEventBanner, false);
     store.refreshState();
   });
 
@@ -93,38 +81,61 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('ngOnInit', () => {
-    it('should initialize services', () => {
-      component.ngOnInit();
+  describe('initialization', () => {
+    beforeEach(() => {
+      fixture.detectChanges();
+    });
 
+    it('should scroll to top when navigation occurs without fragment', () => {
+      const mainElement = {
+        scrollTo: jest.fn(),
+      };
+      querySelectorSpy.mockReturnValue(mainElement as unknown as HTMLElement);
+
+      component.ngOnInit();
+      mockFragmentSubject.next(null);
+      fixture.detectChanges();
+
+      expect(querySelectorSpy).toHaveBeenCalledWith('main');
+      expect(mainElement.scrollTo).toHaveBeenCalledWith({ top: 0 });
+    });
+
+    it('should not scroll to top when navigation occurs with fragment', () => {
+      const mainElement = {
+        scrollTo: jest.fn(),
+      };
+      querySelectorSpy.mockReturnValue(mainElement as unknown as HTMLElement);
+
+      component.ngOnInit();
+      mockFragmentSubject.next('some-fragment');
+      fixture.detectChanges();
+
+      expect(querySelectorSpy).not.toHaveBeenCalled();
+      expect(mainElement.scrollTo).not.toHaveBeenCalled();
+    });
+
+    it('should initialize image change and touch event listeners', () => {
       expect(urlExpirationService.listenForImageChanges).toHaveBeenCalled();
       expect(touchEventsService.listenForTouchEvents).toHaveBeenCalled();
     });
 
-    it('should set viewModel$ observable', () => {
-      component.ngOnInit();
-      fixture.detectChanges();
+    it('should set viewModel$', async () => {
+      const vm = await firstValueFrom(component.viewModel$!.pipe(take(1)));
 
-      expect(component.viewModel$).toBeDefined();
-      component.viewModel$?.subscribe(vm => {
-        expect(vm).toEqual({
-          isDarkMode: mockState.isDarkMode,
-          showUpcomingEventBanner: mockState.showUpcomingEventBanner,
-          bannerLastCleared: mockState.bannerLastCleared,
-          nextEvent: mockState.nextEvent,
-        });
+      expect(vm).toStrictEqual({
+        bannerLastCleared: null,
+        isDarkMode: false,
+        isLoading: false,
+        nextEvent: MOCK_EVENTS[0],
+        showUpcomingEventBanner: false,
       });
     });
 
     it('should set data-theme attribute to light when isDarkMode is false', () => {
-      component.ngOnInit();
-      fixture.detectChanges();
-
       expect(setAttributeSpy).toHaveBeenCalledWith('data-theme', 'light');
     });
 
     it('should set data-theme attribute to dark when isDarkMode is true', () => {
-      const setAttributeSpy = jest.spyOn(document.body, 'setAttribute');
       store.overrideSelector(AppSelectors.selectIsDarkMode, true);
       store.refreshState();
 
@@ -132,26 +143,6 @@ describe('AppComponent', () => {
       fixture.detectChanges();
 
       expect(setAttributeSpy).toHaveBeenCalledWith('data-theme', 'dark');
-    });
-
-    it('should initialize navigation listener for scrolling', () => {
-      component.ngOnInit();
-
-      expect(querySelectorSpy).toHaveBeenCalledWith('main');
-    });
-
-    it('should scroll to top when navigation occurs without fragment', () => {
-      const mainElement = {
-        scrollTo: jest.fn(),
-      };
-      jest
-        .spyOn(document, 'querySelector')
-        .mockReturnValue(mainElement as unknown as HTMLElement);
-
-      component.ngOnInit();
-      fixture.detectChanges();
-
-      expect(mainElement.scrollTo).toHaveBeenCalledWith({ top: 0 });
     });
   });
 
@@ -164,103 +155,89 @@ describe('AppComponent', () => {
   });
 
   describe('template rendering', () => {
-    beforeEach(() => {
-      component.ngOnInit();
-      fixture.detectChanges();
+    describe('when viewModel$ is undefined', () => {
+      it('should not render any page components', () => {
+        expect(query(fixture.debugElement, 'lcc-header')).toBeFalsy();
+        expect(query(fixture.debugElement, 'lcc-navigation-bar')).toBeFalsy();
+        expect(query(fixture.debugElement, 'main[cdkScrollable]')).toBeFalsy();
+        expect(query(fixture.debugElement, 'router-outlet')).toBeFalsy();
+        expect(query(fixture.debugElement, 'lcc-footer')).toBeFalsy();
+
+        expect(query(fixture.debugElement, '.lcc-loader')).toBeFalsy();
+        expect(query(fixture.debugElement, 'lcc-upcoming-event-banner')).toBeFalsy();
+      });
     });
 
-    it('should render header component', () => {
-      expect(query(fixture.debugElement, 'lcc-header')).toBeTruthy();
-    });
+    describe('when viewModel$ is defined', () => {
+      beforeEach(() => {
+        fixture.detectChanges();
+      });
 
-    it('should render navigation bar component', () => {
-      expect(query(fixture.debugElement, 'lcc-navigation-bar')).toBeTruthy();
-    });
+      it('should render all main page components', () => {
+        expect(query(fixture.debugElement, 'lcc-header')).toBeTruthy();
+        expect(query(fixture.debugElement, 'lcc-navigation-bar')).toBeTruthy();
+        expect(query(fixture.debugElement, 'main[cdkScrollable]')).toBeTruthy();
+        expect(query(fixture.debugElement, 'router-outlet')).toBeTruthy();
+        expect(query(fixture.debugElement, 'lcc-footer')).toBeTruthy();
 
-    it('should render main element with cdkScrollable directive', () => {
-      expect(query(fixture.debugElement, 'main[cdkScrollable]')).toBeTruthy();
-    });
+        expect(query(fixture.debugElement, '.lcc-loader')).toBeFalsy();
+        expect(query(fixture.debugElement, 'lcc-upcoming-event-banner')).toBeFalsy();
+      });
 
-    it('should render router outlet', () => {
-      expect(query(fixture.debugElement, 'router-outlet')).toBeTruthy();
-    });
-
-    it('should render footer component', () => {
-      expect(query(fixture.debugElement, 'lcc-footer')).toBeTruthy();
-    });
-
-    describe('loader', () => {
       it('should render loader when app is loading data', () => {
         store.overrideSelector(AppSelectors.selectIsLoading, true);
         store.refreshState();
-
-        component.ngOnInit();
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.lcc-loader')).toBeTruthy();
       });
 
-      it('should not render loader when app is not loading data', () => {
-        store.overrideSelector(AppSelectors.selectIsLoading, false);
-        store.refreshState();
+      describe('upcoming event banner', () => {
+        it('should render banner when showUpcomingEventBanner is true and nextEvent exists', () => {
+          store.overrideSelector(AppSelectors.selectShowUpcomingEventBanner, true);
+          store.overrideSelector(EventsSelectors.selectNextEvent, MOCK_EVENTS[0]);
+          store.refreshState();
+          fixture.detectChanges();
 
-        component.ngOnInit();
-        fixture.detectChanges();
+          expect(
+            query(fixture.debugElement, 'lcc-upcoming-event-banner').componentInstance
+              .nextEvent,
+          ).toEqual(MOCK_EVENTS[0]);
+        });
 
-        expect(query(fixture.debugElement, '.lcc-loader')).toBeFalsy();
-      });
-    });
+        it('should not render banner when showUpcomingEventBanner is false', () => {
+          store.overrideSelector(AppSelectors.selectShowUpcomingEventBanner, false);
+          store.overrideSelector(EventsSelectors.selectNextEvent, MOCK_EVENTS[0]);
+          store.refreshState();
+          fixture.detectChanges();
 
-    describe('upcoming event banner', () => {
-      it('should render banner when showUpcomingEventBanner is true and nextEvent exists', () => {
-        store.overrideSelector(AppSelectors.selectShowUpcomingEventBanner, true);
-        store.overrideSelector(EventsSelectors.selectNextEvent, MOCK_EVENTS[0]);
-        store.refreshState();
+          expect(query(fixture.debugElement, 'lcc-upcoming-event-banner')).toBeFalsy();
+        });
 
-        component.ngOnInit();
-        fixture.detectChanges();
+        it('should not render banner when nextEvent is null', () => {
+          store.overrideSelector(AppSelectors.selectShowUpcomingEventBanner, true);
+          store.overrideSelector(EventsSelectors.selectNextEvent, null);
+          store.refreshState();
+          fixture.detectChanges();
 
-        expect(
-          query(fixture.debugElement, 'lcc-upcoming-event-banner').componentInstance
-            .nextEvent,
-        ).toEqual(MOCK_EVENTS[0]);
-      });
+          expect(query(fixture.debugElement, 'lcc-upcoming-event-banner')).toBeFalsy();
+        });
 
-      it('should not render banner when showUpcomingEventBanner is false', () => {
-        store.overrideSelector(AppSelectors.selectShowUpcomingEventBanner, false);
-        store.overrideSelector(EventsSelectors.selectNextEvent, MOCK_EVENTS[0]);
-        store.refreshState();
+        it('should handle clearBanner event from banner component', () => {
+          store.overrideSelector(AppSelectors.selectShowUpcomingEventBanner, true);
+          store.overrideSelector(EventsSelectors.selectNextEvent, MOCK_EVENTS[0]);
+          store.refreshState();
+          fixture.detectChanges();
 
-        component.ngOnInit();
-        fixture.detectChanges();
+          query(fixture.debugElement, 'lcc-upcoming-event-banner').triggerEventHandler(
+            'clearBanner',
+          );
 
-        expect(query(fixture.debugElement, 'lcc-upcoming-event-banner')).toBeFalsy();
-      });
-
-      it('should not render banner when nextEvent is null', () => {
-        store.overrideSelector(AppSelectors.selectShowUpcomingEventBanner, true);
-        store.overrideSelector(EventsSelectors.selectNextEvent, null);
-        store.refreshState();
-
-        component.ngOnInit();
-        fixture.detectChanges();
-
-        expect(query(fixture.debugElement, 'lcc-upcoming-event-banner')).toBeFalsy();
-      });
-
-      it('should handle clearBanner event from banner component', () => {
-        store.overrideSelector(AppSelectors.selectShowUpcomingEventBanner, true);
-        store.overrideSelector(EventsSelectors.selectNextEvent, MOCK_EVENTS[0]);
-        store.refreshState();
-
-        component.ngOnInit();
-        fixture.detectChanges();
-
-        query(fixture.debugElement, 'lcc-upcoming-event-banner').triggerEventHandler(
-          'clearBanner',
-        );
-
-        expect(dispatchSpy).toHaveBeenCalledWith(AppActions.upcomingEventBannerCleared());
+          expect(dispatchSpy).toHaveBeenCalledTimes(1);
+          expect(dispatchSpy).toHaveBeenCalledWith(
+            AppActions.upcomingEventBannerCleared(),
+          );
+        });
       });
     });
   });

@@ -15,7 +15,13 @@ describe('LoginFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [LoginFormComponent, ReactiveFormsModule, RouterLink],
-      providers: [FormBuilder, { provide: ActivatedRoute, useValue: { paramMap: [] } }],
+      providers: [
+        FormBuilder,
+        {
+          provide: ActivatedRoute,
+          useValue: { paramMap: [] },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginFormComponent);

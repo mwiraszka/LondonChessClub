@@ -4,7 +4,7 @@ import { Observable, combineLatest } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ArticleFormComponent } from '@app/components/article-form/article-form.component';
@@ -43,6 +43,7 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
     }
   `,
   imports: [ArticleFormComponent, CommonModule, LinkListComponent, PageHeaderComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleEditorPageComponent implements EditorPage, OnInit {
   public readonly entity = 'article';

@@ -31,8 +31,16 @@ describe('PhotoGridComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AdminControlsDirective, PhotoGridComponent, TooltipDirective],
       providers: [
-        provideRouter([{ path: 'photo-gallery', component: PhotoGalleryStubComponent }]),
-        { provide: DialogService, useValue: { open: jest.fn() } },
+        {
+          provide: DialogService,
+          useValue: { open: jest.fn() },
+        },
+        provideRouter([
+          {
+            path: 'photo-gallery',
+            component: PhotoGalleryStubComponent,
+          },
+        ]),
       ],
     }).compileComponents();
 
@@ -57,7 +65,7 @@ describe('PhotoGridComponent', () => {
 
   describe('onClickAlbumCover', () => {
     it('should open ImageViewerComponent dialog with correct data', async () => {
-      const album = 'Album of Jane';
+      const album = 'Album of the Year';
       const albumPhotos = MOCK_IMAGES.filter(image => image.album === album).sort(
         (a, b) => customSort(a, b, 'caption'),
       );
@@ -142,7 +150,7 @@ describe('PhotoGridComponent', () => {
     });
 
     it('should return correct plural photo count text', () => {
-      const albumName = 'Album of Jane';
+      const albumName = 'Album of the Year';
       const expectedPhotoCount = MOCK_IMAGES.filter(
         image => image.album === albumName,
       ).length;

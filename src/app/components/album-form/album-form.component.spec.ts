@@ -40,8 +40,11 @@ describe('AlbumFormComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AlbumFormComponent, ReactiveFormsModule],
       providers: [
+        {
+          provide: DialogService,
+          useValue: { open: jest.fn() },
+        },
         FormBuilder,
-        { provide: DialogService, useValue: { open: jest.fn() } },
         {
           provide: ImageFileService,
           useValue: {

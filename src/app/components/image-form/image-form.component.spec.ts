@@ -39,8 +39,11 @@ describe('ImageFormComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ImageFormComponent, ReactiveFormsModule],
       providers: [
+        {
+          provide: DialogService,
+          useValue: { open: jest.fn() },
+        },
         FormBuilder,
-        { provide: DialogService, useValue: { open: jest.fn() } },
         {
           provide: ImageFileService,
           useValue: { storeImageFile: jest.fn(), getImage: jest.fn() },

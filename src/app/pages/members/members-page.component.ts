@@ -4,7 +4,13 @@ import { Observable, combineLatest, firstValueFrom } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 
 import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
@@ -76,6 +82,7 @@ import { isLccError, parseCsv } from '@app/utils';
     MembersTableComponent,
     PageHeaderComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MembersPageComponent implements OnInit {
   @ViewChild('memberRatingChangesFileInput')

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
@@ -11,6 +11,7 @@ import { MetaAndTitleService } from '@app/services';
   templateUrl: './lifetime-page.component.html',
   styleUrl: './lifetime-page.component.scss',
   imports: [CommonModule, ImagePreloadDirective, KebabCasePipe, PageHeaderComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LifetimePageComponent implements OnInit {
   public readonly IMAGE_PATH = 'assets/lifetime-achievement-awards/';

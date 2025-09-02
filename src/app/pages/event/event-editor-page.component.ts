@@ -4,7 +4,7 @@ import { Observable, combineLatest } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { EventFormComponent } from '@app/components/event-form/event-form.component';
@@ -40,6 +40,7 @@ import { EventsActions, EventsSelectors } from '@app/store/events';
     }
   `,
   imports: [CommonModule, EventFormComponent, LinkListComponent, PageHeaderComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventEditorPageComponent implements EditorPage, OnInit {
   public readonly entity = 'event';

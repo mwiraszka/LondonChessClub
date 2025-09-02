@@ -4,7 +4,7 @@ import { Observable, combineLatest } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
@@ -42,6 +42,7 @@ import { MembersActions, MembersSelectors } from '@app/store/members';
     }
   `,
   imports: [CommonModule, LinkListComponent, MemberFormComponent, PageHeaderComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MemberEditorPageComponent implements EditorPage, OnInit {
   public readonly entity = 'member';

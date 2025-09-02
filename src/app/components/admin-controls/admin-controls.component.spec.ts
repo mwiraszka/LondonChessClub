@@ -26,7 +26,11 @@ describe('AdminControlsComponent', () => {
       providers: [
         {
           provide: ADMIN_CONTROLS_CONFIG_TOKEN,
-          useValue: { buttonSize: 15, deleteCb: jest.fn(), isDeleteDisabled: false },
+          useValue: {
+            buttonSize: 15,
+            deleteCb: jest.fn(),
+            isDeleteDisabled: false,
+          },
         },
         KeyStateService,
       ],

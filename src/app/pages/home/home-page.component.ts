@@ -4,7 +4,7 @@ import { Observable, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
@@ -39,6 +39,7 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
     ScheduleComponent,
     TooltipDirective,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent implements OnInit {
   public viewModel$?: Observable<{
@@ -120,16 +121,16 @@ export class HomePageComponent implements OnInit {
     );
   }
 
+  public onRequestDeleteAlbum(album: string): void {
+    this.store.dispatch(ImagesActions.deleteAlbumRequested({ album }));
+  }
+
   public onRequestDeleteArticle(article: Article): void {
     this.store.dispatch(ArticlesActions.deleteArticleRequested({ article }));
   }
 
   public onRequestDeleteEvent(event: Event): void {
     this.store.dispatch(EventsActions.deleteEventRequested({ event }));
-  }
-
-  public onRequestDeleteAlbum(album: string): void {
-    this.store.dispatch(ImagesActions.deleteAlbumRequested({ album }));
   }
 
   public onRequestUpdateArticleBookmark(event: {

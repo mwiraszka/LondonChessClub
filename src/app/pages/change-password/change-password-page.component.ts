@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { ChangePasswordFormComponent } from '@app/components/change-password-form/change-password-form.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
@@ -25,6 +25,7 @@ import { AuthActions, AuthSelectors } from '@app/store/auth';
     }
   `,
   imports: [ChangePasswordFormComponent, CommonModule, PageHeaderComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChangePasswordPageComponent implements OnInit {
   public viewModel$?: Observable<{ hasCode: boolean }>;

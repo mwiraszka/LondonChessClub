@@ -38,8 +38,14 @@ describe('MarkdownRendererComponent', () => {
     await TestBed.configureTestingModule({
       imports: [MarkdownRendererComponent, RouterLink, RouterModule.forRoot([])],
       providers: [
-        { provide: ActivatedRoute, useValue: { fragment: of('mock-fragment') } },
-        { provide: RoutingService, useValue: { fragment$: of('mock-fragment') } },
+        {
+          provide: ActivatedRoute,
+          useValue: { fragment: of('mock-fragment') },
+        },
+        {
+          provide: RoutingService,
+          useValue: { fragment$: of('mock-fragment') },
+        },
       ],
     })
       .overrideComponent(MarkdownRendererComponent, {

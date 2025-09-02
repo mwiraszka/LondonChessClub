@@ -24,7 +24,10 @@ export class NavEffects {
       ofType(routerNavigatedAction),
       map(({ payload }) => payload.event.url),
       concatLatestFrom(() => this.store.select(NavSelectors.selectCurrentPath)),
-      filter(([path, currentPath]) => path.split('#')[0] !== currentPath?.split('#')[0]),
+      filter(
+        ([requestedPath, currentPath]) =>
+          requestedPath.split('#')[0] !== currentPath?.split('#')[0],
+      ),
       map(([path]) => NavActions.appendPathToHistory({ path })),
     ),
   );

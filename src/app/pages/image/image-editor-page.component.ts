@@ -4,7 +4,7 @@ import { Observable, combineLatest } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ImageFormComponent } from '@app/components/image-form/image-form.component';
@@ -44,6 +44,7 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
     }
   `,
   imports: [CommonModule, ImageFormComponent, LinkListComponent, PageHeaderComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageEditorPageComponent implements EditorPage, OnInit {
   public readonly entity = 'image';
@@ -102,6 +103,10 @@ export class ImageEditorPageComponent implements EditorPage, OnInit {
     this.store.dispatch(ImagesActions.formDataChanged({ multipleFormData }));
   }
 
+  public onFileActionFail(error: LccError): void {
+    this.store.dispatch(ImagesActions.imageFileActionFailed({ error }));
+  }
+
   public onRequestAddImage(imageId: string): void {
     this.store.dispatch(ImagesActions.addImageRequested({ imageId }));
   }
@@ -116,9 +121,5 @@ export class ImageEditorPageComponent implements EditorPage, OnInit {
 
   public onRestore(imageId: string): void {
     this.store.dispatch(ImagesActions.imageFormDataRestored({ imageId }));
-  }
-
-  public onFileActionFail(error: LccError): void {
-    this.store.dispatch(ImagesActions.imageFileActionFailed({ error }));
   }
 }

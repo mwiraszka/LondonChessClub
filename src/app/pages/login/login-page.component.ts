@@ -1,6 +1,6 @@
 import { Store } from '@ngrx/store';
 
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { LoginFormComponent } from '@app/components/login-form/login-form.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
@@ -14,6 +14,7 @@ import { AuthActions } from '@app/store/auth';
     <lcc-login-form (requestLogin)="onRequestLogin($event)"></lcc-login-form>
   `,
   imports: [LoginFormComponent, PageHeaderComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginPageComponent implements OnInit {
   constructor(

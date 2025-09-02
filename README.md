@@ -32,6 +32,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.9.0 - September TBD, 2025</summary>
+
+- 🔧 Upgrade Angular to `v20.2.3` and update all third-party packages
+
+</details>
+
+<details>
 <summary>v5.8.5 - September 2nd, 2025</summary>
 
 - 🚀 Configure 'on-push' change detection strategy on all page components to limit screen checks to only when inputs change, resulting in a slightly more performant web app

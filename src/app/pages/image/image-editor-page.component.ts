@@ -103,6 +103,10 @@ export class ImageEditorPageComponent implements EditorPage, OnInit {
     this.store.dispatch(ImagesActions.formDataChanged({ multipleFormData }));
   }
 
+  public onFileActionFail(error: LccError): void {
+    this.store.dispatch(ImagesActions.imageFileActionFailed({ error }));
+  }
+
   public onRequestAddImage(imageId: string): void {
     this.store.dispatch(ImagesActions.addImageRequested({ imageId }));
   }
@@ -117,9 +121,5 @@ export class ImageEditorPageComponent implements EditorPage, OnInit {
 
   public onRestore(imageId: string): void {
     this.store.dispatch(ImagesActions.imageFormDataRestored({ imageId }));
-  }
-
-  public onFileActionFail(error: LccError): void {
-    this.store.dispatch(ImagesActions.imageFileActionFailed({ error }));
   }
 }

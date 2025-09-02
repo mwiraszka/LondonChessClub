@@ -5,23 +5,22 @@ import { BehaviorSubject, firstValueFrom, take } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 
-import { ARTICLE_FORM_DATA_PROPERTIES, INITIAL_ARTICLE_FORM_DATA } from '@app/constants';
-import { MOCK_ARTICLES } from '@app/mocks/articles.mock';
-import { Article, ArticleFormData, Id } from '@app/models';
+import { EVENT_FORM_DATA_PROPERTIES, INITIAL_EVENT_FORM_DATA } from '@app/constants';
+import { MOCK_EVENTS } from '@app/mocks/events.mock';
+import { Event, EventFormData, Id } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import {
-  ArticlesActions,
-  ArticlesState,
-  initialState as articlesInitialState,
-} from '@app/store/articles';
-import { ImagesActions, initialState as imagesInitialState } from '@app/store/images';
+  EventsActions,
+  EventsState,
+  initialState as eventsInitialState,
+} from '@app/store/events';
 import { query } from '@app/utils';
 
-import { ArticleEditorPageComponent } from './article-editor-page.component';
+import { EventEditorPageComponent } from './event-editor-page.component';
 
-describe('ArticleEditorPageComponent', () => {
-  let fixture: ComponentFixture<ArticleEditorPageComponent>;
-  let component: ArticleEditorPageComponent;
+describe('EventEditorPageComponent', () => {
+  let fixture: ComponentFixture<EventEditorPageComponent>;
+  let component: EventEditorPageComponent;
 
   let metaAndTitleService: MetaAndTitleService;
   let store: MockStore;
@@ -30,29 +29,28 @@ describe('ArticleEditorPageComponent', () => {
   let updateDescriptionSpy: jest.SpyInstance;
   let updateTitleSpy: jest.SpyInstance;
 
-  let mockParamsSubject: BehaviorSubject<{ article_id?: Id }>;
+  let mockParamsSubject: BehaviorSubject<{ event_id?: Id }>;
 
   beforeEach(async () => {
-    mockParamsSubject = new BehaviorSubject<{ article_id?: Id }>({});
+    mockParamsSubject = new BehaviorSubject<{ event_id?: Id }>({});
 
-    const mockArticlesState: ArticlesState = {
-      ...articlesInitialState,
-      ids: MOCK_ARTICLES.map(article => article.id),
-      entities: MOCK_ARTICLES.reduce(
-        (acc, article) => {
-          acc[article.id] = {
-            article,
-            formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+    const mockEventsState: EventsState = {
+      ...eventsInitialState,
+      ids: MOCK_EVENTS.map(event => event.id),
+      entities: MOCK_EVENTS.reduce(
+        (acc, event) => {
+          acc[event.id] = {
+            event,
+            formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
           };
           return acc;
         },
-        {} as Record<Id, { article: Article; formData: ArticleFormData }>,
+        {} as Record<Id, { event: Event; formData: EventFormData }>,
       ),
-      totalCount: MOCK_ARTICLES.length,
     };
 
     await TestBed.configureTestingModule({
-      imports: [ArticleEditorPageComponent],
+      imports: [EventEditorPageComponent],
       providers: [
         {
           provide: ActivatedRoute,
@@ -67,14 +65,13 @@ describe('ArticleEditorPageComponent', () => {
         },
         provideMockStore({
           initialState: {
-            articlesState: mockArticlesState,
-            imagesState: imagesInitialState,
+            eventsState: mockEventsState,
           },
         }),
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ArticleEditorPageComponent);
+    fixture = TestBed.createComponent(EventEditorPageComponent);
     component = fixture.componentInstance;
 
     metaAndTitleService = TestBed.inject(MetaAndTitleService);
@@ -92,21 +89,20 @@ describe('ArticleEditorPageComponent', () => {
   });
 
   describe('initialization', () => {
-    describe('with article_id route param', () => {
+    describe('with event_id route param', () => {
       beforeEach(() => {
-        mockParamsSubject.next({ article_id: MOCK_ARTICLES[0].id });
+        mockParamsSubject.next({ event_id: MOCK_EVENTS[0].id });
         component.ngOnInit();
       });
 
-      it('should set viewModel$ based on article title', async () => {
+      it('should set viewModel$ based on event title', async () => {
         const vm = await firstValueFrom(component.viewModel$!.pipe(take(1)));
 
         expect(vm).toStrictEqual({
-          bannerImage: null,
-          formData: pick(MOCK_ARTICLES[0], ARTICLE_FORM_DATA_PROPERTIES),
+          formData: pick(MOCK_EVENTS[0], EVENT_FORM_DATA_PROPERTIES),
           hasUnsavedChanges: false,
-          originalArticle: MOCK_ARTICLES[0],
-          pageTitle: `Edit ${MOCK_ARTICLES[0].title}`,
+          originalEvent: MOCK_EVENTS[0],
+          pageTitle: `Edit ${MOCK_EVENTS[0].title}`,
         });
       });
 
@@ -115,14 +111,14 @@ describe('ArticleEditorPageComponent', () => {
 
         expect(updateTitleSpy).toHaveBeenCalledTimes(1);
         expect(updateDescriptionSpy).toHaveBeenCalledTimes(1);
-        expect(updateTitleSpy).toHaveBeenCalledWith(`Edit ${MOCK_ARTICLES[0].title}`);
+        expect(updateTitleSpy).toHaveBeenCalledWith(`Edit ${MOCK_EVENTS[0].title}`);
         expect(updateDescriptionSpy).toHaveBeenCalledWith(
-          `Edit ${MOCK_ARTICLES[0].title} for the London Chess Club.`,
+          `Edit ${MOCK_EVENTS[0].title} for the London Chess Club.`,
         );
       });
     });
 
-    describe('without article_id route param', () => {
+    describe('without event_id route param', () => {
       beforeEach(() => {
         component.ngOnInit();
       });
@@ -131,11 +127,10 @@ describe('ArticleEditorPageComponent', () => {
         const vm = await firstValueFrom(component.viewModel$!.pipe(take(1)));
 
         expect(vm).toStrictEqual({
-          bannerImage: null,
-          formData: INITIAL_ARTICLE_FORM_DATA,
+          formData: INITIAL_EVENT_FORM_DATA,
           hasUnsavedChanges: false,
-          originalArticle: null,
-          pageTitle: 'Compose an article',
+          originalEvent: null,
+          pageTitle: 'Add an event',
         });
       });
 
@@ -144,9 +139,9 @@ describe('ArticleEditorPageComponent', () => {
 
         expect(updateTitleSpy).toHaveBeenCalledTimes(1);
         expect(updateDescriptionSpy).toHaveBeenCalledTimes(1);
-        expect(updateTitleSpy).toHaveBeenCalledWith('Compose an article');
+        expect(updateTitleSpy).toHaveBeenCalledWith('Add an event');
         expect(updateDescriptionSpy).toHaveBeenCalledWith(
-          'Compose an article for the London Chess Club.',
+          'Add an event for the London Chess Club.',
         );
       });
     });
@@ -157,69 +152,57 @@ describe('ArticleEditorPageComponent', () => {
       component.onCancel();
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(ArticlesActions.cancelSelected());
+      expect(dispatchSpy).toHaveBeenCalledWith(EventsActions.cancelSelected());
     });
   });
 
   describe('onChange', () => {
     it('should dispatch changeSelected action', () => {
-      const mockArticleId = 'abc123';
-      const mockChangedFormData: Partial<ArticleFormData> = {
+      const mockEventId = 'abc123';
+      const mockChangedFormData: Partial<EventFormData> = {
         title: 'A new title',
       };
-      component.onChange(mockArticleId, mockChangedFormData);
+      component.onChange(mockEventId, mockChangedFormData);
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        ArticlesActions.formDataChanged({
-          articleId: mockArticleId,
+        EventsActions.formDataChanged({
+          eventId: mockEventId,
           formData: mockChangedFormData,
         }),
       );
     });
   });
 
-  describe('onRequestFetchMainImage', () => {
-    it('should dispatch fetchMainImageRequested action', () => {
-      const mockImageId = 'abc123abc123';
-      component.onRequestFetchMainImage(mockImageId);
+  describe('onRequestAddEvent', () => {
+    it('should dispatch addEventRequested action', () => {
+      component.onRequestAddEvent();
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        ImagesActions.fetchMainImageRequested({ imageId: mockImageId }),
-      );
+      expect(dispatchSpy).toHaveBeenCalledWith(EventsActions.addEventRequested());
     });
   });
 
-  describe('onRequestPublishArticle', () => {
-    it('should dispatch publishArticleRequested action', () => {
-      component.onRequestPublishArticle();
-
-      expect(dispatchSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(ArticlesActions.publishArticleRequested());
-    });
-  });
-
-  describe('onRequestUpdateArticle', () => {
-    it('should dispatch updateArticleRequested action', () => {
-      const mockArticleId = 'abc123abc123';
-      component.onRequestUpdateArticle(mockArticleId);
+  describe('onRequestUpdateEvent', () => {
+    it('should dispatch updateEventRequested action', () => {
+      const mockEventId = 'abc123abc123';
+      component.onRequestUpdateEvent(mockEventId);
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        ArticlesActions.updateArticleRequested({ articleId: mockArticleId }),
+        EventsActions.updateEventRequested({ eventId: mockEventId }),
       );
     });
   });
 
   describe('onRestore', () => {
     it('should dispatch formDataRestored action', () => {
-      const mockArticleId = 'abc123';
-      component.onRestore(mockArticleId);
+      const mockEventId = 'abc123';
+      component.onRestore(mockEventId);
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        ArticlesActions.formDataRestored({ articleId: mockArticleId }),
+        EventsActions.formDataRestored({ eventId: mockEventId }),
       );
     });
   });
@@ -228,7 +211,7 @@ describe('ArticleEditorPageComponent', () => {
     describe('when viewModel$ is undefined', () => {
       it('should not render page components', () => {
         expect(query(fixture.debugElement, 'lcc-page-header')).toBeFalsy();
-        expect(query(fixture.debugElement, 'lcc-article-form')).toBeFalsy();
+        expect(query(fixture.debugElement, 'lcc-event-form')).toBeFalsy();
         expect(query(fixture.debugElement, 'lcc-link-list')).toBeFalsy();
       });
     });
@@ -240,7 +223,7 @@ describe('ArticleEditorPageComponent', () => {
 
       it('should render page components', () => {
         expect(query(fixture.debugElement, 'lcc-page-header')).toBeTruthy();
-        expect(query(fixture.debugElement, 'lcc-article-form')).toBeTruthy();
+        expect(query(fixture.debugElement, 'lcc-event-form')).toBeTruthy();
         expect(query(fixture.debugElement, 'lcc-link-list')).toBeTruthy();
       });
     });

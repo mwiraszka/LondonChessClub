@@ -5,7 +5,7 @@ import { BehaviorSubject, firstValueFrom, take } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 
-import { IMAGE_FORM_DATA_PROPERTIES } from '@app/constants';
+import { IMAGE_FORM_DATA_PROPERTIES, INITIAL_IMAGE_FORM_DATA } from '@app/constants';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { Image, ImageFormData, LccError } from '@app/models';
 import { ImageFileService, MetaAndTitleService } from '@app/services';
@@ -16,14 +16,14 @@ import {
 } from '@app/store/images';
 import { query } from '@app/utils';
 
-import { AlbumEditorPageComponent } from './album-editor-page.component';
+import { ImageEditorPageComponent } from './image-editor-page.component';
 
-describe('AlbumEditorPageComponent', () => {
-  let fixture: ComponentFixture<AlbumEditorPageComponent>;
-  let component: AlbumEditorPageComponent;
+describe('ImageEditorPageComponent', () => {
+  let fixture: ComponentFixture<ImageEditorPageComponent>;
+  let component: ImageEditorPageComponent;
 
   let metaAndTitleService: MetaAndTitleService;
-  let mockParamsSubject: BehaviorSubject<{ album?: string }>;
+  let mockParamsSubject: BehaviorSubject<{ image_id?: string }>;
   let store: MockStore;
 
   let dispatchSpy: jest.SpyInstance;
@@ -31,7 +31,7 @@ describe('AlbumEditorPageComponent', () => {
   let updateTitleSpy: jest.SpyInstance;
 
   beforeEach(async () => {
-    mockParamsSubject = new BehaviorSubject<{ album?: string }>({});
+    mockParamsSubject = new BehaviorSubject<{ image_id?: string }>({});
 
     const mockImagesState: ImagesState = {
       ...imagesInitialState,
@@ -50,7 +50,7 @@ describe('AlbumEditorPageComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      imports: [AlbumEditorPageComponent],
+      imports: [ImageEditorPageComponent],
       providers: [
         {
           provide: ActivatedRoute,
@@ -75,7 +75,7 @@ describe('AlbumEditorPageComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AlbumEditorPageComponent);
+    fixture = TestBed.createComponent(ImageEditorPageComponent);
     component = fixture.componentInstance;
 
     metaAndTitleService = TestBed.inject(MetaAndTitleService);
@@ -93,22 +93,24 @@ describe('AlbumEditorPageComponent', () => {
   });
 
   describe('initialization', () => {
-    describe('with album route param', () => {
+    describe('with image route param', () => {
       beforeEach(() => {
-        mockParamsSubject.next({ album: 'Album of the Year' });
+        mockParamsSubject.next({ image_id: MOCK_IMAGES[0].id });
         component.ngOnInit();
       });
 
-      it('should set viewModel$ based on album title', async () => {
+      it('should set viewModel$ based on image filename', async () => {
         const vm = await firstValueFrom(component.viewModel$!.pipe(take(1)));
 
         expect(vm).toStrictEqual({
-          album: 'Album of the Year',
           existingAlbums: uniq(MOCK_IMAGES.map(image => image.album)),
           hasUnsavedChanges: false,
-          imageEntities: expect.any(Array),
-          newImagesFormData: {},
-          pageTitle: 'Edit Album of the Year',
+          imageEntity: {
+            image: MOCK_IMAGES[0],
+            formData: pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES),
+          },
+          newImageFormData: null,
+          pageTitle: `Edit ${MOCK_IMAGES[0].filename}`,
         });
       });
 
@@ -117,14 +119,14 @@ describe('AlbumEditorPageComponent', () => {
 
         expect(updateTitleSpy).toHaveBeenCalledTimes(1);
         expect(updateDescriptionSpy).toHaveBeenCalledTimes(1);
-        expect(updateTitleSpy).toHaveBeenCalledWith('Edit Album of the Year');
+        expect(updateTitleSpy).toHaveBeenCalledWith(`Edit ${MOCK_IMAGES[0].filename}`);
         expect(updateDescriptionSpy).toHaveBeenCalledWith(
-          'Edit Album of the Year for the London Chess Club.',
+          `Edit ${MOCK_IMAGES[0].filename} for the London Chess Club.`,
         );
       });
     });
 
-    describe('without album route param', () => {
+    describe('without image route param', () => {
       beforeEach(() => {
         component.ngOnInit();
       });
@@ -133,12 +135,11 @@ describe('AlbumEditorPageComponent', () => {
         const vm = await firstValueFrom(component.viewModel$!.pipe(take(1)));
 
         expect(vm).toStrictEqual({
-          album: null,
           existingAlbums: uniq(MOCK_IMAGES.map(image => image.album)),
           hasUnsavedChanges: false,
-          imageEntities: expect.any(Array),
-          newImagesFormData: {},
-          pageTitle: 'Create an album',
+          imageEntity: null,
+          newImageFormData: null,
+          pageTitle: 'Add an image',
         });
       });
 
@@ -147,9 +148,9 @@ describe('AlbumEditorPageComponent', () => {
 
         expect(updateTitleSpy).toHaveBeenCalledTimes(1);
         expect(updateDescriptionSpy).toHaveBeenCalledTimes(1);
-        expect(updateTitleSpy).toHaveBeenCalledWith('Create an album');
+        expect(updateTitleSpy).toHaveBeenCalledWith('Add an image');
         expect(updateDescriptionSpy).toHaveBeenCalledWith(
-          'Create an album for the London Chess Club.',
+          'Add an image for the London Chess Club.',
         );
       });
     });
@@ -195,47 +196,50 @@ describe('AlbumEditorPageComponent', () => {
     });
   });
 
-  describe('onRemoveNewImage', () => {
-    it('should dispatch newImageRemoved action', () => {
+  describe('onRequestAddImage', () => {
+    it('should dispatch addImageRequested action', () => {
       const mockImageId = 'abc123abc123';
-      component.onRemoveNewImage(mockImageId);
+      component.onRequestAddImage(mockImageId);
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        ImagesActions.newImageRemoved({ imageId: mockImageId }),
+        ImagesActions.addImageRequested({ imageId: mockImageId }),
       );
     });
   });
 
-  describe('onRequestAddImages', () => {
-    it('should dispatch addImagesRequested action', () => {
-      component.onRequestAddImages();
+  describe('onRequestFetchMainImage', () => {
+    it('should dispatch fetchMainImageRequested action', () => {
+      const mockImageId = 'abc123abc123';
+      component.onRequestFetchMainImage(mockImageId);
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(ImagesActions.addImagesRequested());
+      expect(dispatchSpy).toHaveBeenCalledWith(
+        ImagesActions.fetchMainImageRequested({ imageId: mockImageId }),
+      );
     });
   });
 
   describe('onRequestUpdateAlbum', () => {
     it('should dispatch updateAlbumRequested action', () => {
-      const mockAlbum = 'abc123abc123';
-      component.onRequestUpdateAlbum(mockAlbum);
+      const mockImage = 'abc123abc123';
+      component.onRequestUpdateImage(mockImage);
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        ImagesActions.updateAlbumRequested({ album: mockAlbum }),
+        ImagesActions.updateImageRequested({ imageId: mockImage }),
       );
     });
   });
 
   describe('onRestore', () => {
-    it('should dispatch albumFormDataRestored action', () => {
-      const mockAlbum = 'abc123abc123';
-      component.onRestore(mockAlbum);
+    it('should dispatch imageFormDataRestored action', () => {
+      const mockImage = 'abc123abc123';
+      component.onRestore(mockImage);
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        ImagesActions.albumFormDataRestored({ album: mockAlbum }),
+        ImagesActions.imageFormDataRestored({ imageId: mockImage }),
       );
     });
   });
@@ -244,7 +248,7 @@ describe('AlbumEditorPageComponent', () => {
     describe('when viewModel$ is undefined', () => {
       it('should not render page components', () => {
         expect(query(fixture.debugElement, 'lcc-page-header')).toBeFalsy();
-        expect(query(fixture.debugElement, 'lcc-album-form')).toBeFalsy();
+        expect(query(fixture.debugElement, 'lcc-image-form')).toBeFalsy();
         expect(query(fixture.debugElement, 'lcc-link-list')).toBeFalsy();
       });
     });
@@ -256,7 +260,7 @@ describe('AlbumEditorPageComponent', () => {
 
       it('should render page components', () => {
         expect(query(fixture.debugElement, 'lcc-page-header')).toBeTruthy();
-        expect(query(fixture.debugElement, 'lcc-album-form')).toBeTruthy();
+        expect(query(fixture.debugElement, 'lcc-image-form')).toBeTruthy();
         expect(query(fixture.debugElement, 'lcc-link-list')).toBeTruthy();
       });
     });

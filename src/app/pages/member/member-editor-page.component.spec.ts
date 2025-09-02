@@ -5,23 +5,23 @@ import { BehaviorSubject, firstValueFrom, take } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 
-import { ARTICLE_FORM_DATA_PROPERTIES, INITIAL_ARTICLE_FORM_DATA } from '@app/constants';
-import { MOCK_ARTICLES } from '@app/mocks/articles.mock';
-import { Article, ArticleFormData, Id } from '@app/models';
+import { INITIAL_MEMBER_FORM_DATA, MEMBER_FORM_DATA_PROPERTIES } from '@app/constants';
+import { MOCK_MEMBERS } from '@app/mocks/members.mock';
+import { Id, Member, MemberFormData } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
+import { initialState as appInitialState } from '@app/store/app';
 import {
-  ArticlesActions,
-  ArticlesState,
-  initialState as articlesInitialState,
-} from '@app/store/articles';
-import { ImagesActions, initialState as imagesInitialState } from '@app/store/images';
+  MembersActions,
+  MembersState,
+  initialState as membersInitialState,
+} from '@app/store/members';
 import { query } from '@app/utils';
 
-import { ArticleEditorPageComponent } from './article-editor-page.component';
+import { MemberEditorPageComponent } from './member-editor-page.component';
 
-describe('ArticleEditorPageComponent', () => {
-  let fixture: ComponentFixture<ArticleEditorPageComponent>;
-  let component: ArticleEditorPageComponent;
+describe('MemberEditorPageComponent', () => {
+  let fixture: ComponentFixture<MemberEditorPageComponent>;
+  let component: MemberEditorPageComponent;
 
   let metaAndTitleService: MetaAndTitleService;
   let store: MockStore;
@@ -30,29 +30,29 @@ describe('ArticleEditorPageComponent', () => {
   let updateDescriptionSpy: jest.SpyInstance;
   let updateTitleSpy: jest.SpyInstance;
 
-  let mockParamsSubject: BehaviorSubject<{ article_id?: Id }>;
+  let mockParamsSubject: BehaviorSubject<{ member_id?: Id }>;
 
   beforeEach(async () => {
-    mockParamsSubject = new BehaviorSubject<{ article_id?: Id }>({});
+    mockParamsSubject = new BehaviorSubject<{ member_id?: Id }>({});
 
-    const mockArticlesState: ArticlesState = {
-      ...articlesInitialState,
-      ids: MOCK_ARTICLES.map(article => article.id),
-      entities: MOCK_ARTICLES.reduce(
-        (acc, article) => {
-          acc[article.id] = {
-            article,
-            formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+    const mockMembersState: MembersState = {
+      ...membersInitialState,
+      ids: MOCK_MEMBERS.map(member => member.id),
+      entities: MOCK_MEMBERS.reduce(
+        (acc, member) => {
+          acc[member.id] = {
+            member,
+            formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
           };
           return acc;
         },
-        {} as Record<Id, { article: Article; formData: ArticleFormData }>,
+        {} as Record<Id, { member: Member; formData: MemberFormData }>,
       ),
-      totalCount: MOCK_ARTICLES.length,
+      totalCount: MOCK_MEMBERS.length,
     };
 
     await TestBed.configureTestingModule({
-      imports: [ArticleEditorPageComponent],
+      imports: [MemberEditorPageComponent],
       providers: [
         {
           provide: ActivatedRoute,
@@ -67,14 +67,14 @@ describe('ArticleEditorPageComponent', () => {
         },
         provideMockStore({
           initialState: {
-            articlesState: mockArticlesState,
-            imagesState: imagesInitialState,
+            appState: appInitialState,
+            membersState: mockMembersState,
           },
         }),
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ArticleEditorPageComponent);
+    fixture = TestBed.createComponent(MemberEditorPageComponent);
     component = fixture.componentInstance;
 
     metaAndTitleService = TestBed.inject(MetaAndTitleService);
@@ -92,21 +92,21 @@ describe('ArticleEditorPageComponent', () => {
   });
 
   describe('initialization', () => {
-    describe('with article_id route param', () => {
+    describe('with member_id route param', () => {
       beforeEach(() => {
-        mockParamsSubject.next({ article_id: MOCK_ARTICLES[0].id });
+        mockParamsSubject.next({ member_id: MOCK_MEMBERS[0].id });
         component.ngOnInit();
       });
 
-      it('should set viewModel$ based on article title', async () => {
+      it('should set viewModel$ based on member title', async () => {
         const vm = await firstValueFrom(component.viewModel$!.pipe(take(1)));
 
         expect(vm).toStrictEqual({
-          bannerImage: null,
-          formData: pick(MOCK_ARTICLES[0], ARTICLE_FORM_DATA_PROPERTIES),
+          formData: pick(MOCK_MEMBERS[0], MEMBER_FORM_DATA_PROPERTIES),
           hasUnsavedChanges: false,
-          originalArticle: MOCK_ARTICLES[0],
-          pageTitle: `Edit ${MOCK_ARTICLES[0].title}`,
+          isSafeMode: false,
+          originalMember: MOCK_MEMBERS[0],
+          pageTitle: `Edit ${MOCK_MEMBERS[0].firstName} ${MOCK_MEMBERS[0].lastName}`,
         });
       });
 
@@ -115,14 +115,16 @@ describe('ArticleEditorPageComponent', () => {
 
         expect(updateTitleSpy).toHaveBeenCalledTimes(1);
         expect(updateDescriptionSpy).toHaveBeenCalledTimes(1);
-        expect(updateTitleSpy).toHaveBeenCalledWith(`Edit ${MOCK_ARTICLES[0].title}`);
+        expect(updateTitleSpy).toHaveBeenCalledWith(
+          `Edit ${MOCK_MEMBERS[0].firstName} ${MOCK_MEMBERS[0].lastName}`,
+        );
         expect(updateDescriptionSpy).toHaveBeenCalledWith(
-          `Edit ${MOCK_ARTICLES[0].title} for the London Chess Club.`,
+          `Edit ${MOCK_MEMBERS[0].firstName} ${MOCK_MEMBERS[0].lastName} for the London Chess Club.`,
         );
       });
     });
 
-    describe('without article_id route param', () => {
+    describe('without member_id route param', () => {
       beforeEach(() => {
         component.ngOnInit();
       });
@@ -131,11 +133,11 @@ describe('ArticleEditorPageComponent', () => {
         const vm = await firstValueFrom(component.viewModel$!.pipe(take(1)));
 
         expect(vm).toStrictEqual({
-          bannerImage: null,
-          formData: INITIAL_ARTICLE_FORM_DATA,
+          formData: INITIAL_MEMBER_FORM_DATA,
           hasUnsavedChanges: false,
-          originalArticle: null,
-          pageTitle: 'Compose an article',
+          isSafeMode: false,
+          originalMember: null,
+          pageTitle: 'Add a member',
         });
       });
 
@@ -144,9 +146,9 @@ describe('ArticleEditorPageComponent', () => {
 
         expect(updateTitleSpy).toHaveBeenCalledTimes(1);
         expect(updateDescriptionSpy).toHaveBeenCalledTimes(1);
-        expect(updateTitleSpy).toHaveBeenCalledWith('Compose an article');
+        expect(updateTitleSpy).toHaveBeenCalledWith('Add a member');
         expect(updateDescriptionSpy).toHaveBeenCalledWith(
-          'Compose an article for the London Chess Club.',
+          'Add a member for the London Chess Club.',
         );
       });
     });
@@ -157,69 +159,57 @@ describe('ArticleEditorPageComponent', () => {
       component.onCancel();
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(ArticlesActions.cancelSelected());
+      expect(dispatchSpy).toHaveBeenCalledWith(MembersActions.cancelSelected());
     });
   });
 
   describe('onChange', () => {
     it('should dispatch changeSelected action', () => {
-      const mockArticleId = 'abc123';
-      const mockChangedFormData: Partial<ArticleFormData> = {
-        title: 'A new title',
+      const mockMemberId = 'abc123';
+      const mockChangedFormData: Partial<MemberFormData> = {
+        lastName: 'Carlsen',
       };
-      component.onChange(mockArticleId, mockChangedFormData);
+      component.onChange(mockMemberId, mockChangedFormData);
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        ArticlesActions.formDataChanged({
-          articleId: mockArticleId,
+        MembersActions.formDataChanged({
+          memberId: mockMemberId,
           formData: mockChangedFormData,
         }),
       );
     });
   });
 
-  describe('onRequestFetchMainImage', () => {
-    it('should dispatch fetchMainImageRequested action', () => {
-      const mockImageId = 'abc123abc123';
-      component.onRequestFetchMainImage(mockImageId);
+  describe('onRequestAddMember', () => {
+    it('should dispatch addMemberRequested action', () => {
+      component.onRequestAddMember();
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        ImagesActions.fetchMainImageRequested({ imageId: mockImageId }),
-      );
+      expect(dispatchSpy).toHaveBeenCalledWith(MembersActions.addMemberRequested());
     });
   });
 
-  describe('onRequestPublishArticle', () => {
-    it('should dispatch publishArticleRequested action', () => {
-      component.onRequestPublishArticle();
-
-      expect(dispatchSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(ArticlesActions.publishArticleRequested());
-    });
-  });
-
-  describe('onRequestUpdateArticle', () => {
-    it('should dispatch updateArticleRequested action', () => {
-      const mockArticleId = 'abc123abc123';
-      component.onRequestUpdateArticle(mockArticleId);
+  describe('onRequestUpdateMember', () => {
+    it('should dispatch updateMemberRequested action', () => {
+      const mockMemberId = 'abc123abc123';
+      component.onRequestUpdateMember(mockMemberId);
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        ArticlesActions.updateArticleRequested({ articleId: mockArticleId }),
+        MembersActions.updateMemberRequested({ memberId: mockMemberId }),
       );
     });
   });
 
   describe('onRestore', () => {
     it('should dispatch formDataRestored action', () => {
-      const mockArticleId = 'abc123';
-      component.onRestore(mockArticleId);
+      const mockMemberId = 'abc123';
+      component.onRestore(mockMemberId);
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        ArticlesActions.formDataRestored({ articleId: mockArticleId }),
+        MembersActions.formDataRestored({ memberId: mockMemberId }),
       );
     });
   });
@@ -228,7 +218,7 @@ describe('ArticleEditorPageComponent', () => {
     describe('when viewModel$ is undefined', () => {
       it('should not render page components', () => {
         expect(query(fixture.debugElement, 'lcc-page-header')).toBeFalsy();
-        expect(query(fixture.debugElement, 'lcc-article-form')).toBeFalsy();
+        expect(query(fixture.debugElement, 'lcc-member-form')).toBeFalsy();
         expect(query(fixture.debugElement, 'lcc-link-list')).toBeFalsy();
       });
     });
@@ -240,7 +230,7 @@ describe('ArticleEditorPageComponent', () => {
 
       it('should render page components', () => {
         expect(query(fixture.debugElement, 'lcc-page-header')).toBeTruthy();
-        expect(query(fixture.debugElement, 'lcc-article-form')).toBeTruthy();
+        expect(query(fixture.debugElement, 'lcc-member-form')).toBeTruthy();
         expect(query(fixture.debugElement, 'lcc-link-list')).toBeTruthy();
       });
     });

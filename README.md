@@ -34,7 +34,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <details>
 <summary>v5.9.0 - September TBD, 2025</summary>
 
-- 🔧 Upgrade Angular to `v20.2.3` and update all third-party packages
+- 🔧 Upgrade Angular to `v20.2.3`, `@ngrx` packages to `v20.0.1`, and update a handful of third-party packages to their latest versions
 
 </details>
 

@@ -1,7 +1,3 @@
-@if (isAdmin) {
-  <lcc-admin-toolbar [adminLinks]="[addEventLink]"></lcc-admin-toolbar>
-}
-
 <table class="lcc-table events-table">
   <thead>
     <th class="date">Date</th>
@@ -9,24 +5,15 @@
   </thead>
 
   <tbody>
-    @for (
-      event of showPastEvents && allowTogglePastEvents
-        ? events
-        : upcomingEvents.slice(0, upcomingEventLimit ?? upcomingEvents.length);
-      track event.id
-    ) {
+    @for (event of events; track event.id) {
       <tr
         [adminControls]="isAdmin ? getAdminControlsConfig(event) : null"
         [id]="event.id"
         [class.next-event]="event.id === nextEvent?.id"
-        [ngClass]="
-          showPastEvents && allowTogglePastEvents ? 'showing-past-events' : undefined
-        ">
+        [class.now-line-separated]="event.id === nextEvent?.id && showPastEvents">
         <td class="date-cell">
           <div class="date-content">
-            <span class="date">
-              {{ event.eventDate | formatDate: 'long no-time' }}
-            </span>
+            <span class="date">{{ event.eventDate | formatDate: 'short no-time' }}</span>
           </div>
         </td>
 
@@ -43,11 +30,9 @@
               }
             </div>
 
-            @if (includeDetails) {
-              <p class="event-details">
-                {{ event.details.replaceAll('\\n', ' \n ') }}
-              </p>
-            }
+            <p class="event-details">
+              {{ event.details.replaceAll('\\n', ' \n ') }}
+            </p>
 
             @if (event?.articleId) {
               <a
@@ -58,7 +43,7 @@
             }
           </div>
 
-          @if (includeDetails && isAdmin) {
+          @if (showModificationInfo) {
             <aside class="created-and-edited">
               <div>
                 Event created
@@ -75,11 +60,3 @@
     }
   </tbody>
 </table>
-
-@if (allowTogglePastEvents) {
-  <button
-    class="lcc-secondary-button toggle-past-events-button"
-    (click)="onTogglePastEvents()">
-    {{ showPastEvents ? 'Hide' : 'Show' }} past events
-  </button>
-}

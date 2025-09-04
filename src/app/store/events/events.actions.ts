@@ -1,14 +1,28 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Event, EventFormData, Id, LccError } from '@app/models';
+import { DataPaginationOptions, Event, EventFormData, Id, LccError } from '@app/models';
 
-export const fetchEventsRequested = createAction('[Events] Fetch events requested');
-export const fetchEventsSucceeded = createAction(
-  '[Events] Fetch events succeeded',
-  props<{ events: Event[] }>(),
+export const fetchHomePageEventsRequested = createAction(
+  '[Events] Fetch home page events requested',
 );
-export const fetchEventsFailed = createAction(
-  '[Events] Fetch events failed',
+export const fetchHomePageEventsSucceeded = createAction(
+  '[Events] Fetch home page events succeeded',
+  props<{ events: Event[]; totalCount: number }>(),
+);
+export const fetchHomePageEventsFailed = createAction(
+  '[Events] Fetch home page events failed',
+  props<{ error: LccError }>(),
+);
+
+export const fetchFilteredEventsRequested = createAction(
+  '[Events] Fetch filtered events requested',
+);
+export const fetchFilteredEventsSucceeded = createAction(
+  '[Events] Fetch filtered events succeeded',
+  props<{ events: Event[]; filteredCount: number; totalCount: number }>(),
+);
+export const fetchFilteredEventsFailed = createAction(
+  '[Events] Fetch filtered events failed',
   props<{ error: LccError }>(),
 );
 
@@ -63,6 +77,11 @@ export const deleteEventFailed = createAction(
   props<{ error: LccError }>(),
 );
 
+export const paginationOptionsChanged = createAction(
+  '[Events] Pagination options changed',
+  props<{ options: DataPaginationOptions<Event>; fetch: boolean }>(),
+);
+
 export const cancelSelected = createAction('[Events] Cancel selected');
 
 export const formDataChanged = createAction(
@@ -74,7 +93,5 @@ export const formDataRestored = createAction(
   '[Events] Form data restored',
   props<{ eventId: Id | null }>(),
 );
-
-export const pastEventsToggled = createAction('[Events] Past events toggled');
 
 export const requestTimedOut = createAction('[Events] Request timed out');

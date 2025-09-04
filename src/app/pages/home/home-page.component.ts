@@ -13,7 +13,7 @@ import { ArticleGridComponent } from '@app/components/article-grid/article-grid.
 import { ClubLinksComponent } from '@app/components/club-links/club-links.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
-import { ScheduleComponent } from '@app/components/schedule/schedule.component';
+import { ScheduleListComponent } from '@app/components/schedule-list/schedule-list.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { Article, Event, Id, Image, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
@@ -36,26 +36,29 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
     MatIconModule,
     PhotoGridComponent,
     RouterLink,
-    ScheduleComponent,
+    ScheduleListComponent,
     TooltipDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent implements OnInit {
   public viewModel$?: Observable<{
-    articles: Article[];
-    events: Event[];
-    images: Image[];
+    allImages: Image[];
+    homePageArticles: Article[];
+    homePageEvents: Event[];
     isAdmin: boolean;
     nextEvent: Event | null;
     photoImages: Image[];
-    showPastEvents: boolean;
-    upcomingEvents: Event[];
   }>;
 
   public aboutPageLink: InternalLink = {
     text: 'More about the London Chess Club',
     internalPath: 'about',
+  };
+  public readonly addEventLink: InternalLink = {
+    text: 'Add an event',
+    internalPath: ['event', 'add'],
+    icon: 'add_circle_outline',
   };
   public createArticleLink: InternalLink = {
     internalPath: ['article', 'add'],
@@ -90,34 +93,20 @@ export class HomePageComponent implements OnInit {
 
     this.viewModel$ = combineLatest([
       this.store.select(ArticlesSelectors.selectHomePageArticles),
-      this.store.select(EventsSelectors.selectAllEvents),
+      this.store.select(EventsSelectors.selectHomePageEvents),
       this.store.select(ImagesSelectors.selectAllImages),
       this.store.select(AuthSelectors.selectIsAdmin),
       this.store.select(EventsSelectors.selectNextEvent),
-      this.store.select(EventsSelectors.selectShowPastEvents),
-      this.store.select(EventsSelectors.selectUpcomingEvents),
     ]).pipe(
       untilDestroyed(this),
-      map(
-        ([
-          articles,
-          events,
-          images,
-          isAdmin,
-          nextEvent,
-          showPastEvents,
-          upcomingEvents,
-        ]) => ({
-          articles,
-          events,
-          images,
-          isAdmin,
-          nextEvent,
-          photoImages: images.filter(image => !image.album.startsWith('_')),
-          showPastEvents,
-          upcomingEvents,
-        }),
-      ),
+      map(([homePageArticles, homePageEvents, allImages, isAdmin, nextEvent]) => ({
+        homePageArticles,
+        homePageEvents,
+        allImages,
+        isAdmin,
+        nextEvent,
+        photoImages: allImages.filter(image => !image.album.startsWith('_')),
+      })),
     );
   }
 

@@ -4,7 +4,7 @@ import moment from 'moment-timezone';
 
 import { INITIAL_EVENT_FORM_DATA } from '@app/constants';
 import { Id } from '@app/models';
-import { areSame } from '@app/utils';
+import { areSame, customSort } from '@app/utils';
 
 import { EventsState, eventsAdapter } from './events.reducer';
 
@@ -15,9 +15,36 @@ export const selectCallState = createSelector(
   state => state.callState,
 );
 
-export const selectLastFetch = createSelector(
+export const selectLastHomePageFetch = createSelector(
   selectEventsState,
-  state => state.lastFetch,
+  state => state.lastHomePageFetch,
+);
+
+export const selectLastFilteredFetch = createSelector(
+  selectEventsState,
+  state => state.lastFilteredFetch,
+);
+
+export const selectHomePageEvents = createSelector(
+  selectEventsState,
+  state => state.homePageEvents,
+);
+
+export const selectFilteredEvents = createSelector(
+  selectEventsState,
+  state => state.filteredEvents,
+);
+
+export const selectOptions = createSelector(selectEventsState, state => state.options);
+
+export const selectFilteredCount = createSelector(
+  selectEventsState,
+  state => state.filteredCount,
+);
+
+export const selectTotalCount = createSelector(
+  selectEventsState,
+  state => state.totalCount,
 );
 
 const { selectAll: selectAllEventEntities } =
@@ -57,15 +84,10 @@ export const selectHasUnsavedChanges = (id: Id | null) =>
     },
   );
 
-export const selectUpcomingEvents = createSelector(selectAllEvents, allEvents =>
-  allEvents?.filter(event => moment(event?.eventDate).add(3, 'hours').isAfter(moment())),
-);
-
-export const selectNextEvent = createSelector(selectUpcomingEvents, upcomingEvents =>
-  upcomingEvents.length > 0 ? upcomingEvents[0] : null,
-);
-
-export const selectShowPastEvents = createSelector(
-  selectEventsState,
-  state => state.showPastEvents,
-);
+export const selectNextEvent = createSelector(selectAllEvents, allEvents => {
+  return (
+    allEvents
+      .sort((a, b) => customSort(a, b, 'eventDate'))
+      .find(event => moment(event.eventDate).add(3, 'hours').isAfter(moment())) ?? null
+  );
+});

@@ -48,7 +48,7 @@ export const initialState: MembersState = membersAdapter.getInitialState({
     sortBy: 'rating',
     sortOrder: 'desc',
     filters: {
-      isActive: {
+      showInactiveMembers: {
         label: 'Show inactive members',
         value: false,
       },

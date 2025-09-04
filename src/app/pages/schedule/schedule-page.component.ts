@@ -1,20 +1,16 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DOCUMENT,
-  Inject,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
+import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
+import { DataToolbarComponent } from '@app/components/data-toolbar/data-toolbar.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import { ScheduleComponent } from '@app/components/schedule/schedule.component';
-import { Event } from '@app/models';
+import { ScheduleListComponent } from '@app/components/schedule-list/schedule-list.component';
+import { DataPaginationOptions, Event, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { EventsActions, EventsSelectors } from '@app/store/events';
@@ -29,31 +25,54 @@ import { EventsActions, EventsSelectors } from '@app/store/events';
         icon="calendar_month">
       </lcc-page-header>
 
-      <lcc-schedule
-        [events]="vm.events"
+      @if (vm.isAdmin) {
+        <lcc-admin-toolbar [adminLinks]="[addEventLink]"></lcc-admin-toolbar>
+      }
+
+      <lcc-data-toolbar
+        entity="event"
+        [filteredCount]="vm.filteredCount"
+        [options]="vm.options"
+        searchPlaceholder="Search by event type or name"
+        (optionsChange)="onOptionsChange($event)"
+        (optionsChangeNoFetch)="onOptionsChange($event, false)">
+      </lcc-data-toolbar>
+
+      <lcc-schedule-list
+        [events]="vm.filteredEvents"
         [isAdmin]="vm.isAdmin"
         [nextEvent]="vm.nextEvent"
-        [showPastEvents]="vm.showPastEvents"
-        [upcomingEvents]="vm.upcomingEvents"
-        (requestDeleteEvent)="onRequestDeleteEvent($event)"
-        (togglePastEvents)="onTogglePastEvents()">
-      </lcc-schedule>
+        [showModificationInfo]="vm.isAdmin"
+        [showPastEvents]="vm.options.filters.showPastEvents.value"
+        (requestDeleteEvent)="onRequestDeleteEvent($event)">
+      </lcc-schedule-list>
     }
   `,
-  imports: [CommonModule, PageHeaderComponent, ScheduleComponent],
+  imports: [
+    AdminToolbarComponent,
+    CommonModule,
+    DataToolbarComponent,
+    PageHeaderComponent,
+    ScheduleListComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SchedulePageComponent implements OnInit {
+  public readonly addEventLink: InternalLink = {
+    text: 'Add an event',
+    internalPath: ['event', 'add'],
+    icon: 'add_circle_outline',
+  };
+
   public viewModel$?: Observable<{
-    events: Event[];
+    filteredCount: number | null;
+    filteredEvents: Event[];
     isAdmin: boolean;
     nextEvent: Event | null;
-    showPastEvents: boolean;
-    upcomingEvents: Event[];
+    options: DataPaginationOptions<Event>;
   }>;
 
   constructor(
-    @Inject(DOCUMENT) private _document: Document,
     private readonly metaAndTitleService: MetaAndTitleService,
     private readonly store: Store,
   ) {}
@@ -65,47 +84,28 @@ export class SchedulePageComponent implements OnInit {
     );
 
     this.viewModel$ = combineLatest([
-      this.store.select(EventsSelectors.selectAllEvents),
+      this.store.select(EventsSelectors.selectFilteredCount),
+      this.store.select(EventsSelectors.selectFilteredEvents),
       this.store.select(AuthSelectors.selectIsAdmin),
       this.store.select(EventsSelectors.selectNextEvent),
-      this.store.select(EventsSelectors.selectShowPastEvents),
-      this.store.select(EventsSelectors.selectUpcomingEvents),
+      this.store.select(EventsSelectors.selectOptions),
     ]).pipe(
       untilDestroyed(this),
-      map(([events, isAdmin, nextEvent, showPastEvents, upcomingEvents]) => ({
-        events,
+      map(([filteredCount, filteredEvents, isAdmin, nextEvent, options]) => ({
+        filteredCount,
+        filteredEvents,
         isAdmin,
         nextEvent,
-        showPastEvents,
-        upcomingEvents,
+        options,
       })),
-      tap(({ upcomingEvents }) => {
-        if (upcomingEvents.length) {
-          setTimeout(() => {
-            const nextEvent = this._document.getElementById(upcomingEvents[0].id);
-            if (nextEvent) {
-              nextEvent.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-                inline: 'nearest',
-              });
-            }
-          }, 150);
-        }
-      }),
     );
   }
-  public onRequestDeleteEvent(event: Event): void {
-    this.store.dispatch(EventsActions.deleteEventRequested({ event }));
+
+  public onOptionsChange(options: DataPaginationOptions<Event>, fetch = true): void {
+    this.store.dispatch(EventsActions.paginationOptionsChanged({ options, fetch }));
   }
 
-  public onTogglePastEvents(): void {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-
-    this.store.dispatch(EventsActions.pastEventsToggled());
+  public onRequestDeleteEvent(event: Event): void {
+    this.store.dispatch(EventsActions.deleteEventRequested({ event }));
   }
 }

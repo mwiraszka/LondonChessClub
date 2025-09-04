@@ -8,7 +8,7 @@ import { MOCK_EVENTS } from '@app/mocks/events.mock';
 import { DialogService } from '@app/services';
 import { query, queryAll, queryTextContent } from '@app/utils';
 
-import { ScheduleComponent } from './schedule.component';
+import { ScheduleComponent } from './schedule-list.component';
 
 describe('ScheduleComponent', () => {
   let fixture: ComponentFixture<ScheduleComponent>;

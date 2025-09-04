@@ -40,7 +40,7 @@ import { ImagesSelectors } from '@app/store/images';
       </lcc-data-toolbar>
 
       <lcc-article-grid
-        [articles]="vm.articles"
+        [articles]="vm.filteredArticles"
         [images]="vm.images"
         [isAdmin]="vm.isAdmin"
         [options]="vm.options"
@@ -66,7 +66,7 @@ export class NewsPageComponent implements OnInit {
   };
 
   public viewModel$?: Observable<{
-    articles: Article[];
+    filteredArticles: Article[];
     filteredCount: number | null;
     images: Image[];
     isAdmin: boolean;
@@ -92,8 +92,8 @@ export class NewsPageComponent implements OnInit {
       this.store.select(ArticlesSelectors.selectOptions),
     ]).pipe(
       untilDestroyed(this),
-      map(([articles, filteredCount, images, isAdmin, options]) => ({
-        articles,
+      map(([filteredArticles, filteredCount, images, isAdmin, options]) => ({
+        filteredArticles,
         filteredCount,
         images,
         isAdmin,

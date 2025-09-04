@@ -12,10 +12,14 @@
   tbody {
     tr {
       &.next-event {
+        &.now-line-separated {
+          border-top: 3px solid var(--lcc-color--schedule-nowLine) !important;
+        }
+
         .date-content {
           display: inline-flex;
-          padding: 4px 8px;
           background-color: var(--lcc-color--schedule-nextEventBackgroundHighlight);
+          min-width: 100px;
 
           .date {
             font-weight: 600;
@@ -29,16 +33,11 @@
           color: var(--lcc-color--schedule-nextEventText) !important;
           padding: 4px 8px;
         }
-
-        &.showing-past-events td {
-          border-top: 3px solid var(--lcc-color--schedule-nowLine) !important;
-        }
       }
 
       td.main-cell {
         display: flex;
         flex-direction: column;
-        padding: 4px;
 
         @include respond-to('gt-md') {
           flex-direction: row;
@@ -61,7 +60,6 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 4px;
-        padding: 8px;
 
         .title {
           color: var(--lcc-color--schedule-titleText);
@@ -146,12 +144,5 @@
         color: var(--lcc-color--schedule-createdAndEditedText);
       }
     }
-  }
-
-  td.date {
-    padding: 4px 16px 0;
-
-    // Minimum width needed to fit all month names on a single line
-    width: 105px;
   }
 }

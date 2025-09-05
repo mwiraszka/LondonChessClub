@@ -13,7 +13,7 @@ import { ArticleGridComponent } from '@app/components/article-grid/article-grid.
 import { ClubLinksComponent } from '@app/components/club-links/club-links.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
-import { ScheduleListComponent } from '@app/components/schedule-list/schedule-list.component';
+import { ScheduleTableComponent } from '@app/components/schedule-table/schedule-table.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { Article, Event, Id, Image, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
@@ -36,7 +36,7 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
     MatIconModule,
     PhotoGridComponent,
     RouterLink,
-    ScheduleListComponent,
+    ScheduleTableComponent,
     TooltipDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

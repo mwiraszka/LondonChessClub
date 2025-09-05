@@ -22,9 +22,9 @@ import { FormatDatePipe, HighlightPipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 
 @Component({
-  selector: 'lcc-schedule-list',
-  templateUrl: './schedule-list.component.html',
-  styleUrl: './schedule-list.component.scss',
+  selector: 'lcc-schedule-table',
+  templateUrl: './schedule-table.component.html',
+  styleUrl: './schedule-table.component.scss',
   imports: [
     AdminControlsDirective,
     CommonModule,
@@ -36,7 +36,7 @@ import { DialogService } from '@app/services';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ScheduleListComponent {
+export class ScheduleTableComponent {
   @Input({ required: true }) public events!: Event[];
   @Input({ required: true }) public isAdmin!: boolean;
   @Input({ required: true }) public nextEvent!: Event | null;

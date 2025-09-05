@@ -8,17 +8,16 @@ import { MOCK_EVENTS } from '@app/mocks/events.mock';
 import { DialogService } from '@app/services';
 import { query, queryAll, queryTextContent } from '@app/utils';
 
-import { ScheduleComponent } from './schedule-list.component';
+import { ScheduleTableComponent } from './schedule-table.component';
 
-describe('ScheduleComponent', () => {
-  let fixture: ComponentFixture<ScheduleComponent>;
-  let component: ScheduleComponent;
+describe('ScheduleTableComponent', () => {
+  let fixture: ComponentFixture<ScheduleTableComponent>;
+  let component: ScheduleTableComponent;
 
   let dialogService: DialogService;
 
   let dialogOpenSpy: jest.SpyInstance;
   let requestDeleteEventSpy: jest.SpyInstance;
-  let togglePastEventsSpy: jest.SpyInstance;
   let windowScrollSpy: jest.SpyInstance;
 
   const mockPastEvents = [MOCK_EVENTS[0], MOCK_EVENTS[1]];
@@ -27,7 +26,7 @@ describe('ScheduleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AdminControlsDirective, AdminToolbarComponent, ScheduleComponent],
+      imports: [AdminControlsDirective, AdminToolbarComponent, ScheduleTableComponent],
       providers: [
         {
           provide: DialogService,
@@ -37,14 +36,13 @@ describe('ScheduleComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ScheduleComponent);
+    fixture = TestBed.createComponent(ScheduleTableComponent);
     component = fixture.componentInstance;
 
     dialogService = TestBed.inject(DialogService);
 
     dialogOpenSpy = jest.spyOn(dialogService, 'open');
     requestDeleteEventSpy = jest.spyOn(component.requestDeleteEvent, 'emit');
-    togglePastEventsSpy = jest.spyOn(component.togglePastEvents, 'emit');
     windowScrollSpy = jest.spyOn(window, 'scroll').mockImplementation();
 
     fixture.componentRef.setInput('events', [...mockPastEvents, ...mockUpcomingEvents]);
@@ -113,35 +111,9 @@ describe('ScheduleComponent', () => {
     });
   });
 
-  describe('onTogglePastEvents', () => {
-    it('should emit toggle past events event', () => {
-      component.onTogglePastEvents();
-
-      expect(togglePastEventsSpy).toHaveBeenCalledTimes(1);
-    });
-  });
-
   describe('template rendering', () => {
     beforeEach(() => {
       fixture.detectChanges();
-    });
-
-    describe('admin toolbar', () => {
-      it('should render admin toolbar with correct links when isAdmin is true', () => {
-        fixture.componentRef.setInput('isAdmin', true);
-        fixture.detectChanges();
-
-        expect(
-          query(fixture.debugElement, 'lcc-admin-toolbar').componentInstance.adminLinks,
-        ).toEqual([component.addEventLink]);
-      });
-
-      it('should not render admin toolbar when isAdmin is false', () => {
-        fixture.componentRef.setInput('isAdmin', false);
-        fixture.detectChanges();
-
-        expect(query(fixture.debugElement, 'lcc-admin-toolbar')).toBeFalsy();
-      });
     });
 
     describe('events table', () => {
@@ -293,48 +265,6 @@ describe('ScheduleComponent', () => {
           component.events[0],
         );
         expect(adminControlsValue).toBeTruthy();
-      });
-    });
-
-    describe('toggle past events button', () => {
-      it('should render toggle button when allowTogglePastEvents is true', () => {
-        fixture.componentRef.setInput('allowTogglePastEvents', true);
-        fixture.detectChanges();
-
-        expect(query(fixture.debugElement, '.toggle-past-events-button')).toBeTruthy();
-      });
-
-      it('should not render toggle button when allowTogglePastEvents is false', () => {
-        fixture.componentRef.setInput('allowTogglePastEvents', false);
-        fixture.detectChanges();
-
-        expect(query(fixture.debugElement, '.toggle-past-events-button')).toBeFalsy();
-      });
-
-      it('should display "Show past events" when showPastEvents is false', () => {
-        fixture.componentRef.setInput('showPastEvents', false);
-        fixture.detectChanges();
-
-        expect(queryTextContent(fixture.debugElement, '.toggle-past-events-button')).toBe(
-          'Show past events',
-        );
-      });
-
-      it('should display "Hide past events" when showPastEvents is true', () => {
-        fixture.componentRef.setInput('showPastEvents', true);
-        fixture.detectChanges();
-
-        expect(queryTextContent(fixture.debugElement, '.toggle-past-events-button')).toBe(
-          'Hide past events',
-        );
-      });
-
-      it('should emit toggle past events event when clicked', () => {
-        query(fixture.debugElement, '.toggle-past-events-button').triggerEventHandler(
-          'click',
-        );
-
-        expect(togglePastEventsSpy).toHaveBeenCalledTimes(1);
       });
     });
   });

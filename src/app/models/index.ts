@@ -6,6 +6,7 @@ export type { CallState } from './call-state.model';
 export type { ChampionshipTableRowData } from './championship-data.model';
 export type { ClubDocument } from './club-document.model';
 export type { Id, IsoDate, Pixels, Url } from './core.model';
+export type { DateFormat } from './date-format.model';
 export type {
   BasicDialogResult,
   Dialog,

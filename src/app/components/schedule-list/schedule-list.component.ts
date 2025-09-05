@@ -18,7 +18,7 @@ import {
   Dialog,
   Event,
 } from '@app/models';
-import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
+import { FormatDatePipe, HighlightPipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 
 @Component({
@@ -29,6 +29,7 @@ import { DialogService } from '@app/services';
     AdminControlsDirective,
     CommonModule,
     FormatDatePipe,
+    HighlightPipe,
     KebabCasePipe,
     MatIconModule,
     RouterLink,
@@ -40,8 +41,8 @@ export class ScheduleListComponent {
   @Input({ required: true }) public isAdmin!: boolean;
   @Input({ required: true }) public nextEvent!: Event | null;
 
+  @Input() public options?: DataPaginationOptions<Event>;
   @Input() public showModificationInfo?: boolean;
-  @Input() public showPastEvents?: boolean;
 
   @Output() public requestDeleteEvent = new EventEmitter<Event>();
 

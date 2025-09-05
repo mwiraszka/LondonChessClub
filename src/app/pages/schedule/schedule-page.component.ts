@@ -38,14 +38,16 @@ import { EventsActions, EventsSelectors } from '@app/store/events';
         (optionsChangeNoFetch)="onOptionsChange($event, false)">
       </lcc-data-toolbar>
 
-      <lcc-schedule-list
-        [events]="vm.filteredEvents"
-        [isAdmin]="vm.isAdmin"
-        [nextEvent]="vm.nextEvent"
-        [showModificationInfo]="vm.isAdmin"
-        [showPastEvents]="vm.options.filters.showPastEvents.value"
-        (requestDeleteEvent)="onRequestDeleteEvent($event)">
-      </lcc-schedule-list>
+      @if (vm.filteredCount) {
+        <lcc-schedule-list
+          [events]="vm.filteredEvents"
+          [isAdmin]="vm.isAdmin"
+          [nextEvent]="vm.nextEvent"
+          [options]="vm.options"
+          [showModificationInfo]="vm.isAdmin"
+          (requestDeleteEvent)="onRequestDeleteEvent($event)">
+        </lcc-schedule-list>
+      }
     }
   `,
   imports: [

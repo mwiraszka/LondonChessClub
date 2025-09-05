@@ -1,6 +1,6 @@
 import moment from 'moment-timezone';
 
-import { IsoDate } from '@app/models';
+import { DateFormat, IsoDate } from '@app/models';
 
 /**
  * Convert ISO8601 date string (`YYYY-MM-DDTHH:mm:ss`) to one of the following formats:
@@ -8,15 +8,15 @@ import { IsoDate } from '@app/models';
  * * `long no-time`: Thursday, January 1st 2024
  * * `short`: Thu, Jan 1, 2024, 6:00 PM
  * * `short no-time`: Thu, Jan 1, 2024
+ * * `day-of-week`: Thu
+ * * `month-and-day`: Jan 1
+ * * `year`: 2024
 
  * Timezone automatically displayed as EST/EDT due to default timezone set in root App Component.
  *
  * Return `'Invalid date'` if date provided is undefined or has invalid ISO860 format.
  */
-export function formatDate(
-  date?: IsoDate,
-  format: 'long' | 'long no-time' | 'short' | 'short no-time' = 'long',
-): string {
+export function formatDate(date?: IsoDate, format: DateFormat = 'long'): string {
   switch (format) {
     case 'long':
       return moment(date).format('dddd, MMMM Do YYYY [at] h:mm A');
@@ -26,5 +26,11 @@ export function formatDate(
       return moment(date).format('ddd, MMM D, YYYY, h:mm A');
     case 'short no-time':
       return moment(date).format('ddd, MMM D, YYYY');
+    case 'day-of-week':
+      return moment(date).format('ddd');
+    case 'month-and-day':
+      return moment(date).format('MMM D');
+    case 'year':
+      return moment(date).format('YYYY');
   }
 }

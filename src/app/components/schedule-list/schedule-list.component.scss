@@ -1,5 +1,9 @@
 @use '../../../styles/abstracts/mixins' as *;
 
+$date-container-diameter: 70px;
+$full-table-cell-padding: 16px;
+$half-table-cell-padding: 8px;
+
 :host {
   width: 100%;
   display: flex;
@@ -9,139 +13,146 @@
 }
 
 .events-table {
+  max-width: 800px;
+  margin: auto;
+
+  .date-header,
+  .date-cell {
+    width: calc(
+      #{$date-container-diameter} + #{$full-table-cell-padding} +
+        #{$half-table-cell-padding}
+    );
+
+    // Halve the padding between the two columns to make the date appear centered
+    padding-right: $half-table-cell-padding !important;
+  }
+
+  .event-header,
+  .event-cell {
+    padding-left: $half-table-cell-padding !important;
+  }
+
   tbody {
     tr {
-      &.next-event {
-        &.now-line-separated {
-          border-top: 3px solid var(--lcc-color--schedule-nowLine) !important;
-        }
+      &.now-line {
+        border-top: 3px solid var(--lcc-color--schedule-nowLine) !important;
+      }
 
-        .date-content {
-          display: inline-flex;
-          background-color: var(--lcc-color--schedule-nextEventBackgroundHighlight);
-          min-width: 100px;
+      .date-cell {
+        vertical-align: middle;
 
-          .date {
-            font-weight: 600;
-          }
-        }
-
-        .title {
-          font-size: 14px;
-          font-weight: 600;
-          background-color: var(--lcc-color--schedule-nextEventBackgroundHighlight);
-          color: var(--lcc-color--schedule-nextEventText) !important;
-          padding: 4px 8px;
+        .date-container {
+          width: $date-container-diameter;
+          height: $date-container-diameter;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          gap: 2px;
+          background-color: var(--lcc-color--schedule-dateBackground);
+          border: 2px solid var(--lcc-color--schedule-dateBorder);
+          border-radius: 50%;
         }
       }
 
-      td.main-cell {
+      .event-cell {
         display: flex;
-        flex-direction: column;
+        flex-flow: row wrap;
 
-        @include respond-to('gt-md') {
-          flex-direction: row;
+        .main-content {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 4px;
+
+          .title {
+            color: var(--lcc-color--schedule-titleText);
+            line-height: normal;
+            font-size: 15px !important;
+            margin-bottom: 4px;
+          }
+
+          .type-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 4px;
+            width: auto;
+            border-radius: var(--lcc-borderRadius--large);
+            padding: 2px 8px;
+            color: var(--lcc-color--schedule-eventType);
+
+            &.blitz-tournament-10-mins {
+              background-color: var(--lcc-color--schedule-blitz10TournamentBackground);
+              border: 1px solid var(--lcc-color--schedule-blitz10TournamentBorder);
+            }
+
+            &.rapid-tournament-25-mins {
+              background-color: var(--lcc-color--schedule-rapid25TournamentBackground);
+              border: 1px solid var(--lcc-color--schedule-rapid25TournamentBorder);
+            }
+
+            &.rapid-tournament-40-mins {
+              background-color: var(--lcc-color--schedule-rapid40TournamentBackground);
+              border: 1px solid var(--lcc-color--schedule-rapid40TournamentBorder);
+            }
+
+            &.lecture {
+              background-color: var(--lcc-color--schedule-lectureTournamentBackground);
+              border: 1px solid var(--lcc-color--schedule-lectureTournamentBorder);
+            }
+
+            &.simul {
+              background-color: var(--lcc-color--schedule-simulBackground);
+              border: 1px solid var(--lcc-color--schedule-simulBorder);
+            }
+
+            &.championship {
+              background-color: var(--lcc-color--schedule-championshipBackground);
+              border: 2px solid var(--lcc-color--schedule-championshipBorder);
+            }
+
+            &.other {
+              background-color: var(--lcc-color--schedule-otherBackground);
+              border: 1px solid var(--lcc-color--schedule-otherBorder);
+            }
+
+            &.closed {
+              background-color: var(--lcc-color--schedule-closedBackground);
+              border: 1px solid var(--lcc-color--schedule-closedBorder);
+            }
+
+            .championship-icon {
+              @include icon-size(16px);
+
+              color: var(--lcc-color--schedule-championshipMedalIcon);
+            }
+          }
+
+          .event-details {
+            width: 100%;
+            color: var(--lcc-color--schedule-eventDetailsText);
+            padding-top: 16px;
+            font-size: 14px;
+            font-weight: 200;
+            white-space: pre;
+          }
         }
 
         .created-and-edited {
-          padding: 4px;
-          justify-self: flex-end;
-          align-self: flex-end;
-
-          & > div {
-            padding: 2px;
-          }
-        }
-      }
-
-      .main-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-
-        .title {
-          color: var(--lcc-color--schedule-titleText);
-          line-height: normal;
-          font-size: 15px !important;
-          margin-bottom: 4px;
-        }
-
-        .type-container {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          gap: 4px;
-          width: auto;
-          border-radius: var(--lcc-borderRadius--large);
-          padding: 2px 8px;
-          color: var(--lcc-color--schedule-eventType);
-
-          &.blitz-tournament-10-mins {
-            background-color: var(--lcc-color--schedule-blitz10TournamentBackground);
-            border: 1px solid var(--lcc-color--schedule-blitz10TournamentBorder);
-          }
-
-          &.rapid-tournament-25-mins {
-            background-color: var(--lcc-color--schedule-rapid25TournamentBackground);
-            border: 1px solid var(--lcc-color--schedule-rapid25TournamentBorder);
-          }
-
-          &.rapid-tournament-40-mins {
-            background-color: var(--lcc-color--schedule-rapid40TournamentBackground);
-            border: 1px solid var(--lcc-color--schedule-rapid40TournamentBorder);
-          }
-
-          &.lecture {
-            background-color: var(--lcc-color--schedule-lectureTournamentBackground);
-            border: 1px solid var(--lcc-color--schedule-lectureTournamentBorder);
-          }
-
-          &.simul {
-            background-color: var(--lcc-color--schedule-simulBackground);
-            border: 1px solid var(--lcc-color--schedule-simulBorder);
-          }
-
-          &.championship {
-            background-color: var(--lcc-color--schedule-championshipBackground);
-            border: 2px solid var(--lcc-color--schedule-championshipBorder);
-          }
-
-          &.other {
-            background-color: var(--lcc-color--schedule-otherBackground);
-            border: 1px solid var(--lcc-color--schedule-otherBorder);
-          }
-
-          &.closed {
-            background-color: var(--lcc-color--schedule-closedBackground);
-            border: 1px solid var(--lcc-color--schedule-closedBorder);
-          }
-
-          .championship-icon {
-            @include icon-size(16px);
-
-            color: var(--lcc-color--schedule-championshipMedalIcon);
-          }
-        }
-
-        .event-details {
           width: 100%;
-          color: var(--lcc-color--schedule-eventDetailsText);
-          padding-top: 16px;
-          font-size: 14px;
-          font-weight: 200;
-          white-space: pre-line;
+          align-self: flex-end;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 4px;
+          margin-top: 16px;
+          color: var(--lcc-color--schedule-createdAndEditedText);
+          font-size: 11px;
+          font-weight: 100;
         }
-      }
-
-      .created-and-edited {
-        min-width: 200px;
-        align-self: flex-end;
-        text-align: right;
-        font-size: 11px !important;
-        font-weight: 100;
-        color: var(--lcc-color--schedule-createdAndEditedText);
       }
     }
   }

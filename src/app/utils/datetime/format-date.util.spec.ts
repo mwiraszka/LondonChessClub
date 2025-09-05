@@ -69,4 +69,32 @@ describe('formatDate', () => {
       currentDate.format('ddd, MMM D, YYYY'),
     );
   });
+
+  it('transforms valid date strings correctly when `format` is set to "day-of-week"', () => {
+    expect(formatDate('1', 'day-of-week')).toBe('Mon');
+    expect(formatDate('1999', 'day-of-week')).toBe('Fri');
+    expect(formatDate('2000-01-01', 'day-of-week')).toBe('Sat');
+    expect(formatDate('January 15, 1991', 'day-of-week')).toBe('Tue');
+    expect(formatDate(new Date().toISOString(), 'day-of-week')).toBe(
+      currentDate.format('ddd'),
+    );
+  });
+
+  it('transforms valid date strings correctly when `format` is set to "month-and-day"', () => {
+    expect(formatDate('1', 'month-and-day')).toBe('Jan 1');
+    expect(formatDate('1999', 'month-and-day')).toBe('Jan 1');
+    expect(formatDate('2000-01-01', 'month-and-day')).toBe('Jan 1');
+    expect(formatDate('January 15, 1991', 'month-and-day')).toBe('Jan 15');
+    expect(formatDate(new Date().toISOString(), 'month-and-day')).toBe(
+      currentDate.format('MMM D'),
+    );
+  });
+
+  it('transforms valid date strings correctly when `format` is set to "year"', () => {
+    expect(formatDate('1', 'year')).toBe('2001');
+    expect(formatDate('1999', 'year')).toBe('1999');
+    expect(formatDate('2000-01-01', 'year')).toBe('2000');
+    expect(formatDate('January 15, 1991', 'year')).toBe('1991');
+    expect(formatDate(new Date().toISOString(), 'year')).toBe(currentDate.format('YYYY'));
+  });
 });

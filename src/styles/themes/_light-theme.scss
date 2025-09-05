@@ -197,7 +197,7 @@
   --lcc-color--input-background: #{clr(grayscale, white-98)};
   --lcc-color--input-border: #{clr(grayscale, white-80)};
   --lcc-color--input-borderOnHover: #{clr(grayscale, gray-65)};
-  --lcc-color--input-checkboxAndRadio: #{clr(primary, base)};
+  --lcc-color--input-checkboxAndRadio: #{clr(primary, lightest)};
   --lcc-color--input-invalidBorder: #{clr(warning, lighter)};
   --lcc-color--input-placeholderText: #{clr(grayscale, gray-35)};
   --lcc-color--input-text: #{clr(grayscale, black-5)};
@@ -273,12 +273,12 @@
   --lcc-color--schedule-closedBackground: #{clr(event-closed, light, 0.5)};
   --lcc-color--schedule-closedBorder: #{clr(event-closed, base, 0.5)};
   --lcc-color--schedule-createdAndEditedText: #{clr(grayscale, gray-35)};
+  --lcc-color--schedule-dateBackground: #{clr(primary, lightest, 0.2)};
+  --lcc-color--schedule-dateBorder: #{clr(primary, lighter, 0.2)};
   --lcc-color--schedule-eventDetailsText: #{clr(grayscale, black-15)};
   --lcc-color--schedule-eventType: #{clr(grayscale, black-10)};
   --lcc-color--schedule-lectureBackground: #{clr(event-lecture, light, 0.5)};
   --lcc-color--schedule-lectureBorder: #{clr(event-lecture, base, 0.5)};
-  --lcc-color--schedule-nextEventBackgroundHighlight: #{clr(highlight, base, 0.5)};
-  --lcc-color--schedule-nextEventText: #{clr(grayscale, black-5)};
   --lcc-color--schedule-nowLine: #{clr(schedule-now-line, base, 0.5)};
   --lcc-color--schedule-otherBackground: #{clr(event-other, light, 0.5)};
   --lcc-color--schedule-otherBorder: #{clr(event-other, base, 0.5)};

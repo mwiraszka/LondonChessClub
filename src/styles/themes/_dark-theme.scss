@@ -272,13 +272,13 @@ body[data-theme='dark'] {
   --lcc-color--schedule-championshipMedalIcon: #{clr(event-championship)};
   --lcc-color--schedule-closedBackground: #{clr(event-closed, light, 0.5)};
   --lcc-color--schedule-closedBorder: #{clr(event-closed, base, 0.5)};
-  --lcc-color--schedule-createdAndEditedText: #{clr(grayscale, gray-75)};
+  --lcc-color--schedule-createdAndEditedText: #{clr(grayscale, gray-65)};
+  --lcc-color--schedule-dateBackground: #{clr(primary, light, 0.2)};
+  --lcc-color--schedule-dateBorder: #{clr(primary, base, 0.2)};
   --lcc-color--schedule-eventDetailsText: #{clr(grayscale, gray-75)};
   --lcc-color--schedule-eventType: #{clr(grayscale, white-98)};
   --lcc-color--schedule-lectureBackground: #{clr(event-lecture, light, 0.5)};
   --lcc-color--schedule-lectureBorder: #{clr(event-lecture, base, 0.5)};
-  --lcc-color--schedule-nextEventText: #{clr(grayscale, white-98)};
-  --lcc-color--schedule-nextEventBackgroundHighlight: #{clr(highlight, base, 0.4)};
   --lcc-color--schedule-nowLine: #{clr(schedule-now-line, base, 0.5)};
   --lcc-color--schedule-otherBackground: #{clr(event-other, light, 0.5)};
   --lcc-color--schedule-otherBorder: #{clr(event-other, base, 0.5)};

@@ -81,10 +81,11 @@ body[data-theme='dark'] {
   --lcc-color--championPage-cellBackground: #{clr(grayscale, black-15)};
   --lcc-color--championPage-cellBorder: #{clr(grayscale, gray-50, 0.4)};
   --lcc-color--championPage-championshipIcon: #{clr(secondary, base)};
+  --lcc-color--championPage-expansionHeaderBackground: #{clr(grayscale, gray-25, 0.5)};
   --lcc-color--championPage-expansionHeaderBackgroundOnHover: #{clr(
       grayscale,
       gray-25,
-      0.3
+      0.8
     )};
   --lcc-color--championPage-headerText: #{clr(grayscale, gray-75)};
   --lcc-color--championPage-primaryText: #{clr(grayscale, gray-75)};
@@ -265,49 +266,29 @@ body[data-theme='dark'] {
   --lcc-color--schedule-blitz10TournamentBackground: #{clr(
       event-blitz-10-tournament,
       light,
-      0.5
+      0.3
     )};
-  --lcc-color--schedule-blitz10TournamentBorder: #{clr(
-      event-blitz-10-tournament,
-      base,
-      0.5
-    )};
-  --lcc-color--schedule-championshipBackground: #{clr(event-championship, light, 0.5)};
-  --lcc-color--schedule-championshipBorder: #{clr(event-championship, base, 0.5)};
+  --lcc-color--schedule-championshipBackground: #{clr(event-championship, light, 0.3)};
   --lcc-color--schedule-championshipMedalIcon: #{clr(event-championship)};
-  --lcc-color--schedule-closedBackground: #{clr(event-closed, light, 0.5)};
-  --lcc-color--schedule-closedBorder: #{clr(event-closed, base, 0.5)};
+  --lcc-color--schedule-closedBackground: #{clr(event-closed, light, 0.3)};
   --lcc-color--schedule-createdAndEditedText: #{clr(grayscale, gray-65)};
   --lcc-color--schedule-dateBackground: #{clr(primary, light, 0.2)};
   --lcc-color--schedule-eventDetailsText: #{clr(grayscale, gray-75)};
   --lcc-color--schedule-eventType: #{clr(grayscale, white-98)};
-  --lcc-color--schedule-lectureBackground: #{clr(event-lecture, light, 0.5)};
-  --lcc-color--schedule-lectureBorder: #{clr(event-lecture, base, 0.5)};
-  --lcc-color--schedule-nowLine: #{clr(schedule-now-line, base, 0.5)};
-  --lcc-color--schedule-otherBackground: #{clr(event-other, light, 0.5)};
-  --lcc-color--schedule-otherBorder: #{clr(event-other, base, 0.5)};
+  --lcc-color--schedule-lectureBackground: #{clr(event-lecture, light, 0.3)};
+  --lcc-color--schedule-nowLine: #{clr(schedule-now-line, base)};
+  --lcc-color--schedule-otherBackground: #{clr(event-other, light, 0.3)};
   --lcc-color--schedule-rapid25TournamentBackground: #{clr(
       event-rapid-25-tournament,
       light,
       0.5
     )};
-  --lcc-color--schedule-rapid25TournamentBorder: #{clr(
-      event-rapid-25-tournament,
-      base,
-      0.5
-    )};
   --lcc-color--schedule-rapid40TournamentBackground: #{clr(
       event-rapid-40-tournament,
       light,
-      0.5
+      0.3
     )};
-  --lcc-color--schedule-rapid40TournamentBorder: #{clr(
-      event-rapid-40-tournament,
-      base,
-      0.5
-    )};
-  --lcc-color--schedule-simulBackground: #{clr(event-simul, light, 0.5)};
-  --lcc-color--schedule-simulBorder: #{clr(event-simul, base, 0.5)};
+  --lcc-color--schedule-simulBackground: #{clr(event-simul, light, 0.3)};
   --lcc-color--schedule-titleText: #{clr(grayscale, white-95)};
 
   --lcc-color--searchHighlight-background: #{clr(highlight, light)};

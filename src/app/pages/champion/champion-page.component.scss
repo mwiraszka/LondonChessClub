@@ -11,13 +11,13 @@ section {
   place-self: stretch;
   display: flex;
   flex-flow: row wrap;
-  gap: 8px 32px;
   padding: 16px;
   justify-content: center;
   border: 1px solid var(--lcc-color--championPage-cellBorder);
   background-color: var(--lcc-color--championPage-cellBackground);
 
   &.history-and-photos-section {
+    gap: 8px 32px;
     align-items: center;
 
     .history {
@@ -60,6 +60,7 @@ section {
 
   &.past-champions-section {
     align-items: flex-start;
+    gap: 32px;
 
     .other-championships {
       display: flex;
@@ -69,7 +70,7 @@ section {
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 8px;
 
         article {
           flex: 1;
@@ -82,6 +83,7 @@ section {
             padding: 16px 8px;
             border-radius: 4px;
             transition: background-color 0.3s;
+            background-color: var(--lcc-color--championPage-expansionHeaderBackground);
 
             &:hover {
               background-color: var(
@@ -114,7 +116,13 @@ section {
 
     .standard-championship,
     .other-championships {
-      width: 400px;
+      width: 100%;
+
+      @include respond-to('gt-md') {
+        flex: 1;
+        min-width: 400px;
+        max-width: 600px;
+      }
 
       h3 {
         width: 100%;

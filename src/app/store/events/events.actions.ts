@@ -94,4 +94,6 @@ export const formDataRestored = createAction(
   props<{ eventId: Id | null }>(),
 );
 
+export const toggleScheduleView = createAction('[Events] Toggle schedule view');
+
 export const requestTimedOut = createAction('[Events] Request timed out');

@@ -128,6 +128,8 @@
   --lcc-color--documentViewer-scrollbarBackground: #{clr(grayscale, white-90)};
   --lcc-color--documentViewer-scrollbar: #{clr(grayscale, gray-65)};
 
+  --lcc-color--eventsCalendar-text: #{clr(grayscale, black-15)};
+
   --lcc-color--footer-background: #{clr(grayscale, white-98)};
   --lcc-color--footer-copyrightSectionBackground: #{clr(primary, base)};
   --lcc-color--footer-copyrightSectionText: #{clr(grayscale, white-95)};
@@ -246,7 +248,7 @@
   --lcc-color--pgnViewer-playerNameText: #{clr(grayscale, white-85)};
 
   --lcc-color--photoCarousel-activeDot: #{clr(primary, light)};
-  --lcc-color--photoCarousel-activeDotBorder: #{clr(primary, base, 0.8)};
+  --lcc-color--photoCarousel-activeDotBorder: #{clr(primary, light, 0.8)};
   --lcc-color--photoCarousel-caption: #{clr(grayscale, black-15)};
   --lcc-color--photoCarousel-dot: #{clr(grayscale, gray-35)};
   --lcc-color--photoCarousel-dotBorder: #{clr(grayscale, gray-65, 0.8)};

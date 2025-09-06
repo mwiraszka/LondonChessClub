@@ -10,7 +10,6 @@
       (keydown.arrowright)="onNextPhoto()"
       (keydown.arrowleft)="onPreviousPhoto()"
       (keydown.enter)="onNextPhoto()"
-      (keydown.space)="onNextPhoto()"
       [tabindex]="i === currentIndex ? 0 : -1"
       role="button"
       [attr.aria-label]="'View next photo, currently showing ' + photo.caption">
@@ -22,9 +21,15 @@
   }
 </div>
 
-<label class="caption">
-  {{ photos[currentIndex].caption?.replace(': ', ': \n') }}
-</label>
+<div class="caption-container">
+  @for (photo of photos; track photo.id; let i = $index) {
+    <label
+      class="caption"
+      [class.active]="i === currentIndex">
+      {{ photo.caption?.replace(': ', ': \n') }}
+    </label>
+  }
+</div>
 
 <div class="dots-container">
   @for (photo of photos; track photo.id; let i = $index) {

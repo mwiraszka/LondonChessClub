@@ -1,0 +1,37 @@
+@for (calendarMonth of calendarMonths; track calendarMonth.monthYear) {
+  <div
+    class="month"
+    [class.no-events]="!calendarMonth.hasEvents">
+    <h3 class="month-title">{{ calendarMonth.monthYear }}</h3>
+    <div class="month-grid">
+      @for (
+        dayOfWeek of ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        track dayOfWeek
+      ) {
+        <div class="day-header">{{ dayOfWeek }}</div>
+      }
+
+      @for (week of calendarMonth.weeks; track week) {
+        @for (day of week; track day.date.format('YYYY-MM-DD')) {
+          <div
+            class="calendar-day"
+            [class.other-month]="!day.isCurrentMonth"
+            [class.today]="day.isToday">
+            <div class="day-number">{{ day.day }}</div>
+            @if (day.events.length > 0) {
+              <div class="event-indicators">
+                @for (event of day.events; track event.id) {
+                  <div
+                    class="event-indicator"
+                    [class]="getEventTypeClass(event.type)"
+                    [tooltip]="event.title">
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        }
+      }
+    </div>
+  </div>
+}

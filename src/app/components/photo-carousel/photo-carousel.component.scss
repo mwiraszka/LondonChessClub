@@ -51,44 +51,58 @@
   padding: 4px;
 }
 
+.caption-container {
+  position: relative;
+  // Reserve enough space for two lines of text
+  height: 50px;
+  width: 100%;
+}
+
 .caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   line-height: 24px;
   white-space: pre-line;
   font-size: 16px;
   color: var(--lcc-color--photoCarousel-caption);
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
 
-  // Reserve enough space for two lines of text
-  height: 50px;
+  &.active {
+    opacity: 1;
+  }
 }
 
 .dots-container {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 12px;
   margin-top: 16px;
 
   .dot-button {
-    width: 9px;
+    width: 8px;
     height: 8px;
     border-radius: 50%;
     border: 1px solid var(--lcc-color--photoCarousel-dotBorder);
     background-color: var(--lcc-color--photoCarousel-dot);
-    transition: background-color 0.3s ease;
     padding: 0;
     cursor: pointer;
 
     &.active {
       border: 1px solid var(--lcc-color--photoCarousel-activeDotBorder);
       background-color: var(--lcc-color--photoCarousel-activeDot);
+      transition: background-color 1.6s ease;
     }
   }
 }
 
 @include respond-to('lt-md') {
   .dots-container {
-    gap: 12px;
+    gap: 24px;
 
-    .dot {
+    .dot-button {
       width: 12px;
       height: 12px;
     }

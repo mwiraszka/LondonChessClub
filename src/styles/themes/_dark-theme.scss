@@ -128,6 +128,8 @@ body[data-theme='dark'] {
   --lcc-color--documentViewer-scrollbarBackground: #{clr(grayscale, white-90)};
   --lcc-color--documentViewer-scrollbar: #{clr(grayscale, gray-65)};
 
+  --lcc-color--eventsCalendar-text: #{clr(grayscale, white-85)};
+
   --lcc-color--footer-background: #{clr(grayscale, black-20)};
   --lcc-color--footer-copyrightSectionBackground: #{clr(primary, darker)};
   --lcc-color--footer-copyrightSectionText: #{clr(grayscale, white-95)};
@@ -242,11 +244,18 @@ body[data-theme='dark'] {
   --lcc-color--nav-linkForegroundOnHover: #{clr(primary, lighter)};
   --lcc-color--nav-linkForegroundWhenActive: #{clr(grayscale, white-98)};
 
+  --lcc-color--pageHeader-adminIcon: #{clr(admin, base)};
+  --lcc-color--pageHeader-asteriskText: #{clr(grayscale, gray-50)};
+  --lcc-color--pageHeader-background: #{clr(grayscale, black-15)};
+  --lcc-color--pageHeader-boxShadow: #{clr(grayscale, gray-25, 0.7)};
+  --lcc-color--pageHeader-icon: #{clr(secondary, base)};
+  --lcc-color--pageHeader-text: #{clr(grayscale, white-85)};
+
   --lcc-color--pgnViewer-board: #{clr(chessboard)};
   --lcc-color--pgnViewer-playerNameText: #{clr(grayscale, white-85)};
 
   --lcc-color--photoCarousel-activeDot: #{clr(primary, base)};
-  --lcc-color--photoCarousel-activeDotBorder: #{clr(primary, dark, 0.8)};
+  --lcc-color--photoCarousel-activeDotBorder: #{clr(primary, base, 0.8)};
   --lcc-color--photoCarousel-caption: #{clr(grayscale, white-80)};
   --lcc-color--photoCarousel-dot: #{clr(grayscale, white-90)};
   --lcc-color--photoCarousel-dotBorder: #{clr(grayscale, white-85, 0.8)};
@@ -293,13 +302,6 @@ body[data-theme='dark'] {
 
   --lcc-color--searchHighlight-background: #{clr(highlight, light)};
   --lcc-color--searchHighlight-text: #{clr(grayscale, black-10)};
-
-  --lcc-color--pageHeader-adminIcon: #{clr(admin, base)};
-  --lcc-color--pageHeader-asteriskText: #{clr(grayscale, gray-50)};
-  --lcc-color--pageHeader-background: #{clr(grayscale, black-15)};
-  --lcc-color--pageHeader-boxShadow: #{clr(grayscale, gray-25, 0.7)};
-  --lcc-color--pageHeader-icon: #{clr(secondary, base)};
-  --lcc-color--pageHeader-text: #{clr(grayscale, white-85)};
 
   --lcc-color--table-boxShadow: #{clr(grayscale, black-20, 0.7)};
   --lcc-color--table-footerForeground: #{clr(grayscale, gray-65)};

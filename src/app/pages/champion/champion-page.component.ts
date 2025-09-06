@@ -35,7 +35,7 @@ export class ChampionPageComponent implements OnInit {
       mainUrl: 'assets/london-chess-champion/2023-champion.png',
       mainWidth: 609,
       mainHeight: 906,
-      caption: '2023 London Chess Champion: Serhii Ivanchuk',
+      caption: '2023 & 2024 London Chess Champion: Serhii Ivanchuk',
     },
     {
       id: '3',

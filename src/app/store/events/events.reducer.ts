@@ -24,6 +24,7 @@ export interface EventsState
   options: DataPaginationOptions<Event>;
   filteredCount: number | null;
   totalCount: number;
+  scheduleView: 'list' | 'calendar';
 }
 
 export const eventsAdapter = createEntityAdapter<{
@@ -59,6 +60,7 @@ export const initialState: EventsState = eventsAdapter.getInitialState({
   },
   filteredCount: null,
   totalCount: 0,
+  scheduleView: 'calendar',
 });
 
 export const eventsReducer = createReducer(
@@ -254,4 +256,12 @@ export const eventsReducer = createReducer(
       state,
     );
   }),
+
+  on(
+    EventsActions.toggleScheduleView,
+    (state): EventsState => ({
+      ...state,
+      scheduleView: state.scheduleView === 'list' ? 'calendar' : 'list',
+    }),
+  ),
 );

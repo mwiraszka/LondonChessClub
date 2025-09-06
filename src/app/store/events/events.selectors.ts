@@ -47,6 +47,11 @@ export const selectTotalCount = createSelector(
   state => state.totalCount,
 );
 
+export const selectScheduleView = createSelector(
+  selectEventsState,
+  state => state.scheduleView,
+);
+
 const { selectAll: selectAllEventEntities } =
   eventsAdapter.getSelectors(selectEventsState);
 

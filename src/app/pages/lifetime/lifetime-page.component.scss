@@ -31,6 +31,15 @@
   }
 
   figure {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 8px;
+    min-width: 100px;
+    border-radius: var(--lcc-borderRadius--large);
+
     .image-container {
       display: flex;
       align-items: center;
@@ -42,7 +51,20 @@
         width: auto;
         height: auto;
         object-fit: contain;
+        border-top-left-radius: var(--lcc-borderRadius--large);
+        border-top-right-radius: var(--lcc-borderRadius--large);
       }
+    }
+
+    figcaption {
+      background-color: var(--lcc-color--lifetimePage-figureCaptionBackground);
+      color: var(--lcc-color--lifetimePage-figureCaptionText);
+      border-bottom-left-radius: var(--lcc-borderRadius--large);
+      border-bottom-right-radius: var(--lcc-borderRadius--large);
+      font-size: 13px;
+      padding: 4px 8px;
+      width: 100%;
+      line-height: 1.5em;
     }
   }
 }
@@ -53,12 +75,7 @@
 
   .year {
     color: var(--lcc-color--lifetimePage-sectionHeaderText);
-  }
-
-  hr {
     margin: 4px 0 16px;
-    width: 100%;
-    border-top: 1px solid var(--lcc-color--lifetimePage-sectionHeaderDivider);
   }
 
   .recipients {

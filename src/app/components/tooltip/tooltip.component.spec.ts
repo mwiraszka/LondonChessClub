@@ -1,7 +1,10 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TOOLTIP_CONTENT_TOKEN } from '@app/directives/tooltip.directive';
+import {
+  TOOLTIP_CONTENT_TOKEN,
+  TOOLTIP_CONTEXT_TOKEN,
+} from '@app/directives/tooltip.directive';
 import { query, queryTextContent } from '@app/utils';
 
 import { TooltipComponent } from './tooltip.component';
@@ -13,6 +16,21 @@ import { TooltipComponent } from './tooltip.component';
   template: `<ng-template #templateRef>Template Content</ng-template>`,
 })
 class TooltipHostTemplateComponent {
+  @ViewChild('templateRef', { read: TemplateRef }) templateRef!: TemplateRef<unknown>;
+}
+
+// Host component with context-aware template
+@Component({
+  standalone: true,
+  template: `
+    <ng-template
+      #templateRef
+      let-context>
+      Hello, {{ context?.name }}!
+    </ng-template>
+  `,
+})
+class TooltipHostTemplateWithContextComponent {
   @ViewChild('templateRef', { read: TemplateRef }) templateRef!: TemplateRef<unknown>;
 }
 
@@ -136,6 +154,68 @@ describe('TooltipComponent', () => {
 
     it('should pass template reference to ngTemplateOutlet', () => {
       expect(component.tooltipContent).toBe(templateRef);
+    });
+
+    it('should have null context when not provided', () => {
+      expect(component.tooltipContext).toBeNull();
+    });
+  });
+
+  describe('with template content and context', () => {
+    let templateRef: TemplateRef<unknown>;
+    const testContext = { name: 'John Doe', role: 'admin' };
+
+    beforeEach(async () => {
+      // First configure a module to obtain a real TemplateRef with context support
+      await TestBed.configureTestingModule({
+        imports: [TooltipHostTemplateWithContextComponent],
+      }).compileComponents();
+      const hostFixture = TestBed.createComponent(
+        TooltipHostTemplateWithContextComponent,
+      );
+      hostFixture.detectChanges();
+      templateRef = hostFixture.componentInstance.templateRef;
+
+      // Reset and configure a fresh testing module supplying the real TemplateRef and context
+      TestBed.resetTestingModule();
+      await TestBed.configureTestingModule({
+        imports: [TooltipComponent],
+        providers: [
+          {
+            provide: TOOLTIP_CONTENT_TOKEN,
+            useValue: templateRef,
+          },
+          {
+            provide: TOOLTIP_CONTEXT_TOKEN,
+            useValue: testContext,
+          },
+        ],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(TooltipComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+
+    it('should receive content through dependency injection', () => {
+      expect(component.tooltipContent).toBe(templateRef);
+    });
+
+    it('should receive context through dependency injection', () => {
+      expect(component.tooltipContext).toEqual(testContext);
+    });
+
+    it('should render template content with context', () => {
+      const rendered = fixture.debugElement.nativeElement.textContent.trim();
+      expect(rendered).toBe('Hello, John Doe!');
+    });
+
+    it('should not render div for template content', () => {
+      expect(query(fixture.debugElement, 'div')).toBeFalsy();
     });
   });
 });

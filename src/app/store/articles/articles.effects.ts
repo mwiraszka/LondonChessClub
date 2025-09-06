@@ -25,7 +25,7 @@ export class ArticlesEffects {
           pageSize: 6,
           sortBy: 'bookmarkDate',
           sortOrder: 'desc',
-          filters: {},
+          filters: null,
           search: '',
         };
 

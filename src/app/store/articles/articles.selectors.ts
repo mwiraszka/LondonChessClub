@@ -24,6 +24,11 @@ export const selectLastFilteredFetch = createSelector(
   state => state.lastFilteredFetch,
 );
 
+export const selectHomePageArticles = createSelector(
+  selectArticlesState,
+  state => state.homePageArticles,
+);
+
 export const selectFilteredArticles = createSelector(
   selectArticlesState,
   state => state.filteredArticles,
@@ -39,11 +44,6 @@ export const selectFilteredCount = createSelector(
 export const selectTotalCount = createSelector(
   selectArticlesState,
   state => state.totalCount,
-);
-
-export const selectHomePageArticles = createSelector(
-  selectArticlesState,
-  state => state.homePageArticles,
 );
 
 const { selectAll: selectAllArticleEntities } =

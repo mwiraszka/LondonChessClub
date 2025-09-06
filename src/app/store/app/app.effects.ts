@@ -63,7 +63,8 @@ export class AppEffects {
     EventsActions.deleteEventFailed,
     EventsActions.deleteEventSucceeded,
     EventsActions.fetchEventFailed,
-    EventsActions.fetchEventsFailed,
+    EventsActions.fetchFilteredEventsFailed,
+    EventsActions.fetchHomePageEventsFailed,
     EventsActions.requestTimedOut,
     EventsActions.updateEventFailed,
     EventsActions.updateEventSucceeded,
@@ -113,7 +114,8 @@ export class AppEffects {
     ArticlesActions.fetchHomePageArticlesFailed,
     ArticlesActions.fetchArticleFailed,
 
-    EventsActions.fetchEventsFailed,
+    EventsActions.fetchFilteredEventsFailed,
+    EventsActions.fetchHomePageEventsFailed,
     EventsActions.fetchEventFailed,
 
     ImagesActions.fetchAllImagesMetadataFailed,
@@ -181,8 +183,9 @@ export class AppEffects {
   private readonly eventsRequested = [
     EventsActions.addEventRequested,
     EventsActions.deleteEventRequested,
-    EventsActions.fetchEventsRequested,
     EventsActions.fetchEventRequested,
+    EventsActions.fetchFilteredEventsRequested,
+    EventsActions.fetchHomePageEventsRequested,
     EventsActions.updateEventRequested,
   ];
 
@@ -441,7 +444,13 @@ export class AppEffects {
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case EventsActions.fetchEventsFailed.type:
+      case EventsActions.fetchFilteredEventsFailed.type:
+        return {
+          title: 'Load events',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case EventsActions.fetchHomePageEventsFailed.type:
         return {
           title: 'Load events',
           message: this.getErrorMessage(action.error),

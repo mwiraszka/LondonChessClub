@@ -1,7 +1,7 @@
 <div class="lcc-table-wrapper">
   @if (members.length) {
     <table
-      class="lcc-table"
+      class="members-table lcc-table"
       [class.lcc-show-admin-columns]="isAdmin && !isSafeMode">
       <thead>
         <tr>
@@ -42,7 +42,7 @@
                 [tooltip]="member.isActive ? null : 'Inactive member'">
                 @if (isCityChampion(member)) {
                   <a
-                    class="city-champion-link"
+                    class="city-champion-link before-name"
                     routerLink="/city-champion"
                     tooltip="2024 City Champion">
                     <mat-icon class="city-champion-icon">emoji_events</mat-icon>
@@ -65,7 +65,7 @@
                 </span>
                 @if (isCityChampion(member)) {
                   <a
-                    class="city-champion-link"
+                    class="city-champion-link after-name"
                     routerLink="/city-champion"
                     tooltip="2024 City Champion">
                     <mat-icon class="city-champion-icon">emoji_events</mat-icon>

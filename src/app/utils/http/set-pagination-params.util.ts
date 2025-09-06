@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 
-import { DataPaginationOptions, Filter } from '@app/models';
+import { DataPaginationOptions } from '@app/models';
 
 /**
  * Set HttpParams based on pagination options.
@@ -16,9 +16,9 @@ export function setPaginationParams<T>(options: DataPaginationOptions<T>): HttpP
     params = params.set('search', options.search.trim());
   }
 
-  if (Object.keys(options.filters).length) {
+  if (options.filters && Object.keys(options.filters).length) {
     Object.entries(options.filters).forEach(([key, filter]) => {
-      params = params.set(`filter_${key}`, (filter as Filter).value.toString());
+      params = params.set(`filter_${key}`, filter.value.toString());
     });
   }
 

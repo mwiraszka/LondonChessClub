@@ -35,9 +35,15 @@ $breakpoints: (
     min-width: 1000px,
   ),
   'lt-xl': (
-    max-width: 1500px,
+    max-width: 1200px,
   ),
   'gt-xl': (
+    min-width: 1200px,
+  ),
+  'lt-xxl': (
+    max-width: 1500px,
+  ),
+  'gt-xxl': (
     min-width: 1500px,
   ),
 );

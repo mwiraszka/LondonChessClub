@@ -32,6 +32,22 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.9.0 - September TBD, 2025</summary>
+
+- 🚀 A new and improved City Champion page:
+    - a new Photo Carousel component that auto-cycles through championship photos, with the ability to cycle through manually with keyboard or by clicking on the dots
+    - initially display only 10 rows in each past champions table, with the ability to see the remainder of rows by clicking on the ellipses in the table footers
+    - some subtle animations and minor layout tweaks
+- 🚀 Revamp Schedule page:
+    - integrate pagination, filtering and search highlighting (as on News and Members pages)
+    - redesign Events Table component with new circular date widget for the dates (to take up far less space), and a cleaner layout overall
+    - offer the ability to view events in either 'list view' or 'calendar view'
+- 🔧 Upgrade Angular to `v20.2.3`, `@ngrx` packages to `v20.0.1`, and update a handful of third-party packages to their latest versions
+- 🔧 Add support for context-aware templates in tooltips and implement in Events Calendar for each event indicator
+
+</details>
+
+<details>
 <summary>v5.8.5 - September 2nd, 2025</summary>
 
 - 🚀 Configure 'on-push' change detection strategy on all page components to limit screen checks to only when inputs change, resulting in a slightly more performant web app

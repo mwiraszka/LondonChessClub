@@ -117,12 +117,7 @@ export class DataToolbarComponent<T = EntityType> implements OnInit {
     this.searchQuerySubject.next({ ...this.options, search, page: 1 });
   }
 
-  public onToggleFilter(filter: KeyValue<string, Filter | undefined>): void {
-    // TODO: Investigate how filter.value is still flagged as possibly undefined
-    if (!filter.value || !this.options.filters) {
-      return;
-    }
-
+  public onToggleFilter(filter: KeyValue<string, Filter>): void {
     const filters = {
       ...this.options.filters,
       [filter.key]: { ...filter.value, value: !filter.value.value },

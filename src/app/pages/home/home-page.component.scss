@@ -6,7 +6,7 @@
   grid-template-areas: 'welcome' 'schedule' 'articles' 'regional-clubs' 'photos';
   grid-template-columns: minmax(0, 1fr);
 
-  @include respond-to('gt-lg') {
+  @include respond-to('gt-xl') {
     grid-template-columns: 420px 1fr 1fr 1fr;
     grid-template-areas:
       'welcome welcome schedule schedule'
@@ -51,9 +51,12 @@
         }
       }
 
-      lcc-link-list {
+      .main-links {
         padding: 8px 0;
         margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
       }
 
       .tournament-registration-link-button {

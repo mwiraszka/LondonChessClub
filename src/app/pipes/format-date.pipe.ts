@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { IsoDate } from '@app/models';
+import { DateFormat, IsoDate } from '@app/models';
 import { formatDate } from '@app/utils';
 
 /**
@@ -10,10 +10,7 @@ import { formatDate } from '@app/utils';
   name: 'formatDate',
 })
 export class FormatDatePipe implements PipeTransform {
-  transform(
-    date?: IsoDate,
-    format?: 'long' | 'long no-time' | 'short' | 'short no-time',
-  ): string {
+  transform(date?: IsoDate, format?: DateFormat): string {
     return formatDate(date, format);
   }
 }

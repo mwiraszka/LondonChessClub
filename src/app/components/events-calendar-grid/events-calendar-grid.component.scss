@@ -1,0 +1,251 @@
+@use '../../../styles/abstracts/mixins' as *;
+
+$month-min-width: 310px;
+$month-max-width: 550px;
+$grid-gap: 16px;
+
+:host {
+  width: 100%;
+  container-type: inline-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.months-grid {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: $grid-gap;
+  display: flex;
+  flex-flow: row wrap;
+
+  @container (width >= calc(2 * #{$month-min-width} + #{$grid-gap})) {
+    &:not([month-count='1']) {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax($month-min-width, 1fr));
+    }
+  }
+
+  @for $n from 2 through 4 {
+    @container (width >= calc(#{$n} * #{$month-max-width} + #{($n - 1)} * #{$grid-gap})) {
+      &[month-count='#{$n}'] {
+        display: flex;
+      }
+    }
+  }
+}
+
+.month {
+  flex: 1;
+  min-width: $month-min-width;
+  max-width: $month-max-width;
+  aspect-ratio: 7 / 6;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 8px;
+
+  &.no-events {
+    opacity: 0.4;
+
+    .calendar-day {
+      background-color: var(--lcc-color--eventsCalendar-outsideMonthBackground);
+      color: var(--lcc-color--eventsCalendar-outsideMonthText);
+    }
+
+    .day-header {
+      background-color: var(
+        --lcc-color--eventsCalendar-outsideMonthBackground
+      ) !important;
+      color: var(--lcc-color--eventsCalendar-outsideMonthText) !important;
+    }
+  }
+
+  .month-title {
+    font-size: 16px;
+    color: var(--lcc-color--eventsCalendar-monthHeaderText);
+  }
+
+  .calendar-grid {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto repeat(6, 1fr);
+    gap: 1px;
+    background-color: var(--lcc-color--eventsCalendar-gridBorder);
+    border: 1px solid var(--lcc-color--eventsCalendar-gridBorder);
+
+    .day-header {
+      padding: 4px 2px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 13px;
+      background-color: var(--lcc-color--eventsCalendar-dayHeaderBackground);
+      color: var(--lcc-color--eventsCalendar-dayHeaderText);
+    }
+
+    .calendar-day {
+      min-height: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 4px;
+      background-color: var(--lcc-color--eventsCalendar-insideMonthBackground);
+
+      &.today {
+        border: 2px solid var(--lcc-color--schedule-today);
+      }
+
+      .day-number {
+        text-align: end;
+        font-weight: bold;
+        font-size: 12px;
+        color: var(--lcc-color--eventsCalendar-insideMonthText);
+      }
+
+      &.other-month {
+        background-color: var(--lcc-color--eventsCalendar-outsideMonthBackground);
+
+        .day-number {
+          color: var(--lcc-color--eventsCalendar-outsideMonthText);
+        }
+      }
+    }
+  }
+}
+
+.event-indicators {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 2px;
+
+  .event-indicator {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+
+    &:not(.no-events) {
+      &.other-month {
+        opacity: 0.4;
+      }
+
+      &:not(.other-month) {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+
+    &.blitz-tournament-10-mins {
+      background-color: var(--lcc-color--schedule-blitz10TournamentDot);
+    }
+
+    &.rapid-tournament-25-mins {
+      background-color: var(--lcc-color--schedule-rapid25TournamentDot);
+    }
+
+    &.rapid-tournament-40-mins {
+      background-color: var(--lcc-color--schedule-rapid40TournamentDot);
+    }
+
+    &.lecture {
+      background-color: var(--lcc-color--schedule-lectureDot);
+    }
+
+    &.simul {
+      background-color: var(--lcc-color--schedule-simulDot);
+    }
+
+    &.championship {
+      background-color: var(--lcc-color--schedule-championshipDot);
+    }
+
+    &.other {
+      background-color: var(--lcc-color--schedule-otherDot);
+    }
+
+    &.closed {
+      background-color: var(--lcc-color--schedule-closedDot);
+    }
+  }
+}
+
+.event-tooltip {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+
+  .event-date-and-time {
+    color: var(--lcc-color--eventsCalendar-primaryTooltipText);
+  }
+
+  .event-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--lcc-color--eventsCalendar-primaryTooltipText);
+  }
+
+  .event-type-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border-radius: var(--lcc-borderRadius--large);
+    padding: 2px 8px;
+
+    &.blitz-tournament-10-mins {
+      background-color: var(--lcc-color--schedule-blitz10TournamentBackground);
+    }
+
+    &.rapid-tournament-25-mins {
+      background-color: var(--lcc-color--schedule-rapid25TournamentBackground);
+    }
+
+    &.rapid-tournament-40-mins {
+      background-color: var(--lcc-color--schedule-rapid40TournamentBackground);
+    }
+
+    &.lecture {
+      background-color: var(--lcc-color--schedule-lectureBackground);
+    }
+
+    &.simul {
+      background-color: var(--lcc-color--schedule-simulBackground);
+    }
+
+    &.championship {
+      background-color: var(--lcc-color--schedule-championshipBackground);
+    }
+
+    &.other {
+      background-color: var(--lcc-color--schedule-otherBackground);
+    }
+
+    &.closed {
+      background-color: var(--lcc-color--schedule-closedBackground);
+    }
+
+    .event-type {
+      color: var(--lcc-color--eventsCalendar-eventTypeText);
+    }
+
+    .championship-icon {
+      @include icon-size(16px);
+
+      color: var(--lcc-color--schedule-championshipMedalIcon);
+    }
+  }
+
+  .event-details {
+    white-space: pre-line;
+    color: var(--lcc-color--eventsCalendar-secondaryTooltipText);
+  }
+}

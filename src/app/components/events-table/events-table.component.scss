@@ -11,8 +11,8 @@
     }
 
     tr {
-      &.now-line {
-        border-top: 3px solid var(--lcc-color--schedule-nowLine) !important;
+      &.today {
+        border-top: 3px solid var(--lcc-color--schedule-today) !important;
       }
 
       .event-date-cell {

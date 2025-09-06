@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
 import { DataToolbarComponent } from '@app/components/data-toolbar/data-toolbar.component';
-import { EventsCalendarComponent } from '@app/components/events-calendar/events-calendar.component';
+import { EventsCalendarGridComponent } from '@app/components/events-calendar-grid/events-calendar-grid.component';
 import { EventsTableComponent } from '@app/components/events-table/events-table.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
@@ -50,44 +50,53 @@ import { EventsActions, EventsSelectors } from '@app/store/events';
       </div>
 
       @if (vm.filteredCount) {
-        @if (vm.scheduleView === 'list') {
-          <lcc-events-table
-            [events]="vm.filteredEvents"
-            [isAdmin]="vm.isAdmin"
-            [nextEvent]="vm.nextEvent"
-            [options]="vm.options"
-            [showModificationInfo]="vm.isAdmin"
-            (requestDeleteEvent)="onRequestDeleteEvent($event)">
-          </lcc-events-table>
-        } @else {
-          <lcc-events-calendar
-            [events]="vm.filteredEvents"
-            [isAdmin]="vm.isAdmin"
-            [nextEvent]="vm.nextEvent"
-            [options]="vm.options"
-            (requestDeleteEvent)="onRequestDeleteEvent($event)">
-          </lcc-events-calendar>
-        }
+        <lcc-events-table
+          class="schedule-view"
+          [class.active]="vm.scheduleView === 'list'"
+          [events]="vm.filteredEvents"
+          [isAdmin]="vm.isAdmin"
+          [nextEvent]="vm.nextEvent"
+          [options]="vm.options"
+          [showModificationInfo]="vm.isAdmin"
+          (requestDeleteEvent)="onRequestDeleteEvent($event)">
+        </lcc-events-table>
+
+        <lcc-events-calendar-grid
+          class="schedule-view"
+          [class.active]="vm.scheduleView === 'calendar'"
+          [events]="vm.filteredEvents"
+          [isAdmin]="vm.isAdmin"
+          [nextEvent]="vm.nextEvent"
+          [options]="vm.options"
+          (requestDeleteEvent)="onRequestDeleteEvent($event)">
+        </lcc-events-calendar-grid>
       }
     }
   `,
   styles: `
-    :host {
-      margin-bottom: 64px !important;
-    }
-
     .toggle-switch-container {
       background-color: var(--lcc-color--dataToolbar-background);
       border-radius: var(--lcc-borderRadius--small);
       box-shadow: 0 2px 4px 0 var(--lcc-color--table-boxShadow);
       padding: 8px 64px;
     }
+
+    .schedule-view {
+      visibility: hidden;
+      display: none;
+
+      &.active {
+        visibility: visible;
+        position: relative;
+        display: block;
+      }
+    }
   `,
   imports: [
     AdminToolbarComponent,
     CommonModule,
     DataToolbarComponent,
-    EventsCalendarComponent,
+    EventsCalendarGridComponent,
     EventsTableComponent,
     PageHeaderComponent,
     ToggleSwitchComponent,

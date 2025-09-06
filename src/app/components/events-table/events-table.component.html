@@ -9,7 +9,7 @@
       <tr
         [adminControls]="isAdmin ? getAdminControlsConfig(event) : null"
         [id]="event.id"
-        [class.now-line]="
+        [class.today]="
           event.id === nextEvent?.id && options?.filters?.showPastEvents?.value
         ">
         <td class="event-date-cell">

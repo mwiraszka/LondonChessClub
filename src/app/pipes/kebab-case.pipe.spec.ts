@@ -18,7 +18,7 @@ describe('KebabCasePipe', () => {
     expect(pipe.transform('abc')).toBe('abc');
     expect(pipe.transform('Def')).toBe('def');
     expect(pipe.transform('GHI')).toBe('ghi');
-    expect(pipe.transform('abc def')).toBe('abc-def');
+    expect(pipe.transform('(abc) def')).toBe('abc-def');
     expect(pipe.transform('DEF-gHI')).toBe('def-g-hi');
     expect(pipe.transform('a  b  c')).toBe('a-b-c');
     expect(pipe.transform('#d$E*__f')).toBe('d-e-f');

@@ -9,7 +9,6 @@ import {
   OnChanges,
   OnInit,
   Output,
-  SimpleChanges,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -18,44 +17,31 @@ import { TooltipDirective } from '@app/directives/tooltip.directive';
 import {
   AdminControlsConfig,
   BasicDialogResult,
+  CalendarDay,
+  CalendarMonth,
   DataPaginationOptions,
   Dialog,
   Event,
-  EventType,
+  NgChanges,
 } from '@app/models';
 import { FormatDatePipe, HighlightPipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 
-interface CalendarDay {
-  day: number;
-  isCurrentMonth: boolean;
-  isToday: boolean;
-  date: moment.Moment;
-  dateKey: string; // Pre-computed date key for tracking
-  events: Event[];
-}
-
-interface CalendarMonth {
-  monthYear: string;
-  hasEvents: boolean;
-  weeks: CalendarDay[][];
-}
-
 @Component({
-  selector: 'lcc-events-calendar',
-  templateUrl: './events-calendar.component.html',
-  styleUrl: './events-calendar.component.scss',
+  selector: 'lcc-events-calendar-grid',
+  templateUrl: './events-calendar-grid.component.html',
+  styleUrl: './events-calendar-grid.component.scss',
   imports: [
     CommonModule,
+    FormatDatePipe,
     HighlightPipe,
     KebabCasePipe,
     MatIconModule,
     TooltipDirective,
-    FormatDatePipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventsCalendarComponent implements OnChanges, OnInit {
+export class EventsCalendarGridComponent implements OnInit, OnChanges {
   @Input({ required: true }) public events!: Event[];
   @Input({ required: true }) public isAdmin!: boolean;
   @Input({ required: true }) public nextEvent!: Event | null;
@@ -74,8 +60,8 @@ export class EventsCalendarComponent implements OnChanges, OnInit {
     this.updateCalendarMonths();
   }
 
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['events']) {
+  public ngOnChanges(changes: NgChanges<EventsCalendarGridComponent>): void {
+    if (changes.events) {
       this.updateCalendarMonths();
     }
   }
@@ -111,7 +97,7 @@ export class EventsCalendarComponent implements OnChanges, OnInit {
   }
 
   public get monthYears(): string[] {
-    if (this.events.length === 0) {
+    if (!this.events.length) {
       return [];
     }
 
@@ -134,11 +120,16 @@ export class EventsCalendarComponent implements OnChanges, OnInit {
     return monthYears;
   }
 
+  public trackWeekByIndex(index: number): number {
+    return index;
+  }
+
   private updateCalendarMonths(): void {
-    // Only recalculate if events have actually changed
     const eventsJson = JSON.stringify(
-      this.events.map(e => ({ id: e.id, eventDate: e.eventDate })),
+      this.events.map(event => ({ id: event.id, eventDate: event.eventDate })),
     );
+
+    // Only recalculate if events have actually changed
     if (eventsJson === this.cachedEventsJson) {
       return;
     }
@@ -147,33 +138,6 @@ export class EventsCalendarComponent implements OnChanges, OnInit {
     this.calendarMonths = this.monthYears.map(monthYear =>
       this.generateCalendarMonth(monthYear),
     );
-  }
-
-  public getEventTypeClass(eventType: EventType): string {
-    switch (eventType) {
-      case 'blitz tournament (10 mins)':
-        return 'blitz-tournament-10-mins';
-      case 'rapid tournament (25 mins)':
-        return 'rapid-tournament-25-mins';
-      case 'rapid tournament (40 mins)':
-        return 'rapid-tournament-40-mins';
-      case 'lecture':
-        return 'lecture';
-      case 'simul':
-        return 'simul';
-      case 'championship':
-        return 'championship';
-      case 'closed':
-        return 'closed';
-      case 'other':
-        return 'other';
-      default:
-        return 'other';
-    }
-  }
-
-  public trackWeekByIndex(index: number): number {
-    return index;
   }
 
   private generateCalendarMonth(monthYear: string): CalendarMonth {
@@ -189,7 +153,7 @@ export class EventsCalendarComponent implements OnChanges, OnInit {
     // Start from Sunday of the week containing the first day of the month
     const startOfCalendar = startOfMonth.clone().startOf('week');
 
-    // Generate 6 weeks (42 days) to ensure we cover all possible month layouts
+    // Generate 6 weeks (42 days) to ensure all possible month layouts are covered
     const weeks: CalendarDay[][] = [];
     const currentDate = startOfCalendar.clone();
 

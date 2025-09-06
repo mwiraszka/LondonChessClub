@@ -128,9 +128,17 @@ body[data-theme='dark'] {
   --lcc-color--documentViewer-scrollbarBackground: #{clr(grayscale, white-90)};
   --lcc-color--documentViewer-scrollbar: #{clr(grayscale, gray-65)};
 
+  --lcc-color--eventsCalendar-dayHeaderBackground: #{clr(grayscale, black-15)};
+  --lcc-color--eventsCalendar-dayHeaderText: #{clr(grayscale, gray-75)};
   --lcc-color--eventsCalendar-eventTypeText: #{clr(grayscale, white-95)};
-  --lcc-color--eventsCalendar-primaryText: #{clr(grayscale, white-85)};
-  --lcc-color--eventsCalendar-secondaryText: #{clr(grayscale, gray-75)};
+  --lcc-color--eventsCalendar-gridBorder: #{clr(grayscale, gray-35)};
+  --lcc-color--eventsCalendar-insideMonthBackground: #{clr(grayscale, black-20)};
+  --lcc-color--eventsCalendar-insideMonthText: #{clr(grayscale, gray-50)};
+  --lcc-color--eventsCalendar-monthHeaderText: #{clr(grayscale, white-80)};
+  --lcc-color--eventsCalendar-outsideMonthBackground: #{clr(grayscale, black-15)};
+  --lcc-color--eventsCalendar-outsideMonthText: #{clr(grayscale, gray-35, 0.5)};
+  --lcc-color--eventsCalendar-primaryTooltipText: #{clr(grayscale, white-90)};
+  --lcc-color--eventsCalendar-secondaryTooltipText: #{clr(grayscale, gray-75)};
 
   --lcc-color--footer-background: #{clr(grayscale, black-20)};
   --lcc-color--footer-copyrightSectionBackground: #{clr(primary, darker)};
@@ -291,7 +299,6 @@ body[data-theme='dark'] {
   --lcc-color--schedule-eventType: #{clr(grayscale, white-98)};
   --lcc-color--schedule-lectureBackground: #{clr(event-lecture, light, 0.3)};
   --lcc-color--schedule-lectureDot: #{clr(event-lecture, light)};
-  --lcc-color--schedule-nowLine: #{clr(schedule-now-line, base)};
   --lcc-color--schedule-otherBackground: #{clr(event-other, light, 0.3)};
   --lcc-color--schedule-otherDot: #{clr(event-other, light)};
   --lcc-color--schedule-rapid25TournamentBackground: #{clr(
@@ -309,6 +316,7 @@ body[data-theme='dark'] {
   --lcc-color--schedule-simulBackground: #{clr(event-simul, light, 0.3)};
   --lcc-color--schedule-simulDot: #{clr(event-simul, light)};
   --lcc-color--schedule-titleText: #{clr(grayscale, white-95)};
+  --lcc-color--schedule-today: #{clr(schedule-today, base)};
 
   --lcc-color--searchHighlight-background: #{clr(highlight, light)};
   --lcc-color--searchHighlight-text: #{clr(grayscale, black-10)};

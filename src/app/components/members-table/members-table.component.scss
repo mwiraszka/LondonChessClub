@@ -107,7 +107,14 @@
         &.name {
           .city-champion-link {
             display: inline-block;
-            padding-right: 4px;
+
+            &.before-name {
+              padding-right: 4px;
+            }
+
+            &.after-name {
+              padding-left: 4px;
+            }
 
             .city-champion-icon {
               @include icon-size(16px);

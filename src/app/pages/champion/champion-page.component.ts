@@ -1,19 +1,65 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import { ImagePreloadDirective } from '@app/directives/image-preload.directive';
-import { ChampionshipTableRowData } from '@app/models';
+import { PhotoCarouselComponent } from '@app/components/photo-carousel/photo-carousel.component';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
+import { ChampionshipTableRowData, Image } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 
 @Component({
   selector: 'lcc-champion-page',
   templateUrl: './champion-page.component.html',
   styleUrl: './champion-page.component.scss',
-  imports: [ImagePreloadDirective, MatIconModule, PageHeaderComponent],
+  imports: [
+    MatIconModule,
+    PageHeaderComponent,
+    PhotoCarouselComponent,
+    RouterLink,
+    TooltipDirective,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChampionPageComponent implements OnInit {
+  public readonly photos: Partial<Image>[] = [
+    {
+      id: '1',
+      mainUrl: 'assets/london-chess-champion/championship-trophies.png',
+      mainWidth: 957,
+      mainHeight: 637,
+      caption: 'Championship Trophies',
+    },
+    {
+      id: '2',
+      mainUrl: 'assets/london-chess-champion/2023-champion.png',
+      mainWidth: 609,
+      mainHeight: 906,
+      caption: '2023 London Chess Champion: Serhii Ivanchuk',
+    },
+    {
+      id: '3',
+      mainUrl: 'assets/london-chess-champion/championship-cup.jpg',
+      mainWidth: 450,
+      mainHeight: 600,
+      caption: 'Championship Cup',
+    },
+    {
+      id: '4',
+      mainUrl: 'assets/london-chess-champion/2019-champion.jpg',
+      mainWidth: 356,
+      mainHeight: 600,
+      caption: '2019 London Chess Champion: Kevin Gibson',
+    },
+    {
+      id: '5',
+      mainUrl: 'assets/london-chess-champion/2022-championship-match.png',
+      mainWidth: 600,
+      mainHeight: 300,
+      caption: '2022 Championship Match: Carl Ehrman vs. Geoffrey Ruelland',
+    },
+  ];
+
   public readonly activeChampionships: ChampionshipTableRowData[] = [
     { year: 2019, winners: [{ name: 'Kevin Gibson', peakRating: '2217' }] },
     { year: 2018, winners: [{ name: 'Amir Docheshmeh', peakRating: '1771' }] },
@@ -230,10 +276,14 @@ export class ChampionPageComponent implements OnInit {
     { year: 1967, winners: [{ name: 'Peter Murray', peakRating: '2289' }] },
   ];
 
-  // Expansion panel state
-  public juniorPanelExpanded = false;
   public activePanelExpanded = false;
+  public juniorPanelExpanded = false;
   public speedPanelExpanded = false;
+
+  public seeFullActiveTable = false;
+  public seeFullJuniorTable = false;
+  public seeFullSpeedTable = false;
+  public seeFullStandardTable = false;
 
   constructor(private readonly metaAndTitleService: MetaAndTitleService) {}
 

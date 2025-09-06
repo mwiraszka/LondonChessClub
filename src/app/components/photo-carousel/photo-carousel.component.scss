@@ -1,0 +1,96 @@
+@use '../../../styles/abstracts/mixins' as *;
+
+:host {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.photo-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 450px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: var(--lcc-color--photoCarousel-photoBackground);
+}
+
+.image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  overflow: hidden;
+  border-radius: 8px;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+.carousel-photo {
+  width: auto;
+  height: auto;
+  max-width: calc(100% - 16px);
+  max-height: calc(100% - 16px);
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: var(--circ-boxShadow);
+  padding: 4px;
+}
+
+.caption {
+  line-height: 24px;
+  white-space: pre-line;
+  font-size: 16px;
+  color: var(--lcc-color--photoCarousel-caption);
+
+  // Reserve enough space for two lines of text
+  height: 50px;
+}
+
+.dots-container {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+
+  .dot-button {
+    width: 9px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--lcc-color--photoCarousel-dotBorder);
+    background-color: var(--lcc-color--photoCarousel-dot);
+    transition: background-color 0.3s ease;
+    padding: 0;
+    cursor: pointer;
+
+    &.active {
+      border: 1px solid var(--lcc-color--photoCarousel-activeDotBorder);
+      background-color: var(--lcc-color--photoCarousel-activeDot);
+    }
+  }
+}
+
+@include respond-to('lt-md') {
+  .dots-container {
+    gap: 12px;
+
+    .dot {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}

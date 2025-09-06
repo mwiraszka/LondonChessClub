@@ -1,83 +1,77 @@
-<div class="lcc-table-wrapper">
-  <table class="lcc-table events-table">
-    <thead>
-      <th class="date-header">Date</th>
-      <th class="event-header">Event</th>
-    </thead>
+<table class="lcc-table events-table">
+  <thead>
+    <th class="header">Event</th>
+    <th class="header"></th>
+  </thead>
 
-    <tbody>
-      @for (event of events; track event.id) {
-        <tr
-          [adminControls]="isAdmin ? getAdminControlsConfig(event) : null"
-          [id]="event.id"
-          [class.now-line]="
-            event.id === nextEvent?.id && options?.filters?.showPastEvents?.value
-          ">
-          <td class="date-cell">
-            <div class="date-container">
-              <div class="date-text">{{
-                event.eventDate | formatDate: 'day-of-week'
-              }}</div>
-              <div class="date-text">{{
-                event.eventDate | formatDate: 'month-and-day'
-              }}</div>
-              <div class="date-text">{{ event.eventDate | formatDate: 'year' }}</div>
+  <tbody>
+    @for (event of events; track event.id) {
+      <tr
+        [adminControls]="isAdmin ? getAdminControlsConfig(event) : null"
+        [id]="event.id"
+        [class.now-line]="
+          event.id === nextEvent?.id && options?.filters?.showPastEvents?.value
+        ">
+        <td class="event-date-cell">
+          <div class="event-date-widget">
+            <div class="date-text">{{ event.eventDate | formatDate: 'day-of-week' }}</div>
+            <div class="date-text">
+              <b>{{ event.eventDate | formatDate: 'month-and-day' }}</b>
             </div>
-          </td>
+            <div class="date-text">{{ event.eventDate | formatDate: 'year' }}</div>
+          </div>
+        </td>
 
-          <td class="event-cell">
-            <div class="main-content">
-              <h3
-                class="title"
-                [innerHTML]="event.title | highlight: options?.search">
-                {{ event.title }}
-              </h3>
-              <div
-                class="type-container"
-                [ngClass]="event.type | kebabCase">
-                <span
-                  class="type"
-                  [innerHTML]="event.type | highlight: options?.search">
-                </span>
+        <td class="event-details-cell">
+          <div class="main-content">
+            <h3
+              class="title"
+              [innerHTML]="event.title | highlight: options?.search">
+              {{ event.title }}
+            </h3>
+            <div
+              class="type-container"
+              [ngClass]="event.type | kebabCase">
+              <span
+                class="type"
+                [innerHTML]="event.type | highlight: options?.search">
+              </span>
 
-                @if ((event.type | kebabCase) === 'championship') {
-                  <mat-icon class="championship-icon">emoji_events</mat-icon>
-                }
-              </div>
-
-              <p
-                class="event-details"
-                [innerHTML]="
-                  event.details.replaceAll('\\n', ' \n ') | highlight: options?.search
-                ">
-              </p>
-
-              @if (event?.articleId) {
-                <a
-                  [routerLink]="'/article/view/' + event.articleId"
-                  class="lcc-link event-article">
-                  More details
-                </a>
+              @if ((event.type | kebabCase) === 'championship') {
+                <mat-icon class="championship-icon">emoji_events</mat-icon>
               }
             </div>
 
-            @if (showModificationInfo) {
-              <aside class="created-and-edited">
-                <div>
-                  Event created
-                  {{ event.modificationInfo.dateCreated | formatDate: 'short no-time' }}
-                </div>
-                <div>
-                  Last edited
-                  {{
-                    event.modificationInfo.dateLastEdited | formatDate: 'short no-time'
-                  }}
-                </div>
-              </aside>
+            <p
+              class="event-details"
+              [innerHTML]="
+                event.details.replaceAll('\\n', ' \n ') | highlight: options?.search
+              ">
+            </p>
+
+            @if (event?.articleId) {
+              <a
+                [routerLink]="'/article/view/' + event.articleId"
+                class="lcc-link event-article">
+                More details
+              </a>
             }
-          </td>
-        </tr>
-      }
-    </tbody>
-  </table>
-</div>
+          </div>
+
+          @if (showModificationInfo) {
+            <aside class="created-and-edited">
+              <div>
+                Event created
+                {{ event.modificationInfo.dateCreated | formatDate: 'short no-time' }}
+              </div>
+              <div>
+                Last edited
+                {{ event.modificationInfo.dateLastEdited | formatDate: 'short no-time' }}
+              </div>
+            </aside>
+          }
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

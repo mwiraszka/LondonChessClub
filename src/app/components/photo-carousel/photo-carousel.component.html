@@ -1,0 +1,39 @@
+<div
+  class="photo-container"
+  role="region"
+  aria-label="Photo carousel">
+  @for (photo of photos; track photo.id; let i = $index) {
+    <div
+      class="image-wrapper"
+      [class.active]="i === currentIndex"
+      (click)="onNextPhoto()"
+      (keydown.arrowright)="onNextPhoto()"
+      (keydown.arrowleft)="onPreviousPhoto()"
+      (keydown.enter)="onNextPhoto()"
+      (keydown.space)="onNextPhoto()"
+      [tabindex]="i === currentIndex ? 0 : -1"
+      role="button"
+      [attr.aria-label]="'View next photo, currently showing ' + photo.caption">
+      <img
+        class="carousel-photo"
+        [src]="photo.mainUrl"
+        [alt]="photo.caption" />
+    </div>
+  }
+</div>
+
+<label class="caption">
+  {{ photos[currentIndex].caption?.replace(': ', ': \n') }}
+</label>
+
+<div class="dots-container">
+  @for (photo of photos; track photo.id; let i = $index) {
+    <div
+      class="dot-button"
+      role="button"
+      [class.active]="i === currentIndex"
+      [attr.aria-label]="'View photo ' + (i + 1)"
+      (click)="onSelectPhoto(i)">
+    </div>
+  }
+</div>

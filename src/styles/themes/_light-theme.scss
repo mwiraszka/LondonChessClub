@@ -127,9 +127,6 @@
   --lcc-color--documentViewer-scrollbarBackground: #{clr(grayscale, white-90)};
   --lcc-color--documentViewer-scrollbar: #{clr(grayscale, gray-65)};
 
-  --lcc-color--figure-captionBackground: #{clr(primary, base, 0.1)};
-  --lcc-color--figure-captionText: #{clr(grayscale, black-10)};
-
   --lcc-color--footer-background: #{clr(grayscale, white-98)};
   --lcc-color--footer-copyrightSectionBackground: #{clr(primary, base)};
   --lcc-color--footer-copyrightSectionText: #{clr(grayscale, white-95)};
@@ -205,8 +202,9 @@
   --lcc-color--lifetimePage-blockBackground: #{clr(grayscale, white-90)};
   --lcc-color--lifetimePage-blockBoldText: #{clr(grayscale, black-5)};
   --lcc-color--lifetimePage-blockText: #{clr(grayscale, black-20)};
+  --lcc-color--lifetimePage-figureCaptionBackground: #{clr(primary, base, 0.1)};
+  --lcc-color--lifetimePage-figureCaptionText: #{clr(grayscale, black-10)};
   --lcc-color--lifetimePage-portraitBorder: #{clr(grayscale, gray-75, 0.3)};
-  --lcc-color--lifetimePage-sectionHeaderDivider: #{clr(primary, base)};
   --lcc-color--lifetimePage-sectionHeaderText: #{clr(grayscale, black-2)};
 
   --lcc-color--link: #{clr(primary, dark)};
@@ -246,6 +244,13 @@
   --lcc-color--pgnViewer-board: #{clr(chessboard)};
   --lcc-color--pgnViewer-playerNameText: #{clr(grayscale, white-85)};
 
+  --lcc-color--photoCarousel-activeDot: #{clr(primary, light)};
+  --lcc-color--photoCarousel-activeDotBorder: #{clr(primary, base, 0.8)};
+  --lcc-color--photoCarousel-caption: #{clr(grayscale, black-15)};
+  --lcc-color--photoCarousel-dot: #{clr(grayscale, gray-35)};
+  --lcc-color--photoCarousel-dotBorder: #{clr(grayscale, gray-65, 0.8)};
+  --lcc-color--photoCarousel-photoBackground: #{clr(grayscale, white-80)};
+
   --lcc-color--photoGrid-albumNameText: #{clr(grayscale, black-15)};
   --lcc-color--photoGrid-albumNameTextHover: #{clr(grayscale, black-2)};
   --lcc-color--photoGrid-boxShadow: #{clr(grayscale, white-85, 0.7)};
@@ -274,7 +279,6 @@
   --lcc-color--schedule-closedBorder: #{clr(event-closed, base, 0.5)};
   --lcc-color--schedule-createdAndEditedText: #{clr(grayscale, gray-35)};
   --lcc-color--schedule-dateBackground: #{clr(primary, lightest, 0.2)};
-  --lcc-color--schedule-dateBorder: #{clr(primary, lighter, 0.2)};
   --lcc-color--schedule-eventDetailsText: #{clr(grayscale, black-15)};
   --lcc-color--schedule-eventType: #{clr(grayscale, black-10)};
   --lcc-color--schedule-lectureBackground: #{clr(event-lecture, light, 0.5)};

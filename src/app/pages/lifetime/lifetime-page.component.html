@@ -30,7 +30,7 @@
     </p>
   </div>
 
-  <figure class="lcc-figure">
+  <figure>
     <div class="image-container">
       <img
         [image]="{
@@ -51,7 +51,6 @@
 @for (group of RECIPIENTS_MAP | keyvalue: originalOrder; track group.key) {
   <section class="recipients-section">
     <h3 class="year">{{ group.key }}</h3>
-    <hr />
 
     <div class="recipients">
       @for (name of group.value; track name) {

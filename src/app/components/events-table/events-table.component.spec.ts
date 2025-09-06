@@ -8,11 +8,11 @@ import { MOCK_EVENTS } from '@app/mocks/events.mock';
 import { DialogService } from '@app/services';
 import { query, queryAll, queryTextContent } from '@app/utils';
 
-import { ScheduleTableComponent } from './schedule-table.component';
+import { EventsTableComponent } from './events-table.component';
 
-describe('ScheduleTableComponent', () => {
-  let fixture: ComponentFixture<ScheduleTableComponent>;
-  let component: ScheduleTableComponent;
+describe('EventsTableComponent', () => {
+  let fixture: ComponentFixture<EventsTableComponent>;
+  let component: EventsTableComponent;
 
   let dialogService: DialogService;
 
@@ -26,7 +26,7 @@ describe('ScheduleTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AdminControlsDirective, AdminToolbarComponent, ScheduleTableComponent],
+      imports: [AdminControlsDirective, AdminToolbarComponent, EventsTableComponent],
       providers: [
         {
           provide: DialogService,
@@ -36,7 +36,7 @@ describe('ScheduleTableComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ScheduleTableComponent);
+    fixture = TestBed.createComponent(EventsTableComponent);
     component = fixture.componentInstance;
 
     dialogService = TestBed.inject(DialogService);

@@ -11,9 +11,9 @@ import { RouterLink } from '@angular/router';
 import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
 import { ArticleGridComponent } from '@app/components/article-grid/article-grid.component';
 import { ClubLinksComponent } from '@app/components/club-links/club-links.component';
+import { EventsTableComponent } from '@app/components/events-table/events-table.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
-import { ScheduleTableComponent } from '@app/components/schedule-table/schedule-table.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { Article, Event, Id, Image, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
@@ -32,11 +32,11 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
     ArticleGridComponent,
     ClubLinksComponent,
     CommonModule,
+    EventsTableComponent,
     LinkListComponent,
     MatIconModule,
     PhotoGridComponent,
     RouterLink,
-    ScheduleTableComponent,
     TooltipDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

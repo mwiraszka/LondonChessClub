@@ -8,8 +8,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
 import { DataToolbarComponent } from '@app/components/data-toolbar/data-toolbar.component';
+import { EventsTableComponent } from '@app/components/events-table/events-table.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
-import { ScheduleTableComponent } from '@app/components/schedule-table/schedule-table.component';
 import { DataPaginationOptions, Event, InternalLink } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
@@ -39,14 +39,14 @@ import { EventsActions, EventsSelectors } from '@app/store/events';
       </lcc-data-toolbar>
 
       @if (vm.filteredCount) {
-        <lcc-schedule-table
+        <lcc-events-table
           [events]="vm.filteredEvents"
           [isAdmin]="vm.isAdmin"
           [nextEvent]="vm.nextEvent"
           [options]="vm.options"
           [showModificationInfo]="vm.isAdmin"
           (requestDeleteEvent)="onRequestDeleteEvent($event)">
-        </lcc-schedule-table>
+        </lcc-events-table>
       }
     }
   `,
@@ -54,8 +54,8 @@ import { EventsActions, EventsSelectors } from '@app/store/events';
     AdminToolbarComponent,
     CommonModule,
     DataToolbarComponent,
+    EventsTableComponent,
     PageHeaderComponent,
-    ScheduleTableComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -6,7 +6,10 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
+  OnInit,
   Output,
+  SimpleChanges,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -20,6 +23,7 @@ import {
   Event,
   EventType,
 } from '@app/models';
+import { FormatDatePipe, HighlightPipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 
 interface CalendarDay {
@@ -27,6 +31,7 @@ interface CalendarDay {
   isCurrentMonth: boolean;
   isToday: boolean;
   date: moment.Moment;
+  dateKey: string; // Pre-computed date key for tracking
   events: Event[];
 }
 
@@ -40,10 +45,17 @@ interface CalendarMonth {
   selector: 'lcc-events-calendar',
   templateUrl: './events-calendar.component.html',
   styleUrl: './events-calendar.component.scss',
-  imports: [CommonModule, MatIconModule, TooltipDirective],
+  imports: [
+    CommonModule,
+    HighlightPipe,
+    KebabCasePipe,
+    MatIconModule,
+    TooltipDirective,
+    FormatDatePipe,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventsCalendarComponent {
+export class EventsCalendarComponent implements OnChanges, OnInit {
   @Input({ required: true }) public events!: Event[];
   @Input({ required: true }) public isAdmin!: boolean;
   @Input({ required: true }) public nextEvent!: Event | null;
@@ -52,13 +64,27 @@ export class EventsCalendarComponent {
 
   @Output() public requestDeleteEvent = new EventEmitter<Event>();
 
+  // Cache computed values to avoid recalculation
+  public calendarMonths: CalendarMonth[] = [];
+  private cachedEventsJson = '';
+
   constructor(private readonly dialogService: DialogService) {}
+
+  public ngOnInit(): void {
+    this.updateCalendarMonths();
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes['events']) {
+      this.updateCalendarMonths();
+    }
+  }
 
   public getAdminControlsConfig(event: Event): AdminControlsConfig {
     return {
       buttonSize: 34,
       deleteCb: () => this.onDeleteEvent(event),
-      editPath: ['event', 'edit', event.id!],
+      editPath: ['event', 'edit', event.id],
       itemName: event.title,
     };
   }
@@ -108,8 +134,19 @@ export class EventsCalendarComponent {
     return monthYears;
   }
 
-  public get calendarMonths(): CalendarMonth[] {
-    return this.monthYears.map(monthYear => this.generateCalendarMonth(monthYear));
+  private updateCalendarMonths(): void {
+    // Only recalculate if events have actually changed
+    const eventsJson = JSON.stringify(
+      this.events.map(e => ({ id: e.id, eventDate: e.eventDate })),
+    );
+    if (eventsJson === this.cachedEventsJson) {
+      return;
+    }
+
+    this.cachedEventsJson = eventsJson;
+    this.calendarMonths = this.monthYears.map(monthYear =>
+      this.generateCalendarMonth(monthYear),
+    );
   }
 
   public getEventTypeClass(eventType: EventType): string {
@@ -133,6 +170,10 @@ export class EventsCalendarComponent {
       default:
         return 'other';
     }
+  }
+
+  public trackWeekByIndex(index: number): number {
+    return index;
   }
 
   private generateCalendarMonth(monthYear: string): CalendarMonth {
@@ -167,11 +208,14 @@ export class EventsCalendarComponent {
           moment(event.eventDate).isSame(currentDate, 'day'),
         );
 
+        const dateKey = currentDate.format('YYYY-MM-DD');
+
         weekDays.push({
           day: currentDate.date(),
           isCurrentMonth,
           isToday,
           date: currentDate.clone(),
+          dateKey,
           events: dayEvents,
         });
 

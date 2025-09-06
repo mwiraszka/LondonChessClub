@@ -6,11 +6,14 @@ import { DateFormat, IsoDate } from '@app/models';
  * Convert ISO8601 date string (`YYYY-MM-DDTHH:mm:ss`) to one of the following formats:
  * * `long`: Thursday, January 1st 2024 at 6:00 PM (default)
  * * `long no-time`: Thursday, January 1st 2024
+ * * `long day-of-week`: Thursday
+ * * `long month-day-year`: January 1st, 2024
  * * `short`: Thu, Jan 1, 2024, 6:00 PM
  * * `short no-time`: Thu, Jan 1, 2024
- * * `day-of-week`: Thu
- * * `month-and-day`: Jan 1
+ * * `short day-of-week`: Thu
+ * * `short month-day`: Jan 1
  * * `year`: 2024
+ * * `time`: 6:00 PM
 
  * Timezone automatically displayed as EST/EDT due to default timezone set in root App Component.
  *
@@ -22,15 +25,21 @@ export function formatDate(date?: IsoDate, format: DateFormat = 'long'): string 
       return moment(date).format('dddd, MMMM Do YYYY [at] h:mm A');
     case 'long no-time':
       return moment(date).format('dddd, MMMM Do YYYY');
+    case 'long month-day-year':
+      return moment(date).format('MMMM Do, YYYY');
+    case 'long day-of-week':
+      return moment(date).format('dddd');
     case 'short':
       return moment(date).format('ddd, MMM D, YYYY, h:mm A');
     case 'short no-time':
       return moment(date).format('ddd, MMM D, YYYY');
-    case 'day-of-week':
+    case 'short day-of-week':
       return moment(date).format('ddd');
-    case 'month-and-day':
+    case 'short month-day':
       return moment(date).format('MMM D');
     case 'year':
       return moment(date).format('YYYY');
+    case 'time':
+      return moment(date).format('h:mm A');
   }
 }

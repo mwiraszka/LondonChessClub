@@ -10,13 +10,14 @@
 }
 
 .month {
-  max-width: 450px;
-  width: 100%;
+  min-width: 300px;
+  max-width: 700px;
+  flex: 1;
   aspect-ratio: 3 / 2;
-  color: var(--lcc-color--eventsCalendar-text);
-
+  color: var(--lcc-color--eventsCalendar-primaryText);
   display: flex;
   flex-direction: column;
+  text-align: center;
   gap: 8px;
 
   &.no-events {
@@ -39,10 +40,7 @@
 }
 
 .month-title {
-  text-align: start;
-  margin: 8px 0;
-  font-weight: bold;
-  font-size: 1.2em;
+  font-size: 16px;
 }
 
 .month-grid {
@@ -78,17 +76,13 @@
 
   &.today {
     border: 2px solid red;
-    box-sizing: border-box;
   }
 }
 
 .day-number {
-  position: absolute;
-  top: 2px;
-  right: 4px;
-  font-size: 0.8em;
+  text-align: end;
   font-weight: bold;
-  line-height: 1;
+  font-size: 12px;
 }
 
 .event-indicators {
@@ -105,40 +99,116 @@
   height: 16px;
   border-radius: 50%;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.5s ease;
 
   &:hover {
     transform: scale(1.2);
   }
 
   &.blitz-tournament-10-mins {
-    background-color: var(--lcc-color--schedule-blitz10TournamentBackground);
+    background-color: var(--lcc-color--schedule-blitz10TournamentDot);
   }
+
   &.rapid-tournament-25-mins {
-    background-color: var(--lcc-color--schedule-rapid25TournamentBackground);
+    background-color: var(--lcc-color--schedule-rapid25TournamentDot);
   }
 
   &.rapid-tournament-40-mins {
-    background-color: var(--lcc-color--schedule-rapid40TournamentBackground);
+    background-color: var(--lcc-color--schedule-rapid40TournamentDot);
   }
 
   &.lecture {
-    background-color: var(--lcc-color--schedule-lectureTournamentBackground);
+    background-color: var(--lcc-color--schedule-lectureDot);
   }
 
   &.simul {
-    background-color: var(--lcc-color--schedule-simulBackground);
+    background-color: var(--lcc-color--schedule-simulDot);
   }
 
   &.championship {
-    background-color: var(--lcc-color--schedule-championshipBackground);
+    background-color: var(--lcc-color--schedule-championshipDot);
   }
 
   &.other {
-    background-color: var(--lcc-color--schedule-otherBackground);
+    background-color: var(--lcc-color--schedule-otherDot);
   }
 
   &.closed {
-    background-color: var(--lcc-color--schedule-closedBackground);
+    background-color: var(--lcc-color--schedule-closedDot);
+  }
+}
+
+.event-tooltip {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+
+  .event-date-and-time {
+    color: var(--lcc-color--eventsCalendar-primaryText);
+  }
+
+  .event-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--lcc-color--eventsCalendar-primaryText);
+  }
+
+  .event-type-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border-radius: var(--lcc-borderRadius--large);
+    padding: 2px 8px;
+
+    &.blitz-tournament-10-mins {
+      background-color: var(--lcc-color--schedule-blitz10TournamentBackground);
+    }
+
+    &.rapid-tournament-25-mins {
+      background-color: var(--lcc-color--schedule-rapid25TournamentBackground);
+    }
+
+    &.rapid-tournament-40-mins {
+      background-color: var(--lcc-color--schedule-rapid40TournamentBackground);
+    }
+
+    &.lecture {
+      background-color: var(--lcc-color--schedule-lectureBackground);
+    }
+
+    &.simul {
+      background-color: var(--lcc-color--schedule-simulBackground);
+    }
+
+    &.championship {
+      background-color: var(--lcc-color--schedule-championshipBackground);
+    }
+
+    &.other {
+      background-color: var(--lcc-color--schedule-otherBackground);
+    }
+
+    &.closed {
+      background-color: var(--lcc-color--schedule-closedBackground);
+    }
+
+    .event-type {
+      color: var(--lcc-color--eventsCalendar-eventTypeText);
+    }
+
+    .championship-icon {
+      @include icon-size(16px);
+
+      color: var(--lcc-color--schedule-championshipMedalIcon);
+    }
+  }
+
+  .event-details {
+    white-space: pre-line;
+    color: var(--lcc-color--eventsCalendar-secondaryText);
   }
 }

@@ -14,9 +14,11 @@
         ">
         <td class="event-date-cell">
           <div class="event-date-widget">
-            <div class="date-text">{{ event.eventDate | formatDate: 'day-of-week' }}</div>
+            <div class="date-text">{{
+              event.eventDate | formatDate: 'short day-of-week'
+            }}</div>
             <div class="date-text">
-              <b>{{ event.eventDate | formatDate: 'month-and-day' }}</b>
+              <b>{{ event.eventDate | formatDate: 'short month-day' }}</b>
             </div>
             <div class="date-text">{{ event.eventDate | formatDate: 'year' }}</div>
           </div>

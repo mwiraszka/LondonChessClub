@@ -43,6 +43,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
     - redesign Events Table component with new circular date widget for the dates (to take up far less space), and a cleaner layout overall
     - offer the ability to view events in either 'list view' or 'calendar view'
 - 🔧 Upgrade Angular to `v20.2.3`, `@ngrx` packages to `v20.0.1`, and update a handful of third-party packages to their latest versions
+- 🔧 Add support for context-aware templates in tooltips and implement in Events Calendar for each event indicator
 
 </details>
 

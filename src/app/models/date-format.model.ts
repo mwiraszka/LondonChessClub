@@ -1,8 +1,11 @@
 export type DateFormat =
   | 'long'
   | 'long no-time'
+  | 'long day-of-week'
+  | 'long month-day-year'
   | 'short'
   | 'short no-time'
-  | 'day-of-week'
-  | 'month-and-day'
+  | 'short day-of-week'
+  | 'short month-day'
+  | 'time'
   | 'year';

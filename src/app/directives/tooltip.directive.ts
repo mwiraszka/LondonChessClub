@@ -28,11 +28,14 @@ export const TOOLTIP_CONTENT_TOKEN = new InjectionToken<string | TemplateRef<unk
   'Tooltip Content',
 );
 
+export const TOOLTIP_CONTEXT_TOKEN = new InjectionToken<unknown>('Tooltip Context');
+
 @Directive({
   selector: '[tooltip]',
 })
 export class TooltipDirective implements OnDestroy {
   @Input() public tooltip: string | TemplateRef<unknown> | null = null;
+  @Input() public tooltipContext: unknown = null;
 
   private overlayRef: OverlayRef | null = null;
 
@@ -63,6 +66,10 @@ export class TooltipDirective implements OnDestroy {
           {
             provide: TOOLTIP_CONTENT_TOKEN,
             useValue: this.tooltip,
+          },
+          {
+            provide: TOOLTIP_CONTEXT_TOKEN,
+            useValue: this.tooltipContext,
           },
         ],
       });

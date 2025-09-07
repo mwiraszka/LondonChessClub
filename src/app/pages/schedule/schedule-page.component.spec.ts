@@ -28,8 +28,6 @@ describe('SchedulePageComponent', () => {
   const mockEvents = MOCK_EVENTS.slice(0, 5);
   const mockIsAdmin = true;
   const mockNextEvent = MOCK_EVENTS[0];
-  const mockShowPastEvents = false;
-  const mockUpcomingEvents = MOCK_EVENTS.slice(0, 3);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -61,9 +59,6 @@ describe('SchedulePageComponent', () => {
 
     store.overrideSelector(EventsSelectors.selectAllEvents, mockEvents);
     store.overrideSelector(AuthSelectors.selectIsAdmin, mockIsAdmin);
-    store.overrideSelector(EventsSelectors.selectNextEvent, mockNextEvent);
-    store.overrideSelector(EventsSelectors.selectShowPastEvents, mockShowPastEvents);
-    store.overrideSelector(EventsSelectors.selectUpcomingEvents, mockUpcomingEvents);
     store.refreshState();
   });
 

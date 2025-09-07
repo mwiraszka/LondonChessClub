@@ -69,7 +69,6 @@ describe('HomePageComponent', () => {
     store.overrideSelector(EventsSelectors.selectAllEvents, mockEvents);
     store.overrideSelector(ImagesSelectors.selectAllImages, mockImages);
     store.overrideSelector(AuthSelectors.selectIsAdmin, mockIsAdmin);
-    store.overrideSelector(EventsSelectors.selectNextEvent, mockNextEvent);
     store.refreshState();
   });
 

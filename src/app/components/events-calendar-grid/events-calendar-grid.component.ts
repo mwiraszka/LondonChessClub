@@ -44,7 +44,6 @@ import { DialogService } from '@app/services';
 export class EventsCalendarGridComponent implements OnInit, OnChanges {
   @Input({ required: true }) public events!: Event[];
   @Input({ required: true }) public isAdmin!: boolean;
-  @Input({ required: true }) public nextEvent!: Event | null;
 
   @Input() public options?: DataPaginationOptions<Event>;
 

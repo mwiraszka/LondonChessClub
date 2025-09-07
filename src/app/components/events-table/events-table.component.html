@@ -6,17 +6,21 @@
 
   <tbody>
     @for (event of events; track event.id) {
+      @if (event.id === nextEvent?.id && options?.filters?.showPastEvents?.value) {
+        <tr>
+          <td colspan="2">
+            <hr class="today" />
+          </td>
+        </tr>
+      }
       <tr
         [adminControls]="isAdmin ? getAdminControlsConfig(event) : null"
-        [id]="event.id"
-        [class.today]="
-          event.id === nextEvent?.id && options?.filters?.showPastEvents?.value
-        ">
+        [id]="event.id">
         <td class="event-date-cell">
           <div class="event-date-widget">
-            <div class="date-text">{{
-              event.eventDate | formatDate: 'short day-of-week'
-            }}</div>
+            <div class="date-text">
+              {{ event.eventDate | formatDate: 'short day-of-week' }}
+            </div>
             <div class="date-text">
               <b>{{ event.eventDate | formatDate: 'short month-day' }}</b>
             </div>

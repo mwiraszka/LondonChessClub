@@ -71,8 +71,8 @@ export class HomePageComponent implements OnInit {
     icon: 'add_circle_outline',
   };
   public createArticleLink: InternalLink = {
-    internalPath: ['article', 'add'],
     text: 'Create an article',
+    internalPath: ['article', 'add'],
     icon: 'add_circle_outline',
   };
   public newsPageLink: InternalLink = {

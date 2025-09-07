@@ -93,6 +93,8 @@ export const selectNextEvent = createSelector(selectAllEvents, allEvents => {
   return (
     allEvents
       .sort((a, b) => customSort(a, b, 'eventDate'))
-      .find(event => moment(event.eventDate).add(3, 'hours').isAfter(moment())) ?? null
+      .find(event =>
+        moment(event.eventDate).add(3, 'hours').isAfter(moment.tz('America/Toronto')),
+      ) ?? null
   );
 });

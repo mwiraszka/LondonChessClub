@@ -144,7 +144,7 @@ export class EventsCalendarGridComponent implements OnInit, OnChanges {
   private generateCalendarMonth(monthYear: string): CalendarMonth {
     const startOfMonth = moment(monthYear, 'MMMM YYYY').startOf('month');
     const endOfMonth = moment(monthYear, 'MMMM YYYY').endOf('month');
-    const today = moment();
+    const today = moment.tz('America/Toronto');
 
     // Check if this month has any events
     const monthHasEvents = this.events.some(event =>

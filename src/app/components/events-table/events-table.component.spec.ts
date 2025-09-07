@@ -18,11 +18,24 @@ describe('EventsTableComponent', () => {
 
   let dialogOpenSpy: jest.SpyInstance;
   let requestDeleteEventSpy: jest.SpyInstance;
-  let windowScrollSpy: jest.SpyInstance;
 
-  const mockPastEvents = [MOCK_EVENTS[0], MOCK_EVENTS[1]];
-  const mockUpcomingEvents = [MOCK_EVENTS[2], MOCK_EVENTS[3], MOCK_EVENTS[4]];
-  const mockNextEvent = mockUpcomingEvents[0];
+  const mockEvents = MOCK_EVENTS.slice(0, 3);
+  const mockIsAdmin = true;
+  const mockNextEvent = mockEvents[1];
+  const mockOptions = {
+    page: 1,
+    pageSize: 10,
+    sortBy: 'eventDate',
+    sortOrder: 'asc',
+    filters: {
+      showPastEvents: {
+        label: 'Show past events',
+        value: false,
+      },
+    },
+    search: '',
+  };
+  const showModificationInfo = true;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -43,20 +56,13 @@ describe('EventsTableComponent', () => {
 
     dialogOpenSpy = jest.spyOn(dialogService, 'open');
     requestDeleteEventSpy = jest.spyOn(component.requestDeleteEvent, 'emit');
-    windowScrollSpy = jest.spyOn(window, 'scroll').mockImplementation();
 
-    fixture.componentRef.setInput('events', [...mockPastEvents, ...mockUpcomingEvents]);
-    fixture.componentRef.setInput('upcomingEvents', mockUpcomingEvents);
+    fixture.componentRef.setInput('events', mockEvents);
+    fixture.componentRef.setInput('isAdmin', mockIsAdmin);
     fixture.componentRef.setInput('nextEvent', mockNextEvent);
-    fixture.componentRef.setInput('isAdmin', false);
-    fixture.componentRef.setInput('showPastEvents', false);
-    fixture.componentRef.setInput('allowTogglePastEvents', true);
-    fixture.componentRef.setInput('includeDetails', true);
+    fixture.componentRef.setInput('options', mockOptions);
+    fixture.componentRef.setInput('showModificationInfo', showModificationInfo);
     fixture.detectChanges();
-  });
-
-  afterEach(() => {
-    windowScrollSpy.mockRestore();
   });
 
   it('should create', () => {
@@ -65,7 +71,7 @@ describe('EventsTableComponent', () => {
 
   describe('getAdminControlsConfig', () => {
     it('should return correct configuration for an event', () => {
-      const event = MOCK_EVENTS[0];
+      const event = mockEvents[0];
       const config = component.getAdminControlsConfig(event);
 
       expect(config.buttonSize).toBe(34);
@@ -76,18 +82,16 @@ describe('EventsTableComponent', () => {
   });
 
   describe('onDeleteEvent', () => {
-    const mockEvent = MOCK_EVENTS[0];
-
     it('should open confirmation dialog with correct parameters', async () => {
       dialogOpenSpy.mockResolvedValue('cancel');
-      await component.onDeleteEvent(mockEvent);
+      await component.onDeleteEvent(mockEvents[0]);
 
       expect(dialogOpenSpy).toHaveBeenCalledWith({
         componentType: BasicDialogComponent,
         inputs: {
           dialog: {
             title: 'Confirm',
-            body: `Delete ${mockEvent.title}?`,
+            body: `Delete ${mockEvents[0].title}?`,
             confirmButtonText: 'Delete',
             confirmButtonType: 'warning',
           },
@@ -98,14 +102,14 @@ describe('EventsTableComponent', () => {
 
     it('should emit request delete event when user confirms', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
-      await component.onDeleteEvent(mockEvent);
+      await component.onDeleteEvent(mockEvents[2]);
 
-      expect(requestDeleteEventSpy).toHaveBeenCalledWith(mockEvent);
+      expect(requestDeleteEventSpy).toHaveBeenCalledWith(mockEvents[2]);
     });
 
-    it('should not emit request delete event event when user cancels', async () => {
+    it('should not emit request delete event when user cancels', async () => {
       dialogOpenSpy.mockResolvedValue('cancel');
-      await component.onDeleteEvent(mockEvent);
+      await component.onDeleteEvent(mockEvents[2]);
 
       expect(requestDeleteEventSpy).not.toHaveBeenCalled();
     });
@@ -122,75 +126,71 @@ describe('EventsTableComponent', () => {
 
         const headers = queryAll(fixture.debugElement, 'th');
         expect(headers.length).toBe(2);
-        expect(headers[0].nativeElement.textContent.trim()).toBe('Date');
-        expect(headers[1].nativeElement.textContent.trim()).toBe('Event');
+        expect(headers[0].nativeElement.textContent.trim()).toBe('Event');
+        expect(headers[1].nativeElement.textContent.trim()).toBe('');
       });
 
-      it('should show only upcoming events when showPastEvents is false', () => {
-        fixture.componentRef.setInput('showPastEvents', false);
-        fixture.detectChanges();
-
-        expect(queryAll(fixture.debugElement, 'tbody tr').length).toBe(
-          mockUpcomingEvents.length,
-        );
+      it('should render a row for every event and use correct IDs', () => {
+        const eventRows = queryAll(fixture.debugElement, 'tbody tr[id]');
+        expect(eventRows.length).toBe(mockEvents.length);
+        expect(eventRows[0].nativeElement.id).toBe(mockEvents[0].id);
       });
 
-      it('should show all events when showPastEvents is true', () => {
-        fixture.componentRef.setInput('showPastEvents', true);
-        fixture.detectChanges();
-
-        expect(queryAll(fixture.debugElement, 'tbody tr').length).toBe(
-          component.events.length,
-        );
-      });
-
-      it('should limit upcoming events when upcomingEventLimit is set', () => {
-        fixture.componentRef.setInput('showPastEvents', false);
-        fixture.componentRef.setInput('upcomingEventLimit', 2);
-        fixture.detectChanges();
-
-        expect(queryAll(fixture.debugElement, 'tbody tr').length).toBe(2);
-      });
-
-      it('should highlight next event row', () => {
+      it('should add today-scroll-point class to next event row', () => {
         expect(
-          query(fixture.debugElement, `tr#${mockNextEvent.id}`).classes['next-event'],
+          query(fixture.debugElement, `tr#${mockNextEvent.id}`).classes[
+            'today-scroll-point'
+          ],
         ).toBe(true);
       });
 
-      it('should apply showing-past-events class when showing past events', () => {
-        fixture.componentRef.setInput('showPastEvents', true);
+      it('should display today line when next event is shown with past events', () => {
+        const options = {
+          ...mockOptions,
+          filters: { showPastEvents: { label: 'Show past events', value: true } },
+        };
+        fixture.componentRef.setInput('options', options);
         fixture.detectChanges();
 
-        queryAll(fixture.debugElement, 'tbody tr').forEach(row => {
-          expect(row.classes['showing-past-events']).toBe(true);
+        expect(query(fixture.debugElement, '.today-line')).toBeTruthy();
+      });
+
+      it('should display all event dates in date widget format', () => {
+        const dateWidgetElements = queryAll(fixture.debugElement, '.event-date-widget');
+
+        dateWidgetElements.forEach(element => {
+          expect(queryAll(element, '.date-text').length).toBe(3); // day-of-week, month-day, year
         });
       });
 
-      it('should display event dates', () => {
-        expect(queryTextContent(fixture.debugElement, '.date-cell .date')).toBe(
-          'Friday, April 22nd 2050',
-        );
-      });
-
-      it('should display event titles', () => {
+      it('should display event titles and details for all events', () => {
         const titleElements = queryAll(fixture.debugElement, '.title');
-        expect(titleElements.length).toBeGreaterThan(0);
-        expect(titleElements[0].nativeElement.textContent.trim()).toBe(
-          mockUpcomingEvents[0].title,
-        );
+        const detailElements = queryAll(fixture.debugElement, '.event-details');
+
+        titleElements.forEach((element, i) => {
+          expect(element.nativeElement.textContent.trim()).toBe(mockEvents[i].title);
+        });
+
+        detailElements.forEach((element, i) => {
+          expect(element.nativeElement.textContent.trim()).toBe(mockEvents[i].details);
+        });
       });
 
       it('should display event types with correct styling', () => {
-        expect(query(fixture.debugElement, '.type-container').classes['lecture']).toBe(
-          true,
-        );
+        expect(
+          query(fixture.debugElement, '.type-container').classes[
+            'blitz-tournament-10-mins'
+          ],
+        ).toBe(true);
 
-        expect(queryTextContent(fixture.debugElement, '.type')).toBe('lecture');
+        expect(queryTextContent(fixture.debugElement, '.type')).toBe(
+          'blitz tournament (10 mins)',
+        );
       });
 
       it('should display championship icon for championship events', () => {
-        fixture.componentRef.setInput('upcomingEvents', [MOCK_EVENTS[1]]);
+        const championshipEvent = mockEvents.find(event => event.type === 'championship');
+        fixture.componentRef.setInput('events', [championshipEvent!]);
         fixture.detectChanges();
 
         expect(queryTextContent(fixture.debugElement, '.championship-icon')).toBe(
@@ -198,27 +198,9 @@ describe('EventsTableComponent', () => {
         );
       });
 
-      it('should display event details when includeDetails is true', () => {
-        fixture.componentRef.setInput('includeDetails', true);
-        fixture.detectChanges();
-
-        expect(queryTextContent(fixture.debugElement, '.event-details')).toContain(
-          mockUpcomingEvents[0].details,
-        );
-      });
-
-      it('should not display event details when includeDetails is false', () => {
-        fixture.componentRef.setInput('includeDetails', false);
-        fixture.detectChanges();
-
-        expect(query(fixture.debugElement, '.event-details')).toBeFalsy();
-      });
-
       it('should display article link when event has articleId', () => {
-        const eventWithArticle = mockUpcomingEvents.find(
-          event => event.articleId !== null,
-        );
-        fixture.componentRef.setInput('upcomingEvents', [eventWithArticle!]);
+        const eventWithArticle = mockEvents.find(event => event.articleId !== null);
+        fixture.componentRef.setInput('events', [eventWithArticle!]);
         fixture.detectChanges();
 
         const articleLink = query(fixture.debugElement, '.event-article');
@@ -229,18 +211,15 @@ describe('EventsTableComponent', () => {
       });
 
       it('should not display article link when event has no articleId', () => {
-        const eventWithoutArticle = mockUpcomingEvents.find(
-          event => event.articleId === null,
-        );
-        fixture.componentRef.setInput('upcomingEvents', [eventWithoutArticle!]);
+        const eventWithoutArticle = mockEvents.find(event => event.articleId === null);
+        fixture.componentRef.setInput('events', [eventWithoutArticle!]);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.event-article')).toBeFalsy();
       });
 
-      it('should display modification info when includeDetails and isAdmin are true', () => {
-        fixture.componentRef.setInput('includeDetails', true);
-        fixture.componentRef.setInput('isAdmin', true);
+      it('should display modification info when showModificationInfo is true', () => {
+        fixture.componentRef.setInput('showModificationInfo', true);
         fixture.detectChanges();
 
         const modInfoText = queryTextContent(fixture.debugElement, '.created-and-edited');
@@ -248,9 +227,8 @@ describe('EventsTableComponent', () => {
         expect(modInfoText).toContain('Last edited');
       });
 
-      it('should not display modification info when isAdmin is false', () => {
-        fixture.componentRef.setInput('includeDetails', true);
-        fixture.componentRef.setInput('isAdmin', false);
+      it('should not display modification info when showModificationInfo is false', () => {
+        fixture.componentRef.setInput('showModificationInfo', false);
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.created-and-edited')).toBeFalsy();

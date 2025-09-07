@@ -221,11 +221,9 @@ describe('ArticleViewerPageComponent', () => {
     });
 
     describe('when viewModel$ is defined', () => {
-      beforeEach(() => {
+      it('should render page components', () => {
         fixture.detectChanges();
-      });
 
-      it('should render page components', async () => {
         expect(query(fixture.debugElement, 'lcc-article')).toBeTruthy();
         expect(query(fixture.debugElement, 'lcc-link-list')).toBeTruthy();
       });

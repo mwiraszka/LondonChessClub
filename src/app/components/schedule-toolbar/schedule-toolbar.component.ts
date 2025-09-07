@@ -12,6 +12,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 
 import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
+import { TooltipDirective } from '@app/directives/tooltip.directive';
 
 @UntilDestroy()
 @Component({
@@ -29,6 +30,7 @@ import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-swit
     <button
       class="today-button lcc-secondary-button"
       [disabled]="!todayScrollPoint"
+      tooltip="Jump to today"
       (click)="onToday()">
       today
     </button>
@@ -66,7 +68,7 @@ import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-swit
       }
     }
   `,
-  imports: [CommonModule, MatIconModule, ToggleSwitchComponent],
+  imports: [CommonModule, MatIconModule, ToggleSwitchComponent, TooltipDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScheduleToolbarComponent {

@@ -62,6 +62,9 @@ export class AppEffects {
     EventsActions.addEventSucceeded,
     EventsActions.deleteEventFailed,
     EventsActions.deleteEventSucceeded,
+    EventsActions.exportEventsToCsvFailed,
+    EventsActions.exportEventsToCsvSucceeded,
+    EventsActions.fetchAllEventsFailed,
     EventsActions.fetchEventFailed,
     EventsActions.fetchFilteredEventsFailed,
     EventsActions.fetchHomePageEventsFailed,
@@ -114,6 +117,7 @@ export class AppEffects {
     ArticlesActions.fetchHomePageArticlesFailed,
     ArticlesActions.fetchArticleFailed,
 
+    EventsActions.fetchAllEventsFailed,
     EventsActions.fetchFilteredEventsFailed,
     EventsActions.fetchHomePageEventsFailed,
     EventsActions.fetchEventFailed,
@@ -183,6 +187,7 @@ export class AppEffects {
   private readonly eventsRequested = [
     EventsActions.addEventRequested,
     EventsActions.deleteEventRequested,
+    EventsActions.exportEventsToCsvRequested,
     EventsActions.fetchEventRequested,
     EventsActions.fetchFilteredEventsRequested,
     EventsActions.fetchHomePageEventsRequested,
@@ -436,6 +441,18 @@ export class AppEffects {
         return {
           title: 'Event deletion',
           message: `Successfully deleted ${action.eventTitle}`,
+          type: 'success',
+        };
+      case EventsActions.exportEventsToCsvFailed.type:
+        return {
+          title: 'CSV export',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case EventsActions.exportEventsToCsvSucceeded.type:
+        return {
+          title: 'CSV export',
+          message: `Successfully exported ${action.exportedCount} events to CSV`,
           type: 'success',
         };
       case EventsActions.fetchEventFailed.type:

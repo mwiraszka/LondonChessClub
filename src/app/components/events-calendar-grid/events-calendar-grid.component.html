@@ -26,6 +26,7 @@
                 <div class="event-indicators">
                   @for (event of day.events; track event.id) {
                     <div
+                      [adminControls]="isAdmin ? getAdminControlsConfig(event) : null"
                       class="event-indicator"
                       [class]="event.type | kebabCase"
                       [class.no-events]="!calendarMonth.hasEvents"

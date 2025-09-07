@@ -20,10 +20,7 @@ export class MembersEffects {
   fetchAllMembers$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.fetchAllMembersRequested),
-      concatLatestFrom(() => [
-        this.store.select(AuthSelectors.selectIsAdmin),
-        this.store.select(MembersSelectors.selectOptions),
-      ]),
+      concatLatestFrom(() => this.store.select(AuthSelectors.selectIsAdmin)),
       switchMap(([, isAdmin]) =>
         this.membersApiService.getAllMembers(isAdmin).pipe(
           map(response =>

@@ -10,12 +10,31 @@ import { Injectable } from '@angular/core';
 import { DataPaginationOptions, Event } from '@app/models';
 import { EventsApiService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { isDefined, isExpired, parseError } from '@app/utils';
+import { exportDataToCsv, isDefined, isExpired, parseError } from '@app/utils';
 
 import { EventsActions, EventsSelectors } from '.';
 
 @Injectable()
 export class EventsEffects {
+  fetchAllEvents$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EventsActions.fetchAllEventsRequested),
+      switchMap(() =>
+        this.eventsApiService.getAllEvents().pipe(
+          map(response =>
+            EventsActions.fetchAllEventsSucceeded({
+              events: response.data.items,
+              totalCount: response.data.totalCount,
+            }),
+          ),
+          catchError(error =>
+            of(EventsActions.fetchAllEventsFailed({ error: parseError(error) })),
+          ),
+        ),
+      ),
+    );
+  });
+
   fetchHomePageEvents$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventsActions.fetchHomePageEventsRequested),
@@ -214,6 +233,29 @@ export class EventsEffects {
           ),
         ),
       ),
+    );
+  });
+
+  exportEventsToCsv$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EventsActions.exportEventsToCsvRequested),
+      switchMap(() => {
+        return this.eventsApiService.getAllEvents().pipe(
+          map(response => {
+            const filename = `events_export_${new Date().toISOString().split('T')[0]}.csv`;
+            const exportResult = exportDataToCsv(response.data.items, filename);
+
+            return typeof exportResult === 'number'
+              ? EventsActions.exportEventsToCsvSucceeded({
+                  exportedCount: exportResult,
+                })
+              : EventsActions.exportEventsToCsvFailed({ error: exportResult });
+          }),
+          catchError(error =>
+            of(EventsActions.fetchAllEventsFailed({ error: parseError(error) })),
+          ),
+        );
+      }),
     );
   });
 

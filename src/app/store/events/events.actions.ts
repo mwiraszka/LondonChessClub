@@ -2,6 +2,18 @@ import { createAction, props } from '@ngrx/store';
 
 import { DataPaginationOptions, Event, EventFormData, Id, LccError } from '@app/models';
 
+export const fetchAllEventsRequested = createAction(
+  '[Events] Fetch all events requested',
+);
+export const fetchAllEventsSucceeded = createAction(
+  '[Events] Fetch all events succeeded',
+  props<{ events: Event[]; totalCount: number }>(),
+);
+export const fetchAllEventsFailed = createAction(
+  '[Events] Fetch all events failed',
+  props<{ error: LccError }>(),
+);
+
 export const fetchHomePageEventsRequested = createAction(
   '[Events] Fetch home page events requested',
 );
@@ -95,5 +107,17 @@ export const formDataRestored = createAction(
 );
 
 export const toggleScheduleView = createAction('[Events] Toggle schedule view');
+
+export const exportEventsToCsvRequested = createAction(
+  '[Events] Export events to CSV requested',
+);
+export const exportEventsToCsvSucceeded = createAction(
+  '[Events] Export events to CSV succeeded',
+  props<{ exportedCount: number }>(),
+);
+export const exportEventsToCsvFailed = createAction(
+  '[Events] Export events to CSV failed',
+  props<{ error: LccError }>(),
+);
 
 export const requestTimedOut = createAction('[Events] Request timed out');

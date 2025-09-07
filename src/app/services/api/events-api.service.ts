@@ -24,6 +24,12 @@ export class EventsApiService {
 
   constructor(private readonly http: HttpClient) {}
 
+  public getAllEvents(): Observable<ApiResponse<PaginatedItems<Event>>> {
+    return this.http.get<ApiResponse<PaginatedItems<Event>>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}`,
+    );
+  }
+
   public getFilteredEvents(
     options: DataPaginationOptions<Event>,
   ): Observable<ApiResponse<PaginatedItems<Event>>> {

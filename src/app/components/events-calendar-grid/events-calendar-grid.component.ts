@@ -13,6 +13,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
+import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import {
   AdminControlsConfig,
@@ -32,6 +33,7 @@ import { DialogService } from '@app/services';
   templateUrl: './events-calendar-grid.component.html',
   styleUrl: './events-calendar-grid.component.scss',
   imports: [
+    AdminControlsDirective,
     CommonModule,
     FormatDatePipe,
     HighlightPipe,

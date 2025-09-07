@@ -17,6 +17,7 @@ export interface EventsState
   extends EntityState<{ event: Event; formData: EventFormData }> {
   callState: CallState;
   newEventFormData: EventFormData;
+  lastFullFetch: IsoDate | null;
   lastHomePageFetch: IsoDate | null;
   lastFilteredFetch: IsoDate | null;
   homePageEvents: Event[];
@@ -41,6 +42,7 @@ export const initialState: EventsState = eventsAdapter.getInitialState({
     error: null,
   },
   newEventFormData: INITIAL_EVENT_FORM_DATA,
+  lastFullFetch: null,
   lastHomePageFetch: null,
   lastFilteredFetch: null,
   homePageEvents: [],
@@ -67,6 +69,7 @@ export const eventsReducer = createReducer(
   initialState,
 
   on(
+    EventsActions.fetchAllEventsRequested,
     EventsActions.fetchHomePageEventsRequested,
     EventsActions.fetchFilteredEventsRequested,
     EventsActions.fetchEventRequested,
@@ -84,6 +87,7 @@ export const eventsReducer = createReducer(
   ),
 
   on(
+    EventsActions.fetchAllEventsFailed,
     EventsActions.fetchHomePageEventsFailed,
     EventsActions.fetchFilteredEventsFailed,
     EventsActions.fetchEventFailed,
@@ -98,6 +102,23 @@ export const eventsReducer = createReducer(
         error,
       },
     }),
+  ),
+
+  on(
+    EventsActions.fetchAllEventsSucceeded,
+    (state, { events, totalCount }): EventsState =>
+      eventsAdapter.setAll(
+        events.map(event => ({
+          event,
+          formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
+        })),
+        {
+          ...state,
+          callState: initialState.callState,
+          lastFullFetch: new Date().toISOString(),
+          totalCount,
+        },
+      ),
   ),
 
   on(

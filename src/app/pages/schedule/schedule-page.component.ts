@@ -1,19 +1,27 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, firstValueFrom } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { DataToolbarComponent } from '@app/components/data-toolbar/data-toolbar.component';
 import { EventsCalendarGridComponent } from '@app/components/events-calendar-grid/events-calendar-grid.component';
 import { EventsTableComponent } from '@app/components/events-table/events-table.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
 import { ScheduleToolbarComponent } from '@app/components/schedule-toolbar/schedule-toolbar.component';
-import { DataPaginationOptions, Event, InternalLink } from '@app/models';
-import { MetaAndTitleService } from '@app/services';
+import {
+  AdminButton,
+  BasicDialogResult,
+  DataPaginationOptions,
+  Dialog,
+  Event,
+  InternalLink,
+} from '@app/models';
+import { DialogService, MetaAndTitleService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { EventsActions, EventsSelectors } from '@app/store/events';
 
@@ -28,7 +36,10 @@ import { EventsActions, EventsSelectors } from '@app/store/events';
       </lcc-page-header>
 
       @if (vm.isAdmin) {
-        <lcc-admin-toolbar [adminLinks]="[addEventLink]"></lcc-admin-toolbar>
+        <lcc-admin-toolbar
+          [adminLinks]="[addEventLink]"
+          [adminButtons]="[exportToCsvButton]">
+        </lcc-admin-toolbar>
       }
 
       <lcc-data-toolbar
@@ -98,6 +109,13 @@ export class SchedulePageComponent implements OnInit {
     icon: 'add_circle_outline',
   };
 
+  public exportToCsvButton: AdminButton = {
+    id: 'export-to-csv',
+    tooltip: 'Export to CSV',
+    icon: 'download',
+    action: () => this.onExportToCsv(),
+  };
+
   public viewModel$?: Observable<{
     filteredCount: number | null;
     filteredEvents: Event[];
@@ -108,6 +126,7 @@ export class SchedulePageComponent implements OnInit {
   }>;
 
   constructor(
+    private readonly dialogService: DialogService,
     private readonly metaAndTitleService: MetaAndTitleService,
     private readonly store: Store,
   ) {}
@@ -138,6 +157,38 @@ export class SchedulePageComponent implements OnInit {
         }),
       ),
     );
+  }
+
+  public async onExportToCsv(): Promise<void> {
+    const eventCount = await firstValueFrom(
+      this.store.select(EventsSelectors.selectTotalCount),
+    );
+
+    if (!eventCount) {
+      return;
+    }
+
+    const dialog: Dialog = {
+      title: 'Confirm',
+      body: `Export all ${eventCount} events to a CSV file?`,
+      confirmButtonText: 'Export',
+      confirmButtonType: 'primary',
+    };
+
+    const dialogResult = await this.dialogService.open<
+      BasicDialogComponent,
+      BasicDialogResult
+    >({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+      isModal: false,
+    });
+
+    if (dialogResult !== 'confirm') {
+      return;
+    }
+
+    this.store.dispatch(EventsActions.exportEventsToCsvRequested());
   }
 
   public onOptionsChange(options: DataPaginationOptions<Event>, fetch = true): void {

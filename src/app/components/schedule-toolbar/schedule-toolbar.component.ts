@@ -3,6 +3,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -27,7 +28,7 @@ import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-swit
 
     <button
       class="today-button lcc-secondary-button"
-      [disabled]="!isTodayScrollPointVisible"
+      [disabled]="!todayScrollPoint"
       (click)="onToday()">
       today
     </button>
@@ -73,17 +74,15 @@ export class ScheduleToolbarComponent {
 
   @Output() toggleScheduleView = new EventEmitter<void>();
 
-  public get isTodayScrollPointVisible(): boolean {
-    return !!document.querySelector('.schedule-view.active .today-scroll-point');
+  constructor(public changeDetectorRef: ChangeDetectorRef) {}
+
+  public get todayScrollPoint(): Element | null {
+    return document.querySelector('.schedule-view.active .today-scroll-point');
   }
 
   public onToday(): void {
-    const todayScrollPoint = document.querySelector(
-      '.schedule-view.active .today-scroll-point',
-    );
-
-    if (todayScrollPoint) {
-      todayScrollPoint.scrollIntoView({
+    if (this.todayScrollPoint) {
+      this.todayScrollPoint.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
       });

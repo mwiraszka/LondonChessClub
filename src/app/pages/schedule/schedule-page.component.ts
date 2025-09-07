@@ -1,10 +1,10 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, firstValueFrom } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 
 import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
@@ -103,6 +103,9 @@ import { EventsActions, EventsSelectors } from '@app/store/events';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SchedulePageComponent implements OnInit {
+  @ViewChild(ScheduleToolbarComponent)
+  private scheduleToolbar!: ScheduleToolbarComponent;
+
   public readonly addEventLink: InternalLink = {
     text: 'Add an event',
     internalPath: ['event', 'add'],
@@ -156,6 +159,7 @@ export class SchedulePageComponent implements OnInit {
           scheduleView,
         }),
       ),
+      tap(() => setTimeout(() => this.scheduleToolbar?.changeDetectorRef.markForCheck())),
     );
   }
 

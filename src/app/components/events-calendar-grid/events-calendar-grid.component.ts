@@ -151,6 +151,9 @@ export class EventsCalendarGridComponent implements OnInit, OnChanges {
       moment(event.eventDate).isBetween(startOfMonth, endOfMonth, 'day', '[]'),
     );
 
+    // Check if today falls within this month
+    const isCurrentMonth = today.isBetween(startOfMonth, endOfMonth, 'day', '[]');
+
     // Start from Sunday of the week containing the first day of the month
     const startOfCalendar = startOfMonth.clone().startOf('week');
 
@@ -193,6 +196,7 @@ export class EventsCalendarGridComponent implements OnInit, OnChanges {
     return {
       monthYear,
       hasEvents: monthHasEvents,
+      isCurrentMonth,
       weeks,
     };
   }

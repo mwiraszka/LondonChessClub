@@ -51,7 +51,10 @@ $grid-gap: 16px;
 
     .calendar-day {
       background-color: var(--lcc-color--eventsCalendar-outsideMonthBackground);
-      color: var(--lcc-color--eventsCalendar-outsideMonthText);
+
+      .day-number {
+        color: var(--lcc-color--eventsCalendar-outsideMonthText) !important;
+      }
     }
 
     .day-header {

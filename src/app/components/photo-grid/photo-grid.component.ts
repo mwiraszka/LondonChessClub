@@ -47,27 +47,24 @@ export class PhotoGridComponent {
 
   @Output() public readonly requestDeleteAlbum = new EventEmitter<string>();
 
-  public readonly adminButtons: AdminButton[] = [
-    {
-      id: 'open-image-explorer',
-      tooltip: 'Open image explorer',
-      icon: 'image_search',
-      action: () => this.onOpenImageExplorer(),
-    },
-  ];
+  public readonly openImageExplorerButton: AdminButton = {
+    id: 'open-image-explorer',
+    tooltip: 'Open image explorer',
+    icon: 'image_search',
+    action: () => this.onOpenImageExplorer(),
+  };
 
-  public readonly adminLinks: InternalLink[] = [
-    {
-      internalPath: ['image', 'add'],
-      text: 'Add an image',
-      icon: 'add_circle_outline',
-    },
-    {
-      internalPath: ['album', 'add'],
-      text: 'Create an album',
-      icon: 'add_circle_outline',
-    },
-  ];
+  public readonly addImageLink: InternalLink = {
+    internalPath: ['image', 'add'],
+    text: 'Add an image',
+    icon: 'add_circle_outline',
+  };
+
+  public readonly createAlbumLink: InternalLink = {
+    internalPath: ['album', 'add'],
+    text: 'Create an album',
+    icon: 'add_circle_outline',
+  };
 
   constructor(private readonly dialogService: DialogService) {}
 

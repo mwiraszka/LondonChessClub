@@ -14,5 +14,6 @@ export interface CalendarDay {
 export interface CalendarMonth {
   monthYear: string;
   hasEvents: boolean;
+  isCurrentMonth: boolean;
   weeks: CalendarDay[][];
 }

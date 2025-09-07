@@ -1,6 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, firstValueFrom } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
@@ -10,13 +10,23 @@ import { RouterLink } from '@angular/router';
 
 import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
 import { ArticleGridComponent } from '@app/components/article-grid/article-grid.component';
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { ClubLinksComponent } from '@app/components/club-links/club-links.component';
 import { EventsTableComponent } from '@app/components/events-table/events-table.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import { Article, Event, Id, Image, InternalLink } from '@app/models';
-import { MetaAndTitleService } from '@app/services';
+import {
+  AdminButton,
+  Article,
+  BasicDialogResult,
+  Dialog,
+  Event,
+  Id,
+  Image,
+  InternalLink,
+} from '@app/models';
+import { DialogService, MetaAndTitleService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
 import { EventsActions, EventsSelectors } from '@app/store/events';
@@ -78,7 +88,15 @@ export class HomePageComponent implements OnInit {
     internalPath: 'schedule',
   };
 
+  public exportToCsvButton: AdminButton = {
+    id: 'export-to-csv',
+    tooltip: 'Export to CSV',
+    icon: 'download',
+    action: () => this.onExportToCsv(),
+  };
+
   constructor(
+    private readonly dialogService: DialogService,
     private readonly metaAndTitleService: MetaAndTitleService,
     private readonly store: Store,
   ) {}
@@ -108,6 +126,38 @@ export class HomePageComponent implements OnInit {
         photoImages: allImages.filter(image => !image.album.startsWith('_')),
       })),
     );
+  }
+
+  public async onExportToCsv(): Promise<void> {
+    const eventCount = await firstValueFrom(
+      this.store.select(EventsSelectors.selectTotalCount),
+    );
+
+    if (!eventCount) {
+      return;
+    }
+
+    const dialog: Dialog = {
+      title: 'Confirm',
+      body: `Export all ${eventCount} events to a CSV file?`,
+      confirmButtonText: 'Export',
+      confirmButtonType: 'primary',
+    };
+
+    const dialogResult = await this.dialogService.open<
+      BasicDialogComponent,
+      BasicDialogResult
+    >({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+      isModal: false,
+    });
+
+    if (dialogResult !== 'confirm') {
+      return;
+    }
+
+    this.store.dispatch(EventsActions.exportEventsToCsvRequested());
   }
 
   public onRequestDeleteAlbum(album: string): void {

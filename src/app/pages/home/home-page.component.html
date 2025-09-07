@@ -33,7 +33,10 @@
   <section class="schedule-section">
     <h2 class="section-heading">Upcoming events</h2>
     @if (vm.isAdmin) {
-      <lcc-admin-toolbar [adminLinks]="[addEventLink]"></lcc-admin-toolbar>
+      <lcc-admin-toolbar
+        [adminLinks]="[addEventLink]"
+        [adminButtons]="[exportToCsvButton]">
+      </lcc-admin-toolbar>
     }
     @if (vm.homePageEvents.length) {
       <lcc-events-table

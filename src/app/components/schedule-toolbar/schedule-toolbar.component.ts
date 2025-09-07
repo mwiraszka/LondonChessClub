@@ -27,6 +27,7 @@ import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-swit
 
     <button
       class="today-button lcc-secondary-button"
+      [disabled]="!isTodayScrollPointVisible"
       (click)="onToday()">
       today
     </button>
@@ -56,6 +57,11 @@ import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-swit
         font-size: 13px;
         border-color: var(--lcc-color--dataToolbar-buttonBorder);
         color: var(--lcc-color--dataToolbar-text);
+
+        &:disabled {
+          opacity: 0.8;
+          cursor: default;
+        }
       }
     }
   `,
@@ -67,13 +73,19 @@ export class ScheduleToolbarComponent {
 
   @Output() toggleScheduleView = new EventEmitter<void>();
 
-  public onToday(): void {
-    const todayElement = document.querySelector('.schedule-view.active .today');
+  public get isTodayScrollPointVisible(): boolean {
+    return !!document.querySelector('.schedule-view.active .today-scroll-point');
+  }
 
-    if (todayElement) {
-      todayElement.scrollIntoView({
+  public onToday(): void {
+    const todayScrollPoint = document.querySelector(
+      '.schedule-view.active .today-scroll-point',
+    );
+
+    if (todayScrollPoint) {
+      todayScrollPoint.scrollIntoView({
         behavior: 'smooth',
-        block: 'center',
+        block: 'start',
       });
     }
   }

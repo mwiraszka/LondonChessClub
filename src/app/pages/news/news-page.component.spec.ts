@@ -36,7 +36,7 @@ describe('NewsPageComponent', () => {
     search: '',
     sortOrder: 'desc',
     sortBy: 'modificationInfo',
-    filters: {},
+    filters: null,
   };
 
   beforeEach(async () => {
@@ -92,7 +92,7 @@ describe('NewsPageComponent', () => {
       const vm = await firstValueFrom(component.viewModel$!.pipe(take(1)));
 
       expect(vm).toStrictEqual({
-        articles: mockArticles,
+        filteredArticles: mockArticles,
         filteredCount: mockFilteredCount,
         images: mockImages,
         isAdmin: mockIsAdmin,

@@ -27,7 +27,7 @@ describe('ArticleGridComponent', () => {
     pageSize: 10,
     sortBy: 'modificationInfo',
     sortOrder: 'desc',
-    filters: {},
+    filters: null,
     search: '',
   };
 

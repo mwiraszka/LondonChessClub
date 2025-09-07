@@ -58,7 +58,7 @@ describe('ImageExplorerComponent', () => {
       pageSize: 20,
       sortBy: 'modificationInfo' as keyof (typeof mockImages)[0],
       sortOrder: 'desc',
-      filters: {},
+      filters: null,
       search: '',
     });
 

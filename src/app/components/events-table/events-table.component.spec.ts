@@ -147,7 +147,12 @@ describe('EventsTableComponent', () => {
       it('should display today line when next event is shown with past events', () => {
         const options = {
           ...mockOptions,
-          filters: { showPastEvents: { label: 'Show past events', value: true } },
+          filters: {
+            showPastEvents: {
+              label: 'Show past events',
+              value: true,
+            },
+          },
         };
         fixture.componentRef.setInput('options', options);
         fixture.detectChanges();

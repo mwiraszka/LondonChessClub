@@ -3,7 +3,15 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { ApiResponse, DbCollection, Event, Id } from '@app/models';
+import {
+  ApiResponse,
+  DataPaginationOptions,
+  DbCollection,
+  Event,
+  Id,
+  PaginatedItems,
+} from '@app/models';
+import { setPaginationParams } from '@app/utils';
 
 import { environment } from '@env';
 
@@ -16,8 +24,20 @@ export class EventsApiService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getEvents(): Observable<ApiResponse<Event[]>> {
-    return this.http.get<ApiResponse<Event[]>>(`${this.API_BASE_URL}/${this.COLLECTION}`);
+  public getAllEvents(): Observable<ApiResponse<PaginatedItems<Event>>> {
+    return this.http.get<ApiResponse<PaginatedItems<Event>>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}`,
+    );
+  }
+
+  public getFilteredEvents(
+    options: DataPaginationOptions<Event>,
+  ): Observable<ApiResponse<PaginatedItems<Event>>> {
+    const params = setPaginationParams(options);
+    return this.http.get<ApiResponse<PaginatedItems<Event>>>(
+      `${this.API_BASE_URL}/${this.COLLECTION}`,
+      { params },
+    );
   }
 
   public getEvent(id: Id): Observable<ApiResponse<Event>> {

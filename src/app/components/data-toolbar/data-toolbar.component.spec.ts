@@ -19,7 +19,12 @@ describe('DataToolbarComponent', () => {
     pageSize: 10,
     sortBy: 'lastName',
     sortOrder: 'asc',
-    filters: {},
+    filters: {
+      showInactiveMembers: {
+        label: 'Show inactive members',
+        value: true,
+      },
+    },
     search: '',
   };
 
@@ -261,7 +266,10 @@ describe('DataToolbarComponent', () => {
         fixture.componentRef.setInput('options', {
           ...mockOptions,
           filters: {
-            isActive: { label: 'Show active members', value: true },
+            showInactiveMembers: {
+              label: 'Show inactive members',
+              value: false,
+            },
           },
         });
         fixture.detectChanges();
@@ -271,7 +279,7 @@ describe('DataToolbarComponent', () => {
       });
 
       it('should not render filters section if no filters are defined', () => {
-        fixture.componentRef.setInput('options', { ...mockOptions, filters: {} });
+        fixture.componentRef.setInput('options', { ...mockOptions, filters: null });
         fixture.detectChanges();
 
         expect(query(fixture.debugElement, '.filters')).toBeFalsy();

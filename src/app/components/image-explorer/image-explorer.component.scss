@@ -1,11 +1,10 @@
 @use '../../../styles/abstracts/mixins' as *;
 
-$side-padding: 8px;
-
 $grid-gap: 8px;
 $card-min-width: 180px;
 $card-max-width: 270px;
 $card-padding: 8px;
+$side-padding: 8px;
 
 :host {
   height: 90dvh;

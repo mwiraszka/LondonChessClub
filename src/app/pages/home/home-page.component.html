@@ -14,32 +14,39 @@
         city champion</a
       >.
     </p>
-    <a
-      class="tournament-registration-link-button lcc-primary-button"
-      href="https://docs.google.com/forms/d/e/1FAIpQLSfCucQMB9RyiGNWCIAkh9N22S8CMSD5JWhi_A9RdcYSk4AYsg/viewform?usp=sharing&ouid=101543539456051433769"
-      ref="noopener noreferrer"
-      target="_blank"
-      tooltip="Google Docs registration form for upcoming LCC tournaments">
-      Register for a tournament
-    </a>
-    <lcc-link-list [links]="[aboutPageLink]"></lcc-link-list>
+
+    <div class="main-links">
+      <a
+        class="tournament-registration-link-button lcc-primary-button"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSfCucQMB9RyiGNWCIAkh9N22S8CMSD5JWhi_A9RdcYSk4AYsg/viewform?usp=sharing&ouid=101543539456051433769"
+        ref="noopener noreferrer"
+        target="_blank"
+        tooltip="Google Docs registration form for upcoming LCC tournaments">
+        Register for a tournament
+      </a>
+      <lcc-link-list [links]="[aboutPageLink]"></lcc-link-list>
+    </div>
+
     <lcc-club-links></lcc-club-links>
   </section>
 
   <section class="schedule-section">
     <h2 class="section-heading">Upcoming events</h2>
-    <lcc-schedule
-      [allowTogglePastEvents]="false"
-      [events]="vm.events"
-      [includeDetails]="false"
-      [isAdmin]="vm.isAdmin"
-      [nextEvent]="vm.nextEvent"
-      [showPastEvents]="vm.showPastEvents"
-      [upcomingEventLimit]="3"
-      [upcomingEvents]="vm.upcomingEvents"
-      (requestDeleteEvent)="onRequestDeleteEvent($event)">
-    </lcc-schedule>
-    <lcc-link-list [links]="[schedulePageLink]"></lcc-link-list>
+    @if (vm.isAdmin) {
+      <lcc-admin-toolbar
+        [adminLinks]="[addEventLink]"
+        [adminButtons]="[exportToCsvButton]">
+      </lcc-admin-toolbar>
+    }
+    @if (vm.homePageEvents.length) {
+      <lcc-events-table
+        [events]="vm.homePageEvents"
+        [isAdmin]="vm.isAdmin"
+        [nextEvent]="vm.nextEvent"
+        (requestDeleteEvent)="onRequestDeleteEvent($event)">
+      </lcc-events-table>
+      <lcc-link-list [links]="[schedulePageLink]"></lcc-link-list>
+    }
   </section>
 
   <section class="articles-section">
@@ -48,8 +55,8 @@
       <lcc-admin-toolbar [adminLinks]="[createArticleLink]"></lcc-admin-toolbar>
     }
     <lcc-article-grid
-      [articles]="vm.articles"
-      [images]="vm.images"
+      [articles]="vm.homePageArticles"
+      [images]="vm.allImages"
       [isAdmin]="vm.isAdmin"
       [isHomePage]="true"
       (requestDeleteArticle)="onRequestDeleteArticle($event)"

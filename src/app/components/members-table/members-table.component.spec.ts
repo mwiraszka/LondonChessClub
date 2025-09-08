@@ -27,7 +27,12 @@ describe('MembersTableComponent', () => {
     pageSize: 10,
     sortBy: 'lastName',
     sortOrder: 'asc',
-    filters: {},
+    filters: {
+      showInactiveMembers: {
+        label: 'Show inactive members',
+        value: false,
+      },
+    },
     search: '',
   };
 

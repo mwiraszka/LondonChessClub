@@ -51,8 +51,8 @@ export class DatePickerComponent implements ControlValueAccessor {
       console.warn(
         "[LCC] No date provided to Date Picker - using today's date as fallback",
       );
-      this.currentMonth = moment();
-      this.selectedDate = moment();
+      this.currentMonth = moment.tz('America/Toronto');
+      this.selectedDate = moment.tz('America/Toronto');
     } else {
       this.currentMonth = moment(date);
       this.selectedDate = moment(date);

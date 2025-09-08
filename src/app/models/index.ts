@@ -2,10 +2,12 @@ export type { AdminControlsConfig } from './admin-controls-config.model';
 export type { AdminButton } from './admin-button.model';
 export type { ApiScope, ApiResponse, PaginatedItems } from './api.model';
 export type { Article, ArticleFormData, ArticleFormGroup } from './article.model';
+export type { CalendarDay, CalendarMonth } from './calendar.model';
 export type { CallState } from './call-state.model';
 export type { ChampionshipTableRowData } from './championship-data.model';
 export type { ClubDocument } from './club-document.model';
 export type { Id, IsoDate, Pixels, Url } from './core.model';
+export type { DateFormat } from './date-format.model';
 export type {
   BasicDialogResult,
   Dialog,

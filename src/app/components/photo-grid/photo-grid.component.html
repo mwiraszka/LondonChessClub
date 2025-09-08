@@ -1,7 +1,7 @@
 @if (isAdmin) {
   <lcc-admin-toolbar
-    [adminButtons]="adminButtons"
-    [adminLinks]="adminLinks">
+    [adminButtons]="[openImageExplorerButton]"
+    [adminLinks]="[addImageLink, createAlbumLink]">
   </lcc-admin-toolbar>
 }
 

@@ -13,7 +13,7 @@ import { AuthActions } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
 import { MembersActions } from '@app/store/members';
-import { isCollectionId, isDefined, isEntity } from '@app/utils';
+import { isCollectionId, isDefined, isEntity, isString } from '@app/utils';
 
 import { NavActions, NavSelectors } from '.';
 
@@ -142,13 +142,15 @@ export class NavEffects {
       ),
       map(([requestedPath]) => {
         const [entity, controlMode, idWithFragment] = requestedPath.split('/').slice(1);
-        const id = idWithFragment ? idWithFragment.split('#')[0] : null;
+        const id = idWithFragment
+          ? decodeURIComponent(idWithFragment.split('#')[0])
+          : null;
 
         switch (entity) {
           case 'album':
             if (controlMode === 'add' && !isDefined(id)) {
               return ImagesActions.createAnAlbumSelected();
-            } else if (['edit', 'view'].includes(controlMode) && isCollectionId(id)) {
+            } else if (['edit', 'view'].includes(controlMode) && isString(id)) {
               return ImagesActions.fetchAlbumThumbnailsRequested({ album: id });
             }
             return NavActions.navigationRequested({ path: 'photo-gallery' });

@@ -3,8 +3,13 @@ import { createReducer, on } from '@ngrx/store';
 import { pick } from 'lodash';
 
 import { EVENT_FORM_DATA_PROPERTIES, INITIAL_EVENT_FORM_DATA } from '@app/constants';
-import { CallState, Event, EventFormData, IsoDate } from '@app/models';
-import { customSort } from '@app/utils';
+import {
+  CallState,
+  DataPaginationOptions,
+  Event,
+  EventFormData,
+  IsoDate,
+} from '@app/models';
 
 import * as EventsActions from './events.actions';
 
@@ -12,8 +17,15 @@ export interface EventsState
   extends EntityState<{ event: Event; formData: EventFormData }> {
   callState: CallState;
   newEventFormData: EventFormData;
-  showPastEvents: boolean;
-  lastFetch: IsoDate | null;
+  lastFullFetch: IsoDate | null;
+  lastHomePageFetch: IsoDate | null;
+  lastFilteredFetch: IsoDate | null;
+  homePageEvents: Event[];
+  filteredEvents: Event[];
+  options: DataPaginationOptions<Event>;
+  filteredCount: number | null;
+  totalCount: number;
+  scheduleView: 'list' | 'calendar';
 }
 
 export const eventsAdapter = createEntityAdapter<{
@@ -21,7 +33,6 @@ export const eventsAdapter = createEntityAdapter<{
   formData: EventFormData;
 }>({
   selectId: ({ event }) => event.id,
-  sortComparer: (a, b) => customSort(a, b, 'event.eventDate'),
 });
 
 export const initialState: EventsState = eventsAdapter.getInitialState({
@@ -31,15 +42,36 @@ export const initialState: EventsState = eventsAdapter.getInitialState({
     error: null,
   },
   newEventFormData: INITIAL_EVENT_FORM_DATA,
-  showPastEvents: false,
-  lastFetch: null,
+  lastFullFetch: null,
+  lastHomePageFetch: null,
+  lastFilteredFetch: null,
+  homePageEvents: [],
+  filteredEvents: [],
+  options: {
+    page: 1,
+    pageSize: 10,
+    sortBy: 'eventDate',
+    sortOrder: 'asc',
+    filters: {
+      showPastEvents: {
+        label: 'Show past events',
+        value: false,
+      },
+    },
+    search: '',
+  },
+  filteredCount: null,
+  totalCount: 0,
+  scheduleView: 'calendar',
 });
 
 export const eventsReducer = createReducer(
   initialState,
 
   on(
-    EventsActions.fetchEventsRequested,
+    EventsActions.fetchAllEventsRequested,
+    EventsActions.fetchHomePageEventsRequested,
+    EventsActions.fetchFilteredEventsRequested,
     EventsActions.fetchEventRequested,
     EventsActions.addEventRequested,
     EventsActions.updateEventRequested,
@@ -55,7 +87,9 @@ export const eventsReducer = createReducer(
   ),
 
   on(
-    EventsActions.fetchEventsFailed,
+    EventsActions.fetchAllEventsFailed,
+    EventsActions.fetchHomePageEventsFailed,
+    EventsActions.fetchFilteredEventsFailed,
     EventsActions.fetchEventFailed,
     EventsActions.addEventFailed,
     EventsActions.updateEventFailed,
@@ -70,19 +104,69 @@ export const eventsReducer = createReducer(
     }),
   ),
 
-  on(EventsActions.fetchEventsSucceeded, (state, { events }): EventsState => {
-    return eventsAdapter.setAll(
-      events.map(event => ({
-        event,
-        formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
-      })),
-      {
-        ...state,
-        callState: initialState.callState,
-        lastFetch: new Date().toISOString(),
-      },
-    );
-  }),
+  on(
+    EventsActions.fetchAllEventsSucceeded,
+    (state, { events, totalCount }): EventsState =>
+      eventsAdapter.setAll(
+        events.map(event => ({
+          event,
+          formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
+        })),
+        {
+          ...state,
+          callState: initialState.callState,
+          lastFullFetch: new Date().toISOString(),
+          totalCount,
+        },
+      ),
+  ),
+
+  on(
+    EventsActions.fetchHomePageEventsSucceeded,
+    (state, { events, totalCount }): EventsState => {
+      return eventsAdapter.upsertMany(
+        events.map(event => ({
+          event,
+          formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
+        })),
+        {
+          ...state,
+          callState: initialState.callState,
+          homePageEvents: events,
+          lastHomePageFetch: new Date().toISOString(),
+          totalCount,
+        },
+      );
+    },
+  ),
+
+  on(
+    EventsActions.fetchFilteredEventsSucceeded,
+    (state, { events, filteredCount, totalCount }): EventsState =>
+      eventsAdapter.upsertMany(
+        events.map(event => ({
+          event,
+          formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
+        })),
+        {
+          ...state,
+          callState: initialState.callState,
+          filteredEvents: events,
+          lastFilteredFetch: new Date().toISOString(),
+          filteredCount,
+          totalCount,
+        },
+      ),
+  ),
+
+  on(
+    EventsActions.paginationOptionsChanged,
+    (state, { options }): EventsState => ({
+      ...state,
+      options,
+      lastFilteredFetch: null,
+    }),
+  ),
 
   on(EventsActions.fetchEventSucceeded, (state, { event }): EventsState => {
     const previousFormData = state.entities[event.id]?.formData;
@@ -195,10 +279,10 @@ export const eventsReducer = createReducer(
   }),
 
   on(
-    EventsActions.pastEventsToggled,
+    EventsActions.toggleScheduleView,
     (state): EventsState => ({
       ...state,
-      showPastEvents: !state.showPastEvents,
+      scheduleView: state.scheduleView === 'list' ? 'calendar' : 'list',
     }),
   ),
 );

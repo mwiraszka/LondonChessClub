@@ -1,6 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, firstValueFrom } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
@@ -10,13 +10,23 @@ import { RouterLink } from '@angular/router';
 
 import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
 import { ArticleGridComponent } from '@app/components/article-grid/article-grid.component';
+import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { ClubLinksComponent } from '@app/components/club-links/club-links.component';
+import { EventsTableComponent } from '@app/components/events-table/events-table.component';
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { PhotoGridComponent } from '@app/components/photo-grid/photo-grid.component';
-import { ScheduleComponent } from '@app/components/schedule/schedule.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import { Article, Event, Id, Image, InternalLink } from '@app/models';
-import { MetaAndTitleService } from '@app/services';
+import {
+  AdminButton,
+  Article,
+  BasicDialogResult,
+  Dialog,
+  Event,
+  Id,
+  Image,
+  InternalLink,
+} from '@app/models';
+import { DialogService, MetaAndTitleService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
 import { EventsActions, EventsSelectors } from '@app/store/events';
@@ -32,34 +42,37 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
     ArticleGridComponent,
     ClubLinksComponent,
     CommonModule,
+    EventsTableComponent,
     LinkListComponent,
     MatIconModule,
     PhotoGridComponent,
     RouterLink,
-    ScheduleComponent,
     TooltipDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent implements OnInit {
   public viewModel$?: Observable<{
-    articles: Article[];
-    events: Event[];
-    images: Image[];
+    allImages: Image[];
+    homePageArticles: Article[];
+    homePageEvents: Event[];
     isAdmin: boolean;
     nextEvent: Event | null;
     photoImages: Image[];
-    showPastEvents: boolean;
-    upcomingEvents: Event[];
   }>;
 
   public aboutPageLink: InternalLink = {
     text: 'More about the London Chess Club',
     internalPath: 'about',
   };
+  public readonly addEventLink: InternalLink = {
+    text: 'Add an event',
+    internalPath: ['event', 'add'],
+    icon: 'add_circle_outline',
+  };
   public createArticleLink: InternalLink = {
-    internalPath: ['article', 'add'],
     text: 'Create an article',
+    internalPath: ['article', 'add'],
     icon: 'add_circle_outline',
   };
   public newsPageLink: InternalLink = {
@@ -75,7 +88,15 @@ export class HomePageComponent implements OnInit {
     internalPath: 'schedule',
   };
 
+  public exportToCsvButton: AdminButton = {
+    id: 'export-to-csv',
+    tooltip: 'Export to CSV',
+    icon: 'download',
+    action: () => this.onExportToCsv(),
+  };
+
   constructor(
+    private readonly dialogService: DialogService,
     private readonly metaAndTitleService: MetaAndTitleService,
     private readonly store: Store,
   ) {}
@@ -90,35 +111,53 @@ export class HomePageComponent implements OnInit {
 
     this.viewModel$ = combineLatest([
       this.store.select(ArticlesSelectors.selectHomePageArticles),
-      this.store.select(EventsSelectors.selectAllEvents),
+      this.store.select(EventsSelectors.selectHomePageEvents),
       this.store.select(ImagesSelectors.selectAllImages),
       this.store.select(AuthSelectors.selectIsAdmin),
       this.store.select(EventsSelectors.selectNextEvent),
-      this.store.select(EventsSelectors.selectShowPastEvents),
-      this.store.select(EventsSelectors.selectUpcomingEvents),
     ]).pipe(
       untilDestroyed(this),
-      map(
-        ([
-          articles,
-          events,
-          images,
-          isAdmin,
-          nextEvent,
-          showPastEvents,
-          upcomingEvents,
-        ]) => ({
-          articles,
-          events,
-          images,
-          isAdmin,
-          nextEvent,
-          photoImages: images.filter(image => !image.album.startsWith('_')),
-          showPastEvents,
-          upcomingEvents,
-        }),
-      ),
+      map(([homePageArticles, homePageEvents, allImages, isAdmin, nextEvent]) => ({
+        homePageArticles,
+        homePageEvents,
+        allImages,
+        isAdmin,
+        nextEvent,
+        photoImages: allImages.filter(image => !image.album.startsWith('_')),
+      })),
     );
+  }
+
+  public async onExportToCsv(): Promise<void> {
+    const eventCount = await firstValueFrom(
+      this.store.select(EventsSelectors.selectTotalCount),
+    );
+
+    if (!eventCount) {
+      return;
+    }
+
+    const dialog: Dialog = {
+      title: 'Confirm',
+      body: `Export all ${eventCount} events to a CSV file?`,
+      confirmButtonText: 'Export',
+      confirmButtonType: 'primary',
+    };
+
+    const dialogResult = await this.dialogService.open<
+      BasicDialogComponent,
+      BasicDialogResult
+    >({
+      componentType: BasicDialogComponent,
+      inputs: { dialog },
+      isModal: false,
+    });
+
+    if (dialogResult !== 'confirm') {
+      return;
+    }
+
+    this.store.dispatch(EventsActions.exportEventsToCsvRequested());
   }
 
   public onRequestDeleteAlbum(album: string): void {

@@ -81,10 +81,11 @@ body[data-theme='dark'] {
   --lcc-color--championPage-cellBackground: #{clr(grayscale, black-15)};
   --lcc-color--championPage-cellBorder: #{clr(grayscale, gray-50, 0.4)};
   --lcc-color--championPage-championshipIcon: #{clr(secondary, base)};
+  --lcc-color--championPage-expansionHeaderBackground: #{clr(grayscale, gray-25, 0.5)};
   --lcc-color--championPage-expansionHeaderBackgroundOnHover: #{clr(
       grayscale,
       gray-25,
-      0.3
+      0.8
     )};
   --lcc-color--championPage-headerText: #{clr(grayscale, gray-75)};
   --lcc-color--championPage-primaryText: #{clr(grayscale, gray-75)};
@@ -127,8 +128,17 @@ body[data-theme='dark'] {
   --lcc-color--documentViewer-scrollbarBackground: #{clr(grayscale, white-90)};
   --lcc-color--documentViewer-scrollbar: #{clr(grayscale, gray-65)};
 
-  --lcc-color--figure-captionBackground: #{clr(primary, darker)};
-  --lcc-color--figure-captionText: #{clr(grayscale, white-90)};
+  --lcc-color--eventsCalendar-dayHeaderBackground: #{clr(grayscale, black-15)};
+  --lcc-color--eventsCalendar-dayHeaderText: #{clr(grayscale, gray-75)};
+  --lcc-color--eventsCalendar-eventTypeText: #{clr(grayscale, white-95)};
+  --lcc-color--eventsCalendar-gridBorder: #{clr(grayscale, gray-35)};
+  --lcc-color--eventsCalendar-insideMonthBackground: #{clr(grayscale, black-20)};
+  --lcc-color--eventsCalendar-insideMonthText: #{clr(grayscale, gray-50)};
+  --lcc-color--eventsCalendar-monthHeaderText: #{clr(grayscale, white-80)};
+  --lcc-color--eventsCalendar-outsideMonthBackground: #{clr(grayscale, black-15)};
+  --lcc-color--eventsCalendar-outsideMonthText: #{clr(grayscale, gray-35, 0.5)};
+  --lcc-color--eventsCalendar-primaryTooltipText: #{clr(grayscale, white-90)};
+  --lcc-color--eventsCalendar-secondaryTooltipText: #{clr(grayscale, gray-75)};
 
   --lcc-color--footer-background: #{clr(grayscale, black-20)};
   --lcc-color--footer-copyrightSectionBackground: #{clr(primary, darker)};
@@ -205,8 +215,9 @@ body[data-theme='dark'] {
   --lcc-color--lifetimePage-blockBackground: #{clr(grayscale, black-20)};
   --lcc-color--lifetimePage-blockBoldText: #{clr(grayscale, white-98)};
   --lcc-color--lifetimePage-blockText: #{clr(grayscale, gray-75)};
+  --lcc-color--lifetimePage-figureCaptionBackground: #{clr(primary, darker)};
+  --lcc-color--lifetimePage-figureCaptionText: #{clr(grayscale, white-90)};
   --lcc-color--lifetimePage-portraitBorder: #{clr(grayscale, gray-35, 0.3)};
-  --lcc-color--lifetimePage-sectionHeaderDivider: #{clr(primary, base)};
   --lcc-color--lifetimePage-sectionHeaderText: #{clr(grayscale, white-98)};
 
   --lcc-color--link: #{clr(primary, lighter)};
@@ -243,8 +254,22 @@ body[data-theme='dark'] {
   --lcc-color--nav-linkForegroundOnHover: #{clr(primary, lighter)};
   --lcc-color--nav-linkForegroundWhenActive: #{clr(grayscale, white-98)};
 
+  --lcc-color--pageHeader-adminIcon: #{clr(admin, base)};
+  --lcc-color--pageHeader-asteriskText: #{clr(grayscale, gray-50)};
+  --lcc-color--pageHeader-background: #{clr(grayscale, black-15)};
+  --lcc-color--pageHeader-boxShadow: #{clr(grayscale, gray-25, 0.7)};
+  --lcc-color--pageHeader-icon: #{clr(secondary, base)};
+  --lcc-color--pageHeader-text: #{clr(grayscale, white-85)};
+
   --lcc-color--pgnViewer-board: #{clr(chessboard)};
   --lcc-color--pgnViewer-playerNameText: #{clr(grayscale, white-85)};
+
+  --lcc-color--photoCarousel-activeDot: #{clr(primary, base)};
+  --lcc-color--photoCarousel-activeDotBorder: #{clr(primary, base, 0.8)};
+  --lcc-color--photoCarousel-caption: #{clr(grayscale, white-80)};
+  --lcc-color--photoCarousel-dot: #{clr(grayscale, white-90)};
+  --lcc-color--photoCarousel-dotBorder: #{clr(grayscale, white-85, 0.8)};
+  --lcc-color--photoCarousel-photoBackground: #{clr(grayscale, black-10)};
 
   --lcc-color--photoGrid-albumNameText: #{clr(grayscale, white-80)};
   --lcc-color--photoGrid-albumNameTextHover: #{clr(grayscale, white-98)};
@@ -260,61 +285,43 @@ body[data-theme='dark'] {
   --lcc-color--schedule-blitz10TournamentBackground: #{clr(
       event-blitz-10-tournament,
       light,
-      0.5
+      0.3
     )};
-  --lcc-color--schedule-blitz10TournamentBorder: #{clr(
-      event-blitz-10-tournament,
-      base,
-      0.5
-    )};
-  --lcc-color--schedule-championshipBackground: #{clr(event-championship, light, 0.5)};
-  --lcc-color--schedule-championshipBorder: #{clr(event-championship, base, 0.5)};
+  --lcc-color--schedule-blitz10TournamentDot: #{clr(event-blitz-10-tournament, light)};
+  --lcc-color--schedule-championshipBackground: #{clr(event-championship, light, 0.3)};
+  --lcc-color--schedule-championshipDot: #{clr(event-championship, light)};
   --lcc-color--schedule-championshipMedalIcon: #{clr(event-championship)};
-  --lcc-color--schedule-closedBackground: #{clr(event-closed, light, 0.5)};
-  --lcc-color--schedule-closedBorder: #{clr(event-closed, base, 0.5)};
-  --lcc-color--schedule-createdAndEditedText: #{clr(grayscale, gray-75)};
+  --lcc-color--schedule-closedBackground: #{clr(event-closed, light, 0.3)};
+  --lcc-color--schedule-closedDot: #{clr(event-closed, light)};
+  --lcc-color--schedule-createdAndEditedText: #{clr(grayscale, gray-65)};
+  --lcc-color--schedule-dateBackground: #{clr(primary, light, 0.2)};
   --lcc-color--schedule-eventDetailsText: #{clr(grayscale, gray-75)};
   --lcc-color--schedule-eventType: #{clr(grayscale, white-98)};
-  --lcc-color--schedule-lectureBackground: #{clr(event-lecture, light, 0.5)};
-  --lcc-color--schedule-lectureBorder: #{clr(event-lecture, base, 0.5)};
-  --lcc-color--schedule-nextEventText: #{clr(grayscale, white-98)};
-  --lcc-color--schedule-nextEventBackgroundHighlight: #{clr(highlight, base, 0.4)};
-  --lcc-color--schedule-nowLine: #{clr(schedule-now-line, base, 0.5)};
-  --lcc-color--schedule-otherBackground: #{clr(event-other, light, 0.5)};
-  --lcc-color--schedule-otherBorder: #{clr(event-other, base, 0.5)};
+  --lcc-color--schedule-lectureBackground: #{clr(event-lecture, light, 0.3)};
+  --lcc-color--schedule-lectureDot: #{clr(event-lecture, light)};
+  --lcc-color--schedule-otherBackground: #{clr(event-other, light, 0.3)};
+  --lcc-color--schedule-otherDot: #{clr(event-other, light)};
   --lcc-color--schedule-rapid25TournamentBackground: #{clr(
       event-rapid-25-tournament,
       light,
       0.5
     )};
-  --lcc-color--schedule-rapid25TournamentBorder: #{clr(
-      event-rapid-25-tournament,
-      base,
-      0.5
-    )};
+  --lcc-color--schedule-rapid25TournamentDot: #{clr(event-rapid-25-tournament, light)};
   --lcc-color--schedule-rapid40TournamentBackground: #{clr(
       event-rapid-40-tournament,
       light,
-      0.5
+      0.3
     )};
-  --lcc-color--schedule-rapid40TournamentBorder: #{clr(
-      event-rapid-40-tournament,
-      base,
-      0.5
-    )};
-  --lcc-color--schedule-simulBackground: #{clr(event-simul, light, 0.5)};
-  --lcc-color--schedule-simulBorder: #{clr(event-simul, base, 0.5)};
+  --lcc-color--schedule-rapid40TournamentDot: #{clr(event-rapid-40-tournament, light)};
+  --lcc-color--schedule-simulBackground: #{clr(event-simul, light, 0.3)};
+  --lcc-color--schedule-simulDot: #{clr(event-simul, light)};
   --lcc-color--schedule-titleText: #{clr(grayscale, white-95)};
+  --lcc-color--schedule-today: #{clr(schedule-today, base)};
+
+  --lcc-color--scheduleToolbar-scheduleViewIcon: #{clr(grayscale, white-90)};
 
   --lcc-color--searchHighlight-background: #{clr(highlight, light)};
   --lcc-color--searchHighlight-text: #{clr(grayscale, black-10)};
-
-  --lcc-color--pageHeader-adminIcon: #{clr(admin, base)};
-  --lcc-color--pageHeader-asteriskText: #{clr(grayscale, gray-50)};
-  --lcc-color--pageHeader-background: #{clr(grayscale, black-15)};
-  --lcc-color--pageHeader-boxShadow: #{clr(grayscale, gray-25, 0.7)};
-  --lcc-color--pageHeader-icon: #{clr(secondary, base)};
-  --lcc-color--pageHeader-text: #{clr(grayscale, white-85)};
 
   --lcc-color--table-boxShadow: #{clr(grayscale, black-20, 0.7)};
   --lcc-color--table-footerForeground: #{clr(grayscale, gray-65)};

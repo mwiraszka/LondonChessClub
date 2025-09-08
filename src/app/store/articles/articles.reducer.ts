@@ -49,7 +49,7 @@ export const initialState: ArticlesState = articlesAdapter.getInitialState({
     pageSize: 10,
     sortBy: 'bookmarkDate',
     sortOrder: 'desc',
-    filters: {},
+    filters: null,
     search: '',
   },
   filteredCount: null,
@@ -129,6 +129,15 @@ export const articlesReducer = createReducer(
           totalCount,
         },
       ),
+  ),
+
+  on(
+    ArticlesActions.paginationOptionsChanged,
+    (state, { options }): ArticlesState => ({
+      ...state,
+      options,
+      lastFilteredFetch: null,
+    }),
   ),
 
   on(ArticlesActions.fetchArticleSucceeded, (state, { article }): ArticlesState => {
@@ -225,15 +234,6 @@ export const articlesReducer = createReducer(
       state,
     );
   }),
-
-  on(
-    ArticlesActions.paginationOptionsChanged,
-    (state, { options }): ArticlesState => ({
-      ...state,
-      options,
-      lastFilteredFetch: null,
-    }),
-  ),
 
   on(ArticlesActions.formDataRestored, (state, { articleId }): ArticlesState => {
     const originalArticle = articleId ? state.entities[articleId]?.article : null;

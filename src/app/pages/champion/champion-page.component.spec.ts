@@ -56,16 +56,20 @@ describe('ChampionPageComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should render page header', () => {
+    it('should always render page header and all page sections', () => {
       expect(query(fixture.debugElement, 'lcc-page-header')).toBeTruthy();
-    });
-
-    it('should render all grid sections', () => {
-      expect(query(fixture.debugElement, '.trophies-photo')).toBeTruthy();
-      expect(query(fixture.debugElement, '.other-photos')).toBeTruthy();
-      expect(query(fixture.debugElement, '.history')).toBeTruthy();
-      expect(query(fixture.debugElement, '.standard-championship')).toBeTruthy();
-      expect(query(fixture.debugElement, '.other-championships')).toBeTruthy();
+      expect(
+        query(fixture.debugElement, '.history-and-photos-section .history'),
+      ).toBeTruthy();
+      expect(
+        query(fixture.debugElement, '.history-and-photos-section lcc-photo-carousel'),
+      ).toBeTruthy();
+      expect(
+        query(fixture.debugElement, '.past-champions-section .standard-championship'),
+      ).toBeTruthy();
+      expect(
+        query(fixture.debugElement, '.past-champions-section .other-championships'),
+      ).toBeTruthy();
     });
 
     it("should not render 'other championships' tables by default", () => {
@@ -81,13 +85,92 @@ describe('ChampionPageComponent', () => {
       ).triggerEventHandler('click');
       query(
         fixture.debugElement,
+        '.active-champions .expansion-header',
+      ).triggerEventHandler('click');
+      query(
+        fixture.debugElement,
         '.speed-champions .expansion-header',
       ).triggerEventHandler('click');
       fixture.detectChanges();
 
       expect(query(fixture.debugElement, '.junior-champions table')).toBeTruthy();
-      expect(query(fixture.debugElement, '.active-champions table')).toBeFalsy();
+      expect(query(fixture.debugElement, '.active-champions table')).toBeTruthy();
       expect(query(fixture.debugElement, '.speed-champions table')).toBeTruthy();
+    });
+
+    it('should render standard championship table by default', () => {
+      expect(query(fixture.debugElement, '.standard-championship table')).toBeTruthy();
+    });
+  });
+
+  describe('expansion panel functionality', () => {
+    beforeEach(() => {
+      fixture.detectChanges();
+    });
+
+    it('should toggle junior panel expansion state', () => {
+      expect(component.juniorPanelExpanded).toBe(false);
+
+      query(
+        fixture.debugElement,
+        '.junior-champions .expansion-header',
+      ).triggerEventHandler('click');
+
+      expect(component.juniorPanelExpanded).toBe(true);
+
+      query(
+        fixture.debugElement,
+        '.junior-champions .expansion-header',
+      ).triggerEventHandler('click');
+
+      expect(component.juniorPanelExpanded).toBe(false);
+    });
+
+    it('should toggle active panel expansion state', () => {
+      expect(component.activePanelExpanded).toBe(false);
+
+      query(
+        fixture.debugElement,
+        '.active-champions .expansion-header',
+      ).triggerEventHandler('click');
+
+      expect(component.activePanelExpanded).toBe(true);
+    });
+
+    it('should toggle speed panel expansion state', () => {
+      expect(component.speedPanelExpanded).toBe(false);
+
+      query(
+        fixture.debugElement,
+        '.speed-champions .expansion-header',
+      ).triggerEventHandler('click');
+
+      expect(component.speedPanelExpanded).toBe(true);
+    });
+  });
+
+  describe('component data properties', () => {
+    it('should have photos array with expected length', () => {
+      expect(component.photos).toBeDefined();
+      expect(component.photos.length).toBe(5);
+    });
+
+    it('should have populated championship data arrays', () => {
+      expect(component.standardChampionships.length).toBeGreaterThan(0);
+      expect(component.activeChampionships.length).toBeGreaterThan(0);
+      expect(component.juniorChampionships.length).toBeGreaterThan(0);
+      expect(component.speedChampionships.length).toBeGreaterThan(0);
+    });
+
+    it('should initialize "see full table" and expansion flags to false', () => {
+      expect(component.seeFullActiveTable).toBe(false);
+      expect(component.seeFullJuniorTable).toBe(false);
+      expect(component.seeFullSpeedTable).toBe(false);
+      expect(component.seeFullStandardTable).toBe(false);
+
+      expect(component.activePanelExpanded).toBe(false);
+      expect(component.juniorPanelExpanded).toBe(false);
+      expect(component.speedPanelExpanded).toBe(false);
     });
   });
 });

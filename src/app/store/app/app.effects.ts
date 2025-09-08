@@ -62,8 +62,12 @@ export class AppEffects {
     EventsActions.addEventSucceeded,
     EventsActions.deleteEventFailed,
     EventsActions.deleteEventSucceeded,
+    EventsActions.exportEventsToCsvFailed,
+    EventsActions.exportEventsToCsvSucceeded,
+    EventsActions.fetchAllEventsFailed,
     EventsActions.fetchEventFailed,
-    EventsActions.fetchEventsFailed,
+    EventsActions.fetchFilteredEventsFailed,
+    EventsActions.fetchHomePageEventsFailed,
     EventsActions.requestTimedOut,
     EventsActions.updateEventFailed,
     EventsActions.updateEventSucceeded,
@@ -113,7 +117,9 @@ export class AppEffects {
     ArticlesActions.fetchHomePageArticlesFailed,
     ArticlesActions.fetchArticleFailed,
 
-    EventsActions.fetchEventsFailed,
+    EventsActions.fetchAllEventsFailed,
+    EventsActions.fetchFilteredEventsFailed,
+    EventsActions.fetchHomePageEventsFailed,
     EventsActions.fetchEventFailed,
 
     ImagesActions.fetchAllImagesMetadataFailed,
@@ -181,8 +187,10 @@ export class AppEffects {
   private readonly eventsRequested = [
     EventsActions.addEventRequested,
     EventsActions.deleteEventRequested,
-    EventsActions.fetchEventsRequested,
+    EventsActions.exportEventsToCsvRequested,
     EventsActions.fetchEventRequested,
+    EventsActions.fetchFilteredEventsRequested,
+    EventsActions.fetchHomePageEventsRequested,
     EventsActions.updateEventRequested,
   ];
 
@@ -435,13 +443,31 @@ export class AppEffects {
           message: `Successfully deleted ${action.eventTitle}`,
           type: 'success',
         };
+      case EventsActions.exportEventsToCsvFailed.type:
+        return {
+          title: 'CSV export',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case EventsActions.exportEventsToCsvSucceeded.type:
+        return {
+          title: 'CSV export',
+          message: `Successfully exported ${action.exportedCount} events to CSV`,
+          type: 'success',
+        };
       case EventsActions.fetchEventFailed.type:
         return {
           title: 'Load event',
           message: this.getErrorMessage(action.error),
           type: 'warning',
         };
-      case EventsActions.fetchEventsFailed.type:
+      case EventsActions.fetchFilteredEventsFailed.type:
+        return {
+          title: 'Load events',
+          message: this.getErrorMessage(action.error),
+          type: 'warning',
+        };
+      case EventsActions.fetchHomePageEventsFailed.type:
         return {
           title: 'Load events',
           message: this.getErrorMessage(action.error),

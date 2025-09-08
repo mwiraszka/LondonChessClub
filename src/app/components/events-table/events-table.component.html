@@ -1,0 +1,84 @@
+<table class="lcc-table events-table">
+  <thead>
+    <th class="header">Event</th>
+    <th class="header"></th>
+  </thead>
+
+  <tbody>
+    @for (event of events; track event.id) {
+      @if (event.id === nextEvent?.id && options?.filters?.showPastEvents?.value) {
+        <tr>
+          <td colspan="2">
+            <hr class="today-line today-scroll-point" />
+          </td>
+        </tr>
+      }
+      <tr
+        [class.today-scroll-point]="event.id === nextEvent?.id"
+        [adminControls]="isAdmin ? getAdminControlsConfig(event) : null"
+        [id]="event.id">
+        <td class="event-date-cell">
+          <div class="event-date-widget">
+            <div class="date-text">
+              {{ event.eventDate | formatDate: 'short day-of-week' }}
+            </div>
+            <div class="date-text">
+              <b>{{ event.eventDate | formatDate: 'short month-day' }}</b>
+            </div>
+            <div class="date-text">{{ event.eventDate | formatDate: 'year' }}</div>
+          </div>
+        </td>
+
+        <td class="event-details-cell">
+          <div class="main-content">
+            <h3
+              class="title"
+              [innerHTML]="event.title | highlight: options?.search">
+              {{ event.title }}
+            </h3>
+            <div
+              class="type-container"
+              [ngClass]="event.type | kebabCase">
+              <span
+                class="type"
+                [innerHTML]="event.type | highlight: options?.search">
+              </span>
+
+              @if ((event.type | kebabCase) === 'championship') {
+                <mat-icon class="championship-icon">emoji_events</mat-icon>
+              }
+            </div>
+
+            <p
+              class="event-details"
+              [innerHTML]="
+                event.details.replaceAll('\\n', ' \n ') | highlight: options?.search
+              ">
+            </p>
+
+            @if (event?.articleId) {
+              <a
+                [routerLink]="'/article/view/' + event.articleId"
+                class="lcc-link event-article">
+                More details
+              </a>
+            }
+          </div>
+
+          @if (showModificationInfo) {
+            <aside class="created-and-edited">
+              <div>
+                Event created
+                {{ event.modificationInfo.dateCreated | formatDate: 'short no-time' }}
+              </div>
+              <div>
+                Last edited
+                {{ event.modificationInfo.dateLastEdited | formatDate: 'short no-time' }}
+              </div>
+            </aside>
+          }
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

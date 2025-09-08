@@ -16,6 +16,7 @@ import { AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
 import { MembersActions, MembersSelectors } from '@app/store/members';
 import * as utils from '@app/utils';
+import { query } from '@app/utils';
 
 import { MembersPageComponent } from './members-page.component';
 
@@ -29,6 +30,7 @@ describe('MembersPageComponent', () => {
   let store: MockStore;
 
   let dispatchSpy: jest.SpyInstance;
+  let onExportToCsvSpy: jest.SpyInstance;
   let updateDescriptionSpy: jest.SpyInstance;
   let updateTitleSpy: jest.SpyInstance;
 
@@ -41,7 +43,12 @@ describe('MembersPageComponent', () => {
     pageSize: 10,
     sortBy: 'firstName',
     sortOrder: 'asc',
-    filters: {},
+    filters: {
+      showInactiveMembers: {
+        label: 'Show Inactive Members',
+        value: true,
+      },
+    },
     search: '',
   };
   const mockTotalCount = 100;
@@ -75,6 +82,7 @@ describe('MembersPageComponent', () => {
 
     dialogOpenSpy = jest.spyOn(dialogService, 'open');
     dispatchSpy = jest.spyOn(store, 'dispatch');
+    onExportToCsvSpy = jest.spyOn(component, 'onExportToCsv');
     updateDescriptionSpy = jest.spyOn(metaAndTitleService, 'updateDescription');
     updateTitleSpy = jest.spyOn(metaAndTitleService, 'updateTitle');
 
@@ -389,17 +397,15 @@ describe('MembersPageComponent', () => {
       });
     });
 
-    it('should have correct adminButtons configuration', () => {
-      expect(component.adminButtons).toHaveLength(2);
-
-      expect(component.adminButtons[0]).toMatchObject({
+    it('should have correct admin button configurations', () => {
+      expect(component.updateRatingsFromCsvButton).toEqual({
         id: 'update-ratings-from-csv',
         tooltip: 'Update member ratings from CSV',
         icon: 'upload_file',
         action: expect.any(Function),
       });
 
-      expect(component.adminButtons[1]).toMatchObject({
+      expect(component.exportToCsvButton).toEqual({
         id: 'export-to-csv',
         tooltip: 'Export to CSV',
         icon: 'download',
@@ -407,23 +413,59 @@ describe('MembersPageComponent', () => {
       });
     });
 
-    it('should trigger file input click when first admin button action is called', () => {
+    it('should trigger file input click when updateRatingsFromCsvButton action is called', () => {
       const mockClick = jest.fn();
       component.memberRatingChangesFileInput = {
         nativeElement: { click: mockClick } as unknown as HTMLInputElement,
       };
 
-      component.adminButtons[0].action();
+      component.updateRatingsFromCsvButton.action();
 
       expect(mockClick).toHaveBeenCalledTimes(1);
     });
 
-    it('should call onExportToCsv when second admin button action is called', () => {
-      const onExportToCsvSpy = jest.spyOn(component, 'onExportToCsv').mockResolvedValue();
-
-      component.adminButtons[1].action();
+    it('should call onExportToCsv when exportToCsvButton action is called', () => {
+      component.exportToCsvButton.action();
 
       expect(onExportToCsvSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('template rendering', () => {
+    describe('when viewModel$ is undefined', () => {
+      it('should not render any content', () => {
+        expect(query(fixture.debugElement, 'lcc-page-header')).toBeFalsy();
+        expect(query(fixture.debugElement, 'input[type="file"]')).toBeFalsy();
+        expect(query(fixture.debugElement, 'lcc-admin-toolbar')).toBeFalsy();
+        expect(query(fixture.debugElement, 'lcc-data-toolbar')).toBeFalsy();
+        expect(query(fixture.debugElement, 'lcc-members-table')).toBeFalsy();
+      });
+    });
+
+    describe('when viewModel$ is defined', () => {
+      it('should render page header, data toolbar, and members table', () => {
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, 'lcc-page-header')).toBeTruthy();
+        expect(query(fixture.debugElement, 'lcc-data-toolbar')).toBeTruthy();
+        expect(query(fixture.debugElement, 'lcc-members-table')).toBeTruthy();
+      });
+
+      it('should render file input and admin toolbar for admins', () => {
+        store.overrideSelector(AuthSelectors.selectIsAdmin, true);
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, 'input[type="file"]')).toBeTruthy();
+        expect(query(fixture.debugElement, 'lcc-admin-toolbar')).toBeTruthy();
+      });
+
+      it('should not render file input or admin toolbar for non-admins', () => {
+        store.overrideSelector(AuthSelectors.selectIsAdmin, false);
+        fixture.detectChanges();
+
+        expect(query(fixture.debugElement, 'input[type="file"]')).toBeFalsy();
+        expect(query(fixture.debugElement, 'lcc-admin-toolbar')).toBeFalsy();
+      });
     });
   });
 });

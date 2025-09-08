@@ -53,7 +53,7 @@ export const initialState: ImagesState = imagesAdapter.getInitialState({
     pageSize: 20,
     sortBy: 'modificationInfo',
     sortOrder: 'desc',
-    filters: {},
+    filters: null,
     search: '',
   },
   filteredCount: null,

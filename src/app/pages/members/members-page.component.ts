@@ -52,7 +52,7 @@ import { isLccError, parseCsv } from '@app/utils';
           (change)="onMemberRatingChangesFileSelected($event)" />
         <lcc-admin-toolbar
           [adminLinks]="[addMemberLink]"
-          [adminButtons]="adminButtons">
+          [adminButtons]="[updateRatingsFromCsvButton, exportToCsvButton]">
         </lcc-admin-toolbar>
       }
 
@@ -94,20 +94,19 @@ export class MembersPageComponent implements OnInit {
     icon: 'add_circle_outline',
   };
 
-  public adminButtons: AdminButton[] = [
-    {
-      id: 'update-ratings-from-csv',
-      tooltip: 'Update member ratings from CSV',
-      icon: 'upload_file',
-      action: () => this.memberRatingChangesFileInput?.nativeElement.click(),
-    },
-    {
-      id: 'export-to-csv',
-      tooltip: 'Export to CSV',
-      icon: 'download',
-      action: () => this.onExportToCsv(),
-    },
-  ];
+  public updateRatingsFromCsvButton: AdminButton = {
+    id: 'update-ratings-from-csv',
+    tooltip: 'Update member ratings from CSV',
+    icon: 'upload_file',
+    action: () => this.memberRatingChangesFileInput?.nativeElement.click(),
+  };
+
+  public exportToCsvButton: AdminButton = {
+    id: 'export-to-csv',
+    tooltip: 'Export to CSV',
+    icon: 'download',
+    action: () => this.onExportToCsv(),
+  };
 
   public viewModel$?: Observable<{
     filteredCount: number | null;

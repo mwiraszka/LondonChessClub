@@ -48,6 +48,10 @@ import { BasicDialogResult, Dialog, DialogOutput } from '@app/models';
         border-bottom: 1px solid var(--lcc-color--basicDialog-dividerLine);
       }
 
+      .dialog-body {
+        white-space: pre-wrap;
+      }
+
       .buttons-container {
         display: flex;
         flex-direction: row;

@@ -52,7 +52,9 @@ import { EventsActions, EventsSelectors } from '@app/store/events';
       </lcc-data-toolbar>
 
       <lcc-schedule-toolbar
+        [filteredEvents]="vm.filteredEvents"
         [scheduleView]="vm.scheduleView"
+        [totalCount]="vm.totalCount"
         (toggleScheduleView)="onToggleScheduleView()">
       </lcc-schedule-toolbar>
 
@@ -126,6 +128,7 @@ export class SchedulePageComponent implements OnInit {
     nextEvent: Event | null;
     options: DataPaginationOptions<Event>;
     scheduleView: 'list' | 'calendar';
+    totalCount: number;
   }>;
 
   constructor(
@@ -147,16 +150,26 @@ export class SchedulePageComponent implements OnInit {
       this.store.select(EventsSelectors.selectNextEvent),
       this.store.select(EventsSelectors.selectOptions),
       this.store.select(EventsSelectors.selectScheduleView),
+      this.store.select(EventsSelectors.selectTotalCount),
     ]).pipe(
       untilDestroyed(this),
       map(
-        ([filteredCount, filteredEvents, isAdmin, nextEvent, options, scheduleView]) => ({
+        ([
           filteredCount,
           filteredEvents,
           isAdmin,
           nextEvent,
           options,
           scheduleView,
+          totalCount,
+        ]) => ({
+          filteredCount,
+          filteredEvents,
+          isAdmin,
+          nextEvent,
+          options,
+          scheduleView,
+          totalCount,
         }),
       ),
       tap(() => setTimeout(() => this.scheduleToolbar?.changeDetectorRef.markForCheck())),

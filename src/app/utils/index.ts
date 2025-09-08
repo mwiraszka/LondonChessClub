@@ -27,6 +27,7 @@ export { parseError } from './error/parse-error.util';
 
 export { dataUrlToFile } from './file/data-url-to-file.util';
 export { exportDataToCsv } from './file/export-data-to-csv.util';
+export { exportEventsToIcal } from './file/export-events-to-ical.util';
 export { formatBytes } from './file/format-bytes.util';
 export { parseCsv } from './file/parse-csv.util';
 

@@ -118,6 +118,7 @@ describe('SchedulePageComponent', () => {
         nextEvent: mockNextEvent,
         options: mockOptions,
         scheduleView: mockScheduleView,
+        totalCount: mockTotalCount,
       });
     });
 

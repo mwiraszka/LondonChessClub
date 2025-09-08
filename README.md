@@ -44,7 +44,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
     - integrate a new Schedule Toolbar below pagination/filtering which offers the ability to
       1. view events in either 'list view' or 'calendar view',
       2. scroll down to the today if visible on the current page,
-      3. synchronize events with other calendars
+      3. export events in iCalendar format, which can then be imported into Google Calendar, Apple Calendar or Microsoft Outlook
     - add the ability for admins to export all events in a .CSV file (as recently made available for Members)
 - 🐛 Fix issue preventing Album Editor from loading for certain albums
 - 🔧 Upgrade Angular to `v20.2.3`, `@ngrx` packages to `v20.0.1`, and update a handful of third-party packages to their latest versions

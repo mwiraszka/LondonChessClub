@@ -32,7 +32,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.9.0 - September TBD, 2025</summary>
+<summary>v5.9.0 - September 7th, 2025</summary>
 
 - 🚀 A new and improved City Champion page:
     - a new Photo Carousel component that auto-cycles through championship photos, with the ability to cycle through manually by keyboard or by clicking on the dots

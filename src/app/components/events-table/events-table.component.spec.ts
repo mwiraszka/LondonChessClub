@@ -208,7 +208,7 @@ describe('EventsTableComponent', () => {
         fixture.componentRef.setInput('events', [eventWithArticle!]);
         fixture.detectChanges();
 
-        const articleLink = query(fixture.debugElement, '.event-article');
+        const articleLink = query(fixture.debugElement, '.event-article-link');
         expect(articleLink.nativeElement.getAttribute('href')).toBe(
           '/article/view/' + eventWithArticle!.articleId,
         );
@@ -220,7 +220,7 @@ describe('EventsTableComponent', () => {
         fixture.componentRef.setInput('events', [eventWithoutArticle!]);
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, '.event-article')).toBeFalsy();
+        expect(query(fixture.debugElement, '.event-article-link')).toBeFalsy();
       });
 
       it('should display modification info when showModificationInfo is true', () => {

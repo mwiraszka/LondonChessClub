@@ -80,13 +80,22 @@ export class TooltipDirective implements OnDestroy {
         injector,
       );
 
-      this.overlayRef.attach(componentPortal);
+      const componentRef = this.overlayRef.attach(componentPortal);
 
       const overlayContainerElement = this._document.querySelector(
         '.cdk-overlay-container',
       );
       if (overlayContainerElement) {
         this.renderer.setStyle(overlayContainerElement, 'z-index', '1200');
+      }
+
+      // Enable pointer events if tooltip content is a template (interactive content)
+      if (this.tooltip instanceof TemplateRef && componentRef.location.nativeElement) {
+        this.renderer.setStyle(
+          componentRef.location.nativeElement,
+          'pointer-events',
+          'auto',
+        );
       }
     }
   }
@@ -95,7 +104,10 @@ export class TooltipDirective implements OnDestroy {
   @HostListener('blur')
   public detach(): void {
     if (this.overlayRef?.hasAttached()) {
-      this.overlayRef?.detach();
+      // Delay close to allow click events to register in tooltips
+      setTimeout(() => {
+        this.overlayRef?.detach();
+      });
     }
   }
 

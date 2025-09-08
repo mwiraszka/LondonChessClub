@@ -156,6 +156,7 @@ $pgn-viewer-width: 432px;
   button {
     padding: 8px 16px;
     text-transform: none;
+    --expansion-pixels: 4px;
 
     &.active {
       background-color: var(--lcc-color--gameArchivesPage-activeButtonBackground);
@@ -197,7 +198,7 @@ $pgn-viewer-width: 432px;
     transform: scale(1);
   }
   50% {
-    transform: scale(1.04);
+    transform: scale(0.97);
   }
   100% {
     transform: scale(1);

@@ -81,7 +81,9 @@
             colspan="100%"
             [class.clickable]="!seeFullStandardTable"
             [tooltip]="
-              seeFullStandardTable ? '' : 'Show full list of champions going back to 1967'
+              seeFullStandardTable
+                ? null
+                : 'Show full list of champions going back to 1967'
             "
             (click)="seeFullStandardTable = true">
             {{ seeFullStandardTable ? 'Club formed c.1965' : '. . .' }}
@@ -152,7 +154,7 @@
                   colspan="100%"
                   [class.clickable]="!seeFullJuniorTable"
                   [tooltip]="
-                    seeFullJuniorTable ? '' : 'Show full list of junior champions'
+                    seeFullJuniorTable ? null : 'Show full list of junior champions'
                   "
                   (click)="seeFullJuniorTable = true">
                   {{ seeFullJuniorTable ? '' : '. . .' }}
@@ -220,7 +222,7 @@
                   colspan="100%"
                   [class.clickable]="!seeFullActiveTable"
                   [tooltip]="
-                    seeFullActiveTable ? '' : 'Show full list of active champions'
+                    seeFullActiveTable ? null : 'Show full list of active champions'
                   "
                   (click)="seeFullActiveTable = true">
                   {{
@@ -289,7 +291,9 @@
                 <td
                   colspan="100%"
                   [class.clickable]="!seeFullSpeedTable"
-                  [tooltip]="seeFullSpeedTable ? '' : 'Show full list of speed champions'"
+                  [tooltip]="
+                    seeFullSpeedTable ? null : 'Show full list of speed champions'
+                  "
                   (click)="seeFullSpeedTable = true">
                   {{
                     seeFullSpeedTable

@@ -32,6 +32,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.9.1 - September 8th, 2025</summary>
+
+- 🐛 Prevent blank tooltips from sometimes appearing on Champion Page
+
+</details>
+
+<details>
 <summary>v5.9.0 - September 7th, 2025</summary>
 
 - 🚀 A new and improved City Champion page:

@@ -8,7 +8,7 @@ import { MOCK_EVENTS } from '@app/mocks/events.mock';
 import { CalendarMonth, DataPaginationOptions, Event } from '@app/models';
 import { FormatDatePipe, HighlightPipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { queryAll } from '@app/utils';
+import { query, queryAll } from '@app/utils';
 
 import { EventsCalendarGridComponent } from './events-calendar-grid.component';
 
@@ -53,7 +53,7 @@ describe('EventsCalendarGridComponent', () => {
           provide: DialogService,
           useValue: { open: jest.fn() },
         },
-        provideRouter([]),
+        provideRouter([{ path: 'article/view/:id', component: class {} }]),
       ],
     }).compileComponents();
 
@@ -295,8 +295,51 @@ describe('EventsCalendarGridComponent', () => {
       ).toBe(31 + 28 + 31);
     });
 
-    it('should render correct number of event indicators', () => {
-      expect(queryAll(fixture.debugElement, '.event-indicator').length).toBe(2);
+    it('should set router link on event indicators on desktop when event has articleId', async () => {
+      // Use championship event specifically for this test
+      fixture.componentRef.setInput('events', [MOCK_EVENTS[1]]);
+      component.isTouchDevice = false;
+      fixture.detectChanges();
+
+      const indicator = query(fixture.debugElement, '.event-indicator.championship');
+      expect(indicator.nativeElement.getAttribute('href')).toBe(
+        '/article/view/' + MOCK_EVENTS[1].articleId,
+      );
+    });
+
+    it('should not set router links on event indicators on mobile', () => {
+      // Use championship event specifically for this test
+      fixture.componentRef.setInput('events', [MOCK_EVENTS[1]]);
+      component.isTouchDevice = true;
+      fixture.detectChanges();
+
+      const indicator = query(fixture.debugElement, '.event-indicator.championship');
+      expect(indicator.nativeElement.getAttribute('href')).toBeNull();
+    });
+
+    describe('tooltip content', () => {
+      it('should set tooltip properties and render template structure', () => {
+        const eventIndicator = query(fixture.debugElement, '.event-indicator');
+        const directiveInstance = eventIndicator.injector.get(TooltipDirective);
+
+        expect(directiveInstance.tooltip).toBeTruthy();
+        expect(directiveInstance.tooltipContext).toEqual(mockEvents[0]);
+      });
+
+      it('should render championship events with icon and article link', () => {
+        // Change to championship event
+        fixture.componentRef.setInput('events', [MOCK_EVENTS[1]]);
+        fixture.detectChanges();
+
+        const eventIndicator = query(fixture.debugElement, '.event-indicator');
+        const directiveInstance = eventIndicator.injector.get(TooltipDirective);
+
+        // Verify tooltip context is the championship event
+        const event = directiveInstance.tooltipContext as Event;
+        expect(event.type).toBe('championship');
+        expect(event.articleId).toBeTruthy();
+        expect(event.title).toContain('Championship');
+      });
     });
   });
 });

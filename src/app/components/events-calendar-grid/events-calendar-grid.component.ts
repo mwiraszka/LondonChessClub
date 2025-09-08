@@ -11,6 +11,7 @@ import {
   Output,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
@@ -27,6 +28,7 @@ import {
 } from '@app/models';
 import { FormatDatePipe, HighlightPipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
+import { isTouchDevice } from '@app/utils';
 
 @Component({
   selector: 'lcc-events-calendar-grid',
@@ -39,6 +41,7 @@ import { DialogService } from '@app/services';
     HighlightPipe,
     KebabCasePipe,
     MatIconModule,
+    RouterLink,
     TooltipDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -53,11 +56,13 @@ export class EventsCalendarGridComponent implements OnInit, OnChanges {
 
   // Cache computed values to avoid recalculation
   public calendarMonths: CalendarMonth[] = [];
+  public isTouchDevice!: boolean;
   private cachedEventsJson = '';
 
   constructor(private readonly dialogService: DialogService) {}
 
   public ngOnInit(): void {
+    this.isTouchDevice = isTouchDevice();
     this.updateCalendarMonths();
   }
 

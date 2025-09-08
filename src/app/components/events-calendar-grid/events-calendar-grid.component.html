@@ -26,19 +26,24 @@
               @if (day.events.length) {
                 <div class="event-indicators">
                   @for (event of day.events; track event.id) {
-                    <div
+                    <a
                       [adminControls]="isAdmin ? getAdminControlsConfig(event) : null"
                       class="event-indicator"
                       [class]="event.type | kebabCase"
                       [class.no-events]="!calendarMonth.hasEvents"
                       [class.other-month]="!day.isCurrentMonth"
+                      [routerLink]="
+                        !isTouchDevice && event.articleId
+                          ? '/article/view/' + event.articleId
+                          : null
+                      "
                       [tooltip]="
                         day.isCurrentMonth && calendarMonth.hasEvents
                           ? eventTooltipContent
                           : null
                       "
                       [tooltipContext]="event">
-                    </div>
+                    </a>
                   }
                 </div>
               }
@@ -53,7 +58,9 @@
 <ng-template
   #eventTooltipContent
   let-event>
-  <div class="event-tooltip">
+  <a
+    class="event-tooltip"
+    [routerLink]="event.articleId ? '/article/view/' + event.articleId : null">
     <header class="event-date-and-time">
       <mat-icon>calendar_month</mat-icon>
       <div>{{ event.eventDate | formatDate: 'long day-of-week' }}</div>
@@ -83,5 +90,9 @@
       class="event-details"
       [innerHTML]="event.details.replace('\\n', '\n') | highlight: options?.search">
     </div>
-  </div>
+
+    @if (event.articleId) {
+      <span>Click for more details</span>
+    }
+  </a>
 </ng-template>

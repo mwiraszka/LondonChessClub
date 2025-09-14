@@ -103,6 +103,7 @@ export class ChampionPageComponent implements OnInit {
   ];
 
   public readonly juniorChampionships: ChampionshipTableRowData[] = [
+    { year: 2025, winners: [{ name: 'Akshaj Achyuth', peakRating: '2009' }] },
     { year: 2011, winners: [{ name: 'Kevin Gibson', peakRating: '2244' }] },
     { year: 2010, winners: [{ name: 'Kevin Gibson', peakRating: '2244' }] },
     { year: 2009, winners: [{ name: 'Kevin Gibson', peakRating: '2244' }] },
@@ -115,26 +116,10 @@ export class ChampionPageComponent implements OnInit {
     { year: 2002, winners: [{ name: 'Brent Komer', peakRating: '1668' }] },
     { year: 2001, winners: [{ name: 'Wylon Wong', peakRating: '1999' }] },
     { year: 2000, winners: [{ name: 'Liat Dobrishman', peakRating: '1968' }] },
-    {
-      year: 1999,
-      winners: [{ name: 'Zamir Khan', peakRating: '2182' }],
-      textStyle: 'font-style: italic;',
-    },
-    {
-      year: 1998,
-      winners: [{ name: 'Zamir Khan', peakRating: '2182' }],
-      textStyle: 'font-style: italic;',
-    },
-    {
-      year: 1997,
-      winners: [{ name: 'Zamir Khan', peakRating: '2182' }],
-      textStyle: 'font-style: italic;',
-    },
-    {
-      year: 1996,
-      winners: [{ name: 'Zamir Khan', peakRating: '2182' }],
-      textStyle: 'font-style: italic;',
-    },
+    { year: 1999, winners: [{ name: 'Zamir Khan', peakRating: '2182' }] },
+    { year: 1998, winners: [{ name: 'Zamir Khan', peakRating: '2182' }] },
+    { year: 1997, winners: [{ name: 'Zamir Khan', peakRating: '2182' }] },
+    { year: 1996, winners: [{ name: 'Zamir Khan', peakRating: '2182' }] },
   ];
 
   public readonly speedChampionships: ChampionshipTableRowData[] = [
@@ -195,12 +180,12 @@ export class ChampionPageComponent implements OnInit {
     { year: 2022, winners: [{ name: 'Geoffrey Ruelland', peakRating: '2164' }] },
     {
       year: 2021,
-      winners: [{ name: '(Cancelled due to the pandemic)' }],
+      winners: [{ name: 'Cancelled due to pandemic' }],
       textStyle: 'font-style: italic;',
     },
     {
       year: 2020,
-      winners: [{ name: '(Cancelled due to the pandemic)' }],
+      winners: [{ name: 'Cancelled due to pandemic' }],
       textStyle: 'font-style: italic;',
     },
     { year: 2019, winners: [{ name: 'Kevin Gibson', peakRating: '2244' }] },

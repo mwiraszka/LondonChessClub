@@ -10,6 +10,7 @@ import {
   EventFormData,
   IsoDate,
 } from '@app/models';
+import { areSame } from '@app/utils';
 
 import * as EventsActions from './events.actions';
 
@@ -108,10 +109,18 @@ export const eventsReducer = createReducer(
     EventsActions.fetchAllEventsSucceeded,
     (state, { events, totalCount }): EventsState =>
       eventsAdapter.setAll(
-        events.map(event => ({
-          event,
-          formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
-        })),
+        events.map(event => {
+          const existingEntity = state.entities[event.id];
+          const hasUnsavedChanges = existingEntity?.formData && 
+            !areSame(existingEntity.formData, pick(event, EVENT_FORM_DATA_PROPERTIES));
+          
+          return {
+            event,
+            // Preserve existing formData if there are unsaved changes
+            formData: hasUnsavedChanges ? existingEntity.formData : 
+                      pick(event, EVENT_FORM_DATA_PROPERTIES),
+          };
+        }),
         {
           ...state,
           callState: initialState.callState,
@@ -125,10 +134,18 @@ export const eventsReducer = createReducer(
     EventsActions.fetchHomePageEventsSucceeded,
     (state, { events, totalCount }): EventsState => {
       return eventsAdapter.upsertMany(
-        events.map(event => ({
-          event,
-          formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
-        })),
+        events.map(event => {
+          const existingEntity = state.entities[event.id];
+          const hasUnsavedChanges = existingEntity?.formData && 
+            !areSame(existingEntity.formData, pick(event, EVENT_FORM_DATA_PROPERTIES));
+          
+          return {
+            event,
+            // Preserve existing formData if there are unsaved changes
+            formData: hasUnsavedChanges ? existingEntity.formData : 
+                      pick(event, EVENT_FORM_DATA_PROPERTIES),
+          };
+        }),
         {
           ...state,
           callState: initialState.callState,
@@ -144,10 +161,18 @@ export const eventsReducer = createReducer(
     EventsActions.fetchFilteredEventsSucceeded,
     (state, { events, filteredCount, totalCount }): EventsState =>
       eventsAdapter.upsertMany(
-        events.map(event => ({
-          event,
-          formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
-        })),
+        events.map(event => {
+          const existingEntity = state.entities[event.id];
+          const hasUnsavedChanges = existingEntity?.formData && 
+            !areSame(existingEntity.formData, pick(event, EVENT_FORM_DATA_PROPERTIES));
+          
+          return {
+            event,
+            // Preserve existing formData if there are unsaved changes
+            formData: hasUnsavedChanges ? existingEntity.formData : 
+                      pick(event, EVENT_FORM_DATA_PROPERTIES),
+          };
+        }),
         {
           ...state,
           callState: initialState.callState,

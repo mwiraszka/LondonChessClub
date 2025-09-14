@@ -36,6 +36,9 @@ Below you'll find an overview of the tools and technologies that power the app, 
 
 - 🚀 Update Junior Championship table to include 2025 winner
 - 🐛 A few minor adjustments to text on City Champion page and app footer
+- 🐛 Ensure form data is preserved during background data fetches
+- 🔧 Temporarily increase polling times while migrating over to a proper PWA/ cache management setup
+
 
 </details>
 

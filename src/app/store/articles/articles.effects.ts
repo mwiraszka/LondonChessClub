@@ -74,7 +74,7 @@ export class ArticlesEffects {
       ),
     );
 
-    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+    const periodicCheck$ = timer(3 * 1000, 10 * 60 * 1000).pipe(
       switchMap(() =>
         this.store.select(ArticlesSelectors.selectLastHomePageFetch).pipe(take(1)),
       ),
@@ -96,7 +96,7 @@ export class ArticlesEffects {
       ),
     );
 
-    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+    const periodicCheck$ = timer(3 * 1000, 10 * 60 * 1000).pipe(
       switchMap(() =>
         this.store.select(ArticlesSelectors.selectLastFilteredFetch).pipe(take(1)),
       ),

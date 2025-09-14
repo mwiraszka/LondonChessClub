@@ -10,6 +10,7 @@ import {
   Member,
   MemberFormData,
 } from '@app/models';
+import { areSame } from '@app/utils';
 
 import * as MembersActions from './members.actions';
 
@@ -102,10 +103,18 @@ export const membersReducer = createReducer(
     MembersActions.fetchAllMembersSucceeded,
     (state, { members, totalCount }): MembersState =>
       membersAdapter.setAll(
-        members.map(member => ({
-          member,
-          formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
-        })),
+        members.map(member => {
+          const existingEntity = state.entities[member.id];
+          const hasUnsavedChanges = existingEntity?.formData && 
+            !areSame(existingEntity.formData, pick(member, MEMBER_FORM_DATA_PROPERTIES));
+          
+          return {
+            member,
+            // Preserve existing formData if there are unsaved changes
+            formData: hasUnsavedChanges ? existingEntity.formData : 
+                      pick(member, MEMBER_FORM_DATA_PROPERTIES),
+          };
+        }),
         {
           ...state,
           callState: initialState.callState,
@@ -119,10 +128,18 @@ export const membersReducer = createReducer(
     MembersActions.fetchFilteredMembersSucceeded,
     (state, { members, filteredCount, totalCount }): MembersState =>
       membersAdapter.upsertMany(
-        members.map(member => ({
-          member,
-          formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
-        })),
+        members.map(member => {
+          const existingEntity = state.entities[member.id];
+          const hasUnsavedChanges = existingEntity?.formData && 
+            !areSame(existingEntity.formData, pick(member, MEMBER_FORM_DATA_PROPERTIES));
+          
+          return {
+            member,
+            // Preserve existing formData if there are unsaved changes
+            formData: hasUnsavedChanges ? existingEntity.formData : 
+                      pick(member, MEMBER_FORM_DATA_PROPERTIES),
+          };
+        }),
         {
           ...state,
           callState: initialState.callState,
@@ -190,10 +207,18 @@ export const membersReducer = createReducer(
     MembersActions.updateMemberRatingsSucceeded,
     (state, { members }): MembersState =>
       membersAdapter.upsertMany(
-        members.map(member => ({
-          member,
-          formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
-        })),
+        members.map(member => {
+          const existingEntity = state.entities[member.id];
+          const hasUnsavedChanges = existingEntity?.formData && 
+            !areSame(existingEntity.formData, pick(member, MEMBER_FORM_DATA_PROPERTIES));
+          
+          return {
+            member,
+            // Preserve existing formData if there are unsaved changes
+            formData: hasUnsavedChanges ? existingEntity.formData : 
+                      pick(member, MEMBER_FORM_DATA_PROPERTIES),
+          };
+        }),
         { ...state, callState: initialState.callState, lastFilteredFetch: null },
       ),
   ),

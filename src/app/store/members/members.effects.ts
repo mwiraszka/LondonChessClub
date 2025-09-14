@@ -71,7 +71,7 @@ export class MembersEffects {
       ),
     );
 
-    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+    const periodicCheck$ = timer(3 * 1000, 10 * 60 * 1000).pipe(
       switchMap(() =>
         this.store.select(MembersSelectors.selectLastFilteredFetch).pipe(take(1)),
       ),

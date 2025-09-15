@@ -111,14 +111,16 @@ export const eventsReducer = createReducer(
       eventsAdapter.setAll(
         events.map(event => {
           const existingEntity = state.entities[event.id];
-          const hasUnsavedChanges = existingEntity?.formData && 
+          const hasUnsavedChanges =
+            existingEntity?.formData &&
             !areSame(existingEntity.formData, pick(event, EVENT_FORM_DATA_PROPERTIES));
-          
+
           return {
             event,
             // Preserve existing formData if there are unsaved changes
-            formData: hasUnsavedChanges ? existingEntity.formData : 
-                      pick(event, EVENT_FORM_DATA_PROPERTIES),
+            formData: hasUnsavedChanges
+              ? existingEntity.formData
+              : pick(event, EVENT_FORM_DATA_PROPERTIES),
           };
         }),
         {
@@ -136,14 +138,16 @@ export const eventsReducer = createReducer(
       return eventsAdapter.upsertMany(
         events.map(event => {
           const existingEntity = state.entities[event.id];
-          const hasUnsavedChanges = existingEntity?.formData && 
+          const hasUnsavedChanges =
+            existingEntity?.formData &&
             !areSame(existingEntity.formData, pick(event, EVENT_FORM_DATA_PROPERTIES));
-          
+
           return {
             event,
             // Preserve existing formData if there are unsaved changes
-            formData: hasUnsavedChanges ? existingEntity.formData : 
-                      pick(event, EVENT_FORM_DATA_PROPERTIES),
+            formData: hasUnsavedChanges
+              ? existingEntity.formData
+              : pick(event, EVENT_FORM_DATA_PROPERTIES),
           };
         }),
         {
@@ -163,14 +167,16 @@ export const eventsReducer = createReducer(
       eventsAdapter.upsertMany(
         events.map(event => {
           const existingEntity = state.entities[event.id];
-          const hasUnsavedChanges = existingEntity?.formData && 
+          const hasUnsavedChanges =
+            existingEntity?.formData &&
             !areSame(existingEntity.formData, pick(event, EVENT_FORM_DATA_PROPERTIES));
-          
+
           return {
             event,
             // Preserve existing formData if there are unsaved changes
-            formData: hasUnsavedChanges ? existingEntity.formData : 
-                      pick(event, EVENT_FORM_DATA_PROPERTIES),
+            formData: hasUnsavedChanges
+              ? existingEntity.formData
+              : pick(event, EVENT_FORM_DATA_PROPERTIES),
           };
         }),
         {

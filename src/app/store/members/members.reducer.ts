@@ -105,14 +105,16 @@ export const membersReducer = createReducer(
       membersAdapter.setAll(
         members.map(member => {
           const existingEntity = state.entities[member.id];
-          const hasUnsavedChanges = existingEntity?.formData && 
+          const hasUnsavedChanges =
+            existingEntity?.formData &&
             !areSame(existingEntity.formData, pick(member, MEMBER_FORM_DATA_PROPERTIES));
-          
+
           return {
             member,
             // Preserve existing formData if there are unsaved changes
-            formData: hasUnsavedChanges ? existingEntity.formData : 
-                      pick(member, MEMBER_FORM_DATA_PROPERTIES),
+            formData: hasUnsavedChanges
+              ? existingEntity.formData
+              : pick(member, MEMBER_FORM_DATA_PROPERTIES),
           };
         }),
         {
@@ -130,14 +132,16 @@ export const membersReducer = createReducer(
       membersAdapter.upsertMany(
         members.map(member => {
           const existingEntity = state.entities[member.id];
-          const hasUnsavedChanges = existingEntity?.formData && 
+          const hasUnsavedChanges =
+            existingEntity?.formData &&
             !areSame(existingEntity.formData, pick(member, MEMBER_FORM_DATA_PROPERTIES));
-          
+
           return {
             member,
             // Preserve existing formData if there are unsaved changes
-            formData: hasUnsavedChanges ? existingEntity.formData : 
-                      pick(member, MEMBER_FORM_DATA_PROPERTIES),
+            formData: hasUnsavedChanges
+              ? existingEntity.formData
+              : pick(member, MEMBER_FORM_DATA_PROPERTIES),
           };
         }),
         {
@@ -209,14 +213,16 @@ export const membersReducer = createReducer(
       membersAdapter.upsertMany(
         members.map(member => {
           const existingEntity = state.entities[member.id];
-          const hasUnsavedChanges = existingEntity?.formData && 
+          const hasUnsavedChanges =
+            existingEntity?.formData &&
             !areSame(existingEntity.formData, pick(member, MEMBER_FORM_DATA_PROPERTIES));
-          
+
           return {
             member,
             // Preserve existing formData if there are unsaved changes
-            formData: hasUnsavedChanges ? existingEntity.formData : 
-                      pick(member, MEMBER_FORM_DATA_PROPERTIES),
+            formData: hasUnsavedChanges
+              ? existingEntity.formData
+              : pick(member, MEMBER_FORM_DATA_PROPERTIES),
           };
         }),
         { ...state, callState: initialState.callState, lastFilteredFetch: null },

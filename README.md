@@ -38,7 +38,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 - 🐛 A few minor adjustments to text on City Champion page and app footer
 - 🐛 Ensure form data is preserved during background data fetches
 - 🔧 Temporarily increase polling times while migrating over to a proper PWA/ cache management setup
-
+- 🔧 Add unit tests for Auth and Unsaved Changes guards
 
 </details>
 

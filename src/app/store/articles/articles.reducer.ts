@@ -101,14 +101,19 @@ export const articlesReducer = createReducer(
       articlesAdapter.upsertMany(
         articles.map(article => {
           const existingEntity = state.entities[article.id];
-          const hasUnsavedChanges = existingEntity?.formData && 
-            !areSame(existingEntity.formData, pick(article, ARTICLE_FORM_DATA_PROPERTIES));
-          
+          const hasUnsavedChanges =
+            existingEntity?.formData &&
+            !areSame(
+              existingEntity.formData,
+              pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+            );
+
           return {
             article,
             // Preserve existing formData if there are unsaved changes
-            formData: hasUnsavedChanges ? existingEntity.formData : 
-                      pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+            formData: hasUnsavedChanges
+              ? existingEntity.formData
+              : pick(article, ARTICLE_FORM_DATA_PROPERTIES),
           };
         }),
         {
@@ -127,14 +132,19 @@ export const articlesReducer = createReducer(
       articlesAdapter.upsertMany(
         articles.map(article => {
           const existingEntity = state.entities[article.id];
-          const hasUnsavedChanges = existingEntity?.formData && 
-            !areSame(existingEntity.formData, pick(article, ARTICLE_FORM_DATA_PROPERTIES));
-          
+          const hasUnsavedChanges =
+            existingEntity?.formData &&
+            !areSame(
+              existingEntity.formData,
+              pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+            );
+
           return {
             article,
             // Preserve existing formData if there are unsaved changes
-            formData: hasUnsavedChanges ? existingEntity.formData : 
-                      pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+            formData: hasUnsavedChanges
+              ? existingEntity.formData
+              : pick(article, ARTICLE_FORM_DATA_PROPERTIES),
           };
         }),
         {

@@ -12,16 +12,16 @@ describe('isExpired', () => {
     expect(isExpired(null)).toBe(true);
   });
 
-  it('returns true when date is in the past (default 600 seconds)', () => {
-    const pastDate = moment().subtract(601, 'seconds').toISOString();
-    const justPastDate = moment().subtract(11, 'minutes').toISOString();
+  it('returns true when date is in the past (default 1800 seconds)', () => {
+    const pastDate = moment().subtract(1801, 'seconds').toISOString();
+    const justPastDate = moment().subtract(31, 'minutes').toISOString();
 
     expect(isExpired(pastDate)).toBe(true);
     expect(isExpired(justPastDate)).toBe(true);
     expect(isExpired('2020-01-01T00:00:00Z')).toBe(true);
   });
 
-  it('returns false when date is not in the past (default 600 seconds)', () => {
+  it('returns false when date is not in the past (default 1800 seconds)', () => {
     const futureDate = moment().add(5, 'minute').toISOString();
     const farFutureDate = moment().add(1, 'year').toISOString();
 

@@ -10,6 +10,7 @@ import {
   DataPaginationOptions,
   IsoDate,
 } from '@app/models';
+import { areSame } from '@app/utils';
 
 import * as ArticlesActions from './articles.actions';
 
@@ -98,10 +99,23 @@ export const articlesReducer = createReducer(
     ArticlesActions.fetchHomePageArticlesSucceeded,
     (state, { articles, totalCount }): ArticlesState =>
       articlesAdapter.upsertMany(
-        articles.map(article => ({
-          article,
-          formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
-        })),
+        articles.map(article => {
+          const existingEntity = state.entities[article.id];
+          const hasUnsavedChanges =
+            existingEntity?.formData &&
+            !areSame(
+              existingEntity.formData,
+              pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+            );
+
+          return {
+            article,
+            // Preserve existing formData if there are unsaved changes
+            formData: hasUnsavedChanges
+              ? existingEntity.formData
+              : pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+          };
+        }),
         {
           ...state,
           callState: initialState.callState,
@@ -116,10 +130,23 @@ export const articlesReducer = createReducer(
     ArticlesActions.fetchFilteredArticlesSucceeded,
     (state, { articles, filteredCount, totalCount }): ArticlesState =>
       articlesAdapter.upsertMany(
-        articles.map(article => ({
-          article,
-          formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
-        })),
+        articles.map(article => {
+          const existingEntity = state.entities[article.id];
+          const hasUnsavedChanges =
+            existingEntity?.formData &&
+            !areSame(
+              existingEntity.formData,
+              pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+            );
+
+          return {
+            article,
+            // Preserve existing formData if there are unsaved changes
+            formData: hasUnsavedChanges
+              ? existingEntity.formData
+              : pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+          };
+        }),
         {
           ...state,
           callState: initialState.callState,

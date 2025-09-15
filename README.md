@@ -32,6 +32,17 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.9.2 - September 14th, 2025</summary>
+
+- 🚀 Update Junior Championship table to include 2025 winner
+- 🐛 A few minor adjustments to text on City Champion page and app footer
+- 🐛 Ensure form data is preserved during background data fetches
+- 🔧 Temporarily increase polling times while migrating over to a proper PWA/ cache management setup
+- 🔧 Add unit tests for Auth and Unsaved Changes guards
+
+</details>
+
+<details>
 <summary>v5.9.1 - September 8th, 2025</summary>
 
 - 🚀 Widen tooltips in Calendar Events Grid and navigate to the associated article (if there is one) when clicked

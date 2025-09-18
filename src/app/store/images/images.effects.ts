@@ -219,7 +219,6 @@ export class ImagesEffects {
     );
   });
 
-  // TODO: Generalize refetch flow and consolidate with URL Expiration service
   refetchMetadata$ = createEffect(() => {
     const refetchActions$ = this.actions$.pipe(
       ofType(
@@ -233,7 +232,7 @@ export class ImagesEffects {
       ),
     );
 
-    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+    const periodicCheck$ = timer(3 * 1000, 5 * 60 * 1000).pipe(
       switchMap(() =>
         this.store.select(ImagesSelectors.selectLastMetadataFetch).pipe(take(1)),
       ),
@@ -259,7 +258,7 @@ export class ImagesEffects {
       ),
     );
 
-    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+    const periodicCheck$ = timer(3 * 1000, 5 * 60 * 1000).pipe(
       switchMap(() =>
         this.store
           .select(ImagesSelectors.selectLastFilteredThumbnailsFetch)
@@ -286,7 +285,7 @@ export class ImagesEffects {
       ),
     );
 
-    const periodicCheck$ = timer(3 * 1000, 60 * 1000).pipe(
+    const periodicCheck$ = timer(3 * 1000, 5 * 60 * 1000).pipe(
       switchMap(() =>
         this.store.select(ImagesSelectors.selectLastAlbumCoversFetch).pipe(take(1)),
       ),
@@ -306,6 +305,39 @@ export class ImagesEffects {
         });
       }),
     );
+  });
+
+  retryFailedArticleBannerImages$ = createEffect(() => {
+    // Periodic check to retry failed article banner images
+    const periodicCheck$ = timer(5 * 60 * 1000, 10 * 60 * 1000).pipe(
+      switchMap(() =>
+        merge(
+          this.store.select(ArticlesSelectors.selectHomePageArticles),
+          this.store.select(ArticlesSelectors.selectFilteredArticles),
+        ).pipe(
+          map(articles => articles.filter(article => article.bannerImageId)),
+          take(1),
+        ),
+      ),
+      switchMap(articles =>
+        this.store
+          .select(
+            ImagesSelectors.selectIdsOfArticleBannerImagesWithMissingThumbnailUrls(
+              articles,
+            ),
+          )
+          .pipe(take(1)),
+      ),
+      filter(imageIds => imageIds.length > 0),
+      map(imageIds =>
+        ImagesActions.fetchBatchThumbnailsRequested({
+          imageIds,
+          context: 'article-banner-images',
+        }),
+      ),
+    );
+
+    return periodicCheck$;
   });
 
   addImage$ = createEffect(() => {

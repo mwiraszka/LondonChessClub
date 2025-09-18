@@ -82,6 +82,18 @@ export const membersReducer = createReducer(
   ),
 
   on(
+    MembersActions.fetchFilteredMembersInBackgroundRequested,
+    (state): MembersState => ({
+      ...state,
+      callState: {
+        status: 'background-loading',
+        loadStart: new Date().toISOString(),
+        error: null,
+      },
+    }),
+  ),
+
+  on(
     MembersActions.fetchAllMembersFailed,
     MembersActions.fetchFilteredMembersFailed,
     MembersActions.fetchMemberFailed,

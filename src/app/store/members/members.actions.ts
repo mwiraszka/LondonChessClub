@@ -24,6 +24,9 @@ export const fetchAllMembersFailed = createAction(
 export const fetchFilteredMembersRequested = createAction(
   '[Members] Fetch filtered members requested',
 );
+export const fetchFilteredMembersInBackgroundRequested = createAction(
+  '[Members] Fetch filtered members in background requested',
+);
 export const fetchFilteredMembersSucceeded = createAction(
   '[Members] Fetch filtered members succeeded',
   props<{ members: Member[]; filteredCount: number; totalCount: number }>(),

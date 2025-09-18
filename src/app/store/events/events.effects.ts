@@ -37,7 +37,10 @@ export class EventsEffects {
 
   fetchHomePageEvents$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(EventsActions.fetchHomePageEventsRequested),
+      ofType(
+        EventsActions.fetchHomePageEventsRequested,
+        EventsActions.fetchHomePageEventsInBackgroundRequested,
+      ),
       switchMap(() => {
         const options: DataPaginationOptions<Event> = {
           page: 1,
@@ -70,7 +73,10 @@ export class EventsEffects {
 
   fetchFilteredEvents$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(EventsActions.fetchFilteredEventsRequested),
+      ofType(
+        EventsActions.fetchFilteredEventsRequested,
+        EventsActions.fetchFilteredEventsInBackgroundRequested,
+      ),
       concatLatestFrom(() => this.store.select(EventsSelectors.selectOptions)),
       switchMap(([, options]) =>
         this.eventsApiService.getFilteredEvents(options).pipe(
@@ -106,7 +112,7 @@ export class EventsEffects {
     );
 
     return merge(refetchActions$, periodicCheck$).pipe(
-      map(() => EventsActions.fetchHomePageEventsRequested()),
+      map(() => EventsActions.fetchHomePageEventsInBackgroundRequested()),
     );
   });
 
@@ -128,7 +134,7 @@ export class EventsEffects {
     );
 
     return merge(refetchActions$, periodicCheck$).pipe(
-      map(() => EventsActions.fetchFilteredEventsRequested()),
+      map(() => EventsActions.fetchFilteredEventsInBackgroundRequested()),
     );
   });
 

@@ -36,7 +36,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 
 - 🚀 Add PGNs for 2025 LCC Championship
 - 🚀 Minor style adjustments to tooltip fade-in effect, nav bar icons on hover, event indicators in Schedule page calendars, and icons next to Lichess analysis board links
-- 🔧 Add unit tests for all services
+- 🔧 Add unit tests for API, Meta & Title, and Toast services
 
 </details>
 

@@ -9,7 +9,7 @@ import { HeaderComponent } from '@app/components/header/header.component';
 import { NavigationBarComponent } from '@app/components/navigation-bar/navigation-bar.component';
 import { UpcomingEventBannerComponent } from '@app/components/upcoming-event-banner/upcoming-event-banner.component';
 import { MOCK_EVENTS } from '@app/mocks/events.mock';
-import { RoutingService, TouchEventsService, UrlExpirationService } from '@app/services';
+import { RoutingService, TouchEventsService } from '@app/services';
 import { AppActions, AppSelectors } from '@app/store/app';
 import { EventsSelectors } from '@app/store/events';
 import { query } from '@app/utils';
@@ -23,7 +23,6 @@ describe('AppComponent', () => {
   let mockFragmentSubject: Subject<string | null>;
   let store: MockStore;
   let touchEventsService: TouchEventsService;
-  let urlExpirationService: UrlExpirationService;
 
   let dispatchSpy: jest.SpyInstance;
   let querySelectorSpy: jest.SpyInstance;
@@ -51,10 +50,6 @@ describe('AppComponent', () => {
           provide: TouchEventsService,
           useValue: { listenForTouchEvents: jest.fn() },
         },
-        {
-          provide: UrlExpirationService,
-          useValue: { listenForImageChanges: jest.fn() },
-        },
       ],
     }).compileComponents();
 
@@ -63,7 +58,6 @@ describe('AppComponent', () => {
 
     store = TestBed.inject(MockStore);
     touchEventsService = TestBed.inject(TouchEventsService);
-    urlExpirationService = TestBed.inject(UrlExpirationService);
 
     dispatchSpy = jest.spyOn(store, 'dispatch');
     querySelectorSpy = jest.spyOn(document, 'querySelector');
@@ -115,7 +109,6 @@ describe('AppComponent', () => {
     });
 
     it('should initialize image change and touch event listeners', () => {
-      expect(urlExpirationService.listenForImageChanges).toHaveBeenCalled();
       expect(touchEventsService.listenForTouchEvents).toHaveBeenCalled();
     });
 

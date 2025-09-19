@@ -88,6 +88,19 @@ export const eventsReducer = createReducer(
   ),
 
   on(
+    EventsActions.fetchHomePageEventsInBackgroundRequested,
+    EventsActions.fetchFilteredEventsInBackgroundRequested,
+    (state): EventsState => ({
+      ...state,
+      callState: {
+        status: 'background-loading',
+        loadStart: new Date().toISOString(),
+        error: null,
+      },
+    }),
+  ),
+
+  on(
     EventsActions.fetchAllEventsFailed,
     EventsActions.fetchHomePageEventsFailed,
     EventsActions.fetchFilteredEventsFailed,

@@ -18,7 +18,10 @@ import { ArticlesActions, ArticlesSelectors } from '.';
 export class ArticlesEffects {
   fetchHomePageArticles$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.fetchHomePageArticlesRequested),
+      ofType(
+        ArticlesActions.fetchHomePageArticlesRequested,
+        ArticlesActions.fetchHomePageArticlesInBackgroundRequested,
+      ),
       switchMap(() => {
         const options: DataPaginationOptions<Article> = {
           page: 1,
@@ -46,7 +49,10 @@ export class ArticlesEffects {
 
   fetchFilteredArticles$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ArticlesActions.fetchFilteredArticlesRequested),
+      ofType(
+        ArticlesActions.fetchFilteredArticlesRequested,
+        ArticlesActions.fetchFilteredArticlesInBackgroundRequested,
+      ),
       concatLatestFrom(() => this.store.select(ArticlesSelectors.selectOptions)),
       switchMap(([, options]) =>
         this.articlesApiService.getFilteredArticles(options).pipe(
@@ -82,7 +88,7 @@ export class ArticlesEffects {
     );
 
     return merge(refetchActions$, periodicCheck$).pipe(
-      map(() => ArticlesActions.fetchHomePageArticlesRequested()),
+      map(() => ArticlesActions.fetchHomePageArticlesInBackgroundRequested()),
     );
   });
 
@@ -104,7 +110,7 @@ export class ArticlesEffects {
     );
 
     return merge(refetchActions$, periodicCheck$).pipe(
-      map(() => ArticlesActions.fetchFilteredArticlesRequested()),
+      map(() => ArticlesActions.fetchFilteredArticlesInBackgroundRequested()),
     );
   });
 

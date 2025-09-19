@@ -116,10 +116,12 @@ export class AdminControlsDirective implements OnDestroy {
     const overlayContainerElement = this._document.querySelector(
       '.cdk-overlay-container',
     );
+
     if (overlayContainerElement && this.dialogService.topDialogRef) {
-      // When triggered via a component that is not rendered in a dialog (i.e. no dialogs currently
-      // open), reduce z-index of this overlay so that the admin controls hide behind the app header;
-      // this style never gets removed, only overidden by other overlay directives/services
+      // Rendered on top of an open dialog, so render over the sticky app header (z-index: 1000)
+      this.renderer.setStyle(overlayContainerElement, 'z-index', '1100');
+    } else {
+      // Rendered somewhere in main app, so render under the sticky app header
       this.renderer.setStyle(overlayContainerElement, 'z-index', '900');
     }
   }

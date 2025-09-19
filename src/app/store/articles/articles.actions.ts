@@ -11,6 +11,9 @@ import {
 export const fetchHomePageArticlesRequested = createAction(
   '[Articles] Fetch home page articles requested',
 );
+export const fetchHomePageArticlesInBackgroundRequested = createAction(
+  '[Articles] Fetch home page articles in background requested',
+);
 export const fetchHomePageArticlesSucceeded = createAction(
   '[Articles] Fetch home page articles succeeded',
   props<{ articles: Article[]; totalCount: number }>(),
@@ -22,6 +25,9 @@ export const fetchHomePageArticlesFailed = createAction(
 
 export const fetchFilteredArticlesRequested = createAction(
   '[Articles] Fetch filtered articles requested',
+);
+export const fetchFilteredArticlesInBackgroundRequested = createAction(
+  '[Articles] Fetch filtered articles in background requested',
 );
 export const fetchFilteredArticlesSucceeded = createAction(
   '[Articles] Fetch filtered articles succeeded',

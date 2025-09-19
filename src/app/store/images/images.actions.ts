@@ -31,7 +31,7 @@ export const fetchBatchThumbnailsRequested = createAction(
   '[Images] Fetch batch thumbnails requested',
   props<{
     imageIds: Id[];
-    context: 'album-covers' | 'article-banner-images' | 'url-expiration';
+    context: 'album-covers' | 'article-banner-images';
   }>(),
 );
 export const fetchAlbumThumbnailsRequested = createAction(
@@ -43,11 +43,7 @@ export const fetchBatchThumbnailsSucceeded = createAction(
   props<{
     images: Image[];
     album?: string;
-    context:
-      | 'album-covers'
-      | 'article-banner-images'
-      | 'url-expiration'
-      | 'photos-in-album';
+    context: 'album-covers' | 'article-banner-images' | 'photos-in-album';
   }>(),
 );
 export const fetchBatchThumbnailsFailed = createAction(

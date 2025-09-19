@@ -17,6 +17,9 @@ export const fetchAllEventsFailed = createAction(
 export const fetchHomePageEventsRequested = createAction(
   '[Events] Fetch home page events requested',
 );
+export const fetchHomePageEventsInBackgroundRequested = createAction(
+  '[Events] Fetch home page events in background requested',
+);
 export const fetchHomePageEventsSucceeded = createAction(
   '[Events] Fetch home page events succeeded',
   props<{ events: Event[]; totalCount: number }>(),
@@ -28,6 +31,9 @@ export const fetchHomePageEventsFailed = createAction(
 
 export const fetchFilteredEventsRequested = createAction(
   '[Events] Fetch filtered events requested',
+);
+export const fetchFilteredEventsInBackgroundRequested = createAction(
+  '[Events] Fetch filtered events in background requested',
 );
 export const fetchFilteredEventsSucceeded = createAction(
   '[Events] Fetch filtered events succeeded',

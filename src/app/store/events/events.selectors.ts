@@ -15,6 +15,11 @@ export const selectCallState = createSelector(
   state => state.callState,
 );
 
+export const selectLastFullFetch = createSelector(
+  selectEventsState,
+  state => state.lastFullFetch,
+);
+
 export const selectLastHomePageFetch = createSelector(
   selectEventsState,
   state => state.lastHomePageFetch,

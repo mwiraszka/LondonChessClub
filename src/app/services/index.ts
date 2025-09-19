@@ -10,4 +10,3 @@ export { MetaAndTitleService } from './meta-and-title.service';
 export { RoutingService } from './routing.service';
 export { ToastService } from './toast.service';
 export { TouchEventsService } from './touch-events.service';
-export { UrlExpirationService } from './url-expiration.service';

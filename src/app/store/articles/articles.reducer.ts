@@ -79,6 +79,19 @@ export const articlesReducer = createReducer(
   ),
 
   on(
+    ArticlesActions.fetchHomePageArticlesInBackgroundRequested,
+    ArticlesActions.fetchFilteredArticlesInBackgroundRequested,
+    (state): ArticlesState => ({
+      ...state,
+      callState: {
+        status: 'background-loading',
+        loadStart: new Date().toISOString(),
+        error: null,
+      },
+    }),
+  ),
+
+  on(
     ArticlesActions.fetchHomePageArticlesFailed,
     ArticlesActions.fetchFilteredArticlesFailed,
     ArticlesActions.fetchArticleFailed,

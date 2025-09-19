@@ -39,7 +39,10 @@ export class MembersEffects {
 
   fetchFilteredMembers$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(MembersActions.fetchFilteredMembersRequested),
+      ofType(
+        MembersActions.fetchFilteredMembersRequested,
+        MembersActions.fetchFilteredMembersInBackgroundRequested,
+      ),
       concatLatestFrom(() => [
         this.store.select(AuthSelectors.selectIsAdmin),
         this.store.select(MembersSelectors.selectOptions),
@@ -79,7 +82,7 @@ export class MembersEffects {
     );
 
     return merge(refetchActions$, periodicCheck$).pipe(
-      map(() => MembersActions.fetchFilteredMembersRequested()),
+      map(() => MembersActions.fetchFilteredMembersInBackgroundRequested()),
     );
   });
 

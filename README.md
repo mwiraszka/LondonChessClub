@@ -32,6 +32,15 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.9.3 - September 18th, 2025</summary>
+
+- 🐛 Ensure dialog and admin control overlays render above sticky app header
+- 🔧 Add additional periodic checks to fetch any failed article banner images
+- 🔧 Move more fetches to the background and remove no longer needed URL Expiration Service
+
+</details>
+
+<details>
 <summary>v5.9.2 - September 14th, 2025</summary>
 
 - 🚀 Update Junior Championship table to include 2025 winner

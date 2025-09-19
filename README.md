@@ -34,6 +34,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <details>
 <summary>v5.9.3 - September 18th, 2025</summary>
 
+- 🐛 Ensure dialog and admin control overlays render above sticky app header
 - 🔧 Add additional periodic checks to fetch any failed article banner images
 - 🔧 Move more fetches to the background and remove no longer needed URL Expiration Service
 

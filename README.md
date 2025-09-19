@@ -35,7 +35,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.9.4 - September 19th, 2025</summary>
 
 - 🚀 Add PGNs for 2025 LCC Championship
-- 🚀 Minor style adjustments to tooltip fade-in effect, nav bar icons on hover, and event indicators in Schedule page calendars
+- 🚀 Minor style adjustments to tooltip fade-in effect, nav bar icons on hover, event indicators in Schedule page calendars, and icons next to Lichess analysis board links
 - 🔧 Add unit tests for all services
 
 </details>

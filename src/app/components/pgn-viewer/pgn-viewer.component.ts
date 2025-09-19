@@ -44,7 +44,7 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
     this.lichessAnalysisBoardLink = {
       text: 'Analyze game on Lichess',
       externalPath: getLichessAnalysisUrl(this.pgn),
-      icon: 'book-open',
+      icon: 'biotech',
     };
   }
 

@@ -34,6 +34,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <details>
 <summary>v5.9.4 - September 19th, 2025</summary>
 
+- 🚀 Add PGNs for 2025 LCC Championship
 - 🚀 Minor style adjustments to tooltip fade-in effect, nav bar icons on hover, and event indicators in Schedule page calendars
 - 🔧 Add unit tests for all services
 

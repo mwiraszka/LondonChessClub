@@ -63,9 +63,58 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
 
-      - name: Copy to AWS S3 bucket
-        run: aws s3 sync dist/ s3://lcc-website-preview --delete
+      - name: Deploy hashed assets with long-term caching
+        run: |
+          # Upload JS and CSS files with content hash in the filename and set long cache
+          aws s3 sync dist/ s3://lcc-website-preview \
+            --exclude "*" \
+            --include "*.js" \
+            --include "*.css" \
+            --include "assets/**/*.svg" \
+            --include "assets/**/*.png" \
+            --include "assets/**/*.jpg" \
+            --include "assets/**/*.jpeg" \
+            --include "assets/**/*.gif" \
+            --include "assets/**/*.webp" \
+            --include "assets/**/*.woff" \
+            --include "assets/**/*.woff2" \
+            --include "assets/**/*.ttf" \
+            --include "assets/**/*.eot" \
+            --cache-control "public, max-age=31536000, immutable" \
+            --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: us-east-2
+
+      - name: Deploy non-hashed assets with short-term caching
+        run: |
+          aws s3 sync dist/ s3://lcc-website-preview \
+            --exclude "*.js" \
+            --exclude "*.css" \
+            --exclude "assets/**/*.svg" \
+            --exclude "assets/**/*.png" \
+            --exclude "assets/**/*.jpg" \
+            --exclude "assets/**/*.jpeg" \
+            --exclude "assets/**/*.gif" \
+            --exclude "assets/**/*.webp" \
+            --exclude "assets/**/*.woff" \
+            --exclude "assets/**/*.woff2" \
+            --exclude "assets/**/*.ttf" \
+            --exclude "assets/**/*.eot" \
+            --cache-control "public, max-age=0, must-revalidate" \
+            --delete
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-2
+
+      - name: Invalidate CloudFront cache for non-hashed files
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} \
+            --paths "/index.html" "/favicon.ico" "/manifest.webmanifest" "/assets/icons/*"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-1

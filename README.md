@@ -32,6 +32,14 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.9.4 - September 19th, 2025</summary>
+
+- 🚀 Minor style adjustments to tooltip fade-in effect, nav bar icons on hover, and event indicators in Schedule page calendars
+- 🔧 Add unit tests for all services
+
+</details>
+
+<details>
 <summary>v5.9.3 - September 18th, 2025</summary>
 
 - 🐛 Ensure dialog and admin control overlays render above sticky app header

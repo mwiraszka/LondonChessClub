@@ -128,9 +128,11 @@ $grid-gap: 16px;
     width: 16px;
     height: 16px;
     border-radius: 50%;
+    border: 1px solid var(--lcc-color--eventsCalendar-eventIndicatorBorder);
 
     &:not(.no-events) {
       &.other-month {
+        cursor: default;
         opacity: 0.4;
       }
 

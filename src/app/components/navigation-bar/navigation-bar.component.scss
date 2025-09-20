@@ -45,6 +45,10 @@ $border-thickness: 2px;
     &:hover {
       color: var(--lcc-color--nav-linkForegroundOnHover);
       text-decoration: none;
+
+      .link-icon {
+        color: var(--lcc-color--nav-linkForegroundOnHover);
+      }
     }
 
     &.link-active {
@@ -68,10 +72,6 @@ $border-thickness: 2px;
       @include icon-size(24px);
 
       color: var(--lcc-color--nav-linkForeground);
-
-      &:hover {
-        color: var(--lcc-color--nav-linkForegroundOnHover);
-      }
     }
 
     @include respond-to('gt-xs') {

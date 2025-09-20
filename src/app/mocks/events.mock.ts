@@ -12,7 +12,7 @@ export const MOCK_EVENTS: Event[] = [
     title: 'Blitz Tournament on January 1st, 2050',
     eventDate: moment('2050-01-01').toISOString(),
     details: "Come join us for some 10 | 0 blitz on New Year's Day!",
-    articleId: null,
+    articleId: '',
     modificationInfo: {
       createdBy: 'Billy Bob',
       dateCreated: moment('2049-01-01').toISOString(),
@@ -36,7 +36,7 @@ export const MOCK_EVENTS: Event[] = [
     title: 'Endgame Strategies Workshop',
     eventDate: moment('2050-04-22').toISOString(),
     details: 'Learn essential endgame techniques with Grandmaster Magnus Carlsen.',
-    articleId: null,
+    articleId: '',
     modificationInfo: MOCK_MODIFICATION_INFOS[1],
   },
   {

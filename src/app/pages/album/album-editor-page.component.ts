@@ -32,7 +32,7 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
         [imageEntities]="vm.imageEntities"
         [newImagesFormData]="vm.newImagesFormData"
         (cancel)="onCancel()"
-        (change)="onChange($event)"
+        (change)="onChange($event.multipleFormData)"
         (fileActionFail)="onFileActionFail($event)"
         (removeNewImage)="onRemoveNewImage($event)"
         (requestAddImages)="onRequestAddImages()"
@@ -110,7 +110,11 @@ export class AlbumEditorPageComponent implements EditorPage, OnInit {
     this.store.dispatch(ImagesActions.cancelSelected());
   }
 
-  public onChange(multipleFormData: (Partial<ImageFormData> & { id: string })[]): void {
+  public onChange(multipleFormData?: (Partial<ImageFormData> & { id: string })[]): void {
+    if (!multipleFormData) {
+      return;
+    }
+
     this.store.dispatch(ImagesActions.formDataChanged({ multipleFormData }));
   }
 

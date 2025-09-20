@@ -11,13 +11,13 @@
   text-transform: none;
   white-space: wrap;
   word-wrap: break-word;
-  animation: slide-up 0.5s;
+  animation: slide-down 0.5s;
 }
 
-@keyframes slide-up {
+@keyframes slide-down {
   0% {
     opacity: 0;
-    transform: translate(0, 8px);
+    transform: translate(0, -8px);
   }
   100% {
     opacity: 1;

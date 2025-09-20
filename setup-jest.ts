@@ -34,6 +34,7 @@ const IGNORED_ERROR_PATTERNS: RegExp[] = [
   /\[LCC] Unable to parse ratings to determine new peak rating/, // Rating util invalid inputs in tests
   /\[LCC] Sort error: property 'key' does not exist/, // custom sort util negative tests
   /\[LCC] Unable to convert data URL and filename to File:/, // dataUrlToFile negative test cases
+  /Could not parse CSS stylesheet/, // JSDOM CSS parsing errors with Angular CDK
 ];
 
 function shouldIgnore(message: unknown, patterns: RegExp[]): boolean {

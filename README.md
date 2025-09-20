@@ -32,6 +32,17 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.9.4 - September 19th, 2025</summary>
+
+- 🚀 Add PGNs for 2025 LCC Championship
+- 🚀 Minor style adjustments to tooltip fade-in effect, nav bar icons on hover, event indicators in Schedule page calendars, and icons next to Lichess analysis board links
+- 🐛 Fix a few bugs related to the shape of the form data being sent to and expected from the backend
+- 🐛 Fix a few bugs related to form change detection and unsaved change checks resulting in validation icons sometimes not appearing or the form displaying the incorrect change status
+- 🔧 Add unit tests for API, Meta & Title, and Toast services
+
+</details>
+
+<details>
 <summary>v5.9.3 - September 18th, 2025</summary>
 
 - 🐛 Ensure dialog and admin control overlays render above sticky app header

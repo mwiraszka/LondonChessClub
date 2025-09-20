@@ -169,10 +169,10 @@ export class EventFormComponent implements OnInit {
         nonNullable: true,
         validators: Validators.required,
       }),
-      articleId: new FormControl(
-        this.formData.articleId,
-        Validators.pattern(/^[a-fA-F0-9]{24}$/),
-      ),
+      articleId: new FormControl(this.formData.articleId, {
+        nonNullable: true,
+        validators: Validators.pattern(/^[a-fA-F0-9]{24}$/),
+      }),
     });
   }
 

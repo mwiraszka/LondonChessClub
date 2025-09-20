@@ -67,7 +67,9 @@ export class AlbumFormComponent implements OnInit {
   @Input({ required: true }) newImagesFormData!: Record<string, ImageFormData>;
 
   @Output() cancel = new EventEmitter<void>();
-  @Output() change = new EventEmitter<(Partial<ImageFormData> & { id: Id })[]>();
+  @Output() change = new EventEmitter<{
+    multipleFormData: (Partial<ImageFormData> & { id: Id })[];
+  }>();
   @Output() fileActionFail = new EventEmitter<LccError>();
   @Output() removeNewImage = new EventEmitter<Id>();
   @Output() requestAddImages = new EventEmitter<void>();
@@ -395,7 +397,7 @@ export class AlbumFormComponent implements OnInit {
         })),
       ];
 
-      this.change.emit(multipleFormData);
+      this.change.emit({ multipleFormData });
     });
 
     // Manually trigger form data change to pass initial form data to store

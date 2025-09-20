@@ -204,7 +204,7 @@ describe('EventsTableComponent', () => {
       });
 
       it('should display article link when event has articleId', () => {
-        const eventWithArticle = mockEvents.find(event => event.articleId !== null);
+        const eventWithArticle = mockEvents.find(event => event.articleId !== '');
         fixture.componentRef.setInput('events', [eventWithArticle!]);
         fixture.detectChanges();
 
@@ -216,7 +216,7 @@ describe('EventsTableComponent', () => {
       });
 
       it('should not display article link when event has no articleId', () => {
-        const eventWithoutArticle = mockEvents.find(event => event.articleId === null);
+        const eventWithoutArticle = mockEvents.find(event => event.articleId === '');
         fixture.componentRef.setInput('events', [eventWithoutArticle!]);
         fixture.detectChanges();
 

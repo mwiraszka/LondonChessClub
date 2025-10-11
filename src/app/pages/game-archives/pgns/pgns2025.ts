@@ -1987,11 +1987,252 @@ Nd4+ 1-0
 [WhiteElo "1342"]
 [BlackElo "1228"]
 [ECO "C50"]
+[EventDate "2025.??.??"]
 [PlyCount "27"]
 
 1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. O-O Nge7 5. Ng5 O-O 6. Qh5 h6 7. Nxf7 Qe8
 8. Nd6+ Nd5 9. Bxd5+ Kh8 10. Nxe8 d6 11. d3 Bf5 12. exf5 Nd4 13. Bxh6 Rfxe8
 14. Bg5# 1-0
+
+`,`[Event "2025 London Ch A1"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Harris, Mike"]
+[Black "Ivanchuk, Serhii"]
+[Result "1/2-1/2"]
+[WhiteElo "1917"]
+[BlackElo "2216"]
+[ECO "A46"]
+[EventDate "2025.??.??"]
+[PlyCount "99"]
+
+1. d4 Nf6 2. Nf3 e6 3. Bf4 d5 4. e3 Bd6 5. Bg3 O-O 6. Bd3 c5 7. c3 Nc6 8.
+Bxd6 Qxd6 9. Nbd2 e5 10. dxe5 Nxe5 11. Nxe5 Qxe5 12. O-O Bg4 13. Be2 Bf5
+14. Qa4 Be4 15. Nxe4 Nxe4 16. Rad1 b6 17. Bf3 f5 18. c4 d4 19. exd4 cxd4
+20. Rfe1 Rfe8 21. Qb5 Qxb5 22. cxb5 Rad8 23. Be2 g6 24. Bd3 Kg7 25. f3 Nc5
+26. Bc4 Rxe1+ 27. Rxe1 Kf8 28. b3 f4 29. Kf2 Re8 30. Rd1 Rd8 31. Re1 Rd7
+32. Re5 Kg7 33. Ke2 Kf6 34. Re8 h5 35. h4 Kg7 36. Rg8+ Kf6 37. Rf8+ Ke5 38.
+Re8+ Kf6 39. Rf8+ Kg7 40. Rg8+ Kh7 41. Re8 Nb7 42. Kd3 Nd6 43. Re2 Kg7 44.
+a4 Rc7 45. Kxd4 Nf5+ 46. Ke5 Nxh4 47. Kxf4 Rd7 48. Kg5 Nf5 49. Be6 Re7 50.
+Bc4 1/2-1/2
+
+`,`[Event "2025 London Ch A1"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Bartar, Rene"]
+[Black "McCormick, Ian"]
+[Result "1-0"]
+[WhiteElo "2018"]
+[BlackElo "1929"]
+[ECO "B13"]
+[EventDate "2025.??.??"]
+[PlyCount "105"]
+
+1. c4 c6 2. e4 d5 3. exd5 cxd5 4. d4 Nf6 5. Nc3 Nc6 6. Nf3 e6 7. Bg5 Be7 8.
+c5 O-O 9. a3 b6 10. b4 bxc5 11. dxc5 d4 12. Bb5 Qc7 13. Bxc6 Qxc6 14. Qxd4
+Rd8 15. Qe3 Ba6 16. Ne2 Ng4 17. Qf4 Bxg5 18. Nxg5 Bxe2 19. Kxe2 Qb5+ 20.
+Kf3 Qd3+ 21. Kxg4 Rd4 22. Rhd1 Rxf4+ 23. Kxf4 Qf5+ 24. Kg3 Qxg5+ 25. Kf3 a5
+26. c6 Qb5 27. Rac1 h6 28. c7 Qb7+ 29. Ke2 Kh7 30. Rd8 Qxg2 31. Rxa8 Qe4+
+32. Kd2 Qd5+ 33. Ke3 Qe5+ 34. Kf3 Qd5+ 35. Kg3 Qg5+ 36. Kh3 Qf5+ 37. Kg2
+Qg5+ 38. Kf3 Qd5+ 39. Ke3 Qe5+ 40. Kd2 Qd5+ 41. Kc2 Qxa8 42. Kb3 a4+ 43.
+Kb2 Qc8 44. b5 Kg6 45. b6 Kf5 46. Rc5+ Ke4 47. Kc3 e5 48. b7 Qxb7 49. c8=Q
+Qb3+ 50. Kd2 Qb2+ 51. Rc2 Qd4+ 52. Ke1 Qa1+ 53. Ke2 1-0
+
+`,`[Event "2025 London Ch A1"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Nguyen, Nghi"]
+[Black "Achyuth, Akshaj"]
+[Result "0-1"]
+[WhiteElo "2036"]
+[BlackElo "2006"]
+[ECO "E12"]
+[EventDate "2025.??.??"]
+[PlyCount "68"]
+
+1. d4 Nf6 2. Nf3 e6 3. c4 b6 4. Nc3 Bb7 5. a3 Be7 6. Qc2 d5 7. cxd5 Nxd5 8.
+e4 Nxc3 9. bxc3 c5 10. Bd3 Nc6 11. Bb2 Rc8 12. Bb5 O-O 13. Qa4 a6 14. Bd3
+b5 15. Qd1 cxd4 16. cxd4 Qa5+ 17. Qd2 b4 18. O-O Qb6 19. d5 exd5 20. exd5
+Na5 21. Qe2 bxa3 22. Bxg7 Rfe8 23. Qe4 Qg6 24. Qxg6 hxg6 25. Bd4 Nb3 26.
+Rad1 Nxd4 27. Nxd4 Bxd5 28. Bxa6 Ra8 29. Nb5 Bc4 30. Nc7 Bxa6 31. Nxa8 Bxf1
+32. Nc7 Be2 33. Re1 Rd8 34. g3 Rd1 0-1
+
+`,`[Event "2025 London Ch A2"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Ramirez, Emilio"]
+[Black "Ehrman, Carl"]
+[Result "1/2-1/2"]
+[WhiteElo "2097"]
+[BlackElo "2010"]
+[ECO "E16"]
+[EventDate "2025.??.??"]
+[PlyCount "62"]
+
+1. d4 Nf6 2. Nf3 e6 3. g3 b6 4. Bg2 Bb7 5. c4 Bb4+ 6. Bd2 Bxd2+ 7. Nbxd2 c5
+8. dxc5 bxc5 9. O-O O-O 10. Qc2 Nc6 11. a3 Qe7 12. e4 d6 13. Rfe1 e5 14.
+Rad1 Rac8 15. Nf1 Nd4 16. Qd3 Ba6 17. Ne3 g6 18. b4 Bb7 19. Nd5 Nxf3+ 20.
+Bxf3 Bxd5 21. exd5 Qc7 22. Rb1 cxb4 23. Rxb4 Nd7 24. Be2 Nc5 25. Qd2 Kg7
+26. h4 h5 27. Bxh5 gxh5 28. Qg5+ Kh7 29. Qxh5+ Kg7 30. Qg5+ Kh7 31. Qh5+
+Kg7 1/2-1/2
+
+`,`[Event "2025 London Ch A2"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Shrestha, Hardik"]
+[Black "Tongarlak, Omer"]
+[Result "1-0"]
+[WhiteElo "2030"]
+[BlackElo "1840"]
+[ECO "E90"]
+[EventDate "2025.??.??"]
+[PlyCount "73"]
+
+1. Nf3 d6 2. d4 Nf6 3. c4 g6 4. Nc3 Bg7 5. e4 c5 6. dxc5 Qa5 7. Bd2 Qxc5 8.
+Be2 Nbd7 9. b4 Qc7 10. Rc1 b6 11. Nd5 Qd8 12. Bc3 O-O 13. Bd3 Bb7 14. O-O
+Rc8 15. Qd2 e6 16. Nxf6+ Nxf6 17. Rfe1 d5 18. exd5 exd5 19. Qf4 Nh5 20. Qg4
+f5 21. Qg5 d4 22. Bd2 Bxf3 23. Qxd8 Rfxd8 24. gxf3 Bf8 25. Re6 Ng7 26. Re2
+Re8 27. Rce1 Rxe2 28. Rxe2 Re8 29. Kf1 Rxe2 30. Kxe2 Kf7 31. a3 Ne6 32. h4
+Bd6 33. h5 Kf6 34. hxg6 hxg6 35. Bc2 g5 36. Kd3 Ke5 37. f4+ 1-0
+
+`,`[Event "2025 London Ch B1"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Bate, William"]
+[Black "Franke, Raymond"]
+[Result "1-0"]
+[WhiteElo "1712"]
+[BlackElo "1827"]
+[ECO "C40"]
+[EventDate "2025.??.??"]
+[PlyCount "67"]
+
+1. e4 e5 2. Nf3 f5 3. d3 d6 4. g3 Nf6 5. Nc3 c6 6. Bg2 Be7 7. O-O O-O 8.
+Re1 fxe4 9. Nxe4 Qc7 10. d4 Nxe4 11. Rxe4 Bf5 12. Re1 e4 13. Ng5 d5 14. Bh3
+Bxg5 15. Bxf5 Bxc1 16. Be6+ Kh8 17. Rxc1 Qe7 18. Qg4 Na6 19. a3 Qf6 20. Rf1
+Qxd4 21. c4 Nc5 22. cxd5 Nxe6 23. dxe6 Qf6 24. Qxe4 Rfe8 25. Rfe1 Re7 26.
+Rc2 Rae8 27. Rce2 g6 28. b4 Kg7 29. Qc4 h5 30. a4 Rd8 31. Re4 Rd2 32. Rf4
+Qg5 33. Qc3+ Kh7 34. Qxd2 1-0
+
+`,`[Event "2025 London Ch B1"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Glew, Rick"]
+[Black "Nazirov, Martin"]
+[Result "0-1"]
+[WhiteElo "1726"]
+[BlackElo "1823"]
+[ECO "B38"]
+[EventDate "2025.??.??"]
+[PlyCount "80"]
+
+1. e4 c5 2. Nf3 g6 3. d4 cxd4 4. Nxd4 Bg7 5. Be3 Nc6 6. c4 Nf6 7. Nc3 O-O
+8. h4 Qa5 9. f3 e6 10. Qd2 d5 11. Nb3 Qd8 12. O-O-O dxe4 13. Qc2 Bd7 14.
+Nxe4 Nxe4 15. Qxe4 Qf6 16. Nd4 e5 17. Bg5 Qd6 18. Nb5 Qe6 19. Nc7 Qf5 20.
+Nxa8 Rxa8 21. Qe3 Nd4 22. Bd3 Qe6 23. b3 Qa6 24. Bb1 Qa3+ 25. Kd2 h6 26.
+Ke1 hxg5 27. hxg5 Re8 28. Kf1 b5 29. Qd2 bxc4 30. bxc4 Bc6 31. Rh3 Qc5 32.
+Bd3 e4 33. fxe4 Bxe4 34. Bxe4 Rxe4 35. Qd3 Rf4+ 36. Ke1 Nb3 37. Qd8+ Bf8
+38. Rf3 Qg1+ 39. Ke2 Qxg2+ 40. Ke1 Re4+ 0-1
+
+`,`[Event "2025 London Ch B1"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Xu, Lambert"]
+[Black "Udhayan, Vijay"]
+[Result "1/2-1/2"]
+[WhiteElo "1680"]
+[BlackElo "1700"]
+[ECO "C43"]
+[EventDate "2025.??.??"]
+[PlyCount "99"]
+
+1. e4 e5 2. Nf3 Nf6 3. d4 exd4 4. e5 Nd5 5. Qxd4 Nb6 6. Bf4 Nc6 7. Qd1 Bc5
+8. c3 O-O 9. Bd3 d6 10. O-O dxe5 11. Nxe5 Qf6 12. Nxc6 Qxc6 13. Qh5 g6 14.
+Qh4 Re8 15. Nd2 Be7 16. Bg5 Bxg5 17. Qxg5 Be6 18. Ne4 Nd7 19. Qh6 Bd5 20.
+Ng5 Nf6 21. f3 Re5 22. Be4 Qc5+ 23. Kh1 Bxe4 24. fxe4 Rxg5 25. Rxf6 Qe5 26.
+Raf1 Rh5 27. Qf4 Qxf4 28. R6xf4 Rf8 29. g3 Re5 30. Rd1 g5 31. Rf5 f6 32.
+Rxe5 fxe5 33. Kg2 c6 34. Rd7 Rf7 35. Rxf7 Kxf7 36. Kf3 Kg6 37. h3 h5 38. g4
+h4 39. Ke3 Kf6 40. a4 Ke6 41. Kd3 a6 42. a5 Kd6 43. Kc4 c5 44. b4 cxb4 45.
+cxb4 Kc6 46. Kb3 Kb5 47. Kc3 b6 48. axb6 Kxb6 49. Kc4 Kc6 50. Kc3 1/2-1/2
+
+`,`[Event "2025 London Ch B2"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Yang, Ethan"]
+[Black "Tongarlak, Tarik"]
+[Result "0-1"]
+[BlackElo "1703"]
+[ECO "C54"]
+[EventDate "2025.??.??"]
+[PlyCount "70"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. c3 Nf6 5. d4 exd4 6. cxd4 Bb4+ 7. Bd2
+Bxd2+ 8. Nbxd2 d5 9. exd5 Nxd5 10. O-O O-O 11. h3 Nb6 12. Bd3 Nxd4 13. Rc1
+c6 14. Re1 Nxf3+ 15. Nxf3 Qf6 16. b3 Be6 17. Qc2 h6 18. Rcd1 Bxh3 19. gxh3
+Qxf3 20. Re3 Qh5 21. Kh2 Nd5 22. Rg3 Qe5 23. Kh1 Nb4 24. Bh7+ Kh8 25. Qb1
+f5 26. Re1 Qd5+ 27. Kh2 Kxh7 28. Rd1 Qc5 29. a3 Qxf2+ 30. Rg2 Qf4+ 31. Kh1
+Nd5 32. Rf1 Qe4 33. Qa1 Rf7 34. Rg1 Ne3 35. Re1 Qxg2# 0-1
+
+`,`[Event "2025 London Ch C1"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Sahu, Sarthak"]
+[Black "Khatab, Omar"]
+[Result "0-1"]
+[WhiteElo "1550"]
+[BlackElo "1596"]
+[ECO "C01"]
+[EventDate "2025.??.??"]
+[PlyCount "138"]
+
+1. e4 e6 2. d4 d5 3. exd5 exd5 4. Nf3 a6 5. h3 h6 6. Nc3 Bf5 7. Bd3 Bxd3 8.
+Qxd3 Nf6 9. a3 Bd6 10. O-O O-O 11. Be3 Nbd7 12. Rfe1 c6 13. Kh1 Nh7 14. Nh2
+Qc7 15. Ng4 h5 16. Nh6+ gxh6 17. Bxh6 Rfe8 18. Re3 Bf4 19. Bxf4 Qxf4 20.
+Rf3 Qh6 21. Qf5 Ndf6 22. Rg1 Kh8 23. Rg3 Rg8 24. Rf3 Qg5 25. Qd3 Rae8 26.
+Rg3 Qh6 27. Rf3 Ng5 28. Rg3 Ng4 29. Rf1 h4 30. Rxg4 Rgf8 31. Qf5 f6 32. Qf4
+Kg7 33. Rxh4 Qg6 34. Rg4 Rh8 35. Kg1 Rxh3 36. Qd2 Rh4 37. Rg3 Reh8 38. f4
+Nh3+ 39. Rxh3 Rxh3 40. Qe2 Rh1+ 41. Kf2 Rxf1+ 42. Kxf1 Re8 43. Qf2 Qh5 44.
+Qg3+ Kf7 45. Kf2 Qh1 46. Ne2 Qd1 47. Qg4 Qxc2 48. f5 Qe4 49. Qg6+ Ke7 50.
+Qg7+ Kd8 51. Qxf6+ Kc8 52. Ng3 Qe1+ 53. Kf3 Re3+ 54. Kg4 Qxg3+ 55. Kh5 Qh2+
+56. Kg6 Rg3+ 57. Kf7 Qh5+ 58. Kf8 Re3 59. Qg6 Qh8+ 60. Kf7 Qe8+ 61. Kg7
+Re7+ 62. Kh6 Qf8+ 63. Kh5 Qh8+ 64. Qh6 Rh7 65. f6 Rxh6+ 66. Kg4 Qxf6 67. g3
+Rg6+ 68. Kh3 Qf3 69. Kh4 Qh1# 0-1
+
+`,`[Event "2025 London Ch C1"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Ortiz, Hugo"]
+[Black "Lee, Grayson"]
+[Result "1-0"]
+[WhiteElo "1597"]
+[BlackElo "1524"]
+[ECO "A45"]
+[EventDate "2025.??.??"]
+[PlyCount "141"]
+
+1. d4 Nf6 2. Bf4 d5 3. e3 Bf5 4. Bd3 Bxd3 5. Qxd3 Nbd7 6. Nd2 e6 7. h3 Be7
+8. Ngf3 O-O 9. O-O c5 10. c3 c4 11. Qc2 Rc8 12. Rfe1 b5 13. a3 a5 14. e4 b4
+15. axb4 axb4 16. e5 b3 17. Qd1 Ne8 18. Nf1 Ra8 19. Qd2 Ra2 20. Rxa2 bxa2
+21. Ra1 Qa5 22. Ng3 Nc7 23. Ne2 Ra8 24. Nc1 Nb6 25. Rxa2 Qb5 26. Rxa8+
+Ncxa8 27. Qc2 Na4 28. b4 cxb3 29. Nxb3 N8b6 30. Nfd2 Nc4 31. Nxc4 Qxc4 32.
+Nd2 Qxc3 33. Qxa4 Bb4 34. Qa8+ Bf8 35. Be3 h6 36. Nf1 Qe1 37. Qc8 g6 38.
+Qc1 Qxc1 39. Bxc1 Kg7 40. f4 Be7 41. Kf2 f5 42. Kf3 g5 43. g3 Kg6 44. Be3
+h5 45. fxg5 Bxg5 46. Bxg5 Kxg5 47. h4+ Kg6 48. Kf4 Kh6 49. Nd2 Kg6 50. Nb3
+Kf7 51. Kg5 Ke7 52. Kxh5 Kd7 53. Nc5+ Ke7 54. Kg6 Ke8 55. Kg7 Ke7 56. h5
+Ke8 57. h6 f4 58. gxf4 Kd8 59. Kf7 Kc7 60. h7 Kc6 61. h8=Q Kb5 62. Nxe6 Kc4
+63. Qh7 Kb4 64. Qc2 Ka3 65. Ke7 Kb4 66. Ng5 Ka3 67. Qb1 Ka4 68. f5 Ka5 69.
+f6 Ka6 70. f7 Ka5 71. f8=Q 1-0
 
 `,`[Event "2025 London Ch C2"]
 [Site "?"]
@@ -2010,6 +2251,48 @@ Nd4+ 1-0
 Nf6 9. O-O g6 10. Ng5 Nxd5 11. exd5 Ne7 12. c4 Bg7 13. Qe2 O-O 14. Nc3 Rb8
 15. Rab1 Bf5 16. Nce4 bxc4 17. dxc4 h6 18. Bd2 hxg5 19. Bxg5 Bxe4 20. Qxe4
 Nf5 21. b4 Nd4 22. Bd2 f5 23. Qe1 Nc2 24. Qc1 Nd4 25. a4 Ne2+ 0-1
+
+`,`[Event "2025 London Ch C2"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Killi, Steve"]
+[Black "Moorehouse, Dan"]
+[Result "0-1"]
+[WhiteElo "1526"]
+[BlackElo "1549"]
+[ECO "C11"]
+[EventDate "2025.??.??"]
+[PlyCount "100"]
+
+1. Nc3 d5 2. d4 Nf6 3. Bg5 e6 4. e4 dxe4 5. Nxe4 Be7 6. Ng3 Qd5 7. Nf3 Nbd7
+8. c4 Qa5+ 9. Nd2 Qxg5 10. Be2 Bb4 11. h4 Qxd2+ 12. Qxd2 Bxd2+ 13. Kxd2 O-O
+14. b4 b6 15. Bf3 Rb8 16. Ne2 Bb7 17. Bxb7 Rxb7 18. Rab1 Rfb8 19. b5 Rd8
+20. Rhc1 Ne4+ 21. Ke3 Nd6 22. c5 bxc5 23. dxc5 Rxb5 24. cxd6 Re5+ 25. Kf3
+cxd6 26. Rc7 Rf5+ 27. Kg3 a5 28. Nd4 Rc5 29. Ra7 Rc3+ 30. f3 e5 31. Nb5 Rd3
+32. Rxa5 e4 33. Ra3 Rxa3 34. Nxa3 exf3 35. gxf3 Ra8 36. Nc4 d5 37. Ne3 Nf6
+38. Rd1 Ra5 39. Rc1 g6 40. Rc2 Nh5+ 41. Kg4 Ra4+ 42. Kh3 d4 43. Nd5 Ra7 44.
+Rd2 Ra3 45. Kg4 Kg7 46. Nb4 f5+ 47. Kh3 Rxf3+ 48. Kh2 Nf4 49. Kg1 Kh6 50.
+Rxd4 Ne2+ 0-1
+
+`,`[Event "2025 London Ch C2"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Collrin, Jack"]
+[Black "Gudimella, Veer"]
+[Result "1-0"]
+[WhiteElo "1528"]
+[BlackElo "1598"]
+[ECO "C41"]
+[EventDate "2025.??.??"]
+[PlyCount "60"]
+
+1. e4 e5 2. Nf3 d6 3. c3 Nc6 4. d4 f5 5. Bd3 Nf6 6. exf5 e4 7. d5 Nxd5 8.
+Bxe4 Nf6 9. Bxc6+ bxc6 10. O-O Bxf5 11. Re1+ Ne4 12. Qa4 Qd7 13. Rxe4+ Bxe4
+14. Qxe4+ Kd8 15. Bg5+ Be7 16. Bxe7+ Qxe7 17. Qxc6 Rb8 18. Nbd2 Re8 19. Re1
+Qd7 20. Rxe8+ Qxe8 21. Qxe8+ Kxe8 22. b3 Ke7 23. Nd4 Kd7 24. f3 c5 25. Nf5
+g6 26. Ne3 Kc6 27. c4 Re8 28. Kf2 Re5 29. g3 g5 30. Ne4 d5 1-0
 
 `,`[Event "2025 London Ch D1"]
 [Site "?"]
@@ -2030,5 +2313,260 @@ Nd1 d4 15. f4 exf4 16. Nxf4 O-O 17. Nf2 Bd7 18. e5 Ng4 19. Nxg4 Bxg4 20. h4
 Re8 21. Ng2 Bb6 22. Kb1 Bc7 23. Bf4 Re7 24. Qf2 Qd7 25. Re4 c5 26. Ree1
 Rae8 27. Rh1 Bxe5 28. h5 Bxf4 29. gxf4 Re2 30. Qg3 f5 31. a3 Qa4 32. Rc1
 Qb3 33. Ne1 Qxb2# 0-1
+
+`,`[Event "2025 London Ch D1"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Jami, Adarsh"]
+[Black "Douglas, Dennis"]
+[Result "0-1"]
+[WhiteElo "1391"]
+[BlackElo "1493"]
+[ECO "B20"]
+[EventDate "2025.??.??"]
+[PlyCount "128"]
+
+1. e4 c5 2. Bb5 a6 3. Bc4 e6 4. Nc3 Ne7 5. e5 Nbc6 6. Ne4 Nf5 7. Nf3 b5 8.
+Be2 d5 9. exd6 Bxd6 10. d4 Nfxd4 11. Nxd4 Nxd4 12. Bf3 Nxf3+ 13. gxf3 Be7
+14. Qxd8+ Kxd8 15. O-O f5 16. Rd1+ Ke8 17. Nd6+ Bxd6 18. Rxd6 Kf7 19. Be3
+c4 20. Rad1 Re8 21. Rc6 Kg6 22. Kg2 Bb7 23. Rb6 Rab8 24. Bf4 Bxf3+ 25. Kxf3
+Rxb6 26. Be3 Rc6 27. Rg1+ Kf7 28. Rd1 g6 29. c3 e5 30. Rd7+ Re7 31. Rd5 Ke6
+32. Rd1 Rd7 33. Re1 Rd3 34. Kg2 Kf6 35. f4 e4 36. Bd4+ Kf7 37. Re2 Rf3 38.
+Be5 Ke6 39. Rd2 Rd3 40. Re2 g5 41. Rf2 e3 42. Re2 g4 43. Bd4 Rd2 44. Kf1
+Rxe2 45. Kxe2 h5 46. Bxe3 Kd5 47. Bf2 Ke4 48. Be3 h4 49. Kf2 Rg6 50. Bd2
+Kd3 51. Be1 Re6 52. b4 Rxe1 53. Kxe1 Ke3 54. Kf1 Kxf4 55. Ke2 g3 56. hxg3+
+Kxg3 57. Kf1 f4 58. a3 f3 59. Kg1 Kf4 60. Kf1 Ke4 61. Kf2 Kd3 62. Kxf3 Kxc3
+63. Kg4 Kb3 64. Kxh4 c3 0-1
+
+`,`[Event "2025 London Ch D1"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Prabhu, Mithun"]
+[Black "Trinh, Jason"]
+[Result "1-0"]
+[WhiteElo "1461"]
+[BlackElo "1473"]
+[ECO "D31"]
+[EventDate "2025.??.??"]
+[PlyCount "139"]
+
+1. d4 d5 2. c4 e6 3. Nc3 Bb4 4. Nf3 Bxc3+ 5. bxc3 Nf6 6. Bg5 h6 7. Bh4 g5
+8. Bg3 Ne4 9. Be5 Rg8 10. Qc2 c6 11. e3 Qa5 12. Rc1 Nd7 13. Bd3 Nxe5 14.
+Nxe5 f6 15. Bxe4 dxe4 16. Ng4 Qd8 17. O-O h5 18. Nxf6+ Qxf6 19. Qxe4 Qf5
+20. Qxf5 exf5 21. d5 cxd5 22. cxd5 Bd7 23. Rfe1 O-O-O 24. g3 Bb5 25. Kg2
+Rxd5 26. c4 Bxc4 27. Rxc4+ Kd7 28. Rd4 Rxd4 29. exd4 Re8 30. Rb1 Kc6 31.
+d5+ Kxd5 32. Rxb7 a6 33. Rg7 Re2 34. Rxg5 Ke4 35. Rxh5 Rxa2 36. Rh4+ Ke5
+37. Rh8 a5 38. h4 Kf6 39. h5 Kg7 40. Re8 a4 41. Re5 Kf6 42. h6 Kg6 43. Rxf5
+a3 44. Ra5 Kxh6 45. Kf3 Ra1 46. Kg4 a2 47. Ra6+ Kg7 48. Kf5 Kf7 49. Ra7+
+Ke8 50. g4 Rb1 51. Rxa2 Rb5+ 52. Kf4 Rb4+ 53. Kg3 Kf7 54. Kh4 Rb1 55. g5
+Rh1+ 56. Kg4 Rg1+ 57. Kf5 Rc1 58. Ra7+ Kg8 59. Re7 Rc8 60. g6 Rf8+ 61. Rf7
+Ra8 62. Kg5 Ra5+ 63. Rf5 Ra6 64. f4 Kg7 65. Rf7+ Kg8 66. Kh6 Ra1 67. f5
+Rh1+ 68. Kg5 Rg1+ 69. Kf6 Kh8 70. Rf8# 1-0
+
+`,`[Event "2025 London Ch D2"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Liu, Luke"]
+[Black "Hampson, Adam"]
+[Result "1-0"]
+[WhiteElo "1475"]
+[BlackElo "1471"]
+[ECO "B06"]
+[EventDate "2025.??.??"]
+[PlyCount "53"]
+
+1. e4 g6 2. d3 Bg7 3. Nf3 d6 4. c3 Nc6 5. Be3 e5 6. d4 Nf6 7. Nbd2 O-O 8.
+Be2 Ng4 9. O-O Ne7 10. h3 Nh6 11. Bxh6 Bxh6 12. Nc4 f6 13. Qb3 Kg7 14. Nh4
+b6 15. Rad1 Nc6 16. Ne3 f5 17. Qd5 Bb7 18. exf5 Qxh4 19. Ng4 Rxf5 20. dxe5
+Na5 21. Qe6 Bc8 22. Qe8 Bb7 23. Qd7+ Rf7 24. Qe6 Nc6 25. Bc4 Nd8 26. Qe8
+Re7 27. Qg8# 1-0
+
+`,`[Event "2025 London Ch D2"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Puppala, Karthik"]
+[Black "Kittur, Dhruv"]
+[Result "0-1"]
+[WhiteElo "1354"]
+[BlackElo "1405"]
+[ECO "B12"]
+[EventDate "2025.??.??"]
+[PlyCount "91"]
+
+1. e4 c6 2. d4 d5 3. e5 c5 4. dxc5 Bf5 5. Nf3 e6 6. Be3 Nc6 7. Nc3 Qc7 8.
+Bb5 a6 9. Bxc6+ Qxc6 10. Nd4 Qc7 11. Nxf5 exf5 12. Nxd5 Qxe5 13. Qd4 Qxd4
+14. Bxd4 Rd8 15. c4 Ne7 16. Nc7+ Kd7 17. Be5 Nc6 18. Rd1+ Kc8 19. Rxd8+
+Kxd8 20. O-O Nxe5 21. Nd5 Nxc4 22. b4 Kd7 23. Rd1 Kc6 24. a4 Nb2 25. b5+
+axb5 26. axb5+ Kxc5 27. Rb1 Kxd5 28. Rxb2 Bd6 29. Kf1 Re8 30. Rd2+ Kc5 31.
+h4 Be7 32. g3 Kxb5 33. Rd5+ Bc5 34. Rxf5 f6 35. Kg2 b6 36. Kf3 Kc4 37. Rf4+
+Bd4 38. Re4 Rxe4 39. Kxe4 b5 40. Kf4 b4 41. Kg4 b3 42. f4 b2 43. h5 b1=Q
+44. Kh4 Qh1+ 45. Kg4 f5+ 46. Kg5 0-1
+
+`,`[Event "2025 London Ch E"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Emery, Matt"]
+[Black "Jana, Anushtup"]
+[Result "1-0"]
+[WhiteElo "1340"]
+[BlackElo "1317"]
+[ECO "A45"]
+[EventDate "2025.??.??"]
+[PlyCount "61"]
+
+1. d4 Nf6 2. Bf4 g6 3. e3 Bg7 4. Nd2 d6 5. Ngf3 O-O 6. Bd3 Nbd7 7. Qe2 Nd5
+8. Bg3 e5 9. e4 Nf4 10. Bxf4 exf4 11. c3 f5 12. O-O fxe4 13. Nxe4 d5 14.
+Neg5 Nb6 15. Qd2 Nc4 16. Bxc4 dxc4 17. Rae1 Bg4 18. h3 h6 19. hxg4 hxg5 20.
+Nh2 c5 21. d5 Qa5 22. a3 Rfe8 23. Nf3 Rad8 24. Nxg5 b5 25. Ne6 Rd6 26. Qxf4
+Qb6 27. Ng5 Rf8 28. Qh2 Rfd8 29. Qh7+ Kf8 30. Re7 R8d7 31. Qxg7# 1-0
+
+`,`[Event "2025 London Ch E"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Ambavarapu, Ayavanth"]
+[Black "Koziolek, Nick"]
+[Result "0-1"]
+[WhiteElo "1266"]
+[BlackElo "1317"]
+[ECO "C00"]
+[EventDate "2025.??.??"]
+[PlyCount "118"]
+
+1. e4 e6 2. d4 d6 3. Nf3 g6 4. Bd3 b6 5. Nc3 Bb7 6. O-O Bg7 7. Qe2 h6 8. d5
+e5 9. Bb5+ Nd7 10. Ne1 Ne7 11. Nd3 a6 12. Bc4 g5 13. Qh5 Ng6 14. Ne2 Nf6
+15. Qf3 Nh4 16. Qg3 Bc8 17. Qe3 Qd7 18. h3 g4 19. Qg3 Ng6 20. f4 Nh5 21.
+Qe3 gxh3 22. Qxh3 Qxh3 23. gxh3 f6 24. Kh2 O-O 25. Rg1 Nh4 26. f5 Nf3+ 27.
+Kh1 Nxg1 28. Kxg1 Bd7 29. Nb4 b5 30. Bd3 Kf7 31. c4 Rg8 32. Be3 Bf8+ 33.
+Kf2 Rc8 34. Nxa6 bxc4 35. Bxc4 Be7 36. Rc1 Kg7 37. Bd3 Bd8 38. Kf3 Kh7 39.
+b4 c6 40. dxc6 Rxc6 41. Rb1 Rc8 42. b5 Rg7 43. b6 Ba4 44. Bb5 Bxb6 45. Bxa4
+Bxe3 46. Kxe3 Ng3 47. Kf2 Nxe4+ 48. Ke3 Rc4 49. Bb5 Nc3 50. Nxc3 Rxc3+ 51.
+Kd2 Rxh3 52. Nb8 Rb7 53. Nd7 Kg7 54. Rg1+ Kf7 55. Bc4+ Ke7 56. Rg7+ Kd8 57.
+Bb3 Rxd7 58. Rg8+ Kc7 59. a4 Rxb3 0-1
+
+`,`[Event "2025 London Ch E"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Alary, Sacha"]
+[Black "Kittur, Praveen"]
+[Result "1-0"]
+[WhiteElo "1350"]
+[BlackElo "1354"]
+[ECO "B12"]
+[EventDate "2025.??.??"]
+[PlyCount "117"]
+
+1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Be2 c5 6. Bd3 Bxd3 7. Qxd3 c4 8.
+Qd1 Ne7 9. Bg5 h6 10. Bxe7 Qxe7 11. Nc3 Qb4 12. Rb1 Qa5 13. a3 b5 14. O-O
+Be7 15. Qd2 Nd7 16. Na2 Qxd2 17. Nxd2 Bg5 18. Rbd1 a5 19. Nf3 Be7 20. Ra1
+a4 21. c3 f6 22. Rfe1 f5 23. g3 g5 24. Nd2 g4 25. f3 gxf3 26. Nxf3 Rg8 27.
+Kf2 Rf8 28. h4 f4 29. g4 Rg8 30. Rg1 Nf8 31. g5 hxg5 32. Nxg5 O-O-O 33. Rg4
+Ng6 34. Nxe6 Bxh4+ 35. Kf3 Rde8 36. Ng5 Bg3 37. Rh1 Ref8 38. Ne6 Rf5 39.
+Rh6 Ne7 40. Rxg8+ Nxg8 41. Rh8 Kd7 42. Nc5+ Ke7 43. Rxg8 Rh5 44. Rb8 Rh3
+45. Rxb5 Bh2+ 46. Kg2 Rh5 47. Rb7+ Kf8 48. e6 Bg3 49. Rf7+ Ke8 50. Rb7 Rh2+
+51. Kf3 Rf2+ 52. Kg4 Rg2 53. Rf7 Bh2+ 54. Kf3 Rxb2 55. Nb4 Bg3 56. Kg4 Rb1
+57. Nc6 Rc1 58. Rh7 Rxc3 59. Rh8# 1-0
+
+`,`[Event "2025 London Ch F"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Skellett, Cory"]
+[Black "Hu, Meghan"]
+[Result "1-0"]
+[WhiteElo "1218"]
+[BlackElo "1239"]
+[ECO "B22"]
+[EventDate "2025.??.??"]
+[PlyCount "47"]
+
+1. e4 c5 2. c3 Nf6 3. f3 e5 4. Na3 d5 5. Qe2 d4 6. Nc4 Bd6 7. d3 dxc3 8.
+bxc3 O-O 9. g4 b5 10. Na3 b4 11. cxb4 cxb4 12. Nc4 Nc6 13. Bd2 Nd4 14. Qd1
+Rb8 15. Ne2 Nxe2 16. Bxe2 Bc5 17. Nxe5 Bd4 18. Nc6 Qb6 19. Nxb8 Bxa1 20.
+Qxa1 Qxb8 21. f4 Bxg4 22. Bxg4 Nxg4 23. Rg1 Nxh2 24. Qxg7# 1-0
+
+`,`[Event "2025 London Ch F"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Ambavarapu, Saranya"]
+[Black "Vithanagamage, Anura"]
+[Result "0-1"]
+[WhiteElo "1177"]
+[BlackElo "1222"]
+[ECO "A41"]
+[EventDate "2025.??.??"]
+[PlyCount "88"]
+
+1. d4 d6 2. e3 e5 3. Nf3 Bf5 4. Bd3 e4 5. Nh4 Qxh4 6. Be2 Nf6 7. Nc3 Ng4 8.
+g3 Qh3 9. Qd2 Qg2 10. Rf1 Nxh2 11. Nb5 Na6 12. Qc3 d5 13. b3 Bb4 14. Nxc7+
+Kd8 15. Bd2 Bxc3 16. Nxa8 Bxa1 17. c4 dxc4 18. bxc4 Bh3 19. f4 Qxg3+ 20.
+Rf2 Qg1+ 21. Bf1 Nf3+ 22. Ke2 Bxf1+ 23. Rxf1 Qg2+ 24. Rf2 Ng1+ 25. Ke1 Qg3
+26. Kf1 Nh3 27. Be1 Qg1+ 28. Ke2 Qg4+ 29. Kd2 Nxf2 30. Bxf2 Qg2 31. Ke2
+Qf3+ 32. Kf1 Qd1+ 33. Kg2 Qd2 34. c5 Kd7 35. d5 Rxa8 36. c6+ Kd6 37. cxb7
+Rb8 38. Kg3 Rxb7 39. f5 Kxd5 40. Bg1 Be5+ 41. Kg4 Qg2+ 42. Kh5 Qxg1 43. a4
+Rb2 44. Kh4 Rh2# 0-1
+
+`,`[Event "2025 London Ch G"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Jayakrishnan, Maheshkumar"]
+[Black "Willi, Jacob"]
+[Result "1-0"]
+[WhiteElo "1084"]
+[BlackElo "788"]
+[ECO "C20"]
+[EventDate "2025.??.??"]
+[PlyCount "79"]
+
+1. e4 e5 2. Nh3 Nf6 3. c3 g6 4. Bc4 Nxe4 5. Qf3 Nd6 6. Bb3 Bg7 7. d3 b6 8.
+Ng5 O-O 9. Qxa8 Ba6 10. Qxa7 Nc6 11. Qxa6 Nb8 12. Qa3 h6 13. Nf3 Qe8 14.
+O-O Nc6 15. d4 e4 16. Nfd2 Ne7 17. Qa7 h5 18. Qxc7 Nb5 19. Qxb6 Bh6 20.
+Qxb5 e3 21. Ne4 exf2+ 22. Kxf2 Bg7 23. Bg5 Qc8 24. Nd6 Qa8 25. Qxd7 Nf5 26.
+Nxf7 h4 27. Ne5+ Kh8 28. Nxg6+ Kh7 29. Nf4 Qb8 30. Nd2 h3 31. gxh3 Qa7 32.
+Qxa7 Kh8 33. Ng6+ Kh7 34. Nxf8+ Kh8 35. Rfe1 Bxf8 36. Bf6+ Ng7 37. Re4 Kh7
+38. Qb8 Nh5 39. Rh4 Bh6 40. Qg8# 1-0
+
+`,`[Event "2025 London Ch YA"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Bian, Yuchen"]
+[Black "Nadide, Anvith"]
+[Result "0-1"]
+[WhiteElo "1263"]
+[BlackElo "1228"]
+[ECO "C55"]
+[PlyCount "38"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. O-O Bc5 5. d3 O-O 6. Bg5 h6 7. Bh4 d6 8.
+h3 Nd4 9. Nxd4 Bxd4 10. Nc3 Qd7 11. Nd5 Nxd5 12. Bxd5 Qb5 13. c3 Bc5 14. b4
+Bb6 15. Qg4 Bxg4 16. Rab1 Bxh3 17. gxh3 Qxd3 18. Rbd1 Qxh3 19. Bxb7 Rab8
+0-1
+
+`,`[Event "2025 London Ch YA"]
+[Site "?"]
+[Date "2025.10.09"]
+[Round "4"]
+[White "Tongarlak, Selim"]
+[Black "Desai, Kabir"]
+[Result "1-0"]
+[WhiteElo "1342"]
+[BlackElo "1224"]
+[ECO "C50"]
+[PlyCount "61"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. O-O Nf6 5. d3 O-O 6. Qe2 d6 7. Bg5 Bg4 8.
+Qe1 Bxf3 9. gxf3 Bd4 10. c3 Bb6 11. Bd5 h6 12. Bh4 Ba5 13. b4 Bb6 14. a4 a5
+15. b5 Na7 16. Bxb7 Rb8 17. Ba6 g5 18. Bg3 Qd7 19. Kg2 g4 20. Kh1 gxf3 21.
+Rg1 Kh8 22. Qf1 c6 23. Bh4 Ng4 24. h3 Nxf2+ 25. Kh2 Ng4+ 26. Rxg4 h5 27.
+Bf6+ Kh7 28. Rg7+ Kh6 29. d4 exd4 30. Qg1 dxc3 31. Qg5# 1-0
 
 `];

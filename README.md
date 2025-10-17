@@ -32,6 +32,14 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.9.8 - October 17th, 2025</summary>
+
+- 🚀 Initially display first moves of games in PGN Viewer widget
+- 🐛 Fix some bugs related to how the dialog behaves when switching between documents on the Documents page
+
+</details>
+
+<details>
 <summary>v5.9.7 - October 11th, 2025</summary>
 
 - 🚀 Add PGNs for 2025 LCC Championship

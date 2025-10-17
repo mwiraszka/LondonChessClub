@@ -15,6 +15,10 @@ export class RoutingService {
   public readonly fragment$: Observable<string | null> =
     this._fragmentSubject.asObservable();
 
+  get currentFragment(): string | null {
+    return this._fragmentSubject.getValue();
+  }
+
   constructor(
     private readonly dialogService: DialogService,
     private readonly router: Router,
@@ -26,8 +30,12 @@ export class RoutingService {
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
         const fragment = this.router.parseUrl(this.router.url).fragment;
+
+        if (this.currentFragment && this.currentFragment !== fragment) {
+          this.dialogService.closeAll();
+        }
+
         this._fragmentSubject.next(fragment);
-        this.dialogService.closeAll();
       });
   }
 

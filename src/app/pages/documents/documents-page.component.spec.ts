@@ -54,6 +54,7 @@ describe('DocumentsPageComponent', () => {
           provide: RoutingService,
           useValue: {
             fragment$,
+            currentFragment: null,
             removeFragment: jest.fn(),
           },
         },
@@ -107,6 +108,12 @@ describe('DocumentsPageComponent', () => {
 
     it('should open document corresponding to the fragment and remove the fragment when the dialog closes', async () => {
       dialogOpenSpy.mockResolvedValue('cancel');
+
+      // Set currentFragment to match the fragment being tested
+      Object.defineProperty(routingService, 'currentFragment', {
+        value: 'lcc-bylaws.pdf',
+        configurable: true,
+      });
 
       fragment$.next('lcc-bylaws.pdf');
       await fixture.whenStable();

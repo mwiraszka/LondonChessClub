@@ -100,7 +100,11 @@ export class DocumentsPageComponent implements OnInit {
           inputs: { documentPath: `assets/documents/${fragment}` },
         });
 
-        this.routingService.removeFragment();
+        // Only remove fragment if it's still the same as when we opened
+        // (prevents removing fragment when an old dialog closes after navigation)
+        if (this.routingService.currentFragment === fragment) {
+          this.routingService.removeFragment();
+        }
       }
     });
   }

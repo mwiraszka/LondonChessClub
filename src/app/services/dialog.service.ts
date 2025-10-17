@@ -98,14 +98,28 @@ export class DialogService {
     this.overlayRefs?.push(overlayRef);
     this.dialogComponentRefs.push(dialogComponentRef);
 
-    return firstValueFrom(dialogComponentRef.instance.result).finally(() =>
-      this.dispose(),
-    );
+    return firstValueFrom(dialogComponentRef.instance.result).finally(() => {
+      // Only dispose if this dialog is still in the array (might have been removed by closeAll())
+      if (this.dialogComponentRefs.includes(dialogComponentRef)) {
+        this.dispose();
+      }
+    });
   }
 
   public closeAll(): void {
-    while (this.topDialogRef) {
-      this.topDialogRef.instance.result.emit('close');
+    // Clear the arrays first so new dialogs can be added
+    const dialogsToClose = [...this.dialogComponentRefs];
+    const overlaysToClose = [...this.overlayRefs];
+
+    this.dialogComponentRefs = [];
+    this.overlayRefs = [];
+
+    for (const dialogRef of dialogsToClose) {
+      dialogRef.instance.result.emit('close');
+    }
+
+    for (const overlayRef of overlaysToClose) {
+      overlayRef.dispose();
     }
   }
 

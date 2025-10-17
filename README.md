@@ -31,6 +31,15 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🐛  | Bug fixes                         |
 | 🔧  | Behind-the-scenes changes         |
 
+</details>
+
+<details>
+<summary>v5.9.9 - October 17th, 2025</summary>
+
+- 🚀 Add PGNs for 2025 LCC Championship
+
+</details>
+
 <details>
 <summary>v5.9.8 - October 17th, 2025</summary>
 

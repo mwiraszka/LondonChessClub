@@ -1,4 +1,5 @@
 export { CamelCasePipe } from './camel-case.pipe';
+export { DurationPipe } from './duration.pipe';
 export { FormatBytesPipe } from './format-bytes.pipe';
 export { FormatDatePipe } from './format-date.pipe';
 export { HighlightPipe } from './highlight.pipe';

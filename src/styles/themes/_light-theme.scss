@@ -317,6 +317,9 @@
   --lcc-color--searchHighlight-background: #{clr(highlight, light)};
   --lcc-color--searchHighlight-text: #{clr(grayscale, black-10)};
 
+  --lcc-color--sessionExpiryDialog-dividerLine: #{clr(grayscale, white-80)};
+  --lcc-color--sessionExpiryDialog-timeRemainingText: #{clr(warning, base)};
+
   --lcc-color--pageHeader-adminIcon: #{clr(admin, dark)};
   --lcc-color--pageHeader-asteriskText: #{clr(grayscale, gray-35)};
   --lcc-color--pageHeader-background: #{clr(grayscale, white-95)};

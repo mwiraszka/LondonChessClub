@@ -7,7 +7,7 @@ import {
   Output,
 } from '@angular/core';
 
-import { DialogOutput, MemberWithNewRatings } from '@app/models';
+import { BasicDialogResult, DialogOutput, MemberWithNewRatings } from '@app/models';
 
 @Component({
   selector: 'lcc-rating-changes',
@@ -16,9 +16,9 @@ import { DialogOutput, MemberWithNewRatings } from '@app/models';
   imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RatingChangesComponent implements DialogOutput<'confirm' | 'cancel'> {
+export class RatingChangesComponent implements DialogOutput<BasicDialogResult> {
   @Input() membersWithNewRatings?: MemberWithNewRatings[];
   @Input() unmatchedMembers?: string[];
 
-  @Output() dialogResult = new EventEmitter<'confirm' | 'cancel' | 'close'>();
+  @Output() dialogResult = new EventEmitter<BasicDialogResult | 'close'>();
 }

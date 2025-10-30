@@ -305,7 +305,7 @@ describe('HomePageComponent', () => {
 
         expect(
           queryAll(fixture.debugElement, '.regional-clubs-section .club-card'),
-        ).toHaveLength(2);
+        ).toHaveLength(3);
 
         expect(
           query(fixture.debugElement, '.photos-section lcc-photo-grid'),

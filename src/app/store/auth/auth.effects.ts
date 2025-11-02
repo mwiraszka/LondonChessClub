@@ -67,6 +67,20 @@ export class AuthEffects {
     );
   });
 
+  refreshSession$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.sessionRefreshRequested),
+      switchMap(() => {
+        return this.authService.refreshSession().pipe(
+          map(() => AuthActions.sessionRefreshSucceeded()),
+          catchError(error =>
+            of(AuthActions.sessionRefreshFailed({ error: parseError(error) })),
+          ),
+        );
+      }),
+    );
+  });
+
   constructor(
     private readonly actions$: Actions,
     private readonly authService: AuthService,

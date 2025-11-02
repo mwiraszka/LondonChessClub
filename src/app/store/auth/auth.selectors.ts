@@ -16,3 +16,8 @@ export const selectUser = createSelector(selectAuthState, state => state.user);
 export const selectUserId = createSelector(selectUser, user => user?.id);
 
 export const selectHasCode = createSelector(selectAuthState, state => state.hasCode);
+
+export const selectSessionStartTime = createSelector(
+  selectAuthState,
+  state => state.sessionStartTime,
+);

@@ -34,6 +34,15 @@ Below you'll find an overview of the tools and technologies that power the app, 
 </details>
 
 <details>
+<summary>v5.9.10 - November 1st, 2025</summary>
+
+- 🚀 Add Glencoe Chess Club to list of regional/satellite clubs on homepage
+- 🚀 Several improvements to admin session management and auto-logout flow
+- 🚀 Create a new reusable Session Expiry Dialog component and Duration pipe for converting raw millisecond values to MM:SS format
+
+</details>
+
+<details>
 <summary>v5.9.9 - October 17th, 2025</summary>
 
 - 🚀 Add PGNs for 2025 LCC Championship

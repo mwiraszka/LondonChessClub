@@ -13,6 +13,7 @@ export type {
   Dialog,
   DialogConfig,
   DialogOutput,
+  SessionExpiryDialogResult,
 } from './dialog.model';
 export type { DbCollection } from './db-collection.model';
 export type { EditorPage } from './editor-page.model';

@@ -20,8 +20,7 @@ import { HeaderComponent } from '@app/components/header/header.component';
 import { NavigationBarComponent } from '@app/components/navigation-bar/navigation-bar.component';
 import { UpcomingEventBannerComponent } from '@app/components/upcoming-event-banner/upcoming-event-banner.component';
 import { Event, IsoDate } from '@app/models';
-import { RoutingService } from '@app/services';
-import { TouchEventsService } from '@app/services';
+import { RoutingService, TouchEventsService, UserActivityService } from '@app/services';
 import { AppActions, AppSelectors } from '@app/store/app';
 import { EventsSelectors } from '@app/store/events';
 
@@ -77,6 +76,7 @@ export class AppComponent implements OnInit {
     private readonly routingService: RoutingService,
     private readonly store: Store,
     private readonly touchEventsService: TouchEventsService,
+    private readonly userActivityService: UserActivityService,
   ) {
     moment.tz.setDefault('America/Toronto');
   }
@@ -84,6 +84,7 @@ export class AppComponent implements OnInit {
   public ngOnInit(): void {
     this.initNavigationListenerForScrollingBackToTop();
     this.touchEventsService.listenForTouchEvents();
+    this.userActivityService.monitorSessionExpiry();
 
     this.viewModel$ = combineLatest([
       this.store.select(AppSelectors.selectBannerLastCleared),

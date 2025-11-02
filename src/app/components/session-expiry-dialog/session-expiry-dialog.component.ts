@@ -1,5 +1,6 @@
-import { Observable, interval } from 'rxjs';
-import { map, takeWhile } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { Observable, timer } from 'rxjs';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import {
@@ -14,6 +15,8 @@ import {
 
 import { DialogOutput, SessionExpiryDialogResult } from '@app/models';
 import { DurationPipe } from '@app/pipes';
+import { AuthActions, AuthSelectors } from '@app/store/auth';
+import { isDefined } from '@app/utils';
 
 @Component({
   selector: 'lcc-session-expiry-dialog',
@@ -89,7 +92,7 @@ import { DurationPipe } from '@app/pipes';
 export class SessionExpiryDialogComponent
   implements DialogOutput<SessionExpiryDialogResult>
 {
-  @Input({ required: true }) initialTimeToExpiryMs!: number;
+  @Input({ required: true }) sessionDurationMs!: number;
 
   @Output() public dialogResult = new EventEmitter<SessionExpiryDialogResult | 'close'>();
 
@@ -98,15 +101,37 @@ export class SessionExpiryDialogComponent
   private enterKeyListener!: () => void;
   private readonly renderer!: Renderer2;
 
-  constructor(private readonly rendererFactory: RendererFactory2) {
+  constructor(
+    private readonly rendererFactory: RendererFactory2,
+    private readonly store: Store,
+  ) {
     this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 
   public ngOnInit(): void {
-    this.timeRemainingSecs$ = interval(1000).pipe(
-      map(tick => this.initialTimeToExpiryMs / 1000 - tick),
-      takeWhile(timeRemaining => timeRemaining > 0),
-    );
+    this.timeRemainingSecs$ = this.store
+      .select(AuthSelectors.selectSessionStartTime)
+      .pipe(
+        filter(isDefined),
+        map(startTime =>
+          Math.max(
+            0,
+            Math.floor((startTime + this.sessionDurationMs - Date.now()) / 1000),
+          ),
+        ),
+        switchMap(initialSecs =>
+          timer(0, 1000).pipe(
+            tap(timeElapsed => {
+              if (initialSecs - timeElapsed <= 0) {
+                this.store.dispatch(
+                  AuthActions.logoutRequested({ sessionExpired: true }),
+                );
+                this.dialogResult.emit('close');
+              }
+            }),
+          ),
+        ),
+      );
 
     this.enterKeyListener = this.renderer.listen(
       'document',

@@ -34,7 +34,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 </details>
 
 <details>
-<summary>v5.9.10 - October TBD, 2025</summary>
+<summary>v5.9.10 - November 1st, 2025</summary>
 
 - 🚀 Add Glencoe Chess Club to list of regional/satellite clubs on homepage
 - 🚀 Several improvements to admin session management and auto-logout flow

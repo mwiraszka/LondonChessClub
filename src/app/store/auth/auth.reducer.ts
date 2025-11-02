@@ -8,6 +8,7 @@ export interface AuthState {
   callState: CallState;
   user: User | null;
   hasCode: boolean;
+  sessionStartTime: number | null; // Timestamp in ms
 }
 
 export const initialState: AuthState = {
@@ -18,6 +19,7 @@ export const initialState: AuthState = {
   },
   user: null,
   hasCode: false,
+  sessionStartTime: null,
 };
 
 export const authReducer = createReducer(
@@ -42,6 +44,7 @@ export const authReducer = createReducer(
     AuthActions.loginFailed,
     AuthActions.logoutFailed,
     AuthActions.passwordChangeFailed,
+    AuthActions.sessionRefreshFailed,
     (state, { error }): AuthState => ({
       ...state,
       callState: {
@@ -59,6 +62,16 @@ export const authReducer = createReducer(
       ...state,
       callState: initialState.callState,
       user,
+      sessionStartTime: Date.now(),
+    }),
+  ),
+
+  on(
+    AuthActions.sessionRefreshSucceeded,
+    (state): AuthState => ({
+      ...state,
+      callState: initialState.callState,
+      sessionStartTime: Date.now(),
     }),
   ),
 

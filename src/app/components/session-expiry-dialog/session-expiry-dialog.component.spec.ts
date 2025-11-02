@@ -1,6 +1,8 @@
-import { Renderer2 } from '@angular/core';
+import { provideMockStore } from '@ngrx/store/testing';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AuthSelectors } from '@app/store/auth';
 import { query } from '@app/utils';
 
 import { SessionExpiryDialogComponent } from './session-expiry-dialog.component';
@@ -14,7 +16,13 @@ describe('SessionExpiryDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SessionExpiryDialogComponent],
-      providers: [{ provide: Renderer2, useValue: { listen: jest.fn() } }],
+      providers: [
+        provideMockStore({
+          selectors: [
+            { selector: AuthSelectors.selectSessionStartTime, value: Date.now() },
+          ],
+        }),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SessionExpiryDialogComponent);
@@ -22,7 +30,7 @@ describe('SessionExpiryDialogComponent', () => {
 
     dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
 
-    component.initialTimeToExpiryMs = 100;
+    component.sessionDurationMs = 60_000;
     fixture.detectChanges();
   });
 

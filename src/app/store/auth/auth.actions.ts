@@ -17,11 +17,11 @@ export const loginFailed = createAction(
 
 export const logoutRequested = createAction(
   '[Auth] Logout requested',
-  props<{ sessionExpired?: boolean }>(),
+  props<{ sessionExpired: boolean }>(),
 );
 export const logoutSucceeded = createAction(
   '[Auth] Logout succeeded',
-  props<{ sessionExpired?: boolean }>(),
+  props<{ sessionExpired: boolean }>(),
 );
 export const logoutFailed = createAction(
   '[Auth] Logout failed',
@@ -52,6 +52,13 @@ export const passwordChangeSucceeded = createAction(
 );
 export const passwordChangeFailed = createAction(
   '[Auth] Password change failed',
+  props<{ error: LccError }>(),
+);
+
+export const sessionRefreshRequested = createAction('[Auth] Session refresh requested');
+export const sessionRefreshSucceeded = createAction('[Auth] Session refresh succeeded');
+export const sessionRefreshFailed = createAction(
+  '[Auth] Session refresh failed',
   props<{ error: LccError }>(),
 );
 

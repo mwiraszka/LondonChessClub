@@ -70,7 +70,7 @@ export class UserSettingsMenuComponent implements OnInit {
   }
 
   public onLogout(): void {
-    this.store.dispatch(AuthActions.logoutRequested({}));
+    this.store.dispatch(AuthActions.logoutRequested({ sessionExpired: false }));
     this.close.emit();
   }
 

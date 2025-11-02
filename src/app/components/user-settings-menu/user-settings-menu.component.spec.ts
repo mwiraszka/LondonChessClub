@@ -85,7 +85,9 @@ describe('UserSettingsMenuComponent', () => {
     it('should dispatch logout action and emit close event', () => {
       component.onLogout();
 
-      expect(dispatchSpy).toHaveBeenCalledWith(AuthActions.logoutRequested({}));
+      expect(dispatchSpy).toHaveBeenCalledWith(
+        AuthActions.logoutRequested({ sessionExpired: false }),
+      );
       expect(closeSpy).toHaveBeenCalledTimes(1);
     });
   });

@@ -12,7 +12,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@env';
 
 @Injectable()
-class LoggingInterceptor implements HttpInterceptor {
+export class LoggingInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<unknown>,
     handler: HttpHandler,

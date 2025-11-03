@@ -16,7 +16,7 @@ import { AuthApiService } from '@app/services';
 import { AuthActions } from '@app/store/auth';
 
 @Injectable()
-class AuthInterceptor implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
   private sessionRefreshInProgress = false;
   private _tokenRefreshed$ = new Subject<boolean>();
   private tokenRefreshed$ = this._tokenRefreshed$.asObservable();

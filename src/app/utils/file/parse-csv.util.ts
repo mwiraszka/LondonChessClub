@@ -3,8 +3,49 @@ import { isEmpty } from 'lodash';
 import { LccError } from '@app/models';
 
 /**
+ * Parse a CSV row respecting quoted fields that may contain commas.
+ * Handles RFC 4180 CSV format where fields containing commas are wrapped in double quotes.
+ *
+ * @example
+ * parseCsvRow('John,"London, UK",1200') // Returns: ['John', 'London, UK', '1200']
+ */
+function parseCsvRow(row: string): string[] {
+  const result: string[] = [];
+  let currentField = '';
+  let insideQuotes = false;
+
+  for (let i = 0; i < row.length; i++) {
+    const char = row[i];
+    const nextChar = row[i + 1];
+
+    if (char === '"') {
+      if (insideQuotes && nextChar === '"') {
+        // Handle escaped quotes ("")
+        currentField += '"';
+        i++; // Skip the next quote
+      } else {
+        // Toggle quote state
+        insideQuotes = !insideQuotes;
+      }
+    } else if (char === ',' && !insideQuotes) {
+      // End of field
+      result.push(currentField.trim());
+      currentField = '';
+    } else {
+      currentField += char;
+    }
+  }
+
+  // Push the last field
+  result.push(currentField.trim());
+
+  return result;
+}
+
+/**
  * Parse a ratings CSV File object and return only the non-empty rows after the header line,
  * projecting for the provided required header columns.
+ * Supports quoted fields containing commas (RFC 4180 format).
  *
  * @example
  * const file = new File(['junk,junk\nheader1,header2\nvalue1,value2\n'], 'test.csv', { type: 'text/csv' });
@@ -32,7 +73,7 @@ export async function parseCsv(
       };
     }
 
-    const data = text.split(/\r?\n/).map(row => row.split(',').map(cell => cell?.trim()));
+    const data = text.split(/\r?\n/).map(row => parseCsvRow(row));
 
     if (data[0].length < headers.length) {
       return {

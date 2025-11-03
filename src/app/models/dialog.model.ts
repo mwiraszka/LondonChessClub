@@ -10,7 +10,7 @@ export interface Dialog {
 
 export type BasicDialogResult = 'confirm' | 'cancel';
 
-export type SessionExpiryDialogResult = 'cancel' | 'logout' | 'extend';
+export type SessionExpiryDialogResult = 'cancel' | 'logout' | 'expire' | 'extend';
 
 /**
  * Must be implemented by any component class dynamically rendered within the Dialog Component

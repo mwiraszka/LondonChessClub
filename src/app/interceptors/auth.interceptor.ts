@@ -12,17 +12,17 @@ import {
 import { Injectable } from '@angular/core';
 
 import { LccError } from '@app/models';
-import { AuthService } from '@app/services';
+import { AuthApiService } from '@app/services';
 import { AuthActions } from '@app/store/auth';
 
 @Injectable()
-class AuthInterceptor implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
   private sessionRefreshInProgress = false;
   private _tokenRefreshed$ = new Subject<boolean>();
   private tokenRefreshed$ = this._tokenRefreshed$.asObservable();
 
   constructor(
-    private readonly authService: AuthService,
+    private readonly authApiService: AuthApiService,
     private readonly store: Store,
   ) {}
 
@@ -67,7 +67,7 @@ class AuthInterceptor implements HttpInterceptor {
     } else {
       this.sessionRefreshInProgress = true;
 
-      return this.authService.refreshSession().pipe(
+      return this.authApiService.refreshSession().pipe(
         tap(() => {
           this.sessionRefreshInProgress = false;
           this._tokenRefreshed$.next(true);

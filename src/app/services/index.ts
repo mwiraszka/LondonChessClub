@@ -1,5 +1,5 @@
 export { ArticlesApiService } from './api/articles-api.service';
-export { AuthService } from './auth.service';
+export { AuthApiService } from './api/auth-api.service';
 export { DIALOG_CONFIG_TOKEN, DialogService } from './dialog.service';
 export { EventsApiService } from './api/events-api.service';
 export { ImageFileService } from './image-file.service';

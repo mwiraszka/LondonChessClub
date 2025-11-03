@@ -1,8 +1,5 @@
-import { provideMockStore } from '@ngrx/store/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { AuthSelectors } from '@app/store/auth';
 import { query } from '@app/utils';
 
 import { SessionExpiryDialogComponent } from './session-expiry-dialog.component';
@@ -16,13 +13,6 @@ describe('SessionExpiryDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SessionExpiryDialogComponent],
-      providers: [
-        provideMockStore({
-          selectors: [
-            { selector: AuthSelectors.selectSessionStartTime, value: Date.now() },
-          ],
-        }),
-      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SessionExpiryDialogComponent);
@@ -30,7 +20,7 @@ describe('SessionExpiryDialogComponent', () => {
 
     dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
 
-    component.sessionDurationMs = 60_000;
+    component.initialTimeRemainingSecs = 60;
     fixture.detectChanges();
   });
 
@@ -66,5 +56,24 @@ describe('SessionExpiryDialogComponent', () => {
 
       expect(dialogResultSpy).toHaveBeenCalledWith('extend');
     });
+
+    it('should emit "expire" when time remaining reaches 0', fakeAsync(() => {
+      component.initialTimeRemainingSecs = 2;
+
+      // Subscribe to the observable to actually trigger the timer logic
+      component.timeRemainingSecs$.subscribe();
+
+      // Timer emits immediately at 0ms: 2 - 0 = 2 (not expired)
+      tick(0);
+      expect(dialogResultSpy).not.toHaveBeenCalled();
+
+      // Advance 1 second: 2 - 1 = 1 (not expired)
+      tick(1000);
+      expect(dialogResultSpy).not.toHaveBeenCalled();
+
+      // Advance 1 more second: 2 - 2 = 0 (expired)
+      tick(1000);
+      expect(dialogResultSpy).toHaveBeenCalledWith('expire');
+    }));
   });
 });

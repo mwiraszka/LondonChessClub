@@ -12,7 +12,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@env';
 
 @Injectable()
-class CacheControlInterceptor implements HttpInterceptor {
+export class CacheControlInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<unknown>,
     handler: HttpHandler,

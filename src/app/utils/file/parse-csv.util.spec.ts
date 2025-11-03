@@ -96,4 +96,65 @@ describe('parseCsv', () => {
     expect(result[0]).toEqual(['John', 'Doe', '1200', '1300', '1210', '1300']);
     expect(result[1]).toEqual(['Magnus', 'Carlsen', '2830', '3000', '2850', '2882']);
   });
+
+  it('handles quoted fields containing commas', async () => {
+    const content = `
+      FIRST NAME,LAST NAME,OLD,PERF,NEW,PEAK\n
+      John,"Doe, Jr.",1200,1300,1210,1300\n
+      Jane,"Smith-Jones, PhD",1250,1290,1260,1295\n
+    `;
+    const file = mockFile(content.trim(), 'ratings.csv');
+    const result = await parseCsv(file, HEADERS);
+
+    if (isLccError(result)) {
+      fail('Expected successful parse');
+    }
+
+    expect(result.length).toBe(2);
+    expect(result[0]).toEqual(['John', 'Doe, Jr.', '1200', '1300', '1210', '1300']);
+    expect(result[1]).toEqual([
+      'Jane',
+      'Smith-Jones, PhD',
+      '1250',
+      '1290',
+      '1260',
+      '1295',
+    ]);
+  });
+
+  it('handles escaped quotes within quoted fields', async () => {
+    const content = `
+      FIRST NAME,LAST NAME,OLD,PERF,NEW,PEAK\n
+      John,"O""Brien",1200,1300,1210,1300\n
+    `;
+    const file = mockFile(content.trim(), 'ratings.csv');
+    const result = await parseCsv(file, HEADERS);
+
+    if (isLccError(result)) {
+      fail('Expected successful parse');
+    }
+
+    expect(result.length).toBe(1);
+    expect(result[0]).toEqual(['John', 'O"Brien', '1200', '1300', '1210', '1300']);
+  });
+
+  it('handles mixed quoted and unquoted fields', async () => {
+    const content = `
+      FIRST NAME,LAST NAME,OLD,PERF,NEW,PEAK\n
+      John,Doe,1200,1300,1210,1300\n
+      Jane,"Smith, MD",1250,1290,1260,1295\n
+      Magnus,Carlsen,2830,3000,2850,2882\n
+    `;
+    const file = mockFile(content.trim(), 'ratings.csv');
+    const result = await parseCsv(file, HEADERS);
+
+    if (isLccError(result)) {
+      fail('Expected successful parse');
+    }
+
+    expect(result.length).toBe(3);
+    expect(result[0]).toEqual(['John', 'Doe', '1200', '1300', '1210', '1300']);
+    expect(result[1]).toEqual(['Jane', 'Smith, MD', '1250', '1290', '1260', '1295']);
+    expect(result[2]).toEqual(['Magnus', 'Carlsen', '2830', '3000', '2850', '2882']);
+  });
 });

@@ -1,6 +1,6 @@
-import { Store } from '@ngrx/store';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable, timer } from 'rxjs';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import {
@@ -10,14 +10,12 @@ import {
   Input,
   Output,
   Renderer2,
-  RendererFactory2,
 } from '@angular/core';
 
 import { DialogOutput, SessionExpiryDialogResult } from '@app/models';
 import { DurationPipe } from '@app/pipes';
-import { AuthActions, AuthSelectors } from '@app/store/auth';
-import { isDefined } from '@app/utils';
 
+@UntilDestroy()
 @Component({
   selector: 'lcc-session-expiry-dialog',
   template: `
@@ -52,86 +50,33 @@ import { isDefined } from '@app/utils';
       </button>
     </div>
   `,
-  styles: `
-    :host {
-      width: 430px !important;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      text-align: start;
-      padding: 16px 32px;
-
-      .dialog-title {
-        padding-bottom: 4px;
-        border-bottom: 1px solid var(--lcc-color--sessionExpiryDialog-dividerLine);
-      }
-
-      .dialog-body {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-
-        .time-remaining-text {
-          font-weight: bold;
-          color: var(--lcc-color--sessionExpiryDialog-timeRemainingText);
-        }
-      }
-
-      .buttons-container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 16px;
-      }
-    }
-  `,
+  styleUrl: 'session-expiry-dialog.component.scss',
   imports: [CommonModule, DurationPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SessionExpiryDialogComponent
   implements DialogOutput<SessionExpiryDialogResult>
 {
-  @Input({ required: true }) sessionDurationMs!: number;
+  @Input({ required: true }) initialTimeRemainingSecs!: number;
 
   @Output() public dialogResult = new EventEmitter<SessionExpiryDialogResult | 'close'>();
 
   public timeRemainingSecs$!: Observable<number>;
 
   private enterKeyListener!: () => void;
-  private readonly renderer!: Renderer2;
 
-  constructor(
-    private readonly rendererFactory: RendererFactory2,
-    private readonly store: Store,
-  ) {
-    this.renderer = this.rendererFactory.createRenderer(null, null);
-  }
+  constructor(private readonly renderer: Renderer2) {}
 
   public ngOnInit(): void {
-    this.timeRemainingSecs$ = this.store
-      .select(AuthSelectors.selectSessionStartTime)
-      .pipe(
-        filter(isDefined),
-        map(startTime =>
-          Math.max(
-            0,
-            Math.floor((startTime + this.sessionDurationMs - Date.now()) / 1000),
-          ),
-        ),
-        switchMap(initialSecs =>
-          timer(0, 1000).pipe(
-            tap(timeElapsed => {
-              if (initialSecs - timeElapsed <= 0) {
-                this.store.dispatch(
-                  AuthActions.logoutRequested({ sessionExpired: true }),
-                );
-                this.dialogResult.emit('close');
-              }
-            }),
-          ),
-        ),
-      );
+    this.timeRemainingSecs$ = timer(0, 1000).pipe(
+      untilDestroyed(this),
+      map(timeElapsed => this.initialTimeRemainingSecs - timeElapsed),
+      tap(timeRemaining => {
+        if (timeRemaining <= 0) {
+          this.dialogResult.emit('expire');
+        }
+      }),
+    );
 
     this.enterKeyListener = this.renderer.listen(
       'document',

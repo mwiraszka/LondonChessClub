@@ -36,6 +36,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <details>
 <summary>v5.9.12 - November 3rd, 2025</summary>
 
+- 🐛 Fix a few bugs related to new user activity / auto-logout flow, and extend admin user inactivity limit to 3 hours
 - 🔧 Extend test coverage to include the remainder of frontend services
 
 </details>

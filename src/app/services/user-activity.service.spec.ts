@@ -20,7 +20,10 @@ describe('UserActivityService', () => {
       providers: [
         UserActivityService,
         provideMockStore({
-          selectors: [{ selector: AuthSelectors.selectSessionStartTime, value: null }],
+          selectors: [
+            { selector: AuthSelectors.selectSessionStartTime, value: null },
+            { selector: AuthSelectors.selectCallState, value: { status: 'idle' } },
+          ],
         }),
         { provide: DialogService, useValue: { open: jest.fn() } },
       ],
@@ -117,6 +120,23 @@ describe('UserActivityService', () => {
       service.monitorSessionExpiry();
       tick(UserActivityService.SESSION_CHECK_INTERVAL_MS);
 
+      expect(dispatchSpy).not.toHaveBeenCalled();
+    }));
+
+    it('should not trigger actions when call state status is loading', fakeAsync(() => {
+      const sessionStartTime =
+        Date.now() - UserActivityService.MIN_SESSION_DURATION_FOR_WARNING_DIALOG_MS;
+      store.overrideSelector(AuthSelectors.selectSessionStartTime, sessionStartTime);
+      store.overrideSelector(AuthSelectors.selectCallState, {
+        status: 'loading',
+        loadStart: null,
+        error: null,
+      });
+
+      service.monitorSessionExpiry();
+      tick(UserActivityService.SESSION_CHECK_INTERVAL_MS);
+
+      expect(dialogOpenSpy).not.toHaveBeenCalled();
       expect(dispatchSpy).not.toHaveBeenCalled();
     }));
   });

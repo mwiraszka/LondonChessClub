@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { SessionExpiryDialogComponent } from '@app/components/session-expiry-dialog/session-expiry-dialog.component';
 import { SessionExpiryDialogResult } from '@app/models';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
+import { isDefined } from '@app/utils';
 
 import { DialogService } from './dialog.service';
 
@@ -14,13 +15,14 @@ import { DialogService } from './dialog.service';
   providedIn: 'root',
 })
 export class UserActivityService {
-  public static readonly SESSION_DURATION_MS = 29 * 60 * 1000; // 29 minutes
+  // 3 hours (minus 2 minutes to ensure frontend auto-logout occurs before backend session expiry)
+  public static readonly SESSION_DURATION_MS = 10_680_000;
 
-  public static readonly MAX_INACTIVITY_DURATION_FOR_AUTO_REFRESH_MS = 9 * 60 * 1000; // 9 minutes
-  public static readonly MIN_SESSION_DURATION_FOR_AUTO_REFRESH_MS = 10 * 60 * 1000; // 10 minutes
-  public static readonly MIN_SESSION_DURATION_FOR_WARNING_DIALOG_MS = 20 * 60 * 1000; // 20 minutes
+  public static readonly MAX_INACTIVITY_DURATION_FOR_AUTO_REFRESH_MS = 600_000; // 10 minutes
+  public static readonly MIN_SESSION_DURATION_FOR_AUTO_REFRESH_MS = 900_000; // 15 minutes
+  public static readonly MIN_SESSION_DURATION_FOR_WARNING_DIALOG_MS = 9_000_000; // 2 hours 30 minutes
 
-  public static readonly SESSION_CHECK_INTERVAL_MS = 10 * 1000; // 10 seconds
+  public static readonly SESSION_CHECK_INTERVAL_MS = 60_000; // 1 minute
 
   private isDialogOpen = false;
   private lastActivityTime: number | null = null;
@@ -41,9 +43,15 @@ export class UserActivityService {
 
     combineLatest([
       this.store.select(AuthSelectors.selectSessionStartTime),
+      this.store.select(AuthSelectors.selectCallState),
       interval(UserActivityService.SESSION_CHECK_INTERVAL_MS),
     ])
-      .pipe(filter(([sessionStartTime]) => !!sessionStartTime))
+      .pipe(
+        filter(
+          ([sessionStartTime, callState]) =>
+            isDefined(sessionStartTime) && callState.status === 'idle',
+        ),
+      )
       .subscribe(([sessionStartTime]) => {
         const timeElapsed = Date.now() - sessionStartTime!;
 
@@ -63,12 +71,15 @@ export class UserActivityService {
         if (
           timeElapsed > UserActivityService.MIN_SESSION_DURATION_FOR_WARNING_DIALOG_MS
         ) {
-          this.showWarningDialog();
+          const initialTimeRemainingSecs = Math.floor(
+            (UserActivityService.SESSION_DURATION_MS - timeElapsed) / 1000,
+          );
+          this.showWarningDialog(initialTimeRemainingSecs);
         }
       });
   }
 
-  private async showWarningDialog(): Promise<void> {
+  private async showWarningDialog(initialTimeRemainingSecs: number): Promise<void> {
     this.isDialogOpen = true;
 
     const dialogResult = await this.dialogService.open<
@@ -76,16 +87,21 @@ export class UserActivityService {
       SessionExpiryDialogResult
     >({
       componentType: SessionExpiryDialogComponent,
-      inputs: { sessionDurationMs: UserActivityService.SESSION_DURATION_MS },
+      inputs: { initialTimeRemainingSecs },
       isModal: false,
     });
 
-    this.isDialogOpen = false;
-
     if (dialogResult === 'logout') {
       this.store.dispatch(AuthActions.logoutRequested({ sessionExpired: false }));
-    } else {
-      this.store.dispatch(AuthActions.sessionRefreshRequested());
+      return;
     }
+
+    if (dialogResult === 'expire') {
+      this.store.dispatch(AuthActions.logoutRequested({ sessionExpired: true }));
+      return;
+    }
+
+    this.store.dispatch(AuthActions.sessionRefreshRequested());
+    this.isDialogOpen = false;
   }
 }

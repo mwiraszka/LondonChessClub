@@ -1,6 +1,6 @@
 import { Store } from '@ngrx/store';
 import { combineLatest, fromEvent, interval, merge } from 'rxjs';
-import { filter, tap, throttleTime } from 'rxjs/operators';
+import { filter, throttleTime } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
@@ -14,10 +14,16 @@ import { DialogService } from './dialog.service';
   providedIn: 'root',
 })
 export class UserActivityService {
-  private readonly SESSION_DURATION_MS = 29 * 60 * 1000; // 29 minutes
+  public static readonly SESSION_DURATION_MS = 29 * 60 * 1000; // 29 minutes
+
+  public static readonly MAX_INACTIVITY_DURATION_FOR_AUTO_REFRESH_MS = 9 * 60 * 1000; // 9 minutes
+  public static readonly MIN_SESSION_DURATION_FOR_AUTO_REFRESH_MS = 10 * 60 * 1000; // 10 minutes
+  public static readonly MIN_SESSION_DURATION_FOR_WARNING_DIALOG_MS = 20 * 60 * 1000; // 20 minutes
+
+  public static readonly SESSION_CHECK_INTERVAL_MS = 10 * 1000; // 10 seconds
 
   private isDialogOpen = false;
-  private lastActivityTime = Date.now();
+  private lastActivityTime: number | null = null;
 
   constructor(
     private readonly dialogService: DialogService,
@@ -25,36 +31,38 @@ export class UserActivityService {
   ) {}
 
   public monitorSessionExpiry(): void {
-    const activityEvents$ = merge(
+    merge(
       fromEvent(document, 'mousemove'),
       fromEvent(document, 'keypress'),
       fromEvent(document, 'touchstart'),
-    ).pipe(
-      throttleTime(10_000),
-      tap(() => (this.lastActivityTime = Date.now())),
-    );
+    )
+      .pipe(throttleTime(UserActivityService.SESSION_CHECK_INTERVAL_MS))
+      .subscribe(() => (this.lastActivityTime = Date.now()));
 
     combineLatest([
       this.store.select(AuthSelectors.selectSessionStartTime),
-      merge(activityEvents$, interval(10_000)),
+      interval(UserActivityService.SESSION_CHECK_INTERVAL_MS),
     ])
       .pipe(filter(([sessionStartTime]) => !!sessionStartTime))
       .subscribe(([sessionStartTime]) => {
         const timeElapsed = Date.now() - sessionStartTime!;
-        const timeSinceActivity = Date.now() - this.lastActivityTime;
 
         if (this.isDialogOpen) {
           return;
         }
 
         if (
-          timeElapsed > this.SESSION_DURATION_MS * 0.5 &&
-          timeSinceActivity < 2 * 60 * 1000
+          this.lastActivityTime !== null &&
+          timeElapsed > UserActivityService.MIN_SESSION_DURATION_FOR_AUTO_REFRESH_MS &&
+          Date.now() - this.lastActivityTime <
+            UserActivityService.MAX_INACTIVITY_DURATION_FOR_AUTO_REFRESH_MS
         ) {
           this.store.dispatch(AuthActions.sessionRefreshRequested());
         }
 
-        if (timeElapsed > this.SESSION_DURATION_MS * 0.9) {
+        if (
+          timeElapsed > UserActivityService.MIN_SESSION_DURATION_FOR_WARNING_DIALOG_MS
+        ) {
           this.showWarningDialog();
         }
       });
@@ -68,7 +76,7 @@ export class UserActivityService {
       SessionExpiryDialogResult
     >({
       componentType: SessionExpiryDialogComponent,
-      inputs: { sessionDurationMs: this.SESSION_DURATION_MS },
+      inputs: { sessionDurationMs: UserActivityService.SESSION_DURATION_MS },
       isModal: false,
     });
 

@@ -6,7 +6,7 @@ import { catchError, filter, map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
-import { AuthService } from '@app/services';
+import { AuthApiService } from '@app/services';
 import { parseError } from '@app/utils';
 
 import { AuthActions, AuthSelectors } from '.';
@@ -17,7 +17,7 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.loginRequested),
       switchMap(({ email, password }) => {
-        return this.authService.logIn(email, password).pipe(
+        return this.authApiService.logIn(email, password).pipe(
           map(response => AuthActions.loginSucceeded({ user: response.data })),
           catchError(error => of(AuthActions.loginFailed({ error: parseError(error) }))),
         );
@@ -31,7 +31,7 @@ export class AuthEffects {
       concatLatestFrom(() => this.store.select(AuthSelectors.selectUser)),
       filter(([, user]) => !!user),
       switchMap(([{ sessionExpired }]) => {
-        return this.authService.logOut().pipe(
+        return this.authApiService.logOut().pipe(
           map(() => AuthActions.logoutSucceeded({ sessionExpired })),
           catchError(error => of(AuthActions.logoutFailed({ error: parseError(error) }))),
         );
@@ -43,7 +43,7 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.codeForPasswordChangeRequested),
       switchMap(({ email }) => {
-        return this.authService.sendCodeForPasswordChange(email).pipe(
+        return this.authApiService.sendCodeForPasswordChange(email).pipe(
           map(() => AuthActions.codeForPasswordChangeSucceeded()),
           catchError(error =>
             of(AuthActions.codeForPasswordChangeFailed({ error: parseError(error) })),
@@ -57,7 +57,7 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.passwordChangeRequested),
       switchMap(({ email, password, code }) => {
-        return this.authService.changePassword(email, password, code).pipe(
+        return this.authApiService.changePassword(email, password, code).pipe(
           map(response => AuthActions.passwordChangeSucceeded({ user: response.data })),
           catchError(error =>
             of(AuthActions.passwordChangeFailed({ error: parseError(error) })),
@@ -71,7 +71,7 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.sessionRefreshRequested),
       switchMap(() => {
-        return this.authService.refreshSession().pipe(
+        return this.authApiService.refreshSession().pipe(
           map(() => AuthActions.sessionRefreshSucceeded()),
           catchError(error =>
             of(AuthActions.sessionRefreshFailed({ error: parseError(error) })),
@@ -83,7 +83,7 @@ export class AuthEffects {
 
   constructor(
     private readonly actions$: Actions,
-    private readonly authService: AuthService,
+    private readonly authApiService: AuthApiService,
     private readonly store: Store,
   ) {}
 }

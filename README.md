@@ -34,6 +34,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 </details>
 
 <details>
+<summary>v5.9.12 - November 3rd, 2025</summary>
+
+- 🔧 Extend test coverage to include the remainder of frontend services
+
+</details>
+
+<details>
 <summary>v5.9.11 - November 2nd, 2025</summary>
 
 - 🚀 Add PGNs for 2025 LCC Championship

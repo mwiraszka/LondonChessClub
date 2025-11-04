@@ -37,6 +37,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.9.13 - November TBD, 2025</summary>
 
 - 🚀 Improve how event information is displayed and handled in Event Calendar Grid with new Event Info Dialog component
+- 🚀 Preserve light/dark mode and other app preferences when a new version of the web app is deployed
 
 </details>
 

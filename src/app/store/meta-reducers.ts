@@ -46,6 +46,14 @@ function clearStaleLocalStorageDataMetaReducer(
       console.info(`[LCC] Clearing stale data from local storage for version ${version}`);
 
       keysToRemove.forEach(key => {
+        // Preserve appState from previous version
+        if (key.startsWith('appState')) {
+          const oldAppState = localStorage.getItem(key);
+          if (oldAppState) {
+            localStorage.setItem(`appState_v${version}`, oldAppState);
+          }
+        }
+
         localStorage.removeItem(key);
         console.info(`[LCC] Removed stale key: ${key}`);
       });

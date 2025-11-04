@@ -9,6 +9,7 @@ import { CalendarMonth, DataPaginationOptions, Event } from '@app/models';
 import { FormatDatePipe, HighlightPipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 import { query, queryAll } from '@app/utils';
+import * as deviceUtils from '@app/utils/device/is-touch-device.util';
 
 import { EventsCalendarGridComponent } from './events-calendar-grid.component';
 
@@ -295,50 +296,51 @@ describe('EventsCalendarGridComponent', () => {
       ).toBe(31 + 28 + 31);
     });
 
-    it('should set router link on event indicators on desktop when event has articleId', async () => {
-      // Use championship event specifically for this test
-      fixture.componentRef.setInput('events', [MOCK_EVENTS[1]]);
-      component.isTouchDevice = false;
-      fixture.detectChanges();
+    describe('tooltips on event indicators', () => {
+      describe('on desktop', () => {
+        let localFixture: ComponentFixture<EventsCalendarGridComponent>;
 
-      const indicator = query(fixture.debugElement, '.event-indicator.championship');
-      expect(indicator.nativeElement.getAttribute('href')).toBe(
-        '/article/view/' + MOCK_EVENTS[1].articleId,
-      );
-    });
+        beforeEach(() => {
+          jest.spyOn(deviceUtils, 'isTouchDevice').mockReturnValue(false);
 
-    it('should not set router links on event indicators on mobile', () => {
-      // Use championship event specifically for this test
-      fixture.componentRef.setInput('events', [MOCK_EVENTS[1]]);
-      component.isTouchDevice = true;
-      fixture.detectChanges();
+          localFixture = TestBed.createComponent(EventsCalendarGridComponent);
 
-      const indicator = query(fixture.debugElement, '.event-indicator.championship');
-      expect(indicator.nativeElement.getAttribute('href')).toBeNull();
-    });
+          localFixture.componentRef.setInput('events', mockEvents);
+          localFixture.componentRef.setInput('isAdmin', mockIsAdmin);
+          localFixture.componentRef.setInput('options', mockOptions);
 
-    describe('tooltip content', () => {
-      it('should set tooltip properties and render template structure', () => {
-        const eventIndicator = query(fixture.debugElement, '.event-indicator');
-        const directiveInstance = eventIndicator.injector.get(TooltipDirective);
+          localFixture.detectChanges();
+        });
 
-        expect(directiveInstance.tooltip).toBeTruthy();
-        expect(directiveInstance.tooltipContext).toEqual(mockEvents[0]);
+        it('should render tooltips over event indicators', () => {
+          const eventIndicator = query(localFixture.debugElement, '.event-indicator');
+          const directiveInstance = eventIndicator.injector.get(TooltipDirective);
+
+          expect(directiveInstance.tooltip).toBeTruthy();
+        });
       });
 
-      it('should render championship events with icon and article link', () => {
-        // Change to championship event
-        fixture.componentRef.setInput('events', [MOCK_EVENTS[1]]);
-        fixture.detectChanges();
+      describe('on mobile', () => {
+        let localFixture: ComponentFixture<EventsCalendarGridComponent>;
 
-        const eventIndicator = query(fixture.debugElement, '.event-indicator');
-        const directiveInstance = eventIndicator.injector.get(TooltipDirective);
+        beforeEach(() => {
+          jest.spyOn(deviceUtils, 'isTouchDevice').mockReturnValue(true);
 
-        // Verify tooltip context is the championship event
-        const event = directiveInstance.tooltipContext as Event;
-        expect(event.type).toBe('championship');
-        expect(event.articleId).toBeTruthy();
-        expect(event.title).toContain('Championship');
+          localFixture = TestBed.createComponent(EventsCalendarGridComponent);
+
+          localFixture.componentRef.setInput('events', mockEvents);
+          localFixture.componentRef.setInput('isAdmin', mockIsAdmin);
+          localFixture.componentRef.setInput('options', mockOptions);
+
+          localFixture.detectChanges();
+        });
+
+        it('should not render tooltips over event indicators', () => {
+          const eventIndicator = query(localFixture.debugElement, '.event-indicator');
+          const directiveInstance = eventIndicator.injector.get(TooltipDirective);
+
+          expect(directiveInstance.tooltip).toBeFalsy();
+        });
       });
     });
   });

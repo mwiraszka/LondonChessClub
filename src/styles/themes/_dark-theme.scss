@@ -128,6 +128,10 @@ body[data-theme='dark'] {
   --lcc-color--documentViewer-scrollbarBackground: #{clr(grayscale, white-90)};
   --lcc-color--documentViewer-scrollbar: #{clr(grayscale, gray-65)};
 
+  --lcc-color--eventInfoDialog-dividerLine: #{clr(grayscale, white-80)};
+  --lcc-color--eventInfoDialog-primaryText: #{clr(grayscale, black-5)};
+  --lcc-color--eventInfoDialog-secondaryText: #{clr(grayscale, black-20)};
+
   --lcc-color--eventsCalendar-dayHeaderBackground: #{clr(grayscale, black-15)};
   --lcc-color--eventsCalendar-dayHeaderText: #{clr(grayscale, gray-75)};
   --lcc-color--eventsCalendar-eventIndicatorBorder: #{clr(grayscale, black-20, 0.5)};

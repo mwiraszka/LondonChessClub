@@ -8,7 +8,7 @@ export interface Dialog {
   cancelButtonText?: string;
 }
 
-export type BasicDialogResult = 'confirm' | 'cancel';
+export type BasicDialogResult = 'cancel' | 'confirm';
 
 export type SessionExpiryDialogResult = 'cancel' | 'logout' | 'expire' | 'extend';
 

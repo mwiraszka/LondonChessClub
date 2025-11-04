@@ -34,6 +34,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 </details>
 
 <details>
+<summary>v5.9.13 - November TBD, 2025</summary>
+
+- 🚀 Improve how event information is displayed and handled in Event Calendar Grid with new Event Info Dialog component
+
+</details>
+
+<details>
 <summary>v5.9.12 - November 3rd, 2025</summary>
 
 - 🚀 Add support for commas in uploaded CSVs wherever values are wrapped in double-quotes (RFC 4180 standard)

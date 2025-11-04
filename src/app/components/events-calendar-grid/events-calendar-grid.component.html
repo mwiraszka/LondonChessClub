@@ -32,17 +32,13 @@
                       [class]="event.type | kebabCase"
                       [class.no-events]="!calendarMonth.hasEvents"
                       [class.other-month]="!day.isCurrentMonth"
-                      [routerLink]="
-                        !isTouchDevice && event.articleId
-                          ? '/article/view/' + event.articleId
-                          : null
-                      "
                       [tooltip]="
-                        day.isCurrentMonth && calendarMonth.hasEvents
+                        day.isCurrentMonth && calendarMonth.hasEvents && !isTouchDevice
                           ? eventTooltipContent
                           : null
                       "
-                      [tooltipContext]="event">
+                      [tooltipContext]="event"
+                      (click)="onEventIndicator(event)">
                     </a>
                   }
                 </div>
@@ -58,41 +54,32 @@
 <ng-template
   #eventTooltipContent
   let-event>
-  <a
-    class="event-tooltip"
-    [routerLink]="event.articleId ? '/article/view/' + event.articleId : null">
-    <header class="event-date-and-time">
-      <mat-icon>calendar_month</mat-icon>
-      <div>{{ event.eventDate | formatDate: 'long day-of-week' }}</div>
-      <div>{{ event.eventDate | formatDate: 'long month-day-year' }}</div>
-      <div>at {{ event.eventDate | formatDate: 'time' }}</div>
-    </header>
-
-    <div
-      class="event-title"
-      [innerHTML]="event.title | highlight: options?.search">
+  <div class="event-tooltip">
+    <div class="event-date-and-time">
+      <mat-icon class="calendar-icon">calendar_month</mat-icon>
+      <span>{{ event.eventDate | formatDate: 'short no-time' }}</span>
     </div>
 
-    <div
-      class="event-type-wrapper"
-      [ngClass]="event.type | kebabCase">
-      <span
-        class="event-type"
-        [innerHTML]="event.type | highlight: options?.search">
-      </span>
+    <div class="event-title-and-type">
+      <div
+        class="event-title"
+        [innerHTML]="event.title | highlight: options?.search">
+      </div>
 
-      @if ((event.type | kebabCase) === 'championship') {
-        <mat-icon class="championship-icon">emoji_events</mat-icon>
-      }
+      <div
+        class="event-type-wrapper"
+        [ngClass]="event.type | kebabCase">
+        <span
+          class="event-type"
+          [innerHTML]="event.type | highlight: options?.search">
+        </span>
+
+        @if ((event.type | kebabCase) === 'championship') {
+          <mat-icon class="championship-icon">emoji_events</mat-icon>
+        }
+      </div>
     </div>
 
-    <div
-      class="event-details"
-      [innerHTML]="event.details.replace('\\n', '\n') | highlight: options?.search">
-    </div>
-
-    @if (event.articleId) {
-      <span>Click for more details</span>
-    }
-  </a>
+    <div class="more-details">Click for more details</div>
+  </div>
 </ng-template>

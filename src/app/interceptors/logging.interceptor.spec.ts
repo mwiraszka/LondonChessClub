@@ -15,7 +15,7 @@ describe('LoggingInterceptor', () => {
 
   let mockHandler: HttpHandler;
 
-  let handlerSpy: jest.SpyInstance;
+  let handleSpy: jest.SpyInstance;
 
   beforeEach(() => {
     mockHandler = {
@@ -28,7 +28,7 @@ describe('LoggingInterceptor', () => {
 
     interceptor = TestBed.inject(LoggingInterceptor);
 
-    handlerSpy = jest.spyOn(mockHandler, 'handle');
+    handleSpy = jest.spyOn(mockHandler, 'handle');
   });
 
   afterEach(() => {
@@ -45,14 +45,14 @@ describe('LoggingInterceptor', () => {
 
       interceptor.intercept(mockRequest, mockHandler);
 
-      expect(handlerSpy).toHaveBeenCalledWith(mockRequest);
+      expect(handleSpy).toHaveBeenCalledWith(mockRequest);
     });
 
     it('should return handler response', done => {
       const mockRequest = new HttpRequest('GET', '/api/test');
       const mockResponse = { status: 200, data: 'test' };
 
-      handlerSpy.mockReturnValue(of(mockResponse));
+      handleSpy.mockReturnValue(of(mockResponse));
 
       interceptor.intercept(mockRequest, mockHandler).subscribe({
         next: (response: HttpEvent<unknown>) => {
@@ -67,7 +67,7 @@ describe('LoggingInterceptor', () => {
 
       interceptor.intercept(mockRequest, mockHandler);
 
-      expect(handlerSpy).toHaveBeenCalledWith(mockRequest);
+      expect(handleSpy).toHaveBeenCalledWith(mockRequest);
     });
 
     it('should handle PUT requests', () => {
@@ -75,7 +75,7 @@ describe('LoggingInterceptor', () => {
 
       interceptor.intercept(mockRequest, mockHandler);
 
-      expect(handlerSpy).toHaveBeenCalledWith(mockRequest);
+      expect(handleSpy).toHaveBeenCalledWith(mockRequest);
     });
 
     it('should handle DELETE requests', () => {
@@ -83,7 +83,7 @@ describe('LoggingInterceptor', () => {
 
       interceptor.intercept(mockRequest, mockHandler);
 
-      expect(handlerSpy).toHaveBeenCalledWith(mockRequest);
+      expect(handleSpy).toHaveBeenCalledWith(mockRequest);
     });
 
     it('should handle requests with query parameters', () => {
@@ -91,7 +91,7 @@ describe('LoggingInterceptor', () => {
 
       interceptor.intercept(mockRequest, mockHandler);
 
-      expect(handlerSpy).toHaveBeenCalledWith(mockRequest);
+      expect(handleSpy).toHaveBeenCalledWith(mockRequest);
     });
 
     it('should handle requests with different base URLs', () => {
@@ -99,7 +99,7 @@ describe('LoggingInterceptor', () => {
 
       interceptor.intercept(mockRequest, mockHandler);
 
-      expect(handlerSpy).toHaveBeenCalledWith(mockRequest);
+      expect(handleSpy).toHaveBeenCalledWith(mockRequest);
     });
   });
 });

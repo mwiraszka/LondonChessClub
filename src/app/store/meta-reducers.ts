@@ -1,6 +1,9 @@
 import { RouterState } from '@ngrx/router-store';
 import { Action, ActionReducer, MetaReducer } from '@ngrx/store';
+import { compact } from 'lodash';
 import { localStorageSync } from 'ngrx-store-localstorage';
+
+import { UserActivityService } from '@app/services';
 
 import { environment } from '@env';
 
@@ -34,7 +37,10 @@ const hydratedStates = [
   'navState',
 ] as Array<keyof Exclude<MetaState, RouterState>>;
 
-function clearStaleLocalStorageDataMetaReducer(
+/**
+ * Clears stale data from previous app versions from local storage
+ */
+export function clearStaleLocalStorageDataMetaReducer(
   reducer: ActionReducer<MetaState>,
 ): ActionReducer<MetaState> {
   const keysToRemove = Object.keys(localStorage).filter(
@@ -46,6 +52,14 @@ function clearStaleLocalStorageDataMetaReducer(
       console.info(`[LCC] Clearing stale data from local storage for version ${version}`);
 
       keysToRemove.forEach(key => {
+        // Preserve appState from previous version
+        if (key.startsWith('appState')) {
+          const oldAppState = localStorage.getItem(key);
+          if (oldAppState) {
+            localStorage.setItem(`appState_v${version}`, oldAppState);
+          }
+        }
+
         localStorage.removeItem(key);
         console.info(`[LCC] Removed stale key: ${key}`);
       });
@@ -55,7 +69,7 @@ function clearStaleLocalStorageDataMetaReducer(
   };
 }
 
-function actionLogMetaReducer(
+export function actionLogMetaReducer(
   reducer: ActionReducer<MetaState>,
 ): ActionReducer<MetaState> {
   return (state, action) => {
@@ -70,7 +84,7 @@ function actionLogMetaReducer(
 /**
  * Custom storage mechanism that adds versioning to keys
  */
-const versionedStorage = {
+export const versionedStorage = {
   getItem: (key: string) => {
     return localStorage.getItem(`${key}_v${version}`);
   },
@@ -94,7 +108,10 @@ const versionedStorage = {
   },
 };
 
-function hydrationMetaReducer(
+/**
+ * Re-hydrates state from local storage
+ */
+export function hydrationMetaReducer(
   reducer: ActionReducer<MetaState>,
 ): ActionReducer<MetaState> {
   return localStorageSync({
@@ -105,7 +122,42 @@ function hydrationMetaReducer(
   })(reducer);
 }
 
-export const metaReducers: Array<MetaReducer<MetaState, Action<string>>> =
-  environment.production
-    ? [clearStaleLocalStorageDataMetaReducer, hydrationMetaReducer]
-    : [actionLogMetaReducer, clearStaleLocalStorageDataMetaReducer, hydrationMetaReducer];
+/**
+ * Validates and clears expired auth state to invalidate a potential expired session on rehydration
+ */
+export function sessionValidationMetaReducer(
+  reducer: ActionReducer<MetaState>,
+): ActionReducer<MetaState> {
+  return (state, action) => {
+    const nextState = reducer(state, action);
+
+    // Only validate on update-reducers action (after hydration completes)
+    if (
+      action.type === '@ngrx/store/update-reducers' &&
+      nextState?.authState?.sessionStartTime
+    ) {
+      const timeElapsed = Date.now() - nextState.authState.sessionStartTime;
+
+      if (timeElapsed > UserActivityService.SESSION_DURATION_MS) {
+        console.info('[LCC] Session expired during offline period - clearing auth state');
+        return {
+          ...nextState,
+          authState: {
+            ...nextState.authState,
+            user: null,
+            sessionStartTime: null,
+          },
+        };
+      }
+    }
+
+    return nextState;
+  };
+}
+
+export const metaReducers: Array<MetaReducer<MetaState, Action<string>>> = compact([
+  environment.production ? undefined : actionLogMetaReducer,
+  clearStaleLocalStorageDataMetaReducer,
+  hydrationMetaReducer,
+  sessionValidationMetaReducer,
+]);

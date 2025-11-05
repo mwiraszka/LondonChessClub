@@ -11,7 +11,7 @@ import {
   Output,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { AdminControlsDirective } from '@app/directives/admin-controls.directive';
@@ -30,6 +30,8 @@ import { FormatDatePipe, HighlightPipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
 import { isTouchDevice } from '@app/utils';
 
+import { EventInfoDialogComponent } from '../event-info-dialog/event-info-dialog.component';
+
 @Component({
   selector: 'lcc-events-calendar-grid',
   templateUrl: './events-calendar-grid.component.html',
@@ -41,7 +43,6 @@ import { isTouchDevice } from '@app/utils';
     HighlightPipe,
     KebabCasePipe,
     MatIconModule,
-    RouterLink,
     TooltipDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -59,7 +60,10 @@ export class EventsCalendarGridComponent implements OnInit, OnChanges {
   public isTouchDevice!: boolean;
   private cachedEventsJson = '';
 
-  constructor(private readonly dialogService: DialogService) {}
+  constructor(
+    private readonly dialogService: DialogService,
+    private readonly router: Router,
+  ) {}
 
   public ngOnInit(): void {
     this.isTouchDevice = isTouchDevice();
@@ -99,6 +103,18 @@ export class EventsCalendarGridComponent implements OnInit, OnChanges {
 
     if (result === 'confirm') {
       this.requestDeleteEvent.emit(event);
+    }
+  }
+
+  public async onEventIndicator(event: Event): Promise<void> {
+    const result = await this.dialogService.open<EventInfoDialogComponent, 'details'>({
+      componentType: EventInfoDialogComponent,
+      inputs: { event },
+      isModal: true,
+    });
+
+    if (result === 'details') {
+      this.router.navigate(['/article/view/', event.articleId]);
     }
   }
 

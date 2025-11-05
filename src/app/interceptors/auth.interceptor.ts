@@ -43,14 +43,23 @@ export class AuthInterceptor implements HttpInterceptor {
     handler: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
     if (error.status === 401) {
-      return this.sessionRefresh().pipe(
-        switchMap(() => handler.handle(req)),
-        catchError(() => {
-          this.sessionRefreshInProgress = false;
-          this.store.dispatch(AuthActions.logoutRequested({ sessionExpired: true }));
-          return of(EMPTY as unknown as HttpEvent<unknown>);
-        }),
-      );
+      // Only attempt refresh if not already in progress and it's not a refresh endpoint
+      // to avoid infinite loops
+      if (!req.url.includes('refresh-session')) {
+        return this.sessionRefresh().pipe(
+          switchMap(() => handler.handle(req)),
+          catchError(() => {
+            this.sessionRefreshInProgress = false;
+            this.store.dispatch(AuthActions.logoutRequested({ sessionExpired: true }));
+            return of(EMPTY as unknown as HttpEvent<unknown>);
+          }),
+        );
+      } else {
+        // If the refresh endpoint itself returns 401, session is definitely expired
+        this.sessionRefreshInProgress = false;
+        this.store.dispatch(AuthActions.logoutRequested({ sessionExpired: true }));
+        return of(EMPTY as unknown as HttpEvent<unknown>);
+      }
     }
 
     return throwError(() => error);

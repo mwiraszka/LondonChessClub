@@ -104,10 +104,7 @@ export class TooltipDirective implements OnDestroy {
   @HostListener('blur')
   public detach(): void {
     if (this.overlayRef?.hasAttached()) {
-      // Delay close to allow click events to register in tooltips
-      setTimeout(() => {
-        this.overlayRef?.detach();
-      });
+      this.overlayRef?.detach();
     }
   }
 

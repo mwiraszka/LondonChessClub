@@ -34,6 +34,16 @@ Below you'll find an overview of the tools and technologies that power the app, 
 </details>
 
 <details>
+<summary>v5.9.13 - November 4th, 2025</summary>
+
+- 🚀 Improve how event information is displayed and handled in Event Calendar Grid with new Event Info Dialog component
+- 🚀 Preserve light/dark mode and other app preferences when a new version of the web app is deployed
+- 🔧 Improve how certain race conditions are handled when admin sessions are near or past expiry
+- 🔧 Add tests for meta-reducers
+
+</details>
+
+<details>
 <summary>v5.9.12 - November 3rd, 2025</summary>
 
 - 🚀 Add support for commas in uploaded CSVs wherever values are wrapped in double-quotes (RFC 4180 standard)

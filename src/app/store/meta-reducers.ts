@@ -40,7 +40,7 @@ const hydratedStates = [
 /**
  * Clears stale data from previous app versions from local storage
  */
-function clearStaleLocalStorageDataMetaReducer(
+export function clearStaleLocalStorageDataMetaReducer(
   reducer: ActionReducer<MetaState>,
 ): ActionReducer<MetaState> {
   const keysToRemove = Object.keys(localStorage).filter(
@@ -69,7 +69,7 @@ function clearStaleLocalStorageDataMetaReducer(
   };
 }
 
-function actionLogMetaReducer(
+export function actionLogMetaReducer(
   reducer: ActionReducer<MetaState>,
 ): ActionReducer<MetaState> {
   return (state, action) => {
@@ -84,7 +84,7 @@ function actionLogMetaReducer(
 /**
  * Custom storage mechanism that adds versioning to keys
  */
-const versionedStorage = {
+export const versionedStorage = {
   getItem: (key: string) => {
     return localStorage.getItem(`${key}_v${version}`);
   },
@@ -111,7 +111,7 @@ const versionedStorage = {
 /**
  * Re-hydrates state from local storage
  */
-function hydrationMetaReducer(
+export function hydrationMetaReducer(
   reducer: ActionReducer<MetaState>,
 ): ActionReducer<MetaState> {
   return localStorageSync({
@@ -125,7 +125,7 @@ function hydrationMetaReducer(
 /**
  * Validates and clears expired auth state to invalidate a potential expired session on rehydration
  */
-function sessionValidationMetaReducer(
+export function sessionValidationMetaReducer(
   reducer: ActionReducer<MetaState>,
 ): ActionReducer<MetaState> {
   return (state, action) => {

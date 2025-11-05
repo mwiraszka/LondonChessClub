@@ -39,6 +39,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 - 🚀 Improve how event information is displayed and handled in Event Calendar Grid with new Event Info Dialog component
 - 🚀 Preserve light/dark mode and other app preferences when a new version of the web app is deployed
 - 🔧 Improve how certain race conditions are handled when admin sessions are near or past expiry
+- 🔧 Add tests for meta-reducers
 
 </details>
 

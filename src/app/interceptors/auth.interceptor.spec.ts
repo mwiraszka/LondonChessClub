@@ -22,7 +22,7 @@ describe('AuthInterceptor', () => {
   let store: MockStore;
 
   let dispatchSpy: jest.SpyInstance;
-  let handlerSpy: jest.SpyInstance;
+  let handleSpy: jest.SpyInstance;
   let refreshSessionSpy: jest.SpyInstance;
 
   beforeEach(() => {
@@ -46,7 +46,7 @@ describe('AuthInterceptor', () => {
     store = TestBed.inject(MockStore);
 
     dispatchSpy = jest.spyOn(store, 'dispatch');
-    handlerSpy = jest.spyOn(mockHandler, 'handle');
+    handleSpy = jest.spyOn(mockHandler, 'handle');
     refreshSessionSpy = jest.spyOn(mockAuthApiService, 'refreshSession');
   });
 
@@ -64,7 +64,7 @@ describe('AuthInterceptor', () => {
 
       interceptor.intercept(mockRequest, mockHandler);
 
-      expect(handlerSpy).toHaveBeenCalledWith(
+      expect(handleSpy).toHaveBeenCalledWith(
         expect.objectContaining({ withCredentials: true }),
       );
     });
@@ -73,7 +73,7 @@ describe('AuthInterceptor', () => {
       const mockRequest = new HttpRequest('GET', '/api/test');
       const mockResponse = { status: 200 };
 
-      handlerSpy.mockReturnValue(of(mockResponse));
+      handleSpy.mockReturnValue(of(mockResponse));
 
       interceptor.intercept(mockRequest, mockHandler).subscribe({
         next: (response: HttpEvent<unknown>) => {
@@ -87,7 +87,7 @@ describe('AuthInterceptor', () => {
       const mockRequest = new HttpRequest('GET', '/api/test');
       const error = { status: 500, message: 'Server error' };
 
-      handlerSpy.mockReturnValue(throwError(() => error));
+      handleSpy.mockReturnValue(throwError(() => error));
 
       interceptor.intercept(mockRequest, mockHandler).subscribe({
         error: (err: unknown) => {
@@ -99,17 +99,33 @@ describe('AuthInterceptor', () => {
   });
 
   describe('401 error handling', () => {
+    it('should not attempt to refresh session on 401 error to refresh-session endpoint', done => {
+      const mockRequest = new HttpRequest('GET', '/refresh-session');
+
+      handleSpy.mockReturnValueOnce(throwError(() => ({ status: 401 })));
+
+      interceptor.intercept(mockRequest, mockHandler).subscribe({
+        next: () => {
+          expect(refreshSessionSpy).not.toHaveBeenCalled();
+          expect(dispatchSpy).toHaveBeenCalledWith(
+            AuthActions.logoutRequested({ sessionExpired: true }),
+          );
+          done();
+        },
+      });
+    });
+
     it('should refresh session on 401 error', done => {
       const mockRequest = new HttpRequest('GET', '/api/test');
 
-      handlerSpy.mockReturnValueOnce(throwError(() => ({ status: 401 })));
-      handlerSpy.mockReturnValueOnce(of({ status: 200 }));
+      handleSpy.mockReturnValueOnce(throwError(() => ({ status: 401 })));
+      handleSpy.mockReturnValueOnce(of({ status: 200 }));
       refreshSessionSpy.mockReturnValue(of({}));
 
       interceptor.intercept(mockRequest, mockHandler).subscribe({
         next: () => {
           expect(refreshSessionSpy).toHaveBeenCalled();
-          expect(handlerSpy).toHaveBeenCalledTimes(2);
+          expect(handleSpy).toHaveBeenCalledTimes(2);
           done();
         },
       });
@@ -119,8 +135,8 @@ describe('AuthInterceptor', () => {
       const mockRequest = new HttpRequest('GET', '/api/test');
       const successResponse = { status: 200, data: 'success' };
 
-      handlerSpy.mockReturnValueOnce(throwError(() => ({ status: 401 })));
-      handlerSpy.mockReturnValueOnce(of(successResponse));
+      handleSpy.mockReturnValueOnce(throwError(() => ({ status: 401 })));
+      handleSpy.mockReturnValueOnce(of(successResponse));
       refreshSessionSpy.mockReturnValue(of({}));
 
       interceptor.intercept(mockRequest, mockHandler).subscribe({
@@ -134,7 +150,7 @@ describe('AuthInterceptor', () => {
     it('should dispatch logout on failed refresh', done => {
       const mockRequest = new HttpRequest('GET', '/api/test');
 
-      handlerSpy.mockReturnValue(throwError(() => ({ status: 401 })));
+      handleSpy.mockReturnValue(throwError(() => ({ status: 401 })));
       refreshSessionSpy.mockReturnValue(throwError(() => new Error('Refresh failed')));
 
       interceptor.intercept(mockRequest, mockHandler).subscribe({
@@ -150,8 +166,8 @@ describe('AuthInterceptor', () => {
     it('should handle concurrent 401 errors', done => {
       const mockRequest = new HttpRequest('GET', '/api/test');
 
-      handlerSpy.mockReturnValueOnce(throwError(() => ({ status: 401 })));
-      handlerSpy.mockReturnValueOnce(of({ status: 200 }));
+      handleSpy.mockReturnValueOnce(throwError(() => ({ status: 401 })));
+      handleSpy.mockReturnValueOnce(of({ status: 200 }));
       refreshSessionSpy.mockReturnValue(of({}));
 
       interceptor.intercept(mockRequest, mockHandler).subscribe({

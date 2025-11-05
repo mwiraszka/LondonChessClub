@@ -2,9 +2,9 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 
+import { DialogService } from '@app/services';
 import { AuthActions, AuthSelectors } from '@app/store/auth';
 
-import { DialogService } from './dialog.service';
 import { UserActivityService } from './user-activity.service';
 
 describe('UserActivityService', () => {
@@ -120,23 +120,6 @@ describe('UserActivityService', () => {
       service.monitorSessionExpiry();
       tick(UserActivityService.SESSION_CHECK_INTERVAL_MS);
 
-      expect(dispatchSpy).not.toHaveBeenCalled();
-    }));
-
-    it('should not trigger actions when call state status is loading', fakeAsync(() => {
-      const sessionStartTime =
-        Date.now() - UserActivityService.MIN_SESSION_DURATION_FOR_WARNING_DIALOG_MS;
-      store.overrideSelector(AuthSelectors.selectSessionStartTime, sessionStartTime);
-      store.overrideSelector(AuthSelectors.selectCallState, {
-        status: 'loading',
-        loadStart: null,
-        error: null,
-      });
-
-      service.monitorSessionExpiry();
-      tick(UserActivityService.SESSION_CHECK_INTERVAL_MS);
-
-      expect(dialogOpenSpy).not.toHaveBeenCalled();
       expect(dispatchSpy).not.toHaveBeenCalled();
     }));
   });

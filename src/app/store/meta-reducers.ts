@@ -1,6 +1,9 @@
 import { RouterState } from '@ngrx/router-store';
 import { Action, ActionReducer, MetaReducer } from '@ngrx/store';
+import { compact } from 'lodash';
 import { localStorageSync } from 'ngrx-store-localstorage';
+
+import { UserActivityService } from '@app/services';
 
 import { environment } from '@env';
 
@@ -34,6 +37,9 @@ const hydratedStates = [
   'navState',
 ] as Array<keyof Exclude<MetaState, RouterState>>;
 
+/**
+ * Clears stale data from previous app versions from local storage
+ */
 function clearStaleLocalStorageDataMetaReducer(
   reducer: ActionReducer<MetaState>,
 ): ActionReducer<MetaState> {
@@ -102,6 +108,9 @@ const versionedStorage = {
   },
 };
 
+/**
+ * Re-hydrates state from local storage
+ */
 function hydrationMetaReducer(
   reducer: ActionReducer<MetaState>,
 ): ActionReducer<MetaState> {
@@ -113,7 +122,42 @@ function hydrationMetaReducer(
   })(reducer);
 }
 
-export const metaReducers: Array<MetaReducer<MetaState, Action<string>>> =
-  environment.production
-    ? [clearStaleLocalStorageDataMetaReducer, hydrationMetaReducer]
-    : [actionLogMetaReducer, clearStaleLocalStorageDataMetaReducer, hydrationMetaReducer];
+/**
+ * Validates and clears expired auth state to invalidate a potential expired session on rehydration
+ */
+function sessionValidationMetaReducer(
+  reducer: ActionReducer<MetaState>,
+): ActionReducer<MetaState> {
+  return (state, action) => {
+    const nextState = reducer(state, action);
+
+    // Only validate on update-reducers action (after hydration completes)
+    if (
+      action.type === '@ngrx/store/update-reducers' &&
+      nextState?.authState?.sessionStartTime
+    ) {
+      const timeElapsed = Date.now() - nextState.authState.sessionStartTime;
+
+      if (timeElapsed > UserActivityService.SESSION_DURATION_MS) {
+        console.info('[LCC] Session expired during offline period - clearing auth state');
+        return {
+          ...nextState,
+          authState: {
+            ...nextState.authState,
+            user: null,
+            sessionStartTime: null,
+          },
+        };
+      }
+    }
+
+    return nextState;
+  };
+}
+
+export const metaReducers: Array<MetaReducer<MetaState, Action<string>>> = compact([
+  environment.production ? undefined : actionLogMetaReducer,
+  clearStaleLocalStorageDataMetaReducer,
+  hydrationMetaReducer,
+  sessionValidationMetaReducer,
+]);

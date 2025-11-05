@@ -13,7 +13,7 @@ describe('CacheControlInterceptor', () => {
   let mockHandler: HttpHandler;
 
   let cloneSpy: jest.SpyInstance;
-  let handlerSpy: jest.SpyInstance;
+  let handleSpy: jest.SpyInstance;
 
   beforeEach(() => {
     mockHandler = {
@@ -26,7 +26,7 @@ describe('CacheControlInterceptor', () => {
 
     interceptor = TestBed.inject(CacheControlInterceptor);
 
-    handlerSpy = jest.spyOn(mockHandler, 'handle');
+    handleSpy = jest.spyOn(mockHandler, 'handle');
   });
 
   afterEach(() => {
@@ -64,7 +64,7 @@ describe('CacheControlInterceptor', () => {
       interceptor.intercept(mockRequest, mockHandler);
 
       expect(cloneSpy).not.toHaveBeenCalled();
-      expect(handlerSpy).toHaveBeenCalledWith(mockRequest);
+      expect(handleSpy).toHaveBeenCalledWith(mockRequest);
     });
 
     it('should not add cache control headers to image metadata requests', () => {
@@ -76,7 +76,7 @@ describe('CacheControlInterceptor', () => {
       interceptor.intercept(mockRequest, mockHandler);
 
       expect(cloneSpy).not.toHaveBeenCalled();
-      expect(handlerSpy).toHaveBeenCalledWith(mockRequest);
+      expect(handleSpy).toHaveBeenCalledWith(mockRequest);
     });
 
     it('should handle image upload requests', () => {
@@ -110,7 +110,7 @@ describe('CacheControlInterceptor', () => {
       interceptor.intercept(mockRequest, mockHandler);
 
       expect(cloneSpy).not.toHaveBeenCalled();
-      expect(handlerSpy).toHaveBeenCalledWith(mockRequest);
+      expect(handleSpy).toHaveBeenCalledWith(mockRequest);
     });
 
     it('should handle nested image paths', () => {

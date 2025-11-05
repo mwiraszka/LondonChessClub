@@ -27,7 +27,7 @@ import { DurationPipe } from '@app/pipes';
         <span class="time-remaining-text">
           {{ timeRemainingSecs$ | async | duration }}
         </span>
-        due to inactivity. Any unsaved progress may be lost.
+        due to inactivity. Any unsaved progress will be lost!
       </p>
       <p>Would you like to extend your session?</p>
     </div>

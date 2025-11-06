@@ -34,6 +34,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 </details>
 
 <details>
+<summary>v5.9.14 - November TBD, 2025</summary>
+
+- 🔧 Add tests for all reducers, selectors and directives
+
+</details>
+
+<details>
 <summary>v5.9.13 - November 4th, 2025</summary>
 
 - 🚀 Improve how event information is displayed and handled in Event Calendar Grid with new Event Info Dialog component

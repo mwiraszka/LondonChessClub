@@ -13,10 +13,19 @@ window.matchMedia = jest.fn().mockImplementation(query => ({
 
 setupZoneTestEnv();
 
-// Silence expected console warnings/errors during tests to reduce noise while preserving unexpected logs.
-const ORIGINAL_CONSOLE_WARN = console.warn;
+// Silence expected console errors/warnings/logs/infos during tests to reduce noise
 const ORIGINAL_CONSOLE_ERROR = console.error;
+const ORIGINAL_CONSOLE_WARN = console.warn;
 const ORIGINAL_CONSOLE_LOG = console.log;
+const ORIGINAL_CONSOLE_INFO = console.info;
+
+const IGNORED_ERROR_PATTERNS: RegExp[] = [
+  /\[LCC] Could not parse document load progress data:/, // Document viewer progress edge cases
+  /\[LCC] Unable to parse ratings to determine new peak rating/, // Rating util invalid inputs in tests
+  /\[LCC] Sort error: property 'key' does not exist/, // custom sort util negative tests
+  /\[LCC] Unable to convert data URL and filename to File:/, // dataUrlToFile negative test cases
+  /Could not parse CSS stylesheet/, // JSDOM CSS parsing errors with Angular CDK
+];
 
 const IGNORED_WARN_PATTERNS: RegExp[] = [
   /\[LCC] Found game with an invalid score/, // PGN viewer test data
@@ -29,25 +38,17 @@ const IGNORED_LOG_PATTERNS: RegExp[] = [
   /Warning: loadPackages: TypeError \[ERR_VM_DYNAMIC_IMPORT_CALLBACK_MISSING_FLAG]/,
 ];
 
-const IGNORED_ERROR_PATTERNS: RegExp[] = [
-  /\[LCC] Could not parse document load progress data:/, // Document viewer progress edge cases
-  /\[LCC] Unable to parse ratings to determine new peak rating/, // Rating util invalid inputs in tests
-  /\[LCC] Sort error: property 'key' does not exist/, // custom sort util negative tests
-  /\[LCC] Unable to convert data URL and filename to File:/, // dataUrlToFile negative test cases
-  /Could not parse CSS stylesheet/, // JSDOM CSS parsing errors with Angular CDK
+const IGNORED_INFO_PATTERNS: RegExp[] = [
+  /^Request$/, // Logging interceptor request logs
+  /\[LCC] Clearing stale data from local storage/, // Meta-reducer version migration logs
+  /\[LCC] Removed stale key:/, // Meta-reducer removing old storage keys
 ];
 
 function shouldIgnore(message: unknown, patterns: RegExp[]): boolean {
-  const msg = typeof message === 'string' ? message : (message?.toString?.() ?? '');
+  const msg =
+    typeof message === 'string' ? message.trim() : (message?.toString?.() ?? '').trim();
   return patterns.some(p => p.test(msg));
 }
-
-console.warn = (...args: unknown[]) => {
-  if (shouldIgnore(args[0], IGNORED_WARN_PATTERNS)) {
-    return;
-  }
-  ORIGINAL_CONSOLE_WARN(...(args as unknown[]));
-};
 
 console.error = (...args: unknown[]) => {
   if (shouldIgnore(args[0], IGNORED_ERROR_PATTERNS)) {
@@ -56,9 +57,23 @@ console.error = (...args: unknown[]) => {
   ORIGINAL_CONSOLE_ERROR(...(args as unknown[]));
 };
 
+console.warn = (...args: unknown[]) => {
+  if (shouldIgnore(args[0], IGNORED_WARN_PATTERNS)) {
+    return;
+  }
+  ORIGINAL_CONSOLE_WARN(...(args as unknown[]));
+};
+
 console.log = (...args: unknown[]) => {
   if (shouldIgnore(args[0], IGNORED_LOG_PATTERNS)) {
     return;
   }
   ORIGINAL_CONSOLE_LOG(...(args as unknown[]));
+};
+
+console.info = (...args: unknown[]) => {
+  if (shouldIgnore(args[0], IGNORED_INFO_PATTERNS)) {
+    return;
+  }
+  ORIGINAL_CONSOLE_INFO(...(args as unknown[]));
 };

@@ -37,6 +37,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 <summary>v5.9.14 - November TBD, 2025</summary>
 
 - 🔧 Add tests for all reducers, selectors and directives
+- 🔧 Security updates
 
 </details>
 

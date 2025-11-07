@@ -47,7 +47,7 @@ export class DropdownDirective {
     this.overlayRef?.dispose();
   }
 
-  @HostListener('click', ['$event'])
+  @HostListener('click')
   public onClick(): void {
     if (this.overlayRef?.hasAttached()) {
       this.detach();

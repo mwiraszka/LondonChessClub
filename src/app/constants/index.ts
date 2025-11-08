@@ -37,6 +37,16 @@ export const INITIAL_EVENT_FORM_DATA: EventFormData = {
   articleId: '',
 };
 
+export const BASE_IMAGE_PROPERTIES = [
+  'id',
+  'filename',
+  'caption',
+  'album',
+  'albumCover',
+  'albumOrdinality',
+  'modificationInfo',
+] as const;
+
 export const IMAGE_FORM_DATA_PROPERTIES = [
   'id',
   'filename',

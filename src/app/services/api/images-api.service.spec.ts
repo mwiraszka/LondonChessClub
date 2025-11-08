@@ -8,6 +8,7 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
+import { BASE_IMAGE_PROPERTIES } from '@app/constants';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import {
   ApiResponse,
@@ -33,16 +34,6 @@ describe('ImagesApiService', () => {
 
   const apiBaseUrl = `${environment.lccApiBaseUrl}/images`;
   const mockImage = MOCK_IMAGES[0];
-
-  const BASE_IMAGE_PROPERTIES = [
-    'id',
-    'filename',
-    'caption',
-    'album',
-    'albumCover',
-    'albumOrdinality',
-    'modificationInfo',
-  ] as const;
   const mockBaseImages: BaseImage[] = MOCK_IMAGES.map(image =>
     pick(image, BASE_IMAGE_PROPERTIES),
   );

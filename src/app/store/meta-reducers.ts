@@ -52,11 +52,13 @@ export function clearStaleLocalStorageDataMetaReducer(
       console.info(`[LCC] Clearing stale data from local storage for version ${version}`);
 
       keysToRemove.forEach(key => {
-        // Preserve appState from previous version
-        if (key.startsWith('appState')) {
-          const oldAppState = localStorage.getItem(key);
-          if (oldAppState) {
-            localStorage.setItem(`appState_v${version}`, oldAppState);
+        // Only reset imagesState from previous version
+        // TODO: Include imagesState once caching issues have been resolved
+        const state = key.split('_v')[0];
+        if ((hydratedStates as string[]).includes(state) && state !== 'imagesState') {
+          const oldState = localStorage.getItem(key);
+          if (oldState) {
+            localStorage.setItem(`${state}_v${version}`, oldState);
           }
         }
 

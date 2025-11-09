@@ -1,8 +1,7 @@
 import { OverlayModule } from '@angular/cdk/overlay';
-import { Component, ComponentRef, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 
-import { DialogComponent } from '@app/components/dialog/dialog.component';
 import { DialogOutput } from '@app/models';
 
 import { DialogService } from './dialog.service';

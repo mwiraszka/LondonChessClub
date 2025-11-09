@@ -34,6 +34,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 </details>
 
 <details>
+<summary>v5.9.15 - November TBD, 2025</summary>
+
+- 🚀 Add Baden Chess Club to list of regional/satellite clubs on homepage and improve layout of club cards
+
+</details>
+
+<details>
 <summary>v5.9.14 - November 7th, 2025</summary>
 
 - 🚀 Preserve users' app preferences (e.g. light/dark mode, filter & pagination settings) whenever a new version of the web app is released

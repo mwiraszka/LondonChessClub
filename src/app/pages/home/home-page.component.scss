@@ -85,24 +85,35 @@
       grid-area: regional-clubs;
 
       .regional-clubs-container {
-        display: flex;
-        flex-flow: row wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
         gap: 8px;
+
+        @include respond-to('gt-md') {
+          grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+        }
+
+        @include respond-to('gt-lg') {
+          grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+        }
       }
 
       .club-card {
-        flex: 1 1 300px;
         display: flex;
-        flex-direction: column;
-        gap: 16px;
+        justify-content: center;
         padding: 16px 8px;
         background-color: var(--lcc-color--general-cardBackground);
         border-radius: var(--lcc-borderRadius--large);
         box-shadow: 3px 3px 5px var(--lcc-color--homePage-boxShadow);
         line-height: 20px;
+        font-size: 14px;
 
         @include respond-to('gt-xxs') {
           padding: 16px;
+        }
+
+        @include respond-to('gt-md') {
+          font-size: 16px;
         }
 
         &:hover {
@@ -110,8 +121,19 @@
           box-shadow: 4px 4px 8px var(--lcc-color--homePage-boxShadow);
         }
 
+        .club-card-content {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          width: 260px;
+        }
+
         h3 {
-          font-size: 18px;
+          font-size: 16px;
+
+          @include respond-to('gt-md') {
+            font-size: 18px;
+          }
         }
 
         .address {
@@ -121,6 +143,8 @@
 
           .map-icon {
             @include icon-size(24px);
+
+            min-width: 24px;
           }
 
           .address-link {
@@ -162,6 +186,6 @@
     transform: scale(1);
   }
   100% {
-    transform: scale(1.015);
+    transform: scale(1.01);
   }
 }

@@ -21,8 +21,7 @@ import { BaseImage, LccError } from '@app/models';
 import { ImageFileService, ImagesApiService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
-import { dataUrlToFile, isDefined, isExpired, isLccError } from '@app/utils';
-import { parseError } from '@app/utils/error/parse-error.util';
+import { dataUrlToFile, isDefined, isExpired, isLccError, parseError } from '@app/utils';
 
 import { ImagesActions, ImagesSelectors } from '.';
 

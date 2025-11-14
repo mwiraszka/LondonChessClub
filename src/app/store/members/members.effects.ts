@@ -10,8 +10,13 @@ import { Injectable } from '@angular/core';
 import { Member } from '@app/models';
 import { MembersApiService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
-import { exportDataToCsv, getNewPeakRating, isDefined, isExpired } from '@app/utils';
-import { parseError } from '@app/utils/error/parse-error.util';
+import {
+  exportDataToCsv,
+  getNewPeakRating,
+  isDefined,
+  isExpired,
+  parseError,
+} from '@app/utils';
 
 import { MembersActions, MembersSelectors } from '.';
 

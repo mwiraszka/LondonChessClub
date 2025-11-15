@@ -7,7 +7,7 @@ import { UserActivityService } from '@app/services';
 
 import { environment } from '@env';
 
-import { version } from '../../../package.json';
+import { version as currentVersion } from '../../../package.json';
 import { AppState } from './app';
 import { ArticlesState } from './articles';
 import { AuthState } from './auth';
@@ -38,32 +38,26 @@ const hydratedStates = [
 ] as Array<keyof Exclude<MetaState, RouterState>>;
 
 /**
- * Clears stale data from previous app versions from local storage
+ * Updates hydrated state keys to new app version in local storage
  */
-export function clearStaleLocalStorageDataMetaReducer(
+export function updateStateVersionsInLocalStorageMetaReducer(
   reducer: ActionReducer<MetaState>,
 ): ActionReducer<MetaState> {
-  const keysToRemove = Object.keys(localStorage).filter(
-    key => !key.endsWith(`_v${version}`),
-  );
+  const keysToUpdate = Object.keys(localStorage).filter(key => {
+    const [stateName, version] = key.split('_v');
+    return (hydratedStates as string[]).includes(stateName) && version !== currentVersion;
+  });
 
   return (state, action) => {
-    if (keysToRemove.length) {
-      console.info(`[LCC] Clearing stale data from local storage for version ${version}`);
+    if (keysToUpdate.length) {
+      console.info(`[LCC] Welcome to version ${currentVersion}`);
 
-      keysToRemove.forEach(key => {
-        // Only reset imagesState from previous version
-        // TODO: Include imagesState once caching issues have been resolved
-        const state = key.split('_v')[0];
-        if ((hydratedStates as string[]).includes(state) && state !== 'imagesState') {
-          const oldState = localStorage.getItem(key);
-          if (oldState) {
-            localStorage.setItem(`${state}_v${version}`, oldState);
-          }
-        }
-
+      keysToUpdate.forEach(key => {
+        localStorage.setItem(
+          key.split('_v')[0] + `_v${currentVersion}`,
+          localStorage.getItem(key) || '',
+        );
         localStorage.removeItem(key);
-        console.info(`[LCC] Removed stale key: ${key}`);
       });
     }
 
@@ -88,25 +82,26 @@ export function actionLogMetaReducer(
  */
 export const versionedStorage = {
   getItem: (key: string) => {
-    return localStorage.getItem(`${key}_v${version}`);
+    return localStorage.getItem(`${key}_v${currentVersion}`);
   },
   setItem: (key: string, value: string) => {
-    localStorage.setItem(`${key}_v${version}`, value);
+    localStorage.setItem(`${key}_v${currentVersion}`, value);
   },
   removeItem: (key: string) => {
-    localStorage.removeItem(`${key}_v${version}`);
+    localStorage.removeItem(`${key}_v${currentVersion}`);
   },
   clear: () => {
     Object.keys(localStorage)
-      .filter(k => k.endsWith(`_v${version}`))
+      .filter(k => k.endsWith(`_v${currentVersion}`))
       .forEach(k => localStorage.removeItem(k));
   },
   key: (index: number) => {
-    const keys = Object.keys(localStorage).filter(k => k.endsWith(`_v${version}`));
+    const keys = Object.keys(localStorage).filter(k => k.endsWith(`_v${currentVersion}`));
     return keys[index] || null;
   },
   get length() {
-    return Object.keys(localStorage).filter(k => k.endsWith(`_v${version}`)).length;
+    return Object.keys(localStorage).filter(k => k.endsWith(`_v${currentVersion}`))
+      .length;
   },
 };
 
@@ -159,7 +154,7 @@ export function sessionValidationMetaReducer(
 
 export const metaReducers: Array<MetaReducer<MetaState, Action<string>>> = compact([
   environment.production ? undefined : actionLogMetaReducer,
-  clearStaleLocalStorageDataMetaReducer,
+  updateStateVersionsInLocalStorageMetaReducer,
   hydrationMetaReducer,
   sessionValidationMetaReducer,
 ]);

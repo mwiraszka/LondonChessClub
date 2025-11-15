@@ -32,7 +32,7 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.9.17 - November 15th, 2025</summary>
+<summary>v5.9.17 - November 16th, 2025</summary>
 
 - 🔧 Remove state refreshes on version updates and reinstate image state continuity
 

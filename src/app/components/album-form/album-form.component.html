@@ -33,6 +33,21 @@
             }" />
         </div>
 
+        <div class="cover-image-input-container">
+          <input
+            [id]="'cover-image-radio-' + i"
+            class="cover-image-input"
+            type="radio"
+            name="coverImage"
+            [checked]="imageControl.controls.albumCover.value"
+            (change)="onSetAlbumCover(imageControl.controls.id.value)" />
+          <label
+            class="cover-image-label"
+            [for]="'cover-radio-' + i">
+            Use as album cover
+          </label>
+        </div>
+
         <label
           [for]="'caption-input-' + i"
           class="lcc-required-field">
@@ -59,21 +74,6 @@
           maxlength="2" />
         <lcc-form-error-icon [control]="imageControl.controls.albumOrdinality">
         </lcc-form-error-icon>
-
-        <div class="cover-image-input-container">
-          <input
-            [id]="'cover-image-radio-' + i"
-            class="cover-image-input"
-            type="radio"
-            name="coverImage"
-            [checked]="imageControl.controls.albumCover.value"
-            (change)="onSetAlbumCover(imageControl.controls.id.value)" />
-          <label
-            class="cover-image-label"
-            [for]="'cover-radio-' + i">
-            Use as album cover
-          </label>
-        </div>
       </div>
     }
   </div>
@@ -86,7 +86,6 @@
   <div class="control-buttons-container">
     <label
       class="choose-files-button lcc-secondary-button"
-      type="button"
       [tooltip]="
         imageEntities.length || form.controls.newImages.length
           ? 'Add more files'
@@ -97,11 +96,13 @@
         type="file"
         accept="image/*"
         multiple
-        (change)="onChooseFiles($event)" />
+        (change)="onChooseFiles($event)"
+        (cancel)="$event.stopPropagation()" />
     </label>
 
     <button
       class="restore-button lcc-secondary-button"
+      type="button"
       [disabled]="!hasUnsavedChanges"
       tooltip="Restore album to its original state"
       (click)="onRestore()">
@@ -134,6 +135,21 @@
           </button>
         </div>
 
+        <div class="album-cover-input-container full-span">
+          <input
+            [id]="'album-cover-radio-' + i"
+            class="album-cover-input"
+            type="radio"
+            name="albumCover"
+            [checked]="imageControl.controls.albumCover.value"
+            (change)="onSetAlbumCover(imageControl.controls.id.value)" />
+          <label
+            class="album-cover-label"
+            [for]="'album-cover-radio-' + i">
+            Use as album cover
+          </label>
+        </div>
+
         <label
           [for]="'caption-input-' + i"
           class="lcc-required-field">
@@ -160,21 +176,6 @@
           maxlength="2" />
         <lcc-form-error-icon [control]="imageControl.controls.albumOrdinality">
         </lcc-form-error-icon>
-
-        <div class="album-cover-input-container">
-          <input
-            [id]="'album-cover-radio-' + i"
-            class="album-cover-input"
-            type="radio"
-            name="albumCover"
-            [checked]="imageControl.controls.albumCover.value"
-            (change)="onSetAlbumCover(imageControl.controls.id.value)" />
-          <label
-            class="album-cover-label"
-            [for]="'album-cover-radio-' + i">
-            Use as album cover
-          </label>
-        </div>
       </div>
     }
   </div>

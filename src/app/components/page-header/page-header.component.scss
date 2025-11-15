@@ -14,6 +14,7 @@
     color: var(--lcc-color--pageHeader-icon);
     height: 24px;
     width: 24px;
+    min-width: 24px;
 
     &.admin-page {
       color: var(--lcc-color--pageHeader-adminIcon);

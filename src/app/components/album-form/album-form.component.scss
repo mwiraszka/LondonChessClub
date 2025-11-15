@@ -29,10 +29,6 @@
     border-radius: var(--lcc-borderRadius--large);
     position: relative;
 
-    &.full-span {
-      grid-column: 1 / -1;
-    }
-
     img {
       max-width: 100%;
       max-height: 180px;
@@ -54,6 +50,10 @@
       right: 8px;
       cursor: pointer;
     }
+  }
+
+  .full-span {
+    grid-column: 1 / -1;
   }
 
   @include respond-to('gt-md') {

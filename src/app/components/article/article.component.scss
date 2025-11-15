@@ -64,20 +64,19 @@
 
     .updated {
       font-weight: 100;
+      font-size: 12px;
       white-space: nowrap;
     }
 
-    .editor-name {
-      margin-left: 0.5em;
-    }
+    .modification-details {
+      .vertical-spacer {
+        padding: 0 0.4em;
+        color: var(--lcc-color--general-editorTextSpacer);
+      }
 
-    .vertical-spacer {
-      padding: 0 0.5em;
-      color: var(--lcc-color--general-editorTextSpacer);
-    }
-
-    .date-last-edited {
-      white-space: nowrap;
+      .date-last-edited {
+        white-space: nowrap;
+      }
     }
   }
 }

@@ -32,6 +32,13 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
+<summary>v5.9.17 - November 15th, 2025</summary>
+
+
+
+</details>
+
+<details>
 <summary>v5.9.16 - November 15th, 2025</summary>
 
 - 🚀 Minor style tweaks and improvements in a few places

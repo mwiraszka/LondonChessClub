@@ -6,9 +6,9 @@ import { version } from '../../../package.json';
 import {
   MetaState,
   actionLogMetaReducer,
-  clearStaleLocalStorageDataMetaReducer,
   metaReducers,
   sessionValidationMetaReducer,
+  updateStateVersionsInLocalStorageMetaReducer,
   versionedStorage,
 } from './meta-reducers';
 
@@ -40,29 +40,31 @@ describe('Meta Reducers', () => {
     jest.clearAllMocks();
   });
 
-  describe('clearStaleLocalStorageDataMetaReducer', () => {
+  describe('updateStateVersionsInLocalStorageMetaReducer', () => {
     it('should remove stale keys from previous versions', () => {
       // Setup: Add stale keys
       localStorage.setItem('authState_v1.0.0', '{"user": "old"}');
       localStorage.setItem('appState_v1.0.0', '{"theme": "dark"}');
 
-      const clearStaleMetaReducer = clearStaleLocalStorageDataMetaReducer(mockReducer);
+      const updateStateMetaReducer =
+        updateStateVersionsInLocalStorageMetaReducer(mockReducer);
       const action = { type: '@ngrx/store/init' };
 
-      clearStaleMetaReducer(mockState, action);
+      updateStateMetaReducer(mockState, action);
 
       // Should not contain old version keys
       expect(localStorage.getItem('authState_v1.0.0')).toBeNull();
     });
 
-    it('should preserve appState from previous version', () => {
+    it('should preserve state from previous version', () => {
       const oldAppState = JSON.stringify({ theme: 'dark' });
       localStorage.setItem('appState_v1.0.0', oldAppState);
 
-      const clearStaleMetaReducer = clearStaleLocalStorageDataMetaReducer(mockReducer);
+      const updateStateMetaReducer =
+        updateStateVersionsInLocalStorageMetaReducer(mockReducer);
       const action = { type: '@ngrx/store/init' };
 
-      clearStaleMetaReducer(mockState, action);
+      updateStateMetaReducer(mockState, action);
 
       // Should preserve appState with current version
       const preserved = localStorage.getItem(`appState_v${version}`);
@@ -73,10 +75,11 @@ describe('Meta Reducers', () => {
       const currentKey = `authState_v${version}`;
       localStorage.setItem(currentKey, '{"user": "current"}');
 
-      const clearStaleMetaReducer = clearStaleLocalStorageDataMetaReducer(mockReducer);
+      const updateStateMetaReducer =
+        updateStateVersionsInLocalStorageMetaReducer(mockReducer);
       const action = { type: '@ngrx/store/init' };
 
-      clearStaleMetaReducer(mockState, action);
+      updateStateMetaReducer(mockState, action);
 
       expect(localStorage.getItem(currentKey)).toBe('{"user": "current"}');
     });
@@ -347,11 +350,12 @@ describe('Meta Reducers', () => {
       expect(sessionValidation).toBeDefined();
     });
 
-    it('should include clearStaleLocalStorageDataMetaReducer', () => {
-      const clearStale = metaReducers.find(
-        metaReducer => metaReducer.name === 'clearStaleLocalStorageDataMetaReducer',
+    it('should include updateStateVersionsInLocalStorageMetaReducer', () => {
+      const updateState = metaReducers.find(
+        metaReducer =>
+          metaReducer.name === 'updateStateVersionsInLocalStorageMetaReducer',
       );
-      expect(clearStale).toBeDefined();
+      expect(updateState).toBeDefined();
     });
   });
 });

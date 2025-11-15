@@ -4,6 +4,6 @@
     "outDir": "./out-tsc/app",
     "types": []
   },
-  "files": ["src/window-global-fix.ts", "src/main.ts"],
+  "files": ["src/main.ts", "src/window-global-fix.ts"],
   "include": ["src/**/*.d.ts"]
 }

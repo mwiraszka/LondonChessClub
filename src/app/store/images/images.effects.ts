@@ -162,7 +162,7 @@ export class ImagesEffects {
       ),
       switchMap(articles =>
         this.store.select(
-          ImagesSelectors.selectIdsOfArticleBannerImagesWithMissingThumbnailUrls(
+          ImagesSelectors.selectIdsOfArticleBannerImagesWithMissingOrExpiredThumbnailUrls(
             articles,
           ),
         ),
@@ -295,8 +295,11 @@ export class ImagesEffects {
       switchMap(() => this.store.select(ImagesSelectors.selectLastMetadataFetch)),
       filter(lastMetadataFetch => !isExpired(lastMetadataFetch)),
       switchMap(() =>
-        this.store.select(ImagesSelectors.selectAlbumCoverImageIds).pipe(take(1)),
+        this.store
+          .select(ImagesSelectors.selectIdsOfAlbumCoversWithMissingOrExpiredThumbnailUrls)
+          .pipe(take(1)),
       ),
+      filter(imageIds => imageIds.length > 0),
       map(imageIds => {
         return ImagesActions.fetchBatchThumbnailsRequested({
           imageIds,
@@ -307,7 +310,7 @@ export class ImagesEffects {
   });
 
   retryFailedArticleBannerImages$ = createEffect(() => {
-    // Periodic check to retry failed article banner images
+    // Periodic check to retry failed/expired article banner images
     const periodicCheck$ = timer(5 * 60 * 1000, 10 * 60 * 1000).pipe(
       switchMap(() =>
         merge(
@@ -321,7 +324,7 @@ export class ImagesEffects {
       switchMap(articles =>
         this.store
           .select(
-            ImagesSelectors.selectIdsOfArticleBannerImagesWithMissingThumbnailUrls(
+            ImagesSelectors.selectIdsOfArticleBannerImagesWithMissingOrExpiredThumbnailUrls(
               articles,
             ),
           )

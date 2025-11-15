@@ -4,7 +4,7 @@ import { omit, pick, uniq } from 'lodash';
 import { INITIAL_IMAGE_FORM_DATA } from '@app/constants';
 import { Article, Id } from '@app/models';
 import { ArticlesSelectors } from '@app/store/articles';
-import { areSame } from '@app/utils';
+import { areSame, isPresignedUrlExpired } from '@app/utils';
 
 import { ImagesState, imagesAdapter } from './images.reducer';
 
@@ -158,6 +158,22 @@ export const selectAlbumCoverImageIds = createSelector(selectAllImages, allImage
   return allImages.filter(image => image.albumCover).map(image => image.id);
 });
 
+export const selectIdsOfAlbumCoversWithMissingOrExpiredThumbnailUrls = createSelector(
+  selectAllImages,
+  allImages => {
+    return allImages
+      .filter(image => {
+        if (!image.albumCover) {
+          return false;
+        }
+        const thumbnailUrl = image.thumbnailUrl;
+        // Include album covers with missing or expired thumbnail URLs
+        return !thumbnailUrl || !!isPresignedUrlExpired(thumbnailUrl);
+      })
+      .map(image => image.id);
+  },
+);
+
 export const selectAllExistingAlbums = createSelector(selectAllImages, allImages => {
   return uniq(allImages.map(image => image.album));
 });
@@ -166,17 +182,18 @@ export const selectArticleImages = createSelector(selectAllImages, allImages => 
   return allImages.filter(image => (image?.articleAppearances ?? 0) > 0);
 });
 
-export const selectIdsOfArticleBannerImagesWithMissingThumbnailUrls = (
+export const selectIdsOfArticleBannerImagesWithMissingOrExpiredThumbnailUrls = (
   articles: Article[],
 ) =>
   createSelector(selectAllImages, allImages => {
     return uniq(
       articles
         .map(article => article.bannerImageId)
-        .filter(
-          bannerImageId =>
-            !allImages.find(image => image.id === bannerImageId)?.thumbnailUrl,
-        ),
+        .filter(bannerImageId => {
+          const image = allImages.find(img => img.id === bannerImageId);
+          const thumbnailUrl = image?.thumbnailUrl;
+          return !thumbnailUrl || !!isPresignedUrlExpired(thumbnailUrl);
+        }),
     ).sort();
   });
 

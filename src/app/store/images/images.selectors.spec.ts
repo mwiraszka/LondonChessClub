@@ -433,7 +433,17 @@ describe('Images Selectors', () => {
     });
   });
 
-  describe('selectIdsOfArticleBannerImagesWithMissingThumbnailUrls', () => {
+  describe('selectIdsOfArticleBannerImagesWithMissingOrExpiredThumbnailUrls', () => {
+    beforeEach(() => {
+      jest.useFakeTimers();
+      // Set current time to November 15, 2025, 12:00:00 UTC
+      jest.setSystemTime(new Date('2025-11-15T12:00:00Z'));
+    });
+
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
     it('should return sorted unique ids of banner images without thumbnail URLs', () => {
       const articles = [
         { ...MOCK_ARTICLES[0], bannerImageId: 'img-1' },
@@ -445,9 +455,73 @@ describe('Images Selectors', () => {
         { ...MOCK_IMAGES[1], id: 'img-2', thumbnailUrl: 'https://example.com/thumb.jpg' },
       ];
       const selector =
-        ImagesSelectors.selectIdsOfArticleBannerImagesWithMissingThumbnailUrls(articles);
+        ImagesSelectors.selectIdsOfArticleBannerImagesWithMissingOrExpiredThumbnailUrls(
+          articles,
+        );
       const result = selector.projector(allImages);
       expect(result).toEqual(['img-1']);
+    });
+
+    it('should return ids of banner images with expired AWS presigned URLs (>10 hours old)', () => {
+      const articles = [
+        { ...MOCK_ARTICLES[0], bannerImageId: 'img-1' },
+        { ...MOCK_ARTICLES[1], bannerImageId: 'img-2' },
+        { ...MOCK_ARTICLES[2], bannerImageId: 'img-3' },
+      ];
+      // img-1: expired URL (created Nov 12 at 01:06, >10 hours ago)
+      // img-2: recent URL (created Nov 15 at 10:00, only 2 hours ago)
+      // img-3: regular non-presigned URL
+      const allImages = [
+        {
+          ...MOCK_IMAGES[0],
+          id: 'img-1',
+          thumbnailUrl:
+            'https://s3.amazonaws.com/image-thumb?X-Amz-Date=20251112T010607Z&X-Amz-Expires=43200',
+        },
+        {
+          ...MOCK_IMAGES[1],
+          id: 'img-2',
+          thumbnailUrl:
+            'https://s3.amazonaws.com/image-thumb?X-Amz-Date=20251115T100000Z&X-Amz-Expires=43200',
+        },
+        {
+          ...MOCK_IMAGES[2],
+          id: 'img-3',
+          thumbnailUrl: 'https://example.com/regular-thumb.jpg',
+        },
+      ];
+      const selector =
+        ImagesSelectors.selectIdsOfArticleBannerImagesWithMissingOrExpiredThumbnailUrls(
+          articles,
+        );
+      const result = selector.projector(allImages);
+      // Only img-1 should be returned (>10 hours old)
+      expect(result).toEqual(['img-1']);
+    });
+
+    it('should return both missing and expired thumbnail URLs', () => {
+      const articles = [
+        { ...MOCK_ARTICLES[0], bannerImageId: 'img-1' },
+        { ...MOCK_ARTICLES[1], bannerImageId: 'img-2' },
+        { ...MOCK_ARTICLES[2], bannerImageId: 'img-3' },
+      ];
+      const allImages = [
+        { ...MOCK_IMAGES[0], id: 'img-1', thumbnailUrl: undefined },
+        {
+          ...MOCK_IMAGES[1],
+          id: 'img-2',
+          thumbnailUrl:
+            'https://s3.amazonaws.com/image-thumb?X-Amz-Date=20251112T010607Z&X-Amz-Expires=43200',
+        },
+        { ...MOCK_IMAGES[2], id: 'img-3', thumbnailUrl: 'https://example.com/valid.jpg' },
+      ];
+      const selector =
+        ImagesSelectors.selectIdsOfArticleBannerImagesWithMissingOrExpiredThumbnailUrls(
+          articles,
+        );
+      const result = selector.projector(allImages);
+      // Both img-1 (missing) and img-2 (expired) should be returned
+      expect(result).toEqual(['img-1', 'img-2']);
     });
   });
 

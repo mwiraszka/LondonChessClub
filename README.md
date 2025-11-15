@@ -32,8 +32,9 @@ Below you'll find an overview of the tools and technologies that power the app, 
 | 🔧  | Behind-the-scenes changes         |
 
 <details>
-<summary>v5.9.16 - November TBD, 2025</summary>
+<summary>v5.9.16 - November 15th, 2025</summary>
 
+- 🐛 Improve handling of expired presigned URLs to prevent certain thumbnail images from not rendering
 - 🔧 Add tests for all selectors and effects... and with that, 100% comprehensive unit test coverage across the entire LCC web app! 🎉
 
 </details>

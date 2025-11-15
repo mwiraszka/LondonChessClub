@@ -197,7 +197,6 @@ export class AlbumFormComponent implements OnInit {
       fileInputElement.value = '';
       return;
     }
-
     let ordinalityCounter = 1;
     const processFiles = Array.from(files).map(async file => {
       const result = await this.imageFileService.storeImageFile(`new-${uuid.v4()}`, file);

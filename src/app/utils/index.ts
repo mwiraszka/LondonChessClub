@@ -31,6 +31,7 @@ export { exportEventsToIcal } from './file/export-events-to-ical.util';
 export { formatBytes } from './file/format-bytes.util';
 export { parseCsv } from './file/parse-csv.util';
 
+export { isPresignedUrlExpired } from './http/is-presigned-url-expired.util';
 export { setPaginationParams } from './http/set-pagination-params.util';
 
 export {

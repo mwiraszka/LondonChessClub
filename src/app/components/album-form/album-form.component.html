@@ -86,7 +86,6 @@
   <div class="control-buttons-container">
     <label
       class="choose-files-button lcc-secondary-button"
-      type="button"
       [tooltip]="
         imageEntities.length || form.controls.newImages.length
           ? 'Add more files'
@@ -97,11 +96,13 @@
         type="file"
         accept="image/*"
         multiple
-        (change)="onChooseFiles($event)" />
+        (change)="onChooseFiles($event)"
+        (cancel)="$event.stopPropagation()" />
     </label>
 
     <button
       class="restore-button lcc-secondary-button"
+      type="button"
       [disabled]="!hasUnsavedChanges"
       tooltip="Restore album to its original state"
       (click)="onRestore()">

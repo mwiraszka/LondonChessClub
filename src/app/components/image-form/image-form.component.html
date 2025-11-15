@@ -23,14 +23,14 @@
         </div>
         <label
           class="choose-file-button lcc-secondary-button"
-          type="button"
           tooltip="Choose file">
           <mat-icon>insert_photo</mat-icon>
           <input
             id="file-input"
             type="file"
             accept="image/*"
-            (change)="onChooseFile($event)" />
+            (change)="onChooseFile($event)"
+            (cancel)="$event.stopPropagation()" />
         </label>
       </div>
       <lcc-form-error-icon [control]="form.controls.filename"></lcc-form-error-icon>

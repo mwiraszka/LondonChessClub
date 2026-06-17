@@ -5,11 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v5.13.7] - 2026-06-17
+## [v5.13.7] - 2026-06-18
 
 ### Fixed
 
 - Prevent schedule and home page event details from being cut off on narrow viewports
+- Stretch the schedule events table to full width in wide view
+- Scale article banner thumbnails to fill the card image area instead of leaving gaps around small images
 
 ### Changed
 

@@ -1,9 +1,17 @@
 @use '../../../styles/abstracts/mixins' as *;
 
+:host {
+  width: 100%;
+}
+
 .events-table {
   width: 100%;
   max-width: 800px;
   margin: auto;
+
+  :host-context(body[data-wide-view='true']) & {
+    max-width: none;
+  }
 
   tbody {
     .skeleton-date-widget {

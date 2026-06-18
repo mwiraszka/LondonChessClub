@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Prevent schedule and home page event details from being cut off on narrow viewports
 - Stretch the schedule events table to full width in wide view
-- Scale article banner thumbnails to fill the card image area instead of leaving gaps around small images
+- Scale article and image-explorer thumbnails to fill their image area instead of leaving gaps around small images
 
 ### Changed
 

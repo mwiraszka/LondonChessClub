@@ -1,0 +1,27 @@
+# Generated code
+/node_modules
+
+# Environment variables
+.prod.env
+.dev.env
+.dev-offline.env
+ecosystem.config.cjs
+
+# Backups
+/backups
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Compiled output
+pnpm-lock.yaml
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*

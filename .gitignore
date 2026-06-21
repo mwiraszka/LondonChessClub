@@ -29,6 +29,9 @@ coverage
 # Database backups
 backups
 
+# Internal/working docs are kept out of this public repo
+docs/
+
 # Claude
 .claude/settings.local.json
 

@@ -5,19 +5,16 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_FRONTEND_PROJECT_ID }}
 
 on:
-  pull_request:
-    types: [opened, synchronize]
+  push:
+    branches-ignore:
+      - main
     paths:
       - frontend/**
       - .github/workflows/frontend-preview.yaml
 
-permissions:
-  contents: read
-  pull-requests: read
-
 jobs:
   Deploy-Preview:
-    # Set the repository variable ENABLE_VERCEL to 'true' once the Vercel project
+    # Set the repository variable ENABLE_VERCEL to 'true' once the Vercel projects
     # and secrets are configured (see docs/deployment.md).
     if: ${{ vars.ENABLE_VERCEL == 'true' }}
     runs-on: ubuntu-latest
@@ -26,8 +23,6 @@ jobs:
         working-directory: frontend
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
 
       - uses: pnpm/action-setup@v4
         with:
@@ -53,8 +48,15 @@ jobs:
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy Project Artifacts
+        id: deploy
+        run: |
+          DEPLOY_URL=$(vercel deploy --prebuilt --yes \
+            --token=${{ secrets.VERCEL_TOKEN }} \
+            --meta githubCommitSha=${{ github.sha }} \
+            --meta githubCommitRef=${{ github.ref_name }})
+          echo "url=$DEPLOY_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Alias to Preview Domain
         run: >
-          vercel deploy --prebuilt --yes
-          --token=${{ secrets.VERCEL_TOKEN }}
-          --meta githubCommitSha=${{ github.event.pull_request.head.sha }}
-          --meta githubCommitRef=${{ github.event.pull_request.head.ref }}
+          vercel alias set ${{ steps.deploy.outputs.url }} preview.londonchess.ca
+          --token=${{ secrets.VERCEL_TOKEN }} --scope=eagami

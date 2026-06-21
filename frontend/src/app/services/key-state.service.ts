@@ -1,13 +1,19 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { Injectable, Renderer2, RendererFactory2, inject } from '@angular/core';
+import {
+  Injectable,
+  OnDestroy,
+  Renderer2,
+  RendererFactory2,
+  inject,
+} from '@angular/core';
 
 import { IS_MAC } from '@app/tokens';
 
 @Injectable({
   providedIn: 'root',
 })
-export class KeyStateService {
+export class KeyStateService implements OnDestroy {
   private isCtrlMetaKeyPressed = new BehaviorSubject<boolean>(false);
   private keydownListener?: () => void;
   private keyupListener?: () => void;
@@ -22,6 +28,11 @@ export class KeyStateService {
 
   public get ctrlMetaKeyPressed$(): Observable<boolean> {
     return this.isCtrlMetaKeyPressed.asObservable();
+  }
+
+  public ngOnDestroy(): void {
+    this.keydownListener?.();
+    this.keyupListener?.();
   }
 
   private setupGlobalListeners(): void {

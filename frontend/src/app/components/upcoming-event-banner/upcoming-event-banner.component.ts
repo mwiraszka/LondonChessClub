@@ -64,12 +64,13 @@ export class UpcomingEventBannerComponent implements AfterViewInit, OnDestroy {
   }
 
   private resizeObserver?: ResizeObserver;
+  private scrollDelayTimeoutId?: ReturnType<typeof setTimeout>;
 
   constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
 
   public ngAfterViewInit(): void {
     // Do not scroll for first 2 seconds to allow user to read the start of the message
-    setTimeout(() => {
+    this.scrollDelayTimeoutId = setTimeout(() => {
       this.resizeObserver = new ResizeObserver(() => {
         this.checkOverflow();
       });
@@ -78,6 +79,7 @@ export class UpcomingEventBannerComponent implements AfterViewInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
+    clearTimeout(this.scrollDelayTimeoutId);
     this.resizeObserver?.disconnect();
   }
 

@@ -74,7 +74,6 @@ export class TouchEventsService {
       const contextMenuEvent = new MouseEvent('contextmenu', {
         bubbles: true,
         cancelable: true,
-        view: window,
         clientX: touch.clientX,
         clientY: touch.clientY,
       });

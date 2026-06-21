@@ -5,16 +5,35 @@ afterEach(() => {
   vi.useRealTimers();
 });
 
-window.matchMedia = vi.fn().mockImplementation((query: string) => ({
-  matches: false,
-  media: query,
-  onchange: null,
-  addListener: vi.fn(), // deprecated
-  removeListener: vi.fn(), // deprecated
-  addEventListener: vi.fn(),
-  removeEventListener: vi.fn(),
-  dispatchEvent: vi.fn(),
-}));
+// Use defineProperty (not direct assignment) so re-running this setup in a jsdom
+// window shared across test files cannot fail with "read only property".
+
+// A real constructor so delayed `new ResizeObserver(...)` calls (scheduled by
+// components and fired after a test ends) don't crash the worker.
+Object.defineProperty(globalThis, 'ResizeObserver', {
+  configurable: true,
+  writable: true,
+  value: class {
+    observe = vi.fn();
+    unobserve = vi.fn();
+    disconnect = vi.fn();
+  },
+});
+
+Object.defineProperty(window, 'matchMedia', {
+  configurable: true,
+  writable: true,
+  value: vi.fn().mockImplementation((query: string) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: vi.fn(), // deprecated
+    removeListener: vi.fn(), // deprecated
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
+});
 
 globalThis.fail = (reason?: string | Error): never => {
   throw reason instanceof Error ? reason : new Error(reason ?? 'fail() called');

@@ -191,7 +191,8 @@
             "tsConfig": "tsconfig.spec.json",
             "runner": "vitest",
             "runnerConfig": "vitest-base.config.ts",
-            "setupFiles": ["src/test-setup.ts"]
+            "setupFiles": ["src/test-setup.ts"],
+            "isolate": true
           }
         }
       }

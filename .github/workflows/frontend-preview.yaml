@@ -1,0 +1,60 @@
+name: Frontend Preview Deployment
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_FRONTEND_PROJECT_ID }}
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - frontend/**
+      - .github/workflows/frontend-preview.yaml
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  Deploy-Preview:
+    # Set the repository variable ENABLE_VERCEL to 'true' once the Vercel project
+    # and secrets are configured (see docs/deployment.md).
+    if: ${{ vars.ENABLE_VERCEL == 'true' }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Install Vercel CLI
+        run: pnpm install --global vercel
+
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Use the preview build configuration
+        run: |
+          node -e "
+            const fs = require('fs');
+            const p = JSON.parse(fs.readFileSync('.vercel/project.json', 'utf8'));
+            p.settings = p.settings || {};
+            p.settings.buildCommand = 'pnpm build:preview';
+            fs.writeFileSync('.vercel/project.json', JSON.stringify(p, null, 2));
+          "
+
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy Project Artifacts
+        run: >
+          vercel deploy --prebuilt --yes
+          --token=${{ secrets.VERCEL_TOKEN }}
+          --meta githubCommitSha=${{ github.event.pull_request.head.sha }}
+          --meta githubCommitRef=${{ github.event.pull_request.head.ref }}

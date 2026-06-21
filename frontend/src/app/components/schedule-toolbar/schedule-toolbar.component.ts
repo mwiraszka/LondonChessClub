@@ -7,6 +7,7 @@ import {
   EventEmitter,
   Input,
   Output,
+  inject,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -15,7 +16,7 @@ import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-swit
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { BasicDialogResult, Dialog, Event } from '@app/models';
 import { DialogService } from '@app/services';
-import { exportEventsToIcal } from '@app/utils';
+import { EXPORT_EVENTS_TO_ICAL } from '@app/tokens';
 
 @UntilDestroy()
 @Component({
@@ -56,6 +57,8 @@ export class ScheduleToolbarComponent {
   @Input({ required: true }) totalCount!: number;
 
   @Output() toggleScheduleView = new EventEmitter<void>();
+
+  private readonly exportEventsToIcal = inject(EXPORT_EVENTS_TO_ICAL);
 
   constructor(
     public readonly changeDetectorRef: ChangeDetectorRef,
@@ -107,6 +110,6 @@ export class ScheduleToolbarComponent {
     const timestamp = new Date().toISOString().split('T')[0];
     const filename = `london_chess_club_events_${timestamp}.ics`;
 
-    exportEventsToIcal(this.filteredEvents, filename);
+    this.exportEventsToIcal(this.filteredEvents, filename);
   }
 }

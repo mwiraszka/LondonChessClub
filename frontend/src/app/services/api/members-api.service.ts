@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import {
   ApiResponse,
@@ -12,7 +12,7 @@ import {
   Member,
   PaginatedItems,
 } from '@app/models';
-import { setPaginationParams } from '@app/utils';
+import { SET_PAGINATION_PARAMS } from '@app/tokens';
 
 import { environment } from '@env';
 
@@ -22,6 +22,8 @@ import { environment } from '@env';
 export class MembersApiService {
   private readonly API_BASE_URL = environment.lccApiBaseUrl;
   private readonly COLLECTION: DbCollection = 'members';
+
+  private readonly setPaginationParams = inject(SET_PAGINATION_PARAMS);
 
   constructor(private readonly http: HttpClient) {}
 
@@ -40,7 +42,7 @@ export class MembersApiService {
     options: DataPaginationOptions<Member>,
   ): Observable<ApiResponse<PaginatedItems<Member>>> {
     const scope: ApiScope = isAdmin ? 'admin' : 'public';
-    const params = setPaginationParams(options);
+    const params = this.setPaginationParams(options);
 
     return this.http.get<ApiResponse<PaginatedItems<Member>>>(
       `${this.API_BASE_URL}/${scope}/${this.COLLECTION}`,

@@ -14,7 +14,7 @@ import {
   take,
 } from 'rxjs/operators';
 
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Member } from '@app/models';
 import { MembersApiService } from '@app/services';
@@ -22,17 +22,22 @@ import { AppActions } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
 import { NavSelectors } from '@app/store/nav';
 import {
-  exportDataToCsv,
-  getNewPeakRating,
-  isDefined,
-  isExpired,
-  parseError,
-} from '@app/utils';
+  EXPORT_DATA_TO_CSV,
+  GET_NEW_PEAK_RATING,
+  IS_EXPIRED,
+  PARSE_ERROR,
+} from '@app/tokens';
+import { isDefined } from '@app/utils';
 
 import { MembersActions, MembersSelectors } from '.';
 
 @Injectable()
 export class MembersEffects {
+  private readonly parseError = inject(PARSE_ERROR);
+  private readonly isExpired = inject(IS_EXPIRED);
+  private readonly exportDataToCsv = inject(EXPORT_DATA_TO_CSV);
+  private readonly getNewPeakRating = inject(GET_NEW_PEAK_RATING);
+
   fetchAllMembers$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MembersActions.fetchAllMembersRequested),
@@ -46,7 +51,7 @@ export class MembersEffects {
             }),
           ),
           catchError(error =>
-            of(MembersActions.fetchAllMembersFailed({ error: parseError(error) })),
+            of(MembersActions.fetchAllMembersFailed({ error: this.parseError(error) })),
           ),
         ),
       ),
@@ -73,7 +78,11 @@ export class MembersEffects {
             }),
           ),
           catchError(error =>
-            of(MembersActions.fetchFilteredMembersFailed({ error: parseError(error) })),
+            of(
+              MembersActions.fetchFilteredMembersFailed({
+                error: this.parseError(error),
+              }),
+            ),
           ),
         ),
       ),
@@ -100,7 +109,7 @@ export class MembersEffects {
       ),
       filter(
         ([lastFetch, currentPath]) =>
-          isExpired(lastFetch) && !!currentPath?.includes('/member'),
+          this.isExpired(lastFetch) && !!currentPath?.includes('/member'),
       ),
     );
 
@@ -110,7 +119,7 @@ export class MembersEffects {
       switchMap(() =>
         this.store.select(MembersSelectors.selectLastFilteredFetch).pipe(take(1)),
       ),
-      filter(lastFetch => isExpired(lastFetch)),
+      filter(lastFetch => this.isExpired(lastFetch)),
     );
 
     const periodicCheck$ = merge(timerCheck$, routerCheck$);
@@ -127,7 +136,7 @@ export class MembersEffects {
         return this.membersApiService.getMember(memberId).pipe(
           map(response => MembersActions.fetchMemberSucceeded({ member: response.data })),
           catchError(error =>
-            of(MembersActions.fetchMemberFailed({ error: parseError(error) })),
+            of(MembersActions.fetchMemberFailed({ error: this.parseError(error) })),
           ),
         );
       }),
@@ -161,7 +170,7 @@ export class MembersEffects {
             }),
           ),
           catchError(error =>
-            of(MembersActions.addMemberFailed({ error: parseError(error) })),
+            of(MembersActions.addMemberFailed({ error: this.parseError(error) })),
           ),
         );
       }),
@@ -182,7 +191,7 @@ export class MembersEffects {
         const updatedMember: Member = {
           ...member,
           ...formData,
-          peakRating: getNewPeakRating(formData.rating, formData.peakRating),
+          peakRating: this.getNewPeakRating(formData.rating, formData.peakRating),
           modificationInfo: {
             ...member.modificationInfo,
             lastEditedBy: `${user.firstName} ${user.lastName}`,
@@ -199,7 +208,7 @@ export class MembersEffects {
             }),
           ),
           catchError(error =>
-            of(MembersActions.updateMemberFailed({ error: parseError(error) })),
+            of(MembersActions.updateMemberFailed({ error: this.parseError(error) })),
           ),
         );
       }),
@@ -219,7 +228,7 @@ export class MembersEffects {
             }),
           ),
           catchError(error =>
-            of(MembersActions.deleteMemberFailed({ error: parseError(error) })),
+            of(MembersActions.deleteMemberFailed({ error: this.parseError(error) })),
           ),
         ),
       ),
@@ -234,7 +243,7 @@ export class MembersEffects {
         return this.membersApiService.getAllMembers(isAdmin).pipe(
           map(response => {
             const filename = `members_export_${new Date().toISOString().split('T')[0]}.csv`;
-            const exportResult = exportDataToCsv(response.data.items, filename);
+            const exportResult = this.exportDataToCsv(response.data.items, filename);
 
             return typeof exportResult === 'number'
               ? MembersActions.exportMembersToCsvSucceeded({
@@ -243,7 +252,7 @@ export class MembersEffects {
               : MembersActions.exportMembersToCsvFailed({ error: exportResult });
           }),
           catchError(error =>
-            of(MembersActions.fetchAllMembersFailed({ error: parseError(error) })),
+            of(MembersActions.fetchAllMembersFailed({ error: this.parseError(error) })),
           ),
         );
       }),
@@ -279,7 +288,9 @@ export class MembersEffects {
             MembersActions.updateMemberRatingsSucceeded({ members: updatedMembers }),
           ),
           catchError(error =>
-            of(MembersActions.updateMemberRatingsFailed({ error: parseError(error) })),
+            of(
+              MembersActions.updateMemberRatingsFailed({ error: this.parseError(error) }),
+            ),
           ),
         );
       }),

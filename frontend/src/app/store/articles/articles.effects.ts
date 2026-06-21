@@ -14,7 +14,7 @@ import {
   take,
 } from 'rxjs/operators';
 
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { MAX_ARTICLE_BODY_IMAGES } from '@app/constants';
 import { Article, DataPaginationOptions, LccError } from '@app/models';
@@ -22,12 +22,16 @@ import { ArticlesApiService } from '@app/services';
 import { AppActions } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
 import { NavSelectors } from '@app/store/nav';
-import { isDefined, isExpired, parseError } from '@app/utils';
+import { IS_EXPIRED, PARSE_ERROR } from '@app/tokens';
+import { isDefined } from '@app/utils';
 
 import { ArticlesActions, ArticlesSelectors } from '.';
 
 @Injectable()
 export class ArticlesEffects {
+  private readonly isExpired = inject(IS_EXPIRED);
+  private readonly parseError = inject(PARSE_ERROR);
+
   fetchHomePageArticles$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(
@@ -54,7 +58,9 @@ export class ArticlesEffects {
             ),
             catchError(error =>
               of(
-                ArticlesActions.fetchHomePageArticlesFailed({ error: parseError(error) }),
+                ArticlesActions.fetchHomePageArticlesFailed({
+                  error: this.parseError(error),
+                }),
               ),
             ),
           ),
@@ -81,7 +87,11 @@ export class ArticlesEffects {
             }),
           ),
           catchError(error =>
-            of(ArticlesActions.fetchFilteredArticlesFailed({ error: parseError(error) })),
+            of(
+              ArticlesActions.fetchFilteredArticlesFailed({
+                error: this.parseError(error),
+              }),
+            ),
           ),
         ),
       ),
@@ -102,7 +112,7 @@ export class ArticlesEffects {
       switchMap(() =>
         this.store.select(ArticlesSelectors.selectLastHomePageFetch).pipe(take(1)),
       ),
-      filter(lastFetch => isExpired(lastFetch)),
+      filter(lastFetch => this.isExpired(lastFetch)),
     );
 
     return merge(refetchActions$, periodicCheck$).pipe(
@@ -130,7 +140,7 @@ export class ArticlesEffects {
       ),
       filter(
         ([lastFetch, currentPath]) =>
-          isExpired(lastFetch) &&
+          this.isExpired(lastFetch) &&
           !!(currentPath?.includes('/news') || currentPath?.includes('/article')),
       ),
     );
@@ -144,7 +154,7 @@ export class ArticlesEffects {
       switchMap(() =>
         this.store.select(ArticlesSelectors.selectLastFilteredFetch).pipe(take(1)),
       ),
-      filter(lastFetch => isExpired(lastFetch)),
+      filter(lastFetch => this.isExpired(lastFetch)),
     );
 
     const periodicCheck$ = merge(timerCheck$, routerCheck$);
@@ -163,7 +173,7 @@ export class ArticlesEffects {
             ArticlesActions.fetchArticleSucceeded({ article: response.data }),
           ),
           catchError(error =>
-            of(ArticlesActions.fetchArticleFailed({ error: parseError(error) })),
+            of(ArticlesActions.fetchArticleFailed({ error: this.parseError(error) })),
           ),
         ),
       ),
@@ -210,7 +220,7 @@ export class ArticlesEffects {
             }),
           ),
           catchError(error =>
-            of(ArticlesActions.publishArticleFailed({ error: parseError(error) })),
+            of(ArticlesActions.publishArticleFailed({ error: this.parseError(error) })),
           ),
         );
       }),
@@ -260,7 +270,7 @@ export class ArticlesEffects {
             }),
           ),
           catchError(error =>
-            of(ArticlesActions.updateArticleFailed({ error: parseError(error) })),
+            of(ArticlesActions.updateArticleFailed({ error: this.parseError(error) })),
           ),
         );
       }),
@@ -288,7 +298,7 @@ export class ArticlesEffects {
             }),
           ),
           catchError(error =>
-            of(ArticlesActions.updateArticleFailed({ error: parseError(error) })),
+            of(ArticlesActions.updateArticleFailed({ error: this.parseError(error) })),
           ),
         );
       }),
@@ -308,7 +318,7 @@ export class ArticlesEffects {
             }),
           ),
           catchError(error =>
-            of(ArticlesActions.deleteArticleFailed({ error: parseError(error) })),
+            of(ArticlesActions.deleteArticleFailed({ error: this.parseError(error) })),
           ),
         ),
       ),

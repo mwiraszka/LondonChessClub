@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, inject } from '@angular/core';
 
-import { isTouchDevice } from '@app/utils';
+import { IS_TOUCH_DEVICE } from '@app/tokens';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +11,12 @@ export class TouchEventsService {
 
   private touchTimeoutId: number | null = null;
 
+  private readonly isTouchDevice = inject(IS_TOUCH_DEVICE);
+
   constructor(@Inject(DOCUMENT) private _document: Document) {}
 
   public listenForTouchEvents(): void {
-    if (!isTouchDevice()) {
+    if (!this.isTouchDevice()) {
       return;
     }
 

@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import {
   ApiResponse,
@@ -12,7 +12,7 @@ import {
   PaginatedItems,
 } from '@app/models';
 import { BaseImage } from '@app/models/image.model';
-import { setPaginationParams } from '@app/utils';
+import { SET_PAGINATION_PARAMS } from '@app/tokens';
 
 import { environment } from '@env';
 
@@ -22,6 +22,8 @@ import { environment } from '@env';
 export class ImagesApiService {
   private readonly API_BASE_URL = environment.lccApiBaseUrl;
   private readonly COLLECTION: DbCollection = 'images';
+
+  private readonly setPaginationParams = inject(SET_PAGINATION_PARAMS);
 
   constructor(private readonly http: HttpClient) {}
 
@@ -34,7 +36,7 @@ export class ImagesApiService {
   public getFilteredThumbnailImages(
     options: DataPaginationOptions<Image>,
   ): Observable<ApiResponse<PaginatedItems<Image>>> {
-    const params = setPaginationParams(options);
+    const params = this.setPaginationParams(options);
 
     return this.http.get<ApiResponse<PaginatedItems<Image>>>(
       `${this.API_BASE_URL}/${this.COLLECTION}/thumbnails`,

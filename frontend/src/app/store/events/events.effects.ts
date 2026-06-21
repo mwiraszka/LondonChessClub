@@ -14,19 +14,24 @@ import {
   take,
 } from 'rxjs/operators';
 
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { DataPaginationOptions, Event } from '@app/models';
 import { EventsApiService } from '@app/services';
 import { AppActions } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
 import { NavSelectors } from '@app/store/nav';
-import { exportDataToCsv, isDefined, isExpired, parseError } from '@app/utils';
+import { EXPORT_DATA_TO_CSV, IS_EXPIRED, PARSE_ERROR } from '@app/tokens';
+import { isDefined } from '@app/utils';
 
 import { EventsActions, EventsSelectors } from '.';
 
 @Injectable()
 export class EventsEffects {
+  private readonly exportDataToCsv = inject(EXPORT_DATA_TO_CSV);
+  private readonly isExpired = inject(IS_EXPIRED);
+  private readonly parseError = inject(PARSE_ERROR);
+
   fetchAllEvents$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventsActions.fetchAllEventsRequested),
@@ -39,7 +44,7 @@ export class EventsEffects {
             }),
           ),
           catchError(error =>
-            of(EventsActions.fetchAllEventsFailed({ error: parseError(error) })),
+            of(EventsActions.fetchAllEventsFailed({ error: this.parseError(error) })),
           ),
         ),
       ),
@@ -76,7 +81,11 @@ export class EventsEffects {
               }),
             ),
             catchError(error =>
-              of(EventsActions.fetchHomePageEventsFailed({ error: parseError(error) })),
+              of(
+                EventsActions.fetchHomePageEventsFailed({
+                  error: this.parseError(error),
+                }),
+              ),
             ),
           ),
           timer(10_000).pipe(map(() => EventsActions.requestTimedOut())),
@@ -102,7 +111,9 @@ export class EventsEffects {
             }),
           ),
           catchError(error =>
-            of(EventsActions.fetchFilteredEventsFailed({ error: parseError(error) })),
+            of(
+              EventsActions.fetchFilteredEventsFailed({ error: this.parseError(error) }),
+            ),
           ),
         ),
       ),
@@ -123,7 +134,7 @@ export class EventsEffects {
       switchMap(() =>
         this.store.select(EventsSelectors.selectLastHomePageFetch).pipe(take(1)),
       ),
-      filter(lastFetch => isExpired(lastFetch)),
+      filter(lastFetch => this.isExpired(lastFetch)),
     );
 
     return merge(refetchActions$, periodicCheck$).pipe(
@@ -151,7 +162,7 @@ export class EventsEffects {
       ),
       filter(
         ([lastFetch, currentPath]) =>
-          isExpired(lastFetch) &&
+          this.isExpired(lastFetch) &&
           !!(currentPath?.includes('/schedule') || currentPath?.includes('/event')),
       ),
     );
@@ -165,7 +176,7 @@ export class EventsEffects {
       switchMap(() =>
         this.store.select(EventsSelectors.selectLastFilteredFetch).pipe(take(1)),
       ),
-      filter(lastFetch => isExpired(lastFetch)),
+      filter(lastFetch => this.isExpired(lastFetch)),
     );
 
     const periodicCheck$ = merge(timerCheck$, routerCheck$);
@@ -182,7 +193,7 @@ export class EventsEffects {
         return this.eventsApiService.getEvent(eventId).pipe(
           map(response => EventsActions.fetchEventSucceeded({ event: response.data })),
           catchError(error =>
-            of(EventsActions.fetchEventFailed({ error: parseError(error) })),
+            of(EventsActions.fetchEventFailed({ error: this.parseError(error) })),
           ),
         );
       }),
@@ -215,7 +226,7 @@ export class EventsEffects {
             }),
           ),
           catchError(error =>
-            of(EventsActions.addEventFailed({ error: parseError(error) })),
+            of(EventsActions.addEventFailed({ error: this.parseError(error) })),
           ),
         );
       }),
@@ -252,7 +263,7 @@ export class EventsEffects {
             }),
           ),
           catchError(error =>
-            of(EventsActions.updateEventFailed({ error: parseError(error) })),
+            of(EventsActions.updateEventFailed({ error: this.parseError(error) })),
           ),
         );
       }),
@@ -272,7 +283,7 @@ export class EventsEffects {
             }),
           ),
           catchError(error =>
-            of(EventsActions.deleteEventFailed({ error: parseError(error) })),
+            of(EventsActions.deleteEventFailed({ error: this.parseError(error) })),
           ),
         ),
       ),
@@ -286,7 +297,7 @@ export class EventsEffects {
         return this.eventsApiService.getAllEvents().pipe(
           map(response => {
             const filename = `events_export_${new Date().toISOString().split('T')[0]}.csv`;
-            const exportResult = exportDataToCsv(response.data.items, filename);
+            const exportResult = this.exportDataToCsv(response.data.items, filename);
 
             return typeof exportResult === 'number'
               ? EventsActions.exportEventsToCsvSucceeded({
@@ -295,7 +306,7 @@ export class EventsEffects {
               : EventsActions.exportEventsToCsvFailed({ error: exportResult });
           }),
           catchError(error =>
-            of(EventsActions.fetchAllEventsFailed({ error: parseError(error) })),
+            of(EventsActions.fetchAllEventsFailed({ error: this.parseError(error) })),
           ),
         );
       }),

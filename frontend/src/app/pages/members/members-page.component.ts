@@ -10,6 +10,7 @@ import {
   ElementRef,
   OnInit,
   ViewChild,
+  inject,
 } from '@angular/core';
 
 import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
@@ -31,7 +32,8 @@ import { DialogService, MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
 import { MembersActions, MembersSelectors } from '@app/store/members';
-import { isLccError, parseCsv } from '@app/utils';
+import { PARSE_CSV } from '@app/tokens';
+import { isLccError } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -117,6 +119,8 @@ export class MembersPageComponent implements OnInit {
     totalCount: number;
   }>;
 
+  private readonly parseCsv = inject(PARSE_CSV);
+
   constructor(
     private readonly dialogService: DialogService,
     private readonly metaAndTitleService: MetaAndTitleService,
@@ -169,7 +173,7 @@ export class MembersPageComponent implements OnInit {
     }
 
     const expectedHeadersInCsv = ['first name', 'last name', 'old', 'new', 'peak'];
-    const parsingResult = await parseCsv(file, expectedHeadersInCsv, 5);
+    const parsingResult = await this.parseCsv(file, expectedHeadersInCsv, 5);
 
     if (isLccError(parsingResult)) {
       this.store.dispatch(

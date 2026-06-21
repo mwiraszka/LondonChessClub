@@ -10,6 +10,7 @@ import {
   OnInit,
   Output,
   SimpleChanges,
+  inject,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
@@ -28,7 +29,8 @@ import {
 } from '@app/models';
 import { FormatDatePipe, HighlightPipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
-import { customSort, isTouchDevice } from '@app/utils';
+import { IS_TOUCH_DEVICE } from '@app/tokens';
+import { customSort } from '@app/utils';
 
 import { EventInfoDialogComponent } from '../event-info-dialog/event-info-dialog.component';
 
@@ -60,13 +62,15 @@ export class EventsCalendarGridComponent implements OnInit, OnChanges {
   public isTouchDevice!: boolean;
   private cachedEventsJson = '';
 
+  private readonly isTouchDeviceFn = inject(IS_TOUCH_DEVICE);
+
   constructor(
     private readonly dialogService: DialogService,
     private readonly router: Router,
   ) {}
 
   public ngOnInit(): void {
-    this.isTouchDevice = isTouchDevice();
+    this.isTouchDevice = this.isTouchDeviceFn();
     this.updateCalendarMonths();
   }
 

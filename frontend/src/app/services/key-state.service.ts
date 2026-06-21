@@ -1,8 +1,8 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
+import { Injectable, Renderer2, RendererFactory2, inject } from '@angular/core';
 
-import { isMac } from '@app/utils';
+import { IS_MAC } from '@app/tokens';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +12,8 @@ export class KeyStateService {
   private keydownListener?: () => void;
   private keyupListener?: () => void;
   private renderer: Renderer2;
+
+  private readonly isMac = inject(IS_MAC);
 
   constructor(rendererFactory: RendererFactory2) {
     this.renderer = rendererFactory.createRenderer(null, null);
@@ -27,7 +29,10 @@ export class KeyStateService {
       'document',
       'keydown',
       (event: KeyboardEvent) => {
-        if ((!isMac() && event.key === 'Control') || (isMac() && event.key === 'Meta')) {
+        if (
+          (!this.isMac() && event.key === 'Control') ||
+          (this.isMac() && event.key === 'Meta')
+        ) {
           this.isCtrlMetaKeyPressed.next(true);
         }
       },
@@ -37,7 +42,10 @@ export class KeyStateService {
       'document',
       'keyup',
       (event: KeyboardEvent) => {
-        if ((!isMac() && event.key === 'Control') || (isMac() && event.key === 'Meta')) {
+        if (
+          (!this.isMac() && event.key === 'Control') ||
+          (this.isMac() && event.key === 'Meta')
+        ) {
           this.isCtrlMetaKeyPressed.next(false);
         }
       },

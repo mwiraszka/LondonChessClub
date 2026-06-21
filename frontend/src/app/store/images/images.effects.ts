@@ -16,7 +16,7 @@ import {
   timeout,
 } from 'rxjs/operators';
 
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Article, BaseImage, IndexedDbImageData, LccError } from '@app/models';
 import { ImageFileService, ImagesApiService } from '@app/services';
@@ -25,18 +25,24 @@ import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
 import { AuthSelectors } from '@app/store/auth';
 import { NavSelectors } from '@app/store/nav';
 import {
-  buildImagesFormData,
-  dataUrlToFile,
-  isDefined,
-  isExpired,
-  isLccError,
-  parseError,
-} from '@app/utils';
+  BUILD_IMAGES_FORM_DATA,
+  DATA_URL_TO_FILE,
+  IS_EXPIRED,
+  IS_LCC_ERROR,
+  PARSE_ERROR,
+} from '@app/tokens';
+import { isDefined } from '@app/utils';
 
 import { ImagesActions, ImagesSelectors } from '.';
 
 @Injectable()
 export class ImagesEffects {
+  private readonly buildImagesFormData = inject(BUILD_IMAGES_FORM_DATA);
+  private readonly dataUrlToFile = inject(DATA_URL_TO_FILE);
+  private readonly isExpired = inject(IS_EXPIRED);
+  private readonly isLccError = inject(IS_LCC_ERROR);
+  private readonly parseError = inject(PARSE_ERROR);
+
   fetchAllImagesMetadata$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ImagesActions.fetchAllImagesMetadataRequested),
@@ -51,7 +57,7 @@ export class ImagesEffects {
             catchError(error =>
               of(
                 ImagesActions.fetchAllImagesMetadataFailed({
-                  error: parseError(error),
+                  error: this.parseError(error),
                 }),
               ),
             ),
@@ -78,7 +84,7 @@ export class ImagesEffects {
           catchError(error =>
             of(
               ImagesActions.fetchFilteredThumbnailsFailed({
-                error: parseError(error),
+                error: this.parseError(error),
               }),
             ),
           ),
@@ -102,7 +108,7 @@ export class ImagesEffects {
           catchError(error =>
             of(
               ImagesActions.fetchBatchThumbnailsFailed({
-                error: parseError(error),
+                error: this.parseError(error),
               }),
             ),
           ),
@@ -149,7 +155,7 @@ export class ImagesEffects {
               catchError(error =>
                 of(
                   ImagesActions.fetchBatchThumbnailsFailed({
-                    error: parseError(error),
+                    error: this.parseError(error),
                   }),
                 ),
               ),
@@ -266,7 +272,7 @@ export class ImagesEffects {
               catchError(error =>
                 of(
                   ImagesActions.fetchMainImageFailed({
-                    error: parseError(error),
+                    error: this.parseError(error),
                   }),
                 ),
               ),
@@ -292,7 +298,7 @@ export class ImagesEffects {
               catchError(error =>
                 of(
                   ImagesActions.fetchMainImageFailed({
-                    error: parseError(error),
+                    error: this.parseError(error),
                   }),
                 ),
               ),
@@ -321,7 +327,7 @@ export class ImagesEffects {
       switchMap(() =>
         this.store.select(ImagesSelectors.selectLastMetadataFetch).pipe(take(1)),
       ),
-      filter(lastFetch => isExpired(lastFetch)),
+      filter(lastFetch => this.isExpired(lastFetch)),
     );
 
     return merge(refetchActions$, periodicCheck$).pipe(
@@ -353,7 +359,7 @@ export class ImagesEffects {
       ),
       filter(
         ([lastFetch, currentPath]) =>
-          isExpired(lastFetch) &&
+          this.isExpired(lastFetch) &&
           !!(
             currentPath?.includes('/photo-gallery') ||
             currentPath?.includes('/album') ||
@@ -385,12 +391,12 @@ export class ImagesEffects {
       switchMap(() =>
         this.store.select(ImagesSelectors.selectLastAlbumCoversFetch).pipe(take(1)),
       ),
-      filter(lastFetch => isExpired(lastFetch)),
+      filter(lastFetch => this.isExpired(lastFetch)),
     );
 
     return merge(refetchActions$, periodicCheck$).pipe(
       switchMap(() => this.store.select(ImagesSelectors.selectLastMetadataFetch)),
-      filter(lastMetadataFetch => !isExpired(lastMetadataFetch)),
+      filter(lastMetadataFetch => !this.isExpired(lastMetadataFetch)),
       switchMap(() =>
         this.store
           .select(ImagesSelectors.selectIdsOfAlbumCoversWithMissingOrExpiredThumbnailUrls)
@@ -457,11 +463,11 @@ export class ImagesEffects {
         this.store.select(ImagesSelectors.selectAllExistingAlbums),
       ]),
       mergeMap(([imageFileResult, user, formData, existingAlbums]) => {
-        if (isLccError(imageFileResult)) {
+        if (this.isLccError(imageFileResult)) {
           return of(ImagesActions.addImageFailed({ error: imageFileResult }));
         }
 
-        const file = dataUrlToFile(imageFileResult.dataUrl, formData.filename);
+        const file = this.dataUrlToFile(imageFileResult.dataUrl, formData.filename);
 
         if (!file) {
           const error: LccError = {
@@ -495,7 +501,7 @@ export class ImagesEffects {
         return this.imagesApiService.addImages(imageFormData).pipe(
           map(response => ImagesActions.addImageSucceeded({ image: response.data[0] })),
           catchError(error =>
-            of(ImagesActions.addImageFailed({ error: parseError(error) })),
+            of(ImagesActions.addImageFailed({ error: this.parseError(error) })),
           ),
         );
       }),
@@ -511,7 +517,7 @@ export class ImagesEffects {
         this.store.select(ImagesSelectors.selectNewImagesFormData),
       ]),
       mergeMap(([imageFilesResult, user, newImagesFormData]) => {
-        if (isLccError(imageFilesResult)) {
+        if (this.isLccError(imageFilesResult)) {
           return of(ImagesActions.addImageFailed({ error: imageFilesResult }));
         }
 
@@ -553,16 +559,16 @@ export class ImagesEffects {
           });
         }
 
-        const result = buildImagesFormData(newImagesMetadata, imageFilesResult, []);
+        const result = this.buildImagesFormData(newImagesMetadata, imageFilesResult, []);
 
-        if (isLccError(result)) {
+        if (this.isLccError(result)) {
           return of(ImagesActions.addImagesFailed({ error: result }));
         }
 
         return this.imagesApiService.addImages(result).pipe(
           map(response => ImagesActions.addImagesSucceeded({ images: response.data })),
           catchError(error =>
-            of(ImagesActions.addImagesFailed({ error: parseError(error) })),
+            of(ImagesActions.addImagesFailed({ error: this.parseError(error) })),
           ),
         );
       }),
@@ -593,9 +599,9 @@ export class ImagesEffects {
           },
         };
 
-        const imagesFormData = buildImagesFormData([], [], [updatedImage]);
+        const imagesFormData = this.buildImagesFormData([], [], [updatedImage]);
 
-        if (isLccError(imagesFormData)) {
+        if (this.isLccError(imagesFormData)) {
           return of(
             ImagesActions.updateImageFailed({
               baseImage: updatedImage,
@@ -622,7 +628,7 @@ export class ImagesEffects {
             of(
               ImagesActions.updateImageFailed({
                 baseImage: updatedImage,
-                error: parseError(error),
+                error: this.parseError(error),
               }),
             ),
           ),
@@ -663,7 +669,7 @@ export class ImagesEffects {
           const newImagesMetadata: Omit<BaseImage, 'fileSize'>[] = [];
 
           if (
-            !isLccError(indexedDbImageDataResult) &&
+            !this.isLccError(indexedDbImageDataResult) &&
             indexedDbImageDataResult.length > 0
           ) {
             for (const indexedDbImageData of indexedDbImageDataResult) {
@@ -695,13 +701,13 @@ export class ImagesEffects {
             }
           }
 
-          const imagesFormData = buildImagesFormData(
+          const imagesFormData = this.buildImagesFormData(
             newImagesMetadata,
             indexedDbImageDataResult as IndexedDbImageData[],
             existingImages,
           );
 
-          if (isLccError(imagesFormData)) {
+          if (this.isLccError(imagesFormData)) {
             return of(ImagesActions.updateAlbumFailed({ album, error: imagesFormData }));
           }
 
@@ -727,7 +733,9 @@ export class ImagesEffects {
               });
             }),
             catchError(error =>
-              of(ImagesActions.updateAlbumFailed({ album, error: parseError(error) })),
+              of(
+                ImagesActions.updateAlbumFailed({ album, error: this.parseError(error) }),
+              ),
             ),
           );
         },
@@ -743,7 +751,7 @@ export class ImagesEffects {
           filter(response => response.data === image.id),
           map(() => ImagesActions.deleteImageSucceeded({ image })),
           catchError(error =>
-            of(ImagesActions.deleteImageFailed({ image, error: parseError(error) })),
+            of(ImagesActions.deleteImageFailed({ image, error: this.parseError(error) })),
           ),
         );
       }),
@@ -759,7 +767,7 @@ export class ImagesEffects {
             ImagesActions.deleteAlbumSucceeded({ album, imageIds: response.data }),
           ),
           catchError(error =>
-            of(ImagesActions.deleteAlbumFailed({ album, error: parseError(error) })),
+            of(ImagesActions.deleteAlbumFailed({ album, error: this.parseError(error) })),
           ),
         );
       }),
@@ -788,9 +796,9 @@ export class ImagesEffects {
         return updatedImage;
       }),
       mergeMap(updatedImage => {
-        const imagesFormData = buildImagesFormData([], [], [updatedImage]);
+        const imagesFormData = this.buildImagesFormData([], [], [updatedImage]);
 
-        if (isLccError(imagesFormData)) {
+        if (this.isLccError(imagesFormData)) {
           return of(
             ImagesActions.automaticAlbumCoverSwitchFailed({
               album: updatedImage.album,
@@ -822,7 +830,7 @@ export class ImagesEffects {
             of(
               ImagesActions.automaticAlbumCoverSwitchFailed({
                 album: updatedImage.album,
-                error: parseError(error),
+                error: this.parseError(error),
               }),
             ),
           ),

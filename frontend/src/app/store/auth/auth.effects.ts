@@ -4,10 +4,10 @@ import { Store } from '@ngrx/store';
 import { of, race, timer } from 'rxjs';
 import { catchError, filter, map, switchMap } from 'rxjs/operators';
 
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { AuthApiService } from '@app/services';
-import { parseError } from '@app/utils';
+import { PARSE_ERROR } from '@app/tokens';
 
 import { AuthActions, AuthSelectors } from '.';
 
@@ -15,6 +15,8 @@ const AUTH_REQUEST_TIMEOUT = 5000; // 5 seconds
 
 @Injectable()
 export class AuthEffects {
+  private readonly parseError = inject(PARSE_ERROR);
+
   logIn$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.loginRequested),
@@ -23,7 +25,7 @@ export class AuthEffects {
           this.authApiService.logIn(email, password).pipe(
             map(response => AuthActions.loginSucceeded({ user: response.data })),
             catchError(error =>
-              of(AuthActions.loginFailed({ error: parseError(error) })),
+              of(AuthActions.loginFailed({ error: this.parseError(error) })),
             ),
           ),
           timer(AUTH_REQUEST_TIMEOUT).pipe(map(() => AuthActions.requestTimedOut())),
@@ -42,7 +44,7 @@ export class AuthEffects {
           this.authApiService.logOut().pipe(
             map(() => AuthActions.logoutSucceeded({ sessionExpired })),
             catchError(error =>
-              of(AuthActions.logoutFailed({ error: parseError(error) })),
+              of(AuthActions.logoutFailed({ error: this.parseError(error) })),
             ),
           ),
           timer(AUTH_REQUEST_TIMEOUT).pipe(map(() => AuthActions.requestTimedOut())),
@@ -59,7 +61,11 @@ export class AuthEffects {
           this.authApiService.sendCodeForPasswordChange(email).pipe(
             map(() => AuthActions.codeForPasswordChangeSucceeded()),
             catchError(error =>
-              of(AuthActions.codeForPasswordChangeFailed({ error: parseError(error) })),
+              of(
+                AuthActions.codeForPasswordChangeFailed({
+                  error: this.parseError(error),
+                }),
+              ),
             ),
           ),
           timer(AUTH_REQUEST_TIMEOUT).pipe(map(() => AuthActions.requestTimedOut())),
@@ -76,7 +82,7 @@ export class AuthEffects {
           this.authApiService.changePassword(email, password, code).pipe(
             map(response => AuthActions.passwordChangeSucceeded({ user: response.data })),
             catchError(error =>
-              of(AuthActions.passwordChangeFailed({ error: parseError(error) })),
+              of(AuthActions.passwordChangeFailed({ error: this.parseError(error) })),
             ),
           ),
           timer(AUTH_REQUEST_TIMEOUT).pipe(map(() => AuthActions.requestTimedOut())),
@@ -93,7 +99,7 @@ export class AuthEffects {
           this.authApiService.refreshSession().pipe(
             map(() => AuthActions.sessionRefreshSucceeded()),
             catchError(error =>
-              of(AuthActions.sessionRefreshFailed({ error: parseError(error) })),
+              of(AuthActions.sessionRefreshFailed({ error: this.parseError(error) })),
             ),
           ),
           timer(AUTH_REQUEST_TIMEOUT).pipe(map(() => AuthActions.requestTimedOut())),

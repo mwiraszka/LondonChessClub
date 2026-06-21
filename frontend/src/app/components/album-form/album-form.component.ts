@@ -8,6 +8,7 @@ import {
   Input,
   OnInit,
   Output,
+  inject,
 } from '@angular/core';
 import {
   FormArray,
@@ -37,8 +38,8 @@ import {
   Url,
 } from '@app/models';
 import { DialogService, ImageFileService } from '@app/services';
+import { GENERATE_UUID } from '@app/tokens';
 import { isLccError } from '@app/utils';
-import { generateUuid } from '@app/utils/common/generate-uuid.util';
 import { ordinalityValidator, textValidator } from '@app/validators';
 
 @UntilDestroy()
@@ -97,6 +98,8 @@ export class AlbumFormComponent implements OnInit {
       return currentDate > mostRecentDate ? currentModInfo : mostRecent;
     }, null);
   }
+
+  private readonly generateUuid = inject(GENERATE_UUID);
 
   constructor(
     private readonly dialogService: DialogService,
@@ -200,7 +203,7 @@ export class AlbumFormComponent implements OnInit {
     let ordinalityCounter = 1;
     const processFiles = Array.from(files).map(async file => {
       const result = await this.imageFileService.storeImageFile(
-        `new-${generateUuid()}`,
+        `new-${this.generateUuid()}`,
         file,
       );
 

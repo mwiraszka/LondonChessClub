@@ -8,6 +8,7 @@ import {
   Input,
   OnInit,
   Output,
+  inject,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -35,8 +36,8 @@ import {
   Url,
 } from '@app/models';
 import { DialogService, ImageFileService } from '@app/services';
+import { GENERATE_UUID } from '@app/tokens';
 import { isLccError } from '@app/utils';
-import { generateUuid } from '@app/utils/common/generate-uuid.util';
 import { textValidator } from '@app/validators';
 
 @UntilDestroy()
@@ -76,6 +77,8 @@ export class ImageFormComponent implements OnInit {
   public form!: FormGroup<ImageFormGroup>;
   public newAlbumValue!: string;
   public newImageDataUrl: Url | null = null;
+
+  private readonly generateUuid = inject(GENERATE_UUID);
 
   constructor(
     private readonly dialogService: DialogService,
@@ -224,7 +227,7 @@ export class ImageFormComponent implements OnInit {
     const formData: ImageFormData = this.imageEntity?.formData ??
       this.newImageFormData ?? {
         ...INITIAL_IMAGE_FORM_DATA,
-        id: `new-${generateUuid()}`,
+        id: `new-${this.generateUuid()}`,
       };
 
     this.form = this.formBuilder.group<ImageFormGroup>({

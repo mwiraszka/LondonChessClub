@@ -18,6 +18,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  inject,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -33,6 +34,7 @@ import { PgnViewerComponent } from '@app/components/pgn-viewer/pgn-viewer.compon
 import { FilterFormGroup, GameDetails } from '@app/models';
 import { MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
+import { PARSE_CSV } from '@app/tokens';
 import {
   getOpeningTallies,
   getPlayerName,
@@ -40,7 +42,6 @@ import {
   getResultTallies,
   getScore,
   isLccError,
-  parseCsv,
 } from '@app/utils';
 
 import * as fromPgns from './pgns';
@@ -138,6 +139,8 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
 
   private openingChart?: Chart;
   private resultChart?: Chart;
+
+  private readonly parseCsv = inject(PARSE_CSV);
 
   constructor(
     private readonly changeDetectorRef: ChangeDetectorRef,
@@ -468,7 +471,7 @@ export class GameArchivesPageComponent implements OnInit, OnDestroy {
     const blob = await rawData.blob();
     const file = new File([blob], this.FILE_PATH, { type: 'text/csv' });
 
-    const parsedData = await parseCsv(file, ['eco', 'name', 'moves'], 2);
+    const parsedData = await this.parseCsv(file, ['eco', 'name', 'moves'], 2);
 
     if (isLccError(parsedData)) {
       console.error('[LCC] Error parsing chess opening CSV data:', parsedData);

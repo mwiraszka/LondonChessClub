@@ -1,8 +1,8 @@
 import { BehaviorSubject } from 'rxjs';
 
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
-import { isTouchDevice } from '@app/utils';
+import { IS_TOUCH_DEVICE } from '@app/tokens';
 
 @Injectable({
   providedIn: 'root',
@@ -22,8 +22,10 @@ export class RefreshService {
   private boundOnTouchMove = this.onTouchMove.bind(this);
   private boundOnTouchEnd = this.onTouchEnd.bind(this);
 
+  private readonly isTouchDevice = inject(IS_TOUCH_DEVICE);
+
   public initialize(mainElement: HTMLElement): void {
-    if (!isTouchDevice()) {
+    if (!this.isTouchDevice()) {
       return;
     }
 

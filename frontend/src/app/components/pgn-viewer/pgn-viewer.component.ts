@@ -8,11 +8,13 @@ import {
   Inject,
   Input,
   OnInit,
+  inject,
 } from '@angular/core';
 
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { ExternalLink } from '@app/models';
-import { getLichessAnalysisUrl, getPlayerName, getScore } from '@app/utils';
+import { GET_PLAYER_NAME, GET_SCORE } from '@app/tokens';
+import { getLichessAnalysisUrl } from '@app/utils';
 
 @Component({
   selector: 'lcc-pgn-viewer',
@@ -35,6 +37,10 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
 
   public lichessAnalysisBoardLink!: ExternalLink;
   public viewerId!: string;
+
+  private readonly getScore = inject(GET_SCORE);
+
+  private readonly getPlayerName = inject(GET_PLAYER_NAME);
 
   constructor(@Inject(DOCUMENT) private _document: Document) {}
 
@@ -60,25 +66,25 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
         showClocks: false,
       });
 
-      const whiteScore = getScore(this.pgn, 'White');
+      const whiteScore = this.getScore(this.pgn, 'White');
       if (!whiteScore) {
         console.warn('[LCC] Found game with an invalid score for White: \n', this.pgn);
         return;
       }
 
-      const blackScore = getScore(this.pgn, 'Black');
+      const blackScore = this.getScore(this.pgn, 'Black');
       if (!blackScore) {
         console.warn('[LCC] Found game with an invalid score for Black: \n', this.pgn);
         return;
       }
 
-      const whiteName = getPlayerName(this.pgn, 'full', 'White');
+      const whiteName = this.getPlayerName(this.pgn, 'full', 'White');
       if (!whiteName) {
         console.warn('[LCC] Found game with an undefined White player: \n', this.pgn);
         return;
       }
 
-      const blackName = getPlayerName(this.pgn, 'full', 'Black');
+      const blackName = this.getPlayerName(this.pgn, 'full', 'Black');
       if (!blackName) {
         console.warn('[LCC] Found game with an undefined Black player: \n', this.pgn);
         return;

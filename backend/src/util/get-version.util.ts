@@ -1,15 +1,7 @@
-import { readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import pkg from '../../package.json';
 
-let cachedVersion: string | null = null;
-
+// Imported (and inlined by the bundler) rather than read from disk at runtime so
+// it resolves correctly inside a bundled serverless function.
 export function getVersion(): string {
-  if (cachedVersion === null) {
-    const currentDir = dirname(fileURLToPath(import.meta.url));
-    const pkgPath = resolve(currentDir, '../../package.json');
-    const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8')) as { version: string };
-    cachedVersion = pkg.version;
-  }
-  return cachedVersion;
+  return pkg.version;
 }

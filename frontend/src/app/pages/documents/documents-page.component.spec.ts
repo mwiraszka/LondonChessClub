@@ -16,10 +16,10 @@ describe('DocumentsPageComponent', () => {
   let metaAndTitleService: MetaAndTitleService;
   let routingService: RoutingService;
 
-  let dialogOpenSpy: jest.SpyInstance;
-  let removeFragmentSpy: jest.SpyInstance;
-  let updateDescriptionSpy: jest.SpyInstance;
-  let updateTitleSpy: jest.SpyInstance;
+  let dialogOpenSpy: MockInstance;
+  let removeFragmentSpy: MockInstance;
+  let updateDescriptionSpy: MockInstance;
+  let updateTitleSpy: MockInstance;
 
   const fragment$ = new Subject<string | null>();
 
@@ -30,8 +30,8 @@ describe('DocumentsPageComponent', () => {
         {
           provide: DialogService,
           useValue: {
-            open: jest.fn(),
-            closeAll: jest.fn(),
+            open: vi.fn(),
+            closeAll: vi.fn(),
             topDialogRef: null,
           },
         },
@@ -46,8 +46,8 @@ describe('DocumentsPageComponent', () => {
         {
           provide: MetaAndTitleService,
           useValue: {
-            updateTitle: jest.fn(),
-            updateDescription: jest.fn(),
+            updateTitle: vi.fn(),
+            updateDescription: vi.fn(),
           },
         },
         {
@@ -55,7 +55,7 @@ describe('DocumentsPageComponent', () => {
           useValue: {
             fragment$,
             currentFragment: null,
-            removeFragment: jest.fn(),
+            removeFragment: vi.fn(),
           },
         },
         provideRouter([]),
@@ -69,10 +69,10 @@ describe('DocumentsPageComponent', () => {
     metaAndTitleService = TestBed.inject(MetaAndTitleService);
     routingService = TestBed.inject(RoutingService);
 
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
-    removeFragmentSpy = jest.spyOn(routingService, 'removeFragment');
-    updateDescriptionSpy = jest.spyOn(metaAndTitleService, 'updateDescription');
-    updateTitleSpy = jest.spyOn(metaAndTitleService, 'updateTitle');
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
+    removeFragmentSpy = vi.spyOn(routingService, 'removeFragment');
+    updateDescriptionSpy = vi.spyOn(metaAndTitleService, 'updateDescription');
+    updateTitleSpy = vi.spyOn(metaAndTitleService, 'updateTitle');
   });
 
   it('should create', () => {

@@ -9,7 +9,7 @@ import { RatingChangesComponent } from './rating-changes.component';
 describe('RatingChangesComponent', () => {
   let fixture: ComponentFixture<RatingChangesComponent>;
 
-  let dialogResultSpy: jest.SpyInstance;
+  let dialogResultSpy: MockInstance;
 
   const mockMembersWithNewRatings: MemberWithNewRatings[] = [
     {
@@ -33,7 +33,7 @@ describe('RatingChangesComponent', () => {
 
     fixture = TestBed.createComponent(RatingChangesComponent);
 
-    dialogResultSpy = jest.spyOn(fixture.componentInstance.dialogResult, 'emit');
+    dialogResultSpy = vi.spyOn(fixture.componentInstance.dialogResult, 'emit');
 
     fixture.componentRef.setInput('membersWithNewRatings', mockMembersWithNewRatings);
     fixture.componentRef.setInput('unmatchedMembers', unmatchedMembers);

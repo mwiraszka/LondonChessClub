@@ -23,10 +23,10 @@ describe('MarkdownRendererComponent', () => {
   let fixture: ComponentFixture<MarkdownRendererComponent>;
   let component: MarkdownRendererComponent;
 
-  let addAnchorIdsToHeadingsSpy: jest.SpyInstance;
-  let addBlockquoteIconsSpy: jest.SpyInstance;
-  let scrollToAnchorSpy: jest.SpyInstance;
-  let wrapMarkdownTablesSpy: jest.SpyInstance;
+  let addAnchorIdsToHeadingsSpy: MockInstance;
+  let addBlockquoteIconsSpy: MockInstance;
+  let scrollToAnchorSpy: MockInstance;
+  let wrapMarkdownTablesSpy: MockInstance;
 
   const mockMarkdownText = `
   ## Heading 1
@@ -68,13 +68,13 @@ describe('MarkdownRendererComponent', () => {
     component = fixture.componentInstance;
 
     // @ts-expect-error Private class member
-    addAnchorIdsToHeadingsSpy = jest.spyOn(component, 'addAnchorIdsToHeadings');
+    addAnchorIdsToHeadingsSpy = vi.spyOn(component, 'addAnchorIdsToHeadings');
     // @ts-expect-error Private class member
-    addBlockquoteIconsSpy = jest.spyOn(component, 'addBlockquoteIcons');
+    addBlockquoteIconsSpy = vi.spyOn(component, 'addBlockquoteIcons');
     // @ts-expect-error Private class member
-    scrollToAnchorSpy = jest.spyOn(component, 'scrollToAnchor');
+    scrollToAnchorSpy = vi.spyOn(component, 'scrollToAnchor');
     // @ts-expect-error Private class member
-    wrapMarkdownTablesSpy = jest.spyOn(component, 'wrapMarkdownTables');
+    wrapMarkdownTablesSpy = vi.spyOn(component, 'wrapMarkdownTables');
 
     fixture.detectChanges();
   });
@@ -89,27 +89,27 @@ describe('MarkdownRendererComponent', () => {
     });
 
     it('should scroll to URL fragment after view init', () => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
 
       component.ngAfterViewInit();
 
-      jest.advanceTimersByTime(1);
+      vi.advanceTimersByTime(1);
 
       expect(scrollToAnchorSpy).toHaveBeenCalledWith('mock-fragment');
 
-      jest.useRealTimers();
+      vi.useRealTimers();
     });
   });
 
   describe('data changes', () => {
-    beforeAll(() => jest.useFakeTimers());
-    afterAll(() => jest.useRealTimers());
+    beforeAll(() => vi.useFakeTimers());
+    afterAll(() => vi.useRealTimers());
 
     beforeEach(() => {
       fixture.componentRef.setInput('data', mockMarkdownText);
       fixture.detectChanges();
       // Simulate lifecycle timing delay
-      jest.advanceTimersByTime(1);
+      vi.advanceTimersByTime(1);
     });
 
     it('should set data input', () => {

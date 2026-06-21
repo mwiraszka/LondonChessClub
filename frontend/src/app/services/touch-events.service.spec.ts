@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
 
-import * as deviceUtils from '@app/utils';
+import { IS_TOUCH_DEVICE } from '@app/tokens';
 
 import { TouchEventsService } from './touch-events.service';
 
@@ -9,24 +9,28 @@ describe('TouchEventsService', () => {
   let service: TouchEventsService;
   let mockDocument: Document;
 
-  let addEventListenerSpy: jest.SpyInstance;
-  let clearTimeoutSpy: jest.SpyInstance;
-  let isTouchDeviceSpy: jest.SpyInstance;
-  let setTimeoutSpy: jest.SpyInstance;
+  let addEventListenerSpy: MockInstance;
+  let clearTimeoutSpy: MockInstance;
+  let isTouchDeviceSpy: MockInstance;
+  let setTimeoutSpy: MockInstance;
 
   beforeEach(() => {
     mockDocument = document.implementation.createHTMLDocument();
 
     TestBed.configureTestingModule({
-      providers: [TouchEventsService, { provide: DOCUMENT, useValue: mockDocument }],
+      providers: [
+        TouchEventsService,
+        { provide: DOCUMENT, useValue: mockDocument },
+        { provide: IS_TOUCH_DEVICE, useValue: vi.fn() },
+      ],
     });
 
     service = TestBed.inject(TouchEventsService);
 
-    addEventListenerSpy = jest.spyOn(mockDocument, 'addEventListener');
-    clearTimeoutSpy = jest.spyOn(window, 'clearTimeout');
-    isTouchDeviceSpy = jest.spyOn(deviceUtils, 'isTouchDevice');
-    setTimeoutSpy = jest.spyOn(window, 'setTimeout');
+    addEventListenerSpy = vi.spyOn(mockDocument, 'addEventListener');
+    clearTimeoutSpy = vi.spyOn(window, 'clearTimeout');
+    isTouchDeviceSpy = TestBed.inject(IS_TOUCH_DEVICE) as Mock;
+    setTimeoutSpy = vi.spyOn(window, 'setTimeout');
   });
 
   it('should be created', () => {
@@ -115,22 +119,22 @@ describe('TouchEventsService', () => {
     });
 
     it('should dispatch contextmenu event on long press for admin controls', () => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
 
       const element = mockDocument.createElement('div');
       element.setAttribute('adminControls', '');
       mockDocument.body.appendChild(element);
 
-      const dispatchEventSpy = jest.spyOn(element, 'dispatchEvent');
+      const dispatchEventSpy = vi.spyOn(element, 'dispatchEvent');
 
       const touchEvent = {
         touches: [{ clientX: 100, clientY: 200 }],
         target: element,
-        preventDefault: jest.fn(),
+        preventDefault: vi.fn(),
       } as unknown as TouchEvent;
 
       touchStartHandler(touchEvent);
-      jest.advanceTimersByTime(500);
+      vi.advanceTimersByTime(500);
 
       expect(dispatchEventSpy).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -140,13 +144,13 @@ describe('TouchEventsService', () => {
         }),
       );
 
-      jest.useRealTimers();
+      vi.useRealTimers();
     });
 
     it('should not dispatch contextmenu for elements without admin controls', () => {
-      const dispatchEventSpy = jest.spyOn(mockDocument, 'dispatchEvent');
+      const dispatchEventSpy = vi.spyOn(mockDocument, 'dispatchEvent');
 
-      jest.useFakeTimers();
+      vi.useFakeTimers();
 
       const element = mockDocument.createElement('div');
       mockDocument.body.appendChild(element);
@@ -157,15 +161,15 @@ describe('TouchEventsService', () => {
       } as unknown as TouchEvent;
 
       touchStartHandler(touchEvent);
-      jest.advanceTimersByTime(500);
+      vi.advanceTimersByTime(500);
 
       expect(dispatchEventSpy).not.toHaveBeenCalled();
 
-      jest.useRealTimers();
+      vi.useRealTimers();
     });
 
     it('should check parent elements for admin controls attribute', () => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
 
       const parent = mockDocument.createElement('div');
       parent.setAttribute('adminControls', '');
@@ -173,16 +177,16 @@ describe('TouchEventsService', () => {
       parent.appendChild(child);
       mockDocument.body.appendChild(parent);
 
-      const dispatchEventSpy = jest.spyOn(child, 'dispatchEvent');
+      const dispatchEventSpy = vi.spyOn(child, 'dispatchEvent');
 
       const touchEvent = {
         touches: [{ clientX: 150, clientY: 250 }],
         target: child,
-        preventDefault: jest.fn(),
+        preventDefault: vi.fn(),
       } as unknown as TouchEvent;
 
       touchStartHandler(touchEvent);
-      jest.advanceTimersByTime(500);
+      vi.advanceTimersByTime(500);
 
       expect(dispatchEventSpy).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -190,7 +194,7 @@ describe('TouchEventsService', () => {
         }),
       );
 
-      jest.useRealTimers();
+      vi.useRealTimers();
     });
 
     it('should prevent contextmenu when tooltip is open', () => {
@@ -204,7 +208,7 @@ describe('TouchEventsService', () => {
         bubbles: true,
         cancelable: true,
       });
-      const preventDefaultSpy = jest.spyOn(contextMenuEvent, 'preventDefault');
+      const preventDefaultSpy = vi.spyOn(contextMenuEvent, 'preventDefault');
 
       mockDocument.dispatchEvent(contextMenuEvent);
 
@@ -216,7 +220,7 @@ describe('TouchEventsService', () => {
         bubbles: true,
         cancelable: true,
       });
-      const preventDefaultSpy = jest.spyOn(contextMenuEvent, 'preventDefault');
+      const preventDefaultSpy = vi.spyOn(contextMenuEvent, 'preventDefault');
 
       mockDocument.dispatchEvent(contextMenuEvent);
 
@@ -224,31 +228,31 @@ describe('TouchEventsService', () => {
     });
 
     it('should clear text selection on long press for admin controls', () => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
 
       const element = mockDocument.createElement('div');
       element.setAttribute('adminControls', '');
       mockDocument.body.appendChild(element);
 
       const mockSelection = {
-        removeAllRanges: jest.fn(),
+        removeAllRanges: vi.fn(),
       };
-      jest
-        .spyOn(window, 'getSelection')
-        .mockReturnValue(mockSelection as unknown as Selection);
+      vi.spyOn(window, 'getSelection').mockReturnValue(
+        mockSelection as unknown as Selection,
+      );
 
       const touchEvent = {
         touches: [{ clientX: 100, clientY: 200 }],
         target: element,
-        preventDefault: jest.fn(),
+        preventDefault: vi.fn(),
       } as unknown as TouchEvent;
 
       touchStartHandler(touchEvent);
-      jest.advanceTimersByTime(500);
+      vi.advanceTimersByTime(500);
 
       expect(mockSelection.removeAllRanges).toHaveBeenCalled();
 
-      jest.useRealTimers();
+      vi.useRealTimers();
     });
   });
 });

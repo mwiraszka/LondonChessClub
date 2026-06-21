@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MOCK_PGNS } from '@app/mocks/pgns.mock';
-import { queryTextContent } from '@app/utils';
-import * as pgnUtils from '@app/utils';
+import { GET_PLAYER_NAME, GET_SCORE } from '@app/tokens';
+import { getPlayerName, getScore, queryTextContent } from '@app/utils';
 
 import { PgnViewerComponent } from './pgn-viewer.component';
 
@@ -10,21 +10,25 @@ describe('PgnViewerComponent', () => {
   let fixture: ComponentFixture<PgnViewerComponent>;
   let component: PgnViewerComponent;
 
-  let consoleWarnSpy: jest.SpyInstance;
-  let getPlayerNameSpy: jest.SpyInstance;
-  let getScoreSpy: jest.SpyInstance;
+  let consoleWarnSpy: MockInstance;
+  let getPlayerNameSpy: MockInstance;
+  let getScoreSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PgnViewerComponent],
+      providers: [
+        { provide: GET_SCORE, useValue: vi.fn(getScore) },
+        { provide: GET_PLAYER_NAME, useValue: vi.fn(getPlayerName) },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PgnViewerComponent);
     component = fixture.componentInstance;
 
-    consoleWarnSpy = jest.spyOn(console, 'warn');
-    getPlayerNameSpy = jest.spyOn(pgnUtils, 'getPlayerName');
-    getScoreSpy = jest.spyOn(pgnUtils, 'getScore');
+    consoleWarnSpy = vi.spyOn(console, 'warn');
+    getPlayerNameSpy = TestBed.inject(GET_PLAYER_NAME) as Mock;
+    getScoreSpy = TestBed.inject(GET_SCORE) as Mock;
 
     component.index = 1;
     component.label = 'test-game';

@@ -12,8 +12,8 @@ describe('RegionalClubsPageComponent', () => {
 
   let metaAndTitleService: MetaAndTitleService;
 
-  let updateDescriptionSpy: jest.SpyInstance;
-  let updateTitleSpy: jest.SpyInstance;
+  let updateDescriptionSpy: MockInstance;
+  let updateTitleSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,8 +22,8 @@ describe('RegionalClubsPageComponent', () => {
         {
           provide: MetaAndTitleService,
           useValue: {
-            updateTitle: jest.fn(),
-            updateDescription: jest.fn(),
+            updateTitle: vi.fn(),
+            updateDescription: vi.fn(),
           },
         },
       ],
@@ -34,8 +34,8 @@ describe('RegionalClubsPageComponent', () => {
 
     metaAndTitleService = TestBed.inject(MetaAndTitleService);
 
-    updateDescriptionSpy = jest.spyOn(metaAndTitleService, 'updateDescription');
-    updateTitleSpy = jest.spyOn(metaAndTitleService, 'updateTitle');
+    updateDescriptionSpy = vi.spyOn(metaAndTitleService, 'updateDescription');
+    updateTitleSpy = vi.spyOn(metaAndTitleService, 'updateTitle');
   });
 
   it('should create', () => {

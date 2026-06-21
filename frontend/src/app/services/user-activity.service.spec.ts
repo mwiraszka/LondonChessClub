@@ -12,8 +12,8 @@ describe('UserActivityService', () => {
   let dialogService: DialogService;
   let store: MockStore;
 
-  let dialogOpenSpy: jest.SpyInstance;
-  let dispatchSpy: jest.SpyInstance;
+  let dialogOpenSpy: MockInstance;
+  let dispatchSpy: MockInstance;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -25,7 +25,7 @@ describe('UserActivityService', () => {
             { selector: AuthSelectors.selectCallState, value: { status: 'idle' } },
           ],
         }),
-        { provide: DialogService, useValue: { open: jest.fn() } },
+        { provide: DialogService, useValue: { open: vi.fn() } },
       ],
     });
 
@@ -33,12 +33,12 @@ describe('UserActivityService', () => {
     dialogService = TestBed.inject(DialogService);
     store = TestBed.inject(MockStore);
 
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
-    dispatchSpy = jest.spyOn(store, 'dispatch');
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
+    dispatchSpy = vi.spyOn(store, 'dispatch');
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should be created', () => {

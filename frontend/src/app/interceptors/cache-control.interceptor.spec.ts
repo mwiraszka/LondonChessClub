@@ -12,12 +12,12 @@ describe('CacheControlInterceptor', () => {
 
   let mockHandler: HttpHandler;
 
-  let cloneSpy: jest.SpyInstance;
-  let handleSpy: jest.SpyInstance;
+  let cloneSpy: MockInstance;
+  let handleSpy: MockInstance;
 
   beforeEach(() => {
     mockHandler = {
-      handle: jest.fn().mockReturnValue(of({})),
+      handle: vi.fn().mockReturnValue(of({})),
     };
 
     TestBed.configureTestingModule({
@@ -26,11 +26,11 @@ describe('CacheControlInterceptor', () => {
 
     interceptor = TestBed.inject(CacheControlInterceptor);
 
-    handleSpy = jest.spyOn(mockHandler, 'handle');
+    handleSpy = vi.spyOn(mockHandler, 'handle');
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should be created', () => {
@@ -42,7 +42,7 @@ describe('CacheControlInterceptor', () => {
       const imageUrl = `${environment.lccApiBaseUrl}/images/test.jpg`;
       const mockRequest = new HttpRequest('GET', imageUrl);
 
-      cloneSpy = jest.spyOn(mockRequest, 'clone');
+      cloneSpy = vi.spyOn(mockRequest, 'clone');
 
       interceptor.intercept(mockRequest, mockHandler as HttpHandler);
 
@@ -59,7 +59,7 @@ describe('CacheControlInterceptor', () => {
       const nonImageUrl = `${environment.lccApiBaseUrl}/articles`;
       const mockRequest = new HttpRequest('GET', nonImageUrl);
 
-      cloneSpy = jest.spyOn(mockRequest, 'clone');
+      cloneSpy = vi.spyOn(mockRequest, 'clone');
 
       interceptor.intercept(mockRequest, mockHandler);
 
@@ -71,7 +71,7 @@ describe('CacheControlInterceptor', () => {
       const metadataUrl = `${environment.lccApiBaseUrl}/images/metadata`;
       const mockRequest = new HttpRequest('GET', metadataUrl);
 
-      cloneSpy = jest.spyOn(mockRequest, 'clone');
+      cloneSpy = vi.spyOn(mockRequest, 'clone');
 
       interceptor.intercept(mockRequest, mockHandler);
 
@@ -83,7 +83,7 @@ describe('CacheControlInterceptor', () => {
       const uploadUrl = `${environment.lccApiBaseUrl}/images`;
       const mockRequest = new HttpRequest('POST', uploadUrl, {});
 
-      cloneSpy = jest.spyOn(mockRequest, 'clone');
+      cloneSpy = vi.spyOn(mockRequest, 'clone');
 
       interceptor.intercept(mockRequest, mockHandler);
 
@@ -94,7 +94,7 @@ describe('CacheControlInterceptor', () => {
       const deleteUrl = `${environment.lccApiBaseUrl}/images/123`;
       const mockRequest = new HttpRequest('DELETE', deleteUrl);
 
-      cloneSpy = jest.spyOn(mockRequest, 'clone');
+      cloneSpy = vi.spyOn(mockRequest, 'clone');
 
       interceptor.intercept(mockRequest, mockHandler);
 
@@ -105,7 +105,7 @@ describe('CacheControlInterceptor', () => {
       const otherUrl = 'https://other-api.com/data';
       const mockRequest = new HttpRequest('GET', otherUrl);
 
-      cloneSpy = jest.spyOn(mockRequest, 'clone');
+      cloneSpy = vi.spyOn(mockRequest, 'clone');
 
       interceptor.intercept(mockRequest, mockHandler);
 
@@ -117,7 +117,7 @@ describe('CacheControlInterceptor', () => {
       const nestedUrl = `${environment.lccApiBaseUrl}/images/albums/2024/test.jpg`;
       const mockRequest = new HttpRequest('GET', nestedUrl);
 
-      cloneSpy = jest.spyOn(mockRequest, 'clone');
+      cloneSpy = vi.spyOn(mockRequest, 'clone');
 
       interceptor.intercept(mockRequest, mockHandler);
 

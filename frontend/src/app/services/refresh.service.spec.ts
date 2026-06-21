@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import * as deviceUtils from '@app/utils';
+import { IS_TOUCH_DEVICE } from '@app/tokens';
 
 import { RefreshService } from './refresh.service';
 
@@ -13,7 +13,7 @@ describe('RefreshService', () => {
     document.body.appendChild(mockMainElement);
 
     TestBed.configureTestingModule({
-      providers: [RefreshService],
+      providers: [RefreshService, { provide: IS_TOUCH_DEVICE, useValue: vi.fn() }],
     });
 
     service = TestBed.inject(RefreshService);
@@ -30,8 +30,8 @@ describe('RefreshService', () => {
 
   describe('initialize', () => {
     it('should set up touch event listeners on touch devices', () => {
-      const addEventListenerSpy = jest.spyOn(mockMainElement, 'addEventListener');
-      jest.spyOn(deviceUtils, 'isTouchDevice').mockReturnValue(true);
+      const addEventListenerSpy = vi.spyOn(mockMainElement, 'addEventListener');
+      vi.mocked(TestBed.inject(IS_TOUCH_DEVICE)).mockReturnValue(true);
 
       service.initialize(mockMainElement);
 
@@ -51,8 +51,8 @@ describe('RefreshService', () => {
     });
 
     it('should not initialize on non-touch devices', () => {
-      const addEventListenerSpy = jest.spyOn(mockMainElement, 'addEventListener');
-      jest.spyOn(deviceUtils, 'isTouchDevice').mockReturnValue(false);
+      const addEventListenerSpy = vi.spyOn(mockMainElement, 'addEventListener');
+      vi.mocked(TestBed.inject(IS_TOUCH_DEVICE)).mockReturnValue(false);
 
       service.initialize(mockMainElement);
 
@@ -62,8 +62,8 @@ describe('RefreshService', () => {
 
   describe('destroy', () => {
     it('should remove event listeners', () => {
-      const removeEventListenerSpy = jest.spyOn(mockMainElement, 'removeEventListener');
-      jest.spyOn(deviceUtils, 'isTouchDevice').mockReturnValue(true);
+      const removeEventListenerSpy = vi.spyOn(mockMainElement, 'removeEventListener');
+      vi.mocked(TestBed.inject(IS_TOUCH_DEVICE)).mockReturnValue(true);
 
       service.initialize(mockMainElement);
       service.destroy();
@@ -89,7 +89,7 @@ describe('RefreshService', () => {
 
   describe('completeRefresh', () => {
     it('should reset state and emit isRefreshing false', () => {
-      const isRefreshingSpy = jest.fn();
+      const isRefreshingSpy = vi.fn();
 
       service.isRefreshing$.subscribe(isRefreshingSpy);
 
@@ -101,7 +101,7 @@ describe('RefreshService', () => {
 
   describe('touch gestures', () => {
     beforeEach(() => {
-      jest.spyOn(deviceUtils, 'isTouchDevice').mockReturnValue(true);
+      vi.mocked(TestBed.inject(IS_TOUCH_DEVICE)).mockReturnValue(true);
       service.initialize(mockMainElement);
       Object.defineProperty(mockMainElement, 'scrollTop', {
         value: 0,
@@ -142,7 +142,7 @@ describe('RefreshService', () => {
     });
 
     it('should trigger refresh when pulled past threshold', () => {
-      const isRefreshingSpy = jest.fn();
+      const isRefreshingSpy = vi.fn();
       service.isRefreshing$.subscribe(isRefreshingSpy);
 
       const touchStartEvent = new TouchEvent('touchstart', {
@@ -163,7 +163,7 @@ describe('RefreshService', () => {
     });
 
     it('should not trigger refresh when pulled below threshold', () => {
-      const isRefreshingSpy = jest.fn();
+      const isRefreshingSpy = vi.fn();
       service.isRefreshing$.subscribe(isRefreshingSpy);
 
       const touchStartEvent = new TouchEvent('touchstart', {

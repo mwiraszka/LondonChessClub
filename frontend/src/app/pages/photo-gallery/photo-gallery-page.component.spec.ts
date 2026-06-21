@@ -19,9 +19,9 @@ describe('PhotoGalleryPageComponent', () => {
   let metaAndTitleService: MetaAndTitleService;
   let store: MockStore;
 
-  let dispatchSpy: jest.SpyInstance;
-  let updateDescriptionSpy: jest.SpyInstance;
-  let updateTitleSpy: jest.SpyInstance;
+  let dispatchSpy: MockInstance;
+  let updateDescriptionSpy: MockInstance;
+  let updateTitleSpy: MockInstance;
 
   const mockPhotoImages = MOCK_IMAGES.slice(0, 5);
   const mockIsAdmin = true;
@@ -33,8 +33,8 @@ describe('PhotoGalleryPageComponent', () => {
         {
           provide: MetaAndTitleService,
           useValue: {
-            updateTitle: jest.fn(),
-            updateDescription: jest.fn(),
+            updateTitle: vi.fn(),
+            updateDescription: vi.fn(),
           },
         },
         provideMockStore(),
@@ -48,9 +48,9 @@ describe('PhotoGalleryPageComponent', () => {
     metaAndTitleService = TestBed.inject(MetaAndTitleService);
     store = TestBed.inject(MockStore);
 
-    dispatchSpy = jest.spyOn(store, 'dispatch');
-    updateDescriptionSpy = jest.spyOn(metaAndTitleService, 'updateDescription');
-    updateTitleSpy = jest.spyOn(metaAndTitleService, 'updateTitle');
+    dispatchSpy = vi.spyOn(store, 'dispatch');
+    updateDescriptionSpy = vi.spyOn(metaAndTitleService, 'updateDescription');
+    updateTitleSpy = vi.spyOn(metaAndTitleService, 'updateTitle');
 
     store.overrideSelector(AuthSelectors.selectIsAdmin, mockIsAdmin);
     store.overrideSelector(ImagesSelectors.selectPhotoImages, mockPhotoImages);

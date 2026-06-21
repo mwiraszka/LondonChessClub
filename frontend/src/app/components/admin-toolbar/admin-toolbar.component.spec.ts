@@ -16,19 +16,19 @@ describe('AdminToolbarComponent', () => {
       id: 'refresh-button',
       tooltip: 'Refresh data',
       icon: 'refresh',
-      action: jest.fn(),
+      action: vi.fn(),
     },
     {
       id: 'settings-button',
       tooltip: 'Open settings',
       icon: 'settings',
-      action: jest.fn(),
+      action: vi.fn(),
     },
     {
       id: 'export-button',
       tooltip: 'Export data',
       icon: 'download',
-      action: jest.fn(),
+      action: vi.fn(),
     },
   ];
 

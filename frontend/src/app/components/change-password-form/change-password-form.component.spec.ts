@@ -12,11 +12,11 @@ describe('ChangePasswordFormComponent', () => {
   let fixture: ComponentFixture<ChangePasswordFormComponent>;
   let component: ChangePasswordFormComponent;
 
-  let initFormSpy: jest.SpyInstance;
-  let initFormValueChangeListenerSpy: jest.SpyInstance;
-  let requestChangePasswordSpy: jest.SpyInstance;
-  let requestCodeForPasswordChangeSpy: jest.SpyInstance;
-  let requestNewCodeSpy: jest.SpyInstance;
+  let initFormSpy: MockInstance;
+  let initFormValueChangeListenerSpy: MockInstance;
+  let requestChangePasswordSpy: MockInstance;
+  let requestCodeForPasswordChangeSpy: MockInstance;
+  let requestNewCodeSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -37,18 +37,18 @@ describe('ChangePasswordFormComponent', () => {
     fixture.detectChanges();
 
     // @ts-expect-error Private class member
-    initFormSpy = jest.spyOn(component, 'initForm');
-    initFormValueChangeListenerSpy = jest.spyOn(
+    initFormSpy = vi.spyOn(component, 'initForm');
+    initFormValueChangeListenerSpy = vi.spyOn(
       component,
       // @ts-expect-error Private class member
       'initFormValueChangeListener',
     );
-    requestChangePasswordSpy = jest.spyOn(component.requestChangePassword, 'emit');
-    requestCodeForPasswordChangeSpy = jest.spyOn(
+    requestChangePasswordSpy = vi.spyOn(component.requestChangePassword, 'emit');
+    requestCodeForPasswordChangeSpy = vi.spyOn(
       component.requestCodeForPasswordChange,
       'emit',
     );
-    requestNewCodeSpy = jest.spyOn(component.requestNewCode, 'emit');
+    requestNewCodeSpy = vi.spyOn(component.requestNewCode, 'emit');
   });
 
   it('should create', () => {

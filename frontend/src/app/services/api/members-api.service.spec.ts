@@ -13,7 +13,7 @@ import {
   Member,
   PaginatedItems,
 } from '@app/models';
-import * as utils from '@app/utils';
+import { SET_PAGINATION_PARAMS } from '@app/tokens';
 
 import { environment } from '@env';
 
@@ -28,7 +28,11 @@ describe('MembersApiService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MembersApiService, provideHttpClientTesting()],
+      providers: [
+        MembersApiService,
+        provideHttpClientTesting(),
+        { provide: SET_PAGINATION_PARAMS, useValue: vi.fn() },
+      ],
     });
 
     service = TestBed.inject(MembersApiService);
@@ -90,11 +94,11 @@ describe('MembersApiService', () => {
         .set('sortBy', 'lastName')
         .set('sortOrder', 'asc')
         .set('search', 'Carlsen');
-      jest.spyOn(utils, 'setPaginationParams').mockReturnValue(mockParams);
+      vi.mocked(TestBed.inject(SET_PAGINATION_PARAMS)).mockReturnValue(mockParams);
 
       service.getFilteredMembers(true, options).subscribe(response => {
         expect(response).toEqual(mockPaginatedResponse);
-        expect(utils.setPaginationParams).toHaveBeenCalledWith(options);
+        expect(TestBed.inject(SET_PAGINATION_PARAMS)).toHaveBeenCalledWith(options);
       });
 
       const req = httpMock.expectOne(

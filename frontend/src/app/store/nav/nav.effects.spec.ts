@@ -21,20 +21,11 @@ import { MembersActions } from '@app/store/members';
 import { NavActions, NavSelectors } from '.';
 import { NavEffects } from './nav.effects';
 
-jest.mock('@app/utils', () => ({
-  isCollectionId: (value: unknown): value is string =>
-    typeof value === 'string' && value.length === 16,
-  isDefined: <T>(value: T | null | undefined): value is T => value != null,
-  isEntity: (value: unknown): value is string =>
-    ['album', 'article', 'event', 'image', 'member'].includes(value as string),
-  isString: (value: unknown): value is string => typeof value === 'string',
-}));
-
 describe('NavEffects', () => {
   let actions$: ReplaySubject<Action>;
-  let dialogService: jest.Mocked<DialogService>;
+  let dialogService: Mocked<DialogService>;
   let effects: NavEffects;
-  let router: jest.Mocked<Router>;
+  let router: Mocked<Router>;
   let store: MockStore;
 
   const mockNavigatedAction = (url: string) =>
@@ -47,12 +38,12 @@ describe('NavEffects', () => {
 
   beforeEach(() => {
     const routerMock = {
-      navigate: jest.fn(),
+      navigate: vi.fn(),
       events: new ReplaySubject<NavigationEnd>(1),
     };
 
     const dialogServiceMock = {
-      closeAll: jest.fn(),
+      closeAll: vi.fn(),
     };
 
     TestBed.configureTestingModule({
@@ -77,9 +68,9 @@ describe('NavEffects', () => {
       ],
     });
 
-    dialogService = TestBed.inject(DialogService) as jest.Mocked<DialogService>;
+    dialogService = TestBed.inject(DialogService) as Mocked<DialogService>;
     effects = TestBed.inject(NavEffects);
-    router = TestBed.inject(Router) as jest.Mocked<Router>;
+    router = TestBed.inject(Router) as Mocked<Router>;
     store = TestBed.inject(MockStore);
     actions$ = new ReplaySubject<Action>(1);
 
@@ -87,33 +78,35 @@ describe('NavEffects', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('appendPathToHistory$', () => {
-    it('should append new path to history when path changes', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/members');
-      store.refreshState();
+    it('should append new path to history when path changes', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/members');
+        store.refreshState();
 
-      actions$.next(mockNavigatedAction('/schedule'));
+        actions$.next(mockNavigatedAction('/schedule'));
 
-      effects.appendPathToHistory$.subscribe(action => {
-        expect(action).toEqual(NavActions.appendPathToHistory({ path: '/schedule' }));
-        done();
-      });
-    });
+        effects.appendPathToHistory$.subscribe(action => {
+          expect(action).toEqual(NavActions.appendPathToHistory({ path: '/schedule' }));
+          done();
+        });
+      }));
 
-    it('should ignore fragment differences when comparing paths', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/news');
-      store.refreshState();
+    it('should ignore fragment differences when comparing paths', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/news');
+        store.refreshState();
 
-      actions$.next(mockNavigatedAction('/news#section'));
+        actions$.next(mockNavigatedAction('/news#section'));
 
-      setTimeout(() => {
-        expect(router.navigate).not.toHaveBeenCalled();
-        done();
-      }, 10);
-    });
+        setTimeout(() => {
+          expect(router.navigate).not.toHaveBeenCalled();
+          done();
+        }, 10);
+      }));
 
     it('should append path when current path is null', () => {
       store.overrideSelector(NavSelectors.selectCurrentPath, null);
@@ -121,16 +114,17 @@ describe('NavEffects', () => {
   });
 
   describe('closeAllDialogsOnNavigation$', () => {
-    it('should close all dialogs on NavigationEnd event', done => {
-      effects.closeAllDialogsOnNavigation$.subscribe(() => {
-        expect(dialogService.closeAll).toHaveBeenCalledTimes(1);
-        done();
-      });
+    it('should close all dialogs on NavigationEnd event', () =>
+      withDone(done => {
+        effects.closeAllDialogsOnNavigation$.subscribe(() => {
+          expect(dialogService.closeAll).toHaveBeenCalledTimes(1);
+          done();
+        });
 
-      (router.events as ReplaySubject<NavigationEnd>).next(
-        new NavigationEnd(1, '/schedule', '/schedule'),
-      );
-    });
+        (router.events as ReplaySubject<NavigationEnd>).next(
+          new NavigationEnd(1, '/schedule', '/schedule'),
+        );
+      }));
   });
 
   describe('redirectOnAccessDenied$', () => {
@@ -164,7 +158,7 @@ describe('NavEffects', () => {
     });
 
     it('should open external links with www in new tab', () => {
-      const openSpy = jest.spyOn(window, 'open').mockImplementation();
+      const openSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
 
       effects.navigate$.subscribe();
       actions$.next(NavActions.navigationRequested({ path: 'www.example.com/page' }));
@@ -175,7 +169,7 @@ describe('NavEffects', () => {
     });
 
     it('should open external links with http in new tab', () => {
-      const openSpy = jest.spyOn(window, 'open').mockImplementation();
+      const openSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
 
       effects.navigate$.subscribe();
       actions$.next(NavActions.navigationRequested({ path: 'https://example.com/page' }));
@@ -187,564 +181,620 @@ describe('NavEffects', () => {
   });
 
   describe('navigateHome$', () => {
-    it('should navigate home on loginSucceeded', done => {
-      actions$.next(
-        AuthActions.loginSucceeded({
-          user: {
-            id: '123',
-            email: 'test@test.com',
-            firstName: 'Test',
-            lastName: 'User',
-            isAdmin: true,
-          },
-        }),
-      );
+    it('should navigate home on loginSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          AuthActions.loginSucceeded({
+            user: {
+              id: '123',
+              email: 'test@test.com',
+              firstName: 'Test',
+              lastName: 'User',
+              isAdmin: true,
+            },
+          }),
+        );
 
-      effects.navigateHome$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: '' }));
-        done();
-      });
-    });
+        effects.navigateHome$.subscribe(action => {
+          expect(action).toEqual(NavActions.navigationRequested({ path: '' }));
+          done();
+        });
+      }));
 
-    it('should navigate home on passwordChangeSucceeded', done => {
-      actions$.next(
-        AuthActions.passwordChangeSucceeded({
-          user: {
-            id: '123',
-            email: 'test@test.com',
-            firstName: 'Test',
-            lastName: 'User',
-            isAdmin: true,
-          },
-        }),
-      );
+    it('should navigate home on passwordChangeSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          AuthActions.passwordChangeSucceeded({
+            user: {
+              id: '123',
+              email: 'test@test.com',
+              firstName: 'Test',
+              lastName: 'User',
+              isAdmin: true,
+            },
+          }),
+        );
 
-      effects.navigateHome$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: '' }));
-        done();
-      });
-    });
+        effects.navigateHome$.subscribe(action => {
+          expect(action).toEqual(NavActions.navigationRequested({ path: '' }));
+          done();
+        });
+      }));
   });
 
   describe('navigateToMembers$', () => {
-    it('should navigate to members on cancelSelected', done => {
-      actions$.next(MembersActions.cancelSelected());
+    it('should navigate to members on cancelSelected', () =>
+      withDone(done => {
+        actions$.next(MembersActions.cancelSelected());
 
-      effects.navigateToMembers$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'members' }));
-        done();
-      });
-    });
+        effects.navigateToMembers$.subscribe(action => {
+          expect(action).toEqual(NavActions.navigationRequested({ path: 'members' }));
+          done();
+        });
+      }));
 
-    it('should navigate to members on addMemberSucceeded', done => {
-      actions$.next(
-        MembersActions.addMemberSucceeded({
-          member: MOCK_MEMBERS[0],
-        }),
-      );
+    it('should navigate to members on addMemberSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          MembersActions.addMemberSucceeded({
+            member: MOCK_MEMBERS[0],
+          }),
+        );
 
-      effects.navigateToMembers$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'members' }));
-        done();
-      });
-    });
+        effects.navigateToMembers$.subscribe(action => {
+          expect(action).toEqual(NavActions.navigationRequested({ path: 'members' }));
+          done();
+        });
+      }));
 
-    it('should navigate to members on updateMemberSucceeded', done => {
-      actions$.next(
-        MembersActions.updateMemberSucceeded({
-          member: MOCK_MEMBERS[0],
-          originalMemberName: 'John Doe',
-        }),
-      );
+    it('should navigate to members on updateMemberSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          MembersActions.updateMemberSucceeded({
+            member: MOCK_MEMBERS[0],
+            originalMemberName: 'John Doe',
+          }),
+        );
 
-      effects.navigateToMembers$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'members' }));
-        done();
-      });
-    });
+        effects.navigateToMembers$.subscribe(action => {
+          expect(action).toEqual(NavActions.navigationRequested({ path: 'members' }));
+          done();
+        });
+      }));
 
-    it('should navigate to members on fetchMemberFailed', done => {
-      actions$.next(
-        MembersActions.fetchMemberFailed({
-          error: { name: 'LCCError', message: 'Failed' },
-        }),
-      );
+    it('should navigate to members on fetchMemberFailed', () =>
+      withDone(done => {
+        actions$.next(
+          MembersActions.fetchMemberFailed({
+            error: { name: 'LCCError', message: 'Failed' },
+          }),
+        );
 
-      effects.navigateToMembers$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'members' }));
-        done();
-      });
-    });
+        effects.navigateToMembers$.subscribe(action => {
+          expect(action).toEqual(NavActions.navigationRequested({ path: 'members' }));
+          done();
+        });
+      }));
   });
 
   describe('navigateToSchedule$', () => {
-    it('should navigate to schedule on cancelSelected', done => {
-      actions$.next(EventsActions.cancelSelected());
+    it('should navigate to schedule on cancelSelected', () =>
+      withDone(done => {
+        actions$.next(EventsActions.cancelSelected());
 
-      effects.navigateToSchedule$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'schedule' }));
-        done();
-      });
-    });
+        effects.navigateToSchedule$.subscribe(action => {
+          expect(action).toEqual(NavActions.navigationRequested({ path: 'schedule' }));
+          done();
+        });
+      }));
 
-    it('should navigate to schedule on addEventSucceeded', done => {
-      actions$.next(EventsActions.addEventSucceeded({ event: MOCK_EVENTS[0] }));
+    it('should navigate to schedule on addEventSucceeded', () =>
+      withDone(done => {
+        actions$.next(EventsActions.addEventSucceeded({ event: MOCK_EVENTS[0] }));
 
-      effects.navigateToSchedule$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'schedule' }));
-        done();
-      });
-    });
+        effects.navigateToSchedule$.subscribe(action => {
+          expect(action).toEqual(NavActions.navigationRequested({ path: 'schedule' }));
+          done();
+        });
+      }));
 
-    it('should navigate to schedule on updateEventSucceeded', done => {
-      actions$.next(
-        EventsActions.updateEventSucceeded({
-          event: MOCK_EVENTS[0],
-          originalEventTitle: 'Old Test',
-        }),
-      );
+    it('should navigate to schedule on updateEventSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          EventsActions.updateEventSucceeded({
+            event: MOCK_EVENTS[0],
+            originalEventTitle: 'Old Test',
+          }),
+        );
 
-      effects.navigateToSchedule$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'schedule' }));
-        done();
-      });
-    });
+        effects.navigateToSchedule$.subscribe(action => {
+          expect(action).toEqual(NavActions.navigationRequested({ path: 'schedule' }));
+          done();
+        });
+      }));
 
-    it('should navigate to schedule on fetchEventFailed', done => {
-      actions$.next(
-        EventsActions.fetchEventFailed({
-          error: { name: 'LCCError', message: 'Failed' },
-        }),
-      );
+    it('should navigate to schedule on fetchEventFailed', () =>
+      withDone(done => {
+        actions$.next(
+          EventsActions.fetchEventFailed({
+            error: { name: 'LCCError', message: 'Failed' },
+          }),
+        );
 
-      effects.navigateToSchedule$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'schedule' }));
-        done();
-      });
-    });
+        effects.navigateToSchedule$.subscribe(action => {
+          expect(action).toEqual(NavActions.navigationRequested({ path: 'schedule' }));
+          done();
+        });
+      }));
   });
 
   describe('navigateToNews$', () => {
-    it('should navigate to news on cancelSelected', done => {
-      actions$.next(ArticlesActions.cancelSelected());
+    it('should navigate to news on cancelSelected', () =>
+      withDone(done => {
+        actions$.next(ArticlesActions.cancelSelected());
 
-      effects.navigateToNews$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'news' }));
-        done();
-      });
-    });
+        effects.navigateToNews$.subscribe(action => {
+          expect(action).toEqual(NavActions.navigationRequested({ path: 'news' }));
+          done();
+        });
+      }));
 
-    it('should navigate to news on fetchArticleFailed', done => {
-      actions$.next(
-        ArticlesActions.fetchArticleFailed({
-          error: { name: 'LCCError', message: 'Failed' },
-        }),
-      );
+    it('should navigate to news on fetchArticleFailed', () =>
+      withDone(done => {
+        actions$.next(
+          ArticlesActions.fetchArticleFailed({
+            error: { name: 'LCCError', message: 'Failed' },
+          }),
+        );
 
-      effects.navigateToNews$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'news' }));
-        done();
-      });
-    });
+        effects.navigateToNews$.subscribe(action => {
+          expect(action).toEqual(NavActions.navigationRequested({ path: 'news' }));
+          done();
+        });
+      }));
 
-    it('should navigate to news on publishArticleSucceeded', done => {
-      actions$.next(
-        ArticlesActions.publishArticleSucceeded({
-          article: MOCK_ARTICLES[0],
-        }),
-      );
+    it('should navigate to news on publishArticleSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          ArticlesActions.publishArticleSucceeded({
+            article: MOCK_ARTICLES[0],
+          }),
+        );
 
-      effects.navigateToNews$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'news' }));
-        done();
-      });
-    });
+        effects.navigateToNews$.subscribe(action => {
+          expect(action).toEqual(NavActions.navigationRequested({ path: 'news' }));
+          done();
+        });
+      }));
 
-    it('should navigate to news on updateArticleSucceeded', done => {
-      actions$.next(
-        ArticlesActions.updateArticleSucceeded({
-          article: MOCK_ARTICLES[0],
-          originalArticleTitle: 'Old Title',
-        }),
-      );
+    it('should navigate to news on updateArticleSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          ArticlesActions.updateArticleSucceeded({
+            article: MOCK_ARTICLES[0],
+            originalArticleTitle: 'Old Title',
+          }),
+        );
 
-      effects.navigateToNews$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'news' }));
-        done();
-      });
-    });
+        effects.navigateToNews$.subscribe(action => {
+          expect(action).toEqual(NavActions.navigationRequested({ path: 'news' }));
+          done();
+        });
+      }));
   });
 
   describe('navigateToNewsAfterArticleDeletion$', () => {
-    it('should navigate to news when viewing deleted article', done => {
-      const articleId = 'article123';
-      store.overrideSelector(
-        NavSelectors.selectCurrentPath,
-        `/article/view/${articleId}`,
-      );
-      store.refreshState();
+    it('should navigate to news when viewing deleted article', () =>
+      withDone(done => {
+        const articleId = 'article123';
+        store.overrideSelector(
+          NavSelectors.selectCurrentPath,
+          `/article/view/${articleId}`,
+        );
+        store.refreshState();
 
-      actions$.next(
-        ArticlesActions.deleteArticleSucceeded({ articleId, articleTitle: 'Test' }),
-      );
+        actions$.next(
+          ArticlesActions.deleteArticleSucceeded({ articleId, articleTitle: 'Test' }),
+        );
 
-      effects.navigateToNewsAfterArticleDeletion$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'news' }));
-        done();
-      });
-    });
+        effects.navigateToNewsAfterArticleDeletion$.subscribe(action => {
+          expect(action).toEqual(NavActions.navigationRequested({ path: 'news' }));
+          done();
+        });
+      }));
 
-    it('should not navigate when not viewing the deleted article', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/news');
-      store.refreshState();
+    it('should not navigate when not viewing the deleted article', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/news');
+        store.refreshState();
 
-      actions$.next(
-        ArticlesActions.deleteArticleSucceeded({
-          articleId: 'article123',
-          articleTitle: 'Test',
-        }),
-      );
+        actions$.next(
+          ArticlesActions.deleteArticleSucceeded({
+            articleId: 'article123',
+            articleTitle: 'Test',
+          }),
+        );
 
-      setTimeout(() => {
-        expect(router.navigate).not.toHaveBeenCalled();
-        done();
-      }, 10);
-    });
+        setTimeout(() => {
+          expect(router.navigate).not.toHaveBeenCalled();
+          done();
+        }, 10);
+      }));
   });
 
   describe('navigateToPhotoGallery$', () => {
-    it('should navigate to photo-gallery on cancelSelected', done => {
-      actions$.next(ImagesActions.cancelSelected());
+    it('should navigate to photo-gallery on cancelSelected', () =>
+      withDone(done => {
+        actions$.next(ImagesActions.cancelSelected());
 
-      effects.navigateToPhotoGallery$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'photo-gallery' }));
-        done();
-      });
-    });
+        effects.navigateToPhotoGallery$.subscribe(action => {
+          expect(action).toEqual(
+            NavActions.navigationRequested({ path: 'photo-gallery' }),
+          );
+          done();
+        });
+      }));
 
-    it('should navigate to photo-gallery on addImageSucceeded', done => {
-      actions$.next(ImagesActions.addImageSucceeded({ image: MOCK_IMAGES[0] }));
+    it('should navigate to photo-gallery on addImageSucceeded', () =>
+      withDone(done => {
+        actions$.next(ImagesActions.addImageSucceeded({ image: MOCK_IMAGES[0] }));
 
-      effects.navigateToPhotoGallery$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'photo-gallery' }));
-        done();
-      });
-    });
+        effects.navigateToPhotoGallery$.subscribe(action => {
+          expect(action).toEqual(
+            NavActions.navigationRequested({ path: 'photo-gallery' }),
+          );
+          done();
+        });
+      }));
 
-    it('should navigate to photo-gallery on addImagesSucceeded', done => {
-      actions$.next(ImagesActions.addImagesSucceeded({ images: [MOCK_IMAGES[0]] }));
+    it('should navigate to photo-gallery on addImagesSucceeded', () =>
+      withDone(done => {
+        actions$.next(ImagesActions.addImagesSucceeded({ images: [MOCK_IMAGES[0]] }));
 
-      effects.navigateToPhotoGallery$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'photo-gallery' }));
-        done();
-      });
-    });
+        effects.navigateToPhotoGallery$.subscribe(action => {
+          expect(action).toEqual(
+            NavActions.navigationRequested({ path: 'photo-gallery' }),
+          );
+          done();
+        });
+      }));
 
-    it('should navigate to photo-gallery on updateImageSucceeded', done => {
-      actions$.next(
-        ImagesActions.updateImageSucceeded({
-          baseImage: MOCK_IMAGES[0],
-        }),
-      );
+    it('should navigate to photo-gallery on updateImageSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          ImagesActions.updateImageSucceeded({
+            baseImage: MOCK_IMAGES[0],
+          }),
+        );
 
-      effects.navigateToPhotoGallery$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'photo-gallery' }));
-        done();
-      });
-    });
+        effects.navigateToPhotoGallery$.subscribe(action => {
+          expect(action).toEqual(
+            NavActions.navigationRequested({ path: 'photo-gallery' }),
+          );
+          done();
+        });
+      }));
 
-    it('should navigate to photo-gallery on updateAlbumSucceeded', done => {
-      actions$.next(
-        ImagesActions.updateAlbumSucceeded({
-          album: 'Test Album',
-          newImages: [],
-          updatedImages: [],
-        }),
-      );
+    it('should navigate to photo-gallery on updateAlbumSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          ImagesActions.updateAlbumSucceeded({
+            album: 'Test Album',
+            newImages: [],
+            updatedImages: [],
+          }),
+        );
 
-      effects.navigateToPhotoGallery$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'photo-gallery' }));
-        done();
-      });
-    });
+        effects.navigateToPhotoGallery$.subscribe(action => {
+          expect(action).toEqual(
+            NavActions.navigationRequested({ path: 'photo-gallery' }),
+          );
+          done();
+        });
+      }));
   });
 
   describe('navigateToLogin$', () => {
-    it('should navigate to login on logoutSucceeded', done => {
-      actions$.next(AuthActions.logoutSucceeded({ sessionExpired: false }));
+    it('should navigate to login on logoutSucceeded', () =>
+      withDone(done => {
+        actions$.next(AuthActions.logoutSucceeded({ sessionExpired: false }));
 
-      effects.navigateToLogin$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'login' }));
-        done();
-      });
-    });
+        effects.navigateToLogin$.subscribe(action => {
+          expect(action).toEqual(NavActions.navigationRequested({ path: 'login' }));
+          done();
+        });
+      }));
   });
 
   describe('handleEntityRouteNavigationRequest$', () => {
-    it('should fetch article when navigating to article view', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/news');
-      store.refreshState();
+    it('should fetch article when navigating to article view', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/news');
+        store.refreshState();
 
-      actions$.next(mockNavigatedAction('/article/view/a7b8c9d0e1f2a3b4'));
+        actions$.next(mockNavigatedAction('/article/view/a7b8c9d0e1f2a3b4'));
 
-      effects.handleEntityRouteNavigationRequest$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.fetchArticleRequested({ articleId: 'a7b8c9d0e1f2a3b4' }),
-        );
-        done();
-      });
-    });
+        effects.handleEntityRouteNavigationRequest$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchArticleRequested({ articleId: 'a7b8c9d0e1f2a3b4' }),
+          );
+          done();
+        });
+      }));
 
-    it('should fetch article when navigating to article edit', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/news');
-      store.refreshState();
+    it('should fetch article when navigating to article edit', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/news');
+        store.refreshState();
 
-      actions$.next(mockNavigatedAction('/article/edit/a7b8c9d0e1f2a3b4'));
+        actions$.next(mockNavigatedAction('/article/edit/a7b8c9d0e1f2a3b4'));
 
-      effects.handleEntityRouteNavigationRequest$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.fetchArticleRequested({ articleId: 'a7b8c9d0e1f2a3b4' }),
-        );
-        done();
-      });
-    });
+        effects.handleEntityRouteNavigationRequest$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchArticleRequested({ articleId: 'a7b8c9d0e1f2a3b4' }),
+          );
+          done();
+        });
+      }));
 
-    it('should select createAnArticle when navigating to article add', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/news');
-      store.refreshState();
+    it('should select createAnArticle when navigating to article add', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/news');
+        store.refreshState();
 
-      actions$.next(mockNavigatedAction('/article/add'));
+        actions$.next(mockNavigatedAction('/article/add'));
 
-      effects.handleEntityRouteNavigationRequest$.subscribe(action => {
-        expect(action).toEqual(ArticlesActions.createAnArticleSelected());
-        done();
-      });
-    });
+        effects.handleEntityRouteNavigationRequest$.subscribe(action => {
+          expect(action).toEqual(ArticlesActions.createAnArticleSelected());
+          done();
+        });
+      }));
 
-    it('should fetch event when navigating to event edit', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/schedule');
-      store.refreshState();
+    it('should fetch event when navigating to event edit', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/schedule');
+        store.refreshState();
 
-      actions$.next(mockNavigatedAction('/event/edit/a7b8c9d0e1f2a3b4'));
+        actions$.next(mockNavigatedAction('/event/edit/a7b8c9d0e1f2a3b4'));
 
-      effects.handleEntityRouteNavigationRequest$.subscribe(action => {
-        expect(action).toEqual(
-          EventsActions.fetchEventRequested({ eventId: 'a7b8c9d0e1f2a3b4' }),
-        );
-        done();
-      });
-    });
+        effects.handleEntityRouteNavigationRequest$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchEventRequested({ eventId: 'a7b8c9d0e1f2a3b4' }),
+          );
+          done();
+        });
+      }));
 
-    it('should select addAnEvent when navigating to event add', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/schedule');
-      store.refreshState();
+    it('should select addAnEvent when navigating to event add', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/schedule');
+        store.refreshState();
 
-      actions$.next(mockNavigatedAction('/event/add'));
+        actions$.next(mockNavigatedAction('/event/add'));
 
-      effects.handleEntityRouteNavigationRequest$.subscribe(action => {
-        expect(action).toEqual(EventsActions.addAnEventSelected());
-        done();
-      });
-    });
+        effects.handleEntityRouteNavigationRequest$.subscribe(action => {
+          expect(action).toEqual(EventsActions.addAnEventSelected());
+          done();
+        });
+      }));
 
-    it('should fetch member when navigating to member edit', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/members');
-      store.refreshState();
+    it('should fetch member when navigating to member edit', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/members');
+        store.refreshState();
 
-      actions$.next(mockNavigatedAction('/member/edit/a7b8c9d0e1f2a3b4'));
+        actions$.next(mockNavigatedAction('/member/edit/a7b8c9d0e1f2a3b4'));
 
-      effects.handleEntityRouteNavigationRequest$.subscribe(action => {
-        expect(action).toEqual(
-          MembersActions.fetchMemberRequested({ memberId: 'a7b8c9d0e1f2a3b4' }),
-        );
-        done();
-      });
-    });
+        effects.handleEntityRouteNavigationRequest$.subscribe(action => {
+          expect(action).toEqual(
+            MembersActions.fetchMemberRequested({ memberId: 'a7b8c9d0e1f2a3b4' }),
+          );
+          done();
+        });
+      }));
 
-    it('should select addAMember when navigating to member add', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/members');
-      store.refreshState();
+    it('should select addAMember when navigating to member add', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/members');
+        store.refreshState();
 
-      actions$.next(mockNavigatedAction('/member/add'));
+        actions$.next(mockNavigatedAction('/member/add'));
 
-      effects.handleEntityRouteNavigationRequest$.subscribe(action => {
-        expect(action).toEqual(MembersActions.addAMemberSelected());
-        done();
-      });
-    });
+        effects.handleEntityRouteNavigationRequest$.subscribe(action => {
+          expect(action).toEqual(MembersActions.addAMemberSelected());
+          done();
+        });
+      }));
 
-    it('should fetch image when navigating to image edit', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/photo-gallery');
-      store.refreshState();
+    it('should fetch image when navigating to image edit', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/photo-gallery');
+        store.refreshState();
 
-      actions$.next(mockNavigatedAction('/image/edit/a7b8c9d0e1f2a3b4'));
+        actions$.next(mockNavigatedAction('/image/edit/a7b8c9d0e1f2a3b4'));
 
-      effects.handleEntityRouteNavigationRequest$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.fetchMainImageRequested({ imageId: 'a7b8c9d0e1f2a3b4' }),
-        );
-        done();
-      });
-    });
+        effects.handleEntityRouteNavigationRequest$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.fetchMainImageRequested({ imageId: 'a7b8c9d0e1f2a3b4' }),
+          );
+          done();
+        });
+      }));
 
-    it('should select addAnImage when navigating to image add', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/photo-gallery');
-      store.refreshState();
+    it('should select addAnImage when navigating to image add', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/photo-gallery');
+        store.refreshState();
 
-      actions$.next(mockNavigatedAction('/image/add'));
+        actions$.next(mockNavigatedAction('/image/add'));
 
-      effects.handleEntityRouteNavigationRequest$.subscribe(action => {
-        expect(action).toEqual(ImagesActions.addAnImageSelected());
-        done();
-      });
-    });
+        effects.handleEntityRouteNavigationRequest$.subscribe(action => {
+          expect(action).toEqual(ImagesActions.addAnImageSelected());
+          done();
+        });
+      }));
 
-    it('should fetch album thumbnails when navigating to album edit', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/photo-gallery');
-      store.refreshState();
+    it('should fetch album thumbnails when navigating to album edit', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/photo-gallery');
+        store.refreshState();
 
-      actions$.next(mockNavigatedAction('/album/edit/Test%20Album'));
+        actions$.next(mockNavigatedAction('/album/edit/Test%20Album'));
 
-      effects.handleEntityRouteNavigationRequest$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.fetchAlbumThumbnailsRequested({ album: 'Test Album' }),
-        );
-        done();
-      });
-    });
+        effects.handleEntityRouteNavigationRequest$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.fetchAlbumThumbnailsRequested({ album: 'Test Album' }),
+          );
+          done();
+        });
+      }));
 
-    it('should fetch album thumbnails when navigating to album view', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/photo-gallery');
-      store.refreshState();
+    it('should fetch album thumbnails when navigating to album view', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/photo-gallery');
+        store.refreshState();
 
-      actions$.next(mockNavigatedAction('/album/view/Test%20Album'));
+        actions$.next(mockNavigatedAction('/album/view/Test%20Album'));
 
-      effects.handleEntityRouteNavigationRequest$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.fetchAlbumThumbnailsRequested({ album: 'Test Album' }),
-        );
-        done();
-      });
-    });
+        effects.handleEntityRouteNavigationRequest$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.fetchAlbumThumbnailsRequested({ album: 'Test Album' }),
+          );
+          done();
+        });
+      }));
 
-    it('should select createAnAlbum when navigating to album add', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/photo-gallery');
-      store.refreshState();
+    it('should select createAnAlbum when navigating to album add', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/photo-gallery');
+        store.refreshState();
 
-      actions$.next(mockNavigatedAction('/album/add'));
+        actions$.next(mockNavigatedAction('/album/add'));
 
-      effects.handleEntityRouteNavigationRequest$.subscribe(action => {
-        expect(action).toEqual(ImagesActions.createAnAlbumSelected());
-        done();
-      });
-    });
+        effects.handleEntityRouteNavigationRequest$.subscribe(action => {
+          expect(action).toEqual(ImagesActions.createAnAlbumSelected());
+          done();
+        });
+      }));
 
-    it('should navigate to photo-gallery for invalid album route', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/photo-gallery');
-      store.refreshState();
+    it('should navigate to photo-gallery for invalid album route', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/photo-gallery');
+        store.refreshState();
 
-      actions$.next(mockNavigatedAction('/album/invalid'));
+        actions$.next(mockNavigatedAction('/album/invalid'));
 
-      effects.handleEntityRouteNavigationRequest$.subscribe(action => {
-        expect(action).toEqual(NavActions.navigationRequested({ path: 'photo-gallery' }));
-        done();
-      });
-    });
+        effects.handleEntityRouteNavigationRequest$.subscribe(action => {
+          expect(action).toEqual(
+            NavActions.navigationRequested({ path: 'photo-gallery' }),
+          );
+          done();
+        });
+      }));
   });
 
   describe('restoreFormDataOnNavigationAwayFromEntityRoute$', () => {
-    it('should restore article form data when navigating away from article route', done => {
-      store.overrideSelector(
-        NavSelectors.selectCurrentPath,
-        '/article/edit/a7b8c9d0e1f2a3b4',
-      );
-      store.refreshState();
-
-      actions$.next(mockNavigatedAction('/news'));
-
-      effects.restoreFormDataOnNavigationAwayFromEntityRoute$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.formDataRestored({ articleId: 'a7b8c9d0e1f2a3b4' }),
+    it('should restore article form data when navigating away from article route', () =>
+      withDone(done => {
+        store.overrideSelector(
+          NavSelectors.selectCurrentPath,
+          '/article/edit/a7b8c9d0e1f2a3b4',
         );
-        done();
-      });
-    });
+        store.refreshState();
 
-    it('should restore event form data when navigating away from event route', done => {
-      store.overrideSelector(
-        NavSelectors.selectCurrentPath,
-        '/event/edit/a7b8c9d0e1f2a3b4',
-      );
-      store.refreshState();
+        actions$.next(mockNavigatedAction('/news'));
 
-      actions$.next(mockNavigatedAction('/schedule'));
+        effects.restoreFormDataOnNavigationAwayFromEntityRoute$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.formDataRestored({ articleId: 'a7b8c9d0e1f2a3b4' }),
+          );
+          done();
+        });
+      }));
 
-      effects.restoreFormDataOnNavigationAwayFromEntityRoute$.subscribe(action => {
-        expect(action).toEqual(
-          EventsActions.formDataRestored({ eventId: 'a7b8c9d0e1f2a3b4' }),
+    it('should restore event form data when navigating away from event route', () =>
+      withDone(done => {
+        store.overrideSelector(
+          NavSelectors.selectCurrentPath,
+          '/event/edit/a7b8c9d0e1f2a3b4',
         );
-        done();
-      });
-    });
+        store.refreshState();
 
-    it('should restore member form data when navigating away from member route', done => {
-      store.overrideSelector(
-        NavSelectors.selectCurrentPath,
-        '/member/edit/a7b8c9d0e1f2a3b4',
-      );
-      store.refreshState();
+        actions$.next(mockNavigatedAction('/schedule'));
 
-      actions$.next(mockNavigatedAction('/members'));
+        effects.restoreFormDataOnNavigationAwayFromEntityRoute$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.formDataRestored({ eventId: 'a7b8c9d0e1f2a3b4' }),
+          );
+          done();
+        });
+      }));
 
-      effects.restoreFormDataOnNavigationAwayFromEntityRoute$.subscribe(action => {
-        expect(action).toEqual(
-          MembersActions.formDataRestored({ memberId: 'a7b8c9d0e1f2a3b4' }),
+    it('should restore member form data when navigating away from member route', () =>
+      withDone(done => {
+        store.overrideSelector(
+          NavSelectors.selectCurrentPath,
+          '/member/edit/a7b8c9d0e1f2a3b4',
         );
-        done();
-      });
-    });
+        store.refreshState();
 
-    it('should restore image form data when navigating away from image route', done => {
-      store.overrideSelector(
-        NavSelectors.selectCurrentPath,
-        '/image/edit/a7b8c9d0e1f2a3b4',
-      );
-      store.refreshState();
+        actions$.next(mockNavigatedAction('/members'));
 
-      actions$.next(mockNavigatedAction('/photo-gallery'));
+        effects.restoreFormDataOnNavigationAwayFromEntityRoute$.subscribe(action => {
+          expect(action).toEqual(
+            MembersActions.formDataRestored({ memberId: 'a7b8c9d0e1f2a3b4' }),
+          );
+          done();
+        });
+      }));
 
-      effects.restoreFormDataOnNavigationAwayFromEntityRoute$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.imageFormDataRestored({ imageId: 'a7b8c9d0e1f2a3b4' }),
+    it('should restore image form data when navigating away from image route', () =>
+      withDone(done => {
+        store.overrideSelector(
+          NavSelectors.selectCurrentPath,
+          '/image/edit/a7b8c9d0e1f2a3b4',
         );
-        done();
-      });
-    });
+        store.refreshState();
 
-    it('should restore album form data when navigating away from album route', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/album/edit/Test%20Album');
-      store.refreshState();
+        actions$.next(mockNavigatedAction('/photo-gallery'));
 
-      actions$.next(mockNavigatedAction('/photo-gallery'));
+        effects.restoreFormDataOnNavigationAwayFromEntityRoute$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.imageFormDataRestored({ imageId: 'a7b8c9d0e1f2a3b4' }),
+          );
+          done();
+        });
+      }));
 
-      effects.restoreFormDataOnNavigationAwayFromEntityRoute$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.albumFormDataRestored({ album: 'Test%20Album' }),
+    it('should restore album form data when navigating away from album route', () =>
+      withDone(done => {
+        store.overrideSelector(
+          NavSelectors.selectCurrentPath,
+          '/album/edit/Test%20Album',
         );
-        done();
-      });
-    });
+        store.refreshState();
 
-    it('should not restore form data when staying on same entity type', done => {
-      store.overrideSelector(NavSelectors.selectCurrentPath, '/article/edit/abc123');
-      store.refreshState();
+        actions$.next(mockNavigatedAction('/photo-gallery'));
 
-      actions$.next(mockNavigatedAction('/article/view/def456'));
+        effects.restoreFormDataOnNavigationAwayFromEntityRoute$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.albumFormDataRestored({ album: 'Test%20Album' }),
+          );
+          done();
+        });
+      }));
 
-      setTimeout(() => {
-        // No action should be dispatched
-        done();
-      }, 10);
-    });
+    it('should not restore form data when staying on same entity type', () =>
+      withDone(done => {
+        store.overrideSelector(NavSelectors.selectCurrentPath, '/article/edit/abc123');
+        store.refreshState();
+
+        actions$.next(mockNavigatedAction('/article/view/def456'));
+
+        setTimeout(() => {
+          // No action should be dispatched
+          done();
+        }, 10);
+      }));
   });
 });

@@ -7,18 +7,18 @@ import { query } from '@app/utils';
 
 import { ClubMapComponent } from './club-map.component';
 
-jest.mock('@googlemaps/js-api-loader', () => ({
-  setOptions: jest.fn(),
-  importLibrary: jest
+vi.mock('@googlemaps/js-api-loader', () => ({
+  setOptions: vi.fn(),
+  importLibrary: vi
     .fn()
-    .mockResolvedValue({ Map: jest.fn(), AdvancedMarkerElement: jest.fn() }),
+    .mockResolvedValue({ Map: vi.fn(), AdvancedMarkerElement: vi.fn() }),
 }));
 
 describe('ClubMapComponent', () => {
   let component: ClubMapComponent;
   let fixture: ComponentFixture<ClubMapComponent>;
 
-  let initMapSpy: jest.SpyInstance;
+  let initMapSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -30,7 +30,7 @@ describe('ClubMapComponent', () => {
     component.club = LCC_CLUB;
 
     // @ts-expect-error Private class member
-    initMapSpy = jest.spyOn(component, 'initMap').mockResolvedValue();
+    initMapSpy = vi.spyOn(component, 'initMap').mockResolvedValue();
   });
 
   it('should create', () => {

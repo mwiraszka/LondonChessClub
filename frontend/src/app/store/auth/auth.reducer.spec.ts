@@ -118,11 +118,11 @@ describe('Auth Reducer', () => {
   });
 
   describe('loginSucceeded', () => {
-    let dateNowSpy: jest.SpyInstance;
+    let dateNowSpy: MockInstance;
     const mockTimestamp = 1234567890;
 
     beforeEach(() => {
-      dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(mockTimestamp);
+      dateNowSpy = vi.spyOn(Date, 'now').mockReturnValue(mockTimestamp);
     });
 
     afterEach(() => {
@@ -164,11 +164,11 @@ describe('Auth Reducer', () => {
   });
 
   describe('passwordChangeSucceeded', () => {
-    let dateNowSpy: jest.SpyInstance;
+    let dateNowSpy: MockInstance;
     const mockTimestamp = 1234567890;
 
     beforeEach(() => {
-      dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(mockTimestamp);
+      dateNowSpy = vi.spyOn(Date, 'now').mockReturnValue(mockTimestamp);
     });
 
     afterEach(() => {
@@ -204,11 +204,11 @@ describe('Auth Reducer', () => {
   });
 
   describe('sessionRefreshSucceeded', () => {
-    let dateNowSpy: jest.SpyInstance;
+    let dateNowSpy: MockInstance;
     const mockTimestamp = 9876543210;
 
     beforeEach(() => {
-      dateNowSpy = jest.spyOn(Date, 'now').mockReturnValue(mockTimestamp);
+      dateNowSpy = vi.spyOn(Date, 'now').mockReturnValue(mockTimestamp);
     });
 
     afterEach(() => {

@@ -24,14 +24,14 @@ describe('AppComponent', () => {
   let store: MockStore;
   let touchEventsService: TouchEventsService;
 
-  let dispatchSpy: jest.SpyInstance;
-  let setAttributeSpy: jest.SpyInstance;
+  let dispatchSpy: MockInstance;
+  let setAttributeSpy: MockInstance;
 
   beforeAll(() => {
-    window.ResizeObserver = jest.fn().mockImplementation(() => ({
-      observe: jest.fn(),
-      unobserve: jest.fn(),
-      disconnect: jest.fn(),
+    window.ResizeObserver = vi.fn().mockImplementation(() => ({
+      observe: vi.fn(),
+      unobserve: vi.fn(),
+      disconnect: vi.fn(),
     }));
   });
 
@@ -55,7 +55,7 @@ describe('AppComponent', () => {
         },
         {
           provide: TouchEventsService,
-          useValue: { listenForTouchEvents: jest.fn() },
+          useValue: { listenForTouchEvents: vi.fn() },
         },
       ],
     }).compileComponents();
@@ -66,8 +66,8 @@ describe('AppComponent', () => {
     store = TestBed.inject(MockStore);
     touchEventsService = TestBed.inject(TouchEventsService);
 
-    dispatchSpy = jest.spyOn(store, 'dispatch');
-    setAttributeSpy = jest.spyOn(document.body, 'setAttribute');
+    dispatchSpy = vi.spyOn(store, 'dispatch');
+    setAttributeSpy = vi.spyOn(document.body, 'setAttribute');
 
     store.overrideSelector(AppSelectors.selectBannerLastCleared, null);
     store.overrideSelector(AppSelectors.selectIsDarkMode, false);
@@ -89,7 +89,7 @@ describe('AppComponent', () => {
     });
 
     it('should scroll to top when navigation occurs without fragment', () => {
-      const scrollToSpy = jest.fn();
+      const scrollToSpy = vi.fn();
       component.mainElement = {
         nativeElement: {
           scrollTo: scrollToSpy,
@@ -105,7 +105,7 @@ describe('AppComponent', () => {
     });
 
     it('should not scroll to top when navigation occurs with fragment', () => {
-      const scrollToSpy = jest.fn();
+      const scrollToSpy = vi.fn();
       component.mainElement = {
         nativeElement: {
           scrollTo: scrollToSpy,

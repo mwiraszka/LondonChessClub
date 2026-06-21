@@ -24,18 +24,18 @@ describe('BasicDialogComponent', () => {
     confirmButtonType: 'warning' as const,
   };
 
-  let dialogResultSpy: jest.SpyInstance;
+  let dialogResultSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BasicDialogComponent],
-      providers: [{ provide: Renderer2, useValue: { listen: jest.fn() } }],
+      providers: [{ provide: Renderer2, useValue: { listen: vi.fn() } }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BasicDialogComponent);
     component = fixture.componentInstance;
 
-    dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
+    dialogResultSpy = vi.spyOn(component.dialogResult, 'emit');
 
     component.dialog = mockDialog;
     fixture.detectChanges();

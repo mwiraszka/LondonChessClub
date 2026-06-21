@@ -30,19 +30,19 @@ describe('ArticleFormComponent', () => {
 
   let dialogService: DialogService;
 
-  let cancelSpy: jest.SpyInstance;
-  let changeSpy: jest.SpyInstance;
-  let dialogOpenSpy: jest.SpyInstance;
-  let initFormSpy: jest.SpyInstance;
-  let initFormValueChangeListenerSpy: jest.SpyInstance;
-  let insertImageSpy: jest.SpyInstance;
-  let requestFetchMainImageSpy: jest.SpyInstance;
-  let requestPublishArticleSpy: jest.SpyInstance;
-  let requestUpdateArticleSpy: jest.SpyInstance;
-  let restoreSpy: jest.SpyInstance;
-  let revertBannerImageSpy: jest.SpyInstance;
-  let selectBannerImageSpy: jest.SpyInstance;
-  let submitSpy: jest.SpyInstance;
+  let cancelSpy: MockInstance;
+  let changeSpy: MockInstance;
+  let dialogOpenSpy: MockInstance;
+  let initFormSpy: MockInstance;
+  let initFormValueChangeListenerSpy: MockInstance;
+  let insertImageSpy: MockInstance;
+  let requestFetchMainImageSpy: MockInstance;
+  let requestPublishArticleSpy: MockInstance;
+  let requestUpdateArticleSpy: MockInstance;
+  let restoreSpy: MockInstance;
+  let revertBannerImageSpy: MockInstance;
+  let selectBannerImageSpy: MockInstance;
+  let submitSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -50,7 +50,7 @@ describe('ArticleFormComponent', () => {
       providers: [
         {
           provide: DialogService,
-          useValue: { open: jest.fn() },
+          useValue: { open: vi.fn() },
         },
         FormBuilder,
       ],
@@ -66,24 +66,24 @@ describe('ArticleFormComponent', () => {
 
     dialogService = TestBed.inject(DialogService);
 
-    cancelSpy = jest.spyOn(component.cancel, 'emit');
-    changeSpy = jest.spyOn(component.change, 'emit');
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
+    cancelSpy = vi.spyOn(component.cancel, 'emit');
+    changeSpy = vi.spyOn(component.change, 'emit');
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
     // @ts-expect-error Private class member
-    initFormSpy = jest.spyOn(component, 'initForm');
-    initFormValueChangeListenerSpy = jest.spyOn(
+    initFormSpy = vi.spyOn(component, 'initForm');
+    initFormValueChangeListenerSpy = vi.spyOn(
       component,
       // @ts-expect-error Private class member
       'initFormValueChangeListener',
     );
-    insertImageSpy = jest.spyOn(component, 'onInsertImage');
-    requestFetchMainImageSpy = jest.spyOn(component.requestFetchMainImage, 'emit');
-    requestPublishArticleSpy = jest.spyOn(component.requestPublishArticle, 'emit');
-    requestUpdateArticleSpy = jest.spyOn(component.requestUpdateArticle, 'emit');
-    restoreSpy = jest.spyOn(component.restore, 'emit');
-    revertBannerImageSpy = jest.spyOn(component, 'onRevertBannerImage');
-    selectBannerImageSpy = jest.spyOn(component, 'onSelectBannerImage');
-    submitSpy = jest.spyOn(component, 'onSubmit');
+    insertImageSpy = vi.spyOn(component, 'onInsertImage');
+    requestFetchMainImageSpy = vi.spyOn(component.requestFetchMainImage, 'emit');
+    requestPublishArticleSpy = vi.spyOn(component.requestPublishArticle, 'emit');
+    requestUpdateArticleSpy = vi.spyOn(component.requestUpdateArticle, 'emit');
+    restoreSpy = vi.spyOn(component.restore, 'emit');
+    revertBannerImageSpy = vi.spyOn(component, 'onRevertBannerImage');
+    selectBannerImageSpy = vi.spyOn(component, 'onSelectBannerImage');
+    submitSpy = vi.spyOn(component, 'onSubmit');
 
     component.bannerImage = null;
     component.bodyImages = [];
@@ -178,11 +178,11 @@ describe('ArticleFormComponent', () => {
       fixture.componentRef.setInput('originalArticle', MOCK_ARTICLES[4]);
       component.ngOnInit();
 
-      jest.clearAllMocks();
-      jest.useFakeTimers();
+      vi.clearAllMocks();
+      vi.useFakeTimers();
     });
 
-    afterEach(() => jest.useRealTimers());
+    afterEach(() => vi.useRealTimers());
 
     it('should emit both change and restore events and re-initialize form if dialog is confirmed', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
@@ -193,7 +193,7 @@ describe('ArticleFormComponent', () => {
 
       await component.onRestore();
 
-      jest.runAllTimers();
+      vi.runAllTimers();
 
       expect(dialogOpenSpy).toHaveBeenCalledWith({
         componentType: BasicDialogComponent,
@@ -226,7 +226,7 @@ describe('ArticleFormComponent', () => {
 
       await component.onRestore();
 
-      jest.runAllTimers();
+      vi.runAllTimers();
 
       expect(dialogOpenSpy).toHaveBeenCalledTimes(1);
       expect(changeSpy).not.toHaveBeenCalled();
@@ -241,7 +241,7 @@ describe('ArticleFormComponent', () => {
       const newImageId = 'new_image_id';
       dialogOpenSpy.mockResolvedValue(`${newImageId}-thumb`);
       component.form.patchValue({ bannerImageId: 'old-image-id' });
-      jest.clearAllMocks();
+      vi.clearAllMocks();
 
       await component.onSelectBannerImage();
 
@@ -256,7 +256,7 @@ describe('ArticleFormComponent', () => {
     it('should keep current banner image if dialog is closed', async () => {
       dialogOpenSpy.mockResolvedValue('close');
       component.form.patchValue({ bannerImageId: 'old-image-id' });
-      jest.clearAllMocks();
+      vi.clearAllMocks();
 
       await component.onSelectBannerImage();
 
@@ -313,7 +313,7 @@ describe('ArticleFormComponent', () => {
       dialogOpenSpy.mockResolvedValue(`${imageId}-thumb`);
       component['lastCursorPosition'] = 3;
       component.form.patchValue({ body: 'Some text' });
-      jest.clearAllMocks();
+      vi.clearAllMocks();
 
       await component.onInsertImage();
 
@@ -330,7 +330,7 @@ describe('ArticleFormComponent', () => {
       dialogOpenSpy.mockResolvedValue('close');
       component['lastCursorPosition'] = 3;
       component.form.patchValue({ body: 'Some text' });
-      jest.clearAllMocks();
+      vi.clearAllMocks();
 
       await component.onInsertImage();
 

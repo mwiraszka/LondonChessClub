@@ -8,8 +8,8 @@ import { MOCK_EVENTS } from '@app/mocks/events.mock';
 import { CalendarMonth, DataPaginationOptions, Event } from '@app/models';
 import { FormatDatePipe, HighlightPipe, KebabCasePipe } from '@app/pipes';
 import { DialogService } from '@app/services';
+import { IS_TOUCH_DEVICE } from '@app/tokens';
 import { query, queryAll } from '@app/utils';
-import * as deviceUtils from '@app/utils/device/is-touch-device.util';
 
 import { EventsCalendarGridComponent } from './events-calendar-grid.component';
 
@@ -19,9 +19,9 @@ describe('EventsCalendarGridComponent', () => {
 
   let dialogService: DialogService;
 
-  let dialogOpenSpy: jest.SpyInstance;
-  let requestDeleteEventSpy: jest.SpyInstance;
-  let updateCalendarMonthsSpy: jest.SpyInstance;
+  let dialogOpenSpy: MockInstance;
+  let requestDeleteEventSpy: MockInstance;
+  let updateCalendarMonthsSpy: MockInstance;
 
   const mockEvents = MOCK_EVENTS.slice(0, 2);
   const mockIsAdmin = true;
@@ -50,9 +50,10 @@ describe('EventsCalendarGridComponent', () => {
         TooltipDirective,
       ],
       providers: [
+        { provide: IS_TOUCH_DEVICE, useValue: vi.fn() },
         {
           provide: DialogService,
-          useValue: { open: jest.fn() },
+          useValue: { open: vi.fn() },
         },
         provideRouter([{ path: 'article/view/:id', component: class {} }]),
       ],
@@ -63,10 +64,10 @@ describe('EventsCalendarGridComponent', () => {
 
     dialogService = TestBed.inject(DialogService);
 
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
-    requestDeleteEventSpy = jest.spyOn(component.requestDeleteEvent, 'emit');
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
+    requestDeleteEventSpy = vi.spyOn(component.requestDeleteEvent, 'emit');
     // @ts-expect-error Private class member
-    updateCalendarMonthsSpy = jest.spyOn(component, 'updateCalendarMonths');
+    updateCalendarMonthsSpy = vi.spyOn(component, 'updateCalendarMonths');
 
     fixture.componentRef.setInput('events', mockEvents);
     fixture.componentRef.setInput('isAdmin', mockIsAdmin);
@@ -301,7 +302,7 @@ describe('EventsCalendarGridComponent', () => {
         let localFixture: ComponentFixture<EventsCalendarGridComponent>;
 
         beforeEach(() => {
-          jest.spyOn(deviceUtils, 'isTouchDevice').mockReturnValue(false);
+          vi.mocked(TestBed.inject(IS_TOUCH_DEVICE)).mockReturnValue(false);
 
           localFixture = TestBed.createComponent(EventsCalendarGridComponent);
 
@@ -324,7 +325,7 @@ describe('EventsCalendarGridComponent', () => {
         let localFixture: ComponentFixture<EventsCalendarGridComponent>;
 
         beforeEach(() => {
-          jest.spyOn(deviceUtils, 'isTouchDevice').mockReturnValue(true);
+          vi.mocked(TestBed.inject(IS_TOUCH_DEVICE)).mockReturnValue(true);
 
           localFixture = TestBed.createComponent(EventsCalendarGridComponent);
 

@@ -21,9 +21,9 @@ describe('ImageExplorerComponent', () => {
   let dialogService: DialogService;
   let store: MockStore;
 
-  let dialogOpenSpy: jest.SpyInstance;
-  let dialogResultSpy: jest.SpyInstance;
-  let dispatchSpy: jest.SpyInstance;
+  let dialogOpenSpy: MockInstance;
+  let dialogResultSpy: MockInstance;
+  let dispatchSpy: MockInstance;
 
   const mockImages = MOCK_IMAGES;
 
@@ -37,7 +37,7 @@ describe('ImageExplorerComponent', () => {
         },
         {
           provide: DialogService,
-          useValue: { open: jest.fn() },
+          useValue: { open: vi.fn() },
         },
         provideMockStore(),
       ],
@@ -62,9 +62,9 @@ describe('ImageExplorerComponent', () => {
       search: '',
     });
 
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
-    dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
-    dispatchSpy = jest.spyOn(store, 'dispatch');
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
+    dialogResultSpy = vi.spyOn(component.dialogResult, 'emit');
+    dispatchSpy = vi.spyOn(store, 'dispatch');
   });
 
   it('should create', () => {
@@ -127,7 +127,7 @@ describe('ImageExplorerComponent', () => {
 
     it('should not dispatch delete action when dialog is cancelled', async () => {
       // Reset all mocks before this test
-      jest.clearAllMocks();
+      vi.clearAllMocks();
       dialogOpenSpy.mockResolvedValue('cancel');
 
       await component.onDeleteImage(mockImages[1]);

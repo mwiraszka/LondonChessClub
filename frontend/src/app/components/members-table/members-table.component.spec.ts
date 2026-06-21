@@ -17,10 +17,10 @@ describe('MembersTableComponent', () => {
 
   let dialogService: DialogService;
 
-  let dialogOpenSpy: jest.SpyInstance;
-  let onDeleteMemberSpy: jest.SpyInstance;
-  let optionsChangeSpy: jest.SpyInstance;
-  let requestDeleteMemberSpy: jest.SpyInstance;
+  let dialogOpenSpy: MockInstance;
+  let onDeleteMemberSpy: MockInstance;
+  let optionsChangeSpy: MockInstance;
+  let requestDeleteMemberSpy: MockInstance;
 
   const mockOptions: DataPaginationOptions<Member> = {
     page: 1,
@@ -42,7 +42,7 @@ describe('MembersTableComponent', () => {
       providers: [
         {
           provide: DialogService,
-          useValue: { open: jest.fn() },
+          useValue: { open: vi.fn() },
         },
         provideRouter([]),
       ],
@@ -52,11 +52,11 @@ describe('MembersTableComponent', () => {
     component = fixture.componentInstance;
     dialogService = TestBed.inject(DialogService);
 
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
     // @ts-expect-error Private class member
-    onDeleteMemberSpy = jest.spyOn(component, 'onDeleteMember');
-    optionsChangeSpy = jest.spyOn(component.optionsChange, 'emit');
-    requestDeleteMemberSpy = jest.spyOn(component.requestDeleteMember, 'emit');
+    onDeleteMemberSpy = vi.spyOn(component, 'onDeleteMember');
+    optionsChangeSpy = vi.spyOn(component.optionsChange, 'emit');
+    requestDeleteMemberSpy = vi.spyOn(component.requestDeleteMember, 'emit');
 
     component.isAdmin = true;
     component.isSafeMode = false;
@@ -196,7 +196,7 @@ describe('MembersTableComponent', () => {
     });
 
     it('should not emit delete request when dialog is cancelled', async () => {
-      jest.clearAllMocks();
+      vi.clearAllMocks();
       dialogOpenSpy.mockResolvedValue('cancel');
       const member = MOCK_MEMBERS[0];
 

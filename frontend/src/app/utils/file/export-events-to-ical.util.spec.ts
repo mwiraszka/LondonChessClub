@@ -5,14 +5,14 @@ import { exportEventsToIcal } from './export-events-to-ical.util';
 // Mock DOM APIs
 Object.defineProperty(window, 'URL', {
   value: {
-    createObjectURL: jest.fn(() => 'mock-url'),
-    revokeObjectURL: jest.fn(),
+    createObjectURL: vi.fn(() => 'mock-url'),
+    revokeObjectURL: vi.fn(),
   },
   writable: true,
 });
 
 Object.defineProperty(window, 'Blob', {
-  value: jest.fn((content, options) => ({ content, options })),
+  value: vi.fn((content, options) => ({ content, options })),
   writable: true,
 });
 
@@ -22,17 +22,17 @@ describe('exportEventsToIcal', () => {
   beforeEach(() => {
     mockLink = {
       href: '',
-      setAttribute: jest.fn(),
-      click: jest.fn(),
+      setAttribute: vi.fn(),
+      click: vi.fn(),
     } as unknown as HTMLAnchorElement;
 
-    jest.spyOn(document, 'createElement').mockReturnValue(mockLink);
-    jest.spyOn(document.body, 'appendChild').mockImplementation();
-    jest.spyOn(document.body, 'removeChild').mockImplementation();
+    vi.spyOn(document, 'createElement').mockReturnValue(mockLink);
+    vi.spyOn(document.body, 'appendChild').mockImplementation(node => node);
+    vi.spyOn(document.body, 'removeChild').mockImplementation(node => node);
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should export events to iCal format', () => {
@@ -62,7 +62,7 @@ describe('exportEventsToIcal', () => {
 
     // Mock Blob constructor to throw an error
     const originalBlob = window.Blob;
-    window.Blob = jest.fn(() => {
+    window.Blob = vi.fn(() => {
       throw new Error('Mock error');
     }) as typeof Blob;
 
@@ -78,7 +78,7 @@ describe('exportEventsToIcal', () => {
   });
 
   it('should properly escape newlines in event descriptions', () => {
-    const mockCreateObjectURL = jest.fn(() => 'mock-url');
+    const mockCreateObjectURL = vi.fn(() => 'mock-url');
     window.URL.createObjectURL = mockCreateObjectURL;
 
     const eventWithNewlines = {
@@ -92,7 +92,7 @@ describe('exportEventsToIcal', () => {
     expect(mockCreateObjectURL).toHaveBeenCalled();
 
     // Check that the blob was created with properly escaped content
-    const blobCall = (window.Blob as jest.Mock).mock.calls[0];
+    const blobCall = (window.Blob as Mock).mock.calls[0];
     const icalContent = blobCall[0][0];
 
     // Should contain properly escaped newlines (both actual \n and literal \n should become \\n)

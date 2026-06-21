@@ -15,7 +15,7 @@ import { DialogService, MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
 import { MembersActions, MembersSelectors } from '@app/store/members';
-import * as utils from '@app/utils';
+import { PARSE_CSV } from '@app/tokens';
 import { query } from '@app/utils';
 
 import { MembersPageComponent } from './members-page.component';
@@ -24,15 +24,15 @@ describe('MembersPageComponent', () => {
   let fixture: ComponentFixture<MembersPageComponent>;
   let component: MembersPageComponent;
 
-  let dialogOpenSpy: jest.SpyInstance;
+  let dialogOpenSpy: MockInstance;
   let dialogService: DialogService;
   let metaAndTitleService: MetaAndTitleService;
   let store: MockStore;
 
-  let dispatchSpy: jest.SpyInstance;
-  let onExportToCsvSpy: jest.SpyInstance;
-  let updateDescriptionSpy: jest.SpyInstance;
-  let updateTitleSpy: jest.SpyInstance;
+  let dispatchSpy: MockInstance;
+  let onExportToCsvSpy: MockInstance;
+  let updateDescriptionSpy: MockInstance;
+  let updateTitleSpy: MockInstance;
 
   const mockFilteredCount = 50;
   const mockFilteredMembers = MOCK_MEMBERS.slice(0, 3);
@@ -57,15 +57,16 @@ describe('MembersPageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [MembersPageComponent],
       providers: [
+        { provide: PARSE_CSV, useValue: vi.fn() },
         {
           provide: DialogService,
-          useValue: { open: jest.fn() },
+          useValue: { open: vi.fn() },
         },
         {
           provide: MetaAndTitleService,
           useValue: {
-            updateTitle: jest.fn(),
-            updateDescription: jest.fn(),
+            updateTitle: vi.fn(),
+            updateDescription: vi.fn(),
           },
         },
         provideMockStore(),
@@ -80,11 +81,11 @@ describe('MembersPageComponent', () => {
     metaAndTitleService = TestBed.inject(MetaAndTitleService);
     store = TestBed.inject(MockStore);
 
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
-    dispatchSpy = jest.spyOn(store, 'dispatch');
-    onExportToCsvSpy = jest.spyOn(component, 'onExportToCsv');
-    updateDescriptionSpy = jest.spyOn(metaAndTitleService, 'updateDescription');
-    updateTitleSpy = jest.spyOn(metaAndTitleService, 'updateTitle');
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
+    dispatchSpy = vi.spyOn(store, 'dispatch');
+    onExportToCsvSpy = vi.spyOn(component, 'onExportToCsv');
+    updateDescriptionSpy = vi.spyOn(metaAndTitleService, 'updateDescription');
+    updateTitleSpy = vi.spyOn(metaAndTitleService, 'updateTitle');
 
     store.overrideSelector(MembersSelectors.selectFilteredCount, mockFilteredCount);
     store.overrideSelector(MembersSelectors.selectFilteredMembers, mockFilteredMembers);
@@ -165,7 +166,7 @@ describe('MembersPageComponent', () => {
   });
 
   describe('onMemberRatingChangesFileSelected', () => {
-    let parseCsvSpy: jest.SpyInstance;
+    let parseCsvSpy: MockInstance;
     let mockEvent: Event;
     let mockFile: File;
 
@@ -178,11 +179,11 @@ describe('MembersPageComponent', () => {
         },
       } as unknown as Event;
 
-      parseCsvSpy = jest.spyOn(utils, 'parseCsv');
+      parseCsvSpy = TestBed.inject(PARSE_CSV) as Mock;
     });
 
     afterEach(() => {
-      jest.restoreAllMocks();
+      vi.restoreAllMocks();
     });
 
     it('should return early if no file is selected', async () => {
@@ -205,7 +206,7 @@ describe('MembersPageComponent', () => {
       store.overrideSelector(MembersSelectors.selectTotalCount, MOCK_MEMBERS.length);
       store.refreshState();
 
-      jest.spyOn(dialogService, 'open').mockResolvedValue('cancel');
+      vi.spyOn(dialogService, 'open').mockResolvedValue('cancel');
 
       await component.onMemberRatingChangesFileSelected(mockEvent);
 
@@ -346,7 +347,7 @@ describe('MembersPageComponent', () => {
     });
 
     it('should open confirmation dialog with correct member count', async () => {
-      const dialogOpenSpy = jest.spyOn(dialogService, 'open').mockResolvedValue('cancel');
+      const dialogOpenSpy = vi.spyOn(dialogService, 'open').mockResolvedValue('cancel');
 
       await component.onExportToCsv();
 
@@ -414,7 +415,7 @@ describe('MembersPageComponent', () => {
     });
 
     it('should trigger file input click when updateRatingsFromCsvButton action is called', () => {
-      const mockClick = jest.fn();
+      const mockClick = vi.fn();
       component.memberRatingChangesFileInput = {
         nativeElement: { click: mockClick } as unknown as HTMLInputElement,
       };

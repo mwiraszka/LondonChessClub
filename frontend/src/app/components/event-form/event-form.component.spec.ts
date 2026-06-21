@@ -18,15 +18,15 @@ describe('EventFormComponent', () => {
 
   let dialogService: DialogService;
 
-  let cancelSpy: jest.SpyInstance;
-  let changeSpy: jest.SpyInstance;
-  let dialogOpenSpy: jest.SpyInstance;
-  let initFormSpy: jest.SpyInstance;
-  let initFormValueChangeListenerSpy: jest.SpyInstance;
-  let requestAddEventSpy: jest.SpyInstance;
-  let requestUpdateEventSpy: jest.SpyInstance;
-  let restoreSpy: jest.SpyInstance;
-  let submitSpy: jest.SpyInstance;
+  let cancelSpy: MockInstance;
+  let changeSpy: MockInstance;
+  let dialogOpenSpy: MockInstance;
+  let initFormSpy: MockInstance;
+  let initFormValueChangeListenerSpy: MockInstance;
+  let requestAddEventSpy: MockInstance;
+  let requestUpdateEventSpy: MockInstance;
+  let restoreSpy: MockInstance;
+  let submitSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -34,7 +34,7 @@ describe('EventFormComponent', () => {
       providers: [
         {
           provide: DialogService,
-          useValue: { open: jest.fn() },
+          useValue: { open: vi.fn() },
         },
         FormBuilder,
       ],
@@ -45,20 +45,20 @@ describe('EventFormComponent', () => {
 
     dialogService = TestBed.inject(DialogService);
 
-    cancelSpy = jest.spyOn(component.cancel, 'emit');
-    changeSpy = jest.spyOn(component.change, 'emit');
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
+    cancelSpy = vi.spyOn(component.cancel, 'emit');
+    changeSpy = vi.spyOn(component.change, 'emit');
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
     // @ts-expect-error Private class member
-    initFormSpy = jest.spyOn(component, 'initForm');
-    initFormValueChangeListenerSpy = jest.spyOn(
+    initFormSpy = vi.spyOn(component, 'initForm');
+    initFormValueChangeListenerSpy = vi.spyOn(
       component,
       // @ts-expect-error Private class member
       'initFormValueChangeListener',
     );
-    requestAddEventSpy = jest.spyOn(component.requestAddEvent, 'emit');
-    requestUpdateEventSpy = jest.spyOn(component.requestUpdateEvent, 'emit');
-    restoreSpy = jest.spyOn(component.restore, 'emit');
-    submitSpy = jest.spyOn(component, 'onSubmit');
+    requestAddEventSpy = vi.spyOn(component.requestAddEvent, 'emit');
+    requestUpdateEventSpy = vi.spyOn(component.requestUpdateEvent, 'emit');
+    restoreSpy = vi.spyOn(component.restore, 'emit');
+    submitSpy = vi.spyOn(component, 'onSubmit');
 
     component.formData = pick(MOCK_EVENTS[0], EVENT_FORM_DATA_PROPERTIES);
     component.hasUnsavedChanges = false;
@@ -75,7 +75,7 @@ describe('EventFormComponent', () => {
     describe('handling form data', () => {
       describe('if form has unsaved changes', () => {
         beforeEach(() => {
-          jest.useFakeTimers();
+          vi.useFakeTimers();
 
           fixture.componentRef.setInput('formData', {
             ...pick(MOCK_EVENTS[1], EVENT_FORM_DATA_PROPERTIES),
@@ -91,15 +91,15 @@ describe('EventFormComponent', () => {
           });
           fixture.detectChanges();
 
-          jest.clearAllMocks();
+          vi.clearAllMocks();
           component.ngOnInit();
         });
 
-        afterEach(() => jest.useRealTimers());
+        afterEach(() => vi.useRealTimers());
 
         it('should emit change event with converted values', () => {
           // Run debounce timer to trigger the valueChanges subscription
-          jest.runAllTimers();
+          vi.runAllTimers();
           expect(changeSpy).toHaveBeenCalled();
         });
 
@@ -118,7 +118,7 @@ describe('EventFormComponent', () => {
 
       describe('if form does not have unsaved changes', () => {
         beforeEach(() => {
-          jest.useFakeTimers();
+          vi.useFakeTimers();
 
           fixture.componentRef.setInput(
             'formData',
@@ -134,13 +134,13 @@ describe('EventFormComponent', () => {
           });
           fixture.detectChanges();
 
-          jest.clearAllMocks();
+          vi.clearAllMocks();
           component.ngOnInit();
         });
 
         it('should emit change event with converted values', () => {
           // Run debounce timer to trigger the valueChanges subscription
-          jest.runAllTimers();
+          vi.runAllTimers();
           expect(changeSpy).toHaveBeenCalled();
         });
 
@@ -207,17 +207,17 @@ describe('EventFormComponent', () => {
 
       component.ngOnInit();
 
-      jest.clearAllMocks();
-      jest.useFakeTimers();
+      vi.clearAllMocks();
+      vi.useFakeTimers();
     });
 
-    afterEach(() => jest.useRealTimers());
+    afterEach(() => vi.useRealTimers());
 
     it('should emit both change and restore events and re-initialize form if dialog is confirmed', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
 
       await component.onRestore();
-      jest.runAllTimers();
+      vi.runAllTimers();
 
       expect(dialogOpenSpy).toHaveBeenCalledWith({
         componentType: BasicDialogComponent,
@@ -242,7 +242,7 @@ describe('EventFormComponent', () => {
       dialogOpenSpy.mockResolvedValue('cancel');
 
       await component.onRestore();
-      jest.runAllTimers();
+      vi.runAllTimers();
 
       expect(dialogOpenSpy).toHaveBeenCalledTimes(1);
       expect(changeSpy).not.toHaveBeenCalled();

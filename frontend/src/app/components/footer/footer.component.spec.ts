@@ -12,7 +12,7 @@ import { query, queryAll, queryTextContent } from '@app/utils';
 import { FooterComponent } from './footer.component';
 
 interface HealthApiServiceMock {
-  getVersion: jest.Mock<Observable<ApiResponse<string>>, []>;
+  getVersion: Mock<Observable<ApiResponse<string>>, []>;
 }
 
 describe('FooterComponent', () => {
@@ -26,7 +26,7 @@ describe('FooterComponent', () => {
     TestBed.resetTestingModule();
 
     healthApiServiceMock = {
-      getVersion: jest.fn(() => backendVersionResponse),
+      getVersion: vi.fn(() => backendVersionResponse),
     };
 
     await TestBed.configureTestingModule({

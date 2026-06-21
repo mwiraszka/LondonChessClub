@@ -10,11 +10,11 @@ describe('MetaAndTitleService', () => {
 
   beforeEach(() => {
     const mockMeta: Partial<Meta> = {
-      updateTag: jest.fn(),
+      updateTag: vi.fn(),
     };
 
     const mockTitle: Partial<Title> = {
-      setTitle: jest.fn(),
+      setTitle: vi.fn(),
     };
 
     TestBed.configureTestingModule({

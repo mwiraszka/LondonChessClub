@@ -1,17 +1,35 @@
-import { setupZoneTestEnv } from 'jest-preset-angular/setup-env/zone';
+import { afterEach, vi } from 'vitest';
 
-window.matchMedia = jest.fn().mockImplementation(query => ({
+// Guard against fake-timer leakage between tests (Jest reset these implicitly).
+afterEach(() => {
+  vi.useRealTimers();
+});
+
+window.matchMedia = vi.fn().mockImplementation((query: string) => ({
   matches: false,
   media: query,
   onchange: null,
-  addListener: jest.fn(), // deprecated
-  removeListener: jest.fn(), // deprecated
-  addEventListener: jest.fn(),
-  removeEventListener: jest.fn(),
-  dispatchEvent: jest.fn(),
+  addListener: vi.fn(), // deprecated
+  removeListener: vi.fn(), // deprecated
+  addEventListener: vi.fn(),
+  removeEventListener: vi.fn(),
+  dispatchEvent: vi.fn(),
 }));
 
-setupZoneTestEnv();
+globalThis.fail = (reason?: string | Error): never => {
+  throw reason instanceof Error ? reason : new Error(reason ?? 'fail() called');
+};
+
+globalThis.withDone = (body: (done: DoneFn) => void): Promise<void> =>
+  new Promise<void>((resolve, reject) => {
+    const done = Object.assign(() => resolve(), {
+      fail: (reason?: string | Error) =>
+        reject(
+          reason instanceof Error ? reason : new Error(reason ?? 'done.fail() called'),
+        ),
+    }) as DoneFn;
+    body(done);
+  });
 
 // Silence expected console errors/warnings/logs/infos during tests to reduce noise
 const ORIGINAL_CONSOLE_ERROR = console.error;
@@ -74,7 +92,6 @@ function shouldIgnore(message: unknown, patterns: RegExp[]): boolean {
 }
 
 console.error = (...args: unknown[]) => {
-  // Check if any argument should be ignored
   if (args.some(arg => shouldIgnore(arg, IGNORED_ERROR_PATTERNS))) {
     return;
   }

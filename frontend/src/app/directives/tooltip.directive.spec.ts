@@ -52,7 +52,7 @@ describe('TooltipDirective', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should create', () => {
@@ -211,7 +211,7 @@ describe('TooltipDirective', () => {
       directiveElement.nativeElement.dispatchEvent(new MouseEvent('mouseenter'));
 
       // @ts-expect-error Private class member
-      const overlayDisposeSpy = jest.spyOn(directive.overlayRef, 'dispose');
+      const overlayDisposeSpy = vi.spyOn(directive.overlayRef, 'dispose');
 
       directive.ngOnDestroy();
 

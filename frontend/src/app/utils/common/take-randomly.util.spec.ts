@@ -2,7 +2,7 @@ import { takeRandomly } from './take-randomly.util';
 
 describe('takeRandomly', () => {
   beforeEach(() => {
-    jest.spyOn(Math, 'random').mockReturnValue(0.8);
+    vi.spyOn(Math, 'random').mockReturnValue(0.8);
   });
 
   it('from empty array', () => {

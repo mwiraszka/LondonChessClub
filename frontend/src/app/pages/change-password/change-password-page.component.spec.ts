@@ -16,9 +16,9 @@ describe('ChampionPageComponent', () => {
   let metaAndTitleService: MetaAndTitleService;
   let store: MockStore;
 
-  let dispatchSpy: jest.SpyInstance;
-  let updateDescriptionSpy: jest.SpyInstance;
-  let updateTitleSpy: jest.SpyInstance;
+  let dispatchSpy: MockInstance;
+  let updateDescriptionSpy: MockInstance;
+  let updateTitleSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -27,8 +27,8 @@ describe('ChampionPageComponent', () => {
         {
           provide: MetaAndTitleService,
           useValue: {
-            updateTitle: jest.fn(),
-            updateDescription: jest.fn(),
+            updateTitle: vi.fn(),
+            updateDescription: vi.fn(),
           },
         },
         provideMockStore({
@@ -46,9 +46,9 @@ describe('ChampionPageComponent', () => {
     metaAndTitleService = TestBed.inject(MetaAndTitleService);
     store = TestBed.inject(MockStore);
 
-    dispatchSpy = jest.spyOn(store, 'dispatch');
-    updateDescriptionSpy = jest.spyOn(metaAndTitleService, 'updateDescription');
-    updateTitleSpy = jest.spyOn(metaAndTitleService, 'updateTitle');
+    dispatchSpy = vi.spyOn(store, 'dispatch');
+    updateDescriptionSpy = vi.spyOn(metaAndTitleService, 'updateDescription');
+    updateTitleSpy = vi.spyOn(metaAndTitleService, 'updateTitle');
   });
 
   it('should create', () => {

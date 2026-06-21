@@ -17,9 +17,9 @@ describe('UserSettingsMenuComponent', () => {
 
   let store: MockStore;
 
-  let closeSpy: jest.SpyInstance;
-  let dispatchSpy: jest.SpyInstance;
-  let routerSpy: jest.SpyInstance;
+  let closeSpy: MockInstance;
+  let dispatchSpy: MockInstance;
+  let routerSpy: MockInstance;
 
   const mockUser: User = {
     id: '123',
@@ -46,10 +46,10 @@ describe('UserSettingsMenuComponent', () => {
     store.overrideSelector(AppSelectors.selectIsDesktopView, false);
     store.overrideSelector(AppSelectors.selectIsWideView, false);
 
-    closeSpy = jest.spyOn(component.close, 'emit');
-    dispatchSpy = jest.spyOn(store, 'dispatch');
+    closeSpy = vi.spyOn(component.close, 'emit');
+    dispatchSpy = vi.spyOn(store, 'dispatch');
     // @ts-expect-error Private class member
-    routerSpy = jest.spyOn(component.router, 'navigate');
+    routerSpy = vi.spyOn(component.router, 'navigate');
 
     fixture.detectChanges();
   });

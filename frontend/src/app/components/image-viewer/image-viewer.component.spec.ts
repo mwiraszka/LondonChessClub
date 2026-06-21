@@ -20,12 +20,12 @@ describe('ImageViewerComponent', () => {
   let dialogService: DialogService;
   let store: MockStore;
 
-  let adminControlsDetachSpy: jest.SpyInstance;
-  let dialogOpenSpy: jest.SpyInstance;
-  let dialogResultSpy: jest.SpyInstance;
-  let dispatchSpy: jest.SpyInstance;
-  let fetchImageSpy: jest.SpyInstance;
-  let indexSubjectNextSpy: jest.SpyInstance;
+  let adminControlsDetachSpy: MockInstance;
+  let dialogOpenSpy: MockInstance;
+  let dialogResultSpy: MockInstance;
+  let dispatchSpy: MockInstance;
+  let fetchImageSpy: MockInstance;
+  let indexSubjectNextSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -34,12 +34,12 @@ describe('ImageViewerComponent', () => {
         provideMockStore(),
         {
           provide: DialogService,
-          useValue: { open: jest.fn() },
+          useValue: { open: vi.fn() },
         },
         {
           provide: Renderer2,
           useValue: {
-            listen: jest.fn().mockReturnValue(() => {}),
+            listen: vi.fn().mockReturnValue(() => {}),
           },
         },
       ],
@@ -57,13 +57,13 @@ describe('ImageViewerComponent', () => {
     component = fixture.componentInstance;
 
     // Spies must be set up before first detectChanges where ngOnInit runs
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
-    dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
-    dispatchSpy = jest.spyOn(store, 'dispatch');
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
+    dialogResultSpy = vi.spyOn(component.dialogResult, 'emit');
+    dispatchSpy = vi.spyOn(store, 'dispatch');
     // @ts-expect-error Private class member
-    fetchImageSpy = jest.spyOn(component, 'fetchImage');
+    fetchImageSpy = vi.spyOn(component, 'fetchImage');
     // @ts-expect-error Private class member
-    indexSubjectNextSpy = jest.spyOn(component.indexSubject, 'next');
+    indexSubjectNextSpy = vi.spyOn(component.indexSubject, 'next');
 
     component.album = 'Mock Album';
     component.images = MOCK_IMAGES;
@@ -72,7 +72,7 @@ describe('ImageViewerComponent', () => {
 
     // ViewChild available after first change detection
     // @ts-expect-error Private class member
-    adminControlsDetachSpy = jest.spyOn(component.adminControlsDirective, 'detach');
+    adminControlsDetachSpy = vi.spyOn(component.adminControlsDirective, 'detach');
   });
 
   it('should create', () => {
@@ -81,7 +81,7 @@ describe('ImageViewerComponent', () => {
 
   describe('initialization', () => {
     beforeEach(() => {
-      jest.clearAllMocks();
+      vi.clearAllMocks();
       component.ngOnInit();
       fixture.detectChanges();
     });
@@ -104,76 +104,76 @@ describe('ImageViewerComponent', () => {
     });
 
     describe('prefetching adjacent images', () => {
-      beforeEach(() => jest.useFakeTimers());
-      afterEach(() => jest.useRealTimers());
+      beforeEach(() => vi.useFakeTimers());
+      afterEach(() => vi.useRealTimers());
 
       it('should correctly handle albums with a single image', () => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
         component.images = [MOCK_IMAGES[0]];
 
         // @ts-expect-error Private class member
         component.prefetchAdjacentImages();
 
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).not.toHaveBeenCalled();
       });
 
       it('should correctly handle albums with two images', () => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
         component.images = [MOCK_IMAGES[0], MOCK_IMAGES[1]];
 
         // @ts-expect-error Private class member
         component.prefetchAdjacentImages();
 
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).toHaveBeenCalledTimes(1);
         expect(fetchImageSpy).toHaveBeenCalledWith(1, true);
 
-        jest.clearAllMocks();
-        jest.advanceTimersByTime(1000);
+        vi.clearAllMocks();
+        vi.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).not.toHaveBeenCalled();
       });
 
       it('should correctly handle albums with three images', () => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
         component.images = [MOCK_IMAGES[0], MOCK_IMAGES[1], MOCK_IMAGES[2]];
 
         // @ts-expect-error Private class member
         component.prefetchAdjacentImages();
 
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).toHaveBeenCalledTimes(1);
         expect(fetchImageSpy).toHaveBeenCalledWith(1, true);
 
-        jest.clearAllMocks();
-        jest.advanceTimersByTime(1000);
+        vi.clearAllMocks();
+        vi.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).toHaveBeenCalledTimes(1);
         expect(fetchImageSpy).toHaveBeenCalledWith(2, true);
 
-        jest.clearAllMocks();
-        jest.advanceTimersByTime(1000);
+        vi.clearAllMocks();
+        vi.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).not.toHaveBeenCalled();
       });
 
       it('should correctly handle albums with many images', () => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
 
         // @ts-expect-error Private class member
         component.prefetchAdjacentImages();
 
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).toHaveBeenCalledTimes(1);
         expect(fetchImageSpy).toHaveBeenCalledWith(1, true);
 
-        jest.clearAllMocks();
-        jest.advanceTimersByTime(1000);
+        vi.clearAllMocks();
+        vi.advanceTimersByTime(1000);
 
         expect(fetchImageSpy).toHaveBeenCalledTimes(1);
         expect(fetchImageSpy).toHaveBeenCalledWith(MOCK_IMAGES.length - 1, true);
@@ -181,8 +181,8 @@ describe('ImageViewerComponent', () => {
         // Current image, immediate next image and immediate previous image have already been fetched
         const remainingImages = MOCK_IMAGES.length - 3;
 
-        jest.clearAllMocks();
-        jest.advanceTimersByTime(remainingImages * 1000);
+        vi.clearAllMocks();
+        vi.advanceTimersByTime(remainingImages * 1000);
 
         expect(fetchImageSpy).toHaveBeenCalledTimes(remainingImages);
 
@@ -202,7 +202,7 @@ describe('ImageViewerComponent', () => {
     beforeEach(() => {
       // @ts-expect-error Private class member
       component.indexSubject.next(0);
-      jest.clearAllMocks();
+      vi.clearAllMocks();
     });
 
     it('should go to previous image and detach admin controls when onPreviousImage is called', () => {

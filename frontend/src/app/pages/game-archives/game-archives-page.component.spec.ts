@@ -5,8 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { MetaAndTitleService } from '@app/services';
 import { AppSelectors } from '@app/store/app';
+import { PARSE_CSV } from '@app/tokens';
 import { query } from '@app/utils';
-import * as utils from '@app/utils';
 
 import { GameArchivesPageComponent } from './game-archives-page.component';
 
@@ -16,33 +16,34 @@ describe('GameArchivesPageComponent', () => {
 
   let metaAndTitleService: MetaAndTitleService;
 
-  let updateDescriptionSpy: jest.SpyInstance;
-  let updateTitleSpy: jest.SpyInstance;
+  let updateDescriptionSpy: MockInstance;
+  let updateTitleSpy: MockInstance;
 
   beforeEach(async () => {
     Object.defineProperty(globalThis, 'fetch', {
-      value: jest.fn().mockResolvedValue({
-        blob: jest
+      value: vi.fn().mockResolvedValue({
+        blob: vi
           .fn()
           .mockResolvedValue(new Blob(['mock,csv,data'], { type: 'text/csv' })),
       }),
       configurable: true,
     });
 
-    // Mock parseCsv to prevent console errors from CSV parsing
-    jest.spyOn(utils, 'parseCsv').mockResolvedValue([
-      ['A00', 'Dummy Opening', '1. a4'],
-      ['B00', 'Another Opening', '1. e4 e5'],
-    ]);
-
     await TestBed.configureTestingModule({
       imports: [GameArchivesPageComponent, ReactiveFormsModule],
       providers: [
         {
+          provide: PARSE_CSV,
+          useValue: vi.fn().mockResolvedValue([
+            ['A00', 'Dummy Opening', '1. a4'],
+            ['B00', 'Another Opening', '1. e4 e5'],
+          ]),
+        },
+        {
           provide: MetaAndTitleService,
           useValue: {
-            updateTitle: jest.fn(),
-            updateDescription: jest.fn(),
+            updateTitle: vi.fn(),
+            updateDescription: vi.fn(),
           },
         },
         provideMockStore({
@@ -61,12 +62,12 @@ describe('GameArchivesPageComponent', () => {
 
     metaAndTitleService = TestBed.inject(MetaAndTitleService);
 
-    updateDescriptionSpy = jest.spyOn(metaAndTitleService, 'updateDescription');
-    updateTitleSpy = jest.spyOn(metaAndTitleService, 'updateTitle');
+    updateDescriptionSpy = vi.spyOn(metaAndTitleService, 'updateDescription');
+    updateTitleSpy = vi.spyOn(metaAndTitleService, 'updateTitle');
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   it('should create', () => {
@@ -316,7 +317,7 @@ describe('GameArchivesPageComponent', () => {
     it('should prevent default for arrow key events', () => {
       const mockEvent = {
         key: 'ArrowLeft',
-        preventDefault: jest.fn(),
+        preventDefault: vi.fn(),
       } as unknown as Event;
 
       component.onKeydown(mockEvent);
@@ -327,7 +328,7 @@ describe('GameArchivesPageComponent', () => {
     it('should prevent default for arrow right key events', () => {
       const mockEvent = {
         key: 'ArrowRight',
-        preventDefault: jest.fn(),
+        preventDefault: vi.fn(),
       } as unknown as Event;
 
       component.onKeydown(mockEvent);
@@ -338,7 +339,7 @@ describe('GameArchivesPageComponent', () => {
     it('should not prevent default for non-arrow key events', () => {
       const mockEvent = {
         key: 'Enter',
-        preventDefault: jest.fn(),
+        preventDefault: vi.fn(),
       } as unknown as Event;
 
       component.onKeydown(mockEvent);
@@ -423,7 +424,7 @@ describe('GameArchivesPageComponent', () => {
       const localFixture = TestBed.createComponent(GameArchivesPageComponent);
       const localComponent = localFixture.componentInstance;
 
-      localComponent['filterGames'] = jest.fn();
+      localComponent['filterGames'] = vi.fn();
       localComponent.ngOnInit();
       localComponent.filteredGames = new Map([
         [
@@ -449,7 +450,7 @@ describe('GameArchivesPageComponent', () => {
       const localFixture = TestBed.createComponent(GameArchivesPageComponent);
       const localComponent = localFixture.componentInstance;
 
-      localComponent['filterGames'] = jest.fn();
+      localComponent['filterGames'] = vi.fn();
       localComponent.ngOnInit();
       localComponent.activeYear = '2024';
       localComponent.filteredGames = new Map([['2024', []]]);

@@ -46,10 +46,10 @@ describe('ArticleViewerPageComponent', () => {
   let metaAndTitleService: MetaAndTitleService;
   let store: MockStore;
 
-  let dialogOpenSpy: jest.SpyInstance;
-  let dispatchSpy: jest.SpyInstance;
-  let updateDescriptionSpy: jest.SpyInstance;
-  let updateTitleSpy: jest.SpyInstance;
+  let dialogOpenSpy: MockInstance;
+  let dispatchSpy: MockInstance;
+  let updateDescriptionSpy: MockInstance;
+  let updateTitleSpy: MockInstance;
 
   const mockArticle = MOCK_ARTICLES[0];
   const mockBannerImage = MOCK_IMAGES.find(
@@ -105,13 +105,13 @@ describe('ArticleViewerPageComponent', () => {
         },
         {
           provide: DialogService,
-          useValue: { open: jest.fn() },
+          useValue: { open: vi.fn() },
         },
         {
           provide: MetaAndTitleService,
           useValue: {
-            updateTitle: jest.fn(),
-            updateDescription: jest.fn(),
+            updateTitle: vi.fn(),
+            updateDescription: vi.fn(),
           },
         },
         provideMockStore({
@@ -139,10 +139,10 @@ describe('ArticleViewerPageComponent', () => {
     store = TestBed.inject(MockStore);
     metaAndTitleService = TestBed.inject(MetaAndTitleService);
 
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
-    dispatchSpy = jest.spyOn(store, 'dispatch');
-    updateTitleSpy = jest.spyOn(metaAndTitleService, 'updateTitle');
-    updateDescriptionSpy = jest.spyOn(metaAndTitleService, 'updateDescription');
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
+    dispatchSpy = vi.spyOn(store, 'dispatch');
+    updateTitleSpy = vi.spyOn(metaAndTitleService, 'updateTitle');
+    updateDescriptionSpy = vi.spyOn(metaAndTitleService, 'updateDescription');
 
     store.refreshState();
   });

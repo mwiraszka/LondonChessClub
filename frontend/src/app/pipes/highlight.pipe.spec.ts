@@ -4,29 +4,29 @@ import { HighlightPipe } from './highlight.pipe';
 
 describe('HighlightPipe', () => {
   let pipe: HighlightPipe;
-  let sanitizer: jest.Mocked<DomSanitizer>;
+  let sanitizer: Mocked<DomSanitizer>;
 
   beforeEach(() => {
     sanitizer = {
-      sanitize: jest.fn(),
+      sanitize: vi.fn(),
       // Add other required methods as mocks if needed
-      sanitizeStyle: jest.fn(),
-      sanitizeUrl: jest.fn(),
-      sanitizeScript: jest.fn(),
-      sanitizeResourceUrl: jest.fn(),
-      sanitizeHtml: jest.fn(),
-      bypassSecurityTrustHtml: jest.fn((value: string) => {
+      sanitizeStyle: vi.fn(),
+      sanitizeUrl: vi.fn(),
+      sanitizeScript: vi.fn(),
+      sanitizeResourceUrl: vi.fn(),
+      sanitizeHtml: vi.fn(),
+      bypassSecurityTrustHtml: vi.fn((value: string) => {
         // Return a mock SafeHtml object that includes the string value
         return {
           changingThisBreaksApplicationSecurity: value,
           toString: () => value,
         } as SafeHtml;
       }),
-      bypassSecurityTrustStyle: jest.fn(),
-      bypassSecurityTrustScript: jest.fn(),
-      bypassSecurityTrustUrl: jest.fn(),
-      bypassSecurityTrustResourceUrl: jest.fn(),
-    } as jest.Mocked<DomSanitizer>;
+      bypassSecurityTrustStyle: vi.fn(),
+      bypassSecurityTrustScript: vi.fn(),
+      bypassSecurityTrustUrl: vi.fn(),
+      bypassSecurityTrustResourceUrl: vi.fn(),
+    } as Mocked<DomSanitizer>;
 
     pipe = new HighlightPipe(sanitizer);
   });

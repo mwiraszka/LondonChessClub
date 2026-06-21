@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MOCK_EVENTS } from '@app/mocks/events.mock';
 import { DialogService } from '@app/services';
-import * as utils from '@app/utils';
+import { EXPORT_EVENTS_TO_ICAL } from '@app/tokens';
 
 import { ScheduleToolbarComponent } from './schedule-toolbar.component';
 
@@ -11,17 +11,18 @@ describe('ScheduleToolbarComponent', () => {
   let fixture: ComponentFixture<ScheduleToolbarComponent>;
   let dialogService: DialogService;
 
-  let dateToISOStringSpy: jest.SpyInstance;
-  let exportEventsToIcalSpy: jest.SpyInstance;
-  let todayScrollPointSpy: jest.SpyInstance;
+  let dateToISOStringSpy: MockInstance;
+  let exportEventsToIcalSpy: MockInstance;
+  let todayScrollPointSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ScheduleToolbarComponent],
       providers: [
+        { provide: EXPORT_EVENTS_TO_ICAL, useValue: vi.fn() },
         {
           provide: DialogService,
-          useValue: { open: jest.fn() },
+          useValue: { open: vi.fn() },
         },
       ],
     }).compileComponents();
@@ -31,11 +32,11 @@ describe('ScheduleToolbarComponent', () => {
 
     dialogService = TestBed.inject(DialogService);
 
-    dateToISOStringSpy = jest.spyOn(Date.prototype, 'toISOString');
-    exportEventsToIcalSpy = jest.spyOn(utils, 'exportEventsToIcal');
+    dateToISOStringSpy = vi.spyOn(Date.prototype, 'toISOString');
+    exportEventsToIcalSpy = TestBed.inject(EXPORT_EVENTS_TO_ICAL) as Mock;
 
     // Set up the spy before any change detection with a default return value
-    todayScrollPointSpy = jest
+    todayScrollPointSpy = vi
       .spyOn(component, 'todayScrollPoint', 'get')
       .mockReturnValue(document.createElement('div'));
 
@@ -47,7 +48,7 @@ describe('ScheduleToolbarComponent', () => {
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   it('should create', () => {
@@ -57,7 +58,7 @@ describe('ScheduleToolbarComponent', () => {
   describe('onExportToIcal', () => {
     it('should call exportEventsToIcal with events and filename', async () => {
       exportEventsToIcalSpy.mockReturnValue(3);
-      jest.spyOn(dialogService, 'open').mockResolvedValue('confirm');
+      vi.spyOn(dialogService, 'open').mockResolvedValue('confirm');
 
       await component.onExportToIcal();
 
@@ -83,7 +84,7 @@ describe('ScheduleToolbarComponent', () => {
 
     it('should generate filename with current date', async () => {
       dateToISOStringSpy.mockReturnValue('2024-01-15T10:30:00.000Z');
-      jest.spyOn(dialogService, 'open').mockResolvedValue('confirm');
+      vi.spyOn(dialogService, 'open').mockResolvedValue('confirm');
 
       await component.onExportToIcal();
 
@@ -95,7 +96,7 @@ describe('ScheduleToolbarComponent', () => {
     });
 
     it('should not export when dialog is cancelled', async () => {
-      jest.spyOn(dialogService, 'open').mockResolvedValue('cancel');
+      vi.spyOn(dialogService, 'open').mockResolvedValue('cancel');
 
       await component.onExportToIcal();
 
@@ -106,7 +107,7 @@ describe('ScheduleToolbarComponent', () => {
   describe('onToday', () => {
     it('should scroll to today scroll point when it exists', () => {
       const mockElement = {
-        scrollIntoView: jest.fn(),
+        scrollIntoView: vi.fn(),
       };
       todayScrollPointSpy.mockReturnValue(mockElement as unknown as Element);
 
@@ -130,7 +131,7 @@ describe('ScheduleToolbarComponent', () => {
     });
 
     it('should enable today button when today scroll point exists', () => {
-      const mockElement = { scrollIntoView: jest.fn() };
+      const mockElement = { scrollIntoView: vi.fn() };
       todayScrollPointSpy.mockReturnValue(mockElement as unknown as Element);
 
       // Force change detection to pick up the new mock value
@@ -143,7 +144,7 @@ describe('ScheduleToolbarComponent', () => {
 
   describe('toggleScheduleView output', () => {
     it('should emit toggleScheduleView event', () => {
-      jest.spyOn(component.toggleScheduleView, 'emit');
+      vi.spyOn(component.toggleScheduleView, 'emit');
 
       const toggleButton =
         fixture.debugElement.nativeElement.querySelector('lcc-toggle-switch');

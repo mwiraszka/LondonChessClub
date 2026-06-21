@@ -17,13 +17,13 @@ import {
   Image,
   PaginatedItems,
 } from '@app/models';
-import * as utils from '@app/utils';
+import { SET_PAGINATION_PARAMS } from '@app/tokens';
 
 import { environment } from '@env';
 
 import { ImagesApiService } from './images-api.service';
 
-const mockFetch = jest.fn();
+const mockFetch = vi.fn();
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (globalThis as any).fetch = mockFetch;
 
@@ -39,7 +39,11 @@ describe('ImagesApiService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ImagesApiService, provideHttpClientTesting()],
+      providers: [
+        ImagesApiService,
+        provideHttpClientTesting(),
+        { provide: SET_PAGINATION_PARAMS, useValue: vi.fn() },
+      ],
     });
 
     service = TestBed.inject(ImagesApiService);
@@ -50,7 +54,7 @@ describe('ImagesApiService', () => {
 
   afterEach(() => {
     httpMock.verify();
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   it('should be created', () => {
@@ -94,11 +98,11 @@ describe('ImagesApiService', () => {
       };
 
       const mockParams = new HttpParams().set('page', '2').set('pageSize', '25');
-      jest.spyOn(utils, 'setPaginationParams').mockReturnValue(mockParams);
+      vi.mocked(TestBed.inject(SET_PAGINATION_PARAMS)).mockReturnValue(mockParams);
 
       service.getFilteredThumbnailImages(options).subscribe(response => {
         expect(response).toEqual(mockPaginatedResponse);
-        expect(utils.setPaginationParams).toHaveBeenCalledWith(options);
+        expect(TestBed.inject(SET_PAGINATION_PARAMS)).toHaveBeenCalledWith(options);
       });
 
       const req = httpMock.expectOne(
@@ -162,64 +166,71 @@ describe('ImagesApiService', () => {
       req.flush(mockResponse);
     });
 
-    it('should use fetch API for prefetch with keepalive', done => {
-      const mockResponse: ApiResponse<Image> = {
-        data: mockImage,
-      };
+    it('should use fetch API for prefetch with keepalive', () =>
+      withDone(done => {
+        const mockResponse: ApiResponse<Image> = {
+          data: mockImage,
+        };
 
-      const mockFetchResponse = {
-        ok: true,
-        json: jest.fn().mockResolvedValue(mockResponse),
-      };
+        const mockFetchResponse = {
+          ok: true,
+          json: vi.fn().mockResolvedValue(mockResponse),
+        };
 
-      mockFetch.mockResolvedValue(mockFetchResponse);
+        mockFetch.mockResolvedValue(mockFetchResponse);
 
-      service.getMainImage(mockImage.id, true).subscribe(response => {
-        expect(response).toEqual(mockResponse);
-        expect(mockFetch).toHaveBeenCalledWith(`${apiBaseUrl}/${mockImage.id}`, {
-          method: 'GET',
-          keepalive: true,
-          credentials: 'include',
+        service.getMainImage(mockImage.id, true).subscribe(response => {
+          expect(response).toEqual(mockResponse);
+          expect(mockFetch).toHaveBeenCalledWith(`${apiBaseUrl}/${mockImage.id}`, {
+            method: 'GET',
+            keepalive: true,
+            credentials: 'include',
+          });
+          done();
         });
-        done();
-      });
-    });
+      }));
 
-    it('should handle fetch errors during prefetch', done => {
-      const mockFetchResponse = {
-        ok: false,
-        status: 404,
-      };
+    it('should handle fetch errors during prefetch', () =>
+      withDone(done => {
+        const mockFetchResponse = {
+          ok: false,
+          status: 404,
+        };
 
-      mockFetch.mockResolvedValue(mockFetchResponse);
-      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+        mockFetch.mockResolvedValue(mockFetchResponse);
+        const consoleErrorSpy = vi
+          .spyOn(console, 'error')
+          .mockImplementation(() => undefined);
 
-      service.getMainImage(mockImage.id, true).subscribe({
-        next: () => fail('should have failed'),
-        error: error => {
-          expect(error).toBeDefined();
-          expect(consoleErrorSpy).toHaveBeenCalledWith(
-            `[LCC] Error prefetching image ${mockImage.id}:`,
-            expect.any(Error),
-          );
-          done();
-        },
-      });
-    });
+        service.getMainImage(mockImage.id, true).subscribe({
+          next: () => fail('should have failed'),
+          error: error => {
+            expect(error).toBeDefined();
+            expect(consoleErrorSpy).toHaveBeenCalledWith(
+              `[LCC] Error prefetching image ${mockImage.id}:`,
+              expect.any(Error),
+            );
+            done();
+          },
+        });
+      }));
 
-    it('should handle network errors during prefetch', done => {
-      mockFetch.mockRejectedValue(new Error('Network error'));
-      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+    it('should handle network errors during prefetch', () =>
+      withDone(done => {
+        mockFetch.mockRejectedValue(new Error('Network error'));
+        const consoleErrorSpy = vi
+          .spyOn(console, 'error')
+          .mockImplementation(() => undefined);
 
-      service.getMainImage('img-123', true).subscribe({
-        next: () => fail('should have failed'),
-        error: error => {
-          expect(error.message).toBe('Network error');
-          expect(consoleErrorSpy).toHaveBeenCalled();
-          done();
-        },
-      });
-    });
+        service.getMainImage('img-123', true).subscribe({
+          next: () => fail('should have failed'),
+          error: error => {
+            expect(error.message).toBe('Network error');
+            expect(consoleErrorSpy).toHaveBeenCalled();
+            done();
+          },
+        });
+      }));
   });
 
   describe('addImages', () => {

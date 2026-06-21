@@ -23,9 +23,9 @@ describe('PhotoGridComponent', () => {
 
   let dialogService: DialogService;
 
-  let dialogOpenSpy: jest.SpyInstance;
-  let onClickAlbumCoverSpy: jest.SpyInstance;
-  let requestDeleteAlbumSpy: jest.SpyInstance;
+  let dialogOpenSpy: MockInstance;
+  let onClickAlbumCoverSpy: MockInstance;
+  let requestDeleteAlbumSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -33,7 +33,7 @@ describe('PhotoGridComponent', () => {
       providers: [
         {
           provide: DialogService,
-          useValue: { open: jest.fn() },
+          useValue: { open: vi.fn() },
         },
         provideRouter([
           {
@@ -49,9 +49,9 @@ describe('PhotoGridComponent', () => {
 
     dialogService = TestBed.inject(DialogService);
 
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
-    onClickAlbumCoverSpy = jest.spyOn(component, 'onClickAlbumCover');
-    requestDeleteAlbumSpy = jest.spyOn(component.requestDeleteAlbum, 'emit');
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
+    onClickAlbumCoverSpy = vi.spyOn(component, 'onClickAlbumCover');
+    requestDeleteAlbumSpy = vi.spyOn(component.requestDeleteAlbum, 'emit');
 
     fixture.componentRef.setInput('isAdmin', true);
     fixture.componentRef.setInput('photoImages', MOCK_IMAGES);

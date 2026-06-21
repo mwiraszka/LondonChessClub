@@ -56,7 +56,7 @@ describe('DropdownDirective', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should create', () => {
@@ -66,7 +66,7 @@ describe('DropdownDirective', () => {
   describe('onClick', () => {
     it('should attach dropdown when clicked and not already open', () => {
       // @ts-expect-error Private class member
-      jest.spyOn(directive, 'attach');
+      vi.spyOn(directive, 'attach');
 
       directiveElement.nativeElement.click();
 
@@ -77,7 +77,7 @@ describe('DropdownDirective', () => {
 
     it('should detach dropdown when clicked and already open', () => {
       // @ts-expect-error Private class member
-      jest.spyOn(directive, 'detach');
+      vi.spyOn(directive, 'detach');
       directiveElement.nativeElement.click();
       fixture.detectChanges();
 
@@ -105,13 +105,13 @@ describe('DropdownDirective', () => {
   });
 
   describe('attach', () => {
-    let detachSpy: jest.SpyInstance;
-    let emitSpy: jest.SpyInstance;
+    let detachSpy: MockInstance;
+    let emitSpy: MockInstance;
 
     beforeEach(() => {
       // @ts-expect-error Private class member
-      detachSpy = jest.spyOn(directive, 'detach');
-      emitSpy = jest.spyOn(directive.isOpen, 'emit');
+      detachSpy = vi.spyOn(directive, 'detach');
+      emitSpy = vi.spyOn(directive.isOpen, 'emit');
 
       // @ts-expect-error Private class member
       directive.attach();
@@ -141,10 +141,10 @@ describe('DropdownDirective', () => {
   });
 
   describe('detach', () => {
-    let emitSpy: jest.SpyInstance;
+    let emitSpy: MockInstance;
 
     beforeEach(() => {
-      emitSpy = jest.spyOn(directive.isOpen, 'emit');
+      emitSpy = vi.spyOn(directive.isOpen, 'emit');
 
       // @ts-expect-error Private class member
       directive.attach();
@@ -180,7 +180,7 @@ describe('DropdownDirective', () => {
       directive.attach();
 
       // @ts-expect-error Private class member
-      const overlayDisposeSpy = jest.spyOn(directive!.overlayRef, 'dispose');
+      const overlayDisposeSpy = vi.spyOn(directive!.overlayRef, 'dispose');
       directive.ngOnDestroy();
 
       expect(overlayDisposeSpy).toHaveBeenCalled();
@@ -188,21 +188,21 @@ describe('DropdownDirective', () => {
   });
 
   describe('event listeners', () => {
-    let detachSpy: jest.SpyInstance;
+    let detachSpy: MockInstance;
 
     beforeEach(() => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
 
       // @ts-expect-error Private class member
       directive.attach();
-      jest.runAllTimers();
+      vi.runAllTimers();
 
       // @ts-expect-error Private class member
-      detachSpy = jest.spyOn(directive, 'detach');
+      detachSpy = vi.spyOn(directive, 'detach');
     });
 
     afterEach(() => {
-      jest.useRealTimers();
+      vi.useRealTimers();
     });
 
     it('should not detach on document click when clicking inside component', () => {

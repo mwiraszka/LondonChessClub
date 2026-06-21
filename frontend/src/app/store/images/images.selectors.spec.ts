@@ -154,7 +154,9 @@ describe('Images Selectors', () => {
     });
 
     it('should log warning and return null when multiple images', () => {
-      const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation();
+      const consoleWarnSpy = vi
+        .spyOn(console, 'warn')
+        .mockImplementation(() => undefined);
       const newImagesFormData = {
         'img-1': mockImageFormData,
         'img-2': mockImageFormData,
@@ -435,13 +437,13 @@ describe('Images Selectors', () => {
 
   describe('selectIdsOfArticleBannerImagesWithMissingOrExpiredThumbnailUrls', () => {
     beforeEach(() => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
       // Set current time to November 15, 2025, 12:00:00 UTC
-      jest.setSystemTime(new Date('2025-11-15T12:00:00Z'));
+      vi.setSystemTime(new Date('2025-11-15T12:00:00Z'));
     });
 
     afterEach(() => {
-      jest.useRealTimers();
+      vi.useRealTimers();
     });
 
     it('should return sorted unique ids of banner images without thumbnail URLs', () => {

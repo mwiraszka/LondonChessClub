@@ -26,7 +26,7 @@ describe('Meta Reducers', () => {
   beforeEach(() => {
     localStorage.clear();
 
-    mockReducer = jest.fn(
+    mockReducer = vi.fn(
       (state: MetaState | undefined) => state || mockState,
     ) as ActionReducer<MetaState, Action<string>>;
     mockState = {
@@ -44,7 +44,7 @@ describe('Meta Reducers', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('updateStateVersionsInLocalStorageMetaReducer', () => {
@@ -93,10 +93,10 @@ describe('Meta Reducers', () => {
   });
 
   describe('actionLogMetaReducer', () => {
-    let consoleInfoSpy: jest.SpyInstance;
+    let consoleInfoSpy: MockInstance;
 
     beforeEach(() => {
-      consoleInfoSpy = jest.spyOn(console, 'info').mockImplementation();
+      consoleInfoSpy = vi.spyOn(console, 'info').mockImplementation(() => undefined);
     });
 
     afterEach(() => {
@@ -117,7 +117,7 @@ describe('Meta Reducers', () => {
 
     it('should pass state through reducer', () => {
       const expectedState = { ...mockState, modified: true };
-      mockReducer = jest.fn(() => expectedState);
+      mockReducer = vi.fn(() => expectedState);
 
       const wrappedActionLogMetaReducer = actionLogMetaReducer(mockReducer);
       const action = { type: 'TEST_ACTION' };
@@ -186,12 +186,12 @@ describe('Meta Reducers', () => {
   });
 
   describe('sessionValidationMetaReducer', () => {
-    let consoleInfoSpy: jest.SpyInstance;
-    let dateNowSpy: jest.SpyInstance;
+    let consoleInfoSpy: MockInstance;
+    let dateNowSpy: MockInstance;
 
     beforeEach(() => {
-      consoleInfoSpy = jest.spyOn(console, 'info').mockImplementation();
-      dateNowSpy = jest.spyOn(Date, 'now');
+      consoleInfoSpy = vi.spyOn(console, 'info').mockImplementation(() => undefined);
+      dateNowSpy = vi.spyOn(Date, 'now');
     });
 
     afterEach(() => {
@@ -221,7 +221,7 @@ describe('Meta Reducers', () => {
         },
       };
 
-      mockReducer = jest.fn(() => stateWithExpiredSession);
+      mockReducer = vi.fn(() => stateWithExpiredSession);
 
       const wrappedSessionValidationMetaReducer =
         sessionValidationMetaReducer(mockReducer);
@@ -257,7 +257,7 @@ describe('Meta Reducers', () => {
         },
       };
 
-      mockReducer = jest.fn(() => stateWithValidSession);
+      mockReducer = vi.fn(() => stateWithValidSession);
 
       const wrappedSessionValidationMetaReducer =
         sessionValidationMetaReducer(mockReducer);
@@ -292,7 +292,7 @@ describe('Meta Reducers', () => {
         },
       };
 
-      mockReducer = jest.fn(() => stateWithExpiredSession);
+      mockReducer = vi.fn(() => stateWithExpiredSession);
 
       const wrappedSessionValidationMetaReducer =
         sessionValidationMetaReducer(mockReducer);
@@ -316,7 +316,7 @@ describe('Meta Reducers', () => {
         },
       };
 
-      mockReducer = jest.fn(() => stateWithoutSession);
+      mockReducer = vi.fn(() => stateWithoutSession);
 
       const wrappedSessionValidationMetaReducer =
         sessionValidationMetaReducer(mockReducer);
@@ -331,7 +331,7 @@ describe('Meta Reducers', () => {
     it('should not clear auth state when authState is undefined', () => {
       const stateWithoutAuth: MetaState = {};
 
-      mockReducer = jest.fn(() => stateWithoutAuth);
+      mockReducer = vi.fn(() => stateWithoutAuth);
 
       const wrappedSessionValidationMetaReducer =
         sessionValidationMetaReducer(mockReducer);
@@ -366,7 +366,7 @@ describe('Meta Reducers', () => {
         },
       };
 
-      mockReducer = jest.fn(() => state);
+      mockReducer = vi.fn(() => state);
 
       const wrappedLoadingStateResetMetaReducer =
         loadingStateResetMetaReducer(mockReducer);
@@ -392,7 +392,7 @@ describe('Meta Reducers', () => {
         },
       };
 
-      mockReducer = jest.fn(() => state);
+      mockReducer = vi.fn(() => state);
 
       const wrappedLoadingStateResetMetaReducer =
         loadingStateResetMetaReducer(mockReducer);
@@ -417,7 +417,7 @@ describe('Meta Reducers', () => {
         },
       };
 
-      mockReducer = jest.fn(() => state);
+      mockReducer = vi.fn(() => state);
 
       const wrappedLoadingStateResetMetaReducer =
         loadingStateResetMetaReducer(mockReducer);
@@ -442,7 +442,7 @@ describe('Meta Reducers', () => {
         },
       };
 
-      mockReducer = jest.fn(() => state);
+      mockReducer = vi.fn(() => state);
 
       const wrappedLoadingStateResetMetaReducer =
         loadingStateResetMetaReducer(mockReducer);
@@ -467,7 +467,7 @@ describe('Meta Reducers', () => {
         },
       };
 
-      mockReducer = jest.fn(() => state);
+      mockReducer = vi.fn(() => state);
 
       const wrappedLoadingStateResetMetaReducer =
         loadingStateResetMetaReducer(mockReducer);
@@ -500,7 +500,7 @@ describe('Meta Reducers', () => {
         },
       };
 
-      mockReducer = jest.fn(() => state);
+      mockReducer = vi.fn(() => state);
 
       const wrappedLoadingStateResetMetaReducer =
         loadingStateResetMetaReducer(mockReducer);
@@ -525,7 +525,7 @@ describe('Meta Reducers', () => {
         },
       };
 
-      mockReducer = jest.fn(() => state);
+      mockReducer = vi.fn(() => state);
 
       const wrappedLoadingStateResetMetaReducer =
         loadingStateResetMetaReducer(mockReducer);
@@ -550,7 +550,7 @@ describe('Meta Reducers', () => {
         },
       };
 
-      mockReducer = jest.fn(() => state);
+      mockReducer = vi.fn(() => state);
 
       const wrappedLoadingStateResetMetaReducer =
         loadingStateResetMetaReducer(mockReducer);
@@ -575,7 +575,7 @@ describe('Meta Reducers', () => {
         },
       };
 
-      mockReducer = jest.fn(() => state);
+      mockReducer = vi.fn(() => state);
 
       const wrappedLoadingStateResetMetaReducer =
         loadingStateResetMetaReducer(mockReducer);

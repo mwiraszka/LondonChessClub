@@ -8,8 +8,8 @@ import { IMAGE_FORM_DATA_PROPERTIES } from '@app/constants';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { ImageFormData, LccError } from '@app/models';
 import { DialogService, ImageFileService } from '@app/services';
+import { GENERATE_UUID } from '@app/tokens';
 import { query, queryTextContent } from '@app/utils';
-import * as GenerateUuidUtil from '@app/utils/common/generate-uuid.util';
 
 import { AlbumFormComponent } from './album-form.component';
 
@@ -20,37 +20,38 @@ describe('AlbumFormComponent', () => {
   let dialogService: DialogService;
   let imageFileService: ImageFileService;
 
-  let cancelSpy: jest.SpyInstance;
-  let changeSpy: jest.SpyInstance;
-  let deleteImageSpy: jest.SpyInstance;
-  let dialogOpenSpy: jest.SpyInstance;
-  let fetchNewImageDataUrlsSpy: jest.SpyInstance;
-  let fileActionFailSpy: jest.SpyInstance;
-  let initFormSpy: jest.SpyInstance;
-  let initFormValueChangeListenerSpy: jest.SpyInstance;
-  let removeNewImageSpy: jest.SpyInstance;
-  let requestAddImagesSpy: jest.SpyInstance;
-  let requestUpdateAlbumSpy: jest.SpyInstance;
-  let restoreSpy: jest.SpyInstance;
-  let storeImageFileSpy: jest.SpyInstance;
-  let submitSpy: jest.SpyInstance;
-  let uuidSpy: jest.SpyInstance;
+  let cancelSpy: MockInstance;
+  let changeSpy: MockInstance;
+  let deleteImageSpy: MockInstance;
+  let dialogOpenSpy: MockInstance;
+  let fetchNewImageDataUrlsSpy: MockInstance;
+  let fileActionFailSpy: MockInstance;
+  let initFormSpy: MockInstance;
+  let initFormValueChangeListenerSpy: MockInstance;
+  let removeNewImageSpy: MockInstance;
+  let requestAddImagesSpy: MockInstance;
+  let requestUpdateAlbumSpy: MockInstance;
+  let restoreSpy: MockInstance;
+  let storeImageFileSpy: MockInstance;
+  let submitSpy: MockInstance;
+  let uuidSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AlbumFormComponent, ReactiveFormsModule],
       providers: [
+        { provide: GENERATE_UUID, useValue: vi.fn() },
         {
           provide: DialogService,
-          useValue: { open: jest.fn() },
+          useValue: { open: vi.fn() },
         },
         FormBuilder,
         {
           provide: ImageFileService,
           useValue: {
-            storeImageFile: jest.fn(),
-            getAllImages: jest.fn(),
-            deleteImage: jest.fn(),
+            storeImageFile: vi.fn(),
+            getAllImages: vi.fn(),
+            deleteImage: vi.fn(),
           },
         },
       ],
@@ -61,7 +62,7 @@ describe('AlbumFormComponent', () => {
 
     dialogService = TestBed.inject(DialogService);
     imageFileService = TestBed.inject(ImageFileService);
-    jest.spyOn(imageFileService, 'getAllImages').mockResolvedValue([
+    vi.spyOn(imageFileService, 'getAllImages').mockResolvedValue([
       {
         id: 'new-123',
         filename: 'my-dog.png',
@@ -74,27 +75,27 @@ describe('AlbumFormComponent', () => {
       },
     ]);
 
-    cancelSpy = jest.spyOn(component.cancel, 'emit');
-    changeSpy = jest.spyOn(component.change, 'emit');
-    deleteImageSpy = jest.spyOn(imageFileService, 'deleteImage');
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
+    cancelSpy = vi.spyOn(component.cancel, 'emit');
+    changeSpy = vi.spyOn(component.change, 'emit');
+    deleteImageSpy = vi.spyOn(imageFileService, 'deleteImage');
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
     // @ts-expect-error Private class member
-    fetchNewImageDataUrlsSpy = jest.spyOn(component, 'fetchNewImageDataUrls');
-    fileActionFailSpy = jest.spyOn(component.fileActionFail, 'emit');
+    fetchNewImageDataUrlsSpy = vi.spyOn(component, 'fetchNewImageDataUrls');
+    fileActionFailSpy = vi.spyOn(component.fileActionFail, 'emit');
     // @ts-expect-error Private class member
-    initFormSpy = jest.spyOn(component, 'initForm');
-    initFormValueChangeListenerSpy = jest.spyOn(
+    initFormSpy = vi.spyOn(component, 'initForm');
+    initFormValueChangeListenerSpy = vi.spyOn(
       component,
       // @ts-expect-error Private class member
       'initFormValueChangeListener',
     );
-    removeNewImageSpy = jest.spyOn(component.removeNewImage, 'emit');
-    requestAddImagesSpy = jest.spyOn(component.requestAddImages, 'emit');
-    requestUpdateAlbumSpy = jest.spyOn(component.requestUpdateAlbum, 'emit');
-    restoreSpy = jest.spyOn(component.restore, 'emit');
-    storeImageFileSpy = jest.spyOn(imageFileService, 'storeImageFile');
-    submitSpy = jest.spyOn(component, 'onSubmit');
-    uuidSpy = jest.spyOn(GenerateUuidUtil, 'generateUuid');
+    removeNewImageSpy = vi.spyOn(component.removeNewImage, 'emit');
+    requestAddImagesSpy = vi.spyOn(component.requestAddImages, 'emit');
+    requestUpdateAlbumSpy = vi.spyOn(component.requestUpdateAlbum, 'emit');
+    restoreSpy = vi.spyOn(component.restore, 'emit');
+    storeImageFileSpy = vi.spyOn(imageFileService, 'storeImageFile');
+    submitSpy = vi.spyOn(component, 'onSubmit');
+    uuidSpy = TestBed.inject(GENERATE_UUID) as Mock;
 
     component.album = null;
     component.existingAlbums = [];
@@ -112,7 +113,7 @@ describe('AlbumFormComponent', () => {
   describe('form initialization', () => {
     describe('if both imageEntities and newImagesFormData are empty', () => {
       beforeEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
         component.ngOnInit();
       });
 
@@ -138,7 +139,7 @@ describe('AlbumFormComponent', () => {
 
     describe('if imageEntities is empty and newImagesFormData contains data', () => {
       beforeEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
         // Two images from the same album
         fixture.componentRef.setInput('newImagesFormData', {
           [MOCK_IMAGES[0].id]: pick(MOCK_IMAGES[0], IMAGE_FORM_DATA_PROPERTIES),
@@ -181,7 +182,7 @@ describe('AlbumFormComponent', () => {
 
     describe('if imageEntities contains data (without unsaved changes)', () => {
       beforeEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
         fixture.componentRef.setInput('imageEntities', [
           {
             image: MOCK_IMAGES[0],
@@ -229,7 +230,7 @@ describe('AlbumFormComponent', () => {
 
     describe('if imageEntities contains data (with some unsaved changes and undefined urls)', () => {
       beforeEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
         fixture.componentRef.setInput('hasUnsavedChanges', true);
         fixture.componentRef.setInput('imageEntities', [
           {
@@ -706,17 +707,17 @@ describe('AlbumFormComponent', () => {
         caption: 'Modified caption',
       });
 
-      jest.clearAllMocks();
-      jest.useFakeTimers();
+      vi.clearAllMocks();
+      vi.useFakeTimers();
     });
 
-    afterEach(() => jest.useRealTimers());
+    afterEach(() => vi.useRealTimers());
 
     it('should emit both change and restore events and re-initialize form if dialog is confirmed', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
 
       await component.onRestore();
-      jest.runAllTimers();
+      vi.runAllTimers();
 
       expect(dialogOpenSpy).toHaveBeenCalledWith({
         componentType: BasicDialogComponent,
@@ -741,7 +742,7 @@ describe('AlbumFormComponent', () => {
       dialogOpenSpy.mockResolvedValue('cancel');
 
       await component.onRestore();
-      jest.runAllTimers();
+      vi.runAllTimers();
 
       expect(dialogOpenSpy).toHaveBeenCalledTimes(1);
       expect(changeSpy).not.toHaveBeenCalled();

@@ -20,7 +20,7 @@ import { AdminControlsDirective } from './admin-controls.directive';
 class TestComponent {
   config: AdminControlsConfig = {
     buttonSize: 34,
-    deleteCb: jest.fn(),
+    deleteCb: vi.fn(),
     editPath: ['event', 'edit'],
     itemName: 'Test Item',
   };
@@ -55,7 +55,7 @@ describe('AdminControlsDirective', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should create', () => {
@@ -63,22 +63,22 @@ describe('AdminControlsDirective', () => {
   });
 
   describe('onContextMenu', () => {
-    let attachSpy: jest.SpyInstance;
-    let preventDefaultSpy: jest.SpyInstance;
+    let attachSpy: MockInstance;
+    let preventDefaultSpy: MockInstance;
     let event: MouseEvent;
 
     beforeEach(() => {
       event = new MouseEvent('contextmenu', { bubbles: true, cancelable: true });
 
       // @ts-expect-error Private class member
-      attachSpy = jest.spyOn(directive, 'attach');
-      preventDefaultSpy = jest.spyOn(event, 'preventDefault');
+      attachSpy = vi.spyOn(directive, 'attach');
+      preventDefaultSpy = vi.spyOn(event, 'preventDefault');
     });
 
     it('should prevent default and attach controls when config is provided', () => {
       Object.defineProperty(window, 'getSelection', {
         writable: true,
-        value: jest.fn().mockReturnValue({
+        value: vi.fn().mockReturnValue({
           toString: () => '',
         }),
       });
@@ -92,7 +92,7 @@ describe('AdminControlsDirective', () => {
     it('should not prevent default when text is selected', () => {
       Object.defineProperty(window, 'getSelection', {
         writable: true,
-        value: jest.fn().mockReturnValue({
+        value: vi.fn().mockReturnValue({
           toString: () => 'selected text',
         }),
       });
@@ -108,7 +108,7 @@ describe('AdminControlsDirective', () => {
       fixture.detectChanges();
 
       event = new MouseEvent('contextmenu', { bubbles: true, cancelable: true });
-      jest.spyOn(event, 'preventDefault');
+      vi.spyOn(event, 'preventDefault');
 
       directiveElement.nativeElement.dispatchEvent(event);
 
@@ -118,10 +118,10 @@ describe('AdminControlsDirective', () => {
   });
 
   describe('attach', () => {
-    let detachSpy: jest.SpyInstance;
+    let detachSpy: MockInstance;
 
     beforeEach(() => {
-      detachSpy = jest.spyOn(directive, 'detach');
+      detachSpy = vi.spyOn(directive, 'detach');
     });
 
     it('should create overlay and attach admin controls component', () => {
@@ -183,7 +183,7 @@ describe('AdminControlsDirective', () => {
       directive.attach();
 
       // @ts-expect-error Private class member
-      const overlayDetachSpy = jest.spyOn(directive.overlayRef, 'detach');
+      const overlayDetachSpy = vi.spyOn(directive.overlayRef, 'detach');
 
       directive.detach();
 
@@ -201,7 +201,7 @@ describe('AdminControlsDirective', () => {
       directive.attach();
 
       // @ts-expect-error Private class member
-      const overlayDisposeSpy = jest.spyOn(directive.overlayRef, 'dispose');
+      const overlayDisposeSpy = vi.spyOn(directive.overlayRef, 'dispose');
 
       directive.ngOnDestroy();
 
@@ -210,21 +210,21 @@ describe('AdminControlsDirective', () => {
   });
 
   describe('event listeners', () => {
-    let detachSpy: jest.SpyInstance;
+    let detachSpy: MockInstance;
 
     beforeEach(() => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
 
       // @ts-expect-error Private class member
       directive.attach();
 
-      jest.runAllTimers();
+      vi.runAllTimers();
 
-      detachSpy = jest.spyOn(directive, 'detach');
+      detachSpy = vi.spyOn(directive, 'detach');
     });
 
     afterEach(() => {
-      jest.useRealTimers();
+      vi.useRealTimers();
     });
 
     it('should detach on document click', () => {

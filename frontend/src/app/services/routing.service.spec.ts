@@ -12,22 +12,22 @@ describe('RoutingService', () => {
   let mockRouter: Partial<Router>;
   let routerEvents$: Subject<NavigationEnd>;
 
-  let closeAllSpy: jest.SpyInstance;
-  let navigateSpy: jest.SpyInstance;
-  let parseUrlSpy: jest.SpyInstance;
+  let closeAllSpy: MockInstance;
+  let navigateSpy: MockInstance;
+  let parseUrlSpy: MockInstance;
 
   beforeEach(() => {
     routerEvents$ = new Subject();
 
     mockDialogService = {
-      closeAll: jest.fn(),
+      closeAll: vi.fn(),
     };
 
     mockRouter = {
       events: routerEvents$.asObservable(),
       url: '/test',
-      navigate: jest.fn().mockReturnValue(Promise.resolve(true)),
-      parseUrl: jest.fn().mockReturnValue({ fragment: null }),
+      navigate: vi.fn().mockReturnValue(Promise.resolve(true)),
+      parseUrl: vi.fn().mockReturnValue({ fragment: null }),
     };
 
     TestBed.configureTestingModule({
@@ -40,13 +40,13 @@ describe('RoutingService', () => {
 
     service = TestBed.inject(RoutingService);
 
-    closeAllSpy = jest.spyOn(mockDialogService, 'closeAll');
-    navigateSpy = jest.spyOn(mockRouter, 'navigate');
-    parseUrlSpy = jest.spyOn(mockRouter, 'parseUrl');
+    closeAllSpy = vi.spyOn(mockDialogService, 'closeAll');
+    navigateSpy = vi.spyOn(mockRouter, 'navigate');
+    parseUrlSpy = vi.spyOn(mockRouter, 'parseUrl');
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should be created', () => {
@@ -54,27 +54,29 @@ describe('RoutingService', () => {
   });
 
   describe('fragment$', () => {
-    it('should emit null initially when no fragment', done => {
-      service.fragment$.subscribe(fragment => {
-        expect(fragment).toBeNull();
-        done();
-      });
-    });
-
-    it('should emit fragment when navigation ends with fragment', done => {
-      parseUrlSpy.mockReturnValue({ fragment: 'test-fragment' });
-
-      service.fragment$.subscribe(fragment => {
-        if (fragment === 'test-fragment') {
-          expect(fragment).toBe('test-fragment');
+    it('should emit null initially when no fragment', () =>
+      withDone(done => {
+        service.fragment$.subscribe(fragment => {
+          expect(fragment).toBeNull();
           done();
-        }
-      });
+        });
+      }));
 
-      routerEvents$.next(
-        new NavigationEnd(1, '/test#test-fragment', '/test#test-fragment'),
-      );
-    });
+    it('should emit fragment when navigation ends with fragment', () =>
+      withDone(done => {
+        parseUrlSpy.mockReturnValue({ fragment: 'test-fragment' });
+
+        service.fragment$.subscribe(fragment => {
+          if (fragment === 'test-fragment') {
+            expect(fragment).toBe('test-fragment');
+            done();
+          }
+        });
+
+        routerEvents$.next(
+          new NavigationEnd(1, '/test#test-fragment', '/test#test-fragment'),
+        );
+      }));
 
     it('should emit null when navigation ends with no fragment', () => {
       parseUrlSpy.mockReturnValue({ fragment: null });
@@ -96,16 +98,19 @@ describe('RoutingService', () => {
       expect(service.currentFragment).toBeNull();
     });
 
-    it('should return current fragment value', done => {
-      parseUrlSpy.mockReturnValue({ fragment: 'my-fragment' });
+    it('should return current fragment value', () =>
+      withDone(done => {
+        parseUrlSpy.mockReturnValue({ fragment: 'my-fragment' });
 
-      routerEvents$.next(new NavigationEnd(1, '/test#my-fragment', '/test#my-fragment'));
+        routerEvents$.next(
+          new NavigationEnd(1, '/test#my-fragment', '/test#my-fragment'),
+        );
 
-      service.fragment$.subscribe(() => {
-        expect(service.currentFragment).toBe('my-fragment');
-        done();
-      });
-    });
+        service.fragment$.subscribe(() => {
+          expect(service.currentFragment).toBe('my-fragment');
+          done();
+        });
+      }));
   });
 
   describe('removeFragment', () => {
@@ -131,25 +136,26 @@ describe('RoutingService', () => {
       expect(navigateSpy).not.toHaveBeenCalled();
     });
 
-    it('should update fragment$ to null', done => {
-      parseUrlSpy.mockReturnValue({ fragment: 'test-fragment' });
-      routerEvents$.next(
-        new NavigationEnd(1, '/test#test-fragment', '/test#test-fragment'),
-      );
+    it('should update fragment$ to null', () =>
+      withDone(done => {
+        parseUrlSpy.mockReturnValue({ fragment: 'test-fragment' });
+        routerEvents$.next(
+          new NavigationEnd(1, '/test#test-fragment', '/test#test-fragment'),
+        );
 
-      navigateSpy.mockImplementation(() => {
-        service['_fragmentSubject'].next(null);
-        return Promise.resolve(true);
-      });
+        navigateSpy.mockImplementation(() => {
+          service['_fragmentSubject'].next(null);
+          return Promise.resolve(true);
+        });
 
-      service.removeFragment();
+        service.removeFragment();
 
-      service.fragment$.subscribe(fragment => {
-        if (fragment === null) {
-          done();
-        }
-      });
-    });
+        service.fragment$.subscribe(fragment => {
+          if (fragment === null) {
+            done();
+          }
+        });
+      }));
   });
 
   describe('dialog closing on navigation', () => {

@@ -21,17 +21,17 @@ describe('AuthInterceptor', () => {
   let mockHandler: HttpHandler;
   let store: MockStore;
 
-  let dispatchSpy: jest.SpyInstance;
-  let handleSpy: jest.SpyInstance;
-  let refreshSessionSpy: jest.SpyInstance;
+  let dispatchSpy: MockInstance;
+  let handleSpy: MockInstance;
+  let refreshSessionSpy: MockInstance;
 
   beforeEach(() => {
     mockAuthApiService = {
-      refreshSession: jest.fn().mockReturnValue(of({})),
+      refreshSession: vi.fn().mockReturnValue(of({})),
     } as unknown as AuthApiService;
 
     mockHandler = {
-      handle: jest.fn().mockReturnValue(of({})),
+      handle: vi.fn().mockReturnValue(of({})),
     };
 
     TestBed.configureTestingModule({
@@ -45,13 +45,13 @@ describe('AuthInterceptor', () => {
     interceptor = TestBed.inject(AuthInterceptor);
     store = TestBed.inject(MockStore);
 
-    dispatchSpy = jest.spyOn(store, 'dispatch');
-    handleSpy = jest.spyOn(mockHandler, 'handle');
-    refreshSessionSpy = jest.spyOn(mockAuthApiService, 'refreshSession');
+    dispatchSpy = vi.spyOn(store, 'dispatch');
+    handleSpy = vi.spyOn(mockHandler, 'handle');
+    refreshSessionSpy = vi.spyOn(mockAuthApiService, 'refreshSession');
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should be created', () => {
@@ -69,113 +69,120 @@ describe('AuthInterceptor', () => {
       );
     });
 
-    it('should pass through successful requests', done => {
-      const mockRequest = new HttpRequest('GET', '/api/test');
-      const mockResponse = { status: 200 };
+    it('should pass through successful requests', () =>
+      withDone(done => {
+        const mockRequest = new HttpRequest('GET', '/api/test');
+        const mockResponse = { status: 200 };
 
-      handleSpy.mockReturnValue(of(mockResponse));
+        handleSpy.mockReturnValue(of(mockResponse));
 
-      interceptor.intercept(mockRequest, mockHandler).subscribe({
-        next: (response: HttpEvent<unknown>) => {
-          expect(response).toEqual(mockResponse);
-          done();
-        },
-      });
-    });
+        interceptor.intercept(mockRequest, mockHandler).subscribe({
+          next: (response: HttpEvent<unknown>) => {
+            expect(response).toEqual(mockResponse);
+            done();
+          },
+        });
+      }));
 
-    it('should handle non-401 errors', done => {
-      const mockRequest = new HttpRequest('GET', '/api/test');
-      const error = { status: 500, message: 'Server error' };
+    it('should handle non-401 errors', () =>
+      withDone(done => {
+        const mockRequest = new HttpRequest('GET', '/api/test');
+        const error = { status: 500, message: 'Server error' };
 
-      handleSpy.mockReturnValue(throwError(() => error));
+        handleSpy.mockReturnValue(throwError(() => error));
 
-      interceptor.intercept(mockRequest, mockHandler).subscribe({
-        error: (err: unknown) => {
-          expect(err).toEqual(error);
-          done();
-        },
-      });
-    });
+        interceptor.intercept(mockRequest, mockHandler).subscribe({
+          error: (err: unknown) => {
+            expect(err).toEqual(error);
+            done();
+          },
+        });
+      }));
   });
 
   describe('401 error handling', () => {
-    it('should not attempt to refresh session on 401 error to refresh-session endpoint', done => {
-      const mockRequest = new HttpRequest('GET', '/refresh-session');
+    it('should not attempt to refresh session on 401 error to refresh-session endpoint', () =>
+      withDone(done => {
+        const mockRequest = new HttpRequest('GET', '/refresh-session');
 
-      handleSpy.mockReturnValueOnce(throwError(() => ({ status: 401 })));
+        handleSpy.mockReturnValueOnce(throwError(() => ({ status: 401 })));
 
-      interceptor.intercept(mockRequest, mockHandler).subscribe({
-        error: () => {
-          expect(refreshSessionSpy).not.toHaveBeenCalled();
-          expect(dispatchSpy).toHaveBeenCalledWith(
-            AuthActions.logoutRequested({ sessionExpired: true }),
-          );
-          done();
-        },
-      });
-    });
+        interceptor.intercept(mockRequest, mockHandler).subscribe({
+          error: () => {
+            expect(refreshSessionSpy).not.toHaveBeenCalled();
+            expect(dispatchSpy).toHaveBeenCalledWith(
+              AuthActions.logoutRequested({ sessionExpired: true }),
+            );
+            done();
+          },
+        });
+      }));
 
-    it('should refresh session on 401 error', done => {
-      const mockRequest = new HttpRequest('GET', '/api/test');
+    it('should refresh session on 401 error', () =>
+      withDone(done => {
+        const mockRequest = new HttpRequest('GET', '/api/test');
 
-      handleSpy.mockReturnValueOnce(throwError(() => ({ status: 401 })));
-      handleSpy.mockReturnValueOnce(of({ status: 200 }));
-      refreshSessionSpy.mockReturnValue(of({}));
+        handleSpy.mockReturnValueOnce(throwError(() => ({ status: 401 })));
+        handleSpy.mockReturnValueOnce(of({ status: 200 }));
+        refreshSessionSpy.mockReturnValue(of({}));
 
-      interceptor.intercept(mockRequest, mockHandler).subscribe({
-        next: () => {
-          expect(refreshSessionSpy).toHaveBeenCalled();
-          expect(handleSpy).toHaveBeenCalledTimes(2);
-          done();
-        },
-      });
-    });
+        interceptor.intercept(mockRequest, mockHandler).subscribe({
+          next: () => {
+            expect(refreshSessionSpy).toHaveBeenCalled();
+            expect(handleSpy).toHaveBeenCalledTimes(2);
+            done();
+          },
+        });
+      }));
 
-    it('should retry request after successful refresh', done => {
-      const mockRequest = new HttpRequest('GET', '/api/test');
-      const successResponse = { status: 200, data: 'success' };
+    it('should retry request after successful refresh', () =>
+      withDone(done => {
+        const mockRequest = new HttpRequest('GET', '/api/test');
+        const successResponse = { status: 200, data: 'success' };
 
-      handleSpy.mockReturnValueOnce(throwError(() => ({ status: 401 })));
-      handleSpy.mockReturnValueOnce(of(successResponse));
-      refreshSessionSpy.mockReturnValue(of({}));
+        handleSpy.mockReturnValueOnce(throwError(() => ({ status: 401 })));
+        handleSpy.mockReturnValueOnce(of(successResponse));
+        refreshSessionSpy.mockReturnValue(of({}));
 
-      interceptor.intercept(mockRequest, mockHandler).subscribe({
-        next: (response: HttpEvent<unknown>) => {
-          expect(response).toEqual(successResponse);
-          done();
-        },
-      });
-    });
+        interceptor.intercept(mockRequest, mockHandler).subscribe({
+          next: (response: HttpEvent<unknown>) => {
+            expect(response).toEqual(successResponse);
+            done();
+          },
+        });
+      }));
 
-    it('should dispatch logout on failed refresh', done => {
-      const mockRequest = new HttpRequest('GET', '/api/test');
+    it('should dispatch logout on failed refresh', () =>
+      withDone(done => {
+        const mockRequest = new HttpRequest('GET', '/api/test');
 
-      handleSpy.mockReturnValue(throwError(() => ({ status: 401 })));
-      refreshSessionSpy.mockReturnValue(throwError(() => new Error('Refresh failed')));
+        handleSpy.mockReturnValue(throwError(() => ({ status: 401 })));
+        refreshSessionSpy.mockReturnValue(throwError(() => new Error('Refresh failed')));
 
-      interceptor.intercept(mockRequest, mockHandler).subscribe({
-        error: () => {
-          expect(dispatchSpy).toHaveBeenCalledWith(
-            AuthActions.logoutRequested({ sessionExpired: true }),
-          );
-          done();
-        },
-      });
-    });
+        interceptor.intercept(mockRequest, mockHandler).subscribe({
+          error: () => {
+            expect(dispatchSpy).toHaveBeenCalledWith(
+              AuthActions.logoutRequested({ sessionExpired: true }),
+            );
+            done();
+          },
+        });
+      }));
 
-    it('should handle concurrent 401 errors', done => {
-      const mockRequest = new HttpRequest('GET', '/api/test');
+    it('should handle concurrent 401 errors', () =>
+      withDone(done => {
+        const mockRequest = new HttpRequest('GET', '/api/test');
 
-      handleSpy.mockReturnValueOnce(throwError(() => ({ status: 401 })));
-      handleSpy.mockReturnValueOnce(of({ status: 200 }));
-      refreshSessionSpy.mockReturnValue(of({}));
+        handleSpy.mockReturnValueOnce(throwError(() => ({ status: 401 })));
+        handleSpy.mockReturnValueOnce(of({ status: 200 }));
+        refreshSessionSpy.mockReturnValue(of({}));
 
-      interceptor.intercept(mockRequest, mockHandler).subscribe({
-        next: () => {
-          expect(refreshSessionSpy).toHaveBeenCalledTimes(1);
-          done();
-        },
-      });
-    });
+        interceptor.intercept(mockRequest, mockHandler).subscribe({
+          next: () => {
+            expect(refreshSessionSpy).toHaveBeenCalledTimes(1);
+            done();
+          },
+        });
+      }));
   });
 });

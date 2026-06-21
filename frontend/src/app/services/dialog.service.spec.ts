@@ -36,7 +36,7 @@ class AnotherDialogComponent implements DialogOutput<number> {
 describe('DialogService', () => {
   let service: DialogService;
 
-  let overlayCreateSpy: jest.SpyInstance;
+  let overlayCreateSpy: MockInstance;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -46,11 +46,11 @@ describe('DialogService', () => {
 
     service = TestBed.inject(DialogService);
 
-    overlayCreateSpy = jest.spyOn(service['overlay'], 'create');
+    overlayCreateSpy = vi.spyOn(service['overlay'], 'create');
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should be created', () => {
@@ -177,7 +177,7 @@ describe('DialogService', () => {
       tick();
 
       const overlayRef = service['overlayRefs'][0];
-      const disposeSpy = jest.spyOn(overlayRef, 'dispose');
+      const disposeSpy = vi.spyOn(overlayRef, 'dispose');
 
       const componentRef = service['dialogComponentRefs'][0];
       componentRef.instance.result.emit('close');
@@ -274,8 +274,8 @@ describe('DialogService', () => {
       const overlayRef1 = service['overlayRefs'][0];
       const overlayRef2 = service['overlayRefs'][1];
 
-      const disposeSpy1 = jest.spyOn(overlayRef1, 'dispose');
-      const disposeSpy2 = jest.spyOn(overlayRef2, 'dispose');
+      const disposeSpy1 = vi.spyOn(overlayRef1, 'dispose');
+      const disposeSpy2 = vi.spyOn(overlayRef2, 'dispose');
 
       service.closeAll();
 

@@ -19,30 +19,27 @@ import {
 } from '@app/models';
 import { ImageFileService, ImagesApiService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
+import {
+  BUILD_IMAGES_FORM_DATA,
+  DATA_URL_TO_FILE,
+  IS_EXPIRED,
+  IS_LCC_ERROR,
+  PARSE_ERROR,
+} from '@app/tokens';
 
 import { ImagesActions, ImagesSelectors } from '.';
 import { ImagesEffects } from './images.effects';
 
-const mockBuildImagesFormData = jest.fn();
-const mockParseError = jest.fn();
-const mockIsExpired = jest.fn();
-const mockDataUrlToFile = jest.fn();
-const mockIsLccError = jest.fn();
-
-jest.mock('@app/utils', () => ({
-  buildImagesFormData: (...args: unknown[]) => mockBuildImagesFormData(...args),
-  isDefined: <T>(value: T | null | undefined): value is T => value != null,
-  isExpired: (date: unknown) => mockIsExpired(date),
-  isLccError: (value: unknown) => mockIsLccError(value),
-  dataUrlToFile: (dataUrl: string, filename: string) =>
-    mockDataUrlToFile(dataUrl, filename),
-  parseError: (error: unknown) => mockParseError(error),
-}));
+const mockBuildImagesFormData = vi.fn();
+const mockParseError = vi.fn();
+const mockIsExpired = vi.fn();
+const mockDataUrlToFile = vi.fn();
+const mockIsLccError = vi.fn();
 
 describe('ImagesEffects', () => {
   let actions$: ReplaySubject<Action>;
   let effects: ImagesEffects;
-  let imagesApiService: jest.Mocked<ImagesApiService>;
+  let imagesApiService: Mocked<ImagesApiService>;
   let store: MockStore;
 
   const mockUser: User = {
@@ -80,20 +77,20 @@ describe('ImagesEffects', () => {
 
   beforeEach(() => {
     const imagesApiServiceMock = {
-      getAllImagesMetadata: jest.fn(),
-      getFilteredThumbnailImages: jest.fn(),
-      getBatchThumbnailImages: jest.fn(),
-      getMainImage: jest.fn(),
-      addImages: jest.fn(),
-      updateImages: jest.fn(),
-      deleteImage: jest.fn(),
-      deleteAlbum: jest.fn(),
+      getAllImagesMetadata: vi.fn(),
+      getFilteredThumbnailImages: vi.fn(),
+      getBatchThumbnailImages: vi.fn(),
+      getMainImage: vi.fn(),
+      addImages: vi.fn(),
+      updateImages: vi.fn(),
+      deleteImage: vi.fn(),
+      deleteAlbum: vi.fn(),
     };
 
     const imageFileServiceMock = {
-      getImage: jest.fn(),
-      getAllImages: jest.fn(),
-      clearAllImages: jest.fn(),
+      getImage: vi.fn(),
+      getAllImages: vi.fn(),
+      clearAllImages: vi.fn(),
     };
 
     const mockImagesState = {
@@ -126,6 +123,11 @@ describe('ImagesEffects', () => {
     TestBed.configureTestingModule({
       providers: [
         ImagesEffects,
+        { provide: BUILD_IMAGES_FORM_DATA, useValue: mockBuildImagesFormData },
+        { provide: DATA_URL_TO_FILE, useValue: mockDataUrlToFile },
+        { provide: IS_EXPIRED, useValue: mockIsExpired },
+        { provide: IS_LCC_ERROR, useValue: mockIsLccError },
+        { provide: PARSE_ERROR, useValue: mockParseError },
         provideMockActions(() => actions$),
         { provide: ImagesApiService, useValue: imagesApiServiceMock },
         { provide: ImageFileService, useValue: imageFileServiceMock },
@@ -138,49 +140,53 @@ describe('ImagesEffects', () => {
     });
 
     effects = TestBed.inject(ImagesEffects);
-    imagesApiService = TestBed.inject(ImagesApiService) as jest.Mocked<ImagesApiService>;
+    imagesApiService = TestBed.inject(ImagesApiService) as Mocked<ImagesApiService>;
     store = TestBed.inject(MockStore);
     actions$ = new ReplaySubject<Action>(1);
 
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockParseError.mockImplementation(error => error);
     mockIsLccError.mockReturnValue(false);
     mockBuildImagesFormData.mockReturnValue(new FormData());
   });
 
   describe('fetchAllImagesMetadata$', () => {
-    it('should fetch all images metadata successfully', done => {
-      imagesApiService.getAllImagesMetadata.mockReturnValue(
-        of(mockImageMetadataResponse),
-      );
-
-      actions$.next(ImagesActions.fetchAllImagesMetadataRequested());
-
-      effects.fetchAllImagesMetadata$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.fetchAllImagesMetadataSucceeded({
-            images: mockImageMetadataResponse.data,
-          }),
+    it('should fetch all images metadata successfully', () =>
+      withDone(done => {
+        imagesApiService.getAllImagesMetadata.mockReturnValue(
+          of(mockImageMetadataResponse),
         );
-        expect(imagesApiService.getAllImagesMetadata).toHaveBeenCalledTimes(1);
-        done();
-      });
-    });
 
-    it('should handle fetch all images metadata failure', done => {
-      imagesApiService.getAllImagesMetadata.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+        actions$.next(ImagesActions.fetchAllImagesMetadataRequested());
 
-      actions$.next(ImagesActions.fetchAllImagesMetadataRequested());
+        effects.fetchAllImagesMetadata$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.fetchAllImagesMetadataSucceeded({
+              images: mockImageMetadataResponse.data,
+            }),
+          );
+          expect(imagesApiService.getAllImagesMetadata).toHaveBeenCalledTimes(1);
+          done();
+        });
+      }));
 
-      effects.fetchAllImagesMetadata$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.fetchAllImagesMetadataFailed({ error: mockError }),
+    it('should handle fetch all images metadata failure', () =>
+      withDone(done => {
+        imagesApiService.getAllImagesMetadata.mockReturnValue(
+          throwError(() => mockError),
         );
-        expect(mockParseError).toHaveBeenCalledWith(mockError);
-        done();
-      });
-    });
+        mockParseError.mockReturnValue(mockError);
+
+        actions$.next(ImagesActions.fetchAllImagesMetadataRequested());
+
+        effects.fetchAllImagesMetadata$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.fetchAllImagesMetadataFailed({ error: mockError }),
+          );
+          expect(mockParseError).toHaveBeenCalledWith(mockError);
+          done();
+        });
+      }));
   });
 
   describe('fetchFilteredThumbnailImages$', () => {
@@ -198,205 +204,222 @@ describe('ImagesEffects', () => {
       store.refreshState();
     });
 
-    it('should fetch filtered thumbnail images with options from store', done => {
-      imagesApiService.getFilteredThumbnailImages.mockReturnValue(of(mockApiResponse));
+    it('should fetch filtered thumbnail images with options from store', () =>
+      withDone(done => {
+        imagesApiService.getFilteredThumbnailImages.mockReturnValue(of(mockApiResponse));
 
-      actions$.next(ImagesActions.fetchFilteredThumbnailsRequested());
+        actions$.next(ImagesActions.fetchFilteredThumbnailsRequested());
 
-      effects.fetchFilteredThumbnailImages$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.fetchFilteredThumbnailsSucceeded({
-            images: mockApiResponse.data.items,
-            filteredCount: mockApiResponse.data.filteredCount,
-            totalCount: mockApiResponse.data.totalCount,
-          }),
+        effects.fetchFilteredThumbnailImages$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.fetchFilteredThumbnailsSucceeded({
+              images: mockApiResponse.data.items,
+              filteredCount: mockApiResponse.data.filteredCount,
+              totalCount: mockApiResponse.data.totalCount,
+            }),
+          );
+          expect(imagesApiService.getFilteredThumbnailImages).toHaveBeenCalledWith(
+            mockOptions,
+          );
+          done();
+        });
+      }));
+
+    it('should handle fetch filtered thumbnail images failure', () =>
+      withDone(done => {
+        imagesApiService.getFilteredThumbnailImages.mockReturnValue(
+          throwError(() => mockError),
         );
-        expect(imagesApiService.getFilteredThumbnailImages).toHaveBeenCalledWith(
-          mockOptions,
-        );
-        done();
-      });
-    });
+        mockParseError.mockReturnValue(mockError);
 
-    it('should handle fetch filtered thumbnail images failure', done => {
-      imagesApiService.getFilteredThumbnailImages.mockReturnValue(
-        throwError(() => mockError),
-      );
-      mockParseError.mockReturnValue(mockError);
+        actions$.next(ImagesActions.fetchFilteredThumbnailsRequested());
 
-      actions$.next(ImagesActions.fetchFilteredThumbnailsRequested());
-
-      effects.fetchFilteredThumbnailImages$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.fetchFilteredThumbnailsFailed({ error: mockError }),
-        );
-        done();
-      });
-    });
+        effects.fetchFilteredThumbnailImages$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.fetchFilteredThumbnailsFailed({ error: mockError }),
+          );
+          done();
+        });
+      }));
   });
 
   describe('fetchBatchThumbnailImages$', () => {
-    it('should fetch batch thumbnail images successfully', done => {
-      const imageIds = [MOCK_IMAGES[0].id, MOCK_IMAGES[1].id];
-      const mockBatchResponse: ApiResponse<Image[]> = {
-        data: [MOCK_IMAGES[0], MOCK_IMAGES[1]],
-      };
-      imagesApiService.getBatchThumbnailImages.mockReturnValue(of(mockBatchResponse));
+    it('should fetch batch thumbnail images successfully', () =>
+      withDone(done => {
+        const imageIds = [MOCK_IMAGES[0].id, MOCK_IMAGES[1].id];
+        const mockBatchResponse: ApiResponse<Image[]> = {
+          data: [MOCK_IMAGES[0], MOCK_IMAGES[1]],
+        };
+        imagesApiService.getBatchThumbnailImages.mockReturnValue(of(mockBatchResponse));
 
-      actions$.next(
-        ImagesActions.fetchBatchThumbnailsRequested({
-          imageIds,
-          context: 'album-covers',
-        }),
-      );
-
-      effects.fetchBatchThumbnailImages$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.fetchBatchThumbnailsSucceeded({
-            images: mockBatchResponse.data,
+        actions$.next(
+          ImagesActions.fetchBatchThumbnailsRequested({
+            imageIds,
             context: 'album-covers',
           }),
         );
-        expect(imagesApiService.getBatchThumbnailImages).toHaveBeenCalledWith(imageIds);
-        done();
-      });
-    });
 
-    it('should handle fetch batch thumbnail images failure', done => {
-      const imageIds = [MOCK_IMAGES[0].id];
-      imagesApiService.getBatchThumbnailImages.mockReturnValue(
-        throwError(() => mockError),
-      );
-      mockParseError.mockReturnValue(mockError);
+        effects.fetchBatchThumbnailImages$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.fetchBatchThumbnailsSucceeded({
+              images: mockBatchResponse.data,
+              context: 'album-covers',
+            }),
+          );
+          expect(imagesApiService.getBatchThumbnailImages).toHaveBeenCalledWith(imageIds);
+          done();
+        });
+      }));
 
-      actions$.next(
-        ImagesActions.fetchBatchThumbnailsRequested({
-          imageIds,
-          context: 'album-covers',
-        }),
-      );
-
-      effects.fetchBatchThumbnailImages$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.fetchBatchThumbnailsFailed({ error: mockError }),
+    it('should handle fetch batch thumbnail images failure', () =>
+      withDone(done => {
+        const imageIds = [MOCK_IMAGES[0].id];
+        imagesApiService.getBatchThumbnailImages.mockReturnValue(
+          throwError(() => mockError),
         );
-        done();
-      });
-    });
+        mockParseError.mockReturnValue(mockError);
+
+        actions$.next(
+          ImagesActions.fetchBatchThumbnailsRequested({
+            imageIds,
+            context: 'album-covers',
+          }),
+        );
+
+        effects.fetchBatchThumbnailImages$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.fetchBatchThumbnailsFailed({ error: mockError }),
+          );
+          done();
+        });
+      }));
   });
 
   describe('fetchMainImage$', () => {
-    it('should fetch main image successfully', done => {
-      const mockMainImageResponse: ApiResponse<Image> = { data: MOCK_IMAGES[0] };
-      imagesApiService.getMainImage.mockReturnValue(of(mockMainImageResponse));
+    it('should fetch main image successfully', () =>
+      withDone(done => {
+        const mockMainImageResponse: ApiResponse<Image> = { data: MOCK_IMAGES[0] };
+        imagesApiService.getMainImage.mockReturnValue(of(mockMainImageResponse));
 
-      actions$.next(
-        ImagesActions.fetchMainImageRequested({ imageId: MOCK_IMAGES[0].id }),
-      );
-
-      effects.fetchMainImage$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.fetchMainImageSucceeded({ image: MOCK_IMAGES[0] }),
+        actions$.next(
+          ImagesActions.fetchMainImageRequested({ imageId: MOCK_IMAGES[0].id }),
         );
-        expect(imagesApiService.getMainImage).toHaveBeenCalledWith(MOCK_IMAGES[0].id);
-        done();
-      });
-    });
 
-    it('should handle fetch main image failure', done => {
-      imagesApiService.getMainImage.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+        effects.fetchMainImage$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.fetchMainImageSucceeded({ image: MOCK_IMAGES[0] }),
+          );
+          expect(imagesApiService.getMainImage).toHaveBeenCalledWith(MOCK_IMAGES[0].id);
+          done();
+        });
+      }));
 
-      actions$.next(ImagesActions.fetchMainImageRequested({ imageId: 'invalid-id' }));
+    it('should handle fetch main image failure', () =>
+      withDone(done => {
+        imagesApiService.getMainImage.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
 
-      effects.fetchMainImage$.subscribe(action => {
-        expect(action).toEqual(ImagesActions.fetchMainImageFailed({ error: mockError }));
-        done();
-      });
-    });
+        actions$.next(ImagesActions.fetchMainImageRequested({ imageId: 'invalid-id' }));
+
+        effects.fetchMainImage$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.fetchMainImageFailed({ error: mockError }),
+          );
+          done();
+        });
+      }));
   });
 
   describe('fetchMainImageInBackground$', () => {
-    it('should fetch main image in background successfully', done => {
-      const mockMainImageResponse: ApiResponse<Image> = { data: MOCK_IMAGES[0] };
-      imagesApiService.getMainImage.mockReturnValue(of(mockMainImageResponse));
+    it('should fetch main image in background successfully', () =>
+      withDone(done => {
+        const mockMainImageResponse: ApiResponse<Image> = { data: MOCK_IMAGES[0] };
+        imagesApiService.getMainImage.mockReturnValue(of(mockMainImageResponse));
 
-      actions$.next(
-        ImagesActions.fetchMainImageInBackgroundRequested({ imageId: MOCK_IMAGES[0].id }),
-      );
-
-      effects.fetchMainImageInBackground$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.fetchMainImageSucceeded({ image: MOCK_IMAGES[0] }),
+        actions$.next(
+          ImagesActions.fetchMainImageInBackgroundRequested({
+            imageId: MOCK_IMAGES[0].id,
+          }),
         );
-        expect(imagesApiService.getMainImage).toHaveBeenCalledWith(
-          MOCK_IMAGES[0].id,
-          true,
+
+        effects.fetchMainImageInBackground$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.fetchMainImageSucceeded({ image: MOCK_IMAGES[0] }),
+          );
+          expect(imagesApiService.getMainImage).toHaveBeenCalledWith(
+            MOCK_IMAGES[0].id,
+            true,
+          );
+          done();
+        });
+      }));
+
+    it('should handle fetch main image in background failure', () =>
+      withDone(done => {
+        imagesApiService.getMainImage.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
+
+        actions$.next(
+          ImagesActions.fetchMainImageInBackgroundRequested({ imageId: 'invalid-id' }),
         );
-        done();
-      });
-    });
 
-    it('should handle fetch main image in background failure', done => {
-      imagesApiService.getMainImage.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
-
-      actions$.next(
-        ImagesActions.fetchMainImageInBackgroundRequested({ imageId: 'invalid-id' }),
-      );
-
-      effects.fetchMainImageInBackground$.subscribe(action => {
-        expect(action).toEqual(ImagesActions.fetchMainImageFailed({ error: mockError }));
-        done();
-      });
-    });
+        effects.fetchMainImageInBackground$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.fetchMainImageFailed({ error: mockError }),
+          );
+          done();
+        });
+      }));
   });
 
   describe('refetchMetadata$', () => {
-    it('should trigger refetch after addImageSucceeded', done => {
-      const baseImage: BaseImage = {
-        id: 'new-id',
-        filename: 'test.jpg',
-        caption: 'Test',
-        album: 'Test Album',
-        albumCover: false,
-        albumOrdinality: '1',
-        modificationInfo: MOCK_IMAGES[0].modificationInfo,
-      };
-      actions$.next(ImagesActions.addImageSucceeded({ image: baseImage }));
+    it('should trigger refetch after addImageSucceeded', () =>
+      withDone(done => {
+        const baseImage: BaseImage = {
+          id: 'new-id',
+          filename: 'test.jpg',
+          caption: 'Test',
+          album: 'Test Album',
+          albumCover: false,
+          albumOrdinality: '1',
+          modificationInfo: MOCK_IMAGES[0].modificationInfo,
+        };
+        actions$.next(ImagesActions.addImageSucceeded({ image: baseImage }));
 
-      effects.refetchMetadata$.subscribe(action => {
-        expect(action).toEqual(ImagesActions.fetchAllImagesMetadataRequested());
-        done();
-      });
-    });
+        effects.refetchMetadata$.subscribe(action => {
+          expect(action).toEqual(ImagesActions.fetchAllImagesMetadataRequested());
+          done();
+        });
+      }));
 
-    it('should trigger refetch after updateImageSucceeded', done => {
-      const baseImage: BaseImage = {
-        id: MOCK_IMAGES[0].id,
-        filename: MOCK_IMAGES[0].filename,
-        caption: 'Updated',
-        album: MOCK_IMAGES[0].album,
-        albumCover: false,
-        albumOrdinality: '1',
-        modificationInfo: MOCK_IMAGES[0].modificationInfo,
-      };
-      actions$.next(ImagesActions.updateImageSucceeded({ baseImage }));
+    it('should trigger refetch after updateImageSucceeded', () =>
+      withDone(done => {
+        const baseImage: BaseImage = {
+          id: MOCK_IMAGES[0].id,
+          filename: MOCK_IMAGES[0].filename,
+          caption: 'Updated',
+          album: MOCK_IMAGES[0].album,
+          albumCover: false,
+          albumOrdinality: '1',
+          modificationInfo: MOCK_IMAGES[0].modificationInfo,
+        };
+        actions$.next(ImagesActions.updateImageSucceeded({ baseImage }));
 
-      effects.refetchMetadata$.subscribe(action => {
-        expect(action).toEqual(ImagesActions.fetchAllImagesMetadataRequested());
-        done();
-      });
-    });
+        effects.refetchMetadata$.subscribe(action => {
+          expect(action).toEqual(ImagesActions.fetchAllImagesMetadataRequested());
+          done();
+        });
+      }));
 
-    it('should trigger refetch after deleteImageSucceeded', done => {
-      actions$.next(ImagesActions.deleteImageSucceeded({ image: MOCK_IMAGES[0] }));
+    it('should trigger refetch after deleteImageSucceeded', () =>
+      withDone(done => {
+        actions$.next(ImagesActions.deleteImageSucceeded({ image: MOCK_IMAGES[0] }));
 
-      effects.refetchMetadata$.subscribe(action => {
-        expect(action).toEqual(ImagesActions.fetchAllImagesMetadataRequested());
-        done();
-      });
-    });
+        effects.refetchMetadata$.subscribe(action => {
+          expect(action).toEqual(ImagesActions.fetchAllImagesMetadataRequested());
+          done();
+        });
+      }));
 
     it('should trigger refetch when last fetch is expired', fakeAsync(() => {
       const expiredTimestamp = moment().subtract(10, 'minutes').toISOString();
@@ -440,115 +463,119 @@ describe('ImagesEffects', () => {
       store.refreshState();
     });
 
-    it('should update image successfully', done => {
-      const imageId = MOCK_IMAGES[0].id;
-      const mockUpdateResponse: ApiResponse<{
-        newImages: Image[];
-        updatedImages: BaseImage[];
-      }> = {
-        data: {
-          newImages: [],
-          updatedImages: [
-            {
-              id: MOCK_IMAGES[0].id,
-              filename: MOCK_IMAGES[0].filename,
-              caption: MOCK_IMAGES[0].caption,
-              album: MOCK_IMAGES[0].album,
-              albumCover: MOCK_IMAGES[0].albumCover,
-              albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
-              modificationInfo: MOCK_IMAGES[0].modificationInfo,
-            },
-          ],
-        },
-      };
+    it('should update image successfully', () =>
+      withDone(done => {
+        const imageId = MOCK_IMAGES[0].id;
+        const mockUpdateResponse: ApiResponse<{
+          newImages: Image[];
+          updatedImages: BaseImage[];
+        }> = {
+          data: {
+            newImages: [],
+            updatedImages: [
+              {
+                id: MOCK_IMAGES[0].id,
+                filename: MOCK_IMAGES[0].filename,
+                caption: MOCK_IMAGES[0].caption,
+                album: MOCK_IMAGES[0].album,
+                albumCover: MOCK_IMAGES[0].albumCover,
+                albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
+                modificationInfo: MOCK_IMAGES[0].modificationInfo,
+              },
+            ],
+          },
+        };
 
-      imagesApiService.updateImages.mockReturnValue(of(mockUpdateResponse));
+        imagesApiService.updateImages.mockReturnValue(of(mockUpdateResponse));
 
-      actions$.next(ImagesActions.updateImageRequested({ imageId }));
+        actions$.next(ImagesActions.updateImageRequested({ imageId }));
 
-      effects.updateImage$.subscribe(action => {
-        expect(action.type).toBe(ImagesActions.updateImageSucceeded.type);
-        const payload = action as ReturnType<typeof ImagesActions.updateImageSucceeded>;
-        expect(payload.baseImage.id).toBe(imageId);
-        expect(payload.baseImage.modificationInfo.lastEditedBy).toBe('Test User');
-        expect(imagesApiService.updateImages).toHaveBeenCalled();
-        done();
-      });
-    });
+        effects.updateImage$.subscribe(action => {
+          expect(action.type).toBe(ImagesActions.updateImageSucceeded.type);
+          const payload = action as ReturnType<typeof ImagesActions.updateImageSucceeded>;
+          expect(payload.baseImage.id).toBe(imageId);
+          expect(payload.baseImage.modificationInfo.lastEditedBy).toBe('Test User');
+          expect(imagesApiService.updateImages).toHaveBeenCalled();
+          done();
+        });
+      }));
 
-    it('should handle update image failure', done => {
-      const imageId = MOCK_IMAGES[0].id;
+    it('should handle update image failure', () =>
+      withDone(done => {
+        const imageId = MOCK_IMAGES[0].id;
 
-      imagesApiService.updateImages.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+        imagesApiService.updateImages.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
 
-      actions$.next(ImagesActions.updateImageRequested({ imageId }));
+        actions$.next(ImagesActions.updateImageRequested({ imageId }));
 
-      effects.updateImage$.subscribe(action => {
-        expect(action.type).toBe(ImagesActions.updateImageFailed.type);
-        done();
-      });
-    });
+        effects.updateImage$.subscribe(action => {
+          expect(action.type).toBe(ImagesActions.updateImageFailed.type);
+          done();
+        });
+      }));
 
-    it('should fail when response counts do not match expected values', done => {
-      const imageId = MOCK_IMAGES[0].id;
-      const mockUpdateResponse: ApiResponse<{
-        newImages: Image[];
-        updatedImages: BaseImage[];
-      }> = {
-        data: {
-          newImages: [MOCK_IMAGES[0]], // Expected 0
-          updatedImages: [],
-        },
-      };
+    it('should fail when response counts do not match expected values', () =>
+      withDone(done => {
+        const imageId = MOCK_IMAGES[0].id;
+        const mockUpdateResponse: ApiResponse<{
+          newImages: Image[];
+          updatedImages: BaseImage[];
+        }> = {
+          data: {
+            newImages: [MOCK_IMAGES[0]], // Expected 0
+            updatedImages: [],
+          },
+        };
 
-      imagesApiService.updateImages.mockReturnValue(of(mockUpdateResponse));
+        imagesApiService.updateImages.mockReturnValue(of(mockUpdateResponse));
 
-      actions$.next(ImagesActions.updateImageRequested({ imageId }));
+        actions$.next(ImagesActions.updateImageRequested({ imageId }));
 
-      effects.updateImage$.subscribe(action => {
-        expect(action.type).toBe(ImagesActions.updateImageFailed.type);
-        const payload = action as ReturnType<typeof ImagesActions.updateImageFailed>;
-        expect(payload.error.message).toContain(
-          'Expected 0 images to be added and 1 image to be updated',
-        );
-        done();
-      });
-    });
+        effects.updateImage$.subscribe(action => {
+          expect(action.type).toBe(ImagesActions.updateImageFailed.type);
+          const payload = action as ReturnType<typeof ImagesActions.updateImageFailed>;
+          expect(payload.error.message).toContain(
+            'Expected 0 images to be added and 1 image to be updated',
+          );
+          done();
+        });
+      }));
 
-    it('should build FormData with existing image', done => {
-      const imageId = MOCK_IMAGES[0].id;
-      const mockUpdateResponse: ApiResponse<{
-        newImages: Image[];
-        updatedImages: BaseImage[];
-      }> = {
-        data: {
-          newImages: [],
-          updatedImages: [
-            {
-              id: MOCK_IMAGES[0].id,
-              filename: MOCK_IMAGES[0].filename,
-              caption: MOCK_IMAGES[0].caption,
-              album: MOCK_IMAGES[0].album,
-              albumCover: MOCK_IMAGES[0].albumCover,
-              albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
-              modificationInfo: MOCK_IMAGES[0].modificationInfo,
-            },
-          ],
-        },
-      };
+    it('should build FormData with existing image', () =>
+      withDone(done => {
+        const imageId = MOCK_IMAGES[0].id;
+        const mockUpdateResponse: ApiResponse<{
+          newImages: Image[];
+          updatedImages: BaseImage[];
+        }> = {
+          data: {
+            newImages: [],
+            updatedImages: [
+              {
+                id: MOCK_IMAGES[0].id,
+                filename: MOCK_IMAGES[0].filename,
+                caption: MOCK_IMAGES[0].caption,
+                album: MOCK_IMAGES[0].album,
+                albumCover: MOCK_IMAGES[0].albumCover,
+                albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
+                modificationInfo: MOCK_IMAGES[0].modificationInfo,
+              },
+            ],
+          },
+        };
 
-      imagesApiService.updateImages.mockReturnValue(of(mockUpdateResponse));
+        imagesApiService.updateImages.mockReturnValue(of(mockUpdateResponse));
 
-      actions$.next(ImagesActions.updateImageRequested({ imageId }));
+        actions$.next(ImagesActions.updateImageRequested({ imageId }));
 
-      effects.updateImage$.subscribe(action => {
-        expect(action.type).toBe(ImagesActions.updateImageSucceeded.type);
-        const callArg = imagesApiService.updateImages.mock.calls[0][0];
-        expect(callArg).toBeInstanceOf(FormData);
-        done();
-      });
-    });
+        effects.updateImage$.subscribe(action => {
+          expect(action.type).toBe(ImagesActions.updateImageSucceeded.type);
+          const callArg = imagesApiService.updateImages.mock.calls[0][0];
+          expect(callArg).toBeInstanceOf(FormData);
+          done();
+        });
+      }));
   });
 
   describe('updateAlbum$', () => {
@@ -557,12 +584,10 @@ describe('ImagesEffects', () => {
       { id: 'new-1', filename: 'new1.jpg', dataUrl: 'data:image/jpeg;base64,abc' },
       { id: 'new-2', filename: 'new2.jpg', dataUrl: 'data:image/jpeg;base64,def' },
     ];
-    let mockImageFileService: jest.Mocked<ImageFileService>;
+    let mockImageFileService: Mocked<ImageFileService>;
 
     beforeEach(() => {
-      mockImageFileService = TestBed.inject(
-        ImageFileService,
-      ) as jest.Mocked<ImageFileService>;
+      mockImageFileService = TestBed.inject(ImageFileService) as Mocked<ImageFileService>;
       store.overrideSelector(AuthSelectors.selectUser, mockUser);
       store.overrideSelector(ImagesSelectors.selectNewImagesFormData, {
         'new-1': { ...INITIAL_IMAGE_FORM_DATA, id: 'new-1', album },
@@ -573,184 +598,188 @@ describe('ImagesEffects', () => {
       mockDataUrlToFile.mockReturnValue(new File([''], 'test.jpg'));
     });
 
-    it('should update album with new and existing images successfully', done => {
-      const newImages = [
-        { ...MOCK_IMAGES[0], id: 'new-1', filename: 'new1.jpg' },
-        { ...MOCK_IMAGES[1], id: 'new-2', filename: 'new2.jpg' },
-      ];
-      const updatedImages: BaseImage[] = [
-        {
-          id: MOCK_IMAGES[0].id,
-          filename: MOCK_IMAGES[0].filename,
-          caption: MOCK_IMAGES[0].caption,
-          album: MOCK_IMAGES[0].album,
-          albumCover: MOCK_IMAGES[0].albumCover,
-          albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
-          modificationInfo: MOCK_IMAGES[0].modificationInfo,
-        },
-      ];
-
-      jest.spyOn(ImagesSelectors, 'selectImageEntitiesByAlbum').mockReturnValue(
-        createSelector(() => [
+    it('should update album with new and existing images successfully', () =>
+      withDone(done => {
+        const newImages = [
+          { ...MOCK_IMAGES[0], id: 'new-1', filename: 'new1.jpg' },
+          { ...MOCK_IMAGES[1], id: 'new-2', filename: 'new2.jpg' },
+        ];
+        const updatedImages: BaseImage[] = [
           {
-            image: MOCK_IMAGES[0],
-            formData: {
-              id: MOCK_IMAGES[0].id,
-              filename: MOCK_IMAGES[0].filename,
-              caption: MOCK_IMAGES[0].caption,
-              album: MOCK_IMAGES[0].album,
-              albumCover: MOCK_IMAGES[0].albumCover,
-              albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
-            },
+            id: MOCK_IMAGES[0].id,
+            filename: MOCK_IMAGES[0].filename,
+            caption: MOCK_IMAGES[0].caption,
+            album: MOCK_IMAGES[0].album,
+            albumCover: MOCK_IMAGES[0].albumCover,
+            albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
+            modificationInfo: MOCK_IMAGES[0].modificationInfo,
           },
-        ]) as ReturnType<typeof ImagesSelectors.selectImageEntitiesByAlbum>,
-      );
+        ];
 
-      const mockUpdateResponse: ApiResponse<{
-        newImages: Image[];
-        updatedImages: BaseImage[];
-      }> = {
-        data: { newImages, updatedImages },
-      };
-
-      mockImageFileService.getAllImages.mockReturnValue(
-        Promise.resolve(mockIndexedDbData),
-      );
-      imagesApiService.updateImages.mockReturnValue(of(mockUpdateResponse));
-
-      actions$.next(ImagesActions.updateAlbumRequested({ album }));
-
-      effects.updateAlbum$.subscribe(action => {
-        expect(action.type).toBe(ImagesActions.updateAlbumSucceeded.type);
-        const payload = action as ReturnType<typeof ImagesActions.updateAlbumSucceeded>;
-        expect(payload.album).toBe(album);
-        expect(payload.newImages.length).toBe(2);
-        expect(payload.updatedImages.length).toBe(1);
-        expect(imagesApiService.updateImages).toHaveBeenCalled();
-        done();
-      });
-    });
-
-    it('should handle update album failure from API', done => {
-      jest.spyOn(ImagesSelectors, 'selectImageEntitiesByAlbum').mockReturnValue(
-        createSelector(() => [
-          {
-            image: MOCK_IMAGES[0],
-            formData: {
-              id: MOCK_IMAGES[0].id,
-              filename: MOCK_IMAGES[0].filename,
-              caption: MOCK_IMAGES[0].caption,
-              album: MOCK_IMAGES[0].album,
-              albumCover: MOCK_IMAGES[0].albumCover,
-              albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
-            },
-          },
-        ]) as ReturnType<typeof ImagesSelectors.selectImageEntitiesByAlbum>,
-      );
-
-      mockImageFileService.getAllImages.mockReturnValue(
-        Promise.resolve(mockIndexedDbData),
-      );
-      imagesApiService.updateImages.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
-
-      actions$.next(ImagesActions.updateAlbumRequested({ album }));
-
-      effects.updateAlbum$.subscribe(action => {
-        expect(action.type).toBe(ImagesActions.updateAlbumFailed.type);
-        done();
-      });
-    });
-
-    it('should fail when response counts do not match', done => {
-      jest.spyOn(ImagesSelectors, 'selectImageEntitiesByAlbum').mockReturnValue(
-        createSelector(() => [
-          {
-            image: MOCK_IMAGES[0],
-            formData: {
-              id: MOCK_IMAGES[0].id,
-              filename: MOCK_IMAGES[0].filename,
-              caption: MOCK_IMAGES[0].caption,
-              album: MOCK_IMAGES[0].album,
-              albumCover: MOCK_IMAGES[0].albumCover,
-              albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
-            },
-          },
-        ]) as ReturnType<typeof ImagesSelectors.selectImageEntitiesByAlbum>,
-      );
-
-      const mockUpdateResponse: ApiResponse<{
-        newImages: Image[];
-        updatedImages: BaseImage[];
-      }> = {
-        data: {
-          newImages: [MOCK_IMAGES[0]], // Only 1, expected 2
-          updatedImages: [
+        vi.spyOn(ImagesSelectors, 'selectImageEntitiesByAlbum').mockReturnValue(
+          createSelector(() => [
             {
-              id: MOCK_IMAGES[0].id,
-              filename: MOCK_IMAGES[0].filename,
-              caption: MOCK_IMAGES[0].caption,
-              album: MOCK_IMAGES[0].album,
-              albumCover: MOCK_IMAGES[0].albumCover,
-              albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
-              modificationInfo: MOCK_IMAGES[0].modificationInfo,
+              image: MOCK_IMAGES[0],
+              formData: {
+                id: MOCK_IMAGES[0].id,
+                filename: MOCK_IMAGES[0].filename,
+                caption: MOCK_IMAGES[0].caption,
+                album: MOCK_IMAGES[0].album,
+                albumCover: MOCK_IMAGES[0].albumCover,
+                albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
+              },
             },
-          ],
-        },
-      };
-
-      mockImageFileService.getAllImages.mockReturnValue(
-        Promise.resolve(mockIndexedDbData),
-      );
-      imagesApiService.updateImages.mockReturnValue(of(mockUpdateResponse));
-
-      actions$.next(ImagesActions.updateAlbumRequested({ album }));
-
-      effects.updateAlbum$.subscribe(action => {
-        expect(action.type).toBe(ImagesActions.updateAlbumFailed.type);
-        const payload = action as ReturnType<typeof ImagesActions.updateAlbumFailed>;
-        expect(payload.error.message).toContain('Expected 2 images to be added');
-        done();
-      });
-    });
-
-    it('should fail when form data is missing for an image', done => {
-      jest.spyOn(ImagesSelectors, 'selectImageEntitiesByAlbum').mockReturnValue(
-        createSelector(() => [
-          {
-            image: MOCK_IMAGES[0],
-            formData: {
-              id: MOCK_IMAGES[0].id,
-              filename: MOCK_IMAGES[0].filename,
-              caption: MOCK_IMAGES[0].caption,
-              album: MOCK_IMAGES[0].album,
-              albumCover: MOCK_IMAGES[0].albumCover,
-              albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
-            },
-          },
-        ]) as ReturnType<typeof ImagesSelectors.selectImageEntitiesByAlbum>,
-      );
-      store.overrideSelector(ImagesSelectors.selectNewImagesFormData, {
-        'new-1': { ...INITIAL_IMAGE_FORM_DATA, id: 'new-1', album },
-        // Missing 'new-2' form data
-      });
-      store.refreshState();
-
-      mockImageFileService.getAllImages.mockReturnValue(
-        Promise.resolve(mockIndexedDbData),
-      );
-
-      actions$.next(ImagesActions.updateAlbumRequested({ album }));
-
-      effects.updateAlbum$.subscribe(action => {
-        expect(action.type).toBe(ImagesActions.updateAlbumFailed.type);
-        const payload = action as ReturnType<typeof ImagesActions.updateAlbumFailed>;
-        expect(payload.error.message).toBe(
-          'Mismatch between image file data and form data',
+          ]) as ReturnType<typeof ImagesSelectors.selectImageEntitiesByAlbum>,
         );
-        done();
-      });
-    });
+
+        const mockUpdateResponse: ApiResponse<{
+          newImages: Image[];
+          updatedImages: BaseImage[];
+        }> = {
+          data: { newImages, updatedImages },
+        };
+
+        mockImageFileService.getAllImages.mockReturnValue(
+          Promise.resolve(mockIndexedDbData),
+        );
+        imagesApiService.updateImages.mockReturnValue(of(mockUpdateResponse));
+
+        actions$.next(ImagesActions.updateAlbumRequested({ album }));
+
+        effects.updateAlbum$.subscribe(action => {
+          expect(action.type).toBe(ImagesActions.updateAlbumSucceeded.type);
+          const payload = action as ReturnType<typeof ImagesActions.updateAlbumSucceeded>;
+          expect(payload.album).toBe(album);
+          expect(payload.newImages.length).toBe(2);
+          expect(payload.updatedImages.length).toBe(1);
+          expect(imagesApiService.updateImages).toHaveBeenCalled();
+          done();
+        });
+      }));
+
+    it('should handle update album failure from API', () =>
+      withDone(done => {
+        vi.spyOn(ImagesSelectors, 'selectImageEntitiesByAlbum').mockReturnValue(
+          createSelector(() => [
+            {
+              image: MOCK_IMAGES[0],
+              formData: {
+                id: MOCK_IMAGES[0].id,
+                filename: MOCK_IMAGES[0].filename,
+                caption: MOCK_IMAGES[0].caption,
+                album: MOCK_IMAGES[0].album,
+                albumCover: MOCK_IMAGES[0].albumCover,
+                albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
+              },
+            },
+          ]) as ReturnType<typeof ImagesSelectors.selectImageEntitiesByAlbum>,
+        );
+
+        mockImageFileService.getAllImages.mockReturnValue(
+          Promise.resolve(mockIndexedDbData),
+        );
+        imagesApiService.updateImages.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
+
+        actions$.next(ImagesActions.updateAlbumRequested({ album }));
+
+        effects.updateAlbum$.subscribe(action => {
+          expect(action.type).toBe(ImagesActions.updateAlbumFailed.type);
+          done();
+        });
+      }));
+
+    it('should fail when response counts do not match', () =>
+      withDone(done => {
+        vi.spyOn(ImagesSelectors, 'selectImageEntitiesByAlbum').mockReturnValue(
+          createSelector(() => [
+            {
+              image: MOCK_IMAGES[0],
+              formData: {
+                id: MOCK_IMAGES[0].id,
+                filename: MOCK_IMAGES[0].filename,
+                caption: MOCK_IMAGES[0].caption,
+                album: MOCK_IMAGES[0].album,
+                albumCover: MOCK_IMAGES[0].albumCover,
+                albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
+              },
+            },
+          ]) as ReturnType<typeof ImagesSelectors.selectImageEntitiesByAlbum>,
+        );
+
+        const mockUpdateResponse: ApiResponse<{
+          newImages: Image[];
+          updatedImages: BaseImage[];
+        }> = {
+          data: {
+            newImages: [MOCK_IMAGES[0]], // Only 1, expected 2
+            updatedImages: [
+              {
+                id: MOCK_IMAGES[0].id,
+                filename: MOCK_IMAGES[0].filename,
+                caption: MOCK_IMAGES[0].caption,
+                album: MOCK_IMAGES[0].album,
+                albumCover: MOCK_IMAGES[0].albumCover,
+                albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
+                modificationInfo: MOCK_IMAGES[0].modificationInfo,
+              },
+            ],
+          },
+        };
+
+        mockImageFileService.getAllImages.mockReturnValue(
+          Promise.resolve(mockIndexedDbData),
+        );
+        imagesApiService.updateImages.mockReturnValue(of(mockUpdateResponse));
+
+        actions$.next(ImagesActions.updateAlbumRequested({ album }));
+
+        effects.updateAlbum$.subscribe(action => {
+          expect(action.type).toBe(ImagesActions.updateAlbumFailed.type);
+          const payload = action as ReturnType<typeof ImagesActions.updateAlbumFailed>;
+          expect(payload.error.message).toContain('Expected 2 images to be added');
+          done();
+        });
+      }));
+
+    it('should fail when form data is missing for an image', () =>
+      withDone(done => {
+        vi.spyOn(ImagesSelectors, 'selectImageEntitiesByAlbum').mockReturnValue(
+          createSelector(() => [
+            {
+              image: MOCK_IMAGES[0],
+              formData: {
+                id: MOCK_IMAGES[0].id,
+                filename: MOCK_IMAGES[0].filename,
+                caption: MOCK_IMAGES[0].caption,
+                album: MOCK_IMAGES[0].album,
+                albumCover: MOCK_IMAGES[0].albumCover,
+                albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
+              },
+            },
+          ]) as ReturnType<typeof ImagesSelectors.selectImageEntitiesByAlbum>,
+        );
+        store.overrideSelector(ImagesSelectors.selectNewImagesFormData, {
+          'new-1': { ...INITIAL_IMAGE_FORM_DATA, id: 'new-1', album },
+          // Missing 'new-2' form data
+        });
+        store.refreshState();
+
+        mockImageFileService.getAllImages.mockReturnValue(
+          Promise.resolve(mockIndexedDbData),
+        );
+
+        actions$.next(ImagesActions.updateAlbumRequested({ album }));
+
+        effects.updateAlbum$.subscribe(action => {
+          expect(action.type).toBe(ImagesActions.updateAlbumFailed.type);
+          const payload = action as ReturnType<typeof ImagesActions.updateAlbumFailed>;
+          expect(payload.error.message).toBe(
+            'Mismatch between image file data and form data',
+          );
+          done();
+        });
+      }));
   });
 
   describe('automaticallyUpdateAlbumCoverAfterImageDeletion$', () => {
@@ -759,185 +788,192 @@ describe('ImagesEffects', () => {
     const newCoverImage = { ...MOCK_IMAGES[1], album, albumCover: false };
 
     beforeEach(() => {
-      jest
-        .spyOn(ImagesSelectors, 'selectImagesByAlbum')
-        .mockReturnValue(
-          createSelector(() => [newCoverImage]) as ReturnType<
-            typeof ImagesSelectors.selectImagesByAlbum
-          >,
-        );
+      vi.spyOn(ImagesSelectors, 'selectImagesByAlbum').mockReturnValue(
+        createSelector(() => [newCoverImage]) as ReturnType<
+          typeof ImagesSelectors.selectImagesByAlbum
+        >,
+      );
     });
 
-    it('should automatically set new album cover after deleting current cover', done => {
-      const mockUpdateResponse: ApiResponse<{
-        newImages: Image[];
-        updatedImages: BaseImage[];
-      }> = {
-        data: {
-          newImages: [],
-          updatedImages: [
-            {
-              id: newCoverImage.id,
-              filename: newCoverImage.filename,
-              caption: newCoverImage.caption,
-              album: newCoverImage.album,
-              albumCover: true,
-              albumOrdinality: newCoverImage.albumOrdinality,
-              modificationInfo: newCoverImage.modificationInfo,
-            },
-          ],
-        },
-      };
+    it('should automatically set new album cover after deleting current cover', () =>
+      withDone(done => {
+        const mockUpdateResponse: ApiResponse<{
+          newImages: Image[];
+          updatedImages: BaseImage[];
+        }> = {
+          data: {
+            newImages: [],
+            updatedImages: [
+              {
+                id: newCoverImage.id,
+                filename: newCoverImage.filename,
+                caption: newCoverImage.caption,
+                album: newCoverImage.album,
+                albumCover: true,
+                albumOrdinality: newCoverImage.albumOrdinality,
+                modificationInfo: newCoverImage.modificationInfo,
+              },
+            ],
+          },
+        };
 
-      imagesApiService.updateImages.mockReturnValue(of(mockUpdateResponse));
+        imagesApiService.updateImages.mockReturnValue(of(mockUpdateResponse));
 
-      actions$.next(ImagesActions.deleteImageSucceeded({ image: deletedImage }));
+        actions$.next(ImagesActions.deleteImageSucceeded({ image: deletedImage }));
 
-      effects.automaticallyUpdateAlbumCoverAfterImageDeletion$.subscribe(action => {
-        expect(action.type).toBe(ImagesActions.automaticAlbumCoverSwitchSucceeded.type);
-        const payload = action as ReturnType<
-          typeof ImagesActions.automaticAlbumCoverSwitchSucceeded
-        >;
-        expect(payload.baseImage.id).toBe(newCoverImage.id);
-        expect(payload.baseImage.albumCover).toBe(true);
-        done();
-      });
-    });
-
-    it('should not trigger when deleted image is not album cover', done => {
-      const nonCoverImage = { ...MOCK_IMAGES[0], albumCover: false };
-
-      actions$.next(ImagesActions.deleteImageSucceeded({ image: nonCoverImage }));
-
-      const subscription =
-        effects.automaticallyUpdateAlbumCoverAfterImageDeletion$.subscribe(() => {
-          done.fail('Should not dispatch action when deleted image is not album cover');
+        effects.automaticallyUpdateAlbumCoverAfterImageDeletion$.subscribe(action => {
+          expect(action.type).toBe(ImagesActions.automaticAlbumCoverSwitchSucceeded.type);
+          const payload = action as ReturnType<
+            typeof ImagesActions.automaticAlbumCoverSwitchSucceeded
+          >;
+          expect(payload.baseImage.id).toBe(newCoverImage.id);
+          expect(payload.baseImage.albumCover).toBe(true);
+          done();
         });
+      }));
 
-      setTimeout(() => {
-        subscription.unsubscribe();
-        done();
-      }, 100);
-    });
+    it('should not trigger when deleted image is not album cover', () =>
+      withDone(done => {
+        const nonCoverImage = { ...MOCK_IMAGES[0], albumCover: false };
 
-    it('should handle update failure with error counts mismatch', done => {
-      const mockUpdateResponse: ApiResponse<{
-        newImages: Image[];
-        updatedImages: BaseImage[];
-      }> = {
-        data: {
-          newImages: [MOCK_IMAGES[0]], // Expected 0, got 1
-          updatedImages: [],
-        },
-      };
+        actions$.next(ImagesActions.deleteImageSucceeded({ image: nonCoverImage }));
 
-      imagesApiService.updateImages.mockReturnValue(of(mockUpdateResponse));
+        const subscription =
+          effects.automaticallyUpdateAlbumCoverAfterImageDeletion$.subscribe(() => {
+            done.fail('Should not dispatch action when deleted image is not album cover');
+          });
 
-      actions$.next(ImagesActions.deleteImageSucceeded({ image: deletedImage }));
+        setTimeout(() => {
+          subscription.unsubscribe();
+          done();
+        }, 100);
+      }));
 
-      effects.automaticallyUpdateAlbumCoverAfterImageDeletion$.subscribe(action => {
-        expect(action.type).toBe(ImagesActions.automaticAlbumCoverSwitchFailed.type);
-        const payload = action as ReturnType<
-          typeof ImagesActions.automaticAlbumCoverSwitchFailed
-        >;
-        expect(payload.error.message).toContain(
-          'Expected 0 images to be added and 1 image to be updated',
-        );
-        done();
-      });
-    });
+    it('should handle update failure with error counts mismatch', () =>
+      withDone(done => {
+        const mockUpdateResponse: ApiResponse<{
+          newImages: Image[];
+          updatedImages: BaseImage[];
+        }> = {
+          data: {
+            newImages: [MOCK_IMAGES[0]], // Expected 0, got 1
+            updatedImages: [],
+          },
+        };
 
-    it('should handle API failure', done => {
-      imagesApiService.updateImages.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+        imagesApiService.updateImages.mockReturnValue(of(mockUpdateResponse));
 
-      actions$.next(ImagesActions.deleteImageSucceeded({ image: deletedImage }));
+        actions$.next(ImagesActions.deleteImageSucceeded({ image: deletedImage }));
 
-      effects.automaticallyUpdateAlbumCoverAfterImageDeletion$.subscribe(action => {
-        expect(action.type).toBe(ImagesActions.automaticAlbumCoverSwitchFailed.type);
-        done();
-      });
-    });
+        effects.automaticallyUpdateAlbumCoverAfterImageDeletion$.subscribe(action => {
+          expect(action.type).toBe(ImagesActions.automaticAlbumCoverSwitchFailed.type);
+          const payload = action as ReturnType<
+            typeof ImagesActions.automaticAlbumCoverSwitchFailed
+          >;
+          expect(payload.error.message).toContain(
+            'Expected 0 images to be added and 1 image to be updated',
+          );
+          done();
+        });
+      }));
+
+    it('should handle API failure', () =>
+      withDone(done => {
+        imagesApiService.updateImages.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
+
+        actions$.next(ImagesActions.deleteImageSucceeded({ image: deletedImage }));
+
+        effects.automaticallyUpdateAlbumCoverAfterImageDeletion$.subscribe(action => {
+          expect(action.type).toBe(ImagesActions.automaticAlbumCoverSwitchFailed.type);
+          done();
+        });
+      }));
   });
 
   describe('deleteImage$', () => {
-    it('should delete image successfully', done => {
-      const mockDeleteResponse: ApiResponse<Id> = { data: MOCK_IMAGES[0].id };
-      imagesApiService.deleteImage.mockReturnValue(of(mockDeleteResponse));
+    it('should delete image successfully', () =>
+      withDone(done => {
+        const mockDeleteResponse: ApiResponse<Id> = { data: MOCK_IMAGES[0].id };
+        imagesApiService.deleteImage.mockReturnValue(of(mockDeleteResponse));
 
-      actions$.next(ImagesActions.deleteImageRequested({ image: MOCK_IMAGES[0] }));
+        actions$.next(ImagesActions.deleteImageRequested({ image: MOCK_IMAGES[0] }));
 
-      effects.deleteImage$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.deleteImageSucceeded({ image: MOCK_IMAGES[0] }),
-        );
-        expect(imagesApiService.deleteImage).toHaveBeenCalledWith(MOCK_IMAGES[0].id);
-        done();
-      });
-    });
+        effects.deleteImage$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.deleteImageSucceeded({ image: MOCK_IMAGES[0] }),
+          );
+          expect(imagesApiService.deleteImage).toHaveBeenCalledWith(MOCK_IMAGES[0].id);
+          done();
+        });
+      }));
 
-    it('should handle delete image failure', done => {
-      imagesApiService.deleteImage.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+    it('should handle delete image failure', () =>
+      withDone(done => {
+        imagesApiService.deleteImage.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
 
-      actions$.next(ImagesActions.deleteImageRequested({ image: MOCK_IMAGES[0] }));
+        actions$.next(ImagesActions.deleteImageRequested({ image: MOCK_IMAGES[0] }));
 
-      effects.deleteImage$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.deleteImageFailed({ image: MOCK_IMAGES[0], error: mockError }),
-        );
-        done();
-      });
-    });
+        effects.deleteImage$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.deleteImageFailed({ image: MOCK_IMAGES[0], error: mockError }),
+          );
+          done();
+        });
+      }));
 
-    it('should not dispatch success if response ID does not match', done => {
-      const mockDeleteResponse: ApiResponse<Id> = { data: 'different-id' };
-      imagesApiService.deleteImage.mockReturnValue(of(mockDeleteResponse));
+    it('should not dispatch success if response ID does not match', () =>
+      withDone(done => {
+        const mockDeleteResponse: ApiResponse<Id> = { data: 'different-id' };
+        imagesApiService.deleteImage.mockReturnValue(of(mockDeleteResponse));
 
-      actions$.next(ImagesActions.deleteImageRequested({ image: MOCK_IMAGES[0] }));
+        actions$.next(ImagesActions.deleteImageRequested({ image: MOCK_IMAGES[0] }));
 
-      const subscription = effects.deleteImage$.subscribe(() => {
-        done.fail('Should not dispatch action when IDs do not match');
-      });
+        const subscription = effects.deleteImage$.subscribe(() => {
+          done.fail('Should not dispatch action when IDs do not match');
+        });
 
-      setTimeout(() => {
-        subscription.unsubscribe();
-        done();
-      }, 100);
-    });
+        setTimeout(() => {
+          subscription.unsubscribe();
+          done();
+        }, 100);
+      }));
   });
 
   describe('deleteAlbum$', () => {
-    it('should delete album successfully', done => {
-      const albumName = 'Test Album';
-      const imageIds = [MOCK_IMAGES[0].id, MOCK_IMAGES[1].id];
-      const mockDeleteResponse: ApiResponse<Id[]> = { data: imageIds };
-      imagesApiService.deleteAlbum.mockReturnValue(of(mockDeleteResponse));
+    it('should delete album successfully', () =>
+      withDone(done => {
+        const albumName = 'Test Album';
+        const imageIds = [MOCK_IMAGES[0].id, MOCK_IMAGES[1].id];
+        const mockDeleteResponse: ApiResponse<Id[]> = { data: imageIds };
+        imagesApiService.deleteAlbum.mockReturnValue(of(mockDeleteResponse));
 
-      actions$.next(ImagesActions.deleteAlbumRequested({ album: albumName }));
+        actions$.next(ImagesActions.deleteAlbumRequested({ album: albumName }));
 
-      effects.deleteAlbum$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.deleteAlbumSucceeded({ album: albumName, imageIds }),
-        );
-        expect(imagesApiService.deleteAlbum).toHaveBeenCalledWith(albumName);
-        done();
-      });
-    });
+        effects.deleteAlbum$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.deleteAlbumSucceeded({ album: albumName, imageIds }),
+          );
+          expect(imagesApiService.deleteAlbum).toHaveBeenCalledWith(albumName);
+          done();
+        });
+      }));
 
-    it('should handle delete album failure', done => {
-      const albumName = 'Test Album';
-      imagesApiService.deleteAlbum.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+    it('should handle delete album failure', () =>
+      withDone(done => {
+        const albumName = 'Test Album';
+        imagesApiService.deleteAlbum.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
 
-      actions$.next(ImagesActions.deleteAlbumRequested({ album: albumName }));
+        actions$.next(ImagesActions.deleteAlbumRequested({ album: albumName }));
 
-      effects.deleteAlbum$.subscribe(action => {
-        expect(action).toEqual(
-          ImagesActions.deleteAlbumFailed({ album: albumName, error: mockError }),
-        );
-        done();
-      });
-    });
+        effects.deleteAlbum$.subscribe(action => {
+          expect(action).toEqual(
+            ImagesActions.deleteAlbumFailed({ album: albumName, error: mockError }),
+          );
+          done();
+        });
+      }));
   });
 });

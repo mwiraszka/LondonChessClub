@@ -9,14 +9,14 @@ import { UpcomingEventBannerComponent } from './upcoming-event-banner.component'
 describe('UpcomingEventBannerComponent', () => {
   let fixture: ComponentFixture<UpcomingEventBannerComponent>;
   let component: UpcomingEventBannerComponent;
-  let clearBannerSpy: jest.SpyInstance;
-  let resizeObserverMock: jest.Mock;
+  let clearBannerSpy: MockInstance;
+  let resizeObserverMock: Mock;
 
   beforeEach(async () => {
-    resizeObserverMock = jest.fn().mockImplementation(() => ({
-      observe: jest.fn(),
-      unobserve: jest.fn(),
-      disconnect: jest.fn(),
+    resizeObserverMock = vi.fn().mockImplementation(() => ({
+      observe: vi.fn(),
+      unobserve: vi.fn(),
+      disconnect: vi.fn(),
     }));
     window.ResizeObserver = resizeObserverMock;
 
@@ -28,7 +28,7 @@ describe('UpcomingEventBannerComponent', () => {
     fixture = TestBed.createComponent(UpcomingEventBannerComponent);
     component = fixture.componentInstance;
 
-    clearBannerSpy = jest.spyOn(component.clearBanner, 'emit');
+    clearBannerSpy = vi.spyOn(component.clearBanner, 'emit');
 
     component.nextEvents = [MOCK_EVENTS[0]];
     fixture.detectChanges();
@@ -125,24 +125,26 @@ describe('UpcomingEventBannerComponent', () => {
   });
 
   describe('lifecycle hooks', () => {
-    it('should setup resize observer on init', done => {
-      // ResizeObserver is created after 2 second delay
-      setTimeout(() => {
-        expect(resizeObserverMock).toHaveBeenCalled();
-        done();
-      }, 2100);
-    });
+    it('should setup resize observer on init', () =>
+      withDone(done => {
+        // ResizeObserver is created after 2 second delay
+        setTimeout(() => {
+          expect(resizeObserverMock).toHaveBeenCalled();
+          done();
+        }, 2100);
+      }));
 
-    it('should disconnect resize observer on destroy', done => {
-      // Wait for observer to be created
-      setTimeout(() => {
-        const mockObserver = resizeObserverMock.mock.results[0].value;
+    it('should disconnect resize observer on destroy', () =>
+      withDone(done => {
+        // Wait for observer to be created
+        setTimeout(() => {
+          const mockObserver = resizeObserverMock.mock.results[0].value;
 
-        component.ngOnDestroy();
+          component.ngOnDestroy();
 
-        expect(mockObserver.disconnect).toHaveBeenCalled();
-        done();
-      }, 2100);
-    });
+          expect(mockObserver.disconnect).toHaveBeenCalled();
+          done();
+        }, 2100);
+      }));
   });
 });

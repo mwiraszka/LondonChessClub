@@ -17,15 +17,15 @@ describe('MemberFormComponent', () => {
 
   let dialogService: DialogService;
 
-  let cancelSpy: jest.SpyInstance;
-  let changeSpy: jest.SpyInstance;
-  let dialogOpenSpy: jest.SpyInstance;
-  let initFormSpy: jest.SpyInstance;
-  let initFormValueChangeListenerSpy: jest.SpyInstance;
-  let requestAddMemberSpy: jest.SpyInstance;
-  let requestUpdateMemberSpy: jest.SpyInstance;
-  let restoreSpy: jest.SpyInstance;
-  let submitSpy: jest.SpyInstance;
+  let cancelSpy: MockInstance;
+  let changeSpy: MockInstance;
+  let dialogOpenSpy: MockInstance;
+  let initFormSpy: MockInstance;
+  let initFormValueChangeListenerSpy: MockInstance;
+  let requestAddMemberSpy: MockInstance;
+  let requestUpdateMemberSpy: MockInstance;
+  let restoreSpy: MockInstance;
+  let submitSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -33,7 +33,7 @@ describe('MemberFormComponent', () => {
       providers: [
         {
           provide: DialogService,
-          useValue: { open: jest.fn() },
+          useValue: { open: vi.fn() },
         },
         FormBuilder,
       ],
@@ -44,20 +44,20 @@ describe('MemberFormComponent', () => {
 
     dialogService = TestBed.inject(DialogService);
 
-    cancelSpy = jest.spyOn(component.cancel, 'emit');
-    changeSpy = jest.spyOn(component.change, 'emit');
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
+    cancelSpy = vi.spyOn(component.cancel, 'emit');
+    changeSpy = vi.spyOn(component.change, 'emit');
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
     // @ts-expect-error Private class member
-    initFormSpy = jest.spyOn(component, 'initForm');
-    initFormValueChangeListenerSpy = jest.spyOn(
+    initFormSpy = vi.spyOn(component, 'initForm');
+    initFormValueChangeListenerSpy = vi.spyOn(
       component,
       // @ts-expect-error Private class member
       'initFormValueChangeListener',
     );
-    requestAddMemberSpy = jest.spyOn(component.requestAddMember, 'emit');
-    requestUpdateMemberSpy = jest.spyOn(component.requestUpdateMember, 'emit');
-    restoreSpy = jest.spyOn(component.restore, 'emit');
-    submitSpy = jest.spyOn(component, 'onSubmit');
+    requestAddMemberSpy = vi.spyOn(component.requestAddMember, 'emit');
+    requestUpdateMemberSpy = vi.spyOn(component.requestUpdateMember, 'emit');
+    restoreSpy = vi.spyOn(component.restore, 'emit');
+    submitSpy = vi.spyOn(component, 'onSubmit');
 
     component.formData = pick(MOCK_MEMBERS[0], MEMBER_FORM_DATA_PROPERTIES);
     component.hasUnsavedChanges = false;
@@ -77,7 +77,7 @@ describe('MemberFormComponent', () => {
         beforeEach(() => {
           fixture.componentRef.setInput('hasUnsavedChanges', true);
 
-          jest.clearAllMocks();
+          vi.clearAllMocks();
           component.ngOnInit();
         });
 
@@ -98,7 +98,7 @@ describe('MemberFormComponent', () => {
         beforeEach(() => {
           fixture.componentRef.setInput('hasUnsavedChanges', false);
 
-          jest.clearAllMocks();
+          vi.clearAllMocks();
           component.ngOnInit();
         });
 
@@ -168,17 +168,17 @@ describe('MemberFormComponent', () => {
 
       component.ngOnInit();
 
-      jest.clearAllMocks();
-      jest.useFakeTimers();
+      vi.clearAllMocks();
+      vi.useFakeTimers();
     });
 
-    afterEach(() => jest.useRealTimers());
+    afterEach(() => vi.useRealTimers());
 
     it('should emit both change and restore events and re-initialize form if dialog is confirmed', async () => {
       dialogOpenSpy.mockResolvedValue('confirm');
 
       await component.onRestore();
-      jest.runAllTimers();
+      vi.runAllTimers();
 
       expect(dialogOpenSpy).toHaveBeenCalledWith({
         componentType: BasicDialogComponent,
@@ -203,7 +203,7 @@ describe('MemberFormComponent', () => {
       dialogOpenSpy.mockResolvedValue('cancel');
 
       await component.onRestore();
-      jest.runAllTimers();
+      vi.runAllTimers();
 
       expect(dialogOpenSpy).toHaveBeenCalledTimes(1);
       expect(changeSpy).not.toHaveBeenCalled();

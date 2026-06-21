@@ -8,7 +8,7 @@ describe('SessionExpiryDialogComponent', () => {
   let fixture: ComponentFixture<SessionExpiryDialogComponent>;
   let component: SessionExpiryDialogComponent;
 
-  let dialogResultSpy: jest.SpyInstance;
+  let dialogResultSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,7 +18,7 @@ describe('SessionExpiryDialogComponent', () => {
     fixture = TestBed.createComponent(SessionExpiryDialogComponent);
     component = fixture.componentInstance;
 
-    dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
+    dialogResultSpy = vi.spyOn(component.dialogResult, 'emit');
 
     component.initialTimeRemainingSecs = 60;
     fixture.detectChanges();

@@ -9,9 +9,9 @@ describe('ToggleSwitchComponent', () => {
   let fixture: ComponentFixture<ToggleSwitchComponent>;
   let component: ToggleSwitchComponent;
 
-  let emitSpy: jest.SpyInstance;
-  let tooltipAttachSpy: jest.SpyInstance;
-  let tooltipDetachSpy: jest.SpyInstance;
+  let emitSpy: MockInstance;
+  let tooltipAttachSpy: MockInstance;
+  let tooltipDetachSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -29,11 +29,11 @@ describe('ToggleSwitchComponent', () => {
     fixture.detectChanges();
 
     // Tooltip directive spies need to be set after first change detection cycle
-    emitSpy = jest.spyOn(component.toggle, 'emit');
+    emitSpy = vi.spyOn(component.toggle, 'emit');
     // @ts-expect-error Private class member
-    tooltipAttachSpy = jest.spyOn(component.tooltipDirective, 'attach');
+    tooltipAttachSpy = vi.spyOn(component.tooltipDirective, 'attach');
     // @ts-expect-error Private class member
-    tooltipDetachSpy = jest.spyOn(component.tooltipDirective, 'detach');
+    tooltipDetachSpy = vi.spyOn(component.tooltipDirective, 'detach');
   });
 
   it('should create', () => {
@@ -53,7 +53,7 @@ describe('ToggleSwitchComponent', () => {
       expect(tooltipAttachSpy).not.toHaveBeenCalled();
       expect(tooltipDetachSpy).toHaveBeenCalledTimes(1);
 
-      jest.clearAllMocks();
+      vi.clearAllMocks();
       tick(1);
 
       expect(emitSpy).not.toHaveBeenCalled();

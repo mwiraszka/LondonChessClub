@@ -15,11 +15,11 @@ describe('LoggingInterceptor', () => {
 
   let mockHandler: HttpHandler;
 
-  let handleSpy: jest.SpyInstance;
+  let handleSpy: MockInstance;
 
   beforeEach(() => {
     mockHandler = {
-      handle: jest.fn().mockReturnValue(of({})),
+      handle: vi.fn().mockReturnValue(of({})),
     };
 
     TestBed.configureTestingModule({
@@ -28,11 +28,11 @@ describe('LoggingInterceptor', () => {
 
     interceptor = TestBed.inject(LoggingInterceptor);
 
-    handleSpy = jest.spyOn(mockHandler, 'handle');
+    handleSpy = vi.spyOn(mockHandler, 'handle');
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should be created', () => {
@@ -48,19 +48,20 @@ describe('LoggingInterceptor', () => {
       expect(handleSpy).toHaveBeenCalledWith(mockRequest);
     });
 
-    it('should return handler response', done => {
-      const mockRequest = new HttpRequest('GET', '/api/test');
-      const mockResponse = { status: 200, data: 'test' };
+    it('should return handler response', () =>
+      withDone(done => {
+        const mockRequest = new HttpRequest('GET', '/api/test');
+        const mockResponse = { status: 200, data: 'test' };
 
-      handleSpy.mockReturnValue(of(mockResponse));
+        handleSpy.mockReturnValue(of(mockResponse));
 
-      interceptor.intercept(mockRequest, mockHandler).subscribe({
-        next: (response: HttpEvent<unknown>) => {
-          expect(response).toEqual(mockResponse);
-          done();
-        },
-      });
-    });
+        interceptor.intercept(mockRequest, mockHandler).subscribe({
+          next: (response: HttpEvent<unknown>) => {
+            expect(response).toEqual(mockResponse);
+            done();
+          },
+        });
+      }));
 
     it('should handle POST requests', () => {
       const mockRequest = new HttpRequest('POST', '/api/create', { data: 'test' });

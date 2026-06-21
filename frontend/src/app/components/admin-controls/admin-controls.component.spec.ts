@@ -16,9 +16,9 @@ describe('AdminControlsComponent', () => {
 
   let keyStateService: KeyStateService;
 
-  let ctrlMetaKeyPressedSpy: jest.SpyInstance;
-  let deleteCbSpy: jest.SpyInstance;
-  let destroyedSpy: jest.SpyInstance;
+  let ctrlMetaKeyPressedSpy: MockInstance;
+  let deleteCbSpy: MockInstance;
+  let destroyedSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -28,7 +28,7 @@ describe('AdminControlsComponent', () => {
           provide: ADMIN_CONTROLS_CONFIG_TOKEN,
           useValue: {
             buttonSize: 15,
-            deleteCb: jest.fn(),
+            deleteCb: vi.fn(),
             isDeleteDisabled: false,
           },
         },
@@ -41,9 +41,9 @@ describe('AdminControlsComponent', () => {
 
     keyStateService = TestBed.inject(KeyStateService);
 
-    ctrlMetaKeyPressedSpy = jest.spyOn(keyStateService, 'ctrlMetaKeyPressed$', 'get');
-    deleteCbSpy = jest.spyOn(component.config, 'deleteCb');
-    destroyedSpy = jest.spyOn(component.destroyed, 'emit');
+    ctrlMetaKeyPressedSpy = vi.spyOn(keyStateService, 'ctrlMetaKeyPressed$', 'get');
+    deleteCbSpy = vi.spyOn(component.config, 'deleteCb');
+    destroyedSpy = vi.spyOn(component.destroyed, 'emit');
   });
 
   it('should create', () => {
@@ -62,7 +62,7 @@ describe('AdminControlsComponent', () => {
   describe('template rendering', () => {
     describe('bookmark button', () => {
       it('should not render if only bookmarkCb is provided', () => {
-        component.config.bookmarkCb = jest.fn();
+        component.config.bookmarkCb = vi.fn();
         component.config.bookmarked = undefined;
         fixture.detectChanges();
 
@@ -78,7 +78,7 @@ describe('AdminControlsComponent', () => {
       });
 
       it('should render if both bookmarkCb and bookmarked are provided', () => {
-        component.config.bookmarkCb = jest.fn();
+        component.config.bookmarkCb = vi.fn();
         component.config.bookmarked = false;
         fixture.detectChanges();
 
@@ -86,12 +86,12 @@ describe('AdminControlsComponent', () => {
       });
 
       it('should invoke bookmarkCb when clicked', () => {
-        component.config.bookmarkCb = jest.fn();
+        component.config.bookmarkCb = vi.fn();
         component.config.bookmarked = false;
         fixture.detectChanges();
 
         // Must redeclare spy after callback change
-        const bookmarkCbSpy = jest.spyOn(component.config, 'bookmarkCb');
+        const bookmarkCbSpy = vi.spyOn(component.config, 'bookmarkCb');
 
         query(fixture.debugElement, '.bookmark-button').triggerEventHandler('click');
 

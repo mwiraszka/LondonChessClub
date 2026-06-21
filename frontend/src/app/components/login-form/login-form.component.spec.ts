@@ -10,7 +10,7 @@ describe('LoginFormComponent', () => {
   let fixture: ComponentFixture<LoginFormComponent>;
   let component: LoginFormComponent;
 
-  let requestLoginSpy: jest.SpyInstance;
+  let requestLoginSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -27,7 +27,7 @@ describe('LoginFormComponent', () => {
     fixture = TestBed.createComponent(LoginFormComponent);
     component = fixture.componentInstance;
 
-    requestLoginSpy = jest.spyOn(component.requestLogin, 'emit');
+    requestLoginSpy = vi.spyOn(component.requestLogin, 'emit');
 
     component.ngOnInit();
     fixture.detectChanges();

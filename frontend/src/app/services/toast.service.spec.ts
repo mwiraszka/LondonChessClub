@@ -82,17 +82,17 @@ describe('ToastService', () => {
         type: 'info',
       };
 
-      const matchMediaSpy = jest.spyOn(window, 'matchMedia');
+      const matchMediaSpy = vi.spyOn(window, 'matchMedia');
 
       const createMockMQL = (matches: boolean): MediaQueryList => ({
         matches,
         media: '(max-width: 1000px)',
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       });
 
       matchMediaSpy.mockReturnValue(createMockMQL(false));
@@ -128,7 +128,7 @@ describe('ToastService', () => {
       };
 
       service.displayToast(toast);
-      const clearTimeoutSpy = jest.spyOn(window, 'clearTimeout');
+      const clearTimeoutSpy = vi.spyOn(window, 'clearTimeout');
 
       service.removeToast(toast);
 
@@ -157,7 +157,7 @@ describe('ToastService', () => {
       service.displayToast(toast2);
 
       // @ts-expect-error Private class member
-      const updateSpy = jest.spyOn(service, 'updateToasterComponent');
+      const updateSpy = vi.spyOn(service, 'updateToasterComponent');
 
       service.removeToast(toast1);
 
@@ -169,10 +169,10 @@ describe('ToastService', () => {
   describe('multiple toasts interaction', () => {
     it('should handle multiple toasts with different timers', fakeAsync(() => {
       // Mock matchMedia for this test - include addListener/removeListener for CDK compatibility
-      const mockMatchMedia = jest.fn().mockReturnValue({
+      const mockMatchMedia = vi.fn().mockReturnValue({
         matches: false,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
       });
       Object.defineProperty(window, 'matchMedia', {
         writable: true,
@@ -238,7 +238,7 @@ describe('ToastService', () => {
 
       toasts.forEach(toast => service.displayToast(toast));
 
-      const clearTimeoutSpy = jest.spyOn(window, 'clearTimeout');
+      const clearTimeoutSpy = vi.spyOn(window, 'clearTimeout');
 
       service['destroyOverlay']();
 

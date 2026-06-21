@@ -11,8 +11,8 @@ describe('DataToolbarComponent', () => {
   let fixture: ComponentFixture<DataToolbarComponent<Member>>;
   let component: DataToolbarComponent<Member>;
 
-  let optionsChangeSpy: jest.SpyInstance;
-  let optionsChangeNoFetchSpy: jest.SpyInstance;
+  let optionsChangeSpy: MockInstance;
+  let optionsChangeNoFetchSpy: MockInstance;
 
   const mockOptions: DataPaginationOptions<Member> = {
     page: 3,
@@ -36,8 +36,8 @@ describe('DataToolbarComponent', () => {
     fixture = TestBed.createComponent(DataToolbarComponent<Member>);
     component = fixture.componentInstance;
 
-    optionsChangeSpy = jest.spyOn(component.optionsChange, 'emit');
-    optionsChangeNoFetchSpy = jest.spyOn(component.optionsChangeNoFetch, 'emit');
+    optionsChangeSpy = vi.spyOn(component.optionsChange, 'emit');
+    optionsChangeNoFetchSpy = vi.spyOn(component.optionsChangeNoFetch, 'emit');
 
     component.entity = 'member';
     component.filteredCount = MOCK_MEMBERS.length;

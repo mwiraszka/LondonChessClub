@@ -7,7 +7,7 @@ describe('ImageFileService', () => {
 
   beforeEach(() => {
     const mockIndexedDB = {
-      open: jest.fn().mockReturnValue({
+      open: vi.fn().mockReturnValue({
         onsuccess: null,
         onerror: null,
         onupgradeneeded: null,

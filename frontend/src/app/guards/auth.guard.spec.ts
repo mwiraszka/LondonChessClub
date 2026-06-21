@@ -13,7 +13,7 @@ describe('AuthGuard', () => {
   let guard: AuthGuard;
   let store: MockStore;
 
-  let dispatchSpy: jest.SpyInstance;
+  let dispatchSpy: MockInstance;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -28,11 +28,11 @@ describe('AuthGuard', () => {
     guard = TestBed.inject(AuthGuard);
     store = TestBed.inject(MockStore);
 
-    dispatchSpy = jest.spyOn(store, 'dispatch');
+    dispatchSpy = vi.spyOn(store, 'dispatch');
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('canActivate', () => {

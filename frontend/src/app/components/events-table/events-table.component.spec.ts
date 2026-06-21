@@ -16,8 +16,8 @@ describe('EventsTableComponent', () => {
 
   let dialogService: DialogService;
 
-  let dialogOpenSpy: jest.SpyInstance;
-  let requestDeleteEventSpy: jest.SpyInstance;
+  let dialogOpenSpy: MockInstance;
+  let requestDeleteEventSpy: MockInstance;
 
   const mockEvents = MOCK_EVENTS.slice(0, 3);
   const mockIsAdmin = true;
@@ -43,7 +43,7 @@ describe('EventsTableComponent', () => {
       providers: [
         {
           provide: DialogService,
-          useValue: { open: jest.fn() },
+          useValue: { open: vi.fn() },
         },
         provideRouter([]),
       ],
@@ -54,8 +54,8 @@ describe('EventsTableComponent', () => {
 
     dialogService = TestBed.inject(DialogService);
 
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
-    requestDeleteEventSpy = jest.spyOn(component.requestDeleteEvent, 'emit');
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
+    requestDeleteEventSpy = vi.spyOn(component.requestDeleteEvent, 'emit');
 
     fixture.componentRef.setInput('events', mockEvents);
     fixture.componentRef.setInput('isAdmin', mockIsAdmin);

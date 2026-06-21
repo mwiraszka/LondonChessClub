@@ -7,17 +7,17 @@ import { EntityType, Image, LccError, Member } from '@app/models';
 import { exportDataToCsv } from './export-data-to-csv.util';
 
 describe('exportDataToCsv', () => {
-  let appendChildSpy: jest.SpyInstance;
-  let blobSpy: jest.SpyInstance;
-  let clickSpy: jest.SpyInstance;
-  let createElementSpy: jest.SpyInstance;
+  let appendChildSpy: MockInstance;
+  let blobSpy: MockInstance;
+  let clickSpy: MockInstance;
+  let createElementSpy: MockInstance;
   let mockLink: HTMLAnchorElement;
-  let removeChildSpy: jest.SpyInstance;
-  let setAttributeSpy: jest.Mock;
+  let removeChildSpy: MockInstance;
+  let setAttributeSpy: Mock;
 
   beforeEach(() => {
-    setAttributeSpy = jest.fn();
-    clickSpy = jest.fn();
+    setAttributeSpy = vi.fn();
+    clickSpy = vi.fn();
 
     mockLink = {
       click: clickSpy,
@@ -27,26 +27,28 @@ describe('exportDataToCsv', () => {
       style: {} as CSSStyleDeclaration,
     } as unknown as HTMLAnchorElement;
 
-    createElementSpy = jest.spyOn(document, 'createElement').mockReturnValue(mockLink);
-    appendChildSpy = jest
+    createElementSpy = vi.spyOn(document, 'createElement').mockReturnValue(mockLink);
+    appendChildSpy = vi
       .spyOn(document.body, 'appendChild')
       .mockImplementation(() => mockLink);
-    removeChildSpy = jest
+    removeChildSpy = vi
       .spyOn(document.body, 'removeChild')
       .mockImplementation(() => mockLink);
 
     // Mock URL.createObjectURL
-    window.URL.createObjectURL = jest.fn(() => 'blob:mock-url');
+    window.URL.createObjectURL = vi.fn(() => 'blob:mock-url');
 
     // Mock Blob constructor
-    blobSpy = jest.spyOn(window, 'Blob').mockImplementation((content, options) => {
-      return { content, options } as unknown as Blob;
-    });
+    blobSpy = (vi.spyOn(window, 'Blob') as unknown as MockInstance).mockImplementation(
+      (content, options) => {
+        return { content, options } as unknown as Blob;
+      },
+    );
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
-    jest.restoreAllMocks();
+    vi.clearAllMocks();
+    vi.restoreAllMocks();
   });
 
   it('should export Member data to CSV successfully', () => {

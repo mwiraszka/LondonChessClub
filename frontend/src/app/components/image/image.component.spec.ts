@@ -58,7 +58,7 @@ describe('ImageComponent', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should create', () => {
@@ -220,7 +220,7 @@ describe('ImageComponent', () => {
     it('should emit loaded when the img element fires load', () => {
       host.image.set(makeImage({ mainUrl: MAIN_URL }));
       fixture.detectChanges();
-      const emitSpy = jest.fn();
+      const emitSpy = vi.fn();
       component.loaded.subscribe(emitSpy);
 
       componentDebug.query(By.css('img')).triggerEventHandler('load', {});

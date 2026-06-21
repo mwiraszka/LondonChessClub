@@ -12,23 +12,18 @@ import { ApiResponse, Article, LccError, PaginatedItems, User } from '@app/model
 import { ArticlesApiService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { NavSelectors } from '@app/store/nav';
+import { IS_EXPIRED, PARSE_ERROR } from '@app/tokens';
 
 import { ArticlesActions, ArticlesSelectors } from '.';
 import { ArticlesEffects } from './articles.effects';
 
-const mockParseError = jest.fn();
-const mockIsExpired = jest.fn();
-
-jest.mock('@app/utils', () => ({
-  isDefined: <T>(value: T | null | undefined): value is T => value != null,
-  isExpired: (date: unknown) => mockIsExpired(date),
-  parseError: (error: unknown) => mockParseError(error),
-}));
+const mockParseError = vi.fn();
+const mockIsExpired = vi.fn();
 
 describe('ArticlesEffects', () => {
   let actions$: ReplaySubject<Action>;
   let effects: ArticlesEffects;
-  let articlesApiService: jest.Mocked<ArticlesApiService>;
+  let articlesApiService: Mocked<ArticlesApiService>;
   let store: MockStore;
 
   const mockUser: User = {
@@ -81,91 +76,97 @@ describe('ArticlesEffects', () => {
 
   beforeEach(() => {
     const articlesApiServiceMock = {
-      getFilteredArticles: jest.fn(),
-      getArticle: jest.fn(),
-      addArticle: jest.fn(),
-      updateArticle: jest.fn(),
-      deleteArticle: jest.fn(),
+      getFilteredArticles: vi.fn(),
+      getArticle: vi.fn(),
+      addArticle: vi.fn(),
+      updateArticle: vi.fn(),
+      deleteArticle: vi.fn(),
     };
 
     TestBed.configureTestingModule({
       providers: [
         ArticlesEffects,
+        { provide: IS_EXPIRED, useValue: mockIsExpired },
+        { provide: PARSE_ERROR, useValue: mockParseError },
         provideMockActions(() => actions$),
         { provide: ArticlesApiService, useValue: articlesApiServiceMock },
         provideMockStore({
           initialState: {
             articlesState: mockArticlesState,
+            navState: { pathHistory: [] },
           },
         }),
       ],
     });
 
     effects = TestBed.inject(ArticlesEffects);
-    articlesApiService = TestBed.inject(
-      ArticlesApiService,
-    ) as jest.Mocked<ArticlesApiService>;
+    articlesApiService = TestBed.inject(ArticlesApiService) as Mocked<ArticlesApiService>;
     store = TestBed.inject(MockStore);
     actions$ = new ReplaySubject<Action>(1);
 
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockParseError.mockImplementation(error => error);
   });
 
   describe('fetchHomePageArticles$', () => {
-    it('should fetch home page articles with correct options', done => {
-      articlesApiService.getFilteredArticles.mockReturnValue(of(mockApiResponse));
+    it('should fetch home page articles with correct options', () =>
+      withDone(done => {
+        articlesApiService.getFilteredArticles.mockReturnValue(of(mockApiResponse));
 
-      actions$.next(ArticlesActions.fetchHomePageArticlesRequested());
+        actions$.next(ArticlesActions.fetchHomePageArticlesRequested());
 
-      effects.fetchHomePageArticles$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.fetchHomePageArticlesSucceeded({
-            articles: mockApiResponse.data.items,
-            totalCount: mockApiResponse.data.totalCount,
-          }),
-        );
-        expect(articlesApiService.getFilteredArticles).toHaveBeenCalledWith({
-          page: 1,
-          pageSize: 10,
-          sortBy: 'bookmarkDate',
-          sortOrder: 'desc',
-          filters: null,
-          search: '',
+        effects.fetchHomePageArticles$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchHomePageArticlesSucceeded({
+              articles: mockApiResponse.data.items,
+              totalCount: mockApiResponse.data.totalCount,
+            }),
+          );
+          expect(articlesApiService.getFilteredArticles).toHaveBeenCalledWith({
+            page: 1,
+            pageSize: 10,
+            sortBy: 'bookmarkDate',
+            sortOrder: 'desc',
+            filters: null,
+            search: '',
+          });
+          done();
         });
-        done();
-      });
-    });
+      }));
 
-    it('should fetch home page articles in background', done => {
-      articlesApiService.getFilteredArticles.mockReturnValue(of(mockApiResponse));
+    it('should fetch home page articles in background', () =>
+      withDone(done => {
+        articlesApiService.getFilteredArticles.mockReturnValue(of(mockApiResponse));
 
-      actions$.next(ArticlesActions.fetchHomePageArticlesInBackgroundRequested());
+        actions$.next(ArticlesActions.fetchHomePageArticlesInBackgroundRequested());
 
-      effects.fetchHomePageArticles$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.fetchHomePageArticlesSucceeded({
-            articles: mockApiResponse.data.items,
-            totalCount: mockApiResponse.data.totalCount,
-          }),
+        effects.fetchHomePageArticles$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchHomePageArticlesSucceeded({
+              articles: mockApiResponse.data.items,
+              totalCount: mockApiResponse.data.totalCount,
+            }),
+          );
+          done();
+        });
+      }));
+
+    it('should handle fetch home page articles failure', () =>
+      withDone(done => {
+        articlesApiService.getFilteredArticles.mockReturnValue(
+          throwError(() => mockError),
         );
-        done();
-      });
-    });
+        mockParseError.mockReturnValue(mockError);
 
-    it('should handle fetch home page articles failure', done => {
-      articlesApiService.getFilteredArticles.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+        actions$.next(ArticlesActions.fetchHomePageArticlesRequested());
 
-      actions$.next(ArticlesActions.fetchHomePageArticlesRequested());
-
-      effects.fetchHomePageArticles$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.fetchHomePageArticlesFailed({ error: mockError }),
-        );
-        done();
-      });
-    });
+        effects.fetchHomePageArticles$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchHomePageArticlesFailed({ error: mockError }),
+          );
+          done();
+        });
+      }));
   });
 
   describe('fetchFilteredArticles$', () => {
@@ -183,101 +184,111 @@ describe('ArticlesEffects', () => {
       store.refreshState();
     });
 
-    it('should fetch filtered articles with options from store', done => {
-      articlesApiService.getFilteredArticles.mockReturnValue(of(mockApiResponse));
+    it('should fetch filtered articles with options from store', () =>
+      withDone(done => {
+        articlesApiService.getFilteredArticles.mockReturnValue(of(mockApiResponse));
 
-      actions$.next(ArticlesActions.fetchFilteredArticlesRequested());
+        actions$.next(ArticlesActions.fetchFilteredArticlesRequested());
 
-      effects.fetchFilteredArticles$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.fetchFilteredArticlesSucceeded({
-            articles: mockApiResponse.data.items,
-            filteredCount: mockApiResponse.data.filteredCount,
-            totalCount: mockApiResponse.data.totalCount,
-          }),
+        effects.fetchFilteredArticles$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchFilteredArticlesSucceeded({
+              articles: mockApiResponse.data.items,
+              filteredCount: mockApiResponse.data.filteredCount,
+              totalCount: mockApiResponse.data.totalCount,
+            }),
+          );
+          expect(articlesApiService.getFilteredArticles).toHaveBeenCalledWith(
+            mockOptions,
+          );
+          done();
+        });
+      }));
+
+    it('should fetch filtered articles in background', () =>
+      withDone(done => {
+        articlesApiService.getFilteredArticles.mockReturnValue(of(mockApiResponse));
+
+        actions$.next(ArticlesActions.fetchFilteredArticlesInBackgroundRequested());
+
+        effects.fetchFilteredArticles$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchFilteredArticlesSucceeded({
+              articles: mockApiResponse.data.items,
+              filteredCount: mockApiResponse.data.filteredCount,
+              totalCount: mockApiResponse.data.totalCount,
+            }),
+          );
+          done();
+        });
+      }));
+
+    it('should handle fetch filtered articles failure', () =>
+      withDone(done => {
+        articlesApiService.getFilteredArticles.mockReturnValue(
+          throwError(() => mockError),
         );
-        expect(articlesApiService.getFilteredArticles).toHaveBeenCalledWith(mockOptions);
-        done();
-      });
-    });
+        mockParseError.mockReturnValue(mockError);
 
-    it('should fetch filtered articles in background', done => {
-      articlesApiService.getFilteredArticles.mockReturnValue(of(mockApiResponse));
+        actions$.next(ArticlesActions.fetchFilteredArticlesRequested());
 
-      actions$.next(ArticlesActions.fetchFilteredArticlesInBackgroundRequested());
-
-      effects.fetchFilteredArticles$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.fetchFilteredArticlesSucceeded({
-            articles: mockApiResponse.data.items,
-            filteredCount: mockApiResponse.data.filteredCount,
-            totalCount: mockApiResponse.data.totalCount,
-          }),
-        );
-        done();
-      });
-    });
-
-    it('should handle fetch filtered articles failure', done => {
-      articlesApiService.getFilteredArticles.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
-
-      actions$.next(ArticlesActions.fetchFilteredArticlesRequested());
-
-      effects.fetchFilteredArticles$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.fetchFilteredArticlesFailed({ error: mockError }),
-        );
-        done();
-      });
-    });
+        effects.fetchFilteredArticles$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchFilteredArticlesFailed({ error: mockError }),
+          );
+          done();
+        });
+      }));
   });
 
   describe('refetchHomePageArticles$', () => {
-    it('should trigger refetch after publishArticleSucceeded', done => {
-      actions$.next(
-        ArticlesActions.publishArticleSucceeded({ article: MOCK_ARTICLES[0] }),
-      );
-
-      effects.refetchHomePageArticles$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.fetchHomePageArticlesInBackgroundRequested(),
+    it('should trigger refetch after publishArticleSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          ArticlesActions.publishArticleSucceeded({ article: MOCK_ARTICLES[0] }),
         );
-        done();
-      });
-    });
 
-    it('should trigger refetch after updateArticleSucceeded', done => {
-      actions$.next(
-        ArticlesActions.updateArticleSucceeded({
-          article: MOCK_ARTICLES[0],
-          originalArticleTitle: 'Old Title',
-        }),
-      );
+        effects.refetchHomePageArticles$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchHomePageArticlesInBackgroundRequested(),
+          );
+          done();
+        });
+      }));
 
-      effects.refetchHomePageArticles$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.fetchHomePageArticlesInBackgroundRequested(),
+    it('should trigger refetch after updateArticleSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          ArticlesActions.updateArticleSucceeded({
+            article: MOCK_ARTICLES[0],
+            originalArticleTitle: 'Old Title',
+          }),
         );
-        done();
-      });
-    });
 
-    it('should trigger refetch after deleteArticleSucceeded', done => {
-      actions$.next(
-        ArticlesActions.deleteArticleSucceeded({
-          articleId: MOCK_ARTICLES[0].id,
-          articleTitle: MOCK_ARTICLES[0].title,
-        }),
-      );
+        effects.refetchHomePageArticles$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchHomePageArticlesInBackgroundRequested(),
+          );
+          done();
+        });
+      }));
 
-      effects.refetchHomePageArticles$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.fetchHomePageArticlesInBackgroundRequested(),
+    it('should trigger refetch after deleteArticleSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          ArticlesActions.deleteArticleSucceeded({
+            articleId: MOCK_ARTICLES[0].id,
+            articleTitle: MOCK_ARTICLES[0].title,
+          }),
         );
-        done();
-      });
-    });
+
+        effects.refetchHomePageArticles$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchHomePageArticlesInBackgroundRequested(),
+          );
+          done();
+        });
+      }));
 
     it('should trigger refetch when last fetch is expired', fakeAsync(() => {
       const expiredTimestamp = moment().subtract(20, 'minutes').toISOString();
@@ -318,73 +329,77 @@ describe('ArticlesEffects', () => {
   });
 
   describe('refetchFilteredArticles$', () => {
-    it('should trigger refetch after publishArticleSucceeded', done => {
-      actions$.next(
-        ArticlesActions.publishArticleSucceeded({ article: MOCK_ARTICLES[0] }),
-      );
-
-      effects.refetchFilteredArticles$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.fetchFilteredArticlesInBackgroundRequested(),
+    it('should trigger refetch after publishArticleSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          ArticlesActions.publishArticleSucceeded({ article: MOCK_ARTICLES[0] }),
         );
-        done();
-      });
-    });
 
-    it('should trigger refetch after updateArticleSucceeded', done => {
-      actions$.next(
-        ArticlesActions.updateArticleSucceeded({
-          article: MOCK_ARTICLES[0],
-          originalArticleTitle: 'Old Title',
-        }),
-      );
+        effects.refetchFilteredArticles$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchFilteredArticlesInBackgroundRequested(),
+          );
+          done();
+        });
+      }));
 
-      effects.refetchFilteredArticles$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.fetchFilteredArticlesInBackgroundRequested(),
+    it('should trigger refetch after updateArticleSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          ArticlesActions.updateArticleSucceeded({
+            article: MOCK_ARTICLES[0],
+            originalArticleTitle: 'Old Title',
+          }),
         );
-        done();
-      });
-    });
 
-    it('should trigger refetch after deleteArticleSucceeded', done => {
-      actions$.next(
-        ArticlesActions.deleteArticleSucceeded({
-          articleId: MOCK_ARTICLES[0].id,
-          articleTitle: MOCK_ARTICLES[0].title,
-        }),
-      );
+        effects.refetchFilteredArticles$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchFilteredArticlesInBackgroundRequested(),
+          );
+          done();
+        });
+      }));
 
-      effects.refetchFilteredArticles$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.fetchFilteredArticlesInBackgroundRequested(),
+    it('should trigger refetch after deleteArticleSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          ArticlesActions.deleteArticleSucceeded({
+            articleId: MOCK_ARTICLES[0].id,
+            articleTitle: MOCK_ARTICLES[0].title,
+          }),
         );
-        done();
-      });
-    });
 
-    it('should trigger refetch after paginationOptionsChanged', done => {
-      actions$.next(
-        ArticlesActions.paginationOptionsChanged({
-          options: {
-            page: 1,
-            pageSize: 10,
-            sortBy: 'bookmarkDate',
-            sortOrder: 'desc',
-            filters: null,
-            search: '',
-          },
-          fetch: true,
-        }),
-      );
+        effects.refetchFilteredArticles$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchFilteredArticlesInBackgroundRequested(),
+          );
+          done();
+        });
+      }));
 
-      effects.refetchFilteredArticles$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.fetchFilteredArticlesInBackgroundRequested(),
+    it('should trigger refetch after paginationOptionsChanged', () =>
+      withDone(done => {
+        actions$.next(
+          ArticlesActions.paginationOptionsChanged({
+            options: {
+              page: 1,
+              pageSize: 10,
+              sortBy: 'bookmarkDate',
+              sortOrder: 'desc',
+              filters: null,
+              search: '',
+            },
+            fetch: true,
+          }),
         );
-        done();
-      });
-    });
+
+        effects.refetchFilteredArticles$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchFilteredArticlesInBackgroundRequested(),
+          );
+          done();
+        });
+      }));
 
     it('should trigger refetch when last fetch is expired', fakeAsync(() => {
       const expiredTimestamp = moment().subtract(20, 'minutes').toISOString();
@@ -427,34 +442,38 @@ describe('ArticlesEffects', () => {
   });
 
   describe('fetchArticle$', () => {
-    it('should fetch a single article successfully', done => {
-      const mockResponse: ApiResponse<Article> = { data: MOCK_ARTICLES[0] };
-      articlesApiService.getArticle.mockReturnValue(of(mockResponse));
+    it('should fetch a single article successfully', () =>
+      withDone(done => {
+        const mockResponse: ApiResponse<Article> = { data: MOCK_ARTICLES[0] };
+        articlesApiService.getArticle.mockReturnValue(of(mockResponse));
 
-      actions$.next(
-        ArticlesActions.fetchArticleRequested({ articleId: MOCK_ARTICLES[0].id }),
-      );
-
-      effects.fetchArticle$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.fetchArticleSucceeded({ article: MOCK_ARTICLES[0] }),
+        actions$.next(
+          ArticlesActions.fetchArticleRequested({ articleId: MOCK_ARTICLES[0].id }),
         );
-        expect(articlesApiService.getArticle).toHaveBeenCalledWith(MOCK_ARTICLES[0].id);
-        done();
-      });
-    });
 
-    it('should handle fetch article failure', done => {
-      articlesApiService.getArticle.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+        effects.fetchArticle$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchArticleSucceeded({ article: MOCK_ARTICLES[0] }),
+          );
+          expect(articlesApiService.getArticle).toHaveBeenCalledWith(MOCK_ARTICLES[0].id);
+          done();
+        });
+      }));
 
-      actions$.next(ArticlesActions.fetchArticleRequested({ articleId: 'invalid-id' }));
+    it('should handle fetch article failure', () =>
+      withDone(done => {
+        articlesApiService.getArticle.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
 
-      effects.fetchArticle$.subscribe(action => {
-        expect(action).toEqual(ArticlesActions.fetchArticleFailed({ error: mockError }));
-        done();
-      });
-    });
+        actions$.next(ArticlesActions.fetchArticleRequested({ articleId: 'invalid-id' }));
+
+        effects.fetchArticle$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.fetchArticleFailed({ error: mockError }),
+          );
+          done();
+        });
+      }));
   });
 
   describe('publishArticle$', () => {
@@ -463,67 +482,72 @@ describe('ArticlesEffects', () => {
       store.refreshState();
     });
 
-    it('should publish article successfully', done => {
-      const mockPublishResponse: ApiResponse<string> = { data: 'new-article-id' };
+    it('should publish article successfully', () =>
+      withDone(done => {
+        const mockPublishResponse: ApiResponse<string> = { data: 'new-article-id' };
 
-      articlesApiService.addArticle.mockReturnValue(of(mockPublishResponse));
+        articlesApiService.addArticle.mockReturnValue(of(mockPublishResponse));
 
-      actions$.next(ArticlesActions.publishArticleRequested());
+        actions$.next(ArticlesActions.publishArticleRequested());
 
-      effects.publishArticle$.subscribe(action => {
-        expect(action.type).toBe(ArticlesActions.publishArticleSucceeded.type);
-        const payload = (
-          action as ReturnType<typeof ArticlesActions.publishArticleSucceeded>
-        ).article;
-        expect(payload.id).toBe('new-article-id');
-        expect(payload.modificationInfo.createdBy).toBe('Test User');
-        expect(payload.modificationInfo.lastEditedBy).toBe('Test User');
-        expect(articlesApiService.addArticle).toHaveBeenCalled();
-        done();
-      });
-    });
+        effects.publishArticle$.subscribe(action => {
+          expect(action.type).toBe(ArticlesActions.publishArticleSucceeded.type);
+          const payload = (
+            action as ReturnType<typeof ArticlesActions.publishArticleSucceeded>
+          ).article;
+          expect(payload.id).toBe('new-article-id');
+          expect(payload.modificationInfo.createdBy).toBe('Test User');
+          expect(payload.modificationInfo.lastEditedBy).toBe('Test User');
+          expect(articlesApiService.addArticle).toHaveBeenCalled();
+          done();
+        });
+      }));
 
-    it('should handle publish article failure', done => {
-      articlesApiService.addArticle.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+    it('should handle publish article failure', () =>
+      withDone(done => {
+        articlesApiService.addArticle.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
 
-      actions$.next(ArticlesActions.publishArticleRequested());
+        actions$.next(ArticlesActions.publishArticleRequested());
 
-      effects.publishArticle$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.publishArticleFailed({ error: mockError }),
-        );
-        done();
-      });
-    });
+        effects.publishArticle$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.publishArticleFailed({ error: mockError }),
+          );
+          done();
+        });
+      }));
 
-    it('should fail if article has too many body images', done => {
-      const bodyWithTooManyImages = Array(MAX_ARTICLE_BODY_IMAGES + 1)
-        .fill('{{{image-id}}}')
-        .join(' ');
+    it('should fail if article has too many body images', () =>
+      withDone(done => {
+        const bodyWithTooManyImages = Array(MAX_ARTICLE_BODY_IMAGES + 1)
+          .fill('{{{image-id}}}')
+          .join(' ');
 
-      store.setState({
-        articlesState: {
-          ...mockArticlesState,
-          newArticleFormData: {
-            ...INITIAL_ARTICLE_FORM_DATA,
-            body: bodyWithTooManyImages,
+        store.setState({
+          articlesState: {
+            ...mockArticlesState,
+            newArticleFormData: {
+              ...INITIAL_ARTICLE_FORM_DATA,
+              body: bodyWithTooManyImages,
+            },
           },
-        },
-        authState: { user: mockUser },
-      });
+          authState: { user: mockUser },
+        });
 
-      actions$.next(ArticlesActions.publishArticleRequested());
+        actions$.next(ArticlesActions.publishArticleRequested());
 
-      effects.publishArticle$.subscribe(action => {
-        expect(action.type).toBe(ArticlesActions.publishArticleFailed.type);
-        const payload = action as ReturnType<typeof ArticlesActions.publishArticleFailed>;
-        expect(payload.error.message).toContain(
-          `maximum of ${MAX_ARTICLE_BODY_IMAGES} body images`,
-        );
-        done();
-      });
-    });
+        effects.publishArticle$.subscribe(action => {
+          expect(action.type).toBe(ArticlesActions.publishArticleFailed.type);
+          const payload = action as ReturnType<
+            typeof ArticlesActions.publishArticleFailed
+          >;
+          expect(payload.error.message).toContain(
+            `maximum of ${MAX_ARTICLE_BODY_IMAGES} body images`,
+          );
+          done();
+        });
+      }));
   });
 
   describe('updateArticle$', () => {
@@ -532,207 +556,225 @@ describe('ArticlesEffects', () => {
       store.refreshState();
     });
 
-    it('should update article successfully', done => {
-      const articleId = MOCK_ARTICLES[0].id;
-      const mockUpdateResponse: ApiResponse<string> = { data: articleId };
+    it('should update article successfully', () =>
+      withDone(done => {
+        const articleId = MOCK_ARTICLES[0].id;
+        const mockUpdateResponse: ApiResponse<string> = { data: articleId };
 
-      articlesApiService.updateArticle.mockReturnValue(of(mockUpdateResponse));
+        articlesApiService.updateArticle.mockReturnValue(of(mockUpdateResponse));
 
-      actions$.next(ArticlesActions.updateArticleRequested({ articleId }));
+        actions$.next(ArticlesActions.updateArticleRequested({ articleId }));
 
-      effects.updateArticle$.subscribe(action => {
-        expect(action.type).toBe(ArticlesActions.updateArticleSucceeded.type);
-        const payload = action as ReturnType<
-          typeof ArticlesActions.updateArticleSucceeded
-        >;
-        expect(payload.article.id).toBe(articleId);
-        expect(payload.article.modificationInfo.lastEditedBy).toBe('Test User');
-        expect(payload.originalArticleTitle).toBe(MOCK_ARTICLES[0].title);
-        expect(articlesApiService.updateArticle).toHaveBeenCalled();
-        done();
-      });
-    });
+        effects.updateArticle$.subscribe(action => {
+          expect(action.type).toBe(ArticlesActions.updateArticleSucceeded.type);
+          const payload = action as ReturnType<
+            typeof ArticlesActions.updateArticleSucceeded
+          >;
+          expect(payload.article.id).toBe(articleId);
+          expect(payload.article.modificationInfo.lastEditedBy).toBe('Test User');
+          expect(payload.originalArticleTitle).toBe(MOCK_ARTICLES[0].title);
+          expect(articlesApiService.updateArticle).toHaveBeenCalled();
+          done();
+        });
+      }));
 
-    it('should handle update article failure', done => {
-      const articleId = MOCK_ARTICLES[0].id;
+    it('should handle update article failure', () =>
+      withDone(done => {
+        const articleId = MOCK_ARTICLES[0].id;
 
-      articlesApiService.updateArticle.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+        articlesApiService.updateArticle.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
 
-      actions$.next(ArticlesActions.updateArticleRequested({ articleId }));
+        actions$.next(ArticlesActions.updateArticleRequested({ articleId }));
 
-      effects.updateArticle$.subscribe(action => {
-        expect(action).toEqual(ArticlesActions.updateArticleFailed({ error: mockError }));
-        done();
-      });
-    });
+        effects.updateArticle$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.updateArticleFailed({ error: mockError }),
+          );
+          done();
+        });
+      }));
 
-    it('should fail if updated article has too many body images', done => {
-      const articleId = MOCK_ARTICLES[0].id;
-      const bodyWithTooManyImages = Array(MAX_ARTICLE_BODY_IMAGES + 1)
-        .fill('{{{image-id}}}')
-        .join(' ');
+    it('should fail if updated article has too many body images', () =>
+      withDone(done => {
+        const articleId = MOCK_ARTICLES[0].id;
+        const bodyWithTooManyImages = Array(MAX_ARTICLE_BODY_IMAGES + 1)
+          .fill('{{{image-id}}}')
+          .join(' ');
 
-      store.setState({
-        articlesState: {
-          ...mockArticlesState,
-          entities: {
-            ...mockArticlesState.entities,
-            [articleId]: {
-              article: MOCK_ARTICLES[0],
-              formData: {
-                ...INITIAL_ARTICLE_FORM_DATA,
-                body: bodyWithTooManyImages,
+        store.setState({
+          articlesState: {
+            ...mockArticlesState,
+            entities: {
+              ...mockArticlesState.entities,
+              [articleId]: {
+                article: MOCK_ARTICLES[0],
+                formData: {
+                  ...INITIAL_ARTICLE_FORM_DATA,
+                  body: bodyWithTooManyImages,
+                },
               },
             },
           },
-        },
-        authState: { user: mockUser },
-      });
+          authState: { user: mockUser },
+        });
 
-      actions$.next(ArticlesActions.updateArticleRequested({ articleId }));
+        actions$.next(ArticlesActions.updateArticleRequested({ articleId }));
 
-      effects.updateArticle$.subscribe(action => {
-        expect(action.type).toBe(ArticlesActions.updateArticleFailed.type);
-        const payload = action as ReturnType<typeof ArticlesActions.updateArticleFailed>;
-        expect(payload.error.message).toContain(
-          `maximum of ${MAX_ARTICLE_BODY_IMAGES} body images`,
-        );
-        done();
-      });
-    });
+        effects.updateArticle$.subscribe(action => {
+          expect(action.type).toBe(ArticlesActions.updateArticleFailed.type);
+          const payload = action as ReturnType<
+            typeof ArticlesActions.updateArticleFailed
+          >;
+          expect(payload.error.message).toContain(
+            `maximum of ${MAX_ARTICLE_BODY_IMAGES} body images`,
+          );
+          done();
+        });
+      }));
 
-    it('should not dispatch success if response ID does not match', done => {
-      const articleId = MOCK_ARTICLES[0].id;
-      const mockUpdateResponse: ApiResponse<string> = { data: 'different-id' };
+    it('should not dispatch success if response ID does not match', () =>
+      withDone(done => {
+        const articleId = MOCK_ARTICLES[0].id;
+        const mockUpdateResponse: ApiResponse<string> = { data: 'different-id' };
 
-      articlesApiService.updateArticle.mockReturnValue(of(mockUpdateResponse));
+        articlesApiService.updateArticle.mockReturnValue(of(mockUpdateResponse));
 
-      actions$.next(ArticlesActions.updateArticleRequested({ articleId }));
+        actions$.next(ArticlesActions.updateArticleRequested({ articleId }));
 
-      const subscription = effects.updateArticle$.subscribe(() => {
-        done.fail('Should not dispatch action when IDs do not match');
-      });
+        const subscription = effects.updateArticle$.subscribe(() => {
+          done.fail('Should not dispatch action when IDs do not match');
+        });
 
-      setTimeout(() => {
-        subscription.unsubscribe();
-        done();
-      }, 100);
-    });
+        setTimeout(() => {
+          subscription.unsubscribe();
+          done();
+        }, 100);
+      }));
   });
 
   describe('updateArticleBookmarkRequested$', () => {
-    it('should update article bookmark to true successfully', done => {
-      const articleId = MOCK_ARTICLES[0].id;
-      const mockUpdateResponse: ApiResponse<string> = { data: articleId };
+    it('should update article bookmark to true successfully', () =>
+      withDone(done => {
+        const articleId = MOCK_ARTICLES[0].id;
+        const mockUpdateResponse: ApiResponse<string> = { data: articleId };
 
-      articlesApiService.updateArticle.mockReturnValue(of(mockUpdateResponse));
+        articlesApiService.updateArticle.mockReturnValue(of(mockUpdateResponse));
 
-      actions$.next(
-        ArticlesActions.updateArticleBookmarkRequested({ articleId, bookmark: true }),
-      );
+        actions$.next(
+          ArticlesActions.updateArticleBookmarkRequested({ articleId, bookmark: true }),
+        );
 
-      effects.updateArticleBookmarkRequested$.subscribe(action => {
-        expect(action.type).toBe(ArticlesActions.updateArticleSucceeded.type);
-        const payload = action as ReturnType<
-          typeof ArticlesActions.updateArticleSucceeded
-        >;
-        expect(payload.article.bookmarkDate).not.toBeNull();
-        expect(articlesApiService.updateArticle).toHaveBeenCalled();
-        done();
-      });
-    });
+        effects.updateArticleBookmarkRequested$.subscribe(action => {
+          expect(action.type).toBe(ArticlesActions.updateArticleSucceeded.type);
+          const payload = action as ReturnType<
+            typeof ArticlesActions.updateArticleSucceeded
+          >;
+          expect(payload.article.bookmarkDate).not.toBeNull();
+          expect(articlesApiService.updateArticle).toHaveBeenCalled();
+          done();
+        });
+      }));
 
-    it('should update article bookmark to false successfully', done => {
-      const articleId = MOCK_ARTICLES[0].id;
-      const mockUpdateResponse: ApiResponse<string> = { data: articleId };
+    it('should update article bookmark to false successfully', () =>
+      withDone(done => {
+        const articleId = MOCK_ARTICLES[0].id;
+        const mockUpdateResponse: ApiResponse<string> = { data: articleId };
 
-      articlesApiService.updateArticle.mockReturnValue(of(mockUpdateResponse));
+        articlesApiService.updateArticle.mockReturnValue(of(mockUpdateResponse));
 
-      actions$.next(
-        ArticlesActions.updateArticleBookmarkRequested({ articleId, bookmark: false }),
-      );
+        actions$.next(
+          ArticlesActions.updateArticleBookmarkRequested({ articleId, bookmark: false }),
+        );
 
-      effects.updateArticleBookmarkRequested$.subscribe(action => {
-        expect(action.type).toBe(ArticlesActions.updateArticleSucceeded.type);
-        const payload = action as ReturnType<
-          typeof ArticlesActions.updateArticleSucceeded
-        >;
-        expect(payload.article.bookmarkDate).toBeNull();
-        done();
-      });
-    });
+        effects.updateArticleBookmarkRequested$.subscribe(action => {
+          expect(action.type).toBe(ArticlesActions.updateArticleSucceeded.type);
+          const payload = action as ReturnType<
+            typeof ArticlesActions.updateArticleSucceeded
+          >;
+          expect(payload.article.bookmarkDate).toBeNull();
+          done();
+        });
+      }));
 
-    it('should handle update article bookmark failure', done => {
-      const articleId = MOCK_ARTICLES[0].id;
+    it('should handle update article bookmark failure', () =>
+      withDone(done => {
+        const articleId = MOCK_ARTICLES[0].id;
 
-      articlesApiService.updateArticle.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+        articlesApiService.updateArticle.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
 
-      actions$.next(
-        ArticlesActions.updateArticleBookmarkRequested({ articleId, bookmark: true }),
-      );
+        actions$.next(
+          ArticlesActions.updateArticleBookmarkRequested({ articleId, bookmark: true }),
+        );
 
-      effects.updateArticleBookmarkRequested$.subscribe(action => {
-        expect(action).toEqual(ArticlesActions.updateArticleFailed({ error: mockError }));
-        done();
-      });
-    });
+        effects.updateArticleBookmarkRequested$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.updateArticleFailed({ error: mockError }),
+          );
+          done();
+        });
+      }));
   });
 
   describe('deleteArticle$', () => {
-    it('should delete article successfully', done => {
-      const mockDeleteResponse: ApiResponse<string> = { data: MOCK_ARTICLES[0].id };
-      articlesApiService.deleteArticle.mockReturnValue(of(mockDeleteResponse));
+    it('should delete article successfully', () =>
+      withDone(done => {
+        const mockDeleteResponse: ApiResponse<string> = { data: MOCK_ARTICLES[0].id };
+        articlesApiService.deleteArticle.mockReturnValue(of(mockDeleteResponse));
 
-      actions$.next(
-        ArticlesActions.deleteArticleRequested({ article: MOCK_ARTICLES[0] }),
-      );
-
-      effects.deleteArticle$.subscribe(action => {
-        expect(action).toEqual(
-          ArticlesActions.deleteArticleSucceeded({
-            articleId: MOCK_ARTICLES[0].id,
-            articleTitle: MOCK_ARTICLES[0].title,
-          }),
+        actions$.next(
+          ArticlesActions.deleteArticleRequested({ article: MOCK_ARTICLES[0] }),
         );
-        expect(articlesApiService.deleteArticle).toHaveBeenCalledWith(
-          MOCK_ARTICLES[0].id,
+
+        effects.deleteArticle$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.deleteArticleSucceeded({
+              articleId: MOCK_ARTICLES[0].id,
+              articleTitle: MOCK_ARTICLES[0].title,
+            }),
+          );
+          expect(articlesApiService.deleteArticle).toHaveBeenCalledWith(
+            MOCK_ARTICLES[0].id,
+          );
+          done();
+        });
+      }));
+
+    it('should handle delete article failure', () =>
+      withDone(done => {
+        articlesApiService.deleteArticle.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
+
+        actions$.next(
+          ArticlesActions.deleteArticleRequested({ article: MOCK_ARTICLES[0] }),
         );
-        done();
-      });
-    });
 
-    it('should handle delete article failure', done => {
-      articlesApiService.deleteArticle.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+        effects.deleteArticle$.subscribe(action => {
+          expect(action).toEqual(
+            ArticlesActions.deleteArticleFailed({ error: mockError }),
+          );
+          done();
+        });
+      }));
 
-      actions$.next(
-        ArticlesActions.deleteArticleRequested({ article: MOCK_ARTICLES[0] }),
-      );
+    it('should not dispatch success if response ID does not match', () =>
+      withDone(done => {
+        const mockDeleteResponse: ApiResponse<string> = { data: 'different-id' };
+        articlesApiService.deleteArticle.mockReturnValue(of(mockDeleteResponse));
 
-      effects.deleteArticle$.subscribe(action => {
-        expect(action).toEqual(ArticlesActions.deleteArticleFailed({ error: mockError }));
-        done();
-      });
-    });
+        actions$.next(
+          ArticlesActions.deleteArticleRequested({ article: MOCK_ARTICLES[0] }),
+        );
 
-    it('should not dispatch success if response ID does not match', done => {
-      const mockDeleteResponse: ApiResponse<string> = { data: 'different-id' };
-      articlesApiService.deleteArticle.mockReturnValue(of(mockDeleteResponse));
+        const subscription = effects.deleteArticle$.subscribe(() => {
+          done.fail('Should not dispatch action when IDs do not match');
+        });
 
-      actions$.next(
-        ArticlesActions.deleteArticleRequested({ article: MOCK_ARTICLES[0] }),
-      );
-
-      const subscription = effects.deleteArticle$.subscribe(() => {
-        done.fail('Should not dispatch action when IDs do not match');
-      });
-
-      setTimeout(() => {
-        subscription.unsubscribe();
-        done();
-      }, 100);
-    });
+        setTimeout(() => {
+          subscription.unsubscribe();
+          done();
+        }, 100);
+      }));
   });
 });

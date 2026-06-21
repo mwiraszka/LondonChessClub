@@ -21,11 +21,11 @@ describe('SchedulePageComponent', () => {
   let metaAndTitleService: MetaAndTitleService;
   let store: MockStore;
 
-  let dialogOpenSpy: jest.SpyInstance;
-  let dispatchSpy: jest.SpyInstance;
-  let onExportToCsvSpy: jest.SpyInstance;
-  let updateDescriptionSpy: jest.SpyInstance;
-  let updateTitleSpy: jest.SpyInstance;
+  let dialogOpenSpy: MockInstance;
+  let dispatchSpy: MockInstance;
+  let onExportToCsvSpy: MockInstance;
+  let updateDescriptionSpy: MockInstance;
+  let updateTitleSpy: MockInstance;
 
   const mockFilteredCount = 50;
   const mockFilteredEvents = MOCK_EVENTS.slice(0, 5);
@@ -51,12 +51,12 @@ describe('SchedulePageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [SchedulePageComponent],
       providers: [
-        { provide: DialogService, useValue: { open: jest.fn() } },
+        { provide: DialogService, useValue: { open: vi.fn() } },
         {
           provide: MetaAndTitleService,
           useValue: {
-            updateTitle: jest.fn(),
-            updateDescription: jest.fn(),
+            updateTitle: vi.fn(),
+            updateDescription: vi.fn(),
           },
         },
         provideMockStore(),
@@ -71,11 +71,11 @@ describe('SchedulePageComponent', () => {
     metaAndTitleService = TestBed.inject(MetaAndTitleService);
     store = TestBed.inject(MockStore);
 
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
-    dispatchSpy = jest.spyOn(store, 'dispatch');
-    onExportToCsvSpy = jest.spyOn(component, 'onExportToCsv');
-    updateDescriptionSpy = jest.spyOn(metaAndTitleService, 'updateDescription');
-    updateTitleSpy = jest.spyOn(metaAndTitleService, 'updateTitle');
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
+    dispatchSpy = vi.spyOn(store, 'dispatch');
+    onExportToCsvSpy = vi.spyOn(component, 'onExportToCsv');
+    updateDescriptionSpy = vi.spyOn(metaAndTitleService, 'updateDescription');
+    updateTitleSpy = vi.spyOn(metaAndTitleService, 'updateTitle');
 
     store.overrideSelector(EventsSelectors.selectFilteredCount, mockFilteredCount);
     store.overrideSelector(EventsSelectors.selectFilteredEvents, mockFilteredEvents);
@@ -93,8 +93,8 @@ describe('SchedulePageComponent', () => {
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
   });
 
   it('should create', () => {
@@ -132,7 +132,7 @@ describe('SchedulePageComponent', () => {
       fixture.detectChanges();
 
       // Create a spy on the scheduleToolbar's changeDetectorRef.markForCheck method
-      const scheduleToolbarMarkForCheckSpy = jest.spyOn(
+      const scheduleToolbarMarkForCheckSpy = vi.spyOn(
         // @ts-expect-error Private class member
         component.scheduleToolbar.changeDetectorRef,
         'markForCheck',
@@ -209,7 +209,7 @@ describe('SchedulePageComponent', () => {
     });
 
     it('should open confirmation dialog with correct event count', async () => {
-      const dialogOpenSpy = jest.spyOn(dialogService, 'open').mockResolvedValue('cancel');
+      const dialogOpenSpy = vi.spyOn(dialogService, 'open').mockResolvedValue('cancel');
 
       await component.onExportToCsv();
 

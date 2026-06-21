@@ -25,7 +25,7 @@ describe('DialogComponent', () => {
   let fixture: ComponentFixture<DialogComponent<MockContentComponent, string>>;
   let component: DialogComponent<MockContentComponent, string>;
 
-  let resultSpy: jest.SpyInstance;
+  let resultSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -45,7 +45,7 @@ describe('DialogComponent', () => {
     fixture = TestBed.createComponent(DialogComponent<MockContentComponent, string>);
     component = fixture.componentInstance;
 
-    resultSpy = jest.spyOn(component.result, 'emit');
+    resultSpy = vi.spyOn(component.result, 'emit');
 
     fixture.detectChanges();
   });

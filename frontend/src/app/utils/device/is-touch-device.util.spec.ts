@@ -13,13 +13,13 @@ describe('isTouchDevice', () => {
 
   it('returns true for touch devices (coarse pointer)', () => {
     Object.defineProperty(window, 'matchMedia', {
-      value: jest.fn().mockImplementation(query => ({
+      value: vi.fn().mockImplementation(query => ({
         matches: query === '(pointer: coarse)',
         media: query,
         onchange: null,
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       })),
     });
 
@@ -28,13 +28,13 @@ describe('isTouchDevice', () => {
 
   it('returns false for non-touch devices (fine pointer)', () => {
     Object.defineProperty(window, 'matchMedia', {
-      value: jest.fn().mockImplementation(query => ({
+      value: vi.fn().mockImplementation(query => ({
         matches: false,
         media: query,
         onchange: null,
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       })),
     });
 

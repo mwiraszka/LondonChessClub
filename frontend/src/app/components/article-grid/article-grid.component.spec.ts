@@ -17,9 +17,9 @@ describe('ArticleGridComponent', () => {
 
   let dialogService: DialogService;
 
-  let dialogOpenSpy: jest.SpyInstance;
-  let requestDeleteArticleSpy: jest.SpyInstance;
-  let requestUpdateArticleBookmarkSpy: jest.SpyInstance;
+  let dialogOpenSpy: MockInstance;
+  let requestDeleteArticleSpy: MockInstance;
+  let requestUpdateArticleBookmarkSpy: MockInstance;
 
   const mockOptions: DataPaginationOptions<Article> = {
     page: 1,
@@ -36,7 +36,7 @@ describe('ArticleGridComponent', () => {
       providers: [
         {
           provide: DialogService,
-          useValue: { open: jest.fn() },
+          useValue: { open: vi.fn() },
         },
         provideRouter([]),
       ],
@@ -47,9 +47,9 @@ describe('ArticleGridComponent', () => {
 
     dialogService = TestBed.inject(DialogService);
 
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
-    requestDeleteArticleSpy = jest.spyOn(component.requestDeleteArticle, 'emit');
-    requestUpdateArticleBookmarkSpy = jest.spyOn(
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
+    requestDeleteArticleSpy = vi.spyOn(component.requestDeleteArticle, 'emit');
+    requestUpdateArticleBookmarkSpy = vi.spyOn(
       component.requestUpdateArticleBookmark,
       'emit',
     );

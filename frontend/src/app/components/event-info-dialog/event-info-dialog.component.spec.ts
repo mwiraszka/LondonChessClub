@@ -9,7 +9,7 @@ describe('EventInfoDialogComponent', () => {
   let fixture: ComponentFixture<EventInfoDialogComponent>;
   let component: EventInfoDialogComponent;
 
-  let dialogResultSpy: jest.SpyInstance;
+  let dialogResultSpy: MockInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -19,7 +19,7 @@ describe('EventInfoDialogComponent', () => {
     fixture = TestBed.createComponent(EventInfoDialogComponent);
     component = fixture.componentInstance;
 
-    dialogResultSpy = jest.spyOn(component.dialogResult, 'emit');
+    dialogResultSpy = vi.spyOn(component.dialogResult, 'emit');
 
     component.event = MOCK_EVENTS[4]; // Event with associated article
     fixture.detectChanges();

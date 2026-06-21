@@ -12,24 +12,24 @@ describe('UnsavedChangesGuard', () => {
   let dialogService: DialogService;
   let guard: UnsavedChangesGuard;
 
-  let dialogOpenSpy: jest.SpyInstance;
+  let dialogOpenSpy: MockInstance;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         UnsavedChangesGuard,
-        { provide: DialogService, useValue: { open: jest.fn() } },
+        { provide: DialogService, useValue: { open: vi.fn() } },
       ],
     });
 
     dialogService = TestBed.inject(DialogService);
     guard = TestBed.inject(UnsavedChangesGuard);
 
-    dialogOpenSpy = jest.spyOn(dialogService, 'open');
+    dialogOpenSpy = vi.spyOn(dialogService, 'open');
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('canDeactivate', () => {

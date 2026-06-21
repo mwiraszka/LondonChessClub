@@ -12,25 +12,19 @@ import { ApiResponse, Event, LccError, PaginatedItems, User } from '@app/models'
 import { EventsApiService } from '@app/services';
 import { AuthSelectors } from '@app/store/auth';
 import { NavSelectors } from '@app/store/nav';
+import { EXPORT_DATA_TO_CSV, IS_EXPIRED, PARSE_ERROR } from '@app/tokens';
 
 import { EventsActions, EventsSelectors } from '.';
 import { EventsEffects } from './events.effects';
 
-const mockExportDataToCsv = jest.fn();
-const mockParseError = jest.fn();
-const mockIsExpired = jest.fn();
-
-jest.mock('@app/utils', () => ({
-  exportDataToCsv: (...args: unknown[]) => mockExportDataToCsv(...args),
-  isDefined: <T>(value: T | null | undefined): value is T => value != null,
-  isExpired: (date: unknown) => mockIsExpired(date),
-  parseError: (error: unknown) => mockParseError(error),
-}));
+const mockExportDataToCsv = vi.fn();
+const mockParseError = vi.fn();
+const mockIsExpired = vi.fn();
 
 describe('EventsEffects', () => {
   let actions$: ReplaySubject<Action>;
   let effects: EventsEffects;
-  let eventsApiService: jest.Mocked<EventsApiService>;
+  let eventsApiService: Mocked<EventsApiService>;
   let store: MockStore;
 
   const mockUser: User = {
@@ -56,12 +50,12 @@ describe('EventsEffects', () => {
 
   beforeEach(() => {
     const eventsApiServiceMock = {
-      getAllEvents: jest.fn(),
-      getFilteredEvents: jest.fn(),
-      getEvent: jest.fn(),
-      addEvent: jest.fn(),
-      updateEvent: jest.fn(),
-      deleteEvent: jest.fn(),
+      getAllEvents: vi.fn(),
+      getFilteredEvents: vi.fn(),
+      getEvent: vi.fn(),
+      addEvent: vi.fn(),
+      updateEvent: vi.fn(),
+      deleteEvent: vi.fn(),
     };
 
     const mockEventsState = {
@@ -95,116 +89,127 @@ describe('EventsEffects', () => {
     TestBed.configureTestingModule({
       providers: [
         EventsEffects,
+        { provide: EXPORT_DATA_TO_CSV, useValue: mockExportDataToCsv },
+        { provide: IS_EXPIRED, useValue: mockIsExpired },
+        { provide: PARSE_ERROR, useValue: mockParseError },
         provideMockActions(() => actions$),
         { provide: EventsApiService, useValue: eventsApiServiceMock },
         provideMockStore({
           initialState: {
             eventsState: mockEventsState,
+            navState: { pathHistory: [] },
           },
         }),
       ],
     });
 
     effects = TestBed.inject(EventsEffects);
-    eventsApiService = TestBed.inject(EventsApiService) as jest.Mocked<EventsApiService>;
+    eventsApiService = TestBed.inject(EventsApiService) as Mocked<EventsApiService>;
     store = TestBed.inject(MockStore);
     actions$ = new ReplaySubject<Action>(1);
 
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockParseError.mockImplementation(error => error);
   });
 
   describe('fetchAllEvents$', () => {
-    it('should fetch all events successfully', done => {
-      eventsApiService.getAllEvents.mockReturnValue(of(mockApiResponse));
+    it('should fetch all events successfully', () =>
+      withDone(done => {
+        eventsApiService.getAllEvents.mockReturnValue(of(mockApiResponse));
 
-      actions$.next(EventsActions.fetchAllEventsRequested());
+        actions$.next(EventsActions.fetchAllEventsRequested());
 
-      effects.fetchAllEvents$.subscribe(action => {
-        expect(action).toEqual(
-          EventsActions.fetchAllEventsSucceeded({
-            events: mockApiResponse.data.items,
-            totalCount: mockApiResponse.data.totalCount,
-          }),
-        );
-        expect(eventsApiService.getAllEvents).toHaveBeenCalledTimes(1);
-        done();
-      });
-    });
+        effects.fetchAllEvents$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchAllEventsSucceeded({
+              events: mockApiResponse.data.items,
+              totalCount: mockApiResponse.data.totalCount,
+            }),
+          );
+          expect(eventsApiService.getAllEvents).toHaveBeenCalledTimes(1);
+          done();
+        });
+      }));
 
-    it('should handle fetch all events failure', done => {
-      eventsApiService.getAllEvents.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+    it('should handle fetch all events failure', () =>
+      withDone(done => {
+        eventsApiService.getAllEvents.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
 
-      actions$.next(EventsActions.fetchAllEventsRequested());
+        actions$.next(EventsActions.fetchAllEventsRequested());
 
-      effects.fetchAllEvents$.subscribe(action => {
-        expect(action).toEqual(EventsActions.fetchAllEventsFailed({ error: mockError }));
-        expect(mockParseError).toHaveBeenCalledWith(mockError);
-        done();
-      });
-    });
+        effects.fetchAllEvents$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchAllEventsFailed({ error: mockError }),
+          );
+          expect(mockParseError).toHaveBeenCalledWith(mockError);
+          done();
+        });
+      }));
   });
 
   describe('fetchHomePageEvents$', () => {
-    it('should fetch home page events with correct options', done => {
-      eventsApiService.getFilteredEvents.mockReturnValue(of(mockApiResponse));
+    it('should fetch home page events with correct options', () =>
+      withDone(done => {
+        eventsApiService.getFilteredEvents.mockReturnValue(of(mockApiResponse));
 
-      actions$.next(EventsActions.fetchHomePageEventsRequested());
+        actions$.next(EventsActions.fetchHomePageEventsRequested());
 
-      effects.fetchHomePageEvents$.subscribe(action => {
-        expect(action).toEqual(
-          EventsActions.fetchHomePageEventsSucceeded({
-            events: mockApiResponse.data.items,
-            totalCount: mockApiResponse.data.totalCount,
-          }),
-        );
-        expect(eventsApiService.getFilteredEvents).toHaveBeenCalledWith({
-          page: 1,
-          pageSize: 10,
-          sortBy: 'eventDate',
-          sortOrder: 'asc',
-          filters: {
-            showPastEvents: {
-              label: 'Show past events',
-              value: false,
+        effects.fetchHomePageEvents$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchHomePageEventsSucceeded({
+              events: mockApiResponse.data.items,
+              totalCount: mockApiResponse.data.totalCount,
+            }),
+          );
+          expect(eventsApiService.getFilteredEvents).toHaveBeenCalledWith({
+            page: 1,
+            pageSize: 10,
+            sortBy: 'eventDate',
+            sortOrder: 'asc',
+            filters: {
+              showPastEvents: {
+                label: 'Show past events',
+                value: false,
+              },
             },
-          },
-          search: '',
+            search: '',
+          });
+          done();
         });
-        done();
-      });
-    });
+      }));
 
-    it('should fetch home page events in background', done => {
-      eventsApiService.getFilteredEvents.mockReturnValue(of(mockApiResponse));
+    it('should fetch home page events in background', () =>
+      withDone(done => {
+        eventsApiService.getFilteredEvents.mockReturnValue(of(mockApiResponse));
 
-      actions$.next(EventsActions.fetchHomePageEventsInBackgroundRequested());
+        actions$.next(EventsActions.fetchHomePageEventsInBackgroundRequested());
 
-      effects.fetchHomePageEvents$.subscribe(action => {
-        expect(action).toEqual(
-          EventsActions.fetchHomePageEventsSucceeded({
-            events: mockApiResponse.data.items,
-            totalCount: mockApiResponse.data.totalCount,
-          }),
-        );
-        done();
-      });
-    });
+        effects.fetchHomePageEvents$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchHomePageEventsSucceeded({
+              events: mockApiResponse.data.items,
+              totalCount: mockApiResponse.data.totalCount,
+            }),
+          );
+          done();
+        });
+      }));
 
-    it('should handle fetch home page events failure', done => {
-      eventsApiService.getFilteredEvents.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+    it('should handle fetch home page events failure', () =>
+      withDone(done => {
+        eventsApiService.getFilteredEvents.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
 
-      actions$.next(EventsActions.fetchHomePageEventsRequested());
+        actions$.next(EventsActions.fetchHomePageEventsRequested());
 
-      effects.fetchHomePageEvents$.subscribe(action => {
-        expect(action).toEqual(
-          EventsActions.fetchHomePageEventsFailed({ error: mockError }),
-        );
-        done();
-      });
-    });
+        effects.fetchHomePageEvents$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchHomePageEventsFailed({ error: mockError }),
+          );
+          done();
+        });
+      }));
   });
 
   describe('fetchFilteredEvents$', () => {
@@ -227,93 +232,105 @@ describe('EventsEffects', () => {
       store.refreshState();
     });
 
-    it('should fetch filtered events with options from store', done => {
-      eventsApiService.getFilteredEvents.mockReturnValue(of(mockApiResponse));
+    it('should fetch filtered events with options from store', () =>
+      withDone(done => {
+        eventsApiService.getFilteredEvents.mockReturnValue(of(mockApiResponse));
 
-      actions$.next(EventsActions.fetchFilteredEventsRequested());
+        actions$.next(EventsActions.fetchFilteredEventsRequested());
 
-      effects.fetchFilteredEvents$.subscribe(action => {
-        expect(action).toEqual(
-          EventsActions.fetchFilteredEventsSucceeded({
-            events: mockApiResponse.data.items,
-            filteredCount: mockApiResponse.data.filteredCount,
-            totalCount: mockApiResponse.data.totalCount,
-          }),
-        );
-        expect(eventsApiService.getFilteredEvents).toHaveBeenCalledWith(mockOptions);
-        done();
-      });
-    });
+        effects.fetchFilteredEvents$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchFilteredEventsSucceeded({
+              events: mockApiResponse.data.items,
+              filteredCount: mockApiResponse.data.filteredCount,
+              totalCount: mockApiResponse.data.totalCount,
+            }),
+          );
+          expect(eventsApiService.getFilteredEvents).toHaveBeenCalledWith(mockOptions);
+          done();
+        });
+      }));
 
-    it('should fetch filtered events in background', done => {
-      eventsApiService.getFilteredEvents.mockReturnValue(of(mockApiResponse));
+    it('should fetch filtered events in background', () =>
+      withDone(done => {
+        eventsApiService.getFilteredEvents.mockReturnValue(of(mockApiResponse));
 
-      actions$.next(EventsActions.fetchFilteredEventsInBackgroundRequested());
+        actions$.next(EventsActions.fetchFilteredEventsInBackgroundRequested());
 
-      effects.fetchFilteredEvents$.subscribe(action => {
-        expect(action).toEqual(
-          EventsActions.fetchFilteredEventsSucceeded({
-            events: mockApiResponse.data.items,
-            filteredCount: mockApiResponse.data.filteredCount,
-            totalCount: mockApiResponse.data.totalCount,
-          }),
-        );
-        done();
-      });
-    });
+        effects.fetchFilteredEvents$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchFilteredEventsSucceeded({
+              events: mockApiResponse.data.items,
+              filteredCount: mockApiResponse.data.filteredCount,
+              totalCount: mockApiResponse.data.totalCount,
+            }),
+          );
+          done();
+        });
+      }));
 
-    it('should handle fetch filtered events failure', done => {
-      eventsApiService.getFilteredEvents.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+    it('should handle fetch filtered events failure', () =>
+      withDone(done => {
+        eventsApiService.getFilteredEvents.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
 
-      actions$.next(EventsActions.fetchFilteredEventsRequested());
+        actions$.next(EventsActions.fetchFilteredEventsRequested());
 
-      effects.fetchFilteredEvents$.subscribe(action => {
-        expect(action).toEqual(
-          EventsActions.fetchFilteredEventsFailed({ error: mockError }),
-        );
-        done();
-      });
-    });
+        effects.fetchFilteredEvents$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchFilteredEventsFailed({ error: mockError }),
+          );
+          done();
+        });
+      }));
   });
 
   describe('refetchHomePageEvents$', () => {
-    it('should trigger refetch after addEventSucceeded', done => {
-      actions$.next(EventsActions.addEventSucceeded({ event: MOCK_EVENTS[0] }));
+    it('should trigger refetch after addEventSucceeded', () =>
+      withDone(done => {
+        actions$.next(EventsActions.addEventSucceeded({ event: MOCK_EVENTS[0] }));
 
-      effects.refetchHomePageEvents$.subscribe(action => {
-        expect(action).toEqual(EventsActions.fetchHomePageEventsInBackgroundRequested());
-        done();
-      });
-    });
+        effects.refetchHomePageEvents$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchHomePageEventsInBackgroundRequested(),
+          );
+          done();
+        });
+      }));
 
-    it('should trigger refetch after updateEventSucceeded', done => {
-      actions$.next(
-        EventsActions.updateEventSucceeded({
-          event: MOCK_EVENTS[0],
-          originalEventTitle: 'Old Title',
-        }),
-      );
+    it('should trigger refetch after updateEventSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          EventsActions.updateEventSucceeded({
+            event: MOCK_EVENTS[0],
+            originalEventTitle: 'Old Title',
+          }),
+        );
 
-      effects.refetchHomePageEvents$.subscribe(action => {
-        expect(action).toEqual(EventsActions.fetchHomePageEventsInBackgroundRequested());
-        done();
-      });
-    });
+        effects.refetchHomePageEvents$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchHomePageEventsInBackgroundRequested(),
+          );
+          done();
+        });
+      }));
 
-    it('should trigger refetch after deleteEventSucceeded', done => {
-      actions$.next(
-        EventsActions.deleteEventSucceeded({
-          eventId: MOCK_EVENTS[0].id,
-          eventTitle: MOCK_EVENTS[0].title,
-        }),
-      );
+    it('should trigger refetch after deleteEventSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          EventsActions.deleteEventSucceeded({
+            eventId: MOCK_EVENTS[0].id,
+            eventTitle: MOCK_EVENTS[0].title,
+          }),
+        );
 
-      effects.refetchHomePageEvents$.subscribe(action => {
-        expect(action).toEqual(EventsActions.fetchHomePageEventsInBackgroundRequested());
-        done();
-      });
-    });
+        effects.refetchHomePageEvents$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchHomePageEventsInBackgroundRequested(),
+          );
+          done();
+        });
+      }));
 
     it('should trigger refetch when last fetch is expired', fakeAsync(() => {
       const expiredTimestamp = moment().subtract(20, 'minutes').toISOString();
@@ -354,68 +371,80 @@ describe('EventsEffects', () => {
   });
 
   describe('refetchFilteredEvents$', () => {
-    it('should trigger refetch after addEventSucceeded', done => {
-      actions$.next(EventsActions.addEventSucceeded({ event: MOCK_EVENTS[0] }));
+    it('should trigger refetch after addEventSucceeded', () =>
+      withDone(done => {
+        actions$.next(EventsActions.addEventSucceeded({ event: MOCK_EVENTS[0] }));
 
-      effects.refetchFilteredEvents$.subscribe(action => {
-        expect(action).toEqual(EventsActions.fetchFilteredEventsInBackgroundRequested());
-        done();
-      });
-    });
+        effects.refetchFilteredEvents$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchFilteredEventsInBackgroundRequested(),
+          );
+          done();
+        });
+      }));
 
-    it('should trigger refetch after updateEventSucceeded', done => {
-      actions$.next(
-        EventsActions.updateEventSucceeded({
-          event: MOCK_EVENTS[0],
-          originalEventTitle: 'Old Title',
-        }),
-      );
+    it('should trigger refetch after updateEventSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          EventsActions.updateEventSucceeded({
+            event: MOCK_EVENTS[0],
+            originalEventTitle: 'Old Title',
+          }),
+        );
 
-      effects.refetchFilteredEvents$.subscribe(action => {
-        expect(action).toEqual(EventsActions.fetchFilteredEventsInBackgroundRequested());
-        done();
-      });
-    });
+        effects.refetchFilteredEvents$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchFilteredEventsInBackgroundRequested(),
+          );
+          done();
+        });
+      }));
 
-    it('should trigger refetch after deleteEventSucceeded', done => {
-      actions$.next(
-        EventsActions.deleteEventSucceeded({
-          eventId: MOCK_EVENTS[0].id,
-          eventTitle: MOCK_EVENTS[0].title,
-        }),
-      );
+    it('should trigger refetch after deleteEventSucceeded', () =>
+      withDone(done => {
+        actions$.next(
+          EventsActions.deleteEventSucceeded({
+            eventId: MOCK_EVENTS[0].id,
+            eventTitle: MOCK_EVENTS[0].title,
+          }),
+        );
 
-      effects.refetchFilteredEvents$.subscribe(action => {
-        expect(action).toEqual(EventsActions.fetchFilteredEventsInBackgroundRequested());
-        done();
-      });
-    });
+        effects.refetchFilteredEvents$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchFilteredEventsInBackgroundRequested(),
+          );
+          done();
+        });
+      }));
 
-    it('should trigger refetch after paginationOptionsChanged', done => {
-      actions$.next(
-        EventsActions.paginationOptionsChanged({
-          options: {
-            page: 1,
-            pageSize: 10,
-            sortBy: 'eventDate',
-            sortOrder: 'asc',
-            filters: {
-              showPastEvents: {
-                label: 'Show past events',
-                value: false,
+    it('should trigger refetch after paginationOptionsChanged', () =>
+      withDone(done => {
+        actions$.next(
+          EventsActions.paginationOptionsChanged({
+            options: {
+              page: 1,
+              pageSize: 10,
+              sortBy: 'eventDate',
+              sortOrder: 'asc',
+              filters: {
+                showPastEvents: {
+                  label: 'Show past events',
+                  value: false,
+                },
               },
+              search: '',
             },
-            search: '',
-          },
-          fetch: true,
-        }),
-      );
+            fetch: true,
+          }),
+        );
 
-      effects.refetchFilteredEvents$.subscribe(action => {
-        expect(action).toEqual(EventsActions.fetchFilteredEventsInBackgroundRequested());
-        done();
-      });
-    });
+        effects.refetchFilteredEvents$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchFilteredEventsInBackgroundRequested(),
+          );
+          done();
+        });
+      }));
 
     it('should trigger refetch when last fetch is expired', fakeAsync(() => {
       const expiredTimestamp = moment().subtract(20, 'minutes').toISOString();
@@ -458,32 +487,34 @@ describe('EventsEffects', () => {
   });
 
   describe('fetchEvent$', () => {
-    it('should fetch a single event successfully', done => {
-      const mockResponse: ApiResponse<Event> = { data: MOCK_EVENTS[0] };
-      eventsApiService.getEvent.mockReturnValue(of(mockResponse));
+    it('should fetch a single event successfully', () =>
+      withDone(done => {
+        const mockResponse: ApiResponse<Event> = { data: MOCK_EVENTS[0] };
+        eventsApiService.getEvent.mockReturnValue(of(mockResponse));
 
-      actions$.next(EventsActions.fetchEventRequested({ eventId: MOCK_EVENTS[0].id }));
+        actions$.next(EventsActions.fetchEventRequested({ eventId: MOCK_EVENTS[0].id }));
 
-      effects.fetchEvent$.subscribe(action => {
-        expect(action).toEqual(
-          EventsActions.fetchEventSucceeded({ event: MOCK_EVENTS[0] }),
-        );
-        expect(eventsApiService.getEvent).toHaveBeenCalledWith(MOCK_EVENTS[0].id);
-        done();
-      });
-    });
+        effects.fetchEvent$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchEventSucceeded({ event: MOCK_EVENTS[0] }),
+          );
+          expect(eventsApiService.getEvent).toHaveBeenCalledWith(MOCK_EVENTS[0].id);
+          done();
+        });
+      }));
 
-    it('should handle fetch event failure', done => {
-      eventsApiService.getEvent.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+    it('should handle fetch event failure', () =>
+      withDone(done => {
+        eventsApiService.getEvent.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
 
-      actions$.next(EventsActions.fetchEventRequested({ eventId: 'invalid-id' }));
+        actions$.next(EventsActions.fetchEventRequested({ eventId: 'invalid-id' }));
 
-      effects.fetchEvent$.subscribe(action => {
-        expect(action).toEqual(EventsActions.fetchEventFailed({ error: mockError }));
-        done();
-      });
-    });
+        effects.fetchEvent$.subscribe(action => {
+          expect(action).toEqual(EventsActions.fetchEventFailed({ error: mockError }));
+          done();
+        });
+      }));
   });
 
   describe('addEvent$', () => {
@@ -492,36 +523,38 @@ describe('EventsEffects', () => {
       store.refreshState();
     });
 
-    it('should add event successfully', done => {
-      const mockAddResponse: ApiResponse<string> = { data: 'new-event-id' };
+    it('should add event successfully', () =>
+      withDone(done => {
+        const mockAddResponse: ApiResponse<string> = { data: 'new-event-id' };
 
-      eventsApiService.addEvent.mockReturnValue(of(mockAddResponse));
+        eventsApiService.addEvent.mockReturnValue(of(mockAddResponse));
 
-      actions$.next(EventsActions.addEventRequested());
+        actions$.next(EventsActions.addEventRequested());
 
-      effects.addEvent$.subscribe(action => {
-        expect(action.type).toBe(EventsActions.addEventSucceeded.type);
-        const payload = (action as ReturnType<typeof EventsActions.addEventSucceeded>)
-          .event;
-        expect(payload.id).toBe('new-event-id');
-        expect(payload.modificationInfo.createdBy).toBe('Test User');
-        expect(payload.modificationInfo.lastEditedBy).toBe('Test User');
-        expect(eventsApiService.addEvent).toHaveBeenCalled();
-        done();
-      });
-    });
+        effects.addEvent$.subscribe(action => {
+          expect(action.type).toBe(EventsActions.addEventSucceeded.type);
+          const payload = (action as ReturnType<typeof EventsActions.addEventSucceeded>)
+            .event;
+          expect(payload.id).toBe('new-event-id');
+          expect(payload.modificationInfo.createdBy).toBe('Test User');
+          expect(payload.modificationInfo.lastEditedBy).toBe('Test User');
+          expect(eventsApiService.addEvent).toHaveBeenCalled();
+          done();
+        });
+      }));
 
-    it('should handle add event failure', done => {
-      eventsApiService.addEvent.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+    it('should handle add event failure', () =>
+      withDone(done => {
+        eventsApiService.addEvent.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
 
-      actions$.next(EventsActions.addEventRequested());
+        actions$.next(EventsActions.addEventRequested());
 
-      effects.addEvent$.subscribe(action => {
-        expect(action).toEqual(EventsActions.addEventFailed({ error: mockError }));
-        done();
-      });
-    });
+        effects.addEvent$.subscribe(action => {
+          expect(action).toEqual(EventsActions.addEventFailed({ error: mockError }));
+          done();
+        });
+      }));
   });
 
   describe('updateEvent$', () => {
@@ -530,155 +563,166 @@ describe('EventsEffects', () => {
       store.refreshState();
     });
 
-    it('should update event successfully', done => {
-      const eventId = MOCK_EVENTS[0].id;
-      const mockUpdateResponse: ApiResponse<string> = { data: eventId };
+    it('should update event successfully', () =>
+      withDone(done => {
+        const eventId = MOCK_EVENTS[0].id;
+        const mockUpdateResponse: ApiResponse<string> = { data: eventId };
 
-      eventsApiService.updateEvent.mockReturnValue(of(mockUpdateResponse));
+        eventsApiService.updateEvent.mockReturnValue(of(mockUpdateResponse));
 
-      actions$.next(EventsActions.updateEventRequested({ eventId }));
+        actions$.next(EventsActions.updateEventRequested({ eventId }));
 
-      effects.updateEvent$.subscribe(action => {
-        expect(action.type).toBe(EventsActions.updateEventSucceeded.type);
-        const payload = action as ReturnType<typeof EventsActions.updateEventSucceeded>;
-        expect(payload.event.id).toBe(eventId);
-        expect(payload.event.modificationInfo.lastEditedBy).toBe('Test User');
-        expect(payload.originalEventTitle).toBe(MOCK_EVENTS[0].title);
-        expect(eventsApiService.updateEvent).toHaveBeenCalled();
-        done();
-      });
-    });
+        effects.updateEvent$.subscribe(action => {
+          expect(action.type).toBe(EventsActions.updateEventSucceeded.type);
+          const payload = action as ReturnType<typeof EventsActions.updateEventSucceeded>;
+          expect(payload.event.id).toBe(eventId);
+          expect(payload.event.modificationInfo.lastEditedBy).toBe('Test User');
+          expect(payload.originalEventTitle).toBe(MOCK_EVENTS[0].title);
+          expect(eventsApiService.updateEvent).toHaveBeenCalled();
+          done();
+        });
+      }));
 
-    it('should handle update event failure', done => {
-      const eventId = MOCK_EVENTS[0].id;
+    it('should handle update event failure', () =>
+      withDone(done => {
+        const eventId = MOCK_EVENTS[0].id;
 
-      eventsApiService.updateEvent.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+        eventsApiService.updateEvent.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
 
-      actions$.next(EventsActions.updateEventRequested({ eventId }));
+        actions$.next(EventsActions.updateEventRequested({ eventId }));
 
-      effects.updateEvent$.subscribe(action => {
-        expect(action).toEqual(EventsActions.updateEventFailed({ error: mockError }));
-        done();
-      });
-    });
+        effects.updateEvent$.subscribe(action => {
+          expect(action).toEqual(EventsActions.updateEventFailed({ error: mockError }));
+          done();
+        });
+      }));
 
-    it('should not dispatch success if response ID does not match', done => {
-      const eventId = MOCK_EVENTS[0].id;
-      const mockUpdateResponse: ApiResponse<string> = { data: 'different-id' };
+    it('should not dispatch success if response ID does not match', () =>
+      withDone(done => {
+        const eventId = MOCK_EVENTS[0].id;
+        const mockUpdateResponse: ApiResponse<string> = { data: 'different-id' };
 
-      eventsApiService.updateEvent.mockReturnValue(of(mockUpdateResponse));
+        eventsApiService.updateEvent.mockReturnValue(of(mockUpdateResponse));
 
-      actions$.next(EventsActions.updateEventRequested({ eventId }));
+        actions$.next(EventsActions.updateEventRequested({ eventId }));
 
-      const subscription = effects.updateEvent$.subscribe(() => {
-        done.fail('Should not dispatch action when IDs do not match');
-      });
+        const subscription = effects.updateEvent$.subscribe(() => {
+          done.fail('Should not dispatch action when IDs do not match');
+        });
 
-      setTimeout(() => {
-        subscription.unsubscribe();
-        done();
-      }, 100);
-    });
+        setTimeout(() => {
+          subscription.unsubscribe();
+          done();
+        }, 100);
+      }));
   });
 
   describe('deleteEvent$', () => {
-    it('should delete event successfully', done => {
-      const mockDeleteResponse: ApiResponse<string> = { data: MOCK_EVENTS[0].id };
-      eventsApiService.deleteEvent.mockReturnValue(of(mockDeleteResponse));
+    it('should delete event successfully', () =>
+      withDone(done => {
+        const mockDeleteResponse: ApiResponse<string> = { data: MOCK_EVENTS[0].id };
+        eventsApiService.deleteEvent.mockReturnValue(of(mockDeleteResponse));
 
-      actions$.next(EventsActions.deleteEventRequested({ event: MOCK_EVENTS[0] }));
+        actions$.next(EventsActions.deleteEventRequested({ event: MOCK_EVENTS[0] }));
 
-      effects.deleteEvent$.subscribe(action => {
-        expect(action).toEqual(
-          EventsActions.deleteEventSucceeded({
-            eventId: MOCK_EVENTS[0].id,
-            eventTitle: MOCK_EVENTS[0].title,
-          }),
-        );
-        expect(eventsApiService.deleteEvent).toHaveBeenCalledWith(MOCK_EVENTS[0].id);
-        done();
-      });
-    });
+        effects.deleteEvent$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.deleteEventSucceeded({
+              eventId: MOCK_EVENTS[0].id,
+              eventTitle: MOCK_EVENTS[0].title,
+            }),
+          );
+          expect(eventsApiService.deleteEvent).toHaveBeenCalledWith(MOCK_EVENTS[0].id);
+          done();
+        });
+      }));
 
-    it('should handle delete event failure', done => {
-      eventsApiService.deleteEvent.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+    it('should handle delete event failure', () =>
+      withDone(done => {
+        eventsApiService.deleteEvent.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
 
-      actions$.next(EventsActions.deleteEventRequested({ event: MOCK_EVENTS[0] }));
+        actions$.next(EventsActions.deleteEventRequested({ event: MOCK_EVENTS[0] }));
 
-      effects.deleteEvent$.subscribe(action => {
-        expect(action).toEqual(EventsActions.deleteEventFailed({ error: mockError }));
-        done();
-      });
-    });
+        effects.deleteEvent$.subscribe(action => {
+          expect(action).toEqual(EventsActions.deleteEventFailed({ error: mockError }));
+          done();
+        });
+      }));
 
-    it('should not dispatch success if response ID does not match', done => {
-      const mockDeleteResponse: ApiResponse<string> = { data: 'different-id' };
-      eventsApiService.deleteEvent.mockReturnValue(of(mockDeleteResponse));
+    it('should not dispatch success if response ID does not match', () =>
+      withDone(done => {
+        const mockDeleteResponse: ApiResponse<string> = { data: 'different-id' };
+        eventsApiService.deleteEvent.mockReturnValue(of(mockDeleteResponse));
 
-      actions$.next(EventsActions.deleteEventRequested({ event: MOCK_EVENTS[0] }));
+        actions$.next(EventsActions.deleteEventRequested({ event: MOCK_EVENTS[0] }));
 
-      const subscription = effects.deleteEvent$.subscribe(() => {
-        done.fail('Should not dispatch action when IDs do not match');
-      });
+        const subscription = effects.deleteEvent$.subscribe(() => {
+          done.fail('Should not dispatch action when IDs do not match');
+        });
 
-      setTimeout(() => {
-        subscription.unsubscribe();
-        done();
-      }, 100);
-    });
+        setTimeout(() => {
+          subscription.unsubscribe();
+          done();
+        }, 100);
+      }));
   });
 
   describe('exportEventsToCsv$', () => {
-    it('should export events to CSV successfully', done => {
-      const exportedCount = 5;
-      eventsApiService.getAllEvents.mockReturnValue(of(mockApiResponse));
-      mockExportDataToCsv.mockReturnValue(exportedCount);
+    it('should export events to CSV successfully', () =>
+      withDone(done => {
+        const exportedCount = 5;
+        eventsApiService.getAllEvents.mockReturnValue(of(mockApiResponse));
+        mockExportDataToCsv.mockReturnValue(exportedCount);
 
-      actions$.next(EventsActions.exportEventsToCsvRequested());
+        actions$.next(EventsActions.exportEventsToCsvRequested());
 
-      effects.exportEventsToCsv$.subscribe(action => {
-        expect(action).toEqual(
-          EventsActions.exportEventsToCsvSucceeded({ exportedCount }),
-        );
-        expect(eventsApiService.getAllEvents).toHaveBeenCalled();
-        expect(mockExportDataToCsv).toHaveBeenCalledWith(
-          mockApiResponse.data.items,
-          expect.stringMatching(/^events_export_\d{4}-\d{2}-\d{2}\.csv$/),
-        );
-        done();
-      });
-    });
+        effects.exportEventsToCsv$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.exportEventsToCsvSucceeded({ exportedCount }),
+          );
+          expect(eventsApiService.getAllEvents).toHaveBeenCalled();
+          expect(mockExportDataToCsv).toHaveBeenCalledWith(
+            mockApiResponse.data.items,
+            expect.stringMatching(/^events_export_\d{4}-\d{2}-\d{2}\.csv$/),
+          );
+          done();
+        });
+      }));
 
-    it('should handle export failure when exportDataToCsv returns error', done => {
-      const exportError: LccError = {
-        name: 'LCCError',
-        message: 'Export failed',
-      };
-      eventsApiService.getAllEvents.mockReturnValue(of(mockApiResponse));
-      mockExportDataToCsv.mockReturnValue(exportError);
+    it('should handle export failure when exportDataToCsv returns error', () =>
+      withDone(done => {
+        const exportError: LccError = {
+          name: 'LCCError',
+          message: 'Export failed',
+        };
+        eventsApiService.getAllEvents.mockReturnValue(of(mockApiResponse));
+        mockExportDataToCsv.mockReturnValue(exportError);
 
-      actions$.next(EventsActions.exportEventsToCsvRequested());
+        actions$.next(EventsActions.exportEventsToCsvRequested());
 
-      effects.exportEventsToCsv$.subscribe(action => {
-        expect(action).toEqual(
-          EventsActions.exportEventsToCsvFailed({ error: exportError }),
-        );
-        done();
-      });
-    });
+        effects.exportEventsToCsv$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.exportEventsToCsvFailed({ error: exportError }),
+          );
+          done();
+        });
+      }));
 
-    it('should handle API error during export', done => {
-      eventsApiService.getAllEvents.mockReturnValue(throwError(() => mockError));
-      mockParseError.mockReturnValue(mockError);
+    it('should handle API error during export', () =>
+      withDone(done => {
+        eventsApiService.getAllEvents.mockReturnValue(throwError(() => mockError));
+        mockParseError.mockReturnValue(mockError);
 
-      actions$.next(EventsActions.exportEventsToCsvRequested());
+        actions$.next(EventsActions.exportEventsToCsvRequested());
 
-      effects.exportEventsToCsv$.subscribe(action => {
-        expect(action).toEqual(EventsActions.fetchAllEventsFailed({ error: mockError }));
-        done();
-      });
-    });
+        effects.exportEventsToCsv$.subscribe(action => {
+          expect(action).toEqual(
+            EventsActions.fetchAllEventsFailed({ error: mockError }),
+          );
+          done();
+        });
+      }));
   });
 });

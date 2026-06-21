@@ -2,7 +2,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
-import { combineLatest, from, merge, of, race, timer } from 'rxjs';
+import { Observable, combineLatest, forkJoin, from, merge, of, race, timer } from 'rxjs';
 import {
   catchError,
   exhaustMap,
@@ -14,11 +14,12 @@ import {
   take,
   tap,
   timeout,
+  toArray,
 } from 'rxjs/operators';
 
 import { Injectable, inject } from '@angular/core';
 
-import { Article, BaseImage, IndexedDbImageData, LccError } from '@app/models';
+import { Article, BaseImage, Image, IndexedDbImageData, LccError } from '@app/models';
 import { ImageFileService, ImagesApiService } from '@app/services';
 import { AppActions } from '@app/store/app';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
@@ -42,6 +43,48 @@ export class ImagesEffects {
   private readonly isExpired = inject(IS_EXPIRED);
   private readonly isLccError = inject(IS_LCC_ERROR);
   private readonly parseError = inject(PARSE_ERROR);
+
+  // Serverless functions cap the request body (~4.5MB), so images are uploaded one
+  // file per request with a small concurrency pool rather than one large batch.
+  private readonly UPLOAD_CONCURRENCY = 5;
+
+  // Uploads a single new image (one file per request) and removes it from IndexedDB
+  // staging on success, so a partial failure leaves only failed images staged.
+  private uploadSingleNewImage(
+    metadata: Omit<BaseImage, 'fileSize'>,
+    indexedDbImageData: IndexedDbImageData[],
+  ): Observable<{ success: boolean; images: Image[] }> {
+    const formData = this.buildImagesFormData([metadata], indexedDbImageData, []);
+
+    if (this.isLccError(formData)) {
+      return of({ success: false, images: [] });
+    }
+
+    return this.imagesApiService.addImages(formData).pipe(
+      switchMap(response =>
+        from(this.imageFileService.deleteImage(metadata.id)).pipe(
+          map(() => ({ success: true, images: response.data })),
+        ),
+      ),
+      catchError(() => of({ success: false, images: [] })),
+    );
+  }
+
+  // Updates the metadata of existing album images in a single (file-less) request.
+  private updateExistingImages(
+    existingImages: BaseImage[],
+  ): Observable<{ updatedImages: BaseImage[]; failed: number }> {
+    const formData = this.buildImagesFormData([], [], existingImages);
+
+    if (this.isLccError(formData)) {
+      return of({ updatedImages: [], failed: 1 });
+    }
+
+    return this.imagesApiService.updateImages(formData).pipe(
+      map(response => ({ updatedImages: response.data.updatedImages, failed: 0 })),
+      catchError(() => of({ updatedImages: [], failed: 1 })),
+    );
+  }
 
   fetchAllImagesMetadata$ = createEffect(() => {
     return this.actions$.pipe(
@@ -559,17 +602,26 @@ export class ImagesEffects {
           });
         }
 
-        const result = this.buildImagesFormData(newImagesMetadata, imageFilesResult, []);
-
-        if (this.isLccError(result)) {
-          return of(ImagesActions.addImagesFailed({ error: result }));
-        }
-
-        return this.imagesApiService.addImages(result).pipe(
-          map(response => ImagesActions.addImagesSucceeded({ images: response.data })),
-          catchError(error =>
-            of(ImagesActions.addImagesFailed({ error: this.parseError(error) })),
+        return from(newImagesMetadata).pipe(
+          mergeMap(
+            metadata => this.uploadSingleNewImage(metadata, imageFilesResult),
+            this.UPLOAD_CONCURRENCY,
           ),
+          toArray(),
+          map(results => {
+            const images = results.flatMap(result => result.images);
+            const failedCount = results.filter(result => !result.success).length;
+
+            if (failedCount > 0) {
+              const error: LccError = {
+                name: 'LCCError',
+                message: `${failedCount} of ${newImagesMetadata.length} image${newImagesMetadata.length === 1 ? '' : 's'} failed to upload`,
+              };
+              return ImagesActions.addImagesFailed({ error });
+            }
+
+            return ImagesActions.addImagesSucceeded({ images });
+          }),
         );
       }),
     );
@@ -701,42 +753,48 @@ export class ImagesEffects {
             }
           }
 
-          const imagesFormData = this.buildImagesFormData(
-            newImagesMetadata,
-            indexedDbImageDataResult as IndexedDbImageData[],
-            existingImages,
-          );
+          // New images upload one file per request (concurrency-bounded); existing
+          // image edits go in a single file-less request, well under the body limit.
+          const newImages$ = newImagesMetadata.length
+            ? from(newImagesMetadata).pipe(
+                mergeMap(
+                  metadata =>
+                    this.uploadSingleNewImage(
+                      metadata,
+                      indexedDbImageDataResult as IndexedDbImageData[],
+                    ),
+                  this.UPLOAD_CONCURRENCY,
+                ),
+                toArray(),
+                map(results => ({
+                  newImages: results.flatMap(result => result.images),
+                  failed: results.filter(result => !result.success).length,
+                })),
+              )
+            : of({ newImages: [] as Image[], failed: 0 });
 
-          if (this.isLccError(imagesFormData)) {
-            return of(ImagesActions.updateAlbumFailed({ album, error: imagesFormData }));
-          }
+          const updatedImages$ = existingImages.length
+            ? this.updateExistingImages(existingImages)
+            : of({ updatedImages: [] as BaseImage[], failed: 0 });
 
-          return this.imagesApiService.updateImages(imagesFormData).pipe(
-            map(response => {
-              const { newImages, updatedImages } = response.data;
+          return forkJoin([newImages$, updatedImages$]).pipe(
+            map(([newResult, updateResult]) => {
+              const failedCount = newResult.failed + updateResult.failed;
 
-              if (
-                newImages.length !== newImagesMetadata.length ||
-                updatedImages.length !== existingImages.length
-              ) {
+              if (failedCount > 0) {
                 const error: LccError = {
                   name: 'LCCError',
-                  message: `Expected ${newImagesMetadata.length} images to be added and ${existingImages.length} images to be updated, but backend reported ${newImages.length} added and ${updatedImages.length} updated.`,
+                  message: `${failedCount} image operation${failedCount === 1 ? '' : 's'} failed`,
                 };
                 return ImagesActions.updateAlbumFailed({ album, error });
               }
 
               return ImagesActions.updateAlbumSucceeded({
                 album,
-                newImages,
-                updatedImages,
+                newImages: newResult.newImages,
+                updatedImages: updateResult.updatedImages,
               });
             }),
-            catchError(error =>
-              of(
-                ImagesActions.updateAlbumFailed({ album, error: this.parseError(error) }),
-              ),
-            ),
           );
         },
       ),

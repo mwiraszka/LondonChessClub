@@ -117,6 +117,7 @@ describe('ImagesEffects', () => {
     const imageFileServiceMock = {
       getImage: vi.fn(),
       getAllImages: vi.fn(),
+      deleteImage: vi.fn(),
       clearAllImages: vi.fn(),
     };
 
@@ -624,6 +625,7 @@ describe('ImagesEffects', () => {
       store.refreshState();
       mockIsLccError.mockReturnValue(false);
       mockDataUrlToFile.mockReturnValue(new File([''], 'test.jpg'));
+      mockImageFileService.deleteImage.mockReturnValue(Promise.resolve('success'));
     });
 
     it('should update album with new and existing images successfully', () =>
@@ -644,17 +646,15 @@ describe('ImagesEffects', () => {
           },
         ];
 
-        const mockUpdateResponse: ApiResponse<{
-          newImages: Image[];
-          updatedImages: BaseImage[];
-        }> = {
-          data: { newImages, updatedImages },
-        };
-
         mockImageFileService.getAllImages.mockReturnValue(
           Promise.resolve(mockIndexedDbData),
         );
-        imagesApiService.updateImages.mockReturnValue(of(mockUpdateResponse));
+        // New images upload one per request; existing images update in one request.
+        imagesApiService.addImages.mockReturnValueOnce(of({ data: [newImages[0]] }));
+        imagesApiService.addImages.mockReturnValueOnce(of({ data: [newImages[1]] }));
+        imagesApiService.updateImages.mockReturnValue(
+          of({ data: { newImages: [], updatedImages } }),
+        );
 
         actions$.next(ImagesActions.updateAlbumRequested({ album }));
 
@@ -664,7 +664,8 @@ describe('ImagesEffects', () => {
           expect(payload.album).toBe(album);
           expect(payload.newImages.length).toBe(2);
           expect(payload.updatedImages.length).toBe(1);
-          expect(imagesApiService.updateImages).toHaveBeenCalled();
+          expect(imagesApiService.addImages).toHaveBeenCalledTimes(2);
+          expect(imagesApiService.updateImages).toHaveBeenCalledTimes(1);
           done();
         });
       }));
@@ -674,50 +675,15 @@ describe('ImagesEffects', () => {
         mockImageFileService.getAllImages.mockReturnValue(
           Promise.resolve(mockIndexedDbData),
         );
-        imagesApiService.updateImages.mockReturnValue(throwError(() => mockError));
-        mockParseError.mockReturnValue(mockError);
-
-        actions$.next(ImagesActions.updateAlbumRequested({ album }));
-
-        effects.updateAlbum$.subscribe(action => {
-          expect(action.type).toBe(ImagesActions.updateAlbumFailed.type);
-          done();
-        });
-      }));
-
-    it('should fail when response counts do not match', () =>
-      withDone(done => {
-        const mockUpdateResponse: ApiResponse<{
-          newImages: Image[];
-          updatedImages: BaseImage[];
-        }> = {
-          data: {
-            newImages: [MOCK_IMAGES[0]], // Only 1, expected 2
-            updatedImages: [
-              {
-                id: MOCK_IMAGES[0].id,
-                filename: MOCK_IMAGES[0].filename,
-                caption: MOCK_IMAGES[0].caption,
-                album: MOCK_IMAGES[0].album,
-                albumCover: MOCK_IMAGES[0].albumCover,
-                albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
-                modificationInfo: MOCK_IMAGES[0].modificationInfo,
-              },
-            ],
-          },
-        };
-
-        mockImageFileService.getAllImages.mockReturnValue(
-          Promise.resolve(mockIndexedDbData),
+        imagesApiService.addImages.mockReturnValue(throwError(() => mockError));
+        imagesApiService.updateImages.mockReturnValue(
+          of({ data: { newImages: [], updatedImages: [] } }),
         );
-        imagesApiService.updateImages.mockReturnValue(of(mockUpdateResponse));
 
         actions$.next(ImagesActions.updateAlbumRequested({ album }));
 
         effects.updateAlbum$.subscribe(action => {
           expect(action.type).toBe(ImagesActions.updateAlbumFailed.type);
-          const payload = action as ReturnType<typeof ImagesActions.updateAlbumFailed>;
-          expect(payload.error.message).toContain('Expected 2 images to be added');
           done();
         });
       }));

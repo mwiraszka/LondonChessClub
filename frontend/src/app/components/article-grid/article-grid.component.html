@@ -41,7 +41,9 @@
           <div class="article-title-wrapper">
             <h3
               class="article-title lcc-truncate-max-3-lines"
-              [innerHTML]="row.article.title | highlight: options?.search">
+              [innerHTML]="
+                row.article.title | highlight: $safeNavigationMigration(options?.search)
+              ">
             </h3>
           </div>
         }
@@ -59,7 +61,7 @@
             [innerHTML]="
               row.article.body
                 | summarizeArticle: row.article.title.startsWith('Blitz')
-                | highlight: options?.search
+                | highlight: $safeNavigationMigration(options?.search)
             ">
           </p>
           <div class="article-creation-date">

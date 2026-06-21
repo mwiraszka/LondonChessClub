@@ -15,7 +15,7 @@ import { TooltipDirective } from '@app/directives/tooltip.directive';
   `,
   styleUrl: './form-error-icon.component.scss',
   imports: [MatIconModule, TooltipDirective],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class FormErrorIconComponent {
   @Input({ required: true }) control!: AbstractControl;

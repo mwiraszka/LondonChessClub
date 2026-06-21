@@ -63,7 +63,7 @@
     <div class="event-title-and-type">
       <div
         class="event-title"
-        [innerHTML]="event.title | highlight: options?.search">
+        [innerHTML]="event.title | highlight: $safeNavigationMigration(options?.search)">
       </div>
 
       <div
@@ -71,7 +71,7 @@
         [ngClass]="event.type | kebabCase">
         <span
           class="event-type"
-          [innerHTML]="event.type | highlight: options?.search">
+          [innerHTML]="event.type | highlight: $safeNavigationMigration(options?.search)">
         </span>
 
         @if ((event.type | kebabCase) === 'championship') {

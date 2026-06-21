@@ -61,10 +61,17 @@
                         <a
                           [routerLink]="'/article/view/' + event.articleId"
                           class="event-article-link lcc-link"
-                          [innerHTML]="event.title | highlight: options?.search">
+                          [innerHTML]="
+                            event.title
+                              | highlight: $safeNavigationMigration(options?.search)
+                          ">
                         </a>
                       } @else {
-                        <span [innerHTML]="event.title | highlight: options?.search">
+                        <span
+                          [innerHTML]="
+                            event.title
+                              | highlight: $safeNavigationMigration(options?.search)
+                          ">
                         </span>
                       }
                     </h3>
@@ -73,7 +80,10 @@
                       [ngClass]="event.type | kebabCase">
                       <span
                         class="type"
-                        [innerHTML]="event.type | highlight: options?.search">
+                        [innerHTML]="
+                          event.type
+                            | highlight: $safeNavigationMigration(options?.search)
+                        ">
                       </span>
 
                       @if ((event.type | kebabCase) === 'championship') {
@@ -85,7 +95,8 @@
                   <p
                     class="event-details"
                     [innerHTML]="
-                      event.details.replaceAll('\\n', ' \n ') | highlight: options?.search
+                      event.details.replaceAll('\\n', ' \n ')
+                        | highlight: $safeNavigationMigration(options?.search)
                     ">
                   </p>
                 </div>

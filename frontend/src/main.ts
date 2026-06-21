@@ -9,6 +9,7 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
   withJsonpSupport,
+  withXhr,
 } from '@angular/common/http';
 import { ErrorHandler, enableProdMode, importProvidersFrom } from '@angular/core';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
@@ -77,7 +78,7 @@ bootstrapApplication(AppComponent, {
       }),
       StoreRouterConnectingModule.forRoot(),
     ),
-    provideHttpClient(withInterceptorsFromDi(), withJsonpSupport()),
+    provideHttpClient(withXhr(), withInterceptorsFromDi(), withJsonpSupport()),
     AuthInterceptorProvider,
     CacheControlInterceptorProvider,
     LoggingInterceptorProvider,

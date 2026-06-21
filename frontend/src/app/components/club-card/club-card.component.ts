@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { ClubMapComponent } from '@app/components/club-map/club-map.component';
@@ -9,6 +9,7 @@ import { Club } from '@app/models';
   selector: 'lcc-club-card',
   templateUrl: './club-card.component.html',
   styleUrls: ['./club-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClubMapComponent, MatIconModule, TooltipDirective],
 })
 export class ClubCardComponent {

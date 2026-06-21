@@ -1,8 +1,8 @@
-import { PdfViewerModule } from 'ng2-pdf-viewer';
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DocumentViewerComponent } from './document-viewer.component';
+
+vi.mock('ng2-pdf-viewer');
 
 describe('DocumentViewerComponent', () => {
   let fixture: ComponentFixture<DocumentViewerComponent>;
@@ -10,7 +10,7 @@ describe('DocumentViewerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PdfViewerModule, DocumentViewerComponent],
+      imports: [DocumentViewerComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DocumentViewerComponent);

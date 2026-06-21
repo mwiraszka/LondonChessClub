@@ -4,7 +4,7 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import moment from 'moment-timezone';
 import { ReplaySubject, of, throwError } from 'rxjs';
 
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { INITIAL_MEMBER_FORM_DATA } from '@app/constants';
 import { MOCK_MEMBERS } from '@app/mocks/members.mock';
@@ -318,7 +318,8 @@ describe('MembersEffects', () => {
         });
       }));
 
-    it('should trigger refetch when last fetch is expired', fakeAsync(() => {
+    it('should trigger refetch when last fetch is expired', () => {
+      vi.useFakeTimers();
       const expiredTimestamp = moment().subtract(20, 'minutes').toISOString();
       store.overrideSelector(MembersSelectors.selectLastFilteredFetch, expiredTimestamp);
       store.overrideSelector(NavSelectors.selectCurrentPath, '/members');
@@ -330,16 +331,17 @@ describe('MembersEffects', () => {
         results.push(action);
       });
 
-      tick(3000);
-      tick(10 * 60 * 1000);
+      vi.advanceTimersByTime(3000);
+      vi.advanceTimersByTime(10 * 60 * 1000);
 
       expect(results[0]).toEqual(
         MembersActions.fetchFilteredMembersInBackgroundRequested(),
       );
       expect(mockIsExpired).toHaveBeenCalledWith(expiredTimestamp);
-    }));
+    });
 
-    it('should not trigger refetch when last fetch is not expired', fakeAsync(() => {
+    it('should not trigger refetch when last fetch is not expired', () => {
+      vi.useFakeTimers();
       const recentTimestamp = moment().subtract(5, 'minutes').toISOString();
       store.overrideSelector(MembersSelectors.selectLastFilteredFetch, recentTimestamp);
       store.overrideSelector(NavSelectors.selectCurrentPath, '/members');
@@ -351,11 +353,11 @@ describe('MembersEffects', () => {
         results.push(action);
       });
 
-      tick(3000);
-      tick(10 * 60 * 1000);
+      vi.advanceTimersByTime(3000);
+      vi.advanceTimersByTime(10 * 60 * 1000);
 
       expect(results).toHaveLength(0);
-    }));
+    });
   });
 
   describe('fetchMember$', () => {

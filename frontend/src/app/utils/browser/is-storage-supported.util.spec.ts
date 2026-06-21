@@ -2,12 +2,18 @@ import { isStorageSupported } from './is-storage-supported.util';
 
 describe('isStorageSupported', () => {
   it('handles undefined local storage correctly', () => {
-    Object.defineProperty(window, 'localStorage', {});
+    Object.defineProperty(window, 'localStorage', {
+      value: undefined,
+      configurable: true,
+    });
     expect(isStorageSupported()).toBe(false);
   });
 
   it('handles undefined session storage correctly', () => {
-    Object.defineProperty(window, 'sessionStorage', {});
+    Object.defineProperty(window, 'sessionStorage', {
+      value: undefined,
+      configurable: true,
+    });
     expect(isStorageSupported('sessionStorage')).toBe(false);
   });
 

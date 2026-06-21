@@ -20,6 +20,7 @@ describe('KeyStateService', () => {
   });
 
   afterEach(() => {
+    service.ngOnDestroy();
     vi.clearAllMocks();
   });
 

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { MOCK_MEMBERS } from '@app/mocks/members.mock';
@@ -108,23 +108,24 @@ describe('DataToolbarComponent', () => {
   });
 
   describe('search query change', () => {
-    it('should emit new options after search query changes, but only after 300ms debounce time', fakeAsync(() => {
+    it('should emit new options after search query changes, but only after 300ms debounce time', () => {
+      vi.useFakeTimers();
       const event = { target: { value: 'test' } } as unknown as Event;
 
       component.onSearchQueryChange(event);
 
-      tick(299);
+      vi.advanceTimersByTime(299);
 
       expect(optionsChangeSpy).not.toHaveBeenCalled();
 
-      tick(1);
+      vi.advanceTimersByTime(1);
 
       expect(optionsChangeSpy).toHaveBeenCalledWith({
         ...mockOptions,
         search: 'test',
         page: 1,
       });
-    }));
+    });
   });
 
   describe('filter toggling', () => {

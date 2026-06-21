@@ -1,5 +1,5 @@
 import { ChangeDetectorRef } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Image } from '@app/models';
 import { query, queryAll } from '@app/utils';
@@ -29,6 +29,8 @@ describe('PhotoCarouselComponent', () => {
   ];
 
   beforeEach(async () => {
+    vi.useFakeTimers();
+
     await TestBed.configureTestingModule({
       imports: [PhotoCarouselComponent],
     }).compileComponents();
@@ -49,19 +51,18 @@ describe('PhotoCarouselComponent', () => {
       expect(component.currentIndex).toBe(0);
     });
 
-    it('should auto-cycle through photos every 4 seconds', fakeAsync(() => {
-      component.ngOnInit();
+    it('should auto-cycle through photos every 4 seconds', () => {
       expect(component.currentIndex).toBe(0);
 
-      tick(4000);
+      vi.advanceTimersByTime(4000);
       expect(component.currentIndex).toBe(1);
 
-      tick(4000);
+      vi.advanceTimersByTime(4000);
       expect(component.currentIndex).toBe(2);
 
-      tick(4000);
+      vi.advanceTimersByTime(4000);
       expect(component.currentIndex).toBe(0);
-    }));
+    });
   });
 
   describe('onPreviousPhoto', () => {
@@ -79,19 +80,19 @@ describe('PhotoCarouselComponent', () => {
       expect(component.currentIndex).toBe(2);
     });
 
-    it('should reset auto-cycle timer', fakeAsync(() => {
+    it('should reset auto-cycle timer', () => {
       component.currentIndex = 0;
-      tick(2000);
+      vi.advanceTimersByTime(2000);
 
       component.onPreviousPhoto();
       expect(component.currentIndex).toBe(2);
 
-      tick(3999);
+      vi.advanceTimersByTime(3999);
       expect(component.currentIndex).toBe(2);
 
-      tick(1);
+      vi.advanceTimersByTime(1);
       expect(component.currentIndex).toBe(0);
-    }));
+    });
   });
 
   describe('onNextPhoto', () => {
@@ -109,19 +110,19 @@ describe('PhotoCarouselComponent', () => {
       expect(component.currentIndex).toBe(0);
     });
 
-    it('should reset auto-cycle timer', fakeAsync(() => {
+    it('should reset auto-cycle timer', () => {
       component.currentIndex = 0;
-      tick(100);
+      vi.advanceTimersByTime(100);
 
       component.onNextPhoto();
       expect(component.currentIndex).toBe(1);
 
-      tick(3999);
+      vi.advanceTimersByTime(3999);
       expect(component.currentIndex).toBe(1);
 
-      tick(1);
+      vi.advanceTimersByTime(1);
       expect(component.currentIndex).toBe(2);
-    }));
+    });
   });
 
   describe('onSelectPhoto', () => {
@@ -130,19 +131,19 @@ describe('PhotoCarouselComponent', () => {
       expect(component.currentIndex).toBe(2);
     });
 
-    it('should reset auto-cycle timer', fakeAsync(() => {
+    it('should reset auto-cycle timer', () => {
       component.currentIndex = 0;
-      tick(3500);
+      vi.advanceTimersByTime(3500);
 
       component.onSelectPhoto(1);
       expect(component.currentIndex).toBe(1);
 
-      tick(3999);
+      vi.advanceTimersByTime(3999);
       expect(component.currentIndex).toBe(1);
 
-      tick(1);
+      vi.advanceTimersByTime(1);
       expect(component.currentIndex).toBe(2);
-    }));
+    });
   });
 
   describe('template rendering', () => {
@@ -324,11 +325,11 @@ describe('PhotoCarouselComponent', () => {
       expect(component.currentIndex).toBe(0);
     });
 
-    it('should handle single photo auto-cycling', fakeAsync(() => {
+    it('should handle single photo auto-cycling', () => {
       expect(component.currentIndex).toBe(0);
 
-      tick(4000);
+      vi.advanceTimersByTime(4000);
       expect(component.currentIndex).toBe(0);
-    }));
+    });
   });
 });

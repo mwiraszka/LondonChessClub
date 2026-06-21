@@ -1,6 +1,6 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { DialogOutput } from '@app/models';
 
@@ -32,6 +32,10 @@ class AnotherDialogComponent implements DialogOutput<number> {
     this.dialogResult.emit((this.numberInput ?? 0) + value);
   }
 }
+
+// Flush both the queued macrotask (initEventListeners setTimeout) and the
+// microtask that runs the firstValueFrom().finally() disposal.
+const flush = (): Promise<void> => new Promise<void>(resolve => setTimeout(resolve));
 
 describe('DialogService', () => {
   let service: DialogService;
@@ -138,19 +142,19 @@ describe('DialogService', () => {
       expect(service['dialogComponentRefs'].length).toBe(2);
     });
 
-    it('should create dialog component reference', fakeAsync(() => {
+    it('should create dialog component reference', async () => {
       service.open<AnotherDialogComponent, number>({
         componentType: AnotherDialogComponent,
         isModal: true,
         inputs: { numberInput: 15 },
       });
 
-      tick();
+      await flush();
 
       const componentRef = service['dialogComponentRefs'][0];
       expect(componentRef).toBeTruthy();
       expect(componentRef.instance).toBeTruthy();
-    }));
+    });
 
     it('should resolve when dialog emits result', async () => {
       const dialogPromise = service.open<TestDialogComponent, string>({
@@ -167,14 +171,14 @@ describe('DialogService', () => {
       expect(result).toBe('test-result');
     });
 
-    it('should dispose overlay when dialog closes', fakeAsync(() => {
+    it('should dispose overlay when dialog closes', async () => {
       service.open<TestDialogComponent, string>({
         componentType: TestDialogComponent,
         isModal: true,
         inputs: {},
       });
 
-      tick();
+      await flush();
 
       const overlayRef = service['overlayRefs'][0];
       const disposeSpy = vi.spyOn(overlayRef, 'dispose');
@@ -182,34 +186,34 @@ describe('DialogService', () => {
       const componentRef = service['dialogComponentRefs'][0];
       componentRef.instance.result.emit('close');
 
-      tick();
+      await flush();
 
       expect(disposeSpy).toHaveBeenCalled();
       expect(service['dialogComponentRefs'].length).toBe(0);
       expect(service['overlayRefs'].length).toBe(0);
-    }));
+    });
 
-    it('should initialize event listeners on first dialog open', fakeAsync(() => {
+    it('should initialize event listeners on first dialog open', async () => {
       service.open<TestDialogComponent, string>({
         componentType: TestDialogComponent,
         isModal: true,
         inputs: {},
       });
 
-      tick();
+      await flush();
 
       expect(service['documentClickListener']).toBeDefined();
       expect(service['keydownListener']).toBeDefined();
-    }));
+    });
 
-    it('should reuse event listeners for subsequent dialogs', fakeAsync(() => {
+    it('should reuse event listeners for subsequent dialogs', async () => {
       service.open<TestDialogComponent, string>({
         componentType: TestDialogComponent,
         isModal: true,
         inputs: {},
       });
 
-      tick();
+      await flush();
 
       const firstDocumentListener = service['documentClickListener'];
       const firstKeydownListener = service['keydownListener'];
@@ -220,22 +224,22 @@ describe('DialogService', () => {
         inputs: { numberInput: 5 },
       });
 
-      tick();
+      await flush();
 
       expect(service['documentClickListener']).toBe(firstDocumentListener);
       expect(service['keydownListener']).toBe(firstKeydownListener);
-    }));
+    });
   });
 
   describe('closeAll', () => {
-    it('should close all open dialogs', fakeAsync(() => {
+    it('should close all open dialogs', async () => {
       service.open<TestDialogComponent, string>({
         componentType: TestDialogComponent,
         isModal: true,
         inputs: {},
       });
 
-      tick();
+      await flush();
 
       service.open<AnotherDialogComponent, number>({
         componentType: AnotherDialogComponent,
@@ -243,7 +247,7 @@ describe('DialogService', () => {
         inputs: { numberInput: 20 },
       });
 
-      tick();
+      await flush();
 
       expect(service['dialogComponentRefs'].length).toBe(2);
       expect(service['overlayRefs'].length).toBe(2);
@@ -252,16 +256,16 @@ describe('DialogService', () => {
 
       expect(service['dialogComponentRefs'].length).toBe(0);
       expect(service['overlayRefs'].length).toBe(0);
-    }));
+    });
 
-    it('should dispose all overlays', fakeAsync(() => {
+    it('should dispose all overlays', async () => {
       service.open<TestDialogComponent, string>({
         componentType: TestDialogComponent,
         isModal: true,
         inputs: {},
       });
 
-      tick();
+      await flush();
 
       service.open<AnotherDialogComponent, number>({
         componentType: AnotherDialogComponent,
@@ -269,7 +273,7 @@ describe('DialogService', () => {
         inputs: { numberInput: 5 },
       });
 
-      tick();
+      await flush();
 
       const overlayRef1 = service['overlayRefs'][0];
       const overlayRef2 = service['overlayRefs'][1];
@@ -281,16 +285,16 @@ describe('DialogService', () => {
 
       expect(disposeSpy1).toHaveBeenCalled();
       expect(disposeSpy2).toHaveBeenCalled();
-    }));
+    });
 
-    it('should allow new dialogs to be opened after closing all', fakeAsync(() => {
+    it('should allow new dialogs to be opened after closing all', async () => {
       service.open<TestDialogComponent, string>({
         componentType: TestDialogComponent,
         isModal: true,
         inputs: {},
       });
 
-      tick();
+      await flush();
 
       service.closeAll();
 
@@ -300,15 +304,15 @@ describe('DialogService', () => {
         inputs: {},
       });
 
-      tick();
+      await flush();
 
       expect(service['dialogComponentRefs'].length).toBe(1);
       expect(service['overlayRefs'].length).toBe(1);
-    }));
+    });
   });
 
   describe('event listeners', () => {
-    it('should initialize listeners when first dialog opens', fakeAsync(() => {
+    it('should initialize listeners when first dialog opens', async () => {
       expect(service['documentClickListener']).toBeUndefined();
       expect(service['keydownListener']).toBeUndefined();
 
@@ -318,39 +322,39 @@ describe('DialogService', () => {
         inputs: {},
       });
 
-      tick(1);
+      await flush();
 
       expect(service['documentClickListener']).toBeDefined();
       expect(service['keydownListener']).toBeDefined();
-    }));
+    });
 
-    it('should close dialog when result emits close', fakeAsync(() => {
+    it('should close dialog when result emits close', async () => {
       service.open<TestDialogComponent, string>({
         componentType: TestDialogComponent,
         isModal: true,
         inputs: {},
       });
 
-      tick();
+      await flush();
 
       expect(service['dialogComponentRefs'].length).toBe(1);
 
       const componentRef = service['dialogComponentRefs'][0];
       componentRef.instance.result.emit('close');
 
-      tick();
+      await flush();
 
       expect(service['dialogComponentRefs'].length).toBe(0);
-    }));
+    });
 
-    it('should close only top dialog when multiple open', fakeAsync(() => {
+    it('should close only top dialog when multiple open', async () => {
       service.open<TestDialogComponent, string>({
         componentType: TestDialogComponent,
         isModal: true,
         inputs: {},
       });
 
-      tick();
+      await flush();
 
       service.open<AnotherDialogComponent, number>({
         componentType: AnotherDialogComponent,
@@ -358,26 +362,26 @@ describe('DialogService', () => {
         inputs: {},
       });
 
-      tick();
+      await flush();
 
       expect(service['dialogComponentRefs'].length).toBe(2);
 
       const topComponentRef = service['dialogComponentRefs'][1];
       topComponentRef.instance.result.emit('close');
 
-      tick();
+      await flush();
 
       expect(service['dialogComponentRefs'].length).toBe(1);
-    }));
+    });
 
-    it('should remove event listeners when last dialog closes', fakeAsync(() => {
+    it('should remove event listeners when last dialog closes', async () => {
       service.open<TestDialogComponent, string>({
         componentType: TestDialogComponent,
         isModal: true,
         inputs: {},
       });
 
-      tick();
+      await flush();
 
       const documentListener = service['documentClickListener'];
       const keydownListener = service['keydownListener'];
@@ -388,21 +392,21 @@ describe('DialogService', () => {
       const componentRef = service['dialogComponentRefs'][0];
       componentRef.instance.result.emit('close');
 
-      tick();
+      await flush();
 
       expect(service['documentClickListener']).toBeDefined();
       expect(service['keydownListener']).toBeDefined();
       expect(service['overlayRefs'].length).toBe(0);
-    }));
+    });
 
-    it('should not remove event listeners when dialogs remain open', fakeAsync(() => {
+    it('should not remove event listeners when dialogs remain open', async () => {
       service.open<TestDialogComponent, string>({
         componentType: TestDialogComponent,
         isModal: true,
         inputs: {},
       });
 
-      tick();
+      await flush();
 
       service.open<AnotherDialogComponent, number>({
         componentType: AnotherDialogComponent,
@@ -410,17 +414,17 @@ describe('DialogService', () => {
         inputs: {},
       });
 
-      tick();
+      await flush();
 
       const componentRef = service['dialogComponentRefs'][1];
       componentRef.instance.result.emit('close');
 
-      tick();
+      await flush();
 
       expect(service['documentClickListener']).toBeDefined();
       expect(service['keydownListener']).toBeDefined();
       expect(service['overlayRefs'].length).toBe(1);
-    }));
+    });
   });
 
   describe('topDialogRef', () => {
@@ -428,29 +432,29 @@ describe('DialogService', () => {
       expect(service.topDialogRef).toBeNull();
     });
 
-    it('should return top dialog component ref', fakeAsync(() => {
+    it('should return top dialog component ref', async () => {
       service.open<TestDialogComponent, string>({
         componentType: TestDialogComponent,
         isModal: true,
         inputs: {},
       });
 
-      tick();
+      await flush();
 
       const topDialog = service.topDialogRef;
 
       expect(topDialog).toBeTruthy();
       expect(topDialog?.instance).toBeTruthy();
-    }));
+    });
 
-    it('should return most recently opened dialog', fakeAsync(() => {
+    it('should return most recently opened dialog', async () => {
       service.open<TestDialogComponent, string>({
         componentType: TestDialogComponent,
         isModal: true,
         inputs: {},
       });
 
-      tick();
+      await flush();
 
       const firstDialog = service.topDialogRef;
 
@@ -460,13 +464,13 @@ describe('DialogService', () => {
         inputs: {},
       });
 
-      tick();
+      await flush();
 
       const topDialog = service.topDialogRef;
 
       expect(topDialog).toBeTruthy();
       expect(topDialog).not.toBe(firstDialog);
       expect(service['dialogComponentRefs'].length).toBe(2);
-    }));
+    });
   });
 });

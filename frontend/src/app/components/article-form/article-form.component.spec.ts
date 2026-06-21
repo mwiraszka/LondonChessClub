@@ -10,18 +10,21 @@ import { MarkdownRendererComponent } from '@app/components/markdown-renderer/mar
 import { ARTICLE_FORM_DATA_PROPERTIES } from '@app/constants';
 import { MOCK_ARTICLES } from '@app/mocks/articles.mock';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
+import { Image } from '@app/models';
 import { DialogService } from '@app/services';
 import { query } from '@app/utils';
 
 import { ArticleFormComponent } from './article-form.component';
 
 @Component({
-  selector: 'app-markdown-renderer',
+  selector: 'lcc-markdown-renderer',
   template: '',
   standalone: true,
 })
 class MockMarkdownRendererComponent {
-  @Input() markdown = '';
+  @Input() data?: string;
+  @Input() images: Image[] = [];
+  @Input() isWideView = false;
 }
 
 describe('ArticleFormComponent', () => {

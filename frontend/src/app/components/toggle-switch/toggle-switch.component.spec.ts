@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { query, queryTextContent } from '@app/utils';
@@ -47,19 +47,20 @@ describe('ToggleSwitchComponent', () => {
   });
 
   describe('onToggleChange', () => {
-    it('should correctly handle tooltip refresh', fakeAsync(() => {
+    it('should correctly handle tooltip refresh', () => {
+      vi.useFakeTimers();
       component.onToggleChange();
       expect(emitSpy).toHaveBeenCalledTimes(1);
       expect(tooltipAttachSpy).not.toHaveBeenCalled();
       expect(tooltipDetachSpy).toHaveBeenCalledTimes(1);
 
       vi.clearAllMocks();
-      tick(1);
+      vi.advanceTimersByTime(1);
 
       expect(emitSpy).not.toHaveBeenCalled();
       expect(tooltipAttachSpy).toHaveBeenCalledTimes(1);
       expect(tooltipDetachSpy).not.toHaveBeenCalled();
-    }));
+    });
   });
 
   describe('template rendering', () => {

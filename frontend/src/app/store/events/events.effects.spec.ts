@@ -4,7 +4,7 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import moment from 'moment-timezone';
 import { ReplaySubject, of, throwError } from 'rxjs';
 
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { INITIAL_EVENT_FORM_DATA } from '@app/constants';
 import { MOCK_EVENTS } from '@app/mocks/events.mock';
@@ -332,7 +332,8 @@ describe('EventsEffects', () => {
         });
       }));
 
-    it('should trigger refetch when last fetch is expired', fakeAsync(() => {
+    it('should trigger refetch when last fetch is expired', () => {
+      vi.useFakeTimers();
       const expiredTimestamp = moment().subtract(20, 'minutes').toISOString();
       store.overrideSelector(EventsSelectors.selectLastHomePageFetch, expiredTimestamp);
       store.refreshState();
@@ -343,16 +344,17 @@ describe('EventsEffects', () => {
         results.push(action);
       });
 
-      tick(3000);
-      tick(10 * 60 * 1000);
+      vi.advanceTimersByTime(3000);
+      vi.advanceTimersByTime(10 * 60 * 1000);
 
       expect(results[0]).toEqual(
         EventsActions.fetchHomePageEventsInBackgroundRequested(),
       );
       expect(mockIsExpired).toHaveBeenCalledWith(expiredTimestamp);
-    }));
+    });
 
-    it('should not trigger refetch when last fetch is not expired', fakeAsync(() => {
+    it('should not trigger refetch when last fetch is not expired', () => {
+      vi.useFakeTimers();
       const recentTimestamp = moment().subtract(5, 'minutes').toISOString();
       store.overrideSelector(EventsSelectors.selectLastHomePageFetch, recentTimestamp);
       store.refreshState();
@@ -363,11 +365,11 @@ describe('EventsEffects', () => {
         results.push(action);
       });
 
-      tick(3000);
-      tick(10 * 60 * 1000);
+      vi.advanceTimersByTime(3000);
+      vi.advanceTimersByTime(10 * 60 * 1000);
 
       expect(results).toHaveLength(0);
-    }));
+    });
   });
 
   describe('refetchFilteredEvents$', () => {
@@ -446,7 +448,8 @@ describe('EventsEffects', () => {
         });
       }));
 
-    it('should trigger refetch when last fetch is expired', fakeAsync(() => {
+    it('should trigger refetch when last fetch is expired', () => {
+      vi.useFakeTimers();
       const expiredTimestamp = moment().subtract(20, 'minutes').toISOString();
       store.overrideSelector(EventsSelectors.selectLastFilteredFetch, expiredTimestamp);
       store.overrideSelector(NavSelectors.selectCurrentPath, '/schedule');
@@ -458,16 +461,17 @@ describe('EventsEffects', () => {
         results.push(action);
       });
 
-      tick(3000);
-      tick(10 * 60 * 1000);
+      vi.advanceTimersByTime(3000);
+      vi.advanceTimersByTime(10 * 60 * 1000);
 
       expect(results[0]).toEqual(
         EventsActions.fetchFilteredEventsInBackgroundRequested(),
       );
       expect(mockIsExpired).toHaveBeenCalledWith(expiredTimestamp);
-    }));
+    });
 
-    it('should not trigger refetch when last fetch is not expired', fakeAsync(() => {
+    it('should not trigger refetch when last fetch is not expired', () => {
+      vi.useFakeTimers();
       const recentTimestamp = moment().subtract(5, 'minutes').toISOString();
       store.overrideSelector(EventsSelectors.selectLastFilteredFetch, recentTimestamp);
       store.overrideSelector(NavSelectors.selectCurrentPath, '/schedule');
@@ -479,11 +483,11 @@ describe('EventsEffects', () => {
         results.push(action);
       });
 
-      tick(3000);
-      tick(10 * 60 * 1000);
+      vi.advanceTimersByTime(3000);
+      vi.advanceTimersByTime(10 * 60 * 1000);
 
       expect(results).toHaveLength(0);
-    }));
+    });
   });
 
   describe('fetchEvent$', () => {

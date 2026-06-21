@@ -38,9 +38,10 @@ describe('exportDataToCsv', () => {
     // Mock URL.createObjectURL
     window.URL.createObjectURL = vi.fn(() => 'blob:mock-url');
 
-    // Mock Blob constructor
+    // Mock Blob constructor. Vitest cannot `new` an arrow-fn mock, so use a
+    // regular function expression which is constructable.
     blobSpy = (vi.spyOn(window, 'Blob') as unknown as MockInstance).mockImplementation(
-      (content, options) => {
+      function (content: BlobPart[], options?: BlobPropertyBag) {
         return { content, options } as unknown as Blob;
       },
     );

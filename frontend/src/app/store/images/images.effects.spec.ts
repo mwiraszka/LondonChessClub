@@ -1,10 +1,10 @@
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Action, createSelector } from '@ngrx/store';
+import { Action } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import moment from 'moment-timezone';
 import { ReplaySubject, of, throwError } from 'rxjs';
 
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { INITIAL_IMAGE_FORM_DATA } from '@app/constants';
 import { MOCK_IMAGES } from '@app/mocks/images.mock';
@@ -75,6 +75,33 @@ describe('ImagesEffects', () => {
     })),
   };
 
+  const mockImagesState = {
+    ids: MOCK_IMAGES.map(i => i.id),
+    entities: MOCK_IMAGES.reduce(
+      (acc, image) => ({
+        ...acc,
+        [image.id]: { image, formData: { ...INITIAL_IMAGE_FORM_DATA, id: image.id } },
+      }),
+      {},
+    ),
+    callState: { status: 'idle' as const, loadStart: null, error: null },
+    newImageFormData: null,
+    newImagesFormData: {},
+    lastMetadataFetch: null,
+    lastFilteredThumbnailsFetch: null,
+    lastAlbumCoversFetch: null,
+    options: {
+      page: 1,
+      pageSize: 12,
+      sortBy: 'filename',
+      sortOrder: 'asc',
+      filters: null,
+      search: '',
+    },
+    filteredCount: null,
+    totalCount: 0,
+  };
+
   beforeEach(() => {
     const imagesApiServiceMock = {
       getAllImagesMetadata: vi.fn(),
@@ -91,33 +118,6 @@ describe('ImagesEffects', () => {
       getImage: vi.fn(),
       getAllImages: vi.fn(),
       clearAllImages: vi.fn(),
-    };
-
-    const mockImagesState = {
-      ids: MOCK_IMAGES.map(i => i.id),
-      entities: MOCK_IMAGES.reduce(
-        (acc, image) => ({
-          ...acc,
-          [image.id]: { image, formData: { ...INITIAL_IMAGE_FORM_DATA, id: image.id } },
-        }),
-        {},
-      ),
-      callState: { status: 'idle' as const, loadStart: null, error: null },
-      newImageFormData: null,
-      newImagesFormData: {},
-      lastMetadataFetch: null,
-      lastFilteredThumbnailsFetch: null,
-      lastAlbumCoversFetch: null,
-      options: {
-        page: 1,
-        pageSize: 12,
-        sortBy: 'filename',
-        sortOrder: 'asc',
-        filters: null,
-        search: '',
-      },
-      filteredCount: null,
-      totalCount: 0,
     };
 
     TestBed.configureTestingModule({
@@ -421,7 +421,8 @@ describe('ImagesEffects', () => {
         });
       }));
 
-    it('should trigger refetch when last fetch is expired', fakeAsync(() => {
+    it('should trigger refetch when last fetch is expired', () => {
+      vi.useFakeTimers();
       const expiredTimestamp = moment().subtract(10, 'minutes').toISOString();
       store.overrideSelector(ImagesSelectors.selectLastMetadataFetch, expiredTimestamp);
       store.refreshState();
@@ -432,14 +433,15 @@ describe('ImagesEffects', () => {
         results.push(action);
       });
 
-      tick(3000);
-      tick(5 * 60 * 1000);
+      vi.advanceTimersByTime(3000);
+      vi.advanceTimersByTime(5 * 60 * 1000);
 
       expect(results[0]).toEqual(ImagesActions.fetchAllImagesMetadataRequested());
       expect(mockIsExpired).toHaveBeenCalledWith(expiredTimestamp);
-    }));
+    });
 
-    it('should not trigger refetch when last fetch is not expired', fakeAsync(() => {
+    it('should not trigger refetch when last fetch is not expired', () => {
+      vi.useFakeTimers();
       const recentTimestamp = moment().subtract(2, 'minutes').toISOString();
       store.overrideSelector(ImagesSelectors.selectLastMetadataFetch, recentTimestamp);
       store.refreshState();
@@ -450,11 +452,11 @@ describe('ImagesEffects', () => {
         results.push(action);
       });
 
-      tick(3000);
-      tick(5 * 60 * 1000);
+      vi.advanceTimersByTime(3000);
+      vi.advanceTimersByTime(5 * 60 * 1000);
 
       expect(results).toHaveLength(0);
-    }));
+    });
   });
 
   describe('updateImage$', () => {
@@ -584,7 +586,32 @@ describe('ImagesEffects', () => {
       { id: 'new-1', filename: 'new1.jpg', dataUrl: 'data:image/jpeg;base64,abc' },
       { id: 'new-2', filename: 'new2.jpg', dataUrl: 'data:image/jpeg;base64,def' },
     ];
+    // Real factory selector selectImageEntitiesByAlbum(album) filters the seeded
+    // images state by album, so place one existing image in the target album.
+    const existingAlbumImage: Image = { ...MOCK_IMAGES[0], album };
     let mockImageFileService: Mocked<ImageFileService>;
+
+    const seedImagesStateWithAlbumImage = () => {
+      store.setState({
+        imagesState: {
+          ...mockImagesState,
+          ids: [existingAlbumImage.id],
+          entities: {
+            [existingAlbumImage.id]: {
+              image: existingAlbumImage,
+              formData: {
+                id: existingAlbumImage.id,
+                filename: existingAlbumImage.filename,
+                caption: existingAlbumImage.caption,
+                album: existingAlbumImage.album,
+                albumCover: existingAlbumImage.albumCover,
+                albumOrdinality: existingAlbumImage.albumOrdinality,
+              },
+            },
+          },
+        },
+      });
+    };
 
     beforeEach(() => {
       mockImageFileService = TestBed.inject(ImageFileService) as Mocked<ImageFileService>;
@@ -593,6 +620,7 @@ describe('ImagesEffects', () => {
         'new-1': { ...INITIAL_IMAGE_FORM_DATA, id: 'new-1', album },
         'new-2': { ...INITIAL_IMAGE_FORM_DATA, id: 'new-2', album },
       });
+      seedImagesStateWithAlbumImage();
       store.refreshState();
       mockIsLccError.mockReturnValue(false);
       mockDataUrlToFile.mockReturnValue(new File([''], 'test.jpg'));
@@ -606,31 +634,15 @@ describe('ImagesEffects', () => {
         ];
         const updatedImages: BaseImage[] = [
           {
-            id: MOCK_IMAGES[0].id,
-            filename: MOCK_IMAGES[0].filename,
-            caption: MOCK_IMAGES[0].caption,
-            album: MOCK_IMAGES[0].album,
-            albumCover: MOCK_IMAGES[0].albumCover,
-            albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
-            modificationInfo: MOCK_IMAGES[0].modificationInfo,
+            id: existingAlbumImage.id,
+            filename: existingAlbumImage.filename,
+            caption: existingAlbumImage.caption,
+            album: existingAlbumImage.album,
+            albumCover: existingAlbumImage.albumCover,
+            albumOrdinality: existingAlbumImage.albumOrdinality,
+            modificationInfo: existingAlbumImage.modificationInfo,
           },
         ];
-
-        vi.spyOn(ImagesSelectors, 'selectImageEntitiesByAlbum').mockReturnValue(
-          createSelector(() => [
-            {
-              image: MOCK_IMAGES[0],
-              formData: {
-                id: MOCK_IMAGES[0].id,
-                filename: MOCK_IMAGES[0].filename,
-                caption: MOCK_IMAGES[0].caption,
-                album: MOCK_IMAGES[0].album,
-                albumCover: MOCK_IMAGES[0].albumCover,
-                albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
-              },
-            },
-          ]) as ReturnType<typeof ImagesSelectors.selectImageEntitiesByAlbum>,
-        );
 
         const mockUpdateResponse: ApiResponse<{
           newImages: Image[];
@@ -659,22 +671,6 @@ describe('ImagesEffects', () => {
 
     it('should handle update album failure from API', () =>
       withDone(done => {
-        vi.spyOn(ImagesSelectors, 'selectImageEntitiesByAlbum').mockReturnValue(
-          createSelector(() => [
-            {
-              image: MOCK_IMAGES[0],
-              formData: {
-                id: MOCK_IMAGES[0].id,
-                filename: MOCK_IMAGES[0].filename,
-                caption: MOCK_IMAGES[0].caption,
-                album: MOCK_IMAGES[0].album,
-                albumCover: MOCK_IMAGES[0].albumCover,
-                albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
-              },
-            },
-          ]) as ReturnType<typeof ImagesSelectors.selectImageEntitiesByAlbum>,
-        );
-
         mockImageFileService.getAllImages.mockReturnValue(
           Promise.resolve(mockIndexedDbData),
         );
@@ -691,22 +687,6 @@ describe('ImagesEffects', () => {
 
     it('should fail when response counts do not match', () =>
       withDone(done => {
-        vi.spyOn(ImagesSelectors, 'selectImageEntitiesByAlbum').mockReturnValue(
-          createSelector(() => [
-            {
-              image: MOCK_IMAGES[0],
-              formData: {
-                id: MOCK_IMAGES[0].id,
-                filename: MOCK_IMAGES[0].filename,
-                caption: MOCK_IMAGES[0].caption,
-                album: MOCK_IMAGES[0].album,
-                albumCover: MOCK_IMAGES[0].albumCover,
-                albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
-              },
-            },
-          ]) as ReturnType<typeof ImagesSelectors.selectImageEntitiesByAlbum>,
-        );
-
         const mockUpdateResponse: ApiResponse<{
           newImages: Image[];
           updatedImages: BaseImage[];
@@ -744,21 +724,6 @@ describe('ImagesEffects', () => {
 
     it('should fail when form data is missing for an image', () =>
       withDone(done => {
-        vi.spyOn(ImagesSelectors, 'selectImageEntitiesByAlbum').mockReturnValue(
-          createSelector(() => [
-            {
-              image: MOCK_IMAGES[0],
-              formData: {
-                id: MOCK_IMAGES[0].id,
-                filename: MOCK_IMAGES[0].filename,
-                caption: MOCK_IMAGES[0].caption,
-                album: MOCK_IMAGES[0].album,
-                albumCover: MOCK_IMAGES[0].albumCover,
-                albumOrdinality: MOCK_IMAGES[0].albumOrdinality,
-              },
-            },
-          ]) as ReturnType<typeof ImagesSelectors.selectImageEntitiesByAlbum>,
-        );
         store.overrideSelector(ImagesSelectors.selectNewImagesFormData, {
           'new-1': { ...INITIAL_IMAGE_FORM_DATA, id: 'new-1', album },
           // Missing 'new-2' form data
@@ -783,16 +748,26 @@ describe('ImagesEffects', () => {
   });
 
   describe('automaticallyUpdateAlbumCoverAfterImageDeletion$', () => {
-    const album = 'Test Album';
+    const album = MOCK_IMAGES[0].album;
     const deletedImage = { ...MOCK_IMAGES[0], albumCover: true };
     const newCoverImage = { ...MOCK_IMAGES[1], album, albumCover: false };
 
+    // Real factory selector selectImagesByAlbum(album) filters the seeded images
+    // state by album, so seed only the candidate cover image in the target album.
     beforeEach(() => {
-      vi.spyOn(ImagesSelectors, 'selectImagesByAlbum').mockReturnValue(
-        createSelector(() => [newCoverImage]) as ReturnType<
-          typeof ImagesSelectors.selectImagesByAlbum
-        >,
-      );
+      store.setState({
+        imagesState: {
+          ...mockImagesState,
+          ids: [newCoverImage.id],
+          entities: {
+            [newCoverImage.id]: {
+              image: newCoverImage,
+              formData: { ...INITIAL_IMAGE_FORM_DATA, id: newCoverImage.id },
+            },
+          },
+        },
+      });
+      store.refreshState();
     });
 
     it('should automatically set new album cover after deleting current cover', () =>

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { query } from '@app/utils';
 
@@ -57,23 +57,24 @@ describe('SessionExpiryDialogComponent', () => {
       expect(dialogResultSpy).toHaveBeenCalledWith('extend');
     });
 
-    it('should emit "expire" when time remaining reaches 0', fakeAsync(() => {
+    it('should emit "expire" when time remaining reaches 0', () => {
+      vi.useFakeTimers();
       component.initialTimeRemainingSecs = 2;
 
       // Subscribe to the observable to actually trigger the timer logic
       component.timeRemainingSecs$.subscribe();
 
       // Timer emits immediately at 0ms: 2 - 0 = 2 (not expired)
-      tick(0);
+      vi.advanceTimersByTime(0);
       expect(dialogResultSpy).not.toHaveBeenCalled();
 
       // Advance 1 second: 2 - 1 = 1 (not expired)
-      tick(1000);
+      vi.advanceTimersByTime(1000);
       expect(dialogResultSpy).not.toHaveBeenCalled();
 
       // Advance 1 more second: 2 - 2 = 0 (expired)
-      tick(1000);
+      vi.advanceTimersByTime(1000);
       expect(dialogResultSpy).toHaveBeenCalledWith('expire');
-    }));
+    });
   });
 });

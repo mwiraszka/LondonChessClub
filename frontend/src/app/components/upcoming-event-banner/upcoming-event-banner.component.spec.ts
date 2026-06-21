@@ -13,11 +13,13 @@ describe('UpcomingEventBannerComponent', () => {
   let resizeObserverMock: Mock;
 
   beforeEach(async () => {
-    resizeObserverMock = vi.fn().mockImplementation(() => ({
-      observe: vi.fn(),
-      unobserve: vi.fn(),
-      disconnect: vi.fn(),
-    }));
+    resizeObserverMock = vi.fn(function () {
+      return {
+        observe: vi.fn(),
+        unobserve: vi.fn(),
+        disconnect: vi.fn(),
+      };
+    });
     window.ResizeObserver = resizeObserverMock;
 
     await TestBed.configureTestingModule({

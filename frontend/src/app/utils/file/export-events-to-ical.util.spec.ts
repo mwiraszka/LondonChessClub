@@ -11,8 +11,12 @@ Object.defineProperty(window, 'URL', {
   writable: true,
 });
 
+// Vitest cannot `new` an arrow-fn mock, so the Blob mock uses a regular
+// function expression which is constructable.
 Object.defineProperty(window, 'Blob', {
-  value: vi.fn((content, options) => ({ content, options })),
+  value: vi.fn(function (content: BlobPart[], options?: BlobPropertyBag) {
+    return { content, options };
+  }),
   writable: true,
 });
 

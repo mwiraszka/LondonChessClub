@@ -75,8 +75,7 @@ describe('TooltipDirective', () => {
     });
 
     it('should not attach when tooltip content is null', () => {
-      component.tooltipContent = null;
-      fixture.detectChanges();
+      directive.tooltip = null;
 
       directiveElement.nativeElement.dispatchEvent(new MouseEvent('mouseenter'));
 
@@ -128,8 +127,7 @@ describe('TooltipDirective', () => {
     });
 
     it('should enable pointer events for template tooltips', () => {
-      component.tooltipContent = component.customTemplate;
-      fixture.detectChanges();
+      directive.tooltip = component.customTemplate;
 
       directiveElement.nativeElement.dispatchEvent(new MouseEvent('mouseenter'));
 

@@ -1,7 +1,7 @@
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { firstValueFrom, take } from 'rxjs';
 
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
 import { MOCK_EVENTS } from '@app/mocks/events.mock';
@@ -127,7 +127,9 @@ describe('SchedulePageComponent', () => {
       });
     });
 
-    it('should call scheduleToolbar?.changeDetectorRef.markForCheck() when viewModel$ emits', fakeAsync(() => {
+    it('should call scheduleToolbar?.changeDetectorRef.markForCheck() when viewModel$ emits', () => {
+      vi.useFakeTimers();
+
       // Trigger change detection to ensure ViewChild is initialized
       fixture.detectChanges();
 
@@ -138,7 +140,9 @@ describe('SchedulePageComponent', () => {
         'markForCheck',
       );
 
-      // Reset the spy to clear any calls from the initial viewModel$ emission
+      // Drain the setTimeout scheduled by the initial viewModel$ emission, then
+      // reset the spy so only emissions triggered below are counted
+      vi.advanceTimersByTime(1);
       scheduleToolbarMarkForCheckSpy.mockClear();
 
       // Change a store value to trigger a new emission from viewModel$
@@ -146,7 +150,7 @@ describe('SchedulePageComponent', () => {
       store.refreshState();
 
       // Advance time to execute all setTimeout callbacks
-      tick(1);
+      vi.advanceTimersByTime(1);
 
       expect(scheduleToolbarMarkForCheckSpy).toHaveBeenCalledTimes(1);
 
@@ -154,10 +158,10 @@ describe('SchedulePageComponent', () => {
       store.overrideSelector(EventsSelectors.selectScheduleView, 'calendar');
       store.refreshState();
 
-      tick(1);
+      vi.advanceTimersByTime(1);
 
       expect(scheduleToolbarMarkForCheckSpy).toHaveBeenCalledTimes(2);
-    }));
+    });
 
     it('should handle gracefully when scheduleToolbar is undefined', async () => {
       // Don't trigger change detection to keep ViewChild undefined

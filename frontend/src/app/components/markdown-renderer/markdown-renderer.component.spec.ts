@@ -102,15 +102,15 @@ describe('MarkdownRendererComponent', () => {
   });
 
   describe('data changes', () => {
-    beforeAll(() => vi.useFakeTimers());
-    afterAll(() => vi.useRealTimers());
-
     beforeEach(() => {
+      vi.useFakeTimers();
       fixture.componentRef.setInput('data', mockMarkdownText);
       fixture.detectChanges();
       // Simulate lifecycle timing delay
       vi.advanceTimersByTime(1);
     });
+
+    afterEach(() => vi.useRealTimers());
 
     it('should set data input', () => {
       expect(component.data).toBe(mockMarkdownText);

@@ -512,11 +512,13 @@ describe('NavEffects', () => {
         store.overrideSelector(NavSelectors.selectCurrentPath, '/news');
         store.refreshState();
 
-        actions$.next(mockNavigatedAction('/article/view/a7b8c9d0e1f2a3b4'));
+        actions$.next(mockNavigatedAction('/article/view/a7b8c9d0e1f2a3b4c5d6e7f8'));
 
         effects.handleEntityRouteNavigationRequest$.subscribe(action => {
           expect(action).toEqual(
-            ArticlesActions.fetchArticleRequested({ articleId: 'a7b8c9d0e1f2a3b4' }),
+            ArticlesActions.fetchArticleRequested({
+              articleId: 'a7b8c9d0e1f2a3b4c5d6e7f8',
+            }),
           );
           done();
         });
@@ -527,11 +529,13 @@ describe('NavEffects', () => {
         store.overrideSelector(NavSelectors.selectCurrentPath, '/news');
         store.refreshState();
 
-        actions$.next(mockNavigatedAction('/article/edit/a7b8c9d0e1f2a3b4'));
+        actions$.next(mockNavigatedAction('/article/edit/a7b8c9d0e1f2a3b4c5d6e7f8'));
 
         effects.handleEntityRouteNavigationRequest$.subscribe(action => {
           expect(action).toEqual(
-            ArticlesActions.fetchArticleRequested({ articleId: 'a7b8c9d0e1f2a3b4' }),
+            ArticlesActions.fetchArticleRequested({
+              articleId: 'a7b8c9d0e1f2a3b4c5d6e7f8',
+            }),
           );
           done();
         });
@@ -555,11 +559,11 @@ describe('NavEffects', () => {
         store.overrideSelector(NavSelectors.selectCurrentPath, '/schedule');
         store.refreshState();
 
-        actions$.next(mockNavigatedAction('/event/edit/a7b8c9d0e1f2a3b4'));
+        actions$.next(mockNavigatedAction('/event/edit/a7b8c9d0e1f2a3b4c5d6e7f8'));
 
         effects.handleEntityRouteNavigationRequest$.subscribe(action => {
           expect(action).toEqual(
-            EventsActions.fetchEventRequested({ eventId: 'a7b8c9d0e1f2a3b4' }),
+            EventsActions.fetchEventRequested({ eventId: 'a7b8c9d0e1f2a3b4c5d6e7f8' }),
           );
           done();
         });
@@ -583,11 +587,11 @@ describe('NavEffects', () => {
         store.overrideSelector(NavSelectors.selectCurrentPath, '/members');
         store.refreshState();
 
-        actions$.next(mockNavigatedAction('/member/edit/a7b8c9d0e1f2a3b4'));
+        actions$.next(mockNavigatedAction('/member/edit/a7b8c9d0e1f2a3b4c5d6e7f8'));
 
         effects.handleEntityRouteNavigationRequest$.subscribe(action => {
           expect(action).toEqual(
-            MembersActions.fetchMemberRequested({ memberId: 'a7b8c9d0e1f2a3b4' }),
+            MembersActions.fetchMemberRequested({ memberId: 'a7b8c9d0e1f2a3b4c5d6e7f8' }),
           );
           done();
         });
@@ -611,11 +615,13 @@ describe('NavEffects', () => {
         store.overrideSelector(NavSelectors.selectCurrentPath, '/photo-gallery');
         store.refreshState();
 
-        actions$.next(mockNavigatedAction('/image/edit/a7b8c9d0e1f2a3b4'));
+        actions$.next(mockNavigatedAction('/image/edit/a7b8c9d0e1f2a3b4c5d6e7f8'));
 
         effects.handleEntityRouteNavigationRequest$.subscribe(action => {
           expect(action).toEqual(
-            ImagesActions.fetchMainImageRequested({ imageId: 'a7b8c9d0e1f2a3b4' }),
+            ImagesActions.fetchMainImageRequested({
+              imageId: 'a7b8c9d0e1f2a3b4c5d6e7f8',
+            }),
           );
           done();
         });
@@ -698,7 +704,7 @@ describe('NavEffects', () => {
       withDone(done => {
         store.overrideSelector(
           NavSelectors.selectCurrentPath,
-          '/article/edit/a7b8c9d0e1f2a3b4',
+          '/article/edit/a7b8c9d0e1f2a3b4c5d6e7f8',
         );
         store.refreshState();
 
@@ -706,7 +712,7 @@ describe('NavEffects', () => {
 
         effects.restoreFormDataOnNavigationAwayFromEntityRoute$.subscribe(action => {
           expect(action).toEqual(
-            ArticlesActions.formDataRestored({ articleId: 'a7b8c9d0e1f2a3b4' }),
+            ArticlesActions.formDataRestored({ articleId: 'a7b8c9d0e1f2a3b4c5d6e7f8' }),
           );
           done();
         });
@@ -716,7 +722,7 @@ describe('NavEffects', () => {
       withDone(done => {
         store.overrideSelector(
           NavSelectors.selectCurrentPath,
-          '/event/edit/a7b8c9d0e1f2a3b4',
+          '/event/edit/a7b8c9d0e1f2a3b4c5d6e7f8',
         );
         store.refreshState();
 
@@ -724,7 +730,7 @@ describe('NavEffects', () => {
 
         effects.restoreFormDataOnNavigationAwayFromEntityRoute$.subscribe(action => {
           expect(action).toEqual(
-            EventsActions.formDataRestored({ eventId: 'a7b8c9d0e1f2a3b4' }),
+            EventsActions.formDataRestored({ eventId: 'a7b8c9d0e1f2a3b4c5d6e7f8' }),
           );
           done();
         });
@@ -734,7 +740,7 @@ describe('NavEffects', () => {
       withDone(done => {
         store.overrideSelector(
           NavSelectors.selectCurrentPath,
-          '/member/edit/a7b8c9d0e1f2a3b4',
+          '/member/edit/a7b8c9d0e1f2a3b4c5d6e7f8',
         );
         store.refreshState();
 
@@ -742,7 +748,7 @@ describe('NavEffects', () => {
 
         effects.restoreFormDataOnNavigationAwayFromEntityRoute$.subscribe(action => {
           expect(action).toEqual(
-            MembersActions.formDataRestored({ memberId: 'a7b8c9d0e1f2a3b4' }),
+            MembersActions.formDataRestored({ memberId: 'a7b8c9d0e1f2a3b4c5d6e7f8' }),
           );
           done();
         });
@@ -752,7 +758,7 @@ describe('NavEffects', () => {
       withDone(done => {
         store.overrideSelector(
           NavSelectors.selectCurrentPath,
-          '/image/edit/a7b8c9d0e1f2a3b4',
+          '/image/edit/a7b8c9d0e1f2a3b4c5d6e7f8',
         );
         store.refreshState();
 
@@ -760,7 +766,7 @@ describe('NavEffects', () => {
 
         effects.restoreFormDataOnNavigationAwayFromEntityRoute$.subscribe(action => {
           expect(action).toEqual(
-            ImagesActions.imageFormDataRestored({ imageId: 'a7b8c9d0e1f2a3b4' }),
+            ImagesActions.imageFormDataRestored({ imageId: 'a7b8c9d0e1f2a3b4c5d6e7f8' }),
           );
           done();
         });

@@ -8,6 +8,8 @@ import { query } from '@app/utils';
 
 import { DocumentsPageComponent } from './documents-page.component';
 
+vi.mock('ng2-pdf-viewer');
+
 describe('DocumentsPageComponent', () => {
   let fixture: ComponentFixture<DocumentsPageComponent>;
   let component: DocumentsPageComponent;

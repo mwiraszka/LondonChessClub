@@ -27,14 +27,6 @@ describe('AppComponent', () => {
   let dispatchSpy: MockInstance;
   let setAttributeSpy: MockInstance;
 
-  beforeAll(() => {
-    window.ResizeObserver = vi.fn().mockImplementation(() => ({
-      observe: vi.fn(),
-      unobserve: vi.fn(),
-      disconnect: vi.fn(),
-    }));
-  });
-
   beforeEach(async () => {
     mockFragmentSubject = new Subject<string | null>();
 

@@ -1,6 +1,6 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { Component, Input } from '@angular/core';
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { Toast } from '@app/models';
 
@@ -59,7 +59,9 @@ describe('ToastService', () => {
       expect(service['activeToasts'][4].title).toBe('Toast 7');
     });
 
-    it('should auto-remove toast after duration', fakeAsync(() => {
+    it('should auto-remove toast after duration', () => {
+      vi.useFakeTimers();
+
       const toast: Toast = {
         title: 'Toast 1',
         message: 'Auto remove test',
@@ -69,11 +71,13 @@ describe('ToastService', () => {
       service.displayToast(toast);
       expect(service['activeToasts']).toContainEqual(toast);
 
-      tick(ToastService.TOAST_DURATION);
+      vi.advanceTimersByTime(ToastService.TOAST_DURATION);
 
       expect(service['activeToasts']).not.toContainEqual(toast);
       expect(service['overlayRef']).toBeNull();
-    }));
+
+      vi.useRealTimers();
+    });
 
     it('should position overlay based on screen width', () => {
       const toast: Toast = {
@@ -167,7 +171,9 @@ describe('ToastService', () => {
   });
 
   describe('multiple toasts interaction', () => {
-    it('should handle multiple toasts with different timers', fakeAsync(() => {
+    it('should handle multiple toasts with different timers', () => {
+      vi.useFakeTimers();
+
       // Mock matchMedia for this test - include addListener/removeListener for CDK compatibility
       const mockMatchMedia = vi.fn().mockReturnValue({
         matches: false,
@@ -183,18 +189,20 @@ describe('ToastService', () => {
       const toast2: Toast = { title: 'Toast 2', message: 'Message 2', type: 'info' };
 
       service.displayToast(toast1);
-      tick(1000);
+      vi.advanceTimersByTime(1000);
       service.displayToast(toast2);
 
       expect(service['activeToasts']).toHaveLength(2);
 
-      tick(ToastService.TOAST_DURATION - 1000);
+      vi.advanceTimersByTime(ToastService.TOAST_DURATION - 1000);
       expect(service['activeToasts']).toHaveLength(1);
       expect(service['activeToasts'][0].title).toBe('Toast 2');
 
-      tick(1000);
+      vi.advanceTimersByTime(1000);
       expect(service['activeToasts']).toHaveLength(0);
-    }));
+
+      vi.useRealTimers();
+    });
 
     it('should reuse overlay for multiple toasts', () => {
       const toast1: Toast = { title: 'Toast 1', message: 'Message 1', type: 'info' };

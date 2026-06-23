@@ -12,13 +12,6 @@
     "sourceMap": true,
     "strict": true,
     "target": "ES2022",
-    "types": ["jest", "node"]
-  },
-  "ts-node": {
-    "transpileOnly": true,
-    "files": true,
-    "compilerOptions": {
-      "rootDir": "."
-    }
+    "types": ["vitest/globals", "node"]
   }
 }

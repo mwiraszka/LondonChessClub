@@ -18,11 +18,7 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint 'src/**' 'api/**'",
-    "format": "prettier --write 'src/**/*.ts' 'api/**/*.ts'",
-    "backup:all": "npx tsx scripts/backup-mongodb.ts",
-    "backup:list": "npx tsx scripts/backup-mongodb.ts list",
-    "backup:restore": "npx tsx --env-file=.dev.env scripts/restore-mongodb.ts",
-    "backup:setup": "bash scripts/setup-backup-schedule.sh"
+    "format": "prettier --write 'src/**/*.ts' 'api/**/*.ts'"
   },
   "dependencies": {
     "@aws-sdk/client-cognito-identity-provider": "3.1060.0",

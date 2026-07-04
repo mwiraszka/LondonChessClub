@@ -1,5 +1,6 @@
 export { ArticlesApiService } from './api/articles-api.service';
 export { AuthApiService } from './api/auth-api.service';
+export { ClerkService } from './clerk.service';
 export { DIALOG_CONFIG_TOKEN, DialogService } from './dialog.service';
 export { EventsApiService } from './api/events-api.service';
 export { HealthApiService } from './api/health-api.service';

@@ -1,6 +1,7 @@
+import { applyPalette, derivePalette, provideEagamiUi } from '@eagami/ui';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
-import { Action, StoreModule } from '@ngrx/store';
+import { Action, Store, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import * as Sentry from '@sentry/angular';
 import { MarkdownModule } from 'ngx-markdown';
@@ -11,7 +12,13 @@ import {
   withJsonpSupport,
   withXhr,
 } from '@angular/common/http';
-import { ErrorHandler, enableProdMode, importProvidersFrom } from '@angular/core';
+import {
+  ErrorHandler,
+  enableProdMode,
+  importProvidersFrom,
+  inject,
+  provideAppInitializer,
+} from '@angular/core';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 
 import { AppRoutingModule } from '@app/app-routing.module';
@@ -20,9 +27,10 @@ import {
   CacheControlInterceptorProvider,
   LoggingInterceptorProvider,
 } from '@app/interceptors';
+import { ClerkService } from '@app/services';
 import { AppStoreModule } from '@app/store/app';
 import { ArticlesStoreModule } from '@app/store/articles';
-import { AuthStoreModule } from '@app/store/auth';
+import { AuthActions, AuthStoreModule } from '@app/store/auth';
 import { EventsStoreModule } from '@app/store/events';
 import { ImagesStoreModule } from '@app/store/images';
 import { MembersStoreModule } from '@app/store/members';
@@ -44,6 +52,13 @@ Sentry.init({
   enabled: !!environment.sentryDsn,
   tracesSampleRate: 0,
 });
+
+applyPalette(
+  derivePalette({
+    primary: { base: '#608ea9' },
+    secondary: { base: '#dd7027' },
+  }),
+);
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -79,6 +94,18 @@ bootstrapApplication(AppComponent, {
       StoreRouterConnectingModule.forRoot(),
     ),
     provideHttpClient(withXhr(), withInterceptorsFromDi(), withJsonpSupport()),
+    provideEagamiUi(),
+    provideAppInitializer(async () => {
+      const clerkService = inject(ClerkService);
+      const store = inject(Store);
+
+      await clerkService.load();
+
+      const user = clerkService.getCurrentUser();
+      if (user) {
+        store.dispatch(AuthActions.loginSucceeded({ user }));
+      }
+    }),
     AuthInterceptorProvider,
     CacheControlInterceptorProvider,
     LoggingInterceptorProvider,

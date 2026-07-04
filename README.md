@@ -1,4 +1,7 @@
-# ♟️ London Chess Club
+<h1>
+  <img src="frontend/src/assets/lcc-logo.png" alt="London Chess Club logo" height="32" valign="middle">
+  London Chess Club
+</h1>
 
 The website for the London Chess Club.
 

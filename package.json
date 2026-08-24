@@ -22,6 +22,6 @@
     "bootstrap": "pnpm install && pnpm -C frontend install && pnpm -C backend install"
   },
   "devDependencies": {
-    "concurrently": "10.0.3"
+    "concurrently": "10.0.5"
   }
 }

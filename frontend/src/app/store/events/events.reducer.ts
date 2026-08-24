@@ -205,14 +205,11 @@ export const eventsReducer = createReducer(
       ),
   ),
 
-  on(
-    EventsActions.paginationOptionsChanged,
-    (state, { options }): EventsState => ({
-      ...state,
-      options,
-      lastFilteredFetch: null,
-    }),
-  ),
+  on(EventsActions.paginationOptionsChanged, (state, { options }): EventsState => ({
+    ...state,
+    options,
+    lastFilteredFetch: null,
+  })),
 
   on(EventsActions.fetchEventSucceeded, (state, { event }): EventsState => {
     const previousFormData = state.entities[event.id]?.formData;
@@ -225,60 +222,51 @@ export const eventsReducer = createReducer(
     );
   }),
 
-  on(
-    EventsActions.addEventSucceeded,
-    (state, { event }): EventsState =>
-      eventsAdapter.upsertOne(
-        {
-          event,
-          formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
-        },
-        {
-          ...state,
-          callState: initialState.callState,
-          newEventFormData: INITIAL_EVENT_FORM_DATA,
-          lastFetch: null,
-        },
-      ),
+  on(EventsActions.addEventSucceeded, (state, { event }): EventsState =>
+    eventsAdapter.upsertOne(
+      {
+        event,
+        formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
+      },
+      {
+        ...state,
+        callState: initialState.callState,
+        newEventFormData: INITIAL_EVENT_FORM_DATA,
+        lastFetch: null,
+      },
+    ),
   ),
 
-  on(
-    EventsActions.updateEventSucceeded,
-    (state, { event }): EventsState =>
-      eventsAdapter.upsertOne(
-        {
-          event,
-          formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
-        },
-        {
-          ...state,
-          callState: initialState.callState,
-          lastFetch: null,
-        },
-      ),
-  ),
-
-  on(
-    EventsActions.deleteEventSucceeded,
-    (state, { eventId }): EventsState =>
-      eventsAdapter.removeOne(eventId, {
+  on(EventsActions.updateEventSucceeded, (state, { event }): EventsState =>
+    eventsAdapter.upsertOne(
+      {
+        event,
+        formData: pick(event, EVENT_FORM_DATA_PROPERTIES),
+      },
+      {
         ...state,
         callState: initialState.callState,
         lastFetch: null,
-      }),
+      },
+    ),
   ),
 
-  on(
-    EventsActions.requestTimedOut,
-    (state): EventsState => ({
+  on(EventsActions.deleteEventSucceeded, (state, { eventId }): EventsState =>
+    eventsAdapter.removeOne(eventId, {
       ...state,
-      callState: {
-        status: 'error',
-        loadStart: null,
-        error: { name: 'LCCError', message: 'Request timed out' },
-      },
+      callState: initialState.callState,
+      lastFetch: null,
     }),
   ),
+
+  on(EventsActions.requestTimedOut, (state): EventsState => ({
+    ...state,
+    callState: {
+      status: 'error',
+      loadStart: null,
+      error: { name: 'LCCError', message: 'Request timed out' },
+    },
+  })),
 
   on(EventsActions.formDataChanged, (state, { eventId, formData }): EventsState => {
     const originalEvent = eventId ? state.entities[eventId] : null;
@@ -324,11 +312,8 @@ export const eventsReducer = createReducer(
     );
   }),
 
-  on(
-    EventsActions.toggleScheduleView,
-    (state): EventsState => ({
-      ...state,
-      scheduleView: state.scheduleView === 'list' ? 'calendar' : 'list',
-    }),
-  ),
+  on(EventsActions.toggleScheduleView, (state): EventsState => ({
+    ...state,
+    scheduleView: state.scheduleView === 'list' ? 'calendar' : 'list',
+  })),
 );

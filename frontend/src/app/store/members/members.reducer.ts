@@ -83,17 +83,14 @@ export const membersReducer = createReducer(
     }),
   ),
 
-  on(
-    MembersActions.fetchFilteredMembersInBackgroundRequested,
-    (state): MembersState => ({
-      ...state,
-      callState: {
-        status: 'background-loading',
-        loadStart: new Date().toISOString(),
-        error: null,
-      },
-    }),
-  ),
+  on(MembersActions.fetchFilteredMembersInBackgroundRequested, (state): MembersState => ({
+    ...state,
+    callState: {
+      status: 'background-loading',
+      loadStart: new Date().toISOString(),
+      error: null,
+    },
+  })),
 
   on(
     MembersActions.fetchAllMembersFailed,
@@ -169,14 +166,11 @@ export const membersReducer = createReducer(
       ),
   ),
 
-  on(
-    MembersActions.paginationOptionsChanged,
-    (state, { options }): MembersState => ({
-      ...state,
-      options,
-      lastFilteredFetch: null,
-    }),
-  ),
+  on(MembersActions.paginationOptionsChanged, (state, { options }): MembersState => ({
+    ...state,
+    options,
+    lastFilteredFetch: null,
+  })),
 
   on(MembersActions.fetchMemberSucceeded, (state, { member }): MembersState => {
     const previousFormData = state.entities[member.id]?.formData;
@@ -189,68 +183,60 @@ export const membersReducer = createReducer(
     );
   }),
 
-  on(
-    MembersActions.addMemberSucceeded,
-    (state, { member }): MembersState =>
-      membersAdapter.upsertOne(
-        {
-          member,
-          formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
-        },
-        {
-          ...state,
-          callState: initialState.callState,
-          newMemberFormData: INITIAL_MEMBER_FORM_DATA,
-        },
-      ),
+  on(MembersActions.addMemberSucceeded, (state, { member }): MembersState =>
+    membersAdapter.upsertOne(
+      {
+        member,
+        formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
+      },
+      {
+        ...state,
+        callState: initialState.callState,
+        newMemberFormData: INITIAL_MEMBER_FORM_DATA,
+      },
+    ),
   ),
 
-  on(
-    MembersActions.updateMemberSucceeded,
-    (state, { member }): MembersState =>
-      membersAdapter.upsertOne(
-        {
-          member,
-          formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
-        },
-        {
-          ...state,
-          callState: initialState.callState,
-          lastFilteredFetch: null,
-        },
-      ),
-  ),
-
-  on(
-    MembersActions.updateMemberRatingsSucceeded,
-    (state, { members }): MembersState =>
-      membersAdapter.upsertMany(
-        members.map(member => {
-          const existingEntity = state.entities[member.id];
-          const hasUnsavedChanges =
-            existingEntity?.formData &&
-            !areSame(existingEntity.formData, pick(member, MEMBER_FORM_DATA_PROPERTIES));
-
-          return {
-            member,
-            // Preserve existing formData if there are unsaved changes
-            formData: hasUnsavedChanges
-              ? existingEntity.formData
-              : pick(member, MEMBER_FORM_DATA_PROPERTIES),
-          };
-        }),
-        { ...state, callState: initialState.callState, lastFilteredFetch: null },
-      ),
-  ),
-
-  on(
-    MembersActions.deleteMemberSucceeded,
-    (state, { memberId }): MembersState =>
-      membersAdapter.removeOne(memberId, {
+  on(MembersActions.updateMemberSucceeded, (state, { member }): MembersState =>
+    membersAdapter.upsertOne(
+      {
+        member,
+        formData: pick(member, MEMBER_FORM_DATA_PROPERTIES),
+      },
+      {
         ...state,
         callState: initialState.callState,
         lastFilteredFetch: null,
+      },
+    ),
+  ),
+
+  on(MembersActions.updateMemberRatingsSucceeded, (state, { members }): MembersState =>
+    membersAdapter.upsertMany(
+      members.map(member => {
+        const existingEntity = state.entities[member.id];
+        const hasUnsavedChanges =
+          existingEntity?.formData &&
+          !areSame(existingEntity.formData, pick(member, MEMBER_FORM_DATA_PROPERTIES));
+
+        return {
+          member,
+          // Preserve existing formData if there are unsaved changes
+          formData: hasUnsavedChanges
+            ? existingEntity.formData
+            : pick(member, MEMBER_FORM_DATA_PROPERTIES),
+        };
       }),
+      { ...state, callState: initialState.callState, lastFilteredFetch: null },
+    ),
+  ),
+
+  on(MembersActions.deleteMemberSucceeded, (state, { memberId }): MembersState =>
+    membersAdapter.removeOne(memberId, {
+      ...state,
+      callState: initialState.callState,
+      lastFilteredFetch: null,
+    }),
   ),
 
   on(MembersActions.formDataChanged, (state, { memberId, formData }): MembersState => {
@@ -297,15 +283,12 @@ export const membersReducer = createReducer(
     );
   }),
 
-  on(
-    MembersActions.requestTimedOut,
-    (state): MembersState => ({
-      ...state,
-      callState: {
-        status: 'error',
-        loadStart: null,
-        error: { name: 'LCCError', message: 'Request timed out' },
-      },
-    }),
-  ),
+  on(MembersActions.requestTimedOut, (state): MembersState => ({
+    ...state,
+    callState: {
+      status: 'error',
+      loadStart: null,
+      error: { name: 'LCCError', message: 'Request timed out' },
+    },
+  })),
 );

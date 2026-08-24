@@ -26,53 +26,35 @@ export const initialState: AppState = {
 export const appReducer = createReducer(
   initialState,
 
-  on(
-    AppActions.themeToggled,
-    (state): AppState => ({
-      ...state,
-      isDarkMode: !state.isDarkMode,
-    }),
-  ),
+  on(AppActions.themeToggled, (state): AppState => ({
+    ...state,
+    isDarkMode: !state.isDarkMode,
+  })),
 
-  on(
-    AppActions.safeModeToggled,
-    (state): AppState => ({
-      ...state,
-      isSafeMode: !state.isSafeMode,
-    }),
-  ),
+  on(AppActions.safeModeToggled, (state): AppState => ({
+    ...state,
+    isSafeMode: !state.isSafeMode,
+  })),
 
-  on(
-    AppActions.desktopViewToggled,
-    (state): AppState => ({
-      ...state,
-      isDesktopView: !state.isDesktopView,
-    }),
-  ),
+  on(AppActions.desktopViewToggled, (state): AppState => ({
+    ...state,
+    isDesktopView: !state.isDesktopView,
+  })),
 
-  on(
-    AppActions.wideViewToggled,
-    (state): AppState => ({
-      ...state,
-      isWideView: !state.isWideView,
-    }),
-  ),
+  on(AppActions.wideViewToggled, (state): AppState => ({
+    ...state,
+    isWideView: !state.isWideView,
+  })),
 
-  on(
-    AppActions.upcomingEventBannerCleared,
-    (state): AppState => ({
-      ...state,
-      showUpcomingEventBanner: false,
-      bannerLastCleared: moment().toISOString(),
-    }),
-  ),
+  on(AppActions.upcomingEventBannerCleared, (state): AppState => ({
+    ...state,
+    showUpcomingEventBanner: false,
+    bannerLastCleared: moment().toISOString(),
+  })),
 
-  on(
-    AppActions.upcomingEventBannerReinstated,
-    (state): AppState => ({
-      ...state,
-      showUpcomingEventBanner: true,
-      bannerLastCleared: null,
-    }),
-  ),
+  on(AppActions.upcomingEventBannerReinstated, (state): AppState => ({
+    ...state,
+    showUpcomingEventBanner: true,
+    bannerLastCleared: null,
+  })),
 );

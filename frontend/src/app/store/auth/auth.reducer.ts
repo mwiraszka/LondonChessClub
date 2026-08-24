@@ -66,38 +66,29 @@ export const authReducer = createReducer(
     }),
   ),
 
-  on(
-    AuthActions.sessionRefreshSucceeded,
-    (state): AuthState => ({
-      ...state,
-      callState: initialState.callState,
-      sessionStartTime: Date.now(),
-    }),
-  ),
+  on(AuthActions.sessionRefreshSucceeded, (state): AuthState => ({
+    ...state,
+    callState: initialState.callState,
+    sessionStartTime: Date.now(),
+  })),
 
   on(AuthActions.logoutSucceeded, (): AuthState => ({ ...initialState })),
 
-  on(
-    AuthActions.codeForPasswordChangeSucceeded,
-    (state): AuthState => ({
-      ...state,
-      callState: initialState.callState,
-      hasCode: true,
-    }),
-  ),
+  on(AuthActions.codeForPasswordChangeSucceeded, (state): AuthState => ({
+    ...state,
+    callState: initialState.callState,
+    hasCode: true,
+  })),
 
-  on(
-    AuthActions.codeForPasswordChangeFailed,
-    (state, { error }): AuthState => ({
-      ...state,
-      callState: {
-        status: 'error',
-        loadStart: null,
-        error,
-      },
-      hasCode: false,
-    }),
-  ),
+  on(AuthActions.codeForPasswordChangeFailed, (state, { error }): AuthState => ({
+    ...state,
+    callState: {
+      status: 'error',
+      loadStart: null,
+      error,
+    },
+    hasCode: false,
+  })),
 
   on(
     AuthActions.requestNewCodeSelected,
@@ -109,15 +100,12 @@ export const authReducer = createReducer(
     }),
   ),
 
-  on(
-    AuthActions.requestTimedOut,
-    (state): AuthState => ({
-      ...state,
-      callState: {
-        status: 'error',
-        loadStart: null,
-        error: { name: 'LCCError', message: 'Request timed out' },
-      },
-    }),
-  ),
+  on(AuthActions.requestTimedOut, (state): AuthState => ({
+    ...state,
+    callState: {
+      status: 'error',
+      loadStart: null,
+      error: { name: 'LCCError', message: 'Request timed out' },
+    },
+  })),
 );

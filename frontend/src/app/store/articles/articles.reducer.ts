@@ -173,14 +173,11 @@ export const articlesReducer = createReducer(
       ),
   ),
 
-  on(
-    ArticlesActions.paginationOptionsChanged,
-    (state, { options }): ArticlesState => ({
-      ...state,
-      options,
-      lastFilteredFetch: null,
-    }),
-  ),
+  on(ArticlesActions.paginationOptionsChanged, (state, { options }): ArticlesState => ({
+    ...state,
+    options,
+    lastFilteredFetch: null,
+  })),
 
   on(ArticlesActions.fetchArticleSucceeded, (state, { article }): ArticlesState => {
     const previousFormData = state.entities[article.id]?.formData;
@@ -196,22 +193,20 @@ export const articlesReducer = createReducer(
     );
   }),
 
-  on(
-    ArticlesActions.publishArticleSucceeded,
-    (state, { article }): ArticlesState =>
-      articlesAdapter.upsertOne(
-        {
-          article,
-          formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
-        },
-        {
-          ...state,
-          callState: initialState.callState,
-          newArticleFormData: INITIAL_ARTICLE_FORM_DATA,
-          lastHomePageFetch: null,
-          lastFilteredFetch: null,
-        },
-      ),
+  on(ArticlesActions.publishArticleSucceeded, (state, { article }): ArticlesState =>
+    articlesAdapter.upsertOne(
+      {
+        article,
+        formData: pick(article, ARTICLE_FORM_DATA_PROPERTIES),
+      },
+      {
+        ...state,
+        callState: initialState.callState,
+        newArticleFormData: INITIAL_ARTICLE_FORM_DATA,
+        lastHomePageFetch: null,
+        lastFilteredFetch: null,
+      },
+    ),
   ),
 
   on(ArticlesActions.updateArticleSucceeded, (state, { article }): ArticlesState => {
@@ -229,28 +224,23 @@ export const articlesReducer = createReducer(
     );
   }),
 
-  on(
-    ArticlesActions.deleteArticleSucceeded,
-    (state, { articleId }): ArticlesState =>
-      articlesAdapter.removeOne(articleId, {
-        ...state,
-        callState: initialState.callState,
-        lastHomePageFetch: null,
-        lastFilteredFetch: null,
-      }),
-  ),
-
-  on(
-    ArticlesActions.requestTimedOut,
-    (state): ArticlesState => ({
+  on(ArticlesActions.deleteArticleSucceeded, (state, { articleId }): ArticlesState =>
+    articlesAdapter.removeOne(articleId, {
       ...state,
-      callState: {
-        status: 'error',
-        loadStart: null,
-        error: { name: 'LCCError', message: 'Request timed out' },
-      },
+      callState: initialState.callState,
+      lastHomePageFetch: null,
+      lastFilteredFetch: null,
     }),
   ),
+
+  on(ArticlesActions.requestTimedOut, (state): ArticlesState => ({
+    ...state,
+    callState: {
+      status: 'error',
+      loadStart: null,
+      error: { name: 'LCCError', message: 'Request timed out' },
+    },
+  })),
 
   on(ArticlesActions.formDataChanged, (state, { articleId, formData }): ArticlesState => {
     const originalArticle = articleId ? state.entities[articleId] : null;

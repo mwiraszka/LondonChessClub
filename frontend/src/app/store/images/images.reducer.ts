@@ -118,29 +118,27 @@ export const imagesReducer = createReducer(
     }),
   ),
 
-  on(
-    ImagesActions.fetchAllImagesMetadataSucceeded,
-    (state, { images }): ImagesState =>
-      imagesAdapter.upsertMany(
-        images.map(image => {
-          const originalEntity = image ? state.entities[image.id] : null;
+  on(ImagesActions.fetchAllImagesMetadataSucceeded, (state, { images }): ImagesState =>
+    imagesAdapter.upsertMany(
+      images.map(image => {
+        const originalEntity = image ? state.entities[image.id] : null;
 
-          return {
-            image: {
-              ...image,
-              mainUrl: originalEntity?.image.mainUrl,
-              thumbnailUrl: originalEntity?.image.thumbnailUrl,
-              urlExpirationDate: originalEntity?.image.urlExpirationDate,
-            },
-            formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
-          };
-        }),
-        {
-          ...state,
-          callState: initialState.callState,
-          lastMetadataFetch: new Date(Date.now()).toISOString(),
-        },
-      ),
+        return {
+          image: {
+            ...image,
+            mainUrl: originalEntity?.image.mainUrl,
+            thumbnailUrl: originalEntity?.image.thumbnailUrl,
+            urlExpirationDate: originalEntity?.image.urlExpirationDate,
+          },
+          formData: pick(image, IMAGE_FORM_DATA_PROPERTIES),
+        };
+      }),
+      {
+        ...state,
+        callState: initialState.callState,
+        lastMetadataFetch: new Date(Date.now()).toISOString(),
+      },
+    ),
   ),
 
   on(
@@ -200,14 +198,11 @@ export const imagesReducer = createReducer(
       ),
   ),
 
-  on(
-    ImagesActions.paginationOptionsChanged,
-    (state, { options }): ImagesState => ({
-      ...state,
-      options,
-      lastFilteredThumbnailsFetch: null,
-    }),
-  ),
+  on(ImagesActions.paginationOptionsChanged, (state, { options }): ImagesState => ({
+    ...state,
+    options,
+    lastFilteredThumbnailsFetch: null,
+  })),
 
   on(ImagesActions.fetchMainImageSucceeded, (state, { image }): ImagesState => {
     const originalEntity = image ? state.entities[image.id] : null;
@@ -332,28 +327,24 @@ export const imagesReducer = createReducer(
     },
   ),
 
-  on(
-    ImagesActions.deleteImageSucceeded,
-    (state, { image }): ImagesState =>
-      imagesAdapter.removeOne(image.id, {
-        ...state,
-        callState: initialState.callState,
-        lastFilteredThumbnailsFetch: null,
-        lastAlbumCoversFetch: null,
-        lastMetadataFetch: null,
-      }),
+  on(ImagesActions.deleteImageSucceeded, (state, { image }): ImagesState =>
+    imagesAdapter.removeOne(image.id, {
+      ...state,
+      callState: initialState.callState,
+      lastFilteredThumbnailsFetch: null,
+      lastAlbumCoversFetch: null,
+      lastMetadataFetch: null,
+    }),
   ),
 
-  on(
-    ImagesActions.deleteAlbumSucceeded,
-    (state, { imageIds }): ImagesState =>
-      imagesAdapter.removeMany(imageIds, {
-        ...state,
-        callState: initialState.callState,
-        lastFilteredThumbnailsFetch: null,
-        lastAlbumCoversFetch: null,
-        lastMetadataFetch: null,
-      }),
+  on(ImagesActions.deleteAlbumSucceeded, (state, { imageIds }): ImagesState =>
+    imagesAdapter.removeMany(imageIds, {
+      ...state,
+      callState: initialState.callState,
+      lastFilteredThumbnailsFetch: null,
+      lastAlbumCoversFetch: null,
+      lastMetadataFetch: null,
+    }),
   ),
 
   on(ImagesActions.formDataChanged, (state, { multipleFormData }): ImagesState => {
@@ -472,15 +463,12 @@ export const imagesReducer = createReducer(
     };
   }),
 
-  on(
-    ImagesActions.requestTimedOut,
-    (state): ImagesState => ({
-      ...state,
-      callState: {
-        status: 'error',
-        loadStart: null,
-        error: { name: 'LCCError', message: 'Request timed out' },
-      },
-    }),
-  ),
+  on(ImagesActions.requestTimedOut, (state): ImagesState => ({
+    ...state,
+    callState: {
+      status: 'error',
+      loadStart: null,
+      error: { name: 'LCCError', message: 'Request timed out' },
+    },
+  })),
 );

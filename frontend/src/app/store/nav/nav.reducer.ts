@@ -13,14 +13,11 @@ export const initialState: NavState = {
 export const navReducer = createReducer(
   initialState,
 
-  on(
-    navActions.appendPathToHistory,
-    (state, { path }): NavState => ({
-      pathHistory:
-        state.pathHistory.length > 0 &&
-        state.pathHistory[state.pathHistory.length - 1] === path
-          ? state.pathHistory
-          : [...state.pathHistory, path].slice(-5),
-    }),
-  ),
+  on(navActions.appendPathToHistory, (state, { path }): NavState => ({
+    pathHistory:
+      state.pathHistory.length > 0 &&
+      state.pathHistory[state.pathHistory.length - 1] === path
+        ? state.pathHistory
+        : [...state.pathHistory, path].slice(-5),
+  })),
 );

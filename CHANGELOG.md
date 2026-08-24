@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Consolidate the website and API into a single repository
+- Update packages and resolve dependency security vulnerabilities
 
 ## [v5.13.7] - 2026-06-18
 

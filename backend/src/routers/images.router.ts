@@ -10,7 +10,7 @@ import {
   getThumbnailImages,
   updateImages,
 } from '../controllers/images.controller';
-import { auth } from '../middlewares/auth.index';
+import { adminAuth } from '../middlewares/auth.index';
 import { imageUpload } from '../middlewares/image-upload.middleware';
 
 export const imagesRouter = Router()
@@ -18,7 +18,7 @@ export const imagesRouter = Router()
   .get('/thumbnails', getThumbnailImages)
   .get('/batch-thumbnails', getBatchThumbnailImages)
   .get('/:id', getMainImage)
-  .put('/', auth, imageUpload, updateImages)
-  .post('/', auth, imageUpload, addImages)
-  .delete('/:id', auth, deleteImage)
-  .delete('/album/:album', auth, deleteAlbum);
+  .put('/', adminAuth, imageUpload, updateImages)
+  .post('/', adminAuth, imageUpload, addImages)
+  .delete('/:id', adminAuth, deleteImage)
+  .delete('/album/:album', adminAuth, deleteAlbum);

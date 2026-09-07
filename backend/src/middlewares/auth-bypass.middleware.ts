@@ -10,11 +10,8 @@ export const bypassAuthenticate = (
   res: Response<ApiErrorResponse>,
   next: NextFunction,
 ) => {
-  // Set a mock user for offline development
-  req.user = {
-    id: 'offline-dev-user',
-    scope: 'aws.cognito.signin.user.admin',
-  };
+  // Set a mock admin user for offline development
+  req.user = { id: 'offline-dev-user', isAdmin: true };
 
   console.log('⚠️  AUTH BYPASS: Using mock authentication (offline mode)');
   next();

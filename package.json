@@ -10,7 +10,8 @@
     "url": "https://github.com/mwiraszka/london-chess-club.git"
   },
   "scripts": {
-    "dev": "concurrently -n frontend,backend -c cyan,magenta \"pnpm -C frontend run start\" \"pnpm -C backend run start\"",
+    "dev": "concurrently --kill-others -n tunnel,backend,frontend -c yellow,magenta,cyan \"pnpm -C backend run tunnel\" \"pnpm -C backend run start\" \"pnpm -C frontend run start\"",
+    "dev:tunnel": "pnpm -C backend run tunnel",
     "dev:fe": "pnpm -C frontend run start",
     "dev:be": "pnpm -C backend run start",
     "build:fe": "pnpm -C frontend run build:prod",

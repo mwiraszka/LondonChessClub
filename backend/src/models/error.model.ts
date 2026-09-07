@@ -14,19 +14,3 @@ export function isLccError(value: unknown): value is LccError {
     (value as LccError).name === 'LCCError'
   );
 }
-
-export interface CognitoError extends Error {
-  message: string;
-  $metadata: {
-    httpStatusCode: number | undefined;
-  };
-}
-
-export function isCognitoError(value: unknown): value is CognitoError {
-  return (
-    isDefined(value) &&
-    typeof value === 'object' &&
-    ['name', 'message', '$metadata'].every(property => property in value) &&
-    (value as LccError).name !== 'LCCError'
-  );
-}

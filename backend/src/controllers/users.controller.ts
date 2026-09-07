@@ -1,221 +1,374 @@
 import { Request, Response } from 'express';
 
+import { clerkClient } from '../middlewares/auth.middleware';
 import { ApiResponse } from '../models/api-response.model';
-import { LccError, isLccError } from '../models/error.model';
-import { ClientUser, User, UserModel } from '../models/user.model';
-import { CognitoService } from '../services/cognito.service';
+import { AvatarCropState, User, UserModel } from '../models/user.model';
+import {
+  avatarPublicUrlPrefix,
+  deleteAvatar,
+  uploadAvatar,
+} from '../services/avatar-storage.service';
 
-const cognitoService = new CognitoService();
+const MAX_AVATAR_SIZE = 5 * 1024 * 1024; // 5 MB
+const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 
-const { NODE_ENVIRONMENT } = process.env;
-const SESSION_DURATION_MS = 3 * 3600 * 1000;
+type UploadedFiles = Record<string, Express.Multer.File[]> | undefined;
 
-export async function login(
-  req: Request,
-  res: Response<ApiResponse<ClientUser>>,
-): Promise<void> {
+function parseCropState(raw: unknown): AvatarCropState | null {
+  if (typeof raw !== 'string') {
+    return null;
+  }
   try {
-    const { email, password } = req.body;
-
-    let user: User;
-    let accessToken: string;
-
-    if (NODE_ENVIRONMENT === 'dev-offline') {
-      const existingUser = await UserModel.findOne({ email });
-
-      if (existingUser) {
-        user = existingUser.toObject();
-      } else {
-        user = {
-          id: 'dev-user-' + email,
-          firstName: 'Dev',
-          lastName: 'User',
-          email: email,
-          isAdmin: true,
-          refreshToken: 'dev-refresh-token',
-        };
-        await UserModel.create(user);
-      }
-      accessToken = 'dev-mock-token-' + Date.now();
-    } else {
-      const authenticationResult = await cognitoService.initiateAuthWithEmailAndPassword(
-        email,
-        password,
-      );
-      if (isLccError(authenticationResult)) {
-        throw authenticationResult;
-      }
-
-      const userAttributes = await cognitoService.getUser(
-        authenticationResult.AccessToken,
-      );
-      if (isLccError(userAttributes)) {
-        throw userAttributes;
-      }
-
-      user = {
-        id: userAttributes.find(attr => attr.Name === 'sub')!.Value!,
-        firstName: userAttributes.find(attr => attr.Name === 'given_name')!.Value!,
-        lastName: userAttributes.find(attr => attr.Name === 'family_name')!.Value!,
-        email: userAttributes.find(attr => attr.Name === 'email')!.Value!,
-        isAdmin: true,
-        refreshToken: authenticationResult.RefreshToken!,
-      };
-      accessToken = authenticationResult.AccessToken!;
-      await UserModel.updateOne({ id: user.id }, { $set: user }, { upsert: true });
+    const parsed = JSON.parse(raw) as Partial<AvatarCropState> | null;
+    if (
+      parsed &&
+      typeof parsed.zoom === 'number' &&
+      typeof parsed.offsetX === 'number' &&
+      typeof parsed.offsetY === 'number'
+    ) {
+      return { zoom: parsed.zoom, offsetX: parsed.offsetX, offsetY: parsed.offsetY };
     }
-
-    const { refreshToken, ...clientUser } = user;
-
-    res
-      .cookie('accessToken', accessToken, {
-        maxAge: SESSION_DURATION_MS,
-        httpOnly: true,
-        sameSite: 'strict',
-        secure: NODE_ENVIRONMENT === 'prod',
-      })
-      .status(200)
-      .json({ data: clientUser });
-  } catch (error) {
-    res
-      .status((error as LccError).status ?? 500)
-      .json({ message: (error as LccError).message });
+  } catch {
+    // fall through to null
   }
+  return null;
 }
 
-export function logout(_req: Request, res: Response<ApiResponse<'success'>>): void {
-  try {
-    res.clearCookie('accessToken').status(200).json({ data: 'success' });
-  } catch (error) {
-    res.status(500).json({ message: `Unknown logout error: ${error}` });
-  }
+function clerkErrorMessage(error: unknown, fallback: string): string {
+  const clerkError = error as { errors?: Array<{ longMessage?: string }> };
+  const message = clerkError.errors?.[0]?.longMessage ?? fallback;
+  return /[.!?]$/.test(message) ? message : `${message}.`;
 }
 
-export async function refreshSession(
+export async function getMe(
   req: Request,
-  res: Response<ApiResponse<'success'>>,
+  res: Response<ApiResponse<User>>,
 ): Promise<void> {
   try {
-    const { userId } = req.body;
-    const findResult = await UserModel.findOne({ id: userId });
-
-    if (!findResult?.refreshToken) {
-      res.status(403).json({ message: 'Session expired.' });
+    const user = (await UserModel.findOne({ id: req.user.id }))?.toObject();
+    if (!user) {
+      res.status(404).json({ message: 'User not found.' });
       return;
     }
-
-    let accessToken: string;
-
-    if (NODE_ENVIRONMENT === 'dev-offline') {
-      accessToken = 'dev-mock-token-' + Date.now();
-    } else {
-      const authenticationResult = await cognitoService.initiateAuthWithRefreshToken(
-        findResult.refreshToken,
-      );
-      if (isLccError(authenticationResult)) {
-        throw authenticationResult;
-      }
-      accessToken = authenticationResult.AccessToken!;
-    }
-
-    res
-      .cookie('accessToken', accessToken, {
-        maxAge: SESSION_DURATION_MS,
-        httpOnly: true,
-        sameSite: 'strict',
-        secure: NODE_ENVIRONMENT === 'prod',
-      })
-      .status(200)
-      .json({ data: 'success' });
+    res.status(200).json({ data: user });
   } catch (error) {
-    res
-      .status((error as LccError).status ?? 500)
-      .json({ message: (error as LccError).message });
+    res.status(500).json({ message: `Unable to fetch user: ${error}` });
   }
 }
 
-export async function sendCodeForPasswordChange(
+export async function updateMe(
   req: Request,
-  res: Response<ApiResponse<'success'>>,
+  res: Response<ApiResponse<User>>,
 ): Promise<void> {
   try {
-    const email = req.body.email;
+    const { firstName, lastName, avatarCropState, clerkImageUrl } = req.body as {
+      firstName?: unknown;
+      lastName?: unknown;
+      avatarCropState?: unknown;
+      clerkImageUrl?: unknown;
+    };
 
-    if (typeof email !== 'string') {
-      res.status(400).json({ message: 'Invalid email.' });
+    const updates: Partial<User> = {};
+    if (firstName !== undefined) {
+      if (typeof firstName !== 'string' || !firstName.trim()) {
+        res.status(400).json({ message: 'First name must be a non-empty string.' });
+        return;
+      }
+      updates.firstName = firstName;
+    }
+    if (lastName !== undefined) {
+      if (typeof lastName !== 'string') {
+        res.status(400).json({ message: 'Last name must be a string.' });
+        return;
+      }
+      updates.lastName = lastName;
+    }
+    if (avatarCropState !== undefined) {
+      updates.avatarCropState =
+        avatarCropState === null ? null : parseCropState(JSON.stringify(avatarCropState));
+    }
+    if (clerkImageUrl !== undefined) {
+      if (clerkImageUrl !== null && typeof clerkImageUrl !== 'string') {
+        res.status(400).json({ message: 'Clerk image URL must be a string or null.' });
+        return;
+      }
+      updates.clerkImageUrl = clerkImageUrl;
     }
 
-    const response = await cognitoService.adminResetUserPassword(email);
-    if (isLccError(response)) {
-      throw response;
-    }
+    const user = (
+      await UserModel.findOneAndUpdate(
+        { id: req.user.id },
+        { $set: updates },
+        { new: true },
+      )
+    )?.toObject();
 
-    res.status(200).json({ data: response });
+    if (!user) {
+      res.status(404).json({ message: 'User not found.' });
+      return;
+    }
+    res.status(200).json({ data: user });
   } catch (error) {
-    res
-      .status((error as LccError).status ?? 500)
-      .json({ message: (error as LccError).message });
+    res.status(500).json({ message: `Unable to update user: ${error}` });
   }
 }
 
 export async function changePassword(
   req: Request,
-  res: Response<ApiResponse<ClientUser>>,
+  res: Response<ApiResponse<'success'>>,
 ): Promise<void> {
   try {
-    const { email, password, code } = req.body;
-
-    if (typeof email !== 'string') {
-      res.status(400).json({ message: 'Invalid email.' });
-    } else if (typeof password !== 'string') {
-      res.status(400).json({ message: 'Invalid password.' });
-    } else if (typeof code !== 'string') {
-      res.status(400).json({ message: 'Invalid code.' });
-    }
-
-    const response = await cognitoService.confirmForgotPassword(email, password, code);
-    if (isLccError(response)) {
-      throw response;
-    }
-
-    const authenticationResult = await cognitoService.initiateAuthWithEmailAndPassword(
-      email,
-      password,
-    );
-    if (isLccError(authenticationResult)) {
-      throw authenticationResult;
-    }
-
-    const userAttributes = await cognitoService.getUser(authenticationResult.AccessToken);
-    if (isLccError(userAttributes)) {
-      throw userAttributes;
-    }
-
-    const user: User = {
-      id: userAttributes.find(attr => attr.Name === 'sub')!.Value!,
-      firstName: userAttributes.find(attr => attr.Name === 'given_name')!.Value!,
-      lastName: userAttributes.find(attr => attr.Name === 'family_name')!.Value!,
-      email: userAttributes.find(attr => attr.Name === 'email')!.Value!,
-      isAdmin: true,
-      refreshToken: authenticationResult.RefreshToken!,
+    const { currentPassword, newPassword } = req.body as {
+      currentPassword?: unknown;
+      newPassword?: unknown;
     };
 
-    await UserModel.updateOne({ id: user.id }, { $set: user }, { upsert: true });
+    if (typeof newPassword !== 'string' || newPassword.length < 8) {
+      res
+        .status(400)
+        .json({ message: 'New password must be at least 8 characters long.' });
+      return;
+    }
 
-    const { refreshToken, ...clientUser } = user;
+    const clerkUser = await clerkClient.users.getUser(req.user.id);
 
-    res
-      .cookie('accessToken', authenticationResult.AccessToken, {
-        maxAge: SESSION_DURATION_MS,
-        httpOnly: true,
-        sameSite: 'strict',
-        secure: NODE_ENVIRONMENT === 'prod',
-      })
-      .status(200)
-      .json({ data: clientUser });
+    // Verifying the current password server-side replaces Clerk's session
+    // reverification gate, which the frontend SDK only supports through React
+    if (clerkUser.passwordEnabled) {
+      if (typeof currentPassword !== 'string' || !currentPassword) {
+        res.status(400).json({ message: 'Current password is required.' });
+        return;
+      }
+      try {
+        await clerkClient.users.verifyPassword({
+          userId: req.user.id,
+          password: currentPassword,
+        });
+      } catch {
+        res.status(400).json({ message: 'Current password is incorrect.' });
+        return;
+      }
+    }
+
+    try {
+      await clerkClient.users.updateUser(req.user.id, { password: newPassword });
+    } catch (error) {
+      res
+        .status(400)
+        .json({ message: clerkErrorMessage(error, 'Could not update password') });
+      return;
+    }
+
+    res.status(200).json({ data: 'success' });
   } catch (error) {
+    res.status(500).json({ message: `Unable to change password: ${error}` });
+  }
+}
+
+export async function uploadUserAvatar(
+  req: Request,
+  res: Response<ApiResponse<User>>,
+): Promise<void> {
+  try {
+    const files = req.files as UploadedFiles;
+    const file = files?.['file']?.[0];
+    const cropped = files?.['cropped']?.[0];
+
+    if (!file) {
+      res.status(400).json({ message: 'File is required.' });
+      return;
+    }
+    if (!ALLOWED_IMAGE_TYPES.includes(file.mimetype)) {
+      res.status(400).json({ message: 'File must be a JPEG, PNG, or WebP image.' });
+      return;
+    }
+    if (file.size > MAX_AVATAR_SIZE) {
+      res.status(400).json({ message: 'File must be under 5 MB.' });
+      return;
+    }
+    if (!cropped) {
+      res.status(400).json({ message: 'Cropped file is required.' });
+      return;
+    }
+
+    const cropState = parseCropState(req.body['cropState']);
+
+    const [originalUrl, croppedUrl] = await Promise.all([
+      uploadAvatar(req.user.id, file.buffer, file.mimetype, 'original'),
+      uploadAvatar(req.user.id, cropped.buffer, cropped.mimetype, 'cropped'),
+    ]);
+
+    const clerkUser = await clerkClient.users.updateUserProfileImage(req.user.id, {
+      file: new Blob([new Uint8Array(cropped.buffer)], { type: cropped.mimetype }),
+    });
+
+    const user = (
+      await UserModel.findOneAndUpdate(
+        { id: req.user.id },
+        {
+          $set: {
+            avatarUrl: croppedUrl,
+            avatarOriginalUrl: originalUrl,
+            avatarCropState: cropState,
+            avatarManagedByApp: true,
+            clerkImageUrl: clerkUser.imageUrl,
+          },
+        },
+        { new: true },
+      )
+    )?.toObject();
+
+    if (!user) {
+      res.status(404).json({ message: 'User not found.' });
+      return;
+    }
+    res.status(200).json({ data: user });
+  } catch (error) {
+    res.status(500).json({ message: `Unable to upload avatar: ${error}` });
+  }
+}
+
+export async function updateCroppedAvatar(
+  req: Request,
+  res: Response<ApiResponse<User>>,
+): Promise<void> {
+  try {
+    const files = req.files as UploadedFiles;
+    const cropped = files?.['cropped']?.[0];
+    if (!cropped) {
+      res.status(400).json({ message: 'Cropped file is required.' });
+      return;
+    }
+
+    const cropState = parseCropState(req.body['cropState']);
+
+    const croppedUrl = await uploadAvatar(
+      req.user.id,
+      cropped.buffer,
+      cropped.mimetype,
+      'cropped',
+    );
+
+    const clerkUser = await clerkClient.users.updateUserProfileImage(req.user.id, {
+      file: new Blob([new Uint8Array(cropped.buffer)], { type: cropped.mimetype }),
+    });
+
+    const user = (
+      await UserModel.findOneAndUpdate(
+        { id: req.user.id },
+        {
+          $set: {
+            avatarUrl: croppedUrl,
+            avatarCropState: cropState,
+            clerkImageUrl: clerkUser.imageUrl,
+          },
+        },
+        { new: true },
+      )
+    )?.toObject();
+
+    if (!user) {
+      res.status(404).json({ message: 'User not found.' });
+      return;
+    }
+    res.status(200).json({ data: user });
+  } catch (error) {
+    res.status(500).json({ message: `Unable to update avatar: ${error}` });
+  }
+}
+
+export async function deleteUserAvatar(
+  req: Request,
+  res: Response<ApiResponse<User>>,
+): Promise<void> {
+  try {
+    await deleteAvatar(req.user.id);
+
+    await clerkClient.users.deleteUserProfileImage(req.user.id);
+    const clerkUser = await clerkClient.users.getUser(req.user.id);
+    // Without a photo, Clerk reports a placeholder imageUrl; store null so
+    // clients fall back to initials
+    const clerkImageUrl = clerkUser.hasImage ? clerkUser.imageUrl : null;
+
+    const user = (
+      await UserModel.findOneAndUpdate(
+        { id: req.user.id },
+        {
+          $set: {
+            avatarUrl: null,
+            avatarOriginalUrl: null,
+            avatarCropState: null,
+            avatarManagedByApp: false,
+            clerkImageUrl,
+          },
+        },
+        { new: true },
+      )
+    )?.toObject();
+
+    if (!user) {
+      res.status(404).json({ message: 'User not found.' });
+      return;
+    }
+    res.status(200).json({ data: user });
+  } catch (error) {
+    res.status(500).json({ message: `Unable to delete avatar: ${error}` });
+  }
+}
+
+export async function deleteMe(
+  req: Request,
+  res: Response<ApiResponse<'success'>>,
+): Promise<void> {
+  try {
+    // Delete from Clerk first: once it succeeds the user's tokens are invalid,
+    // so the auth middleware can't lazy-recreate the document mid-deletion. If
+    // a later step fails, the user.deleted webhook reconciles the leftovers.
+    await clerkClient.users.deleteUser(req.user.id);
+
+    try {
+      await deleteAvatar(req.user.id);
+    } catch {
+      // avatar may not exist in R2
+    }
+
+    await UserModel.deleteOne({ id: req.user.id });
+
+    res.status(200).json({ data: 'success' });
+  } catch (error) {
+    res.status(500).json({ message: `Unable to delete user: ${error}` });
+  }
+}
+
+export async function getUserAvatar(req: Request, res: Response): Promise<void> {
+  try {
+    const user = await UserModel.findOne({ id: req.params['id'] }).select(
+      'avatarOriginalUrl',
+    );
+    if (!user?.avatarOriginalUrl) {
+      res.status(404).json({ message: 'No avatar found.' });
+      return;
+    }
+
+    // Only ever proxy objects from our own R2 bucket; never fetch an arbitrary
+    // stored URL, so a poisoned field can't turn this into an SSRF vector
+    if (!user.avatarOriginalUrl.startsWith(`${avatarPublicUrlPrefix()}/`)) {
+      res.status(404).json({ message: 'No avatar found.' });
+      return;
+    }
+
+    const r2Response = await fetch(user.avatarOriginalUrl);
+    if (!r2Response.ok) {
+      res.status(502).json({ message: 'Failed to fetch avatar.' });
+      return;
+    }
+
     res
-      .status((error as LccError).status ?? 500)
-      .json({ message: (error as LccError).message });
+      .status(200)
+      .set('Content-Type', r2Response.headers.get('content-type') || 'image/jpeg')
+      .set('Cache-Control', 'public, max-age=3600')
+      .send(Buffer.from(await r2Response.arrayBuffer()));
+  } catch (error) {
+    res.status(500).json({ message: `Unable to fetch avatar: ${error}` });
   }
 }

@@ -3,7 +3,7 @@
 
 # Environment variables
 .prod.env
-.dev.env
+.env
 .dev-offline.env
 ecosystem.config.cjs
 

@@ -2,15 +2,23 @@ import { Router } from 'express';
 
 import {
   changePassword,
-  login,
-  logout,
-  refreshSession,
-  sendCodeForPasswordChange,
+  deleteMe,
+  deleteUserAvatar,
+  getMe,
+  getUserAvatar,
+  updateCroppedAvatar,
+  updateMe,
+  uploadUserAvatar,
 } from '../controllers/users.controller';
+import { auth } from '../middlewares/auth.index';
+import { avatarUpload } from '../middlewares/avatar-upload.middleware';
 
 export const usersRouter = Router()
-  .post('/login', login)
-  .post('/logout', logout)
-  .post('/refresh-session', refreshSession)
-  .post('/send-code', sendCodeForPasswordChange)
-  .post('/change-password', changePassword);
+  .get('/me', auth, getMe)
+  .patch('/me', auth, updateMe)
+  .post('/me/password', auth, changePassword)
+  .post('/me/avatar', auth, avatarUpload, uploadUserAvatar)
+  .patch('/me/avatar', auth, avatarUpload, updateCroppedAvatar)
+  .delete('/me/avatar', auth, deleteUserAvatar)
+  .delete('/me', auth, deleteMe)
+  .get('/:id/avatar', getUserAvatar);

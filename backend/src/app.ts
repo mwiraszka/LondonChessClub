@@ -1,5 +1,4 @@
 import * as Sentry from '@sentry/node';
-import cookieParser from 'cookie-parser';
 import cors, { CorsOptions } from 'cors';
 import express, { NextFunction, Request, Response, Router } from 'express';
 
@@ -11,11 +10,13 @@ import { eventsRouter } from './routers/events.router';
 import { imagesRouter } from './routers/images.router';
 import { adminMembersRouter, publicMembersRouter } from './routers/members.router';
 import { usersRouter } from './routers/users.router';
+import { webhooksRouter } from './routers/webhooks.router';
 import { connectToDatabase } from './services/mongo-db.service';
 
 Sentry.init({
   dsn: process.env['SENTRY_DSN'],
-  environment: process.env['NODE_ENVIRONMENT'] ?? 'development',
+  // Vercel injects VERCEL_ENV (production/preview); local runs report development
+  environment: process.env['VERCEL_ENV'] ?? 'development',
   enabled: !!process.env['SENTRY_DSN'],
   tracesSampleRate: 0,
 });
@@ -31,8 +32,7 @@ const router = Router()
   .use('/v1/users', usersRouter);
 
 const corsOptions: CorsOptions = {
-  credentials: true,
-  methods: ['GET', 'HEAD', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Cache-Control', 'Pragma', 'Expires'],
   /**
    * Provides a status code to use for successful OPTIONS requests,
@@ -73,8 +73,9 @@ export const app = express();
 
 app
   .use(cors(corsOptions))
-  .use(cookieParser())
   .use(logger)
+  // Svix signature verification needs the raw request body, so this mounts before the JSON parser
+  .use('/v1/webhooks', ensureDatabaseConnection, webhooksRouter)
   .use(express.json({ limit: '50MB' }))
   .use(express.urlencoded({ extended: true, limit: '50MB' }))
   .use(ensureDatabaseConnection)

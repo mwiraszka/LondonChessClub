@@ -7,11 +7,11 @@ import {
   getEvents,
   updateEvent,
 } from '../controllers/events.controller';
-import { auth } from '../middlewares/auth.index';
+import { adminAuth } from '../middlewares/auth.index';
 
 export const eventsRouter = Router()
   .get('/', getEvents)
   .get('/:id', getEvent)
-  .post('/', auth, addEvent)
-  .put('/:id', auth, updateEvent)
-  .delete('/:id', auth, deleteEvent);
+  .post('/', adminAuth, addEvent)
+  .put('/:id', adminAuth, updateEvent)
+  .delete('/:id', adminAuth, deleteEvent);

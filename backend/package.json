@@ -10,9 +10,10 @@
   "private": true,
   "main": "src/server.ts",
   "scripts": {
-    "start": "npx tsx watch --env-file=.dev.env src/server.ts",
+    "start": "npx tsx watch --env-file=.env src/server.ts",
     "start:dev-offline": "npx tsx watch --env-file=.dev-offline.env src/server.ts",
     "start:prod": "npx tsx src/server.ts",
+    "tunnel": "ngrok http 3000 --log stdout --log-level warn",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -21,26 +22,23 @@
     "format": "prettier --write 'src/**/*.ts' 'api/**/*.ts'"
   },
   "dependencies": {
-    "@aws-sdk/client-cognito-identity-provider": "3.1117.0",
     "@aws-sdk/client-s3": "3.1117.0",
     "@aws-sdk/s3-request-presigner": "3.1117.0",
+    "@clerk/backend": "3.17.1",
     "@sentry/node": "10.71.0",
-    "cookie-parser": "1.4.7",
     "cors": "2.8.6",
     "express": "5.2.1",
-    "jsonwebtoken": "9.0.3",
     "mongodb": "7.5.0",
     "mongoose": "9.9.3",
     "multer": "2.2.0",
-    "sharp": "0.35.3"
+    "sharp": "0.35.3",
+    "svix": "2.3.0"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "@trivago/prettier-plugin-sort-imports": "6.0.2",
-    "@types/cookie-parser": "1.4.10",
     "@types/cors": "2.8.19",
     "@types/express": "5.0.6",
-    "@types/jsonwebtoken": "9.0.10",
     "@types/multer": "2.2.0",
     "@types/node": "26.3.0",
     "@typescript-eslint/eslint-plugin": "8.68.0",

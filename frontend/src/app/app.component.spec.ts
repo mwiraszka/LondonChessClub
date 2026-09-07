@@ -11,6 +11,7 @@ import { UpcomingEventBannerComponent } from '@app/components/upcoming-event-ban
 import { MOCK_EVENTS } from '@app/mocks/events.mock';
 import { RoutingService, TouchEventsService } from '@app/services';
 import { AppActions, AppSelectors } from '@app/store/app';
+import { AuthSelectors } from '@app/store/auth';
 import { EventsSelectors } from '@app/store/events';
 import { query } from '@app/utils';
 
@@ -61,6 +62,7 @@ describe('AppComponent', () => {
     dispatchSpy = vi.spyOn(store, 'dispatch');
     setAttributeSpy = vi.spyOn(document.body, 'setAttribute');
 
+    store.overrideSelector(AuthSelectors.selectUser, null);
     store.overrideSelector(AppSelectors.selectBannerLastCleared, null);
     store.overrideSelector(AppSelectors.selectIsDarkMode, false);
     store.overrideSelector(AppSelectors.selectIsDesktopView, false);

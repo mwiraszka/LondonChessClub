@@ -1,6 +1,7 @@
 @use '../../../styles/abstracts/mixins' as *;
 
 $border-thickness: 2px;
+$nav-collapse-width: 800px;
 
 :host {
   z-index: 1000;
@@ -84,7 +85,7 @@ $border-thickness: 2px;
       }
     }
 
-    @include respond-to('gt-md') {
+    @media (min-width: $nav-collapse-width) {
       .link-text {
         visibility: unset;
         display: block;
@@ -98,21 +99,61 @@ $border-thickness: 2px;
   }
 }
 
-.user-settings-button {
-  gap: 2px;
+.nav-controls {
+  display: flex;
+  align-items: center;
   border-bottom: $border-thickness solid var(--lcc-color--nav-border);
-  color: var(--lcc-color--nav-linkForeground);
 
-  &:hover {
-    color: var(--lcc-color--nav-linkForegroundOnHover);
+  .control-button {
+    padding: 3px calc(2px + #{$border-thickness});
+    color: var(--lcc-color--nav-linkForeground);
+
+    @include respond-to('gt-xs') {
+      padding-right: calc(5px + #{$border-thickness});
+      padding-left: calc(5px + #{$border-thickness});
+    }
+
+    // Wide view only has an effect once the viewport exceeds the app content width
+    &.wide-view-button {
+      display: none;
+
+      @include respond-to('gt-xxl') {
+        display: flex;
+      }
+    }
+
+    &:hover {
+      color: var(--lcc-color--nav-linkForegroundOnHover);
+    }
+
+    mat-icon {
+      @include icon-size(22px);
+    }
   }
 
-  .settings-icon {
-    @include icon-size(24px);
+  .login-button {
+    padding: 4px 8px;
+    font-size: 14px;
+    border: none;
+    background: none;
+    color: var(--lcc-color--nav-linkForeground);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--lcc-color--nav-linkForegroundOnHover);
+    }
   }
 
-  .dropdown-icon {
-    @include icon-size(16px);
+  .avatar-button {
+    // Full control-row height so the menu anchors to the nav bottom edge
+    align-self: stretch;
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    margin: 0 4px;
+    border: none;
+    background: none;
+    cursor: pointer;
   }
 }
 

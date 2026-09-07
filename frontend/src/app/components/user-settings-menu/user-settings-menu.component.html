@@ -1,64 +1,40 @@
 @if (viewModel$ | async; as vm) {
-  <ul class="menu-items">
-    @if (vm.user) {
-      <li class="menu-item user-name">
+  @if (vm.user) {
+    <ul class="menu-items">
+      <li class="menu-item user-info">
         <ea-avatar
           size="sm"
           alt="Your avatar"
           [src]="avatarSrc()"
           [initials]="initials()" />
-        <span>{{ vm.user.firstName }} {{ vm.user.lastName }}</span>
+        <div class="user-text">
+          <span
+            #nameEl
+            class="user-name lcc-truncate"
+            [tooltip]="
+              nameTruncated() ? vm.user.firstName + ' ' + vm.user.lastName : null
+            ">
+            {{ vm.user.firstName }} {{ vm.user.lastName }}
+          </span>
+          <span
+            #emailEl
+            class="user-email lcc-truncate"
+            [tooltip]="emailTruncated() ? vm.user.email : null">
+            {{ vm.user.email }}
+          </span>
+        </div>
       </li>
       <hr />
-    }
 
-    <li class="menu-item theme-toggle">
-      <span>Theme</span>
-      <lcc-toggle-switch
-        iconWhenOff="light_mode"
-        iconWhenOn="dark_mode"
-        [switchedOn]="vm.isDarkMode"
-        tooltipWhenOff="Switch to dark mode"
-        tooltipWhenOn="Switch to light mode"
-        (toggle)="onToggleTheme()">
-      </lcc-toggle-switch>
-    </li>
-
-    @if (isTouchDevice) {
-      <li class="menu-item desktop-view-toggle">
-        <span>Desktop view</span>
-        <lcc-toggle-switch
-          iconWhenOff="phone_iphone"
-          iconWhenOn="desktop_windows"
-          [switchedOn]="vm.isDesktopView"
-          tooltipWhenOff="Enable desktop view"
-          tooltipWhenOn="Disable desktop view"
-          (toggle)="onToggleDesktopView()">
-        </lcc-toggle-switch>
+      <li class="menu-item account">
+        <a
+          aria-label="Account"
+          class="lcc-dropdown-link"
+          (click)="onAccount()">
+          <span>Account</span>
+        </a>
       </li>
-    }
 
-    <li class="menu-item wide-view-toggle">
-      <span>Wide view</span>
-      <lcc-toggle-switch
-        iconWhenOff="zoom_in_map"
-        iconWhenOn="zoom_out_map"
-        [switchedOn]="vm.isWideView"
-        tooltipWhenOff="Enable wide view"
-        tooltipWhenOn="Disable wide view"
-        (toggle)="onToggleWideView()">
-      </lcc-toggle-switch>
-    </li>
-
-    <li
-      class="menu-item refresh-data"
-      [tooltip]="refreshDataTooltipContent">
-      <button (click)="onRefreshData()">
-        <span>Refresh data</span>
-      </button>
-    </li>
-
-    @if (vm.user) {
       <li class="menu-item safe-mode-toggle">
         <span>Safe mode</span>
         <lcc-toggle-switch
@@ -71,15 +47,7 @@
           (toggle)="onToggleSafeMode()">
         </lcc-toggle-switch>
       </li>
-
-      <li class="menu-item account">
-        <a
-          aria-label="Account"
-          class="lcc-dropdown-link"
-          (click)="onAccount()">
-          <span>Account</span>
-        </a>
-      </li>
+      <hr />
 
       <li class="menu-item admin-logout">
         <a
@@ -89,17 +57,8 @@
           <span>Log out</span>
         </a>
       </li>
-    } @else {
-      <li class="menu-item admin-login">
-        <a
-          aria-label="Log in"
-          class="lcc-dropdown-link"
-          (click)="onLogin()">
-          <span>Log in</span>
-        </a>
-      </li>
-    }
-  </ul>
+    </ul>
+  }
 }
 
 <ng-template #safeModeWarningTooltipContent>
@@ -111,22 +70,6 @@
 
     <div class="warning-message">
       Users' personal information such as emails and phone numbers are visible on screen
-    </div>
-  </div>
-</ng-template>
-
-<ng-template #refreshDataTooltipContent>
-  <div class="refresh-data-tooltip">
-    <header>
-      <mat-icon>refresh</mat-icon>
-      <div>Refresh data</div>
-    </header>
-
-    <div class="message-content">
-      <p>
-        Check for any recent article, event or member updates (may take a few seconds).
-      </p>
-      <p>By default, data is refreshed automatically every 30 mins.</p>
     </div>
   </div>
 </ng-template>

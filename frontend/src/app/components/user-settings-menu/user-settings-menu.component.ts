@@ -1,4 +1,4 @@
-import { AvatarComponent } from '@eagami/ui';
+import { AvatarComponent, ToastService } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
@@ -8,11 +8,15 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  type ElementRef,
   EventEmitter,
   OnInit,
   Output,
+  afterRenderEffect,
   computed,
   inject,
+  signal,
+  viewChild,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
@@ -20,10 +24,9 @@ import { Router } from '@angular/router';
 import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { User } from '@app/models';
-import { AuthDrawerService, ClerkService } from '@app/services';
+import { ClerkService } from '@app/services';
 import { AppActions, AppSelectors } from '@app/store/app';
 import { AuthSelectors } from '@app/store/auth';
-import { isTouchDevice } from '@app/utils';
 
 @UntilDestroy()
 @Component({
@@ -42,16 +45,12 @@ import { isTouchDevice } from '@app/utils';
 export class UserSettingsMenuComponent implements OnInit {
   @Output() public readonly close = new EventEmitter<void>();
 
-  private readonly authDrawerService = inject(AuthDrawerService);
   private readonly clerkService = inject(ClerkService);
+  private readonly toast = inject(ToastService);
 
-  public isTouchDevice = isTouchDevice();
   public viewModel$?: Observable<{
     user: User | null;
-    isDarkMode: boolean;
     isSafeMode: boolean;
-    isDesktopView: boolean;
-    isWideView: boolean;
   }>;
 
   // Clerk serves the cropped display avatar; the R2 original is editor-only
@@ -67,54 +66,36 @@ export class UserSettingsMenuComponent implements OnInit {
     return (first + last).toUpperCase() || undefined;
   });
 
+  private readonly nameEl = viewChild<ElementRef<HTMLElement>>('nameEl');
+  private readonly emailEl = viewChild<ElementRef<HTMLElement>>('emailEl');
+
+  public readonly nameTruncated = signal(false);
+  public readonly emailTruncated = signal(false);
+
   constructor(
     private readonly router: Router,
     private readonly store: Store,
-  ) {}
+  ) {
+    afterRenderEffect(() => {
+      const name = this.nameEl()?.nativeElement;
+      const email = this.emailEl()?.nativeElement;
+      this.nameTruncated.set(!!name && name.scrollHeight > name.clientHeight);
+      this.emailTruncated.set(!!email && email.scrollHeight > email.clientHeight);
+    });
+  }
 
   public ngOnInit(): void {
     this.viewModel$ = combineLatest([
       this.store.select(AuthSelectors.selectUser),
-      this.store.select(AppSelectors.selectIsDarkMode),
       this.store.select(AppSelectors.selectIsSafeMode),
-      this.store.select(AppSelectors.selectIsDesktopView),
-      this.store.select(AppSelectors.selectIsWideView),
     ]).pipe(
       untilDestroyed(this),
-      map(([user, isDarkMode, isSafeMode, isDesktopView, isWideView]) => ({
-        user,
-        isDarkMode,
-        isSafeMode,
-        isDesktopView,
-        isWideView,
-      })),
+      map(([user, isSafeMode]) => ({ user, isSafeMode })),
     );
-  }
-
-  public onToggleTheme(): void {
-    this.store.dispatch(AppActions.themeToggled());
   }
 
   public onToggleSafeMode(): void {
     this.store.dispatch(AppActions.safeModeToggled());
-  }
-
-  public onToggleDesktopView(): void {
-    this.store.dispatch(AppActions.desktopViewToggled());
-  }
-
-  public onToggleWideView(): void {
-    this.store.dispatch(AppActions.wideViewToggled());
-  }
-
-  public onRefreshData(): void {
-    this.store.dispatch(AppActions.refreshAppRequested());
-    this.close.emit();
-  }
-
-  public onLogin(): void {
-    this.authDrawerService.openLogin();
-    this.close.emit();
   }
 
   public onAccount(): void {
@@ -126,5 +107,9 @@ export class UserSettingsMenuComponent implements OnInit {
     this.close.emit();
     await this.clerkService.logOut();
     this.router.navigate(['/']);
+    this.toast.show('Successfully logged out.', {
+      title: 'Logged out',
+      variant: 'success',
+    });
   }
 }

@@ -5,7 +5,7 @@
 .menu-items {
   display: flex;
   flex-direction: column;
-  width: 190px;
+  width: 200px;
   border-bottom-left-radius: var(--lcc-borderRadius--small);
   border-bottom-right-radius: var(--lcc-borderRadius--small);
   background-color: var(--lcc-color--userSettingsMenu-background);
@@ -22,23 +22,31 @@
     align-items: center;
     color: var(--lcc-color--userSettingsMenu-itemForeground);
 
-    &.user-name {
-      flex: 1;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      margin: 4px;
+    &.user-info {
+      gap: 8px;
+      margin: 8px 12px 4px;
+
+      .user-text {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
 
       span {
-        padding: 4px;
+        padding: 0;
+      }
+
+      .user-name {
         font-size: 16px;
+      }
+
+      .user-email {
+        font-size: 12px;
+        color: var(--lcc-color--userSettingsMenu-emailText);
       }
     }
 
-    &.theme-toggle,
-    &.safe-mode-toggle,
-    &.desktop-view-toggle,
-    &.wide-view-toggle {
+    &.safe-mode-toggle {
       display: flex;
       justify-content: space-between;
 
@@ -49,6 +57,10 @@
       lcc-toggle-switch {
         padding-right: 16px;
       }
+    }
+
+    &.admin-logout a {
+      color: var(--lcc-color--userSettingsMenu-warning);
     }
 
     span {
@@ -85,27 +97,5 @@
   header {
     margin-bottom: 8px;
     color: var(--lcc-color--userSettingsMenu-warning);
-  }
-}
-
-.refresh-data-tooltip {
-  header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    margin-bottom: 8px;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-
-  .message-content {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    font-size: 14px;
-    line-height: 1.4;
-    text-align: start;
   }
 }

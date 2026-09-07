@@ -100,6 +100,7 @@ export class DropdownDirective {
       originY: 'bottom',
       overlayX: 'end',
       overlayY: 'top',
+      offsetY: 3,
       panelClass: 'bottom',
     };
 

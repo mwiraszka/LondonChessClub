@@ -19,7 +19,6 @@ const MOBILE_BREAKPOINT = 640;
 @Component({
   selector: 'lcc-auth-drawer',
   templateUrl: './auth-drawer.component.html',
-  styleUrl: './auth-drawer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '(window:resize)': 'onResize()' },
   imports: [DrawerComponent, LoginFormComponent, ForgotPasswordFormComponent],

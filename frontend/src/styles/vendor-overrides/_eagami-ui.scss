@@ -16,3 +16,15 @@
   --color-neutral-900: #171717;
   --color-neutral-950: #0a0a0a;
 }
+
+// The avatar's size classes define --ea-avatar-size on an internal element,
+// so the override must target that element (only reachable from global styles).
+// 28px sits between the library's xs (24px) and sm (32px) sizes.
+.avatar-button ea-avatar .ea-avatar,
+.user-info ea-avatar .ea-avatar {
+  --ea-avatar-size: 28px;
+}
+
+ea-drawer.lcc-auth-drawer {
+  --ea-drawer-panel-background-color: var(--lcc-color--authDrawer-background);
+}

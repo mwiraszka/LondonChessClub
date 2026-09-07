@@ -7,10 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v6.0.0] - TBD
 
+### Added
+
+- Introduce a slide-in login drawer with email code verification and a guided password reset flow, replacing the standalone login and change-password pages
+- Build out an account page for managing your profile, avatar, email address, password, and active sessions, including an avatar editor that keeps the original photo for future re-cropping
+- Support admin and non-admin user roles, with admin-only editing controls enforced across the site and API
+
 ### Changed
 
 - Consolidate the website and API into a single repository
 - Update packages and resolve dependency security vulnerabilities
+- Replace AWS Cognito with Clerk for admin authentication and user management
+- Require new users to set their own password on first login
 
 ## [v5.13.7] - 2026-06-18
 

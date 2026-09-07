@@ -1,3 +1,4 @@
+import { ToastComponent } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
@@ -18,17 +19,13 @@ import {
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
+import { AuthDrawerComponent } from '@app/components/auth-drawer/auth-drawer.component';
 import { FooterComponent } from '@app/components/footer/footer.component';
 import { HeaderComponent } from '@app/components/header/header.component';
 import { NavigationBarComponent } from '@app/components/navigation-bar/navigation-bar.component';
 import { UpcomingEventBannerComponent } from '@app/components/upcoming-event-banner/upcoming-event-banner.component';
 import { Event, IsoDate } from '@app/models';
-import {
-  RefreshService,
-  RoutingService,
-  TouchEventsService,
-  UserActivityService,
-} from '@app/services';
+import { RefreshService, RoutingService, TouchEventsService } from '@app/services';
 import { AppActions, AppSelectors } from '@app/store/app';
 import { EventsSelectors } from '@app/store/events';
 
@@ -59,15 +56,20 @@ import { EventsSelectors } from '@app/store/events';
         <lcc-footer></lcc-footer>
       </main>
     }
+
+    <lcc-auth-drawer></lcc-auth-drawer>
+    <ea-toast></ea-toast>
   `,
   styleUrl: './app.component.scss',
   imports: [
+    AuthDrawerComponent,
     CdkScrollableModule,
     CommonModule,
     FooterComponent,
     HeaderComponent,
     NavigationBarComponent,
     RouterOutlet,
+    ToastComponent,
     UpcomingEventBannerComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -92,14 +94,12 @@ export class AppComponent implements OnInit, AfterViewInit {
     private readonly routingService: RoutingService,
     private readonly store: Store,
     private readonly touchEventsService: TouchEventsService,
-    private readonly userActivityService: UserActivityService,
   ) {
     moment.tz.setDefault('America/Toronto');
   }
 
   public ngOnInit(): void {
     this.touchEventsService.listenForTouchEvents();
-    this.userActivityService.monitorSessionExpiry();
     this.initRefreshListener();
 
     this.viewModel$ = combineLatest([
@@ -132,7 +132,11 @@ export class AppComponent implements OnInit, AfterViewInit {
         }),
       ),
       tap(({ isDarkMode }) => {
-        this._document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+        const theme = isDarkMode ? 'dark' : 'light';
+        // @eagami/ui keys its themed tokens off <html data-theme>, while the
+        // app's own styles key off <body data-theme>
+        this._document.documentElement.setAttribute('data-theme', theme);
+        this._document.body.setAttribute('data-theme', theme);
       }),
     );
 

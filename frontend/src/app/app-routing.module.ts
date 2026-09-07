@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from '@app/guards/auth.guard';
+import { AuthGuard, loggedInGuard } from '@app/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -9,6 +9,17 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/home/home-page-routing.module').then(m => m.HomePageRoutingModule),
     pathMatch: 'full',
+  },
+  {
+    path: 'account',
+    redirectTo: 'account/profile',
+    pathMatch: 'full',
+  },
+  {
+    path: 'account/:section',
+    canActivate: [loggedInGuard],
+    loadComponent: () =>
+      import('./pages/account/account-page.component').then(c => c.AccountPageComponent),
   },
   {
     path: 'about',
@@ -30,13 +41,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/article/article-page-routing.module').then(
         m => m.ArticlePageRoutingModule,
-      ),
-  },
-  {
-    path: 'change-password',
-    loadChildren: () =>
-      import('./pages/change-password/change-password-page-routing.module').then(
-        m => m.ChangePasswordPageRoutingModule,
       ),
   },
   {
@@ -84,13 +88,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'login',
-    loadChildren: () =>
-      import('./pages/login/login-page-routing.module').then(
-        m => m.LoginPageRoutingModule,
-      ),
-  },
-  {
     path: 'member',
     loadChildren: () =>
       import('./pages/member/member-page-routing.module').then(
@@ -128,6 +125,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/schedule/schedule-page-routing.module').then(
         m => m.SchedulePageRoutingModule,
+      ),
+  },
+  {
+    path: 'session-tasks/reset-password',
+    loadComponent: () =>
+      import('./pages/reset-password-task/reset-password-task-page.component').then(
+        c => c.ResetPasswordTaskPageComponent,
       ),
   },
   {

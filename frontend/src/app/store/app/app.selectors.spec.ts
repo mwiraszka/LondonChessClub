@@ -19,12 +19,6 @@ describe('App Selectors', () => {
     loadStart: null,
   };
 
-  const mockAuthCallState: CallState = {
-    status: 'loading',
-    error: null,
-    loadStart: null,
-  };
-
   const mockEventsCallState: CallState = {
     status: 'idle',
     error: null,
@@ -56,28 +50,15 @@ describe('App Selectors', () => {
   });
 
   describe('selectIsLoading', () => {
-    it('should return true when any call state is loading', () => {
-      const result = AppSelectors.selectIsLoading.projector(
-        mockArticlesCallState,
-        mockAuthCallState,
-        mockEventsCallState,
-        mockImagesCallState,
-        mockMembersCallState,
-      );
-
-      expect(result).toBe(true);
-    });
+    const loadingCallState: CallState = {
+      status: 'loading',
+      error: null,
+      loadStart: null,
+    };
 
     it('should return false when no call states are loading', () => {
-      const idleAuthCallState: CallState = {
-        status: 'idle',
-        error: null,
-        loadStart: null,
-      };
-
       const result = AppSelectors.selectIsLoading.projector(
         mockArticlesCallState,
-        idleAuthCallState,
         mockEventsCallState,
         mockImagesCallState,
         mockMembersCallState,
@@ -87,21 +68,8 @@ describe('App Selectors', () => {
     });
 
     it('should return true when articles call state is loading', () => {
-      const loadingArticlesCallState: CallState = {
-        status: 'loading',
-        error: null,
-        loadStart: null,
-      };
-
-      const idleAuthCallState: CallState = {
-        status: 'idle',
-        error: null,
-        loadStart: null,
-      };
-
       const result = AppSelectors.selectIsLoading.projector(
-        loadingArticlesCallState,
-        idleAuthCallState,
+        loadingCallState,
         mockEventsCallState,
         mockImagesCallState,
         mockMembersCallState,
@@ -111,22 +79,9 @@ describe('App Selectors', () => {
     });
 
     it('should return true when events call state is loading', () => {
-      const loadingEventsCallState: CallState = {
-        status: 'loading',
-        error: null,
-        loadStart: null,
-      };
-
-      const idleAuthCallState: CallState = {
-        status: 'idle',
-        error: null,
-        loadStart: null,
-      };
-
       const result = AppSelectors.selectIsLoading.projector(
         mockArticlesCallState,
-        idleAuthCallState,
-        loadingEventsCallState,
+        loadingCallState,
         mockImagesCallState,
         mockMembersCallState,
       );
@@ -135,23 +90,10 @@ describe('App Selectors', () => {
     });
 
     it('should return true when images call state is loading', () => {
-      const loadingImagesCallState: CallState = {
-        status: 'loading',
-        error: null,
-        loadStart: null,
-      };
-
-      const idleAuthCallState: CallState = {
-        status: 'idle',
-        error: null,
-        loadStart: null,
-      };
-
       const result = AppSelectors.selectIsLoading.projector(
         mockArticlesCallState,
-        idleAuthCallState,
         mockEventsCallState,
-        loadingImagesCallState,
+        loadingCallState,
         mockMembersCallState,
       );
 
@@ -159,38 +101,18 @@ describe('App Selectors', () => {
     });
 
     it('should return true when members call state is loading', () => {
-      const loadingMembersCallState: CallState = {
-        status: 'loading',
-        error: null,
-        loadStart: null,
-      };
-
-      const idleAuthCallState: CallState = {
-        status: 'idle',
-        error: null,
-        loadStart: null,
-      };
-
       const result = AppSelectors.selectIsLoading.projector(
         mockArticlesCallState,
-        idleAuthCallState,
         mockEventsCallState,
         mockImagesCallState,
-        loadingMembersCallState,
+        loadingCallState,
       );
 
       expect(result).toBe(true);
     });
 
     it('should return true when multiple call states are loading', () => {
-      const loadingCallState: CallState = {
-        status: 'loading',
-        error: null,
-        loadStart: null,
-      };
-
       const result = AppSelectors.selectIsLoading.projector(
-        loadingCallState,
         loadingCallState,
         loadingCallState,
         mockImagesCallState,

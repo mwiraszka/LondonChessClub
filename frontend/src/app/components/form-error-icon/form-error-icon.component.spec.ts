@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { query, queryTextContent } from '@app/utils';
-import { hasSpecialCharValidator } from '@app/validators';
+import { emailValidator } from '@app/validators';
 
 import { FormErrorIconComponent } from './form-error-icon.component';
 
@@ -70,7 +70,7 @@ describe('FormErrorIconComponent', () => {
       fixture.componentRef.setInput(
         'control',
         new FormControl('test', {
-          validators: [Validators.required, hasSpecialCharValidator],
+          validators: [Validators.required, emailValidator],
         }),
       );
       fixture.detectChanges();
@@ -79,14 +79,12 @@ describe('FormErrorIconComponent', () => {
         TooltipDirective,
       );
 
-      expect(tooltipDirective.tooltip).toBe(
-        'Must include at least one special character',
-      );
+      expect(tooltipDirective.tooltip).toBe('Invalid email');
 
       fixture.componentRef.setInput(
         'control',
         new FormControl('', {
-          validators: [Validators.required, hasSpecialCharValidator],
+          validators: [Validators.required, emailValidator],
         }),
       );
       fixture.detectChanges();

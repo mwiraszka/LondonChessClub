@@ -1,0 +1,4 @@
+:host {
+  // Brand the drawer panel through @eagami/ui's public theming hook
+  --ea-drawer-panel-background-color: var(--lcc-color--authDrawer-background);
+}

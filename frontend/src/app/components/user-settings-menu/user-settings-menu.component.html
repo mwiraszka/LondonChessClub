@@ -2,7 +2,11 @@
   <ul class="menu-items">
     @if (vm.user) {
       <li class="menu-item user-name">
-        <mat-icon class="user-icon">person_outline</mat-icon>
+        <ea-avatar
+          size="sm"
+          alt="Your avatar"
+          [src]="avatarSrc()"
+          [initials]="initials()" />
         <span>{{ vm.user.firstName }} {{ vm.user.lastName }}</span>
       </li>
       <hr />
@@ -68,12 +72,12 @@
         </lcc-toggle-switch>
       </li>
 
-      <li class="menu-item change-password">
+      <li class="menu-item account">
         <a
-          aria-label="Change password"
+          aria-label="Account"
           class="lcc-dropdown-link"
-          (click)="onChangePassword()">
-          <span>Change password</span>
+          (click)="onAccount()">
+          <span>Account</span>
         </a>
       </li>
 
@@ -88,10 +92,10 @@
     } @else {
       <li class="menu-item admin-login">
         <a
-          aria-label="Admin login"
+          aria-label="Log in"
           class="lcc-dropdown-link"
           (click)="onLogin()">
-          <span>Admin login</span>
+          <span>Log in</span>
         </a>
       </li>
     }

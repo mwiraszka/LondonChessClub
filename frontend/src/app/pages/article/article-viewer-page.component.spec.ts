@@ -20,7 +20,7 @@ import {
   ArticlesState,
   initialState as articlesInitialState,
 } from '@app/store/articles';
-import { AuthState, initialState as authInitialState } from '@app/store/auth';
+import { AuthState } from '@app/store/auth';
 import { ImagesState, initialState as imagesInitialState } from '@app/store/images';
 import { query } from '@app/utils';
 
@@ -74,7 +74,6 @@ describe('ArticleViewerPageComponent', () => {
     };
 
     const mockAuthState: AuthState = {
-      ...authInitialState,
       user: {
         id: 'user-1',
         firstName: 'Admin',

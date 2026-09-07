@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 import { LccError, Toast } from '@app/models';
 import { ToastService } from '@app/services';
 import { ArticlesActions } from '@app/store/articles';
-import { AuthActions, AuthSelectors } from '@app/store/auth';
+import { AuthSelectors } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { ImagesActions } from '@app/store/images';
 import { MembersActions } from '@app/store/members';
@@ -23,7 +23,6 @@ import { AppActions, AppSelectors } from '.';
 type NotifyAction = ReturnType<
   | (typeof AppActions)[keyof typeof AppActions]
   | (typeof ArticlesActions)[keyof typeof ArticlesActions]
-  | (typeof AuthActions)[keyof typeof AuthActions]
   | (typeof EventsActions)[keyof typeof EventsActions]
   | (typeof ImagesActions)[keyof typeof ImagesActions]
   | (typeof MembersActions)[keyof typeof MembersActions]
@@ -45,16 +44,6 @@ export class AppEffects {
     ArticlesActions.requestTimedOut,
     ArticlesActions.updateArticleFailed,
     ArticlesActions.updateArticleSucceeded,
-
-    AuthActions.codeForPasswordChangeFailed,
-    AuthActions.codeForPasswordChangeSucceeded,
-    AuthActions.loginFailed,
-    AuthActions.loginSucceeded,
-    AuthActions.logoutFailed,
-    AuthActions.logoutSucceeded,
-    AuthActions.passwordChangeFailed,
-    AuthActions.passwordChangeSucceeded,
-    AuthActions.requestTimedOut,
 
     EventsActions.addEventFailed,
     EventsActions.addEventSucceeded,
@@ -241,63 +230,6 @@ export class AppEffects {
           title: 'Article update',
           message: `Successfully updated ${action.originalArticleTitle}`,
           type: 'success',
-        };
-
-      case AuthActions.codeForPasswordChangeFailed.type:
-        return {
-          title: 'Password change',
-          message: this.getErrorMessage(action.error),
-          type: 'warning',
-        };
-      case AuthActions.codeForPasswordChangeSucceeded.type:
-        return {
-          title: 'Password change',
-          message: 'A 6-digit code has been sent to your email',
-          type: 'info',
-        };
-      case AuthActions.loginFailed.type:
-        return {
-          title: 'Admin login',
-          message: this.getErrorMessage(action.error),
-          type: 'warning',
-        };
-      case AuthActions.loginSucceeded.type:
-        return {
-          title: 'Admin login',
-          message: 'Successfully logged in',
-          type: 'success',
-        };
-      case AuthActions.logoutFailed.type:
-        return {
-          title: 'Admin logout',
-          message: this.getErrorMessage(action.error),
-          type: 'warning',
-        };
-      case AuthActions.logoutSucceeded.type:
-        return {
-          title: 'Admin logout',
-          message: action.sessionExpired
-            ? 'Session expired - please log back in'
-            : 'Successfully logged out',
-          type: action.sessionExpired ? 'info' : 'success',
-        };
-      case AuthActions.passwordChangeFailed.type:
-        return {
-          title: 'Password change',
-          message: this.getErrorMessage(action.error),
-          type: 'warning',
-        };
-      case AuthActions.passwordChangeSucceeded.type:
-        return {
-          title: 'Password change',
-          message: 'Successfully changed password and logged in',
-          type: 'success',
-        };
-      case AuthActions.requestTimedOut.type:
-        return {
-          title: 'Auth request',
-          message: 'Request timed out',
-          type: 'warning',
         };
 
       case EventsActions.addEventFailed.type:

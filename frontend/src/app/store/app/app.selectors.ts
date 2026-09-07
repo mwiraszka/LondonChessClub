@@ -1,7 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as ArticlesSelectors from '@app/store/articles/articles.selectors';
-import * as AuthSelectors from '@app/store/auth/auth.selectors';
 import * as EventsSelectors from '@app/store/events/events.selectors';
 import * as ImagesSelectors from '@app/store/images/images.selectors';
 import * as MembersSelectors from '@app/store/members/members.selectors';
@@ -12,24 +11,13 @@ export const selectAppState = createFeatureSelector<AppState>('appState');
 
 export const selectIsLoading = createSelector(
   ArticlesSelectors.selectCallState,
-  AuthSelectors.selectCallState,
   EventsSelectors.selectCallState,
   ImagesSelectors.selectCallState,
   MembersSelectors.selectCallState,
-  (
-    articlesCallState,
-    authCallState,
-    eventsCallState,
-    imagesCallState,
-    membersCallState,
-  ) => {
-    return [
-      articlesCallState,
-      authCallState,
-      eventsCallState,
-      imagesCallState,
-      membersCallState,
-    ].some(callState => callState.status === 'loading');
+  (articlesCallState, eventsCallState, imagesCallState, membersCallState) => {
+    return [articlesCallState, eventsCallState, imagesCallState, membersCallState].some(
+      callState => callState.status === 'loading',
+    );
   },
 );
 

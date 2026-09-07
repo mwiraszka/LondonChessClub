@@ -1,7 +1,7 @@
 import { applyPalette, derivePalette, provideEagamiUi } from '@eagami/ui';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
-import { Action, Store, StoreModule } from '@ngrx/store';
+import { Action, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import * as Sentry from '@sentry/angular';
 import { MarkdownModule } from 'ngx-markdown';
@@ -27,10 +27,10 @@ import {
   CacheControlInterceptorProvider,
   LoggingInterceptorProvider,
 } from '@app/interceptors';
-import { ClerkService } from '@app/services';
+import { ClerkService, UserService } from '@app/services';
 import { AppStoreModule } from '@app/store/app';
 import { ArticlesStoreModule } from '@app/store/articles';
-import { AuthActions, AuthStoreModule } from '@app/store/auth';
+import { AuthStoreModule } from '@app/store/auth';
 import { EventsStoreModule } from '@app/store/events';
 import { ImagesStoreModule } from '@app/store/images';
 import { MembersStoreModule } from '@app/store/members';
@@ -97,13 +97,14 @@ bootstrapApplication(AppComponent, {
     provideEagamiUi(),
     provideAppInitializer(async () => {
       const clerkService = inject(ClerkService);
-      const store = inject(Store);
+      // Instantiate UserService so its login effect starts and the user record
+      // is available app-wide once Clerk reports the session.
+      inject(UserService);
 
-      await clerkService.load();
-
-      const user = clerkService.getCurrentUser();
-      if (user) {
-        store.dispatch(AuthActions.loginSucceeded({ user }));
+      try {
+        await clerkService.load();
+      } catch (error) {
+        console.error(`[LCC] Unable to load Clerk: ${error}`);
       }
     }),
     AuthInterceptorProvider,

@@ -3,7 +3,6 @@ import { Action, ActionReducer, MetaReducer } from '@ngrx/store';
 import { compact } from 'lodash';
 import { localStorageSync } from 'ngrx-store-localstorage';
 
-import { UserActivityService } from '@app/services';
 import { hasCallState } from '@app/utils';
 
 import { environment } from '@env';
@@ -31,7 +30,6 @@ export interface MetaState {
 const hydratedStates = [
   'appState',
   'articlesState',
-  'authState',
   'eventsState',
   'imagesState',
   'membersState',
@@ -180,7 +178,6 @@ export function loadingStateResetMetaReducer(
     if (action.type === '@ngrx/store/update-reducers' && nextState) {
       const statesWithCallState: Array<keyof MetaState> = [
         'articlesState',
-        'authState',
         'eventsState',
         'imagesState',
         'membersState',
@@ -217,43 +214,9 @@ export function loadingStateResetMetaReducer(
   };
 }
 
-/**
- * Validates and clears expired auth state to invalidate a potential expired session on rehydration
- */
-export function sessionValidationMetaReducer(
-  reducer: ActionReducer<MetaState>,
-): ActionReducer<MetaState> {
-  return (state, action) => {
-    const nextState = reducer(state, action);
-
-    // Only validate on update-reducers action (after hydration completes)
-    if (
-      action.type === '@ngrx/store/update-reducers' &&
-      nextState?.authState?.sessionStartTime
-    ) {
-      const timeElapsed = Date.now() - nextState.authState.sessionStartTime;
-
-      if (timeElapsed > UserActivityService.SESSION_DURATION_MS) {
-        console.info('[LCC] Session expired during offline period - clearing auth state');
-        return {
-          ...nextState,
-          authState: {
-            ...nextState.authState,
-            user: null,
-            sessionStartTime: null,
-          },
-        };
-      }
-    }
-
-    return nextState;
-  };
-}
-
 export const metaReducers: Array<MetaReducer<MetaState, Action<string>>> = compact([
   environment.production ? undefined : actionLogMetaReducer,
   updateStateVersionsInLocalStorageMetaReducer,
   hydrationMetaReducer,
   loadingStateResetMetaReducer,
-  sessionValidationMetaReducer,
 ]);

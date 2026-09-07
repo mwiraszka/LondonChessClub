@@ -1,11 +1,9 @@
 import { Action, ActionReducer } from '@ngrx/store';
 
 import { CallState } from '@app/models';
-import { UserActivityService } from '@app/services';
 
 import { version } from '../../../package.json';
 import { initialState as articlesInitialState } from './articles/articles.reducer';
-import { initialState as authInitialState } from './auth/auth.reducer';
 import { initialState as eventsInitialState } from './events/events.reducer';
 import { initialState as imagesInitialState } from './images/images.reducer';
 import { initialState as membersInitialState } from './members/members.reducer';
@@ -14,7 +12,6 @@ import {
   actionLogMetaReducer,
   loadingStateResetMetaReducer,
   metaReducers,
-  sessionValidationMetaReducer,
   updateStateVersionsInLocalStorageMetaReducer,
   versionedStorage,
 } from './meta-reducers';
@@ -29,18 +26,7 @@ describe('Meta Reducers', () => {
     mockReducer = vi.fn(
       (state: MetaState | undefined) => state || mockState,
     ) as ActionReducer<MetaState, Action<string>>;
-    mockState = {
-      authState: {
-        callState: {
-          status: 'idle',
-          loadStart: null,
-          error: null,
-        },
-        user: null,
-        hasCode: false,
-        sessionStartTime: null,
-      },
-    };
+    mockState = {};
   });
 
   afterEach(() => {
@@ -50,7 +36,7 @@ describe('Meta Reducers', () => {
   describe('updateStateVersionsInLocalStorageMetaReducer', () => {
     it('should remove stale keys from previous versions', () => {
       // Setup: Add stale keys
-      localStorage.setItem('authState_v1.0.0', '{"user": "old"}');
+      localStorage.setItem('eventsState_v1.0.0', '{"events": "old"}');
       localStorage.setItem('appState_v1.0.0', '{"theme": "dark"}');
 
       const updateStateMetaReducer =
@@ -60,7 +46,7 @@ describe('Meta Reducers', () => {
       updateStateMetaReducer(mockState, action);
 
       // Should not contain old version keys
-      expect(localStorage.getItem('authState_v1.0.0')).toBeNull();
+      expect(localStorage.getItem('eventsState_v1.0.0')).toBeNull();
     });
 
     it('should preserve state from previous version', () => {
@@ -79,8 +65,8 @@ describe('Meta Reducers', () => {
     });
 
     it('should not remove keys with current version', () => {
-      const currentKey = `authState_v${version}`;
-      localStorage.setItem(currentKey, '{"user": "current"}');
+      const currentKey = `appState_v${version}`;
+      localStorage.setItem(currentKey, '{"theme": "dark"}');
 
       const updateStateMetaReducer =
         updateStateVersionsInLocalStorageMetaReducer(mockReducer);
@@ -88,7 +74,7 @@ describe('Meta Reducers', () => {
 
       updateStateMetaReducer(mockState, action);
 
-      expect(localStorage.getItem(currentKey)).toBe('{"user": "current"}');
+      expect(localStorage.getItem(currentKey)).toBe('{"theme": "dark"}');
     });
   });
 
@@ -185,199 +171,7 @@ describe('Meta Reducers', () => {
     });
   });
 
-  describe('sessionValidationMetaReducer', () => {
-    let consoleInfoSpy: MockInstance;
-    let dateNowSpy: MockInstance;
-
-    beforeEach(() => {
-      consoleInfoSpy = vi.spyOn(console, 'info').mockImplementation(() => undefined);
-      dateNowSpy = vi.spyOn(Date, 'now');
-    });
-
-    afterEach(() => {
-      consoleInfoSpy.mockRestore();
-      dateNowSpy.mockRestore();
-    });
-
-    it('should clear auth state when session is expired on update-reducers', () => {
-      const now = Date.now();
-      const expiredSessionStartTime =
-        now - UserActivityService.SESSION_DURATION_MS - 1000; // Expired by 1 second
-
-      dateNowSpy.mockReturnValue(now);
-
-      const stateWithExpiredSession: MetaState = {
-        authState: {
-          callState: { status: 'idle', loadStart: null, error: null },
-          user: {
-            id: '1',
-            firstName: 'Test',
-            lastName: 'User',
-            email: 'test@example.com',
-            isAdmin: false,
-          },
-          hasCode: false,
-          sessionStartTime: expiredSessionStartTime,
-        },
-      };
-
-      mockReducer = vi.fn(() => stateWithExpiredSession);
-
-      const wrappedSessionValidationMetaReducer =
-        sessionValidationMetaReducer(mockReducer);
-      const action = { type: '@ngrx/store/update-reducers' };
-
-      const result = wrappedSessionValidationMetaReducer(mockState, action);
-
-      expect(consoleInfoSpy).toHaveBeenCalledWith(
-        '[LCC] Session expired during offline period - clearing auth state',
-      );
-      expect(result.authState?.user).toBeNull();
-      expect(result.authState?.sessionStartTime).toBeNull();
-    });
-
-    it('should not clear auth state when session is still valid', () => {
-      const now = Date.now();
-      const validSessionStartTime = now - 1000; // Started 1 second ago
-
-      dateNowSpy.mockReturnValue(now);
-
-      const stateWithValidSession: MetaState = {
-        authState: {
-          callState: { status: 'idle', loadStart: null, error: null },
-          user: {
-            id: '1',
-            firstName: 'Test',
-            lastName: 'User',
-            email: 'test@example.com',
-            isAdmin: false,
-          },
-          hasCode: false,
-          sessionStartTime: validSessionStartTime,
-        },
-      };
-
-      mockReducer = vi.fn(() => stateWithValidSession);
-
-      const wrappedSessionValidationMetaReducer =
-        sessionValidationMetaReducer(mockReducer);
-      const action = { type: '@ngrx/store/update-reducers' };
-
-      const result = wrappedSessionValidationMetaReducer(mockState, action);
-
-      expect(consoleInfoSpy).not.toHaveBeenCalled();
-      expect(result.authState?.user).toBeTruthy();
-      expect(result.authState?.sessionStartTime).toBe(validSessionStartTime);
-    });
-
-    it('should only validate on @ngrx/store/update-reducers action', () => {
-      const now = Date.now();
-      const expiredSessionStartTime =
-        now - UserActivityService.SESSION_DURATION_MS - 1000;
-
-      dateNowSpy.mockReturnValue(now);
-
-      const stateWithExpiredSession: MetaState = {
-        authState: {
-          callState: { status: 'idle', loadStart: null, error: null },
-          user: {
-            id: '1',
-            firstName: 'Test',
-            lastName: 'User',
-            email: 'test@example.com',
-            isAdmin: false,
-          },
-          hasCode: false,
-          sessionStartTime: expiredSessionStartTime,
-        },
-      };
-
-      mockReducer = vi.fn(() => stateWithExpiredSession);
-
-      const wrappedSessionValidationMetaReducer =
-        sessionValidationMetaReducer(mockReducer);
-
-      // Try with different action type
-      const differentAction = { type: '@ngrx/store/init' };
-      const result = wrappedSessionValidationMetaReducer(mockState, differentAction);
-
-      // Should not clear auth state for other actions
-      expect(consoleInfoSpy).not.toHaveBeenCalled();
-      expect(result.authState?.user).toBeTruthy();
-    });
-
-    it('should not clear auth state when sessionStartTime is null', () => {
-      const stateWithoutSession: MetaState = {
-        authState: {
-          callState: { status: 'idle', loadStart: null, error: null },
-          user: null,
-          hasCode: false,
-          sessionStartTime: null,
-        },
-      };
-
-      mockReducer = vi.fn(() => stateWithoutSession);
-
-      const wrappedSessionValidationMetaReducer =
-        sessionValidationMetaReducer(mockReducer);
-      const action = { type: '@ngrx/store/update-reducers' };
-
-      const result = wrappedSessionValidationMetaReducer(mockState, action);
-
-      expect(consoleInfoSpy).not.toHaveBeenCalled();
-      expect(result).toBe(stateWithoutSession);
-    });
-
-    it('should not clear auth state when authState is undefined', () => {
-      const stateWithoutAuth: MetaState = {};
-
-      mockReducer = vi.fn(() => stateWithoutAuth);
-
-      const wrappedSessionValidationMetaReducer =
-        sessionValidationMetaReducer(mockReducer);
-      const action = { type: '@ngrx/store/update-reducers' };
-
-      const result = wrappedSessionValidationMetaReducer(mockState, action);
-
-      expect(consoleInfoSpy).not.toHaveBeenCalled();
-      expect(result).toBe(stateWithoutAuth);
-    });
-  });
-
   describe('loadingStateResetMetaReducer', () => {
-    it('should reset loading state for authState on rehydration', () => {
-      const loadingCallState: CallState = {
-        status: 'loading',
-        loadStart: new Date().toISOString(),
-        error: null,
-      };
-
-      const state: MetaState = {
-        authState: {
-          ...authInitialState,
-          callState: loadingCallState,
-          user: {
-            id: '123',
-            firstName: 'John',
-            lastName: 'Doe',
-            email: 'john@example.com',
-            isAdmin: true,
-          },
-        },
-      };
-
-      mockReducer = vi.fn(() => state);
-
-      const wrappedLoadingStateResetMetaReducer =
-        loadingStateResetMetaReducer(mockReducer);
-      const action = { type: '@ngrx/store/update-reducers' };
-
-      const result = wrappedLoadingStateResetMetaReducer(mockState, action);
-
-      expect(result.authState?.callState).toEqual(authInitialState.callState);
-      expect(result.authState?.user).toBeDefined();
-    });
-
     it('should reset loading state for articlesState on rehydration', () => {
       const loadingCallState: CallState = {
         status: 'loading',
@@ -486,10 +280,6 @@ describe('Meta Reducers', () => {
       };
 
       const state: MetaState = {
-        authState: {
-          ...authInitialState,
-          callState: loadingCallState,
-        },
         articlesState: {
           ...articlesInitialState,
           callState: loadingCallState,
@@ -508,17 +298,12 @@ describe('Meta Reducers', () => {
 
       const result = wrappedLoadingStateResetMetaReducer(mockState, action);
 
-      expect(result.authState?.callState).toEqual(authInitialState.callState);
       expect(result.articlesState?.callState).toEqual(articlesInitialState.callState);
       expect(result.eventsState?.callState.status).toBe('idle');
     });
 
     it('should not modify state when no loading states exist', () => {
       const state: MetaState = {
-        authState: {
-          ...authInitialState,
-          callState: { status: 'idle', loadStart: null, error: null },
-        },
         articlesState: {
           ...articlesInitialState,
           callState: { status: 'idle', loadStart: null, error: null },
@@ -544,8 +329,8 @@ describe('Meta Reducers', () => {
       };
 
       const state: MetaState = {
-        authState: {
-          ...authInitialState,
+        articlesState: {
+          ...articlesInitialState,
           callState: errorCallState,
         },
       };
@@ -558,7 +343,7 @@ describe('Meta Reducers', () => {
 
       const result = wrappedLoadingStateResetMetaReducer(mockState, action);
 
-      expect(result.authState?.callState).toEqual(errorCallState);
+      expect(result.articlesState?.callState).toEqual(errorCallState);
     });
 
     it('should not modify state on non-rehydration actions', () => {
@@ -569,8 +354,8 @@ describe('Meta Reducers', () => {
       };
 
       const state: MetaState = {
-        authState: {
-          ...authInitialState,
+        articlesState: {
+          ...articlesInitialState,
           callState: loadingCallState,
         },
       };
@@ -579,11 +364,11 @@ describe('Meta Reducers', () => {
 
       const wrappedLoadingStateResetMetaReducer =
         loadingStateResetMetaReducer(mockReducer);
-      const action = { type: '[Auth] Login requested' };
+      const action = { type: '[Articles] Publish article requested' };
 
       const result = wrappedLoadingStateResetMetaReducer(mockState, action);
 
-      expect(result.authState?.callState).toEqual(loadingCallState);
+      expect(result.articlesState?.callState).toEqual(loadingCallState);
     });
   });
 
@@ -598,13 +383,6 @@ describe('Meta Reducers', () => {
         metaReducer => metaReducer.name === 'loadingStateResetMetaReducer',
       );
       expect(loadingStateReset).toBeDefined();
-    });
-
-    it('should include sessionValidationMetaReducer', () => {
-      const sessionValidation = metaReducers.find(
-        metaReducer => metaReducer.name === 'sessionValidationMetaReducer',
-      );
-      expect(sessionValidation).toBeDefined();
     });
 
     it('should include updateStateVersionsInLocalStorageMetaReducer', () => {

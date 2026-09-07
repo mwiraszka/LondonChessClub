@@ -45,16 +45,6 @@ export class FormErrorIconComponent {
       return 'Input is too short';
     } else if (this.control.hasError('maxlength')) {
       return 'Input is too long';
-    } else if (this.control.hasError('noLowercaseLetter')) {
-      return 'Must include at least one lowercase letter';
-    } else if (this.control.hasError('noUppercaseLetter')) {
-      return 'Must include at least one uppercase letter';
-    } else if (this.control.hasError('noSpecialChar')) {
-      return 'Must include at least one special character';
-    } else if (this.control.hasError('noNumber')) {
-      return 'Must include at least one number';
-    } else if (this.control.hasError('passwordMismatch')) {
-      return 'Passwords must match';
     } else {
       return 'Unknown error';
     }

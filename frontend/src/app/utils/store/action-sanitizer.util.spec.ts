@@ -1,38 +1,12 @@
-import { AuthActions } from '@app/store/auth';
-
 import { actionSanitizer } from './action-sanitizer.util';
 
 describe('actionSanitizer', () => {
-  it('should let unrelated actions through unchanged', () => {
-    const action = AuthActions.logoutRequested({ sessionExpired: false });
-    expect(actionSanitizer(action)).toStrictEqual(action);
-  });
+  it('should return a copy of the action', () => {
+    const action = { type: '[Test] Something happened', payload: 'value' };
 
-  it('should add request placeholder for loginRequested', () => {
-    const action = AuthActions.loginRequested({
-      email: 'user@example.com',
-      password: 'secret',
-    });
+    const result = actionSanitizer(action);
 
-    expect(actionSanitizer(action)).toEqual({
-      type: AuthActions.loginRequested.type,
-      email: 'user@example.com',
-      password: '¯\\_(ツ)_/¯',
-    });
-  });
-
-  it('should add request placeholder for passwordChangeRequested', () => {
-    const action = AuthActions.passwordChangeRequested({
-      email: 'user@example.com',
-      password: 'secret',
-      code: '123456',
-    });
-
-    expect(actionSanitizer(action)).toEqual({
-      type: AuthActions.passwordChangeRequested.type,
-      email: 'user@example.com',
-      password: '¯\\_(ツ)_/¯',
-      code: '123456',
-    });
+    expect(result).toEqual(action);
+    expect(result).not.toBe(action);
   });
 });

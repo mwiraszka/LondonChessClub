@@ -13,7 +13,7 @@ import { MOCK_MEMBERS } from '@app/mocks/members.mock';
 import { LccError } from '@app/models';
 import { ToastService } from '@app/services';
 import { ArticlesActions } from '@app/store/articles';
-import { AuthActions, AuthSelectors } from '@app/store/auth';
+import { AuthSelectors } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { ImagesActions } from '@app/store/images';
 import { MembersActions } from '@app/store/members';
@@ -180,98 +180,6 @@ describe('AppEffects', () => {
               title: 'Articles request',
               message: 'Request timed out',
               type: 'warning',
-            });
-            done();
-          });
-        }));
-    });
-
-    describe('Auth actions', () => {
-      it('should display toast for codeForPasswordChangeSucceeded', () =>
-        withDone(done => {
-          actions$.next(AuthActions.codeForPasswordChangeSucceeded());
-
-          effects.notify$.subscribe(() => {
-            expect(toastService.displayToast).toHaveBeenCalledWith({
-              title: 'Password change',
-              message: 'A 6-digit code has been sent to your email',
-              type: 'info',
-            });
-            done();
-          });
-        }));
-
-      it('should display toast for loginSucceeded', () =>
-        withDone(done => {
-          actions$.next(
-            AuthActions.loginSucceeded({
-              user: {
-                id: 'user123',
-                firstName: 'Test',
-                lastName: 'User',
-                email: 'test@test.com',
-                isAdmin: true,
-              },
-            }),
-          );
-
-          effects.notify$.subscribe(() => {
-            expect(toastService.displayToast).toHaveBeenCalledWith({
-              title: 'Admin login',
-              message: 'Successfully logged in',
-              type: 'success',
-            });
-            done();
-          });
-        }));
-
-      it('should display toast for logoutSucceeded with session expired', () =>
-        withDone(done => {
-          actions$.next(AuthActions.logoutSucceeded({ sessionExpired: true }));
-
-          effects.notify$.subscribe(() => {
-            expect(toastService.displayToast).toHaveBeenCalledWith({
-              title: 'Admin logout',
-              message: 'Session expired - please log back in',
-              type: 'info',
-            });
-            done();
-          });
-        }));
-
-      it('should display toast for logoutSucceeded without session expired', () =>
-        withDone(done => {
-          actions$.next(AuthActions.logoutSucceeded({ sessionExpired: false }));
-
-          effects.notify$.subscribe(() => {
-            expect(toastService.displayToast).toHaveBeenCalledWith({
-              title: 'Admin logout',
-              message: 'Successfully logged out',
-              type: 'success',
-            });
-            done();
-          });
-        }));
-
-      it('should display toast for passwordChangeSucceeded', () =>
-        withDone(done => {
-          actions$.next(
-            AuthActions.passwordChangeSucceeded({
-              user: {
-                id: 'user123',
-                firstName: 'Test',
-                lastName: 'User',
-                email: 'test@test.com',
-                isAdmin: true,
-              },
-            }),
-          );
-
-          effects.notify$.subscribe(() => {
-            expect(toastService.displayToast).toHaveBeenCalledWith({
-              title: 'Password change',
-              message: 'Successfully changed password and logged in',
-              type: 'success',
             });
             done();
           });

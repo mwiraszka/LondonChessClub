@@ -13,7 +13,6 @@ import { MOCK_IMAGES } from '@app/mocks/images.mock';
 import { MOCK_MEMBERS } from '@app/mocks/members.mock';
 import { DialogService } from '@app/services';
 import { ArticlesActions, ArticlesSelectors } from '@app/store/articles';
-import { AuthActions } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { ImagesActions, ImagesSelectors } from '@app/store/images';
 import { MembersActions } from '@app/store/members';
@@ -178,48 +177,6 @@ describe('NavEffects', () => {
       expect(router.navigate).not.toHaveBeenCalled();
       openSpy.mockRestore();
     });
-  });
-
-  describe('navigateHome$', () => {
-    it('should navigate home on loginSucceeded', () =>
-      withDone(done => {
-        actions$.next(
-          AuthActions.loginSucceeded({
-            user: {
-              id: '123',
-              email: 'test@test.com',
-              firstName: 'Test',
-              lastName: 'User',
-              isAdmin: true,
-            },
-          }),
-        );
-
-        effects.navigateHome$.subscribe(action => {
-          expect(action).toEqual(NavActions.navigationRequested({ path: '' }));
-          done();
-        });
-      }));
-
-    it('should navigate home on passwordChangeSucceeded', () =>
-      withDone(done => {
-        actions$.next(
-          AuthActions.passwordChangeSucceeded({
-            user: {
-              id: '123',
-              email: 'test@test.com',
-              firstName: 'Test',
-              lastName: 'User',
-              isAdmin: true,
-            },
-          }),
-        );
-
-        effects.navigateHome$.subscribe(action => {
-          expect(action).toEqual(NavActions.navigationRequested({ path: '' }));
-          done();
-        });
-      }));
   });
 
   describe('navigateToMembers$', () => {
@@ -489,18 +446,6 @@ describe('NavEffects', () => {
           expect(action).toEqual(
             NavActions.navigationRequested({ path: 'photo-gallery' }),
           );
-          done();
-        });
-      }));
-  });
-
-  describe('navigateToLogin$', () => {
-    it('should navigate to login on logoutSucceeded', () =>
-      withDone(done => {
-        actions$.next(AuthActions.logoutSucceeded({ sessionExpired: false }));
-
-        effects.navigateToLogin$.subscribe(action => {
-          expect(action).toEqual(NavActions.navigationRequested({ path: 'login' }));
           done();
         });
       }));

@@ -24,15 +24,14 @@
 
     &.user-name {
       flex: 1;
+      align-items: center;
       justify-content: center;
+      gap: 4px;
       margin: 4px;
-
-      .user-icon {
-        color: var(--lcc-color--userSettingsMenu-userIcon);
-      }
 
       span {
         padding: 4px;
+        font-size: 16px;
       }
     }
 

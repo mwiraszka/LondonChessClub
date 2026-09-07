@@ -1,3 +1,4 @@
+import { AvatarComponent } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
@@ -10,6 +11,8 @@ import {
   EventEmitter,
   OnInit,
   Output,
+  computed,
+  inject,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
@@ -17,8 +20,9 @@ import { Router } from '@angular/router';
 import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { User } from '@app/models';
+import { AuthDrawerService, ClerkService } from '@app/services';
 import { AppActions, AppSelectors } from '@app/store/app';
-import { AuthActions, AuthSelectors } from '@app/store/auth';
+import { AuthSelectors } from '@app/store/auth';
 import { isTouchDevice } from '@app/utils';
 
 @UntilDestroy()
@@ -26,11 +30,20 @@ import { isTouchDevice } from '@app/utils';
   selector: 'lcc-user-settings-menu',
   templateUrl: './user-settings-menu.component.html',
   styleUrl: './user-settings-menu.component.scss',
-  imports: [CommonModule, MatIconModule, ToggleSwitchComponent, TooltipDirective],
+  imports: [
+    AvatarComponent,
+    CommonModule,
+    MatIconModule,
+    ToggleSwitchComponent,
+    TooltipDirective,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserSettingsMenuComponent implements OnInit {
   @Output() public readonly close = new EventEmitter<void>();
+
+  private readonly authDrawerService = inject(AuthDrawerService);
+  private readonly clerkService = inject(ClerkService);
 
   public isTouchDevice = isTouchDevice();
   public viewModel$?: Observable<{
@@ -40,6 +53,19 @@ export class UserSettingsMenuComponent implements OnInit {
     isDesktopView: boolean;
     isWideView: boolean;
   }>;
+
+  // Clerk serves the cropped display avatar; the R2 original is editor-only
+  public readonly avatarSrc = computed(() => {
+    const user = this.clerkService.user();
+    return user?.hasImage ? user.imageUrl : undefined;
+  });
+
+  public readonly initials = computed(() => {
+    const user = this.clerkService.user();
+    const first = user?.firstName?.[0] ?? '';
+    const last = user?.lastName?.[0] ?? '';
+    return (first + last).toUpperCase() || undefined;
+  });
 
   constructor(
     private readonly router: Router,
@@ -87,17 +113,18 @@ export class UserSettingsMenuComponent implements OnInit {
   }
 
   public onLogin(): void {
-    this.router.navigate(['login']);
+    this.authDrawerService.openLogin();
     this.close.emit();
   }
 
-  public onLogout(): void {
-    this.store.dispatch(AuthActions.logoutRequested({ sessionExpired: false }));
+  public onAccount(): void {
+    this.router.navigate(['account']);
     this.close.emit();
   }
 
-  public onChangePassword(): void {
-    this.router.navigate(['change-password']);
+  public async onLogout(): Promise<void> {
     this.close.emit();
+    await this.clerkService.logOut();
+    this.router.navigate(['/']);
   }
 }

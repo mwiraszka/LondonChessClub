@@ -10,7 +10,6 @@ import { NavigationEnd, Router } from '@angular/router';
 import { DialogService } from '@app/services';
 import { AppActions } from '@app/store/app';
 import { ArticlesActions } from '@app/store/articles';
-import { AuthActions } from '@app/store/auth';
 import { EventsActions } from '@app/store/events';
 import { ImagesActions } from '@app/store/images';
 import { MembersActions } from '@app/store/members';
@@ -65,13 +64,6 @@ export class NavEffects {
         }),
       ),
     { dispatch: false },
-  );
-
-  navigateHome$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AuthActions.loginSucceeded, AuthActions.passwordChangeSucceeded),
-      map(() => NavActions.navigationRequested({ path: '' })),
-    ),
   );
 
   navigateToMembers$ = createEffect(() =>
@@ -131,13 +123,6 @@ export class NavEffects {
         ImagesActions.updateAlbumSucceeded,
       ),
       map(() => NavActions.navigationRequested({ path: 'photo-gallery' })),
-    ),
-  );
-
-  navigateToLogin$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AuthActions.logoutSucceeded),
-      map(() => NavActions.navigationRequested({ path: 'login' })),
     ),
   );
 

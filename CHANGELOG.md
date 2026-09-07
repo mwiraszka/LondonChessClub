@@ -19,6 +19,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update packages and resolve dependency security vulnerabilities
 - Replace AWS Cognito with Clerk for admin authentication and user management
 - Require new users to set their own password on first login
+- Redesign the navigation bar with instant theme and wide view controls, a log in button, and an avatar account menu in place of the settings dropdown
+
+### Fixed
+
+- Centre the footer logo above the club name
 
 ## [v5.13.7] - 2026-06-18
 

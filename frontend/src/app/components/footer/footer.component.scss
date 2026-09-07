@@ -36,6 +36,11 @@
     }
 
     .branding-and-socials {
+      .logo {
+        display: flex;
+        justify-content: center;
+      }
+
       .club-name {
         margin-top: 4px;
       }

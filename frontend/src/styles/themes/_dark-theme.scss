@@ -25,6 +25,8 @@ body[data-theme='dark'] {
   --lcc-color--adminControls-editIcon: #{clr(primary, base)};
   --lcc-color--adminControls-editIconOnHover: #{clr(primary, light)};
 
+  --lcc-color--authDrawer-background: #{clr(grayscale, black-15)};
+
   --lcc-color--adminToolbar-adminIcon: #{clr(admin, base, 0.1)};
   --lcc-color--adminToolbar-boxShadow: #{clr(grayscale, black-20, 0.7)};
   --lcc-color--adminToolbar-innerBackground: #{clr(grayscale, black-20)};

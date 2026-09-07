@@ -37,7 +37,10 @@
               "src/sitemap.xml"
             ],
             "inlineStyleLanguage": "scss",
-            "styles": ["src/styles/main.scss"],
+            "styles": [
+              "node_modules/@eagami/ui/src/styles/eagami-ui.scss",
+              "src/styles/main.scss"
+            ],
             "scripts": [
               "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
               "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"

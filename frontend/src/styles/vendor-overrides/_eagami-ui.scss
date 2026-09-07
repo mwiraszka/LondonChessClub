@@ -1,0 +1,18 @@
+// @eagami/ui's stock neutral ramp is blue-tinted (Tailwind gray), which reads
+// as dark blue on field and card surfaces. Repaint it as pure grayscale at the
+// same lightness ladder; every semantic surface, border, and text token
+// derives from these, so the whole component set follows in both themes.
+:root {
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f4f4f4;
+  --color-neutral-200: #e7e7e7;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a1a1a1;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+  --color-neutral-950: #0a0a0a;
+}

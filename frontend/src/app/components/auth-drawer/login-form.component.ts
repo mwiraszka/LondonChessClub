@@ -57,6 +57,37 @@ export class LoginFormComponent implements OnDestroy {
   pendingSecondFactor = signal(false);
   pendingNewPassword = signal(false);
 
+  onEmailChange(value: string): void {
+    this.email.set(value);
+    if (this.emailError() && EMAIL_REGEX.test(value)) {
+      this.emailError.set('');
+    }
+  }
+
+  onPasswordChange(value: string): void {
+    this.password.set(value);
+    if (this.passwordError() && value) {
+      this.passwordError.set('');
+    }
+  }
+
+  onNewPasswordChange(value: string): void {
+    this.newPassword.set(value);
+    if (this.newPasswordError() && value.length >= 8) {
+      this.newPasswordError.set('');
+    }
+    if (this.confirmNewPasswordError() && this.confirmNewPassword() === value) {
+      this.confirmNewPasswordError.set('');
+    }
+  }
+
+  onConfirmNewPasswordChange(value: string): void {
+    this.confirmNewPassword.set(value);
+    if (this.confirmNewPasswordError() && value === this.newPassword()) {
+      this.confirmNewPasswordError.set('');
+    }
+  }
+
   onEmailBlur(): void {
     if (!this.email()) {
       return;
@@ -191,7 +222,7 @@ export class LoginFormComponent implements OnDestroy {
 
   private showWelcomeToast(): void {
     const firstName = this.clerk.user()?.firstName;
-    this.toast.show(firstName ? `Welcome ${firstName}!` : 'Welcome!', {
+    this.toast.show(firstName ? `Welcome back, ${firstName}!` : 'Welcome back!', {
       title: 'Logged in',
       variant: 'success',
     });

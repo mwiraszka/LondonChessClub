@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 
-export type AuthMode = 'login' | 'forgot-password';
+export type AuthMode = 'login' | 'create-account' | 'forgot-password';
 
 // Drives the right-side auth drawer so logging in overlays the current page
 // instead of a full-page takeover.

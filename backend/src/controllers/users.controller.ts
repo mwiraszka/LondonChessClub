@@ -8,6 +8,7 @@ import {
   deleteAvatar,
   uploadAvatar,
 } from '../services/avatar-storage.service';
+import { sendAdminEmail } from '../services/email.service';
 
 const MAX_AVATAR_SIZE = 5 * 1024 * 1024; // 5 MB
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
@@ -370,5 +371,85 @@ export async function getUserAvatar(req: Request, res: Response): Promise<void> 
       .send(Buffer.from(await r2Response.arrayBuffer()));
   } catch (error) {
     res.status(500).json({ message: `Unable to fetch avatar: ${error}` });
+  }
+}
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function isValidYearOfBirth(value: unknown): value is number {
+  return (
+    typeof value === 'number' &&
+    Number.isInteger(value) &&
+    value >= 1900 &&
+    value <= new Date().getFullYear()
+  );
+}
+
+function escapeHtml(value: string): string {
+  return value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+}
+
+export async function requestAccount(
+  req: Request,
+  res: Response<ApiResponse<'success'>>,
+): Promise<void> {
+  try {
+    const { firstName, lastName, email, yearOfBirth } = req.body as {
+      firstName?: unknown;
+      lastName?: unknown;
+      email?: unknown;
+      yearOfBirth?: unknown;
+    };
+
+    if (
+      typeof firstName !== 'string' ||
+      !firstName.trim() ||
+      typeof lastName !== 'string' ||
+      !lastName.trim()
+    ) {
+      res.status(400).json({ message: 'First and last name are required.' });
+      return;
+    }
+    if (typeof email !== 'string' || !EMAIL_PATTERN.test(email)) {
+      res.status(400).json({ message: 'A valid email address is required.' });
+      return;
+    }
+    if (!isValidYearOfBirth(yearOfBirth)) {
+      res.status(400).json({ message: 'A valid year of birth is required.' });
+      return;
+    }
+
+    const name = `${firstName.trim()} ${lastName.trim()}`;
+    const rows: Array<[string, string]> = [
+      ['Name', escapeHtml(name)],
+      ['Email', escapeHtml(email)],
+      ['Year of birth', String(yearOfBirth)],
+    ];
+    const html = `
+      <div style="font-family: Arial, sans-serif; color: #222;">
+        <h2 style="margin: 0 0 4px;">New account request</h2>
+        <p style="margin: 0 0 16px;">Someone has requested a London Chess Club account.</p>
+        <table style="border-collapse: collapse;">
+          ${rows
+            .map(
+              ([label, value]) => `
+                <tr>
+                  <td style="padding: 6px 16px 6px 0; font-weight: bold;">${label}</td>
+                  <td style="padding: 6px 0;">${value}</td>
+                </tr>`,
+            )
+            .join('')}
+        </table>
+        <p style="margin: 16px 0 0;">
+          Create their account in the Clerk dashboard and email them once it is ready.
+        </p>
+      </div>`;
+    const text = `New account request\n\nName: ${name}\nEmail: ${email}\nYear of birth: ${yearOfBirth}`;
+
+    await sendAdminEmail(`New account request from ${name}`, text, html);
+
+    res.status(200).json({ data: 'success' });
+  } catch (error) {
+    res.status(500).json({ message: `Unable to submit account request: ${error}` });
   }
 }

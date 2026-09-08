@@ -1,0 +1,77 @@
+<form
+  class="auth-form"
+  (ngSubmit)="onSubmit()">
+  <div class="name-row">
+    <ea-input
+      label="First name"
+      autocomplete="given-name"
+      [autofocus]="true"
+      [required]="true"
+      [(value)]="firstName" />
+
+    <ea-input
+      label="Last name"
+      autocomplete="family-name"
+      [required]="true"
+      [(value)]="lastName" />
+  </div>
+
+  <ea-input
+    label="Email"
+    type="email"
+    autocomplete="email"
+    placeholder="you@example.com"
+    [required]="true"
+    [errorMsg]="emailError()"
+    (blurred)="onEmailBlur()"
+    [value]="email()"
+    (valueChange)="onEmailChange($event)" />
+
+  <ea-number-input
+    label="Year of birth"
+    placeholder="1990"
+    [required]="true"
+    [min]="minYearOfBirth"
+    [max]="currentYear"
+    [maxDigits]="4"
+    [(value)]="yearOfBirth" />
+
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  }
+
+  <ea-button
+    type="submit"
+    variant="primary"
+    [fullWidth]="true"
+    [disabled]="!canSubmit()"
+    [loading]="loading()">
+    Request account
+  </ea-button>
+</form>
+
+<div class="auth-footer">
+  <p class="hint">
+    An LCC admin will review your request and set up your member account. You will receive
+    a confirmation at the email address provided as soon as your account is ready. Please
+    note that an account is entirely optional and not required for any club events.
+  </p>
+  <p class="privacy-note">
+    <ea-icon-shield
+      class="privacy-note__icon"
+      aria-hidden="true" />
+    <span>
+      <strong>Privacy:</strong> your personal information will never be shared with third
+      parties or used for marketing.
+    </span>
+  </p>
+  <p class="auth-link">
+    Already have an account?
+    <button
+      type="button"
+      class="auth-link__button lcc-link"
+      (click)="authDrawer.setMode('login')">
+      Log in
+    </button>
+  </p>
+</div>

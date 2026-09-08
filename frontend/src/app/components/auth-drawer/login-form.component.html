@@ -33,7 +33,8 @@
       [required]="true"
       [errorMsg]="newPasswordError()"
       (blurred)="onNewPasswordBlur()"
-      [(value)]="newPassword" />
+      [value]="newPassword()"
+      (valueChange)="onNewPasswordChange($event)" />
 
     <ea-input
       label="Confirm new password"
@@ -42,7 +43,8 @@
       [required]="true"
       [errorMsg]="confirmNewPasswordError()"
       (blurred)="onConfirmNewPasswordBlur()"
-      [(value)]="confirmNewPassword" />
+      [value]="confirmNewPassword()"
+      (valueChange)="onConfirmNewPasswordChange($event)" />
 
     @if (error()) {
       <p class="error">{{ error() }}</p>
@@ -70,7 +72,8 @@
         [required]="true"
         [errorMsg]="emailError()"
         (blurred)="onEmailBlur()"
-        [(value)]="email" />
+        [value]="email()"
+        (valueChange)="onEmailChange($event)" />
 
       <ea-input
         label="Password"
@@ -78,7 +81,8 @@
         autocomplete="current-password"
         [required]="true"
         [errorMsg]="passwordError()"
-        [(value)]="password" />
+        [value]="password()"
+        (valueChange)="onPasswordChange($event)" />
 
       @if (error()) {
         <p class="error">{{ error() }}</p>
@@ -96,9 +100,18 @@
 
   <div class="auth-footer">
     <p class="auth-link">
+      Don't have an account?
       <button
         type="button"
-        class="auth-link__button"
+        class="auth-link__button lcc-link"
+        (click)="authDrawer.setMode('create-account')">
+        Create account
+      </button>
+    </p>
+    <p class="auth-link">
+      <button
+        type="button"
+        class="auth-link__button lcc-link"
         (click)="authDrawer.setMode('forgot-password')">
         Forgot password?
       </button>

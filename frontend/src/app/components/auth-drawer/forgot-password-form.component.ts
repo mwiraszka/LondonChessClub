@@ -42,6 +42,37 @@ export class ForgotPasswordFormComponent implements OnDestroy {
     this.confirmPassword.set('');
   }
 
+  onEmailChange(value: string): void {
+    this.email.set(value);
+    if (this.emailError() && EMAIL_REGEX.test(value)) {
+      this.emailError.set('');
+    }
+  }
+
+  onCodeChange(value: string): void {
+    this.code.set(value);
+    if (this.codeError() && value) {
+      this.codeError.set('');
+    }
+  }
+
+  onNewPasswordChange(value: string): void {
+    this.newPassword.set(value);
+    if (this.newPasswordError() && value.length >= 8) {
+      this.newPasswordError.set('');
+    }
+    if (this.confirmPasswordError() && this.confirmPassword() === value) {
+      this.confirmPasswordError.set('');
+    }
+  }
+
+  onConfirmPasswordChange(value: string): void {
+    this.confirmPassword.set(value);
+    if (this.confirmPasswordError() && value === this.newPassword()) {
+      this.confirmPasswordError.set('');
+    }
+  }
+
   onEmailBlur(): void {
     if (!this.email()) {
       return;

@@ -6,6 +6,7 @@ import {
   deleteUserAvatar,
   getMe,
   getUserAvatar,
+  requestAccount,
   updateCroppedAvatar,
   updateMe,
   uploadUserAvatar,
@@ -14,6 +15,7 @@ import { auth } from '../middlewares/auth.index';
 import { avatarUpload } from '../middlewares/avatar-upload.middleware';
 
 export const usersRouter = Router()
+  .post('/account-requests', requestAccount)
   .get('/me', auth, getMe)
   .patch('/me', auth, updateMe)
   .post('/me/password', auth, changePassword)

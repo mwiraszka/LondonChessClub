@@ -10,6 +10,7 @@ import {
 
 import { AuthDrawerService } from '@app/services/auth-drawer.service';
 
+import { CreateAccountFormComponent } from './create-account-form.component';
 import { ForgotPasswordFormComponent } from './forgot-password-form.component';
 import { LoginFormComponent } from './login-form.component';
 
@@ -21,7 +22,12 @@ const MOBILE_BREAKPOINT = 640;
   templateUrl: './auth-drawer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '(window:resize)': 'onResize()' },
-  imports: [DrawerComponent, LoginFormComponent, ForgotPasswordFormComponent],
+  imports: [
+    DrawerComponent,
+    LoginFormComponent,
+    CreateAccountFormComponent,
+    ForgotPasswordFormComponent,
+  ],
 })
 export class AuthDrawerComponent {
   protected readonly authDrawer = inject(AuthDrawerService);
@@ -36,9 +42,16 @@ export class AuthDrawerComponent {
   );
   protected readonly size = computed<EaWidth>(() => (this.isMobile() ? 'full' : 'md'));
 
-  protected readonly title = computed(() =>
-    this.authDrawer.mode() === 'forgot-password' ? 'Reset password' : 'Log in',
-  );
+  protected readonly title = computed(() => {
+    switch (this.authDrawer.mode()) {
+      case 'create-account':
+        return 'Create account';
+      case 'forgot-password':
+        return 'Reset password';
+      default:
+        return 'Welcome back';
+    }
+  });
 
   protected onResize(): void {
     this.viewportWidth.set(window.innerWidth);

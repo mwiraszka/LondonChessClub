@@ -347,13 +347,19 @@ export class AccountPageComponent implements OnInit {
 
   private validate(): boolean {
     this.firstNameError.set('');
+    this.lastNameError.set('');
 
     const firstEmpty = !this.firstName().trim();
     if (firstEmpty) {
       this.firstNameError.set('First name is required');
     }
 
-    return !firstEmpty;
+    const lastEmpty = !this.lastName().trim();
+    if (lastEmpty) {
+      this.lastNameError.set('Last name is required');
+    }
+
+    return !firstEmpty && !lastEmpty;
   }
 
   private async applyChanges(): Promise<string[]> {

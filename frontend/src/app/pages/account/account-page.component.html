@@ -87,13 +87,14 @@
                   [(value)]="firstName" />
                 <ea-input
                   label="Last name"
+                  [required]="true"
                   [errorMsg]="lastNameError()"
                   [(value)]="lastName" />
               </div>
 
               <div class="actions">
                 <ea-button
-                  [disabled]="!hasChanges() || !firstName().trim()"
+                  [disabled]="!hasChanges() || !firstName().trim() || !lastName().trim()"
                   [loading]="saving()"
                   (clicked)="onSave()">
                   Save changes
@@ -156,6 +157,7 @@
                   label="Current password"
                   type="password"
                   autocomplete="current-password"
+                  [required]="true"
                   [errorMsg]="currentPasswordError()"
                   [(value)]="currentPassword" />
               }
@@ -164,6 +166,7 @@
                   label="New password"
                   type="password"
                   autocomplete="new-password"
+                  [required]="true"
                   [(value)]="newPassword" />
                 @if (newPassword()) {
                   <ul class="pw-reqs">
@@ -206,6 +209,7 @@
                 label="Confirm new password"
                 type="password"
                 autocomplete="new-password"
+                [required]="true"
                 [errorMsg]="confirmMismatch() ? 'Passwords do not match' : ''"
                 [(value)]="confirmPassword" />
             </div>

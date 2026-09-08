@@ -35,11 +35,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 28px;
+      height: 28px;
       padding: 0;
-
-      @include respond-to('gt-md') {
-        padding: 2px;
-      }
+      font-size: 18px;
     }
 
     .page-control-section {
@@ -67,13 +66,26 @@
         }
 
         .page-size-button {
-          padding: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 28px;
+          height: 28px;
+          padding: 0;
           font-size: 12px;
           border-color: var(--lcc-color--dataToolbar-buttonBorder);
           color: var(--lcc-color--dataToolbar-text);
 
           @include respond-to('gt-xs') {
             font-size: 13px;
+          }
+
+          &.all-button {
+            font-size: 11px;
+
+            @include respond-to('gt-xs') {
+              font-size: 12px;
+            }
           }
 
           &.selected {

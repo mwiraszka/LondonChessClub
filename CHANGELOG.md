@@ -21,6 +21,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replace AWS Cognito with Clerk for admin authentication and user management
 - Require new users to set their own password on first login
 - Redesign the navigation bar with instant theme and wide view controls, a log in button, and an avatar account menu in place of the settings dropdown
+- Swap every Material icon for an Eagami UI icon across the site
+- Make the table paginator buttons uniform squares
+- Cap photo gallery album covers at 200px wide so wide view no longer stretches them
 
 ### Fixed
 

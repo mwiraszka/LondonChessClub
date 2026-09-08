@@ -19,9 +19,11 @@
               <span>{{ header }}</span>
               <div class="sort-icon-container">
                 @if (options.sortBy === (header | camelCase)) {
-                  <mat-icon class="sort-icon">
-                    {{ options.sortOrder === 'desc' ? 'arrow_downward' : 'arrow_upward' }}
-                  </mat-icon>
+                  @if (options.sortOrder === 'desc') {
+                    <ea-icon-arrow-down class="sort-icon" />
+                  } @else {
+                    <ea-icon-arrow-up class="sort-icon" />
+                  }
                 }
               </div>
             </th>
@@ -45,7 +47,7 @@
                     class="city-champion-link before-name"
                     routerLink="/city-champion"
                     tooltip="2025 City Champion">
-                    <mat-icon class="city-champion-icon">emoji_events</mat-icon>
+                    <ea-icon-trophy class="city-champion-icon" />
                   </a>
                 }
                 <span [innerHTML]="member.firstName | highlight: options.search"></span>
@@ -68,7 +70,7 @@
                     class="city-champion-link after-name"
                     routerLink="/city-champion"
                     tooltip="2025 City Champion">
-                    <mat-icon class="city-champion-icon">emoji_events</mat-icon>
+                    <ea-icon-trophy class="city-champion-icon" />
                   </a>
                 }
               </td>

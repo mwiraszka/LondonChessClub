@@ -1,5 +1,6 @@
+import { TrophyIconComponent } from '@eagami/ui';
+
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 import { ExpansionPanelComponent } from '@app/components/expansion-panel/expansion-panel.component';
 import { PageHeaderComponent } from '@app/components/page-header/page-header.component';
@@ -14,14 +15,16 @@ import { MetaAndTitleService } from '@app/services';
   styleUrl: './champion-page.component.scss',
   imports: [
     ExpansionPanelComponent,
-    MatIconModule,
     PageHeaderComponent,
+    TrophyIconComponent,
     PhotoCarouselComponent,
     TooltipDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChampionPageComponent implements OnInit {
+  protected readonly pageIcon = TrophyIconComponent;
+
   public readonly photos: Partial<Image>[] = [
     {
       id: '1',

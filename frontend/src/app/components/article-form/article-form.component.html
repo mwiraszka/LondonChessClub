@@ -15,7 +15,7 @@
           type="button"
           tooltip="Select a new banner image"
           (click)="onSelectBannerImage()">
-          <mat-icon>panorama</mat-icon>
+          <ea-icon-image />
         </button>
         <button
           class="revert-banner-image-button lcc-secondary-button"
@@ -25,7 +25,7 @@
             (originalArticle?.bannerImageId ?? '') === form.controls.bannerImageId.value
           "
           (click)="onRevertBannerImage()">
-          <mat-icon>restore_page</mat-icon>
+          <ea-icon-rotate-ccw />
         </button>
 
         <hr />
@@ -40,7 +40,7 @@
           "
           [disabled]="!canInsertImage"
           (click)="onInsertImage()">
-          <mat-icon>image</mat-icon>
+          <ea-icon-image />
         </button>
       </div>
     </div>
@@ -80,7 +80,7 @@
       [disabled]="!hasUnsavedChanges"
       tooltip="Restore article to its original state"
       (click)="onRestore()">
-      <mat-icon>restore</mat-icon>
+      <ea-icon-history />
     </button>
   </div>
 

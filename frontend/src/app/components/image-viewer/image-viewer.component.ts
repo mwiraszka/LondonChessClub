@@ -1,3 +1,4 @@
+import { ChevronLeftIconComponent, ChevronRightIconComponent } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable, from, timer } from 'rxjs';
@@ -16,7 +17,6 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { ImageComponent } from '@app/components/image/image.component';
@@ -42,7 +42,8 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
     AdminControlsDirective,
     CommonModule,
     ImageComponent,
-    MatIconModule,
+    ChevronLeftIconComponent,
+    ChevronRightIconComponent,
     TooltipDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

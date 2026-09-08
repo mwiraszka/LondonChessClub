@@ -26,7 +26,7 @@ $header-border-bottom-thickness: 2px;
       margin: 0 4px 0 auto;
       color: var(--lcc-color--dialog-closeIcon);
 
-      mat-icon {
+      ea-icon-x {
         @include icon-size(18px);
       }
 

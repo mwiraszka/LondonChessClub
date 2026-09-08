@@ -1,10 +1,16 @@
+import {
+  DownloadIconComponent,
+  RefreshCwIconComponent,
+  SettingsIconComponent,
+} from '@eagami/ui';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { AdminButton, ExternalLink, InternalLink } from '@app/models';
-import { query, queryAll, queryTextContent } from '@app/utils';
+import { query, queryAll } from '@app/utils';
 
 import { AdminToolbarComponent } from './admin-toolbar.component';
 
@@ -15,19 +21,19 @@ describe('AdminToolbarComponent', () => {
     {
       id: 'refresh-button',
       tooltip: 'Refresh data',
-      icon: 'refresh',
+      icon: RefreshCwIconComponent,
       action: vi.fn(),
     },
     {
       id: 'settings-button',
       tooltip: 'Open settings',
-      icon: 'settings',
+      icon: SettingsIconComponent,
       action: vi.fn(),
     },
     {
       id: 'export-button',
       tooltip: 'Export data',
-      icon: 'download',
+      icon: DownloadIconComponent,
       action: vi.fn(),
     },
   ];
@@ -63,10 +69,7 @@ describe('AdminToolbarComponent', () => {
 
   describe('template rendering', () => {
     it('should display the admin icon', () => {
-      expect(query(fixture.debugElement, '.admin-icon')).toBeTruthy();
-      expect(queryTextContent(fixture.debugElement, '.admin-icon')).toBe(
-        'admin_panel_settings',
-      );
+      expect(query(fixture.debugElement, 'ea-icon-shield-check.admin-icon')).toBeTruthy();
     });
 
     describe('with no inputs', () => {
@@ -131,11 +134,9 @@ describe('AdminToolbarComponent', () => {
         const buttonIcons = queryAll(fixture.debugElement, '.button-icon');
         expect(buttonIcons.length).toBe(mockAdminButtons.length);
 
-        buttonIcons.forEach((buttonIcon, index) => {
-          expect(buttonIcon.nativeElement.textContent.trim()).toBe(
-            mockAdminButtons[index].icon,
-          );
-        });
+        expect(query(buttonIcons[0], 'ea-icon-refresh-cw')).toBeTruthy();
+        expect(query(buttonIcons[1], 'ea-icon-settings')).toBeTruthy();
+        expect(query(buttonIcons[2], 'ea-icon-download')).toBeTruthy();
       });
 
       it('should apply tooltip directive with correct tooltip text', () => {

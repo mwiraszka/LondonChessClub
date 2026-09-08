@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatIconModule } from '@angular/material/icon';
 import { By } from '@angular/platform-browser';
 
 import { query, queryTextContent } from '@app/utils';
@@ -12,7 +11,7 @@ describe('ExpansionPanelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ExpansionPanelComponent, MatIconModule],
+      imports: [ExpansionPanelComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ExpansionPanelComponent);
@@ -27,7 +26,7 @@ describe('ExpansionPanelComponent', () => {
   it('should be collapsed by default', () => {
     expect(component.expanded).toBe(false);
     expect(fixture.debugElement.query(By.css('.expansion-content'))).toBeNull();
-    expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('expand_more');
+    expect(query(fixture.debugElement, 'ea-icon-chevron-down')).toBeTruthy();
   });
 
   it('should be expanded when [expanded] input is true', () => {
@@ -35,7 +34,7 @@ describe('ExpansionPanelComponent', () => {
     fixture.detectChanges();
 
     expect(fixture.debugElement.query(By.css('.expansion-content'))).toBeTruthy();
-    expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('expand_less');
+    expect(query(fixture.debugElement, 'ea-icon-chevron-up')).toBeTruthy();
   });
 
   it('should toggle expansion when header is clicked', () => {
@@ -46,14 +45,14 @@ describe('ExpansionPanelComponent', () => {
 
     expect(component.expanded).toBe(true);
     expect(fixture.debugElement.query(By.css('.expansion-content'))).toBeTruthy();
-    expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('expand_less');
+    expect(query(fixture.debugElement, 'ea-icon-chevron-up')).toBeTruthy();
 
     header.triggerEventHandler('click');
     fixture.detectChanges();
 
     expect(component.expanded).toBe(false);
     expect(fixture.debugElement.query(By.css('.expansion-content'))).toBeNull();
-    expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('expand_more');
+    expect(query(fixture.debugElement, 'ea-icon-chevron-down')).toBeTruthy();
   });
 
   it('should render the heading when provided', () => {

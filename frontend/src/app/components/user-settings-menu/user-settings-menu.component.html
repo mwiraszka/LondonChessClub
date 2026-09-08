@@ -38,7 +38,7 @@
       <li class="menu-item safe-mode-toggle">
         <span>Safe mode</span>
         <lcc-toggle-switch
-          iconWhenOff="warning"
+          [iconWhenOff]="warningIcon"
           [iconTooltipWhenOff]="safeModeWarningTooltipContent"
           [switchedOn]="vm.isSafeMode"
           tooltipWhenOff="Enable safe mode"
@@ -64,7 +64,7 @@
 <ng-template #safeModeWarningTooltipContent>
   <div class="safe-mode-warning-tooltip">
     <header>
-      <mat-icon>warning</mat-icon>
+      <ea-icon-alert-triangle class="warning-icon" />
       <div>Safe mode is currently disabled</div>
     </header>
 

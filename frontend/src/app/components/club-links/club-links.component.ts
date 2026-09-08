@@ -1,11 +1,12 @@
+import { ExternalLinkIconComponent } from '@eagami/ui';
+
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'lcc-club-links',
   templateUrl: './club-links.component.html',
   styleUrl: './club-links.component.scss',
-  imports: [MatIconModule],
+  imports: [ExternalLinkIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClubLinksComponent {}

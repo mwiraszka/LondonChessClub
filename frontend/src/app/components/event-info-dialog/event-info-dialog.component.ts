@@ -1,3 +1,4 @@
+import { CalendarDaysIconComponent, TrophyIconComponent } from '@eagami/ui';
 import { UntilDestroy } from '@ngneat/until-destroy';
 
 import { CommonModule } from '@angular/common';
@@ -9,7 +10,6 @@ import {
   Output,
   Renderer2,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 import { DialogOutput, Event } from '@app/models';
 import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
@@ -19,7 +19,7 @@ import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
   selector: 'lcc-event-info-dialog',
   template: `
     <header class="dialog-title">
-      <mat-icon class="calendar-icon">calendar_month</mat-icon>
+      <ea-icon-calendar-days class="calendar-icon" />
       <span>{{ event.eventDate | formatDate: 'long no-time' }}</span>
     </header>
 
@@ -32,7 +32,7 @@ import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
         <span class="event-type">{{ event.type }}</span>
 
         @if ((event.type | kebabCase) === 'championship') {
-          <mat-icon class="championship-icon">emoji_events</mat-icon>
+          <ea-icon-trophy class="championship-icon" />
         }
       </div>
 
@@ -48,7 +48,13 @@ import { FormatDatePipe, KebabCasePipe } from '@app/pipes';
     }
   `,
   styleUrl: 'event-info-dialog.component.scss',
-  imports: [CommonModule, FormatDatePipe, KebabCasePipe, MatIconModule],
+  imports: [
+    CalendarDaysIconComponent,
+    CommonModule,
+    FormatDatePipe,
+    KebabCasePipe,
+    TrophyIconComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventInfoDialogComponent implements DialogOutput<'details'> {

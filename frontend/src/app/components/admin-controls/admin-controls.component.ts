@@ -1,3 +1,4 @@
+import { BookmarkIconComponent, EditIconComponent, TrashIconComponent } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import {
@@ -11,7 +12,6 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { ADMIN_CONTROLS_CONFIG_TOKEN } from '@app/directives/admin-controls.directive';
@@ -26,7 +26,15 @@ import { isTouchDevice } from '@app/utils';
   selector: 'lcc-admin-controls',
   templateUrl: './admin-controls.component.html',
   styleUrl: './admin-controls.component.scss',
-  imports: [IsDefinedPipe, MatIconModule, RouterLink, RouterLinkPipe, TooltipDirective],
+  imports: [
+    BookmarkIconComponent,
+    EditIconComponent,
+    IsDefinedPipe,
+    RouterLink,
+    RouterLinkPipe,
+    TooltipDirective,
+    TrashIconComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminControlsComponent implements OnInit, OnDestroy {

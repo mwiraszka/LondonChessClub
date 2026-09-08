@@ -1,20 +1,19 @@
+import { AlertTriangleIconComponent } from '@eagami/ui';
+
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 
 @Component({
   selector: 'lcc-form-error-icon',
   template: `
-    <mat-icon
+    <ea-icon-alert-triangle
       [style.visibility]="hasError ? 'visible' : 'hidden'"
-      [tooltip]="errorMessage">
-      warning_amber
-    </mat-icon>
+      [tooltip]="errorMessage" />
   `,
   styleUrl: './form-error-icon.component.scss',
-  imports: [MatIconModule, TooltipDirective],
+  imports: [AlertTriangleIconComponent, TooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class FormErrorIconComponent {

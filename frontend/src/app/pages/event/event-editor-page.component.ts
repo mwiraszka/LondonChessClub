@@ -1,3 +1,4 @@
+import { CalendarIconComponent, ShieldCheckIconComponent } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
@@ -21,7 +22,7 @@ import { EventsActions, EventsSelectors } from '@app/store/events';
     @if (viewModel$ | async; as vm) {
       <lcc-page-header
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
-        icon="admin_panel_settings"
+        [icon]="adminIcon"
         [heading]="vm.pageHeading">
       </lcc-page-header>
 
@@ -43,11 +44,13 @@ import { EventsActions, EventsSelectors } from '@app/store/events';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventEditorPageComponent implements EditorPage, OnInit {
+  protected readonly adminIcon = ShieldCheckIconComponent;
+
   public readonly entity = 'event';
   public readonly schedulePageLink: InternalLink = {
     text: 'See all events',
     internalPath: 'schedule',
-    icon: 'calendar',
+    icon: CalendarIconComponent,
   };
   public viewModel$?: Observable<{
     formData: EventFormData;

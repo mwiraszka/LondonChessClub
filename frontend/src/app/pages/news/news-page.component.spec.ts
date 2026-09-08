@@ -1,3 +1,4 @@
+import { PlusCircleIconComponent } from '@eagami/ui';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { firstValueFrom, take } from 'rxjs';
 
@@ -194,7 +195,7 @@ describe('NewsPageComponent', () => {
       expect(component.createArticleLink).toEqual({
         internalPath: ['article', 'add'],
         text: 'Create an article',
-        icon: 'add_circle_outline',
+        icon: PlusCircleIconComponent,
       });
     });
   });

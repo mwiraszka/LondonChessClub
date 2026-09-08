@@ -1,3 +1,9 @@
+import {
+  ChevronLeftIconComponent,
+  ChevronRightIconComponent,
+  ChevronsLeftIconComponent,
+  ChevronsRightIconComponent,
+} from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { isEqual } from 'lodash';
 import { Subject } from 'rxjs';
@@ -12,7 +18,6 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { DataPaginationOptions, Entity, EntityType, Filter } from '@app/models';
@@ -22,7 +27,14 @@ import { DataPaginationOptions, Entity, EntityType, Filter } from '@app/models';
   selector: 'lcc-data-toolbar',
   templateUrl: './data-toolbar.component.html',
   styleUrls: ['./data-toolbar.component.scss'],
-  imports: [CommonModule, MatIconModule, TooltipDirective],
+  imports: [
+    ChevronLeftIconComponent,
+    ChevronRightIconComponent,
+    ChevronsLeftIconComponent,
+    ChevronsRightIconComponent,
+    CommonModule,
+    TooltipDirective,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataToolbarComponent<T = EntityType> implements OnInit {

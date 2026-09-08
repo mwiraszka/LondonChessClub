@@ -1,3 +1,5 @@
+import { MicroscopeIconComponent } from '@eagami/ui';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MOCK_PGNS } from '@app/mocks/pgns.mock';
@@ -50,7 +52,7 @@ describe('PgnViewerComponent', () => {
       text: 'Analyze game on Lichess',
       externalPath:
         'https://lichess.org/analysis/pgn/1. d4 e6 2. c4 f5 3. g3 Nf6 4. Bg2 d5 5. Nf3 c6 6. O-O 1-0',
-      icon: 'biotech',
+      icon: MicroscopeIconComponent,
     });
   });
 

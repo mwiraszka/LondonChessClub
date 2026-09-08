@@ -1,3 +1,5 @@
+import { BookmarkIconComponent } from '@eagami/ui';
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,7 +9,6 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
@@ -46,7 +47,7 @@ interface ArticleRow {
     FormatDatePipe,
     HighlightPipe,
     ImageComponent,
-    MatIconModule,
+    BookmarkIconComponent,
     RouterLink,
     RouterLinkPipe,
     SummarizeArticlePipe,

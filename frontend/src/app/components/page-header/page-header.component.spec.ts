@@ -1,3 +1,5 @@
+import { HomeIconComponent } from '@eagami/ui';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { query, queryTextContent } from '@app/utils';
@@ -32,17 +34,17 @@ describe('PageHeaderComponent', () => {
     });
 
     it('should display icon when provided', () => {
-      fixture.componentRef.setInput('icon', 'home');
+      fixture.componentRef.setInput('icon', HomeIconComponent);
       fixture.detectChanges();
 
-      expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('home');
+      expect(query(fixture.debugElement, 'ea-icon-home')).toBeTruthy();
     });
 
     it('should not display icon when not provided', () => {
       fixture.componentRef.setInput('icon', null);
       fixture.detectChanges();
 
-      expect(query(fixture.debugElement, 'mat-icon')).toBeFalsy();
+      expect(query(fixture.debugElement, '.page-header-icon')).toBeFalsy();
     });
 
     it('should add end-with-asterisk class when hasUnsavedChanges is true', () => {

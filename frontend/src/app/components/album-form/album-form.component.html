@@ -87,7 +87,11 @@
           ? 'Add more files'
           : 'Choose files'
       ">
-      <mat-icon>imageEntities.length ? add_photo_alternate : insert_photo</mat-icon>
+      @if (imageEntities.length) {
+        <ea-icon-image-plus />
+      } @else {
+        <ea-icon-image />
+      }
       <input
         type="file"
         accept="image/*"
@@ -102,7 +106,7 @@
       [disabled]="!hasUnsavedChanges"
       tooltip="Restore album to its original state"
       (click)="onRestore()">
-      <mat-icon>restore</mat-icon>
+      <ea-icon-history />
     </button>
   </div>
 
@@ -126,7 +130,7 @@
             type="button"
             (click)="onRemoveNewImage(imageControl.getRawValue(), i)"
             tooltip="Remove image">
-            <mat-icon>cancel</mat-icon>
+            <ea-icon-x-circle />
           </button>
         </div>
 

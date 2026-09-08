@@ -1,3 +1,9 @@
+import {
+  DownloadIconComponent,
+  PlusCircleIconComponent,
+  UploadIconComponent,
+  UsersIconComponent,
+} from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, firstValueFrom } from 'rxjs';
@@ -42,7 +48,7 @@ import { isLccError } from '@app/utils';
     @if (viewModel$ | async; as vm) {
       <lcc-page-header
         heading="Members"
-        icon="groups">
+        [icon]="pageIcon">
       </lcc-page-header>
 
       @if (vm.isAdmin) {
@@ -87,26 +93,28 @@ import { isLccError } from '@app/utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MembersPageComponent implements OnInit {
+  protected readonly pageIcon = UsersIconComponent;
+
   @ViewChild('memberRatingChangesFileInput')
   memberRatingChangesFileInput?: ElementRef<HTMLInputElement>;
 
   public addMemberLink: InternalLink = {
     internalPath: ['member', 'add'],
     text: 'Add a member',
-    icon: 'add_circle_outline',
+    icon: PlusCircleIconComponent,
   };
 
   public updateRatingsFromCsvButton: AdminButton = {
     id: 'update-ratings-from-csv',
     tooltip: 'Update member ratings from CSV',
-    icon: 'upload_file',
+    icon: UploadIconComponent,
     action: () => this.memberRatingChangesFileInput?.nativeElement.click(),
   };
 
   public exportToCsvButton: AdminButton = {
     id: 'export-to-csv',
     tooltip: 'Export to CSV',
-    icon: 'download',
+    icon: DownloadIconComponent,
     action: () => this.onExportToCsv(),
   };
 

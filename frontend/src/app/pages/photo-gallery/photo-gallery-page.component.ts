@@ -1,3 +1,4 @@
+import { CameraIconComponent } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
@@ -20,7 +21,7 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
     @if (viewModel$ | async; as vm) {
       <lcc-page-header
         heading="Photo Gallery"
-        icon="photo_camera">
+        [icon]="pageIcon">
       </lcc-page-header>
 
       <lcc-photo-grid
@@ -35,6 +36,8 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhotoGalleryPageComponent implements OnInit {
+  protected readonly pageIcon = CameraIconComponent;
+
   public viewModel$?: Observable<{
     isAdmin: boolean;
     isLoading: boolean;

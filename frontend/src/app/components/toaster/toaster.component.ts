@@ -1,6 +1,11 @@
+import {
+  AlertTriangleIconComponent,
+  CheckCircleIconComponent,
+  InfoIconComponent,
+} from '@eagami/ui';
+
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
+import { ChangeDetectionStrategy, Component, Input, Type } from '@angular/core';
 
 import { Toast } from '@app/models';
 import { ToastService } from '@app/services';
@@ -16,7 +21,9 @@ import { ToastService } from '@app/services';
           '--animation-duration': ToastService.TOAST_DURATION + 'ms',
         }"
         (click)="onToastClick(toast)">
-        <mat-icon>{{ getIcon(toast.type) }}</mat-icon>
+        <span class="toast-icon">
+          <ng-container *ngComponentOutlet="getIcon(toast.type)" />
+        </span>
         <div class="text-container">
           <div class="title lcc-truncate">{{ toast.title }}</div>
           <p class="message lcc-truncate-max-5-lines message">{{ toast.message }}</p>
@@ -25,7 +32,7 @@ import { ToastService } from '@app/services';
     }
   `,
   styleUrl: './toaster.component.scss',
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToasterComponent {
@@ -35,12 +42,12 @@ export class ToasterComponent {
 
   constructor(private readonly toastService: ToastService) {}
 
-  public getIcon(toastType: 'success' | 'info' | 'warning'): string {
+  public getIcon(toastType: 'success' | 'info' | 'warning'): Type<unknown> {
     return toastType === 'success'
-      ? 'check_circle'
+      ? CheckCircleIconComponent
       : toastType === 'warning'
-        ? 'warning_amber'
-        : 'info';
+        ? AlertTriangleIconComponent
+        : InfoIconComponent;
   }
 
   public onToastClick(toast: Toast): void {

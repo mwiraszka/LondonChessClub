@@ -73,7 +73,9 @@ $icon-height: 18px;
   }
 }
 
-mat-icon {
+.file-icon,
+.download-icon {
+  display: inline-flex;
   @include icon-size(18px);
 }
 

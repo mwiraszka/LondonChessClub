@@ -1,5 +1,6 @@
+import { InfoIconComponent } from '@eagami/ui';
+
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { ClubCardComponent } from '@app/components/club-card/club-card.component';
@@ -13,16 +14,12 @@ import { MetaAndTitleService } from '@app/services';
   selector: 'lcc-about-page',
   templateUrl: './about-page.component.html',
   styleUrl: './about-page.component.scss',
-  imports: [
-    MatIconModule,
-    PageHeaderComponent,
-    RouterLink,
-    ClubCardComponent,
-    ExpansionPanelComponent,
-  ],
+  imports: [PageHeaderComponent, RouterLink, ClubCardComponent, ExpansionPanelComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutPageComponent implements OnInit {
+  protected readonly pageIcon = InfoIconComponent;
+
   public readonly lccClub: Club = LCC_CLUB;
 
   constructor(private readonly metaAndTitleService: MetaAndTitleService) {}

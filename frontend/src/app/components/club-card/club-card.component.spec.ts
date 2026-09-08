@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LCC_CLUB, REGIONAL_CLUBS } from '@app/constants/clubs';
-import { query, queryAll } from '@app/utils';
+import { query } from '@app/utils';
 
 import { ClubCardComponent } from './club-card.component';
 
@@ -71,30 +71,15 @@ describe('ClubCardComponent', () => {
     });
 
     it('should render location icon', () => {
-      const icons = queryAll(fixture.debugElement, 'mat-icon');
-      const locationIcon = icons.find(
-        icon => icon.nativeElement.textContent.trim() === 'location_on',
-      );
-
-      expect(locationIcon).toBeTruthy();
+      expect(query(fixture.debugElement, 'ea-icon-map-pin')).toBeTruthy();
     });
 
     it('should render email icon when email exists', () => {
-      const icons = queryAll(fixture.debugElement, 'mat-icon');
-      const emailIcon = icons.find(
-        icon => icon.nativeElement.textContent.trim() === 'email',
-      );
-
-      expect(emailIcon).toBeTruthy();
+      expect(query(fixture.debugElement, 'ea-icon-mail')).toBeTruthy();
     });
 
     it('should render external link icon when email exists', () => {
-      const icons = queryAll(fixture.debugElement, 'mat-icon');
-      const externalLinkIcon = icons.find(
-        icon => icon.nativeElement.textContent.trim() === 'open_in_new',
-      );
-
-      expect(externalLinkIcon).toBeTruthy();
+      expect(query(fixture.debugElement, 'ea-icon-external-link')).toBeTruthy();
     });
   });
 });

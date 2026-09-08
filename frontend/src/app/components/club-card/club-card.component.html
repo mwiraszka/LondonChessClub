@@ -5,7 +5,7 @@
 
     <div class="club-details">
       <div class="address">
-        <mat-icon class="map-icon secondary-text">location_on</mat-icon>
+        <ea-icon-map-pin class="map-icon secondary-text" />
         <div class="address secondary-text">
           {{ club.addressLine1 }}<br />
           {{ club.addressLine2 }}<br />
@@ -19,14 +19,14 @@
 
       @if (club.email) {
         <div class="email">
-          <mat-icon class="email-icon">email</mat-icon>
+          <ea-icon-mail class="email-icon" />
           <a
             [href]="'mailto:' + club.email"
             class="email-link lcc-link"
             rel="noopener noreferrer"
             target="_blank">
             <span>{{ club.email }}</span>
-            <mat-icon class="external-link-icon">open_in_new</mat-icon>
+            <ea-icon-external-link class="external-link-icon" />
           </a>
         </div>
       }

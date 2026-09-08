@@ -361,9 +361,9 @@ describe('EventsTableComponent', () => {
         fixture.componentRef.setInput('events', [championshipEvent!]);
         fixture.detectChanges();
 
-        expect(queryTextContent(fixture.debugElement, '.championship-icon')).toBe(
-          'emoji_events',
-        );
+        expect(
+          query(fixture.debugElement, 'ea-icon-trophy.championship-icon'),
+        ).toBeTruthy();
       });
 
       it('should link to article when event has articleId', () => {

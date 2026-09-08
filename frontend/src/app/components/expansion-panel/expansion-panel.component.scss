@@ -1,3 +1,5 @@
+@use '../../../styles/abstracts/mixins' as *;
+
 .expansion-panel {
   overflow: hidden;
   width: 100%;
@@ -34,7 +36,9 @@
     }
   }
 
-  mat-icon {
+  .expansion-icon {
+    @include icon-size(24px);
+
     color: var(--lcc-color--expansionPanel-headerText);
   }
 }

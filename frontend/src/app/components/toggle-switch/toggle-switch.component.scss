@@ -69,7 +69,8 @@ input:checked + .slider {
   }
 }
 
-mat-icon {
+.toggle-icon {
+  display: inline-flex;
   @include mixins.icon-size(20px);
 
   &.warning {

@@ -24,7 +24,8 @@
     gap: 8px;
     text-align: left;
 
-    mat-icon {
+    ea-icon-file-plus,
+    ea-icon-edit {
       @include icon-size(15px);
 
       color: var(--lcc-color--modificationInfo-icons);

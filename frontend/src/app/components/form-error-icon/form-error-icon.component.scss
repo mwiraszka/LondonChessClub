@@ -1,6 +1,6 @@
 @use '../../../styles/abstracts/mixins' as *;
 
-mat-icon {
+ea-icon-alert-triangle {
   @include icon-size(18px);
 
   color: var(--lcc-color--formErrorIcon);

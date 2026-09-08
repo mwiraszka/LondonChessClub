@@ -1,3 +1,5 @@
+import { XIconComponent } from '@eagami/ui';
+
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
@@ -11,7 +13,6 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { Event, EventType } from '@app/models';
@@ -21,7 +22,7 @@ import { FormatDatePipe } from '@app/pipes';
   selector: 'lcc-upcoming-event-banner',
   templateUrl: './upcoming-event-banner.component.html',
   styleUrl: './upcoming-event-banner.component.scss',
-  imports: [CommonModule, FormatDatePipe, MatIconModule, RouterLink],
+  imports: [CommonModule, FormatDatePipe, RouterLink, XIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UpcomingEventBannerComponent implements AfterViewInit, OnDestroy {

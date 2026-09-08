@@ -1,3 +1,4 @@
+import { DownloadIconComponent, FileTextIconComponent } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import moment from 'moment-timezone';
 
@@ -8,7 +9,6 @@ import {
   Inject,
   OnInit,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { DocumentViewerComponent } from '@app/components/document-viewer/document-viewer.component';
@@ -24,8 +24,9 @@ import { DialogService, MetaAndTitleService, RoutingService } from '@app/service
   templateUrl: './documents-page.component.html',
   styleUrl: './documents-page.component.scss',
   imports: [
+    DownloadIconComponent,
+    FileTextIconComponent,
     FormatDatePipe,
-    MatIconModule,
     PageHeaderComponent,
     RouterLink,
     TooltipDirective,
@@ -33,6 +34,8 @@ import { DialogService, MetaAndTitleService, RoutingService } from '@app/service
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocumentsPageComponent implements OnInit {
+  protected readonly pageIcon = FileTextIconComponent;
+
   public readonly documents: ClubDocument[] = [
     {
       title: 'Club Bylaws',

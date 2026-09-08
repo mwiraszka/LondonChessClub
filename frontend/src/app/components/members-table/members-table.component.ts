@@ -1,3 +1,8 @@
+import {
+  ArrowDownIconComponent,
+  ArrowUpIconComponent,
+  TrophyIconComponent,
+} from '@eagami/ui';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { camelCase } from 'lodash';
 
@@ -9,7 +14,6 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
@@ -38,8 +42,10 @@ import { DialogService } from '@app/services';
     FormatDatePipe,
     HighlightPipe,
     KebabCasePipe,
-    MatIconModule,
+    ArrowDownIconComponent,
+    ArrowUpIconComponent,
     RouterLink,
+    TrophyIconComponent,
     SafeModeNoticeComponent,
     TooltipDirective,
   ],

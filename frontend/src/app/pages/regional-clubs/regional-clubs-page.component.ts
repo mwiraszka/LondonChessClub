@@ -1,3 +1,5 @@
+import { UsersIconComponent } from '@eagami/ui';
+
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { ClubCardComponent } from '@app/components/club-card/club-card.component';
@@ -10,7 +12,7 @@ import { MetaAndTitleService } from '@app/services';
   template: `
     <lcc-page-header
       heading="Regional Clubs"
-      icon="diversity_3">
+      [icon]="pageIcon">
     </lcc-page-header>
 
     <div class="club-cards-container">
@@ -24,6 +26,8 @@ import { MetaAndTitleService } from '@app/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegionalClubsPageComponent implements OnInit {
+  protected readonly pageIcon = UsersIconComponent;
+
   public readonly REGIONAL_CLUBS = REGIONAL_CLUBS;
 
   constructor(private readonly metaAndTitleService: MetaAndTitleService) {}

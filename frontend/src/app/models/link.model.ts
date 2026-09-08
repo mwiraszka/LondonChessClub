@@ -1,9 +1,11 @@
+import { Type } from '@angular/core';
+
 import { Id } from './core.model';
 import { NavPath } from './nav-path.model';
 
 interface BaseLink {
   text: string;
-  icon?: string;
+  icon?: Type<unknown>;
   tooltip?: string;
 }
 

@@ -29,7 +29,7 @@ describe('ClubLinksComponent', () => {
       expect(linkElements.length).toBe(4);
 
       linkElements.forEach(linkElement => {
-        expect(queryTextContent(linkElement, 'mat-icon')).toBe('open_in_new');
+        expect(query(linkElement, 'ea-icon-external-link')).toBeTruthy();
         expect(query(linkElement, '.image-container img')).toBeTruthy();
         expect(queryTextContent(linkElement, 'span')).toBeTruthy();
       });

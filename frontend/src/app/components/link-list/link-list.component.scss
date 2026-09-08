@@ -35,7 +35,9 @@
     }
   }
 
-  mat-icon {
+  .link-icon,
+  .external-link-icon {
+    display: inline-flex;
     @include icon-size(16px);
   }
 }

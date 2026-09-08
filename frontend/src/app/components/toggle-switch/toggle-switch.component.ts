@@ -1,3 +1,4 @@
+import { NgComponentOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,9 +7,9 @@ import {
   OnInit,
   Output,
   TemplateRef,
+  Type,
   ViewChild,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
 import { generateUuid } from '@app/utils/common/generate-uuid.util';
@@ -17,13 +18,16 @@ import { generateUuid } from '@app/utils/common/generate-uuid.util';
   selector: 'lcc-toggle-switch',
   template: `
     @if (switchedOn && iconWhenOn) {
-      <mat-icon>{{ iconWhenOn }}</mat-icon>
+      <span class="toggle-icon">
+        <ng-container *ngComponentOutlet="iconWhenOn" />
+      </span>
     } @else if (!switchedOn && iconWhenOff) {
-      <mat-icon
+      <span
+        class="toggle-icon"
         [class.warning]="warningWhenOff"
         [tooltip]="iconTooltipWhenOff">
-        {{ iconWhenOff }}
-      </mat-icon>
+        <ng-container *ngComponentOutlet="iconWhenOff" />
+      </span>
     }
 
     <label
@@ -43,15 +47,15 @@ import { generateUuid } from '@app/utils/common/generate-uuid.util';
     </label>
   `,
   styleUrl: './toggle-switch.component.scss',
-  imports: [MatIconModule, TooltipDirective],
+  imports: [NgComponentOutlet, TooltipDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToggleSwitchComponent implements OnInit {
   @Input({ required: true }) public switchedOn = false;
 
   @Input() public iconTooltipWhenOff: string | TemplateRef<unknown> | null = null;
-  @Input() public iconWhenOff?: string;
-  @Input() public iconWhenOn?: string;
+  @Input() public iconWhenOff?: Type<unknown>;
+  @Input() public iconWhenOn?: Type<unknown>;
   @Input() public tooltipWhenOff: string | TemplateRef<unknown> | null = null;
   @Input() public tooltipWhenOn: string | TemplateRef<unknown> | null = null;
   @Input() public warningWhenOff = false;

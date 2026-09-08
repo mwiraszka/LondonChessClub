@@ -1,7 +1,9 @@
+import { EyeIconComponent, EyeOffIconComponent } from '@eagami/ui';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import { query, queryTextContent } from '@app/utils';
+import { query } from '@app/utils';
 
 import { ToggleSwitchComponent } from './toggle-switch.component';
 
@@ -22,8 +24,8 @@ describe('ToggleSwitchComponent', () => {
     component = fixture.componentInstance;
 
     component.iconTooltipWhenOff = 'Mock tooltip';
-    component.iconWhenOn = 'visibility';
-    component.iconWhenOff = 'visibility_off';
+    component.iconWhenOn = EyeIconComponent;
+    component.iconWhenOff = EyeOffIconComponent;
     component.tooltipWhenOff = 'Tooltip when off';
     component.tooltipWhenOn = 'Tooltip when on';
     fixture.detectChanges();
@@ -77,17 +79,17 @@ describe('ToggleSwitchComponent', () => {
       });
 
       it('should show iconWhenOff if icon is provided', () => {
-        expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('visibility_off');
+        expect(query(fixture.debugElement, 'ea-icon-eye-off')).toBeTruthy();
       });
 
       it('should not display any icon if iconWhenOff is not provided', () => {
         fixture.componentRef.setInput('iconWhenOff', undefined);
         fixture.detectChanges();
-        expect(query(fixture.debugElement, 'mat-icon')).toBeFalsy();
+        expect(query(fixture.debugElement, '.toggle-icon')).toBeFalsy();
       });
 
       it('should apply iconTooltipWhenOff to icon if tooltip is provided', () => {
-        const tooltipDirective = query(fixture.debugElement, 'mat-icon').injector.get(
+        const tooltipDirective = query(fixture.debugElement, '.toggle-icon').injector.get(
           TooltipDirective,
         );
         expect(tooltipDirective.tooltip).toBe('Mock tooltip');
@@ -96,7 +98,7 @@ describe('ToggleSwitchComponent', () => {
       it('should not apply tooltip to icon if iconTooltipWhenOff is not provided', () => {
         fixture.componentRef.setInput('iconTooltipWhenOff', null);
         fixture.detectChanges();
-        const iconEl = query(fixture.debugElement, 'mat-icon');
+        const iconEl = query(fixture.debugElement, '.toggle-icon');
         if (iconEl) {
           const tooltipDirective = iconEl.injector.get(TooltipDirective);
           expect(tooltipDirective.tooltip).toBeFalsy();
@@ -135,17 +137,17 @@ describe('ToggleSwitchComponent', () => {
       });
 
       it('should show iconWhenOn if icon is provided', () => {
-        fixture.componentRef.setInput('iconWhenOn', 'visibility');
+        fixture.componentRef.setInput('iconWhenOn', EyeIconComponent);
         fixture.detectChanges();
 
-        expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('visibility');
+        expect(query(fixture.debugElement, 'ea-icon-eye')).toBeTruthy();
       });
 
       it('should not display any icon if iconWhenOn is not provided', () => {
         fixture.componentRef.setInput('iconWhenOn', undefined);
         fixture.detectChanges();
 
-        expect(query(fixture.debugElement, 'mat-icon')).toBeFalsy();
+        expect(query(fixture.debugElement, '.toggle-icon')).toBeFalsy();
       });
 
       it('should not apply warning class when warningWhenOff is true', () => {

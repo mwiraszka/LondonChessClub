@@ -1,6 +1,6 @@
 <lcc-page-header
   heading="City Champion"
-  icon="emoji_events">
+  [icon]="pageIcon">
 </lcc-page-header>
 
 <section class="history-and-photos-section">
@@ -55,7 +55,7 @@
               class="winner-cell"
               [style]="championship.textStyle">
               @if (first) {
-                <mat-icon class="championship-icon">emoji_events</mat-icon>
+                <ea-icon-trophy class="championship-icon" />
               }
               @for (winner of championship.winners; track winner.name; let last = $last) {
                 <span class="winner-name">

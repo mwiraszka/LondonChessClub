@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { MOCK_TOASTS } from '@app/mocks/toasts.mock';
 import { ToastService } from '@app/services';
-import { queryAll, queryTextContent } from '@app/utils';
+import { query, queryAll, queryTextContent } from '@app/utils';
 
 import { ToasterComponent } from './toaster.component';
 
@@ -35,9 +35,13 @@ describe('ToasterComponent', () => {
       queryAll(fixture.debugElement, '.toast').forEach((element, i) => {
         expect(element.attributes['class']).toContain(`toast-${MOCK_TOASTS[i].type}`);
 
-        expect(queryTextContent(element, 'mat-icon')).toBe(
-          fixture.componentInstance.getIcon(MOCK_TOASTS[i].type),
-        );
+        const iconSelector =
+          MOCK_TOASTS[i].type === 'success'
+            ? 'ea-icon-check-circle'
+            : MOCK_TOASTS[i].type === 'warning'
+              ? 'ea-icon-alert-triangle'
+              : 'ea-icon-info';
+        expect(query(element, iconSelector)).toBeTruthy();
         expect(queryTextContent(element, '.title')).toBe(MOCK_TOASTS[i].title);
         expect(queryTextContent(element, '.message')).toBe(MOCK_TOASTS[i].message);
       });

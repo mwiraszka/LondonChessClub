@@ -1,3 +1,8 @@
+import {
+  HistoryIconComponent,
+  ImageIconComponent,
+  RotateCcwIconComponent,
+} from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { debounceTime } from 'rxjs/operators';
 
@@ -18,7 +23,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { FormErrorIconComponent } from '@app/components/form-error-icon/form-error-icon.component';
@@ -49,8 +53,10 @@ import { textValidator } from '@app/validators';
   imports: [
     FormErrorIconComponent,
     ImageComponent,
-    MatIconModule,
+    HistoryIconComponent,
+    ImageIconComponent,
     MarkdownRendererComponent,
+    RotateCcwIconComponent,
     ModificationInfoComponent,
     ReactiveFormsModule,
     TooltipDirective,

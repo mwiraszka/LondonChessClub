@@ -1,6 +1,23 @@
-import { AvatarComponent } from '@eagami/ui';
+import {
+  AvatarComponent,
+  BarChartIconComponent,
+  CalendarDaysIconComponent,
+  CameraIconComponent,
+  HomeIconComponent,
+  InfoIconComponent,
+  MapIconComponent,
+  MaximizeIconComponent,
+  MinimizeIconComponent,
+  MonitorIconComponent,
+  MoonIconComponent,
+  SmartphoneIconComponent,
+  SunIconComponent,
+  TrophyIconComponent,
+  UsersIconComponent,
+} from '@eagami/ui';
 import { Store } from '@ngrx/store';
 
+import { NgComponentOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,7 +25,6 @@ import {
   computed,
   inject,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { DropdownDirective } from '@app/directives/dropdown.directive';
@@ -27,10 +43,16 @@ import { isTouchDevice } from '@app/utils';
   imports: [
     AvatarComponent,
     DropdownDirective,
-    MatIconModule,
+    MaximizeIconComponent,
+    MinimizeIconComponent,
+    MonitorIconComponent,
+    MoonIconComponent,
+    NgComponentOutlet,
     RouterLink,
     RouterLinkActive,
     RouterLinkPipe,
+    SmartphoneIconComponent,
+    SunIconComponent,
     TooltipDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -44,42 +66,42 @@ export class NavigationBarComponent {
     {
       text: 'Home',
       internalPath: '',
-      icon: 'home',
+      icon: HomeIconComponent,
     },
     {
       text: 'About',
       internalPath: 'about',
-      icon: 'info',
+      icon: InfoIconComponent,
     },
     {
       text: 'Members',
       internalPath: 'members',
-      icon: 'groups',
+      icon: UsersIconComponent,
     },
     {
       text: 'Schedule',
       internalPath: 'schedule',
-      icon: 'calendar_month',
+      icon: CalendarDaysIconComponent,
     },
     {
       text: 'News',
       internalPath: 'news',
-      icon: 'map',
+      icon: MapIconComponent,
     },
     {
       text: 'City Champion',
       internalPath: 'city-champion',
-      icon: 'emoji_events',
+      icon: TrophyIconComponent,
     },
     {
       text: 'Photo Gallery',
       internalPath: 'photo-gallery',
-      icon: 'photo_camera',
+      icon: CameraIconComponent,
     },
     {
       text: 'Game Archives',
       internalPath: 'game-archives',
-      icon: 'insert_chart_outlined',
+      icon: BarChartIconComponent,
     },
   ];
 

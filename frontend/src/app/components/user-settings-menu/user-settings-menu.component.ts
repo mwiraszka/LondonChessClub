@@ -1,4 +1,4 @@
-import { AvatarComponent, ToastService } from '@eagami/ui';
+import { AlertTriangleIconComponent, AvatarComponent, ToastService } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
@@ -18,7 +18,6 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 
 import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
@@ -34,9 +33,9 @@ import { AuthSelectors } from '@app/store/auth';
   templateUrl: './user-settings-menu.component.html',
   styleUrl: './user-settings-menu.component.scss',
   imports: [
+    AlertTriangleIconComponent,
     AvatarComponent,
     CommonModule,
-    MatIconModule,
     ToggleSwitchComponent,
     TooltipDirective,
   ],
@@ -44,6 +43,8 @@ import { AuthSelectors } from '@app/store/auth';
 })
 export class UserSettingsMenuComponent implements OnInit {
   @Output() public readonly close = new EventEmitter<void>();
+
+  protected readonly warningIcon = AlertTriangleIconComponent;
 
   private readonly clerkService = inject(ClerkService);
   private readonly toast = inject(ToastService);

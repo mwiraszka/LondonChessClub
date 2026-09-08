@@ -23,7 +23,7 @@
   }
 
   ::ng-deep lcc-toggle-switch {
-    mat-icon {
+    .toggle-icon {
       margin-right: 4px;
       color: var(--lcc-color--scheduleToolbar-scheduleViewIcon);
     }
@@ -34,6 +34,7 @@
     align-items: center;
     justify-content: center;
     padding: 4px;
+    font-size: 24px;
     border-color: var(--lcc-color--dataToolbar-buttonBorder);
     color: var(--lcc-color--dataToolbar-text);
   }

@@ -1,3 +1,8 @@
+import {
+  CalendarCheckIconComponent,
+  GridIconComponent,
+  RowsIconComponent,
+} from '@eagami/ui';
 import { UntilDestroy } from '@ngneat/until-destroy';
 
 import {
@@ -9,7 +14,6 @@ import {
   Output,
   inject,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { ToggleSwitchComponent } from '@app/components/toggle-switch/toggle-switch.component';
@@ -31,8 +35,8 @@ import { EXPORT_EVENTS_TO_ICAL } from '@app/tokens';
     </button>
 
     <lcc-toggle-switch
-      iconWhenOff="splitscreen"
-      iconWhenOn="grid_view"
+      [iconWhenOff]="listViewIcon"
+      [iconWhenOn]="calendarViewIcon"
       [switchedOn]="scheduleView === 'calendar'"
       tooltipWhenOff="View as calendar"
       tooltipWhenOn="View as list"
@@ -44,11 +48,11 @@ import { EXPORT_EVENTS_TO_ICAL } from '@app/tokens';
       [disabled]="!filteredEvents.length"
       (click)="onExportToIcal()"
       tooltip="Export events to iCalendar">
-      <mat-icon>event_available</mat-icon>
+      <ea-icon-calendar-check />
     </button>
   `,
   styleUrl: './schedule-toolbar.component.scss',
-  imports: [MatIconModule, ToggleSwitchComponent, TooltipDirective],
+  imports: [CalendarCheckIconComponent, ToggleSwitchComponent, TooltipDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScheduleToolbarComponent {
@@ -57,6 +61,9 @@ export class ScheduleToolbarComponent {
   @Input({ required: true }) totalCount!: number;
 
   @Output() toggleScheduleView = new EventEmitter<void>();
+
+  protected readonly calendarViewIcon = GridIconComponent;
+  protected readonly listViewIcon = RowsIconComponent;
 
   private readonly exportEventsToIcal = inject(EXPORT_EVENTS_TO_ICAL);
 

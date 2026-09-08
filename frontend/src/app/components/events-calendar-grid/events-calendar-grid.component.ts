@@ -1,3 +1,4 @@
+import { CalendarDaysIconComponent, TrophyIconComponent } from '@eagami/ui';
 import moment from 'moment-timezone';
 
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,6 @@ import {
   SimpleChanges,
   inject,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
@@ -44,8 +44,9 @@ import { EventInfoDialogComponent } from '../event-info-dialog/event-info-dialog
     FormatDatePipe,
     HighlightPipe,
     KebabCasePipe,
-    MatIconModule,
+    CalendarDaysIconComponent,
     TooltipDirective,
+    TrophyIconComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

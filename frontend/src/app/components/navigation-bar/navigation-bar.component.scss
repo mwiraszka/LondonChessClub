@@ -70,6 +70,7 @@ $nav-collapse-width: 800px;
     }
 
     .link-icon {
+      display: inline-flex;
       @include icon-size(24px);
 
       color: var(--lcc-color--nav-linkForeground);
@@ -126,7 +127,7 @@ $nav-collapse-width: 800px;
       color: var(--lcc-color--nav-linkForegroundOnHover);
     }
 
-    mat-icon {
+    .control-icon {
       @include icon-size(22px);
     }
   }

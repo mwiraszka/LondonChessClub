@@ -1,3 +1,4 @@
+import { XIconComponent } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import {
@@ -11,7 +12,6 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 import { DialogConfig, DialogOutput } from '@app/models';
 import { DIALOG_CONFIG_TOKEN } from '@app/services';
@@ -24,13 +24,13 @@ import { DIALOG_CONFIG_TOKEN } from '@app/services';
       <button
         class="close-button lcc-icon-button"
         (click)="result.emit('close')">
-        <mat-icon>close</mat-icon>
+        <ea-icon-x />
       </button>
     </header>
     <ng-template #contentContainer></ng-template>
   `,
   styleUrl: './dialog.component.scss',
-  imports: [MatIconModule],
+  imports: [XIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogComponent<

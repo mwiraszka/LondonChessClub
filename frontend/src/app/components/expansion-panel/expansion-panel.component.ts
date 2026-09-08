@@ -1,11 +1,12 @@
+import { ChevronDownIconComponent, ChevronUpIconComponent } from '@eagami/ui';
+
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'lcc-expansion-panel',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [ChevronDownIconComponent, ChevronUpIconComponent, CommonModule],
   template: `
     <div
       class="expansion-panel"
@@ -19,7 +20,11 @@ import { MatIconModule } from '@angular/material/icon';
             <h4>{{ heading }}</h4>
           }
         </div>
-        <mat-icon>{{ expanded ? 'expand_less' : 'expand_more' }}</mat-icon>
+        @if (expanded) {
+          <ea-icon-chevron-up class="expansion-icon" />
+        } @else {
+          <ea-icon-chevron-down class="expansion-icon" />
+        }
       </div>
 
       @if (expanded) {

@@ -1,3 +1,5 @@
+@use '../../../styles/abstracts/mixins' as *;
+
 :host {
   box-shadow: 2px 2px 4px 0 var(--lcc-color--userSettingsMenu-boxShadow);
 }
@@ -97,5 +99,10 @@
   header {
     margin-bottom: 8px;
     color: var(--lcc-color--userSettingsMenu-warning);
+
+    .warning-icon {
+      display: inline-flex;
+      @include icon-size(24px);
+    }
   }
 }

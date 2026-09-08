@@ -56,7 +56,7 @@
   let-event>
   <div class="event-tooltip">
     <div class="event-date-and-time">
-      <mat-icon class="calendar-icon">calendar_month</mat-icon>
+      <ea-icon-calendar-days class="calendar-icon" />
       <span>{{ event.eventDate | formatDate: 'short no-time' }}</span>
     </div>
 
@@ -75,7 +75,7 @@
         </span>
 
         @if ((event.type | kebabCase) === 'championship') {
-          <mat-icon class="championship-icon">emoji_events</mat-icon>
+          <ea-icon-trophy class="championship-icon" />
         }
       </div>
     </div>

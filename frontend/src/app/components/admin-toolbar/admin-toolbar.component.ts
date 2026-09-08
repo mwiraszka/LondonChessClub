@@ -1,5 +1,7 @@
+import { ShieldCheckIconComponent } from '@eagami/ui';
+
+import { NgComponentOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 import { LinkListComponent } from '@app/components/link-list/link-list.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
@@ -8,7 +10,7 @@ import { AdminButton, ExternalLink, InternalLink } from '@app/models';
 @Component({
   selector: 'lcc-admin-toolbar',
   template: `
-    <mat-icon class="admin-icon">admin_panel_settings</mat-icon>
+    <ea-icon-shield-check class="admin-icon" />
     <div class="controls-container">
       @if (adminLinks) {
         <lcc-link-list [links]="adminLinks"></lcc-link-list>
@@ -22,7 +24,9 @@ import { AdminButton, ExternalLink, InternalLink } from '@app/models';
               type="button"
               [tooltip]="button.tooltip"
               (click)="button.action()">
-              <mat-icon class="button-icon">{{ button.icon }}</mat-icon>
+              <span class="button-icon">
+                <ng-container *ngComponentOutlet="button.icon" />
+              </span>
             </button>
           }
         </div>
@@ -30,7 +34,12 @@ import { AdminButton, ExternalLink, InternalLink } from '@app/models';
     </div>
   `,
   styleUrl: './admin-toolbar.component.scss',
-  imports: [LinkListComponent, MatIconModule, TooltipDirective],
+  imports: [
+    LinkListComponent,
+    NgComponentOutlet,
+    ShieldCheckIconComponent,
+    TooltipDirective,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminToolbarComponent {

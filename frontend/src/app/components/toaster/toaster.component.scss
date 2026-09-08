@@ -34,10 +34,10 @@
     background-color: var(--lcc-color--toast-infoBackground);
   }
 
-  mat-icon {
+  .toast-icon {
+    display: inline-flex;
     @include icon-size(16px);
 
-    display: contents;
     color: var(--lcc-color--toast-icon);
   }
 

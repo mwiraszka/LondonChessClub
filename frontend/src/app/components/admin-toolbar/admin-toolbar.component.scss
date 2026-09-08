@@ -19,6 +19,11 @@
     color: var(--lcc-color--adminToolbar-adminIcon);
   }
 
+  .button-icon {
+    display: inline-flex;
+    @include icon-size(24px);
+  }
+
   .controls-container {
     display: flex;
     flex: 1;

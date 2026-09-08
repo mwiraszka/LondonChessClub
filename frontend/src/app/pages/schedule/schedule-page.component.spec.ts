@@ -1,3 +1,4 @@
+import { DownloadIconComponent, PlusCircleIconComponent } from '@eagami/ui';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { firstValueFrom, take } from 'rxjs';
 
@@ -305,7 +306,7 @@ describe('SchedulePageComponent', () => {
       expect(component.addEventLink).toStrictEqual({
         internalPath: ['event', 'add'],
         text: 'Add an event',
-        icon: 'add_circle_outline',
+        icon: PlusCircleIconComponent,
       });
     });
 
@@ -313,7 +314,7 @@ describe('SchedulePageComponent', () => {
       expect(component.exportToCsvButton).toEqual({
         id: 'export-to-csv',
         tooltip: 'Export to CSV',
-        icon: 'download',
+        icon: DownloadIconComponent,
         action: expect.any(Function),
       });
     });

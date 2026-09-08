@@ -1,5 +1,7 @@
+import { ExternalLinkIconComponent } from '@eagami/ui';
+
+import { NgComponentOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
@@ -24,10 +26,12 @@ import { RouterLinkPipe } from '@app/pipes';
               target="_blank"
               [tooltip]="link.tooltip ?? null">
               @if (link.icon) {
-                <mat-icon class="link-icon">{{ link.icon }}</mat-icon>
+                <span class="link-icon">
+                  <ng-container *ngComponentOutlet="link.icon" />
+                </span>
               }
               <div>{{ link.text }}</div>
-              <mat-icon class="external-link-icon">open_in_new</mat-icon>
+              <ea-icon-external-link class="external-link-icon" />
             </a>
           } @else {
             <a
@@ -35,7 +39,9 @@ import { RouterLinkPipe } from '@app/pipes';
               [routerLink]="link.internalPath | routerLink"
               [tooltip]="link.tooltip ?? null">
               @if (link.icon) {
-                <mat-icon>{{ link.icon }}</mat-icon>
+                <span class="link-icon">
+                  <ng-container *ngComponentOutlet="link.icon" />
+                </span>
               }
               <div>{{ link.text }}</div>
             </a>
@@ -45,7 +51,13 @@ import { RouterLinkPipe } from '@app/pipes';
     </ul>
   `,
   styleUrl: './link-list.component.scss',
-  imports: [MatIconModule, RouterLink, RouterLinkPipe, TooltipDirective],
+  imports: [
+    ExternalLinkIconComponent,
+    NgComponentOutlet,
+    RouterLink,
+    RouterLinkPipe,
+    TooltipDirective,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LinkListComponent {

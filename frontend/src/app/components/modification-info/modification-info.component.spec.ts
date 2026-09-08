@@ -30,7 +30,7 @@ describe('ModificationInfoComponent', () => {
     it('should render correct creation information', () => {
       const createDetails = query(fixture.debugElement, '.create-details-container');
 
-      expect(queryTextContent(createDetails, 'mat-icon')).toBe('post_add');
+      expect(query(createDetails, 'ea-icon-file-plus')).toBeTruthy();
       expect(queryTextContent(createDetails, '.name')).toBe(
         MOCK_MODIFICATION_INFOS[0].createdBy,
       );
@@ -42,7 +42,7 @@ describe('ModificationInfoComponent', () => {
     it('should render correct edit information when creation and edit dates are different', () => {
       const editDetails = query(fixture.debugElement, '.edit-details-container');
 
-      expect(queryTextContent(editDetails, 'mat-icon')).toBe('edit');
+      expect(query(editDetails, 'ea-icon-edit')).toBeTruthy();
       expect(queryTextContent(editDetails, '.name')).toBe(
         MOCK_MODIFICATION_INFOS[0].lastEditedBy,
       );

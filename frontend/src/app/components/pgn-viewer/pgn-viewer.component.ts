@@ -1,3 +1,4 @@
+import { MicroscopeIconComponent } from '@eagami/ui';
 import LichessPgnViewer from 'lichess-pgn-viewer';
 
 import {
@@ -50,7 +51,7 @@ export class PgnViewerComponent implements OnInit, AfterViewInit {
     this.lichessAnalysisBoardLink = {
       text: 'Analyze game on Lichess',
       externalPath: getLichessAnalysisUrl(this.pgn),
-      icon: 'biotech',
+      icon: MicroscopeIconComponent,
     };
   }
 

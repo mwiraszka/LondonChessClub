@@ -1,3 +1,5 @@
+import { AwardIconComponent } from '@eagami/ui';
+
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
@@ -13,6 +15,8 @@ import { MetaAndTitleService } from '@app/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LifetimePageComponent implements OnInit {
+  protected readonly pageIcon = AwardIconComponent;
+
   public readonly IMAGE_PATH = 'assets/lifetime-achievement-awards/';
   public readonly RECIPIENTS_MAP = new Map<number, string[]>([
     [2025, ['Hans Jung', 'Todd Southam', 'John Zoccano']],

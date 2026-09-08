@@ -5,7 +5,7 @@
       [disabled]="options.page === 1"
       [tooltip]="options.page === 1 ? null : 'First page'"
       (click)="onFirstPage()">
-      <mat-icon class="first-page-icon">first_page</mat-icon>
+      <ea-icon-chevrons-left class="first-page-icon" />
     </button>
 
     <button
@@ -13,7 +13,7 @@
       [disabled]="options.page === 1"
       [tooltip]="options.page === 1 ? null : 'Previous page'"
       (click)="onPreviousPage()">
-      <mat-icon class="previous-page-icon">chevron_left</mat-icon>
+      <ea-icon-chevron-left class="previous-page-icon" />
     </button>
 
     <section class="page-control-section">
@@ -43,7 +43,7 @@
       [disabled]="options.page === lastPage"
       [tooltip]="options.page === lastPage ? null : 'Next page'"
       (click)="onNextPage()">
-      <mat-icon class="next-page-icon">chevron_right</mat-icon>
+      <ea-icon-chevron-right class="next-page-icon" />
     </button>
 
     <button
@@ -51,7 +51,7 @@
       [disabled]="options.page === lastPage"
       [tooltip]="options.page === lastPage ? null : 'Last page'"
       (click)="onLastPage()">
-      <mat-icon class="last-page-icon">last_page</mat-icon>
+      <ea-icon-chevrons-right class="last-page-icon" />
     </button>
   </section>
 

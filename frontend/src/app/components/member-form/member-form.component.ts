@@ -1,3 +1,4 @@
+import { HistoryIconComponent } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { debounceTime } from 'rxjs/operators';
 
@@ -16,7 +17,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
 import { DatePickerComponent } from '@app/components/date-picker/date-picker.component';
@@ -49,7 +49,7 @@ import {
   imports: [
     DatePickerComponent,
     FormErrorIconComponent,
-    MatIconModule,
+    HistoryIconComponent,
     ModificationInfoComponent,
     ReactiveFormsModule,
     SafeModeNoticeComponent,

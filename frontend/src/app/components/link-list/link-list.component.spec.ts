@@ -1,3 +1,5 @@
+import { GlobeIconComponent, HomeIconComponent } from '@eagami/ui';
+
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterLink, provideRouter } from '@angular/router';
@@ -22,7 +24,7 @@ describe('LinkListComponent', () => {
     {
       text: 'Home Link',
       internalPath: '',
-      icon: 'home',
+      icon: HomeIconComponent,
     },
     {
       text: 'Article Edit Link',
@@ -35,7 +37,7 @@ describe('LinkListComponent', () => {
     {
       text: 'External Link 1',
       externalPath: 'https://example.com',
-      icon: 'language',
+      icon: GlobeIconComponent,
     },
     {
       text: 'External Link 2',
@@ -91,9 +93,7 @@ describe('LinkListComponent', () => {
         expect(queryTextContent(linkElement, 'div')).toBe(mockInternalLinks[i].text);
 
         if (mockInternalLinks[i].icon) {
-          expect(queryTextContent(linkElement, 'mat-icon')).toBe(
-            mockInternalLinks[i].icon,
-          );
+          expect(query(linkElement, 'ea-icon-home')).toBeTruthy();
         }
 
         if (mockInternalLinks[i].tooltip) {
@@ -116,12 +116,10 @@ describe('LinkListComponent', () => {
         expect(linkElement.attributes['href']).toBe(mockExternalLinks[i].externalPath);
         expect(linkElement.attributes['target']).toBe('_blank');
 
-        expect(queryTextContent(linkElement, '.external-link-icon')).toBe('open_in_new');
+        expect(query(linkElement, 'ea-icon-external-link')).toBeTruthy();
 
         if (mockExternalLinks[i].icon) {
-          expect(queryTextContent(linkElement, '.link-icon')).toBe(
-            mockExternalLinks[i].icon,
-          );
+          expect(query(linkElement, 'ea-icon-globe')).toBeTruthy();
         }
 
         if (mockExternalLinks[i].tooltip) {

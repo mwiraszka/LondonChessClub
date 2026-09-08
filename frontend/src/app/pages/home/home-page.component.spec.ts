@@ -1,3 +1,4 @@
+import { DownloadIconComponent, PlusCircleIconComponent } from '@eagami/ui';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { firstValueFrom, take } from 'rxjs';
 
@@ -276,13 +277,13 @@ describe('HomePageComponent', () => {
       expect(component.addEventLink).toStrictEqual({
         text: 'Add an event',
         internalPath: ['event', 'add'],
-        icon: 'add_circle_outline',
+        icon: PlusCircleIconComponent,
       });
 
       expect(component.createArticleLink).toStrictEqual({
         text: 'Create an article',
         internalPath: ['article', 'add'],
-        icon: 'add_circle_outline',
+        icon: PlusCircleIconComponent,
       });
 
       expect(component.newsPageLink).toStrictEqual({
@@ -305,7 +306,7 @@ describe('HomePageComponent', () => {
       expect(component.exportToCsvButton).toEqual({
         id: 'export-to-csv',
         tooltip: 'Export to CSV',
-        icon: 'download',
+        icon: DownloadIconComponent,
         action: expect.any(Function),
       });
     });

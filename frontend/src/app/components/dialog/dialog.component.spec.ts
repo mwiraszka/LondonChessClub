@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatIconModule } from '@angular/material/icon';
 
 import { DialogOutput } from '@app/models';
 import { DIALOG_CONFIG_TOKEN } from '@app/services';
@@ -29,7 +28,7 @@ describe('DialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DialogComponent, MatIconModule, MockContentComponent],
+      imports: [DialogComponent, MockContentComponent],
       providers: [
         {
           provide: DIALOG_CONFIG_TOKEN,

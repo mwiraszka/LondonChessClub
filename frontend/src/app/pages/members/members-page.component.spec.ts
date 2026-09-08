@@ -1,3 +1,8 @@
+import {
+  DownloadIconComponent,
+  PlusCircleIconComponent,
+  UploadIconComponent,
+} from '@eagami/ui';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { firstValueFrom, take } from 'rxjs';
 
@@ -394,7 +399,7 @@ describe('MembersPageComponent', () => {
       expect(component.addMemberLink).toStrictEqual({
         internalPath: ['member', 'add'],
         text: 'Add a member',
-        icon: 'add_circle_outline',
+        icon: PlusCircleIconComponent,
       });
     });
 
@@ -402,14 +407,14 @@ describe('MembersPageComponent', () => {
       expect(component.updateRatingsFromCsvButton).toEqual({
         id: 'update-ratings-from-csv',
         tooltip: 'Update member ratings from CSV',
-        icon: 'upload_file',
+        icon: UploadIconComponent,
         action: expect.any(Function),
       });
 
       expect(component.exportToCsvButton).toEqual({
         id: 'export-to-csv',
         tooltip: 'Export to CSV',
-        icon: 'download',
+        icon: DownloadIconComponent,
         action: expect.any(Function),
       });
     });

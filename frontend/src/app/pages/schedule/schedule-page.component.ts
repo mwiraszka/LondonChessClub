@@ -1,3 +1,8 @@
+import {
+  CalendarDaysIconComponent,
+  DownloadIconComponent,
+  PlusCircleIconComponent,
+} from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, firstValueFrom } from 'rxjs';
@@ -32,7 +37,7 @@ import { EventsActions, EventsSelectors } from '@app/store/events';
     @if (viewModel$ | async; as vm) {
       <lcc-page-header
         heading="Schedule"
-        icon="calendar_month">
+        [icon]="pageIcon">
       </lcc-page-header>
 
       @if (vm.isAdmin) {
@@ -106,19 +111,21 @@ import { EventsActions, EventsSelectors } from '@app/store/events';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SchedulePageComponent implements OnInit {
+  protected readonly pageIcon = CalendarDaysIconComponent;
+
   @ViewChild(ScheduleToolbarComponent)
   private scheduleToolbar!: ScheduleToolbarComponent;
 
   public readonly addEventLink: InternalLink = {
     text: 'Add an event',
     internalPath: ['event', 'add'],
-    icon: 'add_circle_outline',
+    icon: PlusCircleIconComponent,
   };
 
   public exportToCsvButton: AdminButton = {
     id: 'export-to-csv',
     tooltip: 'Export to CSV',
-    icon: 'download',
+    icon: DownloadIconComponent,
     action: () => this.onExportToCsv(),
   };
 

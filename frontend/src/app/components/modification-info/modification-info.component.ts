@@ -1,5 +1,6 @@
+import { EditIconComponent, FilePlusIconComponent } from '@eagami/ui';
+
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 import { ModificationInfo } from '@app/models';
 import { FormatDatePipe } from '@app/pipes';
@@ -9,7 +10,7 @@ import { FormatDatePipe } from '@app/pipes';
   template: `
     <div class="modification-info-container">
       <div class="create-details-container">
-        <mat-icon>post_add</mat-icon>
+        <ea-icon-file-plus />
 
         <div class="create-text">
           <span>created by</span>
@@ -21,7 +22,7 @@ import { FormatDatePipe } from '@app/pipes';
 
       @if (info.dateCreated !== info.dateLastEdited) {
         <div class="edit-details-container">
-          <mat-icon>edit</mat-icon>
+          <ea-icon-edit />
 
           <div class="edit-text">
             <span>last edited by</span>
@@ -34,7 +35,7 @@ import { FormatDatePipe } from '@app/pipes';
     </div>
   `,
   styleUrl: './modification-info.component.scss',
-  imports: [FormatDatePipe, MatIconModule],
+  imports: [EditIconComponent, FilePlusIconComponent, FormatDatePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModificationInfoComponent {

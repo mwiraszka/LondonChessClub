@@ -1,3 +1,4 @@
+import { BarChartIconComponent } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Chart, ChartConfiguration, registerables } from 'chart.js';
@@ -65,6 +66,8 @@ import { YEARS } from './years';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameArchivesPageComponent implements OnInit, OnDestroy {
+  protected readonly pageIcon = BarChartIconComponent;
+
   private readonly FILE_PATH = 'assets/eco-openings.csv';
 
   public activeYear!: string | null;

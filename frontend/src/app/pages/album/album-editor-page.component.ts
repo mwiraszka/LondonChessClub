@@ -1,3 +1,4 @@
+import { CameraIconComponent, ShieldCheckIconComponent } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, of } from 'rxjs';
@@ -22,7 +23,7 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
       <lcc-page-header
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
         [heading]="vm.pageHeading"
-        icon="admin_panel_settings">
+        [icon]="adminIcon">
       </lcc-page-header>
 
       <lcc-album-form
@@ -47,11 +48,13 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlbumEditorPageComponent implements EditorPage, OnInit {
+  protected readonly adminIcon = ShieldCheckIconComponent;
+
   public readonly entity = 'album';
   public readonly photoGalleryLink: InternalLink = {
     text: 'Go to Photo Gallery',
     internalPath: 'photo-gallery',
-    icon: 'photo_camera',
+    icon: CameraIconComponent,
   };
   public viewModel$?: Observable<{
     album: string | null;

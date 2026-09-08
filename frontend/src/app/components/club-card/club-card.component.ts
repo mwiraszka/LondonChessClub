@@ -1,5 +1,10 @@
+import {
+  ExternalLinkIconComponent,
+  MailIconComponent,
+  MapPinIconComponent,
+} from '@eagami/ui';
+
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 import { ClubMapComponent } from '@app/components/club-map/club-map.component';
 import { TooltipDirective } from '@app/directives/tooltip.directive';
@@ -10,7 +15,13 @@ import { Club } from '@app/models';
   templateUrl: './club-card.component.html',
   styleUrls: ['./club-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ClubMapComponent, MatIconModule, TooltipDirective],
+  imports: [
+    ClubMapComponent,
+    ExternalLinkIconComponent,
+    MailIconComponent,
+    MapPinIconComponent,
+    TooltipDirective,
+  ],
 })
 export class ClubCardComponent {
   @Input({ required: true }) club!: Club;

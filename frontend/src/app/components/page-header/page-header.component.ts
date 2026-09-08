@@ -1,15 +1,17 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
+import { ShieldCheckIconComponent } from '@eagami/ui';
+
+import { NgComponentOutlet } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input, Type } from '@angular/core';
 
 @Component({
   selector: 'lcc-page-header',
   template: `
     @if (icon) {
-      <mat-icon
+      <span
         class="page-header-icon"
-        [class.admin-page]="icon === 'admin_panel_settings'">
-        {{ icon }}
-      </mat-icon>
+        [class.admin-page]="icon === adminIcon">
+        <ng-container *ngComponentOutlet="icon" />
+      </span>
     }
     <h2
       class="page-heading"
@@ -18,12 +20,14 @@ import { MatIconModule } from '@angular/material/icon';
     </h2>
   `,
   styleUrl: './page-header.component.scss',
-  imports: [MatIconModule],
+  imports: [NgComponentOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageHeaderComponent {
   @Input({ required: true }) public heading!: string;
 
   @Input() public hasUnsavedChanges: boolean | null = null;
-  @Input() public icon: string | null = null;
+  @Input() public icon: Type<unknown> | null = null;
+
+  protected readonly adminIcon = ShieldCheckIconComponent;
 }

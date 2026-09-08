@@ -1,3 +1,4 @@
+import { ChevronLeftIconComponent, ChevronRightIconComponent } from '@eagami/ui';
 import moment, { Moment } from 'moment-timezone';
 
 import {
@@ -11,7 +12,6 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
 
 import { IsoDate } from '@app/models';
 
@@ -26,7 +26,7 @@ import { IsoDate } from '@app/models';
       multi: true,
     },
   ],
-  imports: [MatIconModule, ReactiveFormsModule],
+  imports: [ChevronLeftIconComponent, ChevronRightIconComponent, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatePickerComponent implements ControlValueAccessor {

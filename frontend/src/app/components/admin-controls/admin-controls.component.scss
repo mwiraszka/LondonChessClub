@@ -18,7 +18,9 @@
     border-radius: var(--lcc-borderRadius--large);
     background-color: var(--lcc-color--adminControls-buttonBackground);
 
-    mat-icon {
+    .bookmark-icon,
+    .edit-icon,
+    .delete-icon {
       @include icon-size(calc(var(--button-size) - 8px));
     }
 

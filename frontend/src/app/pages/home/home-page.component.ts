@@ -1,3 +1,4 @@
+import { DownloadIconComponent, PlusCircleIconComponent } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, firstValueFrom } from 'rxjs';
@@ -5,7 +6,6 @@ import { map } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
@@ -45,7 +45,6 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
     CommonModule,
     EventsTableComponent,
     LinkListComponent,
-    MatIconModule,
     PhotoGridComponent,
     RouterLink,
     TooltipDirective,
@@ -74,12 +73,12 @@ export class HomePageComponent implements OnInit {
   public readonly addEventLink: InternalLink = {
     text: 'Add an event',
     internalPath: ['event', 'add'],
-    icon: 'add_circle_outline',
+    icon: PlusCircleIconComponent,
   };
   public createArticleLink: InternalLink = {
     text: 'Create an article',
     internalPath: ['article', 'add'],
-    icon: 'add_circle_outline',
+    icon: PlusCircleIconComponent,
   };
   public newsPageLink: InternalLink = {
     text: 'More news',
@@ -97,7 +96,7 @@ export class HomePageComponent implements OnInit {
   public exportToCsvButton: AdminButton = {
     id: 'export-to-csv',
     tooltip: 'Export to CSV',
-    icon: 'download',
+    icon: DownloadIconComponent,
     action: () => this.onExportToCsv(),
   };
 

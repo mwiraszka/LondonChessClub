@@ -1,3 +1,5 @@
+import { ImageSearchIconComponent, PlusCircleIconComponent } from '@eagami/ui';
+
 import { UpperCasePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -8,7 +10,6 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 import { AdminToolbarComponent } from '@app/components/admin-toolbar/admin-toolbar.component';
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
@@ -32,13 +33,7 @@ import { customSort } from '@app/utils';
   selector: 'lcc-photo-grid',
   templateUrl: './photo-grid.component.html',
   styleUrl: './photo-grid.component.scss',
-  imports: [
-    AdminControlsDirective,
-    AdminToolbarComponent,
-    ImageComponent,
-    MatIconModule,
-    UpperCasePipe,
-  ],
+  imports: [AdminControlsDirective, AdminToolbarComponent, ImageComponent, UpperCasePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhotoGridComponent implements OnChanges {
@@ -61,20 +56,20 @@ export class PhotoGridComponent implements OnChanges {
   public readonly openImageExplorerButton: AdminButton = {
     id: 'open-image-explorer',
     tooltip: 'Open image explorer',
-    icon: 'image_search',
+    icon: ImageSearchIconComponent,
     action: () => this.onOpenImageExplorer(),
   };
 
   public readonly addImageLink: InternalLink = {
     internalPath: ['image', 'add'],
     text: 'Add an image',
-    icon: 'add_circle_outline',
+    icon: PlusCircleIconComponent,
   };
 
   public readonly createAlbumLink: InternalLink = {
     internalPath: ['album', 'add'],
     text: 'Create an album',
-    icon: 'add_circle_outline',
+    icon: PlusCircleIconComponent,
   };
 
   constructor(private readonly dialogService: DialogService) {}

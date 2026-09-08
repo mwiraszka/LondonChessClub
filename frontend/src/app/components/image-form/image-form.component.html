@@ -22,7 +22,7 @@
         <label
           class="choose-file-button lcc-secondary-button"
           tooltip="Choose file">
-          <mat-icon>insert_photo</mat-icon>
+          <ea-icon-image />
           <input
             id="file-input"
             type="file"
@@ -91,7 +91,7 @@
       [disabled]="!hasUnsavedChanges"
       tooltip="Restore image to its original state"
       (click)="onRestore()">
-      <mat-icon>restore</mat-icon>
+      <ea-icon-history />
     </button>
   </div>
 

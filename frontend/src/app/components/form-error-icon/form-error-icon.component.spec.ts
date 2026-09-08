@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, Validators } from '@angular/forms';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
-import { query, queryTextContent } from '@app/utils';
+import { query } from '@app/utils';
 import { emailValidator } from '@app/validators';
 
 import { FormErrorIconComponent } from './form-error-icon.component';
@@ -33,10 +33,10 @@ describe('FormErrorIconComponent', () => {
       component.control.markAsTouched();
       fixture.detectChanges();
 
-      expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('warning_amber');
-      expect(fixture.nativeElement.querySelector('mat-icon').style.visibility).toBe(
-        'visible',
-      );
+      expect(query(fixture.debugElement, 'ea-icon-alert-triangle')).toBeTruthy();
+      expect(
+        fixture.nativeElement.querySelector('ea-icon-alert-triangle').style.visibility,
+      ).toBe('visible');
     });
 
     it('should render hidden icon if control is invalid but not touched', () => {
@@ -46,10 +46,10 @@ describe('FormErrorIconComponent', () => {
       );
       fixture.detectChanges();
 
-      expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('warning_amber');
-      expect(fixture.nativeElement.querySelector('mat-icon').style.visibility).toBe(
-        'hidden',
-      );
+      expect(query(fixture.debugElement, 'ea-icon-alert-triangle')).toBeTruthy();
+      expect(
+        fixture.nativeElement.querySelector('ea-icon-alert-triangle').style.visibility,
+      ).toBe('hidden');
     });
 
     it('should render hidden icon if control is touched but not invalid', () => {
@@ -60,10 +60,10 @@ describe('FormErrorIconComponent', () => {
       component.control.markAsTouched();
       fixture.detectChanges();
 
-      expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe('warning_amber');
-      expect(fixture.nativeElement.querySelector('mat-icon').style.visibility).toBe(
-        'hidden',
-      );
+      expect(query(fixture.debugElement, 'ea-icon-alert-triangle')).toBeTruthy();
+      expect(
+        fixture.nativeElement.querySelector('ea-icon-alert-triangle').style.visibility,
+      ).toBe('hidden');
     });
 
     it('should display first listed error message in tooltip if control has multiple errors', () => {
@@ -75,9 +75,10 @@ describe('FormErrorIconComponent', () => {
       );
       fixture.detectChanges();
 
-      const tooltipDirective = query(fixture.debugElement, 'mat-icon').injector.get(
-        TooltipDirective,
-      );
+      const tooltipDirective = query(
+        fixture.debugElement,
+        'ea-icon-alert-triangle',
+      ).injector.get(TooltipDirective);
 
       expect(tooltipDirective.tooltip).toBe('Invalid email');
 

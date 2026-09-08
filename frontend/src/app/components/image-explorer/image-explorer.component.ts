@@ -1,3 +1,4 @@
+import { PlusCircleIconComponent } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
@@ -68,7 +69,7 @@ export class ImageExplorerComponent implements OnInit, DialogOutput<Id> {
   public readonly addImageLink: InternalLink = {
     internalPath: ['image', 'add'],
     text: 'Add an image',
-    icon: 'add_circle_outline',
+    icon: PlusCircleIconComponent,
   };
 
   constructor(

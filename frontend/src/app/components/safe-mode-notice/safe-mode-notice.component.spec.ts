@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { queryTextContent } from '@app/utils';
+import { query, queryTextContent } from '@app/utils';
 
 import { SafeModeNoticeComponent } from './safe-mode-notice.component';
 
@@ -31,9 +31,7 @@ describe('SafeModeNoticeComponent', () => {
     it('should render a checkmark icon', () => {
       fixture.componentRef.setInput('entity', 'User');
       fixture.detectChanges();
-      expect(queryTextContent(fixture.debugElement, 'mat-icon')).toBe(
-        'check_circle_outline',
-      );
+      expect(query(fixture.debugElement, 'ea-icon-check-circle')).toBeTruthy();
     });
   });
 });

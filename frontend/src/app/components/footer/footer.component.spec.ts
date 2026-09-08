@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 
 import { TooltipDirective } from '@app/directives/tooltip.directive';
@@ -15,12 +14,7 @@ describe('FooterComponent', () => {
     TestBed.resetTestingModule();
 
     await TestBed.configureTestingModule({
-      imports: [
-        FooterComponent,
-        RouterModule.forRoot([]),
-        MatIconModule,
-        TooltipDirective,
-      ],
+      imports: [FooterComponent, RouterModule.forRoot([]), TooltipDirective],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FooterComponent);

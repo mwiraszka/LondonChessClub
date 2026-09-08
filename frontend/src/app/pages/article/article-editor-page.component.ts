@@ -1,3 +1,4 @@
+import { MapIconComponent, ShieldCheckIconComponent } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
@@ -22,7 +23,7 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
     @if (viewModel$ | async; as vm) {
       <lcc-page-header
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
-        icon="admin_panel_settings"
+        [icon]="adminIcon"
         [heading]="vm.pageHeading">
       </lcc-page-header>
 
@@ -47,11 +48,13 @@ import { ImagesActions, ImagesSelectors } from '@app/store/images';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleEditorPageComponent implements EditorPage, OnInit {
+  protected readonly adminIcon = ShieldCheckIconComponent;
+
   public readonly entity = 'article';
   public readonly newsPageLink: InternalLink = {
     text: 'See all articles',
     internalPath: 'news',
-    icon: 'map',
+    icon: MapIconComponent,
   };
   public viewModel$?: Observable<{
     bannerImage: Image | null;

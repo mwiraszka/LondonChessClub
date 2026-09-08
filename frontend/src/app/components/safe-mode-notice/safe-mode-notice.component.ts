@@ -1,18 +1,19 @@
+import { CheckCircleIconComponent } from '@eagami/ui';
+
 import { TitleCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'lcc-safe-mode-notice',
   template: `
-    <mat-icon>check_circle_outline</mat-icon>
+    <ea-icon-check-circle />
     <aside>
       {{ entity | titlecase }} personal details have been hidden from view. You can
       disable Safe Mode from the User Settings menu.
     </aside>
   `,
   styleUrl: './safe-mode-notice.component.scss',
-  imports: [MatIconModule, TitleCasePipe],
+  imports: [CheckCircleIconComponent, TitleCasePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SafeModeNoticeComponent {

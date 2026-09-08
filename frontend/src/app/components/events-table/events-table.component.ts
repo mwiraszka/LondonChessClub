@@ -1,3 +1,5 @@
+import { TrophyIconComponent } from '@eagami/ui';
+
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -6,7 +8,6 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 import { BasicDialogComponent } from '@app/components/basic-dialog/basic-dialog.component';
@@ -32,8 +33,8 @@ import { customSort } from '@app/utils';
     FormatDatePipe,
     HighlightPipe,
     KebabCasePipe,
-    MatIconModule,
     RouterLink,
+    TrophyIconComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

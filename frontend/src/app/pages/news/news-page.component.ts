@@ -1,3 +1,4 @@
+import { MapIconComponent, PlusCircleIconComponent } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
@@ -23,7 +24,7 @@ import { ImagesSelectors } from '@app/store/images';
     @if (viewModel$ | async; as vm) {
       <lcc-page-header
         heading="News"
-        icon="map">
+        [icon]="pageIcon">
       </lcc-page-header>
 
       @if (vm.isAdmin) {
@@ -60,10 +61,12 @@ import { ImagesSelectors } from '@app/store/images';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewsPageComponent implements OnInit {
+  protected readonly pageIcon = MapIconComponent;
+
   public createArticleLink: InternalLink = {
     internalPath: ['article', 'add'],
     text: 'Create an article',
-    icon: 'add_circle_outline',
+    icon: PlusCircleIconComponent,
   };
 
   public viewModel$?: Observable<{

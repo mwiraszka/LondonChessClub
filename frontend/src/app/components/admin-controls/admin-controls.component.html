@@ -3,7 +3,7 @@
     class="admin-control-button bookmark-button"
     [tooltip]="bookmarkTooltipContent"
     (click)="config.bookmarkCb()">
-    <mat-icon class="bookmark-icon">bookmark_border</mat-icon>
+    <ea-icon-bookmark class="bookmark-icon" />
   </button>
 }
 
@@ -15,7 +15,7 @@
     [rel]="config.editInNewTab ? 'noopener noreferrer' : undefined"
     [target]="config.editInNewTab ? '_blank' : undefined"
     [routerLink]="config.isEditDisabled ? undefined : (config.editPath | routerLink)">
-    <mat-icon class="edit-icon">edit</mat-icon>
+    <ea-icon-edit class="edit-icon" />
   </a>
 }
 
@@ -25,7 +25,7 @@
     [disabled]="config.isDeleteDisabled"
     [tooltip]="deleteTooltipContent"
     (click)="config.isDeleteDisabled ? undefined : config.deleteCb()">
-    <mat-icon class="delete-icon">delete_outline</mat-icon>
+    <ea-icon-trash class="delete-icon" />
   </button>
 }
 

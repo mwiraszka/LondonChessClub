@@ -1,3 +1,4 @@
+import { ShieldCheckIconComponent } from '@eagami/ui';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
@@ -22,7 +23,7 @@ import { MembersActions, MembersSelectors } from '@app/store/members';
     @if (viewModel$ | async; as vm) {
       <lcc-page-header
         [hasUnsavedChanges]="vm.hasUnsavedChanges"
-        icon="admin_panel_settings"
+        [icon]="adminIcon"
         [heading]="vm.pageHeading">
       </lcc-page-header>
 
@@ -45,6 +46,8 @@ import { MembersActions, MembersSelectors } from '@app/store/members';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MemberEditorPageComponent implements EditorPage, OnInit {
+  protected readonly adminIcon = ShieldCheckIconComponent;
+
   public readonly entity = 'member';
   public readonly membersPageLink: InternalLink = {
     text: 'See all members',

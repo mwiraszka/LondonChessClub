@@ -3,7 +3,7 @@
     class="previous-month-button lcc-primary-button"
     type="button"
     (click)="onPreviousMonth()">
-    <mat-icon>chevron_left</mat-icon>
+    <ea-icon-chevron-left />
   </button>
   <h3 class="title">
     {{ currentMonth.format(screenWidth < 400 ? 'MMM YYYY' : 'MMMM YYYY') }}
@@ -12,7 +12,7 @@
     class="next-month-button lcc-primary-button"
     type="button"
     (click)="onNextMonth()">
-    <mat-icon>chevron_right</mat-icon>
+    <ea-icon-chevron-right />
   </button>
 </header>
 

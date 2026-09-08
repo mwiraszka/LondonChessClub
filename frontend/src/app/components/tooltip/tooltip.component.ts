@@ -6,7 +6,6 @@ import {
   Optional,
   TemplateRef,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 import {
   TOOLTIP_CONTENT_TOKEN,
@@ -30,7 +29,7 @@ import { IsStringPipe } from '@app/pipes';
     }
   `,
   styleUrl: './tooltip.component.scss',
-  imports: [CommonModule, IsStringPipe, MatIconModule, TruncateByCharsPipe],
+  imports: [CommonModule, IsStringPipe, TruncateByCharsPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TooltipComponent {

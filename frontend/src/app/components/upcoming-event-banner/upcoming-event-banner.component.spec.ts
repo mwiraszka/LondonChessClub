@@ -112,7 +112,7 @@ describe('UpcomingEventBannerComponent', () => {
 
     describe('close button', () => {
       it('should display a close icon', () => {
-        expect(query(fixture.debugElement, 'mat-icon')).toBeTruthy();
+        expect(query(fixture.debugElement, 'ea-icon-x')).toBeTruthy();
       });
 
       it('should emit a clear banner event when clicked', () => {

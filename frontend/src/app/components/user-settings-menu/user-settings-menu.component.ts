@@ -106,7 +106,6 @@ export class UserSettingsMenuComponent implements OnInit {
   public async onLogout(): Promise<void> {
     this.close.emit();
     await this.clerkService.logOut();
-    this.router.navigate(['/']);
     this.toast.show('Successfully logged out.', {
       title: 'Logged out',
       variant: 'success',

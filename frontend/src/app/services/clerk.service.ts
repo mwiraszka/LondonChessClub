@@ -2,6 +2,7 @@ import { Clerk } from '@clerk/clerk-js';
 import { Store } from '@ngrx/store';
 
 import { Injectable, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { User } from '@app/models';
 import { AuthActions } from '@app/store/auth';
@@ -35,6 +36,7 @@ function describeSession(session: ClerkSession): string {
   providedIn: 'root',
 })
 export class ClerkService {
+  private readonly router = inject(Router);
   private readonly store = inject(Store);
 
   private clerk!: Clerk;
@@ -50,7 +52,12 @@ export class ClerkService {
     this.clerk = new Clerk(environment.clerkPublishableKey);
     // A password flagged as compromised turns the next sign-in into a pending
     // session with a reset-password task, hosted on its own route.
+    // Angular router navigation so Clerk redirects (after sign-out, session
+    // tasks) stay in the SPA instead of forcing a full page load
     await this.clerk.load({
+      routerPush: (to: string) => void this.router.navigateByUrl(to),
+      routerReplace: (to: string) =>
+        void this.router.navigateByUrl(to, { replaceUrl: true }),
       taskUrls: {
         'reset-password': '/session-tasks/reset-password',
       },

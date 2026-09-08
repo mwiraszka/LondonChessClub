@@ -96,11 +96,10 @@ describe('UserSettingsMenuComponent', () => {
     expect(closeSpy).toHaveBeenCalled();
   });
 
-  it('should log out via Clerk and navigate home', async () => {
+  it('should log out via Clerk and close the menu', async () => {
     await component.onLogout();
 
     expect(logOutSpy).toHaveBeenCalled();
-    expect(routerSpy).toHaveBeenCalledWith(['/']);
     expect(closeSpy).toHaveBeenCalled();
   });
 });

@@ -8,8 +8,11 @@
 }
 
 .grid-container {
+  align-self: center;
   container-type: inline-size;
   width: 100%;
+  // 7 columns of a 200px cover plus its 16px side margins
+  max-width: 1512px;
 }
 
 .album-covers {

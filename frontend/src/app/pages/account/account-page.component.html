@@ -1,0 +1,313 @@
+<div class="account-page">
+  <h1 class="account-page__title">Account</h1>
+  <ea-divider class="page-divider" />
+
+  <div class="account-page__body">
+    <nav
+      class="settings-nav"
+      aria-label="Account settings">
+      @for (item of navItems; track item.id) {
+        <a
+          class="settings-nav__item"
+          [class.settings-nav__item--active]="activeSection() === item.id"
+          [routerLink]="['/account', item.id]">
+          @switch (item.id) {
+            @case ('profile') {
+              <ea-icon-user
+                class="settings-nav__icon"
+                aria-hidden="true" />
+            }
+            @case ('security') {
+              <ea-icon-shield
+                class="settings-nav__icon"
+                aria-hidden="true" />
+            }
+            @case ('danger') {
+              <ea-icon-alert-triangle
+                class="settings-nav__icon"
+                aria-hidden="true" />
+            }
+          }
+          {{ item.label }}
+        </a>
+      }
+    </nav>
+
+    <div class="settings-content">
+      @switch (activeSection()) {
+        @case ('profile') {
+          <ea-card variant="outlined">
+            <h2 slot="header">Profile</h2>
+            <div class="avatar-section">
+              <ea-avatar-editor
+                shape="circle"
+                [canvasSize]="180"
+                [loading]="avatarLoading() || loading()"
+                [currentSrc]="editorSrc()"
+                [cropState]="savedCropState()"
+                (fileSelected)="onFileSelected($event)"
+                (cropStateChanged)="onCropStateChange($event)"
+                (removed)="onRemoveAvatar()"
+                (errored)="onAvatarRejected($event)" />
+            </div>
+
+            @if (loading()) {
+              <div class="fields">
+                <div class="field-skeleton">
+                  <ea-skeleton
+                    variant="text"
+                    width="72px"
+                    height="14px" />
+                  <ea-skeleton
+                    variant="rect"
+                    height="40px" />
+                </div>
+                <div class="field-skeleton">
+                  <ea-skeleton
+                    variant="text"
+                    width="72px"
+                    height="14px" />
+                  <ea-skeleton
+                    variant="rect"
+                    height="40px" />
+                </div>
+              </div>
+              <div class="actions">
+                <ea-skeleton
+                  variant="rect"
+                  width="128px"
+                  height="40px" />
+              </div>
+            } @else {
+              <div class="fields">
+                <ea-input
+                  label="First name"
+                  [required]="true"
+                  [errorMsg]="firstNameError()"
+                  [(value)]="firstName" />
+                <ea-input
+                  label="Last name"
+                  [required]="true"
+                  [errorMsg]="lastNameError()"
+                  [(value)]="lastName" />
+              </div>
+
+              <div class="actions">
+                <ea-button
+                  [disabled]="!hasChanges() || !firstName().trim() || !lastName().trim()"
+                  [loading]="saving()"
+                  (clicked)="onSave()">
+                  Save changes
+                </ea-button>
+              </div>
+            }
+          </ea-card>
+        }
+
+        @case ('security') {
+          <ea-card variant="outlined">
+            <h2 slot="header">Email address</h2>
+
+            @if (emailStep() === 'idle') {
+              <div class="fields">
+                <ea-input
+                  label="Email"
+                  type="email"
+                  autocomplete="email"
+                  [errorMsg]="emailError() || emailInputError()"
+                  [(value)]="newEmail" />
+              </div>
+              <div class="actions">
+                <ea-button
+                  [disabled]="!canSubmitEmail()"
+                  [loading]="emailBusy()"
+                  (clicked)="onChangeEmail()">
+                  Change email
+                </ea-button>
+              </div>
+            } @else {
+              <p class="card-desc">Enter the code we sent to {{ newEmail() }}.</p>
+              <div class="fields">
+                <ea-input
+                  label="Verification code"
+                  autocomplete="one-time-code"
+                  [errorMsg]="emailCodeError()"
+                  [(value)]="emailCode" />
+              </div>
+              <div class="actions actions--row">
+                <ea-button
+                  [loading]="emailBusy()"
+                  (clicked)="onVerifyEmail()">
+                  Verify
+                </ea-button>
+                <ea-button
+                  variant="secondary"
+                  (clicked)="cancelEmailChange()">
+                  Cancel
+                </ea-button>
+              </div>
+            }
+          </ea-card>
+
+          <ea-card variant="outlined">
+            <h2 slot="header">Password</h2>
+            <div class="fields">
+              @if (hasPassword()) {
+                <ea-input
+                  label="Current password"
+                  type="password"
+                  autocomplete="current-password"
+                  [required]="true"
+                  [errorMsg]="currentPasswordError()"
+                  [(value)]="currentPassword" />
+              }
+              <div class="pw-field">
+                <ea-input
+                  label="New password"
+                  type="password"
+                  autocomplete="new-password"
+                  [required]="true"
+                  [(value)]="newPassword" />
+                @if (newPassword()) {
+                  <ul class="pw-reqs">
+                    <li
+                      class="pw-req"
+                      [class.pw-req--met]="passwordChecks().length">
+                      <ea-icon-check
+                        class="pw-req__icon"
+                        aria-hidden="true" />
+                      At least 8 characters
+                    </li>
+                    <li
+                      class="pw-req"
+                      [class.pw-req--met]="passwordChecks().cases">
+                      <ea-icon-check
+                        class="pw-req__icon"
+                        aria-hidden="true" />
+                      Upper and lowercase letters
+                    </li>
+                    <li
+                      class="pw-req"
+                      [class.pw-req--met]="passwordChecks().number">
+                      <ea-icon-check
+                        class="pw-req__icon"
+                        aria-hidden="true" />
+                      At least one number
+                    </li>
+                    <li
+                      class="pw-req"
+                      [class.pw-req--met]="passwordChecks().special">
+                      <ea-icon-check
+                        class="pw-req__icon"
+                        aria-hidden="true" />
+                      At least one special character
+                    </li>
+                  </ul>
+                }
+              </div>
+              <ea-input
+                label="Confirm new password"
+                type="password"
+                autocomplete="new-password"
+                [required]="true"
+                [errorMsg]="confirmMismatch() ? 'Passwords do not match' : ''"
+                [(value)]="confirmPassword" />
+            </div>
+            <div class="actions">
+              <ea-button
+                [disabled]="!canChangePassword()"
+                [loading]="passwordBusy()"
+                (clicked)="onChangePassword()">
+                Change password
+              </ea-button>
+            </div>
+          </ea-card>
+
+          <ea-card variant="outlined">
+            <h2 slot="header">Session management</h2>
+            <p class="card-desc">
+              These are the devices and browsers signed in to your account, with when each
+              was last active. Log out of any unfamiliar devices.
+            </p>
+            @if (sessionsLoading()) {
+              <ea-skeleton
+                variant="rect"
+                height="80px" />
+            } @else {
+              <ul class="sessions">
+                @for (session of sessions(); track session.id) {
+                  <li>
+                    <ea-card variant="elevated">
+                      <div class="session">
+                        <ea-icon-monitor
+                          class="session__icon"
+                          aria-hidden="true" />
+                        <div class="session__info">
+                          <span class="session__device">{{ session.device }}</span>
+                          <span class="session__meta">
+                            @if (session.isCurrent) {
+                              Current session
+                            } @else {
+                              Last active {{ session.lastActive }}
+                            }
+                          </span>
+                        </div>
+                      </div>
+                    </ea-card>
+                  </li>
+                }
+              </ul>
+              @if (sessions().length > 1) {
+                <div class="actions">
+                  <ea-button
+                    variant="secondary"
+                    [loading]="revokingOthers()"
+                    (clicked)="onRevokeOtherSessions()">
+                    Log out other devices
+                  </ea-button>
+                </div>
+              }
+            }
+          </ea-card>
+        }
+
+        @case ('danger') {
+          <ea-card variant="outlined">
+            <h2 slot="header">Delete account</h2>
+            <p class="card-desc">
+              Permanently delete your account and profile. This cannot be undone.
+            </p>
+            <div class="actions">
+              <ea-button
+                variant="danger"
+                [loading]="deleting()"
+                (clicked)="deleteDialogOpen.set(true)">
+                Delete account
+              </ea-button>
+            </div>
+          </ea-card>
+        }
+      }
+    </div>
+  </div>
+</div>
+
+<ea-dialog
+  [(open)]="deleteDialogOpen"
+  width="md">
+  <span slot="header">Delete account</span>
+  <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+  <div slot="footer">
+    <ea-button
+      variant="secondary"
+      (clicked)="deleteDialogOpen.set(false)">
+      Cancel
+    </ea-button>
+    <ea-button
+      variant="danger"
+      [loading]="deleting()"
+      (clicked)="onConfirmDelete()">
+      Confirm
+    </ea-button>
+  </div>
+</ea-dialog>

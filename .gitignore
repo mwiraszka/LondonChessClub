@@ -1,22 +1,44 @@
-# Generated code
+# Dependencies
 node_modules
+
+# Environment variables (never commit secrets)
+*.env
+.env
+.env.local
 
 # System files
 .DS_Store
 Thumbs.db
 
-# Compiled output
+# Build output
 dist
 out-tsc
 
 # Angular
 .angular
 
-# Test coverage data
+# Test coverage
 coverage
 
-# GitHub Copilot instructions
-.github/copilot-instructions.md
+# Vercel
+.vercel
 
-# IDE - VS Code
-.vscode
+# Logs
+*.log
+
+# Database backups
+backups
+
+# Internal/working docs are kept out of this public repo
+docs/
+
+# Claude
+.claude/settings.local.json
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*

@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v6.0.0] - TBD
+
+### Added
+
+- Introduce a slide-in login drawer with email code verification and a guided password reset flow, replacing the standalone login and change-password pages
+- Build out an account page for managing your profile, avatar, email address, password, and active sessions, including an avatar editor that keeps the original photo for future re-cropping
+- Support admin and non-admin user roles, with admin-only editing controls enforced across the site and API
+- Let visitors request a member account from the login drawer, with requests emailed to the club for review
+
+### Changed
+
+- Consolidate the website and API into a single repository
+- Update packages and resolve dependency security vulnerabilities
+- Replace AWS Cognito with Clerk for admin authentication and user management
+- Require new users to set their own password on first login
+- Redesign the navigation bar with instant theme and wide view controls, a log in button, and an avatar account menu in place of the settings dropdown
+- Swap every Material icon for an Eagami UI icon across the site
+- Make the table paginator buttons uniform squares
+- Cap photo gallery album covers at 200px wide so wide view no longer stretches them
+
+### Fixed
+
+- Centre the footer logo above the club name
+- Keep login and logout confirmation toasts visible by completing auth redirects inside the app
+
 ## [v5.13.7] - 2026-06-18
 
 ### Fixed
@@ -1753,6 +1778,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Create a responsive grid layout to house photos from club meetings and club-organized events, including the functionality to enlarge photos in an image overlay 'preview' mode
 - Create a responsive grid layout to showcase only the most pertinent information from other screens (such as only the next 4 events from the schedule, and a more limited amount of photos from the photo gallery)
 
+[v6.0.0]: https://github.com/mwiraszka/london-chess-club/compare/v5.13.7...v6.0.0
 [v5.13.7]: https://github.com/mwiraszka/london-chess-club/compare/v5.13.6...v5.13.7
 [v5.13.6]: https://github.com/mwiraszka/london-chess-club/compare/v5.13.5...v5.13.6
 [v5.13.5]: https://github.com/mwiraszka/london-chess-club/compare/v5.13.4...v5.13.5

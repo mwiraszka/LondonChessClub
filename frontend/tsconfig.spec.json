@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/spec",
+    "types": ["vitest/globals", "node", "google.maps"],
+    "moduleResolution": "bundler",
+    "isolatedModules": true
+  },
+  "files": ["src/window-global-fix.ts", "test-types.d.ts"],
+  "include": ["src/**/*.spec.ts", "src/**/*.d.ts"]
+}

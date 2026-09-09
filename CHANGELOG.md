@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Centre the footer logo above the club name
+- Keep login and logout confirmation toasts visible by completing auth redirects inside the app
 
 ## [v5.13.7] - 2026-06-18
 
